@@ -10,6 +10,8 @@ mandir=		@mandir@
 man1dir=	$(mandir)/man1
 cat1dir=	$(mandir)/cat1
 
+transform =	@program_transform_name@
+
 CC=		@CC@
 CCLD=		$(CC)
 LIBS=		-linstall @LIBS@
@@ -21,6 +23,7 @@ LDFLAGS=	@LDFLAGS@ -L../lib
 INSTALL=	@INSTALL@
 
 PROG=		pkg_add
+DSTPROG=	`echo $(PROG)| sed '$(transform)'`
 
 OBJS=	main.o perform.o futil.o extract.o verify.o
 
@@ -39,6 +42,6 @@ install:
 	$(INSTALL) -m 755 -d $(sbindir)
 	$(INSTALL) -m 755 -d $(man1dir)
 	$(INSTALL) -m 755 -d $(cat1dir)
-	$(INSTALL) $(PROG) $(sbindir)
-	$(INSTALL) -m 444 $(PROG).1 $(man1dir)/$(PROG).1
-	$(INSTALL) -m 444 $(PROG).cat1 $(cat1dir)/$(PROG).0
+	$(INSTALL) $(PROG) $(sbindir)/$(DSTPROG)
+	$(INSTALL) -m 444 $(PROG).1 $(man1dir)/$(DSTPROG).1
+	$(INSTALL) -m 444 $(PROG).cat1 $(cat1dir)/$(DSTPROG).0

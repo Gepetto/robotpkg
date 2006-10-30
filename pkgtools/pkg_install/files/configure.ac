@@ -4,6 +4,8 @@ AC_INIT([pkg_install], [20050607], [grant@NetBSD.org])
 AC_CONFIG_SRCDIR([lib/plist.c])
 AC_CONFIG_HEADER(lib/config.h)
 
+AC_ARG_PROGRAM
+
 AC_CANONICAL_HOST
 CANONICAL_HOST=$host
 AC_SUBST(CANONICAL_HOST)
