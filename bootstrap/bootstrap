@@ -1,0 +1,176 @@
+#!/bin/sh
+#
+# Copyright (c) 2006 Anthony Mallet                   --  Sun Oct  1 2006
+# All rights reserved.
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice,  this list of  conditions and  the following disclaimer in
+#      the  documentation   and/or  other  materials   provided with  the
+#      distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE  AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# where the building takes place
+bootstrapdir=`dirname "$0"`
+bootstrapdir=`cd "${bootstrapdir}" && pwd`
+pkgsrcdir=`dirname "${bootstrapdir}"`
+wrkdir="`pwd`/work"
+
+pkg_install_args="--program-prefix=robot"
+
+usage="Usage: $0 "'
+    [ --workdir <workdir> ]
+    [ --prefix <prefix> ]
+    [ --pkgdbdir <pkgdbdir> ]
+    [ --pkgmandir <pkgmandir> ]
+    [ --sysconfdir <sysconfdir> ]
+    [ --varbase <varbase> ]
+    [ --fetch-cmd <ftp command> ]
+    [ --ignore-case-check ]
+    [ --unprivileged | --ignore-user-check ]
+    [ --preserve-path ]
+    [ --compiler <compiler> ]
+    [ --full ]
+    [ --quiet ]
+    [ --help ]'
+
+die()
+{
+	echo >&2 "$@"
+	exit 1
+}
+
+echo_msg()
+{
+    echo "===> $@"
+}
+
+check_prog()
+{
+    _var="$1"; _name="$2"
+
+    eval _tmp=\"\$$_var\"
+    if [ "x$_tmp" != "x" ]; then
+	# Variable is already set (by the user, for example)
+	return 0
+    fi
+
+    for _d in `echo $PATH | tr ':' ' '`; do
+	if [ -x "$_d/$_name" ]; then
+	    # Program found
+	    eval $_var=\""$_d/$_name"\"
+	    return 1
+	fi
+    done
+
+    die "$_name not found in path."
+}
+
+# run a command, abort if it fails
+run_cmd()
+{
+    echo_msg "running: $@"
+    eval "$@"
+    ret=$?
+    if [ $ret -ne 0 ]; then
+	echo_msg "exited with status $ret"
+	die "aborted."
+    fi
+}
+
+mkdir_p()
+{
+    run_cmd "mkdir -p $@"
+}
+
+copy_src()
+{
+    _src="$1"; _dst="$2"
+    if [ ! -d $wrkdir/$_dst ]; then
+	mkdir_p $wrkdir/$_dst
+    fi
+    $cpprog -r $_src/* $wrkdir/$_dst
+}
+
+get_optarg()
+{
+    expr "x$1" : "x[^=]*=\\(.*\\)"
+}
+
+# user configurable options
+prefix=
+pkgdbdir=
+mandir=
+sysconfdir=
+varbase=
+compiler=""
+make=gmake
+
+while [ $# -gt 0 ]; do
+	case $1 in
+	--workdir=*)	wrkdir=`get_optarg "$1"` ;;
+	--workdir)	wrkdir="$2"; shift ;;
+	--prefix=*)	prefix=`get_optarg "$1"` ;;
+	--prefix)	prefix="$2"; shift ;;
+	--pkgdbdir=*)	pkgdbdir=`get_optarg "$1"` ;;
+	--pkgdbdir)	pkgdbdir="$2"; shift ;;
+	--mandir=*)	mandir=`get_optarg "$1"` ;;
+	--mandir)	mandir="$2"; shift ;;
+	--sysconfdir=*)	sysconfdir=`get_optarg "$1"` ;;
+	--sysconfdir)	sysconfdir="$2"; shift ;;
+	--varbase=*)	varbase=`get_optarg "$1"` ;;
+	--varbase)	varbase="$2"; shift ;;
+	--fetch-cmd=*)	fetch_cmd=`get_optarg "$1"` ;;
+	--fetch-cmd)	fetch_cmd="$a"; shift ;;
+	--compiler=*)	compiler=`get_optarg "$1"` ;;
+	--compiler)	compiler="$2"; shift ;;
+	--help)		echo "$usage"; exit ;;
+	-h)		echo "$usage"; exit ;;
+	--*)		echo "$usage"; exit 1 ;;
+	esac
+	shift
+done
+
+# set defaults for system locations if not already set by the user
+[ -z "$prefix" ] && prefix=${HOME}/openrobots
+[ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/var/db/pkg
+[ -z "$varbase" ] && varbase=${prefix}/var
+[ -z "$mandir" ] && mandir=${prefix}/man
+[ -z "$sysconfdir" ] && sysconfdir=${prefix}/etc
+
+if [ -n "$CP" ]; then
+    cpprog="$CP"
+else
+    check_prog cpprog cp
+fi
+
+# build libnbcompat
+echo_msg "Building libnbcompat"
+copy_src $pkgsrcdir/pkgtools/libnbcompat/files libnbcompat
+run_cmd "(cd $wrkdir/libnbcompat; \
+    $shprog ./configure -C --prefix=$prefix --mandir=$mandir --sysconfdir=$sysconfdir && make)"
+
+echo_msg "Installing package administrative tools"
+copy_src $pkgsrcdir/pkgtools/pkg_install/files pkg_install
+run_cmd "(cd $wrkdir/pkg_install; \
+    env $BSTRAP_ENV			\
+    CPPFLAGS='$CPPFLAGS -I../libnbcompat -I../../libnbcompat'	\
+    LDFLAGS='$LDFLAGS -L../libnbcompat -L../../libnbcompat'	\
+    LIBS='-lnbcompat' \
+    $shprog ./configure -C --prefix=$prefix --sysconfdir=$sysconfdir --with-pkgdbdir=$pkgdbdir --mandir=$mandir $pkg_install_args && $make && $make install)"
