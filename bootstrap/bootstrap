@@ -32,8 +32,6 @@ bootstrapdir=`cd "${bootstrapdir}" && pwd`
 pkgsrcdir=`dirname "${bootstrapdir}"`
 wrkdir="`pwd`/work"
 
-pkg_install_args="--program-prefix=robot"
-
 usage="Usage: $0 "'
     [ --workdir <workdir> ]
     [ --prefix <prefix> ]

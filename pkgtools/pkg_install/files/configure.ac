@@ -4,6 +4,8 @@ AC_INIT([pkg_install], [20050607], [grant@NetBSD.org])
 AC_CONFIG_SRCDIR([lib/plist.c])
 AC_CONFIG_HEADER(lib/config.h)
 
+# by default prefix everything by 'robot'
+test "x$program_prefix" = xNONE && program_prefix=robot
 AC_ARG_PROGRAM
 
 AC_CANONICAL_HOST
