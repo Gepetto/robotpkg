@@ -28,7 +28,7 @@ ${_BUILD_INFO_FILE}: plist
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f $@.tmp
 	${_PKG_SILENT}${_PKG_DEBUG}for _def_ in ${_BUILD_DEFS}; do	\
-		${ECHO} ${_def_}=$(value ${_def_}}			\
+		eval ${ECHO} $${_def_}=\\$${$${_def_}}			\
 		>> $@.tmp						\
 	done
 	${_PKG_SILENT}${_PKG_DEBUG}					\
