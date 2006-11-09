@@ -14,11 +14,11 @@ __PREFIX_SET__:=${PREFIX}
 
 # Calculate depth
 _PKGSRC_TOPDIR=$(shell 
-	if test -f ./mk/robotpkg.prefs.mk; then
+	if test -f ./mk/robotpkg.mk; then
 		pwd
-	elif test -f ../mk/robotpkg.prefs.mk; then
+	elif test -f ../mk/robotpkg.mk; then
 		echo `pwd`/..
-	elif test -f ../../mk/robotpkg.prefs.mk; then
+	elif test -f ../../mk/robotpkg.mk; then
 		echo `pwd`/../..
 	fi)
 
@@ -70,5 +70,8 @@ WRKLOG?=		${WRKDIR}/.work.log
 
 PKG_DEFAULT_OPTIONS?=	# empty
 PKG_OPTIONS?=		# empty
+
+# Common macros
+isyes:=$(filter yes Yes YES,$(1))
 
 endif	# ROBOTPKG_MK

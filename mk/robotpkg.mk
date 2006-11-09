@@ -27,8 +27,8 @@
 
 include "../../mk/robotpkg.prefs.mk"
 
-include "${PKGSRCDIR}/mk/pkg/pkg-vars.mk"
-include "${PKGSRCDIR}/mk/install/install-vars.mk"
+-include "${PKGSRCDIR}/mk/pkg/pkg-vars.mk"
+-include "${PKGSRCDIR}/mk/install/install-vars.mk"
 
 ############################################################################
 # Transform package Makefile variables and set defaults
@@ -37,8 +37,8 @@ include "${PKGSRCDIR}/mk/install/install-vars.mk"
 ##### PKGBASE, PKGNAME[_NOREV], PKGVERSION
 
 PKGBASE?=		$(shell echo ${PKGNAME} | sed -e '/-[^-]*$//')
-PKGVERSION?=		${shell echo ${PKGNAME} | sed -e '/^.*-//')
-ifneq (,$(PKGREVISION))
+PKGVERSION?=		$(shell echo ${PKGNAME} | sed -e '/^.*-//')
+ifneq (,${PKGREVISION})
 ifneq (0,${PKGREVISION})
 ifdef PKGNAME
 PKGNAME_NOREV:=		${PKGNAME}
@@ -50,6 +50,7 @@ endif
 else
 PKGNAME?=		${DISTNAME}
 PKGNAME_NOREV=		${PKGNAME}
+endif
 else
 PKGNAME?=		${DISTNAME}
 PKGNAME_NOREV=		${PKGNAME}
@@ -66,32 +67,27 @@ MAINTAINER?=		openrobots@laas.fr
 PKGWILDCARD?=		${PKGBASE}-[0-9]*
 WRKSRC?=		${WRKDIR}/${DISTNAME}
 
-.if (defined(INSTALL_UNSTRIPPED) && !empty(INSTALL_UNSTRIPPED:M[yY][eE][sS])) || defined(DEBUG_FLAGS)
+ifneq (,$(or $(call isyes,$(INSTALL_UNSTRIPPED)), $(DEBUG_FLAGS)))
 _INSTALL_UNSTRIPPED=	# set (flag used by platform/*.mk)
-.endif
+endif
 
-##### Non-overridable constants
-
-# Latest versions of tools required for correct pkgsrc operation.
-PKGTOOLS_REQD=		${_OPSYS_PKGTOOLS_REQD:U20051103}
-
-##### Transform USE_* into dependencies
-
-.include "../../mk/bsd.pkg.use.mk"
 
 ############################################################################
 # Sanity checks
 ############################################################################
 
 # Fail-safe in the case of circular dependencies
-.if defined(_PKGSRC_DEPS) && defined(PKGNAME) && !empty(_PKGSRC_DEPS:M${PKGNAME})
+ifdef _PKGSRC_DEPS
+ifdef PKGNAME
+ifneq (,$(filter $(PKGNAME), $(_PKGSRC_DEPS)))
 PKG_FAIL_REASON+=	"Circular dependency detected"
-.endif
+endif
+endif
+endif
 
-
-.if !defined(CATEGORIES) || !defined(DISTNAME)
+ifeq (,$(and $(CATEGORIES),$(DISTNAME)))
 PKG_FAIL_REASON+='CATEGORIES and DISTNAME are mandatory.'
-.endif
+endif
 
 
 CPPFLAGS+=	${CPP_PRECOMP_FLAGS}
@@ -125,13 +121,13 @@ _BUILD_DEFS+=		PKGMANDIR
 # Store the result in the +BUILD_INFO file so we can query for the build
 # options using "pkg_info -Q PKG_OPTIONS <pkg>".
 #
-.if defined(PKG_SUPPORTED_OPTIONS) && defined(PKG_OPTIONS)
+ifneq (,$(and $(PKG_SUPPORTED_OPTIONS), $(PKG_OPTIONS)))
 _BUILD_DEFS+=            PKG_OPTIONS
-.endif
+endif
 
-.if empty(DEPOT_SUBDIR)
+ifndef DEPOT_SUBDIR
 PKG_FAIL_REASON+=	"DEPOT_SUBDIR may not be empty."
-.endif
+endif
 
 # ZERO_FILESIZE_P exits with a successful return code if the given file
 #	has zero length.
@@ -157,14 +153,15 @@ _PKG_SILENT=		@
 _PKG_DEBUG=		# empty
 _PKG_DEBUG_SCRIPT=	# empty
 
-.if ${PKG_DEBUG_LEVEL} > 0
+ifeq (1,${PKG_DEBUG_LEVEL})
 _PKG_SILENT=		# empty
-.endif
+endif
 
-.if ${PKG_DEBUG_LEVEL} > 1
+ifeq (2,${PKG_DEBUG_LEVEL})
+_PKG_SILENT=		# empty
 _PKG_DEBUG=		set -x;
 _PKG_DEBUG_SCRIPT=	${SH} -x
-.endif
+endif
 
 
 # A few aliases for *-install targets
@@ -231,209 +228,44 @@ DO_NADA?=		${TRUE}
 #
 PKG_SYSCONFVAR?=	${PKGBASE}
 PKG_SYSCONFSUBDIR?=	# empty
-.if ${PKG_INSTALLATION_TYPE} == "overwrite"
 PKG_SYSCONFDEPOTBASE=	# empty
 PKG_SYSCONFBASEDIR=	${PKG_SYSCONFBASE}
-.else
-.  if !empty(PKG_SYSCONFBASE:M${PREFIX}) || \
-      !empty(PKG_SYSCONFBASE:M${PREFIX}/*)
-PKG_SYSCONFDEPOTBASE=	# empty
-PKG_SYSCONFBASEDIR=	${PKG_SYSCONFBASE}
-.  else
-PKG_SYSCONFDEPOTBASE=	${PKG_SYSCONFBASE}/${DEPOT_SUBDIR}
-PKG_SYSCONFBASEDIR=	${PKG_SYSCONFDEPOTBASE}/${PKGNAME}
-.  endif
-.endif
-.if empty(PKG_SYSCONFSUBDIR)
-DFLT_PKG_SYSCONFDIR:=	${PKG_SYSCONFBASEDIR}
-.else
+ifdef PKG_SYSCONFSUBDIR
 DFLT_PKG_SYSCONFDIR:=	${PKG_SYSCONFBASEDIR}/${PKG_SYSCONFSUBDIR}
-.endif
+else
+DFLT_PKG_SYSCONFDIR:=	${PKG_SYSCONFBASEDIR}
+endif
 PKG_SYSCONFDIR=		${DFLT_PKG_SYSCONFDIR}
-.if defined(PKG_SYSCONFDIR.${PKG_SYSCONFVAR})
-PKG_SYSCONFDIR=		${PKG_SYSCONFDIR.${PKG_SYSCONFVAR}}
-PKG_SYSCONFBASEDIR=	${PKG_SYSCONFDIR.${PKG_SYSCONFVAR}}
-PKG_SYSCONFDEPOTBASE=	# empty
-.endif
-PKG_SYSCONFDIR_PERMS?=	${ROOT_USER} ${ROOT_GROUP} 755
 
-ALL_ENV+=		PKG_SYSCONFDIR=${PKG_SYSCONFDIR:Q}
+ALL_ENV+=		PKG_SYSCONFDIR=${PKG_SYSCONFDIR}
 _BUILD_DEFS+=		PKG_SYSCONFBASEDIR PKG_SYSCONFDIR
-
-# These are all of the tools use by pkgsrc Makefiles.  This should
-# eventually be split up into lists of tools required by different
-# phases of a pkgsrc build.
-#
-USE_TOOLS+=								\
-	[ awk basename cat chgrp chmod chown cmp cp cut dirname echo	\
-	egrep env false file find grep head hostname id install ln ls	\
-	mkdir mv pax printf pwd rm rmdir sed sh sort			\
-	tail test touch tr true	wc xargs
-
-USE_TOOLS+=	${NO_CHECKSUM:D:Udigest\:bootstrap}
-
-# bsd.wrapper.mk
-USE_TOOLS+=	expr
-
-# bsd.bulk-pkg.mk uses certain tools
-.if defined(BATCH)
-USE_TOOLS+=	tee tsort
-.endif
-
-# Locking
-.include "${PKGSRCDIR}/mk/internal/locking.mk"
-
-# Tools
-.include "../../mk/tools/bsd.tools.mk"
-
-# Barrier
-.include "../../mk/bsd.pkg.barrier.mk"
-
-# Unprivileged builds
-.include "../../mk/unprivileged.mk"
-
-# If NO_BUILD is defined, default to not needing a compiler.
-.if defined(NO_BUILD)
-USE_LANGUAGES?=		# empty
-.endif
 
 # Get the proper dependencies and set the PATH to use the compiler
 # named in PKGSRC_COMPILER.
 #
-.include "../../mk/compiler.mk"
+-include "../../mk/compiler.mk"
 
-.include "../../mk/wrapper/bsd.wrapper.mk"
-
-.if defined(ABI_DEPENDS) || defined(BUILD_ABI_DEPENDS)
-.  if !empty(USE_ABI_DEPENDS:M[yY][eE][sS])
-DEPENDS+=		${ABI_DEPENDS}
-BUILD_DEPENDS+=		${BUILD_ABI_DEPENDS}
-.  else
-_BUILD_DEFS+=		USE_ABI_DEPENDS
-.  endif
-.endif
-
-# Find out the PREFIX of dependencies where the PREFIX is needed at build time.
-.if defined(EVAL_PREFIX)
-FIND_PREFIX:=	${EVAL_PREFIX}
-.  include "../../mk/find-prefix.mk"
-.endif
-
-.if !defined(_PATH_ORIG)
-_PATH_ORIG:=		${PATH}
-MAKEFLAGS+=		_PATH_ORIG=${_PATH_ORIG:Q}
-.endif
-
-.if !empty(PREPEND_PATH:M*)
-# This is very Special.  Because PREPEND_PATH is set with += in reverse order,
-# this command reverses the order again (since bootstrap bmake doesn't
-# yet support the :[-1..1] construct).
-_PATH_CMD= \
-	path=${_PATH_ORIG:Q};						\
-	for i in ${PREPEND_PATH}; do path="$$i:$$path"; done;		\
-	${ECHO} "$$path"
-PATH=	${_PATH_CMD:sh} # DOES NOT use :=, to defer evaluation
-.endif
-
-################################################################
-# Many ways to disable a package.
-#
-# Ignore packages that can't be resold if building for a CDROM.
-#
-# Don't build a package if it's restricted and we don't want to
-# get into that.
-#
-# Don't build any package that utilizes strong cryptography, for
-# when the law of the land forbids it.
-#
-# Don't attempt to build packages against X if we don't have X.
-#
-# Don't build a package if it's broken.
-################################################################
-
-.if !defined(NO_SKIP)
-.  if (defined(NO_BIN_ON_CDROM) && defined(FOR_CDROM))
-PKG_FAIL_REASON+= "${PKGNAME} may not be placed in binary form on a CDROM:" \
-         "    "${NO_BIN_ON_CDROM:Q}
-.  endif
-.  if (defined(NO_SRC_ON_CDROM) && defined(FOR_CDROM))
-PKG_FAIL_REASON+= "${PKGNAME} may not be placed in source form on a CDROM:" \
-         "    "${NO_SRC_ON_CDROM:Q}
-.  endif
-.  if (defined(RESTRICTED) && defined(NO_RESTRICTED))
-PKG_FAIL_REASON+= "${PKGNAME} is restricted:" \
-	 "    "${RESTRICTED:Q}
-.  endif
-.  if !(${MKCRYPTO} == "YES" || ${MKCRYPTO} == yes)
-.    if defined(CRYPTO)
-PKG_FAIL_REASON+= "${PKGNAME} may not be built, because it utilizes strong cryptography"
-.    endif
-.  endif
-.  if defined(USE_X11) && (${X11_TYPE} == "native") && !exists(${X11BASE}) 
-PKG_FAIL_REASON+= "${PKGNAME} uses X11, but ${X11BASE} not found"
-.  endif
-.  if defined(BROKEN)
-PKG_FAIL_REASON+= "${PKGNAME} is marked as broken:" ${BROKEN:Q}
-.  endif
-
-.  if defined(LICENSE)
-.    if defined(ACCEPTABLE_LICENSES) && !empty(ACCEPTABLE_LICENSES:M${LICENSE})
-_ACCEPTABLE=	yes
-.    endif	# ACCEPTABLE_LICENSES
-.    if !defined(_ACCEPTABLE)
-PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license: ${LICENSE}." \
-	 "    To view the license, enter \"${MAKE} show-license\"." \
-	 "    To indicate acceptance, add this line to your /etc/mk.conf:" \
-	 "    ACCEPTABLE_LICENSES+=${LICENSE}"
-.    endif	# _ACCEPTABLE
-.  endif	# LICENSE
-
-# Define __PLATFORM_OK only if the OS matches the pkg's allowed list.
-.  if defined(ONLY_FOR_PLATFORM) && !empty(ONLY_FOR_PLATFORM)
-.    for __tmp__ in ${ONLY_FOR_PLATFORM}
-.      if ${MACHINE_PLATFORM:M${__tmp__}} != ""
-__PLATFORM_OK?=	yes
-.      endif	# MACHINE_PLATFORM
-.    endfor	# __tmp__
-.  else	# !ONLY_FOR_PLATFORM
-__PLATFORM_OK?=	yes
-.  endif	# ONLY_FOR_PLATFORM
-.  for __tmp__ in ${NOT_FOR_PLATFORM}
-.    if ${MACHINE_PLATFORM:M${__tmp__}} != ""
-.      undef __PLATFORM_OK
-.    endif	# MACHINE_PLATFORM
-.  endfor	# __tmp__
-.  if !defined(__PLATFORM_OK)
-PKG_SKIP_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}"
-.  endif	# !__PLATFORM_OK
 
 #
 # Now print some error messages that we know we should ignore the pkg
 #
-.  if defined(PKG_FAIL_REASON) || defined(PKG_SKIP_REASON)
+ifdef PKG_FAIL_REASON
 .PHONY: do-check-pkg-fail-or-skip-reason
 fetch checksum extract patch configure all build install package \
 update depends do-check-pkg-fail-or-skip-reason:
-.    if defined(SKIP_SILENT)
+     ifdef SKIP_SILENT
 	@${DO_NADA}
-.    else
-.      if defined(PKG_FAIL_REASON) && !empty(PKG_FAIL_REASON:M*)
+     else
+       ifdef PKG_FAIL_REASON
 	@for str in ${PKG_FAIL_REASON}; do				\
 		${ERROR_MSG} "$$str";					\
 	done
-.      endif
-.      if defined(PKG_SKIP_REASON) && !empty(PKG_SKIP_REASON:M*)
-	@${WARNING_MSG} "Skipping ${PKGNAME}:";				\
-	for str in ${PKG_SKIP_REASON}; do				\
-		${WARNING_MSG} "$$str";					\
-	done
-.      endif
-.    endif
-.    if defined(PKG_FAIL_REASON) && !empty(PKG_FAIL_REASON:M*)
+       endif
+     endif
+     ifdef PKG_FAIL_REASON
 	@${FALSE}
-.    endif
-.  endif # SKIP
-.endif # !NO_SKIP
+     endif
+endif
 
 .PHONY: do-check-pkg-fail-reason
 do-check-pkg-fail-reason:
@@ -442,26 +274,20 @@ do-check-pkg-fail-reason:
 # This target should appear as a dependency of every top level target that
 # is intended to be called by the user or by a package different from the
 # current package.
-.if defined(PKG_FAIL_REASON)
+ifdef PKG_FAIL_REASON
 do-check-pkg-fail-reason: do-check-pkg-fail-or-skip-reason
-.endif
+endif
+
 
 # Add these defs to the ones dumped into +BUILD_DEFS
 _BUILD_DEFS+=	PKGPATH
 _BUILD_DEFS+=	OPSYS OS_VERSION MACHINE_ARCH MACHINE_GNU_ARCH
 _BUILD_DEFS+=	CPPFLAGS CFLAGS FFLAGS LDFLAGS
 _BUILD_DEFS+=	OBJECT_FMT LICENSE RESTRICTED
-_BUILD_DEFS+=	NO_SRC_ON_FTP NO_SRC_ON_CDROM
-_BUILD_DEFS+=	NO_BIN_ON_FTP NO_BIN_ON_CDROM
-
-.if defined(OSVERSION_SPECIFIC)
-_BUILD_DEFS+=	OSVERSION_SPECIFIC
-.endif # OSVERSION_SPECIFIC
 
 .PHONY: all
-.if !target(all)
 all: ${_PKGSRC_BUILD_TARGETS}
-.endif
+
 
 ################################################################
 # More standard targets start here.
@@ -475,68 +301,43 @@ all: ${_PKGSRC_BUILD_TARGETS}
 makedirs: ${WRKDIR}
 
 ${WRKDIR}:
-.if !defined(KEEP_WRKDIR)
-.  if ${PKGSRC_LOCKTYPE} == "sleep" || ${PKGSRC_LOCKTYPE} == "once"
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${TEST} -f ${_WRKDIR_LOCKFILE} || ${RM} -fr ${WRKDIR}
-.  endif
-.endif
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
 
-# Create a symlink from ${WRKDIR} to the package directory if
-# CREATE_WRKDIR_SYMLINK is "yes".
-#
-CREATE_WRKDIR_SYMLINK?=	yes
-
-.if defined(WRKOBJDIR) && !empty(CREATE_WRKDIR_SYMLINK:M[Yy][Ee][Ss])
-makedirs: ${.CURDIR}/${WRKDIR_BASENAME}
- ${.CURDIR}/${WRKDIR_BASENAME}:
-.  if ${PKGSRC_LOCKTYPE} == "sleep" || ${PKGSRC_LOCKTYPE} == "once"
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${TEST} -f ${_WRKDIR_LOCKFILE} || ${RM} -f ${.TARGET}
-.  endif
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	if ${LN} -s ${WRKDIR} ${.TARGET} 2>/dev/null; then		\
-		${ECHO_MSG} "${.TARGET:T} -> ${WRKDIR}";		\
-	fi
-.endif
-
-.include "${PKGSRCDIR}/mk/flavor/bsd.flavor.mk"
-
 # Dependencies
-.include "${PKGSRCDIR}/mk/depends/bsd.depends.mk"
+-include "${PKGSRCDIR}/mk/depends/bsd.depends.mk"
 
 # Check
-.include "${PKGSRCDIR}/mk/check/bsd.check.mk"
+-include "${PKGSRCDIR}/mk/check/bsd.check.mk"
 
 # Clean
-.include "../../mk/bsd.pkg.clean.mk"
+-include "../../mk/bsd.pkg.clean.mk"
 
 # Fetch
-.include "${PKGSRCDIR}/mk/fetch/bsd.fetch.mk"
+-include "${PKGSRCDIR}/mk/fetch/bsd.fetch.mk"
 
 # Checksum
-.include "${PKGSRCDIR}/mk/checksum/bsd.checksum.mk"
+-include "${PKGSRCDIR}/mk/checksum/bsd.checksum.mk"
 
 # Extract
-.include "${PKGSRCDIR}/mk/extract/bsd.extract.mk"
+-include "${PKGSRCDIR}/mk/extract/bsd.extract.mk"
 
 # Patch
-.include "${PKGSRCDIR}/mk/patch/bsd.patch.mk"
+-include "${PKGSRCDIR}/mk/patch/bsd.patch.mk"
 
 # Configure
-.include "${PKGSRCDIR}/mk/configure/bsd.configure.mk"
+-include "${PKGSRCDIR}/mk/configure/bsd.configure.mk"
 
 # Build
-.include "${PKGSRCDIR}/mk/build/bsd.build.mk"
+-include "${PKGSRCDIR}/mk/build/bsd.build.mk"
 
 # Install
-.include "${PKGSRCDIR}/mk/install/bsd.install.mk"
+-include "${PKGSRCDIR}/mk/install/bsd.install.mk"
 
 # Package
-.include "${PKGSRCDIR}/mk/package/bsd.package.mk"
+-include "${PKGSRCDIR}/mk/package/bsd.package.mk"
 
-.include "${PKGSRCDIR}/mk/bsd.pkg.update.mk"
+-include "${PKGSRCDIR}/mk/bsd.pkg.update.mk"
+
 
 ################################################################
 # Skeleton targets start here
@@ -590,55 +391,30 @@ lint:
 # List of flags to pass to pkg_add(1) for bin-install:
 
 BIN_INSTALL_FLAGS?= 	# -v
-.if ${PKG_INSTALLATION_TYPE} == "pkgviews"
-PKG_ARGS_ADD=		-W ${LOCALBASE} -w ${DEFAULT_VIEW}
-.endif
 _BIN_INSTALL_FLAGS=	${BIN_INSTALL_FLAGS}
-.if defined(_AUTOMATIC) && !empty(_AUTOMATIC:MYES)
+ifneq (,$(isyes _AUTOMATIC))
 _BIN_INSTALL_FLAGS+=	-A
-.endif
+endif
 _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
-_SHORT_UNAME_R=	${:!${UNAME} -r!:C@\.([0-9]*)[_.].*@.\1@} # n.n[_.]anything => n.n
+-include "${PKGSRCDIR}/mk/install/bin-install.mk"
 
-.include "${PKGSRCDIR}/mk/install/bin-install.mk"
 
 ################################################################
 # Everything after here are internal targets and really
 # shouldn't be touched by anybody but the release engineers.
 ################################################################
 
-.PHONY: show-pkgtools-version
-.if !target(show-pkgtools-version)
-show-pkgtools-version:
-	@${ECHO} ${PKGTOOLS_VERSION}
-.endif
-
 # convenience target, to display make variables from command line
 # i.e. "make show-var VARNAME=var", will print var's value
 .PHONY: show-var
 show-var:
-	@${ECHO} ${${VARNAME}:Q}
+	@${ECHO} ${VARNAME}
 
-# enhanced version of target above, to display multiple variables
-.PHONY: show-vars
-show-vars:
-.for VARNAME in ${VARNAMES}
-	@${ECHO} ${${VARNAME}:Q}
-.endfor
-
-# displays multiple variables as shell expressions
-# VARS is space separated list of VARNAME:shellvarname
-.PHONY: show-vars-eval
-show-vars-eval:
-.for var in ${VARS}
-	@${ECHO} ${var:C/^.*://}="${${var:C/:.*$//}:Q}"
-.endfor
 
 LICENSE_FILE?=		${PKGSRCDIR}/licenses/${LICENSE}
 
-.if !target(show-license)
-show-license show-licence:
+show-license:
 	@license=${LICENSE:Q};						\
 	license_file=${LICENSE_FILE:Q};					\
 	pager=${PAGER:Q};						\
@@ -650,150 +426,19 @@ show-license show-licence:
 		${ECHO} "Generic $$license information not available";	\
 		${ECHO} "See the package description (pkg_info -d ${PKGNAME}) for more information."; \
 	fi
-.endif
 
-# This target is defined in bsd.options.mk for packages that use
-# the options framework.
-.if !target(show-options)
-.PHONY: show-options
-show-options:
-	@${ECHO} This package does not use the options framework.
-.endif
 
-# Depend is generally meaningless for arbitrary packages, but if someone wants
-# one they can override this.  This is just to catch people who've gotten into
-# the habit of typing `${MAKE} depend all install' as a matter of course.
-#
-.PHONY: depend
-.if !target(depend)
-depend:
-.endif
+-include "../../mk/plist/bsd.plist.mk"
 
-# Same goes for tags
-.PHONY: tags
-.if !target(tags)
-tags:
-.endif
+-include "../../mk/bsd.utils.mk"
 
-.include "../../mk/plist/bsd.plist.mk"
+-include "../../mk/subst.mk"
 
-.include "../../mk/bsd.utils.mk"
 
-.include "../../mk/subst.mk"
-
-#
-# For bulk build targets (bulk-install, bulk-package), the
-# BATCH variable must be set in /etc/mk.conf:
-#
-.if defined(BATCH)
-.  include "../../mk/bulk/bsd.bulk-pkg.mk"
-.endif
-
-# README generation code.
-.include "../../mk/bsd.pkg.readme.mk"
-
-# Create a PKG_ERROR_HANDLER shell command for each class listed in
-# PKG_ERROR_CLASSES.  The error handler is meant to be invoked within
-# a make target.
-#
-.for _class_ in ${PKG_ERROR_CLASSES}
-PKG_ERROR_HANDLER.${_class_}?=	{					\
-		ec=$$?;							\
-		for str in ${PKG_ERROR_MSG.${_class_}}; do		\
-			${PHASE_MSG} "$$str";				\
-		done;							\
-		exit $$ec;						\
-	}
-.endfor
-
-# Cache variables listed in MAKEVARS in a phase-specific "makevars.mk"
-# file.  These variables are effectively passed to sub-make processes
-# that are invoked on the same Makefile.
-#
-.for _phase_ in ${_ALL_PHASES}
-${_MAKEVARS_MK.${_phase_}}: ${WRKDIR}
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${.TARGET}.tmp
-.  for _var_ in ${MAKEVARS:O:u}
-.    if defined(${_var_})
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} ${_var_}"=	"${${_var_}:Q} >> ${.TARGET}.tmp
-.    endif
-.  endfor
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	if ${TEST} -f ${.TARGET}.tmp; then				\
-		( ${ECHO} ".if !defined(_MAKEVARS_MK)";			\
-		  ${ECHO} "_MAKEVARS_MK=	defined";		\
-		  ${ECHO} "";						\
-		  ${CAT} ${.TARGET}.tmp;				\
-		  ${ECHO} "";						\
-		  ${ECHO} ".endif # _MAKEVARS_MK";			\
-		) > ${.TARGET};						\
-		${RM} -f ${.TARGET}.tmp;				\
-	fi
-	${_PKG_SILENT}${_PKG_DEBUG}${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.endfor
-
-# show-tools emits a /bin/sh shell script that defines all known tools
-# to the values they have in the pkgsrc infrastructure.
-#
-# Don't move this code away from here unless you know what you're doing.
-#
-.PHONY: show-tools
-show-tools:
-.for _t_ in ${_USE_TOOLS}
-.  if defined(_TOOLS_VARNAME.${_t_})
-	@${ECHO} ${_TOOLS_VARNAME.${_t_}:Q}=${${_TOOLS_VARNAME.${_t_}}:Q:Q}
-.  endif
-.endfor
-
-# changes-entry appends a correctly-formatted entry to the pkgsrc
-# CHANGES file.
-#
-# The following variables may be set:
-#
-#    CTYPE is the type of entry to add and is one of "Added", "Updated",
-#	"Renamed", "Moved", of "Removed".  The default CTYPE is "Updated".
-#
-#    NETBSD_LOGIN_NAME is the login name assigned by the NetBSD Project.
-#	It defaults to the local login name.
-#
-#    PKGSRC_CHANGES is the path to the CHANGES file to which the entry
-#	is appended.  It defaults to ${PKGSRCDIR}/doc/CHANGES-YYYY.
-#
-# Example usage:
-#
-#	% cd /usr/pkgsrc/category/package
-#	% make changes-entry CTYPE=Added
-#
-CTYPE?=			Updated
-NETBSD_LOGIN_NAME?=	${_NETBSD_LOGIN_NAME_cmd:sh}
-PKGSRC_CHANGES?=	${PKGSRCDIR}/doc/CHANGES-${_CYEAR_cmd:sh}
-
-_CYEAR_cmd=		${DATE} -u +%Y
-_CDATE_cmd=		${DATE} -u +%Y-%m-%d
-_NETBSD_LOGIN_NAME_cmd=	${ID} -nu
-
-_CTYPE1=	"	"${CTYPE:Q}" "${PKGPATH:Q}
-.if !empty(CTYPE:MUpdated)
-_CTYPE2=	" to "${PKGVERSION:Q}
-.elif !empty(CTYPE:MAdded)
-_CTYPE2=	" version "${PKGVERSION:Q}
-.elif !empty(CTYPE:MRenamed) || !empty(CTYPE:MMoved)
-_CTYPE2=	" to XXX"
-.else
-_CTYPE2=
-.endif
-_CTYPE3=	" ["${NETBSD_LOGIN_NAME:Q}" "${_CDATE_cmd:sh:Q}"]"
-
-.PHONY: changes-entry
-changes-entry:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} ${_CTYPE1}${_CTYPE2}${_CTYPE3} >> ${PKGSRC_CHANGES:Q}
-
-.include "${PKGSRCDIR}/mk/internal/build-defs-message.mk"
-.if make(debug) || make(build-env)
-.include "${PKGSRCDIR}/mk/bsd.pkg.debug.mk"
-.endif
-.if make(help)
-.include "${PKGSRCDIR}/mk/help/help.mk"
-.endif
+-include "${PKGSRCDIR}/mk/internal/build-defs-message.mk"
+#if make(debug) || make(build-env)
+#.include "${PKGSRCDIR}/mk/bsd.pkg.debug.mk"
+#.endif
+#.if make(help)
+#.include "${PKGSRCDIR}/mk/help/help.mk"
+#.endif
