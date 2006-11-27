@@ -39,7 +39,7 @@ CPPFLAGS+=		-DDEF_UMASK=${DEF_UMASK}
 
 PKG_DBDIR?=		/var/db/pkg
 PKG_INFO=		PKG_DBDIR=${PKG_DBDIR:Q} ${PKG_INFO_CMD}
-PKG_ADMIN=		PKG_DBDIR=${PKG_DBDIR:Q} ${PKG_ADMIN_CMD}
+PKG_ADMIN=		PKG_DBDIR=${PKG_DBDIR} ${PKG_ADMIN_CMD}
 
 PLIST_SUBST+=		PKG_DBDIR=${PKG_DBDIR:Q}
 
@@ -50,6 +50,9 @@ FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR:Q}			\
 			MKDIR=${MKDIR:Q}
 
 include ../../mk/robotpkg.prefs.mk
+
+VERSION=	$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
+			${FILESDIR}/lib/version.h)
 
 do-extract:
 	@${CP} -R ${FILESDIR} ${WRKSRC}
