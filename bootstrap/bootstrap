@@ -164,6 +164,34 @@ copy_src $pkgsrcdir/pkgtools/libnbcompat/files libnbcompat
 run_cmd "(cd $wrkdir/libnbcompat; \
     $shprog ./configure -C --prefix=$prefix --mandir=$mandir --sysconfdir=$sysconfdir && make)"
 
+# set up an example mk.conf file
+MKCONF_EXAMPLE=${wrkdir}/robotpkg.conf.example
+export MKCONF_EXAMPLE
+echo_msg "Creating robotpkg.conf.example in ${wrkdir}"
+echo "# Example ${sysconfdir}/mk.conf file produced by bootstrap-robotpkg" > ${MKCONF_EXAMPLE}
+echo "# `date`" >> ${MKCONF_EXAMPLE}
+echo "" >> ${MKCONF_EXAMPLE}
+
+if [ "$compiler" != "" ]; then
+	echo "ROBOTPKG_COMPILER=	$compiler" >> ${MKCONF_EXAMPLE}
+fi
+
+# save environment in example mk.conf
+echo "PKG_DBDIR=		$pkgdbdir" >> ${MKCONF_EXAMPLE}
+echo "LOCALBASE=		$prefix" >> ${MKCONF_EXAMPLE}
+echo "VARBASE=		$varbase" >> ${MKCONF_EXAMPLE}
+if [ "${sysconfdir}" != "${prefix}/etc" ]; then
+	echo "PKG_SYSCONFBASE=	$sysconfdir" >> ${MKCONF_EXAMPLE}
+fi
+echo "PKG_TOOLS_BIN=		$prefix/sbin" >> ${MKCONF_EXAMPLE}
+echo "" >> ${MKCONF_EXAMPLE}
+
+# create directories
+mkdir_p $prefix $pkgdbdir $prefix/sbin
+mkdir_p $mandir/man1 $mandir/cat1
+mkdir_p $mandir/man8 $mandir/cat8
+
+# bootstrap pkg_install
 echo_msg "Installing package administrative tools"
 copy_src $pkgsrcdir/pkgtools/pkg_install/files pkg_install
 run_cmd "(cd $wrkdir/pkg_install; \
@@ -172,3 +200,29 @@ run_cmd "(cd $wrkdir/pkg_install; \
     LDFLAGS='$LDFLAGS -L../libnbcompat -L../../libnbcompat'	\
     LIBS='-lnbcompat' \
     $shprog ./configure -C --prefix=$prefix --sysconfdir=$sysconfdir --with-pkgdbdir=$pkgdbdir --mandir=$mandir $pkg_install_args && $make && $make install)"
+
+# preserve compiler and tool environment variables settings
+test -z "$CP" || echo "TOOLS_PLATFORM.cp?=		$CP" >> ${MKCONF_EXAMPLE}
+test -z "$GREP" || echo "TOOLS_PLATFORM.grep?=		$GREP" >> ${MKCONF_EXAMPLE}
+test -z "$ID" || echo "TOOLS_PLATFORM.id?=		$ID" >> ${MKCONF_EXAMPLE}
+test -z "$MKDIR" || echo "TOOLS_PLATFORM.mkdir?=		$MKDIR" >> ${MKCONF_EXAMPLE}
+test -z "$TEST" || echo "TOOLS_PLATFORM.test?=		$TEST" >> ${MKCONF_EXAMPLE}
+test -z "$TOUCH" || echo "TOOLS_PLATFORM.touch?=		$TOUCH" >> ${MKCONF_EXAMPLE}
+test -z "$XARGS" || echo "TOOLS_PLATFORM.xargs?=		$XARGS" >> ${MKCONF_EXAMPLE}
+test -z "$CFLAGS" || (
+	echo "CFLAGS+=		$CFLAGS" >> ${MKCONF_EXAMPLE}
+	echo "DBG=			# prevent DBG from adding default optimizer flags" >> ${MKCONF_EXAMPLE}
+)
+test -z "$CPPFLAGS" || echo "CPPFLAGS+=		$CPPFLAGS" >> ${MKCONF_EXAMPLE}
+test -z "$LDFLAGS" || echo "LDFLAGS+=		$LDFLAGS" >> ${MKCONF_EXAMPLE}
+
+echo "" >> ${MKCONF_EXAMPLE}
+
+# register packages
+# usage: register_package <packagedirectory> [additional arguments]
+register_package() {
+	run_cmd "(cd $pkgsrcdir/$1 && make MAKECONF=${MKCONF_EXAMPLE} WRKOBJDIR=${wrkobjdir} ${2-} bootstrap-register)"
+}
+
+echo_msg "Registering installed packages"
+register_package "pkgtools/pkg_install"
