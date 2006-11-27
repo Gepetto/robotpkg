@@ -8,11 +8,14 @@
 # This is the package database directory for the default view.
 PKG_DBDIR?=		/var/db/pkg
 
-PKG_ADD_CMD?=		${PKG_TOOLS_BIN}/pkg_add
-PKG_ADMIN_CMD?=		${PKG_TOOLS_BIN}/pkg_admin
-PKG_CREATE_CMD?=	${PKG_TOOLS_BIN}/pkg_create
-PKG_DELETE_CMD?=	${PKG_TOOLS_BIN}/pkg_delete
-PKG_INFO_CMD?=		${PKG_TOOLS_BIN}/pkg_info
+_PKG_DBDIR=		${PKG_DBDIR}
+PKGTOOLS_ARGS?=		-K ${_PKG_DBDIR}
+
+PKG_ADD_CMD?=		${PKG_TOOLS_BIN}/robotpkg_add
+PKG_ADMIN_CMD?=		${PKG_TOOLS_BIN}/robotpkg_admin
+PKG_CREATE_CMD?=	${PKG_TOOLS_BIN}/robotpkg_create
+PKG_DELETE_CMD?=	${PKG_TOOLS_BIN}/robotpkg_delete
+PKG_INFO_CMD?=		${PKG_TOOLS_BIN}/robotpkg_info
 PKG_VIEW_CMD?=		${PKG_TOOLS_BIN}/pkg_view
 LINKFARM_CMD?=		${PKG_TOOLS_BIN}/linkfarm
 

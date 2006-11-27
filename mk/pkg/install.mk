@@ -53,11 +53,12 @@ install-check-installed: error-check
 # pkg-register populates the package database with the appropriate
 # entries to register the package as being installed on the system.
 #
-_REGISTER_DEPENDENCIES=							\
+define _REGISTER_DEPENDENCIES
 	${SETENV} PKG_DBDIR=${_PKG_DBDIR}				\
 		AWK=${TOOLS_AWK}					\
 		PKG_ADMIN=${PKG_ADMIN_CMD}				\
 	${SH} ${PKGSRCDIR}/mk/pkg/register-dependencies
+endef
 
 .PHONY: pkg-register
 pkg-register: generate-metadata ${_COOKIE.depends}

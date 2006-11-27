@@ -265,5 +265,5 @@ install-clean: package-clean check-clean
 # bootstrap-register registers "bootstrap" packages that are installed
 # by the pkgsrc/bootstrap/bootstrap script.
 #
-bootstrap-register: register-pkg clean
+bootstrap-register: pkg-register clean
 	@${DO_NADA}

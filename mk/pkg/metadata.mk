@@ -13,7 +13,7 @@ PKG_DB_TMPDIR=	${WRKDIR}/.pkgdb
 
 unprivileged-install-hook: ${PKG_DB_TMPDIR}
 ${PKG_DB_TMPDIR}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $@
 
 
 # --- +BUILD_INFO ----------------------------------------------------
@@ -27,22 +27,22 @@ _METADATA_TARGETS+=	${_BUILD_INFO_FILE}
 ${_BUILD_INFO_FILE}: plist
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f $@.tmp
-	${_PKG_SILENT}${_PKG_DEBUG}for _def_ in ${_BUILD_DEFS}; do	\
-		eval ${ECHO} $${_def_}=\\$${$${_def_}}			\
-		>> $@.tmp						\
-	done
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "PKGTOOLS_VERSION=${PKGTOOLS_VERSION}" >> ${.TARGET}.tmp
+	$(foreach _def_,${_BUILD_DEFS},					\
+		${ECHO} ${_def_}=${${_def_}} >> $@.tmp; 		\
+	)
+	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${ECHO} "PKGTOOLS_VERSION=${PKGTOOLS_VERSION}" >> $@.tmp
 ifdef HOMEPAGE
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "HOMEPAGE=${HOMEPAGE}" >> ${.TARGET}.tmp
+	${ECHO} "HOMEPAGE=${HOMEPAGE}" >> $@.tmp
 endif
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "CATEGORIES=${CATEGORIES}" >> ${.TARGET}.tmp
+	${ECHO} "CATEGORIES=${CATEGORIES}" >> $@.tmp
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "MAINTAINER=${MAINTAINER}" >> ${.TARGET}.tmp
+	${ECHO} "MAINTAINER=${MAINTAINER}" >> $@.tmp
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "BUILD_DATE=$(shell ${_BUILD_DATE_cmd})" >> ${.TARGET}.tmp
+	${ECHO} "BUILD_DATE=$(shell ${_BUILD_DATE_cmd})" >> $@.tmp
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${SORT} $@.tmp > $@ && ${RM} -f $@.tmp
 

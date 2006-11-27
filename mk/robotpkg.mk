@@ -27,6 +27,8 @@
 
 include ../../mk/robotpkg.prefs.mk
 
+include ${PKGSRCDIR}/mk/robotpkg.use.mk
+
 include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
 include ${PKGSRCDIR}/mk/install/install-vars.mk
 
@@ -36,8 +38,8 @@ include ${PKGSRCDIR}/mk/install/install-vars.mk
 
 ##### PKGBASE, PKGNAME[_NOREV], PKGVERSION
 
-PKGBASE?=		$(shell echo ${PKGNAME} | sed -e '/-[^-]*$//')
-PKGVERSION?=		$(shell echo ${PKGNAME} | sed -e '/^.*-//')
+PKGBASE?=		$(shell echo ${PKGNAME} | sed -e 's/-[^-]*$$//')
+PKGVERSION?=		$(shell echo ${PKGNAME} | sed -e 's/^.*-//')
 ifneq (,${PKGREVISION})
 ifneq (0,${PKGREVISION})
 ifdef PKGNAME
@@ -250,9 +252,12 @@ _BUILD_DEFS+=		PKG_SYSCONFBASEDIR PKG_SYSCONFDIR
 # Now print some error messages that we know we should ignore the pkg
 #
 ifdef PKG_FAIL_REASON
-.PHONY: do-check-pkg-fail-or-skip-reason
+
 fetch checksum extract patch configure all build install package \
-update depends do-check-pkg-fail-or-skip-reason:
+update depends: do-check-pkg-fail-or-skip-reason
+
+.PHONY: do-check-pkg-fail-or-skip-reason
+do-check-pkg-fail-or-skip-reason:
      ifdef SKIP_SILENT
 	@${DO_NADA}
      else
@@ -406,7 +411,7 @@ _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 # i.e. "make show-var VARNAME=var", will print var's value
 .PHONY: show-var
 show-var:
-	@${ECHO} ${VARNAME}
+	@${ECHO} ${${VARNAME}}
 
 
 LICENSE_FILE?=		${PKGSRCDIR}/licenses/${LICENSE}
@@ -424,8 +429,7 @@ show-license:
 		${ECHO} "See the package description (pkg_info -d ${PKGNAME}) for more information."; \
 	fi
 
-
--include "../../mk/plist/bsd.plist.mk"
+include ../../mk/plist/plist.mk
 
 -include "../../mk/bsd.utils.mk"
 

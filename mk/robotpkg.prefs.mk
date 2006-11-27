@@ -8,8 +8,6 @@
 
 ifndef ROBOTPKG_MK
 
-# Let robotpkg.conf know that this is robotpkg.
-ROBOTPKG_MK=1
 __PREFIX_SET__:=${PREFIX}
 
 # Calculate depth
@@ -23,7 +21,11 @@ _PKGSRC_TOPDIR=$(shell \
 	fi)
 
 # include the defaults file
--include ${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf
+ifndef MAKECONF
+MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf 2>/dev/null)
+endif
+-include ${MAKECONF}
+include ${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf
 
 ifdef PREFIX
 ifneq (${PREFIX},${__PREFIX_SET__})
@@ -39,7 +41,7 @@ LOCALBASE?=		/usr/pkg
 DEPOT_SUBDIR?=		packages
 DEPOTBASE=		${LOCALBASE}/${DEPOT_SUBDIR}
 
-PKGPATH?=		$(shell pwd | sed -e '|.*/([^/]*/[^/]*)$|\1|'}
+PKGPATH?=		$(notdir $(patsubst %/,%,$(dir $(shell pwd))))/$(notdir $(shell pwd))
 ifndef _PKGSRCDIR
 _PKGSRCDIR=		$(shell cd ${_PKGSRC_TOPDIR} && pwd)
 MAKEFLAGS+=		_PKGSRCDIR=${_PKGSRCDIR}
@@ -71,8 +73,24 @@ WRKLOG?=		${WRKDIR}/.work.log
 PKG_DEFAULT_OPTIONS?=	# empty
 PKG_OPTIONS?=		# empty
 
+# Standard commands
+TRUE?=			:
+SETENV?=		env
+ECHO?=			echo
+CAT?=			cat
+CP?=			cp
+RM?=			rm
+MKDIR?=			mkdir -p
+DATE?=			date
+SORT?=			sort
+AWK?=			awk
+
 # Common macros
-isyes:=$(filter yes Yes YES,$(1))
-exists:=$(shell test -f $(1) && echo yes || echo no)
+define isyes
+$(filter yes Yes YES,$(1))
+endef
+define exists
+$(shell test -f $(1) && echo yes || echo no)
+endef
 
 endif	# ROBOTPKG_MK
