@@ -13,17 +13,17 @@ ROBOTPKG_MK=1
 __PREFIX_SET__:=${PREFIX}
 
 # Calculate depth
-_PKGSRC_TOPDIR=$(shell 
-	if test -f ./mk/robotpkg.mk; then
-		pwd
-	elif test -f ../mk/robotpkg.mk; then
-		echo `pwd`/..
-	elif test -f ../../mk/robotpkg.mk; then
-		echo `pwd`/../..
+_PKGSRC_TOPDIR=$(shell \
+	if test -f ./mk/robotpkg.mk; then	\
+		pwd;				\
+	elif test -f ../mk/robotpkg.mk; then	\
+		echo `pwd`/..;			\
+	elif test -f ../../mk/robotpkg.mk; then	\
+		echo `pwd`/../..;		\
 	fi)
 
 # include the defaults file
--include "${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf"
+-include ${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf
 
 ifdef PREFIX
 ifneq (${PREFIX},${__PREFIX_SET__})
@@ -73,5 +73,6 @@ PKG_OPTIONS?=		# empty
 
 # Common macros
 isyes:=$(filter yes Yes YES,$(1))
+exists:=$(shell test -f $(1) && echo yes || echo no)
 
 endif	# ROBOTPKG_MK

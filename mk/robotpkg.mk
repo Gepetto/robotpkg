@@ -25,10 +25,10 @@
 
 .MAIN: all
 
-include "../../mk/robotpkg.prefs.mk"
+include ../../mk/robotpkg.prefs.mk
 
--include "${PKGSRCDIR}/mk/pkg/pkg-vars.mk"
--include "${PKGSRCDIR}/mk/install/install-vars.mk"
+include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
+include ${PKGSRCDIR}/mk/install/install-vars.mk
 
 ############################################################################
 # Transform package Makefile variables and set defaults
@@ -329,9 +329,6 @@ ${WRKDIR}:
 
 # Build
 -include "${PKGSRCDIR}/mk/build/bsd.build.mk"
-
-# Install
--include "${PKGSRCDIR}/mk/install/bsd.install.mk"
 
 # Package
 -include "${PKGSRCDIR}/mk/package/bsd.package.mk"

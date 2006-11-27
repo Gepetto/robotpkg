@@ -11,27 +11,23 @@ _INSTALL_TARGETS+=	${_COOKIE.install}
 _INSTALL_TARGETS+=	release-install-lock
 
 .PHONY: install
-.if !target(install)
-.  if exists(${_COOKIE.install})
+ifeq (yes,$(call exists,${_COOKIE.install}))
 install:
 	@${DO_NADA}
-.  elif defined(_PKGSRC_BARRIER)
+else
 install: ${_INSTALL_TARGETS}
-.  else
-install: barrier
-.  endif
-.endif
+endif
 
 .PHONY: acquire-install-lock release-install-lock
 acquire-install-lock: acquire-lock
 release-install-lock: release-lock
 
-.if exists(${_COOKIE.install})
+ifeq (yes,$(call exists,${_COOKIE.install}))
 ${_COOKIE.install}:
 	@${DO_NADA}
-.else
+else
 ${_COOKIE.install}: real-install
-.endif
+endif
 
 ######################################################################
 ### real-install (PRIVATE)
@@ -54,34 +50,6 @@ real-install: ${_REAL_INSTALL_TARGETS}
 install-message:
 	@${PHASE_MSG} "Installing for ${PKGNAME}"
 
-######################################################################
-### install-check-interactive (PRIVATE)
-######################################################################
-### install-check-interactive checks whether we must do an interactive
-### install or not.
-###
-install-check-interactive:
-.if !empty(INTERACTIVE_STAGE:Minstall) && defined(BATCH)
-	@${ERROR_MSG} "The installation stage of this package requires user interaction"
-	@${ERROR_MSG} "Please install manually with:"
-	@${ERROR_MSG} "	\"cd ${.CURDIR} && ${MAKE} install\""
-	@${TOUCH} ${_INTERACTIVE_COOKIE}
-	@${FALSE}
-.else
-	@${DO_NADA}
-.endif
-
-######################################################################
-### unprivileged-install-hook (PRIVATE, override, hook)
-######################################################################
-### unprivileged-install-hook is a generic hook target that is run just
-### before pkgsrc elevates privileges for install-all.
-###
-.PHONY: unprivileged-install-hook
-.if !target(unprivileged-install-hook)
-unprivileged-install-hook:
-	@${DO_NADA}
-.endif
 
 ######################################################################
 ### install-check-version (PRIVATE)
@@ -119,91 +87,35 @@ release-install-localbase-lock: release-localbase-lock
 ### the built software, register the software installation, and run
 ### some sanity checks.
 ###
-.if ${_USE_DESTDIR} != "user-destdir"
 _INSTALL_ALL_TARGETS+=		acquire-install-localbase-lock
-.endif
-.if !defined(NO_PKG_REGISTER) && !defined(FORCE_PKG_REGISTER) && ${_USE_DESTDIR} == "no"
+ifndef NO_PKG_REGISTER
+ifndef FORCE_PKG_REGISTER
 _INSTALL_ALL_TARGETS+=		install-check-conflicts
 _INSTALL_ALL_TARGETS+=		install-check-installed
-.endif
+endif
+endif
 _INSTALL_ALL_TARGETS+=		install-check-umask
-.if empty(CHECK_FILES:M[nN][oO]) && !empty(CHECK_FILES_SUPPORTED:M[Yy][Ee][Ss])
 _INSTALL_ALL_TARGETS+=		check-files-pre
-.endif
 _INSTALL_ALL_TARGETS+=		install-makedirs
-.if ${_USE_DESTDIR} == "no"
 _INSTALL_ALL_TARGETS+=		pre-install-script
-.endif
 _INSTALL_ALL_TARGETS+=		pre-install
 _INSTALL_ALL_TARGETS+=		do-install
 _INSTALL_ALL_TARGETS+=		post-install
 _INSTALL_ALL_TARGETS+=		plist
 _INSTALL_ALL_TARGETS+=		install-doc-handling
 _INSTALL_ALL_TARGETS+=		install-script-data
-.if empty(CHECK_FILES:M[nN][oO]) && !empty(CHECK_FILES_SUPPORTED:M[Yy][Ee][Ss])
 _INSTALL_ALL_TARGETS+=		check-files-post
-.endif
-.if ${_USE_DESTDIR} == "no"
 _INSTALL_ALL_TARGETS+=		post-install-script
-.endif
-.if !defined(NO_PKG_REGISTER) && ${_USE_DESTDIR} == "no"
+ifndef NO_PKG_REGISTER
 _INSTALL_ALL_TARGETS+=		register-pkg
-.endif
+endif
 _INSTALL_ALL_TARGETS+=		privileged-install-hook
-.if ${_USE_DESTDIR} != "user-destdir"
 _INSTALL_ALL_TARGETS+=		release-install-localbase-lock
-.endif
 _INSTALL_ALL_TARGETS+=		error-check
 
-.if empty(CHECK_SHLIBS:M[nN][oO])
-privileged-install-hook: check-shlibs
-.endif
-.if empty(CHECK_WRKREF:M[nN][oO])
-privileged-install-hook: check-wrkref
-.endif
-.if empty(CHECK_FILES:M[nN][oO])
-privileged-install-hook: check-files
-.endif
-.if empty(CHECK_INTERPRETER:M[nN][oO])
-privileged-install-hook: check-interpreter
-.endif
-.if empty(CHECK_PERMS:M[nN][oO])
-privileged-install-hook: check-perms
-.endif
+.PHONY: install-all
+install-all: ${_INSTALL_ALL_TARGETS}
 
-.PHONY: install-all su-install-all
-.  if !empty(_MAKE_INSTALL_AS_ROOT:M[Yy][Ee][Ss])
-install-all: su-target
-.  else
-install-all: su-install-all
-.  endif
-su-install-all: ${_INSTALL_ALL_TARGETS}
-
-######################################################################
-### install-check-conflicts (PRIVATE, override)
-######################################################################
-### install-check-conflicts check for conflicts between the package and
-### any installed packages.  This should be overridden per package
-### system flavor.
-###
-.PHONY: install-check-conflicts
-.if !target(install-check-conflicts)
-install-check-conflicts:
-	@${DO_NADA}
-.endif
-
-######################################################################
-### install-check-installed (PRIVATE, override)
-######################################################################
-### install-check-installed checks if the package (perhaps an older
-### version) is already installed on the system.  This should be
-### overridden per package system flavor.
-###
-.PHONY: install-check-installed
-.if !target(install-check-installed)
-install-check-installed:
-	@${DO_NADA}
-.endif
 
 ######################################################################
 ### install-check-umask (PRIVATE)
@@ -235,11 +147,11 @@ MTREE_ARGS?=	-U -f ${MTREE_FILE} -d -e -p
 .PHONY: install-makedirs
 install-makedirs:
 	${_PKG_SILENT}${_PKG_DEBUG}${TEST} -d ${DESTDIR}${PREFIX} || ${MKDIR} ${DESTDIR}${PREFIX}
-.if !defined(NO_MTREE)
+ifndef NO_MTREE
 	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${MTREE_FILE} ||	\
 		${MTREE} ${MTREE_ARGS} ${DESTDIR}${PREFIX}/
-.endif
-.if defined(INSTALLATION_DIRS) && !empty(INSTALLATION_DIRS)
+endif
+ifdef INSTALLATION_DIRS
 	@${STEP_MSG} "Creating installation directories"
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	for dir in ${INSTALLATION_DIRS}; do				\
@@ -261,7 +173,7 @@ install-makedirs:
 			${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/$$dir ;;	\
 		esac;							\
 	done
-.endif	# INSTALLATION_DIRS
+endif	# INSTALLATION_DIRS
 
 ######################################################################
 ### pre-install, do-install, post-install (PUBLIC, override)
@@ -274,30 +186,22 @@ install-makedirs:
 INSTALL_DIRS?=		${BUILD_DIRS}
 INSTALL_MAKE_FLAGS?=	# none
 INSTALL_TARGET?=	install ${USE_IMAKE:D${NO_INSTALL_MANPAGES:D:Uinstall.man}}
-.if ${_USE_DESTDIR} != "no"
-INSTALL_ENV+=		DESTDIR=${DESTDIR:Q}
-INSTALL_MAKE_FLAGS+=	DESTDIR=${DESTDIR:Q}
-.endif
 
-.if !target(do-install)
 do-install:
-.  for _dir_ in ${INSTALL_DIRS}
+#.  for _dir_ in ${INSTALL_DIRS}
 	${_PKG_SILENT}${_PKG_DEBUG}${_ULIMIT_CMD}			\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
 	${SETENV} ${INSTALL_ENV} ${MAKE_ENV} 				\
 		${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS}	\
 			-f ${MAKE_FILE} ${INSTALL_TARGET}
-.  endfor
-.endif
+#.  endfor
 
-.if !target(pre-install)
 pre-install:
 	@${DO_NADA}
-.endif
-.if !target(post-install)
+
 post-install:
 	@${DO_NADA}
-.endif
+
 
 ######################################################################
 ### install-doc-handling (PRIVATE)
@@ -329,10 +233,10 @@ install-doc-handling: plist
 ### register-pkg registers the package as being installed on the system.
 ###
 .PHONY: register-pkg
-.if !target(register-pkg)
+#.if !target(register-pkg)
 register-pkg:
 	@${DO_NADA}
-.endif
+#.endif
 
 ######################################################################
 ### privileged-install-hook (PRIVATE, override, hook)
@@ -341,10 +245,10 @@ register-pkg:
 ### before pkgsrc drops elevated privileges.
 ###
 .PHONY: privileged-install-hook
-.if !target(privileged-install-hook)
+#.if !target(privileged-install-hook)
 privileged-install-hook:
 	@${DO_NADA}
-.endif
+#.endif
 
 ######################################################################
 ### install-clean (PRIVATE)

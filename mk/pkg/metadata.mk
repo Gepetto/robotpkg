@@ -46,6 +46,9 @@ endif
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${SORT} $@.tmp > $@ && ${RM} -f $@.tmp
 
+
+ifeq ( no,yes)
+
 ######################################################################
 ###
 ### +BUILD_VERSION - Package build files versioning information
@@ -120,11 +123,11 @@ ${_DESCR_FILE}: ${DESCR_SRC}
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${.TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}${CAT} ${.ALLSRC} > ${.TARGET}
-.if defined(HOMEPAGE)
+#.if defined(HOMEPAGE)
 	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} >> ${.TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} "Homepage:" >> ${.TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ""${HOMEPAGE:Q} >> ${.TARGET}
-.endif
+#.endif
 
 ######################################################################
 ###
@@ -133,26 +136,26 @@ ${_DESCR_FILE}: ${DESCR_SRC}
 ### This file contains important messages which apply to this package,
 ### and are shown during installation.
 ###
-.if !defined(MESSAGE_SRC)
-.  if exists(${PKGDIR}/MESSAGE)
+#.if !defined(MESSAGE_SRC)
+#.  if exists(${PKGDIR}/MESSAGE)
 MESSAGE_SRC=	${PKGDIR}/MESSAGE
-.  else
-.    if exists(${PKGDIR}/MESSAGE.common)
+#.  else
+#.    if exists(${PKGDIR}/MESSAGE.common)
 MESSAGE_SRC=	${PKGDIR}/MESSAGE.common
-.    endif
-.    if exists(${PKGDIR}/MESSAGE.${OPSYS})
+#.    endif
+#.    if exists(${PKGDIR}/MESSAGE.${OPSYS})
 MESSAGE_SRC+=	${PKGDIR}/MESSAGE.${OPSYS}
-.    endif
-.    if exists(${PKGDIR}/MESSAGE.${MACHINE_ARCH:C/i[3-6]86/i386/g})
+#.    endif
+#.    if exists(${PKGDIR}/MESSAGE.${MACHINE_ARCH:C/i[3-6]86/i386/g})
 MESSAGE_SRC+=	${PKGDIR}/MESSAGE.${MACHINE_ARCH:C/i[3-6]86/i386/g}
-.    endif
-.    if exists(${PKGDIR}/MESSAGE.${OPSYS}-${MACHINE_ARCH:C/i[3-6]86/i386/g})
+#.    endif
+#.    if exists(${PKGDIR}/MESSAGE.${OPSYS}-${MACHINE_ARCH:C/i[3-6]86/i386/g})
 MESSAGE_SRC+=	${PKGDIR}/MESSAGE.${OPSYS}-${MACHINE_ARCH:C/i[3-6]86/i386/g}
-.    endif
-.  endif
-.endif
+#.    endif
+#.  endif
+#.endif
 
-.if defined(MESSAGE_SRC)
+#.if defined(MESSAGE_SRC)
 _MESSAGE_FILE=		${PKG_DB_TMPDIR}/+DISPLAY
 _METADATA_TARGETS+=	${_MESSAGE_FILE}
 
@@ -184,7 +187,7 @@ install-display-message: ${_MESSAGE_FILE}
 	@${ECHO_MSG} ""
 	@${CAT} ${_MESSAGE_FILE}
 	@${ECHO_MSG} ""
-.  if !empty(PKGSRC_MESSAGE_RECIPIENTS)
+#.  if !empty(PKGSRC_MESSAGE_RECIPIENTS)
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	(${ECHO} "The ${PKGNAME} package was installed on `${HOSTNAME_CMD}` at `date`"; \
 	${ECHO} "";							\
@@ -193,8 +196,8 @@ install-display-message: ${_MESSAGE_FILE}
 	${CAT} ${_MESSAGE_FILE};					\
 	${ECHO} "") |							\
 	${MAIL_CMD} -s"Package ${PKGNAME} installed on `${HOSTNAME_CMD}`" ${PKGSRC_MESSAGE_RECIPIENTS}
-.  endif
-.endif	# MESSAGE_SRC
+#.  endif
+#.endif	# MESSAGE_SRC
 
 ######################################################################
 ###
@@ -317,6 +320,8 @@ ${_CONTENTS_FILE}: ${_CONTENTS_TARGETS}
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${PKG_CREATE} ${_PKG_ARGS_INSTALL} -O ${PKGFILE:T} > ${.TARGET}
+
+endif
 
 ######################################################################
 ### generate-metadata (PRIVATE)

@@ -9,14 +9,14 @@
 .PHONY: install-check-conflicts
 install-check-conflicts: error-check
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${WRKDIR}/.CONFLICTS
-.for _conflict_ in ${CONFLICTS}
+#.for _conflict_ in ${CONFLICTS}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	found="`${_PKG_BEST_EXISTS} ${_conflict_:Q} || ${TRUE}`";	\
 	case "$$found" in						\
 	"")	;;							\
 	*)	${ECHO} "$$found" >> ${WRKDIR}/.CONFLICTS ;;		\
 	esac
-.endfor
+#.endfor
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${TEST} -f ${WRKDIR}/.CONFLICTS || exit 0;			\
 	exec 1>${ERROR_DIR}/${.TARGET};					\
@@ -48,9 +48,9 @@ install-check-installed: error-check
 	${ECHO} "      re-linking dependencies, risking various problems."
 
 
-# --- register-pkg (PRIVATE, mk/install/install.mk) ------------------
+# --- pkg-register (PRIVATE, mk/install/install.mk) ------------------
 
-# register-pkg populates the package database with the appropriate
+# pkg-register populates the package database with the appropriate
 # entries to register the package as being installed on the system.
 #
 _REGISTER_DEPENDENCIES=							\
@@ -59,8 +59,8 @@ _REGISTER_DEPENDENCIES=							\
 		PKG_ADMIN=${PKG_ADMIN_CMD}				\
 	${SH} ${PKGSRCDIR}/mk/pkg/register-dependencies
 
-.PHONY: register-pkg
-register-pkg: generate-metadata ${_COOKIE.depends}
+.PHONY: pkg-register
+pkg-register: generate-metadata ${_COOKIE.depends}
 	@${STEP_MSG} "Registering installation for ${PKGNAME}"
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -fr ${_PKG_DBDIR}/${PKGNAME}
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${_PKG_DBDIR}/${PKGNAME}

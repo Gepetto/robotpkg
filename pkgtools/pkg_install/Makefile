@@ -63,7 +63,7 @@ update:
 	${MAKE} ${UPDATE_TARGET}
 	${MAKE} clean
 
-include "../../pkgtools/libnbcompat/inplace.mk"
-include "../../mk/robotpkg.mk"
+include ../../pkgtools/libnbcompat/inplace.mk
+include ../../mk/robotpkg.mk
 
 PREFIX:=	${PKG_TOOLS_PREFIX}
