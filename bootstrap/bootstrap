@@ -118,7 +118,7 @@ mandir=
 sysconfdir=
 varbase=
 compiler=""
-make=gmake
+gmake=gmake
 
 while [ $# -gt 0 ]; do
 	case $1 in
@@ -162,7 +162,7 @@ fi
 echo_msg "Building libnbcompat"
 copy_src $pkgsrcdir/pkgtools/libnbcompat/files libnbcompat
 run_cmd "(cd $wrkdir/libnbcompat; \
-    $shprog ./configure -C --prefix=$prefix --mandir=$mandir --sysconfdir=$sysconfdir && make)"
+    $shprog ./configure -C --prefix=$prefix --mandir=$mandir --sysconfdir=$sysconfdir && $gmake)"
 
 # set up an example mk.conf file
 MKCONF_EXAMPLE=${wrkdir}/robotpkg.conf.example
@@ -199,7 +199,7 @@ run_cmd "(cd $wrkdir/pkg_install; \
     CPPFLAGS='$CPPFLAGS -I../libnbcompat -I../../libnbcompat'	\
     LDFLAGS='$LDFLAGS -L../libnbcompat -L../../libnbcompat'	\
     LIBS='-lnbcompat' \
-    $shprog ./configure -C --prefix=$prefix --sysconfdir=$sysconfdir --with-pkgdbdir=$pkgdbdir --mandir=$mandir $pkg_install_args && $make && $make install)"
+    $shprog ./configure -C --prefix=$prefix --sysconfdir=$sysconfdir --with-pkgdbdir=$pkgdbdir --mandir=$mandir $pkg_install_args && $gmake && $gmake install)"
 
 # preserve compiler and tool environment variables settings
 test -z "$CP" || echo "TOOLS_PLATFORM.cp?=		$CP" >> ${MKCONF_EXAMPLE}
@@ -221,7 +221,7 @@ echo "" >> ${MKCONF_EXAMPLE}
 # register packages
 # usage: register_package <packagedirectory> [additional arguments]
 register_package() {
-	run_cmd "(cd $pkgsrcdir/$1 && make MAKECONF=${MKCONF_EXAMPLE} WRKOBJDIR=${wrkobjdir} ${2-} bootstrap-register)"
+	run_cmd "(cd $pkgsrcdir/$1 && $gmake MAKECONF=${MKCONF_EXAMPLE} WRKOBJDIR=${wrkobjdir} ${2-} bootstrap-register)"
 }
 
 echo_msg "Registering installed packages"
