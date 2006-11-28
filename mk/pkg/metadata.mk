@@ -28,9 +28,9 @@ ${_BUILD_INFO_FILE}: plist
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f $@.tmp
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	$(foreach _def_,${_BUILD_DEFS},					\
-		${ECHO} ${_def_}=${${_def_}} >> $@.tmp; 		\
-	)
+$(foreach _def_,${_BUILD_DEFS},						\
+	${ECHO} ${_def_}=${${_def_}} >> $@.tmp; 			\
+)
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${ECHO} "PKGTOOLS_VERSION=${PKGTOOLS_VERSION}" >> $@.tmp
 ifdef HOMEPAGE
@@ -47,29 +47,27 @@ endif
 	${SORT} $@.tmp > $@ && ${RM} -f $@.tmp
 
 
-ifeq ( no,yes)
-
-######################################################################
-###
-### +BUILD_VERSION - Package build files versioning information
-###
-### We extract the ident strings from all of the important pkgsrc files
-### involved in building the package, i.e. Makefile and patches.
-###
+# --- +BUILD_VERSION -------------------------------------------------
+#
+# Package build files versioning information
+#
+# We extract the ident strings from all of the important pkgsrc files
+# involved in building the package, i.e. Makefile and patches.
+#
 _BUILD_VERSION_FILE=	${PKG_DB_TMPDIR}/+BUILD_VERSION
 _METADATA_TARGETS+=	${_BUILD_VERSION_FILE}
 
 ${_BUILD_VERSION_FILE}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${.TARGET}.tmp
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
+	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f $@.tmp
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	exec 1>>${.TARGET}.tmp;						\
-	for f in ${.CURDIR}/Makefile ${FILESDIR}/* ${PKGDIR}/*; do	\
+	exec 1>>$@.tmp;							\
+	for f in ${CURDIR}/Makefile ${FILESDIR}/* ${PKGDIR}/*; do	\
 		${TEST} ! -f "$$f" || ${ECHO} "$$f";			\
 	done
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	exec 1>>${.TARGET}.tmp;						\
-	${TEST} -f ${DISTINFO_FILE:Q} || exit 0;			\
+	exec 1>>$@.tmp;							\
+	${TEST} -f ${DISTINFO_FILE} || exit 0;				\
 	${CAT} ${DISTINFO_FILE} |					\
 	${AWK} 'NF == 4 && $$3 == "=" { gsub("[()]", "", $$2); print $$2 }' | \
 	while read file; do						\
@@ -77,7 +75,7 @@ ${_BUILD_VERSION_FILE}:
 			${ECHO} "${PATCHDIR}/$$file";			\
 	done
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	exec 1>>${.TARGET}.tmp;						\
+	exec 1>>$@.tmp;							\
 	${TEST} -d ${PATCHDIR} || exit 0;				\
 	cd ${PATCHDIR}; for f in *; do					\
 		case "$$f" in						\
@@ -86,16 +84,15 @@ ${_BUILD_VERSION_FILE}:
 		esac;							\
 	done
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${CAT} ${.TARGET}.tmp |						\
+	${CAT} $@.tmp |							\
 	while read file; do						\
-		${GREP} '\$$NetBSD' $$file 2>/dev/null |		\
-		${SED} -e "s|^|$$file:|";				\
+		${MD5} $$file 2>/dev/null;				\
 	done |								\
 	${AWK} '{ sub("^${PKGSRCDIR}/", "");				\
-		  sub(":.*[$$]NetBSD", ":	$$NetBSD");		\
-		  sub("[$$][^$$]*$$", "$$");				\
 		  print; }' |						\
-	${SORT} -u > ${.TARGET} && ${RM} -f ${.TARGET}.tmp
+	${SORT} -u > $@ && ${RM} -f $@.tmp
+
+ifeq ( no,yes)
 
 ######################################################################
 ###
