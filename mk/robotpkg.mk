@@ -27,10 +27,6 @@
 
 include ../../mk/robotpkg.prefs.mk
 
-include ${PKGSRCDIR}/mk/robotpkg.use.mk
-
-include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
-include ${PKGSRCDIR}/mk/install/install-vars.mk
 
 ############################################################################
 # Transform package Makefile variables and set defaults
@@ -73,6 +69,7 @@ ifneq (,$(or $(call isyes,$(INSTALL_UNSTRIPPED)), $(DEBUG_FLAGS)))
 _INSTALL_UNSTRIPPED=	# set (flag used by platform/*.mk)
 endif
 
+include ${PKGSRCDIR}/mk/robotpkg.use.mk
 
 ############################################################################
 # Sanity checks
@@ -321,7 +318,7 @@ ${WRKDIR}:
 -include "${PKGSRCDIR}/mk/fetch/bsd.fetch.mk"
 
 # Checksum
--include "${PKGSRCDIR}/mk/checksum/bsd.checksum.mk"
+include ${PKGSRCDIR}/mk/checksum/checksum-vars.mk
 
 # Extract
 -include "${PKGSRCDIR}/mk/extract/bsd.extract.mk"
@@ -335,10 +332,11 @@ ${WRKDIR}:
 # Build
 -include "${PKGSRCDIR}/mk/build/bsd.build.mk"
 
-# Package
--include "${PKGSRCDIR}/mk/package/bsd.package.mk"
+# Install
+include ${PKGSRCDIR}/mk/install/install-vars.mk
 
--include "${PKGSRCDIR}/mk/bsd.pkg.update.mk"
+# Package
+include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
 
 
 ################################################################
