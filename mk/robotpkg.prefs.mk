@@ -22,9 +22,9 @@ _PKGSRC_TOPDIR=$(shell \
 
 # include the defaults file
 ifndef MAKECONF
-MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf 2>/dev/null)
+MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf
 endif
--include ${MAKECONF}
+include ${MAKECONF}
 include ${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf
 
 ifdef PREFIX
@@ -76,6 +76,7 @@ PKG_OPTIONS?=		# empty
 # Standard commands
 TRUE?=			:
 SETENV?=		env
+TEST?=			test
 ECHO?=			echo
 CAT?=			cat
 CP?=			cp
@@ -84,6 +85,7 @@ MKDIR?=			mkdir -p
 DATE?=			date
 SORT?=			sort
 AWK?=			awk
+MD5?=			md5
 
 # Common macros
 define isyes
