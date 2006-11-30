@@ -210,7 +210,7 @@ SCRIPTS_ENV+=	${INSTALL_MACROS}
 
 # Used to print all the '===>' style prompts - override this to turn them off.
 ECHO_MSG?=		${ECHO}
-PHASE_MSG?=		${ECHO_MSG} ${_PKGSRC_IN:Q}\>
+PHASE_MSG?=		${ECHO_MSG} "===>"
 STEP_MSG?=		${ECHO_MSG} "=>"
 WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
 ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
@@ -244,6 +244,8 @@ _BUILD_DEFS+=		PKG_SYSCONFBASEDIR PKG_SYSCONFDIR
 #
 -include "../../mk/compiler.mk"
 
+# Locking
+include ${PKGSRCDIR}/mk/internal/locking.mk
 
 #
 # Now print some error messages that we know we should ignore the pkg
@@ -285,7 +287,7 @@ endif
 _BUILD_DEFS+=	PKGPATH
 _BUILD_DEFS+=	OPSYS OS_VERSION MACHINE_ARCH MACHINE_GNU_ARCH
 _BUILD_DEFS+=	CPPFLAGS CFLAGS FFLAGS LDFLAGS
-_BUILD_DEFS+=	OBJECT_FMT LICENSE RESTRICTED
+_BUILD_DEFS+=	LICENSE RESTRICTED
 
 .PHONY: all
 all: ${_PKGSRC_BUILD_TARGETS}
@@ -306,13 +308,13 @@ ${WRKDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
 
 # Dependencies
--include "${PKGSRCDIR}/mk/depends/bsd.depends.mk"
+include ${PKGSRCDIR}/mk/depends/depends-vars.mk
 
 # Check
 -include "${PKGSRCDIR}/mk/check/bsd.check.mk"
 
 # Clean
--include "../../mk/bsd.pkg.clean.mk"
+include ${PKGSRCDIR}/mk/clean.mk
 
 # Fetch
 -include "${PKGSRCDIR}/mk/fetch/bsd.fetch.mk"
