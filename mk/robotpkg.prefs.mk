@@ -75,17 +75,23 @@ PKG_OPTIONS?=		# empty
 
 # Standard commands
 TRUE?=			:
+FALSE?=			false
 SETENV?=		env
 TEST?=			test
+LS?=			ls
+LN?=			ln
 ECHO?=			echo
 CAT?=			cat
+SED?=			sed
 CP?=			cp
+MV?=			mv
 RM?=			rm
 MKDIR?=			mkdir -p
 DATE?=			date
 SORT?=			sort
 AWK?=			awk
-MD5?=			md5
+MD5?=			md5sum
+XARGS?=			xargs -r
 
 # Common macros
 define isyes
