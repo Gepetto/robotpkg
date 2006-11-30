@@ -226,3 +226,7 @@ register_package() {
 
 echo_msg "Registering installed packages"
 register_package "pkgtools/pkg_install"
+
+# Install the man page.
+echo_msg "Installing packages(7) man page"
+run_cmd "(cd $pkgsrcdir/pkgtools/pkgmanpages && $gmake PKG_VERBOSE=yes MAKECONF=${MKCONF_EXAMPLE} WRKOBJDIR=$wrkobjdir CREATE_WRKDIR_SYMLINK=no install)"
