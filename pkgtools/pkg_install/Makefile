@@ -38,16 +38,16 @@ PKG_DELETE=		${WRKSRC}/delete/pkg_delete
 CPPFLAGS+=		-DDEF_UMASK=${DEF_UMASK}
 
 PKG_DBDIR?=		/var/db/pkg
-PKG_INFO=		PKG_DBDIR=${PKG_DBDIR:Q} ${PKG_INFO_CMD}
-PKG_ADMIN=		PKG_DBDIR=${PKG_DBDIR} ${PKG_ADMIN_CMD}
+PKG_INFO=		${SETENV} PKG_DBDIR=${PKG_DBDIR} ${PKG_INFO_CMD}
+PKG_ADMIN=		${SETENV} PKG_DBDIR=${PKG_DBDIR} ${PKG_ADMIN_CMD}
 
-PLIST_SUBST+=		PKG_DBDIR=${PKG_DBDIR:Q}
+PLIST_SUBST+=		PKG_DBDIR=${PKG_DBDIR}
 
 DEINSTALL_SRC=		# empty
 INSTALL_SRC=		${PKGDIR}/INSTALL
-FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR:Q}			\
-			PKG_TOOLS_BIN=${PKG_TOOLS_BIN:Q}		\
-			MKDIR=${MKDIR:Q}
+FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
+			PKG_TOOLS_BIN=${PKG_TOOLS_BIN}		\
+			MKDIR=${MKDIR}
 
 include ../../mk/robotpkg.prefs.mk
 
@@ -68,5 +68,3 @@ update:
 
 include ../../pkgtools/libnbcompat/inplace.mk
 include ../../mk/robotpkg.mk
-
-PREFIX:=	${PKG_TOOLS_PREFIX}
