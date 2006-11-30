@@ -2,8 +2,7 @@
 
 # --- install (PUBLIC) -----------------------------------------------
 
-# install is a public target to install the package.  It will
-# acquire elevated privileges just-in-time.
+# install is a public target to install the package.
 #
 _INSTALL_TARGETS+=	${_PKGSRC_BUILD_TARGETS}
 _INSTALL_TARGETS+=	acquire-install-lock
@@ -18,10 +17,6 @@ else
 install: ${_INSTALL_TARGETS}
 endif
 
-.PHONY: acquire-install-lock release-install-lock
-acquire-install-lock: acquire-lock
-release-install-lock: release-lock
-
 ifeq (yes,$(call exists,${_COOKIE.install}))
 ${_COOKIE.install}:
 	@${DO_NADA}
@@ -29,17 +24,24 @@ else
 ${_COOKIE.install}: real-install
 endif
 
-######################################################################
-### real-install (PRIVATE)
-######################################################################
-### real-install is a helper target onto which one can hook all of the
-### targets that do the actual installing of the built objects.
-###
+.PHONY: acquire-install-lock release-install-lock
+acquire-install-lock: acquire-lock
+release-install-lock: release-lock
+
+.PHONY: acquire-install-localbase-lock release-install-localbase-lock
+acquire-install-localbase-lock: acquire-localbase-lock
+release-install-localbase-lock: release-localbase-lock
+
+
+# --- real-install (PRIVATE) -----------------------------------------
+#
+# real-install is a helper target onto which one can hook all of the
+# targets that do the actual installing of the built objects.
+#
 _REAL_INSTALL_TARGETS+=	install-check-interactive
 _REAL_INSTALL_TARGETS+=	install-check-version
 _REAL_INSTALL_TARGETS+=	install-message
 _REAL_INSTALL_TARGETS+=	install-vars
-_REAL_INSTALL_TARGETS+=	unprivileged-install-hook
 _REAL_INSTALL_TARGETS+=	install-all
 _REAL_INSTALL_TARGETS+=	install-cookie
 
@@ -51,13 +53,12 @@ install-message:
 	@${PHASE_MSG} "Installing for ${PKGNAME}"
 
 
-######################################################################
-### install-check-version (PRIVATE)
-######################################################################
-### install-check-version will verify that the built package located in
-### ${WRKDIR} matches the version specified in the package Makefile.
-### This is a check against stale work directories.
-###
+# --- install-check-version (PRIVATE) --------------------------------
+#
+# install-check-version will verify that the built package located in
+# ${WRKDIR} matches the version specified in the package Makefile.
+# This is a check against stale work directories.
+#
 .PHONY: install-check-version
 install-check-version: ${_COOKIE.extract}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
@@ -72,21 +73,13 @@ install-check-version: ${_COOKIE.extract}
 		${RECURSIVE_MAKE} clean build ;;			\
 	esac
 
-######################################################################
-### The targets below are run with elevated privileges.
-######################################################################
 
-.PHONY: acquire-install-localbase-lock release-install-localbase-lock
-acquire-install-localbase-lock: acquire-localbase-lock
-release-install-localbase-lock: release-localbase-lock
-
-######################################################################
-### install-all, su-install-all (PRIVATE)
-######################################################################
-### install-all is a helper target to run the install target of
-### the built software, register the software installation, and run
-### some sanity checks.
-###
+# --- install-all (PRIVATE) ------------------------------------------
+#
+# install-all is a helper target to run the install target of
+# the built software, register the software installation, and run
+# some sanity checks.
+#
 _INSTALL_ALL_TARGETS+=		acquire-install-localbase-lock
 ifndef NO_PKG_REGISTER
 ifndef FORCE_PKG_REGISTER
@@ -117,12 +110,11 @@ _INSTALL_ALL_TARGETS+=		error-check
 install-all: ${_INSTALL_ALL_TARGETS}
 
 
-######################################################################
-### install-check-umask (PRIVATE)
-######################################################################
-### install-check-umask tests whether the umask is properly set and
-### emits a non-fatal warning otherwise.
-###
+# --- install-check-umask (PRIVATE) ----------------------------------
+#
+# install-check-umask tests whether the umask is properly set and
+# emits a non-fatal warning otherwise.
+#
 .PHONY: install-check-umask
 install-check-umask:
 	${_PKG_SILENT}${_PKG_DEBUG}					\
@@ -133,24 +125,18 @@ install-check-umask:
 		${WARNING_MSG} "this package again by \`\`${MAKE} deinstall reinstall''."; \
         fi
 
-######################################################################
-### install-makedirs (PRIVATE)
-######################################################################
-### install-makedirs is a target to create directories expected to
-### exist prior to installation.  If a package sets INSTALLATION_DIRS,
-### then it's known to pre-create all of the directories that it needs
-### at install-time, so we don't need mtree to do it for us.
-###
-MTREE_FILE?=	${PKGSRCDIR}/mk/platform/${OPSYS}.pkg.dist
-MTREE_ARGS?=	-U -f ${MTREE_FILE} -d -e -p
+
+# --- install-makedirs (PRIVATE) -------------------------------------
+#
+# install-makedirs is a target to create directories expected to
+# exist prior to installation.  If a package sets INSTALLATION_DIRS,
+# then it's known to pre-create all of the directories that it needs
+# at install-time
+#
 
 .PHONY: install-makedirs
 install-makedirs:
 	${_PKG_SILENT}${_PKG_DEBUG}${TEST} -d ${DESTDIR}${PREFIX} || ${MKDIR} ${DESTDIR}${PREFIX}
-ifndef NO_MTREE
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${MTREE_FILE} ||	\
-		${MTREE} ${MTREE_ARGS} ${DESTDIR}${PREFIX}/
-endif
 ifdef INSTALLATION_DIRS
 	@${STEP_MSG} "Creating installation directories"
 	${_PKG_SILENT}${_PKG_DEBUG}					\
@@ -175,26 +161,25 @@ ifdef INSTALLATION_DIRS
 	done
 endif	# INSTALLATION_DIRS
 
-######################################################################
-### pre-install, do-install, post-install (PUBLIC, override)
-######################################################################
-### {pre,do,post}-install are the heart of the package-customizable
-### install targets, and may be overridden within a package Makefile.
-###
+# --- pre-install, do-install, post-install (PUBLIC, override) -------
+#
+# {pre,do,post}-install are the heart of the package-customizable
+# install targets, and may be overridden within a package Makefile.
+#
 .PHONY: pre-install do-install post-install
 
 INSTALL_DIRS?=		${BUILD_DIRS}
 INSTALL_MAKE_FLAGS?=	# none
-INSTALL_TARGET?=	install ${USE_IMAKE:D${NO_INSTALL_MANPAGES:D:Uinstall.man}}
+INSTALL_TARGET?=	install
 
-do-install:
-#.  for _dir_ in ${INSTALL_DIRS}
-	${_PKG_SILENT}${_PKG_DEBUG}${_ULIMIT_CMD}			\
+do%install:
+	${_PKG_SILENT}${_PKG_DEBUG}					\
+$(foreach _dir_,${INSTALL_DIRS},					\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
 	${SETENV} ${INSTALL_ENV} ${MAKE_ENV} 				\
 		${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS}	\
-			-f ${MAKE_FILE} ${INSTALL_TARGET}
-#.  endfor
+			-f ${MAKE_FILE} ${INSTALL_TARGET};		\
+)
 
 pre-install:
 	@${DO_NADA}
@@ -227,16 +212,6 @@ install-doc-handling: plist
 	${_PKG_SILENT}${_PKG_DEBUG}${CAT} ${PLIST} | ${GREP} -v "^@" |	\
 	${EGREP} ${_PLIST_REGEXP.man:Q} | ${_DOC_COMPRESS}
 
-######################################################################
-### register-pkg (PRIVATE, override)
-######################################################################
-### register-pkg registers the package as being installed on the system.
-###
-.PHONY: register-pkg
-#.if !target(register-pkg)
-register-pkg:
-	@${DO_NADA}
-#.endif
 
 ######################################################################
 ### privileged-install-hook (PRIVATE, override, hook)
@@ -261,7 +236,7 @@ install-clean: package-clean check-clean
 
 
 # --- bootstrap-register (PUBLIC) ------------------------------------
-
+#
 # bootstrap-register registers "bootstrap" packages that are installed
 # by the pkgsrc/bootstrap/bootstrap script.
 #
