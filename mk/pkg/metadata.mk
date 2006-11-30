@@ -1,17 +1,12 @@
 # $NetBSD: metadata.mk,v 1.10 2006/08/04 14:11:29 reed Exp $
 
-######################################################################
-### The targets below are all PRIVATE.
-######################################################################
-
-######################################################################
-###
-### Temporary package meta-data directory.  The contents of this directory
-### are copied directly into the real package meta-data directory.
-###
+# --------------------------------------------------------------------
+#
+# Temporary package meta-data directory.  The contents of this directory
+# are copied directly into the real package meta-data directory.
+#
 PKG_DB_TMPDIR=	${WRKDIR}/.pkgdb
 
-unprivileged-install-hook: ${PKG_DB_TMPDIR}
 ${PKG_DB_TMPDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $@
 
@@ -86,73 +81,61 @@ ${_BUILD_VERSION_FILE}:
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${CAT} $@.tmp |							\
 	while read file; do						\
-		${MD5} $$file 2>/dev/null;				\
+		${LS} -l $$file 2>/dev/null;				\
 	done |								\
 	${AWK} '{ sub("^${PKGSRCDIR}/", "");				\
 		  print; }' |						\
 	${SORT} -u > $@ && ${RM} -f $@.tmp
 
-ifeq ( no,yes)
 
-######################################################################
-###
-### +COMMENT - Package comment file
-###
-### This file contains the one-line description of the package.
-###
+# --- +COMMENT -------------------------------------------------------
+#
+# Package comment file
+#
+# This file contains the one-line description of the package.
+#
 _COMMENT_FILE=		${PKG_DB_TMPDIR}/+COMMENT
 _METADATA_TARGETS+=	${_COMMENT_FILE}
 
 ${_COMMENT_FILE}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${COMMENT:Q} > ${.TARGET}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
+	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${COMMENT} > $@
 
-######################################################################
-###
-### +DESC - Package description file
-###
-### This file contains the paragraph description of the package.
-###
+
+# --- +DESC ----------------------------------------------------------
+#
+# Package description file
+#
+# This file contains the paragraph description of the package.
+#
 _DESCR_FILE=		${PKG_DB_TMPDIR}/+DESC
 _METADATA_TARGETS+=	${_DESCR_FILE}
 
 ${_DESCR_FILE}: ${DESCR_SRC}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${.TARGET}
-	${_PKG_SILENT}${_PKG_DEBUG}${CAT} ${.ALLSRC} > ${.TARGET}
-#.if defined(HOMEPAGE)
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} >> ${.TARGET}
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} "Homepage:" >> ${.TARGET}
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ""${HOMEPAGE:Q} >> ${.TARGET}
-#.endif
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
+	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f $@
+	${_PKG_SILENT}${_PKG_DEBUG}${CAT} $^ > $@
+ifdef HOMEPAGE
+	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} >> $@
+	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} "Homepage:" >> $@
+	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ""${HOMEPAGE} >> $@
+endif
 
-######################################################################
-###
-### +DISPLAY - Package message file
-###
-### This file contains important messages which apply to this package,
-### and are shown during installation.
-###
-#.if !defined(MESSAGE_SRC)
-#.  if exists(${PKGDIR}/MESSAGE)
+
+# --- +DISPLAY -------------------------------------------------------
+#
+# Package message file
+#
+# This file contains important messages which apply to this package,
+# and are shown during installation.
+#
+ifndef MESSAGE_SRC
+  ifeq (yes,$(call exists,${PKGDIR}/MESSAGE))
 MESSAGE_SRC=	${PKGDIR}/MESSAGE
-#.  else
-#.    if exists(${PKGDIR}/MESSAGE.common)
-MESSAGE_SRC=	${PKGDIR}/MESSAGE.common
-#.    endif
-#.    if exists(${PKGDIR}/MESSAGE.${OPSYS})
-MESSAGE_SRC+=	${PKGDIR}/MESSAGE.${OPSYS}
-#.    endif
-#.    if exists(${PKGDIR}/MESSAGE.${MACHINE_ARCH:C/i[3-6]86/i386/g})
-MESSAGE_SRC+=	${PKGDIR}/MESSAGE.${MACHINE_ARCH:C/i[3-6]86/i386/g}
-#.    endif
-#.    if exists(${PKGDIR}/MESSAGE.${OPSYS}-${MACHINE_ARCH:C/i[3-6]86/i386/g})
-MESSAGE_SRC+=	${PKGDIR}/MESSAGE.${OPSYS}-${MACHINE_ARCH:C/i[3-6]86/i386/g}
-#.    endif
-#.  endif
-#.endif
+  endif
+endif
 
-#.if defined(MESSAGE_SRC)
+ifdef MESSAGE_SRC
 _MESSAGE_FILE=		${PKG_DB_TMPDIR}/+DISPLAY
 _METADATA_TARGETS+=	${_MESSAGE_FILE}
 
@@ -161,21 +144,16 @@ MESSAGE_SUBST+=	PKGNAME=${PKGNAME}					\
 		PKGBASE=${PKGBASE}					\
 		PREFIX=${PREFIX}					\
 		LOCALBASE=${LOCALBASE}					\
-		X11PREFIX=${X11PREFIX}					\
-		X11BASE=${X11BASE}					\
-		PKG_SYSCONFDIR=${PKG_SYSCONFDIR}			\
-		ROOT_GROUP=${ROOT_GROUP}				\
-		ROOT_USER=${ROOT_USER}
+		PKG_SYSCONFDIR=${PKG_SYSCONFDIR}
 
-_MESSAGE_SUBST_SED=	${MESSAGE_SUBST:S/=/}!/:S/$/!g/:S/^/ -e s!\\\${/}
+_MESSAGE_SUBST_SED= $(foreach _m_,$(MESSAGE_SUBST), -e s!\$${$(subst =,}!,${_m_})!g)
 
 ${_MESSAGE_FILE}: ${MESSAGE_SRC}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
-	${_PKG_SILENT}${_PKG_DEBUG}${CAT} ${.ALLSRC} |			\
-		${SED} ${_MESSAGE_SUBST_SED} > ${.TARGET}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
+	${_PKG_SILENT}${_PKG_DEBUG}${CAT} $^ | \
+		${SED} ${_MESSAGE_SUBST_SED} > $@
 
-# Display MESSAGE file and optionally mail the contents to
-# PKGSRC_MESSAGE_RECIPIENTS.
+# Display MESSAGE file
 #
 .PHONY: install-display-message
 register-pkg: install-display-message
@@ -184,64 +162,57 @@ install-display-message: ${_MESSAGE_FILE}
 	@${ECHO_MSG} ""
 	@${CAT} ${_MESSAGE_FILE}
 	@${ECHO_MSG} ""
-#.  if !empty(PKGSRC_MESSAGE_RECIPIENTS)
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	(${ECHO} "The ${PKGNAME} package was installed on `${HOSTNAME_CMD}` at `date`"; \
-	${ECHO} "";							\
-	${ECHO} "Please note the following:";				\
-	${ECHO} "";							\
-	${CAT} ${_MESSAGE_FILE};					\
-	${ECHO} "") |							\
-	${MAIL_CMD} -s"Package ${PKGNAME} installed on `${HOSTNAME_CMD}`" ${PKGSRC_MESSAGE_RECIPIENTS}
-#.  endif
-#.endif	# MESSAGE_SRC
+endif	# MESSAGE_SRC
 
-######################################################################
-###
-### +PRESERVE - Package preserve file
-###
-### The existence of this file prevents pkg_delete from removing this
-### package unless one "force-deletes" the package.
-###
-.if defined(PKG_PRESERVE)
+
+# --- +PRESERVE ------------------------------------------------------
+#
+# Package preserve file
+#
+# The existence of this file prevents pkg_delete from removing this
+# package unless one "force-deletes" the package.
+#
+ifdef PKG_PRESERVE
 _PRESERVE_FILE=		${PKG_DB_TMPDIR}/+PRESERVE
 _METADATA_TARGETS+=	${_PRESERVE_FILE}
 
 ${_PRESERVE_FILE}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
-	${_PKG_SILENT}${_PKG_DEBUG}${DATE} > ${.TARGET}
-.endif
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
+	${_PKG_SILENT}${_PKG_DEBUG}${DATE} > $@
+endif
 
-######################################################################
-###
-### +SIZE_ALL - Package size-of-dependencies file
-###
-### This is the total size of the dependencies that this package was
-### built against.
-###
+
+# --- +SIZE_ALL ------------------------------------------------------
+#
+# Package size-of-dependencies file
+#
+# This is the total size of the dependencies that this package was
+# built against.
+#
 _SIZE_ALL_FILE=		${PKG_DB_TMPDIR}/+SIZE_ALL
 _METADATA_TARGETS+=	${_SIZE_ALL_FILE}
 
 ${_SIZE_ALL_FILE}: ${_COOKIE.depends}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${_DEPENDS_PATTERNS_CMD} |					\
 	${XARGS} -n 1 ${_PKG_BEST_EXISTS} | ${SORT} -u |		\
 	${XARGS} -n 256 ${PKG_INFO} -qs |				\
 	${AWK} 'BEGIN { s = 0 } /^[0-9]+$$/ { s += $$1 } END { print s }' \
-		> ${.TARGET}
+		> $@
 
-######################################################################
-###
-### +SIZE_PKG - Package size file
-###
-### This is the total size of the files contained in the package.
-###
+
+# --- +SIZE_PKG ------------------------------------------------------
+#
+# Package size file
+#
+# This is the total size of the files contained in the package.
+#
 _SIZE_PKG_FILE=		${PKG_DB_TMPDIR}/+SIZE_PKG
 _METADATA_TARGETS+=	${_SIZE_PKG_FILE}
 
 ${_SIZE_PKG_FILE}: plist
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${CAT} ${PLIST} |						\
 	${AWK} 'BEGIN { base = "${PREFIX}/" }				\
@@ -252,33 +223,43 @@ ${_SIZE_PKG_FILE}: plist
 	${SED} -e "s/'/'\\\\''/g" -e "s/.*/'&'/" |			\
 	${XARGS} -n 256 ${LS} -ld 2>/dev/null |				\
 	${AWK} 'BEGIN { s = 0 } { s += $$5 } END { print s }'		\
-		> ${.TARGET}
+		> $@
 
-######################################################################
-###
-### +CONTENTS - Package manifest file
-###
-### This file contains the list of files and checksums, along with
-### any special "@" commands, e.g. @dirrm.
-###
+
+# --- +CONTENTS ------------------------------------------------------
+#
+# Package manifest file
+#
+# This file contains the list of files and checksums, along with
+# any special "@" commands, e.g. @dirrm.
+#
 _CONTENTS_FILE=		${PKG_DB_TMPDIR}/+CONTENTS
 _METADATA_TARGETS+=	${_CONTENTS_FILE}
 
-_PKG_CREATE_ARGS+=				-v -l -U
-_PKG_CREATE_ARGS+=				-B ${_BUILD_INFO_FILE}
-_PKG_CREATE_ARGS+=				-b ${_BUILD_VERSION_FILE}
-_PKG_CREATE_ARGS+=				-c ${_COMMENT_FILE}
-_PKG_CREATE_ARGS+=	${_MESSAGE_FILE:D	-D ${_MESSAGE_FILE}}
-_PKG_CREATE_ARGS+=				-d ${_DESCR_FILE}
-_PKG_CREATE_ARGS+=				-f ${PLIST}
-_PKG_CREATE_ARGS+=	${NO_MTREE:D:U		-m ${MTREE_FILE}}
-_PKG_CREATE_ARGS+=	${PKG_PRESERVE:D	-n ${_PRESERVE_FILE}}
-_PKG_CREATE_ARGS+=				-S ${_SIZE_ALL_FILE}
-_PKG_CREATE_ARGS+=				-s ${_SIZE_PKG_FILE}
-_PKG_CREATE_ARGS+=	${CONFLICTS:D		-C ${CONFLICTS:Q}}
-_PKG_CREATE_ARGS+=				${_DEPENDS_ARG_cmd:sh}
-_PKG_CREATE_ARGS+=	${INSTALL_FILE:D	${_INSTALL_ARG_cmd:sh}}
-_PKG_CREATE_ARGS+=	${DEINSTALL_FILE:D	${_DEINSTALL_ARG_cmd:sh}}
+_PKG_CREATE_ARGS+=	-v -l -U
+_PKG_CREATE_ARGS+=	-B ${_BUILD_INFO_FILE}
+_PKG_CREATE_ARGS+=	-b ${_BUILD_VERSION_FILE}
+_PKG_CREATE_ARGS+=	-c ${_COMMENT_FILE}
+ifdef _MESSAGE_FILE
+_PKG_CREATE_ARGS+=	-D ${_MESSAGE_FILE}
+endif
+_PKG_CREATE_ARGS+=	-d ${_DESCR_FILE}
+_PKG_CREATE_ARGS+=	-f ${PLIST}
+ifdef PKG_PRESERVE
+_PKG_CREATE_ARGS+=	-n ${_PRESERVE_FILE}
+endif
+_PKG_CREATE_ARGS+=	-S ${_SIZE_ALL_FILE}
+_PKG_CREATE_ARGS+=	-s ${_SIZE_PKG_FILE}
+ifdef CONFLICTS
+_PKG_CREATE_ARGS+=	-C ${CONFLICTS}
+endif
+_PKG_CREATE_ARGS+=	$(shell	${_DEPENDS_ARG_cmd})
+ifdef INSTALL_FILE
+_PKG_CREATE_ARGS+=	$(shell ${_INSTALL_ARG_cmd})
+endif
+ifdef DEINSTALL_FILE
+_PKG_CREATE_ARGS+=	$(shell	${_DEINSTALL_ARG_cmd})
+endif
 
 _PKG_ARGS_INSTALL+=	${_PKG_CREATE_ARGS}
 _PKG_ARGS_INSTALL+=	-p ${PREFIX}
@@ -311,43 +292,40 @@ _CONTENTS_TARGETS+=	plist
 _CONTENTS_TARGETS+=	${_PRESERVE_FILE}
 _CONTENTS_TARGETS+=	${_SIZE_ALL_FILE}
 _CONTENTS_TARGETS+=	${_SIZE_PKG_FILE}
-_CONTENTS_TARGETS+=	${NO_MTREE:D:U${MTREE_FILE}}
 
 ${_CONTENTS_FILE}: ${_CONTENTS_TARGETS}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET:H}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${PKG_CREATE} ${_PKG_ARGS_INSTALL} -O ${PKGFILE:T} > ${.TARGET}
+	${PKG_CREATE} ${_PKG_ARGS_INSTALL} -O $(notdir ${PKGFILE}) > $@
 
-endif
 
-######################################################################
-### generate-metadata (PRIVATE)
-######################################################################
-### generate-metadata is a convenience target for generating all of
-### the pkgsrc binary package meta-data files.  It populates
-### ${PKG_DB_TMPDIR} with the following files:
-###
-###	+BUILD_INFO
-###	+BUILD_VERSION
-###	+COMMENT
-###	+CONTENTS
-###	+DESC
-###	+DISPLAY
-###	+PRESERVE
-###	+SIZE_ALL
-###	+SIZE_PKG
-###
-### See the targets above for descriptions of each of those files.
-###
+# --- generate-metadata (PRIVATE) ------------------------------------
+#
+# generate-metadata is a convenience target for generating all of
+# the pkgsrc binary package meta-data files.  It populates
+# ${PKG_DB_TMPDIR} with the following files:
+#
+#	+BUILD_INFO
+#	+BUILD_VERSION
+#	+COMMENT
+#	+CONTENTS
+#	+DESC
+#	+DISPLAY
+#	+PRESERVE
+#	+SIZE_ALL
+#	+SIZE_PKG
+#
+# See the targets above for descriptions of each of those files.
+#
 .PHONY: generate-metadata
 generate-metadata: ${_METADATA_TARGETS}
 
-######################################################################
-### clean-metadata (PRIVATE)
-######################################################################
-### clean-metadata is a convenience target for removing the meta-data
-### directory.
-###
+
+# --- clean-metadata (PRIVATE) ---------------------------------------
+#
+# clean-metadata is a convenience target for removing the meta-data
+# directory.
+#
 .PHONY: clean-metadata
 clean-metadata:
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -fr ${PKG_DB_TMPDIR}
