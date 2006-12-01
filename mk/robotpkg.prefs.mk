@@ -20,9 +20,39 @@ _PKGSRC_TOPDIR=$(shell \
 		echo `pwd`/../..;		\
 	fi)
 
+# Common macros
+define isyes
+$(filter yes Yes YES,$(1))
+endef
+
+define exists
+$(shell test -f $(1) && echo yes || echo no)
+endef
+
+empty=
+space=$(empty) $(empty)
+quotechars={ } ( ) | * ' ` #'
+define quote
+$(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(subst $(space),\$(space),$(_q_))
+endef
+
+define _OVERRIDE_TARGET
+@case $*"" in "-") ;; *) ${ECHO} "don't know how to make $@."; exit 2;; esac
+endef
+
 # include the defaults file
 ifndef MAKECONF
 MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf
+endif
+ifneq (yes,$(call exists,${MAKECONF}))
+define msg
+
+ERROR: Unable to find package configuration file in
+ERROR:		${MAKECONF}.
+ERROR: Maybe you forgot to make your PATH variable point to robotpkg_info.
+ERROR: Try to invoke ${MAKE} MAKECONF=...
+endef
+$(error $(msg))
 endif
 include ${MAKECONF}
 include ${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf
@@ -99,19 +129,5 @@ GREP?=			grep
 TOOLS_INSTALL=		install
 DEF_UMASK?=		0022
 
-# Common macros
-define isyes
-$(filter yes Yes YES,$(1))
-endef
-define exists
-$(shell test -f $(1) && echo yes || echo no)
-endef
-quotechars={ } ( ) | * ' `
-define quote
-$(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(_q_)
-endef
-define _OVERRIDE_TARGET
-@case $*"" in "-") ;; *) ${ECHO} "don't know how to make $@."; exit 2;; esac
-endef
 
 endif	# ROBOTPKG_MK
