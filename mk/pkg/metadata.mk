@@ -99,7 +99,7 @@ _METADATA_TARGETS+=	${_COMMENT_FILE}
 
 ${_COMMENT_FILE}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${COMMENT} > $@
+	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} $(call quote,${COMMENT}) > $@
 
 
 # --- +DESC ----------------------------------------------------------
