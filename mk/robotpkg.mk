@@ -164,7 +164,7 @@ endif
 
 
 # A few aliases for *-install targets
-INSTALL=		${TOOLS_INSTALL}	# XXX override sys.mk
+INSTALL=		${TOOLS_INSTALL}
 INSTALL_PROGRAM?= 	\
 	${INSTALL} ${COPY} ${_STRIPFLAG_INSTALL} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
 INSTALL_GAME?=		\
@@ -247,6 +247,9 @@ _BUILD_DEFS+=		PKG_SYSCONFBASEDIR PKG_SYSCONFDIR
 # Locking
 include ${PKGSRCDIR}/mk/internal/locking.mk
 
+# Tools
+include ${PKGSRCDIR}/mk/tools/tools-vars.mk
+
 #
 # Now print some error messages that we know we should ignore the pkg
 #
@@ -323,7 +326,7 @@ include ${PKGSRCDIR}/mk/clean.mk
 include ${PKGSRCDIR}/mk/checksum/checksum-vars.mk
 
 # Extract
--include "${PKGSRCDIR}/mk/extract/bsd.extract.mk"
+include ${PKGSRCDIR}/mk/extract/extract-vars.mk
 
 # Patch
 -include "${PKGSRCDIR}/mk/patch/bsd.patch.mk"
