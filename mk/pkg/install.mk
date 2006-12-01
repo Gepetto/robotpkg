@@ -1,43 +1,42 @@
 # $NetBSD: install.mk,v 1.8 2006/07/07 21:24:28 jlam Exp $
 
-######################################################################
-### install-check-conflicts (PRIVATE, pkgsrc/mk/install/install.mk)
-######################################################################
-### install-check-conflicts checks for conflicts between the package
-### and and installed packages.
-###
-.PHONY: install-check-conflicts
-install-check-conflicts: error-check
+# --- install-check-conflicts (PRIVATE, mk/install/install.mk) -------
+#
+# install-check-conflicts checks for conflicts between the package
+# and and installed packages.
+#
+.PHONY: pkg-install-check-conflicts
+pkg-install-check-conflicts: #error-check
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${WRKDIR}/.CONFLICTS
-#.for _conflict_ in ${CONFLICTS}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	found="`${_PKG_BEST_EXISTS} ${_conflict_:Q} || ${TRUE}`";	\
+${foreach _conflict_,${CONFLICTS},					\
+	found="`${_PKG_BEST_EXISTS} ${_conflict_} || ${TRUE}`";		\
 	case "$$found" in						\
 	"")	;;							\
 	*)	${ECHO} "$$found" >> ${WRKDIR}/.CONFLICTS ;;		\
-	esac
-#.endfor
+	esac;								\
+}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${TEST} -f ${WRKDIR}/.CONFLICTS || exit 0;			\
-	exec 1>${ERROR_DIR}/${.TARGET};					\
+	exec 1>${ERROR_DIR}/$@;						\
 	${ECHO} "${PKGNAME} conflicts with installed package(s):";	\
 	${CAT} ${WRKDIR}/.CONFLICTS | ${SED} -e "s|^|    |";		\
 	${ECHO} "They install the same files into the same place.";	\
 	${ECHO} "Please remove conflicts first with pkg_delete(1).";	\
 	${RM} -f ${WRKDIR}/.CONFLICTS
 
-######################################################################
-### install-check-installed (PRIVATE, pkgsrc/mk/install/install.mk)
-######################################################################
-### install-check-installed checks if the package (perhaps an older
-### version) is already installed on the system.
-###
-.PHONY: install-check-installed
-install-check-installed: error-check
+
+# --- install-check-installed (PRIVATE, mk/install/install.mk) -------
+#
+# install-check-installed checks if the package (perhaps an older
+# version) is already installed on the system.
+#
+.PHONY: pkg-install-check-installed
+pkg-install-check-installed: #error-check
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD:Q} || ${TRUE}`";	\
+	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`";	\
 	${TEST} -n "$$found" || exit 0;					\
-	exec 1>${ERROR_DIR}/${.TARGET};					\
+	exec 1>${ERROR_DIR}/$@;						\
 	${ECHO} "$$found is already installed - perhaps an older version?"; \
 	${ECHO} "If so, you may use either of:";			\
 	${ECHO} "    - \"pkg_delete $$found\" and \"${MAKE} reinstall\""; \
