@@ -68,27 +68,23 @@ _TOOLS_TARGETS+=	${_COOKIE.tools}
 _TOOLS_TARGETS+=	release-tools-lock
 
 .PHONY: tools
-.if !target(tools)
-.  if exists(${_COOKIE.tools})
+ifeq (yes,$(call exists,${_COOKIE.tools}))
 tools:
 	@${DO_NADA}
-.  elif defined(_PKGSRC_BARRIER)
+else
 tools: ${_TOOLS_TARGETS}
-.  else
-tools: barrier
-.  endif
-.endif 
+endif 
 
 .PHONY: acquire-tools-lock release-tools-lock
 acquire-tools-lock: acquire-lock
 release-tools-lock: release-lock
 
-.if exists(${_COOKIE.tools})
+ifeq (yes,$(call exists,${_COOKIE.tools}))
 ${_COOKIE.tools}:
 	@${DO_NADA}
-.else
+else
 ${_COOKIE.tools}: real-tools
-.endif
+endif
 
 ######################################################################
 ### real-tools (PRIVATE)
@@ -141,24 +137,24 @@ override-tools:
 ### the tools are generated.
 ###
 .PHONY: post-tools
-.if !target(post-tools)
+#.if !target(post-tools)
 post-tools:
 	@${DO_NADA}
-.endif
+#.endif
 
-.include "${PKGSRCDIR}/mk/tools/digest.mk"
-.include "${PKGSRCDIR}/mk/tools/automake.mk"
-.include "${PKGSRCDIR}/mk/tools/autoconf.mk"
-.include "${PKGSRCDIR}/mk/tools/texinfo.mk"
-.include "${PKGSRCDIR}/mk/tools/gettext.mk"
-.include "${PKGSRCDIR}/mk/tools/intltool.mk"
-.include "${PKGSRCDIR}/mk/tools/ldconfig.mk"
-.include "${PKGSRCDIR}/mk/tools/rpcgen.mk"
-.include "${PKGSRCDIR}/mk/tools/strip.mk"
-.include "${PKGSRCDIR}/mk/tools/imake.mk"
-.include "${PKGSRCDIR}/mk/tools/replace.mk"
-.include "${PKGSRCDIR}/mk/tools/perl.mk"
-.include "${PKGSRCDIR}/mk/tools/pkg-config.mk"
-.include "${PKGSRCDIR}/mk/tools/make.mk"
-
-.include "${PKGSRCDIR}/mk/tools/create.mk"
+#.include "${PKGSRCDIR}/mk/tools/digest.mk"
+#.include "${PKGSRCDIR}/mk/tools/automake.mk"
+#.include "${PKGSRCDIR}/mk/tools/autoconf.mk"
+#.include "${PKGSRCDIR}/mk/tools/texinfo.mk"
+#.include "${PKGSRCDIR}/mk/tools/gettext.mk"
+#.include "${PKGSRCDIR}/mk/tools/intltool.mk"
+#.include "${PKGSRCDIR}/mk/tools/ldconfig.mk"
+#.include "${PKGSRCDIR}/mk/tools/rpcgen.mk"
+#.include "${PKGSRCDIR}/mk/tools/strip.mk"
+#.include "${PKGSRCDIR}/mk/tools/imake.mk"
+#.include "${PKGSRCDIR}/mk/tools/replace.mk"
+#.include "${PKGSRCDIR}/mk/tools/perl.mk"
+#.include "${PKGSRCDIR}/mk/tools/pkg-config.mk"
+include ${PKGSRCDIR}/mk/tools/make.mk
+#
+#.include "${PKGSRCDIR}/mk/tools/create.mk"
