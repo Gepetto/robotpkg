@@ -230,3 +230,35 @@ register_package "pkgtools/pkg_install"
 # Install the man page.
 echo_msg "Installing packages(7) man page"
 run_cmd "(cd $pkgsrcdir/pkgtools/pkgmanpages && $gmake PKG_VERBOSE=yes MAKECONF=${MKCONF_EXAMPLE} WRKOBJDIR=$wrkobjdir CREATE_WRKDIR_SYMLINK=no install)"
+
+# Install sample config file.
+mkdir_p ${sysconfdir}
+$cpprog ${MKCONF_EXAMPLE} ${sysconfdir}/robotpkg.conf 
+
+hline="==========================================================================="
+echo ""
+echo "$hline"
+echo ""
+echo "Please remember to add $prefix/sbin to your PATH environment variable"
+echo "and $mandir to your MANPATH environment variable, if necessary."
+echo ""
+echo "An example robotpkg.conf file with the settings you provided to \"bootstrap\""
+echo "has been created for you. It can be found in:"
+echo ""
+echo "      ${sysconfdir}/robotpkg.conf"
+echo ""
+echo "Please review it."
+echo ""
+echo "You can find extensive documentation of the robotics packages collection"
+echo "in $pkgsrcdir/doc/pkgsrc.txt and packages(7)."
+echo ""
+echo "Hopefully everything is now complete."
+echo "Thank you"
+echo ""
+echo "$hline"
+echo ""
+
+echo_msg "bootstrap started: $build_start"
+echo_msg "bootstrap ended:   `date`"
+
+exit 0
