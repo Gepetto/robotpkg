@@ -18,13 +18,16 @@
 #    configure
 #    build
 #
+.DEFAULT_GOAL:=build
 
-############################################################################
+.PHONY: all
+all: build
+
+
+# --------------------------------------------------------------------
+#
 # Include any preferences, if not already included, and common definitions
-############################################################################
-
-.MAIN: all
-
+#
 include ../../mk/robotpkg.prefs.mk
 
 
@@ -84,16 +87,19 @@ endif
 endif
 endif
 
-ifeq (,$(and $(CATEGORIES),$(DISTNAME)))
-PKG_FAIL_REASON+='CATEGORIES and DISTNAME are mandatory.'
+ifeq (,$(CATEGORIES))
+PKG_FAIL_REASON+='CATEGORIES are mandatory.'
+endif
+ifeq (,$(DISTNAME))
+PKG_FAIL_REASON+='DISTNAME are mandatory.'
 endif
 
 
 CPPFLAGS+=	${CPP_PRECOMP_FLAGS}
 
-ALL_ENV+=	CC=${CC:Q}
-ALL_ENV+=	CFLAGS=${CFLAGS:M*:Q}
-ALL_ENV+=	CPPFLAGS=${CPPFLAGS:M*:Q}
+ALL_ENV+=	CC=${CC}
+ALL_ENV+=	CFLAGS=$(call quote,${CFLAGS})
+ALL_ENV+=	CPPFLAGS=$(call quote,${CPPFLAGS})
 ALL_ENV+=	CXX=${CXX:M*:Q}
 ALL_ENV+=	CXXFLAGS=${CXXFLAGS:M*:Q}
 ALL_ENV+=	COMPILER_RPATH_FLAG=${COMPILER_RPATH_FLAG:Q}
@@ -109,7 +115,7 @@ ALL_ENV+=	LC_NUMERIC=C
 ALL_ENV+=	LC_TIME=C
 ALL_ENV+=	LDFLAGS=${LDFLAGS:M*:Q}
 ALL_ENV+=	LINKER_RPATH_FLAG=${LINKER_RPATH_FLAG:Q}
-ALL_ENV+=	PATH=${PATH:Q}:${LOCALBASE}/bin:${X11BASE}/bin
+ALL_ENV+=	PATH=${PATH}:${LOCALBASE}/bin
 ALL_ENV+=	PREFIX=${PREFIX}
 
 _BUILD_DEFS=		${BUILD_DEFS}
@@ -207,6 +213,13 @@ INSTALL_MACROS=	BSD_INSTALL_PROGRAM=${INSTALL_PROGRAM:Q}		\
 MAKE_ENV+=	${INSTALL_MACROS}
 SCRIPTS_ENV+=	${INSTALL_MACROS}
 
+# OVERRIDE_DIRDEPTH represents the common directory depth under
+#       ${WRKSRC} up to which we find the files that need to be
+#       overridden.  By default, we search two levels down, i.e.,
+#       */*/file.
+#
+OVERRIDE_DIRDEPTH?=     2
+
 
 # Used to print all the '===>' style prompts - override this to turn them off.
 ECHO_MSG?=		${ECHO}
@@ -292,9 +305,6 @@ _BUILD_DEFS+=	OPSYS OS_VERSION MACHINE_ARCH MACHINE_GNU_ARCH
 _BUILD_DEFS+=	CPPFLAGS CFLAGS FFLAGS LDFLAGS
 _BUILD_DEFS+=	LICENSE RESTRICTED
 
-.PHONY: all
-all: ${_PKGSRC_BUILD_TARGETS}
-
 
 ################################################################
 # More standard targets start here.
@@ -329,13 +339,13 @@ include ${PKGSRCDIR}/mk/checksum/checksum-vars.mk
 include ${PKGSRCDIR}/mk/extract/extract-vars.mk
 
 # Patch
--include "${PKGSRCDIR}/mk/patch/bsd.patch.mk"
+include ${PKGSRCDIR}/mk/patch/patch-vars.mk
 
 # Configure
--include "${PKGSRCDIR}/mk/configure/bsd.configure.mk"
+include ${PKGSRCDIR}/mk/configure/configure-vars.mk
 
 # Build
--include "${PKGSRCDIR}/mk/build/bsd.build.mk"
+include ${PKGSRCDIR}/mk/build/build-vars.mk
 
 # Install
 include ${PKGSRCDIR}/mk/install/install-vars.mk
@@ -343,50 +353,10 @@ include ${PKGSRCDIR}/mk/install/install-vars.mk
 # Package
 include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
 
-
-################################################################
-# Skeleton targets start here
+# --------------------------------------------------------------------
 #
-# You shouldn't have to change these.  Either add the pre-* or
-# post-* targets/scripts or redefine the do-* targets.  These
-# targets don't do anything other than checking for cookies and
-# call the necessary targets/scripts.
-################################################################
-
-# su-target is a macro target that does just-in-time su-to-root before
-# reinvoking the make process as root.  It acquires root privileges and
-# invokes a new make process with the target named "su-${.TARGET}".
-#
-_ROOT_CMD=	cd ${.CURDIR} &&					\
-		${SETENV} ${PKGSRC_MAKE_ENV}				\
-			PATH="$${PATH}:"${SU_CMD_PATH_APPEND:Q}		\
-		${MAKE} ${MAKEFLAGS}					\
-			PKG_DEBUG_LEVEL=${PKG_DEBUG_LEVEL:Q}		\
-			su-${.TARGET} ${MAKEFLAGS.${.TARGET}}
-
-.PHONY: su-target
-su-target: .USE
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
-	case ${PRE_CMD.su-${.TARGET}:Q}"" in				\
-	"")	;;							\
-	*)	${PRE_CMD.su-${.TARGET}} ;;				\
-	esac;								\
-	if ${TEST} `${ID} -u` = `${ID} -u ${_SU_ROOT_USER}`; then	\
-		${_ROOT_CMD};						\
-	else								\
-		case ${PRE_ROOT_CMD:Q}"" in				\
-		${TRUE:Q}"")	;;					\
-		*) ${WARNING_MSG} "Running: "${PRE_ROOT_CMD:Q} ;;	\
-		esac;							\
-		${PRE_ROOT_CMD};					\
-		${STEP_MSG} "Becoming \`\`${_SU_ROOT_USER}'' to make su-${.TARGET} (`${ECHO} ${SU_CMD} | ${AWK} '{ print $$1 }'`)"; \
-		${SU_CMD} ${_ROOT_CMD:Q};				\
-		${STEP_MSG} "Dropping \`\`${_SU_ROOT_USER}'' privileges.";	\
-	fi
-
-################################################################
 # Some more targets supplied for users' convenience
-################################################################
+#
 
 # Run pkglint:
 .PHONY: lint
