@@ -47,13 +47,11 @@
 #
 
 # Define MAKE_PROGRAM to be the "make" used to build the package.
-.if !empty(_USE_TOOLS:Mgmake)
+ifneq (,$(filter gmake,${_USE_TOOLS}))
 MAKE_PROGRAM=		${GMAKE}
-.elif !empty(_USE_TOOLS:Mimake) && defined(IMAKE_MAKE)
-MAKE_PROGRAM=		${IMAKE_MAKE}
-.else
+else
 MAKE_PROGRAM=		${MAKE}
-.endif
+endif
 
 TOOLS_CREATE+=		make
 TOOLS_PATH.make=	${MAKE_PROGRAM}
