@@ -44,11 +44,11 @@ EXTRACT_DIR?=		${WRKDIR}
 
 _COOKIE.extract=	${WRKDIR}/.extract_done
 
+
 # --- extract (PUBLIC) -----------------------------------------------
 #
 # extract is a public target to perform extraction.
 #
-_EXTRACT_TARGETS+=	check-vulnerable
 _EXTRACT_TARGETS+=	tools
 _EXTRACT_TARGETS+=	acquire-extract-lock
 _EXTRACT_TARGETS+=	${_COOKIE.extract}
@@ -72,6 +72,7 @@ ${_COOKIE.extract}:
 else
 ${_COOKIE.extract}: real-extract
 endif
+
 
 # --- real-extract (PRIVATE) -----------------------------------------
 #
