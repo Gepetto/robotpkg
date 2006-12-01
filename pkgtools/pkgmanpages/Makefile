@@ -7,7 +7,7 @@ DISTFILES=	# empty
 
 MAINTAINER=	agc@NetBSD.org
 HOMEPAGE=	http://www.pkgsrc.org/
-COMMENT=	Manual page(s) for the robotic packages collection
+COMMENT=	Manual page(s) for the robotics packages collection
 
 NO_PKGTOOLS_REQD_CHECK=	# defined
 PKG_PRESERVE=		# defined
