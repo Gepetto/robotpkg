@@ -92,6 +92,12 @@ SORT?=			sort
 AWK?=			awk
 MD5?=			md5sum
 XARGS?=			xargs -r
+SH?=			sh
+ID?=			id
+GREP?=			grep
+
+TOOLS_INSTALL=		install
+DEF_UMASK?=		0022
 
 # Common macros
 define isyes
@@ -99,6 +105,13 @@ $(filter yes Yes YES,$(1))
 endef
 define exists
 $(shell test -f $(1) && echo yes || echo no)
+endef
+quotechars={ } ( ) | * ' `
+define quote
+$(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(_q_)
+endef
+define _OVERRIDE_TARGET
+@case $*"" in "-") ;; *) ${ECHO} "don't know how to make $@."; exit 2;; esac
 endef
 
 endif	# ROBOTPKG_MK
