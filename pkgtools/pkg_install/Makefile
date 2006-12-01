@@ -18,7 +18,7 @@ HOMEPAGE=		http://www.pkgsrc.org/
 COMMENT=		Package management and administration tools for pkgsrc
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-pkgdbdir=${PKG_DBDIR:Q}
+CONFIGURE_ARGS+=	--with-pkgdbdir=${PKG_DBDIR}
 CONFIGURE_ARGS+=	--with-ftp="\"${FETCH_CMD}"\"
 CONFIGURE_ARGS+=	--with-mtree="\"${MTREE}"\"
 CONFIGURE_ARGS+=	--with-pax="\"${PAX}"\"
@@ -49,7 +49,7 @@ FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
 			PKG_TOOLS_BIN=${PKG_TOOLS_BIN}		\
 			MKDIR=${MKDIR}
 
-include ../../mk/robotpkg.prefs.mk
+include ../../mk/robotpkg.mk
 
 VERSION=	$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
 			${FILESDIR}/lib/version.h)
@@ -61,10 +61,9 @@ do-extract:
 # XXX we need pkg_delete built before we can deinstall.
 # XXX This should probably be the default order for all packages.
 update:
-	${MAKE}
+	${MAKE} build
 	${MAKE} deinstall _UPDATE_RUNNING=YES
 	${MAKE} ${UPDATE_TARGET}
 	${MAKE} clean
 
 include ../../pkgtools/libnbcompat/inplace.mk
-include ../../mk/robotpkg.mk
