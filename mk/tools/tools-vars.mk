@@ -62,7 +62,6 @@ _COOKIE.tools=	${WRKDIR}/.tools_done
 ### tools is a public target to create a private directory of tools
 ### specified by USE_TOOLS.
 ###
-_TOOLS_TARGETS+=	check-vulnerable
 _TOOLS_TARGETS+=	acquire-tools-lock
 _TOOLS_TARGETS+=	${_COOKIE.tools}
 _TOOLS_TARGETS+=	release-tools-lock
@@ -93,11 +92,11 @@ endif
 ### targets that do the actual tool creation.
 ###
 _REAL_TOOLS_TARGETS+=	tools-message
-_REAL_TOOLS_TARGETS+=	tools-vars
+#_REAL_TOOLS_TARGETS+=	tools-vars
 _REAL_TOOLS_TARGETS+=	override-tools
 _REAL_TOOLS_TARGETS+=	post-tools
 _REAL_TOOLS_TARGETS+=	tools-cookie
-_REAL_TOOLS_TARGETS+=	error-check
+#_REAL_TOOLS_TARGETS+=	error-check
 
 .PHONY: real-tools
 real-tools: ${_REAL_TOOLS_TARGETS}
@@ -106,17 +105,16 @@ real-tools: ${_REAL_TOOLS_TARGETS}
 tools-message:
 	@${PHASE_MSG} "Overriding tools for ${PKGNAME}"
 
-######################################################################
-### tools-cookie (PRIVATE)
-######################################################################
-### tools-cookie creates the "tools" cookie file.  The contents
-### are the names of the tools in USE_TOOLS.
-###
+# --- tools-cookie (PRIVATE) -----------------------------------------
+#
+# tools-cookie creates the "tools" cookie file.  The contents
+# are the names of the tools in USE_TOOLS.
+#
 .PHONY: tools-cookie
 tools-cookie:
 	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.tools} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${_COOKIE.tools:H}
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${USE_TOOLS:Q} > ${_COOKIE.tools}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.tools})
+	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${USE_TOOLS} > ${_COOKIE.tools}
 
 ######################################################################
 ### override-tools (PRIVATE)
