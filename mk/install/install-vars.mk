@@ -12,17 +12,25 @@
 #	the "real" installation should start.
 #
 
-# If a package sets INSTALLATION_DIRS, then it's known to pre-create
-# all of the directories that it needs at install-time, so we don't need
-# mtree to do it for us.
+INSTALLATION_DIRS_FROM_PLIST?=	yes
+
+_COOKIE.install=	${WRKDIR}/.install_done
+
+# --- install (PUBLIC) -----------------------------------------------
 #
-ifdef INSTALLATION_DIRS
-NO_MTREE=	yes
+# install is a public target to install the package.
+#
+.PHONY: install
+ifndef NO_INSTALL
+  include ${PKGSRCDIR}/mk/install/install.mk
+else
+  ifeq (yes,$(call exists,${_COOKIE.install}))
+install:
+	@${DO_NADA}
+  else
+install: ${_PKGSRC_BUILD_TARGETS} install-cookie
+  endif
 endif
 
-INSTALLATION_DIRS_FROM_PLIST?=	no
-ifneq (,$(call isyes,$(INSTALLATION_DIRS_FROM_PLIST)))
-NO_MTREE=	yes
-endif
-
-include ${PKGSRCDIR}/mk/install/install.mk
+-include "${PKGSRCDIR}/mk/install/deinstall.mk"
+-include "${PKGSRCDIR}/mk/install/replace.mk"
