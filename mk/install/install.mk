@@ -1,5 +1,6 @@
 # $NetBSD: install.mk,v 1.24 2006/10/26 20:05:03 rillig Exp $
 
+
 # --- install (PUBLIC) -----------------------------------------------
 
 # install is a public target to install the package.
@@ -38,10 +39,9 @@ release-install-localbase-lock: release-localbase-lock
 # real-install is a helper target onto which one can hook all of the
 # targets that do the actual installing of the built objects.
 #
-_REAL_INSTALL_TARGETS+=	install-check-interactive
 _REAL_INSTALL_TARGETS+=	install-check-version
 _REAL_INSTALL_TARGETS+=	install-message
-_REAL_INSTALL_TARGETS+=	install-vars
+#_REAL_INSTALL_TARGETS+=	install-vars
 _REAL_INSTALL_TARGETS+=	install-all
 _REAL_INSTALL_TARGETS+=	install-cookie
 
@@ -83,28 +83,26 @@ install-check-version: ${_COOKIE.extract}
 _INSTALL_ALL_TARGETS+=		acquire-install-localbase-lock
 ifndef NO_PKG_REGISTER
 ifndef FORCE_PKG_REGISTER
-_INSTALL_ALL_TARGETS+=		install-check-conflicts
-_INSTALL_ALL_TARGETS+=		install-check-installed
+_INSTALL_ALL_TARGETS+=		pkg-install-check-conflicts
+_INSTALL_ALL_TARGETS+=		pkg-install-check-installed
 endif
 endif
 _INSTALL_ALL_TARGETS+=		install-check-umask
-_INSTALL_ALL_TARGETS+=		check-files-pre
+#_INSTALL_ALL_TARGETS+=		check-files-pre
 _INSTALL_ALL_TARGETS+=		install-makedirs
-_INSTALL_ALL_TARGETS+=		pre-install-script
+#_INSTALL_ALL_TARGETS+=		pre-install-script
 _INSTALL_ALL_TARGETS+=		pre-install
 _INSTALL_ALL_TARGETS+=		do-install
 _INSTALL_ALL_TARGETS+=		post-install
 _INSTALL_ALL_TARGETS+=		plist
-_INSTALL_ALL_TARGETS+=		install-doc-handling
-_INSTALL_ALL_TARGETS+=		install-script-data
-_INSTALL_ALL_TARGETS+=		check-files-post
-_INSTALL_ALL_TARGETS+=		post-install-script
+#_INSTALL_ALL_TARGETS+=		install-script-data
+#_INSTALL_ALL_TARGETS+=		check-files-post
+#_INSTALL_ALL_TARGETS+=		post-install-script
 ifndef NO_PKG_REGISTER
-_INSTALL_ALL_TARGETS+=		register-pkg
+_INSTALL_ALL_TARGETS+=		pkg-register
 endif
-_INSTALL_ALL_TARGETS+=		privileged-install-hook
 _INSTALL_ALL_TARGETS+=		release-install-localbase-lock
-_INSTALL_ALL_TARGETS+=		error-check
+#_INSTALL_ALL_TARGETS+=		error-check
 
 .PHONY: install-all
 install-all: ${_INSTALL_ALL_TARGETS}
@@ -121,8 +119,8 @@ install-check-umask:
 	umask=`${SH} -c umask`;						\
 	if ${TEST} "$$umask" -ne ${DEF_UMASK}; then			\
 		${WARNING_MSG} "Your umask is \`\`$$umask''.";	\
-		${WARNING_MSG} "If this is not desired, set it to an appropriate value (${DEF_UMASK}) and install"; \
-		${WARNING_MSG} "this package again by \`\`${MAKE} deinstall reinstall''."; \
+		${WARNING_MSG} "If this is not desired, set it to an appropriate value (${DEF_UMASK}) and"; \
+		${WARNING_MSG} "install this package again by \`\`${MAKE} deinstall reinstall''."; \
         fi
 
 
@@ -173,6 +171,7 @@ INSTALL_MAKE_FLAGS?=	# none
 INSTALL_TARGET?=	install
 
 do%install:
+	${_OVERRIDE_TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _dir_,${INSTALL_DIRS},					\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
@@ -187,43 +186,6 @@ pre-install:
 post-install:
 	@${DO_NADA}
 
-
-######################################################################
-### install-doc-handling (PRIVATE)
-######################################################################
-### install-doc-handling does automatic document (de)compression based
-### on the contents of the PLIST.
-###
-_PLIST_REGEXP.info=	\
-	^([^\/]*\/)*${PKGINFODIR}/[^/]*(\.info)?(-[0-9]+)?(\.gz)?$$
-_PLIST_REGEXP.man=	\
-	^([^/]*/)+(man[1-9ln]/[^/]*\.[1-9ln]|cat[1-9ln]/[^/]*\.[0-9])(\.gz)?$$
-
-_DOC_COMPRESS=								\
-	${SETENV} PATH=${PATH:Q}					\
-		MANZ=${_MANZ}						\
-		PKG_VERBOSE=${PKG_VERBOSE}				\
-		TEST=${TOOLS_TEST:Q}					\
-	${SH} ${PKGSRCDIR}/mk/plist/doc-compress ${DESTDIR}${PREFIX}
-
-.PHONY: install-doc-handling
-install-doc-handling: plist
-	@${STEP_MSG} "Automatic manual page handling"
-	${_PKG_SILENT}${_PKG_DEBUG}${CAT} ${PLIST} | ${GREP} -v "^@" |	\
-	${EGREP} ${_PLIST_REGEXP.man:Q} | ${_DOC_COMPRESS}
-
-
-######################################################################
-### privileged-install-hook (PRIVATE, override, hook)
-######################################################################
-### privileged-install-hook is a generic hook target that is run just
-### before pkgsrc drops elevated privileges.
-###
-.PHONY: privileged-install-hook
-#.if !target(privileged-install-hook)
-privileged-install-hook:
-	@${DO_NADA}
-#.endif
 
 ######################################################################
 ### install-clean (PRIVATE)
@@ -242,3 +204,14 @@ install-clean: package-clean check-clean
 #
 bootstrap-register: pkg-register clean
 	@${DO_NADA}
+
+
+# --- install-cookie (PRIVATE) ---------------------------------------
+#
+# install-cookie creates the "install" cookie file.
+#
+.PHONY: install-cookie
+install-cookie:
+	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.install} || ${FALSE}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.install})
+	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > ${_COOKIE.install}
