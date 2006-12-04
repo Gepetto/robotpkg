@@ -70,7 +70,7 @@ _REAL_BUILD_TARGETS+=	pre-build
 _REAL_BUILD_TARGETS+=	do-build
 _REAL_BUILD_TARGETS+=	post-build
 _REAL_BUILD_TARGETS+=	build-cookie
-_REAL_BUILD_TARGETS+=	error-check
+#_REAL_BUILD_TARGETS+=	error-check
 
 .PHONY: real-build
 real-build: ${_REAL_BUILD_TARGETS}
@@ -85,9 +85,8 @@ build-message:
 # {pre,do,post}-build are the heart of the package-customizable
 # build targets, and may be overridden within a package Makefile.
 #
-.PHONY: pre-build do-build post-build
 
-do%build:
+do%build: .FORCE
 	${_OVERRIDE_TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _dir_,${BUILD_DIRS},						\
@@ -95,6 +94,7 @@ $(foreach _dir_,${BUILD_DIRS},						\
 	${BUILD_MAKE_CMD} ${BUILD_TARGET};				\
 )
 
+.PHONY: pre-build post-build
 pre-build:
 
 post-build:
