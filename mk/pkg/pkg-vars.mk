@@ -45,6 +45,7 @@ _PKG_BEST_EXISTS?=	${PKG_ADMIN} -b -d ${_PKG_DBDIR} -S lsbest
 PKG_BEST_EXISTS=	${_PKG_BEST_EXISTS}
 
 include ${PKGSRCDIR}/mk/pkg/depends.mk
-include ${PKGSRCDIR}/mk/pkg/package.mk
-include ${PKGSRCDIR}/mk/pkg/install.mk
 include ${PKGSRCDIR}/mk/pkg/metadata.mk
+include ${PKGSRCDIR}/mk/pkg/install.mk
+include ${PKGSRCDIR}/mk/pkg/deinstall.mk
+include ${PKGSRCDIR}/mk/pkg/package.mk
