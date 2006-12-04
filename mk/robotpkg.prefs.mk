@@ -20,27 +20,9 @@ _PKGSRC_TOPDIR=$(shell \
 		echo `pwd`/../..;		\
 	fi)
 
-# Common macros
-define isyes
-$(filter yes Yes YES,$(1))
-endef
-
-define exists
-$(shell test -f $(1) && echo yes || echo no)
-endef
-
-empty=
-space=$(empty) $(empty)
-quotechars={ } ( ) | * ' ` #'
-define quote
-$(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(subst $(space),\$(space),$(_q_))
-endef
-
-define _OVERRIDE_TARGET
-@case $*"" in "-") ;; *) ${ECHO} "don't know how to make $@."; exit 2;; esac
-endef
-
 # include the defaults file
+include ${_PKGSRC_TOPDIR}/mk/internal/macros.mk
+
 ifndef MAKECONF
 MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf
 endif
@@ -49,8 +31,8 @@ define msg
 
 ERROR: Unable to find package configuration file in
 ERROR:		${MAKECONF}.
-ERROR: Maybe you forgot to make your PATH variable point to robotpkg_info.
-ERROR: Try to invoke ${MAKE} MAKECONF=...
+ERROR: Maybe you forgot to set your PATH variable to point to robotpkg_info.
+ERROR: Try to invoke ${MAKE} MAKECONF=<path to robotpkg config file>
 endef
 $(error $(msg))
 endif
@@ -59,10 +41,13 @@ include ${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf
 
 ifdef PREFIX
 ifneq (${PREFIX},${__PREFIX_SET__})
-.BEGIN:
-	@${ECHO_MSG} "You CANNOT set PREFIX manually or in mk.conf. Set LOCALBASE"
-	@${ECHO_MSG} "depending on your needs. See the pkg system documentation for more info."
-	@${FALSE}
+define msg
+
+ERROR: You CANNOT set PREFIX manually or in mk.conf. Set LOCALBASE
+ERROR: depending on your needs. See the pkg system documentation for
+ERROR: more info.
+endef
+$(error $(msg))
 endif
 endif
 
@@ -125,6 +110,9 @@ XARGS?=			xargs -r
 SH?=			sh
 ID?=			id
 GREP?=			grep
+TOUCH?=			touch
+CHMOD?=			chmod
+EXPR?=			expr
 
 TOOLS_INSTALL=		install
 DEF_UMASK?=		0022
