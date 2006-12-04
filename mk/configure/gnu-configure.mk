@@ -40,15 +40,11 @@ CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX}
 # catman pages are installed unless the software was configured with
 # an installation prefix other than ${PREFIX}.
 #
-#CONFIGURE_HAS_MANDIR?=	 yes
-#.if ${GNU_CONFIGURE_PREFIX} == ${PREFIX}
-#GNU_CONFIGURE_MANDIR?=	${GNU_CONFIGURE_PREFIX}/${PKGMANDIR}
-#.else
-#GNU_CONFIGURE_MANDIR?=	${GNU_CONFIGURE_PREFIX}/man
-#.endif
-#.if !empty(CONFIGURE_HAS_MANDIR:M[yY][eE][sS])
-#CONFIGURE_ARGS+=	--mandir=${GNU_CONFIGURE_MANDIR:Q}
-#.endif
+CONFIGURE_HAS_MANDIR?=	 yes
+GNU_CONFIGURE_MANDIR?=	${GNU_CONFIGURE_PREFIX}/${PKGMANDIR}
+ifneq (,$(call isyes,${CONFIGURE_HAS_MANDIR}))
+CONFIGURE_ARGS+=	--mandir=${GNU_CONFIGURE_MANDIR}
+endif
 
 
 # --- configure-scripts-override (PRIVATE) ---------------------------
