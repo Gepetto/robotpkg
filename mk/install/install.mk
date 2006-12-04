@@ -159,12 +159,12 @@ ifdef INSTALLATION_DIRS
 	done
 endif	# INSTALLATION_DIRS
 
+
 # --- pre-install, do-install, post-install (PUBLIC, override) -------
 #
 # {pre,do,post}-install are the heart of the package-customizable
 # install targets, and may be overridden within a package Makefile.
 #
-.PHONY: pre-install do-install post-install
 
 INSTALL_DIRS?=		${BUILD_DIRS}
 INSTALL_MAKE_FLAGS?=	# none
@@ -180,20 +180,19 @@ $(foreach _dir_,${INSTALL_DIRS},					\
 			-f ${MAKE_FILE} ${INSTALL_TARGET};		\
 )
 
+.PHONY: pre-install post-install
+
 pre-install:
-	@${DO_NADA}
 
 post-install:
-	@${DO_NADA}
 
 
-######################################################################
-### install-clean (PRIVATE)
-######################################################################
-### install-clean removes the state files for the "install" and
-### later phases so that the "install" target may be re-invoked.
-###
-install-clean: package-clean check-clean
+# --- install-clean (PRIVATE) ----------------------------------------
+#
+# install-clean removes the state files for the "install" and
+# later phases so that the "install" target may be re-invoked.
+#
+install-clean: package-clean #check-clean
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${PLIST} ${_COOKIE.install}
 
 
