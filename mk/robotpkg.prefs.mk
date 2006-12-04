@@ -24,19 +24,27 @@ _PKGSRC_TOPDIR=$(shell \
 include ${_PKGSRC_TOPDIR}/mk/internal/macros.mk
 
 ifndef MAKECONF
-MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf
+  ifdef ROBOTPKG_BASE
+_MAKECONF=${ROBOTPKG_BASE}/etc/robotpkg.conf
+  else
+_MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf
+  endif
+else
+_MAKECONF=${MAKECONF}
 endif
-ifneq (yes,$(call exists,${MAKECONF}))
+ifneq (yes,$(call exists,${_MAKECONF}))
 define msg
 
 ERROR: Unable to find package configuration file in
-ERROR:		${MAKECONF}.
+ERROR:		${_MAKECONF}.
 ERROR: Maybe you forgot to set your PATH variable to point to robotpkg_info.
-ERROR: Try to invoke ${MAKE} MAKECONF=<path to robotpkg config file>
+ERROR: You can also define the variable ROBOTPKG_BASE to point to your
+ERROR: installation prefix. Finally, you can invoke
+ERROR:    ${MAKE} MAKECONF=<robotpkg config file>
 endef
 $(error $(msg))
 endif
-include ${MAKECONF}
+include ${_MAKECONF}
 include ${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf
 
 ifdef PREFIX
@@ -114,8 +122,15 @@ TOUCH?=			touch
 CHMOD?=			chmod
 EXPR?=			expr
 
-TOOLS_INSTALL=		install
+TOOLS_INSTALL=		/usr/bin/install
 DEF_UMASK?=		0022
 
+# If MAKECONF is defined, then pass it down to all recursive make
+# processes invoked by pkgsrc.
+#
+ifdef MAKECONF
+PKGSRC_MAKE_ENV+=       MAKECONF=${MAKECONF}
+endif
+RECURSIVE_MAKE=         ${SETENV} ${PKGSRC_MAKE_ENV} ${MAKE}
 
 endif	# ROBOTPKG_MK
