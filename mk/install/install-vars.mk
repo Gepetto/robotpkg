@@ -32,5 +32,5 @@ install: ${_PKGSRC_BUILD_TARGETS} install-cookie
   endif
 endif
 
--include "${PKGSRCDIR}/mk/install/deinstall.mk"
+include ${PKGSRCDIR}/mk/install/deinstall.mk
 -include "${PKGSRCDIR}/mk/install/replace.mk"
