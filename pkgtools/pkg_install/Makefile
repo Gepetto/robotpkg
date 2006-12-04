@@ -60,7 +60,7 @@ do-extract:
 # XXX Reverse the order that update does things since
 # XXX we need pkg_delete built before we can deinstall.
 # XXX This should probably be the default order for all packages.
-update:
+do-update:
 	${MAKE} build
 	${MAKE} deinstall _UPDATE_RUNNING=YES
 	${MAKE} ${UPDATE_TARGET}
