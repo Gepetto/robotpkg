@@ -74,9 +74,8 @@ endif
 
 include ${PKGSRCDIR}/mk/robotpkg.use.mk
 
-############################################################################
-# Sanity checks
-############################################################################
+
+# --- Sanity checks --------------------------------------------------
 
 # Fail-safe in the case of circular dependencies
 ifdef _PKGSRC_DEPS
@@ -97,15 +96,15 @@ endif
 
 CPPFLAGS+=	${CPP_PRECOMP_FLAGS}
 
-ALL_ENV+=	CC=${CC}
+ALL_ENV+=	CC=$(call quote,${CC})
 ALL_ENV+=	CFLAGS=$(call quote,${CFLAGS})
 ALL_ENV+=	CPPFLAGS=$(call quote,${CPPFLAGS})
-ALL_ENV+=	CXX=${CXX:M*:Q}
-ALL_ENV+=	CXXFLAGS=${CXXFLAGS:M*:Q}
-ALL_ENV+=	COMPILER_RPATH_FLAG=${COMPILER_RPATH_FLAG:Q}
-ALL_ENV+=	F77=${FC:Q}
-ALL_ENV+=	FC=${FC:Q}
-ALL_ENV+=	FFLAGS=${FFLAGS:M*:Q}
+ALL_ENV+=	CXX=$(call quote,${CXX})
+ALL_ENV+=	CXXFLAGS=$(call quote,${CXXFLAGS})
+ALL_ENV+=	COMPILER_RPATH_FLAG=$(call quote,${COMPILER_RPATH_FLAG})
+ALL_ENV+=	F77=$(call quote,${FC})
+ALL_ENV+=	FC=$(call quote,${FC})
+ALL_ENV+=	FFLAGS=$(call quote,${FFLAGS})
 ALL_ENV+=	LANG=C
 ALL_ENV+=	LC_COLLATE=C
 ALL_ENV+=	LC_CTYPE=C
@@ -113,8 +112,8 @@ ALL_ENV+=	LC_MESSAGES=C
 ALL_ENV+=	LC_MONETARY=C
 ALL_ENV+=	LC_NUMERIC=C
 ALL_ENV+=	LC_TIME=C
-ALL_ENV+=	LDFLAGS=${LDFLAGS:M*:Q}
-ALL_ENV+=	LINKER_RPATH_FLAG=${LINKER_RPATH_FLAG:Q}
+ALL_ENV+=	LDFLAGS=$(call quote,${LDFLAGS})
+ALL_ENV+=	LINKER_RPATH_FLAG=$(call quote,${LINKER_RPATH_FLAG})
 ALL_ENV+=	PATH=${PATH}:${LOCALBASE}/bin
 ALL_ENV+=	PREFIX=${PREFIX}
 
@@ -351,7 +350,11 @@ include ${PKGSRCDIR}/mk/build/build-vars.mk
 include ${PKGSRCDIR}/mk/install/install-vars.mk
 
 # Package
+include ${PKGSRCDIR}/mk/package/package-vars.mk
+
+# Pkg
 include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
+
 
 # --------------------------------------------------------------------
 #
@@ -416,3 +419,6 @@ include ../../mk/plist/plist.mk
 #.if make(help)
 #.include "${PKGSRCDIR}/mk/help/help.mk"
 #.endif
+
+# fake target to make pattern targets phony
+.FORCE:
