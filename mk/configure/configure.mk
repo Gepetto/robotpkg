@@ -118,9 +118,9 @@ do-configure-post-hook:
 # software for building.
 #
 _CONFIGURE_SCRIPT_ENV+=	INSTALL=${INSTALL}\ -c\ -o\ ${BINOWN}\ -g\ ${BINGRP}
-_CONFIGURE_SCRIPT_ENV+=	INSTALL_PROGRAM=${INSTALL_PROGRAM}
-_CONFIGURE_SCRIPT_ENV+=	INSTALL_SCRIPT=${INSTALL_SCRIPT}
-_CONFIGURE_SCRIPT_ENV+=	INSTALL_DATA=${INSTALL_DATA}
+_CONFIGURE_SCRIPT_ENV+=	INSTALL_PROGRAM=$(call quote,${INSTALL_PROGRAM})
+_CONFIGURE_SCRIPT_ENV+=	INSTALL_SCRIPT=$(call quote,${INSTALL_SCRIPT})
+_CONFIGURE_SCRIPT_ENV+=	INSTALL_DATA=$(call quote,${INSTALL_DATA})
 _CONFIGURE_SCRIPT_ENV+=	${CONFIGURE_ENV}
 
 .PHONY: do-configure-script
@@ -138,16 +138,15 @@ $(foreach _dir_,${CONFIGURE_DIRS},					\
 # {pre,do,post}-configure are the heart of the package-customizable
 # configure targets, and may be overridden within a package Makefile.
 #
-.PHONY: pre-configure do-configure post-configure
-
 ifdef HAS_CONFIGURE
 _DO_CONFIGURE_TARGETS+=	do-configure-script
 endif
 
-do%configure: ${_DO_CONFIGURE_TARGETS}
+do%configure: ${_DO_CONFIGURE_TARGETS} .FORCE
 	${_OVERRIDE_TARGET}
 	@${DO_NADA}
 
+.PHONY: pre-configure post-configure
 pre-configure:
 
 post-configure:
