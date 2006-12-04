@@ -111,6 +111,10 @@ get_optarg()
     expr "x$1" : "x[^=]*=\\(.*\\)"
 }
 
+build_start=`date`
+echo_msg "bootstrap command: $0 $@"
+echo_msg "bootstrap started: $build_start"
+
 # user configurable options
 prefix=
 pkgdbdir=
@@ -233,7 +237,7 @@ run_cmd "(cd $pkgsrcdir/pkgtools/pkgmanpages && $gmake PKG_VERBOSE=yes MAKECONF=
 
 # Install sample config file.
 mkdir_p ${sysconfdir}
-$cpprog ${MKCONF_EXAMPLE} ${sysconfdir}/robotpkg.conf 
+run_cmd $cpprog ${MKCONF_EXAMPLE} ${sysconfdir}/robotpkg.conf 
 
 hline="==========================================================================="
 echo ""
@@ -246,8 +250,6 @@ echo "An example robotpkg.conf file with the settings you provided to \"bootstra
 echo "has been created for you. It can be found in:"
 echo ""
 echo "      ${sysconfdir}/robotpkg.conf"
-echo ""
-echo "Please review it."
 echo ""
 echo "You can find extensive documentation of the robotics packages collection"
 echo "in $pkgsrcdir/doc/pkgsrc.txt and packages(7)."
