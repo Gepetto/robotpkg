@@ -325,7 +325,7 @@ include ${PKGSRCDIR}/mk/depends/depends-vars.mk
 include ${PKGSRCDIR}/mk/clean.mk
 
 # Fetch
--include "${PKGSRCDIR}/mk/fetch/bsd.fetch.mk"
+include ${PKGSRCDIR}/mk/fetch/fetch-vars.mk
 
 # Checksum
 include ${PKGSRCDIR}/mk/checksum/checksum-vars.mk
