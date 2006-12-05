@@ -121,8 +121,14 @@ GREP?=			grep
 TOUCH?=			touch
 CHMOD?=			chmod
 EXPR?=			expr
+WC?=			wc
+CMP?=			cmp
 
 TOOLS_INSTALL=		/usr/bin/install
+TOOLS_DIGEST=		digest
+TOOLS_ECHO=		echo
+TOOLS_CAT=		cat
+TOOLS_TEST=		test
 DEF_UMASK?=		0022
 
 # If MAKECONF is defined, then pass it down to all recursive make
