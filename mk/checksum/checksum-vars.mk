@@ -10,3 +10,44 @@
 #
 
 DISTINFO_FILE?=		${PKGDIR}/distinfo
+
+# The following are the "public" targets provided by this module:
+#
+#    checksum, makesum, makepatchsum, distinfo
+#
+
+# --- checksum, makesum, makepatchsum (PUBLIC) -----------------------
+#
+# checksum is a public target to checksum the fetched distfiles
+# for the package.
+#
+# makesum is a public target to add checksums of the distfiles for
+# the package to ${DISTINFO_FILE}.
+#
+# makepatchsum is a public target to add checksums of the patches
+# for the package to ${DISTINFO_FILE}.
+#
+ifdef NO_CHECKSUM
+.PHONY: checksum makesum makepatchsum
+checksum: fetch
+        @${DO_NADA}
+
+makesum makepatchsum:
+        @${DO_NADA}
+else
+  include ${PKGSRCDIR}/mk/checksum/checksum.mk
+endif
+
+
+# --- distinfo (PUBLIC) ----------------------------------------------
+#
+# distinfo is a public target to create ${DISTINFO_FILE}.
+#
+.PHONY: distinfo
+distinfo: makepatchsum makesum
+        @${DO_NADA}
+
+# Some short aliases for "makepatchsum" and "distinfo".
+.PHONY: mps mdi makedistinfo
+mps: makepatchsum
+mdi makedistinfo: distinfo
