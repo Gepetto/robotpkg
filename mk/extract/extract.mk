@@ -117,7 +117,7 @@ extract-cookie:
 # {pre,do,post}-extract are the heart of the package-customizable
 # extract targets, and may be overridden within a package Makefile.
 #
-.PHONY: pre-extract do-extract post-extract
+.PHONY: pre-extract post-extract
 
 EXTRACT_USING?=		tar
 EXTRACT_ELEMENTS?=	# empty
@@ -207,7 +207,7 @@ EXTRACT_CMD?=	${EXTRACT_CMD_DEFAULT}
 
 DOWNLOADED_DISTFILE=	$${extract_file}
 
-do%extract: ${WRKDIR}
+do%extract: ${WRKDIR} .FORCE
 	${_OVERRIDE_TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach __file__,${EXTRACT_ONLY},					\
