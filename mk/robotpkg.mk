@@ -29,6 +29,7 @@ all: build
 # Include any preferences, if not already included, and common definitions
 #
 include ../../mk/robotpkg.prefs.mk
+include ../../mk/internal/error.mk
 
 
 ############################################################################
@@ -250,7 +251,7 @@ _BUILD_DEFS+=		PKG_SYSCONFBASEDIR PKG_SYSCONFDIR
 # Get the proper dependencies and set the PATH to use the compiler
 # named in PKGSRC_COMPILER.
 #
--include "../../mk/compiler.mk"
+include ../../mk/compiler/compiler-vars.mk
 
 # Locking
 include ${PKGSRCDIR}/mk/internal/locking.mk
@@ -407,7 +408,7 @@ show-license:
 		${ECHO} "See the package description (pkg_info -d ${PKGNAME}) for more information."; \
 	fi
 
-include ../../mk/plist/plist.mk
+include ../../mk/plist/plist-vars.mk
 
 -include "../../mk/bsd.utils.mk"
 
