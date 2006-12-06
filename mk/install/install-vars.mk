@@ -29,7 +29,7 @@ install:
 	@${DO_NADA}
   else
     ifdef _PKGSRC_BARRIER
-install: ${_PKGSRC_BUILD_TARGETS} install-cookie
+install: build install-cookie
     else
 install: barrier
     endif

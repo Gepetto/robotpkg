@@ -5,7 +5,7 @@
 
 # install is a public target to install the package.
 #
-_INSTALL_TARGETS+=	${_PKGSRC_BUILD_TARGETS}
+_INSTALL_TARGETS+=	build
 _INSTALL_TARGETS+=	acquire-install-lock
 _INSTALL_TARGETS+=	${_COOKIE.install}
 _INSTALL_TARGETS+=	release-install-lock
