@@ -62,7 +62,11 @@ ifeq (yes,$(call exists,${_COOKIE.patch}))
 patch:
 	@${DO_NADA}
 else
+  ifdef _PKGSRC_BARRIER
 patch: ${_PATCH_TARGETS}
+  else
+patch: barrier
+  endif
 endif
 
 .PHONY: acquire-patch-lock release-patch-lock

@@ -47,7 +47,7 @@ do%update: .FORCE
 	@${PHASE_MSG} "Resuming update for ${PKGNAME}"
   ifneq (NOreplace,${REINSTALL}${UPDATE_TARGET})
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-		${RECURSIVE_MAKE} ${MAKEFLAGS} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=ALL
+		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=ALL
   endif
 else
 RESUMEUPDATE?=	NO
@@ -55,16 +55,16 @@ CLEAR_DIRLIST?=	YES
 
 do%update: .FORCE
 	${_OVERRIDE_TARGET}
-	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} ${MAKEFLAGS} update-create-ddir
+	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} update-create-ddir
   ifneq (replace,${UPDATE_TARGET})
 	${_PKG_SILENT}${_PKG_DEBUG}if ${PKG_INFO} -qe ${PKGBASE}; then	\
-		${RECURSIVE_MAKE} ${MAKEFLAGS} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=ALL \
+		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=ALL \
 		|| (${RM} ${_DDIR} && ${FALSE});			\
 	fi
   endif
 endif
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-		${RECURSIVE_MAKE} ${MAKEFLAGS} ${UPDATE_TARGET} KEEP_WRKDIR=YES DEPENDS_TARGET=${DEPENDS_TARGET}
+		${RECURSIVE_MAKE} ${UPDATE_TARGET} KEEP_WRKDIR=YES DEPENDS_TARGET=${DEPENDS_TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do		\
 		(if cd ../.. && cd "$${dep}" ; then			\
@@ -72,9 +72,9 @@ endif
 			if [ "(" "${RESUMEUPDATE}" = "NO" -o 		\
 			     "${REINSTALL}" != "NO" ")" -a		\
 			     "${UPDATE_TARGET}" != "replace" ] ; then	\
-				${RECURSIVE_MAKE} ${MAKEFLAGS} deinstall _UPDATE_RUNNING=YES; \
+				${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES; \
 			fi &&						\
-			${RECURSIVE_MAKE} ${MAKEFLAGS} ${UPDATE_TARGET}	\
+			${RECURSIVE_MAKE} ${UPDATE_TARGET}	\
 				DEPENDS_TARGET=${DEPENDS_TARGET:Q} ;	\
 		else							\
 			${PHASE_MSG} "Skipping removed directory $${dep}"; \
@@ -82,28 +82,28 @@ endif
 	done
 ifeq (NO,${NOCLEAN})
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-		${RECURSIVE_MAKE} ${MAKEFLAGS} clean-update CLEAR_DIRLIST=YES
+		${RECURSIVE_MAKE} clean-update CLEAR_DIRLIST=YES
 endif
 
 
 .PHONY: clean-update
 clean-update:
-	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} ${MAKEFLAGS} update-create-ddir
+	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} update-create-ddir
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	if [ -s ${_DDIR} ] ; then					\
 		for dep in `${CAT} ${_DDIR}` ; do			\
 			(if cd ../.. && cd "$${dep}" ; then		\
-				${RECURSIVE_MAKE} ${MAKEFLAGS} clean ;	\
+				${RECURSIVE_MAKE} clean;		\
 			else						\
 				${PHASE_MSG} "Skipping removed directory $${dep}";\
 			fi) ;						\
 		done ;							\
 	fi
 ifneq (NO,${CLEAR_DIRLIST})
-	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} ${MAKEFLAGS} clean
+	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} clean
 else
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-		${RECURSIVE_MAKE} ${MAKEFLAGS} clean update-dirlist DIRLIST="`${CAT} ${_DDIR}`" PKGLIST="`${CAT} ${_DLIST}`"
+		${RECURSIVE_MAKE} clean update-dirlist DIRLIST="`${CAT} ${_DDIR}`" PKGLIST="`${CAT} ${_DLIST}`"
 	@${WARNING_MSG} "preserved leftover directory list.  Your next"
 	@${WARNING_MSG} "\`\`${MAKE} update'' may fail.  It is advised to use"
 	@${WARNING_MSG} "\`\`${MAKE} update REINSTALL=YES'' instead!"

@@ -29,11 +29,11 @@ CLEANDEPENDS?=	no
 
 .PHONY: clean-depends
 clean-depends:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${_DEPENDS_WALK_CMD} ${PKGPATH} |				\
-	while read dir; do						\
-		cd ${CURDIR}/../../$$dir &&				\
-		${RECURSIVE_MAKE} ${MAKEFLAGS} CLEANDEPENDS=no clean;	\
+	${_PKG_SILENT}${_PKG_DEBUG}				\
+	${_DEPENDS_WALK_CMD} ${PKGPATH} |			\
+	while read dir; do					\
+		cd ${CURDIR}/../../$$dir &&			\
+		${RECURSIVE_MAKE} CLEANDEPENDS=no clean;	\
 	done
 
 .PHONY: pre-clean

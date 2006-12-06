@@ -18,7 +18,11 @@ ifeq (yes,$(call exists,${_COOKIE.package}))
 package:
 	@${DO_NADA}
 else
+  ifdef _PKGSRC_BARRIER
 package: ${_PACKAGE_TARGETS}
+  else
+package: barrier
+  endif
 endif
 
 .PHONY: acquire-package-lock release-package-lock

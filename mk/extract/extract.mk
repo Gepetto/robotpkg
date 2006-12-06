@@ -59,7 +59,11 @@ ifeq (yes,$(call exists,${_COOKIE.extract}))
 extract:
 	@${DO_NADA}
 else
+  ifdef _PKGSRC_BARRIER
 extract: ${_EXTRACT_TARGETS}
+  else
+extract: barrier
+  endif
 endif
 
 .PHONY: acquire-extract-lock release-extract-lock

@@ -48,7 +48,11 @@ ifeq (yes,$(call exists,${_COOKIE.configure}))
 configure:
 	@${DO_NADA}
 else
+  ifdef _PKGSRC_BARRIER
 configure: ${_CONFIGURE_TARGETS}
+  else
+configure: barrier
+  endif
 endif
 
 .PHONY: acquire-configure-lock release-configure-lock

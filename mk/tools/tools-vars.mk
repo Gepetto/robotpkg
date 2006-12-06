@@ -71,7 +71,11 @@ ifeq (yes,$(call exists,${_COOKIE.tools}))
 tools:
 	@${DO_NADA}
 else
+  ifdef _PKGSRC_BARRIER
 tools: ${_TOOLS_TARGETS}
+  else
+tools: barrier
+  endif
 endif 
 
 .PHONY: acquire-tools-lock release-tools-lock

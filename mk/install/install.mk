@@ -15,7 +15,11 @@ ifeq (yes,$(call exists,${_COOKIE.install}))
 install:
 	@${DO_NADA}
 else
+  ifdef _PKGSRC_BARRIER
 install: ${_INSTALL_TARGETS}
+  else
+install: barrier
+  endif
 endif
 
 ifeq (yes,$(call exists,${_COOKIE.install}))

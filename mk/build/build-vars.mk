@@ -63,7 +63,11 @@ else
 build:
 	@${DO_NADA}
   else
+    ifdef _PKGSRC_BARRIER
 build: configure build-cookie pkginstall
+    else
+build: barrier
+    endif
   endif
 endif
 

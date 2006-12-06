@@ -21,11 +21,15 @@ else
 package:
 	@${DO_NADA}
   else
+    ifdef _PKGSRC_BARRIER
 package: install
-    ifdef SKIP_SILENT
+      ifdef SKIP_SILENT
 	@${DO_NADA}
-    else
+      else
 	@${PHASE_MSG} "${PKGNAME} may not be packaged: "${NO_PACKAGE}"."
+      endif
+    else
+package: barrier
     endif
   endif
 endif

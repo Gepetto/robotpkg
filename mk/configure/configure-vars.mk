@@ -47,8 +47,11 @@ else
 configure:
 	@${DO_NADA}
   else
-#configure: wrapper configure-cookie
+    ifdef _PKGSRC_BARRIER
 configure: patch configure-cookie
+    else
+configure: barrier
+    endif
   endif
 endif
 
