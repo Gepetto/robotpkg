@@ -9,12 +9,12 @@ _WARNING_DONE_DIR=	${WRKDIR}/.warning-done
 # picked up by the error-check target and can be used in place of
 # ${ECHO}.  We output to files that are named without leading dots.
 #
-DELAYED_ERROR_MSG?=	${ECHO} >> ${ERROR_DIR}/${.TARGET:T:C/^[.]*//:Q}
-DELAYED_WARNING_MSG?=	${ECHO} >> ${WARNING_DIR}/${.TARGET:T:C/^[.]*//:Q}
+DELAYED_ERROR_MSG?=	${ECHO} >> ${ERROR_DIR}/$(patsubst .%,%,$(notdir $@))
+DELAYED_WARNING_MSG?=	${ECHO} >> ${WARNING_DIR}/$(patsubst .%,%,$(notdir $@))
 
 makedirs: ${ERROR_DIR} ${WARNING_DIR} ${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}
 ${ERROR_DIR} ${WARNING_DIR} ${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${.TARGET}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $@
 
 .PHONY: error-check
 
