@@ -1,0 +1,103 @@
+# $NetBSD: compiler.mk,v 1.58 2006/12/03 08:34:45 seb Exp $
+#
+# This Makefile fragment implements handling for supported C/C++/Fortran
+# compilers.
+#
+# The following variables may be set by the pkgsrc user in mk.conf:
+#
+# PKGSRC_COMPILER
+#	A list of values specifying the chain of compilers to be used by
+#	pkgsrc to build packages.
+#
+#	Valid values are:
+#		ccc		Compaq C Compilers (Tru64)
+#		ccache		compiler cache (chainable)
+#		distcc		distributed C/C++ (chainable)
+#		f2c		Fortran 77 to C compiler (chainable)
+#		icc		Intel C++ Compiler (Linux)
+#		ido		SGI IRIS Development Option cc (IRIX 5)
+#		gcc		GNU
+#		mipspro		Silicon Graphics, Inc. MIPSpro (n32/n64)
+#		mipspro-ucode	Silicon Graphics, Inc. MIPSpro (o32)
+#		sunpro		Sun Microsystems, Inc. WorkShip/Forte/Sun
+#				ONE Studio
+#		xlc		IBM's XL C/C++ compiler suite (Darwin/MacOSX)
+#
+#	The default is "gcc".  You can use ccache and/or distcc with
+#	an appropriate PKGSRC_COMPILER setting, e.g. "ccache distcc
+#	gcc".  You can also use "f2c" to overlay the lang/f2c package
+#	over the C compiler instead of using the system Fortran
+#	compiler.  The chain should always end in a real compiler.
+#	This should only be set in /etc/mk.conf.
+#
+#
+# The following variables may be set by a package:
+#
+# GCC_REQD
+#	A list of version numbers used to determine the minimum
+#	version of GCC required by a package.  This value should only
+#	be appended to by a package Makefile.
+#
+#	NOTE: Be conservative when setting GCC_REQD, as lang/gcc3 is
+#	known not to build on some platforms, e.g. Darwin.  If gcc3 is
+#	required, set GCC_REQD=3.0 so that we do not try to pull in
+#	lang/gcc3 unnecessarily and have it fail.
+#
+# USE_LANGUAGES
+#	Lists the languages used in the source code of the package,
+#	and is used to determine the correct compilers to install.
+#	Valid values are: c, c99, c++, fortran, java, objc.  The
+#       default is "c".
+#
+# The following variables are defined, and available for testing in
+# package Makefiles:
+#
+# CC_VERSION
+#	The compiler and version being used, e.g.,
+#
+#	.include "../../mk/compiler.mk"
+#
+#	.if !empty(CC_VERSION:Mgcc-3*)
+#	...
+#	.endif
+#
+
+ifndef BSD_COMPILER_MK
+BSD_COMPILER_MK=	defined
+
+include ../../mk/robotpkg.prefs.mk
+
+# Since most packages need a C compiler, this is the default value.
+USE_LANGUAGES?=	c
+
+# Add c support if c99 is set
+ifneq (,$(filter c99,${USE_LANGUAGES}))
+USE_LANGUAGES+=	c
+endif
+
+_COMPILERS=		ccc gcc icc ido mipspro mipspro-ucode sunpro xlc
+_PSEUDO_COMPILERS=	ccache distcc f2c
+
+ifneq (,${NOT_FOR_COMPILER})
+_ACCEPTABLE_COMPILERS+=	$(filter-out ${NOT_FOR_COMPILER},${_COMPILERS})
+else
+  ifneq (,${ONLY_FOR_COMPILER})
+_ACCEPTABLE_COMPILERS+=	$(filter ${ONLY_FOR_COMPILER},${_COMPILERS})
+  else
+_ACCEPTABLE_COMPILERS+=	${_COMPILERS}
+  endif
+endif
+
+ifneq (,${_ACCEPTABLE_COMPILERS})
+_COMPILER=$(firstword $(filter ${_ACCEPTABLE_COMPILERS},${PKGSRC_COMPILER}))
+endif
+
+ifeq (,${_COMPILER})
+PKG_FAIL_REASON+=	"No acceptable compiler found for ${PKGNAME}."
+endif
+
+_PKGSRC_COMPILER=	$(filter ${_PSEUDO_COMPILERS},${PKGSRC_COMPILER}) ${_COMPILER}
+
+include $(patsubst %,../../mk/compiler/%.mk,${_PKGSRC_COMPILER})
+
+endif	# BSD_COMPILER_MK
