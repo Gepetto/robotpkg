@@ -12,20 +12,55 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.boost.org/
 COMMENT=		Free, peer-reviewed portable C++ source libraries.
 
+# Generate a new user.hpp and compile bjam
+do-configure:
+	${_PKG_SILENT}${_PKG_DEBUG}cd ${WRKSRC}/libs/config && \
+	    ${SETENV} ${CONFIGURE_ENV} ${SH} ./configure
+	${_PKG_SILENT}${_PKG_DEBUG}${CP} -f \
+		${WRKSRC}/libs/config/user.hpp ${WRKSRC}/boost/config/user.hpp
+
+do-build:
+	${_PKG_SILENT}${_PKG_DEBUG}cd ${WRKSRC}/tools/build/jam_src && \
+		${SETENV} ${MAKE_ENV} ${SH} ./build.sh ${BOOST_TOOLSET}
+	${_PKG_SILENT}${_PKG_DEBUG}cd ${WRKSRC} && ${BJAM_CMD} stage
+
+do-install:
+	${_PKG_SILENT}${_PKG_DEBUG}cd ${WRKSRC} && ${BJAM_CMD} install
+
 # We can't do this at post-extract because the extract cookie will get a
 # future timestamp than the sources.  If this happens, print-PLIST does
 # not work.
-#pre-configure:
-#	@cd ${WRKSRC} && ${FIND} . -type f -print | ${XARGS} ${TOUCH}
-
-# Generate a new user.hpp or use the installed one, depending on the
-# package we are building.
-do-configure:
-	@cd ${WRKSRC}/libs/config && \
-	    ${SETENV} ${CONFIGURE_ENV} ${SH} ./configure
-	${CP} -f ${WRKSRC}/libs/config/user.hpp ${WRKSRC}/boost/config/user.hpp
+pre-configure:
+	@cd ${WRKSRC} && ${FIND} . -type f -print | ${XARGS} ${TOUCH}
 
 #boost-install-libs:
 #	cd ${WRKSRC}/stage/lib && ${PAX} -rwpe libboost* ${PREFIX}/lib
 
+include ../../mk/robotpkg.prefs.mk
+
+ifeq (${OPSYS},"Darwin")
+BOOST_TOOLSET=          darwin
+else
+ ifneq (,$(filter gcc,${PKGSRC_COMPILER}))
+BOOST_TOOLSET=          gcc
+ else
+PKG_FAIL_REASON+=       "Unknown compiler ${PKGSRC_COMPILER} for Boost."
+ endif
+endif
+
+BJAM=                   ${WRKSRC}/tools/build/jam_src/bin.*/bjam
+BJAM_ARGS+=             --builddir=${WRKSRC}/build
+BJAM_ARGS+=             --layout=system
+BJAM_ARGS+=             --prefix=${PREFIX}
+BJAM_ARGS+=             -sBUILD=$(call quote,${BJAM_BUILD})
+BJAM_ARGS+=             -sTOOLS=${BOOST_TOOLSET}
+ifeq (${OPSYS},"Darwin")
+BJAM_ARGS+=             -sTARGET_LIBDIR=${PREFIX}/lib
+endif
+BJAM_BUILD+=            <linkflags>${COMPILER_RPATH_FLAG}${PREFIX}/lib
+BJAM_BUILD+=            <threading>multi
+BJAM_BUILD+=            release
+BJAM_CMD=               ${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
+
 include ../../mk/robotpkg.mk
+
