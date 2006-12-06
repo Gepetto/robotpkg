@@ -123,6 +123,7 @@ CHMOD?=			chmod
 EXPR?=			expr
 WC?=			wc
 CMP?=			cmp
+FIND?=			find
 
 TOOLS_INSTALL=		/usr/bin/install
 TOOLS_DIGEST=		digest
