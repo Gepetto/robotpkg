@@ -7,7 +7,7 @@
 # defaults are used.
 
 ifndef ROBOTPKG_MK
-
+ROBOTPKG_MK=defined
 __PREFIX_SET__:=${PREFIX}
 
 # Calculate depth
@@ -20,8 +20,61 @@ _PKGSRC_TOPDIR=$(shell \
 		echo `pwd`/../..;		\
 	fi)
 
-# include the defaults file
+# import useful macros
 include ${_PKGSRC_TOPDIR}/mk/internal/macros.mk
+
+# boostrap tools
+UNAME:=$(call pathsearch,uname,/usr/bin:/bin)
+ifeq (,${UNAME})
+UNAME=echo Unknown
+endif
+
+CUR:=$(call pathsearch,cut,/usr/bin:/bin)
+ifeq (,${TR})
+CUT=:
+endif
+
+TR:=$(call pathsearch,tr,/usr/bin:/bin)
+ifeq (,${TR})
+TR=:
+endif
+
+# compute platform variables
+ifndef OPSYS
+OPSYS:=			$(shell ${UNAME} -s | ${TR} -d /)
+MAKEOVERRIDES+=		OPSYS=${OPSYS}
+endif
+
+# Later, recursed make invocations will skip these blocks entirely thanks
+# to MAKEFLAGS.
+ifndef OS_VERSION
+OS_VERSION:=		$(shell ${UNAME} -r)
+MAKEOVERRIDES+=		OS_VERSION=${OS_VERSION}
+endif
+ifndef LOWER_OS_VERSION
+LOWER_OS_VERSION:=      $(shell echo ${OS_VERSION} | ${TR} 'A-Z' 'a-z')
+MAKEOVERRIDES+=             LOWER_OS_VERSION=${LOWER_OS_VERSION}
+endif
+
+ifeq (${OPSYS},"NetBSD")
+LOWER_OPSYS?=		netbsd
+endif
+
+ifeq (${OPSYS},"Darwin")
+LOWER_OPSYS?=		darwin
+LOWER_ARCH=		$(shell ${UNAME} -p)
+MACHINE_ARCH=           ${LOWER_ARCH}
+MAKEOVERRIDES+= 	LOWER_ARCH=${LOWER_ARCH}
+endif
+
+ifeq (${OPSYS},"Linux")
+LOWER_OPSYS?=		linux
+LOWER_ARCH?=		$(shell ${UNAME} -m | sed -e 's/i.86/i386/' -e 's/ppc/powerpc/')
+MACHINE_ARCH=           ${LOWER_ARCH}
+MAKEOVERRIDES+=		LOWER_ARCH=${LOWER_ARCH}
+endif
+
+# include the defaults file
 
 ifndef MAKECONF
   ifdef ROBOTPKG_BASE
@@ -59,12 +112,19 @@ $(error $(msg))
 endif
 endif
 
+# Load the OS-specific definitions for program variables.
+ifeq (yes,$(call exists,${_PKGSRC_TOPDIR}/mk/platform/${OPSYS}.mk))
+  include ${_PKGSRC_TOPDIR}/mk/platform/${OPSYS}.mk
+else
+PKG_FAIL_REASON+=	"missing mk/platform/${OPSYS}.mk"
+endif
+
 LOCALBASE?=		/usr/pkg
 
 DEPOT_SUBDIR?=		packages
 DEPOTBASE=		${LOCALBASE}/${DEPOT_SUBDIR}
 
-PKGPATH?=		$(notdir $(patsubst %/,%,$(dir $(shell pwd))))/$(notdir $(shell pwd))
+PKGPATH?=		$(notdir $(patsubst %/,%,$(dir $(CURDIR))))/$(notdir $(CURDIR))
 ifndef _PKGSRCDIR
 _PKGSRCDIR=		$(shell cd ${_PKGSRC_TOPDIR} && pwd)
 MAKEFLAGS+=		_PKGSRCDIR=${_PKGSRCDIR}
@@ -95,42 +155,6 @@ WRKLOG?=		${WRKDIR}/.work.log
 
 PKG_DEFAULT_OPTIONS?=	# empty
 PKG_OPTIONS?=		# empty
-
-# Standard commands
-TRUE?=			:
-FALSE?=			false
-SETENV?=		env
-TEST?=			test
-LS?=			ls
-LN?=			ln
-ECHO?=			echo
-CAT?=			cat
-SED?=			sed
-CP?=			cp
-MV?=			mv
-RM?=			rm
-MKDIR?=			mkdir -p
-DATE?=			date
-SORT?=			sort
-AWK?=			awk
-MD5?=			md5sum
-XARGS?=			xargs -r
-SH?=			sh
-ID?=			id
-GREP?=			grep
-TOUCH?=			touch
-CHMOD?=			chmod
-EXPR?=			expr
-WC?=			wc
-CMP?=			cmp
-FIND?=			find
-
-TOOLS_INSTALL=		/usr/bin/install
-TOOLS_DIGEST=		digest
-TOOLS_ECHO=		echo
-TOOLS_CAT=		cat
-TOOLS_TEST=		test
-DEF_UMASK?=		0022
 
 # If MAKECONF is defined, then pass it down to all recursive make
 # processes invoked by pkgsrc.
