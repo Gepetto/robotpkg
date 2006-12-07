@@ -40,9 +40,13 @@ endef
 
 empty=
 space=$(empty) $(empty)
-quotechars={ } ( ) [ ] | * < > ` ' #'
+quotechars={ } ( ) [ ] | * < > ` ' #'`
 define quote
 $(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(subst $(space),\$(space),$(_q_))
+endef
+
+define pathsearch
+$(firstword $(wildcard $(addsuffix /$(1),$(subst :, ,$(2)))))
 endef
 
 define _OVERRIDE_TARGET
