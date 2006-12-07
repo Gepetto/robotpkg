@@ -29,8 +29,8 @@ ifeq (,${UNAME})
 UNAME=echo Unknown
 endif
 
-CUR:=$(call pathsearch,cut,/usr/bin:/bin)
-ifeq (,${TR})
+CUT:=$(call pathsearch,cut,/usr/bin:/bin)
+ifeq (,${CUT})
 CUT=:
 endif
 
@@ -52,26 +52,28 @@ OS_VERSION:=		$(shell ${UNAME} -r)
 MAKEOVERRIDES+=		OS_VERSION=${OS_VERSION}
 endif
 ifndef LOWER_OS_VERSION
-LOWER_OS_VERSION:=      $(shell echo ${OS_VERSION} | ${TR} 'A-Z' 'a-z')
-MAKEOVERRIDES+=             LOWER_OS_VERSION=${LOWER_OS_VERSION}
+LOWER_OS_VERSION:=	$(shell echo ${OS_VERSION} | ${TR} 'A-Z' 'a-z')
+MAKEOVERRIDES+=		LOWER_OS_VERSION=${LOWER_OS_VERSION}
 endif
 
-ifeq (${OPSYS},"NetBSD")
+ifeq (${OPSYS},NetBSD)
 LOWER_OPSYS?=		netbsd
 endif
 
-ifeq (${OPSYS},"Darwin")
+ifeq (${OPSYS},Darwin)
 LOWER_OPSYS?=		darwin
 LOWER_ARCH=		$(shell ${UNAME} -p)
 MACHINE_ARCH=           ${LOWER_ARCH}
-MAKEOVERRIDES+= 	LOWER_ARCH=${LOWER_ARCH}
+MAKEOVERRIDES+=		LOWER_ARCH=${LOWER_ARCH} MACHINE_ARCH=${MACHINE_ARCH}
 endif
 
-ifeq (${OPSYS},"Linux")
+ifeq (${OPSYS},Linux)
 LOWER_OPSYS?=		linux
-LOWER_ARCH?=		$(shell ${UNAME} -m | sed -e 's/i.86/i386/' -e 's/ppc/powerpc/')
+  ifndef LOWER_ARCH
+LOWER_ARCH:=		$(shell ${UNAME} -m | sed -e 's/i.86/i386/' -e 's/ppc/powerpc/')
+  endif
 MACHINE_ARCH=           ${LOWER_ARCH}
-MAKEOVERRIDES+=		LOWER_ARCH=${LOWER_ARCH}
+MAKEOVERRIDES+=		LOWER_ARCH=${LOWER_ARCH} MACHINE_ARCH=${MACHINE_ARCH}
 endif
 
 # include the defaults file
