@@ -49,7 +49,6 @@ _COOKIE.extract=	${WRKDIR}/.extract_done
 #
 # extract is a public target to perform extraction.
 #
-_EXTRACT_TARGETS+=	tools
 _EXTRACT_TARGETS+=	acquire-extract-lock
 _EXTRACT_TARGETS+=	${_COOKIE.extract}
 _EXTRACT_TARGETS+=	release-extract-lock
