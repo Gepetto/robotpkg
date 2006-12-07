@@ -15,7 +15,7 @@ _COOKIE.package=	${WRKDIR}/.package_done
 #
 .PHONY: package
 ifndef NO_PACKAGE
-#  include ${PKGSRCDIR}/mk/package/package.mk
+  include ${PKGSRCDIR}/mk/package/package.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.package}))
 package:
