@@ -11,7 +11,6 @@
 #    fetch
 #    checksum
 #    depends
-#    tools
 #    extract
 #    patch
 #    wrapper
@@ -255,9 +254,6 @@ include ../../mk/compiler/compiler-vars.mk
 
 # Locking
 include ${PKGSRCDIR}/mk/internal/locking.mk
-
-# Tools
-include ${PKGSRCDIR}/mk/tools/tools-vars.mk
 
 # Barriers
 include ${PKGSRCDIR}/mk/internal/barrier.mk
