@@ -19,10 +19,10 @@ COMMENT=		Package management and administration tools for pkgsrc
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-pkgdbdir=${PKG_DBDIR}
-CONFIGURE_ARGS+=	--with-ftp="\"${FETCH_CMD}"\"
-CONFIGURE_ARGS+=	--with-mtree="\"${MTREE}"\"
-CONFIGURE_ARGS+=	--with-pax="\"${PAX}"\"
-CONFIGURE_ARGS+=	--with-tar="\"${TAR}"\"
+CONFIGURE_ARGS+=	--with-ftp="\"${FETCH_CMD}\""
+CONFIGURE_ARGS+=	--with-mtree="\"${MTREE}\""
+CONFIGURE_ARGS+=	--with-pax="\"${PAX}\""
+CONFIGURE_ARGS+=	--with-tar="\"${TAR}\""
 
 SKIP_AUDIT_PACKAGES=	yes
 NO_PKGTOOLS_REQD_CHECK=	yes
