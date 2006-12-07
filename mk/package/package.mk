@@ -43,7 +43,9 @@ endif
 # targets that do the actual packaging of the built objects.
 #
 _REAL_PACKAGE_TARGETS+=	package-message
-_REAL_PACKAGE_TARGETS+=	package-all
+_REAL_PACKAGE_TARGETS+=	pkg-check-installed
+_REAL_PACKAGE_TARGETS+=	pkg-create
+#_REAL_PACKAGE_TARGETS+=	error-check
 _REAL_PACKAGE_TARGETS+=	package-cookie
 
 .PHONY: real-package
@@ -61,75 +63,5 @@ package-message:
 .PHONY: package-cookie
 package-cookie:
 	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.package} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${_COOKIE.package:H}
+	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.package})
 	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > ${_COOKIE.package}
-
-######################################################################
-### The targets below are run with elevated privileges.
-######################################################################
-
-######################################################################
-### package-all, su-package-all (PRIVATE)
-######################################################################
-### package-all is a helper target to create the binary package and
-### generate any necessary warnings.
-###
-.if ${_USE_DESTDIR} == "no"
-_PACKAGE_ALL_TARGETS+=	package-check-installed
-.endif
-_PACKAGE_ALL_TARGETS+=	package-create
-_PACKAGE_ALL_TARGETS+=	package-warnings
-_PACKAGE_ALL_TARGETS+=	error-check
-
-.PHONY: package-all su-package-all
-.if !empty(_MAKE_PACKAGE_AS_ROOT:M[Yy][Ee][Ss])
-package-all: su-target
-.else
-package-all: su-package-all
-.endif
-su-package-all: ${_PACKAGE_ALL_TARGETS}
-
-######################################################################
-### package-check-installed (PRIVATE, override)
-######################################################################
-### package-check-installed verifies that the package is installed on
-### the system.  This should be overridden per package system flavor.
-###
-.if !target(package-check-installed)
-.PHONY: package-check-installed
-package-check-installed:
-	@${DO_NADA}
-.endif
-
-######################################################################
-### package-create (PRIVATE, override)
-######################################################################
-### package-create creates the binary package.  This should be overridden
-### per package system flavor.
-###
-.if !target(package-create)
-.PHONY: package-create
-package-create:
-	@${DO_NADA}
-.endif
-
-######################################################################
-### package-warnings (PRIVATE)
-######################################################################
-### package-warnings displays warnings about the binary package.
-###
-.PHONY: package-warnings
-package-warnings:
-.if defined(NO_BIN_ON_CDROM)
-	@${WARNING_MSG} "${PKGNAME} may not be put on a CD-ROM:"
-	@${WARNING_MSG} ${NO_BIN_ON_CDROM:Q}
-.endif
-.if defined(NO_BIN_ON_FTP)
-	@${WARNING_MSG} "${PKGNAME} may not be made available through FTP:"
-	@${WARNING_MSG} ${NO_BIN_ON_FTP:Q}
-.endif
-.if defined(ABI_DEPENDS) && !empty(USE_ABI_DEPENDS:M[Nn][Oo])
-	@${WARNING_MSG} "ABI dependency recommendations are being ignored!"
-	@${WARNING_MSG} "${PKGNAME} should not be uploaded nor"
-	@${WARNING_MSG} "otherwise be used as a binary package!"
-.endif
