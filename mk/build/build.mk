@@ -44,7 +44,11 @@ ifeq (yes,$(call exists,${_COOKIE.build}))
 build:
 	@${DO_NADA}
 else
+  ifdef _PKGSRC_BARRIER
 build: ${_BUILD_TARGETS}
+  else
+build: barrier
+  endif
 endif
 
 .PHONY: acquire-build-lock release-build-lock
