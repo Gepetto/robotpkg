@@ -42,6 +42,8 @@ CHMOD?=			chmod
 FIND?=			find
 TAR?=			${LOCALBASE}/bin/tar
 PAX?=			${LOCALBASE}/bin/pax
+BASENAME?=		basename
+PATCH?=			patch
 
 TOOLS_INSTALL=		/usr/bin/install
 TOOLS_DIGEST=		digest
