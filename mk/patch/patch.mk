@@ -123,20 +123,20 @@ patch-cookie:
 # {pre,do,post}-patch are the heart of the package-customizable
 # patch targets, and may be overridden within a package Makefile.
 #
-.PHONY: pre-patch do-patch post-patch
-
 ifdef PATCHFILES
 _PKGSRC_PATCH_TARGETS+=	distribution-patch-message
 _PKGSRC_PATCH_TARGETS+=	do-distribution-patch
 endif
-ifeq (yes,($call exists,${PATCHDIR}))
+ifeq (yes,$(call exists,${PATCHDIR}))
 _PKGSRC_PATCH_TARGETS+=	pkgsrc-patch-message
+_PKGSRC_PATCH_TARGETS+= do-pkgsrc-patch
 endif
 
-.PHONY: do-patch
-do%patch: ${_PKGSRC_PATCH_TARGETS}
+do%patch: ${_PKGSRC_PATCH_TARGETS} .FORCE
 	${_OVERRIDE_TARGET}
 	@${DO_NADA}
+
+.PHONY: pre-patch post-patch
 
 pre-patch:
 
@@ -223,3 +223,79 @@ $(foreach i,${PATCHFILES},						\
 		{ ${ERROR_MSG} "Patch ${i} failed"; ${_PKGSRC_PATCH_FAIL}; }; \
 	${ECHO} ${_DISTDIR}/${i} >> ${_PATCH_APPLIED_FILE};		\
 )
+
+
+# --- do-pkgsrc-patch (PRIVATE) --------------------------------------
+#
+# do-pkgsrc-patch applies the pkgsrc patches to the extracted
+# sources.
+#
+.PHONY: pkgsrc-patch-message do-pkgsrc-patch
+
+ifeq (yes,$(call exists,${PATCHDIR}))
+_PKGSRC_PATCHES+=	$(wildcard ${PATCHDIR}/patch-*)
+endif
+
+pkgsrc-patch-message:
+	@${STEP_MSG} "Applying pkgsrc patches for ${PKGNAME}"
+
+do-pkgsrc-patch:
+	${_PKG_SILENT}${_PKG_DEBUG}					\
+	fail=;								\
+	patches=${_PKGSRC_PATCHES};					\
+	patch_warning() {						\
+		${ECHO_MSG} "**************************************";	\
+		${ECHO_MSG} "$$1";					\
+		${ECHO_MSG} "**************************************";	\
+	};								\
+	for i in $$patches; do						\
+		${TEST} -f "$$i" || continue;				\
+		case "$$i" in						\
+		*.orig|*.rej|*~)					\
+			${STEP_MSG} "Ignoring patchfile $$i";		\
+			continue;					\
+			;;						\
+		${PATCHDIR}/patch-local-*) 				\
+			;;						\
+		${PATCHDIR}/patch-*) 					\
+			if ${TEST} ! -f ${DISTINFO_FILE}; then	\
+				patch_warning "Ignoring patch file $$i: distinfo not found"; \
+				continue;				\
+			fi;						\
+			filename=`${BASENAME} $$i`;			\
+			algsum=`${AWK} '(NF == 4) && ($$2 == "('$$filename')") && ($$3 == "=") {print $$1 " " $$4}' ${DISTINFO_FILE} || ${TRUE}`; \
+			if ${TEST} -z "$$algsum"; then			\
+				patch_warning "Ignoring patch file $$i: no checksum found"; \
+				continue;				\
+			fi;						\
+			set -- $$algsum;				\
+			alg="$$1";					\
+			recorded="$$2";					\
+			calcsum=`${SED} -e '/\$$NetBSD.*/d' $$i | ${TOOLS_DIGEST} $$alg`; \
+			${ECHO_PATCH_MSG} "Verifying $$filename (using digest algorithm $$alg)"; \
+			if ${TEST} "$$calcsum" != "$$recorded"; then	\
+				patch_warning "Ignoring patch file $$i: invalid checksum"; \
+				fail="$$fail $$i";			\
+				continue;				\
+			fi;						\
+			;;						\
+		esac;							\
+		${ECHO_PATCH_MSG} "Applying pkgsrc patch $$i";		\
+		fuzz_flags=;						\
+		if ${PATCH} -v >/dev/null 2>&1; then			\
+			fuzz_flags=${PATCH_FUZZ_FACTOR};		\
+		fi;							\
+		if ${PATCH} $$fuzz_flags ${PATCH_ARGS} < $$i; then	\
+			${ECHO} "$$i" >> ${_PATCH_APPLIED_FILE};	\
+		else							\
+			${ECHO_MSG} "Patch $$i failed";			\
+			fail="$$fail $$i";				\
+		fi;							\
+	done;								\
+	if ${TEST} -n "$$fail"; then					\
+		${ERROR_MSG} "Patching failed due to modified or broken patch file(s):"; \
+		for i in $$fail; do					\
+			${ERROR_MSG} "	$$i";				\
+		done;							\
+		${_PKGSRC_PATCH_FAIL};					\
+	fi
