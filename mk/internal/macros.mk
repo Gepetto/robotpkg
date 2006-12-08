@@ -35,14 +35,15 @@ $(filter no No NO,$(1))
 endef
 
 define exists
-$(shell test -f $(1) && echo yes || echo no)
+$(shell test -e $(1) && echo yes || echo no)
 endef
 
 empty=
 space=$(empty) $(empty)
-quotechars={ } ( ) [ ] | * < > ` ' #'`
+tab=$(empty)	$(empty)
+quotechars= = { } ( ) [ ] | * < > ` ' #'`
 define quote
-$(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(subst $(space),\$(space),$(_q_))
+$(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(subst $(tab),\$(tab),$(subst $(space),\$(space),$(_q_)))
 endef
 
 define pathsearch
