@@ -1,0 +1,21 @@
+# Copyright (c) 2006 LAAS/CNRS                         -- Fri Dec  8 2006
+# All rights  reserved.
+#
+
+VW_VERSION=		34
+
+DISTNAME=		vw${VW_VERSION}
+
+MASTER_SITES=		http://www.doc.ic.ac.uk/~ajd/Scene/Release/
+
+MAINTAINER=		anthony.mallet@laas.fr
+HOMEPAGE=		http://www.robots.ox.ac.uk/ActiveVision
+
+GNU_CONFIGURE=		yes
+WRKSRC=			${WRKDIR}/VW${VW_VERSION}
+
+pre-configure: vw-autogen
+
+# this requires autotools to be installed
+vw-autogen:
+	@cd ${WRKSRC} && ./bootstrap
