@@ -131,21 +131,19 @@ install-check-umask:
 # --- install-makedirs (PRIVATE) -------------------------------------
 #
 # install-makedirs is a target to create directories expected to
-# exist prior to installation.  If a package sets INSTALLATION_DIRS,
-# then it's known to pre-create all of the directories that it needs
-# at install-time
+# exist prior to installation.
 #
 
 .PHONY: install-makedirs
 install-makedirs:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} -d ${DESTDIR}${PREFIX} || ${MKDIR} ${DESTDIR}${PREFIX}
+	${_PKG_SILENT}${_PKG_DEBUG}${TEST} -d ${PREFIX} || ${MKDIR} ${PREFIX}
 ifdef INSTALLATION_DIRS
 	@${STEP_MSG} "Creating installation directories"
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	for dir in ${INSTALLATION_DIRS}; do				\
 		case "$$dir" in						\
-		${DESTDIR}${PREFIX}/*)					\
-			dir=`${ECHO} $$dir | ${SED} "s|^${DESTDIR}${PREFIX}/||"` ;; \
+		${PREFIX}/*)						\
+			dir=`${ECHO} $$dir | ${SED} "s|^${PREFIX}/||"` ;; \
 		/*)	continue ;;					\
 		esac;							\
 		if [ -f "${PREFIX}/$$dir" ]; then			\
