@@ -103,36 +103,35 @@ do-fetch-file: $(addprefix ${DISTDIR}/,${_ALLFILES}) #error-check
 # head of a target's command list, and will check whether the fetch
 # stage for this package requires user interaction to proceed.
 #
-#.PHONY: fetch-check-interactive
-#fetch-check-interactive: .USEBEFORE
-#.if !empty(INTERACTIVE_STAGE:Mfetch) && defined(BATCH)
-#	@${TEST} ! -f ${.TARGET} || exit 0;				\
-#	${ERROR_MSG} "The fetch stage of this package requires user interaction to download"; \
-#	${ERROR_MSG} "the distfiles.  Please fetch the distfiles manually and place them in:"; \
-#	${ERROR_MSG} "    ${_DISTDIR}";					\
-#	if ${TEST} -n ${MASTER_SITES:Q}""; then				\
-#		${ERROR_MSG} "The distfiles are available from:";	\
-#		for site in ${MASTER_SITES}; do				\
-#			${ERROR_MSG} "    $$site";			\
-#		done;							\
-#	fi;								\
-#	if ${TEST} -n ${HOMEPAGE:Q}""; then				\
-#		${ERROR_MSG} "See the following URL for more details:";	\
-#		${ERROR_MSG} "    "${HOMEPAGE:Q};			\
-#	fi;								\
-#	${TOUCH} ${_INTERACTIVE_COOKIE};				\
-#	exit 1
-#.elif defined(FETCH_MESSAGE) && !empty(FETCH_MESSAGE)
-#	@${TEST} ! -f ${.TARGET} || exit 0;				\
-#	${ERROR_MSG} "======================================================================"; \
-#	${ERROR_MSG} "";						\
-#	for line in ${FETCH_MESSAGE}; do ${ERROR_MSG} "$$line"; done;	\
-#	${ERROR_MSG} "";						\
-#	${ERROR_MSG} "======================================================================"; \
-#	exit 1
-#.else
-#	@${DO_NADA}
-#.endif
+ifneq (,$(filter fetch,${INTERACTIVE_STAGE}))
+$(addprefix ${DISTDIR}/,${_ALLFILES})::
+  ifndef FETCH_MESSAGE
+	@${TEST} ! -f @@ || exit 0;					\
+	${ERROR_MSG} "The fetch stage of this package requires user interaction to download"; \
+	${ERROR_MSG} "the distfiles.  Please fetch the distfiles manually and place them in:"; \
+	${ERROR_MSG} "    ${_DISTDIR}";					\
+	if ${TEST} -n ${MASTER_SITES}""; then				\
+		${ERROR_MSG} "The distfiles are available from:";	\
+		for site in ${MASTER_SITES}; do				\
+			${ERROR_MSG} "    $$site";			\
+		done;							\
+	fi;								\
+	if ${TEST} -n ${HOMEPAGE}""; then				\
+		${ERROR_MSG} "See the following URL for more details:";	\
+		${ERROR_MSG} "    "${HOMEPAGE};			\
+	fi;								\
+	${TOUCH} ${_INTERACTIVE_COOKIE};				\
+	exit 1
+  else
+	@${TEST} ! -f @@ || exit 0;					\
+	${ERROR_MSG} "======================================================================"; \
+	${ERROR_MSG} "";						\
+	for line in ${FETCH_MESSAGE}; do ${ERROR_MSG} "$$line"; done;	\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "======================================================================"; \
+	exit 1
+  endif
+endif
 
 
 # --- do-fetch-file (PRIVATE) ----------------------------------------
@@ -177,19 +176,20 @@ _FETCH_AFTER_ARGS.ftp=		# empty
 _FETCH_RESUME_ARGS.ftp=		-R
 _FETCH_OUTPUT_ARGS.ftp=		-o
 
-_FETCH_CMD=	${SETENV} CHECKSUM=$(call quote,${_CHECKSUM_CMD})	\
-			CP=${TOOLS_CP}					\
-			ECHO=${TOOLS_ECHO}				\
-			FETCH_CMD=${FETCH_CMD}				\
-			FETCH_BEFORE_ARGS=$(call quote,${FETCH_BEFORE_ARGS})	\
-			FETCH_AFTER_ARGS=$(call quote,${FETCH_AFTER_ARGS})	\
-			FETCH_RESUME_ARGS=$(call quote,${FETCH_RESUME_ARGS})	\
-			FETCH_OUTPUT_ARGS=$(call quote,${FETCH_OUTPUT_ARGS})	\
-			MKDIR=$(call quote,${TOOLS_MKDIR})			\
-			MV=$(call quote,${TOOLS_MV})				\
-			TEST=$(call quote,${TOOLS_TEST})			\
-			TOUCH=$(call quote,${TOOLS_TOUCH})			\
-			WC=$(call quote,${TOOLS_WC})				\
+_FETCH_CMD=\
+	${SETENV} CHECKSUM=$(call quote,${_CHECKSUM_CMD})		\
+		CP=${TOOLS_CP}						\
+		ECHO=${TOOLS_ECHO}					\
+		FETCH_CMD=${FETCH_CMD}					\
+		FETCH_BEFORE_ARGS=$(call quote,${FETCH_BEFORE_ARGS})	\
+		FETCH_AFTER_ARGS=$(call quote,${FETCH_AFTER_ARGS})	\
+		FETCH_RESUME_ARGS=$(call quote,${FETCH_RESUME_ARGS})	\
+		FETCH_OUTPUT_ARGS=$(call quote,${FETCH_OUTPUT_ARGS})	\
+		MKDIR=$(call quote,${TOOLS_MKDIR})			\
+		MV=$(call quote,${TOOLS_MV})				\
+		TEST=$(call quote,${TOOLS_TEST})			\
+		TOUCH=$(call quote,${TOOLS_TOUCH})			\
+		WC=$(call quote,${TOOLS_WC})				\
 		${SH} ${PKGSRCDIR}/mk/fetch/fetch
 
 ifdef PKG_VERBOSE
@@ -204,7 +204,7 @@ else
 _FETCH_ARGS+=	-d ${DIST_SUBDIR}
 endif
 
-$(addprefix ${DISTDIR}/,${_ALLFILES}):
+$(addprefix ${DISTDIR}/,${_ALLFILES})::
 	@${STEP_MSG} "Fetching $(notdir $@)"
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}					\
