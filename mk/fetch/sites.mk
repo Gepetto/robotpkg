@@ -4,6 +4,9 @@
 # representing some well-known master distribution sites for software.
 #
 
+MASTER_SITE_OPENROBOTS+=	\
+	ftp://softs.laas.fr/pub/openrobots/robotpkg
+
 MASTER_SITE_SOURCEFORGE+=	\
 	http://easynews.dl.sourceforge.net/sourceforge/ \
 	http://heanet.dl.sourceforge.net/sourceforge/ \
