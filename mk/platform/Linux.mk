@@ -24,6 +24,8 @@ LS?=			ls
 WC?=			wc
 ECHO?=			echo
 CAT?=			cat
+GZCAT?=			gzcat
+BZCAT?=			bzcat
 SED?=			sed
 CP?=			cp
 LN?=			ln
@@ -44,6 +46,7 @@ TAR?=			${LOCALBASE}/bin/tar
 PAX?=			${LOCALBASE}/bin/pax
 BASENAME?=		basename
 PATCH?=			patch
+LIBTOOL?=		libtool
 
 TOOLS_INSTALL=		/usr/bin/install
 TOOLS_DIGEST=		digest
