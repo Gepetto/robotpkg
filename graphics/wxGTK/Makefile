@@ -11,24 +11,16 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.wxwidgets.org/
 COMMENT=		GTK-based implementation of the wxWidgets GUI library
 
-#PATCHFILES=		${DISTNAME}-libtool.diff2.bz2
+PATCHFILES=		${DISTNAME}-libtool.diff2.bz2
 #PATCH_SITES=		${MASTER_SITE_LOCAL}
 
 USE_LIBTOOL=		yes
-GNU_CONFIGURE=		YES
-USE_GNU_CONFIGURE_HOST=	no
-CONFIGURE_ARGS+=	--with-gtk=2
-CONFIGURE_ARGS+=	--with-libjpeg=sys
-CONFIGURE_ARGS+=	--with-libpng=sys
-CONFIGURE_ARGS+=	--with-libtiff=sys
-CONFIGURE_ARGS+=	--with-opengl
-CONFIGURE_ARGS+=	--with-zlib=sys
-CONFIGURE_ARGS+=	--with-regex=builtin
+GNU_CONFIGURE=		yes
 
+CONFIGURE_ARGS+=	--with-gtk=2
+CONFIGURE_ARGS+=	--with-opengl
 CONFIGURE_ARGS+=	--disable-unicode
 PLIST_SUBST+=		BUILDTYPE=ansi
-
-CPPFLAGS+=		-Dunix=1	# src/common/unzip.c needs this
 
 DOCDIR=			${PREFIX}/share/doc/wxGTK
 
