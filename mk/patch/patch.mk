@@ -196,17 +196,24 @@ fi; exit 1
 #
 PATCH_DIST_STRIP?=		-p0
 
+PATCH_DIST_CAT?=	{ case $$$$patchfile in				\
+			  *.Z|*.gz) ${GZCAT} $$$$patchfile ;;		\
+			  *.bz2)    ${BZCAT} $$$$patchfile ;;		\
+			  *)	    ${CAT} $$$$patchfile ;;		\
+			  esac; }
+
 define _PATCH_SPECIFIC_SET
 PATCH_DIST_STRIP.$(subst =,--,${i})?=	${PATCH_DIST_STRIP}
 ifdef PATCH_DIST_ARGS
 PATCH_DIST_ARGS.$(subst =,--,${i})?=	${PATCH_DIST_ARGS}
 else
   ifneq (,$(call isyes,$(_PATCH_DEBUG)))
-PATCH_DIST_ARGS.$(subst =,--,${i})?=	-d ${WRKSRC} -E ${PATCH_DIST_STRIP.$(subst =,--,${i})}
+PATCH_DIST_ARGS.$(subst =,--,${i})?=	-d ${WRKSRC} -E $${PATCH_DIST_STRIP.$(subst =,--,${i})}
   else
-PATCH_DIST_ARGS.$(subst =,--,${i})?=	-d ${WRKSRC} --forward --quiet -E ${PATCH_DIST_STRIP.$(subst =,--,${i})}
+PATCH_DIST_ARGS.$(subst =,--,${i})?=	-d ${WRKSRC} --forward --quiet -E $${PATCH_DIST_STRIP.$(subst =,--,${i})}
   endif
 endif
+PATCH_DIST_CAT.$(subst =,--,${i})?=	{ patchfile=${i}; ${PATCH_DIST_CAT}; }
 endef
 $(foreach i,${PATCHFILES}, $(eval $(_PATCH_SPECIFIC_SET)))
 
@@ -218,7 +225,7 @@ do-distribution-patch:
 $(foreach i,${PATCHFILES},						\
 	${ECHO_PATCH_MSG} "Applying distribution patch ${i}";		\
 	cd ${_DISTDIR};							\
-	${CAT} ${i} |							\
+	${PATCH_DIST_CAT.$(subst =,--,${i})} |				\
 	${PATCH} ${PATCH_DIST_ARGS.$(subst =,--,${i})} ||		\
 		{ ${ERROR_MSG} "Patch ${i} failed"; ${_PKGSRC_PATCH_FAIL}; }; \
 	${ECHO} ${_DISTDIR}/${i} >> ${_PATCH_APPLIED_FILE};		\
