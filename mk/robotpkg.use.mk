@@ -8,3 +8,10 @@
 ############################################################################
 
 PREFIX=		${LOCALBASE}
+
+### USE_LIBTOOL, PKG_[SH]LIBTOOL
+
+ifdef USE_LIBTOOL
+CONFIGURE_ENV+=         LIBTOOL="${LIBTOOL} ${LIBTOOL_FLAGS}"
+MAKE_ENV+=              LIBTOOL="${LIBTOOL} ${LIBTOOL_FLAGS}"
+endif
