@@ -1,0 +1,56 @@
+# $NetBSD: Makefile.common,v 1.33 2006/10/18 12:53:54 obache Exp $
+
+CATEGORIES=	lang java
+EXTRACT_SUFX=	.bin
+
+MAINTAINER=	openrobots@laas.fr
+HOMEPAGE=	http://java.sun.com/
+DOWNLOAD=	http://java.sun.com/j2se/1.4.2/download.html
+ARCHIVE=	http://java.sun.com/products/archive/index.html
+
+LICENSE=	jdk14-license
+RESTRICTED=	Redistribution of repackaged binaries not permitted
+NO_SRC_ON_CDROM=${RESTRICTED}
+NO_SRC_ON_FTP=	${RESTRICTED}
+NO_BIN_ON_CDROM=${RESTRICTED}
+NO_BIN_ON_FTP=	${RESTRICTED}
+
+INTERACTIVE_STAGE=	fetch
+
+include ../../mk/robotpkg.prefs.mk
+
+JAVA_HOME=	${LOCALBASE}/java/sun-1.4
+JAVA_NAME=	sun14
+JAVA_UNLIMIT=	datasize
+
+MESSAGE_SUBST+=	JAVA_HOME="${JAVA_HOME}"
+
+FETCH_MESSAGE= 								\
+	"The file ${DISTNAME}${EXTRACT_SUFX} containing:"		\
+	"    ${COMMENT}"						\
+	"must be fetched into:" 					\
+	"    ${DISTDIR}"						\
+	"from:" 							\
+	"    ${DOWNLOAD}" 						\
+	"    or ${ARCHIVE}" 						\
+	""								\
+	"Click 'Download J2SE ${SHORT}', read and accept the"		\
+	"license, then choose 'Linux self-extracting file'."		\
+	${END_MESSAGE}
+
+EXTRACT_ENV+=	HOME=${WRKDIR}/fake_home
+
+include ../../mk/robotpkg.mk
+include ../../lang/sun-jre14/java-env.mk
+
+post-fetch:
+	@if [ ! -x ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ]; then	\
+		${CHMOD} +x ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX};	\
+	fi
+
+do-build:	# nothing
+	@${TRUE}
+
+do-install:
+	${INSTALL_PROGRAM_DIR} ${JAVA_HOME}
+	cd ${WRKSRC} && ${PAX} -rwp ma . ${JAVA_HOME}
