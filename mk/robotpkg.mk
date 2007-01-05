@@ -133,6 +133,7 @@ ifndef DEPOT_SUBDIR
 PKG_FAIL_REASON+=	"DEPOT_SUBDIR may not be empty."
 endif
 
+
 # ZERO_FILESIZE_P exits with a successful return code if the given file
 #	has zero length.
 # NONZERO_FILESIZE_P exits with a successful return code if the given file
@@ -166,6 +167,12 @@ _PKG_SILENT=		# empty
 _PKG_DEBUG=		set -x;
 _PKG_DEBUG_SCRIPT=	${SH} -x
 endif
+
+# This variable can be prepended to all shell commands that should not
+# be printed by default, but when PKGSRC_DEBUG_LEVEL is non-zero.
+# It also adds error checking.
+#
+RUN=			${_PKG_SILENT}${_PKG_DEBUG} set -e;
 
 
 # A few aliases for *-install targets
@@ -257,6 +264,31 @@ include ${PKGSRCDIR}/mk/internal/locking.mk
 
 # Barriers
 include ${PKGSRCDIR}/mk/internal/barrier.mk
+
+
+# --------------------------------------------------------------------
+# Many ways to disable a package.
+#
+# Don't build a package if it's restricted and we don't want to
+# get into that.
+#
+# --------------------------------------------------------------------
+
+ifdef RESTRICTED
+ifdef NO_RESTRICTED
+PKG_FAIL_REASON+= "${PKGNAME} is restricted: ${RESTRICTED}"
+endif
+endif
+
+ifdef LICENSE
+  ifeq (,$(filter ${LICENSE},${ACCEPTABLE_LICENSES}))
+PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license: ${LICENSE}." \
+         "    To view the license, enter \"${MAKE} show-license\"." \
+         "    To indicate acceptance, add this line to " \
+	 "       ${_MAKECONF}:" \
+         "    ACCEPTABLE_LICENSES+=${LICENSE}"
+  endif
+endif
 
 #
 # Now print some error messages that we know we should ignore the pkg
@@ -386,16 +418,16 @@ _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 # i.e. "make show-var VARNAME=var", will print var's value
 .PHONY: show-var
 show-var:
-	@${ECHO} ${${VARNAME}}
+	@${ECHO} $(call quote,${${VARNAME}})
 
 
 LICENSE_FILE?=		${PKGSRCDIR}/licenses/${LICENSE}
 
 show-license:
-	@license=${LICENSE:Q};						\
-	license_file=${LICENSE_FILE:Q};					\
-	pager=${PAGER:Q};						\
-	case "$$pager" in "") pager=${CAT:Q};; esac;			\
+	@license=${LICENSE};						\
+	license_file=${LICENSE_FILE};					\
+	pager=${PAGER}	;						\
+	case "$$pager" in "") pager=${CAT};; esac;			\
 	case "$$license" in "") exit 0;; esac;				\
 	if ${TEST} -f "$$license_file"; then				\
 		$$pager "$$license_file";				\
@@ -408,7 +440,7 @@ include ../../mk/plist/plist-vars.mk
 
 -include "../../mk/bsd.utils.mk"
 
--include "../../mk/subst.mk"
+include ../../mk/internal/subst.mk
 
 
 -include "${PKGSRCDIR}/mk/internal/build-defs-message.mk"
