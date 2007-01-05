@@ -1,0 +1,20 @@
+--- KineoUtility/prj/i386-linux/Init.make.base.i386-linux~	2006-10-30 14:05:13.000000000 +0100
++++ KineoUtility/prj/i386-linux/Init.make.base.i386-linux	2007-01-04 17:01:25.337775000 +0100
+@@ -1,7 +1,7 @@
+ #
+ # Pre-processeur
+ #
+-CPP 		= /usr/cpp
++CPP 		= /usr/bin/cpp
+ CPPFLAGS	+= -DON_i386_LINUX
+ 
+ #
+@@ -27,7 +27,7 @@
+ # flexlm
+ 
+ # boost
+-BOOST_INC = -I../../../3rdParty/Boost/include
++BOOST_INC = -I$(PREFIX)/include
+ CPPFLAGS += -D__linux
+ 
+ #
