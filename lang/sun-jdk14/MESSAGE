@@ -1,0 +1,12 @@
+===========================================================================
+
+In order to be able to run the JVM, the maximum data segment size
+assigned to your user must be at least 262144.
+
+You may want to read
+
+	${JAVA_HOME}/README
+
+for details about running this JDK.
+
+===========================================================================
