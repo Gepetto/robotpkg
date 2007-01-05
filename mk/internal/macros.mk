@@ -41,7 +41,7 @@ endef
 empty=
 space=$(empty) $(empty)
 tab=$(empty)	$(empty)
-quotechars= = { } ( ) [ ] | * < > ` ' #'`
+quotechars= \ = & { } ( ) [ ] | * < > " ` ' #'`"
 define quote
 $(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(subst $(tab),\$(tab),$(subst $(space),\$(space),$(_q_)))
 endef
