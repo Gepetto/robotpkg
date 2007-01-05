@@ -1,4 +1,45 @@
-# $NetBSD: fetch.mk,v 1.23 2006/11/25 21:33:39 jdolecek Exp $
+#
+# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# All rights reserved.
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice,  this list of  conditions and  the following disclaimer in
+#      the  documentation   and/or  other  materials   provided with  the
+#      distribution.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# From $NetBSD: fetch.mk,v 1.23 2006/11/25 21:33:39 jdolecek Exp $
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
+#
+#   3. All advertising materials mentioning   features or use of this
+#      software must display the following acknowledgement:
+#        This product includes software developed by the NetBSD
+#        Foundation, Inc. and its contributors.
+#   4. Neither the  name  of The NetBSD Foundation  nor the names  of its
+#      contributors  may be  used to endorse or promote  products derived
+#      from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHORS AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
 
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP:=${DIST_SUBDIR:=/}}
 _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE:=${DIST_SUBDIR:=/}}
@@ -60,7 +101,7 @@ ifneq (,${_PATCHFILES})
 define _PATCHFILES_VAR
 SITES.$(subst =,--,$(notdir ${fetchfile}))?= ${PATCH_SITES}
 endef
-$(foreach fetchfile,${_PATCHFILES},$(eval ${_FETCHFILE_VAR}))
+$(foreach fetchfile,${_PATCHFILES},$(eval ${_PATCHFILES_VAR}))
 endif
 
 
@@ -85,6 +126,7 @@ fetch: ${_FETCH_TARGETS}
 #
 
 do%fetch: do-fetch-file .FORCE
+	${_OVERRIDE_TARGET}
 	@${DO_NADA}
 
 .PHONY: pre-fetch post-fetch
@@ -104,9 +146,9 @@ do-fetch-file: $(addprefix ${DISTDIR}/,${_ALLFILES}) #error-check
 # stage for this package requires user interaction to proceed.
 #
 ifneq (,$(filter fetch,${INTERACTIVE_STAGE}))
-$(addprefix ${DISTDIR}/,${_ALLFILES})::
+$(addprefix ${DISTDIR}/,${_ALLFILES}):
   ifndef FETCH_MESSAGE
-	@${TEST} ! -f @@ || exit 0;					\
+	@${TEST} ! -f $@ || exit 0;					\
 	${ERROR_MSG} "The fetch stage of this package requires user interaction to download"; \
 	${ERROR_MSG} "the distfiles.  Please fetch the distfiles manually and place them in:"; \
 	${ERROR_MSG} "    ${_DISTDIR}";					\
@@ -123,7 +165,7 @@ $(addprefix ${DISTDIR}/,${_ALLFILES})::
 	${TOUCH} ${_INTERACTIVE_COOKIE};				\
 	exit 1
   else
-	@${TEST} ! -f @@ || exit 0;					\
+	@${TEST} ! -f $@ || exit 0;					\
 	${ERROR_MSG} "======================================================================"; \
 	${ERROR_MSG} "";						\
 	for line in ${FETCH_MESSAGE}; do ${ERROR_MSG} "$$line"; done;	\
@@ -204,7 +246,8 @@ else
 _FETCH_ARGS+=	-d ${DIST_SUBDIR}
 endif
 
-$(addprefix ${DISTDIR}/,${_ALLFILES})::
+ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
+$(addprefix ${DISTDIR}/,${_ALLFILES}):
 	@${STEP_MSG} "Fetching $(notdir $@)"
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}					\
@@ -233,3 +276,4 @@ $(addprefix ${DISTDIR}/,${_ALLFILES})::
 		${ERROR_MSG} "    $(dir $@)";				\
 		exit 1;							\
 	fi
+endif
