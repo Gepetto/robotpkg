@@ -5,7 +5,10 @@
 #
 
 MASTER_SITE_OPENROBOTS+=	\
-	ftp://softs.laas.fr/pub/openrobots/robotpkg
+	ftp://softs.laas.fr/pub/openrobots/robotpkg/
+
+MASTER_SITE_NETBSD_PKGSRC+=		\
+	ftp://ftp.NetBSD.org/pub/NetBSD/packages/distfiles/LOCAL_PORTS/
 
 MASTER_SITE_SOURCEFORGE+=	\
 	http://easynews.dl.sourceforge.net/sourceforge/ \
