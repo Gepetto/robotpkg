@@ -1,0 +1,26 @@
+@comment $NetBSD$
+java/sun-1.4/bin/jmfinit
+java/sun-1.4/bin/jmfregistry
+java/sun-1.4/bin/jmstudio
+java/sun-1.4/doc/attributions.html
+java/sun-1.4/doc/formats.html
+java/sun-1.4/doc/readme.html
+java/sun-1.4/lib/jmf.jar
+java/sun-1.4/lib/jmf.properties
+java/sun-1.4/lib/jmf.properties.orig
+java/sun-1.4/lib/libjmcvid.so
+java/sun-1.4/lib/libjmdaud.so
+java/sun-1.4/lib/libjmfjawt.so
+java/sun-1.4/lib/libjmg723.so
+java/sun-1.4/lib/libjmgsm.so
+java/sun-1.4/lib/libjmh261.so
+java/sun-1.4/lib/libjmh263enc.so
+java/sun-1.4/lib/libjmjpeg.so
+java/sun-1.4/lib/libjmmpa.so
+java/sun-1.4/lib/libjmmpegv.so
+java/sun-1.4/lib/libjmmpx.so
+java/sun-1.4/lib/libjmutil.so
+java/sun-1.4/lib/libjmv4l.so
+java/sun-1.4/lib/libjmxlib.so
+java/sun-1.4/lib/mediaplayer.jar
+java/sun-1.4/lib/multiplayer.jar
