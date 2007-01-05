@@ -29,9 +29,9 @@ endif
 #.  include "${PKGSRCDIR}/mk/configure/pkg-config-override.mk"
 #.endif
 #.include "${PKGSRCDIR}/mk/configure/replace-interpreter.mk"
-#.if defined(USE_PKGLOCALEDIR)
-#.  include "${PKGSRCDIR}/mk/configure/replace-localedir.mk"
-#.endif
+ifdef USE_PKGLOCALEDIR
+  include ${PKGSRCDIR}/mk/configure/replace-localedir.mk
+endif
 
 
 # --- configure (PUBLIC) ---------------------------------------------
