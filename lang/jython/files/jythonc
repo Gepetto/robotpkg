@@ -1,0 +1,3 @@
+#!/bin/sh
+JYTHON_HOME=@JYTHON_HOME@
+"$JYTHON_HOME/jython" "$JYTHON_HOME/Tools/jythonc/jythonc.py" "$@"

@@ -1,0 +1,9 @@
+#!/bin/sh
+JAVA_HOME=@JAVA_HOME@
+JYTHON_HOME=@JYTHON_HOME@
+CP=$JYTHON_HOME/jython.jar
+if [ ! -z $CLASSPATH ]
+then
+  CP=$CP:$CLASSPATH
+fi
+"$JAVA_HOME/bin/java" -Dpython.home="$JYTHON_HOME" -classpath "$CP" org.python.util.jython "$@"
