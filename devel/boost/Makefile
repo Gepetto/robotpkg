@@ -63,4 +63,3 @@ BJAM_BUILD+=            release
 BJAM_CMD=               ${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
 
 include ../../mk/robotpkg.mk
-
