@@ -1,14 +1,51 @@
-# $NetBSD: plist.mk,v 1.18 2006/11/05 15:10:08 joerg Exp $
+#
+# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# All rights reserved.
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice,  this list of  conditions and  the following disclaimer in
+#      the  documentation   and/or  other  materials   provided with  the
+#      distribution.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# From $NetBSD: plist.mk,v 1.18 2006/11/05 15:10:08 joerg Exp $
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
+#
+#   3. All advertising materials mentioning   features or use of this
+#      software must display the following acknowledgement:
+#        This product includes software developed by the NetBSD
+#        Foundation, Inc. and its contributors.
+#   4. Neither the  name  of The NetBSD Foundation  nor the names  of its
+#      contributors  may be  used to endorse or promote  products derived
+#      from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHORS AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
 #
 # This Makefile fragment handles the creation of PLISTs for use by
 # pkg_create(8).
 #
 # The following variables affect the PLIST generation:
-#
-#    PLIST_TYPE specifies whether the generated PLIST is derived
-#	automatically from the installed files, or if the PLIST entries
-#	are listed in files.  Valid values are "dynamic" and "static",
-#	and the default value is "static".
 #
 #    PLIST_SRC is the source file(s) for the generated PLIST file.  By
 #	default, its value is constructed from the PLIST.* files within
@@ -22,8 +59,6 @@
 #	*not* contain info files.
 #
 
-PLIST_TYPE?=	static
-
 # --------------------------------------------------------------------
 
 # PLIST_SRC is the source file for the generated PLIST file.  If PLIST_SRC
@@ -31,14 +66,21 @@ PLIST_TYPE?=	static
 # that are present in the package directory.  The order goes (if the files
 # are present):
 #
-#	PLIST.common
 #	PLIST.${OPSYS}			(e.g., PLIST.NetBSD)
 #	PLIST.${MACHINE_ARCH}		(e.g,, PLIST.macppc)
 #	PLIST.${OPSYS}-${MACHINE_ARCH}	(e.g., PLIST.NetBSD-macppc)
 #	PLIST
-#	PLIST.common_end
 #
 ifndef PLIST_SRC
+  ifeq (yes,$(call exists,${PKGDIR}/PLIST.${OPSYS}))
+PLIST_SRC+=     ${PKGDIR}/PLIST.${OPSYS}
+  endif
+  ifeq (yes,$(call exists,${PKGDIR}/PLIST.${MACHINE_ARCH}))
+PLIST_SRC+=     ${PKGDIR}/PLIST.${MACHINE_ARCH}
+  endif
+  ifeq (yes,$(call exists,${PKGDIR}/PLIST.${OPSYS}-${MACHINE_ARCH}))
+PLIST_SRC+=     ${PKGDIR}/PLIST.${OPSYS}-${MACHINE_ARCH}
+  endif
   ifeq (yes,$(call exists,${PKGDIR}/PLIST))
 PLIST_SRC+=	${PKGDIR}/PLIST
   endif
@@ -61,7 +103,7 @@ _LIBTOOL_EXPAND=							\
 # scripts for information on each of the variable set in the environment.
 #
 _PLIST_AWK_ENV+=	PKGLOCALEDIR=$(call quote,${PKGLOCALEDIR})
-_PLIST_AWK_ENV+=	USE_PKGLOCALEDIR=${USE_PKGLOCALEDIR:Dyes:Uno}
+_PLIST_AWK_ENV+=	USE_PKGLOCALEDIR=${USE_PKGLOCALEDIR}
 _PLIST_AWK_ENV+=	IMAKE_MANINSTALL=$(call quote,${_IMAKE_MANINSTALL})
 _PLIST_AWK_ENV+=	IGNORE_INFO_PATH=$(call quote,${_IGNORE_INFO_PATH})
 _PLIST_AWK_ENV+=	PKGINFODIR=$(call quote,${PKGINFODIR})
@@ -134,7 +176,7 @@ _PLIST_INFO_AWK+=	-f ${CURDIR}/../../mk/plist/plist-info.awk
 #		TEST=${TOOLS_TEST:Q} PKG_INFO_CMD=${PKG_INFO_CMD:Q}	\
 #	${SH} ${CURDIR}/../../mk/plist/shlib-type ${_OPSYS_SHLIB_TYPE:Q}
 
-######################################################################
+# --------------------------------------------------------------------
 
 # GENERATE_PLIST is a sequence of commands, terminating in a semicolon,
 #	that outputs contents for a PLIST to stdout and is appended to
@@ -150,9 +192,9 @@ _GENERATE_PLIST=	${CAT} ${PLIST_SRC}; ${GENERATE_PLIST}
 plist: ${PLIST}
 
 ${PLIST}: ${PLIST_SRC}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	{ ${_GENERATE_PLIST} } |					\
+	${RUN}${MKDIR} $(dir $@)
+	${RUN}							\
+	{ ${_GENERATE_PLIST} } |				\
 	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK} > $@
 
 #	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK}		\
