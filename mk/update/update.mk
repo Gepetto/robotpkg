@@ -41,10 +41,9 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-
 #
-# This Makefile fragment is included by robotpkg.pkg.mk and contains the
-# targets and variables for "make update".
+# This Makefile fragment contains the targets and variables for 
+# "make update".
 #
 # There is no documentation on what "update" actually does.  This is merely
 # an attempt to separate the magic into a separate module that can be
@@ -88,9 +87,11 @@ CLEAR_DIRLIST?=	NO
 do%update: .FORCE
 	${_OVERRIDE_TARGET}
 	@${PHASE_MSG} "Resuming update for ${PKGNAME}"
-  ifneq (NOreplace,${REINSTALL}${UPDATE_TARGET})
+  ifneq (NO,$(strip ${REINSTALL}))
+  ifneq (replace,${UPDATE_TARGET})
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=ALL
+  endif
   endif
 else
 RESUMEUPDATE?=	NO
@@ -98,34 +99,32 @@ CLEAR_DIRLIST?=	YES
 
 do%update: .FORCE
 	${_OVERRIDE_TARGET}
-	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} update-create-ddir
+	${RUN}${RECURSIVE_MAKE} update-create-ddir
   ifneq (replace,${UPDATE_TARGET})
-	${_PKG_SILENT}${_PKG_DEBUG}if ${PKG_INFO} -qe ${PKGBASE}; then	\
+	${RUN}if ${PKG_INFO} -qe ${PKGBASE}; then			\
 		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=ALL \
 		|| (${RM} ${_DDIR} && ${FALSE});			\
 	fi
   endif
 endif
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-		${RECURSIVE_MAKE} ${UPDATE_TARGET} KEEP_WRKDIR=YES DEPENDS_TARGET=${DEPENDS_TARGET}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}${RECURSIVE_MAKE} ${UPDATE_TARGET} DEPENDS_TARGET=${DEPENDS_TARGET}
+	${RUN}								\
 	[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do		\
 		(if cd ../.. && cd "$${dep}" ; then			\
 			${PHASE_MSG} "Installing in $${dep}" &&		\
-			if [ "(" "${RESUMEUPDATE}" = "NO" -o 		\
-			     "${REINSTALL}" != "NO" ")" -a		\
+			if [ "(" "$(strip ${RESUMEUPDATE})" = "NO" -o	\
+			     "$(strip ${REINSTALL})" != "NO" ")" -a	\
 			     "${UPDATE_TARGET}" != "replace" ] ; then	\
 				${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES; \
 			fi &&						\
-			${RECURSIVE_MAKE} ${UPDATE_TARGET}	\
+			${RECURSIVE_MAKE} ${UPDATE_TARGET}		\
 				DEPENDS_TARGET=${DEPENDS_TARGET} ;	\
 		else							\
 			${PHASE_MSG} "Skipping removed directory $${dep}"; \
 		fi) ;							\
 	done
-ifeq (NO,${NOCLEAN})
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-		${RECURSIVE_MAKE} clean-update CLEAR_DIRLIST=YES
+ifeq (NO,$(strip ${NOCLEAN}))
+	${RUN} ${RECURSIVE_MAKE} clean-update CLEAR_DIRLIST=YES
 endif
 
 
@@ -142,11 +141,11 @@ clean-update:
 			fi) ;						\
 		done ;							\
 	fi
-ifneq (NO,${CLEAR_DIRLIST})
-	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} clean
+ifneq (NO,$(strip ${CLEAR_DIRLIST}))
+	${RUN}${RECURSIVE_MAKE} clean
 else
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-		${RECURSIVE_MAKE} clean update-dirlist DIRLIST="`${CAT} ${_DDIR}`" PKGLIST="`${CAT} ${_DLIST}`"
+	${RUN}${RECURSIVE_MAKE} clean update-dirlist \
+		DIRLIST="`${CAT} ${_DDIR}`" PKGLIST="`${CAT} ${_DLIST}`"
 	@${WARNING_MSG} "preserved leftover directory list.  Your next"
 	@${WARNING_MSG} "\`\`${MAKE} update'' may fail.  It is advised to use"
 	@${WARNING_MSG} "\`\`${MAKE} update REINSTALL=YES'' instead!"
@@ -155,23 +154,19 @@ endif
 
 .PHONY: update-dirlist
 update-dirlist:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} -p ${WRKDIR}
+	${RUN}${MKDIR} -p ${WRKDIR}
 ifdef PKGLIST
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-  $(foreach __tmp__,${PKGLIST},						\
-	${ECHO} >>${_DLIST} "${__tmp__}";				\
-  )
+	${RUN}								\
+	$(foreach __tmp__,${PKGLIST},${ECHO} >>${_DLIST} "${__tmp__}";)
 endif
 ifdef DIRLIST
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-  $(foreach __tmp__,${DIRLIST},						\
-	${ECHO} >>${_DDIR} "${__tmp__}";				\
-  )
+	${RUN}								\
+	$(foreach __tmp__,${DIRLIST},${ECHO} >>${_DDIR} "${__tmp__}";)
 endif
 
 
 ${_DDIR}: ${_DLIST}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 	ddir=`${SED} 's:-[^-]*$$::' ${_DLIST}`;				\
 	${ECHO} >${_DDIR};						\
 	for pkg in $${ddir} ; do					\
@@ -183,8 +178,8 @@ ${_DDIR}: ${_DLIST}
 	done
 
 ${_DLIST}: ${WRKDIR}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 	{ ${PKG_DELETE} -n "${PKGWILDCARD}" 2>&1 | 			\
 		${GREP} '^	' |					\
 		${AWK} '{ l[NR]=$$0 } END { for (i=NR;i>0;--i) print l[i] }' \
-	|| ${TRUE}; } > ${_DLIST}
+	|| ${TRUE}; } > $@
