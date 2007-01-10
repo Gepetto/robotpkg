@@ -1,0 +1,17 @@
+--- bin/HRPController.sh.orig	2004-11-17 08:29:43.000000000 +0100
++++ bin/HRPController.sh	2007-01-09 16:44:14.965688000 +0100
+@@ -1,5 +1,12 @@
+-. config.sh
++. @PREFIX@/OpenHRP/bin/config.sh
++if test "${REMOTE_HOST}" != "localhost"; then
++   exec /usr/bin/ssh ${REMOTE_HOST} @PREFIX@/OpenHRP/bin/HRPController.sh $NS_OPT
++fi
+ cd $OPENHRPHOME/Controller/IOserver/robot/$ROBOT/bin
+ /usr/bin/killall hrpsys
+ /bin/sleep 1
+-./hrpsys openhrpadaptor.so $NS_OPT $@
++if test $# -eq 0; then
++$OPENHRPHOME/Controller/IOserver/robot/$ROBOT/bin/hrpsys openhrpadaptor.so $NS_OPT
++else
++$OPENHRPHOME/Controller/IOserver/robot/$ROBOT/bin/hrpsys openhrpadaptor.so $@
++fi

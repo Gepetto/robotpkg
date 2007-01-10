@@ -1,0 +1,37 @@
+--- bin/Makefile.orig	2006-01-30 12:27:22.000000000 +0100
++++ bin/Makefile	2007-01-09 15:46:39.500889000 +0100
+@@ -190,7 +190,8 @@
+ 	echo -n VVV_DIR/bin: >> config.sh
+ endif
+ 	echo -n $$ >> config.sh
+-	echo JDK_DIR/bin >> config.sh
++	echo -n JDK_DIR/bin: >> config.sh
++	echo    /bin:/usr/bin >> config.sh
+ 	echo -n export LD_LIBRARY_PATH= >> config.sh
+ 	echo -n .: >> config.sh
+ 	echo -n $$ >> config.sh
+@@ -204,7 +205,9 @@
+ 	echo -n $$ >> config.sh
+ 	echo -n OPENHRPHOME/PatternGenerator/server: >> config.sh 
+ 	echo -n $$ >> config.sh
+-	echo -n OB_DIR/lib >> config.sh
++	echo -n OB_DIR/lib: >> config.sh
++	echo -n $$ >> config.sh
++	echo -n OPENHRPHOME/Controller/IOserver/robot/$(ROBOT)/bin >> config.sh
+ ifneq ($(OMNIORB4_DIR),)
+ 	echo -n :$(OMNIORB4_DIR)/lib >> config.sh
+ endif
+@@ -213,7 +216,12 @@
+ 	echo -n VVV_DIR/lib >> config.sh
+ endif
+ 	echo >> config.sh
+-	echo export NS_OPT=\"-ORBInitRef NameService=corbaloc:iiop:$(NS_HOST):$(NS_PORT)/NameService\" >> config.sh
++	echo export NS_HOST=\`hostname\` >> config.sh
++	echo eval export NS_PORT=\\\`expr \`id -u\` + 1024\\\` >> config.sh
++	echo export NS_OPT=\"-ORBInitRef NameService=corbaloc:iiop:\$$NS_HOST:\$$NS_PORT/NameService\" >> config.sh
++	echo export ROBOT_HOST=\$${ROBOT_HOST:-@ROBOT_HOST@} >> config.sh
++	echo export ROBOT_PORT=\$${ROBOT_PORT:-@ROBOT_PORT@} >> config.sh
++	echo export REMOTE_HOST=\$${REMOTE_HOST:-localhost} >> config.sh
+ 	echo -n export NAMESERV= >> config.sh
+ 	echo $(NAMESERV) >> config.sh
+ 	echo -n export EXTRA_JAVA_FLAGS= >> config.sh

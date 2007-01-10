@@ -1,0 +1,20 @@
+--- Make.rules.orig	2006-01-30 12:26:40.000000000 +0100
++++ Make.rules	2007-01-09 15:07:16.384488000 +0100
+@@ -76,7 +76,7 @@
+ OB_LIB_DIR = $(OB_DIR)/acpp/lib
+ OB_IDLC = $(OB_BIN_DIR)/aeidl
+ OB_JIDLC = $(OB_BIN_DIR)/ejidl
+-NAMESERV = \"$(OB_BIN_DIR)/enameserv -ORBconfig $(COMMON)/orb.conf\"
++NAMESERV = \"$(OB_BIN_DIR)/enameserv -OAport \$$NS_PORT\"
+ EXTRA_JAVA_FLAGS	=	-Xbootclasspath/p:$(OB_DIR)/lib/OBE.jar:$(OB_DIR)/lib/OBENaming.jar -D'org.omg.CORBA.ORBClass'='com.ooc.OBServer.ORB' -Dorg.omg.CORBA.ORBSingletonClass=com.ooc.CORBA.ORBSingleton
+ OB_IDL_FLAGS += --dll-import OPENHRP_API 
+ OB_JIDL_FLAGS += --package $(PACKAGE) -I$(COMMON_DIR) --output-dir $(JSTUBDIR)
+@@ -98,7 +98,7 @@
+ endif
+ 
+ # Directory
+-OPENHRPHOME = 		$(shell cd $(TOP); pwd)
++OPENHRPHOME = 		$(PREFIX)/OpenHRP
+ COMMON = 		$(OPENHRPHOME)/Common
+ COLLISIONDETECTOR = 	$(OPENHRPHOME)/CollisionDetector
+ MODELLOADER = 		$(OPENHRPHOME)/ModelLoader
