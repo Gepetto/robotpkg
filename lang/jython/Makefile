@@ -13,22 +13,21 @@ HOMEPAGE=	http://www.jython.org
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=jython/}
 
 
-DEPENDS+=	sun-jre14>=2.9:../../lang/sun-jre14
+DEPENDS+=	sun-jdk14>=2.9:../../lang/sun-jdk14
 
-JAVA_HOME=	${LOCALBASE}/java/sun-1.4
 JYTHON_HOME=	${LOCALBASE}/java/jython
 
 include ../../mk/robotpkg.mk
 
-WRKSRC=${WRKDIR}/jython
+WRKSRC=		${WRKDIR}/jython
 
 do-extract:
 	${MKDIR} -p ${WRKSRC}
-	cd ${WRKSRC} && ${JAVA_HOME}/bin/jar xvf ${DISTDIR}/${DISTNAME}.jar
+	cd ${WRKSRC} && ${PREFIX}/bin/jar-sun14 xf ${DISTDIR}/${DISTNAME}.jar
 
 do-build:
 	@${SED} 						\
-		-e 's|@JAVA_HOME@|${JAVA_HOME}|g' 		\
+		-e 's|@PREFIX@|${PREFIX}|g' 			\
 		-e 's|@JYTHON_HOME@|${JYTHON_HOME}|g' 		\
 		< ${FILESDIR}/jython > ${WRKSRC}/jython
 	@${SED} 						\
@@ -40,4 +39,3 @@ do-install:
 	cd ${WRKSRC} && ${PAX} -rwp ma . ${JYTHON_HOME}
 	${INSTALL_PROGRAM} ${WRKSRC}/jython ${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/jythonc ${PREFIX}/bin
-
