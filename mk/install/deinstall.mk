@@ -13,7 +13,7 @@ DEINSTALLDEPENDS?=	no
 #
 # deinstall is a public target to remove an installed package.
 #
-_DEINSTALL_TARGETS=	desintall-message
+_DEINSTALL_TARGETS=	deinstall-message
 _DEINSTALL_TARGETS=	acquire-deinstall-lock
 _DEINSTALL_TARGETS+=	pkg-deinstall
 _DEINSTALL_TARGETS+=	release-deinstall-lock

@@ -172,7 +172,7 @@ INSTALL_DIRS?=		${BUILD_DIRS}
 INSTALL_MAKE_FLAGS?=	# none
 INSTALL_TARGET?=	install
 
-do%install:
+do%install: .FORCE
 	${_OVERRIDE_TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _dir_,${INSTALL_DIRS},					\
