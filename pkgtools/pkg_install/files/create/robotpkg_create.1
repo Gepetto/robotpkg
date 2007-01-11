@@ -1,4 +1,4 @@
-.\" $NetBSD: pkg_create.1,v 1.7 2004/08/06 16:57:03 jlam Exp $
+.\" $NetBSD: robotpkg_create.1,v 1.7 2004/08/06 16:57:03 jlam Exp $
 .\"
 .\" FreeBSD install - a package for the installation and maintenance
 .\" of non-core utilities.
@@ -15,8 +15,8 @@
 .\" Jordan K. Hubbard
 .\"
 .\"
-.\"     @(#)pkg_create.1
-.\"	from FreeBSD Id: pkg_create.1,v 1.19 1997/05/02 22:00:05 max Exp
+.\"     @(#)robotpkg_create.1
+.\"	from FreeBSD Id: robotpkg_create.1,v 1.19 1997/05/02 22:00:05 max Exp
 .\"
 .\" hacked up by John Kohl for NetBSD--fixed a few bugs, extended keywords,
 .\" added dependency tracking, etc.
@@ -28,7 +28,7 @@
 .Dt PKG_CREATE 1
 .Os
 .Sh NAME
-.Nm pkg_create
+.Nm robotpkg_create
 .Nd a utility for creating software package distributions
 .Sh SYNOPSIS
 .Nm
@@ -122,7 +122,7 @@ were used to control the build when creating the
 binary package.
 This allows various build definitions to be retained in a binary package
 and viewed wherever it is installed, using
-.Xr pkg_info 1 .
+.Xr robotpkg_info 1 .
 .It Fl b Ar build-version-file
 Install the file
 .Ar build-version-file
@@ -131,7 +131,7 @@ the files used to control the build were used when creating the
 binary package.
 This allows some fine-grained version control information to be retained
 in a binary package and viewed wherever it is installed, using
-.Xr pkg_info 1 .
+.Xr robotpkg_info 1 .
 .It Fl C Ar cpkgs
 Set the initial package conflict list to
 .Ar cpkgs .
@@ -239,7 +239,7 @@ Go into a
 .Pq packing list only
 mode.
 This is used to do
-.Pq fake pkg_add
+.Pq fake robotpkg_add
 operations when a package is installed.
 In such cases, it is necessary to know what the final, adjusted packing
 list will look like.
@@ -277,7 +277,7 @@ It will be invoked automatically at installation/deinstallation time to
 determine whether or not installation/deinstallation should proceed.
 .It Fl S Ar size-all-file
 Store the given file for later querying with the
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 .Fl S
 flag.
 The file is expected to contain the size (in bytes) of all files of
@@ -285,7 +285,7 @@ this package plus any required packages added up and stored as a
 ASCII string, terminated by a newline.
 .It Fl s Ar size-pkg-file
 Store the given file for later querying with the
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 .Fl s
 flag.
 The file is expected to contain the size (in bytes) of all files of
@@ -427,14 +427,14 @@ Use without an arg to set back to default (extraction) permissions.
 Set internal package options, the only two currently supported ones
 being
 .Ar extract-in-place ,
-which tells the pkg_add command not to extract the package's tarball
+which tells the robotpkg_add command not to extract the package's tarball
 into a staging area but rather directly into the target
 hierarchy (this is typically meant to be used only by distributions
 or other special package types), and
 .Ar preserve ,
-which tells pkg_add to move any existing files out of the way,
+which tells robotpkg_add to move any existing files out of the way,
 preserving the previous contents (which are also resurrected on
-pkg_delete, so caveat emptor).
+robotpkg_delete, so caveat emptor).
 .It Cm @owner Ar user
 Set default ownership for all subsequently extracted files to
 .Ar user .
@@ -529,10 +529,10 @@ package, as the two packages contain references to the same files,
 and so cannot co-exist on the same system.
 .El
 .Sh SEE ALSO
-.Xr pkg_add 1 ,
-.Xr pkg_admin 1 ,
-.Xr pkg_delete 1 ,
-.Xr pkg_info 1 ,
+.Xr robotpkg_add 1 ,
+.Xr robotpkg_admin 1 ,
+.Xr robotpkg_delete 1 ,
+.Xr robotpkg_info 1 ,
 .Xr sysconf 3 ,
 .Xr packages 7
 .Sh HISTORY

@@ -1,4 +1,4 @@
-.\" $NetBSD: pkg_delete.1,v 1.12 2005/05/30 13:23:31 wiz Exp $
+.\" $NetBSD: robotpkg_delete.1,v 1.12 2005/05/30 13:23:31 wiz Exp $
 .\"
 .\" FreeBSD install - a package for the installation and maintenance
 .\" of non-core utilities.
@@ -15,13 +15,13 @@
 .\" Jordan K. Hubbard
 .\"
 .\"
-.\"     from FreeBSD: @(#)pkg_delete.1
+.\"     from FreeBSD: @(#)robotpkg_delete.1
 .\"
 .Dd February 4, 2005
 .Dt PKG_DELETE 1
 .Os
 .Sh NAME
-.Nm pkg_delete
+.Nm robotpkg_delete
 .Nd a utility for deleting previously installed software package distributions
 .Sh SYNOPSIS
 .Nm
@@ -38,7 +38,7 @@ The
 .Nm
 command is used to delete packages that have been previously installed
 with the
-.Xr pkg_add 1
+.Xr robotpkg_add 1
 command.
 .Sh WARNING
 .Bf -emphasis
@@ -73,7 +73,7 @@ file for
 and
 .Cm @unexec
 directives, and/or use the
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 command to examine the installed package control files.
 .Ef
 .Sh OPTIONS
@@ -81,7 +81,7 @@ The following command line options are supported:
 .Bl -tag -width indent
 .It Ar pkg-name ...
 The named packages are deinstalled, wildcards can be used, see
-.Xr pkg_info 1 .
+.Xr robotpkg_info 1 .
 If no version is given, the one currently installed
 will be removed.
 If the
@@ -137,7 +137,7 @@ as the directory in which to delete files from any installed packages
 which do not explicitly set theirs.
 For most packages, the prefix will
 be set automatically to the installed location by
-.Xr pkg_add 1 .
+.Xr robotpkg_add 1 .
 .It Fl R
 This option triggers a recursive delete of the given package and any
 packages it depends on, unless some other package still needs a
@@ -191,14 +191,14 @@ If a filename is given instead of a package name, the package of which
 the given file belongs to can be deleted if the
 .Fl F
 Flag is given.
-The filename needs to be absolute, see the output produced by the pkg_info
+The filename needs to be absolute, see the output produced by the robotpkg_info
 .Fl aF
 command.
 .Pp
 If the package contains a
 .Ar require
 file (see
-.Xr pkg_create 1 ) ,
+.Xr robotpkg_create 1 ) ,
 then this is executed first as
 .Bd -filled -offset indent -compact
 .Cm require
@@ -264,7 +264,7 @@ is installed, even if the user might have changed it by specifying the
 option when running
 .Nm
 or
-.Xr pkg_add 1 .
+.Xr robotpkg_add 1 .
 The scripts are also called with the
 .Ev PKG_METADATA_DIR
 environment variable set to the location of the
@@ -291,10 +291,10 @@ appended to the path, e.g.
 .Pa /var/db/pkg.refcount .
 .El
 .Sh SEE ALSO
-.Xr pkg_add 1 ,
-.Xr pkg_admin 1 ,
-.Xr pkg_create 1 ,
-.Xr pkg_info 1 ,
+.Xr robotpkg_add 1 ,
+.Xr robotpkg_admin 1 ,
+.Xr robotpkg_create 1 ,
+.Xr robotpkg_info 1 ,
 .Xr mktemp 3 ,
 .Xr packages 7 ,
 .Xr mtree 8

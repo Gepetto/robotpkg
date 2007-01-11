@@ -1,4 +1,4 @@
-.\"	$NetBSD: pkg_admin.1,v 1.11 2005/11/05 13:20:09 wiz Exp $
+.\"	$NetBSD: robotpkg_admin.1,v 1.11 2005/11/05 13:20:09 wiz Exp $
 .\"
 .\" Copyright (c) 1999-2002 Hubert Feyrer.  All rights reserved.
 .\"
@@ -32,7 +32,7 @@
 .Dt PKG_ADMIN 1
 .Os
 .Sh NAME
-.Nm pkg_admin
+.Nm robotpkg_admin
 .Nd perform various administrative tasks to the pkg system
 .Sh SYNOPSIS
 .Nm
@@ -103,7 +103,7 @@ its
 .Pa +CONTENTS
 file together with the package they belong to into the package database.
 This should be used only by
-.Xr pkg_view 1 .
+.Xr robotpkg_view 1 .
 .It Cm check Op Ar pkg ...
 Use this command to check the files belonging to some or all of the
 packages installed on the local machine against the checksum
@@ -115,7 +115,7 @@ value at package installation time.
 If no additional argument is given, the files of all installed packages
 are checked, else only the named packages will be checked (wildcards can
 be used here, see
-.Xr pkg_info 1 ) .
+.Xr robotpkg_info 1 ) .
 .Pp
 The packages'
 .Pa +CONTENTS
@@ -129,10 +129,10 @@ the same as the contents recorded at package installation time.
 For each listed package, remove all file entries in the package database that
 belong to the package.
 This should be used only by
-.Xr pkg_view 1 .
+.Xr robotpkg_view 1 .
 .It Cm dump
 Dump the contents of the package database, similar to
-.Cm pkg_info -F .
+.Cm robotpkg_info -F .
 Columns are printed for the keyfield used in the pkgdb - the filename -,
 and the data field - the package the file belongs to.
 .It Cm lsall Ar /dir/pkgpattern
@@ -149,7 +149,7 @@ This option implements matching of
 pkg-wildcards against arbitrary files and directories, useful mainly in
 the build system itself.
 See
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 for a description of the pattern.
 .Pp
 Example:
@@ -157,17 +157,17 @@ Example:
 yui# cd /usr/pkgsrc/packages/i386ELF/All/
 yui# ls unzip*
 unzip-5.40.tgz  unzip-5.41.tgz
-yui# pkg_admin lsall 'unzip*'
+yui# robotpkg_admin lsall 'unzip*'
 /usr/pkgsrc/packages/i386ELF/All/unzip-5.40.tgz
 /usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-yui# pkg_admin lsall 'unzip\*[Ge]5.40'
+yui# robotpkg_admin lsall 'unzip\*[Ge]5.40'
 /usr/pkgsrc/packages/i386ELF/All/unzip-5.40.tgz
 /usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-yui# pkg_admin lsall 'unzip\*[Ge]5.41'
+yui# robotpkg_admin lsall 'unzip\*[Ge]5.41'
 /usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-yui# pkg_admin lsbest 'unzip\*[Ge]5.40'
+yui# robotpkg_admin lsbest 'unzip\*[Ge]5.40'
 /usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-yui# pkg_admin lsall /usr/pkgsrc/packages/i386ELF/All/'{mit,unproven}-pthread*'
+yui# robotpkg_admin lsall /usr/pkgsrc/packages/i386ELF/All/'{mit,unproven}-pthread*'
 /usr/pkgsrc/packages/i386ELF/All/mit-pthreads-1.60b6.tgz
 /usr/pkgsrc/packages/i386ELF/All/unproven-pthreads-0.15.tgz
 .Ed
@@ -189,10 +189,10 @@ together with the package they belong to into the package database.
 This option is intended to be used for upgrading from non-pkgdb-pkg_*
 tools to pkgdb-pkg_* tools, further manipulation of the pkgdb will be
 done by
-.Xr pkg_add 1 ,
-.Xr pkg_delete 1 ,
+.Xr robotpkg_add 1 ,
+.Xr robotpkg_delete 1 ,
 and
-.Xr pkg_create 1 .
+.Xr robotpkg_create 1 .
 .Pp
 Needs to be run as root.
 .It Cm set Ar variable=value pkg ...
@@ -224,11 +224,11 @@ The default package database directory is
 .It Pa /var/db/pkg/\*[Lt]pkg\*[Gt]/+CONTENTS
 .El
 .Sh SEE ALSO
-.Xr pkg_add 1 ,
-.Xr pkg_create 1 ,
-.Xr pkg_delete 1 ,
-.Xr pkg_info 1 ,
-.Xr pkg_view 1 ,
+.Xr robotpkg_add 1 ,
+.Xr robotpkg_create 1 ,
+.Xr robotpkg_delete 1 ,
+.Xr robotpkg_info 1 ,
+.Xr robotpkg_view 1 ,
 .Xr packages 7
 .Sh HISTORY
 The

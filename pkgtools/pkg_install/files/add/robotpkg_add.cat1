@@ -11,7 +11,7 @@ SSYYNNOOPPSSIISS
 
 DDEESSCCRRIIPPTTIIOONN
      The ppkkgg__aadddd command is used to extract and upgrade packages that have
-     been previously created with the pkg_create(1) command.  Packages are
+     been previously created with the robotpkg_create(1) command.  Packages are
      prepared collections of pre-built binaries, documentation, configura-
      tions, installation instructions and/or other files.  ppkkgg__aadddd can recur-
      sively install other packages that the current package depends on or
@@ -31,7 +31,7 @@ WWAARRNNIINNGG
      _p_a_r_t_i_c_u_l_a_r _a_t_t_e_n_t_i_o_n _t_o _a_n_y _+_I_N_S_T_A_L_L_, _+_D_E_I_N_S_T_A_L_L_, _+_R_E_Q_U_I_R_E_, _o_r
      _+_M_T_R_E_E___D_I_R_S _f_i_l_e_s_, _a_n_d _i_n_s_p_e_c_t _t_h_e _+_C_O_N_T_E_N_T_S _f_i_l_e _f_o_r @@ccwwdd_, @@mmooddee _(_c_h_e_c_k
      _f_o_r _s_e_t_u_i_d_)_, @@ddiirrrrmm_, @@eexxeecc_, _a_n_d @@uunneexxeecc _d_i_r_e_c_t_i_v_e_s_, _a_n_d_/_o_r _u_s_e _t_h_e
-     pkg_info(_1) _c_o_m_m_a_n_d _t_o _e_x_a_m_i_n_e _t_h_e _p_a_c_k_a_g_e _f_i_l_e_.
+     robotpkg_info(_1) _c_o_m_m_a_n_d _t_o _e_x_a_m_i_n_e _t_h_e _p_a_c_k_a_g_e _f_i_l_e_.
 
 OOPPTTIIOONNSS
      The following command line arguments are supported:
@@ -150,12 +150,12 @@ OOPPTTIIOONNSS
 
      --WW _v_i_e_w_b_a_s_e
              Set _v_i_e_w_b_a_s_e as the base directory for the managed views.  The
-             default _v_i_e_w_b_a_s_e directory is set by pkg_view(1).  This value
+             default _v_i_e_w_b_a_s_e directory is set by robotpkg_view(1).  This value
              also may be set from the LOCALBASE environment variable.
 
      --ww _v_i_e_w
              Set the _v_i_e_w to which packages should be added after installa-
-             tion.  The default _v_i_e_w is set by pkg_view(1).  This value also
+             tion.  The default _v_i_e_w is set by robotpkg_view(1).  This value also
              may be set from the PKG_VIEW environment variable.
 
      One or more _p_k_g_-_n_a_m_e arguments may be specified, each being either a file
@@ -185,18 +185,18 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
                 packages that depend on the pkg being upgraded are checked if
                 they also work with the new version.  If that test is success-
                 ful, replacing is prepared by moving an existing _+_R_E_Q_U_I_R_E_D___B_Y
-                file aside (if it exists), and running pkg_delete(1) on the
+                file aside (if it exists), and running robotpkg_delete(1) on the
                 installed package.  Installation then proceeds as if the pack-
                 age was not installed, and restores the _+_R_E_Q_U_I_R_E_D___B_Y file
                 afterwards.
 
            2.   A check is made to determine if the package conflicts (from
-                @@ppkkggccffll directives, see pkg_create(1)) with an already
+                @@ppkkggccffll directives, see robotpkg_create(1)) with an already
                 recorded as installed package.  If it is, installation is ter-
                 minated.
 
            3.   All package dependencies (from @@ppkkggddeepp directives, see
-                pkg_create(1)) are read from the packing list.  If any of
+                robotpkg_create(1)) are read from the packing list.  If any of
                 these required packages are not currently installed, an
                 attempt is made to find and install it; if the missing package
                 cannot be found or installed, the installation is terminated.
@@ -226,7 +226,7 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
                 was built with ABI dependency recommendations ignored, a warn-
                 ing will be issued.
 
-           8.   If the package contains a _r_e_q_u_i_r_e script (see pkg_create(1)),
+           8.   If the package contains a _r_e_q_u_i_r_e script (see robotpkg_create(1)),
                 it is executed with the following arguments:
 
                 _p_k_g_-_n_a_m_e      The name of the package being installed
@@ -256,7 +256,7 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
                 necessary) files from the staging area into their final loca-
                 tions.
 
-           11.  If the package contains an _m_t_r_e_e_f_i_l_e file (see pkg_create(1)),
+           11.  If the package contains an _m_t_r_e_e_f_i_l_e file (see robotpkg_create(1)),
                 then mtree is invoked as:
                       mmttrreeee --uu --ff _m_t_r_e_e_f_i_l_e --dd --ee --pp _p_r_e_f_i_x
                 where _p_r_e_f_i_x is either the prefix specified with the --pp flag
@@ -275,7 +275,7 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
            13.  After installation is complete, a copy of the packing list,
                 _d_e_i_n_s_t_a_l_l script, description, and display files are copied
                 into _/_v_a_r_/_d_b_/_p_k_g_/_<_p_k_g_-_n_a_m_e_> for subsequent possible use by
-                pkg_delete(1).  Any package dependencies are recorded in the
+                robotpkg_delete(1).  Any package dependencies are recorded in the
                 other packages' _/_v_a_r_/_d_b_/_p_k_g_/_<_o_t_h_e_r_-_p_k_g_>_/_+_R_E_Q_U_I_R_E_D___B_Y file (if
                 an alternate package database directory is specified, then it
                 overrides the _/_v_a_r_/_d_b_/_p_k_g path shown above).
@@ -335,20 +335,20 @@ EEXXAAMMPPLLEESS
 
      You can specify a compiled binary package explicitly on the command line.
 
-     # pkg_add /usr/pkgsrc/packages/All/tcsh-6.14.00.tgz
+     # robotpkg_add /usr/pkgsrc/packages/All/tcsh-6.14.00.tgz
 
      If you omit the version number, ppkkgg__aadddd will install the latest version
      available.  With --vv, ppkkgg__aadddd emits more messages to terminal.
 
-     # pkg_add -v /usr/pkgsrc/packages/All/unzip
+     # robotpkg_add -v /usr/pkgsrc/packages/All/unzip
 
      You can grab a compiled binary package from remote location by specifying
      a URL.  The URL can be put into an environment variable, PKG_PATH.
 
-     # pkg_add -v ftp://ftp.NetBSD.org/pub/NetBSD/packages/2.0/i386/All/firefox-1.0.3.tgz
+     # robotpkg_add -v ftp://ftp.NetBSD.org/pub/NetBSD/packages/2.0/i386/All/firefox-1.0.3.tgz
 
      # export PKG_PATH=ftp://ftp.NetBSD.org/pub/NetBSD/packages/2.0/i386/All
-     # pkg_add -v firefox
+     # robotpkg_add -v firefox
 
      Over time, as problems are found in packages, they will be moved from the
      _A_l_l subdirectory into the _v_u_l_n_e_r_a_b_l_e subdirectory.  If you want to accept
@@ -362,7 +362,7 @@ EEXXAAMMPPLLEESS
      _s_e_c_u_r_i_t_y_/_a_u_d_i_t_-_p_a_c_k_a_g_e_s package and running it after every ppkkgg__aadddd.
 
 SSEEEE AALLSSOO
-     pkg_admin(1), pkg_create(1), pkg_delete(1), pkg_info(1), mktemp(3),
+     robotpkg_admin(1), robotpkg_create(1), robotpkg_delete(1), robotpkg_info(1), mktemp(3),
      sysconf(3), packages(7), mtree(8)
 
 AAUUTTHHOORRSS

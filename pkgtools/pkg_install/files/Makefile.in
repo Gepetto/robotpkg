@@ -17,4 +17,4 @@ distclean: clean
 	rm -f Makefile */Makefile
 	rm -f lib/config.h
 	rm -f view/linkfarm.sh
-	rm -f view/pkg_view.sh
+	rm -f view/robotpkg_view.sh

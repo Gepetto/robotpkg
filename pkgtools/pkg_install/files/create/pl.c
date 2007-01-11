@@ -155,7 +155,7 @@ check_list(char *home, package_t *pkg, const char *PkgName)
 			/*
 			 * pkgdb handling - usually, we enter files
 			 * into the pkgdb as soon as they hit the disk,
-			 * but as they are present before pkg_create
+			 * but as they are present before robotpkg_create
 			 * starts, it's ok to do this somewhere here
 			 */
 			if (update_pkgdb) {

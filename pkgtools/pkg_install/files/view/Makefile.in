@@ -10,7 +10,7 @@ cat1dir=	$(mandir)/cat1
 
 INSTALL=	@INSTALL@
 
-SCRIPTS=	linkfarm pkg_view
+SCRIPTS=	linkfarm robotpkg_view
 
 all:
 	@true # do nothing

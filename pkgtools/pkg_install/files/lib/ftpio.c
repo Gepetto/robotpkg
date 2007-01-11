@@ -676,7 +676,7 @@ ftp_expand_URL(const char *base, char *pattern)
 					* ftp(1) is not that stupid */
 	if (!s) {
 		/* This should only happen when getting here with (only) a package
-		 * name specified to pkg_add, and PKG_PATH containing some URL.
+		 * name specified to robotpkg_add, and PKG_PATH containing some URL.
 		 */
 		(void) snprintf(buf, sizeof(buf), "nlist %s %s\n", pattern, tmpname);
 	} else {

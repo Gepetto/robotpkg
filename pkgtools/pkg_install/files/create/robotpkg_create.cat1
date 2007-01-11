@@ -29,7 +29,7 @@ OOPPTTIIOONNSS
              can see what make(1) definitions were used to control the build
              when creating the binary package.  This allows various build def-
              initions to be retained in a binary package and viewed wherever
-             it is installed, using pkg_info(1).
+             it is installed, using robotpkg_info(1).
 
      --bb _b_u_i_l_d_-_v_e_r_s_i_o_n_-_f_i_l_e
              Install the file _b_u_i_l_d_-_v_e_r_s_i_o_n_-_f_i_l_e so that users of binary pack-
@@ -37,7 +37,7 @@ OOPPTTIIOONNSS
              were used when creating the binary package.  This allows some
              fine-grained version control information to be retained in a
              binary package and viewed wherever it is installed, using
-             pkg_info(1).
+             robotpkg_info(1).
 
      --CC _c_p_k_g_s
              Set the initial package conflict list to _c_p_k_g_s.  This is assumed
@@ -111,7 +111,7 @@ OOPPTTIIOONNSS
              may present a bootstrap problem.
 
      --OO      Go into a (packing list only) mode.  This is used to do (fake
-             pkg_add) operations when a package is installed.  In such cases,
+             robotpkg_add) operations when a package is installed.  In such cases,
              it is necessary to know what the final, adjusted packing list
              will look like.
 
@@ -140,13 +140,13 @@ OOPPTTIIOONNSS
              ceed.
 
      --SS _s_i_z_e_-_a_l_l_-_f_i_l_e
-             Store the given file for later querying with the pkg_info(1) --SS
+             Store the given file for later querying with the robotpkg_info(1) --SS
              flag.  The file is expected to contain the size (in bytes) of all
              files of this package plus any required packages added up and
              stored as a ASCII string, terminated by a newline.
 
      --ss _s_i_z_e_-_p_k_g_-_f_i_l_e
-             Store the given file for later querying with the pkg_info(1) --ss
+             Store the given file for later querying with the robotpkg_info(1) --ss
              flag.  The file is expected to contain the size (in bytes) of all
              files of this package added up and stored as a ASCII string, ter-
              minated by a newline.
@@ -223,13 +223,13 @@ PPAACCKKIINNGG LLIISSTT DDEETTAAIILLSS
              tion) permissions.
      @@ooppttiioonn _o_p_t_i_o_n
              Set internal package options, the only two currently supported
-             ones being _e_x_t_r_a_c_t_-_i_n_-_p_l_a_c_e, which tells the pkg_add command not
+             ones being _e_x_t_r_a_c_t_-_i_n_-_p_l_a_c_e, which tells the robotpkg_add command not
              to extract the package's tarball into a staging area but rather
              directly into the target hierarchy (this is typically meant to be
              used only by distributions or other special package types), and
-             _p_r_e_s_e_r_v_e, which tells pkg_add to move any existing files out of
+             _p_r_e_s_e_r_v_e, which tells robotpkg_add to move any existing files out of
              the way, preserving the previous contents (which are also resur-
-             rected on pkg_delete, so caveat emptor).
+             rected on robotpkg_delete, so caveat emptor).
      @@oowwnneerr _u_s_e_r
              Set default ownership for all subsequently extracted files to
              _u_s_e_r.  Use without an arg to set back to default (extraction)
@@ -288,7 +288,7 @@ PPAACCKKIINNGG LLIISSTT DDEETTAAIILLSS
              on the same system.
 
 SSEEEE AALLSSOO
-     pkg_add(1), pkg_admin(1), pkg_delete(1), pkg_info(1), sysconf(3),
+     robotpkg_add(1), robotpkg_admin(1), robotpkg_delete(1), robotpkg_info(1), sysconf(3),
      packages(7)
 
 HHIISSTTOORRYY

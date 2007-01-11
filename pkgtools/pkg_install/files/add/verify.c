@@ -101,7 +101,7 @@ do_verify(const char *pkgname, const char *cmd1, const char *cmd2, const char *c
 	for (i = 0, ep = extensions ; i < MaxExtensions && *ep ; ep++, i++) {
 		(void) snprintf(f, sizeof(f), "%s%s", pkgname, *ep);
 		if (stat(f, &st) == 0) {
-			(void) fprintf(stderr, "pkg_add: Using signature file: %s\n", f);
+			(void) fprintf(stderr, "robotpkg_add: Using signature file: %s\n", f);
 			ret = (cmd2 == NULL) ? fexec(cmd1, f, NULL) : fexec(cmd1, cmd2, f, NULL);
 			if (ret != 0) {
 				(void) fprintf(stderr, "*** WARNING ***: `%s' has a bad signature\n", f);

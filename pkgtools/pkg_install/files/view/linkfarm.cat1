@@ -59,7 +59,7 @@ EENNVVIIRROONNMMEENNTT
              defaults to "info/dir *[~#] *.OLD *.orig *,v".
 
 SSEEEE AALLSSOO
-     lndir(1), pkg_view(1)
+     lndir(1), robotpkg_view(1)
 
 AAUUTTHHOORRSS
      The lliinnkkffaarrmm utility was written by Alistair G. Crooks <agc@NetBSD.org>.

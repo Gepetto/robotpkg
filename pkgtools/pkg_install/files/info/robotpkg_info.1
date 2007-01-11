@@ -1,4 +1,4 @@
-.\" $NetBSD: pkg_info.1,v 1.18 2006/04/24 13:52:05 dillo Exp $
+.\" $NetBSD: robotpkg_info.1,v 1.18 2006/04/24 13:52:05 dillo Exp $
 .\"
 .\" FreeBSD install - a package for the installation and maintenance
 .\" of non-core utilities.
@@ -15,13 +15,13 @@
 .\" Jordan K. Hubbard
 .\"
 .\"
-.\"     @(#)pkg_info.1
+.\"     @(#)robotpkg_info.1
 .\"
 .Dd April 15, 2006
 .Dt PKG_INFO 1
 .Os
 .Sh NAME
-.Nm pkg_info
+.Nm robotpkg_info
 .Nd a utility for displaying information on software packages
 .Sh SYNOPSIS
 .Nm
@@ -41,7 +41,7 @@ The
 .Nm
 command is used to dump out information for packages, which may be either
 packed up in files or already installed on the system with the
-.Xr pkg_create 1
+.Xr robotpkg_create 1
 command.
 .Pp
 The
@@ -183,7 +183,7 @@ Turn on verbose output.
 Print summary information for each package.
 The summary format is
 described in
-.Xr pkg_summary 5 .
+.Xr robotpkg_summary 5 .
 Its primary use is to contain all information about the contents of a
 (remote) binary package repository needed by package managing software.
 .El
@@ -199,7 +199,7 @@ This filename is then resolved to a package name using the Package Database.
 For this translation to take place, the
 .Fl F
 flag must be given.
-The filename must be absolute, compare the output of pkg_info
+The filename must be absolute, compare the output of robotpkg_info
 .Fl aF .
 .Sh PACKAGE WILDCARDS
 In the places where a package name/version is expected, e.g. for the
@@ -220,7 +220,7 @@ and
 .Pa \*[Lt]
 operators.
 For example,
-.Pa pkg_info -e 'name\*[Ge]1.3'
+.Pa robotpkg_info -e 'name\*[Ge]1.3'
 will match versions 1.3 and later of the
 .Pa name
 package.
@@ -228,7 +228,7 @@ Additionally, ranges can be defined by giving a lower bound with
 \*[Gt] or \*[Ge] and an upper bound with \*[Lt] or \*[Le].
 The lower bound has to come first.
 For example,
-.Pa pkg_info -e 'name\*[Ge]1.3\*[Lt]2.0'
+.Pa robotpkg_info -e 'name\*[Ge]1.3\*[Lt]2.0'
 will match versions 1.3 (inclusive) to 2.0 (exclusive)
 of package
 .Pa name .
@@ -329,10 +329,10 @@ ever need to be used to work around limited available space in the
 default locations.
 .El
 .Sh SEE ALSO
-.Xr pkg_add 1 ,
-.Xr pkg_admin 1 ,
-.Xr pkg_create 1 ,
-.Xr pkg_delete 1 ,
+.Xr robotpkg_add 1 ,
+.Xr robotpkg_admin 1 ,
+.Xr robotpkg_create 1 ,
+.Xr robotpkg_delete 1 ,
 .Xr mktemp 3 ,
 .Xr packages 7 ,
 .Xr mtree 8

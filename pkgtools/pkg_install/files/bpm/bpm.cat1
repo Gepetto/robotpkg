@@ -44,16 +44,16 @@ DDEESSCCRRIIPPTTIIOONN
      values by means of the command line options.  Within a category, a list
      of packages will be displayed, and by selecting one using the number
      assigned to it, the package will be downloaded automatically, and
-     installed, using the pkg_add(1) utility.  It is also possible to change
+     installed, using the robotpkg_add(1) utility.  It is also possible to change
      the category currently being examined, and to quit from the utility, sim-
      ply by selecting the appropriate choices on the menu.
 
 EENNVVIIRROONNMMEENNTT
      The environment variables which govern the behaviour of ftp(1) and
-     pkg_add(1) are valid for bbppmm.
+     robotpkg_add(1) are valid for bbppmm.
 
 SSEEEE AALLSSOO
-     ftp(1), pkg_add(1), uname(1)
+     ftp(1), robotpkg_add(1), uname(1)
 
 AAUUTTHHOORRSS
      The bbppmm utility was written by Alistair Crooks <agc@NetBSD.org>.

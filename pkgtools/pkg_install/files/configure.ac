@@ -4,10 +4,6 @@ AC_INIT([pkg_install], [20050607], [grant@NetBSD.org])
 AC_CONFIG_SRCDIR([lib/plist.c])
 AC_CONFIG_HEADER(lib/config.h)
 
-# by default prefix everything by 'robot'
-test "x$program_prefix" = xNONE && program_prefix=robot
-AC_ARG_PROGRAM
-
 AC_CANONICAL_HOST
 CANONICAL_HOST=$host
 AC_SUBST(CANONICAL_HOST)
@@ -148,5 +144,5 @@ AH_BOTTOM(
 
 AC_CONFIG_FILES([Makefile add/Makefile admin/Makefile bpm/bpm.sh \
 	create/Makefile delete/Makefile info/Makefile lib/Makefile \
-	view/Makefile view/linkfarm.sh view/pkg_view.sh])
+	view/Makefile view/linkfarm.sh view/robotpkg_view.sh])
 AC_OUTPUT

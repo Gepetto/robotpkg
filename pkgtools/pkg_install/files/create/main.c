@@ -67,7 +67,7 @@ static void
 usage(void)
 {
 	fprintf(stderr,
-	    "usage: pkg_create [-EhlORUVv] [-B build-info-file] [-b build-version-file]\n"
+	    "usage: robotpkg_create [-EhlORUVv] [-B build-info-file] [-b build-version-file]\n"
             "                  [-C cpkgs] [-D displayfile] [-I realprefix] [-i iscript]\n"
             "                  [-K pkg_dbdir] [-k dscript] [-L SrcDir] [-m mtreefile]\n"
             "                  [-n preserve-file] [-P dpkgs] [-p prefix] [-r rscript]\n"

@@ -40,5 +40,5 @@ clean:
 install:
 	$(INSTALL) -m 755 -d $(man5dir)
 	$(INSTALL) -m 755 -d $(cat5dir)
-	$(INSTALL) -m 444 pkg_summary.5 $(man5dir)/pkg_summary.5
-	$(INSTALL) -m 444 pkg_summary.cat5 $(cat5dir)/pkg_summary.0
+	$(INSTALL) -m 444 robotpkg_summary.5 $(man5dir)/robotpkg_summary.5
+	$(INSTALL) -m 444 robotpkg_summary.cat5 $(cat5dir)/robotpkg_summary.0

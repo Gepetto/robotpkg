@@ -1,4 +1,4 @@
-.\" $NetBSD: pkg_add.1,v 1.18 2006/04/08 23:06:21 wiz Exp $
+.\" $NetBSD: robotpkg_add.1,v 1.18 2006/04/08 23:06:21 wiz Exp $
 .\"
 .\" FreeBSD install - a package for the installation and maintenance
 .\" of non-core utilities.
@@ -15,13 +15,13 @@
 .\" Jordan K. Hubbard
 .\"
 .\"
-.\"     @(#)pkg_add.1
+.\"     @(#)robotpkg_add.1
 .\"
 .Dd April 3, 2006
 .Dt PKG_ADD 1
 .Os
 .Sh NAME
-.Nm pkg_add
+.Nm robotpkg_add
 .Nd a utility for installing and upgrading software package distributions
 .Sh SYNOPSIS
 .Nm
@@ -38,7 +38,7 @@ The
 .Nm
 command is used to extract and upgrade packages that have been
 previously created with the
-.Xr pkg_create 1
+.Xr robotpkg_create 1
 command.
 Packages are prepared collections of pre-built binaries, documentation,
 configurations, installation instructions and/or other files.
@@ -81,7 +81,7 @@ file for
 and
 .Cm @unexec
 directives, and/or use the
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 command to examine the package file.
 .Ef
 .Sh OPTIONS
@@ -106,9 +106,9 @@ in the same location that the original package was installed from.
 Mark package as installed automatically, as dependency of another
 package.
 You can use
-.Dl Ic pkg_admin set automatic=YES
+.Dl Ic robotpkg_admin set automatic=YES
 to mark packages this way after installation, and
-.Dl Ic pkg_admin unset automatic
+.Dl Ic robotpkg_admin unset automatic
 to remove the mark.
 If you
 .Nm
@@ -268,7 +268,7 @@ as the base directory for the managed views.
 The default
 .Ar viewbase
 directory is set by
-.Xr pkg_view 1 .
+.Xr robotpkg_view 1 .
 This value also may be set from the
 .Ev LOCALBASE
 environment variable.
@@ -279,7 +279,7 @@ to which packages should be added after installation.
 The default
 .Ar view
 is set by
-.Xr pkg_view 1 .
+.Xr robotpkg_view 1 .
 This value also may be set from the
 .Ev PKG_VIEW
 environment variable.
@@ -342,7 +342,7 @@ pkg being upgraded are checked if they also work with the new version.
 If that test is successful, replacing is prepared by moving an existing
 .Pa +REQUIRED_BY
 file aside (if it exists), and running
-.Xr pkg_delete 1
+.Xr robotpkg_delete 1
 on the installed package.
 Installation then proceeds as if the package
 was not installed, and restores the
@@ -352,14 +352,14 @@ file afterwards.
 A check is made to determine if the package conflicts (from
 .Cm @pkgcfl
 directives, see
-.Xr pkg_create 1 )
+.Xr robotpkg_create 1 )
 with an already recorded as installed package.
 If it is, installation is terminated.
 .It
 All package dependencies (from
 .Cm @pkgdep
 directives, see
-.Xr pkg_create 1 )
+.Xr robotpkg_create 1 )
 are read from the packing list.
 If any of these required packages are not currently installed,
 an attempt is made to find and install it;
@@ -410,7 +410,7 @@ a warning will be issued.
 If the package contains a
 .Ar require
 script (see
-.Xr pkg_create 1 ) ,
+.Xr robotpkg_create 1 ) ,
 it is executed with the following arguments:
 .Bl -tag -width indentindent
 .It Ar pkg-name
@@ -449,7 +449,7 @@ the staging area into their final locations.
 If the package contains an
 .Ar mtreefile
 file (see
-.Xr pkg_create 1 ) ,
+.Xr robotpkg_create 1 ) ,
 then mtree is invoked as:
 .Bd -filled -offset indent -compact
 .Cm mtree
@@ -487,7 +487,7 @@ After installation is complete, a copy of the packing list,
 script, description, and display files are copied into
 .Pa /var/db/pkg/\*[Lt]pkg-name\*[Gt]
 for subsequent possible use by
-.Xr pkg_delete 1 .
+.Xr robotpkg_delete 1 .
 Any package dependencies are recorded in the other packages'
 .Pa /var/db/pkg/\*[Lt]other-pkg\*[Gt]/+REQUIRED_BY
 file
@@ -520,7 +520,7 @@ that reliably performs some action on the directory where the package
 is installed, even if the user might change it with the
 .Fl p
 flag to
-.Cm pkg_add .
+.Cm robotpkg_add .
 The scripts are also called with the
 .Ev PKG_METADATA_DIR
 environment variable set to the location of the
@@ -580,7 +580,7 @@ will try to install binary packages listed in dependencies list.
 .Pp
 You can specify a compiled binary package explicitly on the command line.
 .Bd -literal
-# pkg_add /usr/pkgsrc/packages/All/tcsh-6.14.00.tgz
+# robotpkg_add /usr/pkgsrc/packages/All/tcsh-6.14.00.tgz
 .Ed
 .Pp
 If you omit the version number,
@@ -591,7 +591,7 @@ With
 .Nm
 emits more messages to terminal.
 .Bd -literal
-# pkg_add -v /usr/pkgsrc/packages/All/unzip
+# robotpkg_add -v /usr/pkgsrc/packages/All/unzip
 .Ed
 .Pp
 You can grab a compiled binary package from remote location by specifying
@@ -599,10 +599,10 @@ a URL.
 The URL can be put into an environment variable,
 .Ev PKG_PATH .
 .Bd -literal
-# pkg_add -v ftp://ftp.NetBSD.org/pub/NetBSD/packages/2.0/i386/All/firefox-1.0.3.tgz
+# robotpkg_add -v ftp://ftp.NetBSD.org/pub/NetBSD/packages/2.0/i386/All/firefox-1.0.3.tgz
 
 # export PKG_PATH=ftp://ftp.NetBSD.org/pub/NetBSD/packages/2.0/i386/All
-# pkg_add -v firefox
+# robotpkg_add -v firefox
 .Ed
 .Pp
 Over time, as problems are found in packages, they will be moved
@@ -630,10 +630,10 @@ If you do this, consider installing and using the
 package and running it after every
 .Nm .
 .Sh SEE ALSO
-.Xr pkg_admin 1 ,
-.Xr pkg_create 1 ,
-.Xr pkg_delete 1 ,
-.Xr pkg_info 1 ,
+.Xr robotpkg_admin 1 ,
+.Xr robotpkg_create 1 ,
+.Xr robotpkg_delete 1 ,
+.Xr robotpkg_info 1 ,
 .Xr mktemp 3 ,
 .Xr sysconf 3 ,
 .Xr packages 7 ,

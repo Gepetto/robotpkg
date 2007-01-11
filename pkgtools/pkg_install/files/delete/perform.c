@@ -261,7 +261,7 @@ unview(const char *pkgname)
 
 /*
  * Delete from directory 'home' all packages on lpkg_list. 
- * If tryall is set, ignore errors from pkg_delete(1).
+ * If tryall is set, ignore errors from robotpkg_delete(1).
  */
 int
 require_delete(char *home, int tryall)

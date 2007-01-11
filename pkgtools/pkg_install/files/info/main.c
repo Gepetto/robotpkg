@@ -68,10 +68,10 @@ static void
 usage(void)
 {
 	fprintf(stderr, "%s\n%s\n%s\n%s\n",
-	    "usage: pkg_info [-BbcDdFfhIikLmNnpqRrSsVvX] [-e package] [-K pkg_dbdir]",
+	    "usage: robotpkg_info [-BbcDdFfhIikLmNnpqRrSsVvX] [-e package] [-K pkg_dbdir]",
 	    "                [-l prefix] pkg-name ...",
-	    "       pkg_info [-a | -u] [flags]",
-	    "       pkg_info [-Q variable] pkg-name ...");
+	    "       robotpkg_info [-a | -u] [flags]",
+	    "       robotpkg_info [-Q variable] pkg-name ...");
 	exit(1);
 }
 

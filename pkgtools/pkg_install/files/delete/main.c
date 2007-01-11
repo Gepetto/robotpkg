@@ -58,7 +58,7 @@ lpkg_head_t pkgs;
 static void
 usage(void)
 {
-	fprintf(stderr, "usage: pkg_delete [-DdFfNnORrVv] [-K pkg_dbdir] [-p prefix] pkg-name ...\n");
+	fprintf(stderr, "usage: robotpkg_delete [-DdFfNnORrVv] [-K pkg_dbdir] [-p prefix] pkg-name ...\n");
 	exit(1);
 }
 

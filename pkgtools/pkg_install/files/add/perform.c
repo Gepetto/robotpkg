@@ -181,7 +181,7 @@ installprereq(const char *name, int *errc, int doupdate)
 		printf("Loading it from %s.\n", name);
 	path_setenv("PKG_PATH");
 
-	if (fexec_skipempty(BINDIR "/pkg_add", "-K", _pkgdb_getPKGDB_DIR(),
+	if (fexec_skipempty(BINDIR "/robotpkg_add", "-K", _pkgdb_getPKGDB_DIR(),
 			    "-s", get_verification(),
 	            doupdate > 1 ? "-uu" : (doupdate ? "-u" : ""),
 	            Fake ? "-n" : "",
@@ -662,12 +662,12 @@ ignore_replace_depends_check:
 					}
 
 					if (Verbose) {
-						printf("%s/pkg_delete -K %s '%s'\n",
+						printf("%s/robotpkg_delete -K %s '%s'\n",
 							BINDIR,
 							dbdir,
 							installed);
 					}
-					fexec(BINDIR "/pkg_delete", "-K", dbdir, installed, NULL);
+					fexec(BINDIR "/robotpkg_delete", "-K", dbdir, installed, NULL);
 				} else if (!is_depoted_pkg) {
 					warnx("other version '%s' already installed", installed);
 
@@ -688,7 +688,7 @@ ignore_replace_depends_check:
 			printf("Package `%s' conflicts with `%s'.\n", PkgName, p->name);
 		if (findmatchingname(dbdir, p->name, note_whats_installed, installed) > 0) {
 			warnx("Conflicting package `%s'installed, please use\n"
-			      "\t\"pkg_delete %s\" first to remove it!", installed, installed);
+			      "\t\"robotpkg_delete %s\" first to remove it!", installed, installed);
 			++errc;
 		}
 	}
@@ -912,7 +912,7 @@ ignore_replace_depends_check:
 			errc = 1;
 			goto success;	/* close enough for government work */
 		}
-		/* Make sure pkg_info can read the entry */
+		/* Make sure robotpkg_info can read the entry */
 		(void) fexec(CHMOD_CMD, "a+rx", LogDir, NULL);
 
 		/* Move all of the +-files into place */
@@ -992,14 +992,14 @@ ignore_replace_depends_check:
 	/* Add the package to a default view. */
 	if (!Fake && !NoView && is_depoted_pkg) {
 		if (Verbose) {
-			printf("%s/pkg_view -d %s %s%s %s%s %sadd %s\n",
+			printf("%s/robotpkg_view -d %s %s%s %s%s %sadd %s\n",
 				BINDIR, dbdir,
 				View ? "-w " : "", View ? View : "",
 				Viewbase ? "-W " : "", Viewbase ? Viewbase : "",
 				Verbose ? "-v " : "", PkgName);
 		}
 
-		fexec_skipempty(BINDIR "/pkg_view", "-d", dbdir,
+		fexec_skipempty(BINDIR "/robotpkg_view", "-d", dbdir,
 				View ? "-w " : "", View ? View : "",
 				Viewbase ? "-W " : "", Viewbase ? Viewbase : "",
 				Verbose ? "-v " : "", "add", PkgName, NULL);

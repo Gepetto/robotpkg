@@ -15,7 +15,7 @@ DISTFILES=		# empty
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.pkgsrc.org/
-COMMENT=		Package management and administration tools for pkgsrc
+COMMENT=		Package management and administration tools for robotpkg
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-pkgdbdir=${PKG_DBDIR}

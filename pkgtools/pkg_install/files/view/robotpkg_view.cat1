@@ -22,7 +22,7 @@ WWAARRNNIINNGG
      _(_/_u_s_r_/_p_k_g_/_p_a_c_k_a_g_e_s_/_<_p_k_g_-_n_a_m_e_>_/_)_.  _P_a_y _p_a_r_t_i_c_u_l_a_r _a_t_t_e_n_t_i_o_n _t_o _a_n_y
      _+_I_N_S_T_A_L_L_, _+_D_E_I_N_S_T_A_L_L_, _+_R_E_Q_U_I_R_E_, _o_r _+_M_T_R_E_E___D_I_R_S _f_i_l_e_s_, _a_n_d _i_n_s_p_e_c_t _t_h_e
      _+_C_O_N_T_E_N_T_S _f_i_l_e _f_o_r @@ccwwdd_, @@mmooddee _(_c_h_e_c_k _f_o_r _s_e_t_u_i_d_)_, @@ddiirrrrmm_, @@eexxeecc_, _a_n_d
-     @@uunneexxeecc _d_i_r_e_c_t_i_v_e_s_, _a_n_d_/_o_r _u_s_e _t_h_e pkg_info(_1) _c_o_m_m_a_n_d _t_o _e_x_a_m_i_n_e _t_h_e
+     @@uunneexxeecc _d_i_r_e_c_t_i_v_e_s_, _a_n_d_/_o_r _u_s_e _t_h_e robotpkg_info(_1) _c_o_m_m_a_n_d _t_o _e_x_a_m_i_n_e _t_h_e
      _i_n_s_t_a_l_l_e_d _p_a_c_k_a_g_e _c_o_n_t_r_o_l _f_i_l_e_s_.
 
 OOPPTTIIOONNSS
@@ -95,7 +95,7 @@ EENNVVIIRROONNMMEENNTT
              terns that match files relative to the _p_a_c_k_a_g_e depot directory,
              and it defaults to "info/dir *[~#] *.OLD *.orig *,v".  This is
              overridden by any _PLIST_IGNORE_FILES setting in a package's
-             _b_u_i_l_d_-_i_n_f_o_-_f_i_l_e (see pkg_create(1)) if it exists.
+             _b_u_i_l_d_-_i_n_f_o_-_f_i_l_e (see robotpkg_create(1)) if it exists.
 
      PKG_VIEW
              The default view can be specified in the PKG_VIEW environment
@@ -103,7 +103,7 @@ EENNVVIIRROONNMMEENNTT
 
 FFIILLEESS
      <pkg-dbdir>/<package>/+INSTALL
-             If the package contains an _i_n_s_t_a_l_l script (see pkg_create(1)),
+             If the package contains an _i_n_s_t_a_l_l script (see robotpkg_create(1)),
              then after the package instance is added into a view, the script
              is executed with the following arguments:
 
@@ -118,7 +118,7 @@ FFIILLEESS
              installation is terminated.
 
      <pkg-dbdir>/<package>/+DEINSTALL
-             If the package contains an _d_e_i_n_s_t_a_l_l script (see pkg_create(1)),
+             If the package contains an _d_e_i_n_s_t_a_l_l script (see robotpkg_create(1)),
              then before the package instance is deleted from a view, the
              script is executed with the following arguments:
 
@@ -136,7 +136,7 @@ FFIILLEESS
      able PKG_PREFIX set to the path to the _v_i_e_w directory.
 
 SSEEEE AALLSSOO
-     linkfarm(1), pkg_delete(1)
+     linkfarm(1), robotpkg_delete(1)
 
 AAUUTTHHOORRSS
      The ppkkgg__vviieeww utility was written by Alistair G. Crooks <agc@NetBSD.org>.

@@ -47,7 +47,7 @@ OOPPTTIIOONNSS
              For each listed package, write the absolute pathnames of the
              files listed in its _+_C_O_N_T_E_N_T_S file together with the package they
              belong to into the package database.  This should be used only by
-             pkg_view(1).
+             robotpkg_view(1).
 
      cchheecckk [_p_k_g _._._.]
              Use this command to check the files belonging to some or all of
@@ -57,7 +57,7 @@ OOPPTTIIOONNSS
              the recorded value at package installation time.  If no addi-
              tional argument is given, the files of all installed packages are
              checked, else only the named packages will be checked (wildcards
-             can be used here, see pkg_info(1)).
+             can be used here, see robotpkg_info(1)).
 
              The packages' _+_C_O_N_T_E_N_T_S files will be parsed and the checksum
              will be checked for every file found.  A warning message is
@@ -69,7 +69,7 @@ OOPPTTIIOONNSS
      ddeelleettee _p_k_g _._._.
              For each listed package, remove all file entries in the package
              database that belong to the package.  This should be used only by
-             pkg_view(1).
+             robotpkg_view(1).
 
      dduummpp    Dump the contents of the package database, similar to ppkkgg__iinnffoo
              --FF.  Columns are printed for the keyfield used in the pkgdb - the
@@ -83,7 +83,7 @@ OOPPTTIIOONNSS
              rides _/_d_i_r.  Can be used to work around limitations of /bin/sh
              and other filename globbing mechanisms.  This option implements
              matching of pkg-wildcards against arbitrary files and directo-
-             ries, useful mainly in the build system itself.  See pkg_info(1)
+             ries, useful mainly in the build system itself.  See robotpkg_info(1)
              for a description of the pattern.
 
              Example:
@@ -91,17 +91,17 @@ OOPPTTIIOONNSS
              yui# cd /usr/pkgsrc/packages/i386ELF/All/
              yui# ls unzip*
              unzip-5.40.tgz  unzip-5.41.tgz
-             yui# pkg_admin lsall 'unzip*'
+             yui# robotpkg_admin lsall 'unzip*'
              /usr/pkgsrc/packages/i386ELF/All/unzip-5.40.tgz
              /usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-             yui# pkg_admin lsall 'unzip>=5.40'
+             yui# robotpkg_admin lsall 'unzip>=5.40'
              /usr/pkgsrc/packages/i386ELF/All/unzip-5.40.tgz
              /usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-             yui# pkg_admin lsall 'unzip>=5.41'
+             yui# robotpkg_admin lsall 'unzip>=5.41'
              /usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-             yui# pkg_admin lsbest 'unzip>=5.40'
+             yui# robotpkg_admin lsbest 'unzip>=5.40'
              /usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-             yui# pkg_admin lsall /usr/pkgsrc/packages/i386ELF/All/'{mit,unproven}-pthread*'
+             yui# robotpkg_admin lsall /usr/pkgsrc/packages/i386ELF/All/'{mit,unproven}-pthread*'
              /usr/pkgsrc/packages/i386ELF/All/mit-pthreads-1.60b6.tgz
              /usr/pkgsrc/packages/i386ELF/All/unproven-pthreads-0.15.tgz
 
@@ -116,8 +116,8 @@ OOPPTTIIOONNSS
 
              This option is intended to be used for upgrading from non-pkgdb-
              pkg_* tools to pkgdb-pkg_* tools, further manipulation of the
-             pkgdb will be done by pkg_add(1), pkg_delete(1), and
-             pkg_create(1).
+             pkgdb will be done by robotpkg_add(1), robotpkg_delete(1), and
+             robotpkg_create(1).
 
              Needs to be run as root.
 
@@ -142,7 +142,7 @@ FFIILLEESS
      /var/db/pkg/<pkg>/+CONTENTS
 
 SSEEEE AALLSSOO
-     pkg_add(1), pkg_create(1), pkg_delete(1), pkg_info(1), pkg_view(1),
+     robotpkg_add(1), robotpkg_create(1), robotpkg_delete(1), robotpkg_info(1), robotpkg_view(1),
      packages(7)
 
 HHIISSTTOORRYY

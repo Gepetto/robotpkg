@@ -9,7 +9,7 @@ SSYYNNOOPPSSIISS
 
 DDEESSCCRRIIPPTTIIOONN
      The ppkkgg__ddeelleettee command is used to delete packages that have been previ-
-     ously installed with the pkg_add(1) command.
+     ously installed with the robotpkg_add(1) command.
 
 WWAARRNNIINNGG
      _S_i_n_c_e _t_h_e ppkkgg__ddeelleettee _c_o_m_m_a_n_d _m_a_y _e_x_e_c_u_t_e _s_c_r_i_p_t_s _o_r _p_r_o_g_r_a_m_s _p_r_o_v_i_d_e_d _b_y
@@ -22,7 +22,7 @@ WWAARRNNIINNGG
      _(_/_v_a_r_/_d_b_/_p_k_g_/_<_p_k_g_-_n_a_m_e_>_/_)_.  _P_a_y _p_a_r_t_i_c_u_l_a_r _a_t_t_e_n_t_i_o_n _t_o _a_n_y _+_I_N_S_T_A_L_L_,
      _+_D_E_I_N_S_T_A_L_L_, _+_R_E_Q_U_I_R_E_, _o_r _+_M_T_R_E_E___D_I_R_S _f_i_l_e_s_, _a_n_d _i_n_s_p_e_c_t _t_h_e _+_C_O_N_T_E_N_T_S
      _f_i_l_e _f_o_r @@ccwwdd_, @@mmooddee _(_c_h_e_c_k _f_o_r _s_e_t_u_i_d_)_, @@ddiirrrrmm_, @@eexxeecc_, _a_n_d @@uunneexxeecc
-     _d_i_r_e_c_t_i_v_e_s_, _a_n_d_/_o_r _u_s_e _t_h_e pkg_info(_1) _c_o_m_m_a_n_d _t_o _e_x_a_m_i_n_e _t_h_e _i_n_s_t_a_l_l_e_d
+     _d_i_r_e_c_t_i_v_e_s_, _a_n_d_/_o_r _u_s_e _t_h_e robotpkg_info(_1) _c_o_m_m_a_n_d _t_o _e_x_a_m_i_n_e _t_h_e _i_n_s_t_a_l_l_e_d
      _p_a_c_k_a_g_e _c_o_n_t_r_o_l _f_i_l_e_s_.
 
 OOPPTTIIOONNSS
@@ -30,7 +30,7 @@ OOPPTTIIOONNSS
 
      _p_k_g_-_n_a_m_e _._._.
              The named packages are deinstalled, wildcards can be used, see
-             pkg_info(1).  If no version is given, the one currently installed
+             robotpkg_info(1).  If no version is given, the one currently installed
              will be removed.  If the --FF flag is given, one or more (absolute)
              filenames may be specified and the Package Database will be con-
              sulted for the package to which the given file belongs.  These
@@ -74,7 +74,7 @@ OOPPTTIIOONNSS
              Set _p_r_e_f_i_x as the directory in which to delete files from any
              installed packages which do not explicitly set theirs.  For most
              packages, the prefix will be set automatically to the installed
-             location by pkg_add(1).
+             location by robotpkg_add(1).
 
      --RR      This option triggers a recursive delete of the given package and
              any packages it depends on, unless some other package still needs
@@ -109,10 +109,10 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
 
      If a filename is given instead of a package name, the package of which
      the given file belongs to can be deleted if the --FF Flag is given.  The
-     filename needs to be absolute, see the output produced by the pkg_info
+     filename needs to be absolute, see the output produced by the robotpkg_info
      --aaFF command.
 
-     If the package contains a _r_e_q_u_i_r_e file (see pkg_create(1)), then this is
+     If the package contains a _r_e_q_u_i_r_e file (see robotpkg_create(1)), then this is
      executed first as
            rreeqquuiirree <_p_k_g_-_n_a_m_e> _D_E_I_N_S_T_A_L_L
      (where _p_k_g_-_n_a_m_e is the name of the package in question and _D_E_I_N_S_T_A_L_L is a
@@ -138,7 +138,7 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
      the installation prefix (see the --pp option above).  This allows a package
      author to write a script that reliably performs some action on the direc-
      tory where the package is installed, even if the user might have changed
-     it by specifying the --pp option when running ppkkgg__ddeelleettee or pkg_add(1).
+     it by specifying the --pp option when running ppkkgg__ddeelleettee or robotpkg_add(1).
      The scripts are also called with the PKG_METADATA_DIR environment vari-
      able set to the location of the _+_* meta-data files, and with the
      PKG_REFCOUNT_DBDIR environment variable set to the location of the pack-
@@ -156,7 +156,7 @@ EENNVVIIRROONNMMEENNTT
                 _/_v_a_r_/_d_b_/_p_k_g_._r_e_f_c_o_u_n_t.
 
 SSEEEE AALLSSOO
-     pkg_add(1), pkg_admin(1), pkg_create(1), pkg_info(1), mktemp(3),
+     robotpkg_add(1), robotpkg_admin(1), robotpkg_create(1), robotpkg_info(1), mktemp(3),
      packages(7), mtree(8)
 
 AAUUTTHHOORRSS
