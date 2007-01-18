@@ -300,6 +300,10 @@ register_package() {
 }
 
 echo_msg "Registering installed packages"
+case "$need_ftp" in
+yes)	register_package "pkgtools/tnftp";;
+esac
+register_package "pkgtools/pax";;
 register_package "pkgtools/pkg_install"
 
 # Install the man page.
