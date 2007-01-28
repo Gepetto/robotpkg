@@ -56,4 +56,6 @@ TOOLS_DIGEST=		digest
 TOOLS_ECHO=		echo
 TOOLS_CAT=		cat
 TOOLS_TEST=		test
+TOOLS_GREP=		grep
+TOOLS_SORT=		sort
 DEF_UMASK?=		0022
