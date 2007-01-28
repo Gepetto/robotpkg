@@ -1,0 +1,9 @@
+System communication and real-time primitive layers used by GenoM
+modules.
+
+These libraries run on systems with POSIX.1 threads and basic real-time
+extensions. It has been tested successfully on Solaris (7and above),
+Linux (with glibc2), and NetBSD (2.0 and later).
+
+There is also some code to support Xenomai 2.x, but it is currently
+untested and unsupported (this may change again in the future).
