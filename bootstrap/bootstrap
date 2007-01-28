@@ -303,7 +303,7 @@ echo_msg "Registering installed packages"
 case "$need_ftp" in
 yes)	register_package "pkgtools/tnftp";;
 esac
-register_package "pkgtools/pax";;
+register_package "pkgtools/pax"
 register_package "pkgtools/pkg_install"
 
 # Install the man page.
@@ -320,8 +320,8 @@ echo "$hline"
 echo ""
 echo "Please remember to add $prefix/sbin to your PATH variable"
 echo "or set ROBOTPKG_BASE to $prefix in your environment."
-echo "You can optionnaly add $mandir to your MANPATH environment variable,"
-echo "if necessary."
+echo "You can optionnaly add $mandir to your MANPATH"
+echo "environment variable, echo if necessary."
 echo ""
 echo "An example robotpkg.conf file with the settings you provided to \"bootstrap\""
 echo "has been created for you. It can be found in:"
