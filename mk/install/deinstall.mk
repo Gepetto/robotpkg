@@ -36,4 +36,5 @@ release-deinstall-lock: release-localbase-lock
 # reinstall is a special target to re-run the install target.
 #
 .PHONY: reinstall
-reinstall: install-clean install
+reinstall: install-clean
+	${RUN}${RECURSIVE_MAKE} install
