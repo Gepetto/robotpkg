@@ -1,0 +1,124 @@
+bin/genom
+bin/genom-clean
+bin/genom-regen
+bin/killmodule
+bin/killmymodules
+bin/tclserv
+include/genom/genomError.h
+include/genom/genomModulesLibProto.h
+include/genom/h2endian.h
+include/genom/h2endianProto.h
+include/genom/moduleEvents.h
+include/genom/modules.h
+include/genom/posterXMLLib.h
+include/genom/printProto.h
+include/genom/printScan.h
+include/genom/printStateProto.h
+include/genom/printXMLProto.h
+include/genom/scanProto.h
+include/genom/tclServ.h
+include/genom/tcl_cs.h
+include/genom/testLib.h
+include/genom/testLibProto.h
+lib/libgenom.la
+lib/pkgconfig/genom.pc
+share/genom/${PKGVERSION}/Makefile.top.in
+share/genom/${PKGVERSION}/acinclude.user.m4
+share/genom/${PKGVERSION}/autoconf/codels.mk
+share/genom/${PKGVERSION}/autoconf/config.guess
+share/genom/${PKGVERSION}/autoconf/config.mk.in
+share/genom/${PKGVERSION}/autoconf/config.posix.mk
+share/genom/${PKGVERSION}/autoconf/config.rtai.mk
+share/genom/${PKGVERSION}/autoconf/config.sub
+share/genom/${PKGVERSION}/autoconf/config.xenomai.mk
+share/genom/${PKGVERSION}/autoconf/configure.ac
+share/genom/${PKGVERSION}/autoconf/genom.mk
+share/genom/${PKGVERSION}/autoconf/install-sh
+share/genom/${PKGVERSION}/autoconf/libtool.m4
+share/genom/${PKGVERSION}/autoconf/ltmain.sh
+share/genom/${PKGVERSION}/autoconf/mkinstalldirs
+share/genom/${PKGVERSION}/autoconf/module-oprs.pc.in
+share/genom/${PKGVERSION}/autoconf/module.pc.in
+share/genom/${PKGVERSION}/autoconf/robots.m4
+share/genom/${PKGVERSION}/autogen
+share/genom/${PKGVERSION}/codels/Makefile.in
+share/genom/${PKGVERSION}/configure.ac.user
+share/genom/${PKGVERSION}/end.pl
+share/genom/${PKGVERSION}/local.mk.in
+share/genom/${PKGVERSION}/server/Makefile.in
+share/genom/${PKGVERSION}/server/cntrlTask.c
+share/genom/${PKGVERSION}/server/connectLib.c
+share/genom/${PKGVERSION}/server/error.c
+share/genom/${PKGVERSION}/server/error.h
+share/genom/${PKGVERSION}/server/execTask.c
+share/genom/${PKGVERSION}/server/execTaskHeader.h
+share/genom/${PKGVERSION}/server/header.h
+share/genom/${PKGVERSION}/server/init.c
+share/genom/${PKGVERSION}/server/moduleInit.c
+share/genom/${PKGVERSION}/server/msgCntrl.c
+share/genom/${PKGVERSION}/server/msgExec.c
+share/genom/${PKGVERSION}/server/msgLib.c
+share/genom/${PKGVERSION}/server/msgLib.h
+share/genom/${PKGVERSION}/server/msgLibCntrlProto.h
+share/genom/${PKGVERSION}/server/msgLibExecProto.h
+share/genom/${PKGVERSION}/server/openprs/openprs.c
+share/genom/${PKGVERSION}/server/openprs/openprsDecode.c
+share/genom/${PKGVERSION}/server/openprs/openprsDecode.h
+share/genom/${PKGVERSION}/server/openprs/openprsEncode.c
+share/genom/${PKGVERSION}/server/openprs/openprsEncode.h
+share/genom/${PKGVERSION}/server/openprs/openprsPoster.op
+share/genom/${PKGVERSION}/server/openprs/openprsProto.h
+share/genom/${PKGVERSION}/server/openprs/openprsRqst.op
+share/genom/${PKGVERSION}/server/posterLib.c
+share/genom/${PKGVERSION}/server/posterLib.h
+share/genom/${PKGVERSION}/server/posterLibStruct.h
+share/genom/${PKGVERSION}/server/posterShowLib.c
+share/genom/${PKGVERSION}/server/posterShowLib.h
+share/genom/${PKGVERSION}/server/posterXMLLib.c
+share/genom/${PKGVERSION}/server/posterXMLLib.h
+share/genom/${PKGVERSION}/server/print.h
+share/genom/${PKGVERSION}/server/printXML.h
+share/genom/${PKGVERSION}/server/requestCntrl.c
+share/genom/${PKGVERSION}/server/requestExec.c
+share/genom/${PKGVERSION}/server/scan.h
+share/genom/${PKGVERSION}/server/scopeLib.h
+share/genom/${PKGVERSION}/server/scopeMain.c
+share/genom/${PKGVERSION}/server/scope_script
+share/genom/${PKGVERSION}/server/tcl/tclClient.tcl
+share/genom/${PKGVERSION}/server/tcl/tclClientPoster.tcl
+share/genom/${PKGVERSION}/server/tcl/tclClientRqst.tcl
+share/genom/${PKGVERSION}/server/tcl/tclEpilog.c
+share/genom/${PKGVERSION}/server/tcl/tclPoster.c
+share/genom/${PKGVERSION}/server/tcl/tclProlog.c
+share/genom/${PKGVERSION}/server/tcl/tclRqst.c
+share/genom/${PKGVERSION}/server/test.c
+share/genom/${PKGVERSION}/server/testCntrl.c
+share/genom/${PKGVERSION}/server/testExec.c
+share/genom/${PKGVERSION}/server/test_script
+share/genom/${PKGVERSION}/server/type.h
+share/genom/${PKGVERSION}/start.pl
+share/genom/${PKGVERSION}/tcl/cs.tcl
+share/genom/${PKGVERSION}/tcl/load.tcl
+share/genom/${PKGVERSION}/tcl/misc.tcl
+share/genom/${PKGVERSION}/tcl/pmtools.tcl
+share/genom/${PKGVERSION}/tcl/server.tcl
+share/genom/genom-mode.el
+share/genom/genom.pdf
+share/genom/pkgIndex.tcl
+share/tclserv/cs.tcl
+share/tclserv/init.tcl
+share/tclserv/load.tcl
+share/tclserv/pkgIndex.tcl
+share/tclserv/server.tcl
+@dirrm share/tclserv
+@dirrm share/genom/${PKGVERSION}/tcl
+@dirrm share/genom/${PKGVERSION}/server/tcl
+@dirrm share/genom/${PKGVERSION}/server/openprs
+@dirrm share/genom/${PKGVERSION}/server
+@exec ${MKDIR} %D/share/genom/${PKGVERSION}/openprs
+@dirrm share/genom/${PKGVERSION}/openprs
+@dirrm share/genom/${PKGVERSION}/codels
+@dirrm share/genom/${PKGVERSION}/autoconf
+@dirrm share/genom/${PKGVERSION}
+@dirrm share/genom
+@dirrm include/genom

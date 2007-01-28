@@ -1,0 +1,17 @@
+# $NetBSD$
+#
+
+DISTNAME=		genom-1.99.901
+CATEGORIES=		architecture
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+
+MAINTAINER=		openrobots@laas.fr
+HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/genom
+COMMENT=		Software components generator for robotics architecture.
+
+GNU_CONFIGURE=		yes
+USE_PKG_CONFIG=		yes
+
+DEPENDS+=		pocolibs>=2.0:../../devel/pocolibs
+
+include ../../mk/robotpkg.mk
