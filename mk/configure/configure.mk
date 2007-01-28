@@ -25,9 +25,12 @@ endif
 #.if defined(USE_LIBTOOL)
 #.  include "${PKGSRCDIR}/mk/configure/libtool-override.mk"
 #.endif
-#.if defined(PKGCONFIG_OVERRIDE)
-#.  include "${PKGSRCDIR}/mk/configure/pkg-config-override.mk"
-#.endif
+ifdef PKGCONFIG_OVERRIDE
+USE_PKG_CONFIG=		yes
+endif
+ifdef USE_PKG_CONFIG
+  include ${PKGSRCDIR}/mk/configure/pkg-config.mk
+endif
 #.include "${PKGSRCDIR}/mk/configure/replace-interpreter.mk"
 ifdef USE_PKGLOCALEDIR
   include ${PKGSRCDIR}/mk/configure/replace-localedir.mk
