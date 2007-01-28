@@ -5,6 +5,7 @@
 #
 
 MASTER_SITE_OPENROBOTS+=	\
+	http://softs.laas.fr/openrobots/distfiles/	\
 	ftp://softs.laas.fr/pub/openrobots/robotpkg/
 
 MASTER_SITE_NETBSD_PKGSRC+=		\
