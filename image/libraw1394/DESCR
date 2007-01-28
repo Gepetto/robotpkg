@@ -1,0 +1,13 @@
+The Linux kernel's IEEE 1394 subsystem provides access to the raw 1394
+bus through the raw1394 module. This includes the standard 1394
+transactions (read, write, lock) on the active side, isochronous stream
+receiving and sending and dumps of data written to the FCP_COMMAND and
+FCP_RESPONSE registers. raw1394 uses a character device to communicate to
+user programs using a special protocol.
+
+libraw1394 was created with the intent to hide that protocol from applications so that
+
+   1. the protocol has to be implemented correctly only once.
+   2. all work can be done using easy to understand functions instead of
+      handling a complicated command structure.
+   3. only libraw1394 has to be changed when raw1394's interface changes. 
