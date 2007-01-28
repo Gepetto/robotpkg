@@ -1,0 +1,7 @@
+Mkdep is a tool to manage dependencies for make(1) automatically on
+Unix-like systems. The original feature of this version is to be able to
+handle incremental updates of the dependencies.
+
+This version of mkdep was originally written by Christophe Dousson,
+during his PhD thesis at CNRS-LAAS. It is now maintained by Matthieu
+Herrb and made available under a BSD-style license.
