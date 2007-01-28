@@ -1,0 +1,8 @@
+libdc1394 is a library that is intended to provide a high level
+programming interface for application developers who wish to control IEEE
+1394 based cameras that conform to the 1394-based Digital Camera
+Specification of the 1394 Trade Association (1394-TA). The specifications
+can be found on this website. The library development is an open-source
+project (homepage sourceforge.net/projects/libdc1394) licensed under the
+GNU Lesser General Public License (LGPL). It was originally designed for
+the Linux platform but is now also compatible with OSX.
