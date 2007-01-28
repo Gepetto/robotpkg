@@ -44,34 +44,34 @@ _PRINT_PLIST_FILES_CMD=	\
 _PRINT_PLIST_DIRS_CMD=	\
 	${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.extract} -type d -print
 
-#.if !empty(LIBTOOLIZE_PLIST:M[yY][eE][sS])
-#_PRINT_PLIST_LIBTOOLIZE_FILTER?=					\
-#	(								\
-#	  if ${TEST} -d ${WRKDIR}; then					\
-#	  	tmpdir="${WRKDIR}";					\
-#	  else								\
-#	  	tmpdir="$${TMPDIR-/tmp}";				\
-#	  fi;								\
-#	  fileslist="$$tmpdir/print.plist.files.$$$$";			\
-#	  libslist="$$tmpdir/print.plist.libs.$$$$";			\
-#	  while read file; do						\
-#		case $$file in						\
-#		*.la)							\
-#			${_LIBTOOL_EXPAND} $$file >> $$libslist;	\
-#			;;						\
-#		esac;							\
-#		${ECHO} "$$file";					\
-#	  done > $$fileslist;						\
-#	  if ${TEST} -f "$$libslist"; then				\
-#	  	${GREP} -hvxF "`${SORT} -u $$libslist`" "$$fileslist";	\
-#	  else								\
-#	  	${CAT} "$$fileslist";					\
-#	  fi;								\
-#	  ${RM} -f "$$fileslist" "$$libslist";				\
-#	)
-#.else
+ifneq (,$(call isyes,$(LIBTOOLIZE_PLIST)))
+_PRINT_PLIST_LIBTOOLIZE_FILTER?=					\
+	(								\
+	  if ${TEST} -d ${WRKDIR}; then					\
+	  	tmpdir="${WRKDIR}";					\
+	  else								\
+	  	tmpdir="$${TMPDIR-/tmp}";				\
+	  fi;								\
+	  fileslist="$$tmpdir/print.plist.files.$$$$";			\
+	  libslist="$$tmpdir/print.plist.libs.$$$$";			\
+	  while read file; do						\
+		case $$file in						\
+		*.la)							\
+			${_LIBTOOL_EXPAND} $$file >> $$libslist;	\
+			;;						\
+		esac;							\
+		${ECHO} "$$file";					\
+	  done > $$fileslist;						\
+	  if ${TEST} -f "$$libslist"; then				\
+	  	${GREP} -hvxF "`${SORT} -u $$libslist`" "$$fileslist";	\
+	  else								\
+	  	${CAT} "$$fileslist";					\
+	  fi;								\
+	  ${RM} -f "$$fileslist" "$$libslist";				\
+	)
+else
 _PRINT_PLIST_LIBTOOLIZE_FILTER?=	${CAT}
-#.endif
+endif
 
 .PHONY: print-PLIST
 print-PLIST:
