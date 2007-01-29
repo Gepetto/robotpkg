@@ -1,0 +1,31 @@
+--- SRC/Makefile.orig	2006-11-14 01:32:02.000000000 +0100
++++ SRC/Makefile	2007-01-29 18:51:06.141456000 +0100
+@@ -1,4 +1,4 @@
+-include ../make.inc
++#include ../make.inc
+ 
+ #######################################################################
+ #  This is the makefile to create a library for LAPACK.
+@@ -294,8 +294,8 @@
+ 	$(ALLAUX)
+ 
+ ../$(LAPACKLIB): $(ALLOBJ)
+-	$(ARCH) $(ARCHFLAGS) $@ $(ALLOBJ)
+-	$(RANLIB) $@
++	${LIBTOOL} --mode=link ${FC} -o ../liblapack.la 		    \
++	$(ALLOBJ:.o=.lo) -rpath ${PREFIX}/lib -version-info 3:1
+ 
+ single: $(SLASRC) $(ALLAUX) $(SCLAUX) 
+ 	$(ARCH) $(ARCHFLAGS) ../$(LAPACKLIB) $(SLASRC) $(ALLAUX) \
+@@ -331,9 +331,5 @@
+ clean:
+ 	rm -f *.o
+ 
+-.f.o: 
+-	$(FORTRAN) $(OPTS) -c $<
+-
+-slaruv.o: slaruv.f ; $(FORTRAN) $(NOOPT) -c $<
+-dlaruv.o: dlaruv.f ; $(FORTRAN) $(NOOPT) -c $<
+-
++.f.o:
++	${LIBTOOL} --mode=compile $(FC) $(FFLAGS) -c $< -o $@
