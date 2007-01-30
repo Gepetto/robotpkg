@@ -2,6 +2,7 @@
 #
 
 DISTNAME=		boost-numeric-bindings-20070129
+PKGREVISION=		1
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
