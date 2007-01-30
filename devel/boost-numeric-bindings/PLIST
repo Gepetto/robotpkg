@@ -90,4 +90,4 @@ include/boost/numeric/bindings/umfpack/umfpack_overloads.hpp
 @dirrm include/boost/numeric/bindings/atlas
 @dirrm include/boost/numeric/bindings/amos
 @dirrm include/boost/numeric/bindings
-@dirrm include/boost/numeric
+
