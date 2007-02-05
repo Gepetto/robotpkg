@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.21 2006/08/22 23:27:23 joerg Exp $
 #
 
-DISTNAME=	libt3d-2.0
+DISTNAME=	libt3d-2.1
 
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITES_OPENROBOTS}
