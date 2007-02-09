@@ -46,6 +46,7 @@ CHMOD?=			chmod
 FIND?=			find
 TAR?=			${LOCALBASE}/bin/tar
 PAX?=			${LOCALBASE}/bin/pax
+CVS?=			cvs
 BASENAME?=		basename
 PATCH?=			patch
 LIBTOOL?=		libtool
