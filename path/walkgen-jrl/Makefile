@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=		walkgenjrl-2.0
+DISTNAME=		walkgenjrl-2.1
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
