@@ -1,10 +1,6 @@
 $NetBSD$
 
-SHA1 (prKpp-2.03.tgz) = ca0f477b16d9560ca14ac9260a0de66863b72577
-RMD160 (prKpp-2.03.tgz) = 5de0b70d5c30fd9e36c6e64469195e898838913c
-Size (prKpp-2.03.tgz) = 12916395 bytes
-SHA1 (patch-aa) = 5940746318f396ef83b184db26acdea2e98ffcd3
-SHA1 (patch-ab) = 77ad91ce97be941f317f745e7c04509128e7ae6e
-SHA1 (patch-ac) = 87909493e4fc21a27f65dfb95189e03a86d1c73f
-SHA1 (patch-ad) = 1172a750b9982f6fc3d1191c874ebbaa6c1305d4
-SHA1 (patch-ae) = 754dfef2d4cdb08b10802fe543951c1802e4bdaa
+SHA1 (KPPSDK_2.04.001.tgz) = e5c12387e7f01ab6aab4924acb8bf6b453af806f
+RMD160 (KPPSDK_2.04.001.tgz) = 70d74041913f9bc8d0d0afe0b84b1a873db645ca
+Size (KPPSDK_2.04.001.tgz) = 65390593 bytes
+SHA1 (patch-aa) = 2e626a351898092a0bea90f5a1b3e458062cc469

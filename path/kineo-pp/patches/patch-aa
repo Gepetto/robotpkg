@@ -1,52 +1,42 @@
---- KineoPathPlanner/prj/i386-linux/Init.make.i386-linux~	2006-10-30 13:04:52.000000000 +0100
-+++ KineoPathPlanner/prj/i386-linux/Init.make.i386-linux	2007-01-04 16:52:00.786187000 +0100
-@@ -15,7 +15,7 @@
- # CFLAGS = -O -Wall -Wno-unknown-pragmas
- # CFLAGS = -g  -Wcomment
- # CFLAGS_TEMP = $(CFLAGS)
--CFLAGS = -g  
-+# CFLAGS = -g  
+--- ./interfaces/kcd2/kcdPolyhedronData.h~	2007-02-15 16:16:51.000000000 +0100
++++ ./interfaces/kcd2/kcdPolyhedronData.h	2007-03-01 16:52:52.000000000 +0100
+@@ -56,7 +56,7 @@
+ 	*
+ 	*   \return        \ref usingSmartPointers "shared pointer" to a newly created CkcdPolyhedronData object
+ 	*/
+-	static CkcdPolyhedronDataShPtr CkcdPolyhedronData::create( );
++	static CkcdPolyhedronDataShPtr create( );
  
- # add Opengl
- #
-@@ -24,35 +24,9 @@
- CPPFLAGS += \
- 	$(OPENGL_INC)
+ 	/** Reserves memory for a given number of points.
+ 	*
+--- ./interfaces/kcd2/kcdPolyhedron.h~	2007-02-15 16:16:51.000000000 +0100
++++ ./interfaces/kcd2/kcdPolyhedron.h	2007-03-01 16:54:28.000000000 +0100
+@@ -136,7 +136,7 @@
+ 	*
+ 	*   \return        \ref usingSmartPointers "shared pointer" to a newly created CkcdPolyhedron object
+ 	*/
+-	static CkcdPolyhedronShPtr CkcdPolyhedron::create( );
++	static CkcdPolyhedronShPtr create( );
  
--# add wxWidgets
--#
--#WX_INC = \
--#	-I/usr/local/lib/wx/include/gtk-2.4 \
--#	-I/usr/local/include/
--#WX_LIB = \
--#	-L/usr/local/lib \
--#	-pthread \
--#	-L/usr/X11R6/lib \
--#	-lwx_gtk-2.4 \
--#	-lwx_gtk_gl-2.4 \
--#	-lgtk -lgdk -lgmodule -lgthread -lglib -lpthread -ldl -lXext -lX11 -lnsl -lm -lpng -ljpeg -ltiff -lnsl -ldl -lm
--
--WX_INC = \
--	-I/usr/local/include/wx-2.6 \
--	-I/usr/local/lib/wx/include/gtk2-ansi-release-2.6
--
--WX_LIB = -L/usr/local/lib -pthread   -L/usr/X11R6/lib  -lwx_gtk2_xrc-2.6 -lwx_gtk2_qa-2.6 -lwx_gtk2_html-2.6 -lwx_gtk2_adv-2.6 -lwx_gtk2_core-2.6 -lwx_base_xml-2.6 -lwx_base_net-2.6 -lwx_gtk2_gl-2.6 -lwx_base-2.6
--
--WX_INC = \
--	-I/usr/include/wx-2.6 \
--	-I/usr/lib/wx/include/gtk2-ansi-release-2.6
--
--WX_INC = \
--	-I/usr/local/include/wx-2.6 \
--	-I/usr/local/lib/wx/include/gtk2-ansi-release-2.6
--
--
--CPPFLAGS += $(WX_INC) -DGTK_NO_CHECK_CASTS -D__WXGTK__ -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -D_LARGEFILE_SOURCE=1 -DNO_GCC_PRAGMA
--
--CPPFLAGS	+= -DKINEO_NO_TTF_IMPORTER	
-+# wxWidgets
-+WX_INC = $(shell $(PREFIX)/bin/wx-config --cflags)
-+WX_LIB = $(shell $(PREFIX)/bin/wx-config --gl_libs --libs)
+ 	/** Returns a \ref usingSmartPointers "shared pointer" pointing to a new CkcdPolyhedron,
+ 	*   or NULL if there is a memory allocation error. 
+@@ -144,7 +144,7 @@
+ 	*
+ 	*   \return        \ref usingSmartPointers "shared pointer" to a newly created CkcdPolyhedron object
+ 	*/
+-	static CkcdPolyhedronShPtr CkcdPolyhedron::create( CkcdPolyhedronDataShPtr& i_polyData );
++	static CkcdPolyhedronShPtr create( CkcdPolyhedronDataShPtr& i_polyData );
  
-+CPPFLAGS+=	$(WX_INC)
-+CPPFLAGS+=	-DKINEO_NO_TTF_IMPORTER	
+ 	/** Reserves memory for a given number of points.
+ 	*
+--- ./interfaces/KineoController/kppGimmeName.h~	2007-02-15 16:16:50.000000000 +0100
++++ ./interfaces/KineoController/kppGimmeName.h	2007-03-01 16:52:30.000000000 +0100
+@@ -31,7 +31,7 @@
+ 	CkppGimmeName();
+ 	~CkppGimmeName();
+ 	static std::string unique(const std::string& i_name);
+-	static void CkppGimmeName::clear();
++	static void clear();
+ 
+ private:
+ 	static std::map<std::string, int> m_nameMap;
