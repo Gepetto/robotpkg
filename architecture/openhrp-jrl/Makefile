@@ -34,7 +34,7 @@ FETCH_MESSAGE+= " The files"
 $(foreach __file__,${DISTFILES},$(eval FETCH_MESSAGE+="	${__file__}"))
 FETCH_MESSAGE+= ""
 FETCH_MESSAGE+= " must be put manually into:"
-FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
+FETCH_MESSAGE+= "       ${DISTDIR}/"
 
 NO_CONFIGURE=		yes
 BUILD_DIRS=		bin
