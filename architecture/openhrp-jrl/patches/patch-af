@@ -4,6 +4,6 @@
  #!/bin/bash
  
 -. config.sh
-+. @PREFIX@/bin/config.sh
++. @PREFIX@/OpenHRP/bin/config.sh
  cd $OPENHRPHOME/ModelLoader/server2
  exec ./ModelLoader $NS_OPT

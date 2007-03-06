@@ -125,9 +125,7 @@ OpenHRP/bin/IOBServerCorba.sh
 OpenHRP/bin/JointCalib.sh
 OpenHRP/bin/ModelLoader.sh
 OpenHRP/bin/ModelLoader2.sh
-OpenHRP/bin/ModelLoader2.sh.orig
 OpenHRP/bin/NameServer.sh
-OpenHRP/bin/NameServer.sh.orig
 OpenHRP/bin/OnlineViewer.sh
 OpenHRP/bin/OrbixEpy
 OpenHRP/bin/PDController.sh
