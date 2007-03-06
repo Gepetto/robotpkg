@@ -4,13 +4,20 @@
 DISTNAME=		omniORB-4.1.0
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
+PKGREVISION=		1
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://omniorb.sourceforge.net/
-COMMENT=		OmniORB is an ORB that implements the 2.6 specification of the CORBA
+COMMENT=		ORB that implements the 2.6 specification of the CORBA
 
 MAKE_FILE=		GNUmakefile
-GNU_CONFIGURE=		YES
+GNU_CONFIGURE=		yes
+PKGCONFIG_OVERRIDE+=	contrib/pkgconfig/omniCOS4.pc.in
+PKGCONFIG_OVERRIDE+=	contrib/pkgconfig/omniCOSDynamic4.pc.in
+PKGCONFIG_OVERRIDE+=	contrib/pkgconfig/omniConnectionMgmt4.pc.in
+PKGCONFIG_OVERRIDE+=	contrib/pkgconfig/omniDynamic4.pc.in
+PKGCONFIG_OVERRIDE+=	contrib/pkgconfig/omniORB4.pc.in
+PKGCONFIG_OVERRIDE+=	contrib/pkgconfig/omnithread3.pc.in
 
 OMNIORB_ETCDIR?= 	${PKG_SYSCONFDIR}
 OMNIORB_CONFIG=		${OMNIORB_ETCDIR}/omniORB.cfg

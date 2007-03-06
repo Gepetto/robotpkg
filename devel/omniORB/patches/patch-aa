@@ -1,0 +1,21 @@
+--- mk/beforeauto.mk.in~	2006-11-16 14:51:06.000000000 +0100
++++ mk/beforeauto.mk.in	2007-03-06 13:49:57.000000000 +0100
+@@ -337,6 +337,7 @@
+ # Patterns for various file types
+ #
+ LibPathPattern    = -L%
++LibRPathPattern    = -Wl,-R@libdir@
+ LibNoDebugPattern = lib%.a
+ LibDebugPattern = lib%.a
+ LibPattern = lib%.a
+@@ -395,7 +396,9 @@
+ # i.e. we need to filter out the lib_depends from the command
+ #
+ 
+-IMPORT_LIBRARY_FLAGS = $(patsubst %,$(LibPathPattern),$(IMPORT_LIBRARY_DIRS))
++IMPORT_LIBRARY_FLAGS = \
++	$(LibRPathPattern)					\
++	$(patsubst %,$(LibPathPattern),$(IMPORT_LIBRARY_DIRS))
+ 
+ define CXXExecutable
+ (set -x; \
