@@ -1,0 +1,5 @@
+omniORBpy is a robust high-performance CORBA ORB for Python.
+
+The bindings adhere to the standard IDL to Python mapping.
+omniORBpy makes use of the C++ omniORB library. omniORBpy version 3.x
+can only be used with omniORB 4.1.x.
