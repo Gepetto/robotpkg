@@ -1,0 +1,13 @@
+prefix=@PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: KineoPathPlanner 
+Description: Softare platform with interface and controller for motion planning
+Version: @KPPVERSION@.@KPPPATCH@
+Requires: KineoController
+Libs: -Wl,-R${libdir} -pthread -L${libdir} -lKineoController -lKineoParser2 -lKineoParser203XML -lKineoParser2TTF -lKineoParser2VRML -lKineoParser2XML -lKineoModuleManager -lKineoModel -lKineoKCDModel -lKineoWorks2 -lkcd2 -lkwsKcd2 -lKineoUtility -ldl     
+Cflags: -I${includedir} -DKD_UNIX -D__x86__ -D__linux__ -D__OSVERSION__=2 -I${libdir}/wx/include/gtk2-ansi-release-2.8 -DGTK_NO_CHECK_CASTS -D__WXGTK__ -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -DNO_GCC_PRAGMA
+
+
