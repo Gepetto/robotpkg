@@ -35,6 +35,7 @@ kineo/include/KineoController/kppDuplicateCommand.h
 kineo/include/KineoController/kppExecuteSubSequenceCommand.h
 kineo/include/KineoController/kppFtor.h
 kineo/include/KineoController/kppGimmeName.h
+kineo/include/KineoController/kppGimmeName.h.orig
 kineo/include/KineoController/kppInsertBoxCommand.h
 kineo/include/KineoController/kppInsertComponentCommand.h
 kineo/include/KineoController/kppInsertGeometryFileCommand.h
@@ -3808,7 +3809,9 @@ kineo/include/kcd2/kcdObject.h
 kineo/include/kcd2/kcdPoint.h
 kineo/include/kcd2/kcdPoly.h
 kineo/include/kcd2/kcdPolyhedron.h
+kineo/include/kcd2/kcdPolyhedron.h.orig
 kineo/include/kcd2/kcdPolyhedronData.h
+kineo/include/kcd2/kcdPolyhedronData.h.orig
 kineo/include/kcd2/kcdPolyhedronTriangle.h
 kineo/include/kcd2/kcdProgressDelegate.h
 kineo/include/kcd2/kcdTriangle.h
@@ -5660,6 +5663,8 @@ kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrame.h
 kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrameController.cpp
 kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrameController.h
 kineo/share/examples/src/KineoTutorialKXMLViewer/main.cpp
+lib/pkgconfig/KineoController.pc
+lib/pkgconfig/KineoPathPlanner.pc
 @dirrm kineo/share/examples/src/KineoTutorialKXMLViewer
 @dirrm kineo/share/examples/src/KineoTutorialIK
 @dirrm kineo/share/examples/src/KineoTutorialHelloWorld

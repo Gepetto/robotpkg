@@ -4,6 +4,7 @@
 
 KPPVERSION=		2.04
 KPPPATCH=		001
+PKGREVISION=		1
 PKGNAME=		kineo-pp-${KPPVERSION}.${KPPPATCH}
 DISTNAME=		KPPSDK_${KPPVERSION}.${KPPPATCH}
 EXTRACT_SUFX=		.tgz
@@ -18,6 +19,18 @@ HOMEPAGE=		http://www.kineocam.org/
 COMMENT=		Software component dedicated to motion planning.
 
 LICENSE=                kineocam-license
+
+SUBST_CLASSES+=			kineopc
+SUBST_STAGE.kineopc=		pre-install
+SUBST_MESSAGE.kineopc=		Generating pkg-config files.
+SUBST_SED.kineopc=						\
+	-e 's|@PREFIX@|${PREFIX}|g'				\
+	-e 's|@KPPVERSION@|${KPPVERSION}|g'			\
+	-e 's|@KPPPATCH@|${KPPPATCH}|g'
+
+SUBST_FILES.kineopc=$(call quote,				\
+	KineoController.pc					\
+	KineoPathPlanner.pc)
 
 INTERACTIVE_STAGE=	fetch
 FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing KPP ${KPPVERSION}"
@@ -34,6 +47,8 @@ KINEO_DIR=		${PREFIX}/kineo
 
 post-extract:
 	${CHMOD} -R u+w ${WRKSRC}
+	${CP} ${FILESDIR}/KineoController.pc ${WRKSRC}
+	${CP} ${FILESDIR}/KineoPathPlanner.pc ${WRKSRC}
 
 do-install:
 	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux||' ${WRKSRC}/bin/i386-linux/Kineo* ${KINEO_DIR}/bin
@@ -53,4 +68,9 @@ do-install:
 		${SED} -e 's|@KINEO_DIR@|${KINEO_DIR}|' 		\
 			< ${FILESDIR}/wrapper.sh > ${PREFIX}/bin/$$f;	\
 		${CHMOD} a+x ${PREFIX}/bin/$$f;				\
+	done
+	for f in 							\
+		KineoController.pc					\
+		KineoPathPlanner.pc; do 				\
+		${INSTALL_DATA} ${WRKSRC}/$$f ${PREFIX}/lib/pkgconfig/$$f;\
 	done
