@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.9 2005/02/23 12:06:55 agc Exp $
 
-SHA1 (libt3d-2.1.tar.gz) = 28f0f6bab8a85bb8ead67718c3b0ece6f62c80d6
-RMD160 (libt3d-2.1.tar.gz) = 7e066bad563a92493ab6e8f9bcb5f1bb98e79e05
-Size (libt3d-2.1.tar.gz) = 333791 bytes
+SHA1 (libt3d-2.2.tar.gz) = 21249befb7d8d94fd79761a062186499d4695c83
+RMD160 (libt3d-2.2.tar.gz) = 85df3e8cf2b966f85661dd39b10fe4c06bed4bb9
+Size (libt3d-2.2.tar.gz) = 337332 bytes
