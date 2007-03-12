@@ -5,7 +5,7 @@
 VERSION=		20060713
 DISTNAME=		OpenHRP
 PKGNAME=		openhrp-jrl-${VERSION}
-PKGREVISION=		1
+PKGREVISION=		2
 WRKSRC=			${WRKDIR}/OpenHRP
 
 CATEGORIES=		architecture
@@ -53,7 +53,7 @@ SUBST_SED.openhrp-paths=	\
 	-e 's|@ROBOT_HOST@|${ROBOT_HOST}|g'			\
 	-e 's|@ROBOT_PORT@|${ROBOT_PORT}|g'
 
-SUBST_FILES.openhrp-paths=					\
+SUBST_FILES.openhrp-paths=$(call quote,				\
 	bin/config.sh						\
 	bin/Auditor.sh						\
 	bin/NameServer.sh					\
@@ -61,7 +61,7 @@ SUBST_FILES.openhrp-paths=					\
 	bin/CollisionDetector.sh				\
 	bin/Dynamics.sh						\
 	bin/HRPController.sh					\
-	client/gui2/property/default.properties
+	client/gui2/property/default.properties)
 
 PLIST_SRC=		${WRKDIR}/PLIST
 

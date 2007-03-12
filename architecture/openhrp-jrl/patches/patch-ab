@@ -1,5 +1,5 @@
 --- client/gui2/property/default.properties.orig	2006-07-13 03:56:55.000000000 +0200
-+++ client/gui2/property/default.properties	2007-01-10 15:13:53.189221000 +0100
++++ client/gui2/property/default.properties	2007-03-12 19:22:18.591683000 +0100
 @@ -2,10 +2,10 @@
  startupmode			= none
  #remote settings
@@ -28,6 +28,15 @@
  simulation.config.use_euler	= true
  simulation.config.use_hg	= true
  simulation.config.use_sd	= true
+@@ -52,7 +52,7 @@
+ simulation.config.totaltime	= 300
+ 
+ simulation.model0.id		= $(robot.type)
+-simulation.model0.url		= file://$(simulation.openhrphome)/etc/$(robot.type)/$(robot.type)main.wrl
++simulation.model0.url		= $(OPENHRP_ROBOT_MODEL)
+ simulation.model1.id		= floor
+ simulation.model1.url		= file://$(simulation.openhrphome)/etc/floor.wrl
+ 
 @@ -66,30 +66,30 @@
  processinfo.default.nsPort 	= $(simulation.nsport)
  
