@@ -1,0 +1,5 @@
+The editline library provides generic line editing and history functions,
+similar to those found in tcsh(1). This package contains a Makefile for
+compiling the -current version of NetBSD's library which provides the
+same consistent installation and compilation environments as for the
+other tools found in this repository
