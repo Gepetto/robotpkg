@@ -1,0 +1,9 @@
+bin/eltclsh
+bin/elwish
+man/cat1/eltclsh.1
+man/man1/eltclsh.1
+share/eltcl/complete.tcl
+share/eltcl/init.tcl
+share/eltcl/pkgIndex.tcl
+share/eltcl/tools.tcl
+@dirrm share/eltcl

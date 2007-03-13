@@ -1,0 +1,16 @@
+# $NetBSD$
+#
+
+DISTNAME=		eltclsh-1.7
+CATEGORIES=		shell
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+
+MAINTAINER=		openrobots@laas.fr
+HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/eltclsh
+COMMENT=		Interactive shell for the TCL programming language.
+
+GNU_CONFIGURE=		yes
+
+DEPENDS+=		libedit>=2.10:../../devel/libedit
+
+include ../../mk/robotpkg.mk
