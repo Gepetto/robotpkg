@@ -90,19 +90,15 @@ endif
 #
 # Associate each file to fetch with the correct site(s).
 #
-ifneq (,${_DISTFILES})
 define _FETCHFILE_VAR
 SITES.$(subst =,--,$(notdir ${fetchfile}))?= ${MASTER_SITES}
 endef
 $(foreach fetchfile,${_DISTFILES},$(eval ${_FETCHFILE_VAR}))
-endif
 
-ifneq (,${_PATCHFILES})
 define _PATCHFILES_VAR
 SITES.$(subst =,--,$(notdir ${fetchfile}))?= ${PATCH_SITES}
 endef
 $(foreach fetchfile,${_PATCHFILES},$(eval ${_PATCHFILES_VAR}))
-endif
 
 
 # --- fetch (PUBLIC) -------------------------------------------------
