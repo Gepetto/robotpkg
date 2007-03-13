@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=		genom-1.99.901
+DISTNAME=		genom-1.99.902
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
