@@ -4,6 +4,7 @@
 
 KPPVERSION=		2.04
 KPPPATCH=		003
+PKGREVISION=		1
 PKGNAME=		kineo-pp-${KPPVERSION}.${KPPPATCH}
 DISTNAME=		KPPSDK_${KPPVERSION}-${KPPPATCH}
 EXTRACT_SUFX=		.tgz
@@ -53,9 +54,9 @@ do-install:
 	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux||' ${WRKSRC}/bin/i386-linux/Kineo* ${KINEO_DIR}/bin
 	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux||' ${WRKSRC}/bin/i386-linux/*.sh ${KINEO_DIR}/bin
 	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux/dynlib||' ${WRKSRC}/bin/i386-linux/dynlib ${KINEO_DIR}/lib
-	${PAX} -rw -pm -s '|${WRKSRC}/KPPSDK/demos||' ${WRKSRC}/KPPSDK/demos ${KINEO_DIR}/share/demos
+	${PAX} -rw -pm -s '|${WRKSRC}/demos||' ${WRKSRC}/demos ${KINEO_DIR}/share/demos
 	${PAX} -rw -pm -s '|${WRKSRC}/doc||' ${WRKSRC}/doc ${KINEO_DIR}/share/doc
-	${PAX} -rw -pm -s '|${WRKSRC}/KPPSDK/examples||' ${WRKSRC}/KPPSDK/examples ${KINEO_DIR}/share/examples
+	${PAX} -rw -pm -s '|${WRKSRC}/examples||' ${WRKSRC}/examples ${KINEO_DIR}/share/examples
 	${PAX} -rw -pm -s '|${WRKSRC}/interfaces||' ${WRKSRC}/interfaces ${KINEO_DIR}/include
 	${PAX} -rw -pm -s '|${WRKSRC}/lib||' ${WRKSRC}/lib ${KINEO_DIR}/lib
 	${PAX} -rw -pm -s '|${WRKSRC}/res||' ${WRKSRC}/res ${KINEO_DIR}/res
