@@ -12,6 +12,7 @@ kineo/include/KineoController/kppAccessorValueFetcher.h
 kineo/include/KineoController/kppAddToGroupCommand.h
 kineo/include/KineoController/kppAlignComponentCommand.h
 kineo/include/KineoController/kppAlignOnParentCommand.h
+kineo/include/KineoController/kppCCommand.h
 kineo/include/KineoController/kppClippingMotionMediator.h
 kineo/include/KineoController/kppCommand.h
 kineo/include/KineoController/kppCommandEnvironment.h
@@ -33,7 +34,6 @@ kineo/include/KineoController/kppDocument.h
 kineo/include/KineoController/kppDocumentUICommandFactory.h
 kineo/include/KineoController/kppDuplicateCommand.h
 kineo/include/KineoController/kppExecuteSubSequenceCommand.h
-kineo/include/KineoController/kppExplodePolyhedronCommand.h
 kineo/include/KineoController/kppFtor.h
 kineo/include/KineoController/kppGimmeName.h
 kineo/include/KineoController/kppInsertBoxCommand.h
@@ -53,19 +53,14 @@ kineo/include/KineoController/kppMoveSolidCommand.h
 kineo/include/KineoController/kppOldUndoRedoCompatibilityCommand.h
 kineo/include/KineoController/kppOptimizePathCommand.h
 kineo/include/KineoController/kppPlanPathCommand.h
-kineo/include/KineoController/kppProcessCommand.h
 kineo/include/KineoController/kppRedoCommand.h
 kineo/include/KineoController/kppRedoUICommand.h
 kineo/include/KineoController/kppRemoveComponentCommand.h
-kineo/include/KineoController/kppReplaceComponentCommand.h
 kineo/include/KineoController/kppResetSolidPositionCommand.h
-kineo/include/KineoController/kppRestorePolyhedronCommand.h
-kineo/include/KineoController/kppRuntime.h
 kineo/include/KineoController/kppSaveConfigCommand.h
 kineo/include/KineoController/kppSaveDocumentCommand.h
 kineo/include/KineoController/kppSavePathAsCommand.h
 kineo/include/KineoController/kppSelectionFetcher.h
-kineo/include/KineoController/kppSetColorCommand.h
 kineo/include/KineoController/kppSetPropertyCommand.h
 kineo/include/KineoController/kppSetterCommand.h
 kineo/include/KineoController/kppSolidMotionMediator.h
@@ -81,7 +76,6 @@ kineo/include/KineoController/kppUndoRedo.h
 kineo/include/KineoController/kppUndoUICommand.h
 kineo/include/KineoController/kppValueFetcher.h
 kineo/include/KineoGUI/kpp3DController.h
-kineo/include/KineoGUI/kppAnalyzePathCommand.h
 kineo/include/KineoGUI/kppApplication.h
 kineo/include/KineoGUI/kppBitmapStatusBar.h
 kineo/include/KineoGUI/kppBitmapStatusBarController.h
@@ -98,10 +92,12 @@ kineo/include/KineoGUI/kppCloseDocumentCommand.h
 kineo/include/KineoGUI/kppCloseUpCommand.h
 kineo/include/KineoGUI/kppCollidingFacetsGraphic.h
 kineo/include/KineoGUI/kppCollisionIntersectionGraphic.h
+kineo/include/KineoGUI/kppCollisionManager.h
 kineo/include/KineoGUI/kppCollisionPresenter.h
 kineo/include/KineoGUI/kppControlWindow.h
 kineo/include/KineoGUI/kppController.h
 kineo/include/KineoGUI/kppDevicePlanPathPanelController.h
+kineo/include/KineoGUI/kppDisassemblyPanel.h
 kineo/include/KineoGUI/kppDistanceGraphic.h
 kineo/include/KineoGUI/kppDofMotionController.h
 kineo/include/KineoGUI/kppDofMotionControllerGraphicRotation.h
@@ -131,9 +127,9 @@ kineo/include/KineoGUI/kppGraphicWindowController.h
 kineo/include/KineoGUI/kppInsertExactDistanceClippingPlaneCommand.h
 kineo/include/KineoGUI/kppKCDCollisionManager.h
 kineo/include/KineoGUI/kppKCDObbRenderingGraphic.h
+kineo/include/KineoGUI/kppKCDProgressDelegate.h
 kineo/include/KineoGUI/kppLicenseManagerController.h
 kineo/include/KineoGUI/kppLicenseManagerDialog.h
-kineo/include/KineoGUI/kppLoadCameraCommand.h
 kineo/include/KineoGUI/kppLogManagerController.h
 kineo/include/KineoGUI/kppLogManagerWindow.h
 kineo/include/KineoGUI/kppMainFrame.h
@@ -142,14 +138,17 @@ kineo/include/KineoGUI/kppMainWindowUICommandFactory.h
 kineo/include/KineoGUI/kppManipulatorController.h
 kineo/include/KineoGUI/kppManipulatorPanel.h
 kineo/include/KineoGUI/kppMenu.h
+kineo/include/KineoGUI/kppModelController.h
 kineo/include/KineoGUI/kppModuleManagerController.h
 kineo/include/KineoGUI/kppModuleManagerDialog.h
 kineo/include/KineoGUI/kppMoveComponentController.h
 kineo/include/KineoGUI/kppMovieController.h
 kineo/include/KineoGUI/kppMovieGenerator.h
 kineo/include/KineoGUI/kppNewDocumentCommand.h
+kineo/include/KineoGUI/kppOldCommandWrapper.h
+kineo/include/KineoGUI/kppOldUICommand.h
 kineo/include/KineoGUI/kppOpenFileCommand.h
-kineo/include/KineoGUI/kppOptimizePathPanel.h
+kineo/include/KineoGUI/kppOptimizePanel.h
 kineo/include/KineoGUI/kppOptimizePathPanelController.h
 kineo/include/KineoGUI/kppPanel.h
 kineo/include/KineoGUI/kppPathAnalyse.h
@@ -161,22 +160,14 @@ kineo/include/KineoGUI/kppPathBuilderViewController.h
 kineo/include/KineoGUI/kppPathPlayer.h
 kineo/include/KineoGUI/kppPathPlayerController.h
 kineo/include/KineoGUI/kppPathWaypointGraphic.h
-kineo/include/KineoGUI/kppPlanPathPanel.h
 kineo/include/KineoGUI/kppPlanPathPanelController.h
-kineo/include/KineoGUI/kppProcessPanel.h
-kineo/include/KineoGUI/kppProcessPanelController.h
 kineo/include/KineoGUI/kppProgressDelegate.h
 kineo/include/KineoGUI/kppPropertyController.h
 kineo/include/KineoGUI/kppPropertyPanel.h
-kineo/include/KineoGUI/kppSaveCameraCommand.h
-kineo/include/KineoGUI/kppScreenCaptureCommand.h
+kineo/include/KineoGUI/kppScreenCapture.h
 kineo/include/KineoGUI/kppSearchInTreeCommand.h
 kineo/include/KineoGUI/kppSettingsDlg.h
-kineo/include/KineoGUI/kppShowLicenseManagerCommand.h
-kineo/include/KineoGUI/kppShowModuleManagerCommand.h
-kineo/include/KineoGUI/kppShowMovieGeneratorCommand.h
 kineo/include/KineoGUI/kppShowPanelCommand.h
-kineo/include/KineoGUI/kppShowSettingsCommand.h
 kineo/include/KineoGUI/kppShrinkingDialog.h
 kineo/include/KineoGUI/kppShrinkingSettingsController.h
 kineo/include/KineoGUI/kppTestPathCommand.h
@@ -184,12 +175,12 @@ kineo/include/KineoGUI/kppTextValidatorFetcher.h
 kineo/include/KineoGUI/kppToolbar.h
 kineo/include/KineoGUI/kppToolbarItem.h
 kineo/include/KineoGUI/kppUIBooleanFetcher.h
-kineo/include/KineoGUI/kppUIColorFetcher.h
 kineo/include/KineoGUI/kppUICommandListController.h
 kineo/include/KineoGUI/kppUIFileFetcher.h
 kineo/include/KineoGUI/kppUISelectionFetcher.h
 kineo/include/KineoGUI/kppUnstickController.h
 kineo/include/KineoGUI/kppUnstickPanel.h
+kineo/include/KineoGUI/kppViewEvent.h
 kineo/include/KineoGUI/kppWindowController.h
 kineo/include/KineoGUI/kppWindowUICommandFactory.h
 kineo/include/KineoKCDModel/kppKCD.h
@@ -200,12 +191,9 @@ kineo/include/KineoKCDModel/kppKCDCollision.h
 kineo/include/KineoKCDModel/kppKCDCollisionEntityBuildingDelegate.h
 kineo/include/KineoKCDModel/kppKCDDefine.h
 kineo/include/KineoKCDModel/kppKCDDistance.h
-kineo/include/KineoKCDModel/kppKCDGeometrySubElement.h
 kineo/include/KineoKCDModel/kppKCDList.h
 kineo/include/KineoKCDModel/kppKCDPolyhedron.h
-kineo/include/KineoKCDModel/kppKCDTriangle.h
 kineo/include/KineoModel/kppAnchorJointComponent.h
-kineo/include/KineoModel/kppAngleParameter.h
 kineo/include/KineoModel/kppAngleProperty.h
 kineo/include/KineoModel/kppAssemblyComponent.h
 kineo/include/KineoModel/kppBallAndSocketJointComponent.h
@@ -216,9 +204,7 @@ kineo/include/KineoModel/kppBoolProperty.h
 kineo/include/KineoModel/kppCCAnalysis.h
 kineo/include/KineoModel/kppCCCollision.h
 kineo/include/KineoModel/kppCCDistance.h
-kineo/include/KineoModel/kppCCGeometrySubElement.h
 kineo/include/KineoModel/kppCCList.h
-kineo/include/KineoModel/kppCCTriangle.h
 kineo/include/KineoModel/kppCamera.h
 kineo/include/KineoModel/kppChoiceProperty.h
 kineo/include/KineoModel/kppClashAnalysisComponent.h
@@ -246,7 +232,6 @@ kineo/include/KineoModel/kppDeviceNode.h
 kineo/include/KineoModel/kppDofComponent.h
 kineo/include/KineoModel/kppDoubleProperty.h
 kineo/include/KineoModel/kppDoubleRotationJointComponent.h
-kineo/include/KineoModel/kppExtraDofComponent.h
 kineo/include/KineoModel/kppFactory.h
 kineo/include/KineoModel/kppFileParameter.h
 kineo/include/KineoModel/kppFreeFlyerJointComponent.h
@@ -256,12 +241,12 @@ kineo/include/KineoModel/kppGeometrySignature.h
 kineo/include/KineoModel/kppGroupComponent.h
 kineo/include/KineoModel/kppGroupNode.h
 kineo/include/KineoModel/kppJointComponent.h
-kineo/include/KineoModel/kppJointDofComponent.h
 kineo/include/KineoModel/kppLicense.h
 kineo/include/KineoModel/kppLight.h
 kineo/include/KineoModel/kppMaterial.h
 kineo/include/KineoModel/kppMaterialComponent.h
 kineo/include/KineoModel/kppModelDefine.h
+kineo/include/KineoModel/kppModelEvents.h
 kineo/include/KineoModel/kppModelTree.h
 kineo/include/KineoModel/kppNumberParameter.h
 kineo/include/KineoModel/kppParameter.h
@@ -274,7 +259,6 @@ kineo/include/KineoModel/kppPolyhedron.h
 kineo/include/KineoModel/kppProperty.h
 kineo/include/KineoModel/kppRawCollision.h
 kineo/include/KineoModel/kppRawDistance.h
-kineo/include/KineoModel/kppRawTriangle.h
 kineo/include/KineoModel/kppRotationJointComponent.h
 kineo/include/KineoModel/kppSelection.h
 kineo/include/KineoModel/kppSolidComponent.h
@@ -299,6 +283,7 @@ kineo/include/KineoParser/kprFileIO.h
 kineo/include/KineoParser/kprParser.h
 kineo/include/KineoUtility/kitCancellableProgressDelegate.h
 kineo/include/KineoUtility/kitDefine.h
+kineo/include/KineoUtility/kitDefine.h~
 kineo/include/KineoUtility/kitForwardingProgressDelegate.h
 kineo/include/KineoUtility/kitGeometry.h
 kineo/include/KineoUtility/kitInterface.h
@@ -355,6 +340,7 @@ kineo/include/KineoView/kppViewOpenGLCamera.h
 kineo/include/KineoView/kppViewOpenGLClippingPlane.h
 kineo/include/KineoView/kppViewOpenGLDrawFactory.h
 kineo/include/KineoView/kppViewOpenGLFactory.h
+kineo/include/KineoView/kppViewOpenGLFactory.h~
 kineo/include/KineoView/kppViewOpenGLFrame.h
 kineo/include/KineoView/kppViewOpenGLGeneral.h
 kineo/include/KineoView/kppViewOpenGLJoint.h
@@ -366,6 +352,7 @@ kineo/include/KineoView/kppViewOpenGLSelectBox.h
 kineo/include/KineoView/kppViewOpenGLSeparator.h
 kineo/include/KineoView/kppViewOpenGLSubMesh.h
 kineo/include/KineoView/kppViewOpenGLTexture.h
+kineo/include/KineoView/kppViewOpenGLTexture.h~
 kineo/include/KineoView/kppViewOpenGLTile.h
 kineo/include/KineoView/kppViewPath.h
 kineo/include/KineoView/kppViewPlane.h
@@ -2296,46 +2283,24 @@ kineo/include/boost/utility/value_init.hpp
 kineo/include/boost/version.hpp
 kineo/include/boost/weak_ptr.hpp
 kineo/include/kcd2/kcdAnalysis.h
-kineo/include/kcd2/kcdAnalysisType.h
 kineo/include/kcd2/kcdAssembly.h
-kineo/include/kcd2/kcdBoundingBox.h
-kineo/include/kcd2/kcdCachedValue.h
 kineo/include/kcd2/kcdClassDeclarations.h
-kineo/include/kcd2/kcdCollisionReport.h
-kineo/include/kcd2/kcdDeadDetector.h
+kineo/include/kcd2/kcdCollision.h
+kineo/include/kcd2/kcdCollisionList.h
 kineo/include/kcd2/kcdDefine.h
-kineo/include/kcd2/kcdDetector.h
-kineo/include/kcd2/kcdDetectorDispatcher.h
-kineo/include/kcd2/kcdDetectorLiaison.h
-kineo/include/kcd2/kcdEstimatedDistanceReport.h
-kineo/include/kcd2/kcdExactDistanceReport.h
-kineo/include/kcd2/kcdFlattenedGeometrySet.h
+kineo/include/kcd2/kcdDistance.h
 kineo/include/kcd2/kcdGeometry.h
-kineo/include/kcd2/kcdGeometryReport.h
+kineo/include/kcd2/kcdGeometryPoint.h
 kineo/include/kcd2/kcdGeometrySubElement.h
-kineo/include/kcd2/kcdGlobal.h
 kineo/include/kcd2/kcdInterface.h
-kineo/include/kcd2/kcdLinkedCachedMatrices.h
-kineo/include/kcd2/kcdLockedTestTree.h
-kineo/include/kcd2/kcdMat4.h
-kineo/include/kcd2/kcdMixedTestTree.h
-kineo/include/kcd2/kcdOBB.h
-kineo/include/kcd2/kcdOBBNode.h
 kineo/include/kcd2/kcdObject.h
-kineo/include/kcd2/kcdObjectListTestTree.h
 kineo/include/kcd2/kcdPoint.h
-kineo/include/kcd2/kcdPolyBVTree.h
-kineo/include/kcd2/kcdPolyOBBNode.h
+kineo/include/kcd2/kcdPoly.h
 kineo/include/kcd2/kcdPolyhedron.h
 kineo/include/kcd2/kcdPolyhedronData.h
-kineo/include/kcd2/kcdReal16.h
-kineo/include/kcd2/kcdReport.h
-kineo/include/kcd2/kcdSceneTestTree.h
-kineo/include/kcd2/kcdStack.h
-kineo/include/kcd2/kcdTestTree.h
-kineo/include/kcd2/kcdTreeElement.h
+kineo/include/kcd2/kcdPolyhedronTriangle.h
+kineo/include/kcd2/kcdProgressDelegate.h
 kineo/include/kcd2/kcdTriangle.h
-kineo/include/kcd2/kcdUtility.h
 kineo/include/kcd2/kcdVirtualPolyhedron.h
 kineo/include/kprParserTTF/kprTTFImporter.h
 kineo/include/kprParserTTF/kprTTFPolyhedron.h
@@ -2348,7 +2313,6 @@ kineo/include/kprParserVRML/kprVRMLAppearance.h
 kineo/include/kprParserVRML/kprVRMLGeometry.h
 kineo/include/kprParserVRML/kprVRMLGroup.h
 kineo/include/kprParserVRML/kprVRMLInline.h
-kineo/include/kprParserVRML/kprVRMLLOD.h
 kineo/include/kprParserVRML/kprVRMLNode.h
 kineo/include/kprParserVRML/kprVRMLPoint.h
 kineo/include/kprParserVRML/kprVRMLPrim.h
@@ -3120,24 +3084,24 @@ kineo/share/demos/KPP-Device/BridgeDevice.kxml
 kineo/share/demos/KPP-Device/BridgeGeo.kxml
 kineo/share/demos/KPP-Device/ManipulatorDevice.kxml
 kineo/share/demos/KPP-Device/Simple_Tutorial.kxml
-kineo/share/demos/KPP-Device/base.WRL
+kineo/share/demos/KPP-Device/base.wrl
 kineo/share/demos/KPP-Device/boite.wrl
-kineo/share/demos/KPP-Device/k01.WRL
-kineo/share/demos/KPP-Device/k02.WRL
-kineo/share/demos/KPP-Device/k03.WRL
-kineo/share/demos/KPP-Device/k04.WRL
-kineo/share/demos/KPP-Device/k05.WRL
-kineo/share/demos/KPP-Device/k06.WRL
+kineo/share/demos/KPP-Device/k01.wrl
+kineo/share/demos/KPP-Device/k02.wrl
+kineo/share/demos/KPP-Device/k03.wrl
+kineo/share/demos/KPP-Device/k04.wrl
+kineo/share/demos/KPP-Device/k05.wrl
+kineo/share/demos/KPP-Device/k06.wrl
 kineo/share/demos/KPP-Device/manipulateur.WRL
 kineo/share/demos/KPP-Device/obstacle.wrl
 kineo/share/demos/KPP-Device/pince2.wrl
-kineo/share/demos/VRML2/EXHAUST/KINEO_Exhaust.wrl
-kineo/share/demos/VRML2/EXHAUST/KINEO_Exhaust_Obstacles_4.wrl
-kineo/share/demos/VRML2/MASTERVAC/carfront.wrl
-kineo/share/demos/VRML2/MASTERVAC/mastervac.wrl
-kineo/share/demos/VRML2/SCREENWIPER/bao.wrl
-kineo/share/demos/VRML2/SCREENWIPER/bao_modified.wrl
-kineo/share/demos/VRML2/SCREENWIPER/wiper.wrl
+kineo/share/demos/vrml2/MASTERVAC/carfront.wrl
+kineo/share/demos/vrml2/MASTERVAC/mastervac.wrl
+kineo/share/demos/vrml2/SCREENWIPER/bao.wrl
+kineo/share/demos/vrml2/SCREENWIPER/bao_modified.wrl
+kineo/share/demos/vrml2/SCREENWIPER/wiper.wrl
+kineo/share/demos/vrml2/exhaust/KINEO_Exhaust.wrl
+kineo/share/demos/vrml2/exhaust/KINEO_Exhaust_Obstacles_4.wrl
 kineo/share/doc/KPP SDK/KPP SDK v2.04 Reference Documentation.html
 kineo/share/doc/KPP SDK/html/IKTutorialDevice.png
 kineo/share/doc/KPP SDK/html/IKTutorialHomePosition.png
@@ -3146,7 +3110,6 @@ kineo/share/doc/KPP SDK/html/IKTutorialSnapshot.png
 kineo/share/doc/KPP SDK/html/IKTutorialUpdateKinematics.png
 kineo/share/doc/KPP SDK/html/KPPSDKArchitecture.png
 kineo/share/doc/KPP SDK/html/KXMLViewerSnapShot.png
-kineo/share/doc/KPP SDK/html/MVC.png
 kineo/share/doc/KPP SDK/html/annotated.html
 kineo/share/doc/KPP SDK/html/class_ckpp_accessor_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_accessor_command.html
@@ -3163,18 +3126,12 @@ kineo/share/doc/KPP SDK/html/class_ckpp_align_on_parent_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_anchor_joint_component-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_anchor_joint_component.html
 kineo/share/doc/KPP SDK/html/class_ckpp_anchor_joint_component.png
-kineo/share/doc/KPP SDK/html/class_ckpp_angle_parameter-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_angle_parameter.html
-kineo/share/doc/KPP SDK/html/class_ckpp_angle_parameter.png
 kineo/share/doc/KPP SDK/html/class_ckpp_angle_property-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_angle_property.html
 kineo/share/doc/KPP SDK/html/class_ckpp_angle_property.png
 kineo/share/doc/KPP SDK/html/class_ckpp_assembly_component-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_assembly_component.html
 kineo/share/doc/KPP SDK/html/class_ckpp_assembly_component.png
-kineo/share/doc/KPP SDK/html/class_ckpp_ball_and_socket_joint_component-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_ball_and_socket_joint_component.html
-kineo/share/doc/KPP SDK/html/class_ckpp_ball_and_socket_joint_component.png
 kineo/share/doc/KPP SDK/html/class_ckpp_basic_component_factory__0-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_basic_component_factory__0.html
 kineo/share/doc/KPP SDK/html/class_ckpp_basic_component_factory__0.png
@@ -3320,12 +3277,6 @@ kineo/share/doc/KPP SDK/html/class_ckpp_duplicate_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_execute_sub_sequence_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_execute_sub_sequence_command.html
 kineo/share/doc/KPP SDK/html/class_ckpp_execute_sub_sequence_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_explode_polyhedron_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_explode_polyhedron_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_explode_polyhedron_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_extra_dof_component-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_extra_dof_component.html
-kineo/share/doc/KPP SDK/html/class_ckpp_extra_dof_component.png
 kineo/share/doc/KPP SDK/html/class_ckpp_file_parameter-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_file_parameter.html
 kineo/share/doc/KPP SDK/html/class_ckpp_file_parameter.png
@@ -3380,9 +3331,6 @@ kineo/share/doc/KPP SDK/html/class_ckpp_is_movable_filter.png
 kineo/share/doc/KPP SDK/html/class_ckpp_joint_component-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_joint_component.html
 kineo/share/doc/KPP SDK/html/class_ckpp_joint_component.png
-kineo/share/doc/KPP SDK/html/class_ckpp_joint_dof_component-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_joint_dof_component.html
-kineo/share/doc/KPP SDK/html/class_ckpp_joint_dof_component.png
 kineo/share/doc/KPP SDK/html/class_ckpp_joint_motion_mediator-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_joint_motion_mediator.html
 kineo/share/doc/KPP SDK/html/class_ckpp_joint_motion_mediator.png
@@ -3400,9 +3348,6 @@ kineo/share/doc/KPP SDK/html/class_ckpp_license.html
 kineo/share/doc/KPP SDK/html/class_ckpp_link_joint_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_link_joint_command.html
 kineo/share/doc/KPP SDK/html/class_ckpp_link_joint_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_load_camera_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_load_camera_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_load_camera_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_main_window_controller-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_main_window_controller.html
 kineo/share/doc/KPP SDK/html/class_ckpp_main_window_controller.png
@@ -3473,9 +3418,6 @@ kineo/share/doc/KPP SDK/html/class_ckpp_plan_path_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_polyhedron-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_polyhedron.html
 kineo/share/doc/KPP SDK/html/class_ckpp_polyhedron.png
-kineo/share/doc/KPP SDK/html/class_ckpp_process_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_process_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_process_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_property-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_property.html
 kineo/share/doc/KPP SDK/html/class_ckpp_property.png
@@ -3488,30 +3430,18 @@ kineo/share/doc/KPP SDK/html/class_ckpp_redo_u_i_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_remove_component_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_remove_component_command.html
 kineo/share/doc/KPP SDK/html/class_ckpp_remove_component_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_replace_component_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_replace_component_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_replace_component_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_reset_solid_position_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_reset_solid_position_command.html
 kineo/share/doc/KPP SDK/html/class_ckpp_reset_solid_position_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_restore_polyhedron_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_restore_polyhedron_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_restore_polyhedron_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_rotation_joint_component-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_rotation_joint_component.html
 kineo/share/doc/KPP SDK/html/class_ckpp_rotation_joint_component.png
-kineo/share/doc/KPP SDK/html/class_ckpp_save_camera_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_save_camera_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_save_camera_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_save_document_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_save_document_command.html
 kineo/share/doc/KPP SDK/html/class_ckpp_save_document_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_save_path_as_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_save_path_as_command.html
 kineo/share/doc/KPP SDK/html/class_ckpp_save_path_as_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_screen_capture_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_screen_capture_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_screen_capture_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_search_in_tree_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_search_in_tree_command.html
 kineo/share/doc/KPP SDK/html/class_ckpp_search_in_tree_command.png
@@ -3521,24 +3451,9 @@ kineo/share/doc/KPP SDK/html/class_ckpp_selection.png
 kineo/share/doc/KPP SDK/html/class_ckpp_selection_fetcher-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_selection_fetcher.html
 kineo/share/doc/KPP SDK/html/class_ckpp_selection_fetcher.png
-kineo/share/doc/KPP SDK/html/class_ckpp_set_color_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_set_color_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_set_color_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_set_property_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_set_property_command.html
 kineo/share/doc/KPP SDK/html/class_ckpp_set_property_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_show_license_manager_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_show_license_manager_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_show_license_manager_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_show_module_manager_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_show_module_manager_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_show_module_manager_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_show_movie_generator_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_show_movie_generator_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_show_movie_generator_command.png
-kineo/share/doc/KPP SDK/html/class_ckpp_show_settings_command-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_show_settings_command.html
-kineo/share/doc/KPP SDK/html/class_ckpp_show_settings_command.png
 kineo/share/doc/KPP SDK/html/class_ckpp_solid_component-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_solid_component.html
 kineo/share/doc/KPP SDK/html/class_ckpp_solid_component.png
@@ -3569,9 +3484,6 @@ kineo/share/doc/KPP SDK/html/class_ckpp_typed_accessor_filter.png
 kineo/share/doc/KPP SDK/html/class_ckpp_u_i_boolean_fetcher-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_u_i_boolean_fetcher.html
 kineo/share/doc/KPP SDK/html/class_ckpp_u_i_boolean_fetcher.png
-kineo/share/doc/KPP SDK/html/class_ckpp_u_i_color_fetcher-members.html
-kineo/share/doc/KPP SDK/html/class_ckpp_u_i_color_fetcher.html
-kineo/share/doc/KPP SDK/html/class_ckpp_u_i_color_fetcher.png
 kineo/share/doc/KPP SDK/html/class_ckpp_u_i_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_u_i_command.html
 kineo/share/doc/KPP SDK/html/class_ckpp_u_i_command.png
@@ -3655,7 +3567,6 @@ kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_writer.html
 kineo/share/doc/KPP SDK/html/class_ckwx_idle_notification-members.html
 kineo/share/doc/KPP SDK/html/class_ckwx_idle_notification.html
 kineo/share/doc/KPP SDK/html/class_ckwx_idle_notification.png
-kineo/share/doc/KPP SDK/html/deprecated.html
 kineo/share/doc/KPP SDK/html/doxygen.css
 kineo/share/doc/KPP SDK/html/doxygen.png
 kineo/share/doc/KPP SDK/html/ftv2blank.png
@@ -3751,6 +3662,7 @@ kineo/share/doc/KPP SDK/html/kppsdk_tutorialkinmodule.html
 kineo/share/doc/KPP SDK/html/logo_kineo.png
 kineo/share/doc/KPP SDK/html/main.html
 kineo/share/doc/KPP SDK/html/modules.html
+kineo/share/doc/KPP SDK/html/mvc.png
 kineo/share/doc/KPP SDK/html/notification.html
 kineo/share/doc/KPP SDK/html/page_commandpanel.html
 kineo/share/doc/KPP SDK/html/page_constraint.html
@@ -3776,87 +3688,36 @@ kineo/share/doc/KineoWorks/KineoWorks v2.04 Reference Documentation.html
 kineo/share/doc/KineoWorks/html/annotated.html
 kineo/share/doc/KineoWorks/html/class_ckcd_analysis-members.html
 kineo/share/doc/KineoWorks/html/class_ckcd_analysis.html
-kineo/share/doc/KineoWorks/html/class_ckcd_analysis_type-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_analysis_type.html
 kineo/share/doc/KineoWorks/html/class_ckcd_assembly-members.html
 kineo/share/doc/KineoWorks/html/class_ckcd_assembly.html
 kineo/share/doc/KineoWorks/html/class_ckcd_assembly.png
-kineo/share/doc/KineoWorks/html/class_ckcd_bounding_box-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_bounding_box.html
-kineo/share/doc/KineoWorks/html/class_ckcd_cached_value-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_cached_value.html
-kineo/share/doc/KineoWorks/html/class_ckcd_collision_report-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_collision_report.html
-kineo/share/doc/KineoWorks/html/class_ckcd_collision_report.png
-kineo/share/doc/KineoWorks/html/class_ckcd_dead_detector-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_dead_detector.html
-kineo/share/doc/KineoWorks/html/class_ckcd_dead_detector.png
-kineo/share/doc/KineoWorks/html/class_ckcd_detector-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_detector.html
-kineo/share/doc/KineoWorks/html/class_ckcd_detector.png
-kineo/share/doc/KineoWorks/html/class_ckcd_detector_dispatcher-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_detector_dispatcher.html
-kineo/share/doc/KineoWorks/html/class_ckcd_detector_dispatcher.png
-kineo/share/doc/KineoWorks/html/class_ckcd_detector_liaison-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_detector_liaison.html
-kineo/share/doc/KineoWorks/html/class_ckcd_estimated_distance_report-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_estimated_distance_report.html
-kineo/share/doc/KineoWorks/html/class_ckcd_estimated_distance_report.png
-kineo/share/doc/KineoWorks/html/class_ckcd_exact_distance_report-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_exact_distance_report.html
-kineo/share/doc/KineoWorks/html/class_ckcd_exact_distance_report.png
-kineo/share/doc/KineoWorks/html/class_ckcd_flattened_geometry_set-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_flattened_geometry_set.html
+kineo/share/doc/KineoWorks/html/class_ckcd_collision-members.html
+kineo/share/doc/KineoWorks/html/class_ckcd_collision.html
+kineo/share/doc/KineoWorks/html/class_ckcd_collision_list-members.html
+kineo/share/doc/KineoWorks/html/class_ckcd_collision_list.html
+kineo/share/doc/KineoWorks/html/class_ckcd_distance-members.html
+kineo/share/doc/KineoWorks/html/class_ckcd_distance.html
 kineo/share/doc/KineoWorks/html/class_ckcd_geometry-members.html
 kineo/share/doc/KineoWorks/html/class_ckcd_geometry.html
 kineo/share/doc/KineoWorks/html/class_ckcd_geometry.png
-kineo/share/doc/KineoWorks/html/class_ckcd_geometry_report-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_geometry_report.html
-kineo/share/doc/KineoWorks/html/class_ckcd_geometry_report.png
+kineo/share/doc/KineoWorks/html/class_ckcd_geometry_point-members.html
+kineo/share/doc/KineoWorks/html/class_ckcd_geometry_point.html
 kineo/share/doc/KineoWorks/html/class_ckcd_geometry_sub_element-members.html
 kineo/share/doc/KineoWorks/html/class_ckcd_geometry_sub_element.html
 kineo/share/doc/KineoWorks/html/class_ckcd_geometry_sub_element.png
-kineo/share/doc/KineoWorks/html/class_ckcd_global-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_global.html
-kineo/share/doc/KineoWorks/html/class_ckcd_locked_test_tree-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_locked_test_tree.html
-kineo/share/doc/KineoWorks/html/class_ckcd_locked_test_tree.png
-kineo/share/doc/KineoWorks/html/class_ckcd_mat4-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_mat4.html
-kineo/share/doc/KineoWorks/html/class_ckcd_mixed_test_tree-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_mixed_test_tree.html
-kineo/share/doc/KineoWorks/html/class_ckcd_mixed_test_tree.png
-kineo/share/doc/KineoWorks/html/class_ckcd_o_b_b-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_o_b_b.html
-kineo/share/doc/KineoWorks/html/class_ckcd_o_b_b_node-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_o_b_b_node.html
-kineo/share/doc/KineoWorks/html/class_ckcd_o_b_b_node.png
 kineo/share/doc/KineoWorks/html/class_ckcd_object-members.html
 kineo/share/doc/KineoWorks/html/class_ckcd_object.html
 kineo/share/doc/KineoWorks/html/class_ckcd_object.png
-kineo/share/doc/KineoWorks/html/class_ckcd_object_list_test_tree-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_object_list_test_tree.html
-kineo/share/doc/KineoWorks/html/class_ckcd_object_list_test_tree.png
-kineo/share/doc/KineoWorks/html/class_ckcd_poly_o_b_b_node-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_poly_o_b_b_node.html
-kineo/share/doc/KineoWorks/html/class_ckcd_poly_o_b_b_node.png
 kineo/share/doc/KineoWorks/html/class_ckcd_polyhedron-members.html
 kineo/share/doc/KineoWorks/html/class_ckcd_polyhedron.html
 kineo/share/doc/KineoWorks/html/class_ckcd_polyhedron.png
 kineo/share/doc/KineoWorks/html/class_ckcd_polyhedron_data-members.html
 kineo/share/doc/KineoWorks/html/class_ckcd_polyhedron_data.html
-kineo/share/doc/KineoWorks/html/class_ckcd_report-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_report.html
-kineo/share/doc/KineoWorks/html/class_ckcd_report.png
-kineo/share/doc/KineoWorks/html/class_ckcd_scene_test_tree-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_scene_test_tree.html
-kineo/share/doc/KineoWorks/html/class_ckcd_scene_test_tree.png
-kineo/share/doc/KineoWorks/html/class_ckcd_test_tree-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_test_tree.html
-kineo/share/doc/KineoWorks/html/class_ckcd_test_tree.png
-kineo/share/doc/KineoWorks/html/class_ckcd_tree_element-members.html
-kineo/share/doc/KineoWorks/html/class_ckcd_tree_element.html
-kineo/share/doc/KineoWorks/html/class_ckcd_tree_element.png
+kineo/share/doc/KineoWorks/html/class_ckcd_polyhedron_triangle-members.html
+kineo/share/doc/KineoWorks/html/class_ckcd_polyhedron_triangle.html
+kineo/share/doc/KineoWorks/html/class_ckcd_polyhedron_triangle.png
+kineo/share/doc/KineoWorks/html/class_ckcd_progress_delegate-members.html
+kineo/share/doc/KineoWorks/html/class_ckcd_progress_delegate.html
 kineo/share/doc/KineoWorks/html/class_ckcd_virtual_polyhedron-members.html
 kineo/share/doc/KineoWorks/html/class_ckcd_virtual_polyhedron.html
 kineo/share/doc/KineoWorks/html/class_ckcd_virtual_polyhedron.png
@@ -4178,7 +4039,6 @@ kineo/share/doc/KineoWorks/html/ftv2plastnode.png
 kineo/share/doc/KineoWorks/html/ftv2pnode.png
 kineo/share/doc/KineoWorks/html/ftv2vertline.png
 kineo/share/doc/KineoWorks/html/functions.html
-kineo/share/doc/KineoWorks/html/functions_0x61.html
 kineo/share/doc/KineoWorks/html/functions_0x62.html
 kineo/share/doc/KineoWorks/html/functions_0x63.html
 kineo/share/doc/KineoWorks/html/functions_0x64.html
@@ -4251,17 +4111,81 @@ kineo/share/doc/KineoWorks/html/tab_r.gif
 kineo/share/doc/KineoWorks/html/tabs.css
 kineo/share/doc/KineoWorks/html/tree.html
 kineo/share/doc/KineoWorks/html/usingsmartpointers.html
+kineo/share/examples/bin/i386-linux/.notempty
+kineo/share/examples/bin/win32msvc7/.notEmpty
+kineo/share/examples/prj/unix/Init.make.KineoTutorialKPPSDK
+kineo/share/examples/prj/unix/KineoTutorialHelloWorld/GNUmakefile
+kineo/share/examples/prj/unix/KineoTutorialIK/GNUmakefile
+kineo/share/examples/prj/unix/KineoTutorialKXMLViewer/GNUmakefile
+kineo/share/examples/prj/win32msvc7/KineoTutorialHelloWorld/KineoTutorialHelloWorld.vcproj
+kineo/share/examples/prj/win32msvc7/KineoTutorialIK/KineoTutorialIK.vcproj
+kineo/share/examples/prj/win32msvc7/KineoTutorialKPPSDK.sln
+kineo/share/examples/prj/win32msvc7/KineoTutorialKXMLViewer/KineoTutorialKXMLViewer.vcproj
+kineo/share/examples/res/KineoTutorialHelloWorld/HelloWorld.bmp
+kineo/share/examples/res/KineoTutorialHelloWorld/Thumbs.db
+kineo/share/examples/src/KineoTutorialHelloWorld/.#kttHelloWorldCommand.cpp.1.3
+kineo/share/examples/src/KineoTutorialHelloWorld/kttHelloWorldCommand.cpp
+kineo/share/examples/src/KineoTutorialHelloWorld/kttHelloWorldCommand.cpp~
+kineo/share/examples/src/KineoTutorialHelloWorld/kttHelloWorldCommand.h
+kineo/share/examples/src/KineoTutorialHelloWorld/kttInterface.cpp
+kineo/share/examples/src/KineoTutorialHelloWorld/kttInterface.h
+kineo/share/examples/src/KineoTutorialIK/kttCreateIKDeviceCommand.cpp
+kineo/share/examples/src/KineoTutorialIK/kttCreateIKDeviceCommand.h
+kineo/share/examples/src/KineoTutorialIK/kttHomePositionCommand.cpp
+kineo/share/examples/src/KineoTutorialIK/kttHomePositionCommand.h
+kineo/share/examples/src/KineoTutorialIK/kttIKCommandPanel.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKCommandPanel.h
+kineo/share/examples/src/KineoTutorialIK/kttIKCommandPanelController.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKCommandPanelController.h
+kineo/share/examples/src/KineoTutorialIK/kttIKConstraint.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKConstraint.h
+kineo/share/examples/src/KineoTutorialIK/kttIKConstraintComponent.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKConstraintComponent.h
+kineo/share/examples/src/KineoTutorialIK/kttIKDeviceComponent.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKDeviceComponent.h
+kineo/share/examples/src/KineoTutorialIK/kttIKLinkGraphic.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKLinkGraphic.h
+kineo/share/examples/src/KineoTutorialIK/kttIKViewController.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKViewController.h
+kineo/share/examples/src/KineoTutorialIK/kttInterface.cpp
+kineo/share/examples/src/KineoTutorialIK/kttInterface.h
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerApp.cpp
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerApp.h
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrame.cpp
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrame.h
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrameController.cpp
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrameController.h
+kineo/share/examples/src/KineoTutorialKXMLViewer/main.cpp
 lib/pkgconfig/KineoController.pc
 lib/pkgconfig/KineoPathPlanner.pc
+@dirrm kineo/share/examples/src/KineoTutorialKXMLViewer
+@dirrm kineo/share/examples/src/KineoTutorialIK
+@dirrm kineo/share/examples/src/KineoTutorialHelloWorld
+@dirrm kineo/share/examples/src
+@dirrm kineo/share/examples/res/KineoTutorialHelloWorld
+@dirrm kineo/share/examples/res
+@dirrm kineo/share/examples/prj/win32msvc7/KineoTutorialKXMLViewer
+@dirrm kineo/share/examples/prj/win32msvc7/KineoTutorialIK
+@dirrm kineo/share/examples/prj/win32msvc7/KineoTutorialHelloWorld
+@dirrm kineo/share/examples/prj/win32msvc7
+@dirrm kineo/share/examples/prj/unix/KineoTutorialKXMLViewer
+@dirrm kineo/share/examples/prj/unix/KineoTutorialIK
+@dirrm kineo/share/examples/prj/unix/KineoTutorialHelloWorld
+@dirrm kineo/share/examples/prj/unix
+@dirrm kineo/share/examples/prj
+@dirrm kineo/share/examples/bin/win32msvc7
+@dirrm kineo/share/examples/bin/i386-linux
+@dirrm kineo/share/examples/bin
+@dirrm kineo/share/examples
 @dirrm kineo/share/doc/KineoWorks/html
 @dirrm kineo/share/doc/KineoWorks
 @dirrm kineo/share/doc/KPP SDK/html
 @dirrm kineo/share/doc/KPP SDK
 @dirrm kineo/share/doc
-@dirrm kineo/share/demos/VRML2/SCREENWIPER
-@dirrm kineo/share/demos/VRML2/MASTERVAC
-@dirrm kineo/share/demos/VRML2/EXHAUST
-@dirrm kineo/share/demos/VRML2
+@dirrm kineo/share/demos/vrml2/exhaust
+@dirrm kineo/share/demos/vrml2/SCREENWIPER
+@dirrm kineo/share/demos/vrml2/MASTERVAC
+@dirrm kineo/share/demos/vrml2
 @dirrm kineo/share/demos/KPP-Device
 @dirrm kineo/share/demos
 @dirrm kineo/share
