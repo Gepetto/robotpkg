@@ -1,0 +1,20 @@
+--- interfaces/kcd2/kcdPolyhedron.h~	2007-03-30 10:12:26.000000000 +0200
++++ interfaces/kcd2/kcdPolyhedron.h	2007-04-04 18:12:39.000000000 +0200
+@@ -144,7 +144,7 @@
+ 	*
+ 	*   \return        \ref usingSmartPointers "shared pointer" to a newly created CkcdPolyhedron object
+ 	*/
+-	static CkcdPolyhedronShPtr CkcdPolyhedron::create( );
++	static CkcdPolyhedronShPtr create( );
+ 
+ 	/** Returns a \ref usingSmartPointers "shared pointer" pointing to a new CkcdPolyhedron,
+ 	*   or NULL if there is a memory allocation error. 
+@@ -152,7 +152,7 @@
+ 	*
+ 	*   \return        \ref usingSmartPointers "shared pointer" to a newly created CkcdPolyhedron object
+ 	*/
+-	static CkcdPolyhedronShPtr CkcdPolyhedron::create( CkcdPolyhedronDataShPtr& i_polyData );
++	static CkcdPolyhedronShPtr create( CkcdPolyhedronDataShPtr& i_polyData );
+ 
+ 	/** Reserves memory for a given number of points.
+ 	*

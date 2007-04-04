@@ -1,0 +1,11 @@
+--- interfaces/kcd2/kcdPolyhedronData.h~	2007-03-30 10:12:26.000000000 +0200
++++ interfaces/kcd2/kcdPolyhedronData.h	2007-04-04 18:11:15.000000000 +0200
+@@ -58,7 +58,7 @@
+ 	*
+ 	*   \return        \ref usingSmartPointers "shared pointer" to a newly created CkcdPolyhedronData object
+ 	*/
+-	static CkcdPolyhedronDataShPtr CkcdPolyhedronData::create( );
++	static CkcdPolyhedronDataShPtr create( );
+ 
+ 	/** Reserves memory for a given number of points.
+ 	*
