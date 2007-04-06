@@ -5,7 +5,7 @@
 VERSION=		20060713
 DISTNAME=		OpenHRP
 PKGNAME=		openhrp-jrl-${VERSION}
-PKGREVISION=		2
+PKGREVISION=		3
 WRKSRC=			${WRKDIR}/OpenHRP
 
 CATEGORIES=		architecture
@@ -70,6 +70,10 @@ include ../../mk/robotpkg.mk
 do-extract:
 	cd ${WRKDIR} && ${TAR} xzf ${DISTDIR}/OpenHRP${VERSION}.tgz
 	cd ${WRKSRC} && ${TAR} xzf ${DISTDIR}/HRP2JRLgrx${VERSION}.tar.gz
+	cp ${FILESDIR}/HRP2JRLmain.wrl.longneck.clean	\
+		${WRKSRC}/etc/HRP2JRL/HRP2JRLmain.wrl
+	cp ${FILESDIR}/HEAD_LINK1.wrl.longneck		\
+		${WRKSRC}/etc/HRP2JRL/.
 
 post-install:
 	${CAT} ${FILESDIR}/plist | (cd ${WRKDIR} && ${PAX} -rwp ma ${PREFIX})
