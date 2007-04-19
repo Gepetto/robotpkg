@@ -3060,7 +3060,6 @@ kineo/res/resMannequin/leftHand.bmp
 kineo/res/resMannequin/mannequin.bmp
 kineo/res/resMannequin/rightHand.bmp
 kineo/res/resModuleTest/testIcon.bmp
-kineo/res/resPlanning/Copie de boulon.bmp
 kineo/res/resPlanning/Embedded.bmp
 kineo/res/resPlanning/boulon.bmp
 kineo/res/resPlanning/range.bmp
@@ -3146,7 +3145,6 @@ kineo/share/doc/KPP SDK/html/IKTutorialSnapshot.png
 kineo/share/doc/KPP SDK/html/IKTutorialUpdateKinematics.png
 kineo/share/doc/KPP SDK/html/KPPSDKArchitecture.png
 kineo/share/doc/KPP SDK/html/KXMLViewerSnapShot.png
-kineo/share/doc/KPP SDK/html/MVC.png
 kineo/share/doc/KPP SDK/html/annotated.html
 kineo/share/doc/KPP SDK/html/class_ckpp_accessor_command-members.html
 kineo/share/doc/KPP SDK/html/class_ckpp_accessor_command.html
