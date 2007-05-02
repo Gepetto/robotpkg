@@ -117,17 +117,16 @@ pkg-depends-install: ${_DEPENDS_FILE}
 		${_DEPENDS_INSTALL_CMD};				\
 	done
 
-######################################################################
-### bootstrap-depends (PUBLIC, pkgsrc/mk/depends/depends.mk)
-######################################################################
-### bootstrap-depends is a public target to install any missing
-### dependencies needed during stages before the normal "depends"
-### stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
-###
-.PHONY: bootstrap-depends
-bootstrap-depends:
+# --- pkg-bootstrap-depends (PUBLIC, pkgsrc/mk/depends/depends.mk) ---
+
+# bootstrap-depends is a public target to install any missing
+# dependencies needed during stages before the normal "depends"
+# stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
+#
+.PHONY: pkg-bootstrap-depends
+pkg-bootstrap-depends:
 	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
-	args=$(subst :, ,${BOOTSTRAP_DEPENDS});				\
+	args=$(call quote,$(subst :, ,${BOOTSTRAP_DEPENDS}));		\
 	set -- dummy $$args; shift;					\
 	while ${TEST} $$# -gt 0; do					\
 		pattern="$$1"; dir="$$2"; shift 2;			\

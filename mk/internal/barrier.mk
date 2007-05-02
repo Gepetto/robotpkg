@@ -12,7 +12,7 @@ _BARRIER_PRE_TARGETS=	checksum makedirs depends
 #	ordered so that if more than one is specified on the command-line,
 #	then pkgsrc will still do the right thing.
 #
-
+_BARRIER_POST_TARGETS=	tools
 _BARRIER_POST_TARGETS+=	extract
 _BARRIER_POST_TARGETS+=	patch
 _BARRIER_POST_TARGETS+=	configure

@@ -93,15 +93,14 @@ ifndef NO_DEPENDS
   include ${PKGSRCDIR}/mk/depends/depends.mk
 endif
 
-######################################################################
-### bootstrap-depends (PUBLIC, OVERRIDE)
-######################################################################
-### bootstrap-depends is a public target to install any missing
-### dependencies needed during stages before the normal "depends"
-### stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
-###
+# --- bootstrap-depends (PUBLIC, OVERRIDE) ---------------------------
+
+# bootstrap-depends is a public target to install any missing
+# dependencies needed during stages before the normal "depends"
+# stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
+#
 .PHONY: bootstrap-depends
-bootstrap-depends:
+bootstrap-depends: pkg-bootstrap-depends
 
 
 ######################################################################

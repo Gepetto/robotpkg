@@ -11,6 +11,7 @@
 #    fetch
 #    checksum
 #    depends
+#    tools
 #    extract
 #    patch
 #    wrapper
@@ -254,10 +255,17 @@ PKG_SYSCONFDIR=		${DFLT_PKG_SYSCONFDIR}
 ALL_ENV+=		PKG_SYSCONFDIR=${PKG_SYSCONFDIR}
 _BUILD_DEFS+=		PKG_SYSCONFBASEDIR PKG_SYSCONFDIR
 
+ifndef NO_CHECKSUM
+USE_TOOLS+=		digest:bootstrap
+endif
+
 # Get the proper dependencies and set the PATH to use the compiler
 # named in PKGSRC_COMPILER.
 #
-include ../../mk/compiler/compiler-vars.mk
+include ${PKGSRCDIR}/mk/compiler/compiler-vars.mk
+
+# Tools
+include ${PKGSRCDIR}/mk/tools/tools-vars.mk
 
 # Locking
 include ${PKGSRCDIR}/mk/internal/locking.mk

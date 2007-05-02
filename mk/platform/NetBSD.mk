@@ -53,7 +53,6 @@ LIBTOOL?=		libtool
 FILE_CMD?=		file
 
 TOOLS_INSTALL=		/usr/bin/install
-TOOLS_DIGEST=		digest
 TOOLS_ECHO=		echo
 TOOLS_CAT=		cat
 TOOLS_TEST=		test

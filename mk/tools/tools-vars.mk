@@ -1,5 +1,23 @@
-# $NetBSD: bsd.tools.mk,v 1.45 2006/07/25 18:04:25 jlam Exp $
 #
+# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# All rights reserved.
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice,  this list of  conditions and  the following disclaimer in
+#      the  documentation   and/or  other  materials   provided with  the
+#      distribution.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# From $NetBSD: bsd.tools.mk,v 1.45 2006/07/25 18:04:25 jlam Exp $
 # Copyright (c) 2005, 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -9,11 +27,6 @@
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
 # are met:
-# 1. Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-# 2. Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in the
-#    documentation and/or other materials provided with the distribution.
 # 3. All advertising materials mentioning features or use of this software
 #    must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
@@ -35,7 +48,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
-# This Makefile fragment is included to bsd.pkg.mk and defines the
+# This Makefile fragment is included to robotpkg.mk and defines the
 # relevant variables and targets for the "tools" phase.
 #
 # The following are the "public" targets provided by this module:
@@ -56,12 +69,12 @@ USE_TOOLS?=		# empty
 
 _COOKIE.tools=	${WRKDIR}/.tools_done
 
-######################################################################
-### tools (PUBLIC)
-######################################################################
-### tools is a public target to create a private directory of tools
-### specified by USE_TOOLS.
-###
+
+# --- tools (PUBLIC) -------------------------------------------------
+
+# tools is a public target to create a private directory of tools
+# specified by USE_TOOLS.
+#
 _TOOLS_TARGETS+=	acquire-tools-lock
 _TOOLS_TARGETS+=	${_COOKIE.tools}
 _TOOLS_TARGETS+=	release-tools-lock
@@ -89,12 +102,11 @@ else
 ${_COOKIE.tools}: real-tools
 endif
 
-######################################################################
-### real-tools (PRIVATE)
-######################################################################
-### real-tools is a helper target onto which one can hook all of the
-### targets that do the actual tool creation.
-###
+# --- real-tools (PRIVATE) -------------------------------------------
+
+# real-tools is a helper target onto which one can hook all of the
+# targets that do the actual tool creation.
+#
 _REAL_TOOLS_TARGETS+=	tools-message
 #_REAL_TOOLS_TARGETS+=	tools-vars
 _REAL_TOOLS_TARGETS+=	override-tools
@@ -120,31 +132,27 @@ tools-cookie:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.tools})
 	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${USE_TOOLS} > ${_COOKIE.tools}
 
-######################################################################
-### override-tools (PRIVATE)
-######################################################################
-### override-tools is a helper target onto which one can hook all of
-### the targets that create tools so they are generated at the proper
-### time.
-###
+
+# --- override-tools (PRIVATE) ---------------------------------------
+
+# override-tools is a helper target onto which one can hook all of
+# the targets that create tools so they are generated at the proper
+# time.
+#
 .PHONY: override-tools
 override-tools:
 	@${DO_NADA}
 
-######################################################################
-### post-tools (PUBLIC, override)
-######################################################################
-### post-tools may be overridden within a package Makefile and can be
-### used to directly modify the contents of the tools directory after
-### the tools are generated.
-###
-.PHONY: post-tools
-#.if !target(post-tools)
-post-tools:
-	@${DO_NADA}
-#.endif
 
-#.include "${PKGSRCDIR}/mk/tools/digest.mk"
+# --- post-tools (PUBLIC, override) ----------------------------------
+
+# post-tools may be overridden within a package Makefile and can be
+# used to directly modify the contents of the tools directory after
+# the tools are generated.
+#
+post-tools:
+
+include ${PKGSRCDIR}/mk/tools/digest.mk
 #.include "${PKGSRCDIR}/mk/tools/automake.mk"
 #.include "${PKGSRCDIR}/mk/tools/autoconf.mk"
 #.include "${PKGSRCDIR}/mk/tools/texinfo.mk"
