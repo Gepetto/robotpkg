@@ -1,5 +1,5 @@
 --- bin/Makefile.orig	2006-01-30 12:27:22.000000000 +0100
-+++ bin/Makefile	2007-01-09 15:46:39.500889000 +0100
++++ bin/Makefile	2007-04-27 12:10:22.000000000 +0200
 @@ -190,7 +190,8 @@
  	echo -n VVV_DIR/bin: >> config.sh
  endif
@@ -10,18 +10,20 @@
  	echo -n export LD_LIBRARY_PATH= >> config.sh
  	echo -n .: >> config.sh
  	echo -n $$ >> config.sh
-@@ -204,7 +205,9 @@
+@@ -204,16 +205,21 @@
  	echo -n $$ >> config.sh
  	echo -n OPENHRPHOME/PatternGenerator/server: >> config.sh 
  	echo -n $$ >> config.sh
 -	echo -n OB_DIR/lib >> config.sh
+-ifneq ($(OMNIORB4_DIR),)
+-	echo -n :$(OMNIORB4_DIR)/lib >> config.sh
+-endif
 +	echo -n OB_DIR/lib: >> config.sh
 +	echo -n $$ >> config.sh
 +	echo -n OPENHRPHOME/Controller/IOserver/robot/$(ROBOT)/bin >> config.sh
- ifneq ($(OMNIORB4_DIR),)
- 	echo -n :$(OMNIORB4_DIR)/lib >> config.sh
- endif
-@@ -213,7 +216,12 @@
++	echo -n :$(PREFIX)/lib >> config.sh
+ ifdef VVV_DIR
+ 	echo -n :$$ >> config.sh
  	echo -n VVV_DIR/lib >> config.sh
  endif
  	echo >> config.sh
