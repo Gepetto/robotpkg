@@ -52,6 +52,6 @@ PKGCONFIG_OVERRIDE_SED= \
 SUBST_CLASSES+=			pkgconfig
 SUBST_STAGE.pkgconfig=          do-configure-pre-hook
 SUBST_MESSAGE.pkgconfig=        Adding run-time search paths to pkg-config files.
-SUBST_FILES.pkgconfig=          $(addprefix ${WRKSRC}/,${PKGCONFIG_OVERRIDE})
+SUBST_FILES.pkgconfig=          $(call quote,$(addprefix ${WRKSRC}/,${PKGCONFIG_OVERRIDE}))
 SUBST_SED.pkgconfig=            ${PKGCONFIG_OVERRIDE_SED}
 endif
