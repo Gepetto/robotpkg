@@ -6713,9 +6713,70 @@ kineo/share/doc/KineoWorks/html/tab_r.gif
 kineo/share/doc/KineoWorks/html/tabs.css
 kineo/share/doc/KineoWorks/html/tree.html
 kineo/share/doc/KineoWorks/html/usingsmartpointers.html
+kineo/share/examples/bin/i386-linux/.notempty
+kineo/share/examples/bin/win32msvc7/.notEmpty
+kineo/share/examples/prj/unix/Init.make.KineoTutorialKPPSDK
+kineo/share/examples/prj/unix/KineoTutorialHelloWorld/GNUmakefile
+kineo/share/examples/prj/unix/KineoTutorialIK/GNUmakefile
+kineo/share/examples/prj/unix/KineoTutorialKXMLViewer/GNUmakefile
+kineo/share/examples/prj/win32msvc7/KineoTutorialHelloWorld/KineoTutorialHelloWorld.vcproj
+kineo/share/examples/prj/win32msvc7/KineoTutorialIK/KineoTutorialIK.vcproj
+kineo/share/examples/prj/win32msvc7/KineoTutorialKPPSDK.sln
+kineo/share/examples/prj/win32msvc7/KineoTutorialKXMLViewer/KineoTutorialKXMLViewer.vcproj
+kineo/share/examples/res/KineoTutorialHelloWorld/HelloWorld.bmp
+kineo/share/examples/src/KineoTutorialHelloWorld/kttHelloWorldCommand.cpp
+kineo/share/examples/src/KineoTutorialHelloWorld/kttHelloWorldCommand.h
+kineo/share/examples/src/KineoTutorialHelloWorld/kttInterface.cpp
+kineo/share/examples/src/KineoTutorialHelloWorld/kttInterface.h
+kineo/share/examples/src/KineoTutorialIK/kttCreateIKDeviceCommand.cpp
+kineo/share/examples/src/KineoTutorialIK/kttCreateIKDeviceCommand.h
+kineo/share/examples/src/KineoTutorialIK/kttHomePositionCommand.cpp
+kineo/share/examples/src/KineoTutorialIK/kttHomePositionCommand.h
+kineo/share/examples/src/KineoTutorialIK/kttIKCommandPanel.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKCommandPanel.h
+kineo/share/examples/src/KineoTutorialIK/kttIKCommandPanelController.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKCommandPanelController.h
+kineo/share/examples/src/KineoTutorialIK/kttIKConstraint.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKConstraint.h
+kineo/share/examples/src/KineoTutorialIK/kttIKConstraintComponent.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKConstraintComponent.h
+kineo/share/examples/src/KineoTutorialIK/kttIKDeviceComponent.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKDeviceComponent.h
+kineo/share/examples/src/KineoTutorialIK/kttIKLinkGraphic.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKLinkGraphic.h
+kineo/share/examples/src/KineoTutorialIK/kttIKViewController.cpp
+kineo/share/examples/src/KineoTutorialIK/kttIKViewController.h
+kineo/share/examples/src/KineoTutorialIK/kttInterface.cpp
+kineo/share/examples/src/KineoTutorialIK/kttInterface.h
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerApp.cpp
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerApp.h
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrame.cpp
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrame.h
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrameController.cpp
+kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrameController.h
+kineo/share/examples/src/KineoTutorialKXMLViewer/main.cpp
 lib/pkgconfig/KineoController.pc
 lib/pkgconfig/KineoPathPlanner.pc
 @dirrm lib/pkgconfig
+@dirrm kineo/share/examples/src/KineoTutorialKXMLViewer
+@dirrm kineo/share/examples/src/KineoTutorialIK
+@dirrm kineo/share/examples/src/KineoTutorialHelloWorld
+@dirrm kineo/share/examples/src
+@dirrm kineo/share/examples/res/KineoTutorialHelloWorld
+@dirrm kineo/share/examples/res
+@dirrm kineo/share/examples/prj/win32msvc7/KineoTutorialKXMLViewer
+@dirrm kineo/share/examples/prj/win32msvc7/KineoTutorialIK
+@dirrm kineo/share/examples/prj/win32msvc7/KineoTutorialHelloWorld
+@dirrm kineo/share/examples/prj/win32msvc7
+@dirrm kineo/share/examples/prj/unix/KineoTutorialKXMLViewer
+@dirrm kineo/share/examples/prj/unix/KineoTutorialIK
+@dirrm kineo/share/examples/prj/unix/KineoTutorialHelloWorld
+@dirrm kineo/share/examples/prj/unix
+@dirrm kineo/share/examples/prj
+@dirrm kineo/share/examples/bin/win32msvc7
+@dirrm kineo/share/examples/bin/i386-linux
+@dirrm kineo/share/examples/bin
+@dirrm kineo/share/examples
 @dirrm kineo/share/doc/KineoWorks/html
 @dirrm kineo/share/doc/KineoWorks
 @dirrm kineo/share/doc/KPP SDK/html
