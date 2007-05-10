@@ -1,0 +1,11 @@
+--- interfaces/kprParserXML/kprParserManager.h~	2007-05-03 15:47:44.000000000 +0200
++++ interfaces/kprParserXML/kprParserManager.h	2007-05-10 18:03:13.899214000 +0200
+@@ -109,7 +109,7 @@
+ 	/** retrieves all extension readable by the parser manager
+ 	*		\retval o_readableExtensions : readable extensions
+ 	*/
+-	void CkprParserManager::getReadableExtensions( std::vector< std::string >& o_readableExtensions ) const;
++	void getReadableExtensions( std::vector< std::string >& o_readableExtensions ) const;
+ 	/** specifies default \link #CkitProgressDelegate progress delegate \endlink
+ 	*		\param	i_progressDelegate : default progress delegate
+ 	*/
