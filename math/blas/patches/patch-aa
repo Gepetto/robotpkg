@@ -2,8 +2,9 @@ $NetBSD: patch-aa,v 1.2 2005/09/05 13:22:00 adam Exp $
 
 --- /dev/null	2003-11-20 10:35:58.000000000 +0100
 +++ Makefile
-@@ -0,0 +1,35 @@
+@@ -0,0 +1,36 @@
 +LIB	= blas
++VPATH	= BLAS
 +
 +all:	lib$(LIB).a
 +
