@@ -3,7 +3,7 @@
 
 DISTNAME=	blas
 PKGNAME=	blas-1.0
-PKGREVISION=	1
+PKGREVISION=	2
 
 CATEGORIES=	math
 MASTER_SITES= 	ftp://ftp.netlib.org/blas/ \
