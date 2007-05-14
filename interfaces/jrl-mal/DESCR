@@ -1,0 +1,2 @@
+Matrix abstraction layer package. This package can be configured to use
+boost or vnl.
