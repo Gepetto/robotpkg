@@ -2,7 +2,7 @@
 #
 
 DISTNAME=	matrixabstractlayer-${VERSION}
-PKGNAME=	jrlmal-${VERSION}
+PKGNAME=	jrl-mal-${VERSION}
 VERSION=	1.2
 #PKGREVISION=	0
 
@@ -19,6 +19,7 @@ DEPENDS+=       libt3d>=2.2:../../math/t3d
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-boost=${PREFIX}
+CONFIGURE_ARGS+=	--with-lapack=${PREFIX}
 CONFIGURE_ARGS+=	--with-t3d
 
 include ../../mk/robotpkg.mk
