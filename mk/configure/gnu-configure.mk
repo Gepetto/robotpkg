@@ -1,4 +1,23 @@
-# $NetBSD: gnu-configure.mk,v 1.1 2006/07/05 06:09:15 jlam Exp $
+#
+# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# All rights reserved.
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice,  this list of  conditions and  the following disclaimer in
+#      the  documentation   and/or  other  materials   provided with  the
+#      distribution.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# From $NetBSD: gnu-configure.mk,v 1.1 2006/07/05 06:09:15 jlam Exp $
 
 HAS_CONFIGURE=			defined
 OVERRIDE_GNU_CONFIG_SCRIPTS=	defined

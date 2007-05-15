@@ -28,6 +28,18 @@ MASTER_SITE_SOURCEFORGE+=	\
 	http://ufpr.dl.sourceforge.net/sourceforge/ \
 	http://voxel.dl.sourceforge.net/sourceforge
 
+MASTER_SITE_GNU+=       \
+	http://ftp.gnu.org/pub/gnu/ \
+	ftp://ftp.gnu.org/pub/gnu/ \
+	ftp://ftp.funet.fi/pub/gnu/prep/ \
+	ftp://ftp.kddlabs.co.jp/pub/gnu/gnu/ \
+	ftp://ftp.dti.ad.jp/pub/GNU/ \
+	ftp://ftp.mirror.ac.uk/sites/ftp.gnu.org/gnu/ \
+	ftp://ftp.informatik.hu-berlin.de/pub/gnu/ \
+	ftp://ftp.lip6.fr/pub/gnu/ \
+	ftp://ftp.tuwien.ac.at/linux/gnu/gnusrc/ \
+	ftp://ftp.chg.ru/pub/gnu/
+
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
 	http://softs.laas.fr/openrobots/distfiles/
