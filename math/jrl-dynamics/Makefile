@@ -16,5 +16,6 @@ COMMENT=	JRL-Japan implementation of dynamic robot.
 DEPENDS+=	jrl-interface-dynamics>=1.2:../../interfaces/jrl-interface-dynamics
 
 GNU_CONFIGURE=	yes
+USE_PKG_CONFIG=	yes
 
 include ../../mk/robotpkg.mk
