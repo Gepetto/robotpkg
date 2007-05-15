@@ -1,0 +1,80 @@
+include/walkGenJrl/Mathematics/ConvexHull.h
+include/walkGenJrl/Mathematics/Polynome.h
+include/walkGenJrl/Mathematics/PolynomeFoot.h
+include/walkGenJrl/Mathematics/StepOverPolynome.h
+include/walkGenJrl/Mathematics/qld.h
+include/walkGenJrl/MotionGeneration/CollisionDetector.h
+include/walkGenJrl/MotionGeneration/ComAndFootRealization.h
+include/walkGenJrl/MotionGeneration/ComAndFootRealizationByGeometry.h
+include/walkGenJrl/MotionGeneration/GenerateMotionFromKineoWorks.h
+include/walkGenJrl/MotionGeneration/InverseKinematics.h
+include/walkGenJrl/MotionGeneration/StepOverPlanner.h
+include/walkGenJrl/MotionGeneration/UpperBodyMotion.h
+include/walkGenJrl/MotionGeneration/WaistHeightVariation.h
+include/walkGenJrl/PGTypes.h
+include/walkGenJrl/PatternGeneratorInterface.h
+include/walkGenJrl/PreviewControl/OptimalControllerSolver.h
+include/walkGenJrl/PreviewControl/PreviewControl.h
+include/walkGenJrl/PreviewControl/ZMPPreviewControlWithMultiBodyZMP.h
+include/walkGenJrl/SimplePlugin.h
+include/walkGenJrl/SimplePluginManager.h
+include/walkGenJrl/StepStackHandler.h
+include/walkGenJrl/ZMPRefTrajectoryGeneration/ZMPDiscretization.h
+lib/libwalkGenJRL.la
+lib/pkgconfig/walkGenJrl.pc
+share/doc/walkGenJRL/doxygen.png
+share/doc/walkGenJRL/files.html
+share/doc/walkGenJRL/ftv2blank.png
+share/doc/walkGenJRL/ftv2doc.png
+share/doc/walkGenJRL/ftv2folderclosed.png
+share/doc/walkGenJRL/ftv2folderopen.png
+share/doc/walkGenJRL/ftv2lastnode.png
+share/doc/walkGenJRL/ftv2link.png
+share/doc/walkGenJRL/ftv2mlastnode.png
+share/doc/walkGenJRL/ftv2mnode.png
+share/doc/walkGenJRL/ftv2node.png
+share/doc/walkGenJRL/ftv2plastnode.png
+share/doc/walkGenJRL/ftv2pnode.png
+share/doc/walkGenJRL/ftv2vertline.png
+share/doc/walkGenJRL/graph_legend.dot
+share/doc/walkGenJRL/graph_legend.html
+share/doc/walkGenJRL/graph_legend.png
+share/doc/walkGenJRL/group___interface.html
+share/doc/walkGenJRL/group___interface.png
+share/doc/walkGenJRL/group__forwardynamics.html
+share/doc/walkGenJRL/group__forwardynamics.png
+share/doc/walkGenJRL/group__geometry.html
+share/doc/walkGenJRL/group__geometry.png
+share/doc/walkGenJRL/group__linearalgebra.html
+share/doc/walkGenJRL/group__linearalgebra.png
+share/doc/walkGenJRL/group__mathematics.html
+share/doc/walkGenJRL/group__mathematics.png
+share/doc/walkGenJRL/group__pginterfaces.html
+share/doc/walkGenJRL/group__pgjrl.html
+share/doc/walkGenJRL/group__pgjrl.png
+share/doc/walkGenJRL/group__previewcontrol.html
+share/doc/walkGenJRL/group__previewcontrol.png
+share/doc/walkGenJRL/group__steppingover.html
+share/doc/walkGenJRL/group__steppingover.png
+share/doc/walkGenJRL/index.html
+share/doc/walkGenJRL/main.html
+share/doc/walkGenJRL/modules.html
+share/doc/walkGenJRL/modules_8h.html
+share/doc/walkGenJRL/pgjrl.css
+share/doc/walkGenJRL/pictures/HRP2.jpg
+share/doc/walkGenJRL/tab_b.gif
+share/doc/walkGenJRL/tab_l.gif
+share/doc/walkGenJRL/tab_r.gif
+share/doc/walkGenJRL/tabs.css
+share/doc/walkGenJRL/tree.html
+share/walkgenjrl/HRP2LinkJointRank.xml
+share/walkgenjrl/HRP2Specificities.xml
+share/walkgenjrl/PreviewControlParameters.ini
+@dirrm share/walkgenjrl
+@dirrm share/doc/walkGenJRL/pictures
+@dirrm share/doc/walkGenJRL
+@dirrm include/walkGenJrl/ZMPRefTrajectoryGeneration
+@dirrm include/walkGenJrl/PreviewControl
+@dirrm include/walkGenJrl/MotionGeneration
+@dirrm include/walkGenJrl/Mathematics
+@dirrm include/walkGenJrl
