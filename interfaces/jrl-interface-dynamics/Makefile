@@ -16,5 +16,6 @@ COMMENT=	JRL abstract interface for dynamic robot model.
 DEPENDS+=	jrl-mal>=1.2:../../interfaces/jrl-mal
 
 GNU_CONFIGURE=	yes
+USE_PKG_CONFIG=	yes
 
 include ../../mk/robotpkg.mk

@@ -18,6 +18,8 @@ DEPENDS+=       lapack>=3.1.0:../../math/lapack
 DEPENDS+=       libt3d>=2.2:../../math/t3d
 
 GNU_CONFIGURE=	yes
+USE_PKG_CONFIG=	yes
+
 CONFIGURE_ARGS+=	--with-boost=${PREFIX}
 CONFIGURE_ARGS+=	--with-lapack=${PREFIX}
 CONFIGURE_ARGS+=	--with-t3d
