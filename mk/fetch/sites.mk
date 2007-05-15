@@ -5,11 +5,10 @@
 #
 
 MASTER_SITE_OPENROBOTS+=	\
-	http://softs.laas.fr/openrobots/distfiles/	\
-	ftp://softs.laas.fr/pub/openrobots/robotpkg/
+	ftp://softs.laas.fr/pub/openrobots/
 
-MASTER_SITE_NETBSD_PKGSRC+=		\
-	ftp://ftp.NetBSD.org/pub/NetBSD/packages/distfiles/LOCAL_PORTS/
+MASTER_SITE_JRL+=	\
+	ftp://jrl@softs.laas.fr/
 
 MASTER_SITE_SOURCEFORGE+=	\
 	http://easynews.dl.sourceforge.net/sourceforge/ \
@@ -40,6 +39,9 @@ MASTER_SITE_GNU+=       \
 	ftp://ftp.tuwien.ac.at/linux/gnu/gnusrc/ \
 	ftp://ftp.chg.ru/pub/gnu/
 
+MASTER_SITE_NETBSD_PKGSRC+=		\
+	ftp://ftp.NetBSD.org/pub/NetBSD/packages/distfiles/LOCAL_PORTS/
+
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
-	http://softs.laas.fr/openrobots/distfiles/
+	ftp://softs.laas.fr/pub/openrobots/
