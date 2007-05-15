@@ -459,5 +459,8 @@ include ../../mk/internal/subst.mk
 #.include "${PKGSRCDIR}/mk/help/help.mk"
 #.endif
 
+# README generation code.
+#include ${PKGSRCDIR}/internal/readme.mk
+
 # fake target to make pattern targets phony
 .FORCE:

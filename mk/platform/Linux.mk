@@ -49,7 +49,6 @@ PAX?=			${LOCALBASE}/bin/pax
 CVS?=			cvs
 BASENAME?=		basename
 PATCH?=			patch
-LIBTOOL?=		libtool
 FILE_CMD?=		file
 
 TOOLS_INSTALL=		/usr/bin/install
