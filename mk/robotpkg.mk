@@ -446,7 +446,7 @@ show-license:
 
 include ../../mk/plist/plist-vars.mk
 
--include "../../mk/bsd.utils.mk"
+include ${PKGSRCDIR}/mk/internal/utils.mk
 
 include ../../mk/internal/subst.mk
 
@@ -460,7 +460,7 @@ include ../../mk/internal/subst.mk
 #.endif
 
 # README generation code.
-#include ${PKGSRCDIR}/internal/readme.mk
+include ${PKGSRCDIR}/mk/internal/readme.mk
 
 # fake target to make pattern targets phony
 .FORCE:
