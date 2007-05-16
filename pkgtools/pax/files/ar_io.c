@@ -69,7 +69,6 @@ __RCSID("$NetBSD: ar_io.c,v 1.9 2005/12/01 03:00:01 minskim Exp $");
 #endif
 #if HAVE_SYS_TAPE_H
 #include <sys/tape.h>
-#include "tape_h_fixup.h"
 #endif
 #if HAVE_SYS_MTIO_H
 #include <sys/mtio.h>
