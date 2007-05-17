@@ -5,7 +5,8 @@
 #
 
 MASTER_SITE_OPENROBOTS+=	\
-	ftp://softs.laas.fr/pub/openrobots/
+	ftp://softs.laas.fr/pub/openrobots/		\
+	http://softs.laas.fr/openrobots/distfiles/
 
 MASTER_SITE_JRL+=	\
 	ftp://jrl@softs.laas.fr/
@@ -44,4 +45,5 @@ MASTER_SITE_NETBSD_PKGSRC+=		\
 
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
-	ftp://softs.laas.fr/pub/openrobots/
+	ftp://softs.laas.fr/pub/openrobots/		\
+	http://softs.laas.fr/openrobots/distfiles/
