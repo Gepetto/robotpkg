@@ -3343,9 +3343,6 @@ lib/libboost_python-mt.so.${PKGVERSION}
 lib/libboost_regex-mt.a
 lib/libboost_regex-mt.so
 lib/libboost_regex-mt.so.${PKGVERSION}
-lib/libboost_serialization-mt.a
-lib/libboost_serialization-mt.so
-lib/libboost_serialization-mt.so.${PKGVERSION}
 lib/libboost_signals-mt.a
 lib/libboost_signals-mt.so
 lib/libboost_signals-mt.so.${PKGVERSION}
@@ -3359,9 +3356,6 @@ lib/libboost_unit_test_framework-mt.a
 lib/libboost_unit_test_framework-mt.so
 lib/libboost_unit_test_framework-mt.so.${PKGVERSION}
 lib/libboost_wave-mt.a
-lib/libboost_wserialization-mt.a
-lib/libboost_wserialization-mt.so
-lib/libboost_wserialization-mt.so.${PKGVERSION}
 @dirrm lib
 @dirrm include/boost/wave/util
 @dirrm include/boost/wave/grammars

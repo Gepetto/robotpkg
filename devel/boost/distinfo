@@ -3,3 +3,4 @@ $NetBSD$
 SHA1 (boost_1_33_1.tar.gz) = 09ee930697e9a8bb505c24f05e3f13861be7d937
 RMD160 (boost_1_33_1.tar.gz) = c10999eefe45bcea59eb10992bfd6fc21c12a240
 Size (boost_1_33_1.tar.gz) = 14358143 bytes
+SHA1 (patch-aa) = 453d4107df03e96e66cbdbebceebdfcbed2710c1

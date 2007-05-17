@@ -2,6 +2,7 @@
 #
 
 BOOST_VERSION=		1.33.1
+PKGREVISION=		1
 PKGNAME=		boost-${BOOST_VERSION}
 DISTNAME=		boost_$(subst .,_,${BOOST_VERSION})
 CATEGORIES=		devel
@@ -11,6 +12,44 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=boost/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.boost.org/
 COMMENT=		Free, peer-reviewed portable C++ source libraries.
+
+DEPENDS+=		bzip2>=1.0.4:../../archivers/bzip2
+
+include ../../mk/robotpkg.prefs.mk
+
+ifeq (${OPSYS},"Darwin")
+BOOST_TOOLSET=          darwin
+else
+ ifneq (,$(filter gcc,${PKGSRC_COMPILER}))
+BOOST_TOOLSET=          gcc
+ else
+PKG_FAIL_REASON+=       "Unknown compiler ${PKGSRC_COMPILER} for Boost."
+ endif
+endif
+
+BJAM=                   ${WRKSRC}/tools/build/jam_src/bin.*/bjam
+BJAM_ARGS+=             --builddir=${WRKSRC}/build
+BJAM_ARGS+=             --layout=system
+BJAM_ARGS+=             --prefix=${PREFIX}
+BJAM_ARGS+=             -sBUILD=$(call quote,${BJAM_BUILD})
+BJAM_ARGS+=             -sTOOLS=${BOOST_TOOLSET}
+
+# force bzip2 location
+BJAM_ARGS+=             -sBZIP2_INCLUDE=${PREFIX}/include
+BJAM_ARGS+=             -sBZIP2_LIBPATH=${PREFIX}/lib
+
+BJAM_ARGS+=		--without-python
+BJAM_ARGS+=		--without-serialization # Requires wide I/O
+
+ifeq (${OPSYS},"Darwin")
+BJAM_ARGS+=             -sTARGET_LIBDIR=${PREFIX}/lib
+endif
+BJAM_BUILD+=            <linkflags>${COMPILER_RPATH_FLAG}${PREFIX}/lib
+BJAM_BUILD+=            <threading>multi
+BJAM_BUILD+=            release
+BJAM_CMD=               ${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
+
+include ../../mk/robotpkg.mk
 
 # Generate a new user.hpp and compile bjam
 do-configure:
@@ -35,31 +74,3 @@ pre-configure:
 
 #boost-install-libs:
 #	cd ${WRKSRC}/stage/lib && ${PAX} -rwpe libboost* ${PREFIX}/lib
-
-include ../../mk/robotpkg.prefs.mk
-
-ifeq (${OPSYS},"Darwin")
-BOOST_TOOLSET=          darwin
-else
- ifneq (,$(filter gcc,${PKGSRC_COMPILER}))
-BOOST_TOOLSET=          gcc
- else
-PKG_FAIL_REASON+=       "Unknown compiler ${PKGSRC_COMPILER} for Boost."
- endif
-endif
-
-BJAM=                   ${WRKSRC}/tools/build/jam_src/bin.*/bjam
-BJAM_ARGS+=             --builddir=${WRKSRC}/build
-BJAM_ARGS+=             --layout=system
-BJAM_ARGS+=             --prefix=${PREFIX}
-BJAM_ARGS+=             -sBUILD=$(call quote,${BJAM_BUILD})
-BJAM_ARGS+=             -sTOOLS=${BOOST_TOOLSET}
-ifeq (${OPSYS},"Darwin")
-BJAM_ARGS+=             -sTARGET_LIBDIR=${PREFIX}/lib
-endif
-BJAM_BUILD+=            <linkflags>${COMPILER_RPATH_FLAG}${PREFIX}/lib
-BJAM_BUILD+=            <threading>multi
-BJAM_BUILD+=            release
-BJAM_CMD=               ${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
-
-include ../../mk/robotpkg.mk
