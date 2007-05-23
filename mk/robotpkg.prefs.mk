@@ -165,5 +165,6 @@ ifdef MAKECONF
 PKGSRC_MAKE_ENV+=       MAKECONF=${MAKECONF}
 endif
 RECURSIVE_MAKE=         ${SETENV} ${PKGSRC_MAKE_ENV} ${MAKE}
+MAKEFLAGS+=		--no-print-directory
 
 endif	# ROBOTPKG_MK

@@ -24,7 +24,6 @@
 #
 
 TMPDIR?=	/tmp
-MAKEFLAGS+=	--no-print-directory
 
 # _DEPENDS_WALK_CMD holds the command (sans arguments) to walk the
 # dependency graph for a package.
