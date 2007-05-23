@@ -64,7 +64,7 @@ SED?=		/usr/bin/sed
 SORT?=		/usr/bin/sort
 
 ${SUBDIR}::
-	cd ${CURDIR}/$@; ${RECURSIVE_MAKE} ${MAKEFLAGS} all
+	cd ${CURDIR}/$@; ${RECURSIVE_MAKE} all
 
 __targets=\
 	all fetch package extract configure build install clean \
@@ -82,17 +82,17 @@ ${__targets}:
 		if [ "X$$entry" = "X" ]; then continue; fi; \
 		cd ${CURDIR}/$${entry}; \
 		${ECHO_MSG} "===> ${_THISDIR_}$${entry}"; \
-		${RECURSIVE_MAKE} ${MAKEFLAGS} "_THISDIR_=${_THISDIR_}$${entry}/" \
+		${RECURSIVE_MAKE} "_THISDIR_=${_THISDIR_}$${entry}/" \
 			${@:realinstall=install} || true; \
 	done
 
 readme:
-	@${RECURSIVE_MAKE} ${MAKEFLAGS} README.html
+	@${RECURSIVE_MAKE} README.html
 
 ifdef ROBOTPKGTOP
-README=	templates/README.top
+README=	mk/templates/README.top
 else
-README=	../templates/README.category
+README=	../mk/templates/README.category
 endif
 
 HTMLIFY=	${SED} -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
@@ -103,11 +103,11 @@ README.html:
 ifdef ROBOTPKGTOP
 	@for entry in ${SUBDIR}; do \
 		${ECHO} '<TR><TD VALIGN=TOP><a href="'$${entry}/README.html'">'"`${ECHO} $${entry} | ${HTMLIFY}`"'</a>: <TD>' >> $@.tmp; \
-		${ECHO} `cd $${entry} && ${RECURSIVE_MAKE} ${MAKEFLAGS} show-comment | ${HTMLIFY}` >> $@.tmp; \
+		${ECHO} `cd $${entry} && ${RECURSIVE_MAKE} show-comment | ${HTMLIFY}` >> $@.tmp; \
 	done
 else
 	@for entry in ${SUBDIR}; do \
-		${ECHO} '<TR><TD VALIGN=TOP><a href="'$${entry}/README.html'">'"`cd $${entry}; ${RECURSIVE_MAKE} ${MAKEFLAGS} make-readme-html-help`" >> $@.tmp; \
+		${ECHO} '<TR><TD VALIGN=TOP><a href="'$${entry}/README.html'">'"`cd $${entry}; ${RECURSIVE_MAKE} make-readme-html-help`" >> $@.tmp; \
 	done
 endif
 	@${SORT} -t '>' +3 -4 $@.tmp > $@.tmp2
@@ -133,9 +133,10 @@ endif
 		${MV} $@.tmp5 $@ ; \
 	fi
 	@${RM} -f $@.tmp $@.tmp2 $@.tmp3 $@.tmp4
-$(foreach subdir,${SUBDIR},\
-	@cd ${subdir} && ${RECURSIVE_MAKE} ${MAKEFLAGS} "_THISDIR_=${_THISDIR_}$(notdir ${CURDIR})/" readme \
-)
+	@for subdir in ${SUBDIR} ""; do \
+		if [ "X$$subdir" = "X" ]; then continue; fi; \
+		(cd $${subdir} && ${RECURSIVE_MAKE} "_THISDIR_=${_THISDIR_}$(notdir ${CURDIR})/" readme); \
+	done
 
 show-comment:
 	@if [ $(call quote,${COMMENT})"" ]; then			\
