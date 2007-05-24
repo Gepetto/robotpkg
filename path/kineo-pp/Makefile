@@ -4,10 +4,14 @@
 
 KPPVERSION=		2.04
 KPPPATCH=		301
-PKGREVISION=		0
+PKGREVISION=		1
 PKGNAME=		kineo-pp-${KPPVERSION}.${KPPPATCH}
 DISTNAME=		KPPSDK_${KPPVERSION}.${KPPPATCH}
 EXTRACT_SUFX=		.tgz
+
+DISTFILES=\
+	${DISTNAME}.tgz	\
+	KPPSDK_2.04.300.tgz
 
 WRKSRC=			${WRKDIR}/KPPSDK_${KPPVERSION}
 
@@ -54,11 +58,12 @@ do-install:
 	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux||' ${WRKSRC}/bin/i386-linux/Kineo* ${KINEO_DIR}/bin
 	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux||' ${WRKSRC}/bin/i386-linux/*.sh ${KINEO_DIR}/bin
 	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux/dynlib||' ${WRKSRC}/bin/i386-linux/dynlib ${KINEO_DIR}/lib
-	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux/modules||' ${WRKSRC}/bin/i386-linux/modules ${KINEO_DIR}/lib
-	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux/debugModules||' ${WRKSRC}/bin/i386-linux/debugModules ${KINEO_DIR}/lib
+	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux/modules||' ${WRKSRC}/bin/i386-linux/modules ${KINEO_DIR}/lib/modules
+	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux/debugModules||' ${WRKSRC}/bin/i386-linux/debugModules ${KINEO_DIR}/lib/modules
 	${PAX} -rw -pm -s '|${WRKSRC}/interfaces||' ${WRKSRC}/interfaces ${KINEO_DIR}/include
 	${PAX} -rw -pm -s '|${WRKSRC}/lib||' ${WRKSRC}/lib ${KINEO_DIR}/lib
 	${PAX} -rw -pm -s '|${WRKSRC}/res||' ${WRKSRC}/res ${KINEO_DIR}/res
+	${PAX} -rw -pm -s '|${WRKDIR}/kppsdk_2.04/doc||' ${WRKDIR}/kppsdk_2.04/doc ${KINEO_DIR}/share/doc
 	for f in 							\
 		KineoAddonBuilder					\
 		KineoPathPlannerd					\
