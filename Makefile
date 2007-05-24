@@ -76,4 +76,3 @@ SUBDIR+=	pkgtools
 SUBDIR+=	shell
 
 include ${CURDIR}/mk/robotpkg.subdir.mk
-#.include "${.PARSEDIR}/mk/misc/toplevel.mk"
