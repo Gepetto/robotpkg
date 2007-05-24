@@ -660,12 +660,12 @@ function find_all_depends(pkg, type, pkgreg, i, deps, depdir, topdep){
 # we'll distinguish things like gnome from gnome-libs
 #
 function reg2str(reg){
-	gsub(/\./, "\\\.", reg);
-	gsub(/\+/, "\\\+", reg);
-	gsub(/\*/, "\\\*", reg);
-	gsub(/\?/, "\\\?", reg);
-	gsub(/\[/, "\\\[", reg);
-	gsub(/\]/, "\\\]", reg);
+	gsub(/\\./, "\\\\.", reg);
+	gsub(/\\+/, "\\\\+", reg);
+	gsub(/\\*/, "\\\\*", reg);
+	gsub(/\\?/, "\\\\?", reg);
+	gsub(/\\\[/, "\\\\[", reg);
+	gsub(/\\]/, "\\\\]", reg);
 	reg = " "reg" ";
 	return(reg);
 }
@@ -677,8 +677,8 @@ function reg2str(reg){
 function glob2reg(reg){
 
 	# escape some characters which are special in regular expressions
-        gsub(/\./, "\\\.", reg);
-        gsub(/\+/, "\\\+", reg);
+        gsub(/\\./, "\\\\.", reg);
+        gsub(/\\+/, "\\\\+", reg);
 
 	# and reformat some others
         gsub(/\*/, ".*", reg);
