@@ -46,12 +46,17 @@
 #	mirror-distfiles, bulk-install, bulk-package, ${PKG_MISC_TARGETS}
 #
 
+.DEFAULT_GOAL:=all
+all:
+
 # Pull in stuff from robotpkg.conf - need to check two places as this may be
 # called from pkgsrc or from pkgsrc/category.
--include ${CURDIR}/mk/robotpkg.prefs.mk
--include ${CURDIR}/../mk/robotpkg.prefs.mk
-
-.DEFAULT_GOAL:=all
+ifdef ROBOTPKGTOP
+ include ${CURDIR}/mk/robotpkg.prefs.mk
+ include ${CURDIR}/mk/internal/toplevel.mk
+else
+ include ${CURDIR}/../mk/robotpkg.prefs.mk
+endif
 
 AWK?=		/usr/bin/awk
 CAT?=		/bin/cat
@@ -110,7 +115,7 @@ else
 		${ECHO} '<TR><TD VALIGN=TOP><a href="'$${entry}/README.html'">'"`cd $${entry}; ${RECURSIVE_MAKE} make-readme-html-help`" >> $@.tmp; \
 	done
 endif
-	@${SORT} -t '>' +3 -4 $@.tmp > $@.tmp2
+	@${SORT} -t '>' -k 3,4 $@.tmp > $@.tmp2
 	@${AWK} '{ ++n } END { print n }' < $@.tmp2 > $@.tmp4
 ifeq (yes,$(call exists,${CURDIR}/DESCR))
 	@${HTMLIFY} ${CURDIR}/DESCR > $@.tmp3
