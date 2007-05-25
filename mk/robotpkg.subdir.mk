@@ -107,7 +107,7 @@ README.html:
 	@> $@.tmp
 ifdef ROBOTPKGTOP
 	@for entry in ${SUBDIR}; do \
-		${ECHO} '<TR><TD VALIGN=TOP><a href="'$${entry}/README.html'">'"`${ECHO} $${entry} | ${HTMLIFY}`"'</a>: <TD>' >> $@.tmp; \
+		${ECHO_N} '<TR><TD VALIGN=TOP><a href="'$${entry}/README.html'">'"`${ECHO} $${entry} | ${HTMLIFY}`"'</a>: <TD>' >> $@.tmp; \
 		${ECHO} `cd $${entry} && ${RECURSIVE_MAKE} show-comment | ${HTMLIFY}` >> $@.tmp; \
 	done
 else
