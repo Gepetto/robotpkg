@@ -190,8 +190,8 @@ describe:
 
 
 # This target is used to generate README.html files
-FTP_PKG_URL_HOST?=	ftp://ftp.NetBSD.org
-FTP_PKG_URL_DIR?=	/pub/pkgsrc/packages
+FTP_PKG_URL_HOST?=	http://www.laas.fr/~mallet
+FTP_PKG_URL_DIR?=	/robotpkg/packages
 .PHONY: readme
 readme:
 	@cd ${CURDIR} && ${RECURSIVE_MAKE} ${MAKEFLAGS} README.html PKG_URL=${FTP_PKG_URL_HOST}${FTP_PKG_URL_DIR}
