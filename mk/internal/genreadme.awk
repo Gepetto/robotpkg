@@ -138,6 +138,11 @@ BEGIN {
 	next;
 }
 
+/^descr /{
+	descr[$2] = $3;
+	next;
+}
+
 /^homepage /{
 	homepage[$2] = $3;
 	gsub(/&/, "\\\\&", homepage[$2]);
@@ -374,22 +379,31 @@ END {
 				gsub(/%%PKG%%/, pkgdir2name[toppkg]);
 				gsub(/%%COMMENT%%/, comment[toppkg]);
 				if (homepage[toppkg] == "") {
-					gsub(/%%HOMEPAGE%%/, "");
+					gsub(/%%HOMEPAGE%%/, "<i>none</i>");
 				} else {
 					gsub(/%%HOMEPAGE%%/,
-					     "<p>This package has a home page at <a HREF=\"" homepage[toppkg] "\">" homepage[toppkg] "</a>.</p>");
+					     "<a href=\"" homepage[toppkg] "\">" homepage[toppkg] "</a>");
 				}
 				if (license[toppkg] == "") {
 					gsub(/%%LICENSE%%/, "");
 				} else {
 					gsub(/%%LICENSE%%/,
-					     "<p>Please note that this package has a " license[toppkg] " license.</p>");
+					     "<tr><td>License:<td>" license[toppkg] "</tr>");
 				}
 				gsub(/%%VULNERABILITIES%%/, ""vul"");
 				gsub(/%%VULDATE%%/, ""vuldate"");
 				gsub(/%%RUN_DEPENDS%%/, ""rundeps"");
 
 				line = $0;
+
+				if( line ~/%%DESCR%%/ ) {
+				    gsub(/%%DESCR%%/, "", line);
+				    while((getline < descr[toppkg]) > 0) {
+				      gsub(/^$/, "<p>");
+				      print >> readme;
+				    }
+				    close( descr[toppkg] );
+				}
 
 				if( line ~/%%BIN_PKGS%%/ ) {
 				    gsub(/%%BIN_PKGS%%/, "", line);
@@ -496,15 +510,15 @@ END {
 # allpkg[] into the output files but just printf()-ing it.
 					gsub(/\\&/, "\\&", allpkg[tot_numpkg]);
 				} else if ($0 ~ /^[ \t]*COMMENT/) {
-					descr = $0;
+					catdescr = $0;
 					gsub(/^[ \t]*COMMENT.*=[ \t]*/, "",
-					     descr);
+					     catdescr);
 				}
 			}
 			while ((getline < templatefile) > 0){
 				gsub(/%%CATEGORY%%/, category);
 				gsub(/%%NUMITEMS%%/, numpkg);
-				gsub(/%%DESCR%%/, descr);
+				gsub(/%%DESCR%%/, catdescr);
 
 				line = $0
 
@@ -526,7 +540,7 @@ END {
 			gsub(/href=\"/, "href=\""category"/", pkgs);
 			allcat = sprintf("%s<TR><TD VALIGN=TOP><a href=\"%s/%s\">%s</a>: %s<TD>\n",
 					 allcat, category, readme_name,
-					 category, descr);
+					 category, catdescr);
 			close(cat_make);
 		}
 	}
