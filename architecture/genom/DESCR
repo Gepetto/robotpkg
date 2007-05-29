@@ -6,12 +6,15 @@ systems, such as autonomous mobile robots or satellites, that require:
 real-time constraints and algorithm complexities (control of sensors and
 actuators, servo-controls, monitorings, data processings, trajectory
 computations, etc.);
+
     * an homogeneous integration of these functions in the control
 architecture which requires coherent and predictable behaviors (starting,
 ending, error handling), and standard interfaces (control,
 parameterization, data flow);
+
     * the management of the parallelization, the physical distribution
 and the portability of the functions; 
+
     * simple procedures to add, modify or (re)use the functions by non-specialists
 
 GenoM allows to encapsulate the operational functions on independent
