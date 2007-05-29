@@ -1,59 +1,51 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<!-- $NetBSD: README.pkg,v 1.22 2006/07/06 21:14:20 jlam Exp $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-<head>
-<title>The NetBSD Packages Collection: %%PORT%%</title>
-</head> 
-<body bgcolor="#ffffff">
+  <head>
+    <title>The Robotics Packages Collection - %%PORT%%</title>
+    <link href="../../mk/templates/robotpkg.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="header">
+      <h1>The Robotics Packages Collection</h1>
+      <a class="navigation" href="../README.html">Go up one level</a>
+      <a class="navigation" href="../../README.html">Go to top of packages tree</a>
+      <a class="navigation" href="../../README-all.html">List all packages</a>
+    </div>
 
-<a href="http://www.mckusick.com/beastie/mainpage/copyright.html">
-<img align="right" src="../../templates/pkg-daemon.gif" alt="Daemon Power"
-	width="147" height="121" border="0">
-</a>
-<h1>The NetBSD Packages Collection: <i>%%PORT%%</i></h1>
+    <h2>%%PORT%%</h2>
+    <div id="comment">%%COMMENT%%</div>
 
-<p>Brief description of the package:<br>
-<I>
-%%COMMENT%%
-</I>
-</p>
+    <div id="content">
+      <table>
+	<tr>
+	  <td>Directory:
+	  <td><a href=".">%%PORT%%</a>
+	</tr>
+	<tr>
+	  <td>Source version:
+	  <td>%%PKG%%
+	  <td>browse the package's
+	    <a href="http://cvsweb.NetBSD.org/bsdweb.cgi/pkgsrc/%%PORT%%/">history</a>.
+	</tr>
+	<tr>
+	  <td>Home page:
+	  <td>%%HOMEPAGE%%
+	</tr>
+      %%LICENSE%%
+      </table>
 
-<p>Please read the file "<a href="DESCR">DESCR</a>" for a
-longer description, or browse the package's
-<A HREF="http://cvsweb.NetBSD.org/bsdweb.cgi/pkgsrc/%%PORT%%/">history</A>.
-</p>
+      <div class="descr"><p>
+	%%DESCR%%
+      </p></div>
 
-%%HOMEPAGE%%
 
-%%LICENSE%%
-
-<p>The package is located in the 
-"<A HREF=".">%%PORT%%</A>"
-directory.
-The current source version of the package is
-"%%PKG%%".
 For a summary on how to use the package collection, go to the
 <a href="../../README.html">top of the packages tree</a>.
 </p>
 
 <p>Problem reports, updates or suggestions for this package should be
 reported with
-<a href="http://www.NetBSD.org/Misc/send-pr.html">send-pr.</a></p>
-
-<P>
-The following security vulnerabilities are known for %%PORT%%
-%%VULDATE%%
-:
-<UL>
-%%VULNERABILITIES%%
-</UL>
-If you have a vulnerable package installed on any machine, you are
-advised to remove the package
-immediately, using the standard package tools.
-The <a href="../../security/audit-packages/README.html">audit-packages</a>
-package locates any installed package which has been mentioned in security
-advisories as being vulnerable.
-</P>
+<a href="https://softs.laas.fr/bugzilla">bugzilla.</a></p>
 
 
 <p>
@@ -75,20 +67,15 @@ Available machine architectures and package versions:
 %%BIN_PKGS%%
 </TABLE>
 
-<p>
-The NetBSD packages collection is designed to permit
-            easy <a href="../../README">installation from source</a> -
-            particularly useful if the latest binary package is
-            not available for your chosen platform.
-</p>
+      <p>
+	The Robotics packages collection is designed to permit
+	easy <a href="../../README">installation from source</a> -
+	particularly useful if the latest binary package is
+	not available for your chosen platform.
+      </p>
 
-<hr noshade>
-[
-<a href="../README.html"> Go up one level</a>
-|
-<a href="../../README.html"> Go to top of packages tree</a>
-|
-<a href="../../README-all.html"> List all packages</a>
-]
+      <div id="footer">
+      </div>
+</div>
 </body>
 </html>

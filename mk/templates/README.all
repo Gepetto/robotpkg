@@ -1,33 +1,25 @@
-<!-- $NetBSD: README.all,v 1.5 2001/01/16 02:37:46 hubertf Exp $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-<head>
-<title>All NetBSD Packages</title>
-</head>
-<body bgcolor="#ffffff">
+  <head>
+    <title>All Packages - Robotics Packages Collection</title>
+    <link href="mk/templates/robotpkg.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="header">
+      <h1>The Robotics Packages Collection</h1>
+      <a class="navigation" href="README.html">Go to top of packages tree</a>
+    </div>
 
-<a href="http://www.mckusick.com/beastie/mainpage/copyright.html">
-<img align="right" src="templates/pkg-daemon.gif" alt="Daemon Power"
-	width="147" height="121" border="0">
-</a>
-<h1>The NetBSD Packages Collection</h1>
-
-<p>
-The following list contains all
+    <p>The following list contains all
 %%NPKGS%%
-packages currently available
-in the NetBSD Packages Collection, sorted alphabetically. 
-Please select an entry for more details!
-</p>
+      packages currently available
+      in the Robotics Packages Collection, sorted alphabetically.</p>
+    <p>Please select an entry for more details!</p>
 
-<hr noshade>
 <table>
 <tr><th align="left">Package <th align="left">Category <th align="left"> Package description
 %%PKGS%%
 </table>
 
-<hr noshade>
-[
-<a href="README.html"> Go to top of packages tree</a>
-]
 </body>
 </html>

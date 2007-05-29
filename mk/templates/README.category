@@ -1,17 +1,19 @@
-<!-- $NetBSD: README.category,v 1.10 2001/01/16 02:37:47 hubertf Exp $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-<head>
-<title>The NetBSD Packages Collection: %%CATEGORY%%</title>
-</head>
-<body bgcolor="#ffffff">
+  <head>
+    <title>The Robotics Packages Collection - %%CATEGORY%%</title>
+    <link href="../mk/templates/robotpkg.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="header">
+      <h1>The Robotics Packages Collection</h1>
+      <a class="navigation" href="../README.html">Go to top of packages tree</a>
+      <a class="navigation" href="../README-all.html">List all packages</a>
+    </div>
 
-<a href="http://www.mckusick.com/beastie/mainpage/copyright.html">
-<img align="right" src="../templates/pkg-daemon.gif" alt="Daemon Power"
-	width="147" height="121" border="0">
-</a>
-<h1>The NetBSD Packages Collection: <i>%%CATEGORY%%</i></h1>
+    <h2>%%CATEGORY%%</h2>
 
-<p>You are now in the directory "%%CATEGORY%%".
+    <p>You are now in the directory "%%CATEGORY%%".
 
 <p>
 %%DESCR%%
@@ -20,16 +22,9 @@
 %%NUMITEMS%%
 items in this directory:
 
-<p><hr noshade>
-<p><table>
+	  <table>
+	    <tr><th align="left">Package <th align="left"> Description
 %%SUBDIR%%
-</table>
-
-<hr noshade>
-[
-<a href="../README.html"> Go to top of packages tree</a>
-|
-<a href="../README-all.html"> List all packages</a>
-]
+	  </table>
 </body>
 </html>

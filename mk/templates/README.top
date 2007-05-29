@@ -1,36 +1,31 @@
-<!-- $NetBSD: README.top,v 1.13 2006/07/06 21:14:20 jlam Exp $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
-<head>
-<title>The NetBSD Packages Collection</title>
-</head>
-<body bgcolor="#ffffff">
+  <head>
+    <title>The Robotics Packages Collection</title>
+    <link href="mk/templates/robotpkg.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="header">
+      <h1>The Robotics Packages Collection</h1>
+    </div>
 
-<a href="http://www.mckusick.com/beastie/mainpage/copyright.html">
-<img align="right" src="templates/pkg-daemon.gif" alt="Daemon Power"
-	width="147" height="121" border="0">
-</a>
-<h1>The NetBSD Packages Collection</h1>
+    <p>You are at the top of the packages tree.
+      The packages collection is divided into categories of packages.
+    </p>
 
-<p>You are at the top of the packages tree.
-The packages collection is divided into categories of packages.
-</p>
-
-<p>
+    <p>
 %%DESCR%%
-</p>
+    </p>
 
-<p>Here are the one-line descriptions for each of the categories,
-a <a href="README-all.html">complete list of all packages</a> 
-and one with all
-<a href="README-IPv6.html">IPv6 enabled packages</a>
-is also available:
-</p>
+    <p>Here are the one-line descriptions for each of the categories.
+      A <a href="README-all.html">complete list of all packages</a> is
+      also available.
+    </p>
 
-<hr noshade>
-<table>
+    <table>
+      <tr><th align="left">Category <th align="left"> Description
 %%SUBDIR%%
-</table>
-<hr noshade>
+    </table>
 
 For more information on how to build any of the packages from
 the NetBSD Packages Collection, see the included <A HREF="README">README</A> file.
