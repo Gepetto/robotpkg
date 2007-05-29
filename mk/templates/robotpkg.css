@@ -1,0 +1,151 @@
+/* Robotpkg style sheet */
+
+body
+{
+  background:	transparent url('header.jpg') repeat-x;
+  color:	#444;
+  font:		normal normal normal small/1.5em "Lucida Grande", Verdana, sans-serif;
+  font-size-adjust:	none;
+  font-stretch:		normal;
+  margin:	10px;
+  padding:	0;
+}
+
+#header {
+  height:	80px;
+  position:	relative;
+  white-space:	nowrap;
+  text-align:	left;
+}
+
+#comment {
+  font-style:	oblique;
+  text-align:	center;
+}
+
+#content {
+  padding-left:	30px;
+  max-width:	50em;
+  text-align:	left;
+}
+
+#footer {
+  width:		100%;
+  clear:		both;
+  margin-top:		40px;
+  border-top:		#e0e0e0 solid 1px;
+}
+
+h1 {
+  font-size:	250%;
+  font-weight:	bold;
+  margin:	20px 0 5px 0;
+}
+
+h2
+{
+  font-size:		200%;
+  font-weight:		bold;
+  font-variant:		small-caps;
+  margin:		0 20%;
+  padding-bottom:	5px;
+  text-align:		center;
+  word-spacing:		1em;
+  letter-spacing:	5px;
+  border-bottom:        #f0f0f0 solid 1px;
+}
+
+h3
+{
+	font-size:130%;
+	font-weight:normal;
+}
+
+a:link,a:visited
+{
+	color:#660403;
+	font-weight:normal;
+	text-decoration:none;
+}
+
+a:hover
+{
+	color:#E90017;
+	text-decoration:underline;
+}
+
+a.navigation {
+  color:	#eee;
+}
+
+a.navigation:hover {
+  color:	#ffa;
+}
+
+a.navigation:before {
+  content:	'[ ';
+}
+a.navigation:after {
+  content:	' ]';
+}
+
+.descr { 
+  text-align:		justify;
+  border:		#f0f0f0 1px solid;
+  padding:		10px;
+}
+
+
+/*----------header, logo and site name styles----------*/
+
+#logo
+{
+  float:	right;
+  margin-top:	0px;
+  margin-right:	0px;
+}
+
+#logo img
+{
+  border:	0;
+  height:	95px;
+}
+
+#content
+{
+	display:inline;
+	float:left;
+	margin:20px 0;
+	max-width:750px;
+	overflow:hidden;
+	width:75%;
+}
+
+
+
+/*----------img styles----------*/
+img
+{
+	padding:3px;
+}
+
+
+table {
+  margin:	1em 0;
+  width:	100%;
+}
+
+thead th {
+  border-bottom:20px solid #aaa;
+  color:	#494949;
+  font-weight:	bold;
+}
+
+th {
+  padding:	.3em 0 .5em;
+}
+
+tbody th {
+  border:	solid #D5D6D7;
+  border-width:	1px 0;
+}
