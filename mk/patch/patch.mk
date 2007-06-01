@@ -205,6 +205,9 @@ PATCH_ARGS?=		-d ${WRKSRC} -E ${PATCH_STRIP}
 else
 PATCH_ARGS?=		-d ${WRKSRC} --forward --quiet -E ${PATCH_STRIP}
 endif
+ifdef BATCH
+PATCH_ARGS+=		--batch
+endif
 ifneq (,$(call isyes,${_PATCH_CAN_BACKUP}))
 PATCH_ARGS+=		${_PATCH_BACKUP_ARG} .orig
 endif
@@ -254,6 +257,9 @@ PATCH_DIST_ARGS.$(subst =,--,${i})?=	-d ${WRKSRC} -E $${PATCH_DIST_STRIP.$(subst
   else
 PATCH_DIST_ARGS.$(subst =,--,${i})?=	-d ${WRKSRC} --forward --quiet -E $${PATCH_DIST_STRIP.$(subst =,--,${i})}
   endif
+endif
+ifdef BATCH
+PATCH_DIST_ARGS.$(subst =,--,${i})+=	--batch
 endif
 PATCH_DIST_CAT.$(subst =,--,${i})?=	{ patchfile=${i}; ${PATCH_DIST_CAT}; }
 endef

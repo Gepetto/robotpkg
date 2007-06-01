@@ -82,6 +82,7 @@ endif
 # real-extract is a helper target onto which one can hook all of the
 # targets that do the actual extraction work.
 #
+_REAL_EXTRACT_TARGETS+=	extract-check-interactive
 _REAL_EXTRACT_TARGETS+=	extract-message
 #_REAL_EXTRACT_TARGETS+=	extract-vars
 _REAL_EXTRACT_TARGETS+=	extract-dir
@@ -101,6 +102,28 @@ extract-message:
 .PHONY: extract-dir
 extract-dir:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${EXTRACT_DIR}
+
+
+# --- extract-check-interactive (PRIVATE) ----------------------------
+#
+# extract-check-interactive checks whether we must do an interactive
+# extraction or not.
+#
+.PHONY: extract-check-interactive
+extract-check-interactive:
+ifdef BATCH
+ ifneq (,$(filter fetch,${INTERACTIVE_STAGE}))
+	@${ERROR_MSG} "The extract stage of this package requires user interaction"
+	@${ERROR_MSG} "Please extract manually with:"
+	@${ERROR_MSG} "    \"cd ${.CURDIR} && ${MAKE} extract\""
+	@${TOUCH} ${_INTERACTIVE_COOKIE}
+	@${FALSE}
+ else
+	@${DO_NADA}
+ endif
+else
+	@${DO_NADA}
+endif
 
 
 # --- extract-cookie (PRIVATE) ---------------------------------------

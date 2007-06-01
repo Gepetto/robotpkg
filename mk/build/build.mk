@@ -67,6 +67,7 @@ endif
 # real-build is a helper target onto which one can hook all of the
 # targets that do the actual building of the sources.
 #
+_REAL_BUILD_TARGETS+=	build-check-interactive
 _REAL_BUILD_TARGETS+=	build-message
 #_REAL_BUILD_TARGETS+=	build-vars
 #_REAL_BUILD_TARGETS+=	pre-build-checks-hook
@@ -83,6 +84,26 @@ real-build: ${_REAL_BUILD_TARGETS}
 build-message:
 	@${PHASE_MSG} "Building for ${PKGNAME}"
 
+
+# --- build-check-interactive (PRIVATE) ------------------------------
+#
+# build-check-interactive checks whether we must do an interactive
+# build or not.
+#
+build-check-interactive:
+ifdef BATCH
+ ifneq (,$(filter build,${INTERACTIVE_STAGE}))
+	@${ERROR_MSG} "The build stage of this package requires user interaction"
+	@${ERROR_MSG} "Please build manually with:"
+	@${ERROR_MSG} "    \"cd ${.CURDIR} && ${MAKE} build\""
+	@${TOUCH} ${_INTERACTIVE_COOKIE}
+	@${FALSE}
+ else
+	@${DO_NADA}
+ endif
+else
+	@${DO_NADA}
+endif
 
 # --- pre-build, do-build, post-build (PUBLIC, override) -------------
 #

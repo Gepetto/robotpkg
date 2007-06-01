@@ -84,6 +84,7 @@ release-install-localbase-lock: release-localbase-lock
 # real-install is a helper target onto which one can hook all of the
 # targets that do the actual installing of the built objects.
 #
+_REAL_INSTALL_TARGETS+=	install-check-interactive
 _REAL_INSTALL_TARGETS+=	install-check-version
 _REAL_INSTALL_TARGETS+=	install-message
 #_REAL_INSTALL_TARGETS+=	install-vars
@@ -96,6 +97,28 @@ real-install: ${_REAL_INSTALL_TARGETS}
 .PHONY: install-message
 install-message:
 	@${PHASE_MSG} "Installing for ${PKGNAME}"
+
+
+# --- install-check-interactive (PRIVATE) ----------------------------
+#
+# install-check-interactive checks whether we must do an interactive
+# install or not.
+#
+.PHONY: install-check-interactive
+install-check-interactive:
+ifdef BATCH
+ ifneq (,$(filter install,${INTERACTIVE_STAGE}))
+	@${ERROR_MSG} "The installation stage of this package requires user interaction"
+	@${ERROR_MSG} "Please install manually with:"
+	@${ERROR_MSG} "	\"cd ${.CURDIR} && ${MAKE} install\""
+	${RUN} ${TOUCH} ${_INTERACTIVE_COOKIE}
+	${RUN} ${FALSE}
+ else
+	@${DO_NADA}
+ endif
+else
+	@${DO_NADA}
+endif
 
 
 # --- install-check-version (PRIVATE) --------------------------------

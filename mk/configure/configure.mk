@@ -98,6 +98,7 @@ endif
 # Note: pre-configure-checks-hook comes after pre-configure to allow
 # packages for fixing bad files with SUBST_STAGE.* = pre-configure.
 #
+_REAL_CONFIGURE_TARGETS+=	configure-check-interactive
 _REAL_CONFIGURE_TARGETS+=	configure-message
 #_REAL_CONFIGURE_TARGETS+=	configure-vars
 _REAL_CONFIGURE_TARGETS+=	pre-configure
@@ -115,6 +116,28 @@ real-configure: ${_REAL_CONFIGURE_TARGETS}
 .PHONY: configure-message
 configure-message:
 	@${PHASE_MSG} "Configuring for ${PKGNAME}"
+
+
+# --- configure-check-interactive (PRIVATE) --------------------------
+#
+# configure-check-interactive checks whether we must do an interactive
+# configuration or not.
+#
+.PHONY: configure-check-interactive
+configure-check-interactive:
+ifdef BATCH
+ ifneq (,$(filter configure,${INTERACTIVE_STAGE}))
+	@${ERROR_MSG} "The configure stage of this package requires user interaction"
+	@${ERROR_MSG} "Please configure manually with:"
+	@${ERROR_MSG} "    \"cd ${.CURDIR} && ${MAKE} configure\""
+	@${TOUCH} ${_INTERACTIVE_COOKIE}
+	@${FALSE}
+ else
+	@${DO_NADA}
+ endif
+else
+	@${DO_NADA}
+endif
 
 
 # --- do-configure-pre-hook (PRIVATE) --------------------------------
