@@ -61,7 +61,7 @@
 BEGIN {
 	CAT = ENVIRON["CAT"] ? ENVIRON["CAT"] : "cat"
 	PKG_ADMIN = ENVIRON["PKG_ADMIN"] ? ENVIRON["PKG_ADMIN"] : "pkg_admin"
-	PWD_CMD = ENVIRON["PWD_CMD"] ? ENVIRON["PWD_CMD"] : "pwd -P"
+	PWD_CMD = ENVIRON["PWD_CMD"] ? ENVIRON["PWD_CMD"] : "pwd"
 	TEST = ENVIRON["TEST"] ? ENVIRON["TEST"] : "test"
 
 	PROGNAME = "reduce-depends.awk"
