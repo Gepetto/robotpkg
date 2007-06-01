@@ -114,3 +114,12 @@ README-all.html:
 	@${RM} -f $@.npkgs
 	@${RM} -f $@.new
 	@${RM} -f $@.newsorted
+
+# the bulk-cache and clean-bulk-cache targets are a global-pkgsrc
+# thing and thus it makes sense to run it from the top level pkgsrc
+# directory.
+ifdef BATCH
+ifneq (,$(filter bulk-cache clean-bulk-cache,${MAKECMDGOALS}))
+ include mk/bulk/bulk.mk
+endif
+endif

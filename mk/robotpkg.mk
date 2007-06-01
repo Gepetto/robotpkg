@@ -422,33 +422,11 @@ _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 # shouldn't be touched by anybody but the release engineers.
 ################################################################
 
-# convenience target, to display make variables from command line
-# i.e. "make show-var VARNAME=var", will print var's value
-.PHONY: show-var
-show-var:
-	@${ECHO} $(call quote,${${VARNAME}})
-
-
-LICENSE_FILE?=		${PKGSRCDIR}/licenses/${LICENSE}
-
-show-license:
-	@license=${LICENSE};						\
-	license_file=${LICENSE_FILE};					\
-	pager=${PAGER}	;						\
-	case "$$pager" in "") pager=${CAT};; esac;			\
-	case "$$license" in "") exit 0;; esac;				\
-	if ${TEST} -f "$$license_file"; then				\
-		$$pager "$$license_file";				\
-	else								\
-		${ECHO} "Generic $$license information not available";	\
-		${ECHO} "See the package description (pkg_info -d ${PKGNAME}) for more information."; \
-	fi
-
 include ../../mk/plist/plist-vars.mk
 
 include ${PKGSRCDIR}/mk/internal/utils.mk
-
-include ../../mk/internal/subst.mk
+include ${PKGSRCDIR}/mk/internal/can-be-built-here.mk
+include ${PKGSRCDIR}/mk/internal/subst.mk
 
 
 -include "${PKGSRCDIR}/mk/internal/build-defs-message.mk"
@@ -458,6 +436,12 @@ include ../../mk/internal/subst.mk
 #.if make(help)
 #.include "${PKGSRCDIR}/mk/help/help.mk"
 #.endif
+
+# For bulk build targets (bulk-install, bulk-package), the
+# BATCH variable must be set in /etc/mk.conf:
+ifdef BATCH
+ include ${PKGSRCDIR}/mk/bulk/bulk.mk
+endif
 
 # README generation code.
 include ${PKGSRCDIR}/mk/internal/readme.mk
