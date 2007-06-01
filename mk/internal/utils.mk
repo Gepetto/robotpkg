@@ -25,6 +25,58 @@
 
 TMPDIR?=	/tmp
 
+# convenience target, to display make variables from command line
+# i.e. "make show-var VARNAME=var", will print var's value
+.PHONY: show-var
+show-var:
+	@${ECHO} $(call quote,${${VARNAME}})
+
+# enhanced version of target above, to display multiple variables
+.PHONY: show-vars
+show-vars:
+	@:; $(foreach VARNAME,${VARNAMES},${ECHO} $(call quote,${${VARNAME}});)
+
+LICENSE_FILE?=		${PKGSRCDIR}/licenses/${LICENSE}
+
+show-license:
+	@license=${LICENSE};						\
+	license_file=${LICENSE_FILE};					\
+	pager=${PAGER}	;						\
+	case "$$pager" in "") pager=${CAT};; esac;			\
+	case "$$license" in "") exit 0;; esac;				\
+	if ${TEST} -f "$$license_file"; then				\
+		$$pager "$$license_file";				\
+	else								\
+		${ECHO} "Generic $$license information not available";	\
+		${ECHO} "See the package description (pkg_info -d ${PKGNAME}) for more information."; \
+	fi
+
+# DEPENDS_TYPE is used by the "show-depends-pkgpaths" target and specifies
+# which class of dependencies to output.  The special value "all" means
+# to output every dependency.
+#
+DEPENDS_TYPE?=  all
+ifneq (,$(strip $(filter build all,${DEPENDS_TYPE})))
+_ALL_DEPENDS+=	${BOOTSTRAP_DEPENDS} ${BUILD_DEPENDS}
+endif
+ifneq (,$(strip $(filter install package all,${DEPENDS_TYPE})))
+_ALL_DEPENDS+=	${DEPENDS}
+endif
+
+# _PKG_PATHS_CMD canonicalizes package paths so that they're relative to
+# ${PKGSRCDIR} and also verifies that they exist within pkgsrc.
+#
+_PKG_PATHS_CMD=								\
+	${SETENV} ECHO=${TOOLS_ECHO} PKGSRCDIR=${PKGSRCDIR}		\
+		PWD_CMD=pwd TEST=${TOOLS_TEST}				\
+	${SH} ${CURDIR}/../../mk/internal/pkg_path
+
+.PHONY: show-depends-dirs show-depends-pkgpaths
+show-depends-dirs show-depends-pkgpaths:
+	@${_PKG_PATHS_CMD} \
+		$(sort $(foreach _d_,${_ALL_DEPENDS},$(word 2,$(subst :, ,${_d_}))))
+
+
 # _DEPENDS_WALK_CMD holds the command (sans arguments) to walk the
 # dependency graph for a package.
 #
