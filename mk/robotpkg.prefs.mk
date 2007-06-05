@@ -121,7 +121,7 @@ else
 PKG_FAIL_REASON+=	"missing mk/platform/${OPSYS}.mk"
 endif
 
-LOCALBASE?=		/usr/pkg
+LOCALBASE?=		/usr/openrobots
 
 DEPOT_SUBDIR?=		packages
 DEPOTBASE=		${LOCALBASE}/${DEPOT_SUBDIR}
