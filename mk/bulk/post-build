@@ -327,7 +327,7 @@ sub pkgResult ($$) {
 	my $file = "";
 	my $ver = "";
 	foreach my $ident (@idents) {
-		$id: post-build 2007/06/05/06 19:00:22 mallet $[N]etBSD: ([^ ]*),v [^ ]* ([^ ]*) ([^ ]*) [^ ]* Exp \$/;
+		$ident =~ /\$[N]etBSD: ([^ ]*),v [^ ]* ([^ ]*) ([^ ]*) [^ ]* Exp \$/;
 		if (defined($2) && defined($3) && ("$2 $3" gt $datetime)) {
 			$datetime = "$2 $3";
 			$file = $1;
