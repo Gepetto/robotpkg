@@ -34,7 +34,7 @@ show-var:
 # enhanced version of target above, to display multiple variables
 .PHONY: show-vars
 show-vars:
-	@:; $(foreach VARNAME,${VARNAMES},${ECHO} $(call quote,${${VARNAME}});)
+	@:; $(foreach VARNAME,${VARNAMES},${ECHO} $(call quote,${$(strip ${VARNAME})});)
 
 LICENSE_FILE?=		${PKGSRCDIR}/licenses/${LICENSE}
 
