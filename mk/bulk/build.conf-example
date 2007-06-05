@@ -1,4 +1,4 @@
-# $NetBSD: build.conf-example,v 1.37 2007/03/06 10:57:11 rillig Exp $
+# $LAAS: build.conf-example 2007/06/05/06 18:58:50 mallet $
 #
 # This is an example configuration file for pkgsrc bulk builds.
 # Actually it's a shell script that is sourced in by the pre-build,
@@ -13,22 +13,12 @@
 osrev=`uname -r`
 
 # Where our robotpkg is located.
-USR_PKGSRC="/usr/robotpkg/src"
+USR_ROBOTPKG="/usr/openrobots/robotpkg"
 
-# An absolute pathname to your mk.conf file.
-# The file must be outside ${PREFIX}, or it will be overwritten.
-#MAKECONF="$HOME/etc/mk.conf"
+# An absolute pathname to your installation prefix (optional).
+#ROBOTPKG_BASE="/usr/openrobots"
 
-
-#
-# Getting distfiles
-#
-
-# Prune distfiles to remove those which are out of date.
-# Can be set to 'yes' or 'no'.
-PRUNEDISTFILES=no
-
-# Proxies (optional):
+# Proxies for distfiles download (optional):
 #ftp_proxy=http://proxy.machi.ne:3128/
 #http_proxy=http://proxy.machi.ne:3128/
 
@@ -44,9 +34,6 @@ PRUNEDISTFILES=no
 # Nice level for builds
 NICE_LEVEL="nice -n 20"
 
-# Whether to cache the lintpkgsrc database for PRUNE* or uploading.
-# Can be set to 'yes' or 'no'.
-LINTPKGSRC_CACHE=no
 
 #
 # Generating the report
@@ -59,11 +46,11 @@ ADMIN="you@some.whe.re"
 ADMINSIG="-Your Name"
 
 # The directory where the final reports are collected.
-#REPORTS_DIR="$HOME/bulk-logs"
-REPORTS_DIR="/home/ftp/pub/NetBSD/pkgstat"
+REPORTS_DIR="/tmp"
 
 # The URL where the final reports will be available.
-REPORTS_URL="ftp://localhost/pub/NetBSD/pkgstat"
+# REPORTS_URL="http://some.whe.re/some/path"
+REPORTS_URL="/tmp"
 
 # The basename of the directory of the current bulk build. This
 # directory will be created under ${REPORTS_DIR}. After uploading the
@@ -79,10 +66,6 @@ REPORT_TXT_FILE="report.txt"
 # Uploading binary packages
 #
 
-# Update vulnerability database before uploading.
-# Can be set to 'yes' or 'no'.
-UPDATE_VULNERABILITY_LIST=yes
-
 # Prune binary packages to remove those which are out of date.
 # Can be set to 'yes' or 'no'.
 PRUNEPACKAGES=yes
@@ -93,9 +76,6 @@ MKSUMS=yes
 # Whether or not to create the summary file.
 MKSUMMARY=no
 
-# If you want to PGP sign the checksum files, set and correct.
-#SIGN_AS=username@NetBSD.org
-
 # Destination for packages and rsync options.
-RSYNC_DST=ftp.NetBSD.org:/pub/NetBSD/packages/pkgsrc-200xQy/NetBSD-a.b.c/i386
+RSYNC_DST=ftp://some.whe.re/some/path
 RSYNC_OPTS='-e ssh'

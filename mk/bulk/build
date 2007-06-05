@@ -43,7 +43,6 @@ resume=no
 mirror_only=no
 target=bulk-package
 makeargs=""
-noemail=no
 post_only=no
 
 ##
@@ -62,9 +61,6 @@ The following options are supported:
    -c | --config <file>
 	Load the following configuration file instead of the default
 	one.
-
-   -e | --no-email
-	Don't send email when the bulk build is finished.
 
    -h | --help
 	Displays this message.
@@ -138,17 +134,9 @@ do_post_build () {
 	report_dir="${REPORTS_DIR}/${bulk_build_id}"
 	${MKDIR} "${report_dir}"
 	( cd "${pkgsrc_dir}" \
-  	  && ${PERL5} mk/bulk/post-build \
+  	  && ${PERL} mk/bulk/post-build \
      	  > "${report_dir}/${REPORT_TXT_FILE}"
 	) || die "Could not write the results file."
-}
-
-# Notify the ADMIN of the finished build.
-do_email () {
-	case $noemail in
-	no)	cat "${report_dir}/${REPORT_TXT_FILE}" \
-		| ${MAIL_CMD} -s "pkgsrc ${OPSYS} ${OS_VERSION}/${MACHINE_ARCH} bulk build results ${bulk_build_id}" "$ADMIN"
-	esac
 }
 
 # output final note that we're done
@@ -200,8 +188,8 @@ do_common_setup () {
 	#
 	# Set the paths to commonly used directories.
 	#
-	pkgsrc_dir="${USR_PKGSRC}"
-	pkgdigest_dir="${USR_PKGSRC}/pkgtools/digest"
+	pkgsrc_dir="${USR_ROBOTPKG}"
+	pkgdigest_dir="${USR_ROBOTPKG}/pkgtools/digest"
 
 	#
 	# Set up variables specific for the bulk build.
@@ -256,7 +244,7 @@ load_vars () {
 		BULK_DBFILE DEPENDSFILE INDEXFILE ORDERFILE STARTFILE
 		SUPPORTSFILE BULK_BUILD_ID_FILE BUILDLOG BROKENFILE
 		BROKENWRKLOG
-		AWK GREP MAIL_CMD MKDIR PERL5 SED
+		AWK GREP MKDIR SED PERL
 		PKG_DELETE PKG_INFO PKGBASE"
 
 	values=`cd "$pkgdigest_dir" && $MAKE show-vars VARNAMES="$vars" USE_TOOLS="awk grep mail mkdir perl sed"`
@@ -272,7 +260,7 @@ load_vars () {
 $values
 EOF
 	echo "------------------------------------------"
-	[ "$PKGBASE" = "pkglint" ] \
+	[ "$PKGBASE" = "digest" ] \
 	|| die	"Error reading the variables." \
 		"Try running $0 with another shell."
 
@@ -422,10 +410,6 @@ while test $# -gt 0; do
 		shift
 		BULK_BUILD_CONF=$1; shift
 		;;
-	-e|--no-email)
-		noemail=yes
-		shift
-		;;
 	-h|--help)
 		usage
 		exit 0
@@ -475,5 +459,4 @@ if [ "x$mirror_only" = "xyes" ]; then
 fi
 
 do_post_build
-do_email
 do_done

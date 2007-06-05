@@ -124,7 +124,7 @@ get_build_conf_vars(
 # retrieved later.
 	'REPORT_HTML_FILE',	# "report.html"
 	'REPORT_TXT_FILE',	# "report.txt"
-	'USR_PKGSRC',		# "/usr/pkgsrc"
+	'USR_ROBOTPKG',		# "/usr/pkgsrc"
 	'osrev',		# `uname -r`
 );
 
@@ -137,7 +137,7 @@ my $MAKE = $ENV{MAKE} || pb_die(undef, "The MAKE environment variable must be se
 sub get_mk_conf_vars (@) {
 	my ($rest);
 
-	open(I, "set -e; . '$BULK_BUILD_CONF'; . '$vars{USR_PKGSRC}/mk/bulk/post-build-conf'; export_config_vars; cd $vars{USR_PKGSRC}/pkgtools/digest && $MAKE show-vars BATCH=1 VARNAMES='".join(' ', @_)."' |")
+	open(I, "set -e; . '$BULK_BUILD_CONF'; . '$vars{USR_ROBOTPKG}/mk/bulk/post-build-conf'; export_config_vars; cd $vars{USR_ROBOTPKG}/pkgtools/digest && $MAKE show-vars BATCH=1 VARNAMES='".join(' ', @_)."' |")
 		or pb_die(undef, "Cannot get mk.conf variables.");
 
 	foreach my $var (@_) {
@@ -312,7 +312,7 @@ sub pkgResult ($$) {
 	my $pkgdirmissing = 0;
 	my $DIR;
 
-	if (not opendir($DIR, "$vars{USR_PKGSRC}/$pkg")) {
+	if (not opendir($DIR, "$vars{USR_ROBOTPKG}/$pkg")) {
 		$pkgdirmissing=1;
 	}
 	else {
@@ -321,13 +321,13 @@ sub pkgResult ($$) {
 
 	my @idents = "";
 	if (not $pkgdirmissing) {
-		@idents = `$vars{FIND} $vars{USR_PKGSRC}/$pkg -type f -print | xargs grep \\\$NetBSD`;
+		@idents = `$vars{FIND} $vars{USR_ROBOTPKG}/$pkg -type f -print | xargs grep \\\$NetBSD`;
 	}
 	my $datetime = "";
 	my $file = "";
 	my $ver = "";
 	foreach my $ident (@idents) {
-		$ident =~ /\$[N]etBSD: ([^ ]*),v [^ ]* ([^ ]*) ([^ ]*) [^ ]* Exp \$/;
+		$id: post-build 2007/06/05/06 19:00:22 mallet $[N]etBSD: ([^ ]*),v [^ ]* ([^ ]*) ([^ ]*) [^ ]* Exp \$/;
 		if (defined($2) && defined($3) && ("$2 $3" gt $datetime)) {
 			$datetime = "$2 $3";
 			$file = $1;
@@ -337,13 +337,13 @@ sub pkgResult ($$) {
 
 	my $maintainer;
 	if (not $pkgdirmissing) {
-		$maintainer = `grep ^MAINTAINER $vars{USR_PKGSRC}/$pkg/Makefile`;
+		$maintainer = `grep ^MAINTAINER $vars{USR_ROBOTPKG}/$pkg/Makefile`;
 	} else {
 		$maintainer = "directory_does_not_exist";
 	}
 	$maintainer =~ s/MAINTAINER=[ \t]*//;
 	if (! $maintainer) {
-		 $maintainer = `cd $vars{USR_PKGSRC}/$pkg ; $MAKE show-var VARNAME=MAINTAINER`;
+		 $maintainer = `cd $vars{USR_ROBOTPKG}/$pkg ; $MAKE show-var VARNAME=MAINTAINER`;
 	}
 	$maintainer =~ s/</&lt;/g;
 	$maintainer =~ s/>/&gt;/g;

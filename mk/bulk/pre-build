@@ -8,7 +8,7 @@
 
 #set -v		# Debug
 
-# Pull in USR_PKGSRC:
+# Pull in USR_ROBOTPKG:
 if [ -f "$BULK_BUILD_CONF" ]; then
     . "$BULK_BUILD_CONF"
 else
@@ -17,7 +17,7 @@ fi
 
 PRUNELINKS=${PRUNEPACKAGES:-"yes"}
 
-PKGDIGEST_PKG_DIR=${USR_PKGSRC}/pkgtools/digest
+PKGDIGEST_PKG_DIR=${USR_ROBOTPKG}/pkgtools/digest
 
 # Extract the name of the files used for the build log and broken build log.
 # These have defaults set by bsd.bulk-pkg.mk and may be overridden in
@@ -60,67 +60,9 @@ DISTDIR=`( cd ${PKGDIGEST_PKG_DIR} ; ${MAKE} show-var VARNAME=DISTDIR )`;
 echo "pre-build> Creating ${BULKFILESDIR} if necessary"
 mkdir -p "${BULKFILESDIR}"
 
-# we need to keep the bootstrap-files!
-( cd "$LOCALBASE" && tar cf /tmp/$$.tar \
-    sbin/pkg_add sbin/pkg_admin sbin/pkg_create			\
-    sbin/pkg_delete sbin/pkg_info sbin/pkg_view sbin/linkfarm	\
-    bin/ftp bin/digest bin/pax bin/tar bin/cpio			\
-    man/cat1/ftp.1 man/cat1/pax.0                               \
-    man/cat1/tar.0 man/cat1/cpio.0 man/cat1/pkg_add.0           \
-    man/cat1/pkg_admin.0 man/cat1/pkg_create.0                  \
-    man/cat1/pkg_delete.0 man/cat1/pkg_info.0                   \
-    man/cat1/pkg_view.0 man/cat1/linkfarm.0                     \
-    man/man1/digest.1 man/man1/pax.1 man/man1/cpio.1            \
-    man/man1/tar.1  man/man1/pkg_add.1				\
-    man/man1/pkg_admin.1 man/man1/pkg_create.1                  \
-    man/man1/pkg_delete.1 man/man1/pkg_info.1                   \
-    man/man1/pkg_view.1 man/man1/linkfarm.1			\
-    etc/mk.conf )
-
-#
-# Clean out everything and its mother
-#
-PKG_DBDIR=`(cd "${PKGDIGEST_PKG_DIR}" && ${MAKE} show-var VARNAME=PKG_DBDIR)`
-DEPOTBASE=`(cd "${PKGDIGEST_PKG_DIR}" && ${MAKE} show-var VARNAME=DEPOTBASE)`
-PKG_TOOLS_BIN=`(cd "${PKGDIGEST_PKG_DIR}" && ${MAKE} show-var VARNAME=PKG_TOOLS_BIN)`
-
-for dbdir in "${PKG_DBDIR}" "${DEPOTBASE}"; do
-	echo "pre-build> Removing all installed packages in ${dbdir}"
-
-	# The Solaris /bin/sh requires the following weird-looking code.
-	if (cd "$dbdir" 1>/dev/null 2>&1); then
-	    cd "$dbdir"
-
-	    for pkg in *
-	      do
-	      if ${PKG_TOOLS_BIN}/pkg_info -K "$dbdir" -qe "$pkg"; then
-		  echo "pre-build> ${PKG_TOOLS_BIN}/robotpkg_delete -r ${pkg}"
-		  ${PKG_TOOLS_BIN}/robotpkg_delete -K "$dbdir" -r "$pkg"
-	      fi
-	    done
-
-	    # this should have removed everything.
-	    # Now force any broken pkgs to deinstall.
-	    for pkg in *
-	      do
-	      if ${PKG_TOOLS_BIN}/robotpkg_info -K "$dbdir" -qe "$pkg"; then
-		  echo "pre-build> ${PKG_TOOLS_BIN}/robotpkg_delete -f ${pkg}"
-		  ${PKG_TOOLS_BIN}/robotpkg_delete -K "$dbdir" -f "$pkg"
-	      fi
-	    done
-
-	    # We've tried our best to get rid of the pkgs, now do it
-	    # the hard way.  If it wasn't for stuff in $X11BASE, I
-	    # wouldn't have hard feelings about this!
-	    rm -fr *
-	fi
-done
-
-cd "$LOCALBASE" && rm -fr * && rm -fr .??*;
-( cd "$LOCALBASE" && tar xf /tmp/$$.tar )
 
 # Clean up state files
-cd "${USR_PKGSRC}"
+cd "${USR_ROBOTPKG}"
 echo "pre-build> Cleaning up leftover state files from previous runs"
 rm -f "${BULKFILESDIR}"/*/*/$BROKENF "${BULKFILESDIR}"/*/*/$BRKWRKLOG "${BULKFILESDIR}"/*/*/$BLDLOG
 rm -f "${BULKFILESDIR}"/*/*/$NOTAVAILF
@@ -133,6 +75,7 @@ rm -f "${BULKFILESDIR}/$BROKENF" "${BULKFILESDIR}/$BRKWRKLOG" "${BULKFILESDIR}/$
 case "$PRUNELINKS" in
 yes|YES)
 	echo "pre-build> Checking for and removing orphaned packages links"
+	PACKAGES=`( cd "${PKGDIGEST_PKG_DIR}" && ${MAKE} show-var VARNAME=PACKAGES )`
 	find "$PACKAGES" -type l -print |  \
 	while read f
 	do
@@ -148,24 +91,5 @@ yes|YES)
 	;;
 esac
 
-# we don't want these to build as they overwrite bootstrap-pkgsrc
-# generated files and thus would break the following builds.
-# for pkg in archivers/pax devel/bmake devel/mk-files lang/nawk \
-# 	    net/tnftp sysutils/install-sh textproc/nbsed; do
-# 		mkdir -p "${BULKFILESDIR}/${pkg}"
-# 		echo "Don't blow away bootstrap-pkgsrc stuff!" \
-# 		> "${BULKFILESDIR}/${pkg}/${BROKENF}"
-# done
-
-cd "${USR_PKGSRC}"
-
-if [ -f mk/bulk/pre-build.local ]; then
-    export BROKENF
-    . mk/bulk/pre-build.local
-fi
-
-if [ ! -d "${PKG_DBDIR}" ]; then
-    mkdir -p "${PKG_DBDIR}"
-fi
-
+cd "${USR_ROBOTPKG}"
 echo "This file marks the start time of the bulk build." > "$STARTFILE"
