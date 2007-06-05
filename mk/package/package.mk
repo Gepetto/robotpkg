@@ -47,6 +47,7 @@ _REAL_PACKAGE_TARGETS+=	pkg-check-installed
 _REAL_PACKAGE_TARGETS+=	pkg-create
 #_REAL_PACKAGE_TARGETS+=	error-check
 _REAL_PACKAGE_TARGETS+=	package-cookie
+_REAL_PACKAGE_TARGETS+=	_package-warnings
 
 .PHONY: real-package
 real-package: ${_REAL_PACKAGE_TARGETS}
@@ -65,3 +66,12 @@ package-cookie:
 	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.package} || ${FALSE}
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.package})
 	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > ${_COOKIE.package}
+
+
+# Displays warnings about the binary package.
+.PHONY: _package-warnings
+_package-warnings: .PHONY
+ifdef NO_PUBLIC_BIN
+	@${WARNING_MSG} "${PKGNAME} may not be publicly available:"
+	@${WARNING_MSG} $(call quote,${NO_PUBLIC_BIN})
+endif

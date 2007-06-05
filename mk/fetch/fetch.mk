@@ -273,3 +273,17 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 		exit 1;							\
 	fi
 endif
+
+# --- mirror-distfiles (PUBLIC) --------------------------------------
+
+# mirror-distfiles is a public target that is mostly of use only to
+# sites that wish to provide distfiles that others may fetch.  It
+# only fetches distfiles that are freely re-distributable.
+#
+.PHONY: mirror-distfiles
+ifdef NO_PUBLIC_SRC
+mirror-distfiles:
+	@${DO_NADA}
+else
+mirror-distfiles: fetch
+endif
