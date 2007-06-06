@@ -67,7 +67,11 @@ ifndef MAKECONF
   ifdef ROBOTPKG_BASE
 _MAKECONF=${ROBOTPKG_BASE}/etc/robotpkg.conf
   else
-_MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install || echo /usr/openrobots/etc)/robotpkg.conf
+   ifneq (,$(call pathsearch,robotpkg_info,${PATH}))
+_MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf
+   else
+_MAKECONF=/usr/openrobots/etc/robotpkg.info
+   endif
   endif
 else
 _MAKECONF=${MAKECONF}
