@@ -35,7 +35,7 @@ show_config_vars() {
 	pbc_section "System information" \
 		osrev BULK_BUILD_CONF USR_ROBOTPKG ROBOTPKG_BASE
 	pbc_section "Getting distfiles" \
-		PRUNEDISTFILES ftp_proxy http_proxy
+		ftp_proxy http_proxy
 	pbc_section "Building the packages" \
 		PKGLIST NICE_LEVEL
 	pbc_section "Generating the report" \
@@ -51,7 +51,7 @@ show_config_vars() {
 export_config_vars() {
 	export osrev BULK_BUILD_CONF
 	export USR_ROBOTPKG ROBOTPKG_BASE
-	export PRUNEDISTFILES ftp_proxy http_proxy
+	export ftp_proxy http_proxy
 	export PKGLIST NICE_LEVEL ADMIN ADMINSIG
 	export PRUNEPACKAGES MKSUMS SIGN_AS
 	export RSYNC_DST RSYNC_OPTS
@@ -165,11 +165,6 @@ check_config_vars() {
 	pbc_checkexistingfile BULK_BUILD_CONF
 	pbc_checkexistingdir USR_ROBOTPKG
 	pbc_checkexistingdir ROBOTPKG_BASE
-
-	# section "Getting distfiles"
-	case ${PRUNEDISTFILES+set} in
-	"set")	pbc_checkyesno PRUNEDISTFILES
-	esac
 	# no checks for ftp_proxy
 	# no checks for http_proxy
 
