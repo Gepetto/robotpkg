@@ -475,7 +475,6 @@ bulk-package:
 			  ${ECHO} "<body>";				\
 			  ${ECHO} "<pre>";				\
 			  ${TO_HTML} < ${_BUILDLOG};			\
-			  ${MAKE} debug 2>&1 | ${TO_HTML} >> ${_BROKENFILE} ; \
 			  ${ECHO} "</pre>";				\
 			} > ${_BROKENFILE};				\
 			${RM} -f ${_BUILDLOG};				\
