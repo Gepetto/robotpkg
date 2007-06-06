@@ -39,42 +39,27 @@ ifeq (,${TR})
 TR=:
 endif
 
-# compute platform variables
+# Compute platform variables. Later, recursed make invocations will skip these
+# blocks entirely thanks to MAKEOVERRIDES.
 ifndef OPSYS
 OPSYS:=			$(shell ${UNAME} -s | ${TR} -d /)
-MAKEOVERRIDES+=		OPSYS=${OPSYS}
+LOWER_OPSYS?=		$(shell echo ${OPSYS} | ${TR} 'A-Z' 'a-z')
+MAKEOVERRIDES+=		OPSYS=${OPSYS} LOWER_OPSYS?=${LOWER_OPSYS}
 endif
 
-# Later, recursed make invocations will skip these blocks entirely thanks
-# to MAKEFLAGS.
 ifndef OS_VERSION
 OS_VERSION:=		$(shell ${UNAME} -r)
-MAKEOVERRIDES+=		OS_VERSION=${OS_VERSION}
-endif
-ifndef LOWER_OS_VERSION
 LOWER_OS_VERSION:=	$(shell echo ${OS_VERSION} | ${TR} 'A-Z' 'a-z')
 MAKEOVERRIDES+=		LOWER_OS_VERSION=${LOWER_OS_VERSION}
+MAKEOVERRIDES+=		OS_VERSION=${OS_VERSION}
 endif
 
-ifeq (${OPSYS},NetBSD)
-LOWER_OPSYS?=		netbsd
-endif
-
-ifeq (${OPSYS},Darwin)
-LOWER_OPSYS?=		darwin
-LOWER_ARCH=		$(shell ${UNAME} -p)
-MACHINE_ARCH=           ${LOWER_ARCH}
-MAKEOVERRIDES+=		LOWER_ARCH=${LOWER_ARCH} MACHINE_ARCH=${MACHINE_ARCH}
-endif
-
-ifeq (${OPSYS},Linux)
-LOWER_OPSYS?=		linux
-  ifndef LOWER_ARCH
+ifndef MACHINE_ARCH
 LOWER_ARCH:=		$(shell ${UNAME} -m | sed -e 's/i.86/i386/' -e 's/ppc/powerpc/')
-  endif
 MACHINE_ARCH=           ${LOWER_ARCH}
 MAKEOVERRIDES+=		LOWER_ARCH=${LOWER_ARCH} MACHINE_ARCH=${MACHINE_ARCH}
 endif
+
 
 # include the defaults file
 
