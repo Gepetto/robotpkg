@@ -67,7 +67,6 @@ endif
 # Collect and combine the results
 _CBBH=			yes
 _CBBH_MSGS=		# none
-
 define _CBBH_mix
   ifneq (yes,${_CBBH.$(1)})
 _CBBH=			no
