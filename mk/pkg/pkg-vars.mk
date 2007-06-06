@@ -6,7 +6,7 @@
 #
 
 # This is the package database directory for the default view.
-PKG_DBDIR?=		/var/db/pkg
+PKG_DBDIR?=		/usr/openrobots/var/db/pkg
 
 _PKG_DBDIR=		${PKG_DBDIR}
 PKGTOOLS_ARGS?=		-K ${_PKG_DBDIR}
