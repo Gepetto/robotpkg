@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: upload 2007/06/05/06 18:54:52 mallet $
+# $Id: upload 2007/06/07/06 13:05:59 mallet $
 
 #
 # Upload non-restricted binary pkgs to ftp server
@@ -25,6 +25,9 @@ Usage:  $prog [-n|--no-upload] [-d|--debug] [-v|--verbose]
 	$prog -h|--help
         $prog -V|--version
 
+    -c|--config <file>
+			Load the following configuration file instead of the default
+			one.
     -d|--debug          Preserves some intermediate files to help
 			debug any problems.
 
@@ -63,6 +66,10 @@ do_install=yes
 verbose=no
 while test $# -gt 0; do
 	case "$1" in
+	-c|--config)
+		shift
+		BULK_BUILD_CONF=$1; shift
+		;;
 	-d|--debug)
 		debug=yes
 		shift
