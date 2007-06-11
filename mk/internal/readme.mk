@@ -30,13 +30,13 @@
 # The following are the user-settable variables that may be defined in
 # /etc/mk.conf.
 #
-#    FTP_PKG_URL_HOST is the host portion of the URL to embed in each
-#	README.html file to be served via FTP, and defaults to
-#	"ftp://ftp.NetBSD.org".
+#    PKG_URL_HOST is the host portion of the URL to embed in each
+#	README.html file to be served via FTP or HTTP, and defaults to
+#	"http://softs.laas.fr".
 #
-#    FTP_PKG_URL_DIR is the directory portion of the URL to embed in each
+#    PKG_URL_DIR is the directory portion of the URL to embed in each
 #	README.html file to be served via FTP, and defaults to
-#	"/pub/pkgsrc/packages".
+#	"/openrobots/robotpkg/packages".
 
 define htmlify
 $(subst >,&gt;,$(subst <,&lt;,$(subst &,&amp;,$(1))))
@@ -96,7 +96,7 @@ build-depends-list:
 # If PACKAGES is set to the default (../../pkgsrc/packages), the current
 # ${MACHINE_ARCH} and "release" (uname -r) will be used. Otherwise a directory
 # structure of ...pkgsrc/packages/`uname -r`/${MACHINE_ARCH} is assumed.
-# The PKG_URL is set from FTP_PKG_URL_*.
+# The PKG_URL is set from PKG_URL_*.
 .PHONY: binpkg-list
 binpkg-list:
 	@if ${TEST} -d ${PACKAGES}; then					\
@@ -190,11 +190,11 @@ describe:
 
 
 # This target is used to generate README.html files
-FTP_PKG_URL_HOST?=	http://www.laas.fr/~mallet
-FTP_PKG_URL_DIR?=	/robotpkg/packages
+PKG_URL_HOST?=	http://softs.laas.fr
+PKG_URL_DIR?=	/openrobots/robotpkg/packages
 .PHONY: readme
 readme:
-	@cd ${CURDIR} && ${RECURSIVE_MAKE} ${MAKEFLAGS} README.html PKG_URL=${FTP_PKG_URL_HOST}${FTP_PKG_URL_DIR}
+	@cd ${CURDIR} && ${RECURSIVE_MAKE} ${MAKEFLAGS} README.html PKG_URL=${PKG_URL_HOST}${PKG_URL_DIR}
 
 
 README_NAME=	${TEMPLATES}/README.pkg
