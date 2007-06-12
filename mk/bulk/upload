@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: upload 2007/06/05/06 18:54:52 mallet $
+# $Id: upload 2007/06/12/06 11:08:08 mallet $
 
 #
 # Upload non-restricted binary pkgs to ftp server
@@ -126,10 +126,10 @@ install_required()
 	}
 }
 
-MD5="digest md5";
-SHA1="digest sha1";
+MD5="$USR_ROBOTPKG/bin/digest md5";
+SHA1="$USR_ROBOTPKG/bin/digest sha1";
 
-REQUIRED_PACKAGES="" #"pkgtools/pkglint net/rsync security/audit-packages"
+REQUIRED_PACKAGES="pkgtools/digest"
 
 opsys=`uname -s`
 case "$opsys" in
