@@ -101,7 +101,6 @@ OpenHRP/Dynamics/server/server
 OpenHRP/ModelLoader/corba/modelloader.idl
 OpenHRP/ModelLoader/server/modelloader.jar
 OpenHRP/ModelLoader/server2/ModelLoader
-OpenHRP/ModelLoader/server2/ModelLoaderJRL
 OpenHRP/ModelLoader/server2/proto
 OpenHRP/OnlineViewer/corba/onlineviewer.idl
 OpenHRP/OnlineViewer/server/onlineviewer.jar
@@ -126,7 +125,6 @@ OpenHRP/bin/IOBServerCorba.sh
 OpenHRP/bin/JointCalib.sh
 OpenHRP/bin/ModelLoader.sh
 OpenHRP/bin/ModelLoader2.sh
-OpenHRP/bin/ModelLoaderJRL.sh
 OpenHRP/bin/NameServer.sh
 OpenHRP/bin/OnlineViewer.sh
 OpenHRP/bin/OrbixEpy

@@ -5,7 +5,7 @@
 VERSION=		20060713
 DISTNAME=		OpenHRP
 PKGNAME=		openhrp-jrl-${VERSION}
-PKGREVISION=		4
+PKGREVISION=		5
 WRKSRC=			${WRKDIR}/OpenHRP
 
 CATEGORIES=		architecture
@@ -74,8 +74,6 @@ do-extract:
 		${WRKSRC}/etc/HRP2JRL/HRP2JRLmain.wrl
 	cp ${FILESDIR}/HEAD_LINK1.wrl.longneck		\
 		${WRKSRC}/etc/HRP2JRL/.
-	cp ${FILESDIR}/ModelLoaderJRL.sh ${WRKSRC}/bin/.
-	cp ${FILESDIR}/ModelLoaderJRL ${WRKSRC}/ModelLoader/server2/.
 
 post-install:
 	${CAT} ${FILESDIR}/plist | (cd ${WRKDIR} && ${PAX} -rwp ma ${PREFIX})
