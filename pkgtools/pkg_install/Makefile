@@ -24,16 +24,14 @@ CONFIGURE_ARGS+=	--with-mtree="\"${MTREE}\""
 CONFIGURE_ARGS+=	--with-pax="\"${PAX}\""
 CONFIGURE_ARGS+=	--with-tar="\"${TAR}\""
 
-SKIP_AUDIT_PACKAGES=	yes
 NO_PKGTOOLS_REQD_CHECK=	yes
 NO_CHECKSUM=		yes
-NO_MTREE=		yes
 PKG_PRESERVE=		yes
 
 # We use the newly built pkg_delete since upgrading from an older
 # pkg_install might required features of the new program.
 #
-PKG_DELETE=		${WRKSRC}/delete/pkg_delete
+PKG_DELETE=		${WRKSRC}/delete/robotpkg_delete
 
 CPPFLAGS+=		-DDEF_UMASK=${DEF_UMASK}
 
@@ -49,10 +47,10 @@ FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
 			PKG_TOOLS_BIN=${PKG_TOOLS_BIN}		\
 			MKDIR=${MKDIR}
 
-include ../../mk/robotpkg.mk
-
 VERSION=	$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
 			${FILESDIR}/lib/version.h)
+
+include ../../mk/robotpkg.mk
 
 do-extract:
 	@${CP} -R ${FILESDIR} ${WRKSRC}

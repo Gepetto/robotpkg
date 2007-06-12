@@ -27,7 +27,7 @@ ${ERROR_DIR} ${WARNING_DIR} ${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}:
 ### and will be outputted then removed.  If they are from the error
 ### directory, then the target will fail.
 ###
-error-check: .USE
+error-check:
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${RM} -f ${WARNING_DIR}/*.tmp;					\
 	${TEST} -d ${WARNING_DIR} || exit 0;				\

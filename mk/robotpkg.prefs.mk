@@ -67,24 +67,16 @@ ifndef MAKECONF
   ifdef ROBOTPKG_BASE
 _MAKECONF=${ROBOTPKG_BASE}/etc/robotpkg.conf
   else
+   ifneq (,$(call pathsearch,robotpkg_info,${PATH}))
 _MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf
+   else
+_MAKECONF=/usr/openrobots/etc/robotpkg.info
+   endif
   endif
 else
 _MAKECONF=${MAKECONF}
 endif
-ifneq (yes,$(call exists,${_MAKECONF}))
-define msg
-
-ERROR: Unable to find package configuration file in
-ERROR:		${_MAKECONF}.
-ERROR: Maybe you forgot to set your PATH variable to point to robotpkg_info.
-ERROR: You can also define the variable ROBOTPKG_BASE to point to your
-ERROR: installation prefix. Finally, you can invoke
-ERROR:    ${MAKE} MAKECONF=<robotpkg config file>
-endef
-$(error $(msg))
-endif
-include ${_MAKECONF}
+-include ${_MAKECONF}
 include ${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf
 
 ifdef PREFIX

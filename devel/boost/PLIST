@@ -3337,9 +3337,6 @@ lib/libboost_prg_exec_monitor-mt.so.${PKGVERSION}
 lib/libboost_program_options-mt.a
 lib/libboost_program_options-mt.so
 lib/libboost_program_options-mt.so.${PKGVERSION}
-lib/libboost_python-mt.a
-lib/libboost_python-mt.so
-lib/libboost_python-mt.so.${PKGVERSION}
 lib/libboost_regex-mt.a
 lib/libboost_regex-mt.so
 lib/libboost_regex-mt.so.${PKGVERSION}
@@ -3356,7 +3353,6 @@ lib/libboost_unit_test_framework-mt.a
 lib/libboost_unit_test_framework-mt.so
 lib/libboost_unit_test_framework-mt.so.${PKGVERSION}
 lib/libboost_wave-mt.a
-@dirrm lib
 @dirrm include/boost/wave/util
 @dirrm include/boost/wave/grammars
 @dirrm include/boost/wave/cpplexer/re2clex
@@ -3606,4 +3602,3 @@ lib/libboost_wave-mt.a
 @dirrm include/boost/algorithm/string
 @dirrm include/boost/algorithm
 @dirrm include/boost
-@dirrm include

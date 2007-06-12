@@ -184,9 +184,11 @@ LINTPKGSRC_DB?=		${BULKFILESDIR}/.lintpkgsrc.db${BULK_ID}
 BULK_DBFILE?=		${BULKFILESDIR}/.bulk_db${BULK_ID}
 
 # A list of pkgs which we should _never_ delete during a build.  The primary
-# use is for digest and also for xpkgwedge.  Add pkgtools/xpkgwedge in
-# /etc/mk.conf to do an xpkgwedged bulk build.
+# use is for pkgtools and also for digest.
+BULK_PREREQ+=		pkgtools/pkg_install
 BULK_PREREQ+=		pkgtools/digest
+BULK_PREREQ+=		pkgtools/pax
+BULK_PREREQ+=		pkgtools/tnftp
 
 # Commands for printing informational messages from the bulk build.
 # BULK_MSG_CONT is used for continuing a message started with BULK_MSG
@@ -475,7 +477,6 @@ bulk-package:
 			  ${ECHO} "<body>";				\
 			  ${ECHO} "<pre>";				\
 			  ${TO_HTML} < ${_BUILDLOG};			\
-			  ${MAKE} debug 2>&1 | ${TO_HTML} >> ${_BROKENFILE} ; \
 			  ${ECHO} "</pre>";				\
 			} > ${_BROKENFILE};				\
 			${RM} -f ${_BUILDLOG};				\
