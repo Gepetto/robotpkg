@@ -1,0 +1,9 @@
+bin/ModelLoaderJRL
+bin/ModelLoaderJRL.sh
+lib/pkgconfig/jrl-modelloader.pc
+share/idl/jrl-modelloader/common-modelloader.idl
+share/idl/jrl-modelloader/jrl-modelloader.idl
+share/jrl-modelloader/proto
+@dirrm share/jrl-modelloader
+@dirrm share/idl/jrl-modelloader
+@dirrm share/idl

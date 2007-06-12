@@ -1,0 +1,2 @@
+JRL-ModelLoader is a CORBA server that loads a VRML robot model and make
+it available to other packages.
