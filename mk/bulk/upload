@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: upload 2007/06/12 18:13:42 mallet $
+# $Id: upload 2007/06/13 10:39:17 mallet $
 
 #
 # Upload non-restricted binary pkgs to ftp server
@@ -133,6 +133,23 @@ install_required()
 	}
 }
 
+#
+# Get the variables MAKECONF, RSYNC_DST, RSYNC_OPTS from the bulk build
+# configuration file.
+#
+: ${BULK_BUILD_CONF:="${scriptdir}/build.conf"} #"
+. "${BULK_BUILD_CONF}"
+. "${scriptdir}/post-build-conf"
+check_config_vars
+export_config_vars
+
+cd $USR_ROBOTPKG
+
+if [ -z "$RSYNC_DST" ]; then
+	echo "upload> ERROR: You must set the variable RSYNC_DST, see build.conf-example." 1>&2
+	exit 1
+fi
+
 MD5="$USR_ROBOTPKG/bin/digest md5";
 SHA1="$USR_ROBOTPKG/bin/digest sha1";
 
@@ -152,23 +169,6 @@ export MAKE
 BATCH=1
 DEPENDS_TARGET=bulk-install
 export BATCH DEPENDS_TARGET
-
-#
-# Get the variables MAKECONF, RSYNC_DST, RSYNC_OPTS from the bulk build
-# configuration file.
-#
-: ${BULK_BUILD_CONF="${scriptdir}/build.conf"} #"
-. "${BULK_BUILD_CONF}"
-. "${scriptdir}/post-build-conf"
-check_config_vars
-export_config_vars
-
-cd $USR_ROBOTPKG
-
-if [ -z "$RSYNC_DST" ]; then
-	echo "upload> ERROR: You must set the variable RSYNC_DST, see build.conf-example." 1>&2
-	exit 1
-fi
 
 #
 # Some temp files
