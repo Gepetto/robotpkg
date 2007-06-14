@@ -28,12 +28,9 @@
     </table>
 
 For more information on how to build any of the packages from
-the NetBSD Packages Collection, see the included <A HREF="README">README</A> file.
+the Robotics Packages Collection, see the included <A HREF="README">README</A> file.
 For a more in-depth description, see the
 <A HREF="doc/pkgsrc.html">doc/pkgsrc.html</A> document.
-
-The most up-to-date version of the Packages Collection is available from
-<A HREF="ftp://ftp.NetBSD.org/pub/NetBSD/packages/pkgsrc">the NetBSD ftp server</A>.
 
 </body>
 </html>

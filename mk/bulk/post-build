@@ -228,7 +228,7 @@ sub print_report_header() {
 	print("--------------------------------------------------------------\n");
 }
 
-my_system("mkdir", "-p", "--", $report_dir);
+my_system("mkdir", "-m", "2775", "-p", "--", $report_dir);
 
 # Copy over the output from the build process
 chdir($vars{"BULKFILESDIR"}) or pb_die($vars{"BULKFILESDIR"}, "Cannot change directory.");
@@ -249,6 +249,7 @@ writeReport();
 #
 unlink("${reports_dir}/last");
 symlink($report_basedir, "${reports_dir}/last");
+my_system("chmod", "-R", "2775", $report_basedir);
 
 #
 # Generate leftovers-$vars{MACHINE_ARCH}.html: files not deleted

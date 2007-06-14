@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: upload 2007/06/13 10:39:17 mallet $
+# $Id: upload 2007/06/14 16:28:08 mallet $
 
 #
 # Upload non-restricted binary pkgs to ftp server
@@ -150,8 +150,8 @@ if [ -z "$RSYNC_DST" ]; then
 	exit 1
 fi
 
-MD5="$USR_ROBOTPKG/bin/digest md5";
-SHA1="$USR_ROBOTPKG/bin/digest sha1";
+MD5="$LOCALBASE/bin/digest md5";
+SHA1="$LOCALBASE/bin/digest sha1";
 
 REQUIRED_PACKAGES="pkgtools/digest"
 
