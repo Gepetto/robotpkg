@@ -4,7 +4,7 @@
 DISTNAME=		boost-numeric-bindings-20070129
 PKGREVISION=		1
 CATEGORIES=		devel
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_ROBOTPKG}
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://sourceforge.net/projects/boost-sandbox
