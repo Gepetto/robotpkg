@@ -9,7 +9,7 @@ MASTER_SITE_OPENROBOTS+=	\
 	http://softs.laas.fr/openrobots/distfiles/
 
 MASTER_SITE_ROBOTPKG+=	\
-	http://softs.laas.fr/openrobots/robotpkg/distfiles
+	http://softs.laas.fr/openrobots/robotpkg/distfiles/
 
 MASTER_SITE_JRL+=	\
 	ftp://jrl@softs.laas.fr/
