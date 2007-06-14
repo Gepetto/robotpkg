@@ -10,7 +10,7 @@ HOMEPAGE=	http://www.bzip.org/
 COMMENT=	Block-sorting file compressor
 
 USE_LIBTOOL=	yes
-MAKE_ENV+=	REALCC=${CC:Q}
+MAKE_ENV+=	REALCC=${CC}
 
 INSTALLATION_DIRS=	bin include lib ${PKGMANDIR}/man1
 
