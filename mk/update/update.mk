@@ -90,7 +90,7 @@ do%update: .FORCE
   ifneq (NO,$(strip ${REINSTALL}))
   ifneq (replace,${UPDATE_TARGET})
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=ALL
+		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes
   endif
   endif
 else
@@ -102,7 +102,7 @@ do%update: .FORCE
 	${RUN}${RECURSIVE_MAKE} update-create-ddir
   ifneq (replace,${UPDATE_TARGET})
 	${RUN}if ${PKG_INFO} -qe ${PKGBASE}; then			\
-		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=ALL \
+		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes \
 		|| (${RM} ${_DDIR} && ${FALSE});			\
 	fi
   endif
