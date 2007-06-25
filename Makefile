@@ -71,6 +71,7 @@ SUBDIR+=	image
 SUBDIR+=	interfaces
 SUBDIR+=	lang
 SUBDIR+=	math
+SUBDIR+=	meta-pkgs
 SUBDIR+=	path
 SUBDIR+=	pkgtools
 SUBDIR+=	shell
