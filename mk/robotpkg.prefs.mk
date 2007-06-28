@@ -77,7 +77,7 @@ else
 _MAKECONF=${MAKECONF}
 endif
 -include ${_MAKECONF}
-include ${_PKGSRC_TOPDIR}/mk/defaults/robotpkg.conf
+include ${_PKGSRC_TOPDIR}/mk/robotpkg.default.conf
 
 ifdef PREFIX
 ifneq (${PREFIX},${__PREFIX_SET__})
