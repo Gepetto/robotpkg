@@ -1,3 +1,4 @@
+@comment $Id: PLIST 2007/06/28 16:19:51 mallet $
 bin/ModelLoaderJRL
 bin/ModelLoaderJRL.sh
 lib/pkgconfig/jrl-modelloader.pc
@@ -6,4 +7,3 @@ share/idl/jrl-modelloader/jrl-modelloader.idl
 share/jrl-modelloader/proto
 @dirrm share/jrl-modelloader
 @dirrm share/idl/jrl-modelloader
-@dirrm share/idl
