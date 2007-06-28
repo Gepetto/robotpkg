@@ -28,7 +28,7 @@ _PRINT_PLIST_AWK_SUBST+= {						\
 }
 
 _PRINT_PLIST_AWK_IGNORE=	($$0 ~ /^$(subst /,\/,$(patsubst ${PREFIX}/%,%,${PKG_DBDIR}))\//)
-_PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^$(subst /,\/,${PKGSRCDIR})\//)
+_PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^$(subst /,\/,$(patsubst ${PREFIX}/%,%,${PKGSRCDIR}))\//)
 #ifdef INFO_FILES
 #_PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^${PKGINFODIR:S|/|\\/|g}\/[^\/]+(-[0-9]+)(\.gz)?$$/)
 #_PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^([^\/]*\/)*(info\/[^\/]+|[^\/]+\.info)(-[0-9]+)(\.gz)?$$/)
@@ -76,7 +76,7 @@ endif
 .PHONY: print-PLIST
 print-PLIST:
 	${_PKG_SILENT}${_PKG_DEBUG}\
-	${ECHO} '@comment $$'NetBSD'$$'
+	${ECHO} '@comment $$'Id:'$$'
 	${_PKG_SILENT}${_PKG_DEBUG}\
 	${_PRINT_PLIST_FILES_CMD}					\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
