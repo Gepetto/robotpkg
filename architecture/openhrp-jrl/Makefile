@@ -19,10 +19,8 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Open Architecture Humanoid Robotics Platform
 
 RESTRICTED=		Redistribution of repackaged binaries not permitted
-NO_SRC_ON_CDROM=	${RESTRICTED}
-NO_SRC_ON_FTP=		${RESTRICTED}
-NO_BIN_ON_CDROM=	${RESTRICTED}
-NO_BIN_ON_FTP=		${RESTRICTED}
+NO_PUBLIC_SRC=		${RESTRICTED}
+NO_PUBLIC_BIN=		${RESTRICTED}
 
 DEPENDS+=		sun-jdk14>=2.9:../../lang/sun-jdk14
 DEPENDS+=		sun-java3d>=1.4:../../devel/sun-java3d
