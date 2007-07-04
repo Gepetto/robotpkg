@@ -285,7 +285,6 @@ kineo/include/KineoModel/kppUserData.h
 kineo/include/KineoModel/kppUserParam.h
 kineo/include/KineoModel/kppValue.h
 kineo/include/KineoModel/stdafx.h
-kineo/include/KineoModuleManager/#kppModuleInterface.h#
 kineo/include/KineoModuleManager/kppInterfaceAccessor.h
 kineo/include/KineoModuleManager/kppLoadableModule.h
 kineo/include/KineoModuleManager/kppModule.h
@@ -299,7 +298,6 @@ kineo/include/KineoParser/kprFileIO.h
 kineo/include/KineoParser/kprParser.h
 kineo/include/KineoUtility/kitCancellableProgressDelegate.h
 kineo/include/KineoUtility/kitDefine.h
-kineo/include/KineoUtility/kitDefine.h~
 kineo/include/KineoUtility/kitForwardingProgressDelegate.h
 kineo/include/KineoUtility/kitGeometry.h
 kineo/include/KineoUtility/kitInterface.h
@@ -404,7 +402,6 @@ kineo/include/KineoWorks2/kwsConfig.h
 kineo/include/KineoWorks2/kwsConfigExtractor.h
 kineo/include/KineoWorks2/kwsConfigExtractorDelegate.h
 kineo/include/KineoWorks2/kwsConnectedComponent.h
-kineo/include/KineoWorks2/kwsConnectedComponent.h~
 kineo/include/KineoWorks2/kwsConstraint.h
 kineo/include/KineoWorks2/kwsConstraintLock.h
 kineo/include/KineoWorks2/kwsDPLinear.h
@@ -2365,7 +2362,6 @@ kineo/include/kprParserVRML/kprVRMLPrimSphere.h
 kineo/include/kprParserVRML/kprVRMLShape.h
 kineo/include/kprParserVRML/kprVRMLTransform.h
 kineo/include/kprParserXML/kprParserManager.h
-kineo/include/kprParserXML/kprParserManager.h~
 kineo/include/kprParserXML/kprParserXML.h
 kineo/include/kprParserXML/kprParserXMLScene.h
 kineo/include/kprParserXML/kprXMLAttribute.h
@@ -2377,7 +2373,6 @@ kineo/include/kprParserXML/kprXMLPropertyFillerCallback.h
 kineo/include/kprParserXML/kprXMLPropertyToStringCallbak.h
 kineo/include/kprParserXML/kprXMLTag.h
 kineo/include/kprParserXML/kprXMLWriter.h
-kineo/include/kprParserXML/kprXMLWriter.h~
 kineo/include/kprParserXML/kprXMLWriterCallback.h
 kineo/include/kprParserXML203/kprOldModuleInterface.h
 kineo/include/kprParserXML203/kprOldModuleInterfaceRedirector.h
