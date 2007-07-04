@@ -4,7 +4,7 @@
 
 KPPVERSION=		2.04
 KPPPATCH=		301
-PKGREVISION=		2
+PKGREVISION=		3
 PKGNAME=		kineo-pp-${KPPVERSION}.${KPPPATCH}
 DISTNAME=		KPPSDK_${KPPVERSION}.${KPPPATCH}
 EXTRACT_SUFX=		.tgz
@@ -55,6 +55,7 @@ post-extract:
 	${CP} ${FILESDIR}/KineoPathPlanner.pc ${WRKSRC}
 	${CP} ${FILESDIR}/libKineoUtility.so ${WRKSRC}/bin/i386-linux/dynlib/
 	${CP} ${FILESDIR}/libKineoUtilityd.so ${WRKSRC}/bin/i386-linux/dynlib/
+	${CP} ${FILESDIR}/KineoAddonBuilder ${WRKSRC}/bin/i386-linux/
 
 do-install:
 	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux||' ${WRKSRC}/bin/i386-linux/Kineo* ${KINEO_DIR}/bin
