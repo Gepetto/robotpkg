@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.9 2005/02/23 12:06:55 agc Exp $
 
-SHA1 (dynamics-jrljapan-1.3.tar.gz) = 7a9dc079c6f5ec0c15b049e2204b9c4930bcaa10
-RMD160 (dynamics-jrljapan-1.3.tar.gz) = 64be9ece085679657d8ae511441b6423be196fd4
-Size (dynamics-jrljapan-1.3.tar.gz) = 383296 bytes
+SHA1 (dynamics-jrljapan-1.3.1.tar.gz) = 9f6b7016b85b0badbb0d9f4a0ffc0fa0993e4d8a
+RMD160 (dynamics-jrljapan-1.3.1.tar.gz) = 0dae356fc51ac093e55b0ade281af4c170fe2977
+Size (dynamics-jrljapan-1.3.1.tar.gz) = 383661 bytes

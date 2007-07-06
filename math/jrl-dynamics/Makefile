@@ -3,19 +3,18 @@
 
 DISTNAME=	dynamics-jrljapan-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
-VERSION=	1.3
+VERSION=	1.3.1
 #PKGREVISION=	0
 
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_JRL}
 NO_PUBLIC_SRC=	yes
-NO_PUBLIC_BIN=	yes
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL-Japan implementation of dynamic robot.
 
-DEPENDS+=	jrl-interface-dynamics>=1.3:../../interfaces/jrl-interface-dynamics
+DEPENDS+=	jrl-interface-dynamics>=1.4:../../interfaces/jrl-interface-dynamics
 
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
