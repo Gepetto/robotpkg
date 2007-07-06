@@ -3,11 +3,11 @@
 
 DISTNAME=	abstractrobotdynamics-${VERSION}
 PKGNAME=	jrl-interface-dynamics-${VERSION}
-VERSION=	1.3
+VERSION=	1.4
 #PKGREVISION=	0
 
 CATEGORIES=	interfaces
-MASTER_SITES=	${MASTER_SITE_JRL}
+MASTER_SITES=	${MASTER_SITE_ROBOTPKG}
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
