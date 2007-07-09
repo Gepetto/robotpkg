@@ -48,4 +48,4 @@ MASTER_SITE_NETBSD_PKGSRC+=		\
 
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
-	http://softs.laas.fr/openrobots/robotpkg/distfiles
+	http://softs.laas.fr/openrobots/robotpkg/distfiles/
