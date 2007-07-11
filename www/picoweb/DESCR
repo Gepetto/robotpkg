@@ -1,0 +1,15 @@
+Picoweb - a dedicated HTTP server for GenoM modules
+
+Picoweb is an HTTP server designed to make the contents of the posters
+created by GenoM modules available as XML documents to applications
+like user interfaces, debugging software, or control/supervision
+software. 
+This is not a general purpose web server. 
+
+Every Genom Module provides a CGI procedure that exports its posters
+in XML, as part of its client library. Picoweb is able to autoload the
+client library of an exiting module when it receives a request for its
+CGI procedure. 
+
+By default, picoweb listens on the 8080 port and outputs logging
+information to stdout. 

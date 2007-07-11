@@ -75,5 +75,6 @@ SUBDIR+=	meta-pkgs
 SUBDIR+=	path
 SUBDIR+=	pkgtools
 SUBDIR+=	shell
+SUBDIR+=	www
 
 include ${CURDIR}/mk/robotpkg.subdir.mk
