@@ -3,6 +3,8 @@
 
 COMMENT=	Path planning algorithms and tools
 
+SUBDIR+=	hpp-gik
+SUBDIR+=	hpp-core
 SUBDIR+=	jrl-walkgen
 SUBDIR+=	kineo-pp
 
