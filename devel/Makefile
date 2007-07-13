@@ -5,6 +5,7 @@ COMMENT=	Software development tools
 
 SUBDIR+=	boost-numeric-bindings
 SUBDIR+=	boost
+SUBDIR+=	hpp-kwsio
 SUBDIR+=	jrl-modelloader
 SUBDIR+=	libedit
 SUBDIR+=	mkdep
