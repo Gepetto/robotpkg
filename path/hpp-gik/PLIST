@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/07/06 16:42:55 mallet $
+@comment $Id: PLIST 2007/07/16 18:17:52 mallet $
 include/hpp/constraints/hppGikComConstraint.h
 include/hpp/constraints/hppGikGazeConstraint.h
 include/hpp/constraints/hppGikMotionConstraint.h
@@ -37,6 +37,7 @@ include/hpp/tasks/hppGikStepTask.h
 include/hpp/tasks/hppGikWholeBodyTask.h
 lib/libhppGik.la
 lib/pkgconfig/hppGik.pc
+share/doc/doxytag/hppGik.doxytag
 share/doc/hppGik/annotated.html
 share/doc/hppGik/class_chpp_gik_com_constraint-members.html
 share/doc/hppGik/class_chpp_gik_com_constraint.html
@@ -387,6 +388,7 @@ share/doc/hppGik/functions_vars_0x67.html
 share/doc/hppGik/functions_vars_0x68.html
 share/doc/hppGik/functions_vars_0x69.html
 share/doc/hppGik/functions_vars_0x6a.html
+share/doc/hppGik/functions_vars_0x6c.html
 share/doc/hppGik/functions_vars_0x6d.html
 share/doc/hppGik/functions_vars_0x6e.html
 share/doc/hppGik/functions_vars_0x70.html
@@ -692,6 +694,7 @@ share/doc/hppGik/inherit__graph__9.map
 share/doc/hppGik/inherit__graph__9.md5
 share/doc/hppGik/inherit__graph__9.png
 share/doc/hppGik/inherits.html
+share/doc/hppGik/installdox
 share/doc/hppGik/main-page_8h.html
 share/doc/hppGik/main.html
 share/doc/hppGik/pictures/HRP2.jpg
@@ -710,4 +713,3 @@ share/gik/hppGikPreviewController5ms.ini
 @dirrm include/hpp/motionplanners
 @dirrm include/hpp/core
 @dirrm include/hpp/constraints
-@dirrm include/hpp
