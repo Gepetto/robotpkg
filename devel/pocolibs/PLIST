@@ -1,3 +1,4 @@
+@comment $Id: PLIST 2007/08/02 16:49:00 mallet $
 bin/h2
 bin/posterServ
 bin/shell

@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=		pocolibs-2.2
+DISTNAME=		pocolibs-2.3
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
