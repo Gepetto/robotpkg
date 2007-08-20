@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=		eltclsh-1.7
+DISTNAME=		eltclsh-1.8
 CATEGORIES=		shell
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
