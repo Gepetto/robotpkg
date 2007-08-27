@@ -1,0 +1,7 @@
+hppWalkPlanner implements a two step algorithm for planning paths for a
+humanoid robot.
+
+    * The first step consists in computing collision-free path for the
+      robot bounding box with a cart-like kinematics.
+    * In the second step a dynamically balanced walk motion is produced
+      about the above path using a walk pattern generator (walkGenJRL).
