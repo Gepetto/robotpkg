@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/07/13 18:50:45 mallet $
+@comment $Id: PLIST 2007/08/27 15:05:53 mallet $
 include/hpp/hppBody.h
 include/hpp/hppBox.h
 include/hpp/hppColPair.h
@@ -63,9 +63,6 @@ share/doc/hppCore/hpp_col_pair_8h__incl.md5
 share/doc/hppCore/hpp_col_pair_8h__incl.png
 share/doc/hppCore/hpp_core_8h.html
 share/doc/hppCore/hpp_device_8h.html
-share/doc/hppCore/hpp_device_8h__dep__incl.map
-share/doc/hppCore/hpp_device_8h__dep__incl.md5
-share/doc/hppCore/hpp_device_8h__dep__incl.png
 share/doc/hppCore/hpp_device_8h__incl.map
 share/doc/hppCore/hpp_device_8h__incl.md5
 share/doc/hppCore/hpp_device_8h__incl.png
