@@ -3,6 +3,7 @@
 
 COMMENT=	Graphics tools
 
+SUBDIR+=	kpp-interface
 SUBDIR+=	vrml97
 SUBDIR+=	wxGTK
 
