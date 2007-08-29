@@ -4,6 +4,7 @@
 COMMENT=	Graphics tools
 
 SUBDIR+=	kpp-interface
+SUBDIR+=	kpp-interfacewalk
 SUBDIR+=	vrml97
 SUBDIR+=	wxGTK
 
