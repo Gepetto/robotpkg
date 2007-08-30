@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/06/15 11:47:04 mallet $
+@comment $Id: PLIST 2007/08/30 14:29:00 mallet $
 include/gikTask/jrlGikGazeConstraint.h
 include/gikTask/jrlGikJointStateConstraint.h
 include/gikTask/jrlGikMotionConstraint.h
@@ -134,6 +134,7 @@ share/doc/abstractGikTask/inherit__graph__3.map
 share/doc/abstractGikTask/inherit__graph__3.md5
 share/doc/abstractGikTask/inherit__graph__3.png
 share/doc/abstractGikTask/inherits.html
+share/doc/abstractGikTask/installdox
 share/doc/abstractGikTask/jrl_gik_gaze_constraint_8h.html
 share/doc/abstractGikTask/jrl_gik_gaze_constraint_8h__dep__incl.map
 share/doc/abstractGikTask/jrl_gik_gaze_constraint_8h__dep__incl.md5
@@ -219,6 +220,7 @@ share/doc/abstractGikTask/tab_l.gif
 share/doc/abstractGikTask/tab_r.gif
 share/doc/abstractGikTask/tabs.css
 share/doc/abstractGikTask/tree.html
+share/doc/doxytag/abstractGikTask.doxytag
 @dirrm share/doc/abstractGikTask/pictures
 @dirrm share/doc/abstractGikTask
 @dirrm include/gikTask

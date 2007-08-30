@@ -3,17 +3,16 @@
 
 DISTNAME=	abstractgiktask-${VERSION}
 PKGNAME=	jrl-interface-giktask-${VERSION}
-VERSION=	1.0
-#PKGREVISION=	0
+VERSION=	1.1
 
 CATEGORIES=	interfaces
-MASTER_SITES=	${MASTER_SITE_ROBOTPKG}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for generalized inverse kinematics tasks.
 
-DEPENDS+=	jrl-interface-dynamics>=1.3:../../interfaces/jrl-interface-dynamics
+DEPENDS+=	jrl-interface-dynamics>=1.6:../../interfaces/jrl-interface-dynamics
 
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
