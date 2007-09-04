@@ -24,7 +24,7 @@ NO_PUBLIC_BIN=		${RESTRICTED}
 
 DEPENDS+=		sun-jdk14>=2.9:../../lang/sun-jdk14
 DEPENDS+=		sun-java3d>=1.4:../../devel/sun-java3d
-DEPENDS+=		sun-jmf>=2.1:../../devel/sun-jmf
+DEPENDS+=		sun-jmf>=2.1.1er1:../../devel/sun-jmf
 DEPENDS+=		jython>=2.2:../../lang/jython
 DEPENDS+=		vrml97>=1.0:../../graphics/vrml97
 
