@@ -6,6 +6,7 @@ kineo/bin/Exe_PostBuild.sh
 kineo/bin/KineoAddonBuilder
 kineo/bin/KineoPathPlanner
 kineo/bin/KineoPathPlannerd
+kineo/bin/KineoSetDebug
 kineo/include/KineoController/kppAccessorCommand.h
 kineo/include/KineoController/kppAccessorValueFetcher.h
 kineo/include/KineoController/kppAddToGroupCommand.h
