@@ -1,0 +1,69 @@
+#!/bin/sh
+
+KINEOPREFIX=`pkg-config KineoPathPlanner --variable=prefix` || { echo 'cannot find Kineo in PKG_CONFIG_PATH' && exit 2; }
+SAVEDIR=${KINEOPREFIX}/lib/save-so
+
+flist="\
+    libKineoController		\
+    libKineoGUI			\
+    libKineoKCDModel		\
+    libKineoModel		\
+    libKineoModuleManager	\
+    libKineoParser203XML	\
+    libKineoParser2TTF		\
+    libKineoParser2VRML		\
+    libKineoParser2XML		\
+    libKineoParser2		\
+    libKineoUtility		\
+    libKineoView		\
+    libKineoWX			\
+    libKineoWorks2		\
+    libkcd2			\
+    libkwsKcd2			\
+"
+
+setdebug ()
+{
+    test -d ${SAVEDIR} && { echo 'already configured for debug' && exit 2; }
+    mkdir ${SAVEDIR}
+
+    for f in $flist; do
+	mv ${KINEOPREFIX}/lib/$f.so ${SAVEDIR}/.
+    done
+
+    for f in $flist; do
+	c="ln -s ${KINEOPREFIX}/lib/${f}d.so ${KINEOPREFIX}/lib/$f.so"
+	echo $c && $c
+    done
+}
+
+unsetdebug ()
+{
+    test -d ${SAVEDIR} || { echo 'debug already disabled' && exit 0; }
+
+    for f in $flist; do
+	test -h ${KINEOPREFIX}/lib/$f.so && rm ${KINEOPREFIX}/lib/$f.so
+    done
+
+    for f in $flist; do
+	c="mv ${SAVEDIR}/$f.so ${KINEOPREFIX}/lib/."
+	echo $c && $c
+    done
+
+    rmdir ${SAVEDIR}
+}
+
+case $1 in
+    on)
+        setdebug
+        echo "linked with debug libraries"
+        ;;
+    off)
+        unsetdebug
+        echo "disabled debug libraries"
+        ;;
+    *)
+        echo "usage: $0 on|off"
+        exit 1
+        ;;
+esac
