@@ -1,9 +1,15 @@
+@comment $Id: PLIST 2007/09/24 16:55:32 mallet $
+bin/dc1394_reset_bus
 bin/dc1394_vloopback
-include/libdc1394/dc1394_control.h
-include/libdc1394/dc1394_vendor_avt.h
-lib/libdc1394_control.a
-lib/libdc1394_control.la
-lib/libdc1394_control.so
-lib/libdc1394_control.so.12
-lib/libdc1394_control.so.12.1.1
-@dirrm include/libdc1394
+include/dc1394/control.h
+include/dc1394/conversions.h
+include/dc1394/linux/capture.h
+include/dc1394/register.h
+include/dc1394/utils.h
+include/dc1394/vendor/avt.h
+include/dc1394/vendor/pixelink.h
+lib/libdc1394.la
+lib/pkgconfig/libdc1394-2.pc
+@dirrm include/dc1394/vendor
+@dirrm include/dc1394/linux
+@dirrm include/dc1394
