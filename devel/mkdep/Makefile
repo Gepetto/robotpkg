@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=		mkdep-2.6
+DISTNAME=		mkdep-2.7
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
