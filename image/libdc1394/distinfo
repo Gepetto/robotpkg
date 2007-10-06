@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (libdc1394-1.2.1.tar.gz) = 99578d00a984bd9407facf5d95a3870b69a8b1d7
-RMD160 (libdc1394-1.2.1.tar.gz) = d44b07f218772a8fdd9d409b1e2dcf5152aa5f9f
-Size (libdc1394-1.2.1.tar.gz) = 389075 bytes
-SHA1 (patch-aa) = 92f2fd901cd3d98d4120657fb37aa42f250c3e00
+SHA1 (libdc1394-2.0.0-rc7.tar.gz) = 2610df9c3a35b548365ace04a4eaeeb90ff8a471
+RMD160 (libdc1394-2.0.0-rc7.tar.gz) = e1bb69f10c3f04c8719a078d50396594bd46d04d
+Size (libdc1394-2.0.0-rc7.tar.gz) = 484908 bytes
