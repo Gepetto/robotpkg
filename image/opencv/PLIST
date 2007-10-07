@@ -1,3 +1,4 @@
+@comment $Id:$
 bin/opencv-createsamples
 bin/opencv-haartraining
 bin/opencv-performance
@@ -25,14 +26,57 @@ lib/libcxcore.la
 lib/libhighgui.la
 lib/libml.la
 lib/pkgconfig/opencv.pc
-share/opencv/doc/cvcam.rtf
-share/opencv/doc/faq.htm
-share/opencv/doc/index.htm
-share/opencv/doc/license.txt
-share/opencv/doc/opencv.jpg
-share/opencv/doc/opencvman_old.pdf
-share/opencv/doc/python-wrappers-on-windows.txt
-share/opencv/doc/python.txt
+share/doc/opencv/cvcam.rtf
+share/doc/opencv/faq.htm
+share/doc/opencv/index.htm
+share/doc/opencv/license.txt
+share/doc/opencv/opencv.jpg
+share/doc/opencv/opencvman_old.pdf
+share/doc/opencv/papers/algo_tracking.pdf
+share/doc/opencv/papers/avbpa99.ps
+share/doc/opencv/papers/camshift.pdf
+share/doc/opencv/python-wrappers-on-windows.txt
+share/doc/opencv/python.txt
+share/doc/opencv/ref/opencvref.css
+share/doc/opencv/ref/opencvref_cv.htm
+share/doc/opencv/ref/opencvref_cvaux.htm
+share/doc/opencv/ref/opencvref_cxcore.htm
+share/doc/opencv/ref/opencvref_highgui.htm
+share/doc/opencv/ref/opencvref_ml.htm
+share/doc/opencv/ref/pics/backprojectpatch.png
+share/doc/opencv/ref/pics/boundingrect.png
+share/doc/opencv/ref/pics/building.jpg
+share/doc/opencv/ref/pics/contoursecarea.png
+share/doc/opencv/ref/pics/cornersubpix.png
+share/doc/opencv/ref/pics/defects.png
+share/doc/opencv/ref/pics/ellipse.png
+share/doc/opencv/ref/pics/em1.png
+share/doc/opencv/ref/pics/em3.png
+share/doc/opencv/ref/pics/em4.png
+share/doc/opencv/ref/pics/em5.png
+share/doc/opencv/ref/pics/em6.png
+share/doc/opencv/ref/pics/em7.png
+share/doc/opencv/ref/pics/em8.png
+share/doc/opencv/ref/pics/em9.png
+share/doc/opencv/ref/pics/errmsg.png
+share/doc/opencv/ref/pics/face.png
+share/doc/opencv/ref/pics/haarfeatures.png
+share/doc/opencv/ref/pics/houghp.png
+share/doc/opencv/ref/pics/inv_logpolar.jpg
+share/doc/opencv/ref/pics/left.jpg
+share/doc/opencv/ref/pics/logpolar.jpg
+share/doc/opencv/ref/pics/maxrect.png
+share/doc/opencv/ref/pics/memstorage1.png
+share/doc/opencv/ref/pics/memstorage2.png
+share/doc/opencv/ref/pics/minareabox.png
+share/doc/opencv/ref/pics/mlp_.png
+share/doc/opencv/ref/pics/neuron_model.png
+share/doc/opencv/ref/pics/pointpolygon.png
+share/doc/opencv/ref/pics/quadedge.png
+share/doc/opencv/ref/pics/right.jpg
+share/doc/opencv/ref/pics/sigmoid_bipolar.png
+share/doc/opencv/ref/pics/subdiv.png
+share/doc/opencv/ref/pics/threshold.png
 share/opencv/haarcascades/haarcascade_frontalface_alt.xml
 share/opencv/haarcascades/haarcascade_frontalface_alt2.xml
 share/opencv/haarcascades/haarcascade_frontalface_alt_tree.xml
@@ -120,14 +164,10 @@ share/opencv/samples/python/squares.py
 share/opencv/samples/python/watershed.py
 @dirrm share/opencv/samples/python
 @dirrm share/opencv/samples/c
-@dirrm share/opencv/samples
 @dirrm share/opencv/haarcascades
-@dirrm share/opencv/doc
 @dirrm share/opencv
-@exec ${MKDIR} %D/share/doc/opencv/ref/pics
 @dirrm share/doc/opencv/ref/pics
 @dirrm share/doc/opencv/ref
-@exec ${MKDIR} %D/share/doc/opencv/papers
 @dirrm share/doc/opencv/papers
 @dirrm share/doc/opencv
 @dirrm include/opencv
