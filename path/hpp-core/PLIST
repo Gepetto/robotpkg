@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/08/27 15:05:53 mallet $
+@comment $Id:$
 include/hpp/hppBody.h
 include/hpp/hppBox.h
 include/hpp/hppColPair.h
@@ -24,6 +24,9 @@ share/doc/hppCore/class_chpp_polyhedron-members.html
 share/doc/hppCore/class_chpp_polyhedron.html
 share/doc/hppCore/class_chpp_problem-members.html
 share/doc/hppCore/class_chpp_problem.html
+share/doc/hppCore/class_chpp_problem__coll__graph.map
+share/doc/hppCore/class_chpp_problem__coll__graph.md5
+share/doc/hppCore/class_chpp_problem__coll__graph.png
 share/doc/hppCore/doxygen.png
 share/doc/hppCore/files.html
 share/doc/hppCore/ftv2blank.png
@@ -120,4 +123,3 @@ share/doc/hppCore/todo.html
 share/doc/hppCore/tree.html
 @dirrm share/doc/hppCore/pictures
 @dirrm share/doc/hppCore
-@dirrm include/hpp
