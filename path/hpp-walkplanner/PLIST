@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/08/27 18:36:57 mallet $
+@comment $Id:$
 include/hpp/hppWalkPatGen.h
 include/hpp/hppWalkPlanner.h
 lib/libhppWalkPlanner.la
