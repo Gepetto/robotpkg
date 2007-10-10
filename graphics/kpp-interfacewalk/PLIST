@@ -1,11 +1,12 @@
-@comment $Id: PLIST 2007/08/29 16:30:12 mallet $
+@comment $Id:$
 include/kppInterfaceWalk/kppCommandDoHalfTurn.h
 include/kppInterfaceWalk/kppCommandLoadHRP2.h
 include/kppInterfaceWalk/kppCommandLoadObstacle.h
+include/kppInterfaceWalk/kppCommandOutputMotion.h
 include/kppInterfaceWalk/kppCommandSetConfig.h
 include/kppInterfaceWalk/kppInterfaceWalk.h
-include/kppInterfaceWalk/kppStartCorbaServerCommand.h
-lib/modules/jiminy/libkppInterfaceWalk.la
+lib/modules/poullenc/libkppInterfaceWalk.kab
+lib/modules/poullenc/libkppInterfaceWalk.la
 lib/pkgconfig/kppInterfaceWalk.pc
 share/doc/doxytag/kppInterfaceWalk.doxytag
 share/doc/kppInterfaceWalk/annotated.html
@@ -24,6 +25,11 @@ share/doc/kppInterfaceWalk/class_ckpp_command_load_obstacle.html
 share/doc/kppInterfaceWalk/class_ckpp_command_load_obstacle__coll__graph.map
 share/doc/kppInterfaceWalk/class_ckpp_command_load_obstacle__coll__graph.md5
 share/doc/kppInterfaceWalk/class_ckpp_command_load_obstacle__coll__graph.png
+share/doc/kppInterfaceWalk/class_ckpp_command_output_motion-members.html
+share/doc/kppInterfaceWalk/class_ckpp_command_output_motion.html
+share/doc/kppInterfaceWalk/class_ckpp_command_output_motion__coll__graph.map
+share/doc/kppInterfaceWalk/class_ckpp_command_output_motion__coll__graph.md5
+share/doc/kppInterfaceWalk/class_ckpp_command_output_motion__coll__graph.png
 share/doc/kppInterfaceWalk/class_ckpp_command_set_config-members.html
 share/doc/kppInterfaceWalk/class_ckpp_command_set_config.html
 share/doc/kppInterfaceWalk/class_ckpp_command_set_config__coll__graph.map
@@ -37,11 +43,6 @@ share/doc/kppInterfaceWalk/class_ckpp_interface_walk__coll__graph.png
 share/doc/kppInterfaceWalk/class_ckpp_interface_walk__inherit__graph.map
 share/doc/kppInterfaceWalk/class_ckpp_interface_walk__inherit__graph.md5
 share/doc/kppInterfaceWalk/class_ckpp_interface_walk__inherit__graph.png
-share/doc/kppInterfaceWalk/class_ckpp_start_corba_server_command-members.html
-share/doc/kppInterfaceWalk/class_ckpp_start_corba_server_command.html
-share/doc/kppInterfaceWalk/class_ckpp_start_corba_server_command__coll__graph.map
-share/doc/kppInterfaceWalk/class_ckpp_start_corba_server_command__coll__graph.md5
-share/doc/kppInterfaceWalk/class_ckpp_start_corba_server_command__coll__graph.png
 share/doc/kppInterfaceWalk/doxygen.png
 share/doc/kppInterfaceWalk/files.html
 share/doc/kppInterfaceWalk/ftv2blank.png
@@ -101,6 +102,10 @@ share/doc/kppInterfaceWalk/kpp_command_load_obstacle_8h.html
 share/doc/kppInterfaceWalk/kpp_command_load_obstacle_8h__incl.map
 share/doc/kppInterfaceWalk/kpp_command_load_obstacle_8h__incl.md5
 share/doc/kppInterfaceWalk/kpp_command_load_obstacle_8h__incl.png
+share/doc/kppInterfaceWalk/kpp_command_output_motion_8h.html
+share/doc/kppInterfaceWalk/kpp_command_output_motion_8h__incl.map
+share/doc/kppInterfaceWalk/kpp_command_output_motion_8h__incl.md5
+share/doc/kppInterfaceWalk/kpp_command_output_motion_8h__incl.png
 share/doc/kppInterfaceWalk/kpp_command_set_config_8h.html
 share/doc/kppInterfaceWalk/kpp_command_set_config_8h__incl.map
 share/doc/kppInterfaceWalk/kpp_command_set_config_8h__incl.md5
@@ -112,10 +117,6 @@ share/doc/kppInterfaceWalk/kpp_interface_walk_8h__dep__incl.png
 share/doc/kppInterfaceWalk/kpp_interface_walk_8h__incl.map
 share/doc/kppInterfaceWalk/kpp_interface_walk_8h__incl.md5
 share/doc/kppInterfaceWalk/kpp_interface_walk_8h__incl.png
-share/doc/kppInterfaceWalk/kpp_start_corba_server_command_8h.html
-share/doc/kppInterfaceWalk/kpp_start_corba_server_command_8h__incl.map
-share/doc/kppInterfaceWalk/kpp_start_corba_server_command_8h__incl.md5
-share/doc/kppInterfaceWalk/kpp_start_corba_server_command_8h__incl.png
 share/doc/kppInterfaceWalk/main.html
 share/doc/kppInterfaceWalk/package.css
 share/doc/kppInterfaceWalk/package_8h.html
