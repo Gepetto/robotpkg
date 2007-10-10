@@ -1,8 +1,10 @@
-@comment $Id: PLIST 2007/08/27 19:09:56 mallet $
+@comment $Id:$
 include/kppInterface/kppCommandSolvePlanner.h
+include/kppInterface/kppCommandStartCorbaServer.h
 include/kppInterface/kppInterface.h
 include/kppInterface/kwsGraphicRoadmap.h
-lib/libkppInterface.la
+lib/modules/poullenc/libkppInterface.kab
+lib/modules/poullenc/libkppInterface.la
 lib/pkgconfig/kppInterface.pc
 share/doc/doxytag/kppInterface.doxytag
 share/doc/kppInterface/annotated.html
@@ -11,6 +13,11 @@ share/doc/kppInterface/class_ckpp_command_solve_planner.html
 share/doc/kppInterface/class_ckpp_command_solve_planner__coll__graph.map
 share/doc/kppInterface/class_ckpp_command_solve_planner__coll__graph.md5
 share/doc/kppInterface/class_ckpp_command_solve_planner__coll__graph.png
+share/doc/kppInterface/class_ckpp_command_start_corba_server-members.html
+share/doc/kppInterface/class_ckpp_command_start_corba_server.html
+share/doc/kppInterface/class_ckpp_command_start_corba_server__coll__graph.map
+share/doc/kppInterface/class_ckpp_command_start_corba_server__coll__graph.md5
+share/doc/kppInterface/class_ckpp_command_start_corba_server__coll__graph.png
 share/doc/kppInterface/class_ckpp_interface-members.html
 share/doc/kppInterface/class_ckpp_interface.html
 share/doc/kppInterface/class_ckpp_interface__coll__graph.map
@@ -54,12 +61,19 @@ share/doc/kppInterface/inherit__graph__1.png
 share/doc/kppInterface/inherit__graph__2.map
 share/doc/kppInterface/inherit__graph__2.md5
 share/doc/kppInterface/inherit__graph__2.png
+share/doc/kppInterface/inherit__graph__3.map
+share/doc/kppInterface/inherit__graph__3.md5
+share/doc/kppInterface/inherit__graph__3.png
 share/doc/kppInterface/inherits.html
 share/doc/kppInterface/installdox
 share/doc/kppInterface/kpp_command_solve_planner_8h.html
 share/doc/kppInterface/kpp_command_solve_planner_8h__incl.map
 share/doc/kppInterface/kpp_command_solve_planner_8h__incl.md5
 share/doc/kppInterface/kpp_command_solve_planner_8h__incl.png
+share/doc/kppInterface/kpp_command_start_corba_server_8h.html
+share/doc/kppInterface/kpp_command_start_corba_server_8h__incl.map
+share/doc/kppInterface/kpp_command_start_corba_server_8h__incl.md5
+share/doc/kppInterface/kpp_command_start_corba_server_8h__incl.png
 share/doc/kppInterface/kpp_interface_8h.html
 share/doc/kppInterface/kpp_interface_8h__dep__incl.map
 share/doc/kppInterface/kpp_interface_8h__dep__incl.md5
@@ -86,3 +100,4 @@ share/doc/kppInterface/tree.html
 @dirrm share/doc/kppInterface/pictures
 @dirrm share/doc/kppInterface
 @dirrm include/kppInterface
+
