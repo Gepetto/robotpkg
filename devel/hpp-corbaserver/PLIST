@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/08/27 18:04:30 mallet $
+@comment $Id:$
 include/hpp/hppciObstacle.h
 include/hpp/hppciOpenHrp.h
 include/hpp/hppciProblem.h
@@ -8,6 +8,8 @@ lib/libhppCorbaServer.la
 lib/pkgconfig/hppCorbaServer.pc
 share/doc/doxytag/hppCorbaServer.doxytag
 share/doc/hppCorbaServer/annotated.html
+share/doc/hppCorbaServer/class_chpp_kcd_object_vector-members.html
+share/doc/hppCorbaServer/class_chpp_kcd_object_vector.html
 share/doc/hppCorbaServer/class_chppci_obstacle__impl-members.html
 share/doc/hppCorbaServer/class_chppci_obstacle__impl.html
 share/doc/hppCorbaServer/class_chppci_obstacle__impl__coll__graph.map
@@ -20,6 +22,9 @@ share/doc/hppCorbaServer/class_chppci_open_hrp_client__coll__graph.md5
 share/doc/hppCorbaServer/class_chppci_open_hrp_client__coll__graph.png
 share/doc/hppCorbaServer/class_chppci_problem__impl-members.html
 share/doc/hppCorbaServer/class_chppci_problem__impl.html
+share/doc/hppCorbaServer/class_chppci_problem__impl__coll__graph.map
+share/doc/hppCorbaServer/class_chppci_problem__impl__coll__graph.md5
+share/doc/hppCorbaServer/class_chppci_problem__impl__coll__graph.png
 share/doc/hppCorbaServer/class_chppci_robot__impl-members.html
 share/doc/hppCorbaServer/class_chppci_robot__impl.html
 share/doc/hppCorbaServer/class_chppci_robot__impl__coll__graph.map
@@ -74,6 +79,9 @@ share/doc/hppCorbaServer/hppci_obstacle_8h__incl.map
 share/doc/hppCorbaServer/hppci_obstacle_8h__incl.md5
 share/doc/hppCorbaServer/hppci_obstacle_8h__incl.png
 share/doc/hppCorbaServer/hppci_obstacle_server_8idl.html
+share/doc/hppCorbaServer/hppci_obstacle_server_8idl__incl.map
+share/doc/hppCorbaServer/hppci_obstacle_server_8idl__incl.md5
+share/doc/hppCorbaServer/hppci_obstacle_server_8idl__incl.png
 share/doc/hppCorbaServer/hppci_open_hrp_8h.html
 share/doc/hppCorbaServer/hppci_open_hrp_8h__incl.map
 share/doc/hppCorbaServer/hppci_open_hrp_8h__incl.md5
@@ -108,6 +116,10 @@ share/doc/hppCorbaServer/hppci_server_private_8h.html
 share/doc/hppCorbaServer/hppci_server_private_8h__incl.map
 share/doc/hppCorbaServer/hppci_server_private_8h__incl.md5
 share/doc/hppCorbaServer/hppci_server_private_8h__incl.png
+share/doc/hppCorbaServer/hppci_tools_8h.html
+share/doc/hppCorbaServer/hppci_tools_8h__incl.map
+share/doc/hppCorbaServer/hppci_tools_8h__incl.md5
+share/doc/hppCorbaServer/hppci_tools_8h__incl.png
 share/doc/hppCorbaServer/index.html
 share/doc/hppCorbaServer/inherit__graph__0.map
 share/doc/hppCorbaServer/inherit__graph__0.md5
@@ -115,6 +127,9 @@ share/doc/hppCorbaServer/inherit__graph__0.png
 share/doc/hppCorbaServer/inherit__graph__1.map
 share/doc/hppCorbaServer/inherit__graph__1.md5
 share/doc/hppCorbaServer/inherit__graph__1.png
+share/doc/hppCorbaServer/inherit__graph__10.map
+share/doc/hppCorbaServer/inherit__graph__10.md5
+share/doc/hppCorbaServer/inherit__graph__10.png
 share/doc/hppCorbaServer/inherit__graph__2.map
 share/doc/hppCorbaServer/inherit__graph__2.md5
 share/doc/hppCorbaServer/inherit__graph__2.png
@@ -160,6 +175,6 @@ share/idl/hppCorbaServer/hppciCommonServer.idl
 share/idl/hppCorbaServer/hppciObstacleServer.idl
 share/idl/hppCorbaServer/hppciProblemServer.idl
 share/idl/hppCorbaServer/hppciRobotServer.idl
-@dirrm share/idl/hppCorbaServer
+@dirrm share/idl
 @dirrm share/doc/hppCorbaServer/pictures
 @dirrm share/doc/hppCorbaServer
