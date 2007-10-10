@@ -1,0 +1,6 @@
+Python scripts creating CORBA client of hppCorbaServer
+
+This package implements basic python scripts to control HPP library
+through a Corba server implemented by hppCorbaServer.  The scripts are
+installed in prefix/share/script/python. You should therefore add this
+path to you environment variable PYTHONPATH to access these scripts.

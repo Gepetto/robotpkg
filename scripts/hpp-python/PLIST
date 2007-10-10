@@ -1,0 +1,46 @@
+@comment $Id:$
+lib/pkgconfig/hppPython.pc
+share/doc/doxytag/hppPython.doxytag
+share/doc/hppPython/doxygen.png
+share/doc/hppPython/files.html
+share/doc/hppPython/ftv2blank.png
+share/doc/hppPython/ftv2doc.png
+share/doc/hppPython/ftv2folderclosed.png
+share/doc/hppPython/ftv2folderopen.png
+share/doc/hppPython/ftv2lastnode.png
+share/doc/hppPython/ftv2link.png
+share/doc/hppPython/ftv2mlastnode.png
+share/doc/hppPython/ftv2mnode.png
+share/doc/hppPython/ftv2node.png
+share/doc/hppPython/ftv2plastnode.png
+share/doc/hppPython/ftv2pnode.png
+share/doc/hppPython/ftv2vertline.png
+share/doc/hppPython/graph_legend.dot
+share/doc/hppPython/graph_legend.html
+share/doc/hppPython/graph_legend.png
+share/doc/hppPython/hpp.css
+share/doc/hppPython/hpp_python_8h.html
+share/doc/hppPython/index.html
+share/doc/hppPython/installdox
+share/doc/hppPython/main.html
+share/doc/hppPython/pictures/HRP2.jpg
+share/doc/hppPython/tab_b.gif
+share/doc/hppPython/tab_l.gif
+share/doc/hppPython/tab_r.gif
+share/doc/hppPython/tabs.css
+share/doc/hppPython/tree.html
+share/script/python/_GlobalIDL/__init__.py
+share/script/python/_GlobalIDL__POA/__init__.py
+share/script/python/hppInit.py
+share/script/python/hppInit.pyc
+share/script/python/hppWalkInit.py
+share/script/python/hppciCommonServer_idl.py
+share/script/python/hppciObstacleServer_idl.py
+share/script/python/hppciProblemServer_idl.py
+share/script/python/hppciRobotServer_idl.py
+@dirrm share/script/python/_GlobalIDL__POA
+@dirrm share/script/python/_GlobalIDL
+@dirrm share/script/python
+@dirrm share/doc/hppPython/pictures
+@dirrm share/doc/hppPython
+
