@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/07/13 18:13:39 mallet $
+@comment $Id:$
 include/kwsIO/kwsioConfig.h
 include/kwsIO/kwsioDevice.h
 include/kwsIO/kwsioInterface.h
@@ -10,7 +10,6 @@ share/doc/doxytag/kwsIO.doxytag
 share/doc/kwsIO/annotated.html
 share/doc/kwsIO/class_ckwsio_path-members.html
 share/doc/kwsIO/class_ckwsio_path.html
-share/doc/kwsIO/doxygen.css
 share/doc/kwsIO/doxygen.png
 share/doc/kwsIO/files.html
 share/doc/kwsIO/ftv2blank.png
@@ -39,6 +38,7 @@ share/doc/kwsIO/inherit__graph__0.map
 share/doc/kwsIO/inherit__graph__0.md5
 share/doc/kwsIO/inherit__graph__0.png
 share/doc/kwsIO/inherits.html
+share/doc/kwsIO/kwsIO.css
 share/doc/kwsIO/kwsio_config_8h.html
 share/doc/kwsIO/kwsio_config_8h__dep__incl.map
 share/doc/kwsIO/kwsio_config_8h__dep__incl.md5
