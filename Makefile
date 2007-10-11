@@ -74,6 +74,8 @@ SUBDIR+=	math
 SUBDIR+=	meta-pkgs
 SUBDIR+=	path
 SUBDIR+=	pkgtools
+SUBDIR+=	robots
+SUBDIR+=	scripts
 SUBDIR+=	shell
 SUBDIR+=	www
 
