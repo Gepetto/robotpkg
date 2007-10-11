@@ -12,7 +12,7 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Python scripts creating CORBA client of hppCorbaServer
 
-DEPENDS+=       omniORB>=4.1.0:../../devel/omniORB
+DEPENDS+=       omniORBpy>=3.0:../../devel/omniORBpy
 
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
