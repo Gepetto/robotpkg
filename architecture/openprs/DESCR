@@ -1,0 +1,18 @@
+OpenPRS is an open source version of PRS (Procedural Reasoning Systems) / Propice.
+
+It is based on C-PRS and Propice... which were themselves inspired from
+the Lisp PRS originaly developped at SRI International. PRS has been used
+for a wide variety of application, from Mobile robot execution control to
+Space Shuttle operational procedure execution.
+
+If you have not idea at all what it is doing... well, you should probably
+just stop here and look at other fun open source tools. It has been
+written and is maintained by Felix Ingrand and is now made available
+under a BSD-style license.
+
+OpenPRS is used as a "Procedural Executive" in the LAAS Architecture (see
+my publications page for references and papers describing this). To make
+this "integration" seamless and painless, we have developped a tool
+(TransGen) which allows to connect OpenPRS to modules defined with
+GenoM. As soon as I have ported TransGen to OpenPRS (for now it works
+with Propice), I will make it available here.

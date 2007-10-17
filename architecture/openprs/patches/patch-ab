@@ -1,0 +1,20 @@
+--- lex-parser-def.l~	2004-05-27 14:16:04.000000000 +0200
++++ lex-parser-def.l	2007-10-17 16:22:21.810312000 +0200
+@@ -1,7 +1,7 @@
+ /*                               -*- Mode: C -*- 
+  * lex-parser-def.l -- 
+  * 
+- * $Id: lex-parser-def.l,v 1.2 2004/05/27 12:16:04 felix Exp $
++ * $Id: lex-parser-def.l 2007/10/17 16:22:21 mallet $
+  * 
+  * Copyright (c) 1991-2004 Francois Felix Ingrand.
+  * All rights reserved.
+@@ -55,7 +55,7 @@
+ #endif
+ 
+ #define YY_INPUT(buf,result,max_size) \
+-	if ( yy_current_buffer->yy_is_interactive ) \
++	if ( YY_CURRENT_BUFFER->yy_is_interactive ) \
+ 		{ \
+ 		int c = '*', n; \
+ 		for ( n = 0; n < max_size && \

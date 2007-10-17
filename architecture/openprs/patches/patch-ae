@@ -1,0 +1,63 @@
+--- Makefile.in.orig	2005-01-25 16:26:13.000000000 +0100
++++ Makefile.in	2007-10-17 18:33:14.667040000 +0200
+@@ -35,6 +35,7 @@
+ top_srcdir=	@top_srcdir@
+ 
+ srcdir=		@srcdir@
++libdir=		@libdir@
+ VPATH=		.:@srcdir@
+ 
+ .PHONY:	version
+@@ -693,7 +694,7 @@
+ install_code:  install_just_code install_ad install_site_make
+ 
+ install_site_make:
+-	@$(INSTALL-IF-CHANGE) -c -m 644 site.make ${EXEC-PREFIX}/site.make
++	@$(INSTALL-IF-CHANGE) -c -m 644 site.make ${DESTDIR}/share/openprs/site.make
+ 
+ install_lib: $(EXT_MP_LIB) $(OPAQUE_LIB) $(C_TOOLKIT_LIB) install_relocatable
+ 	@-for i in $(EXT_MP_LIB) $(OPAQUE_LIB) $(C_TOOLKIT_LIB); do\
+@@ -713,7 +714,7 @@
+ 
+ install_src: ${EXTERNAL_SRC}
+ 	@-for i in $^; do\
+-		$(INSTALL-IF-CHANGE) -c -m 644 $$i ${DESTDIR}/pub_src/`basename $$i`;\
++		$(INSTALL-IF-CHANGE) -c -m 644 $$i ${DESTDIR}/share/openprs/pub_src/`basename $$i`;\
+ 	done
+ 
+ install_include: ${EXTERNAL_INCLUDE}
+@@ -723,20 +724,20 @@
+ 
+ install_util:
+ 	@-for i in $(UTIL); do \
+-		$(INSTALL-IF-CHANGE) -c -m 755 $(srcdir)/util/$$i ${DESTDIR}/util/$$i;\
++		$(INSTALL-IF-CHANGE) -c -m 755 $(srcdir)/util/$$i ${DESTDIR}/share/openprs/util/$$i;\
+ 	done
+ 
+ ifeq ($(OPRS_LANG),fr)
+ install_ad: install_ad_lang
+ 	for i in $(XDEFAULT); do \
+-		rm -f ${DESTDIR}/app-defaults/$$i;\
+-		$(LN_S) ${DESTDIR}/app-defaults/$$i-fr ${DESTDIR}/app-defaults/$$i;\
++		rm -f ${libdir}/X11/app-defaults/$$i;\
++		$(LN_S) ${libdir}/X11/app-defaults/$$i-fr ${libdir}/X11/app-defaults/$$i;\
+ 	done
+ else
+ install_ad: install_ad_lang
+ 	for i in $(XDEFAULT); do \
+-		rm -f ${DESTDIR}/app-defaults/$$i;\
+-		$(LN_S) ${DESTDIR}/app-defaults/$$i-en ${DESTDIR}/app-defaults/$$i;\
++		rm -f ${libdir}/X11/app-defaults/$$i;\
++		$(LN_S) ${libdir}/X11/app-defaults/$$i-en ${libdir}/X11/app-defaults/$$i;\
+ 	done
+ endif
+ 
+@@ -744,7 +745,7 @@
+ 	for i in $^; do \
+ 		sed -e "s|\.directory:[ 	]*./data$$|.directory: .|" \
+ 			< $$i > $$i.tmp;\
+-		$(INSTALL-IF-CHANGE) -m 644 $$i.tmp ${DESTDIR}/app-defaults/`basename $$i .ad`;\
++		$(INSTALL-IF-CHANGE) -m 644 $$i.tmp ${libdir}/X11/app-defaults/`basename $$i .ad`;\
+ 	done
+ 
+ install_doc:
