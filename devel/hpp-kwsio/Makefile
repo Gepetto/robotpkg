@@ -3,14 +3,14 @@
 
 DISTNAME=	kwsio-${VERSION}
 PKGNAME=	hpp-kwsio-${VERSION}
-VERSION=	1.0
+VERSION=	1.0.1
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
-COMMENT=	Input and Output helper functions for KineoWorks(tm) package.
+COMMENT=	Input and Output functions for KineoWorks(tm) package.
 
 DEPENDS+=	kineo-pp>=2.4.301r2:../../path/kineo-pp
 
