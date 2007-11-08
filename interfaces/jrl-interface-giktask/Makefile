@@ -3,7 +3,7 @@
 
 DISTNAME=	abstractgiktask-${VERSION}
 PKGNAME=	jrl-interface-giktask-${VERSION}
-VERSION=	1.1
+VERSION=	1.2
 
 CATEGORIES=	interfaces
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}

@@ -1,4 +1,5 @@
-@comment $Id: PLIST 2007/08/30 14:29:00 mallet $
+@comment $Id: PLIST 2007/11/08 16:27:50 mallet $
+include/gikTask/jrlGikComConstraint.h
 include/gikTask/jrlGikGazeConstraint.h
 include/gikTask/jrlGikJointStateConstraint.h
 include/gikTask/jrlGikMotionConstraint.h
@@ -13,6 +14,14 @@ include/gikTask/jrlGikTransformationConstraint.h
 include/gikTask/jrlRobotMotion.h
 lib/pkgconfig/abstractGikTask.pc
 share/doc/abstractGikTask/annotated.html
+share/doc/abstractGikTask/class_cjrl_gik_com_constraint-members.html
+share/doc/abstractGikTask/class_cjrl_gik_com_constraint.html
+share/doc/abstractGikTask/class_cjrl_gik_com_constraint__coll__graph.map
+share/doc/abstractGikTask/class_cjrl_gik_com_constraint__coll__graph.md5
+share/doc/abstractGikTask/class_cjrl_gik_com_constraint__coll__graph.png
+share/doc/abstractGikTask/class_cjrl_gik_com_constraint__inherit__graph.map
+share/doc/abstractGikTask/class_cjrl_gik_com_constraint__inherit__graph.md5
+share/doc/abstractGikTask/class_cjrl_gik_com_constraint__inherit__graph.png
 share/doc/abstractGikTask/class_cjrl_gik_gaze_constraint-members.html
 share/doc/abstractGikTask/class_cjrl_gik_gaze_constraint.html
 share/doc/abstractGikTask/class_cjrl_gik_gaze_constraint__coll__graph.map
@@ -135,6 +144,13 @@ share/doc/abstractGikTask/inherit__graph__3.md5
 share/doc/abstractGikTask/inherit__graph__3.png
 share/doc/abstractGikTask/inherits.html
 share/doc/abstractGikTask/installdox
+share/doc/abstractGikTask/jrl_gik_com_constraint_8h.html
+share/doc/abstractGikTask/jrl_gik_com_constraint_8h__dep__incl.map
+share/doc/abstractGikTask/jrl_gik_com_constraint_8h__dep__incl.md5
+share/doc/abstractGikTask/jrl_gik_com_constraint_8h__dep__incl.png
+share/doc/abstractGikTask/jrl_gik_com_constraint_8h__incl.map
+share/doc/abstractGikTask/jrl_gik_com_constraint_8h__incl.md5
+share/doc/abstractGikTask/jrl_gik_com_constraint_8h__incl.png
 share/doc/abstractGikTask/jrl_gik_gaze_constraint_8h.html
 share/doc/abstractGikTask/jrl_gik_gaze_constraint_8h__dep__incl.map
 share/doc/abstractGikTask/jrl_gik_gaze_constraint_8h__dep__incl.md5
