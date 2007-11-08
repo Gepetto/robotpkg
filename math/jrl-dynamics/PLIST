@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/08/30 15:11:02 mallet $
+@comment $Id: pipo 2007/11/08 17:51:09 mallet $
 include/dynamicsJRLJapan/Body.h
 include/dynamicsJRLJapan/DynamicBody.h
 include/dynamicsJRLJapan/DynamicMultiBody.h
@@ -11,16 +11,6 @@ include/dynamicsJRLJapan/SpiritVRMLReader.h
 include/dynamicsJRLJapan/dynamicsJRLJapan.h
 include/dynamicsJRLJapan/fileReader.h
 include/dynamicsJRLJapan/robotDynamicsImpl.h
-include/robotDynamicsJRLJapan/Body.h
-include/robotDynamicsJRLJapan/DynamicBody.h
-include/robotDynamicsJRLJapan/DynamicMultiBody.h
-include/robotDynamicsJRLJapan/Hand.h
-include/robotDynamicsJRLJapan/HumanoidDynamicMultiBody.h
-include/robotDynamicsJRLJapan/HumanoidSpecificities.h
-include/robotDynamicsJRLJapan/Joint.h
-include/robotDynamicsJRLJapan/MultiBody.h
-include/robotDynamicsJRLJapan/dynamicsJRLJapan.h
-include/robotDynamicsJRLJapan/fileReader.h
 lib/libdynamicsJRLJapan.la
 lib/pkgconfig/dynamicsJRLJapan.pc
 share/doc/doxytag/dynamicsJRLJapan.doxytag
@@ -341,6 +331,4 @@ share/doc/dynamicsJRLJapan/tabs.css
 share/doc/dynamicsJRLJapan/tree.html
 @dirrm share/doc/dynamicsJRLJapan/pictures
 @dirrm share/doc/dynamicsJRLJapan
-@dirrm include/robotDynamicsJRLJapan
 @dirrm include/dynamicsJRLJapan
-@dirrm include
