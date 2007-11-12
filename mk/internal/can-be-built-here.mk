@@ -39,42 +39,25 @@
 # PKG_FAIL_REASON, PKG_SKIP_REASON
 #
 
-_CBBH_CHECKS=		# none, but see below.
+_CBBH=			yes#, but see below.
 
 # Check PKG_FAIL_REASON
-_CBBH_CHECKS+=		fail
-_CBBH_MSGS.fail=	"This package has set PKG_FAIL_REASON:" ${PKG_FAIL_REASON}
-
-_CBBH.fail=		yes
 ifdef PKG_FAIL_REASON
 ifneq (,${PKG_FAIL_REASON})
-_CBBH.fail=		no
+_CBBH=			no
+_CBBH_MSGS+=		"This package has set PKG_FAIL_REASON:"
+_CBBH_MSGS+=		${PKG_FAIL_REASON}
 endif
 endif
 
 # Check PKG_SKIP_REASON
-_CBBH_CHECKS+=		skip
-_CBBH_MSGS.skip=	"This package has set PKG_SKIP_REASON:" ${PKG_SKIP_REASON}
-
-_CBBH.skip=		yes
 ifdef PKG_SKIP_REASON
 ifneq (,$(PKG_SKIP_REASON))
-_CBBH.skip=		no
-endif
-endif
-
-
-# Collect and combine the results
-_CBBH=			yes
-_CBBH_MSGS=		# none
-define _CBBH_mix
-  ifneq (yes,${_CBBH.$(1)})
 _CBBH=			no
-_CBBH_MSGS+=		${_CBBH_MSGS.$(1)}
-  endif
-endef
-$(foreach c,${_CBBH_CHECKS}, $(eval $(call _CBBH_mix,${c})))
-
+_CBBH_MSGS+=		"This package has set PKG_SKIP_REASON:"
+_CBBH_MSGS+=		${PKG_SKIP_REASON}
+endif
+endif
 
 # In the first line, this target prints either "yes" or "no", saying
 # whether this package can be built. If the package can not be built,
@@ -84,13 +67,13 @@ $(foreach c,${_CBBH_CHECKS}, $(eval $(call _CBBH_mix,${c})))
 
 can-be-built-here:
 	@${ECHO} ${_CBBH}
-	@:; $(foreach m,${_CBBH_MSGS},${ECHO} ${m};)
+	@${ECHO} ${_CBBH_MSGS}
 
 _cbbh:
-	@:; $(foreach m,${_CBBH_MSGS},${ERROR_MSG} ${m};)
+	@${ERROR_MSG} ${_CBBH_MSGS}
 	@${FALSE}
 
-ifeq (no, ${_CBBH})
+ifeq (no,${_CBBH})
 # XXX: bootstrap-depends is only used here because it is depended
 # upon by each of the "main" pkgsrc targets.
 bootstrap-depends: _cbbh
