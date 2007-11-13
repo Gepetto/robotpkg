@@ -156,7 +156,7 @@ ${_MESSAGE_FILE}: ${MESSAGE_SRC}
 # Display MESSAGE file
 #
 .PHONY: install-display-message
-register-pkg: install-display-message
+pkg-register: install-display-message
 install-display-message: ${_MESSAGE_FILE}
 	@${STEP_MSG} "Please note the following:"
 	@${ECHO_MSG} ""
