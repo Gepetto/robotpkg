@@ -1,0 +1,10 @@
+========================================================================
+$Id: MESSAGE 2007/11/13 12:35:13 mallet $
+
+This package is only useful for clients of the plugin, because it is
+compiled with OmniORB. In order to compile the plugin itself, you must
+have an installed copy of Orbix/E and compile this package manually from
+the source archive. Please note that if you do so, you should take care
+not to overwrite the present installation, and thus probably use a
+different prefix to compile the Orbix/E version.
+========================================================================

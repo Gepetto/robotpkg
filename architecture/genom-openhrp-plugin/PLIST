@@ -1,0 +1,6 @@
+@comment $Id: PLIST 2007/11/13 12:35:24 mallet $
+include/genom-openhrp/genom-hrp2.h
+lib/libgenom-openhrp.la
+lib/pkgconfig/genom-openhrp-plugin.pc
+share/idl/genom-openhrp-plugin.idl
+@dirrm include/genom-openhrp
