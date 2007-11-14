@@ -1,0 +1,3 @@
+netshring stands for "networked shared ring buffer". This is a trivial,
+tcp socket based, FIFO implementation. This package is bound to disapear
+when it will be integrated in GenoM.
