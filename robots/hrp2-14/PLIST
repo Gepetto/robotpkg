@@ -1,4 +1,4 @@
-@comment $Id:$
+@comment $Id: pipo 2007/11/16 14:01:28 mallet $
 include/hrp2_14/hrp2_14.h
 lib/libhrp2_14.la
 lib/pkgconfig/hrp2_14.pc
@@ -43,7 +43,9 @@ share/doc/hrp2_14/tab_l.gif
 share/doc/hrp2_14/tab_r.gif
 share/doc/hrp2_14/tabs.css
 share/doc/hrp2_14/tree.html
+share/hrp2_14/HRP2LinkJointRank.xml
+share/hrp2_14/HRP2Specificities.xml
+@dirrm share/hrp2_14
 @dirrm share/doc/hrp2_14/pictures
 @dirrm share/doc/hrp2_14
 @dirrm include/hrp2_14
-
