@@ -1,0 +1,30 @@
+@comment $Id: PLIST 2007/11/20 15:14:53 mallet $
+bin/pom
+bin/pomSendInitRqst
+bin/pomTest
+include/pom/libeuler/pomEuler.h
+include/pom/pomConst.h
+include/pom/pomStruct.h
+include/pom/server/pomEndian.h
+include/pom/server/pomError.h
+include/pom/server/pomMsgLib.h
+include/pom/server/pomPosterLib.h
+include/pom/server/pomPosterLibStruct.h
+include/pom/server/pomPosterReadLibProto.h
+include/pom/server/pomPosterShowLib.h
+include/pom/server/pomPosterWriteLibProto.h
+include/pom/server/pomPosterXMLLib.h
+include/pom/server/pomPrint.h
+include/pom/server/pomPrintXML.h
+include/pom/server/pomScan.h
+include/pom/server/pomType.h
+lib/libpomClient.la
+lib/libpomEuler.la
+lib/pkgconfig/pom-euler.pc
+lib/pkgconfig/pom.pc
+lib/tclserv/libpomTclServ.la
+share/modules/gen/pom.gen
+share/modules/tcl/pomClient.tcl
+@dirrm include/pom/server
+@dirrm include/pom/libeuler
+@dirrm include/pom

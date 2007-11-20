@@ -1,0 +1,7 @@
+GenoM module for localization management.
+
+This module is able to collect position estimates from other modules, and
+generate a fused position estimate from these sources. It also manages
+sensor location with respect to the robot. This is especially useful for
+sensors mounted on mobiles devices, like a PTU.
+
