@@ -70,6 +70,7 @@ SUBDIR+=	graphics
 SUBDIR+=	image
 SUBDIR+=	interfaces
 SUBDIR+=	lang
+SUBDIR+=	localization
 SUBDIR+=	math
 SUBDIR+=	meta-pkgs
 SUBDIR+=	path
