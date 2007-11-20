@@ -1,0 +1,6 @@
+@comment $Id: PLIST 2007/11/20 14:36:41 mallet $
+include/libpom/lib.h
+include/libpom/struct.h
+lib/libpom.la
+lib/pkgconfig/libpom.pc
+@dirrm include/libpom
