@@ -1,0 +1,6 @@
+@comment $Id: PLIST 2007/11/20 14:33:28 mallet $
+include/insitu/errno.h
+include/insitu/lib.h
+lib/libinsitu.la
+lib/pkgconfig/insitu.pc
+@dirrm include/insitu
