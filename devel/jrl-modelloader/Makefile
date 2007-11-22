@@ -1,8 +1,8 @@
-# $Id: Makefile 2007/06/12 17:29:59 mallet $
+# $Id: Makefile 2007/11/22 14:51:12 mallet $
 #
 
 PKGNAME=		jrl-modelloader-1.2
-PKGREVISION=		1
+PKGREVISION=		0
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_JRL}
 
