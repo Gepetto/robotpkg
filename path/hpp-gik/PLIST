@@ -1,4 +1,4 @@
-@comment $Id: pipo 2007/08/30 15:36:13 mallet $
+@comment $Id: PLIST 2007/11/28 14:58:11 mallet $
 include/hpp/constraints/hppGikComConstraint.h
 include/hpp/constraints/hppGikGazeConstraint.h
 include/hpp/constraints/hppGikMotionConstraint.h
@@ -432,6 +432,7 @@ share/doc/hppGik/functions_vars_0x6a.html
 share/doc/hppGik/functions_vars_0x6c.html
 share/doc/hppGik/functions_vars_0x6d.html
 share/doc/hppGik/functions_vars_0x6e.html
+share/doc/hppGik/functions_vars_0x6f.html
 share/doc/hppGik/functions_vars_0x70.html
 share/doc/hppGik/functions_vars_0x72.html
 share/doc/hppGik/functions_vars_0x73.html
@@ -738,6 +739,8 @@ share/doc/hppGik/tab_l.gif
 share/doc/hppGik/tab_r.gif
 share/doc/hppGik/tabs.css
 share/doc/hppGik/tree.html
+share/gik/hppGikPreviewController10ms.ini
+share/gik/hppGikPreviewController20ms.ini
 share/gik/hppGikPreviewController50ms.ini
 share/gik/hppGikPreviewController5ms.ini
 @dirrm share/gik
