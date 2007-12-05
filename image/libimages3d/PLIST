@@ -1,0 +1,4 @@
+@comment $Id: PLIST 2007/11/26 15:39:52 mallet $
+include/libimages3d.h
+lib/libimages3d.la
+lib/pkgconfig/libimages3d.pc

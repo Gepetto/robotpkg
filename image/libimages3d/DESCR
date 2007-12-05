@@ -1,0 +1,42 @@
+This library had originally been written by Simon Lacroix in August. 97
+(as a calife library - hence the comments in french), and has been
+cleaned and "autotoolized" by Anthony Mallet in August 2006. It defines a
+structure ("DATA_IM3D") of 3D points data ("DATA_PT3D"), that contains 3D
+points expressed either in cartesian, cylindric of spheric coordinates
+systems. The structure can also embed normal and variances informations,
+and various functions to manipulate the image and point structures are
+provided.
+
+WHAT'S IN THE FILES:
+
+imalloc.c : creation, initialization and destruction of DATA_IM3D
+
+ptalloc.c : creation, initialization and destruction of DATA_PT3D
+
+io.c : file input/output functions
+
+imutil.c : various functions on a DATA_IM3D (compute the bounds on
+coordinates, subsamples a DATA_IM3D, frame transformation...)
+
+iminfo.c : prints information on a DATA_IM3D
+
+ptinfo.c : prints information on a given 3D point of a DATA_IM3D
+
+ptutil.c : various functions on a 3D point 
+
+coords.c : conversions between the cartesian, cylindric of spheric coordinates
+systems
+
+delaunay.c : computes a delaunay triangulation of a DATA_IM3D
+
+mesh.c : triangulates a DATA_IM3D, filters the resulting mesh and writes an
+"OFF" file.
+
+
+OTHER MISC INFOS (to be completed):
+
+- All the angles are of course manipulated in radians in the code, and
+are printed in degrees on the screen ("info" functions).
+
+- sizeof (DATA_PT3D) : 28 bytes without the normal and variances
+information, 64 byte with these information.
