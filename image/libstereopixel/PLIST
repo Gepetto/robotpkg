@@ -1,0 +1,4 @@
+@comment $Id: PLIST 2007/11/27 11:43:14 mallet $
+include/libstereopixel.h
+lib/libstereopixel.la
+lib/pkgconfig/libstereopixel.pc
