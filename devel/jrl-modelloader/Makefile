@@ -1,13 +1,13 @@
 # $Id: Makefile 2007/11/22 14:51:12 mallet $
 #
 
-PKGNAME=		jrl-modelloader-1.2
-PKGREVISION=		0
+PKGNAME=		jrl-modelloader-1.1
+PKGREVISION=		1
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_JRL}
 
-DISTNAME=		jrl-modelloader-1.2
-WRKSRC=			${WRKDIR}/jrl-modelloader-1.2
+DISTNAME=		jrl-modelloader-1.1r1
+WRKSRC=			${WRKDIR}/jrl-modelloader-1.1
 
 RESTRICTED=		You cannot redistribute this software.
 NO_PUBLIC_SRC=		${RESTRICTED}
