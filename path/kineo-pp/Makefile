@@ -3,17 +3,13 @@
 #
 
 KPPVERSION=		2.04
-KPPPATCH=		301
-PKGREVISION=		4
+KPPPATCH=		305
+#PKGREVISION=		0
 PKGNAME=		kineo-pp-${KPPVERSION}.${KPPPATCH}
 DISTNAME=		KPPSDK_${KPPVERSION}.${KPPPATCH}
 EXTRACT_SUFX=		.tgz
 
-DISTFILES=\
-	${DISTNAME}.tgz	\
-	KPPSDK_2.04.300.tgz
-
-WRKSRC=			${WRKDIR}/KPPSDK_${KPPVERSION}
+WRKSRC=			${WRKDIR}/KPPSDK_${KPPVERSION}.${KPPPATCH}
 
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
@@ -54,8 +50,6 @@ post-extract:
 	${CP} ${FILESDIR}/KineoController.pc ${WRKSRC}
 	${CP} ${FILESDIR}/KineoPathPlanner.pc ${WRKSRC}
 	${CP} ${FILESDIR}/KineoSetDebug ${WRKSRC}/bin/i386-linux/.
-	${CP} ${FILESDIR}/libKineoUtility.so ${WRKSRC}/bin/i386-linux/dynlib/
-	${CP} ${FILESDIR}/libKineoUtilityd.so ${WRKSRC}/bin/i386-linux/dynlib/
 	${CP} ${FILESDIR}/KineoAddonBuilder ${WRKSRC}/bin/i386-linux/
 
 do-install:
@@ -67,7 +61,9 @@ do-install:
 	${PAX} -rw -pm -s '|${WRKSRC}/interfaces||' ${WRKSRC}/interfaces ${KINEO_DIR}/include
 	${PAX} -rw -pm -s '|${WRKSRC}/lib||' ${WRKSRC}/lib ${KINEO_DIR}/lib
 	${PAX} -rw -pm -s '|${WRKSRC}/res||' ${WRKSRC}/res ${KINEO_DIR}/res
-	${PAX} -rw -pm -s '|${WRKDIR}/kppsdk_2.04/doc||' ${WRKDIR}/kppsdk_2.04/doc ${KINEO_DIR}/share/doc
+	${PAX} -rw -pm -s '|${WRKSRC}/doc||' ${WRKSRC}/doc ${KINEO_DIR}/share/doc
+	${PAX} -rw -pm -s '|${WRKSRC}/demos||' ${WRKSRC}/demos ${KINEO_DIR}/share/demos
+	${PAX} -rw -pm -s '|${WRKSRC}/examples||' ${WRKSRC}/examples ${KINEO_DIR}/share/examples
 	for f in 							\
 		KineoAddonBuilder					\
 		KineoPathPlannerd					\
