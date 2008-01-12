@@ -45,9 +45,8 @@
 # This Makefile fragment contains the targets and variables for 
 # "make update".
 #
-# There is no documentation on what "update" actually does.  This is merely
-# an attempt to separate the magic into a separate module that can be
-# reimplemented later.
+# The 'update' target can be used to update a package and all
+# currently installed packages that depend upon this package.
 #
 
 NOCLEAN?=	NO	# don't clean up after update
@@ -67,9 +66,6 @@ UPDATE_TARGET=	install
 UPDATE_TARGET=	${DEPENDS_TARGET}
   endif
 endif
-
-# The 'update' target can be used to update a package and all
-# currently installed packages that depend upon this package.
 
 _DDIR=	${WRKDIR}/.DDIR
 _DLIST=	${WRKDIR}/.DLIST
@@ -132,15 +128,13 @@ endif
 clean-update:
 	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} update-create-ddir
 	${_PKG_SILENT}${_PKG_DEBUG}					\
-	if [ -s ${_DDIR} ] ; then					\
-		for dep in `${CAT} ${_DDIR}` ; do			\
-			(if cd ../.. && cd "$${dep}" ; then		\
-				${RECURSIVE_MAKE} clean;		\
-			else						\
-				${PHASE_MSG} "Skipping removed directory $${dep}";\
-			fi) ;						\
-		done ;							\
-	fi
+	[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do		\
+		(if cd ../.. && cd "$${dep}" ; then			\
+			${RECURSIVE_MAKE} clean;			\
+		else							\
+			${PHASE_MSG} "Skipping removed directory $${dep}";\
+		fi) ;							\
+	done
 ifneq (NO,$(strip ${CLEAR_DIRLIST}))
 	${RUN}${RECURSIVE_MAKE} clean
 else
@@ -164,22 +158,15 @@ ifdef DIRLIST
 	$(foreach __tmp__,${DIRLIST},${ECHO} >>${_DDIR} "${__tmp__}";)
 endif
 
-
 ${_DDIR}: ${_DLIST}
-	${RUN}								\
-	ddir=`${SED} 's:-[^-]*$$::' ${_DLIST}`;				\
-	${ECHO} >${_DDIR};						\
-	for pkg in $${ddir} ; do					\
-		if ${PKG_INFO} -b "$${pkg}" >/dev/null 2>&1 ; then	\
-			${PKG_INFO} -b "$${pkg}" | ${SED}	-ne	\
-			    's,\([^/]*/[^/]*\)/Makefile:.*,\1,p' | 	\
-			    ${HEAD} -1 >>${_DDIR};			\
-		fi ;							\
-	done
+	${RUN} pkgs=`${CAT} ${_DLIST}`;					\
+	if [ "$$pkgs" ]; then ${PKG_INFO} -Q PKGPATH $$pkgs; fi > ${_DDIR}
 
+# Note that "pkg_info -qR" wouldn't work here, since it lists only the
+# packages that require this package directly.
 ${_DLIST}: ${WRKDIR}
 	${RUN}								\
-	{ ${PKG_DELETE} -n "${PKGWILDCARD}" 2>&1 | 			\
-		${GREP} '^	' |					\
-		${AWK} '{ l[NR]=$$0 } END { for (i=NR;i>0;--i) print l[i] }' \
-	|| ${TRUE}; } > $@
+	${PKG_DELETE} -n "${PKGWILDCARD}" 2>&1				\
+	| ${GREP} '^	'						\
+	| ${AWK} '{ l[NR]=$$0 } END { for (i=NR;i>0;--i) print l[i] }'	\
+	> ${_DLIST}
