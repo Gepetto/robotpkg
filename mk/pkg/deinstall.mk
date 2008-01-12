@@ -76,10 +76,10 @@ pkg-deinstall:
 		${ECHO} "Running ${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} $$found"; \
 		${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} "$$found" || ${TRUE} ; \
 	fi
-ifneq (,$(call isyes,${DEINSTALLDEPENDS}))
+ifneq (,$(filter all All ALL,${DEINSTALLDEPENDS}))
 	${RUN}								\
-  $(foreach _pkg_,$(word 1,$(subst :, ,${BUILD_DEPENDS})),		\
-	found="`${_PKG_BEST_EXISTS} $(call quote,${_pkg_}) || ${TRUE}`";\
+  $(foreach _pkg_,${BUILD_DEPENDS},		\
+	found="`${_PKG_BEST_EXISTS} $(call quote,$(word 1,$(subst :, ,${_pkg_}))) || ${TRUE}`";\
 	if ${TEST} -n "$$found"; then					\
 		${ECHO} "Running ${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} $$found"; \
 		${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} "$$found" || ${TRUE}; \
