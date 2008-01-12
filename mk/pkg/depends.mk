@@ -156,6 +156,7 @@ _DEPENDS_INSTALL_CMD=							\
 		"")	${ERROR_MSG} "[depends.mk] A package matching \`\`$$pattern'' should"; \
 			${ERROR_MSG} "    be installed, but one cannot be found.  Perhaps there is a"; \
 			${ERROR_MSG} "    stale work directory for $$dir?"; \
+			${ERROR_MSG} "    Try to ${MAKE} clean in $$dir."; \
 			exit 1;						\
 		esac;							\
 		${STEP_MSG} "Returning to build of ${PKGNAME}";		\
