@@ -18,4 +18,6 @@ DEPENDS+=	jrl-dynamics>=1.6:../../math/jrl-dynamics
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
 
+PATCH_STRIP= -p1
+
 include ../../mk/robotpkg.mk
