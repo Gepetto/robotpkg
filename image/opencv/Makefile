@@ -4,7 +4,7 @@
 DISTNAME=		opencv-1.0.0
 CATEGORIES=		image devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=opencvlibrary/}
-PKGREVISION=		2
+PKGREVISION=		3
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://opencvlibrary.sourceforge.net/
