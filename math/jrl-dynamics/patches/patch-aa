@@ -1,0 +1,46 @@
+diff --git a/include/dynamicsJRLJapan/DynamicMultiBody.h b/include/dynamicsJRLJapan/DynamicMultiBody.h
+index 29d00d6..d0686f2 100644
+--- a/include/dynamicsJRLJapan/DynamicMultiBody.h
++++ b/include/dynamicsJRLJapan/DynamicMultiBody.h
+@@ -831,7 +831,7 @@ namespace dynamicsJRLJapan
+     /**
+     \brief Set the robot in the static state described by the given configuration vector.
+      */
+-    void staticState(const vectorN& inConfiguration);
++    virtual void staticState(const vectorN& inConfiguration);
+      
+     /**
+        \brief Compute forward kinematics.
+diff --git a/include/dynamicsJRLJapan/HumanoidDynamicMultiBody.h b/include/dynamicsJRLJapan/HumanoidDynamicMultiBody.h
+index fcaa84f..6f331fc 100644
+--- a/include/dynamicsJRLJapan/HumanoidDynamicMultiBody.h
++++ b/include/dynamicsJRLJapan/HumanoidDynamicMultiBody.h
+@@ -354,6 +354,11 @@ namespace dynamicsJRLJapan
+       void FiniteDifferenceStateUpdate(double inTimeStep);
+       
+       /**
++      \brief Set the robot in the static state described by the given configuration vector.
++      */
++      void staticState( const vectorN& inConfiguration );
++      
++      /**
+ 	 \brief Compute forward kinematics.
+ 
+ 	 Update the position, velocity and accelerations of each
+diff --git a/src/HumanoidDynamicMultiBody.cpp b/src/HumanoidDynamicMultiBody.cpp
+index a3834d6..abc0bc6 100644
+--- a/src/HumanoidDynamicMultiBody.cpp
++++ b/src/HumanoidDynamicMultiBody.cpp
+@@ -244,6 +244,12 @@ void HumanoidDynamicMultiBody::FiniteDifferenceStateEstimate(double inTimeStep)
+     ComputingZeroMomentumPoint();
+ }
+ 
++void HumanoidDynamicMultiBody::staticState( const vectorN& inConfiguration )
++{
++    DynamicMultiBody::staticState(inConfiguration);
++    ComputingZeroMomentumPoint();
++}
++
+ bool HumanoidDynamicMultiBody::jacobianJointWrtFixedJoint(CjrlJoint* inJoint, 
+ 							  MAL_MATRIX(,double) & outJacobian)
+ {

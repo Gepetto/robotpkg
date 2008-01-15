@@ -4,6 +4,7 @@
 DISTNAME=	dynamicsjrljapan-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
 VERSION=	1.6
+PKGREVISION=	1
 
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_JRL}
@@ -17,5 +18,7 @@ DEPENDS+=	jrl-interface-dynamics>=1.7:../../interfaces/jrl-interface-dynamics
 
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
+
+PATCH_STRIP=	-p1
 
 include ../../mk/robotpkg.mk
