@@ -12,7 +12,8 @@
 ###  - make print-PLIST | brain >PLIST
 ###
 
-#_PRINT_PLIST_AWK_SUBST={						\
+_PRINT_PLIST_AWK_SUBST={
+
 #	gsub(/${OPSYS}/, "$${OPSYS}");					\
 #	gsub(/$(subst .,\.,${OS_VERSION})/, "$${OS_VERSION}");		\
 #	gsub(/${MACHINE_GNU_PLATFORM}/, "$${MACHINE_GNU_PLATFORM}");	\
@@ -20,12 +21,15 @@
 #	gsub(/${MACHINE_GNU_ARCH}/, "$${MACHINE_GNU_ARCH}");		\
 #	gsub(/$(subst .,\.,${LOWER_OS_VERSION})/, "$${LOWER_OS_VERSION}");	\
 #	gsub(/${LOWER_OPSYS}/, "$${LOWER_OPSYS}");
-_PRINT_PLIST_AWK_SUBST+= {						\
+
+_PRINT_PLIST_AWK_SUBST+= 						\
 	gsub(/${PKGNAME_NOREV}/, "$${PKGNAME}");			\
 	gsub(/$(subst .,\.,$(shell echo ${PKGVERSION} | ${SED} -e 's/r[0-9]*$$//'))/, "$${PKGVERSION}");\
 	gsub("^${PKGINFODIR}/", "info/");				\
-	gsub("^${PKGMANDIR}/", "man/");					\
-}
+	gsub("^${PKGMANDIR}/", "man/");
+
+_PRINT_PLIST_AWK_SUBST+= ${PRINT_PLIST_AWK_SUBST}
+_PRINT_PLIST_AWK_SUBST+=}
 
 _PRINT_PLIST_AWK_IGNORE=	($$0 ~ /^$(subst /,\/,$(patsubst ${PREFIX}/%,%,${PKG_DBDIR}))\//)
 _PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^$(subst /,\/,$(patsubst ${PREFIX}/%,%,${PKGSRCDIR}))\//)
@@ -81,19 +85,18 @@ print-PLIST:
 	${_PRINT_PLIST_FILES_CMD}					\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
 	 | ${SORT}							\
-	 | ${AWK} '							\
+	 | ${AWK}  '							\
 		{ sub("${PREFIX}/\\./", ""); }				\
 		${_PRINT_PLIST_AWK_IGNORE} { next; } 			\
-		${PRINT_PLIST_AWK}					\
 		${_PRINT_PLIST_AWK_SUBST}				\
 		{ print $$0; }'
 	${_PKG_SILENT}${_PKG_DEBUG}\
 	for i in `${_PRINT_PLIST_DIRS_CMD}				\
 			| ${SORT} -r					\
 			| ${AWK} '					\
-				/$(subst /,\/,${PREFIX})\/\.$$/ { next; }	\
-				/$(subst /,\/,${PKG_DBDIR})\// { next; }	\
+				/$(subst /,\/,${PREFIX})\/\.$$/ { next; }\
 				{ sub("${PREFIX}/\\\\./", ""); }	\
+				${_PRINT_PLIST_AWK_IGNORE} { next; }	\
 				{ sub("^${PKGINFODIR}/", "info/"); }	\
 				{ sub("^${PKGMANDIR}/", "man/"); }	\
 				/^$(subst /,\/,$(patsubst ${PREFIX}/%,%,${PKG_DBDIR}))(\/|$$)/ { next; } \
