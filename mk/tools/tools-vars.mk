@@ -164,6 +164,7 @@ include ${PKGSRCDIR}/mk/tools/digest.mk
 #.include "${PKGSRCDIR}/mk/tools/imake.mk"
 #.include "${PKGSRCDIR}/mk/tools/replace.mk"
 #.include "${PKGSRCDIR}/mk/tools/perl.mk"
+include ${PKGSRCDIR}/mk/tools/python.mk
 #.include "${PKGSRCDIR}/mk/tools/pkg-config.mk"
 include ${PKGSRCDIR}/mk/tools/make.mk
 #
