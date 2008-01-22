@@ -1,14 +1,15 @@
 # $NetBSD$
 #
 
-DISTNAME=		omniORB-4.1.0
+DISTNAME=		omniORB-4.1.1
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
-PKGREVISION=		1
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://omniorb.sourceforge.net/
 COMMENT=		ORB that implements the 2.6 specification of the CORBA
+
+USE_TOOLS+=		python
 
 MAKE_FILE=		GNUmakefile
 GNU_CONFIGURE=		yes
