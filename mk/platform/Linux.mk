@@ -54,7 +54,7 @@ BASENAME?=		basename
 PATCH?=			patch
 FILE_CMD?=		file
 
-TOOLS_INSTALL=		/usr/bin/install
+TOOLS_INSTALL=		${PKGSRCDIR}/mk/internal/install-sh
 TOOLS_ECHO=		echo
 TOOLS_CAT=		cat
 TOOLS_TEST=		test
