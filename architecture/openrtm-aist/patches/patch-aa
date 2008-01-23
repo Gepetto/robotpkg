@@ -1,0 +1,81 @@
+diff -ur rtm/CorbaPort.cpp rtm/CorbaPort.cpp
+--- rtm/CorbaPort.cpp	2007-04-13 17:37:33.000000000 +0200
++++ rtm/CorbaPort.cpp	2008-01-21 19:15:44.000000000 +0100
+@@ -75,7 +75,7 @@
+   bool
+   CorbaPort::registerProvider(const char* instance_name,
+ 			      const char* type_name,
+-			      PortableServer::RefCountServantBase& provider)
++			      PortableServer::ServantBase& provider)
+   {
+     if (!appendInterface(instance_name, type_name, RTC::PROVIDED))
+       {
+diff -ur rtm/CorbaPort.h rtm/CorbaPort.h
+--- rtm/CorbaPort.h	2007-01-04 01:45:21.000000000 +0100
++++ rtm/CorbaPort.h	2008-01-21 19:16:11.000000000 +0100
+@@ -190,7 +190,7 @@
+      * @endif
+      */
+     bool registerProvider(const char* instance_name, const char* type_name,
+-			  PortableServer::RefCountServantBase& provider);
++			  PortableServer::ServantBase& provider);
+ 
+ 
+     /*!
+diff -ur rtm/NVUtil.cpp rtm/NVUtil.cpp
+--- rtm/NVUtil.cpp	2007-07-20 17:56:50.000000000 +0200
++++ rtm/NVUtil.cpp	2008-01-21 19:04:30.000000000 +0100
+@@ -113,7 +113,7 @@
+   {
+     for (CORBA::ULong i(0), len(nv.length()); i < len; ++i)
+       {
+-	char* value;
++	const char* value;
+ 	if (nv[i].value >>= value)
+ 	  {
+ 	    const char* name(nv[i].name);
+@@ -129,7 +129,7 @@
+     };
+     void operator()(const SDOPackage::NameValue& nv)
+     {
+-      char* value;
++      const char* value;
+       if (nv.value >>= value)
+ 	{
+ 	  m_prop.setProperty(CORBA::string_dup(nv.name), value);
+@@ -175,7 +175,7 @@
+       {
+ 	CORBA::Any value;
+ 	value = find(nv, name);
+-	char* str_value;
++	const char* str_value;
+ 	return value >>= str_value;
+       }
+     catch (...)
+@@ -200,7 +200,7 @@
+ 
+   std::string toString(const SDOPackage::NVList& nv, const char* name)
+   {
+-    char* str_value;
++    const char* str_value;
+     try
+       {
+ 	find(nv, name) >>= str_value;
+@@ -222,7 +222,7 @@
+ 
+ 	if (index > 0)
+ 	  {
+-		char* tmp_char;
++		const char* tmp_char;
+ 		nv[index].value >>= tmp_char;
+ 		std::string tmp_str(tmp_char);
+ 		
+@@ -255,7 +255,7 @@
+   {
+     for (CORBA::ULong i(0), n(nv.length()); i < n; ++i)
+       {
+-	char* str_value;
++	const char* str_value;
+ 	if (nv[i].value >>= str_value)
+ 	  {
+ 	    std::cout << nv[i].name << ": " << str_value << std::endl;

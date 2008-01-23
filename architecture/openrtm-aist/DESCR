@@ -1,0 +1,25 @@
+The RT-Middleware provides a common platform for the robotics technology
+and aims at boosting the efficiency of the research and development in
+robotics, extending the scope of its applications and fostering the
+emergence of new markets. A serious problem often pointed out in the
+development of software  supporting robotic systems compared to the
+development of traditional software is the lack of reuse due to the
+specificity of each robotic system. From this observation, the idea
+emerged of developing a middleware as the common platform to assist in
+the development of robotic systems in which a large number of users could
+be involved and which would promote reusability via the modularization of
+the software involved in the realization of the robotic technology.
+
+The National Institute of Advanced Industrial Science and Technology -
+Intelligent Systems Research Institute - Task Intelligence Research
+Group, have undertaken most of the development of OpenRTM-aist.
+
+Initially, the project for the research and development of a distributed
+middleware for robotics took place from fiscal year 2002 to 2004 as a
+part of the 21st century robot challenge program called Development of
+the key enabling technologies for Robotics directed by the New Energy and
+Industrial Technology Development Organization (NEDO).
+
+This research project resulted in several specifications of at the
+distributed middleware interface level and the delivery of of a prototype
+implementation named OpenRTM-aist.
