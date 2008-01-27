@@ -41,13 +41,30 @@ endef
 empty=
 space=$(empty) $(empty)
 tab=$(empty)	$(empty)
-quotechars= \ = & { } ( ) [ ] | * < > " ` ' #'`"
+quotechars= \ = & { } ( ) [ ] | * < > " $ ` ' #'`"
 define quote
 $(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(subst $(tab),\$(tab),$(subst $(space),\$(space),$(_q_)))
 endef
 
 define pathsearch
-$(firstword $(wildcard $(addsuffix /$(1),$(subst :, ,$(2)))))
+$(firstword $(wildcard $(foreach f,$(1),$(addsuffix /$(f),$(subst :, ,$(2))))))
+endef
+
+define wordwrapfilter
+ ${XARGS} -n 1 | ${AWK} '
+	BEGIN { printwidth = 40; line = "" }
+	{
+		if (length(line) > 0)
+			line = line" "$$0;
+		else
+			line = $$0;
+		if (length(line) > 40) {
+			print "	"line;
+			line = "";
+		}
+	}
+	END { if (length(line) > 0) print "	"line }
+ '
 endef
 
 define _OVERRIDE_TARGET
