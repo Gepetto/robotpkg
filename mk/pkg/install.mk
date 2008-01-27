@@ -6,7 +6,7 @@
 # and and installed packages.
 #
 .PHONY: pkg-install-check-conflicts
-pkg-install-check-conflicts: #error-check
+pkg-install-check-conflicts:
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${WRKDIR}/.CONFLICTS
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 ${foreach _conflict_,${CONFLICTS},					\
@@ -18,12 +18,12 @@ ${foreach _conflict_,${CONFLICTS},					\
 }
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${TEST} -f ${WRKDIR}/.CONFLICTS || exit 0;			\
-	exec 1>${ERROR_DIR}/$@;						\
 	${ECHO} "${PKGNAME} conflicts with installed package(s):";	\
 	${CAT} ${WRKDIR}/.CONFLICTS | ${SED} -e "s|^|    |";		\
 	${ECHO} "They install the same files into the same place.";	\
 	${ECHO} "Please remove conflicts first with pkg_delete(1).";	\
-	${RM} -f ${WRKDIR}/.CONFLICTS
+	${RM} -f ${WRKDIR}/.CONFLICTS;					\
+	exit 1
 
 
 # --- install-check-installed (PRIVATE, mk/install/install.mk) -------
@@ -32,19 +32,19 @@ ${foreach _conflict_,${CONFLICTS},					\
 # version) is already installed on the system.
 #
 .PHONY: pkg-install-check-installed
-pkg-install-check-installed: #error-check
+pkg-install-check-installed:
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`";	\
 	${TEST} -n "$$found" || exit 0;					\
-	exec 1>${ERROR_DIR}/$@;						\
-	${ECHO} "$$found is already installed - perhaps an older version?"; \
-	${ECHO} "If so, you may use either of:";			\
-	${ECHO} "    - \"pkg_delete $$found\" and \"${MAKE} reinstall\""; \
-	${ECHO} "      to upgrade properly";				\
-	${ECHO} "    - \"${MAKE} update\" to rebuild the package and all"; \
-	${ECHO} "      of its dependencies";				\
-	${ECHO} "    - \"${MAKE} replace\" to replace only the package without"; \
-	${ECHO} "      re-linking dependencies, risking various problems."
+	${ERROR_MSG} "$$found is already installed - perhaps an older version?";\
+	${ERROR_MSG} "If so, you may use either of:";			\
+	${ERROR_MSG} "    - \"robotpkg_delete $$found\" and \"${MAKE} reinstall\"";\
+	${ERROR_MSG} "      to upgrade properly";				\
+	${ERROR_MSG} "    - \"${MAKE} update\" to rebuild the package and all";\
+	${ERROR_MSG} "      of its dependencies";				\
+	${ERROR_MSG} "    - \"${MAKE} replace\" to replace only the package without";\
+	${ERROR_MSG} "      re-linking dependencies, risking various problems.";\
+	exit 1
 
 
 # --- pkg-register (PRIVATE, mk/install/install.mk) ------------------
