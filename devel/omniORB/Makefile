@@ -1,5 +1,4 @@
-# $NetBSD$
-#
+#	$Id: Makefile 0616d33c78e4b62d20dbe7a0cbcd043f 2008/01/25 23:55:16 tho $
 
 DISTNAME=		omniORB-4.1.1
 CATEGORIES=		devel
@@ -25,12 +24,8 @@ OMNIORB_CONFIG=		${OMNIORB_ETCDIR}/omniORB.cfg
 
 CONFIGURE_ARGS+= 	--with-omniORB-config=${OMNIORB_CONFIG}
 CONFIGURE_ARGS+= 	--with-omniNames-logdir=/tmp
-CONFIGURE_ARGS+= 	--disable-ipv6
 
-#.include "options.mk"
-
-#PY_PATCHPLIST=	yes
-
+include options.mk
 include ../../mk/robotpkg.mk
 
 post-install:
