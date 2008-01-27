@@ -48,4 +48,5 @@ include ${PKGSRCDIR}/mk/pkg/depends.mk
 include ${PKGSRCDIR}/mk/pkg/metadata.mk
 include ${PKGSRCDIR}/mk/pkg/install.mk
 include ${PKGSRCDIR}/mk/pkg/deinstall.mk
+include ${PKGSRCDIR}/mk/pkg/replace.mk
 include ${PKGSRCDIR}/mk/pkg/package.mk
