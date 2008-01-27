@@ -20,17 +20,25 @@
 #
 # Optional variables that may be defined by the package are:
 #
-#	PYTHON_REQD is the minimum version of python required.
+#	PYTHON_REQD is the version of python required, e.g. "2.4".
 #
 
-ifneq (,$(strip $(findstring python,$(USE_TOOLS))))
+ifneq (,$(findstring python,$(USE_TOOLS)))
 
-PYTHON_REQD?=	#empty
-TOOLS_PYTHON=		$(call pathsearch,python$(PYTHON_REQD))
+ifdef PYTHON_REQD
+_PYTHON=	python${PYTHON_REQD}
+else
+_PYTHON=	python python2.5 python2.4 python2.3
+endif
+
+TOOLS_PYTHON=		$(call pathsearch,${_PYTHON},${PATH})
+
+ifeq (,$(TOOLS_PYTHON))
+PKG_FAIL_REASON+=	"[python.mk] The package uses python, but no python executable was found."
+endif
 
 # Define PYTHON_* variables that locate the site directories for
-# ${PYTHON}.  These variables depend on PERL5 being properly defined
-# and existing on the filesystem. 
+# ${TOOLS_PYTHON}.
 
 ifndef _PYTHON_VERSION
 _PYTHON_VERSION=$(word 1,$(shell $(TOOLS_PYTHON) -c "import sys; print sys.version"))
@@ -49,4 +57,4 @@ PLIST_SUBST+=\
 PRINT_PLIST_AWK_SUBST+=\
 	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");
 
-endif # USE_TOOLS
+endif # USE_TOOLS=python
