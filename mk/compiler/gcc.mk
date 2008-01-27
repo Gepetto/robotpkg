@@ -11,9 +11,8 @@ include ../../mk/robotpkg.prefs.mk
 GCC_REQD+=	2.8.0
 
 ## _CC is the full path to the compiler named by ${CC} if it can be found.
-pathsearch = $(firstword $(wildcard $(addsuffix /$(1),$(subst :, ,$(PATH)))))
 ifndef _CC
-_CC:=	$(call pathsearch,${CC})
+_CC:=	$(call pathsearch,${CC},${PATH})
 #MAKEFLAGS+=	_CC=$(call quote,${_CC})
 endif
 
