@@ -123,13 +123,6 @@ _BUILD_DEFS+=		LOCALBASE
 _BUILD_DEFS+=		PKGINFODIR
 _BUILD_DEFS+=		PKGMANDIR
 
-# Store the result in the +BUILD_INFO file so we can query for the build
-# options using "pkg_info -Q PKG_OPTIONS <pkg>".
-#
-ifneq (,$(and $(PKG_SUPPORTED_OPTIONS), $(PKG_OPTIONS)))
-_BUILD_DEFS+=            PKG_OPTIONS
-endif
-
 ifndef DEPOT_SUBDIR
 PKG_FAIL_REASON+=	"DEPOT_SUBDIR may not be empty."
 endif
@@ -230,6 +223,7 @@ PHASE_MSG?=		${ECHO_MSG} "===>"
 STEP_MSG?=		${ECHO_MSG} "=>"
 WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
 ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
+FAIL_MSG?=		${FAIL} ${ERROR_MSG}
 
 WARNING_CAT?=		${SED} -e "s|^|WARNING: |" 1>&2
 ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
@@ -237,6 +231,10 @@ ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.
 DO_NADA?=		${TRUE}
+
+# the FAIL command executes its arguments and then exits with a non-zero
+# status.
+FAIL?=                  ${SH} ${PKGSRCDIR}/mk/internal/fail
 
 #
 # Config file related settings - see doc/pkgsrc.txt
@@ -261,7 +259,6 @@ endif
 
 # Get the proper dependencies and set the PATH to use the compiler
 # named in PKGSRC_COMPILER.
-#
 include ${PKGSRCDIR}/mk/compiler/compiler-vars.mk
 
 # Tools
