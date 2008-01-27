@@ -161,20 +161,6 @@ _PLIST_AWK+=		-f ${CURDIR}/../../mk/plist/plist-default.awk
 _PLIST_INFO_AWK+=	-f ${CURDIR}/../../mk/plist/plist-functions.awk
 _PLIST_INFO_AWK+=	-f ${CURDIR}/../../mk/plist/plist-info.awk
 
-#_PLIST_SHLIB_AWK=	-f ${_SHLIB_AWKFILE.${SHLIB_TYPE}}
-#_SHLIB_AWKFILE.COFF=	${CURDIR}/../../mk/plist/shlib-none.awk
-#_SHLIB_AWKFILE.ELF=	${CURDIR}/../../mk/plist/shlib-elf.awk
-#_SHLIB_AWKFILE.aixlib=	${CURDIR}/../../mk/plist/shlib-none.awk
-#_SHLIB_AWKFILE.a.out=	${CURDIR}/../../mk/plist/shlib-aout.awk
-#_SHLIB_AWKFILE.dylib=	${CURDIR}/../../mk/plist/shlib-dylib.awk
-#_SHLIB_AWKFILE.none=	${CURDIR}/../../mk/plist/shlib-none.awk
-
-# SHLIB_TYPE is the type of shared library supported by the platform.
-#SHLIB_TYPE=		${_SHLIB_TYPE_cmd:sh}
-#_SHLIB_TYPE_cmd=							\
-#	${SETENV} ECHO=${TOOLS_ECHO:Q} FILE_CMD=${TOOLS_FILE_CMD:Q}	\
-#		TEST=${TOOLS_TEST:Q} PKG_INFO_CMD=${PKG_INFO_CMD:Q}	\
-#	${SH} ${CURDIR}/../../mk/plist/shlib-type ${_OPSYS_SHLIB_TYPE:Q}
 
 # --------------------------------------------------------------------
 
@@ -196,6 +182,3 @@ ${PLIST}: ${PLIST_SRC}
 	${RUN}							\
 	{ ${_GENERATE_PLIST} } |				\
 	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK} > $@
-
-#	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK}		\
-#		> $@
