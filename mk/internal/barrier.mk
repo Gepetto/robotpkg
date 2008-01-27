@@ -10,7 +10,7 @@ _BARRIER_PRE_TARGETS=	checksum makedirs depends
 # _BARRIER_POST_TARGETS is a list of the targets that must be built after
 #	the "barrier" target invokes a new make.  This list is specially
 #	ordered so that if more than one is specified on the command-line,
-#	then pkgsrc will still do the right thing.
+#	then robotpkg will still do the right thing.
 #
 _BARRIER_POST_TARGETS=	tools
 _BARRIER_POST_TARGETS+=	extract
