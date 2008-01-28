@@ -2,7 +2,7 @@
 # robotpkg libtool
 #
 
-DISTNAME=	libtool-1.5.22
+DISTNAME=	libtool-1.5.24
 CATEGORIES=	devel pkgtools
 MASTER_SITES=	${MASTER_SITE_GNU:=libtool/}
 
