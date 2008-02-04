@@ -181,14 +181,14 @@ $(foreach _opt_,$(sort ${PKG_SUPPORTED_OPTIONS}),			\
 	@${ECHO}
 	@${ECHO} "These options are enabled by default:"
 ifneq (,$(strip ${PKG_SUGGESTED_OPTIONS}))
-	@${ECHO} $(call quote,$(sort ${PKG_SUGGESTED_OPTIONS})) | ${wordwrap_filter}
+	@${ECHO} $(call quote,$(sort ${PKG_SUGGESTED_OPTIONS})) | ${wordwrapfilter}
 else
 	@${ECHO} "	(none)"
 endif
 	@${ECHO} ""
 	@${ECHO} "These options are currently enabled:"
 ifneq (,$(strip ${PKG_OPTIONS}))
-	@${ECHO} $(call quote,$(sort ${PKG_OPTIONS})) | ${wordwrap_filter}
+	@${ECHO} $(call quote,$(sort ${PKG_OPTIONS})) | ${wordwrapfilter}
 else
 	@${ECHO} "	(none)"
 endif
@@ -206,7 +206,7 @@ supported-options-message:
 	@${ECHO} "=========================================================================="
 	@${ECHO} "The supported build options for ${PKGBASE} are:"
 	@${ECHO} ""
-	@${ECHO} $(call quote,$(sort ${PKG_SUPPORTED_OPTIONS})) | ${wordwrap_filter}
+	@${ECHO} $(call quote,$(sort ${PKG_SUPPORTED_OPTIONS})) | ${wordwrapfilter}
 	@${ECHO} ""
 	@${ECHO} "The currently selected options are:"
 	@${ECHO} ""
