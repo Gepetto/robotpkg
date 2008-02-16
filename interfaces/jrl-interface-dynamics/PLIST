@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/07/16 17:51:26 mallet $
+@comment $Id: pipo 95cfbd43fa15bb52d5a74c28be9dadf3 2008/02/16 14:48:29 tho $
 include/robotDynamics/jrlBody.h
 include/robotDynamics/jrlDynamicRobot.h
 include/robotDynamics/jrlHand.h
@@ -13,19 +13,12 @@ share/doc/abstractRobotDynamics/class_cjrl_body-members.html
 share/doc/abstractRobotDynamics/class_cjrl_body.html
 share/doc/abstractRobotDynamics/class_cjrl_dynamic_robot-members.html
 share/doc/abstractRobotDynamics/class_cjrl_dynamic_robot.html
-share/doc/abstractRobotDynamics/class_cjrl_dynamic_robot__inherit__graph.map
-share/doc/abstractRobotDynamics/class_cjrl_dynamic_robot__inherit__graph.md5
-share/doc/abstractRobotDynamics/class_cjrl_dynamic_robot__inherit__graph.png
+share/doc/abstractRobotDynamics/class_cjrl_dynamic_robot.png
 share/doc/abstractRobotDynamics/class_cjrl_hand-members.html
 share/doc/abstractRobotDynamics/class_cjrl_hand.html
 share/doc/abstractRobotDynamics/class_cjrl_humanoid_dynamic_robot-members.html
 share/doc/abstractRobotDynamics/class_cjrl_humanoid_dynamic_robot.html
-share/doc/abstractRobotDynamics/class_cjrl_humanoid_dynamic_robot__coll__graph.map
-share/doc/abstractRobotDynamics/class_cjrl_humanoid_dynamic_robot__coll__graph.md5
-share/doc/abstractRobotDynamics/class_cjrl_humanoid_dynamic_robot__coll__graph.png
-share/doc/abstractRobotDynamics/class_cjrl_humanoid_dynamic_robot__inherit__graph.map
-share/doc/abstractRobotDynamics/class_cjrl_humanoid_dynamic_robot__inherit__graph.md5
-share/doc/abstractRobotDynamics/class_cjrl_humanoid_dynamic_robot__inherit__graph.png
+share/doc/abstractRobotDynamics/class_cjrl_humanoid_dynamic_robot.png
 share/doc/abstractRobotDynamics/class_cjrl_joint-members.html
 share/doc/abstractRobotDynamics/class_cjrl_joint.html
 share/doc/abstractRobotDynamics/class_cjrl_rigid_acceleration-members.html
@@ -46,7 +39,11 @@ share/doc/abstractRobotDynamics/form_14.png
 share/doc/abstractRobotDynamics/form_15.png
 share/doc/abstractRobotDynamics/form_16.png
 share/doc/abstractRobotDynamics/form_17.png
+share/doc/abstractRobotDynamics/form_18.png
+share/doc/abstractRobotDynamics/form_19.png
 share/doc/abstractRobotDynamics/form_2.png
+share/doc/abstractRobotDynamics/form_20.png
+share/doc/abstractRobotDynamics/form_21.png
 share/doc/abstractRobotDynamics/form_3.png
 share/doc/abstractRobotDynamics/form_4.png
 share/doc/abstractRobotDynamics/form_5.png
@@ -99,13 +96,11 @@ share/doc/abstractRobotDynamics/inherit__graph__6.md5
 share/doc/abstractRobotDynamics/inherit__graph__6.png
 share/doc/abstractRobotDynamics/inherits.html
 share/doc/abstractRobotDynamics/interface.png
+share/doc/abstractRobotDynamics/joint.png
 share/doc/abstractRobotDynamics/jrl_body_8h.html
 share/doc/abstractRobotDynamics/jrl_body_8h__dep__incl.map
 share/doc/abstractRobotDynamics/jrl_body_8h__dep__incl.md5
 share/doc/abstractRobotDynamics/jrl_body_8h__dep__incl.png
-share/doc/abstractRobotDynamics/jrl_body_8h__incl.map
-share/doc/abstractRobotDynamics/jrl_body_8h__incl.md5
-share/doc/abstractRobotDynamics/jrl_body_8h__incl.png
 share/doc/abstractRobotDynamics/jrl_dynamic_robot_8h.html
 share/doc/abstractRobotDynamics/jrl_dynamic_robot_8h__dep__incl.map
 share/doc/abstractRobotDynamics/jrl_dynamic_robot_8h__dep__incl.md5
@@ -138,16 +133,10 @@ share/doc/abstractRobotDynamics/jrl_rigid_acceleration_8h.html
 share/doc/abstractRobotDynamics/jrl_rigid_acceleration_8h__dep__incl.map
 share/doc/abstractRobotDynamics/jrl_rigid_acceleration_8h__dep__incl.md5
 share/doc/abstractRobotDynamics/jrl_rigid_acceleration_8h__dep__incl.png
-share/doc/abstractRobotDynamics/jrl_rigid_acceleration_8h__incl.map
-share/doc/abstractRobotDynamics/jrl_rigid_acceleration_8h__incl.md5
-share/doc/abstractRobotDynamics/jrl_rigid_acceleration_8h__incl.png
 share/doc/abstractRobotDynamics/jrl_rigid_velocity_8h.html
 share/doc/abstractRobotDynamics/jrl_rigid_velocity_8h__dep__incl.map
 share/doc/abstractRobotDynamics/jrl_rigid_velocity_8h__dep__incl.md5
 share/doc/abstractRobotDynamics/jrl_rigid_velocity_8h__dep__incl.png
-share/doc/abstractRobotDynamics/jrl_rigid_velocity_8h__incl.map
-share/doc/abstractRobotDynamics/jrl_rigid_velocity_8h__incl.md5
-share/doc/abstractRobotDynamics/jrl_rigid_velocity_8h__incl.png
 share/doc/abstractRobotDynamics/jrl_robot_dynamics_object_constructor_8h.html
 share/doc/abstractRobotDynamics/jrl_robot_dynamics_object_constructor_8h__incl.map
 share/doc/abstractRobotDynamics/jrl_robot_dynamics_object_constructor_8h__incl.md5
@@ -156,6 +145,9 @@ share/doc/abstractRobotDynamics/main.html
 share/doc/abstractRobotDynamics/pictures/HRP2.jpg
 share/doc/abstractRobotDynamics/pictures/interface.fig
 share/doc/abstractRobotDynamics/pictures/interface.png
+share/doc/abstractRobotDynamics/pictures/joint.fig
+share/doc/abstractRobotDynamics/pictures/joint.pdf
+share/doc/abstractRobotDynamics/pictures/joint.png
 share/doc/abstractRobotDynamics/robot_dynamics_8h.html
 share/doc/abstractRobotDynamics/tab_b.gif
 share/doc/abstractRobotDynamics/tab_l.gif

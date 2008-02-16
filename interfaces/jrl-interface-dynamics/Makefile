@@ -3,18 +3,15 @@
 
 DISTNAME=	abstractrobotdynamics-${VERSION}
 PKGNAME=	jrl-interface-dynamics-${VERSION}
-VERSION=	1.7
+VERSION=	1.8
 
 CATEGORIES=	interfaces
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
-MAINTAINER=	openrobots@laas.fr
+MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for dynamic robot model.
 
-DEPENDS+=	jrl-mal>=1.3:../../interfaces/jrl-mal
-
 GNU_CONFIGURE=	yes
-USE_PKG_CONFIG=	yes
 
 include ../../mk/robotpkg.mk
