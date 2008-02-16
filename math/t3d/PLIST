@@ -1,3 +1,4 @@
+@comment $Id:$
 include/t3d/deprecated.h
 include/t3d/r3d.h
 include/t3d/r3d_inline.h
@@ -12,13 +13,10 @@ share/doc/libt3d/html/deprecated.html
 share/doc/libt3d/html/doxygen.css
 share/doc/libt3d/html/doxygen.png
 share/doc/libt3d/html/functions.html
-share/doc/libt3d/html/functions_func.html
-share/doc/libt3d/html/functions_rela.html
 share/doc/libt3d/html/functions_vars.html
 share/doc/libt3d/html/group__C.html
 share/doc/libt3d/html/group__CXX.html
 share/doc/libt3d/html/group__deprecated.html
-share/doc/libt3d/html/hierarchy.html
 share/doc/libt3d/html/index.html
 share/doc/libt3d/html/modules.html
 share/doc/libt3d/html/pages.html

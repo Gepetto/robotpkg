@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.21 2006/08/22 23:27:23 joerg Exp $
 #
 
-DISTNAME=	libt3d-2.4
+DISTNAME=	libt3d-2.5
 PKGREVISION=	0
 
 CATEGORIES=	math
