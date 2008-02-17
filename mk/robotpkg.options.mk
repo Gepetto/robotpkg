@@ -211,7 +211,7 @@ supported-options-message:
 	@${ECHO} "The currently selected options are:"
 	@${ECHO} ""
 ifneq (,$(strip ${PKG_OPTIONS}))
-	@${ECHO} $(call quote,$(sort ${PKG_OPTIONS})) | ${wordwrap_filter}
+	@${ECHO} $(call quote,$(sort ${PKG_OPTIONS})) | ${wordwrapfilter}
 else
 	@${ECHO} "	(none)"
 endif
