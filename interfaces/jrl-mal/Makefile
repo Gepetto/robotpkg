@@ -3,8 +3,7 @@
 
 DISTNAME=	matrixabstractlayer-${VERSION}
 PKGNAME=	jrl-mal-${VERSION}
-VERSION=	1.3
-#PKGREVISION=	0
+VERSION=	1.4
 
 CATEGORIES=	interfaces
 MASTER_SITES=	${MASTER_SITE_JRL}
@@ -13,15 +12,8 @@ MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	matrix abstraction layer for boost or vnl.
 
-DEPENDS+=	boost-numeric-bindings>=20070129:../../devel/boost-numeric-bindings
-DEPENDS+=       lapack>=3.1.0:../../math/lapack
-DEPENDS+=       libt3d>=2.3:../../math/t3d
-
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
 
-CONFIGURE_ARGS+=	--with-boost=${PREFIX}
-CONFIGURE_ARGS+=	--with-lapack=${PREFIX}
-CONFIGURE_ARGS+=	--with-t3d
-
+include options.mk
 include ../../mk/robotpkg.mk
