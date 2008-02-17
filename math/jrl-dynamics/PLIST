@@ -1,4 +1,4 @@
-@comment $Id: pipo 2007/11/08 17:51:09 mallet $
+@comment $Id: pipo cb9f9c9674de07b3aeeb9bd9c67c4118 2008/02/17 23:25:08 tho $
 include/dynamicsJRLJapan/Body.h
 include/dynamicsJRLJapan/DynamicBody.h
 include/dynamicsJRLJapan/DynamicMultiBody.h
@@ -36,6 +36,9 @@ share/doc/dynamicsJRLJapan/_dynamic_multi_body_8h__incl.map
 share/doc/dynamicsJRLJapan/_dynamic_multi_body_8h__incl.md5
 share/doc/dynamicsJRLJapan/_dynamic_multi_body_8h__incl.png
 share/doc/dynamicsJRLJapan/_hand_8h.html
+share/doc/dynamicsJRLJapan/_hand_8h__dep__incl.map
+share/doc/dynamicsJRLJapan/_hand_8h__dep__incl.md5
+share/doc/dynamicsJRLJapan/_hand_8h__dep__incl.png
 share/doc/dynamicsJRLJapan/_hand_8h__incl.map
 share/doc/dynamicsJRLJapan/_hand_8h__incl.md5
 share/doc/dynamicsJRLJapan/_hand_8h__incl.png
@@ -193,6 +196,10 @@ share/doc/dynamicsJRLJapan/form_31.png
 share/doc/dynamicsJRLJapan/form_32.png
 share/doc/dynamicsJRLJapan/form_33.png
 share/doc/dynamicsJRLJapan/form_34.png
+share/doc/dynamicsJRLJapan/form_35.png
+share/doc/dynamicsJRLJapan/form_36.png
+share/doc/dynamicsJRLJapan/form_37.png
+share/doc/dynamicsJRLJapan/form_38.png
 share/doc/dynamicsJRLJapan/form_4.png
 share/doc/dynamicsJRLJapan/form_5.png
 share/doc/dynamicsJRLJapan/form_6.png
@@ -261,6 +268,23 @@ share/doc/dynamicsJRLJapan/functions_func_0x77.html
 share/doc/dynamicsJRLJapan/functions_func_0x7a.html
 share/doc/dynamicsJRLJapan/functions_func_0x7e.html
 share/doc/dynamicsJRLJapan/functions_vars.html
+share/doc/dynamicsJRLJapan/functions_vars_0x62.html
+share/doc/dynamicsJRLJapan/functions_vars_0x63.html
+share/doc/dynamicsJRLJapan/functions_vars_0x64.html
+share/doc/dynamicsJRLJapan/functions_vars_0x66.html
+share/doc/dynamicsJRLJapan/functions_vars_0x67.html
+share/doc/dynamicsJRLJapan/functions_vars_0x68.html
+share/doc/dynamicsJRLJapan/functions_vars_0x69.html
+share/doc/dynamicsJRLJapan/functions_vars_0x6c.html
+share/doc/dynamicsJRLJapan/functions_vars_0x6d.html
+share/doc/dynamicsJRLJapan/functions_vars_0x6e.html
+share/doc/dynamicsJRLJapan/functions_vars_0x70.html
+share/doc/dynamicsJRLJapan/functions_vars_0x71.html
+share/doc/dynamicsJRLJapan/functions_vars_0x72.html
+share/doc/dynamicsJRLJapan/functions_vars_0x73.html
+share/doc/dynamicsJRLJapan/functions_vars_0x75.html
+share/doc/dynamicsJRLJapan/functions_vars_0x76.html
+share/doc/dynamicsJRLJapan/functions_vars_0x77.html
 share/doc/dynamicsJRLJapan/globals.html
 share/doc/dynamicsJRLJapan/globals_defs.html
 share/doc/dynamicsJRLJapan/globals_func.html
