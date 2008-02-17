@@ -1,0 +1,10 @@
+--- INSTALL/dsecnd.f~	2006-11-14 01:32:00.000000000 +0100
++++ INSTALL/dsecnd.f	2008-02-17 17:44:34.000000000 +0100
+@@ -20,7 +20,6 @@
+ *     ..
+ *     .. External Functions ..
+       REAL               ETIME
+-      EXTERNAL           ETIME
+ *     ..
+ *     .. Executable Statements ..
+ *
