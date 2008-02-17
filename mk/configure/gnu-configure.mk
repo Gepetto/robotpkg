@@ -45,15 +45,11 @@ CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX}
 # files are installed unless the software was configured with an
 # installation prefix other than ${PREFIX}.
 #
-#CONFIGURE_HAS_INFODIR?=	yes
-#.if ${GNU_CONFIGURE_PREFIX} == ${PREFIX}
-#GNU_CONFIGURE_INFODIR?=	${GNU_CONFIGURE_PREFIX}/${PKGINFODIR}
-#.else
-#GNU_CONFIGURE_INFODIR?=	${GNU_CONFIGURE_PREFIX}/info
-#.endif
-#.if defined(INFO_FILES) && !empty(CONFIGURE_HAS_INFODIR:M[yY][eE][sS])
-#CONFIGURE_ARGS+=	--infodir=${GNU_CONFIGURE_INFODIR:Q}
-#.endif
+CONFIGURE_HAS_INFODIR?=	yes
+GNU_CONFIGURE_INFODIR?=	${GNU_CONFIGURE_PREFIX}/${PKGINFODIR}
+ifneq (,$(call isyes,${CONFIGURE_HAS_INFODIR}))
+CONFIGURE_ARGS+=	--infodir=${GNU_CONFIGURE_INFODIR}
+endif
 
 # PKGMANDIR is the subdirectory of ${PREFIX} into which the man and
 # catman pages are installed unless the software was configured with
