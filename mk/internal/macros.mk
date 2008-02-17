@@ -51,19 +51,19 @@ $(firstword $(wildcard $(foreach f,$(1),$(addsuffix /$(f),$(subst :, ,$(2))))))
 endef
 
 define wordwrapfilter
- ${XARGS} -n 1 | ${AWK} '
-	BEGIN { printwidth = 40; line = "" }
-	{
-		if (length(line) > 0)
-			line = line" "$$0;
-		else
-			line = $$0;
-		if (length(line) > 40) {
-			print "	"line;
-			line = "";
-		}
-	}
-	END { if (length(line) > 0) print "	"line }
+ ${XARGS} -n 1 | ${AWK} '					\
+	BEGIN { printwidth = 40; line = "" }			\
+	{							\
+		if (length(line) > 0)				\
+			line = line" "$$0;			\
+		else						\
+			line = $$0;				\
+		if (length(line) > 40) {			\
+			print "	"line;				\
+			line = "";				\
+		}						\
+	}							\
+	END { if (length(line) > 0) print "	"line }		\
  '
 endef
 
