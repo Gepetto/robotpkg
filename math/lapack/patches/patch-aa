@@ -12,7 +12,7 @@
  ../$(LAPACKLIB): $(ALLOBJ)
 -	$(ARCH) $(ARCHFLAGS) $@ $(ALLOBJ)
 -	$(RANLIB) $@
-+	${LIBTOOL} --mode=link ${FC} -o ../liblapack.la 		    \
++	${LIBTOOL} --tag=CC --mode=link ${FC} -o ../liblapack.la	    \
 +	$(ALLOBJ:.o=.lo) -L${PREFIX}/lib -lblas -rpath ${PREFIX}/lib -version-info 3:1
  
  single: $(SLASRC) $(ALLAUX) $(SCLAUX) 
@@ -28,4 +28,4 @@
 -dlaruv.o: dlaruv.f ; $(FORTRAN) $(NOOPT) -c $<
 -
 +.f.o:
-+	${LIBTOOL} --mode=compile $(FC) $(FFLAGS) -c $< -o $@
++	${LIBTOOL} --tag=CC --mode=compile $(FC) $(FFLAGS) -c $< -o $@
