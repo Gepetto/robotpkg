@@ -4,6 +4,7 @@
 COMMENT=	Mathematics
 
 SUBDIR+=	blas
+SUBDIR+=	hrp2-dynamics
 SUBDIR+=	jrl-dynamics
 SUBDIR+=	lapack
 SUBDIR+=	t3d
