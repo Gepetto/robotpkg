@@ -1,0 +1,8 @@
+This package contains classes representing robots, humanoid robots,
+joints and bodies with
+
+ * dynamic properties (mass, inertia, velocity, acceleration,...) that
+   are implemented through robot dynamics abstract interfaces,
+
+ * geometric properties (kinematic chain, distance to obstacles) that are
+   implemented by KineoWorks(tm).
