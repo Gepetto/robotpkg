@@ -1,19 +1,15 @@
-# $Id: Makefile 2007/11/22 14:51:12 mallet $
+# $Id: Makefile 2008/02/18 15:02:16 mallet $
 #
 
-PKGNAME=		jrl-modelloader-1.1
-PKGREVISION=		1
+DISTNAME=		jrl-modelloader-1.2
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_JRL}
-
-DISTNAME=		jrl-modelloader-1.1r1
-WRKSRC=			${WRKDIR}/jrl-modelloader-1.1
 
 RESTRICTED=		You cannot redistribute this software.
 NO_PUBLIC_SRC=		${RESTRICTED}
 NO_PUBLIC_BIN=		${RESTRICTED}
 
-MAINTAINER=		gepetto@laas.fr
+MAINTAINER=		hpp@laas.fr
 COMMENT=		CORBA server for VRML model loader.
 DEPENDS+=		openhrp-jrl>=20060713r5:../../architecture/openhrp-jrl
 
