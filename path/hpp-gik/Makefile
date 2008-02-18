@@ -3,7 +3,7 @@
 
 DISTNAME=	hppgik-${VERSION}
 PKGNAME=	hpp-gik-${VERSION}
-VERSION=	1.5
+VERSION=	1.6
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
@@ -12,12 +12,11 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Generalized Inverse Kinematics for humanoid robots.
 
-DEPENDS+=	jrl-interface-giktask>=1.1:../../interfaces/jrl-interface-giktask
-DEPENDS+=	jrl-dynamics>=1.6:../../math/jrl-dynamics
+DEPENDS+=	jrl-interface-giktask>=1.3:../../interfaces/jrl-interface-giktask
+DEPENDS+=	jrl-dynamics>=1.7:../../math/jrl-dynamics
 
 GNU_CONFIGURE=	yes
+USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
-
-PATCH_STRIP= -p1
 
 include ../../mk/robotpkg.mk

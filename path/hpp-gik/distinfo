@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (hppgik-1.5.tar.gz) = 174f809b5b344439cc753903bd9c9f16b6e1fbb6
-RMD160 (hppgik-1.5.tar.gz) = 7715e4c74634803e83f5ed8833d453d39fb7b465
-Size (hppgik-1.5.tar.gz) = 423985 bytes
-SHA1 (patch-aa) = 015674ce8483e19f0edc6179c474e1bd68882a22
+SHA1 (hppgik-1.6.tar.gz) = f9c41851578d5d841ab08df172a8118f8b16cc6d
+RMD160 (hppgik-1.6.tar.gz) = d80e6422ac7b98bf5dcc9206df3db168d700508f
+Size (hppgik-1.6.tar.gz) = 439023 bytes
