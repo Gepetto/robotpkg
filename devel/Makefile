@@ -8,6 +8,7 @@ SUBDIR+=	boost
 SUBDIR+=	hpp-corbaserver
 SUBDIR+=	hpp-kwsio
 SUBDIR+=	hpp-kwsplus
+SUBDIR+=	hpp-model
 SUBDIR+=	jrl-modelloader
 SUBDIR+=	libedit
 SUBDIR+=	mkdep
