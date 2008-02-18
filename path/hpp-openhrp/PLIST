@@ -1,8 +1,7 @@
-@comment $Id: PLIST 2007/08/27 16:31:39 mallet $
+@comment $Id: pipo 2008/02/18 16:22:39 mallet $
 include/hppOpenHRP/configSwap.h
 include/hppOpenHRP/parserOpenHRPKineo.h
 include/hppOpenHRP/parserOpenHRPKineoDevice.h
-include/hppOpenHRP/parserOpenHRPKineoHRP2.h
 include/hppOpenHRP/parserOpenHRPKineoObstacle.h
 lib/libhppOpenHRP.la
 lib/pkgconfig/hppOpenHRP.pc
@@ -21,14 +20,6 @@ share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_device__coll__graph.png
 share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_device__inherit__graph.map
 share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_device__inherit__graph.md5
 share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_device__inherit__graph.png
-share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_h_r_p2-members.html
-share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_h_r_p2.html
-share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_h_r_p2__coll__graph.map
-share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_h_r_p2__coll__graph.md5
-share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_h_r_p2__coll__graph.png
-share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_h_r_p2__inherit__graph.map
-share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_h_r_p2__inherit__graph.md5
-share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_h_r_p2__inherit__graph.png
 share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_obstacle-members.html
 share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_obstacle.html
 share/doc/hppOpenHRP/class_cparser_open_h_r_p_kineo_obstacle__coll__graph.map
@@ -60,7 +51,6 @@ share/doc/hppOpenHRP/functions_func.html
 share/doc/hppOpenHRP/functions_vars.html
 share/doc/hppOpenHRP/globals.html
 share/doc/hppOpenHRP/globals_defs.html
-share/doc/hppOpenHRP/globals_eval.html
 share/doc/hppOpenHRP/globals_func.html
 share/doc/hppOpenHRP/globals_type.html
 share/doc/hppOpenHRP/graph_legend.dot
@@ -86,16 +76,9 @@ share/doc/hppOpenHRP/parser_open_h_r_p_kineo_8h__incl.map
 share/doc/hppOpenHRP/parser_open_h_r_p_kineo_8h__incl.md5
 share/doc/hppOpenHRP/parser_open_h_r_p_kineo_8h__incl.png
 share/doc/hppOpenHRP/parser_open_h_r_p_kineo_device_8h.html
-share/doc/hppOpenHRP/parser_open_h_r_p_kineo_device_8h__dep__incl.map
-share/doc/hppOpenHRP/parser_open_h_r_p_kineo_device_8h__dep__incl.md5
-share/doc/hppOpenHRP/parser_open_h_r_p_kineo_device_8h__dep__incl.png
 share/doc/hppOpenHRP/parser_open_h_r_p_kineo_device_8h__incl.map
 share/doc/hppOpenHRP/parser_open_h_r_p_kineo_device_8h__incl.md5
 share/doc/hppOpenHRP/parser_open_h_r_p_kineo_device_8h__incl.png
-share/doc/hppOpenHRP/parser_open_h_r_p_kineo_h_r_p2_8h.html
-share/doc/hppOpenHRP/parser_open_h_r_p_kineo_h_r_p2_8h__incl.map
-share/doc/hppOpenHRP/parser_open_h_r_p_kineo_h_r_p2_8h__incl.md5
-share/doc/hppOpenHRP/parser_open_h_r_p_kineo_h_r_p2_8h__incl.png
 share/doc/hppOpenHRP/parser_open_h_r_p_kineo_obstacle_8h.html
 share/doc/hppOpenHRP/parser_open_h_r_p_kineo_obstacle_8h__incl.map
 share/doc/hppOpenHRP/parser_open_h_r_p_kineo_obstacle_8h__incl.md5
