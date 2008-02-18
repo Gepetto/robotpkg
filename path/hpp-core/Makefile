@@ -3,7 +3,7 @@
 
 DISTNAME=	hppcore-${VERSION}
 PKGNAME=	hpp-core-${VERSION}
-VERSION=	1.2
+VERSION=	1.3
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
@@ -17,4 +17,5 @@ DEPENDS+=	hpp-kwsplus>=1.1:../../devel/hpp-kwsplus
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
 
+include options.mk
 include ../../mk/robotpkg.mk
