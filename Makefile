@@ -66,6 +66,7 @@ include mk/robotpkg.prefs.mk
 SUBDIR+=	architecture
 SUBDIR+=	archivers
 SUBDIR+=	devel
+SUBDIR+=	doc
 SUBDIR+=	graphics
 SUBDIR+=	image
 SUBDIR+=	interfaces
