@@ -1,12 +1,11 @@
-@comment $Id:$
+@comment $Id: PLIST 2008/02/19 14:38:08 mallet $
 include/kppInterfaceWalk/kppCommandDoHalfTurn.h
 include/kppInterfaceWalk/kppCommandLoadHRP2.h
 include/kppInterfaceWalk/kppCommandLoadObstacle.h
 include/kppInterfaceWalk/kppCommandOutputMotion.h
 include/kppInterfaceWalk/kppCommandSetConfig.h
 include/kppInterfaceWalk/kppInterfaceWalk.h
-lib/modules/poullenc/libkppInterfaceWalk.kab
-lib/modules/poullenc/libkppInterfaceWalk.la
+lib/modules/${NODENAME}/libkppInterfaceWalk.la
 lib/pkgconfig/kppInterfaceWalk.pc
 share/doc/doxytag/kppInterfaceWalk.doxytag
 share/doc/kppInterfaceWalk/annotated.html
@@ -30,11 +29,6 @@ share/doc/kppInterfaceWalk/class_ckpp_command_output_motion.html
 share/doc/kppInterfaceWalk/class_ckpp_command_output_motion__coll__graph.map
 share/doc/kppInterfaceWalk/class_ckpp_command_output_motion__coll__graph.md5
 share/doc/kppInterfaceWalk/class_ckpp_command_output_motion__coll__graph.png
-share/doc/kppInterfaceWalk/class_ckpp_command_set_config-members.html
-share/doc/kppInterfaceWalk/class_ckpp_command_set_config.html
-share/doc/kppInterfaceWalk/class_ckpp_command_set_config__coll__graph.map
-share/doc/kppInterfaceWalk/class_ckpp_command_set_config__coll__graph.md5
-share/doc/kppInterfaceWalk/class_ckpp_command_set_config__coll__graph.png
 share/doc/kppInterfaceWalk/class_ckpp_interface_walk-members.html
 share/doc/kppInterfaceWalk/class_ckpp_interface_walk.html
 share/doc/kppInterfaceWalk/class_ckpp_interface_walk__coll__graph.map
@@ -85,9 +79,6 @@ share/doc/kppInterfaceWalk/inherit__graph__3.png
 share/doc/kppInterfaceWalk/inherit__graph__4.map
 share/doc/kppInterfaceWalk/inherit__graph__4.md5
 share/doc/kppInterfaceWalk/inherit__graph__4.png
-share/doc/kppInterfaceWalk/inherit__graph__5.map
-share/doc/kppInterfaceWalk/inherit__graph__5.md5
-share/doc/kppInterfaceWalk/inherit__graph__5.png
 share/doc/kppInterfaceWalk/inherits.html
 share/doc/kppInterfaceWalk/installdox
 share/doc/kppInterfaceWalk/kpp_command_do_half_turn_8h.html
