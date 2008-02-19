@@ -1,0 +1,38 @@
+@comment $Id:$
+lib/pkgconfig/hppDoc.pc
+share/doc/hppDoc/algorithm.html
+share/doc/hppDoc/corba.html
+share/doc/hppDoc/figures/archi.png
+share/doc/hppDoc/figures/kppInterfaceWalk.png
+share/doc/hppDoc/footer.html
+share/doc/hppDoc/header.html
+share/doc/hppDoc/hppdoc_autotools.html
+share/doc/hppDoc/hppdoc_development.html
+share/doc/hppDoc/hppdoc_howtoinstall.html
+share/doc/hppDoc/index.html
+share/doc/hppDoc/kppInterface.html
+share/doc/hppDoc/main.html
+share/doc/hppDoc/package.css
+share/doc/hppDoc/pictures/footer.jpg
+share/doc/hppDoc/pictures/ftv2blank.png
+share/doc/hppDoc/pictures/ftv2doc.png
+share/doc/hppDoc/pictures/ftv2folderclosed.png
+share/doc/hppDoc/pictures/ftv2folderopen.png
+share/doc/hppDoc/pictures/ftv2lastnode.png
+share/doc/hppDoc/pictures/ftv2link.png
+share/doc/hppDoc/pictures/ftv2mlastnode.png
+share/doc/hppDoc/pictures/ftv2mnode.png
+share/doc/hppDoc/pictures/ftv2node.png
+share/doc/hppDoc/pictures/ftv2plastnode.png
+share/doc/hppDoc/pictures/ftv2pnode.png
+share/doc/hppDoc/pictures/ftv2vertline.png
+share/doc/hppDoc/pictures/graph_legend.png
+share/doc/hppDoc/pictures/tab_b.gif
+share/doc/hppDoc/pictures/tab_l.gif
+share/doc/hppDoc/pictures/tab_r.gif
+share/doc/hppDoc/tree.html
+@dirrm share/doc/hppDoc/pictures
+@dirrm share/doc/hppDoc/figures
+@dirrm share/doc/hppDoc
+@dirrm share/doc
+@dirrm lib/pkgconfig
