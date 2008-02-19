@@ -60,6 +60,11 @@ MACHINE_ARCH=           ${LOWER_ARCH}
 MAKEOVERRIDES+=		LOWER_ARCH=${LOWER_ARCH} MACHINE_ARCH=${MACHINE_ARCH}
 endif
 
+ifndef NODENAME
+NODENAME:=		$(shell ${UNAME} -n)
+MAKEOVERRIDES+=		NODENAME=${NODENAME}
+endif
+
 
 # include the defaults file
 

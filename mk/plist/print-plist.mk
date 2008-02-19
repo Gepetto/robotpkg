@@ -14,7 +14,6 @@
 
 _PRINT_PLIST_AWK_SUBST={
 
-#	gsub(/${OPSYS}/, "$${OPSYS}");					\
 #	gsub(/$(subst .,\.,${OS_VERSION})/, "$${OS_VERSION}");		\
 #	gsub(/${MACHINE_GNU_PLATFORM}/, "$${MACHINE_GNU_PLATFORM}");	\
 #	gsub(/${MACHINE_ARCH}/, "$${MACHINE_ARCH}");			\
@@ -23,6 +22,7 @@ _PRINT_PLIST_AWK_SUBST={
 #	gsub(/${LOWER_OPSYS}/, "$${LOWER_OPSYS}");
 
 _PRINT_PLIST_AWK_SUBST+= 						\
+	gsub(/${NODENAME}/, "$${NODENAME}");					\
 	gsub(/${PKGNAME_NOREV}/, "$${PKGNAME}");			\
 	gsub(/$(subst .,\.,$(shell echo ${PKGVERSION} | ${SED} -e 's/r[0-9]*$$//'))/, "$${PKGVERSION}");\
 	gsub("^${PKGINFODIR}/", "info/");				\

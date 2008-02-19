@@ -123,6 +123,7 @@ _PLIST_AWK_ENV+=	TEST=$(call quote,${TOOLS_TEST})
 PLIST_SUBST+=	\
 	PLIST_OPSYS=$(call quote,${OPSYS})					\
 	PLIST_OS_VERSION=$(call quote,${OS_VERSION})				\
+	PLIST_NODENAME=$(call quote,${NODENAME})				\
 	PLIST_MACHINE_ARCH=$(call quote,${MACHINE_ARCH})			\
 	PLIST_MACHINE_GNU_ARCH=$(call quote,${MACHINE_GNU_ARCH})		\
 	PLIST_MACHINE_GNU_PLATFORM=$(call quote,${MACHINE_GNU_PLATFORM})	\
