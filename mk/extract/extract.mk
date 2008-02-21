@@ -1,5 +1,38 @@
-# $NetBSD: extract.mk,v 1.17 2006/10/09 02:37:32 rillig Exp $
 #
+# Copyright (c) 2007-2008
+#      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
+# All rights reserved.
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice,  this list of  conditions and  the following disclaimer in
+#      the  documentation   and/or  other  materials   provided with  the
+#      distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE  AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# From $NetBSD: extract.mk,v 1.17 2006/10/09 02:37:32 rillig Exp $
+#
+
 # The following variables may be set by the package Makefile and
 # specify how extraction happens:
 #
@@ -42,13 +75,12 @@
 
 EXTRACT_DIR?=		${WRKDIR}
 
-_COOKIE.extract=	${WRKDIR}/.extract_done
-
 
 # --- extract (PUBLIC) -----------------------------------------------
 #
 # extract is a public target to perform extraction.
 #
+_EXTRACT_TARGETS+=	tools
 _EXTRACT_TARGETS+=	acquire-extract-lock
 _EXTRACT_TARGETS+=	${_COOKIE.extract}
 _EXTRACT_TARGETS+=	release-extract-lock
@@ -124,18 +156,6 @@ ifdef BATCH
 else
 	@${DO_NADA}
 endif
-
-
-# --- extract-cookie (PRIVATE) ---------------------------------------
-#
-# extract-cookie creates the "extract" cookie file.  The contents
-# are the name of the package.
-#
-.PHONY: extract-cookie
-extract-cookie:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.extract} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.extract})
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > ${_COOKIE.extract}
 
 
 # --- pre-extract, do-extract, post-extract (PUBLIC, override) -------

@@ -100,6 +100,7 @@ endif
 #
 _REAL_CONFIGURE_TARGETS+=	configure-check-interactive
 _REAL_CONFIGURE_TARGETS+=	configure-message
+_REAL_CONFIGURE_TARGETS+=	configure-check-dirs
 #_REAL_CONFIGURE_TARGETS+=	configure-vars
 _REAL_CONFIGURE_TARGETS+=	pre-configure
 #_REAL_CONFIGURE_TARGETS+=	pre-configure-checks-hook
@@ -138,6 +139,23 @@ ifdef BATCH
 else
 	@${DO_NADA}
 endif
+
+
+# --- configure-check-dirs (PRIVATE) ---------------------------------
+#
+# configure-check-dirs checks whether the configure directories exist.
+#
+configure-check-dirs:
+	${_PKG_SILENT}${_PKG_DEBUG}					\
+${foreach _dir_,$(CONFIGURE_DIRS),					\
+	if (cd $(WRKSRC) && cd $(_dir_)) 1>/dev/null 2>&1; then :; else	\
+	$(ERROR_MSG) "The configure directory of $(PKGNAME) cannot be found.";\
+	$(ERROR_MSG) "Perhaps a stale work directory?";			\
+	$(ERROR_MSG) "Try to";						\
+	$(ERROR_MSG) "	${MAKE} clean in $(PKGPATH)"; 			\
+	exit 2;								\
+	fi;								\
+}
 
 
 # --- do-configure-pre-hook (PRIVATE) --------------------------------
