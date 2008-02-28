@@ -1,0 +1,6 @@
+@comment $Id: PLIST 57317690086c38b8f79b514c42f31199 2008/02/17 13:58:10 tho $
+include/mpf2mpfr.h
+include/mpfr.h
+info/dir
+info/mpfr.info
+lib/libmpfr.la
