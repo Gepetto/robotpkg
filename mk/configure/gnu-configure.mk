@@ -24,22 +24,34 @@ OVERRIDE_GNU_CONFIG_SCRIPTS=	defined
 
 CONFIG_SHELL?=	${SH}
 CONFIGURE_ENV+=	CONFIG_SHELL=${CONFIG_SHELL}
-CONFIGURE_ENV+=	LIBS=${LIBS}
+CONFIGURE_ENV+=	LIBS=$(call quote,${LIBS})
 CONFIGURE_ENV+=	install_sh=${INSTALL}
 CONFIGURE_ENV+=	ac_given_INSTALL=${INSTALL}\ -c\ -o\ ${BINOWN}\ -g\ ${BINGRP}
 
-#.if (defined(USE_LIBTOOL) || !empty(PKGPATH:Mdevel/libtool-base)) && \
-#    defined(_OPSYS_MAX_CMDLEN_CMD)
-#CONFIGURE_ENV+=	lt_cv_sys_max_cmd_len=${_OPSYS_MAX_CMDLEN_CMD:sh}
-#.endif
 
 GNU_CONFIGURE_PREFIX?=	${PREFIX}
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX}
 
-#USE_GNU_CONFIGURE_HOST?=	yes
-#.if !empty(USE_GNU_CONFIGURE_HOST:M[yY][eE][sS])
-#CONFIGURE_ARGS+=	--host=${MACHINE_GNU_PLATFORM:Q}
-#.endif
+# USE_GNU_CONFIGURE_HOST instructs robotpkg to guess the gnu target name
+# and make the appropriate substitutions in PLIST.
+#
+USE_GNU_CONFIGURE_HOST?=	no
+ifneq (,$(call isyes,${USE_GNU_CONFIGURE_HOST}))
+BUILD_DEPENDS+=		libtool>=1.5:../../pkgtools/libtool
+ ifndef GNU_CONFIGURE_HOST
+  ifeq (yes,$(call exists,${LOCALBASE}/share/libtool/config.guess))
+GNU_CONFIGURE_HOST=	$(shell ${LOCALBASE}/share/libtool/config.guess)
+MAKEOVERRIDES+=		GNU_CONFIGURE_HOST=${GNU_CONFIGURE_HOST}
+  endif
+ endif
+ ifdef GNU_CONFIGURE_HOST
+CONFIGURE_ARGS+=	--host=${GNU_CONFIGURE_HOST}
+PLIST_SUBST+=\
+	GNU_CONFIGURE_HOST=$(call quote,${GNU_CONFIGURE_HOST})
+PRINT_PLIST_AWK_SUBST+=\
+	gsub("${GNU_CONFIGURE_HOST}", "$${GNU_CONFIGURE_HOST}");
+ endif
+endif
 
 # PKGINFODIR is the subdirectory of ${PREFIX} into which the info
 # files are installed unless the software was configured with an
