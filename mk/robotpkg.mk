@@ -300,7 +300,7 @@ endif
 #
 ifdef PKG_FAIL_REASON
 
-depend fetch checksum extract patch configure all build install package \
+fetch checksum extract patch configure all build install package \
 update depends: do-check-pkg-fail-or-skip-reason
 
 .PHONY: do-check-pkg-fail-or-skip-reason
