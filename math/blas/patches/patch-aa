@@ -1,41 +1,41 @@
-$NetBSD: patch-aa,v 1.2 2005/09/05 13:22:00 adam Exp $
-
 --- /dev/null	2003-11-20 10:35:58.000000000 +0100
 +++ Makefile
-@@ -0,0 +1,36 @@
+@@ -0,0 +1,38 @@
 +LIB	= blas
 +VPATH	= BLAS
 +
-+all:	lib$(LIB).a
++all:	lib$(LIB).la
 +
-+OBJS =	caxpy.o ccopy.o cdotc.o cdotu.o cgbmv.o cgemm.o cgemv.o cgerc.o		\
-+	cgeru.o chbmv.o chemm.o chemv.o cher.o cher2.o cher2k.o cherk.o		\
-+	chpmv.o chpr.o chpr2.o crotg.o cscal.o csrot.o csscal.o cswap.o		\
-+	csymm.o csyr2k.o csyrk.o ctbmv.o ctbsv.o ctpmv.o ctpsv.o		\
-+	ctrmm.o ctrmv.o ctrsm.o ctrsv.o dasum.o daxpy.o dcabs1.o		\
-+	dcopy.o ddot.o dgbmv.o dgemm.o dgemv.o dger.o dnrm2.o drot.o		\
-+	drotg.o drotm.o drotmg.o dsbmv.o dscal.o dsdot.o dspmv.o dspr.o		\
-+	dspr2.o dswap.o dsymm.o dsymv.o dsyr.o dsyr2.o dsyr2k.o dsyrk.o		\
-+	dtbmv.o dtbsv.o dtpmv.o dtpsv.o dtrmm.o dtrmv.o dtrsm.o dtrsv.o		\
-+	dzasum.o dznrm2.o icamax.o idamax.o isamax.o izamax.o lsame.o		\
-+	sasum.o saxpy.o scabs1.o scasum.o scnrm2.o scopy.o sdot.o sdsdot.o	\
-+	sgbmv.o sgemm.o sgemv.o sger.o snrm2.o srot.o srotg.o srotm.o		\
-+	srotmg.o ssbmv.o sscal.o sspmv.o sspr.o sspr2.o sswap.o ssymm.o		\
-+	ssymv.o ssyr.o ssyr2.o ssyr2k.o ssyrk.o stbmv.o stbsv.o stpmv.o		\
-+	stpsv.o strmm.o strmv.o strsm.o strsv.o xerbla.o zaxpy.o		\
-+	zcopy.o zdotc.o zdotu.o zdrot.o zdscal.o zgbmv.o zgemm.o		\
-+	zgemv.o zgerc.o zgeru.o zhbmv.o zhemm.o zhemv.o zher.o zher2.o		\
-+	zher2k.o zherk.o zhpmv.o zhpr.o zhpr2.o zrotg.o zscal.o zswap.o		\
-+	zsymm.o zsyr2k.o zsyrk.o ztbmv.o ztbsv.o ztpmv.o ztpsv.o		\
-+	ztrmm.o ztrmv.o ztrsm.o ztrsv.o
++OBJS =	caxpy.lo ccopy.lo cdotc.lo cdotu.lo cgbmv.lo cgemm.lo cgemv.lo cgerc.lo	\
++	cgeru.lo chbmv.lo chemm.lo chemv.lo cher.lo cher2.lo cher2k.lo cherk.lo	\
++	chpmv.lo chpr.lo chpr2.lo crotg.lo cscal.lo csrot.lo csscal.lo cswap.lo	\
++	csymm.lo csyr2k.lo csyrk.lo ctbmv.lo ctbsv.lo ctpmv.lo ctpsv.lo		\
++	ctrmm.lo ctrmv.lo ctrsm.lo ctrsv.lo dasum.lo daxpy.lo dcabs1.lo		\
++	dcopy.lo ddot.lo dgbmv.lo dgemm.lo dgemv.lo dger.lo dnrm2.lo drot.lo	\
++	drotg.lo drotm.lo drotmg.lo dsbmv.lo dscal.lo dsdot.lo dspmv.lo dspr.lo	\
++	dspr2.lo dswap.lo dsymm.lo dsymv.lo dsyr.lo dsyr2.lo dsyr2k.lo dsyrk.lo	\
++	dtbmv.lo dtbsv.lo dtpmv.lo dtpsv.lo dtrmm.lo dtrmv.lo dtrsm.lo dtrsv.lo	\
++	dzasum.lo dznrm2.lo icamax.lo idamax.lo isamax.lo izamax.lo lsame.lo	\
++	sasum.lo saxpy.lo scabs1.lo scasum.lo scnrm2.lo scopy.lo sdot.lo sdsdot.lo\
++	sgbmv.lo sgemm.lo sgemv.lo sger.lo snrm2.lo srot.lo srotg.lo srotm.lo	\
++	srotmg.lo ssbmv.lo sscal.lo sspmv.lo sspr.lo sspr2.lo sswap.lo ssymm.lo	\
++	ssymv.lo ssyr.lo ssyr2.lo ssyr2k.lo ssyrk.lo stbmv.lo stbsv.lo stpmv.lo	\
++	stpsv.lo strmm.lo strmv.lo strsm.lo strsv.lo xerbla.lo zaxpy.lo		\
++	zcopy.lo zdotc.lo zdotu.lo zdrot.lo zdscal.lo zgbmv.lo zgemm.lo		\
++	zgemv.lo zgerc.lo zgeru.lo zhbmv.lo zhemm.lo zhemv.lo zher.lo zher2.lo	\
++	zher2k.lo zherk.lo zhpmv.lo zhpr.lo zhpr2.lo zrotg.lo zscal.lo zswap.lo	\
++	zsymm.lo zsyr2k.lo zsyrk.lo ztbmv.lo ztbsv.lo ztpmv.lo ztpsv.lo		\
++	ztrmm.lo ztrmv.lo ztrsm.lo ztrsv.lo
 +
-+.f.o:
-+	${LIBTOOL} --tag=CC --mode=compile ${FC} -c $< -o $@
++%.lo: %.f
++	${LIBTOOL} --tag=CC --mode=compile				\
++		${FC} ${FFLAGS} ${CPPFLAGS} -c $< -o $@
 +
-+lib$(LIB).a: $(OBJS)
-+	${LIBTOOL} --tag=CC --mode=link ${FC} -o ${@:.a=.la} ${OBJS:.o=.lo} \
-+		-rpath ${PREFIX}/lib -version-info 1:0
++lib$(LIB).la: $(OBJS)
++	${LIBTOOL} --tag=CC --mode=link ${FC} ${FFLAGS}			\
++		-o $@ ${OBJS} ${LDFLAGS} -rpath ${PREFIX}/lib		\
++		-version-info 1:0
 +
-+install: lib$(LIB).a
-+	${LIBTOOL} --mode=install ${BSD_INSTALL_LIB} ${^:.a=.la} \
++install: lib$(LIB).la
++	${LIBTOOL} --mode=install ${BSD_INSTALL_LIB} $^			\
 +		${PREFIX}/lib
