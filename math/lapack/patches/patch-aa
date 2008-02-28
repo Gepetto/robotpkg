@@ -13,7 +13,7 @@
 -	$(ARCH) $(ARCHFLAGS) $@ $(ALLOBJ)
 -	$(RANLIB) $@
 +	${LIBTOOL} --tag=CC --mode=link ${FC} -o ../liblapack.la	    \
-+	$(ALLOBJ:.o=.lo) -L${PREFIX}/lib -lblas -rpath ${PREFIX}/lib -version-info 3:1
++	$(ALLOBJ:.o=.lo) -L${PREFIX}/lib ${LDFLAGS} -rpath ${PREFIX}/lib -version-info 3:1
  
  single: $(SLASRC) $(ALLAUX) $(SCLAUX) 
  	$(ARCH) $(ARCHFLAGS) ../$(LAPACKLIB) $(SLASRC) $(ALLAUX) \

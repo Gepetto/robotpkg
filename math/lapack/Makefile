@@ -16,13 +16,14 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.netlib.org/lapack/index.html
 COMMENT=	Linear Algebra PACKage.
 
-DEPENDS+=	blas>=1.0:../../math/blas
-
 USE_LIBTOOL=		yes
+USE_LANGUAGES=		fortran
+
 BUILD_TARGET=		lapacklib
 
 INSTALLATION_DIRS=	lib
 
+include ../../math/blas/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:
