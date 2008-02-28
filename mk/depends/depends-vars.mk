@@ -90,6 +90,7 @@ endif
 #
 .PHONY: depends
 ifndef NO_DEPENDS
+  include ${PKGSRCDIR}/mk/depends/resolve.mk
   include ${PKGSRCDIR}/mk/depends/depends.mk
 endif
 
