@@ -300,7 +300,7 @@ endif
 #
 ifdef PKG_FAIL_REASON
 
-fetch checksum extract patch configure all build install package \
+depend fetch checksum extract patch configure all build install package \
 update depends: do-check-pkg-fail-or-skip-reason
 
 .PHONY: do-check-pkg-fail-or-skip-reason
@@ -315,7 +315,7 @@ do-check-pkg-fail-or-skip-reason:
        endif
      endif
      ifdef PKG_FAIL_REASON
-	@${FALSE}
+	@${FAIL}
      endif
 endif
 
@@ -352,6 +352,9 @@ makedirs: ${WRKDIR}
 ${WRKDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
 
+# Pkg
+include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
+
 # Dependencies
 include ${PKGSRCDIR}/mk/depends/depends-vars.mk
 
@@ -387,9 +390,6 @@ include ${PKGSRCDIR}/mk/update/update-vars.mk
 
 # Package
 include ${PKGSRCDIR}/mk/package/package-vars.mk
-
-# Pkg
-include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
 
 
 # --------------------------------------------------------------------
