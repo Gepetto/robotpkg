@@ -1,0 +1,45 @@
+# $Id: Makefile 356f8ccc80eca1a280ee33c4cc2def68 2008/02/17 16:11:57 tho $
+
+CATEGORIES=		lang
+COMMENT=		GNU Compiler Collection, v4 - ${SUB_COMMENT}
+
+GCC_VERSION=		4.2.3
+DISTNAME=		gcc-${GCC_VERSION}
+DISTFILES+=		gcc-core-${GCC_VERSION}${EXTRACT_SUFX}
+EXTRACT_SUFX=		.tar.bz2
+MASTER_SITES=		${MASTER_SITE_GNU:=gcc/gcc-${GCC_VERSION}/}
+
+MAINTAINER=		openrobots@laas.fr
+HOMEPAGE=		http://www.gnu.org/software/gcc/gcc.html
+
+GCC_SUBPREFIX=		gcc42
+GCC_PREFIX=             ${LOCALBASE}/${GCC_SUBPREFIX}
+PREFIX=			${GCC_PREFIX}
+
+GCC_ARCHSUBDIR= 	${GCC_SUBPREFIX}/lib/gcc-lib/${GCC_PLATFORM}/${GCC_VERSION}
+GCC_ARCHDIR=		${PREFIX}/${GCC_ARCHSUBDIR}
+
+PLIST_SUBST+=		GCC_SUBPREFIX=${GCC_SUBPREFIX}
+PRINT_PLIST_AWK_SUBST+=	gsub("${GCC_SUBPREFIX}", "$${GCC_SUBPREFIX}");
+
+GNU_CONFIGURE=		yes
+USE_GNU_CONFIGURE_HOST=	yes
+GNU_CONFIGURE_PREFIX=	${GCC_PREFIX}
+
+CONFIGURE_ARGS+=        --disable-libada
+CONFIGURE_ARGS+=        --disable-libssp
+CONFIGURE_ARGS+=        --disable-libgomp
+CONFIGURE_ARGS+=        --enable-__cxa_atexit
+CONFIGURE_ARGS+=        --enable-long-long
+CONFIGURE_ARGS+=        --enable-threads=posix
+CONFIGURE_ARGS+=        --with-local-prefix=${GCC_PREFIX}
+CONFIGURE_ARGS+=        --enable-languages=${GCC_LANGUAGES}
+
+CONFIGURE_DIRS=		${WRKDIR}/build
+CONFIGURE_SCRIPT=	${WRKSRC}/configure
+
+BUILD_TARGET+=		all-gcc
+BUILD_DIRS=		${WRKDIR}/build
+
+pre-configure:
+	${MKDIR} ${CONFIGURE_DIRS}
