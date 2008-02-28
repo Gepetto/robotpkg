@@ -1,0 +1,8 @@
+$NetBSD$
+
+SHA1 (gcc-core-4.2.3.tar.bz2) = 0896a32b36f2fcd3dd39c8424b548fab87b33873
+RMD160 (gcc-core-4.2.3.tar.bz2) = 1ced09156d8444bba7eb2550a969f72b788d4bc5
+Size (gcc-core-4.2.3.tar.bz2) = 19319213 bytes
+SHA1 (gcc-fortran-4.2.3.tar.bz2) = 99bbf22dad2d1a62e4f643c11a90a0508bbecca1
+RMD160 (gcc-fortran-4.2.3.tar.bz2) = 27aca6e9a6ef57b6ca330b285eee9b21a9dade78
+Size (gcc-fortran-4.2.3.tar.bz2) = 905528 bytes

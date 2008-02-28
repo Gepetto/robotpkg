@@ -1,0 +1,10 @@
+@comment $Id:$
+bin/gfortran
+bin/${GNU_CONFIGURE_HOST}-gfortran
+info/dir
+info/gfortran.info
+lib/gcc/${GNU_CONFIGURE_HOST}/${PKGVERSION}/libgfortranbegin.la
+lib/libgfortran.la
+libexec/gcc/${GNU_CONFIGURE_HOST}/${PKGVERSION}/f951
+man/man1/gfortran.1
+@dirrm lib/gcc/${GNU_CONFIGURE_HOST}/${PKGVERSION}/finclude
