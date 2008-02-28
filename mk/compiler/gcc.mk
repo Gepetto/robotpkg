@@ -13,7 +13,7 @@ GCC_REQD+=	2.8.0
 ## _CC is the full path to the compiler named by ${CC} if it can be found.
 ifndef _CC
 _CC:=	$(call pathsearch,${CC},${PATH})
-#MAKEFLAGS+=	_CC=$(call quote,${_CC})
+MAKEOVERRIDES+=	_CC=$(call quote,${_CC})
 endif
 
 ifndef _GCC_VERSION
@@ -25,6 +25,15 @@ _GCC_VERSION:=	$(shell ${_CC} -dumpversion)
 _GCC_VERSION=	0
   endif
 endif
+
+## Check if we are using robotpkg gcc
+ifneq (,$(filter ${LOCALBASE}/%,${_CC}))
+_IS_ROBOTPKG_GCC=	yes
+else
+_IS_ROBOTPKG_GCC=	no
+endif
+
+_GCCBINDIR=		$(dirname ${_CC})
 
 ## GNU ld option used to set the rpath
 LINKER_RPATH_FLAG=	-R
@@ -39,7 +48,6 @@ COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 #_GCC_DIR=	${WRKDIR}/.gcc
 #_GCC_VARS=	# empty
 
-#.elif !empty(_IS_BUILTIN_GCC:M[yY][eE][sS])
 #_GCCBINDIR=	${_CC:H}
 #.endif
 #.if exists(${_GCCBINDIR}/gcc)
@@ -63,13 +71,10 @@ COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 #CXXPATH=	${_GCCBINDIR}/g++
 #PKG_CXX:=	${_GCC_CXX}
 #.endif
-#.if exists(${_GCCBINDIR}/g77)
-#_GCC_VARS+=	FC
-#_GCC_FC=	${_GCC_DIR}/bin/g77
-#_ALIASES.FC=	f77 g77
-#FCPATH=		${_GCCBINDIR}/g77
-#F77PATH=	${_GCCBINDIR}/g77
-#PKG_FC:=	${_GCC_FC}
-#.endif
+
+ifneq (,$(filter fortran,${USE_LANGUAGES}))
+  include ${PKGSRCDIR}/lang/gcc4-fortran/depend.mk
+  FC=	${PREFIX.gcc4-fortran}/bin/gfortran
+endif
 
 endif	# COMPILER_GCC_MK
