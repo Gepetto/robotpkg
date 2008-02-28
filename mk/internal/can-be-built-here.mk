@@ -70,8 +70,10 @@ can-be-built-here:
 	@${ECHO} ${_CBBH_MSGS}
 
 _cbbh:
-	@${ERROR_MSG} ${_CBBH_MSGS}
-	@${FALSE}
+	@for str in ${_CBBH_MSGS}; do					\
+		${ERROR_MSG} "$$str";					\
+	done
+	@${FAIL}
 
 ifeq (no,${_CBBH})
 # XXX: bootstrap-depends is only used here because it is depended
