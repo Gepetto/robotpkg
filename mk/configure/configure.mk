@@ -100,11 +100,11 @@ endif
 #
 _REAL_CONFIGURE_TARGETS+=	configure-check-interactive
 _REAL_CONFIGURE_TARGETS+=	configure-message
-_REAL_CONFIGURE_TARGETS+=	configure-check-dirs
 #_REAL_CONFIGURE_TARGETS+=	configure-vars
 _REAL_CONFIGURE_TARGETS+=	pre-configure
 #_REAL_CONFIGURE_TARGETS+=	pre-configure-checks-hook
 _REAL_CONFIGURE_TARGETS+=	do-configure-pre-hook
+_REAL_CONFIGURE_TARGETS+=	configure-check-dirs
 _REAL_CONFIGURE_TARGETS+=	do-configure
 _REAL_CONFIGURE_TARGETS+=	do-configure-post-hook
 _REAL_CONFIGURE_TARGETS+=	post-configure
