@@ -31,7 +31,7 @@ else
 _PYTHON=	python python2.5 python2.4 python2.3
 endif
 
-TOOLS_PYTHON=		$(call pathsearch,${_PYTHON},${PATH})
+TOOLS_PYTHON=		$(firstword $(call pathsearch,${_PYTHON},${PATH}))
 
 ifeq (,$(TOOLS_PYTHON))
 PKG_FAIL_REASON+=	"[python.mk] The package uses python, but no python executable was found."

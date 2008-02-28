@@ -41,13 +41,30 @@ endef
 empty=
 space=$(empty) $(empty)
 tab=$(empty)	$(empty)
-quotechars= \ = & { } ( ) [ ] | * < > " $ ` ' #'`"
+quotechars= \ = & { } ( ) [ ] | * < > $ , ' ` " #"`'
 define quote
 $(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(subst $(tab),\$(tab),$(subst $(space),\$(space),$(_q_)))
 endef
 
-define pathsearch
-$(firstword $(wildcard $(foreach f,$(1),$(addsuffix /$(f),$(subst :, ,$(2))))))
+# pathsearch <file(s)> <path>
+#
+# Look for file in path, returning the first match. If file is a list of
+# file, the function returns the full path for all files. path can be a
+# colon-separated or space-separated list of directories.
+#
+override define pathsearch
+$(foreach f,$(1),$(firstword $(wildcard $(addsuffix /$(f),$(subst :, ,$(2))))))
+endef
+
+# prefixsearch <file(s)> <path>
+#
+# Look for file in path, returning the prefix of the first match.
+# See pathsearch.
+#
+override define prefixsearch
+$(strip $(foreach p,$(subst :, ,$(2)),\
+	$(if $(strip $(foreach f,$(1),\
+		$(if $(wildcard $(p)/$(f)),X))),$(p))))
 endef
 
 define wordwrapfilter
