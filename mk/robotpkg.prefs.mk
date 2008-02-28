@@ -8,7 +8,6 @@
 
 ifndef ROBOTPKG_MK
 ROBOTPKG_MK=defined
-__PREFIX_SET__:=${PREFIX}
 
 # Calculate depth
 _PKGSRC_TOPDIR=$(shell \
@@ -83,18 +82,6 @@ _MAKECONF=${MAKECONF}
 endif
 -include ${_MAKECONF}
 include ${_PKGSRC_TOPDIR}/mk/robotpkg.default.conf
-
-ifdef PREFIX
-ifneq (${PREFIX},${__PREFIX_SET__})
-define msg
-
-ERROR: You CANNOT set PREFIX manually or in mk.conf. Set LOCALBASE
-ERROR: depending on your needs. See the pkg system documentation for
-ERROR: more info.
-endef
-$(error $(msg))
-endif
-endif
 
 # Load the OS-specific definitions for program variables.
 ifeq (yes,$(call exists,${_PKGSRC_TOPDIR}/mk/platform/${OPSYS}.mk))
