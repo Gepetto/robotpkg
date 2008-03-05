@@ -1,7 +1,7 @@
 # $Id: Makefile 2008/02/18 15:02:16 mallet $
 #
 
-DISTNAME=		jrl-modelloader-1.2
+DISTNAME=		jrl-modelloader-1.3
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_JRL}
 
