@@ -12,9 +12,8 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Python scripts creating CORBA client of hppCorbaServer
 
-DEPENDS+=       omniORBpy>=3.0:../../devel/omniORBpy
-
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
 
+include ../../devel/omniORBpy/depend.mk
 include ../../mk/robotpkg.mk
