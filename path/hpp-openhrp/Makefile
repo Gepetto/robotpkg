@@ -14,7 +14,6 @@ COMMENT=	Basic classes used as interfaces with OpenHRP(tm).
 
 DEPENDS+=	hpp-core>=1.3:../../path/hpp-core
 DEPENDS+=	jrl-modelloader>=1.2:../../devel/jrl-modelloader
-DEPENDS+=	omniORB>=4.1.0:../../devel/omniORB
 DEPENDS+=	openhrp-jrl>=20060713r6:../../architecture/openhrp-jrl
 
 GNU_CONFIGURE=	yes
@@ -23,4 +22,5 @@ USE_PKG_CONFIG=	yes
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX}/OpenHRP
 
+include ../../devel/omniORB/depend.mk
 include ../../mk/robotpkg.mk

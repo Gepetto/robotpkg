@@ -13,11 +13,11 @@ MAINTAINER=	gepetto@laas.fr
 COMMENT=	Corba interface with hppCore package.
 
 DEPENDS+=	hpp-core>=1.3:../../path/hpp-core
-DEPENDS+=	omniORB>=4.1.0:../../devel/omniORB
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 include options.mk
+include ../../devel/omniORB/depend.mk
 include ../../mk/robotpkg.mk

@@ -16,6 +16,6 @@ CONFIGURE_ARGS+=	--with-idl=omniorb
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX}/OpenHRP
 
 DEPENDS+=		openhrp-jrl>=20060713r6:../../architecture/openhrp-jrl
-DEPENDS+=		omniORB>=4.1.0r1:../../devel/omniORB
 
+include ../../devel/omniORB/depend.mk
 include ../../mk/robotpkg.mk

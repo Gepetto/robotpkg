@@ -10,14 +10,14 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.is.aist.go.jp/rt/OpenRTM-aist/html-en/FrontPage.html
 COMMENT=		Open Robot Technology Middleware from AIST.
 
-DEPENDS+=		omniORB>=4.1.0:../../devel/omniORB
 DEPENDS+=		ace>=5.6:../../architecture/ace
 
 WRKSRC=			${WRKDIR}/${DISTNAME:-RELEASE=}
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-omniorb=${PREFIX}
+CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 
 USE_LIBTOOL=		yes
 
+include ../../devel/omniORB/depend.mk
 include ../../mk/robotpkg.mk

@@ -13,7 +13,7 @@ USE_TOOLS+=		python
 
 MAKE_FILE=		GNUmakefile
 GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 
-DEPENDS+=		omniORB>=4.1.1:../../devel/omniORB
-
+include ../../devel/omniORB/depend.mk
 include ../../mk/robotpkg.mk
