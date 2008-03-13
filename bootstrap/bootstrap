@@ -57,6 +57,7 @@ usage="Usage: $0 "'
     [ --varbase <varbase> ]
     [ --fetch-cmd <ftp command> ]
     [ --compiler <compiler> ]
+    [ --make <make command> ]
     [ --help ]'
 
 opsys=`uname -s | tr -d /`
@@ -155,6 +156,8 @@ while [ $# -gt 0 ]; do
 	--fetch-cmd)	fetch_cmd="$a"; shift ;;
 	--compiler=*)	compiler=`get_optarg "$1"` ;;
 	--compiler)	compiler="$2"; shift ;;
+	--make=*)	gmake=`get_optarg "$1"` ;;
+	--make)		gmake="$2"; shift ;;
 	--help)		echo "$usage"; exit ;;
 	-h)		echo "$usage"; exit ;;
 	--*)		echo "$usage"; exit 1 ;;
@@ -227,6 +230,7 @@ if [ "${sysconfdir}" != "${prefix}/etc" ]; then
 	echo "PKG_SYSCONFBASE=	$sysconfdir" >> ${MKCONF_EXAMPLE}
 fi
 echo "PKG_TOOLS_BIN=		$prefix/sbin" >> ${MKCONF_EXAMPLE}
+echo "MAKE=			$gmake" >> ${MKCONF_EXAMPLE}
 echo "" >> ${MKCONF_EXAMPLE}
 
 # create directories
