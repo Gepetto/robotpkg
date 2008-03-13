@@ -27,9 +27,11 @@
 #
 
 ifneq (,${PKG_CONFIG_PATH})
-CONFIGURE_ENV+=	PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}
+CONFIGURE_ENV+=\
+	$(call quote,PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH})
 else
-CONFIGURE_ENV+=	PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig
+CONFIGURE_ENV+=\
+	$(call quote,PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig)
 endif
 
 # -- pkg-config-override (PRIVATE) -----------------------------------
