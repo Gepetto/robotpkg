@@ -250,11 +250,14 @@ DEPEND_LDFLAGS.${1}?=# empty
 DEPEND_LIBS.${1}?=# empty
 DEPEND_INCDIRS.${1}?=	include
 DEPEND_LIBDIRS.${1}?=	lib
-ifneq (,$$(filter full,$${DEPEND_METHOD.${1}}))
+ ifneq (,$$(filter full,$${DEPEND_METHOD.${1}}))
 DEPEND_RPATHDIRS.${1}?=	$${DEPEND_LIBDIRS.${1}}
-else
+ else
 DEPEND_RPATHDIRS.${1}?=# empty
-endif
+ endif
+ ifdef USE_PKG_CONFIG
+DEPEND_PKG_CONFIG.${1}?=# empty
+ endif
 endef
 $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_flags,${_pkg_})))
 
@@ -269,6 +272,9 @@ DEPEND_CPPFLAGS=	# empty
 DEPEND_LDFLAGS=		# empty
 DEPEND_LIBS=		# empty
 DEPEND_CFLAGS=		# empty
+ifdef USE_PKG_CONFIG
+DEPEND_PKG_CONFIG=# empty
+endif
 
 define _dpd_genflags
 DEPEND_CPPFLAGS:= $$(filter-out $${DEPEND_CPPFLAGS.${1}},$${DEPEND_CPPFLAGS})
@@ -325,6 +331,20 @@ endef
 $(foreach _pkg_,${DEPEND_USE},$(foreach _d_,${DEPEND_RPATHDIRS.${_pkg_}},\
 	$(eval $(call _dpd_addrpath,${_pkg_},${_d_}))))
 
+ifdef USE_PKG_CONFIG
+# DEPEND_PKG_CONFIG.<pkg>
+#
+override define _dpd_addpkgconfig
+  ifeq (yes,$$(call exists,$${PREFIX.${1}}/${2}))
+_d:=$${PREFIX.${1}}/${2}
+DEPEND_PKG_CONFIG:= $$(filter-out $${_d},$${DEPEND_PKG_CONFIG})
+DEPEND_PKG_CONFIG+= $${_d}
+  endif
+endef
+$(foreach _pkg_,${DEPEND_USE},$(foreach _d_,${DEPEND_PKG_CONFIG.${_pkg_}},\
+	$(eval $(call _dpd_addpkgconfig,${_pkg_},${_d_}))))
+endif
+
 #
 # Ensure that ${LOCALBASE}/lib is in the runtime library search path.
 #
@@ -340,5 +360,13 @@ CPPFLAGS+=	${DEPEND_CPPFLAGS}
 CFLAGS+=	${DEPEND_CFLAGS} ${DEPEND_CPPFLAGS}
 CXXFLAGS+=	${DEPEND_CFLAGS} ${DEPEND_CPPFLAGS}
 LDFLAGS+=	${DEPEND_LDFLAGS} ${DEPEND_LIBS}
+
+ifdef USE_PKG_CONFIG
+ ifneq (,${PKG_CONFIG_PATH})
+PKG_CONFIG_PATH+=$(foreach p,${DEPEND_PKG_CONFIG},:${p})
+ else
+PKG_CONFIG_PATH+=$(patsubst :%,%,$(foreach p,${DEPEND_PKG_CONFIG},:${p}))
+ endif
+endif
 
 endif # _PKGSRC_BARRIER
