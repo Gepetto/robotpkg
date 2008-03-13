@@ -15,6 +15,8 @@ DEPEND_USE+=		omniORB
 DEPEND_ABI.omniORB?=	omniORB>=4.1.1
 DEPEND_DIR.omniORB?=	../../devel/omniORB
 
+DEPEND_PKG_CONFIG.omniORB+=lib/pkgconfig
+
 SYSTEM_SEARCH.omniORB=	\
 	bin/omniidl			\
 	lib/pkgconfig/omniORB4.pc
