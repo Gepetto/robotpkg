@@ -11,6 +11,5 @@ COMMENT=		Stereo-vision by pixel correlation
 GNU_CONFIGURE=		yes
 USE_PKG_CONFIG=		yes
 
-DEPENDS+=		libimages3d>=3.1:../../image/libimages3d
-
+include ../../image/libimages3d/depend.mk
 include ../../mk/robotpkg.mk
