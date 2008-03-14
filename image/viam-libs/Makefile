@@ -7,7 +7,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet
-COMMENT=		Versatile Image Acquisition Module libraries.
+COMMENT=		Versatile Image Acquisition Module - Libraries
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
