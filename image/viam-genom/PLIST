@@ -1,0 +1,25 @@
+@comment $Id:$
+bin/viam
+bin/viamSendInitRqst
+bin/viamTest
+include/viam/server/viamEndian.h
+include/viam/server/viamError.h
+include/viam/server/viamMsgLib.h
+include/viam/server/viamPosterLib.h
+include/viam/server/viamPosterLibStruct.h
+include/viam/server/viamPosterReadLibProto.h
+include/viam/server/viamPosterShowLib.h
+include/viam/server/viamPosterWriteLibProto.h
+include/viam/server/viamPosterXMLLib.h
+include/viam/server/viamPrint.h
+include/viam/server/viamPrintXML.h
+include/viam/server/viamScan.h
+include/viam/server/viamType.h
+include/viam/viamStruct.h
+lib/libviamClient.la
+lib/pkgconfig/viam.pc
+lib/tclserv/libviamTclServ.la
+share/modules/gen/viam.gen
+share/modules/tcl/viamClient.tcl
+@dirrm include/viam/server
+@dirrm include/viam
