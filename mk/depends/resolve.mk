@@ -367,6 +367,7 @@ PKG_CONFIG_PATH+=$(foreach p,${DEPEND_PKG_CONFIG},:${p})
  else
 PKG_CONFIG_PATH+=$(patsubst :%,%,$(foreach p,${DEPEND_PKG_CONFIG},:${p}))
  endif
+PKG_CONFIG_PATH:=$(subst $(space):,:,${PKG_CONFIG_PATH})
 endif
 
 endif # _PKGSRC_BARRIER
