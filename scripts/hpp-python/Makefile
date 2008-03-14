@@ -1,4 +1,4 @@
-# $NetBSD$
+# $Id:$
 #
 
 DISTNAME=	hpppython-${VERSION}
