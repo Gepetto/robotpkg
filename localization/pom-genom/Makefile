@@ -20,5 +20,5 @@ include ../../mk/robotpkg.mk
 
 # waiting for a more modular solution, hardcode -t
 # -o will require transgen
-post-extract:
-	cd ${WRKSRC} && ${PREFIX}/bin/genom -t pom
+pre-configure:
+	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PREFIX}/bin/genom -t pom
