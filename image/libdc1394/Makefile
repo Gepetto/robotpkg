@@ -15,6 +15,5 @@ PKGCONFIG_OVERRIDE+=    libdc1394-2.pc.in
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 
-DEPENDS+=		libraw1394>=1.2.0:../../image/libraw1394
-
+include ../../image/libraw1394/depend.mk
 include ../../mk/robotpkg.mk
