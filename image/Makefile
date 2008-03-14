@@ -9,5 +9,7 @@ SUBDIR+=	libimages3d
 SUBDIR+=	libraw1394
 SUBDIR+=	libstereopixel
 SUBDIR+=	opencv
+SUBDIR+=	viam-libs
+SUBDIR+=	viam-genom
 
 include ../mk/robotpkg.subdir.mk
