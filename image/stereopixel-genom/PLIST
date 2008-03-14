@@ -1,0 +1,26 @@
+@comment $Id:$
+bin/stereopixel
+bin/stereopixelSendInitRqst
+bin/stereopixelTest
+include/stereopixel/server/stereopixelEndian.h
+include/stereopixel/server/stereopixelError.h
+include/stereopixel/server/stereopixelMsgLib.h
+include/stereopixel/server/stereopixelPosterLib.h
+include/stereopixel/server/stereopixelPosterLibStruct.h
+include/stereopixel/server/stereopixelPosterReadLibProto.h
+include/stereopixel/server/stereopixelPosterShowLib.h
+include/stereopixel/server/stereopixelPosterWriteLibProto.h
+include/stereopixel/server/stereopixelPosterXMLLib.h
+include/stereopixel/server/stereopixelPrint.h
+include/stereopixel/server/stereopixelPrintXML.h
+include/stereopixel/server/stereopixelScan.h
+include/stereopixel/server/stereopixelType.h
+include/stereopixel/stereopixelClient.h
+include/stereopixel/stereopixelStruct.h
+lib/libstereopixelClient.la
+lib/pkgconfig/stereopixel.pc
+lib/tclserv/libstereopixelTclServ.la
+share/modules/gen/stereopixel.gen
+share/modules/tcl/stereopixelClient.tcl
+@dirrm include/stereopixel/server
+@dirrm include/stereopixel
