@@ -1,0 +1,13 @@
+The Versatile Image Acquisition Module handles image acquisition from
+firewire DCAM cameras through the libdc1394 and OpenCV libraries. This
+module can also read images from files.
+
+Simple filters can be applied to the raw images, like distortion
+correction or image rectification for stereo pairs. Gain, exposure, white
+balance and other hardware parameters can also be controlled, provided
+that the hardware enables it.
+
+An automatized camera calibration procedure usign OpenCV algorithm is
+included.
+
+This package contains the core libraries only.
