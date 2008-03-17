@@ -1,0 +1,25 @@
+@comment $Id:$
+bin/hueblob
+bin/hueblobSendInitRqst
+bin/hueblobTest
+include/hueblob/hueblobStruct.h
+include/hueblob/server/hueblobEndian.h
+include/hueblob/server/hueblobError.h
+include/hueblob/server/hueblobMsgLib.h
+include/hueblob/server/hueblobPosterLib.h
+include/hueblob/server/hueblobPosterLibStruct.h
+include/hueblob/server/hueblobPosterReadLibProto.h
+include/hueblob/server/hueblobPosterShowLib.h
+include/hueblob/server/hueblobPosterWriteLibProto.h
+include/hueblob/server/hueblobPosterXMLLib.h
+include/hueblob/server/hueblobPrint.h
+include/hueblob/server/hueblobPrintXML.h
+include/hueblob/server/hueblobScan.h
+include/hueblob/server/hueblobType.h
+lib/libhueblobClient.la
+lib/pkgconfig/hueblob.pc
+lib/tclserv/libhueblobTclServ.la
+share/modules/gen/hueblob.gen
+share/modules/tcl/hueblobClient.tcl
+@dirrm include/hueblob/server
+@dirrm include/hueblob
