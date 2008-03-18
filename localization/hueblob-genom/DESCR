@@ -1,2 +1,2 @@
-This GenoM component detect simple objects based on its color by using
+This GenoM component detect simple objects based on their color by using
 the CAMSHIFT algorithm from OpenCV.
