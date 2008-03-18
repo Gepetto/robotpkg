@@ -23,7 +23,8 @@ SUBST_STAGE.py=		pre-configure
 SUBST_FILES.py=		samples/python/*.py
 SUBST_SED.py=		-e 's,/usr/bin/python,/usr/bin/env python,'
 
-CONFIGURE_ARGS+=--with-swig=no
-CONFIGURE_ARGS+=--with-python=no
+CONFIGURE_ARGS+=	--without-swig
+CONFIGURE_ARGS+=	--without-python
+CONFIGURE_ARGS+=	--without-1394libs
 
 include ../../mk/robotpkg.mk
