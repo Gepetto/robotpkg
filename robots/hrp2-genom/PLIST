@@ -1,0 +1,25 @@
+@comment $Id:$
+bin/hrp2
+bin/hrp2SendInitRqst
+bin/hrp2Test
+include/hrp2/hrp2Struct.h
+include/hrp2/server/hrp2Endian.h
+include/hrp2/server/hrp2Error.h
+include/hrp2/server/hrp2MsgLib.h
+include/hrp2/server/hrp2PosterLib.h
+include/hrp2/server/hrp2PosterLibStruct.h
+include/hrp2/server/hrp2PosterReadLibProto.h
+include/hrp2/server/hrp2PosterShowLib.h
+include/hrp2/server/hrp2PosterWriteLibProto.h
+include/hrp2/server/hrp2PosterXMLLib.h
+include/hrp2/server/hrp2Print.h
+include/hrp2/server/hrp2PrintXML.h
+include/hrp2/server/hrp2Scan.h
+include/hrp2/server/hrp2Type.h
+lib/libhrp2Client.la
+lib/pkgconfig/hrp2.pc
+lib/tclserv/libhrp2TclServ.la
+share/modules/gen/hrp2.gen
+share/modules/tcl/hrp2Client.tcl
+@dirrm include/hrp2/server
+@dirrm include/hrp2
