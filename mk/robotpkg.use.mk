@@ -29,3 +29,13 @@ BUILD_DEPENDS+=		libtool>=${LIBTOOL_REQD}:../../pkgtools/libtool
 CONFIGURE_ENV+=		LIBTOOL="${LIBTOOL} ${LIBTOOL_FLAGS}"
 MAKE_ENV+=		LIBTOOL="${LIBTOOL} ${LIBTOOL_FLAGS}"
 endif
+
+
+# --- USE_PKG_CONFIG -------------------------------------------------
+
+ifdef USE_PKG_CONFIG
+PKG_CONFIG?=		${LOCALBASE}/bin/pkg-config
+BUILD_DEPENDS+=		pkg-config>=0.23:../../pkgtools/pkg-config
+CONFIGURE_ENV+=		PKG_CONFIG="${PKG_CONFIG}"
+MAKE_ENV+=		PKG_CONFIG="${PKG_CONFIG}"
+endif
