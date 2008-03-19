@@ -13,9 +13,8 @@ GNU_CONFIGURE=		yes
 USE_PKG_CONFIG=		yes
 
 CONFIGURE_ARGS+=	--with-idl=omniorb
-CONFIGURE_ARGS+=	--with-openhrp=${PREFIX}/OpenHRP
+CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.openhrp-jrl}/OpenHRP
 
-DEPENDS+=		openhrp-jrl>=20060713r6:../../architecture/openhrp-jrl
-
+include ../../architecture/openhrp-jrl/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../mk/robotpkg.mk
