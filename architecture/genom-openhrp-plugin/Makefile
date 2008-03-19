@@ -1,7 +1,7 @@
-# $NetBSD$
+# $Id:$
 #
 
-DISTNAME=		genom-openhrp-plugin-1.0
+DISTNAME=		genom-openhrp-plugin-1.1
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_JRL}
 
