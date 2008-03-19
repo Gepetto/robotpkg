@@ -1,0 +1,7 @@
+@comment $Id:$
+bin/pkg-config
+man/man1/pkg-config.1
+share/aclocal/pkg.m4
+@dirrm share/aclocal
+@dirrm man/man1
+@dirrm bin
