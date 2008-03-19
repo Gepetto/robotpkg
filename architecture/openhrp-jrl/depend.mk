@@ -16,8 +16,8 @@ DEPEND_ABI.openhrp-jrl?=openhrp-jrl>=20060713r6
 DEPEND_DIR.openhrp-jrl?=../../devel/openhrp-jrl
 
 SYSTEM_SEARCH.openhrp-jrl=\
-	bin/Auditor.sh			\
-	Common/corba/common.idl
+	OpenHRP/bin/Auditor.sh			\
+	OpenHRP/Common/corba/common.idl
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
