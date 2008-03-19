@@ -12,6 +12,8 @@ GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_PKG_CONFIG=		yes
 
+DEPEND+=		viam-genom>=0.99:../../image/viam-genom
+
 include ../../image/libstereopixel/depend.mk
 include ../../image/libimages3d/depend.mk
 include ../../image/opencv/depend.mk
