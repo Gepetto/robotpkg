@@ -14,9 +14,9 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
-DEPEND+=	netshring>=1.0:../../architecture/netshring
-DEPEND+=	t3d>=2.5:../../math/t3d
-DEPEND+=	pom-genom>=0.4:../../localization/pom-genom
+DEPENDS+=	netshring>=1.0:../../architecture/netshring
+DEPENDS+=	t3d>=2.5:../../math/t3d
+DEPENDS+=	pom-genom>=0.4:../../localization/pom-genom
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.openhrp-jrl}/OpenHRP
 
