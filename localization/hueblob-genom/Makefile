@@ -17,6 +17,8 @@ DEPENDS+=		viam-genom>=0.99:../../image/viam-genom
 DEPENDS+=		pom-genom>=0.4:../../localization/pom-genom
 DEPENDS+=		stereopixel-genom>=1.1:../../image/stereopixel-genom
 
+CONFIGURE_ARGS+=	--with-display
+
 include ../../image/opencv/depend.mk
 include ../../mk/robotpkg.mk
 
