@@ -1,0 +1,8 @@
+KineoWorks is an on-the-shelf software component dedicated to motion
+planning.  Developed by Kineo CAM, it benefits from years of research
+conducted at LAAS, a lab of the French Institutes for Scientific Research
+CNRS. It enables 'automatic motion' of any mechanical system or virtual
+artefact in a 3D environment in a realistic way, which means managing
+collision avoidance and kinematical constraints of the system.  The
+KineoWorks APIs have been designed to be easy to integrate in any
+software.
