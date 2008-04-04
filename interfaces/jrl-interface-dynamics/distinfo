@@ -1,5 +1,5 @@
 $NetBSD: distinfo,v 1.9 2005/02/23 12:06:55 agc Exp $
 
-SHA1 (abstractrobotdynamics-1.8.tar.gz) = 42417cb4cb381e9b2d15ec96592e668384eeb529
-RMD160 (abstractrobotdynamics-1.8.tar.gz) = 7210f9bd07081a8e32924564af223ce752115848
-Size (abstractrobotdynamics-1.8.tar.gz) = 125245 bytes
+SHA1 (abstractrobotdynamics-1.9.tar.gz) = 75648d26d39d8bac5356eebadaa2b2263f69bf99
+RMD160 (abstractrobotdynamics-1.9.tar.gz) = e536ab1f904e78a5bf3cbffa3cbd1dcf223fb050
+Size (abstractrobotdynamics-1.9.tar.gz) = 127213 bytes

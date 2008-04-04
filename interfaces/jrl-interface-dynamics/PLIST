@@ -1,4 +1,4 @@
-@comment $Id: pipo 95cfbd43fa15bb52d5a74c28be9dadf3 2008/02/16 14:48:29 tho $
+@comment $Id: PLIST 2008/04/04 14:07:11 mallet $
 include/robotDynamics/jrlBody.h
 include/robotDynamics/jrlDynamicRobot.h
 include/robotDynamics/jrlHand.h
@@ -8,6 +8,7 @@ include/robotDynamics/jrlRigidAcceleration.h
 include/robotDynamics/jrlRigidVelocity.h
 include/robotDynamics/jrlRobotDynamicsObjectConstructor.h
 lib/pkgconfig/abstractRobotDynamics.pc
+share/doc/abstractRobotDynamics/abstractrobotdynamics_commands.html
 share/doc/abstractRobotDynamics/annotated.html
 share/doc/abstractRobotDynamics/class_cjrl_body-members.html
 share/doc/abstractRobotDynamics/class_cjrl_body.html
@@ -27,6 +28,7 @@ share/doc/abstractRobotDynamics/class_cjrl_rigid_velocity-members.html
 share/doc/abstractRobotDynamics/class_cjrl_rigid_velocity.html
 share/doc/abstractRobotDynamics/class_cjrl_robot_dynamics_object_constructor-members.html
 share/doc/abstractRobotDynamics/class_cjrl_robot_dynamics_object_constructor.html
+share/doc/abstractRobotDynamics/commands_8h.html
 share/doc/abstractRobotDynamics/doxygen.png
 share/doc/abstractRobotDynamics/files.html
 share/doc/abstractRobotDynamics/form_0.png
@@ -142,6 +144,7 @@ share/doc/abstractRobotDynamics/jrl_robot_dynamics_object_constructor_8h__incl.m
 share/doc/abstractRobotDynamics/jrl_robot_dynamics_object_constructor_8h__incl.md5
 share/doc/abstractRobotDynamics/jrl_robot_dynamics_object_constructor_8h__incl.png
 share/doc/abstractRobotDynamics/main.html
+share/doc/abstractRobotDynamics/pages.html
 share/doc/abstractRobotDynamics/pictures/HRP2.jpg
 share/doc/abstractRobotDynamics/pictures/interface.fig
 share/doc/abstractRobotDynamics/pictures/interface.png
