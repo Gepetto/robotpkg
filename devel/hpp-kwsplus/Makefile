@@ -19,4 +19,7 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
+CONFIGURE_ARGS+=	--with-lapack=${PREFIX.lapack}
+
+include ../../math/lapack/depend.mk
 include ../../mk/robotpkg.mk
