@@ -13,7 +13,7 @@ MAINTAINER=	gepetto@laas.fr
 COMMENT=	Generalized Inverse Kinematics for humanoid robots.
 
 DEPENDS+=	jrl-interface-giktask>=1.4:../../interfaces/jrl-interface-giktask
-DEPENDS+=	jrl-dynamics>=1.7:../../math/jrl-dynamics
+DEPENDS+=	jrl-dynamics>=1.8:../../math/jrl-dynamics
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
