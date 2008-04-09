@@ -13,7 +13,7 @@ PREFER.openhrp-jrl?=	robotpkg
 DEPEND_USE+=		openhrp-jrl
 
 DEPEND_ABI.openhrp-jrl?=openhrp-jrl>=20060713r6
-DEPEND_DIR.openhrp-jrl?=../../devel/openhrp-jrl
+DEPEND_DIR.openhrp-jrl?=../../architecture/openhrp-jrl
 
 SYSTEM_SEARCH.openhrp-jrl=\
 	OpenHRP/bin/Auditor.sh			\
