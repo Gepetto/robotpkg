@@ -1,9 +1,8 @@
-@comment $Id: PLIST 2008/04/07 17:12:51 mallet $
+@comment $Id: PLIST 2008/04/14 13:48:54 mallet $
 include/hppGik/constraints/hppGikComConstraint.h
 include/hppGik/constraints/hppGikConfigurationConstraint.h
 include/hppGik/constraints/hppGikGazeConstraint.h
 include/hppGik/constraints/hppGikJointStateConstraint.h
-include/hppGik/constraints/hppGikLPConstraint.h
 include/hppGik/constraints/hppGikMotionConstraint.h
 include/hppGik/constraints/hppGikParallelConstraint.h
 include/hppGik/constraints/hppGikPlaneConstraint.h
@@ -30,7 +29,6 @@ include/hppGik/motionplanners/elements/hppGikStepElement.h
 include/hppGik/motionplanners/elements/hppGikZMPshiftElement.h
 include/hppGik/motionplanners/hppGikLocomotionPlan.h
 include/hppGik/motionplanners/hppGikPreviewController.h
-include/hppGik/motionplanners/hppGikStepPlanner.h
 include/hppGik/robot/hppGik2DShape.h
 include/hppGik/robot/hppGikFootprintRelated.h
 include/hppGik/robot/hppGikMaskFactory.h
@@ -140,14 +138,6 @@ share/doc/hppGik/class_chpp_gik_joint_state_constraint__coll__graph.png
 share/doc/hppGik/class_chpp_gik_joint_state_constraint__inherit__graph.map
 share/doc/hppGik/class_chpp_gik_joint_state_constraint__inherit__graph.md5
 share/doc/hppGik/class_chpp_gik_joint_state_constraint__inherit__graph.png
-share/doc/hppGik/class_chpp_gik_l_p_constraint-members.html
-share/doc/hppGik/class_chpp_gik_l_p_constraint.html
-share/doc/hppGik/class_chpp_gik_l_p_constraint__coll__graph.map
-share/doc/hppGik/class_chpp_gik_l_p_constraint__coll__graph.md5
-share/doc/hppGik/class_chpp_gik_l_p_constraint__coll__graph.png
-share/doc/hppGik/class_chpp_gik_l_p_constraint__inherit__graph.map
-share/doc/hppGik/class_chpp_gik_l_p_constraint__inherit__graph.md5
-share/doc/hppGik/class_chpp_gik_l_p_constraint__inherit__graph.png
 share/doc/hppGik/class_chpp_gik_locomotion_element-members.html
 share/doc/hppGik/class_chpp_gik_locomotion_element.html
 share/doc/hppGik/class_chpp_gik_locomotion_element__coll__graph.map
@@ -309,11 +299,6 @@ share/doc/hppGik/class_chpp_gik_step_element__coll__graph.png
 share/doc/hppGik/class_chpp_gik_step_element__inherit__graph.map
 share/doc/hppGik/class_chpp_gik_step_element__inherit__graph.md5
 share/doc/hppGik/class_chpp_gik_step_element__inherit__graph.png
-share/doc/hppGik/class_chpp_gik_step_planner-members.html
-share/doc/hppGik/class_chpp_gik_step_planner.html
-share/doc/hppGik/class_chpp_gik_step_planner__coll__graph.map
-share/doc/hppGik/class_chpp_gik_step_planner__coll__graph.md5
-share/doc/hppGik/class_chpp_gik_step_planner__coll__graph.png
 share/doc/hppGik/class_chpp_gik_step_task-members.html
 share/doc/hppGik/class_chpp_gik_step_task.html
 share/doc/hppGik/class_chpp_gik_step_task__coll__graph.map
@@ -501,9 +486,6 @@ share/doc/hppGik/hpp_gik_com_motion_8h__incl.map
 share/doc/hppGik/hpp_gik_com_motion_8h__incl.md5
 share/doc/hppGik/hpp_gik_com_motion_8h__incl.png
 share/doc/hppGik/hpp_gik_configuration_constraint_8h.html
-share/doc/hppGik/hpp_gik_configuration_constraint_8h__dep__incl.map
-share/doc/hppGik/hpp_gik_configuration_constraint_8h__dep__incl.md5
-share/doc/hppGik/hpp_gik_configuration_constraint_8h__dep__incl.png
 share/doc/hppGik/hpp_gik_configuration_constraint_8h__incl.map
 share/doc/hppGik/hpp_gik_configuration_constraint_8h__incl.md5
 share/doc/hppGik/hpp_gik_configuration_constraint_8h__incl.png
@@ -551,13 +533,6 @@ share/doc/hppGik/hpp_gik_joint_state_constraint_8h__dep__incl.png
 share/doc/hppGik/hpp_gik_joint_state_constraint_8h__incl.map
 share/doc/hppGik/hpp_gik_joint_state_constraint_8h__incl.md5
 share/doc/hppGik/hpp_gik_joint_state_constraint_8h__incl.png
-share/doc/hppGik/hpp_gik_l_p_constraint_8h.html
-share/doc/hppGik/hpp_gik_l_p_constraint_8h__dep__incl.map
-share/doc/hppGik/hpp_gik_l_p_constraint_8h__dep__incl.md5
-share/doc/hppGik/hpp_gik_l_p_constraint_8h__dep__incl.png
-share/doc/hppGik/hpp_gik_l_p_constraint_8h__incl.map
-share/doc/hppGik/hpp_gik_l_p_constraint_8h__incl.md5
-share/doc/hppGik/hpp_gik_l_p_constraint_8h__incl.png
 share/doc/hppGik/hpp_gik_locomotion_element_8h.html
 share/doc/hppGik/hpp_gik_locomotion_element_8h__dep__incl.map
 share/doc/hppGik/hpp_gik_locomotion_element_8h__dep__incl.md5
@@ -623,16 +598,10 @@ share/doc/hppGik/hpp_gik_no_locomotion_8h__incl.map
 share/doc/hppGik/hpp_gik_no_locomotion_8h__incl.md5
 share/doc/hppGik/hpp_gik_no_locomotion_8h__incl.png
 share/doc/hppGik/hpp_gik_parallel_constraint_8h.html
-share/doc/hppGik/hpp_gik_parallel_constraint_8h__dep__incl.map
-share/doc/hppGik/hpp_gik_parallel_constraint_8h__dep__incl.md5
-share/doc/hppGik/hpp_gik_parallel_constraint_8h__dep__incl.png
 share/doc/hppGik/hpp_gik_parallel_constraint_8h__incl.map
 share/doc/hppGik/hpp_gik_parallel_constraint_8h__incl.md5
 share/doc/hppGik/hpp_gik_parallel_constraint_8h__incl.png
 share/doc/hppGik/hpp_gik_plane_constraint_8h.html
-share/doc/hppGik/hpp_gik_plane_constraint_8h__dep__incl.map
-share/doc/hppGik/hpp_gik_plane_constraint_8h__dep__incl.md5
-share/doc/hppGik/hpp_gik_plane_constraint_8h__dep__incl.png
 share/doc/hppGik/hpp_gik_plane_constraint_8h__incl.map
 share/doc/hppGik/hpp_gik_plane_constraint_8h__incl.md5
 share/doc/hppGik/hpp_gik_plane_constraint_8h__incl.png
@@ -644,9 +613,6 @@ share/doc/hppGik/hpp_gik_pointing_constraint_8h__incl.map
 share/doc/hppGik/hpp_gik_pointing_constraint_8h__incl.md5
 share/doc/hppGik/hpp_gik_pointing_constraint_8h__incl.png
 share/doc/hppGik/hpp_gik_position_constraint_8h.html
-share/doc/hppGik/hpp_gik_position_constraint_8h__dep__incl.map
-share/doc/hppGik/hpp_gik_position_constraint_8h__dep__incl.md5
-share/doc/hppGik/hpp_gik_position_constraint_8h__dep__incl.png
 share/doc/hppGik/hpp_gik_position_constraint_8h__incl.map
 share/doc/hppGik/hpp_gik_position_constraint_8h__incl.md5
 share/doc/hppGik/hpp_gik_position_constraint_8h__incl.png
@@ -690,9 +656,6 @@ share/doc/hppGik/hpp_gik_robot_task_8h__incl.map
 share/doc/hppGik/hpp_gik_robot_task_8h__incl.md5
 share/doc/hppGik/hpp_gik_robot_task_8h__incl.png
 share/doc/hppGik/hpp_gik_rotation_constraint_8h.html
-share/doc/hppGik/hpp_gik_rotation_constraint_8h__dep__incl.map
-share/doc/hppGik/hpp_gik_rotation_constraint_8h__dep__incl.md5
-share/doc/hppGik/hpp_gik_rotation_constraint_8h__dep__incl.png
 share/doc/hppGik/hpp_gik_rotation_constraint_8h__incl.map
 share/doc/hppGik/hpp_gik_rotation_constraint_8h__incl.md5
 share/doc/hppGik/hpp_gik_rotation_constraint_8h__incl.png
@@ -721,10 +684,6 @@ share/doc/hppGik/hpp_gik_step_element_8h.html
 share/doc/hppGik/hpp_gik_step_element_8h__incl.map
 share/doc/hppGik/hpp_gik_step_element_8h__incl.md5
 share/doc/hppGik/hpp_gik_step_element_8h__incl.png
-share/doc/hppGik/hpp_gik_step_planner_8h.html
-share/doc/hppGik/hpp_gik_step_planner_8h__incl.map
-share/doc/hppGik/hpp_gik_step_planner_8h__incl.md5
-share/doc/hppGik/hpp_gik_step_planner_8h__incl.png
 share/doc/hppGik/hpp_gik_step_task_8h.html
 share/doc/hppGik/hpp_gik_step_task_8h__incl.map
 share/doc/hppGik/hpp_gik_step_task_8h__incl.md5
@@ -811,9 +770,6 @@ share/doc/hppGik/inherit__graph__2.png
 share/doc/hppGik/inherit__graph__20.map
 share/doc/hppGik/inherit__graph__20.md5
 share/doc/hppGik/inherit__graph__20.png
-share/doc/hppGik/inherit__graph__21.map
-share/doc/hppGik/inherit__graph__21.md5
-share/doc/hppGik/inherit__graph__21.png
 share/doc/hppGik/inherit__graph__3.map
 share/doc/hppGik/inherit__graph__3.md5
 share/doc/hppGik/inherit__graph__3.png
@@ -852,6 +808,7 @@ share/gik/hppGikPreviewController5ms.ini
 @dirrm share/gik
 @dirrm share/doc/hppGik/pictures
 @dirrm share/doc/hppGik
+@dirrm share/doc/doxytag
 @dirrm include/hppGik/tasks
 @dirrm include/hppGik/robot
 @dirrm include/hppGik/motionplanners/elements
