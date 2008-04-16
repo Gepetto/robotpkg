@@ -80,7 +80,7 @@ show-depends-dirs show-depends-pkgpaths:
 # _DEPENDS_WALK_CMD holds the command (sans arguments) to walk the
 # dependency graph for a package.
 #
-_DEPENDS_WALK_MAKEFLAGS?=	${MAKEFLAGS}
+_DEPENDS_WALK_MAKEFLAGS?=	$(call quote,${MAKEFLAGS})
 _DEPENDS_WALK_CMD=							\
 	${SETENV} ECHO=${TOOLS_ECHO} MAKE=${MAKE}			\
 		MAKEFLAGS=${_DEPENDS_WALK_MAKEFLAGS}			\
