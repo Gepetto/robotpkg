@@ -1,0 +1,20 @@
+Sphinx 2 is one of Carnegie Mellon University's open source large
+vocabulary, speaker-independent continuous speech recognition
+engine. The licensing terms for the Sphinx engines and tools are derived
+from BSD, and based, in particular, upon the license for the Apache web
+server. There is no restriction against commercial use or
+redistribution. Please see the LICENSE file for terms of use.
+
+The packages that the CMU Sphinx Group is releasing are a set of
+reasonably mature, world-class speech components that provide a basic
+level of technology to anyone interested in creating speech-using
+applications without the once-prohibitive initial investment cost in
+research and development; the same components are open to peer review by
+all researchers in the field, and are used for linguistic research as
+well.
+
+Note however that Sphinx is not a final product. Those with a certain
+level of expertise can achieve great results with the versions of Sphinx
+available here, but a naive user will certainly need further help. In
+other words, the software available here is not meant for users with no
+experience in speech, but for expert users.

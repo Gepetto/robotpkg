@@ -1,0 +1,11 @@
+--- configure.ac~	2007-07-31 18:46:32.000000000 +0200
++++ configure.ac	2008-04-12 23:16:47.000000000 +0200
+@@ -202,6 +202,8 @@
+ AC_SEARCH_LIBS(clock_gettime, [rt posix4])
+ AC_CHECK_FUNCS(clock_gettime)
+ 
++AC_SEARCH_LIBS(sched_get_priority_min, [rt])
++
+ AC_MSG_CHECKING([for pthread_attr_setschedpolicy])
+ AC_TRY_LINK([#include <pthread.h>], 
+ 	[pthread_attr_setschedpolicy(NULL, SCHED_RR);],

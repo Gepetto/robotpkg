@@ -1,0 +1,16 @@
+--- configure~	2005-10-13 20:31:39.000000000 +0200
++++ configure	2008-04-12 22:40:44.000000000 +0200
+@@ -5116,6 +5116,13 @@
+ _ACEOF
+ 
+                         ;;
++                *-*-netbsd*)
++                        ad_files="ad_oss_netbsd.lo mulaw_base.lo"
++                        ad_backend="AD_BACKEND_OSS_BSD"
++			cat >>confdefs.h <<\_ACEOF
++#define AD_BACKEND_OSS_BSD 1
++_ACEOF
++			;;
+                 # FIXME: isn't this the same OSS as on Linux?
+                 *-*-freebsd*|*-*-netbsd*|*-*-openbsd*)
+                         ad_files="ad_oss_bsd.lo mulaw_base.lo"
