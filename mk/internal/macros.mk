@@ -52,8 +52,12 @@ endef
 # file, the function returns the full path for all files. path can be a
 # colon-separated or space-separated list of directories.
 #
+# As a special case, if a file is not found in /usr/lib, it is also search in /lib
+#
 override define pathsearch
-$(foreach f,$(1),$(firstword $(wildcard $(addsuffix /$(f),$(subst :, ,$(2))))))
+$(foreach f,$(1),$(firstword \
+	$(or $(wildcard $(addsuffix /$(f),$(subst :, ,$(2)))),\
+	     $(wildcard $(subst /usr/lib,/lib,$(addsuffix /$(f),$(subst :, ,$(2))))))))
 endef
 
 # prefixsearch <file(s)> <path>
@@ -64,7 +68,8 @@ endef
 override define prefixsearch
 $(strip $(foreach p,$(subst :, ,$(2)),\
 	$(if $(strip $(foreach f,$(1),\
-		$(if $(wildcard $(p)/$(f)),X))),$(p))))
+		$(if $(or $(wildcard $(p)/$(f)),\
+			  $(wildcard $(subst /usr/lib,/lib,$(p)/$(f)))),X))),$(p))))
 endef
 
 define wordwrapfilter
