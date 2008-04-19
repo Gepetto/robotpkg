@@ -1,4 +1,4 @@
-/*	$NetBSD: __fts13.c,v 1.7 2004/08/23 03:32:12 jlam Exp $	*/
+/*	$NetBSD: __fts13.c,v 1.9 2007/09/21 19:51:58 joerg Exp $	*/
 
 /*-
  * Copyright (c) 1990, 1993, 1994
@@ -39,7 +39,7 @@
 #if 0
 static char sccsid[] = "@(#)fts.c	8.6 (Berkeley) 8/14/94";
 #else
-__RCSID("$NetBSD: __fts13.c,v 1.7 2004/08/23 03:32:12 jlam Exp $");
+__RCSID("$NetBSD: __fts13.c,v 1.9 2007/09/21 19:51:58 joerg Exp $");
 #endif
 #endif /* LIBC_SCCS and not lint */
 
@@ -115,7 +115,7 @@ static size_t	 fts_pow2 __P((size_t));
 static int	 fts_palloc __P((FTS *, size_t));
 static void	 fts_padjust __P((FTS *, FTSENT *));
 static FTSENT	*fts_sort __P((FTS *, FTSENT *, size_t));
-static u_short	 fts_stat __P((FTS *, FTSENT *, int));
+static unsigned short	 fts_stat __P((FTS *, FTSENT *, int));
 static int	 fts_safe_changedir __P((const FTS *, const FTSENT *, int,
     const char *));
 
@@ -158,7 +158,7 @@ fts_open(argv, options, compar)
 	}
 
 	/* Allocate/initialize the stream */
-	if ((sp = malloc((u_int)sizeof(FTS))) == NULL)
+	if ((sp = malloc((unsigned int)sizeof(FTS))) == NULL)
 		return (NULL);
 	memset(sp, 0, sizeof(FTS));
 	sp->fts_compar = compar;
@@ -714,7 +714,12 @@ fts_build(sp, type)
 	 */
 	cderrno = 0;
 	if (nlinks || type == BREAD) {
-		if (fts_safe_changedir(sp, cur, dirfd(dirp), NULL)) {
+#if defined(HAVE_DIRFD)
+		if (fts_safe_changedir(sp, cur, dirfd(dirp), NULL))
+#else
+		if (fts_safe_changedir(sp, cur, -1, cur->fts_accpath))
+#endif
+		{
 			if (nlinks && type == BREAD)
 				cur->fts_errno = errno;
 			cur->fts_flags |= FTS_DONTCHDIR;
@@ -883,7 +888,7 @@ mem1:				saved_errno = errno;
 	return (head);
 }
 
-static u_short
+static unsigned short
 fts_stat(sp, p, follow)
 	FTS *sp;
 	FTSENT *p;
@@ -1035,7 +1040,7 @@ fts_alloc(sp, name, namelen)
 
 	if (!ISSET(FTS_NOSTAT))
 		p->fts_statp =
-		    (struct STAT *)ALIGN((u_long)(p->fts_name + namelen + 2));
+		    (struct STAT *)ALIGN((unsigned long)(p->fts_name + namelen + 2));
 #else
 	if ((p = malloc(sizeof(FTSENT) + namelen)) == NULL)
 		return (NULL);

@@ -1,8 +1,8 @@
-dnl $NetBSD: configure.ac,v 1.52 2006/08/26 21:28:21 seb Exp $
+dnl $NetBSD: configure.ac,v 1.61 2008/04/04 15:19:10 joerg Exp $
 
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.52)
-AC_INIT([libnbcompat], [20040911], [grant@NetBSD.org])
+AC_INIT([libnbcompat], [20070622], [grant@NetBSD.org])
 AC_CONFIG_HEADER(nbcompat/config.h)
 AC_ARG_PROGRAM
 
@@ -96,7 +96,7 @@ AC_CHECK_HEADERS([md5.h], [
 	])
 ])
 
-AC_CHECK_HEADERS([md5.h rmd160.h sha1.h])
+AC_CHECK_HEADERS([md5.h rmd160.h sha1.h sha2.h])
 AC_CHECK_FUNC(MD5File, [:], [
        	AC_DEFINE(HAVE_NBCOMPAT_MD5)
 	AH_TEMPLATE([HAVE_NBCOMPAT_MD5], [
@@ -125,6 +125,27 @@ AC_CHECK_FUNC(SHA1File, [:], [
 	AC_LIBOBJ(sha1hl)
 ])
 
+AC_CHECK_FUNC(SHA512_File, [:], [
+       	AC_DEFINE(HAVE_NBCOMPAT_SHA2)
+	AH_TEMPLATE([HAVE_NBCOMPAT_SHA2], [
+		Define to 1 if the `SHA2*' functions are built into the
+		library.
+        ])
+	AC_LIBOBJ(sha2)
+	AC_LIBOBJ(sha2hl)
+])
+
+AC_ARG_ENABLE([bsd-getopt],
+	[AS_HELP_STRING([--enable-bsd-getopt],
+			[force use of BSDish getopt implementation])])
+
+AC_CHECK_DECLS([optind, optreset], [:], [:], [
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <unistd.h>
+])
+
+
 pkg_use_nbcompat_getopt_long=yes
 AC_CHECK_HEADERS([getopt.h], [
 	AC_MSG_TRY_COMPILE([for struct option], pkg_cv_have_struct_option,
@@ -132,6 +153,12 @@ AC_CHECK_HEADERS([getopt.h], [
 		[pkg_use_nbcompat_getopt_long=no],
 		[pkg_use_nbcompat_getopt_long=yes])
 ])
+
+if test "$enable_bsd_getopt" = yes; then
+	if test "$ac_cv_have_decl_optreset" = no; then
+		pkg_use_nbcompat_getopt_long=yes
+	fi
+fi
 
 if test $pkg_use_nbcompat_getopt_long = yes; then
 	AC_DEFINE(HAVE_NBCOMPAT_GETOPT_LONG)
@@ -171,6 +198,7 @@ fi
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C___ATTRIBUTE__
 AC_TYPE_SIZE_T
+AC_TYPE_UINTPTR_T
 AC_CHECK_TYPES([long long, long double, int8_t, int16_t, int32_t, int64_t, u_int8_t, u_int16_t, u_int32_t, u_int64_t, uint8_t, uint16_t, uint32_t, uint64_t],[],[],
 [#if STDC_HEADERS
 #include <stdlib.h>
@@ -204,9 +232,10 @@ AC_CHECK_SIZEOF(off_t, 0)
 # Checks for library functions.
 AC_FUNC_MALLOC
 AC_FUNC_STRERROR_R
+AC_FUNC_VFORK
 AC_FUNC_VPRINTF
 
-AC_REPLACE_FUNCS([err fgetln fnmatch fparseln getenv isblank \
+AC_REPLACE_FUNCS([asprintf err fgetln fnmatch fparseln getenv isblank \
 	lchflags lchmod lchown lutimes mkdtemp mkstemp setenv setgroupent \
 	setpassent setprogname snprintf statvfs strdup strerror strlcat \
 	strlcpy strmode strsep strtoll unsetenv usleep utimes warn
@@ -247,6 +276,8 @@ AC_CHECK_FUNC(fts_open, [:], [
 	])
 	AC_LIBOBJ(fts)
 ])
+
+AC_CHECK_FUNC(timegm, [:], [AC_LIBOBJ(timegm)])
 
 # Handle Darwin 7 having a poll() compatibility function.  Be
 # conservative -- if we don't find one of <poll.h> or <sys/poll.h>, then
@@ -297,7 +328,7 @@ AC_CHECK_MEMBERS([struct statfs.f_fsize], [:], [:],
 	[ #include <sys/statfs.h> ])
 AC_CHECK_MEMBERS([struct statfs.f_iosize], [:], [:],
 	[ #include <sys/statfs.h> ])
-AC_CHECK_MEMBERS([struct dirent.d_namlen], [:], [:],
+AC_CHECK_MEMBERS([struct dirent.d_namlen, DIR.dd_fd], [:], [:],
 	[ #include <sys/types.h>
 	  #if HAVE_DIRENT_H
 	  # include <dirent.h>
@@ -313,6 +344,32 @@ AC_CHECK_MEMBERS([struct dirent.d_namlen], [:], [:],
 	  #  include <ndir.h>
 	  # endif
 	  #endif ])
+
+AC_MSG_CHECKING([for dirfd])
+AC_TRY_LINK(
+  [ #include <sys/types.h>
+    #if HAVE_DIRENT_H
+    # include <dirent.h>
+    #else
+    # define dirent direct
+    # if HAVE_SYS_NDIR_H
+    #  include <sys/ndir.h>
+    # endif
+    # if HAVE_SYS_DIR_H
+    #  include <sys/dir.h>
+    # endif
+    # if HAVE_NDIR_H
+    #  include <ndir.h>
+    # endif
+    #endif
+    int dummy_var;
+  ], [ dummy_var = dirfd((DIR *)0) ],
+  [
+	AC_MSG_RESULT(yes)
+	AC_DEFINE([HAVE_DIRFD], [1], [Define if dirfd is either a function or a macro.])
+  ], [	AC_MSG_RESULT(no) ]
+
+)
 
 if test $ac_cv_type_long_long = yes; then
 
@@ -369,11 +426,35 @@ dnl		support because we don't know how to display it.
 
 fi
 
-AC_CHECK_DECLS([optind, optreset], [:], [:], [
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <unistd.h>
-])
+
+dnl	Check if vsnprintf returns the number of bytes that would have been
+dnl	written, had the buffer been large enough.
+
+AC_MSG_CHECKING(if vsnprintf is standards compliant)
+have_std_vsnprintf=no
+AC_TRY_RUN([
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+void dotest(char *fmt, ...) {
+	char buf[3];
+	va_list ap;
+	va_start(ap, fmt);
+	exit(snprintf(buf, 3, fmt, ap) == 4 ? 0 : 1);
+}
+int main() {
+	dotest("test");
+}
+], [
+	AC_MSG_RESULT(yes)
+	have_std_vsnprintf=yes
+], [
+	AC_MSG_RESULT(no)
+], [:])
+
+if test $have_std_vsnprintf = no; then
+	AC_LIBOBJ(snprintf)
+fi
 
 AH_BOTTOM([
 /* NBCOMPAT template section follows. */

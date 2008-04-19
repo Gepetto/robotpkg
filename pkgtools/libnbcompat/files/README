@@ -1,4 +1,4 @@
-$NetBSD: README,v 1.12 2005/11/28 20:47:29 schwarz Exp $
+$NetBSD: README,v 1.18 2007/07/21 14:39:25 tnn Exp $
 
  0 Introduction
  ==============
@@ -54,9 +54,31 @@ on the following operating systems:
 libnbcompat-20041024 has been tested to build and install correctly
 on the following operating systems:
 
+	FreeBSD-4.11/i386		<jschauma@NetBSD.org>
+	FreeBSD-6.1/amd64		<jschauma@NetBSD.org>
 	Darwin-8.3/powerpc		<schwarz@NetBSD.org>
 	IRIX-5.3/mipseb			<schwarz@NetBSD.org>
+	IRIX-6.5/mipseb			<jschauma@NetBSD.org>
 	Linux/i386			<schwarz@NetBSD.org>
+	RHEL4 Linux 2.6/i386		<jschauma@NetBSD.org>
+
+libnbcompat-20070507 has been tested to build and install correctly
+on the following operating systems:
+
+	DragonFly-1.8/i386		<joerg@NetBSD.org>
+
+libnbcompat-20070531 has been tested to build and install correctly
+on the following operating systems:
+
+	SunOS-5.10-sparc		<rillig@NetBSD.org>
+	NetBSD-3.0-i386			<rillig@NetBSD.org>
+	IRIX-6.5-mips			<rillig@NetBSD.org>
+
+libnbcompat-20070721 has been tested to build and install correctly
+on the following operating systems:
+
+	HPUX-11.11-hppa			<tnn@NetBSD.org>
+	Interix-3.5-i586		<tnn@NetBSD.org>
 
  3 Usage
  =======
