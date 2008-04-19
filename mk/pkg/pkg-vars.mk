@@ -46,8 +46,11 @@
 # This Makefile fragment is included indirectly by robotpkg.mk and
 # defines some variables which must be defined early defined
 
-# Every package needs the robotpkg_* admin tools
-include ${PKGSRCDIR}/pkgtools/pkg_install/depend.mk
+# Every package needs the robotpkg_* admin tools, except for the
+# pkg_install package itself, of course...
+ifneq (pkgtools/pkg_install,${PKGPATH})
+  include ${PKGSRCDIR}/pkgtools/pkg_install/depend.mk
+endif
 
 # This is the default package database directory
 PKG_DBDIR?=		/usr/openrobots/var/db/pkg
