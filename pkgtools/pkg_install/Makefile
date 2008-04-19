@@ -1,19 +1,15 @@
-# $NetBSD: Makefile,v 1.128 2006/07/18 23:06:41 jlam Exp $
-
-# Notes to package maintainers:
 #
-# To update this package, import from src/usr.sbin/pkg_install.
+# Copyright (C) 2008 LAAS/CNRS
 #
-# Updating this package does not automatically necessitate bumping
-# PKGTOOLS_REQD in bsd.pkg.mk. Do so if and only if there is a critical
-# change in the pkg_* tools that pkgsrc relies on for proper operation.
+# Authored by Anthony Mallet on Fri Apr 18 2008
+# From $NetBSD: Makefile,v 1.128 2006/07/18 23:06:41 jlam Exp $
 
 DISTNAME=		pkg_install-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		# empty
 DISTFILES=		# empty
 
-MAINTAINER=		pkgsrc-users@NetBSD.org
+MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.pkgsrc.org/
 COMMENT=		Package management and administration tools for robotpkg
 
@@ -29,13 +25,13 @@ NO_CHECKSUM=		yes
 PKG_PRESERVE=		yes
 
 # We use the newly built pkg_delete since upgrading from an older
-# pkg_install might required features of the new program.
+# pkg_install might require features of the new program.
 #
 PKG_DELETE=		${WRKSRC}/delete/robotpkg_delete
 
 CPPFLAGS+=		-DDEF_UMASK=${DEF_UMASK}
 
-PKG_DBDIR?=		/var/db/pkg
+PKG_DBDIR?=		/usr/openrobots/var/db/pkg
 PKG_INFO=		${SETENV} PKG_DBDIR=${PKG_DBDIR} ${PKG_INFO_CMD}
 PKG_ADMIN=		${SETENV} PKG_DBDIR=${PKG_DBDIR} ${PKG_ADMIN_CMD}
 
@@ -47,21 +43,19 @@ FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
 			PKG_TOOLS_BIN=${PKG_TOOLS_BIN}		\
 			MKDIR=${MKDIR}
 
-VERSION=	$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
-			${FILESDIR}/lib/version.h)
+VERSION=		$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
+				${CURDIR}/dist/lib/version.h)
 
+include ../../pkgtools/libnbcompat/depend.mk
 include ../../mk/robotpkg.mk
 
 do-extract:
-	@${CP} -R ${FILESDIR} ${WRKSRC}
+	@${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
-# XXX Reverse the order that update does things since
-# XXX we need pkg_delete built before we can deinstall.
-# XXX This should probably be the default order for all packages.
+# Reverse the order that update does things since we need pkg_delete
+# built before we can deinstall.
 do-update:
 	${MAKE} build
 	${MAKE} deinstall _UPDATE_RUNNING=YES
 	${MAKE} ${UPDATE_TARGET}
 	${MAKE} clean
-
-include ../../pkgtools/libnbcompat/inplace.mk
