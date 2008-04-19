@@ -1,0 +1,59 @@
+# $NetBSD
+
+LIB=		fetch
+SRCS=		fetch.c common.c ftp.c http.c file.c
+DPSRCS= 	ftperr.h httperr.h
+INCS=		fetch.h
+MAN=		fetch.3
+CLEANFILES=	ftperr.h httperr.h
+MKLINT=		no
+MKPIC=		no
+MKPROFILE=	no
+
+
+
+CPPFLAGS+=	-I.
+CPPFLAGS+=	-D_LARGEFILE_SOURCE -D_LARGE_FILES
+
+FETCH_WITH_INET6?=	no
+FETCH_WITH_OPENSSL?=	no
+
+ifeq (yes,$(FETCH_WITH_INET6))
+CPPFLAGS+=	-DINET6
+endif
+
+ifeq (yes,$(FETCH_WITH_OPENSSL))
+CPPFLAGS+=	-DWITH_SSL
+LDADD=		-lssl -lcrypto
+endif
+
+CPPFLAGS+=	-DFTP_COMBINE_CWDS
+
+WARNS?=		4
+
+all:	lib${LIB}.a
+
+ftperr.h: ${CURDIR}/ftp.errors ${CURDIR}/Makefile ${CURDIR}/errlist.awk
+	awk -v variable=ftp_errlist -v protocol=FTP \
+	    -f ${CURDIR}/errlist.awk ${CURDIR}/ftp.errors > $@
+
+httperr.h: ${CURDIR}/http.errors ${CURDIR}/Makefile ${CURDIR}/errlist.awk
+	awk -v variable=http_errlist -v protocol=HTTP \
+	    -f ${CURDIR}/errlist.awk ${CURDIR}/http.errors > $@
+
+lib${LIB}.a: ${SRCS:.c=.o}
+	${AR} cr $@ $^
+
+.c.o:
+	${CC} ${CFLAGS} ${CPPFLAGS} -c $<
+
+depend: ${DPSRCS}
+
+install: lib${LIB}.a
+	${INSTALL_LIB} lib${LIB}.a ${DESTDIR}$(prefix)/lib
+
+includes: ${INCS}
+	@for file in ${INCS}; do \
+		echo "${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file";\
+		${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file;	\
+	done
