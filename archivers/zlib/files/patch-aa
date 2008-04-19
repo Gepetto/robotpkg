@@ -1,0 +1,31 @@
+--- Makefile~	2007-08-02 17:07:27.000000000 +0200
++++ Makefile	2008-04-19 19:41:12.000000000 +0200
+@@ -6,22 +6,22 @@
+ OBJS=	adler32.o compress.o crc32.o deflate.o gzio.o \
+ 	infback.o inffast.o inflate.o inftrees.o trees.o \
+ 	uncompr.o zutil.o
+-LOBJS=	${OBJS:R:S/$/.lo/g}
++LOBJS=	${OBJS:.o=.lo}
+ 
+ all: libz.la
+ 
+ libz.la: ${LOBJS}
+-	${LIBTOOL} --mode=link ${CC} ${LDFLAGS} ${CFLAGS} -o ${.TARGET} \
++	${LIBTOOL} --mode=link ${CC} ${LDFLAGS} ${CFLAGS} -o $@ \
+ 	    ${LOBJS} -version-info 1:2 -rpath ${PREFIX}/lib
+ 
+ libz.a: ${OBJS}
+-	${AR} cq ${.TARGET} ${OBJS}
+-	${RANLIB} ${.TARGET}
++	${AR} cq $@ ${OBJS}
++
+ 
+ .SUFFIXES: .c .o .lo
+ 
+ .c.o:
+-	${CC} -c ${CFLAGS} -o ${.TARGET} ${.IMPSRC}
++	${CC} -c ${CFLAGS} -o $@ $<
+ 
+ .c.lo:
+-	${LIBTOOL} --mode=compile ${CC} -c ${CFLAGS} -o ${.TARGET} ${.IMPSRC}
++	${LIBTOOL} --mode=compile ${CC} -c ${CFLAGS} -o $@ $<
