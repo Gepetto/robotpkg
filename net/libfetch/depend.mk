@@ -36,9 +36,18 @@ DEPEND_PKG+=		libfetch
 endif
 
 ifeq (+,$(LIBFETCH_DEPEND_MK))
-  ifeq (inplace,$(LIBFETCH_STYLE))
-# This is the "inplace" version of libfetch package, for bootstrap process
-#
+PREFER.libfetch?=	robotpkg
+
+SYSTEM_SEARCH.libfetch=	\
+	include/fetch.h	\
+	lib/libfetch.a
+
+  # pull-in the user preferences for libfetch now
+  include ../../mk/robotpkg.prefs.mk
+
+  ifeq (inplace+robotpkg,$(strip $(LIBFETCH_STYLE)+$(PREFER.libfetch)))
+  # This is the "inplace" version of libfetch package, for bootstrap process
+  #
 LIBFETCH_FILESDIR=	${PKGSRCDIR}/net/libfetch/dist
 LIBFETCH_SRCDIR=	${WRKDIR}/libfetch
 
@@ -47,29 +56,25 @@ LDFLAGS+=	-L${LIBFETCH_SRCDIR} -lfetch
 
 post-extract: libfetch-extract
 libfetch-extract:
+	@${STEP_MSG} "Extracting libfetch in place"
 	${CP} -Rp ${LIBFETCH_FILESDIR} ${LIBFETCH_SRCDIR}
 
 pre-configure: libfetch-build
 libfetch-build:
+	@${STEP_MSG} "Building libfetch in place"
 	${RUN}								\
 	cd ${LIBFETCH_SRCDIR} && 					\
 	${SETENV} AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}" ${MAKE_PROGRAM} depend all
   else
-# This is the regular version of libfetch package, for normal install
-#
-PREFER.libfetch?=	robotpkg
-
+  # This is the regular version of libfetch package, for normal install
+  #
 DEPEND_USE+=		libfetch
 
 DEPEND_ABI.libfetch?=	libfetch>=2.4
 DEPEND_DIR.libfetch?=	../../net/libfetch
 
 DEPEND_LIBS.libfetch+=	-lfetch
-
-SYSTEM_SEARCH.libfetch=	\
-	include/fetch.h	\
-	lib/libfetch.a
   endif
 endif
 
