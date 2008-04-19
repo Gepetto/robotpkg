@@ -46,10 +46,19 @@ FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
 VERSION=		$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
 				${CURDIR}/dist/lib/version.h)
 
-LIBFETCH_STYLE=		inplace
 
+# depend on these with the "inplace" style for bootstrap
+LIBNBCOMPAT_STYLE=	inplace
 include ../../pkgtools/libnbcompat/depend.mk
+ZLIB_STYLE=		inplace
+include ../../archivers/zlib/depend.mk
+BZIP2_STYLE=		inplace
+include ../../archivers/bzip2/depend.mk
+LIBARCHIVE_STYLE=	inplace
+include ../../archivers/libarchive/depend.mk
+LIBFETCH_STYLE=		inplace
 include ../../net/libfetch/depend.mk
+
 include ../../mk/robotpkg.mk
 
 do-extract:
