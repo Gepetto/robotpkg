@@ -53,7 +53,8 @@ ZLIB_FILESDIR=	${PKGSRCDIR}/archivers/zlib/dist
 ZLIB_SRCDIR=	${WRKDIR}/zlib
 
 CPPFLAGS+=	-I${ZLIB_SRCDIR}
-LDFLAGS+=	-L${ZLIB_SRCDIR} -lz
+LDFLAGS+=	-L${ZLIB_SRCDIR}
+LIBS+=		-lz
 
 post-extract: zlib-extract
 zlib-extract:

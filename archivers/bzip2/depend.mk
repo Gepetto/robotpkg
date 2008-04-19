@@ -53,7 +53,8 @@ BZIP2_FILESDIR=	${PKGSRCDIR}/archivers/bzip2/dist
 BZIP2_SRCDIR=	${WRKDIR}/bzip2
 
 CPPFLAGS+=	-I${BZIP2_SRCDIR}
-LDFLAGS+=	-L${BZIP2_SRCDIR} -lbz2
+LDFLAGS+=	-L${BZIP2_SRCDIR}
+LIBS+=		-lbz2
 
 post-extract: bzip2-extract
 bzip2-extract:

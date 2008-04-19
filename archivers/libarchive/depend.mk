@@ -52,12 +52,14 @@ LIBARCHIVE_FILESDIR=	${PKGSRCDIR}/archivers/libarchive/dist
 LIBARCHIVE_SRCDIR=	${WRKDIR}/libarchive
 
 CPPFLAGS+=	-I${LIBARCHIVE_SRCDIR}/libarchive
-LDFLAGS+=	-L${LIBARCHIVE_SRCDIR}/.libs -larchive
+LDFLAGS+=	-L${LIBARCHIVE_SRCDIR}/.libs
+LIBS+=		-larchive
 
 post-extract: libarchive-extract
 libarchive-extract:
 	@${STEP_MSG} "Extracting libarchive in place"
 	${CP} -Rp ${LIBARCHIVE_FILESDIR} ${LIBARCHIVE_SRCDIR}
+	${TOUCH} ${LIBARCHIVE_SRCDIR}/aclocal.m4
 
 pre-configure: libarchive-build
 libarchive-build:
@@ -66,7 +68,7 @@ libarchive-build:
 	cd ${LIBARCHIVE_SRCDIR} && 					\
 	${SETENV} AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}"					\
-		${CONFIG_SHELL} ./configure --disable-shared 		\
+		${CONFIG_SHELL} ./configure -C --disable-shared		\
 		--disable-bsdtar --disable-dependency-tracking		\
 	&& ${MAKE_PROGRAM}
   else

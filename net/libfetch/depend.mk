@@ -52,7 +52,8 @@ LIBFETCH_FILESDIR=	${PKGSRCDIR}/net/libfetch/dist
 LIBFETCH_SRCDIR=	${WRKDIR}/libfetch
 
 CPPFLAGS+=	-I${LIBFETCH_SRCDIR}
-LDFLAGS+=	-L${LIBFETCH_SRCDIR} -lfetch
+LDFLAGS+=	-L${LIBFETCH_SRCDIR}
+LIBS+=		-lfetch
 
 post-extract: libfetch-extract
 libfetch-extract:

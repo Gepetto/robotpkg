@@ -29,7 +29,8 @@ LIBNBCOMPAT_FILESDIR=	${PKGSRCDIR}/pkgtools/libnbcompat/dist
 LIBNBCOMPAT_SRCDIR=	${WRKDIR}/libnbcompat
 
 CPPFLAGS+=	-I${LIBNBCOMPAT_SRCDIR}
-LDFLAGS+=	-L${LIBNBCOMPAT_SRCDIR} -lnbcompat
+LDFLAGS+=	-L${LIBNBCOMPAT_SRCDIR}
+LIBS+=		 -lnbcompat
 
 post-extract: libnbcompat-extract
 libnbcompat-extract:
