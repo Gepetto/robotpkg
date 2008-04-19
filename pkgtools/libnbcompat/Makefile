@@ -1,16 +1,20 @@
-# $NetBSD: Makefile,v 1.48 2007/05/07 16:38:47 joerg Exp $
 #
+# Copyright (C) 2008 LAAS/CNRS
+#
+# Authored by Anthony Mallet on Fri Apr 18 2008
+# From  $NetBSD: Makefile,v 1.48 2007/05/07 16:38:47 joerg Exp $
+#
+
 # NOTE: If you update this package, it is *mandatory* that you update
 # 	pkgsrc/pkgtools/libnbcompat/files/README to reflect the actual
 #	list of tested and supported platforms.
-#
 
-DISTNAME=		libnbcompat-20070507
+DISTNAME=		libnbcompat-20080416
 CATEGORIES=		pkgtools devel
 MASTER_SITES=		# empty
 DISTFILES=		# empty
 
-MAINTAINER=		grant@NetBSD.org
+MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.NetBSD.org/
 COMMENT=		Portable NetBSD compatibility library
 
