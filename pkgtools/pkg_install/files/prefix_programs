@@ -27,14 +27,14 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-prefix=robot
-
 # compute sed command
+prefix=robot
 subst=
-for s in add admin create delete info view summary; do
+for s in add admin create delete info view summary audit-packages; do
     subst="$subst -e 's|${prefix}pkg_$s|pkg_$s|g'"
     subst="$subst -e 's|pkg_$s|${prefix}pkg_$s|g'"
 done
+subst="$subst -e 's|pkgsrc|robotpkg|g'"
 
 # replace files
 find . -type f | while read f; do

@@ -1,0 +1,17 @@
+--- lib/Makefile.in~	2008-04-19 11:08:04.000000000 +0200
++++ lib/Makefile.in	2008-04-19 13:02:47.000000000 +0200
+@@ -32,11 +32,11 @@
+ 	path.o pen.o pexec.o pkgdb.o plist.o \
+ 	str.o var.o version.o vulnerabilities-file.o
+ 
+-.if !empty(BOOTSTRAP)
++ifneq (,$(BOOTSTRAP))
+ CPPFLAGS+=	-DBOOTSTRAP
+-.else
++else
+ OBJS+=	pkg_io.o
+-.endif
++endif
+ 
+ all: $(LIB)
+ 

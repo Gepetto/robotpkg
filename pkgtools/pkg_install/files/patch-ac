@@ -1,0 +1,23 @@
+--- admin/Makefile.in~	2008-04-19 13:15:51.000000000 +0200
++++ admin/Makefile.in	2008-04-19 13:18:01.000000000 +0200
+@@ -24,17 +24,17 @@
+ 
+ PROG=		robotpkg_admin
+ 
+-.if empty(BOOTSTRAP)
++ifeq (,$(BOOTSTRAP))
+ LIBS=		-linstall -lbz2 -lfetch -lz @LIBS@
+ OBJS=		audit.o check.o config.o main.o
+ CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib \
+ 		-DSYSCONFDIR=\"$(sysconfdir)\"
+-.else
++else
+ LIBS=		-linstall @LIBS@
+ OBJS=		check.o config.o main.o
+ CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBOOTSTRAP \
+ 		-DSYSCONFDIR=\"$(sysconfdir)\"
+-.endif
++endif
+ 
+ all: $(PROG)
+ 
