@@ -154,6 +154,7 @@ $(foreach _pkg_,${_DPD_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
 # The prefix of robotpkg packages is computed later in this file, after
 # the barrier.
 #
+hline="===================================================================="
 override define _dpd_sysprefix
   ifndef PREFIX.${1}
     ifeq (,$$(filter robotpkg,$${PREFER.${1}}))
@@ -171,11 +172,12 @@ PKG_FAIL_REASON+= ${_MAKECONF}
   ifeq (,$$(filter robotpkg,$${PREFER.${1}}))
 _list:=$$(call pathsearch,$${SYSTEM_SEARCH.${1}},$${PREFIX.${1}})
     ifneq ($$(words $${SYSTEM_SEARCH.${1}}),$$(words $${_list}))
-PKG_FAIL_REASON+= "==================================================="
+PKG_FAIL_REASON+= ${hline}
 PKG_FAIL_REASON+= "The package ${PKGNAME} requires ${1} from the system."
 PKG_FAIL_REASON+= "However, the following files could not be found:"
-$$(foreach f,$$(filter-out $$(patsubst $${_prefix}/%,%,$${_list}),\
-	$${SYSTEM_SEARCH.${1}}),$$(eval PKG_FAIL_REASON+="		$${f}"))
+$$(foreach f,$$(foreach t,$${SYSTEM_SEARCH.${1}},\
+	$$(if $$(call pathsearch,$${t},$${PREFIX.${1}}),,$${t})),\
+	$$(eval PKG_FAIL_REASON+="		$${f}"))
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "The search was performed in \$$$${SYSTEM_PREFIX}:"
       ifdef SYSTEM_PREFIX
@@ -184,16 +186,19 @@ $$(foreach d,${SYSTEM_PREFIX},$$(eval PKG_FAIL_REASON+="		$${d}"))
 PKG_FAIL_REASON+= "		(empty)"
       endif
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "In order to fix the problem, you can modify your"
-PKG_FAIL_REASON+= ${_MAKECONF}
+PKG_FAIL_REASON+= "In order to fix the problem, you should install ${1}"
+PKG_FAIL_REASON+= "in your system. You can also modify your"
+PKG_FAIL_REASON+= "		${_MAKECONF}"
 PKG_FAIL_REASON+= "and define either of the following variables:"
 PKG_FAIL_REASON+= "	- PREFIX.${1}, set to the prefix path of your"
 PKG_FAIL_REASON+= "	  ${1} system package"
 PKG_FAIL_REASON+= "	- SYSTEM_PREFIX, set to a list of system directories"
 PKG_FAIL_REASON+= "	  to search for system files"
-PKG_FAIL_REASON+= "	- PREFER.${1}=\"robotpkg\", to use the robotpkg"
+PKG_FAIL_REASON+= "	- PREFER.${1}=robotpkg, to use the robotpkg"
 PKG_FAIL_REASON+= "	  package for ${1}"
-PKG_FAIL_REASON+= "==================================================="
+PKG_FAIL_REASON+= ${hline}
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "*** ${1} package not found. (see above)"
     endif
   endif
 endef
