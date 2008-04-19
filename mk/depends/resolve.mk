@@ -130,16 +130,21 @@ endef
 $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_pkgadd,${_pkg_})))
 
 # Add the proper dependency on each package pulled in by depend.mk
-# files.  DEPEND_METHOD.<pkg> contains a list of either "full" or
-# "build", and if any of that list is "full" then we use a full dependency
-# on <pkg>, otherwise we use a build dependency on <pkg>.
+# files.  DEPEND_METHOD.<pkg> contains a list of either "full", "build"
+# or "bootstrap". If any of that list is "full" then we use a full
+# dependency on <pkg>, otherwise we use a build dependency on <pkg>.
 #
 define _dpd_adddep
   ifneq (,$$(filter full,${DEPEND_METHOD.${1}}))
-DEPENDS+=	${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
-  endif
-  ifneq (,$$(filter build,${DEPEND_METHOD.${1}}))
-BUILD_DEPENDS+=	${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
+DEPENDS+=		${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
+  else
+    ifneq (,$$(filter build,${DEPEND_METHOD.${1}}))
+BUILD_DEPENDS+=		${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
+    else
+      ifneq (,$$(filter bootstrap,${DEPEND_METHOD.${1}}))
+BOOTSTRAP_DEPENDS+=	${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
+      endif
+    endif
   endif
 endef
 $(foreach _pkg_,${_DPD_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
