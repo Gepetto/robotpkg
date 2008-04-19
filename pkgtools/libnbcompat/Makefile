@@ -31,4 +31,4 @@ PKG_DELETE=		PKG_DBDIR=${_PKG_DBDIR} ${PKG_DELETE_CMD}
 include ../../mk/robotpkg.mk
 
 do-extract:
-	@${CP} -R ${FILESDIR} ${WRKSRC}
+	@${CP} -Rp ${CURDIR}/dist ${WRKSRC}
