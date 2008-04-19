@@ -46,11 +46,14 @@ FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
 VERSION=		$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
 				${CURDIR}/dist/lib/version.h)
 
+LIBFETCH_STYLE=		inplace
+
 include ../../pkgtools/libnbcompat/depend.mk
+include ../../net/libfetch/depend.mk
 include ../../mk/robotpkg.mk
 
 do-extract:
-	@${CP} -Rp ${CURDIR}/dist ${WRKSRC}
+	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
 # Reverse the order that update does things since we need pkg_delete
 # built before we can deinstall.
