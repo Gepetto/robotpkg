@@ -338,7 +338,7 @@ echo_msg "Registering installed packages"
 # yes)	register_package "pkgtools/tnftp";;
 # esac
 #register_package "pkgtools/pax"
-register_package "pkgtools/pkg_install"
+#register_package "pkgtools/pkg_install"
 
 # Install sample config file.
 mkdir_p ${sysconfdir}
