@@ -199,11 +199,14 @@ else
     check_prog cpprog cp
 fi
 
-# set up an example mk.conf file
-MKCONF_EXAMPLE=${wrkdir}/robotpkg.conf.example
-export MKCONF_EXAMPLE
+
+# --- set up an example mk.conf file ---------------------------------
+
+export MKCONF_EXAMPLE=${wrkdir}/robotpkg.conf.example
+
 echo_msg "Creating robotpkg.conf.example in ${wrkdir}"
-echo "# Example ${sysconfdir}/mk.conf file produced by bootstrap-robotpkg" > ${MKCONF_EXAMPLE}
+mkdir_p ${wrkdir}
+echo "# Example ${sysconfdir}/mk.conf file produced by robotpkg/bootstrap" > ${MKCONF_EXAMPLE}
 echo "# `date`" >> ${MKCONF_EXAMPLE}
 echo "" >> ${MKCONF_EXAMPLE}
 
