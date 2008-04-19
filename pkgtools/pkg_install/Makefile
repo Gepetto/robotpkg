@@ -48,6 +48,7 @@ VERSION=		$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
 
 
 # depend on these with the "inplace" style for bootstrap
+LIBNBCOMPAT_CONFIGURE_ARGS+=	--enable-bsd-getopt
 LIBNBCOMPAT_STYLE=	inplace
 include ../../pkgtools/libnbcompat/depend.mk
 ZLIB_STYLE=		inplace

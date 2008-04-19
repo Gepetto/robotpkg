@@ -43,8 +43,9 @@ libnbcompat-build:
 	${RUN}								\
 	cd ${LIBNBCOMPAT_SRCDIR} && 					\
 	${SETENV} AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
-		CPPFLAGS="${CPPFLAGS}" ${CONFIG_SHELL} configure &&	\
-	${MAKE_PROGRAM}
+		CPPFLAGS="${CPPFLAGS}" ${CONFIG_SHELL} configure	\
+		${LIBNBCOMPAT_CONFIGURE_ARGS}				\
+	&& ${MAKE_PROGRAM}
   else
   # This is the regular version of libnbcompat package, for normal install
   #
