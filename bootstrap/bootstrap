@@ -199,14 +199,6 @@ else
     check_prog cpprog cp
 fi
 
-
-
-# build libnbcompat
-echo_msg "Building libnbcompat"
-copy_src $pkgsrcdir/pkgtools/libnbcompat/files libnbcompat
-run_cmd "(cd $wrkdir/libnbcompat; \
-    $shprog ./configure -C --prefix=$prefix --mandir=$mandir --sysconfdir=$sysconfdir && $gmake)"
-
 # set up an example mk.conf file
 MKCONF_EXAMPLE=${wrkdir}/robotpkg.conf.example
 export MKCONF_EXAMPLE
@@ -234,6 +226,18 @@ echo "" >> ${MKCONF_EXAMPLE}
 mkdir_p $prefix $pkgdbdir $prefix/sbin
 mkdir_p $mandir/man1 $mandir/cat1
 mkdir_p $mandir/man8 $mandir/cat8
+
+
+# --- build libnbcompat ----------------------------------------------
+
+echo_msg "Building libnbcompat"
+copy_src $pkgsrcdir/pkgtools/libnbcompat/dist libnbcompat
+run_cmd "(						\
+    cd $wrkdir/libnbcompat;				\
+    $shprog ./configure -C $configure_quiet_flags	\
+	--prefix=$prefix				\
+    && $gmake						\
+)"
 
 
 # --- boostrap ftp if needed -----------------------------------------
@@ -356,17 +360,15 @@ echo ""
 echo "      ${sysconfdir}/robotpkg.conf"
 echo ""
 echo "You can start building packages by changing to some package directory"
-echo "and then doing ${gmake} update in that directory."
+echo "and then doing \"${gmake} update\" in that directory."
 #echo
 #echo "You can find extensive documentation of the robotics packages collection"
 #echo "in $pkgsrcdir/doc/robotpkg.txt."
-echo
+echo ""
 echo "==> Please either add $prefix/sbin to your PATH variable"
 echo "or, alternatively, set the ROBOTPKG_BASE variable to $prefix"
 echo "in your environment. Otherwise robotpkg won't work."
-echo "You can optionnaly add $prefix/bin to your PATH"
-echo "environment variable, if necessary."
-echo
+echo ""
 echo "Thank you"
 echo ""
 echo "$hline"
