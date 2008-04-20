@@ -36,7 +36,7 @@ DEPEND_PKG+=		libarchive
 endif
 
 ifeq (+,$(LIBARCHIVE_DEPEND_MK))
-PREFER.libarchive?=		system
+PREFER.libarchive?=		robotpkg
 
 SYSTEM_SEARCH.libarchive=	\
 	include/archive.h	\
