@@ -176,7 +176,7 @@ ifdef PKG_SUPPORTED_OPTIONS
 	@${ECHO} Any of the following general options may be selected:
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _opt_,$(sort ${PKG_SUPPORTED_OPTIONS}),			\
-	${ECHO} "	"$(call quote,${_opt_})"	"${PKG_OPTION.${_opt_}};\
+	${ECHO} "	"$(call quote,${_opt_})"	"$(call quote,${PKG_OPTION.${_opt_}});\
 )
 	@${ECHO}
 	@${ECHO} "These options are enabled by default:"
