@@ -58,7 +58,7 @@
 # replace.mk magic to set the TOOLS_DIGEST and DIGEST variables.
 #
 
-DIGEST_REQD?=		20010302
+DIGEST_REQD?=		20070803
 TOOLS_DIGEST=		$(PKG_TOOLS_BIN)/robotpkg_digest
 
 ifndef TOOLS_IGNORE.digest
