@@ -243,58 +243,6 @@ run_cmd "(						\
 )"
 
 
-# --- boostrap ftp if needed -----------------------------------------
-
-# if [ -z "$fetch_cmd" ]; then
-# 	need_ftp=yes
-# else
-# 	need_ftp=no
-# fi
-
-# case "$need_ftp" in
-# yes)
-# 	fetch_cmd="$prefix/sbin/robotpkg_ftp"
-# 	echo_msg "Installing tnftp"
-# 	copy_src $pkgsrcdir/pkgtools/tnftp/dist tnftp
-# 	run_cmd "(							\
-# 	    cd $wrkdir/tnftp;						\
-# 	    env $BSTRAP_ENV						\
-# 	    $shprog ./configure $configure_quiet_flags			\
-# 		--prefix=$prefix --mandir=$mandir --bindir=$prefix/sbin	\
-# 		--program-transform-name='s/^/robotpkg_/'		\
-# 	    && $gmake && $gmake install					\
-# 	)"
-# 	;;
-# esac
-
-# pkg_install_args="$pkg_install_args --with-ftp=$fetch_cmd"
-
-# FETCH_CMD="$fetch_cmd"
-# export FETCH_CMD
-# echo "FETCH_CMD=			$fetch_cmd" >> ${MKCONF_EXAMPLE}
-
-
-# --- boostrap pax if needed -----------------------------------------
-
-# echo_msg "Installing pax"
-# copy_src $pkgsrcdir/pkgtools/pax/dist pax
-# run_cmd "(							\
-#     cd $wrkdir/pax;						\
-#     env $BSTRAP_ENV						\
-# 	CPPFLAGS='$CPPFLAGS -I../libnbcompat'			\
-# 	LDFLAGS='$LDFLAGS -L../libnbcompat'			\
-# 	LIBS='-lnbcompat'					\
-#     $shprog ./configure $configure_quiet_flags			\
-# 	--prefix=$prefix --mandir=$mandir --bindir=$prefix/sbin	\
-# 	--program-transform-name='s/^/robotpkg_/'		\
-#     && $gmake && $gmake install					\
-# )"
-# echo "TOOLS_PLATFORM.pax?=		$prefix/sbin/robotpkg_pax" >> ${MKCONF_EXAMPLE}
-# echo "TOOLS_PLATFORM.tar?=		$prefix/sbin/robotpkg_tar" >> ${MKCONF_EXAMPLE}
-# pkg_install_args="$pkg_install_args --with-pax=$prefix/sbin/robotpkg_pax"
-# pkg_install_args="$pkg_install_args --with-tar=$prefix/sbin/robotpkg_tar"
-
-
 # --- bootstrap pkg_install ------------------------------------------
 
 # This will install a minimal version of the robotpkg_admin tools.
@@ -309,13 +257,24 @@ run_cmd "(							\
     CPPFLAGS='$CPPFLAGS -I../libnbcompat -I../../libnbcompat'	\
     LDFLAGS='$LDFLAGS -L../libnbcompat -L../../libnbcompat'	\
     LIBS='-lnbcompat'						\
-    $shprog ./configure $configure_quiet_flags			\
+    $shprog ./configure -C $configure_quiet_flags		\
 	--enable-bootstrap					\
 	--prefix=$prefix --sysconfdir=$sysconfdir		\
 	--with-pkgdbdir=$pkgdbdir --mandir=$mandir		\
 	$pkg_install_args					\
     && $gmake && $gmake install					\
 )"
+
+# Register the installed package, with version = 0 so that the regular
+# package will be fetched automatically when installing other software.
+echo_msg "Registering installed package"
+run_cmd "(							\
+    cd $pkgsrcdir/pkgtools/pkg_install &&			\
+    $gmake MAKECONF=${MKCONF_EXAMPLE} VERSION=0			\
+	WRKSRC=$wrkdir/pkg_install PLIST_SRC=PLIST.bootstrap	\
+	bootstrap-register					\
+)"
+
 
 # preserve compiler and tool environment variables settings
 test -z "$CP" || echo "TOOLS_PLATFORM.cp?=		$CP" >> ${MKCONF_EXAMPLE}
@@ -334,22 +293,14 @@ test -z "$LDFLAGS" || echo "LDFLAGS+=		$LDFLAGS" >> ${MKCONF_EXAMPLE}
 
 echo "" >> ${MKCONF_EXAMPLE}
 
-# register packages
-# usage: register_package <packagedirectory> [additional arguments]
-register_package() {
-	run_cmd "(cd $pkgsrcdir/$1 && $gmake MAKECONF=${MKCONF_EXAMPLE} WRKOBJDIR=${wrkobjdir} ${2-} bootstrap-register)"
-}
-
-echo_msg "Registering installed packages"
-# case "$need_ftp" in
-# yes)	register_package "pkgtools/tnftp";;
-# esac
-#register_package "pkgtools/pax"
-#register_package "pkgtools/pkg_install"
 
 # Install sample config file.
 mkdir_p ${sysconfdir}
 run_cmd $cpprog ${MKCONF_EXAMPLE} ${sysconfdir}/robotpkg.conf 
+
+# --- cleanup --------------------------------------------------------
+
+run_cmd ${bootstrapdir}/cleanup
 
 hline="==========================================================================="
 echo ""
