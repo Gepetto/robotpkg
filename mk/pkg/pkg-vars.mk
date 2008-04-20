@@ -44,40 +44,55 @@
 # Authored by Anthony Mallet on Thu Dec  7 2006
 
 # This Makefile fragment is included indirectly by robotpkg.mk and
-# defines some variables which must be defined early defined
+# defines some variables which must be defined early.
 
-# Every package needs the robotpkg_* admin tools, except for the
-# pkg_install package itself, of course...
-ifneq (pkgtools/pkg_install,${PKGPATH})
+# Every package needs the robotpkg_* admin tools, except for those
+# who define NO_PKGTOOLS_REQD_CHECK. In that case, we still test the
+# presence of a robotpkg_info tool below and fail if really nothing can
+# be found. This switch is required for the bootstrap process only.
+ifndef NO_PKGTOOLS_REQD_CHECK
   include ${PKGSRCDIR}/pkgtools/pkg_install/depend.mk
 endif
-
-# This is the default package database directory
-PKG_DBDIR?=		/usr/openrobots/var/db/pkg
-
-_PKG_DBDIR=		${PKG_DBDIR}
-PKGTOOLS_ARGS?=		-K ${_PKG_DBDIR}
 
 PKG_ADD_CMD?=		${PKG_TOOLS_BIN}/robotpkg_add
 PKG_ADMIN_CMD?=		${PKG_TOOLS_BIN}/robotpkg_admin
 PKG_CREATE_CMD?=	${PKG_TOOLS_BIN}/robotpkg_create
 PKG_DELETE_CMD?=	${PKG_TOOLS_BIN}/robotpkg_delete
 PKG_INFO_CMD?=		${PKG_TOOLS_BIN}/robotpkg_info
-PKG_VIEW_CMD?=		${PKG_TOOLS_BIN}/pkg_view
-LINKFARM_CMD?=		${PKG_TOOLS_BIN}/linkfarm
 
 ifndef PKGTOOLS_VERSION
-PKGTOOLS_VERSION=	$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo 20010302)
+PKGTOOLS_VERSION:=	$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo 0)
 MAKEFLAGS+=		PKGTOOLS_VERSION=${PKGTOOLS_VERSION}
 endif
+
+ifneq (pkgtools/pkg_install,${PKGPATH})
+ifeq (0,${PKGTOOLS_VERSION})
+_PKGTOOLS_ERROR:=	$(shell ${PKG_INFO_CMD} -V 2>&1 ||:)
+
+hline="===================================================================="
+PKG_FAIL_REASON+= ${hline}
+PKG_FAIL_REASON+= "The robotpkg administrative tools are not working."
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "Please make sure that <prefix>/sbin is in your PATH or"
+PKG_FAIL_REASON+= "that you have set the ROBOTPKG_BASE variable to <prefix>"
+PKG_FAIL_REASON+= "in your environment, where <prefix> is the installation"
+PKG_FAIL_REASON+= "prefix that you configured during bootstrap."
+PKG_FAIL_REASON+= ${hline}
+PKG_FAIL_REASON+= "${_PKGTOOLS_ERROR}. (see above)"
+endif
+endif
+
+# This is the default package database directory
+PKG_DBDIR?=	/usr/openrobots/var/db/pkg
+
+_PKG_DBDIR=	${PKG_DBDIR}
+PKGTOOLS_ARGS?=	-K ${_PKG_DBDIR}
 
 PKG_ADD?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_ADD_CMD} ${PKGTOOLS_ARGS}
 PKG_ADMIN?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_ADMIN_CMD} ${PKGTOOLS_ARGS}
 PKG_CREATE?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_CREATE_CMD} ${PKGTOOLS_ARGS}
 PKG_DELETE?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_DELETE_CMD} ${PKGTOOLS_ARGS}
 PKG_INFO?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_INFO_CMD} ${PKGTOOLS_ARGS}
-PKG_VIEW?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_VIEW_CMD} ${PKG_VIEW_ARGS}
-LINKFARM?=	${LINKFARM_CMD}
 
 # "${_PKG_BEST_EXISTS} pkgpattern" prints out the name of the installed
 # package that best matches pkgpattern.  Use this instead of
@@ -86,10 +101,6 @@ LINKFARM?=	${LINKFARM_CMD}
 #
 _PKG_BEST_EXISTS?=	${PKG_ADMIN} -b -d ${_PKG_DBDIR} -S lsbest
 
-# XXX Leave this here until all uses of this have been purged from the
-# XXX public parts of pkgsrc.
-# XXX
-PKG_BEST_EXISTS=	${_PKG_BEST_EXISTS}
 
 include ${PKGSRCDIR}/mk/pkg/depends.mk
 include ${PKGSRCDIR}/mk/pkg/metadata.mk
