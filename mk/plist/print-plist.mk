@@ -80,7 +80,7 @@ endif
 .PHONY: print-PLIST
 print-PLIST:
 	${_PKG_SILENT}${_PKG_DEBUG}\
-	${ECHO} '@comment $$'Id:'$$'
+	${ECHO} '@comment '`${DATE}`
 	${_PKG_SILENT}${_PKG_DEBUG}\
 	${_PRINT_PLIST_FILES_CMD}					\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
