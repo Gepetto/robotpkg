@@ -43,7 +43,7 @@
 
 #
 # The following variables may be set in a package Makefile and control
-# how pkgsrc patches are applied.
+# how robotpkg patches are applied.
 #
 #    PATCH_STRIP is a patch(1) argument that sets the pathname strip
 #	count to help find the correct files to patch.  See the patch(1)
@@ -292,7 +292,7 @@ _PKGSRC_PATCHES+=	$(wildcard ${PATCHDIR}/patch-*)
 endif
 
 pkgsrc-patch-message:
-	@${STEP_MSG} "Applying pkgsrc patches for ${PKGNAME}"
+	@${STEP_MSG} "Applying robotpkg patches for ${PKGNAME}"
 
 do-pkgsrc-patch:
 	${_PKG_SILENT}${_PKG_DEBUG}					\
