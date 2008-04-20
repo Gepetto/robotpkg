@@ -33,14 +33,16 @@ ${foreach _conflict_,${CONFLICTS},					\
 #
 .PHONY: pkg-install-check-installed
 pkg-install-check-installed:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`";	\
-	${TEST} -n "$$found" || exit 0;					\
+	${_PKG_SILENT}${_PKG_DEBUG}						\
+	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`";		\
+	${TEST} -n "$$found" || exit 0;						\
 	${ERROR_MSG} "$$found is already installed - perhaps an older version?";\
-	${ERROR_MSG} "If so, you may use either of:";			\
+	${ERROR_MSG} "If so, you may use either of:";				\
+	if test -z "${PKG_PRESERVE}"; then					\
 	${ERROR_MSG} "    - \"robotpkg_delete $$found\" and \"${MAKE} reinstall\"";\
 	${ERROR_MSG} "      to upgrade properly";				\
-	${ERROR_MSG} "    - \"${MAKE} update\" to rebuild the package and all";\
+	fi;									\
+	${ERROR_MSG} "    - \"${MAKE} update\" to rebuild the package and all";	\
 	${ERROR_MSG} "      of its dependencies";				\
 	${ERROR_MSG} "    - \"${MAKE} replace\" to replace only the package without";\
 	${ERROR_MSG} "      re-linking dependencies, risking various problems.";\
