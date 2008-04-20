@@ -75,7 +75,6 @@ do-extract:
 # built before we can deinstall.
 do-update:
 	${MAKE} build
-	${MAKE} deinstall _UPDATE_RUNNING=YES
 	${MAKE} ${UPDATE_TARGET}
 	${MAKE} clean
 
