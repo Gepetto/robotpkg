@@ -1,4 +1,4 @@
-/*	$NetBSD: md5.h,v 1.2 2002/12/21 04:06:14 schmonz Exp $	*/
+/*	$NetBSD: md5.h,v 1.6 2007/09/21 18:44:36 joerg Exp $	*/
 
 /*
  * This file is derived from the RSA Data Security, Inc. MD5 Message-Digest
@@ -32,21 +32,29 @@
 #ifndef _SYS_MD5_H_
 #define _SYS_MD5_H_
 
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#endif
+
+#ifdef HAVE_STDINT_H
+#include <stdint.h>
+#endif
+
 /* MD5 context. */
 typedef struct MD5Context {
-	u_int32_t state[4];	/* state (ABCD) */
-	u_int32_t count[2];	/* number of bits, modulo 2^64 (lsb first) */
+	uint32_t state[4];	/* state (ABCD) */
+	uint32_t count[2];	/* number of bits, modulo 2^64 (lsb first) */
 	unsigned char buffer[64]; /* input buffer */
 } MD5_CTX;
 
 __BEGIN_DECLS
-void	MD5Init __P((MD5_CTX *));
-void	MD5Update __P((MD5_CTX *, const unsigned char *, unsigned int));
-void	MD5Final __P((unsigned char[16], MD5_CTX *));
+void	MD5Init(MD5_CTX *);
+void	MD5Update(MD5_CTX *, const uint8_t *, size_t);
+void	MD5Final(unsigned char[16], MD5_CTX *);
 #ifndef _KERNEL
-char	*MD5End __P((MD5_CTX *, char *));
-char	*MD5File __P((const char *, char *));
-char	*MD5Data __P((const unsigned char *, unsigned int, char *));
+char	*MD5End(MD5_CTX *, char *);
+char	*MD5File(const char *, char *);
+char	*MD5Data(const uint8_t *, size_t, char *);
 #endif /* _KERNEL */
 __END_DECLS
 

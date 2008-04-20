@@ -1,34 +1,36 @@
-# $NetBSD: Makefile,v 1.52 2006/11/02 18:02:07 joerg Exp $
 #
-# When adding new digest algorithms, please use rmd160 as the template,
-# and bump the VERSION definition.
+# Copyright (C) 2008 LAAS/CNRS
+#
+# Authored by Anthony Mallet on Fri Apr 18 2008
+# From $NetBSD: Makefile,v 1.52 2006/11/02 18:02:07 joerg Exp $
+#
+# This version of digest installs into ${PKG_TOOLS_BIN} as robotpkg_digest.
+#
 
 DISTNAME?=	digest-${VERSION}
 CATEGORIES=	pkgtools
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 
-MAINTAINER?=	agc@NetBSD.org
-HOMEPAGE?=	http://www.NetBSD.org/Documentation/software/packages.html
-COMMENT?=	Message digest wrapper utility
+MAINTAINER=	openrobots@laas.fr
+HOMEPAGE=	http://www.NetBSD.org/Documentation/software/packages.html
+COMMENT=	Message digest wrapper utility
+
+NO_CHECKSUM=	yes
 
 GNU_CONFIGURE=		yes
-
-NO_PKGTOOLS_REQD_CHECK=	yes
-NO_CHECKSUM=		yes
-NO_MTREE=		yes
+CONFIGURE_ARGS+=	--bindir=${PKG_TOOLS_BIN}
+CONFIGURE_ARGS+=	--program-transform-name='s/^/robotpkg_/'
 
 include ../../mk/robotpkg.prefs.mk
 
-VERSION=$(shell	${AWK} -F "'" '/^PACKAGE_VERSION=/ {print $$2}' ${FILESDIR}/configure)
+VERSION:=	$(shell	${AWK} -F "'" '/^PACKAGE_VERSION=/ {print $$2}' \
+			${CURDIR}/dist/configure)
 
 include ../../mk/robotpkg.mk
 
 do-extract:
-	@${CP} -R ${FILESDIR} ${WRKSRC}
-
-pre-install:
-	-@${MKDIR} ${DESTDIR}${PKG_DBDIR}
+	@${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
 do-test:
 	@${ECHO} "No news is good news"

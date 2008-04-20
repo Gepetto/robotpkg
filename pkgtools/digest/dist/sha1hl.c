@@ -1,4 +1,4 @@
-/*	$NetBSD: sha1hl.c,v 1.4 2002/12/21 04:06:15 schmonz Exp $	*/
+/*	$NetBSD: sha1hl.c,v 1.7 2007/09/21 18:44:37 joerg Exp $	*/
 
 /* sha1hl.c
  * ----------------------------------------------------------------------------
@@ -14,8 +14,6 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
-
-#include <digest-types.h>
 
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>
@@ -35,28 +33,20 @@
 #endif
 
 #if defined(LIBC_SCCS) && !defined(lint)
-__RCSID("$NetBSD: sha1hl.c,v 1.4 2002/12/21 04:06:15 schmonz Exp $");
+__RCSID("$NetBSD: sha1hl.c,v 1.7 2007/09/21 18:44:37 joerg Exp $");
 #endif /* LIBC_SCCS and not lint */
 
 #ifndef _DIAGASSERT
 #define _DIAGASSERT(cond)	assert(cond)
 #endif
 
-#if 0
-__weak_alias(SHA1End,_SHA1End)
-__weak_alias(SHA1File,_SHA1File)
-__weak_alias(SHA1Data,_SHA1Data)
-#endif
-
 /* ARGSUSED */
 char *
-SHA1End(ctx, buf)
-    SHA1_CTX *ctx;
-    char *buf;
+SHA1End(SHA1_CTX *ctx, char *buf)
 {
     int i;
     char *p = buf;
-    u_char digest[20];
+    uint8_t digest[20];
     static const char hex[]="0123456789abcdef";
 
     _DIAGASSERT(ctx != NULL);
@@ -67,7 +57,7 @@ SHA1End(ctx, buf)
 
     SHA1Final(digest,ctx);
     for (i = 0; i < 20; i++) {
-	p[i + i] = hex[((u_int32_t)digest[i]) >> 4];
+	p[i + i] = hex[((uint32_t)digest[i]) >> 4];
 	p[i + i + 1] = hex[digest[i] & 0x0f];
     }
     p[i + i] = '\0';
@@ -75,13 +65,12 @@ SHA1End(ctx, buf)
 }
 
 char *
-SHA1File (filename, buf)
-    char *filename;
-    char *buf;
+SHA1File(char *filename, char *buf)
 {
-    u_char buffer[BUFSIZ];
+    uint8_t buffer[BUFSIZ];
     SHA1_CTX ctx;
-    int fd, num, oerrno;
+    int fd, oerrno;
+    size_t num;
 
     _DIAGASSERT(filename != NULL);
     /* XXX: buf may be NULL ? */
@@ -101,10 +90,7 @@ SHA1File (filename, buf)
 }
 
 char *
-SHA1Data (data, len, buf)
-    const u_char *data;
-    size_t len;
-    char *buf;
+SHA1Data(const uint8_t *data, size_t len, char *buf)
 {
     SHA1_CTX ctx;
 

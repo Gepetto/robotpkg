@@ -1,4 +1,4 @@
-/*	$NetBSD: md5hl.c,v 1.4 2003/06/23 13:12:53 atatat Exp $	*/
+/*	$NetBSD: md5hl.c,v 1.6 2007/09/21 18:44:37 joerg Exp $	*/
 
 /*
  * Written by Jason R. Thorpe <thorpej@netbsd.org>, April 29, 1997.
@@ -9,8 +9,6 @@
 #include <config.h>
 #endif
 
-#include <digest-types.h>
-
 #define	MDALGORITHM	MD5
 
 /* #include "namespace.h" */
@@ -20,7 +18,7 @@
 #define _DIAGASSERT(cond)	assert(cond)
 #endif
 
-/*	$NetBSD: md5hl.c,v 1.4 2003/06/23 13:12:53 atatat Exp $	*/
+/*	$NetBSD: md5hl.c,v 1.6 2007/09/21 18:44:37 joerg Exp $	*/
 
 /*
  * ----------------------------------------------------------------------------
@@ -54,9 +52,7 @@
 #define	MDNAME(x)	CONCAT(MDALGORITHM,x)
 
 char *
-MDNAME(End)(ctx, buf)
-	MDNAME(_CTX) *ctx;
-	char *buf;
+MDNAME(End)(MDNAME(_CTX) *ctx, char *buf)
 {
 	int i;
 	unsigned char digest[16];
@@ -72,7 +68,7 @@ MDNAME(End)(ctx, buf)
 	MDNAME(Final)(digest, ctx);
 
 	for (i = 0; i < 16; i++) {
-		buf[i+i] = hex[(u_int32_t)digest[i] >> 4];
+		buf[i+i] = hex[(uint32_t)digest[i] >> 4];
 		buf[i+i+1] = hex[digest[i] & 0x0f];
 	}
 
@@ -87,7 +83,8 @@ MDNAME(File)(filename, buf)
 {
 	unsigned char buffer[BUFSIZ];
 	MDNAME(_CTX) ctx;
-	int f, i, j;
+	int f, j;
+	size_t i;
 
 	_DIAGASSERT(filename != 0);
 	/* buf may be NULL */
@@ -98,7 +95,7 @@ MDNAME(File)(filename, buf)
 		return NULL;
 
 	while ((i = read(f, buffer, sizeof(buffer))) > 0)
-		MDNAME(Update)(&ctx, buffer, (unsigned int)i);
+		MDNAME(Update)(&ctx, buffer, (size_t)i);
 
 	j = errno;
 	close(f);
@@ -111,10 +108,7 @@ MDNAME(File)(filename, buf)
 }
 
 char *
-MDNAME(Data)(data, len, buf)
-	const unsigned char *data;
-	unsigned int len;
-	char *buf;
+MDNAME(Data)(const uint8_t *data, size_t len, char *buf)
 {
 	MDNAME(_CTX) ctx;
 

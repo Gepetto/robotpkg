@@ -1,4 +1,4 @@
-/* $NetBSD: tiger.h,v 1.1 2005/03/22 10:16:15 agc Exp $ */
+/* $NetBSD: tiger.h,v 1.4 2007/09/21 18:44:38 joerg Exp $ */
 
 /*
  * Copyright © 2005 Alistair Crooks.  All rights reserved.
@@ -34,12 +34,20 @@
 #ifndef TIGER_H_
 #define TIGER_H_
 
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#endif
+
+#ifdef HAVE_STDINT_H
+#include <stdint.h>
+#endif
+
 typedef struct tiger_context_t {
 	uint64_t	ctx[3];
 } tiger_context_t;
 
 void TIGERInit(tiger_context_t *);
-void TIGERUpdate(tiger_context_t *, const uint8_t *, uint32_t);
+void TIGERUpdate(tiger_context_t *, const uint8_t *, size_t);
 void TIGERFinal(uint8_t *, tiger_context_t *);
 
 char *TIGEREnd(tiger_context_t *, char *);

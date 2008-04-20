@@ -1,4 +1,4 @@
-/*	$NetBSD: md5c.c,v 1.3 2002/12/21 04:06:14 schmonz Exp $	*/
+/*	$NetBSD: md5c.c,v 1.5 2007/09/21 18:44:36 joerg Exp $	*/
 
 /*
  * This file is derived from the RSA Data Security, Inc. MD5 Message-Digest
@@ -33,8 +33,6 @@
 #include <config.h>
 #endif
 
-#include <digest-types.h>
-
 #if defined(_KERNEL) || defined(_STANDALONE)
 #include <lib/libkern/libkern.h>
 #include <sys/param.h>
@@ -58,8 +56,8 @@
 #endif
 
 typedef unsigned char *POINTER;
-typedef u_int16_t UINT2;
-typedef u_int32_t UINT4;
+typedef uint16_t UINT2;
+typedef uint32_t UINT4;
 
 /*
  * Constants for MD5Transform routine.
@@ -93,10 +91,10 @@ __weak_alias(MD5Final,_MD5Final)
 #define _DIAGASSERT(cond)	assert(cond)
 #endif
 
-static void MD5Transform __P((UINT4 [4], const unsigned char [64]));
+static void MD5Transform(UINT4 [4], const unsigned char [64]);
 
-static void Encode __P((unsigned char *, UINT4 *, unsigned int));
-static void Decode __P((UINT4 *, const unsigned char *, unsigned int));
+static void Encode(unsigned char *, UINT4 *, unsigned int);
+static void Decode(UINT4 *, const unsigned char *, unsigned int);
 
 /*
  * Encodes input (UINT4) into output (unsigned char).  Assumes len is
@@ -186,8 +184,7 @@ static const unsigned char PADDING[64] = {
  * MD5 initialization. Begins an MD5 operation, writing a new context.
  */
 void
-MD5Init(context)
-	MD5_CTX *context;		/* context */
+MD5Init(MD5_CTX *context)
 {
 
 	_DIAGASSERT(context != 0);
@@ -207,10 +204,7 @@ MD5Init(context)
  * context.
  */
 void
-MD5Update(context, input, inputLen)
-	MD5_CTX *context;		/* context */
-	const unsigned char *input;	/* input block */
-	unsigned int inputLen;		/* length of input block */
+MD5Update(MD5_CTX *context, const uint8_t *input, size_t inputLen)
 {
 	unsigned int i, idx, partLen;
 
@@ -253,12 +247,11 @@ MD5Update(context, input, inputLen)
  * message digest and zeroing the context.
  */
 void
-MD5Final(digest, context)
-	unsigned char digest[16];	/* message digest */
-	MD5_CTX *context;		/* context */
+MD5Final(unsigned char digest[16], MD5_CTX *context)
 {
 	unsigned char bits[8];
-	unsigned int idx, padLen;
+	unsigned int idx;
+	size_t padLen;
 
 	_DIAGASSERT(digest != 0);
 	_DIAGASSERT(context != 0);

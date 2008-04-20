@@ -1,7 +1,7 @@
-dnl $Id: configure.ac,v 1.8 2006/08/29 13:43:11 joerg Exp $
+dnl $Id: configure.ac,v 1.13 2007/09/21 18:44:36 joerg Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.57)
-AC_INIT([nbsd-digest],[20060826],[agc@netbsd.org])
+AC_INIT([nbsd-digest],[20070803],[agc@netbsd.org])
 AC_CONFIG_SRCDIR([digest.c])
 AC_CONFIG_HEADER(config.h)
 AC_ARG_PROGRAM
@@ -24,28 +24,14 @@ AC_SUBST(AUTOHEADER)
 
 dnl Checks for header files.
 AC_HEADER_STDC
-AC_CHECK_HEADERS([errno.h fcntl.h inttypes.h locale.h machine/endian.h])
-AC_CHECK_HEADERS([stdlib.h sys/bitypes.h sys/byteorder.h sys/cdefs.h])
-AC_CHECK_HEADERS([sys/endian.h sys/file.h sys/param.h])
+AC_CHECK_HEADERS([errno.h fcntl.h inttypes.h locale.h stdlib.h])
+AC_CHECK_HEADERS([sys/cdefs.h sys/file.h sys/param.h])
 
-dnl Checks for typedefs, structures, and compiler characteristics.
-AC_C___ATTRIBUTE__
-AC_C_CONST
-AC_TYPE_SIZE_T
-AC_CHECK_TYPES([long long, int8_t, int16_t, int32_t, int64_t, u_int8_t, u_int16_t, u_int32_t, u_int64_t, uint8_t, uint16_t, uint32_t, uint64_t],[],[],
-[#if STDC_HEADERS
-#include <stdlib.h>
-#include <stddef.h>
-#endif
-#ifdef HAVE_INTTYPES_H
-#include <inttypes.h>
-#endif
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef HAVE_SYS_BITYPES_H
-#include <sys/bitypes.h>
-#endif])
+AC_TYPE_UINT8_T
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+
 AC_C_BIGENDIAN
 
 # Checks for library functions.
@@ -54,18 +40,20 @@ AC_FUNC_VPRINTF
 AC_CHECK_FUNCS([bcopy bzero memset memcpy setlocale])
 #
 AH_BOTTOM([
-
-#ifndef HAVE___ATTRIBUTE__
-# define __attribute__(x)
-#endif
-
 #ifdef HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
 
-#ifndef __IDSTRING
+#if defined(__GNUC__) && !defined(__IDSTRING)
+#if (__GNUC__ == 2 && __GNUC_MINOR >= 7) || (__GNUC__ > 2)
 # define __IDSTRING(name,string) \
        static const char name[] __attribute__((__unused__)) = string
+#endif
+#endif
+
+#ifndef __IDSTRING
+# define __IDSTRING(name,string) \
+       static const char name[] = string
 #endif
 
 #ifndef  __RCSID
@@ -74,14 +62,6 @@ AH_BOTTOM([
 
 #ifndef __COPYRIGHT
 # define __COPYRIGHT(_s) __IDSTRING(copyright,_s)
-#endif
-
-#ifndef __P
-# if defined(__STDC__) || defined(__cplusplus)
-#  define __P(protos)     protos          /* full-blown ANSI C */
-# else
-#  define __P(protos)     ()              /* traditional C preprocessor */
-# endif
 #endif
 
 #ifndef __CONCAT
@@ -110,38 +90,6 @@ AH_BOTTOM([
 
 #ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>
-#endif
-
-#ifdef HAVE_SYS_ENDIAN_H
-#include <sys/endian.h>
-#endif
-
-#ifdef HAVE_MACHINE_ENDIAN_H
-#include <machine/endian.h>
-#endif
-
-#ifdef HAVE_SYS_BYTEORDER_H
-#include <sys/byteorder.h>
-#endif
-
-#ifndef LITTLE_ENDIAN
-# define LITTLE_ENDIAN 1234
-#endif
-
-#ifndef BIG_ENDIAN
-# define BIG_ENDIAN    4321
-#endif
-
-#ifndef BYTE_ORDER
-# if defined(_BIG_ENDIAN)
-#  define BYTE_ORDER BIG_ENDIAN
-# elif defined(_LITTE_ENDIAN)
-#  define BYTE_ORDER LITTLE_ENDIAN
-# elif defined(WORDS_BIGENDIAN)
-#  define BYTE_ORDER BIG_ENDIAN
-# else 
-#  define BYTE_ORDER LITTLE_ENDIAN
-# endif
 #endif
 
 #if defined(HAVE_MEMSET)

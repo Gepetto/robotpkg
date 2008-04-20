@@ -11,8 +11,6 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <digest-types.h>
-
 #include "tiger.h"
 
 /* NOTE that this code is NOT FULLY OPTIMIZED for any  */
@@ -655,7 +653,7 @@ TIGERInit(tiger_context_t *tp)
 }
 
 void
-TIGERUpdate(tiger_context_t *tp, const uint8_t *data, uint32_t len)
+TIGERUpdate(tiger_context_t *tp, const uint8_t *data, size_t len)
 {
 	const uint64_t	*str = (const uint64_t *)data;
 	uint64_t         i;
@@ -663,7 +661,7 @@ TIGERUpdate(tiger_context_t *tp, const uint8_t *data, uint32_t len)
 	uint8_t		 temp[64];
 
 	for (i = len; i >= 64; i -= 64) {
-#if BYTE_ORDER == BIG_ENDIAN
+#ifdef WORDS_BIGENDIAN
 		for (j = 0; j < 64; j++) {
 			temp[j ^ 7] = ((uint8_t *) str)[j];
 		}
@@ -674,7 +672,7 @@ TIGERUpdate(tiger_context_t *tp, const uint8_t *data, uint32_t len)
 		str += 8;
 	}
 
-#if BYTE_ORDER == BIG_ENDIAN
+#ifdef WORDS_BIGENDIAN
 	for (j = 0; j < i; j++) {
 		temp[j ^ 7] = ((uint8_t *) str)[j];
 	}
@@ -749,7 +747,7 @@ TIGERFile(char *filename, char *buf)
 	tiger_context_t	ctx;
 	uint8_t		buffer[BUFSIZ];
 	int		fd;
-	int		num;
+	ssize_t		num;
 	int		oerrno;
 
 	TIGERInit(&ctx);
