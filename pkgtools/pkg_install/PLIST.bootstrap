@@ -1,18 +1,12 @@
 @comment Sat Apr 19 18:41:37 CEST 2008
-man/cat1/robotpkg_add.0
 man/cat1/robotpkg_admin.0
 man/cat1/robotpkg_create.0
-man/cat1/robotpkg_delete.0
 man/cat1/robotpkg_info.0
 man/cat5/robotpkg_summary.0
-man/man1/robotpkg_add.1
 man/man1/robotpkg_admin.1
 man/man1/robotpkg_create.1
-man/man1/robotpkg_delete.1
 man/man1/robotpkg_info.1
 man/man5/robotpkg_summary.5
-sbin/robotpkg_add
 sbin/robotpkg_admin
 sbin/robotpkg_create
-sbin/robotpkg_delete
 sbin/robotpkg_info
