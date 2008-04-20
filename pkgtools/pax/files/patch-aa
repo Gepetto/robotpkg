@@ -1,0 +1,33 @@
+--- Makefile.in~	2008-04-05 11:03:44.000000000 +0200
++++ Makefile.in	2008-04-19 11:48:25.000000000 +0200
+@@ -11,6 +11,8 @@
+ man1dir=	$(mandir)/man1
+ cat1dir=	$(mandir)/cat1
+ 
++transform=	@program_transform_name@
++
+ CC=		@CC@
+ CCLD=		$(CC)
+ LIBS=		@LIBS@
+@@ -47,12 +49,12 @@
+ 	$(INSTALL) -m 755 -d $(DESTDIR)$(bindir)
+ 	$(INSTALL) -m 755 -d $(DESTDIR)$(man1dir)
+ 	$(INSTALL) -m 755 -d $(DESTDIR)$(cat1dir)
+-	$(INSTALL) $(PROG) $(DESTDIR)$(bindir)
+-	ln -f $(DESTDIR)$(bindir)/$(PROG) $(DESTDIR)$(bindir)/cpio
+-	ln -f $(DESTDIR)$(bindir)/$(PROG) $(DESTDIR)$(bindir)/tar
+-	$(INSTALL) -m 444 $(PROG).1 $(DESTDIR)$(man1dir)/$(PROG).1
+-	$(INSTALL) -m 444 $(PROG).cat1 $(DESTDIR)$(cat1dir)/$(PROG).0
+-	$(INSTALL) -m 444 cpio.1 $(DESTDIR)$(man1dir)/cpio.1
+-	$(INSTALL) -m 444 cpio.cat1 $(DESTDIR)$(cat1dir)/cpio.0
+-	$(INSTALL) -m 444 tar.1 $(DESTDIR)$(man1dir)/tar.1
+-	$(INSTALL) -m 444 tar.cat1 $(DESTDIR)$(cat1dir)/tar.0
++	$(INSTALL) $(PROG) $(DESTDIR)$(bindir)/`echo ${PROG}|sed '$(transform)'`
++	ln -f $(DESTDIR)$(bindir)/`echo ${PROG}|sed '$(transform)'` $(DESTDIR)$(bindir)/`echo cpio|sed '$(transform)'`
++	ln -f $(DESTDIR)$(bindir)/`echo ${PROG}|sed '$(transform)'` $(DESTDIR)$(bindir)/`echo tar|sed '$(transform)'`
++	$(INSTALL) -m 444 $(PROG).1 $(DESTDIR)$(man1dir)/`echo ${PROG}|sed '$(transform)'`.1
++	$(INSTALL) -m 444 $(PROG).cat1 $(DESTDIR)$(cat1dir)/`echo ${PROG}|sed '$(transform)'`.0
++	$(INSTALL) -m 444 cpio.1 $(DESTDIR)$(man1dir)/`echo cpio|sed '$(transform)'`.1
++	$(INSTALL) -m 444 cpio.cat1 $(DESTDIR)$(cat1dir)/`echo cpio|sed '$(transform)'`.0
++	$(INSTALL) -m 444 tar.1 $(DESTDIR)$(man1dir)/`echo tar|sed '$(transform)'`.1
++	$(INSTALL) -m 444 tar.cat1 $(DESTDIR)$(cat1dir)/`echo tar|sed '$(transform)'`.0

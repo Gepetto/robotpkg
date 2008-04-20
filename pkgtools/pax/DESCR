@@ -5,3 +5,9 @@ copy directory hierarchies.
 
 pax operation is independent of the specific archive format, and supports
 a wide variety of different archive formats.
+
+This pax is installed under the name robotpkg_pax, in order to avoid
+confusion with the regular pax of your platform. It is used internally by
+the robotpkg system to uncompress the packages distribution files. It is
+also used by the robotpkg_add package management programs to extract the
+binary packages.
