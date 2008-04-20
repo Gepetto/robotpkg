@@ -23,17 +23,20 @@ CONFIGURE_ARGS+=	--with-tar="\"${TAR}\""
 NO_PKGTOOLS_REQD_CHECK=	yes
 NO_CHECKSUM=		yes
 PKG_PRESERVE=		yes
+FORCE_PKG_REGISTER=	yes
 
-# We use the newly built pkg_delete since upgrading from an older
-# pkg_install might require features of the new program.
+include ../../mk/robotpkg.prefs.mk
+
+# We use the newly built robotpkg_{add,create,delete} since upgrading
+# from an older pkg_install might required features of the new program. 
+# robotpkg_info is used at several places in mk files, so we don't
+# override the default here.
 #
-PKG_DELETE=		${WRKSRC}/delete/robotpkg_delete
+PKG_ADD_CMD=            ${WRKSRC}/add/robotpkg_add
+PKG_CREATE_CMD=         ${WRKSRC}/create/robotpkg_create
+PKG_DELETE_CMD=         ${WRKSRC}/delete/robotpkg_delete
 
 CPPFLAGS+=		-DDEF_UMASK=${DEF_UMASK}
-
-PKG_DBDIR?=		/usr/openrobots/var/db/pkg
-PKG_INFO=		${SETENV} PKG_DBDIR=${PKG_DBDIR} ${PKG_INFO_CMD}
-PKG_ADMIN=		${SETENV} PKG_DBDIR=${PKG_DBDIR} ${PKG_ADMIN_CMD}
 
 PLIST_SUBST+=		PKG_DBDIR=${PKG_DBDIR}
 
@@ -46,6 +49,9 @@ FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
 VERSION=		$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
 				${CURDIR}/dist/lib/version.h)
 
+# for now still require these explicitely
+include ../../pkgtools/pax/depend.mk
+include ../../pkgtools/tnftp/depend.mk
 
 # depend on these with the "inplace" style for bootstrap
 LIBNBCOMPAT_CONFIGURE_ARGS+=	--enable-bsd-getopt
@@ -72,3 +78,15 @@ do-update:
 	${MAKE} deinstall _UPDATE_RUNNING=YES
 	${MAKE} ${UPDATE_TARGET}
 	${MAKE} clean
+
+# Remove any old pkg_install versions from database
+pre-install: pkg_install-remove-old
+
+.PHONY:
+pkg_install-remove-old:
+	${RUN}								\
+	{ ${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}; } | 		\
+	while read pkg; do						\
+		${ECHO} "Running ${PKG_DELETE} -N -f $$pkg"; 		\
+		${PKG_DELETE} -N -f "$$pkg" || ${TRUE} ; 		\
+	done
