@@ -59,7 +59,7 @@
 #
 
 DIGEST_REQD?=		20010302
-TOOLS_DIGEST=		$(LOCALBASE)/bin/digest
+TOOLS_DIGEST=		$(PKG_TOOLS_BIN)/robotpkg_digest
 
 ifndef TOOLS_IGNORE.digest
  ifneq (,$(strip $(findstring digest,$(USE_TOOLS))))
