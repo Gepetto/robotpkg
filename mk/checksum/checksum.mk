@@ -1,4 +1,47 @@
-# $NetBSD: checksum.mk,v 1.2 2006/07/13 18:40:33 jlam Exp $
+#
+# Copyright (c) 2006-2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice,  this list of  conditions and  the following disclaimer in
+#      the  documentation   and/or  other  materials   provided with  the
+#      distribution.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# From $NetBSD: checksum.mk,v 1.2 2006/07/13 18:40:33 jlam Exp $
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
+#
+#   3. All advertising materials mentioning   features or use of this
+#      software must display the following acknowledgement:
+#        This product includes software developed by the NetBSD
+#        Foundation, Inc. and its contributors.
+#   4. Neither the  name  of The NetBSD Foundation  nor the names  of its
+#      contributors  may be  used to endorse or promote  products derived
+#      from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHORS AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+# Authored by Anthony Mallet on Thu Dec  7 2006
 
 _DIGEST_ALGORITHMS?=		SHA1 RMD160
 _PATCH_DIGEST_ALGORITHMS?=	SHA1
@@ -40,15 +83,8 @@ $(foreach _alg_,${_DIGEST_ALGORITHMS},					\
 #
 .PHONY: makesum
 makesum: fetch
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
+	${RUN}								\
 	newfile=${DISTINFO_FILE}.$$$$;					\
-	if ${TEST} -f ${DISTINFO_FILE}; then				\
-		{ ${GREP} '^.NetBSD' ${DISTINFO_FILE} ||		\
-		  ${ECHO} "$$""NetBSD""$$"; } > $$newfile;		\
-	else								\
-		${ECHO} "$$""NetBSD""$$" > $$newfile;			\
-	fi;								\
-	${ECHO} "" >> $$newfile;					\
 	cd ${DISTDIR};							\
 	for sumfile in "" ${_CKSUMFILES}; do				\
 		${TEST} -n "$$sumfile" || continue;			\
@@ -78,21 +114,19 @@ makesum: fetch
 		${MV} -f $$newfile ${DISTINFO_FILE};			\
 	fi
 
-######################################################################
-### makepatchsum (PUBLIC)
-######################################################################
-### makepatchsum is a public target to add checksums of the patches
-### for the package to ${DISTINFO_FILE}.
-###
+
+# --- makepatchsum (PUBLIC) ------------------------------------------
+#
+# makepatchsum is a public target to add checksums of the patches
+# for the package to ${DISTINFO_FILE}.
+#
+.PHONY: makepatchsum
 makepatchsum:
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
+	${RUN}								\
 	newfile=${DISTINFO_FILE}.$$$$;					\
 	if ${TEST} -f ${DISTINFO_FILE}; then				\
 		${AWK} '$$2 !~ /\(patch-[a-z0-9]+\)/ { print $$0 }'	\
 			< ${DISTINFO_FILE} >> $$newfile;		\
-	else								\
-		${ECHO} "$$""NetBSD""$$" > $$newfile;			\
-		${ECHO} "" >> $$newfile;				\
 	fi;								\
 	if ${TEST} -d ${PATCHDIR}; then					\
 		( cd ${PATCHDIR};					\
@@ -103,7 +137,7 @@ makepatchsum:
 			esac;						\
 			for a in "" ${_PATCH_DIGEST_ALGORITHMS}; do	\
 				${TEST} -n "$$a" || continue;		\
-				${ECHO} "$$a ($$sumfile) = `${SED} -e '/\$$NetBSD.*/d' $$sumfile | ${TOOLS_DIGEST} $$a`" >> $$newfile; \
+				${TOOLS_DIGEST} $$a $$sumfile >> $$newfile; \
 			done;						\
 		  done );						\
 	fi;								\
