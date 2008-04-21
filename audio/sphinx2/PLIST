@@ -1,4 +1,4 @@
-@comment $Id:$
+@comment Mon Apr 21 14:28:22 CEST 2008
 bin/adpow
 bin/adrec
 bin/cdcn_test
@@ -47,15 +47,15 @@ include/sphinx2/win32sock.h
 lib/libsphinx2.la
 lib/libsphinx2ad.la
 lib/libsphinx2fe.la
-share/sphinx2/doc/README.bin
-share/sphinx2/doc/README.lib
-share/sphinx2/doc/README.win32
-share/sphinx2/doc/SCHMM_format
-share/sphinx2/doc/filler.dict
-share/sphinx2/doc/phoneset
-share/sphinx2/doc/phoneset-old
-share/sphinx2/doc/phoneset_s2.html
-share/sphinx2/doc/sphinx2.html
+share/doc/sphinx2/README.bin
+share/doc/sphinx2/README.lib
+share/doc/sphinx2/README.win32
+share/doc/sphinx2/SCHMM_format
+share/doc/sphinx2/filler.dict
+share/doc/sphinx2/phoneset
+share/doc/sphinx2/phoneset-old
+share/doc/sphinx2/phoneset_s2.html
+share/doc/sphinx2/sphinx2.html
 share/sphinx2/model/hmm/6k/+BREATH+.chmm
 share/sphinx2/model/hmm/6k/+COUGH+.chmm
 share/sphinx2/model/hmm/6k/+LAUGH+.chmm
@@ -138,6 +138,6 @@ share/sphinx2/model/lm/turtle/turtle.vocab
 @dirrm share/sphinx2/model/hmm/6k
 @dirrm share/sphinx2/model/hmm
 @dirrm share/sphinx2/model
-@dirrm share/sphinx2/doc
 @dirrm share/sphinx2
+@dirrm share/doc/sphinx2
 @dirrm include/sphinx2

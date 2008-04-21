@@ -1,7 +1,6 @@
-$NetBSD$
-
 SHA1 (sphinx2-0.6.tar.gz) = 691d4e140869492e9c0b14f0f61ddfd32df12175
 RMD160 (sphinx2-0.6.tar.gz) = 7258a341d8ba26005a33c493bcf25b1f8dcf51ba
 Size (sphinx2-0.6.tar.gz) = 6883359 bytes
 SHA1 (patch-aa) = e21e4958946709b4cb2828c0e928110bf722aebe
 SHA1 (patch-ab) = f54d0011b56c44cc9758b36cb825c3256ac72e2a
+SHA1 (patch-ac) = d73f0d876e809a56c45dec7551391c6f811d4a7c
