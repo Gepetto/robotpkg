@@ -100,30 +100,14 @@ PKG_OPTIONS_MK=		# defined
 # -------------8<-------------8<-------------8<-------------8<-------------
 #
 
-# include the preference file
-ifndef _PKGSRC_TOPDIR
-_PKGSRC_TOPDIR=$(shell \
-	if test -f ../../mk/robotpkg.mk; then	\
-		echo `pwd`/../..;		\
-	elif test -f ../mk/robotpkg.mk; then	\
-		echo `pwd`/..;			\
-	elif test -f ./mk/robotpkg.mk; then	\
-		echo `pwd`;			\
-	fi)
-endif
-include ${_PKGSRC_TOPDIR}/mk/robotpkg.prefs.mk
-
 
 # Check for variable definitions required before including this file.
-ifndef PKG_OPTIONS_VAR
-PKG_FAIL_REASON+=       "[robotpkg.options.mk] PKG_OPTIONS_VAR is not defined."
-endif
-ifndef PKG_SUPPORTED_OPTIONS
-PKG_FAIL_REASON+=       "[robotpkg.options.mk] The package has no options, but includes this file."
-endif
-
 #
-# filter unsupported options from PKG_DEFAULT_OPTIONS
+ifdef PKG_SUPPORTED_OPTIONS
+
+PKG_OPTIONS_VAR?=	PKG_OPTIONS.${PKGBASE}
+
+# Filter unsupported options from PKG_DEFAULT_OPTIONS.
 #
 _OPTIONS_DEFAULT_SUPPORTED:=# empty
 define default_options
@@ -136,12 +120,11 @@ endef
 $(foreach _o_,${PKG_DEFAULT_OPTIONS},$(eval $(call default_options,${_o_})))
 
 
+# Process options from generic to specific and store the final result in
+# PKG_OPTIONS.
 #
-# process options from generic to specific
-#
-
-PKG_OPTIONS:=# empty
-_OPTIONS_UNSUPPORTED:=# empty
+PKG_OPTIONS:=#		empty
+_OPTIONS_UNSUPPORTED:=#	empty
 define build_options
 _opt_:=		${1}
 _popt_:=	$(patsubst -%,%,${1})
@@ -155,28 +138,41 @@ PKG_OPTIONS:=	$${PKG_OPTIONS} $${_popt_}
  endif
 endif
 endef
-$(foreach _o_,	${PKG_SUGGESTED_OPTIONS}	\
-		${_OPTIONS_DEFAULT_SUPPORTED}	\
-		${${PKG_OPTIONS_VAR}},$(eval $(call build_options,${_o_})))
+$(foreach _o_,${PKG_SUGGESTED_OPTIONS} ${_OPTIONS_DEFAULT_SUPPORTED}	\
+	${${PKG_OPTIONS_VAR}}, $(eval $(call build_options,${_o_})))
 
+
+# Bail out if there remain some unspported options.
+#
 ifneq (,$(strip $(_OPTIONS_UNSUPPORTED)))
 PKG_FAIL_REASON+=	"[robotpkg.options.mk] The following selected options are not supported:"
 PKG_FAIL_REASON+=	"	"$(call quote,$(sort ${_OPTIONS_UNSUPPORTED}))"."
 endif
 
-PKG_OPTIONS:=	$(sort ${PKG_OPTIONS})
-
 # Store the result in the +BUILD_INFO file so we can query for the build
 # options using "robotpkg_info -Q PKG_OPTIONS <pkg>".
+#
+PKG_OPTIONS:=		$(sort ${PKG_OPTIONS})
 BUILD_DEFS+=            PKG_OPTIONS
 
+
+# Execute the PKG_OPTION_SET/UNSET scripts.
+#
+$(foreach _o_,${PKG_SUPPORTED_OPTIONS},					\
+	$(eval $(if $(filter ${_o_},${PKG_OPTIONS}),			\
+		${PKG_OPTION_SET.${_o_}},${PKG_OPTION_UNSET.${_o_}})))
+
+
+# --- show-options ---------------------------------------------------
+#
+# print the list of available options for this package.
+#
 .PHONY: show-options
 show-options:
-ifdef PKG_SUPPORTED_OPTIONS
 	@${ECHO} Any of the following general options may be selected:
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _opt_,$(sort ${PKG_SUPPORTED_OPTIONS}),			\
-	${ECHO} "	"$(call quote,${_opt_})"	"$(call quote,${PKG_OPTION.${_opt_}});\
+	${ECHO} "	"$(call quote,${_opt_})"	"$(call quote,${PKG_OPTION_DESCR.${_opt_}});\
 )
 	@${ECHO}
 	@${ECHO} "These options are enabled by default:"
@@ -195,13 +191,16 @@ endif
 	@${ECHO} ""
 	@${ECHO} "You can select which build options to use by setting PKG_DEFAULT_OPTIONS"
 	@${ECHO} "or "$(call quote,${PKG_OPTIONS_VAR})" in "${_MAKECONF}"."
-else
-	@${ECHO} This package does not use the options framework.	
-endif
 
-ifdef PKG_SUPPORTED_OPTIONS
-.PHONY: supported-options-message
+
+# --- supported-options-message --------------------------------------
+#
+# print an informative message that lists the available options for this
+# package.
+#
 pre-depends-hook: supported-options-message
+
+.PHONY: supported-options-message
 supported-options-message:
 	@${ECHO} "=========================================================================="
 	@${ECHO} "The supported build options for ${PKGBASE} are:"
@@ -229,6 +228,11 @@ endif
 	@${ECHO} "before continuing.  Be sure to run \`${MAKE} clean' after"
 	@${ECHO} "the changes."
 	@${ECHO} "=========================================================================="
-endif
 
+else	# PKG_SUPPORTED_OPTIONS
+.PHONY: show-options
+show-options:
+	@${ECHO} This package does not use the options framework.	
+
+endif	# PKG_SUPPORTED_OPTIONS
 endif	# PKG_OPTIONS_MK

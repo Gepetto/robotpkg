@@ -20,11 +20,8 @@ COMMENT=	Library to access HTTP/FTP server
 BUILD_TARGET=	depend all
 INSTALL_TARGET=	install includes
 
-include options.mk
-
 include ../../pkgtools/libnbcompat/depend.mk
 include ../../mk/robotpkg.mk
 
 do-extract:
 	${CP} -Rp ${FILESDIR} ${WRKSRC}
-

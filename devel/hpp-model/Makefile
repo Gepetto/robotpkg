@@ -19,5 +19,14 @@ GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
 USE_LIBTOOL=	yes
 
-include options.mk
+# options
+PKG_SUPPORTED_OPTIONS+=	jrl-dynamics
+PKG_SUGGESTED_OPTIONS+=	jrl-dynamics
+
+PKG_OPTION_DESCR.jrl-dynamics=Use jrl-dynamics package for dynamic model implementation.
+define PKG_OPTION_SET.jrl-dynamics
+CONFIGURE_ARGS+=	--with-robotDynamics=dynamicsJRLJapan
+DEPENDS+=		jrl-dynamics>=1.7:../../math/jrl-dynamics
+endef
+
 include ../../mk/robotpkg.mk

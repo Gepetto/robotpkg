@@ -73,6 +73,7 @@ ifneq (,$(or $(call isyes,$(INSTALL_UNSTRIPPED)), $(DEBUG_FLAGS)))
 _INSTALL_UNSTRIPPED=	# set (flag used by platform/*.mk)
 endif
 
+include ${PKGSRCDIR}/mk/robotpkg.options.mk
 include ${PKGSRCDIR}/mk/robotpkg.use.mk
 
 

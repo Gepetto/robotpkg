@@ -16,9 +16,7 @@ DEPENDS+=		libt3d>=2.3:../../math/t3d
 DEPENDS+=		insitu>=1.1:../../localization/insitu
 DEPENDS+=		libpom>=1.1:../../localization/libpom
 
-include ../../mk/robotpkg.mk
+GENOM_MODULE=		pom
+include ../../architecture/genom/depend.mk
 
-# waiting for a more modular solution, hardcode -t
-# -o will require transgen
-pre-configure:
-	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PREFIX}/bin/genom -t pom
+include ../../mk/robotpkg.mk

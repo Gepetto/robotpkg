@@ -15,5 +15,12 @@ COMMENT=	HPP Project documentation.
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
 
-include options.mk
+# options
+PKG_SUPPORTED_OPTIONS+=	hpp-core
+
+PKG_OPTION_DESCR.hpp-core=	Install hpp-core package if needed
+define PKG_OPTION_SET.hpp-core
+DEPENDS+=		hpp-core>=1.0:../../path/hpp-core
+endef
+
 include ../../mk/robotpkg.mk

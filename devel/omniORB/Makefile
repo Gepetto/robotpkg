@@ -25,7 +25,13 @@ OMNIORB_CONFIG=		${OMNIORB_ETCDIR}/omniORB.cfg
 CONFIGURE_ARGS+= 	--with-omniORB-config=${OMNIORB_CONFIG}
 CONFIGURE_ARGS+= 	--with-omniNames-logdir=/tmp
 
-include options.mk
+# options
+PKG_SUPPORTED_OPTIONS+=	ipv6
+
+PKG_OPTION_DESCR.ipv6=	Enable support for IPv6
+PKG_OPTION_SET.ipv6:=	CONFIGURE_ARGS+=--enable-ipv6
+PKG_OPTION_UNSET.ipv6:=	CONFIGURE_ARGS+=--disable-ipv6
+
 include ../../mk/robotpkg.mk
 
 post-install:

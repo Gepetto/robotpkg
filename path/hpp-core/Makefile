@@ -17,5 +17,14 @@ DEPENDS+=	hpp-kwsplus>=1.1:../../devel/hpp-kwsplus
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
 
-include options.mk
+# options
+PKG_SUPPORTED_OPTIONS+=	with-body
+
+PKG_OPTION_DESCR.with-body=	Use internal definition of ChppBody class.
+PKG_OPTION_SET.with-body:=	CONFIGURE_ARGS+=	--enable-body
+define PKG_OPTION_UNSET.with-body
+CONFIGURE_ARGS+=	--disable-body
+DEPENDS+=		hpp-model>=1.0:../../devel/hpp-model
+endef
+
 include ../../mk/robotpkg.mk

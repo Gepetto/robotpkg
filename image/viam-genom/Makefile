@@ -13,11 +13,14 @@ GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_PKG_CONFIG=		yes
 
+GENOM_MODULE=		viam
+include ../../architecture/genom/depend.mk
+
 include ../../image/viam-libs/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../mk/robotpkg.mk
 
 # waiting for a more modular solution, hardcode -t
 # -o will require transgen
-pre-configure:
-	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PREFIX}/bin/genom -t viam
+#pre-configure:
+#	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PREFIX}/bin/genom -t viam
