@@ -12,8 +12,6 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic classes used as interfaces with KineoWorks(tm).
 
-DEPENDS+=	hpp-kwsplus>=1.1:../../devel/hpp-kwsplus
-
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
 
@@ -27,4 +25,5 @@ CONFIGURE_ARGS+=	--disable-body
 DEPENDS+=		hpp-model>=1.0:../../devel/hpp-model
 endef
 
+include ../../devel/hpp-kwsplus/depend.mk
 include ../../mk/robotpkg.mk

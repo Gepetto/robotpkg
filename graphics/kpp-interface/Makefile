@@ -1,4 +1,4 @@
-# $Id: Makefile 2008/02/19 13:36:46 mallet $
+# $Id: Makefile 2008/04/24 16:12:30 mallet $
 
 DISTNAME=	kppinterface-${VERSION}
 PKGNAME=	kpp-interface-${VERSION}
@@ -12,11 +12,11 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Graphical user interface for HPP libraries.
 
 DEPENDS+=	hpp-corbaserver>=1.2:../../devel/hpp-corbaserver
-DEPENDS+=	hpp-kwsplus>=1.2:../../devel/hpp-kwsplus
 DEPENDS+=	kineo-pp>=2.04.306:../../path/kineo-pp
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
+include ../../devel/hpp-kwsplus/depend.mk
 include ../../mk/robotpkg.mk
