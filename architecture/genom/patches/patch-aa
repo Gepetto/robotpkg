@@ -1,0 +1,38 @@
+--- tclserv/server/server.tcl~	2007-08-21 13:53:37.000000000 +0200
++++ tclserv/server/server.tcl	2008-04-25 15:22:40.539722000 +0200
+@@ -1,4 +1,4 @@
+-#	$LAAS: server.tcl,v 1.6 2007/08/21 11:34:41 sara Exp $
++#	$LAAS: server.tcl 2008/04/25 15:22:40 mallet $
+ 
+ #
+ # Copyright (c) 1999-2007 LAAS/CNRS                   --  Sat Apr  3 1999
+@@ -45,17 +45,17 @@
+ 
+ 	switch -regexp $cmd {
+ 
+-	    "HELLO" {
++	    "^HELLO$" {
+ 		log "HELLO request"
+ 		answer $channel "HELLO $channel"
+ 	    }
+ 
+-	    "BYE" {
++	    "^BYE$" {
+ 		log "BYE request"
+ 		endClient $channel
+ 	    }
+ 
+-	    "DIE" {
++	    "^DIE$" {
+ 		log "DIE request"
+ 		foreach i [array names channels] {
+ 		    answer $i "DIE"
+@@ -63,7 +63,7 @@
+ 		die
+ 	    }
+ 
+-	    "CSREPLY" {
++	    "^CSREPLY" {
+ ##		log "csLib wakeup"
+ 		eval [ ::cs::mboxEvent ]
+ 		answer $channel "OK"
