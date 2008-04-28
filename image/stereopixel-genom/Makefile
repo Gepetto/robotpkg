@@ -12,14 +12,11 @@ GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_PKG_CONFIG=		yes
 
-DEPEND+=		viam-genom>=0.99:../../image/viam-genom
+GENOM_MODULE=		stereopixel	
+include ../../architecture/genom/depend.mk
 
 include ../../image/libstereopixel/depend.mk
 include ../../image/libimages3d/depend.mk
 include ../../image/opencv/depend.mk
+include ../../image/viam-genom/depend.mk
 include ../../mk/robotpkg.mk
-
-# waiting for a more modular solution, hardcode -t
-# -o will require transgen
-pre-configure:
-	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PREFIX}/bin/genom -t stereopixel
