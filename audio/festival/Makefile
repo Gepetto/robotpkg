@@ -1,4 +1,4 @@
-# $Id:$
+# $Id: Makefile 2008/05/07 15:05:41 mallet $
 #
 
 DISTNAME=		festival-1.96
@@ -37,6 +37,9 @@ do-install:
 	-@${MV} ${FESTIVAL}/lib/etc ${FESTIVAL}/.
 	${INSTALL_PROGRAM} ${FESTIVAL}/etc/*/audsp ${PREFIX}/bin/.
 	${INSTALL_LIB} ${FESTIVAL}/src/lib/libFestival.a ${PREFIX}/lib/.
+	${INSTALL_LIB} ${SPEECH_TOOLS}/lib/libestbase.a ${PREFIX}/lib/.
+	${INSTALL_LIB} ${SPEECH_TOOLS}/lib/libestools.a ${PREFIX}/lib/.
+	${INSTALL_LIB} ${SPEECH_TOOLS}/lib/libeststring.a ${PREFIX}/lib/.
 	${INSTALL_DATA_DIR} ${PREFIX}/include/festival
 	${INSTALL_DATA_DIR} ${PREFIX}/share/festival
 	cd ${SPEECH_TOOLS}/include && ${PAX} -rw *.h */*.h ${PREFIX}/include/festival/.

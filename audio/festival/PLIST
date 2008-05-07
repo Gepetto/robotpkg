@@ -6,6 +6,9 @@ bin/festival_server_control
 bin/text2wave
 bin/audsp
 lib/libFestival.a
+lib/libestbase.a
+lib/libestools.a
+lib/libeststring.a
 include/festival/EST_Chunk.h
 include/festival/EST.h
 include/festival/EST_SingleChannelWave.h
