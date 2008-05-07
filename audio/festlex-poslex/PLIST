@@ -1,0 +1,5 @@
+@comment Tue May 6 23:53:51 CEST 2008
+share/festival/lib/dicts/COPYING.poslex
+share/festival/lib/dicts/wsj.wp39.poslexR
+share/festival/lib/dicts/wsj.wp39.tri.ngrambin
+@dirrm share/festival/lib/dicts
