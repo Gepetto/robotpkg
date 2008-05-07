@@ -1,0 +1,10 @@
+--- lib/voices/us/cmu_us_awb_arctic_hts/festvox/cmu_us_awb_arctic_hts.scm~	2004-12-09 15:09:23.000000000 +0100
++++ lib/voices/us/cmu_us_awb_arctic_hts/festvox/cmu_us_awb_arctic_hts.scm	2008-05-07 00:33:24.000000000 +0200
+@@ -67,6 +67,7 @@
+ (set! hts_feats_list
+       (load (path-append hts_data_dir "feat.list") t))
+ 
++(require 'f2bf0lr)
+ (require 'hts)
+ (require_module 'hts_engine)
+ 
