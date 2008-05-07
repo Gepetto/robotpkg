@@ -1,0 +1,19 @@
+Festival offers a general framework for building speech synthesis
+systems as well as including examples of various modules.  As a whole
+it offers full text to speech through a number APIs: from shell level,
+though a Scheme command interpreter, as a C++ library, from Java, and
+an Emacs interface.  Festival is multi-lingual (currently English
+(British and American), and Spanish) though English is the most
+advanced.  Other groups release new languages for the system.
+And full tools and documentation for build new voices are
+available through Carnegie Mellon's FestVox project (http://festvox.org)
+
+The system is written in C++ and uses the Edinburgh Speech Tools
+Library for low level architecture and has a Scheme (SIOD) based
+command interpreter for control.  Documentation is given in the FSF
+texinfo format which can generate, a printed manual, info files and
+HTML.
+
+Festival is free software.  Festival and the speech tools are
+distributed under an X11-type licence allowing unrestricted commercial
+and non-commercial use alike.
