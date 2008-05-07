@@ -1,0 +1,13 @@
+@comment Tue May 6 23:53:51 CEST 2008
+share/festival/lib/dicts/cmu
+share/festival/lib/dicts/cmu/cmudict_extensions.scm
+share/festival/lib/dicts/cmu/cmu_lts_rules.scm
+share/festival/lib/dicts/cmu/allowables.scm
+share/festival/lib/dicts/cmu/cmudict-0.4.scm
+share/festival/lib/dicts/cmu/cmudict-0.4.out
+share/festival/lib/dicts/cmu/cmulex.scm
+share/festival/lib/dicts/cmu/Makefile
+share/festival/lib/dicts/cmu/cmu2ft
+share/festival/lib/dicts/cmu/COPYING
+share/festival/lib/dicts/cmu/cmudict-0.4.diff
+@dirrm share/festival/lib/dicts/cmu
