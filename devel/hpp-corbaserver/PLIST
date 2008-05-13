@@ -1,4 +1,6 @@
-@comment $Id: pipo 2008/02/18 17:24:17 mallet $
+@comment Tue May 13 17:44:45 JST 2008
+bin/hppCorbaServer
+bin/hppCorbaServer.kab
 include/hppCorbaServer/hppciObstacle.h
 include/hppCorbaServer/hppciOpenHrp.h
 include/hppCorbaServer/hppciProblem.h
@@ -8,20 +10,20 @@ lib/libhppCorbaServer.la
 lib/pkgconfig/hppCorbaServer.pc
 share/doc/doxytag/hppCorbaServer.doxytag
 share/doc/hppCorbaServer/annotated.html
-share/doc/hppCorbaServer/class_chpp_kcd_object_vector-members.html
-share/doc/hppCorbaServer/class_chpp_kcd_object_vector.html
-share/doc/hppCorbaServer/class_chppci_obstacle__impl-members.html
 share/doc/hppCorbaServer/class_chppci_obstacle__impl.html
-share/doc/hppCorbaServer/class_chppci_open_hrp_client-members.html
+share/doc/hppCorbaServer/class_chppci_obstacle__impl-members.html
 share/doc/hppCorbaServer/class_chppci_open_hrp_client.html
-share/doc/hppCorbaServer/class_chppci_problem__impl-members.html
+share/doc/hppCorbaServer/class_chppci_open_hrp_client-members.html
 share/doc/hppCorbaServer/class_chppci_problem__impl.html
-share/doc/hppCorbaServer/class_chppci_robot__impl-members.html
+share/doc/hppCorbaServer/class_chppci_problem__impl-members.html
 share/doc/hppCorbaServer/class_chppci_robot__impl.html
-share/doc/hppCorbaServer/class_chppci_server-members.html
+share/doc/hppCorbaServer/class_chppci_robot__impl-members.html
 share/doc/hppCorbaServer/class_chppci_server.html
-share/doc/hppCorbaServer/class_chppci_server_private-members.html
+share/doc/hppCorbaServer/class_chppci_server-members.html
 share/doc/hppCorbaServer/class_chppci_server_private.html
+share/doc/hppCorbaServer/class_chppci_server_private-members.html
+share/doc/hppCorbaServer/class_chpp_kcd_object_vector.html
+share/doc/hppCorbaServer/class_chpp_kcd_object_vector-members.html
 share/doc/hppCorbaServer/doxygen.png
 share/doc/hppCorbaServer/files.html
 share/doc/hppCorbaServer/ftv2blank.png
@@ -36,25 +38,22 @@ share/doc/hppCorbaServer/ftv2node.png
 share/doc/hppCorbaServer/ftv2plastnode.png
 share/doc/hppCorbaServer/ftv2pnode.png
 share/doc/hppCorbaServer/ftv2vertline.png
-share/doc/hppCorbaServer/functions.html
 share/doc/hppCorbaServer/functions_func.html
+share/doc/hppCorbaServer/functions.html
 share/doc/hppCorbaServer/functions_vars.html
-share/doc/hppCorbaServer/globals.html
 share/doc/hppCorbaServer/globals_func.html
-share/doc/hppCorbaServer/globals_type.html
+share/doc/hppCorbaServer/globals.html
 share/doc/hppCorbaServer/graph_legend.dot
 share/doc/hppCorbaServer/graph_legend.html
 share/doc/hppCorbaServer/graph_legend.png
-share/doc/hppCorbaServer/hpp.css
-share/doc/hppCorbaServer/hpp_core_8h.html
-share/doc/hppCorbaServer/hppci_common_server_8idl.html
 share/doc/hppCorbaServer/hppci_common_server_8idl__dep__incl.map
 share/doc/hppCorbaServer/hppci_common_server_8idl__dep__incl.md5
 share/doc/hppCorbaServer/hppci_common_server_8idl__dep__incl.png
-share/doc/hppCorbaServer/hppci_obstacle_8h.html
+share/doc/hppCorbaServer/hppci_common_server_8idl.html
 share/doc/hppCorbaServer/hppci_obstacle_8h__dep__incl.map
 share/doc/hppCorbaServer/hppci_obstacle_8h__dep__incl.md5
 share/doc/hppCorbaServer/hppci_obstacle_8h__dep__incl.png
+share/doc/hppCorbaServer/hppci_obstacle_8h.html
 share/doc/hppCorbaServer/hppci_obstacle_8h__incl.map
 share/doc/hppCorbaServer/hppci_obstacle_8h__incl.md5
 share/doc/hppCorbaServer/hppci_obstacle_8h__incl.png
@@ -66,10 +65,10 @@ share/doc/hppCorbaServer/hppci_open_hrp_8h.html
 share/doc/hppCorbaServer/hppci_open_hrp_8h__incl.map
 share/doc/hppCorbaServer/hppci_open_hrp_8h__incl.md5
 share/doc/hppCorbaServer/hppci_open_hrp_8h__incl.png
-share/doc/hppCorbaServer/hppci_problem_8h.html
 share/doc/hppCorbaServer/hppci_problem_8h__dep__incl.map
 share/doc/hppCorbaServer/hppci_problem_8h__dep__incl.md5
 share/doc/hppCorbaServer/hppci_problem_8h__dep__incl.png
+share/doc/hppCorbaServer/hppci_problem_8h.html
 share/doc/hppCorbaServer/hppci_problem_8h__incl.map
 share/doc/hppCorbaServer/hppci_problem_8h__incl.md5
 share/doc/hppCorbaServer/hppci_problem_8h__incl.png
@@ -77,10 +76,10 @@ share/doc/hppCorbaServer/hppci_problem_server_8idl.html
 share/doc/hppCorbaServer/hppci_problem_server_8idl__incl.map
 share/doc/hppCorbaServer/hppci_problem_server_8idl__incl.md5
 share/doc/hppCorbaServer/hppci_problem_server_8idl__incl.png
-share/doc/hppCorbaServer/hppci_robot_8h.html
 share/doc/hppCorbaServer/hppci_robot_8h__dep__incl.map
 share/doc/hppCorbaServer/hppci_robot_8h__dep__incl.md5
 share/doc/hppCorbaServer/hppci_robot_8h__dep__incl.png
+share/doc/hppCorbaServer/hppci_robot_8h.html
 share/doc/hppCorbaServer/hppci_robot_8h__incl.map
 share/doc/hppCorbaServer/hppci_robot_8h__incl.md5
 share/doc/hppCorbaServer/hppci_robot_8h__incl.png
@@ -100,18 +99,24 @@ share/doc/hppCorbaServer/hppci_tools_8h.html
 share/doc/hppCorbaServer/hppci_tools_8h__incl.map
 share/doc/hppCorbaServer/hppci_tools_8h__incl.md5
 share/doc/hppCorbaServer/hppci_tools_8h__incl.png
+share/doc/hppCorbaServer/hpp_core_8h.html
+share/doc/hppCorbaServer/hpp.css
 share/doc/hppCorbaServer/index.html
 share/doc/hppCorbaServer/installdox
-share/doc/hppCorbaServer/interface_chppci_obstacle-members.html
-share/doc/hppCorbaServer/interface_chppci_obstacle.html
-share/doc/hppCorbaServer/interface_chppci_problem-members.html
-share/doc/hppCorbaServer/interface_chppci_problem.html
-share/doc/hppCorbaServer/interface_chppci_robot-members.html
-share/doc/hppCorbaServer/interface_chppci_robot.html
+share/doc/hppCorbaServer/interfacehpp_corba_server_1_1_chppci_obstacle.html
+share/doc/hppCorbaServer/interfacehpp_corba_server_1_1_chppci_obstacle-members.html
+share/doc/hppCorbaServer/interfacehpp_corba_server_1_1_chppci_problem.html
+share/doc/hppCorbaServer/interfacehpp_corba_server_1_1_chppci_problem-members.html
+share/doc/hppCorbaServer/interfacehpp_corba_server_1_1_chppci_robot.html
+share/doc/hppCorbaServer/interfacehpp_corba_server_1_1_chppci_robot-members.html
 share/doc/hppCorbaServer/main.html
+share/doc/hppCorbaServer/namespacehpp_corba_server.html
+share/doc/hppCorbaServer/namespacemembers.html
+share/doc/hppCorbaServer/namespacemembers_type.html
+share/doc/hppCorbaServer/namespaces.html
 share/doc/hppCorbaServer/pictures/HRP2.jpg
-share/doc/hppCorbaServer/struct_configuration-members.html
-share/doc/hppCorbaServer/struct_configuration.html
+share/doc/hppCorbaServer/structhpp_corba_server_1_1_configuration.html
+share/doc/hppCorbaServer/structhpp_corba_server_1_1_configuration-members.html
 share/doc/hppCorbaServer/tab_b.gif
 share/doc/hppCorbaServer/tab_l.gif
 share/doc/hppCorbaServer/tab_r.gif
@@ -122,6 +127,4 @@ share/idl/hppCorbaServer/hppciObstacleServer.idl
 share/idl/hppCorbaServer/hppciProblemServer.idl
 share/idl/hppCorbaServer/hppciRobotServer.idl
 @dirrm share/idl/hppCorbaServer
-@dirrm share/doc/hppCorbaServer/pictures
-@dirrm share/doc/hppCorbaServer
 @dirrm include/hppCorbaServer
