@@ -12,7 +12,7 @@ GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_PKG_CONFIG=		yes
 
-GENOM_MODULE=		stereopixel	
+GENOM_MODULE=		stereopixel
 include ../../architecture/genom/depend.mk
 
 include ../../image/libstereopixel/depend.mk
