@@ -1,7 +1,7 @@
 # $Id:$
 #
 
-DISTNAME=		viam-libs-0.99
+DISTNAME=		viam-libs-1.0
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 

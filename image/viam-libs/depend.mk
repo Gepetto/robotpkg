@@ -12,7 +12,7 @@ PREFER.viam-libs?=	robotpkg
 
 DEPEND_USE+=		viam-libs
 
-DEPEND_ABI.viam-libs?=	viam-libs>=0.99
+DEPEND_ABI.viam-libs?=	viam-libs>=1.0
 DEPEND_DIR.viam-libs?=	../../image/viam-libs
 
 DEPEND_PKG_CONFIG.viam-libs+=lib/pkgconfig
