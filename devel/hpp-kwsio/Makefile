@@ -12,9 +12,8 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Input and Output functions for KineoWorks(tm) package.
 
-DEPENDS+=	kineo-pp>=2.4.301r2:../../path/kineo-pp
-
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
 
+include ../../path/kineo-pp/depend.mk
 include ../../mk/robotpkg.mk

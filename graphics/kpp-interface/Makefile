@@ -12,11 +12,11 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Graphical user interface for HPP libraries.
 
 DEPENDS+=	hpp-corbaserver>=1.2:../../devel/hpp-corbaserver
-DEPENDS+=	kineo-pp>=2.04.306:../../path/kineo-pp
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 include ../../devel/hpp-kwsplus/depend.mk
+include ../../devel/path/kineo-pp/depend.mk
 include ../../mk/robotpkg.mk

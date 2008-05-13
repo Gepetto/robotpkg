@@ -12,7 +12,6 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Robots, humanoid robots, joints and bodies with dynamics properties.
 
 DEPENDS+=	jrl-interface-dynamics>=1.8:../../interfaces/jrl-interface-dynamics
-DEPENDS+=	kineo-pp>=2.04.306:../../path/kineo-pp
 DEPENDS+=	hpp-kwsio>=1.0.1:../../devel/hpp-kwsio
 
 GNU_CONFIGURE=	yes
@@ -29,4 +28,5 @@ CONFIGURE_ARGS+=	--with-robotDynamics=dynamicsJRLJapan
 DEPENDS+=		jrl-dynamics>=1.7:../../math/jrl-dynamics
 endef
 
+include ../../path/kineo-pp/depend.mk
 include ../../mk/robotpkg.mk
