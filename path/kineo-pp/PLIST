@@ -2984,8 +2984,6 @@ kineo/share/examples/src/KineoTutorialKXMLViewer/kttViewerFrameController.h
 kineo/share/examples/src/KineoTutorialKXMLViewer/main.cpp
 lib/pkgconfig/KineoController.pc
 lib/pkgconfig/KineoPathPlanner.pc
-@dirrm share/doc/hppWalkPlanner
-@dirrm lib/modules/${NODENAME}
 @dirrm kineo/share/examples/src/KineoTutorialKXMLViewer
 @dirrm kineo/share/examples/src/KineoTutorialIK
 @dirrm kineo/share/examples/src/KineoTutorialHelloWorld
