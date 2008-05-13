@@ -1,6 +1,6 @@
 # $Id: Makefile 2007/11/27 11:43:03 mallet $
 
-DISTNAME=		libstereopixel-1.1
+DISTNAME=		libstereopixel-1.2
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
