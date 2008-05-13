@@ -12,7 +12,7 @@ PREFER.viam-genom?=	robotpkg
 
 DEPEND_USE+=		viam-genom
 
-DEPEND_ABI.viam-genom?=	viam-genom>=0.99
+DEPEND_ABI.viam-genom?=	viam-genom>=1.0
 DEPEND_DIR.viam-genom?=	../../image/viam-genom
 
 DEPEND_PKG_CONFIG.viam-genom+=lib/pkgconfig

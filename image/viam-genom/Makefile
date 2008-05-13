@@ -1,7 +1,7 @@
 # $Id:$
 #
 
-DISTNAME=		viam-genom-0.99
+DISTNAME=		viam-genom-1.0
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
@@ -19,8 +19,3 @@ include ../../architecture/genom/depend.mk
 include ../../image/viam-libs/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../mk/robotpkg.mk
-
-# waiting for a more modular solution, hardcode -t
-# -o will require transgen
-#pre-configure:
-#	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PREFIX}/bin/genom -t viam
