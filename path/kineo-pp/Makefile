@@ -4,6 +4,7 @@
 
 KPPVERSION=		2.04
 KPPPATCH=		501
+PKGREVISION=		1
 
 PKGNAME=		kineo-pp-${KPPVERSION}.${KPPPATCH}
 DISTNAME=		KPPSDK_${KPPVERSION}.${KPPPATCH}
@@ -50,7 +51,6 @@ post-extract:
 	${CP} ${FILESDIR}/KineoController.pc ${WRKSRC}
 	${CP} ${FILESDIR}/KineoPathPlanner.pc ${WRKSRC}
 	${CP} ${FILESDIR}/KineoSetDebug ${WRKSRC}/bin/i386-linux/.
-	${CP} ${FILESDIR}/KineoAddonBuilder ${WRKSRC}/bin/i386-linux/
 
 do-install:
 	${PAX} -rw -pm -s '|${WRKSRC}/bin/i386-linux||' ${WRKSRC}/bin/i386-linux/Kineo* ${KINEO_DIR}/bin
