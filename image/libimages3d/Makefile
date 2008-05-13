@@ -1,6 +1,6 @@
 # $Id: Makefile 2007/11/26 14:52:20 mallet $
 
-DISTNAME=		libimages3d-3.1
+DISTNAME=		libimages3d-3.2
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
