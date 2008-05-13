@@ -12,7 +12,7 @@ PREFER.libimages3d?=	robotpkg
 
 DEPEND_USE+=		libimages3d
 
-DEPEND_ABI.libimages3d?=libimages3d>=3.1
+DEPEND_ABI.libimages3d?=libimages3d>=3.2
 DEPEND_DIR.libimages3d?=../../image/libimages3d
 
 DEPEND_PKG_CONFIG.libimages3d+=lib/pkgconfig
