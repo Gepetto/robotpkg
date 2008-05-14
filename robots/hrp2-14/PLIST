@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2007/11/27 19:37:50 mallet $
+@comment Wed May 14 19:00:31 CEST 2008
 include/hrp2_14/hrp2_14.h
 lib/libhrp2_14.la
 lib/pkgconfig/hrp2_14.pc
@@ -27,13 +27,8 @@ share/doc/hrp2_14/globals_defs.html
 share/doc/hrp2_14/graph_legend.dot
 share/doc/hrp2_14/graph_legend.html
 share/doc/hrp2_14/graph_legend.png
-share/doc/hrp2_14/hierarchy.html
 share/doc/hrp2_14/hrp2__14_8h.html
 share/doc/hrp2_14/index.html
-share/doc/hrp2_14/inherit__graph__0.map
-share/doc/hrp2_14/inherit__graph__0.md5
-share/doc/hrp2_14/inherit__graph__0.png
-share/doc/hrp2_14/inherits.html
 share/doc/hrp2_14/main.html
 share/doc/hrp2_14/package.css
 share/doc/hrp2_14/package_8h.html
