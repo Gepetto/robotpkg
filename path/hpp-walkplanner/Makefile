@@ -11,7 +11,6 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Path planning algorithm for a walking humanoid robot.
 
-DEPENDS+=	hrp2_14>=1.0:../../robots/hrp2-14
 DEPENDS+=	hpp-core>=1.3:../../path/hpp-core
 DEPENDS+=	hpp-openhrp>=1.1:../../path/hpp-openhrp
 
@@ -19,6 +18,7 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
+include ../../robots/hrp2-14/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../path/jrl-walkgen/depend.mk
 include ../../mk/robotpkg.mk
