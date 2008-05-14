@@ -26,3 +26,9 @@ include ../../path/hpp-walkplanner/depend.mk
 include ../../architecture/genom-openhrp-plugin/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../mk/robotpkg.mk
+
+# generate and install the Kineo license, but don't fail on errors.
+post-install:
+	cd ${WRKSRC} && ${SETENV} ${INSTALL_ENV} ${MAKE_ENV} 		\
+		${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS}	\
+			license install-license || ${TRUE}
