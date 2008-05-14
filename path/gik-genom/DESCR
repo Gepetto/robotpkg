@@ -1,0 +1,4 @@
+Generalized Inverse Kinematics for humanoid robots.
+
+This is GenoM component wrapper for the hpp-gik library.
+

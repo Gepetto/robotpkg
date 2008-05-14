@@ -1,0 +1,25 @@
+@comment Wed May 14 19:11:26 CEST 2008
+bin/gik
+bin/gikSendInitRqst
+bin/gikTest
+include/gik/gikStruct.h
+include/gik/server/gikEndian.h
+include/gik/server/gikError.h
+include/gik/server/gikMsgLib.h
+include/gik/server/gikPosterLib.h
+include/gik/server/gikPosterLibStruct.h
+include/gik/server/gikPosterReadLibProto.h
+include/gik/server/gikPosterShowLib.h
+include/gik/server/gikPosterWriteLibProto.h
+include/gik/server/gikPosterXMLLib.h
+include/gik/server/gikPrint.h
+include/gik/server/gikPrintXML.h
+include/gik/server/gikScan.h
+include/gik/server/gikType.h
+lib/libgikClient.la
+lib/pkgconfig/gik.pc
+lib/tclserv/libgikTclServ.la
+share/modules/gen/gik.gen
+share/modules/tcl/gikClient.tcl
+@dirrm include/gik/server
+@dirrm include/gik
