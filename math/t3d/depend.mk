@@ -1,23 +1,23 @@
 # $Id: $
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-T3D_DEPEND_MK:=	${T3D_DEPEND_MK}+
+LIBT3D_DEPEND_MK:=	${LIBT3D_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		t3d
+DEPEND_PKG+=		libt3d
 endif
 
-ifeq (+,$(T3D_DEPEND_MK))
-PREFER.t3d?=	robotpkg
+ifeq (+,$(LIBT3D_DEPEND_MK))
+PREFER.libt3d?=	robotpkg
 
-DEPEND_USE+=		t3d
+DEPEND_USE+=		libt3d
 
-DEPEND_ABI.t3d?=t3d>=2.5
-DEPEND_DIR.t3d?=../../math/t3d
+DEPEND_ABI.libt3d?=libt3d>=2.5
+DEPEND_DIR.libt3d?=../../math/t3d
 
-DEPEND_PKG_CONFIG.t3d+=lib/pkgconfig
+DEPEND_PKG_CONFIG.libt3d+=lib/pkgconfig
 
-SYSTEM_SEARCH.t3d=\
+SYSTEM_SEARCH.libt3d=\
 	include/t3d/t3d.h	\
 	lib/pkgconfig/t3d.pc
 endif
