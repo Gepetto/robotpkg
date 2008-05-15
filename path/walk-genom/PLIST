@@ -1,0 +1,25 @@
+@comment Wed May 14 16:43:48 CEST 2008
+bin/walk
+bin/walkSendInitRqst
+bin/walkTest
+include/walk/server/walkEndian.h
+include/walk/server/walkError.h
+include/walk/server/walkMsgLib.h
+include/walk/server/walkPosterLib.h
+include/walk/server/walkPosterLibStruct.h
+include/walk/server/walkPosterReadLibProto.h
+include/walk/server/walkPosterShowLib.h
+include/walk/server/walkPosterWriteLibProto.h
+include/walk/server/walkPosterXMLLib.h
+include/walk/server/walkPrint.h
+include/walk/server/walkPrintXML.h
+include/walk/server/walkScan.h
+include/walk/server/walkType.h
+include/walk/walkStruct.h
+lib/libwalkClient.la
+lib/pkgconfig/walk.pc
+lib/tclserv/libwalkTclServ.la
+share/modules/gen/walk.gen
+share/modules/tcl/walkClient.tcl
+@dirrm include/walk/server
+@dirrm include/walk

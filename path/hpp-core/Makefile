@@ -1,4 +1,4 @@
-# $NetBSD$
+# $Id:$
 #
 
 DISTNAME=	hppcore-${VERSION}
@@ -22,8 +22,7 @@ PKG_OPTION_DESCR.with-body=	Use internal definition of ChppBody class.
 PKG_OPTION_SET.with-body:=	CONFIGURE_ARGS+=	--enable-body
 define PKG_OPTION_UNSET.with-body
 CONFIGURE_ARGS+=	--disable-body
-DEPENDS+=		hpp-model>=1.0:../../devel/hpp-model
+include ../../devel/hpp-model/depend.mk
 endef
 
-include ../../devel/hpp-kwsplus/depend.mk
 include ../../mk/robotpkg.mk
