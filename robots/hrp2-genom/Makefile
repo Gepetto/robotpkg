@@ -15,13 +15,13 @@ USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 DEPENDS+=	netshring>=1.0:../../architecture/netshring
-DEPENDS+=	libt3d>=2.5:../../math/t3d
 DEPENDS+=	pom-genom>=0.4:../../localization/pom-genom
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.openhrp-jrl}/OpenHRP
 
 include ../../architecture/openhrp-jrl/depend.mk
 include ../../architecture/genom-openhrp-plugin/depend.mk
+include ../../math/t3d/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../mk/robotpkg.mk
 
