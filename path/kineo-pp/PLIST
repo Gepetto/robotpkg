@@ -3049,8 +3049,6 @@ lib/pkgconfig/KineoPathPlanner.pc
 @dirrm kineo/lib/modules/libKineoMagnetdRes
 @dirrm kineo/lib/modules/libKineoMagnetRes/KineoMagnet
 @dirrm kineo/lib/modules/libKineoMagnetRes
-@dirrm kineo/lib/modules
-@dirrm kineo/lib
 @dirrm kineo/include/wx/xrc
 @dirrm kineo/include/wx/xml
 @dirrm kineo/include/wx/unix
@@ -3081,4 +3079,3 @@ lib/pkgconfig/KineoPathPlanner.pc
 @dirrm kineo/include/KineoController
 @dirrm kineo/include
 @dirrm kineo/bin
-@dirrm kineo
