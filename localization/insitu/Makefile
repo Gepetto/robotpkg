@@ -12,6 +12,5 @@ COMMENT=		Sensor location management library.
 GNU_CONFIGURE=		yes
 USE_PKG_CONFIG=		yes
 
-DEPENDS+=		libt3d>=2.3:../../math/t3d
-
+include ../../math/t3d/depend.mk
 include ../../mk/robotpkg.mk

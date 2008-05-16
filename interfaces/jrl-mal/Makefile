@@ -32,7 +32,7 @@ PKG_OPTION_SET.vnl:=	CONFIGURE_ARGS+=	--with-vnl=${PREFIX}
 PKG_OPTION_DESCR.t3d=	Use t3d for rigid body transformations
 define PKG_OPTION_SET.t3d
 CONFIGURE_ARGS+=	--with-t3d
-DEPENDS+=		libt3d>=2.5:../../math/t3d
+include ../../math/t3d/depend.mk
 endef
 
 include ../../mk/robotpkg.mk
