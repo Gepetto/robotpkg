@@ -35,9 +35,37 @@
 #		the empty list and the package is otherwise treated as
 #		not using the options framework.
 #
-#	PKG_OPTIONS_VAR (must be defined)
-#               The variable the user can set to enable or disable
-#		options specifically for this package.
+#	PKG_OPTION_DESCR.<opt>
+#		This is the textual description of the option <opt> which
+#		is displayed by the make 'show-options' target. E.g.,
+#
+#		   PKG_OPTION_DESCR.bar=	Enable the bar option.
+#
+#	PKG_OPTION_SET.<opt> (resp. PKG_OPTION_UNSET.<opt>)
+#		This is a makefile fragment that is evaluated when the
+#		option <opt> is set (resp unset) for the package. E.g.,
+#
+#		   PKG_OPTION_SET.bar=		CFLAGS+=-DBAR
+#		   PKG_OPTION_UNSET.bar=	CFLAGS+=-DNO_BAR
+#
+#	PKG_OPTIONS_OPTIONAL_GROUPS
+#		This is a list of names of groups of mutually exclusive
+#		options.  The options in each group are listed in
+#		PKG_OPTIONS_GROUP.<groupname>.  The most specific
+#		setting of any option from the group takes precedence
+#		over all other options in the group.  Options from
+#		the groups will be automatically added to
+#		PKG_SUPPORTED_OPTIONS.
+#
+#	PKG_OPTIONS_REQUIRED_GROUPS
+#		Like PKG_OPTIONS_OPTIONAL_GROUPS, but building
+#		the packages will fail if no option from the group
+#		is selected.
+#
+#	PKG_OPTIONS_VAR
+#		The variable the user can set to enable or disable
+#		options specifically for this package. Defaults to
+#		PKG_OPTIONS.${PKGBASE}
 #
 #	PKG_SUGGESTED_OPTIONS (defaults to empty)
 #		This is a list of build options which are enabled by default.
@@ -64,60 +92,78 @@
 #		filtered to remove unsupported and duplicate options.
 #
 
-ifndef PKG_OPTIONS_MK
-PKG_OPTIONS_MK=		# defined
-
-# To add options support to a package, here is an example for an
-# options.mk file. This file should be included by the package Makefile
-# or Makefile.common.
+#
+# To add options support to a package, here is an example Makefile
+# fragment for a 'wibble' package. This fragment should be included in
+# the 'wibble' package Makefile or its depend.mk file if the options are
+# meaningful for the packages that depend on it.
 #
 # -------------8<-------------8<-------------8<-------------8<-------------
 # PKG_OPTIONS_VAR=		PKG_OPTIONS.wibble
 # PKG_SUPPORTED_OPTIONS=	foo bar
+# PKG_OPTIONS_OPTIONAL_GROUPS=	robot
+# PKG_OPTIONS_GROUP.robot=	lama hrp2
 # PKG_SUGGESTED_OPTIONS=	foo
 #
-# PKG_OPTION.foo=		Enable the foo option.
-# PKG_OPTION.bar=		Build with the bar package.
+# PKG_OPTION_DESCR.foo=		Enable the foo option.
+# PKG_OPTION_DESCR.bar=		Build with the bar package.
+# PKG_OPTION_DESCR.lama=	Build for the lama robot.
+# PKG_OPTION_DESCR.hrp2=	Build for the hrp2 robot.
 #
-# include ../../mk/robotpkg.options.mk
+# define PKG_OPTION_SET.bar
+#  CFLAGS+=-DNO_BAR
+#  include ../../pkg/bar/depend.mk
+# endef
+# PKG_OPTION_UNSET.bar=		CFLAGS+=-DNO_BAR
 #
-# # Package-specific option-handling
-#
-# ###
-# ### FOO support
-# ###
-# ifneq (,$(findstring foo,$(PKG_OPTIONS)))
-# CONFIGURE_ARGS+=	--enable-foo
-# endif
-#
-# ###
-# ### BAR support
-# ###
-# ifneq (,$(findstring bar,$(PKG_OPTIONS)))
-# DEPENDS+=		bar>=1.0:../../wibble/bar
-# CONFIGURE_ARGS+=	--enable-bar=${PREFIX}
-# endif
 # -------------8<-------------8<-------------8<-------------8<-------------
 #
 
+ifndef PKG_OPTIONS_MK
+PKG_OPTIONS_MK=		# defined
 
-# Check for variable definitions required before including this file.
+# Remenber the general options for `show-options' target
+#
+PKG_GENERAL_OPTIONS:=	${PKG_SUPPORTED_OPTIONS}
+
+
+# Create map of option to group and add group options to PKG_SUPPORTED_OPTIONS
+#
+define _pkgopt_mapgrp
+  _PKG_OPTIONS_GROUP_STACK.${1}:=#empty
+  ifeq (,$(strip ${PKG_OPTIONS_GROUP.${1}}))
+    PKG_FAIL_REASON+=	"PKG_OPTIONS_GROUP.${1} must be non-empty."
+  endif
+  PKG_SUPPORTED_OPTIONS+=${PKG_OPTIONS_GROUP.${1}}
+  $$(foreach _o_,${PKG_OPTIONS_GROUP.${1}},\
+	$$(eval _PKG_OPTIONS_GROUP_MAP.$${_o_}=${1}))
+endef
+$(foreach _o_,\
+	${PKG_OPTIONS_OPTIONAL_GROUPS} ${PKG_OPTIONS_REQUIRED_GROUPS},\
+	$(eval $(call _pkgopt_mapgrp,${_o_})))
+
+
+# Don't parse this file if the package doesn't have options
 #
 ifdef PKG_SUPPORTED_OPTIONS
 
+
+# Set the default name of the PKG_OPTIONS_VAR
+#
 PKG_OPTIONS_VAR?=	PKG_OPTIONS.${PKGBASE}
 
-# Filter unsupported options from PKG_DEFAULT_OPTIONS.
+
+# Filter out unsupported options from PKG_DEFAULT_OPTIONS.
 #
 _OPTIONS_DEFAULT_SUPPORTED:=# empty
-define default_options
-_opt_:=		${1}
-_popt_:=	$(patsubst -%,%,${1})
-ifneq (,$$(findstring $${_popt_},$(PKG_SUPPORTED_OPTIONS)))
-_OPTIONS_DEFAULT_SUPPORTED:=$${_OPTIONS_DEFAULT_SUPPORTED} $${_opt_}
-endif
+define _pkgopt_supported
+  _opt_:=	${1}
+  _popt_:=	$(patsubst -%,%,${1})#	positive option
+  ifneq (,$$(findstring $${_popt_},$(PKG_SUPPORTED_OPTIONS)))
+    _OPTIONS_DEFAULT_SUPPORTED:=$${_OPTIONS_DEFAULT_SUPPORTED} $${_opt_}
+  endif
 endef
-$(foreach _o_,${PKG_DEFAULT_OPTIONS},$(eval $(call default_options,${_o_})))
+$(foreach _o_,${PKG_DEFAULT_OPTIONS},$(eval $(call _pkgopt_supported,${_o_})))
 
 
 # Process options from generic to specific and store the final result in
@@ -125,28 +171,77 @@ $(foreach _o_,${PKG_DEFAULT_OPTIONS},$(eval $(call default_options,${_o_})))
 #
 PKG_OPTIONS:=#		empty
 _OPTIONS_UNSUPPORTED:=#	empty
-define build_options
-_opt_:=		${1}
-_popt_:=	$(patsubst -%,%,${1})
-ifeq (,$$(findstring $${_popt_},$${PKG_SUPPORTED_OPTIONS}))
-_OPTIONS_UNSUPPORTED:=$${_OPTIONS_UNSUPPORTED} $${_opt_}
-else
- ifneq ($${_opt_},$${_popt_})
-PKG_OPTIONS:=	$$(filter-out $${_popt_},$${PKG_OPTIONS})
- else
-PKG_OPTIONS:=	$${PKG_OPTIONS} $${_popt_}
- endif
-endif
+define _pkgopt_process
+  _opt_:=	${1}
+  _popt_:=	$(patsubst -%,%,${1})#	positive option
+
+  ifeq (,$$(findstring $${_popt_},${PKG_SUPPORTED_OPTIONS}))
+    _OPTIONS_UNSUPPORTED:=$${_OPTIONS_UNSUPPORTED} $${_opt_}
+  else
+    ifdef _PKG_OPTIONS_GROUP_MAP.$${_popt_}
+      _grp_:= $${_PKG_OPTIONS_GROUP_MAP.$${_popt_}}
+      _stk_:= _PKG_OPTIONS_GROUP_STACK.$${_grp_}
+    else
+      _stk_:= PKG_OPTIONS
+    endif
+    _cnt_:= $${$${_stk_}}
+    ifneq ($${_opt_},$${_popt_})
+      $${_stk_}:= $$(filter-out $${_popt_},$${_cnt_})
+    else
+      $${_stk_}:= $${_cnt_} $${_popt_}
+    endif
+  endif
 endef
 $(foreach _o_,${PKG_SUGGESTED_OPTIONS} ${_OPTIONS_DEFAULT_SUPPORTED}	\
-	${${PKG_OPTIONS_VAR}}, $(eval $(call build_options,${_o_})))
+	${${PKG_OPTIONS_VAR}}, $(eval $(call _pkgopt_process,${_o_})))
+
+
+# Fail if required groups are not set
+#
+define _pkgopt_chkreqd
+  ifeq (,$(strip ${_PKG_OPTIONS_GROUP_STACK.${1}}))
+    ifneq (,$${PKG_FAIL_REASON})
+      PKG_FAIL_REASON+=""
+    endif
+    PKG_FAIL_REASON+=	"One of the following options must be selected: "
+    PKG_FAIL_REASON+=	"	"$(call quote,${PKG_OPTIONS_GROUP.${1}})
+    PKG_OPTIONS_FAILED=	yes
+  endif
+endef
+$(foreach _g_,${PKG_OPTIONS_REQUIRED_GROUPS},\
+	$(eval $(call _pkgopt_chkreqd,${_g_})))
+
+
+# Add selected groups options to PKG_OPTIONS
+#
+define _pkgopt_addgrps
+  ifneq (,$(strip ${_PKG_OPTIONS_GROUP_STACK.${1}}))
+    PKG_OPTIONS:= ${PKG_OPTIONS} $(lastword ${_PKG_OPTIONS_GROUP_STACK.${1}})
+  endif
+endef
+$(foreach _g_,\
+	${PKG_OPTIONS_REQUIRED_GROUPS}\
+	${PKG_OPTIONS_OPTIONAL_GROUPS},\
+	$(eval $(call _pkgopt_addgrps,${_g_})))
 
 
 # Bail out if there remain some unspported options.
 #
 ifneq (,$(strip $(_OPTIONS_UNSUPPORTED)))
-PKG_FAIL_REASON+=	"[robotpkg.options.mk] The following selected options are not supported:"
-PKG_FAIL_REASON+=	"	"$(call quote,$(sort ${_OPTIONS_UNSUPPORTED}))"."
+  ifneq (,$${PKG_FAIL_REASON})
+    PKG_FAIL_REASON+=""
+  endif
+  PKG_FAIL_REASON+=	"The following selected options are not supported:"
+  PKG_FAIL_REASON+=	"	"$(call quote,$(sort ${_OPTIONS_UNSUPPORTED}))
+  PKG_OPTIONS_FAILED=	yes
+endif
+
+
+# In case of error, mention some help
+#
+ifdef PKG_OPTIONS_FAILED
+  PKG_FAIL_REASON+=	""
+  PKG_FAIL_REASON+=	"See \`${MAKE} show-options' for details."
 endif
 
 # Store the result in the +BUILD_INFO file so we can query for the build
@@ -167,13 +262,25 @@ $(foreach _o_,${PKG_SUPPORTED_OPTIONS},					\
 #
 # print the list of available options for this package.
 #
+define _pkgopt_listopt
+  $(foreach o,${1},\
+    ${ECHO} "	"$(call quote,${o})"	"$(call quote,${PKG_OPTION_DESCR.${o}});\
+  )
+endef
+
 .PHONY: show-options
 show-options:
-	@${ECHO} Any of the following general options may be selected:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-$(foreach _opt_,$(sort ${PKG_SUPPORTED_OPTIONS}),			\
-	${ECHO} "	"$(call quote,${_opt_})"	"$(call quote,${PKG_OPTION_DESCR.${_opt_}});\
-)
+ifneq (,$(strip ${PKG_GENERAL_OPTIONS}))
+	@${ECHO} "Any of the following general options may be selected:"
+	${RUN}$(foreach _o_, $(sort ${PKG_GENERAL_OPTIONS}),		\
+	  $(call _pkgopt_listopt,${_o_}))
+endif
+	${RUN}$(foreach _g_, ${PKG_OPTIONS_REQUIRED_GROUPS},		\
+	  ${ECHO} "Exactly one of the following ${_g_} options is required:";\
+	  $(call _pkgopt_listopt,${PKG_OPTIONS_GROUP.${_g_}}))
+	${RUN}$(foreach _g_, ${PKG_OPTIONS_OPTIONAL_GROUPS},		\
+	  ${ECHO} "At most one of the following ${_g_} options may be selected:";\
+	  $(call _pkgopt_listopt,${PKG_OPTIONS_GROUP.${_g_}}))
 	@${ECHO}
 	@${ECHO} "These options are enabled by default:"
 ifneq (,$(strip ${PKG_SUGGESTED_OPTIONS}))
@@ -232,7 +339,7 @@ endif
 else	# PKG_SUPPORTED_OPTIONS
 .PHONY: show-options
 show-options:
-	@${ECHO} This package does not use the options framework.	
+	@${ECHO} This package does not use the options framework.
 
 endif	# PKG_SUPPORTED_OPTIONS
 endif	# PKG_OPTIONS_MK
