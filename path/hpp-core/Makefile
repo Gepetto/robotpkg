@@ -25,4 +25,5 @@ CONFIGURE_ARGS+=	--disable-body
 include ../../devel/hpp-model/depend.mk
 endef
 
+include ../../devel/hpp-kwsplus/depend.mk
 include ../../mk/robotpkg.mk
