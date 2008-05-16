@@ -1,0 +1,4 @@
+This library is used for different things : 
+  - modelisation of robot "kinetic"
+  - local path planner
+  - construction of difficulty map (difmap api)
