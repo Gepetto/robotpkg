@@ -1,0 +1,8 @@
+@comment Sat May 17 13:28:42 CEST 2008
+include/libdtm.h
+include/libdtm_gdhe.h
+lib/libdtm.la
+lib/pkgconfig/libdtm.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include
