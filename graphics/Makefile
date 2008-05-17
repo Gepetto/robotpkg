@@ -3,6 +3,7 @@
 
 COMMENT=	Graphics tools
 
+SUBDIR+=	gdhe
 SUBDIR+=	kpp-interface
 SUBDIR+=	kpp-interfacewalk
 SUBDIR+=	vrml97
