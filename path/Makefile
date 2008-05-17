@@ -3,6 +3,7 @@
 
 COMMENT=	Path planning algorithms and tools
 
+SUBDIR+=	dtm-genom
 SUBDIR+=	gik-genom
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-gik
