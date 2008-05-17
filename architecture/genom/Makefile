@@ -13,6 +13,5 @@ COMMENT=		Software components generator for robotics architecture.
 GNU_CONFIGURE=		yes
 USE_PKG_CONFIG=		yes
 
-DEPENDS+=		pocolibs>=2.3:../../devel/pocolibs
-
+include ../../devel/pocolibs/depend.mk
 include ../../mk/robotpkg.mk

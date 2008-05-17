@@ -1,0 +1,31 @@
+@comment samedi 17 mai 2008, 18:41:06 (UTC+0200)
+bin/dtm
+bin/dtmSendInitRqst
+bin/dtmTest
+include/dtm/dtmStruct.h
+include/dtm/server/dtmEndian.h
+include/dtm/server/dtmError.h
+include/dtm/server/dtmMsgLib.h
+include/dtm/server/dtmPosterLib.h
+include/dtm/server/dtmPosterLibStruct.h
+include/dtm/server/dtmPosterReadLibProto.h
+include/dtm/server/dtmPosterShowLib.h
+include/dtm/server/dtmPosterWriteLibProto.h
+include/dtm/server/dtmPosterXMLLib.h
+include/dtm/server/dtmPrint.h
+include/dtm/server/dtmPrintXML.h
+include/dtm/server/dtmScan.h
+include/dtm/server/dtmType.h
+lib/libdtmClient.la
+lib/pkgconfig/dtm.pc
+lib/tclserv/libdtmTclServ.la
+share/modules/gen/dtm.gen
+share/modules/tcl/dtmClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/dtm/server
+@dirrm include/dtm
+@dirrm bin

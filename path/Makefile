@@ -3,6 +3,7 @@
 
 COMMENT=	Path planning algorithms and tools
 
+SUBDIR+=	dtm-genom
 SUBDIR+=	gik-genom
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-gik
@@ -10,6 +11,7 @@ SUBDIR+=	hpp-openhrp
 SUBDIR+=	hpp-walkplanner
 SUBDIR+=	jrl-walkgen
 SUBDIR+=	kineo-pp
+SUBDIR+=	libdtm
 SUBDIR+=	libp3d
 SUBDIR+=	walk-genom
 

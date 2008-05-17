@@ -4,6 +4,7 @@
 COMMENT=	Robotics architecture tools
 
 SUBDIR+=	ace
+SUBDIR+=	genBasic-genom
 SUBDIR+=	genom
 SUBDIR+=	genom-openhrp-plugin
 SUBDIR+=	netshring
