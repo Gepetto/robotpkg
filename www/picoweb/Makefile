@@ -12,6 +12,6 @@ COMMENT=		Dedicated HTTP server for GenoM modules.
 
 GNU_CONFIGURE=		yes
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep
-DEPENDS+=		pocolibs>=2.2:../../devel/pocolibs
 
+include ../../devel/pocolibs/depend.mk
 include ../../mk/robotpkg.mk
