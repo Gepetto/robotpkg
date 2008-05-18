@@ -81,10 +81,10 @@ endif
 # --- common compiler options ----------------------------------------
 #
 
+ifndef NO_BUILD
 PKG_SUPPORTED_OPTIONS+=		debug
 
 PKG_OPTION_DESCR.debug:=	Produce debugging information for binary programs
-PKG_OPTION_DESCR.optimize:=	Optimize code in binary programs
 
 define PKG_OPTION_SET.debug
   CFLAGS+=	-g -O0 -Wall
@@ -95,5 +95,7 @@ define PKG_OPTION_UNSET.debug
   CFLAGS+=	-O3 -DNDEBUG
   CXXFLAGS+=	-O3 -DNDEBUG
 endef
+
+endif	# NO_BUILD
 
 endif	# COMPILER_GCC_MK
