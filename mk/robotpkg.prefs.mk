@@ -43,7 +43,7 @@ endif
 ifndef OPSYS
 OPSYS:=			$(shell ${UNAME} -s | ${TR} -d /)
 LOWER_OPSYS?=		$(shell echo ${OPSYS} | ${TR} 'A-Z' 'a-z')
-MAKEOVERRIDES+=		OPSYS=${OPSYS} LOWER_OPSYS?=${LOWER_OPSYS}
+MAKEOVERRIDES+=		OPSYS=${OPSYS} LOWER_OPSYS=${LOWER_OPSYS}
 endif
 
 ifndef OS_VERSION
