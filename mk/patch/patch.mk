@@ -290,6 +290,9 @@ $(foreach i,${PATCHFILES},						\
 ifeq (yes,$(call exists,${PATCHDIR}))
 _PKGSRC_PATCHES+=	$(wildcard ${PATCHDIR}/patch-*)
 endif
+ifdef PKG_PATCHES
+_PKGSRC_PATCHES+=	${PKG_PATCHES}
+endif
 
 pkgsrc-patch-message:
 	@${STEP_MSG} "Applying robotpkg patches for ${PKGNAME}"
@@ -326,7 +329,7 @@ do-pkgsrc-patch:
 			set -- $$algsum;				\
 			alg="$$1";					\
 			recorded="$$2";					\
-			calcsum=`${SED} -e '/\$$NetBSD.*/d' $$i | ${TOOLS_DIGEST} $$alg`; \
+			calcsum=`${TOOLS_DIGEST} $$alg < $$i`; 		\
 			${ECHO_PATCH_MSG} "Verifying $$filename (using digest algorithm $$alg)"; \
 			if ${TEST} "$$calcsum" != "$$recorded"; then	\
 				patch_warning "Ignoring patch file $$i: invalid checksum"; \
