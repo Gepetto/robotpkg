@@ -19,6 +19,33 @@ SPEECH_TOOLS=		${WRKSRC}/speech_tools
 GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		${SPEECH_TOOLS} ${FESTIVAL}
 
+# --- optional OGI synthetiser ---------------------------------------
+
+PKG_SUPPORTED_OPTIONS+=	ogireslpc
+PKG_SUGGESTED_OPTIONS+=	ogireslpc
+
+PKG_OPTION_DESCR.ogireslpc=	Compile OGI residual LPC synthetiser
+
+OGIRESLPC.files=	OGIresLPC-2.2.tar.gz
+OGIRESLPC.site=		http://www.cslu.ogi.edu/tts/download/data/
+
+SITES.OGIresLPC-2.2.tar.gz=	${OGIRESLPC.site}
+SITES.OGIlexicon-2.2.tar.gz=	${OGIRESLPC.site}
+
+define PKG_OPTION_SET.ogireslpc
+  DISTFILES+=		${OGIRESLPC.files}
+  PKG_PATCHES+=		$(wildcard ${PATCHDIR}/ogi-patch-*)
+  GENERATE_PLIST+=	${CAT} ${PKGDIR}/PLIST.ogireslpc;
+endef
+
+# the makesum target must compute checksum of all files, no matter what
+# options are set
+ifneq (,$(filter mdi distinfo makesum,${MAKECMDGOALS}))
+  DISTFILES+=		${OGIRESLPC.files}
+endif
+
+# --------------------------------------------------------------------
+
 include ../../mk/robotpkg.mk
 
 pre-configure:
