@@ -1,0 +1,35 @@
+@comment lundi 19 mai 2008, 14:35:35 (UTC+0200)
+bin/p3d
+bin/p3dSendInitRqst
+bin/p3dTest
+include/p3d/demP3dPosterToP3dMap.h
+include/p3d/p3dStruct.h
+include/p3d/server/p3dEndian.h
+include/p3d/server/p3dError.h
+include/p3d/server/p3dMsgLib.h
+include/p3d/server/p3dPosterLib.h
+include/p3d/server/p3dPosterLibStruct.h
+include/p3d/server/p3dPosterReadLibProto.h
+include/p3d/server/p3dPosterShowLib.h
+include/p3d/server/p3dPosterWriteLibProto.h
+include/p3d/server/p3dPosterXMLLib.h
+include/p3d/server/p3dPrint.h
+include/p3d/server/p3dPrintXML.h
+include/p3d/server/p3dScan.h
+include/p3d/server/p3dType.h
+lib/libp3dClient.la
+lib/libp3dLib.la
+lib/pkgconfig/p3d-lib.pc
+lib/pkgconfig/p3d.pc
+lib/tclserv/libp3dTclServ.la
+share/modules/gen/p3d.gen
+share/modules/tcl/p3dClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/p3d/server
+@dirrm include/p3d
+@dirrm include
+@dirrm bin
