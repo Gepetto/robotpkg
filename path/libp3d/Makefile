@@ -13,10 +13,10 @@ USE_PKG_CONFIG=		yes
 
 # Robot options
 PKG_OPTIONS_REQUIRED_GROUPS=	robot
-PKG_OPTIONS_GROUP.robot=	dala lama trooper
+PKG_OPTIONS_GROUP.robot=	atrv lama trooper
 
-PKG_OPTION_DESCR.dala=	Enable support for dala platform
-PKG_OPTION_SET.dala:=	CONFIGURE_ARGS+=--with-platform=ATRV
+PKG_OPTION_DESCR.atrv=	Enable support for ATRV (DALA) platform
+PKG_OPTION_SET.atrv:=	CONFIGURE_ARGS+=--with-platform=ATRV
 
 PKG_OPTION_DESCR.lama=	Enable support for lama platform
 PKG_OPTION_SET.lama=	CONFIGURE_ARGS+=--with-platform=LAMA
