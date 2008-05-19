@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=		insitu-1.1
+DISTNAME=		insitu-1.2
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
