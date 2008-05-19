@@ -15,9 +15,11 @@ NO_CONFIGURE=   yes
 NO_BUILD=       yes
 WRKSRC=         ${WRKDIR}
 
-include ../../localization/pom-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
 include ../../image/viam-genom/depend.mk
+include ../../localization/imu-genom/depend.mk
+include ../../localization/gyro-genom/depend.mk
+include ../../localization/pom-genom/depend.mk
 include ../../path/dtm-genom/depend.mk
 include ../../path/p3d-genom/depend.mk
 include ../../robots/rflex-genom/depend.mk
