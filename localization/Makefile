@@ -3,6 +3,7 @@
 
 COMMENT=	Position estimation and localization
 
+SUBDIR+=	gyro-genom
 SUBDIR+=	hueblob-genom
 SUBDIR+=	insitu
 SUBDIR+=	libpom
