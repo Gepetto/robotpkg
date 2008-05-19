@@ -12,7 +12,7 @@ PREFER.rflexclients?=	robotpkg
 
 DEPEND_USE+=		rflexclients
 
-DEPEND_ABI.rflexclients?=	rflexclients>=1.0
+DEPEND_ABI.rflexclients?=	rflexclients>=1.0.1
 DEPEND_DIR.rflexclients?=	../../robots/rflexclients
 
 DEPEND_PKG_CONFIG.rflexclients+=lib/pkgconfig
