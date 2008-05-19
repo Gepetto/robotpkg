@@ -1,0 +1,26 @@
+ $Id: $
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH}+
+GYROKVH1000_DEPEND_MK:=${GYROKVH1000_DEPEND_MK}+
+
+ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=		gyroKVH1000
+endif
+
+ifeq (+,$(GYROKVH1000_DEPEND_MK))
+PREFER.gyroKVH1000?=	robotpkg
+
+DEPEND_USE+=		gyroKVH1000
+
+DEPEND_ABI.gyroKVH1000?=	gyroKVH1000>=1.0.1
+DEPEND_DIR.gyroKVH1000?=	../../robots/gyroKVH1000
+
+DEPEND_PKG_CONFIG.gyroKVH1000+=lib/pkgconfig
+
+SYSTEM_SEARCH.gyroKVH1000=\
+	bin/gyroKVH1000TaskTest \
+	include/gyroKVH1000HardLib.h \
+	lib/pkgconfig/gyroKVH1000Hard.pc
+endif
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
