@@ -18,8 +18,8 @@ include ../../architecture/genom/depend.mk
 include ../../architecture/genBasic-genom/depend.mk
 include ../../architecture/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
-include ../../localization/rflex-genom/depend.mk
 include ../../math/t3d/depend.mk
 include ../../path/libp3d/depend.mk
 include ../../path/dtm-genom/depend.mk
+include ../../robots/rflex-genom/depend.mk
 include ../../mk/robotpkg.mk

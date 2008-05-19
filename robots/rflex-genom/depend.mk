@@ -13,7 +13,7 @@ PREFER.rflex-genom?=	robotpkg
 DEPEND_USE+=		rflex-genom
 
 DEPEND_ABI.rflex-genom?=	rflex-genom>=0.2
-DEPEND_DIR.rflex-genom?=	../../localization/rflex-genom
+DEPEND_DIR.rflex-genom?=	../../robots/rflex-genom
 
 DEPEND_PKG_CONFIG.rflex-genom+=lib/pkgconfig
 

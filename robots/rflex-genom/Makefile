@@ -2,7 +2,7 @@
 #
 
 DISTNAME=		rflex-genom-0.2
-CATEGORIES=		localization
+CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr
