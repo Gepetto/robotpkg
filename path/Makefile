@@ -13,6 +13,7 @@ SUBDIR+=	jrl-walkgen
 SUBDIR+=	kineo-pp
 SUBDIR+=	libdtm
 SUBDIR+=	libp3d
+SUBDIR+=	p3d-genom
 SUBDIR+=	walk-genom
 
 include ../mk/robotpkg.subdir.mk
