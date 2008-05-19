@@ -41,7 +41,7 @@ define _pkg_buildopt
   ifdef REQD_BUILD_OPTIONS.${1}
     ifeq (robotpkg,${PREFER.${1}})
       ifndef PKG_BUILD_OPTIONS.${1}
-        PKG_BUILD_OPTIONS.${1}:=$(shell					\
+        PKG_BUILD_OPTIONS.${1}:=$$(shell				\
 	  echo ""; 							\
 	  ${PKG_INFO} -Q PKG_OPTIONS ${1} 2>/dev/null			\
 	  || { cd ${DEPEND_DIR.${1}}					\
