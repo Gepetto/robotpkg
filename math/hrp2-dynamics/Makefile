@@ -16,6 +16,6 @@ DEPENDS+=	jrl-dynamics>=1.7:../../math/jrl-dynamics
 
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
-USE_LIBTOOL=	yes
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

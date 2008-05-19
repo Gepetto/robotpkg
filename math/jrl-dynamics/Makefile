@@ -16,7 +16,7 @@ DEPENDS+=	jrl-mal>=1.4:../../interfaces/jrl-mal
 
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
-USE_LIBTOOL=	yes
 
 include ../../interfaces/jrl-interface-dynamics/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007 LAAS/CNRS                        --  Tue May 15 2007
+# Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -19,17 +19,46 @@
 #
 # From $NetBSD: libtool-override.mk,v 1.9 2006/11/05 12:40:01 rillig Exp $
 
+# Authored by Anthony Mallet on Wed May 19 2008
 
-# --- libtool-override -----------------------------------------------
+DEPEND_DEPTH:=		${DEPEND_DEPTH}+
+LIBTOOL_DEPEND_MK:=	${LIBTOOL_DEPEND_MK}+
+
+ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=		libtool
+endif
+
+ifeq (+,$(LIBTOOL_DEPEND_MK)) # --------------------------------------
+
+PREFER.libtool?=	system
+
+SYSTEM_SEARCH.libtool=\
+	bin/libtool			\
+	share/aclocal/libtool.m4	\
+	share/libtool/config.guess
+
+DEPEND_USE+=		libtool
+DEPEND_METHOD.libtool+=	build
+DEPEND_ABI.libtool?=	libtool>=1.5.22
+DEPEND_DIR.libtool?=	../../pkgtools/libtool
+
+# TOOLS.libtool is the publicly-readable variable that should be used by
+# Makefiles to invoke the proper libtool.
+#
+TOOLS.libtool?=		${PREFIX.libtool}/bin/libtool
+
+# Define the proper libtool in make and configure environments
+#
+CONFIGURE_ENV+=		TOOLS.libtool="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
+MAKE_ENV+=		TOOLS.libtool="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
 
 # libtool-override replace any existing libtool under ${WRKSRC} with the
-# version installed by pkgsrc.
+# version found by robotpkg.
 #
-
-do-configure-post-hook: libtool-override
+post-configure: libtool-override
 
 OVERRIDE_DIRDEPTH.libtool?=	${OVERRIDE_DIRDEPTH}
-_OVERRIDE_PATH.libtool=		${_LIBTOOL}
+_OVERRIDE_PATH.libtool=		${TOOLS.libtool}
 
 _SCRIPT.libtool-override=						\
 	${RM} -f $$file;						\
@@ -39,9 +68,9 @@ _SCRIPT.libtool-override=						\
 
 .PHONY: libtool-override
 libtool-override:
-	@${STEP_MSG} "Modifying libtool scripts to use robotpkg libtool"
+	@${STEP_MSG} "Modifying libtool scripts to use ${PREFER.libtool} libtool"
 ifdef LIBTOOL_OVERRIDE
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
+	${RUN}								\
 	cd ${WRKSRC};							\
 	set -- dummy ${LIBTOOL_OVERRIDE}; shift;			\
 	while [ $$# -gt 0 ]; do						\
@@ -50,7 +79,7 @@ ifdef LIBTOOL_OVERRIDE
 		${_SCRIPT.$@};						\
 	done
 else
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
+	${RUN}								\
 	cd ${WRKSRC};							\
 	depth=0; pattern=libtool;					\
 	while [ $$depth -le ${OVERRIDE_DIRDEPTH.libtool} ]; do		\
@@ -61,3 +90,7 @@ else
 		depth=`${EXPR} $$depth + 1`; pattern="*/$$pattern";	\
 	done
 endif
+
+endif # LIBTOOL_DEPEND_MK --------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

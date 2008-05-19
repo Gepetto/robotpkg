@@ -9,7 +9,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Local path planning - GenoM component
 
 GNU_CONFIGURE=		yes
-USE_LIBTOOL=		yes
 USE_PKG_CONFIG=		yes
 
 GENOM_MODULE=		p3d
@@ -22,4 +21,5 @@ include ../../math/t3d/depend.mk
 include ../../path/libp3d/depend.mk
 include ../../path/dtm-genom/depend.mk
 include ../../robots/rflex-genom/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

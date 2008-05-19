@@ -11,7 +11,6 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Walk trajectories for humanoid robots - GenoM component
 
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 DEPENDS+=	netshring>=1.0:../../architecture/netshring
@@ -25,6 +24,7 @@ include ../../architecture/genom/depend.mk
 include ../../path/hpp-walkplanner/depend.mk
 include ../../architecture/genom-openhrp-plugin/depend.mk
 include ../../devel/omniORB/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
 
 # generate and install the Kineo license, but don't fail on errors.

@@ -9,7 +9,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Digital Terrain Model Construction  - GenoM component
 
 GNU_CONFIGURE=		yes
-USE_LIBTOOL=		yes
 USE_PKG_CONFIG=		yes
 
 # options
@@ -33,4 +32,5 @@ include ../../image/viam-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
 include ../../math/t3d/depend.mk
 include ../../path/libdtm/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

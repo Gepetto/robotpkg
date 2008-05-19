@@ -10,7 +10,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM module for simple object detection and localization
 
 GNU_CONFIGURE=		yes
-USE_LIBTOOL=		yes
 USE_PKG_CONFIG=		yes
 
 CONFIGURE_ARGS+=	--with-display
@@ -22,4 +21,5 @@ include ../../image/viam-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
 include ../../image/opencv/depend.mk
 include ../../localization/pom-genom/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

@@ -15,7 +15,6 @@ COMMENT=	Corba interface with hppCore package.
 DEPENDS+=	hpp-core>=1.3:../../path/hpp-core
 
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 # options
@@ -32,4 +31,5 @@ include ../../robots/hrp2-14/depend.mk
 endef
 
 include ../../devel/omniORB/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

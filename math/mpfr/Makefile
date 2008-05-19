@@ -9,10 +9,10 @@ HOMEPAGE=		http://www.mpfr.org/
 COMMENT=		GMP-based library for multiple-precision floating-point computations
 
 GNU_CONFIGURE=		yes
-USE_LIBTOOL=		yes
 
 CONFIGURE_ARGS+=        --with-gmp=${PREFIX}
 
 DEPENDS+=		gmp>=4.2.2:../../math/gmp
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

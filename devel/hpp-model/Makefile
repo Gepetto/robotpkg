@@ -16,7 +16,6 @@ DEPENDS+=	hpp-kwsio>=1.0.1:../../devel/hpp-kwsio
 
 GNU_CONFIGURE=	yes
 USE_PKG_CONFIG=	yes
-USE_LIBTOOL=	yes
 
 # options
 PKG_SUPPORTED_OPTIONS+=	jrl-dynamics
@@ -29,4 +28,5 @@ DEPENDS+=		jrl-dynamics>=1.7:../../math/jrl-dynamics
 endef
 
 include ../../path/kineo-pp/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

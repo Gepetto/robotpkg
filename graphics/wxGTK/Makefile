@@ -14,7 +14,6 @@ COMMENT=		GTK-based implementation of the wxWidgets GUI library
 PATCHFILES=		${DISTNAME}-libtool.diff2.bz2
 PATCH_SITES=		${MASTER_SITE_NETBSD_PKGSRC}
 
-USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
 
@@ -26,6 +25,7 @@ PLIST_SUBST+=		BUILDTYPE=ansi
 DOCDIR=			${PREFIX}/share/doc/wxGTK
 MAKE_ENV+=              PKGLOCALEDIR=${PKGLOCALEDIR}
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
 
 post-install:

@@ -16,7 +16,7 @@ DEPENDS+=	jrl-interface-giktask>=1.4:../../interfaces/jrl-interface-giktask
 DEPENDS+=	jrl-dynamics>=1.8:../../math/jrl-dynamics
 
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

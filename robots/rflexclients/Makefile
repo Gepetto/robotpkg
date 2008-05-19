@@ -12,11 +12,11 @@ COMMENT=		Driver and interface for Rflex
 
 GNU_CONFIGURE=		yes
 USE_PKG_CONFIG=		yes
-USE_LIBTOOL=		yes
 
 WRKSRC=			${WRKDIR}/hardlib-${VERSION}/rflex-clients
 
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep
 
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

@@ -10,6 +10,6 @@ HOMEPAGE=		http://cmusphinx.sourceforge.net
 COMMENT=		Carnegie Mellon University\'s speech recognition engine.
 
 GNU_CONFIGURE=		yes
-USE_LIBTOOL=		yes
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

@@ -15,11 +15,11 @@ COMMENT=	Helper functions for KineoWorks(tm) package.
 DEPENDS+=	hpp-kwsio>=1.0:../../devel/hpp-kwsio
 
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 CONFIGURE_ARGS+=	--with-lapack=${PREFIX.lapack}
 
 include ../../path/kineo-pp/depend.mk
 include ../../math/lapack/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

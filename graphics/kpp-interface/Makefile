@@ -14,9 +14,9 @@ COMMENT=	Graphical user interface for HPP libraries.
 DEPENDS+=	hpp-corbaserver>=1.2:../../devel/hpp-corbaserver
 
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../path/kineo-pp/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

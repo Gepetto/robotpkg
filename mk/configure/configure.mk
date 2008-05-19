@@ -42,9 +42,6 @@ endif
 #.if defined(OVERRIDE_GNU_CONFIG_SCRIPTS)
 #.  include "${PKGSRCDIR}/mk/configure/config-override.mk"
 #.endif
-ifdef USE_LIBTOOL
-  include ${PKGSRCDIR}/mk/configure/libtool.mk
-endif
 ifdef PKGCONFIG_OVERRIDE
 USE_PKG_CONFIG=		yes
 endif

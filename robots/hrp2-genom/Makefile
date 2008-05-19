@@ -11,7 +11,6 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Basic HRP-2 hardware control - GenoM component
 
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 DEPENDS+=	netshring>=1.0:../../architecture/netshring
@@ -23,6 +22,7 @@ include ../../architecture/openhrp-jrl/depend.mk
 include ../../architecture/genom-openhrp-plugin/depend.mk
 include ../../math/t3d/depend.mk
 include ../../devel/omniORB/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
 
 # waiting for a more modular solution, hardcode -t

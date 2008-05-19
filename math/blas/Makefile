@@ -15,9 +15,9 @@ HOMEPAGE=       http://www.netlib.org/blas/
 COMMENT=        Basic Linear Algebra Subprograms (Fortran)
 
 WRKSRC=		${WRKDIR}
-USE_LIBTOOL=	yes
 USE_LANGUAGES=	fortran
 
 INSTALLATION_DIRS=	lib
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

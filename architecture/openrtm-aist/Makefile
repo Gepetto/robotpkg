@@ -17,7 +17,6 @@ WRKSRC=			${WRKDIR}/${DISTNAME:-RELEASE=}
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 
-USE_LIBTOOL=		yes
-
 include ../../devel/omniORB/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
