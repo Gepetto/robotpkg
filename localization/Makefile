@@ -3,6 +3,7 @@
 
 COMMENT=	Position estimation and localization
 
+SUBDIR+=	imu-genom
 SUBDIR+=	gyro-genom
 SUBDIR+=	hueblob-genom
 SUBDIR+=	insitu
