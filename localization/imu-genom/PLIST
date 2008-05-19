@@ -1,0 +1,32 @@
+@comment lundi 19 mai 2008, 18:03:56 (UTC+0200)
+bin/imu
+bin/imuSendInitRqst
+bin/imuTest
+include/imu/imuStruct.h
+include/imu/server/imuEndian.h
+include/imu/server/imuError.h
+include/imu/server/imuMsgLib.h
+include/imu/server/imuPosterLib.h
+include/imu/server/imuPosterLibStruct.h
+include/imu/server/imuPosterReadLibProto.h
+include/imu/server/imuPosterShowLib.h
+include/imu/server/imuPosterWriteLibProto.h
+include/imu/server/imuPosterXMLLib.h
+include/imu/server/imuPrint.h
+include/imu/server/imuPrintXML.h
+include/imu/server/imuScan.h
+include/imu/server/imuType.h
+lib/libimuClient.la
+lib/pkgconfig/imu.pc
+lib/tclserv/libimuTclServ.la
+share/modules/gen/imu.gen
+share/modules/tcl/imuClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/imu/server
+@dirrm include/imu
+@dirrm include
+@dirrm bin
