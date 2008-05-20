@@ -49,8 +49,8 @@ TOOLS.libtool?=		${PREFIX.libtool}/bin/libtool
 
 # Define the proper libtool in make and configure environments
 #
-CONFIGURE_ENV+=		TOOLS.libtool="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
-MAKE_ENV+=		TOOLS.libtool="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
+CONFIGURE_ENV+=		LIBTOOL="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
+MAKE_ENV+=		LIBTOOL="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
 
 # libtool-override replace any existing libtool under ${WRKSRC} with the
 # version found by robotpkg.
