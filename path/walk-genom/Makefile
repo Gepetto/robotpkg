@@ -1,7 +1,7 @@
 # $Id$
 #
 
-DISTNAME=	walk-genom-1.0
+DISTNAME=	walk-genom-1.1
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
