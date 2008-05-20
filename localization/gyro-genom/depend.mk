@@ -1,13 +1,13 @@
 # $Id: $
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-GENOMGENOM_DEPEND_MK:=	${GENOMGENOM_DEPEND_MK}+
+GYROGENOM_DEPEND_MK:=	${GYROGENOM_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		gyro-genom
 endif
 
-ifeq (+,$(GENOMGENOM_DEPEND_MK))
+ifeq (+,$(GYROGENOM_DEPEND_MK))
 PREFER.gyro-genom?=	robotpkg
 
 DEPEND_USE+=		gyro-genom
