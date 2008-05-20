@@ -3,6 +3,7 @@
 
 COMMENT=	Robots specific packages
 
+SUBDIR+=	GPSNovatel
 SUBDIR+=	gyroKVH1000
 SUBDIR+=	hrp2-14
 SUBDIR+=	hrp2-genom
