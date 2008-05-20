@@ -46,7 +46,7 @@ SYSTEM_SEARCH.genom=\
 
 DEPEND_USE+=		genom
 
-DEPEND_ABI.genom?=	genom>=2.0
+DEPEND_ABI.genom?=	genom>=2.0r2
 DEPEND_DIR.genom?=	../../architecture/genom
 
 TOOLS.genom?=		${PREFIX.genom}/bin/genom
