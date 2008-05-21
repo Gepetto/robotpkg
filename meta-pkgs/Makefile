@@ -5,6 +5,7 @@
 
 COMMENT=	Collections of other packages
 
+SUBDIR+=	dala
 SUBDIR+=	laas-hrp2
 
 include ../mk/robotpkg.subdir.mk

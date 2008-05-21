@@ -17,10 +17,10 @@ DEPENDS+=	jrl-modelloader>=1.2:../../devel/jrl-modelloader
 DEPENDS+=	openhrp-jrl>=20060713r6:../../architecture/openhrp-jrl
 
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX}/OpenHRP
 
 include ../../devel/omniORB/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

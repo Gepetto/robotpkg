@@ -1,8 +1,8 @@
-# $NetBSD$
+# Copyright (c) 2008 LAAS/CNRS
+# All rights reserved.
 #
-
 DISTNAME=		genom-2.0
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
@@ -13,6 +13,5 @@ COMMENT=		Software components generator for robotics architecture.
 GNU_CONFIGURE=		yes
 USE_PKG_CONFIG=		yes
 
-DEPENDS+=		pocolibs>=2.3:../../devel/pocolibs
-
+include ../../devel/pocolibs/depend.mk
 include ../../mk/robotpkg.mk

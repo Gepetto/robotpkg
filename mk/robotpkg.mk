@@ -73,7 +73,6 @@ ifneq (,$(or $(call isyes,$(INSTALL_UNSTRIPPED)), $(DEBUG_FLAGS)))
 _INSTALL_UNSTRIPPED=	# set (flag used by platform/*.mk)
 endif
 
-include ${PKGSRCDIR}/mk/robotpkg.options.mk
 include ${PKGSRCDIR}/mk/robotpkg.use.mk
 
 
@@ -270,6 +269,9 @@ include ${PKGSRCDIR}/mk/internal/locking.mk
 
 # Barriers
 include ${PKGSRCDIR}/mk/internal/barrier.mk
+
+# Process user build options
+include ${PKGSRCDIR}/mk/robotpkg.options.mk
 
 
 # --------------------------------------------------------------------

@@ -1,0 +1,36 @@
+@comment lundi 19 mai 2008, 14:11:13 (UTC+0200)
+bin/rflex
+bin/rflexSendInitRqst
+bin/rflexTest
+include/rflex/rflexConstATRV.h
+include/rflex/rflexConstATRV_JR.h
+include/rflex/rflexConstB21R.h
+include/rflex/rflexConst.h
+include/rflex/rflexStruct.h
+include/rflex/server/rflexEndian.h
+include/rflex/server/rflexError.h
+include/rflex/server/rflexMsgLib.h
+include/rflex/server/rflexPosterLib.h
+include/rflex/server/rflexPosterLibStruct.h
+include/rflex/server/rflexPosterReadLibProto.h
+include/rflex/server/rflexPosterShowLib.h
+include/rflex/server/rflexPosterWriteLibProto.h
+include/rflex/server/rflexPosterXMLLib.h
+include/rflex/server/rflexPrint.h
+include/rflex/server/rflexPrintXML.h
+include/rflex/server/rflexScan.h
+include/rflex/server/rflexType.h
+lib/librflexClient.la
+lib/pkgconfig/rflex.pc
+lib/tclserv/librflexTclServ.la
+share/modules/gen/rflex.gen
+share/modules/tcl/rflexClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/rflex/server
+@dirrm include/rflex
+@dirrm include
+@dirrm bin

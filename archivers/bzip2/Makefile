@@ -16,8 +16,8 @@ COMMENT=	Block-sorting file compressor
 DISTFILES=	# empty
 
 NO_CHECKSUM=		yes
-USE_LIBTOOL=		yes
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

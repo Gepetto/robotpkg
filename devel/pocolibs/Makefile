@@ -11,8 +11,8 @@ COMMENT=		Real-time communication library used by GenoM modules.
 
 GNU_CONFIGURE=		yes
 USE_PKG_CONFIG=		yes
-USE_LIBTOOL=		yes
 
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

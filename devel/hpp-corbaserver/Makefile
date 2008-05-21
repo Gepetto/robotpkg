@@ -15,7 +15,6 @@ COMMENT=	Corba interface with hppCore package.
 DEPENDS+=	hpp-core>=1.3:../../path/hpp-core
 
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 # options
@@ -37,4 +36,5 @@ PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 include ../../devel/omniORB/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

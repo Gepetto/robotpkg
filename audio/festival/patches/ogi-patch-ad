@@ -1,0 +1,10 @@
+--- festival/src/modules/Makefile~	2004-06-21 22:52:42.000000000 +0200
++++ festival/src/modules/Makefile	2008-05-18 14:52:32.000000000 +0200
+@@ -45,6 +45,7 @@
+ LIB_BUILD_DIRS = $(BASE_DIRS)
+ BUILD_DIRS = $(LIB_BUILD_DIRS)
+ OPTIONAL = diphone clunits hts_engine java rxp UniSyn_phonology MultiSyn
++OPTIONAL+= OGIcommon OGIeffect OGIinsert OGIdbase OGIresLPC
+ 
+ ALL_DIRS = $(BASE_DIRS) $(OPTIONAL)
+ 

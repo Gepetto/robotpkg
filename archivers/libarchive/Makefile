@@ -19,11 +19,10 @@ NO_CHECKSUM=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-bsdtar
 
-USE_LIBTOOL=	yes
-
 do-extract:
 	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/zlib/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

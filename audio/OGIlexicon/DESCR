@@ -1,0 +1,3 @@
+A pronunciation lexicon that started as a union of CMUdict and Moby, many
+entries changed since.
+This package is to be used with the Festival speech synthesis system.

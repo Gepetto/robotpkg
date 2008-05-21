@@ -15,7 +15,6 @@ DEPENDS+=	hpp-core>=1.3:../../path/hpp-core
 DEPENDS+=	hpp-openhrp>=1.1:../../path/hpp-openhrp
 
 GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
 #Options
@@ -26,4 +25,5 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 include ../../robots/hrp2-14/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../path/jrl-walkgen/depend.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

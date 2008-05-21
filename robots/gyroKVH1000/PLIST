@@ -1,0 +1,14 @@
+@comment lundi 19 mai 2008, 17:31:37 (UTC+0200)
+bin/gyroKVH1000TaskTest
+bin/serialTest
+include/gyroKVH1000HardLib.h
+include/gyroKVH1000TaskLib.h
+include/gyroLib.h
+lib/libgyroKVH1000Hard.la
+lib/libgyroKVH1000Task.la
+lib/pkgconfig/gyroKVH1000Hard.pc
+lib/pkgconfig/gyroKVH1000Task.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include
+@dirrm bin

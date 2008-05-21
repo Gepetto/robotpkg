@@ -1,0 +1,5 @@
+@comment Sun May 18 16:15:59 CEST 2008
+share/festival/lib/dicts/ogi_lex.out
+share/festival/lib/dicts/ogilex_lts_rules.scm
+share/festival/lib/ogi_syllabify.scm
+share/festival/lib/ogi_lts_syllabify.scm

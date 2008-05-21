@@ -11,7 +11,6 @@ HOMEPAGE=		http://opencvlibrary.sourceforge.net/
 COMMENT=		Library for computer vision problems
 
 USE_PKGLOCALEDIR=	yes
-USE_LIBTOOL=		yes
 INSTALLATION_DIRS+=	share/doc/opencv/papers share/doc/opencv/ref/pics \
 			share/opencv/haarcascades
 
@@ -27,4 +26,5 @@ CONFIGURE_ARGS+=	--without-swig
 CONFIGURE_ARGS+=	--without-python
 CONFIGURE_ARGS+=	--without-1394libs
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

@@ -10,8 +10,8 @@ HOMEPAGE=		http://pkgconfig.freedesktop.org/
 COMMENT=		System for managing library compile/link flags
 
 GNU_CONFIGURE=		yes
-USE_LIBTOOL=            yes
 
 CONFIGURE_ARGS+=	--disable-threads
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

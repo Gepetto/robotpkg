@@ -34,10 +34,9 @@ PKGCONFIG_OVERRIDE+=	ACEXML/parser/parser/ACEXML_Parser.pc.in
 PKGCONFIG_OVERRIDE+=	ACEXML/apps/svcconf/ACEXML_XML_Svc_Conf_Parser.pc.in
 PKGCONFIG_OVERRIDE+=	ACEXML/common/ACEXML.pc.in
 
-USE_LIBTOOL=		yes
-
 BUILD_DIRS=		build
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
 
 # create the build directory

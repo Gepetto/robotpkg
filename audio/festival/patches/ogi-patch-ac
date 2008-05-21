@@ -1,0 +1,11 @@
+--- festival/config/config.in~	2004-06-21 22:52:42.000000000 +0200
++++ festival/config/config.in	2008-05-18 14:50:51.000000000 +0200
+@@ -63,7 +63,7 @@
+ 
+ ## Other (non-Edinburgh) modules may also be specified here (e.g. OGI code),
+ 
+-ALSO_INCLUDE +=
++ALSO_INCLUDE += OGIcommon OGIeffect OGIinsert OGIdbase OGIresLPC
+ 
+ ###########################################################################
+ ##

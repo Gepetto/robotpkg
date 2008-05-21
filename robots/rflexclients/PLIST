@@ -1,0 +1,24 @@
+@comment lundi 19 mai 2008, 13:43:35 (UTC+0200)
+bin/rflexComm
+include/rflexclients/dioClient.h
+include/rflexclients/dioClientP.h
+include/rflexclients/irClientP.h
+include/rflexclients/jstkClient.h
+include/rflexclients/mduP.h
+include/rflexclients/motionClient.h
+include/rflexclients/motionClientP.h
+include/rflexclients/pktIO.h
+include/rflexclients/rFlex.h
+include/rflexclients/rFlexP.h
+include/rflexclients/rFlexSerial.h
+include/rflexclients/serial.h
+include/rflexclients/sonarClient.h
+include/rflexclients/sonarClientP.h
+include/rflexclients/sysClient.h
+include/rflexclients/sysClientP.h
+lib/librFlexClients.la
+lib/pkgconfig/rflexclients.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/rflexclients
+@dirrm bin

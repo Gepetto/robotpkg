@@ -44,6 +44,10 @@ SYSTEM_SEARCH.festival=\
 	include/festival/festival.h	\
 	lib/libFestival.a
 
+ifneq (,$(findstring ogireslpc,${REQD_BUILD_OPTIONS}))
+SYSTEM_SEARCH.festival+=share/festival/lib/ogi_configure_voice.scm
+endif
+
 DEPEND_USE+=		festival
 
 DEPEND_ABI.festival?=	festival>=1.96

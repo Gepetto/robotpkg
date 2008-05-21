@@ -1,0 +1,32 @@
+@comment lundi 19 mai 2008, 13:08:03 (UTC+0200)
+bin/genPos
+bin/genPosSendInitRqst
+bin/genPosTest
+include/genPos/genPosStruct.h
+include/genPos/server/genPosEndian.h
+include/genPos/server/genPosError.h
+include/genPos/server/genPosMsgLib.h
+include/genPos/server/genPosPosterLib.h
+include/genPos/server/genPosPosterLibStruct.h
+include/genPos/server/genPosPosterReadLibProto.h
+include/genPos/server/genPosPosterShowLib.h
+include/genPos/server/genPosPosterWriteLibProto.h
+include/genPos/server/genPosPosterXMLLib.h
+include/genPos/server/genPosPrint.h
+include/genPos/server/genPosPrintXML.h
+include/genPos/server/genPosScan.h
+include/genPos/server/genPosType.h
+lib/libgenPosClient.la
+lib/pkgconfig/genPos.pc
+lib/tclserv/libgenPosTclServ.la
+share/modules/gen/genPos.gen
+share/modules/tcl/genPosClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/genPos/server
+@dirrm include/genPos
+@dirrm include
+@dirrm bin

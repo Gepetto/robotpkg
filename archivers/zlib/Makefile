@@ -15,7 +15,6 @@ HOMEPAGE=	http://www.zlib.net/
 COMMENT=	General purpose data compression library
 
 NO_CHECKSUM=		yes
-USE_LIBTOOL=		yes
 
 CFLAGS+=		${CPPFLAGS}
 
@@ -28,4 +27,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/zconf.h ${DESTDIR}${PREFIX}/include
 	${INSTALL_DATA} ${WRKSRC}/zlib.h ${DESTDIR}${PREFIX}/include
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

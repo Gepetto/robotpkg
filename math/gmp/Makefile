@@ -9,9 +9,9 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://gmplib.org/
 COMMENT=	Library for arbitrary precision arithmetic
 
-USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-cxx --without-readline
 CONFIGURE_ENV+=		ABI=32
 
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

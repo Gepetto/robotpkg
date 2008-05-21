@@ -1,0 +1,34 @@
+diff --git a/canvas/autoconf/config.mk.in b/canvas/autoconf/config.mk.in
+index 4200c6a..edfe3ec 100644
+--- canvas/autoconf/config.mk.in
++++ canvas/autoconf/config.mk.in
+@@ -50,23 +50,23 @@ datadir=	@datadir@/modules
+ LANG_CXX=	@LANG_CXX@
+ 
+ CPP=		@CPP@
+-PURIFY=		
++PURIFY=
+ SED=		sed
+ MKDEP=		@MKDEP@
+ MKINSTALLDIRS=  $(top_srcdir)/autoconf/mkinstalldirs
+ 
+-LIBTOOL=        @LIBTOOL@ 
++LIBTOOL=        @LIBTOOL@
+ CC=		@CC@
+-LTCC=           $(LIBTOOL) --mode=compile $(CC)
++LTCC=           $(LIBTOOL) --tag=CC --mode=compile $(CC)
+ ifeq ($(LANG_CXX),yes)
+ CXX=		@CXX@
+-LTCXX=		$(LIBTOOL) --mode=compile $(CXX)
++LTCXX=		$(LIBTOOL) --tag=CXX --mode=compile $(CXX)
+ endif
+ 
+ ifeq ($(LANG_CXX),yes)
+-LTLD=           $(LIBTOOL) --mode=link $(PURIFY) $(CXX)
++LTLD=           $(LIBTOOL) --tag=CXX --mode=link $(PURIFY) $(CXX)
+ else
+-LTLD=           $(LIBTOOL) --mode=link $(PURIFY) $(CC)
++LTLD=           $(LIBTOOL) --tag=CC --mode=link $(PURIFY) $(CC)
+ endif
+ LTRM=           $(LIBTOOL) --mode=clean rm -f
+ LTINSTALL=	$(LIBTOOL) --mode=install $(INSTALL)

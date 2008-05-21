@@ -1,0 +1,21 @@
+@comment Sun May 18 15:43:14 CEST 2008
+share/festival/lib/ogi_configure_voice.scm
+share/festival/lib/ogi_effect.scm
+share/festival/lib/ogi_enhance.scm
+share/festival/lib/ogi_gswdurtreeZ_wb.scm
+share/festival/lib/ogi_kddurtreeZ_wb.scm
+share/festival/lib/ogi_klatt_durs_wb.scm
+share/festival/lib/ogi_languages.scm
+share/festival/lib/ogi_lex_addenda.scm
+share/festival/lib/ogi_lexicons.scm
+share/festival/lib/ogi_lts_syllabify.scm
+share/festival/lib/ogi_lts_worldbet.scm
+share/festival/lib/ogi_phrase.scm
+share/festival/lib/ogi_postlex.scm
+share/festival/lib/ogi_syllabify.scm
+share/festival/lib/ogi_synthesis.scm
+share/festival/lib/ogi_token.scm
+share/festival/lib/ogi_unitsel.scm
+share/festival/lib/ogi_wordsynth.scm
+share/festival/lib/ogi_worldbet_phones.scm
+share/festival/lib/ogimarkup-mode.scm
