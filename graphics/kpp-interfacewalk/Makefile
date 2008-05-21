@@ -20,4 +20,8 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
+PKG_SUPPORTED_OPTIONS+=	verbose1
+PKG_OPTION_DESCR.verbose1=	Define level of verbosity
+PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+
 include ../../mk/robotpkg.mk

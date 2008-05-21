@@ -25,5 +25,10 @@ CONFIGURE_ARGS+=	--disable-body
 include ../../devel/hpp-model/depend.mk
 endef
 
+#Options
+PKG_SUPPORTED_OPTIONS+=	verbose1
+PKG_OPTION_DESCR.verbose1=	Define level of verbosity
+PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../mk/robotpkg.mk

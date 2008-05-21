@@ -31,5 +31,10 @@ DEPENDS+=		hrp2-dynamics>=1.0:../../math/hrp2-dynamics
 include ../../robots/hrp2-14/depend.mk
 endef
 
+#Options
+PKG_SUPPORTED_OPTIONS+=	verbose1
+PKG_OPTION_DESCR.verbose1=	Define level of verbosity
+PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+
 include ../../devel/omniORB/depend.mk
 include ../../mk/robotpkg.mk

@@ -20,6 +20,11 @@ USE_PKG_CONFIG=	yes
 
 CONFIGURE_ARGS+=	--with-lapack=${PREFIX.lapack}
 
+#Options
+PKG_SUPPORTED_OPTIONS+=	verbose1
+PKG_OPTION_DESCR.verbose1=	Define level of verbosity
+PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+
 include ../../path/kineo-pp/depend.mk
 include ../../math/lapack/depend.mk
 include ../../mk/robotpkg.mk

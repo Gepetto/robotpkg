@@ -18,6 +18,11 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_PKG_CONFIG=	yes
 
+#Options
+PKG_SUPPORTED_OPTIONS+=	verbose1
+PKG_OPTION_DESCR.verbose1=	Define level of verbosity
+PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+
 include ../../robots/hrp2-14/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../path/jrl-walkgen/depend.mk
