@@ -35,61 +35,58 @@ PREFER.libtool?=	system
 SYSTEM_SEARCH.libtool=\
 	bin/libtool			\
 	share/aclocal/libtool.m4	\
-	share/libtool/config.guess
+	share/libtool/config.guess	\
+	share/libtool/config.sub	\
+	share/libtool/ltmain.sh
 
 DEPEND_USE+=		libtool
 DEPEND_METHOD.libtool+=	build
 DEPEND_ABI.libtool?=	libtool>=1.5.22
 DEPEND_DIR.libtool?=	../../pkgtools/libtool
 
-# TOOLS.libtool is the publicly-readable variable that should be used by
-# Makefiles to invoke the proper libtool.
+# TOOLS.libtool is the publicly-readable variable that should be
+# used by Makefiles to invoke the proper libtool.
 #
 TOOLS.libtool?=		${PREFIX.libtool}/bin/libtool
 
-# Define the proper libtool in make and configure environments
+# Define the proper libtool in make environments
 #
-CONFIGURE_ENV+=		TOOLS.libtool="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
-MAKE_ENV+=		TOOLS.libtool="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
+MAKE_ENV+=		LIBTOOL="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
 
-# libtool-override replace any existing libtool under ${WRKSRC} with the
-# version found by robotpkg.
+# libtool-override replace any existing libtool files under ${WRKSRC}
+# with the version found by robotpkg.
 #
-post-configure: libtool-override
+pre-configure: libtool-override
 
+LIBTOOL_OVERRIDE?=		libtool config.guess config.sub ltmain.sh
 OVERRIDE_DIRDEPTH.libtool?=	${OVERRIDE_DIRDEPTH}
-_OVERRIDE_PATH.libtool=		${TOOLS.libtool}
 
-_SCRIPT.libtool-override=						\
-	${RM} -f $$file;						\
-	${ECHO} "\#!"${SH} > $$file;				\
-	${ECHO} "exec" ${_OVERRIDE_PATH.libtool} '"$$@"' >> $$file;	\
-	${CHMOD} +x $$file
+OVERRIDE_PATH.libtool?=		${TOOLS.libtool}
+OVERRIDE_PATH.config.guess?=	${PREFIX.libtool}/share/libtool/config.guess
+OVERRIDE_PATH.config.sub?=	${PREFIX.libtool}/share/libtool/config.sub
+OVERRIDE_PATH.ltmain.sh?=	${PREFIX.libtool}/share/libtool/ltmain.sh
+
+define _SCRIPT.libtool-override
+	${CHMOD} +w $$$$file;						\
+	${CAT} ${OVERRIDE_PATH.${1}} > $$$$file
+endef
 
 .PHONY: libtool-override
 libtool-override:
 	@${STEP_MSG} "Modifying libtool scripts to use ${PREFER.libtool} libtool"
-ifdef LIBTOOL_OVERRIDE
 	${RUN}								\
 	cd ${WRKSRC};							\
-	set -- dummy ${LIBTOOL_OVERRIDE}; shift;			\
-	while [ $$# -gt 0 ]; do						\
-		file="$$1"; shift;					\
-		[ -f "$$file" ] || [ -h "$$file" ] || continue;		\
-		${_SCRIPT.$@};						\
-	done
-else
-	${RUN}								\
-	cd ${WRKSRC};							\
-	depth=0; pattern=libtool;					\
+$(foreach pattern,${LIBTOOL_OVERRIDE},					\
+	depth=0; pattern=${pattern};					\
 	while [ $$depth -le ${OVERRIDE_DIRDEPTH.libtool} ]; do		\
 		for file in $$pattern; do				\
 			[ -f "$$file" ] || [ -h "$$file" ] || continue; \
-			${_SCRIPT.$@};					\
+			${CHMOD} +w $$file;				\
+			${CAT} ${OVERRIDE_PATH.${pattern}} > $$file;	\
 		done;							\
 		depth=`${EXPR} $$depth + 1`; pattern="*/$$pattern";	\
-	done
-endif
+	done;								\
+)
 
 endif # LIBTOOL_DEPEND_MK --------------------------------------------
 
