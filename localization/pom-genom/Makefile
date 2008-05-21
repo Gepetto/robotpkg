@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=		pom-genom-0.4
+DISTNAME=		pom-genom-0.5
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 

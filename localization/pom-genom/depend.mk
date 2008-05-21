@@ -12,7 +12,7 @@ PREFER.pom-genom?=	robotpkg
 
 DEPEND_USE+=		pom-genom
 
-DEPEND_ABI.pom-genom?=	pom-genom>=0.4
+DEPEND_ABI.pom-genom?=	pom-genom>=0.5
 DEPEND_DIR.pom-genom?=	../../localization/pom-genom
 
 DEPEND_PKG_CONFIG.pom-genom+=lib/pkgconfig
