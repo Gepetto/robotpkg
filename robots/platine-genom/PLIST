@@ -1,0 +1,33 @@
+@comment mercredi 21 mai 2008, 15:29:08 (UTC+0200)
+bin/platine
+bin/platineSendInitRqst
+bin/platineTest
+include/platine/platineConst.h
+include/platine/platineStruct.h
+include/platine/server/platineEndian.h
+include/platine/server/platineError.h
+include/platine/server/platineMsgLib.h
+include/platine/server/platinePosterLib.h
+include/platine/server/platinePosterLibStruct.h
+include/platine/server/platinePosterReadLibProto.h
+include/platine/server/platinePosterShowLib.h
+include/platine/server/platinePosterWriteLibProto.h
+include/platine/server/platinePosterXMLLib.h
+include/platine/server/platinePrint.h
+include/platine/server/platinePrintXML.h
+include/platine/server/platineScan.h
+include/platine/server/platineType.h
+lib/libplatineClient.la
+lib/pkgconfig/platine.pc
+lib/tclserv/libplatineTclServ.la
+share/modules/gen/platine.gen
+share/modules/tcl/platineClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/platine/server
+@dirrm include/platine
+@dirrm include
+@dirrm bin

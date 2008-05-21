@@ -1,0 +1,20 @@
+# $NetBSD$
+#
+
+DISTNAME=		platine-genom-0.1
+CATEGORIES=		robots
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+
+MAINTAINER=		openrobots@laas.fr
+#HOMEPAGE=
+COMMENT=		GenoM module for platine management.
+
+GNU_CONFIGURE=		yes
+USE_PKG_CONFIG=		yes
+
+GENOM_MODULE=		platine
+include ../../architecture/genom/depend.mk
+
+include ../../architecture/genBasic-genom/depend.mk
+include ../../localization/pom-genom/depend.mk
+include ../../mk/robotpkg.mk
