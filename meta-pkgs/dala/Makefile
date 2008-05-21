@@ -4,7 +4,7 @@
 # --- All HRP2 current software --------------------------------------
 #
 
-DALA_DATE=		20080520
+DALA_DATE=		20080521
 DISTNAME=       laas-dala-${DALA_DATE}
 DISTFILES=      # empty
 CATEGORIES=     meta-pkgs
@@ -23,5 +23,6 @@ include ../../localization/gyro-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../path/dtm-genom/depend.mk
 include ../../path/p3d-genom/depend.mk
+include ../../robots/platine-genom/depend.mk
 include ../../robots/rflex-genom/depend.mk
 include ../../mk/robotpkg.mk
