@@ -7,6 +7,7 @@ SUBDIR+=	GPSNovatel
 SUBDIR+=	gyroKVH1000
 SUBDIR+=	hrp2-14
 SUBDIR+=	hrp2-genom
+SUBDIR+=	platine-genom
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
 
