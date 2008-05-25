@@ -191,7 +191,7 @@ upload_general="$TMP"/upload_general
 
 # May be different than $USR_ROBOTPKG:
 echo "upload> Running ${MAKE} to get the pkgsrc variables"
-pkgsrcdir=`cd pkgtools/digest ; ${MAKE} show-var VARNAME=_PKGSRCDIR`
+pkgsrcdir=`cd pkgtools/digest ; ${MAKE} show-var VARNAME=_ROBOTPKG_DIR`
 packages=`cd pkgtools/digest ; ${MAKE} show-var VARNAME=PACKAGES`
 distdir=`cd pkgtools/digest ; ${MAKE} show-var VARNAME=DISTDIR`
 gzip_cmd=`cd pkgtools/digest; ${MAKE} show-var VARNAME=GZIP_CMD USE_TOOLS=gzip`

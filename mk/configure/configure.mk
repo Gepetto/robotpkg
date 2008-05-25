@@ -1,6 +1,11 @@
+# $LAAS: configure.mk 2008/05/25 23:13:56 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -13,11 +18,22 @@
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
+# THIS SOFTWARE IS PROVIDED BY THE AUTHORS AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # From $NetBSD: configure.mk,v 1.12 2006/11/09 02:53:15 rillig Exp $
+#
+#					Anthony Mallet on Thu Dec  7 2006
+#
 
 #
 # CONFIGURE_SCRIPT is the path to the script to run in order to
@@ -37,20 +53,14 @@ CONFIGURE_ARGS?=	${CONFIGURE_EXTRA_ARGS} # from cmdline
 _BUILD_DEFS+=		CONFIGURE_ENV CONFIGURE_ARGS
 
 ifdef GNU_CONFIGURE
-  include ${PKGSRCDIR}/mk/configure/gnu-configure.mk
+  include ${ROBOTPKG_DIR}/mk/configure/gnu-configure.mk
 endif
 #.if defined(OVERRIDE_GNU_CONFIG_SCRIPTS)
-#.  include "${PKGSRCDIR}/mk/configure/config-override.mk"
+#.  include "${ROBOTPKG_DIR}/mk/configure/config-override.mk"
 #.endif
-ifdef PKGCONFIG_OVERRIDE
-USE_PKG_CONFIG=		yes
-endif
-ifdef USE_PKG_CONFIG
-  include ${PKGSRCDIR}/mk/configure/pkg-config.mk
-endif
-#.include "${PKGSRCDIR}/mk/configure/replace-interpreter.mk"
+#.include "${ROBOTPKG_DIR}/mk/configure/replace-interpreter.mk"
 ifdef USE_PKGLOCALEDIR
-  include ${PKGSRCDIR}/mk/configure/replace-localedir.mk
+  include ${ROBOTPKG_DIR}/mk/configure/replace-localedir.mk
 endif
 
 

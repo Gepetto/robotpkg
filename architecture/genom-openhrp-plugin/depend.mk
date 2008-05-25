@@ -1,4 +1,4 @@
-# $Id: $
+# $Id: depend.mk 2008/05/25 12:49:06 tho $
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GENOM_OPENHRP_DEPEND_MK:=${GENOM_OPENHRP_DEPEND_MK}+
@@ -14,8 +14,6 @@ DEPEND_USE+=		genom-openhrp-plugin
 
 DEPEND_ABI.genom-openhrp-plugin?=genom-openhrp-plugin>=1.0
 DEPEND_DIR.genom-openhrp-plugin?=../../architecture/genom-openhrp-plugin
-
-DEPEND_PKG_CONFIG.genom-openhrp-plugin+=lib/pkgconfig
 
 SYSTEM_SEARCH.genom-openhrp-plugin=\
 	include/genom-openhrp/genom-hrp2.h	\

@@ -1,6 +1,11 @@
+# $LAAS: utils.mk 2008/05/25 22:44:05 tho $
 #
-# Copyright (c) 2007 LAAS/CNRS                        --  Tue May 15 2007
+# Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -13,16 +18,26 @@
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
+# THIS SOFTWARE IS PROVIDED BY THE  AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # From $NetBSD: bsd.utils.mk,v 1.8 2006/07/27 22:01:28 jlam Exp $
 #
+#					Anthony Mallet on Wed May 16 2007
+#
+
 # This Makefile fragment is included by robotpkg.mk and defines utility
 # and otherwise miscellaneous variables and targets.
 #
-
 TMPDIR?=	/tmp
 
 # convenience target, to display make variables from command line
@@ -36,7 +51,7 @@ show-var:
 show-vars:
 	@:; $(foreach VARNAME,${VARNAMES},${ECHO} $(call quote,${$(strip ${VARNAME})});)
 
-LICENSE_FILE?=		${PKGSRCDIR}/licenses/${LICENSE}
+LICENSE_FILE?=		${ROBOTPKG_DIR}/licenses/${LICENSE}
 
 show-license:
 	@license=${LICENSE};						\
@@ -64,10 +79,10 @@ _ALL_DEPENDS+=	${DEPENDS}
 endif
 
 # _PKG_PATHS_CMD canonicalizes package paths so that they're relative to
-# ${PKGSRCDIR} and also verifies that they exist within pkgsrc.
+# ${ROBOTPKG_DIR} and also verifies that they exist within robotpkg.
 #
 _PKG_PATHS_CMD=								\
-	${SETENV} ECHO=${TOOLS_ECHO} PKGSRCDIR=${PKGSRCDIR}		\
+	${SETENV} ECHO=${TOOLS_ECHO} ROBOTPKG_DIR=${ROBOTPKG_DIR}	\
 		PWD_CMD=pwd TEST=${TOOLS_TEST}				\
 	${SH} ${CURDIR}/../../mk/internal/pkg_path
 
@@ -84,5 +99,5 @@ _DEPENDS_WALK_MAKEFLAGS?=	$(call quote,${MAKEFLAGS})
 _DEPENDS_WALK_CMD=							\
 	${SETENV} ECHO=${TOOLS_ECHO} MAKE=${MAKE}			\
 		MAKEFLAGS=${_DEPENDS_WALK_MAKEFLAGS}			\
-		PKGSRCDIR=${PKGSRCDIR} TEST=${TOOLS_TEST}		\
-	${AWK} -f ${PKGSRCDIR}/mk/internal/depends-depth-first.awk --
+		ROBOTPKG_DIR=${ROBOTPKG_DIR} TEST=${TOOLS_TEST}		\
+	${AWK} -f ${ROBOTPKG_DIR}/mk/internal/depends-depth-first.awk --

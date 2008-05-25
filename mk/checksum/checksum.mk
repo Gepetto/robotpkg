@@ -1,6 +1,12 @@
+# $LAAS: checksum.mk 2008/05/25 23:18:10 tho $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,15 +18,7 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: checksum.mk,v 1.2 2006/07/13 18:40:33 jlam Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
-#   3. All advertising materials mentioning   features or use of this
+#   3. All  advertising  materials  mentioning  features or  use of  this
 #      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
 #        Foundation, Inc. and its contributors.
@@ -40,13 +38,15 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
-# Authored by Anthony Mallet on Thu Dec  7 2006
+# From $NetBSD: checksum.mk,v 1.2 2006/07/13 18:40:33 jlam Exp $
+#
+#                                       Anthony Mallet on Thu Dec  7 2006
+#
 
 _DIGEST_ALGORITHMS?=		SHA1 RMD160
 _PATCH_DIGEST_ALGORITHMS?=	SHA1
 
-# These variables are set by pkgsrc/mk/fetch/fetch.mk.
+# These variables are set by robotpkg/mk/fetch/fetch.mk.
 #_CKSUMFILES?=	# empty
 #_IGNOREFILES?=	# empty
 
@@ -58,7 +58,7 @@ _PATCH_DIGEST_ALGORITHMS?=	SHA1
 _CHECKSUM_CMD=								\
 	${SETENV} DIGEST=${TOOLS_DIGEST} CAT=${TOOLS_CAT}		\
 		ECHO=${TOOLS_ECHO} TEST=${TOOLS_TEST}			\
-	${SH} ${PKGSRCDIR}/mk/checksum/checksum				\
+	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
 
 .PHONY: checksum
 checksum: fetch

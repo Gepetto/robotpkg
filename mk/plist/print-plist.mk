@@ -32,7 +32,7 @@ _PRINT_PLIST_AWK_SUBST+= ${PRINT_PLIST_AWK_SUBST}
 _PRINT_PLIST_AWK_SUBST+=}
 
 _PRINT_PLIST_AWK_IGNORE=	($$0 ~ /^$(subst /,\/,$(patsubst ${PREFIX}/%,%,${PKG_DBDIR}))\//)
-_PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^$(subst /,\/,$(patsubst ${PREFIX}/%,%,${PKGSRCDIR}))\//)
+_PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^$(subst /,\/,$(patsubst ${PREFIX}/%,%,${ROBOTPKG_DIR}))\//)
 #ifdef INFO_FILES
 #_PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^${PKGINFODIR:S|/|\\/|g}\/[^\/]+(-[0-9]+)(\.gz)?$$/)
 #_PRINT_PLIST_AWK_IGNORE+=	|| ($$0 ~ /^([^\/]*\/)*(info\/[^\/]+|[^\/]+\.info)(-[0-9]+)(\.gz)?$$/)

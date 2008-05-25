@@ -1,5 +1,5 @@
 #!/usr/bin/awk -f
-# $NetBSD: genreadme.awk,v 1.26 2007/02/18 00:08:36 adrianp Exp $
+# $LAAS: genreadme.awk 2008/05/25 22:53:41 tho $
 #
 # Copyright (c) 2002, 2003, 2005, 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -35,7 +35,8 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-
+# From $NetBSD: genreadme.awk,v 1.26 2007/02/18 00:08:36 adrianp Exp $
+#
 
 # Global variables
 #-----------------
@@ -207,7 +208,7 @@ END {
 
 	printf("Making sure binary package cache file is up to date...\n");
 	cmd = sprintf("%s AWK=%s CMP=%s FIND=%s GREP=%s GZIP_CMD=\"%s\" PKG_INFO=\"%s\" PKG_SUFX=%s SED=%s SORT=%s %s/mk/internal/binpkg-cache %s --packages %s",
-		SETENV, AWK, CMP, FIND, GREP, GZIP_CMD, PKG_INFO, PKG_SUFX, SED, SORT, PKGSRCDIR, summary, PACKAGES);
+		SETENV, AWK, CMP, FIND, GREP, GZIP_CMD, PKG_INFO, PKG_SUFX, SED, SORT, ROBOTPKG_DIR, summary, PACKAGES);
 	if (debug) printf("\nExecute:  %s\n",cmd);
 	rc = system(cmd);
 
@@ -271,11 +272,11 @@ END {
 	printf("Generating README.html files\n");
 	pkgcnt = 0;
 	if (do_pkg_readme) {
-		templatefile = PKGSRCDIR "/mk/templates/README.pkg";
+		templatefile = ROBOTPKG_DIR "/mk/templates/README.pkg";
 		fatal_check_file(templatefile);
 		for (toppkg in topdepends){
 			pkgcnt++;
-			pkgdir = PKGSRCDIR "/" toppkg;
+			pkgdir = ROBOTPKG_DIR "/" toppkg;
 			readmenew=pkgdir  "/" readme_name;
 
 			if (debug) printf("Creating %s for %s\n",
@@ -449,19 +450,19 @@ END {
 		exit 0;
 	}
 	printf("Generating category readmes\n");
-	templatefile = PKGSRCDIR "/templates/README.category";
+	templatefile = ROBOTPKG_DIR "/templates/README.category";
 	fatal_check_file(templatefile);
 
 # string with URLs for all categories (used by the top README.html)
 	allcat = "";
 # string with URLs for all pkgs (used by the top README-all.html)
 	tot_numpkg = 0;
-	top_make = PKGSRCDIR"/Makefile";
+	top_make = ROBOTPKG_DIR"/Makefile";
 	while((getline < top_make) > 0){
 		if ($0 ~ /^[ \t]*SUBDIR.*=[^\$]*$/) {
 			category = $0;
 			gsub(/^[ \t]*SUBDIR.*=[ \t]*/, "", category);
-			catdir = PKGSRCDIR"/"category;
+			catdir = ROBOTPKG_DIR"/"category;
 			readmenew = catdir"/"readme_name;
 			printf("Category = %s\n", category);
 			cat_make = catdir"/Makefile";
@@ -547,9 +548,9 @@ END {
 	close(top_make);
 
 	printf("Generating toplevel readmes:\n");
-	templatefile = PKGSRCDIR "/templates/README.top";
+	templatefile = ROBOTPKG_DIR "/templates/README.top";
 	fatal_check_file(templatefile);
-	readmenew = PKGSRCDIR "/"readme_name;
+	readmenew = ROBOTPKG_DIR "/"readme_name;
 	printf("\t%s\n", readmenew);
 	print "" > readme;
 	while((getline < templatefile) > 0){
@@ -562,9 +563,9 @@ END {
 	close(templatefile);
 	copy_readme(readmenew, readme);
 
-	templatefile = PKGSRCDIR "/templates/README.all";
+	templatefile = ROBOTPKG_DIR "/templates/README.all";
 	fatal_check_file(templatefile);
-	readmenew = PKGSRCDIR "/README-all.html";
+	readmenew = ROBOTPKG_DIR "/README-all.html";
 	printf("\t%s\n", readmenew);
 # sort the pkgs
 	sfile = TMPDIR"/unsorted";

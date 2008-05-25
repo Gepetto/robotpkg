@@ -1,11 +1,45 @@
-#	$NetBSD: bsd.pkg.mk,v 1.1892 2006/10/23 14:40:14 rillig Exp $
+# $LAAS: robotpkg.mk 2008/05/25 21:58:50 tho $
 #
-# This file is in the public domain.
+# Copyright (c) 2006-2008 LAAS/CNRS
+# All rights reserved.
 #
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice,  this list of  conditions and the following disclaimer in
+#      the  documentation  and/or  other   materials provided  with  the
+#      distribution.
+#
+# THIS  SOFTWARE IS PROVIDED BY  THE  COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND  ANY  EXPRESS OR IMPLIED  WARRANTIES,  INCLUDING,  BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES  OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR  PURPOSE ARE DISCLAIMED. IN  NO EVENT SHALL THE COPYRIGHT
+# HOLDERS OR      CONTRIBUTORS  BE LIABLE FOR   ANY    DIRECT, INDIRECT,
+# INCIDENTAL,  SPECIAL,  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF  SUBSTITUTE GOODS OR SERVICES; LOSS
+# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR
+# TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+# USE   OF THIS SOFTWARE, EVEN   IF ADVISED OF   THE POSSIBILITY OF SUCH
+# DAMAGE.
+#
+# From $NetBSD: bsd.pkg.mk,v 1.1892 2006/10/23 14:40:14 rillig Exp $
+#
+#                                      Anthony Mallet on Wed Nov  8 2006
+#
+
 # Please see the pkgsrc/doc/guide manual for details on the
 # variables used in this make file template.
-#
-# Default sequence for "all" is:
+
+# Make sure the default target is "all", which defaults to
 #
 #    bootstrap-depends
 #    fetch
@@ -14,21 +48,22 @@
 #    tools
 #    extract
 #    patch
-#    wrapper
 #    configure
 #    build
 #
-.DEFAULT_GOAL:=build
-
+.DEFAULT_GOAL:=all
 .PHONY: all
 all: build
 
 
-# --------------------------------------------------------------------
+# Include any preferences, if not already included, and common
+# definitions. The file robotpkg.prefs.mk is protected against double
+# inclusion, but checking the flag here avoids loading and parsing it.
 #
-# Include any preferences, if not already included, and common definitions
-#
-include ../../mk/robotpkg.prefs.mk
+ifndef MK_ROBOTPKG_PREFS
+  include ../../mk/robotpkg.prefs.mk
+endif
+
 include ../../mk/internal/error.mk
 
 
@@ -68,12 +103,11 @@ INTERACTIVE_STAGE?=	none
 MAINTAINER?=		openrobots@laas.fr
 PKGWILDCARD?=		${PKGBASE}-[0-9]*
 WRKSRC?=		${WRKDIR}/${DISTNAME}
+PREFIX?=		${LOCALBASE}
 
 ifneq (,$(or $(call isyes,$(INSTALL_UNSTRIPPED)), $(DEBUG_FLAGS)))
 _INSTALL_UNSTRIPPED=	# set (flag used by platform/*.mk)
 endif
-
-include ${PKGSRCDIR}/mk/robotpkg.use.mk
 
 
 # --- Sanity checks --------------------------------------------------
@@ -127,17 +161,7 @@ ifndef DEPOT_SUBDIR
 PKG_FAIL_REASON+=	"DEPOT_SUBDIR may not be empty."
 endif
 
-
-# ZERO_FILESIZE_P exits with a successful return code if the given file
-#	has zero length.
-# NONZERO_FILESIZE_P exits with a successful return code if the given file
-#	has nonzero length.
-#
-_ZERO_FILESIZE_P=	${AWK} 'END { exit (NR > 0) ? 1 : 0; }'
-_NONZERO_FILESIZE_P=	${AWK} 'END { exit (NR > 0) ? 0 : 1; }'
-
 _INTERACTIVE_COOKIE=	${.CURDIR}/.interactive_stage
-_NULL_COOKIE=		${WRKDIR}/.null
 
 # Miscellaneous overridable commands:
 SHCOMMENT?=		${ECHO_MSG} >/dev/null '***'
@@ -209,14 +233,6 @@ INSTALL_MACROS=	BSD_INSTALL_PROGRAM=$(call quote,${INSTALL_PROGRAM})		\
 MAKE_ENV+=	${INSTALL_MACROS}
 SCRIPTS_ENV+=	${INSTALL_MACROS}
 
-# OVERRIDE_DIRDEPTH represents the common directory depth under
-#       ${WRKSRC} up to which we find the files that need to be
-#       overridden.  By default, we search two levels down, i.e.,
-#       */*/file.
-#
-OVERRIDE_DIRDEPTH?=     2
-
-
 # Used to print all the '===>' style prompts - override this to turn them off.
 ECHO_MSG?=		${ECHO}
 PHASE_MSG?=		${ECHO_MSG} "===>"
@@ -234,7 +250,7 @@ DO_NADA?=		${TRUE}
 
 # the FAIL command executes its arguments and then exits with a non-zero
 # status.
-FAIL?=                  ${SH} ${PKGSRCDIR}/mk/internal/fail
+FAIL?=                  ${SH} ${ROBOTPKG_DIR}/mk/internal/fail
 
 #
 # Config file related settings - see doc/pkgsrc.txt
@@ -259,19 +275,19 @@ endif
 
 # Get the proper dependencies and set the PATH to use the compiler
 # named in PKGSRC_COMPILER.
-include ${PKGSRCDIR}/mk/compiler/compiler-vars.mk
+include ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk
 
 # Tools
-include ${PKGSRCDIR}/mk/tools/tools-vars.mk
+include ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk
 
 # Locking
-include ${PKGSRCDIR}/mk/internal/locking.mk
+include ${ROBOTPKG_DIR}/mk/internal/locking.mk
 
 # Barriers
-include ${PKGSRCDIR}/mk/internal/barrier.mk
+include ${ROBOTPKG_DIR}/mk/internal/barrier.mk
 
 # Process user build options
-include ${PKGSRCDIR}/mk/robotpkg.options.mk
+include ${ROBOTPKG_DIR}/mk/robotpkg.options.mk
 
 
 # --------------------------------------------------------------------
@@ -356,43 +372,43 @@ ${WRKDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
 
 # Pkg
-include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
+include ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk
 
 # Dependencies
-include ${PKGSRCDIR}/mk/depends/depends-vars.mk
+include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
 
 # Check
--include "${PKGSRCDIR}/mk/check/bsd.check.mk"
+-include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
 # Clean
-include ${PKGSRCDIR}/mk/clean.mk
+include ${ROBOTPKG_DIR}/mk/clean.mk
 
 # Fetch
-include ${PKGSRCDIR}/mk/fetch/fetch-vars.mk
+include ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk
 
 # Checksum
-include ${PKGSRCDIR}/mk/checksum/checksum-vars.mk
+include ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk
 
 # Extract
-include ${PKGSRCDIR}/mk/extract/extract-vars.mk
+include ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk
 
 # Patch
-include ${PKGSRCDIR}/mk/patch/patch-vars.mk
+include ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk
 
 # Configure
-include ${PKGSRCDIR}/mk/configure/configure-vars.mk
+include ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk
 
 # Build
-include ${PKGSRCDIR}/mk/build/build-vars.mk
+include ${ROBOTPKG_DIR}/mk/build/build-vars.mk
 
 # Install
-include ${PKGSRCDIR}/mk/install/install-vars.mk
+include ${ROBOTPKG_DIR}/mk/install/install-vars.mk
 
 # Update
-include ${PKGSRCDIR}/mk/update/update-vars.mk
+include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
 
 # Package
-include ${PKGSRCDIR}/mk/package/package-vars.mk
+include ${ROBOTPKG_DIR}/mk/package/package-vars.mk
 
 
 # --------------------------------------------------------------------
@@ -414,7 +430,7 @@ _BIN_INSTALL_FLAGS+=	-A
 endif
 _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
--include "${PKGSRCDIR}/mk/install/bin-install.mk"
+-include "${ROBOTPKG_DIR}/mk/install/bin-install.mk"
 
 
 ################################################################
@@ -424,27 +440,27 @@ _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
 include ../../mk/plist/plist-vars.mk
 
-include ${PKGSRCDIR}/mk/internal/utils.mk
-include ${PKGSRCDIR}/mk/internal/can-be-built-here.mk
-include ${PKGSRCDIR}/mk/internal/subst.mk
+include ${ROBOTPKG_DIR}/mk/internal/utils.mk
+include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
+include ${ROBOTPKG_DIR}/mk/internal/subst.mk
 
 
--include "${PKGSRCDIR}/mk/internal/build-defs-message.mk"
+-include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
 #if make(debug) || make(build-env)
-#.include "${PKGSRCDIR}/mk/bsd.pkg.debug.mk"
+#.include "${ROBOTPKG_DIR}/mk/bsd.pkg.debug.mk"
 #.endif
 #.if make(help)
-#.include "${PKGSRCDIR}/mk/help/help.mk"
+#.include "${ROBOTPKG_DIR}/mk/help/help.mk"
 #.endif
 
 # For bulk build targets (bulk-install, bulk-package), the
 # BATCH variable must be set in /etc/mk.conf:
 ifdef BATCH
- include ${PKGSRCDIR}/mk/bulk/bulk.mk
+ include ${ROBOTPKG_DIR}/mk/bulk/bulk.mk
 endif
 
 # README generation code.
-include ${PKGSRCDIR}/mk/internal/readme.mk
+include ${ROBOTPKG_DIR}/mk/internal/readme.mk
 
 # fake target to make pattern targets phony
 .FORCE:

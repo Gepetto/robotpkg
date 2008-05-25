@@ -1,6 +1,12 @@
+# $LAAS: fetch.mk 2008/05/25 23:02:50 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,15 +18,7 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: fetch.mk,v 1.23 2006/11/25 21:33:39 jdolecek Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
-#   3. All advertising materials mentioning   features or use of this
+#   3. All  advertising  materials  mentioning  features or  use of  this
 #      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
 #        Foundation, Inc. and its contributors.
@@ -39,6 +37,10 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# From $NetBSD: fetch.mk,v 1.23 2006/11/25 21:33:39 jdolecek Exp $
+#
+#					Anthony Mallet on Tue Dec  5 2006
 #
 
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP:=${DIST_SUBDIR:=/}}
@@ -229,7 +231,7 @@ _FETCH_CMD=\
 		TEST=$(call quote,${TOOLS_TEST})			\
 		TOUCH=$(call quote,${TOOLS_TOUCH})			\
 		WC=$(call quote,${TOOLS_WC})				\
-		${SH} ${PKGSRCDIR}/mk/fetch/fetch
+		${SH} ${ROBOTPKG_DIR}/mk/fetch/fetch
 
 ifdef PKG_VERBOSE
 _FETCH_ARGS+=	${PKG_VERBOSE}

@@ -1,7 +1,16 @@
+# $LAAS: resolve.mk 2008/05/24 23:51:12 tho $
 #
 # Copyright (c) 2008
 #      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
+# Copyright (c) 2004 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# This code is derived from software contributed to The NetBSD Foundation
+# by Johnny C. Lam.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -13,46 +22,30 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-
-# From $NetBSD: bsd.buildlink3.mk,v 1.199 2007/12/05 21:36:43 tron Exp $
-#
-# Copyright (c) 2004 The NetBSD Foundation, Inc.
-# All rights reserved.
-#
-# This code is derived from software contributed to The NetBSD Foundation
-# by Johnny C. Lam.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-# 1. Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-# 2. Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in the
-#    documentation and/or other materials provided with the distribution.
-# 3. All advertising materials mentioning features or use of this software
-#    must display the following acknowledgement:
+#   3. All  advertising  materials  mentioning  features or  use of  this
+#      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
 #        Foundation, Inc. and its contributors.
-# 4. Neither the name of The NetBSD Foundation nor the names of its
-#    contributors may be used to endorse or promote products derived
-#    from this software without specific prior written permission.
+#   4. Neither  the  name of The NetBSD  Foundation nor the  names of its
+#      contributors may  be used to endorse  or promote products  derived
+#      from this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
-# ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
-# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS
-# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
+# THIS SOFTWARE IS PROVIDED BY THE AUTHORS AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# From $NetBSD: bsd.buildlink3.mk,v 1.199 2007/12/05 21:36:43 tron Exp $
+#
+#                                       Anthony Mallet on Thu Feb 28 2008
+#
 
 # An example package depend.mk file:
 #
@@ -255,18 +248,16 @@ override define _dpd_flags
 #.  endif
 #
 
-DEPEND_CPPFLAGS.${1}?=# empty
-DEPEND_LDFLAGS.${1}?=# empty
-DEPEND_LIBS.${1}?=# empty
-DEPEND_INCDIRS.${1}?=	include
-DEPEND_LIBDIRS.${1}?=	lib
+DEPEND_CPPFLAGS.${1}?=#		empty
+DEPEND_LDFLAGS.${1}?=#		empty
+DEPEND_LIBS.${1}?=#		empty
+DEPEND_INCDIRS.${1}?=		include
+DEPEND_LIBDIRS.${1}?=		lib
+DEPEND_PKG_CONFIG.${1}?=	lib/pkgconfig
  ifneq (,$$(filter full,$${DEPEND_METHOD.${1}}))
 DEPEND_RPATHDIRS.${1}?=	$${DEPEND_LIBDIRS.${1}}
  else
 DEPEND_RPATHDIRS.${1}?=# empty
- endif
- ifdef USE_PKG_CONFIG
-DEPEND_PKG_CONFIG.${1}?=# empty
  endif
 endef
 $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_flags,${_pkg_})))
@@ -278,13 +269,10 @@ $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_flags,${_pkg_})))
 # packages at configure/build time.  BUILDLINK_CFLAGS contains any special
 # compiler options needed when building against the various packages.
 #
-DEPEND_CPPFLAGS=	# empty
-DEPEND_LDFLAGS=		# empty
-DEPEND_LIBS=		# empty
-DEPEND_CFLAGS=		# empty
-ifdef USE_PKG_CONFIG
-DEPEND_PKG_CONFIG=# empty
-endif
+DEPEND_CPPFLAGS=#	empty
+DEPEND_LDFLAGS=#	empty
+DEPEND_LIBS=#		empty
+DEPEND_CFLAGS=#		empty
 
 define _dpd_genflags
 DEPEND_CPPFLAGS:= $$(filter-out $${DEPEND_CPPFLAGS.${1}},$${DEPEND_CPPFLAGS})
@@ -341,19 +329,6 @@ endef
 $(foreach _pkg_,${DEPEND_USE},$(foreach _d_,${DEPEND_RPATHDIRS.${_pkg_}},\
 	$(eval $(call _dpd_addrpath,${_pkg_},${_d_}))))
 
-ifdef USE_PKG_CONFIG
-# DEPEND_PKG_CONFIG.<pkg>
-#
-override define _dpd_addpkgconfig
-  ifeq (yes,$$(call exists,$${PREFIX.${1}}/${2}))
-_d:=$${PREFIX.${1}}/${2}
-DEPEND_PKG_CONFIG:= $$(filter-out $${_d},$${DEPEND_PKG_CONFIG})
-DEPEND_PKG_CONFIG+= $${_d}
-  endif
-endef
-$(foreach _pkg_,${DEPEND_USE},$(foreach _d_,${DEPEND_PKG_CONFIG.${_pkg_}},\
-	$(eval $(call _dpd_addpkgconfig,${_pkg_},${_d_}))))
-endif
 
 #
 # Ensure that ${LOCALBASE}/lib is in the runtime library search path.
@@ -371,13 +346,15 @@ CFLAGS+=	${DEPEND_CFLAGS} ${DEPEND_CPPFLAGS}
 CXXFLAGS+=	${DEPEND_CFLAGS} ${DEPEND_CPPFLAGS}
 LDFLAGS+=	${DEPEND_LDFLAGS} ${DEPEND_LIBS}
 
-ifdef USE_PKG_CONFIG
- ifneq (,${PKG_CONFIG_PATH})
-PKG_CONFIG_PATH+=$(foreach p,${DEPEND_PKG_CONFIG},:${p})
- else
-PKG_CONFIG_PATH+=$(patsubst :%,%,$(foreach p,${DEPEND_PKG_CONFIG},:${p}))
- endif
-PKG_CONFIG_PATH:=$(subst $(space):,:,${PKG_CONFIG_PATH})
+# If we are using pkg-config, update the PKG_CONFIG_PATH variable by
+# prepending the value of DEPEND_PKG_CONFIG.<pkg> of all depended
+# packages.
+#
+ifneq (,$(filter pkg-config,${DEPEND_USE}))
+  PKG_CONFIG_PATH:=$(call prependpaths,					\
+	$(foreach _pkg_,${DEPEND_USE},$(addprefix			\
+		${PREFIX.${_pkg_}}/,${DEPEND_PKG_CONFIG.${_pkg_}})),	\
+	${PKG_CONFIG_PATH})
 endif
 
 endif # _PKGSRC_BARRIER

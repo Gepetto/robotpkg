@@ -1,6 +1,12 @@
+# $LAAS: tools-vars.mk 2008/05/25 21:36:51 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2005, 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,40 +18,30 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: bsd.tools.mk,v 1.45 2006/07/25 18:04:25 jlam Exp $
-# Copyright (c) 2005, 2006 The NetBSD Foundation, Inc.
-# All rights reserved.
-#
-# This code is derived from software contributed to The NetBSD Foundation
-# by Johnny C. Lam.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-# 3. All advertising materials mentioning features or use of this software
-#    must display the following acknowledgement:
+#   3. All advertising materials mentioning features or use of this
+#      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
 #        Foundation, Inc. and its contributors.
-# 4. Neither the name of The NetBSD Foundation nor the names of its
-#    contributors may be used to endorse or promote products derived
-#    from this software without specific prior written permission.
+#   4. Neither  the name  of The NetBSD  Foundation nor the  names of its
+#      contributors may be  used to endorse  or promote  products derived
+#      from this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
-# ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
-# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS
-# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
+# THIS  SOFTWARE IS  PROVIDED BY  THE  COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND  ANY  EXPRESS OR  IMPLIED  WARRANTIES,  INCLUDING,  BUT NOT
+# LIMITED TO, THE IMPLIED  WARRANTIES  OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR  PURPOSE ARE  DISCLAIMED. IN  NO EVENT SHALL THE COPYRIGHT
+# HOLDERS  OR      CONTRIBUTORS  BE LIABLE FOR   ANY    DIRECT, INDIRECT,
+# INCIDENTAL,  SPECIAL,  EXEMPLARY,  OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF  SUBSTITUTE  GOODS OR SERVICES; LOSS
+# OF USE, DATA, OR PROFITS; OR  BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY  OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR
+# TORT (INCLUDING NEGLIGENCE  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+# USE   OF THIS SOFTWARE,  EVEN   IF ADVISED OF   THE POSSIBILITY OF SUCH
+# DAMAGE.
+#
+# From $NetBSD: bsd.tools.mk,v 1.45 2006/07/25 18:04:25 jlam Exp $
+#
+#                                       Anthony Mallet on Thu Nov 30 2006
 #
 
 # This Makefile fragment is included to robotpkg.mk and defines the
@@ -89,7 +85,7 @@ tools: ${_TOOLS_TARGETS}
   else
 tools: barrier
   endif
-endif 
+endif
 
 .PHONY: acquire-tools-lock release-tools-lock
 acquire-tools-lock: acquire-lock
@@ -152,20 +148,20 @@ override-tools:
 #
 post-tools:
 
-include ${PKGSRCDIR}/mk/tools/digest.mk
-#.include "${PKGSRCDIR}/mk/tools/automake.mk"
-#.include "${PKGSRCDIR}/mk/tools/autoconf.mk"
-#.include "${PKGSRCDIR}/mk/tools/texinfo.mk"
-#.include "${PKGSRCDIR}/mk/tools/gettext.mk"
-#.include "${PKGSRCDIR}/mk/tools/intltool.mk"
-#.include "${PKGSRCDIR}/mk/tools/ldconfig.mk"
-#.include "${PKGSRCDIR}/mk/tools/rpcgen.mk"
-#.include "${PKGSRCDIR}/mk/tools/strip.mk"
-#.include "${PKGSRCDIR}/mk/tools/imake.mk"
-#.include "${PKGSRCDIR}/mk/tools/replace.mk"
-#.include "${PKGSRCDIR}/mk/tools/perl.mk"
-include ${PKGSRCDIR}/mk/tools/python.mk
-#.include "${PKGSRCDIR}/mk/tools/pkg-config.mk"
-include ${PKGSRCDIR}/mk/tools/make.mk
+include ${ROBOTPKG_DIR}/mk/tools/digest.mk
+#.include "${ROBOTPKG_DIR}/mk/tools/automake.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/autoconf.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/texinfo.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/gettext.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/intltool.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/ldconfig.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/rpcgen.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/strip.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/imake.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/replace.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/perl.mk"
+include ${ROBOTPKG_DIR}/mk/tools/python.mk
+#.include "${ROBOTPKG_DIR}/mk/tools/pkg-config.mk"
+include ${ROBOTPKG_DIR}/mk/tools/make.mk
 #
-#.include "${PKGSRCDIR}/mk/tools/create.mk"
+#.include "${ROBOTPKG_DIR}/mk/tools/create.mk"

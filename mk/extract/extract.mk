@@ -1,7 +1,11 @@
+# $LAAS: extract.mk 2008/05/25 23:10:50 tho $
 #
-# Copyright (c) 2007-2008
-#      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
+# Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -26,11 +30,9 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
 # From $NetBSD: extract.mk,v 1.17 2006/10/09 02:37:32 rillig Exp $
+#
+#					Anthony Mallet on Fri Dec  1 2006
 #
 
 # The following variables may be set by the package Makefile and
@@ -245,7 +247,7 @@ endif
 
 EXTRACT_CMD_DEFAULT=							\
 	${SETENV} ${_EXTRACT_ENV}					\
-	${SH} ${PKGSRCDIR}/mk/extract/extract				\
+	${SH} ${ROBOTPKG_DIR}/mk/extract/extract			\
 		${EXTRACT_OPTS}						\
 		${DOWNLOADED_DISTFILE} ${EXTRACT_ELEMENTS}
 

@@ -1,6 +1,12 @@
+# $LAAS: build-vars.mk 2008/05/25 23:21:38 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,15 +18,7 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: bsd.build-vars.mk,v 1.3 2006/09/09 02:35:13 obache Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
-#   3. All advertising materials mentioning   features or use of this
+#   3. All  advertising  materials  mentioning  features or  use of  this
 #      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
 #        Foundation, Inc. and its contributors.
@@ -39,6 +37,10 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# From $NetBSD: bsd.build-vars.mk,v 1.3 2006/09/09 02:35:13 obache Exp $
+#
+#					Anthony Mallet on Sat Dec  2 2006
 #
 
 #
@@ -99,7 +101,7 @@ _COOKIE.build=  ${WRKDIR}/.build_done
 #
 .PHONY: build
 ifndef NO_BUILD
-  include ${PKGSRCDIR}/mk/build/build.mk
+  include ${ROBOTPKG_DIR}/mk/build/build.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.build}))
 build:

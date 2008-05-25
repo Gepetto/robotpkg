@@ -1,9 +1,47 @@
-# $NetBSD: bsd.fetch-vars.mk,v 1.6 2006/07/27 07:41:40 rillig Exp $
+# $LAAS: fetch-vars.mk 2008/05/25 23:05:28 tho $
 #
-# This Makefile fragment is included separately by bsd.pkg.mk and
-# defines some variables which must be defined earlier than where
-# bsd.fetch.mk is included.
+# Copyright (c) 2006,2008 LAAS/CNRS
+# All rights reserved.
 #
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice,  this list of  conditions and  the following disclaimer in
+#      the  documentation   and/or  other  materials   provided with  the
+#      distribution.
+#   3. All  advertising  materials  mentioning  features or  use of  this
+#      software must display the following acknowledgement:
+#        This product includes software developed by the NetBSD
+#        Foundation, Inc. and its contributors.
+#   4. Neither the  name  of The NetBSD Foundation  nor the names  of its
+#      contributors  may be  used to endorse or promote  products derived
+#      from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHORS AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# From $NetBSD: bsd.fetch-vars.mk,v 1.6 2006/07/27 07:41:40 rillig Exp $
+#
+#					Anthony Mallet on Tue Dec  5 2006
+#
+
 # The following variables may be set by the user:
 #
 #    DISTDIR is the top-level directory into which all original
@@ -21,15 +59,15 @@
 #    DISTFILES is the list of distribution files that are fetched.
 #
 
-# The default DISTDIR is currently set in bsd.prefs.mk.
-#DISTDIR?=               ${PKGSRCDIR}/distfiles
+# The default DISTDIR is currently set in robotpkg.prefs.mk.
+#DISTDIR?=               ${ROBOTPKG_DIR}/distfiles
 
 EXTRACT_SUFX?=		.tar.gz
 
 _DISTDIR=		${DISTDIR}/${DIST_SUBDIR}
 DISTFILES?=		${DISTNAME}${EXTRACT_SUFX}
 
-include ${PKGSRCDIR}/mk/fetch/sites.mk
-include ${PKGSRCDIR}/mk/fetch/fetch.mk
--include "${PKGSRCDIR}/mk/fetch/fetch-list.mk"
--include "${PKGSRCDIR}/mk/fetch/distclean.mk"
+include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
+include ${ROBOTPKG_DIR}/mk/fetch/fetch.mk
+-include "${ROBOTPKG_DIR}/mk/fetch/fetch-list.mk"
+-include "${ROBOTPKG_DIR}/mk/fetch/distclean.mk"

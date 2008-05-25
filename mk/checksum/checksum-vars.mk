@@ -1,6 +1,12 @@
+# $LAAS: checksum-vars.mk 2008/05/25 23:19:04 tho $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,15 +18,7 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: bsd.checksum-vars.mk,v 1.1 2006/07/13 14:02:34 jlam Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
-#   3. All advertising materials mentioning   features or use of this
+#   3. All  advertising  materials  mentioning  features or  use of  this
 #      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
 #        Foundation, Inc. and its contributors.
@@ -40,8 +38,10 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
-# Authored by Anthony Mallet on Thu Dec  7 2006
+# From $NetBSD: bsd.checksum-vars.mk,v 1.1 2006/07/13 14:02:34 jlam Exp $
+#
+#					Anthony Mallet on Thu Dec  7 2006
+#
 
 # The following variables may be set in a package Makefile:
 #
@@ -74,7 +74,7 @@ checksum: fetch
 makesum makepatchsum:
 	@${DO_NADA}
 else
-  include ${PKGSRCDIR}/mk/checksum/checksum.mk
+  include ${ROBOTPKG_DIR}/mk/checksum/checksum.mk
 endif
 
 
