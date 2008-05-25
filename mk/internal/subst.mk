@@ -1,5 +1,6 @@
+# $LAAS: subst.mk 2008/05/25 15:58:23 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -40,6 +41,7 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+#                                       Anthony Mallet on Thu Dec  7 2006
 
 #
 # This Makefile fragment implements a general text replacement facility.
@@ -79,62 +81,50 @@ ECHO_SUBST_MSG?=	${STEP_MSG}
 
 # _SUBST_IS_TEXT_FILE returns 0 if $${file} is a text file.
 _SUBST_IS_TEXT_FILE?= \
-	{ ${TEST} -f "$$$$file"						\
-	  && ${FILE_CMD} "$$$$file"					\
+	{ ${TEST} -f "$$file"						\
+	  && ${FILE_CMD} "$$file"					\
 	     | ${EGREP} "(executable .* script|shell script|text|Assembler source|libtool)";	\
 	} >/dev/null 2>&1
 
 _SUBST_BACKUP_SUFFIX=	.subst.sav
 
-define _SUBST_vars
-_SUBST_COOKIE.${_class_}=	${WRKDIR}/.subst_${_class_}_done
-
-SUBST_FILTER_CMD.${_class_}?=	${SED} ${SUBST_SED.${_class_}}
-SUBST_POSTCMD.${_class_}?=	${RM} -f "$$$$$$$$tmpfile"
-
-SUBST_TARGETS+=			subst-${_class_}
+override define _subst_vars
+  _SUBST_COOKIE.${1}=		${WRKDIR}/.subst_${1}_done
+  SUBST_FILTER_CMD.${1}?=	${SED} ${SUBST_SED.${1}}
+  SUBST_POSTCMD.${1}?=		${RM} -f "$$$$tmpfile"
 endef
-$(foreach _class_,${SUBST_CLASSES},$(eval $(_SUBST_vars)))
+$(foreach _c_,${SUBST_CLASSES},$(eval $(call _subst_vars,${_c_})))
 
-define _SUBST_rules
-ifdef SUBST_STAGE.${_class_}
-${SUBST_STAGE.${_class_}}: subst-${_class_}
-endif
+$(foreach _c_,${SUBST_CLASSES},$(eval .PHONY: subst-${_c_}))
+$(foreach _c_,${SUBST_CLASSES},$(eval subst-${_c_}: ${_SUBST_COOKIE.${_c_}}))
+$(foreach _c_,${SUBST_CLASSES},$(eval ${SUBST_STAGE.${_c_}}: subst-${_c_}))
 
-.PHONY: subst-${_class_}
-subst-${_class_}: ${_SUBST_COOKIE.${_class_}}
-
-${_SUBST_COOKIE.${_class_}}:
-  ifdef SUBST_MESSAGE.${_class_}
+$(foreach _c_,${SUBST_CLASSES},${_SUBST_COOKIE.${_c_}}): ${WRKDIR}/.subst_%_done:
 	${RUN}								\
-	${ECHO_SUBST_MSG} $(call quote,${SUBST_MESSAGE.${_class_}})
-  endif
-	${RUN}								\
+	if ${TEST} -n "$(call quote,${SUBST_MESSAGE.$*})"; then		\
+		${ECHO_SUBST_MSG} $(call quote,${SUBST_MESSAGE.$*});	\
+	fi;								\
 	cd ${WRKSRC};							\
-	files=${SUBST_FILES.${_class_}};				\
-	for file in $$$$files; do					\
-		case $$$$file in /*) ;; *) file="./$$$$file";; esac;	\
-		tmpfile="$$$$file"${_SUBST_BACKUP_SUFFIX};		\
+	files="${SUBST_FILES.$*}";					\
+	for file in $$files; do						\
+		case $$file in *[*]*) continue ;; esac;			\
+		tmpfile="$$file"${_SUBST_BACKUP_SUFFIX};		\
 		if ${_SUBST_IS_TEXT_FILE}; then				\
-			${MV} -f "$$$$file" "$$$$tmpfile" || exit 1;	\
-			${SUBST_FILTER_CMD.${_class_}}			\
-			< "$$$$tmpfile"					\
-			> "$$$$file";					\
-			if ${TEST} -x "$$$$tmpfile"; then		\
-				${CHMOD} +x "$$$$file";			\
+			${MV} -f "$$file" "$$tmpfile" || exit 1;	\
+			${SUBST_FILTER_CMD.$*} <"$$tmpfile" >"$$file";	\
+			if ${TEST} -x "$$tmpfile"; then			\
+				${CHMOD} +x "$$file";			\
 			fi;						\
-			if ${CMP} -s "$$$$tmpfile" "$$$$file"; then 	\
-				${MV} -f "$$$$tmpfile" "$$$$file";	\
+			if ${CMP} -s "$$tmpfile" "$$file"; then 	\
+				${MV} -f "$$tmpfile" "$$file";		\
 			else						\
-				${SUBST_POSTCMD.${_class_}};		\
-				${ECHO} "$$$$file" >> $$@;		\
+				${SUBST_POSTCMD.$*};			\
+				${ECHO} "$$file" >> $@;			\
 			fi;						\
-		elif ${TEST} -f "$$$$file"; then			\
-			${WARNING_MSG} "[subst.mk] Ignoring non-text file \"$$$$file\"." 1>&2; \
+		elif ${TEST} -f "$$file"; then				\
+			${WARNING_MSG} "[subst.mk] Ignoring non-text file \"$$file\"." 1>&2; \
 		else							\
-			${WARNING_MSG} "[subst.mk] Ignoring non-existent file \"$$$$file\"." 1>&2; \
+			${WARNING_MSG} "[subst.mk] Ignoring non-existent file \"$$file\"." 1>&2; \
 		fi;							\
 	done
-	${RUN}${TOUCH} ${TOUCH_FLAGS} $$@
-endef
-$(foreach _class_,${SUBST_CLASSES},$(eval $(_SUBST_rules)))
+	${RUN}${TOUCH} ${TOUCH_FLAGS} $@
