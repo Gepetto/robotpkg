@@ -1,5 +1,6 @@
+# $LAAS: macros.mk 2008/05/25 00:18:30 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Sat Dec  2 2006
+# Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -25,6 +26,8 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+#                                       Anthony Mallet on Sat Dec  2 2006
+#
 
 define isyes
 $(filter yes Yes YES,$(1))
@@ -38,15 +41,65 @@ define exists
 $(shell test -e $(1) && echo yes || echo no)
 endef
 
+
+# --- substs <from list>,<to list>,<string> --------------------------
+#
+# Substitute in the <string> each string in the first list by its
+# replacement in the second list.
+#
+override define substs
+$(if $1,$(subst $(firstword $1),$(firstword $2),$(call \
+	substs,$(wordlist 2,$(words $1),$1),$(wordlist 2,$(words $2),$2),$3)),$3)
+endef
+
+
+# --- quote <string> -------------------------------------------------
+#
+# Escape shell's meta-charaters in string
+#
 empty=
 space=$(empty) $(empty)
 tab=$(empty)	$(empty)
-quotechars= \ = & { } ( ) [ ] | * < > $ , ' ` " #"`'
-define quote
-$(eval _q_:=$(1))$(eval $(foreach _c_,$(quotechars),$(eval _q_:=$(subst $(_c_),\$(_c_),$(_q_)))))$(subst $(tab),\$(tab),$(subst $(space),\$(space),$(_q_)))
+quotechars= = & { } ( ) [ ] | * < > $ , ' ` " \ # for fontify: "`'
+override define quote
+$(subst $(tab),\$(tab),$(subst $(space),\$(space),$(call \
+	substs,$(quotechars),$(addprefix \,$(quotechars)),$1)))
 endef
 
-# pathsearch <file(s)> <path>
+
+# --- iterate <count> <expr> -----------------------------------------
+#
+# Expand <expr> <count> times.
+# Currently, <count> must be less than 8, but this limit can be easily
+# expanded in the code below by adding more dots in the list.
+#
+override define iterate
+$(foreach -,$(wordlist 1,$(1),. . . . . . . .),$(2))
+endef
+
+
+# --- prependpath <path> <path-list> ---------------------------------
+#
+# Prepend <path> in front of <path-list>, inserting a semi-colon if
+# <path-list> is not empty and removing duplicates.
+# If <path> does not exist, <path-list> is returned as-is.
+#
+override define prependpath
+$(if $(realpath $1),$(if $(strip $2),$(subst ::,:,$1:$(subst $1,,$(strip $2))),$1),$2)
+endef
+
+
+# --- prependpaths <path-list> <path-list> ---------------------------
+#
+# Same as prependpath, but for a list of paths.
+#
+override define prependpaths
+$(if $1,$(call prependpaths,$(wordlist 2,$(words $1),. $1),$(call \
+	prependpath,$(lastword $1),$2)),$2)
+endef
+
+
+# --- pathsearch <file(s)> <path> ------------------------------------
 #
 # Look for file in path, returning the first match. If file is a list of
 # file, the function returns the full path for all files. path can be a
@@ -60,7 +113,8 @@ $(foreach f,$(1),$(firstword \
 	     $(wildcard $(subst /usr/lib,/lib,$(addsuffix /$(f),$(subst :, ,$(2))))))))
 endef
 
-# prefixsearch <file(s)> <path>
+
+# --- prefixsearch <file(s)> <path> ----------------------------------
 #
 # Look for file in path, returning the prefix of the first match.
 # See pathsearch.
@@ -72,7 +126,12 @@ $(strip $(foreach p,$(subst :, ,$(2)),\
 			  $(wildcard $(subst /usr/lib,/lib,$(p)/$(f)))),X))),$(p))))
 endef
 
-define wordwrapfilter
+
+# --- wordwrapfilter -------------------------------------------------
+#
+# Shell filter to print wrap long lines at 40 characters
+# 
+override define wordwrapfilter
  ${XARGS} -n 1 | ${AWK} '					\
 	BEGIN { printwidth = 40; line = "" }			\
 	{							\
