@@ -1,5 +1,40 @@
-# $NetBSD: toplevel.mk,v 1.2 2007/01/07 00:57:36 rillig Exp $
+# $LAAS: toplevel.mk 2008/05/25 22:44:35 tho $
 #
+# Copyright (c) 2007-2008 LAAS/CNRS
+# All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice,  this list of  conditions and  the following disclaimer in
+#      the  documentation   and/or  other  materials   provided with  the
+#      distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE  AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
+# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
+# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# From $NetBSD: toplevel.mk,v 1.2 2007/01/07 00:57:36 rillig Exp $
+#
+#					Anthony Mallet on Thu May 24 2007
+#
+
 # This file contains the make targets that can be used from the
 # top-level Makefile. They are in this separate file to keep the
 # top-level file short and clean.
@@ -16,7 +51,7 @@ ${CURDIR}/PKGDB:
 	@${RM} -f ${CURDIR}/PKGDB
 	@${ECHO_MSG} "Extracting complete dependency database.  This may take a while..."
 	@DB=${CURDIR}/PKGDB ; \
-	PKGSRCDIR=${CURDIR} ; \
+	ROBOTPKG_DIR=${CURDIR} ; \
 	npkg=1; \
 	list=`${GREP} '^[[:space:]]*'SUBDIR */Makefile | ${SED} 's,/Makefile.*=[[:space:]]*,/,'` ; \
 	for pkgdir in $$list ; do \
@@ -45,13 +80,13 @@ ${CURDIR}/PKGDB:
 			echo "$$npkg" ; \
 		fi ; \
 		npkg=`${EXPR} $$npkg + 1` ; \
-		cd $$PKGSRCDIR  ; \
+		cd $$ROBOTPKG_DIR  ; \
 	done
 
 ${CURDIR}/INDEX:
 	@${MAKE} ${CURDIR}/PKGDB
 	@${RM} -f ${CURDIR}/INDEX
-	@${AWK} -f ./mk/internal/genindex.awk PKGSRCDIR=${CURDIR} SORT=${SORT} ${CURDIR}/PKGDB
+	@${AWK} -f ./mk/internal/genindex.awk ROBOTPKG_DIR=${CURDIR} SORT=${SORT} ${CURDIR}/PKGDB
 	@${RM} -f ${CURDIR}/PKGDB
 
 print-index: ${CURDIR}/INDEX

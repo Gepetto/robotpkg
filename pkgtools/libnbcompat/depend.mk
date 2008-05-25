@@ -1,8 +1,21 @@
+# $LAAS: depend.mk 2008/05/25 20:47:18 tho $
 #
-# Copyright (C) 2008 LAAS/CNRS
+# Copyright (c) 2008 LAAS/CNRS
+# All rights reserved.
 #
-# Authored by Anthony Mallet on Fri Apr 18 2008
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
 # From $NetBSD: inplace.mk,v 1.1 2004/08/13 22:34:28 jlam Exp $
+#
+#                                      Anthony Mallet on Sat Apr 19 2008
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
@@ -25,7 +38,7 @@ SYSTEM_SEARCH.libnbcompat=	\
   ifeq (inplace+robotpkg,$(strip $(LIBNBCOMPAT_STYLE)+$(PREFER.libnbcompat)))
   # This is the "inplace" version of libnbcompat package, for bootstrap process
   #
-LIBNBCOMPAT_FILESDIR=	${PKGSRCDIR}/pkgtools/libnbcompat/dist
+LIBNBCOMPAT_FILESDIR=	${ROBOTPKG_DIR}/pkgtools/libnbcompat/dist
 LIBNBCOMPAT_SRCDIR=	${WRKDIR}/libnbcompat
 
 CPPFLAGS+=	-I${LIBNBCOMPAT_SRCDIR}

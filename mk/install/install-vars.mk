@@ -1,6 +1,11 @@
-# Copyright (c) 2006-2008 IS/AIST-ST2I/CNRS
-#      Joint Japanese-French Robotics Laboratory (JRL).
+# $LAAS: install-vars.mk 2008/05/25 23:00:58 tho $
+#
+# Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -13,13 +18,24 @@
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
+# THIS  SOFTWARE IS PROVIDED BY  THE  COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND  ANY  EXPRESS OR IMPLIED  WARRANTIES,  INCLUDING,  BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES  OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR  PURPOSE ARE DISCLAIMED. IN  NO EVENT SHALL THE COPYRIGHT
+# HOLDERS OR      CONTRIBUTORS  BE LIABLE FOR   ANY    DIRECT, INDIRECT,
+# INCIDENTAL,  SPECIAL,  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF  SUBSTITUTE GOODS OR SERVICES; LOSS
+# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR
+# TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+# USE   OF THIS SOFTWARE, EVEN   IF ADVISED OF   THE POSSIBILITY OF SUCH
+# DAMAGE.
+#
 # From $NetBSD: bsd.install-vars.mk,v 1.4 2006/11/04 07:42:51 rillig Exp $
 #
-
+#					Anthony Mallet on Mon Nov 27 2006
 #
+
 # This Makefile fragment is included separately by bsd.pkg.mk and
 # defines some variables which must be defined earlier than where
 # bsd.install.mk is included.
@@ -42,7 +58,7 @@ _COOKIE.install=	${WRKDIR}/.install_done
 #
 .PHONY: install
 ifndef NO_INSTALL
-  include ${PKGSRCDIR}/mk/install/install.mk
+  include ${ROBOTPKG_DIR}/mk/install/install.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.install}))
 install:
@@ -56,5 +72,5 @@ install: barrier
   endif
 endif
 
-include ${PKGSRCDIR}/mk/install/deinstall.mk
-include ${PKGSRCDIR}/mk/install/replace.mk
+include ${ROBOTPKG_DIR}/mk/install/deinstall.mk
+include ${ROBOTPKG_DIR}/mk/install/replace.mk

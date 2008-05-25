@@ -1,5 +1,4 @@
-# $LAAS: robotpkg.mk 2008/05/25 18:32:30 tho $
-
+# $LAAS: robotpkg.mk 2008/05/25 21:58:50 tho $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
@@ -57,11 +56,14 @@
 all: build
 
 
-# --------------------------------------------------------------------
+# Include any preferences, if not already included, and common
+# definitions. The file robotpkg.prefs.mk is protected against double
+# inclusion, but checking the flag here avoids loading and parsing it.
 #
-# Include any preferences, if not already included, and common definitions
-#
-include ../../mk/robotpkg.prefs.mk
+ifndef MK_ROBOTPKG_PREFS
+  include ../../mk/robotpkg.prefs.mk
+endif
+
 include ../../mk/internal/error.mk
 
 
@@ -248,7 +250,7 @@ DO_NADA?=		${TRUE}
 
 # the FAIL command executes its arguments and then exits with a non-zero
 # status.
-FAIL?=                  ${SH} ${PKGSRCDIR}/mk/internal/fail
+FAIL?=                  ${SH} ${ROBOTPKG_DIR}/mk/internal/fail
 
 #
 # Config file related settings - see doc/pkgsrc.txt
@@ -273,19 +275,19 @@ endif
 
 # Get the proper dependencies and set the PATH to use the compiler
 # named in PKGSRC_COMPILER.
-include ${PKGSRCDIR}/mk/compiler/compiler-vars.mk
+include ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk
 
 # Tools
-include ${PKGSRCDIR}/mk/tools/tools-vars.mk
+include ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk
 
 # Locking
-include ${PKGSRCDIR}/mk/internal/locking.mk
+include ${ROBOTPKG_DIR}/mk/internal/locking.mk
 
 # Barriers
-include ${PKGSRCDIR}/mk/internal/barrier.mk
+include ${ROBOTPKG_DIR}/mk/internal/barrier.mk
 
 # Process user build options
-include ${PKGSRCDIR}/mk/robotpkg.options.mk
+include ${ROBOTPKG_DIR}/mk/robotpkg.options.mk
 
 
 # --------------------------------------------------------------------
@@ -370,43 +372,43 @@ ${WRKDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
 
 # Pkg
-include ${PKGSRCDIR}/mk/pkg/pkg-vars.mk
+include ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk
 
 # Dependencies
-include ${PKGSRCDIR}/mk/depends/depends-vars.mk
+include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
 
 # Check
--include "${PKGSRCDIR}/mk/check/bsd.check.mk"
+-include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
 # Clean
-include ${PKGSRCDIR}/mk/clean.mk
+include ${ROBOTPKG_DIR}/mk/clean.mk
 
 # Fetch
-include ${PKGSRCDIR}/mk/fetch/fetch-vars.mk
+include ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk
 
 # Checksum
-include ${PKGSRCDIR}/mk/checksum/checksum-vars.mk
+include ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk
 
 # Extract
-include ${PKGSRCDIR}/mk/extract/extract-vars.mk
+include ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk
 
 # Patch
-include ${PKGSRCDIR}/mk/patch/patch-vars.mk
+include ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk
 
 # Configure
-include ${PKGSRCDIR}/mk/configure/configure-vars.mk
+include ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk
 
 # Build
-include ${PKGSRCDIR}/mk/build/build-vars.mk
+include ${ROBOTPKG_DIR}/mk/build/build-vars.mk
 
 # Install
-include ${PKGSRCDIR}/mk/install/install-vars.mk
+include ${ROBOTPKG_DIR}/mk/install/install-vars.mk
 
 # Update
-include ${PKGSRCDIR}/mk/update/update-vars.mk
+include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
 
 # Package
-include ${PKGSRCDIR}/mk/package/package-vars.mk
+include ${ROBOTPKG_DIR}/mk/package/package-vars.mk
 
 
 # --------------------------------------------------------------------
@@ -428,7 +430,7 @@ _BIN_INSTALL_FLAGS+=	-A
 endif
 _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
--include "${PKGSRCDIR}/mk/install/bin-install.mk"
+-include "${ROBOTPKG_DIR}/mk/install/bin-install.mk"
 
 
 ################################################################
@@ -438,27 +440,27 @@ _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
 include ../../mk/plist/plist-vars.mk
 
-include ${PKGSRCDIR}/mk/internal/utils.mk
-include ${PKGSRCDIR}/mk/internal/can-be-built-here.mk
-include ${PKGSRCDIR}/mk/internal/subst.mk
+include ${ROBOTPKG_DIR}/mk/internal/utils.mk
+include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
+include ${ROBOTPKG_DIR}/mk/internal/subst.mk
 
 
--include "${PKGSRCDIR}/mk/internal/build-defs-message.mk"
+-include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
 #if make(debug) || make(build-env)
-#.include "${PKGSRCDIR}/mk/bsd.pkg.debug.mk"
+#.include "${ROBOTPKG_DIR}/mk/bsd.pkg.debug.mk"
 #.endif
 #.if make(help)
-#.include "${PKGSRCDIR}/mk/help/help.mk"
+#.include "${ROBOTPKG_DIR}/mk/help/help.mk"
 #.endif
 
 # For bulk build targets (bulk-install, bulk-package), the
 # BATCH variable must be set in /etc/mk.conf:
 ifdef BATCH
- include ${PKGSRCDIR}/mk/bulk/bulk.mk
+ include ${ROBOTPKG_DIR}/mk/bulk/bulk.mk
 endif
 
 # README generation code.
-include ${PKGSRCDIR}/mk/internal/readme.mk
+include ${ROBOTPKG_DIR}/mk/internal/readme.mk
 
 # fake target to make pattern targets phony
 .FORCE:

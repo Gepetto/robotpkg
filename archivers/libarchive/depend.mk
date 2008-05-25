@@ -1,3 +1,4 @@
+# $LAAS: depend.mk 2008/05/25 23:23:21 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -7,26 +8,13 @@
 # met:
 #
 #   1. Redistributions  of  source code must  retain  the above copyright
-#      notice, this list of conditions and the following disclaimer.
+#      notice and this list of conditions.
 #   2. Redistributions in binary form must  reproduce the above copyright
-#      notice,  this list of  conditions and  the following disclaimer in
-#      the  documentation   and/or  other  materials   provided with  the
-#      distribution.
+#      notice and  this list of  conditions  in the  documentation and/or
+#      other materials provided with the distribution.
 #
-# THIS SOFTWARE IS PROVIDED BY THE  AUTHOR AND CONTRIBUTORS ``AS IS'' AND
-# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
-# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
-# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
-# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
-# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
-# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
-# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
-# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#                                       Anthony Mallet on Sat Apr 19 2008
 #
-
-# Authored by Anthony Mallet on Sat Apr 19 2008
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 LIBARCHIVE_DEPEND_MK:=	${LIBARCHIVE_DEPEND_MK}+
@@ -52,7 +40,7 @@ SYSTEM_SEARCH.libarchive=	\
   ifeq (inplace+robotpkg,$(strip $(LIBARCHIVE_STYLE)+$(PREFER.libarchive)))
   # This is the "inplace" version of libarchive package, for bootstrap process
   #
-LIBARCHIVE_FILESDIR=	${PKGSRCDIR}/archivers/libarchive/dist
+LIBARCHIVE_FILESDIR=	${ROBOTPKG_DIR}/archivers/libarchive/dist
 LIBARCHIVE_SRCDIR=	${WRKDIR}/libarchive
 
 CPPFLAGS+=	-I${LIBARCHIVE_SRCDIR}/libarchive

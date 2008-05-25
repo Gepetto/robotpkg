@@ -1,6 +1,5 @@
 #!/usr/bin/awk -f
-#
-# $NetBSD: depends-depth-first.awk,v 1.5 2006/01/21 22:16:13 jlam Exp $
+# $LAAS: depends-depth-first.awk 2008/05/25 22:57:03 tho $
 #
 # Copyright (c) 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -35,6 +34,8 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+#
+# From $NetBSD: depends-depth-first.awk,v 1.5 2006/01/21 22:16:13 jlam Exp $
 #
 
 ######################################################################
@@ -77,17 +78,18 @@
 #			directories specified on the command-line are
 #			also visited.
 #
-#	-s pkgsrcdir	Use the specified directory as the path to the
+#	-s robotpkgdir	Use the specified directory as the path to the
 #			pkgsrc directory tree.  By default, this is the
-#			value stored in the PKGSRCDIR environment variable.
+#			value stored in the ROBOTPKG_DIR environment
+#			variable.
 #
 # ENVIRONMENT
 #	MAKEFLAGS	This contains the shell environment in the format
 #			required by make(1) that is passed to the process
 #			that outputs a package's dependencies.
 #
-#	PKGSRCDIR	This is the location of the pkgsrc directory tree,
-#			which defaults to "/usr/pkgsrc".
+#	ROBOTPKG_DIR	This is the location of the pkgsrc directory tree,
+#			which defaults to "/usr/robotpkg".
 #
 ######################################################################
 
@@ -100,7 +102,7 @@
 BEGIN {
 	ECHO = ENVIRON["ECHO"] ? ENVIRON["ECHO"] : "echo"
 	MAKE = ENVIRON["MAKE"] ? ENVIRON["MAKE"] : "make"
-	PKGSRCDIR = ENVIRON["PKGSRCDIR"] ? ENVIRON["PKGSRCDIR"] : "/usr/pkgsrc"
+	ROBOTPKG_DIR = ENVIRON["ROBOTPKG_DIR"] ? ENVIRON["ROBOTPKG_DIR"] : "/usr/robotpkg"
 	TEST = ENVIRON["TEST"] ? ENVIRON["TEST"] : "test"
 
 	self = "depends-depth-first.awk"
@@ -152,7 +154,7 @@ function parse_options(		option) {
 			do_root = 1
 			ARGSTART++
 		} else if (option == "-s") {
-			PKGSRCDIR = ARGV[ARGSTART + 1]
+			ROBOTPKG_DIR = ARGV[ARGSTART + 1]
 			ARGSTART += 2
 		} else if (option == "--") {
 			ARGSTART++
@@ -188,7 +190,7 @@ function main(		cmd, depends_pkgpath, dir, pkgpath) {
 	# Push the given package directories onto the stack.
 	while (ARGC >= ARGSTART) {
 		ARGC--;
-		cmd = TEST " -d " PKGSRCDIR "/" ARGV[ARGC]
+		cmd = TEST " -d " ROBOTPKG_DIR "/" ARGV[ARGC]
 		if (system(cmd) == 0) {
 			if (do_root == 0) {
 				root[ARGV[ARGC]] = ARGV[ARGC]
@@ -216,7 +218,7 @@ function main(		cmd, depends_pkgpath, dir, pkgpath) {
 		# package and push them onto the stack.  We use the
 		# "show-depends-pkgpaths" target to fetch this information.
 		#
-		dir = PKGSRCDIR "/" pkgpath
+		dir = ROBOTPKG_DIR "/" pkgpath
 		cmd = "if " TEST " -d " dir "; then cd " dir " && " MAKE " show-depends-pkgpaths DEPENDS_TYPE=\"" depends_type "\"; fi"
 		while (cmd | getline depends_pkgpath) {
 			if (status[depends_pkgpath] == "") {
@@ -249,7 +251,7 @@ function visit(pkgpath,		cmd, dir) {
 	if (cmd_hook == "") {
 		print pkgpath
 	} else {
-		dir = PKGSRCDIR "/" pkgpath
+		dir = ROBOTPKG_DIR "/" pkgpath
 		cmd = "cd " dir " && " cmd_hook
 		system(cmd)
 	}

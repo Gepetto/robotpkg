@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007 LAAS/CNRS                        --  Wed May 30 2007
+# Copyright (c) 2007-2008 LAAS/CNRS                        --  Wed May 30 2007
 # Copyright (c) 1999, 2000 Hubert Feyrer <hubertf@NetBSD.org>
 # All rights reserved.
 #
@@ -130,9 +130,9 @@ BUILDLOG?=		.make${BULK_ID}
 
 # This is the directory in which all temporary files and log files from the
 # bulk build are kept.
-# It defaults to ${PKGSRCDIR}, but may be better suited to another directory
+# It defaults to ${ROBOTPKG_DIR}, but may be better suited to another directory
 # if pkgsrc is on a remote (e.g., nfs) filesystem.
-BULKFILESDIR?=		${PKGSRCDIR}
+BULKFILESDIR?=		${ROBOTPKG_DIR}
 
 # This is a top level file which lists the entire pkgsrc depends tree in the
 # format:
@@ -221,8 +221,8 @@ _BUILDLOG=		${_BULK_PKGLOGDIR}/${BUILDLOG}
 _FORCEBROKENFILE=	${_BULK_PKGLOGDIR}/${FORCEBROKENFILE}
 _BUILD_SUCCEEDED_FILE=	${_BULK_PKGLOGDIR}/${BUILD_SUCCEEDED_FILE}
 
-# Only create directories if ${PKGSRCDIR} != ${BULKFILESDIR}
-ifneq (${PKGSRCDIR},${BULKFILESDIR})
+# Only create directories if ${ROBOTPKG_DIR} != ${BULKFILESDIR}
+ifneq (${ROBOTPKG_DIR},${BULKFILESDIR})
 _BULK_MKDIR=		${MKDIR}
 else
 _BULK_MKDIR=		${DO_NADA}
@@ -232,7 +232,7 @@ endif
 # Sanity checks
 #
 
-# Allow FORCEBROKENFILE files to be created in either PKGSRCDIR or BULKFILESDIR.
+# Allow FORCEBROKENFILE files to be created in either ROBOTPKG_DIR or BULKFILESDIR.
 ifeq (yes,$(call exists,${FORCEBROKENFILE}))
 PKG_FAIL_REASON+=	"${PKGNAME} is marked as broken by the bulk build administrator: `cat ${FORCEBROKENFILE}`"
 else
@@ -253,7 +253,7 @@ endif
 bulk-cache:
 	@${BULK_MSG} "Installing BULK_PREREQ packages"
 	for __prereq in ${BULK_PREREQ}; do \
-		cd ${PKGSRCDIR}/$${__prereq} && ${RECURSIVE_MAKE} bulk-install; \
+		cd ${ROBOTPKG_DIR}/$${__prereq} && ${RECURSIVE_MAKE} bulk-install; \
 	done
 	${RM} -f ${BULK_DBFILE}
 	${TOUCH} ${BULK_DBFILE}
@@ -261,23 +261,23 @@ ifndef SPECIFIC_PKGS
 	@${ECHO} "This file is unused for a full pkgsrc bulk build" >> ${BULK_DBFILE}
 	@${ECHO} "It is only used for a SPECIFIC_PKGS bulk build" >> ${BULK_DBFILE}
 	@${BULK_MSG} "Building complete pkgsrc dependency tree (this may take a while)."
-	cd ${PKGSRCDIR} && \
+	cd ${ROBOTPKG_DIR} && \
 		${SETENV} MAKE=${MAKE} ${SH} mk/bulk/printdepends \
 			${BROKENFILE} ${BULKFILESDIR} > ${DEPENDSTREEFILE}
 	@${BULK_MSG} "Generating package name <=> package directory cross reference file"
 	@${BULK_MSG_CONT} "(this may take a while)."
-	cd ${PKGSRCDIR} && \
+	cd ${ROBOTPKG_DIR} && \
 		${SETENV} MAKE=${MAKE} ${SH} mk/bulk/printindex \
 			${NOT_AVAILABLE_FILE} ${BULKFILESDIR} > ${INDEXFILE}
 else
 	@${BULK_MSG} "Extracting database for SPECIFIC_PKGS subset of pkgsrc"
 	@${BULK_MSG_CONT} "along with their dependencies"
 	@for __tmp__ in ${SUBDIR} ${BULK_PREREQ}; do \
-	if [ ! -d ${PKGSRCDIR}/$${__tmp__} ]; then \
+	if [ ! -d ${ROBOTPKG_DIR}/$${__tmp__} ]; then \
 		${BULK_MSG} "WARN: Skipping nonexisting directory $${__tmp__}"; \
 		${ECHO} " 0 $${__tmp__} 0" >> ${BULKFILESDIR}/${BROKENFILE}; \
 	else \
-		cd ${PKGSRCDIR}/$${__tmp__} && \
+		cd ${ROBOTPKG_DIR}/$${__tmp__} && \
 			${SETENV} MAKE=${MAKE} AWK=${AWK} EXPR=${EXPR} \
 			${SH} ../../mk/internal/mkdatabase -a -f ${BULK_DBFILE}; \
 	fi; \
@@ -299,7 +299,7 @@ endif
 	@${BULK_MSG} "Sorting build order."
 	cd ${BULKFILESDIR} && ${TSORT} ${DEPENDSTREEFILE} > ${ORDERFILE}
 	@${BULK_MSG} "Generating up and down dependency files."
-	${PERL} ${PKGSRCDIR}/mk/bulk/tflat \
+	${PERL} ${ROBOTPKG_DIR}/mk/bulk/tflat \
 		${SUPPORTSFILE} ${DEPENDSFILE} < ${DEPENDSTREEFILE}
 
 # note explicit pathname on "perl" above, so that we do NOT auto-set
@@ -509,15 +509,15 @@ bulk-package:
 						${ECHO} "<li>$$pkgname ($$pkgdir)</li>";\
 						pkgerr='-1'; pkgignore=''; pkgskip=''; \
 						if [ "${USE_BULK_BROKEN_CHECK}" = 'yes' ]; then \
-							pkgignore=`(cd ${PKGSRCDIR}/$$pkgdir && ${RECURSIVE_MAKE} show-var VARNAME=PKG_FAIL_REASON)`; \
-							pkgskip=`(cd ${PKGSRCDIR}/$$pkgdir && ${RECURSIVE_MAKE} show-var VARNAME=PKG_SKIP_REASON)`; \
+							pkgignore=`(cd ${ROBOTPKG_DIR}/$$pkgdir && ${RECURSIVE_MAKE} show-var VARNAME=PKG_FAIL_REASON)`; \
+							pkgskip=`(cd ${ROBOTPKG_DIR}/$$pkgdir && ${RECURSIVE_MAKE} show-var VARNAME=PKG_SKIP_REASON)`; \
 						fi; \
 						if [ ! -z "$${pkgignore}$${pkgskip}" -a ! -f "$${pkg_brokenfile}" ]; then \
 							{ ${BULK_MSG} "$$pkgname ($$pkgdir) may not be packaged because:"; \
 							  ${BULK_MSG} "$$pkgignore"; \
 							  ${BULK_MSG} "$$pkgskip"; \
 							} >> "$${pkg_brokenfile}"; \
-							if [ "${USE_BULK_BROKEN_CHECK}" != 'yes' ] || [ -z "`(cd ${PKGSRCDIR}/$$pkgdir && ${RECURSIVE_MAKE} show-var VARNAME=BROKEN)`" ]; then \
+							if [ "${USE_BULK_BROKEN_CHECK}" != 'yes' ] || [ -z "`(cd ${ROBOTPKG_DIR}/$$pkgdir && ${RECURSIVE_MAKE} show-var VARNAME=BROKEN)`" ]; then \
 								pkgerr="0"; \
 							else \
 								pkgerr="1"; \
@@ -573,7 +573,7 @@ bulk-package:
 		exitcode=0;						\
 	fi;								\
 	exit $$exitcode
-ifneq (${BULKFILESDIR},${PKGSRCDIR})
+ifneq (${BULKFILESDIR},${ROBOTPKG_DIR})
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${RMDIR} ${_BULK_PKGLOGDIR} 2>/dev/null 1>&2 || ${TRUE}
 endif

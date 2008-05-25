@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2008/05/25 00:18:30 tho $
+# $LAAS: macros.mk 2008/05/25 19:38:48 tho $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -28,6 +28,9 @@
 #
 #                                       Anthony Mallet on Sat Dec  2 2006
 #
+
+ifndef MK_ROBOTPKG_MACROS
+MK_ROBOTPKG_MACROS:=	defined
 
 define isyes
 $(filter yes Yes YES,$(1))
@@ -151,3 +154,5 @@ endef
 define _OVERRIDE_TARGET
 @case $*"" in "-") ;; *) ${ECHO} "don't know how to make $@."; exit 2;; esac
 endef
+
+endif # MK_ROBOTPKG_MACROS
