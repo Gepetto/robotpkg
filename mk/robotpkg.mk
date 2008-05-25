@@ -1,11 +1,46 @@
-#	$NetBSD: bsd.pkg.mk,v 1.1892 2006/10/23 14:40:14 rillig Exp $
+# $LAAS: robotpkg.mk 2008/05/25 18:32:30 tho $
+
 #
-# This file is in the public domain.
+# Copyright (c) 2006-2008 LAAS/CNRS
+# All rights reserved.
 #
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice, this list of conditions and the following disclaimer.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice,  this list of  conditions and the following disclaimer in
+#      the  documentation  and/or  other   materials provided  with  the
+#      distribution.
+#
+# THIS  SOFTWARE IS PROVIDED BY  THE  COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND  ANY  EXPRESS OR IMPLIED  WARRANTIES,  INCLUDING,  BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES  OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR  PURPOSE ARE DISCLAIMED. IN  NO EVENT SHALL THE COPYRIGHT
+# HOLDERS OR      CONTRIBUTORS  BE LIABLE FOR   ANY    DIRECT, INDIRECT,
+# INCIDENTAL,  SPECIAL,  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF  SUBSTITUTE GOODS OR SERVICES; LOSS
+# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR
+# TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+# USE   OF THIS SOFTWARE, EVEN   IF ADVISED OF   THE POSSIBILITY OF SUCH
+# DAMAGE.
+#
+# From $NetBSD: bsd.pkg.mk,v 1.1892 2006/10/23 14:40:14 rillig Exp $
+#
+#                                      Anthony Mallet on Wed Nov  8 2006
+#
+
 # Please see the pkgsrc/doc/guide manual for details on the
 # variables used in this make file template.
-#
-# Default sequence for "all" is:
+
+# Make sure the default target is "all", which defaults to
 #
 #    bootstrap-depends
 #    fetch
@@ -14,12 +49,10 @@
 #    tools
 #    extract
 #    patch
-#    wrapper
 #    configure
 #    build
 #
-.DEFAULT_GOAL:=build
-
+.DEFAULT_GOAL:=all
 .PHONY: all
 all: build
 
@@ -68,12 +101,11 @@ INTERACTIVE_STAGE?=	none
 MAINTAINER?=		openrobots@laas.fr
 PKGWILDCARD?=		${PKGBASE}-[0-9]*
 WRKSRC?=		${WRKDIR}/${DISTNAME}
+PREFIX?=		${LOCALBASE}
 
 ifneq (,$(or $(call isyes,$(INSTALL_UNSTRIPPED)), $(DEBUG_FLAGS)))
 _INSTALL_UNSTRIPPED=	# set (flag used by platform/*.mk)
 endif
-
-include ${PKGSRCDIR}/mk/robotpkg.use.mk
 
 
 # --- Sanity checks --------------------------------------------------
@@ -127,17 +159,7 @@ ifndef DEPOT_SUBDIR
 PKG_FAIL_REASON+=	"DEPOT_SUBDIR may not be empty."
 endif
 
-
-# ZERO_FILESIZE_P exits with a successful return code if the given file
-#	has zero length.
-# NONZERO_FILESIZE_P exits with a successful return code if the given file
-#	has nonzero length.
-#
-_ZERO_FILESIZE_P=	${AWK} 'END { exit (NR > 0) ? 1 : 0; }'
-_NONZERO_FILESIZE_P=	${AWK} 'END { exit (NR > 0) ? 0 : 1; }'
-
 _INTERACTIVE_COOKIE=	${.CURDIR}/.interactive_stage
-_NULL_COOKIE=		${WRKDIR}/.null
 
 # Miscellaneous overridable commands:
 SHCOMMENT?=		${ECHO_MSG} >/dev/null '***'

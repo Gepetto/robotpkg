@@ -12,6 +12,11 @@ _WARNING_DONE_DIR=	${WRKDIR}/.warning-done
 DELAYED_ERROR_MSG?=	${ECHO} >> ${ERROR_DIR}/$(patsubst .%,%,$(notdir $@))
 DELAYED_WARNING_MSG?=	${ECHO} >> ${WARNING_DIR}/$(patsubst .%,%,$(notdir $@))
 
+# NONZERO_FILESIZE_P exits with a successful return code if the given file
+#	has nonzero length.
+#
+_NONZERO_FILESIZE_P=	${AWK} 'END { exit (NR > 0) ? 0 : 1; }'
+
 makedirs: ${ERROR_DIR} ${WARNING_DIR} ${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}
 ${ERROR_DIR} ${WARNING_DIR} ${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $@
