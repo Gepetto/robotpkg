@@ -1,4 +1,19 @@
-# $Id$
+# $LAAS: Makefile 2008/05/25 15:41:17 tho $
+#
+# Copyright (c) 2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice  and this list of  conditions in the documentation   and/or
+#      other materials provided with the distribution.
+#
+#                                       Anthony Mallet on Wed Mar 19 2008
 #
 
 DISTNAME=	hrp2-genom-0.1
@@ -11,21 +26,17 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Basic HRP-2 hardware control - GenoM component
 
 GNU_CONFIGURE=	yes
-USE_PKG_CONFIG=	yes
 
 DEPENDS+=	netshring>=1.0:../../architecture/netshring
-DEPENDS+=	pom-genom>=0.4:../../localization/pom-genom
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.openhrp-jrl}/OpenHRP
 
+GENOM_MODULE=	hrp2
+include ../../architecture/genom/depend.mk
+
 include ../../architecture/openhrp-jrl/depend.mk
 include ../../architecture/genom-openhrp-plugin/depend.mk
+include ../../localization/pom-genom/depend.mk
 include ../../math/t3d/depend.mk
 include ../../devel/omniORB/depend.mk
-include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
-
-# waiting for a more modular solution, hardcode -t
-# -o will require transgen
-pre-configure:
-	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PREFIX}/bin/genom -t hrp2

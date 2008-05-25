@@ -1,4 +1,19 @@
-# $NetBSD$
+# $LAAS: Makefile 2008/05/25 15:43:45 tho $
+#
+# Copyright (c) 2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution  and  use in source   and binary forms,  with or without
+# modification, are permitted provided that  the following conditions are
+# met:
+#
+#   1. Redistributions  of  source code must  retain  the above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must  reproduce the above copyright
+#      notice  and this list of  conditions in the documentation   and/or
+#      other materials provided with the distribution.
+#
+#                                      Arnaud Degroote on Mon May 19 2008
 #
 
 DISTNAME=		rflex-genom-0.2
@@ -10,7 +25,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM module for rFlex management.
 
 GNU_CONFIGURE=		yes
-USE_PKG_CONFIG=		yes
 
 PKG_OPTIONS_REQUIRED_GROUPS=	robot
 PKG_OPTIONS_GROUP.robot=	atrv atrv-junior b21r
@@ -29,14 +43,14 @@ PKG_OPTIONS_GROUP.gyro=			gyro-client gyroKVH1000
 
 PKG_OPTION_DESCR.gyro-client=	Enable gyro support using gyro GeNoM module
 define PKG_OPTION_SET.gyro-client
-	include ../../localization/gyro-genom/depend.mk
-	GENOM_ARGS += -DGYRO=gyro-client
+  include ../../localization/gyro-genom/depend.mk
+  GENOM_ARGS += -DGYRO=gyro-client
 endef
 
 PKG_OPTION_DESCR.gyroKVH1000=	Enable gyro support using directly gyroKVH1000
 define PKG_OPTION_SET.gyroKVH1000
-	include ../../robots/gyroKVH1000/depend.mk
-	GENOM_ARGS += -DGYRO=gyroKVH1000Task
+  include ../../robots/gyroKVH1000/depend.mk
+  GENOM_ARGS += -DGYRO=gyroKVH1000Task
 endef
 
 GENOM_MODULE=		rflex
