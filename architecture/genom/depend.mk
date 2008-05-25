@@ -1,3 +1,4 @@
+# $LAAS: depend.mk 2008/05/25 12:10:47 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -7,26 +8,13 @@
 # met:
 #
 #   1. Redistributions  of  source code must  retain  the above copyright
-#      notice, this list of conditions and the following disclaimer.
+#      notice and this list of conditions.
 #   2. Redistributions in binary form must  reproduce the above copyright
-#      notice,  this list of  conditions and  the following disclaimer in
-#      the  documentation   and/or  other  materials   provided with  the
-#      distribution.
+#      notice  and this list of  conditions in the documentation   and/or
+#      other materials provided with the distribution.
 #
-# THIS SOFTWARE IS PROVIDED BY THE  AUTHOR AND CONTRIBUTORS ``AS IS'' AND
-# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
-# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
-# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
-# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
-# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
-# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
-# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
-# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#                                       Anthony Mallet on Wed Apr 23 2008
 #
-
-# Authored by Anthony Mallet on Wed Apr 23 2008
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GENOM_DEPEND_MK:=	${GENOM_DEPEND_MK}+
@@ -65,10 +53,10 @@ define PKG_OPTION_UNSET.tcl
 endef
 
 ifdef GENOM_MODULE
-pre-configure: genom-generate
+  pre-configure: genom-generate
 
-.PHONY: genom-generate
-genom-generate:
+  .PHONY: genom-generate
+  genom-generate:
 	@${STEP_MSG} "Generating ${GENOM_MODULE} module"
 	${RUN}cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV}	\
 	${TOOLS.genom} ${GENOM_ARGS} ${GENOM_MODULE}
@@ -77,3 +65,11 @@ endif # GENOM_MODULE
 endif # GENOM_DEPEND_MK ----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
+
+
+# GenoM modules use pkg-config and libtool. Depend on these at the global
+# level so that the dependencies get registered for the modules
+# themeselves.
+#
+include ../../pkgtools/libtool/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
