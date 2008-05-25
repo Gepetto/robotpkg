@@ -1,5 +1,6 @@
+# $LAAS: configure.mk 2008/05/24 22:38:14 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -18,6 +19,9 @@
 # (http://www.pkgsrc.org).
 #
 # From $NetBSD: configure.mk,v 1.12 2006/11/09 02:53:15 rillig Exp $
+#
+#					Anthony Mallet on Thu Dec  7 2006
+#
 
 #
 # CONFIGURE_SCRIPT is the path to the script to run in order to
@@ -42,12 +46,6 @@ endif
 #.if defined(OVERRIDE_GNU_CONFIG_SCRIPTS)
 #.  include "${PKGSRCDIR}/mk/configure/config-override.mk"
 #.endif
-ifdef PKGCONFIG_OVERRIDE
-USE_PKG_CONFIG=		yes
-endif
-ifdef USE_PKG_CONFIG
-  include ${PKGSRCDIR}/mk/configure/pkg-config.mk
-endif
 #.include "${PKGSRCDIR}/mk/configure/replace-interpreter.mk"
 ifdef USE_PKGLOCALEDIR
   include ${PKGSRCDIR}/mk/configure/replace-localedir.mk
