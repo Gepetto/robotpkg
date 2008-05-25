@@ -209,14 +209,6 @@ INSTALL_MACROS=	BSD_INSTALL_PROGRAM=$(call quote,${INSTALL_PROGRAM})		\
 MAKE_ENV+=	${INSTALL_MACROS}
 SCRIPTS_ENV+=	${INSTALL_MACROS}
 
-# OVERRIDE_DIRDEPTH represents the common directory depth under
-#       ${WRKSRC} up to which we find the files that need to be
-#       overridden.  By default, we search two levels down, i.e.,
-#       */*/file.
-#
-OVERRIDE_DIRDEPTH?=     2
-
-
 # Used to print all the '===>' style prompts - override this to turn them off.
 ECHO_MSG?=		${ECHO}
 PHASE_MSG?=		${ECHO_MSG} "===>"
