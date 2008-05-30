@@ -24,13 +24,17 @@ do-extract:
 	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
 do-install:
-	${LIBTOOL} --mode=install ${INSTALL_LIB} ${WRKSRC}/libbz2.la ${DESTDIR}${PREFIX}/lib
-	${LIBTOOL} --mode=install ${INSTALL_PROGRAM} ${WRKSRC}/bzip2 ${DESTDIR}${PREFIX}/bin
+	${TOOLS.libtool} --mode=install ${INSTALL_LIB} \
+		${WRKSRC}/libbz2.la ${DESTDIR}${PREFIX}/lib
+	${TOOLS.libtool} --mode=install ${INSTALL_PROGRAM} \
+		${WRKSRC}/bzip2 ${DESTDIR}${PREFIX}/bin
 	${LN} -f ${DESTDIR}${PREFIX}/bin/bzip2 ${DESTDIR}${PREFIX}/bin/bunzip2
 	${LN} -f ${DESTDIR}${PREFIX}/bin/bzip2 ${DESTDIR}${PREFIX}/bin/bzcat
-	${LIBTOOL} --mode=install ${INSTALL_PROGRAM} ${WRKSRC}/bzip2recover ${DESTDIR}${PREFIX}/bin
+	${TOOLS.libtool} --mode=install ${INSTALL_PROGRAM} \
+		${WRKSRC}/bzip2recover ${DESTDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/bzip2.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
-	cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1 && rm -f bunzip2.1 bzcat.1 bzip2recover.1
+	cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1 && \
+		rm -f bunzip2.1 bzcat.1 bzip2recover.1
 	${LN} -s bzip2.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/bunzip2.1
 	${LN} -s bzip2.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/bzcat.1
 	${LN} -s bzip2.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/bzip2recover.1
