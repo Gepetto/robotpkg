@@ -27,5 +27,5 @@ include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:
-	${LIBTOOL} --mode=install ${INSTALL_DATA} ${WRKSRC}/liblapack.la \
-		${PREFIX}/lib
+	${TOOLS.libtool} --mode=install ${INSTALL_DATA}	\
+		${WRKSRC}/liblapack.la ${PREFIX}/lib
