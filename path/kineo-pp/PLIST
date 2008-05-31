@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2008/04/01 16:58:51 mallet $
+@comment Sat May 31 15:23:50 CEST 2008
 bin/KineoAddonBuilder
 bin/KineoPathPlanner
 bin/KineoPathPlannerd
@@ -48,6 +48,7 @@ kineo/include/KineoController/kppExtractCommand.h
 kineo/include/KineoController/kppExtractionController.h
 kineo/include/KineoController/kppFindCommand.h
 kineo/include/KineoController/kppGimmeName.h
+kineo/include/KineoController/kppGimmeName.h~
 kineo/include/KineoController/kppInsertBoxCommand.h
 kineo/include/KineoController/kppInsertComponentCommand.h
 kineo/include/KineoController/kppInsertGeometryFileCommand.h
@@ -188,6 +189,7 @@ kineo/include/KineoGUI/kppOptimizePathPanel.h
 kineo/include/KineoGUI/kppOptimizePathPanelController.h
 kineo/include/KineoGUI/kppPanel.h
 kineo/include/KineoGUI/kppParameterInputUICommand.h
+kineo/include/KineoGUI/kppParameterInputUICommand.h~
 kineo/include/KineoGUI/kppParameterValidator.h
 kineo/include/KineoGUI/kppPathAnalyse.h
 kineo/include/KineoGUI/kppPathAnalyseController.h
@@ -341,6 +343,7 @@ kineo/include/KineoParser/kprFileIO.h
 kineo/include/KineoParser/kprParser.h
 kineo/include/KineoUtility/kitChainedProgressDelegate.h
 kineo/include/KineoUtility/kitDefine.h
+kineo/include/KineoUtility/kitDefine.h~
 kineo/include/KineoUtility/kitForwardingProgressDelegate.h
 kineo/include/KineoUtility/kitGeometry.h
 kineo/include/KineoUtility/kitInterface.h
@@ -355,6 +358,7 @@ kineo/include/KineoUtility/kitPoint3.h
 kineo/include/KineoUtility/kitProgressDelegate.h
 kineo/include/KineoUtility/kitQuatF.h
 kineo/include/KineoUtility/kitString.h
+kineo/include/KineoUtility/kitString.h~
 kineo/include/KineoUtility/kitSys.h
 kineo/include/KineoUtility/kitTime.h
 kineo/include/KineoUtility/kitTimedProgressDelegate.h
@@ -568,6 +572,7 @@ kineo/include/kcd2/kcdLockedTestTree.h
 kineo/include/kcd2/kcdMat4.h
 kineo/include/kcd2/kcdMixedTestTree.h
 kineo/include/kcd2/kcdOBB.h
+kineo/include/kcd2/kcdOBB.h~
 kineo/include/kcd2/kcdOBBNode.h
 kineo/include/kcd2/kcdObject.h
 kineo/include/kcd2/kcdObjectListTestTree.h
@@ -634,9 +639,12 @@ kineo/include/kprParserXML203/kprXMLNode.h
 kineo/include/kprParserXML203/kprXMLNodeAssembly.h
 kineo/include/kprParserXML203/kprXMLNodeBox.h
 kineo/include/kprParserXML203/kprXMLNodeCamera.h
+kineo/include/kprParserXML203/kprXMLNodeCamera.h~
 kineo/include/kprParserXML203/kprXMLNodeClashAnalysis.h
+kineo/include/kprParserXML203/kprXMLNodeClashAnalysis.h~
 kineo/include/kprParserXML203/kprXMLNodeClashAnalysisPair.h
 kineo/include/kprParserXML203/kprXMLNodeClippingPlane.h
+kineo/include/kprParserXML203/kprXMLNodeClippingPlane.h~
 kineo/include/kprParserXML203/kprXMLNodeCollision.h
 kineo/include/kprParserXML203/kprXMLNodeComponent.h
 kineo/include/kprParserXML203/kprXMLNodeConfigJoints.h
@@ -644,6 +652,7 @@ kineo/include/kprParserXML203/kprXMLNodeDevice.h
 kineo/include/kprParserXML203/kprXMLNodeDistance.h
 kineo/include/kprParserXML203/kprXMLNodeDof.h
 kineo/include/kprParserXML203/kprXMLNodeGroup.h
+kineo/include/kprParserXML203/kprXMLNodeGroup.h~
 kineo/include/kprParserXML203/kprXMLNodeJoint.h
 kineo/include/kprParserXML203/kprXMLNodeJointDOFdescription.h
 kineo/include/kprParserXML203/kprXMLNodeMovingObject.h
@@ -2193,12 +2202,22 @@ kineo/share/doc/KPP SDK/html/class_ckpp_window_u_i_command_factory.html
 kineo/share/doc/KPP SDK/html/class_ckpp_window_u_i_command_factory.png
 kineo/share/doc/KPP SDK/html/class_ckpr_parser_manager-members.html
 kineo/share/doc/KPP SDK/html/class_ckpr_parser_manager.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_builder-members.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_builder.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_builder_callback-members.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_builder_callback.html
 kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_building_context-members.html
 kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_building_context.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_child_builder_callback-members.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_child_builder_callback.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_property_filler_callback-members.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_property_filler_callback.html
 kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_tag-members.html
 kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_tag.html
 kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_writer-members.html
 kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_writer.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_writer_callback-members.html
+kineo/share/doc/KPP SDK/html/class_ckpr_x_m_l_writer_callback.html
 kineo/share/doc/KPP SDK/html/class_ckwx_idle_notification-members.html
 kineo/share/doc/KPP SDK/html/class_ckwx_idle_notification.html
 kineo/share/doc/KPP SDK/html/class_ckwx_idle_notification.png
@@ -3049,6 +3068,8 @@ lib/pkgconfig/KineoPathPlanner.pc
 @dirrm kineo/lib/modules/libKineoMagnetdRes
 @dirrm kineo/lib/modules/libKineoMagnetRes/KineoMagnet
 @dirrm kineo/lib/modules/libKineoMagnetRes
+@dirrm kineo/lib/modules
+@dirrm kineo/lib
 @dirrm kineo/include/wx/xrc
 @dirrm kineo/include/wx/xml
 @dirrm kineo/include/wx/unix
@@ -3079,3 +3100,4 @@ lib/pkgconfig/KineoPathPlanner.pc
 @dirrm kineo/include/KineoController
 @dirrm kineo/include
 @dirrm kineo/bin
+@dirrm kineo
