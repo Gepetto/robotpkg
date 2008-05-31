@@ -54,6 +54,7 @@ FETCH_MESSAGE+= " must be put manually into:"
 FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 
 NO_BUILD=		yes
+INSTALLATION_DIRS=	bin
 
 include ../../mk/robotpkg.mk
 
