@@ -1,5 +1,19 @@
-# Copyright (c) 2006 LAAS/CNRS                         -- Sat Dec  9 2006
-# All rights  reserved.
+# $LAAS: $
+#
+# Copyright (c) 2006-2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Sat Dec  9 2006
 #
 
 KPPVERSION=		2.04
@@ -22,16 +36,16 @@ COMMENT=		Software component dedicated to motion planning.
 LICENSE=                kineocam-license
 
 SUBST_CLASSES+=			kineopc
-SUBST_STAGE.kineopc=		pre-install
+SUBST_STAGE.kineopc=		pre-configure
 SUBST_MESSAGE.kineopc=		Generating pkg-config files.
 SUBST_SED.kineopc=						\
 	-e 's|@PREFIX@|${PREFIX}|g'				\
 	-e 's|@KPPVERSION@|${KPPVERSION}|g'			\
 	-e 's|@KPPPATCH@|${KPPPATCH}|g'
 
-SUBST_FILES.kineopc=$(call quote,				\
+SUBST_FILES.kineopc=						\
 	KineoController.pc					\
-	KineoPathPlanner.pc)
+	KineoPathPlanner.pc
 
 INTERACTIVE_STAGE=	fetch
 FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing KPP ${KPPVERSION}"
@@ -39,7 +53,6 @@ FETCH_MESSAGE+= ""
 FETCH_MESSAGE+= " must be put manually into:"
 FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 
-NO_CONFIGURE=		yes
 NO_BUILD=		yes
 
 include ../../mk/robotpkg.mk
