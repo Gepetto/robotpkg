@@ -429,6 +429,7 @@ ftp_start(const char *base)
 	const char *currentDir=getenv(PKG_FTPIO_CURRENTDIR);
 	int urllen;
 
+#ifdef HAVE_TGETENT
 	/* talk to termcap for bold on/off escape sequences */
 	if (getenv("TERM") != NULL && tgetent(term, getenv("TERM")) > 0) {
 		p = bold_on;  tgetstr("md", &p);
@@ -437,6 +438,10 @@ ftp_start(const char *base)
 		bold_on[0]  = '\0';
 		bold_off[0] = '\0';
 	}
+#else
+	bold_on[0]  = '\0';
+	bold_off[0] = '\0';
+#endif
 	
 	fileURLHost(base, newHost, sizeof(newHost));
 	urllen = URLlength(base);

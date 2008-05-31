@@ -1,0 +1,27 @@
+$LAAS: patch-af 2008/05/31 23:41:57 tho $
+
+Prevent tgetent to be linked in if the function was not found by
+configure.
+
+
+--- lib/ftpio.c~	2008-05-25 16:36:19.000000000 +0200
++++ lib/ftpio.c	2008-05-31 23:25:36.000000000 +0200
+@@ -429,6 +429,7 @@
+ 	const char *currentDir=getenv(PKG_FTPIO_CURRENTDIR);
+ 	int urllen;
+ 
++#ifdef HAVE_TGETENT
+ 	/* talk to termcap for bold on/off escape sequences */
+ 	if (getenv("TERM") != NULL && tgetent(term, getenv("TERM")) > 0) {
+ 		p = bold_on;  tgetstr("md", &p);
+@@ -437,6 +438,10 @@
+ 		bold_on[0]  = '\0';
+ 		bold_off[0] = '\0';
+ 	}
++#else
++	bold_on[0]  = '\0';
++	bold_off[0] = '\0';
++#endif
+ 	
+ 	fileURLHost(base, newHost, sizeof(newHost));
+ 	urllen = URLlength(base);
