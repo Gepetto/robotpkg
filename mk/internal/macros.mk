@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2008/05/25 19:38:48 tho $
+# $LAAS: macros.mk 2008/06/01 13:54:25 tho $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -81,9 +81,29 @@ $(foreach -,$(wordlist 1,$(1),. . . . . . . .),$(2))
 endef
 
 
+# --- append <item> <list> -------------------------------------------
+#
+# Append <item> to the end of <list>, if not already in the list.
+#
+override define append
+$(strip $(if $(filter $1,$2),$2,$2 $1))
+endef
+
+
+# --- lappend <item-list> <list> -------------------------------------
+#
+# Append <item-list> to the end of <list> except for elements of
+# <item-list> already in the list.
+#
+override define lappend
+$(if $1,$(call lappend,$(wordlist 2,$(words $1),$1),$(call \
+	append,$(firstword $1),$2)),$2)
+endef
+
+
 # --- prependpath <path> <path-list> ---------------------------------
 #
-# Prepend <path> in front of <path-list>, inserting a semi-colon if
+# Prepend <path> in front of <path-list>, inserting a colon if
 # <path-list> is not empty and removing duplicates.
 # If <path> does not exist, <path-list> is returned as-is.
 #
@@ -111,9 +131,10 @@ endef
 # As a special case, if a file is not found in /usr/lib, it is also search in /lib
 #
 override define pathsearch
-$(foreach f,$(1),$(firstword \
-	$(or $(wildcard $(addsuffix /$(f),$(subst :, ,$(2)))),\
-	     $(wildcard $(subst /usr/lib,/lib,$(addsuffix /$(f),$(subst :, ,$(2))))))))
+$(strip $(foreach f,$1,$(firstword 				\
+	$(or $(wildcard $(addsuffix /$f,$(subst :, ,$2))),	\
+	     $(wildcard $(subst					\
+		/usr/lib,/lib,$(addsuffix /$f,$(subst :, ,$2))))))))
 endef
 
 
@@ -123,10 +144,7 @@ endef
 # See pathsearch.
 #
 override define prefixsearch
-$(strip $(foreach p,$(subst :, ,$(2)),\
-	$(if $(strip $(foreach f,$(1),\
-		$(if $(or $(wildcard $(p)/$(f)),\
-			  $(wildcard $(subst /usr/lib,/lib,$(p)/$(f)))),X))),$(p))))
+$(firstword $(foreach p,$(subst :, ,$2),$(if $(call pathsearch,$1,$p),$p)))
 endef
 
 
