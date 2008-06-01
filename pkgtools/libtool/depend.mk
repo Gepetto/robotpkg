@@ -43,6 +43,8 @@ DEPEND_USE+=		libtool
 DEPEND_METHOD.libtool+=	build
 DEPEND_ABI.libtool?=	libtool>=1.5.22
 DEPEND_DIR.libtool?=	../../pkgtools/libtool
+DEPEND_INCDIRS.libtool?=# empty
+DEPEND_LIBDIRS.libtool?=# empty
 
 # TOOLS.libtool is the publicly-readable variable that should be
 # used by Makefiles to invoke the proper libtool.
