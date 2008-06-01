@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2008/06/01 13:54:25 tho $
+# $LAAS: macros.mk 2008/06/02 01:24:00 tho $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -40,8 +40,12 @@ define isno
 $(filter no No NO,$(1))
 endef
 
-define exists
-$(shell test -e $(1) && echo yes || echo no)
+# --- exists <file> --------------------------------------------------
+#
+# Return 'yes' if <file> exists, 'no' otherwise
+#
+override define exists
+$(if $(wildcard $1),yes,no)
 endef
 
 

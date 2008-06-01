@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2008/05/25 20:45:13 tho $
+# $LAAS: robotpkg.prefs.mk 2008/06/01 22:33:36 tho $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
@@ -146,7 +146,7 @@ PKGDIR?=		${CURDIR}
 ifdef WRKOBJDIR
 BUILD_DIR?=		${WRKOBJDIR}/${PKGPATH}
 else
-BUILD_DIR=		$(shell cd ${CURDIR} && pwd)
+BUILD_DIR=		$(realpath ${CURDIR})
 endif
 
 WRKDIR_BASENAME?=	work
