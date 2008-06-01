@@ -1,3 +1,7 @@
+$LAAS: patch-aa 2008/06/01 19:05:18 tho $
+
+Adaptations for OmniORB 4.1.x
+
 diff -ur rtm/CorbaPort.cpp rtm/CorbaPort.cpp
 --- rtm/CorbaPort.cpp	2007-04-13 17:37:33.000000000 +0200
 +++ rtm/CorbaPort.cpp	2008-01-21 19:15:44.000000000 +0100
