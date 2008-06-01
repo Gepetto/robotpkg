@@ -1,0 +1,20 @@
+$LAAS: patch-ab 2008/06/01 19:16:28 tho $
+
+Don't hardcode OmniORB paths (which were wrong anyway).
+
+--- configure~	2008-06-01 17:15:32.000000000 +0200
++++ configure	2008-06-01 18:38:52.000000000 +0200
+@@ -21232,10 +21232,10 @@
+ echo "${ECHO_T}$omnirob_version" >&6
+ 
+ 				IDLC=$omniidl
+-	IDL_FLAGS="-bcxx -Wba -nf -I/usr/local/share/omniORB/idl/ -I/usr/local/share/omniORB/idl/COS"
++	IDL_FLAGS="-bcxx -Wba -nf -I$with_omniorb/share/idl/omniORB -I$with_omniorb/share/idl/omniORB/COS"
+ 	COSNAMES=$omniNames
+-		CPPFLAGS="-I$omniORB4_CORBA_h_dir $CPPFLAGS -I/usr/local/include/COS/"
+-	CXXFLAGS="-I$omniORB4_CORBA_h_dir $CXXFLAGS -I/usr/local/include/COS/"
++		CPPFLAGS="-I$omniORB4_CORBA_h_dir $CPPFLAGS -I$omniORB4_CORBA_h_dir/COS/"
++	CXXFLAGS="-I$omniORB4_CORBA_h_dir $CXXFLAGS -I$omniORB4_CORBA_h_dir/COS/"
+ 	LDFLAGS="$LDFLAGS -L$libomniORB4_so_dir"
+ 	LIBS="$LIBS -lomniORB4 -lomnithread -lomniDynamic4"
+ 	LDSOLIBS="$LDSOLIBS -lomniORB4 -lomnithread -lomniDynamic4"
