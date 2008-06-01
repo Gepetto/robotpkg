@@ -1,0 +1,15 @@
+$LAAS: patch-ad 2008/06/01 19:49:26 tho $
+
+Replace non-standard pthread_yield() by standard sched_yield().
+
+--- rtm/PublisherNew.cpp~	2007-09-19 09:41:04.000000000 +0200
++++ rtm/PublisherNew.cpp	2008-06-01 19:30:55.000000000 +0200
+@@ -83,7 +83,7 @@
+ #ifdef WIN32
+     ACE_OS::thr_yield();
+ #else
+-    pthread_yield();
++    sched_yield();
+ #endif
+     return;
+   }
