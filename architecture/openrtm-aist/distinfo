@@ -1,6 +1,7 @@
-$NetBSD$
-
 SHA1 (OpenRTM-aist-0.4.1-RELEASE.tar.gz) = 4faa8782b967d0b8c99bb7567ddf4d8931a9038d
 RMD160 (OpenRTM-aist-0.4.1-RELEASE.tar.gz) = 597231873c5b463283dc9665faae261068b2db4e
 Size (OpenRTM-aist-0.4.1-RELEASE.tar.gz) = 2940633 bytes
-SHA1 (patch-aa) = 9e6726d7250707d973fa499c531ae04f503f9c9c
+SHA1 (patch-aa) = 65a51ccaf22545613c467fdc8a1bf79273ffb018
+SHA1 (patch-ab) = 17ee260685bfe22bfff00d87d2029154ccd69a9a
+SHA1 (patch-ac) = 2d8f3d76ecbcc20e6e5c8fb1d970258071dcefd3
+SHA1 (patch-ad) = 1db91001d29f02ba15616179140d7b0128b3f4c8
