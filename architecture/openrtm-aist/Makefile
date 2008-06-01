@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/06/01 19:47:59 tho $
+# $LAAS: Makefile 2008/06/01 22:11:04 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -26,8 +26,6 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.is.aist.go.jp/rt/OpenRTM-aist/html-en/FrontPage.html
 COMMENT=		Open Robot Technology Middleware from AIST.
 
-DEPENDS+=		ace>=5.6:../../architecture/ace
-
 WRKSRC=			${WRKDIR}/${DISTNAME:-RELEASE=}
 
 GNU_CONFIGURE=		yes
@@ -47,6 +45,7 @@ SUBST_FILES.rtm-python=\
 	utils/rtm-skelwrapper/*.py		\
 	utils/rtm-skelwrapper/rtm-skelwrapper
 
+include ../../architecture/ace/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk

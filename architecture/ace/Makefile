@@ -43,5 +43,8 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
 
 # create the build directory
-pre-configure:
+pre-configure: ace-build-dir
+
+.PHONY: ace-build-dir
+ace-build-dir:
 	${MKDIR} ${WRKSRC}/build
