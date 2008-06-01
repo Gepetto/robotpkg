@@ -1,0 +1,17 @@
+$LAAS: patch-ac 2008/06/01 19:06:14 tho $
+
+Don't hardcode /usr/local/include in CPPFLAGS
+
+--- configure~	2008-06-01 18:54:28.000000000 +0200
++++ configure	2008-06-01 19:04:25.000000000 +0200
+@@ -19363,8 +19363,8 @@
+ done
+ 
+ 
+-CPPFLAGS="$CPPFLAGS -I/usr/local/include -Wall"
+-CXXFLAGS="$CXXFLAGS -I/usr/local/include -Wall"
++CPPFLAGS="$CPPFLAGS -Wall"
++CXXFLAGS="$CXXFLAGS -Wall"
+ SHLIB_SUFFIX=".so"
+ 
+ echo "$as_me:$LINENO: checking for library containing pthread_create" >&5
