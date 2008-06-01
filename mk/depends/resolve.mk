@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/05/24 23:51:12 tho $
+# $LAAS: resolve.mk 2008/06/01 14:03:29 tho $
 #
 # Copyright (c) 2008
 #      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
@@ -86,19 +86,16 @@
 # DEPEND_*	public variables usable in other Makefiles
 # _DPD_*	private variables to this Makefile
 
-#.for p in ${BUILDLINK_PACKAGES}
-#.  for v in AUTO_VARS BUILTIN_MK CONTENTS_FILTER CPPFLAGS DEPMETHOD FILES_CMD INCDIRS IS_DEPOT LDFLAGS LIBDIRS PKGNAME PREFIX RPATHDIRS
-#_SYS_VARS.bl3+=		BUILDLINK_${v}.${p}
-#.  endfor
-#.  for v in IGNORE_PKG USE_BUILTIN
-#_SYS_VARS.bl3+=		${v}.${p}
-#.  endfor
-#.endfor
 
 # DEPEND_PKG contains the list of packages for which we add a direct
 # dependency.
 #
 DEPEND_PKG?=# empty
+
+# DEPEND_USE contains the full list of packages on which we have a
+# dependency (direct or indirect).
+#
+DEPEND_USE?=# empty
 
 # By default, prefer the robotpkg version of all packages. Individual
 # packages might override this, and users can set their preferences in
@@ -110,17 +107,6 @@ $(foreach _pkg_,${DEPEND_USE},$(eval PREFER.${_pkg_}?=robotpkg))
 #
 $(foreach _pkg_,${DEPEND_USE},$(eval DEPEND_METHOD.${_pkg_}?=full))
 
-# _DPD_PKG contains all of the elements of DEPEND_PKG for which we must
-# add a dependency.  We add a dependency if we are using the robotpkg
-# version of the package.
-#
-_DPD_PKG=	# empty
-define _dpd_pkgadd
-  ifneq (,$$(filter robotpkg,$${PREFER.${1}}))
-_DPD_PKG+=	${1}
-  endif
-endef
-$(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_pkgadd,${_pkg_})))
 
 # Add the proper dependency on each package pulled in by depend.mk
 # files.  DEPEND_METHOD.<pkg> contains a list of either "full", "build"
@@ -128,19 +114,21 @@ $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_pkgadd,${_pkg_})))
 # dependency on <pkg>, otherwise we use a build dependency on <pkg>.
 #
 define _dpd_adddep
-  ifneq (,$$(filter full,${DEPEND_METHOD.${1}}))
+  ifneq (,$$(filter robotpkg,$${PREFER.${1}}))
+    ifneq (,$$(filter full,${DEPEND_METHOD.${1}}))
 DEPENDS+=		${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
-  else
-    ifneq (,$$(filter build,${DEPEND_METHOD.${1}}))
-BUILD_DEPENDS+=		${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
     else
-      ifneq (,$$(filter bootstrap,${DEPEND_METHOD.${1}}))
+      ifneq (,$$(filter build,${DEPEND_METHOD.${1}}))
+BUILD_DEPENDS+=		${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
+      else
+        ifneq (,$$(filter bootstrap,${DEPEND_METHOD.${1}}))
 BOOTSTRAP_DEPENDS+=	${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
+        endif
       endif
     endif
   endif
 endef
-$(foreach _pkg_,${_DPD_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
+$(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
 
 
 # Compute the prefix of packages that we are pulling from the system.
@@ -219,125 +207,94 @@ $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_pkgprefix,${_pkg_})))
 
 # Generate default values for:
 #
-# BUILDLINK_PREFIX.<pkg>	contains all of the installed files
-#				for <pkg>
+# DEPEND_CFLAGS.<pkg>,
+# DEPEND_CPPFLAGS.<pkg>,
+# DEPEND_LDFLAGS.<pkg>	contain extra compiler options, -D..., -I...
+#			and -L.../-Wl,-R options to be passed to the
+#			compiler/linker so that building against
+#			<pkg> will work.
 #
-# BUILDLINK_CFLAGS.<pkg>,
-# BUILDLINK_CPPFLAGS.<pkg>,
-# BUILDLINK_LDFLAGS.<pkg>	contain extra compiler options, -D..., -I...
-#				and -L.../-Wl,-R options to be passed to the
-#				compiler/linker so that building against
-#				<pkg> will work.
+# DEPEND_LIBS.<pkg>	contain -l... (library) options that can be
+#			automatically appended to the LIBS
+#			variable when building against <pkg>.
 #
-# BUILDLINK_LIBS.<pkg>		contain -l... (library) options that can be
-#				automatically appended to the LIBS
-#				variable when building against <pkg>.
-#
-
 override define _dpd_flags
-#
-# If we're using the built-in package, then provide sensible defaults.
-#
-#USE_BUILTIN.${1}?=		no
-#.  if !empty(USE_BUILTIN.${1}:M[yY][eE][sS])
-#_BLNK1DBDIR.${1}?=	_BLNK1DBDIR.${1}_not_found
-#_BLNK1INFO.${1}?=	${TRUE}
-#BUILDLINK_PKGNAME.${1}?=	${1}
-#BUILDLINK_IS_DEPOT.${1}?=	no
-#BUILDLINK_PREFIX.${1}?=	/usr
-#.  endif
-#
-
-DEPEND_CPPFLAGS.${1}?=#		empty
-DEPEND_LDFLAGS.${1}?=#		empty
-DEPEND_LIBS.${1}?=#		empty
-DEPEND_INCDIRS.${1}?=		include
-DEPEND_LIBDIRS.${1}?=		lib
-DEPEND_PKG_CONFIG.${1}?=	lib/pkgconfig
- ifneq (,$$(filter full,$${DEPEND_METHOD.${1}}))
-DEPEND_RPATHDIRS.${1}?=	$${DEPEND_LIBDIRS.${1}}
- else
-DEPEND_RPATHDIRS.${1}?=# empty
- endif
+  DEPEND_CFLAGS.${1}?=#		empty
+  DEPEND_CPPFLAGS.${1}?=#	empty
+  DEPEND_LDFLAGS.${1}?=#	empty
+  DEPEND_LIBS.${1}?=#		empty
+  DEPEND_INCDIRS.${1}?=		include
+  DEPEND_LIBDIRS.${1}?=		lib
+  DEPEND_PKG_CONFIG.${1}?=	lib/pkgconfig
+  ifneq (,$$(filter full,$${DEPEND_METHOD.${1}}))
+    DEPEND_RPATHDIRS.${1}?=	$${DEPEND_LIBDIRS.${1}}
+  else
+    DEPEND_RPATHDIRS.${1}?=# empty
+  endif
 endef
 $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_flags,${_pkg_})))
 
 
-# BUILDLINK_CPPFLAGS, BUILDLINK_LDFLAGS, and BUILDLINK_LIBS contain the
+# DEPEND_CPPFLAGS, DEPEND_LDFLAGS, and DEPEND_LIBS contain the
 # proper -I..., -L.../-Wl,-R..., and -l... options to be passed to the
 # compiler and linker to find the headers and libraries for the various
-# packages at configure/build time.  BUILDLINK_CFLAGS contains any special
+# packages at configure/build time.  DEPEND_CFLAGS contains any special
 # compiler options needed when building against the various packages.
 #
-DEPEND_CPPFLAGS=#	empty
-DEPEND_LDFLAGS=#	empty
-DEPEND_LIBS=#		empty
-DEPEND_CFLAGS=#		empty
+DEPEND_CFLAGS:=$(call lappend,						\
+  $(foreach _pkg_,${DEPEND_USE},${DEPEND_CFLAGS.${_pkg_}}),)
 
-define _dpd_genflags
-DEPEND_CPPFLAGS:= $$(filter-out $${DEPEND_CPPFLAGS.${1}},$${DEPEND_CPPFLAGS})
-DEPEND_CPPFLAGS+= $${DEPEND_CPPFLAGS.${1}}
+DEPEND_CPPFLAGS:=$(call lappend,					\
+  $(foreach _pkg_,${DEPEND_USE},${DEPEND_CPPFLAGS.${_pkg_}}),)
 
-DEPEND_LDFLAGS:= $$(filter-out $${DEPEND_LDFLAGS.${1}},$${DEPEND_LDFLAGS})
-DEPEND_LDFLAGS+= $${DEPEND_LDFLAGS.${1}}
+DEPEND_LDFLAGS:=$(call lappend,						\
+  $(foreach _pkg_,${DEPEND_USE},${DEPEND_LDFLAGS.${_pkg_}}),)
 
-DEPEND_CFLAGS:= $$(filter-out $${DEPEND_CFLAGS.${1}},$${DEPEND_CFLAGS})
-DEPEND_CFLAGS+= $${DEPEND_CFLAGS.${1}}
+DEPEND_LIBS:=$(call lappend,						\
+  $(foreach _pkg_,${DEPEND_USE},${DEPEND_LIBS.${_pkg_}}),)
 
-DEPEND_LIBS:= $$(filter-out $${DEPEND_LIBS.${1}},$${DEPEND_LIBS})
-DEPEND_LIBS+= $${DEPEND_LIBS.${1}}
-endef
-$(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_genflags,${_pkg_})))
 
-# DEPEND_INCDIRS.<pkg>,
+# Append DEPEND_INCDIRS.<pkg> to DEPEND_CPPFLAGS
 #
-override define _dpd_addincdirs
-  ifeq (yes,$$(call exists,$${PREFIX.${1}}/${2}))
-_d:=-I$${PREFIX.${1}}/${2}
-DEPEND_CPPFLAGS:= $$(filter-out $${_d},$${DEPEND_CPPFLAGS})
-DEPEND_CPPFLAGS+= $${_d}
-  endif
-endef
-$(foreach _pkg_,${DEPEND_USE},$(foreach _d_,${DEPEND_INCDIRS.${_pkg_}},\
-	$(eval $(call _dpd_addincdirs,${_pkg_},${_d_}))))
-
-# DEPEND_LIBDIRS.<pkg>
+# DEPEND_INCDIR.<pkg> is a list of subdirectories of PREFIX.<pkg>
+# that should be added to the compiler/linker search paths;
+# these directories are checked to see if they exist before they're added
+# to the search paths. The special /usr/lib is not added since it is in
+# the default compiler path.
 #
-override define _dpd_addlibdirs
-  ifeq (yes,$$(call exists,$${PREFIX.${1}}/${2}))
-_d:=-L$${PREFIX.${1}}/${2}
-DEPEND_LDFLAGS:= $$(filter-out $${_d},$${DEPEND_LDFLAGS})
-DEPEND_LDFLAGS+= $${_d}
-  endif
-endef
-$(foreach _pkg_,${DEPEND_USE},$(foreach _d_,${DEPEND_LIBDIRS.${_pkg_}},\
-	$(eval $(call _dpd_addlibdirs,${_pkg_},${_d_}))))
+DEPEND_CPPFLAGS:=$(call lappend,$(addprefix -I,$(foreach 		\
+  _pkg_,${DEPEND_USE},$(realpath $(filter-out /usr/include,$(addprefix	\
+      ${PREFIX.${_pkg_}}/,${DEPEND_INCDIRS.${_pkg_}}))))),		\
+	${DEPEND_LDFLAGS})
+
+
+# Append DEPEND_LIBDIRS.<pkg> to DEPEND_LDFLAGS
+#
+# DEPEND_LIBDIRS.<pkg> is a list of subdirectories of PREFIX.<pkg>
+# that should be added to the compiler/linker search paths;
+#
+DEPEND_LDFLAGS:=$(call lappend,$(addprefix -L,$(foreach 		\
+  _pkg_,${DEPEND_USE},$(realpath $(filter-out /usr/lib,$(addprefix	\
+      ${PREFIX.${_pkg_}}/,${DEPEND_LIBDIRS.${_pkg_}}))))),		\
+	${DEPEND_LDFLAGS})
+
 
 # Apppend DEPEND_RPATHDIRS.<pkg> to DEPEND_LDFLAGS.
+#
 # DEPEND_RPATHDIRS.<pkg> is a list of subdirectories of PREFIX.<pkg>
-# that should be added to the compiler/linker search paths; these
-# directories are checked to see if they exist before they're added to
-# the search paths.
+# that should be added to the compiler/linker run-time search paths;
 #
-override define _dpd_addrpath
-  ifeq (yes,$$(call exists,$${PREFIX.${1}}/${2}))
-_d:=${COMPILER_RPATH_FLAG}$${PREFIX.${1}}/${2}
-DEPEND_LDFLAGS:= $$(filter-out $${_d},$${DEPEND_LDFLAGS})
-DEPEND_LDFLAGS+= $${_d}
-  endif
-endef
-$(foreach _pkg_,${DEPEND_USE},$(foreach _d_,${DEPEND_RPATHDIRS.${_pkg_}},\
-	$(eval $(call _dpd_addrpath,${_pkg_},${_d_}))))
+# Ensure that ${LOCALBASE}/lib is first in this list.
+#
+DEPEND_LDFLAGS:=\
+  $(call append,${COMPILER_RPATH_FLAG}${LOCALBASE}/lib,${DEPEND_LDFLAGS})
+
+DEPEND_LDFLAGS:=$(call lappend,$(addprefix ${COMPILER_RPATH_FLAG},	\
+  $(foreach _pkg_,${DEPEND_USE},$(realpath $(filter-out /usr/lib,	\
+    $(addprefix ${PREFIX.${_pkg_}}/,${DEPEND_RPATHDIRS.${_pkg_}}))))),	\
+	${DEPEND_LDFLAGS})
 
 
-#
-# Ensure that ${LOCALBASE}/lib is in the runtime library search path.
-#
-DEPEND_LDFLAGS:= $(filter-out ${COMPILER_RPATH_FLAG}${LOCALBASE}/lib,${DEPEND_LDFLAGS})
-DEPEND_LDFLAGS+= ${COMPILER_RPATH_FLAG}${LOCALBASE}/lib
-
-
-#
 # We add DEPEND_CPPFLAGS to both CFLAGS and CXXFLAGS since much software
 # ignores the value of CPPFLAGS that we set in the environment.
 #
@@ -345,6 +302,7 @@ CPPFLAGS+=	${DEPEND_CPPFLAGS}
 CFLAGS+=	${DEPEND_CFLAGS} ${DEPEND_CPPFLAGS}
 CXXFLAGS+=	${DEPEND_CFLAGS} ${DEPEND_CPPFLAGS}
 LDFLAGS+=	${DEPEND_LDFLAGS} ${DEPEND_LIBS}
+
 
 # If we are using pkg-config, update the PKG_CONFIG_PATH variable by
 # prepending the value of DEPEND_PKG_CONFIG.<pkg> of all depended
