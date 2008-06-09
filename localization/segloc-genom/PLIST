@@ -1,0 +1,41 @@
+@comment lundi 9 juin 2008, 20:33:09 (UTC+0200)
+bin/segloc
+bin/seglocSendInitRqst
+bin/seglocTest
+include/segloc/polygons.h
+include/segloc/seglocConst.h
+include/segloc/seglocMapIO.h
+include/segloc/seglocStruct.h
+include/segloc/server/seglocEndian.h
+include/segloc/server/seglocError.h
+include/segloc/server/seglocMsgLib.h
+include/segloc/server/seglocPosterLib.h
+include/segloc/server/seglocPosterLibStruct.h
+include/segloc/server/seglocPosterReadLibProto.h
+include/segloc/server/seglocPosterShowLib.h
+include/segloc/server/seglocPosterWriteLibProto.h
+include/segloc/server/seglocPosterXMLLib.h
+include/segloc/server/seglocPrint.h
+include/segloc/server/seglocPrintXML.h
+include/segloc/server/seglocScan.h
+include/segloc/server/seglocType.h
+lib/libseglocClient.la
+lib/libseglocMap.la
+lib/libseglocPolygons.la
+lib/libseglocUtils.la
+lib/pkgconfig/segloc-map.pc
+lib/pkgconfig/segloc.pc
+lib/pkgconfig/segloc-polygons.pc
+lib/pkgconfig/segloc-utils.pc
+lib/tclserv/libseglocTclServ.la
+share/modules/gen/segloc.gen
+share/modules/tcl/seglocClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/segloc/server
+@dirrm include/segloc
+@dirrm include
+@dirrm bin
