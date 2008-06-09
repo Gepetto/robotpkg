@@ -1,0 +1,8 @@
+@comment lundi 9 juin 2008, 19:03:13 (UTC+0200)
+include/serial/serial.h
+lib/libserial.la
+lib/pkgconfig/serial.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/serial
+@dirrm include
