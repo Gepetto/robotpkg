@@ -1,0 +1,37 @@
+@comment lundi 9 juin 2008, 19:32:52 (UTC+0200)
+bin/sick
+bin/sickSendInitRqst
+bin/sickTest
+include/sick/server/sickEndian.h
+include/sick/server/sickError.h
+include/sick/server/sickMsgLib.h
+include/sick/server/sickPosterLib.h
+include/sick/server/sickPosterLibStruct.h
+include/sick/server/sickPosterReadLibProto.h
+include/sick/server/sickPosterShowLib.h
+include/sick/server/sickPosterWriteLibProto.h
+include/sick/server/sickPosterXMLLib.h
+include/sick/server/sickPrint.h
+include/sick/server/sickPrintXML.h
+include/sick/server/sickScan.h
+include/sick/server/sickType.h
+include/sick/sickConst.h
+include/sick/sick_convert.h
+include/sick/sick_save.h
+include/sick/sickStruct.h
+lib/libsickClient.la
+lib/libsickConvert.la
+lib/pkgconfig/sick-convert.pc
+lib/pkgconfig/sick.pc
+lib/tclserv/libsickTclServ.la
+share/modules/gen/sick.gen
+share/modules/tcl/sickClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/sick/server
+@dirrm include/sick
+@dirrm include
+@dirrm bin
