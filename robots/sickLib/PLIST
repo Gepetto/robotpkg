@@ -1,0 +1,15 @@
+@comment lundi 9 juin 2008, 19:07:08 (UTC+0200)
+include/sicklib/sick_lib_error.h
+include/sicklib/sick_lib.h
+include/sicklib/sick_lib_local_str.h
+include/sicklib/sick_lib_modes.h
+include/sicklib/sick_lib_proto.h
+include/sicklib/sick_lib_sproto.h
+include/sicklib/sick_lib_trams.h
+include/sicklib/sick_lib_transition.h
+lib/libsickLib.la
+lib/pkgconfig/sicklib.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/sicklib
+@dirrm include
