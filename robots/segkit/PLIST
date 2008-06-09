@@ -1,0 +1,26 @@
+@comment lundi 9 juin 2008, 17:00:31 (UTC+0200)
+include/segkit/dbliste.h
+include/segkit/definelocal.h
+include/segkit/ge.h
+include/segkit/gl_prot.h
+include/segkit/image_mgr_p.h
+include/segkit/kal_prot.h
+include/segkit/lasdef.h
+include/segkit/lasegm_p.h
+include/segkit/lasegm_private_p.h
+include/segkit/las_io_p.h
+include/segkit/las_prot.h
+include/segkit/las_struct_p.h
+include/segkit/las_unc_p.h
+include/segkit/lasutil.h
+include/segkit/lasutil_p.h
+include/segkit/mat.h
+include/segkit/matsge_p.h
+include/segkit/sge_prot.h
+lib/libsegkit.la
+lib/libsegkit-math.la
+lib/pkgconfig/segkit-math.pc
+lib/pkgconfig/segkit.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/segkit
