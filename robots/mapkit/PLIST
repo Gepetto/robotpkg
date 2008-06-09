@@ -1,0 +1,42 @@
+@comment lundi 9 juin 2008, 18:41:51 (UTC+0200)
+include/mapkit/Aff_prot.h
+include/mapkit/api_P.h
+include/mapkit/aspect.h
+include/mapkit/aspectLib.h
+include/mapkit/aspect_p.h
+include/mapkit/aspect_private_common_p.h
+include/mapkit/aspect_private_p.h
+include/mapkit/com_common.h
+include/mapkit/config_p.h
+include/mapkit/creat_graph.h
+include/mapkit/disambiguate_p.h
+include/mapkit/LaserAc_p.h
+include/mapkit/laserinit_p.h
+include/mapkit/lasers_robots.h
+include/mapkit/lasgraph_p.h
+include/mapkit/localize.h
+include/mapkit/localize_p.h
+include/mapkit/map_builder_p.h
+include/mapkit/map_builder_private_p.h
+include/mapkit/map_mgr_p.h
+include/mapkit/map_unc.h
+include/mapkit/map_util.h
+include/mapkit/match_p.h
+include/mapkit/match_private_p.h
+include/mapkit/mycoms_p.h
+include/mapkit/Nclient_p.h
+include/mapkit/Ndirect.h
+include/mapkit/print_results_p.h
+include/mapkit/serv.h
+include/mapkit/session_p.h
+include/mapkit/sick_hilare2_p.h
+include/mapkit/sick_robots_p.h
+include/mapkit/user.h
+lib/libaspect.la
+lib/libmapkit.la
+lib/pkgconfig/mapkit-aspect.pc
+lib/pkgconfig/mapkit.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/mapkit
+@dirrm include
