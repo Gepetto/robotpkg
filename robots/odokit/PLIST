@@ -1,0 +1,12 @@
+@comment lundi 9 juin 2008, 17:19:45 (UTC+0200)
+include/odokit/err_integration_p.h
+include/odokit/err_pos_p.h
+include/odokit/odometer.h
+include/odokit/odometer_p.h
+include/odokit/odom_funct_p.h
+lib/libodokit.la
+lib/pkgconfig/odokit.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/odokit
+@dirrm include
