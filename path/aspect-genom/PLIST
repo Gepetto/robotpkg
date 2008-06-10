@@ -1,0 +1,33 @@
+@comment mardi 10 juin 2008, 10:56:47 (UTC+0200)
+bin/aspect
+bin/aspectSendInitRqst
+bin/aspectTest
+include/aspect/aspectConst.h
+include/aspect/aspectStruct.h
+include/aspect/server/aspectEndian.h
+include/aspect/server/aspectError.h
+include/aspect/server/aspectMsgLib.h
+include/aspect/server/aspectPosterLib.h
+include/aspect/server/aspectPosterLibStruct.h
+include/aspect/server/aspectPosterReadLibProto.h
+include/aspect/server/aspectPosterShowLib.h
+include/aspect/server/aspectPosterWriteLibProto.h
+include/aspect/server/aspectPosterXMLLib.h
+include/aspect/server/aspectPrint.h
+include/aspect/server/aspectPrintXML.h
+include/aspect/server/aspectScan.h
+include/aspect/server/aspectType.h
+lib/libaspectClient.la
+lib/pkgconfig/aspect.pc
+lib/tclserv/libaspectTclServ.la
+share/modules/gen/aspect.gen
+share/modules/tcl/aspectClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/aspect/server
+@dirrm include/aspect
+@dirrm include
+@dirrm bin
