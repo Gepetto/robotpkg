@@ -1,0 +1,9 @@
+The module Pilo allows to execute lines, circle, broken lines and Reeds and
+Shepp trajectories. Its main functionnalities are the following: 
+
+- Geometrical smoothing of broken lines or Reeds and Shepp path using clothoid
+  or anti-clothoid in order to avoid curvature discontinuities.  
+- Computation of speed profils (v and w) according to given maximum velocities
+  and accelerations.
+- Execution of the trajectory thanks to a periodical production of the reference
+  (speed and position). The speed can be dynamically modified.
