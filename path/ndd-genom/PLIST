@@ -1,0 +1,33 @@
+@comment mardi 10 juin 2008, 11:06:21 (UTC+0200)
+bin/ndd
+bin/nddSendInitRqst
+bin/nddTest
+include/ndd/nddConst.h
+include/ndd/nddStruct.h
+include/ndd/server/nddEndian.h
+include/ndd/server/nddError.h
+include/ndd/server/nddMsgLib.h
+include/ndd/server/nddPosterLib.h
+include/ndd/server/nddPosterLibStruct.h
+include/ndd/server/nddPosterReadLibProto.h
+include/ndd/server/nddPosterShowLib.h
+include/ndd/server/nddPosterWriteLibProto.h
+include/ndd/server/nddPosterXMLLib.h
+include/ndd/server/nddPrint.h
+include/ndd/server/nddPrintXML.h
+include/ndd/server/nddScan.h
+include/ndd/server/nddType.h
+lib/libnddClient.la
+lib/pkgconfig/ndd.pc
+lib/tclserv/libnddTclServ.la
+share/modules/gen/ndd.gen
+share/modules/tcl/nddClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/ndd/server
+@dirrm include/ndd
+@dirrm include
+@dirrm bin
