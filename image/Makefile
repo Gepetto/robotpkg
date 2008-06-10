@@ -9,6 +9,7 @@ SUBDIR+=	libimages3d
 SUBDIR+=	libraw1394
 SUBDIR+=	libstereopixel
 SUBDIR+=	opencv
+SUBDIR+=	stereopixel-genom
 SUBDIR+=	viam-libs
 SUBDIR+=	viam-genom
 
