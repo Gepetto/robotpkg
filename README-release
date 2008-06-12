@@ -22,5 +22,5 @@ In openrobots/robotpkg/.../package
 In the package
   - commit and push
   - add a tag.
-    - cg-tag -m "release x.y" x.y
-    - cg-push -t x.y
+    - git-tag -m "release x.y" x.y
+    - git-push --tags
