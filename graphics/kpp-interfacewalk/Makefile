@@ -18,7 +18,7 @@
 
 DISTNAME=	kppinterfacewalk-${VERSION}
 PKGNAME=	kpp-interfacewalk-${VERSION}
-VERSION=	1.3
+VERSION=	1.3.1
 
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
