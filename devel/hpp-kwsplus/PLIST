@@ -1,4 +1,3 @@
-@comment Tue May 13 16:08:29 JST 2008
 include/kwsPlus/directPathVector.h
 include/kwsPlus/flicDirectPath.h
 include/kwsPlus/flicDistance.h
@@ -8,6 +7,8 @@ include/kwsPlus/hppConfigurationShooter.h
 include/kwsPlus/hppShooterActiveDof.h
 include/kwsPlus/hppVisRdmBuilder.h
 include/kwsPlus/kitMat3.h
+include/kwsPlus/kwsPlusDiffusionNodePickerFactory.h
+include/kwsPlus/kwsPlusDiffusionShooterFactory.h
 include/kwsPlus/kwsPlusDirectPath.h
 include/kwsPlus/kwsPlusDistanceFactory.h
 include/kwsPlus/kwsPlusDistance.h
@@ -60,6 +61,15 @@ share/doc/kwsPlus/class_ckit_mat3-members.html
 share/doc/kwsPlus/class_ckws_plus_approx_flic_distance_factory.html
 share/doc/kwsPlus/class_ckws_plus_approx_flic_distance_factory-members.html
 share/doc/kwsPlus/class_ckws_plus_approx_flic_distance_factory.png
+share/doc/kwsPlus/class_ckws_plus_basic_diffusion_node_picker_factory.html
+share/doc/kwsPlus/class_ckws_plus_basic_diffusion_node_picker_factory-members.html
+share/doc/kwsPlus/class_ckws_plus_basic_diffusion_node_picker_factory.png
+share/doc/kwsPlus/class_ckws_plus_diffusion_node_picker_factory.html
+share/doc/kwsPlus/class_ckws_plus_diffusion_node_picker_factory-members.html
+share/doc/kwsPlus/class_ckws_plus_diffusion_node_picker_factory.png
+share/doc/kwsPlus/class_ckws_plus_diffusion_shooter_factory.html
+share/doc/kwsPlus/class_ckws_plus_diffusion_shooter_factory-members.html
+share/doc/kwsPlus/class_ckws_plus_diffusion_shooter_factory.png
 share/doc/kwsPlus/class_ckws_plus_direct_path.html
 share/doc/kwsPlus/class_ckws_plus_direct_path-members.html
 share/doc/kwsPlus/class_ckws_plus_direct_path.png
@@ -91,6 +101,18 @@ share/doc/kwsPlus/class_ckws_plus_r_s_distance_factory.png
 share/doc/kwsPlus/class_ckws_plus_r_s_steering_method_factory.html
 share/doc/kwsPlus/class_ckws_plus_r_s_steering_method_factory-members.html
 share/doc/kwsPlus/class_ckws_plus_r_s_steering_method_factory.png
+share/doc/kwsPlus/class_ckws_plus_shooter_config_space_factory.html
+share/doc/kwsPlus/class_ckws_plus_shooter_config_space_factory-members.html
+share/doc/kwsPlus/class_ckws_plus_shooter_config_space_factory.png
+share/doc/kwsPlus/class_ckws_plus_shooter_roadmap_box_factory.html
+share/doc/kwsPlus/class_ckws_plus_shooter_roadmap_box_factory-members.html
+share/doc/kwsPlus/class_ckws_plus_shooter_roadmap_box_factory.png
+share/doc/kwsPlus/class_ckws_plus_shooter_roadmap_nodes_factory.html
+share/doc/kwsPlus/class_ckws_plus_shooter_roadmap_nodes_factory-members.html
+share/doc/kwsPlus/class_ckws_plus_shooter_roadmap_nodes_factory.png
+share/doc/kwsPlus/class_ckws_plus_smallest_tree_diffusion_node_picker_factory.html
+share/doc/kwsPlus/class_ckws_plus_smallest_tree_diffusion_node_picker_factory-members.html
+share/doc/kwsPlus/class_ckws_plus_smallest_tree_diffusion_node_picker_factory.png
 share/doc/kwsPlus/class_ckws_plus_s_m_linear.html
 share/doc/kwsPlus/class_ckws_plus_s_m_linear-members.html
 share/doc/kwsPlus/class_ckws_plus_steering_method_factory.html
@@ -241,6 +263,8 @@ share/doc/kwsPlus/globals_type.html
 share/doc/kwsPlus/graph_legend.dot
 share/doc/kwsPlus/graph_legend.html
 share/doc/kwsPlus/graph_legend.png
+share/doc/kwsPlus/group__diffusion_node_picker_factory.html
+share/doc/kwsPlus/group__diffusion_shooter_factory.html
 share/doc/kwsPlus/group__distance_factory.html
 share/doc/kwsPlus/group__flic.html
 share/doc/kwsPlus/group__kws_plus___d_p.html
@@ -331,6 +355,12 @@ share/doc/kwsPlus/inherit__graph__23.png
 share/doc/kwsPlus/inherit__graph__24.map
 share/doc/kwsPlus/inherit__graph__24.md5
 share/doc/kwsPlus/inherit__graph__24.png
+share/doc/kwsPlus/inherit__graph__25.map
+share/doc/kwsPlus/inherit__graph__25.md5
+share/doc/kwsPlus/inherit__graph__25.png
+share/doc/kwsPlus/inherit__graph__26.map
+share/doc/kwsPlus/inherit__graph__26.md5
+share/doc/kwsPlus/inherit__graph__26.png
 share/doc/kwsPlus/inherit__graph__2.map
 share/doc/kwsPlus/inherit__graph__2.md5
 share/doc/kwsPlus/inherit__graph__2.png
@@ -363,6 +393,14 @@ share/doc/kwsPlus/kit_mat3_8h__incl.md5
 share/doc/kwsPlus/kit_mat3_8h__incl.png
 share/doc/kwsPlus/kws_plus_8h.html
 share/doc/kwsPlus/kwsPlus.css
+share/doc/kwsPlus/kws_plus_diffusion_node_picker_factory_8h.html
+share/doc/kwsPlus/kws_plus_diffusion_node_picker_factory_8h__incl.map
+share/doc/kwsPlus/kws_plus_diffusion_node_picker_factory_8h__incl.md5
+share/doc/kwsPlus/kws_plus_diffusion_node_picker_factory_8h__incl.png
+share/doc/kwsPlus/kws_plus_diffusion_shooter_factory_8h.html
+share/doc/kwsPlus/kws_plus_diffusion_shooter_factory_8h__incl.map
+share/doc/kwsPlus/kws_plus_diffusion_shooter_factory_8h__incl.md5
+share/doc/kwsPlus/kws_plus_diffusion_shooter_factory_8h__incl.png
 share/doc/kwsPlus/kws_plus_direct_path_8h__dep__incl.map
 share/doc/kwsPlus/kws_plus_direct_path_8h__dep__incl.md5
 share/doc/kwsPlus/kws_plus_direct_path_8h__dep__incl.png
