@@ -18,9 +18,17 @@ In openrobots/robotpkg/.../package
   - mv PLIST.tmp PLIST
   - make clean to remove build directory.
   - commit the modifs.
+    - prefix commit message by [category/package],
+    - insert list of changes from ChangeLog in commit body message.
 
 In the package
   - commit and push
   - add a tag.
     - git-tag -m "release x.y" x.y
     - git-push --tags
+
+Important
+---------
+
+It is recommended to do one commit by package upgraded. It is then easier to trace 
+back the changes in each package.
