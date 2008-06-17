@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:15:46 tho $
+# $LAAS: Makefile 2008/06/17 14:53:36 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,10 +16,10 @@
 #                                       Anthony Mallet on Wed May 14 2008
 #
 
-DISTNAME=	gik-genom-1.0
+DISTNAME=	gik-genom-1.1
 
 CATEGORIES=	path
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gik-genom/}
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
