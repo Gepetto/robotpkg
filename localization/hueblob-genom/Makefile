@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 14:23:42 tho $
+# $LAAS: Makefile 2008/06/17 14:01:55 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Mon Mar 17 2008
 #
 
-DISTNAME=		hueblob-genom-1.0
+DISTNAME=		hueblob-genom-1.1
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
@@ -25,8 +25,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM module for simple object detection and localization
 
 GNU_CONFIGURE=		yes
-
-CONFIGURE_ARGS+=	--with-display
 
 GENOM_MODULE=		hueblob
 include ../../architecture/genom/depend.mk
