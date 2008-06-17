@@ -1,4 +1,4 @@
-@comment Wed May 14 19:00:31 CEST 2008
+@comment Tue Jun 17 16:49:44 CEST 2008
 include/hrp2_14/hrp2_14.h
 lib/libhrp2_14.la
 lib/pkgconfig/hrp2_14.pc
@@ -41,6 +41,18 @@ share/doc/hrp2_14/tree.html
 share/hrp2_14/HRP2LinkJointRank.xml
 share/hrp2_14/HRP2Specificities.xml
 share/hrp2_14/hrp2.geom
+share/hrp2_14/turnCCW180.hip
+share/hrp2_14/turnCCW180.pos
+share/hrp2_14/turnCCW180.zmp
+share/hrp2_14/turnCCW90.hip
+share/hrp2_14/turnCCW90.pos
+share/hrp2_14/turnCCW90.zmp
+share/hrp2_14/turnCW180.hip
+share/hrp2_14/turnCW180.pos
+share/hrp2_14/turnCW180.zmp
+share/hrp2_14/turnCW90.hip
+share/hrp2_14/turnCW90.pos
+share/hrp2_14/turnCW90.zmp
 @dirrm share/hrp2_14
 @dirrm share/doc/hrp2_14/pictures
 @dirrm share/doc/hrp2_14
