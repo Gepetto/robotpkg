@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/06/17 18:40:12 mallet $
+# $LAAS: Makefile 2008/06/17 18:41:01 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -22,7 +22,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
-COMMENT=		
+COMMENT=		2D, segment-based map building tools
 
 GNU_CONFIGURE=		yes
 
