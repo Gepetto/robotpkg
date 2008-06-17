@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:46:00 tho $
+# $LAAS: Makefile 2008/06/17 17:58:32 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -19,7 +19,7 @@
 DISTNAME=		hardlib-${VERSION}
 PKGNAME=		GPSNovatel-${VERSION}
 VERSION=		1.0.1
-CATEGORIES=		robot
+CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr

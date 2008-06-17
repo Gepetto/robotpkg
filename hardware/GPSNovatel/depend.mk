@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 15:46:14 tho $
+# $LAAS: depend.mk 2008/06/17 17:57:51 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.GPSNovatel?=	robotpkg
 DEPEND_USE+=		GPSNovatel
 
 DEPEND_ABI.GPSNovatel?=	GPSNovatel>=1.0.1
-DEPEND_DIR.GPSNovatel?=	../../robots/GPSNovatel
+DEPEND_DIR.GPSNovatel?=	../../hardware/GPSNovatel
 
 SYSTEM_SEARCH.GPSNovatel=\
 	include/GPSNovatel/GPSNovatel.h \
