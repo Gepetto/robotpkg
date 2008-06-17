@@ -13,6 +13,5 @@ SUBDIR+=	rflexclients
 SUBDIR+=	segkit
 SUBDIR+=	serial
 SUBDIR+=	sick-genom
-SUBDIR+=	sickLib
 
 include ../mk/robotpkg.subdir.mk

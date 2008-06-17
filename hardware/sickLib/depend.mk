@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 15:46:14 tho $
+# $LAAS: depend.mk 2008/06/17 18:15:37 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.sickLib?=	robotpkg
 DEPEND_USE+=		sickLib
 
 DEPEND_ABI.sickLib?=	sickLib>=1.0.1
-DEPEND_DIR.sickLib?=	../../robots/sickLib
+DEPEND_DIR.sickLib?=	../../hardware/sickLib
 
 SYSTEM_SEARCH.sickLib=\
 	include/sicklib/sick_lib.h \
