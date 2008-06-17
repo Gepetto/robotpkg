@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 13:23:33 tho $
+# $LAAS: Makefile 2008/06/17 16:11:52 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -28,7 +28,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Graphical user interface for hppWalkPlanner libraries.
 
 DEPENDS+=	hpp-openhrp>=1.1:../../path/hpp-openhrp
-DEPENDS+=	hpp-walkplanner>=1.2:../../path/hpp-walkplanner
 DEPENDS+=	kpp-interface>=1.2:../../graphics/kpp-interface
 
 GNU_CONFIGURE=	yes
@@ -38,6 +37,7 @@ PKG_SUPPORTED_OPTIONS+=	verbose1
 PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
+include ../../path/hpp-walkplanner/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
