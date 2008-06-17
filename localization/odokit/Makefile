@@ -1,4 +1,4 @@
-# $LAAS: $
+# $LAAS: Makefile 2008/06/17 18:25:04 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -17,7 +17,7 @@
 #
 
 DISTNAME=		odokit-1.0
-CATEGORIES=		robots
+CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr

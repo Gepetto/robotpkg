@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 15:44:20 tho $
+# $LAAS: depend.mk 2008/06/17 18:24:22 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.odokit?=	robotpkg
 DEPEND_USE+=		odokit
 
 DEPEND_ABI.odokit?=	odokit>=1.0
-DEPEND_DIR.odokit?=	../../robots/odokit
+DEPEND_DIR.odokit?=	../../localization/odokit
 
 SYSTEM_SEARCH.odokit=\
 	include/odokit/odometer.h \

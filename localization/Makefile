@@ -9,6 +9,7 @@ SUBDIR+=	gyro-genom
 SUBDIR+=	hueblob-genom
 SUBDIR+=	insitu
 SUBDIR+=	libpom
+SUBDIR+=	odokit
 SUBDIR+=	pom-genom
 SUBDIR+=	segloc-genom
 
