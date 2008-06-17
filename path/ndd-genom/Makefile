@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/06/17 18:28:40 mallet $
+# $LAAS: Makefile 2008/06/17 18:39:41 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -35,6 +35,6 @@ include ../../localization/pom-genom/depend.mk
 include ../../localization/segloc-genom/depend.mk
 include ../../path/aspect-genom/depend.mk
 include ../../path/pilo-genom/depend.mk
-include ../../robots/mapkit/depend.mk
+include ../../mapping/mapkit/depend.mk
 include ../../hardware/sick-genom/depend.mk
 include ../../mk/robotpkg.mk

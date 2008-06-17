@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 15:44:20 tho $
+# $LAAS: Makefile 2008/06/17 18:40:12 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,24 +16,21 @@
 #                                      Arnaud Degroote on Mon Jun 06 2008
 #
 
-DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-MAPKIT_DEPEND_MK:=	${MAPKIT_DEPEND_MK}+
+DISTNAME=		mapkit-1.0
+CATEGORIES=		mapping
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
-ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		mapkit
-endif
+MAINTAINER=		openrobots@laas.fr
+#HOMEPAGE=
+COMMENT=		
 
-ifeq (+,$(MAPKIT_DEPEND_MK))
-PREFER.mapkit?=	robotpkg
+GNU_CONFIGURE=		yes
 
-DEPEND_USE+=		mapkit
+DEPENDS+=		mkdep>=2.6:../../devel/mkdep
 
-DEPEND_ABI.mapkit?=	mapkit>=1.0
-DEPEND_DIR.mapkit?=	../../robots/mapkit
-
-SYSTEM_SEARCH.mapkit=\
-	include/mapkit/api_P.h \
-	lib/pkgconfig/mapkit.pc
-endif
-
-DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
+include ../../devel/pocolibs/depend.mk
+include ../../pkgtools/libtool/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
+include ../../localization/odokit/depend.mk
+include ../../mapping/segkit/depend.mk
+include ../../mk/robotpkg.mk
