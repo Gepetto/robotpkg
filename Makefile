@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007 LAAS/CNRS                        --  Tue May 22 2007
+# Copyright (c) 2007-2008 LAAS/CNRS                        --  Tue May 22 2007
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -69,6 +69,7 @@ SUBDIR+=	audio
 SUBDIR+=	devel
 SUBDIR+=	doc
 SUBDIR+=	graphics
+SUBDIR+=	hardware
 SUBDIR+=	image
 SUBDIR+=	interfaces
 SUBDIR+=	lang
