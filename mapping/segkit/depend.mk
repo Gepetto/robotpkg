@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 15:44:20 tho $
+# $LAAS: depend.mk 2008/06/17 18:37:02 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.segkit?=	robotpkg
 DEPEND_USE+=		segkit
 
 DEPEND_ABI.segkit?=	segkit>=1.0
-DEPEND_DIR.segkit?=	../../robots/segkit
+DEPEND_DIR.segkit?=	../../mapping/segkit
 
 SYSTEM_SEARCH.segkit=\
 	include/segkit/lasdef.h \

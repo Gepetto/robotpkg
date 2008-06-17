@@ -3,4 +3,6 @@
 
 COMMENT=	Map building software
 
+SUBDIR+=	segkit
+
 include ../mk/robotpkg.subdir.mk

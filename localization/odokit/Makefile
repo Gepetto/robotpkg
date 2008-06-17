@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/06/17 18:25:04 mallet $
+# $LAAS: Makefile 2008/06/17 18:35:26 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -30,5 +30,5 @@ DEPENDS+=		mkdep>=2.6:../../devel/mkdep
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
-include ../../robots/segkit/depend.mk
+include ../../mapping/segkit/depend.mk
 include ../../mk/robotpkg.mk

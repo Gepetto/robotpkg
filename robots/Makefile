@@ -8,6 +8,5 @@ SUBDIR+=	hrp2-genom
 SUBDIR+=	mapkit
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
-SUBDIR+=	segkit
 
 include ../mk/robotpkg.subdir.mk
