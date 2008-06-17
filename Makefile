@@ -74,6 +74,7 @@ SUBDIR+=	image
 SUBDIR+=	interfaces
 SUBDIR+=	lang
 SUBDIR+=	localization
+SUBDIR+=	mapping
 SUBDIR+=	math
 SUBDIR+=	meta-pkgs
 SUBDIR+=	path
