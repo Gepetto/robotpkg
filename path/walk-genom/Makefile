@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:14:53 tho $
+# $LAAS: Makefile 2008/06/17 15:08:02 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,10 +16,10 @@
 #                                       Anthony Mallet on Wed May 14 2008
 #
 
-DISTNAME=	walk-genom-1.1
+DISTNAME=	walk-genom-1.2
 
 CATEGORIES=	path
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=walk-genom/}
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
