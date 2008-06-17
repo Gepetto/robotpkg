@@ -1,4 +1,3 @@
-@comment Tue May 13 17:44:45 JST 2008
 bin/hppCorbaServer
 bin/hppCorbaServer.kab
 include/hppCorbaServer/hppciObstacle.h
@@ -127,4 +126,6 @@ share/idl/hppCorbaServer/hppciObstacleServer.idl
 share/idl/hppCorbaServer/hppciProblemServer.idl
 share/idl/hppCorbaServer/hppciRobotServer.idl
 @dirrm share/idl/hppCorbaServer
+@dirrm share/doc/hppCorbaServer/pictures
+@dirrm share/doc/hppCorbaServer
 @dirrm include/hppCorbaServer
