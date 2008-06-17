@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:20:30 tho $
+# $LAAS: Makefile 2008/06/17 18:28:40 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -22,7 +22,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
-COMMENT=		Dynamic obstacle avoidance module 
+COMMENT=		Dynamic obstacle avoidance module
 
 GNU_CONFIGURE=		yes
 
@@ -36,5 +36,5 @@ include ../../localization/segloc-genom/depend.mk
 include ../../path/aspect-genom/depend.mk
 include ../../path/pilo-genom/depend.mk
 include ../../robots/mapkit/depend.mk
-include ../../robots/sick-genom/depend.mk
+include ../../hardware/sick-genom/depend.mk
 include ../../mk/robotpkg.mk

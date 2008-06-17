@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/06/17 18:21:44 mallet $
+# $LAAS: Makefile 2008/06/17 18:27:43 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -42,5 +42,5 @@ include ../../path/ndd-genom/depend.mk
 include ../../path/p3d-genom/depend.mk
 include ../../hardware/platine-genom/depend.mk
 include ../../robots/rflex-genom/depend.mk
-include ../../robots/sick-genom/depend.mk
+include ../../hardware/sick-genom/depend.mk
 include ../../mk/robotpkg.mk

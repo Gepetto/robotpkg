@@ -9,6 +9,5 @@ SUBDIR+=	mapkit
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
 SUBDIR+=	segkit
-SUBDIR+=	sick-genom
 
 include ../mk/robotpkg.subdir.mk

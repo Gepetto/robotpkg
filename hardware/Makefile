@@ -8,5 +8,6 @@ SUBDIR+=	gyroKVH1000
 SUBDIR+=	platine-genom
 SUBDIR+=	serial
 SUBDIR+=	sickLib
+SUBDIR+=	sick-genom
 
 include ../mk/robotpkg.subdir.mk

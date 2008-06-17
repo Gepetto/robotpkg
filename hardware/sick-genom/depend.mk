@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 15:47:05 tho $
+# $LAAS: depend.mk 2008/06/17 18:28:57 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.sick-genom?=	robotpkg
 DEPEND_USE+=		sick-genom
 
 DEPEND_ABI.sick-genom?=	sick-genom>=0.1
-DEPEND_DIR.sick-genom?=	../../robots/sick-genom
+DEPEND_DIR.sick-genom?=	../../hardware/sick-genom
 
 SYSTEM_SEARCH.sick-genom=\
 	include/sick/sickStruct.h		\
