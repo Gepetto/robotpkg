@@ -11,7 +11,6 @@ SUBDIR+=	platine-genom
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
 SUBDIR+=	segkit
-SUBDIR+=	serial
 SUBDIR+=	sick-genom
 
 include ../mk/robotpkg.subdir.mk

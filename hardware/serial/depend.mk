@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 15:46:14 tho $
+# $LAAS: depend.mk 2008/06/17 18:18:13 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.serial?=	robotpkg
 DEPEND_USE+=		serial
 
 DEPEND_ABI.serial?=	serial>=1.0.1
-DEPEND_DIR.serial?=	../../robots/serial
+DEPEND_DIR.serial?=	../../hardware/serial
 
 SYSTEM_SEARCH.serial=\
 	include/serial/serial.h \
