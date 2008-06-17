@@ -1,4 +1,4 @@
-#	$Id: Makefile 2007/06/25 12:33:24 mallet $
+#	$Id: Makefile 2008/06/17 18:20:17 mallet $
 
 #
 # --- All HRP2 current software --------------------------------------
@@ -24,7 +24,7 @@ include ../../localization/pom-genom/depend.mk
 include ../../path/dtm-genom/depend.mk
 include ../../path/ndd-genom/depend.mk
 include ../../path/p3d-genom/depend.mk
-include ../../robots/platine-genom/depend.mk
+include ../../hardware/platine-genom/depend.mk
 include ../../robots/rflex-genom/depend.mk
 include ../../robots/sick-genom/depend.mk
 include ../../mk/robotpkg.mk

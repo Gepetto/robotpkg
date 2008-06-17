@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 15:47:05 tho $
+# $LAAS: depend.mk 2008/06/17 18:20:41 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.platine-genom?=	robotpkg
 DEPEND_USE+=		platine-genom
 
 DEPEND_ABI.platine-genom?=	platine-genom>=0.1
-DEPEND_DIR.platine-genom?=	../../robots/platine-genom
+DEPEND_DIR.platine-genom?=	../../hardware/platine-genom
 
 SYSTEM_SEARCH.platine-genom=\
 	include/platine/platineStruct.h		\
