@@ -45,7 +45,7 @@ SYSTEM_SEARCH.hpp-walkplanner=\
 
 DEPEND_USE+=		hpp-walkplanner
 
-DEPEND_ABI.hpp-walkplanner?=hpp-walkplanner>=1.3.1
+DEPEND_ABI.hpp-walkplanner?=hpp-walkplanner>=1.3.2
 DEPEND_DIR.hpp-walkplanner?=../../path/hpp-walkplanner
 
 endif # HPP_WALKPLANNER_DEPEND_MK ------------------------------------
