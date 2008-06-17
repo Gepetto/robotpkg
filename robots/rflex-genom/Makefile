@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:43:45 tho $
+# $LAAS: Makefile 2008/06/17 18:02:30 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -49,7 +49,7 @@ endef
 
 PKG_OPTION_DESCR.gyroKVH1000=	Enable gyro support using directly gyroKVH1000
 define PKG_OPTION_SET.gyroKVH1000
-  include ../../robots/gyroKVH1000/depend.mk
+  include ../../hardware/gyroKVH1000/depend.mk
   GENOM_ARGS += -DGYRO=gyroKVH1000Task
 endef
 

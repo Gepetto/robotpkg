@@ -1,4 +1,4 @@
- $Id: $
+ $Id: depend.mk 2008/06/17 18:03:07 mallet $
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GYROKVH1000_DEPEND_MK:=${GYROKVH1000_DEPEND_MK}+
@@ -13,7 +13,7 @@ PREFER.gyroKVH1000?=	robotpkg
 DEPEND_USE+=		gyroKVH1000
 
 DEPEND_ABI.gyroKVH1000?=	gyroKVH1000>=1.0.1
-DEPEND_DIR.gyroKVH1000?=	../../robots/gyroKVH1000
+DEPEND_DIR.gyroKVH1000?=	../../hardware/gyroKVH1000
 
 DEPEND_PKG_CONFIG.gyroKVH1000+=lib/pkgconfig
 

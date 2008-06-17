@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 14:24:50 tho $
+# $LAAS: Makefile 2008/06/17 18:02:03 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -30,5 +30,5 @@ GENOM_MODULE=		gyro
 include ../../architecture/genom/depend.mk
 
 include ../../architecture/genBasic-genom/depend.mk
-include ../../robots/gyroKVH1000/depend.mk
+include ../../hardware/gyroKVH1000/depend.mk
 include ../../mk/robotpkg.mk

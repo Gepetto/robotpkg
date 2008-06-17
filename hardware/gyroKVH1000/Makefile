@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:42:20 tho $
+# $LAAS: Makefile 2008/06/17 18:00:44 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -19,7 +19,7 @@
 DISTNAME=		hardlib-${VERSION}
 PKGNAME=		gyroKVH1000-${VERSION}
 VERSION=		1.0.1
-CATEGORIES=		robot
+CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr
