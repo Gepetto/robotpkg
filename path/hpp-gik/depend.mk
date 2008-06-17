@@ -1,32 +1,20 @@
+# $LAAS: depend.mk 2008/06/17 14:26:41 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
 #
-# Redistribution  and  use in source   and binary forms,  with or without
-# modification, are permitted provided that  the following conditions are
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
 # met:
 #
-#   1. Redistributions  of  source code must  retain  the above copyright
-#      notice, this list of conditions and the following disclaimer.
-#   2. Redistributions in binary form must  reproduce the above copyright
-#      notice,  this list of  conditions and  the following disclaimer in
-#      the  documentation   and/or  other  materials   provided with  the
-#      distribution.
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
 #
-# THIS SOFTWARE IS PROVIDED BY THE  AUTHOR AND CONTRIBUTORS ``AS IS'' AND
-# ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES   OF MERCHANTABILITY AND  FITNESS  FOR  A PARTICULAR
-# PURPOSE ARE DISCLAIMED.  IN NO  EVENT SHALL THE AUTHOR OR  CONTRIBUTORS
-# BE LIABLE FOR ANY DIRECT, INDIRECT,  INCIDENTAL, SPECIAL, EXEMPLARY, OR
-# CONSEQUENTIAL DAMAGES (INCLUDING,  BUT  NOT LIMITED TO, PROCUREMENT  OF
-# SUBSTITUTE  GOODS OR SERVICES;  LOSS   OF  USE,  DATA, OR PROFITS;   OR
-# BUSINESS  INTERRUPTION) HOWEVER CAUSED AND  ON ANY THEORY OF LIABILITY,
-# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
-# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#                                      Anthony Mallet on Wed May 14 2008
 #
-
-# Authored by Anthony Mallet on Wed May 14 2008
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 HPP_GIK_DEPEND_MK:=	${HPP_GIK_DEPEND_MK}+
@@ -45,7 +33,7 @@ SYSTEM_SEARCH.hpp-gik=\
 
 DEPEND_USE+=		hpp-gik
 
-DEPEND_ABI.hpp-gik?=	hpp-gik>=1.8
+DEPEND_ABI.hpp-gik?=	hpp-gik>=1.9
 DEPEND_DIR.hpp-gik?=	../../path/hpp-gik
 
 endif # HPP_GIK_DEPEND_MK --------------------------------------------

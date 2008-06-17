@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:12:17 tho $
+# $LAAS: Makefile 2008/06/17 14:25:55 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -18,10 +18,10 @@
 
 DISTNAME=	hppgik-${VERSION}
 PKGNAME=	hpp-gik-${VERSION}
-VERSION=	1.8
+VERSION=	1.9
 
 CATEGORIES=	path
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hppgik/}
 
 MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
