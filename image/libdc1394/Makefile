@@ -1,19 +1,32 @@
-# $NetBSD$
+# $LAAS: Makefile 2008/06/23 19:24:32 mallet $
+#
+# Copyright (c) 2007-2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Sun Jan 28 2007
 #
 
-DISTNAME=		libdc1394-2.0.1
+DISTNAME=		libdc1394-2.0.2
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=libdc1394/}
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://sourceforge.net/projects/libdc1394/
-COMMENT=		Programming interface to control IEEE 1394 based cameras 
+COMMENT=		Programming interface to control IEEE 1394 based cameras
 
 GNU_CONFIGURE=		yes
-PKGCONFIG_OVERRIDE+=    libdc1394-2.pc.in
-
-CPPFLAGS+=		-I${LOCALBASE}/include
-LDFLAGS+=		-L${LOCALBASE}/lib
 
 include ../../image/libraw1394/depend.mk
+include ../../pkgtools/libtool/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
