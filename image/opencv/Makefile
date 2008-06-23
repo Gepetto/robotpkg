@@ -4,7 +4,7 @@
 DISTNAME=		opencv-1.0.0
 CATEGORIES=		image devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=opencvlibrary/}
-PKGREVISION=		3
+PKGREVISION=		4
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://opencvlibrary.sourceforge.net/
@@ -25,6 +25,9 @@ SUBST_SED.py=		-e 's,/usr/bin/python,/usr/bin/env python,'
 CONFIGURE_ARGS+=	--without-swig
 CONFIGURE_ARGS+=	--without-python
 CONFIGURE_ARGS+=	--without-1394libs
+
+# ffmpeg raises a compilation problem. Deactivate for now.
+CONFIGURE_ARGS+=	--without-ffmpeg
 
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
