@@ -1,5 +1,19 @@
-# Copyright (c) 2006 LAAS/CNRS                         -- Fri Dec  8 2006
-# All rights  reserved.
+# $LAAS: Makefile 2008/06/23 17:15:31 mallet $
+#
+# Copyright (c) 2006-2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Fri Dec  8 2006
 #
 
 VERSION=		20060713
@@ -51,7 +65,7 @@ SUBST_SED.openhrp-paths=	\
 	-e 's|@ROBOT_HOST@|${ROBOT_HOST}|g'			\
 	-e 's|@ROBOT_PORT@|${ROBOT_PORT}|g'
 
-SUBST_FILES.openhrp-paths=$(call quote,				\
+SUBST_FILES.openhrp-paths=					\
 	bin/config.sh						\
 	bin/Auditor.sh						\
 	bin/NameServer.sh					\
@@ -59,7 +73,7 @@ SUBST_FILES.openhrp-paths=$(call quote,				\
 	bin/CollisionDetector.sh				\
 	bin/Dynamics.sh						\
 	bin/HRPController.sh					\
-	client/gui2/property/default.properties)
+	client/gui2/property/default.properties
 
 PLIST_SRC=		${WRKDIR}/PLIST
 
