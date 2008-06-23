@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/06/01 22:11:04 tho $
+# $LAAS: Makefile 2008/06/23 15:21:42 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,11 +16,11 @@
 #                                      Anthony Mallet on Wed Jan 23 2008
 #
 
-RTM_VERSION=		0.4.1
+RTM_VERSION=		0.4.2
 DISTNAME=		OpenRTM-aist-${RTM_VERSION}-RELEASE
 PKGNAME=		openrtm-aist-${RTM_VERSION}
 CATEGORIES=		architecture
-MASTER_SITES=		http://www.is.aist.go.jp/rt/OpenRTM-aist/download/CXX/0.4.1/
+MASTER_SITES=		http://www.openrtm.org/pub/OpenRTM-aist/cxx/${RTM_VERSION}/
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.is.aist.go.jp/rt/OpenRTM-aist/html-en/FrontPage.html

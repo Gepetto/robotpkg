@@ -1,0 +1,24 @@
+$LAAS: patch-ae 2008/06/23 16:19:43 mallet $
+
+Fix detection of ACE 5.6 and definition of ACE_5_6_1_OR_EARLIER.
+
+--- configure~	2008-06-23 15:28:26.000000000 +0200
++++ configure	2008-06-23 15:48:59.000000000 +0200
+@@ -20901,7 +20901,7 @@
+ 	ace_version=`grep ACE_VERSION $ace_ACE_h_dir/ace/Version.h | sed 's/.*\"\(.*\)\"/\1/' | sed 's/ //g'`
+ 
+ 	case $ace_version in
+-	5.6.1|5.5.*|5.4.*|5.3.*|5.5|5.4|5.3)
++	5.6.1|5.6|5.5.*|5.4.*|5.3.*|5.5|5.4|5.3)
+ 
+ cat >>confdefs.h <<\_ACEOF
+ #define ACE_5_6_1_OR_EARLIER TRUE
+@@ -20910,7 +20910,7 @@
+ 		;;
+ 	# ACE 5.6.2 or later signature of UUID_Generator::generateUUID
+ 	# has been changed as generate_UUID
+-	5.7.*|5.6.[2-9]|5.7|5.6)
++	5.7.*|5.6.[2-9]|5.7)
+ 		;;
+ 	*)
+ 		{ echo "$as_me:$LINENO: WARNING: Unknown ACE version number, expecting 5.3.0 or above." >&5
