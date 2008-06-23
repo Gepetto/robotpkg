@@ -1,0 +1,5 @@
+@comment Mon Jun 23 19:33:35 CEST 2008
+bin/coriander
+share/pixmaps/coriander/coriander-icon.png
+share/pixmaps/coriander/coriander-logo.png
+@dirrm share/pixmaps/coriander
