@@ -56,12 +56,9 @@ BUILD_MAKE_FLAGS?=	# none
 BUILD_TARGET?=		all
 $(foreach _d,${BUILD_DIRS},$(eval BUILD_TARGET.${_d}?= ${BUILD_TARGET}))
 
-BUILD_MAKE_CMD= \
-	${SETENV} ${MAKE_ENV}						\
-		${MAKE_PROGRAM} ${_MAKE_JOBS}				\
-			${MAKE_FLAGS} ${BUILD_MAKE_FLAGS}		\
-			-f ${MAKE_FILE}
-
+BUILD_MAKE_CMD=\
+	${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${_MAKE_JOBS}	\
+		${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE}
 
 
 # --- build (PUBLIC) -------------------------------------------------
