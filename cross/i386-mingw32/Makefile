@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/07/02 14:36:00 mallet $
+# $LAAS: Makefile 2008/07/03 02:48:58 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -44,8 +44,8 @@ AR_FOR_TARGET=		${BINUTILS_WRKSRC}/binutils/ar
 NM_FOR_TARGET=		${BINUTILS_WRKSRC}/binutils/nm-new
 RANLIB_FOR_TARGET=	${BINUTILS_WRKSRC}/binutils/ranlib
 LD_FOR_TARGET=		${BINUTILS_WRKSRC}/ld/ld-new
-CC_FOR_TARGET=		${GCC_WRKSRC}/gcc/xgcc 			\
-		-B${GCC_WRKSRC}/gcc/ ${CFLAGS_FOR_TARGET}	\
+CC_FOR_TARGET=		${GCC_WRKSRC}/gcc/xgcc		\
+		-B${GCC_WRKSRC}/gcc/ -B${WRKSRC}/lib	\
 		-I${WRKSRC}/include -L${WRKSRC}/lib
 CXX_FOR_TARGET=		${CC_FOR_TARGET}
 
@@ -56,25 +56,26 @@ GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		${BINUTILS_WRKSRC}
 CONFIGURE_DIRS+=	${GCC_WRKSRC}
 CONFIGURE_ARGS+=	--prefix=${PREFIX} --target=${TARGET_ARCH}
-CONFIGURE_ARGS+=	--with-gnu-as --with-gnu-ld
+CONFIGURE_ARGS+=	--enable-languages="c,c++" --with-gnu-as --with-gnu-ld
 CONFIGURE_ARGS+=	--disable-multilib --disable-nls --enable-sjlj-exceptions
 CONFIGURE_ARGS+=	--with-gxx-include-dir=${TARGET_DIR}/include/c++/${GCC_VERSION}
 
 
 BUILD_TARGET.${GCC_WRKSRC}=	all-gcc all-target-libstdc++-v3
 BUILD_MAKE_FLAGS=\
+	AS_FOR_TARGET=$(call quote,${AS_FOR_TARGET})			\
+	LD_FOR_TARGET=$(call quote,${LD_FOR_TARGET})			\
 	CC_FOR_TARGET=$(call quote,${CC_FOR_TARGET})			\
 	GCC_FOR_TARGET=$(call quote,${CC_FOR_TARGET})			\
 	CXX_FOR_TARGET=$(call quote,${CXX_FOR_TARGET})			\
-	AS_FOR_TARGET=$(call quote,${AS_FOR_TARGET})			\
+	RAW_CXX_FOR_TARGET=$(call quote,${CXX_FOR_TARGET})		\
 	AR_FOR_TARGET=$(call quote,${AR_FOR_TARGET})			\
-	NM_FOR_TARGET=$(call quote,${NM_FOR_TARGET})			\
 	RANLIB_FOR_TARGET=$(call quote,${RANLIB_FOR_TARGET})		\
-	LD_FOR_TARGET=$(call quote,${LD_FOR_TARGET})			\
-	LANGUAGES="c c++" 						\
-	INSTALL="${INSTALL} -c -o ${BINOWN} -g ${BINGRP}"		\
-	INSTALL_PROGRAM=$(call quote,${INSTALL_PROGRAM})		\
+	NM_FOR_TARGET=$(call quote,${NM_FOR_TARGET})			\
 	gcc_cv_as_hidden=no
+
+#	INSTALL="${INSTALL} -c -o ${BINOWN} -g ${BINGRP}"		\
+#	INSTALL_PROGRAM=$(call quote,${INSTALL_PROGRAM})		\
 
 BINUTILS_EXTRAS=	dlltool dllwrap windres
 
@@ -85,8 +86,10 @@ MINGW_WRKSRC=		${WRKDIR}/mingw-runtime-3.2
 include ../../mk/robotpkg.mk
 
 pre-build:
+	@${MKDIR} -p ${GCC_WRKSRC}/${TARGET_ARCH}
 	@${LN} -sf ${AS_FOR_TARGET} ${GCC_WRKSRC}/gcc/as
 	@${LN} -sf ${LD_FOR_TARGET} ${GCC_WRKSRC}/gcc/ld
+	@${LN} -sf ${GCC_WRKSRC}/include ${GCC_WRKSRC}/${TARGET_ARCH}
 
 do-install: bu-install gcc-install mingw-install
 	@:
