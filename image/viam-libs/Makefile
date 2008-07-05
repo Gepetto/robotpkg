@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 14:12:22 tho $
+# $LAAS: Makefile 2008/07/05 17:15:43 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,9 +16,9 @@
 #                                       Anthony Mallet on Fri Mar 14 2008
 #
 
-DISTNAME=		viam-libs-1.0
+DISTNAME=		viam-libs-1.1
 CATEGORIES=		image
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet
@@ -26,8 +26,28 @@ COMMENT=		Versatile Image Acquisition Module - Libraries
 
 GNU_CONFIGURE=		yes
 
-include ../../image/libdc1394/depend.mk
-include ../../image/opencv/depend.mk
+# options for dc1394 support
+PKG_SUPPORTED_OPTIONS+= dc1394
+PKG_SUGGESTED_OPTIONS+= dc1394
+
+PKG_OPTION_DESCR.dc1394=  Enable support for dc1394
+PKG_OPTION_UNSET.dc1394:= CONFIGURE_ARGS+=--disable-dc1394
+define PKG_OPTION_SET.dc1394
+  CONFIGURE_ARGS+=--enable-dc1394
+  include ../../image/libdc1394/depend.mk
+endef
+
+# options for opencv support
+PKG_SUPPORTED_OPTIONS+= opencv
+PKG_SUGGESTED_OPTIONS+= opencv
+
+PKG_OPTION_DESCR.opencv=  Enable support for opencv
+PKG_OPTION_UNSET.opencv:= CONFIGURE_ARGS+=--disable-opencv
+define PKG_OPTION_SET.opencv
+  CONFIGURE_ARGS+=--enable-opencv
+  include ../../image/opencv/depend.mk
+endef
+
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 14:13:12 tho $
+# $LAAS: depend.mk 2008/07/05 17:16:36 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -23,20 +23,17 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		viam-libs
 endif
 
-ifeq (+,$(VIAMLIBS_DEPEND_MK))
+ifeq (+,$(VIAMLIBS_DEPEND_MK)) # -------------------------------------
 PREFER.viam-libs?=	robotpkg
 
 DEPEND_USE+=		viam-libs
 
-DEPEND_ABI.viam-libs?=	viam-libs>=1.0
+DEPEND_ABI.viam-libs?=	viam-libs>=1.1
 DEPEND_DIR.viam-libs?=	../../image/viam-libs
 
 SYSTEM_SEARCH.viam-libs=\
 	include/viamlib.h		\
 	lib/pkgconfig/viam-libs.pc
-endif
-
-include ../../image/libdc1394/depend.mk
-include ../../image/opencv/depend.mk
+endif # VIAMLIBS_DEPEND_MK -------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
