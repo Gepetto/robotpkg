@@ -16,8 +16,7 @@
 #                                      Arnaud Degroote on Mon May 19 2008
 #
 
-DISTNAME=		hardlib-${VERSION}
-PKGNAME=		rflexclients-${VERSION}
+DISTNAME=		rflexclients-${VERSION}
 VERSION=		1.0.1
 CATEGORIES=		robot
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
@@ -27,8 +26,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Driver and interface for Rflex
 
 GNU_CONFIGURE=		yes
-
-WRKSRC=			${WRKDIR}/hardlib-${VERSION}/rflex-clients
 
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep
 

@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Mon May 19 2008
 #
 
-DISTNAME=		hardlib-${VERSION}
+DISTNAME=		gyro-${VERSION}
 PKGNAME=		gyroKVH1000-${VERSION}
 VERSION=		1.0.1
 CATEGORIES=		hardware
@@ -28,7 +28,7 @@ COMMENT=		Driver and interface for gyroKVH1000
 
 GNU_CONFIGURE=		yes
 
-WRKSRC=			${WRKDIR}/hardlib-${VERSION}/gyro/gyroKVH1000/
+WRKSRC=			${WRKDIR}/gyro-${VERSION}/gyroKVH1000/
 
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep
 

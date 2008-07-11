@@ -16,8 +16,7 @@
 #                                      Arnaud Degroote on Tue May 20 2008
 #
 
-DISTNAME=		hardlib-${VERSION}
-PKGNAME=		GPSNovatel-${VERSION}
+DISTNAME=		GPSNovatel-${VERSION}
 VERSION=		1.0.1
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
@@ -27,8 +26,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Driver and interface for GPS Novatel
 
 GNU_CONFIGURE=		yes
-
-WRKSRC=			${WRKDIR}/hardlib-${VERSION}/GPSNovatel
 
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep
 
