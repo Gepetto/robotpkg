@@ -1,0 +1,9 @@
+@comment lundi 14 juillet 2008, 22:24:43 (UTC+0200)
+bin/gyroKVH5000Test
+include/gyroLib.h
+lib/libgyroKVH5000.la
+lib/pkgconfig/gyroKVH5000.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include
+@dirrm bin
