@@ -39,7 +39,7 @@ PKG_OPTION_DESCR.b21r=	Enable support for b21R platform
 PKG_OPTION_SET.b21r:=	GENOM_ARGS+= -DB21R
 
 PKG_OPTIONS_OPTIONAL_GROUPS=	gyro
-PKG_OPTIONS_GROUP.gyro=			gyro-client gyroKVH1000
+PKG_OPTIONS_GROUP.gyro=			gyro-client gyroKVH1000 gyroKVH5000
 
 PKG_OPTION_DESCR.gyro-client=	Enable gyro support using gyro GeNoM module
 define PKG_OPTION_SET.gyro-client
@@ -51,6 +51,12 @@ PKG_OPTION_DESCR.gyroKVH1000=	Enable gyro support using directly gyroKVH1000
 define PKG_OPTION_SET.gyroKVH1000
   include ../../hardware/gyroKVH1000/depend.mk
   GENOM_ARGS += -DGYRO=gyroKVH1000Task
+endef
+
+PKG_OPTION_DESCR.gyroKVH1000=	Enable gyro support using directly gyroKVH5000
+define PKG_OPTION_SET.gyroKVH5000
+  include ../../hardware/gyroKVH5000/depend.mk
+  GENOM_ARGS += -DGYRO=gyroKVH5000
 endef
 
 GENOM_MODULE=		rflex
