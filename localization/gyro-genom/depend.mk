@@ -28,7 +28,7 @@ PREFER.gyro-genom?=	robotpkg
 
 DEPEND_USE+=		gyro-genom
 
-DEPEND_ABI.gyro-genom?=	gyro-genom>=0.1
+DEPEND_ABI.gyro-genom?=	gyro-genom>=0.2
 DEPEND_DIR.gyro-genom?=	../../localization/gyro-genom
 
 SYSTEM_SEARCH.gyro-genom=\
