@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/07/15 12:04:23 mallet $
+# $LAAS: Makefile 2008/07/15 13:56:37 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -32,6 +32,9 @@ GNU_CONFIGURE=          yes
 CONFIGURE_ARGS+=	--with-sdk-include=${PREFIX.evart-sdk}/include
 CONFIGURE_ARGS+=	--with-sdk-lib=${PREFIX.evart-sdk}/bin
 
+DEPEND_METHOD.evart-client+=	build
+
 include ../../devel/evart-sdk/depend.mk
+include ../../net/evart-client/depend.mk
 include ../../cross/i386-mingw32/depend.mk
 include ../../mk/robotpkg.mk
