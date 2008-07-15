@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/05/25 23:16:29 tho $
+# $LAAS: gcc.mk 2008/07/15 12:14:01 mallet $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -48,7 +48,11 @@ GCC_REQD+=	2.8.0
 
 ## _CC is the full path to the compiler named by ${CC} if it can be found.
 ifndef _CC
-_CC:=	$(call pathsearch,${CC},${PATH})
+  ifneq (,$(realpath ${CC}))
+    _CC:=	${CC}
+  else
+    _CC:=	$(call pathsearch,${CC},${PATH})
+  endif
 MAKEOVERRIDES+=	_CC=$(call quote,${_CC})
 endif
 
