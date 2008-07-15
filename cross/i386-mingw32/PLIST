@@ -1,4 +1,4 @@
-@comment Wed Jul 2 21:17:22 CEST 2008
+@comment Thu Jul 3 10:48:44 CEST 2008
 bin/i386-mingw32-addr2line
 bin/i386-mingw32-ar
 bin/i386-mingw32-as
@@ -9,6 +9,7 @@ bin/i386-mingw32-g++
 bin/i386-mingw32-gcc
 bin/i386-mingw32-gcc-3.4.5
 bin/i386-mingw32-gccbug
+bin/i386-mingw32-gcov
 bin/i386-mingw32-ld
 bin/i386-mingw32-nm
 bin/i386-mingw32-objcopy
