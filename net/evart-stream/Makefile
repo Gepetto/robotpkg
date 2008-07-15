@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/07/15 13:56:37 mallet $
+# $LAAS: Makefile 2008/07/15 16:44:33 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -25,8 +25,6 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=evart/}
 MAINTAINER=		mallet@laas.fr
 #HOMEPAGE=		
 COMMENT=		EVa Real-Time Software data streaming server.
-
-PREFIX=			${PREFIX.evart-sdk}
 
 GNU_CONFIGURE=          yes
 CONFIGURE_ARGS+=	--with-sdk-include=${PREFIX.evart-sdk}/include

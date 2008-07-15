@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/07/15 12:28:39 mallet $
+# $LAAS: resolve.mk 2008/07/15 16:41:01 mallet $
 #
 # Copyright (c) 2008
 #      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
@@ -178,6 +178,11 @@ PKG_FAIL_REASON+= "*** ${1} package not found. (see above)"
 endef
 $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_sysprefix,${_pkg_})))
 
+
+# --- Begin after the barrier ----------------------------------------
+
+ifdef _PKGSRC_BARRIER
+
 # Generate default value for PREFIX.<pkg> variable for the robotpkg
 # packages.
 #
@@ -193,10 +198,6 @@ MAKEOVERRIDES+=		PREFIX.${1}=$$(call quote,$${PREFIX.${1}})
 endef
 $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_pkgprefix,${_pkg_})))
 
-
-# --- Begin after the barrier ----------------------------------------
-
-ifdef _PKGSRC_BARRIER
 
 # Generate default values for:
 #

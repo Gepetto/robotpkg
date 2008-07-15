@@ -1,4 +1,4 @@
-# $LAAS: $
+# $LAAS: Makefile 2008/07/15 16:45:24 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -27,7 +27,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.motionanalysis.com/html/industrial/evart.html
 COMMENT=		EVa Real-Time Software Development Kit.
 
-PREFIX=			${LOCALBASE}/i386-mingw32
+PREFIX?=			${LOCALBASE}/i386-mingw32
 WRKSRC=			${WRKDIR}/SDK2_v${VERSION}
 
 LICENSE=                motion-analysis-license

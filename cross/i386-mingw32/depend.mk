@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/07/15 12:30:23 mallet $
+# $LAAS: depend.mk 2008/07/15 16:44:47 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -31,6 +31,10 @@ DEPEND_METHOD.cross-i386-mingw32+=	build
 
 DEPEND_ABI.cross-i386-mingw32?=	cross-i386-mingw32>=3.14
 DEPEND_DIR.cross-i386-mingw32?=	../../cross/i386-mingw32
+
+MINGW_SUBPREFIX=	i386-mingw32
+MINGW_PREFIX=		${LOCALBASE}/${MINGW_SUBPREFIX}
+PREFIX?=		${MINGW_PREFIX}
 
 CC=	${LOCALBASE}/cross/bin/i386-mingw32-gcc
 CXX=	${LOCALBASE}/cross/bin/i386-mingw32-g++
