@@ -1,0 +1,8 @@
+EVa Real-Time Software (EVaRT) provides a user with a simple and powerful
+interface to the Motion Analysis(tm) motion capture hardware. Under a
+single software environment you can set up, calibrate, capture motion in
+real-time, capture motion for post processing, edit and save data in the
+format of your choice.
+
+evart-stream connects to the EVaRT(tm) motion capture software through an
+SDK and listen to the network for data streaming requests.

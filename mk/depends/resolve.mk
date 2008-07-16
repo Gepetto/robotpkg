@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/06/01 14:03:29 tho $
+# $LAAS: resolve.mk 2008/07/15 16:41:01 mallet $
 #
 # Copyright (c) 2008
 #      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
@@ -142,13 +142,6 @@ override define _dpd_sysprefix
 PREFIX.${1}=$$(firstword $$(call prefixsearch,$${SYSTEM_SEARCH.${1}},${SYSTEM_PREFIX}))
 MAKEOVERRIDES+=		PREFIX.${1}=$$(call quote,$${PREFIX.${1}})
     endif
-  else
-    ifneq (,$$(filter robotpkg,$${PREFER.${1}}))
-PKG_FAIL_REASON+= "The prefix for ${1} is defined, but the variable"
-PKG_FAIL_REASON+= "PREFER.${1} says to use the robotpkg package."
-PKG_FAIL_REASON+= "Please unset PREFIX.${1} in your"
-PKG_FAIL_REASON+= ${_MAKECONF}
-    endif
   endif
   ifeq (,$$(filter robotpkg,$${PREFER.${1}}))
 _list:=$$(call pathsearch,$${SYSTEM_SEARCH.${1}},$${PREFIX.${1}})
@@ -204,6 +197,7 @@ MAKEOVERRIDES+=		PREFIX.${1}=$$(call quote,$${PREFIX.${1}})
   endif
 endef
 $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_pkgprefix,${_pkg_})))
+
 
 # Generate default values for:
 #
