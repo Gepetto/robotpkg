@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Mon May 19 2008
 #
 
-DISTNAME=		gyro-genom-0.2
+DISTNAME=		gyro-genom-0.3
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
