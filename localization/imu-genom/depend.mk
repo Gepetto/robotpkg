@@ -28,7 +28,7 @@ PREFER.imu-genom?=	robotpkg
 
 DEPEND_USE+=		imu-genom
 
-DEPEND_ABI.imu-genom?=	imu-genom>=0.1
+DEPEND_ABI.imu-genom?=	imu-genom>=0.2
 DEPEND_DIR.imu-genom?=	../../localization/imu-genom
 
 SYSTEM_SEARCH.imu-genom=\

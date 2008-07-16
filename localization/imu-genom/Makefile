@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Mon May 19 2008
 #
 
-DISTNAME=		imu-genom-0.1
+DISTNAME=		imu-genom-0.2
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
