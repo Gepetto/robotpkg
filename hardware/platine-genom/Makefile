@@ -17,7 +17,7 @@
 #
 
 DISTNAME=		platine-genom-0.1
-CATEGORIES=		robots
+CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr
