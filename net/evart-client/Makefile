@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/07/15 13:52:43 mallet $
+# $LAAS: Makefile 2008/07/17 11:19:59 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                      Anthony Mallet on Tue Jul 15 2008
 #
 
-VERSION=		1.0
+VERSION=		1.1
 DISTNAME=		evart-client-${VERSION}
 
 CATEGORIES=		net
@@ -27,5 +27,7 @@ MAINTAINER=		mallet@laas.fr
 COMMENT=		EVa Real-Time Software data streaming API.
 
 GNU_CONFIGURE=          yes
+BUILD_TARGET=		all doc
+INSTALL_TARGET=		install install-doc
 
 include ../../mk/robotpkg.mk
