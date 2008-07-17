@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/07/15 13:55:55 mallet $
+# $LAAS: depend.mk 2008/07/17 11:44:02 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -28,7 +28,7 @@ PREFER.evart-client?=	robotpkg
 
 DEPEND_USE+=		evart-client
 
-DEPEND_ABI.evart-client?=	evart-client>=1.0
+DEPEND_ABI.evart-client?=	evart-client>=1.1
 DEPEND_DIR.evart-client?=	../../net/evart-client
 
 SYSTEM_SEARCH.evart-client=\
