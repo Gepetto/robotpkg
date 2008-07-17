@@ -1,0 +1,34 @@
+@comment jeudi 17 juillet 2008, 18:40:48 (UTC+0200)
+bin/MTI
+bin/MTISendInitRqst
+bin/MTITest
+include/MTI/server/MTIEndian.h
+include/MTI/server/MTIError.h
+include/MTI/server/MTIMsgLib.h
+include/MTI/server/MTIPosterLib.h
+include/MTI/server/MTIPosterLibStruct.h
+include/MTI/server/MTIPosterReadLibProto.h
+include/MTI/server/MTIPosterShowLib.h
+include/MTI/server/MTIPosterWriteLibProto.h
+include/MTI/server/MTIPosterXMLLib.h
+include/MTI/server/MTIPrint.h
+include/MTI/server/MTIPrintXML.h
+include/MTI/server/MTIScan.h
+include/MTI/server/MTIType.h
+lib/libMTIClient.la
+lib/pkgconfig/MTI.pc
+lib/tclserv/libMTITclServ.la
+share/doc/MTI/HowToUse
+share/modules/gen/MTI.gen
+share/modules/tcl/MTIClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm share/doc/MTI
+@dirrm share/doc
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/MTI/server
+@dirrm include/MTI
+@dirrm include
+@dirrm bin
