@@ -4,6 +4,7 @@
 COMMENT=	Hardware drivers and low-level software
 
 SUBDIR+=	GPSNovatel
+SUBDIR+=	MTI
 SUBDIR+=	gyroKVH1000
 SUBDIR+=	gyroKVH5000
 SUBDIR+=	platine-genom
