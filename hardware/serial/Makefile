@@ -18,7 +18,7 @@
 
 DISTNAME=		serial-${VERSION}
 VERSION=		1.0.1
-CATEGORIES=		robot
+CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr
