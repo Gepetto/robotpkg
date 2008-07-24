@@ -13,8 +13,6 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.boost.org/
 COMMENT=		Free, peer-reviewed portable C++ source libraries.
 
-DEPENDS+=		bzip2>=1.0.4:../../archivers/bzip2
-
 include ../../mk/robotpkg.prefs.mk
 
 ifeq (${OPSYS},"Darwin")
@@ -49,6 +47,7 @@ BJAM_BUILD+=            <threading>multi
 BJAM_BUILD+=            release
 BJAM_CMD=               ${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
 
+include ../../archivers/bzip2/depend.mk
 include ../../mk/robotpkg.mk
 
 # Generate a new user.hpp and compile bjam
