@@ -1,0 +1,29 @@
+$LAAS: patch-ab 2008/07/24 13:51:34 mallet $
+
+Add explicit --tag=CC for libtool
+
+--- Makefile~	2008-04-20 20:48:18.000000000 +0200
++++ Makefile	2008-07-24 13:50:06.063415000 +0200
+@@ -10,14 +10,14 @@
+ all: libbz2.la bzip2 bzip2recover
+ 
+ libbz2.la: ${LOBJS}
+-	${LIBTOOL} --mode=link ${CC} ${LDFLAGS} ${CFLAGS} -o $@ \
++	${LIBTOOL} --tag=CC --mode=link ${CC} ${LDFLAGS} ${CFLAGS} -o $@ \
+ 	    ${LOBJS} -version-info 0:0 -rpath ${PREFIX}/lib
+ 
+ libbz2.a: ${OBJS}
+ 	${AR} cq $@ ${OBJS}
+ 
+ bzip2: libbz2.a bzip2.o
+-	${LIBTOOL} --mode=link ${CC} ${LDFLAGS} ${CFLAGS} -o $@ \
++	${LIBTOOL}  --tag=CC --mode=link ${CC} ${LDFLAGS} ${CFLAGS} -o $@ \
+ 	    bzip2.o libbz2.la
+ bzip2recover: bzip2recover.o
+ 	${CC} ${LDFLAGS} ${CFLAGS} -o $@ bzip2recover.o
+@@ -28,4 +28,4 @@
+ 	${CC} -c ${CFLAGS} -o $@ $<
+ 
+ .c.lo:
+-	${LIBTOOL} --mode=compile ${CC} -c ${CFLAGS} -o $@ $<
++	${LIBTOOL}  --tag=CC --mode=compile ${CC} -c ${CFLAGS} -o $@ $<
