@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/07/28 13:36:35 mallet $
+# $LAAS: Makefile 2008/07/29 18:00:14 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                      Anthony Mallet on Tue Jul 15 2008
 #
 
-VERSION=		1.3
+VERSION=		1.4
 DISTNAME=		evart-client-${VERSION}
 
 CATEGORIES=		net

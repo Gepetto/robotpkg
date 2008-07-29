@@ -1,4 +1,4 @@
-@comment Thu Jul 17 11:21:36 CEST 2008
+@comment Tue Jul 29 18:00:59 CEST 2008
 bin/evart-client
 include/evart-client.h
 lib/libevart-client.la
@@ -13,6 +13,7 @@ share/doc/evart-client/html/doxygen.png
 share/doc/evart-client/html/functions.html
 share/doc/evart-client/html/functions_vars.html
 share/doc/evart-client/html/group__constants.html
+share/doc/evart-client/html/group__control.html
 share/doc/evart-client/html/group__data.html
 share/doc/evart-client/html/group__init.html
 share/doc/evart-client/html/group__requests.html
