@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/07/21 16:28:53 mallet $
+# $LAAS: Makefile 2008/07/29 18:06:28 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                      Anthony Mallet on Tue Jul 15 2008
 #
 
-VERSION=		1.2
+VERSION=		1.3
 DISTNAME=		evart-stream-${VERSION}
 
 CATEGORIES=		net
