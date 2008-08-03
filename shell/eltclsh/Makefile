@@ -11,6 +11,5 @@ COMMENT=		Interactive shell for the TCL programming language.
 
 GNU_CONFIGURE=		yes
 
-DEPENDS+=		libedit>=2.10:../../devel/libedit
-
+include ../../devel/libedit/depend.mk
 include ../../mk/robotpkg.mk
