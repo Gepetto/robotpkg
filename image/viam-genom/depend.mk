@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 14:11:24 tho $
+# $LAAS: depend.mk 2008/08/05 14:28:45 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -28,7 +28,7 @@ PREFER.viam-genom?=	robotpkg
 
 DEPEND_USE+=		viam-genom
 
-DEPEND_ABI.viam-genom?=	viam-genom>=1.0
+DEPEND_ABI.viam-genom?=	viam-genom>=1.2
 DEPEND_DIR.viam-genom?=	../../image/viam-genom
 
 SYSTEM_SEARCH.viam-genom=\
