@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/08/05 14:19:21 mallet $
+# $LAAS: Makefile 2008/08/06 16:29:40 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -17,6 +17,7 @@
 #
 
 DISTNAME=		viam-libs-1.2
+PKGREVISION=		1
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
 
