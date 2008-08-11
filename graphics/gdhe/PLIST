@@ -1,65 +1,62 @@
-@comment vendredi 16 mai 2008, 19:53:12 (UTC+0200)
+@comment Mon Aug 11 19:22:25 CEST 2008
 bin/gdhe
 bin/reader
-include/gdhe/GDHE_client_prot.h
 include/gdhe/GDHE.h
+include/gdhe/GDHE_client_prot.h
 include/gdhe/GDHE_packets.h
 include/gdhe/gdhe_terrain.h
+lib/gdhe/gdhe.so
 lib/gdhe/pkgIndex.tcl
 lib/gdhe/planet.so
-lib/gdhe.so
+lib/gdhe/segkit.so
 lib/gdhe/terrain.so
 lib/gdhe/tkjpeg.so
 lib/libGDHE.la
 lib/pkgconfig/gdhe.pc
+share/gdhe/examples/README
 share/gdhe/examples/lutTerrain.tcl
 share/gdhe/examples/picture.tcl
 share/gdhe/examples/planet.tcl
-share/gdhe/examples/README
 share/gdhe/examples/sample_client.c
 share/gdhe/examples/sky.tcl
 share/gdhe/examples/terrain.tcl
 share/gdhe/examples/webcam.tcl
 share/gdhe/examples/windows.tcl
-share/gdhe/images/earthcld.xpm
 share/gdhe/images/earth.xbm
 share/gdhe/images/earth.xpm
+share/gdhe/images/earthcld.xpm
 share/gdhe/images/lama.gif
 share/gdhe/images/t3
 share/gdhe/tcl/arm.tcl
 share/gdhe/tcl/b21r.tcl
 share/gdhe/tcl/clock.tcl
-share/gdhe/tcl/dala.tcl
-share/gdhe/tcl/env.tcl
-share/gdhe/tcl/film.tcl
+share/gdhe/tcl/${NODENAME}.tcl
 share/gdhe/tcl/grid.tcl
 share/gdhe/tcl/gromit.tcl
 share/gdhe/tcl/h2bis.tcl
 share/gdhe/tcl/hilare2.tcl
+share/gdhe/tcl/human.tcl
 share/gdhe/tcl/junior.tcl
 share/gdhe/tcl/karma.tcl
 share/gdhe/tcl/lama.tcl
 share/gdhe/tcl/lights.tcl
-share/gdhe/tcl/models.tcl
+share/gdhe/tcl/neobotix.tcl
 share/gdhe/tcl/p3d.tcl
+share/gdhe/tcl/pa10.tcl
 share/gdhe/tcl/pkgIndex.tcl
 share/gdhe/tcl/planet.tcl
 share/gdhe/tcl/platineRS.tcl
 share/gdhe/tcl/proba.tcl
-share/gdhe/tcl/salle.tcl
 share/gdhe/tcl/scout.tcl
 share/gdhe/tcl/setup.tcl
 share/gdhe/tcl/trailer.tcl
+share/gdhe/tcl/video.tcl
 share/gdhe/tcl/xr4000.tcl
-share/gdhe/tcl/zingaro.tcl
 @dirrm share/gdhe/tcl
 @dirrm share/gdhe/images
 @dirrm share/gdhe/examples
-@dirrm share/gdhe
-@dirrm share
 @dirrm lib/pkgconfig
 @dirrm lib/gdhe
 @dirrm lib
 @dirrm include/gdhe
-@dirrm include
 @dirrm bin

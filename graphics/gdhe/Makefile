@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Sat May 17 2008
 #
 
-DISTNAME=	gdhe-3.6
+DISTNAME=	gdhe-3.7
 
 CATEGORIES=	graphics
 MASTER_SITES=	http://softs.laas.fr/openrobots/php/download.php/
