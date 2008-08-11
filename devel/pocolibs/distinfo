@@ -1,7 +1,5 @@
-$NetBSD$
-
-SHA1 (pocolibs-2.3.tar.gz) = 7e9bc480f14c6686f2eaa28ffd39691392b6d0d1
-RMD160 (pocolibs-2.3.tar.gz) = c14123f30ecb57ae7d3294b9fa7dbf1c0a378c4c
-Size (pocolibs-2.3.tar.gz) = 344159 bytes
+SHA1 (pocolibs-2.4.tar.gz) = d35d86c790e57cc075f4b77448e19195a36cbaea
+RMD160 (pocolibs-2.4.tar.gz) = dff449bd3ac0037dcc91aaf964a19b64877f27c6
+Size (pocolibs-2.4.tar.gz) = 351513 bytes
 SHA1 (patch-aa) = 181fa3e68f6d8db4aafa57c27459b41bb96ceb70
 SHA1 (patch-ab) = d56ed8e3e1cf5f11376d3529d413b98aa9e06a98
