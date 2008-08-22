@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/08/05 14:28:29 mallet $
+# $LAAS: Makefile 2008/08/22 11:46:33 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Fri Mar 14 2008
 #
 
-DISTNAME=		viam-genom-1.2
+DISTNAME=		viam-genom-1.3
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-genom/}
 

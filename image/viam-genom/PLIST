@@ -1,4 +1,4 @@
-@comment $Id:$
+@comment Fri Aug 22 11:48:04 CEST 2008
 bin/viam
 bin/viamSendInitRqst
 bin/viamTest
@@ -17,8 +17,10 @@ include/viam/server/viamScan.h
 include/viam/server/viamType.h
 include/viam/viamStruct.h
 lib/libviamClient.la
+lib/libviamWeb.la
 lib/pkgconfig/viam.pc
 lib/tclserv/libviamTclServ.la
+lib/viamWeb.so
 share/modules/gen/viam.gen
 share/modules/tcl/viamClient.tcl
 @dirrm include/viam/server
