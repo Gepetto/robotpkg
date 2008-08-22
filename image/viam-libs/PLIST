@@ -14,5 +14,4 @@ share/doc/viam-libs/html/tab_r.gif
 share/doc/viam-libs/html/tabs.css
 @dirrm share/doc/viam-libs/html
 @dirrm share/doc/viam-libs
-@dirrm lib/pkgconfig
 @dirrm include/viam

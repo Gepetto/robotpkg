@@ -1,5 +1,3 @@
-SHA1 (viam-libs-1.2.tar.gz) = 89070a2dd8d763a1add404683cccbccbbcae9f04
-RMD160 (viam-libs-1.2.tar.gz) = 42d4e5a1af6a8ce2fe1802c1deec73df26e60dbb
-Size (viam-libs-1.2.tar.gz) = 369850 bytes
-SHA1 (patch-aa) = 02d49962d7f96920d38c6813855292196f8d38fc
-SHA1 (patch-ab) = d4d10cb564c35cb4a956c14c5e7fd4214509b7fe
+SHA1 (viam-libs-1.3.tar.gz) = cc08d6e6d982b26d49bf4eadb34429f65f185add
+RMD160 (viam-libs-1.3.tar.gz) = 1d4d1663ce3bd0a4f720391a5814be5ddb2a3620
+Size (viam-libs-1.3.tar.gz) = 370507 bytes
