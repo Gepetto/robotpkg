@@ -1,7 +1,12 @@
 #!/bin/sh
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Sun Oct  1 2006
+# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2001-2002 Alistair G. Crooks.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -13,14 +18,6 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: bootstrap,v 1.88 2006/11/06 21:08:42 tv Exp $
-# Copyright (c) 2001-2002 Alistair G. Crooks.
-#
 #   3. All advertising materials mentioning   features or use of this
 #      software must display the following acknowledgement:
 #	This product includes software developed by Alistair G. Crooks
@@ -41,6 +38,10 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+# From $NetBSD: bootstrap,v 1.88 2006/11/06 21:08:42 tv Exp $
+#
+#                                       Anthony Mallet on Sun Oct  1 2006
+#
 
 # where the building takes place
 bootstrapdir=`dirname "$0"`
@@ -58,6 +59,7 @@ usage="Usage: $0 "'
     [ --fetch-cmd <ftp command> ]
     [ --compiler <compiler> ]
     [ --make <make command> ]
+    [ --syslibsuffix <libsuffix> ]
     [ --help ]'
 
 opsys=`uname -s | tr -d /`
@@ -137,30 +139,33 @@ sysconfdir=
 varbase=
 compiler=""
 gmake=make
+syslibsuffix=
 
 while [ $# -gt 0 ]; do
 	case $1 in
-	--workdir=*)	wrkdir=`get_optarg "$1"` ;;
-	--workdir)	wrkdir="$2"; shift ;;
-	--prefix=*)	prefix=`get_optarg "$1"` ;;
-	--prefix)	prefix="$2"; shift ;;
-	--pkgdbdir=*)	pkgdbdir=`get_optarg "$1"` ;;
-	--pkgdbdir)	pkgdbdir="$2"; shift ;;
-	--mandir=*)	mandir=`get_optarg "$1"` ;;
-	--mandir)	mandir="$2"; shift ;;
-	--sysconfdir=*)	sysconfdir=`get_optarg "$1"` ;;
-	--sysconfdir)	sysconfdir="$2"; shift ;;
-	--varbase=*)	varbase=`get_optarg "$1"` ;;
-	--varbase)	varbase="$2"; shift ;;
-	--fetch-cmd=*)	fetch_cmd=`get_optarg "$1"` ;;
-	--fetch-cmd)	fetch_cmd="$a"; shift ;;
-	--compiler=*)	compiler=`get_optarg "$1"` ;;
-	--compiler)	compiler="$2"; shift ;;
-	--make=*)	gmake=`get_optarg "$1"` ;;
-	--make)		gmake="$2"; shift ;;
-	--help)		echo "$usage"; exit ;;
-	-h)		echo "$usage"; exit ;;
-	--*)		echo "$usage"; exit 1 ;;
+	--workdir=*)		wrkdir=`get_optarg "$1"` ;;
+	--workdir)		wrkdir="$2"; shift ;;
+	--prefix=*)		prefix=`get_optarg "$1"` ;;
+	--prefix)		prefix="$2"; shift ;;
+	--pkgdbdir=*)		pkgdbdir=`get_optarg "$1"` ;;
+	--pkgdbdir)		pkgdbdir="$2"; shift ;;
+	--mandir=*)		mandir=`get_optarg "$1"` ;;
+	--mandir)		mandir="$2"; shift ;;
+	--sysconfdir=*)		sysconfdir=`get_optarg "$1"` ;;
+	--sysconfdir)		sysconfdir="$2"; shift ;;
+	--varbase=*)		varbase=`get_optarg "$1"` ;;
+	--varbase)		varbase="$2"; shift ;;
+	--fetch-cmd=*)		fetch_cmd=`get_optarg "$1"` ;;
+	--fetch-cmd)		fetch_cmd="$a"; shift ;;
+	--compiler=*)		compiler=`get_optarg "$1"` ;;
+	--compiler)		compiler="$2"; shift ;;
+	--make=*)		gmake=`get_optarg "$1"` ;;
+	--make)			gmake="$2"; shift ;;
+	--syslibsuffix=*)	syslibsuffix=`get_optarg "$1"` ;;
+	--syslibsuffix)		syslibsuffix="$2"; shift ;;
+	--help)			echo "$usage"; exit ;;
+	-h)			echo "$usage"; exit ;;
+	--*)			echo "$usage"; exit 1 ;;
 	esac
 	shift
 done
@@ -223,6 +228,10 @@ if [ "${sysconfdir}" != "${prefix}/etc" ]; then
 fi
 echo "PKG_TOOLS_BIN=		$prefix/sbin" >> ${MKCONF_EXAMPLE}
 echo "MAKE=			$gmake" >> ${MKCONF_EXAMPLE}
+echo "" >> ${MKCONF_EXAMPLE}
+if [ "${syslibsuffix}" != "" ]; then
+	echo "SYSLIBSUFFIX=	$syslibsuffix" >> ${MKCONF_EXAMPLE}
+fi
 echo "" >> ${MKCONF_EXAMPLE}
 
 # create directories

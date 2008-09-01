@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2008/06/02 01:24:00 tho $
+# $LAAS: macros.mk 2008/09/01 22:16:31 tho $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -126,19 +126,29 @@ $(if $1,$(call prependpaths,$(wordlist 2,$(words $1),. $1),$(call \
 endef
 
 
+# --- syslibpath <path-list> -----------------------------------------------
+#
+# Append SYSLIBSUFFIX to /usr/lib and /lib.
+#
+override define syslibpath
+$(subst /lib,/lib${SYSLIBSUFFIX},$(subst /usr/lib,/usr/lib${SYSLIBSUFFIX},$1))
+endef
+
+
 # --- pathsearch <file(s)> <path> ------------------------------------
 #
-# Look for file in path, returning the first match. If file is a list of
-# file, the function returns the full path for all files. path can be a
+# Look for file in path, returning the first match. If file is a list of file,
+# the function returns the full path for all files. path can be a
 # colon-separated or space-separated list of directories.
 #
-# As a special case, if a file is not found in /usr/lib, it is also search in /lib
+# As a special case, if a file is not found in /usr/lib, it is also searched in
+# /lib. For those two directories, we add the SYSLIBSUFFIX.
 #
 override define pathsearch
-$(strip $(foreach f,$1,$(firstword 				\
-	$(or $(wildcard $(addsuffix /$f,$(subst :, ,$2))),	\
-	     $(wildcard $(subst					\
-		/usr/lib,/lib,$(addsuffix /$f,$(subst :, ,$2))))))))
+$(strip $(foreach f,$1,$(firstword 						\
+	$(or $(wildcard $(call syslibpath,$(addsuffix /$f,$(subst :, ,$2)))),	\
+	     $(wildcard $(call syslibpath,$(subst				\
+		/usr/lib,/lib,$(addsuffix /$f,$(subst :, ,$2)))))))))
 endef
 
 

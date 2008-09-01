@@ -1,7 +1,6 @@
-# $LAAS: resolve.mk 2008/07/15 16:41:01 mallet $
+# $LAAS: resolve.mk 2008/09/01 22:02:20 tho $
 #
-# Copyright (c) 2008
-#      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
+# Copyright (c) 2008 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
 # All rights reserved.
 #

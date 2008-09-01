@@ -13,6 +13,11 @@ _PATCH_CAN_BACKUP=	yes	# native patch(1) can make backups
 _PATCH_BACKUP_ARG?=	-V simple -b -z 	# switch to patch(1) for backup suffix
 _USE_RPATH=		yes	# add rpath to LDFLAGS
 
+# x86_64 put system libs in lib64
+ifeq (${MACHINE_ARCH},x86_64)
+  SYSLIBSUFFIX?=	64
+endif
+
 # Standard commands
 TRUE?=			:
 FALSE?=			false
