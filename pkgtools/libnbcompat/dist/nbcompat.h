@@ -37,10 +37,10 @@
 #include <nbcompat/nbtypes.h>
 
 #include <nbcompat/cdefs.h>
+#include <nbcompat/param.h>
 #include <nbcompat/limits.h>
 #include <nbcompat/endian.h>
 #include <nbcompat/types.h>
-#include <nbcompat/param.h>
 
 #if HAVE_ERRNO_H
 #include <errno.h>
