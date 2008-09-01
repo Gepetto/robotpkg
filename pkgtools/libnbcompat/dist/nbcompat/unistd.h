@@ -88,4 +88,13 @@ void	*setmode(const char *);
 void	strmode(mode_t, char *);
 #endif
 
+
+/* GLIBC >= 2.8 have ARG_MAX replaced by _SC_ARG_MAX */
+#ifdef _SC_ARG_MAX
+# ifdef ARG_MAX
+#  undef ARG_MAX
+# endif
+#define ARG_MAX sysconf(_SC_ARG_MAX)
+#endif
+
 #endif	/* !_NBCOMPAT_UNISTD_H_ */

@@ -72,6 +72,13 @@
 #endif
 #if defined(HAVE_SYS_PARAM_H)
 # include <sys/param.h>
+/* GLIBC >= 2.8 have ARG_MAX replaced by _SC_ARG_MAX */
+# ifdef _SC_ARG_MAX
+#  ifdef ARG_MAX
+#   undef ARG_MAX
+#  endif
+#  define ARG_MAX sysconf(_SC_ARG_MAX)
+# endif
 #endif
 #if defined(HAVE_SYS_STAT_H)
 # include <sys/stat.h>
