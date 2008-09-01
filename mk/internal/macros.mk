@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2008/09/01 22:16:31 tho $
+# $LAAS: macros.mk 2008/09/01 22:27:33 tho $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -131,7 +131,8 @@ endef
 # Append SYSLIBSUFFIX to /usr/lib and /lib.
 #
 override define syslibpath
-$(subst /lib,/lib${SYSLIBSUFFIX},$(subst /usr/lib,/usr/lib${SYSLIBSUFFIX},$1))
+$(patsubst /lib%,/lib${SYSLIBSUFFIX}%,$(patsubst				\
+	/usr/lib%,/usr/lib${SYSLIBSUFFIX}%,$1))
 endef
 
 
