@@ -1,0 +1,30 @@
+@comment Tue Sep 2 15:59:03 CEST 2008
+bin/locoDemo
+bin/locoDemoSendInitRqst
+bin/locoDemoTest
+include/locoDemo/locoDemoConst.h
+include/locoDemo/locoDemoStruct.h
+include/locoDemo/server/locoDemoEndian.h
+include/locoDemo/server/locoDemoError.h
+include/locoDemo/server/locoDemoMsgLib.h
+include/locoDemo/server/locoDemoPosterLib.h
+include/locoDemo/server/locoDemoPosterLibStruct.h
+include/locoDemo/server/locoDemoPosterReadLibProto.h
+include/locoDemo/server/locoDemoPosterShowLib.h
+include/locoDemo/server/locoDemoPosterWriteLibProto.h
+include/locoDemo/server/locoDemoPosterXMLLib.h
+include/locoDemo/server/locoDemoPrint.h
+include/locoDemo/server/locoDemoPrintXML.h
+include/locoDemo/server/locoDemoScan.h
+include/locoDemo/server/locoDemoType.h
+lib/liblocoDemoClient.a
+lib/liblocoDemoClient.la
+lib/liblocoDemoClient.so
+lib/pkgconfig/locoDemo.pc
+lib/tclserv/liblocoDemoTclServ.a
+lib/tclserv/liblocoDemoTclServ.la
+lib/tclserv/liblocoDemoTclServ.so
+share/modules/gen/locoDemo.gen
+share/modules/tcl/locoDemoClient.tcl
+@dirrm include/locoDemo/server/
+@dirrm include/locoDemo/
