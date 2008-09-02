@@ -1,0 +1,38 @@
+@comment Tue Sep 2 18:14:19 CEST 2008
+bin/pilo
+bin/piloSendInitRqst
+bin/piloTest
+include/pilo/libsmoothtraj/piloBrokenLineLibProto.h
+include/pilo/libsmoothtraj/piloRSLibProto.h
+include/pilo/libsmoothtraj/piloSpeedLibProto.h
+include/pilo/piloStruct.h
+include/pilo/server/piloEndian.h
+include/pilo/server/piloError.h
+include/pilo/server/piloMsgLib.h
+include/pilo/server/piloPosterLib.h
+include/pilo/server/piloPosterLibStruct.h
+include/pilo/server/piloPosterReadLibProto.h
+include/pilo/server/piloPosterShowLib.h
+include/pilo/server/piloPosterWriteLibProto.h
+include/pilo/server/piloPosterXMLLib.h
+include/pilo/server/piloPrint.h
+include/pilo/server/piloPrintXML.h
+include/pilo/server/piloScan.h
+include/pilo/server/piloType.h
+lib/libpiloClient.a
+lib/libpiloClient.la
+lib/libpiloClient.so
+lib/libpiloSmoothtraj.a
+lib/libpiloSmoothtraj.la
+lib/libpiloSmoothtraj.so
+lib/pkgconfig/pilo-smoothtraj.pc
+lib/pkgconfig/pilo.pc
+lib/tclserv/libpiloTclServ.a
+lib/tclserv/libpiloTclServ.la
+lib/tclserv/libpiloTclServ.so
+share/modules/gen/pilo.gen
+share/modules/tcl/piloClient.tcl
+@dirrm include/pilo/server
+@dirrm include/pilo/libsmoothtraj
+@dirrm include/pilo
+
