@@ -16,13 +16,13 @@
 #                                      Arnaud Degroote on Sat May 17 2008
 #
 
-DISTNAME=	gdhe-3.7
+DISTNAME=	gdhe-3.8
 
 CATEGORIES=	graphics
 MASTER_SITES=	http://softs.laas.fr/openrobots/php/download.php/
 
 MAINTAINER=	matthieu@laas.fr
-HOMEPAGE=	http://www.laas.fr/~matthieu/gdhe/
+HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/gdhe
 COMMENT=	3D Visualization tools
 
 DEPENDS+=	mkdep>=2.7:../../devel/mkdep

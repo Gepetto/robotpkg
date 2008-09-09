@@ -6,6 +6,7 @@ include/gdhe/GDHE_client_prot.h
 include/gdhe/GDHE_packets.h
 include/gdhe/gdhe_terrain.h
 lib/gdhe/gdhe.so
+lib/gdhe/gdheTriangle.so
 lib/gdhe/pkgIndex.tcl
 lib/gdhe/planet.so
 lib/gdhe/segkit.so
@@ -30,7 +31,7 @@ share/gdhe/images/t3
 share/gdhe/tcl/arm.tcl
 share/gdhe/tcl/b21r.tcl
 share/gdhe/tcl/clock.tcl
-share/gdhe/tcl/${NODENAME}.tcl
+share/gdhe/tcl/dala.tcl
 share/gdhe/tcl/grid.tcl
 share/gdhe/tcl/gromit.tcl
 share/gdhe/tcl/h2bis.tcl
@@ -40,6 +41,7 @@ share/gdhe/tcl/junior.tcl
 share/gdhe/tcl/karma.tcl
 share/gdhe/tcl/lama.tcl
 share/gdhe/tcl/lights.tcl
+share/gdhe/tcl/lynxmotion.tcl
 share/gdhe/tcl/neobotix.tcl
 share/gdhe/tcl/p3d.tcl
 share/gdhe/tcl/pa10.tcl
@@ -55,8 +57,5 @@ share/gdhe/tcl/xr4000.tcl
 @dirrm share/gdhe/tcl
 @dirrm share/gdhe/images
 @dirrm share/gdhe/examples
-@dirrm lib/pkgconfig
 @dirrm lib/gdhe
-@dirrm lib
 @dirrm include/gdhe
-@dirrm bin
