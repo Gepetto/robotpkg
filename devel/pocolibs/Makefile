@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Sun Jan 28 2007
 #
 
-DISTNAME=		pocolibs-2.4
+DISTNAME=		pocolibs-2.4.1
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
