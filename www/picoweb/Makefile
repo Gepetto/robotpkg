@@ -1,7 +1,7 @@
 # $Id: Makefile 2007/07/11 14:36:51 mallet $
 #
 
-DISTNAME=		picoweb-1.0
+DISTNAME=		picoweb-1.1
 CATEGORIES=		www
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
