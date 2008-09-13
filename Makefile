@@ -78,6 +78,7 @@ SUBDIR+=	localization
 SUBDIR+=	mapping
 SUBDIR+=	math
 SUBDIR+=	meta-pkgs
+SUBDIR+=	motion
 SUBDIR+=	net
 SUBDIR+=	path
 SUBDIR+=	pkgtools
