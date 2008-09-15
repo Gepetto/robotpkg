@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/09/13 13:34:33 tho $
+# $LAAS: Makefile 2008/09/15 17:39:35 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -17,7 +17,7 @@
 #
 
 DISTNAME=		genom-2.0
-PKGREVISION=		3
+PKGREVISION=		4
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
