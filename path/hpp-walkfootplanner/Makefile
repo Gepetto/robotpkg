@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/09/17 14:11:04 mallet $
+# $LAAS: Makefile 2008/09/17 14:32:25 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -13,7 +13,7 @@
 #      notice  and this list of  conditions in the documentation   and/or
 #      other materials provided with the distribution.
 #
-#                                       Anthony Mallet on Mon Aug 27 2007
+#                                       Anthony Mallet on Wed Sep 17 2008
 #
 
 DISTNAME=	hppwalkfootplanner-${VERSION}

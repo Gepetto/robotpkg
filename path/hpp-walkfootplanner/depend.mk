@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/06/17 16:26:17 mallet $
+# $LAAS: depend.mk 2008/09/17 14:34:07 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -13,29 +13,29 @@
 #      notice and  this list of  conditions in the  documentation and/or
 #      other materials provided with the distribution.
 #
-#                                      Anthony Mallet on Wed May 14 2008
+#                                      Anthony Mallet on Wed Sep 17 2008
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-HPP_WALKPLANNER_DEPEND_MK:=${HPP_WALKPLANNER_DEPEND_MK}+
+HPPWALKFOOTPLANNER_DEPEND_MK:=${HPPWALKFOOTPLANNER_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		hpp-walkplanner
+DEPEND_PKG+=		hpp-walkfootplanner
 endif
 
-ifeq (+,$(HPP_WALKPLANNER_DEPEND_MK)) # ------------------------------
+ifeq (+,$(HPPWALKFOOTPLANNER_DEPEND_MK)) # ---------------------------
 
-PREFER.hpp-walkplanner?=	robotpkg
+PREFER.hpp-walkfootplanner?=	robotpkg
 
-SYSTEM_SEARCH.hpp-walkplanner=\
-	include/hppWalkPlanner/hppWalkPlanner.h	\
-	lib/libhppWalkPlanner.la
+DEPEND_USE+=			hpp-walkfootplanner
 
-DEPEND_USE+=		hpp-walkplanner
+DEPEND_ABI.hpp-walkplanner?=	hpp-walkfootplanner>=1.0
+DEPEND_DIR.hpp-walkplanner?=	../../path/hpp-walkfootplanner
 
-DEPEND_ABI.hpp-walkplanner?=hpp-walkplanner>=1.3.2
-DEPEND_DIR.hpp-walkplanner?=../../path/hpp-walkplanner
+SYSTEM_SEARCH.hpp-walkfootplanner=\
+	include/hppWalkFootPlanner/hppWalkFootPlanner.h	\
+	lib/libhppWalkFootPlanner.la
 
-endif # HPP_WALKPLANNER_DEPEND_MK ------------------------------------
+endif # HPPWALKFOOTPLANNER_DEPEND_MK ---------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
