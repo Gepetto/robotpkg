@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/06/17 16:11:52 mallet $
+# $LAAS: Makefile 2008/09/17 17:38:38 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -18,10 +18,10 @@
 
 DISTNAME=	kppinterfacewalk-${VERSION}
 PKGNAME=	kpp-interfacewalk-${VERSION}
-VERSION=	1.3.1
+VERSION=	1.5
 
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=kpp-interfacewalk/}
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
