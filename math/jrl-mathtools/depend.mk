@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/09/17 12:43:33 mallet $
+# $LAAS: depend.mk 2008/09/17 14:10:05 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -20,7 +20,7 @@ DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 JRLMATHTOOLS_DEPEND_MK:=${JRLMATHTOOLS_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		jrlmathtools
+DEPEND_PKG+=		jrl-mathtools
 endif
 
 ifeq (+,$(JRLMATHTOOLS_DEPEND_MK)) # ---------------------------------
