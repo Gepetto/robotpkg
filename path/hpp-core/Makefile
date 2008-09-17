@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:11:36 tho $
+# $LAAS: Makefile 2008/09/17 12:25:21 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -18,12 +18,12 @@
 
 DISTNAME=	hppcore-${VERSION}
 PKGNAME=	hpp-core-${VERSION}
-VERSION=	1.4
+VERSION=	1.5.1
 
 CATEGORIES=	path
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-core/}
 
-MAINTAINER=	gepetto@laas.fr
+MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic classes used as interfaces with KineoWorks(tm).
 
