@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/06/17 16:26:17 mallet $
+# $LAAS: depend.mk 2008/09/17 15:25:15 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -33,7 +33,7 @@ SYSTEM_SEARCH.hpp-walkplanner=\
 
 DEPEND_USE+=		hpp-walkplanner
 
-DEPEND_ABI.hpp-walkplanner?=hpp-walkplanner>=1.3.2
+DEPEND_ABI.hpp-walkplanner?=hpp-walkplanner>=1.4.1
 DEPEND_DIR.hpp-walkplanner?=../../path/hpp-walkplanner
 
 endif # HPP_WALKPLANNER_DEPEND_MK ------------------------------------
