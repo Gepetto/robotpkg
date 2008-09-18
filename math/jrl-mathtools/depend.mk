@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/09/17 15:25:15 mallet $
+# $LAAS: depend.mk 2008/09/17 14:10:05 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -13,29 +13,28 @@
 #      notice and  this list of  conditions in the  documentation and/or
 #      other materials provided with the distribution.
 #
-#                                      Anthony Mallet on Wed May 14 2008
+#                                      Anthony Mallet on Wed Sep 17 2008
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-HPP_WALKPLANNER_DEPEND_MK:=${HPP_WALKPLANNER_DEPEND_MK}+
+JRLMATHTOOLS_DEPEND_MK:=${JRLMATHTOOLS_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		hpp-walkplanner
+DEPEND_PKG+=		jrl-mathtools
 endif
 
-ifeq (+,$(HPP_WALKPLANNER_DEPEND_MK)) # ------------------------------
+ifeq (+,$(JRLMATHTOOLS_DEPEND_MK)) # ---------------------------------
 
-PREFER.hpp-walkplanner?=	robotpkg
+PREFER.jrl-mathtools?=	robotpkg
 
-SYSTEM_SEARCH.hpp-walkplanner=\
-	include/hppWalkPlanner/hppWalkPlanner.h	\
-	lib/libhppWalkPlanner.la
+DEPEND_USE+=		jrl-mathtools
 
-DEPEND_USE+=		hpp-walkplanner
+DEPEND_ABI.jrl-mathtools?=jrl-mathtools>=1.0
+DEPEND_DIR.jrl-mathtools?=../../math/jrl-mathtools
 
-DEPEND_ABI.hpp-walkplanner?=hpp-walkplanner>=1.4.1
-DEPEND_DIR.hpp-walkplanner?=../../path/hpp-walkplanner
+SYSTEM_SEARCH.jrl-mathtools=\
+	include/jrlMathTools/vector4.h
 
-endif # HPP_WALKPLANNER_DEPEND_MK ------------------------------------
+endif # JRLMATHTOOLS_DEPEND_MK ---------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

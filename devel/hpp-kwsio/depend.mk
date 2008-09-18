@@ -1,3 +1,4 @@
+# $LAAS: depend.mk 2008/09/17 12:07:39 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -25,29 +26,28 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
-# Authored by Anthony Mallet on Thu Apr 24 2008
+#                                       Anthony Mallet on Wed Sep 17 2008
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-HPP_KWSPLUS_DEPEND_MK:=	${HPP_KWSPLUS_DEPEND_MK}+
+HPP_KWSIO_DEPEND_MK:=	${HPP_KWSIO_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		hpp-kwsplus
+DEPEND_PKG+=		hpp-kwsio
 endif
 
-ifeq (+,$(HPP_KWSPLUS_DEPEND_MK)) # ----------------------------------
+ifeq (+,$(HPP_KWSIO_DEPEND_MK)) # ------------------------------------
 
-PREFER.hpp-kwsplus?=	robotpkg
+PREFER.hpp-kwsio?=	robotpkg
 
-SYSTEM_SEARCH.hpp-kwsplus=\
-	include/kwsPlus/kwsPlusRoadmap.h	\
-	lib/libkwsPlus.la
+SYSTEM_SEARCH.hpp-kwsio=\
+	include/kwsIO/kwsioConfig.h	\
+	lib/libkwsIO.la
 
-DEPEND_USE+=		hpp-kwsplus
+DEPEND_USE+=		hpp-kwsio
 
-DEPEND_ABI.hpp-kwsplus?=hpp-kwsplus>=1.5
-DEPEND_DIR.hpp-kwsplus?=../../devel/hpp-kwsplus
+DEPEND_ABI.hpp-kwsio?=	hpp-kwsio>=1.0.1
+DEPEND_DIR.hpp-kwsio?=	../../devel/hpp-kwsio
 
-endif # HPP_KWSPLUS_DEPEND_MK ----------------------------------------
+endif # HPP_KWSIO_DEPEND_MK ------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -1,0 +1,8 @@
+This package implements collision free walk path planning for a humanoid robot.
+The robot is represented by a bounding box moving in the plane. Path planning
+is performed in two steps:
+ * first a collision free path is built for the bounding box, the default
+   steering method is ChppWalkSteeringMethod,
+ * then sequences of step sequences are computed along the path of the box.
+
+To use this package see the documentation of the main class ChppWalkFootPlanner.

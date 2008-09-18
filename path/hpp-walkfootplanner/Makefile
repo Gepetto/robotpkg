@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/05/25 13:22:21 tho $
+# $LAAS: Makefile 2008/09/17 14:32:25 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -13,31 +13,25 @@
 #      notice  and this list of  conditions in the documentation   and/or
 #      other materials provided with the distribution.
 #
-#                                       Anthony Mallet on Mon Aug 27 2007
+#                                       Anthony Mallet on Wed Sep 17 2008
 #
 
-DISTNAME=	kppinterface-${VERSION}
-PKGNAME=	kpp-interface-${VERSION}
-VERSION=	1.4
+DISTNAME=	hppwalkfootplanner-${VERSION}
+PKGNAME=	hpp-walkfootplanner-${VERSION}
+VERSION=	1.0
 
-CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+CATEGORIES=	path
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkfootplanner/}
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
-COMMENT=	Graphical user interface for HPP libraries.
-
-DEPENDS+=	hpp-corbaserver>=1.5:../../devel/hpp-corbaserver
+COMMENT=	Collision free walk path planning for a humanoid robot.
 
 GNU_CONFIGURE=	yes
 
-# options
-PKG_SUPPORTED_OPTIONS+=	verbose1
-PKG_OPTION_DESCR.verbose1=	Define level of verbosity
-PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
-
+include ../../math/jrl-mathtools/depend.mk
+include ../../path/hpp-core/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
-include ../../path/kineo-pp/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

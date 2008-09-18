@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/09/17 15:25:15 mallet $
+# $LAAS: depend.mk 2008/09/17 14:09:49 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -13,29 +13,29 @@
 #      notice and  this list of  conditions in the  documentation and/or
 #      other materials provided with the distribution.
 #
-#                                      Anthony Mallet on Wed May 14 2008
+#                                      Anthony Mallet on Wed Sep 17 2008
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-HPP_WALKPLANNER_DEPEND_MK:=${HPP_WALKPLANNER_DEPEND_MK}+
+HPPCORE_DEPEND_MK:=	${HPPCORE_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		hpp-walkplanner
+DEPEND_PKG+=		hpp-core
 endif
 
-ifeq (+,$(HPP_WALKPLANNER_DEPEND_MK)) # ------------------------------
+ifeq (+,$(HPPCORE_DEPEND_MK)) # --------------------------------------
 
-PREFER.hpp-walkplanner?=	robotpkg
+PREFER.hpp-core?=	robotpkg
 
-SYSTEM_SEARCH.hpp-walkplanner=\
-	include/hppWalkPlanner/hppWalkPlanner.h	\
-	lib/libhppWalkPlanner.la
+DEPEND_USE+=		hpp-core
 
-DEPEND_USE+=		hpp-walkplanner
+DEPEND_ABI.hpp-core?=	hpp-core>=1.5.1
+DEPEND_DIR.hpp-core?=	../../path/hpp-core
 
-DEPEND_ABI.hpp-walkplanner?=hpp-walkplanner>=1.4.1
-DEPEND_DIR.hpp-walkplanner?=../../path/hpp-walkplanner
+SYSTEM_SEARCH.hpp-core=\
+	include/hppCore/hppProblem.h	\
+	lib/libhppCore.la
 
-endif # HPP_WALKPLANNER_DEPEND_MK ------------------------------------
+endif # HPPCORE_DEPEND_MK --------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 13:17:04 tho $
+# $LAAS: Makefile 2008/09/17 12:09:07 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -18,16 +18,14 @@
 
 DISTNAME=	kwsplus-${VERSION}
 PKGNAME=	hpp-kwsplus-${VERSION}
-VERSION=	1.4.1
+VERSION=	1.5
 
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=kwsplus/}
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Helper functions for KineoWorks(tm) package.
-
-DEPENDS+=	hpp-kwsio>=1.0:../../devel/hpp-kwsio
 
 GNU_CONFIGURE=	yes
 
@@ -40,6 +38,7 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 include ../../path/kineo-pp/depend.mk
 include ../../math/lapack/depend.mk
+include ../../devel/hpp-kwsio/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

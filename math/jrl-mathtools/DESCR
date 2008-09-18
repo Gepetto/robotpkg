@@ -1,0 +1,7 @@
+This package implements basic mathematical tools used in the JRL software.
+Main classes include:
+* jrlMathTools::Cangle for simple angle computations,
+* jrlMathTools::Matrix4x4 for 4x4 matrices, mainly for homogeneous matrices,
+* jrlMathTools::Matrix3x3 for 3x3 matrices, mainly for rotation matrices,
+* jrlMathTools::Vector4D for 4 dimensional vectors,
+* jrlMathTools::Vector3D for 3 dimensional vectors.

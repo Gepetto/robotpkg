@@ -9,6 +9,7 @@ SUBDIR+=	gik-genom
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-gik
 SUBDIR+=	hpp-openhrp
+SUBDIR+=	hpp-walkfootplanner
 SUBDIR+=	hpp-walkplanner
 SUBDIR+=	jrl-walkgen
 SUBDIR+=	kineo-pp

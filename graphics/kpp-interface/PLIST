@@ -1,4 +1,4 @@
-@comment Tue May 13 17:55:09 JST 2008
+@comment Thu Sep 18 22:20:30 JST 2008
 include/kppInterface/kppCommandInit.h
 include/kppInterface/kppCommandPlannerPanel.h
 include/kppInterface/kppCommandSetConfig.h
