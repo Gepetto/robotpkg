@@ -1,0 +1,122 @@
+# $LAAS: Makefile.common 2008/10/03 18:01:49 mallet $
+#
+# Copyright (c) 2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Fri Oct  3 2008
+#
+
+# This Makefile fragment handles Java wrappers and is meant to be included
+# by packages that provide a Java build-time and/or run-time environment.
+#
+# The following variables can be defined in package Makefiles to tune the
+# behavior of this file:
+#
+#	JAVA_CLASSPATH	Classpath that will be prepended on all invocations
+#			to this implementation.  Optional.
+#
+#	JAVA_HOME	Path to the directory holding the Java implementation.
+#			Required.
+#
+#	JAVA_NAME	Base name of the Java implementation.  This will be
+#			used as part of wrappers' names.  Required.
+#
+#	JAVA_UNLIMIT	List of resources to be unlimited at runtime.
+#			Can include any of cmdsize, datasize and stacksize.
+#			Optional.
+#
+#	JAVA_WRAPPERS	List of wrappers to be created under ${PREFIX}/bin,
+#			pointing to binaries under ${JAVA_HOME}/bin.  The
+#			names must match files in the later directory.
+#
+
+CATEGORIES=	lang
+COMMENT=	Sun's Java(tm) 2 Standard Edition, ${DOWNLOAD_NAME} #'
+EXTRACT_SUFX=	.bin
+
+MAINTAINER=	openrobots@laas.fr
+HOMEPAGE=	http://java.sun.com/
+DOWNLOAD=	http://java.sun.com/javase/downloads/index.jsp
+ARCHIVE=	http://java.sun.com/products/archive/
+
+RESTRICTED=	Redistribution of repackaged binaries not permitted
+NO_SRC_ON_CDROM=${RESTRICTED}
+NO_SRC_ON_FTP=	${RESTRICTED}
+NO_BIN_ON_CDROM=${RESTRICTED}
+NO_BIN_ON_FTP=	${RESTRICTED}
+
+INTERACTIVE_STAGE=	fetch
+INSTALLATION_DIRS+=	bin
+
+include ../../mk/robotpkg.prefs.mk
+
+JAVA_HOME=		${LOCALBASE}/java/sun-6
+JAVA_NAME=		sun6
+JAVA_UNLIMIT=		datasize
+JAVA_WRAPPERS?=		# empty
+
+MESSAGE_SUBST+=		JAVA_HOME=${JAVA_HOME}
+
+EXTRACT_ENV+=		HOME=${WRKDIR}/fake_home
+
+# the following forces compression of jarfiles, which is a huge disk
+# space win and trivial to no speed reduction in the face of the
+# new class sharing in Java 5+... -tvierling
+EXTRACT_ENV+=		UNPACK200_FLAGS=-Htrue
+
+# don't launch internet registration ...
+EXTRACT_OPTS_BIN+=	-noregister
+
+FETCH_MESSAGE+=	" The file ${DISTNAME}${EXTRACT_SUFX}"
+FETCH_MESSAGE+=	" containing ${DOWNLOAD_NAME}"
+FETCH_MESSAGE+=	""
+FETCH_MESSAGE+=	" must be fetched into:"
+FETCH_MESSAGE+=	"	${DISTDIR}"
+FETCH_MESSAGE+=	" from:"
+FETCH_MESSAGE+=	"	${DOWNLOAD}"
+FETCH_MESSAGE+=	"	or ${ARCHIVE}"
+FETCH_MESSAGE+=	""
+FETCH_MESSAGE+=	" Click 'Download J2SE ${SHORT_NAME}', read and accept the"
+FETCH_MESSAGE+=	" license, then choose 'Linux self-extracting file'."
+
+post-fetch:
+	@if [ ! -x ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ]; then	\
+		${CHMOD} +x ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX};	\
+	fi
+
+NO_BUILD=		yes
+
+do-configure: $(foreach w,${JAVA_WRAPPERS},${WRKDIR}/${w})
+
+do-install:
+	${INSTALL_PROGRAM_DIR} ${DESTDIR}${JAVA_HOME}
+	cd ${WRKSRC} && pax -rwp ma . ${JAVA_HOME}
+
+post-install: $(foreach w,${JAVA_WRAPPERS},install-java-wrapper-${w})
+
+$(foreach w,${JAVA_WRAPPERS},${WRKDIR}/${w}):${WRKDIR}/%:
+	@${ECHO} 'Generating $* wrapper...'
+	@${ECHO} '#! ${SH}' >$@
+	@${ECHO} 'PATH=${JAVA_HOME}/bin:$${PATH}; export PATH' >>$@
+	@${ECHO} 'JAVA_HOME=${JAVA_HOME}; export JAVA_HOME' >>$@
+	@${ECHO} 'JVM_HOME=${JAVA_HOME}; export JVM_HOME' >>$@
+      ifneq (,$(JAVA_CLASSPATH))
+	@${ECHO} 'CLASSPATH=${JAVA_CLASSPATH}:$${CLASSPATH}; export CLASSPATH' \
+		>>$@
+      endif
+	@$(foreach f,${JAVA_UNLIMIT},${ECHO} '${ULIMIT_CMD_${f}}' >>$@;)
+	@${ECHO} '${JAVA_HOME}/bin/$* "$$@"' >>$@
+
+.PHONY: $(foreach w,${JAVA_WRAPPERS},install-java-wrapper-${w})
+$(foreach w,${JAVA_WRAPPERS},install-java-wrapper-${w}):install-java-wrapper-%:
+	${INSTALL_SCRIPT} ${WRKDIR}/$* ${PREFIX}/bin/$*-${JAVA_NAME}
