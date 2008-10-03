@@ -11,6 +11,7 @@ SUBDIR+=	jrl-mathtools
 SUBDIR+=	lapack
 SUBDIR+=	mpfr
 SUBDIR+=	t3d
+SUBDIR+=	tvmet
 SUBDIR+=	vnl-vw
 
 include ../mk/robotpkg.subdir.mk

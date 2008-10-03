@@ -1,0 +1,7 @@
+tvmet is a vector and matrix library. tvmet means `Tiny Vector and Matrix
+template library'. It uses Meta Templates (MT) and Expression Templates (ET) to
+evaluate results at compile time -- which makes it fast for low order (tiny)
+systems.
+
+"Tiny" is a subjective term, but typically means vectors and matrices of size
+ten (10) or less.

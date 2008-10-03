@@ -3,8 +3,8 @@
 CATEGORIES=	devel
 EXTRACT_SUFX=	.bin
 
-DISTNAME=	java3d-1_4_0_01-linux-i586
-PKGNAME=	sun-java3d-1.4.0.1
+DISTNAME=	java3d-1_5_1-linux-i586
+PKGNAME=	sun-java3d-1.5.1
 MASTER_SITES=	# empty
 
 COMMENT=	Sun's Java 3D(TM) API #'
@@ -13,17 +13,11 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://java.sun.com/products/java-media/3D
 DOWNLOAD=	http://java.sun.com/products/java-media/3D/downloads/index.html
 
-DEPENDS+=	sun-jdk14>=2.9:../../lang/sun-jdk14
-
 WRKSRC=		${WRKDIR}
 
-LICENSE=	java3d-license
+LICENSE=	sun-java3d-license
 
 INTERACTIVE_STAGE=	fetch
-
-include ../../mk/robotpkg.prefs.mk
-
-JAVA_HOME=	${LOCALBASE}/java/sun-1.4
 
 FETCH_MESSAGE= 								\
 	"The file ${DISTNAME}${EXTRACT_SUFX} containing:"		\
@@ -38,15 +32,16 @@ FETCH_MESSAGE= 								\
 
 EXTRACT_ENV+=	HOME=${WRKDIR}/fake_home
 
+NO_BUILD=	yes
+
+include ../../lang/sun-jre6/depend.mk
+include ../../mk/robotpkg.prefs.mk
 include ../../mk/robotpkg.mk
 
 post-fetch:
 	@if [ ! -x ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ]; then	\
 		${CHMOD} +x ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX};	\
 	fi
-
-do-build:	# nothing
-	@${TRUE}
 
 do-install:
 	${INSTALL_PROGRAM_DIR} ${JAVA_HOME}
