@@ -1,10 +1,27 @@
-# $NetBSD: Makefile,v 1.34 2006/12/28 11:51:11 joerg Exp $
+# $LAAS: $
+#
+# Copyright (c) 2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Mon Oct  6 2008
+#
 
-CATEGORIES=	lang
+VERSION=	2.2.1
+DISTNAME=	jython_installer-${VERSION}
+PKGNAME=	jython-${VERSION}
 EXTRACT_SUFX=	.jar
 
-DISTNAME=	jython_Release_2_2alpha1
-PKGNAME=	jython-2.2a1
+CATEGORIES=	lang
 
 COMMENT=	Implementation of the Python language written in Java.
 
@@ -12,22 +29,22 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.jython.org
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=jython/}
 
-
-DEPENDS+=	sun-jdk14>=2.9:../../lang/sun-jdk14
-
 JYTHON_HOME=	${LOCALBASE}/java/jython
 
-include ../../mk/robotpkg.mk
+WRKSRC=		${WRKDIR}/extract
+NO_CONFIGURE=	yes
+NO_BUILD=	yes
 
-WRKSRC=		${WRKDIR}/jython
+include ../../lang/sun-jre6/depend.mk
+include ../../mk/robotpkg.mk
 
 do-extract:
 	${MKDIR} -p ${WRKSRC}
-	cd ${WRKSRC} && ${PREFIX}/bin/jar-sun14 xf ${DISTDIR}/${DISTNAME}.jar
+	cd ${WRKSRC} && ${JAVA_HOME}/bin/jar xf ${DISTDIR}/${DISTNAME}.jar
 
-do-build:
+post-extract:
 	@${SED} 						\
-		-e 's|@PREFIX@|${PREFIX}|g' 			\
+		-e 's|@JAVA_HOME@|${JAVA_HOME}|g' 		\
 		-e 's|@JYTHON_HOME@|${JYTHON_HOME}|g' 		\
 		< ${FILESDIR}/jython > ${WRKSRC}/jython
 	@${SED} 						\

@@ -5,4 +5,4 @@ if [ ! -z $CLASSPATH ]
 then
   CP=$CP:$CLASSPATH
 fi
-"@PREFIX@/bin/java-sun14" -Dpython.home="$JYTHON_HOME" -classpath "$CP" org.python.util.jython "$@"
+"@JAVA_HOME@/bin/java" -Dpython.home="$JYTHON_HOME" -classpath "$CP" org.python.util.jython "$@"

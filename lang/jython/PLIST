@@ -1,4 +1,4 @@
-@comment $NetBSD$
+@comment Mon Oct 6 14:54:02 CEST 2008
 bin/jython
 bin/jythonc
 java/jython/ACKNOWLEDGMENTS
@@ -79,6 +79,7 @@ java/jython/Doc/javadoc/org/python/core/ClassDictInit.html
 java/jython/Doc/javadoc/org/python/core/CompilerFlags.html
 java/jython/Doc/javadoc/org/python/core/ExtraMath.html
 java/jython/Doc/javadoc/org/python/core/FileUtil.html
+java/jython/Doc/javadoc/org/python/core/FilelikeInputStream.html
 java/jython/Doc/javadoc/org/python/core/IdImpl.html
 java/jython/Doc/javadoc/org/python/core/IdImpl1.html
 java/jython/Doc/javadoc/org/python/core/IdImpl2.WeakIdentityMap.html
@@ -88,6 +89,7 @@ java/jython/Doc/javadoc/org/python/core/InternalTables._LazyRep.html
 java/jython/Doc/javadoc/org/python/core/InternalTables.html
 java/jython/Doc/javadoc/org/python/core/InternalTables1.html
 java/jython/Doc/javadoc/org/python/core/InternalTables2.html
+java/jython/Doc/javadoc/org/python/core/JavaImportHelper.html
 java/jython/Doc/javadoc/org/python/core/JavaImporter.html
 java/jython/Doc/javadoc/org/python/core/Loader.html
 java/jython/Doc/javadoc/org/python/core/Options.html
@@ -97,6 +99,7 @@ java/jython/Doc/javadoc/org/python/core/PrecompiledImporter.PrecompiledLoader.ht
 java/jython/Doc/javadoc/org/python/core/PrecompiledImporter.html
 java/jython/Doc/javadoc/org/python/core/Py.html
 java/jython/Doc/javadoc/org/python/core/PyArray.html
+java/jython/Doc/javadoc/org/python/core/PyArrayDerived.html
 java/jython/Doc/javadoc/org/python/core/PyBaseString.html
 java/jython/Doc/javadoc/org/python/core/PyBeanEvent.html
 java/jython/Doc/javadoc/org/python/core/PyBeanEventProperty.html
@@ -104,15 +107,19 @@ java/jython/Doc/javadoc/org/python/core/PyBeanProperty.html
 java/jython/Doc/javadoc/org/python/core/PyBuiltinFunction.DefaultInfo.html
 java/jython/Doc/javadoc/org/python/core/PyBuiltinFunction.Info.html
 java/jython/Doc/javadoc/org/python/core/PyBuiltinFunction.html
-java/jython/Doc/javadoc/org/python/core/PyBuiltinFunctionNarrow.html
 java/jython/Doc/javadoc/org/python/core/PyBuiltinFunctionSet.html
-java/jython/Doc/javadoc/org/python/core/PyBuiltinFunctionWide.html
+java/jython/Doc/javadoc/org/python/core/PyBuiltinMethod.html
+java/jython/Doc/javadoc/org/python/core/PyBuiltinMethodNarrow.html
+java/jython/Doc/javadoc/org/python/core/PyBuiltinMethodSet.html
 java/jython/Doc/javadoc/org/python/core/PyCallIter.html
 java/jython/Doc/javadoc/org/python/core/PyCell.html
 java/jython/Doc/javadoc/org/python/core/PyClass.html
 java/jython/Doc/javadoc/org/python/core/PyClassMethod.html
+java/jython/Doc/javadoc/org/python/core/PyClassMethodDerived.html
+java/jython/Doc/javadoc/org/python/core/PyClassMethodDescr.html
 java/jython/Doc/javadoc/org/python/core/PyCode.html
 java/jython/Doc/javadoc/org/python/core/PyComplex.html
+java/jython/Doc/javadoc/org/python/core/PyComplexDerived.html
 java/jython/Doc/javadoc/org/python/core/PyCompoundCallable.html
 java/jython/Doc/javadoc/org/python/core/PyDescriptor.html
 java/jython/Doc/javadoc/org/python/core/PyDictionary.html
@@ -125,6 +132,7 @@ java/jython/Doc/javadoc/org/python/core/PyFile.html
 java/jython/Doc/javadoc/org/python/core/PyFileDerived.html
 java/jython/Doc/javadoc/org/python/core/PyFinalizableInstance.html
 java/jython/Doc/javadoc/org/python/core/PyFloat.html
+java/jython/Doc/javadoc/org/python/core/PyFloatDerived.html
 java/jython/Doc/javadoc/org/python/core/PyFrame.html
 java/jython/Doc/javadoc/org/python/core/PyFunction.html
 java/jython/Doc/javadoc/org/python/core/PyFunctionTable.html
@@ -133,6 +141,7 @@ java/jython/Doc/javadoc/org/python/core/PyGetSetDescr.html
 java/jython/Doc/javadoc/org/python/core/PyIgnoreMethodTag.html
 java/jython/Doc/javadoc/org/python/core/PyInstance.html
 java/jython/Doc/javadoc/org/python/core/PyInteger.html
+java/jython/Doc/javadoc/org/python/core/PyIntegerDerived.html
 java/jython/Doc/javadoc/org/python/core/PyIterator.html
 java/jython/Doc/javadoc/org/python/core/PyJavaClass.html
 java/jython/Doc/javadoc/org/python/core/PyJavaInnerClass.html
@@ -141,10 +150,12 @@ java/jython/Doc/javadoc/org/python/core/PyJavaPackage.html
 java/jython/Doc/javadoc/org/python/core/PyList.html
 java/jython/Doc/javadoc/org/python/core/PyListDerived.html
 java/jython/Doc/javadoc/org/python/core/PyLong.html
+java/jython/Doc/javadoc/org/python/core/PyLongDerived.html
 java/jython/Doc/javadoc/org/python/core/PyMetaClass.html
 java/jython/Doc/javadoc/org/python/core/PyMethod.html
 java/jython/Doc/javadoc/org/python/core/PyMethodDescr.html
 java/jython/Doc/javadoc/org/python/core/PyModule.html
+java/jython/Doc/javadoc/org/python/core/PyModuleDerived.html
 java/jython/Doc/javadoc/org/python/core/PyNewWrapper.html
 java/jython/Doc/javadoc/org/python/core/PyNone.html
 java/jython/Doc/javadoc/org/python/core/PyNotImplemented.html
@@ -154,6 +165,7 @@ java/jython/Doc/javadoc/org/python/core/PyObjectArray.html
 java/jython/Doc/javadoc/org/python/core/PyObjectDerived.html
 java/jython/Doc/javadoc/org/python/core/PyObjectList.html
 java/jython/Doc/javadoc/org/python/core/PyProperty.html
+java/jython/Doc/javadoc/org/python/core/PyPropertyDerived.html
 java/jython/Doc/javadoc/org/python/core/PyProxy.html
 java/jython/Doc/javadoc/org/python/core/PyReflectedConstructor.html
 java/jython/Doc/javadoc/org/python/core/PyReflectedField.html
@@ -164,19 +176,26 @@ java/jython/Doc/javadoc/org/python/core/PySequenceIter.html
 java/jython/Doc/javadoc/org/python/core/PySequenceList.html
 java/jython/Doc/javadoc/org/python/core/PySingleton.html
 java/jython/Doc/javadoc/org/python/core/PySlice.html
+java/jython/Doc/javadoc/org/python/core/PySlot.html
 java/jython/Doc/javadoc/org/python/core/PyStaticMethod.html
 java/jython/Doc/javadoc/org/python/core/PyString.html
+java/jython/Doc/javadoc/org/python/core/PyStringDerived.html
 java/jython/Doc/javadoc/org/python/core/PyStringMap.html
 java/jython/Doc/javadoc/org/python/core/PySuper.html
+java/jython/Doc/javadoc/org/python/core/PySuperDerived.html
 java/jython/Doc/javadoc/org/python/core/PySyntaxError.html
 java/jython/Doc/javadoc/org/python/core/PySystemState.html
 java/jython/Doc/javadoc/org/python/core/PyTableCode.html
 java/jython/Doc/javadoc/org/python/core/PyTraceback.html
 java/jython/Doc/javadoc/org/python/core/PyTuple.html
+java/jython/Doc/javadoc/org/python/core/PyTupleDerived.html
 java/jython/Doc/javadoc/org/python/core/PyType.Newstyle.html
 java/jython/Doc/javadoc/org/python/core/PyType.html
+java/jython/Doc/javadoc/org/python/core/PyTypeDerived.html
 java/jython/Doc/javadoc/org/python/core/PyUnicode.html
+java/jython/Doc/javadoc/org/python/core/PyUnicodeDerived.html
 java/jython/Doc/javadoc/org/python/core/PyXRange.html
+java/jython/Doc/javadoc/org/python/core/Slotted.html
 java/jython/Doc/javadoc/org/python/core/SoftIInternalTables.html
 java/jython/Doc/javadoc/org/python/core/StderrWrapper.html
 java/jython/Doc/javadoc/org/python/core/StdoutWrapper.html
@@ -199,11 +218,13 @@ java/jython/Doc/javadoc/org/python/core/parser.html
 java/jython/Doc/javadoc/org/python/core/ucnhashAPI.html
 java/jython/Doc/javadoc/org/python/util/InteractiveConsole.html
 java/jython/Doc/javadoc/org/python/util/InteractiveInterpreter.html
+java/jython/Doc/javadoc/org/python/util/JLineConsole.html
 java/jython/Doc/javadoc/org/python/util/JythoncAntTask.html
 java/jython/Doc/javadoc/org/python/util/PyServlet.html
 java/jython/Doc/javadoc/org/python/util/PythonInterpreter.html
 java/jython/Doc/javadoc/org/python/util/PythonObjectInputStream.html
 java/jython/Doc/javadoc/org/python/util/ReadlineConsole.html
+java/jython/Doc/javadoc/org/python/util/TemplateAntTask.html
 java/jython/Doc/javadoc/org/python/util/jython.html
 java/jython/Doc/javadoc/org/python/util/package-frame.html
 java/jython/Doc/javadoc/org/python/util/package-summary.html
@@ -212,7 +233,6 @@ java/jython/Doc/javadoc/overview-frame.html
 java/jython/Doc/javadoc/overview-summary.html
 java/jython/Doc/javadoc/overview-tree.html
 java/jython/Doc/javadoc/package-list
-java/jython/Doc/javadoc/packages.html
 java/jython/Doc/javadoc/resources/inherit.gif
 java/jython/Doc/javadoc/serialized-form.html
 java/jython/Doc/javadoc/stylesheet.css
@@ -225,6 +245,7 @@ java/jython/Doc/usejava.html
 java/jython/Doc/whatis.html
 java/jython/Doc/zxjdbc.html
 java/jython/LICENSE.txt
+java/jython/LICENSE_Apache.txt
 java/jython/LICENSE_CPython.txt
 java/jython/Lib/BaseHTTPServer.py
 java/jython/Lib/CGIHTTPServer.py
@@ -234,6 +255,7 @@ java/jython/Lib/HTMLParser.py
 java/jython/Lib/MimeWriter.py
 java/jython/Lib/Queue.py
 java/jython/Lib/SimpleHTTPServer.py
+java/jython/Lib/SimpleXMLRPCServer.py
 java/jython/Lib/SocketServer.py
 java/jython/Lib/StringIO.py
 java/jython/Lib/UserDict.py
@@ -259,6 +281,7 @@ java/jython/Lib/commands.py
 java/jython/Lib/compileall.py
 java/jython/Lib/copy.py
 java/jython/Lib/copy_reg.py
+java/jython/Lib/datetime.py
 java/jython/Lib/dbexts.py
 java/jython/Lib/difflib.py
 java/jython/Lib/dircache.py
@@ -468,6 +491,7 @@ java/jython/Lib/reconvert.py
 java/jython/Lib/repr.py
 java/jython/Lib/rfc822.py
 java/jython/Lib/sched.py
+java/jython/Lib/select.py
 java/jython/Lib/setsfactory.py
 java/jython/Lib/sgmllib.py
 java/jython/Lib/shelve.py
@@ -565,6 +589,7 @@ java/jython/Lib/test/javatests/ListTest.java
 java/jython/Lib/test/javatests/SubFoo.java
 java/jython/Lib/test/javatests/TestSupport.java
 java/jython/Lib/test/javatests/__init__.py
+java/jython/Lib/test/jser2_classes.py
 java/jython/Lib/test/output/test_MimeWriter
 java/jython/Lib/test/output/test_array
 java/jython/Lib/test/output/test_asynchat
@@ -618,10 +643,8 @@ java/jython/Lib/test/output/test_regex
 java/jython/Lib/test/output/test_rgbimg
 java/jython/Lib/test/output/test_richcmp
 java/jython/Lib/test/output/test_rotor
-java/jython/Lib/test/output/test_sax
 java/jython/Lib/test/output/test_scope
 java/jython/Lib/test/output/test_signal
-java/jython/Lib/test/output/test_socket
 java/jython/Lib/test/output/test_string
 java/jython/Lib/test/output/test_thread
 java/jython/Lib/test/output/test_threadedtempfile
@@ -637,7 +660,6 @@ java/jython/Lib/test/output/test_urlparse
 java/jython/Lib/test/output/test_winreg
 java/jython/Lib/test/output/test_winsound
 java/jython/Lib/test/output/test_xreadline
-java/jython/Lib/test/output/test_zlib
 java/jython/Lib/test/pickletester.py
 java/jython/Lib/test/pydocfodder.py
 java/jython/Lib/test/pystone.py
@@ -650,6 +672,7 @@ java/jython/Lib/test/string_tests.py
 java/jython/Lib/test/test.xml
 java/jython/Lib/test/test.xml.out
 java/jython/Lib/test/test_MimeWriter.py
+java/jython/Lib/test/test_SimpleXMLRPCServer.py
 java/jython/Lib/test/test_StringIO.py
 java/jython/Lib/test/test___all__.py
 java/jython/Lib/test/test___future__.py
@@ -694,6 +717,7 @@ java/jython/Lib/test/test_copy_reg.py
 java/jython/Lib/test/test_cpickle.py
 java/jython/Lib/test/test_crypt.py
 java/jython/Lib/test/test_curses.py
+java/jython/Lib/test/test_datetime.py
 java/jython/Lib/test/test_dbm.py
 java/jython/Lib/test/test_descr.py
 java/jython/Lib/test/test_descrtut.py
@@ -754,14 +778,17 @@ java/jython/Lib/test/test_jbasic.py
 java/jython/Lib/test/test_joverload.py
 java/jython/Lib/test/test_jreload.py
 java/jython/Lib/test/test_jser.py
+java/jython/Lib/test/test_jser2.py
 java/jython/Lib/test/test_jsubclass.py
 java/jython/Lib/test/test_jy_compile.py
+java/jython/Lib/test/test_jy_generators.py
 java/jython/Lib/test/test_jy_internals.py
 java/jython/Lib/test/test_largefile.py
 java/jython/Lib/test/test_linuxaudiodev.py
 java/jython/Lib/test/test_locale.py
 java/jython/Lib/test/test_long.py
 java/jython/Lib/test/test_long_future.py
+java/jython/Lib/test/test_long_int_args.py
 java/jython/Lib/test/test_longexp.py
 java/jython/Lib/test/test_mailbox.py
 java/jython/Lib/test/test_marshal.py
@@ -773,6 +800,7 @@ java/jython/Lib/test/test_mimetools.py
 java/jython/Lib/test/test_mimetypes.py
 java/jython/Lib/test/test_minidom.py
 java/jython/Lib/test/test_mmap.py
+java/jython/Lib/test/test_module.py
 java/jython/Lib/test/test_multifile.py
 java/jython/Lib/test/test_mutants.py
 java/jython/Lib/test/test_netrc.py
@@ -813,6 +841,7 @@ java/jython/Lib/test/test_rotor.py
 java/jython/Lib/test/test_sax.py
 java/jython/Lib/test/test_scope.py
 java/jython/Lib/test/test_select.py
+java/jython/Lib/test/test_select_new.py
 java/jython/Lib/test/test_sets.py
 java/jython/Lib/test/test_sgmllib.py
 java/jython/Lib/test/test_sha.py
@@ -821,11 +850,13 @@ java/jython/Lib/test/test_socket.py
 java/jython/Lib/test/test_socket_ssl.py
 java/jython/Lib/test/test_socketserver.py
 java/jython/Lib/test/test_sre.py
+java/jython/Lib/test/test_str2unicode.py
 java/jython/Lib/test/test_strftime.py
 java/jython/Lib/test/test_string.py
 java/jython/Lib/test/test_strop.py
 java/jython/Lib/test/test_struct.py
 java/jython/Lib/test/test_structseq.py
+java/jython/Lib/test/test_subclasses.py
 java/jython/Lib/test/test_sunaudiodev.py
 java/jython/Lib/test/test_sundry.py
 java/jython/Lib/test/test_support.py
@@ -877,6 +908,7 @@ java/jython/Lib/test/zxjdbc/sptest.py
 java/jython/Lib/test/zxjdbc/test.xml
 java/jython/Lib/test/zxjdbc/test_zxjdbc_dbapi20.py
 java/jython/Lib/test/zxjdbc/zxtest.py
+java/jython/Lib/this.py
 java/jython/Lib/threading.py
 java/jython/Lib/token.py
 java/jython/Lib/tokenize.py
@@ -893,6 +925,25 @@ java/jython/Lib/weakref.py
 java/jython/Lib/whichdb.py
 java/jython/Lib/whrandom.py
 java/jython/Lib/xdrlib.py
+java/jython/Lib/xml/FtCore.py
+java/jython/Lib/xml/Uri.py
+java/jython/Lib/xml/__init__.py
+java/jython/Lib/xml/dom/MessageSource.py
+java/jython/Lib/xml/dom/NodeFilter.py
+java/jython/Lib/xml/dom/__init__.py
+java/jython/Lib/xml/dom/domreg.py
+java/jython/Lib/xml/dom/minicompat.py
+java/jython/Lib/xml/dom/minidom.py
+java/jython/Lib/xml/dom/pulldom.py
+java/jython/Lib/xml/dom/xmlbuilder.py
+java/jython/Lib/xml/sax/__init__.py
+java/jython/Lib/xml/sax/_exceptions.py
+java/jython/Lib/xml/sax/drivers2/__init__.py
+java/jython/Lib/xml/sax/drivers2/drv_javasax.py
+java/jython/Lib/xml/sax/handler.py
+java/jython/Lib/xml/sax/saxlib.py
+java/jython/Lib/xml/sax/saxutils.py
+java/jython/Lib/xml/sax/xmlreader.py
 java/jython/Lib/xmllib.py
 java/jython/Lib/xmlrpclib.py
 java/jython/Lib/zipfile.py
@@ -927,9 +978,27 @@ java/jython/Tools/jythonc/yapm.py
 java/jython/Tools/mkjava.py
 java/jython/build.Lib.include.properties
 java/jython/build.xml
-java/jython/jython
 java/jython/jython.jar
-java/jython/jythonc
+java/jython/org/apache/commons/cli/AlreadySelectedException.class
+java/jython/org/apache/commons/cli/BasicParser.class
+java/jython/org/apache/commons/cli/CommandLine.class
+java/jython/org/apache/commons/cli/CommandLineParser.class
+java/jython/org/apache/commons/cli/GnuParser.class
+java/jython/org/apache/commons/cli/HelpFormatter$1.class
+java/jython/org/apache/commons/cli/HelpFormatter$StringBufferComparator.class
+java/jython/org/apache/commons/cli/HelpFormatter.class
+java/jython/org/apache/commons/cli/MissingArgumentException.class
+java/jython/org/apache/commons/cli/MissingOptionException.class
+java/jython/org/apache/commons/cli/Option.class
+java/jython/org/apache/commons/cli/OptionBuilder.class
+java/jython/org/apache/commons/cli/OptionGroup.class
+java/jython/org/apache/commons/cli/Options.class
+java/jython/org/apache/commons/cli/ParseException.class
+java/jython/org/apache/commons/cli/Parser.class
+java/jython/org/apache/commons/cli/PatternOptionBuilder.class
+java/jython/org/apache/commons/cli/PosixParser.class
+java/jython/org/apache/commons/cli/TypeHandler.class
+java/jython/org/apache/commons/cli/UnrecognizedOptionException.class
 java/jython/org/python/util/install/AbstractWizard$1.class
 java/jython/org/python/util/install/AbstractWizard$2.class
 java/jython/org/python/util/install/AbstractWizard$3.class
@@ -940,6 +1009,12 @@ java/jython/org/python/util/install/AbstractWizardPage.class
 java/jython/org/python/util/install/AbstractWizardValidator$1.class
 java/jython/org/python/util/install/AbstractWizardValidator$ValidatorThread.class
 java/jython/org/python/util/install/AbstractWizardValidator.class
+java/jython/org/python/util/install/ChildProcess$1.class
+java/jython/org/python/util/install/ChildProcess$StderrMonitor.class
+java/jython/org/python/util/install/ChildProcess$StdoutMonitor.class
+java/jython/org/python/util/install/ChildProcess.class
+java/jython/org/python/util/install/ConsoleInstaller$1.class
+java/jython/org/python/util/install/ConsoleInstaller$JavaInfo.class
 java/jython/org/python/util/install/ConsoleInstaller.class
 java/jython/org/python/util/install/DirectoryFilter.class
 java/jython/org/python/util/install/DirectorySelectionPage$1.class
@@ -951,11 +1026,23 @@ java/jython/org/python/util/install/EmptyValidator.class
 java/jython/org/python/util/install/FrameInstaller$1.class
 java/jython/org/python/util/install/FrameInstaller$SimpleWizardListener.class
 java/jython/org/python/util/install/FrameInstaller.class
+java/jython/org/python/util/install/Installation$JavaFilenameFilter.class
+java/jython/org/python/util/install/Installation$JavaVersionInfo.class
 java/jython/org/python/util/install/Installation.class
 java/jython/org/python/util/install/InstallationCancelledException.class
+java/jython/org/python/util/install/InstallationListener.class
+java/jython/org/python/util/install/InstallationType.class
+java/jython/org/python/util/install/InstallerCommandLine.class
 java/jython/org/python/util/install/InstallerException.class
 java/jython/org/python/util/install/JarInfo.class
 java/jython/org/python/util/install/JarInstaller.class
+java/jython/org/python/util/install/JavaSelectionPage$1.class
+java/jython/org/python/util/install/JavaSelectionPage$BrowseButtonListener.class
+java/jython/org/python/util/install/JavaSelectionPage$JavaFocusListener.class
+java/jython/org/python/util/install/JavaSelectionPage$RadioButtonListener.class
+java/jython/org/python/util/install/JavaSelectionPage.class
+java/jython/org/python/util/install/JavaSelectionPageValidator.class
+java/jython/org/python/util/install/JavaVersionTester.class
 java/jython/org/python/util/install/LanguagePage$1.class
 java/jython/org/python/util/install/LanguagePage$LanguageBoxListener.class
 java/jython/org/python/util/install/LanguagePage.class
@@ -967,6 +1054,7 @@ java/jython/org/python/util/install/OverviewPage.class
 java/jython/org/python/util/install/ProgressListener.class
 java/jython/org/python/util/install/ProgressPage.class
 java/jython/org/python/util/install/ReadmePage.class
+java/jython/org/python/util/install/StandalonePackager.class
 java/jython/org/python/util/install/StartScriptGenerator.class
 java/jython/org/python/util/install/SuccessPage.class
 java/jython/org/python/util/install/TextConstants.class
@@ -974,17 +1062,30 @@ java/jython/org/python/util/install/TextConstants_de.class
 java/jython/org/python/util/install/TextConstants_en.class
 java/jython/org/python/util/install/TextKeys.class
 java/jython/org/python/util/install/TypePage$1.class
-java/jython/org/python/util/install/TypePage$RadioButtonListener.class
+java/jython/org/python/util/install/TypePage$TypeChangeListener.class
 java/jython/org/python/util/install/TypePage.class
+java/jython/org/python/util/install/UnicodeSequences.class
 java/jython/org/python/util/install/ValidationEvent.class
 java/jython/org/python/util/install/ValidationException.class
 java/jython/org/python/util/install/ValidationInformationException.class
 java/jython/org/python/util/install/ValidationListener.class
-java/jython/org/python/util/install/VersionPage.class
 java/jython/org/python/util/install/Wizard.class
 java/jython/org/python/util/install/WizardEvent.class
 java/jython/org/python/util/install/WizardHeader.class
 java/jython/org/python/util/install/WizardListener.class
+java/jython/org/python/util/install/driver/Autotest.class
+java/jython/org/python/util/install/driver/ConsoleAutotest.class
+java/jython/org/python/util/install/driver/ConsoleDriver.class
+java/jython/org/python/util/install/driver/DriverException.class
+java/jython/org/python/util/install/driver/FileHelper.class
+java/jython/org/python/util/install/driver/GuiAutotest$KeyAction.class
+java/jython/org/python/util/install/driver/GuiAutotest.class
+java/jython/org/python/util/install/driver/InstallationDriver.class
+java/jython/org/python/util/install/driver/NormalVerifier.class
+java/jython/org/python/util/install/driver/SilentAutotest.class
+java/jython/org/python/util/install/driver/StandaloneVerifier.class
+java/jython/org/python/util/install/driver/Tunnel.class
+java/jython/org/python/util/install/driver/Verifier.class
 java/jython/org/python/util/install/jython_small_c.png
 java/jython/registry
 java/jython/src/java/Lib/jxxload_help/DiscardHelp.java
@@ -998,394 +1099,408 @@ java/jython/src/java/Lib/test/javatests/JOverload.java
 java/jython/src/java/Lib/test/javatests/ListTest.java
 java/jython/src/java/Lib/test/javatests/SubFoo.java
 java/jython/src/java/Lib/test/javatests/TestSupport.java
-java/jython/src/java/com/ziclix/python/sql/DBApiType.java
-java/jython/src/java/com/ziclix/python/sql/DataHandler.java
-java/jython/src/java/com/ziclix/python/sql/DateFactory.java
-java/jython/src/java/com/ziclix/python/sql/Fetch.java
-java/jython/src/java/com/ziclix/python/sql/FilterDataHandler.java
-java/jython/src/java/com/ziclix/python/sql/JDBC20DataHandler.java
-java/jython/src/java/com/ziclix/python/sql/JDBC30DataHandler.java
-java/jython/src/java/com/ziclix/python/sql/JavaDateFactory.java
-java/jython/src/java/com/ziclix/python/sql/Procedure.java
-java/jython/src/java/com/ziclix/python/sql/PyConnection.java
-java/jython/src/java/com/ziclix/python/sql/PyCursor.java
-java/jython/src/java/com/ziclix/python/sql/PyExtendedCursor.java
-java/jython/src/java/com/ziclix/python/sql/PyStatement.java
-java/jython/src/java/com/ziclix/python/sql/WarningEvent.java
-java/jython/src/java/com/ziclix/python/sql/WarningListener.java
-java/jython/src/java/com/ziclix/python/sql/connect/Connect.java
-java/jython/src/java/com/ziclix/python/sql/connect/Connectx.java
-java/jython/src/java/com/ziclix/python/sql/connect/Lookup.java
-java/jython/src/java/com/ziclix/python/sql/handler/InformixDataHandler.java
-java/jython/src/java/com/ziclix/python/sql/handler/MySQLDataHandler.java
-java/jython/src/java/com/ziclix/python/sql/handler/OracleDataHandler.java
-java/jython/src/java/com/ziclix/python/sql/handler/PostgresqlDataHandler.java
-java/jython/src/java/com/ziclix/python/sql/handler/RowIdHandler.java
-java/jython/src/java/com/ziclix/python/sql/handler/SQLServerDataHandler.java
-java/jython/src/java/com/ziclix/python/sql/handler/UpdateCountDataHandler.java
-java/jython/src/java/com/ziclix/python/sql/pipe/Pipe.java
-java/jython/src/java/com/ziclix/python/sql/pipe/Sink.java
-java/jython/src/java/com/ziclix/python/sql/pipe/Source.java
-java/jython/src/java/com/ziclix/python/sql/pipe/csv/CSVSink.java
-java/jython/src/java/com/ziclix/python/sql/pipe/csv/CSVString.java
-java/jython/src/java/com/ziclix/python/sql/pipe/db/BaseDB.java
-java/jython/src/java/com/ziclix/python/sql/pipe/db/DBSink.java
-java/jython/src/java/com/ziclix/python/sql/pipe/db/DBSource.java
-java/jython/src/java/com/ziclix/python/sql/procedure/SQLServerProcedure.java
-java/jython/src/java/com/ziclix/python/sql/resource/zxJDBCMessages.properties
-java/jython/src/java/com/ziclix/python/sql/util/BCP.java
-java/jython/src/java/com/ziclix/python/sql/util/PyArgParser.java
-java/jython/src/java/com/ziclix/python/sql/util/Queue.java
-java/jython/src/java/com/ziclix/python/sql/util/QueueClosedException.java
-java/jython/src/java/com/ziclix/python/sql/zxJDBC.java
-java/jython/src/java/org/apache/oro/text/regex/CharStringPointer.java
-java/jython/src/java/org/apache/oro/text/regex/MalformedPatternException.java
-java/jython/src/java/org/apache/oro/text/regex/MatchResult.java
-java/jython/src/java/org/apache/oro/text/regex/OpCode.java
-java/jython/src/java/org/apache/oro/text/regex/Pattern.java
-java/jython/src/java/org/apache/oro/text/regex/PatternCompiler.java
-java/jython/src/java/org/apache/oro/text/regex/PatternMatcher.java
-java/jython/src/java/org/apache/oro/text/regex/PatternMatcherInput.java
-java/jython/src/java/org/apache/oro/text/regex/Perl5Compiler.java
-java/jython/src/java/org/apache/oro/text/regex/Perl5Debug.java
-java/jython/src/java/org/apache/oro/text/regex/Perl5MatchResult.java
-java/jython/src/java/org/apache/oro/text/regex/Perl5Matcher.java
-java/jython/src/java/org/apache/oro/text/regex/Perl5Pattern.java
-java/jython/src/java/org/apache/oro/text/regex/Perl5Repetition.java
-java/jython/src/java/org/apache/oro/text/regex/Perl5Substitution.java
-java/jython/src/java/org/apache/oro/text/regex/StringSubstitution.java
-java/jython/src/java/org/apache/oro/text/regex/Substitution.java
-java/jython/src/java/org/apache/oro/text/regex/Util.java
-java/jython/src/java/org/python/compiler/APIVersion.java
-java/jython/src/java/org/python/compiler/AdapterMaker.java
-java/jython/src/java/org/python/compiler/ArgListCompiler.java
-java/jython/src/java/org/python/compiler/Attribute.java
-java/jython/src/java/org/python/compiler/ClassConstants.java
-java/jython/src/java/org/python/compiler/ClassFile.java
-java/jython/src/java/org/python/compiler/Code.java
-java/jython/src/java/org/python/compiler/CodeCompiler.java
-java/jython/src/java/org/python/compiler/CompilationContext.java
-java/jython/src/java/org/python/compiler/Constant.java
-java/jython/src/java/org/python/compiler/ConstantPool.java
-java/jython/src/java/org/python/compiler/Future.java
-java/jython/src/java/org/python/compiler/JavaMaker.java
-java/jython/src/java/org/python/compiler/Label.java
-java/jython/src/java/org/python/compiler/LineNumberTable.java
-java/jython/src/java/org/python/compiler/Module.java
-java/jython/src/java/org/python/compiler/ProxyMaker.java
-java/jython/src/java/org/python/compiler/ScopeConstants.java
-java/jython/src/java/org/python/compiler/ScopeInfo.java
-java/jython/src/java/org/python/compiler/ScopesCompiler.java
-java/jython/src/java/org/python/compiler/SourceFile.java
-java/jython/src/java/org/python/compiler/SymInfo.java
-java/jython/src/java/org/python/core/AbstractArray.java
-java/jython/src/java/org/python/core/ArgParser.java
-java/jython/src/java/org/python/core/AutoInternalTables.java
-java/jython/src/java/org/python/core/ByteSwapper.java
-java/jython/src/java/org/python/core/BytecodeLoader.java
-java/jython/src/java/org/python/core/BytecodeLoader1.java
-java/jython/src/java/org/python/core/BytecodeLoader2.java
-java/jython/src/java/org/python/core/CachedJarsPackageManager.java
-java/jython/src/java/org/python/core/ClassDictInit.java
-java/jython/src/java/org/python/core/CollectionIter.java
-java/jython/src/java/org/python/core/CollectionIter2.java
-java/jython/src/java/org/python/core/CollectionProxy.java
-java/jython/src/java/org/python/core/CollectionProxy2.java
-java/jython/src/java/org/python/core/CompilerFlags.java
-java/jython/src/java/org/python/core/ExtraMath.java
-java/jython/src/java/org/python/core/FileUtil.java
-java/jython/src/java/org/python/core/IdImpl.java
-java/jython/src/java/org/python/core/IdImpl1.java
-java/jython/src/java/org/python/core/IdImpl2.java
-java/jython/src/java/org/python/core/InitModule.java
-java/jython/src/java/org/python/core/InternalTables.java
-java/jython/src/java/org/python/core/InternalTables1.java
-java/jython/src/java/org/python/core/InternalTables2.java
-java/jython/src/java/org/python/core/Java2Accessibility.java
-java/jython/src/java/org/python/core/JavaAccessibility.java
-java/jython/src/java/org/python/core/JavaImporter.java
-java/jython/src/java/org/python/core/Loader.java
-java/jython/src/java/org/python/core/MakeProxies.java
-java/jython/src/java/org/python/core/MergeState.java
-java/jython/src/java/org/python/core/Options.java
-java/jython/src/java/org/python/core/PackageManager.java
-java/jython/src/java/org/python/core/PathPackageManager.java
-java/jython/src/java/org/python/core/PrecompiledImporter.java
-java/jython/src/java/org/python/core/Py.java
-java/jython/src/java/org/python/core/PyArray.java
-java/jython/src/java/org/python/core/PyBaseString.java
-java/jython/src/java/org/python/core/PyBeanEvent.java
-java/jython/src/java/org/python/core/PyBeanEventProperty.java
-java/jython/src/java/org/python/core/PyBeanProperty.java
-java/jython/src/java/org/python/core/PyBuiltinFunction.java
-java/jython/src/java/org/python/core/PyBuiltinFunctionNarrow.java
-java/jython/src/java/org/python/core/PyBuiltinFunctionSet.java
-java/jython/src/java/org/python/core/PyBuiltinFunctionWide.java
-java/jython/src/java/org/python/core/PyCallIter.java
-java/jython/src/java/org/python/core/PyCell.java
-java/jython/src/java/org/python/core/PyClass.java
-java/jython/src/java/org/python/core/PyClassMethod.java
-java/jython/src/java/org/python/core/PyCode.java
-java/jython/src/java/org/python/core/PyComplex.java
-java/jython/src/java/org/python/core/PyCompoundCallable.java
-java/jython/src/java/org/python/core/PyDescriptor.java
-java/jython/src/java/org/python/core/PyDictionary.java
-java/jython/src/java/org/python/core/PyDictionaryDerived.java
-java/jython/src/java/org/python/core/PyEllipsis.java
-java/jython/src/java/org/python/core/PyEnumerate.java
-java/jython/src/java/org/python/core/PyException.java
-java/jython/src/java/org/python/core/PyFieldDescr.java
-java/jython/src/java/org/python/core/PyFile.java
-java/jython/src/java/org/python/core/PyFileDerived.java
-java/jython/src/java/org/python/core/PyFinalizableInstance.java
-java/jython/src/java/org/python/core/PyFloat.java
-java/jython/src/java/org/python/core/PyFrame.java
-java/jython/src/java/org/python/core/PyFunction.java
-java/jython/src/java/org/python/core/PyFunctionTable.java
-java/jython/src/java/org/python/core/PyGenerator.java
-java/jython/src/java/org/python/core/PyGetSetDescr.java
-java/jython/src/java/org/python/core/PyIgnoreMethodTag.java
-java/jython/src/java/org/python/core/PyInstance.java
-java/jython/src/java/org/python/core/PyInteger.java
-java/jython/src/java/org/python/core/PyIterator.java
-java/jython/src/java/org/python/core/PyJavaClass.java
-java/jython/src/java/org/python/core/PyJavaInnerClass.java
-java/jython/src/java/org/python/core/PyJavaInstance.java
-java/jython/src/java/org/python/core/PyJavaPackage.java
-java/jython/src/java/org/python/core/PyList.java
-java/jython/src/java/org/python/core/PyListDerived.java
-java/jython/src/java/org/python/core/PyLong.java
-java/jython/src/java/org/python/core/PyMetaClass.java
-java/jython/src/java/org/python/core/PyMethod.java
-java/jython/src/java/org/python/core/PyMethodDescr.java
-java/jython/src/java/org/python/core/PyModule.java
-java/jython/src/java/org/python/core/PyNewWrapper.java
-java/jython/src/java/org/python/core/PyNone.java
-java/jython/src/java/org/python/core/PyNotImplemented.java
-java/jython/src/java/org/python/core/PyObject.java
-java/jython/src/java/org/python/core/PyObjectArray.java
-java/jython/src/java/org/python/core/PyObjectDerived.java
-java/jython/src/java/org/python/core/PyObjectList.java
-java/jython/src/java/org/python/core/PyProperty.java
-java/jython/src/java/org/python/core/PyProxy.java
-java/jython/src/java/org/python/core/PyReflectedConstructor.java
-java/jython/src/java/org/python/core/PyReflectedField.java
-java/jython/src/java/org/python/core/PyReflectedFunction.java
-java/jython/src/java/org/python/core/PyRunnable.java
-java/jython/src/java/org/python/core/PySequence.java
-java/jython/src/java/org/python/core/PySequenceIter.java
-java/jython/src/java/org/python/core/PySequenceList.java
-java/jython/src/java/org/python/core/PySingleton.java
-java/jython/src/java/org/python/core/PySlice.java
-java/jython/src/java/org/python/core/PyStaticMethod.java
-java/jython/src/java/org/python/core/PyString.java
-java/jython/src/java/org/python/core/PyStringMap.java
-java/jython/src/java/org/python/core/PySuper.java
-java/jython/src/java/org/python/core/PySyntaxError.java
-java/jython/src/java/org/python/core/PySystemState.java
-java/jython/src/java/org/python/core/PyTableCode.java
-java/jython/src/java/org/python/core/PyTraceback.java
-java/jython/src/java/org/python/core/PyTuple.java
-java/jython/src/java/org/python/core/PyType.java
-java/jython/src/java/org/python/core/PyUnicode.java
-java/jython/src/java/org/python/core/PyXRange.java
-java/jython/src/java/org/python/core/PythonTraceFunction.java
-java/jython/src/java/org/python/core/ReflectedArgs.java
-java/jython/src/java/org/python/core/ReflectedCallData.java
-java/jython/src/java/org/python/core/SoftIInternalTables.java
-java/jython/src/java/org/python/core/StderrWrapper.java
-java/jython/src/java/org/python/core/StdoutWrapper.java
-java/jython/src/java/org/python/core/SysPackageManager.java
-java/jython/src/java/org/python/core/SyspathArchive.java
-java/jython/src/java/org/python/core/SyspathJavaLoader.java
-java/jython/src/java/org/python/core/ThreadState.java
-java/jython/src/java/org/python/core/ThreadStateMapping.java
-java/jython/src/java/org/python/core/ThreadStateMapping2.java
-java/jython/src/java/org/python/core/TraceFunction.java
-java/jython/src/java/org/python/core/WeakInternalTables.java
-java/jython/src/java/org/python/core/ZipFileImporter.java
-java/jython/src/java/org/python/core/__builtin__.java
-java/jython/src/java/org/python/core/codecs.java
-java/jython/src/java/org/python/core/exceptions.java
-java/jython/src/java/org/python/core/imp.java
-java/jython/src/java/org/python/core/parser.java
-java/jython/src/java/org/python/core/ucnhashAPI.java
-java/jython/src/java/org/python/modules/ArrayModule.java
-java/jython/src/java/org/python/modules/MD5Module.java
-java/jython/src/java/org/python/modules/MD5Object.java
-java/jython/src/java/org/python/modules/MatchObject.java
-java/jython/src/java/org/python/modules/PyLock.java
-java/jython/src/java/org/python/modules/RegexObject.java
-java/jython/src/java/org/python/modules/SHA1.java
-java/jython/src/java/org/python/modules/Setup.java
-java/jython/src/java/org/python/modules/_codecs.java
-java/jython/src/java/org/python/modules/_jython.java
-java/jython/src/java/org/python/modules/_sre.java
-java/jython/src/java/org/python/modules/_weakref.java
-java/jython/src/java/org/python/modules/binascii.java
-java/jython/src/java/org/python/modules/cPickle.java
-java/jython/src/java/org/python/modules/cStringIO.java
-java/jython/src/java/org/python/modules/errno.java
-java/jython/src/java/org/python/modules/imp.java
-java/jython/src/java/org/python/modules/jarray.java
-java/jython/src/java/org/python/modules/math.java
-java/jython/src/java/org/python/modules/md.java
-java/jython/src/java/org/python/modules/newmodule.java
-java/jython/src/java/org/python/modules/operator.java
-java/jython/src/java/org/python/modules/os.java
-java/jython/src/java/org/python/modules/py_compile.java
-java/jython/src/java/org/python/modules/re.java
-java/jython/src/java/org/python/modules/sets/BaseSet.java
-java/jython/src/java/org/python/modules/sets/PyImmutableSet.java
-java/jython/src/java/org/python/modules/sets/PySet.java
-java/jython/src/java/org/python/modules/sets/PySetDerived.java
-java/jython/src/java/org/python/modules/sets/PySetIterator.java
-java/jython/src/java/org/python/modules/sets/Sets.java
-java/jython/src/java/org/python/modules/sha.java
-java/jython/src/java/org/python/modules/sre/MatchObject.java
-java/jython/src/java/org/python/modules/sre/PatternObject.java
-java/jython/src/java/org/python/modules/sre/SRE_REPEAT.java
-java/jython/src/java/org/python/modules/sre/SRE_STATE.java
-java/jython/src/java/org/python/modules/sre/ScannerObject.java
-java/jython/src/java/org/python/modules/struct.java
-java/jython/src/java/org/python/modules/synchronize.java
-java/jython/src/java/org/python/modules/thread.java
-java/jython/src/java/org/python/modules/time.java
-java/jython/src/java/org/python/modules/types.java
-java/jython/src/java/org/python/modules/ucnhash.dat
-java/jython/src/java/org/python/modules/ucnhash.java
-java/jython/src/java/org/python/modules/xreadlines.java
-java/jython/src/java/org/python/parser/CharStream.java
-java/jython/src/java/org/python/parser/IParserHost.java
-java/jython/src/java/org/python/parser/JJTPythonGrammarState.java
-java/jython/src/java/org/python/parser/Node.java
-java/jython/src/java/org/python/parser/ParseError.java
-java/jython/src/java/org/python/parser/ParseException.java
-java/jython/src/java/org/python/parser/PythonGrammar.java
-java/jython/src/java/org/python/parser/PythonGrammarConstants.java
-java/jython/src/java/org/python/parser/PythonGrammarTokenManager.java
-java/jython/src/java/org/python/parser/PythonGrammarTreeConstants.java
-java/jython/src/java/org/python/parser/ReaderCharStream.java
-java/jython/src/java/org/python/parser/SimpleNode.java
-java/jython/src/java/org/python/parser/Token.java
-java/jython/src/java/org/python/parser/TokenMgrError.java
-java/jython/src/java/org/python/parser/TreeBuilder.java
-java/jython/src/java/org/python/parser/Visitor.java
-java/jython/src/java/org/python/parser/ast/Assert.java
-java/jython/src/java/org/python/parser/ast/Assign.java
-java/jython/src/java/org/python/parser/ast/Attribute.java
-java/jython/src/java/org/python/parser/ast/AugAssign.java
-java/jython/src/java/org/python/parser/ast/BinOp.java
-java/jython/src/java/org/python/parser/ast/BoolOp.java
-java/jython/src/java/org/python/parser/ast/Break.java
-java/jython/src/java/org/python/parser/ast/Call.java
-java/jython/src/java/org/python/parser/ast/ClassDef.java
-java/jython/src/java/org/python/parser/ast/Compare.java
-java/jython/src/java/org/python/parser/ast/Continue.java
-java/jython/src/java/org/python/parser/ast/Delete.java
-java/jython/src/java/org/python/parser/ast/Dict.java
-java/jython/src/java/org/python/parser/ast/Ellipsis.java
-java/jython/src/java/org/python/parser/ast/Exec.java
-java/jython/src/java/org/python/parser/ast/Expr.java
-java/jython/src/java/org/python/parser/ast/Expression.java
-java/jython/src/java/org/python/parser/ast/ExtSlice.java
-java/jython/src/java/org/python/parser/ast/For.java
-java/jython/src/java/org/python/parser/ast/FunctionDef.java
-java/jython/src/java/org/python/parser/ast/Global.java
-java/jython/src/java/org/python/parser/ast/If.java
-java/jython/src/java/org/python/parser/ast/Import.java
-java/jython/src/java/org/python/parser/ast/ImportFrom.java
-java/jython/src/java/org/python/parser/ast/Index.java
-java/jython/src/java/org/python/parser/ast/Interactive.java
-java/jython/src/java/org/python/parser/ast/Lambda.java
-java/jython/src/java/org/python/parser/ast/List.java
-java/jython/src/java/org/python/parser/ast/ListComp.java
-java/jython/src/java/org/python/parser/ast/Module.java
-java/jython/src/java/org/python/parser/ast/Name.java
-java/jython/src/java/org/python/parser/ast/Num.java
-java/jython/src/java/org/python/parser/ast/Pass.java
-java/jython/src/java/org/python/parser/ast/Print.java
-java/jython/src/java/org/python/parser/ast/Raise.java
-java/jython/src/java/org/python/parser/ast/Repr.java
-java/jython/src/java/org/python/parser/ast/Return.java
-java/jython/src/java/org/python/parser/ast/Slice.java
-java/jython/src/java/org/python/parser/ast/Str.java
-java/jython/src/java/org/python/parser/ast/Subscript.java
-java/jython/src/java/org/python/parser/ast/Suite.java
-java/jython/src/java/org/python/parser/ast/TryExcept.java
-java/jython/src/java/org/python/parser/ast/TryFinally.java
-java/jython/src/java/org/python/parser/ast/Tuple.java
-java/jython/src/java/org/python/parser/ast/UnaryOp.java
-java/jython/src/java/org/python/parser/ast/VisitorBase.java
-java/jython/src/java/org/python/parser/ast/VisitorIF.java
-java/jython/src/java/org/python/parser/ast/While.java
-java/jython/src/java/org/python/parser/ast/Yield.java
-java/jython/src/java/org/python/parser/ast/aliasType.java
-java/jython/src/java/org/python/parser/ast/argumentsType.java
-java/jython/src/java/org/python/parser/ast/boolopType.java
-java/jython/src/java/org/python/parser/ast/cmpopType.java
-java/jython/src/java/org/python/parser/ast/excepthandlerType.java
-java/jython/src/java/org/python/parser/ast/exprType.java
-java/jython/src/java/org/python/parser/ast/expr_contextType.java
-java/jython/src/java/org/python/parser/ast/keywordType.java
-java/jython/src/java/org/python/parser/ast/listcompType.java
-java/jython/src/java/org/python/parser/ast/modType.java
-java/jython/src/java/org/python/parser/ast/operatorType.java
-java/jython/src/java/org/python/parser/ast/sliceType.java
-java/jython/src/java/org/python/parser/ast/stmtType.java
-java/jython/src/java/org/python/parser/ast/unaryopType.java
-java/jython/src/java/org/python/parser/build.xml
-java/jython/src/java/org/python/rmi/UnicastRemoteObject.java
-java/jython/src/java/org/python/util/InteractiveConsole.java
-java/jython/src/java/org/python/util/InteractiveInterpreter.java
-java/jython/src/java/org/python/util/JythoncAntTask.java
-java/jython/src/java/org/python/util/PyServlet.java
-java/jython/src/java/org/python/util/PythonInterpreter.java
-java/jython/src/java/org/python/util/PythonObjectInputStream.java
-java/jython/src/java/org/python/util/ReadlineConsole.java
-java/jython/src/java/org/python/util/jython.java
-@dirrm java/jython/src/java/org/python/util
-@dirrm java/jython/src/java/org/python/rmi
-@dirrm java/jython/src/java/org/python/parser/ast
-@dirrm java/jython/src/java/org/python/parser
-@dirrm java/jython/src/java/org/python/modules/sre
-@dirrm java/jython/src/java/org/python/modules/sets
-@dirrm java/jython/src/java/org/python/modules
-@dirrm java/jython/src/java/org/python/core
-@dirrm java/jython/src/java/org/python/compiler
-@dirrm java/jython/src/java/org/python
-@dirrm java/jython/src/java/org/apache/oro/text/regex
-@dirrm java/jython/src/java/org/apache/oro/text
-@dirrm java/jython/src/java/org/apache/oro
-@dirrm java/jython/src/java/org/apache
-@dirrm java/jython/src/java/org
-@dirrm java/jython/src/java/com/ziclix/python/sql/util
-@dirrm java/jython/src/java/com/ziclix/python/sql/resource
-@dirrm java/jython/src/java/com/ziclix/python/sql/procedure
-@dirrm java/jython/src/java/com/ziclix/python/sql/pipe/db
-@dirrm java/jython/src/java/com/ziclix/python/sql/pipe/csv
-@dirrm java/jython/src/java/com/ziclix/python/sql/pipe
-@dirrm java/jython/src/java/com/ziclix/python/sql/handler
-@dirrm java/jython/src/java/com/ziclix/python/sql/connect
-@dirrm java/jython/src/java/com/ziclix/python/sql
-@dirrm java/jython/src/java/com/ziclix/python
-@dirrm java/jython/src/java/com/ziclix
-@dirrm java/jython/src/java/com
+java/jython/src/java/src/com/ziclix/python/sql/DBApiType.java
+java/jython/src/java/src/com/ziclix/python/sql/DataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/DateFactory.java
+java/jython/src/java/src/com/ziclix/python/sql/Fetch.java
+java/jython/src/java/src/com/ziclix/python/sql/FilterDataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/JDBC20DataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/JDBC30DataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/JavaDateFactory.java
+java/jython/src/java/src/com/ziclix/python/sql/Procedure.java
+java/jython/src/java/src/com/ziclix/python/sql/PyConnection.java
+java/jython/src/java/src/com/ziclix/python/sql/PyCursor.java
+java/jython/src/java/src/com/ziclix/python/sql/PyExtendedCursor.java
+java/jython/src/java/src/com/ziclix/python/sql/PyStatement.java
+java/jython/src/java/src/com/ziclix/python/sql/WarningEvent.java
+java/jython/src/java/src/com/ziclix/python/sql/WarningListener.java
+java/jython/src/java/src/com/ziclix/python/sql/connect/Connect.java
+java/jython/src/java/src/com/ziclix/python/sql/connect/Connectx.java
+java/jython/src/java/src/com/ziclix/python/sql/connect/Lookup.java
+java/jython/src/java/src/com/ziclix/python/sql/handler/InformixDataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/handler/MySQLDataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/handler/OracleDataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/handler/PostgresqlDataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/handler/RowIdHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/handler/SQLServerDataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/handler/UpdateCountDataHandler.java
+java/jython/src/java/src/com/ziclix/python/sql/pipe/Pipe.java
+java/jython/src/java/src/com/ziclix/python/sql/pipe/Sink.java
+java/jython/src/java/src/com/ziclix/python/sql/pipe/Source.java
+java/jython/src/java/src/com/ziclix/python/sql/pipe/csv/CSVSink.java
+java/jython/src/java/src/com/ziclix/python/sql/pipe/csv/CSVString.java
+java/jython/src/java/src/com/ziclix/python/sql/pipe/db/BaseDB.java
+java/jython/src/java/src/com/ziclix/python/sql/pipe/db/DBSink.java
+java/jython/src/java/src/com/ziclix/python/sql/pipe/db/DBSource.java
+java/jython/src/java/src/com/ziclix/python/sql/procedure/SQLServerProcedure.java
+java/jython/src/java/src/com/ziclix/python/sql/resource/zxJDBCMessages.properties
+java/jython/src/java/src/com/ziclix/python/sql/util/BCP.java
+java/jython/src/java/src/com/ziclix/python/sql/util/PyArgParser.java
+java/jython/src/java/src/com/ziclix/python/sql/util/Queue.java
+java/jython/src/java/src/com/ziclix/python/sql/util/QueueClosedException.java
+java/jython/src/java/src/com/ziclix/python/sql/zxJDBC.java
+java/jython/src/java/src/org/python/compiler/APIVersion.java
+java/jython/src/java/src/org/python/compiler/AdapterMaker.java
+java/jython/src/java/src/org/python/compiler/ArgListCompiler.java
+java/jython/src/java/src/org/python/compiler/Attribute.java
+java/jython/src/java/src/org/python/compiler/ClassConstants.java
+java/jython/src/java/src/org/python/compiler/ClassFile.java
+java/jython/src/java/src/org/python/compiler/Code.java
+java/jython/src/java/src/org/python/compiler/CodeCompiler.java
+java/jython/src/java/src/org/python/compiler/CompilationContext.java
+java/jython/src/java/src/org/python/compiler/Constant.java
+java/jython/src/java/src/org/python/compiler/ConstantPool.java
+java/jython/src/java/src/org/python/compiler/Future.java
+java/jython/src/java/src/org/python/compiler/JavaMaker.java
+java/jython/src/java/src/org/python/compiler/Label.java
+java/jython/src/java/src/org/python/compiler/LineNumberTable.java
+java/jython/src/java/src/org/python/compiler/Module.java
+java/jython/src/java/src/org/python/compiler/ProxyMaker.java
+java/jython/src/java/src/org/python/compiler/ScopeConstants.java
+java/jython/src/java/src/org/python/compiler/ScopeInfo.java
+java/jython/src/java/src/org/python/compiler/ScopesCompiler.java
+java/jython/src/java/src/org/python/compiler/SourceFile.java
+java/jython/src/java/src/org/python/compiler/SymInfo.java
+java/jython/src/java/src/org/python/core/AbstractArray.java
+java/jython/src/java/src/org/python/core/ArgParser.java
+java/jython/src/java/src/org/python/core/AutoInternalTables.java
+java/jython/src/java/src/org/python/core/ByteSwapper.java
+java/jython/src/java/src/org/python/core/BytecodeLoader.java
+java/jython/src/java/src/org/python/core/BytecodeLoader1.java
+java/jython/src/java/src/org/python/core/BytecodeLoader2.java
+java/jython/src/java/src/org/python/core/CachedJarsPackageManager.java
+java/jython/src/java/src/org/python/core/ClassDictInit.java
+java/jython/src/java/src/org/python/core/CollectionIter.java
+java/jython/src/java/src/org/python/core/CollectionIter2.java
+java/jython/src/java/src/org/python/core/CollectionProxy.java
+java/jython/src/java/src/org/python/core/CollectionProxy2.java
+java/jython/src/java/src/org/python/core/CompilerFlags.java
+java/jython/src/java/src/org/python/core/ExtraMath.java
+java/jython/src/java/src/org/python/core/FileUtil.java
+java/jython/src/java/src/org/python/core/FilelikeInputStream.java
+java/jython/src/java/src/org/python/core/IdImpl.java
+java/jython/src/java/src/org/python/core/IdImpl1.java
+java/jython/src/java/src/org/python/core/IdImpl2.java
+java/jython/src/java/src/org/python/core/InitModule.java
+java/jython/src/java/src/org/python/core/InternalTables.java
+java/jython/src/java/src/org/python/core/InternalTables1.java
+java/jython/src/java/src/org/python/core/InternalTables2.java
+java/jython/src/java/src/org/python/core/Java2Accessibility.java
+java/jython/src/java/src/org/python/core/JavaAccessibility.java
+java/jython/src/java/src/org/python/core/JavaImportHelper.java
+java/jython/src/java/src/org/python/core/JavaImporter.java
+java/jython/src/java/src/org/python/core/Loader.java
+java/jython/src/java/src/org/python/core/MakeProxies.java
+java/jython/src/java/src/org/python/core/MergeState.java
+java/jython/src/java/src/org/python/core/Options.java
+java/jython/src/java/src/org/python/core/PackageManager.java
+java/jython/src/java/src/org/python/core/PathPackageManager.java
+java/jython/src/java/src/org/python/core/PrecompiledImporter.java
+java/jython/src/java/src/org/python/core/Py.java
+java/jython/src/java/src/org/python/core/PyArray.java
+java/jython/src/java/src/org/python/core/PyArrayDerived.java
+java/jython/src/java/src/org/python/core/PyBaseString.java
+java/jython/src/java/src/org/python/core/PyBeanEvent.java
+java/jython/src/java/src/org/python/core/PyBeanEventProperty.java
+java/jython/src/java/src/org/python/core/PyBeanProperty.java
+java/jython/src/java/src/org/python/core/PyBuiltinFunction.java
+java/jython/src/java/src/org/python/core/PyBuiltinFunctionSet.java
+java/jython/src/java/src/org/python/core/PyBuiltinMethod.java
+java/jython/src/java/src/org/python/core/PyBuiltinMethodNarrow.java
+java/jython/src/java/src/org/python/core/PyBuiltinMethodSet.java
+java/jython/src/java/src/org/python/core/PyCallIter.java
+java/jython/src/java/src/org/python/core/PyCell.java
+java/jython/src/java/src/org/python/core/PyClass.java
+java/jython/src/java/src/org/python/core/PyClassMethod.java
+java/jython/src/java/src/org/python/core/PyClassMethodDerived.java
+java/jython/src/java/src/org/python/core/PyClassMethodDescr.java
+java/jython/src/java/src/org/python/core/PyCode.java
+java/jython/src/java/src/org/python/core/PyComplex.java
+java/jython/src/java/src/org/python/core/PyComplexDerived.java
+java/jython/src/java/src/org/python/core/PyCompoundCallable.java
+java/jython/src/java/src/org/python/core/PyDescriptor.java
+java/jython/src/java/src/org/python/core/PyDictionary.java
+java/jython/src/java/src/org/python/core/PyDictionaryDerived.java
+java/jython/src/java/src/org/python/core/PyEllipsis.java
+java/jython/src/java/src/org/python/core/PyEnumerate.java
+java/jython/src/java/src/org/python/core/PyException.java
+java/jython/src/java/src/org/python/core/PyFieldDescr.java
+java/jython/src/java/src/org/python/core/PyFile.java
+java/jython/src/java/src/org/python/core/PyFileDerived.java
+java/jython/src/java/src/org/python/core/PyFinalizableInstance.java
+java/jython/src/java/src/org/python/core/PyFloat.java
+java/jython/src/java/src/org/python/core/PyFloatDerived.java
+java/jython/src/java/src/org/python/core/PyFrame.java
+java/jython/src/java/src/org/python/core/PyFunction.java
+java/jython/src/java/src/org/python/core/PyFunctionTable.java
+java/jython/src/java/src/org/python/core/PyGenerator.java
+java/jython/src/java/src/org/python/core/PyGetSetDescr.java
+java/jython/src/java/src/org/python/core/PyIgnoreMethodTag.java
+java/jython/src/java/src/org/python/core/PyInstance.java
+java/jython/src/java/src/org/python/core/PyInteger.java
+java/jython/src/java/src/org/python/core/PyIntegerDerived.java
+java/jython/src/java/src/org/python/core/PyIterator.java
+java/jython/src/java/src/org/python/core/PyJavaClass.java
+java/jython/src/java/src/org/python/core/PyJavaInnerClass.java
+java/jython/src/java/src/org/python/core/PyJavaInstance.java
+java/jython/src/java/src/org/python/core/PyJavaPackage.java
+java/jython/src/java/src/org/python/core/PyList.java
+java/jython/src/java/src/org/python/core/PyListDerived.java
+java/jython/src/java/src/org/python/core/PyLong.java
+java/jython/src/java/src/org/python/core/PyLongDerived.java
+java/jython/src/java/src/org/python/core/PyMetaClass.java
+java/jython/src/java/src/org/python/core/PyMethod.java
+java/jython/src/java/src/org/python/core/PyMethodDescr.java
+java/jython/src/java/src/org/python/core/PyModule.java
+java/jython/src/java/src/org/python/core/PyModuleDerived.java
+java/jython/src/java/src/org/python/core/PyNewWrapper.java
+java/jython/src/java/src/org/python/core/PyNone.java
+java/jython/src/java/src/org/python/core/PyNotImplemented.java
+java/jython/src/java/src/org/python/core/PyObject.java
+java/jython/src/java/src/org/python/core/PyObjectArray.java
+java/jython/src/java/src/org/python/core/PyObjectDerived.java
+java/jython/src/java/src/org/python/core/PyObjectList.java
+java/jython/src/java/src/org/python/core/PyProperty.java
+java/jython/src/java/src/org/python/core/PyPropertyDerived.java
+java/jython/src/java/src/org/python/core/PyProxy.java
+java/jython/src/java/src/org/python/core/PyReflectedConstructor.java
+java/jython/src/java/src/org/python/core/PyReflectedField.java
+java/jython/src/java/src/org/python/core/PyReflectedFunction.java
+java/jython/src/java/src/org/python/core/PyRunnable.java
+java/jython/src/java/src/org/python/core/PySequence.java
+java/jython/src/java/src/org/python/core/PySequenceIter.java
+java/jython/src/java/src/org/python/core/PySequenceList.java
+java/jython/src/java/src/org/python/core/PySingleton.java
+java/jython/src/java/src/org/python/core/PySlice.java
+java/jython/src/java/src/org/python/core/PySlot.java
+java/jython/src/java/src/org/python/core/PyStaticMethod.java
+java/jython/src/java/src/org/python/core/PyString.java
+java/jython/src/java/src/org/python/core/PyStringDerived.java
+java/jython/src/java/src/org/python/core/PyStringMap.java
+java/jython/src/java/src/org/python/core/PySuper.java
+java/jython/src/java/src/org/python/core/PySuperDerived.java
+java/jython/src/java/src/org/python/core/PySyntaxError.java
+java/jython/src/java/src/org/python/core/PySystemState.java
+java/jython/src/java/src/org/python/core/PyTableCode.java
+java/jython/src/java/src/org/python/core/PyTraceback.java
+java/jython/src/java/src/org/python/core/PyTuple.java
+java/jython/src/java/src/org/python/core/PyTupleDerived.java
+java/jython/src/java/src/org/python/core/PyType.java
+java/jython/src/java/src/org/python/core/PyTypeDerived.java
+java/jython/src/java/src/org/python/core/PyUnicode.java
+java/jython/src/java/src/org/python/core/PyUnicodeDerived.java
+java/jython/src/java/src/org/python/core/PyXRange.java
+java/jython/src/java/src/org/python/core/PythonTraceFunction.java
+java/jython/src/java/src/org/python/core/ReflectedArgs.java
+java/jython/src/java/src/org/python/core/ReflectedCallData.java
+java/jython/src/java/src/org/python/core/Slotted.java
+java/jython/src/java/src/org/python/core/SoftIInternalTables.java
+java/jython/src/java/src/org/python/core/StderrWrapper.java
+java/jython/src/java/src/org/python/core/StdoutWrapper.java
+java/jython/src/java/src/org/python/core/SysPackageManager.java
+java/jython/src/java/src/org/python/core/SyspathArchive.java
+java/jython/src/java/src/org/python/core/SyspathJavaLoader.java
+java/jython/src/java/src/org/python/core/ThreadState.java
+java/jython/src/java/src/org/python/core/ThreadStateMapping.java
+java/jython/src/java/src/org/python/core/ThreadStateMapping2.java
+java/jython/src/java/src/org/python/core/TraceFunction.java
+java/jython/src/java/src/org/python/core/WeakInternalTables.java
+java/jython/src/java/src/org/python/core/ZipFileImporter.java
+java/jython/src/java/src/org/python/core/__builtin__.java
+java/jython/src/java/src/org/python/core/adapter/ClassAdapter.java
+java/jython/src/java/src/org/python/core/adapter/ClassicPyObjectAdapter.java
+java/jython/src/java/src/org/python/core/adapter/ExtensiblePyObjectAdapter.java
+java/jython/src/java/src/org/python/core/adapter/PyObjectAdapter.java
+java/jython/src/java/src/org/python/core/codecs.java
+java/jython/src/java/src/org/python/core/exceptions.java
+java/jython/src/java/src/org/python/core/imp.java
+java/jython/src/java/src/org/python/core/parser.java
+java/jython/src/java/src/org/python/core/ucnhashAPI.java
+java/jython/src/java/src/org/python/modules/ArrayModule.java
+java/jython/src/java/src/org/python/modules/MD5Module.java
+java/jython/src/java/src/org/python/modules/MD5Object.java
+java/jython/src/java/src/org/python/modules/PyLock.java
+java/jython/src/java/src/org/python/modules/SHA1.java
+java/jython/src/java/src/org/python/modules/Setup.java
+java/jython/src/java/src/org/python/modules/_codecs.java
+java/jython/src/java/src/org/python/modules/_jython.java
+java/jython/src/java/src/org/python/modules/_sre.java
+java/jython/src/java/src/org/python/modules/_weakref.java
+java/jython/src/java/src/org/python/modules/binascii.java
+java/jython/src/java/src/org/python/modules/cPickle.java
+java/jython/src/java/src/org/python/modules/cStringIO.java
+java/jython/src/java/src/org/python/modules/errno.java
+java/jython/src/java/src/org/python/modules/imp.java
+java/jython/src/java/src/org/python/modules/jarray.java
+java/jython/src/java/src/org/python/modules/math.java
+java/jython/src/java/src/org/python/modules/md.java
+java/jython/src/java/src/org/python/modules/newmodule.java
+java/jython/src/java/src/org/python/modules/operator.java
+java/jython/src/java/src/org/python/modules/os.java
+java/jython/src/java/src/org/python/modules/py_compile.java
+java/jython/src/java/src/org/python/modules/sets/BaseSet.java
+java/jython/src/java/src/org/python/modules/sets/PyImmutableSet.java
+java/jython/src/java/src/org/python/modules/sets/PyImmutableSetDerived.java
+java/jython/src/java/src/org/python/modules/sets/PySet.java
+java/jython/src/java/src/org/python/modules/sets/PySetDerived.java
+java/jython/src/java/src/org/python/modules/sets/PySetIterator.java
+java/jython/src/java/src/org/python/modules/sets/Sets.java
+java/jython/src/java/src/org/python/modules/sha.java
+java/jython/src/java/src/org/python/modules/sre/MatchObject.java
+java/jython/src/java/src/org/python/modules/sre/PatternObject.java
+java/jython/src/java/src/org/python/modules/sre/SRE_REPEAT.java
+java/jython/src/java/src/org/python/modules/sre/SRE_STATE.java
+java/jython/src/java/src/org/python/modules/sre/ScannerObject.java
+java/jython/src/java/src/org/python/modules/struct.java
+java/jython/src/java/src/org/python/modules/synchronize.java
+java/jython/src/java/src/org/python/modules/thread.java
+java/jython/src/java/src/org/python/modules/time/PyTimeTuple.java
+java/jython/src/java/src/org/python/modules/time/Time.java
+java/jython/src/java/src/org/python/modules/types.java
+java/jython/src/java/src/org/python/modules/ucnhash.dat
+java/jython/src/java/src/org/python/modules/ucnhash.java
+java/jython/src/java/src/org/python/modules/xreadlines.java
+java/jython/src/java/src/org/python/parser/CharStream.java
+java/jython/src/java/src/org/python/parser/IParserHost.java
+java/jython/src/java/src/org/python/parser/JJTPythonGrammarState.java
+java/jython/src/java/src/org/python/parser/Node.java
+java/jython/src/java/src/org/python/parser/ParseError.java
+java/jython/src/java/src/org/python/parser/ParseException.java
+java/jython/src/java/src/org/python/parser/PythonGrammar.java
+java/jython/src/java/src/org/python/parser/PythonGrammarConstants.java
+java/jython/src/java/src/org/python/parser/PythonGrammarTokenManager.java
+java/jython/src/java/src/org/python/parser/PythonGrammarTreeConstants.java
+java/jython/src/java/src/org/python/parser/ReaderCharStream.java
+java/jython/src/java/src/org/python/parser/SimpleNode.java
+java/jython/src/java/src/org/python/parser/Token.java
+java/jython/src/java/src/org/python/parser/TokenMgrError.java
+java/jython/src/java/src/org/python/parser/TreeBuilder.java
+java/jython/src/java/src/org/python/parser/Visitor.java
+java/jython/src/java/src/org/python/parser/ast/Assert.java
+java/jython/src/java/src/org/python/parser/ast/Assign.java
+java/jython/src/java/src/org/python/parser/ast/Attribute.java
+java/jython/src/java/src/org/python/parser/ast/AugAssign.java
+java/jython/src/java/src/org/python/parser/ast/BinOp.java
+java/jython/src/java/src/org/python/parser/ast/BoolOp.java
+java/jython/src/java/src/org/python/parser/ast/Break.java
+java/jython/src/java/src/org/python/parser/ast/Call.java
+java/jython/src/java/src/org/python/parser/ast/ClassDef.java
+java/jython/src/java/src/org/python/parser/ast/Compare.java
+java/jython/src/java/src/org/python/parser/ast/Continue.java
+java/jython/src/java/src/org/python/parser/ast/Delete.java
+java/jython/src/java/src/org/python/parser/ast/Dict.java
+java/jython/src/java/src/org/python/parser/ast/Ellipsis.java
+java/jython/src/java/src/org/python/parser/ast/Exec.java
+java/jython/src/java/src/org/python/parser/ast/Expr.java
+java/jython/src/java/src/org/python/parser/ast/Expression.java
+java/jython/src/java/src/org/python/parser/ast/ExtSlice.java
+java/jython/src/java/src/org/python/parser/ast/For.java
+java/jython/src/java/src/org/python/parser/ast/FunctionDef.java
+java/jython/src/java/src/org/python/parser/ast/Global.java
+java/jython/src/java/src/org/python/parser/ast/If.java
+java/jython/src/java/src/org/python/parser/ast/Import.java
+java/jython/src/java/src/org/python/parser/ast/ImportFrom.java
+java/jython/src/java/src/org/python/parser/ast/Index.java
+java/jython/src/java/src/org/python/parser/ast/Interactive.java
+java/jython/src/java/src/org/python/parser/ast/Lambda.java
+java/jython/src/java/src/org/python/parser/ast/List.java
+java/jython/src/java/src/org/python/parser/ast/ListComp.java
+java/jython/src/java/src/org/python/parser/ast/Module.java
+java/jython/src/java/src/org/python/parser/ast/Name.java
+java/jython/src/java/src/org/python/parser/ast/Num.java
+java/jython/src/java/src/org/python/parser/ast/Pass.java
+java/jython/src/java/src/org/python/parser/ast/Print.java
+java/jython/src/java/src/org/python/parser/ast/Raise.java
+java/jython/src/java/src/org/python/parser/ast/Repr.java
+java/jython/src/java/src/org/python/parser/ast/Return.java
+java/jython/src/java/src/org/python/parser/ast/Slice.java
+java/jython/src/java/src/org/python/parser/ast/Str.java
+java/jython/src/java/src/org/python/parser/ast/Subscript.java
+java/jython/src/java/src/org/python/parser/ast/Suite.java
+java/jython/src/java/src/org/python/parser/ast/TryExcept.java
+java/jython/src/java/src/org/python/parser/ast/TryFinally.java
+java/jython/src/java/src/org/python/parser/ast/Tuple.java
+java/jython/src/java/src/org/python/parser/ast/UnaryOp.java
+java/jython/src/java/src/org/python/parser/ast/Unicode.java
+java/jython/src/java/src/org/python/parser/ast/VisitorBase.java
+java/jython/src/java/src/org/python/parser/ast/VisitorIF.java
+java/jython/src/java/src/org/python/parser/ast/While.java
+java/jython/src/java/src/org/python/parser/ast/Yield.java
+java/jython/src/java/src/org/python/parser/ast/aliasType.java
+java/jython/src/java/src/org/python/parser/ast/argumentsType.java
+java/jython/src/java/src/org/python/parser/ast/boolopType.java
+java/jython/src/java/src/org/python/parser/ast/cmpopType.java
+java/jython/src/java/src/org/python/parser/ast/excepthandlerType.java
+java/jython/src/java/src/org/python/parser/ast/exprType.java
+java/jython/src/java/src/org/python/parser/ast/expr_contextType.java
+java/jython/src/java/src/org/python/parser/ast/keywordType.java
+java/jython/src/java/src/org/python/parser/ast/listcompType.java
+java/jython/src/java/src/org/python/parser/ast/modType.java
+java/jython/src/java/src/org/python/parser/ast/operatorType.java
+java/jython/src/java/src/org/python/parser/ast/sliceType.java
+java/jython/src/java/src/org/python/parser/ast/stmtType.java
+java/jython/src/java/src/org/python/parser/ast/unaryopType.java
+java/jython/src/java/src/org/python/parser/build.xml
+java/jython/src/java/src/org/python/rmi/UnicastRemoteObject.java
+java/jython/src/java/src/org/python/util/InteractiveConsole.java
+java/jython/src/java/src/org/python/util/InteractiveInterpreter.java
+java/jython/src/java/src/org/python/util/JLineConsole.java
+java/jython/src/java/src/org/python/util/JythoncAntTask.java
+java/jython/src/java/src/org/python/util/PyServlet.java
+java/jython/src/java/src/org/python/util/PythonInterpreter.java
+java/jython/src/java/src/org/python/util/PythonObjectInputStream.java
+java/jython/src/java/src/org/python/util/ReadlineConsole.java
+java/jython/src/java/src/org/python/util/TemplateAntTask.java
+java/jython/src/java/src/org/python/util/jython.java
+@dirrm java/jython/src/java/src/org/python/util
+@dirrm java/jython/src/java/src/org/python/rmi
+@dirrm java/jython/src/java/src/org/python/parser/ast
+@dirrm java/jython/src/java/src/org/python/parser
+@dirrm java/jython/src/java/src/org/python/modules/time
+@dirrm java/jython/src/java/src/org/python/modules/sre
+@dirrm java/jython/src/java/src/org/python/modules/sets
+@dirrm java/jython/src/java/src/org/python/modules
+@dirrm java/jython/src/java/src/org/python/core/adapter
+@dirrm java/jython/src/java/src/org/python/core
+@dirrm java/jython/src/java/src/org/python/compiler
+@dirrm java/jython/src/java/src/org/python
+@dirrm java/jython/src/java/src/org
+@dirrm java/jython/src/java/src/com/ziclix/python/sql/util
+@dirrm java/jython/src/java/src/com/ziclix/python/sql/resource
+@dirrm java/jython/src/java/src/com/ziclix/python/sql/procedure
+@dirrm java/jython/src/java/src/com/ziclix/python/sql/pipe/db
+@dirrm java/jython/src/java/src/com/ziclix/python/sql/pipe/csv
+@dirrm java/jython/src/java/src/com/ziclix/python/sql/pipe
+@dirrm java/jython/src/java/src/com/ziclix/python/sql/handler
+@dirrm java/jython/src/java/src/com/ziclix/python/sql/connect
+@dirrm java/jython/src/java/src/com/ziclix/python/sql
+@dirrm java/jython/src/java/src/com/ziclix/python
+@dirrm java/jython/src/java/src/com/ziclix
+@dirrm java/jython/src/java/src/com
+@dirrm java/jython/src/java/src
 @dirrm java/jython/src/java/Lib/test/javatests
 @dirrm java/jython/src/java/Lib/test
 @dirrm java/jython/src/java/Lib/jxxload_help
 @dirrm java/jython/src/java/Lib
 @dirrm java/jython/src/java
 @dirrm java/jython/src
+@dirrm java/jython/org/python/util/install/driver
 @dirrm java/jython/org/python/util/install
 @dirrm java/jython/org/python/util
 @dirrm java/jython/org/python
+@dirrm java/jython/org/apache/commons/cli
+@dirrm java/jython/org/apache/commons
+@dirrm java/jython/org/apache
 @dirrm java/jython/org
 @dirrm java/jython/Tools/jythonc/jast
 @dirrm java/jython/Tools/jythonc
 @dirrm java/jython/Tools/freeze
 @dirrm java/jython/Tools
 @dirrm java/jython/META-INF
+@dirrm java/jython/Lib/xml/sax/drivers2
+@dirrm java/jython/Lib/xml/sax
+@dirrm java/jython/Lib/xml/dom
+@dirrm java/jython/Lib/xml
 @dirrm java/jython/Lib/test/zxjdbc
 @dirrm java/jython/Lib/test/output
 @dirrm java/jython/Lib/test/javatests
@@ -1425,3 +1540,4 @@ java/jython/src/java/org/python/util/jython.java
 @dirrm java/jython/Demo/applet
 @dirrm java/jython/Demo
 @dirrm java/jython
+@dirrm bin
