@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/03 18:17:31 mallet $
+# $LAAS: depend.mk 2008/10/03 23:19:44 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -34,7 +34,7 @@ DEPEND_DIR.sun-jre6?=	../../lang/sun-jre6
 SYSTEM_SEARCH.sun-jre6=\
 	bin/java
 
-JAVA_HOME=		${LOCALBASE}/java/sun6
+JAVA_HOME=		${LOCALBASE}/java/sun-6
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
