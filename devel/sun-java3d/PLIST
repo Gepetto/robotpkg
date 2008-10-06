@@ -1,6 +1,6 @@
-@comment Fri Oct 3 18:25:14 CEST 2008
-java/sun6/lib/ext/j3dcore.jar
-java/sun6/lib/ext/j3dutils.jar
-java/sun6/lib/ext/vecmath.jar
-java/sun6/lib/i386/libj3dcore-ogl-cg.so
-java/sun6/lib/i386/libj3dcore-ogl.so
+@comment Mon Oct 6 13:51:22 CEST 2008
+java/sun-6/lib/ext/j3dcore.jar
+java/sun-6/lib/ext/j3dutils.jar
+java/sun-6/lib/ext/vecmath.jar
+java/sun-6/lib/i386/libj3dcore-ogl-cg.so
+java/sun-6/lib/i386/libj3dcore-ogl.so
