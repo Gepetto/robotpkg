@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/06/17 17:44:26 mallet $
+# $LAAS: Makefile 2008/10/07 11:14:48 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Wed Mar 19 2008
 #
 
-DISTNAME=	hrp2-genom-0.2
+DISTNAME=	hrp2-genom-0.3
 
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hrp2-genom/}
