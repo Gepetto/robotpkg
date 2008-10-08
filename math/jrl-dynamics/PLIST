@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2008/04/04 14:21:25 mallet $
+@comment Wed Oct 8 15:38:42 CEST 2008
 include/dynamicsJRLJapan/Body.h
 include/dynamicsJRLJapan/DynamicBody.h
 include/dynamicsJRLJapan/DynamicMultiBody.h
@@ -125,6 +125,14 @@ share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint__coll__graph.png
 share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint__inherit__graph.map
 share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint__inherit__graph.md5
 share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint__inherit__graph.png
+share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_anchor-members.html
+share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_anchor.html
+share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_anchor__coll__graph.map
+share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_anchor__coll__graph.md5
+share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_anchor__coll__graph.png
+share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_anchor__inherit__graph.map
+share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_anchor__inherit__graph.md5
+share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_anchor__inherit__graph.png
 share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_freeflyer-members.html
 share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_freeflyer.html
 share/doc/dynamicsJRLJapan/classdynamics_j_r_l_japan_1_1_joint_freeflyer__coll__graph.map

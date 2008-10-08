@@ -1,5 +1,3 @@
-$NetBSD: distinfo,v 1.9 2005/02/23 12:06:55 agc Exp $
-
-SHA1 (dynamicsjrljapan-1.8.tar.gz) = 9a1a81635da72e6a980169935d9279b1cab3b1c6
-RMD160 (dynamicsjrljapan-1.8.tar.gz) = 1bd79a6ee438ac0ed1d0e746875d4be3fa65ad90
-Size (dynamicsjrljapan-1.8.tar.gz) = 426584 bytes
+SHA1 (dynamicsjrljapan-1.9.tar.gz) = 26412e3eefdf6f5764e7458607ccd5922d063bc8
+RMD160 (dynamicsjrljapan-1.9.tar.gz) = b24b0aa0ddd9248df8ddf98e86b04a4c398fe03c
+Size (dynamicsjrljapan-1.9.tar.gz) = 426202 bytes
