@@ -45,7 +45,7 @@ SYSTEM_SEARCH.hpp-model=\
 
 DEPEND_USE+=		hpp-model
 
-DEPEND_ABI.hpp-model?=	hpp-model>=1.3
+DEPEND_ABI.hpp-model?=	hpp-model>=1.4
 DEPEND_DIR.hpp-model?=	../../devel/hpp-model
 
 endif # HPP_MODEL_DEPEND_MK ------------------------------------------

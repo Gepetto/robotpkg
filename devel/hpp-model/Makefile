@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 13:18:52 tho $
+# $LAAS: Makefile 2008/10/08 19:32:03 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -18,17 +18,14 @@
 
 DISTNAME=	hppmodel-${VERSION}
 PKGNAME=	hpp-model-${VERSION}
-VERSION=	1.3
+VERSION=	1.4
 
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-model/}
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Robots, humanoid robots, joints and bodies with dynamics properties
-
-DEPENDS+=	jrl-interface-dynamics>=1.8:../../interfaces/jrl-interface-dynamics
-DEPENDS+=	hpp-kwsio>=1.0.1:../../devel/hpp-kwsio
 
 GNU_CONFIGURE=	yes
 
@@ -39,7 +36,7 @@ PKG_SUGGESTED_OPTIONS+=	jrl-dynamics
 PKG_OPTION_DESCR.jrl-dynamics=Use jrl-dynamics package for dynamic model implementation.
 define PKG_OPTION_SET.jrl-dynamics
   CONFIGURE_ARGS+=	--with-robotDynamics=dynamicsJRLJapan
-  DEPENDS+=		jrl-dynamics>=1.7:../../math/jrl-dynamics
+  DEPENDS+=		jrl-dynamics>=1.9:../../math/jrl-dynamics
 endef
 
 #Options
@@ -48,6 +45,8 @@ PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 include ../../path/kineo-pp/depend.mk
+include ../../devel/hpp-kwsio/depend.mk
+include ../../interfaces/jrl-interface-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
