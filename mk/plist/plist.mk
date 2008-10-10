@@ -171,11 +171,15 @@ _PLIST_INFO_AWK+=	-f ${CURDIR}/../../mk/plist/plist-info.awk
 #	that outputs contents for a PLIST to stdout and is appended to
 #	the contents of ${PLIST_SRC}.
 #
+ifeq (,$(strip $(PLIST_SRC)))
+GENERATE_PLIST?=        ${ECHO} "@comment "$(call quote,${PKGNAME})" has no files.";
+else
 GENERATE_PLIST?=	${TRUE};
+endif
 
 _BUILD_DEFS+=		_PLIST_IGNORE_FILES
 
-_GENERATE_PLIST=	${CAT} ${PLIST_SRC}; ${GENERATE_PLIST}
+_GENERATE_PLIST=	${CAT} /dev/null ${PLIST_SRC}; ${GENERATE_PLIST}
 
 .PHONY: plist
 plist: ${PLIST}
