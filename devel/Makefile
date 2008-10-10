@@ -3,8 +3,9 @@
 
 COMMENT=	Software development tools
 
-SUBDIR+=	boost-numeric-bindings
 SUBDIR+=	boost
+SUBDIR+=	boost-build
+SUBDIR+=	boost-numeric-bindings
 SUBDIR+=	evart-sdk
 SUBDIR+=	hpp-corbaserver
 SUBDIR+=	hpp-kwsio
