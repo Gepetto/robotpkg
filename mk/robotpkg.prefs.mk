@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2008/06/01 22:33:36 tho $
+# $LAAS: robotpkg.prefs.mk 2008/10/10 14:28:31 mallet $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
@@ -141,6 +141,20 @@ PATCHDIR?=		${CURDIR}/patches
 SCRIPTDIR?=		${CURDIR}/scripts
 FILESDIR?=		${CURDIR}/files
 PKGDIR?=		${CURDIR}
+
+# A meta-package is a package that does not have any files and whose only
+# purpose is to depend on other packages, giving that collection a simple
+# name. This variable must be set before including robotpkg.prefs.mk
+# directly or indirectly.
+ifdef META_PACKAGE
+NO_CONFIGURE=           yes
+NO_BUILD=               yes
+DISTFILES=              # none
+PLIST_SRC=              # none
+do-install do-patch:
+	@${DO_NADA}
+endif
+
 
 # If WRKOBJDIR is set, use that tree to build
 ifdef WRKOBJDIR
