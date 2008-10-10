@@ -1,4 +1,19 @@
-# $NetBSD: Makefile.common,v 1.9 2006/11/10 17:41:13 tv Exp $
+# $LAAS: Makefile 2008/10/10 15:12:11 mallet $
+#
+# Copyright (c) 2007-2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Mon Jan 29 2007
 #
 
 DISTNAME=		boost-numeric-bindings-20070129
@@ -10,12 +25,11 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://sourceforge.net/projects/boost-sandbox
 COMMENT=		C++ bindings for LAPACK and BLAS libraries.
 
-DEPENDS+=		boost>=1.33.1:../../devel/boost
-
 WRKSRC=			${WRKDIR}/boost
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
 
+include ../../devel/boost-headers/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:
