@@ -1,75 +1,41 @@
-# $NetBSD: Makefile.common,v 1.9 2006/11/10 17:41:13 tv Exp $
+# $LAAS: Makefile 2008/10/10 14:28:14 mallet $
+#
+# Copyright (c) 2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Fri Oct 10 2008
 #
 
-BOOST_VERSION=		1.33.1
-PKGREVISION=		1
-PKGNAME=		boost-${BOOST_VERSION}
-DISTNAME=		boost_$(subst .,_,${BOOST_VERSION})
-CATEGORIES=		devel
+# Borrowed from NetBSD pkgsrc,
+# $NetBSD: Makefile.common,v 1.9 2006/11/10 17:41:13 tv Exp $
 
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=boost/}
+BOOST_PACKAGE=	meta-pkg
+BOOST_COMMENT=	(meta package)
 
-MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		http://www.boost.org/
-COMMENT=		Free, peer-reviewed portable C++ source libraries.
+include Makefile.common
 
-include ../../mk/robotpkg.prefs.mk
+CATEGORIES+=	devel
+MASTER_SITES=	# empty
+DISTFILES=	# empty
 
-ifeq (${OPSYS},"Darwin")
-BOOST_TOOLSET=          darwin
-else
- ifneq (,$(filter gcc,${PKGSRC_COMPILER}))
-BOOST_TOOLSET=          gcc
- else
-PKG_FAIL_REASON+=       "Unknown compiler ${PKGSRC_COMPILER} for Boost."
- endif
-endif
+MAINTAINER=	openrobots@laas.fr
+HOMEPAGE=	http://www.boost.org/
+COMMENT=	Free, peer-reviewed portable C++ source libraries
 
-BJAM=                   ${WRKSRC}/tools/build/jam_src/bin.*/bjam
-BJAM_ARGS+=             --builddir=${WRKSRC}/build
-BJAM_ARGS+=             --layout=system
-BJAM_ARGS+=             --prefix=${PREFIX}
-BJAM_ARGS+=             -sBUILD=$(call quote,${BJAM_BUILD})
-BJAM_ARGS+=             -sTOOLS=${BOOST_TOOLSET}
+META_PACKAGE=	yes
 
-# force bzip2 location
-BJAM_ARGS+=             -sBZIP2_INCLUDE=${PREFIX}/include
-BJAM_ARGS+=             -sBZIP2_LIBPATH=${PREFIX}/lib
-
-BJAM_ARGS+=		--without-python
-BJAM_ARGS+=		--without-serialization # Requires wide I/O
-
-ifeq (${OPSYS},"Darwin")
-BJAM_ARGS+=             -sTARGET_LIBDIR=${PREFIX}/lib
-endif
-BJAM_BUILD+=            <linkflags>${COMPILER_RPATH_FLAG}${PREFIX}/lib
-BJAM_BUILD+=            <threading>multi
-BJAM_BUILD+=            release
-BJAM_CMD=               ${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
-
-include ../../archivers/bzip2/depend.mk
+include ../../devel/boost-jam/depend.mk
+include ../../devel/boost-docs/depend.mk
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
 include ../../mk/robotpkg.mk
-
-# Generate a new user.hpp and compile bjam
-do-configure:
-	${_PKG_SILENT}${_PKG_DEBUG}cd ${WRKSRC}/libs/config && \
-	    ${SETENV} ${CONFIGURE_ENV} ${SH} ./configure
-	${_PKG_SILENT}${_PKG_DEBUG}${CP} -f \
-		${WRKSRC}/libs/config/user.hpp ${WRKSRC}/boost/config/user.hpp
-
-do-build:
-	${_PKG_SILENT}${_PKG_DEBUG}cd ${WRKSRC}/tools/build/jam_src && \
-		${SETENV} ${MAKE_ENV} ${SH} ./build.sh ${BOOST_TOOLSET}
-	${_PKG_SILENT}${_PKG_DEBUG}cd ${WRKSRC} && ${BJAM_CMD} stage
-
-do-install:
-	${_PKG_SILENT}${_PKG_DEBUG}cd ${WRKSRC} && ${BJAM_CMD} install
-
-# We can't do this at post-extract because the extract cookie will get a
-# future timestamp than the sources.  If this happens, print-PLIST does
-# not work.
-pre-configure:
-	@cd ${WRKSRC} && ${FIND} . -type f -print | ${XARGS} ${TOUCH}
-
-#boost-install-libs:
-#	cd ${WRKSRC}/stage/lib && ${PAX} -rwpe libboost* ${PREFIX}/lib
