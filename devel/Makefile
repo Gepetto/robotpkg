@@ -8,6 +8,7 @@ SUBDIR+=	boost-build
 SUBDIR+=	boost-docs
 SUBDIR+=	boost-headers
 SUBDIR+=	boost-jam
+SUBDIR+=	boost-libs
 SUBDIR+=	boost-numeric-bindings
 SUBDIR+=	evart-sdk
 SUBDIR+=	hpp-corbaserver
