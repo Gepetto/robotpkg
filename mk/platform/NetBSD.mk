@@ -44,6 +44,7 @@ ID?=			id
 GREP?=			grep
 EGREP?=			egrep
 TOUCH?=			touch
+CHOWN?=			chown
 CHMOD?=			chmod
 FIND?=			find
 PERL?=			perl
