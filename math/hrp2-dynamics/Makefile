@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 14:32:20 tho $
+# $LAAS: Makefile 2008/10/13 11:19:52 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -28,10 +28,9 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Optimized implementation of functions related to HRP-2 dynamics.
 
-DEPENDS+=	jrl-dynamics>=1.7:../../math/jrl-dynamics
-
 GNU_CONFIGURE=	yes
 
+include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/06/17 14:25:55 mallet $
+# $LAAS: Makefile 2008/10/13 11:20:16 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -28,10 +28,10 @@ MAINTAINER=	gepetto@laas.fr
 COMMENT=	Generalized Inverse Kinematics for humanoid robots.
 
 DEPENDS+=	jrl-interface-giktask>=1.4:../../interfaces/jrl-interface-giktask
-DEPENDS+=	jrl-dynamics>=1.8:../../math/jrl-dynamics
 
 GNU_CONFIGURE=	yes
 
+include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

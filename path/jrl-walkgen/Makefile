@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 14:35:36 tho $
+# $LAAS: Makefile 2008/10/13 11:20:33 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,6 @@ COMMENT=	Walk pattern generator for the HRP-2 humanoid robot.
 
 GNU_CONFIGURE=	yes
 
-DEPENDS+=	jrl-dynamics>=1.6:../../math/jrl-dynamics
-
+include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

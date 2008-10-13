@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/08 19:32:03 mallet $
+# $LAAS: Makefile 2008/10/13 11:19:26 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -36,7 +36,7 @@ PKG_SUGGESTED_OPTIONS+=	jrl-dynamics
 PKG_OPTION_DESCR.jrl-dynamics=Use jrl-dynamics package for dynamic model implementation.
 define PKG_OPTION_SET.jrl-dynamics
   CONFIGURE_ARGS+=	--with-robotDynamics=dynamicsJRLJapan
-  DEPENDS+=		jrl-dynamics>=1.9:../../math/jrl-dynamics
+  include ../../math/jrl-dynamics/depend.mk
 endef
 
 #Options

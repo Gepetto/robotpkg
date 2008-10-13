@@ -1,0 +1,29 @@
+$LAAS: patch-aa 2008/10/13 11:12:08 mallet $
+
+bug fix: destructor of Body was called twice by destructors of DynamicMultiBody
+and MultiBody
+
+diff --git src/DynamicMultiBody.cpp src/DynamicMultiBody.cpp
+index e88a664..2b04f0c 100644
+--- src/DynamicMultiBody.cpp
++++ src/DynamicMultiBody.cpp
+@@ -111,9 +111,17 @@ DynamicMultiBody::DynamicMultiBody()
+ 
+ DynamicMultiBody::~DynamicMultiBody()
+ {
+-  for(unsigned int li=0;
+-      li<listOfBodies.size();li++)
++  for(unsigned int li=0; li<listOfBodies.size();li++){
++    Body *body = listOfBodies[li];      
++    std::vector<Body *>::iterator it;
++    for (it = listeCorps.begin(); it != listeCorps.end(); it++){ 
++      if (*it == body){
++	listeCorps.erase(it);
++	break;
++      }
++    }
+     delete listOfBodies[li];
++  }
+ }
+ 
+ void DynamicMultiBody::SpecifyTheRootLabel(int ID)
