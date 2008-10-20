@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/07/15 12:14:01 mallet $
+# $LAAS: gcc.mk 2008/10/17 23:01:35 tho $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -45,6 +45,10 @@ COMPILER_GCC_MK=	defined
 include ../../mk/robotpkg.prefs.mk
 
 GCC_REQD+=	2.8.0
+
+ifneq (,$(filter c,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/lang/gcc4-c/depend.mk
+endif
 
 ## _CC is the full path to the compiler named by ${CC} if it can be found.
 ifndef _CC
