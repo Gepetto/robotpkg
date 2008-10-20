@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/09/01 22:02:20 tho $
+# $LAAS: resolve.mk 2008/10/19 20:37:00 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -134,44 +134,59 @@ $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
 # The prefix of robotpkg packages is computed later in this file, after
 # the barrier.
 #
+_PREFIXSEARCH_CMD=	${SETENV} ECHO=${ECHO}					\
+				  TEST=${TEST}					\
+				  SED=${SED}					\
+				  PKG_ADMIN_CMD=${PKG_ADMIN_CMD}		\
+			${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
+
 hline="===================================================================="
 override define _dpd_sysprefix
-  ifndef PREFIX.${1}
+  ifndef _PREFIX.${1}
     ifeq (,$$(filter robotpkg,$${PREFER.${1}}))
-PREFIX.${1}=$$(firstword $$(call prefixsearch,$${SYSTEM_SEARCH.${1}},${SYSTEM_PREFIX}))
-MAKEOVERRIDES+=		PREFIX.${1}=$$(call quote,$${PREFIX.${1}})
+      _PREFIX.${1}:=$$(shell ${_PREFIXSEARCH_CMD}			\
+	-p $$(call quote,$$(or $${PREFIX.${1}},${SYSTEM_PREFIX}))	\
+	"${1}" "$${DEPEND_ABI.${1}}" $${SYSTEM_SEARCH.${1}})
+      MAKEOVERRIDES+=	_PREFIX.${1}=$$(call quote,$$(strip $${_PREFIX.${1}}))
     endif
   endif
   ifeq (,$$(filter robotpkg,$${PREFER.${1}}))
-_list:=$$(call pathsearch,$${SYSTEM_SEARCH.${1}},$${PREFIX.${1}})
-    ifneq ($$(words $${SYSTEM_SEARCH.${1}}),$$(words $${_list}))
+    ifeq (,$$(strip $${_PREFIX.${1}}))
 PKG_FAIL_REASON+= ${hline}
-PKG_FAIL_REASON+= "The package ${PKGNAME} requires ${1} from the system."
-PKG_FAIL_REASON+= "However, the following files could not be found:"
-$$(foreach f,$$(foreach t,$${SYSTEM_SEARCH.${1}},\
-	$$(if $$(call pathsearch,$${t},$${PREFIX.${1}}),,$${t})),\
-	$$(eval PKG_FAIL_REASON+="		$${f}"))
+PKG_FAIL_REASON+= "System requirements for ${PKGNAME} were not met:"
+PKG_FAIL_REASON+= $$(shell ${_PREFIXSEARCH_CMD} -e			\
+	-p $$(call quote,$$(or $${PREFIX.${1}},${SYSTEM_PREFIX}))	\
+	"${1}" "$${DEPEND_ABI.${1}}" $${SYSTEM_SEARCH.${1}} 		\
+	| ${SED} -e 's/^/"/g;s/$$$$/"/g')
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "The search was performed in \$$$${SYSTEM_PREFIX}:"
+PKG_FAIL_REASON+= "In order to fix the problem, you should install"
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "		$${DEPEND_ABI.${1}}"
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "in your system (as well as associated development packages)."
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "If this package is already present, you should check the"
+PKG_FAIL_REASON+= "following variables in ${_MAKECONF}:"
+PKG_FAIL_REASON+= "	. SYSTEM_PREFIX is a list of system directories that"
+PKG_FAIL_REASON+= "	  will be searched for system files. Its current value is:"
       ifdef SYSTEM_PREFIX
 $$(foreach d,${SYSTEM_PREFIX},$$(eval PKG_FAIL_REASON+="		$${d}"))
       else
 PKG_FAIL_REASON+= "		(empty)"
       endif
+PKG_FAIL_REASON+= "	. PREFIX.${1} can be set to the prefix path of your"
+PKG_FAIL_REASON+= "	  ${1} system package."
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "In order to fix the problem, you should install ${1}"
-PKG_FAIL_REASON+= "in your system. You can also modify your"
-PKG_FAIL_REASON+= "		${_MAKECONF}"
-PKG_FAIL_REASON+= "and define either of the following variables:"
-PKG_FAIL_REASON+= "	- PREFIX.${1}, set to the prefix path of your"
-PKG_FAIL_REASON+= "	  ${1} system package"
-PKG_FAIL_REASON+= "	- SYSTEM_PREFIX, set to a list of system directories"
-PKG_FAIL_REASON+= "	  to search for system files"
-PKG_FAIL_REASON+= "	- PREFER.${1}=robotpkg, to use the robotpkg"
-PKG_FAIL_REASON+= "	  package for ${1}"
+PKG_FAIL_REASON+= "If no $${DEPEND_ABI.${1}} package can be made available in your "
+PKG_FAIL_REASON+= "system, you can choose to use the robotpkg version, by setting "
+PKG_FAIL_REASON+= "in ${_MAKECONF}:"
+PKG_FAIL_REASON+= "	. PREFER.${1}=	robotpkg"
+PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= ${hline}
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "*** ${1} package not found. (see above)"
+    else
+      PREFIX.${1}:=$${_PREFIX.${1}}
     endif
   endif
 endef
