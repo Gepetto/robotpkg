@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/10/20 16:47:32 mallet $
+# $LAAS: gcc.mk 2008/10/20 18:02:11 mallet $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -46,8 +46,19 @@ include ../../mk/robotpkg.prefs.mk
 
 GCC_REQD+=	2.8.0
 
-ifneq (,$(filter c,${USE_LANGUAGES}))
-  include ${ROBOTPKG_DIR}/lang/gcc42-c/depend.mk
+# Distill the GCC_REQD list into a single _GCC_REQD value that is the
+# highest version of GCC required.
+#
+_GCC_STRICTEST_REQD=$(firstword $(foreach _rqd_,${GCC_REQD},$(if	\
+  $(strip $(foreach _sat_,${GCC_REQD},$(shell				\
+    ${PKG_ADMIN} pmatch 'gcc>=${_sat_}' 'gcc-${_rqd_}' || echo n))	\
+  ),,${_rqd_})))
+
+# Require gcc>=4.2 from lang/gcc42
+ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.2.0' 'gcc-${_GCC_STRICTEST_REQD}' && echo y))
+  ifneq (,$(filter c,${USE_LANGUAGES}))
+    include ${ROBOTPKG_DIR}/lang/gcc42-c/depend.mk
+  endif
 endif
 
 ## _CC is the full path to the compiler named by ${CC} if it can be found.
