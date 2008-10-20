@@ -1,4 +1,20 @@
-# $Id: Makefile 356f8ccc80eca1a280ee33c4cc2def68 2008/02/17 16:11:57 tho $
+# $LAAS: Makefile 2008/10/20 00:18:10 tho $
+#
+# Copyright (c) 2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Thu Feb 28 2008
+#
 
 PKGNAME=		gcc4-fortran-${GCC_VERSION}
 SUB_COMMENT=		fortran compiler
@@ -19,6 +35,7 @@ BUILD_TARGET+=		HOST_GMPLIBS=$(call quote,${HOST_GMPLIBS})
 
 include ../../math/gmp/depend.mk
 include ../../math/mpfr/depend.mk
+include ../../lang/gcc4-c/depend.mk
 include ../../mk/robotpkg.mk
 
 # some magic stuff to install only what's needed
