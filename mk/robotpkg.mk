@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2008/05/25 21:58:50 tho $
+# $LAAS: robotpkg.mk 2008/10/20 17:58:37 mallet $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
@@ -273,6 +273,9 @@ ifndef NO_CHECKSUM
 USE_TOOLS+=		digest:bootstrap
 endif
 
+# Pkg
+include ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk
+
 # Get the proper dependencies and set the PATH to use the compiler
 # named in PKGSRC_COMPILER.
 include ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk
@@ -370,9 +373,6 @@ makedirs: ${WRKDIR}
 
 ${WRKDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
-
-# Pkg
-include ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk
 
 # Dependencies
 include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
