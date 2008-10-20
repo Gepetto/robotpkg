@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/20 00:18:10 tho $
+# $LAAS: Makefile 2008/10/20 16:45:11 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,13 +16,13 @@
 #                                      Anthony Mallet on Thu Feb 28 2008
 #
 
-PKGNAME=		gcc4-fortran-${GCC_VERSION}
+PKGNAME=		gcc42-fortran-${GCC_VERSION}
 SUB_COMMENT=		fortran compiler
 DISTFILES+=		gcc-fortran-${GCC_VERSION}${EXTRACT_SUFX}
 
 GCC_LANGUAGES=		fortran
 
-include ../../lang/gcc4/Makefile.common
+include ../../lang/gcc42/Makefile.common
 
 CONFIGURE_ARGS+=        --with-gmp=${PREFIX.gmp}
 CONFIGURE_ARGS+=        --with-mpfr=${PREFIX.mpfr}
@@ -35,7 +35,7 @@ BUILD_TARGET+=		HOST_GMPLIBS=$(call quote,${HOST_GMPLIBS})
 
 include ../../math/gmp/depend.mk
 include ../../math/mpfr/depend.mk
-include ../../lang/gcc4-c/depend.mk
+include ../../lang/gcc42-c/depend.mk
 include ../../mk/robotpkg.mk
 
 # some magic stuff to install only what's needed

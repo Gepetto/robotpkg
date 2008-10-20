@@ -3,7 +3,9 @@
 
 COMMENT=	Programming languages
 
-SUBDIR+=	gcc4-fortran
+SUBDIR+=	gcc42-c
+SUBDIR+=	gcc42-c++
+SUBDIR+=	gcc42-fortran
 SUBDIR+=	jython
 SUBDIR+=	sun-jdk14
 SUBDIR+=	sun-jdk6

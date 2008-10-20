@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/19 19:24:33 tho $
+# $LAAS: depend.mk 2008/10/20 16:44:36 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -17,31 +17,31 @@
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-GCC4_C_DEPEND_MK:=	${GCC4_C_DEPEND_MK}+
+GCC42_C_DEPEND_MK:=	${GCC42_C_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		gcc4-c
+DEPEND_PKG+=		gcc42-c
 endif
 
-ifeq (+,$(GCC4_C_DEPEND_MK)) # ---------------------------------------
+ifeq (+,$(GCC42_C_DEPEND_MK)) # --------------------------------------
 
-PREFER.gcc4-c?=		system
+PREFER.gcc42-c?=		system
 
-DEPEND_USE+=		gcc4-c
+DEPEND_USE+=		gcc42-c
 
-DEPEND_ABI.gcc4-c?=	gcc4-c>=4.2.0
-DEPEND_DIR.gcc4-c?=	../../lang/gcc4-c
+DEPEND_ABI.gcc42-c?=	gcc42-c>=4.2
+DEPEND_DIR.gcc42-c?=	../../lang/gcc42-c
 
-SYSTEM_SEARCH.gcc4-c=	\
+SYSTEM_SEARCH.gcc42-c=	\
 	"bin/gcc::% -dumpversion"
 
 include ../../mk/robotpkg.prefs.mk
 
-ifeq (robotpkg,${PREFER.gcc4-c})
+ifeq (robotpkg,${PREFER.gcc42-c})
   CC:=			${LOCALBASE}/gcc42/bin/gcc
   CPP:=			${LOCALBASE}/gcc42/bin/cpp
 endif
 
-endif # GCC4_C_DEPEND_MK ---------------------------------------------
+endif # GCC42_C_DEPEND_MK --------------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}

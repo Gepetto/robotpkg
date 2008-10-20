@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/10/17 23:01:35 tho $
+# $LAAS: gcc.mk 2008/10/20 16:47:32 mallet $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -47,7 +47,7 @@ include ../../mk/robotpkg.prefs.mk
 GCC_REQD+=	2.8.0
 
 ifneq (,$(filter c,${USE_LANGUAGES}))
-  include ${ROBOTPKG_DIR}/lang/gcc4-c/depend.mk
+  include ${ROBOTPKG_DIR}/lang/gcc42-c/depend.mk
 endif
 
 ## _CC is the full path to the compiler named by ${CC} if it can be found.
@@ -117,8 +117,8 @@ COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 #.endif
 
 ifneq (,$(filter fortran,${USE_LANGUAGES}))
-  include ${ROBOTPKG_DIR}/lang/gcc4-fortran/depend.mk
-  FC=	${PREFIX.gcc4-fortran}/bin/gfortran
+  include ${ROBOTPKG_DIR}/lang/gcc42-fortran/depend.mk
+  FC=	${PREFIX.gcc42-fortran}/bin/gfortran
 endif
 
 

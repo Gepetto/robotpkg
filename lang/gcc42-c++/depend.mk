@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/17 22:35:52 tho $
+# $LAAS: depend.mk 2008/10/20 16:46:20 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,16 +16,26 @@
 #                                      Anthony Mallet on Fri Oct 17 2008
 #
 
-PKGNAME=		gcc4-c-${GCC_VERSION}
-SUB_COMMENT=		C compiler
+DEPEND_DEPTH:=		${DEPEND_DEPTH}+
+GCC42_C++_DEPEND_MK:=	${GCC42_C++_DEPEND_MK}+
 
-GCC_LANGUAGES=		c
+ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=		gcc42-c++
+endif
 
-GENERATE_PLIST+=						\
-	${FIND} ${GCC_PREFIX} \( -type f -o -type l \) -print	\
-		| ${SORT} | ${SED} -e "s,${PREFIX}/,,g";	\
-	${FIND} ${GCC_PREFIX} -type d -mindepth 1 -print	\
-		| ${SORT} -r | ${SED} -e "s,${PREFIX}/,@dirrm ,g";
+ifeq (+,$(GCC42_C++_DEPEND_MK)) # ------------------------------------
 
-include ../../lang/gcc4/Makefile.common
-include ../../mk/robotpkg.mk
+PREFER.gcc42-c++?=	system
+
+DEPEND_USE+=		gcc42-c++
+
+DEPEND_ABI.gcc42-c++?=	gcc42-c++>=4.2
+DEPEND_DIR.gcc42-c++?=	../../lang/gcc42-c++
+
+SYSTEM_SEARCH.gcc42-c++=	\
+	'bin/g++::% -dumpversion'	\
+	'lib/libstdc++.so.6*'
+
+endif # GCC42_C++_DEPEND_MK ------------------------------------------
+
+DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
