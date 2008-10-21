@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/20 16:44:36 mallet $
+# $LAAS: depend.mk 2008/10/21 15:58:33 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -34,6 +34,8 @@ DEPEND_DIR.gcc42-c?=	../../lang/gcc42-c
 
 SYSTEM_SEARCH.gcc42-c=	\
 	"bin/gcc::% -dumpversion"
+
+GCC_REQD+=		4.2.0
 
 include ../../mk/robotpkg.prefs.mk
 

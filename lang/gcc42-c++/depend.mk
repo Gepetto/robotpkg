@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/20 16:46:20 mallet $
+# $LAAS: depend.mk 2008/10/21 16:12:47 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -32,9 +32,12 @@ DEPEND_USE+=		gcc42-c++
 DEPEND_ABI.gcc42-c++?=	gcc42-c++>=4.2
 DEPEND_DIR.gcc42-c++?=	../../lang/gcc42-c++
 
-SYSTEM_SEARCH.gcc42-c++=	\
+SYSTEM_SEARCH.gcc42-c++ =	\
 	'bin/g++::% -dumpversion'	\
 	'lib/libstdc++.so.6*'
+
+GCC_REQD+=		4.2.0
+USE_LANGUAGES+=		c++
 
 endif # GCC42_C++_DEPEND_MK ------------------------------------------
 
