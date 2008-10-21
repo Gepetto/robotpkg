@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/10/19 20:37:00 tho $
+# $LAAS: resolve.mk 2008/10/21 16:15:36 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2008/10/19 19:26:49 tho $
+# $LAAS: prefixsearch.sh 2008/10/21 16:11:44 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -32,7 +32,7 @@ usage() {
 }
 
 # Process optional arguments
-sysprefix=/usr:/usr/local
+sysprefix="/usr /usr/local"
 errors=no
 while ${TEST} $# -gt 0; do
     case "$1" in
