@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/20 16:44:02 mallet $
+# $LAAS: Makefile 2008/10/21 17:48:06 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -26,6 +26,8 @@ GENERATE_PLIST+=						\
 		| ${SORT} | ${SED} -e "s,${PREFIX}/,,g";	\
 	${FIND} ${GCC_PREFIX} -type d -mindepth 1 -print	\
 		| ${SORT} -r | ${SED} -e "s,${PREFIX}/,@dirrm ,g";
+
+INSTALL_TARGET=		install-gcc
 
 include ../../lang/gcc42/Makefile.common
 include ../../mk/robotpkg.mk
