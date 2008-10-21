@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/21 15:58:33 mallet $
+# $LAAS: depend.mk 2008/10/21 16:35:03 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -33,7 +33,7 @@ DEPEND_ABI.gcc42-c?=	gcc42-c>=4.2
 DEPEND_DIR.gcc42-c?=	../../lang/gcc42-c
 
 SYSTEM_SEARCH.gcc42-c=	\
-	"bin/gcc::% -dumpversion"
+	'bin/gcc::% -dumpversion'
 
 GCC_REQD+=		4.2.0
 
