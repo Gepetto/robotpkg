@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/10/20 18:02:11 mallet $
+# $LAAS: gcc.mk 2008/10/21 15:58:05 mallet $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -49,16 +49,24 @@ GCC_REQD+=	2.8.0
 # Distill the GCC_REQD list into a single _GCC_REQD value that is the
 # highest version of GCC required.
 #
-_GCC_STRICTEST_REQD=$(firstword $(foreach _rqd_,${GCC_REQD},$(if	\
+_GCC_REQD=$(firstword $(foreach _rqd_,${GCC_REQD},$(if	\
   $(strip $(foreach _sat_,${GCC_REQD},$(shell				\
     ${PKG_ADMIN} pmatch 'gcc>=${_sat_}' 'gcc-${_rqd_}' || echo n))	\
   ),,${_rqd_})))
 
 # Require gcc>=4.2 from lang/gcc42
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.2.0' 'gcc-${_GCC_STRICTEST_REQD}' && echo y))
+ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.2' 'gcc-${_GCC_REQD}' && echo y))
   ifneq (,$(filter c,${USE_LANGUAGES}))
     include ${ROBOTPKG_DIR}/lang/gcc42-c/depend.mk
   endif
+  ifneq (,$(filter c++,${USE_LANGUAGES}))
+    include ${ROBOTPKG_DIR}/lang/gcc42-c++/depend.mk
+  endif
+endif
+
+ifneq (,$(filter fortran,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/lang/gcc42-fortran/depend.mk
+  FC=	${PREFIX.gcc42-fortran}/bin/gfortran
 endif
 
 ## _CC is the full path to the compiler named by ${CC} if it can be found.
@@ -126,11 +134,6 @@ COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 #CXXPATH=	${_GCCBINDIR}/g++
 #PKG_CXX:=	${_GCC_CXX}
 #.endif
-
-ifneq (,$(filter fortran,${USE_LANGUAGES}))
-  include ${ROBOTPKG_DIR}/lang/gcc42-fortran/depend.mk
-  FC=	${PREFIX.gcc42-fortran}/bin/gfortran
-endif
 
 
 # --- common compiler options ----------------------------------------
