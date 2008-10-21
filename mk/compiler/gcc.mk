@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/10/21 15:58:05 mallet $
+# $LAAS: gcc.mk 2008/10/21 17:07:00 mallet $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -75,13 +75,16 @@ ifndef _CC
     _CC:=	${CC}
   else
     _CC:=	$(call pathsearch,${CC},${PATH})
+    ifeq (,$(strip ${_CC}))
+      _CC:=	${CC}
+    endif
   endif
 MAKEOVERRIDES+=	_CC=$(call quote,${_CC})
 endif
 
 ifndef _GCC_VERSION
 _GCC_VERSION_STRING:=\
-	$(shell ${_CC} -v 2>&1 | ${GREP} 'gcc version' ) 2>/dev/null || ${ECHO} 0)
+	$(shell ${_CC} -v 2>&1 | ${GREP} 'gcc version' 2>/dev/null || ${ECHO} 0)
   ifneq (,$(filter gcc%,${_GCC_VERSION_STRING}))
 _GCC_VERSION:=	$(shell ${_CC} -dumpversion)
   else
