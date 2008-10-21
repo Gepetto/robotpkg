@@ -58,7 +58,7 @@ MAKE_ENV+=		LIBTOOL="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
 # libtool-override replace any existing libtool files under ${WRKSRC}
 # with the version found by robotpkg.
 #
-pre-configure: libtool-override
+#pre-configure: libtool-override
 
 LIBTOOL_OVERRIDE?=		libtool config.guess config.sub ltmain.sh
 OVERRIDE_DIRDEPTH.libtool?=	${OVERRIDE_DIRDEPTH}
