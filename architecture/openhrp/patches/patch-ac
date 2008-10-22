@@ -1,0 +1,15 @@
+$LAAS:$
+
+Don't hardcode dependency on g2c (e.g. gcc4 uses gfortan).
+
+--- Make.rules~	2008-06-18 09:08:40.000000000 +0200
++++ Make.rules	2008-10-07 13:49:16.000000000 +0200
+@@ -195,7 +195,7 @@
+  ifeq ("$(OSNAME)","Darwin")
+   LAPACK_LIBS += -llapack -lblas
+  else
+-  LAPACK_LIBS += -llapack -lblas -lg2c
++  LAPACK_LIBS += -llapack -lblas
+  endif
+ endif
+ 
