@@ -1,0 +1,7 @@
+===========================================================================
+
+In order to be able to run OpenHRP with this controller, you need to
+install a valid license in
+	${PREFIX.OpenHRP}/bin/unix/license.dat
+
+===========================================================================
