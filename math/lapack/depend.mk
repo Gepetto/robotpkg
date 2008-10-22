@@ -1,4 +1,4 @@
-# $Id: depend.mk 2008/04/04 19:11:07 mallet $
+# $Id: depend.mk 2008/10/22 18:41:01 mallet $
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 LAPACK_DEPEND_MK:=	${LAPACK_DEPEND_MK}+
@@ -17,8 +17,8 @@ DEPEND_DIR.lapack?=	../../math/lapack
 
 DEPEND_LIBS.lapack+=	-llapack
 
-SYSTEM_SEARCH.blas=	\
-	lib/liblapack.*
+SYSTEM_SEARCH.lapack=	\
+	'lib/liblapack.*'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
