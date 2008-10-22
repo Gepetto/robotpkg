@@ -1,8 +1,0 @@
---- bin/CollisionDetector.sh~	2005-07-20 10:54:55.000000000 +0200
-+++ bin/CollisionDetector.sh	2007-01-09 15:29:57.538897000 +0100
-@@ -1,4 +1,4 @@
--. config.sh
-+. @PREFIX@/OpenHRP/bin/config.sh
- cd $OPENHRPHOME/CollisionDetector/server
- ./server $NS_OPT
- 

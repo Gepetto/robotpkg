@@ -1,9 +1,0 @@
---- bin/ModelLoader2.sh~	2005-07-29 07:52:45.000000000 +0200
-+++ bin/ModelLoader2.sh	2007-01-09 15:26:46.380807000 +0100
-@@ -1,5 +1,5 @@
- #!/bin/bash
- 
--. config.sh
-+. @PREFIX@/OpenHRP/bin/config.sh
- cd $OPENHRPHOME/ModelLoader/server2
- exec ./ModelLoader $NS_OPT
