@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/10/21 16:15:36 mallet $
+# $LAAS: resolve.mk 2008/10/22 18:28:37 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -147,7 +147,7 @@ override define _dpd_sysprefix
       _PREFIX.${1}:=$$(shell ${_PREFIXSEARCH_CMD}			\
 	-p $$(call quote,$$(or $${PREFIX.${1}},${SYSTEM_PREFIX}))	\
 	"${1}" "$${DEPEND_ABI.${1}}" $${SYSTEM_SEARCH.${1}})
-      MAKEOVERRIDES+=	_PREFIX.${1}=$$(call quote,$$(strip $${_PREFIX.${1}}))
+      MAKEOVERRIDES+=	_PREFIX.${1}:=$$(call quote,$$(strip $${_PREFIX.${1}}))
     endif
   endif
   ifeq (,$$(filter robotpkg,$${PREFER.${1}}))
@@ -203,11 +203,11 @@ ifdef _PKGSRC_BARRIER
 override define _dpd_pkgprefix
   ifndef PREFIX.${1}
     ifneq (,$$(filter robotpkg,$${PREFER.${1}}))
-PREFIX.${1}=$$(shell ${PKG_INFO} -qp ${1} | ${SED} -e 's,^[^/]*,,;q')
+PREFIX.${1}:=$$(shell ${PKG_INFO} -qp ${1} | ${SED} -e 's,^[^/]*,,;q')
     else
 PKG_FAIL_REASON+=	"The prefix for ${1} has not been defined."
     endif
-MAKEOVERRIDES+=		PREFIX.${1}=$$(call quote,$${PREFIX.${1}})
+MAKEOVERRIDES+=		PREFIX.${1}:=$$(call quote,$${PREFIX.${1}})
   endif
 endef
 $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_pkgprefix,${_pkg_})))
