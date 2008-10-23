@@ -1,4 +1,4 @@
-# $LAAS: gcc4-c++.mk 2008/10/23 15:59:57 mallet $
+# $LAAS: gcc4-c++.mk 2008/10/23 16:22:03 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -54,7 +54,7 @@ DEPEND_DIR.${_GCC_C++_PKG}?=	${_GCC_C++_DIR}
 SYSTEM_SEARCH.${_GCC_C++_PKG} =	\
 	'bin/g++::% -dumpversion'
 
-CXX=${PREFIX.${_GCC_C++_PKG}}/bin/g++
+override CXX=${PREFIX.${_GCC_C++_PKG}}/bin/g++
 
 endif # GCC4_C++_DEPEND_MK -------------------------------------------------
 

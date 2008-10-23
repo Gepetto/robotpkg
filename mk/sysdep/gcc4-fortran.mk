@@ -1,4 +1,4 @@
-# $LAAS: gcc4-fortran.mk 2008/10/23 12:45:45 mallet $
+# $LAAS: gcc4-fortran.mk 2008/10/23 16:22:10 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -47,7 +47,7 @@ SYSTEM_SEARCH.gcc42-fortran=	\
 	'bin/gfortran:s/[^0-9.]*\\([0-9.]*\\).*/\\1/p:% -dumpversion'	\
 	'lib/libgfortran.so*'
 
-FC=${PREFIX.gcc42-fortran}/bin/gfortran
+override FC=${PREFIX.gcc42-fortran}/bin/gfortran
 
 endif # GCC4_FORTRAN_DEPEND_MK ---------------------------------------------
 
