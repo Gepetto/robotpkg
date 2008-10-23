@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/10/22 18:28:37 mallet $
+# $LAAS: resolve.mk 2008/10/23 16:18:22 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -176,11 +176,13 @@ PKG_FAIL_REASON+= "		(empty)"
       endif
 PKG_FAIL_REASON+= "	. PREFIX.${1} can be set to the prefix path of your"
 PKG_FAIL_REASON+= "	  ${1} system package."
+      ifneq (,$(strip ${DEPEND_DIR.${1}}))
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "If no $${DEPEND_ABI.${1}} package can be made available in your "
 PKG_FAIL_REASON+= "system, you can choose to use the robotpkg version, by setting "
 PKG_FAIL_REASON+= "in ${_MAKECONF}:"
 PKG_FAIL_REASON+= "	. PREFER.${1}=	robotpkg"
+      endif
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= ${hline}
 PKG_FAIL_REASON+= ""
