@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2008/09/01 22:27:33 tho $
+# $LAAS: macros.mk 2008/10/23 17:02:02 mallet $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -31,6 +31,8 @@
 
 ifndef MK_ROBOTPKG_MACROS
 MK_ROBOTPKG_MACROS:=	defined
+
+hline="===================================================================="
 
 define isyes
 $(filter yes Yes YES,$(1))

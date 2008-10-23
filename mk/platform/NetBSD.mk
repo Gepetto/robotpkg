@@ -48,6 +48,7 @@ CHOWN?=			chown
 CHMOD?=			chmod
 FIND?=			find
 PERL?=			perl
+PAGER?=			less
 TAR?=			${PKG_TOOLS_BIN}/robotpkg_tar
 PAX?=			${PKG_TOOLS_BIN}/robotpkg_pax
 CVS?=			cvs

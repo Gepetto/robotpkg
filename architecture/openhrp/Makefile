@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/21 16:19:59 mallet $
+# $LAAS: Makefile 2008/10/23 16:59:12 mallet $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
@@ -43,6 +43,8 @@ SUBST_FILES.openhrp-paths=\
 	bin/unix/GrxUI.sh			\
 	bin/unix/NameServer.sh
 
+LICENSE=	eclipse-public-license
+
 include ../../architecture/openrtm-aist/depend.mk
 include ../../math/tvmet/depend.mk
 include ../../math/lapack/depend.mk
@@ -53,6 +55,8 @@ include ../../devel/sun-jmf/depend.mk
 include ../../devel/sun-java3d/depend.mk
 include ../../lang/jython/depend.mk
 include ../../lang/sun-jdk6/depend.mk
+
+include ../../mk/sysdep/gcc4-c++.mk
 include ../../mk/robotpkg.mk
 
 do-configure:

@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2008/10/20 17:58:37 mallet $
+# $LAAS: robotpkg.mk 2008/10/23 17:04:38 mallet $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
@@ -309,11 +309,17 @@ endif
 
 ifdef LICENSE
   ifeq (,$(filter ${LICENSE},${ACCEPTABLE_LICENSES}))
-PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license: ${LICENSE}." \
-         "    To view the license, enter \"${MAKE} show-license\"." \
-         "    To indicate acceptance, add this line to " \
-	 "       ${_MAKECONF}:" \
-         "    ACCEPTABLE_LICENSES+=${LICENSE}"
+PKG_FAIL_REASON+= ${hline}
+PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license: ${LICENSE}."
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= " . To view the license, enter \"${MAKE} show-license\"."
+PKG_FAIL_REASON+= " . To indicate acceptance, add this line:"
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=${LICENSE}"
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "   to ${_MAKECONF}"
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= ${hline}
   endif
 endif
 

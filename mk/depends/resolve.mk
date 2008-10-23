@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/10/23 16:18:22 mallet $
+# $LAAS: resolve.mk 2008/10/23 17:01:46 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -140,7 +140,6 @@ _PREFIXSEARCH_CMD=	${SETENV} ECHO=${ECHO}					\
 				  PKG_ADMIN_CMD=${PKG_ADMIN_CMD}		\
 			${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
 
-hline="===================================================================="
 override define _dpd_sysprefix
   ifndef _PREFIX.${1}
     ifeq (,$$(filter robotpkg,$${PREFER.${1}}))
