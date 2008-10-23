@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/21 16:35:03 mallet $
+# $LAAS: depend.mk 2008/10/23 00:10:57 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -25,7 +25,7 @@ endif
 
 ifeq (+,$(GCC42_C_DEPEND_MK)) # --------------------------------------
 
-PREFER.gcc42-c?=		system
+PREFER.gcc42-c?=	system
 
 DEPEND_USE+=		gcc42-c
 

@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/20 16:45:51 mallet $
+# $LAAS: depend.mk 2008/10/22 23:49:25 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.

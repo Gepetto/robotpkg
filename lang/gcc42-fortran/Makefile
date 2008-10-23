@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/20 16:45:11 mallet $
+# $LAAS: Makefile 2008/10/23 00:11:19 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -35,7 +35,6 @@ BUILD_TARGET+=		HOST_GMPLIBS=$(call quote,${HOST_GMPLIBS})
 
 include ../../math/gmp/depend.mk
 include ../../math/mpfr/depend.mk
-include ../../lang/gcc42-c/depend.mk
 include ../../mk/robotpkg.mk
 
 # some magic stuff to install only what's needed
