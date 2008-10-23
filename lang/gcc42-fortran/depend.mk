@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/22 23:49:25 tho $
+# $LAAS: depend.mk 2008/10/23 12:40:24 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,28 +16,8 @@
 #                                      Anthony Mallet on Thu Feb 28 2008
 #
 
-DEPEND_DEPTH:=			${DEPEND_DEPTH}+
-GCC42_FORTRAN_DEPEND_MK:=	${GCC42_FORTRAN_DEPEND_MK}+
+# Simply register the compiler requirements; robotpkg compiler selection
+# will do the actual job.
 
-ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=			gcc42-fortran
-endif
-
-ifeq (+,$(GCC42_FORTRAN_DEPEND_MK)) # --------------------------------
-
-PREFER.gcc42-fortran?=		system
-
-DEPEND_USE+=			gcc42-fortran
-
-DEPEND_ABI.gcc42-fortran?=	gcc42-fortran>=4.2
-DEPEND_DIR.gcc42-fortran?=	../../lang/gcc42-fortran
-
-DEPEND_LIBS.gcc42-fortran+=	-lgfortran
-
-SYSTEM_SEARCH.gcc42-fortran=	\
-	'bin/gfortran:/[0-9.]/s/[^0-9.]//gp:% -dumpversion'	\
-	'lib/libgfortran.so*'
-
-endif # GCC42_FORTRAN_DEPEND_MK --------------------------------------
-
-DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
+GCC_REQD+=	4.2
+USE_LANGUAGES+=	fortran
