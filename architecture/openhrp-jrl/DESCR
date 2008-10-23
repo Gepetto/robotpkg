@@ -1,0 +1,11 @@
+OpenHRP (Open Architecture Humanoid Robotics Platform) is a software
+platform for humanoid robotics, and consists of a dynamics simulator,
+view simulator, motion controllers and motion planners of humanoid
+robots. OpenHRP has been developed by AIST, the University of Tokyo and
+MSTC. OpenHRP is integrated by CORBA, and each module, e.g. the dynamics
+simulator, of OpenHRP is implemented as a CORBA server. The users can
+develop their own software on OpenHRP as well as replace its building
+blocks by their own ones.
+
+This package is the JRL version and contains HRP-2 control module and
+simulator.

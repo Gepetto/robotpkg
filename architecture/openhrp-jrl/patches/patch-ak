@@ -1,0 +1,22 @@
+--- Controller/IOserver/include/plugin_manager.h~	2005-11-16 05:58:31.000000000 +0100
++++ Controller/IOserver/include/plugin_manager.h	2007-06-29 14:51:47.135689000 +0200
+@@ -26,8 +26,8 @@
+   sem_t bg_interpreter_sem;
+   deque<string> message;
+ 
+-  plugin_manager::plugin_manager(robot_adaptor *adptr);
+-  plugin_manager::~plugin_manager();
++  plugin_manager(robot_adaptor *adptr);
++  ~plugin_manager();
+   void init_CORBA(int argc, char *argv[]);
+   void destroy_CORBA();
+   void load(string name);
+@@ -36,7 +36,7 @@
+   plugin *create(string klass, string name, istringstream &strm);
+   ::Plugin_ptr create(const char* pclass, const char *name, const char *args)
+       throw(CORBA::SystemException);
+-  ::stringSeq* getPluginNames() throw(CORBA::SystemException); 
++  ::stringSeq* getPluginNames() throw(CORBA::SystemException);
+   void destroy(string name);
+   bool read();
+   void control();

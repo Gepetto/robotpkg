@@ -1,0 +1,75 @@
+--- client/gui2/property/default.properties.orig	2006-07-13 03:56:55.000000000 +0200
++++ client/gui2/property/default.properties	2007-03-12 19:22:18.591683000 +0100
+@@ -2,10 +2,10 @@
+ startupmode			= none
+ #remote settings
+ robot.type	 		= $(ROBOT)
+-robot.nshost   			= hrp2000c
+-robot.nsport   			= 5005
++robot.nshost   			= $(ROBOT_HOST)
++robot.nsport   			= $(ROBOT_PORT)
+ robot.nsopt			= -ORBInitRef NameService=corbaloc:iiop:$(robot.nshost):$(robot.nsport)/NameService
+-robot.openhrphome		= /home/$(user.name)/src/OpenHRP/
++robot.openhrphome		= $(OPENHRPHOME)
+ robot.thFloating		= 20.0
+ robot.thLanded			= 50.0
+ robot.statusinterval		= 200
+@@ -37,10 +37,10 @@
+ viewer.semitransparency		= false
+ viewer.zmpmark.radius		= 0.1
+ 
+-simulation.nshost 		= localhost
+-simulation.nsport 		= 5005
++simulation.nshost 		= $(NS_HOST)
++simulation.nsport 		= $(NS_PORT)
+ simulation.nsopt		= -ORBInitRef NameService=corbaloc:iiop:$(simulation.nshost):$(simulation.nsport)/NameService
+-simulation.openhrphome 		= $(OPENHRPHOME)/
++simulation.openhrphome 		= $(robot.openhrphome)
+ simulation.config.use_euler	= true
+ simulation.config.use_hg	= true
+ simulation.config.use_sd	= true
+@@ -52,7 +52,7 @@
+ simulation.config.totaltime	= 300
+ 
+ simulation.model0.id		= $(robot.type)
+-simulation.model0.url		= file://$(simulation.openhrphome)/etc/$(robot.type)/$(robot.type)main.wrl
++simulation.model0.url		= $(OPENHRP_ROBOT_MODEL)
+ simulation.model1.id		= floor
+ simulation.model1.url		= file://$(simulation.openhrphome)/etc/floor.wrl
+ 
+@@ -66,30 +66,30 @@
+ processinfo.default.nsPort 	= $(simulation.nsport)
+ 
+ processinfo.process0.id 	= NameService
+-processinfo.process0.com 	= enameserv -ORBconfig $(simulation.openhrphome)/Common/orb.conf
++processinfo.process0.com 	= $(OPENHRPHOME)/bin/NameServer.sh
+ processinfo.process0.dir 	= $(OB_DIR)/bin/
+ processinfo.process0.waitCount	= 500
+ 
+ processinfo.process1.id 	= ModelLoader
+-processinfo.process1.com	= $(OPENHRPHOME)/ModelLoader/server2/ModelLoader $(simulation.nsopt)
++processinfo.process1.com	= $(OPENHRPHOME)/bin/ModelLoader2.sh
+ processinfo.process1.dir	= $(OPENHRPHOME)/ModelLoader/server2/
+ #processinfo.process1.com 	= $(JDK_DIR)/bin/java $(EXTRA_JAVA_FLAGS):$(simulation.openhrphome)/Common/corba/openhrpstubskel.jar -Djava.awt.headless=true -jar modelloader.jar $(simulation.nsopt)
+ #processinfo.process1.dir	= $(OPENHRPHOME)/ModelLoader/server/
+ processinfo.process1.hasShutdown= true
+ 
+ processinfo.process2.id 	= CollisionDetectorFactory
+-processinfo.process2.com	= $(OPENHRPHOME)/CollisionDetector/server/server $(simulation.nsopt)
++processinfo.process2.com	= $(OPENHRPHOME)/bin/CollisionDetector.sh
+ processinfo.process2.dir	= $(OPENHRPHOME)/CollisionDetector/server
+ processinfo.process2.hasShutdown= true
+ 
+ processinfo.process3.id 	= IntegratorFactory
+-processinfo.process3.com	= $(OPENHRPHOME)/Dynamics/server/server $(simulation.nsopt)
++processinfo.process3.com	= $(OPENHRPHOME)/bin/Dynamics.sh
+ processinfo.process3.dir	= $(OPENHRPHOME)/Dynamics/server
+ processinfo.process3.waitCount	= 1000
+ processinfo.process3.hasShutdown= true
+ 
+ processinfo.process4.id 	= $(robot.type)ControllerFactory
+-processinfo.process4.com	= $(OPENHRPHOME)/Controller/IOserver/robot/$(robot.type)/bin/hrpsys openhrpadaptor.so $(simulation.nsopt)
++processinfo.process4.com	= $(OPENHRPHOME)/bin/HRPController.sh
+ processinfo.process4.dir	= $(OPENHRPHOME)/Controller/IOserver/robot/$(robot.type)/bin/
+ processinfo.process4.waitCount 	= 4000
+ processinfo.process4.hasShutdown= true

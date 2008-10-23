@@ -1,0 +1,16 @@
+--- bin/Auditor.sh.orig	2005-07-06 13:31:44.000000000 +0200
++++ bin/Auditor.sh	2007-03-12 19:21:02.430911000 +0100
+@@ -1,6 +1,11 @@
+-. config.sh
++#!/bin/sh
++. @PREFIX@/OpenHRP/bin/config.sh
++
++# test if user wants to use another robot model
++OPENHRP_ROBOT_MODEL=${OPENHRP_ROBOT_MODEL:-file://${OPENHRPHOME}/etc/${ROBOT}/${ROBOT}main.wrl}
++
+ GUI_DIR=$OPENHRPHOME/client/gui2
+-GUI_ENV=$EXTRA_JAVA_FLAGS" -Xmx512m -Dpython.home="$JYTHON_DIR" -DEXTRA_JAVA_FLAGS="$EXTRA_JAVA_FLAGS" -DJDK_DIR="$JDK_DIR" -DOPENHRPHOME="$OPENHRPHOME" -DROBOT="$ROBOT
++GUI_ENV=$EXTRA_JAVA_FLAGS" -Xmx512m -Dpython.home="$JYTHON_DIR" -DEXTRA_JAVA_FLAGS="$EXTRA_JAVA_FLAGS" -DJDK_DIR="$JDK_DIR" -DOPENHRPHOME="$OPENHRPHOME" -DROBOT="$ROBOT" -DOPENHRP_ROBOT_MODEL="$OPENHRP_ROBOT_MODEL" -DNS_HOST="$NS_HOST" -DNS_PORT="$NS_PORT" -DROBOT_HOST="$ROBOT_HOST" -DROBOT_PORT="$ROBOT_PORT
+ GUI_PATH="-classpath "$JYTHON_DIR"/jython.jar:"$GUI_DIR"/robot.jar:"$GUI_DIR"/auditor.jar:"$GUI_DIR
+ 
+ cd $OPENHRPHOME/Controller/IOserver/robot/$ROBOT/bin/script
