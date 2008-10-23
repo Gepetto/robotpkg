@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/09/15 17:39:35 mallet $
+# $LAAS: Makefile 2008/10/23 18:50:28 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -16,19 +16,30 @@
 #                                       Anthony Mallet on Sun Jan 28 2007
 #
 
-DISTNAME=		genom-2.0
-PKGREVISION=		4
-CATEGORIES=		architecture
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+DISTNAME=	genom-2.0
+PKGREVISION=	4
+CATEGORIES=	architecture
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
-MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/genom
-COMMENT=		Software components generator for robotics architecture.
+MAINTAINER=	openrobots@laas.fr
+HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/genom
+COMMENT=	Software components generator for robotics architecture.
 
-GNU_CONFIGURE=		yes
-OVERRIDE_DIRDEPTH.pkg-config=	1
+GNU_CONFIGURE=	yes
+CONFIGURE_ENV+=	PERL=${PREFIX.perl}/bin/perl
+
+# options
+PKG_SUPPORTED_OPTIONS+=	tcl
+PKG_SUGGESTED_OPTIONS+=	tcl
+
+PKG_OPTION_DESCR.tcl=	Enable support for TCL clients
+define PKG_OPTION_SET.tcl
+  CONFIGURE_ARGS+=	--with-tcl=$${PREFIX.tcl}/lib
+  include ../../mk/sysdep/tcl.mk
+endef
 
 include ../../devel/pocolibs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/perl.mk
 include ../../mk/robotpkg.mk
