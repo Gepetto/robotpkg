@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/22 23:58:06 tho $
+# $LAAS: Makefile 2008/10/23 14:10:41 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -32,10 +32,8 @@ COMMENT=        Basic Linear Algebra Subprograms (Fortran)
 
 WRKSRC=		${WRKDIR}
 
-GCC_REQD+=	4.0
-USE_LANGUAGES=	fortran
-
 INSTALLATION_DIRS=	lib
 
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/gcc4-fortran.mk
 include ../../mk/robotpkg.mk

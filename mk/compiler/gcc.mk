@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/10/22 23:51:47 tho $
+# $LAAS: gcc.mk 2008/10/23 14:09:33 mallet $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -66,19 +66,14 @@ ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.2' 'gcc-${_GCC_REQD}' && echo y))
     include ${ROBOTPKG_DIR}/lang/gcc42-fortran/depend.mk
     FC=${PREFIX.gcc42-fortran}/bin/gfortran
   endif
+endif
 
-else
-# Require gcc>=4.0 from sysdep
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0' 'gcc-${_GCC_REQD}' && echo y))
-  ifneq (,$(filter fortran,${USE_LANGUAGES}))
+# Require fortran from sysdep
+ifneq (,$(filter fortran,${USE_LANGUAGES}))
+  ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0' 'gcc-${_GCC_REQD}' && echo y))
     include ${ROBOTPKG_DIR}/mk/sysdep/gcc4-fortran.mk
-    FC=${PREFIX.gcc4-fortran}/bin/gfortran
   endif
 endif
-
-endif
-
-
 
 ## _CC is the full path to the compiler named by ${CC} if it can be found.
 ifndef _CC
