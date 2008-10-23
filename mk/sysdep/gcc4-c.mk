@@ -1,4 +1,4 @@
-# $LAAS: gcc4-c.mk 2008/10/23 16:20:38 mallet $
+# $LAAS: gcc4-c.mk 2008/10/23 16:28:14 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -56,7 +56,7 @@ SYSTEM_SEARCH.${_GCC_C_PKG}=	\
 	'bin/cpp::% -dumpversion'
 
 override CC=${PREFIX.${_GCC_C_PKG}}/bin/gcc
-override CPP=${PREFIX.${_GCC_C_PKG}}/bin/gcc
+override CPP=${PREFIX.${_GCC_C_PKG}}/bin/cpp
 
 endif # GCC4_C_DEPEND_MK ---------------------------------------------------
 
