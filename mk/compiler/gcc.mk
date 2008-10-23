@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/10/23 14:09:33 mallet $
+# $LAAS: gcc.mk 2008/10/23 15:59:38 mallet $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -54,95 +54,29 @@ _GCC_REQD=$(firstword $(foreach _rqd_,${GCC_REQD},$(if	\
     ${PKG_ADMIN} pmatch 'gcc>=${_sat_}' 'gcc-${_rqd_}' || echo n))	\
   ),,${_rqd_})))
 
-# Require gcc>=4.2 from lang/gcc42
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.2' 'gcc-${_GCC_REQD}' && echo y))
-  ifneq (,$(filter c,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/lang/gcc42-c/depend.mk
-  endif
-  ifneq (,$(filter c++,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/lang/gcc42-c++/depend.mk
-  endif
-  ifneq (,$(filter fortran,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/lang/gcc42-fortran/depend.mk
-    FC=${PREFIX.gcc42-fortran}/bin/gfortran
-  endif
-endif
 
-# Require fortran from sysdep
-ifneq (,$(filter fortran,${USE_LANGUAGES}))
-  ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0' 'gcc-${_GCC_REQD}' && echo y))
+ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0' 'gcc-${_GCC_REQD}' && echo y))
+  # Require C from sysdep
+  ifneq (,$(filter c,${USE_LANGUAGES}))
+    include ${ROBOTPKG_DIR}/mk/sysdep/gcc4-c.mk
+  endif
+
+  # Require C++ from sysdep
+  ifneq (,$(filter c++,${USE_LANGUAGES}))
+    include ${ROBOTPKG_DIR}/mk/sysdep/gcc4-c++.mk
+  endif
+
+  # Require fortran from sysdep
+  ifneq (,$(filter fortran,${USE_LANGUAGES}))
     include ${ROBOTPKG_DIR}/mk/sysdep/gcc4-fortran.mk
   endif
 endif
-
-## _CC is the full path to the compiler named by ${CC} if it can be found.
-ifndef _CC
-  ifneq (,$(realpath ${CC}))
-    _CC:=	${CC}
-  else
-    _CC:=	$(call pathsearch,${CC},${PATH})
-    ifeq (,$(strip ${_CC}))
-      _CC:=	${CC}
-    endif
-  endif
-MAKEOVERRIDES+=	_CC=$(call quote,${_CC})
-endif
-
-ifndef _GCC_VERSION
-_GCC_VERSION_STRING:=\
-	$(shell ${_CC} -v 2>&1 | ${GREP} 'gcc version' 2>/dev/null || ${ECHO} 0)
-  ifneq (,$(filter gcc%,${_GCC_VERSION_STRING}))
-_GCC_VERSION:=	$(shell ${_CC} -dumpversion)
-  else
-_GCC_VERSION=	0
-  endif
-endif
-
-## Check if we are using robotpkg gcc
-ifneq (,$(filter ${LOCALBASE}/%,${_CC}))
-_IS_ROBOTPKG_GCC=	yes
-else
-_IS_ROBOTPKG_GCC=	no
-endif
-
-_GCCBINDIR=		$(dirname ${_CC})
 
 ## GNU ld option used to set the rpath
 LINKER_RPATH_FLAG=	-R
 
 ## GCC passes rpath directives to the linker using "-Wl,-R".
 COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
-
-
-## Point the variables that specify the compiler to the installed
-## GCC executables.
-##
-#_GCC_DIR=	${WRKDIR}/.gcc
-#_GCC_VARS=	# empty
-
-#_GCCBINDIR=	${_CC:H}
-#.endif
-#.if exists(${_GCCBINDIR}/gcc)
-#_GCC_VARS+=	CC
-#_GCC_CC=	${_GCC_DIR}/bin/gcc
-#_ALIASES.CC=	cc gcc
-#CCPATH=		${_GCCBINDIR}/gcc
-#PKG_CC:=	${_GCC_CC}
-#.endif
-#.if exists(${_GCCBINDIR}/cpp)
-#_GCC_VARS+=	CPP
-#_GCC_CPP=	${_GCC_DIR}/bin/cpp
-#_ALIASES.CPP=	cpp
-#CPPPATH=	${_GCCBINDIR}/cpp
-#PKG_CPP:=	${_GCC_CPP}
-#.endif
-#.if exists(${_GCCBINDIR}/g++)
-#_GCC_VARS+=	CXX
-#_GCC_CXX=	${_GCC_DIR}/bin/g++
-#_ALIASES.CXX=	c++ g++
-#CXXPATH=	${_GCCBINDIR}/g++
-#PKG_CXX:=	${_GCC_CXX}
-#.endif
 
 
 # --- common compiler options ----------------------------------------
