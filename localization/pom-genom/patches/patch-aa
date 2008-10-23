@@ -1,0 +1,18 @@
+diff --git a/codels/pomExecTaskCodels.c b/codels/pomExecTaskCodels.c
+index 2dcb95a..93649a0 100644
+--- codels/pomExecTaskCodels.c
++++ codels/pomExecTaskCodels.c
+@@ -1,4 +1,4 @@
+-/*	$Id: pomExecTaskCodels.c 2007/08/28 14:46:33 mallet $ */
++/*	$Id: pomExecTaskCodels.c 2007/11/29 15:35:22 mallet $ */
+ 
+ /* 
+  * Copyright (c) 2000-2007 LAAS/CNRS                  --  Thu Jun  8 2000
+@@ -194,6 +194,7 @@ pomExecTaskPerm(int *bilan)
+ 	 perror(NULL);
+        } else {
+ 	 pomEulerVToT3D(&seposter.seConfig, &tmp);
++	 tmp.flags = T3D_ALLOW_CONVERSION;
+ 	 if (insituSet(se->linkId, &tmp) != 0) {
+ 	   fprintf(stderr, "pom:%s2%s:", se->from, se->to);
+ 	   perror(NULL);
