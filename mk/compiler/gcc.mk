@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/10/23 15:59:38 mallet $
+# $LAAS: gcc.mk 2008/10/23 16:20:57 mallet $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -55,6 +55,8 @@ _GCC_REQD=$(firstword $(foreach _rqd_,${GCC_REQD},$(if	\
   ),,${_rqd_})))
 
 
+# Select required compilers based on _GCC_REQD.
+#
 ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0' 'gcc-${_GCC_REQD}' && echo y))
   # Require C from sysdep
   ifneq (,$(filter c,${USE_LANGUAGES}))
