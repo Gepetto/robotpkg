@@ -1,4 +1,4 @@
-# $LAAS: tk.mk 2008/10/23 18:26:47 mallet $
+# $LAAS: tk.mk 2008/10/24 18:45:41 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -37,3 +37,5 @@ SYSTEM_SEARCH.tk=	\
 	'include/tk.h:/TK_VERSION/s/[^.0-9]*//gp'
 
 endif # TK_DEPEND_MK -------------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

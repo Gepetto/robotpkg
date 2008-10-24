@@ -1,4 +1,4 @@
-# $LAAS: gcc4-fortran.mk 2008/10/23 16:22:10 mallet $
+# $LAAS: gcc4-fortran.mk 2008/10/24 18:44:25 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -50,5 +50,7 @@ SYSTEM_SEARCH.gcc42-fortran=	\
 override FC=${PREFIX.gcc42-fortran}/bin/gfortran
 
 endif # GCC4_FORTRAN_DEPEND_MK ---------------------------------------------
+
+DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
 
 endif # ROBOTPKG_COMPILER_MK

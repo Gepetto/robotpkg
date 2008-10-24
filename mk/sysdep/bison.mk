@@ -1,4 +1,4 @@
-# $LAAS: bison.mk 2008/10/24 14:16:47 mallet $
+# $LAAS: bison.mk 2008/10/24 18:44:45 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -41,3 +41,5 @@ PKG_OPTION_SET.yacc=	YACC:=	yacc
 PKG_OPTION_UNSET.yacc=	YACC:=	bison -y
 
 endif # BISON_DEPEND_MK ----------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

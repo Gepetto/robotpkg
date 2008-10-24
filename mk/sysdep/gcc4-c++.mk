@@ -1,4 +1,4 @@
-# $LAAS: gcc4-c++.mk 2008/10/23 16:22:03 mallet $
+# $LAAS: gcc4-c++.mk 2008/10/24 18:44:56 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -57,5 +57,7 @@ SYSTEM_SEARCH.${_GCC_C++_PKG} =	\
 override CXX=${PREFIX.${_GCC_C++_PKG}}/bin/g++
 
 endif # GCC4_C++_DEPEND_MK -------------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
 
 endif # ROBOTPKG_COMPILER_MK

@@ -1,4 +1,4 @@
-# $LAAS: flex.mk 2008/10/24 14:16:40 mallet $
+# $LAAS: flex.mk 2008/10/24 18:44:41 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -41,3 +41,5 @@ PKG_OPTION_SET.lex=	LEX:=	lex
 PKG_OPTION_UNSET.lex=	LEX:=	flex
 
 endif # FLEX_DEPEND_MK -----------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

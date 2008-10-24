@@ -1,4 +1,4 @@
-# $LAAS: tcl.mk 2008/10/23 18:22:16 mallet $
+# $LAAS: tcl.mk 2008/10/24 18:45:31 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -37,3 +37,5 @@ SYSTEM_SEARCH.tcl=	\
 	'include/tcl.h:/TCL_VERSION/s/[^.0-9]*//gp'
 
 endif # TCL_DEPEND_MK ------------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

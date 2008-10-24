@@ -1,4 +1,4 @@
-# $LAAS: perl.mk 2008/10/23 18:47:46 mallet $
+# $LAAS: perl.mk 2008/10/24 18:45:22 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -35,3 +35,5 @@ SYSTEM_SEARCH.perl=	\
 	'bin/perl:/v[0-9]/s/[^.0-9]*\\([.0-9]*\\).*/\\1/gp:% -v'
 
 endif # PERL_DEPEND_MK -----------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
