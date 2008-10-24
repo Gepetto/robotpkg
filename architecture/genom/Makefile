@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/24 12:04:30 mallet $
+# $LAAS: Makefile 2008/10/24 14:15:40 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -45,4 +45,6 @@ include ../../devel/pocolibs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/perl.mk
+include ../../mk/sysdep/flex.mk
+include ../../mk/sysdep/bison.mk
 include ../../mk/robotpkg.mk
