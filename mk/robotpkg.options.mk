@@ -254,8 +254,8 @@ BUILD_DEFS+=            PKG_OPTIONS
 # Execute the PKG_OPTION_SET/UNSET scripts.
 #
 $(foreach _o_,${PKG_SUPPORTED_OPTIONS},					\
-	$(eval $(if $(filter ${_o_},${PKG_OPTIONS}),			\
-		${PKG_OPTION_SET.${_o_}},${PKG_OPTION_UNSET.${_o_}})))
+  $(eval $(if $(filter ${_o_},${PKG_OPTIONS}),				\
+    $(value PKG_OPTION_SET.${_o_}),$(value PKG_OPTION_UNSET.${_o_}))))
 
 
 # --- show-options ---------------------------------------------------
