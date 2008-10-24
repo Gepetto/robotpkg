@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/07/21 14:57:49 mallet $
+# $LAAS: Makefile 2008/10/23 22:10:30 tho $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
@@ -55,6 +55,7 @@ FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 NO_BUILD=		yes
 INSTALLATION_DIRS=	bin
 
+include ../../mk/sysdep/gcc4-c++.mk
 include ../../mk/robotpkg.mk
 
 KINEO_DIR=		${PREFIX}/kineo
