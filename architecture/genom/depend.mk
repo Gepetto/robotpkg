@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 12:10:47 tho $
+# $LAAS: depend.mk 2008/10/24 11:58:04 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -47,6 +47,7 @@ PKG_SUGGESTED_OPTIONS+=	tcl
 PKG_OPTION_DESCR.tcl=	Enable the generation of the TCL client code
 define PKG_OPTION_SET.tcl
 	GENOM_ARGS+=	-t
+	REQD_BUILD_OPTIONS.genom+=	tcl
 endef
 define PKG_OPTION_UNSET.tcl
 	GENOM_ARGS:=	$(filter-out -t,${GENOM_ARGS})
