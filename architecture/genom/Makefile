@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/23 18:50:28 mallet $
+# $LAAS: Makefile 2008/10/24 12:04:30 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -28,14 +28,17 @@ COMMENT=	Software components generator for robotics architecture.
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	PERL=${PREFIX.perl}/bin/perl
 
-# options
+# "tcl" option
 PKG_SUPPORTED_OPTIONS+=	tcl
 PKG_SUGGESTED_OPTIONS+=	tcl
 
 PKG_OPTION_DESCR.tcl=	Enable support for TCL clients
 define PKG_OPTION_SET.tcl
-  CONFIGURE_ARGS+=	--with-tcl=$${PREFIX.tcl}/lib
+  CONFIGURE_ARGS+=	--with-tcl=${PREFIX.tcl}/lib
   include ../../mk/sysdep/tcl.mk
+endef
+define PKG_OPTION_UNSET.tcl
+  CONFIGURE_ARGS+=	--without-tcl
 endef
 
 include ../../devel/pocolibs/depend.mk
