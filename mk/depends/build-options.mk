@@ -1,6 +1,11 @@
-# Copyright (c) 2008
-#      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
+# $LAAS: build-options.mk 2008/10/24 11:55:27 mallet $
+
+# Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -13,13 +18,22 @@
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
+# THIS  SOFTWARE IS  PROVIDED BY  THE  COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND  ANY  EXPRESS OR  IMPLIED  WARRANTIES,  INCLUDING,  BUT NOT
+# LIMITED TO, THE IMPLIED  WARRANTIES  OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR  PURPOSE ARE DISCLAIMED. IN  NO EVENT SHALL THE COPYRIGHT
+# HOLDERS OR      CONTRIBUTORS  BE  LIABLE FOR   ANY    DIRECT, INDIRECT,
+# INCIDENTAL,  SPECIAL,  EXEMPLARY, OR CONSEQUENTIAL  DAMAGES (INCLUDING,
+# BUT NOT LIMITED  TO, PROCUREMENT OF  SUBSTITUTE GOODS OR SERVICES; LOSS
+# OF USE, DATA, OR PROFITS; OR BUSINESS  INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY  OF LIABILITY, WHETHER IN  CONTRACT, STRICT LIABILITY, OR
+# TORT (INCLUDING NEGLIGENCE  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+# USE   OF THIS  SOFTWARE, EVEN   IF ADVISED OF   THE POSSIBILITY OF SUCH
+# DAMAGE.
 #
 # From $NetBSD: pkg-build-options.mk,v 1.7 2007/10/13 11:04:17 dsl Exp $
 #
-# Authored by Anthony Mallet on Sun May 18 2008.
+#                                       Anthony Mallet on Sun May 18 2008
 #
 
 #
@@ -49,11 +63,10 @@ define _pkg_buildopt
         )
       endif
       MAKEOVERRIDES+=\
-	PKG_BUILD_OPTIONS.${1}=$$(call quote,$${PKG_BUILD_OPTIONS.${1}})
+	PKG_BUILD_OPTIONS.${1}:=$$(call quote,$${PKG_BUILD_OPTIONS.${1}})
 
       r:=$$(filter-out $${PKG_BUILD_OPTIONS.${1}},${REQD_BUILD_OPTIONS.${1}})
       ifneq (,$${r})
-hline="===================================================================="
 PKG_FAIL_REASON+= ${hline}
 PKG_FAIL_REASON+= "The package ${PKGNAME} requires ${1} to be built with"
 PKG_FAIL_REASON+= "the following options:"
@@ -61,6 +74,7 @@ PKG_FAIL_REASON+= "	$${r}"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "In order to fix the problem, you should re-install ${1}"
 PKG_FAIL_REASON+= "in ${DEPEND_DIR.${1}} with these options enabled."
+PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= ${hline}
       endif
     endif
