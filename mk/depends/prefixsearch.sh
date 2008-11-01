@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2008/10/21 16:11:44 mallet $
+# $LAAS: prefixsearch.sh 2008/11/01 01:51:10 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -23,6 +23,7 @@ set -e          # exit on errors
 : ${ECHO:=echo}
 : ${TEST:=test}
 : ${SED:=sed}
+: ${AWK:=awk}
 : ${PKG_ADMIN_CMD:=robotpkg_admin}
 
 self="${0##*/}"
@@ -58,37 +59,93 @@ ${TEST} $# -gt 2 || { usage; exit 1; }
 pkg="$1"; shift
 abi="$1"; shift
 
+
+# csh-like braces substitutions: replace a{x,y}b with axb ayb
+bracesubst() {
+    ${ECHO} "$*" | ${AWK} '
+	/(^|[^\\\\]){/ { print brasub($0); next }
+	{ print }
+
+	function brasub(str,
+			start, end, paren, alt, nalt, prefix, suffix,
+			i, c, r, l) {
+	    start = end = paren = 0
+	    l = length(str)
+	    for(i=1; i<=l; i++) {
+		c = substr(str, i, 1)
+		if (c == "\\\\") { i++; continue } # skip quoted chars
+
+		if (c == "{")  {
+		    if (++paren > 1) continue
+		    start = end = i; nalt = 0; continue
+		}
+
+		if (paren < 1) continue
+		if (paren > 1) {
+		    if (c == "}") paren--
+		    continue
+		}
+
+		if (c == "," || c == "}")  {
+		    alt[nalt++] = substr(str, end+1, i-end-1)
+		    end = i;
+		    if (c == "}") break; else continue
+		}
+	    }
+	    # if no correct braces were found, return the initial string
+	    if (c != "}" || paren != 1) return str
+
+	    prefix = substr(str, 1, start-1)
+	    suffix = substr(str, end+1)
+
+	    for(i=0; i<nalt-1; i++) {
+		r = r brasub(prefix alt[i] suffix) " "
+	    }
+	    return r brasub(prefix alt[nalt-1] suffix)
+	}
+    '
+}
+
 # Search files
 prefix=
+vrepl='y/-/./;q'
 
 for p in $sysprefix; do
     for fspec in "$@"; do
 	${ECHO} "$fspec" | { IFS=: read f spec cmd
 
-	    set $p/$f # perform glob substitution
-	    match=$1
+	    set `bracesubst $p/$f` # perform glob and {,} substitutions
 
-	    # test file existence
-	    if ! ${TEST} -r "$match"; then
-		${ERRMSG} "missing:	$match"
-		exit 2
-	    fi
+	    # iterate over file specs and test existence
+	    for match in "$@"; do
+		if ! ${TEST} -r "$match"; then
+		    ${ERRMSG} "missing:	$match"
+		    match=; continue
+		fi
 
-	    if ${TEST} -z "$spec$cmd"; then continue; fi
+		# check file version, if needed 
+		if ${TEST} -z "$spec$cmd"; then
+		    ${ERRMSG} "found:		$match"
+		    break
+		fi
 
-	    # check file version 
-	    : ${spec:=p}
-	    if ${TEST} -z "$cmd"; then
-		version=`${SED} -ne "$spec" < $match | ${SED} -e q`
-	    else
-		cmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
-		version=`$cmd 2>&1 | ${SED} -ne "$spec" | ${SED} -e q || :`
-	    fi
-	    : ${version:=unknown}
-	    ${PKG_ADMIN_CMD} pmatch "$abi" "$pkg-$version" || {
-		${ERRMSG} "found:	$match, version $version"
-		exit 2
-	    }
+		version=
+		if ${TEST} -z "$cmd"; then
+		    version=`${SED} -ne "${spec:-p}" < $match | ${SED} $vrepl`
+		else
+		    icmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
+		    version=`$icmd 2>&1 | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
+		fi
+		: ${version:=unknown}
+		if ${PKG_ADMIN_CMD} pmatch "$abi" "$pkg-$version"; then
+		    ${ERRMSG} "found:		$match, version $version"
+		    break
+		fi
+
+		${ERRMSG} "found:		$match, wrong version $version"
+		match=;
+	    done
+	    if ${TEST} -z "$match"; then exit 2; fi
 	} || continue 2;
     done
 

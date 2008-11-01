@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/10/23 17:01:46 mallet $
+# $LAAS: resolve.mk 2008/11/01 11:10:11 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -137,6 +137,7 @@ $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
 _PREFIXSEARCH_CMD=	${SETENV} ECHO=${ECHO}					\
 				  TEST=${TEST}					\
 				  SED=${SED}					\
+				  AWK=${AWK}					\
 				  PKG_ADMIN_CMD=${PKG_ADMIN_CMD}		\
 			${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
 
