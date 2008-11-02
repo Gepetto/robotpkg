@@ -1,4 +1,4 @@
-# $LAAS: tcl.mk 2008/10/24 18:45:31 mallet $
+# $LAAS: tcl.mk 2008/11/02 15:02:25 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -32,9 +32,11 @@ DEPEND_USE+=		tcl
 DEPEND_ABI.tcl?=	tcl>=8.0
 
 SYSTEM_SEARCH.tcl=	\
-	'bin/tclsh'					\
-	'lib/tclConfig.sh:/TCL_VERSION/s/[^.0-9]*//gp'	\
-	'include/tcl.h:/TCL_VERSION/s/[^.0-9]*//gp'
+	'bin/tclsh'							\
+	'lib/{,tcl{,[0-9]*}/}tclConfig.sh:/TCL_VERSION/s/[^.0-9]//gp'	\
+	'include/{,tcl{,[0-9]*}/}tcl.h:/TCL_VERSION/s/[^.0-9]//gp'
+
+TCL_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tcl})
 
 endif # TCL_DEPEND_MK ------------------------------------------------
 
