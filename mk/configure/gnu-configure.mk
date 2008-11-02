@@ -1,6 +1,11 @@
+# $LAAS: gnu-configure.mk 2008/11/02 01:20:04 tho $
 #
-# Copyright (c) 2006,2008 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -13,11 +18,9 @@
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
 # From $NetBSD: gnu-configure.mk,v 1.1 2006/07/05 06:09:15 jlam Exp $
+#
+#                                       Anthony Mallet on Thu Dec  7 2006
 
 HAS_CONFIGURE=			defined
 OVERRIDE_GNU_CONFIG_SCRIPTS=	defined
@@ -39,8 +42,8 @@ USE_GNU_CONFIGURE_HOST?=	no
 ifneq (,$(call isyes,${USE_GNU_CONFIGURE_HOST}))
   include ${ROBOTPKG_DIR}/pkgtools/libtool/depend.mk
   ifndef GNU_CONFIGURE_HOST
-    ifeq (yes,$(call exists,${PREFIX.libtool}/share/libtool/config.guess))
-GNU_CONFIGURE_HOST=	$(shell ${PREFIX.libtool}/share/libtool/config.guess)
+    ifeq (yes,$(call exists,${TOOLS.config.guess}))
+GNU_CONFIGURE_HOST=	$(shell ${TOOLS.config.guess})
 MAKEOVERRIDES+=		GNU_CONFIGURE_HOST=${GNU_CONFIGURE_HOST}
     endif
   endif

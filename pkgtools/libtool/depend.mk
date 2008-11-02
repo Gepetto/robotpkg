@@ -1,3 +1,4 @@
+# $LAAS: depend.mk 2008/11/02 14:44:51 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -18,8 +19,8 @@
 # (http://www.pkgsrc.org).
 #
 # From $NetBSD: libtool-override.mk,v 1.9 2006/11/05 12:40:01 rillig Exp $
-
-# Authored by Anthony Mallet on Wed May 19 2008
+#
+#                                       Anthony Mallet on Wed May 19 2008
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 LIBTOOL_DEPEND_MK:=	${LIBTOOL_DEPEND_MK}+
@@ -33,11 +34,11 @@ ifeq (+,$(LIBTOOL_DEPEND_MK)) # --------------------------------------
 PREFER.libtool?=	system
 
 SYSTEM_SEARCH.libtool=\
-	bin/libtool			\
-	share/aclocal/libtool.m4	\
-	share/libtool/config.guess	\
-	share/libtool/config.sub	\
-	share/libtool/ltmain.sh
+	'bin/libtool:/libtool/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% --version'	\
+	'share/aclocal/libtool.m4'		\
+	'share/libtool/{,config/}config.guess'	\
+	'share/libtool/{,config/}config.sub'	\
+	'share/libtool/{,config/}ltmain.sh'
 
 DEPEND_USE+=		libtool
 DEPEND_METHOD.libtool+=	build
@@ -49,7 +50,18 @@ DEPEND_LIBDIRS.libtool?=# empty
 # TOOLS.libtool is the publicly-readable variable that should be
 # used by Makefiles to invoke the proper libtool.
 #
-TOOLS.libtool?=		${PREFIX.libtool}/bin/libtool
+include ../../mk/robotpkg.prefs.mk
+ifeq (robotpkg,${PREFER.libtool})
+  TOOLS.libtool?=	${PREFIX.libtool}/bin/libtool
+  TOOLS.config.guess?=	${PREFIX.libtool}/share/libtool/config.guess
+  TOOLS.config.sub?=	${PREFIX.libtool}/share/libtool/config.status
+  TOOLS.ltmain.sh?=	${PREFIX.libtool}/share/libtool/ltmain.sh
+else
+  TOOLS.libtool?=	$(word 1,${SYSTEM_FILES.libtool})
+  TOOLS.config.guess?=	$(word 3,${SYSTEM_FILES.libtool})
+  TOOLS.config.sub?=	$(word 4,${SYSTEM_FILES.libtool})
+  TOOLS.ltmain.sh?=	$(word 5,${SYSTEM_FILES.libtool})
+endif
 
 # Define the proper libtool in make environments
 #
@@ -64,9 +76,9 @@ LIBTOOL_OVERRIDE?=		libtool config.guess config.sub ltmain.sh
 OVERRIDE_DIRDEPTH.libtool?=	${OVERRIDE_DIRDEPTH}
 
 OVERRIDE_PATH.libtool?=		${TOOLS.libtool}
-OVERRIDE_PATH.config.guess?=	${PREFIX.libtool}/share/libtool/config.guess
-OVERRIDE_PATH.config.sub?=	${PREFIX.libtool}/share/libtool/config.sub
-OVERRIDE_PATH.ltmain.sh?=	${PREFIX.libtool}/share/libtool/ltmain.sh
+OVERRIDE_PATH.config.guess?=	${TOOLS.config.guess}
+OVERRIDE_PATH.config.sub?=	${TOOLS.config.sub}
+OVERRIDE_PATH.ltmain.sh?=	${TOOLS.ltmain.sh}
 
 define _SCRIPT.libtool-override
 	${CHMOD} +w $$$$file;						\
