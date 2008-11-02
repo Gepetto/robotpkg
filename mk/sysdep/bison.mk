@@ -1,4 +1,4 @@
-# $LAAS: bison.mk 2008/10/24 18:44:45 mallet $
+# $LAAS: bison.mk 2008/11/02 00:57:01 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -25,20 +25,20 @@ endif
 
 ifeq (+,$(BISON_DEPEND_MK)) # ----------------------------------------
 
-YACC?=			bison -y
-CONFIGURE_ENV+=		YACC=$(call quote,${YACC})
+_YACC?=			bison -y
+CONFIGURE_ENV+=		YACC=$(call quote,${_YACC})
 
 PREFER.bison?=		system
 DEPEND_USE+=		bison
 DEPEND_ABI.bison?=	bison
 DEPEND_METHOD.bison+=	build
-SYSTEM_SEARCH.bison=	'bin/${YACC}'
+SYSTEM_SEARCH.bison=	'bin/$(firstword ${_YACC})'
 
 # bison/lex selection
 PKG_SUPPORTED_OPTIONS+=	yacc
 PKG_OPTION_DESCR.yacc=	Use yacc in place of bison
-PKG_OPTION_SET.yacc=	YACC:=	yacc
-PKG_OPTION_UNSET.yacc=	YACC:=	bison -y
+PKG_OPTION_SET.yacc=	_YACC:=	yacc
+PKG_OPTION_UNSET.yacc=	_YACC:=	bison -y
 
 endif # BISON_DEPEND_MK ----------------------------------------------
 
