@@ -1,4 +1,4 @@
-# $LAAS: perl.mk 2008/10/24 18:45:22 mallet $
+# $LAAS: perl.mk 2008/11/02 15:04:38 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -32,7 +32,7 @@ DEPEND_USE+=		perl
 DEPEND_ABI.perl?=	perl>=5
 
 SYSTEM_SEARCH.perl=	\
-	'bin/perl:/v[0-9]/s/[^.0-9]*\\([.0-9]*\\).*/\\1/gp:% -v'
+	'bin/perl:/perl/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -v'
 
 endif # PERL_DEPEND_MK -----------------------------------------------
 
