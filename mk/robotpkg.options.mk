@@ -250,6 +250,12 @@ endif
 PKG_OPTIONS:=		$(sort ${PKG_OPTIONS})
 BUILD_DEFS+=            PKG_OPTIONS
 
+# Provide PLIST.<opt> substitutions
+#
+$(foreach _o_,${PKG_SUPPORTED_OPTIONS},					\
+  $(eval $(if $(filter ${_o_},${PKG_OPTIONS}),				\
+    PLIST.${_o_}=,PLIST.${_o_}=@comment )))
+PLIST_VARS+=${PKG_SUPPORTED_OPTIONS}
 
 # Execute the PKG_OPTION_SET/UNSET scripts.
 #
