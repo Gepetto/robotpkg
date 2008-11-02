@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2008/11/01 01:51:10 tho $
+# $LAAS: prefixsearch.sh 2008/11/02 01:10:28 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -111,42 +111,61 @@ prefix=
 vrepl='y/-/./;q'
 
 for p in $sysprefix; do
+    ${ERRMSG} "search in $p"
+    flist=
     for fspec in "$@"; do
-	${ECHO} "$fspec" | { IFS=: read f spec cmd
+	IFS=: read f spec cmd <<-EOF
+		$fspec
+	EOF
 
-	    set `bracesubst $p/$f` # perform glob and {,} substitutions
-
-	    # iterate over file specs and test existence
-	    for match in "$@"; do
-		if ! ${TEST} -r "$match"; then
-		    ${ERRMSG} "missing:	$match"
+	# iterate over file specs after glob and {,} substitutions and
+	# test existence
+	for match in `bracesubst $p/$f`; do
+	    if ! ${TEST} -r "$match"; then
+                # special case: make /usr optional in /usr/{bin,lib}
+		if ${TEST} "${match##/usr/bin/}" != "${match}"; then
+		    alt="/bin/${match##/usr/bin/}"
+		elif ${TEST} "${match##/usr/lib/}" != "${match}"; then
+		    alt="/lib/${match##/usr/lib/}"
+		else
 		    match=; continue
 		fi
-
-		# check file version, if needed 
-		if ${TEST} -z "$spec$cmd"; then
-		    ${ERRMSG} "found:		$match"
-		    break
+		if ! ${TEST} -r "${alt}"; then
+		    match=; continue
 		fi
+		match=$alt
+	    fi
 
-		version=
-		if ${TEST} -z "$cmd"; then
-		    version=`${SED} -ne "${spec:-p}" < $match | ${SED} $vrepl`
-		else
-		    icmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
-		    version=`$icmd 2>&1 | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
-		fi
-		: ${version:=unknown}
-		if ${PKG_ADMIN_CMD} pmatch "$abi" "$pkg-$version"; then
-		    ${ERRMSG} "found:		$match, version $version"
-		    break
-		fi
+	    # check file version, if needed 
+	    if ${TEST} -z "$spec$cmd"; then
+		flist="$flist $match"
+		${ERRMSG} "found:	$match"
+		break
+	    fi
 
-		${ERRMSG} "found:		$match, wrong version $version"
-		match=;
+	    version=
+	    if ${TEST} -z "$cmd"; then
+		version=`${SED} -ne "${spec:-p}" < $match | ${SED} $vrepl`
+	    else
+		icmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
+		version=`$icmd 2>&1 | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
+	    fi
+	    : ${version:=unknown}
+	    if ${PKG_ADMIN_CMD} pmatch "$abi" "$pkg-$version"; then
+		flist="$flist $match"
+		${ERRMSG} "found:	$match, version $version"
+		break
+	    fi
+
+	    ${ERRMSG} "found:	$match, wrong version $version"
+	    match=;
+	done
+	if ${TEST} -z "$match"; then
+	    for match in `bracesubst $p/$f`; do
+		${ERRMSG} "missing:	$match"
 	    done
-	    if ${TEST} -z "$match"; then exit 2; fi
-	} || continue 2;
+	    continue 2;
+	fi
     done
 
     # stop on first successful match
@@ -160,3 +179,4 @@ if ${TEST} -z "$prefix"; then
 fi
 
 ${ECHO} $prefix
+${ECHO} $flist

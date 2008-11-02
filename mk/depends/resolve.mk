@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2008/11/01 11:10:11 tho $
+# $LAAS: resolve.mk 2008/11/02 01:05:04 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -161,7 +161,11 @@ PKG_FAIL_REASON+= $$(shell ${_PREFIXSEARCH_CMD} -e			\
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "In order to fix the problem, you should install"
 PKG_FAIL_REASON+= ""
+      ifdef SYSTEM_DESCR.${1}
+PKG_FAIL_REASON+= "		"$${SYSTEM_DESCR.${1}}
+      else
 PKG_FAIL_REASON+= "		$${DEPEND_ABI.${1}}"
+      endif
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "in your system (as well as associated development packages)."
 PKG_FAIL_REASON+= ""
@@ -188,7 +192,8 @@ PKG_FAIL_REASON+= ${hline}
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "*** ${1} package not found. (see above)"
     else
-      PREFIX.${1}:=$${_PREFIX.${1}}
+      PREFIX.${1}:=$$(firstword $${_PREFIX.${1}})
+      SYSTEM_FILES.${1}:=$$(wordlist 2,$$(words $${SYSTEM_SEARCH.${1}}),$${_PREFIX.${1}})
     endif
   endif
 endef
