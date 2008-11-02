@@ -103,7 +103,7 @@ share/genom/${PKGVERSION}/tcl/misc.tcl
 share/genom/${PKGVERSION}/tcl/pmtools.tcl
 share/genom/${PKGVERSION}/tcl/server.tcl
 share/genom/genom-mode.el
-share/genom/genom.pdf
+${PLIST.doc}share/genom/genom.pdf
 share/genom/pkgIndex.tcl
 share/tclserv/cs.tcl
 share/tclserv/init.tcl
