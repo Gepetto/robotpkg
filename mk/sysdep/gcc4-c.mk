@@ -1,4 +1,4 @@
-# $LAAS: gcc4-c.mk 2008/10/24 18:45:06 mallet $
+# $LAAS: gcc4-c.mk 2008/11/02 15:10:48 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,50 +16,7 @@
 #                                      Anthony Mallet on Thu Oct 23 2008
 #
 
-ifndef ROBOTPKG_COMPILER_MK
-
-# If we are included directly, simply register the compiler requirements
+# simply register the compiler requirements
 GCC_REQD+=	4.0
-USE_LANGUAGES+=	c
 
-else
-
-# If we are included from compiler-vars.mk, register the proper dependencies.
-
-DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-GCC4_C_DEPEND_MK:=	${GCC4_C_DEPEND_MK}+
-
-# Require gcc>=4.2 from lang/gcc42
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.2' 'gcc-${_GCC_REQD}' && echo y))
-  _GCC_C_PKG:=	gcc42-c
-  _GCC_C_DIR:=	../../lang/gcc42-c
-else
-  _GCC_C_PKG:=	gcc4-c
-  _GCC_C_DIR:=# empty
-endif
-
-ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		${_GCC_C_PKG}
-endif
-
-ifeq (+,$(GCC4_C_DEPEND_MK)) # ---------------------------------------------
-
-PREFER.${_GCC_C_PKG}?=	system
-
-DEPEND_USE+=		${_GCC_C_PKG}
-
-DEPEND_ABI.${_GCC_C_PKG}?=${_GCC_C_PKG}>=${_GCC_REQD}
-DEPEND_DIR.${_GCC_C_PKG}?=${_GCC_C_DIR}
-
-SYSTEM_SEARCH.${_GCC_C_PKG}=	\
-	'bin/gcc::% -dumpversion'	\
-	'bin/cpp::% -dumpversion'
-
-override CC=${PREFIX.${_GCC_C_PKG}}/bin/gcc
-override CPP=${PREFIX.${_GCC_C_PKG}}/bin/cpp
-
-endif # GCC4_C_DEPEND_MK ---------------------------------------------------
-
-DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-
-endif # ROBOTPKG_COMPILER_MK
+include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c.mk

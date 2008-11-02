@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/10/23 16:20:57 mallet $
+# $LAAS: gcc.mk 2008/11/02 15:24:25 tho $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -57,19 +57,14 @@ _GCC_REQD=$(firstword $(foreach _rqd_,${GCC_REQD},$(if	\
 
 # Select required compilers based on _GCC_REQD.
 #
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0' 'gcc-${_GCC_REQD}' && echo y))
-  # Require C from sysdep
-  ifneq (,$(filter c,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/mk/sysdep/gcc4-c.mk
-  endif
-
-  # Require C++ from sysdep
-  ifneq (,$(filter c++,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/mk/sysdep/gcc4-c++.mk
-  endif
-
-  # Require fortran from sysdep
-  ifneq (,$(filter fortran,${USE_LANGUAGES}))
+ifneq (,$(filter c,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/mk/sysdep/gcc4-c.mk
+endif
+ifneq (,$(filter c++,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c++.mk
+endif
+ifneq (,$(filter fortran,${USE_LANGUAGES}))
+  ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0' 'gcc-${_GCC_REQD}' && echo y))
     include ${ROBOTPKG_DIR}/mk/sysdep/gcc4-fortran.mk
   endif
 endif
