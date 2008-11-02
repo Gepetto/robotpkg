@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 20:44:54 tho $
+# $LAAS: depend.mk 2008/11/01 19:24:08 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -59,7 +59,7 @@ bzip2-build:
   #
 DEPEND_USE+=		bzip2
 
-DEPEND_ABI.bzip2?=	bzip2>=1.0.5
+DEPEND_ABI.bzip2?=	bzip2>=1.0.3
 DEPEND_DIR.bzip2?=	../../archivers/bzip2
 
 DEPEND_LIBS.bzip2+=	-lbz2
