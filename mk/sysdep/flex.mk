@@ -1,4 +1,4 @@
-# $LAAS: flex.mk 2008/10/24 18:44:41 mallet $
+# $LAAS: flex.mk 2008/11/02 01:54:17 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -25,20 +25,20 @@ endif
 
 ifeq (+,$(FLEX_DEPEND_MK)) # -----------------------------------------
 
-LEX?=			flex
-CONFIGURE_ENV+=		LEX=$(call quote,${LEX})
+_LEX?=			flex
+CONFIGURE_ENV+=		LEX=$(call quote,$(word 1,${SYSTEM_FILES.flex}))
 
 PREFER.flex?=		system
 DEPEND_USE+=		flex
 DEPEND_ABI.flex?=	flex>=2.5
 DEPEND_METHOD.flex+=	build
-SYSTEM_SEARCH.flex=	'bin/${LEX}:s/[^.0-9]*//p:% -V'
+SYSTEM_SEARCH.flex=	'bin/$(firstword ${_LEX}):s/[^.0-9]//gp:% -V'
 
 # flex/lex selection
 PKG_SUPPORTED_OPTIONS+=	lex
 PKG_OPTION_DESCR.lex=	Use lex in place of flex
-PKG_OPTION_SET.lex=	LEX:=	lex
-PKG_OPTION_UNSET.lex=	LEX:=	flex
+PKG_OPTION_SET.lex=	_LEX:=	lex
+PKG_OPTION_UNSET.lex=	_LEX:=	flex
 
 endif # FLEX_DEPEND_MK -----------------------------------------------
 
