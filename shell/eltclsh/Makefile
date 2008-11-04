@@ -1,4 +1,4 @@
-# $LAAS: $
+# $LAAS: Makefile 2008/11/04 22:30:01 tho $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -25,6 +25,8 @@ HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/eltclsh
 COMMENT=		Interactive shell for the TCL programming language.
 
 GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})
+CONFIGURE_ARGS+=	--with-tk=$(dir ${TK_CONFIG_SH})
 
 include ../../devel/libedit/depend.mk
 include ../../mk/sysdep/tcl.mk
