@@ -16,8 +16,8 @@
 #                                       Anthony Mallet on Sun Jan 28 2007
 #
 
-DISTNAME=	genom-2.0
-PKGREVISION=	4
+DISTNAME=	genom-2.1
+PKGREVISION=	0
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 

@@ -81,9 +81,6 @@ share/genom/${PKGVERSION}/server/printXML.h
 share/genom/${PKGVERSION}/server/requestCntrl.c
 share/genom/${PKGVERSION}/server/requestExec.c
 share/genom/${PKGVERSION}/server/scan.h
-share/genom/${PKGVERSION}/server/scopeLib.h
-share/genom/${PKGVERSION}/server/scopeMain.c
-share/genom/${PKGVERSION}/server/scope_script
 share/genom/${PKGVERSION}/server/tcl/tclClient.tcl
 share/genom/${PKGVERSION}/server/tcl/tclClientPoster.tcl
 share/genom/${PKGVERSION}/server/tcl/tclClientRqst.tcl
