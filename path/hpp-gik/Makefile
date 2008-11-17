@@ -32,6 +32,7 @@ DEPENDS+=	jrl-interface-giktask>=1.4:../../interfaces/jrl-interface-giktask
 GNU_CONFIGURE=	yes
 
 include ../../math/jrl-dynamics/depend.mk
+include ../../math/hrp2-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
