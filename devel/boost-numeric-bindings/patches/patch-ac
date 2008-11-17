@@ -1,0 +1,11 @@
+--- numeric/bindings/lapack/lapack.hpp.orig	2008-10-13 17:52:19.975171000 +0200
++++ numeric/bindings/lapack/lapack.hpp	2008-10-13 17:52:24.798153000 +0200
+@@ -43,7 +43,7 @@
+ 
+ #include <boost/numeric/bindings/lapack/geqrf.hpp>
+ #include <boost/numeric/bindings/lapack/ormqr.hpp>
+-
++#include <boost/numeric/bindings/lapack/orgqr.hpp>
+ 
+ 
+ #endif // BOOST_NUMERIC_BINDINGS_LAPACK_LAPACK_HPP

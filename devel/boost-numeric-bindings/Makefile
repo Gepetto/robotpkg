@@ -34,3 +34,4 @@ include ../../mk/robotpkg.mk
 
 do-install:
 	cd ${WRKSRC} &&	${PAX} -rw -pm . ${PREFIX}/include/boost
+	cd files && ${PAX} -rw -pm orgqr.hpp  ${PREFIX}/include/boost/numeric/bindings/lapack
