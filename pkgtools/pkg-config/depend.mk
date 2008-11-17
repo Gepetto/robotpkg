@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 12:30:36 tho $
+# $LAAS: depend.mk 2008/11/17 17:41:36 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -42,12 +42,12 @@ TOOLS.pkg-config?=		${PREFIX.pkg-config}/bin/pkg-config
 
 # Define the proper pkg-config in make and configure environments
 #
-MAKE_ENV+=		PKG_CONFIG="${TOOLS.pkg-config} ${PKG_CONFIG_FLAGS}"
-CONFIGURE_ENV+=		PKG_CONFIG="${TOOLS.pkg-config} ${PKG_CONFIG_FLAGS}"
+MAKE_ENV+=		PKG_CONFIG=$(call quote,${TOOLS.pkg-config})
+CONFIGURE_ENV+=		PKG_CONFIG=$(call quote,${TOOLS.pkg-config})
 
 # Append our path in front of PKG_CONFIG_PATH
 #
-CONFIGURE_ENV+= PKG_CONFIG_PATH=$(call quote,$(call \
+/PKG_+CONFIGURE_ENV+= PKG_CONFIG_PATH=$(call quote,$(call \
 		prependpath,${PREFIX}/lib/pkgconfig,${PKG_CONFIG_PATH}))
 
 
