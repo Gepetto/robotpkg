@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/11/17 17:41:36 mallet $
+# $LAAS: depend.mk 2008/11/18 11:33:45 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -47,7 +47,7 @@ CONFIGURE_ENV+=		PKG_CONFIG=$(call quote,${TOOLS.pkg-config})
 
 # Append our path in front of PKG_CONFIG_PATH
 #
-/PKG_+CONFIGURE_ENV+= PKG_CONFIG_PATH=$(call quote,$(call \
+CONFIGURE_ENV+= PKG_CONFIG_PATH=$(call quote,$(call \
 		prependpath,${PREFIX}/lib/pkgconfig,${PKG_CONFIG_PATH}))
 
 
