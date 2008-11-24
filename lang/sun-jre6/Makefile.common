@@ -1,4 +1,4 @@
-# $LAAS: Makefile.common 2008/10/03 18:01:49 mallet $
+# $LAAS: Makefile.common 2008/11/24 11:08:27 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -100,7 +100,7 @@ do-configure: $(foreach w,${JAVA_WRAPPERS},${WRKDIR}/${w})
 
 do-install:
 	${INSTALL_PROGRAM_DIR} ${DESTDIR}${JAVA_HOME}
-	cd ${WRKSRC} && pax -rwp ma . ${JAVA_HOME}
+	cd ${WRKSRC} && ${PAX} -rwp ma . ${JAVA_HOME}
 
 post-install: $(foreach w,${JAVA_WRAPPERS},install-java-wrapper-${w})
 
