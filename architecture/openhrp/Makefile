@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/23 16:59:12 mallet $
+# $LAAS: Makefile 2008/11/24 11:10:51 mallet $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
@@ -56,7 +56,7 @@ include ../../devel/sun-java3d/depend.mk
 include ../../lang/jython/depend.mk
 include ../../lang/sun-jdk6/depend.mk
 
-include ../../mk/sysdep/gcc4-c++.mk
+include ../../lang/gcc42-c++/depend.mk
 include ../../mk/robotpkg.mk
 
 do-configure:
