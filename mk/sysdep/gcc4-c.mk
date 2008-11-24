@@ -1,4 +1,4 @@
-# $LAAS: gcc4-c.mk 2008/11/02 15:10:48 tho $
+# $LAAS: gcc4-c.mk 2008/11/24 11:15:44 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -19,4 +19,4 @@
 # simply register the compiler requirements
 GCC_REQD+=	4.0
 
-include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c.mk
+include ../../mk/sysdep/gcc-c.mk
