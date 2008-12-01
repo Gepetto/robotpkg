@@ -1,4 +1,4 @@
-# $LAAS: gnu-configure.mk 2008/11/02 01:20:04 tho $
+# $LAAS: gnu-configure.mk 2008/12/01 23:58:12 tho $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -40,12 +40,9 @@ CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX}
 #
 USE_GNU_CONFIGURE_HOST?=	no
 ifneq (,$(call isyes,${USE_GNU_CONFIGURE_HOST}))
-  include ${ROBOTPKG_DIR}/pkgtools/libtool/depend.mk
   ifndef GNU_CONFIGURE_HOST
-    ifeq (yes,$(call exists,${TOOLS.config.guess}))
-GNU_CONFIGURE_HOST=	$(shell ${TOOLS.config.guess})
-MAKEOVERRIDES+=		GNU_CONFIGURE_HOST=${GNU_CONFIGURE_HOST}
-    endif
+    GNU_CONFIGURE_HOST=	$(shell ${ROBOTPKG_DIR}/mk/configure/config.guess)
+    MAKEOVERRIDES+=	GNU_CONFIGURE_HOST=${GNU_CONFIGURE_HOST}
   endif
   ifdef GNU_CONFIGURE_HOST
 CONFIGURE_ARGS+=	--host=${GNU_CONFIGURE_HOST}
