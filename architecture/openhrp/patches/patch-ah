@@ -1,0 +1,13 @@
+--- DynamicsSimulator/server/Makefile~	2008-06-18 09:08:38.000000000 +0200
++++ DynamicsSimulator/server/Makefile	2008-12-02 00:43:58.000000000 +0100
+@@ -10,8 +10,10 @@
+ ifeq ("$(OSNAME)","QNX")
+ MATH_LIBS=-lblas -lf2c -lm
+ else
++ifeq ("$(OSNAME)","Linux")
+ DL_LIBS=-ldl
+ endif
++endif
+ 
+ ifdef USE_INTEL_COMPILER
+ #CXX_FLAGS +=  -parallel -par-report=3 -par-runtime-control -ansi-alias -restrict -unroll0

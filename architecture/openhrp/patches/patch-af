@@ -1,0 +1,20 @@
+--- Make.rules~	2008-06-18 09:08:40.000000000 +0200
++++ Make.rules	2008-12-01 22:25:10.000000000 +0100
+@@ -3,7 +3,7 @@
+ include $(TOP)Make.vars
+ 
+ # Make
+-MAKE 			= 	make
++
+ LINK_FLAGS		=
+ EXPANDMACRO		=:
+ CXX_FLAGS_COMMON	=	-c -Wall -fPIC -I$(COMMON)
+@@ -64,7 +64,7 @@
+ #
+ # Compiler Options
+ #
+-CXX 			= 	g++
++
+ 
+ ifeq ("$(OSNAME)","QNX")
+  CXX 			= 	QCC -V3.3.5,gcc_ntox86_cpp
