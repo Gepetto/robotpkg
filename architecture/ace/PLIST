@@ -1,5 +1,5 @@
-@comment $Id:$
-bin/gperf
+@comment Fri Nov 28 17:19:40 CET 2008
+bin/ace_gperf
 include/ACEXML/apps/svcconf/Svcconf.h
 include/ACEXML/apps/svcconf/Svcconf_Handler.h
 include/ACEXML/apps/svcconf/Svcconf_Handler.inl
@@ -191,6 +191,7 @@ include/ace/Condition_T.inl
 include/ace/Condition_Thread_Mutex.h
 include/ace/Condition_Thread_Mutex.inl
 include/ace/Configuration.h
+include/ace/Configuration.inl
 include/ace/Configuration_Import_Export.h
 include/ace/Connection_Recycling_Strategy.h
 include/ace/Connector.cpp
@@ -226,11 +227,20 @@ include/ace/Dump_T.cpp
 include/ace/Dump_T.h
 include/ace/Dynamic.h
 include/ace/Dynamic.inl
+include/ace/Dynamic_Message_Strategy.h
+include/ace/Dynamic_Message_Strategy.inl
 include/ace/Dynamic_Service.cpp
 include/ace/Dynamic_Service.h
 include/ace/Dynamic_Service.inl
 include/ace/Dynamic_Service_Base.h
 include/ace/Dynamic_Service_Dependency.h
+include/ace/ETCL/ETCL_Constraint.h
+include/ace/ETCL/ETCL_Constraint.inl
+include/ace/ETCL/ETCL_Constraint_Visitor.h
+include/ace/ETCL/ETCL_Interpreter.h
+include/ace/ETCL/ETCL_y.h
+include/ace/ETCL/ace_etcl_export.h
+include/ace/ETCL/etcl_parser_export.h
 include/ace/Encoding_Converter.h
 include/ace/Encoding_Converter_Factory.h
 include/ace/Env_Value_T.cpp
@@ -345,6 +355,9 @@ include/ace/IPC_SAP.h
 include/ace/IPC_SAP.inl
 include/ace/If_Then_Else.h
 include/ace/Init_ACE.h
+include/ace/Intrusive_Auto_Ptr.cpp
+include/ace/Intrusive_Auto_Ptr.h
+include/ace/Intrusive_Auto_Ptr.inl
 include/ace/Intrusive_List.cpp
 include/ace/Intrusive_List.h
 include/ace/Intrusive_List.inl
@@ -377,6 +390,7 @@ include/ace/Lock_Adapter_T.cpp
 include/ace/Lock_Adapter_T.h
 include/ace/Lock_Adapter_T.inl
 include/ace/Log_Msg.h
+include/ace/Log_Msg.inl
 include/ace/Log_Msg_Backend.h
 include/ace/Log_Msg_Callback.h
 include/ace/Log_Msg_IPC.h
@@ -429,6 +443,8 @@ include/ace/Message_Block_T.h
 include/ace/Message_Block_T.inl
 include/ace/Message_Queue.h
 include/ace/Message_Queue.inl
+include/ace/Message_Queue_NT.h
+include/ace/Message_Queue_NT.inl
 include/ace/Message_Queue_T.cpp
 include/ace/Message_Queue_T.h
 include/ace/Message_Queue_Vx.h
@@ -439,6 +455,34 @@ include/ace/Min_Max.h
 include/ace/Module.cpp
 include/ace/Module.h
 include/ace/Module.inl
+include/ace/Monitor_Admin.h
+include/ace/Monitor_Admin_Manager.h
+include/ace/Monitor_Base.h
+include/ace/Monitor_Base.inl
+include/ace/Monitor_Control/Auto_Update_Starter.h
+include/ace/Monitor_Control/BSD_Network_Interface_Monitor.h
+include/ace/Monitor_Control/Bytes_Received_Monitor.h
+include/ace/Monitor_Control/Bytes_Sent_Monitor.h
+include/ace/Monitor_Control/CPU_Load_Monitor.h
+include/ace/Monitor_Control/Constraint_Interpreter.h
+include/ace/Monitor_Control/Constraint_Visitor.h
+include/ace/Monitor_Control/Linux_Network_Interface_Monitor.h
+include/ace/Monitor_Control/Memory_Usage_Monitor.h
+include/ace/Monitor_Control/Monitor_Control.h
+include/ace/Monitor_Control/Monitor_Control_export.h
+include/ace/Monitor_Control/Monitor_Control_utils.h
+include/ace/Monitor_Control/Monitor_Group.h
+include/ace/Monitor_Control/Monitor_Query.h
+include/ace/Monitor_Control/Num_Threads_Monitor.h
+include/ace/Monitor_Control/Packets_Received_Monitor.h
+include/ace/Monitor_Control/Packets_Sent_Monitor.h
+include/ace/Monitor_Control/Solaris_Network_Interface_Monitor.h
+include/ace/Monitor_Control/Windows_Monitor.h
+include/ace/Monitor_Control/Windows_Multi_Instance_Monitor.h
+include/ace/Monitor_Control_Action.h
+include/ace/Monitor_Control_Types.h
+include/ace/Monitor_Point_Registry.h
+include/ace/Monitor_Size.h
 include/ace/Msg_WFMO_Reactor.h
 include/ace/Msg_WFMO_Reactor.inl
 include/ace/Multihomed_INET_Addr.h
@@ -451,6 +495,7 @@ include/ace/Name_Proxy.h
 include/ace/Name_Request_Reply.h
 include/ace/Name_Space.h
 include/ace/Naming_Context.h
+include/ace/Naming_Context.inl
 include/ace/Netlink_Addr.h
 include/ace/Netlink_Addr.inl
 include/ace/Node.cpp
@@ -620,7 +665,9 @@ include/ace/Recursive_Thread_Mutex.inl
 include/ace/Recyclable.h
 include/ace/Recyclable.inl
 include/ace/Refcountable.h
-include/ace/Refcountable.inl
+include/ace/Refcountable_T.cpp
+include/ace/Refcountable_T.h
+include/ace/Refcountable_T.inl
 include/ace/Refcounted_Auto_Ptr.cpp
 include/ace/Refcounted_Auto_Ptr.h
 include/ace/Refcounted_Auto_Ptr.inl
@@ -722,6 +769,7 @@ include/ace/Singleton.cpp
 include/ace/Singleton.h
 include/ace/Singleton.inl
 include/ace/Sock_Connect.h
+include/ace/Stack_Trace.h
 include/ace/Static_Object_Lock.h
 include/ace/Stats.h
 include/ace/Stats.inl
@@ -740,6 +788,7 @@ include/ace/String_Base.inl
 include/ace/String_Base_Const.h
 include/ace/Svc_Conf.h
 include/ace/Svc_Conf_Lexer.h
+include/ace/Svc_Conf_Token_Table.h
 include/ace/Svc_Conf_Tokens.h
 include/ace/Svc_Handler.cpp
 include/ace/Svc_Handler.h
@@ -861,6 +910,9 @@ include/ace/Unbounded_Queue.inl
 include/ace/Unbounded_Set.cpp
 include/ace/Unbounded_Set.h
 include/ace/Unbounded_Set.inl
+include/ace/Unbounded_Set_Ex.cpp
+include/ace/Unbounded_Set_Ex.h
+include/ace/Unbounded_Set_Ex.inl
 include/ace/Value_Ptr.h
 include/ace/Vector_T.cpp
 include/ace/Vector_T.h
@@ -879,7 +931,6 @@ include/ace/ace_wchar.inl
 include/ace/checked_iterator.h
 include/ace/config-WinCE.h
 include/ace/config-all.h
-include/ace/config-borland-common.h
 include/ace/config-lite.h
 include/ace/config-macros.h
 include/ace/config-minimal.h
@@ -892,6 +943,99 @@ include/ace/config-win32-msvc.h
 include/ace/config-win32.h
 include/ace/config.h
 include/ace/iosfwd.h
+include/ace/os_include/arpa/os_inet.h
+include/ace/os_include/net/os_if.h
+include/ace/os_include/netinet/os_in.h
+include/ace/os_include/netinet/os_tcp.h
+include/ace/os_include/os_aio.h
+include/ace/os_include/os_assert.h
+include/ace/os_include/os_byteswap.h
+include/ace/os_include/os_complex.h
+include/ace/os_include/os_cpio.h
+include/ace/os_include/os_ctype.h
+include/ace/os_include/os_dirent.h
+include/ace/os_include/os_dlfcn.h
+include/ace/os_include/os_errno.h
+include/ace/os_include/os_fcntl.h
+include/ace/os_include/os_fenv.h
+include/ace/os_include/os_float.h
+include/ace/os_include/os_fmtmsg.h
+include/ace/os_include/os_fnmatch.h
+include/ace/os_include/os_ftw.h
+include/ace/os_include/os_glob.h
+include/ace/os_include/os_grp.h
+include/ace/os_include/os_iconv.h
+include/ace/os_include/os_intrin.h
+include/ace/os_include/os_inttypes.h
+include/ace/os_include/os_iso646.h
+include/ace/os_include/os_kstat.h
+include/ace/os_include/os_langinfo.h
+include/ace/os_include/os_libgen.h
+include/ace/os_include/os_limits.h
+include/ace/os_include/os_local.h
+include/ace/os_include/os_math.h
+include/ace/os_include/os_monetary.h
+include/ace/os_include/os_mqueue.h
+include/ace/os_include/os_ndbm.h
+include/ace/os_include/os_netdb.h
+include/ace/os_include/os_nl_types.h
+include/ace/os_include/os_pdh.h
+include/ace/os_include/os_pdhmsg.h
+include/ace/os_include/os_poll.h
+include/ace/os_include/os_pthread.h
+include/ace/os_include/os_pwd.h
+include/ace/os_include/os_regex.h
+include/ace/os_include/os_sched.h
+include/ace/os_include/os_search.h
+include/ace/os_include/os_semaphore.h
+include/ace/os_include/os_setjmp.h
+include/ace/os_include/os_signal.h
+include/ace/os_include/os_spawn.h
+include/ace/os_include/os_stdarg.h
+include/ace/os_include/os_stdbool.h
+include/ace/os_include/os_stddef.h
+include/ace/os_include/os_stdint.h
+include/ace/os_include/os_stdio.h
+include/ace/os_include/os_stdlib.h
+include/ace/os_include/os_string.h
+include/ace/os_include/os_strings.h
+include/ace/os_include/os_stropts.h
+include/ace/os_include/os_syslog.h
+include/ace/os_include/os_tar.h
+include/ace/os_include/os_termios.h
+include/ace/os_include/os_tgmath.h
+include/ace/os_include/os_time.h
+include/ace/os_include/os_trace.h
+include/ace/os_include/os_ucontext.h
+include/ace/os_include/os_ulimit.h
+include/ace/os_include/os_unistd.h
+include/ace/os_include/os_utime.h
+include/ace/os_include/os_utmpx.h
+include/ace/os_include/os_wchar.h
+include/ace/os_include/os_wctype.h
+include/ace/os_include/os_wordexp.h
+include/ace/os_include/sys/os_ipc.h
+include/ace/os_include/sys/os_loadavg.h
+include/ace/os_include/sys/os_mman.h
+include/ace/os_include/sys/os_msg.h
+include/ace/os_include/sys/os_pstat.h
+include/ace/os_include/sys/os_resource.h
+include/ace/os_include/sys/os_select.h
+include/ace/os_include/sys/os_sem.h
+include/ace/os_include/sys/os_shm.h
+include/ace/os_include/sys/os_socket.h
+include/ace/os_include/sys/os_stat.h
+include/ace/os_include/sys/os_statvfs.h
+include/ace/os_include/sys/os_sysctl.h
+include/ace/os_include/sys/os_sysinfo.h
+include/ace/os_include/sys/os_time.h
+include/ace/os_include/sys/os_timeb.h
+include/ace/os_include/sys/os_times.h
+include/ace/os_include/sys/os_types.h
+include/ace/os_include/sys/os_uio.h
+include/ace/os_include/sys/os_un.h
+include/ace/os_include/sys/os_utsname.h
+include/ace/os_include/sys/os_wait.h
 include/ace/post.h
 include/ace/pre.h
 include/ace/streams.h
@@ -900,25 +1044,35 @@ lib/libACE.la
 lib/libACEXML.la
 lib/libACEXML_Parser.la
 lib/libACEXML_XML_Svc_Conf_Parser.la
+lib/libACE_ETCL.la
+lib/libACE_ETCL_Parser.la
 lib/libACE_HTBP.la
+lib/libACE_Monitor_Control.la
 lib/libACE_RMCast.la
 lib/libACE_TMCast.la
 lib/libKokyu.la
 lib/pkgconfig/ACE.pc
 lib/pkgconfig/ACEXML.pc
 lib/pkgconfig/ACEXML_Parser.pc
+lib/pkgconfig/ACE_ETCL.pc
+lib/pkgconfig/ACE_ETCL_Parser.pc
 lib/pkgconfig/ACE_HTBP.pc
 lib/pkgconfig/ACE_RMCast.pc
 lib/pkgconfig/ACE_TMCast.pc
 lib/pkgconfig/Kokyu.pc
-man/man1/gperf.1
+man/man1/ace_gperf.1
+@dirrm include/ace/os_include/sys
+@dirrm include/ace/os_include/netinet
+@dirrm include/ace/os_include/net
+@dirrm include/ace/os_include/arpa
+@dirrm include/ace/os_include
 @dirrm include/ace/TMCast
 @exec ${MKDIR} %D/include/ace/SSL
 @dirrm include/ace/SSL
 @dirrm include/ace/RMCast
-@exec ${MKDIR} %D/include/ace/QoS
-@dirrm include/ace/QoS
+@dirrm include/ace/Monitor_Control
 @dirrm include/ace/HTBP
+@dirrm include/ace/ETCL
 @dirrm include/ace
 @dirrm include/Kokyu
 @dirrm include/ACEXML/parser/parser

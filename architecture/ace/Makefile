@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 12:19:28 tho $
+# $LAAS: Makefile 2008/11/28 16:45:42 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Wed Jan 23 2008
 #
 
-ACE_VERSION=		5.6
+ACE_VERSION=		5.6.7
 DISTNAME=		ACE-${ACE_VERSION}
 PKGNAME=		ace-${ACE_VERSION}
 CATEGORIES=		architecture
