@@ -1,0 +1,11 @@
+--- DynamicsSimulator/Makefile~	2008-06-18 09:08:38.000000000 +0200
++++ DynamicsSimulator/Makefile	2008-11-28 19:15:23.000000000 +0100
+@@ -7,7 +7,7 @@
+ 
+ depend:
+ 	$(MAKE) -C $(CORBA_DIR) depend
+-	$(MAKE) -C $(SERVER_DIR)depend
++	$(MAKE) -C $(SERVER_DIR) depend
+ 
+ clean: del_generic clean_subdirs
+ 
