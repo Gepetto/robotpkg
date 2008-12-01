@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/10 14:41:25 mallet $
+# $LAAS: depend.mk 2008/11/28 15:58:35 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -25,7 +25,8 @@ endif
 
 ifeq (+,$(BOOST_BUILD_DEPEND_MK)) # ----------------------------------
 
-PREFER.boost-build?=	robotpkg
+PREFER.boost?=		system
+PREFER.boost-build?=	${PREFER.boost}
 
 SYSTEM_SEARCH.boost-build=\
 	share/boost-build/boost-build.jam	\

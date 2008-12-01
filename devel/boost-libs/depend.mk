@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/10 14:20:52 mallet $
+# $LAAS: depend.mk 2008/11/28 15:58:19 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -25,7 +25,8 @@ endif
 
 ifeq (+,$(BOOST_LIBS_DEPEND_MK)) # -----------------------------------
 
-PREFER.boost-libs?=	robotpkg
+PREFER.boost?=		system
+PREFER.boost-libs?=	${PREFER.boost}
 
 SYSTEM_SEARCH.boost-libs=\
 	lib/libboost_thread-mt.*	\

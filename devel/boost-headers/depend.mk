@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/10 13:43:59 mallet $
+# $LAAS: depend.mk 2008/11/28 17:24:04 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -25,9 +25,11 @@ endif
 
 ifeq (+,$(BOOST_HEADERS_DEPEND_MK)) # --------------------------------
 
-PREFER.boost-headers?=	robotpkg
+PREFER.boost?=		system
+PREFER.boost-headers?=	${PREFER.boost}
 
 SYSTEM_SEARCH.boost-headers=\
+	'include/boost/version.hpp:/BOOST_LIB_VERSION.*"/{s/.*"\\([0-9_]*\\)".*/\\1/g;y/_/./;p;}'	\
 	include/boost/config.hpp	\
 	include/boost/config/user.hpp
 
@@ -37,6 +39,8 @@ DEPEND_ABI.boost-headers?=	boost-headers>=1.34.1
 DEPEND_DIR.boost-headers?=	../../devel/boost-headers
 
 DEPEND_METHOD.boost-headers?=	build
+
+USE_LANGUAGES+=		c++
 
 endif # BOOST_HEADERS_DEPEND_MK --------------------------------------
 
