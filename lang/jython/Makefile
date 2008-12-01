@@ -1,4 +1,4 @@
-# $LAAS: $
+# $LAAS: Makefile 2008/11/28 19:04:16 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -35,6 +35,7 @@ WRKSRC=		${WRKDIR}/extract
 NO_CONFIGURE=	yes
 NO_BUILD=	yes
 
+include ../../lang/sun-jdk6/depend.mk
 include ../../lang/sun-jre6/depend.mk
 include ../../mk/robotpkg.mk
 
