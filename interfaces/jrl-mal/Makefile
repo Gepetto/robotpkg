@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/10 15:18:22 mallet $
+# $LAAS: Makefile 2008/11/28 16:06:11 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -35,7 +35,7 @@ PKG_SUGGESTED_OPTIONS+=	boost t3d
 
 PKG_OPTION_DESCR.boost=	Use boost for generic NxP matrix implementation
 define PKG_OPTION_SET.boost
-  CONFIGURE_ARGS+=	--with-boost=${PREFIX}
+  CONFIGURE_ARGS+=	--with-boost=${PREFIX.boost-numeric-bindings}
 
   include ../../devel/boost-numeric-bindings/depend.mk
   include ../../math/lapack/depend.mk
