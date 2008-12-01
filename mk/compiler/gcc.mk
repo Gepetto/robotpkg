@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2008/11/02 15:24:25 tho $
+# $LAAS: gcc.mk 2008/12/01 21:32:21 tho $
 #
 # Copyright (c) 2006,2008 LAAS/CNRS
 # All rights reserved.
@@ -58,7 +58,7 @@ _GCC_REQD=$(firstword $(foreach _rqd_,${GCC_REQD},$(if	\
 # Select required compilers based on _GCC_REQD.
 #
 ifneq (,$(filter c,${USE_LANGUAGES}))
-  include ${ROBOTPKG_DIR}/mk/sysdep/gcc4-c.mk
+  include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c.mk
 endif
 ifneq (,$(filter c++,${USE_LANGUAGES}))
   include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c++.mk
