@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/10/06 15:33:57 mallet $
+# $LAAS: depend.mk 2008/11/28 19:04:32 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -30,6 +30,8 @@ DEPEND_USE+=		sun-jdk6
 
 DEPEND_ABI.sun-jdk6?=	sun-jdk6>=6.0.0
 DEPEND_DIR.sun-jdk6?=	../../lang/sun-jdk6
+
+DEPEND_METHOD.sun-jdk6?=build
 
 SYSTEM_SEARCH.sun-jdk6=\
 	bin/javac
