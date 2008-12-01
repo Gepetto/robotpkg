@@ -1,6 +1,22 @@
-#	$Id: Makefile 0616d33c78e4b62d20dbe7a0cbcd043f 2008/01/25 23:55:16 tho $
+# $LAAS: Makefile 2008/11/28 18:30:06 mallet $
+#
+# Copyright (c) 2007-2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Web Jan 10 2007
+#
 
-DISTNAME=		omniORB-4.1.1
+DISTNAME=		omniORB-4.1.3
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
 
@@ -9,6 +25,7 @@ HOMEPAGE=		http://omniorb.sourceforge.net/
 COMMENT=		ORB that implements the 2.6 specification of the CORBA
 
 USE_TOOLS+=		python
+USE_LANGUAGES+=		c++
 
 MAKE_FILE=		GNUmakefile
 GNU_CONFIGURE=		yes

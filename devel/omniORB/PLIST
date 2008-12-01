@@ -1,4 +1,4 @@
-@comment $Id:$
+@comment Fri Nov 28 18:38:59 CET 2008
 bin/catior
 bin/convertior
 bin/genior
@@ -20,17 +20,20 @@ include/COS/TimeBase.hh
 include/omniORB4/CORBA.h
 include/omniORB4/CORBA_sysdep.h
 include/omniORB4/CORBA_sysdep_trad.h
+include/omniORB4/IOP.h
 include/omniORB4/Naming.hh
 include/omniORB4/acconfig.h
 include/omniORB4/bootstrap.hh
 include/omniORB4/boxes_defs.hh
 include/omniORB4/boxes_operators.hh
 include/omniORB4/cdrStream.h
+include/omniORB4/codeSets.h
 include/omniORB4/corbaidl_defs.hh
 include/omniORB4/corbaidl_operators.hh
 include/omniORB4/distdate.hh
 include/omniORB4/internal/GIOP_S.h
 include/omniORB4/internal/SocketCollection.h
+include/omniORB4/internal/giopStreamImpl.h
 include/omniORB4/internal/inProcessIdentity.h
 include/omniORB4/internal/localIdentity.h
 include/omniORB4/internal/objectTable.h
@@ -45,6 +48,7 @@ include/omniORB4/ir_operators.hh
 include/omniORB4/ir_poa.hh
 include/omniORB4/linkHacks.h
 include/omniORB4/omniConnectionData.hh
+include/omniORB4/omniIOR.h
 include/omniORB4/omniORB.h
 include/omniORB4/omniTypedefs.hh
 include/omniORB4/poa.h
@@ -52,36 +56,39 @@ include/omniORB4/poa_enums_defs.hh
 include/omniORB4/poa_enums_operators.hh
 include/omniORB4/poa_enums_poa.hh
 include/omniORB4/seqTemplatedefns.h
+include/omniORB4/sslContext.h
 include/omniORB4/valueTemplatedecls.h
 include/omnithread.h
+include/omnithread/nt.h
+include/omnithread/posix.h
 lib/libCOS4.a
 lib/libCOS4.so
 lib/libCOS4.so.1
-lib/libCOS4.so.1.1
+lib/libCOS4.so.1.3
 lib/libCOSDynamic4.a
 lib/libCOSDynamic4.so
 lib/libCOSDynamic4.so.1
-lib/libCOSDynamic4.so.1.1
+lib/libCOSDynamic4.so.1.3
 lib/libomniCodeSets4.a
 lib/libomniCodeSets4.so
 lib/libomniCodeSets4.so.1
-lib/libomniCodeSets4.so.1.1
+lib/libomniCodeSets4.so.1.3
 lib/libomniConnectionMgmt4.a
 lib/libomniConnectionMgmt4.so
 lib/libomniConnectionMgmt4.so.1
-lib/libomniConnectionMgmt4.so.1.1
+lib/libomniConnectionMgmt4.so.1.3
 lib/libomniDynamic4.a
 lib/libomniDynamic4.so
 lib/libomniDynamic4.so.1
-lib/libomniDynamic4.so.1.1
+lib/libomniDynamic4.so.1.3
 lib/libomniORB4.a
 lib/libomniORB4.so
 lib/libomniORB4.so.1
-lib/libomniORB4.so.1.1
+lib/libomniORB4.so.1.3
 lib/libomnithread.a
 lib/libomnithread.so
 lib/libomnithread.so.3
-lib/libomnithread.so.3.3
+lib/libomnithread.so.3.4
 lib/pkgconfig/omniCOS4.pc
 lib/pkgconfig/omniCOSDynamic4.pc
 lib/pkgconfig/omniConnectionMgmt4.pc
@@ -230,6 +237,10 @@ share/doc/omniORB/utilities.html
 share/doc/omniORB/utilities.pdf
 share/doc/omniORB/utilities.ps
 share/examples/omniORB/sample.cfg
+share/idl/omniORB/COS/CosTime.idl
+share/idl/omniORB/ir.idl
+@dirrm share/idl/omniORB/COS
+@dirrm share/idl/omniORB
 @dirrm share/examples/omniORB
 @dirrm share/doc/omniORB/omniORB
 @dirrm share/doc/omniORB
@@ -240,6 +251,7 @@ share/examples/omniORB/sample.cfg
 @dirrm ${PYTHON_SITELIB}/omniidl_be/cxx
 @dirrm ${PYTHON_SITELIB}/omniidl_be
 @dirrm ${PYTHON_SITELIB}/omniidl
+@dirrm include/omnithread
 @dirrm include/omniORB4/internal
 @dirrm include/omniORB4
 @dirrm include/COS
