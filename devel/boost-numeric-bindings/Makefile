@@ -17,7 +17,7 @@
 #
 
 DISTNAME=		boost-numeric-bindings-20070129
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_ROBOTPKG}
 
@@ -36,4 +36,4 @@ include ../../mk/robotpkg.mk
 
 do-install:
 	cd ${WRKSRC} &&	${PAX} -rw -pm . ${PREFIX}/include/boost
-	cd files && ${PAX} -rw -pm orgqr.hpp  ${PREFIX}/include/boost/numeric/bindings/lapack
+	cd ${FILESDIR} && ${PAX} -rw -pm orgqr.hpp  ${PREFIX}/include/boost/numeric/bindings/lapack
