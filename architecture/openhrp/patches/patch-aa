@@ -1,9 +1,5 @@
-$LAAS: patch-aa 2008/10/22 12:07:53 mallet $
-
-Fix path to installation directories
-
 --- bin/unix/Makefile.orig	2008-06-18 09:08:36.000000000 +0200
-+++ bin/unix/Makefile	2008-10-22 12:07:34.000000000 +0200
++++ bin/unix/Makefile	2008-12-03 15:13:46.000000000 +0100
 @@ -5,12 +5,12 @@
  configsh: config.sh
  
@@ -28,3 +24,20 @@ Fix path to installation directories
  	/bin/echo -n LD_LIBRARY_PATH >> config.sh
  
  	/bin/echo >>  config.sh
+@@ -79,12 +81,14 @@
+ 
+ 	/bin/echo >> config.sh
+ 
+-	/bin/echo export NS_OPT=\"-ORBInitRef NameService=corbaloc:iiop:$(NS_HOST):$(NS_PORT)/NameService\" >> config.sh
++	/bin/echo export OPENHRP_NS_HOST=\$${OPENHRP_NS_HOST:=\`hostname\`} >> config.sh
++	/bin/echo export OPENHRP_NS_PORT=\$${OPENHRP_NS_PORT:=2809} >> config.sh
++	/bin/echo export NS_OPT=\"-ORBInitRef NameService=corbaloc:iiop:\$${OPENHRP_NS_HOST}:\$${OPENHRP_NS_PORT}/NameService\" >> config.sh
+ 	/bin/echo -n export NAMESERV=\" >> config.sh
+ ifneq ("$(OB_DIR)","")
+ 	/bin/echo -n $(OB_DIR)/bin/ >> config.sh
+ endif
+-	/bin/echo -n omniNames -start $(NS_PORT) -logdir $$ >> config.sh
++	/bin/echo -n omniNames -start \$${OPENHRP_NS_PORT} -logdir $$ >> config.sh
+ 	/bin/echo -n OPENHRPHOME/bin/unix\" >> config.sh
+ 	/bin/echo >> config.sh
+ 
