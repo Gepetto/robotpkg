@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/23 00:10:48 tho $
+# $LAAS: Makefile 2008/12/02 15:39:44 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -45,6 +45,13 @@ PREFIX=			${LOCALBASE}/OpenHRP
 
 MESSAGE_SUBST+=		PREFIX.OpenHRP="${PREFIX.OpenHRP}"
 
+SUBST_CLASSES+=			hrpsys-paths
+SUBST_STAGE.hrpsys-paths=	pre-build
+SUBST_MESSAGE.hrpsys-paths=	Fixing installation directories.
+SUBST_SED.hrpsys-paths=		-e 's|@PREFIX@|${PREFIX}|g'
+SUBST_FILES.hrpsys-paths=\
+	Controller/IOserver/robot/HRP2JRL/bin/HRP2Controller.sh
+
 # we need g++>=4.2
 include ../../lang/gcc42-c++/depend.mk
 
@@ -61,5 +68,7 @@ do-build:
 
 do-install:
 	cd ${WRKSRC} && ${PAX} -rwp ma . ${PREFIX}
+	${ECHO} "Replace this file with a valid license"	\
+		> ${PREFIX}/bin/unix/license.dat
 	${LN} -sf ${PREFIX.blas}/lib/libblas.so ${PREFIX}/lib/libblas.so.3
-	${LN} -sf ${PREFIX.gcc42-c++}/lib/libstdc++.so ${PREFIX}/lib/libstdc++.so.6
+	${LN} -sf `${CXX} -print-file-name=libstdc++.so` ${PREFIX}/lib/libstdc++.so.6
