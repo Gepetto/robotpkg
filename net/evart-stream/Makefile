@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/07/29 18:06:28 mallet $
+# $LAAS: Makefile 2008/12/03 23:25:36 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -23,16 +23,18 @@ CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=evart/}
 
 MAINTAINER=		mallet@laas.fr
-#HOMEPAGE=		
+HOMEPAGE=		http://www.laas.fr/~mallet/soft/mocap/evart-stream
 COMMENT=		EVa Real-Time Software data streaming server.
+
+PREFIX=			${LOCALBASE}/i386-mingw32
+COMPILER_TARGET=	i386-mingw32
 
 GNU_CONFIGURE=          yes
 CONFIGURE_ARGS+=	--with-sdk-include=${PREFIX.evart-sdk}/include
 CONFIGURE_ARGS+=	--with-sdk-lib=${PREFIX.evart-sdk}/bin
 
 DEPEND_METHOD.evart-client+=	build
+include ../../net/evart-client/depend.mk
 
 include ../../devel/evart-sdk/depend.mk
-include ../../net/evart-client/depend.mk
-include ../../cross/i386-mingw32/depend.mk
 include ../../mk/robotpkg.mk
