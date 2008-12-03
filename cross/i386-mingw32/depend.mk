@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/07/15 16:44:47 mallet $
+# $LAAS: depend.mk 2008/12/03 23:25:11 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -34,10 +34,9 @@ DEPEND_DIR.cross-i386-mingw32?=	../../cross/i386-mingw32
 
 MINGW_SUBPREFIX=	i386-mingw32
 MINGW_PREFIX=		${LOCALBASE}/${MINGW_SUBPREFIX}
-PREFIX?=		${MINGW_PREFIX}
 
-CC=	${LOCALBASE}/cross/bin/i386-mingw32-gcc
-CXX=	${LOCALBASE}/cross/bin/i386-mingw32-g++
+override CC=	${LOCALBASE}/cross/bin/i386-mingw32-gcc
+override CXX=	${LOCALBASE}/cross/bin/i386-mingw32-g++
 
 ifdef GNU_CONFIGURE
   CONFIGURE_ARGS+=	--host=i386-mingw32
