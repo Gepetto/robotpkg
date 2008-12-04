@@ -4,6 +4,6 @@
 COMMENT=	Motion generation software
 
 SUBDIR+=	locoDemo-genom
-SUBDIR+=	pile-genom
+SUBDIR+=	pilo-genom
 
 include ../mk/robotpkg.subdir.mk
