@@ -304,7 +304,7 @@ AC_CHECK_FUNC([poll],
 
 # Assume libedit is not up-to-date and force own version.
 #
-have_libedit=no
+#have_libedit=no
 AS_IF([test "$opt_editcomplete" = yes],
       [AC_MSG_CHECKING([for up-to-date libedit])
        AS_IF([test "$have_libedit" = no],
