@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/08/22 11:30:18 mallet $
+# $LAAS: Makefile 2008/12/09 11:08:09 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -19,6 +19,7 @@
 DISTNAME=		viam-libs-1.3
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
+PKGREVISION=		1
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet
