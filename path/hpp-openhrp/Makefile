@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:13:06 tho $
+# $LAAS: Makefile 2008/12/09 16:04:13 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -18,23 +18,19 @@
 
 DISTNAME=	hppopenhrp-${VERSION}
 PKGNAME=	hpp-openhrp-${VERSION}
-VERSION=	1.2
+VERSION=	1.3
 
 CATEGORIES=	path
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-openhrp/}
 
 MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic classes used as interfaces with OpenHRP(tm).
 
-DEPENDS+=	hpp-core>=1.3:../../path/hpp-core
-DEPENDS+=	jrl-modelloader>=1.2:../../devel/jrl-modelloader
-DEPENDS+=	openhrp-jrl>=20060713r6:../../architecture/openhrp-jrl
-
 GNU_CONFIGURE=	yes
 
-CONFIGURE_ARGS+=	--with-openhrp=${PREFIX}/OpenHRP
-
+include ../../path/hpp-core/depend.mk
+include ../../devel/jrl-modelloader/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
