@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/09/17 15:42:08 mallet $
+# $LAAS: Makefile 2008/12/09 19:32:55 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,7 @@
 
 DISTNAME=	hppcorbaserver-${VERSION}
 PKGNAME=	hpp-corbaserver-${VERSION}
-VERSION=	1.5
+VERSION=	1.6
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-corbaserver/}
@@ -38,9 +38,9 @@ PKG_SUGGESTED_OPTIONS+=	openhrp
 PKG_OPTION_DESCR.openhrp=	Build an OpenHRP(tm) client.
 define PKG_OPTION_SET.openhrp
   CONFIGURE_ARGS+=	--with-openhrp
-  DEPENDS+=		hpp-openhrp>=1.1:../../path/hpp-openhrp
-  DEPENDS+=		jrl-modelloader>=1.2:../../devel/jrl-modelloader
-  DEPENDS+=		hrp2-dynamics>=1.0:../../math/hrp2-dynamics
+  include ../../math/hrp2-dynamics/depend.mk
+  include ../../path/hpp-openhrp/depend.mk
+  include ../../devel/jrl-modelloader/depend.mk
   include ../../robots/hrp2-14/depend.mk
 endef
 
