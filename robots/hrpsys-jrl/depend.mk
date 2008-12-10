@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/06/23 17:51:16 mallet $
+# $LAAS: depend.mk 2008/12/10 18:32:36 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -13,27 +13,29 @@
 #      notice and  this list of  conditions in the  documentation and/or
 #      other materials provided with the distribution.
 #
-#                                      Anthony Mallet on Wed Mar 19 2008
+#                                      Anthony Mallet on Wed Oct 22 2008
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-OPENHRP_JRL_DEPEND_MK:=	${OPENHRP_JRL_DEPEND_MK}+
+HRPSYS_JRL_DEPEND_MK:=	${HRPSYS_JRL_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		openhrp-jrl
+DEPEND_PKG+=		hrpsys-jrl
 endif
 
-ifeq (+,$(OPENHRP_JRL_DEPEND_MK))
-PREFER.openhrp-jrl?=	robotpkg
+ifeq (+,$(HRPSYS_JRL_DEPEND_MK)) # -----------------------------------
 
-DEPEND_USE+=		openhrp-jrl
+PREFER.hrpsys-jrl?=	robotpkg
 
-DEPEND_ABI.openhrp-jrl?=openhrp-jrl>=20060713r6
-DEPEND_DIR.openhrp-jrl?=../../architecture/openhrp-jrl
+DEPEND_USE+=		hrpsys-jrl
 
-SYSTEM_SEARCH.openhrp-jrl=\
-	OpenHRP/bin/Auditor.sh			\
-	OpenHRP/Common/corba/common.idl
-endif
+DEPEND_ABI.hrpsys-jrl?=	hrpsys-jrl>=3.0.1
+DEPEND_DIR.hrpsys-jrl?=	../../robots/hrpsys-jrl
+
+SYSTEM_SEARCH.hrpsys-jrl=\
+	Controller/IOserver/corba/HRPcontroller.h	\
+	Controller/IOserver/robot/HRP2JRL/model/HRP2JRLmain.wrl
+
+endif # HRPSYS_JRL_DEPEND_MK -----------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
