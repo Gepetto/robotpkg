@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/09/17 17:24:02 mallet $
+# $LAAS: Makefile 2008/12/10 14:24:33 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Wed May 14 2008
 #
 
-DISTNAME=	walk-genom-1.3
+DISTNAME=	walk-genom-1.4
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=walk-genom/}
@@ -28,9 +28,7 @@ COMMENT=	Walk trajectories for humanoid robots - GenoM component
 GNU_CONFIGURE=	yes
 
 DEPENDS+=	netshring>=1.0:../../architecture/netshring
-DEPENDS+=	hpp-corbaserver>=1.5:../../devel/hpp-corbaserver
-
-CONFIGURE_ARGS+=--with-openhrp=${PREFIX.openhrp-jrl}/OpenHRP
+DEPENDS+=	hpp-corbaserver>=1.6:../../devel/hpp-corbaserver
 
 GENOM_MODULE=	walk
 include ../../architecture/genom/depend.mk
