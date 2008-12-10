@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/09/17 12:07:39 mallet $
+# $LAAS: depend.mk 2008/12/10 22:25:39 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -47,6 +47,8 @@ DEPEND_USE+=		hpp-kwsio
 
 DEPEND_ABI.hpp-kwsio?=	hpp-kwsio>=1.0.1
 DEPEND_DIR.hpp-kwsio?=	../../devel/hpp-kwsio
+
+include ../../path/kineo-pp/depend.mk
 
 endif # HPP_KWSIO_DEPEND_MK ------------------------------------------
 
