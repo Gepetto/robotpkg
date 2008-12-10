@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/09/17 15:27:50 mallet $
+# $LAAS: Makefile 2008/12/09 20:10:10 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,7 @@
 
 DISTNAME=	hppwalkplanner-${VERSION}
 PKGNAME=	hpp-walkplanner-${VERSION}
-VERSION=	1.4.1
+VERSION=	1.5
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkplanner/}
@@ -26,8 +26,6 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkplanner/}
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Path planning algorithm for a walking humanoid robot.
-
-DEPENDS+=	hpp-openhrp>=1.1:../../path/hpp-openhrp
 
 GNU_CONFIGURE=	yes
 
@@ -40,6 +38,7 @@ include ../../robots/hrp2-14/depend.mk
 include ../../path/jrl-walkgen/depend.mk
 include ../../path/hpp-walkfootplanner/depend.mk
 include ../../path/hpp-core/depend.mk
+include ../../path/hpp-openhrp/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
