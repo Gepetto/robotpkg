@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2008/10/10 14:28:31 mallet $
+# $LAAS: robotpkg.prefs.mk 2008/12/10 23:18:46 tho $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # All rights reserved.
@@ -147,6 +147,7 @@ PKGDIR?=		${CURDIR}
 # name. This variable must be set before including robotpkg.prefs.mk
 # directly or indirectly.
 ifdef META_PACKAGE
+NO_CHECKSUM=		yes
 NO_CONFIGURE=           yes
 NO_BUILD=               yes
 DISTFILES=              # none
