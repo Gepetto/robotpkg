@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 12:13:06 tho $
+# $LAAS: Makefile 2008/12/10 11:53:42 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -16,9 +16,9 @@
 #                                       Anthony Mallet on Tue Nov 13 2007
 #
 
-DISTNAME=		genom-openhrp-plugin-1.1
+DISTNAME=		genom-openhrp-plugin-1.2
 CATEGORIES=		architecture
-MASTER_SITES=		${MASTER_SITE_JRL}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=genom-openhrp-plugin/}
 
 MAINTAINER=		gepetto@laas.fr
 #HOMEPAGE=
@@ -26,10 +26,9 @@ COMMENT=		Interface plugin between GenoM and OpenHRP
 
 GNU_CONFIGURE=		yes
 
-CONFIGURE_ARGS+=	--with-idl=omniorb
-CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.openhrp-jrl}/OpenHRP
+CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
 
-include ../../architecture/openhrp-jrl/depend.mk
+include ../../architecture/openhrp/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
