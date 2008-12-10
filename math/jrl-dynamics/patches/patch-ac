@@ -1,0 +1,10 @@
+--- src/fileReader.cpp~	2008-02-19 14:11:17.000000000 +0100
++++ src/fileReader.cpp	2008-12-08 17:12:11.000000000 +0100
+@@ -1,6 +1,7 @@
+ #include "dynamics-config.h"
+ 
+ #include <err.h>
++#include <cstring>
+ 
+ #include "dynamicsJRLJapan/fileReader.h"
+ 

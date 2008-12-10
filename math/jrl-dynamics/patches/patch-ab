@@ -1,0 +1,108 @@
+$LAAS: patch-ab 2008/12/08 17:11:18 mallet $
+
+Modifications to make the library compatible with the new format of
+HRP2JRLmain.wrl in OpenHRP-3.
+
+diff --git include/dynamicsJRLJapan/Joint.h include/dynamicsJRLJapan/Joint.h
+index 335bb97..6936de2 100644
+--- include/dynamicsJRLJapan/Joint.h
++++ include/dynamicsJRLJapan/Joint.h
+@@ -111,6 +111,8 @@ namespace dynamicsJRLJapan
+     vector<double> m_LowerVelocityLimits;
+     vector<double> m_UpperVelocityLimits;
+ 
++    double m_EquivalentInertia;
++
+     /*! Rigid Velocity */
+     CjrlRigidVelocity m_RigidVelocity;
+     
+@@ -445,6 +447,18 @@ namespace dynamicsJRLJapan
+       return m_LowerVelocityLimits[inDofRank];
+     };
+ 
++    /** \brief Returns the equivalent inertia */
++    inline double equivalentInertia() const
++      {
++	return m_EquivalentInertia;
++      }
++
++    /** \brief Set the equivalent inertia */
++    inline void equivalentInertia(double &lequivalentInertia) 
++      {
++	m_EquivalentInertia = lequivalentInertia;
++      }
++
+     /**
+        \brief Get the upper velocity bound of a given degree of freedom of the joint.
+ 
+diff --git src/SpiritVRMLReader.cpp src/SpiritVRMLReader.cpp
+index 10e5857..59685a4 100644
+--- src/SpiritVRMLReader.cpp
++++ src/SpiritVRMLReader.cpp
+@@ -543,6 +543,7 @@ namespace dynamicsJRLJapan
+ 
+       void fJointLVLimit(double r) const
+       {
++	m_DataForParsing->CurrentLink.aJoint->lowerVelocityBound(0,r);
+ 	if (m_Verbose>1)
+ 	  std::cout << "fJointLVLimit: "  << r << endl;
+       }
+@@ -550,10 +551,17 @@ namespace dynamicsJRLJapan
+ 
+       void fJointUVLimit(double r) const 
+       {
++	m_DataForParsing->CurrentLink.aJoint->upperVelocityBound(0,r);
+ 	if (m_Verbose>1)
+ 	  std::cout << "fJointUVLimit: "  << r << endl;
+       }
+ 
++      void fJointEquivalentInertia(double r) const 
++      {
++	m_DataForParsing->CurrentLink.aJoint->equivalentInertia(r);
++	if (m_Verbose>1)
++	  std::cout << "fJointEquivalentInertia: "  << r << endl;
++      }
+ 
+       void fForceSensorName(char const *str, char const *end) const
+       {
+@@ -960,6 +968,10 @@ namespace dynamicsJRLJapan
+ 	  // Upper Speed Limit for the joint.
+ 	  Jointuvlimit_r = str_p("uvlimit") >> ch_p('[') >> (real_p)[SVRBIND2(fJointUVLimit,(self,arg1))] 
+ 					    >> ch_p(']'); 
++
++	  // Upper Speed Limit for the joint.
++	  Jointequivalentinertia_r = str_p("equivalentInertia") >> (real_p)[SVRBIND2(fJointEquivalentInertia,(self,arg1))] ;
++					    
+  
+ 	  JointField_r = JointType_r | 
+ 	    JointTranslation_r | 
+@@ -970,7 +982,8 @@ namespace dynamicsJRLJapan
+ 	    Jointllimit_r |
+ 	    Jointulimit_r |
+ 	    Jointlvlimit_r |
+-	    Jointuvlimit_r ;
++	    Jointuvlimit_r |
++            Jointequivalentinertia_r ;
+ 	
+ 	  // Parts of the force sensor
+ 	  FSTranslation_r = str_p("translation") >> 
+@@ -1074,7 +1087,7 @@ namespace dynamicsJRLJapan
+ 	  BodySubBlock_r =CenterOfMass_r | Mass_r | MomentsOfInertia_r ;
+ 	  BodyChildrenInlineUrl_r = str_p("url") 
+ 	    >> ch_p('"') 
+-	    >> (lexeme_d[+(alnum_p|ch_p('_')|ch_p('.'))])[SVRBIND2(fBodyInlineUrl,(self,arg1,arg2))] 
++	    >> (lexeme_d[+(alnum_p|ch_p('_')|ch_p('.')|ch_p('/'))])[SVRBIND2(fBodyInlineUrl,(self,arg1,arg2))] 
+ 	    >> ch_p('"');
+ 
+ 	  BodyChildrenInline_r = ch_p('{') >> 
+@@ -1163,7 +1176,9 @@ namespace dynamicsJRLJapan
+ 	rule<ScannerT> JointTranslation_r, JointRotation_r, JointType_r,
+ 	  JointID_r, JointAxis_r, Jointdh_r, 
+ 	  Jointllimit_r, Jointulimit_r,
+-	  Jointlvlimit_r, Jointuvlimit_r, JointField_r, JointBlock_r, JointSubBlock_r;
++	  Jointlvlimit_r, Jointuvlimit_r, 
++          Jointequivalentinertia_r, 
++          JointField_r, JointBlock_r, JointSubBlock_r;
+ 
+ 	rule<ScannerT> FSTranslation_r, FSRotation_r, FSID_r, 
+ 	  ForceSensorBlock_r, ForceSensor_r;
