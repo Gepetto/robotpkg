@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/09/17 14:32:25 mallet $
+# $LAAS: Makefile 2008/12/09 20:01:39 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,7 @@
 
 DISTNAME=	hppwalkfootplanner-${VERSION}
 PKGNAME=	hpp-walkfootplanner-${VERSION}
-VERSION=	1.0
+VERSION=	1.1
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkfootplanner/}
