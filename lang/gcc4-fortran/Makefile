@@ -1,4 +1,4 @@
-# $LAAS: gcc4-c.mk 2008/11/24 11:15:44 mallet $
+# $LAAS: Makefile 2008/12/10 23:29:12 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -13,10 +13,13 @@
 #      notice and  this list of  conditions in the  documentation and/or
 #      other materials provided with the distribution.
 #
-#                                      Anthony Mallet on Thu Oct 23 2008
+#                                      Anthony Mallet on Wed Dec 10 2008
 #
 
-# simply register the compiler requirements
-GCC_REQD+=	4.0
+include ../../lang/gcc42/Makefile.common
 
-include ../../mk/sysdep/gcc-c.mk
+DISTNAME=	gcc4-fortran-${GCC_VERSION}
+META_PACKAGE=	yes
+
+include ../../lang/gcc42-fortran/depend.mk
+include ../../mk/robotpkg.mk

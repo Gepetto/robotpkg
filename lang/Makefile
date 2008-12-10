@@ -3,6 +3,9 @@
 
 COMMENT=	Programming languages
 
+SUBDIR+=	gcc4-c
+SUBDIR+=	gcc4-c++
+SUBDIR+=	gcc4-fortran
 SUBDIR+=	gcc42-c
 SUBDIR+=	gcc42-c++
 SUBDIR+=	gcc42-fortran

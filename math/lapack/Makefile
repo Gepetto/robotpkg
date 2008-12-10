@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/10/23 14:10:21 mallet $
+# $LAAS: Makefile 2008/12/10 23:32:45 tho $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -35,9 +35,8 @@ BUILD_TARGET=		lapacklib
 
 INSTALLATION_DIRS=	lib
 
-include ../../mk/sysdep/gcc4-fortran.mk
-
 include ../../math/blas/depend.mk
+include ../../lang/gcc4-fortran/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
 

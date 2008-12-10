@@ -1,4 +1,4 @@
-# $LAAS: gcc-c.mk 2008/11/02 15:23:30 tho $
+# $LAAS: gcc-c.mk 2008/12/10 23:36:59 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -28,13 +28,22 @@ else
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GCC_C_DEPEND_MK:=	${GCC_C_DEPEND_MK}+
 
-# gcc>=4.0<4.3 can be provided by lang/gcc42-c
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0<4.3' 'gcc-${_GCC_REQD}' && echo y))
+# Select gcc package according to the version required
+#
+ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.2<4.3' 'gcc-${_GCC_REQD}' && echo y))
+  # gcc>=4.2<4.3 can be provided by lang/gcc42-c
   _GCC_C_PKG:=	gcc42-c
   _GCC_C_DIR:=	../../lang/gcc42-c
 else
-  _GCC_C_PKG:=	gcc-c
-  _GCC_C_DIR:=# empty
+  ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4<4.2' 'gcc-${_GCC_REQD}' && echo y))
+    # gcc>=4<4.2 can be provided by lang/gcc4-c
+    _GCC_C_PKG:=	gcc4-c
+    _GCC_C_DIR:=	../../lang/gcc4-c
+  else
+    # no robotpkg package
+    _GCC_C_PKG:=	gcc-c
+    _GCC_C_DIR:=# empty
+  endif
 endif
 
 ifeq (+,$(DEPEND_DEPTH))
