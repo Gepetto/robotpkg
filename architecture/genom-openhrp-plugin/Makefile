@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/12/10 11:53:42 mallet $
+# $LAAS: Makefile 2008/12/10 18:15:50 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -29,6 +29,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
 
 include ../../architecture/openhrp/depend.mk
+include ../../robots/hrpsys-jrl/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
