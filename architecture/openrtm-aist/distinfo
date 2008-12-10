@@ -1,5 +1,7 @@
 SHA1 (OpenRTM-aist-0.4.2-RELEASE.tar.gz) = 28d7ec6265d72bc5a66c74790b106d3dbf212a74
 RMD160 (OpenRTM-aist-0.4.2-RELEASE.tar.gz) = aa0e826fff6cb42f6f9d3aa052402c37d887df06
 Size (OpenRTM-aist-0.4.2-RELEASE.tar.gz) = 4622131 bytes
+SHA1 (patch-aa) = 20da889eb8fd21d4da5ac7acad7ed687ea878ac5
+SHA1 (patch-ab) = 73690e8c02c70bfad62d9a2f7a57a3f7a0ada12e
 SHA1 (patch-ad) = 1db91001d29f02ba15616179140d7b0128b3f4c8
 SHA1 (patch-ae) = 397f33beafc4c8775aa20ea73369cbe598ed652a
