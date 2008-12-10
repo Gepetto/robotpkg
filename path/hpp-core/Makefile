@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/09/17 12:25:21 mallet $
+# $LAAS: Makefile 2008/12/09 19:22:12 mallet $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,7 @@
 
 DISTNAME=	hppcore-${VERSION}
 PKGNAME=	hpp-core-${VERSION}
-VERSION=	1.5.1
+VERSION=	1.6
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-core/}

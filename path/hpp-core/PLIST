@@ -1,4 +1,4 @@
-@comment Wed Sep 17 12:29:02 CEST 2008
+@comment Tue Dec 9 19:23:22 CET 2008
 include/hppCore/hppColPair.h
 include/hppCore/hppPlanner.h
 include/hppCore/hppProblem.h
@@ -15,6 +15,7 @@ share/doc/hppCore/class_chpp_planner__coll__graph.md5
 share/doc/hppCore/class_chpp_planner__coll__graph.png
 share/doc/hppCore/class_chpp_problem-members.html
 share/doc/hppCore/class_chpp_problem.html
+share/doc/hppCore/deprecated.html
 share/doc/hppCore/doxygen.png
 share/doc/hppCore/files.html
 share/doc/hppCore/ftv2blank.png
