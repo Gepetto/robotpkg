@@ -1,6 +1,8 @@
-@comment $Id: PLIST 2007/06/28 16:19:51 mallet $
+@comment Tue Dec 9 15:38:50 CET 2008
 bin/ModelLoaderJRL
 bin/ModelLoaderJRL.sh
+lib/libCosNamingA.so.2.2.0
+lib/libobea_server.so.2.2.0
 lib/pkgconfig/jrl-modelloader.pc
 share/idl/jrl-modelloader/common-modelloader.idl
 share/idl/jrl-modelloader/jrl-modelloader.idl
