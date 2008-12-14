@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/12/09 11:08:09 mallet $
+# $LAAS: Makefile 2008/12/13 16:52:08 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -42,12 +42,23 @@ endef
 PKG_SUPPORTED_OPTIONS+= opencv
 PKG_SUGGESTED_OPTIONS+= opencv
 
-PKG_OPTION_DESCR.opencv=  Enable support for opencv
+PKG_OPTION_DESCR.opencv=  Enable support for opencv.
 PKG_OPTION_UNSET.opencv:= CONFIGURE_ARGS+=--disable-opencv
 define PKG_OPTION_SET.opencv
   CONFIGURE_ARGS+=--enable-opencv
   include ../../image/opencv/depend.mk
 endef
+
+# options for doc generation
+PKG_SUPPORTED_OPTIONS+= doc
+PKG_SUGGESTED_OPTIONS+= doc
+
+PKG_OPTION_DESCR.doc=	Install documentation files.
+define PKG_OPTION_SET.doc
+  DOXYGEN_PLIST_DIR+=	share/doc/viam-libs
+  include ../../mk/sysdep/doxygen.mk
+endef
+PKG_OPTION_UNSET.doc:=  MAKE_ENV+= NO_INSTALL_DOC=\\\#
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

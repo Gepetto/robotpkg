@@ -3,15 +3,4 @@ include/viam/viamlib.h
 include/viam/viamtypes.h
 lib/libviam.la
 lib/pkgconfig/viam-libs.pc
-share/doc/viam-libs/html/changelog.html
-share/doc/viam-libs/html/doxygen.css
-share/doc/viam-libs/html/doxygen.png
-share/doc/viam-libs/html/index.html
-share/doc/viam-libs/html/license.html
-share/doc/viam-libs/html/tab_b.gif
-share/doc/viam-libs/html/tab_l.gif
-share/doc/viam-libs/html/tab_r.gif
-share/doc/viam-libs/html/tabs.css
-@dirrm share/doc/viam-libs/html
-@dirrm share/doc/viam-libs
 @dirrm include/viam

@@ -1,0 +1,11 @@
+--- Makefile.in~	2008-08-22 11:29:01.000000000 +0200
++++ Makefile.in	2008-12-13 16:37:10.000000000 +0100
+@@ -725,7 +725,7 @@
+ 	uninstall-dist_pkgconfigDATA
+ 
+ 
+-install-data-hook: install-doc
++$(NO_INSTALL_DOC)install-data-hook: install-doc
+ 
+ .PHONY: doc
+ doc: doc/doxyfile doc/main.dox
