@@ -1,4 +1,4 @@
-@comment $Id:$
+@comment Sat Dec 13 16:12:37 CET 2008
 bin/opencv-createsamples
 bin/opencv-haartraining
 bin/opencv-performance
@@ -164,6 +164,7 @@ share/opencv/samples/python/squares.py
 share/opencv/samples/python/watershed.py
 @dirrm share/opencv/samples/python
 @dirrm share/opencv/samples/c
+@dirrm share/opencv/samples
 @dirrm share/opencv/haarcascades
 @dirrm share/opencv
 @dirrm share/doc/opencv/ref/pics
