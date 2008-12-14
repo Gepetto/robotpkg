@@ -1,7 +1,11 @@
+# $LAAS: robotpkg.options.mk 2008/12/13 17:15:04 tho $
 #
-# Copyright (c) 2008
-#      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
+# Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -14,12 +18,11 @@
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
 # From $NetBSD: bsd.options.mk,v 1.65 2007/10/28 11:29:06 tron Exp $
 #
+#                                       Anthony Mallet on Sun Jan 27 2008
+#
+
 # This Makefile fragment provides boilerplate code for standard naming
 # conventions for handling per-package build options.
 #
@@ -302,8 +305,12 @@ else
 	@${ECHO} "	(none)"
 endif
 	@${ECHO} ""
-	@${ECHO} "You can select which build options to use by setting PKG_DEFAULT_OPTIONS"
-	@${ECHO} "or "$(call quote,${PKG_OPTIONS_VAR})" in "${_MAKECONF}"."
+	@${ECHO} "You can select which build options to use by "	\
+		"setting PKG_DEFAULT_OPTIONS or "			\
+		$(call quote,${PKG_OPTIONS_VAR})" to the list of "	\
+		"desired options. Options prefixed with a dash (-) "	\
+		"will be disabled. The variables are to be set in "	\
+		${_MAKECONF}"." | fmt 75 79
 
 
 # --- supported-options-message --------------------------------------
@@ -315,33 +322,23 @@ pre-depends-hook: supported-options-message
 
 .PHONY: supported-options-message
 supported-options-message:
-	@${ECHO} "=========================================================================="
+	@${ECHO} ${hline}
 	@${ECHO} "The supported build options for ${PKGBASE} are:"
 	@${ECHO} ""
-	@${ECHO} $(call quote,$(sort ${PKG_SUPPORTED_OPTIONS})) | ${wordwrapfilter}
-	@${ECHO} ""
-	@${ECHO} "The currently selected options are:"
+	${RUN}$(foreach _o_, $(sort ${PKG_SUPPORTED_OPTIONS}),	\
+			$(call _pkgopt_listopt,${_o_}))
 	@${ECHO} ""
 ifneq (,$(strip ${PKG_OPTIONS}))
-	@${ECHO} $(call quote,$(sort ${PKG_OPTIONS})) | ${wordwrapfilter}
-else
-	@${ECHO} "	(none)"
+	@${ECHO} "Building with the following options enabled:"
+	@${ECHO} ""
+	${RUN}$(foreach _o_, $(sort ${PKG_OPTIONS}),		\
+			$(call _pkgopt_listopt,${_o_}))
+	@${ECHO} ""
 endif
-	@${ECHO} ""
-	@${ECHO} "You can select which build options to use by setting PKG_DEFAULT_OPTIONS"
-	@${ECHO} "or the following variable.  Its current value is shown:"
-	@${ECHO} ""
-ifdef ${PKG_OPTIONS_VAR}
-	@${ECHO} "	${PKG_OPTIONS_VAR} = "$(call quote,${${PKG_OPTIONS_VAR}})
-else
-	@${ECHO} "	${PKG_OPTIONS_VAR} = (undefined)"
-endif
-	@${ECHO} ""
-	@${ECHO} "You may want to abort the process now with CTRL-C and change its value"
-	@${ECHO} "before continuing.  Be sure to run \`${MAKE} clean' after"
-	@${ECHO} "the changes."
-	@${ECHO} "=========================================================================="
-
+	@${ECHO} "You may want to abort the process now with CTRL-C and review the"
+	@${ECHO} "available build options with \`${MAKE} show-options' before"
+	@${ECHO} "continuing. Be sure to run \`${MAKE} clean' after any change."
+	@${ECHO} ${hline}
 else	# PKG_SUPPORTED_OPTIONS
 .PHONY: show-options
 show-options:
