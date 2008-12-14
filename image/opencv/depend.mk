@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/05/25 14:03:42 tho $
+# $LAAS: depend.mk 2008/12/13 16:17:56 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -23,7 +23,8 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		opencv
 endif
 
-ifeq (+,$(OPENCV_DEPEND_MK))
+ifeq (+,$(OPENCV_DEPEND_MK)) # ---------------------------------------------
+
 PREFER.opencv?=		robotpkg
 
 DEPEND_USE+=		opencv
@@ -33,7 +34,8 @@ DEPEND_DIR.opencv?=	../../image/opencv
 
 SYSTEM_SEARCH.opencv=\
 	include/opencv/cv.h		\
-	lib/pkgconfig/opencv.pc
-endif
+	'lib/pkgconfig/opencv.pc:/Version/s/[^.0-9]//gp'
+
+endif # OPENCV_DEPEND_MK ---------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
