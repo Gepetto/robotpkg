@@ -1,4 +1,19 @@
-# $NetBSD: Makefile,v 1.4 2006/12/01 14:03:02 joerg Exp $
+# $LAAS: Makefile 2008/12/13 15:45:18 tho $
+#
+# Copyright (c) 2007-2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Sun Jan 28 2007
 #
 
 DISTNAME=		opencv-1.0.0
@@ -29,5 +44,19 @@ CONFIGURE_ARGS+=	--without-1394libs
 # ffmpeg raises a compilation problem. Deactivate for now.
 CONFIGURE_ARGS+=	--without-ffmpeg
 
+# option for gtk display
+PKG_SUPPORTED_OPTIONS+=	gtk
+PKG_SUGGESTED_OPTIONS+=	gtk
+
+PKG_OPTION_DESCR.gtk=	Enable gtk+ 2.0 windows.
+define PKG_OPTION_SET.gtk
+  CONFIGURE_ARGS+=	--with-gtk
+  include ../../mk/sysdep/gtk.mk
+endef
+define PKG_OPTION_UNSET.gtk
+  CONFIGURE_ARGS+=	--without-gtk
+endef
+
+include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
