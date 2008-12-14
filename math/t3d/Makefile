@@ -1,9 +1,22 @@
-# $NetBSD: Makefile,v 1.21 2006/08/22 23:27:23 joerg Exp $
+# $LAAS: Makefile 2008/12/13 00:12:59 tho $
+#
+# Copyright (c) 2007-2008 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Fri Feb  2 2007
 #
 
 DISTNAME=	libt3d-2.5
-PKGREVISION=	0
-
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
@@ -13,7 +26,19 @@ COMMENT=	3d transformations, matrices and vector package.
 
 GNU_CONFIGURE=	yes
 
-BUILD_TARGET=	all doc
-INSTALL_TARGET=	install install-doc
+BUILD_TARGET=	all
+INSTALL_TARGET=	install
+
+# doc option
+PKG_SUPPORTED_OPTIONS+=	doc
+PKG_SUGGESTED_OPTIONS+=	doc
+PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
+
+define PKG_OPTION_SET.doc
+  BUILD_TARGET+=	doc
+  INSTALL_TARGET+=	install-doc
+  DOXYGEN_PLIST_DIR+=	share/doc/libt3d
+  include ../../mk/sysdep/doxygen.mk
+endef
 
 include ../../mk/robotpkg.mk

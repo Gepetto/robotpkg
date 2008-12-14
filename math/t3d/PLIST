@@ -8,42 +8,4 @@ include/t3d/v3d.h
 include/t3d/v3d_inline.h
 lib/libt3d.la
 lib/pkgconfig/t3d.pc
-share/doc/libt3d/html/annotated.html
-share/doc/libt3d/html/deprecated.html
-share/doc/libt3d/html/doxygen.css
-share/doc/libt3d/html/doxygen.png
-share/doc/libt3d/html/functions.html
-share/doc/libt3d/html/functions_vars.html
-share/doc/libt3d/html/group__C.html
-share/doc/libt3d/html/group__CXX.html
-share/doc/libt3d/html/group__deprecated.html
-share/doc/libt3d/html/index.html
-share/doc/libt3d/html/modules.html
-share/doc/libt3d/html/pages.html
-share/doc/libt3d/html/structT3DAny-members.html
-share/doc/libt3d/html/structT3DAny.html
-share/doc/libt3d/html/structT3DBryan-members.html
-share/doc/libt3d/html/structT3DBryan.html
-share/doc/libt3d/html/structT3DMatrix-members.html
-share/doc/libt3d/html/structT3DMatrix.html
-share/doc/libt3d/html/structT3DUBryan-members.html
-share/doc/libt3d/html/structT3DUBryan.html
-share/doc/libt3d/html/structT3DUMatrix-members.html
-share/doc/libt3d/html/structT3DUMatrix.html
-share/doc/libt3d/html/structT3DUVector-members.html
-share/doc/libt3d/html/structT3DUVector.html
-share/doc/libt3d/html/structT3DVector-members.html
-share/doc/libt3d/html/structT3DVector.html
-share/doc/libt3d/html/structV3D-members.html
-share/doc/libt3d/html/structV3D.html
-share/doc/libt3d/html/tab_b.gif
-share/doc/libt3d/html/tab_l.gif
-share/doc/libt3d/html/tab_r.gif
-share/doc/libt3d/html/tabs.css
-share/doc/libt3d/html/unionR3D-members.html
-share/doc/libt3d/html/unionR3D.html
-share/doc/libt3d/html/unionT3D-members.html
-share/doc/libt3d/html/unionT3D.html
-@dirrm share/doc/libt3d/html
-@dirrm share/doc/libt3d
 @dirrm include/t3d
