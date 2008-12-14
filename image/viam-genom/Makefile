@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/08/22 11:46:33 mallet $
+# $LAAS: Makefile 2008/12/13 16:57:32 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -28,6 +28,19 @@ GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		viam
 include ../../architecture/genom/depend.mk
+
+# option for image display using opencv
+PKG_SUPPORTED_OPTIONS+=	display
+PKG_SUGGESTED_OPTIONS+=	display
+
+PKG_OPTION_DESCR.display=	Enable embedded image display facility.
+define PKG_OPTION_SET.display
+  CONFIGURE_ARGS+=		--enable-display
+  REQD_BUILD_OPTIONS.opencv+=	gtk
+  REQD_BUILD_OPTIONS.viam-libs+=opencv
+  include ../../image/opencv/depend.mk
+endef
+PKG_OPTION_UNSET.display:=	CONFIGURE_ARGS+=--disable-display
 
 include ../../image/viam-libs/depend.mk
 include ../../localization/pom-genom/depend.mk
