@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2008/12/13 17:15:04 tho $
+# $LAAS: robotpkg.options.mk 2008/12/16 11:04:31 mallet $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -305,12 +305,12 @@ else
 	@${ECHO} "	(none)"
 endif
 	@${ECHO} ""
-	@${ECHO} "You can select which build options to use by "	\
+	@${ECHO} "You can select which build options to use by"		\
 		"setting PKG_DEFAULT_OPTIONS or "			\
-		$(call quote,${PKG_OPTIONS_VAR})" to the list of "	\
-		"desired options. Options prefixed with a dash (-) "	\
-		"will be disabled. The variables are to be set in "	\
-		${_MAKECONF}"." | fmt 75 79
+		$(call quote,${PKG_OPTIONS_VAR})" to the list of"	\
+		"desired options. Options prefixed with a dash (-)"	\
+		"will be disabled. The variables are to be set in"	\
+		${_MAKECONF}"." | fmt
 
 
 # --- supported-options-message --------------------------------------
