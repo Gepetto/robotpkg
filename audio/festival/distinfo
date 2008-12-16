@@ -9,3 +9,6 @@ RMD160 (speech_tools-1.2.96-beta.tar.gz) = 3d2acc841a8b14e0bff66c9bb08293206f501
 Size (speech_tools-1.2.96-beta.tar.gz) = 1275015 bytes
 SHA1 (patch-aa) = 581b2ea0a594cbc518da4aa956648395e28ac4f1
 SHA1 (patch-ab) = 5c3d8f3d347be6df8f0ce09b10e156c24a776c24
+SHA1 (patch-ac) = 04e010242c6889300257b7c6120671818fcd5170
+SHA1 (patch-ad) = b41cc00d81563e86a51cc31abf3530b0668a665d
+SHA1 (patch-ae) = fc5fccc1003434a4560ca545ff42b89d8ae85f4c
