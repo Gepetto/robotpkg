@@ -1,0 +1,22 @@
+--- speech_tools/include/EST_ChannelType.h~	2004-05-04 02:00:16.000000000 +0200
++++ speech_tools/include/EST_ChannelType.h	2008-12-16 12:18:18.000000000 +0100
+@@ -135,7 +135,7 @@
+   * D  = Number of levels of differentiation.
+   * SE = Start=0 end=1
+   */
+-#define EST_CoefChannelId(CT,D,SE) ( (CT)<<3 | (D)<<1 & 6 | (SE)&1 )
++#define EST_CoefChannelId(CT,D,SE) ( ((CT)<<3) | ((D)<<1 & 6) | ((SE)&1) )
+ 
+ /** Build a number representing a channel type for a single value which can
+   * N = count starting from 0
+--- speech_tools/include/EST_wave_aux.h~	2005-04-15 00:58:08.000000000 +0200
++++ speech_tools/include/EST_wave_aux.h	2008-12-16 14:25:55.000000000 +0100
+@@ -101,7 +101,7 @@
+ // Used when setting Waves in Features
+ VAL_REGISTER_CLASS_DCLS(wave,EST_Wave)
+ 
+-typedef enum EST_sample_type_t {
++ enum EST_sample_type_t {
+   st_unknown, 
+   st_schar, 
+   st_uchar, 

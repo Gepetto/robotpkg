@@ -1,0 +1,20 @@
+--- speech_tools/base_class/EST_TSimpleVector.cc~	2006-07-06 14:57:18.000000000 +0200
++++ speech_tools/base_class/EST_TSimpleVector.cc	2008-12-16 12:40:09.000000000 +0100
+@@ -43,6 +43,7 @@
+ #include "EST_TSimpleVector.h"
+ #include "EST_matrix_support.h"
+ #include <fstream>
++#include <cstring>
+ #include "EST_cutils.h"
+ 
+ template<class T> void EST_TSimpleVector<T>::copy(const EST_TSimpleVector<T> &a)
+--- speech_tools/base_class/EST_TSimpleMatrix.cc~	2004-09-30 14:53:35.000000000 +0200
++++ speech_tools/base_class/EST_TSimpleMatrix.cc	2008-12-16 12:40:19.000000000 +0100
+@@ -44,6 +44,7 @@
+ #include "EST_TVector.h"
+ #include <fstream>
+ #include <iostream>
++#include <cstring>
+ #include "EST_cutils.h"
+ 
+ template<class T> 
