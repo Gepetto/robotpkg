@@ -1,4 +1,4 @@
-# $LAAS: fetch.mk 2008/05/25 23:02:50 tho $
+# $LAAS: fetch.mk 2008/12/16 12:08:34 mallet $
 #
 # Copyright (c) 2006-2008 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -66,6 +66,7 @@ _PATCHFILES?=	${PATCHFILES}
 endif
 _ALLFILES?=	${_DISTFILES} ${_PATCHFILES}
 _ALLFILES:=	$(sort ${_ALLFILES})#		remove duplicates
+_ALLFILES:=	$(filter-out ${NOFETCHFILES},${_ALLFILES})
 
 _BUILD_DEFS+=	_DISTFILES _PATCHFILES
 
