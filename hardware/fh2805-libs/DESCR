@@ -1,0 +1,3 @@
+Libraries to interface the Faulhaber 2805 serial motor controller.
+This controller is found on the Jido robot, to control the tilt of
+the front Sick laser.

@@ -1,0 +1,6 @@
+@comment Mon Dec 22 11:59:10 CET 2008
+bin/fh2805test
+include/fh2805/fh2805.h
+lib/libfh2805.la
+lib/pkgconfig/fh2805.pc
+@dirrm include/fh2805
