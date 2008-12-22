@@ -1,0 +1,28 @@
+@comment Mon Dec 22 17:09:19 CET 2008
+bin/lswm
+bin/wmgui
+bin/wminput
+etc/cwiid/wminput/acc_ptr
+etc/cwiid/wminput/buttons
+etc/cwiid/wminput/default
+etc/cwiid/wminput/gamepad
+etc/cwiid/wminput/ir_ptr
+etc/cwiid/wminput/neverball
+etc/cwiid/wminput/nunchuk_acc_ptr
+include/cwiid.h
+lib/cwiid/plugins/acc.so
+lib/cwiid/plugins/ir_ptr.so
+lib/cwiid/plugins/nunchuk_acc.so
+lib/libcwiid.a
+lib/libcwiid.so
+lib/libcwiid.so.1
+lib/libcwiid.so.1.0
+lib/python2.5/site-packages/cwiid.so
+man/man1/wmgui.1
+man/man1/wminput.1
+share/doc/cwiid/Xmodmap
+share/doc/cwiid/wminput.list
+@dirrm share/doc/cwiid
+@dirrm lib/cwiid/plugins
+@dirrm etc/cwiid/wminput
+@dirrm etc/cwiid

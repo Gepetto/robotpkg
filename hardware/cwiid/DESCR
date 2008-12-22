@@ -1,0 +1,13 @@
+CWiid, a collection of Linux tools written in C for interfacing to the
+Nintendo Wiimote.
+
+CWiid includes the following components:
+
+libcwiid
+    API 
+wminput
+    event/mouse/joystick driver with plugin architecture 
+wmgui
+    GUI/control panel 
+wmdemo
+    test/demo application 
