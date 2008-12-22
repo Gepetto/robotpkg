@@ -1,0 +1,2 @@
+@comment Mon Dec 22 15:30:19 CET 2008
+/lib/modules/${OS_VERSION}/kernel/drivers/char/contec_dio.ko
