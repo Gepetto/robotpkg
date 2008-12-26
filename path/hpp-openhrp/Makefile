@@ -18,7 +18,7 @@
 
 DISTNAME=	hppopenhrp-${VERSION}
 PKGNAME=	hpp-openhrp-${VERSION}
-VERSION=	1.3
+VERSION=	1.3.1
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-openhrp/}
@@ -28,6 +28,8 @@ MAINTAINER=	gepetto@laas.fr
 COMMENT=	Basic classes used as interfaces with OpenHRP(tm).
 
 GNU_CONFIGURE=	yes
+
+CONFIGURE_ARGS+=	--with-openhrp=${PREFIX}/OpenHRP
 
 include ../../path/hpp-core/depend.mk
 include ../../devel/jrl-modelloader/depend.mk
