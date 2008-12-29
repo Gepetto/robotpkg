@@ -15,7 +15,6 @@
 #
 
 DISTNAME=	fh2805-libs-${VERSION}
-PKGNAME=	fh2805-libs-${VERSION}
 VERSION=	1.0
 CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=fh2805-libs/}
@@ -25,9 +24,7 @@ COMMENTS=	Driver and interface for Faulhaber 2805 motor controller
 
 GNU_CONFIGURE=	yes
 
-DEPENDS+=	mkdep>=2.6:../../devel/mkdep
-
-
+include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
