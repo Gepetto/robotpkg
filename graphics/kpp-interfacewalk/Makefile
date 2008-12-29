@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/09/17 17:38:38 mallet $
+# $LAAS: Makefile 2008/12/29 18:58:59 tho $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -31,12 +31,14 @@ DEPENDS+=	hpp-openhrp>=1.1:../../path/hpp-openhrp
 DEPENDS+=	kpp-interface>=1.2:../../graphics/kpp-interface
 
 GNU_CONFIGURE=	yes
+DOXYGEN_PLIST_DIR+=share/doc/kppInterfaceWalk
 
 # options
 PKG_SUPPORTED_OPTIONS+=	verbose1
 PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
+include ../../mk/sysdep/doxygen.mk
 include ../../path/hpp-walkplanner/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
