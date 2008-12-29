@@ -19,6 +19,7 @@ VERSION=	0.14
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.intra2net.com/de/produkte/opensource/ftdi/TGZ/
 
+HOMEPAGE=	http://www.intra2net.com/de/produkte/opensource/ftdi/
 MAINTAINER=	openrobots@laas.fr
 COMMENTS=	interface to ftdi USB device devices
 
