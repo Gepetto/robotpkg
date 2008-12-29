@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/12/09 16:04:13 mallet $
+# $LAAS: Makefile 2008/12/29 16:24:21 tho $
 #
 # Copyright (c) 2007-2008 LAAS/CNRS
 # All rights reserved.
@@ -29,8 +29,9 @@ COMMENT=	Basic classes used as interfaces with OpenHRP(tm).
 
 GNU_CONFIGURE=	yes
 
-CONFIGURE_ARGS+=	--with-openhrp=${PREFIX}/OpenHRP
+CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
 
+include ../../architecture/openhrp/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../devel/jrl-modelloader/depend.mk
 include ../../devel/omniORB/depend.mk
