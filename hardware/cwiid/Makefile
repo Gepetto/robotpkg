@@ -20,8 +20,9 @@ EXTRACT_SUFX=	.tgz
 CATEGORIES=	hardware
 MASTER_SITES=	http://abstrakraft.org/cwiid/downloads/
 
+HOMEPAGE=	http://abstrakraft.org/cwiid/
 MAINTAINER=	openrobots@laas.fr
-COMMENTS=	Rools for interfacing to the Nintendo Wiimote
+COMMENTS=	Tools for interfacing to the Nintendo Wiimote
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-ldconfig
