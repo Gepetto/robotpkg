@@ -1,0 +1,7 @@
+@comment Tue Dec 30 17:46:10 CET 2008
+include/contlaw/contLaw.h
+include/contlaw/contLawCart.h
+include/contlaw/contLawCartTrailer.h
+lib/libcontlaw.la
+lib/pkgconfig/contlaw.pc
+@dirrm include/contlaw

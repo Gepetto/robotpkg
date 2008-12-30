@@ -1,0 +1,5 @@
+This library provides the user with trajectory tracking control laws
+for mobile robots.
+
+Three systems are considered. A cart-like mobile robot, and two types of
+cart-trailer mobile robots.
