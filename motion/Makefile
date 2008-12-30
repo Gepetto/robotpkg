@@ -3,6 +3,7 @@
 
 COMMENT=	Motion generation software
 
+SUBDIR+=	contlaw
 SUBDIR+=	locoDemo-genom
 SUBDIR+=	pilo-genom
 
