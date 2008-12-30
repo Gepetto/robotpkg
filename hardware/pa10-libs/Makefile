@@ -20,7 +20,7 @@ CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=	openrobots@laas.fr
-COMMENTS=	libraries for Mitsubishi PA10 Arm controller
+COMMENT=	libraries for Mitsubishi PA10 Arm controller
 
 GNU_CONFIGURE=	yes
 

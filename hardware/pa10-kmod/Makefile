@@ -20,7 +20,7 @@ CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=linux/}
 
 MAINTAINER=	openrobots@laas.fr
-COMMENTS=	Kernel driver for Mitsubishi PA10 Arm controller
+COMMENT=	Kernel driver for Mitsubishi PA10 Arm controller
 
 BUILD_TARGET=	default
 

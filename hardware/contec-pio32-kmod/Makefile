@@ -20,7 +20,7 @@ CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=linux/}
 
 MAINTAINER=	openrobots@laas.fr
-COMMENTS=	Kernel driver for Contec PIO32 PCI card
+COMMENT=	Kernel driver for Contec PIO32 PCI card
 
 BUILD_TARGET=	default
 

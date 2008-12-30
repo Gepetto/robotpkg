@@ -20,7 +20,7 @@ CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=fh2805-libs/}
 
 MAINTAINER=	openrobots@laas.fr
-COMMENTS=	Driver and interface for Faulhaber 2805 motor controller
+COMMENT=	Driver and interface for Faulhaber 2805 motor controller
 
 GNU_CONFIGURE=	yes
 

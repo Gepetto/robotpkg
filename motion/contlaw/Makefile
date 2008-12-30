@@ -19,7 +19,7 @@ CATEGORIES=	motion
 MASTER_SITE=	${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=	openrobots@laas.fr
-COMMENTS=	Control laws for wheeled robots with optional trailers
+COMMENT=	Control laws for wheeled robots with optional trailers
 
 GNU_CONFIGURE=	yes
 

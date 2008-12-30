@@ -20,7 +20,7 @@ CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=linux/}
 
 MAINTAINER=	openrobots@laas.fr
-COMMENTS=	Kernel driver for the JR3 force sensor PCI acquisition card
+COMMENT=	Kernel driver for the JR3 force sensor PCI acquisition card
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

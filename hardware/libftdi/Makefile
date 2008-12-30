@@ -21,7 +21,7 @@ MASTER_SITES=	http://www.intra2net.com/de/produkte/opensource/ftdi/TGZ/
 
 HOMEPAGE=	http://www.intra2net.com/de/produkte/opensource/ftdi/
 MAINTAINER=	openrobots@laas.fr
-COMMENTS=	interface to ftdi USB device devices
+COMMENT=	interface to ftdi USB device devices
 
 GNU_CONFIGURE=	yes
 

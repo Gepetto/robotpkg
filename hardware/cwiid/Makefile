@@ -22,7 +22,7 @@ MASTER_SITES=	http://abstrakraft.org/cwiid/downloads/
 
 HOMEPAGE=	http://abstrakraft.org/cwiid/
 MAINTAINER=	openrobots@laas.fr
-COMMENTS=	Tools for interfacing to the Nintendo Wiimote
+COMMENT=	Tools for interfacing to the Nintendo Wiimote
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-ldconfig
