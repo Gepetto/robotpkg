@@ -6,6 +6,8 @@ COMMENT=	Robots specific packages
 SUBDIR+=	hrp2-14
 SUBDIR+=	hrp2-genom
 SUBDIR+=	hrpsys-jrl
+SUBDIR+=	jloco-genom
+SUBDIR+=	neobotix-libs
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
 
