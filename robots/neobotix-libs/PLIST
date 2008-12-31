@@ -1,0 +1,18 @@
+@comment Wed Dec 31 12:12:37 CET 2008
+bin/basetest
+include/neobotix/canGyro.h
+include/neobotix/canGyroErrors.h
+include/neobotix/canIO.h
+include/neobotix/canIOErrors.h
+include/neobotix/canMotors.h
+include/neobotix/canMotorsErrors.h
+include/neobotix/canUS.h
+include/neobotix/canUSErrors.h
+include/neobotix/neo.h
+include/neobotix/neoErrors.h
+include/neobotix/neobotixErrors.h
+include/neobotix/pscan.h
+include/neobotix/pscanErrors.h
+lib/libneobotix.la
+lib/pkgconfig/neobotix.pc
+@dirrm include/neobotix
