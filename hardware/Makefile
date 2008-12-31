@@ -14,6 +14,7 @@ SUBDIR+=	jr3-kmod
 SUBDIR+=	libftdi
 SUBDIR+=	pa10-kmod
 SUBDIR+=	pa10-libs
+SUBDIR+=	peak-linux-driver
 SUBDIR+=	platine-genom
 SUBDIR+=	serial
 SUBDIR+=	sickLib
