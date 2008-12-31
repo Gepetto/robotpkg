@@ -1,0 +1,26 @@
+@comment Wed Dec 31 12:21:00 CET 2008
+bin/jloco
+bin/jlocoSendInitRqst
+bin/jlocoTest
+include/jloco/jlocoConst.h
+include/jloco/jlocoStruct.h
+include/jloco/server/jlocoEndian.h
+include/jloco/server/jlocoError.h
+include/jloco/server/jlocoMsgLib.h
+include/jloco/server/jlocoPosterLib.h
+include/jloco/server/jlocoPosterLibStruct.h
+include/jloco/server/jlocoPosterReadLibProto.h
+include/jloco/server/jlocoPosterShowLib.h
+include/jloco/server/jlocoPosterWriteLibProto.h
+include/jloco/server/jlocoPosterXMLLib.h
+include/jloco/server/jlocoPrint.h
+include/jloco/server/jlocoPrintXML.h
+include/jloco/server/jlocoScan.h
+include/jloco/server/jlocoType.h
+lib/libjlocoClient.la
+lib/pkgconfig/jloco.pc
+lib/tclserv/libjlocoTclServ.la
+share/modules/gen/jloco.gen
+share/modules/tcl/jlocoClient.tcl
+@dirrm include/jloco/server
+@dirrm include/jloco

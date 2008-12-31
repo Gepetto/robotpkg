@@ -1,0 +1,3 @@
+jloco is the Genom module that controls the jido robot: a neobotix platform.
+This module provides the traditional odometry, position and speed controls,
+altogether with basic alarms and battery monitoring functions. 
