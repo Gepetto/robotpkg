@@ -1,0 +1,10 @@
+prefix=@prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: pcan
+Description: peak systems CAN controller driver and lib
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lpcan
+Cflags: -I${includedir}
+
