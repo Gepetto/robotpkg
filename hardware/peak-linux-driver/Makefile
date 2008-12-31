@@ -26,7 +26,7 @@ COMMENT=	Software Interface for PEAK-System CAN-Hardware.
 WRKSRC=		${WRKDIR}/${PKGNAME}
 
 post-install:	${WRKSRC}/pcan.pc
-	${INSTALL_DATA} pcan.pc ${ROBOTPKG_BASE}/lib/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/pcan.pc ${ROBOTPKG_BASE}/lib/pkgconfig
 
 ${WRKSRC}/pcan.pc:
 	@${SED} -e 's|@prefix@|${ROBOTPKG_BASE}|' \

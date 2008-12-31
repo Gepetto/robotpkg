@@ -1,4 +1,4 @@
-@comment Wed Dec 31 11:17:23 CET 2008
+@comment Wed Dec 31 12:18:40 CET 2008
 bin/bitratetest
 bin/filtertest
 bin/pcan_make_devices
@@ -10,5 +10,6 @@ lib/libpcan.so
 lib/libpcan.so.0
 lib/libpcan.so.0.6
 lib/modules/2.6.27.9-159.fc10.i686/pcan.ko
+lib/pkgconfig/pcan.pc
 @dirrm lib/modules/2.6.27.9-159.fc10.i686
 @dirrm lib/modules
