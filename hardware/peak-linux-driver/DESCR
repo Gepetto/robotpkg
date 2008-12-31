@@ -1,0 +1,25 @@
+PCAN-Light for LINUX is the easy to use Software Interface for
+PEAK-System CAN-Hardware.
+
+The PCAN drivers for LINUX work with Kernel Version 2.4 up to Kernel
+2.6.26. The complete package is distributed under the GPL
+
+The API (Application Programming Interface) for the different PCAN-PC
+hardware is the same. This make it easy to develop software which work
+with different PEAK CAN-Hardware Interface. But be carefull while
+using these drivers with non PEAK CAN PC Hardware. The PEAK-CAN
+Hardware Moduls and drivers use special fiunctions which are only
+running with a 100% compatible PCAN-PEAK Hardware.
+
+
+Supported Hardware:
+PCAN-ISA 	PC-ISA I + II CAN-Interface one and two channel
+PCAN-PC/104 	PC/104 CAN-Interface one and two channel
+PCAN-Dongle 	PC-Parallel Port CAN-Interface one channel
+PCAN-PCI 	PC-PCI CAN-Interface one or two channel
+PCAN-PCI Express 	PC-PCI Express CAN-Interface one or two channel
+PCAN-PC Card 	PC-PC Card (PCMCIA) CAN-Interface one or two channel
+PCAN-PC/104plus 	PC/104plus CAN-Interface one and two channel
+PCAN-USB 	PC-USB CAN Interface
+PCAN-OEM 	All OEM-Mainboards Boards with PEAK-CAN Interface
+(DigitalLogic-PC/104 CAN cards, Kontron with CAN on board, etc)

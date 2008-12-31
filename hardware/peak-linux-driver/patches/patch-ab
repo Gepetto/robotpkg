@@ -1,0 +1,29 @@
+Fix installation to $ROBOTPKG_BASE
+
+--- lib/Makefile.orig	2007-07-09 11:40:42.000000000 +0200
++++ lib/Makefile	2008-12-31 10:45:18.396019000 +0100
+@@ -68,9 +68,9 @@
+ endif
+ 
+ ifeq ($(HOSTTYPE),x86_64)
+-  LIBPATH = /usr/lib64
++  LIBPATH = $(ROBOTPKG_BASE)/lib64
+ else
+-  LIBPATH = /usr/lib
++  LIBPATH = $(ROBOTPKG_BASE)/lib
+ endif
+ 
+ LDNAME  = libpcan.so
+@@ -98,9 +98,7 @@
+ 	cp $(TARGET) $(LIBPATH)/$(TARGET)
+ 	ln -sf $(LIBPATH)/$(TARGET) $(LIBPATH)/$(SONAME)
+ 	ln -sf $(LIBPATH)/$(SONAME) $(LIBPATH)/$(LDNAME)
+-	cp libpcan.h /usr/include/libpcan.h
+-	chmod 644 /usr/include/libpcan.h
+-	/sbin/ldconfig
+-  
+-  
++	cp libpcan.h $(ROBOTPKG_BASE)/include/libpcan.h
++	chmod 644 $(ROBOTPKG_BASE)/include/libpcan.h
++
+ 
