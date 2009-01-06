@@ -1,0 +1,6 @@
+@comment Tue Jan 6 09:36:31 CET 2009
+bin/jidogriptest
+bin/sensorstest
+include/jidogrip.h
+lib/libjidogrip.la
+lib/pkgconfig/libjidogrip.pc

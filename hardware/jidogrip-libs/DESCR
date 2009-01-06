@@ -1,0 +1,4 @@
+Interface libraries with the gripper connected to jido's arm: 
+It uses a Contec PIO32 PCI card to control the gripper itself
+and libftdi to access the  sensors on the fingers.
+It's used by the 'fingers' Genom module.
