@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/08 15:18:41 mallet $
+# $LAAS: depend.mk 2009/01/08 16:24:21 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -32,9 +32,9 @@ DEPEND_USE+=		kineo-pp
 DEPEND_ABI.kineo-pp?=	kineo-pp>=2.04.501r1
 DEPEND_DIR.kineo-pp?=	../../path/kineo-pp
 
-include ../../devel/boost-headers/depend.mk
-include ../../lang/gcc4-c++/depend.mk
-
 endif # KINEO_PP_DEPEND_MK -------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
+
+include ../../lang/gcc4-c++/depend.mk
+include ../../devel/boost-headers/depend.mk
