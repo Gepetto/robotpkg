@@ -1,6 +1,6 @@
-# $LAAS: robotpkg.prefs.mk 2008/12/10 23:18:46 tho $
+# $LAAS: robotpkg.prefs.mk 2009/01/08 11:11:32 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -108,7 +108,7 @@ _MAKECONF=${ROBOTPKG_BASE}/etc/robotpkg.conf
    ifneq (,$(call pathsearch,robotpkg_info,${PATH}))
 _MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf
    else
-_MAKECONF=/usr/openrobots/etc/robotpkg.info
+_MAKECONF=/opt/openrobots/etc/robotpkg.info
    endif
   endif
 else
@@ -126,7 +126,7 @@ else
   PKG_FAIL_REASON+=	"missing mk/platform/${OPSYS}.mk"
 endif
 
-LOCALBASE?=		/usr/openrobots
+LOCALBASE?=		/opt/openrobots
 
 DEPOT_SUBDIR?=		packages
 DEPOTBASE=		${LOCALBASE}/${DEPOT_SUBDIR}

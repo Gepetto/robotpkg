@@ -1,6 +1,6 @@
-# $LAAS: pkg-vars.mk 2008/05/25 22:28:40 tho $
+# $LAAS: pkg-vars.mk 2009/01/08 11:16:57 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -83,7 +83,7 @@ endif
 endif
 
 # This is the default package database directory
-PKG_DBDIR?=	/usr/openrobots/var/db/pkg
+PKG_DBDIR?=	/opt/openrobots/var/db/pkg
 
 _PKG_DBDIR=	${PKG_DBDIR}
 PKGTOOLS_ARGS?=	-K ${_PKG_DBDIR}

@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2006,2008-2009 LAAS/CNRS
 # Copyright (c) 2001-2002 Alistair G. Crooks.
 # All rights reserved.
 #
@@ -171,7 +171,7 @@ while [ $# -gt 0 ]; do
 done
 
 # set defaults for system locations if not already set by the user
-[ -z "$prefix" ] && prefix=${HOME}/openrobots
+[ -z "$prefix" ] && prefix=/opt/openrobots
 [ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/var/db/pkg
 [ -z "$varbase" ] && varbase=${prefix}/var
 [ -z "$mandir" ] && mandir=${prefix}/man
