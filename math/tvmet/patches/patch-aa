@@ -1,0 +1,41 @@
+--- configure.orig	2007-06-23 18:00:25.000000000 +0200
++++ configure	2009-01-08 14:04:59.000000000 +0100
+@@ -23176,12 +23176,12 @@
+   { echo "$as_me:$LINENO: result: creating $ac_prefix_conf_OUT - prefix $ac_prefix_conf_UPP for $ac_prefix_conf_INP defines" >&5
+ echo "${ECHO_T}creating $ac_prefix_conf_OUT - prefix $ac_prefix_conf_UPP for $ac_prefix_conf_INP defines" >&6; }
+   if test -f $ac_prefix_conf_INP ; then
+-    $as_dirname -- /* automatically generated */ ||
+-$as_expr X/* automatically generated */ : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
+-	 X/* automatically generated */ : 'X\(//\)[^/]' \| \
+-	 X/* automatically generated */ : 'X\(//\)$' \| \
+-	 X/* automatically generated */ : 'X\(/\)' \| . 2>/dev/null ||
+-echo X/* automatically generated */ |
++    $as_dirname -- '/* automatically generated */' ||
++$as_expr 'X/* automatically generated */' : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
++	 'X/* automatically generated */' : 'X\(//\)[^/]' \| \
++	 'X/* automatically generated */' : 'X\(//\)$' \| \
++	 'X/* automatically generated */' : 'X\(/\)' \| . 2>/dev/null ||
++echo 'X/* automatically generated */' |
+     sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
+ 	    s//\1/
+ 	    q
+@@ -23204,13 +23204,13 @@
+     echo ' ' >>$ac_prefix_conf_OUT
+     echo /'*' $ac_prefix_conf_OUT. Generated automatically at end of configure. '*'/ >>$ac_prefix_conf_OUT
+ 
+-    echo 's/#undef  *\([A-Z_]\)/#undef '$ac_prefix_conf_UPP'_\1/' >conftest.sed
+-    echo 's/#undef  *\([a-z]\)/#undef '$ac_prefix_conf_LOW'_\1/' >>conftest.sed
+-    echo 's/#define  *\([A-Z_][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_UPP"_\\1 \\" >>conftest.sed
+-    echo '#define '$ac_prefix_conf_UPP"_\\1 \\2 \\" >>conftest.sed
++    echo 's/#undef  *\([A-Z_]\)/#undef '$ac_prefix_conf_UPP'_\\1/' >conftest.sed
++    echo 's/#undef  *\([a-z]\)/#undef '$ac_prefix_conf_LOW'_\\1/' >>conftest.sed
++    echo 's/#define  *\([A-Z_][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_UPP'_\\1 \\' >>conftest.sed
++    echo '#define '$ac_prefix_conf_UPP'_\\1 \\2 \\' >>conftest.sed
+     echo '#endif/' >>conftest.sed
+-    echo 's/#define  *\([a-z][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_LOW"_\\1 \\" >>conftest.sed
+-    echo '#define '$ac_prefix_conf_LOW"_\\1 \\2 \\" >>conftest.sed
++    echo 's/#define  *\([a-z][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_LOW'_\\1 \\' >>conftest.sed
++    echo '#define '$ac_prefix_conf_LOW'_\\1 \\2 \\' >>conftest.sed
+     echo '#endif/' >>conftest.sed
+     sed -f conftest.sed $ac_prefix_conf_INP >>$ac_prefix_conf_OUT
+     echo ' ' >>$ac_prefix_conf_OUT
