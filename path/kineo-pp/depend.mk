@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/12/10 23:27:04 tho $
+# $LAAS: depend.mk 2009/01/08 15:18:41 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -32,6 +32,7 @@ DEPEND_USE+=		kineo-pp
 DEPEND_ABI.kineo-pp?=	kineo-pp>=2.04.501r1
 DEPEND_DIR.kineo-pp?=	../../path/kineo-pp
 
+include ../../devel/boost-headers/depend.mk
 include ../../lang/gcc4-c++/depend.mk
 
 endif # KINEO_PP_DEPEND_MK -------------------------------------------
