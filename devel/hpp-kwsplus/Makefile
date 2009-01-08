@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/09/17 12:09:07 mallet $
+# $LAAS: Makefile 2009/01/08 15:51:35 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -27,9 +27,10 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Helper functions for KineoWorks(tm) package.
 
-GNU_CONFIGURE=	yes
-
+GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-lapack=${PREFIX.lapack}
+
+DOXYGEN_PLIST_DIR+=	share/doc/kwsPlus
 
 # Options
 PKG_SUPPORTED_OPTIONS+=	verbose1
@@ -41,4 +42,7 @@ include ../../math/lapack/depend.mk
 include ../../devel/hpp-kwsio/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/latex.mk
 include ../../mk/robotpkg.mk
