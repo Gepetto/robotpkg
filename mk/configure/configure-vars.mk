@@ -1,6 +1,6 @@
-# $LAAS: configure-vars.mk 2008/05/25 23:15:12 tho $
+# $LAAS: configure-vars.mk 2009/01/09 17:37:25 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -78,6 +78,7 @@ _COOKIE.configure=      ${WRKDIR}/.configure_done
 #
 # configure is a public target to configure the software for building.
 #
+
 .PHONY: configure
 ifndef NO_CONFIGURE
   include ${ROBOTPKG_DIR}/mk/configure/configure.mk
@@ -87,7 +88,11 @@ configure:
 	@${DO_NADA}
   else
     ifdef _PKGSRC_BARRIER
+      ifdef _EXTRACT_IS_CHECKOUT
+configure: configure-cookie
+      else
 configure: patch configure-cookie
+      endif
     else
 configure: barrier
     endif

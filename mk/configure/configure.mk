@@ -1,6 +1,6 @@
-# $LAAS: configure.mk 2008/05/25 23:13:56 tho $
+# $LAAS: configure.mk 2009/01/09 19:45:13 mallet $
 #
-# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -68,7 +68,9 @@ endif
 #
 # configure is a public target to configure the sources for building.
 #
-_CONFIGURE_TARGETS+=	patch
+ifndef _EXTRACT_IS_CHECKOUT
+  _CONFIGURE_TARGETS+=	patch
+endif
 _CONFIGURE_TARGETS+=	acquire-configure-lock
 _CONFIGURE_TARGETS+=	${_COOKIE.configure}
 _CONFIGURE_TARGETS+=	release-configure-lock
