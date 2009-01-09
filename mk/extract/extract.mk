@@ -1,6 +1,6 @@
-# $LAAS: extract.mk 2008/05/25 23:10:50 tho $
+# $LAAS: extract.mk 2009/01/09 18:42:52 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -116,6 +116,7 @@ endif
 # real-extract is a helper target onto which one can hook all of the
 # targets that do the actual extraction work.
 #
+_REAL_EXTRACT_TARGETS+= extract-check-checkout
 _REAL_EXTRACT_TARGETS+=	extract-check-interactive
 _REAL_EXTRACT_TARGETS+=	extract-message
 #_REAL_EXTRACT_TARGETS+=	extract-vars
@@ -136,6 +137,22 @@ extract-message:
 .PHONY: extract-dir
 extract-dir:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${EXTRACT_DIR}
+
+
+# --- extract-check-checkout (PRIVATE) -------------------------------------
+#
+# extract-check-checkout checks whether a checkout is present.
+#
+extract-check-checkout:
+ifeq (yes,$(call exists,${_COOKIE.checkout}))
+	${RUN}								\
+	${ERROR_MSG} ${hline};						\
+	${ERROR_MSG} "A checkout is present in the build directory of ${PKGBASE}";\
+	${ERROR_MSG} "Perhaps this is a stale work directory?";		\
+	${ERROR_MSG} "Try to ${MAKE} clean in ${PKGPATH}"; 		\
+	${ERROR_MSG} ${hline};						\
+	exit 2;
+endif
 
 
 # --- extract-check-interactive (PRIVATE) ----------------------------

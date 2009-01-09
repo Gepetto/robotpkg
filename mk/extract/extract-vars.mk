@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/01/09 12:31:08 mallet $
+# $LAAS: extract-vars.mk 2009/01/09 19:19:14 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -34,6 +34,8 @@
 #
 #					Anthony Mallet on Fri Dec  1 2006
 #
+
+MK_ROBOTPKG_EXTRACT:=	defined
 
 # The following variables may be set by the package Makefile and
 # specify how extraction happens:
@@ -99,18 +101,33 @@ EXTRACT_SUFX?=		.tar.gz
 #USE_TOOLS+=	gem
 #.endif
 
+_COOKIE.extract=	${WRKDIR}/.extract_done
+_COOKIE.checkout=	${WRKDIR}/.checkout_done
+
+ifneq (,$(filter checkout,${MAKECMDGOALS}))
+  _EXTRACT_IS_CHECKOUT:=yes
+endif
+ifeq (yes,$(call exists,${_COOKIE.checkout}))
+  _EXTRACT_IS_CHECKOUT:=yes
+endif
+
+ifdef _EXTRACT_IS_CHECKOUT
+  ifndef _CHECKOUT_PKGVERSION
+    _CHECKOUT_PKGVERSION:=rc$(shell ${DATE} "+%Y.%m.%d.%k.%M.%S")
+    MAKEOVERRIDES+=_CHECKOUT_PKGVERSION=${_CHECKOUT_PKGVERSION}
+  endif
+  PKGNAME:=		${PKGNAME}${_CHECKOUT_PKGVERSION}
+endif
+
 # The following are the "public" targets provided by this module:
 #
-#    extract
+#    extract, checkout
 #
 # The following targets may be overridden in a package Makefile:
 #
 #    pre-extract, do-extract, post-extract
+#    pre-checkout, do-checkout, post-checkout
 #
-
-_COOKIE.extract=	${WRKDIR}/.extract_done
-
-
 
 # --- extract (PUBLIC) -----------------------------------------------
 #
@@ -133,13 +150,39 @@ extract: barrier
 endif
 
 
-# --- extract-cookie (PRIVATE) ---------------------------------------
+# --- checkout (PUBLIC) ----------------------------------------------
 #
-# extract-cookie creates the "extract" cookie file.  The contents
-# are the name of the package.
+# checkout is a public target to perform repository checkout.
+#
+.PHONY: checkout
+ifdef MASTER_REPOSITORY
+  include ${ROBOTPKG_DIR}/mk/extract/checkout.mk
+else
+checkout:
+	@${ECHO} This package does not define any repository for checkout.
+	@${FALSE}
+endif
+
+
+# --- extract-cookie (PRIVATE) ---------------------------------------------
+#
+# extract-cookie creates the "extract" cookie file. The contents are the name
+# of the package.
 #
 .PHONY: extract-cookie
 extract-cookie:
 	${RUN}${TEST} ! -f ${_COOKIE.extract} || ${FALSE}
 	${RUN}${MKDIR} $(dir ${_COOKIE.extract})
 	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.extract}
+
+
+# --- checkout-cookie (PRIVATE) --------------------------------------------
+#
+# checkout-cookie creates the "checkout" cookie file. The contents are the name
+# of the package.
+#
+.PHONY: checkout-cookie
+checkout-cookie:
+	${RUN}${TEST} ! -f ${_COOKIE.checkout} || ${FALSE}
+	${RUN}${MKDIR} $(dir ${_COOKIE.checkout})
+	${RUN}${ECHO} ${PKGBASE} > ${_COOKIE.checkout}
