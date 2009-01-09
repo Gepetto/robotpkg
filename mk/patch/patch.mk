@@ -1,6 +1,12 @@
+# $LAAS: patch.mk 2009/01/09 19:43:08 mallet $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,18 +18,10 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: patch.mk,v 1.11 2006/07/22 16:31:35 jlam Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
-#   3. All advertising materials mentioning   features or use of this
-#      software must display the following acknowledgement:
-#        This product includes software developed by the NetBSD
-#        Foundation, Inc. and its contributors.
+#   3. All  advertising  materials mentioning  features or  use  of  this
+#      software must  display the following acknowledgement: This product
+#      includes software developed by the NetBSD Foundation, Inc. and its
+#      contributors.
 #   4. Neither the  name  of The NetBSD Foundation  nor the names  of its
 #      contributors  may be  used to endorse or promote  products derived
 #      from this software without specific prior written permission.
@@ -40,8 +38,11 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
+# From $NetBSD: patch.mk,v 1.11 2006/07/22 16:31:35 jlam Exp $
 #
+#                                       Anthony Mallet on Sat Dec  2 2006
+#
+
 # The following variables may be set in a package Makefile and control
 # how robotpkg patches are applied.
 #
@@ -94,7 +95,11 @@ _COOKIE.patch=		${WRKDIR}/.patch_done
 # patch is a public target to apply the distribution and pkgsrc
 # patches to the extracted sources for the package.
 #
+ifdef _EXTRACT_IS_CHECKOUT
+_PATCH_TARGETS+=	checkout
+else
 _PATCH_TARGETS+=	extract
+endif
 _PATCH_TARGETS+=	acquire-patch-lock
 _PATCH_TARGETS+=	${_COOKIE.patch}
 _PATCH_TARGETS+=	release-patch-lock
