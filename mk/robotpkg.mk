@@ -1,6 +1,6 @@
-# $LAAS: robotpkg.mk 2008/10/23 17:04:38 mallet $
+# $LAAS: robotpkg.mk 2009/01/09 12:21:02 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -67,37 +67,37 @@ endif
 include ../../mk/internal/error.mk
 
 
-############################################################################
-# Transform package Makefile variables and set defaults
-############################################################################
+# --- Transform package Makefile variables and set defaults ----------
+#
 
-##### PKGBASE, PKGNAME[_NOREV], PKGVERSION
-
-PKGBASE?=		$(shell echo ${PKGNAME} | sed -e 's/-[^-]*$$//')
-PKGVERSION?=		$(shell echo ${PKGNAME} | sed -e 's/^.*-//')
+# PKGBASE, PKGNAME[_NOREV], PKGVERSION
+#
 ifneq (,${PKGREVISION})
-ifneq (0,${PKGREVISION})
-ifdef PKGNAME
-PKGNAME_NOREV:=		${PKGNAME}
-PKGNAME:=		${PKGNAME}r${PKGREVISION}
+  ifneq (0,${PKGREVISION})
+    ifdef PKGNAME
+      PKGNAME_NOREV:=	${PKGNAME}
+      PKGNAME:=		${PKGNAME}r${PKGREVISION}
+    else
+      PKGNAME?=		${DISTNAME}r${PKGREVISION}
+      PKGNAME_NOREV=	${DISTNAME}
+    endif
+  else
+    PKGNAME?=		${DISTNAME}
+    PKGNAME_NOREV=	${PKGNAME}
+  endif
 else
-PKGNAME?=		${DISTNAME}r${PKGREVISION}
-PKGNAME_NOREV=		${DISTNAME}
-endif
-else
-PKGNAME?=		${DISTNAME}
-PKGNAME_NOREV=		${PKGNAME}
-endif
-else
-PKGNAME?=		${DISTNAME}
-PKGNAME_NOREV=		${PKGNAME}
+  PKGNAME?=		${DISTNAME}
+  PKGNAME_NOREV=	${PKGNAME}
 endif
 
-##### Others
+PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
+PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
 
-BUILD_DEPENDS?=		# empty
+# Others
+#
+BUILD_DEPENDS?=#	empty
 COMMENT?=		(no description)
-DEPENDS?=		# empty
+DEPENDS?=#		empty
 DESCR_SRC?=		${PKGDIR}/DESCR
 INTERACTIVE_STAGE?=	none
 MAINTAINER?=		openrobots@laas.fr
@@ -173,15 +173,15 @@ SHCOMMENT?=		${ECHO_MSG} >/dev/null '***'
 # 2 == shell "set -x" operation
 PKG_DEBUG_LEVEL?=	0
 _PKG_SILENT=		@
-_PKG_DEBUG=		# empty
-_PKG_DEBUG_SCRIPT=	# empty
+_PKG_DEBUG=#		empty
+_PKG_DEBUG_SCRIPT=#	empty
 
 ifeq (1,${PKG_DEBUG_LEVEL})
-_PKG_SILENT=		# empty
+_PKG_SILENT=#		empty
 endif
 
 ifeq (2,${PKG_DEBUG_LEVEL})
-_PKG_SILENT=		# empty
+_PKG_SILENT=#		empty
 _PKG_DEBUG=		set -x;
 _PKG_DEBUG_SCRIPT=	${SH} -x
 endif
