@@ -1,6 +1,6 @@
-# $LAAS: extract-vars.mk 2008/05/25 23:12:15 tho $
+# $LAAS: extract-vars.mk 2009/01/09 12:31:08 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -140,6 +140,6 @@ endif
 #
 .PHONY: extract-cookie
 extract-cookie:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.extract} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.extract})
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > ${_COOKIE.extract}
+	${RUN}${TEST} ! -f ${_COOKIE.extract} || ${FALSE}
+	${RUN}${MKDIR} $(dir ${_COOKIE.extract})
+	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.extract}
