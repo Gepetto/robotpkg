@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006,2009 LAAS/CNRS                        --  Thu Dec  7 2006
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -85,7 +85,9 @@ release-install-localbase-lock: release-localbase-lock
 # targets that do the actual installing of the built objects.
 #
 _REAL_INSTALL_TARGETS+=	install-check-interactive
+ifndef _EXTRACT_IS_CHECKOUT
 _REAL_INSTALL_TARGETS+=	install-check-version
+endif
 _REAL_INSTALL_TARGETS+=	install-message
 #_REAL_INSTALL_TARGETS+=	install-vars
 _REAL_INSTALL_TARGETS+=	install-all
@@ -129,8 +131,8 @@ endif
 #
 .PHONY: install-check-version
 install-check-version: ${_COOKIE.extract}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	extractname=`${CAT} ${_COOKIE.extract}`;			\
+	${RUN}								\
+	extractname=`${CAT} $^`;					\
 	pkgname=${PKGNAME};						\
 	case "$$extractname" in						\
 	"")	${WARNING_MSG} "${WRKDIR} may contain an older version of ${PKGBASE}" ;; \
