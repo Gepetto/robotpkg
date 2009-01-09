@@ -1,6 +1,6 @@
-# $LAAS: install.mk 2008/05/25 22:32:12 tho $
+# $LAAS: install.mk 2009/01/09 18:47:41 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -43,8 +43,8 @@
 #
 .PHONY: pkg-install-check-conflicts
 pkg-install-check-conflicts:
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${WRKDIR}/.CONFLICTS
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}${RM} -f ${WRKDIR}/.CONFLICTS
+	${RUN}								\
 ${foreach _conflict_,${CONFLICTS},					\
 	found="`${_PKG_BEST_EXISTS} ${_conflict_} || ${TRUE}`";		\
 	case "$$found" in						\
@@ -52,7 +52,7 @@ ${foreach _conflict_,${CONFLICTS},					\
 	*)	${ECHO} "$$found" >> ${WRKDIR}/.CONFLICTS ;;		\
 	esac;								\
 }
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 	${TEST} -f ${WRKDIR}/.CONFLICTS || exit 0;			\
 	${ECHO} "${PKGNAME} conflicts with installed package(s):";	\
 	${CAT} ${WRKDIR}/.CONFLICTS | ${SED} -e "s|^|    |";		\
@@ -69,9 +69,10 @@ ${foreach _conflict_,${CONFLICTS},					\
 #
 .PHONY: pkg-install-check-installed
 pkg-install-check-installed:
-	${_PKG_SILENT}${_PKG_DEBUG}						\
+	${RUN}									\
 	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`";		\
 	${TEST} -n "$$found" || exit 0;						\
+	${ERROR_MSG} ${hline};							\
 	${ERROR_MSG} "$$found is already installed - perhaps an older version?";\
 	${ERROR_MSG} "If so, you may use either of:";				\
 	if test -z "${PKG_PRESERVE}"; then					\
@@ -82,6 +83,7 @@ pkg-install-check-installed:
 	${ERROR_MSG} "      of its dependencies";				\
 	${ERROR_MSG} "    - \"${MAKE} replace\" to replace only the package without";\
 	${ERROR_MSG} "      re-linking dependencies, risking various problems.";\
+	${ERROR_MSG} ${hline};							\
 	exit 1
 
 
@@ -100,13 +102,13 @@ endef
 .PHONY: pkg-register
 pkg-register: generate-metadata ${_COOKIE.depends}
 	@${STEP_MSG} "Registering installation for ${PKGNAME}"
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -fr ${_PKG_DBDIR}/${PKGNAME}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${_PKG_DBDIR}/${PKGNAME}
-	${_PKG_SILENT}${_PKG_DEBUG}${CP} ${PKG_DB_TMPDIR}/* ${_PKG_DBDIR}/${PKGNAME}
-	${_PKG_SILENT}${_PKG_DEBUG}${PKG_ADMIN} add ${PKGNAME}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}${RM} -fr ${_PKG_DBDIR}/${PKGNAME}
+	${RUN}${MKDIR} ${_PKG_DBDIR}/${PKGNAME}
+	${RUN}${CP} ${PKG_DB_TMPDIR}/* ${_PKG_DBDIR}/${PKGNAME}
+	${RUN}${PKG_ADMIN} add ${PKGNAME}
+	${RUN}								\
 	case ${_AUTOMATIC}"" in						\
 	[yY][eE][sS])	${PKG_ADMIN} set automatic=yes ${PKGNAME} ;;	\
 	esac
-	${_PKG_SILENT}${_PKG_DEBUG}${_DEPENDS_PATTERNS_CMD} |		\
+	${RUN}${_DEPENDS_PATTERNS_CMD} |		\
 		${SORT} -u | ${_REGISTER_DEPENDENCIES} ${PKGNAME}
