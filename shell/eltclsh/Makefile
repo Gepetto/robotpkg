@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/09 16:03:49 mallet $
+# $LAAS: Makefile 2009/01/09 20:34:06 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -19,7 +19,7 @@
 DISTNAME=		eltclsh-1.9
 CATEGORIES=		shell
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/eltclsh
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}eltclsh
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/eltclsh
