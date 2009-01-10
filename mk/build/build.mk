@@ -1,7 +1,11 @@
+# $LAAS: build.mk 2009/01/10 13:28:37 tho $
 #
-# Copyright (c) 2007-2008
-#      IS/AIST-ST2I/CNRS Joint Japanese-French Robotics Laboratory (JRL).
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -26,11 +30,9 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
 # From $NetBSD: build.mk,v 1.9 2006/11/09 02:53:15 rillig Exp $
+#
+#                                       Anthony Mallet on Set Dec  2 2006
 #
 
 # This file defines what happens in the build phase, excluding the
@@ -175,3 +177,12 @@ $(foreach _dir_,${BUILD_DIRS},						\
 pre-build:
 
 post-build:
+
+
+# --- build-clean (PRIVATE) ------------------------------------------------
+#
+# build-clean removes the state files for the "build" and later phases so that
+# the "build" target may be re-invoked.
+#
+build-clean: install-clean
+	${RUN}${RM} -f ${_COOKIE.build}

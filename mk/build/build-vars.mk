@@ -1,6 +1,6 @@
-# $LAAS: build-vars.mk 2008/05/25 23:21:38 tho $
+# $LAAS: build-vars.mk 2009/01/10 13:27:23 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -95,7 +95,7 @@ PKGSRC_MAKE_ENV+=	PATH=${PATH}
 _COOKIE.build=  ${WRKDIR}/.build_done
 
 
-# --- build (PUBLIC) -------------------------------------------------
+# --- build (PUBLIC) -------------------------------------------------------
 #
 # build is a public target to build the sources for the package.
 #
@@ -116,7 +116,16 @@ build: barrier
 endif
 
 
-# --- build-cookie (PRIVATE) -----------------------------------------
+# --- rebuild (PUBLIC) -----------------------------------------------------
+#
+# rebuild is a special target to re-run the build target.
+#
+.PHONY: rebuild
+rebuild: build-clean
+	${RUN}${RECURSIVE_MAKE} build
+
+
+# --- build-cookie (PRIVATE) -----------------------------------------------
 #
 # build-cookie creates the "build" cookie file.
 #
