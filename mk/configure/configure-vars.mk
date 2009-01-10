@@ -1,4 +1,4 @@
-# $LAAS: configure-vars.mk 2009/01/09 17:37:25 mallet $
+# $LAAS: configure-vars.mk 2009/01/10 13:41:38 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -74,11 +74,10 @@ SCRIPTS_ENV+=	WRKSRC=${WRKSRC}
 _COOKIE.configure=      ${WRKDIR}/.configure_done
 
 
-# --- configure (PUBLIC) ---------------------------------------------
+# --- configure (PUBLIC) ---------------------------------------------------
 #
 # configure is a public target to configure the software for building.
 #
-
 .PHONY: configure
 ifndef NO_CONFIGURE
   include ${ROBOTPKG_DIR}/mk/configure/configure.mk
@@ -100,12 +99,21 @@ configure: barrier
 endif
 
 
-# --- configure-cookie (PRIVATE) -------------------------------------
+# --- reconfigure (PUBLIC) -------------------------------------------------
+#
+# reconfigure is a special target to re-run the configure target.
+#
+.PHONY: reconfigure
+reconfigure: configure-clean
+	${RUN}${RECURSIVE_MAKE} configure
+
+
+# --- configure-cookie (PRIVATE) -------------------------------------------
 #
 # configure-cookie creates the "configure" cookie file.
 #
 .PHONY: configure-cookie
 configure-cookie:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.configure} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.configure})
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > ${_COOKIE.configure}
+	${RUN}${TEST} ! -f ${_COOKIE.configure} || ${FALSE}
+	${RUN}${MKDIR} $(dir ${_COOKIE.configure})
+	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.configure}
