@@ -1,6 +1,6 @@
-# $LAAS: depends-vars.mk 2008/05/25 23:09:16 tho $
+# $LAAS: depends-vars.mk 2009/01/10 13:23:50 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -92,8 +92,9 @@ ifndef NO_DEPENDS
   include ${ROBOTPKG_DIR}/mk/depends/depends.mk
 endif
 
-# --- bootstrap-depends (PUBLIC, OVERRIDE) ---------------------------
 
+# --- bootstrap-depends (PUBLIC, OVERRIDE) ---------------------------
+#
 # bootstrap-depends is a public target to install any missing
 # dependencies needed during stages before the normal "depends"
 # stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
@@ -102,13 +103,11 @@ endif
 bootstrap-depends: pkg-bootstrap-depends
 
 
-######################################################################
-### depends-clean (PRIVATE)
-######################################################################
-### depends-clean removes the state files associated with the "depends"
-### target so that "depends" may be re-invoked.
-###
+# --- depends-clean (PRIVATE) ----------------------------------------------
+#
+# depends-clean removes the state files associated with the "depends" target so
+# that "depends" may be re-invoked.
+#
 depends-clean:
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${_COOKIE.depends}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${RMDIR} -p ${_COOKIE.depends:H} 2>/dev/null || ${TRUE}
+	${RUN}${RM} -f ${_COOKIE.depends}
+	${RUN}${RMDIR} -p $(dir ${_COOKIE.depends}) 2>/dev/null || ${TRUE}
