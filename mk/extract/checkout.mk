@@ -1,4 +1,4 @@
-# $LAAS: checkout.mk 2009/01/09 17:20:34 mallet $
+# $LAAS: checkout.mk 2009/01/09 20:27:57 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -138,8 +138,8 @@ ifeq (yes,$(call exists,${_COOKIE.extract}))
 	${RUN}								\
 	${ERROR_MSG} ${hline};						\
 	${ERROR_MSG} "Regular package sources are present in the build directory of";\
-	${ERROR_MSG} "${PKGNAME}. Perhaps a stale work directory? Try to";\
-	${ERROR_MSG} "		${MAKE} clean in ${PKGPATH}"; 		\
+	${ERROR_MSG} "${PKGNAME}. Perhaps a stale work directory?";	\
+	${ERROR_MSG} "Try to ${MAKE} clean in ${PKGPATH}"; 		\
 	${ERROR_MSG} ${hline};						\
 	exit 2;
 endif
