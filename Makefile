@@ -85,6 +85,7 @@ SUBDIR+=	pkgtools
 SUBDIR+=	robots
 SUBDIR+=	scripts
 SUBDIR+=	shell
+SUBDIR+=	sysutils
 SUBDIR+=	www
 
 include ${CURDIR}/mk/robotpkg.subdir.mk
