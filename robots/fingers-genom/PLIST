@@ -1,0 +1,26 @@
+@comment Mon Jan 12 15:44:46 CET 2009
+bin/fingers
+bin/fingersSendInitRqst
+bin/fingersTest
+include/fingers/fingersConst.h
+include/fingers/fingersStruct.h
+include/fingers/server/fingersEndian.h
+include/fingers/server/fingersError.h
+include/fingers/server/fingersMsgLib.h
+include/fingers/server/fingersPosterLib.h
+include/fingers/server/fingersPosterLibStruct.h
+include/fingers/server/fingersPosterReadLibProto.h
+include/fingers/server/fingersPosterShowLib.h
+include/fingers/server/fingersPosterWriteLibProto.h
+include/fingers/server/fingersPosterXMLLib.h
+include/fingers/server/fingersPrint.h
+include/fingers/server/fingersPrintXML.h
+include/fingers/server/fingersScan.h
+include/fingers/server/fingersType.h
+lib/libfingersClient.la
+lib/pkgconfig/fingers.pc
+lib/tclserv/libfingersTclServ.la
+share/modules/gen/fingers.gen
+share/modules/tcl/fingersClient.tcl
+@dirrm include/fingers/server
+@dirrm include/fingers
