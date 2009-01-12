@@ -1,0 +1,7 @@
+Alog is a simple log data viewing tool. It can be used in many
+different situations, but is particularly useful with GenoM
+modules. Each module can print some debugging or progress information
+to its standard output during the execution of its codels. Alog
+provides a mean to capture this information and centralize it into one
+single window, with functions to hide/show some module's output and
+search capabilities.
