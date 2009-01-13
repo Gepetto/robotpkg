@@ -1,0 +1,9 @@
+TTH translates TEX, the predominant mark-up language for expressing
+mathematics, into HTML, the language of world-wide-web browsers. It thereby
+enables mathematical documents to be made available on the web. Document
+structure, using either the Plain or LaTeX macro packages, is also translated
+and incorporated in the form of hyperlinks.
+
+TTH is extremely fast and completely portable. It produces more compact, faster
+viewing, web documents than other converters, because it really translates the
+equations, instead of converting them to images.
