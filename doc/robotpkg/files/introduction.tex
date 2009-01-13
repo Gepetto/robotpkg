@@ -1,0 +1,205 @@
+% $LAAS: $
+%
+% Copyright (c) 2009 LAAS/CNRS
+% All rights reserved.
+%
+% Permission to use, copy, modify, and distribute this software for any purpose
+% with or without   fee is hereby granted, provided   that the above  copyright
+% notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+% REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+% AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+% INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+% LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+% OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+% PERFORMANCE OF THIS SOFTWARE.
+%
+%                                             Anthony Mallet on Sat Jan 10 2009
+%
+
+\section{What is robotpkg?} % ----------------------------------------------
+
+The robotics  research community has always been  developing a lot of software,
+mostly to  illustrate theoretical concepts and  validatate algorithms  on board
+real robots. A  great amount of this software  was made freely available to the
+community, especially for Unix-based systems, and  is usually available in form
+of the source code. Therefore, before such software can be used, it needs to be
+configured to the local  system, compiled and installed.   This is exactly what
+The Robotics Packages Collection (robotpkg) does.  robotpkg also has some basic
+commands to handle binary  packages, so that not   every user has to  build the
+packages for himself, which is a time-costly, cumbersome and error-prone task.
+
+The  robotpkg   project was  initiated   in the   Laboratory for  Analysis  and
+Architecture of Systems (CNRS/LAAS), France.   The motivation  was, on the  one
+hand, to ease the software  maintenance tasks  for  the great amount of  robots
+that are used there.  On  the other hand,  roboticists at CNRS/LAAS have always
+fostered  an    open-source  development model   for  the   software they  were
+developing.  In order to help people collaborating  with the laboratory, in the
+context of research project,   to get the   LAAS software running  outside  the
+laboratory, a package management system was necessary.
+
+Although  robotpkg was an   innovative project in  the  robotics community  (it
+started in 2006),  a lot of  generic software packages  management systems were
+readily available at this time for a great variety  of Unix-based systems.  The
+main requirements that we wanted robotpkg to fullfill  were listed and the best
+existing package management system was chosen as a starting point.  The biggest
+requirement  was  the capacity of  the  system to adapt to    the nature of the
+robotic software, being available mostly in form of source code only (no binary
+packages), with  unfrequent stable releases.  robotpkg had thus to  deal mostly
+with source   code and automate  the compilation  of the packages.   The system
+chosen  as   a starting point   was  The NetBSD  Packages  Collection (pkgsrc).
+robotpkg can be  considered as a   fork of this  project and  it  is still very
+similar to pkgsrc  in many points, although  some simplifications were made  in
+robotpkg in order to provide a tool geared  toward people that are not computer
+scientists but roboticists.
+
+Due to its  origins, robotpkg provides many  packages developed at LAAS.  It is
+however not limited to  such packages and  contains, in fact, quite some  other
+software useful  to roboticists.   Of  course, robotpkg is  not  meant to be  a
+general  purpose  packaging  system  (although there   would  be   no technical
+restriction to this) and will never contain  widely available packages that can
+be  found on any modern  Unix  distribution. Yet,  robotpkg currently  contains
+roughly a hundred of packages, including:
+
+\begin{itemize}
+   \item architecture/genom - The LAAS Generator of Robotic Components
+
+   \item architecture/openhrp - The Open Architecture Humanoid Robotics
+   Platform (AIST, Japan)
+
+   \item architecture/openrtm - The robotic distributed middleware from AIST
+
+   \item ...just to name a few.
+\end{itemize}
+
+
+\section{Why robotpkg?} % --------------------------------------------------
+
+robotpkg provides the following key features:
+
+\begin{itemize}
+
+   \item Easy building of software  from  source as well   as the creation  and
+   installation of binary packages. The source and latest patches are retrieved
+   from a master download site, checksum verified, then built on your system.
+
+   \item All  packages are installed in a  consistent directory tree, including
+   binaries, libraries, man pages and other documentation.
+
+   \item  Package dependencies, including  when performing package updates, are
+   handled automatically.
+
+   \item The installation prefix, acceptable  software licenses and  build-time
+   options  for a large  number of packages  are all set  in  a simple, central
+   configuration file.
+
+   \item   The entire  source (not   including  the package distribution  files
+   themselves) is freely available  under a BSD license,  so you may extend and
+   adapt robotpkg to your needs like robotpkg was adapted from pkgsrc.
+
+\end{itemize}
+
+\section{Supported platforms} % --------------------------------------------
+
+robotpkg consists of  a   source distribution. After retrieving    the required
+source, you can be up and running with robotpkg in just minutes!
+
+robotpkg does  not have much requirements by  itself, so it  can work on a wide
+variety of  systems  as long as  they  provide  a GNU-make   utility, a working
+C-compiler chain and a reasonably standard small  subset of Unix commands (like
+sed,  awk, find, ...).  Individual  packages might  have specific requirements,
+however,  and the following  platforms  have   been reported  to  be  supported
+reasonably well:
+
+\begin{center}\begin{tabular}{cc}
+\hline
+Platform & Version \\
+\hline
+\hline
+Fedora & 3, 5 -- 10\\
+Ubuntu & 7.10 -- 8.10\\
+CentOS & 5\\
+NetBSD & 4, 5\\
+\hline
+\end{tabular}\end{center}
+
+
+\section{Overview} % -------------------------------------------------------
+
+This     document  is     divided  into      three      parts.  The      first,
+\hyperref[chapter:user]{The robotpkg user's guide}, describes  how one can use one
+of  the packages in  the Robotics  Package  Collection, either by  installing a
+precompiled binary package, or by building one's  own copy using robotpkg.  The
+second part,   \hyperref[chapter:developer]{The       robotpkg developer's guide},
+explains  how to prepare a package  so  it can be  easily  built by other users
+without  knowing  about the   package's  building  details.  The   third  part,
+\hyperref[chapter:internal]{The robotpkg infrastructure internals} is intended for
+those who want to understand how robotpkg is implemented.
+
+
+\section{Terminology} % ----------------------------------------------------
+
+Here is a description of all the terminology used within this document.
+
+\begin{description}
+   \item[Package] A set of files and building instructions that describe what's
+   necessary to build a certain piece  of software using robotpkg. Packages are
+   traditionally stored under {\tt /opt/robotpkg}.
+
+   \item[robotpkg]  This is  the The Robotics   Package Collection.  It handles
+   building (compiling), installing, and removing of packages.
+
+   \item[Distfile] This  term describes the file  or files that are provided by
+   the author of the piece of software to distribute  his work. All the changes
+   necessary to  build are reflected  in the corresponding package. Usually the
+   distfile is in  the form of a  compressed  tar-archive, but other  types are
+   possible,     too.    Distfiles   are      usually   stored    below    {\tt
+   /opt/robotpkg/distfiles}.
+
+   \item[Precompiled/binary package] A set of binaries built with pkgsrc from a
+   distfile and  stuffed  together in a   single {\tt .tgz}  file so  it can be
+   installed on machines of the  same machine architecture  without the need to
+   recompile. Packages are usually generated in {\tt /opt/robotpkg/packages}.
+
+   Sometimes, this is  referred to by the  term ``package''  too, especially in
+   the context of precompiled packages.
+
+   \item[Program]  The  piece  of  software to  be  installed  which  will   be
+   constructed from all the files in the distfile by the actions defined in the
+   corresponding package.
+
+\end{description}
+
+
+\section{Roles involved in robotpkg} % -------------------------------------
+
+\begin{description}
+   \item[robotpkg users] The  robotpkg users  are people  who  use the packages
+   provided by robotpkg.  Typically they are student  working  in robotics. The
+   usage  of the software  that is {\em inside} the  packages is not covered by
+   the robotpkg guide.
+
+   There are two kinds of  robotpkg users: Some  only want to install pre-built
+   binary packages.  Others build the robotpkg packages from source, either for
+   installing them  directly or for building  binary  packages themselves.  For
+   robotpkg users   \hyperref[chapter:user]{The    robotpkg user's guide}   should
+   provide all necessary documentation.
+
+   \item[package  maintainers]   A   package maintainer  creates  packages   as
+   described in \hyperref[chapter:developer]{The robotpkg developer's guide}.
+
+   \item[infrastructure   developers] These people   are  involved in all those
+   files that  live in the  {\tt mk/}  directory  and below. Only  these people
+   should need    to   read  through     \hyperref[chapter:internal]{The  robotpkg
+   infrastructure internals}, though others might be curious, too.
+
+\end{description}
+
+
+\section{Typography} % -----------------------------------------------------
+
+When giving examples for  commands,  shell prompts  are  used  to show if   the
+command  should/can be issued  as  root, or if  ``normal''  user privileges are
+sufficient. We use  a {\tt \#}  for  root's shell  prompt, and  a {\tt \%}  for
+users' shell prompt, assuming they use the C-shell or tcsh.

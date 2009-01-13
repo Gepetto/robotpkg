@@ -1,0 +1,3 @@
+"A guide to robotpkg" is a package containing the robotpkg user and developer
+documentation. It is written in LaTeX and supports a number of
+outputs including PDF, HTML and plain text.

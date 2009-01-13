@@ -1,0 +1,114 @@
+% $LAAS: bootstrapping.tex 2009/01/11 17:59:06 tho $
+%
+% Copyright (c) 2009 LAAS/CNRS
+% All rights reserved.
+%
+% Permission to use, copy, modify, and distribute this software for any purpose
+% with or without   fee is hereby granted, provided   that the above  copyright
+% notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+% REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+% AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+% INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+% LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+% OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+% PERFORMANCE OF THIS SOFTWARE.
+%
+%                                             Anthony Mallet on Sun Jan 11 2009
+%
+
+\section{Bootstrapping robotpkg} % -----------------------------------------
+
+\subsection{Bootstrapping from source} % -----------------------------------
+
+Once  you   have    downloaded   the   robotpkg  sources   as    described   in
+\hyperref[section:getting]{Section~\ref*{section:getting},   Where   to     get
+robotpkg and how  to keep it up-to-date},  a minimal set  of the administrative
+package  management utilities must be installed  on  your system before you can
+use robotpkg.  This is called  the ``bootstrap phase'' and  should be done only
+once, the very first time you download robotpkg.
+
+You will  need a working C  compiler and the GNU-make   utility version 3.81 or
+later.     If   you     downloaded      robotpkg  to     the    standard   {\tt
+/opt/openrobots/robotpkg}  location, installing  the  bootstrap kit from source
+should then be as simple as:
+
+\begin{verbatim}
+% cd /opt/openrobots/robotpkg/bootstrap
+% ./bootstrap
+\end{verbatim}
+
+This     will    compile  and     install   various     utilities    into  {\tt
+/opt/openrobots/sbin}.  Should you prefer  another location, you could  use the
+{\tt -{}-prefix}   option to  change   the default  installation   prefix.  For
+instance,  configuring  robotpkg  to   install  programs  into  the  openrobots
+directory in your home directory can be done like this:
+
+\begin{verbatim}
+% ./bootstrap --prefix=${HOME}/openrobots
+\end{verbatim}
+
+After the bootstrap script has run, a message  indicating the success should be
+displayed.   {\bf If you choosed  a  non-standard installation path, read  this
+message carefuly}, as it contains instructions that you have to follow in order
+to setup your shell environment correctly.  These instructions are described in
+the next section.
+
+
+\subsection{Configuring you environment} % ---------------------------------
+
+If  you configured robotpkg,   during the bootstrap  phase,  to install to some
+other location   than {\tt /opt/openrobots}, you  have   to setup manually your
+shell environment so that it contains a few  variables holding the installation
+path.  Assuming  you invoked bootstrap with {\tt --prefix=/path/to/openrobots},
+you have two options that are compatible with each other:
+
+\begin{itemize}
+   \item Add  the directory {\tt  /path/to/openrobots/sbin}  to your {\tt PATH}
+   variable. robotpkg will    then be able  to find    its administrative tools
+   automatically and from that recover other configuration information. This is
+   the preferred method.
+
+   \item Create the environment variable {\tt ROBOTPKG\_BASE} and set its value
+   to {\tt  /path/to/openrobots}.  robotpkg will  look for this variable first,
+   so it takes precedence over the  first method.  This  is the method you have
+   to  choose if you  have  configured several  instances of  robotpkg in  your
+   system, so it is ony useful in some circumstances  and is not recommended by
+   default.
+\end{itemize}
+
+If  you  don't know  how  to setup   environment variables  permanently in your
+system,  please  refer  to  your shell's  manual  or contact  your local system
+administrator.
+
+
+\subsection{The {\tt bootstrap} script usage} % ----------------------------
+
+The {\tt bootstrap} script will by default install the package administrative
+tools in {\tt /opt/openrobots/sbin}, use {\tt gcc} as the C compiler and {\tt
+make} as the GNU-make program. This behaviour can be fine-tuned by using the
+following options:
+
+\begin{description}
+   \item[\tt   -{}-prefix <path>]   will   select the  prefix  location where
+   programs will be installed in.
+
+   \item[\tt -{}-sysconfdir <path>] defaults to {\tt <prefix>/etc}. This is the
+   path to the robotpkg configuration file.  Other packages configuration files
+   (if any) will also be stored in this directory.
+
+   \item[\tt -{}-pkgdbdir  <path>] defaults to {\tt  <prefix>/var/db/pkg}. This
+   is the path  to the package database  directory  where robotpkg will  do its
+   internal bookkeeping.
+
+   \item[\tt -{}-compiler <program>] defaults to {\tt gcc}.  Use this option if
+   you want to use a different C compiler.
+
+   \item[\tt -{}-make <program>] defaults to {\tt make}. Use this option if you
+   want to use a different make program. This program should be compatible with
+   GNU-make.
+
+   \item[\tt -{}-help] displays the {\tt bootstrap}  usage. The comprehensive list of
+   recognized options will be displayed.
+\end{description}

@@ -1,0 +1,59 @@
+% $LAAS: robotpkg.tex 2009/01/11 17:52:38 tho $
+%
+% Copyright (c) 2009 LAAS/CNRS
+% All rights reserved.
+%
+% Permission to use, copy, modify, and distribute this software for any purpose
+% with or without   fee is hereby granted, provided   that the above  copyright
+% notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+% REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+% AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+% INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+% LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+% OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+% PERFORMANCE OF THIS SOFTWARE.
+%
+%                                             Anthony Mallet on Sat Jan 10 2009
+%
+
+\documentclass[11pt]{book}
+\usepackage{ifpdf}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+
+\ifpdf\pdfinfo{
+   /Author (Anthony Mallet)
+   /Title  (A guide to robotpkg)
+   /Subject (robotpkg)
+   /Keywords (robotic software package)
+}\fi
+
+%%tth: \def\hyperref[#1]#2{\special{html:<a href="\##1">}#2\special{html:</a>}}
+
+\title{A guide to robotpkg}
+\author{Anthony Mallet --- {\tt anthony.mallet@laas.fr}}
+
+\begin{document} % ---------------------------------------------------------
+
+\maketitle
+\tableofcontents
+
+\chapter{Introduction}
+\label{chapter:introduction}
+\input{introduction}
+
+\chapter{The robotpkg user's guide}
+\label{chapter:user}
+\input{getting}
+\input{bootstrapping}
+\input{using}
+
+\chapter{The robotpkg developer's guide}
+\label{chapter:developer}
+
+\chapter{The robotpkg infrastructure internals}
+\label{chapter:internal}
+
+\end{document} % -----------------------------------------------------------
