@@ -1,5 +1,5 @@
 --- configure.orig	2007-06-23 18:00:25.000000000 +0200
-+++ configure	2009-01-08 14:04:59.000000000 +0100
++++ configure	2009-01-15 00:12:09.000000000 +0100
 @@ -23176,12 +23176,12 @@
    { echo "$as_me:$LINENO: result: creating $ac_prefix_conf_OUT - prefix $ac_prefix_conf_UPP for $ac_prefix_conf_INP defines" >&5
  echo "${ECHO_T}creating $ac_prefix_conf_OUT - prefix $ac_prefix_conf_UPP for $ac_prefix_conf_INP defines" >&6; }
@@ -27,15 +27,15 @@
 -    echo 's/#undef  *\([a-z]\)/#undef '$ac_prefix_conf_LOW'_\1/' >>conftest.sed
 -    echo 's/#define  *\([A-Z_][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_UPP"_\\1 \\" >>conftest.sed
 -    echo '#define '$ac_prefix_conf_UPP"_\\1 \\2 \\" >>conftest.sed
-+    echo 's/#undef  *\([A-Z_]\)/#undef '$ac_prefix_conf_UPP'_\\1/' >conftest.sed
-+    echo 's/#undef  *\([a-z]\)/#undef '$ac_prefix_conf_LOW'_\\1/' >>conftest.sed
-+    echo 's/#define  *\([A-Z_][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_UPP'_\\1 \\' >>conftest.sed
-+    echo '#define '$ac_prefix_conf_UPP'_\\1 \\2 \\' >>conftest.sed
++    { echo -n 's/#undef  *\([A-Z_]\)/#undef '$ac_prefix_conf_UPP'_'; echo -n \\; echo '1/'; } >conftest.sed
++    { echo -n 's/#undef  *\([a-z]\)/#undef '$ac_prefix_conf_LOW'_'; echo -n \\; echo '1/'; } >>conftest.sed
++    { echo -n 's/#define  *\([A-Z_][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_UPP'_'; echo -n \\; echo '1 '\\; } >>conftest.sed
++    { echo -n '#define '$ac_prefix_conf_UPP'_'; echo -n \\; echo -n '1'; echo -n \\; echo '2 '\\; } >>conftest.sed
      echo '#endif/' >>conftest.sed
 -    echo 's/#define  *\([a-z][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_LOW"_\\1 \\" >>conftest.sed
 -    echo '#define '$ac_prefix_conf_LOW"_\\1 \\2 \\" >>conftest.sed
-+    echo 's/#define  *\([a-z][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_LOW'_\\1 \\' >>conftest.sed
-+    echo '#define '$ac_prefix_conf_LOW'_\\1 \\2 \\' >>conftest.sed
++    { echo -n 's/#define  *\([a-z][A-Za-z0-9_]*\)\(.*\)/#ifndef '$ac_prefix_conf_LOW'_'\\; echo '1 '\\; } >>conftest.sed
++    { echo -n '#define '$ac_prefix_conf_LOW'_'\\; echo -n '1 '\\; echo '2 '\\; } >>conftest.sed
      echo '#endif/' >>conftest.sed
      sed -f conftest.sed $ac_prefix_conf_INP >>$ac_prefix_conf_OUT
      echo ' ' >>$ac_prefix_conf_OUT
