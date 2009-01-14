@@ -380,9 +380,6 @@ makedirs: ${WRKDIR}
 ${WRKDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
 
-# Dependencies
-include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
-
 # Check
 -include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
@@ -418,6 +415,8 @@ include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
 # Package
 include ${ROBOTPKG_DIR}/mk/package/package-vars.mk
 
+# Dependencies
+include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
 
 # --------------------------------------------------------------------
 #
