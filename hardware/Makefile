@@ -18,6 +18,7 @@ SUBDIR+=	pa10-kmod
 SUBDIR+=	pa10-libs
 SUBDIR+=	peak-linux-driver
 SUBDIR+=	platine-genom
+SUBDIR+=	sahand
 SUBDIR+=	serial
 SUBDIR+=	sickLib
 SUBDIR+=	sick-genom
