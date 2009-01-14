@@ -1,0 +1,33 @@
+These directories contain Linux code for the SAHand 
+(SCHUNK Anthropomorphic Hand).
+
+Overview:
+=========
+
+The following structure is used to access the SAHand :
+
++-----------+
+| User Code |
++-----------+
+     |
++-----------+
+|   API     |
++-----------+
+     |
++-----------+
+|  Driver   |
++-----------+
+     |
++-----------+
+|  PCI-Card |
++-----------+
+     |
++-----------+
+|  SAHand   |
++-----------+
+
+The driver is realized as a Linux kernel module that must be loaded
+(once) before you can access the SAHand. The API is implemented as a
+library and a header file that defines the interface to the library.
+The user code is linked against the library to form an executable.
+
