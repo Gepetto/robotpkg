@@ -52,5 +52,5 @@ while read dependency; do
 		$0 == PKGNAME { found = 1 } { print }
 		END { if (!found) print PKGNAME }' $req > $tmpreq
 	${CP} -f $tmpreq $req; ${RM} -f $tmpreq
-	${ECHO} "${PKGNAME} requires installed package $pkg"
+	${ECHO} "Added $pkg to the requirements of ${PKGNAME}"
 done
