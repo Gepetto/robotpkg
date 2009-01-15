@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/01/09 19:12:42 mallet $
+# $LAAS: robotpkg.mk 2009/01/15 18:47:55 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -175,15 +175,18 @@ PKG_DEBUG_LEVEL?=	0
 _PKG_SILENT=		@
 _PKG_DEBUG=#		empty
 _PKG_DEBUG_SCRIPT=#	empty
+_PKG_DISCARD_STDERR=	2>/dev/null
 
 ifeq (1,${PKG_DEBUG_LEVEL})
 _PKG_SILENT=#		empty
+_PKG_DISCARD_STDERR=#	empty
 endif
 
 ifeq (2,${PKG_DEBUG_LEVEL})
 _PKG_SILENT=#		empty
 _PKG_DEBUG=		set -x;
 _PKG_DEBUG_SCRIPT=	${SH} -x
+_PKG_DISCARD_STDERR=#	empty
 endif
 
 # This variable can be prepended to all shell commands that should not
