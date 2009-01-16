@@ -1,4 +1,4 @@
-# $LAAS: clean.mk 2009/01/16 00:03:12 tho $
+# $LAAS: clean.mk 2009/01/16 12:20:10 mallet $
 #
 # Copyright (c) 2006,2009 LAAS/CNRS
 # All rights reserved.
@@ -79,7 +79,7 @@ pre-clean:
 post-clean:
 
 .PHONY: do-clean
-ifneq (,$$(call isyes,${MAKE_SUDO_INSTALL}))
+ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
   _SU_TARGETS+=	do-clean
   do-clean: su-target-do-clean
   su-do-clean:
