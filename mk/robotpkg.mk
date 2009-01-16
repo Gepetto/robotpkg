@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/01/15 18:47:55 mallet $
+# $LAAS: robotpkg.mk 2009/01/15 23:17:30 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -453,7 +453,7 @@ include ../../mk/plist/plist-vars.mk
 include ${ROBOTPKG_DIR}/mk/internal/utils.mk
 include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk
-
+include ${ROBOTPKG_DIR}/mk/internal/su-target.mk
 
 -include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
 #if make(debug) || make(build-env)

@@ -1,4 +1,4 @@
-# $LAAS: clean.mk 2009/01/15 17:48:34 mallet $
+# $LAAS: clean.mk 2009/01/16 00:03:12 tho $
 #
 # Copyright (c) 2006,2009 LAAS/CNRS
 # All rights reserved.
@@ -79,9 +79,14 @@ pre-clean:
 post-clean:
 
 .PHONY: do-clean
-do-clean:
-	@${PHASE_MSG} "Cleaning temporary files for ${PKGNAME}"
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+ifneq (,$$(call isyes,${MAKE_SUDO_INSTALL}))
+  _SU_TARGETS+=	do-clean
+  do-clean: su-target-do-clean
+  su-do-clean:
+else
+  do-clean:
+endif
+	${RUN}								\
 	if ${TEST} -d ${WRKDIR}; then					\
 		if ${TEST} -w ${WRKDIR}; then				\
 			${RM} -fr ${WRKDIR};				\
@@ -90,11 +95,17 @@ do-clean:
 		fi;							\
         fi
 ifdef WRKOBJDIR
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 	${RMDIR} ${BUILD_DIR} 2>/dev/null || ${TRUE};			\
 	${RM} -f ${WRKDIR_BASENAME} 2>/dev/null || ${TRUE}
 endif
 
+.PHONY: clean-message
+clean-message:
+	@${PHASE_MSG} "Cleaning temporary files for ${PKGNAME}"
+
+
+_CLEAN_TARGETS+=	clean-message
 _CLEAN_TARGETS+=	pre-clean
 ifneq (,$(call isyes,CLEANDEPENDS))
 _CLEAN_TARGETS+=	clean-depends
