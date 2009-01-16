@@ -174,7 +174,7 @@ _INSTALL_ALL_TARGETS+=		release-install-localbase-lock
 #_INSTALL_ALL_TARGETS+=		error-check
 
 .PHONY: install-all
-ifneq (,$$(call isyes,${MAKE_SUDO_INSTALL}))
+ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
   _SU_TARGETS+=	install-all
   install-all: su-target-install-all
   su-install-all: ${_INSTALL_ALL_TARGETS}
