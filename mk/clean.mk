@@ -1,4 +1,4 @@
-# $LAAS: clean.mk 2009/01/16 12:20:10 mallet $
+# $LAAS: clean.mk 2009/01/19 12:19:17 mallet $
 #
 # Copyright (c) 2006,2009 LAAS/CNRS
 # All rights reserved.
@@ -61,6 +61,10 @@
 #    cleandir is an alias for "clean".
 #
 
+ifndef MK_ROBOTPKG_EXTRACT
+  include ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk
+endif
+
 CLEANDEPENDS?=	no
 
 .PHONY: clean-depends
@@ -94,17 +98,38 @@ endif
 			${STEP_MSG} ${WRKDIR}" not writable, skipping"; \
 		fi;							\
         fi
-ifdef WRKOBJDIR
+  ifdef WRKOBJDIR
 	${RUN}								\
 	${RMDIR} ${BUILD_DIR} 2>/dev/null || ${TRUE};			\
 	${RM} -f ${WRKDIR_BASENAME} 2>/dev/null || ${TRUE}
-endif
+  endif
+
+
+# --- clean-confirm --------------------------------------------------
+#
+# clean-confirm asks for confirmation before cleaning a checked out work
+# directory.
+#
+.PHONY: clean-confirm
+clean-confirm:
+	@${ERROR_MSG} ${hline}
+	@${ERROR_MSG} "A checkout is present in the build directory of ${PKGBASE}"
+	@${ERROR_MSG} "You must confirm the cleaning action by doing"
+	@${ERROR_MSG} "		${MAKE} clean confirm in ${PKGPATH}"
+	@${ERROR_MSG} ${hline}
+	@${FALSE}
+
 
 .PHONY: clean-message
 clean-message:
 	@${PHASE_MSG} "Cleaning temporary files for ${PKGNAME}"
 
 
+ifneq (,$(call isyes,${_EXTRACT_IS_CHECKOUT}))
+ifeq  (,$(filter confirm,${MAKECMDGOALS}))
+  _CLEAN_TARGETS+=	clean-confirm
+endif
+endif
 _CLEAN_TARGETS+=	clean-message
 _CLEAN_TARGETS+=	pre-clean
 ifneq (,$(call isyes,CLEANDEPENDS))
