@@ -1,6 +1,6 @@
-# $LAAS: robotpkg.options.mk 2008/12/16 11:04:31 mallet $
+# $LAAS: robotpkg.options.mk 2009/01/19 17:44:38 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -206,7 +206,8 @@ define _pkgopt_chkreqd
     ifneq (,$${PKG_FAIL_REASON})
       PKG_FAIL_REASON+=""
     endif
-    PKG_FAIL_REASON+=	"One of the following options must be selected: "
+    PKG_FAIL_REASON+=	${hline}
+    PKG_FAIL_REASON+=	"One of the following build options must be selected: "
     PKG_FAIL_REASON+=	"	"$(call quote,${PKG_OPTIONS_GROUP.${1}})
     PKG_OPTIONS_FAILED=	yes
   endif
@@ -245,6 +246,7 @@ endif
 ifdef PKG_OPTIONS_FAILED
   PKG_FAIL_REASON+=	""
   PKG_FAIL_REASON+=	"See \`${MAKE} show-options' for details."
+  PKG_FAIL_REASON+=	${hline}
 endif
 
 # Store the result in the +BUILD_INFO file so we can query for the build
