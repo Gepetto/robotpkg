@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/18 23:12:23 tho $
+# $LAAS: Makefile 2009/01/19 17:12:08 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -22,6 +22,13 @@ CAT?=		cat
 PDFLATEX?=	pdflatex
 TTH?=		tth
 W3M?=		w3m
+INSTALL?=	install
+
+BSD_INSTALL_DATA_DIR?=	${INSTALL} -d
+BSD_INSTALL_DATA?=	${INSTALL}
+
+PREFIX?=		/opt/openrobots
+DATA_DIR?=		share/doc/robotpkg
 
 MASTER_SRC=	robotpkg.tex
 AUX_SRC=\
@@ -29,6 +36,14 @@ AUX_SRC=\
 		getting.tex		\
 		bootstrapping.tex
 
+# default targets
+#
+all: pdf
+install: install-pdf
+
+.PHONY: install-dir
+install-dir:
+	${BSD_INSTALL_DATA_DIR} ${PREFIX}/${DATA_DIR}
 
 # --- pdf output -----------------------------------------------------------
 #
@@ -40,6 +55,9 @@ ${MASTER_SRC:.tex=.pdf}: ${MASTER_SRC} ${AUX_SRC}
 	${PDFLATEX} ${MASTER_SRC}
 
 ${MASTER_SRC:.tex=.pdf}: share/robotpkg.sty
+
+install-pdf: pdf install-dir
+	${BSD_INSTALL_DATA} ${MASTER_SRC:.tex=.pdf} ${PREFIX}/${DATA_DIR}
 
 
 # --- html output ----------------------------------------------------------
@@ -56,6 +74,9 @@ ${MASTER_SRC:.tex=.html}: share/robotpkg.tth
 ${MASTER_SRC:.tex=.html}: share/robotpkg.header.html
 ${MASTER_SRC:.tex=.html}: share/robotpkg.footer.html
 
+install-html: html install-dir
+	${BSD_INSTALL_DATA} ${MASTER_SRC:.tex=.html} ${PREFIX}/${DATA_DIR}
+
 
 # --- txt output -----------------------------------------------------------
 #
@@ -64,3 +85,6 @@ txt: ${MASTER_SRC:.tex=.txt}
 
 ${MASTER_SRC:.tex=.txt}: ${MASTER_SRC:.tex=.html}
 	${W3M} -dump -cols 80 $< >$@
+
+install-txt: txt install-dir
+	${BSD_INSTALL_DATA} ${MASTER_SRC:.tex=.txt} ${PREFIX}/${DATA_DIR}

@@ -1,4 +1,4 @@
-# $LAAS: pdflatex.mk 2009/01/18 22:34:14 tho $
+# $LAAS: pdflatex.mk 2009/01/19 15:11:19 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -32,7 +32,7 @@ DEPEND_ABI.pdflatex?=	pdflatex>=3.14
 SYSTEM_SEARCH.pdflatex=	\
 	'bin/pdflatex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
 
-PDFLATEX=		$(word 1,${SYSTEM_FILES.pdflatex})
+export PDFLATEX=	${PREFIX.pdflatex}/bin/pdflatex
 
 endif # PDFLATEX_DEPEND_MK -------------------------------------------
 

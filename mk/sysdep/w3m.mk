@@ -1,4 +1,4 @@
-# $LAAS: w3m.mk 2009/01/18 22:51:48 tho $
+# $LAAS: w3m.mk 2009/01/19 15:13:57 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -34,7 +34,7 @@ DEPEND_ABI.w3m?=w3m>=0.5
 SYSTEM_SEARCH.w3m=	\
 	'bin/w3m:s|.*w3m/\([0-9.]\{1,\}\).*|\1|p:% -version'
 
-W3M=		${PREFIX.w3m}/bin/w3m
+export W3M=	${PREFIX.w3m}/bin/w3m
 
 endif # W3M_DEPEND_MK ------------------------------------------------------
 
