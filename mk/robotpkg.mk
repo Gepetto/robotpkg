@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/01/15 23:17:30 tho $
+# $LAAS: robotpkg.mk 2009/01/19 23:29:41 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -469,8 +469,8 @@ ifdef BATCH
  include ${ROBOTPKG_DIR}/mk/bulk/bulk.mk
 endif
 
-# README generation code.
-include ${ROBOTPKG_DIR}/mk/internal/readme.mk
+# index.html generation code.
+include ${ROBOTPKG_DIR}/mk/internal/index.mk
 
 # fake target to make pattern targets phony
 .FORCE:

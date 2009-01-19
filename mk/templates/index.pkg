@@ -7,9 +7,9 @@
   <body>
     <div id="header">
       <h1>The Robotics Packages Collection</h1>
-      <a class="navigation" href="../README.html">Go up one level</a>
-      <a class="navigation" href="../../README.html">Go to top of packages tree</a>
-      <a class="navigation" href="../../README-all.html">List all packages</a>
+      <a class="navigation" href="../index.html">Go up one level</a>
+      <a class="navigation" href="../../index.html">Go to top of packages tree</a>
+      <a class="navigation" href="../../index-all.html">List all packages</a>
     </div>
 
     <h2>%%PORT%%</h2>
@@ -25,7 +25,7 @@
 	  <td>Source version:
 	  <td>%%PKG%%
 	  <td>browse the package's
-	    <a href="http://cvsweb.NetBSD.org/bsdweb.cgi/pkgsrc/%%PORT%%/">history</a>.
+	    <a href="/invalid/%%PORT%%/">history</a>.
 	</tr>
 	<tr>
 	  <td>Home page:
@@ -40,12 +40,13 @@
 
 
 For a summary on how to use the package collection, go to the
-<a href="../../README.html">top of the packages tree</a>.
+<a href="../../index.html">top of the packages tree</a>.
 </p>
 
 <p>Problem reports, updates or suggestions for this package should be
 reported with
-<a href="https://softs.laas.fr/bugzilla">bugzilla.</a></p>
+<a
+href="https://softs.laas.fr/bugzilla/buglist.cgi?bug_status=__open__&product=robotpkg">the robotpkg bugzilla.</a></p>
 
 
 <p>
@@ -60,16 +61,16 @@ This package requires the following package(s) to run:
 </p>
 
 <p>
-Select one of the links below to <FONT COLOR="red">download</FONT> the
+Select one of the links below to download the
 package in precompiled binary form for installation with pkg_add(1).
-Available machine architectures and package versions: 
+Available machine architectures and package versions:
 <TABLE>
 %%BIN_PKGS%%
 </TABLE>
 
       <p>
 	The Robotics packages collection is designed to permit
-	easy <a href="../../README">installation from source</a> -
+	easy <a href="../../README.html">installation from source</a> -
 	particularly useful if the latest binary package is
 	not available for your chosen platform.
       </p>

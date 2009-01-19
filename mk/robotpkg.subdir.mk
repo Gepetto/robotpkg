@@ -1,6 +1,11 @@
+# $LAAS: robotpkg.subdir.mk 2009/01/19 23:41:46 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2007,2009 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -13,14 +18,11 @@
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
 # From $NetBSD: bsd.pkg.subdir.mk,v 1.66 2007/05/09 23:33:52 joerg Exp $
 # Derived from: FreeBSD Id: bsd.port.subdir.mk,v 1.19 1997/03/09 23:10:56 wosch Exp
 # from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 #
+#                                       Anthony Mallet on Tue May 22 2007
 
 # The include file <robotpkg.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -37,8 +39,8 @@
 #
 # +++ targets +++
 #
-#	README.html:
-#		Creating README.html for package.
+#	index.html:
+#		Creating index.html for package.
 #
 #	afterinstall, all, beforeinstall, build, checksum, clean,
 #	configure, deinstall, depend, describe, extract, fetch, fetch-list,
@@ -91,28 +93,28 @@ ${__targets}:
 			${@:realinstall=install} || true; \
 	done
 
-readme:
-	@${RECURSIVE_MAKE} README.html
+index:
+	@${RECURSIVE_MAKE} index.html
 
 ifdef ROBOTPKGTOP
-README=	mk/templates/README.top
+INDEX=	mk/templates/index.top
 else
-README=	../mk/templates/README.category
+INDEX=	../mk/templates/index.category
 endif
 
 HTMLIFY=	${SED} -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
 
-.PHONY .PRECIOUS: README.html
-README.html:
+.PHONY .PRECIOUS: index.html
+index.html:
 	@> $@.tmp
 ifdef ROBOTPKGTOP
 	@for entry in ${SUBDIR}; do \
-		${ECHO_N} '<TR><TD VALIGN=TOP><a href="'$${entry}/README.html'">'"`${ECHO} $${entry} | ${HTMLIFY}`"'</a>: <TD>' >> $@.tmp; \
+		${ECHO_N} '<TR><TD VALIGN=TOP><a href="'$${entry}/index.html'">'"`${ECHO} $${entry} | ${HTMLIFY}`"'</a>: <TD>' >> $@.tmp; \
 		${ECHO} `cd $${entry} && ${RECURSIVE_MAKE} show-comment | ${HTMLIFY}` >> $@.tmp; \
 	done
 else
 	@for entry in ${SUBDIR}; do \
-		${ECHO} '<TR><TD VALIGN=TOP><a href="'$${entry}/README.html'">'"`cd $${entry}; ${RECURSIVE_MAKE} make-readme-html-help`" >> $@.tmp; \
+		${ECHO} '<TR><TD VALIGN=TOP><a href="'$${entry}/index.html'">'"`cd $${entry}; ${RECURSIVE_MAKE} make-index-html-help`" >> $@.tmp; \
 	done
 endif
 	@${SORT} -t '>' -k 3,4 $@.tmp > $@.tmp2
@@ -122,7 +124,7 @@ ifeq (yes,$(call exists,${CURDIR}/DESCR))
 else
 	@> $@.tmp3
 endif
-	@${CAT} ${README} | \
+	@${CAT} ${INDEX} | \
 		${SED} -e 's/%%CATEGORY%%/'"`${BASENAME} ${CURDIR}`"'/g' \
 			-e '/%%NUMITEMS%%/r$@.tmp4' \
 			-e '/%%NUMITEMS%%/d' \
@@ -134,13 +136,13 @@ endif
 	@if [ -f $@ ] && ${CMP} -s $@.tmp5 $@ ; then \
 		${RM} $@.tmp5 ; \
 	else \
-		${ECHO_MSG} "===>  Creating README.html for ${_THISDIR_}$(notdir ${CURDIR})" ; \
+		${ECHO_MSG} "===>  Creating index.html for ${_THISDIR_}$(notdir ${CURDIR})" ; \
 		${MV} $@.tmp5 $@ ; \
 	fi
 	@${RM} -f $@.tmp $@.tmp2 $@.tmp3 $@.tmp4
 	@for subdir in ${SUBDIR} ""; do \
 		if [ "X$$subdir" = "X" ]; then continue; fi; \
-		(cd $${subdir} && ${RECURSIVE_MAKE} "_THISDIR_=${_THISDIR_}$(notdir ${CURDIR})/" readme); \
+		(cd $${subdir} && ${RECURSIVE_MAKE} "_THISDIR_=${_THISDIR_}$(notdir ${CURDIR})/" index); \
 	done
 
 show-comment:

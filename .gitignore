@@ -1,10 +1,8 @@
 distfiles
 packages
 
-README.html
-README-all.html
-*/README.html
-*/*/README.html
+index.html
+index-all.html
 
-*/work
-*/*/work
+work
+
