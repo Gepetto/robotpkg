@@ -1,4 +1,4 @@
-% $LAAS: getting.tex 2009/01/11 11:43:51 tho $
+% $LAAS: getting.tex 2009/01/16 23:42:39 tho $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -21,6 +21,12 @@
 \section{Where to get robotpkg and how to keep it up-to-date} % ------------
 \label{section:getting}
 
+Basically, there are two ways of using robotpkg.  The  first is to only install
+the package tools  and to use binary packages  that someone  else has prepared.
+The second way is  to install the programs from   source. Then you are able  to
+build your  own packages, and  you can still use   binary packages from someone
+else.
+
 Before you download and extract the files, you need to decide where you want to
 extract  them.  robotpkg is  usually installed  in  {\tt /opt/openrobots},  but
 creating this directory will probably   require administration privileges.   If
@@ -33,7 +39,7 @@ using {\tt  /opt/openrobots}.  You should adapt  this path to whatever location
 you choosed.
 
 
-\subsection{Getting robotpkg for the first time} % -------------------------
+\section{Getting robotpkg for the first time} % ----------------------------
 
 robotpkg  will {\em never} require administration  privileges by itself.  So we
 recommend that you set up the {\tt  /opt/openrobots} directory with read, write
@@ -84,7 +90,7 @@ name is ``{\tt user}'', run the following:
 \end{verbatim}
 
 
-\subsection{Keeping robotpkg up-to-date} % ---------------------------------
+\section{Keeping robotpkg up-to-date} % ------------------------------------
 
 robotpkg is  a living  thing: updates  to the packages  are made  perdiodicaly,
 problems are fixed,  enhancements are developed\ldots  In order to get the most

@@ -1,0 +1,79 @@
+% $LAAS: robotpkg.sty 2009/01/18 14:18:05 tho $
+%
+% Copyright (c) 2009 LAAS/CNRS
+% All rights reserved.
+%
+% Permission to use, copy, modify, and distribute this software for any purpose
+% with or without   fee is hereby granted, provided   that the above  copyright
+% notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+% REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+% AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+% INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+% LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+% OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+% PERFORMANCE OF THIS SOFTWARE.
+%
+%                                             Anthony Mallet on Fri Jan 16 2009
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{robotpkg}[2009/01/10 A guide to robotpkg LaTeX style]
+
+\RequirePackage{ifpdf}
+\RequirePackage[pdftex,plainpages=false]{hyperref}
+
+\ifpdf\pdfinfo{
+   /Author (Anthony Mallet)
+   /Title  (A guide to robotpkg)
+   /CreationDate (D:20090110000000)
+   /Subject (robotpkg)
+   /Keywords (robotic software package)
+}\fi
+
+
+% --- Sections -------------------------------------------------------------
+
+% chapters
+\def\chapter{%
+   \if@openright\newpage{\pagestyle{empty}\cleardoublepage}\else\clearpage\fi%
+   \thispagestyle{empty}%
+   \global\@topnum\z@%
+   \@afterindentfalse%
+   \secdef\@chapter\@schapter%
+}
+
+\def\@makechapterhead#1{%
+   \vrule height 20pt width 10pt\par{%
+      \parindent\z@%
+      \raggedleft\normalfont%
+      \ifnum\c@secnumdepth>\m@ne%
+	 \if@mainmatter%
+            \fontsize{40}{40}\fontfamily{ptm}\bfseries%
+	    \thechapter\par\vrule height 0pt width 10pt\par%
+	 \fi%
+      \fi%
+      \interlinepenalty\@M\fontsize{40}{45}\bfseries%
+      \parbox{\textwidth}{\raggedleft#1}\hspace*{-22.6mm}\par%
+      \nobreak\vskip\evensidemargin%
+   }%
+}
+
+\def\@makeschapterhead#1{
+   \vspace*{120pt}
+   {
+      \parindent\z@
+      \raggedleft\normalfont
+      \interlinepenalty\@M\fontsize{35}{40}\fontfamily{ptm}\bfseries
+      \parbox{\textwidth}{\raggedleft#1}\hspace*{-22.6mm}\par
+      \nobreak\vskip\evensidemargin
+   }
+}
+
+
+% output a coma if not already looking at a punctuation sign
+%
+\def\singlepunct{\@ifnextchar.\relax{\@ifnextchar,\relax{, }}}
+
+\def\xref#1#2{#2, \nameref{#1}\singlepunct}

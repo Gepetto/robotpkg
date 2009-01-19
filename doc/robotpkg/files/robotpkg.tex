@@ -1,4 +1,4 @@
-% $LAAS: robotpkg.tex 2009/01/11 17:52:38 tho $
+% $LAAS: robotpkg.tex 2009/01/18 23:13:09 tho $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -18,27 +18,26 @@
 %                                             Anthony Mallet on Sat Jan 10 2009
 %
 
-\documentclass[11pt]{book}
-\usepackage{ifpdf}
-\usepackage{hyperref}
-\usepackage[T1]{fontenc}
-
-\ifpdf\pdfinfo{
-   /Author (Anthony Mallet)
-   /Title  (A guide to robotpkg)
-   /Subject (robotpkg)
-   /Keywords (robotic software package)
-}\fi
-
-%%tth: \def\hyperref[#1]#2{\special{html:<a href="\##1">}#2\special{html:</a>}}
+\documentclass[a4paper,11pt]{book}
+\newif\iftth\iftth
+   \input{share/robotpkg.tth}
+\else
+   \usepackage[T1]{fontenc}
+   \usepackage{share/robotpkg}
+\fi
 
 \title{A guide to robotpkg}
-\author{Anthony Mallet --- {\tt anthony.mallet@laas.fr}}
+\author{
+   Anthony Mallet --- {\tt anthony.mallet@laas.fr}\\[1em]
+   Copyright 2006-2009 \copyright LAAS/CNRS
+}
 
 \begin{document} % ---------------------------------------------------------
 
+\frontmatter
 \maketitle
 \tableofcontents
+\mainmatter
 
 \chapter{Introduction}
 \label{chapter:introduction}
@@ -48,12 +47,13 @@
 \label{chapter:user}
 \input{getting}
 \input{bootstrapping}
-\input{using}
+%\input{using}
 
 \chapter{The robotpkg developer's guide}
 \label{chapter:developer}
 
 \chapter{The robotpkg infrastructure internals}
 \label{chapter:internal}
+\chapter{test}
 
 \end{document} % -----------------------------------------------------------

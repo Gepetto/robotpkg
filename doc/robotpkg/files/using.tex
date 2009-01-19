@@ -1,4 +1,4 @@
-% $LAAS: using.tex 2009/01/11 18:02:22 tho $
+% $LAAS: using.tex 2009/01/16 17:24:31 mallet $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -18,242 +18,9 @@
 %                                             Anthony Mallet on Sun Jan 11 2009
 %
 
-\section{Using robotpkg} % -------------------------------------------------
+\chapter{Building packages from source} % ----------------------------------
 
 \begin{verbatim}
-
-<chapter id="using"> <?dbhtml filename="using.html"?>
-<title>Using pkgsrc</title>
-
-<para>Basically, there are two ways of using pkgsrc. The first
-is to only install the package tools and to use binary packages
-that someone else has prepared. This is the <quote>pkg</quote>
-in pkgsrc. The second way is to install the <quote>src</quote>
-of pkgsrc, too. Then you are able to build your own packages,
-and you can still use binary packages from someone else.</para>
-
-<sect1 id="using-pkg">
-  <title>Using binary packages</title>
-
-  <para>On the <ulink url="ftp://ftp.NetBSD.org/">ftp.NetBSD.org</ulink>
-  server and its mirrors, there are collections of binary packages,
-  ready to be installed. These binary packages have been built using the
-  default settings for the directories, that is:</para>
-
-  <itemizedlist>
-  <listitem><para><filename>/usr/pkg</filename> for <varname>LOCALBASE</varname>, where most of the files are installed,</para></listitem>
-  <listitem><para><filename>/usr/pkg/etc</filename> for configuration files,</para></listitem>
-  <listitem><para><filename>/var</filename> for <varname>VARBASE</varname>, where those files are installed that may change after installation.</para></listitem>
-  </itemizedlist>
-
-  <para>If you cannot use these directories for whatever reasons (maybe
-  because you're not root), you cannot use these binary packages, but
-  have to build the packages yourself, which is explained in <xref
-  linkend="bootstrapping-pkgsrc" />.</para>
-
-  <sect2 id="finding-binary-packages">
-    <title>Finding binary packages</title>
-
-    <para>To install binary packages, you first need to know from where
-    to get them. The first place where you should look is on the main
-    pkgsrc FTP server in the directory <ulink
-    url="ftp://ftp.NetBSD.org/pub/pkgsrc/packages/"><filename>/pub/pkgsrc/packages</filename></ulink>.</para>
-
-    <para>This directory contains binary packages for multiple
-    platforms. First, select your operating system. (Ignore the
-    directories with version numbers attached to it, they just exist for
-    legacy reasons.) Then, select your hardware architecture, and in the
-    third step, the OS version and the <quote>version</quote> of pkgsrc.</para>
-
-    <para>In this directory, you often find a file called
-    <filename>bootstrap.tar.gz</filename> which contains the package
-    management tools. If the file is missing, it is likely that your
-    operating system already provides those tools. Download the file and
-    extract it in the <filename>/</filename> directory. It will create
-    the directories <filename>/usr/pkg</filename> (containing the tools
-    for managing binary packages) and <filename>/var/db/pkg</filename>
-    (the database of installed packages).</para>
-  </sect2>
-
-  <sect2 id="installing-binary-packages">
-    <title>Installing binary packages</title>
-
-    <para>In the directory from the last section, there is a
-    subdirectory called <filename>All</filename>, which contains all the
-    binary packages that are available for the platform, excluding those
-    that may not be distributed via FTP or CDROM (depending on which
-    medium you are using), and the ones that have vulnerabilities and
-    therefore are considered insecure to install without thinking
-    before.</para>
-
-    <para>To install packages directly from an FTP or HTTP server, run
-    the following commands in a Bourne-compatible shell (be sure to
-    <command>su</command> to root first):</para>
-
-<screen>
-&rprompt; <userinput>PATH="/usr/pkg/sbin:$PATH"</userinput>
-&rprompt; <userinput>PKG_PATH="ftp://ftp.NetBSD.org/pub/pkgsrc/packages/<replaceable>OPSYS</replaceable>/<replaceable>ARCH</replaceable>/<replaceable>VERSIONS</replaceable>/All"</userinput>
-&rprompt; <userinput>export PATH PKG_PATH</userinput>
-</screen>
-
-    <para>Instead of URLs, you can also use local paths, for example if
-    you are installing from a set of CDROMs, DVDs or an NFS-mounted
-    repository. If you want to install packages from multiple sources,
-    you can separate them by a semicolon in
-    <varname>PKG_PATH</varname>.</para>
-
-    <para>After these preparations, installing a package is very
-    easy:</para>
-
-<screen>
-&rprompt; <userinput>pkg_add openoffice2</userinput>
-&rprompt; <userinput>pkg_add kde-3.5.7</userinput>
-&rprompt; <userinput>pkg_add ap2-php5-*</userinput>
-</screen>
-
-    <para>Note that any prerequisite packages needed to run the
-    package in question will be installed, too, assuming they are
-    present where you install from.</para>
-
-    <para>As mentioned above, packages for which vulnerabilities get
-    known are not stored in the <filename>All</filename> subdirectory.
-    They don't get deleted since that could be very frustrating if many
-    other packages depend on it. Instead, they are moved to the
-    <filename>vulnerable</filename> subdirectory. So you may need to add
-    this directory to the <varname>PKG_PATH</varname> variable. 
-    However, you should run <command>audit-packages</command>
-    regularly, especially after installing new packages, and verify
-    that the vulnerabilities are acceptable for your configuration.</para>
-
-    <para>After you've installed packages, be sure to have
-    <filename>/usr/pkg/bin</filename> and <filename>/usr/pkg/sbin</filename> in your
-    <varname>PATH</varname> so you can actually start the just
-    installed program.</para>
-  </sect2>
-
-  <sect2 id="using.pkg_delete">
-    <title>Deinstalling packages</title>
-
-    <para>To deinstall a package, it does not matter whether it was
-    installed from source code or from a binary package. The
-    <command>pkg_delete</command> command does not know it anyway.
-    To delete a package, you can just run <command>pkg_delete
-    <replaceable>package-name</replaceable></command>. The package
-    name can be given with or without version number. Wildcards can
-    also be used to deinstall a set of packages, for example
-    <literal>*emacs*</literal>. Be sure to include them in quotes,
-    so that the shell does not expand them before
-    <literal>pkg_delete</literal> sees them.</para>
-
-    <para>The <option>-r</option> option is very powerful: it
-    removes all the packages that require the package in question
-    and then removes the package itself. For example:
-
-    <screen>
-&rprompt; <userinput>pkg_delete -r jpeg</userinput>
-    </screen>
-
-    will remove jpeg and all the packages that used it; this allows
-    upgrading the jpeg package.</para>
-
-  </sect2>
-
-  <sect2 id="using.pkg_info">
-    <title>Getting information about installed packages</title>
-
-    <para>The <command>pkg_info</command> shows information about
-    installed packages or binary package files.</para>
-
-  </sect2>
-
-  <sect2 id="vulnerabilities">
-    <title>Checking for security vulnerabilities in installed packages</title>
-
-    <para>
-      The NetBSD Security-Officer and Packages Groups maintain a list of
-      known security vulnerabilities to packages which are (or have been)
-      included in pkgsrc.  The list is available from the NetBSD
-      FTP site at <ulink url="ftp://ftp.NetBSD.org/pub/pkgsrc/distfiles/vulnerabilities"/>.
-    </para>
-
-    <para>
-      Through <filename role="pkg">security/audit-packages</filename>,
-      this list can be downloaded
-      automatically, and a security audit of all packages installed on a system
-      can take place.
-    </para>
-
-    <para>
-      There are two components to
-      <filename role="pkg">security/audit-packages</filename>.  The first
-      component, <quote>download-vulnerability-list</quote>, is for downloading
-      the list of vulnerabilities from the NetBSD FTP site.  The second
-      component, <quote>audit-packages</quote>, checks to see if any of your
-      installed packages are vulnerable.  If a package is vulnerable, you
-      will see output similar to the following:
-    </para>
-
-    <screen>Package samba-2.0.9 has a local-root-shell vulnerability, see
-    http://www.samba.org/samba/whatsnew/macroexploit.html</screen>
-
-    <para>
-      One can set up <filename
-      role="pkg">security/audit-packages</filename> to download the
-      <ulink url="ftp://ftp.NetBSD.org/pub/pkgsrc/distfiles/vulnerabilities">vulnerabilities</ulink>
-      file daily, and include a package audit in the daily security script.
-      Details on this are located in the <ulink
-      url="http://cvsweb.NetBSD.org/bsdweb.cgi/pkgsrc/security/audit-packages/MESSAGE?rev=HEAD&amp;content-type=text/x-cvsweb-markup">MESSAGE</ulink>
-      file for <filename role="pkg">security/audit-packages</filename>.
-    </para>
-  </sect2>
-
-  <sect2 id="pkg_versions">
-    <title>Finding if newer versions of your installed packages are in pkgsrc</title>
-    <para>
-      Install <filename role="pkg">pkgtools/lintpkgsrc</filename> and run
-      <command>lintpkgsrc</command> with the <quote>-i</quote>
-      argument to check if your packages are up-to-date, e.g.
-    </para>
-    <screen>
-&cprompt; <userinput>lintpkgsrc -i</userinput>
-...
-Version mismatch: 'tcsh' 6.09.00 vs 6.10.00
-    </screen>
-    <para>You can then use <command>make update</command> to update the
-    package on your system and rebuild any dependencies.
-    </para>
-  </sect2>
-
-  <sect2 id="using.pkg_admin">
-    <title>Other administrative functions</title>
-
-    <para>The <command>pkg_admin</command> executes various
-    administrative functions on the package system.</para>
-
-  </sect2>
-
-  <sect2 id="a-word-of-warning">
-    <title>A word of warning</title>
-
-    <para>Please pay very careful attention to the warnings
-    expressed in the &man.pkg.add.1; manual page about the
-    inherent dangers of installing binary packages which you did
-    not create yourself, and the security holes that can be
-    introduced onto your system by indiscriminate adding of such
-    files.</para>
-
-    <para>The same warning of course applies to every package you
-    install from source when you haven't completely read and
-    understood the source code of the package, the compiler that
-    is used to build the package and all the other tools that are
-    involved.</para>
-
-  </sect2>
-</sect1>
-
-<sect1 id="building-packages-from-source">
-  <title>Building packages from source</title>
-
   <para>After obtaining pkgsrc, the <filename>pkgsrc</filename>
   directory now contains a set of packages, organized into
   categories. You can browse the online index of packages, or run
@@ -484,4 +251,50 @@ Version mismatch: 'tcsh' 6.09.00 vs 6.10.00
   </sect2>
 </sect1>
 </chapter>
+\end{verbatim}
+
+
+\begin{verbatim}
+    <title>Deinstalling packages</title>
+
+    <para>To deinstall a package, it does not matter whether it was
+    installed from source code or from a binary package. The
+    <command>pkg_delete</command> command does not know it anyway.
+    To delete a package, you can just run <command>pkg_delete
+    <replaceable>package-name</replaceable></command>. The package
+    name can be given with or without version number. Wildcards can
+    also be used to deinstall a set of packages, for example
+    <literal>*emacs*</literal>. Be sure to include them in quotes,
+    so that the shell does not expand them before
+    <literal>pkg_delete</literal> sees them.</para>
+
+    <para>The <option>-r</option> option is very powerful: it
+    removes all the packages that require the package in question
+    and then removes the package itself. For example:
+
+    <screen>
+&rprompt; <userinput>pkg_delete -r jpeg</userinput>
+    </screen>
+
+    will remove jpeg and all the packages that used it; this allows
+    upgrading the jpeg package.</para>
+
+  </sect2>
+
+  <sect2 id="using.pkg_info">
+    <title>Getting information about installed packages</title>
+
+    <para>The <command>pkg_info</command> shows information about
+    installed packages or binary package files.</para>
+
+  </sect2>
+
+  <sect2 id="using.pkg_admin">
+    <title>Other administrative functions</title>
+
+    <para>The <command>pkg_admin</command> executes various
+    administrative functions on the package system.</para>
+
+  </sect2>
+</sect1>
 \end{verbatim}

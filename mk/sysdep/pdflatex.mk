@@ -1,6 +1,6 @@
-# $LAAS: pdflatex.mk 2008/11/02 16:01:27 tho $
+# $LAAS: pdflatex.mk 2009/01/18 22:34:14 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -31,6 +31,8 @@ DEPEND_ABI.pdflatex?=	pdflatex>=3.14
 
 SYSTEM_SEARCH.pdflatex=	\
 	'bin/pdflatex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
+
+PDFLATEX=		$(word 1,${SYSTEM_FILES.pdflatex})
 
 endif # PDFLATEX_DEPEND_MK -------------------------------------------
 
