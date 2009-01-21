@@ -3,6 +3,7 @@
 
 COMMENT=	Robotics audio tools
 
+SUBDIR+=	clone-genom
 SUBDIR+=	festival
 SUBDIR+=	festlex-cmu
 SUBDIR+=	festlex-poslex
