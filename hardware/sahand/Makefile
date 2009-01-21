@@ -38,7 +38,8 @@ do-install:
 	 	${INSTALL} load_sahand_driver.sh ${ROBOTPKG_BASE}/bin ; \
 		${INSTALL} unload_sahand_driver.sh ${ROBOTPKG_BASE}/bin )
 	(cd ${WRKSRC}/sahand_api ; \
-		${INSTALL} -c libsahand_api_41.a ${ROBOTPKG_BASE}/lib ; \
+		${INSTALL} -c libsahand_api_41.a ${ROBOTPKG_BASE}/lib )
+	(cd ${WRKSRC}/sahand_user; \
 		${INSTALL} -c SAHandCtrlApi.h ${ROBOTPKG_BASE}/include )
 
 
