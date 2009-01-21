@@ -17,10 +17,10 @@
 DISTNAME=	clone-genom-0.1
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=clone-genom/}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/clone-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}clone-genom
 
 MAINTAINER=	openrobots@laas.fr
-COMMENT=	3D Animated speeking head - genom component
+COMMENT=	3D Animated speaking head - genom component
 
 GNU_CONFIGURE=	yes
 
