@@ -18,7 +18,7 @@
     </p>
 
     <p>Here are the one-line descriptions for each of the categories.
-      A <a href="README-all.html">complete list of all packages</a> is
+      A <a href="index-all.html">complete list of all packages</a> is
       also available.
     </p>
 
@@ -28,9 +28,7 @@
     </table>
 
 For more information on how to build any of the packages from
-the Robotics Packages Collection, see the included <A HREF="README">README</A> file.
-For a more in-depth description, see the
-<A HREF="doc/pkgsrc.html">doc/pkgsrc.html</A> document.
+the Robotics Packages Collection, see the included <A HREF="README.html">README</A> file.
 
 </body>
 </html>

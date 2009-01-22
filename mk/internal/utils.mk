@@ -1,6 +1,6 @@
-# $LAAS: utils.mk 2008/05/25 22:44:05 tho $
+# $LAAS: utils.mk 2009/01/19 11:29:48 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -65,6 +65,18 @@ show-license:
 		${ECHO} "Generic $$license information not available";	\
 		${ECHO} "See the package description (pkg_info -d ${PKGNAME}) for more information."; \
 	fi
+
+
+# --- confirm --------------------------------------------------------
+#
+# confirm is an empty target that is used to confirm other targets by
+# doing `make target confirm'. It is the responsability of `target' to
+# check that confirm was specified in the MAKECMDGOALS variable.
+#
+.PHONY: confirm
+confirm:
+	@${DO_NADA}
+
 
 # DEPENDS_TYPE is used by the "show-depends-pkgpaths" target and specifies
 # which class of dependencies to output.  The special value "all" means

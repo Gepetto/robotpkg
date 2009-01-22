@@ -1,6 +1,6 @@
-# $LAAS: toplevel.mk 2008/05/25 22:44:35 tho $
+# $LAAS: toplevel.mk 2009/01/19 23:34:15 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -41,8 +41,8 @@
 #
 #
 
-.PHONY: index
-index:
+.PHONY: db
+db:
 	@${RM} -f ${CURDIR}/INDEX
 	@${MAKE} ${CURDIR}/INDEX
 
@@ -86,10 +86,10 @@ ${CURDIR}/PKGDB:
 ${CURDIR}/INDEX:
 	@${MAKE} ${CURDIR}/PKGDB
 	@${RM} -f ${CURDIR}/INDEX
-	@${AWK} -f ./mk/internal/genindex.awk ROBOTPKG_DIR=${CURDIR} SORT=${SORT} ${CURDIR}/PKGDB
+	@${AWK} -f ./mk/internal/gendb.awk ROBOTPKG_DIR=${CURDIR} SORT=${SORT} ${CURDIR}/PKGDB
 	@${RM} -f ${CURDIR}/PKGDB
 
-print-index: ${CURDIR}/INDEX
+print-db: ${CURDIR}/INDEX
 	@${AWK} -F\| '{ printf("Pkg:\t%s\nPath:\t%s\nInfo:\t%s\nMaint:\t%s\nIndex:\t%s\nB-deps:\t%s\nR-deps:\t%s\nArch:\t%s\n\n", $$1, $$2, $$4, $$6, $$7, $$8, $$9, $$10); }' < ${CURDIR}/INDEX
 
 search: ${.CURDIR}/INDEX
@@ -102,30 +102,30 @@ endif
 
 #
 # Generate list of all packages by extracting information from
-# the category/README.html pages
+# the category/index.html pages
 #
-readme-all:
-	@if [ -f README-all.html ]; then \
-		${MV} README-all.html README-all.html.BAK ; \
+index-all:
+	@if [ -f index-all.html ]; then \
+		${MV} index-all.html index-all.html.BAK ; \
 	fi
-	@${MAKE} README-all.html
-	@if ${CMP} -s README-all.html README-all.html.BAK ; then \
-		${MV} README-all.html.BAK README-all.html ; \
+	@${MAKE} index-all.html
+	@if ${CMP} -s index-all.html index-all.html.BAK ; then \
+		${MV} index-all.html.BAK index-all.html ; \
 	else \
-		${RM} -f README-all.html.BAK ; \
+		${RM} -f index-all.html.BAK ; \
 	fi
 
-README-all.html:
+index-all.html:
 	@${RM} -f $@.new
 	@${RM} -f $@.newsorted
 	@${ECHO_N} "Processing categories for $@:"
 	@for category in ${SUBDIR} ""; do \
 		if [ "X$$category" = "X" ]; then continue; fi; \
-		if [ -f $${category}/README.html ]; then \
+		if [ -f $${category}/index.html ]; then \
 			${ECHO_N} " $${category}" ; \
-			${GREP} '^<TR>' $${category}/README.html \
+			${GREP} '^<TR>' $${category}/index.html \
 			| ${SED} -e 's|"|"'$${category}'/|' \
-				-e 's| <td>| <td>(<A HREF="'$${category}'/README.html">'$${category}'</A>) <td>|' \
+				-e 's| <td>| <td>(<A HREF="'$${category}'/index.html">'$${category}'</A>) <td>|' \
 		      		-e 's|<TR>|<TR VALIGN=TOP>|' \
 		      		-e 's|<TD VALIGN=TOP>|<TD>|' \
 			>> $@.new ; \
@@ -133,13 +133,13 @@ README-all.html:
 	done
 	@${ECHO} "."
 	@if [ ! -f $@.new ]; then \
-		${ECHO} "There are no categories with README.html files available."; \
-		${ECHO} "You need to run \`${MAKE} readme' to generate them before running this target."; \
+		${ECHO} "There are no categories with index.html files available."; \
+		${ECHO} "You need to run \`${MAKE} index' to generate them before running this target."; \
 		${FALSE}; \
 	fi
 	@${SORT} -f -t '>' -k 2 <$@.new >$@.newsorted
 	@${WC} -l $@.newsorted | ${AWK} '{ print $$1 }'  >$@.npkgs
-	@${CAT} mk/templates/README.all \
+	@${CAT} mk/templates/index.all \
 	| ${SED} \
 		-e '/%%NPKGS%%/r$@.npkgs' \
 		-e '/%%NPKGS%%/d' \

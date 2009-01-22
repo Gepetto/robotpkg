@@ -1,6 +1,6 @@
-# $LAAS: gcc.mk 2008/12/10 23:31:22 tho $
+# $LAAS: gcc.mk 2009/01/16 20:18:40 tho $
 #
-# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -86,6 +86,7 @@ COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 #
 
 ifndef NO_BUILD
+ifneq (,$(filter c c++ fortran,${USE_LANGUAGES}))
 PKG_SUPPORTED_OPTIONS+=		debug
 
 PKG_OPTION_DESCR.debug:=	Produce debugging information for binary programs
@@ -100,6 +101,7 @@ define PKG_OPTION_UNSET.debug
   CXXFLAGS+=	-O3 -DNDEBUG
 endef
 
+endif	# c c++ fortran
 endif	# NO_BUILD
 
 endif	# COMPILER_GCC_MK

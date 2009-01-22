@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/13 11:56:45 tho $
+# $LAAS: Makefile 2009/01/19 18:59:21 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -31,16 +31,62 @@ PKGVERSION:=		$(shell ${DATE} '+%Y%m%d')
 DIST_SUBDIR=            ${PKGBASE}
 USE_LANGUAGES=#		empty
 
-PLIST_SRC=              ${WRKDIR}/PLIST_DYNAMIC
-DOCDIR=                 ${PREFIX}/share/doc/robotpkg
+OUTPUTS?=#		empty
+BUILD_TARGET=		$(sort ${OUTPUTS})
+INSTALL_TARGET=		$(patsubst %,install-%,$(sort ${OUTPUTS}))
 
-OUTPUTS?=               pdf
-BUILD_TARGET=		${OUTPUTS}
+# option for pdf output generation
+#
+PKG_SUPPORTED_OPTIONS+= pdf
+PKG_SUGGESTED_OPTIONS+= pdf
+PKG_OPTION_DESCR.pdf=	Generate PDF output
+define PKG_OPTION_SET.pdf
+  OUTPUTS+=	pdf
+  include ../../mk/sysdep/pdflatex.mk
+endef
+
+# option for html output generation
+#
+PKG_SUPPORTED_OPTIONS+= html
+PKG_OPTION_DESCR.html=	Generate HTML output
+define PKG_OPTION_SET.html
+  OUTPUTS+=	html
+  include ../../mk/sysdep/pdflatex.mk
+  include ../../sysutils/tth/depend.mk
+endef
+
+# option for text output generation
+#
+PKG_SUPPORTED_OPTIONS+= txt
+PKG_OPTION_DESCR.txt=	Generate ASCII text output
+define PKG_OPTION_SET.txt
+  OUTPUTS+=	txt
+  include ../../mk/sysdep/pdflatex.mk
+  include ../../sysutils/tth/depend.mk
+  include ../../mk/sysdep/w3m.mk
+endef
+
+PKG_OPTIONS_REQUIRED_GROUPS=	output
+PKG_OPTIONS_GROUP.output=	html pdf txt
 
 include ../../mk/robotpkg.mk
 
 # The source files are only symlinked into the WRKSRC, so that they can
 # be easily modified, should the build phase fail.
+#
 pre-extract:
 	${MKDIR} ${WRKSRC}
 	${LN} -s ${FILESDIR}/* ${WRKSRC}
+
+
+# install the HTML and ASCII output into the robotpkg directory, for
+# distribution with robotpkg.
+#
+# note that this uses ${CP} and not ${INSTALL_DATA} because the files
+# stay in the development directories and have nothing to do with
+# the permissions or ownership of installed files.
+#
+regen:
+	cd ${WRKSRC} && ${MAKE} html txt
+	${CP} ${WRKSRC}/robotpkg.html ${ROBOTPKG_DIR}/README.html
+	${CP} ${WRKSRC}/robotpkg.txt ${ROBOTPKG_DIR}/README.txt

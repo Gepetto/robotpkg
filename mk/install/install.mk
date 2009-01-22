@@ -157,7 +157,6 @@ _INSTALL_ALL_TARGETS+=		pkg-install-check-conflicts
 _INSTALL_ALL_TARGETS+=		pkg-install-check-installed
 endif
 endif
-_INSTALL_ALL_TARGETS+=		install-check-umask
 #_INSTALL_ALL_TARGETS+=		check-files-pre
 _INSTALL_ALL_TARGETS+=		install-makedirs
 #_INSTALL_ALL_TARGETS+=		pre-install-script
@@ -175,23 +174,13 @@ _INSTALL_ALL_TARGETS+=		release-install-localbase-lock
 #_INSTALL_ALL_TARGETS+=		error-check
 
 .PHONY: install-all
-install-all: ${_INSTALL_ALL_TARGETS}
-
-
-# --- install-check-umask (PRIVATE) ----------------------------------
-#
-# install-check-umask tests whether the umask is properly set and
-# emits a non-fatal warning otherwise.
-#
-.PHONY: install-check-umask
-install-check-umask:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	umask=`${SH} -c umask`;						\
-	if ${TEST} "$$umask" -ne ${DEF_UMASK}; then			\
-		${WARNING_MSG} "Your umask is \`\`$$umask''.";	\
-		${WARNING_MSG} "If this is not desired, set it to an appropriate value (${DEF_UMASK}) and"; \
-		${WARNING_MSG} "install this package again by \`\`${MAKE} deinstall reinstall''."; \
-        fi
+ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
+  _SU_TARGETS+=	install-all
+  install-all: su-target-install-all
+  su-install-all: ${_INSTALL_ALL_TARGETS}
+else
+  install-all: ${_INSTALL_ALL_TARGETS}
+endif
 
 
 # --- install-makedirs (PRIVATE) -------------------------------------

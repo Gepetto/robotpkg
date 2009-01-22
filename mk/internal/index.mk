@@ -1,6 +1,6 @@
-# $LAAS: readme.mk 2008/05/25 22:46:16 tho $
+# $LAAS: readme.mk 2009/01/19 23:29:14 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -35,36 +35,39 @@
 #					Anthony Mallet on Wed May 16 2007
 #
 
-# This Makefile fragment is included by bsd.pkg.mk and encapsulates the
-# code to produce README.html files in each package directory.
+# This Makefile fragment is included by robotpkg.mk and encapsulates the
+# code to produce index.html files in each package directory.
 #
 # The following are the "public" targets provided by this module.
 #
-#    readme		This target generates a README.html file suitable
-#			for being served via FTP.
+#    index		This target generates an index.html file suitable
+#			for being served via HTTP.
 #
 # The following are the user-settable variables that may be defined in
-# /etc/mk.conf.
+# robotpkg.conf.
 #
 #    PKG_URL_HOST is the host portion of the URL to embed in each
-#	README.html file to be served via FTP or HTTP, and defaults to
+#	index.html file to be served via FTP or HTTP, and defaults to
 #	"http://softs.laas.fr".
 #
 #    PKG_URL_DIR is the directory portion of the URL to embed in each
-#	README.html file to be served via FTP, and defaults to
+#	index.html file to be served via FTP, and defaults to
 #	"/openrobots/robotpkg/packages".
 
-define htmlify
-$(subst >,&gt;,$(subst <,&lt;,$(subst &,&amp;,$(1))))
+PKG_URL_HOST?=	http://softs.laas.fr
+PKG_URL_DIR?=	/openrobots/robotpkg/packages
+
+override define htmlify
+  $(subst >,&gt;,$(subst <,&lt;,$(subst &,&amp;,$(1))))
 endef
 
-_HTML_PKGNAME=		$(call htmlify,${PKGNAME})
-_HTML_PKGPATH=		$(call htmlify,${PKGPATH})
-_HTML_PKGLINK=		<a href="../../${_HTML_PKGPATH}/README.html">${_HTML_PKGNAME}</a>
+_HTML_PKGNAME=	$(call htmlify,${PKGNAME})
+_HTML_PKGPATH=	$(call htmlify,${PKGPATH})
+_HTML_PKGLINK=	<a href="../../${_HTML_PKGPATH}/index.html">${_HTML_PKGNAME}</a>
 
-# Set to "html" by the README.html target to generate HTML code,
-# or anything else to generate regular package name
-# This variable is passed down via build-depends-list and run-depends-list
+# Set to "html" by the index.html target to generate HTML code, or anything
+# else to generate regular package name. This variable is passed down via
+# build-depends-list and run-depends-list.
 PACKAGE_NAME_TYPE?=	name
 
 .PHONY: package-name
@@ -75,17 +78,17 @@ else
 	@${ECHO} ${PKGNAME}
 endif # PACKAGE_NAME_TYPE
 
-.PHONY: make-readme-html-help
-make-readme-html-help:
+.PHONY: make-index-html-help
+make-index-html-help:
 	@${ECHO} '${_HTML_PKGNAME}</a>: <td>'$(call quote,$(call htmlify,${COMMENT}))
 
 # Show (non-recursively) all the packages this package depends on.
 # If PACKAGE_DEPENDS_WITH_PATTERNS is set, print as pattern (if possible)
-PACKAGE_DEPENDS_WITH_PATTERNS?=true
+PACKAGE_DEPENDS_WITH_PATTERNS?=	true
 
 .PHONY: run-depends-list
 run-depends-list:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 $(foreach dep,${DEPENDS},						\
 	pkg="$(firstword $(subst :, ,${dep}))";				\
 	dir="$(word 2,$(subst :, ,${dep}))";				\
@@ -94,9 +97,11 @@ $(foreach dep,${DEPENDS},						\
 		${ECHO} "$$pkg";					\
 	else								\
 		if cd $$dir 2>/dev/null; then				\
-			${RECURSIVE_MAKE} ${MAKEFLAGS} package-name PACKAGE_NAME_TYPE=${PACKAGE_NAME_TYPE}; \
+			${RECURSIVE_MAKE} ${MAKEFLAGS} package-name	\
+				PACKAGE_NAME_TYPE=${PACKAGE_NAME_TYPE}; \
 		else 							\
-			${ECHO_MSG} "Warning: \"$$dir\" non-existent -- @pkgdep registration incomplete" >&2; \
+			${ECHO_MSG} "Warning: \"$$dir\" non-existent --"\
+				"@pkgdep registration incomplete" >&2;	\
 		fi;							\
 	fi;								\
 )
@@ -104,18 +109,20 @@ $(foreach dep,${DEPENDS},						\
 .PHONY: build-depends-list
 build-depends-list:
 	@${_DEPENDS_WALK_CMD} ${PKGPATH} |				\
-	while read dir; do						\
-		( cd ../../$$dir && ${RECURSIVE_MAKE} ${MAKEFLAGS} package-name PACKAGE_NAME_TYPE=${PACKAGE_NAME_TYPE}) \
-	done
+	while read dir; do (						\
+		cd ../../$$dir && 					\
+		${RECURSIVE_MAKE} ${MAKEFLAGS} package-name		\
+			PACKAGE_NAME_TYPE=${PACKAGE_NAME_TYPE}		\
+	); done
 
 
-# If PACKAGES is set to the default (../../pkgsrc/packages), the current
+# If PACKAGES is set to the default (../../robotpkg/packages), the current
 # ${MACHINE_ARCH} and "release" (uname -r) will be used. Otherwise a directory
-# structure of ...pkgsrc/packages/`uname -r`/${MACHINE_ARCH} is assumed.
+# structure of ...robotpkg/packages/`uname -r`/${MACHINE_ARCH} is assumed.
 # The PKG_URL is set from PKG_URL_*.
 .PHONY: binpkg-list
 binpkg-list:
-	@if ${TEST} -d ${PACKAGES}; then					\
+	@if ${TEST} -d ${PACKAGES}; then				\
 		cd ${PACKAGES};						\
 		case ${CURDIR} in					\
 		*/pkgsrc/packages)					\
@@ -205,15 +212,17 @@ describe:
 	${ECHO} ""
 
 
-# This target is used to generate README.html files
-PKG_URL_HOST?=	http://softs.laas.fr
-PKG_URL_DIR?=	/openrobots/robotpkg/packages
-.PHONY: readme
-readme:
-	@cd ${CURDIR} && ${RECURSIVE_MAKE} ${MAKEFLAGS} README.html PKG_URL=${PKG_URL_HOST}${PKG_URL_DIR}
+# --- index ----------------------------------------------------------------
+#
+# This target is used to generate index.html files.
+#
+.PHONY: index
+index:
+	@cd ${CURDIR} && ${RECURSIVE_MAKE} ${MAKEFLAGS} index.html	\
+		PKG_URL=${PKG_URL_HOST}${PKG_URL_DIR}
 
 
-README_NAME=	${TEMPLATES}/README.pkg
+INDEX_NAME=	${TEMPLATES}/index.pkg
 
 # set up the correct license information as a sed expression
 ifdef LICENSE
@@ -224,7 +233,7 @@ endif
 
 # set up the "more info URL" information as a sed expression
 ifdef HOMEPAGE
-SED_HOMEPAGE_EXPR=	-e 's|%%HOMEPAGE%%|<p>This package has a home page at <a HREF="${HOMEPAGE}">${HOMEPAGE}</a>.</p>|'
+SED_HOMEPAGE_EXPR=	-e 's|%%HOMEPAGE%%|<p>This package has a home page at <a href="${HOMEPAGE}">${HOMEPAGE}</a>.</p>|'
 else
 SED_HOMEPAGE_EXPR=	-e 's|%%HOMEPAGE%%||'
 endif
@@ -234,10 +243,10 @@ endif
 # ${MACHINE_ARCH} and "release" (uname -r) will be used. Otherwise a directory
 # structure of ...pkgsrc/packages/`uname -r`/${MACHINE_ARCH} is assumed.
 # The PKG_URL is set from FTP_PKG_URL_*.
-.PHONY .PRECIOUS: README.html
-README.html:
+.PHONY .PRECIOUS: index.html
+index.html:
 	@${SETENV} MAKE=${MAKE} ${SH} ../../mk/internal/mkdatabase -f $@.tmp1
-	${AWK} -f ../../mk/internal/genreadme.awk \
+	${AWK} -f ../../mk/internal/genindex.awk \
 		builddependsfile=/dev/null \
 		dependsfile=/dev/null \
 		AWK=${AWK} \
@@ -273,8 +282,7 @@ ifneq (,$(DEPENDS))
 	@${ECHO} '" to run.'
 endif
 
-# This target is used by the mk/scripts/mkreadme script to generate
-# README.html files
+# This target is used by the toplevel.mk file to generate pkg database file
 .PHONY: print-summary-data
 print-summary-data:
 	@${ECHO} depends ${PKGPATH} $(call quote,${DEPENDS})

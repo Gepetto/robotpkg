@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/19 17:11:02 mallet $
+# $LAAS: w3m.mk 2009/01/19 15:13:57 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -15,31 +15,27 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                             Anthony Mallet on Mon Jan 12 2009
+#                                             Anthony Mallet on Sun Jan 18 2009
 #
 
-DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-TTH_DEPEND_MK:=		${TTH_DEPEND_MK}+
+DEPEND_DEPTH:=	${DEPEND_DEPTH}+
+W3M_DEPEND_MK:=	${W3M_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		tth
+DEPEND_PKG+=	w3m
 endif
 
-ifeq (+,$(TTH_DEPEND_MK)) # ------------------------------------------------
+ifeq (+,$(W3M_DEPEND_MK)) # ------------------------------------------------
 
-PREFER.tth?=		robotpkg
+PREFER.w3m?=	system
+DEPEND_USE+=	w3m
+DEPEND_ABI.w3m?=w3m>=0.5
 
-DEPEND_USE+=		tth
+SYSTEM_SEARCH.w3m=	\
+	'bin/w3m:s|.*w3m/\([0-9.]\{1,\}\).*|\1|p:% -version'
 
-DEPEND_METHOD.tth?=	build
-DEPEND_ABI.tth?=	tth>=3.85
-DEPEND_DIR.tth?=	../../sysutils/tth
+export W3M=	${PREFIX.w3m}/bin/w3m
 
-SYSTEM_SEARCH.tth=	\
-	'bin/tth:/TtH.*Version/{s/(c).*$$//;s/[^0-9.]//gp;}:% -h'
-
-export TTH=		${PREFIX.tth}/bin/tth
-
-endif # TTH_DEPEND_MK ------------------------------------------------------
+endif # W3M_DEPEND_MK ------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

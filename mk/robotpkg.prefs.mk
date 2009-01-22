@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2009/01/08 15:03:09 mallet $
+# $LAAS: robotpkg.prefs.mk 2009/01/15 19:04:52 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -106,7 +106,10 @@ ifndef MAKECONF
 _MAKECONF=${ROBOTPKG_BASE}/etc/robotpkg.conf
   else
    ifneq (,$(call pathsearch,robotpkg_info,${PATH}))
-_MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install)/robotpkg.conf
+_MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install ||:)/robotpkg.conf
+     ifeq (/robotpkg.conf,${_MAKECONF})
+       $(error Cannot run $(call pathsearch,robotpkg_info,${PATH}))
+     endif
    else
 _MAKECONF=/opt/openrobots/etc/robotpkg.conf
    endif

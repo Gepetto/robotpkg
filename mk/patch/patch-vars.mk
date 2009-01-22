@@ -1,6 +1,6 @@
-# $LAAS: patch-vars.mk 2008/05/25 22:37:25 tho $
+# $LAAS: patch-vars.mk 2009/01/14 22:23:20 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -56,23 +56,15 @@
 #	This defaults to the "patches" subdirectory of the package
 #	directory.
 #
-# The following variables may be set by the user:
-#
-#    LOCALPATCHES is the location of local patches that are maintained
-#	in a directory tree reflecting the same hierarchy as the pkgsrc
-#	tree, e.g., local patches for www/apache would be found in
-#	${LOCALPATCHES}/www/apache.  These patches are applied after
-#	the patches in ${PATCHDIR}.
-#
 
 # The default PATCHDIR is currently set in bsd.prefs.mk
 #PATCHDIR?=	${.CURDIR}/patches
 
-#.if (defined(PATCHFILES) && !empty(PATCHFILES)) || \
-#    (defined(PATCHDIR) && exists(${PATCHDIR})) || \
-#    (defined(LOCALPATCHES) && exists(${LOCALPATCHES}/${PKGPATH}))
-USE_TOOLS+=	patch
-#.endif
+# Require the patch tool if we have any patches to apply
+#
+ifneq (,$(or ${PATCHFILES},$(filter yes,$(call exists,${PATCHDIR}))))
+  include ${ROBOTPKG_DIR}/mk/sysdep/patch.mk
+endif
 
 #.if (defined(PATCHDIR) && exists(${PATCHDIR})) || \
 #    (defined(LOCALPATCHES) && exists(${LOCALPATCHES}/${PKGPATH}))

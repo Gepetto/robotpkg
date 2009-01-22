@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/13 16:57:32 tho $
+# $LAAS: Makefile 2009/01/15 19:35:12 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -35,7 +35,7 @@ PKG_SUGGESTED_OPTIONS+=	display
 
 PKG_OPTION_DESCR.display=	Enable embedded image display facility.
 define PKG_OPTION_SET.display
-  CONFIGURE_ARGS+=		--enable-display
+# XXX fixme in viam-genom  CONFIGURE_ARGS+=		--enable-display
   REQD_BUILD_OPTIONS.opencv+=	gtk
   REQD_BUILD_OPTIONS.viam-libs+=opencv
   include ../../image/opencv/depend.mk

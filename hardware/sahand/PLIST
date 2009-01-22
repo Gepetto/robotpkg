@@ -1,0 +1,6 @@
+@comment Wed Jan 14 09:41:50 CET 2009
+/lib/modules/${OS_VERSION}/kernel/drivers/misc/sahand_driver.ko
+bin/load_sahand_driver.sh
+bin/unload_sahand_driver.sh
+include/SAHandCtrlApi.h
+lib/libsahand_api_41.a

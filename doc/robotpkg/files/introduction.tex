@@ -1,4 +1,4 @@
-% $LAAS: $
+% $LAAS: introduction.tex 2009/01/16 23:58:51 tho $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -127,15 +127,14 @@ NetBSD & 4, 5\\
 
 \section{Overview} % -------------------------------------------------------
 
-This     document  is     divided  into      three      parts.  The      first,
-\hyperref[chapter:user]{The robotpkg user's guide}, describes  how one can use one
-of  the packages in  the Robotics  Package  Collection, either by  installing a
-precompiled binary package, or by building one's  own copy using robotpkg.  The
-second part,   \hyperref[chapter:developer]{The       robotpkg developer's guide},
-explains  how to prepare a package  so  it can be  easily  built by other users
-without  knowing  about the   package's  building  details.  The   third  part,
-\hyperref[chapter:internal]{The robotpkg infrastructure internals} is intended for
-those who want to understand how robotpkg is implemented.
+This document is divided  into three parts.  \xref{chapter:user}{The first one}
+describes how  one  can  use  one of   the  packages  in the  Robotics  Package
+Collection, either  by installing a precompiled binary  package, or by building
+one's own  copy  using  robotpkg.   \xref{chapter:developer}{The  second  part}
+explains how  to prepare a package so  it can be  easily  built by  other users
+without     knowing     about     the     package's    building        details.
+\xref{chapter:internal}{The   third part} is  intended for  those   who want to
+understand how robotpkg is implemented.
 
 
 \section{Terminology} % ----------------------------------------------------
@@ -180,19 +179,20 @@ Here is a description of all the terminology used within this document.
    usage  of the software  that is {\em inside} the  packages is not covered by
    the robotpkg guide.
 
-   There are two kinds of  robotpkg users: Some  only want to install pre-built
+   There are two  kinds of robotpkg users:  Some only want to install pre-built
    binary packages.  Others build the robotpkg packages from source, either for
-   installing them  directly or for building  binary  packages themselves.  For
-   robotpkg users   \hyperref[chapter:user]{The    robotpkg user's guide}   should
-   provide all necessary documentation.
+   installing them  directly or for building binary   packages themselves.  For
+   robotpkg users, \xref{chapter:user}{Part~\ref{chapter:user}}  should provide
+   all necessary documentation.
 
    \item[package  maintainers]   A   package maintainer  creates  packages   as
-   described in \hyperref[chapter:developer]{The robotpkg developer's guide}.
+   described in \xref{chapter:developer}{Part~\ref{chapter:developer}}.
 
-   \item[infrastructure   developers] These people   are  involved in all those
-   files that  live in the  {\tt mk/}  directory  and below. Only  these people
-   should need    to   read  through     \hyperref[chapter:internal]{The  robotpkg
-   infrastructure internals}, though others might be curious, too.
+   \item[infrastructure  developers]  These people are    involved in all those
+   files that live  in the {\tt mk/} directory   and below.  Only  these people
+   should             need          to               read               through
+   \xref{chapter:internal}{Part~\ref{chapter:internal}}, though others might be
+   curious, too.
 
 \end{description}
 

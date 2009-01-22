@@ -1,6 +1,11 @@
+# $LAAS: Makefile 2009/01/19 23:36:47 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS                        --  Tue May 22 2007
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,12 +17,6 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: Makefile,v 1.81 2007/02/20 22:46:32 agc Exp $
 #
 # THIS SOFTWARE IS PROVIDED BY THE AUTHORS AND CONTRIBUTORS ``AS IS'' AND
 # ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
@@ -31,8 +30,11 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
+# From $NetBSD: Makefile,v 1.81 2007/02/20 22:46:32 agc Exp $
 #
+#                                       Anthony Mallet on Tue May 22 2007
+
+
 # This is the top-level Makefile of robotpkg. It contains a list of the
 # categories of packages, as well as some targets that operate on the
 # whole robotpkg system.

@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/01/09 19:12:42 mallet $
+# $LAAS: robotpkg.mk 2009/01/19 23:29:41 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -175,15 +175,18 @@ PKG_DEBUG_LEVEL?=	0
 _PKG_SILENT=		@
 _PKG_DEBUG=#		empty
 _PKG_DEBUG_SCRIPT=#	empty
+_PKG_DISCARD_STDERR=	2>/dev/null
 
 ifeq (1,${PKG_DEBUG_LEVEL})
 _PKG_SILENT=#		empty
+_PKG_DISCARD_STDERR=#	empty
 endif
 
 ifeq (2,${PKG_DEBUG_LEVEL})
 _PKG_SILENT=#		empty
 _PKG_DEBUG=		set -x;
 _PKG_DEBUG_SCRIPT=	${SH} -x
+_PKG_DISCARD_STDERR=#	empty
 endif
 
 # This variable can be prepended to all shell commands that should not
@@ -380,9 +383,6 @@ makedirs: ${WRKDIR}
 ${WRKDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
 
-# Dependencies
-include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
-
 # Check
 -include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
@@ -418,6 +418,8 @@ include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
 # Package
 include ${ROBOTPKG_DIR}/mk/package/package-vars.mk
 
+# Dependencies
+include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
 
 # --------------------------------------------------------------------
 #
@@ -451,7 +453,7 @@ include ../../mk/plist/plist-vars.mk
 include ${ROBOTPKG_DIR}/mk/internal/utils.mk
 include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk
-
+include ${ROBOTPKG_DIR}/mk/internal/su-target.mk
 
 -include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
 #if make(debug) || make(build-env)
@@ -467,8 +469,8 @@ ifdef BATCH
  include ${ROBOTPKG_DIR}/mk/bulk/bulk.mk
 endif
 
-# README generation code.
-include ${ROBOTPKG_DIR}/mk/internal/readme.mk
+# index.html generation code.
+include ${ROBOTPKG_DIR}/mk/internal/index.mk
 
 # fake target to make pattern targets phony
 .FORCE:
