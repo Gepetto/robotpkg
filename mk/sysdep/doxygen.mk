@@ -1,6 +1,6 @@
-# $LAAS: doxygen.mk 2008/12/13 00:23:32 tho $
+# $LAAS: doxygen.mk 2009/01/23 14:06:08 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -34,13 +34,15 @@ SYSTEM_SEARCH.doxygen=	'bin/doxygen:p:% --version'
 
 # Automatic PLIST generation for doxygen generated files
 ifdef DOXYGEN_PLIST_DIR
-GENERATE_PLIST+=							\
+  GENERATE_PLIST+=							\
 	${FIND} $(addprefix ${PREFIX}/,${DOXYGEN_PLIST_DIR})		\
 		 \( -type f -o -type l \) -newer ${_COOKIE.extract}	\
 		 -print | ${SORT} | ${SED} -e "s,${PREFIX}/,,g";	\
 	${FIND} $(addprefix ${PREFIX}/,${DOXYGEN_PLIST_DIR})		\
 		 -type d -print 					\
 		| ${SORT} -r | ${SED} -e "s,${PREFIX}/,@dirrm ,g";
+
+  PRINT_PLIST_IGNORE_DIRS+=${DOXYGEN_PLIST_DIR}
 endif
 
 endif # DOXYGEN_DEPEND_MK --------------------------------------------------
