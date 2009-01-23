@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/21 22:06:04 tho $
+# $LAAS: depend.mk 2009/01/21 22:58:42 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -15,27 +15,29 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                             Matthieu Herrb on Wed Jan 21 2009
+#                                             Anthony Mallet on Wed Jan 21 2009
 #
 
-DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-CLONEGENOM_DEPEND_MK:=	${CLONEGENOM_DEPEND_MK}+
+DEPEND_DEPTH:=			${DEPEND_DEPTH}+
+JIDOGRIP_LIBS_DEPEND_MK:=	${JIDOGRIP_LIBS_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		clone-genom
+DEPEND_PKG+=			jidogrip-libs
 endif
 
-ifeq (+,$(CLONEGENOM_DEPEND_MK))
-PREFER.clone-genom?=	robotpkg
+ifeq (+,$(JIDOGRIP_LIBS_DEPEND_MK)) # --------------------------------------
 
-DEPEND_USE+=		clone-genom
+PREFER.jidogrip-libs?=		robotpkg
 
-DEPEND_ABI.clone-genom?=	clone-genom>=0.1
-DEPEND_DIR.clone-genom?=	../../audio/clone-genom
+DEPEND_USE+=			jidogrip-libs
+DEPEND_ABI.jidogrip-libs?=	jidogrip-libs>=1.1
+DEPEND_DIR.jidogrip-libs?=	../../hardware/jidogrip-libs
 
-SYSTEM_SEARCH.clone-genom=\
-	include/clone/cloneStruct.h		\
-	'lib/pkgconfig/clone.pc:/Version/s/[^0-9.]*//p'
-endif
+SYSTEM_SEARCH.jidogrip-libs=	\
+	'include/jidogrip.h'
+	'lib/libjidogrip.la'
+	'lib/pkgconfig/libjidogrip.pc:/Version/s/[^0-9.]//gp'
+
+endif # JIDOGRIP_LIBS_DEPEND_MK --------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

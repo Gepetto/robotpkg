@@ -1,4 +1,4 @@
-# $LAAS: configure.mk 2009/01/10 13:33:04 tho $
+# $LAAS: configure.mk 2009/01/22 18:29:57 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -47,14 +47,19 @@
 # CONFIGURE_ARGS is the list of arguments that is passed to the
 #	configure script.
 #
-CONFIGURE_SCRIPT?=	./configure
-CONFIGURE_ENV+=		${ALL_ENV}
-CONFIGURE_ARGS?=	${CONFIGURE_EXTRA_ARGS} # from cmdline
-_BUILD_DEFS+=		CONFIGURE_ENV CONFIGURE_ARGS
 
 ifdef GNU_CONFIGURE
   include ${ROBOTPKG_DIR}/mk/configure/gnu-configure.mk
 endif
+ifdef USE_CMAKE
+  include ${ROBOTPKG_DIR}/mk/configure/cmake-configure.mk
+endif
+
+CONFIGURE_SCRIPT?=	./configure
+CONFIGURE_ENV+=		${ALL_ENV}
+CONFIGURE_ARGS+=	${CONFIGURE_EXTRA_ARGS} # from cmdline
+_BUILD_DEFS+=		CONFIGURE_ENV CONFIGURE_ARGS
+
 #.if defined(OVERRIDE_GNU_CONFIG_SCRIPTS)
 #.  include "${ROBOTPKG_DIR}/mk/configure/config-override.mk"
 #.endif

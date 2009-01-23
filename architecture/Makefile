@@ -12,5 +12,6 @@ SUBDIR+=	netshring
 SUBDIR+=	openhrp
 SUBDIR+=	openprs
 SUBDIR+=	openrtm-aist
+SUBDIR+=	yarp
 
 include ../mk/robotpkg.subdir.mk

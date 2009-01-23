@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/21 22:06:04 tho $
+# $LAAS: cmake.mk 2009/01/22 18:00:57 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -15,27 +15,28 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                             Matthieu Herrb on Wed Jan 21 2009
+#                                             Anthony Mallet on Thu Jan 22 2009
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-CLONEGENOM_DEPEND_MK:=	${CLONEGENOM_DEPEND_MK}+
+CMAKE_DEPEND_MK:=	${CMAKE_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		clone-genom
+DEPEND_PKG+=		cmake
 endif
 
-ifeq (+,$(CLONEGENOM_DEPEND_MK))
-PREFER.clone-genom?=	robotpkg
+ifeq (+,$(CMAKE_DEPEND_MK)) # ----------------------------------------------
 
-DEPEND_USE+=		clone-genom
+PREFER.cmake?=		system
 
-DEPEND_ABI.clone-genom?=	clone-genom>=0.1
-DEPEND_DIR.clone-genom?=	../../audio/clone-genom
+DEPEND_USE+=		cmake
+DEPEND_ABI.cmake?=	cmake>=2.6
+DEPEND_METHOD.cmake+=	build
+SYSTEM_SEARCH.cmake=	'bin/cmake:s/[^-.0-9]//g;y/-/./;p:% --version'
 
-SYSTEM_SEARCH.clone-genom=\
-	include/clone/cloneStruct.h		\
-	'lib/pkgconfig/clone.pc:/Version/s/[^0-9.]*//p'
-endif
+USE_CMAKE=		yes
+export CMAKE=		${PREFIX.cmake}/bin/cmake
+
+endif # CMAKE_DEPEND_MK ----------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

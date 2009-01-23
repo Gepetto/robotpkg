@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/21 22:06:04 tho $
+# $LAAS: Makefile 2009/01/22 18:43:43 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -15,27 +15,26 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                             Matthieu Herrb on Wed Jan 21 2009
+#                                      Anthony Mallet on Thu Jan 22 2009
 #
 
-DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-CLONEGENOM_DEPEND_MK:=	${CLONEGENOM_DEPEND_MK}+
+DISTNAME=		yarp-2.2.2
+CATEGORIES=		architecture
+MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
-ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		clone-genom
-endif
+MAINTAINER=		openrobots@laas.fr
+HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
+COMMENT=		Yet Another Robot Platform
 
-ifeq (+,$(CLONEGENOM_DEPEND_MK))
-PREFER.clone-genom?=	robotpkg
+USE_LANGUAGES+=		c++
 
-DEPEND_USE+=		clone-genom
+CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
+CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
+CMAKE_ARGS+=		-DACE_LINK_FLAGS=-L${PREFIX.ace}/lib
 
-DEPEND_ABI.clone-genom?=	clone-genom>=0.1
-DEPEND_DIR.clone-genom?=	../../audio/clone-genom
+# XXX needs something more generic
+CXXFLAGS+=		-pthread
 
-SYSTEM_SEARCH.clone-genom=\
-	include/clone/cloneStruct.h		\
-	'lib/pkgconfig/clone.pc:/Version/s/[^0-9.]*//p'
-endif
-
-DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
+include ../../architecture/ace/depend.mk
+include ../../mk/sysdep/cmake.mk
+include ../../mk/robotpkg.mk

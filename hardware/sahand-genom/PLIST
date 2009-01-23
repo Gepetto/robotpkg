@@ -18,8 +18,8 @@ include/sahand/server/sahandScan.h
 include/sahand/server/sahandType.h
 lib/libsahandClient.la
 lib/pkgconfig/sahand.pc
-lib/tclserv/libsahandTclServ.la
+${PLIST.tcl}lib/tclserv/libsahandTclServ.la
 share/modules/gen/sahand.gen
-share/modules/tcl/sahandClient.tcl
+${PLIST.tcl}share/modules/tcl/sahandClient.tcl
 @dirrm include/sahand/server
 @dirrm include/sahand

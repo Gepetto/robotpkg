@@ -1,0 +1,5 @@
+@comment Mon Jan 19 17:12:29 CET 2009
+${PLIST.html}share/doc/robotpkg/robotpkg.html
+${PLIST.pdf}share/doc/robotpkg/robotpkg.pdf
+${PLIST.txt}share/doc/robotpkg/robotpkg.txt
+@dirrm share/doc/robotpkg

@@ -18,7 +18,7 @@ DISTNAME=	sahand-genom-0.1
 CATEGORIES=	hardware
 COMMENT=	Schunk Antropomorphic Hand control module - Genom componenent
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=sahand-genom/}
-MASTER_REPOSITORY=      git ssh://trac.laas.fr/git/robots/sahand-genom
+MASTER_REPOSITORY=      ${MASTER_REPOSITORY_OPENROBOTS}sahand-genom
 
 MAINTAINER=     openrobots@laas.fr
 
@@ -26,10 +26,7 @@ GNU_CONFIGURE=	yes
 
 GENOM_MODULE=	sahand
 
-DEPENDS+=	sahand>=2008.1.10:../hardware/sahand
-
+include ../../hardware/sahand/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../mk/robotpkg.mk
-
-

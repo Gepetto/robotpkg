@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/21 22:06:04 tho $
+# $LAAS: depend.mk 2009/01/21 22:32:39 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -15,27 +15,28 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                             Matthieu Herrb on Wed Jan 21 2009
+#                                             Anthony Mallet on Wed Jan 21 2009
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-CLONEGENOM_DEPEND_MK:=	${CLONEGENOM_DEPEND_MK}+
+SAHAND_DEPEND_MK:=	${SAHAND_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		clone-genom
+DEPEND_PKG+=		sahand
 endif
 
-ifeq (+,$(CLONEGENOM_DEPEND_MK))
-PREFER.clone-genom?=	robotpkg
+ifeq (+,$(SAHAND_DEPEND_MK)) # ---------------------------------------------
 
-DEPEND_USE+=		clone-genom
+PREFER.sahand?=		robotpkg
 
-DEPEND_ABI.clone-genom?=	clone-genom>=0.1
-DEPEND_DIR.clone-genom?=	../../audio/clone-genom
+DEPEND_USE+=		sahand
+DEPEND_ABI.sahand?=	sahand>=2008.1.10
+DEPEND_DIR.sahand?=	../../hardware/sahand
 
-SYSTEM_SEARCH.clone-genom=\
-	include/clone/cloneStruct.h		\
-	'lib/pkgconfig/clone.pc:/Version/s/[^0-9.]*//p'
-endif
+SYSTEM_SEARCH.sahand=	\
+	'include/SAHandCtrlApi.h'					\
+	'lib/libsahand_api_41.a'
+
+endif # SAHAND_DEPEND_MK ---------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
