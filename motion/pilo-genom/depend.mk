@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/05/25 15:21:40 tho $
+# $LAAS: depend.mk 2009/01/23 17:09:55 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -29,11 +29,11 @@ PREFER.pilo-genom?=	robotpkg
 DEPEND_USE+=		pilo-genom
 
 DEPEND_ABI.pilo-genom?=	pilo-genom>=0.1
-DEPEND_DIR.pilo-genom?=	../../path/pilo-genom
+DEPEND_DIR.pilo-genom?=	../../motion/pilo-genom
 
 SYSTEM_SEARCH.pilo-genom=\
 	include/pilo/piloStruct.h		\
-	lib/pkgconfig/pilo.pc
+	'lib/pkgconfig/pilo.pc:/Version/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
