@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/23 17:09:55 mallet $
+# $LAAS: depend.mk 2009/01/23 17:15:29 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -33,7 +33,7 @@ DEPEND_DIR.pilo-genom?=	../../motion/pilo-genom
 
 SYSTEM_SEARCH.pilo-genom=\
 	include/pilo/piloStruct.h		\
-	'lib/pkgconfig/pilo.pc:/Version/[^0-9.]//gp'
+	'lib/pkgconfig/pilo.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
