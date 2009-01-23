@@ -18,7 +18,7 @@
 
 DISTNAME=	matrixabstractlayer-${VERSION}
 PKGNAME=	jrl-mal-${VERSION}
-VERSION=	1.4
+VERSION=	1.6
 
 CATEGORIES=	interfaces
 MASTER_SITES=	${MASTER_SITE_JRL}
@@ -47,7 +47,7 @@ PKG_OPTION_SET.vnl:=	CONFIGURE_ARGS+=	--with-vnl=${PREFIX}
 
 PKG_OPTION_DESCR.t3d=	Use t3d for rigid body transformations
 define PKG_OPTION_SET.t3d
-  CONFIGURE_ARGS+=	--with-t3d
+  CONFIGURE_ARGS+= --with-smallMatrix=t3d
   include ../../math/t3d/depend.mk
 endef
 
