@@ -18,39 +18,35 @@
 
 DISTNAME=	matrixabstractlayer-${VERSION}
 PKGNAME=	jrl-mal-${VERSION}
-VERSION=	1.6
+VERSION=	1.7.1
 
 CATEGORIES=	interfaces
-MASTER_SITES=	${MASTER_SITE_JRL}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	Matrix abstraction layer for boost or vnl.
 
-GNU_CONFIGURE=		yes
+USE_CMAKE=	yes
 DOXYGEN_PLIST_DIR+=	share/doc/MatrixAbstractLayer
 
 # options
-PKG_SUPPORTED_OPTIONS+=	boost vnl t3d
-PKG_SUGGESTED_OPTIONS+=	boost t3d
-
-PKG_OPTION_DESCR.boost=	Use boost for generic NxP matrix implementation
-define PKG_OPTION_SET.boost
-  CONFIGURE_ARGS+=	--with-boost=${PREFIX.boost-numeric-bindings}
-
-  include ../../devel/boost-numeric-bindings/depend.mk
-  include ../../math/lapack/depend.mk
-endef
-
-PKG_OPTION_DESCR.vnl=	Use vnl for generic NxP matrix implementation
-PKG_OPTION_SET.vnl:=	CONFIGURE_ARGS+=	--with-vnl=${PREFIX}
+PKG_SUPPORTED_OPTIONS+=	t3d jrl-mathtools
+PKG_SUGGESTED_OPTIONS+=	t3d
 
 PKG_OPTION_DESCR.t3d=	Use t3d for rigid body transformations
 define PKG_OPTION_SET.t3d
-  CONFIGURE_ARGS+= --with-smallMatrix=t3d
+  CMAKE_ARGS+= -DSMALLMATRIX=t3d 
   include ../../math/t3d/depend.mk
 endef
 
+PKG_OPTION_DESCR.jrl-mathtools=	Use jrl-mathtools for rigid body transformations
+define PKG_OPTION_SET.jrl-mathtools
+  CMAKE_ARGS+= -DSMALLMATRIX=jrlMathTools 
+  include ../../math/jrl-mathtools/depend.mk
+endef
+
+include ../../mk/sysdep/cmake.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
