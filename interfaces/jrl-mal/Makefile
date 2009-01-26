@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/08 16:00:26 mallet $
+# $LAAS: Makefile 2009/01/26 15:48:54 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -27,7 +27,7 @@ MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	Matrix abstraction layer for boost or vnl.
 
-USE_CMAKE=	yes
+USE_LANGUAGES+=	c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/MatrixAbstractLayer
 
 # options
