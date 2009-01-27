@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/22 18:54:42 mallet $
+# $LAAS: depend.mk 2009/01/27 17:19:38 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -33,7 +33,9 @@ DEPEND_USE+=		yarp
 DEPEND_ABI.yarp?=	yarp>=2.2.2
 
 SYSTEM_SEARCH.yarp=\
-	'bin/yarp:s/[^.0-9]//gp:% version'
+	'bin/yarp:s/[^.0-9]//gp:% version'	\
+	include/yarp/dev/all.h			\
+	lib/libYARP_OS.{a,so}
 
 USE_YARP=		yes
 export YARP=		${PREFIX.yarp}/bin/yarp
