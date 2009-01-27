@@ -1,6 +1,6 @@
-# $LAAS: fetch-vars.mk 2008/05/25 23:05:28 tho $
+# $LAAS: fetch-vars.mk 2009/01/27 16:36:42 mallet $
 #
-# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -41,6 +41,8 @@
 #
 #					Anthony Mallet on Tue Dec  5 2006
 #
+
+MK_ROBOTPKG_FETCH:=	defined
 
 # The following variables may be set by the user:
 #

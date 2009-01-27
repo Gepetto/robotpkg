@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/01/19 23:29:41 tho $
+# $LAAS: robotpkg.mk 2009/01/27 16:36:59 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -390,7 +390,9 @@ ${WRKDIR}:
 include ${ROBOTPKG_DIR}/mk/clean.mk
 
 # Fetch
-include ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk
+ifndef MK_ROBOTPKG_FETCH
+  include ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk
+endif
 
 # Checksum
 include ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk
