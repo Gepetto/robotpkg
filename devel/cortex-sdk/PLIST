@@ -2,5 +2,3 @@
 include/EVaRT2.h
 bin/EVaComm2.dll
 bin/EVaComm2.lib
-share/doc/EVaRT-SDK/ReadMe.txt
-@dirrm share/doc/EVaRT-SDK
