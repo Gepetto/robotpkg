@@ -17,6 +17,7 @@ SUBDIR+=	hpp-kwsplus
 SUBDIR+=	hpp-model
 SUBDIR+=	jrl-modelloader
 SUBDIR+=	libedit
+SUBDIR+=	libjyarp
 SUBDIR+=	mkdep
 SUBDIR+=	omniORB
 SUBDIR+=	omniORBpy

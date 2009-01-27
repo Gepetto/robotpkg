@@ -1,0 +1,7 @@
+This package is for producing SWIG interfaces to YARP.
+
+This lets you run YARP from Java.
+
+Note that while we try to preserve YARP as close to its original form as
+possible, some classes and methods had to be changed because of issues with
+templates and pointers.  So the API is slightly different from the original.
