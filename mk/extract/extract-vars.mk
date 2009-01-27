@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/01/21 15:56:12 mallet $
+# $LAAS: extract-vars.mk 2009/01/27 16:49:41 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -37,6 +37,10 @@
 
 MK_ROBOTPKG_EXTRACT:=	defined
 
+ifndef MK_ROBOTPKG_FETCH
+  include ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk
+endif
+
 # The following variables may be set by the package Makefile and
 # specify how extraction happens:
 #
@@ -50,10 +54,10 @@ MK_ROBOTPKG_EXTRACT:=	defined
 EXTRACT_ONLY?=		${DISTFILES}
 EXTRACT_SUFX?=		.tar.gz
 
-###
-### Discover which tools we need based on the file extensions of the
-### distfiles.
-###
+
+# Discover which tools we need based on the file extensions of the
+# distfiles.
+#
 #.if !empty(EXTRACT_ONLY:M*.tar) || \
 #    !empty(EXTRACT_ONLY:M*.tar.*) || \
 #    !empty(EXTRACT_ONLY:M*.tbz) || \
@@ -79,9 +83,10 @@ EXTRACT_SUFX?=		.tar.gz
 #    !empty(EXTRACT_ONLY:M*.tbz2)
 #USE_TOOLS+=	bzcat
 #.endif
-#.if !empty(EXTRACT_ONLY:M*.zip)
-#USE_TOOLS+=	unzip
-#.endif
+ifneq (,$(filter %.zip,${EXTRACT_ONLY}))
+  DEPEND_METHOD.unzip+=	bootstrap
+  include ${ROBOTPKG_DIR}/mk/sysdep/unzip.mk
+endif
 #.if !empty(EXTRACT_ONLY:M*.lzh) || \
 #    !empty(EXTRACT_ONLY:M*.lha)
 #USE_TOOLS+=	lha
