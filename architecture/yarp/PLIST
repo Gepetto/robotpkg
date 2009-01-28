@@ -153,9 +153,12 @@ include/yarp/sig/SoundFile.h
 include/yarp/sig/Vector.h
 include/yarp/sig/all.h
 include/yarp/ydr.h
-lib/libYARP_OS.a
-lib/libYARP_dev.a
-lib/libYARP_sig.a
+lib/libYARP_OS.so
+lib/libYARP_OS.so.${PKGVERSION}
+lib/libYARP_dev.so
+lib/libYARP_dev.so.${PKGVERSION}
+lib/libYARP_sig.so
+lib/libYARP_sig.so.${PKGVERSION}
 @dirrm include/yarp/sig
 @dirrm include/yarp/os
 @dirrm include/yarp/dev

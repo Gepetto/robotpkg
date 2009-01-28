@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/27 18:42:45 mallet $
+# $LAAS: unzip.mk 2009/01/27 16:48:34 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -15,31 +15,30 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                             Anthony Mallet on Thu Jan 22 2009
+#                                             Anthony Mallet on Thu Jan 27 2009
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-YARP_DEPEND_MK:=	${YARP_DEPEND_MK}+
+UNZIP_DEPEND_MK:=	${UNZIP_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		yarp
+DEPEND_PKG+=		unzip
 endif
 
-ifeq (+,$(YARP_DEPEND_MK)) # -----------------------------------------------
+ifeq (+,$(UNZIP_DEPEND_MK)) # ----------------------------------------------
 
-PREFER.yarp?=		robotpkg
+PREFER.unzip?=		system
 
-DEPEND_USE+=		yarp
-DEPEND_ABI.yarp?=	yarp>=2.2.2
-DEPEND_DIR.yarp?=	../../architecture/yarp
+DEPEND_USE+=		unzip
+DEPEND_ABI.unzip?=	unzip
+DEPEND_METHOD.unzip?=	build
+SYSTEM_SEARCH.unzip=	'bin/unzip'
 
-SYSTEM_SEARCH.yarp=\
-	'bin/yarp:s/[^.0-9]//gp:% version'	\
-	include/yarp/dev/all.h			\
-	lib/libYARP_OS.{a,so}
+# Don't call this variable "UNZIP" because the unzip program uses this
+# environment variable to define default options.
+#
+export UNZIP_CMD=	${PREFIX.unzip}/bin/unzip
 
-include ../../architecture/ace/depend.mk
-
-endif # YARP_DEPEND_MK ----------------------------------------------------
+endif # UNZIP_DEPEND_MK ----------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

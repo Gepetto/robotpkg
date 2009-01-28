@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/01/19 11:29:48 mallet $
+# $LAAS: utils.mk 2009/01/23 12:32:30 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -44,7 +44,7 @@ TMPDIR?=	/tmp
 # i.e. "make show-var VARNAME=var", will print var's value
 .PHONY: show-var
 show-var:
-	@${ECHO} $(call quote,${${VARNAME}})
+	@${ECHO} '$(subst ','\'',${${VARNAME}})' #'
 
 # enhanced version of target above, to display multiple variables
 .PHONY: show-vars

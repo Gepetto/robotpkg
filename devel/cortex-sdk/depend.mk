@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/07/15 11:54:11 mallet $
+# $LAAS: depend.mk 2009/01/27 11:52:17 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -17,24 +17,24 @@
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-EVART_SDK_DEPEND_MK:=	${EVART_SDK_DEPEND_MK}+
+CORTEX_SDK_DEPEND_MK:=	${CORTEX_SDK_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		evart-sdk
+DEPEND_PKG+=		cortex-sdk
 endif
 
-ifeq (+,$(EVART_SDK_DEPEND_MK)) # ------------------------------------
-PREFER.evart-sdk?=	robotpkg
+ifeq (+,$(CORTEX_SDK_DEPEND_MK)) # -----------------------------------------
+PREFER.cortex-sdk?=	robotpkg
 
-DEPEND_USE+=		evart-sdk
+DEPEND_USE+=		cortex-sdk
 
-DEPEND_ABI.evart-sdk?=	evart-sdk>=1.0.1
-DEPEND_DIR.evart-sdk?=	../../devel/evart-sdk
+DEPEND_ABI.cortex-sdk?=	cortex-sdk>=1.0.3
+DEPEND_DIR.cortex-sdk?=	../../devel/cortex-sdk
 
-SYSTEM_SEARCH.evart-sdk=\
+SYSTEM_SEARCH.cortex-sdk=\
 	bin/EVaComm2.dll		\
 	include/EVaRT2.h
 
-endif # EVART_SDK_DEPEND_MK ------------------------------------------
+endif # CORTEX_SDK_DEPEND_MK -----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

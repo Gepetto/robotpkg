@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/07/15 16:45:24 mallet $
+# $LAAS: Makefile 2009/01/27 11:50:38 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -16,19 +16,22 @@
 #                                      Anthony Mallet on Thu Jul  3 2008
 #
 
-VERSION=		1.0.1
-DISTNAME=		EVaRT_SDK2_${VERSION}
-PKGNAME=		evart-sdk-${VERSION}
+VERSION=		1.0.3
+DISTNAME=		SDK2_v${VERSION}_win32
+PKGNAME=		cortex-sdk-${VERSION}
+EXTRACT_SUFX=		.zip
 
 CATEGORIES=		devel
 MASTER_SITES=
 
-MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		http://www.motionanalysis.com/html/industrial/evart.html
-COMMENT=		EVa Real-Time Software Development Kit.
+CONFLICTS+=             evart-sdk	# old package for EvaRT
 
-PREFIX?=			${LOCALBASE}/i386-mingw32
-WRKSRC=			${WRKDIR}/SDK2_v${VERSION}
+MAINTAINER=		openrobots@laas.fr
+HOMEPAGE=		http://www.motionanalysis.com/html/industrial/cortex.html
+COMMENT=		Cortex Software Development Kit.
+
+PREFIX?=		${LOCALBASE}/i386-mingw32
+WRKSRC=			${WRKDIR}
 
 LICENSE=                motion-analysis-license
 RESTRICTED=             You cannot redistribute this software.
@@ -36,11 +39,11 @@ NO_PUBLIC_SRC=          ${RESTRICTED}
 NO_PUBLIC_BIN=          ${RESTRICTED}
 
 INTERACTIVE_STAGE=      fetch
-FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing EVaRT_SDK2 ${VERSION}"
+FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing Cortex SDK2 ${VERSION}"
 FETCH_MESSAGE+= " must be put manually into:"
 FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 FETCH_MESSAGE+= ""
-FETCH_MESSAGE+= " In order to obtain this file, contact your local system administrator."
+FETCH_MESSAGE+= " This file is located on the Cortex CDROM, in the Sdk2 directory."
 
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
@@ -53,8 +56,6 @@ post-extract:
 do-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/bin
 	${INSTALL_DATA_DIR} ${PREFIX}/include
-	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/EVaRT-SDK
 	${INSTALL_PROGRAM} ${WRKSRC}/EVaComm2.dll ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/EVaComm2.lib ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/EVaRT2.h ${PREFIX}/include
-	${INSTALL_DATA} ${WRKSRC}/ReadMe.txt ${PREFIX}/share/doc/EVaRT-SDK

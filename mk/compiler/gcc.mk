@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/01/16 20:18:40 tho $
+# $LAAS: gcc.mk 2009/01/26 16:56:09 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -69,9 +69,7 @@ else
     include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c++.mk
   endif
   ifneq (,$(filter fortran,${USE_LANGUAGES}))
-    ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0' 'gcc-${_GCC_REQD}' && echo y))
-      include ${ROBOTPKG_DIR}/lang/gcc4-fortran/depend.mk
-    endif
+    include ${ROBOTPKG_DIR}/mk/sysdep/gcc-fortran.mk
   endif
 endif
 

@@ -1,4 +1,4 @@
-# $LAAS: extract.mk 2009/01/09 18:42:52 mallet $
+# $LAAS: extract.mk 2009/01/27 16:48:56 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -250,8 +250,8 @@ endif
 ifdef TOOLS_UNRAR
 _EXTRACT_ENV+=	UNRAR=${TOOLS_UNRAR}
 endif
-ifdef TOOLS_UNZIP_CMD
-_EXTRACT_ENV+=	UNZIP_CMD=${TOOLS_UNZIP_CMD}
+ifdef UNZIP_CMD
+_EXTRACT_ENV+=	UNZIP_CMD=${UNZIP_CMD}
 endif
 ifdef TOOLS_UNZOO
 _EXTRACT_ENV+=	UNZOO=${TOOLS_UNZOO}

@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/22 18:43:43 mallet $
+# $LAAS: Makefile 2009/01/27 17:07:57 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -31,6 +31,7 @@ USE_LANGUAGES+=		c++
 CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 CMAKE_ARGS+=		-DACE_LINK_FLAGS=-L${PREFIX.ace}/lib
+CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
 
 # XXX needs something more generic
 CXXFLAGS+=		-pthread
