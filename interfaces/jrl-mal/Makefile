@@ -18,7 +18,7 @@
 
 DISTNAME=	matrixabstractlayer-${VERSION}
 PKGNAME=	jrl-mal-${VERSION}
-VERSION=	1.7.1
+VERSION=	1.7.2
 
 CATEGORIES=	interfaces
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
@@ -38,6 +38,7 @@ PKG_OPTION_DESCR.t3d=	Use t3d for rigid body transformations
 define PKG_OPTION_SET.t3d
   CMAKE_ARGS+= -DSMALLMATRIX=t3d 
   include ../../math/t3d/depend.mk
+  include ../../math/jrl-mathtools/depend.mk
 endef
 
 PKG_OPTION_DESCR.jrl-mathtools=	Use jrl-mathtools for rigid body transformations
