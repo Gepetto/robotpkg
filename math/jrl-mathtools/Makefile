@@ -16,8 +16,8 @@
 #                                      Anthony Mallet on Wed Sep 17 2008
 #
 
-DISTNAME=	jrlmathtools-1.0
-PKGNAME=	jrl-mathtools-1.0
+DISTNAME=	jrlmathtools-1.1
+PKGNAME=	jrl-mathtools-1.1
 
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
@@ -26,6 +26,5 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic mathematical tools used in the JRL software.
 
-GNU_CONFIGURE=	yes
-
+include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
