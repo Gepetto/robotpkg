@@ -1,13 +1,17 @@
 How to release a new version of a package
 -----------------------------------------
 
+autotools packages
+------------------
 In the package 
   - be sure that your working version is up to date.
   - in ChangeLog: add missing commit messages and notify new release 
   - in configure.ac: upgrade the version number 
-  - in package.pc.in: upgrade dependency versions
+  - in configure.ac or package.pc.in: upgrade dependency versions
   - cd build; make to check that package compiles
-  - cd build; make dist and copy package.tar.gz into softs.laas.fr:/www/htdocs/openrobots/distfiles 
+  - cd build; make dist
+  - ftp softs.laas.fr (login jrl if MASTER_SITES=${MASTER_SITE_JRL} in pkgconfig Makefile)
+    > put nameofthepackage-x.y.tar.gz
 
 In openrobots/robotpkg/.../package
   - update Makefile with new version number
@@ -25,7 +29,48 @@ In the package
   - commit and push
   - add a tag.
     - git-tag -m "release x.y" x.y
-    - git-push --tags
+  - increment version number as x.y.99
+  - git commit 
+  - git-push --tags
+
+cmake packages
+--------------
+
+In the package 
+  - be sure that your working version is up to date.
+  - make a temporary branch: git branch release-x.y <commit-id>
+  - git checkout release-x.y
+  - in ChangeLog: add missing commit messages and notify new release 
+  - in CMakeLists.txt: upgrade the version number 
+  - in CMakeLists.txt: upgrade dependency versions
+  - cd build; rm -rf *; cmake -DCMAKE_INSTALL_PREFIX=/tmp ..; make install to check that package compiles
+  - git commit -a
+  - git archive --format=tar --prefix=nameofthepackage-x.y/ HEAD | gzip > nameofthepackage-x.y.tar.gz
+  - ftp softs.laas.fr (login jrl if MASTER_SITES=${MASTER_SITE_JRL} in pkgconfig Makefile)
+    > put nameofthepackage-x.y.tar.gz
+  
+In openrobots/robotpkg/.../package
+  - update Makefile with new version number
+  - make mdi
+  - make install
+  - cp work/nameofthepackage-x.y/install_manifest.txt PLIST.tmp
+  - edit PLIST.tmp and 
+    - remove installation prefix in absolute paths: (e.g. /home/florent/openrobots/lib/pkgconfig/nameOfThePackage.pc -> lib/pkgconfig/nameOfThePackage.pc)
+    - add directives to remove directories created by this package (e.g. @dirrm include/nameOfThePackage)
+  - mv PLIST.tmp PLIST
+  - make clean to remove build directory.
+  - commit the modifs.
+    - prefix commit message by [category/package],
+    - insert list of changes from ChangeLog in commit body message.
+
+In the package
+  - git commit 
+  - add a tag.
+    - git-tag -m "release x.y" x.y
+  - merge branch release-x.y into master
+  - increment version number as x.y.99
+  - git commit 
+  - git-push --tags
 
 Important
 ---------
