@@ -18,7 +18,7 @@
 
 DISTNAME=	walkgenjrl-${VERSION}
 PKGNAME=	jrl-walkgen-${VERSION}
-VERSION=	2.4.1
+VERSION=	2.5.0
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_JRL}
@@ -27,8 +27,7 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/jrl/spip/-Walk-Pattern-Generator-.html
 COMMENT=	Walk pattern generator for the HRP-2 humanoid robot.
 
-GNU_CONFIGURE=	yes
-
+include ../../mk/sysdep/cmake.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
