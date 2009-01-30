@@ -1,4 +1,4 @@
-# $LAAS: print-plist.mk 2009/01/23 14:05:57 mallet $
+# $LAAS: print-plist.mk 2009/01/30 12:18:46 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -53,10 +53,29 @@
 #    PRINT_PLIST_IGNORE_DIRS is a list of paths that should be ignored by
 #	print-PLIST.
 #
+#    PRINT_PLIST_FILES_CMD is a sequence of commands, terminating in a
+#	semicolon, that outputs any files modified since the package was
+#	extracted.
+#
 
 PRINT_PLIST_IGNORE_DIRS?=#	empty by default
 PRINT_PLIST_IGNORE_DIRS+=	${PKG_DBDIR}
 PRINT_PLIST_IGNORE_DIRS+=	${ROBOTPKG_DIR}
+
+PRINT_PLIST_FILES_CMD?=		${TRUE};
+
+
+# scan $PREFIX for any files/dirs modified since the package was extracted
+# will emit "@exec mkdir"-statements for empty directories
+# XXX will fail for data files that were copied using tar!
+# XXX should check $LOCALBASE, and add @cwd statements
+#
+_PRINT_PLIST_FILES_CMD=	\
+	${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.extract} \! -type d -print;
+_PRINT_PLIST_FILES_CMD+=	${PRINT_PLIST_FILES_CMD}
+
+_PRINT_PLIST_DIRS_CMD=	\
+	${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.extract} -type d -print
 
 _PRINT_PLIST_AWK_SUBST={
 
@@ -84,15 +103,6 @@ _PRINT_PLIST_AWK_IGNORE:=$(foreach __dir__,${PRINT_PLIST_IGNORE_DIRS},	\
 	next;								\
   })
 
-# scan $PREFIX for any files/dirs modified since the package was extracted
-# will emit "@exec mkdir"-statements for empty directories
-# XXX will fail for data files that were copied using tar!
-# XXX should check $LOCALBASE, and add @cwd statements
-
-_PRINT_PLIST_FILES_CMD=	\
-	${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.extract} \! -type d -print
-_PRINT_PLIST_DIRS_CMD=	\
-	${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.extract} -type d -print
 
 ifneq (,$(call isyes,$(LIBTOOLIZE_PLIST)))
 _PRINT_PLIST_LIBTOOLIZE_FILTER?=					\
@@ -126,21 +136,21 @@ endif
 .PHONY: print-PLIST
 print-PLIST:
 	${RUN}${ECHO} '@comment '`${DATE}`
-	${RUN}${_PRINT_PLIST_FILES_CMD}					\
+	${RUN}{ ${_PRINT_PLIST_FILES_CMD} }				\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
-	 | ${SORT}							\
 	 | ${AWK}  '							\
-		{ sub("${PREFIX}/\\./", ""); }				\
+		{ sub("${PREFIX}/(\\./)?", ""); }			\
 		${_PRINT_PLIST_AWK_IGNORE}	 			\
 		${_PRINT_PLIST_AWK_SUBST}				\
-		{ print $$0; }'
+		{ print $$0; }'						\
+	 | ${SORT} -u
 	${RUN}for i in `${_PRINT_PLIST_DIRS_CMD}			\
-		| ${SORT} -r						\
 		| ${AWK} '						\
 			/$(subst /,\/,${PREFIX})\/\.$$/ { next; }	\
 			{ sub("${PREFIX}/\\\./", ""); }			\
 			${_PRINT_PLIST_AWK_IGNORE}			\
-			{ print $$0; }'`;				\
+			{ print $$0; }'					\
+		| ${SORT} -r`;						\
 	do								\
 		if [ `${LS} -la ${PREFIX}/$$i | ${WC} -l` = 3 ]; then	\
 			${ECHO} @exec \$${MKDIR} %D/$$i | ${AWK} '	\
