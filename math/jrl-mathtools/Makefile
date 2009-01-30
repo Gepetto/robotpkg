@@ -1,6 +1,6 @@
-# $LAAS: $
+# $LAAS: Makefile 2009/01/30 18:54:47 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -26,5 +26,8 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic mathematical tools used in the JRL software.
 
+DOXYGEN_PLIST_DIR+=	share/doc/jrlMathTools
+
 include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk
