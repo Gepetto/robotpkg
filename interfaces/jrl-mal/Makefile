@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/26 15:48:54 mallet $
+# $LAAS: Makefile 2009/01/30 17:40:05 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -24,7 +24,7 @@ CATEGORIES=	interfaces
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Matrix abstraction layer for boost or vnl.
 
 USE_LANGUAGES+=	c++ fortran
@@ -36,18 +36,20 @@ PKG_SUGGESTED_OPTIONS+=	t3d
 
 PKG_OPTION_DESCR.t3d=	Use t3d for rigid body transformations
 define PKG_OPTION_SET.t3d
-  CMAKE_ARGS+= -DSMALLMATRIX=t3d 
+  CMAKE_ARGS+= -DSMALLMATRIX=t3d
   include ../../math/t3d/depend.mk
-  include ../../math/jrl-mathtools/depend.mk
 endef
 
 PKG_OPTION_DESCR.jrl-mathtools=	Use jrl-mathtools for rigid body transformations
 define PKG_OPTION_SET.jrl-mathtools
-  CMAKE_ARGS+= -DSMALLMATRIX=jrlMathTools 
-  include ../../math/jrl-mathtools/depend.mk
+  CMAKE_ARGS+= -DSMALLMATRIX=jrlMathTools
 endef
 
+PKG_OPTIONS_REQUIRED_GROUPS=	matrix
+PKG_OPTIONS_GROUP.matrix=	t3d jrl-mathtools
+
 include ../../mk/sysdep/cmake.mk
+include ../../math/jrl-mathtools/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
