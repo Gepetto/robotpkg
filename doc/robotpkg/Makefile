@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/19 18:59:21 mallet $
+# $LAAS: Makefile 2009/01/30 23:23:35 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -37,7 +37,6 @@ INSTALL_TARGET=		$(patsubst %,install-%,$(sort ${OUTPUTS}))
 
 # option for pdf output generation
 #
-PKG_SUPPORTED_OPTIONS+= pdf
 PKG_SUGGESTED_OPTIONS+= pdf
 PKG_OPTION_DESCR.pdf=	Generate PDF output
 define PKG_OPTION_SET.pdf
@@ -47,7 +46,6 @@ endef
 
 # option for html output generation
 #
-PKG_SUPPORTED_OPTIONS+= html
 PKG_OPTION_DESCR.html=	Generate HTML output
 define PKG_OPTION_SET.html
   OUTPUTS+=	html
@@ -57,7 +55,6 @@ endef
 
 # option for text output generation
 #
-PKG_SUPPORTED_OPTIONS+= txt
 PKG_OPTION_DESCR.txt=	Generate ASCII text output
 define PKG_OPTION_SET.txt
   OUTPUTS+=	txt
@@ -66,8 +63,8 @@ define PKG_OPTION_SET.txt
   include ../../mk/sysdep/w3m.mk
 endef
 
-PKG_OPTIONS_REQUIRED_GROUPS=	output
-PKG_OPTIONS_GROUP.output=	html pdf txt
+PKG_OPTIONS_NONEMPTY_SETS=	output
+PKG_OPTIONS_SET.output=		html pdf txt
 
 include ../../mk/robotpkg.mk
 
