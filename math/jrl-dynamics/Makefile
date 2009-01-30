@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/10 13:48:01 mallet $
+# $LAAS: Makefile 2009/01/30 19:03:58 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -27,10 +27,13 @@ NO_PUBLIC_SRC=	yes
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	JRL-Japan implementation of dynamic robot.
 
-DEPENDS+=	jrl-mal>=1.7.2:../../interfaces/jrl-mal
+DOXYGEN_PLIST_DIR+=	share/doc/dynamicsJRLJapan
 
 include ../../mk/sysdep/cmake.mk
+include ../../interfaces/jrl-mal/depend.mk
 include ../../interfaces/jrl-interface-dynamics/depend.mk
-include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/pdflatex.mk
 include ../../mk/robotpkg.mk
