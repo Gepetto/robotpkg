@@ -1,4 +1,4 @@
-# $LAAS: doxygen.mk 2009/01/23 14:06:08 mallet $
+# $LAAS: doxygen.mk 2009/01/30 17:44:37 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -36,8 +36,8 @@ SYSTEM_SEARCH.doxygen=	'bin/doxygen:p:% --version'
 ifdef DOXYGEN_PLIST_DIR
   GENERATE_PLIST+=							\
 	${FIND} $(addprefix ${PREFIX}/,${DOXYGEN_PLIST_DIR})		\
-		 \( -type f -o -type l \) -newer ${_COOKIE.extract}	\
-		 -print | ${SORT} | ${SED} -e "s,${PREFIX}/,,g";	\
+		 \( -type f -o -type l \) -print | ${SORT}		\
+		| ${SED} -e "s,${PREFIX}/,,g";				\
 	${FIND} $(addprefix ${PREFIX}/,${DOXYGEN_PLIST_DIR})		\
 		 -type d -print 					\
 		| ${SORT} -r | ${SED} -e "s,${PREFIX}/,@dirrm ,g";
