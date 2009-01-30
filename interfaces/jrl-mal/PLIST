@@ -21,6 +21,4 @@ include/MatrixAbstractLayer/boostVector.h
 include/MatrixAbstractLayer/boostspecific.h
 include/MatrixAbstractLayer/configMAL.h
 lib/pkgconfig/MatrixAbstractLayer.pc
-@dirrm lib/pkgconfig
 @dirrm include/MatrixAbstractLayer
-@dirrm include
