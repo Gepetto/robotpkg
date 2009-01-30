@@ -358,6 +358,13 @@ share/doc/dynamicsJRLJapan/html/form_25.png
 share/doc/dynamicsJRLJapan/html/functions_0x69.html
 share/doc/dynamicsJRLJapan/html/pictures/footer.jpg
 share/doc/dynamicsJRLJapan/html/dynamicsJRLJapan.doxytag
+share/doc/dynamicsJRLJapan/html/classdynamics_j_r_l_japan_1_1_hand__coll__graph.map
+share/doc/dynamicsJRLJapan/html/classdynamics_j_r_l_japan_1_1_hand__coll__graph.md5
+share/doc/dynamicsJRLJapan/html/classdynamics_j_r_l_japan_1_1_hand__coll__graph.png
+share/doc/dynamicsJRLJapan/html/classdynamics_j_r_l_japan_1_1_hand__inherit__graph.map
+share/doc/dynamicsJRLJapan/html/classdynamics_j_r_l_japan_1_1_hand__inherit__graph.md5
+share/doc/dynamicsJRLJapan/html/classdynamics_j_r_l_japan_1_1_hand__inherit__graph.png
+share/doc/dynamicsJRLJapan/html/installdox
 @dirrm include/dynamicsJRLJapan
 @dirrm share/doc/dynamicsJRLJapan/html/pictures
 @dirrm share/doc/dynamicsJRLJapan/html
