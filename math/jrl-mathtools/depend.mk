@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/09/17 14:10:05 mallet $
+# $LAAS: depend.mk 2009/01/30 18:52:09 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -29,7 +29,7 @@ PREFER.jrl-mathtools?=	robotpkg
 
 DEPEND_USE+=		jrl-mathtools
 
-DEPEND_ABI.jrl-mathtools?=jrl-mathtools>=1.0
+DEPEND_ABI.jrl-mathtools?=jrl-mathtools>=1.1
 DEPEND_DIR.jrl-mathtools?=../../math/jrl-mathtools
 
 SYSTEM_SEARCH.jrl-mathtools=\
