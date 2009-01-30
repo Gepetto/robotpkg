@@ -1,6 +1,5 @@
 SHA1 (dynamicsjrljapan-1.10.tar.gz) = dfc67dd7f79526d4f91791a811ddc0fc53a247e7
 RMD160 (dynamicsjrljapan-1.10.tar.gz) = 2807926ec825a895f5e017860ae2a58cf6b5bdd1
 Size (dynamicsjrljapan-1.10.tar.gz) = 109495 bytes
-SHA1 (patch-aa) = 707e2ecfdbc2cc41bf70d0eca0cd19999eb8ab95
-SHA1 (patch-ab) = 5ca21d2d9da30f9390b7184ca0156fdac74ec6cf
-SHA1 (patch-ac) = d071eb8ca4694ff8e1f288a64bda9708426310fa
+SHA1 (patch-aa) = 0e2387941656e0a9a784341b5fe8fa5f5d1a8971
+SHA1 (patch-ab) = 1ccb6d6fea1c87fd18ee7ac7d766e13da8da00b0
