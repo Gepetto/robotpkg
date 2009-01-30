@@ -18,21 +18,18 @@
 
 DISTNAME=	dynamicsjrljapan-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
-VERSION=	1.9
-PKGREVISION=	2
+VERSION=	1.10
 
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_JRL}
 NO_PUBLIC_SRC=	yes
 
 MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=	
 COMMENT=	JRL-Japan implementation of dynamic robot.
 
-DEPENDS+=	jrl-mal>=1.4:../../interfaces/jrl-mal
+DEPENDS+=	jrl-mal>=1.7.2:../../interfaces/jrl-mal
 
-GNU_CONFIGURE=	yes
-
+include ../../mk/sysdep/cmake.mk
 include ../../interfaces/jrl-interface-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
