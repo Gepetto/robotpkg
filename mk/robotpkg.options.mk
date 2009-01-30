@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2009/01/19 17:44:38 mallet $
+# $LAAS: robotpkg.options.mk 2009/01/30 23:24:15 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -65,6 +65,13 @@
 #		the packages will fail if no option from the group
 #		is selected.
 #
+#	PKG_OPTIONS_NONEMPTY_SETS
+#	       This is a list of names of sets of options.  At
+#	       least one option from each set must be selected.
+#	       The options in each set are listed in
+#	       PKG_OPTIONS_SET.<setname>.  Options from the sets
+#	       will be automatically added to PKG_SUPPORTED_OPTIONS.
+#
 #	PKG_OPTIONS_VAR
 #		The variable the user can set to enable or disable
 #		options specifically for this package. Defaults to
@@ -125,7 +132,7 @@
 ifndef PKG_OPTIONS_MK
 PKG_OPTIONS_MK=		# defined
 
-# Remenber the general options for `show-options' target
+# Remember the general options for `show-options' target
 #
 PKG_GENERAL_OPTIONS:=	${PKG_SUPPORTED_OPTIONS}
 
@@ -144,6 +151,20 @@ endef
 $(foreach _o_,\
 	${PKG_OPTIONS_OPTIONAL_GROUPS} ${PKG_OPTIONS_REQUIRED_GROUPS},\
 	$(eval $(call _pkgopt_mapgrp,${_o_})))
+
+
+# Add options from sets to PKG_SUPPORTED_OPTIONS
+#
+_PKG_OPTIONS_ALL_SETS:=#empty
+override define _pkgopt_addset
+  ifeq (,$(strip ${PKG_OPTIONS_SET.${1}}))
+    PKG_FAIL_REASON+=	"PKG_OPTIONS_SET.${1} must be non-empty."
+  endif
+  PKG_SUPPORTED_OPTIONS+=${PKG_OPTIONS_SET.${1}}
+  _PKG_OPTIONS_ALL_SETS+=${PKG_OPTIONS_SET.${1}}
+endef
+$(foreach _s_,\
+	${PKG_OPTIONS_NONEMPTY_SETS}, $(eval $(call _pkgopt_addset,${_s_})))
 
 
 # Don't parse this file if the package doesn't have options
@@ -229,6 +250,23 @@ $(foreach _g_,\
 	$(eval $(call _pkgopt_addgrps,${_g_})))
 
 
+# Fail if a set is empty
+#
+override define _pkgopt_chkset
+  ifeq (,$(filter ${PKG_OPTIONS_SET.${1}},${PKG_OPTIONS}))
+    ifneq (,$${PKG_FAIL_REASON})
+      PKG_FAIL_REASON+=""
+    endif
+    PKG_FAIL_REASON+=	${hline}
+    PKG_FAIL_REASON+=	"At least one of the following build options must be selected: "
+    PKG_FAIL_REASON+=	"	"$(call quote,${PKG_OPTIONS_SET.${1}})
+    PKG_OPTIONS_FAILED=	yes
+  endif
+endef
+$(foreach _s_,\
+	${PKG_OPTIONS_NONEMPTY_SETS},$(eval $(call _pkgopt_chkset,${_s_})))
+
+
 # Bail out if there remain some unspported options.
 #
 ifneq (,$(strip $(_OPTIONS_UNSUPPORTED)))
@@ -292,6 +330,9 @@ endif
 	${RUN}$(foreach _g_, ${PKG_OPTIONS_OPTIONAL_GROUPS},		\
 	  ${ECHO} "At most one of the following ${_g_} options may be selected:";\
 	  $(call _pkgopt_listopt,${PKG_OPTIONS_GROUP.${_g_}}))
+	${RUN}$(foreach _s_, ${PKG_OPTIONS_NONEMPTY_SETS},		\
+	  ${ECHO} "At least one of the following ${_s_} options must be selected:";\
+	  $(call _pkgopt_listopt,${PKG_OPTIONS_SET.${_s_}}))
 	@${ECHO}
 	@${ECHO} "These options are enabled by default:"
 ifneq (,$(strip ${PKG_SUGGESTED_OPTIONS}))
