@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/10/13 11:20:33 mallet $
+# $LAAS: Makefile 2009/01/30 19:10:34 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -27,7 +27,13 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/jrl/spip/-Walk-Pattern-Generator-.html
 COMMENT=	Walk pattern generator for the HRP-2 humanoid robot.
 
+USE_LANGUAGES+=		c++ fortran
+DOXYGEN_PLIST_DIR+=	share/doc/walkGenJrl
+
 include ../../mk/sysdep/cmake.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/pdflatex.mk
 include ../../mk/robotpkg.mk
