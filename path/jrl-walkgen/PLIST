@@ -42,6 +42,10 @@ include//walkGenJrl/walkGenJrl_API.h
 lib/libwalkGenJrl.so
 lib/libwalkGenJrl.so.${PKGVERSION}
 lib/pkgconfig/walkGenJrl.pc
+share/walkgenjrl/HRP2LinkJointRank.xml
+share/walkgenjrl/HRP2Specificities.xml
+share/walkgenjrl/PreviewControlParameters.ini
+@dirrm share/walkgenjrl
 @dirrm include/walkGenJrl/ZMPRefTrajectoryGeneration
 @dirrm include/walkGenJrl/PreviewControl
 @dirrm include/walkGenJrl/MotionGeneration
