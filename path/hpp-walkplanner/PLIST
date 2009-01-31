@@ -1,20 +1,20 @@
-@comment Wed Sep 17 15:29:50 CEST 2008
+@comment Sat Jan 31 11:59:36 JST 2009
 include/hppWalkPlanner/hppWalkPatGen.h
 include/hppWalkPlanner/hppWalkPlanner.h
 lib/libhppWalkPlanner.la
 lib/pkgconfig/hppWalkPlanner.pc
 share/doc/doxytag/hppWalkPlanner.doxytag
 share/doc/hppWalkPlanner/annotated.html
-share/doc/hppWalkPlanner/class_chpp_walk_pat_gen-members.html
 share/doc/hppWalkPlanner/class_chpp_walk_pat_gen.html
-share/doc/hppWalkPlanner/class_chpp_walk_planner-members.html
-share/doc/hppWalkPlanner/class_chpp_walk_planner.html
+share/doc/hppWalkPlanner/class_chpp_walk_pat_gen-members.html
 share/doc/hppWalkPlanner/class_chpp_walk_planner__coll__graph.map
 share/doc/hppWalkPlanner/class_chpp_walk_planner__coll__graph.md5
 share/doc/hppWalkPlanner/class_chpp_walk_planner__coll__graph.png
+share/doc/hppWalkPlanner/class_chpp_walk_planner.html
 share/doc/hppWalkPlanner/class_chpp_walk_planner__inherit__graph.map
 share/doc/hppWalkPlanner/class_chpp_walk_planner__inherit__graph.md5
 share/doc/hppWalkPlanner/class_chpp_walk_planner__inherit__graph.png
+share/doc/hppWalkPlanner/class_chpp_walk_planner-members.html
 share/doc/hppWalkPlanner/doc_2additional_doc_2hpp_walk_planner_8h.html
 share/doc/hppWalkPlanner/doxygen.png
 share/doc/hppWalkPlanner/files.html
@@ -30,20 +30,20 @@ share/doc/hppWalkPlanner/ftv2node.png
 share/doc/hppWalkPlanner/ftv2plastnode.png
 share/doc/hppWalkPlanner/ftv2pnode.png
 share/doc/hppWalkPlanner/ftv2vertline.png
-share/doc/hppWalkPlanner/functions.html
 share/doc/hppWalkPlanner/functions_func.html
+share/doc/hppWalkPlanner/functions.html
 share/doc/hppWalkPlanner/functions_vars.html
-share/doc/hppWalkPlanner/globals.html
 share/doc/hppWalkPlanner/globals_func.html
+share/doc/hppWalkPlanner/globals.html
 share/doc/hppWalkPlanner/graph_legend.dot
 share/doc/hppWalkPlanner/graph_legend.html
 share/doc/hppWalkPlanner/graph_legend.png
 share/doc/hppWalkPlanner/hierarchy.html
 share/doc/hppWalkPlanner/hpp.css
-share/doc/hppWalkPlanner/hpp_walk_pat_gen_8h.html
 share/doc/hppWalkPlanner/hpp_walk_pat_gen_8h__dep__incl.map
 share/doc/hppWalkPlanner/hpp_walk_pat_gen_8h__dep__incl.md5
 share/doc/hppWalkPlanner/hpp_walk_pat_gen_8h__dep__incl.png
+share/doc/hppWalkPlanner/hpp_walk_pat_gen_8h.html
 share/doc/hppWalkPlanner/hpp_walk_pat_gen_8h__incl.map
 share/doc/hppWalkPlanner/hpp_walk_pat_gen_8h__incl.md5
 share/doc/hppWalkPlanner/hpp_walk_pat_gen_8h__incl.png
@@ -70,4 +70,6 @@ share/doc/hppWalkPlanner/trajectory.png
 share/doc/hppWalkPlanner/tree.html
 @dirrm share/doc/hppWalkPlanner/pictures
 @dirrm share/doc/hppWalkPlanner
+@dirrm share/doc/doxytag
+@dirrm lib/pkgconfig
 @dirrm include/hppWalkPlanner
