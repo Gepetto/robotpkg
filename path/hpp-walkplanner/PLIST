@@ -70,6 +70,4 @@ share/doc/hppWalkPlanner/trajectory.png
 share/doc/hppWalkPlanner/tree.html
 @dirrm share/doc/hppWalkPlanner/pictures
 @dirrm share/doc/hppWalkPlanner
-@dirrm share/doc/doxytag
-@dirrm lib/pkgconfig
 @dirrm include/hppWalkPlanner
