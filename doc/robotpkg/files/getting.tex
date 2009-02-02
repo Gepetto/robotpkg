@@ -1,4 +1,4 @@
-% $LAAS: getting.tex 2009/01/16 23:42:39 tho $
+% $LAAS: getting.tex 2009/02/02 00:14:34 tho $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -18,14 +18,15 @@
 %                                             Anthony Mallet on Sat Jan 10 2009
 %
 
-\section{Where to get robotpkg and how to keep it up-to-date} % ------------
-\label{section:getting}
-
 Basically, there are two ways of using robotpkg.  The  first is to only install
 the package tools  and to use binary packages  that someone  else has prepared.
 The second way is  to install the programs from   source. Then you are able  to
 build your  own packages, and  you can still use   binary packages from someone
 else.
+
+
+\section{Where to get robotpkg and how to keep it up-to-date} % ------------
+\label{section:getting}
 
 Before you download and extract the files, you need to decide where you want to
 extract  them.  robotpkg is  usually installed  in  {\tt /opt/openrobots},  but
@@ -39,7 +40,7 @@ using {\tt  /opt/openrobots}.  You should adapt  this path to whatever location
 you choosed.
 
 
-\section{Getting robotpkg for the first time} % ----------------------------
+\subsection{Getting robotpkg for the first time} % -------------------------
 
 robotpkg  will {\em never} require administration  privileges by itself.  So we
 recommend that you set up the {\tt  /opt/openrobots} directory with read, write
@@ -63,7 +64,7 @@ There are two download methods: the anonymous one and the authenticated
 one. The two methods are described here.
 
 
-\subsubsection{The anonymous download}
+\subsubsection{Anonymous download}
 
 Anonymous  download is perfect  if  you don't intend  to  work on  the robotpkg
 infrastructure itself, nor commit any changes or packages additions back to the
@@ -78,7 +79,7 @@ As your regular user, simply run in a shell:
 \end{verbatim}
 
 
-\subsubsection{The authenticated download}
+\subsubsection{Authenticated download}
 
 Authenticated download requires a valid login  on the main robotpkg repository,
 and  will give you  full commit access to this   repository. Assuming your user
@@ -90,7 +91,7 @@ name is ``{\tt user}'', run the following:
 \end{verbatim}
 
 
-\section{Keeping robotpkg up-to-date} % ------------------------------------
+\subsection{Keeping robotpkg up-to-date} % ---------------------------------
 
 robotpkg is  a living  thing: updates  to the packages  are made  perdiodicaly,
 problems are fixed,  enhancements are developed\ldots  In order to get the most

@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/19 17:12:08 mallet $
+# $LAAS: Makefile 2009/02/02 00:23:20 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -19,6 +19,8 @@
 #
 
 CAT?=		cat
+SED?=		sed
+DATE?=		date
 PDFLATEX?=	pdflatex
 TTH?=		tth
 W3M?=		w3m
@@ -34,7 +36,9 @@ MASTER_SRC=	robotpkg.tex
 AUX_SRC=\
 		introduction.tex	\
 		getting.tex		\
-		bootstrapping.tex
+		bootstrapping.tex	\
+		using.tex		\
+		binary.tex
 
 # default targets
 #
@@ -67,7 +71,8 @@ html: ${MASTER_SRC:.tex=.html}
 
 ${MASTER_SRC:.tex=.html}: ${MASTER_SRC} ${AUX_SRC} ${MASTER_SRC:.tex=.pdf}
 	${CAT} < share/robotpkg.header.html > $@
-	${TTH} -w2 -r -L${MASTER_SRC:.tex=} < ${MASTER_SRC} >> $@
+	${TTH} -w2 -r -L${MASTER_SRC:.tex=} < ${MASTER_SRC} \
+		| ${SED} -e "s/@date@/`${DATE} '+%B %e, %Y'`/" >> $@
 	${CAT} < share/robotpkg.footer.html >> $@
 
 ${MASTER_SRC:.tex=.html}: share/robotpkg.tth
