@@ -18,7 +18,7 @@
 
 DISTNAME=	hppwalkplanner-${VERSION}
 PKGNAME=	hpp-walkplanner-${VERSION}
-VERSION=	1.6
+VERSION=	2.0
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkplanner/}
@@ -38,7 +38,6 @@ include ../../robots/hrp2-14/depend.mk
 include ../../path/jrl-walkgen/depend.mk
 include ../../path/hpp-walkfootplanner/depend.mk
 include ../../path/hpp-core/depend.mk
-include ../../path/hpp-openhrp/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
