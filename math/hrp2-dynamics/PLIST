@@ -1,15 +1,11 @@
-@comment $Id: PLIST 2008/02/18 16:00:28 mallet $
+@comment Mon Feb 2 09:10:52 JST 2009
 include/hrp2Dynamics/hrp2OptHumanoidDynamicRobot.h
 lib/libhrp2Dynamics.la
 lib/pkgconfig/hrp2Dynamics.pc
 share/doc/doxytag/hrp2Dynamics.doxytag
 share/doc/hrp2Dynamics/annotated.html
-share/doc/hrp2Dynamics/class_chrp2_opt_humanoid_dynamic_robot-members.html
 share/doc/hrp2Dynamics/class_chrp2_opt_humanoid_dynamic_robot.html
-share/doc/hrp2Dynamics/class_chrp2_opt_humanoid_dynamic_robot.png
-share/doc/hrp2Dynamics/class_chrp2_opt_humanoid_dynamic_robot__coll__graph.map
-share/doc/hrp2Dynamics/class_chrp2_opt_humanoid_dynamic_robot__coll__graph.md5
-share/doc/hrp2Dynamics/class_chrp2_opt_humanoid_dynamic_robot__coll__graph.png
+share/doc/hrp2Dynamics/class_chrp2_opt_humanoid_dynamic_robot-members.html
 share/doc/hrp2Dynamics/doxygen.png
 share/doc/hrp2Dynamics/files.html
 share/doc/hrp2Dynamics/ftv2blank.png
@@ -24,26 +20,21 @@ share/doc/hrp2Dynamics/ftv2node.png
 share/doc/hrp2Dynamics/ftv2plastnode.png
 share/doc/hrp2Dynamics/ftv2pnode.png
 share/doc/hrp2Dynamics/ftv2vertline.png
-share/doc/hrp2Dynamics/functions.html
 share/doc/hrp2Dynamics/functions_func.html
+share/doc/hrp2Dynamics/functions.html
 share/doc/hrp2Dynamics/functions_vars.html
 share/doc/hrp2Dynamics/graph_legend.dot
 share/doc/hrp2Dynamics/graph_legend.html
 share/doc/hrp2Dynamics/graph_legend.png
-share/doc/hrp2Dynamics/hierarchy.html
 share/doc/hrp2Dynamics/hrp2_opt_humanoid_dynamic_robot_8h.html
 share/doc/hrp2Dynamics/hrp2_opt_humanoid_dynamic_robot_8h__incl.map
 share/doc/hrp2Dynamics/hrp2_opt_humanoid_dynamic_robot_8h__incl.md5
 share/doc/hrp2Dynamics/hrp2_opt_humanoid_dynamic_robot_8h__incl.png
 share/doc/hrp2Dynamics/index.html
-share/doc/hrp2Dynamics/inherit__graph__0.map
-share/doc/hrp2Dynamics/inherit__graph__0.md5
-share/doc/hrp2Dynamics/inherit__graph__0.png
-share/doc/hrp2Dynamics/inherits.html
 share/doc/hrp2Dynamics/installdox
 share/doc/hrp2Dynamics/main.html
-share/doc/hrp2Dynamics/package.css
 share/doc/hrp2Dynamics/package_8h.html
+share/doc/hrp2Dynamics/package.css
 share/doc/hrp2Dynamics/pictures/footer.txt
 share/doc/hrp2Dynamics/tab_b.gif
 share/doc/hrp2Dynamics/tab_l.gif
