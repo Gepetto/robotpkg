@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/01/26 16:56:09 mallet $
+# $LAAS: gcc.mk 2009/02/02 19:25:38 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -89,15 +89,19 @@ PKG_SUPPORTED_OPTIONS+=		debug
 
 PKG_OPTION_DESCR.debug:=	Produce debugging information for binary programs
 
-define PKG_OPTION_SET.debug
-  CFLAGS+=	-g -O0 -Wall
-  CXXFLAGS+=	-g -O0 -Wall
-endef
+ifndef PKG_OPTION_SET.debug
+  define PKG_OPTION_SET.debug
+    CFLAGS+=	-g -O0 -Wall
+    CXXFLAGS+=	-g -O0 -Wall
+  endef
+endif
 
-define PKG_OPTION_UNSET.debug
-  CFLAGS+=	-O3 -DNDEBUG
-  CXXFLAGS+=	-O3 -DNDEBUG
-endef
+ifndef PKG_OPTION_UNSET.debug
+  define PKG_OPTION_UNSET.debug
+    CFLAGS+=	-O3 -DNDEBUG
+    CXXFLAGS+=	-O3 -DNDEBUG
+  endef
+endif
 
 endif	# c c++ fortran
 endif	# NO_BUILD
