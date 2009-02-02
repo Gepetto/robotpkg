@@ -1,4 +1,4 @@
-% $LAAS: robotpkg.sty 2009/01/18 14:18:05 tho $
+% $LAAS: robotpkg.sty 2009/02/01 20:07:09 tho $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -21,8 +21,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{robotpkg}[2009/01/10 A guide to robotpkg LaTeX style]
 
+\RequirePackage{color}
+\definecolor{color@link}{rgb}{.4,.02,.01}
+
+\RequirePackage{type1cm}
 \RequirePackage{ifpdf}
-\RequirePackage[pdftex,plainpages=false]{hyperref}
+\RequirePackage[pdftex]{hyperref}
+
+\hypersetup{plainpages=false}
+\hypersetup{colorlinks=true,linkcolor=color@link,urlcolor=color@link}
 
 \ifpdf\pdfinfo{
    /Author (Anthony Mallet)
@@ -45,28 +52,27 @@
 }
 
 \def\@makechapterhead#1{%
-   \vrule height 20pt width 10pt\par{%
+   \vrule height 20pt width 0pt\par{%
       \parindent\z@%
       \raggedleft\normalfont%
       \ifnum\c@secnumdepth>\m@ne%
 	 \if@mainmatter%
             \fontsize{40}{40}\fontfamily{ptm}\bfseries%
-	    \thechapter\par\vrule height 0pt width 10pt\par%
+	    \thechapter\par\vrule height 0pt width 0pt\par%
 	 \fi%
       \fi%
       \interlinepenalty\@M\fontsize{40}{45}\bfseries%
-      \parbox{\textwidth}{\raggedleft#1}\hspace*{-22.6mm}\par%
+      \parbox{\textwidth}{\raggedleft#1}\par%
       \nobreak\vskip\evensidemargin%
    }%
 }
 
 \def\@makeschapterhead#1{
-   \vspace*{120pt}
-   {
+   \vrule height 20pt width 0pt\par{%
       \parindent\z@
       \raggedleft\normalfont
-      \interlinepenalty\@M\fontsize{35}{40}\fontfamily{ptm}\bfseries
-      \parbox{\textwidth}{\raggedleft#1}\hspace*{-22.6mm}\par
+      \interlinepenalty\@M\fontsize{40}{45}\fontfamily{ptm}\bfseries
+      \parbox{\textwidth}{\raggedleft#1}\par
       \nobreak\vskip\evensidemargin
    }
 }
@@ -77,3 +83,4 @@
 \def\singlepunct{\@ifnextchar.\relax{\@ifnextchar,\relax{, }}}
 
 \def\xref#1#2{#2, \nameref{#1}\singlepunct}
+\def\doublehline{\\\hline\hline}
