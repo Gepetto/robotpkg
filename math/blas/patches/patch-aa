@@ -32,7 +32,7 @@
 +		${FC} ${FFLAGS} ${CPPFLAGS} -c $< -o $@
 +
 +lib$(LIB).la: $(OBJS)
-+	${LIBTOOL} --tag=CC --mode=link ${FC} ${FFLAGS}			\
++	${LIBTOOL} --tag=F77 --mode=link ${FC} ${FFLAGS}		\
 +		-o $@ ${OBJS} ${LDFLAGS} -rpath ${PREFIX}/lib		\
 +		-version-info 1:0
 +
