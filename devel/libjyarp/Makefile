@@ -46,14 +46,17 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
 
 post-configure:
-	${LN} -s ${PREFIX.yarp}/lib/libYARP_dev.so ${WRKSRC}/lib
-	${LN} -s ${PREFIX.yarp}/lib/libYARP_sig.so ${WRKSRC}/lib
-	${LN} -s ${PREFIX.yarp}/lib/libYARP_OS.so ${WRKSRC}/lib
+	${LN} -sf ${PREFIX.yarp}/lib/libYARP_dev.so ${WRKSRC}/lib
+	${LN} -sf ${PREFIX.yarp}/lib/libYARP_sig.so ${WRKSRC}/lib
+	${LN} -sf ${PREFIX.yarp}/lib/libYARP_OS.so ${WRKSRC}/lib
 
 post-build:
+	${MKDIR} ${WRKSRC}/example/swig/build
+	${JAVA_HOME}/bin/javac -d ${WRKSRC}/example/swig/build ${WRKSRC}/example/swig/*.java
 	${JAVA_HOME}/bin/jar cf 				\
 		${WRKSRC}/example/swig/libjyarp.jar		\
-		${WRKSRC}/example/swig/*.java
+		-C ${WRKSRC}/example/swig/build			\
+		.
 	cd ${WRKDIR} && ${MKDIR} doc && cd doc &&		\
 	${JAVA_HOME}/bin/javadoc ${WRKSRC}/example/swig/*.java
 
