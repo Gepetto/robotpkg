@@ -1,4 +1,4 @@
-% $LAAS: introduction.tex 2009/01/16 23:58:51 tho $
+% $LAAS: introduction.tex 2009/02/01 20:06:34 tho $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -20,55 +20,57 @@
 
 \section{What is robotpkg?} % ----------------------------------------------
 
-The robotics  research community has always been  developing a lot of software,
-mostly to  illustrate theoretical concepts and  validatate algorithms  on board
-real robots. A  great amount of this software  was made freely available to the
-community, especially for Unix-based systems, and  is usually available in form
+The robotics research  community has always been developing  a lot of software,
+in order  to illustrate theoretical concepts and  validate algorithms  on board
+real robots.  A great amount of this software was  made freely available to the
+community, especially for Unix-based systems,  and is usually available in form
 of the source code. Therefore, before such software can be used, it needs to be
-configured to the local  system, compiled and installed.   This is exactly what
+configured to  the local system, compiled and  installed.  This is exactly what
 The Robotics Packages Collection (robotpkg) does.  robotpkg also has some basic
-commands to handle binary  packages, so that not   every user has to  build the
+commands  to handle binary packages,  so that not  every user  has to build the
 packages for himself, which is a time-costly, cumbersome and error-prone task.
 
-The  robotpkg   project was  initiated   in the   Laboratory for  Analysis  and
-Architecture of Systems (CNRS/LAAS), France.   The motivation  was, on the  one
-hand, to ease the software  maintenance tasks  for  the great amount of  robots
-that are used there.  On  the other hand,  roboticists at CNRS/LAAS have always
-fostered  an    open-source  development model   for  the   software they  were
-developing.  In order to help people collaborating  with the laboratory, in the
-context of research project,   to get the   LAAS software running  outside  the
-laboratory, a package management system was necessary.
+The robotpkg project was initiated in the \href{http://www.laas.fr/}{Laboratory
+for Analysis and Architecture of  Systems} (CNRS/LAAS), France.  The motivation
+was, on the one hand,  to ease the software   maintenance tasks for the  robots
+that are used there.   On the other  hand, roboticists at CNRS/LAAS have always
+fostered  an  open-source  development   model  for   the   software they  were
+developing.  In order to  help people  working with the  laboratory to  get the
+LAAS software  running outside the laboratory,  a package management system was
+necessary.
 
-Although  robotpkg was an   innovative project in  the  robotics community  (it
-started in 2006),  a lot of  generic software packages  management systems were
-readily available at this time for a great variety  of Unix-based systems.  The
-main requirements that we wanted robotpkg to fullfill  were listed and the best
-existing package management system was chosen as a starting point.  The biggest
-requirement  was  the capacity of  the  system to adapt to    the nature of the
-robotic software, being available mostly in form of source code only (no binary
-packages), with  unfrequent stable releases.  robotpkg had thus to  deal mostly
-with source   code and automate  the compilation  of the packages.   The system
-chosen  as   a starting point   was  The NetBSD  Packages  Collection (pkgsrc).
-robotpkg can be  considered as a   fork of this  project and  it  is still very
-similar to pkgsrc  in many points, although  some simplifications were made  in
-robotpkg in order to provide a tool geared  toward people that are not computer
-scientists but roboticists.
+Although  robotpkg was an  innovative   project in  the robotics community  (it
+started in 2006), a lot of general-purpose software packages management systems
+were readily available at this time for  a great variety of Unix-based systems.
+The main requirements that we wanted  robotpkg to fullfill  were listed and the
+best existing package management system  was chosen as  a starting point.   The
+biggest requirement was the  capacity of the system to  adapt to the  nature of
+the robotic software,  being available mostly in form  of source code  only (no
+binary packages),  with unfrequent stable  releases.  robotpkg had thus to deal
+mostly with  source code  and automate the  compilation of  the  packages.  The
+system chosen  as a starting  point was \href{http://www.pkgsrc.org}{The NetBSD
+Packages  Collection} (pkgsrc).  robotpkg  can be considered as  a fork of this
+project and  it is still very similar  to pkgsrc in  many points, although some
+simplifications were made in order to provide  a tool geared toward people that
+are not computer scientists but roboticists.
 
-Due to its  origins, robotpkg provides many  packages developed at LAAS.  It is
-however not limited to  such packages and  contains, in fact, quite some  other
-software useful  to roboticists.   Of  course, robotpkg is  not  meant to be  a
-general  purpose  packaging  system  (although there   would  be   no technical
-restriction to this) and will never contain  widely available packages that can
-be  found on any modern  Unix  distribution. Yet,  robotpkg currently  contains
-roughly a hundred of packages, including:
+Due to its  origins, robotpkg provides many packages  developed at LAAS.  It is
+however not  limited to such  packages and contains, in  fact, quite some other
+software useful to  roboticists.  Of  course, robotpkg  is  not meant to  be  a
+general purpose  packaging system   (although  there  would  be   no  technical
+restriction to this) and will never  contain widely available packages that can
+be found  on  any modern  Unix  distribution. Yet, robotpkg currently  contains
+roughly one hundred and fifty packages, including:
 
 \begin{itemize}
    \item architecture/genom - The LAAS Generator of Robotic Components
 
    \item architecture/openhrp - The Open Architecture Humanoid Robotics
-   Platform (AIST, Japan)
+   Platform from AIST, Japan
 
-   \item architecture/openrtm - The robotic distributed middleware from AIST
+   \item architecture/openrtm - The robotic distributed middleware from AIST, Japan
+
+   \item architecture/yarp - The ``other'', yet famous, robot platform
 
    \item ...just to name a few.
 \end{itemize}
@@ -94,9 +96,9 @@ robotpkg provides the following key features:
    options  for a large  number of packages  are all set  in  a simple, central
    configuration file.
 
-   \item   The entire  source (not   including  the package distribution  files
-   themselves) is freely available  under a BSD license,  so you may extend and
-   adapt robotpkg to your needs like robotpkg was adapted from pkgsrc.
+   \item The  entire framework source  (not including the  package distribution
+   files themselves) is freely available under a BSD license, so you may extend
+   and adapt robotpkg to your needs, like robotpkg was adapted from pkgsrc.
 
 \end{itemize}
 
@@ -105,18 +107,17 @@ robotpkg provides the following key features:
 robotpkg consists of  a   source distribution. After retrieving    the required
 source, you can be up and running with robotpkg in just minutes!
 
-robotpkg does  not have much requirements by  itself, so it  can work on a wide
-variety of  systems  as long as  they  provide  a GNU-make   utility, a working
-C-compiler chain and a reasonably standard small  subset of Unix commands (like
-sed,  awk, find, ...).  Individual  packages might  have specific requirements,
-however,  and the following  platforms  have   been reported  to  be  supported
+robotpkg  does not have much requirements  by itself and it  can work on a wide
+variety of systems  as  long as they   provide a  GNU-make utility, a   working
+C-compiler and a small, reasonably standard subset  of Unix commands (like sed,
+awk, find,  grep ...).  However, individual packages  might have their specific
+requirements.  The   following platforms  have been  reported  to  be supported
 reasonably well:
 
-\begin{center}\begin{tabular}{cc}
+\begin{center}\begin{tabular}{|c|c|}
 \hline
-Platform & Version \\
-\hline
-\hline
+Platform & Version
+\doublehline
 Fedora & 3, 5 -- 10\\
 Ubuntu & 7.10 -- 8.10\\
 CentOS & 5\\
@@ -156,9 +157,9 @@ Here is a description of all the terminology used within this document.
    possible,     too.    Distfiles   are      usually   stored    below    {\tt
    /opt/robotpkg/distfiles}.
 
-   \item[Precompiled/binary package] A set of binaries built with pkgsrc from a
-   distfile and  stuffed  together in a   single {\tt .tgz}  file so  it can be
-   installed on machines of the  same machine architecture  without the need to
+   \item[Precompiled/binary package] A set of binaries built with robotpkg from
+   a distfile  and stuffed together in a  single {\tt .tgz} file   so it can be
+   installed  on machines of the same  machine architecture without the need to
    recompile. Packages are usually generated in {\tt /opt/robotpkg/packages}.
 
    Sometimes, this is  referred to by the  term ``package''  too, especially in
