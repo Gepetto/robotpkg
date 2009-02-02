@@ -23,6 +23,8 @@ VERSION=	2.5.0
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_JRL}
 
+USE_LANGUAGES+=fortran
+
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/jrl/spip/-Walk-Pattern-Generator-.html
 COMMENT=	Walk pattern generator for the HRP-2 humanoid robot.
