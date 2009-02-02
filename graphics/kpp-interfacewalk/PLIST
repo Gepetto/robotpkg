@@ -1,9 +1,10 @@
-@comment Thu Dec 25 18:43:06 JST 2008
+@comment Mon Feb 2 17:43:54 JST 2009
 include/kppInterfaceWalk/kppCommandLoadHRP2.h
 include/kppInterfaceWalk/kppCommandLoadObstacle.h
 include/kppInterfaceWalk/kppCommandOutputMotion.h
 include/kppInterfaceWalk/kppCommandSetConfig.h
 include/kppInterfaceWalk/kppInterfaceWalk.h
+lib/modules/${NODENAME}/libkppInterfaceWalk.kab
 lib/modules/${NODENAME}/libkppInterfaceWalk.la
 lib/pkgconfig/kppInterfaceWalk.pc
 share/doc/doxytag/kppInterfaceWalk.doxytag

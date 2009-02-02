@@ -18,7 +18,7 @@
 
 DISTNAME=	kppinterfacewalk-${VERSION}
 PKGNAME=	kpp-interfacewalk-${VERSION}
-VERSION=	1.6
+VERSION=	1.7
 
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=kpp-interfacewalk/}
@@ -27,7 +27,7 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Graphical user interface for hppWalkPlanner libraries.
 
-DEPENDS+=	kpp-interface>=1.2:../../graphics/kpp-interface
+DEPENDS+=	kpp-interface>=1.4:../../graphics/kpp-interface
 
 GNU_CONFIGURE=	yes
 DOXYGEN_PLIST_DIR+=share/doc/kppInterfaceWalk
