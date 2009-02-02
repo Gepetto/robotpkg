@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/10/23 00:11:19 tho $
+# $LAAS: Makefile 2009/02/02 14:31:23 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -24,14 +24,16 @@ GCC_LANGUAGES=		fortran
 
 include ../../lang/gcc42/Makefile.common
 
+BUILD_TARGET+=		all-target-libgfortran
+
 CONFIGURE_ARGS+=        --with-gmp=${PREFIX.gmp}
 CONFIGURE_ARGS+=        --with-mpfr=${PREFIX.mpfr}
 
-BUILD_TARGET+=		all-target-libgfortran
-
 # make sure gfortran has the run-time path for gmp libs
-HOST_GMPLIBS=		${DEPEND_LDFLAGS} ${DEPEND_LIBS}
-BUILD_TARGET+=		HOST_GMPLIBS=$(call quote,${HOST_GMPLIBS})
+CONFIGURE_ARGS+=\
+	--with-mpfr-lib="${PREFIX.mpfr}/lib ${COMPILER_RPATH_FLAG}${PREFIX.mpfr}/lib"
+CONFIGURE_ARGS+=\
+	--with-gmp-lib="${PREFIX.gmp}/lib ${COMPILER_RPATH_FLAG}${PREFIX.gmp}/lib"
 
 include ../../math/gmp/depend.mk
 include ../../math/mpfr/depend.mk
