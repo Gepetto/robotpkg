@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/27 19:11:09 mallet $
+# $LAAS: Makefile 2009/02/02 19:30:13 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -28,6 +28,8 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Java bindings for YARP
 
+USE_LANGUAGES+=		c++
+
 CMAKE_ARGS+=		-DCREATE_JAVA=TRUE
 CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH=${JAVA_HOME}/include
 CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH2=${JAVA_HOME}/include/linux
@@ -39,6 +41,9 @@ CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 
 CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
 BUILD_DIRS=		${WRKSRC}/example/swig
+
+# O1 is the highest possible optimization level: overwrite default -O3
+PKG_OPTION_UNSET.debug:= CXXFLAGS=-O1 -DNDEBUG
 
 include ../../architecture/yarp/depend.mk
 include ../../lang/sun-jdk6/depend.mk
@@ -52,7 +57,8 @@ post-configure:
 
 post-build:
 	${MKDIR} ${WRKSRC}/example/swig/build
-	${JAVA_HOME}/bin/javac -d ${WRKSRC}/example/swig/build ${WRKSRC}/example/swig/*.java
+	${JAVA_HOME}/bin/javac -d ${WRKSRC}/example/swig/build	\
+		${WRKSRC}/example/swig/*.java
 	${JAVA_HOME}/bin/jar cf 				\
 		${WRKSRC}/example/swig/libjyarp.jar		\
 		-C ${WRKSRC}/example/swig/build			\
