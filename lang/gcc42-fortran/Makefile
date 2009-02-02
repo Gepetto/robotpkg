@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/02 14:31:23 mallet $
+# $LAAS: Makefile 2009/02/02 18:43:52 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -37,6 +37,7 @@ CONFIGURE_ARGS+=\
 
 include ../../math/gmp/depend.mk
 include ../../math/mpfr/depend.mk
+include ../../lang/gcc42-c/depend.mk
 include ../../mk/robotpkg.mk
 
 # some magic stuff to install only what's needed
