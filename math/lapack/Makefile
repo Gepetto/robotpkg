@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/10 23:32:45 tho $
+# $LAAS: Makefile 2009/02/02 14:36:58 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -32,11 +32,11 @@ HOMEPAGE=	http://www.netlib.org/lapack/index.html
 COMMENT=	Linear Algebra PACKage.
 
 BUILD_TARGET=		lapacklib
+USE_LANGUAGES+=		fortran
 
 INSTALLATION_DIRS=	lib
 
 include ../../math/blas/depend.mk
-include ../../lang/gcc4-fortran/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
 
