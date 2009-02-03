@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/02/03 00:05:45 tho $
+# $LAAS: gcc.mk 2009/02/03 11:53:01 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -72,14 +72,14 @@ ifndef _GCC_REQUIRED
   _maxmin_:=\
     $(firstword $(foreach _rqd_,${_min_},$(if $(strip 			\
     $(foreach _sat_,$(filter-out ${_rqd_},${_min_} ${_max_}),$(shell	\
-    ${PKG_ADMIN} pmatch '${_sat_}' '-$(call substs,> >=,,${_rqd_})' ||	\
+    ${PKG_ADMIN} pmatch 'x${_sat_}' 'x-$(call substs,> >=,,${_rqd_})' ||\
     echo no))),,${_rqd_})))
 
   # breathe, then find out the strictest constraint of type <=
   _minmax_:=\
     $(firstword $(foreach _rqd_,${_max_},$(if $(strip			\
     $(foreach _sat_,$(filter-out ${_rqd_},${_min_} ${_max_}),$(shell	\
-    ${PKG_ADMIN} pmatch '${_sat_}' '-$(call substs,< <=,,${_rqd_})' ||	\
+    ${PKG_ADMIN} pmatch 'x${_sat_}' 'x-$(call substs,< <=,,${_rqd_})' ||\
     echo no))),,${_rqd_})))
 
   # _GCC_REQUIRED is the union of both
