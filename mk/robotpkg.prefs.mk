@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2009/01/15 19:04:52 mallet $
+# $LAAS: robotpkg.prefs.mk 2009/02/03 15:29:48 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -151,11 +151,12 @@ PKGDIR?=		${CURDIR}
 # directly or indirectly.
 ifdef META_PACKAGE
 NO_CHECKSUM=		yes
+NO_EXTRACT=		yes
 NO_CONFIGURE=           yes
 NO_BUILD=               yes
-DISTFILES=              # none
-PLIST_SRC=              # none
-do-install do-patch:
+DISTFILES=#		none
+PLIST_SRC=#		none
+do-install:
 	@${DO_NADA}
 endif
 
