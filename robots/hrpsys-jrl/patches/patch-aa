@@ -2,14 +2,14 @@
 +++ Controller/IOserver/robot/HRP2JRL/bin/HRP2Controller.sh	2008-12-03 17:32:54.045404000 +0100
 @@ -1,5 +1,21 @@
 -. ../../../../../bin/unix/config.sh
-+. /home/mallet/openrobots/OpenHRP/bin/unix/config.sh
++. @PREFIX@/bin/unix/config.sh
  
 -export LD_LIBRARY_PATH=../../../../../DynamicsSimulator/server:$LD_LIBRARY_PATH
-+export LD_LIBRARY_PATH=/home/mallet/openrobots/OpenHRP/DynamicsSimulator/server:$LD_LIBRARY_PATH
++export LD_LIBRARY_PATH=@PREFIX@/DynamicsSimulator/server:$LD_LIBRARY_PATH
 +
 +# remote ssh if needed
 +if test -n "${OPENHRP_REMOTE_HOST}"; then
-+  : ${OPENHRP_REMOTE_PATH:=/home/mallet/openrobots/OpenHRP/Controller/IOserver/robot/HRP2JRL/bin}
++  : ${OPENHRP_REMOTE_PATH:=@PREFIX@/Controller/IOserver/robot/HRP2JRL/bin}
 +  trap "ssh ${OPENHRP_REMOTE_HOST} pkill hrpsys" EXIT
 +  ssh ${OPENHRP_REMOTE_HOST} \
 +    "cd ${OPENHRP_REMOTE_PATH} && ./HRP2Controller.sh $NS_OPT $@"

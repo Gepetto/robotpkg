@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/02 15:39:44 mallet $
+# $LAAS: Makefile 2009/02/03 11:41:23 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -53,7 +53,8 @@ SUBST_FILES.hrpsys-paths=\
 	Controller/IOserver/robot/HRP2JRL/bin/HRP2Controller.sh
 
 # we need g++>=4.2
-include ../../lang/gcc42-c++/depend.mk
+USE_LANGUAGES+=	c++
+GCC_REQUIRED+=	>=4.2
 
 include ../../math/blas/depend.mk
 include ../../architecture/openhrp/depend.mk
