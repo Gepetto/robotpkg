@@ -25,7 +25,7 @@
 	  <td>Source version:
 	  <td>%%PKG%%
 	  <td>browse the package's
-	    <a href="/invalid/%%PORT%%/">history</a>.
+	    <a href="http://trac.laas.fr/git/robotpkg/log/%%PORT%%?showmsg=1">history</a>.
 	</tr>
 	<tr>
 	  <td>Home page:
