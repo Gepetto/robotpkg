@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/10 23:27:00 tho $
+# $LAAS: Makefile 2009/02/03 00:53:04 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -55,7 +55,8 @@ FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 NO_BUILD=		yes
 INSTALLATION_DIRS=	bin
 
-include ../../lang/gcc4-c++/depend.mk
+GCC_REQUIRED+=		>=4.0
+
 include ../../mk/robotpkg.mk
 
 KINEO_DIR=		${PREFIX}/kineo

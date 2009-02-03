@@ -1,4 +1,4 @@
-# $LAAS: gcc-fortran.mk 2009/01/26 17:01:13 mallet $
+# $LAAS: gcc-fortran.mk 2009/02/03 00:41:25 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -16,37 +16,30 @@
 #                                      Anthony Mallet on Mon Jan 26 2009
 #
 
-ifndef ROBOTPKG_COMPILER_MK
+ifndef ROBOTPKG_COMPILER_MK # ==============================================
 
 # If we are included directly, simply register the compiler requirements
 USE_LANGUAGES+=	fortan
 
-else
+else # =====================================================================
 
 # If we are included from compiler-vars.mk, register the proper dependencies.
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GCC_FORTRAN_DEPEND_MK:=	${GCC_FORTRAN_DEPEND_MK}+
 
-# Select gcc package according to the version required
+# Select gcc package according to the version required. If the package provided
+# by lang/gcc42 matches the requirements, use this one. Otherwise, rely on the
+# system.
 #
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.2<4.3' 'gcc-${_GCC_REQD}' && echo y))
-  # gcc>=4.2<4.3 can be provided by lang/gcc42-fortran
+ifeq (y,$(shell ${PKG_ADMIN} pmatch 'gcc${_GCC_REQUIRED}' 'gcc-4.2.4' && echo y))
   _GCC_FORTRAN_BIN:=	gfortran
   _GCC_FORTRAN_PKG:=	gcc42-fortran
   _GCC_FORTRAN_DIR:=	../../lang/gcc42-fortran
 else
-  ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4<4.2' 'gcc-${_GCC_REQD}' && echo y))
-    # gcc>=4<4.2 can be provided by lang/gcc4-fortran
-    _GCC_FORTRAN_BIN:=	gfortran
-    _GCC_FORTRAN_PKG:=	gcc4-fortran
-    _GCC_FORTRAN_DIR:=	../../lang/gcc4-fortran
-  else
-    # no robotpkg package
-    _GCC_FORTRAN_BIN:=	{g77,gfortran}
-    _GCC_FORTRAN_PKG:=	gcc-fortran
-    _GCC_FORTRAN_DIR:=# empty
-  endif
+  _GCC_FORTRAN_BIN:=	{gfortran,g77}
+  _GCC_FORTRAN_PKG:=	gcc-fortran
+  _GCC_FORTRAN_DIR:=# empty
 endif
 
 ifeq (+,$(DEPEND_DEPTH))
@@ -59,9 +52,10 @@ PREFER.${_GCC_FORTRAN_PKG}?=	system
 
 DEPEND_USE+=			${_GCC_FORTRAN_PKG}
 
-DEPEND_ABI.${_GCC_FORTRAN_PKG}?=${_GCC_FORTRAN_PKG}>=${_GCC_REQD}
+DEPEND_ABI.${_GCC_FORTRAN_PKG}?=${_GCC_FORTRAN_PKG}${_GCC_REQUIRED}
 DEPEND_DIR.${_GCC_FORTRAN_PKG}?=${_GCC_FORTRAN_DIR}
 
+SYSTEM_DESCR.${_GCC_FORTRAN_PKG}='gcc Fortran77 compiler, ${_GCC_REQUIRED}'
 SYSTEM_SEARCH.${_GCC_FORTRAN_PKG}=	\
 	'bin/${_GCC_FORTRAN_BIN}:1s/[^0-9.]*\\([0-9.]*\\).*$$/\\1/p:% -dumpversion'
 
@@ -72,8 +66,8 @@ else
   override FC=$(word 1,${SYSTEM_FILES.${_GCC_FORTRAN_PKG}})
 endif
 
-endif # GCC_FORTRAN_DEPEND_MK -----------------------------------------------
+endif # GCC_FORTRAN_DEPEND_MK ----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
 
-endif # ROBOTPKG_COMPILER_MK
+endif # ROBOTPKG_COMPILER_MK ===============================================
