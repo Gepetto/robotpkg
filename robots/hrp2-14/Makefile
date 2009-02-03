@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/06/17 16:49:06 mallet $
+# $LAAS: Makefile 2009/02/03 16:27:02 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -35,6 +35,7 @@ define PKG_OPTION_SET.with-kineo
 	include ../../path/kineo-pp/depend.mk
 endef
 
+USE_LANGUAGES+=		c++
 DOXYGEN_PLIST_DIR+=	share/doc/hrp2_14
 
 include ../../mk/sysdep/cmake.mk
