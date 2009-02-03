@@ -1,7 +1,12 @@
 #!/usr/bin/env awk -f
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006,2009 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This code is derived from software contributed to The NetBSD Foundation
+# by Johnny C. Lam. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -13,14 +18,6 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This code is derived from software contributed to The NetBSD Foundation
-# by Johnny C. Lam. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: depends.mk,v 1.14 2006/10/09 08:57:39 joerg Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
 #   3. All advertising materials mentioning   features or use of this
 #      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
@@ -41,6 +38,10 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+# From $NetBSD: depends.mk,v 1.14 2006/10/09 08:57:39 joerg Exp $
+#
+#                                       Anthony Mallet on Thu Dec  7 2006
+#
 
 ######################################################################
 #
@@ -60,7 +61,7 @@
 
 BEGIN {
 	CAT = ENVIRON["CAT"] ? ENVIRON["CAT"] : "cat"
-	PKG_ADMIN = ENVIRON["PKG_ADMIN"] ? ENVIRON["PKG_ADMIN"] : "pkg_admin"
+	PKG_ADMIN = ENVIRON["PKG_ADMIN"] ? ENVIRON["PKG_ADMIN"] : "robotpkg_admin"
 	PWD_CMD = ENVIRON["PWD_CMD"] ? ENVIRON["PWD_CMD"] : "pwd"
 	TEST = ENVIRON["TEST"] ? ENVIRON["TEST"] : "test"
 
@@ -118,6 +119,7 @@ BEGIN {
 			}
 			ge_depends[dep] = dep
 		}
+		match_all = 1
 		for (dep in ge_depends) {
 			dep2pkg = dep; sub(">=", "-", dep2pkg)
 			match_all = 1
