@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/03 11:41:23 mallet $
+# $LAAS: Makefile 2009/02/03 12:15:48 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -34,8 +34,7 @@ NO_PUBLIC_SRC=		${RESTRICTED}
 NO_PUBLIC_BIN=		${RESTRICTED}
 
 INTERACTIVE_STAGE=	fetch
-FETCH_MESSAGE+= " The file"
-$(foreach __file__,${DISTFILES},$(eval FETCH_MESSAGE+="	${__file__}"))
+FETCH_MESSAGE+= " The file: ${DISTNAME}${EXTRACT_SUFX}"
 FETCH_MESSAGE+= ""
 FETCH_MESSAGE+= " must be put manually into:"
 FETCH_MESSAGE+= "       ${DISTDIR}/"
