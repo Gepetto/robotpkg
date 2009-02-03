@@ -1,4 +1,4 @@
-# $LAAS: patch-vars.mk 2009/01/14 22:23:20 tho $
+# $LAAS: patch-vars.mk 2009/02/03 15:22:36 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -43,39 +43,65 @@
 #                                       Anthony Mallet on Sat Dec  2 2006
 #
 
-# This Makefile fragment is included separately by bsd.pkg.mk and
-# defines some variables which must be defined earlier than where
-# bsd.patch.mk is included.
+# This Makefile fragment is included by robotpkg.mk and defines some
+# variables for the patch target.
 #
 # The following variables may be set in a package Makefile:
 #
-#    PATCHFILES is a list of distribution patches relative to
-#	${_DISTDIR} that are applied first to the package.
+#    PATCHFILES
+#	is a list of distribution patches relative to ${_DISTDIR} that
+#	are applied first to the package.
 #
-#    PATCHDIR is the location of the pkgsrc patches for the package.
-#	This defaults to the "patches" subdirectory of the package
-#	directory.
+#    PATCHDIR
+#	is the location of the robotpkg patches for the package. This defaults
+#	to the "patches" subdirectory of the package directory.
 #
 
-# The default PATCHDIR is currently set in bsd.prefs.mk
-#PATCHDIR?=	${.CURDIR}/patches
+# The default PATCHDIR is currently set in robotpkg.prefs.mk
+#PATCHDIR?=	${CURDIR}/patches
 
-# Require the patch tool if we have any patches to apply
-#
-ifneq (,$(or ${PATCHFILES},$(filter yes,$(call exists,${PATCHDIR}))))
-  include ${ROBOTPKG_DIR}/mk/sysdep/patch.mk
-endif
+_PATCH_APPLIED_FILE=	${WRKDIR}/.patch
+_COOKIE.patch=		${WRKDIR}/.patch_done
 
 #.if (defined(PATCHDIR) && exists(${PATCHDIR})) || \
 #    (defined(LOCALPATCHES) && exists(${LOCALPATCHES}/${PKGPATH}))
 #USE_TOOLS+=	digest:bootstrap
 #.endif
 
-# These tools are used to output the contents of the distribution patches
-# to stdout.
+# Require the patch tool and patch targets if we have any patches to apply
 #
-ifdef PATCHFILES
-USE_TOOLS+=	cat
+ifneq (,$(or ${PATCHFILES},$(filter yes,$(call exists,${PATCHDIR}))))
+  include ${ROBOTPKG_DIR}/mk/sysdep/patch.mk
+  include ${ROBOTPKG_DIR}/mk/patch/patch.mk
+else
+  ifeq (yes,$(call exists,${_COOKIE.patch}))
+patch:
+	@${DO_NADA}
+  else
+    ifdef _PKGSRC_BARRIER
+      ifdef _EXTRACT_IS_CHECKOUT
+patch: checkout patch-cookie
+      else
+patch: extract patch-cookie
+      endif
+    else
+patch: barrier
+    endif
+  endif
 endif
 
-include ${ROBOTPKG_DIR}/mk/patch/patch.mk
+
+# --- patch-cookie (PRIVATE) -----------------------------------------
+#
+# patch-cookie creates the "patch" cookie file.  The contents are
+# the paths to the patches that were applied (if any).
+#
+.PHONY: patch-cookie
+patch-cookie:
+	${RUN}${TEST} ! -f ${_COOKIE.patch} || ${FALSE}
+	${RUN}								\
+	if ${TEST} -f ${_PATCH_APPLIED_FILE}; then			\
+		${MV} -f ${_PATCH_APPLIED_FILE} ${_COOKIE.patch};	\
+	else								\
+		${TOUCH} ${TOUCH_FLAGS} ${_COOKIE.patch};		\
+	fi

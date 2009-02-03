@@ -1,4 +1,4 @@
-# $LAAS: patch.mk 2009/01/09 19:43:08 mallet $
+# $LAAS: patch.mk 2009/02/03 15:21:13 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -86,10 +86,6 @@
 #	man page for more details.  Defaults to "-F0" for zero fuzz.
 #
 
-_PATCH_APPLIED_FILE=	${WRKDIR}/.patch
-_COOKIE.patch=		${WRKDIR}/.patch_done
-
-
 # --- patch (PUBLIC) -------------------------------------------------
 #
 # patch is a public target to apply the distribution and pkgsrc
@@ -147,22 +143,6 @@ real-patch: ${_REAL_PATCH_TARGETS}
 .PHONY: patch-message
 patch-message:
 	@${PHASE_MSG} "Patching for ${PKGNAME}"
-
-
-# --- patch-cookie (PRIVATE) -----------------------------------------
-#
-# patch-cookie creates the "patch" cookie file.  The contents are
-# the paths to the patches that were applied (if any).
-#
-.PHONY: patch-cookie
-patch-cookie:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.patch} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	if ${TEST} -f ${_PATCH_APPLIED_FILE}; then			\
-		${MV} -f ${_PATCH_APPLIED_FILE} ${_COOKIE.patch};	\
-	else								\
-		${TOUCH} ${TOUCH_FLAGS} ${_COOKIE.patch};		\
-	fi
 
 
 # --- pre-patch, do-patch, post-patch (PUBLIC, override) -------------
