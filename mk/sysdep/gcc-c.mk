@@ -1,4 +1,4 @@
-# $LAAS: gcc-c.mk 2009/02/03 00:41:37 tho $
+# $LAAS: gcc-c.mk 2009/02/03 18:17:31 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -33,28 +33,32 @@ GCC_C_DEPEND_MK:=	${GCC_C_DEPEND_MK}+
 # system.
 #
 ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc${_GCC_REQUIRED}' 'gcc-4.2.4' && echo y))
+  _GCC_PKG:=	gcc42
   _GCC_C_PKG:=	gcc42-c
   _GCC_C_DIR:=	../../lang/gcc42-c
 else
+  _GCC_PKG:=	gcc
   _GCC_C_PKG:=	gcc-c
   _GCC_C_DIR:=# empty
 endif
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		${_GCC_C_PKG}
+  DEPEND_PKG+=		${_GCC_C_PKG}
 endif
 
 ifeq (+,$(GCC_C_DEPEND_MK)) # ---------------------------------------------
 
-PREFER.${_GCC_C_PKG}?=	system
+PREFER.gcc?=		system
+PREFER.${_GCC_PKG}?=	${PREFER.gcc}
+PREFER.${_GCC_C_PKG}?=	${PREFER.${_GCC_PKG}}
 
 DEPEND_USE+=		${_GCC_C_PKG}
 
 DEPEND_ABI.${_GCC_C_PKG}?=${_GCC_C_PKG}${_GCC_REQUIRED}
 DEPEND_DIR.${_GCC_C_PKG}?=${_GCC_C_DIR}
 
-SYSTEM_DESCR.${_GCC_C_PKG}=	'gcc C compiler, ${_GCC_REQUIRED}'
-SYSTEM_SEARCH.${_GCC_C_PKG}=	\
+SYSTEM_DESCR.${_GCC_C_PKG}?=	'gcc C compiler, version ${_GCC_REQUIRED}'
+SYSTEM_SEARCH.${_GCC_C_PKG}?=	\
 	'bin/gcc::% -dumpversion'	\
 	'bin/cpp::% -dumpversion'
 

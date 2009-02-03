@@ -1,4 +1,4 @@
-# $LAAS: gcc-fortran.mk 2009/02/03 00:41:25 tho $
+# $LAAS: gcc-fortran.mk 2009/02/03 19:07:16 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -34,10 +34,12 @@ GCC_FORTRAN_DEPEND_MK:=	${GCC_FORTRAN_DEPEND_MK}+
 #
 ifeq (y,$(shell ${PKG_ADMIN} pmatch 'gcc${_GCC_REQUIRED}' 'gcc-4.2.4' && echo y))
   _GCC_FORTRAN_BIN:=	gfortran
+  _GCC_PKG:=		gcc42
   _GCC_FORTRAN_PKG:=	gcc42-fortran
   _GCC_FORTRAN_DIR:=	../../lang/gcc42-fortran
 else
   _GCC_FORTRAN_BIN:=	{gfortran,g77}
+  _GCC_PKG:=		gcc
   _GCC_FORTRAN_PKG:=	gcc-fortran
   _GCC_FORTRAN_DIR:=# empty
 endif
@@ -48,14 +50,16 @@ endif
 
 ifeq (+,$(GCC_FORTRAN_DEPEND_MK)) # ----------------------------------------
 
-PREFER.${_GCC_FORTRAN_PKG}?=	system
+PREFER.gcc?=			system
+PREFER.${_GCC_PKG}?=		${PREFER.gcc}
+PREFER.${_GCC_FORTRAN_PKG}?=	${PREFER.${_GCC_PKG}}
 
 DEPEND_USE+=			${_GCC_FORTRAN_PKG}
 
 DEPEND_ABI.${_GCC_FORTRAN_PKG}?=${_GCC_FORTRAN_PKG}${_GCC_REQUIRED}
 DEPEND_DIR.${_GCC_FORTRAN_PKG}?=${_GCC_FORTRAN_DIR}
 
-SYSTEM_DESCR.${_GCC_FORTRAN_PKG}='gcc Fortran77 compiler, ${_GCC_REQUIRED}'
+SYSTEM_DESCR.${_GCC_FORTRAN_PKG}='gcc Fortran77 compiler, version ${_GCC_REQUIRED}'
 SYSTEM_SEARCH.${_GCC_FORTRAN_PKG}=	\
 	'bin/${_GCC_FORTRAN_BIN}:1s/[^0-9.]*\\([0-9.]*\\).*$$/\\1/p:% -dumpversion'
 

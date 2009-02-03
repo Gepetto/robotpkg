@@ -1,4 +1,4 @@
-# $LAAS: gcc-c++.mk 2009/02/03 00:41:29 tho $
+# $LAAS: gcc-c++.mk 2009/02/03 19:07:09 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -33,9 +33,11 @@ GCC_C++_DEPEND_MK:=	${GCC_C++_DEPEND_MK}+
 # system.
 #
 ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc${_GCC_REQUIRED}' 'gcc-4.2.4' && echo y))
+  _GCC_PKG:=		gcc42
   _GCC_C++_PKG:=	gcc42-c++
   _GCC_C++_DIR:=	../../lang/gcc42-c++
 else
+  _GCC_PKG:=		gcc
   _GCC_C++_PKG:=	gcc-c++
   _GCC_C++_DIR:=# empty
 endif
@@ -46,14 +48,16 @@ endif
 
 ifeq (+,$(GCC_C++_DEPEND_MK)) # --------------------------------------------
 
-PREFER.${_GCC_C++_PKG}?=	system
+PREFER.gcc?=			system
+PREFER.${_GCC_PKG}?=		${PREFER.gcc}
+PREFER.${_GCC_C++_PKG}?=	${PREFER.${_GCC_PKG}}
 
 DEPEND_USE+=			${_GCC_C++_PKG}
 
 DEPEND_ABI.${_GCC_C++_PKG}?=	${_GCC_C++_PKG}${_GCC_REQUIRED}
 DEPEND_DIR.${_GCC_C++_PKG}?=	${_GCC_C++_DIR}
 
-SYSTEM_DESCR.${_GCC_C++_PKG}=	'gcc C++ compiler, ${_GCC_REQUIRED}'
+SYSTEM_DESCR.${_GCC_C++_PKG}=	'gcc C++ compiler, version ${_GCC_REQUIRED}'
 SYSTEM_SEARCH.${_GCC_C++_PKG} = 'bin/g++::% -dumpversion'
 
 include ../../mk/robotpkg.prefs.mk
