@@ -1,5 +1,3 @@
-$NetBSD: distinfo,v 1.9 2005/02/23 12:06:55 agc Exp $
-
-SHA1 (hppdoc-1.0.tar.gz) = 215891cd6d5007d4df59c78beb26f3ce2bbcd1b0
-RMD160 (hppdoc-1.0.tar.gz) = e614a53badddcbab1971ce06013cd69c57335b1c
-Size (hppdoc-1.0.tar.gz) = 145116 bytes
+SHA1 (hppdoc-1.1.tar.gz) = 42b0c187e1e8030a4396ca39a0189cfc9a663c49
+RMD160 (hppdoc-1.1.tar.gz) = d7d970e2b2f499b09ba17501d052e0462d748750
+Size (hppdoc-1.1.tar.gz) = 6116008 bytes
