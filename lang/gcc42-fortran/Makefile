@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/02 18:43:52 mallet $
+# $LAAS: Makefile 2009/02/03 17:37:15 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -35,9 +35,13 @@ CONFIGURE_ARGS+=\
 CONFIGURE_ARGS+=\
 	--with-gmp-lib="${PREFIX.gmp}/lib ${COMPILER_RPATH_FLAG}${PREFIX.gmp}/lib"
 
+# don't use regular depend.mk files here, since this would require gcc42
+# and create a circular dependency on this package.
+#
+DEPENDS+=	gcc42-c-${GCC_VERSION}:../../lang/gcc42-c
+
 include ../../math/gmp/depend.mk
 include ../../math/mpfr/depend.mk
-include ../../lang/gcc42-c/depend.mk
 include ../../mk/robotpkg.mk
 
 # some magic stuff to install only what's needed

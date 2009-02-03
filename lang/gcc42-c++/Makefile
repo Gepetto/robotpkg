@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/10/20 16:46:05 mallet $
+# $LAAS: Makefile 2009/02/03 17:36:53 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -27,7 +27,11 @@ include ../../lang/gcc42/Makefile.common
 BUILD_TARGET+=		all-target-libstdc++-v3
 BUILD_MAKE_FLAGS+=	gcc_cv_getipinfo=no
 
-include ../../lang/gcc42-c/depend.mk
+# don't use regular depend.mk files here, since this would require gcc42
+# and create a circular dependency on this package.
+#
+DEPENDS+=	gcc42-c-${GCC_VERSION}:../../lang/gcc42-c
+
 include ../../mk/robotpkg.mk
 
 do-install:
