@@ -124,7 +124,7 @@ BEGIN {
 			dep2pkg = dep; sub(">=", "-", dep2pkg)
 			match_all = 1
 			for (pattern in ge_depends) {
-				cmd = PKG_ADMIN " pmatch \"" pattern "\" " dep2pkg
+ 				cmd = PKG_ADMIN " pmatch '" pattern "' '" dep2pkg "'"
 				if (system(cmd) != 0) {
 					match_all = 0
 					break
