@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/12/10 11:47:23 mallet $
+# $LAAS: depend.mk 2009/02/04 15:57:28 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -29,7 +29,7 @@ PREFER.genom-openhrp-plugin?=	robotpkg
 
 DEPEND_USE+=		genom-openhrp-plugin
 
-DEPEND_ABI.genom-openhrp-plugin?=genom-openhrp-plugin>=1.2
+DEPEND_ABI.genom-openhrp-plugin?=genom-openhrp-plugin>=1.4
 DEPEND_DIR.genom-openhrp-plugin?=../../architecture/genom-openhrp-plugin
 
 SYSTEM_SEARCH.genom-openhrp-plugin=\

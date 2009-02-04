@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/21 19:15:11 mallet $
+# $LAAS: Makefile 2009/02/04 15:57:19 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Tue Nov 13 2007
 #
 
-DISTNAME=		genom-openhrp-plugin-1.3
+DISTNAME=		genom-openhrp-plugin-1.4
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=genom-openhrp-plugin/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}genom-openhrp-plugin
