@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/02/03 11:53:01 mallet $
+# $LAAS: gcc.mk 2009/02/03 23:34:36 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -84,7 +84,7 @@ ifndef _GCC_REQUIRED
 
   # _GCC_REQUIRED is the union of both
   _GCC_REQUIRED:=	${_maxmin_}${_minmax_}
-  MAKEOVERRIDES+=	_GCC_REQUIRED=$(call quote,${GCC_REQUIRED})
+  MAKEOVERRIDES+=	_GCC_REQUIRED=$(call quote,${_GCC_REQUIRED})
 endif
 ifeq (,$(_GCC_REQUIRED))
   PKG_FAIL_REASON+=	${hline}
