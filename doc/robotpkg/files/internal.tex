@@ -22,7 +22,7 @@
 
 The following variables and inclusion are useful for packages managed by {\tt autotools}. They should be defined in the installation Makefile of the package.
 
-\paragraph{${\tt GNU\_CONFIGURE}$} should be set to {\tt yes} to invoke configure for configuration. 
+\paragraph{${\tt GNU\_CONFIGURE}$} should be defined in order to invoke configure script for configuration. 
 
 \subsection*{Using cmake}
 
@@ -31,3 +31,8 @@ The following variables and inclusion are useful for packages managed by {\tt cm
 \paragraph{${\tt USE\_CMAKE}$} should be set to {\tt yes} to invoke cmake for configuration. Moreover, the following inclusion should added after the definition of the above variable in the Makefile (assuming the Makefile is two directories below {\tt robotpkg} root directory):\\
 {\tt include ../../mk/sysdep/cmake.mk}
 
+\subsection*{Compiling fortran files}
+
+If some packages include fortran files, it is important that all these files are compiled with the same compiler. To achieve so, it the following variable should be set in all packages including fortran files.
+
+\paragraph{${\tt USE\_LANGUAGES+=fortran}$} consistently sets ${\tt FC}$ environment variable before configuring packages including fortran files. Thus, all fortran files will be compiled with the same compiler.
