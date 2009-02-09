@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/05/25 23:23:21 tho $
+# $LAAS: depend.mk 2009/02/09 14:44:08 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -33,6 +33,11 @@ PREFER.libarchive?=	system
 SYSTEM_SEARCH.libarchive=	\
 	include/archive.h	\
 	lib/libarchive.*
+
+DEPEND_ABI.libarchive?=	libarchive>=2.5.0b
+DEPEND_DIR.libarchive?=	../../archivers/libarchive
+
+DEPEND_LIBS.libarchive+=-larchive
 
   # pull-in the user preferences for libarchive now
   include ../../mk/robotpkg.prefs.mk
@@ -67,11 +72,6 @@ libarchive-build:
   # This is the regular version of libarchive package, for normal install
   #
 DEPEND_USE+=		libarchive
-
-DEPEND_ABI.libarchive?=	libarchive>=2.5.0b
-DEPEND_DIR.libarchive?=	../../archivers/libarchive
-
-DEPEND_LIBS.libarchive+=-larchive
   endif
 
   include ../../archivers/bzip2/depend.mk

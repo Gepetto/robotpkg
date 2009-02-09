@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/05/25 20:47:18 tho $
+# $LAAS: depend.mk 2009/02/09 14:43:34 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -31,6 +31,11 @@ PREFER.libnbcompat?=		robotpkg
 SYSTEM_SEARCH.libnbcompat=	\
 	include/nbcompat.h	\
 	lib/libnbcompat.a
+
+DEPEND_ABI.libnbcompat?=libnbcompat>=20080416
+DEPEND_DIR.libnbcompat?=../../pkgtools/libnbcompat
+
+DEPEND_LIBS.libnbcompat+=-lnbcompat
 
   # pull-in the user preferences for libnbcompat now
   include ../../mk/robotpkg.prefs.mk
@@ -63,11 +68,6 @@ libnbcompat-build:
   # This is the regular version of libnbcompat package, for normal install
   #
 DEPEND_USE+=		libnbcompat
-
-DEPEND_ABI.libnbcompat?=libnbcompat>=20080416
-DEPEND_DIR.libnbcompat?=../../pkgtools/libnbcompat
-
-DEPEND_LIBS.libnbcompat+=-lnbcompat
   endif
 
 endif
