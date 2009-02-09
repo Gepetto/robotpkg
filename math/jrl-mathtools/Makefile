@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/30 18:54:47 mallet $
+# $LAAS: Makefile 2009/02/09 15:18:51 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -20,7 +20,8 @@ DISTNAME=	jrlmathtools-1.1
 PKGNAME=	jrl-mathtools-1.1
 
 CATEGORIES=	math
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/jrlMathTools
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
