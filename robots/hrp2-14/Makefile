@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/03 16:27:02 mallet $
+# $LAAS: Makefile 2009/02/09 19:15:13 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -27,7 +27,6 @@ COMMENT=	Data and functions specific to HRP2-14.
 
 # dependency to kineo
 PKG_SUPPORTED_OPTIONS+=	with-kineo
-PKG_SUGGESTED_OPTIONS+=	with-kineo
 
 PKG_OPTION_DESCR.with-kineo=	Provide configuration computations
 define PKG_OPTION_SET.with-kineo
