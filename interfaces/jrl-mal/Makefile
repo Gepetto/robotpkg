@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/30 17:40:05 mallet $
+# $LAAS: Makefile 2009/02/09 18:39:20 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -27,8 +27,11 @@ MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=	Matrix abstraction layer for boost or vnl.
 
-USE_LANGUAGES+=	c++ fortran
+USE_LANGUAGES+=		c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/MatrixAbstractLayer
+
+CMAKE_ARGS+= -DBLAS_blas_LIBRARY=${PREFIX.blas}/lib/libblas.so
+CMAKE_ARGS+= -DLAPACK_lapack_LIBRARY=${PREFIX.lapack}/lib/liblapack.so
 
 # options
 PKG_SUPPORTED_OPTIONS+=	t3d jrl-mathtools
@@ -48,11 +51,16 @@ endef
 PKG_OPTIONS_REQUIRED_GROUPS=	matrix
 PKG_OPTIONS_GROUP.matrix=	t3d jrl-mathtools
 
-include ../../mk/sysdep/cmake.mk
 include ../../math/jrl-mathtools/depend.mk
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
 include ../../math/lapack/depend.mk
+include ../../math/blas/depend.mk
+
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/latex.mk
+
 include ../../mk/robotpkg.mk
