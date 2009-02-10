@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/09 19:15:13 tho $
+# $LAAS: Makefile 2009/02/10 18:35:21 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -30,14 +30,14 @@ PKG_SUPPORTED_OPTIONS+=	with-kineo
 
 PKG_OPTION_DESCR.with-kineo=	Provide configuration computations
 define PKG_OPTION_SET.with-kineo
-	CMAKE_ARGS+=	-DWITH_KINEO=true
-	include ../../path/kineo-pp/depend.mk
+  CMAKE_ARGS+=	-DWITH_KINEO=true
+  include ../../path/kineo-pp/depend.mk
 endef
 
 USE_LANGUAGES+=		c++
 DOXYGEN_PLIST_DIR+=	share/doc/hrp2_14
 
-include ../../mk/sysdep/cmake.mk
-include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk
