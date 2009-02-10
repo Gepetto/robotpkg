@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/30 19:03:58 mallet $
+# $LAAS: Makefile 2009/02/10 17:16:49 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -21,8 +21,9 @@ PKGNAME=	jrl-dynamics-${VERSION}
 VERSION=	1.10
 
 CATEGORIES=	math
-MASTER_SITES=	${MASTER_SITE_JRL}
 NO_PUBLIC_SRC=	yes
+MASTER_SITES=		${MASTER_SITE_JRL}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}dynamics-JRLJapan
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	JRL-Japan implementation of dynamic robot.
