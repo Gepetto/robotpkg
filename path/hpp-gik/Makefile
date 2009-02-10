@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/10/13 11:20:16 mallet $
+# $LAAS: Makefile 2009/02/10 17:13:08 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -21,7 +21,8 @@ PKGNAME=	hpp-gik-${VERSION}
 VERSION=	1.9.1
 
 CATEGORIES=	path
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hppgik/}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hppgik/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hppGik
 
 MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
