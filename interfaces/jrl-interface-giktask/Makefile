@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/05/25 14:17:47 tho $
+# $LAAS: Makefile 2009/02/10 17:10:20 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -21,7 +21,8 @@ PKGNAME=	jrl-interface-giktask-${VERSION}
 VERSION=	1.4
 
 CATEGORIES=	interfaces
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}jrlCIR-giktask
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
