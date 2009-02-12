@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/10 18:35:21 tho $
+# $LAAS: Makefile 2009/02/12 14:10:10 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -19,7 +19,8 @@
 DISTNAME=	hrp2_14-1.5
 
 CATEGORIES=	robots
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hrp2_14/}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hrp2_14/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hrp2_14
 
 MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
