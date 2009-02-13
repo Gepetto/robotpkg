@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/02 15:24:35 mallet $
+# $LAAS: Makefile 2009/02/13 23:00:27 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -17,8 +17,7 @@
 #
 
 DISTNAME=	blas
-PKGNAME=	blas-1.0
-PKGREVISION=	3
+PKGNAME=	blas-3.1.0
 
 CATEGORIES=	math
 MASTER_SITES= 	ftp://ftp.netlib.org/blas/ \
@@ -30,10 +29,12 @@ MAINTAINER=     openrobots@laas.fr
 HOMEPAGE=       http://www.netlib.org/blas/
 COMMENT=        Basic Linear Algebra Subprograms (Fortran)
 
-WRKSRC=		${WRKDIR}
+WRKSRC=		${WRKDIR}/BLAS
 
-INSTALLATION_DIRS=	lib
-USE_LANGUAGES+=		fortran
+USE_LANGUAGES+=	fortran
 
-include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
+
+post-extract:
+	${CP} ${FILESDIR}/CMakeLists.txt ${WRKSRC}
