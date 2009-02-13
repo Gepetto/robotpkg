@@ -1,4 +1,4 @@
-# $LAAS: pkg-vars.mk 2009/02/10 11:58:14 tho $
+# $LAAS: pkg-vars.mk 2009/02/13 10:08:51 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -75,6 +75,8 @@ ifeq (-1,${PKGTOOLS_VERSION})
   $(info have set the ROBOTPKG_BASE variable to <prefix> in your environment,)
   $(info where <prefix> is the installation prefix that you configured)
   $(info during the bootstrap of robotpkg.)
+  $(info )
+  $(info Otherwise, the default prefix "/opt/openrobots" is used.)
   $(info $(patsubst "%",%,${hline}))
   $(error Fatal error)
 endif
