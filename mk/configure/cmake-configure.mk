@@ -1,4 +1,4 @@
-# $LAAS: cmake-configure.mk 2009/01/22 18:49:57 mallet $
+# $LAAS: cmake-configure.mk 2009/02/13 22:52:39 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -49,6 +49,9 @@ endif
 ifneq (,$(filter c++,${USE_LANGUAGES}))
   CMAKE_ARGS+=		-DCMAKE_CXX_COMPILER=${CXX}
   CMAKE_ARGS+=		-DCMAKE_CXX_FLAGS_RELEASE=$(call quote,${CPPFLAGS} ${CXXFLAGS})
+endif
+ifneq (,$(filter fortran,${USE_LANGUAGES}))
+  CMAKE_ARGS+=		-DCMAKE_Fortran_COMPILER=${FC}
 endif
 
 
