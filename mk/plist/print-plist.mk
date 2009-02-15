@@ -1,4 +1,4 @@
-# $LAAS: print-plist.mk 2009/01/30 12:18:46 mallet $
+# $LAAS: print-plist.mk 2009/02/15 13:57:27 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -64,18 +64,18 @@ PRINT_PLIST_IGNORE_DIRS+=	${ROBOTPKG_DIR}
 
 PRINT_PLIST_FILES_CMD?=		${TRUE};
 
-
 # scan $PREFIX for any files/dirs modified since the package was extracted
 # will emit "@exec mkdir"-statements for empty directories
 # XXX will fail for data files that were copied using tar!
 # XXX should check $LOCALBASE, and add @cwd statements
 #
+
 _PRINT_PLIST_FILES_CMD=	\
-	${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.extract} \! -type d -print;
+  ${FIND} ${PREFIX}/. -xdev -newer ${_EXTRACT_TIMESTAMP_FILE} \! -type d -print;
 _PRINT_PLIST_FILES_CMD+=	${PRINT_PLIST_FILES_CMD}
 
 _PRINT_PLIST_DIRS_CMD=	\
-	${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.extract} -type d -print
+  ${FIND} ${PREFIX}/. -xdev -newer ${_EXTRACT_TIMESTAMP_FILE} -type d -print
 
 _PRINT_PLIST_AWK_SUBST={
 

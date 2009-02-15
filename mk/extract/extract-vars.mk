@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/01/27 16:49:41 mallet $
+# $LAAS: extract-vars.mk 2009/02/15 13:57:05 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -122,6 +122,10 @@ ifdef _EXTRACT_IS_CHECKOUT
     MAKEOVERRIDES+=_CHECKOUT_PKGVERSION=${_CHECKOUT_PKGVERSION}
   endif
   PKGNAME:=		${PKGNAME}${_CHECKOUT_PKGVERSION}
+
+  _EXTRACT_TIMESTAMP_FILE:=	${_COOKIE.checkout}
+else
+  _EXTRACT_TIMESTAMP_FILE:=	${_COOKIE.extract}
 endif
 
 # The following are the "public" targets provided by this module:
