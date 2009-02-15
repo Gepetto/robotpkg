@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/03 17:37:15 mallet $
+# $LAAS: Makefile 2009/02/14 01:40:47 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -28,6 +28,7 @@ BUILD_TARGET+=		all-target-libgfortran
 
 CONFIGURE_ARGS+=        --with-gmp=${PREFIX.gmp}
 CONFIGURE_ARGS+=        --with-mpfr=${PREFIX.mpfr}
+CONFIGURE_ARGS+=        --enable-shared=libgfortran
 
 # make sure gfortran has the run-time path for gmp libs
 CONFIGURE_ARGS+=\
