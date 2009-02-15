@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/10 17:16:49 tho $
+# $LAAS: Makefile 2009/02/15 18:08:17 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -30,10 +30,10 @@ COMMENT=	JRL-Japan implementation of dynamic robot.
 
 DOXYGEN_PLIST_DIR+=	share/doc/dynamicsJRLJapan
 
-include ../../mk/sysdep/cmake.mk
 include ../../interfaces/jrl-mal/depend.mk
 include ../../interfaces/jrl-interface-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
