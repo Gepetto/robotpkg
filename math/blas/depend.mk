@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/02/13 22:56:00 tho $
+# $LAAS: depend.mk 2009/02/14 10:25:52 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -33,8 +33,6 @@ DEPEND_USE+=		blas
 
 DEPEND_ABI.blas?=	blas>=3.1
 DEPEND_DIR.blas?=	../../math/blas
-
-DEPEND_LIBS.blas+=	-lblas
 
 SYSTEM_SEARCH.blas= 	lib/libblas.*
 
