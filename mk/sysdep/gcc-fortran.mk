@@ -1,4 +1,4 @@
-# $LAAS: gcc-fortran.mk 2009/02/03 19:07:16 mallet $
+# $LAAS: gcc-fortran.mk 2009/02/13 22:51:11 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -69,6 +69,8 @@ ifeq (robotpkg,${PREFER.${_GCC_FORTRAN_PKG}})
 else
   override FC=$(word 1,${SYSTEM_FILES.${_GCC_FORTRAN_PKG}})
 endif
+
+CMAKE_ARGS+=	-DCMAKE_SHARED_LIBRARY_SONAME_Fortran_FLAG=-Wl,-soname,
 
 endif # GCC_FORTRAN_DEPEND_MK ----------------------------------------------
 
