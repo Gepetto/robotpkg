@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/09 18:39:20 tho $
+# $LAAS: Makefile 2009/02/15 18:08:14 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -21,7 +21,8 @@ PKGNAME=	jrl-mal-${VERSION}
 VERSION=	1.7.2
 
 CATEGORIES=	interfaces
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}/MatrixAbstractLayer
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
@@ -54,6 +55,7 @@ PKG_OPTIONS_GROUP.matrix=	t3d jrl-mathtools
 include ../../math/jrl-mathtools/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../devel/boost-numeric-bindings/depend.mk
 include ../../math/lapack/depend.mk
 include ../../math/blas/depend.mk
 
