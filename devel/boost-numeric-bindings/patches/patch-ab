@@ -1,5 +1,5 @@
---- numeric/bindings/lapack/lapack.h.orig	2008-10-13 17:51:26.312317000 +0200
-+++ numeric/bindings/lapack/lapack.h	2008-10-13 17:51:57.063771000 +0200
+--- lapack/lapack.h.orig	2008-10-13 17:51:26.312317000 +0200
++++ lapack/lapack.h	2008-10-13 17:51:57.063771000 +0200
 @@ -365,28 +365,43 @@
  		     int* ifst, const int * ilst, int* info );
  
