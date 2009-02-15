@@ -1,0 +1,143 @@
+@comment Sat Feb 14 01:21:21 JST 2009
+bin/cpp
+bin/gcc
+bin/gccbug
+bin/gcov
+bin/i386-unknown-netbsdelf${OS_VERSION}-gcc
+bin/i386-unknown-netbsdelf${OS_VERSION}-gcc-${PKGVERSION}
+info/cpp.info
+info/cppinternals.info
+info/dir
+info/gcc.info
+info/gccinstall.info
+info/gccint.info
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/crtbegin.o
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/crtbeginS.o
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/crtbeginT.o
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/crtend.o
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/crtendS.o
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/README
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/decfloat.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/emmintrin.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/float.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/inttypes.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/iso646.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/limits.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/math.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/mm3dnow.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/mm_malloc.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/mmintrin.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/netinet/ip_compat.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/netinet/ip_fil.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/netinet/ip_lookup.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/netinet/ip_nat.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/netinet/ip_proxy.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/netinet/ip_scan.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/netinet/ip_state.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/pmmintrin.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/stdarg.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/stdbool.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/stddef.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/stdlib.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/sys/types.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/syslimits.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/unwind.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/varargs.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/wchar.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/x86/cpu.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/xmmintrin.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/gsyslimits.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/README
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/decfloat.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/emmintrin.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/float.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/iso646.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/limits.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/mm3dnow.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/mm_malloc.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/mmintrin.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/pmmintrin.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/stdarg.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/stdbool.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/stddef.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/unwind.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/varargs.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include/xmmintrin.h
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/macro_list
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/mkheaders.conf
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/libgcc.a
+lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/libgcov.a
+libexec/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/cc1
+libexec/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/collect2
+libexec/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/fixinc.sh
+libexec/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/fixincl
+libexec/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/mkheaders
+man/man1/cpp.1
+man/man1/gcc.1
+man/man1/gcov.1
+man/man7/fsf-funding.7
+man/man7/gfdl.7
+man/man7/gpl.7
+share/locale/be/LC_MESSAGES/gcc.mo
+share/locale/da/LC_MESSAGES/gcc.mo
+share/locale/de/LC_MESSAGES/gcc.mo
+share/locale/el/LC_MESSAGES/gcc.mo
+share/locale/es/LC_MESSAGES/gcc.mo
+share/locale/fr/LC_MESSAGES/gcc.mo
+share/locale/ja/LC_MESSAGES/gcc.mo
+share/locale/nl/LC_MESSAGES/gcc.mo
+share/locale/ru/LC_MESSAGES/gcc.mo
+share/locale/sr/LC_MESSAGES/gcc.mo
+share/locale/sv/LC_MESSAGES/gcc.mo
+share/locale/tr/LC_MESSAGES/gcc.mo
+share/locale/zh_CN/LC_MESSAGES/gcc.mo
+share/locale/zh_TW/LC_MESSAGES/gcc.mo
+@dirrm share/locale/zh_TW/LC_MESSAGES
+@dirrm share/locale/zh_TW
+@dirrm share/locale/zh_CN/LC_MESSAGES
+@dirrm share/locale/zh_CN
+@dirrm share/locale/tr/LC_MESSAGES
+@dirrm share/locale/tr
+@dirrm share/locale/sv/LC_MESSAGES
+@dirrm share/locale/sv
+@dirrm share/locale/sr/LC_MESSAGES
+@dirrm share/locale/sr
+@dirrm share/locale/ru/LC_MESSAGES
+@dirrm share/locale/ru
+@dirrm share/locale/nl/LC_MESSAGES
+@dirrm share/locale/nl
+@dirrm share/locale/ja/LC_MESSAGES
+@dirrm share/locale/ja
+@dirrm share/locale/fr/LC_MESSAGES
+@dirrm share/locale/fr
+@dirrm share/locale/es/LC_MESSAGES
+@dirrm share/locale/es
+@dirrm share/locale/el/LC_MESSAGES
+@dirrm share/locale/el
+@dirrm share/locale/de/LC_MESSAGES
+@dirrm share/locale/de
+@dirrm share/locale/da/LC_MESSAGES
+@dirrm share/locale/da
+@dirrm share/locale/be/LC_MESSAGES
+@dirrm share/locale/be
+@dirrm share/locale
+@dirrm share
+@dirrm man/man7
+@dirrm man/man1
+@dirrm man
+@dirrm libexec/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools
+@dirrm libexec/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}
+@dirrm libexec/gcc
+@dirrm lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools/include
+@dirrm lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/install-tools
+@dirrm lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/x86
+@dirrm lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/sys
+@dirrm lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include/netinet
+@dirrm lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}/include
+@dirrm lib/gcc/i386-unknown-netbsdelf${OS_VERSION}/${PKGVERSION}
+@dirrm lib/gcc
+@dirrm lib
+@dirrm info
+@exec ${MKDIR} %D/include
+@dirrm include
+@dirrm bin
