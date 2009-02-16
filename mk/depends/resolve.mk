@@ -1,4 +1,12 @@
-# $LAAS: resolve.mk 2009/02/03 19:21:08 mallet $
+<<<<<<< HEAD:mk/depends/resolve.mk
+<<<<<<< HEAD:mk/depends/resolve.mk
+# $LAAS: resolve.mk 2009/02/20 18:09:15 tho $
+=======
+# $LAAS: resolve.mk 2009/02/20 18:09:15 tho $
+>>>>>>> 661178d... [mk] _MAKECONF -> MAKECONF:mk/depends/resolve.mk
+=======
+# $LAAS: resolve.mk 2009/02/20 18:09:15 tho $
+>>>>>>> 7b01ecd... _MAKECONF->MAKECONF:mk/depends/resolve.mk
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -126,7 +134,7 @@ define _dpd_adddep
       PKG_FAIL_REASON+= ""
       PKG_FAIL_REASON+= "This package is not included in robotpkg, and you have to"
       PKG_FAIL_REASON+= "configure your preferences by setting the following variable"
-      PKG_FAIL_REASON+= "in ${_MAKECONF}:"
+      PKG_FAIL_REASON+= "in ${MAKECONF}:"
       PKG_FAIL_REASON+= ""
       PKG_FAIL_REASON+= "	. PREFER.${1}=	system"
       PKG_FAIL_REASON+= ""
@@ -196,14 +204,17 @@ $$(foreach d,${SYSTEM_PREFIX},$$(eval PKG_FAIL_REASON+="		$${d}"))
       else
 PKG_FAIL_REASON+= "		(empty)"
       endif
-PKG_FAIL_REASON+= "	. PREFIX.${1} can be set to the prefix path of your"
-PKG_FAIL_REASON+= "	  ${1} system package."
-      ifneq (,$(strip ${DEPEND_DIR.${1}}))
 PKG_FAIL_REASON+= ""
+
+PKG_FAIL_REASON+= "If this package is installed in a non-standard location, you have"
+PKG_FAIL_REASON+= "to modify the SYSTEM_PREFIX or PREFIX.${1} variables in"
+PKG_FAIL_REASON+= "${MAKECONF}"
+PKG_FAIL_REASON+= ""
+      ifneq (,$(strip ${DEPEND_DIR.${1}}))
 PKG_FAIL_REASON+= "If no $${DEPEND_ABI.${1}} package can be made available in your "
-PKG_FAIL_REASON+= "system, you can choose to use the robotpkg version, by setting "
-PKG_FAIL_REASON+= "in ${_MAKECONF}:"
-PKG_FAIL_REASON+= "	. PREFER.${1}=	robotpkg"
+PKG_FAIL_REASON+= "system, you can use the robotpkg version, by setting in"
+PKG_FAIL_REASON+= "${MAKECONF}:"
+PKG_FAIL_REASON+= "		PREFER.${1}=	robotpkg"
       endif
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= ${hline}

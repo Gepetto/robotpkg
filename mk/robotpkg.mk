@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/02/16 15:45:48 tho $
+# $LAAS: robotpkg.mk 2009/02/20 18:09:37 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -321,7 +321,7 @@ PKG_FAIL_REASON+= " . To indicate acceptance, add this line:"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=${LICENSE}"
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "   to ${_MAKECONF}"
+PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= ${hline}
   endif

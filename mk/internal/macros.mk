@@ -1,6 +1,6 @@
-# $LAAS: macros.mk 2008/10/23 17:02:02 mallet $
+# $LAAS: macros.mk 2009/02/16 18:20:05 tho $
 #
-# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -59,6 +59,16 @@ endef
 override define substs
 $(if $1,$(subst $(firstword $1),$(firstword $2),$(call \
 	substs,$(wordlist 2,$(words $1),$1),$(wordlist 2,$(words $2),$2),$3)),$3)
+endef
+
+
+# --- tolower <string> -----------------------------------------------
+#
+# Substitute in the <string> each character from A-Z to a-z
+#
+override define tolower
+$(call substs,A B C D E F G H I J K L M N O P Q R S T U V W X Y Z,	\
+	      a b c d e f g h i j k l m n o p q r s t u v w x y z,$1)
 endef
 
 

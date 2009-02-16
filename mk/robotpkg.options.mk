@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2009/02/16 16:46:28 tho $
+# $LAAS: robotpkg.options.mk 2009/02/20 18:06:27 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -353,7 +353,7 @@ endif
 		$(call quote,${PKG_OPTIONS_VAR})" to the list of"	\
 		"desired options. Options prefixed with a dash (-)"	\
 		"will be disabled. The variables are to be set in"	\
-		${_MAKECONF}"." | fmt
+		${MAKECONF}"." | fmt
 
 
 # --- supported-options-message --------------------------------------
