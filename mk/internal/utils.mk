@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/01/23 12:32:30 mallet $
+# $LAAS: utils.mk 2009/02/16 15:58:50 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -113,3 +113,8 @@ _DEPENDS_WALK_CMD=							\
 		MAKEFLAGS=${_DEPENDS_WALK_MAKEFLAGS}			\
 		ROBOTPKG_DIR=${ROBOTPKG_DIR} TEST=${TOOLS_TEST}		\
 	${AWK} -f ${ROBOTPKG_DIR}/mk/internal/depends-depth-first.awk --
+
+# Fake target to make do%stuff pattern targets phony
+#
+.PHONY: .FORCE
+.FORCE:

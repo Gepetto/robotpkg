@@ -1,6 +1,6 @@
-# $LAAS: metadata.mk 2008/05/25 22:31:06 tho $
+# $LAAS: metadata.mk 2009/02/16 17:38:10 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -148,14 +148,17 @@ _DESCR_FILE=		${PKG_DB_TMPDIR}/+DESC
 _METADATA_TARGETS+=	${_DESCR_FILE}
 
 ${_DESCR_FILE}: ${DESCR_SRC}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f $@
-	${_PKG_SILENT}${_PKG_DEBUG}${CAT} $^ > $@
-ifdef HOMEPAGE
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} >> $@
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} "Homepage:" >> $@
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ""${HOMEPAGE} >> $@
-endif
+	${RUN}								\
+	${MKDIR} $(dir $@);						\
+	${RM} -f $@;							\
+	${CAT} $^ > $@;							\
+$(if $(strip ${HOMEPAGE}),						\
+	${ECHO} >> $@;							\
+	${ECHO} "Homepage:" >> $@;					\
+	${ECHO} ""${HOMEPAGE} >> $@;					\
+)
+
+${DESCR_SRC}:;
 
 
 # --- +DISPLAY -------------------------------------------------------

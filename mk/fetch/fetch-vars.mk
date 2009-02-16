@@ -1,4 +1,4 @@
-# $LAAS: fetch-vars.mk 2009/01/27 16:36:42 mallet $
+# $LAAS: fetch-vars.mk 2009/02/16 15:34:45 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -71,5 +71,5 @@ DISTFILES?=		${DISTNAME}${EXTRACT_SUFX}
 
 include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
 include ${ROBOTPKG_DIR}/mk/fetch/fetch.mk
--include "${ROBOTPKG_DIR}/mk/fetch/fetch-list.mk"
--include "${ROBOTPKG_DIR}/mk/fetch/distclean.mk"
+#include "${ROBOTPKG_DIR}/mk/fetch/fetch-list.mk"
+#include "${ROBOTPKG_DIR}/mk/fetch/distclean.mk"

@@ -1,4 +1,4 @@
-# $LAAS: plist.mk 2009/02/16 13:49:17 tho $
+# $LAAS: plist.mk 2009/02/16 17:34:37 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -189,3 +189,5 @@ ${PLIST}: ${PLIST_SRC}
 	${RUN}							\
 	{ ${_GENERATE_PLIST} } |				\
 	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK} > $@
+
+${PLIST_SRC}:;

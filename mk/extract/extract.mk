@@ -1,4 +1,4 @@
-# $LAAS: extract.mk 2009/01/27 16:48:56 mallet $
+# $LAAS: extract.mk 2009/02/16 17:01:58 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -104,10 +104,9 @@ acquire-extract-lock: acquire-lock
 release-extract-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.extract}))
-${_COOKIE.extract}:
-	@${DO_NADA}
+${_COOKIE.extract}:;
 else
-${_COOKIE.extract}: real-extract
+${_COOKIE.extract}: real-extract;
 endif
 
 
@@ -143,6 +142,7 @@ extract-dir:
 #
 # extract-check-checkout checks whether a checkout is present.
 #
+.PHONY: extract-check-checkout
 extract-check-checkout:
 ifeq (yes,$(call exists,${_COOKIE.checkout}))
 	${RUN}								\

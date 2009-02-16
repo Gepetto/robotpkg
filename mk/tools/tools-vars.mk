@@ -1,6 +1,6 @@
-# $LAAS: tools-vars.mk 2008/05/25 21:36:51 tho $
+# $LAAS: tools-vars.mk 2009/02/16 16:57:18 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 2005, 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -92,11 +92,11 @@ acquire-tools-lock: acquire-lock
 release-tools-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.tools}))
-${_COOKIE.tools}:
-	@${DO_NADA}
+${_COOKIE.tools}:;
 else
-${_COOKIE.tools}: real-tools
+${_COOKIE.tools}: real-tools;
 endif
+
 
 # --- real-tools (PRIVATE) -------------------------------------------
 
@@ -146,6 +146,7 @@ override-tools:
 # used to directly modify the contents of the tools directory after
 # the tools are generated.
 #
+.PHONY: post-tools
 post-tools:
 
 include ${ROBOTPKG_DIR}/mk/tools/digest.mk

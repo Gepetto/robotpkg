@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2009/01/30 23:24:15 tho $
+# $LAAS: robotpkg.options.mk 2009/02/16 16:46:28 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -365,27 +365,35 @@ pre-depends-hook: supported-options-message
 
 .PHONY: supported-options-message
 supported-options-message:
-	@${ECHO} ${hline}
-	@${ECHO} "The supported build options for ${PKGBASE} are:"
-	@${ECHO} ""
-	${RUN}$(foreach _o_, $(sort ${PKG_SUPPORTED_OPTIONS}),	\
-			$(call _pkgopt_listopt,${_o_}))
-	@${ECHO} ""
-ifneq (,$(strip ${PKG_OPTIONS}))
-	@${ECHO} "Building with the following options enabled:"
-	@${ECHO} ""
-	${RUN}$(foreach _o_, $(sort ${PKG_OPTIONS}),		\
-			$(call _pkgopt_listopt,${_o_}))
-	@${ECHO} ""
-endif
-	@${ECHO} "You may want to abort the process now with CTRL-C and review the"
-	@${ECHO} "available build options with \`${MAKE} show-options' before"
-	@${ECHO} "continuing. Be sure to run \`${MAKE} clean' after any change."
-	@${ECHO} ${hline}
+	@${ECHO} ${hline};						\
+	${ECHO}	"The supported build options for ${PKGBASE} are:";	\
+	${ECHO} "";							\
+	$(foreach _o_,							\
+		$(sort ${PKG_SUPPORTED_OPTIONS}),			\
+		$(call _pkgopt_listopt,${_o_}))				\
+	${ECHO} "";							\
+$(if $(strip ${PKG_OPTIONS}),						\
+	${ECHO} "Building with the following options enabled:";		\
+	${ECHO} "";							\
+	$(foreach _o_,							\
+		$(sort ${PKG_OPTIONS}),					\
+		$(call _pkgopt_listopt,${_o_}))				\
+	${ECHO} "";							\
+)									\
+	${ECHO} "You may want to abort the process now with CTRL-C"	\
+		"and review the";					\
+	${ECHO} "available build options with \`${MAKE} show-options'"	\
+		"before";						\
+	${ECHO} "continuing. Be sure to run \`${MAKE} clean' after any"	\
+		"change.";						\
+	${ECHO} ${hline}
+
 else	# PKG_SUPPORTED_OPTIONS
+
 .PHONY: show-options
 show-options:
-	@${ECHO} This package does not use the options framework.
+	@${ECHO} "This package does not use the options framework."
+
 
 endif	# PKG_SUPPORTED_OPTIONS
 endif	# PKG_OPTIONS_MK

@@ -1,6 +1,12 @@
+# $LAAS: depends.mk 2009/02/16 17:42:57 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006-2007,2009 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,16 +18,8 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: depends.mk,v 1.10 2006/07/07 21:24:28 jlam Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
-#   3. All advertising materials mentioning   features or use of this
-#      software must display the following acknowledgement:
+#   3. All advertising  materials mentioning    features  or use of  this
+#      software  must  display the  following acknowledgement:
 #        This product includes software developed by the NetBSD
 #        Foundation, Inc. and its contributors.
 #   4. Neither the  name  of The NetBSD Foundation  nor the names  of its
@@ -40,6 +38,11 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+# From $NetBSD: depends.mk,v 1.10 2006/07/07 21:24:28 jlam Exp $
+#
+#                                       Anthony Mallet on Thu Nov 30 2006
+#
+
 
 # --- depends (PUBLIC) -----------------------------------------------
 #
@@ -57,10 +60,9 @@ acquire-depends-lock: acquire-lock
 release-depends-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.depends}))
-${_COOKIE.depends}:
-	@${DO_NADA}
+  ${_COOKIE.depends}:;
 else
-${_COOKIE.depends}: real-depends
+  ${_COOKIE.depends}: real-depends;
 endif
 
 

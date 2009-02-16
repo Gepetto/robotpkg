@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2009/02/03 15:29:48 mallet $
+# $LAAS: robotpkg.prefs.mk 2009/02/16 14:07:27 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.

@@ -64,10 +64,9 @@ install: barrier
 endif
 
 ifeq (yes,$(call exists,${_COOKIE.install}))
-${_COOKIE.install}:
-	@${DO_NADA}
+  ${_COOKIE.install}:;
 else
-${_COOKIE.install}: real-install
+  ${_COOKIE.install}: real-install;
 endif
 
 .PHONY: acquire-install-lock release-install-lock

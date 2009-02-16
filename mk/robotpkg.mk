@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/02/16 13:43:20 tho $
+# $LAAS: robotpkg.mk 2009/02/16 15:45:48 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -385,7 +385,7 @@ ${WRKDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
 
 # Check
--include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
+#include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
 # Clean
 include ${ROBOTPKG_DIR}/mk/clean.mk
@@ -443,7 +443,7 @@ _BIN_INSTALL_FLAGS+=	-A
 endif
 _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
--include "${ROBOTPKG_DIR}/mk/install/bin-install.mk"
+#include "${ROBOTPKG_DIR}/mk/install/bin-install.mk"
 
 
 ################################################################
@@ -458,7 +458,7 @@ include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk
 include ${ROBOTPKG_DIR}/mk/internal/su-target.mk
 
--include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
+#include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
 #if make(debug) || make(build-env)
 #.include "${ROBOTPKG_DIR}/mk/bsd.pkg.debug.mk"
 #.endif
@@ -475,5 +475,8 @@ endif
 # index.html generation code.
 include ${ROBOTPKG_DIR}/mk/internal/index.mk
 
-# fake target to make pattern targets phony
-.FORCE:
+# Tell 'make' not to try to rebuild any Makefile by specifing a
+# double-colon target with no dependencies.
+#
+${MAKEFILE_LIST}::
+	@${DO_NADA}
