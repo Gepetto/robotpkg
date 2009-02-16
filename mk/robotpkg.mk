@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/01/27 16:36:59 mallet $
+# $LAAS: robotpkg.mk 2009/02/16 13:43:20 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -92,6 +92,7 @@ endif
 
 PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
 PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
+PKGVERSION_NOREV:=	$(patsubst ${PKGBASE}-%,%,${PKGNAME_NOREV})
 
 # Others
 #
