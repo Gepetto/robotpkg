@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/01/09 18:41:55 mallet $
+# $LAAS: barrier.mk 2009/02/16 10:49:05 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -92,26 +92,14 @@ _BARRIER_CMDLINE_TARGETS+=$(filter ${_BARRIER_POST_TARGETS},${MAKECMDGOALS})
 # targets that occur before the barrier.
 #
 
-.PHONY: barrier-error-check
-barrier-error-check: #error-check
-
 .PHONY: barrier
 barrier: ${_BARRIER_PRE_TARGETS} ${_COOKIE.barrier}
 ifndef _PKGSRC_BARRIER
-  ifdef PKG_VERBOSE
-	@${PHASE_MSG} "Invoking \`\`"${_BARRIER_CMDLINE_TARGETS}"'' after barrier for ${PKGNAME}"
-  endif
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	cd ${CURDIR}							\
-	&& ${RECURSIVE_MAKE} _PKGSRC_BARRIER=yes ${_BARRIER_CMDLINE_TARGETS} \
-	|| {								\
-		exitcode="$$?";						\
-		${RECURSIVE_MAKE} _PKGSRC_BARRIER=yes barrier-error-check; \
-		exit "$$exitcode";					\
-	}
-  ifdef PKG_VERBOSE
-	@${PHASE_MSG} "Leaving \`\`"${_BARRIER_CMDLINE_TARGETS}"'' after barrier for ${PKGNAME}"
-  endif
+	${RUN}cd ${CURDIR} && ${RECURSIVE_MAKE}				\
+		_PKGSRC_BARRIER=yes ${_BARRIER_CMDLINE_TARGETS}
+	@${PHASE_MSG}							\
+		"Done$(patsubst %, \`%',${_BARRIER_CMDLINE_TARGETS})"	\
+		"for ${PKGNAME}"
 endif
 
 
@@ -120,5 +108,5 @@ endif
 # barrier-cookie creates the "barrier" cookie file.
 #
 ${_COOKIE.barrier}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > $@
+	${RUN}${MKDIR} $(dir $@)
+	${RUN}${ECHO} ${PKGNAME} > $@
