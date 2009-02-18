@@ -16,9 +16,8 @@
 #                                      Arnaud Degroote on Tue May 20 2008
 #
 
-DISTNAME=		GPSNovatel-genom-${VERSION}
-PKGNAME=		GPS-genom-${VERSION}
-VERSION=		0.1
+DISTNAME=		GPS-genom-${VERSION}
+VERSION=		0.2
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
