@@ -1,4 +1,4 @@
-# $LAAS: print-plist.mk 2009/02/16 13:50:34 tho $
+# $LAAS: print-plist.mk 2009/02/19 11:28:45 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -127,7 +127,7 @@ endif
 
 .PHONY: print-PLIST
 print-PLIST:
-	${RUN}${ECHO} '@comment '`${DATE}`
+	${RUN}${ECHO} '@comment '`${_CDATE_CMD}`
 	${RUN}{ ${_PRINT_PLIST_FILES_CMD} }				\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
 	 | ${AWK}  '							\

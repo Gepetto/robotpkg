@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/02/16 15:58:50 tho $
+# $LAAS: utils.mk 2009/02/19 11:28:38 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -39,6 +39,10 @@
 # and otherwise miscellaneous variables and targets.
 #
 TMPDIR?=	/tmp
+
+# Printed dates should be agnostic regarding the locale
+#
+_CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 
 # convenience target, to display make variables from command line
 # i.e. "make show-var VARNAME=var", will print var's value

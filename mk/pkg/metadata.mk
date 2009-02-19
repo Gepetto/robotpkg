@@ -1,4 +1,4 @@
-# $LAAS: metadata.mk 2009/02/16 17:38:10 tho $
+# $LAAS: metadata.mk 2009/02/19 11:30:47 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -52,7 +52,7 @@ ${PKG_DB_TMPDIR}:
 # Package build environment and settings information
 #
 _BUILD_INFO_FILE=	${PKG_DB_TMPDIR}/+BUILD_INFO
-_BUILD_DATE_cmd=	${DATE} "+%Y-%m-%d %H:%M:%S %z"
+_BUILD_DATE_cmd=	${_CDATE_CMD} "+%Y-%m-%d %H:%M:%S %z"
 _METADATA_TARGETS+=	${_BUILD_INFO_FILE}
 
 ${_BUILD_INFO_FILE}: plist
@@ -216,8 +216,7 @@ _PRESERVE_FILE=		${PKG_DB_TMPDIR}/+PRESERVE
 _METADATA_TARGETS+=	${_PRESERVE_FILE}
 
 ${_PRESERVE_FILE}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}${DATE} > $@
+	${RUN}${MKDIR} $(dir $@); ${_CDATE_CMD} > $@
 endif
 
 
