@@ -1,6 +1,12 @@
+# $LAAS: update.mk 2009/02/19 16:17:29 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,15 +18,7 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From  $NetBSD: bsd.pkg.update.mk,v 1.7 2006/10/05 12:56:27 rillig Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
-#   3. All advertising materials mentioning   features or use of this
+#   3. All  advertising  materials  mentioning   features  or use of this
 #      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
 #        Foundation, Inc. and its contributors.
@@ -40,8 +38,11 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
+# From $NetBSD: bsd.pkg.update.mk,v 1.7 2006/10/05 12:56:27 rillig Exp $
 #
+#                                       Anthony Mallet on Thu Dec  7 2006
+#
+
 # This Makefile fragment contains the targets and variables for 
 # "make update".
 #
@@ -126,14 +127,9 @@ endif
 
 .PHONY: clean-update
 clean-update:
-	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} update-create-ddir
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do		\
-		(if cd ../.. && cd "$${dep}" ; then			\
-			${RECURSIVE_MAKE} clean;			\
-		else							\
-			${PHASE_MSG} "Skipping removed directory $${dep}";\
-		fi) ;							\
+	${RUN}${RECURSIVE_MAKE} update-create-ddir
+	${RUN}[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do	\
+		cd ../.. && cd $${dep} && ${RECURSIVE_MAKE} clean;	\
 	done
 ifneq (NO,$(strip ${CLEAR_DIRLIST}))
 	${RUN}${RECURSIVE_MAKE} clean
@@ -166,7 +162,5 @@ ${_DDIR}: ${_DLIST}
 # packages that require this package directly.
 ${_DLIST}: ${WRKDIR}
 	${RUN}								\
-	${PKG_DELETE} -n "${PKGWILDCARD}" 2>&1				\
-	| ${GREP} '^	'						\
-	| ${AWK} '{ l[NR]=$$0 } END { for (i=NR;i>0;--i) print l[i] }'	\
-	> ${_DLIST}
+	${PKG_DELETE} -nr "${PKGWILDCARD}" 2>&1				\
+	| ${SED} -n '/^deinstalling /{s///;G;h;};$${g;p;}' > ${_DLIST}
