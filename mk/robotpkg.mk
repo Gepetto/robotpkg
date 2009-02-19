@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/02/20 18:09:37 tho $
+# $LAAS: robotpkg.mk 2009/02/20 18:10:34 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -415,14 +415,14 @@ include ${ROBOTPKG_DIR}/mk/build/build-vars.mk
 # Install
 include ${ROBOTPKG_DIR}/mk/install/install-vars.mk
 
-# Update
-include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
-
 # Package
 include ${ROBOTPKG_DIR}/mk/package/package-vars.mk
 
 # Dependencies
 include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
+
+# Update
+include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
 
 # --------------------------------------------------------------------
 #
