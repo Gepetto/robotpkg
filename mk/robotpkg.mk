@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/02/20 18:10:34 tho $
+# $LAAS: robotpkg.mk 2009/02/20 18:11:40 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -239,7 +239,7 @@ SCRIPTS_ENV+=	${INSTALL_MACROS}
 
 # Used to print all the '===>' style prompts - override this to turn them off.
 ECHO_MSG?=		${ECHO}
-PHASE_MSG?=		${ECHO_MSG} "===>"
+PHASE_MSG?=		_bf() { ${ECHO_MSG} "${bf}===>" $$@ "${rm}"; }; _bf
 STEP_MSG?=		${ECHO_MSG} "=>"
 WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
 ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
