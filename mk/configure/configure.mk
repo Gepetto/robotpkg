@@ -1,4 +1,4 @@
-# $LAAS: configure.mk 2009/01/22 18:29:57 mallet $
+# $LAAS: configure.mk 2009/02/16 17:23:38 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -97,10 +97,9 @@ acquire-configure-lock: acquire-lock
 release-configure-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.configure}))
-${_COOKIE.configure}:
-	@${DO_NADA}
+${_COOKIE.configure}:;
 else
-${_COOKIE.configure}: real-configure
+${_COOKIE.configure}: real-configure;
 endif
 
 

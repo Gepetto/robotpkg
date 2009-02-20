@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/02/15 13:57:05 tho $
+# $LAAS: extract-vars.mk 2009/02/19 11:29:56 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -118,7 +118,7 @@ endif
 
 ifdef _EXTRACT_IS_CHECKOUT
   ifndef _CHECKOUT_PKGVERSION
-    _CHECKOUT_PKGVERSION:=.checkout.$(shell ${DATE} "+%Y.%m.%d.%k.%M.%S")
+    _CHECKOUT_PKGVERSION:=.checkout.$(shell ${_CDATE_CMD} "+%Y.%m.%d.%k.%M.%S")
     MAKEOVERRIDES+=_CHECKOUT_PKGVERSION=${_CHECKOUT_PKGVERSION}
   endif
   PKGNAME:=		${PKGNAME}${_CHECKOUT_PKGVERSION}

@@ -1,6 +1,6 @@
-# $LAAS: metadata.mk 2008/05/25 22:31:06 tho $
+# $LAAS: metadata.mk 2009/02/19 11:30:47 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -52,7 +52,7 @@ ${PKG_DB_TMPDIR}:
 # Package build environment and settings information
 #
 _BUILD_INFO_FILE=	${PKG_DB_TMPDIR}/+BUILD_INFO
-_BUILD_DATE_cmd=	${DATE} "+%Y-%m-%d %H:%M:%S %z"
+_BUILD_DATE_cmd=	${_CDATE_CMD} "+%Y-%m-%d %H:%M:%S %z"
 _METADATA_TARGETS+=	${_BUILD_INFO_FILE}
 
 ${_BUILD_INFO_FILE}: plist
@@ -148,14 +148,17 @@ _DESCR_FILE=		${PKG_DB_TMPDIR}/+DESC
 _METADATA_TARGETS+=	${_DESCR_FILE}
 
 ${_DESCR_FILE}: ${DESCR_SRC}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f $@
-	${_PKG_SILENT}${_PKG_DEBUG}${CAT} $^ > $@
-ifdef HOMEPAGE
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} >> $@
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} "Homepage:" >> $@
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ""${HOMEPAGE} >> $@
-endif
+	${RUN}								\
+	${MKDIR} $(dir $@);						\
+	${RM} -f $@;							\
+	${CAT} $^ > $@;							\
+$(if $(strip ${HOMEPAGE}),						\
+	${ECHO} >> $@;							\
+	${ECHO} "Homepage:" >> $@;					\
+	${ECHO} ""${HOMEPAGE} >> $@;					\
+)
+
+${DESCR_SRC}:;
 
 
 # --- +DISPLAY -------------------------------------------------------
@@ -213,8 +216,7 @@ _PRESERVE_FILE=		${PKG_DB_TMPDIR}/+PRESERVE
 _METADATA_TARGETS+=	${_PRESERVE_FILE}
 
 ${_PRESERVE_FILE}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}${DATE} > $@
+	${RUN}${MKDIR} $(dir $@); ${_CDATE_CMD} > $@
 endif
 
 

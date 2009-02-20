@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/01/23 12:32:30 mallet $
+# $LAAS: utils.mk 2009/02/19 11:28:38 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -39,6 +39,10 @@
 # and otherwise miscellaneous variables and targets.
 #
 TMPDIR?=	/tmp
+
+# Printed dates should be agnostic regarding the locale
+#
+_CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 
 # convenience target, to display make variables from command line
 # i.e. "make show-var VARNAME=var", will print var's value
@@ -113,3 +117,8 @@ _DEPENDS_WALK_CMD=							\
 		MAKEFLAGS=${_DEPENDS_WALK_MAKEFLAGS}			\
 		ROBOTPKG_DIR=${ROBOTPKG_DIR} TEST=${TOOLS_TEST}		\
 	${AWK} -f ${ROBOTPKG_DIR}/mk/internal/depends-depth-first.awk --
+
+# Fake target to make do%stuff pattern targets phony
+#
+.PHONY: .FORCE
+.FORCE:

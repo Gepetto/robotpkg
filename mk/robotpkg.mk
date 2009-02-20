@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/01/27 16:36:59 mallet $
+# $LAAS: robotpkg.mk 2009/02/20 18:11:40 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -92,6 +92,7 @@ endif
 
 PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
 PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
+PKGVERSION_NOREV:=	$(patsubst ${PKGBASE}-%,%,${PKGNAME_NOREV})
 
 # Others
 #
@@ -238,7 +239,7 @@ SCRIPTS_ENV+=	${INSTALL_MACROS}
 
 # Used to print all the '===>' style prompts - override this to turn them off.
 ECHO_MSG?=		${ECHO}
-PHASE_MSG?=		${ECHO_MSG} "===>"
+PHASE_MSG?=		_bf() { ${ECHO_MSG} "${bf}===>" $$@ "${rm}"; }; _bf
 STEP_MSG?=		${ECHO_MSG} "=>"
 WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
 ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
@@ -320,7 +321,7 @@ PKG_FAIL_REASON+= " . To indicate acceptance, add this line:"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=${LICENSE}"
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "   to ${_MAKECONF}"
+PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= ${hline}
   endif
@@ -384,7 +385,7 @@ ${WRKDIR}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
 
 # Check
--include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
+#include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
 # Clean
 include ${ROBOTPKG_DIR}/mk/clean.mk
@@ -414,14 +415,14 @@ include ${ROBOTPKG_DIR}/mk/build/build-vars.mk
 # Install
 include ${ROBOTPKG_DIR}/mk/install/install-vars.mk
 
-# Update
-include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
-
 # Package
 include ${ROBOTPKG_DIR}/mk/package/package-vars.mk
 
 # Dependencies
 include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
+
+# Update
+include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
 
 # --------------------------------------------------------------------
 #
@@ -442,7 +443,7 @@ _BIN_INSTALL_FLAGS+=	-A
 endif
 _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
--include "${ROBOTPKG_DIR}/mk/install/bin-install.mk"
+#include "${ROBOTPKG_DIR}/mk/install/bin-install.mk"
 
 
 ################################################################
@@ -457,7 +458,7 @@ include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk
 include ${ROBOTPKG_DIR}/mk/internal/su-target.mk
 
--include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
+#include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
 #if make(debug) || make(build-env)
 #.include "${ROBOTPKG_DIR}/mk/bsd.pkg.debug.mk"
 #.endif
@@ -474,5 +475,8 @@ endif
 # index.html generation code.
 include ${ROBOTPKG_DIR}/mk/internal/index.mk
 
-# fake target to make pattern targets phony
-.FORCE:
+# Tell 'make' not to try to rebuild any Makefile by specifing a
+# double-colon target with no dependencies.
+#
+${MAKEFILE_LIST}::
+	@${DO_NADA}

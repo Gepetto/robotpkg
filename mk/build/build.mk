@@ -1,4 +1,4 @@
-# $LAAS: build.mk 2009/01/10 13:28:37 tho $
+# $LAAS: build.mk 2009/02/16 17:25:20 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -90,10 +90,9 @@ acquire-build-lock: acquire-lock
 release-build-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.build}))
-${_COOKIE.build}:
-	@${DO_NADA}
+${_COOKIE.build}:;
 else
-${_COOKIE.build}: real-build
+${_COOKIE.build}: real-build;
 endif
 
 

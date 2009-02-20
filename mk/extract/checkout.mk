@@ -1,4 +1,4 @@
-# $LAAS: checkout.mk 2009/01/09 20:27:57 tho $
+# $LAAS: checkout.mk 2009/02/16 17:01:03 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -87,8 +87,7 @@ _CHECKOUT_TARGETS+=	release-checkout-lock
 
 .PHONY: checkout
 ifeq (yes,$(call exists,${_COOKIE.checkout}))
-checkout ${_COOKIE.checkout}:
-	@${DO_NADA}
+checkout ${_COOKIE.checkout}:;
 else
   ifdef _PKGSRC_BARRIER
 checkout: ${_CHECKOUT_TARGETS}
@@ -96,7 +95,7 @@ checkout: ${_CHECKOUT_TARGETS}
 checkout: barrier
   endif
 
-${_COOKIE.checkout}: real-checkout
+${_COOKIE.checkout}: real-checkout;
 endif
 
 .PHONY: acquire-checkout-lock release-checkout-lock

@@ -1,6 +1,6 @@
-# $LAAS: print-plist.mk 2009/02/15 13:57:27 tho $
+# $LAAS: print-plist.mk 2009/02/19 11:28:45 tho $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -78,22 +78,14 @@ _PRINT_PLIST_DIRS_CMD=	\
   ${FIND} ${PREFIX}/. -xdev -newer ${_EXTRACT_TIMESTAMP_FILE} -type d -print
 
 _PRINT_PLIST_AWK_SUBST={
-
-#	gsub(/${MACHINE_GNU_PLATFORM}/, "$${MACHINE_GNU_PLATFORM}");	\
-#	gsub(/${MACHINE_ARCH}/, "$${MACHINE_ARCH}");			\
-#	gsub(/${MACHINE_GNU_ARCH}/, "$${MACHINE_GNU_ARCH}");		\
-#	gsub(/$(subst .,\.,${LOWER_OS_VERSION})/, "$${LOWER_OS_VERSION}");	\
-#	gsub(/${LOWER_OPSYS}/, "$${LOWER_OPSYS}");
-
+_PRINT_PLIST_AWK_SUBST+= ${PRINT_PLIST_AWK_SUBST}
 _PRINT_PLIST_AWK_SUBST+= 						\
 	gsub(/${NODENAME}/, "$${NODENAME}");				\
 	gsub(/$(subst .,\.,${OS_VERSION})/, "$${OS_VERSION}");		\
 	gsub(/${PKGNAME_NOREV}/, "$${PKGNAME}");			\
-	gsub(/$(subst .,\.,$(shell echo ${PKGVERSION} | ${SED} -e 's/r[0-9]*$$//'))/, "$${PKGVERSION}");\
+	gsub(/$(subst .,\.,${PKGVERSION_NOREV})/, "$${PKGVERSION}");	\
 	gsub("^${PKGINFODIR}/", "info/");				\
 	gsub("^${PKGMANDIR}/", "man/");
-
-_PRINT_PLIST_AWK_SUBST+= ${PRINT_PLIST_AWK_SUBST}
 _PRINT_PLIST_AWK_SUBST+=}
 
 # The awk statement that will ignore directories from PRINT_PLIST_IGNORE_DIRS
@@ -135,7 +127,7 @@ endif
 
 .PHONY: print-PLIST
 print-PLIST:
-	${RUN}${ECHO} '@comment '`${DATE}`
+	${RUN}${ECHO} '@comment '`${_CDATE_CMD}`
 	${RUN}{ ${_PRINT_PLIST_FILES_CMD} }				\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
 	 | ${AWK}  '							\

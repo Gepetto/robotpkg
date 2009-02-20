@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2009/02/03 15:29:48 mallet $
+# $LAAS: robotpkg.prefs.mk 2009/02/19 18:18:10 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -56,46 +56,60 @@ ROBOTPKG_DIR=	${_ROBOTPKG_DIR}
 # import useful macros
 include ${ROBOTPKG_DIR}/mk/internal/macros.mk
 
-# boostrap tools
-UNAME:=$(call pathsearch,uname,/usr/bin:/bin)
-ifeq (,${UNAME})
-UNAME=echo Unknown
+# Find uname location
+ifndef UNAME
+  UNAME:=$(call pathsearch,uname,/usr/bin:/bin)
+  ifeq (,${UNAME})
+    UNAME:=echo Unknown
+  endif
 endif
 
-CUT:=$(call pathsearch,cut,/usr/bin:/bin)
-ifeq (,${CUT})
-CUT=:
-endif
-
-TR:=$(call pathsearch,tr,/usr/bin:/bin)
-ifeq (,${TR})
-TR=:
-endif
 
 # Compute platform variables. Later, recursed make invocations will skip these
 # blocks entirely thanks to MAKEOVERRIDES.
+#
 ifndef OPSYS
-OPSYS:=			$(shell ${UNAME} -s | ${TR} -d /)
-LOWER_OPSYS?=		$(shell echo ${OPSYS} | ${TR} 'A-Z' 'a-z')
-MAKEOVERRIDES+=		OPSYS=${OPSYS} LOWER_OPSYS=${LOWER_OPSYS}
+  OPSYS:=		$(subst /,,$(shell ${UNAME} -s))
+  LOWER_OPSYS:=		$(call tolower,${OPSYS})
+  MAKEOVERRIDES+=	OPSYS=${OPSYS} LOWER_OPSYS=${LOWER_OPSYS}
+
+  ifeq (linux,${LOWER_OPSYS})
+    _rfile:=$(firstword $(wildcard /etc/*release /etc/*version))
+    ifneq (,${_rfile})
+      OPSUBSYS:=$(call tolower,$(shell cat <${_rfile}))
+      OPSUBSYS:=$(or 					\
+	$(findstring fedora,${OPSUBSYS}),		\
+	$(findstring ubuntu,${OPSUBSYS}),		\
+        unknown)
+    else
+      OPSUBSYS:=unknown
+    endif
+  else
+      OPSUBSYS:=${LOWER_OPSYS}
+  endif
+  MAKEOVERRIDES+=	OPSUBSYS=${OPSUBSYS}
 endif
 
 ifndef OS_VERSION
-OS_VERSION:=		$(shell ${UNAME} -r)
-LOWER_OS_VERSION:=	$(shell echo ${OS_VERSION} | ${TR} 'A-Z' 'a-z')
-MAKEOVERRIDES+=		LOWER_OS_VERSION=${LOWER_OS_VERSION}
-MAKEOVERRIDES+=		OS_VERSION=${OS_VERSION}
+  OS_VERSION:=		$(shell ${UNAME} -r)
+  LOWER_OS_VERSION:=	$(call tolower,${OS_VERSION})
+  MAKEOVERRIDES+=	LOWER_OS_VERSION=${LOWER_OS_VERSION}
+  MAKEOVERRIDES+=	OS_VERSION=${OS_VERSION}
 endif
 
 ifndef MACHINE_ARCH
-LOWER_ARCH:=		$(shell ${UNAME} -m | sed -e 's/i.86/i386/' -e 's/ppc/powerpc/')
-MACHINE_ARCH=           ${LOWER_ARCH}
-MAKEOVERRIDES+=		LOWER_ARCH=${LOWER_ARCH} MACHINE_ARCH=${MACHINE_ARCH}
+  LOWER_ARCH:=		$(strip $(call substs,		\
+				i486 i586 i686 ppc,	\
+				i386 i386 i386 powerpc,	\
+				$(shell ${UNAME} -m)))
+  MACHINE_ARCH:=	${LOWER_ARCH}
+  MAKEOVERRIDES+=	LOWER_ARCH=${LOWER_ARCH}
+  MAKEOVERRIDES+=	MACHINE_ARCH=${MACHINE_ARCH}
 endif
 
 ifndef NODENAME
-NODENAME:=		$(shell ${UNAME} -n)
-MAKEOVERRIDES+=		NODENAME=${NODENAME}
+  NODENAME:=		$(shell ${UNAME} -n)
+  MAKEOVERRIDES+=	NODENAME=${NODENAME}
 endif
 
 
@@ -103,21 +117,23 @@ endif
 #
 ifndef MAKECONF
   ifdef ROBOTPKG_BASE
-_MAKECONF=${ROBOTPKG_BASE}/etc/robotpkg.conf
+    _MAKECONF:=${ROBOTPKG_BASE}/etc/robotpkg.conf
   else
-   ifneq (,$(call pathsearch,robotpkg_info,${PATH}))
-_MAKECONF=$(shell robotpkg_info -Q PKG_SYSCONFDIR pkg_install ||:)/robotpkg.conf
+   _robotpkg_info:=$(call pathsearch,robotpkg_info,${PATH})
+   ifneq (,$(_robotpkg_info))
+     _MAKECONF:=$(shell \
+	${_robotpkg_info} -Q PKG_SYSCONFDIR pkg_install ||:)/robotpkg.conf
      ifeq (/robotpkg.conf,${_MAKECONF})
-       $(error Cannot run $(call pathsearch,robotpkg_info,${PATH}))
+       $(error Cannot run ${_robotpkg_info})
      endif
    else
-_MAKECONF=/opt/openrobots/etc/robotpkg.conf
+     _MAKECONF=/opt/openrobots/etc/robotpkg.conf
    endif
   endif
-else
-_MAKECONF=${MAKECONF}
+  MAKECONF:=		${_MAKECONF}
+  MAKEOVERRIDES+=	MAKECONF=${MAKECONF}
 endif
--include ${_MAKECONF}
+-include ${MAKECONF}
 include ${ROBOTPKG_DIR}/mk/robotpkg.default.conf
 
 
