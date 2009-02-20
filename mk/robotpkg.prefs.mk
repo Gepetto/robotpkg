@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2009/02/16 18:53:45 tho $
+# $LAAS: robotpkg.prefs.mk 2009/02/19 18:18:10 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -72,6 +72,22 @@ ifndef OPSYS
   OPSYS:=		$(subst /,,$(shell ${UNAME} -s))
   LOWER_OPSYS:=		$(call tolower,${OPSYS})
   MAKEOVERRIDES+=	OPSYS=${OPSYS} LOWER_OPSYS=${LOWER_OPSYS}
+
+  ifeq (linux,${LOWER_OPSYS})
+    _rfile:=$(firstword $(wildcard /etc/*release /etc/*version))
+    ifneq (,${_rfile})
+      OPSUBSYS:=$(call tolower,$(shell cat <${_rfile}))
+      OPSUBSYS:=$(or 					\
+	$(findstring fedora,${OPSUBSYS}),		\
+	$(findstring ubuntu,${OPSUBSYS}),		\
+        unknown)
+    else
+      OPSUBSYS:=unknown
+    endif
+  else
+      OPSUBSYS:=${LOWER_OPSYS}
+  endif
+  MAKEOVERRIDES+=	OPSUBSYS=${OPSUBSYS}
 endif
 
 ifndef OS_VERSION
