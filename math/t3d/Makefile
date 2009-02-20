@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/13 00:12:59 tho $
+# $LAAS: Makefile 2009/02/20 18:29:54 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -24,6 +24,7 @@ MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	3d transformations, matrices and vector package.
 
+USE_LANGUAGES+=	c++
 GNU_CONFIGURE=	yes
 
 BUILD_TARGET=	all
