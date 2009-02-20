@@ -1,12 +1,4 @@
-<<<<<<< HEAD:mk/depends/resolve.mk
-<<<<<<< HEAD:mk/depends/resolve.mk
-# $LAAS: resolve.mk 2009/02/20 18:09:15 tho $
-=======
-# $LAAS: resolve.mk 2009/02/20 18:09:15 tho $
->>>>>>> 661178d... [mk] _MAKECONF -> MAKECONF:mk/depends/resolve.mk
-=======
-# $LAAS: resolve.mk 2009/02/20 18:09:15 tho $
->>>>>>> 7b01ecd... _MAKECONF->MAKECONF:mk/depends/resolve.mk
+# $LAAS: resolve.mk 2009/02/20 18:12:36 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -185,24 +177,21 @@ PKG_FAIL_REASON+= $$(shell ${_PREFIXSEARCH_CMD} -e			\
 	"${1}" "$${DEPEND_ABI.${1}}" $${SYSTEM_SEARCH.${1}} 		\
 	| ${SED} -e 's/^/"/g;s/$$$$/"/g')
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "In order to fix the problem, you should install"
-PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "${bf}Required package not found in your system:${rm}"
       ifdef SYSTEM_DESCR.${1}
-PKG_FAIL_REASON+= "		"$${SYSTEM_DESCR.${1}}
+PKG_FAIL_REASON+= "		${bf}"$${SYSTEM_DESCR.${1}}"${rm}"
       else
-PKG_FAIL_REASON+= "		$${DEPEND_ABI.${1}}"
+PKG_FAIL_REASON+= "		${bf}$${DEPEND_ABI.${1}}${rm}"
       endif
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "in your system (as well as associated development packages)."
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "If this package is already present, you should check the"
-PKG_FAIL_REASON+= "following variables in ${_MAKECONF}:"
-PKG_FAIL_REASON+= "	. SYSTEM_PREFIX is a list of system directories that"
-PKG_FAIL_REASON+= "	  will be searched for system files. Its current value is:"
-      ifdef SYSTEM_PREFIX
-$$(foreach d,${SYSTEM_PREFIX},$$(eval PKG_FAIL_REASON+="		$${d}"))
+      ifdef SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.$1
+PKG_FAIL_REASON+= "${bf}Please install the ${OPSUBSYS} package:${rm}"
+PKG_FAIL_REASON+= "		${bf}${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.$1}${rm}"
+      else ifdef SYSTEM_PKG.${OPSYS}.$1
+PKG_FAIL_REASON+= "${bf}Please install the ${OPSYS} package:${rm}"
+PKG_FAIL_REASON+= "		${bf}${SYSTEM_PKG.${OPSYS}.$1}${rm}"
       else
-PKG_FAIL_REASON+= "		(empty)"
+PKG_FAIL_REASON+= "${bf}Please install it before continuing.${rm}"
       endif
 PKG_FAIL_REASON+= ""
 
@@ -216,7 +205,6 @@ PKG_FAIL_REASON+= "system, you can use the robotpkg version, by setting in"
 PKG_FAIL_REASON+= "${MAKECONF}:"
 PKG_FAIL_REASON+= "		PREFER.${1}=	robotpkg"
       endif
-PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= ${hline}
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "*** ${1} package not found. (see above)"

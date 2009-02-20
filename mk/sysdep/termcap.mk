@@ -1,6 +1,6 @@
-# $LAAS: termcap.mk 2008/11/01 22:29:56 tho $
+# $LAAS: termcap.mk 2009/02/20 17:24:50 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -37,6 +37,11 @@ DEPEND_USE+=		termcap
 DEPEND_ABI.termcap?=	termcap
 
 SYSTEM_DESCR.termcap=	"curses, ncurses, termlib or termcap"
+
+SYSTEM_PKG.Linux-fedora.termcap=	"ncurses-devel"
+SYSTEM_PKG.Linux-ubuntu.termcap=	"libncurses-dev"
+SYSTEM_PKG.NetBSD.termcap=		"pkgsrc/devel/ncurses"
+
 SYSTEM_SEARCH.termcap=\
 	'include/{term,termcap,termlib}.h'		\
 	'lib/lib{tinfo,curses,termcap,termlib}.*'
