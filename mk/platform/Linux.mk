@@ -61,6 +61,10 @@ BASENAME?=		basename
 PATCH?=			patch
 FILE_CMD?=		file
 
+TPUT?=			tput
+TPUT_BOLD?=		bold
+TPUT_RMBOLD?=		sgr0
+
 TOOLS_INSTALL=		${ROBOTPKG_DIR}/mk/internal/install-sh
 TOOLS_ECHO=		echo
 TOOLS_CAT=		cat
