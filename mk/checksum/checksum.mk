@@ -1,6 +1,6 @@
-# $LAAS: checksum.mk 2008/05/25 23:18:10 tho $
+# $LAAS: checksum.mk 2009/02/21 14:21:05 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -45,6 +45,7 @@
 
 _DIGEST_ALGORITHMS?=		SHA1 RMD160
 _PATCH_DIGEST_ALGORITHMS?=	SHA1
+_CONF_DIGEST_ALGORITHMS?=	SHA1
 
 # These variables are set by robotpkg/mk/fetch/fetch.mk.
 #_CKSUMFILES?=	# empty
@@ -61,7 +62,7 @@ _CHECKSUM_CMD=								\
 	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
 
 .PHONY: checksum
-checksum: fetch
+checksum: fetch check-configuration-file
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _alg_,${_DIGEST_ALGORITHMS},					\
 	if cd ${DISTDIR} && ${_CHECKSUM_CMD} -a ${_alg_}		\
@@ -147,3 +148,48 @@ makepatchsum:
 	else								\
 		${MV} $$newfile ${DISTINFO_FILE};			\
 	fi
+
+
+# --- check-configuration-file (PRIVATE) -----------------------------
+#
+# check-configuration-file create a checksum of the current
+# robotpkg.conf, or checks it against a previously saved checksum. This
+# guarantees that the configuration file did not change between two make
+# invocations. 
+#
+
+_MAKECONF_CKSUM=	${WRKDIR}/.conf_cksum
+
+.PHONY: check-configuration-file
+check-configuration-file:
+ifdef MAKECONF
+	${RUN}if test -f ${_MAKECONF_CKSUM}; then			\
+$(foreach _alg_,${_CONF_DIGEST_ALGORITHMS},				\
+	  if ${_CHECKSUM_CMD} -a ${_alg_}				\
+	    ${_MAKECONF_CKSUM} ${MAKECONF}; then			\
+	    ${TRUE};							\
+	  else								\
+	    ${ERROR_MSG} ${hline};					\
+	    ${ERROR_MSG} "${bf}Inconsistent configuration file for"	\
+			"${PKGNAME}.${rm}";				\
+	    ${ERROR_MSG} "The robotpkg.conf file was modified in the"	\
+			"middle of a make.";				\
+	    ${ERROR_MSG} "";						\
+	    ${ERROR_MSG} "${bf}Please do a \`${MAKE} clean' in"		\
+			"${PKGPATH}.${rm}";				\
+	    ${ERROR_MSG} "";						\
+	    ${ERROR_MSG} "If you want to override this check, type:";	\
+	    ${ERROR_MSG} "		${MAKE} NO_CHECKSUM=yes [other"	\
+			"args]";					\
+	    ${ERROR_MSG} ${hline};					\
+	    exit 1;							\
+	  fi;								\
+)									\
+	else								\
+	  for a in "" ${_CONF_DIGEST_ALGORITHMS}; do			\
+	    ${TEST} -n "$$a" || continue;				\
+	    ${TOOLS_DIGEST} $$a ${MAKECONF} >> ${_MAKECONF_CKSUM};	\
+	  done;								\
+	fi
+endif
+
