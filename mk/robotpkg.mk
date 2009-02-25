@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/02/20 18:11:40 tho $
+# $LAAS: robotpkg.mk 2009/02/21 13:28:05 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -64,7 +64,8 @@ ifndef MK_ROBOTPKG_PREFS
   include ../../mk/robotpkg.prefs.mk
 endif
 
-include ../../mk/internal/error.mk
+include ${ROBOTPKG_DIR}/mk/internal/error.mk
+include ${ROBOTPKG_DIR}/mk/internal/utils.mk
 
 
 # --- Transform package Makefile variables and set defaults ----------
@@ -378,12 +379,6 @@ _BUILD_DEFS+=	LICENSE RESTRICTED NO_PUBLIC_BIN NO_PUBLIC_SRC
 # adding pre-* or post-* targets/scripts, override these.
 ################################################################
 
-.PHONY: makedirs
-makedirs: ${WRKDIR}
-
-${WRKDIR}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
-
 # Check
 #include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
@@ -453,7 +448,6 @@ _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
 include ../../mk/plist/plist-vars.mk
 
-include ${ROBOTPKG_DIR}/mk/internal/utils.mk
 include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk
 include ${ROBOTPKG_DIR}/mk/internal/su-target.mk

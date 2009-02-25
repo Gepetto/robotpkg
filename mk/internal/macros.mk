@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2009/02/20 16:50:55 tho $
+# $LAAS: macros.mk 2009/02/20 23:11:37 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -31,15 +31,6 @@
 
 ifndef MK_ROBOTPKG_MACROS
 MK_ROBOTPKG_MACROS:=	defined
-
-# Fancy decorations
-#
-ifndef hline
-  export bf=	$(shell ${TPUT} ${TPUT_BOLD} 2>&1 ||:)
-  export rm=	$(shell ${TPUT} ${TPUT_RMBOLD} 2>&1 ||:)
-
-  export hline="${bf}====================================================================${rm}"
-endif
 
 define isyes
 $(filter yes Yes YES,$(1))

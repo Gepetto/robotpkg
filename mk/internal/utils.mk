@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/02/19 11:28:38 tho $
+# $LAAS: utils.mk 2009/02/21 13:40:52 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -43,6 +43,52 @@ TMPDIR?=	/tmp
 # Printed dates should be agnostic regarding the locale
 #
 _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
+
+# --- interactive ----------------------------------------------------
+#
+# Determine whether the current `make' has intearctive input and output
+#
+_INTERACTIVE=	${WRKDIR}/.interactive
+
+${_INTERACTIVE}: makedirs
+	${RUN} >${_INTERACTIVE};				\
+	if ${TEST} -t 0; then					\
+		echo _INTERACTIVE_STDIN:=yes >>${_INTERACTIVE};	\
+	fi;							\
+	if ${TEST} -t 1; then					\
+		echo _INTERACTIVE_STDOUT:=yes >>${_INTERACTIVE};\
+	fi
+
+-include ${_INTERACTIVE}
+
+MAKEFILE_LIST:=$(filter-out ${_INTERACTIVE},${MAKEFILE_LIST})
+
+
+# --- Fancy decorations ----------------------------------------------
+#
+ifndef hline
+  ifdef _INTERACTIVE_STDOUT
+    export bf:=$(shell ${TPUT} ${TPUT_BOLD} 2>&1 ||:)
+    export rm:=$(shell ${TPUT} ${TPUT_RMBOLD} 2>&1 ||:)
+  else
+    export bf:=
+    export rm:=
+  endif
+
+  export hline:="${bf}====================================================================${rm}"
+endif
+
+
+# --- makedirs -------------------------------------------------------
+#
+# Create initial wprking directories
+#
+.PHONY: makedirs
+makedirs: ${WRKDIR}
+
+${WRKDIR}:
+	${RUN}${MKDIR} ${WRKDIR}
+
 
 # convenience target, to display make variables from command line
 # i.e. "make show-var VARNAME=var", will print var's value
