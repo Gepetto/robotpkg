@@ -1,5 +1,3 @@
-$NetBSD: distinfo,v 1.9 2005/02/23 12:06:55 agc Exp $
-
-SHA1 (abstractgiktask-1.4.tar.gz) = 9fca9e8c1cf92a6e68f138c3ebc6924502a8471e
-RMD160 (abstractgiktask-1.4.tar.gz) = abd22008993dfc3e3dc9468b774855592642f5b8
-Size (abstractgiktask-1.4.tar.gz) = 86261 bytes
+SHA1 (abstractgiktask-2.4.tar.gz) = 81c7effbbcb2ac444fc49c943ae787703a21042d
+RMD160 (abstractgiktask-2.4.tar.gz) = 892eac8b8a4cadad34e4b2ef3f18abb25b6dfcdd
+Size (abstractgiktask-2.4.tar.gz) = 83469 bytes
