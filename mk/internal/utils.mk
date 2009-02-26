@@ -50,7 +50,7 @@ _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 #
 _INTERACTIVE=	${WRKDIR}/.interactive
 
-${_INTERACTIVE}: makedirs
+${_INTERACTIVE}: ${WRKDIR}
 	${RUN} >${_INTERACTIVE};				\
 	if ${TEST} -t 0; then					\
 		echo _INTERACTIVE_STDIN:=yes >>${_INTERACTIVE};	\
