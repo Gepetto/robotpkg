@@ -18,7 +18,7 @@
 
 DISTNAME=	hppgik-${VERSION}
 PKGNAME=	hpp-gik-${VERSION}
-VERSION=	1.9.1
+VERSION=	2.2
 
 CATEGORIES=	path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hppgik/}
@@ -28,7 +28,7 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Generalized Inverse Kinematics for humanoid robots.
 
-DEPENDS+=	jrl-interface-giktask>=1.4:../../interfaces/jrl-interface-giktask
+DEPENDS+=	jrl-interface-giktask>=2.0:../../interfaces/jrl-interface-giktask
 
 GNU_CONFIGURE=	yes
 
