@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/10 17:13:08 tho $
+# $LAAS: Makefile 2009/02/27 18:09:51 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -30,10 +30,14 @@ COMMENT=	Generalized Inverse Kinematics for humanoid robots.
 
 DEPENDS+=	jrl-interface-giktask>=2.0:../../interfaces/jrl-interface-giktask
 
-GNU_CONFIGURE=	yes
+GNU_CONFIGURE=		yes
+DOXYGEN_PLIST_DIR+=	share/doc/hppGik
 
 include ../../math/jrl-dynamics/depend.mk
 include ../../math/hrp2-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/pdflatex.mk
 include ../../mk/robotpkg.mk
