@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/10 16:24:25 tho $
+# $LAAS: Makefile 2009/02/27 17:47:06 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -20,16 +20,20 @@
 
 DISTNAME=	abstractrobotdynamics-${VERSION}
 PKGNAME=	jrl-interface-dynamics-${VERSION}
-VERSION=	1.11
+VERSION=	1.12
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-interface-dynamics/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}abstractRobotDynamics
 
+DOXYGEN_PLIST_DIR+=	share/doc/abstractRobotDynamics
+
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for dynamic robot model.
 
-GNU_CONFIGURE=	yes
-
+include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/pdflatex.mk
 include ../../mk/robotpkg.mk
