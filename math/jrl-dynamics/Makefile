@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/15 18:08:17 tho $
+# $LAAS: Makefile 2009/02/27 17:59:35 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,7 @@
 
 DISTNAME=	dynamicsjrljapan-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
-VERSION=	1.10
+VERSION=	1.11
 
 CATEGORIES=	math
 NO_PUBLIC_SRC=	yes

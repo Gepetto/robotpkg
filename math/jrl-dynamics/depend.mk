@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/12/10 13:48:18 mallet $
+# $LAAS: depend.mk 2009/02/27 18:01:17 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -29,7 +29,7 @@ PREFER.jrl-dynamics?=	robotpkg
 
 DEPEND_USE+=		jrl-dynamics
 
-DEPEND_ABI.jrl-dynamics?=jrl-dynamics>=1.9r2
+DEPEND_ABI.jrl-dynamics?=jrl-dynamics>=1.11
 DEPEND_DIR.jrl-dynamics?=../../math/jrl-dynamics
 
 SYSTEM_SEARCH.jrl-dynamics=\
