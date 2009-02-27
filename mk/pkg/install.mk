@@ -1,4 +1,4 @@
-# $LAAS: install.mk 2009/01/09 18:47:41 mallet $
+# $LAAS: install.mk 2009/02/27 12:07:04 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -73,15 +73,17 @@ pkg-install-check-installed:
 	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`";		\
 	${TEST} -n "$$found" || exit 0;						\
 	${ERROR_MSG} ${hline};							\
-	${ERROR_MSG} "$$found is already installed - perhaps an older version?";\
+	${ERROR_MSG} "${bf}$$found is already installed.${rm}";			\
+	${ERROR_MSG} "Perhaps an older version?";				\
+	${ERROR_MSG} "";							\
 	${ERROR_MSG} "If so, you may use either of:";				\
 	if test -z "${PKG_PRESERVE}"; then					\
-	${ERROR_MSG} "    - \"robotpkg_delete $$found\" and \"${MAKE} reinstall\"";\
-	${ERROR_MSG} "      to upgrade properly";				\
+	${ERROR_MSG} "    - \`robotpkg_delete $$found' and";			\
+	${ERROR_MSG} "      \`${MAKE} reinstall' to upgrade properly";		\
 	fi;									\
-	${ERROR_MSG} "    - \"${MAKE} update\" to rebuild the package and all";	\
+	${ERROR_MSG} "    - \`${MAKE} update' to rebuild the package and all";	\
 	${ERROR_MSG} "      of its dependencies";				\
-	${ERROR_MSG} "    - \"${MAKE} replace\" to replace only the package without";\
+	${ERROR_MSG} "    - \`${MAKE} replace' to replace only the package without";\
 	${ERROR_MSG} "      re-linking dependencies, risking various problems.";\
 	${ERROR_MSG} ${hline};							\
 	exit 1
