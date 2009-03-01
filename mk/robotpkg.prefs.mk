@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2009/02/19 18:18:10 tho $
+# $LAAS: robotpkg.prefs.mk 2009/03/01 14:57:51 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -46,12 +46,11 @@ ifndef MK_ROBOTPKG_PREFS
 MK_ROBOTPKG_PREFS:=	defined
 
 # calculate depth
-ifndef _ROBOTPKG_DIR
-  _ROBOTPKG_DIR:=$(firstword $(realpath \
+ifndef ROBOTPKG_DIR
+  ROBOTPKG_DIR:=$(firstword $(realpath \
 	$(dir $(realpath $(addsuffix /mk/robotpkg.mk,. .. ../..)))/..))
-  MAKEOVERRIDES+=	_ROBOTPKG_DIR=${_ROBOTPKG_DIR}
+  MAKEOVERRIDES+=	ROBOTPKG_DIR=${ROBOTPKG_DIR}
 endif
-ROBOTPKG_DIR=	${_ROBOTPKG_DIR}
 
 # import useful macros
 include ${ROBOTPKG_DIR}/mk/internal/macros.mk

@@ -1,4 +1,4 @@
-# $LAAS: configure-vars.mk 2009/01/10 13:41:38 tho $
+# $LAAS: configure-vars.mk 2009/03/01 14:59:50 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -47,7 +47,6 @@ CONFIGURE_DIRS?=	${WRKSRC}
 SCRIPTS_ENV?=		# empty
 
 SCRIPTS_ENV+=	${ALL_ENV}
-SCRIPTS_ENV+=	_ROBOTPKG_DIR=${_ROBOTPKG_DIR}
 ifdef BATCH
 SCRIPTS_ENV+=	BATCH=yes
 endif
