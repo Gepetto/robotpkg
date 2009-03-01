@@ -78,7 +78,6 @@ endif
 _REAL_PACKAGE_TARGETS+=	package-message
 _REAL_PACKAGE_TARGETS+=	pkg-check-installed
 _REAL_PACKAGE_TARGETS+=	pkg-create
-#_REAL_PACKAGE_TARGETS+=	error-check
 _REAL_PACKAGE_TARGETS+=	package-cookie
 _REAL_PACKAGE_TARGETS+=	package-warnings
 

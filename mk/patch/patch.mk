@@ -1,4 +1,4 @@
-# $LAAS: patch.mk 2009/02/03 15:21:13 mallet $
+# $LAAS: patch.mk 2009/03/01 15:12:34 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -135,7 +135,6 @@ _REAL_PATCH_TARGETS+=	pre-patch
 _REAL_PATCH_TARGETS+=	do-patch
 _REAL_PATCH_TARGETS+=	post-patch
 _REAL_PATCH_TARGETS+=	patch-cookie
-#_REAL_PATCH_TARGETS+=	error-check
 
 .PHONY: real-patch
 real-patch: ${_REAL_PATCH_TARGETS}

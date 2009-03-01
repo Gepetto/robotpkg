@@ -1,6 +1,6 @@
-# $LAAS: fetch.mk 2008/12/16 12:08:34 mallet $
+# $LAAS: fetch.mk 2009/03/01 15:12:01 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -136,7 +136,7 @@ pre-fetch:
 post-fetch:
 
 .PHONY: do-fetch-file
-do-fetch-file: $(addprefix ${DISTDIR}/,${_ALLFILES}) #error-check
+do-fetch-file: $(addprefix ${DISTDIR}/,${_ALLFILES})
 
 
 # --- fetch-check-interactive (PRIVATE) ------------------------------

@@ -1,4 +1,4 @@
-# $LAAS: build.mk 2009/02/16 17:25:20 tho $
+# $LAAS: build.mk 2009/03/01 15:11:20 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -110,7 +110,6 @@ _REAL_BUILD_TARGETS+=	pre-build
 _REAL_BUILD_TARGETS+=	do-build
 _REAL_BUILD_TARGETS+=	post-build
 _REAL_BUILD_TARGETS+=	build-cookie
-#_REAL_BUILD_TARGETS+=	error-check
 
 .PHONY: real-build
 real-build: ${_REAL_BUILD_TARGETS}

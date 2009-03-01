@@ -1,4 +1,4 @@
-# $LAAS: extract.mk 2009/02/16 17:01:58 tho $
+# $LAAS: extract.mk 2009/03/01 15:11:48 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -124,7 +124,6 @@ _REAL_EXTRACT_TARGETS+=	pre-extract
 _REAL_EXTRACT_TARGETS+=	do-extract
 _REAL_EXTRACT_TARGETS+=	post-extract
 _REAL_EXTRACT_TARGETS+=	extract-cookie
-#_REAL_EXTRACT_TARGETS+=	error-check
 
 .PHONY: real-extract
 real-extract: ${_REAL_EXTRACT_TARGETS}

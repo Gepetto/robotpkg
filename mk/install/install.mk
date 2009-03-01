@@ -170,7 +170,6 @@ ifndef NO_PKG_REGISTER
 _INSTALL_ALL_TARGETS+=		pkg-register
 endif
 _INSTALL_ALL_TARGETS+=		release-install-localbase-lock
-#_INSTALL_ALL_TARGETS+=		error-check
 
 .PHONY: install-all
 ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))

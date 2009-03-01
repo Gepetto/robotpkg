@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/02/16 17:42:57 tho $
+# $LAAS: depends.mk 2009/03/01 15:11:39 tho $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -75,7 +75,6 @@ _REAL_DEPENDS_TARGETS+=	depends-message
 _REAL_DEPENDS_TARGETS+=	pre-depends-hook
 _REAL_DEPENDS_TARGETS+=	pkg-depends-install
 _REAL_DEPENDS_TARGETS+=	pkg-depends-cookie
-#_REAL_DEPENDS_TARGETS+=	error-check
 
 .PHONY: real-depends
 real-depends: ${_REAL_DEPENDS_TARGETS}

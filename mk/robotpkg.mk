@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/02/21 13:28:05 tho $
+# $LAAS: robotpkg.mk 2009/03/01 15:14:53 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -64,7 +64,6 @@ ifndef MK_ROBOTPKG_PREFS
   include ../../mk/robotpkg.prefs.mk
 endif
 
-include ${ROBOTPKG_DIR}/mk/internal/error.mk
 include ${ROBOTPKG_DIR}/mk/internal/utils.mk
 
 

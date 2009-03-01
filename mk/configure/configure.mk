@@ -1,4 +1,4 @@
-# $LAAS: configure.mk 2009/02/16 17:23:38 tho $
+# $LAAS: configure.mk 2009/03/01 15:11:31 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -122,7 +122,6 @@ _REAL_CONFIGURE_TARGETS+=	do-configure
 _REAL_CONFIGURE_TARGETS+=	do-configure-post-hook
 _REAL_CONFIGURE_TARGETS+=	post-configure
 _REAL_CONFIGURE_TARGETS+=	configure-cookie
-#_REAL_CONFIGURE_TARGETS+=	error-check
 
 .PHONY: real-configure
 real-configure: ${_REAL_CONFIGURE_TARGETS}

@@ -1,4 +1,4 @@
-# $LAAS: tools-vars.mk 2009/02/16 16:57:18 tho $
+# $LAAS: tools-vars.mk 2009/03/01 15:12:42 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 2005, 2006 The NetBSD Foundation, Inc.
@@ -108,7 +108,6 @@ _REAL_TOOLS_TARGETS+=	tools-message
 _REAL_TOOLS_TARGETS+=	override-tools
 _REAL_TOOLS_TARGETS+=	post-tools
 _REAL_TOOLS_TARGETS+=	tools-cookie
-#_REAL_TOOLS_TARGETS+=	error-check
 
 .PHONY: real-tools
 real-tools: ${_REAL_TOOLS_TARGETS}
