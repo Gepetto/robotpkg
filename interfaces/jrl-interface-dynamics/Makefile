@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/27 17:47:06 mallet $
+# $LAAS: Makefile 2009/03/01 17:59:48 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -31,6 +31,8 @@ DOXYGEN_PLIST_DIR+=	share/doc/abstractRobotDynamics
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for dynamic robot model.
+
+include ../../interfaces/jrl-mal/depend.mk
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
