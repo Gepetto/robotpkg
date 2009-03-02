@@ -34,6 +34,7 @@ LN?=			ln
 MV?=			mv
 RM?=			rm
 MKDIR?=			mkdir -p
+RMDIR?=			rmdir
 DATE?=			date
 SORT?=			sort
 TSORT?=			tsort
