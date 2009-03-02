@@ -1,6 +1,6 @@
-# $LAAS: graphviz.mk 2008/12/16 00:01:29 tho $
+# $LAAS: graphviz.mk 2009/03/01 17:12:56 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,6 +33,9 @@ DEPEND_METHOD.graphviz+=build
 
 SYSTEM_SEARCH.graphviz=\
 	'bin/dot:s/(.*)//;s/[^.0-9]//gp:% -V'
+
+SYSTEM_PKG.Linux.graphviz=	"graphviz"
+SYSTEM_PKG.NetBSD.graphviz=	"pkgsrc/graphics/graphviz"
 
 endif # GRAPHVIZ_DEPEND_MK -------------------------------------------------
 
