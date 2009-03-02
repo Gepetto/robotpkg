@@ -53,10 +53,8 @@ In openrobots/robotpkg/.../package
   - update Makefile with new version number
   - make mdi
   - make install
-  - cp work/nameofthepackage-x.y/install_manifest.txt PLIST.tmp
-  - edit PLIST.tmp and 
-    - remove installation prefix in absolute paths: (e.g. /home/florent/openrobots/lib/pkgconfig/nameOfThePackage.pc -> lib/pkgconfig/nameOfThePackage.pc)
-    - add directives to remove directories created by this package (e.g. @dirrm include/nameOfThePackage)
+  - make print-PLIST > PLIST.tmp builds the list of files and directories to be destroyed when deinstalling.
+  - edit PLIST.tmp and remove irrelevant lines.
   - mv PLIST.tmp PLIST
   - make clean to remove build directory.
   - commit the modifs.

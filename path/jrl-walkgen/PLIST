@@ -1,5 +1,6 @@
-@comment Fri Jan 30 19:11:04 CET 2009
+@comment Mon Mar 2 12:08:37 CET 2009
 include//walkGenJrl/Clock.h
+include//walkGenJrl/configJRLWPG.h
 include//walkGenJrl/FootTrajectoryGeneration/FootTrajectoryGenerationAbstract.h
 include//walkGenJrl/FootTrajectoryGeneration/FootTrajectoryGenerationMultiple.h
 include//walkGenJrl/FootTrajectoryGeneration/FootTrajectoryGenerationStandard.h
@@ -9,20 +10,20 @@ include//walkGenJrl/GlobalStrategyManagers/DoubleStagePreviewControlStrategy.h
 include//walkGenJrl/GlobalStrategyManagers/GlobalStrategyManager.h
 include//walkGenJrl/Mathematics/AnalyticalZMPCOGTrajectory.h
 include//walkGenJrl/Mathematics/ConvexHull.h
-include//walkGenJrl/Mathematics/Polynome.h
 include//walkGenJrl/Mathematics/PolynomeFoot.h
-include//walkGenJrl/Mathematics/StepOverPolynome.h
+include//walkGenJrl/Mathematics/Polynome.h
 include//walkGenJrl/Mathematics/qld.h
+include//walkGenJrl/Mathematics/StepOverPolynome.h
 include//walkGenJrl/MotionGeneration/CollisionDetector.h
-include//walkGenJrl/MotionGeneration/ComAndFootRealization.h
 include//walkGenJrl/MotionGeneration/ComAndFootRealizationByGeometry.h
+include//walkGenJrl/MotionGeneration/ComAndFootRealization.h
 include//walkGenJrl/MotionGeneration/GenerateMotionFromKineoWorks.h
 include//walkGenJrl/MotionGeneration/InverseKinematics.h
 include//walkGenJrl/MotionGeneration/StepOverPlanner.h
 include//walkGenJrl/MotionGeneration/UpperBodyMotion.h
 include//walkGenJrl/MotionGeneration/WaistHeightVariation.h
-include//walkGenJrl/PGTypes.h
 include//walkGenJrl/PatternGeneratorInterface.h
+include//walkGenJrl/PGTypes.h
 include//walkGenJrl/PreviewControl/OptimalControllerSolver.h
 include//walkGenJrl/PreviewControl/PreviewControl.h
 include//walkGenJrl/PreviewControl/ZMPPreviewControlWithMultiBodyZMP.h
@@ -30,6 +31,7 @@ include//walkGenJrl/SimplePlugin.h
 include//walkGenJrl/SimplePluginManager.h
 include//walkGenJrl/StepStackHandler.h
 include//walkGenJrl/TimeUtilsWindows.h
+include//walkGenJrl/walkGenJrl_API.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/AnalyticalMorisawaAbstract.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/AnalyticalMorisawaCompact.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/AnalyticalMorisawaFull.h
@@ -37,8 +39,6 @@ include//walkGenJrl/ZMPRefTrajectoryGeneration/RealTimeHarada.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/ZMPDiscretization.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/ZMPQPWithConstraint.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/ZMPRefTrajectoryGeneration.h
-include//walkGenJrl/configJRLWPG.h
-include//walkGenJrl/walkGenJrl_API.h
 lib/libwalkGenJrl.so
 lib/libwalkGenJrl.so.${PKGVERSION}
 lib/pkgconfig/walkGenJrl.pc
