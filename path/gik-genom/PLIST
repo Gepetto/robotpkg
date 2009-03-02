@@ -1,4 +1,4 @@
-@comment Wed May 14 19:11:26 CEST 2008
+@comment Mon Mar 2 13:14:30 CET 2009
 bin/gik
 bin/gikSendInitRqst
 bin/gikTest
@@ -21,5 +21,11 @@ lib/pkgconfig/gik.pc
 lib/tclserv/libgikTclServ.la
 share/modules/gen/gik.gen
 share/modules/tcl/gikClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
 @dirrm include/gik/server
 @dirrm include/gik
+@dirrm bin

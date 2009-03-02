@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Wed May 14 2008
 #
 
-DISTNAME=	gik-genom-1.1
+DISTNAME=	gik-genom-1.3
 
 CATEGORIES=	path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=gik-genom/}
