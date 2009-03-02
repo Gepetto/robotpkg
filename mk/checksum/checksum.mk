@@ -1,4 +1,4 @@
-# $LAAS: checksum.mk 2009/02/21 14:21:05 tho $
+# $LAAS: checksum.mk 2009/03/01 17:58:10 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -161,7 +161,7 @@ makepatchsum:
 _MAKECONF_CKSUM=	${WRKDIR}/.conf_cksum
 
 .PHONY: check-configuration-file
-check-configuration-file:
+check-configuration-file: ${WRKDIR}
 ifdef MAKECONF
 	${RUN}if test -f ${_MAKECONF_CKSUM}; then			\
 $(foreach _alg_,${_CONF_DIGEST_ALGORITHMS},				\
