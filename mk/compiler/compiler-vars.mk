@@ -1,4 +1,4 @@
-# $LAAS: compiler-vars.mk 2009/02/03 00:06:09 tho $
+# $LAAS: compiler-vars.mk 2009/03/01 15:59:08 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -78,8 +78,6 @@
 
 ifndef ROBOTPKG_COMPILER_MK
 ROBOTPKG_COMPILER_MK=	defined
-
-include ../../mk/robotpkg.prefs.mk
 
 # Since most packages need a C compiler, this is the default value.
 USE_LANGUAGES?=	c

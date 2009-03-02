@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/02/03 23:34:36 tho $
+# $LAAS: gcc.mk 2009/03/01 16:03:10 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -52,8 +52,6 @@
 
 ifndef COMPILER_GCC_MK
 COMPILER_GCC_MK:=	defined
-
-include ../../mk/robotpkg.prefs.mk
 
 # Sensible default value for GCC_REQUIRED
 #
