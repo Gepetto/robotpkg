@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/02/19 11:29:56 tho $
+# $LAAS: extract-vars.mk 2009/03/02 01:53:22 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -35,12 +35,6 @@
 #					Anthony Mallet on Fri Dec  1 2006
 #
 
-MK_ROBOTPKG_EXTRACT:=	defined
-
-ifndef MK_ROBOTPKG_FETCH
-  include ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk
-endif
-
 # The following variables may be set by the package Makefile and
 # specify how extraction happens:
 #
@@ -50,6 +44,8 @@ endif
 #    EXTRACT_SUFX is the suffix for the default distfile to be
 #       extracted.  The default suffix is ".tar.gz".
 #
+
+$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
 EXTRACT_ONLY?=		${DISTFILES}
 EXTRACT_SUFX?=		.tar.gz
@@ -118,7 +114,8 @@ endif
 
 ifdef _EXTRACT_IS_CHECKOUT
   ifndef _CHECKOUT_PKGVERSION
-    _CHECKOUT_PKGVERSION:=.checkout.$(shell ${_CDATE_CMD} "+%Y.%m.%d.%k.%M.%S")
+    $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
+    _CHECKOUT_PKGVERSION:=.checkout.$(shell ${_CDATE_CMD} "+%Y%m%d.%H%M%S")
     MAKEOVERRIDES+=_CHECKOUT_PKGVERSION=${_CHECKOUT_PKGVERSION}
   endif
   PKGNAME:=		${PKGNAME}${_CHECKOUT_PKGVERSION}

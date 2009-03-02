@@ -1,4 +1,4 @@
-# $LAAS: barrier.mk 2009/02/16 10:49:05 tho $
+# $LAAS: barrier.mk 2009/03/02 01:21:32 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -37,18 +37,18 @@
 
 _COOKIE.barrier=	${WRKDIR}/.barrier_cookie
 
-ifndef MK_ROBOTPKG_EXTRACT
-  include ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk
-endif
 
 # _BARRIER_PRE_TARGETS is a list of the targets that must be built before
 #	the "barrier" target invokes a new make.
 #
-_BARRIER_PRE_TARGETS=
+_BARRIER_PRE_TARGETS=	makedirs
+_BARRIER_PRE_TARGETS+=	interactive
+
+$(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 ifndef _EXTRACT_IS_CHECKOUT
   _BARRIER_PRE_TARGETS+=checksum
 endif
-_BARRIER_PRE_TARGETS+=	makedirs
+
 _BARRIER_PRE_TARGETS+=	depends
 
 

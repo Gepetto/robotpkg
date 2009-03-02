@@ -1,4 +1,4 @@
-# $LAAS: fetch-vars.mk 2009/02/16 15:34:45 tho $
+# $LAAS: fetch-vars.mk 2009/03/01 15:49:33 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -41,8 +41,6 @@
 #
 #					Anthony Mallet on Tue Dec  5 2006
 #
-
-MK_ROBOTPKG_FETCH:=	defined
 
 # The following variables may be set by the user:
 #

@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/03/01 15:14:53 tho $
+# $LAAS: robotpkg.mk 2009/03/02 01:23:53 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -64,7 +64,7 @@ ifndef MK_ROBOTPKG_PREFS
   include ../../mk/robotpkg.prefs.mk
 endif
 
-include ${ROBOTPKG_DIR}/mk/internal/utils.mk
+$(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
 
 # --- Transform package Makefile variables and set defaults ----------
@@ -385,17 +385,13 @@ _BUILD_DEFS+=	LICENSE RESTRICTED NO_PUBLIC_BIN NO_PUBLIC_SRC
 include ${ROBOTPKG_DIR}/mk/clean.mk
 
 # Fetch
-ifndef MK_ROBOTPKG_FETCH
-  include ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk
-endif
+$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
 # Checksum
 include ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk
 
 # Extract
-ifndef MK_ROBOTPKG_EXTRACT
-  include ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk
-endif
+$(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
 # Patch
 include ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk

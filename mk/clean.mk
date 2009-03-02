@@ -1,4 +1,4 @@
-# $LAAS: clean.mk 2009/01/19 12:19:17 mallet $
+# $LAAS: clean.mk 2009/03/02 01:44:08 tho $
 #
 # Copyright (c) 2006,2009 LAAS/CNRS
 # All rights reserved.
@@ -61,10 +61,6 @@
 #    cleandir is an alias for "clean".
 #
 
-ifndef MK_ROBOTPKG_EXTRACT
-  include ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk
-endif
-
 CLEANDEPENDS?=	no
 
 .PHONY: clean-depends
@@ -110,30 +106,39 @@ endif
 # clean-confirm asks for confirmation before cleaning a checked out work
 # directory.
 #
-.PHONY: clean-confirm
-clean-confirm:
-	@${ERROR_MSG} ${hline}
-	@${ERROR_MSG} "A checkout is present in the build directory of ${PKGBASE}"
-	@${ERROR_MSG} "You must confirm the cleaning action by doing"
-	@${ERROR_MSG} "		${MAKE} clean confirm in ${PKGPATH}"
-	@${ERROR_MSG} ${hline}
-	@${FALSE}
-
-
-.PHONY: clean-message
-clean-message:
-	@${PHASE_MSG} "Cleaning temporary files for ${PKGNAME}"
-
+$(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
 ifneq (,$(call isyes,${_EXTRACT_IS_CHECKOUT}))
-ifeq  (,$(filter confirm,${MAKECMDGOALS}))
-  _CLEAN_TARGETS+=	clean-confirm
+  .PHONY: clean-confirm
+  clean-confirm:
+	@${ERROR_MSG} ${hline};							\
+	${ERROR_MSG} "${bf}A checkout is present in the build directory${rm} of"\
+		"${PKGBASE}.";							\
+	${ERROR_MSG} "";							\
+	${ERROR_MSG} "You must confirm the cleaning action by doing";		\
+	${ERROR_MSG} "		\`${bf}${MAKE} clean confirm${rm}' in"		\
+		"${PKGPATH}";							\
+	${ERROR_MSG} ${hline};							\
+	${FALSE}
+
+  ifeq  (,$(filter confirm,${MAKECMDGOALS}))
+    _CLEAN_TARGETS+=	clean-confirm
+  endif
 endif
+
+
+# --- clean ----------------------------------------------------------------
+#
+#    clean is the target that is invoked by the user to perform
+#	the "clean" action.
+
+ifneq (,$(realpath ${WRKDIR} $(if ${WRKOBJDIR},${BUILD_DIR}) ${WRKDIR_BASENAME}))
+  _CLEAN_TARGETS+=	interactive
+  _CLEAN_TARGETS+=	clean-message
 endif
-_CLEAN_TARGETS+=	clean-message
 _CLEAN_TARGETS+=	pre-clean
 ifneq (,$(call isyes,CLEANDEPENDS))
-_CLEAN_TARGETS+=	clean-depends
+  _CLEAN_TARGETS+=	clean-depends
 endif
 _CLEAN_TARGETS+=	do-clean
 _CLEAN_TARGETS+=	post-clean
@@ -143,3 +148,7 @@ clean: ${_CLEAN_TARGETS}
 
 .PHONY: cleandir
 cleandir: clean
+
+.PHONY: clean-message
+clean-message:
+	@${PHASE_MSG} "Cleaning temporary files for ${PKGNAME}"
