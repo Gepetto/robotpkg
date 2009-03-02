@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/11/28 15:58:19 mallet $
+# $LAAS: depend.mk 2009/03/01 18:42:35 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -27,6 +27,10 @@ ifeq (+,$(BOOST_LIBS_DEPEND_MK)) # -----------------------------------
 
 PREFER.boost?=		system
 PREFER.boost-libs?=	${PREFER.boost}
+
+SYSTEM_PKG.Linux-fedora.boost-libs=	boost-devel
+SYSTEM_PKG.Linux-ubuntu.boost-libs=	libbost-dev
+SYSTEM_PKG.NetBSD.boost-libs=		pkgsrc/devel/boost-libs
 
 SYSTEM_SEARCH.boost-libs=\
 	lib/libboost_thread-mt.*	\
