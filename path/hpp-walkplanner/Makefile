@@ -18,7 +18,7 @@
 
 DISTNAME=	hppwalkplanner-${VERSION}
 PKGNAME=	hpp-walkplanner-${VERSION}
-VERSION=	2.0
+VERSION=	3.0
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkplanner/}

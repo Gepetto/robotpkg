@@ -1,4 +1,4 @@
-@comment Sat Jan 31 11:59:36 JST 2009
+@comment Mon Mar 2 14:07:08 CET 2009
 include/hppWalkPlanner/hppWalkPatGen.h
 include/hppWalkPlanner/hppWalkPlanner.h
 lib/libhppWalkPlanner.la
@@ -15,6 +15,7 @@ share/doc/hppWalkPlanner/class_chpp_walk_planner__inherit__graph.map
 share/doc/hppWalkPlanner/class_chpp_walk_planner__inherit__graph.md5
 share/doc/hppWalkPlanner/class_chpp_walk_planner__inherit__graph.png
 share/doc/hppWalkPlanner/class_chpp_walk_planner-members.html
+share/doc/hppWalkPlanner/classes.html
 share/doc/hppWalkPlanner/doc_2additional_doc_2hpp_walk_planner_8h.html
 share/doc/hppWalkPlanner/doxygen.png
 share/doc/hppWalkPlanner/files.html
