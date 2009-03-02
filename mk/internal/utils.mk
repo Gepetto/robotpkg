@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/02/21 13:40:52 tho $
+# $LAAS: utils.mk 2009/03/02 01:43:19 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -48,40 +48,35 @@ _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 #
 # Determine whether the current `make' has intearctive input and output
 #
-_INTERACTIVE=	${WRKDIR}/.interactive
+_INTERACTIVE_STDIN=	${WRKDIR}/.interactive_stdin
+_INTERACTIVE_STDOUT=	${WRKDIR}/.interactive_stdout
 
-${_INTERACTIVE}: ${WRKDIR}
-	${RUN} >${_INTERACTIVE};				\
-	if ${TEST} -t 0; then					\
-		echo _INTERACTIVE_STDIN:=yes >>${_INTERACTIVE};	\
-	fi;							\
-	if ${TEST} -t 1; then					\
-		echo _INTERACTIVE_STDOUT:=yes >>${_INTERACTIVE};\
-	fi
-
--include ${_INTERACTIVE}
-
-MAKEFILE_LIST:=$(filter-out ${_INTERACTIVE},${MAKEFILE_LIST})
+.PHONY: interactive
+interactive: ${WRKDIR}
+	${RUN}						\
+	if ${TEST} -t 0; then				\
+		${TOUCH} ${_INTERACTIVE_STDIN};		\
+	else						\
+		${RM} ${_INTERACTIVE_STDIN};		\
+	fi;						\
+	if ${TEST} -t 1; then				\
+		${TOUCH} ${_INTERACTIVE_STDOUT};	\
+	else						\
+		${RM} ${_INTERACTIVE_STDOUT};		\
+	fi;						\
 
 
 # --- Fancy decorations ----------------------------------------------
 #
-ifndef hline
-  ifdef _INTERACTIVE_STDOUT
-    export bf:=$(shell ${TPUT} ${TPUT_BOLD} 2>&1 ||:)
-    export rm:=$(shell ${TPUT} ${TPUT_RMBOLD} 2>&1 ||:)
-  else
-    export bf:=
-    export rm:=
-  endif
 
-  export hline:="${bf}====================================================================${rm}"
-endif
+bf:=`${TEST} -f ${_INTERACTIVE_STDOUT} && ${TPUT} ${TPUT_BOLD} 2>/dev/null ||:`
+rm:=`${TEST} -f ${_INTERACTIVE_STDOUT} && ${TPUT} ${TPUT_RMBOLD} 2>/dev/null ||:`
+hline:="${bf}====================================================================${rm}"
 
 
 # --- makedirs -------------------------------------------------------
 #
-# Create initial wprking directories
+# Create initial working directories
 #
 .PHONY: makedirs
 makedirs: ${WRKDIR}
