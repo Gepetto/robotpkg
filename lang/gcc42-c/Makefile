@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/14 01:21:45 tho $
+# $LAAS: Makefile 2009/03/01 21:05:49 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -31,6 +31,9 @@ INSTALL_TARGET=		install-gcc
 
 # don't build a shared libgcc
 CONFIGURE_ARGS+=        --disable-shared
+
+# pretend we don't use a C compiler to prevent circular dependencies
+USE_LANGUAGES=
 
 include ../../lang/gcc42/Makefile.common
 include ../../mk/robotpkg.mk
