@@ -1,0 +1,21 @@
+--- src/kppCommandLoadHRP2.cpp.orig
++++ src/kppCommandLoadHRP2.cpp
+@@ -237,6 +237,8 @@ CkppParameterConstShPtr CkppCommandLoadHRP2::parameter(unsigned int i_rank) cons
+ 
+ ktStatus CkppCommandLoadHRP2::doExecute()
+ {
++  std::string pathToHrp2(OPENHRP_PREFIX);
++  pathToHrp2 += "/Controller/IOserver/robot/HRP2JRL/model/HRP2JRLmain.wrl";
+ 
+   ChppWalkPlanner *hppWalkPlanner = attKpp->hppWalkPlanner();
+   if (hppWalkPlanner == NULL )
+@@ -246,7 +248,7 @@ ktStatus CkppCommandLoadHRP2::doExecute()
+     }
+   
+   ChppciOpenHrpClient openHrpClient(hppWalkPlanner);
+-  if (openHrpClient.loadHrp2Model(0.02) != KD_OK)
++  if (openHrpClient.loadHrp2Model(0.02, pathToHrp2.c_str()) != KD_OK)
+     {
+       return KD_ERROR;
+     }
+
