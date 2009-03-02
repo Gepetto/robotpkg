@@ -1,4 +1,4 @@
-# $LAAS: gcc-fortran.mk 2009/02/13 22:51:11 tho $
+# $LAAS: gcc-fortran.mk 2009/03/01 18:42:51 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -58,6 +58,9 @@ DEPEND_USE+=			${_GCC_FORTRAN_PKG}
 
 DEPEND_ABI.${_GCC_FORTRAN_PKG}?=${_GCC_FORTRAN_PKG}${_GCC_REQUIRED}
 DEPEND_DIR.${_GCC_FORTRAN_PKG}?=${_GCC_FORTRAN_DIR}
+
+SYSTEM_PKG.Linux-fedora.${_GCC_FORTRAN_PKG}=	gcc-gfortran
+SYSTEM_PKG.Linux-ubuntu.${_GCC_FORTRAN_PKG}=	gfortran
 
 SYSTEM_DESCR.${_GCC_FORTRAN_PKG}='gcc Fortran77 compiler, version ${_GCC_REQUIRED}'
 SYSTEM_SEARCH.${_GCC_FORTRAN_PKG}=	\
