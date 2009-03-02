@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/03 17:36:53 mallet $
+# $LAAS: Makefile 2009/03/01 21:00:29 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -26,6 +26,8 @@ include ../../lang/gcc42/Makefile.common
 
 BUILD_TARGET+=		all-target-libstdc++-v3
 BUILD_MAKE_FLAGS+=	gcc_cv_getipinfo=no
+
+CONFIGURE_ARGS+=        --enable-shared=libstdc++
 
 # don't use regular depend.mk files here, since this would require gcc42
 # and create a circular dependency on this package.
