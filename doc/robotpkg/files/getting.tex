@@ -1,4 +1,4 @@
-% $LAAS: getting.tex 2009/02/02 00:14:34 tho $
+% $LAAS: getting.tex 2009/03/03 23:47:26 tho $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -18,60 +18,65 @@
 %                                             Anthony Mallet on Sat Jan 10 2009
 %
 
-Basically, there are two ways of using robotpkg.  The  first is to only install
-the package tools  and to use binary packages  that someone  else has prepared.
-The second way is  to install the programs from   source. Then you are able  to
-build your  own packages, and  you can still use   binary packages from someone
-else.
-
 
 \section{Where to get robotpkg and how to keep it up-to-date} % ------------
 \label{section:getting}
 
 Before you download and extract the files, you need to decide where you want to
-extract  them.  robotpkg is  usually installed  in  {\tt /opt/openrobots},  but
-creating this directory will probably   require administration privileges.   If
-you don't have such privileges, you are free to  install the sources and binary
-packages wherever you want in your filesystem, provided  that the pathname does
-not contain white-space or other  characters that are interpreted specially  by
-the shell and some other programs.  A safe bet is to  use only letters, digits,
-underscores  and dashes. The rest of  this  document will  assume  that you are
-using {\tt  /opt/openrobots}.  You should adapt  this path to whatever location
-you choosed.
+extract  them.     {\tt   robotpkg}  is     by  default   installed   in   {\tt
+/opt/openrobots}. Creating this directory  will probably require administration
+privileges (``{\tt root}'') and if you don't have such privileges, you are free
+to  install the   sources  and  binary   packages wherever you  want  in   your
+filesystem. The pathname shall not contain white-space or other characters that
+are interpreted specially  by the shell and some  other programs: a safe bet is
+to use only letters, digits, underscores and dashes.  The rest of this document
+will assume that you are using {\tt /opt/openrobots}  and you should adapt this
+path to whatever location you choosed.
 
 
 \subsection{Getting robotpkg for the first time} % -------------------------
 
-robotpkg  will {\em never} require administration  privileges by itself.  So we
-recommend that you set up the {\tt  /opt/openrobots} directory with read, write
-and execute permissions for your regular user  name and then  only work as this
-user afterwards. If something ever goes really  wrong, you might thank yourself
-later that you did so\ldots This  can be done with  the following commands in a
-shell:
+{\tt robotpkg}   will {\em never} require   administration privileges by itself
+after the initial bootstrap phase.  We thus  recommend that you initially setup
+the {\tt /opt/openrobots} directory readable and writable  by your regular user
+and work only as this  user afterwards.  If  something ever goes really  wrong,
+you might thank yourself later that you did so\ldots  Setting up this directory
+can be done with the following commands in a shell:
 
 \begin{verbatim}
 % sudo mkdir -p /opt/openrobots
 % sudo chown `id -u` /opt/openrobots
 \end{verbatim}
 
-At  the    moment,  robotpkg   is      only   distributed    {\em  via}     the
-\href{http://git-scm.com/}{\tt git}  software content  management  system. {\tt
-git} will probably be available on your system but if you don't have it readily
-installed   or if  you  are   unsure  about  it,   contact your  local   system
+If the {\tt sudo} command is not available or if you are not allowed to run it,
+you should consider installing {\tt robotpkg} to a different location.
+
+
+\subsubsection{Getting the binary bootstrap kit}
+
+At the moment, the  binary bootstrap kit is not  available. Please get the {\tt
+robotpkg} sources as described in the next section.
+
+
+\subsubsection{Getting robotpkg for source compilation}
+
+{\tt         robotpkg}    sources   are       distributed     {\em    via}  the
+\href{http://git-scm.com/}{\tt git}  software  content management system.  {\tt
+git} will probably be readily available on your system but if you don't have it
+installed   or if you    are  unsure  about it,   contact  your  local   system
 administrator.
 
 There are two download methods: the anonymous one and the authenticated
-one. The two methods are described here.
+one:
 
+\begin{itemize}
 
-\subsubsection{Anonymous download}
+  \item  Anonymous download is the  recommended method if  you  don't intend to
+  work on  the   robotpkg infrastructure  itself,  nor commit   any  changes or
+  packages  additions  back to  the  robotpkg main repository. Furthermore, the
+  possibility to send contributions via patches is still open.
 
-Anonymous  download is perfect  if  you don't intend  to  work on  the robotpkg
-infrastructure itself, nor commit any changes or packages additions back to the
-robotpkg main repository.  This is the recommended way  to go: it will fit most
-users' usage while still leaving the possibility to send feedback via patches.
-
-As your regular user, simply run in a shell:
+  As your regular user, simply run in a shell:
 
 \begin{verbatim}
 % cd /opt/openrobots
@@ -79,24 +84,25 @@ As your regular user, simply run in a shell:
 \end{verbatim}
 
 
-\subsubsection{Authenticated download}
-
-Authenticated download requires a valid login  on the main robotpkg repository,
-and  will give you  full commit access to this   repository. Assuming your user
-name is ``{\tt user}'', run the following:
+  \item Authenticated   download requires a  valid  login on the  main robotpkg
+  repository, and will give you full commit access  to this repository.  Simply
+  run the following:
 
 \begin{verbatim}
 % cd /opt/openrobots
-% git clone ssh://user@softs.laas.fr/git/robots/robotpkg
+% git clone ssh://softs.laas.fr/git/robots/robotpkg
 \end{verbatim}
+
+\end{itemize}
 
 
 \subsection{Keeping robotpkg up-to-date} % ---------------------------------
 
-robotpkg is  a living  thing: updates  to the packages  are made  perdiodicaly,
-problems are fixed,  enhancements are developed\ldots  In order to get the most
-recent packages descriptions, you should keep your robotpkg copy up-to-date by
-regularly running {\tt git pull}:
+{\tt robotpkg} is   a   living thing:    updates  to  the packages are     made
+perdiodicaly,  problems are fixed,   enhancements  are developed\ldots If   you
+downloaded the robotpkg sources via git, you  should keep it up-to-date so that
+you get the most  recent packages descriptions. This is done by running {\tt
+git pull} in the robotpkg source directory:
 
 \begin{verbatim}
 % cd /opt/openrobots/robotpkg
@@ -105,9 +111,9 @@ regularly running {\tt git pull}:
 
 When you update robotpkg, the git program will only  touch those files that are
 registered in the git repository. That means that any packages that you created
-on your own will stay unmodified. If you change files that  are managed by git,
-later updates will try to merge your changes with  those that have been done by
-others. See the git-pull manual for details.
+on your own will stay unmodified. If you change  files that are managed by git,
+later updates will try to merge your changes with those that  have been done by
+others. See the {\tt git-pull} manual for details.
 
 If you want  to be informed  of package additions  and other  updates, a public
 mailing    list  is   available    for   your    reading   pleasure.  Go     to

@@ -1,4 +1,4 @@
-% $LAAS: bootstrapping.tex 2009/02/02 00:19:43 tho $
+% $LAAS: bootstrapping.tex 2009/03/03 23:56:41 tho $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -20,13 +20,20 @@
 
 \section{Bootstrapping robotpkg} % -----------------------------------------
 
-\subsection{Bootstrapping from source} % -----------------------------------
-
 Once    you    have downloaded  the     robotpkg    sources  as  described   in
 \xref{section:getting}{Section~\ref{section:getting}}, a   minimal  set of   the
 administrative  package management utilities must   be installed on your system
 before you can use robotpkg.  This is called the ``bootstrap phase'' and should
 be done only once, the very first time you download robotpkg.
+
+
+\subsection{Bootstrapping via the binary kit} % ----------------------------
+
+At the moment, the binary bootstrap kit is not available. Please bootstrap {\tt
+robotpkg} as described in the next section.
+
+
+\subsection{Bootstrapping from source} % -----------------------------------
 
 You will  need a working C compiler  and the GNU-make   utility version 3.81 or
 later.    If you have  extracted  the  robotpkg  archive  into  the standard {\tt
@@ -45,6 +52,7 @@ install programs  into the openrobots directory  in your home directory  can be
 done like this:
 
 \begin{verbatim}
+% cd robotpkg/bootstrap
 % ./bootstrap --prefix=${HOME}/openrobots
 \end{verbatim}
 
@@ -55,7 +63,7 @@ to setup your shell environment correctly.  These instructions are described in
 the next section.
 
 
-\subsection{Configuring your environment} % ---------------------------------
+\subsubsection{Configuring your environment} % -----------------------------
 
 If  you configured robotpkg,   during the bootstrap  phase,  to install to some
 other location   than {\tt /opt/openrobots}, you  have   to setup manually your
@@ -70,11 +78,10 @@ you have two options that are compatible with each other:
    the preferred method.
 
    \item Create the environment variable {\tt ROBOTPKG\_BASE} and set its value
-   to {\tt  /path/to/openrobots}.  robotpkg will  look for this variable first,
-   so it takes precedence over the  first method.  This  is the method you have
-   to  choose if you  have  configured several  instances of  robotpkg in  your
-   system, so it is ony useful in some circumstances  and is not recommended by
-   default.
+   to {\tt /path/to/openrobots}.  robotpkg will  look for this variable  first,
+   so it takes precedence over the  first method.  This is  the method you have
+   to choose  if  you have  configured  several instances  of robotpkg  in your
+   system. This is ony useful in some circumstances and is not normally needed.
 \end{itemize}
 
 If  you  don't know  how  to setup   environment variables  permanently in your
@@ -82,7 +89,7 @@ system,  please  refer  to  your shell's  manual  or contact  your local system
 administrator.
 
 
-\subsection{The bootstrap script usage} % ----------------------------------
+\subsubsection{The bootstrap script usage} % -------------------------------
 
 The {\tt bootstrap} script will by default install the package administrative
 tools in {\tt /opt/openrobots/sbin}, use {\tt gcc} as the C compiler and {\tt
@@ -111,6 +118,3 @@ following options:
    \item[\tt -{}-help]  displays  the {\tt bootstrap} usage.  The comprehensive
    list of recognized options will be displayed.
 \end{description}
-
-
-\subsection{Bootstrapping via the binary kit} % ----------------------------
