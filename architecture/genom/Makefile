@@ -20,6 +20,7 @@ DISTNAME=	genom-2.1
 PKGREVISION=	0
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/genom
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/genom
