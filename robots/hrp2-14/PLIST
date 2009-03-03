@@ -55,7 +55,4 @@ share/hrp2_14/turnCW90.pos
 share/hrp2_14/turnCW90.zmp
 lib/pkgconfig/hrp2_14.pc
 @dirrm share/hrp2_14
-@dirrm share
-@dirrm lib/pkgconfig
 @dirrm include/hrp2_14
-@dirrm include
