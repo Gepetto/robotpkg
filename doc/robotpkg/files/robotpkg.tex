@@ -1,4 +1,4 @@
-% $LAAS: robotpkg.tex 2009/03/03 22:48:30 tho $
+% $LAAS: robotpkg.tex 2009/03/04 16:49:53 mallet $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -23,7 +23,7 @@
    \input{share/robotpkg.tth}
 \else
    \usepackage[T1]{fontenc}
-   \usepackage{share/robotpkg}
+   \usepackage{robotpkg}
 \fi
 
 \title{A guide to robotpkg}
@@ -32,6 +32,8 @@
    Copyright 2006-2009 \copyright LAAS/CNRS
 }
 \date{\today}
+
+\def\robotpkg{{\tt robotpkg} }
 
 \begin{document} % ---------------------------------------------------------
 
@@ -56,7 +58,7 @@ else. Sections in this document will detail both approaches where appropriate.
 \input{getting}
 \input{bootstrapping}
 \input{using}
-\input{binary}
+\input{configuring}
 
 \chapter{The robotpkg developer's guide}
 \label{chapter:developer}

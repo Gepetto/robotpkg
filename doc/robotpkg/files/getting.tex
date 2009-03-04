@@ -1,4 +1,4 @@
-% $LAAS: getting.tex 2009/03/03 23:47:26 tho $
+% $LAAS: getting.tex 2009/03/04 16:02:11 mallet $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -33,8 +33,12 @@ to use only letters, digits, underscores and dashes.  The rest of this document
 will assume that you are using {\tt /opt/openrobots}  and you should adapt this
 path to whatever location you choosed.
 
-
-\subsection{Getting robotpkg for the first time} % -------------------------
+Please note that you should use a prefix which is dedicated to packages and not
+shared with other programs (i.e., do not try  and use a  prefix of {\tt /usr}).
+Also, you should not try to add  any of your own  files or directories (such as
+{\tt src/})  below  the prefix tree.    This is to  prevent  possible conflicts
+between programs and other files  installed by the  package system and whatever
+else may have been installed there.
 
 {\tt robotpkg}   will {\em never} require   administration privileges by itself
 after the initial bootstrap phase.  We thus  recommend that you initially setup
@@ -52,13 +56,13 @@ If the {\tt sudo} command is not available or if you are not allowed to run it,
 you should consider installing {\tt robotpkg} to a different location.
 
 
-\subsubsection{Getting the binary bootstrap kit}
+\subsection{Getting the binary bootstrap kit}
 
 At the moment, the  binary bootstrap kit is not  available. Please get the {\tt
 robotpkg} sources as described in the next section.
 
 
-\subsubsection{Getting robotpkg for source compilation}
+\subsection{Getting robotpkg for source compilation}
 
 {\tt         robotpkg}    sources   are       distributed     {\em    via}  the
 \href{http://git-scm.com/}{\tt git}  software  content management system.  {\tt

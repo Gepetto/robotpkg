@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/02 00:23:20 tho $
+# $LAAS: Makefile 2009/03/04 16:53:28 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -29,6 +29,7 @@ INSTALL?=	install
 BSD_INSTALL_DATA_DIR?=	${INSTALL} -d
 BSD_INSTALL_DATA?=	${INSTALL}
 
+
 PREFIX?=		/opt/openrobots
 DATA_DIR?=		share/doc/robotpkg
 
@@ -38,7 +39,9 @@ AUX_SRC=\
 		getting.tex		\
 		bootstrapping.tex	\
 		using.tex		\
-		binary.tex
+		configuring.tex
+
+export TEXINPUTS?=	.:share:
 
 # default targets
 #
