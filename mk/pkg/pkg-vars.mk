@@ -1,4 +1,4 @@
-# $LAAS: pkg-vars.mk 2009/02/13 10:08:51 tho $
+# $LAAS: pkg-vars.mk 2009/03/04 19:33:19 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -67,17 +67,19 @@ endif
 
 ifneq (pkgtools/pkg_install,${PKGPATH})
 ifeq (-1,${PKGTOOLS_VERSION})
-  $(info $(patsubst "%",%,${hline}))
-  $(info The robotpkg administrative tools are not working:)
-  $(info $(shell ${PKG_INFO_CMD} -V 2>&1 ||:))
-  $(info )
-  $(info Please make sure that <prefix>/sbin is in your PATH or that you)
-  $(info have set the ROBOTPKG_BASE variable to <prefix> in your environment,)
-  $(info where <prefix> is the installation prefix that you configured)
-  $(info during the bootstrap of robotpkg.)
-  $(info )
-  $(info Otherwise, the default prefix "/opt/openrobots" is used.)
-  $(info $(patsubst "%",%,${hline}))
+  $(shell ${ERROR_MSG} ${hline})
+  $(shell ${ERROR_MSG} "The robotpkg administrative tools are not working:")
+  $(shell ${ERROR_MSG} "$(shell ${PKG_INFO_CMD} -V 2>&1 ||:)")
+  $(shell ${ERROR_MSG} )
+  $(shell ${ERROR_MSG} "Please make sure that <prefix>/sbin is in your PATH"	\
+		       "or that you")
+  $(shell ${ERROR_MSG} "have set the ROBOTPKG_BASE variable to <prefix> in"	\
+                       "your environment,")
+  $(shell ${ERROR_MSG} "where <prefix> is the installation prefix that you configured")
+  $(shell ${ERROR_MSG} "during the bootstrap of robotpkg.")
+  $(shell ${ERROR_MSG} )
+  $(shell ${ERROR_MSG} "Otherwise, the default prefix \`/opt/openrobots' is used.")
+  $(shell ${ERROR_MSG} ${hline})
   $(error Fatal error)
 endif
 endif
