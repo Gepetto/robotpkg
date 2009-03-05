@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/03/04 16:53:28 mallet $
+# $LAAS: Makefile 2009/03/05 11:59:51 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -41,7 +41,7 @@ AUX_SRC=\
 		using.tex		\
 		configuring.tex
 
-export TEXINPUTS?=	.:share:
+export TEXINPUTS=	.:share:
 
 # default targets
 #
