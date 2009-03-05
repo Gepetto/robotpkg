@@ -13,7 +13,9 @@
     </div>
 
     <h2>%%PORT%%</h2>
-    <div id="comment">%%COMMENT%%</div>
+    <div id="comment">
+	 %%COMMENT%%
+    </div>
 
     <div id="content">
       <table>
