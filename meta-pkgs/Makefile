@@ -1,4 +1,4 @@
-#	$Id: Makefile 2007/06/25 12:27:03 mallet $
+#	$Id: Makefile 2009/03/05 18:48:05 mallet $
 
 # robotpkg meta-pkgs
 
@@ -6,6 +6,5 @@
 COMMENT=	Collections of other packages
 
 SUBDIR+=	dala
-SUBDIR+=	laas-hrp2
 
 include ../mk/robotpkg.subdir.mk
