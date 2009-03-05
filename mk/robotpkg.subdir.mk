@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.subdir.mk 2009/03/05 12:40:17 mallet $
+# $LAAS: robotpkg.subdir.mk 2009/03/05 23:02:47 tho $
 #
 # Copyright (c) 2007,2009 LAAS/CNRS
 # All rights reserved.
@@ -59,7 +59,7 @@ __targets=\
 .PHONY: ${__targets}
 ${__targets}: %: %-subdir
 
-%-subdir: .FORCE interactive
+%-subdir: interactive .FORCE
 	@for entry in "" ${SUBDIR}; do					\
 		if [ "X$$entry" = "X" ]; then continue; fi; 		\
 		cd ${CURDIR}/$${entry};					\
@@ -72,4 +72,11 @@ ${__targets}: %: %-subdir
 ${SUBDIR}::
 	cd ${CURDIR}/$@; ${RECURSIVE_MAKE} all
 
-$(call require,${ROBOTPKG_DIR}/mk/internal/index.mk)
+# index.html generation code.
+$(call require-for, index index-all, ${ROBOTPKG_DIR}/mk/internal/index.mk)
+
+
+# Tell 'make' not to try to rebuild any Makefile by specifing a target with no
+# dependencies and no commands.
+#
+$(sort ${MAKEFILE_LIST}):;

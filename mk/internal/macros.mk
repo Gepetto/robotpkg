@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2009/03/01 14:55:22 tho $
+# $LAAS: macros.mk 2009/03/05 21:06:19 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -55,6 +55,16 @@ endef
 #
 override define require
 $(if $(filter $1,${MAKEFILE_LIST}),,$(eval include $1))
+endef
+
+
+# --- require-for <target> <file> ------------------------------------------
+#
+# Include <file> if it was not already included and if the MAKECMDGOALS contain
+# <target>
+#
+override define require-for
+$(if $(filter $1,${MAKECMDGOALS}),$(call require,$2))
 endef
 
 

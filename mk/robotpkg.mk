@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/03/04 22:22:13 tho $
+# $LAAS: robotpkg.mk 2009/03/05 23:02:39 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -451,10 +451,9 @@ ifdef BATCH
 endif
 
 # index.html generation code.
-include ${ROBOTPKG_DIR}/mk/internal/index.mk
+$(call require-for, index, ${ROBOTPKG_DIR}/mk/internal/index.mk)
 
-# Tell 'make' not to try to rebuild any Makefile by specifing a
-# double-colon target with no dependencies.
+# Tell 'make' not to try to rebuild any Makefile by specifing a target with no
+# dependencies and no commands.
 #
-${MAKEFILE_LIST}::
-	@${DO_NADA}
+$(sort ${MAKEFILE_LIST}):;

@@ -1,4 +1,4 @@
-# $LAAS: index.mk 2009/03/05 18:43:21 mallet $
+# $LAAS: index.mk 2009/03/05 22:57:28 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -68,10 +68,8 @@ HTML_LICENSE=	$(if ${LICENSE},<tr><td>License:<td>${LICENSE})
 #
 # This target is used to generate index.html files.
 #
-.PHONY: index index.html
-.PRECIOUS: index.html
-
-index: index.html
+.PHONY: index
+index: interactive index.html
 
 # get the template name corresponding to the current depth
 ifeq (2,${_ROBOTPKG_DEPTH})
@@ -84,6 +82,8 @@ else
   $(error "robotpkg directory not found")
 endif
 
+.PHONY: index.html
+.PRECIOUS: index.html
 index.html:
 ifeq (2,${_ROBOTPKG_DEPTH})
   # package index.html
@@ -169,6 +169,60 @@ $(if $(filter 0,${_ROBOTPKG_DEPTH}),					\
 		(cd $${subdir} && ${RECURSIVE_MAKE} index);		\
 	done
 endif
+
+# --- index-all ------------------------------------------------------------
+#
+# Generate list of all packages by extracting information from the
+# category/index.html pages
+#
+ifeq (0,${_ROBOTPKG_DEPTH})
+  index: index-all
+
+  .PHONY: index-all
+  index-all: index-all.html
+
+  .PHONY: index-all.html
+  .PRECIOUS: index-all.html
+  index-all.html:
+	@${RM} -f $@.new $@.newsorted;					\
+	${PHASE_MSG} "Processing categories for $@";			\
+	hl() { echo '<a href="'$$1'/index.html">'$$1'</a>'; };		\
+	for category in ${SUBDIR} ""; do 				\
+		if [ "X$$category" = "X" ]; then continue; fi; 		\
+		if [ -f $${category}/index.html ]; then 		\
+			${ECHO} "processing $${category}"; 		\
+			${SED} -n $(join ,'/^<tr>/{			\
+				s!href="!&'$${category}'/!;		\
+				s!</a>:!&<td>('"`hl $${category}`"')!;	\
+				s!<tr>!<tr valign=top>!;		\
+				s!<td valign=top>!<td>!;		\
+			p;}') <$${category}/index.html >>$@.new;	\
+		fi; 							\
+	done;								\
+	if [ ! -f $@.new ]; then 					\
+		${ERROR_MSG} ${hline};					\
+		${ERROR_MSG} "There are no categories with index.html"	\
+			"files available."; 				\
+		${ERROR_MSG} "You need to run \`${MAKE} index' to"	\
+			"generate them before running this target."; 	\
+		${FALSE}; 						\
+	fi;								\
+	${SORT} -f -t '>' -k 4,4 <$@.new >$@.newsorted;			\
+	${AWK} '{ ++n } END { print n }' <$@.newsorted >$@.npkgs;	\
+	${SED} 	-e '/%%NPKGS%%/r$@.npkgs' 				\
+		-e '/%%NPKGS%%/d' 					\
+		-e '/%%PKGS%%/r$@.newsorted' 				\
+		-e '/%%PKGS%%/d' 					\
+		<${TEMPLATES}/index.all >$@.tmp;			\
+	if [ -f $@ ] && ${CMP} -s $@.tmp $@; then 			\
+		${RM} $@.tmp; 						\
+	else 								\
+		${ECHO_MSG} "creating index-all.html";			\
+		${MV} $@.tmp $@;					\
+	fi;								\
+	${RM} -f $@.tmp $@.npkgs $@.new $@.newsorted
+endif
+
 
 # This target is used by the toplevel.mk file to generate pkg database file
 .PHONY: print-summary-data
