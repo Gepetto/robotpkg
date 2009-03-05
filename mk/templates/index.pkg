@@ -52,12 +52,10 @@ href="https://softs.laas.fr/bugzilla/buglist.cgi?bug_status=__open__&product=rob
 <p>
 This package requires the following package(s) to build:
 %%BUILD_DEPENDS%%
-.
 </p>
 <p>
 This package requires the following package(s) to run:
 %%RUN_DEPENDS%%
-.
 </p>
 
 <p>
