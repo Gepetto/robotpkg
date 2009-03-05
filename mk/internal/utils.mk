@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/03/04 23:57:11 tho $
+# $LAAS: utils.mk 2009/03/05 11:48:34 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -149,17 +149,8 @@ show-license:
 	fi
 
 
-# --- confirm --------------------------------------------------------
+# --- show-depends-pkgpaths ------------------------------------------------
 #
-# confirm is an empty target that is used to confirm other targets by
-# doing `make target confirm'. It is the responsability of `target' to
-# check that confirm was specified in the MAKECMDGOALS variable.
-#
-.PHONY: confirm
-confirm:
-	@${DO_NADA}
-
-
 # DEPENDS_TYPE is used by the "show-depends-pkgpaths" target and specifies
 # which class of dependencies to output.  The special value "all" means
 # to output every dependency.
@@ -172,18 +163,25 @@ ifneq (,$(strip $(filter install package all,${DEPENDS_TYPE})))
 _ALL_DEPENDS+=	${DEPENDS}
 endif
 
-# _PKG_PATHS_CMD canonicalizes package paths so that they're relative to
-# ${ROBOTPKG_DIR} and also verifies that they exist within robotpkg.
-#
-_PKG_PATHS_CMD=								\
-	${SETENV} ECHO=${TOOLS_ECHO} ROBOTPKG_DIR=${ROBOTPKG_DIR}	\
-		PWD_CMD=pwd TEST=${TOOLS_TEST}				\
-	${SH} ${CURDIR}/../../mk/internal/pkg_path
+.PHONY: show-depends-pkgpaths
+show-depends-pkgpaths:
+	@for d in							\
+		$(sort $(subst ${ROBOTPKG_DIR}/,,$(realpath $(foreach	\
+			_d_,${_ALL_DEPENDS},				\
+			$(word 2,$(subst :, ,${_d_})))))); do		\
+		${ECHO} $$d;						\
+	done
 
-.PHONY: show-depends-dirs show-depends-pkgpaths
-show-depends-dirs show-depends-pkgpaths:
-	@${_PKG_PATHS_CMD} \
-		$(sort $(foreach _d_,${_ALL_DEPENDS},$(word 2,$(subst :, ,${_d_}))))
+
+# --- confirm --------------------------------------------------------
+#
+# confirm is an empty target that is used to confirm other targets by
+# doing `make target confirm'. It is the responsability of `target' to
+# check that confirm was specified in the MAKECMDGOALS variable.
+#
+.PHONY: confirm
+confirm:
+	@${DO_NADA}
 
 
 # _DEPENDS_WALK_CMD holds the command (sans arguments) to walk the
