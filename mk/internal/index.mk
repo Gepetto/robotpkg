@@ -1,4 +1,4 @@
-# $LAAS: readme.mk 2009/01/19 23:29:14 tho $
+# $LAAS: index.mk 2009/03/05 00:41:10 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -57,13 +57,102 @@
 PKG_URL_HOST?=	http://softs.laas.fr
 PKG_URL_DIR?=	/openrobots/robotpkg/packages
 
+PKG_URL=	${PKG_URL_HOST}${PKG_URL_DIR}
+
 override define htmlify
   $(subst >,&gt;,$(subst <,&lt;,$(subst &,&amp;,$(1))))
 endef
+HTMLIFY=	${SED} -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
 
 _HTML_PKGNAME=	$(call htmlify,${PKGNAME})
 _HTML_PKGPATH=	$(call htmlify,${PKGPATH})
 _HTML_PKGLINK=	<a href="../../${_HTML_PKGPATH}/index.html">${_HTML_PKGNAME}</a>
+
+
+# --- index ----------------------------------------------------------------
+#
+# This target is used to generate index.html files.
+#
+.PHONY: index index.html
+.PRECIOUS: index.html
+
+# get the template name corresponding to the current depth
+ifeq (2,${_ROBOTPKG_DEPTH})
+  INDEX_NAME=	${TEMPLATES}/index.pkg
+else ifeq (1,${_ROBOTPKG_DEPTH})
+  INDEX_NAME=	${TEMPLATES}/index.category
+else ifeq (0,${_ROBOTPKG_DEPTH})
+  INDEX_NAME=	${TEMPLATES}/index.top
+else
+  $(error "robotpkg directory not found")
+endif
+
+index: index.html
+
+index.html:
+ifeq (2,${_ROBOTPKG_DEPTH})
+  # package index.html
+	${RUN}${SETENV} MAKE=${MAKE}					\
+		${SH} ../../mk/internal/mkdatabase -f $@.tmp1;		\
+	${AWK} -f ../../mk/internal/genindex.awk 			\
+		builddependsfile=/dev/null 				\
+		dependsfile=/dev/null 					\
+		AWK=${AWK} 						\
+		CMP=${CMP} 						\
+		DISTDIR=${DISTDIR} 					\
+		GREP=${GREP} 						\
+		PACKAGES=${PACKAGES} 					\
+		PKG_INFO=$(call quote,${PKG_INFO}) 			\
+		PKG_SUFX=${PKG_SUFX} 					\
+		PKG_URL=${PKG_URL} 					\
+		ROBOTPKG_DIR=${ROBOTPKG_DIR} 				\
+		SED=${SED} 						\
+		SETENV=${SETENV} 					\
+		SORT=${SORT} 						\
+		TMPDIR=${TMPDIR} 					\
+		SINGLEPKG=${PKGPATH} 					\
+		$@.tmp1;						\
+	${RM} $@.tmp1
+else
+  # category or top-level index.html
+	@> $@.tmp;							\
+	for entry in ${SUBDIR}; do 					\
+		${ECHO} '<tr><td valign=top>' >>$@.tmp;			\
+		${ECHO} '<a href="'$${entry}/index.html'">' >>$@.tmp;	\
+$(if $(filter 0,${_ROBOTPKG_DEPTH}),					\
+		${ECHO} $${entry} | ${HTMLIFY} >>$@.tmp;,		\
+		(cd $${entry} && 					\
+			${RECURSIVE_MAKE} show-var VARNAME=PKGNAME) |	\
+			${HTMLIFY} >>$@.tmp; 				\
+)									\
+		${ECHO} '</a>:<td>' >>$@.tmp;				\
+		(cd $${entry} && ${RECURSIVE_MAKE} show-comment) |	\
+			${HTMLIFY} >>$@.tmp; 				\
+	done;								\
+	${SORT} -t '>' -k 3,4 $@.tmp > $@.tmp2;				\
+	${AWK} '{ ++n } END { print n }' < $@.tmp2 > $@.tmp3;		\
+	${SED} <${INDEX_NAME}						\
+		-e 's/%%CATEGORY%%/$(notdir ${CURDIR})/g' 		\
+		-e '/%%NUMITEMS%%/r$@.tmp3' 				\
+		-e '/%%NUMITEMS%%/d' 					\
+		-e '/%%DESCR%%/d' 					\
+		-e '/%%SUBDIR%%/r$@.tmp2'				\
+		-e '/%%SUBDIR%%/d' 					\
+		> $@.tmp4;						\
+	if [ -f $@ ] && ${CMP} -s $@.tmp4 $@; then 			\
+		${RM} $@.tmp4; 						\
+	else 								\
+		${ECHO_MSG} "creating index.html for"			\
+			"$(notdir ${CURDIR})";				\
+		${MV} $@.tmp4 $@;					\
+	fi;								\
+	${RM} -f $@.tmp $@.tmp2 $@.tmp3;				\
+	for subdir in ${SUBDIR} ""; do					\
+		if [ "X$$subdir" = "X" ]; then continue; fi;		\
+		(cd $${subdir} && ${RECURSIVE_MAKE} index);		\
+	done
+endif
+
 
 # Set to "html" by the index.html target to generate HTML code, or anything
 # else to generate regular package name. This variable is passed down via
@@ -77,10 +166,6 @@ ifeq (${PACKAGE_NAME_TYPE},"html")
 else
 	@${ECHO} ${PKGNAME}
 endif # PACKAGE_NAME_TYPE
-
-.PHONY: make-index-html-help
-make-index-html-help:
-	@${ECHO} '${_HTML_PKGNAME}</a>: <td>'$(call quote,$(call htmlify,${COMMENT}))
 
 # Show (non-recursively) all the packages this package depends on.
 # If PACKAGE_DEPENDS_WITH_PATTERNS is set, print as pattern (if possible)
@@ -212,18 +297,6 @@ describe:
 	${ECHO} ""
 
 
-# --- index ----------------------------------------------------------------
-#
-# This target is used to generate index.html files.
-#
-.PHONY: index
-index:
-	@cd ${CURDIR} && ${RECURSIVE_MAKE} ${MAKEFLAGS} index.html	\
-		PKG_URL=${PKG_URL_HOST}${PKG_URL_DIR}
-
-
-INDEX_NAME=	${TEMPLATES}/index.pkg
-
 # set up the correct license information as a sed expression
 ifdef LICENSE
 SED_LICENSE_EXPR=	-e 's|%%LICENSE%%|<p>Please note that this package has a ${LICENSE} license.</p>|'
@@ -243,28 +316,6 @@ endif
 # ${MACHINE_ARCH} and "release" (uname -r) will be used. Otherwise a directory
 # structure of ...pkgsrc/packages/`uname -r`/${MACHINE_ARCH} is assumed.
 # The PKG_URL is set from FTP_PKG_URL_*.
-.PHONY .PRECIOUS: index.html
-index.html:
-	@${SETENV} MAKE=${MAKE} ${SH} ../../mk/internal/mkdatabase -f $@.tmp1
-	${AWK} -f ../../mk/internal/genindex.awk \
-		builddependsfile=/dev/null \
-		dependsfile=/dev/null \
-		AWK=${AWK} \
-		CMP=${CMP} \
-		DISTDIR=${DISTDIR} \
-		GREP=${GREP} \
-		PACKAGES=${PACKAGES} \
-		PKG_INFO=$(call quote,${PKG_INFO}) \
-		PKG_SUFX=${PKG_SUFX} \
-		PKG_URL=${PKG_URL} \
-		ROBOTPKG_DIR=${ROBOTPKG_DIR} \
-		SED=${SED} \
-		SETENV=${SETENV} \
-		SORT=${SORT} \
-		TMPDIR=${TMPDIR} \
-		SINGLEPKG=${PKGPATH} \
-		$@.tmp1
-	@${RM} $@.tmp1
 
 .PHONY: print-build-depends-list
 print-build-depends-list:

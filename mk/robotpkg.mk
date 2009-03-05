@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/03/02 01:23:53 tho $
+# $LAAS: robotpkg.mk 2009/03/04 22:22:13 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -36,8 +36,18 @@
 #                                      Anthony Mallet on Wed Nov  8 2006
 #
 
-# Please see the pkgsrc/doc/guide manual for details on the
+# Please see the robotpkg/doc/robotpgk manual for details on the
 # variables used in this make file template.
+
+# Include any preferences, if not already included, and common
+# definitions. The file robotpkg.prefs.mk is protected against double
+# inclusion, but checking the flag here avoids loading and parsing it.
+#
+ifndef MK_ROBOTPKG_PREFS
+  include ../../mk/robotpkg.prefs.mk
+endif
+
+$(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
 # Make sure the default target is "all", which defaults to
 #
@@ -52,19 +62,9 @@
 #    build
 #
 .DEFAULT_GOAL:=all
+
 .PHONY: all
 all: build
-
-
-# Include any preferences, if not already included, and common
-# definitions. The file robotpkg.prefs.mk is protected against double
-# inclusion, but checking the flag here avoids loading and parsing it.
-#
-ifndef MK_ROBOTPKG_PREFS
-  include ../../mk/robotpkg.prefs.mk
-endif
-
-$(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
 
 # --- Transform package Makefile variables and set defaults ----------
@@ -236,17 +236,6 @@ INSTALL_MACROS=	BSD_INSTALL_PROGRAM=$(call quote,${INSTALL_PROGRAM})		\
 		BSD_INSTALL_GAME_DIR=$(call quote,${INSTALL_GAME_DIR})
 MAKE_ENV+=	${INSTALL_MACROS}
 SCRIPTS_ENV+=	${INSTALL_MACROS}
-
-# Used to print all the '===>' style prompts - override this to turn them off.
-ECHO_MSG?=		${ECHO}
-PHASE_MSG?=		_bf() { ${ECHO_MSG} "${bf}===>" $$@ "${rm}"; }; _bf
-STEP_MSG?=		${ECHO_MSG} "=>"
-WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
-ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
-FAIL_MSG?=		${FAIL} ${ERROR_MSG}
-
-WARNING_CAT?=		${SED} -e "s|^|WARNING: |" 1>&2
-ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
 
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.

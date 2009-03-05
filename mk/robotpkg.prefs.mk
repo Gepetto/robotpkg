@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2009/03/01 14:57:51 tho $
+# $LAAS: robotpkg.prefs.mk 2009/03/05 00:15:57 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -45,17 +45,20 @@
 ifndef MK_ROBOTPKG_PREFS
 MK_ROBOTPKG_PREFS:=	defined
 
-# calculate depth
+# compute ROBOTPKG_DIR
 ifndef ROBOTPKG_DIR
   ROBOTPKG_DIR:=$(firstword $(realpath \
 	$(dir $(realpath $(addsuffix /mk/robotpkg.mk,. .. ../..)))/..))
   MAKEOVERRIDES+=	ROBOTPKG_DIR=${ROBOTPKG_DIR}
 endif
 
+# calculate depth
+_ROBOTPKG_DEPTH:=$(words $(subst /, ,$(subst ${ROBOTPKG_DIR},,$(realpath .))))
+
 # import useful macros
 include ${ROBOTPKG_DIR}/mk/internal/macros.mk
 
-# Find uname location
+# find uname location
 ifndef UNAME
   UNAME:=$(call pathsearch,uname,/usr/bin:/bin)
   ifeq (,${UNAME})
@@ -153,7 +156,7 @@ PKGPATH?=		$(subst $(realpath ${CURDIR}/../..)/,,$(realpath ${CURDIR}))
 
 DISTDIR?=		${ROBOTPKG_DIR}/distfiles
 PACKAGES?=		${ROBOTPKG_DIR}/packages
-TEMPLATES?=		${ROBOTPKG_DIR}/templates
+TEMPLATES?=		${ROBOTPKG_DIR}/mk/templates
 
 PATCHDIR?=		${CURDIR}/patches
 SCRIPTDIR?=		${CURDIR}/scripts

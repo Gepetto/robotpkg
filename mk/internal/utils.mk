@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/03/02 01:43:19 tho $
+# $LAAS: utils.mk 2009/03/04 23:57:11 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -37,6 +37,20 @@
 
 # This Makefile fragment is included by robotpkg.mk and defines utility
 # and otherwise miscellaneous variables and targets.
+
+# Used to print all the '===>' style prompts - override this to turn them off.
+#
+ECHO_MSG?=		${ECHO}
+PHASE_MSG?=		_bf() { ${ECHO_MSG} "${bf}===>" $$@ "${rm}"; }; _bf
+STEP_MSG?=		${ECHO_MSG} "=>"
+WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
+ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
+FAIL_MSG?=		${FAIL} ${ERROR_MSG}
+
+WARNING_CAT?=		${SED} -e "s|^|WARNING: |" 1>&2
+ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
+
+# A temporary directory
 #
 TMPDIR?=	/tmp
 
@@ -44,23 +58,23 @@ TMPDIR?=	/tmp
 #
 _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 
+
 # --- interactive ----------------------------------------------------
 #
 # Determine whether the current `make' has intearctive input and output
 #
-_INTERACTIVE_STDIN=	${WRKDIR}/.interactive_stdin
-_INTERACTIVE_STDOUT=	${WRKDIR}/.interactive_stdout
+_INTERACTIVE_STDIN=	${TMPDIR}/.robotpkg_interactive_stdin
+_INTERACTIVE_STDOUT=	${TMPDIR}/.robotpkg_interactive_stdout
 
 .PHONY: interactive
-interactive: ${WRKDIR}
-	${RUN}						\
-	if ${TEST} -t 0; then				\
-		${TOUCH} ${_INTERACTIVE_STDIN};		\
+interactive:
+	@if ${TEST} -t 0; then				\
+		${TOUCH} ${_INTERACTIVE_STDIN} ||:;	\
 	else						\
 		${RM} ${_INTERACTIVE_STDIN};		\
 	fi;						\
 	if ${TEST} -t 1; then				\
-		${TOUCH} ${_INTERACTIVE_STDOUT};	\
+		${TOUCH} ${_INTERACTIVE_STDOUT} ||:;	\
 	else						\
 		${RM} ${_INTERACTIVE_STDOUT};		\
 	fi;						\
@@ -68,10 +82,9 @@ interactive: ${WRKDIR}
 
 # --- Fancy decorations ----------------------------------------------
 #
-
 bf:=`${TEST} -f ${_INTERACTIVE_STDOUT} && ${TPUT} ${TPUT_BOLD} 2>/dev/null ||:`
 rm:=`${TEST} -f ${_INTERACTIVE_STDOUT} && ${TPUT} ${TPUT_RMBOLD} 2>/dev/null ||:`
-hline:="${bf}====================================================================${rm}"
+hline:="${bf}$(subst =,=======,==========)${rm}"
 
 
 # --- makedirs -------------------------------------------------------
@@ -85,8 +98,11 @@ ${WRKDIR}:
 	${RUN}${MKDIR} ${WRKDIR}
 
 
+# --- show-var -------------------------------------------------------------
+#
 # convenience target, to display make variables from command line
 # i.e. "make show-var VARNAME=var", will print var's value
+#
 .PHONY: show-var
 show-var:
 	@${ECHO} '$(subst ','\'',${${VARNAME}})' #'
@@ -96,8 +112,29 @@ show-var:
 show-vars:
 	@:; $(foreach VARNAME,${VARNAMES},${ECHO} $(call quote,${$(strip ${VARNAME})});)
 
+
+# --- show-comment ---------------------------------------------------------
+#
+# print value of the COMMENT variable
+#
+.PHONY: show-comment
+show-comment:
+	@if [ $(call quote,${COMMENT})"" ]; then			\
+		${ECHO} $(call quote,${COMMENT});			\
+	elif [ -f COMMENT ] ; then					\
+		${CAT} COMMENT;						\
+	else								\
+		${ECHO} '(no description)';				\
+	fi
+
+
+# --- show-license ---------------------------------------------------------
+#
+# browse the file pointed to by the LICENSE variable
+#
 LICENSE_FILE?=		${ROBOTPKG_DIR}/licenses/${LICENSE}
 
+.PHONY: show-license
 show-license:
 	@license=${LICENSE};						\
 	license_file=${LICENSE_FILE};					\
@@ -159,7 +196,7 @@ _DEPENDS_WALK_CMD=							\
 		ROBOTPKG_DIR=${ROBOTPKG_DIR} TEST=${TOOLS_TEST}		\
 	${AWK} -f ${ROBOTPKG_DIR}/mk/internal/depends-depth-first.awk --
 
-# Fake target to make do%stuff pattern targets phony
+# Fake target to make pattern targets phony
 #
 .PHONY: .FORCE
 .FORCE:
