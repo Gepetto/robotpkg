@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/21 22:58:42 tho $
+# $LAAS: depend.mk 2009/03/05 18:44:56 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -34,8 +34,8 @@ DEPEND_ABI.jidogrip-libs?=	jidogrip-libs>=1.1
 DEPEND_DIR.jidogrip-libs?=	../../hardware/jidogrip-libs
 
 SYSTEM_SEARCH.jidogrip-libs=	\
-	'include/jidogrip.h'
-	'lib/libjidogrip.la'
+	'include/jidogrip.h'					\
+	'lib/libjidogrip.la'					\
 	'lib/pkgconfig/libjidogrip.pc:/Version/s/[^0-9.]//gp'
 
 endif # JIDOGRIP_LIBS_DEPEND_MK --------------------------------------------
