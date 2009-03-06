@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/03/07 00:13:41 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -15,18 +14,29 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                             Anthony Mallet on Mon Apr 14 2008
+#                                             Anthony Mallet on Fri Mar  6 2009
 #
 
-DISTNAME=		sphinx2-0.6
-CATEGORIES=		audio
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=cmusphinx/}
+DEPEND_DEPTH:=		${DEPEND_DEPTH}+
+SPHINX2_DEPEND_MK:=	${SPHINX2_DEPEND_MK}+
 
-MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		http://cmusphinx.sourceforge.net
-COMMENT=		Carnegie Mellon University\'s speech recognition engine.
+ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=		sphinx2
+endif
 
-GNU_CONFIGURE=		yes
+ifeq (+,$(SPHINX2_DEPEND_MK)) # --------------------------------------------
 
-include ../../pkgtools/libtool/depend.mk
-include ../../mk/robotpkg.mk
+PREFER.sphinx2?=	robotpkg
+
+DEPEND_USE+=		sphinx2
+
+DEPEND_ABI.sphinx2?=	sphinx2>=0.6
+DEPEND_DIR.sphinx2?=	../../audio/sphinx2
+
+SYSTEM_SEARCH.sphinx2=\
+	include/sphinx2/sphinxp.h	\
+	lib/libsphinx2.{a,so}
+
+endif # SPHINX2_DEPEND_MK --------------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
