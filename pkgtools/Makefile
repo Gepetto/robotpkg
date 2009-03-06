@@ -10,5 +10,6 @@ SUBDIR+=	pax
 SUBDIR+=	pkg-config
 SUBDIR+=	pkg_install
 SUBDIR+=	tnftp
+SUBDIR+=	url2robotpkg
 
 include ../mk/robotpkg.subdir.mk
