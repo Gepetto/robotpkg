@@ -1,0 +1,7 @@
+speett stands for "speech to text". This is a english speech recognition module
+based on the Sphinx2 speech recognition engine. See
+http://cmusphinx.sourceforge.net/ for details.
+
+As it is, the module uses the accoustic model bundled with sphinx2 and must
+import a user-defined language model to be useful. A (very simple) sample model
+is included in the module distribution for reference and tests purposes.
