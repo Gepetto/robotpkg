@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2008/11/02 01:10:28 tho $
+# $LAAS: prefixsearch.sh 2009/03/07 13:05:46 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -148,7 +148,7 @@ for p in $sysprefix; do
 		version=`${SED} -ne "${spec:-p}" < $match | ${SED} $vrepl`
 	    else
 		icmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
-		version=`$icmd 2>&1 | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
+		version=`eval $icmd 2>&1 | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
 	    fi
 	    : ${version:=unknown}
 	    if ${PKG_ADMIN_CMD} pmatch "$abi" "$pkg-$version"; then
