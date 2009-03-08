@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/11/18 11:33:45 mallet $
+# $LAAS: depend.mk 2009/03/08 19:48:36 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -34,6 +34,8 @@ DEPEND_METHOD.pkg-config+=	build
 DEPEND_ABI.pkg-config?=		pkg-config>=0.22
 DEPEND_DIR.pkg-config?=		../../pkgtools/pkg-config
 
+SYSTEM_PKG.Linux-fedora.pkg-config=	pkgconfig
+SYSTEM_PKG.NetBSD.pkg-config=		pkgsrc/devel/pkg-config
 
 # TOOLS.pkg-config is the publicly-readable variable that should be
 # used by Makefiles to invoke the proper pkg-config.
