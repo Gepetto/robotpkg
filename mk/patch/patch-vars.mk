@@ -1,4 +1,4 @@
-# $LAAS: patch-vars.mk 2009/03/06 00:37:54 tho $
+# $LAAS: patch-vars.mk 2009/03/08 22:34:48 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -75,7 +75,8 @@ ifneq (,$(or ${PATCHFILES},$(filter yes,$(call exists,${PATCHDIR}))))
   include ${ROBOTPKG_DIR}/mk/patch/patch.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.patch}))
-patch:;
+    patch:
+	@${DO_NADA}
   else
     $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
     $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)

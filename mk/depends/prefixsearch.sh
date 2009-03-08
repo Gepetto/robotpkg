@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2009/03/07 13:05:46 tho $
+# $LAAS: prefixsearch.sh 2009/03/08 23:28:05 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -121,7 +121,7 @@ for p in $sysprefix; do
 	# iterate over file specs after glob and {,} substitutions and
 	# test existence
 	for match in `bracesubst $p/$f`; do
-	    if ! ${TEST} -r "$match"; then
+	    if ! ${TEST} -e "$match"; then
                 # special case: make /usr optional in /usr/{bin,lib}
 		if ${TEST} "${match##/usr/bin/}" != "${match}"; then
 		    alt="/bin/${match##/usr/bin/}"
@@ -178,5 +178,5 @@ if ${TEST} -z "$prefix"; then
     exit 2;
 fi
 
-${ECHO} $prefix
-${ECHO} $flist
+${ECHO} "PREFIX.$pkg:=$prefix"
+${ECHO} "SYSTEM_FILES.$pkg:=$flist"

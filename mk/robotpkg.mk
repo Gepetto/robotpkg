@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/03/07 19:37:31 tho $
+# $LAAS: robotpkg.mk 2009/03/08 23:33:05 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -358,7 +358,7 @@ _BUILD_DEFS+=	LICENSE RESTRICTED NO_PUBLIC_BIN NO_PUBLIC_SRC
 #include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
 # Clean
-$(call require-for, clean clean-depends,				\
+$(call require-for, clean clean-depends su-do-clean,			\
 	${ROBOTPKG_DIR}/mk/clean.mk)
 
 # Fetch
@@ -388,7 +388,7 @@ $(if $(strip ${MAKECMDGOALS}),						\
 	$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk))
 
 # Install
-$(call require-for, install reinstall deinstall replace,		\
+$(call require-for, install su-install-all reinstall deinstall replace,	\
 	${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 
 # Package
@@ -396,7 +396,7 @@ $(call require-for, package repackage,					\
 	${ROBOTPKG_DIR}/mk/package/package-vars.mk)
 
 # Dependencies
-$(call require-for, depends,						\
+$(call require-for, bootstrap-depends depends,				\
 	${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 # Update
@@ -428,9 +428,13 @@ _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 # plist generation
 $(call require-for, print-PLIST, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
-include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
+# index.html generation code.
+$(call require-for, index, ${ROBOTPKG_DIR}/mk/internal/index.mk)
+
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk
-include ${ROBOTPKG_DIR}/mk/internal/su-target.mk
+ifdef _SU_TARGETS
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/su-target.mk)
+endif
 
 #include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
 #if make(debug) || make(build-env)
@@ -446,8 +450,17 @@ ifdef BATCH
  include ${ROBOTPKG_DIR}/mk/bulk/bulk.mk
 endif
 
-# index.html generation code.
-$(call require-for, index, ${ROBOTPKG_DIR}/mk/internal/index.mk)
+# --- Files included after this line must be included as late as possible --
+#
+# Theese files must appear near the end of the robotpkg.mk file because they do
+# immediate expansions on variables set before. 
+
+# Resolve all dependencies into the adequate variable depending on the type of
+# dependency.
+$(call require,${ROBOTPKG_DIR}/mk/depends/resolve.mk)
+
+# Checks whether a package can be built in the current robotpkg.
+include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
 
 # Tell 'make' not to try to rebuild any Makefile by specifing a target with no
 # dependencies and no commands.

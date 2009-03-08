@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/07 18:06:02 tho $
+# $LAAS: depends.mk 2009/03/08 22:24:54 tho $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -60,9 +60,11 @@ acquire-depends-lock: acquire-lock
 release-depends-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.depends}))
-  ${_COOKIE.depends}:;
+  ${_COOKIE.depends}:
+	@${DO_NADA}
 else
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
   ${_COOKIE.depends}: real-depends;
 endif
 
@@ -75,6 +77,7 @@ endif
 _REAL_DEPENDS_TARGETS+=	depends-message
 _REAL_DEPENDS_TARGETS+=	pre-depends-hook
 _REAL_DEPENDS_TARGETS+=	pkg-depends-install
+_REAL_DEPENDS_TARGETS+=	pkg-depends-file
 _REAL_DEPENDS_TARGETS+=	pkg-depends-cookie
 
 .PHONY: real-depends
@@ -92,3 +95,8 @@ depends-message:
 #
 .PHONY: pre-depends-hook
 pre-depends-hook:
+
+
+# Include the file with robotpkg prefixes
+#
+-include ${_PKGDEP_FILE}

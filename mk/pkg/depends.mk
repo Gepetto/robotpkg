@@ -1,6 +1,6 @@
-# $LAAS: depends.mk 2008/05/25 22:35:07 tho $
+# $LAAS: depends.mk 2009/03/08 22:22:54 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -79,9 +79,9 @@ show-depends:
 #
 .PHONY: pkg-depends-cookie
 pkg-depends-cookie: ${_DEPENDS_FILE}
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.depends} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.depends})
-	${_PKG_SILENT}${_PKG_DEBUG}${MV} -f ${_DEPENDS_FILE} ${_COOKIE.depends}
+	${RUN}${TEST} ! -f ${_COOKIE.depends} || ${FALSE}
+	${RUN}${MKDIR} $(dir ${_COOKIE.depends})
+	${RUN}${MV} -f ${_DEPENDS_FILE} ${_COOKIE.depends}
 
 ${_DEPENDS_FILE}:
 	${RUN} ${MKDIR} $(dir $@)
@@ -105,19 +105,38 @@ ${_DEPENDS_FILE}:
 	done >> $@
 
 
+# --- pkg-depends-file (PRIVATE) -------------------------------------------
+#
+# pkg-depends-file creates the robotpkg prefixes file.
+#
+.PHONE: pkg-depends-file
+pkg-depends-file:
+	${RUN}${MKDIR} $(dir ${_PKGDEP_FILE});				\
+	>${_PKGDEP_FILE}; exec >>${_PKGDEP_FILE};			\
+$(foreach _pkg_,${DEPEND_USE},						\
+  $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+	prefix=`${PKG_INFO} -qp ${_pkg_} | ${SED} -e 's|^[^/]*||;q'`;	\
+	${_PREFIXSEARCH_CMD} -p "$$prefix"				\
+		"${_pkg_}" "${DEPEND_ABI.${_pkg_}}"			\
+		$(or ${SYSTEM_SEARCH.${_pkg_}}, "");			\
+  )									\
+)
+
+
+
 # --- pkg-depends-install (PRIVATE, mk/depends/depends.mk) -----------
 #
-# depends-install installs any missing dependencies.
+# pkg-depends-install installs any missing dependencies.
 #
-.PHONY: depends-install
+.PHONY: pkg-depends-install
 pkg-depends-install: ${_DEPENDS_FILE}
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
-	set -- dummy `${CAT} ${_DEPENDS_FILE}`; shift;			\
+	${RUN}set -- dummy `${CAT} ${_DEPENDS_FILE}`; shift;		\
 	while ${TEST} $$# -gt 0; do					\
 		type="$$1"; pattern="$$2"; dir="$$3"; shift 3;		\
 		silent=;						\
 		${_DEPENDS_INSTALL_CMD};				\
 	done
+
 
 # --- pkg-bootstrap-depends (PUBLIC, pkgsrc/mk/depends/depends.mk) ---
 
@@ -127,12 +146,11 @@ pkg-depends-install: ${_DEPENDS_FILE}
 #
 .PHONY: pkg-bootstrap-depends
 pkg-bootstrap-depends:
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
-	args=$(call quote,$(subst :, ,${BOOTSTRAP_DEPENDS}));		\
+	${RUN}args=$(call quote,$(subst :, ,${BOOTSTRAP_DEPENDS}));	\
 	set -- dummy $$args; shift;					\
 	while ${TEST} $$# -gt 0; do					\
 		pattern="$$1"; dir="$$2"; shift 2;			\
-		silent=${_BOOTSTRAP_VERBOSE:Dyes};			\
+		silent=${_BOOTSTRAP_VERBOSE};				\
 		${_DEPENDS_INSTALL_CMD};				\
 	done
 
