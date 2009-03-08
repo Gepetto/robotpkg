@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2009/02/20 18:12:36 tho $
+# $LAAS: resolve.mk 2009/03/05 23:45:15 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -84,6 +84,8 @@
 #
 # DEPEND_*	public variables usable in other Makefiles
 # _DPD_*	private variables to this Makefile
+
+$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
 
 
 # DEPEND_PKG contains the list of packages for which we add a direct

@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/03/05 23:02:39 tho $
+# $LAAS: robotpkg.mk 2009/03/07 19:37:31 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -64,7 +64,7 @@ $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 .DEFAULT_GOAL:=all
 
 .PHONY: all
-all: build
+all: build;
 
 
 # --- Transform package Makefile variables and set defaults ----------
@@ -266,24 +266,11 @@ ifndef NO_CHECKSUM
 USE_TOOLS+=		digest:bootstrap
 endif
 
-# Pkg
-include ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk
-
-# Get the proper dependencies and set the PATH to use the compiler
-# named in PKGSRC_COMPILER.
-include ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk
-
-# Tools
-include ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk
-
 # Locking
 include ${ROBOTPKG_DIR}/mk/internal/locking.mk
 
-# Barriers
-include ${ROBOTPKG_DIR}/mk/internal/barrier.mk
-
 # Process user build options
-include ${ROBOTPKG_DIR}/mk/robotpkg.options.mk
+$(call require-for, show-options, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 
 
 # --------------------------------------------------------------------
@@ -371,37 +358,51 @@ _BUILD_DEFS+=	LICENSE RESTRICTED NO_PUBLIC_BIN NO_PUBLIC_SRC
 #include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
 # Clean
-include ${ROBOTPKG_DIR}/mk/clean.mk
+$(call require-for, clean clean-depends,				\
+	${ROBOTPKG_DIR}/mk/clean.mk)
 
 # Fetch
-$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+$(call require-for, fetch,						\
+	${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
 # Checksum
-include ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk
+$(call require-for, checksum makesum makepatchsum mps mdi makedistinfo,	\
+	${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
 # Extract
-$(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+$(call require-for, extract checkout,					\
+	${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
 # Patch
-include ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk
+$(call require-for, patch,						\
+	${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
 
 # Configure
-include ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk
+$(call require-for, configure reconfigure,				\
+	${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
 
 # Build
-include ${ROBOTPKG_DIR}/mk/build/build-vars.mk
+$(if $(strip ${MAKECMDGOALS}),						\
+	$(call require-for, all build rebuild,				\
+		${ROBOTPKG_DIR}/mk/build/build-vars.mk),		\
+	$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk))
 
 # Install
-include ${ROBOTPKG_DIR}/mk/install/install-vars.mk
+$(call require-for, install reinstall deinstall replace,		\
+	${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 
 # Package
-include ${ROBOTPKG_DIR}/mk/package/package-vars.mk
+$(call require-for, package repackage,					\
+	${ROBOTPKG_DIR}/mk/package/package-vars.mk)
 
 # Dependencies
-include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
+$(call require-for, depends,						\
+	${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 # Update
-include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
+$(call require-for, update,						\
+	${ROBOTPKG_DIR}/mk/update/update-vars.mk)
+
 
 # --------------------------------------------------------------------
 #
@@ -424,13 +425,8 @@ _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
 #include "${ROBOTPKG_DIR}/mk/install/bin-install.mk"
 
-
-################################################################
-# Everything after here are internal targets and really
-# shouldn't be touched by anybody but the release engineers.
-################################################################
-
-include ../../mk/plist/plist-vars.mk
+# plist generation
+$(call require-for, print-PLIST, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
 include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk

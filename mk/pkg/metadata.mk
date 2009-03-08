@@ -1,4 +1,4 @@
-# $LAAS: metadata.mk 2009/02/19 11:30:47 tho $
+# $LAAS: metadata.mk 2009/03/07 19:35:41 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -51,6 +51,8 @@ ${PKG_DB_TMPDIR}:
 #
 # Package build environment and settings information
 #
+$(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
+
 _BUILD_INFO_FILE=	${PKG_DB_TMPDIR}/+BUILD_INFO
 _BUILD_DATE_cmd=	${_CDATE_CMD} "+%Y-%m-%d %H:%M:%S %z"
 _METADATA_TARGETS+=	${_BUILD_INFO_FILE}

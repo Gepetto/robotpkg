@@ -1,4 +1,4 @@
-# $LAAS: checksum.mk 2009/03/01 17:58:10 tho $
+# $LAAS: checksum.mk 2009/03/07 19:48:26 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -42,6 +42,9 @@
 #
 #                                       Anthony Mallet on Thu Dec  7 2006
 #
+
+$(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+
 
 _DIGEST_ALGORITHMS?=		SHA1 RMD160
 _PATCH_DIGEST_ALGORITHMS?=	SHA1
@@ -172,8 +175,8 @@ $(foreach _alg_,${_CONF_DIGEST_ALGORITHMS},				\
 	    ${ERROR_MSG} ${hline};					\
 	    ${ERROR_MSG} "${bf}Inconsistent configuration file for"	\
 			"${PKGNAME}.${rm}";				\
-	    ${ERROR_MSG} "The robotpkg.conf file was modified in the"	\
-			"middle of a make.";				\
+	    ${ERROR_MSG} "The robotpkg.conf file was modified since"	\
+			"last make.";					\
 	    ${ERROR_MSG} "";						\
 	    ${ERROR_MSG} "${bf}Please do a \`${MAKE} clean' in"		\
 			"${PKGPATH}.${rm}";				\

@@ -1,4 +1,4 @@
-# $LAAS: build.mk 2009/03/01 15:11:20 tho $
+# $LAAS: build.mk 2009/03/07 19:47:19 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -54,6 +54,9 @@
 #	flags as argument.
 #
 
+$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+
+
 BUILD_MAKE_FLAGS?=	# none
 BUILD_TARGET?=		all
 $(foreach _d,${BUILD_DIRS},$(eval BUILD_TARGET.${_d}?= ${BUILD_TARGET}))
@@ -78,6 +81,9 @@ ifeq (yes,$(call exists,${_COOKIE.build}))
 build:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+
   ifdef _PKGSRC_BARRIER
 build: ${_BUILD_TARGETS}
   else
@@ -182,5 +188,7 @@ post-build:
 # build-clean removes the state files for the "build" and later phases so that
 # the "build" target may be re-invoked.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
+
 build-clean: install-clean
 	${RUN}${RM} -f ${_COOKIE.build}

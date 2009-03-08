@@ -1,4 +1,4 @@
-# $LAAS: patch-vars.mk 2009/02/16 17:15:09 tho $
+# $LAAS: patch-vars.mk 2009/03/06 00:37:54 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -77,6 +77,9 @@ else
   ifeq (yes,$(call exists,${_COOKIE.patch}))
 patch:;
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+    $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+
     ifdef _PKGSRC_BARRIER
       ifdef _EXTRACT_IS_CHECKOUT
 patch: checkout patch-cookie;

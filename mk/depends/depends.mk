@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/01 15:11:39 tho $
+# $LAAS: depends.mk 2009/03/07 18:06:02 tho $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -62,6 +62,7 @@ release-depends-lock: release-lock
 ifeq (yes,$(call exists,${_COOKIE.depends}))
   ${_COOKIE.depends}:;
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
   ${_COOKIE.depends}: real-depends;
 endif
 

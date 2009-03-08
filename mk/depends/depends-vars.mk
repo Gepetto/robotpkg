@@ -1,4 +1,4 @@
-# $LAAS: depends-vars.mk 2009/01/10 13:23:50 tho $
+# $LAAS: depends-vars.mk 2009/03/07 18:33:13 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -99,6 +99,8 @@ endif
 # dependencies needed during stages before the normal "depends"
 # stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
 .PHONY: bootstrap-depends
 bootstrap-depends: pkg-bootstrap-depends
 

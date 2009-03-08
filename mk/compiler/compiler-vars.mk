@@ -1,4 +1,4 @@
-# $LAAS: compiler-vars.mk 2009/03/01 15:59:08 tho $
+# $LAAS: compiler-vars.mk 2009/03/05 23:51:52 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -110,6 +110,6 @@ endif
 
 _PKGSRC_COMPILER=	$(filter ${_PSEUDO_COMPILERS},${PKGSRC_COMPILER}) ${_COMPILER}
 
-include $(patsubst %,../../mk/compiler/%.mk,${_PKGSRC_COMPILER})
+include $(patsubst %,${ROBOTPKG_DIR}/mk/compiler/%.mk,${_PKGSRC_COMPILER})
 
 endif	# ROBOTPKG_COMPILER_MK

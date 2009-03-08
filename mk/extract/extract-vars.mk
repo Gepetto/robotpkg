@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/03/02 01:53:22 tho $
+# $LAAS: extract-vars.mk 2009/03/06 00:10:50 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -147,6 +147,9 @@ else
 extract:
 	@${DO_NADA}
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+    $(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
+
     ifdef _PKGSRC_BARRIER
 extract: tools extract-cookie
     else

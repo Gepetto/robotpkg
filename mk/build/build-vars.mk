@@ -1,4 +1,4 @@
-# $LAAS: build-vars.mk 2009/01/10 13:27:23 tho $
+# $LAAS: build-vars.mk 2009/03/07 15:04:13 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -62,6 +62,9 @@
 #	executable.  If the path is relative, then it is assumed to
 #	be relative to each directory listed in BUILD_DIRS.
 #
+
+$(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+
 BUILD_DIRS?=	${CONFIGURE_DIRS}
 MAKE_PROGRAM?=	${MAKE}
 MAKE_ENV?=	# empty
@@ -107,6 +110,8 @@ else
 build:
 	@${DO_NADA}
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
     ifdef _PKGSRC_BARRIER
 build: configure build-cookie #pkginstall
     else

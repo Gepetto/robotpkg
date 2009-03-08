@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2009/02/20 18:06:27 tho $
+# $LAAS: robotpkg.options.mk 2009/03/06 00:14:08 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -129,8 +129,10 @@
 # -------------8<-------------8<-------------8<-------------8<-------------
 #
 
-ifndef PKG_OPTIONS_MK
-PKG_OPTIONS_MK=		# defined
+# compilers and tools may define options, so require them now
+$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
+
 
 # Remember the general options for `show-options' target
 #
@@ -394,6 +396,4 @@ else	# PKG_SUPPORTED_OPTIONS
 show-options:
 	@${ECHO} "This package does not use the options framework."
 
-
 endif	# PKG_SUPPORTED_OPTIONS
-endif	# PKG_OPTIONS_MK

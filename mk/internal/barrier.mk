@@ -1,4 +1,4 @@
-# $LAAS: barrier.mk 2009/03/02 01:21:32 tho $
+# $LAAS: barrier.mk 2009/03/06 00:29:40 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -46,6 +46,7 @@ _BARRIER_PRE_TARGETS+=	interactive
 
 $(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 ifndef _EXTRACT_IS_CHECKOUT
+  $(call require,${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
   _BARRIER_PRE_TARGETS+=checksum
 endif
 

@@ -1,6 +1,6 @@
-# $LAAS: checksum-vars.mk 2008/05/25 23:19:04 tho $
+# $LAAS: checksum-vars.mk 2009/03/06 00:25:53 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -67,11 +67,13 @@ DISTINFO_FILE?=		${PKGDIR}/distinfo
 # for the package to ${DISTINFO_FILE}.
 #
 ifdef NO_CHECKSUM
-.PHONY: checksum makesum makepatchsum
-checksum: fetch
+  $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+
+  .PHONY: checksum makesum makepatchsum
+  checksum: fetch
 	@${DO_NADA}
 
-makesum makepatchsum:
+  makesum makepatchsum:
 	@${DO_NADA}
 else
   include ${ROBOTPKG_DIR}/mk/checksum/checksum.mk

@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/03/01 16:03:10 tho $
+# $LAAS: gcc.mk 2009/03/05 23:59:36 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -61,6 +61,8 @@ GCC_REQUIRED+=	>=2.8.0 <5.0
 # strictest versions of GCC required.
 #
 ifndef _GCC_REQUIRED
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
   # split constraints into <= and >= categories
   _equ_:=$(patsubst -%,%,$(filter-out <%,$(filter-out >%,${GCC_REQUIRED})))
   _min_:=$(sort $(filter >%,${GCC_REQUIRED}) $(addprefix >=,${_equ_}))
@@ -97,6 +99,10 @@ endif
 
 # Select required compilers based on COMPILER_TARGET and USE_LANGUAGES.
 #
+ifneq (,$(strip ${USE_LANGUAGES}))
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+endif
+
 ifeq (i386-mingw32,${COMPILER_TARGET})
   ifneq (,$(filter c c++,${USE_LANGUAGES}))
     include ${ROBOTPKG_DIR}/cross/i386-mingw32/depend.mk

@@ -41,7 +41,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-
 # --- install (PUBLIC) -----------------------------------------------
 
 # install is a public target to install the package.
@@ -53,19 +52,24 @@ _INSTALL_TARGETS+=	release-install-lock
 
 .PHONY: install
 ifeq (yes,$(call exists,${_COOKIE.install}))
-install:
-	@${DO_NADA}
+  install:;
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
   ifdef _PKGSRC_BARRIER
-install: ${_INSTALL_TARGETS}
+    $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+    install: ${_INSTALL_TARGETS}
   else
-install: barrier
+    install: barrier;
   endif
 endif
 
 ifeq (yes,$(call exists,${_COOKIE.install}))
   ${_COOKIE.install}:;
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
+
   ${_COOKIE.install}: real-install;
 endif
 
@@ -247,6 +251,8 @@ post-install:
 # install-clean removes the state files for the "install" and
 # later phases so that the "install" target may be re-invoked.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/package/package-vars.mk)
+
 install-clean: package-clean #check-clean
 	${RUN}${RM} -f ${PLIST} ${_COOKIE.install}
 

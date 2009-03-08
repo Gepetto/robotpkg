@@ -1,4 +1,4 @@
-# $LAAS: print-plist.mk 2009/02/19 11:28:45 tho $
+# $LAAS: print-plist.mk 2009/03/07 00:36:52 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -69,6 +69,7 @@ PRINT_PLIST_FILES_CMD?=		${TRUE};
 # XXX will fail for data files that were copied using tar!
 # XXX should check $LOCALBASE, and add @cwd statements
 #
+$(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
 _PRINT_PLIST_FILES_CMD=	\
   ${FIND} ${PREFIX}/. -xdev -newer ${_EXTRACT_TIMESTAMP_FILE} \! -type d -print;

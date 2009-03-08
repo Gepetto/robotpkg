@@ -1,4 +1,4 @@
-# $LAAS: package.mk 2009/02/27 19:47:43 tho $
+# $LAAS: package.mk 2009/03/07 17:51:16 tho $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # All rights reserved.
@@ -48,13 +48,14 @@ _PACKAGE_TARGETS+=	release-package-lock
 
 .PHONY: package
 ifeq (yes,$(call exists,${_COOKIE.package}))
-package:
-	@${DO_NADA}
+  package:;
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
   ifdef _PKGSRC_BARRIER
-package: ${_PACKAGE_TARGETS}
+    $(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
+    package: ${_PACKAGE_TARGETS}
   else
-package: barrier
+    package: barrier
   endif
 endif
 
@@ -63,10 +64,10 @@ acquire-package-lock: acquire-lock
 release-package-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.package}))
-${_COOKIE.package}:
-	@${DO_NADA}
+  ${_COOKIE.package}:;
 else
-${_COOKIE.package}: real-package
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+  ${_COOKIE.package}: real-package;
 endif
 
 

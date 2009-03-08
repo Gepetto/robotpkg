@@ -1,4 +1,4 @@
-# $LAAS: extract.mk 2009/03/01 15:11:48 tho $
+# $LAAS: extract.mk 2009/03/06 00:11:30 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -92,6 +92,9 @@ ifeq (yes,$(call exists,${_COOKIE.extract}))
 extract:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
+
   ifdef _PKGSRC_BARRIER
 extract: ${_EXTRACT_TARGETS}
   else

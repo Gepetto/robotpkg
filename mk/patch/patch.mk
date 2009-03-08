@@ -1,4 +1,4 @@
-# $LAAS: patch.mk 2009/03/01 15:12:34 tho $
+# $LAAS: patch.mk 2009/03/06 00:37:50 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -91,10 +91,11 @@
 # patch is a public target to apply the distribution and pkgsrc
 # patches to the extracted sources for the package.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 ifdef _EXTRACT_IS_CHECKOUT
-_PATCH_TARGETS+=	checkout
+  _PATCH_TARGETS+=	checkout
 else
-_PATCH_TARGETS+=	extract
+  _PATCH_TARGETS+=	extract
 endif
 _PATCH_TARGETS+=	acquire-patch-lock
 _PATCH_TARGETS+=	${_COOKIE.patch}
@@ -105,6 +106,8 @@ ifeq (yes,$(call exists,${_COOKIE.patch}))
 patch:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
   ifdef _PKGSRC_BARRIER
 patch: ${_PATCH_TARGETS}
   else

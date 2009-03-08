@@ -1,6 +1,6 @@
-# $LAAS: package-vars.mk 2008/05/25 22:39:41 tho $
+# $LAAS: package-vars.mk 2009/03/07 17:48:53 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -61,18 +61,21 @@ ifndef NO_PACKAGE
   include ${ROBOTPKG_DIR}/mk/package/package.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.package}))
-package:
+    package:
 	@${DO_NADA}
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
     ifdef _PKGSRC_BARRIER
-package: install
-      ifdef SKIP_SILENT
-	@${DO_NADA}
-      else
-	@${PHASE_MSG} "${PKGNAME} may not be packaged: "${NO_PACKAGE}"."
-      endif
+      $(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
+      package: install
+        ifdef SKIP_SILENT
+	  @${DO_NADA}
+        else
+	  @${PHASE_MSG} "${PKGNAME} may not be packaged: "${NO_PACKAGE}"."
+        endif
     else
-package: barrier
+      package: barrier
     endif
   endif
 endif

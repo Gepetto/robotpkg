@@ -1,4 +1,4 @@
-# $LAAS: fetch.mk 2009/03/01 15:12:01 tho $
+# $LAAS: fetch.mk 2009/03/07 18:31:36 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -42,6 +42,9 @@
 #
 #					Anthony Mallet on Tue Dec  5 2006
 #
+
+$(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
+
 
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP:=${DIST_SUBDIR:=/}}
 _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE:=${DIST_SUBDIR:=/}}
@@ -110,6 +113,8 @@ $(foreach fetchfile,${_PATCHFILES},$(eval ${_PATCHFILES_VAR}))
 # fetch is a public target to fetch all of the package distribution
 # files.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
 _FETCH_TARGETS+=	bootstrap-depends
 _FETCH_TARGETS+=	pre-fetch
 _FETCH_TARGETS+=	do-fetch

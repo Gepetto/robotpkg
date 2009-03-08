@@ -1,4 +1,4 @@
-# $LAAS: tools-vars.mk 2009/03/01 15:12:42 tho $
+# $LAAS: tools-vars.mk 2009/03/06 00:08:42 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 2005, 2006 The NetBSD Foundation, Inc.
@@ -80,6 +80,8 @@ ifeq (yes,$(call exists,${_COOKIE.tools}))
 tools:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
   ifdef _PKGSRC_BARRIER
 tools: ${_TOOLS_TARGETS}
   else
