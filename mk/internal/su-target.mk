@@ -1,4 +1,4 @@
-# $LAAS: su-target.mk 2009/03/08 08:49:33 tho $
+# $LAAS: su-target.mk 2009/03/08 23:12:12 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -30,9 +30,9 @@
 #                                      Anthony Mallet on Thu Jan 15 2009
 #
 
-#ifeq (sudo,$(notdir $(firstword ${SU_CMD})))
-#  include ${ROBOTPKG_DIR}/mk/sysdep/sudo.mk
-#endif
+ifeq (sudo,$(notdir $(firstword ${SU_CMD})))
+  include ${ROBOTPKG_DIR}/mk/sysdep/sudo.mk
+endif
 
 
 # --- su-target-% ----------------------------------------------------------
