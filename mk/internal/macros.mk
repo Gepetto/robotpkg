@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2009/03/05 21:06:19 tho $
+# $LAAS: macros.mk 2009/03/08 15:57:26 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -96,7 +96,7 @@ endef
 empty=
 space=$(empty) $(empty)
 tab=$(empty)	$(empty)
-quotechars= = & { } ( ) [ ] | * < > $ , ' ` " \ # for fontify: "`'
+quotechars= = & { } ( ) [ ] | * < > $ , ; ' ` " \ # for fontify: "`'
 override define quote
 $(subst $(tab),\$(tab),$(subst $(space),\$(space),$(call \
 	substs,$(quotechars),$(addprefix \,$(quotechars)),$1)))
