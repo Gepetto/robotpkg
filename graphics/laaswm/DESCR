@@ -1,0 +1,21 @@
+laaswm is a modified version of evilwm, to allow remote control of windows.
+
+evilwm 1.0 by Ciaran Anscomb <evilwm@6809.org.uk>
+
+evilwm is a minimalist window manager for the X Window System.
+
+The name evil came from Stuart 'Stuii' Ford, who thinks that any software
+I use must be evil and masochistic.  In reality, this window manager is
+clean and easy to use.
+
+
+FEATURES
+
+ * No window decorations apart from a simple 1 pixel border.
+ * No icons.
+ * Good keyboard control, including repositioning and maximise toggles.
+ * Solid window drags (compile time option - may be slow on old machines).
+ * Virtual desktops.
+ * Small binary size (even with everything turned on).
+
+
