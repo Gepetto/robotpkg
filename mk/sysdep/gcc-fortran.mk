@@ -1,4 +1,4 @@
-# $LAAS: gcc-fortran.mk 2009/03/01 18:42:51 tho $
+# $LAAS: gcc-fortran.mk 2009/03/09 17:53:39 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -64,7 +64,7 @@ SYSTEM_PKG.Linux-ubuntu.${_GCC_FORTRAN_PKG}=	gfortran
 
 SYSTEM_DESCR.${_GCC_FORTRAN_PKG}='gcc Fortran77 compiler, version ${_GCC_REQUIRED}'
 SYSTEM_SEARCH.${_GCC_FORTRAN_PKG}=	\
-	'bin/${_GCC_FORTRAN_BIN}:1s/[^0-9.]*\\([0-9.]*\\).*$$/\\1/p:% -dumpversion'
+	'bin/${_GCC_FORTRAN_BIN}:1s/[^0-9.]*\\\\([0-9.]*\\\\).*$$/\\\\1/p:% -dumpversion'
 
 include ../../mk/robotpkg.prefs.mk
 ifeq (robotpkg,${PREFER.${_GCC_FORTRAN_PKG}})
