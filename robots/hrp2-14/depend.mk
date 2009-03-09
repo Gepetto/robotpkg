@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/06/17 16:47:11 mallet $
+# $LAAS: depend.mk 2009/03/09 15:19:44 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -32,7 +32,7 @@ SYSTEM_SEARCH.hrp2_14=\
 
 DEPEND_USE+=		hrp2_14
 
-DEPEND_ABI.hrp2_14?=	hrp2_14>=1.4
+DEPEND_ABI.hrp2_14?=	hrp2_14>=1.6
 DEPEND_DIR.hrp2_14?=	../../robots/hrp2-14
 
 endif # HRP2_14_DEPEND_MK --------------------------------------------
