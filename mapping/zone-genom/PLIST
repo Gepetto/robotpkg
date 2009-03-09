@@ -1,0 +1,28 @@
+@comment Mon Mar 9 17:46:34 CET 2009
+bin/zone
+bin/zoneSendInitRqst
+bin/zoneTest
+include/zone/server/zoneEndian.h
+include/zone/server/zoneError.h
+include/zone/server/zoneMsgLib.h
+include/zone/server/zonePosterLib.h
+include/zone/server/zonePosterLibStruct.h
+include/zone/server/zonePosterReadLibProto.h
+include/zone/server/zonePosterShowLib.h
+include/zone/server/zonePosterWriteLibProto.h
+include/zone/server/zonePosterXMLLib.h
+include/zone/server/zonePrint.h
+include/zone/server/zonePrintXML.h
+include/zone/server/zoneScan.h
+include/zone/server/zoneType.h
+include/zone/zoneConst.h
+include/zone/zoneStruct.h
+lib/libzoneClient.la
+lib/libzoneIO.la
+lib/pkgconfig/zone-io.pc
+lib/pkgconfig/zone.pc
+lib/tclserv/libzoneTclServ.la
+share/modules/gen/zone.gen
+share/modules/tcl/zoneClient.tcl
+@dirrm include/zone/server
+@dirrm include/zone
