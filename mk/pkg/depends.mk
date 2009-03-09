@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/09 23:29:00 tho $
+# $LAAS: depends.mk 2009/03/09 23:50:31 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -57,14 +57,6 @@ _DEPENDS_PATTERNS_CMD=	\
 		${CAT} ${_COOKIE.depends} |				\
 		${AWK} '/^full/ { print $$2 } { next }';		\
 	fi
-
-.PHONY: show-depends
-show-depends:
-	@case ${VARNAME}"" in							 \
-	BUILD_DEPENDS)	${_REDUCE_DEPENDS_CMD} $(call quote,${BUILD_DEPENDS}) ;; \
-	DEPENDS|*)	${_REDUCE_DEPENDS_CMD} $(call quote,${DEPENDS}) ;;	 \
-	esac
-
 
 # --- pkg-depends-cookie (PRIVATE, mk/depends/depends.mk) ------------
 #

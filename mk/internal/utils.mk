@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/03/05 11:48:34 mallet $
+# $LAAS: utils.mk 2009/03/09 23:49:10 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -162,6 +162,12 @@ endif
 ifneq (,$(strip $(filter install package all,${DEPENDS_TYPE})))
 _ALL_DEPENDS+=	${DEPENDS}
 endif
+
+.PHONY: show-depends
+show-depends:
+	@$(foreach _pkg_,${_ALL_DEPENDS},				\
+		${ECHO} '$(subst :,	,${_pkg_})';)
+	@${DO_NADA}
 
 .PHONY: show-depends-pkgpaths
 show-depends-pkgpaths:
