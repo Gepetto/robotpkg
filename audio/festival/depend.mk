@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -52,8 +52,6 @@ DEPEND_USE+=		festival
 
 DEPEND_ABI.festival?=	festival>=1.96
 DEPEND_DIR.festival?=	../../audio/festival
-
-DEPEND_LIBS.festival+=	-lFestival
 
 endif # FESTIVAL_DEPEND_MK -------------------------------------------
 
