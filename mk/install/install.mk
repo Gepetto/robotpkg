@@ -262,6 +262,8 @@ install-clean: package-clean #check-clean
 # bootstrap-register registers "bootstrap" packages that are installed
 # by the pkgsrc/bootstrap/bootstrap script.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
+
 bootstrap-register: pkg-register clean
 	@${DO_NADA}
 
