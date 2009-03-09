@@ -1,4 +1,4 @@
-# $LAAS: configure-vars.mk 2009/03/07 14:15:31 tho $
+# $LAAS: configure-vars.mk 2009/03/09 18:15:23 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -90,12 +90,13 @@ configure:
 
     ifdef _PKGSRC_BARRIER
       ifdef _EXTRACT_IS_CHECKOUT
-configure: configure-cookie
+        configure: configure-cookie
       else
-configure: patch configure-cookie
+        $(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
+        configure: patch configure-cookie
       endif
     else
-configure: barrier
+      configure: barrier
     endif
   endif
 endif
