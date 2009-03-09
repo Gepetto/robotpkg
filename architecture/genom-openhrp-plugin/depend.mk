@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/02/04 15:57:28 mallet $
+# $LAAS: depend.mk 2009/03/09 15:18:01 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -34,7 +34,7 @@ DEPEND_DIR.genom-openhrp-plugin?=../../architecture/genom-openhrp-plugin
 
 SYSTEM_SEARCH.genom-openhrp-plugin=\
 	include/genom-openhrp/genom-hrp2.h	\
-	'lib/pkgconfig/genom-openhrp-plugin.pc:/Version:/s/[^0-9.]*//p'
+	'lib/pkgconfig/genom-openhrp-plugin.pc:/Version/s/[^0-9.]*//p'
 
 endif # GENOM_OPENHRP_DEPEND_MK --------------------------------------
 
