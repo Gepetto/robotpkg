@@ -1,0 +1,7 @@
+@comment Mon Mar 9 11:23:56 CET 2009
+bin/wmclient
+include/wmclient.h
+lib/libwmclient.la
+share/wmclient/pkgIndex.tcl
+share/wmclient/wmclient.tcl
+@dirrm share/wmclient
