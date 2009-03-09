@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2009/03/09 10:56:53 mallet $
+# $LAAS: sysdep.mk 2009/03/09 23:33:39 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -132,4 +132,6 @@ $(foreach _pkg_,${DEPEND_USE},						\
 
 # Include the file with system prefixes
 #
--include ${_SYSDEP_FILE}
+ifdef _PKGSRC_BARRIER
+  -include ${_SYSDEP_FILE}
+endif

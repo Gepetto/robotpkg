@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/08 22:22:54 tho $
+# $LAAS: depends.mk 2009/03/09 23:29:00 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -103,6 +103,48 @@ ${_DEPENDS_FILE}:
 		${TEST} -n "$$dir" || exit 1;				\
 		${ECHO} "full	$$pattern	$$dir";			\
 	done >> $@
+
+
+# -- pkg-depends-build-options ---------------------------------------------
+#
+# depends-build-options checks that required packages are or will be built with
+# required options. This procedure determines the PKG_OPTIONS that have been in
+# effect when a package has been built. When the package is not yet installed,
+# the current PKG_OPTIONS are queried.
+#
+.PHONY: pkg-depends-build-options
+pkg-depends-build-options:
+	${RUN}								\
+$(foreach _pkg_,${DEPEND_USE},						\
+  $(if $(and $(strip ${REQD_BUILD_OPTIONS.${_pkg_}}),			\
+		$(filter robotpkg,${PREFER.${_pkg_}})),			\
+	popts=`${PKG_INFO} -Q PKG_OPTIONS ${_pkg_} 2>/dev/null || {	\
+	  cd ${DEPEND_DIR.${_pkg_}} &&					\
+	  ${MAKE} ${MAKEFLAGS} show-var VARNAME=PKG_OPTIONS;		\
+	} 2>/dev/null || :`;						\
+	for opt in ${REQD_BUILD_OPTIONS.${_pkg_}}; do			\
+	  ${ECHO} $$popts | ${GREP} $$opt 2>/dev/null 1>&2 || {		\
+	    ${ERROR_MSG} ${hline};					\
+	    ${ERROR_MSG} "${bf}The package ${PKGNAME} requires the"	\
+		"following option${rm}";				\
+	    ${ERROR_MSG} "${bf}enabled in ${_pkg_}:${rm}";		\
+	    ${ERROR_MSG} "		${bf}$${opt}${rm}";		\
+	    ${ERROR_MSG} "";						\
+	    ${ERROR_MSG} "You must re-install ${_pkg_} in"		\
+		"${DEPEND_DIR.${_pkg_}}";				\
+	    ${ERROR_MSG} "with this option enabled. It was built with"	\
+		"these options:";					\
+	    if test -n "$${popts}"; then				\
+	      ${ERROR_MSG} "		$${popts}";			\
+	    else							\
+	      ${ERROR_MSG} "		(none)";			\
+	    fi;								\
+	    ${ERROR_MSG} ${hline};					\
+	    exit 2;							\
+	  };								\
+	done;								\
+  )									\
+)
 
 
 # --- pkg-depends-file (PRIVATE) -------------------------------------------

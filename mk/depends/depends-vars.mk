@@ -1,4 +1,4 @@
-# $LAAS: depends-vars.mk 2009/03/08 21:46:42 tho $
+# $LAAS: depends-vars.mk 2009/03/09 23:26:44 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -49,6 +49,9 @@
 #	for packages that should be installed before any other stage is
 #	invoked.
 #
+#    REQD_BUILD_OPTIONS.<pkg>
+#	The required build options from the package <pkg>.
+#
 BOOTSTRAP_DEPENDS?=	# empty
 
 SYSDEP_VERBOSE?=	yes
@@ -93,7 +96,6 @@ endif
 #
 .PHONY: depends
 ifndef NO_DEPENDS
-  include ${ROBOTPKG_DIR}/mk/depends/build-options.mk
   include ${ROBOTPKG_DIR}/mk/depends/depends.mk
 else
   depends:

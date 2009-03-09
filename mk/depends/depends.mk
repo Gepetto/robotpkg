@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/08 22:24:54 tho $
+# $LAAS: depends.mk 2009/03/09 23:33:51 tho $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -76,6 +76,7 @@ endif
 #
 _REAL_DEPENDS_TARGETS+=	depends-message
 _REAL_DEPENDS_TARGETS+=	pre-depends-hook
+_REAL_DEPENDS_TARGETS+=	pkg-depends-build-options
 _REAL_DEPENDS_TARGETS+=	pkg-depends-install
 _REAL_DEPENDS_TARGETS+=	pkg-depends-file
 _REAL_DEPENDS_TARGETS+=	pkg-depends-cookie
@@ -99,4 +100,6 @@ pre-depends-hook:
 
 # Include the file with robotpkg prefixes
 #
--include ${_PKGDEP_FILE}
+ifdef _PKGSRC_BARRIER
+  -include ${_PKGDEP_FILE}
+endif
