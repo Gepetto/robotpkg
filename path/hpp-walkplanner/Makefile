@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/09 20:10:10 mallet $
+# $LAAS: Makefile 2009/03/09 18:34:57 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -34,6 +34,7 @@ PKG_SUPPORTED_OPTIONS+=	verbose1
 PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
+REQD_BUILD_OPTIONS.hrp2_14=	with-kineo
 include ../../robots/hrp2-14/depend.mk
 include ../../path/jrl-walkgen/depend.mk
 include ../../path/hpp-walkfootplanner/depend.mk
