@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/11/28 17:24:04 mallet $
+# $LAAS: depend.mk 2009/03/09 16:08:08 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -29,7 +29,7 @@ PREFER.boost?=		system
 PREFER.boost-headers?=	${PREFER.boost}
 
 SYSTEM_SEARCH.boost-headers=\
-	'include/boost/version.hpp:/BOOST_LIB_VERSION.*"/{s/.*"\\([0-9_]*\\)".*/\\1/g;y/_/./;p;}'	\
+	'include/boost/version.hpp:/BOOST_LIB_VERSION.*"/{s/.*"\\\\([0-9_]*\\\\)".*/\\\\1/g;y/_/./;p;}'	\
 	include/boost/config.hpp	\
 	include/boost/config/user.hpp
 
