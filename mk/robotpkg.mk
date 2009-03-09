@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/03/09 14:54:56 mallet $
+# $LAAS: robotpkg.mk 2009/03/09 15:08:52 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -362,7 +362,7 @@ $(call require-for, clean clean-depends su-do-clean,			\
 	${ROBOTPKG_DIR}/mk/clean.mk)
 
 # Fetch
-$(call require-for, fetch,						\
+$(call require-for, fetch mirror-distfiles,				\
 	${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
 # Checksum
