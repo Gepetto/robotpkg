@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/12/09 16:25:00 mallet $
+# $LAAS: depend.mk 2009/03/09 18:00:11 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -34,7 +34,7 @@ DEPEND_DIR.hpp-openhrp?=../../path/hpp-openhrp
 
 SYSTEM_SEARCH.hpp-openhrp=\
 	include/hppOpenHRP/parserOpenHRPKineo.h		\
-	'lib/pkgconfig/hppOpenHRP.pc:/Version:/s/[^0-9.]*//p'
+	'lib/pkgconfig/hppOpenHRP.pc:/Version/s/[^0-9.]//gp'
 
 endif # HPP_OPENHRP_DEPEND_MK ----------------------------------------
 
