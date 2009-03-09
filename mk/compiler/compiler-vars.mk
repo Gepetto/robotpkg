@@ -1,4 +1,4 @@
-# $LAAS: compiler-vars.mk 2009/03/05 23:51:52 tho $
+# $LAAS: compiler-vars.mk 2009/03/09 21:32:23 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -78,9 +78,6 @@
 
 ifndef ROBOTPKG_COMPILER_MK
 ROBOTPKG_COMPILER_MK=	defined
-
-# Since most packages need a C compiler, this is the default value.
-USE_LANGUAGES?=	c
 
 # Add c support if c99 is set
 ifneq (,$(filter c99,${USE_LANGUAGES}))

@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/03/05 23:59:36 tho $
+# $LAAS: gcc.mk 2009/03/09 21:39:09 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -126,15 +126,11 @@ LINKER_RPATH_FLAG=	-R
 COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 
 
-# --- common compiler options ----------------------------------------
+# --- compiler options -----------------------------------------------------
 #
-
-ifndef NO_BUILD
-ifneq (,$(filter c c++ fortran,${USE_LANGUAGES}))
-PKG_SUPPORTED_OPTIONS+=		debug
-
-PKG_OPTION_DESCR.debug:=	Produce debugging information for binary programs
-
+# Each compiler can define the PKG_OPTION_SET.debug and PKG_OPTION_UNSET.debug
+# scripts corresponding to the common `debug' option.
+#
 ifndef PKG_OPTION_SET.debug
   define PKG_OPTION_SET.debug
     CFLAGS+=	-g -O0 -Wall
@@ -148,8 +144,5 @@ ifndef PKG_OPTION_UNSET.debug
     CXXFLAGS+=	-O3 -DNDEBUG
   endef
 endif
-
-endif	# c c++ fortran
-endif	# NO_BUILD
 
 endif	# COMPILER_GCC_MK

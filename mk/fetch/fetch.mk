@@ -1,4 +1,4 @@
-# $LAAS: fetch.mk 2009/03/07 18:31:36 tho $
+# $LAAS: fetch.mk 2009/03/09 22:11:10 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -43,16 +43,11 @@
 #					Anthony Mallet on Tue Dec  5 2006
 #
 
-$(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
-
-
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP:=${DIST_SUBDIR:=/}}
 _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE:=${DIST_SUBDIR:=/}}
 
-ALLFILES?=	${DISTFILES} ${PATCHFILES}
-ALLFILES:=	$(sort ${ALLFILES})#		remove duplicates
-CKSUMFILES?=	${ALLFILES}
-CKSUMFILES:=	$(filter-out ${IGNOREFILES},${CKSUMFILES})
+ALLFILES?=	$(sort ${DISTFILES} ${PATCHFILES})
+CKSUMFILES?=	$(filter-out ${IGNOREFILES},${ALLFILES})
 
 
 # List of all files, with ${DIST_SUBDIR} in front.  Used for fetch and checksum.
@@ -67,9 +62,9 @@ _DISTFILES?=	${DISTFILES}
 _IGNOREFILES?=	${IGNOREFILES}
 _PATCHFILES?=	${PATCHFILES}
 endif
-_ALLFILES?=	${_DISTFILES} ${_PATCHFILES}
-_ALLFILES:=	$(sort ${_ALLFILES})#		remove duplicates
-_ALLFILES:=	$(filter-out ${NOFETCHFILES},${_ALLFILES})
+_ALLFILES=	$(filter-out ${NOFETCHFILES}, 				\
+			$(sort ${_DISTFILES} ${_PATCHFILES}))
+
 
 _BUILD_DEFS+=	_DISTFILES _PATCHFILES
 

@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/03/09 15:08:52 mallet $
+# $LAAS: robotpkg.mk 2009/03/09 22:09:07 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -105,6 +105,7 @@ MAINTAINER?=		openrobots@laas.fr
 PKGWILDCARD?=		${PKGBASE}-[0-9]*
 WRKSRC?=		${WRKDIR}/${DISTNAME}
 PREFIX?=		${LOCALBASE}
+USE_LANGUAGES?=		c # most packages need a C compiler
 
 ifneq (,$(or $(call isyes,$(INSTALL_UNSTRIPPED)), $(DEBUG_FLAGS)))
 _INSTALL_UNSTRIPPED=	# set (flag used by platform/*.mk)
@@ -270,7 +271,7 @@ endif
 include ${ROBOTPKG_DIR}/mk/internal/locking.mk
 
 # Process user build options
-$(call require-for, show-options, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 
 
 # --------------------------------------------------------------------
@@ -453,15 +454,15 @@ endif
 
 # --- Files included after this line must be included as late as possible --
 #
-# Theese files must appear near the end of the robotpkg.mk file because they do
+# These files must appear near the end of the robotpkg.mk file because they do
 # immediate expansions on variables set before. 
 
 # Resolve all dependencies into the adequate variable depending on the type of
 # dependency.
-$(call require,${ROBOTPKG_DIR}/mk/depends/resolve.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/depends/resolve.mk)
 
 # Checks whether a package can be built in the current robotpkg.
-include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
+$(call require, ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk)
 
 # Tell 'make' not to try to rebuild any Makefile by specifing a target with no
 # dependencies and no commands.

@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2009/03/06 00:14:08 tho $
+# $LAAS: robotpkg.options.mk 2009/03/09 21:40:25 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -129,9 +129,17 @@
 # -------------8<-------------8<-------------8<-------------8<-------------
 #
 
-# compilers and tools may define options, so require them now
-$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
-$(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
+# Define options common to all packages
+#
+ifndef NO_BUILD
+  ifneq (,$(strip ${USE_LANGUAGES}))
+    # option is defined here, but the _SET and UNSET scripts are defined by
+    # the compilers themselves, in gcc.mk
+    #
+    PKG_SUPPORTED_OPTIONS+=	debug
+    PKG_OPTION_DESCR.debug:=	Produce debugging information for binary programs
+  endif
+endif
 
 
 # Remember the general options for `show-options' target
@@ -390,7 +398,7 @@ $(if $(strip ${PKG_OPTIONS}),						\
 		"change.";						\
 	${ECHO} ${hline}
 
-else	# PKG_SUPPORTED_OPTIONS
+else	# !PKG_SUPPORTED_OPTIONS
 
 .PHONY: show-options
 show-options:
