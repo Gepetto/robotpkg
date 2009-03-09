@@ -16,8 +16,9 @@
 #                                      Arnaud Degroote on Sat May 17 2008
 #
 
-DISTNAME=		genBasic-genom-0.1
+DISTNAME=		genBasic-genom-0.2
 CATEGORIES=		architecture
+
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/genBasic-genom
 
