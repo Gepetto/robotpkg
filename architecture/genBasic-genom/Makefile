@@ -19,6 +19,7 @@
 DISTNAME=		genBasic-genom-0.1
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/genBasic-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
@@ -27,6 +28,8 @@ COMMENT=		Common simple data structures for GenoM modules
 GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		genBasic
+GENOM_ARGS=		-a
+
 include ../../architecture/genom/depend.mk
 
 include ../../mk/robotpkg.mk

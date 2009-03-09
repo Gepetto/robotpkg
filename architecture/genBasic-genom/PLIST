@@ -1,34 +1,16 @@
-@comment samedi 17 mai 2008, 18:10:45 (UTC+0200)
-bin/genBasic
-bin/genBasicSendInitRqst
-bin/genBasicTest
+@comment Mon Mar 9 17:04:27 CET 2009
 include/genBasic/genBasicStruct.h
 include/genBasic/server/genBasicEndian.h
 include/genBasic/server/genBasicError.h
-include/genBasic/server/genBasicMsgLib.h
 include/genBasic/server/genBasicPosterLib.h
 include/genBasic/server/genBasicPosterLibStruct.h
-include/genBasic/server/genBasicPosterReadLibProto.h
-include/genBasic/server/genBasicPosterShowLib.h
-include/genBasic/server/genBasicPosterWriteLibProto.h
-include/genBasic/server/genBasicPosterXMLLib.h
 include/genBasic/server/genBasicPrint.h
 include/genBasic/server/genBasicPrintXML.h
 include/genBasic/server/genBasicScan.h
 include/genBasic/server/genBasicType.h
 lib/libgenBasicClient.la
 lib/pkgconfig/genBasic.pc
-lib/tclserv/libgenBasicTclServ.la
 share/modules/gen/genBasic.gen
 share/modules/tcl/genBasicClient.tcl
-@dirrm share/modules/tcl
-@dirrm share/modules/gen
-@dirrm share/modules
-@dirrm share
-@dirrm lib/tclserv
-@dirrm lib/pkgconfig
-@dirrm lib
 @dirrm include/genBasic/server
 @dirrm include/genBasic
-@dirrm include
-@dirrm bin
