@@ -12,8 +12,4 @@ share/gbM/gbModeles.tcl
 share/gbM/pkgIndex.tcl
 share/gbM/testGb.tcl
 @dirrm share/gbM
-@dirrm share
-@dirrm lib/pkgconfig
-@dirrm lib
 @dirrm include/gbM
-@dirrm include
