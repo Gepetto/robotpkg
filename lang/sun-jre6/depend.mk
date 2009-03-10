@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/10/03 23:19:44 tho $
+# $LAAS: depend.mk 2009/03/10 10:11:28 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -32,7 +32,7 @@ DEPEND_ABI.sun-jre6?=	sun-jre6>=6.0.0
 DEPEND_DIR.sun-jre6?=	../../lang/sun-jre6
 
 SYSTEM_SEARCH.sun-jre6=\
-	bin/java
+	'bin/java{,-sun6}'
 
 JAVA_HOME=		${LOCALBASE}/java/sun-6
 endif
