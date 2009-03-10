@@ -1,18 +1,19 @@
-@comment Mon Mar  9 18:51:55 2009
+@comment Tue Mar 10 22:36:35 CET 2009
 include/gbM/Proto_gb.h
 include/gbM/Proto_gbModeles.h
 include/gbM/gb.h
 include/gbM/gbGENOM.h
 include/gbM/gbStruct.h
-lib/gb.so*
-lib/libgb.la*
-lib/libgb.so@
-lib/libgb.so.0@
-lib/libgb.so.0.0.0*
+lib/gb.so
+lib/libgb.la
 lib/pkgconfig/gbM.pc
 share/gbM/gb.tcl
 share/gbM/gbModeles.tcl
 share/gbM/pkgIndex.tcl
 share/gbM/testGb.tcl
-@dirrm include/gbM
 @dirrm share/gbM
+@dirrm share
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/gbM
+@dirrm include
