@@ -4,6 +4,7 @@
 COMMENT=	Mathematics
 
 SUBDIR+=	blas
+SUBDIR+=	gbM
 SUBDIR+=	gmp
 SUBDIR+=	hrp2-dynamics
 SUBDIR+=	jrl-dynamics
