@@ -1,4 +1,4 @@
-# $LAAS: depends-vars.mk 2009/03/09 23:26:44 tho $
+# $LAAS: depends-vars.mk 2009/03/10 19:39:41 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -98,8 +98,13 @@ endif
 ifndef NO_DEPENDS
   include ${ROBOTPKG_DIR}/mk/depends/depends.mk
 else
-  depends:
+  depends: ${_COOKIE.depends}
 	@${DO_NADA}
+
+  ${_COOKIE.depends}:
+	${RUN}${TEST} ! -f ${_COOKIE.depends} || ${FALSE}
+	${RUN}${MKDIR} $(dir ${_COOKIE.depends})
+	${RUN}> ${_COOKIE.depends}
 endif
 
 
