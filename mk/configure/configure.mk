@@ -1,4 +1,4 @@
-# $LAAS: configure.mk 2009/03/07 19:47:08 tho $
+# $LAAS: configure.mk 2009/03/10 22:00:59 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -87,6 +87,7 @@ ifeq (yes,$(call exists,${_COOKIE.configure}))
 configure:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
   ifndef _EXTRACT_IS_CHECKOUT
     $(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
