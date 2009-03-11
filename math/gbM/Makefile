@@ -14,25 +14,25 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                      Daniel Sidobre,B159,6912 on Mon Mar  9 2009
+#                                             Daniel Sidobre on Mon Mar  9 2009
 #
 
 DISTNAME=	gbM-1.0
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
-GNU_CONFIGURE=yes
-
-
-CONFIGURE_ARGS+=        --with-tcl=$(dir ${TCL_CONFIG_SH})
-CONFIGURE_ARGS+=        --with-tk=$(dir ${TK_CONFIG_SH})
-
-
-
 MAINTAINER=	daniel.sidobre@laas.fr
 #HOMEPAGE=	softs.laas.fr:/ftp/pub/openrobots/
 COMMENT=	geometry for 6R arms
 
+CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
+CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
+
+pre-configure: autoreconf
+
+include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
+include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/autoconf.mk
 include ../../mk/robotpkg.mk

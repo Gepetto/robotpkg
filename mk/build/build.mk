@@ -1,4 +1,4 @@
-# $LAAS: build.mk 2009/03/07 19:47:19 tho $
+# $LAAS: build.mk 2009/03/10 22:01:25 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -83,6 +83,7 @@ build:
 else
   $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
 
   ifdef _PKGSRC_BARRIER
 build: ${_BUILD_TARGETS}
