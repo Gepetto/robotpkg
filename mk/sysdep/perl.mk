@@ -1,4 +1,4 @@
-# $LAAS: perl.mk 2009/03/10 16:35:19 mallet $
+# $LAAS: perl.mk 2009/03/11 21:37:17 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -32,7 +32,7 @@ PREFER.perl?=		system
 DEPEND_USE+=		perl
 DEPEND_ABI.perl?=	perl>=5
 SYSTEM_SEARCH.perl=\
-	'bin/perl:/perl/{s/[^0-9.]*\\\\([0-9.]*\\\\).*/\\\\1/;p;q;}:% -v'
+	'bin/perl:/perl/{s/[^0-9.]*\([0-9.]*\).*/\1/;p;q;}:% -v'
 
 export PERL=		${PREFIX.perl}/bin/perl
 
