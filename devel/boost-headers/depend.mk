@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/03/09 16:08:08 mallet $
+# $LAAS: depend.mk 2009/03/11 21:27:36 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -28,8 +28,12 @@ ifeq (+,$(BOOST_HEADERS_DEPEND_MK)) # --------------------------------
 PREFER.boost?=		system
 PREFER.boost-headers?=	${PREFER.boost}
 
+SYSTEM_PKG.Linux-fedora.boost-headers=	boost-devel
+SYSTEM_PKG.Linux-ubuntu.boost-headers=	libboost-dev
+SYSTEM_PKG.NetBSD.boost-headers=	pkgsrc/devel/boost-headers
+
 SYSTEM_SEARCH.boost-headers=\
-	'include/boost/version.hpp:/BOOST_LIB_VERSION.*"/{s/.*"\\\\([0-9_]*\\\\)".*/\\\\1/g;y/_/./;p;}'	\
+	'include/boost/version.hpp:/BOOST_LIB_VERSION.*"/{s/.*"\([0-9_]*\)".*/\1/g;y/_/./;p;}'	\
 	include/boost/config.hpp	\
 	include/boost/config/user.hpp
 
