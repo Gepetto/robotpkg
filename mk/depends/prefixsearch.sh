@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2009/03/11 23:54:34 tho $
+# $LAAS: prefixsearch.sh 2009/03/11 23:57:58 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -93,6 +93,7 @@ while ${TEST} $# -gt 0; do
 	-s)     syspkg="$2"; shift 2 ;;
 	-o)     sys="$2"; shift 2 ;;
 	-r)     robotpkg="$2"; shift 2 ;;
+	-t)     type="$2"; shift 2 ;;
 
         --)     shift; break ;;
         -*)     ${ECHO} 1>&2 "$self: unknown option -- ${1#-}"
@@ -251,7 +252,7 @@ if ${TEST} $errors = yes; then
     ${ERROR_MSG} 1>&2 "Scanning system for $abi:"
     $0 -v -p "$sysprefix" $pkg $abi $@ | ${SED} -e "s|^|ERROR: |" 1>&2
     ${ERROR_MSG} 1>&2
-    ${ERROR_MSG} 1>&2 "${bf}Missing system package required for $pkgname:${rm}"
+    ${ERROR_MSG} 1>&2 "${bf}Missing $type package required for $pkgname:${rm}"
     if test -n "$pkgdesc"; then
 	${ERROR_MSG} 1>&2 "		${bf}$pkgdesc${rm}"
     else

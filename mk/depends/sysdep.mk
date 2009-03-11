@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2009/03/11 23:31:53 tho $
+# $LAAS: sysdep.mk 2009/03/11 23:32:45 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -81,6 +81,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 		  $(if ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
 		  ${OPSUBSYS},${OPSYS})))				\
 	     -r $(or ${DEPEND_DIR.${_pkg_}},"")				\
+	     -t	system							\
 		$(call quote,${_pkg_})					\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
 		${SYSTEM_SEARCH.${_pkg_}} >>${_SYSDEP_FILE}		\
