@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2009/03/11 23:57:58 tho $
+# $LAAS: prefixsearch.sh 2009/03/12 18:42:12 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -277,8 +277,8 @@ if ${TEST} $errors = yes; then
 		"in your"
 	${ERROR_MSG} 1>&2 "system, you can use the robotpkg version,"	\
 		"by setting in"
-	${ERROR_MSG} "${MAKECONF}:"
-	${ERROR_MSG} "		PREFER.$pkg=	robotpkg"
+	${ERROR_MSG} 1>&2 "${MAKECONF}:"
+	${ERROR_MSG} 1>&2 "		PREFER.$pkg=	robotpkg"
     fi
     ${ERROR_MSG} 1>&2 $hline
 fi
