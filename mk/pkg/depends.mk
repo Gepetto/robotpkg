@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/09 23:50:31 tho $
+# $LAAS: depends.mk 2009/03/11 22:36:34 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -144,13 +144,19 @@ $(foreach _pkg_,${DEPEND_USE},						\
 # pkg-depends-file creates the robotpkg prefixes file.
 #
 .PHONE: pkg-depends-file
+pkg-depends-file: export hline:=${hline}
+pkg-depends-file: export bf:=${bf}
+pkg-depends-file: export rm:=${rm}
 pkg-depends-file:
 	${RUN}${MKDIR} $(dir ${_PKGDEP_FILE});				\
 	>${_PKGDEP_FILE}; exec >>${_PKGDEP_FILE};			\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
 	prefix=`${PKG_INFO} -qp ${_pkg_} | ${SED} -e 's|^[^/]*||;q'`;	\
-	${_PREFIXSEARCH_CMD} -p "$$prefix"				\
+	${_PREFIXSEARCH_CMD} -e -p "$$prefix" 				\
+		-d $(or $(call quote,${SYSTEM_DESCR.${_pkg_}}),"")	\
+		-n $(call quote,${PKGNAME})				\
+		-t robotpkg						\
 		"${_pkg_}" "${DEPEND_ABI.${_pkg_}}"			\
 		$(or ${SYSTEM_SEARCH.${_pkg_}}, "");			\
   )									\

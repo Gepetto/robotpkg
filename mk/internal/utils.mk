@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/03/09 23:49:10 tho $
+# $LAAS: utils.mk 2009/03/11 18:33:52 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -110,7 +110,7 @@ show-var:
 # enhanced version of target above, to display multiple variables
 .PHONY: show-vars
 show-vars:
-	@:; $(foreach VARNAME,${VARNAMES},${ECHO} $(call quote,${$(strip ${VARNAME})});)
+	@:; $(foreach VARNAME,${VARNAMES},${ECHO} '$(subst ','\'',${${VARNAME}})';) #'
 
 
 # --- show-comment ---------------------------------------------------------

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2009/03/08 23:28:05 tho $
+# $LAAS: prefixsearch.sh 2009/03/11 23:57:58 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -18,6 +18,45 @@
 #                                      Anthony Mallet on Fri Oct 17 2008
 #
 
+# --------------------------------------------------------------------------
+#
+# NAME
+#	prefixsearch.sh -- search for system packages and their prefix
+#
+# SYNOPSIS
+#	prefixsearch.sh -- [options] pkg abi file ...
+#
+# DESCRIPTION
+#	prefixsearch.sh takes a package name, an ABI requirement and a list
+#	of file specifications that belong to the package. Each file
+#	specification may be a simple file name which is only tested for
+#	existence or a string in the form 'file:sed:prog' which tests the
+#	existence and the version of the file. If the file exists, 'prog' is
+#	executed with its standard output is passed to the 'sed' program which
+#	is expected to return the version of the file. 'prog' might contain a %
+#	character which is replaced by the actual path of the file begin
+#	tested.
+#
+#	prefixsearch.sh exists with a non-zero status if the package could
+#	not be found.
+#
+# OPTIONS
+#	The following command line arguments are supported.
+#
+#	-v	Print the result of the search on standard output.
+#
+#	-e	Display a verbose error message if the package is not found.
+#
+#	-p path
+#		Add the 'path' directory to the list of search paths. Multiple
+#		options may be specified.
+#
+# ENVIRONMENT
+#	PKG_ADMIN_CMD
+#		Contains the command to execute robotpkg_admin.
+#
+# --------------------------------------------------------------------------
+
 set -e          # exit on errors
 
 : ${ECHO:=echo}
@@ -26,6 +65,13 @@ set -e          # exit on errors
 : ${AWK:=awk}
 : ${PKG_ADMIN_CMD:=robotpkg_admin}
 
+: ${ERROR_MSG:=${ECHO} ERROR:}
+: ${MAKECONF:=/opt/openrobots/etc/robotpkg.conf}
+
+: ${bf:=}
+: ${rm:=}
+: ${hline:=-----------------------------------------------------------------}
+
 self="${0##*/}"
 
 usage() {
@@ -33,12 +79,22 @@ usage() {
 }
 
 # Process optional arguments
-sysprefix="/usr /usr/local"
+sysprefix=
+verbose=no
 errors=no
 while ${TEST} $# -gt 0; do
     case "$1" in
+	-v)     verbose=yes; shift ;;
 	-e)     errors=yes; shift ;;
-	-p)     sysprefix="$2"; shift 2 ;;
+	-p)     sysprefix="$sysprefix ${2%/}"; shift 2 ;;
+
+	-n)     pkgname="$2"; shift 2 ;;
+	-d)     pkgdesc="$2"; shift 2 ;;
+	-s)     syspkg="$2"; shift 2 ;;
+	-o)     sys="$2"; shift 2 ;;
+	-r)     robotpkg="$2"; shift 2 ;;
+	-t)     type="$2"; shift 2 ;;
+
         --)     shift; break ;;
         -*)     ${ECHO} 1>&2 "$self: unknown option -- ${1#-}"
                 usage
@@ -48,11 +104,16 @@ while ${TEST} $# -gt 0; do
     esac
 done
 
-if ${TEST} $errors = yes; then
-    ERRMSG=${ECHO}
+if ${TEST} $verbose = yes; then
+    MSG=${ECHO}
 else
-    ERRMSG=:
+    MSG=:
 fi
+
+if ${TEST} -z "$sysprefix"; then
+    sysprefix="/usr /usr/local"
+fi
+
 
 # Process required arguments
 ${TEST} $# -gt 2 || { usage; exit 1; }
@@ -111,10 +172,11 @@ prefix=
 vrepl='y/-/./;q'
 
 for p in $sysprefix; do
-    ${ERRMSG} "search in $p"
+    ${MSG} "searching in $p"
     flist=
     for fspec in "$@"; do
-	IFS=: read f spec cmd <<-EOF
+	# split file specification into `:' separated fields
+	IFS=: read -r f spec cmd <<-EOF
 		$fspec
 	EOF
 
@@ -139,7 +201,7 @@ for p in $sysprefix; do
 	    # check file version, if needed 
 	    if ${TEST} -z "$spec$cmd"; then
 		flist="$flist $match"
-		${ERRMSG} "found:	$match"
+		${MSG} "found:	$match"
 		break
 	    fi
 
@@ -151,18 +213,19 @@ for p in $sysprefix; do
 		version=`eval $icmd 2>&1 | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
 	    fi
 	    : ${version:=unknown}
-	    if ${PKG_ADMIN_CMD} pmatch "$abi" "$pkg-$version"; then
+
+	    if eval ${PKG_ADMIN_CMD} pmatch "'$abi'" "'$pkg-$version'"; then
 		flist="$flist $match"
-		${ERRMSG} "found:	$match, version $version"
+		${MSG} "found:	$match, version $version"
 		break
 	    fi
 
-	    ${ERRMSG} "found:	$match, wrong version $version"
+	    ${MSG} "found:	$match, wrong version $version"
 	    match=;
 	done
 	if ${TEST} -z "$match"; then
 	    for match in `bracesubst $p/$f`; do
-		${ERRMSG} "missing:	$match"
+		${MSG} "missing:	$match"
 	    done
 	    continue 2;
 	fi
@@ -174,9 +237,50 @@ for p in $sysprefix; do
 done
 
 # Output result
-if ${TEST} -z "$prefix"; then
-    exit 2;
+if ${TEST} -n "$prefix"; then
+    ${ECHO} "PREFIX.$pkg:=$prefix"
+    ${ECHO} "SYSTEM_FILES.$pkg:=$flist"
+    exit 0
 fi
 
-${ECHO} "PREFIX.$pkg:=$prefix"
-${ECHO} "SYSTEM_FILES.$pkg:=$flist"
+# If an error occured, print it
+if ${TEST} $errors = yes; then
+    eval hline=$hline
+    eval bf=$bf
+    eval rm=$rm
+    ${ERROR_MSG} 1>&2 $hline
+    ${ERROR_MSG} 1>&2 "Scanning system for $abi:"
+    $0 -v -p "$sysprefix" $pkg $abi $@ | ${SED} -e "s|^|ERROR: |" 1>&2
+    ${ERROR_MSG} 1>&2
+    ${ERROR_MSG} 1>&2 "${bf}Missing $type package required for $pkgname:${rm}"
+    if test -n "$pkgdesc"; then
+	${ERROR_MSG} 1>&2 "		${bf}$pkgdesc${rm}"
+    else
+	${ERROR_MSG} 1>&2 "		${bf}$abi${rm}"
+    fi
+    ${ERROR_MSG} 1>&2
+    if test -n "$syspkg"; then
+	${ERROR_MSG} 1>&2 "${bf}Please install the $sys package:${rm}"
+        ${ERROR_MSG} 1>&2 "		${bf}$syspkg${rm}"
+    else
+	${ERROR_MSG} 1>&2 "${bf}Please install it before continuing.${rm}"
+    fi
+    ${ERROR_MSG} 1>&2
+    ${ERROR_MSG} 1>&2 "If this package is installed in a non-standard"	\
+	"location, you have"
+    ${ERROR_MSG} 1>&2 "to modify the SYSTEM_PREFIX or PREFIX.$pkg"	\
+	"variables in"
+    ${ERROR_MSG} 1>&2 "${MAKECONF}"
+    if test -n "$robotpkg"; then
+	${ERROR_MSG} 1>&2
+	${ERROR_MSG} 1>&2 "If no $abi package can be made available"	\
+		"in your"
+	${ERROR_MSG} 1>&2 "system, you can use the robotpkg version,"	\
+		"by setting in"
+	${ERROR_MSG} "${MAKECONF}:"
+	${ERROR_MSG} "		PREFER.$pkg=	robotpkg"
+    fi
+    ${ERROR_MSG} 1>&2 $hline
+fi
+
+exit 2

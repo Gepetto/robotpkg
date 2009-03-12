@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/03/01 18:42:35 tho $
+# $LAAS: depend.mk 2009/03/11 10:34:16 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.boost?=		system
 PREFER.boost-libs?=	${PREFER.boost}
 
 SYSTEM_PKG.Linux-fedora.boost-libs=	boost-devel
-SYSTEM_PKG.Linux-ubuntu.boost-libs=	libbost-dev
+SYSTEM_PKG.Linux-ubuntu.boost-libs=	libboost-dev
 SYSTEM_PKG.NetBSD.boost-libs=		pkgsrc/devel/boost-libs
 
 SYSTEM_SEARCH.boost-libs=\

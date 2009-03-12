@@ -1,4 +1,4 @@
-# $LAAS: autoconf.mk 2009/03/10 22:40:12 tho $
+# $LAAS: autoconf.mk 2009/03/11 21:38:09 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -33,7 +33,7 @@ DEPEND_USE+=		autoconf
 DEPEND_ABI.autoconf?=	autoconf>=2.59
 DEPEND_METHOD.autoconf?=build
 SYSTEM_SEARCH.autoconf=\
-	'bin/autoconf:/autoconf/{s/[^0-9.]*\\\\([0-9.]*\\\\).*/\\\\1/;p;q;}:% -V' \
+	'bin/autoconf:/autoconf/{s/[^0-9.]*\([0-9.]*\).*/\1/;p;q;}:% -V' \
 	'bin/autoreconf'
 
 export AUTOCONF=		${PREFIX.autoconf}/bin/autoconf

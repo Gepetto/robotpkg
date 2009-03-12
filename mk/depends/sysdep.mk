@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2009/03/09 23:33:39 tho $
+# $LAAS: sysdep.mk 2009/03/11 23:32:45 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -47,12 +47,14 @@ endif
 
 # Compute the prefix of packages that we are pulling from the system.
 #
-_PREFIXSEARCH_CMD=	${SETENV} ECHO=${ECHO}				\
-				  TEST=${TEST}				\
-				  SED=${SED}				\
-				  AWK=${AWK}				\
-				  PKG_ADMIN_CMD=${PKG_ADMIN_CMD}	\
-			${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
+_PREFIXSEARCH_CMD=\
+	${SETENV} ECHO=${ECHO}					\
+		  TEST=${TEST}					\
+		  SED=${SED}					\
+		  AWK=${AWK}					\
+		  PKG_ADMIN_CMD=$(call quote,${PKG_ADMIN_CMD})	\
+		  MAKECONF=$(call quote,${MAKECONF})		\
+	${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
 
 
 # --- sysdep-depends (PRIVATE) ---------------------------------------------
@@ -61,73 +63,33 @@ _PREFIXSEARCH_CMD=	${SETENV} ECHO=${ECHO}				\
 # dependencies are those listed in DEPEND_PKG with a PREFER.<pkg> set to
 # 'system' or 'auto'.
 #
+sysdep-depends: export hline:=${hline}
+sysdep-depends: export bf:=${bf}
+sysdep-depends: export rm:=${rm}
 sysdep-depends:
-	${RUN}${MKDIR} $(dir ${_SYSDEP_FILE});				\
-	>${_SYSDEP_FILE}.dlist; exec >>${_SYSDEP_FILE}.dlist;		\
+	${RUN}${MKDIR} $(dir ${_SYSDEP_FILE}); >${_SYSDEP_FILE};	\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),,				\
-	${ECHO} ${_pkg_};						\
-	${ECHO} '${DEPEND_DIR.${_pkg_}}';				\
-	${ECHO} "'${DEPEND_ABI.${_pkg_}}'";				\
-	${ECHO} "$(call quote,${SYSTEM_SEARCH.${_pkg_}})";		\
-	${ECHO} "'$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX})'";		\
-	${ECHO} $(call quote,${SYSTEM_DESCR.${_pkg_}});			\
-	${ECHO} '$(if ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
-		${OPSUBSYS},${OPSYS})';					\
-	${ECHO} '$(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
-		${SYSTEM_PKG.${OPSYS}.${_pkg_}})';			\
+	${_PREFIXSEARCH_CMD} -e	 					\
+	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
+	     -n $(call quote,${PKGNAME})				\
+	     -d $(or $(call quote,${SYSTEM_DESCR.${_pkg_}}),"")		\
+	     -s $(or $(call quote,$(strip				\
+		  $(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
+		  ${SYSTEM_PKG.${OPSYS}.${_pkg_}}))),"")		\
+	     -o $(call quote,$(strip					\
+		  $(if ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
+		  ${OPSUBSYS},${OPSYS})))				\
+	     -r $(or ${DEPEND_DIR.${_pkg_}},"")				\
+	     -t	system							\
+		$(call quote,${_pkg_})					\
+		$(call quote,${DEPEND_ABI.${_pkg_}})			\
+		${SYSTEM_SEARCH.${_pkg_}} >>${_SYSDEP_FILE}		\
+	$(if $(call isyes,${SYSDEP_VERBOSE}), &&			\
+	   ${STEP_MSG} "Required package ${DEPEND_ABI.${_pkg_}} found")	\
+	|| { ${RM} ${_SYSDEP_FILE}; exit 2; };				\
   )									\
 )
-	${RUN}>${_SYSDEP_FILE}; exec 0<${_SYSDEP_FILE}.dlist;		\
-	while read pkg; do						\
-	  read dir; read abi; read search; read path; read name;	\
-	  read sys; read syspkg;					\
-	  eval ${_PREFIXSEARCH_CMD} -p "$$path" "$$pkg" "$$abi"		\
-		$$search >>${_SYSDEP_FILE} || {				\
-	    ${RM} ${_SYSDEP_FILE};					\
-	    ${ERROR_MSG} ${hline};					\
-	    ${ERROR_MSG} "Scanning system for $$abi:";			\
-	    eval ${_PREFIXSEARCH_CMD} -e				\
-		-p "$$path" "$$pkg" "$$abi" $$search | ${ERROR_CAT};	\
-	    ${ERROR_MSG};						\
-	    ${ERROR_MSG} "${bf}Missing system package required for"	\
-		"${PKGNAME}:${rm}";					\
-	    if test -n "$$name"; then					\
-	      ${ERROR_MSG} "		${bf}$$name${rm}";		\
-	    else							\
-	      ${ERROR_MSG} "		${bf}$$abi${rm}";		\
-	    fi;								\
-	    ${ERROR_MSG};						\
-	    if test $$syspkg; then					\
-	      ${ERROR_MSG}						\
-		"${bf}Please install the $$sys package:${rm}";		\
-	      ${ERROR_MSG} "		${bf}$$syspkg${rm}";		\
-	    else							\
-	      ${ERROR_MSG}						\
-		"${bf}Please install it before continuing.${rm}";	\
-	    fi;								\
-	    ${ERROR_MSG};						\
-	    ${ERROR_MSG} "If this package is installed in a"		\
-		"non-standard location, you have";			\
-	    ${ERROR_MSG} "to modify the SYSTEM_PREFIX or PREFIX.$$pkg"	\
-		"variables in";						\
-	    ${ERROR_MSG} "${MAKECONF}";					\
-	    if test $$dir; then						\
-	      ${ERROR_MSG};						\
-	      ${ERROR_MSG} "If no $$abi package can be made available"	\
-		"in your";						\
-	      ${ERROR_MSG} "system, you can use the robotpkg version,"	\
-		"by setting in";					\
-	      ${ERROR_MSG} "${MAKECONF}:";				\
-	      ${ERROR_MSG} "		PREFER.$$pkg=	robotpkg";	\
-	    fi;								\
-	    ${ERROR_MSG} ${hline};					\
-	    exit 2;							\
-	  };								\
-	  $(if $(call isyes,${SYSDEP_VERBOSE}),				\
-	    ${STEP_MSG} "Required system package $$abi found";		\
-	  )								\
-	done
 
 
 # Include the file with system prefixes
