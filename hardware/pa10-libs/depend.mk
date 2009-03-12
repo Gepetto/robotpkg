@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/12/09 11:07:56 mallet $
+# $LAAS: depend.mk 2009/03/12 20:47:01 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -28,18 +28,13 @@ PREFER.pa10-libs?=	robotpkg
 
 DEPEND_USE+=		pa10-libs
 
-DEPEND_ABI.pa10-libs?=	pa10-libs>=1.1.1
+DEPEND_ABI.pa10-libs?=	pa10-libs>=1.1
 DEPEND_DIR.pa10-libs?=	../../hardware/pa10-libs
 
 SYSTEM_SEARCH.pa10-libs=\
-	include/pa10-libs/pacmd.h \
-	include/pa10-libs/pactl.h \
-	include/pa10-libs/paerr.h \
-	include/pa10-libs/pa.h    \
-	include/pa10-libs/pammc.h \
-	include/pa10-libs/papci.h \
-	lib/pkgconfig/pa10-libs.pc \
-	lib/libpapci.a 
+	include/pa10-libs/pa.h    				\
+	'lib/pkgconfig/pa10-libs.pc:/Version/s/[^0-9.]//gp' 	\
+	lib/libpapci.a
 
 endif # PA10LIBS_DEPEND_MK -------------------------------------------
 
