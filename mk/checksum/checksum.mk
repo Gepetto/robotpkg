@@ -1,4 +1,4 @@
-# $LAAS: checksum.mk 2009/03/10 22:16:11 tho $
+# $LAAS: checksum.mk 2009/03/12 18:35:01 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -66,8 +66,15 @@ _CHECKSUM_CMD=								\
 	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
 
 .PHONY: checksum
-checksum: fetch check-configuration-file
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+checksum: check-configuration-file
+
+$(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+ifdef _EXTRACT_IS_CHECKOUT
+  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+  checksum: bootstrap-depends
+else
+  checksum: fetch
+	${RUN}								\
 $(foreach _alg_,${_DIGEST_ALGORITHMS},					\
 	if cd ${DISTDIR} && ${_CHECKSUM_CMD} -a ${_alg_}		\
 		${DISTINFO_FILE} ${_CKSUMFILES}; then			\
@@ -79,6 +86,7 @@ $(foreach _alg_,${_DIGEST_ALGORITHMS},					\
 		exit 1;							\
 	fi;								\
 )
+endif
 
 
 # --- makesum (PUBLIC) -----------------------------------------------

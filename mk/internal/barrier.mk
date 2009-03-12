@@ -1,4 +1,4 @@
-# $LAAS: barrier.mk 2009/03/06 00:29:40 tho $
+# $LAAS: barrier.mk 2009/03/12 18:33:40 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -43,14 +43,10 @@ _COOKIE.barrier=	${WRKDIR}/.barrier_cookie
 #
 _BARRIER_PRE_TARGETS=	makedirs
 _BARRIER_PRE_TARGETS+=	interactive
-
-$(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
-ifndef _EXTRACT_IS_CHECKOUT
-  $(call require,${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
-  _BARRIER_PRE_TARGETS+=checksum
-endif
-
+_BARRIER_PRE_TARGETS+=	checksum
 _BARRIER_PRE_TARGETS+=	depends
+
+$(call require,${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
 
 # _BARRIER_POST_TARGETS is a list of the targets that must be built after
