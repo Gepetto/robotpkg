@@ -1,2 +1,10 @@
 @comment Mon Dec 22 16:54:40 CET 2008
 lib/libpapci.a
+lib/pkgconfig/pa10-libs.pc
+include/pa10-libs/pacmd.h
+include/pa10-libs/pactl.h
+include/pa10-libs/paerr.h
+include/pa10-libs/pa.h
+include/pa10-libs/pammc.h
+include/pa10-libs/papci.h
+@dirrm include/pa10-libs
