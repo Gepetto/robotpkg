@@ -1,4 +1,4 @@
-# $LAAS: metadata.mk 2009/03/07 19:35:41 tho $
+# $LAAS: metadata.mk 2009/03/12 14:29:36 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -232,14 +232,17 @@ endif
 _SIZE_ALL_FILE=		${PKG_DB_TMPDIR}/+SIZE_ALL
 _METADATA_TARGETS+=	${_SIZE_ALL_FILE}
 
-${_SIZE_ALL_FILE}: ${_COOKIE.depends}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+ifndef NO_DEPENDS
+  ${_SIZE_ALL_FILE}: ${_COOKIE.depends}
+endif
+
+${_SIZE_ALL_FILE}:
+	${RUN}${MKDIR} $(dir $@);					\
 	${_DEPENDS_PATTERNS_CMD} |					\
-	${XARGS} -n 1 ${_PKG_BEST_EXISTS} | ${SORT} -u |		\
-	${XARGS} -n 256 ${PKG_INFO} -qs |				\
-	${AWK} 'BEGIN { s = 0 } /^[0-9]+$$/ { s += $$1 } END { print s }' \
-		> $@
+	  ${XARGS} -n 1 ${_PKG_BEST_EXISTS} | ${SORT} -u |		\
+	  ${XARGS} -n 256 ${PKG_INFO} -qs |				\
+	  ${AWK} 'BEGIN { s=0 } /^[0-9]+$$/ { s+=$$1 } END { print s }'	\
+	> $@
 
 
 # --- +SIZE_PKG ------------------------------------------------------
@@ -322,10 +325,12 @@ _INSTALL_ARG_cmd=	if ${TEST} -f ${INSTALL_FILE}; then		\
 				${ECHO};				\
 			fi
 
+ifndef NO_DEPENDS
+  _CONTENTS_TARGETS+=	${_COOKIE.depends}
+endif
 _CONTENTS_TARGETS+=	${_BUILD_INFO_FILE}
 _CONTENTS_TARGETS+=	${_BUILD_VERSION_FILE}
 _CONTENTS_TARGETS+=	${_COMMENT_FILE}
-_CONTENTS_TARGETS+=	${_COOKIE.depends}
 _CONTENTS_TARGETS+=	${_DESCR_FILE}
 _CONTENTS_TARGETS+=	${_MESSAGE_FILE}
 _CONTENTS_TARGETS+=	plist
