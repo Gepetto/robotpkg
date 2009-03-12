@@ -5,6 +5,7 @@ lib/python2.5/site-packages/hppciObstacleServer_idl.py
 lib/python2.5/site-packages/hppciProblemServer_idl.py
 lib/python2.5/site-packages/hppciRobotServer_idl.py
 lib/python2.5/site-packages/hppCorbaServer/__init__.py
+lib/python2.5/site-packages/hppCorbaServer/__init__.pyc
 lib/python2.5/site-packages/hppCorbaServer__POA/__init__.py
 lib/python2.5/site-packages/hppInit.py
 lib/python2.5/site-packages/hppWalkInit.py
