@@ -32,7 +32,7 @@ DEPEND_ABI.viam-libs?=	viam-libs>=1.3r1
 DEPEND_DIR.viam-libs?=	../../image/viam-libs
 
 SYSTEM_SEARCH.viam-libs=\
-	include/viamlib.h		\
+	include/viam/viamlib.h		\
 	lib/pkgconfig/viam-libs.pc
 endif # VIAMLIBS_DEPEND_MK -------------------------------------------
 
