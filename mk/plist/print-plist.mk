@@ -1,4 +1,4 @@
-# $LAAS: print-plist.mk 2009/03/07 00:36:52 tho $
+# $LAAS: print-plist.mk 2009/03/13 11:20:20 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -69,14 +69,14 @@ PRINT_PLIST_FILES_CMD?=		${TRUE};
 # XXX will fail for data files that were copied using tar!
 # XXX should check $LOCALBASE, and add @cwd statements
 #
-$(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+$(call require,${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
 _PRINT_PLIST_FILES_CMD=	\
-  ${FIND} ${PREFIX}/. -xdev -newer ${_EXTRACT_TIMESTAMP_FILE} \! -type d -print;
+  ${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.build} \! -type d -print;
 _PRINT_PLIST_FILES_CMD+=	${PRINT_PLIST_FILES_CMD}
 
 _PRINT_PLIST_DIRS_CMD=	\
-  ${FIND} ${PREFIX}/. -xdev -newer ${_EXTRACT_TIMESTAMP_FILE} -type d -print
+  ${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.build} -type d -print
 
 _PRINT_PLIST_AWK_SUBST={
 _PRINT_PLIST_AWK_SUBST+= ${PRINT_PLIST_AWK_SUBST}
