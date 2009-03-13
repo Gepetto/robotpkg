@@ -1,4 +1,4 @@
-@comment Wed Dec 31 12:21:00 CET 2008
+@comment Fri Mar 13 15:45:32 CET 2009
 bin/jloco
 bin/jlocoSendInitRqst
 bin/jlocoTest
@@ -17,10 +17,19 @@ include/jloco/server/jlocoPrint.h
 include/jloco/server/jlocoPrintXML.h
 include/jloco/server/jlocoScan.h
 include/jloco/server/jlocoType.h
+${PLIST.openprs}include/jloco/server/openprs/jlocoDecodeOpenprs.h
+${PLIST.openprs}include/jloco/server/openprs/jlocoEncodeOpenprs.h
+${PLIST.openprs}include/jloco/server/openprs/jlocoRequestsOpenprsProto.h
 lib/libjlocoClient.la
+${PLIST.openprs}lib/openprs/libjlocoOpenprs.la
+${PLIST.openprs}lib/pkgconfig/jloco-oprs.pc
 lib/pkgconfig/jloco.pc
-lib/tclserv/libjlocoTclServ.la
+${PLIST.tcl}lib/tclserv/libjlocoTclServ.la
 share/modules/gen/jloco.gen
-share/modules/tcl/jlocoClient.tcl
+${PLIST.openprs}share/modules/openprs/jlocoOpenprs.inc
+${PLIST.openprs}share/modules/openprs/jlocoOpenprs.opf
+${PLIST.openprs}share/modules/openprs/jlocoOpenprs.sym
+${PLIST.tcl}share/modules/tcl/jlocoClient.tcl
+${PLIST.openprs}@dirrm include/jloco/server/openprs
 @dirrm include/jloco/server
 @dirrm include/jloco
