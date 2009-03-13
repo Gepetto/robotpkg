@@ -18,7 +18,7 @@
 
 DISTNAME=	matrixabstractlayer-${VERSION}
 PKGNAME=	jrl-mal-${VERSION}
-VERSION=	1.4
+VERSION=	1.7.3
 
 CATEGORIES=	interfaces
 MASTER_SITES=	${MASTER_SITE_JRL}
