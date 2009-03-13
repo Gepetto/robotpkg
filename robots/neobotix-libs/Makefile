@@ -24,8 +24,7 @@ COMMENT=	interface library for the neobotix platform
 
 GNU_CONFIGURE=	yes
 
-DEPENDS+=	peak-linux-driver>=6.7:../../hardware/peak-linux-driver
-
+include ../../hardware/peak-linux-driver/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
