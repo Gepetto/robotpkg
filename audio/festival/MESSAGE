@@ -1,0 +1,15 @@
+----------------------------------------------------------------------------
+You need to install at least one voice package before festival can do
+anything other than mumble silently to itself. See the festival
+documentation in ${PREFIX}/share/doc/festival/*,
+or the festival homepage for more information.
+
+A default configuration file has been installed in
+	${PREFIX}/share/festival/lib/siteinit.scm
+
+Festival can be configured by tuning parameters in this file. For instance,
+if festival's internal audio playing support doesn't work on your machine
+you can make Festival use your own program to play waveform files. You can
+also set a voice different from the system installed default.
+----------------------------------------------------------------------------
+
