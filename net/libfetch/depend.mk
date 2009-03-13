@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/05/25 20:47:49 tho $
+# $LAAS: depend.mk 2009/02/09 14:44:27 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -29,6 +29,11 @@ PREFER.libfetch?=	robotpkg
 SYSTEM_SEARCH.libfetch=	\
 	include/fetch.h	\
 	lib/libfetch.a
+
+DEPEND_ABI.libfetch?=	libfetch>=2.4
+DEPEND_DIR.libfetch?=	../../net/libfetch
+
+DEPEND_LIBS.libfetch+=	-lfetch
 
   # pull-in the user preferences for libfetch now
   include ../../mk/robotpkg.prefs.mk
@@ -59,11 +64,6 @@ libfetch-build:
   # This is the regular version of libfetch package, for normal install
   #
 DEPEND_USE+=		libfetch
-
-DEPEND_ABI.libfetch?=	libfetch>=2.4
-DEPEND_DIR.libfetch?=	../../net/libfetch
-
-DEPEND_LIBS.libfetch+=	-lfetch
   endif
 endif
 

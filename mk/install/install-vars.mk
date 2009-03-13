@@ -1,6 +1,6 @@
-# $LAAS: install-vars.mk 2008/05/25 23:00:58 tho $
+# $LAAS: install-vars.mk 2009/03/13 11:18:58 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -51,6 +51,8 @@
 INSTALLATION_DIRS_FROM_PLIST?=	yes
 
 _COOKIE.install=	${WRKDIR}/.install_done
+_COOKIE.preinstall=	${WRKDIR}/.install_start
+
 
 # --- install (PUBLIC) -----------------------------------------------
 #
@@ -61,16 +63,30 @@ ifndef NO_INSTALL
   include ${ROBOTPKG_DIR}/mk/install/install.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.install}))
-install:
+    install:
 	@${DO_NADA}
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+    $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+
     ifdef _PKGSRC_BARRIER
-install: build install-cookie
+      install: build install-cookie
     else
-install: barrier
+      install: barrier
     endif
   endif
 endif
 
 include ${ROBOTPKG_DIR}/mk/install/deinstall.mk
 include ${ROBOTPKG_DIR}/mk/install/replace.mk
+
+
+# --- install-cookie (PRIVATE) ---------------------------------------------
+#
+# install-cookie creates the "install" cookie file.
+#
+.PHONY: install-cookie
+install-cookie:
+	${RUN}${TEST} ! -f ${_COOKIE.install} || ${FALSE};	\
+	${MKDIR} $(dir ${_COOKIE.install});			\
+	${ECHO} ${PKGNAME} > ${_COOKIE.install}

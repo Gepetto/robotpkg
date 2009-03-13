@@ -1,6 +1,12 @@
+# $LAAS: update.mk 2009/03/07 19:12:20 tho $
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,15 +18,7 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From  $NetBSD: bsd.pkg.update.mk,v 1.7 2006/10/05 12:56:27 rillig Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
-#   3. All advertising materials mentioning   features or use of this
+#   3. All  advertising  materials  mentioning   features  or use of this
 #      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
 #        Foundation, Inc. and its contributors.
@@ -40,14 +38,20 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
+# From $NetBSD: bsd.pkg.update.mk,v 1.7 2006/10/05 12:56:27 rillig Exp $
 #
+#                                       Anthony Mallet on Thu Dec  7 2006
+#
+
 # This Makefile fragment contains the targets and variables for 
 # "make update".
 #
 # The 'update' target can be used to update a package and all
 # currently installed packages that depend upon this package.
 #
+
+$(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 NOCLEAN?=	NO	# don't clean up after update
 REINSTALL?=	NO	# reinstall upon update
@@ -75,33 +79,36 @@ update-create-ddir: ${_DDIR}
 
 .PHONY: update
 update: do-update
+ifeq (NO,$(strip ${NOCLEAN}))
+  update: CLEAR_DIRLIST=YES
+  update: clean-update
+endif
 
 ifeq (yes,$(call exists,${_DDIR}))
-RESUMEUPDATE?=	YES
-CLEAR_DIRLIST?=	NO
+  RESUMEUPDATE?=	YES
+  CLEAR_DIRLIST?=	NO
 
-do%update: .FORCE
+  do%update: .FORCE
 	${_OVERRIDE_TARGET}
 	@${PHASE_MSG} "Resuming update for ${PKGNAME}"
-  ifneq (NO,$(strip ${REINSTALL}))
-  ifneq (replace,${UPDATE_TARGET})
+    ifneq (NO,$(strip ${REINSTALL}))
+    ifneq (replace,${UPDATE_TARGET})
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes
-  endif
-  endif
+    endif
+    endif
 else
-RESUMEUPDATE?=	NO
-CLEAR_DIRLIST?=	YES
+  RESUMEUPDATE?=	NO
+  CLEAR_DIRLIST?=	YES
 
-do%update: .FORCE
+  do%update: update-create-ddir .FORCE
 	${_OVERRIDE_TARGET}
-	${RUN}${RECURSIVE_MAKE} update-create-ddir
-  ifneq (replace,${UPDATE_TARGET})
+    ifneq (replace,${UPDATE_TARGET})
 	${RUN}if ${PKG_INFO} -qe ${PKGBASE}; then			\
 		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes \
 		|| (${RM} ${_DDIR} && ${FALSE});			\
 	fi
-  endif
+    endif
 endif
 	${RUN}${RECURSIVE_MAKE} ${UPDATE_TARGET} DEPENDS_TARGET=${DEPENDS_TARGET}
 	${RUN}								\
@@ -119,44 +126,30 @@ endif
 			${PHASE_MSG} "Skipping removed directory $${dep}"; \
 		fi) ;							\
 	done
-ifeq (NO,$(strip ${NOCLEAN}))
-	${RUN} ${RECURSIVE_MAKE} clean-update CLEAR_DIRLIST=YES
-endif
 
 
 .PHONY: clean-update
-clean-update:
-	${_PKG_SILENT}${_PKG_DEBUG}${RECURSIVE_MAKE} update-create-ddir
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do		\
-		(if cd ../.. && cd "$${dep}" ; then			\
-			${RECURSIVE_MAKE} clean;			\
-		else							\
-			${PHASE_MSG} "Skipping removed directory $${dep}";\
-		fi) ;							\
-	done
-ifneq (NO,$(strip ${CLEAR_DIRLIST}))
-	${RUN}${RECURSIVE_MAKE} clean
-else
-	${RUN}${RECURSIVE_MAKE} clean update-dirlist \
-		DIRLIST="`${CAT} ${_DDIR}`" PKGLIST="`${CAT} ${_DLIST}`"
-	@${WARNING_MSG} "preserved leftover directory list.  Your next"
-	@${WARNING_MSG} "\`\`${MAKE} update'' may fail.  It is advised to use"
-	@${WARNING_MSG} "\`\`${MAKE} update REINSTALL=YES'' instead!"
-endif
+clean-update: update-create-ddir
+	${RUN}[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do	\
+		cd ../.. && cd $${dep} && ${RECURSIVE_MAKE} clean;	\
+	done;								\
+	$(if $(filter NO, ${CLEAR_DIRLIST}),				\
+		${MV} ${_DDIR} ${TMPDIR}/$(notdir ${_DDIR});		\
+		${MV} ${_DLIST} ${TMPDIR}/$(notdir ${_DLIST});		\
+	)								\
+	${RECURSIVE_MAKE} clean;					\
+	$(if $(filter NO, ${CLEAR_DIRLIST}),				\
+		${MKDIR} -p ${WRKDIR};					\
+		${MV} ${TMPDIR}/$(notdir ${_DDIR}) ${_DDIR};		\
+		${MV} ${TMPDIR}/$(notdir ${_DLIST}) ${_DLIST};		\
+		${WARNING_MSG}						\
+			"preserved leftover directory list.  Your next";\
+		${WARNING_MSG} "\`\`${MAKE} update'' may fail."		\
+			"It is advised to use";				\
+		${WARNING_MSG}						\
+			"\`\`${MAKE} update REINSTALL=YES'' instead!";	\
+	)
 
-
-.PHONY: update-dirlist
-update-dirlist:
-	${RUN}${MKDIR} -p ${WRKDIR}
-ifdef PKGLIST
-	${RUN}								\
-	$(foreach __tmp__,${PKGLIST},${ECHO} >>${_DLIST} "${__tmp__}";)
-endif
-ifdef DIRLIST
-	${RUN}								\
-	$(foreach __tmp__,${DIRLIST},${ECHO} >>${_DDIR} "${__tmp__}";)
-endif
 
 ${_DDIR}: ${_DLIST}
 	${RUN} pkgs=`${CAT} ${_DLIST}`;					\
@@ -166,7 +159,5 @@ ${_DDIR}: ${_DLIST}
 # packages that require this package directly.
 ${_DLIST}: ${WRKDIR}
 	${RUN}								\
-	${PKG_DELETE} -n "${PKGWILDCARD}" 2>&1				\
-	| ${GREP} '^	'						\
-	| ${AWK} '{ l[NR]=$$0 } END { for (i=NR;i>0;--i) print l[i] }'	\
-	> ${_DLIST}
+	${PKG_DELETE} -nr "${PKGWILDCARD}" 2>&1				\
+	| ${SED} -n '/^deinstalling /{s///;G;h;};$${g;p;}' > ${_DLIST}

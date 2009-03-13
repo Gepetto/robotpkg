@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/11/28 16:00:44 mallet $
+# $LAAS: depend.mk 2009/02/15 14:05:46 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,7 +33,7 @@ SYSTEM_SEARCH.boost-numeric-bindings=\
 
 DEPEND_USE+=				boost-numeric-bindings
 
-DEPEND_ABI.boost-numeric-bindings?=	boost-numeric-bindings>=20070129r1
+DEPEND_ABI.boost-numeric-bindings?=	boost-numeric-bindings>=20090215
 DEPEND_DIR.boost-numeric-bindings?=	../../devel/boost-numeric-bindings
 
 DEPEND_METHOD.boost-numeric-bindings?=	build

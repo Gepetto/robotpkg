@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/10/23 15:16:50 mallet $
+# $LAAS: depend.mk 2009/02/03 17:36:16 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -19,5 +19,5 @@
 # Simply register the compiler requirements; robotpkg compiler selection
 # will do the actual job.
 
-GCC_REQD+=	4.2
-USE_LANGUAGES+=	c
+GCC_REQUIRED+=	>=4.2 <4.3
+USE_LANGUAGES+=	fortran

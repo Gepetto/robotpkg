@@ -23,9 +23,12 @@ COMMENT=	Schunk Antropomorphic Hand Linux driver and library
 MASTER_SITES=	file:///usr/local/openrobots/nonfree/hardlib/SAHand_cd/Linux/
 
 WRKSRC=		${WRKDIR}/SAHand
+NO_CONFIGURE=	yes
 
 
-do-configure:
+RESTRICTED=	You cannot redistribute this software.
+NO_PUBLIC_SRC=	${RESTRICTED}
+NO_PUBLIC_BIN=	${RESTRICTED}
 
 do-build:
 	(cd ${WRKSRC}/sahand_driver ; ${MAKE} default )
@@ -33,14 +36,14 @@ do-build:
 
 do-install:
 	(cd ${WRKSRC}/sahand_driver ; \
-		${SUDO} ${INSTALL} -c sahand_driver.ko \
-		/lib/modules/$(shell uname -r)/kernel/drivers/misc ; \
-	 	${INSTALL} load_sahand_driver.sh ${ROBOTPKG_BASE}/bin ; \
-		${INSTALL} unload_sahand_driver.sh ${ROBOTPKG_BASE}/bin )
+		${SU_CMD} ${INSTALL_DATA} -c sahand_driver.ko \
+		/lib/modules/${OS_VERSION}/kernel/drivers/misc ; \
+	 	${INSTALL_PROGRAM} load_sahand_driver.sh ${PREFIX}/bin ; \
+		${INSTALL_PROGRAM} unload_sahand_driver.sh ${PREFIX}/bin )
 	(cd ${WRKSRC}/sahand_api ; \
-		${INSTALL} -c libsahand_api_41.a ${ROBOTPKG_BASE}/lib )
+		${INSTALL_DATA} -c libsahand_api_41.a ${PREFIX}/lib )
 	(cd ${WRKSRC}/sahand_user; \
-		${INSTALL} -c SAHandCtrlApi.h ${ROBOTPKG_BASE}/include )
+		${INSTALL_DATA} -c SAHandCtrlApi.h ${PREFIX}/include )
 
 
 include ../../mk/robotpkg.mk

@@ -1,6 +1,6 @@
-# $LAAS: fetch-vars.mk 2008/05/25 23:05:28 tho $
+# $LAAS: fetch-vars.mk 2009/03/01 15:49:33 tho $
 #
-# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -69,5 +69,5 @@ DISTFILES?=		${DISTNAME}${EXTRACT_SUFX}
 
 include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
 include ${ROBOTPKG_DIR}/mk/fetch/fetch.mk
--include "${ROBOTPKG_DIR}/mk/fetch/fetch-list.mk"
--include "${ROBOTPKG_DIR}/mk/fetch/distclean.mk"
+#include "${ROBOTPKG_DIR}/mk/fetch/fetch-list.mk"
+#include "${ROBOTPKG_DIR}/mk/fetch/distclean.mk"

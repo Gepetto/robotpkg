@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/10/13 11:14:10 mallet $
+# $LAAS: depend.mk 2009/02/02 16:36:09 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,10 +33,9 @@ DEPEND_ABI.hrp2-dynamics?=hrp2-dynamics>=1.0
 DEPEND_DIR.hrp2-dynamics?=../../math/hrp2-dynamics
 
 SYSTEM_SEARCH.hrp2-dynamics=\
-	include/ihrp2Dynamics/hrp2OptHumanoidDynamicRobot.h	\
+	include/hrp2Dynamics/hrp2OptHumanoidDynamicRobot.h	\
 	lib/pkgconfig/hrp2Dynamics.pc
 
 endif # HRP2_DYNAMICS_DEPEND_MK --------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-

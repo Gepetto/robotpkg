@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/01/09 19:19:14 mallet $
+# $LAAS: extract-vars.mk 2009/03/13 11:06:54 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -35,8 +35,6 @@
 #					Anthony Mallet on Fri Dec  1 2006
 #
 
-MK_ROBOTPKG_EXTRACT:=	defined
-
 # The following variables may be set by the package Makefile and
 # specify how extraction happens:
 #
@@ -47,13 +45,15 @@ MK_ROBOTPKG_EXTRACT:=	defined
 #       extracted.  The default suffix is ".tar.gz".
 #
 
+$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+
 EXTRACT_ONLY?=		${DISTFILES}
 EXTRACT_SUFX?=		.tar.gz
 
-###
-### Discover which tools we need based on the file extensions of the
-### distfiles.
-###
+
+# Discover which tools we need based on the file extensions of the
+# distfiles.
+#
 #.if !empty(EXTRACT_ONLY:M*.tar) || \
 #    !empty(EXTRACT_ONLY:M*.tar.*) || \
 #    !empty(EXTRACT_ONLY:M*.tbz) || \
@@ -79,9 +79,10 @@ EXTRACT_SUFX?=		.tar.gz
 #    !empty(EXTRACT_ONLY:M*.tbz2)
 #USE_TOOLS+=	bzcat
 #.endif
-#.if !empty(EXTRACT_ONLY:M*.zip)
-#USE_TOOLS+=	unzip
-#.endif
+ifneq (,$(filter %.zip,${EXTRACT_ONLY}))
+  DEPEND_METHOD.unzip+=	bootstrap
+  include ${ROBOTPKG_DIR}/mk/sysdep/unzip.mk
+endif
 #.if !empty(EXTRACT_ONLY:M*.lzh) || \
 #    !empty(EXTRACT_ONLY:M*.lha)
 #USE_TOOLS+=	lha
@@ -113,7 +114,8 @@ endif
 
 ifdef _EXTRACT_IS_CHECKOUT
   ifndef _CHECKOUT_PKGVERSION
-    _CHECKOUT_PKGVERSION:=rc$(shell ${DATE} "+%Y.%m.%d.%k.%M.%S")
+    $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
+    _CHECKOUT_PKGVERSION:=.checkout.$(shell ${_CDATE_CMD} "+%Y%m%d.%H%M%S")
     MAKEOVERRIDES+=_CHECKOUT_PKGVERSION=${_CHECKOUT_PKGVERSION}
   endif
   PKGNAME:=		${PKGNAME}${_CHECKOUT_PKGVERSION}
@@ -141,6 +143,9 @@ else
 extract:
 	@${DO_NADA}
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+    $(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
+
     ifdef _PKGSRC_BARRIER
 extract: tools extract-cookie
     else

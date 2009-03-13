@@ -1,7 +1,6 @@
-SHA1 (boost-numeric-bindings-20070129.tar.gz) = 0309579feda26adb8aabaa6de630a9c8449b32ff
-RMD160 (boost-numeric-bindings-20070129.tar.gz) = 753e1c01d1176e73adc2f5167708bab9c3889532
-Size (boost-numeric-bindings-20070129.tar.gz) = 68100 bytes
-SHA1 (patch-aa) = d7dd8985d7785ec85887f9afd74de17079bd03e3
-SHA1 (patch-ab) = 2cb3f0a6966449e6df1476c1a378af90f3e009f8
-SHA1 (patch-ac) = 59b9539c55d3829e0732dfcd246b1bb4851e3bb2
-SHA1 (patch-ad) = 3714298e45251e47a79aa7dca22e9e51cb4f0f3d
+SHA1 (boost-numeric-bindings-20090215.tar.gz) = bd7e89a981c78708fbbaa4c44776f46e3e353dd4
+RMD160 (boost-numeric-bindings-20090215.tar.gz) = 0298a8e9285a5cbea7750ce863f212b20bd53a66
+Size (boost-numeric-bindings-20090215.tar.gz) = 68217 bytes
+SHA1 (patch-ab) = 0c3d8ddf33c8d3997d4f8ff1bd3708b4272a6121
+SHA1 (patch-ac) = fd8d7b642b69b2be37e32d790e4096d9983ba033
+SHA1 (patch-ad) = e2b1f91d7369706da00c74fa8f6b5da9229f0058

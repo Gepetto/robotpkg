@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/12/09 16:08:50 mallet $
+# $LAAS: depend.mk 2009/03/09 17:57:07 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -34,7 +34,7 @@ DEPEND_DIR.jrl-modelloader?=../../devel/jrl-modelloader
 
 SYSTEM_SEARCH.jrl-modelloader=\
 	bin/ModelLoaderJRL		\
-	'lib/pkgconfig/jrl-modelloader.pc:/Version:/s/[^0-9.]*//p'
+	'lib/pkgconfig/jrl-modelloader.pc:/Version/s/[^0-9.]//gp'
 
 endif # JRL_MODELLOADER_DEPEND_MK ------------------------------------
 

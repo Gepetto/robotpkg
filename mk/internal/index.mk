@@ -1,4 +1,4 @@
-# $LAAS: readme.mk 2009/01/19 23:29:14 tho $
+# $LAAS: index.mk 2009/03/05 22:57:28 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -57,159 +57,11 @@
 PKG_URL_HOST?=	http://softs.laas.fr
 PKG_URL_DIR?=	/openrobots/robotpkg/packages
 
-override define htmlify
-  $(subst >,&gt;,$(subst <,&lt;,$(subst &,&amp;,$(1))))
-endef
+PKG_URL=	${PKG_URL_HOST}${PKG_URL_DIR}
 
-_HTML_PKGNAME=	$(call htmlify,${PKGNAME})
-_HTML_PKGPATH=	$(call htmlify,${PKGPATH})
-_HTML_PKGLINK=	<a href="../../${_HTML_PKGPATH}/index.html">${_HTML_PKGNAME}</a>
-
-# Set to "html" by the index.html target to generate HTML code, or anything
-# else to generate regular package name. This variable is passed down via
-# build-depends-list and run-depends-list.
-PACKAGE_NAME_TYPE?=	name
-
-.PHONY: package-name
-package-name:
-ifeq (${PACKAGE_NAME_TYPE},"html")
-	@${ECHO} $(call quote,${_HTML_PKGLINK})
-else
-	@${ECHO} ${PKGNAME}
-endif # PACKAGE_NAME_TYPE
-
-.PHONY: make-index-html-help
-make-index-html-help:
-	@${ECHO} '${_HTML_PKGNAME}</a>: <td>'$(call quote,$(call htmlify,${COMMENT}))
-
-# Show (non-recursively) all the packages this package depends on.
-# If PACKAGE_DEPENDS_WITH_PATTERNS is set, print as pattern (if possible)
-PACKAGE_DEPENDS_WITH_PATTERNS?=	true
-
-.PHONY: run-depends-list
-run-depends-list:
-	${RUN}								\
-$(foreach dep,${DEPENDS},						\
-	pkg="$(firstword $(subst :, ,${dep}))";				\
-	dir="$(word 2,$(subst :, ,${dep}))";				\
-	cd ${CURDIR};							\
-	if ${PACKAGE_DEPENDS_WITH_PATTERNS}; then			\
-		${ECHO} "$$pkg";					\
-	else								\
-		if cd $$dir 2>/dev/null; then				\
-			${RECURSIVE_MAKE} ${MAKEFLAGS} package-name	\
-				PACKAGE_NAME_TYPE=${PACKAGE_NAME_TYPE}; \
-		else 							\
-			${ECHO_MSG} "Warning: \"$$dir\" non-existent --"\
-				"@pkgdep registration incomplete" >&2;	\
-		fi;							\
-	fi;								\
-)
-
-.PHONY: build-depends-list
-build-depends-list:
-	@${_DEPENDS_WALK_CMD} ${PKGPATH} |				\
-	while read dir; do (						\
-		cd ../../$$dir && 					\
-		${RECURSIVE_MAKE} ${MAKEFLAGS} package-name		\
-			PACKAGE_NAME_TYPE=${PACKAGE_NAME_TYPE}		\
-	); done
-
-
-# If PACKAGES is set to the default (../../robotpkg/packages), the current
-# ${MACHINE_ARCH} and "release" (uname -r) will be used. Otherwise a directory
-# structure of ...robotpkg/packages/`uname -r`/${MACHINE_ARCH} is assumed.
-# The PKG_URL is set from PKG_URL_*.
-.PHONY: binpkg-list
-binpkg-list:
-	@if ${TEST} -d ${PACKAGES}; then				\
-		cd ${PACKAGES};						\
-		case ${CURDIR} in					\
-		*/pkgsrc/packages)					\
-			for pkg in ${PKGREPOSITORYSUBDIR}/${PKGWILDCARD}${PKG_SUFX} ; \
-			do 						\
-				if [ -f "$$pkg" ] ; then		\
-					pkgname=`${ECHO} $$pkg | ${SED} 's@.*/@@'`; \
-					${ECHO} "<tr><td>${MACHINE_ARCH}:<td><a href=\"${PKG_URL}/$$pkg\">$$pkgname</a><td>(${OPSYS} ${OS_VERSION})"; \
-				fi ;					\
-			done ; 						\
-			;;						\
-		*)							\
-			cd ${PACKAGES}/../..;				\
-			for i in [1-9].*/*; do  			\
-				if cd ${PACKAGES}/../../$$i/${PKGREPOSITORYSUBDIR} 2>/dev/null; then \
-					for j in ${PKGWILDCARD}${PKG_SUFX}; \
-					do 				\
-						if [ -f "$$j" ]; then	\
-							${ECHO} $$i/$$j;\
-						fi;			\
-					done; 				\
-				fi; 					\
-			done | ${AWK} -F/ '				\
-				{					\
-					release = $$1;			\
-					arch = $$2; 			\
-					pkg = $$3;			\
-					gsub("\\.tgz","", pkg);		\
-					if (arch != "m68k" && arch != "mipsel") { \
-						if (arch in urls)	\
-							urls[arch "/" pkg "/" release] = "<a href=\"${PKG_URL}/" release "/" arch "/${PKGREPOSITORYSUBDIR}/" pkg "${PKG_SUFX}\">" pkg "</a>, " urls[arch]; \
-						else			\
-							urls[arch "/" pkg "/" release] = "<a href=\"${PKG_URL}/" release "/" arch "/${PKGREPOSITORYSUBDIR}/" pkg "${PKG_SUFX}\">" pkg "</a> "; \
-					}				\
-				} 					\
-				END { 					\
-					for (av in urls) {		\
-						split(av, ava, "/");	\
-						arch=ava[1];		\
-						pkg=ava[2];		\
-						release=ava[3];		\
-						print "<tr><td>" arch ":<td>" urls[av] "<td>(${OPSYS} " release ")"; \
-					}				\
-				}' | ${SORT}				\
-			;;						\
-		esac;							\
-	fi
-
-# This target generates an index entry suitable for aggregation into
-# a large index.  Format is:
-#
-# distribution-name|package-path|installation-prefix|comment| \
-#  description-file|maintainer|categories|build deps|run deps|for arch| \
-#  not for opsys
-#
-.PHONY: describe
-describe:
-	@${ECHO_N} "${PKGNAME}|${CURDIR}|";				\
-	${ECHO_N} "${PREFIX}|";						\
-	${ECHO_N} $(call quote,${COMMENT});				\
-	if [ -f ${DESCR_SRC} ]; then					\
-		${ECHO_N} "|${DESCR_SRC}";				\
-	else								\
-		${ECHO_N} "|/dev/null";					\
-	fi;								\
-	${ECHO_N} "|${MAINTAINER}|${CATEGORIES}|";			\
-	case "A${BUILD_DEPENDS}B${DEPENDS}C" in	\
-		ABC) ;;							\
-		*) cd ${CURDIR} && ${ECHO_N} `${RECURSIVE_MAKE} ${MAKEFLAGS} build-depends-list | ${SORT} -u`;; \
-	esac;								\
-	${ECHO_N} "|";							\
-	if [ "${DEPENDS}" != "" ]; then					\
-		cd ${CURDIR} && ${ECHO_N} `${RECURSIVE_MAKE} ${MAKEFLAGS} run-depends-list | ${SORT} -u`; \
-	fi;								\
-	${ECHO_N} "|";							\
-	if [ "${ONLY_FOR_PLATFORM}" = "" ]; then			\
-		${ECHO_N} "any";					\
-	else								\
-		${ECHO_N} "${ONLY_FOR_PLATFORM}";			\
-	fi;								\
-	${ECHO_N} "|";							\
-	if [ "${NOT_FOR_PLATFORM}" = "" ]; then				\
-		${ECHO_N} "any";					\
-	else								\
-		${ECHO_N} "not ${NOT_FOR_PLATFORM}";			\
-	fi;								\
-	${ECHO} ""
+HTMLIFY=	${SED} -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
+HTML_HOMEPAGE=	$(if ${HOMEPAGE},<a href="${HOMEPAGE}">${HOMEPAGE}</a>,(none))
+HTML_LICENSE=	$(if ${LICENSE},<tr><td>License:<td>${LICENSE})
 
 
 # --- index ----------------------------------------------------------------
@@ -217,98 +69,189 @@ describe:
 # This target is used to generate index.html files.
 #
 .PHONY: index
-index:
-	@cd ${CURDIR} && ${RECURSIVE_MAKE} ${MAKEFLAGS} index.html	\
-		PKG_URL=${PKG_URL_HOST}${PKG_URL_DIR}
+index: interactive index.html
 
-
-INDEX_NAME=	${TEMPLATES}/index.pkg
-
-# set up the correct license information as a sed expression
-ifdef LICENSE
-SED_LICENSE_EXPR=	-e 's|%%LICENSE%%|<p>Please note that this package has a ${LICENSE} license.</p>|'
+# get the template name corresponding to the current depth
+ifeq (2,${_ROBOTPKG_DEPTH})
+  INDEX_NAME=	${TEMPLATES}/index.pkg
+else ifeq (1,${_ROBOTPKG_DEPTH})
+  INDEX_NAME=	${TEMPLATES}/index.category
+else ifeq (0,${_ROBOTPKG_DEPTH})
+  INDEX_NAME=	${TEMPLATES}/index.top
 else
-SED_LICENSE_EXPR=	-e 's|%%LICENSE%%||'
+  $(error "robotpkg directory not found")
 endif
 
-# set up the "more info URL" information as a sed expression
-ifdef HOMEPAGE
-SED_HOMEPAGE_EXPR=	-e 's|%%HOMEPAGE%%|<p>This package has a home page at <a href="${HOMEPAGE}">${HOMEPAGE}</a>.</p>|'
-else
-SED_HOMEPAGE_EXPR=	-e 's|%%HOMEPAGE%%||'
-endif
-
-
-# If PACKAGES is set to the default (../../packages), the current
-# ${MACHINE_ARCH} and "release" (uname -r) will be used. Otherwise a directory
-# structure of ...pkgsrc/packages/`uname -r`/${MACHINE_ARCH} is assumed.
-# The PKG_URL is set from FTP_PKG_URL_*.
-.PHONY .PRECIOUS: index.html
+.PHONY: index.html
+.PRECIOUS: index.html
 index.html:
-	@${SETENV} MAKE=${MAKE} ${SH} ../../mk/internal/mkdatabase -f $@.tmp1
-	${AWK} -f ../../mk/internal/genindex.awk \
-		builddependsfile=/dev/null \
-		dependsfile=/dev/null \
-		AWK=${AWK} \
-		CMP=${CMP} \
-		DISTDIR=${DISTDIR} \
-		GREP=${GREP} \
-		PACKAGES=${PACKAGES} \
-		PKG_INFO=$(call quote,${PKG_INFO}) \
-		PKG_SUFX=${PKG_SUFX} \
-		PKG_URL=${PKG_URL} \
-		ROBOTPKG_DIR=${ROBOTPKG_DIR} \
-		SED=${SED} \
-		SETENV=${SETENV} \
-		SORT=${SORT} \
-		TMPDIR=${TMPDIR} \
-		SINGLEPKG=${PKGPATH} \
-		$@.tmp1
-	@${RM} $@.tmp1
-
-.PHONY: print-build-depends-list
-print-build-depends-list:
-ifneq (,$(BUILD_DEPENDS)$(DEPENDS))
-	@${ECHO_N} 'This package requires package(s) "'
-	@${ECHO_N} `${RECURSIVE_MAKE} ${MAKEFLAGS} build-depends-list | ${SORT} -u`
-	@${ECHO} '" to build.'
+ifeq (2,${_ROBOTPKG_DEPTH})
+  # package index.html
+	@>$@.bdep; >$@.rdep; bdep=; rdep=;				\
+${foreach _d_,$(sort ${DEPEND_USE}),					\
+	pkg='${DEPEND_ABI.${_d_}}';					\
+	if test "${DEPEND_DIR.${_d_}}"; then				\
+		html='<a href="${DEPEND_DIR.${_d_}}/index.html">';	\
+		html="$${html}$${pkg}"'</a>';				\
+	else								\
+		html="$${pkg}";						\
+	fi;								\
+	case "${DEPEND_METHOD.${_d_}}" in				\
+		build)							\
+			${ECHO}	$${bdep} $${html} >>$@.bdep;		\
+			bdep=';';;					\
+		full)							\
+			${ECHO}	$${rdep} $${html} >>$@.rdep;		\
+			rdep=';';;					\
+	esac;								\
+}									\
+	${SED} <${DESCR_SRC} -e 's/^$$/<p>/g' >$@.descr;		\
+	${ECHO} $(call quote,${COMMENT}) | ${HTMLIFY} > $@.comment;	\
+	${SED} <${INDEX_NAME}						\
+		-e 's!%%PORT%%!${PKGPATH}!g' 				\
+		-e '/%%COMMENT%%/r$@.comment' 				\
+		-e '/%%COMMENT%%/d' 					\
+		-e 's!%%PKG%%!${PKGNAME}!g'				\
+		-e 's!%%HOMEPAGE%%!${HTML_HOMEPAGE}!g'			\
+		-e 's!%%LICENSE%%!${HTML_LICENSE}!g'			\
+		-e '/%%DESCR%%/r$@.descr'				\
+		-e '/%%DESCR%%/d' 					\
+		-e '/%%BUILD_DEPENDS%%/r$@.bdep'			\
+		-e '/%%BUILD_DEPENDS%%/d'				\
+		-e '/%%RUN_DEPENDS%%/r$@.rdep'				\
+		-e '/%%RUN_DEPENDS%%/d'					\
+		-e 's!%%BIN_PKGS%%!(none)!g'				\
+		> $@.tmp;						\
+	if [ -f $@ ] && ${CMP} -s $@.tmp $@; then 			\
+		${RM} $@.tmp; 						\
+	else 								\
+		${ECHO_MSG} "creating index.html for ${PKGPATH}";	\
+		${MV} $@.tmp $@;					\
+	fi;								\
+	${RM} -f $@.tmp $@.bdep $@.rdep $@.descr $@.comment
+else
+  # category or top-level index.html
+	@${PHASE_MSG} "Updating index.html files" 			\
+		$(if $(filter 1,${_ROBOTPKG_DEPTH}),			\
+			"for $(notdir ${CURDIR})")
+	@> $@.tmp; for entry in ${SUBDIR}; do 				\
+	${ECHO} '<tr><td valign=top>'					\
+		'<a href="'$${entry}/index.html'">'			\
+$(if $(filter 0,${_ROBOTPKG_DEPTH}),					\
+		`${ECHO} $${entry} | ${HTMLIFY}`,			\
+		`cd $${entry} && 					\
+			${RECURSIVE_MAKE} show-var VARNAME=PKGNAME |	\
+			${HTMLIFY}` 					\
+)									\
+		'</a>:<td>'						\
+		`cd $${entry} && ${RECURSIVE_MAKE} show-comment |	\
+			${HTMLIFY}` >>$@.tmp; 				\
+	done;								\
+	${SORT} -t '>' -k 3,4 $@.tmp > $@.tmp2;				\
+	${SED} <${INDEX_NAME}						\
+		-e 's/%%CATEGORY%%/$(notdir ${CURDIR})/g' 		\
+		-e 's/%%NUMITEMS%%/$(words ${SUBDIR})/g'		\
+		-e '/%%NUMITEMS%%/d' 					\
+		-e '/%%DESCR%%/d' 					\
+		-e '/%%SUBDIR%%/r$@.tmp2'				\
+		-e '/%%SUBDIR%%/d' 					\
+		> $@.tmp3;						\
+	if [ -f $@ ] && ${CMP} -s $@.tmp3 $@; then 			\
+		${RM} $@.tmp3; 						\
+	else 								\
+		${ECHO_MSG} "creating index.html for"			\
+			"$(notdir ${CURDIR})";				\
+		${MV} $@.tmp3 $@;					\
+	fi;								\
+	${RM} -f $@.tmp $@.tmp2 $@.tmp3;				\
+	for subdir in ${SUBDIR} ""; do					\
+		if [ "X$$subdir" = "X" ]; then continue; fi;		\
+		(cd $${subdir} && ${RECURSIVE_MAKE} index);		\
+	done
 endif
 
-.PHONY: print-run-depends-list
-print-run-depends-list:
-ifneq (,$(DEPENDS))
-	@${ECHO_N} 'This package requires package(s) "'
-	@${ECHO_N} `${RECURSIVE_MAKE} ${MAKEFLAGS} run-depends-list | ${SORT} -u`
-	@${ECHO} '" to run.'
+# --- index-all ------------------------------------------------------------
+#
+# Generate list of all packages by extracting information from the
+# category/index.html pages
+#
+ifeq (0,${_ROBOTPKG_DEPTH})
+  index: index-all
+
+  .PHONY: index-all
+  index-all: index-all.html
+
+  .PHONY: index-all.html
+  .PRECIOUS: index-all.html
+  index-all.html:
+	@${RM} -f $@.new $@.newsorted;					\
+	${PHASE_MSG} "Processing categories for $@";			\
+	hl() { echo '<a href="'$$1'/index.html">'$$1'</a>'; };		\
+	for category in ${SUBDIR} ""; do 				\
+		if [ "X$$category" = "X" ]; then continue; fi; 		\
+		if [ -f $${category}/index.html ]; then 		\
+			${ECHO} "processing $${category}"; 		\
+			${SED} -n $(join ,'/^<tr>/{			\
+				s!href="!&'$${category}'/!;		\
+				s!</a>:!&<td>('"`hl $${category}`"')!;	\
+				s!<tr>!<tr valign=top>!;		\
+				s!<td valign=top>!<td>!;		\
+			p;}') <$${category}/index.html >>$@.new;	\
+		fi; 							\
+	done;								\
+	if [ ! -f $@.new ]; then 					\
+		${ERROR_MSG} ${hline};					\
+		${ERROR_MSG} "There are no categories with index.html"	\
+			"files available."; 				\
+		${ERROR_MSG} "You need to run \`${MAKE} index' to"	\
+			"generate them before running this target."; 	\
+		${FALSE}; 						\
+	fi;								\
+	${SORT} -f -t '>' -k 4,4 <$@.new >$@.newsorted;			\
+	${AWK} '{ ++n } END { print n }' <$@.newsorted >$@.npkgs;	\
+	${SED} 	-e '/%%NPKGS%%/r$@.npkgs' 				\
+		-e '/%%NPKGS%%/d' 					\
+		-e '/%%PKGS%%/r$@.newsorted' 				\
+		-e '/%%PKGS%%/d' 					\
+		<${TEMPLATES}/index.all >$@.tmp;			\
+	if [ -f $@ ] && ${CMP} -s $@.tmp $@; then 			\
+		${RM} $@.tmp; 						\
+	else 								\
+		${ECHO_MSG} "creating index-all.html";			\
+		${MV} $@.tmp $@;					\
+	fi;								\
+	${RM} -f $@.tmp $@.npkgs $@.new $@.newsorted
 endif
+
 
 # This target is used by the toplevel.mk file to generate pkg database file
 .PHONY: print-summary-data
 print-summary-data:
-	@${ECHO} depends ${PKGPATH} $(call quote,${DEPENDS})
-	@${ECHO} build_depends ${PKGPATH} $(call quote,${BUILD_DEPENDS})
-	@${ECHO} conflicts ${PKGPATH} ${CONFLICTS}
-	@${ECHO} index ${PKGPATH} ${PKGNAME}
-	@${ECHO} htmlname ${PKGPATH} $(call quote,${_HTML_PKGLINK})
-	@${ECHO} homepage ${PKGPATH} $(call quote,${HOMEPAGE})
-	@${ECHO} wildcard ${PKGPATH} $(call quote,${PKGWILDCARD})
-	@${ECHO} comment ${PKGPATH} $(call quote,${COMMENT})
-	@${ECHO} license ${PKGPATH} $(call quote,${LICENSE})
-	@if [ "${ONLY_FOR_PLATFORM}" = "" ]; then			\
+	@${ECHO} depends ${PKGPATH} $(call quote,${DEPENDS});		\
+	${ECHO} build_depends ${PKGPATH} $(call quote,${BUILD_DEPENDS});\
+	${ECHO} conflicts ${PKGPATH} ${CONFLICTS};			\
+	${ECHO} index ${PKGPATH} ${PKGNAME};				\
+	${ECHO} htmlname ${PKGPATH}					\
+		'<a href="../../'`${ECHO} ${PKGPATH} | ${HTMLIFY}`'/index.html">'`${ECHO} ${PKGNAME} | ${HTMLIFY}`'</a>';					\
+	${ECHO} homepage ${PKGPATH} $(call quote,${HOMEPAGE});		\
+	${ECHO} wildcard ${PKGPATH} $(call quote,${PKGWILDCARD});	\
+	${ECHO} comment ${PKGPATH} $(call quote,${COMMENT});		\
+	${ECHO} license ${PKGPATH} $(call quote,${LICENSE});		\
+	if [ "${ONLY_FOR_PLATFORM}" = "" ]; then			\
 		${ECHO} "onlyfor ${PKGPATH} any";			\
 	else								\
 		${ECHO} "onlyfor ${PKGPATH} ${ONLY_FOR_PLATFORM}";	\
-	fi
-	@if [ "${NOT_FOR_PLATFORM}" = "" ]; then			\
+	fi;								\
+	if [ "${NOT_FOR_PLATFORM}" = "" ]; then				\
 		${ECHO} "notfor ${PKGPATH} any";			\
 	else								\
 		${ECHO} "notfor ${PKGPATH} not ${NOT_FOR_PLATFORM}";	\
-	fi;
-	@${ECHO} "maintainer ${PKGPATH} ${MAINTAINER}"
-	@${ECHO} "categories ${PKGPATH} ${CATEGORIES}"
-	@if [ -f ${DESCR_SRC} ]; then					\
+	fi;								\
+	${ECHO} "maintainer ${PKGPATH} ${MAINTAINER}";			\
+	${ECHO} "categories ${PKGPATH} ${CATEGORIES}";			\
+	if [ -f ${DESCR_SRC} ]; then					\
 		${ECHO}  "descr ${PKGPATH} ${DESCR_SRC}"; 		\
 	else								\
 		${ECHO}  "descr ${PKGPATH} /dev/null";			\
-	fi
-	@${ECHO} "prefix ${PKGPATH} ${PREFIX}"
+	fi;								\
+	${ECHO} "prefix ${PKGPATH} ${PREFIX}"

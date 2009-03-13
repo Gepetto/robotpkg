@@ -1,4 +1,4 @@
-# $LAAS: su-target.mk 2009/01/15 23:51:49 tho $
+# $LAAS: su-target.mk 2009/03/08 23:12:12 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -30,6 +30,13 @@
 #                                      Anthony Mallet on Thu Jan 15 2009
 #
 
+ifeq (sudo,$(notdir $(firstword ${SU_CMD})))
+  include ${ROBOTPKG_DIR}/mk/sysdep/sudo.mk
+endif
+
+
+# --- su-target-% ----------------------------------------------------------
+#
 # su-target-% is a pattern target that does just-in-time su-to-root before
 # reinvoking the make process as root.  It acquires root privileges and invokes
 # a new make process with the target named "su-$%".

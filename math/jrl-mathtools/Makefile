@@ -1,6 +1,6 @@
-# $LAAS: $
+# $LAAS: Makefile 2009/02/09 15:18:51 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -16,16 +16,19 @@
 #                                      Anthony Mallet on Wed Sep 17 2008
 #
 
-DISTNAME=	jrlmathtools-1.0
-PKGNAME=	jrl-mathtools-1.0
+DISTNAME=	jrlmathtools-1.1
+PKGNAME=	jrl-mathtools-1.1
 
 CATEGORIES=	math
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/jrlMathTools
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic mathematical tools used in the JRL software.
 
-GNU_CONFIGURE=	yes
+DOXYGEN_PLIST_DIR+=	share/doc/jrlMathTools
 
+include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk

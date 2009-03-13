@@ -1,4 +1,4 @@
-# $LAAS: depends-vars.mk 2009/01/10 13:23:50 tho $
+# $LAAS: depends-vars.mk 2009/03/12 14:30:40 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -49,8 +49,17 @@
 #	for packages that should be installed before any other stage is
 #	invoked.
 #
+#    REQD_BUILD_OPTIONS.<pkg>
+#	The required build options from the package <pkg>.
+#
 BOOTSTRAP_DEPENDS?=	# empty
 
+SYSDEP_VERBOSE?=	yes
+
+_SYSDEP_FILE=		${WRKDIR}/.sysdep
+_PKGDEP_FILE=		${WRKDIR}/.pkgdep
+
+_COOKIE.bootstrapdepend=${WRKDIR}/.bootstrapdepend_done
 _COOKIE.depends=	${WRKDIR}/.depends_done
 
 # DEPENDS_TARGET is the target that is invoked to satisfy missing
@@ -87,9 +96,10 @@ endif
 #
 .PHONY: depends
 ifndef NO_DEPENDS
-  include ${ROBOTPKG_DIR}/mk/depends/resolve.mk
-  include ${ROBOTPKG_DIR}/mk/depends/build-options.mk
   include ${ROBOTPKG_DIR}/mk/depends/depends.mk
+else
+  depends:
+	@${DO_NADA}
 endif
 
 
@@ -100,7 +110,14 @@ endif
 # stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
 #
 .PHONY: bootstrap-depends
-bootstrap-depends: pkg-bootstrap-depends
+ifndef NO_DEPENDS
+  include ${ROBOTPKG_DIR}/mk/depends/sysdep.mk
+else ifeq (yes,$(call exists,${_COOKIE.bootstrapdepend}))
+  bootstrap-depends:
+	@${DO_NADA}
+else
+  bootstrap-depends: bootstrap-depends-cookie
+endif
 
 
 # --- depends-clean (PRIVATE) ----------------------------------------------
@@ -111,3 +128,14 @@ bootstrap-depends: pkg-bootstrap-depends
 depends-clean:
 	${RUN}${RM} -f ${_COOKIE.depends}
 	${RUN}${RMDIR} -p $(dir ${_COOKIE.depends}) 2>/dev/null || ${TRUE}
+
+
+# --- bootstrap-depends-cookie (PRIVATE) -----------------------------------
+#
+# bootstrap-depends-cookie creates the "boostrap-depends" cookie file.
+#
+.PHONY: bootstrap-depends-cookie
+bootstrap-depends-cookie:
+	${RUN}${TEST} ! -f ${_COOKIE.bootstrapdepend} || ${FALSE}
+	${RUN}${MKDIR} $(dir ${_COOKIE.bootstrapdepend})
+	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.bootstrapdepend}

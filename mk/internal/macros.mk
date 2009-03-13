@@ -1,6 +1,6 @@
-# $LAAS: macros.mk 2008/10/23 17:02:02 mallet $
+# $LAAS: macros.mk 2009/03/08 15:57:26 tho $
 #
-# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -32,8 +32,6 @@
 ifndef MK_ROBOTPKG_MACROS
 MK_ROBOTPKG_MACROS:=	defined
 
-hline="===================================================================="
-
 define isyes
 $(filter yes Yes YES,$(1))
 endef
@@ -51,6 +49,25 @@ $(if $(wildcard $1),yes,no)
 endef
 
 
+# --- require <file> -------------------------------------------------------
+#
+# Include <file> if it was not already included
+#
+override define require
+$(if $(filter $1,${MAKEFILE_LIST}),,$(eval include $1))
+endef
+
+
+# --- require-for <target> <file> ------------------------------------------
+#
+# Include <file> if it was not already included and if the MAKECMDGOALS contain
+# <target>
+#
+override define require-for
+$(if $(filter $1,${MAKECMDGOALS}),$(call require,$2))
+endef
+
+
 # --- substs <from list>,<to list>,<string> --------------------------
 #
 # Substitute in the <string> each string in the first list by its
@@ -62,6 +79,16 @@ $(if $1,$(subst $(firstword $1),$(firstword $2),$(call \
 endef
 
 
+# --- tolower <string> -----------------------------------------------
+#
+# Substitute in the <string> each character from A-Z to a-z
+#
+override define tolower
+$(call substs,A B C D E F G H I J K L M N O P Q R S T U V W X Y Z,	\
+	      a b c d e f g h i j k l m n o p q r s t u v w x y z,$1)
+endef
+
+
 # --- quote <string> -------------------------------------------------
 #
 # Escape shell's meta-charaters in string
@@ -69,7 +96,7 @@ endef
 empty=
 space=$(empty) $(empty)
 tab=$(empty)	$(empty)
-quotechars= = & { } ( ) [ ] | * < > $ , ' ` " \ # for fontify: "`'
+quotechars= = & { } ( ) [ ] | * < > $ , ; ' ` " \ # for fontify: "`'
 override define quote
 $(subst $(tab),\$(tab),$(subst $(space),\$(space),$(call \
 	substs,$(quotechars),$(addprefix \,$(quotechars)),$1)))

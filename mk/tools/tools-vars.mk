@@ -1,6 +1,6 @@
-# $LAAS: tools-vars.mk 2008/05/25 21:36:51 tho $
+# $LAAS: tools-vars.mk 2009/03/06 00:08:42 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 2005, 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -80,6 +80,8 @@ ifeq (yes,$(call exists,${_COOKIE.tools}))
 tools:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
   ifdef _PKGSRC_BARRIER
 tools: ${_TOOLS_TARGETS}
   else
@@ -92,11 +94,11 @@ acquire-tools-lock: acquire-lock
 release-tools-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.tools}))
-${_COOKIE.tools}:
-	@${DO_NADA}
+${_COOKIE.tools}:;
 else
-${_COOKIE.tools}: real-tools
+${_COOKIE.tools}: real-tools;
 endif
+
 
 # --- real-tools (PRIVATE) -------------------------------------------
 
@@ -108,7 +110,6 @@ _REAL_TOOLS_TARGETS+=	tools-message
 _REAL_TOOLS_TARGETS+=	override-tools
 _REAL_TOOLS_TARGETS+=	post-tools
 _REAL_TOOLS_TARGETS+=	tools-cookie
-#_REAL_TOOLS_TARGETS+=	error-check
 
 .PHONY: real-tools
 real-tools: ${_REAL_TOOLS_TARGETS}
@@ -146,6 +147,7 @@ override-tools:
 # used to directly modify the contents of the tools directory after
 # the tools are generated.
 #
+.PHONY: post-tools
 post-tools:
 
 include ${ROBOTPKG_DIR}/mk/tools/digest.mk

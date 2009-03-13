@@ -1,4 +1,4 @@
-@comment Wed Sep 17 12:12:35 CEST 2008
+@comment Tue Feb 3 09:45:57 JST 2009
 include/kwsPlus/directPathVector.h
 include/kwsPlus/flicDirectPath.h
 include/kwsPlus/flicDistance.h
@@ -9,17 +9,18 @@ include/kwsPlus/hppShooterActiveDof.h
 include/kwsPlus/hppVisRdmBuilder.h
 include/kwsPlus/kitMat3.h
 include/kwsPlus/kwsIPPRdmBuilder2.h
-include/kwsPlus/kwsPlusDPLinear.h
 include/kwsPlus/kwsPlusDiffusionNodePickerFactory.h
 include/kwsPlus/kwsPlusDiffusionShooterFactory.h
 include/kwsPlus/kwsPlusDirectPath.h
-include/kwsPlus/kwsPlusDistance.h
 include/kwsPlus/kwsPlusDistanceFactory.h
-include/kwsPlus/kwsPlusEdge.h
+include/kwsPlus/kwsPlusDistance.h
+include/kwsPlus/kwsPlusDPLinear.h
 include/kwsPlus/kwsPlusEdgeFactory.h
+include/kwsPlus/kwsPlusEdge.h
+include/kwsPlus/kwsPlusKPCARdmBuilder.h
 include/kwsPlus/kwsPlusLTRdmBuilder.h
-include/kwsPlus/kwsPlusNode.h
 include/kwsPlus/kwsPlusNodeFactory.h
+include/kwsPlus/kwsPlusNode.h
 include/kwsPlus/kwsPlusPCARdmBuilder.h
 include/kwsPlus/kwsPlusRoadmap.h
 include/kwsPlus/kwsPlusSMLinear.h

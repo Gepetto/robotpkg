@@ -1,0 +1,188 @@
+% $LAAS: using.tex 2009/03/04 16:45:50 mallet $
+%
+% Copyright (c) 2009 LAAS/CNRS
+% All rights reserved.
+%
+% Permission to use, copy, modify, and distribute this software for any purpose
+% with or without   fee is hereby granted, provided   that the above  copyright
+% notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+% REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+% AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+% INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+% LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+% OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+% PERFORMANCE OF THIS SOFTWARE.
+%
+%                                             Anthony Mallet on Wed Mar  4 2009
+%
+
+\section{Configuring robotpkg} % -------------------------------------------
+
+The whole \robotpkg system is configured  {\em via} a single, centralized file,
+called {\tt   robotpkg.conf}  and  placed  in  the   {\tt  /opt/openrobots/etc}
+directory  by default.  This location  might be redefined  during the bootstrap
+phase,  see  \xref{section:bootstrapping}{Section~\ref{section:bootstrapping}}.
+During    the  bootstrap, an initial configuration     file is created with the
+settings you provided to {\tt bootstrap}.
+
+The  format of  the configuration file   is that of   the usual GNU style  {\tt
+Makefile}s. The whole \robotpkg configuration  is done by setting variables  in
+this  file. Note that  you can  define all  kinds of  variables, and no special
+error checking (for example for spelling mistakes)  takes place, so you have to
+try it out to see if it works.
+
+
+\subsection{Selecting build options} % -------------------------------------
+
+Some packages have   build time options, usually   to select between  different
+dependencies,  enable  optional   support for    big   dependencies or   enable
+experimental features.
+
+To see   which options, if  any, a   package supports,  and  which  options are
+mutually exclusive, run {\tt make show-options}, for example:
+
+\begin{verbatim}
+Any of the following general options may be selected:
+    debug   Produce debugging information for binary programs
+    doc     Compile documentation material
+    lex     Use lex in place of flex
+    tcl     Enable support for TCL clients
+    yacc    Use yacc in place of bison
+
+These options are enabled by default:
+    doc tcl
+
+These options are currently enabled:
+    doc tcl
+\end{verbatim}
+
+The following variables can be defined  in {\tt robotpkg.conf} to select which
+options to enable for a package:
+
+\begin{itemize}
+   \item {\tt PKG\_DEFAULT\_OPTIONS}, which can be used to select or  disable
+   options  for  all packages  that  support them,
+
+   \item {\tt PKG\_OPTIONS.<pkgbase>}, which can  be   used  to select  or
+   disable   options specifically for package {\tt pkgbase}. Options listed
+   in these variables are selected, options preceded by {\tt -} are disabled.
+\end{itemize}
+
+A few examples:
+
+\begin{verbatim}
+PKG_DEFAULT_OPTIONS=    debug
+PKG_OPTIONS.genom=      doc -tcl
+\end{verbatim}
+
+It is important to note  that options that were  specifically suggested by  the
+package  maintainer must be  explicitely removed if you  do not wish to include
+the option.  If you  are unsure you  can view the current  state with {\tt make
+show-options}.
+
+The following settings are  consulted in the order  given, and the last setting
+that selects or disables an option is used:
+
+\begin{enumerate}
+   \item the default options as suggested by the package maintainer,
+
+   \item {\tt PKG\_DEFAULT\_OPTIONS},
+
+   \item {\tt PKG\_OPTIONS.<pkgbase>}
+\end{enumerate}
+
+For groups of mutually exclusive options, the last option selected is used, all
+others are automatically  disabled.  If  an option of  the  group is explicitly
+disabled, the previously selected option,  if any, is used.   It is an error if
+no option from  a  required group  of  options is  selected, and  building  the
+package will fail.
+
+
+\subsection{General configuration variables} % -----------------------------
+
+In  this  section,  you can   find some  variables   that apply  to  all \robotpkg
+packages.
+
+% A complete  list of the variables that  can be configured by the user
+% is  available in <filename>mk/defaults/mk.conf</filename>,  together with  some
+% comments that describe each variable's intent.</para>
+
+\begin{description}
+   \item[ACCEPTABLE\_LICENSES] List of acceptable licenses. Whenever you try to
+   build a package  whose license is  not in this  list, you will get  an error
+   message that includes instructions on how to change this variable.
+
+   \item[DISTDIR] Where to store the downloaded copies of the original source
+   distributions used for building \robotpkg packages. The default is
+   {\tt \${ROBOTPKG\_DIR}/distfiles}.
+
+   \item[PACKAGES] The top level directory for the binary packages. The default
+   is  {\tt \${ROBOTPKG\_DIR}/packages}.
+
+%   \item[PKG\_DBDIR] Where the database  about  installed packages  is  stored.
+%   The default is {\tt /opt/openrobots/var/db/pkg}.
+
+   \item[MASTER\_SITE\_BACKUP] List  of backup locations for distribution files
+   if not found locally  or  in {\tt \${MASTER\_SITES}}.  The default  is\\
+   {\tt http://softs.laas.fr/openrobots/robotpkg/distfiles/}.
+
+   \item[PKG\_DEBUG\_LEVEL] The  level of debugging  output  which is displayed
+   whilst making and installing the package.  The  default value for this is 0,
+   which will not  display the commands as they  are executed (normal, default,
+   quiet  operation); the value 1 will  display all shell commands before their
+   invocation,  and  the value  2 will  display both the  shell commands before
+   their invocation, and their actual execution progress with {\tt set -x}.
+\end{description}
+
+
+\subsection{Variables affecting the build process} % -----------------------
+
+\begin{description}
+   \item[WRKOBJDIR] The top level   directory where, if defined,  the  separate
+   working directories will get created.  This is useful for building  packages
+   on a different filesystem than the \robotpkg sources.
+
+   \item[DEPENDS\_TARGET] By default,  dependencies are only installed,  and no
+   binary package is  created  for them. You  can  set  this variable  to  {\tt
+   package}   to   automatically  create    binary  packages   after installing
+   dependencies.
+
+   \item[LOCALBASE] Where packages will be installed. The default value is {\tt
+   /opt/openrobots}.  Do not  mix     binary  packages with    different values
+   of {\tt LOCALBASE}s!
+
+
+%   \item[GCC\_REQUIRED]  This specifies requirements  on  the version of GCC to
+%   use  when  building  packages.   This  variable  should contain   a  list of
+%   constraints in the form {\tt  \{<=,<,-,>,>=\}n}. E.g.  to specifiy a minimum
+%   version of 4.2  use ``{\tt >=4.2}'', or to  specifiy gcc version 4  only use
+%   ``{\tt >=4 <5}''.
+
+\end{description}
+
+
+\subsection{Additional flags to the compiler} % ----------------------------
+
+If you wish  to set compiler variables   such as {\tt CFLAGS},  {\tt CXXFLAGS},
+{\tt FFLAGS} ... please make sure to use  the {\tt +=}  operator instead of the
+{\tt {=}} operator:
+
+\begin{verbatim}
+CFLAGS+= -your -flags
+\end{verbatim}
+
+Using {\tt CFLAGS=} (i.e.  without the ``{\tt +}'') may  lead to  problems with
+packages that need to add their own flags.
+
+If you want  to pass flags  to the linker, both in  the configure  step and the
+build step, you  can do this  in  two ways.   Either set {\tt  LDFLAGS} or {\tt
+LIBS}.  The difference between  the two is that  {\tt LIBS} will be appended to
+the command line, while {\tt LDFLAGS} come earlier. {\tt LDFLAGS} is pre-loaded
+with rpath settings   for machines that support  it.  As with {\tt CFLAGS}  you
+should use the {\tt +=} operator:
+
+\begin{verbatim}
+LDFLAGS+= -your -linkerflags
+\end{verbatim}

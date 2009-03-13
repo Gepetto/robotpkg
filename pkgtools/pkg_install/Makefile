@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2008 LAAS/CNRS
+# Copyright (C) 2008-2009 LAAS/CNRS
 #
 # Authored by Anthony Mallet on Fri Apr 18 2008
 # From $NetBSD: Makefile,v 1.128 2006/07/18 23:06:41 jlam Exp $
@@ -81,7 +81,7 @@ do-update:
 # Remove any old pkg_install versions from database
 pre-install: pkg_install-remove-old
 
-.PHONY:
+.PHONY: pkg_install-remove-old
 pkg_install-remove-old:
 	${RUN}								\
 	{ ${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}; } | 		\

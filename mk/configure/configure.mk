@@ -1,4 +1,4 @@
-# $LAAS: configure.mk 2009/01/10 13:33:04 tho $
+# $LAAS: configure.mk 2009/03/10 22:00:59 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -47,14 +47,19 @@
 # CONFIGURE_ARGS is the list of arguments that is passed to the
 #	configure script.
 #
-CONFIGURE_SCRIPT?=	./configure
-CONFIGURE_ENV+=		${ALL_ENV}
-CONFIGURE_ARGS?=	${CONFIGURE_EXTRA_ARGS} # from cmdline
-_BUILD_DEFS+=		CONFIGURE_ENV CONFIGURE_ARGS
 
 ifdef GNU_CONFIGURE
   include ${ROBOTPKG_DIR}/mk/configure/gnu-configure.mk
 endif
+ifdef USE_CMAKE
+  include ${ROBOTPKG_DIR}/mk/configure/cmake-configure.mk
+endif
+
+CONFIGURE_SCRIPT?=	./configure
+CONFIGURE_ENV+=		${ALL_ENV}
+CONFIGURE_ARGS+=	${CONFIGURE_EXTRA_ARGS} # from cmdline
+_BUILD_DEFS+=		CONFIGURE_ENV CONFIGURE_ARGS
+
 #.if defined(OVERRIDE_GNU_CONFIG_SCRIPTS)
 #.  include "${ROBOTPKG_DIR}/mk/configure/config-override.mk"
 #.endif
@@ -68,6 +73,8 @@ endif
 #
 # configure is a public target to configure the sources for building.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+
 ifndef _EXTRACT_IS_CHECKOUT
   _CONFIGURE_TARGETS+=	patch
 endif
@@ -80,6 +87,12 @@ ifeq (yes,$(call exists,${_COOKIE.configure}))
 configure:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+  ifndef _EXTRACT_IS_CHECKOUT
+    $(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
+  endif
+
   ifdef _PKGSRC_BARRIER
 configure: ${_CONFIGURE_TARGETS}
   else
@@ -92,10 +105,10 @@ acquire-configure-lock: acquire-lock
 release-configure-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.configure}))
-${_COOKIE.configure}:
-	@${DO_NADA}
+  ${_COOKIE.configure}:;
 else
-${_COOKIE.configure}: real-configure
+  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+  ${_COOKIE.configure}: real-configure;
 endif
 
 
@@ -118,7 +131,6 @@ _REAL_CONFIGURE_TARGETS+=	do-configure
 _REAL_CONFIGURE_TARGETS+=	do-configure-post-hook
 _REAL_CONFIGURE_TARGETS+=	post-configure
 _REAL_CONFIGURE_TARGETS+=	configure-cookie
-#_REAL_CONFIGURE_TARGETS+=	error-check
 
 .PHONY: real-configure
 real-configure: ${_REAL_CONFIGURE_TARGETS}
@@ -233,5 +245,7 @@ post-configure:
 # configure-clean removes the state files for the "configure" and later phases
 # so that the "configure" target may be re-invoked.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+
 configure-clean: build-clean
 	${RUN}${RM} -f ${_COOKIE.configure}

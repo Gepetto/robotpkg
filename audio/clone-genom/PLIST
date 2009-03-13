@@ -1,0 +1,86 @@
+@comment Wed Jan 21 19:00:38 CET 2009
+bin/clone
+bin/cloneSendInitRqst
+bin/cloneTest
+include/clone/cloneConst.h
+include/clone/cloneStruct.h
+include/clone/server/cloneEndian.h
+include/clone/server/cloneError.h
+include/clone/server/cloneMsgLib.h
+include/clone/server/clonePosterLib.h
+include/clone/server/clonePosterLibStruct.h
+include/clone/server/clonePosterReadLibProto.h
+include/clone/server/clonePosterShowLib.h
+include/clone/server/clonePosterWriteLibProto.h
+include/clone/server/clonePosterXMLLib.h
+include/clone/server/clonePrint.h
+include/clone/server/clonePrintXML.h
+include/clone/server/cloneScan.h
+include/clone/server/cloneType.h
+lib/libcloneClient.la
+lib/pkgconfig/clone.pc
+${PLIST.tcl}lib/tclserv/libcloneTclServ.la
+share/modules/clone/art/null.txt
+share/modules/clone/cam/hl_default.txt
+share/modules/clone/cam/sf_default.txt
+share/modules/clone/cam/yb_visage.txt
+share/modules/clone/dents/hl_Mach_forme.txt
+share/modules/clone/dents/hl_Palais_forme.txt
+share/modules/clone/dents/hl_mach_tel.txt
+share/modules/clone/dents/hl_palais_tel.txt
+share/modules/clone/dents/hl_tel_pos_mach.txt
+share/modules/clone/dents/hl_tel_pos_pal.txt
+share/modules/clone/dents/hl_tex_tel.bmp
+share/modules/clone/dents/ybb_hl_Mach_forme.txt
+share/modules/clone/dents/ybb_hl_Palais_forme.txt
+share/modules/clone/dents/ybb_hl_mach_tel.txt
+share/modules/clone/dents/ybb_hl_palais_tel.txt
+share/modules/clone/eye/hl.mod
+share/modules/clone/eye/null.art
+share/modules/clone/eye/sf_tex.mod
+share/modules/clone/eye/tex_yb.pnm
+share/modules/clone/img/hl_cyl_a_full.pnm
+share/modules/clone/img/hl_cyl_afa_full.pnm
+share/modules/clone/img/hl_cyl_upu_full.pnm
+share/modules/clone/img/sf_rot_a_neu_08.pnm
+share/modules/clone/img/yb_cyl_rot_i.pnm
+share/modules/clone/mdl/hl_tts.txt
+share/modules/clone/mdl/pb_default.txt
+share/modules/clone/mod/sf_oeil.mod
+share/modules/clone/mod/ybadsi_visRT_HDfixe.mod
+share/modules/clone/msh/hl_full.txt
+share/modules/clone/msh/null.txt
+share/modules/clone/msh/sf_oeil_plus.txt
+share/modules/clone/msh/ybb_full.msh
+share/modules/clone/pos/hl_cyl_2_full.txt
+share/modules/clone/pos/sf_rot_a_neu_08.txt
+share/modules/clone/pos/yb_cyl_rot.txt
+share/modules/clone/pts/hl_tex_a.txt
+share/modules/clone/pts/hl_tex_afa.txt
+share/modules/clone/pts/hl_tex_upu.txt
+share/modules/clone/pts/sf_rot_a_neu.txt
+share/modules/clone/tex/hl_cyl_2_full.txt
+share/modules/clone/tex/null.txt
+share/modules/clone/tex/sf_rot_a_neu.txt
+share/modules/clone/tex/yb_cyl_rot_i.txt
+share/modules/gen/clone.gen
+${PLIST.tcl}share/modules/tcl/cloneClient.tcl
+${PLIST.tcl}@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm share/modules/clone/tex
+@dirrm share/modules/clone/pts
+@dirrm share/modules/clone/pos
+@dirrm share/modules/clone/msh
+@dirrm share/modules/clone/mod
+@dirrm share/modules/clone/mdl
+@dirrm share/modules/clone/img
+@dirrm share/modules/clone/eye
+@dirrm share/modules/clone/dents
+@dirrm share/modules/clone/cam
+@dirrm share/modules/clone/art
+${PLIST.tcl}@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/clone/server
+@dirrm include/clone
+@dirrm bin

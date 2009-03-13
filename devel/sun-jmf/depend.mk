@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/10/06 14:32:29 mallet $
+# $LAAS: depend.mk 2009/03/10 10:32:00 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,7 +33,7 @@ DEPEND_ABI.sun-jmf?=	sun-jmf>=2.1.1e
 DEPEND_DIR.sun-jmf?=	../../devel/sun-jmf
 
 SYSTEM_SEARCH.sun-jmf=\
-	lib/ext/jmf.jar
+	'{,java/sun-6/}lib/ext/jmf.jar'
 
 endif # --- SUN_JMF_DEPEND_MK ----------------------------------------
 

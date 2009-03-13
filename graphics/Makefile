@@ -6,6 +6,8 @@ COMMENT=	Graphics tools
 SUBDIR+=	gdhe
 SUBDIR+=	kpp-interface
 SUBDIR+=	kpp-interfacewalk
+SUBDIR+=	laaswm
+SUBDIR+=	laaswm-libs
 SUBDIR+=	vrml97
 SUBDIR+=	wxGTK
 

@@ -1,6 +1,12 @@
+# $LAAS: plist.mk 2009/02/16 17:34:37 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,18 +18,10 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: plist.mk,v 1.18 2006/11/05 15:10:08 joerg Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
-#   3. All advertising materials mentioning   features or use of this
-#      software must display the following acknowledgement:
-#        This product includes software developed by the NetBSD
-#        Foundation, Inc. and its contributors.
+#   3. All  advertising materials  mentioning  features  or  use of  this
+#      software must display  the following acknowledgement: This product
+#      includes software  developed by  the  NetBSD Foundation, Inc.  and
+#      its contributors.
 #   4. Neither the  name  of The NetBSD Foundation  nor the names  of its
 #      contributors  may be  used to endorse or promote  products derived
 #      from this software without specific prior written permission.
@@ -40,8 +38,9 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
-# Authored by Anthony Mallet on Thu Dec  7 2006
+# From $NetBSD: plist.mk,v 1.18 2006/11/05 15:10:08 joerg Exp $
+#
+#                                       Anthony Mallet on Thu Dec  7 2006
 
 #
 # This Makefile fragment handles the creation of PLISTs for use by
@@ -123,29 +122,29 @@ _PLIST_AWK_ENV+=	TEST=$(call quote,${TOOLS_TEST})
 # substitutions for PLISTs
 #
 PLIST_SUBST+=	\
-	PLIST_OPSYS=$(call quote,${OPSYS})					\
-	PLIST_OS_VERSION=$(call quote,${OS_VERSION})				\
-	PLIST_NODENAME=$(call quote,${NODENAME})				\
-	PLIST_MACHINE_ARCH=$(call quote,${MACHINE_ARCH})			\
-	PLIST_MACHINE_GNU_ARCH=$(call quote,${MACHINE_GNU_ARCH})		\
-	PLIST_MACHINE_GNU_PLATFORM=$(call quote,${MACHINE_GNU_PLATFORM})	\
-	PLIST_LN=$(call quote,${LN})						\
-	PLIST_LOWER_VENDOR=$(call quote,${LOWER_VENDOR})			\
+	PLIST_OPSYS=$(call quote,${OPSYS})				\
+	PLIST_OS_VERSION=$(call quote,${OS_VERSION})			\
+	PLIST_NODENAME=$(call quote,${NODENAME})			\
+	PLIST_MACHINE_ARCH=$(call quote,${MACHINE_ARCH})		\
+	PLIST_MACHINE_GNU_ARCH=$(call quote,${MACHINE_GNU_ARCH})	\
+	PLIST_MACHINE_GNU_PLATFORM=$(call quote,${MACHINE_GNU_PLATFORM})\
+	PLIST_LN=$(call quote,${LN})					\
+	PLIST_LOWER_VENDOR=$(call quote,${LOWER_VENDOR})		\
 	PLIST_LOWER_OPSYS=$(call quote,${LOWER_OPSYS})			\
-	PLIST_LOWER_OS_VERSION=$(call quote,${LOWER_OS_VERSION})		\
+	PLIST_LOWER_OS_VERSION=$(call quote,${LOWER_OS_VERSION})	\
 	PLIST_PKGBASE=$(call quote,${PKGBASE})				\
-	PLIST_PKGNAME=$(call quote,${PKGNAME_NOREV})				\
-	PLIST_PKGLOCALEDIR=$(call quote,${PKGLOCALEDIR})			\
-	PLIST_PKGVERSION=$(shell echo ${PKGVERSION} | ${SED} -e 's/r[0-9]*$$//')\
-	PLIST_LOCALBASE=$(call quote,${LOCALBASE})				\
-	PLIST_CHGRP=$(call quote,${CHGRP})					\
-	PLIST_CHMOD=$(call quote,${CHMOD})					\
-	PLIST_CHOWN=$(call quote,${CHOWN})					\
-	PLIST_MKDIR=$(call quote,${MKDIR})					\
-	PLIST_RMDIR=$(call quote,${RMDIR})					\
-	PLIST_RM=$(call quote,${RM})						\
-	PLIST_TRUE=$(call quote,${TRUE})					\
-	PLIST_PKGMANDIR=$(call quote,${PKGMANDIR})				\
+	PLIST_PKGNAME=$(call quote,${PKGNAME_NOREV})			\
+	PLIST_PKGLOCALEDIR=$(call quote,${PKGLOCALEDIR})		\
+	PLIST_PKGVERSION=$(call quote,${PKGVERSION_NOREV})		\
+	PLIST_LOCALBASE=$(call quote,${LOCALBASE})			\
+	PLIST_CHGRP=$(call quote,${CHGRP})				\
+	PLIST_CHMOD=$(call quote,${CHMOD})				\
+	PLIST_CHOWN=$(call quote,${CHOWN})				\
+	PLIST_MKDIR=$(call quote,${MKDIR})				\
+	PLIST_RMDIR=$(call quote,${RMDIR})				\
+	PLIST_RM=$(call quote,${RM})					\
+	PLIST_TRUE=$(call quote,${TRUE})				\
+	PLIST_PKGMANDIR=$(call quote,${PKGMANDIR})			\
 	$(foreach _v_,${PLIST_VARS},PLIST.${_v_}=$(call quote,${PLIST.${_v_}}))
 
 # Pass the PLIST_SUBST substitutions to the subst.awk script by prepending
@@ -190,3 +189,5 @@ ${PLIST}: ${PLIST_SRC}
 	${RUN}							\
 	{ ${_GENERATE_PLIST} } |				\
 	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK} > $@
+
+${PLIST_SRC}:;

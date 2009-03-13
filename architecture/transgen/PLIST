@@ -1,0 +1,46 @@
+@comment Thu Mar 12 18:52:34 CET 2009
+bin/transgen
+include/transgen/oprs-com.h
+include/transgen/oprs-com_f.h
+include/transgen/oprs-post_f.h
+include/transgen/user-decl-oprs-com.h
+include/transgen/user-decl-oprs-com_f.h
+include/transgen/user-decl-oprs-post.h
+include/transgen/user-decl-oprs-post_f.h
+lib/liboprs-com.a
+lib/pkgconfig/transgen.pc
+share/transgen/canvas/Makefile.cv.in
+share/transgen/canvas/auto/Makefile.in
+share/transgen/canvas/autoconf/ac_find_motif.m4
+share/transgen/canvas/autoconf/install-if-change.sh
+share/transgen/canvas/autoconf/install.sh
+share/transgen/canvas/autoconf/robots.m4
+share/transgen/canvas/autoconf/site.make.in
+share/transgen/canvas/autogen
+share/transgen/canvas/configure.ac
+share/transgen/canvas/data.inc
+share/transgen/canvas/end.pl
+share/transgen/canvas/init.op
+share/transgen/canvas/start.pl
+share/transgen/canvas/superv.c
+share/transgen/canvas/user/tg-default-ac.c
+share/transgen/canvas/user/tg-default-ef.c
+share/transgen/canvas/user/tg-default-ep.c
+share/transgen/canvas/user/tg-default-ex.c
+share/transgen/canvas/user/tg-default-tr.c
+share/transgen/canvas/user/transgen-oprs.c
+share/transgen/canvas/user/transgen-propice.c
+share/transgen/canvas/user/transgen_f-pub.h
+share/transgen/data/oprs-com-post.inc
+share/transgen/data/oprs-com-post.opf
+share/transgen/data/oprs-com-post.sym
+share/transgen/data/superv-util.inc
+share/transgen/data/superv-util.opf
+share/transgen/data/superv-util.sym
+@dirrm share/transgen/data
+@dirrm share/transgen/canvas/user
+@dirrm share/transgen/canvas/autoconf
+@dirrm share/transgen/canvas/auto
+@dirrm share/transgen/canvas
+@dirrm share/transgen
+@dirrm include/transgen

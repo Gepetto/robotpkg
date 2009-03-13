@@ -1,4 +1,4 @@
-# $LAAS: configure-vars.mk 2009/01/10 13:41:38 tho $
+# $LAAS: configure-vars.mk 2009/03/09 18:15:23 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -47,7 +47,6 @@ CONFIGURE_DIRS?=	${WRKSRC}
 SCRIPTS_ENV?=		# empty
 
 SCRIPTS_ENV+=	${ALL_ENV}
-SCRIPTS_ENV+=	_ROBOTPKG_DIR=${_ROBOTPKG_DIR}
 ifdef BATCH
 SCRIPTS_ENV+=	BATCH=yes
 endif
@@ -86,14 +85,18 @@ else
 configure:
 	@${DO_NADA}
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+    $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+
     ifdef _PKGSRC_BARRIER
       ifdef _EXTRACT_IS_CHECKOUT
-configure: configure-cookie
+        configure: configure-cookie
       else
-configure: patch configure-cookie
+        $(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
+        configure: patch configure-cookie
       endif
     else
-configure: barrier
+      configure: barrier
     endif
   endif
 endif

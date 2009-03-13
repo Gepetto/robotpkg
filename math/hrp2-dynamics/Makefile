@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/10/13 11:19:52 mallet $
+# $LAAS: Makefile 2009/02/10 17:13:47 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -21,8 +21,9 @@ PKGNAME=	hrp2-dynamics-${VERSION}
 VERSION=	1.0
 
 CATEGORIES=	math
-MASTER_SITES=	${MASTER_SITE_JRL}
 NO_PUBLIC_SRC=	yes
+MASTER_SITES=		${MASTER_SITE_JRL}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hrp2Dynamics
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	

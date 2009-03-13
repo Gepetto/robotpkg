@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/01/16 20:18:40 tho $
+# $LAAS: gcc.mk 2009/03/13 15:35:31 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -38,25 +38,70 @@
 #
 # This is the compiler definition for the GNU Compiler Collection.
 #
+#
+# The following variables may be set by a package:
+#
+# GCC_REQUIRED
+#	A list of constraints on gcc version number used to determine the
+#	range of allowed versions of GCC required by a package. This list
+#	should contain patterns suitable for evaluation by "robotpkg_admin
+#	pmatch", i.e. optionaly start with >,>=,<= or < and followed by a
+#	version number (see robotpkg_info(1)). This value should only be
+#	appended to by a package Makefile.
+#
 
 ifndef COMPILER_GCC_MK
-COMPILER_GCC_MK=	defined
+COMPILER_GCC_MK:=	defined
 
-include ../../mk/robotpkg.prefs.mk
-
-GCC_REQD+=	2.8.0
-
-# Distill the GCC_REQD list into a single _GCC_REQD value that is the
-# highest version of GCC required.
+# Sensible default value for _GCC_REQUIRED
 #
-_GCC_REQD=$(firstword $(foreach _rqd_,${GCC_REQD},$(if	\
-  $(strip $(foreach _sat_,${GCC_REQD},$(shell				\
-    ${PKG_ADMIN} pmatch 'gcc>=${_sat_}' 'gcc-${_rqd_}' || echo n))	\
-  ),,${_rqd_})))
+_GCC_REQUIRED?=	>=2.8
 
-
-# Select required compilers based on _GCC_REQD and COMPILER_TARGET.
+# Distill the GCC_REQUIRED list into a single _GCC_REQUIRED value that is the
+# strictest versions of GCC required.
 #
+ifdef GCC_REQUIRED
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
+  # split constraints into <= and >= categories
+  _equ_:=$(patsubst -%,%,$(filter-out <%,$(filter-out >%,${GCC_REQUIRED})))
+  _min_:=$(sort $(filter >%,${GCC_REQUIRED}) $(addprefix >=,${_equ_}))
+  _max_:=$(sort $(filter <%,${GCC_REQUIRED}) $(addprefix <=,${_equ_}))
+
+  # find out the strictest constraint of type >=, please breathe
+  _maxmin_:=\
+    $(firstword $(foreach _rqd_,${_min_},$(if $(strip 			\
+    $(foreach _sat_,$(filter-out ${_rqd_},${_min_} ${_max_}),$(shell	\
+    ${PKG_ADMIN} pmatch 'x${_sat_}' 'x-$(call substs,> >=,,${_rqd_})' ||\
+    echo no))),,${_rqd_})))
+
+  # breathe, then find out the strictest constraint of type <=
+  _minmax_:=\
+    $(firstword $(foreach _rqd_,${_max_},$(if $(strip			\
+    $(foreach _sat_,$(filter-out ${_rqd_},${_min_} ${_max_}),$(shell	\
+    ${PKG_ADMIN} pmatch 'x${_sat_}' 'x-$(call substs,< <=,,${_rqd_})' ||\
+    echo no))),,${_rqd_})))
+
+  # _GCC_REQUIRED is the union of both
+  _GCC_REQUIRED:=	${_maxmin_}${_minmax_}
+endif
+ifeq (,$(_GCC_REQUIRED))
+  PKG_FAIL_REASON+=	${hline}
+  PKG_FAIL_REASON+=	"The following requirements on gcc version cannot be satisfied:"
+  PKG_FAIL_REASON+=	""
+  PKG_FAIL_REASON+=	"	GCC_REQUIRED = ${GCC_REQUIRED}"
+  PKG_FAIL_REASON+=	""
+  PKG_FAIL_REASON+=	"Reverting to sane default >=2.8"
+  PKG_FAIL_REASON+=	${hline}
+  _GCC_REQUIRED:= >=2.8
+endif
+
+# Select required compilers based on COMPILER_TARGET and USE_LANGUAGES.
+#
+ifneq (,$(strip ${USE_LANGUAGES}))
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+endif
+
 ifeq (i386-mingw32,${COMPILER_TARGET})
   ifneq (,$(filter c c++,${USE_LANGUAGES}))
     include ${ROBOTPKG_DIR}/cross/i386-mingw32/depend.mk
@@ -69,9 +114,7 @@ else
     include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c++.mk
   endif
   ifneq (,$(filter fortran,${USE_LANGUAGES}))
-    ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.0' 'gcc-${_GCC_REQD}' && echo y))
-      include ${ROBOTPKG_DIR}/lang/gcc4-fortran/depend.mk
-    endif
+    include ${ROBOTPKG_DIR}/mk/sysdep/gcc-fortran.mk
   endif
 endif
 
@@ -82,26 +125,23 @@ LINKER_RPATH_FLAG=	-R
 COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 
 
-# --- common compiler options ----------------------------------------
+# --- compiler options -----------------------------------------------------
 #
+# Each compiler can define the PKG_OPTION_SET.debug and PKG_OPTION_UNSET.debug
+# scripts corresponding to the common `debug' option.
+#
+ifndef PKG_OPTION_SET.debug
+  define PKG_OPTION_SET.debug
+    CFLAGS+=	-g -O0 -Wall
+    CXXFLAGS+=	-g -O0 -Wall
+  endef
+endif
 
-ifndef NO_BUILD
-ifneq (,$(filter c c++ fortran,${USE_LANGUAGES}))
-PKG_SUPPORTED_OPTIONS+=		debug
-
-PKG_OPTION_DESCR.debug:=	Produce debugging information for binary programs
-
-define PKG_OPTION_SET.debug
-  CFLAGS+=	-g -O0 -Wall
-  CXXFLAGS+=	-g -O0 -Wall
-endef
-
-define PKG_OPTION_UNSET.debug
-  CFLAGS+=	-O3 -DNDEBUG
-  CXXFLAGS+=	-O3 -DNDEBUG
-endef
-
-endif	# c c++ fortran
-endif	# NO_BUILD
+ifndef PKG_OPTION_UNSET.debug
+  define PKG_OPTION_UNSET.debug
+    CFLAGS+=	-O3 -DNDEBUG
+    CXXFLAGS+=	-O3 -DNDEBUG
+  endef
+endif
 
 endif	# COMPILER_GCC_MK

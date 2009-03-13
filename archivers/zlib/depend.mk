@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/05/25 23:22:48 tho $
+# $LAAS: depend.mk 2009/02/15 21:08:04 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -23,8 +23,14 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		zlib
 endif
 
-ifeq (+,$(ZLIB_DEPEND_MK))
+ifeq (+,$(ZLIB_DEPEND_MK)) # -----------------------------------------
+
 PREFER.zlib?=		system
+
+DEPEND_ABI.zlib?=	zlib>=1.2.3
+DEPEND_DIR.zlib?=	../../archivers/zlib
+
+DEPEND_LIBS.zlib+=	-lz
 
 SYSTEM_SEARCH.zlib=	\
 	include/zlib.h	\
@@ -58,12 +64,8 @@ zlib-build:
   # This is the regular version of zlib package, for normal install
   #
 DEPEND_USE+=		zlib
-
-DEPEND_ABI.zlib?=	zlib>=1.2.3
-DEPEND_DIR.zlib?=	../../archivers/zlib
-
-DEPEND_LIBS.zlib+=	-lz
   endif
-endif
+
+endif # ZLIB_DEPEND_MK -----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

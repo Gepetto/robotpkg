@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $LAAS: $
+# $LAAS: checkout 2009/02/15 13:48:12 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -128,8 +128,9 @@ cvs)
     : ${CHECKOUT_OPTS_CVS=}
     : ${_revision=}
     : ${_extract_dir=}
+    : ${cwd=`pwd`}
     ${TEST} -n "$revision" && _revision="-r $revision"
-    ${TEST} -n "$extract_dir" && _extract_dir="-d $extract_dir"
+    ${TEST} -n "$extract_dir" && _extract_dir="-d ${extract_dir##${cwd%/}/}"
     ${CVS} -d $repository checkout $_revision $_extract_dir ${1+"$@"}
     ;;
 esac

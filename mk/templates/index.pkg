@@ -13,7 +13,9 @@
     </div>
 
     <h2>%%PORT%%</h2>
-    <div id="comment">%%COMMENT%%</div>
+    <div id="comment">
+	 %%COMMENT%%
+    </div>
 
     <div id="content">
       <table>
@@ -25,7 +27,7 @@
 	  <td>Source version:
 	  <td>%%PKG%%
 	  <td>browse the package's
-	    <a href="/invalid/%%PORT%%/">history</a>.
+	    <a href="http://trac.laas.fr/git/robotpkg/log/%%PORT%%?showmsg=1">history</a>.
 	</tr>
 	<tr>
 	  <td>Home page:
@@ -52,12 +54,10 @@ href="https://softs.laas.fr/bugzilla/buglist.cgi?bug_status=__open__&product=rob
 <p>
 This package requires the following package(s) to build:
 %%BUILD_DEPENDS%%
-.
 </p>
 <p>
 This package requires the following package(s) to run:
 %%RUN_DEPENDS%%
-.
 </p>
 
 <p>

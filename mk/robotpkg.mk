@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/01/19 23:29:41 tho $
+# $LAAS: robotpkg.mk 2009/03/09 22:09:07 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -36,8 +36,18 @@
 #                                      Anthony Mallet on Wed Nov  8 2006
 #
 
-# Please see the pkgsrc/doc/guide manual for details on the
+# Please see the robotpkg/doc/robotpgk manual for details on the
 # variables used in this make file template.
+
+# Include any preferences, if not already included, and common
+# definitions. The file robotpkg.prefs.mk is protected against double
+# inclusion, but checking the flag here avoids loading and parsing it.
+#
+ifndef MK_ROBOTPKG_PREFS
+  include ../../mk/robotpkg.prefs.mk
+endif
+
+$(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
 # Make sure the default target is "all", which defaults to
 #
@@ -52,19 +62,9 @@
 #    build
 #
 .DEFAULT_GOAL:=all
+
 .PHONY: all
-all: build
-
-
-# Include any preferences, if not already included, and common
-# definitions. The file robotpkg.prefs.mk is protected against double
-# inclusion, but checking the flag here avoids loading and parsing it.
-#
-ifndef MK_ROBOTPKG_PREFS
-  include ../../mk/robotpkg.prefs.mk
-endif
-
-include ../../mk/internal/error.mk
+all: build;
 
 
 # --- Transform package Makefile variables and set defaults ----------
@@ -92,6 +92,7 @@ endif
 
 PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
 PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
+PKGVERSION_NOREV:=	$(patsubst ${PKGBASE}-%,%,${PKGNAME_NOREV})
 
 # Others
 #
@@ -104,6 +105,7 @@ MAINTAINER?=		openrobots@laas.fr
 PKGWILDCARD?=		${PKGBASE}-[0-9]*
 WRKSRC?=		${WRKDIR}/${DISTNAME}
 PREFIX?=		${LOCALBASE}
+USE_LANGUAGES?=		c # most packages need a C compiler
 
 ifneq (,$(or $(call isyes,$(INSTALL_UNSTRIPPED)), $(DEBUG_FLAGS)))
 _INSTALL_UNSTRIPPED=	# set (flag used by platform/*.mk)
@@ -236,17 +238,6 @@ INSTALL_MACROS=	BSD_INSTALL_PROGRAM=$(call quote,${INSTALL_PROGRAM})		\
 MAKE_ENV+=	${INSTALL_MACROS}
 SCRIPTS_ENV+=	${INSTALL_MACROS}
 
-# Used to print all the '===>' style prompts - override this to turn them off.
-ECHO_MSG?=		${ECHO}
-PHASE_MSG?=		${ECHO_MSG} "===>"
-STEP_MSG?=		${ECHO_MSG} "=>"
-WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
-ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
-FAIL_MSG?=		${FAIL} ${ERROR_MSG}
-
-WARNING_CAT?=		${SED} -e "s|^|WARNING: |" 1>&2
-ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
-
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.
 DO_NADA?=		${TRUE}
@@ -276,24 +267,11 @@ ifndef NO_CHECKSUM
 USE_TOOLS+=		digest:bootstrap
 endif
 
-# Pkg
-include ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk
-
-# Get the proper dependencies and set the PATH to use the compiler
-# named in PKGSRC_COMPILER.
-include ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk
-
-# Tools
-include ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk
-
 # Locking
 include ${ROBOTPKG_DIR}/mk/internal/locking.mk
 
-# Barriers
-include ${ROBOTPKG_DIR}/mk/internal/barrier.mk
-
 # Process user build options
-include ${ROBOTPKG_DIR}/mk/robotpkg.options.mk
+$(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 
 
 # --------------------------------------------------------------------
@@ -320,7 +298,7 @@ PKG_FAIL_REASON+= " . To indicate acceptance, add this line:"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=${LICENSE}"
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "   to ${_MAKECONF}"
+PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= ${hline}
   endif
@@ -377,49 +355,56 @@ _BUILD_DEFS+=	LICENSE RESTRICTED NO_PUBLIC_BIN NO_PUBLIC_SRC
 # adding pre-* or post-* targets/scripts, override these.
 ################################################################
 
-.PHONY: makedirs
-makedirs: ${WRKDIR}
-
-${WRKDIR}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${WRKDIR}
-
 # Check
--include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
+#include "${ROBOTPKG_DIR}/mk/check/bsd.check.mk"
 
 # Clean
-include ${ROBOTPKG_DIR}/mk/clean.mk
+$(call require-for, clean clean-depends su-do-clean,			\
+	${ROBOTPKG_DIR}/mk/clean.mk)
 
 # Fetch
-include ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk
+$(call require-for, fetch mirror-distfiles,				\
+	${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
 # Checksum
-include ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk
+$(call require-for, checksum makesum makepatchsum mps mdi makedistinfo,	\
+	${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
 # Extract
-ifndef MK_ROBOTPKG_EXTRACT
-  include ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk
-endif
+$(call require-for, extract checkout,					\
+	${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
 # Patch
-include ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk
+$(call require-for, patch,						\
+	${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
 
 # Configure
-include ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk
+$(call require-for, configure reconfigure,				\
+	${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
 
 # Build
-include ${ROBOTPKG_DIR}/mk/build/build-vars.mk
+$(if $(strip ${MAKECMDGOALS}),						\
+	$(call require-for, all build rebuild,				\
+		${ROBOTPKG_DIR}/mk/build/build-vars.mk),		\
+	$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk))
 
 # Install
-include ${ROBOTPKG_DIR}/mk/install/install-vars.mk
-
-# Update
-include ${ROBOTPKG_DIR}/mk/update/update-vars.mk
+$(call require-for, install su-install-all reinstall deinstall replace	\
+	bootstrap-register,						\
+	${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 
 # Package
-include ${ROBOTPKG_DIR}/mk/package/package-vars.mk
+$(call require-for, package repackage,					\
+	${ROBOTPKG_DIR}/mk/package/package-vars.mk)
 
 # Dependencies
-include ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk
+$(call require-for, bootstrap-depends depends,				\
+	${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
+# Update
+$(call require-for, update,						\
+	${ROBOTPKG_DIR}/mk/update/update-vars.mk)
+
 
 # --------------------------------------------------------------------
 #
@@ -440,22 +425,20 @@ _BIN_INSTALL_FLAGS+=	-A
 endif
 _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 
--include "${ROBOTPKG_DIR}/mk/install/bin-install.mk"
+#include "${ROBOTPKG_DIR}/mk/install/bin-install.mk"
 
+# plist generation
+$(call require-for, print-PLIST, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
-################################################################
-# Everything after here are internal targets and really
-# shouldn't be touched by anybody but the release engineers.
-################################################################
+# index.html generation code.
+$(call require-for, index, ${ROBOTPKG_DIR}/mk/internal/index.mk)
 
-include ../../mk/plist/plist-vars.mk
-
-include ${ROBOTPKG_DIR}/mk/internal/utils.mk
-include ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk
-include ${ROBOTPKG_DIR}/mk/internal/su-target.mk
+ifdef _SU_TARGETS
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/su-target.mk)
+endif
 
--include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
+#include "${ROBOTPKG_DIR}/mk/internal/build-defs-message.mk"
 #if make(debug) || make(build-env)
 #.include "${ROBOTPKG_DIR}/mk/bsd.pkg.debug.mk"
 #.endif
@@ -469,8 +452,19 @@ ifdef BATCH
  include ${ROBOTPKG_DIR}/mk/bulk/bulk.mk
 endif
 
-# index.html generation code.
-include ${ROBOTPKG_DIR}/mk/internal/index.mk
+# --- Files included after this line must be included as late as possible --
+#
+# These files must appear near the end of the robotpkg.mk file because they do
+# immediate expansions on variables set before. 
 
-# fake target to make pattern targets phony
-.FORCE:
+# Resolve all dependencies into the adequate variable depending on the type of
+# dependency.
+$(call require, ${ROBOTPKG_DIR}/mk/depends/resolve.mk)
+
+# Checks whether a package can be built in the current robotpkg.
+$(call require, ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk)
+
+# Tell 'make' not to try to rebuild any Makefile by specifing a target with no
+# dependencies and no commands.
+#
+$(sort ${MAKEFILE_LIST}):;

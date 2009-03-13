@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/03 23:25:36 tho $
+# $LAAS: Makefile 2009/01/27 11:54:35 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -30,11 +30,11 @@ PREFIX=			${LOCALBASE}/i386-mingw32
 COMPILER_TARGET=	i386-mingw32
 
 GNU_CONFIGURE=          yes
-CONFIGURE_ARGS+=	--with-sdk-include=${PREFIX.evart-sdk}/include
-CONFIGURE_ARGS+=	--with-sdk-lib=${PREFIX.evart-sdk}/bin
+CONFIGURE_ARGS+=	--with-sdk-include=${PREFIX.cortex-sdk}/include
+CONFIGURE_ARGS+=	--with-sdk-lib=${PREFIX.cortex-sdk}/bin
 
 DEPEND_METHOD.evart-client+=	build
 include ../../net/evart-client/depend.mk
 
-include ../../devel/evart-sdk/depend.mk
+include ../../devel/cortex-sdk/depend.mk
 include ../../mk/robotpkg.mk

@@ -1,0 +1,6 @@
+gbM : geometry for 6R arms
+->Toolbox for vectors computation
+->Geometric models (direct and inverse)
+Particularity: 
+Use only structures (see gbStruct.h)
+Include also a tcl interface

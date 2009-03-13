@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -38,7 +38,7 @@ endif
 ifeq (+,$(PAX_DEPEND_MK))
 PREFER.pax?=		robotpkg
 
-SYSTEM_SEARCH.pax=	bin/pax
+SYSTEM_SEARCH.pax=	'{,s}bin/{,robotpkg_}pax'
 
 DEPEND_USE+=		pax
 

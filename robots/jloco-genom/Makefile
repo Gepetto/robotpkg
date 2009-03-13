@@ -26,8 +26,8 @@ GNU_CONFIGURE=	yes
 
 GENOM_MODULE=	jloco
 
-DEPENDS+=	neobotix-libs>=1.1:../neobotix-libs
-
+include ../../robots/neobotix-libs/depend.mk
+include ../../motion/contlaw/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../localization/pom-genom/depend.mk

@@ -1,0 +1,4 @@
+@comment Thu Jul 3 11:33:40 CEST 2008
+include/EVaRT2.h
+bin/EVaComm2.dll
+bin/EVaComm2.lib

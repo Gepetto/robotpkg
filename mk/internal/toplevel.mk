@@ -1,4 +1,4 @@
-# $LAAS: toplevel.mk 2009/01/19 23:34:15 tho $
+# $LAAS: toplevel.mk 2009/03/05 23:03:14 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -38,7 +38,6 @@
 # This file contains the make targets that can be used from the
 # top-level Makefile. They are in this separate file to keep the
 # top-level file short and clean.
-#
 #
 
 .PHONY: db
@@ -100,55 +99,6 @@ else
 	@${GREP} ${key} ${CURDIR}/INDEX | ${AWK} -F\| '{ printf("Pkg:\t%s\nPath:\t%s\nInfo:\t%s\nMaint:\t%s\nIndex:\t%s\nB-deps:\t%s\nR-deps:\t%s\nArch:\t%s\n\n", $$1, $$2, $$4, $$6, $$7, $$8, $$9, $$10); }'
 endif
 
-#
-# Generate list of all packages by extracting information from
-# the category/index.html pages
-#
-index-all:
-	@if [ -f index-all.html ]; then \
-		${MV} index-all.html index-all.html.BAK ; \
-	fi
-	@${MAKE} index-all.html
-	@if ${CMP} -s index-all.html index-all.html.BAK ; then \
-		${MV} index-all.html.BAK index-all.html ; \
-	else \
-		${RM} -f index-all.html.BAK ; \
-	fi
-
-index-all.html:
-	@${RM} -f $@.new
-	@${RM} -f $@.newsorted
-	@${ECHO_N} "Processing categories for $@:"
-	@for category in ${SUBDIR} ""; do \
-		if [ "X$$category" = "X" ]; then continue; fi; \
-		if [ -f $${category}/index.html ]; then \
-			${ECHO_N} " $${category}" ; \
-			${GREP} '^<TR>' $${category}/index.html \
-			| ${SED} -e 's|"|"'$${category}'/|' \
-				-e 's| <td>| <td>(<A HREF="'$${category}'/index.html">'$${category}'</A>) <td>|' \
-		      		-e 's|<TR>|<TR VALIGN=TOP>|' \
-		      		-e 's|<TD VALIGN=TOP>|<TD>|' \
-			>> $@.new ; \
-		fi; \
-	done
-	@${ECHO} "."
-	@if [ ! -f $@.new ]; then \
-		${ECHO} "There are no categories with index.html files available."; \
-		${ECHO} "You need to run \`${MAKE} index' to generate them before running this target."; \
-		${FALSE}; \
-	fi
-	@${SORT} -f -t '>' -k 2 <$@.new >$@.newsorted
-	@${WC} -l $@.newsorted | ${AWK} '{ print $$1 }'  >$@.npkgs
-	@${CAT} mk/templates/index.all \
-	| ${SED} \
-		-e '/%%NPKGS%%/r$@.npkgs' \
-		-e '/%%NPKGS%%/d' \
-		-e '/%%PKGS%%/r$@.newsorted' \
-		-e '/%%PKGS%%/d' \
-		> $@
-	@${RM} -f $@.npkgs
-	@${RM} -f $@.new
-	@${RM} -f $@.newsorted
 
 # the bulk-cache and clean-bulk-cache targets are a global-pkgsrc
 # thing and thus it makes sense to run it from the top level pkgsrc

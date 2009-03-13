@@ -1,0 +1,15 @@
+@comment Tue Mar 10 22:36:35 CET 2009
+include/gbM/Proto_gb.h
+include/gbM/Proto_gbModeles.h
+include/gbM/gb.h
+include/gbM/gbGENOM.h
+include/gbM/gbStruct.h
+lib/gb.so
+lib/libgb.la
+lib/pkgconfig/gbM.pc
+share/gbM/gb.tcl
+share/gbM/gbModeles.tcl
+share/gbM/pkgIndex.tcl
+share/gbM/testGb.tcl
+@dirrm share/gbM
+@dirrm include/gbM

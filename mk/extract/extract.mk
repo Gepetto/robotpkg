@@ -1,4 +1,4 @@
-# $LAAS: extract.mk 2009/01/09 18:42:52 mallet $
+# $LAAS: extract.mk 2009/03/06 00:11:30 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -92,6 +92,9 @@ ifeq (yes,$(call exists,${_COOKIE.extract}))
 extract:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
+
   ifdef _PKGSRC_BARRIER
 extract: ${_EXTRACT_TARGETS}
   else
@@ -104,10 +107,9 @@ acquire-extract-lock: acquire-lock
 release-extract-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.extract}))
-${_COOKIE.extract}:
-	@${DO_NADA}
+${_COOKIE.extract}:;
 else
-${_COOKIE.extract}: real-extract
+${_COOKIE.extract}: real-extract;
 endif
 
 
@@ -125,7 +127,6 @@ _REAL_EXTRACT_TARGETS+=	pre-extract
 _REAL_EXTRACT_TARGETS+=	do-extract
 _REAL_EXTRACT_TARGETS+=	post-extract
 _REAL_EXTRACT_TARGETS+=	extract-cookie
-#_REAL_EXTRACT_TARGETS+=	error-check
 
 .PHONY: real-extract
 real-extract: ${_REAL_EXTRACT_TARGETS}
@@ -143,6 +144,7 @@ extract-dir:
 #
 # extract-check-checkout checks whether a checkout is present.
 #
+.PHONY: extract-check-checkout
 extract-check-checkout:
 ifeq (yes,$(call exists,${_COOKIE.checkout}))
 	${RUN}								\
@@ -250,8 +252,8 @@ endif
 ifdef TOOLS_UNRAR
 _EXTRACT_ENV+=	UNRAR=${TOOLS_UNRAR}
 endif
-ifdef TOOLS_UNZIP_CMD
-_EXTRACT_ENV+=	UNZIP_CMD=${TOOLS_UNZIP_CMD}
+ifdef UNZIP_CMD
+_EXTRACT_ENV+=	UNZIP_CMD=${UNZIP_CMD}
 endif
 ifdef TOOLS_UNZOO
 _EXTRACT_ENV+=	UNZOO=${TOOLS_UNZOO}

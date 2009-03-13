@@ -1,4 +1,4 @@
-# $LAAS: build.mk 2009/01/10 13:28:37 tho $
+# $LAAS: build.mk 2009/03/10 22:01:25 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -54,6 +54,9 @@
 #	flags as argument.
 #
 
+$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+
+
 BUILD_MAKE_FLAGS?=	# none
 BUILD_TARGET?=		all
 $(foreach _d,${BUILD_DIRS},$(eval BUILD_TARGET.${_d}?= ${BUILD_TARGET}))
@@ -78,6 +81,10 @@ ifeq (yes,$(call exists,${_COOKIE.build}))
 build:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+
   ifdef _PKGSRC_BARRIER
 build: ${_BUILD_TARGETS}
   else
@@ -90,10 +97,9 @@ acquire-build-lock: acquire-lock
 release-build-lock: release-lock
 
 ifeq (yes,$(call exists,${_COOKIE.build}))
-${_COOKIE.build}:
-	@${DO_NADA}
+${_COOKIE.build}:;
 else
-${_COOKIE.build}: real-build
+${_COOKIE.build}: real-build;
 endif
 
 
@@ -111,7 +117,6 @@ _REAL_BUILD_TARGETS+=	pre-build
 _REAL_BUILD_TARGETS+=	do-build
 _REAL_BUILD_TARGETS+=	post-build
 _REAL_BUILD_TARGETS+=	build-cookie
-#_REAL_BUILD_TARGETS+=	error-check
 
 .PHONY: real-build
 real-build: ${_REAL_BUILD_TARGETS}
@@ -184,5 +189,7 @@ post-build:
 # build-clean removes the state files for the "build" and later phases so that
 # the "build" target may be re-invoked.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
+
 build-clean: install-clean
 	${RUN}${RM} -f ${_COOKIE.build}

@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/10/21 17:48:06 mallet $
+# $LAAS: Makefile 2009/03/01 21:05:49 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -28,6 +28,12 @@ GENERATE_PLIST+=						\
 		| ${SORT} -r | ${SED} -e "s,${PREFIX}/,@dirrm ,g";
 
 INSTALL_TARGET=		install-gcc
+
+# don't build a shared libgcc
+CONFIGURE_ARGS+=        --disable-shared
+
+# pretend we don't use a C compiler to prevent circular dependencies
+USE_LANGUAGES=
 
 include ../../lang/gcc42/Makefile.common
 include ../../mk/robotpkg.mk

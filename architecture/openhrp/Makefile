@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/11/24 11:10:51 mallet $
+# $LAAS: Makefile 2009/02/27 18:24:46 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -45,6 +45,10 @@ SUBST_FILES.openhrp-paths=\
 
 LICENSE=	eclipse-public-license
 
+# we need g++>=4.2
+USE_LANGUAGES+=	c++
+GCC_REQUIRED+=	>=4.2
+
 include ../../architecture/openrtm-aist/depend.mk
 include ../../math/tvmet/depend.mk
 include ../../math/lapack/depend.mk
@@ -55,8 +59,6 @@ include ../../devel/sun-jmf/depend.mk
 include ../../devel/sun-java3d/depend.mk
 include ../../lang/jython/depend.mk
 include ../../lang/sun-jdk6/depend.mk
-
-include ../../lang/gcc42-c++/depend.mk
 include ../../mk/robotpkg.mk
 
 do-configure:

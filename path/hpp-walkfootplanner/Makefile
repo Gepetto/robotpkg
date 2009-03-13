@@ -29,6 +29,11 @@ COMMENT=	Collision free walk path planning for a humanoid robot.
 
 GNU_CONFIGURE=	yes
 
+# options
+PKG_SUPPORTED_OPTIONS+=	verbose1
+PKG_OPTION_DESCR.verbose1=	Define level of verbosity
+PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+
 include ../../math/jrl-mathtools/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk

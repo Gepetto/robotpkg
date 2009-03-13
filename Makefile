@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/19 23:36:47 tho $
+# $LAAS: Makefile 2009/03/05 21:18:01 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -44,26 +44,9 @@
 # SPECIFIC_PKGS
 #	(See mk/defaults/mk.conf)
 #
-#
 # See also:
 #	mk/misc/toplevel.mk
 #
-
-# Note: The tools definitions must come before bsd.prefs.mk is included.
-
-# tools used by this Makefile
-#USE_TOOLS+=	[ awk cat cmp echo env expr false fgrep grep mv	rm sed	\
-#		sort wc
-
-# additional tools used by bsd.pkg.subdir.mk
-#USE_TOOLS+=	basename touch
-
-# additional tools used by bsd.bulk-pkg.mk
-#USE_TOOLS+=	egrep find ls sh tee true tsort
-
-ROBOTPKGTOP=	yes
-
-include mk/robotpkg.prefs.mk
 
 SUBDIR+=	architecture
 SUBDIR+=	archivers
@@ -90,4 +73,4 @@ SUBDIR+=	shell
 SUBDIR+=	sysutils
 SUBDIR+=	www
 
-include ${CURDIR}/mk/robotpkg.subdir.mk
+include mk/robotpkg.subdir.mk

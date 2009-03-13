@@ -1,6 +1,6 @@
-# $LAAS: depends.mk 2008/05/25 22:35:07 tho $
+# $LAAS: depends.mk 2009/03/13 16:12:52 mallet $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -58,14 +58,6 @@ _DEPENDS_PATTERNS_CMD=	\
 		${AWK} '/^full/ { print $$2 } { next }';		\
 	fi
 
-.PHONY: show-depends
-show-depends:
-	@case ${VARNAME}"" in							 \
-	BUILD_DEPENDS)	${_REDUCE_DEPENDS_CMD} $(call quote,${BUILD_DEPENDS}) ;; \
-	DEPENDS|*)	${_REDUCE_DEPENDS_CMD} $(call quote,${DEPENDS}) ;;	 \
-	esac
-
-
 # --- pkg-depends-cookie (PRIVATE, mk/depends/depends.mk) ------------
 #
 # depends-cookie creates the "depends" cookie file.
@@ -79,9 +71,9 @@ show-depends:
 #
 .PHONY: pkg-depends-cookie
 pkg-depends-cookie: ${_DEPENDS_FILE}
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.depends} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.depends})
-	${_PKG_SILENT}${_PKG_DEBUG}${MV} -f ${_DEPENDS_FILE} ${_COOKIE.depends}
+	${RUN}${TEST} ! -f ${_COOKIE.depends} || ${FALSE}
+	${RUN}${MKDIR} $(dir ${_COOKIE.depends})
+	${RUN}${MV} -f ${_DEPENDS_FILE} ${_COOKIE.depends}
 
 ${_DEPENDS_FILE}:
 	${RUN} ${MKDIR} $(dir $@)
@@ -105,19 +97,102 @@ ${_DEPENDS_FILE}:
 	done >> $@
 
 
+# -- pkg-depends-build-options ---------------------------------------------
+#
+# pkg-depends-build-options checks that required packages are or will be built
+# with required options.
+#
+# This is done by fetching the PKG_OPTIONS that have been in effect when a
+# package was built. When the package is not yet installed, the current
+# PKG_OPTIONS for this package are queried.
+#
+override \
+define _build_options_cmd
+	pkg=`${_PKG_BEST_EXISTS} "$1" || ${TRUE}`;			\
+	case "$$pkg" in							\
+	"")	popts=`cd ${DEPEND_DIR.${_pkg_}} &&			\
+		  ${RECURSIVE_MAKE} show-var VARNAME=PKG_OPTIONS ||:`;	\
+		installed=no ;;						\
+	*)	popts=`${PKG_INFO} -Q PKG_OPTIONS ${_pkg_} || :`;	\
+		installed=yes ;;					\
+	esac;								\
+	for opt in ${REQD_BUILD_OPTIONS.$1}; do				\
+	  ${ECHO} $$popts | ${GREP} $$opt 2>/dev/null 1>&2 || {		\
+	    ${ERROR_MSG} ${hline};					\
+	    ${ERROR_MSG} "${bf}The package ${PKGNAME} requires the"	\
+		"following option${rm}";				\
+	    ${ERROR_MSG} "${bf}enabled in $1:${rm}	$$opt";		\
+	    ${ERROR_MSG} "";						\
+	    if ${TEST} "$$installed" = "yes"; then			\
+	      ${ERROR_MSG} "You must re-install $1 in"			\
+			"${DEPEND_DIR.${_pkg_}}";			\
+	      ${ERROR_MSG} "with this option enabled. It was built with"\
+		"these options:";					\
+	    else							\
+	      ${ERROR_MSG} "You must add \`$$opt' to PKG_OPTIONS.$1 in";\
+	      ${ERROR_MSG} "		${MAKECONF}";			\
+	      ${ERROR_MSG} "The current options for $1 are:";		\
+	    fi;								\
+	    if test -n "$${popts}"; then				\
+	      ${ERROR_MSG} "		$${popts}";			\
+	    else							\
+	      ${ERROR_MSG} "		(none)";			\
+	    fi;								\
+	    ${ERROR_MSG} ${hline};					\
+	    exit 2;							\
+	  };								\
+	done
+endef
+
+.PHONY: pkg-depends-build-options
+pkg-depends-build-options:
+	${RUN}								\
+$(foreach _pkg_,${DEPEND_USE},						\
+  $(if $(and $(strip ${REQD_BUILD_OPTIONS.${_pkg_}}),			\
+		$(filter robotpkg,${PREFER.${_pkg_}})),			\
+	$(call _build_options_cmd,${_pkg_});				\
+  )									\
+)
+
+
+# --- pkg-depends-file (PRIVATE) -------------------------------------------
+#
+# pkg-depends-file creates the robotpkg prefixes file.
+#
+.PHONE: pkg-depends-file
+pkg-depends-file: export hline:=${hline}
+pkg-depends-file: export bf:=${bf}
+pkg-depends-file: export rm:=${rm}
+pkg-depends-file:
+	${RUN}${MKDIR} $(dir ${_PKGDEP_FILE});				\
+	>${_PKGDEP_FILE}; exec >>${_PKGDEP_FILE};			\
+$(foreach _pkg_,${DEPEND_USE},						\
+  $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+	prefix=`${PKG_INFO} -qp ${_pkg_} | ${SED} -e 's|^[^/]*||;q'`;	\
+	${_PREFIXSEARCH_CMD} -e -p "$$prefix" 				\
+		-d $(or $(call quote,${SYSTEM_DESCR.${_pkg_}}),"")	\
+		-n $(call quote,${PKGNAME})				\
+		-t robotpkg						\
+		"${_pkg_}" "${DEPEND_ABI.${_pkg_}}"			\
+		$(or ${SYSTEM_SEARCH.${_pkg_}}, "");			\
+  )									\
+)
+
+
+
 # --- pkg-depends-install (PRIVATE, mk/depends/depends.mk) -----------
 #
-# depends-install installs any missing dependencies.
+# pkg-depends-install installs any missing dependencies.
 #
-.PHONY: depends-install
+.PHONY: pkg-depends-install
 pkg-depends-install: ${_DEPENDS_FILE}
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
-	set -- dummy `${CAT} ${_DEPENDS_FILE}`; shift;			\
+	${RUN}set -- dummy `${CAT} ${_DEPENDS_FILE}`; shift;		\
 	while ${TEST} $$# -gt 0; do					\
 		type="$$1"; pattern="$$2"; dir="$$3"; shift 3;		\
 		silent=;						\
 		${_DEPENDS_INSTALL_CMD};				\
 	done
+
 
 # --- pkg-bootstrap-depends (PUBLIC, pkgsrc/mk/depends/depends.mk) ---
 
@@ -127,12 +202,11 @@ pkg-depends-install: ${_DEPENDS_FILE}
 #
 .PHONY: pkg-bootstrap-depends
 pkg-bootstrap-depends:
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
-	args=$(call quote,$(subst :, ,${BOOTSTRAP_DEPENDS}));		\
+	${RUN}args=$(call quote,$(subst :, ,${BOOTSTRAP_DEPENDS}));	\
 	set -- dummy $$args; shift;					\
 	while ${TEST} $$# -gt 0; do					\
 		pattern="$$1"; dir="$$2"; shift 2;			\
-		silent=${_BOOTSTRAP_VERBOSE:Dyes};			\
+		silent=${_BOOTSTRAP_VERBOSE};				\
 		${_DEPENDS_INSTALL_CMD};				\
 	done
 

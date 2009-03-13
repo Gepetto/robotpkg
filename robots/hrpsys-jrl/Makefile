@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/02 15:39:44 mallet $
+# $LAAS: Makefile 2009/02/03 12:15:48 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -34,8 +34,7 @@ NO_PUBLIC_SRC=		${RESTRICTED}
 NO_PUBLIC_BIN=		${RESTRICTED}
 
 INTERACTIVE_STAGE=	fetch
-FETCH_MESSAGE+= " The file"
-$(foreach __file__,${DISTFILES},$(eval FETCH_MESSAGE+="	${__file__}"))
+FETCH_MESSAGE+= " The file: ${DISTNAME}${EXTRACT_SUFX}"
 FETCH_MESSAGE+= ""
 FETCH_MESSAGE+= " must be put manually into:"
 FETCH_MESSAGE+= "       ${DISTDIR}/"
@@ -53,7 +52,8 @@ SUBST_FILES.hrpsys-paths=\
 	Controller/IOserver/robot/HRP2JRL/bin/HRP2Controller.sh
 
 # we need g++>=4.2
-include ../../lang/gcc42-c++/depend.mk
+USE_LANGUAGES+=	c++
+GCC_REQUIRED+=	>=4.2
 
 include ../../math/blas/depend.mk
 include ../../architecture/openhrp/depend.mk

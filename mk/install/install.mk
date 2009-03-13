@@ -41,7 +41,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-
 # --- install (PUBLIC) -----------------------------------------------
 
 # install is a public target to install the package.
@@ -53,21 +52,25 @@ _INSTALL_TARGETS+=	release-install-lock
 
 .PHONY: install
 ifeq (yes,$(call exists,${_COOKIE.install}))
-install:
-	@${DO_NADA}
+  install:;
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
   ifdef _PKGSRC_BARRIER
-install: ${_INSTALL_TARGETS}
+    $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+    install: ${_INSTALL_TARGETS}
   else
-install: barrier
+    install: barrier;
   endif
 endif
 
 ifeq (yes,$(call exists,${_COOKIE.install}))
-${_COOKIE.install}:
-	@${DO_NADA}
+  ${_COOKIE.install}:;
 else
-${_COOKIE.install}: real-install
+  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
+
+  ${_COOKIE.install}: real-install;
 endif
 
 .PHONY: acquire-install-lock release-install-lock
@@ -86,10 +89,9 @@ release-install-localbase-lock: release-localbase-lock
 #
 _REAL_INSTALL_TARGETS+=	install-check-interactive
 ifndef _EXTRACT_IS_CHECKOUT
-_REAL_INSTALL_TARGETS+=	install-check-version
+  _REAL_INSTALL_TARGETS+=install-check-version
 endif
 _REAL_INSTALL_TARGETS+=	install-message
-#_REAL_INSTALL_TARGETS+=	install-vars
 _REAL_INSTALL_TARGETS+=	install-all
 _REAL_INSTALL_TARGETS+=	install-cookie
 
@@ -171,7 +173,6 @@ ifndef NO_PKG_REGISTER
 _INSTALL_ALL_TARGETS+=		pkg-register
 endif
 _INSTALL_ALL_TARGETS+=		release-install-localbase-lock
-#_INSTALL_ALL_TARGETS+=		error-check
 
 .PHONY: install-all
 ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
@@ -249,6 +250,8 @@ post-install:
 # install-clean removes the state files for the "install" and
 # later phases so that the "install" target may be re-invoked.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/package/package-vars.mk)
+
 install-clean: package-clean #check-clean
 	${RUN}${RM} -f ${PLIST} ${_COOKIE.install}
 
@@ -258,16 +261,7 @@ install-clean: package-clean #check-clean
 # bootstrap-register registers "bootstrap" packages that are installed
 # by the pkgsrc/bootstrap/bootstrap script.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
+
 bootstrap-register: pkg-register clean
 	@${DO_NADA}
-
-
-# --- install-cookie (PRIVATE) ---------------------------------------
-#
-# install-cookie creates the "install" cookie file.
-#
-.PHONY: install-cookie
-install-cookie:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.install} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.install})
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > ${_COOKIE.install}

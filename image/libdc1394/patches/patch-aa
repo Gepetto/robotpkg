@@ -1,0 +1,21 @@
+Fix compilation with gcc 4.3
+--- examples/dc1394_vloopback.c.orig	2008-05-01 07:14:50.000000000 +0200
++++ examples/dc1394_vloopback.c	2009-03-12 13:29:20.886940000 +0100
+@@ -250,7 +250,7 @@
+     }
+ }
+ 
+-inline void
++static inline void
+ yuy2_to_yv16( const unsigned char *src, unsigned char *dest, int width, int height)
+ {
+     register int total = (width * height) >> 1;
+@@ -267,7 +267,7 @@
+     }
+ }
+ 
+-inline void
++static inline void
+ yuy2_to_yv12( const unsigned char *src, unsigned char *dest, int width, int height)
+ {
+     register int stride = width >> 1;

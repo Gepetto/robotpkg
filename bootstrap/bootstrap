@@ -108,6 +108,13 @@ run_cmd()
     fi
 }
 
+# run a command verbosely
+echo_cmd()
+{
+    echo "running: $@"
+    eval "$@"
+}
+
 mkdir_p()
 {
     run_cmd "mkdir -p $@"
@@ -205,6 +212,29 @@ else
 fi
 
 
+# --- create the initial prefix directory ----------------------------
+
+[ -x "$prefix" ] || {
+  echo_msg "Creating ${prefix} directory"
+  echo_cmd mkdir -p "$prefix" 2>/dev/null || {
+    echo failed
+    echo_msg "Becoming root to create ${prefix} directory"
+    echo_cmd sudo mkdir -p "$prefix" &&
+    echo_cmd sudo chown `id -u` "${prefix}"
+  }
+
+  [ -x "$prefix" ] ||
+    die "Please create a directory ${prefix}, writable by you.
+You can also do $0 --prefix <path> to bootstrap with <path> prefix."
+
+  echo_cmd chmod u+rwx "${prefix}" ||
+    die "Could not make ${prefix} writable by you. Please do it manually."
+}
+
+[ -r "$prefix" -a -w "$prefix" ] ||
+  die "Please make ${prefix} readable and writable by you."
+
+
 # --- set up an example mk.conf file ---------------------------------
 
 export MKCONF_EXAMPLE=${wrkdir}/robotpkg.conf.example
@@ -279,7 +309,7 @@ run_cmd "(							\
 echo_msg "Registering installed package"
 run_cmd "(							\
     cd $pkgsrcdir/pkgtools/pkg_install &&			\
-    $gmake MAKECONF=${MKCONF_EXAMPLE} VERSION=0			\
+    $gmake MAKECONF=${MKCONF_EXAMPLE} VERSION=0	NO_DEPENDS=yes	\
 	WRKSRC=$wrkdir/pkg_install PLIST_SRC=PLIST.bootstrap	\
 	bootstrap-register					\
 )"

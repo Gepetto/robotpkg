@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/10/13 11:20:16 mallet $
+# $LAAS: Makefile 2009/02/27 18:09:51 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -18,21 +18,26 @@
 
 DISTNAME=	hppgik-${VERSION}
 PKGNAME=	hpp-gik-${VERSION}
-VERSION=	1.9
+VERSION=	2.2
 
 CATEGORIES=	path
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hppgik/}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hppgik/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hppGik
 
 MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Generalized Inverse Kinematics for humanoid robots.
 
-DEPENDS+=	jrl-interface-giktask>=1.4:../../interfaces/jrl-interface-giktask
+DEPENDS+=	jrl-interface-giktask>=2.0:../../interfaces/jrl-interface-giktask
 
-GNU_CONFIGURE=	yes
+GNU_CONFIGURE=		yes
+DOXYGEN_PLIST_DIR+=	share/doc/hppGik
 
 include ../../math/jrl-dynamics/depend.mk
 include ../../math/hrp2-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/pdflatex.mk
 include ../../mk/robotpkg.mk

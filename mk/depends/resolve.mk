@@ -1,6 +1,6 @@
-# $LAAS: resolve.mk 2008/11/02 01:05:04 tho $
+# $LAAS: resolve.mk 2009/03/08 23:23:14 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -114,110 +114,46 @@ $(foreach _pkg_,${DEPEND_USE},$(eval DEPEND_METHOD.${_pkg_}?=full))
 #
 define _dpd_adddep
   ifneq (,$$(filter robotpkg,$${PREFER.${1}}))
-    ifneq (,$$(filter full,${DEPEND_METHOD.${1}}))
-DEPENDS+=		${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
-    else
-      ifneq (,$$(filter build,${DEPEND_METHOD.${1}}))
-BUILD_DEPENDS+=		${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
+    ifeq (,$(strip ${DEPEND_DIR.${1}}))
+      PKG_FAIL_REASON+=	${hline}
+      PKG_FAIL_REASON+= "${bf}Requirements for ${PKGNAME} were not met:${rm}"
+      PKG_FAIL_REASON+= ""
+      ifdef SYSTEM_DESCR.${1}
+        PKG_FAIL_REASON+= "		${bf}"$${SYSTEM_DESCR.${1}}"${rm}"
       else
-        ifneq (,$$(filter bootstrap,${DEPEND_METHOD.${1}}))
-BOOTSTRAP_DEPENDS+=	${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
-        endif
+        PKG_FAIL_REASON+= "		${bf}$${DEPEND_ABI.${1}}${rm}"
       endif
+      PKG_FAIL_REASON+= ""
+      PKG_FAIL_REASON+= "${bf}This package is not included in robotpkg${rm}, and you have to"
+      PKG_FAIL_REASON+= "configure your preferences by setting the following variable"
+      PKG_FAIL_REASON+= "in ${MAKECONF}:"
+      PKG_FAIL_REASON+= ""
+      PKG_FAIL_REASON+= "	. PREFER.${1}=	system"
+      PKG_FAIL_REASON+= ""
+      PKG_FAIL_REASON+=	${hline}
+    endif
+    ifneq (,$$(filter full,${DEPEND_METHOD.${1}}))
+      DEPENDS+=${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
+    else ifneq (,$$(filter build,${DEPEND_METHOD.${1}}))
+      BUILD_DEPENDS+=${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
+    else ifneq (,$$(filter bootstrap,${DEPEND_METHOD.${1}}))
+      BOOTSTRAP_DEPENDS+=${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
     endif
   endif
 endef
 $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
 
 
-# Compute the prefix of packages that we are pulling from the system.
-# The prefix of robotpkg packages is computed later in this file, after
-# the barrier.
+# Check PREFIX.<pkg> variable for each depended packages.
 #
-_PREFIXSEARCH_CMD=	${SETENV} ECHO=${ECHO}					\
-				  TEST=${TEST}					\
-				  SED=${SED}					\
-				  AWK=${AWK}					\
-				  PKG_ADMIN_CMD=${PKG_ADMIN_CMD}		\
-			${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
-
-override define _dpd_sysprefix
-  ifndef _PREFIX.${1}
-    ifeq (,$$(filter robotpkg,$${PREFER.${1}}))
-      _PREFIX.${1}:=$$(shell ${_PREFIXSEARCH_CMD}			\
-	-p $$(call quote,$$(or $${PREFIX.${1}},${SYSTEM_PREFIX}))	\
-	"${1}" "$${DEPEND_ABI.${1}}" $${SYSTEM_SEARCH.${1}})
-      MAKEOVERRIDES+=	_PREFIX.${1}:=$$(call quote,$$(strip $${_PREFIX.${1}}))
-    endif
-  endif
-  ifeq (,$$(filter robotpkg,$${PREFER.${1}}))
-    ifeq (,$$(strip $${_PREFIX.${1}}))
-PKG_FAIL_REASON+= ${hline}
-PKG_FAIL_REASON+= "System requirements for ${PKGNAME} were not met:"
-PKG_FAIL_REASON+= $$(shell ${_PREFIXSEARCH_CMD} -e			\
-	-p $$(call quote,$$(or $${PREFIX.${1}},${SYSTEM_PREFIX}))	\
-	"${1}" "$${DEPEND_ABI.${1}}" $${SYSTEM_SEARCH.${1}} 		\
-	| ${SED} -e 's/^/"/g;s/$$$$/"/g')
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "In order to fix the problem, you should install"
-PKG_FAIL_REASON+= ""
-      ifdef SYSTEM_DESCR.${1}
-PKG_FAIL_REASON+= "		"$${SYSTEM_DESCR.${1}}
-      else
-PKG_FAIL_REASON+= "		$${DEPEND_ABI.${1}}"
-      endif
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "in your system (as well as associated development packages)."
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "If this package is already present, you should check the"
-PKG_FAIL_REASON+= "following variables in ${_MAKECONF}:"
-PKG_FAIL_REASON+= "	. SYSTEM_PREFIX is a list of system directories that"
-PKG_FAIL_REASON+= "	  will be searched for system files. Its current value is:"
-      ifdef SYSTEM_PREFIX
-$$(foreach d,${SYSTEM_PREFIX},$$(eval PKG_FAIL_REASON+="		$${d}"))
-      else
-PKG_FAIL_REASON+= "		(empty)"
-      endif
-PKG_FAIL_REASON+= "	. PREFIX.${1} can be set to the prefix path of your"
-PKG_FAIL_REASON+= "	  ${1} system package."
-      ifneq (,$(strip ${DEPEND_DIR.${1}}))
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "If no $${DEPEND_ABI.${1}} package can be made available in your "
-PKG_FAIL_REASON+= "system, you can choose to use the robotpkg version, by setting "
-PKG_FAIL_REASON+= "in ${_MAKECONF}:"
-PKG_FAIL_REASON+= "	. PREFER.${1}=	robotpkg"
-      endif
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= ${hline}
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "*** ${1} package not found. (see above)"
-    else
-      PREFIX.${1}:=$$(firstword $${_PREFIX.${1}})
-      SYSTEM_FILES.${1}:=$$(wordlist 2,$$(words $${SYSTEM_SEARCH.${1}}),$${_PREFIX.${1}})
-    endif
-  endif
-endef
-$(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_sysprefix,${_pkg_})))
-
-
-# --- Begin after the barrier ----------------------------------------
-
 ifdef _PKGSRC_BARRIER
-
-# Generate default value for PREFIX.<pkg> variable for the robotpkg
-# packages.
-#
-override define _dpd_pkgprefix
-  ifndef PREFIX.${1}
-    ifneq (,$$(filter robotpkg,$${PREFER.${1}}))
-PREFIX.${1}:=$$(shell ${PKG_INFO} -qp ${1} | ${SED} -e 's,^[^/]*,,;q')
-    else
-PKG_FAIL_REASON+=	"The prefix for ${1} has not been defined."
+  override define _dpd_pkgprefix
+    ifndef PREFIX.${1}
+      PKG_FAIL_REASON+=	"The prefix for ${1} has not been defined."
     endif
-MAKEOVERRIDES+=		PREFIX.${1}:=$$(call quote,$${PREFIX.${1}})
-  endif
-endef
-$(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_pkgprefix,${_pkg_})))
+  endef
+  $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_pkgprefix,${_pkg_})))
+endif
 
 
 # Generate default values for:
@@ -329,5 +265,3 @@ ifneq (,$(filter pkg-config,${DEPEND_USE}))
 		${PREFIX.${_pkg_}}/,${DEPEND_PKG_CONFIG.${_pkg_}})),	\
 	${PKG_CONFIG_PATH})
 endif
-
-endif # _PKGSRC_BARRIER

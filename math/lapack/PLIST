@@ -1,1 +1,5 @@
-lib/liblapack.la
+@comment Sat Feb 14 10:38:24 JST 2009
+lib/liblapack.a
+lib/liblapack.so
+lib/liblapack.so.${PKGVERSION}
+lib/liblapack.so.3

@@ -33,7 +33,7 @@ DEPEND_DIR.sickLib?=	../../hardware/sickLib
 
 SYSTEM_SEARCH.sickLib=\
 	include/sicklib/sick_lib.h \
-	lib/pkgconfig/sickLib.pc
+	lib/pkgconfig/sicklib.pc
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/08/03 16:30:13 tho $
+# $LAAS: depend.mk 2009/02/19 13:09:30 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without

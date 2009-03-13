@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/10 23:32:45 tho $
+# $LAAS: Makefile 2009/02/14 00:06:12 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -17,7 +17,7 @@
 #
 
 DISTNAME=	lapack-3.1.0
-PKGREVISION=	1
+PKGREVISION=	2
 
 CATEGORIES=	math
 MASTER_SITES=	ftp://ftp.netlib.org/lapack/			\
@@ -31,15 +31,11 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.netlib.org/lapack/index.html
 COMMENT=	Linear Algebra PACKage.
 
-BUILD_TARGET=		lapacklib
-
-INSTALLATION_DIRS=	lib
+USE_LANGUAGES+=	fortran
 
 include ../../math/blas/depend.mk
-include ../../lang/gcc4-fortran/depend.mk
-include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
 
-do-install:
-	${TOOLS.libtool} --mode=install ${INSTALL_DATA}	\
-		${WRKSRC}/liblapack.la ${PREFIX}/lib
+post-extract:
+	${CP} ${FILESDIR}/CMakeLists.txt ${WRKSRC}

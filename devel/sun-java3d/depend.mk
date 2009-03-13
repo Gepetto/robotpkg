@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/10/06 14:30:51 mallet $
+# $LAAS: depend.mk 2009/03/10 10:27:50 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,7 +33,7 @@ DEPEND_ABI.sun-java3d?=	sun-java3d>=1.5.1
 DEPEND_DIR.sun-java3d?=	../../devel/sun-java3d
 
 SYSTEM_SEARCH.sun-java3d=\
-	lib/ext/j3dcore.jar
+	'{,java/sun-6/}lib/ext/j3dcore.jar'
 
 endif # --- SUN_JAVA3D_DEPEND_MK -------------------------------------
 

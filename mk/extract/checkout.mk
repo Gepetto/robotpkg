@@ -1,4 +1,4 @@
-# $LAAS: checkout.mk 2009/01/09 20:27:57 tho $
+# $LAAS: checkout.mk 2009/03/01 15:40:12 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -87,8 +87,7 @@ _CHECKOUT_TARGETS+=	release-checkout-lock
 
 .PHONY: checkout
 ifeq (yes,$(call exists,${_COOKIE.checkout}))
-checkout ${_COOKIE.checkout}:
-	@${DO_NADA}
+checkout ${_COOKIE.checkout}:;
 else
   ifdef _PKGSRC_BARRIER
 checkout: ${_CHECKOUT_TARGETS}
@@ -96,7 +95,7 @@ checkout: ${_CHECKOUT_TARGETS}
 checkout: barrier
   endif
 
-${_COOKIE.checkout}: real-checkout
+${_COOKIE.checkout}: real-checkout;
 endif
 
 .PHONY: acquire-checkout-lock release-checkout-lock
@@ -137,9 +136,11 @@ checkout-check-extract:
 ifeq (yes,$(call exists,${_COOKIE.extract}))
 	${RUN}								\
 	${ERROR_MSG} ${hline};						\
-	${ERROR_MSG} "Regular package sources are present in the build directory of";\
-	${ERROR_MSG} "${PKGNAME}. Perhaps a stale work directory?";	\
-	${ERROR_MSG} "Try to ${MAKE} clean in ${PKGPATH}"; 		\
+	${ERROR_MSG} "${bf}Regular package sources are present in the"	\
+		"build directory${rm} of";				\
+	${ERROR_MSG} "${PKGBASE}. Perhaps a stale work directory?";	\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "Try to \`${bf}${MAKE} clean${rm}' in ${PKGPATH}";	\
 	${ERROR_MSG} ${hline};						\
 	exit 2;
 endif

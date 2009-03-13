@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/08 16:24:21 mallet $
+# $LAAS: depend.mk 2009/02/03 01:04:12 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -36,5 +36,5 @@ endif # KINEO_PP_DEPEND_MK -------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
 
-include ../../lang/gcc4-c++/depend.mk
+GCC_REQUIRED+=		>=4.0
 include ../../devel/boost-headers/depend.mk

@@ -1,4 +1,4 @@
-# $LAAS: pipo.mk 2009/01/09 20:30:08 tho $
+# $LAAS: sites.mk 2009/01/20 18:37:53 mallet $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # All rights reserved.
@@ -47,7 +47,10 @@ MASTER_SITE_ROBOTPKG+=	\
 	http://softs.laas.fr/openrobots/robotpkg/distfiles/
 
 MASTER_SITE_JRL+=	\
-	ftp://${JRL_USER}${JRL_PASSWD:%=:%}@softs.laas.fr/
+	ftp://${JRL_FTP_USER}${JRL_FTP_PASSWD:%=:%}@softs.laas.fr/
+
+MASTER_REPOSITORY_JRL+=	\
+	git ssh://${JRL_GIT_USER:=@}softs.laas.fr/git/jrl/
 
 MASTER_SITE_SOURCEFORGE+=	\
 	http://easynews.dl.sourceforge.net/sourceforge/ \

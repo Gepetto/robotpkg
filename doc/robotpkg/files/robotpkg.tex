@@ -1,4 +1,4 @@
-% $LAAS: robotpkg.tex 2009/01/18 23:13:09 tho $
+% $LAAS: robotpkg.tex 2009/03/04 16:49:53 mallet $
 %
 % Copyright (c) 2009 LAAS/CNRS
 % All rights reserved.
@@ -23,7 +23,7 @@
    \input{share/robotpkg.tth}
 \else
    \usepackage[T1]{fontenc}
-   \usepackage{share/robotpkg}
+   \usepackage{robotpkg}
 \fi
 
 \title{A guide to robotpkg}
@@ -31,6 +31,9 @@
    Anthony Mallet --- {\tt anthony.mallet@laas.fr}\\[1em]
    Copyright 2006-2009 \copyright LAAS/CNRS
 }
+\date{\today}
+
+\def\robotpkg{{\tt robotpkg} }
 
 \begin{document} % ---------------------------------------------------------
 
@@ -45,15 +48,22 @@
 
 \chapter{The robotpkg user's guide}
 \label{chapter:user}
+
+Basically, there are two ways of using robotpkg.  The  first is to only install
+the  package tools and to  use binary packages that  someone else has prepared.
+The second way is  to install the  programs from source. Then  you are  able to
+build your own packages,  and you can  still use  binary packages from  someone
+else. Sections in this document will detail both approaches where appropriate.
+
 \input{getting}
 \input{bootstrapping}
-%\input{using}
+\input{using}
+\input{configuring}
 
 \chapter{The robotpkg developer's guide}
 \label{chapter:developer}
 
 \chapter{The robotpkg infrastructure internals}
 \label{chapter:internal}
-\chapter{test}
 
 \end{document} % -----------------------------------------------------------

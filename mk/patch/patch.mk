@@ -1,4 +1,4 @@
-# $LAAS: patch.mk 2009/01/09 19:43:08 mallet $
+# $LAAS: patch.mk 2009/03/06 00:37:50 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -86,19 +86,16 @@
 #	man page for more details.  Defaults to "-F0" for zero fuzz.
 #
 
-_PATCH_APPLIED_FILE=	${WRKDIR}/.patch
-_COOKIE.patch=		${WRKDIR}/.patch_done
-
-
 # --- patch (PUBLIC) -------------------------------------------------
 #
 # patch is a public target to apply the distribution and pkgsrc
 # patches to the extracted sources for the package.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 ifdef _EXTRACT_IS_CHECKOUT
-_PATCH_TARGETS+=	checkout
+  _PATCH_TARGETS+=	checkout
 else
-_PATCH_TARGETS+=	extract
+  _PATCH_TARGETS+=	extract
 endif
 _PATCH_TARGETS+=	acquire-patch-lock
 _PATCH_TARGETS+=	${_COOKIE.patch}
@@ -109,6 +106,8 @@ ifeq (yes,$(call exists,${_COOKIE.patch}))
 patch:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
   ifdef _PKGSRC_BARRIER
 patch: ${_PATCH_TARGETS}
   else
@@ -139,7 +138,6 @@ _REAL_PATCH_TARGETS+=	pre-patch
 _REAL_PATCH_TARGETS+=	do-patch
 _REAL_PATCH_TARGETS+=	post-patch
 _REAL_PATCH_TARGETS+=	patch-cookie
-#_REAL_PATCH_TARGETS+=	error-check
 
 .PHONY: real-patch
 real-patch: ${_REAL_PATCH_TARGETS}
@@ -147,22 +145,6 @@ real-patch: ${_REAL_PATCH_TARGETS}
 .PHONY: patch-message
 patch-message:
 	@${PHASE_MSG} "Patching for ${PKGNAME}"
-
-
-# --- patch-cookie (PRIVATE) -----------------------------------------
-#
-# patch-cookie creates the "patch" cookie file.  The contents are
-# the paths to the patches that were applied (if any).
-#
-.PHONY: patch-cookie
-patch-cookie:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.patch} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	if ${TEST} -f ${_PATCH_APPLIED_FILE}; then			\
-		${MV} -f ${_PATCH_APPLIED_FILE} ${_COOKIE.patch};	\
-	else								\
-		${TOUCH} ${TOUCH_FLAGS} ${_COOKIE.patch};		\
-	fi
 
 
 # --- pre-patch, do-patch, post-patch (PUBLIC, override) -------------

@@ -1,24 +1,24 @@
-@comment $Id: PLIST 2009/01/08 16:00:50 mallet $
+@comment Fri Jan 30 12:18:54 CET 2009
 include/MatrixAbstractLayer/MatrixAbstractLayer.h
 include/MatrixAbstractLayer/MatrixAbstractLayerBoost.h
 include/MatrixAbstractLayer/MatrixAbstractLayerDoc.h
+include/MatrixAbstractLayer/MatrixAbstractLayerMatrix3x3JrlMath.h
+include/MatrixAbstractLayer/MatrixAbstractLayerMatrix4x4JrlMath.h
 include/MatrixAbstractLayer/MatrixAbstractLayerSmall.h
-include/MatrixAbstractLayer/MatrixAbstractLayerSmallMatrix3x3Default.h
-include/MatrixAbstractLayer/MatrixAbstractLayerSmallMatrix4x4Default.h
-include/MatrixAbstractLayer/MatrixAbstractLayerSmallVector3Default.h
-include/MatrixAbstractLayer/MatrixAbstractLayerSmallVector4Default.h
 include/MatrixAbstractLayer/MatrixAbstractLayerT3D.h
 include/MatrixAbstractLayer/MatrixAbstractLayerVNL.h
+include/MatrixAbstractLayer/MatrixAbstractLayerVector3JrlMath.h
+include/MatrixAbstractLayer/MatrixAbstractLayerVector4JrlMath.h
 include/MatrixAbstractLayer/abstract.h
 include/MatrixAbstractLayer/abstractMatrix.h
 include/MatrixAbstractLayer/abstractVector.h
 include/MatrixAbstractLayer/boost.h
 include/MatrixAbstractLayer/boostMacros.h
 include/MatrixAbstractLayer/boostMatrix.h
+include/MatrixAbstractLayer/boostMatrixSvd.h
 include/MatrixAbstractLayer/boostSvd.h
 include/MatrixAbstractLayer/boostVector.h
 include/MatrixAbstractLayer/boostspecific.h
 include/MatrixAbstractLayer/configMAL.h
 lib/pkgconfig/MatrixAbstractLayer.pc
-share/doc/doxytag/MatrixAbstractLayer.doxytag
 @dirrm include/MatrixAbstractLayer

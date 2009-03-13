@@ -1,4 +1,4 @@
-# $LAAS: pkg-vars.mk 2009/01/15 18:56:42 mallet $
+# $LAAS: pkg-vars.mk 2009/03/04 19:33:19 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -61,23 +61,26 @@ PKG_DELETE_CMD?=	${PKG_TOOLS_BIN}/robotpkg_delete
 PKG_INFO_CMD?=		${PKG_TOOLS_BIN}/robotpkg_info ${_PKG_DISCARD_STDERR}
 
 ifndef PKGTOOLS_VERSION
-PKGTOOLS_VERSION:=	$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo 0)
+PKGTOOLS_VERSION:=	$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo -1)
 MAKEFLAGS+=		PKGTOOLS_VERSION=${PKGTOOLS_VERSION}
 endif
 
 ifneq (pkgtools/pkg_install,${PKGPATH})
-ifeq (0,${PKGTOOLS_VERSION})
-_PKGTOOLS_ERROR:=	$(shell ${PKG_INFO_CMD} -V 2>&1 ||:)
-
-PKG_FAIL_REASON+= ${hline}
-PKG_FAIL_REASON+= "The robotpkg administrative tools are not working."
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "Please make sure that <prefix>/sbin is in your PATH or"
-PKG_FAIL_REASON+= "that you have set the ROBOTPKG_BASE variable to <prefix>"
-PKG_FAIL_REASON+= "in your environment, where <prefix> is the installation"
-PKG_FAIL_REASON+= "prefix that you configured during bootstrap."
-PKG_FAIL_REASON+= ${hline}
-PKG_FAIL_REASON+= "${_PKGTOOLS_ERROR}. (see above)"
+ifeq (-1,${PKGTOOLS_VERSION})
+  $(shell ${ERROR_MSG} ${hline})
+  $(shell ${ERROR_MSG} "The robotpkg administrative tools are not working:")
+  $(shell ${ERROR_MSG} "$(shell ${PKG_INFO_CMD} -V 2>&1 ||:)")
+  $(shell ${ERROR_MSG} )
+  $(shell ${ERROR_MSG} "Please make sure that <prefix>/sbin is in your PATH"	\
+		       "or that you")
+  $(shell ${ERROR_MSG} "have set the ROBOTPKG_BASE variable to <prefix> in"	\
+                       "your environment,")
+  $(shell ${ERROR_MSG} "where <prefix> is the installation prefix that you configured")
+  $(shell ${ERROR_MSG} "during the bootstrap of robotpkg.")
+  $(shell ${ERROR_MSG} )
+  $(shell ${ERROR_MSG} "Otherwise, the default prefix \`/opt/openrobots' is used.")
+  $(shell ${ERROR_MSG} ${hline})
+  $(error Fatal error)
 endif
 endif
 

@@ -1,5 +1,5 @@
---- numeric/bindings/lapack/lapack_names.h.orig	2008-10-13 17:52:49.249377000 +0200
-+++ numeric/bindings/lapack/lapack_names.h	2008-10-13 17:52:56.000156000 +0200
+--- lapack/lapack_names.h.orig	2008-10-13 17:52:49.249377000 +0200
++++ lapack/lapack_names.h	2008-10-13 17:52:56.000156000 +0200
 @@ -181,6 +181,12 @@
  #define LAPACK_ZHBEV FORTRAN_ID( zhbev )
  

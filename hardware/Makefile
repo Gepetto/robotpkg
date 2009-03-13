@@ -5,7 +5,7 @@ COMMENT=	Hardware drivers and low-level software
 
 SUBDIR+=	GPSNovatel
 SUBDIR+=	MTI
-SUBDIR+=	contec-pio32-header
+SUBDIR+=	contec-pio32-headers
 SUBDIR+=	contec-pio32-kmod
 SUBDIR+=	cwiid
 SUBDIR+=	fh2805-libs
@@ -19,6 +19,7 @@ SUBDIR+=	pa10-libs
 SUBDIR+=	peak-linux-driver
 SUBDIR+=	platine-genom
 SUBDIR+=	sahand
+SUBDIR+=	sahand-genom
 SUBDIR+=	serial
 SUBDIR+=	sickLib
 SUBDIR+=	sick-genom

@@ -1,0 +1,10 @@
+--- Init.make.in~	2009-03-09 16:39:58.000000000 +0100
++++ Init.make.in	2009-03-10 22:26:08.000000000 +0100
+@@ -60,6 +60,7 @@
+ LTLDPURE=	$(LIBTOOL) --mode=link purify $(CC)
+ 
+ # Tcl/Tk
++TCL_CC=			@TCL_CC@
+ TCL_CPPFLAGS=		@TCL_CPPFLAGS@
+ TCL_LDFLAGS=		@TCL_LDFLAGS@
+ TCL_LIBS=		@TCL_LIB_SPEC@ @TK_LIB_SPEC@

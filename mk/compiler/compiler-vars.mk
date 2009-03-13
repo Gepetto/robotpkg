@@ -1,6 +1,6 @@
-# $LAAS: compiler-vars.mk 2008/10/23 12:13:49 mallet $
+# $LAAS: compiler-vars.mk 2009/03/09 21:32:23 tho $
 #
-# Copyright (c) 2006-2008 LAAS/CNRS
+# Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -41,7 +41,7 @@
 #
 # The following variables may be set by the pkgsrc user in mk.conf:
 #
-# PKGSRC_COMPILER
+# PKGSRC_COMPILER - XXX NOT SUPPORTED YET
 #	A list of values specifying the chain of compilers to be used by
 #	pkgsrc to build packages.
 #
@@ -69,42 +69,15 @@
 #
 # The following variables may be set by a package:
 #
-# GCC_REQD
-#	A list of version numbers used to determine the minimum
-#	version of GCC required by a package.  This value should only
-#	be appended to by a package Makefile.
-#
-#	NOTE: Be conservative when setting GCC_REQD, as lang/gcc3 is
-#	known not to build on some platforms, e.g. Darwin.  If gcc3 is
-#	required, set GCC_REQD=3.0 so that we do not try to pull in
-#	lang/gcc3 unnecessarily and have it fail.
-#
 # USE_LANGUAGES
 #	Lists the languages used in the source code of the package,
 #	and is used to determine the correct compilers to install.
 #	Valid values are: c, c99, c++, fortran, java, objc.  The
 #       default is "c".
 #
-# The following variables are defined, and available for testing in
-# package Makefiles:
-#
-# CC_VERSION
-#	The compiler and version being used, e.g.,
-#
-#	.include "../../mk/compiler.mk"
-#
-#	.if !empty(CC_VERSION:Mgcc-3*)
-#	...
-#	.endif
-#
 
 ifndef ROBOTPKG_COMPILER_MK
 ROBOTPKG_COMPILER_MK=	defined
-
-include ../../mk/robotpkg.prefs.mk
-
-# Since most packages need a C compiler, this is the default value.
-USE_LANGUAGES?=	c
 
 # Add c support if c99 is set
 ifneq (,$(filter c99,${USE_LANGUAGES}))
@@ -134,6 +107,6 @@ endif
 
 _PKGSRC_COMPILER=	$(filter ${_PSEUDO_COMPILERS},${PKGSRC_COMPILER}) ${_COMPILER}
 
-include $(patsubst %,../../mk/compiler/%.mk,${_PKGSRC_COMPILER})
+include $(patsubst %,${ROBOTPKG_DIR}/mk/compiler/%.mk,${_PKGSRC_COMPILER})
 
 endif	# ROBOTPKG_COMPILER_MK

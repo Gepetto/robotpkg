@@ -1,0 +1,3 @@
+The url2robotpkg program creates a new robotpkg package from only the URL of a
+distribution file. It is intended to help robotpkg developers create new
+packages quickly and easily.

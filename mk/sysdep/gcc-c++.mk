@@ -1,6 +1,6 @@
-# $LAAS: gcc-c++.mk 2008/12/10 23:39:35 tho $
+# $LAAS: gcc-c++.mk 2009/02/03 19:07:09 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -16,49 +16,48 @@
 #                                      Anthony Mallet on Thu Oct 23 2008
 #
 
-ifndef ROBOTPKG_COMPILER_MK
+ifndef ROBOTPKG_COMPILER_MK # ==============================================
 
 # If we are included directly, simply register the compiler requirements
 USE_LANGUAGES+=	c++
 
-else
+else # =====================================================================
 
 # If we are included from compiler-vars.mk, register the proper dependencies.
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GCC_C++_DEPEND_MK:=	${GCC_C++_DEPEND_MK}+
 
-# Select gcc package according to the version required
+# Select gcc package according to the version required. If the package provided
+# by lang/gcc42 matches the requirements, use this one. Otherwise, rely on the
+# system.
 #
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4.2<4.3' 'gcc-${_GCC_REQD}' && echo y))
-  # g++>=4.2<4.3 can be provided by lang/gcc42-c++
+ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc${_GCC_REQUIRED}' 'gcc-4.2.4' && echo y))
+  _GCC_PKG:=		gcc42
   _GCC_C++_PKG:=	gcc42-c++
   _GCC_C++_DIR:=	../../lang/gcc42-c++
 else
-  ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc>=4<4.2' 'gcc-${_GCC_REQD}' && echo y))
-    # g++>=4<4.2 can be provided by lang/gcc4-c++
-    _GCC_C++_PKG:=	gcc4-c++
-    _GCC_C++_DIR:=	../../lang/gcc4-c++
-  else
-    # no robotpkg package
-    _GCC_C++_PKG:=	gcc-c++
-    _GCC_C++_DIR:=# empty
-  endif
+  _GCC_PKG:=		gcc
+  _GCC_C++_PKG:=	gcc-c++
+  _GCC_C++_DIR:=# empty
 endif
 
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		${_GCC_C++_PKG}
 endif
 
-ifeq (+,$(GCC_C++_DEPEND_MK)) # -------------------------------------------
+ifeq (+,$(GCC_C++_DEPEND_MK)) # --------------------------------------------
 
-PREFER.${_GCC_C++_PKG}?=	system
+PREFER.gcc?=			system
+PREFER.${_GCC_PKG}?=		${PREFER.gcc}
+PREFER.${_GCC_C++_PKG}?=	${PREFER.${_GCC_PKG}}
 
 DEPEND_USE+=			${_GCC_C++_PKG}
 
-DEPEND_ABI.${_GCC_C++_PKG}?=	${_GCC_C++_PKG}>=${_GCC_REQD}
+DEPEND_ABI.${_GCC_C++_PKG}?=	${_GCC_C++_PKG}${_GCC_REQUIRED}
 DEPEND_DIR.${_GCC_C++_PKG}?=	${_GCC_C++_DIR}
 
+SYSTEM_DESCR.${_GCC_C++_PKG}=	'gcc C++ compiler, version ${_GCC_REQUIRED}'
 SYSTEM_SEARCH.${_GCC_C++_PKG} = 'bin/g++::% -dumpversion'
 
 include ../../mk/robotpkg.prefs.mk
@@ -68,8 +67,8 @@ else
   override CXX=$(word 1,${SYSTEM_FILES.${_GCC_C++_PKG}})
 endif
 
-endif # GCC_C++_DEPEND_MK -------------------------------------------------
+endif # GCC_C++_DEPEND_MK --------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
 
-endif # ROBOTPKG_COMPILER_MK
+endif # ROBOTPKG_COMPILER_MK ===============================================

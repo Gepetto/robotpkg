@@ -1,10 +1,12 @@
-# Copyright (c) 2008 IS/AIST-ST2I/CNRS
-#      Joint Japanese-French Robotics Laboratory (JRL).
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
-# Redistribution  and  use in source   and binary forms,  with or without
-# modification, are permitted provided that  the following conditions are
-# met:
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
+#
+# Redistribution  and  use  in  source  and  binary  forms,   with  or  without
+# modification, are permitted provided that the following conditions are met:
 #
 #   1. Redistributions  of  source code must  retain  the above copyright
 #      notice, this list of conditions and the following disclaimer.
@@ -13,11 +15,19 @@
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
 #
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+# PERFORMANCE OF THIS SOFTWARE.
+#
 # From $NetBSD: replace.mk,v 1.10 2007/03/09 03:28:58 rillig Exp $
 #
+#                                             Anthony Mallet on Sun Jan 27 2008
+#
+
 # Public targets:
 #
 # replace:
@@ -40,9 +50,14 @@ _REPLACE_TARGETS+=	pkg-replace
 
 .PHONY: replace
 ifdef _PKGSRC_BARRIER
-replace: ${_REPLACE_TARGETS}
+  $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
+  replace: ${_REPLACE_TARGETS}
 else
-replace: barrier
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
+  replace: barrier
 endif
 
 .PHONY: replace-message

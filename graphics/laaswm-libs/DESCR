@@ -1,0 +1,3 @@
+laaswm-libs is a set of libraries providing control over windows managed
+by the laaswm window manager. Both C and Tcl bindings are provided.
+'wmclient' is a small interactive test program.

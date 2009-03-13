@@ -1,8 +1,9 @@
-@comment lun oct 13 18:06:02 CEST 2008
+@comment Sun Feb 15 14:08:18 JST 2009
 include/boost/numeric/bindings/amos/amos.h
 include/boost/numeric/bindings/amos/amos.hpp
 include/boost/numeric/bindings/amos/amos_names.h
 include/boost/numeric/bindings/amos/amos_overloads.hpp
+include/boost/numeric/bindings/atlas/cblas.hpp
 include/boost/numeric/bindings/atlas/cblas1.hpp
 include/boost/numeric/bindings/atlas/cblas1_overloads.hpp
 include/boost/numeric/bindings/atlas/cblas2.hpp
@@ -10,26 +11,25 @@ include/boost/numeric/bindings/atlas/cblas2_overloads.hpp
 include/boost/numeric/bindings/atlas/cblas3.hpp
 include/boost/numeric/bindings/atlas/cblas3_overloads.hpp
 include/boost/numeric/bindings/atlas/cblas_enum.hpp
-include/boost/numeric/bindings/atlas/cblas.hpp
 include/boost/numeric/bindings/atlas/cblas_inc.hpp
 include/boost/numeric/bindings/atlas/clapack.hpp
 include/boost/numeric/bindings/atlas/clapack_inc.hpp
 include/boost/numeric/bindings/atlas/clapack_overloads.hpp
+include/boost/numeric/bindings/blas/blas.h
+include/boost/numeric/bindings/blas/blas.hpp
 include/boost/numeric/bindings/blas/blas1.hpp
 include/boost/numeric/bindings/blas/blas1_overloads.hpp
 include/boost/numeric/bindings/blas/blas2.hpp
 include/boost/numeric/bindings/blas/blas2_overloads.hpp
 include/boost/numeric/bindings/blas/blas3.hpp
 include/boost/numeric/bindings/blas/blas3_overloads.hpp
-include/boost/numeric/bindings/blas/blas.h
-include/boost/numeric/bindings/blas/blas.hpp
 include/boost/numeric/bindings/blas/blas_names.h
 include/boost/numeric/bindings/lapack/gees.hpp
 include/boost/numeric/bindings/lapack/geev.hpp
 include/boost/numeric/bindings/lapack/geqrf.hpp
 include/boost/numeric/bindings/lapack/gesdd.hpp
-include/boost/numeric/bindings/lapack/gesvd.hpp
 include/boost/numeric/bindings/lapack/gesv.hpp
+include/boost/numeric/bindings/lapack/gesvd.hpp
 include/boost/numeric/bindings/lapack/hbev.hpp
 include/boost/numeric/bindings/lapack/heev.hpp
 include/boost/numeric/bindings/lapack/hesv.hpp
@@ -78,11 +78,10 @@ include/boost/numeric/bindings/traits/type_traits.hpp
 include/boost/numeric/bindings/traits/ublas_banded.hpp
 include/boost/numeric/bindings/traits/ublas_hermitian.hpp
 include/boost/numeric/bindings/traits/ublas_matrix.hpp
-include/boost/numeric/bindings/traits/ublas_matrix.hpp.orig
 include/boost/numeric/bindings/traits/ublas_sparse.hpp
 include/boost/numeric/bindings/traits/ublas_symmetric.hpp
-include/boost/numeric/bindings/traits/ublas_vector2.hpp
 include/boost/numeric/bindings/traits/ublas_vector.hpp
+include/boost/numeric/bindings/traits/ublas_vector2.hpp
 include/boost/numeric/bindings/traits/vector_raw.hpp
 include/boost/numeric/bindings/traits/vector_traits.hpp
 include/boost/numeric/bindings/umfpack/umfpack.hpp
@@ -92,6 +91,9 @@ include/boost/numeric/bindings/umfpack/umfpack_overloads.hpp
 @dirrm include/boost/numeric/bindings/traits/detail
 @dirrm include/boost/numeric/bindings/traits
 @dirrm include/boost/numeric/bindings/lapack
+@exec ${MKDIR} %D/include/boost/numeric/bindings/cblas
+@dirrm include/boost/numeric/bindings/cblas
 @dirrm include/boost/numeric/bindings/blas
 @dirrm include/boost/numeric/bindings/atlas
 @dirrm include/boost/numeric/bindings/amos
+@dirrm include/boost/numeric/bindings

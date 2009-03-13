@@ -23,8 +23,7 @@ GNU_CONFIGURE=	yes
 
 GENOM_MODULE=	fingers
 
-DEPENDS+=	jidogrip-libs>=1.1:../../hardware/jidogrip-libs
-
+include ../../hardware/jidogrip-libs/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../localization/pom-genom/depend.mk

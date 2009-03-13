@@ -1,0 +1,4 @@
+Control module for the Schunk Antropomorphic Hand. 
+
+This Genom component provides an interface with the Linux API provided 
+by Schunk.
