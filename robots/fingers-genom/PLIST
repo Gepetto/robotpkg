@@ -24,12 +24,12 @@ lib/libfingersClient.la
 ${PLIST.openprs}lib/openprs/libfingersOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/fingers-oprs.pc
 lib/pkgconfig/fingers.pc
-lib/tclserv/libfingersTclServ.la
+${PLIST.tcl}lib/tclserv/libfingersTclServ.la
 share/modules/gen/fingers.gen
 ${PLIST.openprs}share/modules/openprs/fingersOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/fingersOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/fingersOpenprs.sym
-share/modules/tcl/fingersClient.tcl
+${PLIST.tcl}share/modules/tcl/fingersClient.tcl
 ${PLIST.openprs}@dirrm include/fingers/server/openprs
 @dirrm include/fingers/server
 @dirrm include/fingers
