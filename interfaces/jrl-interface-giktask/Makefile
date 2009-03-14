@@ -1,4 +1,4 @@
-b# $LAAS: Makefile 2009/02/10 17:10:20 tho $
+# $LAAS: Makefile 2009/02/10 17:10:20 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
