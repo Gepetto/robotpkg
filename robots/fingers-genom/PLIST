@@ -17,10 +17,19 @@ include/fingers/server/fingersPrint.h
 include/fingers/server/fingersPrintXML.h
 include/fingers/server/fingersScan.h
 include/fingers/server/fingersType.h
+${PLIST.openprs}include/fingers/server/openprs/fingersDecodeOpenprs.h
+${PLIST.openprs}include/fingers/server/openprs/fingersEncodeOpenprs.h
+${PLIST.openprs}include/fingers/server/openprs/fingersRequestsOpenprsProto.h
 lib/libfingersClient.la
+${PLIST.openprs}lib/openprs/libfingersOpenprs.la
+${PLIST.openprs}lib/pkgconfig/fingers-oprs.pc
 lib/pkgconfig/fingers.pc
-lib/tclserv/libfingersTclServ.la
+${PLIST.tcl}lib/tclserv/libfingersTclServ.la
 share/modules/gen/fingers.gen
-share/modules/tcl/fingersClient.tcl
+${PLIST.openprs}share/modules/openprs/fingersOpenprs.inc
+${PLIST.openprs}share/modules/openprs/fingersOpenprs.opf
+${PLIST.openprs}share/modules/openprs/fingersOpenprs.sym
+${PLIST.tcl}share/modules/tcl/fingersClient.tcl
+${PLIST.openprs}@dirrm include/fingers/server/openprs
 @dirrm include/fingers/server
 @dirrm include/fingers

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2009/03/12 18:42:12 mallet $
+# $LAAS: prefixsearch.sh 2009/03/13 19:07:51 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -265,12 +265,14 @@ if ${TEST} $errors = yes; then
     else
 	${ERROR_MSG} 1>&2 "${bf}Please install it before continuing.${rm}"
     fi
-    ${ERROR_MSG} 1>&2
-    ${ERROR_MSG} 1>&2 "If this package is installed in a non-standard"	\
-	"location, you have"
-    ${ERROR_MSG} 1>&2 "to modify the SYSTEM_PREFIX or PREFIX.$pkg"	\
-	"variables in"
-    ${ERROR_MSG} 1>&2 "${MAKECONF}"
+    if test "$type" != "robotpkg"; then					\
+        ${ERROR_MSG} 1>&2
+	${ERROR_MSG} 1>&2 "If this package is installed in a"		\
+		"non-standard location, you have"
+	${ERROR_MSG} 1>&2 "to modify the SYSTEM_PREFIX or PREFIX.$pkg"	\
+		"variables in"
+	${ERROR_MSG} 1>&2 "${MAKECONF}"
+    fi
     if test -n "$robotpkg"; then
 	${ERROR_MSG} 1>&2
 	${ERROR_MSG} 1>&2 "If no $abi package can be made available"	\

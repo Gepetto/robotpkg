@@ -17,6 +17,8 @@
 #
 
 DISTNAME=		genPos-genom-0.1
+PKGREVISION=		1
+
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
@@ -27,6 +29,8 @@ COMMENT=		Common position-related data structures for GenoM
 GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		genPos
+GENOM_ARGS=		-a
+
 include ../../architecture/genom/depend.mk
 
 include ../../mk/robotpkg.mk

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007,2009 LAAS/CNRS
+# Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -14,23 +14,33 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                             Anthony Mallet on Wed Oct 17 2007
+#                                             Anthony Mallet on Thu Mar 12 2009
 #
 
-DISTNAME=		openprs-1.0b2
-CATEGORIES=		architecture
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
+DEPEND_DEPTH:=		${DEPEND_DEPTH}+
+TRANSGEN_DEPEND_MK:=	${TRANSGEN_DEPEND_MK}+
 
-MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/openprs
-COMMENT=		Open Source Procedural Reasoning System
+ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=		transgen
+endif
 
-GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-readline=${PREFIX.readline}
-CONFIGURE_ARGS+=	--with-motif-includes=${PREFIX.motif}/include
-CONFIGURE_ARGS+=	--with-motif-libraries=${PREFIX.motif}/lib
+ifeq (+,$(TRANSGEN_DEPEND_MK)) # -------------------------------------------
 
-include ../../devel/mkdep/depend.mk
-include ../../mk/sysdep/motif.mk
-include ../../mk/sysdep/readline.mk
-include ../../mk/robotpkg.mk
+PREFER.transgen?=	robotpkg
+
+DEPEND_USE+=		transgen
+
+DEPEND_ABI.transgen?=	transgen>=1.0b1
+DEPEND_DIR.transgen?=	../../architecture/transgen
+
+SYSTEM_SEARCH.transgen=\
+	bin/transgen			\
+	include/transgen/oprs-com.h	\
+	lib/pkgconfig/transgen.pc	\
+	lib/liboprs-com.a
+
+export TRANSGEN?=	${PREFIX.transgen}/bin/transgen
+
+endif # TRANSGEN_DEPEND_MK -------------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

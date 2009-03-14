@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/10/24 11:58:04 mallet $
+# $LAAS: depend.mk 2009/03/12 23:15:31 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -41,16 +41,26 @@ TOOLS.genom?=		${PREFIX.genom}/bin/genom
 GENOM_ARGS?=#		empty
 
 # Add genom-related options
-PKG_SUPPORTED_OPTIONS+=	tcl
+PKG_SUPPORTED_OPTIONS+=	tcl openprs
 PKG_SUGGESTED_OPTIONS+=	tcl
 
 PKG_OPTION_DESCR.tcl=	Enable the generation of the TCL client code
 define PKG_OPTION_SET.tcl
-	GENOM_ARGS+=	-t
-	REQD_BUILD_OPTIONS.genom+=	tcl
+  GENOM_ARGS+=	-t
+  REQD_BUILD_OPTIONS.genom+=	tcl
+  include ../../mk/sysdep/tcl.mk
 endef
 define PKG_OPTION_UNSET.tcl
-	GENOM_ARGS:=	$(filter-out -t,${GENOM_ARGS})
+  GENOM_ARGS:=	$(filter-out -t,${GENOM_ARGS})
+endef
+
+PKG_OPTION_DESCR.openprs=Enable the generation of the OpenPRS client code
+define PKG_OPTION_SET.openprs
+  GENOM_ARGS+=	-o
+  include ../../architecture/transgen/depend.mk
+endef
+define PKG_OPTION_UNSET.openprs
+  GENOM_ARGS:=	$(filter-out -o,${GENOM_ARGS})
 endef
 
 ifdef GENOM_MODULE

@@ -1,4 +1,4 @@
-@comment Wed Jan 21 17:58:29 CET 2009
+@comment Fri Mar 13 16:48:42 CET 2009
 bin/sahand
 bin/sahandSendInitRqst
 bin/sahandTest
@@ -16,10 +16,20 @@ include/sahand/server/sahandPrint.h
 include/sahand/server/sahandPrintXML.h
 include/sahand/server/sahandScan.h
 include/sahand/server/sahandType.h
+${PLIST.openprs}include/sahand/server/openprs/sahandDecodeOpenprs.h
+${PLIST.openprs}include/sahand/server/openprs/sahandEncodeOpenprs.h
+${PLIST.openprs}include/sahand/server/openprs/sahandRequestsOpenprsProto.h
 lib/libsahandClient.la
+${PLIST.openprs}lib/openprs/libsahandOpenprs.la
+${PLIST.openprs}lib/pkgconfig/sahand-oprs.pc
 lib/pkgconfig/sahand.pc
 ${PLIST.tcl}lib/tclserv/libsahandTclServ.la
 share/modules/gen/sahand.gen
+${PLIST.openprs}share/modules/openprs/sahandOpenprs.inc
+${PLIST.openprs}share/modules/openprs/sahandOpenprs.opf
+${PLIST.openprs}share/modules/openprs/sahandOpenprs.sym
+${PLIST.openprs}share/modules/tcl/sahandClient.tcl
 ${PLIST.tcl}share/modules/tcl/sahandClient.tcl
+${PLIST.openprs}@dirrm include/sahand/server/openprs
 @dirrm include/sahand/server
 @dirrm include/sahand
