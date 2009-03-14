@@ -1,4 +1,4 @@
-@comment Fri Feb 27 18:14:16 CET 2009
+@comment Sat Mar 14 10:59:20 JST 2009
 include/hppGik/constraints/hppGikComConstraint.h
 include/hppGik/constraints/hppGikConfigurationConstraint.h
 include/hppGik/constraints/hppGikGazeConstraint.h
@@ -13,13 +13,13 @@ include/hppGik/constraints/hppGikRotationConstraint.h
 include/hppGik/constraints/hppGikTransformationConstraint.h
 include/hppGik/constraints/hppGikVectorizableConstraint.h
 include/hppGik/core/hppGikBounder.h
-include/hppGik/core/hppGikMotionPlan.h
 include/hppGik/core/hppGikMotionPlanColumn.h
 include/hppGik/core/hppGikMotionPlanElement.h
+include/hppGik/core/hppGikMotionPlan.h
 include/hppGik/core/hppGikMotionPlanRow.h
 include/hppGik/core/hppGikPrioritizedMotion.h
-include/hppGik/core/hppGikSolver.h
 include/hppGik/core/hppGikSolverBasic.h
+include/hppGik/core/hppGikSolver.h
 include/hppGik/examples/example.h
 include/hppGik/hppGikTools.h
 include/hppGik/motionplanners/elements/hppGikComMotion.h
@@ -49,7 +49,6 @@ include/hppGik/tasks/hppGikStepTask.h
 include/hppGik/tasks/hppGikWholeBodyTask.h
 lib/libhppGik.la
 lib/pkgconfig/hppGik.pc
-share/doc/doxytag/hppGik.doxytag
 share/gik/hppGikPreviewController10ms.ini
 share/gik/hppGikPreviewController20ms.ini
 share/gik/hppGikPreviewController50ms.ini
