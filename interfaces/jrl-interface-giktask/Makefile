@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/10 17:10:20 tho $
+b# $LAAS: Makefile 2009/02/10 17:10:20 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -28,7 +28,7 @@ MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for generalized inverse kinematics tasks.
 
-DEPENDS+=	jrl-interface-dynamics>=1.11:../../interfaces/jrl-interface-dynamics
+DEPENDS+=	jrl-interface-dynamics>=1.13:../../interfaces/jrl-interface-dynamics
 
 GNU_CONFIGURE=	yes
 
