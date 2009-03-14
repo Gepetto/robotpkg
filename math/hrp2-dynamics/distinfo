@@ -1,5 +1,3 @@
-$NetBSD: distinfo,v 1.9 2005/02/23 12:06:55 agc Exp $
-
-SHA1 (hrp2dynamics-1.0.tar.gz) = b03be79f8bf032a5b1103e224e657f89a7b11728
-RMD160 (hrp2dynamics-1.0.tar.gz) = 86b2977e8338d9de279399ad26b4bc8f28f8d45c
-Size (hrp2dynamics-1.0.tar.gz) = 330428 bytes
+SHA1 (hrp2dynamics-1.1.tar.gz) = f05188686861934a93faf023e860e7db9b3e1c3a
+RMD160 (hrp2dynamics-1.1.tar.gz) = dc7da0741e19f037f3ef809d50635ca0586b14db
+Size (hrp2dynamics-1.1.tar.gz) = 25038 bytes
