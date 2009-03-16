@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/03/13 11:06:54 mallet $
+# $LAAS: extract-vars.mk 2009/03/16 23:03:18 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -49,6 +49,13 @@ $(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
 EXTRACT_ONLY?=		${DISTFILES}
 EXTRACT_SUFX?=		.tar.gz
+
+# let users override the MASTER_REPOSITORY defined in a package
+ifdef REPOSITORY.${PKGBASE}
+  _MASTER_REPOSITORY=${REPOSITORY.${PKGBASE}}
+else ifdef MASTER_REPOSITORY
+  _MASTER_REPOSITORY=${MASTER_REPOSITORY}
+endif
 
 
 # Discover which tools we need based on the file extensions of the
@@ -160,7 +167,7 @@ endif
 # checkout is a public target to perform repository checkout.
 #
 .PHONY: checkout
-ifdef MASTER_REPOSITORY
+ifdef _MASTER_REPOSITORY
   include ${ROBOTPKG_DIR}/mk/extract/checkout.mk
 else
 checkout:
