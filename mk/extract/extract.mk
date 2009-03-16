@@ -87,8 +87,6 @@ _EXTRACT_TARGETS+=	acquire-extract-lock
 _EXTRACT_TARGETS+=	${_COOKIE.extract}
 _EXTRACT_TARGETS+=	release-extract-lock
 
-CHECKOUTPKGNAME_VAR=	PREFER.${MASTER_REPOSITORY_NAME}.checkout
-
 .PHONY: extract
 ifeq (yes,$(call exists,${_COOKIE.extract}))
 extract:
@@ -284,11 +282,6 @@ $(foreach __file__,${EXTRACT_ONLY},					\
 	cd ${WRKDIR} && cd ${EXTRACT_DIR} && ${EXTRACT_CMD};		\
 )
 
-ifeq (checkout ,$($(CHECKOUTPKGNAME_VAR)))
-pre-extract: checkout
-	@echo "Pre extract through checkout"
-else
-pre-extract:      	
-endif
+pre-extract:
 
 post-extract:

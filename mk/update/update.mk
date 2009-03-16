@@ -54,10 +54,6 @@ $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 NOCLEAN?=	NO	# don't clean up after update
-ifeq (checkout ,$($(CHECKOUTPKGNAME_VAR)))
-NOCLEAN=YES
-endif
-
 REINSTALL?=	NO	# reinstall upon update
 
 # UPDATE_TARGET is the target that is invoked when updating packages during
