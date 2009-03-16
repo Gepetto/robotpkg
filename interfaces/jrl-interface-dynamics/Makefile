@@ -23,8 +23,9 @@ PKGNAME=	jrl-interface-dynamics-${VERSION}
 VERSION=	1.12
 
 CATEGORIES=	interfaces
+MASTER_REPOSITORY_NAME=abstractRobotDynamics
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-interface-dynamics/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}abstractRobotDynamics
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}${MASTER_REPOSITORY_NAME}
 
 DOXYGEN_PLIST_DIR+=	share/doc/abstractRobotDynamics
 

@@ -49,8 +49,14 @@ MASTER_SITE_ROBOTPKG+=	\
 MASTER_SITE_JRL+=	\
 	ftp://${JRL_FTP_USER}${JRL_FTP_PASSWD:%=:%}@softs.laas.fr/
 
+ifdef HOST_MASTER_REPOSITORY
 MASTER_REPOSITORY_JRL+=	\
-	git ssh://${JRL_GIT_USER:=@}softs.laas.fr/git/jrl/
+	git ssh://${JRL_GIT_USER}@${HOST_MASTER_REPOSITORY}/git/jrl/
+else
+MASTER_REPOSITORY_JRL+=	\
+	git ssh://${JRL_GIT_USER}@softs.laas.fr/git/jrl/
+
+endif
 
 MASTER_SITE_SOURCEFORGE+=	\
 	http://easynews.dl.sourceforge.net/sourceforge/ \
