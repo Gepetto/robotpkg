@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/10 14:24:33 mallet $
+# $LAAS: Makefile 2009/03/16 15:27:57 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -20,6 +20,7 @@ DISTNAME=	walk-genom-1.4
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=walk-genom/}
+MASTER_REPOSITORY=git ssh://softs.laas.fr/git/jrl/walk-genom
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
@@ -36,6 +37,7 @@ include ../../architecture/genom/depend.mk
 include ../../path/hpp-walkplanner/depend.mk
 include ../../architecture/genom-openhrp-plugin/depend.mk
 include ../../devel/omniORB/depend.mk
+include ../../robots/hrp2-14/depend.mk
 include ../../mk/robotpkg.mk
 
 # generate and install the Kineo license, but don't fail on errors.
