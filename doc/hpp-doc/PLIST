@@ -1,42 +1,42 @@
-@comment Tue Feb 3 11:22:08 JST 2009
+@comment Mon Mar 16 13:58:41 JST 2009
 lib/pkgconfig/hppDoc.pc
-share/doc/hppDoc/abstractGikTask/main.html
-share/doc/hppDoc/abstractRobotDynamics/main.html
+share/doc/hppDoc/abstractGikTask/html/main.html
+share/doc/hppDoc/abstractRobotDynamics/html/main.html
 share/doc/hppDoc/algorithm.html
 share/doc/hppDoc/corba.html
-share/doc/hppDoc/dynamicsJRLJapan/main.html
+share/doc/hppDoc/dynamicsJRLJapan/html/main.html
 share/doc/hppDoc/figures/archi.png
 share/doc/hppDoc/figures/kppInterfaceWalk.png
 share/doc/hppDoc/footer.html
 share/doc/hppDoc/header.html
 share/doc/hppDoc/hppCmpPlanner/main.html
-share/doc/hppDoc/hppCorbaServer/main.html
-share/doc/hppDoc/hppCore/main.html
-share/doc/hppDoc/hppdoc_autotools.html
+share/doc/hppDoc/hppCorbaServer/html/main.html
+share/doc/hppDoc/hppCore/html/main.html
 share/doc/hppDoc/hppdoc_development.html
 share/doc/hppDoc/hppdoc_howtoinstall.html
 share/doc/hppDoc/hppDynamicObstacle/main.html
-share/doc/hppDoc/hppGik/main.html
+share/doc/hppDoc/hppGik/html/main.html
 share/doc/hppDoc/hppHRPPlanner/main.html
 share/doc/hppDoc/hppHybridRobot/main.html
 share/doc/hppDoc/hppLoa/main.html
 share/doc/hppDoc/hppLoaPlanner/main.html
-share/doc/hppDoc/hppModel/main.html
-share/doc/hppDoc/hppOpenHRP/main.html
+share/doc/hppDoc/hppModel/html/main.html
+share/doc/hppDoc/hppOpenHRP/html/main.html
 share/doc/hppDoc/hppPython/main.html
 share/doc/hppDoc/hppTimingPlanner/main.html
 share/doc/hppDoc/hppTutorialPlanner/main.html
 share/doc/hppDoc/hppVisualizeMovePlanner/main.html
+share/doc/hppDoc/hppWalkFootPlanner/html/main.html
 share/doc/hppDoc/hppWalkPlannerCompSpec/main.html
-share/doc/hppDoc/hppWalkPlanner/main.html
-share/doc/hppDoc/hrp2Dynamics/main.html
+share/doc/hppDoc/hppWalkPlanner/html/main.html
+share/doc/hppDoc/hrp2Dynamics/html/main.html
 share/doc/hppDoc/index.html
 share/doc/hppDoc/kppInterfaceCmp/main.html
 share/doc/hppDoc/kppInterfaceHRP/main.html
 share/doc/hppDoc/kppInterface.html
-share/doc/hppDoc/kppInterface/main.html
+share/doc/hppDoc/kppInterface/html/main.html
 share/doc/hppDoc/kppInterfaceTutorial/main.html
-share/doc/hppDoc/kppInterfaceWalk/main.html
+share/doc/hppDoc/kppInterfaceWalk/html/main.html
 share/doc/hppDoc/kwsPlus/main.html
 share/doc/hppDoc/main.html
 share/doc/hppDoc/movies/passing-under.mp4
@@ -66,7 +66,7 @@ share/doc/hppDoc/pictures/whole-body.png
 share/doc/hppDoc/roboticComponent.html
 share/doc/hppDoc/slam3DPlanner/main.html
 share/doc/hppDoc/tree.html
-share/doc/hppDoc/walkGenJrl/main.html
+share/doc/hppDoc/walkGenJrl/html/main.html
 share/doc/hppDoc/walk-genom/main.html
 share/doc/hppDoc/walkPlannerOrtmClient/main.html
 share/doc/hppDoc/walkPlannerOrtm/main.html
@@ -75,36 +75,51 @@ share/doc/hppDoc/worldModelGrid3D/main.html
 @dirrm share/doc/hppDoc/walkPlannerOrtmClient
 @dirrm share/doc/hppDoc/walkPlannerOrtm
 @dirrm share/doc/hppDoc/walk-genom
+@dirrm share/doc/hppDoc/walkGenJrl/html
 @dirrm share/doc/hppDoc/walkGenJrl
 @dirrm share/doc/hppDoc/slam3DPlanner
 @dirrm share/doc/hppDoc/pictures
 @dirrm share/doc/hppDoc/movies
 @dirrm share/doc/hppDoc/kwsPlus
+@dirrm share/doc/hppDoc/kppInterfaceWalk/html
 @dirrm share/doc/hppDoc/kppInterfaceWalk
 @dirrm share/doc/hppDoc/kppInterfaceTutorial
+@dirrm share/doc/hppDoc/kppInterface/html
 @dirrm share/doc/hppDoc/kppInterfaceHRP
 @dirrm share/doc/hppDoc/kppInterfaceCmp
 @dirrm share/doc/hppDoc/kppInterface
+@dirrm share/doc/hppDoc/hrp2Dynamics/html
 @dirrm share/doc/hppDoc/hrp2Dynamics
+@dirrm share/doc/hppDoc/hppWalkPlanner/html
 @dirrm share/doc/hppDoc/hppWalkPlannerCompSpec
 @dirrm share/doc/hppDoc/hppWalkPlanner
+@dirrm share/doc/hppDoc/hppWalkFootPlanner/html
+@dirrm share/doc/hppDoc/hppWalkFootPlanner
 @dirrm share/doc/hppDoc/hppVisualizeMovePlanner
 @dirrm share/doc/hppDoc/hppTutorialPlanner
 @dirrm share/doc/hppDoc/hppTimingPlanner
 @dirrm share/doc/hppDoc/hppPython
+@dirrm share/doc/hppDoc/hppOpenHRP/html
 @dirrm share/doc/hppDoc/hppOpenHRP
+@dirrm share/doc/hppDoc/hppModel/html
 @dirrm share/doc/hppDoc/hppModel
 @dirrm share/doc/hppDoc/hppLoaPlanner
 @dirrm share/doc/hppDoc/hppLoa
 @dirrm share/doc/hppDoc/hppHybridRobot
 @dirrm share/doc/hppDoc/hppHRPPlanner
+@dirrm share/doc/hppDoc/hppGik/html
 @dirrm share/doc/hppDoc/hppGik
 @dirrm share/doc/hppDoc/hppDynamicObstacle
+@dirrm share/doc/hppDoc/hppCore/html
 @dirrm share/doc/hppDoc/hppCore
+@dirrm share/doc/hppDoc/hppCorbaServer/html
 @dirrm share/doc/hppDoc/hppCorbaServer
 @dirrm share/doc/hppDoc/hppCmpPlanner
 @dirrm share/doc/hppDoc/figures
+@dirrm share/doc/hppDoc/dynamicsJRLJapan/html
 @dirrm share/doc/hppDoc/dynamicsJRLJapan
+@dirrm share/doc/hppDoc/abstractRobotDynamics/html
 @dirrm share/doc/hppDoc/abstractRobotDynamics
+@dirrm share/doc/hppDoc/abstractGikTask/html
 @dirrm share/doc/hppDoc/abstractGikTask
 @dirrm share/doc/hppDoc

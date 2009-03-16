@@ -19,9 +19,6 @@ SYSTEM_SEARCH.contlaw= \
 	lib/libcontlaw.la \
 	lib/pkgconfig/contlaw.pc
 
-bah:
-	echo "bah $(CONTLAW_DEPEND_MK)"
-
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

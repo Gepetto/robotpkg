@@ -18,7 +18,7 @@
 
 DISTNAME=	hppopenhrp-${VERSION}
 PKGNAME=	hpp-openhrp-${VERSION}
-VERSION=	1.3.1
+VERSION=	1.4
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-openhrp/}
@@ -32,6 +32,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
 
 include ../../architecture/openhrp/depend.mk
+include ../../robots/hrp2-14/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../devel/jrl-modelloader/depend.mk
 include ../../devel/omniORB/depend.mk

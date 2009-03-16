@@ -18,7 +18,7 @@
 
 DISTNAME=	hrp2dynamics-${VERSION}
 PKGNAME=	hrp2-dynamics-${VERSION}
-VERSION=	1.0
+VERSION=	1.1
 
 CATEGORIES=	math
 NO_PUBLIC_SRC=	yes
@@ -31,8 +31,7 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Optimized implementation of functions related to HRP-2 dynamics.
 
-GNU_CONFIGURE=	yes
-
+include ../../mk/sysdep/cmake.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
