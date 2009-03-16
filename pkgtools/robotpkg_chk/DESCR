@@ -1,0 +1,5 @@
+robotpkg_chk verifies that the versions of installed packages matches those in
+robotpkg, optionally adding missing or updating mismatched packages.
+
+It can verify all installed packages, or check against a set of packages
+based on a configuration file.
