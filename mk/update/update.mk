@@ -1,4 +1,4 @@
-# $LAAS: update.mk 2009/03/07 19:12:20 tho $
+# $LAAS: update.mk 2009/03/17 19:14:24 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -53,9 +53,6 @@
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
-NOCLEAN?=	NO	# don't clean up after update
-REINSTALL?=	NO	# reinstall upon update
-
 # UPDATE_TARGET is the target that is invoked when updating packages during
 # a "make update".  This variable is user-settable within etc/robotpkg.conf.
 #
@@ -79,10 +76,11 @@ update-create-ddir: ${_DDIR}
 
 .PHONY: update
 update: do-update
-ifeq (NO,$(strip ${NOCLEAN}))
+ifneq (,$(call isyes,${UPDATE_CLEAN}))
   update: CLEAR_DIRLIST=YES
   update: clean-update
 endif
+update: update-done-message
 
 ifeq (yes,$(call exists,${_DDIR}))
   RESUMEUPDATE?=	YES
@@ -91,11 +89,9 @@ ifeq (yes,$(call exists,${_DDIR}))
   do%update: .FORCE
 	${_OVERRIDE_TARGET}
 	@${PHASE_MSG} "Resuming update for ${PKGNAME}"
-    ifneq (NO,$(strip ${REINSTALL}))
     ifneq (replace,${UPDATE_TARGET})
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes
-    endif
+	${RUN}${RECURSIVE_MAKE} deinstall				\
+		_UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes
     endif
 else
   RESUMEUPDATE?=	NO
@@ -115,8 +111,7 @@ endif
 	[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do		\
 		(if cd ../.. && cd "$${dep}" ; then			\
 			${PHASE_MSG} "Installing in $${dep}" &&		\
-			if [ "(" "$(strip ${RESUMEUPDATE})" = "NO" -o	\
-			     "$(strip ${REINSTALL})" != "NO" ")" -a	\
+			if [ "$(strip ${RESUMEUPDATE})" = "NO" -a	\
 			     "${UPDATE_TARGET}" != "replace" ] ; then	\
 				${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES; \
 			fi &&						\
@@ -127,18 +122,28 @@ endif
 		fi) ;							\
 	done
 
+.PHONY: update-done-message
+update-done-message:
+	@${PHASE_MSG} "Done \`update' for ${PKGNAME}"
 
 .PHONY: clean-update
 clean-update: update-create-ddir
 	${RUN}[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do	\
-		cd ../.. && cd $${dep} && ${RECURSIVE_MAKE} clean;	\
+	  (cd ../.. && cd $${dep} && ${RECURSIVE_MAKE} clean) || {	\
+	    noclean=$$noclean" "$$dep;					\
+	    (cd ../.. && cd $${dep} && 					\
+	      ${RECURSIVE_MAKE} install-clean ||:)			\
+	  };								\
 	done;								\
 	$(if $(filter NO, ${CLEAR_DIRLIST}),				\
-		${MV} ${_DDIR} ${TMPDIR}/$(notdir ${_DDIR});		\
-		${MV} ${_DLIST} ${TMPDIR}/$(notdir ${_DLIST});		\
+	  ${MV} ${_DDIR} ${TMPDIR}/$(notdir ${_DDIR});			\
+	  ${MV} ${_DLIST} ${TMPDIR}/$(notdir ${_DLIST});		\
 	)								\
-	${RECURSIVE_MAKE} clean;					\
-	$(if $(filter NO, ${CLEAR_DIRLIST}),				\
+	${RECURSIVE_MAKE} clean || {					\
+	  noclean=$$noclean" "${PKGPATH};				\
+	  ${RECURSIVE_MAKE} install-clean ||:;				\
+	};								\
+	$(if $(filter NO,${CLEAR_DIRLIST}),				\
 		${MKDIR} -p ${WRKDIR};					\
 		${MV} ${TMPDIR}/$(notdir ${_DDIR}) ${_DDIR};		\
 		${MV} ${TMPDIR}/$(notdir ${_DLIST}) ${_DLIST};		\
@@ -148,7 +153,15 @@ clean-update: update-create-ddir
 			"It is advised to use";				\
 		${WARNING_MSG}						\
 			"\`\`${MAKE} update REINSTALL=YES'' instead!";	\
-	)
+	)								\
+	if ${TEST} -n "$$noclean"; then					\
+	    ${WARNING_MSG} ${hline};					\
+	    ${WARNING_MSG} "Temporary files leftover for:";		\
+	    for pkg in $$noclean; do					\
+	      ${WARNING_MSG} "		$$pkg";				\
+	    done;							\
+	    ${WARNING_MSG} ${hline};					\
+	fi;								\
 
 
 ${_DDIR}: ${_DLIST}
