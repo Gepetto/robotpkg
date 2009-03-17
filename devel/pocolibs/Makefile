@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/05/25 13:09:01 tho $
+# $LAAS: Makefile 2009/03/17 22:35:09 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -26,8 +26,7 @@ COMMENT=		Real-time communication library used by GenoM modules.
 
 GNU_CONFIGURE=		yes
 
-DEPENDS+=		mkdep>=2.6:../../devel/mkdep
-
+include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
