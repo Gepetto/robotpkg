@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/06/01 22:10:40 tho $
+# $LAAS: depend.mk 2009/03/17 22:00:13 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,9 +33,10 @@ DEPEND_ABI.ace?=	ace>=5.6
 DEPEND_DIR.ace?=	../../architecture/ace
 
 SYSTEM_SEARCH.ace=\
-	include/ace/ACE.h	\
-	lib/libACE.la		\
-	lib/pkgconfig/ACE.pc
+	include/ace/ACE.h					\
+	'include/ace/Version.h:/ACE_VERSION/s/[^0-9.]//gp'	\
+	'lib/libACE.{a,so}'					\
+	'lib/pkgconfig/ACE.pc:/Version/s/[^0-9.]//gp'
 
 endif # ACE_DEPEND_MK ------------------------------------------------
 
