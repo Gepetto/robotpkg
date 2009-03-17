@@ -1,4 +1,4 @@
-# $LAAS: install-vars.mk 2009/03/13 11:18:58 mallet $
+# $LAAS: install-vars.mk 2009/03/17 18:56:53 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -79,6 +79,17 @@ endif
 
 include ${ROBOTPKG_DIR}/mk/install/deinstall.mk
 include ${ROBOTPKG_DIR}/mk/install/replace.mk
+
+
+# --- install-clean (PRIVATE) ----------------------------------------
+#
+# install-clean removes the state files for the "install" and
+# later phases so that the "install" target may be re-invoked.
+#
+$(call require, ${ROBOTPKG_DIR}/mk/package/package-vars.mk)
+
+install-clean: package-clean #check-clean
+	${RUN}${RM} -f ${PLIST} ${_COOKIE.install}
 
 
 # --- install-cookie (PRIVATE) ---------------------------------------------

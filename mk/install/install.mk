@@ -245,17 +245,6 @@ pre-install:
 post-install:
 
 
-# --- install-clean (PRIVATE) ----------------------------------------
-#
-# install-clean removes the state files for the "install" and
-# later phases so that the "install" target may be re-invoked.
-#
-$(call require, ${ROBOTPKG_DIR}/mk/package/package-vars.mk)
-
-install-clean: package-clean #check-clean
-	${RUN}${RM} -f ${PLIST} ${_COOKIE.install}
-
-
 # --- bootstrap-register (PUBLIC) ------------------------------------
 #
 # bootstrap-register registers "bootstrap" packages that are installed
