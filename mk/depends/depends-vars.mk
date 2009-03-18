@@ -1,4 +1,4 @@
-# $LAAS: depends-vars.mk 2009/03/12 14:30:40 mallet $
+# $LAAS: depends-vars.mk 2009/03/20 11:42:42 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -96,7 +96,7 @@ endif
 #
 .PHONY: depends
 ifndef NO_DEPENDS
-  include ${ROBOTPKG_DIR}/mk/depends/depends.mk
+  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends.mk)
 else
   depends:
 	@${DO_NADA}
@@ -111,7 +111,7 @@ endif
 #
 .PHONY: bootstrap-depends
 ifndef NO_DEPENDS
-  include ${ROBOTPKG_DIR}/mk/depends/sysdep.mk
+  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends.mk)
 else ifeq (yes,$(call exists,${_COOKIE.bootstrapdepend}))
   bootstrap-depends:
 	@${DO_NADA}
@@ -139,3 +139,11 @@ bootstrap-depends-cookie:
 	${RUN}${TEST} ! -f ${_COOKIE.bootstrapdepend} || ${FALSE}
 	${RUN}${MKDIR} $(dir ${_COOKIE.bootstrapdepend})
 	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.bootstrapdepend}
+
+
+# Include the file with system package prefixes
+#
+ifdef _PKGSRC_BARRIER
+  -include ${_SYSDEP_FILE}
+  -include ${_PKGDEP_FILE}
+endif

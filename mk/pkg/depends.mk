@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/13 16:12:52 mallet $
+# $LAAS: depends.mk 2009/03/18 23:07:52 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -165,7 +165,7 @@ pkg-depends-file: export bf:=${bf}
 pkg-depends-file: export rm:=${rm}
 pkg-depends-file:
 	${RUN}${MKDIR} $(dir ${_PKGDEP_FILE});				\
-	>${_PKGDEP_FILE}; exec >>${_PKGDEP_FILE};			\
+	>${_PKGDEP_FILE}; exec 1>/dev/null 3>>${_PKGDEP_FILE};		\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
 	prefix=`${PKG_INFO} -qp ${_pkg_} | ${SED} -e 's|^[^/]*||;q'`;	\
@@ -239,7 +239,7 @@ _DEPENDS_INSTALL_CMD=							\
 		;;							\
 	*)								\
 		if ${TEST} -z "$$silent"; then				\
-			${STEP_MSG} "Required installed package $$pattern: $$pkg found"; \
+			${STEP_MSG} "Required robotpkg package $$pattern: $$pkg found"; \
 		fi;							\
 		;;							\
 	esac

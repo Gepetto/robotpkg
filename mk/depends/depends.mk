@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/09 23:33:51 tho $
+# $LAAS: depends.mk 2009/03/20 11:42:49 mallet $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -63,9 +63,30 @@ ifeq (yes,$(call exists,${_COOKIE.depends}))
   ${_COOKIE.depends}:
 	@${DO_NADA}
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/depends/sysdep.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
   ${_COOKIE.depends}: real-depends;
+endif
+
+
+# --- bootstrap-depends (PUBLIC, OVERRIDE) ---------------------------
+#
+# bootstrap-depends is a public target to install any missing
+# dependencies needed during stages before the normal "depends"
+# stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
+#
+_BOOTSTRAPDEPENDS_TARGETS+= pkg-bootstrap-depends
+_BOOTSTRAPDEPENDS_TARGETS+= bootstrap-depends-cookie
+
+.PHONY: bootstrap-depends
+ifeq (yes,$(call exists,${_COOKIE.bootstrapdepend}))
+  bootstrap-depends:
+	@${DO_NADA}
+else
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
+  bootstrap-depends: ${_BOOTSTRAPDEPENDS_TARGETS}
 endif
 
 
@@ -74,8 +95,9 @@ endif
 # real-depends is a helper target onto which one can hook all of the
 # targets that do the actual dependency installation.
 #
-_REAL_DEPENDS_TARGETS+=	depends-message
 _REAL_DEPENDS_TARGETS+=	pre-depends-hook
+_REAL_DEPENDS_TARGETS+=	depends-message
+_REAL_DEPENDS_TARGETS+= sysdep-depends
 _REAL_DEPENDS_TARGETS+=	pkg-depends-build-options
 _REAL_DEPENDS_TARGETS+=	pkg-depends-install
 _REAL_DEPENDS_TARGETS+=	pkg-depends-file
@@ -86,7 +108,7 @@ real-depends: ${_REAL_DEPENDS_TARGETS}
 
 .PHONY: depends-message
 depends-message:
-	@${PHASE_MSG} "Installing dependencies for ${PKGNAME}"
+	@${PHASE_MSG} "Checking dependencies for ${PKGNAME}"
 
 
 # --- pre-depends-hook (PRIVATE, override, hook) ---------------------
@@ -96,10 +118,3 @@ depends-message:
 #
 .PHONY: pre-depends-hook
 pre-depends-hook:
-
-
-# Include the file with robotpkg prefixes
-#
-ifdef _PKGSRC_BARRIER
-  -include ${_PKGDEP_FILE}
-endif

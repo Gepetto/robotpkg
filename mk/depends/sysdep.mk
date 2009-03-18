@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2009/03/11 23:32:45 tho $
+# $LAAS: sysdep.mk 2009/03/20 11:41:55 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -30,21 +30,6 @@
 #                                      Anthony Mallet on Sun Mar  8 2009
 #
 
-_BOOTSTRAPDEPENDS_TARGETS= sysdep-depends
-_BOOTSTRAPDEPENDS_TARGETS+= pkg-bootstrap-depends
-_BOOTSTRAPDEPENDS_TARGETS+= bootstrap-depends-cookie
-
-.PHONY: bootstrap-depends
-ifeq (yes,$(call exists,${_COOKIE.bootstrapdepend}))
-  bootstrap-depends:
-	@${DO_NADA}
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-
-  bootstrap-depends: ${_BOOTSTRAPDEPENDS_TARGETS}
-endif
-
-
 # Compute the prefix of packages that we are pulling from the system.
 #
 _PREFIXSEARCH_CMD=\
@@ -63,6 +48,7 @@ _PREFIXSEARCH_CMD=\
 # dependencies are those listed in DEPEND_PKG with a PREFER.<pkg> set to
 # 'system' or 'auto'.
 #
+.PHONY: sysdep-depends
 sysdep-depends: export hline:=${hline}
 sysdep-depends: export bf:=${bf}
 sysdep-depends: export rm:=${rm}
@@ -70,7 +56,7 @@ sysdep-depends:
 	${RUN}${MKDIR} $(dir ${_SYSDEP_FILE}); >${_SYSDEP_FILE};	\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),,				\
-	${_PREFIXSEARCH_CMD} -e	 					\
+	found=`${_PREFIXSEARCH_CMD} -e	 				\
 	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
 	     -n $(call quote,${PKGNAME})				\
 	     -d $(or $(call quote,${SYSTEM_DESCR.${_pkg_}}),"")		\
@@ -84,16 +70,10 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	     -t	system							\
 		$(call quote,${_pkg_})					\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
-		${SYSTEM_SEARCH.${_pkg_}} >>${_SYSDEP_FILE}		\
+		${SYSTEM_SEARCH.${_pkg_}} 3>>${_SYSDEP_FILE}`		\
 	$(if $(call isyes,${SYSDEP_VERBOSE}), &&			\
-	   ${STEP_MSG} "Required package ${DEPEND_ABI.${_pkg_}} found")	\
+	   ${STEP_MSG} "Required system package ${DEPEND_ABI.${_pkg_}}:"\
+		"$$found found")					\
 	|| { ${RM} ${_SYSDEP_FILE}; exit 2; };				\
   )									\
 )
-
-
-# Include the file with system prefixes
-#
-ifdef _PKGSRC_BARRIER
-  -include ${_SYSDEP_FILE}
-endif
