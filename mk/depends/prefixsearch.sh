@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2009/03/13 19:07:51 mallet $
+# $LAAS: prefixsearch.sh 2009/03/18 23:01:38 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -169,6 +169,7 @@ bracesubst() {
 
 # Search files
 prefix=
+pkgversion=
 vrepl='y/-/./;q'
 
 for p in $sysprefix; do
@@ -215,6 +216,7 @@ for p in $sysprefix; do
 	    : ${version:=unknown}
 
 	    if eval ${PKG_ADMIN_CMD} pmatch "'$abi'" "'$pkg-$version'"; then
+		pkgversion=-$version
 		flist="$flist $match"
 		${MSG} "found:	$match, version $version"
 		break
@@ -238,8 +240,13 @@ done
 
 # Output result
 if ${TEST} -n "$prefix"; then
-    ${ECHO} "PREFIX.$pkg:=$prefix"
-    ${ECHO} "SYSTEM_FILES.$pkg:=$flist"
+    ${ECHO} "$pkg$pkgversion"
+
+    # test fd 3 existence and print other variables there if it exists, to
+    # stdout otherwise.
+    ${TEST} : 2>/dev/null 1>&3 || exec 3>&1
+    ${ECHO} 1>&3 "PREFIX.$pkg:=$prefix"
+    ${ECHO} 1>&3 "SYSTEM_FILES.$pkg:=$flist"
     exit 0
 fi
 
