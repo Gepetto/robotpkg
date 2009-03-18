@@ -89,10 +89,9 @@ release-install-localbase-lock: release-localbase-lock
 #
 _REAL_INSTALL_TARGETS+=	install-check-interactive
 ifndef _EXTRACT_IS_CHECKOUT
-_REAL_INSTALL_TARGETS+=	install-check-version
+  _REAL_INSTALL_TARGETS+=install-check-version
 endif
 _REAL_INSTALL_TARGETS+=	install-message
-#_REAL_INSTALL_TARGETS+=	install-vars
 _REAL_INSTALL_TARGETS+=	install-all
 _REAL_INSTALL_TARGETS+=	install-cookie
 
@@ -246,17 +245,6 @@ pre-install:
 post-install:
 
 
-# --- install-clean (PRIVATE) ----------------------------------------
-#
-# install-clean removes the state files for the "install" and
-# later phases so that the "install" target may be re-invoked.
-#
-$(call require, ${ROBOTPKG_DIR}/mk/package/package-vars.mk)
-
-install-clean: package-clean #check-clean
-	${RUN}${RM} -f ${PLIST} ${_COOKIE.install}
-
-
 # --- bootstrap-register (PUBLIC) ------------------------------------
 #
 # bootstrap-register registers "bootstrap" packages that are installed
@@ -266,14 +254,3 @@ $(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
 
 bootstrap-register: pkg-register clean
 	@${DO_NADA}
-
-
-# --- install-cookie (PRIVATE) ---------------------------------------
-#
-# install-cookie creates the "install" cookie file.
-#
-.PHONY: install-cookie
-install-cookie:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.install} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.install})
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > ${_COOKIE.install}

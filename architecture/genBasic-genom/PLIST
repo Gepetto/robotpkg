@@ -8,9 +8,18 @@ include/genBasic/server/genBasicPrint.h
 include/genBasic/server/genBasicPrintXML.h
 include/genBasic/server/genBasicScan.h
 include/genBasic/server/genBasicType.h
+${PLIST.openprs}include/genBasic/server/openprs/genBasicDecodeOpenprs.h
+${PLIST.openprs}include/genBasic/server/openprs/genBasicEncodeOpenprs.h
+${PLIST.openprs}include/genBasic/server/openprs/genBasicRequestsOpenprsProto.h
 lib/libgenBasicClient.la
+${PLIST.openprs}lib/openprs/libgenBasicOpenprs.la
+${PLIST.openprs}lib/pkgconfig/genBasic-oprs.pc
 lib/pkgconfig/genBasic.pc
 share/modules/gen/genBasic.gen
-share/modules/tcl/genBasicClient.tcl
+${PLIST.openprs}share/modules/openprs/genBasicOpenprs.inc
+${PLIST.openprs}share/modules/openprs/genBasicOpenprs.opf
+${PLIST.openprs}share/modules/openprs/genBasicOpenprs.sym
+${PLIST.tcl}share/modules/tcl/genBasicClient.tcl
+${PLIST.openprs}@dirrm include/genBasic/server/openprs
 @dirrm include/genBasic/server
 @dirrm include/genBasic

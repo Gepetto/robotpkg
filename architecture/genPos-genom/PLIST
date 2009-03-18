@@ -1,32 +1,25 @@
-@comment lundi 19 mai 2008, 13:08:03 (UTC+0200)
-bin/genPos
-bin/genPosSendInitRqst
-bin/genPosTest
+@comment Fri Mar 13 14:58:19 CET 2009
 include/genPos/genPosStruct.h
 include/genPos/server/genPosEndian.h
 include/genPos/server/genPosError.h
-include/genPos/server/genPosMsgLib.h
 include/genPos/server/genPosPosterLib.h
 include/genPos/server/genPosPosterLibStruct.h
-include/genPos/server/genPosPosterReadLibProto.h
-include/genPos/server/genPosPosterShowLib.h
-include/genPos/server/genPosPosterWriteLibProto.h
-include/genPos/server/genPosPosterXMLLib.h
 include/genPos/server/genPosPrint.h
 include/genPos/server/genPosPrintXML.h
 include/genPos/server/genPosScan.h
 include/genPos/server/genPosType.h
+${PLIST.openprs}include/genPos/server/openprs/genPosDecodeOpenprs.h
+${PLIST.openprs}include/genPos/server/openprs/genPosEncodeOpenprs.h
+${PLIST.openprs}include/genPos/server/openprs/genPosRequestsOpenprsProto.h
 lib/libgenPosClient.la
+${PLIST.openprs}lib/openprs/libgenPosOpenprs.la
+${PLIST.openprs}lib/pkgconfig/genPos-oprs.pc
 lib/pkgconfig/genPos.pc
-lib/tclserv/libgenPosTclServ.la
 share/modules/gen/genPos.gen
-share/modules/tcl/genPosClient.tcl
-@dirrm share/modules/tcl
-@dirrm share/modules/gen
-@dirrm lib/tclserv
-@dirrm lib/pkgconfig
-@dirrm lib
+${PLIST.openprs}share/modules/openprs/genPosOpenprs.inc
+${PLIST.openprs}share/modules/openprs/genPosOpenprs.opf
+${PLIST.openprs}share/modules/openprs/genPosOpenprs.sym
+${PLIST.tcl}share/modules/tcl/genPosClient.tcl
+${PLIST.openprs}@dirrm include/genPos/server/openprs
 @dirrm include/genPos/server
 @dirrm include/genPos
-@dirrm include
-@dirrm bin

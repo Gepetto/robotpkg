@@ -1,4 +1,4 @@
-# $LAAS: install-vars.mk 2009/03/07 17:31:46 tho $
+# $LAAS: install-vars.mk 2009/03/17 18:56:53 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -51,6 +51,8 @@
 INSTALLATION_DIRS_FROM_PLIST?=	yes
 
 _COOKIE.install=	${WRKDIR}/.install_done
+_COOKIE.preinstall=	${WRKDIR}/.install_start
+
 
 # --- install (PUBLIC) -----------------------------------------------
 #
@@ -61,19 +63,41 @@ ifndef NO_INSTALL
   include ${ROBOTPKG_DIR}/mk/install/install.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.install}))
-install:
+    install:
 	@${DO_NADA}
   else
     $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
     $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
     ifdef _PKGSRC_BARRIER
-install: build install-cookie
+      install: build install-cookie
     else
-install: barrier
+      install: barrier
     endif
   endif
 endif
 
 include ${ROBOTPKG_DIR}/mk/install/deinstall.mk
 include ${ROBOTPKG_DIR}/mk/install/replace.mk
+
+
+# --- install-clean (PRIVATE) ----------------------------------------
+#
+# install-clean removes the state files for the "install" and
+# later phases so that the "install" target may be re-invoked.
+#
+$(call require, ${ROBOTPKG_DIR}/mk/package/package-vars.mk)
+
+install-clean: package-clean #check-clean
+	${RUN}${RM} -f ${PLIST} ${_COOKIE.install}
+
+
+# --- install-cookie (PRIVATE) ---------------------------------------------
+#
+# install-cookie creates the "install" cookie file.
+#
+.PHONY: install-cookie
+install-cookie:
+	${RUN}${TEST} ! -f ${_COOKIE.install} || ${FALSE};	\
+	${MKDIR} $(dir ${_COOKIE.install});			\
+	${ECHO} ${PKGNAME} > ${_COOKIE.install}

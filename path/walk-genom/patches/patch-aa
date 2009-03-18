@@ -1,0 +1,26 @@
+--- codels/walkMainCodels.cc~	2009-03-16 15:26:35.000000000 +0100
++++ codels/walkMainCodels.cc	2009-03-16 15:27:33.000000000 +0100
+@@ -1,4 +1,4 @@
+-/*	$Id: walkMainCodels.cc 2008/12/09 20:37:56 mallet $ */
++/*	$Id: walkMainCodels.cc 2009/03/16 15:27:33 mallet $ */
+ 
+ /*
+  * Copyright (c) 2007 Mathieu Poirier                 --  Thu Apr  5 2007
+@@ -28,7 +28,7 @@
+  * USE   OF THIS SOFTWARE, EVEN   IF ADVISED OF   THE POSSIBILITY OF SUCH
+  * DAMAGE.
+  */
+-static const char id[] = "$Id: walkMainCodels.cc 2008/12/09 20:37:56 mallet $";
++static const char id[] = "$Id: walkMainCodels.cc 2009/03/16 15:27:33 mallet $";
+ 
+ #include <portLib.h>
+ 
+@@ -57,7 +57,7 @@
+ #include "hppWalkFootPlanner/hppWalkSteeringMethod.h"
+ #include "hppWalkFootPlanner/hppWalkDistance.h"
+ 
+-#include "hppOpenHRP/configSwap.h"
++#include "hrp2_14/configSwap.h"
+ #include "hppCorbaServer/hppciOpenHrp.h"
+ #include "kwsPlus/flicSteeringMethod.h"
+ #include "kwsPlus/flicDistance.h"

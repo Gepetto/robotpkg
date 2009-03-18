@@ -20,7 +20,7 @@
 
 DISTNAME=	abstractrobotdynamics-${VERSION}
 PKGNAME=	jrl-interface-dynamics-${VERSION}
-VERSION=	1.12
+VERSION=	1.13
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-interface-dynamics/}

@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/15 18:08:14 tho $
+# $LAAS: Makefile 2009/03/16 22:43:58 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,7 @@
 
 DISTNAME=	matrixabstractlayer-${VERSION}
 PKGNAME=	jrl-mal-${VERSION}
-VERSION=	1.7.2
+VERSION=	1.7.3
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}

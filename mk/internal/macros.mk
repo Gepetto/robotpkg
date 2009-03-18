@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2009/03/08 15:57:26 tho $
+# $LAAS: macros.mk 2009/03/15 00:04:46 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -54,7 +54,7 @@ endef
 # Include <file> if it was not already included
 #
 override define require
-$(if $(filter $1,${MAKEFILE_LIST}),,$(eval include $1))
+$(foreach f,$1,$(if $(filter $f,${MAKEFILE_LIST}),,$(eval include $f)))
 endef
 
 

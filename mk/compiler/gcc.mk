@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/03/09 21:39:09 tho $
+# $LAAS: gcc.mk 2009/03/13 15:35:31 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -53,14 +53,14 @@
 ifndef COMPILER_GCC_MK
 COMPILER_GCC_MK:=	defined
 
-# Sensible default value for GCC_REQUIRED
+# Sensible default value for _GCC_REQUIRED
 #
-GCC_REQUIRED+=	>=2.8.0 <5.0
+_GCC_REQUIRED?=	>=2.8
 
 # Distill the GCC_REQUIRED list into a single _GCC_REQUIRED value that is the
 # strictest versions of GCC required.
 #
-ifndef _GCC_REQUIRED
+ifdef GCC_REQUIRED
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
   # split constraints into <= and >= categories
@@ -84,7 +84,6 @@ ifndef _GCC_REQUIRED
 
   # _GCC_REQUIRED is the union of both
   _GCC_REQUIRED:=	${_maxmin_}${_minmax_}
-  MAKEOVERRIDES+=	_GCC_REQUIRED=$(call quote,${_GCC_REQUIRED})
 endif
 ifeq (,$(_GCC_REQUIRED))
   PKG_FAIL_REASON+=	${hline}

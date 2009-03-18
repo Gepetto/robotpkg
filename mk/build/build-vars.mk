@@ -1,4 +1,4 @@
-# $LAAS: build-vars.mk 2009/03/07 15:04:13 tho $
+# $LAAS: build-vars.mk 2009/03/13 11:19:44 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -136,6 +136,6 @@ rebuild: build-clean
 #
 .PHONY: build-cookie
 build-cookie:
-	${RUN}${TEST} ! -f ${_COOKIE.build} || ${FALSE}
-	${RUN}${MKDIR} $(dir ${_COOKIE.build})
-	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.build}
+	${RUN}${TEST} ! -f ${_COOKIE.build} || ${FALSE};	\
+	${MKDIR} $(dir ${_COOKIE.build});			\
+	${ECHO} ${PKGNAME} > ${_COOKIE.build}

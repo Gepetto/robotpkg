@@ -1,4 +1,4 @@
-# $LAAS: pkg-vars.mk 2009/03/04 19:33:19 mallet $
+# $LAAS: pkg-vars.mk 2009/03/15 00:08:56 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -55,10 +55,10 @@ ifndef NO_PKGTOOLS_REQD_CHECK
 endif
 
 PKG_ADD_CMD?=		${PKG_TOOLS_BIN}/robotpkg_add
-PKG_ADMIN_CMD?=		${PKG_TOOLS_BIN}/robotpkg_admin ${_PKG_DISCARD_STDERR}
+PKG_ADMIN_CMD?=		${PKG_TOOLS_BIN}/robotpkg_admin
 PKG_CREATE_CMD?=	${PKG_TOOLS_BIN}/robotpkg_create
 PKG_DELETE_CMD?=	${PKG_TOOLS_BIN}/robotpkg_delete
-PKG_INFO_CMD?=		${PKG_TOOLS_BIN}/robotpkg_info ${_PKG_DISCARD_STDERR}
+PKG_INFO_CMD?=		${PKG_TOOLS_BIN}/robotpkg_info
 
 ifndef PKGTOOLS_VERSION
 PKGTOOLS_VERSION:=	$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo -1)

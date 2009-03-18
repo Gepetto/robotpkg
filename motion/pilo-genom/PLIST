@@ -1,4 +1,4 @@
-@comment Tue Sep 2 18:14:19 CEST 2008
+@comment Fri Mar 13 15:58:05 CET 2009
 bin/pilo
 bin/piloSendInitRqst
 bin/piloTest
@@ -19,19 +19,22 @@ include/pilo/server/piloPrint.h
 include/pilo/server/piloPrintXML.h
 include/pilo/server/piloScan.h
 include/pilo/server/piloType.h
-lib/libpiloClient.a
+${PLIST.openprs}include/pilo/server/openprs/piloDecodeOpenprs.h
+${PLIST.openprs}include/pilo/server/openprs/piloEncodeOpenprs.h
+${PLIST.openprs}include/pilo/server/openprs/piloRequestsOpenprsProto.h
 lib/libpiloClient.la
-lib/libpiloClient.so
-lib/libpiloSmoothtraj.a
 lib/libpiloSmoothtraj.la
-lib/libpiloSmoothtraj.so
+${PLIST.openprs}lib/openprs/libpiloOpenprs.la
+${PLIST.openprs}lib/pkgconfig/pilo-oprs.pc
 lib/pkgconfig/pilo-smoothtraj.pc
 lib/pkgconfig/pilo.pc
-lib/tclserv/libpiloTclServ.a
-lib/tclserv/libpiloTclServ.la
-lib/tclserv/libpiloTclServ.so
+${PLIST.tcl}lib/tclserv/libpiloTclServ.la
 share/modules/gen/pilo.gen
-share/modules/tcl/piloClient.tcl
+${PLIST.openprs}share/modules/openprs/piloOpenprs.inc
+${PLIST.openprs}share/modules/openprs/piloOpenprs.opf
+${PLIST.openprs}share/modules/openprs/piloOpenprs.sym
+${PLIST.tcl}share/modules/tcl/piloClient.tcl
+${PLIST.openprs}@dirrm include/pilo/server/openprs
 @dirrm include/pilo/server
 @dirrm include/pilo/libsmoothtraj
 @dirrm include/pilo

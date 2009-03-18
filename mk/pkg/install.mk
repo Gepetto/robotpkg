@@ -1,4 +1,4 @@
-# $LAAS: install.mk 2009/02/27 12:07:04 mallet $
+# $LAAS: install.mk 2009/03/12 14:36:29 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -102,7 +102,10 @@ define _REGISTER_DEPENDENCIES
 endef
 
 .PHONY: pkg-register
-pkg-register: generate-metadata ${_COOKIE.depends}
+ifndef NO_DEPENDS
+  pkg-register: ${_COOKIE.depends}
+endif
+pkg-register: generate-metadata
 	@${STEP_MSG} "Registering installation for ${PKGNAME}"
 	${RUN}${RM} -fr ${_PKG_DBDIR}/${PKGNAME}
 	${RUN}${MKDIR} ${_PKG_DBDIR}/${PKGNAME}

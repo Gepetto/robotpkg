@@ -39,19 +39,29 @@ ifeq (+,$(FESTIVAL_DEPEND_MK)) # -------------------------------------
 
 PREFER.festival?=	system
 
+DEPEND_USE+=		festival
+DEPEND_ABI.festival?=	festival>=1.96
+DEPEND_DIR.festival?=	../../audio/festival
+
 SYSTEM_SEARCH.festival=\
 	bin/festival			\
 	include/festival/festival.h	\
 	lib/libFestival.a
 
-ifneq (,$(findstring ogireslpc,${REQD_BUILD_OPTIONS}))
-SYSTEM_SEARCH.festival+=share/festival/lib/ogi_configure_voice.scm
+SYSTEM_PKG.Linux-fedora.festival=	festival-devel
+SYSTEM_PKG.NetBSD.festival=		pkgsrc/audio/festival
+
+ifneq (,$(findstring ogireslpc,${REQD_BUILD_OPTIONS.festival}))
+  # ogireslpc isn't packaged on most systems
+  include ../../mk/robotpkg.prefs.mk
+  ifneq (robotpkg,${PREFER.festival})
+    PKG_FAIL_REASON+=\
+	"You must set PREFER.festival=robotpkg for the ogireslpc option."
+  endif
+
+  SYSTEM_DESCR.festival='${DEPEND_ABI.festival} with OGIreslpc synthetiser'
+  SYSTEM_SEARCH.festival+=share/festival/lib/ogi_configure_voice.scm
 endif
-
-DEPEND_USE+=		festival
-
-DEPEND_ABI.festival?=	festival>=1.96
-DEPEND_DIR.festival?=	../../audio/festival
 
 endif # FESTIVAL_DEPEND_MK -------------------------------------------
 
