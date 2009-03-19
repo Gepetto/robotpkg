@@ -1,0 +1,31 @@
+@comment Tue Mar 10 22:53:57 2009
+bin/qarm
+bin/qarmSendInitRqst
+bin/qarmTest
+include/qarm/server/qarmEndian.h
+include/qarm/server/qarmError.h
+include/qarm/server/qarmMsgLib.h
+include/qarm/server/qarmPosterLib.h
+include/qarm/server/qarmPosterLibStruct.h
+include/qarm/server/qarmPosterReadLibProto.h
+include/qarm/server/qarmPosterShowLib.h
+include/qarm/server/qarmPosterWriteLibProto.h
+include/qarm/server/qarmPosterXMLLib.h
+include/qarm/server/qarmPrint.h
+include/qarm/server/qarmPrintXML.h
+include/qarm/server/qarmScan.h
+include/qarm/server/qarmType.h
+include/qarm/qarmStruct.h
+include/qarm/qarmStructPa10.h
+include/qarm/qarmConst.h 
+lib/libqarmClient.a
+lib/libqarmClient.la
+lib/libqarmClient.so
+lib/pkgconfig/qarm.pc
+lib/tclserv/libqarmTclServ.la
+lib/tclserv/libqarmTclServ.a
+lib/tclserv/libqarmTclServ.so
+share/modules/gen/qarm.gen
+share/modules/tcl/qarmClient.tcl
+@dirrm include/qarm/server
+@dirrm include/qarm
