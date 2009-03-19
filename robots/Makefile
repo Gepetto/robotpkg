@@ -11,5 +11,6 @@ SUBDIR+=	jloco-genom
 SUBDIR+=	neobotix-libs
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
+SUBDIR+=	qarm-genom
 
 include ../mk/robotpkg.subdir.mk
