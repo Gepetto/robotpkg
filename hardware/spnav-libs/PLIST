@@ -5,7 +5,4 @@ include/spnav-libs/spnav_magellan.h
 lib/libspnav.a
 lib/libspnav.so
 lib/pkgconfig/spnav-libs.pc
-@dirrm lib/pkgconfig
-@dirrm lib
 @dirrm include/spnav-libs
-@dirrm include
