@@ -2,4 +2,3 @@
 bin/setup_init
 bin/spacenavd
 bin/spnavd_ctl
-@dirrm bin
