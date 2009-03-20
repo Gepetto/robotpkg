@@ -1,0 +1,11 @@
+@comment Fri Mar 20 16:31:47 CET 2009
+include/spnav-libs/spnav_config.h
+include/spnav-libs/spnav.h
+include/spnav-libs/spnav_magellan.h
+lib/libspnav.a
+lib/libspnav.so
+lib/pkgconfig/spnav-libs.pc
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/spnav-libs
+@dirrm include

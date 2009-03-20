@@ -1,0 +1,4 @@
+The spacenavd library is provided by the spacenav project (see
+http://spacenav.sourceforge.net). This project provides an alternative to the
+proprietary 3Dconnexion device driver and SDK, for the 3D input devices: "space
+navigator". This library must be used with the accompanying daemon: spacenavd.

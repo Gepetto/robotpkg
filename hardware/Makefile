@@ -23,5 +23,7 @@ SUBDIR+=	sahand-genom
 SUBDIR+=	serial
 SUBDIR+=	sickLib
 SUBDIR+=	sick-genom
+SUBDIR+=	spnav-kmod
+SUBDIR+=	spnav-libs
 
 include ../mk/robotpkg.subdir.mk
