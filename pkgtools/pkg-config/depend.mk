@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/03/08 19:48:36 tho $
+# $LAAS: depend.mk 2009/03/20 10:33:20 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -27,7 +27,7 @@ ifeq (+,$(PKG_CONFIG_DEPEND_MK)) # -----------------------------------
 
 PREFER.pkg-config?=		system
 
-SYSTEM_SEARCH.pkg-config=	bin/pkg-config
+SYSTEM_SEARCH.pkg-config=	'bin/pkg-config::% --version'
 
 DEPEND_USE+=			pkg-config
 DEPEND_METHOD.pkg-config+=	build
