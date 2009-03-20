@@ -34,8 +34,8 @@ DEPEND_DIR.spnav-libs?=	../../hardware/spnav-libs
 DEPEND_PKG_CONFIG.spnav-libs+=lib/pkgconfig
 
 SYSTEM_SEARCH.spnav-libs=\
-	include/spnav-libs/spnav.h
-	lib/libspnav.so
+	include/spnav-libs/spnav.h \
+	lib/libspnav.so	\
 	lib/pkgconfig/spnav-libs.pc
 endif
 
