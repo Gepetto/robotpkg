@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/03/15 00:06:45 tho $
+# $LAAS: utils.mk 2009/03/20 12:02:58 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -63,12 +63,13 @@ _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 #
 # Determine whether the current `make' has intearctive input and output
 #
-_INTERACTIVE_STDIN=	${TMPDIR}/.robotpkg_interactive_stdin
-_INTERACTIVE_STDOUT=	${TMPDIR}/.robotpkg_interactive_stdout
+_INTERACTIVE_STDIN=	${WRKDIR}/.interactive_stdin
+_INTERACTIVE_STDOUT=	${WRKDIR}/.interactive_stdout
 
 .PHONY: interactive
 interactive:
-	@if ${TEST} -t 0; then				\
+	@${TEST} -d ${WRKDIR} || exit 0;		\
+	if ${TEST} -t 0; then				\
 		${TOUCH} ${_INTERACTIVE_STDIN} ||:;	\
 	else						\
 		${RM} ${_INTERACTIVE_STDIN};		\
