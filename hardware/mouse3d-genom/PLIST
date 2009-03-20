@@ -1,4 +1,4 @@
-@comment Fri Mar 20 17:04:33 CET 2009
+@comment Fri Mar 20 17:30:47 CET 2009
 bin/mouse3d
 bin/mouse3dSendInitRqst
 bin/mouse3dTest
@@ -18,15 +18,17 @@ include/mouse3d/server/mouse3dScan.h
 include/mouse3d/server/mouse3dType.h
 lib/libmouse3dClient.la
 lib/pkgconfig/mouse3d.pc
-lib/tclserv/libmouse3dTclServ.la
 share/modules/gen/mouse3d.gen
-share/modules/tcl/mouse3dClient.tcl
-@dirrm share/modules/tcl
-@dirrm share/modules/gen
-@dirrm lib/tclserv
-@dirrm lib/pkgconfig
-@dirrm lib
+${PLIST.tcl}lib/tclserv/libmouse3dTclServ.la
+${PLIST.tcl}share/modules/tcl/mouse3dClient.tcl
+${PLIST.openprs}include/mouse3d/server/openprs/mouse3dDecodeOpenprs.h
+${PLIST.openprs}include/mouse3d/server/openprs/mouse3dEncodeOpenprs.h
+${PLIST.openprs}include/mouse3d/server/openprs/mouse3dRequestsOpenprsProto.h
+${PLIST.openprs}share/modules/openprs/mouse3dOpenprs.inc
+${PLIST.openprs}share/modules/openprs/mouse3dOpenprs.opf
+${PLIST.openprs}share/modules/openprs/mouse3dOpenprs.sym
+${PLIST.openprs}lib/openprs/libmouse3dOpenprs.la
+${PLIST.openprs}lib/pkgconfig/mouse3d-oprs.pc
+${PLIST.openprs}@dirrm include/mouse3d/server/openprs
 @dirrm include/mouse3d/server
 @dirrm include/mouse3d
-@dirrm include
-@dirrm bin
