@@ -1,0 +1,2 @@
+The mouse3d-genom GenoM module exports data of the 3D Space Navigator
+using the daemon spacenavd (spnav-kmod) and the library spnav-libs.

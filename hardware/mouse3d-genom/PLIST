@@ -1,0 +1,32 @@
+@comment Fri Mar 20 17:04:33 CET 2009
+bin/mouse3d
+bin/mouse3dSendInitRqst
+bin/mouse3dTest
+include/mouse3d/mouse3dStruct.h
+include/mouse3d/server/mouse3dEndian.h
+include/mouse3d/server/mouse3dError.h
+include/mouse3d/server/mouse3dMsgLib.h
+include/mouse3d/server/mouse3dPosterLib.h
+include/mouse3d/server/mouse3dPosterLibStruct.h
+include/mouse3d/server/mouse3dPosterReadLibProto.h
+include/mouse3d/server/mouse3dPosterShowLib.h
+include/mouse3d/server/mouse3dPosterWriteLibProto.h
+include/mouse3d/server/mouse3dPosterXMLLib.h
+include/mouse3d/server/mouse3dPrint.h
+include/mouse3d/server/mouse3dPrintXML.h
+include/mouse3d/server/mouse3dScan.h
+include/mouse3d/server/mouse3dType.h
+lib/libmouse3dClient.la
+lib/pkgconfig/mouse3d.pc
+lib/tclserv/libmouse3dTclServ.la
+share/modules/gen/mouse3d.gen
+share/modules/tcl/mouse3dClient.tcl
+@dirrm share/modules/tcl
+@dirrm share/modules/gen
+@dirrm lib/tclserv
+@dirrm lib/pkgconfig
+@dirrm lib
+@dirrm include/mouse3d/server
+@dirrm include/mouse3d
+@dirrm include
+@dirrm bin
