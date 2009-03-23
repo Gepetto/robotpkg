@@ -144,8 +144,8 @@ extract_pkg_vars()
     PKGDIR=$1
     PKGNAME=
     shift;
-    if [ ! -f $ROBOTPKG_DIR/$pkgdir/Makefile ];then
-	msg "WARNING: No $pkgdir/Makefile - package moved or obsolete?"
+    if [ ! -f $ROBOTPKG_DIR/$PKGDIR/Makefile ];then
+	msg "WARNING: No $PKGDIR/Makefile - package moved or obsolete?"
 	return
     fi
     cd $ROBOTPKG_DIR/$PKGDIR
@@ -386,7 +386,7 @@ msg()
 msg_progress()
 {
     if [ -z "$opt_q" ] ; then
-	msg "[ $@ ]"
+	msg; msg "[ $@ ]"; msg
     fi
 }
 
@@ -408,7 +408,8 @@ pkg_install()
 	    unset PKG_PATH
 	fi
     elif [ -n "$opt_s" ]; then
-	run_cmd "cd $ROBOTPKG_DIR/$PKGDIR && ${MAKE} clean clean-depends && ${MAKE} update CLEANDEPENDS=yes"
+	run_cmd "cd $ROBOTPKG_DIR/$PKGDIR && ${MAKE} clean CLEANDEPENDS=yes" 1
+	run_cmd "cd $ROBOTPKG_DIR/$PKGDIR && ${MAKE} update CLEANDEPENDS=yes"
     fi
 
     if [ -z "$opt_n" -a -z "$opt_q" ]; then
@@ -424,10 +425,11 @@ pkg_install()
 
 pkg_replace()
 {
-    PKGNAME=$1
+    pkg=$1
     PKGDIR=$2
-    FAIL=
+    extract_pkg_vars $PKGDIR PKGNAME
 
+    FAIL=
     installed=
     if ${PKG_INFO} -qe $PKGNAME; then
 	if [ -z "`${PKG_INFO} -qQ $UNSAFE_VAR $PKGNAME`" ]; then
@@ -438,25 +440,24 @@ pkg_replace()
 	installed=yes
     fi
 
-    if [ -n "$opt_b" ] && is_binary_available $PKGNAME; then
+    if [ -n "$opt_b" -a -z "$installed" ] && is_binary_available $PKGNAME; then
 	for dep in `${PKG_INFO} -qR ${PKGNAME%-*}`; do
 	    run_cmd "${PKG_ADMIN} set unsafe_depends_strict=yes $dep" 1
-	    if [ -z "$installed" ]; then
-		run_cmd "${PKG_ADMIN} set unsafe_depends=yes $dep" 1
-	    fi
+	    run_cmd "${PKG_ADMIN} set unsafe_depends=yes $dep" 1
 	done
 	run_cmd "${PKG_DELETE} -f ${PKGNAME%-*}" 1
 	if [ -n "$saved_PKG_PATH" ]; then
 	    export PKG_PATH=$saved_PKG_PATH
 	fi
-	run_cmd "${PKG_ADD} $PACKAGES/$PKGNAME$PKG_SUFX" 1
+	run_cmd "${PKG_ADD} $PACKAGES/$PKGNAME$PKG_SUFX"
 	if [ -n "$saved_PKG_PATH" ] ; then
 	    unset PKG_PATH
 	fi
     elif [ -n "$opt_s" ]; then
-	run_cmd "cd $ROBOTPKG_DIR/$PKGDIR && ${MAKE} clean && ${MAKE} replace" 1
+	run_cmd "cd $ROBOTPKG_DIR/$PKGDIR && ${MAKE} clean CLEANDEPENDS=yes" 1
+	run_cmd "cd $ROBOTPKG_DIR/$PKGDIR && ${MAKE} replace"
 	if [ -z "$FAIL" ]; then
-	    run_cmd "cd $ROBOTPKG_DIR/$PKGDIR && ${MAKE} clean" 1
+	    run_cmd "cd $ROBOTPKG_DIR/$PKGDIR && ${MAKE} clean CLEANDEPENDS=yes" 1
 	fi
     fi
 
@@ -467,7 +468,7 @@ pkg_replace()
     if [ -n "$FAIL" ]; then
 	FAIL_DONE=$FAIL_DONE" "$PKGNAME
     else
-	REPLACE_DONE=$REPLACE_DONE" "$PKGNAME
+	REPLACE_DONE=$REPLACE_DONE" "$pkg
     fi
 }
 
@@ -484,30 +485,30 @@ pkg_replacelist()
 {
     msg_progress Replace
 
-    # DEPGRAPH_INSTALLED is rebuilt each round.  DEPGRAPH_SRC will collect
-    # edges that we discover using 'make show-depends', but that weren't
-    # listed as depends by the installed version of a package, and
-    # DEPENDS_CHECKED lists packages for which we've already done that
-    # check.
-    DEPGRAPH_INSTALLED=`depgraph_installed $*`
-    DEPGRAPH_SRC=
-    DEPENDS_CHECKED=
-
-    REPLACE_TODO=$*
-    depgraph_built=0
+    REPLACE_TODO=" "$*" "
     while [ -n "$REPLACE_TODO" ]; do
+	DEPGRAPH_INSTALLED=`depgraph_installed $REPLACE_TODO`
 	tsorted=`tsort <<-EOF
-	    $DEPGRAPH_INSTALLED $DEPGRAPH_SRC
+	    $DEPGRAPH_INSTALLED
 	EOF
 	`
 
-	for pkg in $tsorted; do
-	    case $REPLACE_TODO" " in
-		*" $pkg "*) break ;;
+	# look for next package to replace and remove it from REPLACE_TODO
+	pkg=
+	for p in $tsorted; do
+	    case $REPLACE_TODO in
+		*" $p "*)
+		    pkg=$p
+		    REPLACE_TODO=`${SED} -e "s| $p | |" <<-EOF
+			    $REPLACE_TODO
+			EOF
+		    `
+		    break ;;
 	    esac
 	done
+	[ -z "$pkg" ] && break;
 
-	pkgdir=`${PKG_INFO} -qQ PKGPATH $pkg`
+	pkgdir=`${PKG_INFO} -qQ PKGPATH ${pkg%-*}`
 	pkg_replace $pkg $pkgdir
 
 	if [ -z "$opt_n" ]; then
@@ -517,35 +518,19 @@ pkg_replacelist()
 		abort "package ${pkg%-*} still has unsafe_depends."
 	fi
 
-    # remove just-replaced package from all *_TODO lists
-    MISMATCH_TODO=$(exclude $pkg --from $MISMATCH_TODO)
-    REBUILD_TODO=$(exclude $pkg --from $REBUILD_TODO)
-    UNSAFE_TODO=$(exclude $pkg --from $UNSAFE_TODO)
-
-    echo "${OPI} Re-checking for unsafe installed packages (${UNSAFE_VAR}=YES)"
-    if [ -n "$opt_n" ]; then
-	# With -n, the replace didn't happen, and thus the packages that would
-	# have been marked unsafe_depends=YES were not.  Add the set that
-	# would have been marked so we can watch what pkg_rolling-replace
-	# would have done (approximately).
-        UNSAFE_TODO=$(uniqify $UNSAFE_TODO \
-            $(who_requires $pkg --in-graph $DEPGRAPH_INSTALLED))
-        sleep 1
-    else
-        UNSAFE_TODO=$(check_packages_w_flag ${UNSAFE_VAR})
-    fi
-
-    verbose "${OPI} Packages to rebuild:"
-    verbose "${OPC} MISMATCH_TODO=[$(echo $MISMATCH_TODO)]"  #strips newlines
-    verbose "${OPC} REBUILD_TODO=[$(echo $REBUILD_TODO)]"
-    verbose "${OPC} UNSAFE_TODO=[$(echo $UNSAFE_TODO)]"
-    vsleep 4
-
-    REPLACE_TODO=$(uniqify $MISMATCH_TODO $REBUILD_TODO $UNSAFE_TODO)
-    REPLACE_TODO=$(exclude $REALLYEXCLUDE --from $REPLACE_TODO)
-    depgraph_built=0
-done
+	msg_progress "Re-checking for unsafe installed packages (${UNSAFE_VAR}=yes)"
+	for p in `${PKG_INFO} -qR ${pkg%-*}`; do
+	    flag=`${PKG_INFO} -qQ ${UNSAFE_VAR} $p`
+	    if [ -n "$flag" ]; then
+		case $REPLACE_TODO in
+		    *" $p "*) ;;
+		    *) REPLACE_TODO=$REPLACE_TODO""$p" ";;
+		esac
+	    fi
+	done
+    done
 }
+
 
 run_cmd()
 {
@@ -696,8 +681,8 @@ shift `${EXPR} $OPTIND - 1`
 # check arguments
 if [ $# != 0 ]; then usage "Too many arguments given"; fi
 if [ -n "$opt_h" ]; then usage; fi
-if [ -z "$opt_a$opt_g$opt_i$opt_l$opt_p$opt_r$opt_u" ]; then
-    usage "Must specify at least one of -a, -g, -i, -l, -p, -r or -u";
+if [ -z "$opt_a$opt_g$opt_i$opt_I$opt_l$opt_p$opt_r$opt_u" ]; then
+    usage "Must specify at least one of -a, -g, -i, -I, -l, -p, -r or -u";
 fi
 if [ -n "$opt_i" -a -n "$opt_u" ]; then
     usage "You must choose either -i or -u";
@@ -828,6 +813,7 @@ if [ -n "$opt_u" -a -z "$FAIL_DONE" -a -f $ROBOTPKG_CHK_UPDATECONF ]; then
 fi
 
 [ -z "$MISS_DONE" ] ||		msg "Missing:$MISS_DONE"
+[ -z "$REPLACE_DONE" ] ||	msg "Replaced:$REPLACE_DONE"
 [ -z "$INSTALL_DONE" ] ||	msg "Installed:$INSTALL_DONE"
 
 if [ -n "$FAIL_DONE" ] ; then
