@@ -1,32 +1,46 @@
-.\"	$NetBSD: pkg_chk.8,v 1.26 2008/05/02 19:10:26 apb Exp $
-.\"
+.\" Copyright (c) 2009 LAAS/CNRS
 .\" Copyright (c) 2001 by David Brownlee (abs@NetBSD.org)
 .\" Absolutely no warranty.
 .\"
-.Dd May 2, 2008
-.Dt PKG_CHK 8
+.\" From $NetBSD: pkg_chk.8,v 1.26 2008/05/02 19:10:26 apb Exp $
+.\"
+.Dd Mar 22, 2009
+.Os Robotpkg
+.Dt ROBOTPKG_CHK \&8 "Robotpkg Administrative Tools"
 .Sh NAME
-.Nm pkg_chk
+.Nm robotpkg_chk
 .Nd check, and optionally update, installed packages
 .Sh SYNOPSIS
 .Nm
-.Op Fl aBbcfhiklNnpqrsuv
+.Op Fl abghiIklnpqrsuv
 .Op Fl C Ar conf
-.Op Fl D Ar tags
 .Op Fl L Ar file
 .Op Fl P Ar path
-.Op Fl U Ar tags
 .Sh DESCRIPTION
 .Nm
-verifies that the versions of installed packages matches those in
-pkgsrc, optionally adding missing or updating mismatched packages.
+verifies that the versions of installed packages match those in
+robotpkg, optionally adding missing or updating mismatched packages.
 .Pp
 It can verify all installed packages, or check against a set of packages
-based on the hostname, architecture, and other characteristics.
+specified in a configuration file.
 .Pp
 When updating packages that depend on each other
 .Nm
-will skip dependent packages to reduce unnecessary rebuilding.
+will tsort the dependencies to reduce unnecessary rebuilding.
+.Pp
+The most common usage is
+.Nm
+.Fl u
+.Fl q
+to check all installed packages
+or
+.Nm
+.Fl u
+to update all out of date packages.
+.Nm
+.Fl i
+will also update all out of date packages, by replacing them one at a
+time.
 .Pp
 .Ss Options
 .Bl -tag -width xxxxxxxx
@@ -45,30 +59,49 @@ If
 .Fl s
 is not set this allows
 .Nm
-to run without
-.Ev PKGSRCDIR .
+to run without robotpkg sources.
 .It Fl C Ar conf
 Use the
-.Pa pkgchk.conf
+.Pa robotpkg_chk.conf
 file
 .Sq Ar conf .
 .It Fl g
 Generate an initial
-.Pa pkgchk.conf
+.Pa robotpkg_chk.conf
 file based upon the packages installed on the host machine.
 .It Fl h
 Brief help.
+.It Fl i
+Automatically update any outdated packages and packages that have unsafe
+dependencies.
+Replacement is done by doing ``make replace'' in the topological order of
+installed packages.
+Whenever ``make replace'' is run on a package, all installed packages that
+depend on it are marked with the ``unsafe_depends_strict=YES'' flag.
+If the version of the replaced package has changed, this indicates that it may
+no longer be ABI-compatible so ``unsafe_depends=YES'' is also set for all
+packages that depend on it.
+.Fl i
+will restore packages with the unsafe_depends flag to a safe state.
+.It Fl I
+Same as
+.Fl i
+but replace outdated packages and packages with the unsafe_depends_strict
+flag.
+This has the same effect as
+.Fl u
+but by replacing one package at a time instead of deinstalling all packages
+first.
 .It Fl k
 Continue with further packages if errors are encountered.
 .It Fl L Ar file
 Redirect the output for all commands run into the logfile
 .Pa file .
-Should be specified as a full pathname.
 On any error the tail end of the logfile will be displayed.
 .It Fl l
 List the filename for all binary packages (including best dependencies) based
 on
-.Pa pkgchk.conf .
+.Pa robotpkg_chk.conf .
 Will abort if a binary package is missing.
 This can be used to determine what
 packages would need to be copied to a remote machine to ensure it
@@ -82,7 +115,7 @@ Set the path to the binary packages.
 Defaults to
 .Ev PACKAGES
 if
-.Ev PKGSRCDIR
+.Ev ROBOTPKG_DIR
 is available, or
 .Dq Pa \&.
 otherwise.
@@ -102,12 +135,13 @@ for later update.
 .It Fl s
 Building missing packages from source.
 If UPDATE_TARGET=package is set in
-.Pa /etc/mk.conf ,
+.Pa robotpkg.conf ,
 then
 .Nm
 will automatically generate binary packages for later reuse.
 .It Fl u
-Automatically update any missing packages.
+Automatically update any installed packages for which a more recent version
+exists.
 If a binary package exists in
 .Ev PACKAGES
 it will be used in preference to building from source, unless the
@@ -120,9 +154,7 @@ Note: If the update fails (particularly when building from source), the system
 will be left with missing packages.
 Once the error has been fixed, a second run will resume the update.
 .It Fl v
-Verbose - list the tags set when checking
-.Pa pkgchk.conf ,
-and all packages checked.
+Verbose - list all packages checked.
 .El
 .Sh FILE FORMAT
 Anything after a
@@ -130,127 +162,39 @@ Anything after a
 on a line is considered a comment.
 .Pp
 Each line in
-.Pa pkgchk.conf
-can either define a new tag or a package directory
-(such as sysutils/skill), in each case followed by a list of tags.
-.Ss New tag groups
-Lines that define a new tag can be used to group tags to avoid
-repeating the same set of tags for multiple packages.
-For example:
-.Dl mailserver      \= tll gta tycoon jeeves iris
-would cause the mailserver tag to be set for any of the listed hosts.
-Note that the tags after the
-.Sq =
-are parsed with the same set of tag
-evaluation rules as those after package definitions (see later).
-.Ss Package definition lines
-Package directory lines are used to determine which packages are to be
-installed, checking the tags against the current defined set.
-.Ss Tag evaluation
-Tags on package directory are checked against the current machine's set:
-.Bl -bullet
-.It
-If a matched tag starts with a hyphen
-.Sq - ,
-the package is always excluded.
-.It
-Otherwise if any tags match the package will be included.
-.It
-A line without any tags matches all machines.
-.It
-An asterisk
-.Sq *
-matches any tag.
-.It
-If a tag starts with an
-.Sq /
-then it is checked for as a readable filename.
-.It
-Tags cannot contain a hyphen
-.Sq -
-or plus
-.Sq + .
-.It
-Tags separated by spaces are treated as
-.Dq or .
-.Dq taga tagb
-means if
-.Em taga
-or
-.Em tagb
-match the current machine.
-.It
-Tags separated by a plus are treated as
-.Dq and .
-.Dq taga+tagb
-means if
-.Em taga
-and
-.Em tagb
-match the current machine.
-.El
-.Pp
-The default set of tags used to determine which packages to match
-in
-.Pa pkgchk.conf
-are equivalent to the output of the following with
-any spaces converted to hyphens (-): hostname -s, hostname, uname
--srm, uname -sr, uname -sm, uname -s, uname -r, uname -m.
-If
-.Pa /usr/X11R6/lib/libX11.so
-or
-.Pa /usr/X11R6/lib/libX11.a
-is present,
-.Em x11
-is added to the list of tags.
-Tags should not contain the - or + characters.
-To see tags for the current machine, run
-.Nm
-with the
-.Fl v
-option.
+.Pa robotpkg_chk.conf
+defines a package directory (such as pkgtools/robotpkg_chk) which is used to
+determine which packages are to be installed.
 .Sh ENVIRONMENT
 .Nm
 uses the following environment variables.
 .Bl -tag -width xxxx
 .It Ev MAKECONF
 Path to
-.Pa mk.conf .
+.Pa robotpkg.conf .
 Defaults to
-.Pa @MAKECONF@ , @PREFIX@/etc/mk.conf ,
+.Pa @PREFIX@/etc/robotpgk.conf ,
 or
-.Pa /etc/mk.conf .
-.It Ev PKGSRCDIR
-Base of pkgsrc tree.
-If not set in the environment, then this variable is read from
-.Pa ${MAKECONF} .
-If it is still not set, and if the current working directory
-appears to be inside a pkgsrc tree, then this variable
-is set to the base of that pkgsrc tree.
-Finally, if
-.Pa /usr/pkgsrc
-appears to contain a pkgsrc tree, then that is used as a last resort.
-.It Ev PKG_DBDIR
-pkgsrc database directory.
-If not set in environment then read from
-.Pa ${MAKECONF} .
+.Pa /opt/openrobots/etc/robotpkg.conf .
+.It Ev ROBOTPKG_DIR
+Base of robotpkg tree.
 Defaults to
-.Pa /var/db/pkg
+.Pa @ROBOTPKG_DIR@ .
 .It Ev PACKAGES
 Location of binary packages.
 If not set in environment then read from
-.Pa /etc/mk.conf .
+.Pa ${MAKECONF} .
 Defaults to
-.Pa ${PKGSRCDIR}/packages .
+.Pa ${ROBOTPKG_DIR}/packages .
 .Pp
 Unless in a completely homogeneous environment (every machine running
 exactly the same OS version and architecture) setting
 .Ev ${PACKAGES}
 in
-.Pa /etc/mk.conf
+.Pa robotpkg.conf
 to a value such as
 .Bd -literal
-${PKGSRCDIR}/packages/${LOWER_OPSYS}-${OS_VERSION}-${MACHINE_ARCH}
+${ROBOTPKG_DIR}/packages/${LOWER_OPSYS}-${OS_VERSION}-${MACHINE_ARCH}
 .Ed
 .Pp
 is strongly recommended.
@@ -261,57 +205,24 @@ then
 .Ev ${CPU_DIR}
 should be appended to
 .Ev ${PACKAGES} .
-.It Ev PKGCHK_CONF
-Pathname to pkg_chk configuration file.
-If not set in environment then read from
-.Pa /etc/mk.conf .
-Defaults to
-.Pa ${PKGSRCDIR}/pkgchk.conf .
-.It Ev PKGCHK_UPDATE_CONF
-Pathname to temporary list of installed packages used when updating.
-If not set in environment then read from
-.Pa /etc/mk.conf .
-Defaults to
-.Pa ${PKGSRCDIR}/pkgchk_update-$(hostname).conf .
-Note, if pkgsrc is being
-shared across multiple machines which may be updating at the same time then
-it is important this file does not overlap between machines.
-.It Ev PKGCHK_TAGS
-Additional tags to add when parsing
-.Pa pkgchk.conf .
-.It Ev PKGCHK_NOTAGS
-Additional tags to unset when parsing
-.Pa pkgchk.conf .
 .El
 .Sh EXAMPLES
 Sample
-.Pa pkgchk.conf
+.Pa robotpkg_chk.conf
 file:
 .Bd -literal
 
-mailserver      = tll gta tycoon jeeves iris
-
 # Install before others
-devel/cpuflags
-pkgtools/pkg_chk
+pkgtools/robotpkg_chk
 
-# Mail related
-mail/exim                       *
-mail/spamassassin               mailserver
-mail/cyrus-imapd                mailserver
-mail/procmail                   mailserver bobhost
-
-shells/standalone-tcsh          *
-wm/pwm                          /etc/X11/XF86Config
-misc/setiathome                 i386
-print/acroread                  /etc/X11/XF86Config+i386
-www/communicator                x11+sparc x11+sparc64
-www/navigator                	x11+i386
-x11/xlockmore                   x11 -wopr
+# Others
+shells/eltcsh
+architecture/genom
 
 .Ed
 .Sh AUTHORS
-.An David Brownlee
+.An Adapted by Anthony Mallet from pkg_chk(8) in pkgsrc. pkg_chk(8) from David
+Brownlee
 .Aq abs@NetBSD.org ,
 plus much from Stoned Elipot.
 .Sh BUGS
