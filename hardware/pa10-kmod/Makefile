@@ -18,6 +18,7 @@ DISTNAME=	pa10-kmod-${VERSION}
 VERSION=	1.0
 CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=linux/}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pa10-kmod
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	Kernel driver for Mitsubishi PA10 Arm controller
