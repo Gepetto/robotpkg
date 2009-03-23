@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/03/15 18:09:41 tho $
+# $LAAS: Makefile 2009/03/23 14:53:42 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,7 @@
 #                                             Anthony Mallet on Sat Mar 14 2009
 #
 
-DISTNAME=       robotpkg_chk-1.0
+DISTNAME=       robotpkg_chk-1.1
 CATEGORIES=     pkgtools
 MASTER_SITES=   # empty
 DISTFILES=      # empty
