@@ -17,7 +17,7 @@
 #                                             Anthony Mallet on Mon Mar  9 2009
 #
 
-DISTNAME=	textos-genom-1.0
+DISTNAME=	textos-genom-1.0.1
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=textos-genom/}
 
