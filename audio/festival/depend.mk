@@ -46,9 +46,9 @@ DEPEND_DIR.festival?=	../../audio/festival
 SYSTEM_SEARCH.festival=\
 	bin/festival			\
 	include/festival/festival.h	\
-	lib/libFestival.a
+	'lib/libFestival.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.festival=	festival-devel
+SYSTEM_PKG.Linux-fedora.festival=	festival festival-devel
 SYSTEM_PKG.NetBSD.festival=		pkgsrc/audio/festival
 
 ifneq (,$(findstring ogireslpc,${REQD_BUILD_OPTIONS.festival}))
