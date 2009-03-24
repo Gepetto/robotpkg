@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2009/03/09 21:40:25 tho $
+# $LAAS: robotpkg.options.mk 2009/03/24 18:10:35 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -138,6 +138,15 @@ ifndef NO_BUILD
     #
     PKG_SUPPORTED_OPTIONS+=	debug
     PKG_OPTION_DESCR.debug:=	Produce debugging information for binary programs
+
+    define PKG_OPTION_SET.debug
+      CFLAGS+=		${_CFLAGS_DEBUG}
+      CXXFLAGS+=	${_CFLAGS_DEBUG}
+    endef
+    define PKG_OPTION_UNSET.debug
+      CFLAGS+=		${_CFLAGS_NDEBUG}
+      CXXFLAGS+=	${_CFLAGS_NDEBUG}
+    endef
   endif
 endif
 

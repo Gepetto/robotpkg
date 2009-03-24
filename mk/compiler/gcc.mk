@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/03/13 15:35:31 mallet $
+# $LAAS: gcc.mk 2009/03/24 18:11:17 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -127,21 +127,10 @@ COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 
 # --- compiler options -----------------------------------------------------
 #
-# Each compiler can define the PKG_OPTION_SET.debug and PKG_OPTION_UNSET.debug
-# scripts corresponding to the common `debug' option.
+# Each compiler can define the _CFLAGS_DEBUG and _CFLAGS_NDEBUG flags
+# corresponding to the common `debug' option.
 #
-ifndef PKG_OPTION_SET.debug
-  define PKG_OPTION_SET.debug
-    CFLAGS+=	-g -O0 -Wall
-    CXXFLAGS+=	-g -O0 -Wall
-  endef
-endif
-
-ifndef PKG_OPTION_UNSET.debug
-  define PKG_OPTION_UNSET.debug
-    CFLAGS+=	-O3 -DNDEBUG
-    CXXFLAGS+=	-O3 -DNDEBUG
-  endef
-endif
+_CFLAGS_DEBUG=	-g -O0 -Wall
+_CFLAGS_NDEBUG=	-O3 -DNDEBUG
 
 endif	# COMPILER_GCC_MK
