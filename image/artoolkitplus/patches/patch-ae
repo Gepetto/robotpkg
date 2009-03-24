@@ -1,0 +1,11 @@
+--- tools/IdPatGen/src/PN/ImageTool.cpp~	2006-04-19 23:28:10.000000000 +0200
++++ tools/IdPatGen/src/PN/ImageTool.cpp	2009-03-24 18:22:30.000000000 +0100
+@@ -33,7 +33,7 @@
+ #include "ImageTool.h"
+ 
+ #include <cstdio>
+-#include <string>
++#include <cstring>
+ 
+ #if defined(TARGET_HOST_WIN32) || defined(TARGET_HOST_WINCE)
+ #include <windows.h>

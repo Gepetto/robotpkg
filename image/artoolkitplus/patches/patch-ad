@@ -1,0 +1,11 @@
+--- tools/IdPatGen/src/PN/Image.cpp~	2006-04-19 23:28:10.000000000 +0200
++++ tools/IdPatGen/src/PN/Image.cpp	2009-03-24 18:21:09.000000000 +0100
+@@ -35,7 +35,7 @@
+ 
+ #include <cstdio>
+ #include <cstdlib>
+-#include <string>
++#include <cstring>
+ 
+ #if defined(TARGET_HOST_WIN32) || defined(TARGET_HOST_WINCE)
+ #include <windows.h>

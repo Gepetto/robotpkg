@@ -1,0 +1,12 @@
+--- src/librpp/rpp_vecmat.cpp.orig	2006-04-19 23:28:10.000000000 +0200
++++ src/librpp/rpp_vecmat.cpp	2009-03-24 18:17:37.000000000 +0100
+@@ -40,7 +40,8 @@
+ 
+ #ifndef _NO_LIBRPP_
+ 
+-
++#include <cstdlib>
++#include <cstdio>
+ #include "rpp_vecmat.h"
+ #include "math.h"
+ #include "assert.h"

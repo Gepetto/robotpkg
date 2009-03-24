@@ -1,0 +1,84 @@
+--- src/librpp/rpp.h~	2009-03-24 22:27:17.000000000 +0100
++++ src/librpp/rpp.h	2009-03-24 22:28:33.000000000 +0100
+@@ -57,10 +57,10 @@
+ void rpyAng_X(vec3_t &ang_zyx, const mat33_t &R);
+ void decomposeR(mat33_t &Rz, const mat33_t &R);
+ void abskernel(mat33_t &R, vec3_t &t, vec3_array &Qout, real_t &err2, 
+-			   const vec3_array _P, const vec3_array _Q, 
++			   const vec3_array v_P, const vec3_array v_Q, 
+ 			   const mat33_array F, const mat33_t G);
+ void objpose(mat33_t &R, vec3_t &t, unsigned int &it, real_t &obj_err, real_t &img_err,
+-			 bool calc_img_err, const vec3_array _P, const vec3_array Qp, const options_t options);
++			 bool calc_img_err, const vec3_array v_P, const vec3_array Qp, const options_t options);
+ void getRotationY_wrtT(scalar_array &al_ret, vec3_array &tnew, const vec3_array &v,
+ 					   const vec3_array &p, const vec3_t &t, const real_t &DB,
+ 					   const mat33_t &Rz);
+--- src/librpp/rpp.cpp.orig	2009-03-24 22:29:08.000000000 +0100
++++ src/librpp/rpp.cpp	2009-03-24 22:31:33.000000000 +0100
+@@ -189,20 +189,20 @@
+ 
+ // ===========================================================================================
+ void abskernel(mat33_t &R, vec3_t &t, vec3_array &Qout, real_t &err2, 
+-			   const vec3_array _P, const vec3_array _Q, 
++			   const vec3_array v_P, const vec3_array v_Q, 
+ 			   const mat33_array F, const mat33_t G)
+ 
+ {
+ 	unsigned i,j;
+ 
+-	vec3_array P(_P.begin(),_P.end());
+-	vec3_array Q(_Q.begin(),_Q.end());
++	vec3_array P(v_P.begin(),v_P.end());
++	vec3_array Q(v_Q.begin(),v_Q.end());
+ 	const unsigned int n = (unsigned int) P.size();
+ 
+ 	for(i=0; i<n; i++)
+ 	{
+ 		vec3_t _q;
+-		vec3_mult(_q,F.at(i),_Q.at(i));
++		vec3_mult(_q,F.at(i),v_Q.at(i));
+ 		vec3_copy(Q.at(i),_q);
+ 	}
+ 
+@@ -225,17 +225,17 @@
+ 		mat33_add(M,_m);
+ 	}
+ 
+-	mat33_t _U;
+-	mat33_t _S;
+-	mat33_t _V;
+-	mat33_clear(_U);
+-	mat33_clear(_S);
+-	mat33_clear(_V);
+-	mat33_svd2(_U,_S,_V,M);
+-
+-	mat33_t _Ut;
+-	mat33_transpose(_Ut,_U);
+-	mat33_mult(R,_V,_Ut);
++	mat33_t m_U;
++	mat33_t m_S;
++	mat33_t m_V;
++	mat33_clear(m_U);
++	mat33_clear(m_S);
++	mat33_clear(m_V);
++	mat33_svd2(m_U,m_S,m_V,M);
++
++	mat33_t m_Ut;
++	mat33_transpose(m_Ut,m_U);
++	mat33_mult(R,m_V,m_Ut);
+ 
+ 	vec3_t _sum;
+ 	vec3_clear(_sum);
+@@ -263,10 +263,10 @@
+ // ===========================================================================================
+ 
+ void objpose(mat33_t &R, vec3_t &t, unsigned int &it, real_t &obj_err, real_t &img_err,
+-			 bool calc_img_err, const vec3_array _P, const vec3_array Qp, const options_t options)
++			 bool calc_img_err, const vec3_array v_P, const vec3_array Qp, const options_t options)
+ {
+ 	unsigned int i,j;
+-	vec3_array P(_P.begin(),_P.end());
++	vec3_array P(v_P.begin(),v_P.end());
+ 
+ 	const unsigned int n = (unsigned int) P.size();
+ 	vec3_t pbar;

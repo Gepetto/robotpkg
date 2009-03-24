@@ -1,0 +1,3 @@
+ARToolKit is a software library that can be used to calculate camera position
+and orientation relative to physical markers in real time. This enables the
+easy development of a wide range of Augmented Reality applications.

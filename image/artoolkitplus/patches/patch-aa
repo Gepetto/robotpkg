@@ -1,0 +1,22 @@
+--- build/linux/options.pro~	2006-04-19 22:21:08.000000000 +0200
++++ build/linux/options.pro	2009-03-24 16:40:52.000000000 +0100
+@@ -13,8 +13,8 @@
+ ###
+ # choose between debug and release mode
+ 
+-CONFIG		= debug
+-#CONFIG		= release
++#CONFIG		= debug
++CONFIG		= release
+ 
+ ###
+ # add additional optimization flags (platform-specific)
+@@ -24,7 +24,7 @@
+ }
+ else {
+ #  QMAKE_CXXFLAGS      = -mtune=pentium4 -march=pentium4 -msse2 -msse -fpermissive
+-  QMAKE_CXXFLAGS      = -mtune=pentium4 -march=pentium4 -msse2 -msse 
++#  QMAKE_CXXFLAGS      = -mtune=pentium4 -march=pentium4 -msse2 -msse 
+ }
+ 
+ 

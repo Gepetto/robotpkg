@@ -1,0 +1,79 @@
+--- src/src.pro~	2009-03-24 23:25:53.000000000 +0100
++++ src/src.pro	2009-03-24 23:31:17.000000000 +0100
+@@ -9,9 +9,7 @@
+ 
+ TARGET   = ARToolKitPlus
+ 
+-QMAKE_CLEAN = $$(ARTKP)/lib/*
+-
+-DESTDIR  = $$(ARTKP)/lib
++QMAKE_CLEAN = libARToolKitPlus.*
+ 
+ debug {
+   message("Building ARToolKitPlus in debug mode ...")
+--- sample/simple/simple.pro~	2006-04-19 16:38:16.000000000 +0200
++++ sample/simple/simple.pro	2009-03-24 23:33:31.000000000 +0100
+@@ -9,9 +9,9 @@
+ 
+ TARGET   = simple
+ 
+-QMAKE_CLEAN = $$(ARTKP)/bin/simple
++QMAKE_CLEAN = simple
+ 
+-LIBS += -L$$(ARTKP)/lib -lARToolKitPlus
++LIBS += -L../../src -lARToolKitPlus
+ 
+ debug {
+   OBJECTS_DIR     = $$(ARTKP)/sample/simple/build/linux/debug
+@@ -22,7 +22,6 @@
+ }
+ 
+ 
+-DESTDIR  = $$(ARTKP)/bin
+ 
+ debug {
+   message("Building simple in debug mode ...")
+--- sample/multi/multi.pro~	2006-04-19 16:38:16.000000000 +0200
++++ sample/multi/multi.pro	2009-03-24 23:34:03.000000000 +0100
+@@ -9,9 +9,9 @@
+ 
+ TARGET   = multi
+ 
+-QMAKE_CLEAN = $$(ARTKP)/bin/multi
++QMAKE_CLEAN = multi
+ 
+-LIBS += -L$$(ARTKP)/lib -lARToolKitPlus
++LIBS += -L../../src -lARToolKitPlus
+ 
+ debug {
+   OBJECTS_DIR     = $$(ARTKP)/sample/multi/build/linux/debug
+@@ -22,7 +22,6 @@
+ }
+ 
+ 
+-DESTDIR  = $$(ARTKP)/bin
+ 
+ debug {
+   message("Building multi in debug mode ...")
+--- tools/IdPatGen/IdPatGen.pro~	2006-04-19 16:38:16.000000000 +0200
++++ tools/IdPatGen/IdPatGen.pro	2009-03-24 23:34:38.000000000 +0100
+@@ -9,9 +9,9 @@
+ 
+ TARGET   = idpatgen
+ 
+-QMAKE_CLEAN = $$(ARTKP)/bin/idpatgen
++QMAKE_CLEAN = idpatgen
+ 
+-LIBS += -L$$(ARTKP)/lib -lARToolKitPlus
++LIBS += -L../../src -lARToolKitPlus
+ 
+ debug {
+   OBJECTS_DIR     = $$(ARTKP)/tools/IdPatGen/build/linux/debug
+@@ -22,7 +22,6 @@
+ }
+ 
+ 
+-DESTDIR  = $$(ARTKP)/bin
+ 
+ debug {
+   message("Building IdPatGen in debug mode ...")

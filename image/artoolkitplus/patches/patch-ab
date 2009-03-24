@@ -1,0 +1,11 @@
+--- src/librpp/rpp.cpp~	2006-04-19 23:28:10.000000000 +0200
++++ src/librpp/rpp.cpp	2009-03-24 18:15:14.000000000 +0100
+@@ -43,7 +43,7 @@
+ 
+ #ifndef _NO_LIBRPP_
+ 
+-
++#include <cstring>
+ #include <vector>
+ #include "assert.h"
+ 

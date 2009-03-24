@@ -3,6 +3,7 @@
 
 COMMENT=	Image processing utlities
 
+SUBDIR+=	artoolkitplus
 SUBDIR+=	coriander
 SUBDIR+=	libdc1394-1
 SUBDIR+=	libdc1394
