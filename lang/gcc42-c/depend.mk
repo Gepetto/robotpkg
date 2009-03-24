@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/02/03 17:36:16 mallet $
+# $LAAS: depend.mk 2009/03/24 17:13:14 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -20,4 +20,4 @@
 # will do the actual job.
 
 GCC_REQUIRED+=	>=4.2 <4.3
-USE_LANGUAGES+=	fortran
+USE_LANGUAGES+=	c
