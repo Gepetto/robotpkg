@@ -18,7 +18,7 @@
 
 DISTNAME=	hppopenhrp-${VERSION}
 PKGNAME=	hpp-openhrp-${VERSION}
-VERSION=	1.4
+VERSION=	1.5
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-openhrp/}
