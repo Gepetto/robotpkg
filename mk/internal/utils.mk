@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/03/20 12:02:58 mallet $
+# $LAAS: utils.mk 2009/03/24 17:07:07 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -109,13 +109,15 @@ $(call require-for, show-var show-vars,				\
 		${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk))
 
 .PHONY: show-var
+show-var: export _value=${${VARNAME}}
 show-var:
-	@${ECHO} '$(subst ','\'',${${VARNAME}})' #'
+	@${ECHO} "$$_value"
 
 # enhanced version of target above, to display multiple variables
 .PHONY: show-vars
 show-vars:
-	@:; $(foreach VARNAME,${VARNAMES},${ECHO} '$(subst ','\'',${${VARNAME}})';) #'
+	@:; $(foreach _v_,${VARNAMES},\
+		${RECURSIVE_MAKE} show-var VARNAME=${_v_};)
 
 
 # --- show-comment ---------------------------------------------------------
