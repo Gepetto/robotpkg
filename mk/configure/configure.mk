@@ -1,4 +1,4 @@
-# $LAAS: configure.mk 2009/03/10 22:00:59 tho $
+# $LAAS: configure.mk 2009/03/24 13:48:55 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -53,6 +53,9 @@ ifdef GNU_CONFIGURE
 endif
 ifdef USE_CMAKE
   include ${ROBOTPKG_DIR}/mk/configure/cmake-configure.mk
+endif
+ifdef USE_QMAKE
+  include ${ROBOTPKG_DIR}/mk/configure/qmake-configure.mk
 endif
 
 CONFIGURE_SCRIPT?=	./configure
