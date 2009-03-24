@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $LAAS: prefixsearch.sh 2009/03/18 23:01:38 tho $
+# $LAAS: prefixsearch.sh 2009/03/24 11:57:02 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -172,7 +172,7 @@ prefix=
 pkgversion=
 vrepl='y/-/./;q'
 
-for p in $sysprefix; do
+for p in `bracesubst $sysprefix`; do
     ${MSG} "searching in $p"
     flist=
     for fspec in "$@"; do
