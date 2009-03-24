@@ -291,7 +291,7 @@ shar)
 	;;
 
 zip)
-	: ${EXTRACT_OPTS_ZIP=-Laqo}
+	: ${EXTRACT_OPTS_ZIP=-aqo}
 	${TEST} "$exclude" = "no" || exclude_flag="-x"
 	if ${TEST} -n "$exclude_file"; then
 		set -- dummy `${CAT} "$exclude_file"`; shift
