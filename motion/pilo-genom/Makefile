@@ -17,6 +17,7 @@
 DISTNAME=	pilo-genom-1.0
 CATEGORIES=	motion
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=pilo/}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pilo-genom
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/openrobots/
