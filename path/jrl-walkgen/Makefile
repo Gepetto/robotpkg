@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/30 19:10:34 mallet $
+# $LAAS: Makefile 2009/03/27 11:40:32 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -20,8 +20,9 @@ DISTNAME=	walkgenjrl-${VERSION}
 PKGNAME=	jrl-walkgen-${VERSION}
 VERSION=	2.5.2
 
-CATEGORIES=	path
-MASTER_SITES=	${MASTER_SITE_JRL}
+CATEGORIES=		path
+MASTER_SITES=		${MASTER_SITE_JRL}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/jrl/walkGenJrl
 
 USE_LANGUAGES+=fortran
 
