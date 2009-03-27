@@ -1,4 +1,4 @@
-# $LAAS: package-vars.mk 2009/03/07 17:48:53 tho $
+# $LAAS: package-vars.mk 2009/03/27 23:33:51 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -58,7 +58,7 @@ _COOKIE.package=	${WRKDIR}/.package_done
 #
 .PHONY: package
 ifndef NO_PACKAGE
-  include ${ROBOTPKG_DIR}/mk/package/package.mk
+  $(call require, ${ROBOTPKG_DIR}/mk/package/package.mk)
 else
   ifeq (yes,$(call exists,${_COOKIE.package}))
     package:
@@ -87,6 +87,17 @@ endif
 #
 .PHONY: repackage
 repackage: package-clean package
+
+
+# --- tarup (PUBLIC) -------------------------------------------------
+#
+# tarup is a public target to generate a binary package from an
+# installed package instance.
+#
+$(call require-for, tarup, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
+.PHONY: tarup
+tarup: pkg-tarup
 
 
 # --- package-clean (PRIVATE) ----------------------------------------

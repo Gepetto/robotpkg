@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/03/17 18:52:01 mallet $
+# $LAAS: robotpkg.mk 2009/03/27 18:10:04 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -394,7 +394,7 @@ $(call require-for, install install-clean su-install-all reinstall	\
 	${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 
 # Package
-$(call require-for, package repackage,					\
+$(call require-for, package repackage tarup,				\
 	${ROBOTPKG_DIR}/mk/package/package-vars.mk)
 
 # Dependencies

@@ -1,4 +1,4 @@
-# $LAAS: pkg-vars.mk 2009/03/15 00:08:56 tho $
+# $LAAS: pkg-vars.mk 2009/03/27 00:38:41 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -102,6 +102,18 @@ PKG_INFO?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_INFO_CMD} ${PKGTOOLS_ARGS}
 # package name.
 #
 _PKG_BEST_EXISTS?=	${PKG_ADMIN} -b -d ${_PKG_DBDIR} -S lsbest
+
+
+# Metadata filenames
+_BUILD_INFO_FILE=	+BUILD_INFO
+_BUILD_VERSION_FILE=	+BUILD_VERSION
+_COMMENT_FILE=		+COMMENT
+_DESCR_FILE=		+DESC
+_MESSAGE_FILE=		+DISPLAY
+_PRESERVE_FILE=		+PRESERVE
+_SIZE_ALL_FILE=		+SIZE_ALL
+_SIZE_PKG_FILE=		+SIZE_PKG
+_CONTENTS_FILE=		+CONTENTS
 
 
 include ${ROBOTPKG_DIR}/mk/pkg/depends.mk

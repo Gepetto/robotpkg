@@ -1,4 +1,4 @@
-# $LAAS: metadata.mk 2009/03/12 14:29:36 mallet $
+# $LAAS: metadata.mk 2009/04/02 14:30:40 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -44,39 +44,30 @@
 PKG_DB_TMPDIR=	${WRKDIR}/.pkgdb
 
 ${PKG_DB_TMPDIR}:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $@
+	${RUN}${MKDIR} $@
 
 
-# --- +BUILD_INFO ----------------------------------------------------
+# --- +BUILD_INFO ----------------------------------------------------------
 #
 # Package build environment and settings information
 #
 $(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
-_BUILD_INFO_FILE=	${PKG_DB_TMPDIR}/+BUILD_INFO
 _BUILD_DATE_cmd=	${_CDATE_CMD} "+%Y-%m-%d %H:%M:%S %z"
-_METADATA_TARGETS+=	${_BUILD_INFO_FILE}
+_METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_BUILD_INFO_FILE}
 
-${_BUILD_INFO_FILE}: plist
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f $@.tmp
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-$(foreach _def_,${_BUILD_DEFS},						\
+${PKG_DB_TMPDIR}/${_BUILD_INFO_FILE}: plist
+	${RUN}${MKDIR} $(dir $@); >$@.tmp;				\
+  $(foreach _def_,${_BUILD_DEFS},					\
 	${ECHO} ${_def_}=${${_def_}} >> $@.tmp; 			\
-)
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "PKGTOOLS_VERSION=${PKGTOOLS_VERSION}" >> $@.tmp
-ifdef HOMEPAGE
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "HOMEPAGE=${HOMEPAGE}" >> $@.tmp
-endif
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "CATEGORIES=${CATEGORIES}" >> $@.tmp
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "MAINTAINER=${MAINTAINER}" >> $@.tmp
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${ECHO} "BUILD_DATE=$(shell ${_BUILD_DATE_cmd})" >> $@.tmp
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+  )									\
+	${ECHO} "PKGTOOLS_VERSION=${PKGTOOLS_VERSION}" >> $@.tmp;	\
+  $(if ${HOMEPAGE},							\
+	${ECHO} "HOMEPAGE=${HOMEPAGE}" >> $@.tmp;			\
+  )									\
+	${ECHO} "CATEGORIES=${CATEGORIES}" >> $@.tmp;			\
+	${ECHO} "MAINTAINER=${MAINTAINER}" >> $@.tmp;			\
+	${ECHO} "BUILD_DATE=`${_BUILD_DATE_cmd}`" >> $@.tmp;		\
 	${SORT} $@.tmp > $@ && ${RM} -f $@.tmp
 
 
@@ -87,10 +78,9 @@ endif
 # We extract the ident strings from all of the important pkgsrc files
 # involved in building the package, i.e. Makefile and patches.
 #
-_BUILD_VERSION_FILE=	${PKG_DB_TMPDIR}/+BUILD_VERSION
-_METADATA_TARGETS+=	${_BUILD_VERSION_FILE}
+_METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_BUILD_VERSION_FILE}
 
-${_BUILD_VERSION_FILE}:
+${PKG_DB_TMPDIR}/${_BUILD_VERSION_FILE}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f $@.tmp
 	${_PKG_SILENT}${_PKG_DEBUG}					\
@@ -132,10 +122,9 @@ ${_BUILD_VERSION_FILE}:
 #
 # This file contains the one-line description of the package.
 #
-_COMMENT_FILE=		${PKG_DB_TMPDIR}/+COMMENT
-_METADATA_TARGETS+=	${_COMMENT_FILE}
+_METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_COMMENT_FILE}
 
-${_COMMENT_FILE}:
+${PKG_DB_TMPDIR}/${_COMMENT_FILE}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} $(call quote,${COMMENT}) > $@
 
@@ -146,10 +135,9 @@ ${_COMMENT_FILE}:
 #
 # This file contains the paragraph description of the package.
 #
-_DESCR_FILE=		${PKG_DB_TMPDIR}/+DESC
-_METADATA_TARGETS+=	${_DESCR_FILE}
+_METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_DESCR_FILE}
 
-${_DESCR_FILE}: ${DESCR_SRC}
+${PKG_DB_TMPDIR}/${_DESCR_FILE}: ${DESCR_SRC}
 	${RUN}								\
 	${MKDIR} $(dir $@);						\
 	${RM} -f $@;							\
@@ -172,13 +160,12 @@ ${DESCR_SRC}:;
 #
 ifndef MESSAGE_SRC
   ifeq (yes,$(call exists,${PKGDIR}/MESSAGE))
-MESSAGE_SRC=	${PKGDIR}/MESSAGE
+    MESSAGE_SRC=	${PKGDIR}/MESSAGE
   endif
 endif
 
 ifdef MESSAGE_SRC
-_MESSAGE_FILE=		${PKG_DB_TMPDIR}/+DISPLAY
-_METADATA_TARGETS+=	${_MESSAGE_FILE}
+_METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_MESSAGE_FILE}
 
 # Set MESSAGE_SUBST to substitute "${variable}" to "value" in MESSAGE
 MESSAGE_SUBST+=	PKGNAME=${PKGNAME}					\
@@ -189,7 +176,7 @@ MESSAGE_SUBST+=	PKGNAME=${PKGNAME}					\
 
 _MESSAGE_SUBST_SED= $(foreach _m_,$(MESSAGE_SUBST), -e s!\$${$(subst =,}!,${_m_})!g)
 
-${_MESSAGE_FILE}: ${MESSAGE_SRC}
+${PKG_DB_TMPDIR}/${_MESSAGE_FILE}: ${MESSAGE_SRC}
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}${CAT} $^ | \
 		${SED} ${_MESSAGE_SUBST_SED} > $@
@@ -198,7 +185,7 @@ ${_MESSAGE_FILE}: ${MESSAGE_SRC}
 #
 .PHONY: install-display-message
 pkg-register: install-display-message
-install-display-message: ${_MESSAGE_FILE}
+install-display-message: ${PKG_DB_TMPDIR}/${_MESSAGE_FILE}
 	@${STEP_MSG} "Please note the following:"
 	@${ECHO_MSG} ""
 	@${CAT} ${_MESSAGE_FILE}
@@ -214,10 +201,9 @@ endif	# MESSAGE_SRC
 # package unless one "force-deletes" the package.
 #
 ifdef PKG_PRESERVE
-_PRESERVE_FILE=		${PKG_DB_TMPDIR}/+PRESERVE
-_METADATA_TARGETS+=	${_PRESERVE_FILE}
+  _METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_PRESERVE_FILE}
 
-${_PRESERVE_FILE}:
+  ${PKG_DB_TMPDIR}/${_PRESERVE_FILE}:
 	${RUN}${MKDIR} $(dir $@); ${_CDATE_CMD} > $@
 endif
 
@@ -229,14 +215,13 @@ endif
 # This is the total size of the dependencies that this package was
 # built against.
 #
-_SIZE_ALL_FILE=		${PKG_DB_TMPDIR}/+SIZE_ALL
-_METADATA_TARGETS+=	${_SIZE_ALL_FILE}
+_METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_SIZE_ALL_FILE}
 
 ifndef NO_DEPENDS
-  ${_SIZE_ALL_FILE}: ${_COOKIE.depends}
+  ${PKG_DB_TMPDIR}/${_SIZE_ALL_FILE}: ${_COOKIE.depends}
 endif
 
-${_SIZE_ALL_FILE}:
+${PKG_DB_TMPDIR}/${_SIZE_ALL_FILE}:
 	${RUN}${MKDIR} $(dir $@);					\
 	${_DEPENDS_PATTERNS_CMD} |					\
 	  ${XARGS} -n 1 ${_PKG_BEST_EXISTS} | ${SORT} -u |		\
@@ -251,10 +236,9 @@ ${_SIZE_ALL_FILE}:
 #
 # This is the total size of the files contained in the package.
 #
-_SIZE_PKG_FILE=		${PKG_DB_TMPDIR}/+SIZE_PKG
-_METADATA_TARGETS+=	${_SIZE_PKG_FILE}
+_METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_SIZE_PKG_FILE}
 
-${_SIZE_PKG_FILE}: plist
+${PKG_DB_TMPDIR}/${_SIZE_PKG_FILE}: plist
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 	${CAT} ${PLIST} |						\
@@ -276,72 +260,65 @@ ${_SIZE_PKG_FILE}: plist
 # This file contains the list of files and checksums, along with
 # any special "@" commands, e.g. @dirrm.
 #
-_CONTENTS_FILE=		${PKG_DB_TMPDIR}/+CONTENTS
-_METADATA_TARGETS+=	${_CONTENTS_FILE}
+_METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_CONTENTS_FILE}
 
 _PKG_CREATE_ARGS+=	-v -l -U
-_PKG_CREATE_ARGS+=	-B ${_BUILD_INFO_FILE}
-_PKG_CREATE_ARGS+=	-b ${_BUILD_VERSION_FILE}
-_PKG_CREATE_ARGS+=	-c ${_COMMENT_FILE}
-ifdef _MESSAGE_FILE
-_PKG_CREATE_ARGS+=	-D ${_MESSAGE_FILE}
+_PKG_CREATE_ARGS+=	-B ${PKG_DB_TMPDIR}/${_BUILD_INFO_FILE}
+_PKG_CREATE_ARGS+=	-b ${PKG_DB_TMPDIR}/${_BUILD_VERSION_FILE}
+_PKG_CREATE_ARGS+=	-c ${PKG_DB_TMPDIR}/${_COMMENT_FILE}
+ifdef MESSAGE_SRC
+_PKG_CREATE_ARGS+=	-D ${PKG_DB_TMPDIR}/${_MESSAGE_FILE}
 endif
-_PKG_CREATE_ARGS+=	-d ${_DESCR_FILE}
+_PKG_CREATE_ARGS+=	-d ${PKG_DB_TMPDIR}/${_DESCR_FILE}
 _PKG_CREATE_ARGS+=	-f ${PLIST}
 ifdef PKG_PRESERVE
-_PKG_CREATE_ARGS+=	-n ${_PRESERVE_FILE}
+_PKG_CREATE_ARGS+=	-n ${PKG_DB_TMPDIR}/${_PRESERVE_FILE}
 endif
-_PKG_CREATE_ARGS+=	-S ${_SIZE_ALL_FILE}
-_PKG_CREATE_ARGS+=	-s ${_SIZE_PKG_FILE}
+_PKG_CREATE_ARGS+=	-S ${PKG_DB_TMPDIR}/${_SIZE_ALL_FILE}
+_PKG_CREATE_ARGS+=	-s ${PKG_DB_TMPDIR}/${_SIZE_PKG_FILE}
 ifdef CONFLICTS
 _PKG_CREATE_ARGS+=	-C ${CONFLICTS}
 endif
-_PKG_CREATE_ARGS+=	$(shell	${_DEPENDS_ARG_cmd})
 ifdef INSTALL_FILE
-_PKG_CREATE_ARGS+=	$(shell ${_INSTALL_ARG_cmd})
+_PKG_CREATE_ARGS+=	`${_INSTALL_ARG_cmd}`
 endif
 ifdef DEINSTALL_FILE
-_PKG_CREATE_ARGS+=	$(shell	${_DEINSTALL_ARG_cmd})
+_PKG_CREATE_ARGS+=	`${_DEINSTALL_ARG_cmd}`
 endif
 
 _PKG_ARGS_INSTALL+=	${_PKG_CREATE_ARGS}
 _PKG_ARGS_INSTALL+=	-p ${PREFIX}
 
-_DEPENDS_ARG_cmd=	depends=`${_DEPENDS_PATTERNS_CMD}`;		\
-			if ${TEST} -n "$$depends"; then			\
-				${ECHO} "-P \"$$depends\"";		\
-			else						\
-				${ECHO};				\
-			fi
-
 _DEINSTALL_ARG_cmd=	if ${TEST} -f ${DEINSTALL_FILE}; then		\
-				${ECHO} "-k "${DEINSTALL_FILE:Q};	\
-			else						\
-				${ECHO};				\
+				${ECHO} "-k "${DEINSTALL_FILE};		\
 			fi
 _INSTALL_ARG_cmd=	if ${TEST} -f ${INSTALL_FILE}; then		\
-				${ECHO} "-i "${INSTALL_FILE:Q};		\
-			else						\
-				${ECHO};				\
+				${ECHO} "-i "${INSTALL_FILE};		\
 			fi
 
 ifndef NO_DEPENDS
   _CONTENTS_TARGETS+=	${_COOKIE.depends}
 endif
-_CONTENTS_TARGETS+=	${_BUILD_INFO_FILE}
-_CONTENTS_TARGETS+=	${_BUILD_VERSION_FILE}
-_CONTENTS_TARGETS+=	${_COMMENT_FILE}
-_CONTENTS_TARGETS+=	${_DESCR_FILE}
-_CONTENTS_TARGETS+=	${_MESSAGE_FILE}
+_CONTENTS_TARGETS+=	${PKG_DB_TMPDIR}/${_BUILD_INFO_FILE}
+_CONTENTS_TARGETS+=	${PKG_DB_TMPDIR}/${_BUILD_VERSION_FILE}
+_CONTENTS_TARGETS+=	${PKG_DB_TMPDIR}/${_COMMENT_FILE}
+_CONTENTS_TARGETS+=	${PKG_DB_TMPDIR}/${_DESCR_FILE}
+ifdef MESSAGE_SRC
+  _CONTENTS_TARGETS+=	${PKG_DB_TMPDIR}/${_MESSAGE_FILE}
+endif
 _CONTENTS_TARGETS+=	plist
-_CONTENTS_TARGETS+=	${_PRESERVE_FILE}
-_CONTENTS_TARGETS+=	${_SIZE_ALL_FILE}
-_CONTENTS_TARGETS+=	${_SIZE_PKG_FILE}
+ifdef PKG_PRESERVE
+  _CONTENTS_TARGETS+=	${PKG_DB_TMPDIR}/${_PRESERVE_FILE}
+endif
+_CONTENTS_TARGETS+=	${PKG_DB_TMPDIR}/${_SIZE_ALL_FILE}
+_CONTENTS_TARGETS+=	${PKG_DB_TMPDIR}/${_SIZE_PKG_FILE}
 
-${_CONTENTS_FILE}: ${_CONTENTS_TARGETS}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${PKG_CREATE} ${_PKG_ARGS_INSTALL} -O $(notdir ${PKGFILE}) > $@
+${PKG_DB_TMPDIR}/${_CONTENTS_FILE}: ${_CONTENTS_TARGETS}
+	${RUN}${MKDIR} $(dir $@);					\
+	depends=`${_DEPENDS_PATTERNS_CMD}`;				\
+	${PKG_CREATE} ${_PKG_ARGS_INSTALL}				\
+		$${depends:+-P "$${depends}"} 				\
+		-O $(notdir ${PKGFILE}) > $@
 
 
 # --- generate-metadata (PRIVATE) ------------------------------------

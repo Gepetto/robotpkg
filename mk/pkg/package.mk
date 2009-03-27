@@ -1,4 +1,4 @@
-# $LAAS: package.mk 2009/02/27 19:47:43 tho $
+# $LAAS: package.mk 2009/04/02 14:31:42 mallet $
 #
 # Copyright (c) 2006,2009 LAAS/CNRS
 # All rights reserved.
@@ -44,19 +44,15 @@ PKGREPOSITORYSUBDIR?=	All
 #
 .PHONY: pkg-check-installed
 pkg-check-installed:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${PKG_INFO} -qe ${PKGNAME};					\
-	if ${TEST} $$? -ne 0; then					\
-		${ERROR_MSG} "${PKGNAME} is not installed.";		\
-		exit 1;							\
-	fi
+	${RUN}${PKG_INFO} -qe ${PKGNAME} ||				\
+	  ${FAIL_MSG} "${PKGNAME} is not installed.";			\
 
 
 # --- pkg-create (PRIVATE, pkgsrc/mk/package/package.mk) -------------
 #
 # pkg-create creates the binary package.
 #
-.PHONY: package-create
+.PHONY: pkg-create
 pkg-create: pkg-remove ${PKGFILE} pkg-links
 
 _PKG_ARGS_PACKAGE+=	${_PKG_CREATE_ARGS}
@@ -64,13 +60,14 @@ _PKG_ARGS_PACKAGE+=	-p ${PREFIX}
 _PKG_ARGS_PACKAGE+=	-L ${PREFIX}			# @src ...
 
 ${PKGFILE}: ${_CONTENTS_TARGETS}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG} set -e;				\
-	${PKG_CREATE} ${_PKG_ARGS_PACKAGE} $@ || {			\
-		exitcode=$$?;						\
-		${ERROR_MSG} "$(notdir ${PKG_CREATE}) failed ($$exitcode)";	\
-		${RM} -f $@;					\
-		exit 1;							\
+	${RUN}${MKDIR} $(dir $@);					\
+	depends=`${_DEPENDS_PATTERNS_CMD}`;				\
+	${PKG_CREATE} ${_PKG_ARGS_PACKAGE}				\
+		$${depends:+-P "$${depends}"} $@ || {			\
+	  exitcode=$$?;							\
+	  ${ERROR_MSG} "$(notdir ${PKG_CREATE}) failed ($$exitcode)";	\
+	  ${RM} -f $@;							\
+	  exit 1;							\
 	}
 
 
@@ -81,7 +78,7 @@ ${PKGFILE}: ${_CONTENTS_TARGETS}
 #
 .PHONY: pkg-remove
 pkg-remove:
-	${_PKG_SILENT}${_PKG_DEBUG}${RM} -f ${PKGFILE}
+	${RUN}${RM} -f ${PKGFILE}
 
 
 # --- pkg-links (PRIVATE) --------------------------------------------
@@ -90,7 +87,7 @@ pkg-remove:
 # non-primary categories to which the package belongs.
 #
 pkg-links: pkg-delete-links
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 $(foreach _dir_,$(addprefix ${PACKAGES}/,${CATEGORIES}),		\
 	${MKDIR} ${_dir_};						\
 	if ${TEST} ! -d ${_dir_}; then					\
@@ -108,30 +105,68 @@ $(foreach _dir_,$(addprefix ${PACKAGES}/,${CATEGORIES}),		\
 # the non-primary categories to which the package belongs.
 #
 pkg-delete-links:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 	${FIND} ${PACKAGES} -type l -name $(notdir ${PKGFILE}) -print |	\
 	${XARGS} ${RM} -f
 
 
-# --- tarup (PUBLIC) -------------------------------------------------
+# --- pkg-tarup (PRIVATE) --------------------------------------------------
 #
-# tarup is a public target to generate a binary package from an
-# installed package instance.
+# pkg-tarup creates a binary package from an installed instance of
+# PKGWILDCARD. The installed version might not match the one of the current
+# Makefile, so take care to override PKGFILE before invoking other pkg-*
+# targets.
 #
-_PKG_TARUP_CMD= ${LOCALBASE}/bin/pkg_tarup
+_PKG_TARUP_TARGETS+=	pkg-tarup-message
+_PKG_TARUP_TARGETS+=	pkg-remove
+_PKG_TARUP_TARGETS+=	pkg-do-tarup
+_PKG_TARUP_TARGETS+=	pkg-links
 
-.PHONY: tarup
-tarup: pkg-remove tarup-pkg pkg-links
+.PHONY: pkg-tarup
+pkg-tarup: _PKG_TARUP_NAME=$(shell ${_PKG_BEST_EXISTS} ${PKGWILDCARD})
+pkg-tarup: override PKGFILE=${PKGREPOSITORY}/${_PKG_TARUP_NAME}${PKG_SUFX}
+pkg-tarup: ${_PKG_TARUP_TARGETS}
 
+.PHONY: pkg-tarup-message
+pkg-tarup-message:
+	${RUN}${TEST} -z "${_PKG_TARUP_NAME}" &&			\
+	  ${FAIL_MSG} "No package matching ${PKGWILDCARD} installed.";	\
+	${PHASE_MSG} "Building binary package from installed"		\
+	  "${_PKG_TARUP_NAME}"
 
-# --- tarup-pkg (PRIVATE) --------------------------------------------
-#
-# tarup-pkg creates a binary package from an installed package instance
-# using "pkg_tarup".
-#
-tarup-pkg:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	${TEST} -x ${_PKG_TARUP_CMD} || exit 1;				\
-	${SETENV} PKG_DBDIR=${_PKG_DBDIR} PKG_SUFX=${PKG_SUFX}		\
-		PKGREPOSITORY=${PKGREPOSITORY}				\
-		${_PKG_TARUP_CMD} ${PKGNAME}
+.PHONY: pkg-do-tarup
+pkg-do-tarup:
+	${RUN}								\
+	pkgdb=${_PKG_DBDIR}/${_PKG_TARUP_NAME};				\
+	${TEST} -d "$$pkgdb" ||						\
+		${FAIL_MSG} "no such directory: $$pkgdb";		\
+	chkfile() {							\
+		if ${TEST} -f "$$pkgdb/$$2"; then			\
+			${ECHO} " $$1 $$pkgdb/$$2";			\
+		fi;							\
+	};								\
+									\
+	pkg_args="-v -l";						\
+	pkg_args=$$pkg_args`chkfile -B ${_BUILD_INFO_FILE}`;		\
+	pkg_args=$$pkg_args`chkfile -b ${_BUILD_VERSION_FILE}`;		\
+	pkg_args=$$pkg_args`chkfile -c ${_COMMENT_FILE}`;		\
+	pkg_args=$$pkg_args`chkfile -d ${_DESCR_FILE}`;			\
+	pkg_args=$$pkg_args`chkfile -i +INSTALL`;			\
+	pkg_args=$$pkg_args`chkfile -k +DEINSTALL`;			\
+	pkg_args=$$pkg_args`chkfile -D ${_MESSAGE_FILE}`;		\
+	pkg_args=$$pkg_args`chkfile -n ${_PRESERVE_FILE}`;		\
+	pkg_args=$$pkg_args`chkfile -S ${_SIZE_ALL_FILE}`;		\
+	pkg_args=$$pkg_args`chkfile -s ${_SIZE_PKG_FILE}`;		\
+									\
+	prefix=`${PKG_INFO} -qp "${_PKG_TARUP_NAME}" | 			\
+		${SED} -e '1{s/^@cwd[ 	]*//;q;}'`;			\
+	pkg_args=$$pkg_args" -p $$prefix -L $$prefix -I $$prefix";	\
+									\
+	${SED}	-e '/^@name/d' 						\
+		-e '/^@comment MD5:/d' -e '/^@comment Symlink:/d'	\
+		-e '/^@mtree/d' 					\
+		-e '/^@blddep/d' -e '/^@pkgdep/d'			\
+		-e '/^@cwd/d' -e '/^@src/d' 				\
+		-e '/^@ignore/,/^.*$$/d' 				\
+                <"$$pkgdb/${_CONTENTS_FILE}" |				\
+	${PKG_CREATE} $$pkg_args -f - ${PKGFILE}
