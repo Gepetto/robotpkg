@@ -19,6 +19,7 @@
 DISTNAME=		pocolibs-2.4.1
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pocolibs
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/pocolibs
