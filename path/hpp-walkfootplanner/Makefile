@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/09 20:01:39 mallet $
+# $LAAS: Makefile 2009/03/30 10:58:01 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -30,10 +30,13 @@ COMMENT=	Collision free walk path planning for a humanoid robot.
 GNU_CONFIGURE=	yes
 
 # options
-PKG_SUPPORTED_OPTIONS+=	verbose1
-PKG_SUPPORTED_OPTIONS+=	verbose2
-PKG_OPTION_DESCR.verbose1=	Define level of verbosity
+PKG_OPTIONS_OPTIONAL_GROUPS+=	verbose
+PKG_OPTIONS_GROUP.verbose=	verbose1 verbose2
+
+PKG_OPTION_DESCR.verbose1=	Set the level of verbosity to 1
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+
+PKG_OPTION_DESCR.verbose2=	Set the level of verbosity to 2
 PKG_OPTION_SET.verbose2:=	CXXFLAGS+=-DDEBUG=2
 
 include ../../math/jrl-mathtools/depend.mk
