@@ -17,7 +17,7 @@
 #                                             Anthony Mallet on Wed Oct 17 2007
 #
 
-DISTNAME=		openprs-1.0b2
+DISTNAME=		openprs-1.0b3
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 

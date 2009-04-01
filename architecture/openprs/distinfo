@@ -1,6 +1,3 @@
-SHA1 (openprs-1.0b2.tar.gz) = d982652d360e1b2e3321824e29572d2ec8676db0
-RMD160 (openprs-1.0b2.tar.gz) = 3faf9f1614c6a491137d48bd506851a2e83836cb
-Size (openprs-1.0b2.tar.gz) = 2323315 bytes
-SHA1 (patch-aa) = 9cbab4a2b814d63d9b0f912b98ad7d790e6946f8
-SHA1 (patch-ab) = ca99d2659e9aa121dbaac73a861e3563d08c676d
-SHA1 (patch-ac) = 8f71d8a9fda27db2574c1aef2004b4210b6287d1
+SHA1 (openprs-1.0b3.tar.gz) = dd483a17a535b986edda32a83ba2108f912d9561
+RMD160 (openprs-1.0b3.tar.gz) = 9a2d4b5e9f6d27b079eaafac44f20988d306aeda
+Size (openprs-1.0b3.tar.gz) = 2475111 bytes
