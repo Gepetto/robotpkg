@@ -1,4 +1,4 @@
-@comment $Id:$
+@comment Thu Apr 2 17:49:50 CEST 2009
 bin/hueblob
 bin/hueblobSendInitRqst
 bin/hueblobTest
@@ -18,8 +18,17 @@ include/hueblob/server/hueblobScan.h
 include/hueblob/server/hueblobType.h
 lib/libhueblobClient.la
 lib/pkgconfig/hueblob.pc
-lib/tclserv/libhueblobTclServ.la
 share/modules/gen/hueblob.gen
-share/modules/tcl/hueblobClient.tcl
+${PLIST.tcl}lib/tclserv/libhueblobTclServ.la
+${PLIST.tcl}share/modules/tcl/hueblobClient.tcl
+${PLIST.openprs}include/hueblob/server/openprs/hueblobDecodeOpenprs.h
+${PLIST.openprs}include/hueblob/server/openprs/hueblobEncodeOpenprs.h
+${PLIST.openprs}include/hueblob/server/openprs/hueblobRequestsOpenprsProto.h
+${PLIST.openprs}lib/openprs/libhueblobOpenprs.la
+${PLIST.openprs}lib/pkgconfig/hueblob-oprs.pc
+${PLIST.openprs}share/modules/openprs/hueblobOpenprs.inc
+${PLIST.openprs}share/modules/openprs/hueblobOpenprs.opf
+${PLIST.openprs}share/modules/openprs/hueblobOpenprs.sym
+${PLIST.openprs}@dirrm include/hueblob/server/openprs
 @dirrm include/hueblob/server
 @dirrm include/hueblob

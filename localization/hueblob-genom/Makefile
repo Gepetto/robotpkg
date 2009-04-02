@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/06/17 14:01:55 mallet $
+# $LAAS: Makefile 2009/04/02 17:21:52 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -16,15 +16,26 @@
 #                                       Anthony Mallet on Mon Mar 17 2008
 #
 
-DISTNAME=		hueblob-genom-1.1
+DISTNAME=		hueblob-genom-1.2
 CATEGORIES=		localization
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hueblob-genom/}
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		GenoM module for simple object detection and localization
 
 GNU_CONFIGURE=		yes
+
+# option for image display using opencv
+PKG_SUPPORTED_OPTIONS+=	display
+PKG_SUGGESTED_OPTIONS+=	display
+
+PKG_OPTION_DESCR.display=	Enable embedded image display facility.
+define PKG_OPTION_SET.display
+  REQD_BUILD_OPTIONS.opencv+=	gtk
+  CONFIGURE_ARGS+=		--with-display
+endef
+PKG_OPTION_UNSET.display:=	CONFIGURE_ARGS+=--without-display
 
 GENOM_MODULE=		hueblob
 include ../../architecture/genom/depend.mk
