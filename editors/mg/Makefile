@@ -13,5 +13,12 @@ HOMEPAGE=	http://pintday.org/hack/mg/
 WRKSRC=		${WRKDIR}/mg-p
 
 MAKE_ENV=	PREFIX=${PREFIX}
+MAKE_ENV+=	LDADD=$(call quote,${LDFLAGS})
 
+# Define CFLAGS and LDFLAGS for ncurses
+DEPEND_INCDIRS.ncurses=		include
+DEPEND_LIBDIRS.ncurses=		lib
+DEPEND_RPATHDIRS.ncurses=	lib
+
+include ../../mk/sysdep/ncurses.mk
 include ../../mk/robotpkg.mk

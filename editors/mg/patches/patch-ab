@@ -1,0 +1,10 @@
+--- os.c~	2008-08-15 22:39:24.000000000 +0200
++++ os.c	2009-04-02 22:20:18.000000000 +0200
+@@ -1,6 +1,6 @@
+ #include "os.h"
+ 
+-#if defined(__OpenBSD__) || defined (__FreeBSD__) || defined (__APPLE__)
++#if defined(__OpenBSD__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__APPLE__)
+ int
+ get_login_name_max(void)
+ {
