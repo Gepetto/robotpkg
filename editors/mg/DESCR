@@ -1,0 +1,56 @@
+mg is a tiny, mostly public-domain emacs-like editor included in the
+base OpenBSD system. It is compatible with emacs because there
+shouldn't be any reason to learn more editor types than emacs or vi.
+
+I maintain mg, for reasons that not even I remember. The current
+version of mg is maintained as part of the OpenBSD source tree. I will
+endeavor to keep this -portable up-to-date with the OpenBSD sources.
+Origins
+
+mg was originally called MicroGNUEmacs, but the name was later changed
+(by request of Richard Stallman) since it had nothing whatsoever to do
+with the GNU project.  History
+
+    * Nov 16, 1986: First release to mod.sources, according to the README.
+    * Mar 3, 1987: First Release: mg1a.tgz, via comp.sources.unix
+      (Volume 8). (ISC mirror)
+    * May 15, 1988: Second release, according to the README
+    * May 26, 1988: The second release: mg2a.tgz, via
+      comp.sources.misc (Volume 3) (UToronto mirror)
+    * Jan 26, 1992: Charles Hedrick releases a Linux port of mg. This
+      version later makes its way onto tsx-11, Infomagic, and various
+      other Linux repositories. (mg.tar.Z)
+    * Feb 25, 2000: First import into the OpenBSD tree.
+    * April 1, 2007: A little April fools from yours truly: A working
+      vi-mode for mg.
+
+Portable Mg
+
+By popular request (and because my fingers expect it), I have produced
+a portable version of mg. The portable version is based on the current
+version on the OpenBSD tree. I have tried make it portable to Linux,
+MacOS X / Darwin, and the other BSDs (basically, anything I use on a
+regular basis). Your mileage may vary.
+
+I'm not particularly interested in using autoconf. This is supposed to
+be a small, portable, public-domain editor. Loading it up with #ifdef
+and autogunk seems contrary to that intent. For now, I'll try to keep
+platform-specific gunk to os.[ch].
+
+To build this port, change to the relevant directory and type "make".
+
+This port was based on initial work by Jason Wright. Other portability
+issues were discovered by Han Boetes.
+
+If you have patches, etc, feel free to send them in. The ground rules
+are:
+
+   1. Indentation, code style, and licences must follow what's in the
+      file in question.
+   2. New files should be in the Public Domain. BSD or ISC licenses
+      are accaptable where necessary for portability. GPL is not. If
+      you want a GPLed emacs, USE EMACS.
+
+--
+Kjell Wooding <kjell@pintday.org>
+
