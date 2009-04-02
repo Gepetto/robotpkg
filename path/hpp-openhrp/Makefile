@@ -32,6 +32,16 @@ GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
 
+# options
+PKG_OPTIONS_OPTIONAL_GROUPS+=	verbose
+PKG_OPTIONS_GROUP.verbose=	verbose1 verbose2
+
+PKG_OPTION_DESCR.verbose1=	Set the level of verbosity to 1
+PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+
+PKG_OPTION_DESCR.verbose2=	Set the level of verbosity to 2
+PKG_OPTION_SET.verbose2:=	CXXFLAGS+=-DDEBUG=2
+
 include ../../architecture/openhrp/depend.mk
 include ../../robots/hrp2-14/depend.mk
 include ../../path/hpp-core/depend.mk
