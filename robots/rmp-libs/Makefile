@@ -13,17 +13,17 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
-DISTNAME=	rmp-libs-0.0
+DISTNAME=	rmp-libs-0.1
 CATEGORIES=	robots
 
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp-libs
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	interface library for the Segway RMP400 platform
 
 GNU_CONFIGURE=	yes
 
-DEPENDS+=	libftdi>=0.14:../libftdi
-
+include ../../hardware/libftdi/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

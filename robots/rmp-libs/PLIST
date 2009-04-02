@@ -1,0 +1,5 @@
+@comment Thu Apr 2 17:43:57 CEST 2009
+bin/rmpTest
+include/rmp/rmpLib.h
+lib/librmpLib.la
+@dirrm include/rmp
