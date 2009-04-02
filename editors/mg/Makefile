@@ -12,6 +12,6 @@ HOMEPAGE=	http://pintday.org/hack/mg/
 
 WRKSRC=		${WRKDIR}/mg-p
 
-MAKE_ENV=	PREFIX=${ROBOTPKG_BASE}
+MAKE_ENV=	PREFIX=${PREFIX}
 
 include ../../mk/robotpkg.mk
