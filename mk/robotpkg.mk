@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/03/27 18:10:04 mallet $
+# $LAAS: robotpkg.mk 2009/04/03 14:15:39 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -390,7 +390,7 @@ $(if $(strip ${MAKECMDGOALS}),						\
 
 # Install
 $(call require-for, install install-clean su-install-all reinstall	\
-	deinstall replace bootstrap-register,				\
+	deinstall su-deinstall replace bootstrap-register,		\
 	${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 
 # Package

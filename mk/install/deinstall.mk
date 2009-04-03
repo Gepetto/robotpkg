@@ -16,15 +16,22 @@ $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 #
 # deinstall is a public target to remove an installed package.
 #
-_DEINSTALL_TARGETS=	interactive
-_DEINSTALL_TARGETS+=	deinstall-message
+.PHONY: deinstall
+deinstall: interactive
+deinstall: deinstall-message
+
 _DEINSTALL_TARGETS+=	acquire-deinstall-lock
 _DEINSTALL_TARGETS+=	pkg-deinstall
 _DEINSTALL_TARGETS+=	release-deinstall-lock
 _DEINSTALL_TARGETS+=	install-clean
 
-.PHONY: deinstall
-deinstall: ${_DEINSTALL_TARGETS}
+ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
+  _SU_TARGETS+=	deinstall
+  deinstall: su-target-deinstall
+  su-deinstall: ${_DEINSTALL_TARGETS}
+else
+  deinstall: ${_DEINSTALL_TARGETS}
+endif
 
 .PHONY: deinstall-message
 deinstall-message:
