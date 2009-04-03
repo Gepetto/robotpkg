@@ -188,7 +188,7 @@ pkg-register: install-display-message
 install-display-message: ${PKG_DB_TMPDIR}/${_MESSAGE_FILE}
 	@${STEP_MSG} "Please note the following:"
 	@${ECHO_MSG} ""
-	@${CAT} ${_MESSAGE_FILE}
+	@${CAT} ${PKG_DB_TMPDIR}/${_MESSAGE_FILE}
 	@${ECHO_MSG} ""
 endif	# MESSAGE_SRC
 
