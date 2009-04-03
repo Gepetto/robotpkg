@@ -1,9 +1,10 @@
-@comment Sat Mar 14 16:36:11 JST 2009
+@comment Fri Apr 3 11:08:01 JST 2009
 include/kppInterfaceWalk/kppCommandLoadHRP2.h
 include/kppInterfaceWalk/kppCommandLoadObstacle.h
 include/kppInterfaceWalk/kppCommandOutputMotion.h
 include/kppInterfaceWalk/kppCommandSetConfig.h
 include/kppInterfaceWalk/kppInterfaceWalk.h
+include/kppInterfaceWalk/openHrpConfig.h
 lib/modules/${NODENAME}/libkppInterfaceWalk.kab
 lib/modules/${NODENAME}/libkppInterfaceWalk.la
 lib/pkgconfig/kppInterfaceWalk.pc
