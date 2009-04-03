@@ -1,0 +1,8 @@
+@comment Fri Apr 3 13:27:19 JST 2009
+include/kppInterfaceDisplay/kppCommandCreateGenoMTraj.h
+include/kppInterfaceDisplay/kppCommandUpdateGenoMTraj.h
+include/kppInterfaceDisplay/kppInterfaceDisplay.h
+lib/modules/${NODENAME}/libkppInterfaceDisplay.kab
+lib/modules/${NODENAME}/libkppInterfaceDisplay.la
+lib/pkgconfig/kppInterfaceDisplay.pc
+@dirrm include/kppInterfaceDisplay
