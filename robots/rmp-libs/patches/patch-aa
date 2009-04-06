@@ -1,0 +1,17 @@
+commit 47cd926ed78c7a8b920d2555574402a21a47fb03
+Author: Matthieu Herrb <matthieu.herrb@laas.fr>
+Date:   Mon Apr 6 10:18:59 2009 +0200
+
+    rmp-libs.pc.in: add rmp-libs dependencies.
+
+diff --git a/rmp-libs.pc.in b/rmp-libs.pc.in
+index c307b94..edfe7f1 100644
+--- rmp-libs.pc.in.orig
++++ rmp-libs.pc.in
+@@ -6,5 +6,6 @@ includedir=@includedir@
+ Name: @PACKAGE_NAME@
+ Description: Segway Robotic Mobility Platform interface library
+ Version: @PACKAGE_VERSION@
++Requires: libftdi pocolibs
+ Libs: -Wl,-R${libdir} -L${libdir} -lrmpLib
+ Cflags: -I${includedir}
