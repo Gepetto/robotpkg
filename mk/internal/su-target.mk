@@ -1,4 +1,4 @@
-# $LAAS: su-target.mk 2009/03/08 23:12:12 tho $
+# $LAAS: su-target.mk 2009/04/06 19:37:46 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -44,7 +44,7 @@ endif
 override define _ROOT_CMD
 	cd ${CURDIR} && ${SETENV} ${PKGSRC_MAKE_ENV} ${RECURSIVE_MAKE}	\
 		_PKGSRC_BARRIER=yes PKG_DEBUG_LEVEL=${PKG_DEBUG_LEVEL}	\
-		su-$*
+		${MAKEFLAGS.su-$*} su-$*
 endef
 
 .PHONY: $(patsubst %,su-target-%,${_SU_TARGETS})

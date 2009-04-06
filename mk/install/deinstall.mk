@@ -27,6 +27,7 @@ _DEINSTALL_TARGETS+=	install-clean
 
 ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
   _SU_TARGETS+=	deinstall
+  MAKEFLAGS.su-deinstall+= DEINSTALLDEPENDS=${DEINSTALLDEPENDS}
   deinstall: su-target-deinstall
   su-deinstall: ${_DEINSTALL_TARGETS}
 else
