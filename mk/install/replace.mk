@@ -42,7 +42,6 @@
 
 _REPLACE_TARGETS+=	build
 _REPLACE_TARGETS+=	replace-message
-_REPLACE_TARGETS+=	pkg-replace
 
 #
 # replace
@@ -53,7 +52,14 @@ ifdef _PKGSRC_BARRIER
   $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
-  replace: ${_REPLACE_TARGETS}
+  ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
+    _SU_TARGETS+= replace
+
+    replace: ${_REPLACE_TARGETS} su-target-replace
+    su-replace: pkg-replace
+  else
+    replace: ${_REPLACE_TARGETS} pkg-replace
+  endif
 else
   $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 
