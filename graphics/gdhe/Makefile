@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/05/25 13:26:00 tho $
+# $LAAS: Makefile 2009/04/08 17:23:18 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -25,10 +25,13 @@ MAINTAINER=	matthieu@laas.fr
 HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/gdhe
 COMMENT=	3D Visualization tools
 
-DEPENDS+=	mkdep>=2.7:../../devel/mkdep
-
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
+CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../devel/mkdep/depend.mk
+include ../../mk/sysdep/tcl.mk
+include ../../mk/sysdep/tk.mk
 include ../../mk/robotpkg.mk
