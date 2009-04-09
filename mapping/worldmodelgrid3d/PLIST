@@ -1,0 +1,6 @@
+@comment Thu Apr 9 11:21:58 CEST 2009
+include/worldModelGrid3D/wmGrid3D.h
+lib/libworldModelGrid3D.la
+lib/pkgconfig/worldModelGrid3D.pc
+share/doc/doxytag/worldModelGrid3D.doxytag
+@dirrm include/worldModelGrid3D
