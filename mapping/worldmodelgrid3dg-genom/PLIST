@@ -1,0 +1,34 @@
+@comment Thu Apr 9 12:01:42 CEST 2009
+bin/worldModelGrid3DG
+bin/worldModelGrid3DGSendInitRqst
+bin/worldModelGrid3DGTest
+include/worldModelGrid3DG/server/worldModelGrid3DGEndian.h
+include/worldModelGrid3DG/server/worldModelGrid3DGError.h
+include/worldModelGrid3DG/server/worldModelGrid3DGMsgLib.h
+include/worldModelGrid3DG/server/worldModelGrid3DGPosterLib.h
+include/worldModelGrid3DG/server/worldModelGrid3DGPosterLibStruct.h
+include/worldModelGrid3DG/server/worldModelGrid3DGPosterReadLibProto.h
+include/worldModelGrid3DG/server/worldModelGrid3DGPosterShowLib.h
+include/worldModelGrid3DG/server/worldModelGrid3DGPosterWriteLibProto.h
+include/worldModelGrid3DG/server/worldModelGrid3DGPosterXMLLib.h
+include/worldModelGrid3DG/server/worldModelGrid3DGPrint.h
+include/worldModelGrid3DG/server/worldModelGrid3DGPrintXML.h
+include/worldModelGrid3DG/server/worldModelGrid3DGScan.h
+include/worldModelGrid3DG/server/worldModelGrid3DGType.h
+include/worldModelGrid3DG/worldModelGrid3DGStruct.h
+lib/libworldModelGrid3DGClient.la
+lib/pkgconfig/worldModelGrid3DG.pc
+share/modules/gen/worldModelGrid3DG.gen
+${PLIST.tcl}lib/tclserv/libworldModelGrid3DGTclServ.la
+${PLIST.tcl}share/modules/tcl/worldModelGrid3DGClient.tcl
+${PLIST.openprs}include/worldModelGrid3DG/server/openprs/worldModelGrid3DGDecodeOpenprs.h
+${PLIST.openprs}include/worldModelGrid3DG/server/openprs/worldModelGrid3DGEncodeOpenprs.h
+${PLIST.openprs}include/worldModelGrid3DG/server/openprs/worldModelGrid3DGRequestsOpenprsProto.h
+${PLIST.openprs}lib/openprs/libworldModelGrid3DGOpenprs.la
+${PLIST.openprs}lib/pkgconfig/worldModelGrid3DG-oprs.pc
+${PLIST.openprs}share/modules/openprs/worldModelGrid3DGOpenprs.inc
+${PLIST.openprs}share/modules/openprs/worldModelGrid3DGOpenprs.opf
+${PLIST.openprs}share/modules/openprs/worldModelGrid3DGOpenprs.sym
+${PLIST.openprs}@dirrm include/worldModelGrid3DG/server/openprs
+@dirrm include/worldModelGrid3DG/server
+@dirrm include/worldModelGrid3DG
