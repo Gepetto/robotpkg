@@ -5,6 +5,8 @@ COMMENT=	Map building software
 
 SUBDIR+=	mapkit
 SUBDIR+=	segkit
+SUBDIR+=	worldmodelgrid3d
+SUBDIR+=	worldmodelgrid3dg-genom
 SUBDIR+=	zone-genom
 
 include ../mk/robotpkg.subdir.mk
