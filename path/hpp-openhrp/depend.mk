@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/03/09 18:00:11 mallet $
+# $LAAS: depend.mk 2009/04/09 18:29:29 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.hpp-openhrp?=	robotpkg
 
 DEPEND_USE+=		hpp-openhrp
 
-DEPEND_ABI.hpp-openhrp?=hpp-openhrp>=1.3
+DEPEND_ABI.hpp-openhrp?=hpp-openhrp>=1.6
 DEPEND_DIR.hpp-openhrp?=../../path/hpp-openhrp
 
 SYSTEM_SEARCH.hpp-openhrp=\
