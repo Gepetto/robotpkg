@@ -1,0 +1,34 @@
+@comment Thu Apr 9 18:50:04 CEST 2009
+bin/worldModelPlanner
+bin/worldModelPlannerSendInitRqst
+bin/worldModelPlannerTest
+include/worldModelPlanner/server/worldModelPlannerEndian.h
+include/worldModelPlanner/server/worldModelPlannerError.h
+include/worldModelPlanner/server/worldModelPlannerMsgLib.h
+include/worldModelPlanner/server/worldModelPlannerPosterLib.h
+include/worldModelPlanner/server/worldModelPlannerPosterLibStruct.h
+include/worldModelPlanner/server/worldModelPlannerPosterReadLibProto.h
+include/worldModelPlanner/server/worldModelPlannerPosterShowLib.h
+include/worldModelPlanner/server/worldModelPlannerPosterWriteLibProto.h
+include/worldModelPlanner/server/worldModelPlannerPosterXMLLib.h
+include/worldModelPlanner/server/worldModelPlannerPrint.h
+include/worldModelPlanner/server/worldModelPlannerPrintXML.h
+include/worldModelPlanner/server/worldModelPlannerScan.h
+include/worldModelPlanner/server/worldModelPlannerType.h
+include/worldModelPlanner/worldModelPlannerStruct.h
+lib/libworldModelPlannerClient.la
+lib/pkgconfig/worldModelPlanner.pc
+share/modules/gen/worldModelPlanner.gen
+${PLIST.tcl}lib/tclserv/libworldModelPlannerTclServ.la
+${PLIST.tcl}share/modules/tcl/worldModelPlannerClient.tcl
+${PLIST.openprs}include/worldModelPlanner/server/openprs/worldModelPlannerDecodeOpenprs.h
+${PLIST.openprs}include/worldModelPlanner/server/openprs/worldModelPlannerEncodeOpenprs.h
+${PLIST.openprs}include/worldModelPlanner/server/openprs/worldModelPlannerRequestsOpenprsProto.h
+${PLIST.openprs}lib/openprs/libworldModelPlannerOpenprs.la
+${PLIST.openprs}lib/pkgconfig/worldModelPlanner-oprs.pc
+${PLIST.openprs}share/modules/openprs/worldModelPlannerOpenprs.inc
+${PLIST.openprs}share/modules/openprs/worldModelPlannerOpenprs.opf
+${PLIST.openprs}share/modules/openprs/worldModelPlannerOpenprs.sym
+${PLIST.openprs}@dirrm include/worldModelPlanner/server/openprs
+@dirrm include/worldModelPlanner/server
+@dirrm include/worldModelPlanner
