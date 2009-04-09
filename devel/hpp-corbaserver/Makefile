@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/09 19:32:55 mallet $
+# $LAAS: Makefile 2009/04/09 19:08:22 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -29,6 +29,8 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Corba interface with hppCore package.
 
 GNU_CONFIGURE=	yes
+DOXYGEN_PLIST_DIR+= share/doc/hppCorbaServer
+
 
 # --- options --------------------------------------------------------
 
@@ -56,4 +58,5 @@ include ../../path/hpp-core/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk
