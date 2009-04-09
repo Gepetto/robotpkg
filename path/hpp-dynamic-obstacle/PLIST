@@ -1,0 +1,11 @@
+@comment Thu Apr 9 17:32:45 CEST 2009
+include/hppDynamicObstacle/hppCell.h
+include/hppDynamicObstacle/hppDynamicEnvHandler.h
+include/hppDynamicObstacle/hppDynamicObstacle.h
+include/hppDynamicObstacle/hppDynamicObstacleKCD.h
+include/hppDynamicObstacle/hppDynamicObstacleOccupancyMap.h
+include/hppDynamicObstacle/hppDynamicObstacleOccupancyMapVRML.h
+include/hppDynamicObstacle/hppPolyhedronMap.h
+lib/pkgconfig/hppDynamicObstacle.pc
+share/doc/doxytag/hppDynamicObstacle.doxytag
+@dirrm include/hppDynamicObstacle
