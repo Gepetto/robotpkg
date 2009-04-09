@@ -1,0 +1,9 @@
+@comment Thu Apr 9 18:04:39 CEST 2009
+include/hppWorldModelPlanner/hppNextBestViewPlanner.h
+include/hppWorldModelPlanner/hppWorldModelDelegate.h
+include/hppWorldModelPlanner/hppWorldModelPlanner.h
+include/hppWorldModelPlanner/kwsPlusShooter.h
+lib/libhppWorldModelPlanner.la
+lib/pkgconfig/hppWorldModelPlanner.pc
+share/doc/doxytag/hppWorldModelPlanner.doxytag
+@dirrm include/hppWorldModelPlanner
