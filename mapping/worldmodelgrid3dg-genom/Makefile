@@ -31,4 +31,7 @@ GENOM_MODULE=	worldModelGrid3DG
 
 include ../../architecture/genom/depend.mk
 include ../../mapping/worldmodelgrid3d/depend.mk
+include ../../localization/pom-genom/depend.mk
+include ../../math/t3d/depend.mk
+include ../../image/stereopixel-genom/depend.mk
 include ../../mk/robotpkg.mk
