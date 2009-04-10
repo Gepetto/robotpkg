@@ -62,7 +62,6 @@ In openrobots/robotpkg/.../package
     - insert list of changes from ChangeLog in commit body message.
 
 In the package
-  - git commit 
   - add a tag.
     - git-tag -m "release x.y" x.y
   - merge branch release-x.y into master
