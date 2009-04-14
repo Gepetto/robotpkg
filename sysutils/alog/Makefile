@@ -15,6 +15,7 @@
 #
 
 DISTNAME=	alog-0.4
+PKGREVISION=	1
 COMMENT=	a simple log data viewing tool
 
 CATEGORIES=	sysutils
@@ -25,4 +26,7 @@ MAINTAINER=	openrobots@laas.fr
 
 GNU_CONFIGURE=	yes
 
+include ../../mk/sysdep/tcl.mk
+include ../../mk/sysdep/tk.mk
+include ../../mk/sysdep/bwidget.mk
 include ../../mk/robotpkg.mk
