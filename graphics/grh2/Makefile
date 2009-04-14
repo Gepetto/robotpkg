@@ -14,7 +14,7 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-DISTNAME=	grh2-0.0
+DISTNAME=	grh2-2.1
 CATEGORIES=	graphics
 COMMENT=	2D graphical interface for Hilare 2 robots
 MAINTAINER=	matthieu.herrb@laas.fr
