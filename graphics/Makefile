@@ -4,6 +4,7 @@
 COMMENT=	Graphics tools
 
 SUBDIR+=	gdhe
+SUBDIR+=	grh2
 SUBDIR+=	kpp-interface
 SUBDIR+=	kpp-interfacewalk
 SUBDIR+=	kpp-interfacedisplay

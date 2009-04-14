@@ -1,0 +1,5 @@
+Grh2 is a 2D graphical framework aimed at representing two-dimensional
+data issued from robots (2D maps, robot position, and so on).
+
+It includes segloc-edit, a simple interactive GUI to edit maps produced  
+by the segloc SLAM Genom module.

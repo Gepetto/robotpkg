@@ -1,0 +1,24 @@
+@comment Tue Apr 14 14:13:55 CEST 2009
+lib/grh2/grh2.so
+lib/grh2/pkgIndex.tcl
+share/grh2/icons/delete.gif
+share/grh2/icons/diligent.gif
+share/grh2/icons/intersect.gif
+share/grh2/icons/merge.gif
+share/grh2/icons/redo.gif
+share/grh2/icons/select.xbm
+share/grh2/icons/sick.gif
+share/grh2/icons/zoomIn.xbm
+share/grh2/icons/zoomOut.xbm
+share/grh2/tcl/canvas.tcl
+share/grh2/tcl/coord.tcl
+share/grh2/tcl/main.tcl
+share/grh2/tcl/manip.tcl
+share/grh2/tcl/pkgIndex.tcl
+share/grh2/tcl/scout.tcl
+share/grh2/tcl/seglocEdit.tcl
+share/grh2/tcl/tk_entrydialog.tcl
+@dirrm share/grh2/tcl
+@dirrm share/grh2/icons
+@dirrm share/grh2
+@dirrm lib/grh2
