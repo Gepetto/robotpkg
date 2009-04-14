@@ -15,8 +15,11 @@
 #
 
 DISTNAME=	grh2-2.1
-CATEGORIES=	graphics
+PKGREVISION=	1
 COMMENT=	2D graphical interface for Hilare 2 robots
+
+CATEGORIES=	graphics
+
 MAINTAINER=	matthieu.herrb@laas.fr
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=grh2/}
@@ -29,4 +32,5 @@ CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
 include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
+include ../../mk/sysdep/bwidget.mk
 include ../../mk/robotpkg.mk
