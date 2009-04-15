@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/13 16:52:08 tho $
+# $LAAS: Makefile 2009/04/15 15:14:36 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -19,6 +19,7 @@
 DISTNAME=		viam-libs-1.3
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/viam-libs
 PKGREVISION=		1
 
 MAINTAINER=		openrobots@laas.fr
