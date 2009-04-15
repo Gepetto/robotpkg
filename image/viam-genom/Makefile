@@ -19,7 +19,7 @@
 DISTNAME=		viam-genom-1.3
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-genom/}
-MASTER_REPOSITORY=  git ssh://softs.laas.fr/git/robots/viam-libs
+MASTER_REPOSITORY=  git ssh://softs.laas.fr/git/robots/viam-genom
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet
