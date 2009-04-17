@@ -1,4 +1,16 @@
-@comment Tue Feb 3 09:45:57 JST 2009
+@comment Fri Apr 17 16:14:59 JST 2009
+include/kwsPlus/directPath/directPathVector.h
+include/kwsPlus/directPath/flicDirectPath.h
+include/kwsPlus/directPath/flicDistance.h
+include/kwsPlus/directPath/flicSteeringMethod.h
+include/kwsPlus/directPath/kwsPlusDirectPath.h
+include/kwsPlus/directPath/kwsPlusDistanceFactory.h
+include/kwsPlus/directPath/kwsPlusDistance.h
+include/kwsPlus/directPath/kwsPlusDPLinear.h
+include/kwsPlus/directPath/kwsPlusSMLinear.h
+include/kwsPlus/directPath/kwsPlusSteeringMethodFactory.h
+include/kwsPlus/directPath/reedsSheppDirectPath.h
+include/kwsPlus/directPath/reedsSheppSteeringMethod.h
 include/kwsPlus/directPathVector.h
 include/kwsPlus/flicDirectPath.h
 include/kwsPlus/flicDistance.h
@@ -7,8 +19,6 @@ include/kwsPlus/hppActiveDofSetter.h
 include/kwsPlus/hppConfigurationShooter.h
 include/kwsPlus/hppShooterActiveDof.h
 include/kwsPlus/hppVisRdmBuilder.h
-include/kwsPlus/kitMat3.h
-include/kwsPlus/kwsIPPRdmBuilder2.h
 include/kwsPlus/kwsPlusDiffusionNodePickerFactory.h
 include/kwsPlus/kwsPlusDiffusionShooterFactory.h
 include/kwsPlus/kwsPlusDirectPath.h
@@ -30,7 +40,27 @@ include/kwsPlus/kwsPlusTalkingBuilder.h
 include/kwsPlus/kwsPlusTalkingShooter.h
 include/kwsPlus/reedsSheppDirectPath.h
 include/kwsPlus/reedsSheppSteeringMethod.h
+include/kwsPlus/roadmap/hppActiveDofSetter.h
+include/kwsPlus/roadmap/hppConfigurationShooter.h
+include/kwsPlus/roadmap/hppShooterActiveDof.h
+include/kwsPlus/roadmap/hppVisRdmBuilder.h
+include/kwsPlus/roadmap/kwsPlusDiffusionNodePickerFactory.h
+include/kwsPlus/roadmap/kwsPlusDiffusionShooterFactory.h
+include/kwsPlus/roadmap/kwsPlusEdgeFactory.h
+include/kwsPlus/roadmap/kwsPlusEdge.h
+include/kwsPlus/roadmap/kwsPlusKPCARdmBuilder.h
+include/kwsPlus/roadmap/kwsPlusLTRdmBuilder.h
+include/kwsPlus/roadmap/kwsPlusNodeFactory.h
+include/kwsPlus/roadmap/kwsPlusNode.h
+include/kwsPlus/roadmap/kwsPlusPCARdmBuilder.h
+include/kwsPlus/roadmap/kwsPlusRoadmap.h
+include/kwsPlus/roadmap/kwsPlusStopRdmBuilderDelegate.h
+include/kwsPlus/roadmap/kwsPlusTalkingBuilder.h
+include/kwsPlus/roadmap/kwsPlusTalkingShooter.h
+include/kwsPlus/util/kitMat3.h
 lib/libkwsPlus.la
 lib/pkgconfig/kwsPlus.pc
-share/doc/doxytag/kwsPlus.doxytag
+@dirrm include/kwsPlus/util
+@dirrm include/kwsPlus/roadmap
+@dirrm include/kwsPlus/directPath
 @dirrm include/kwsPlus
