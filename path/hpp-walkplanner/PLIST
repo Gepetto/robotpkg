@@ -1,4 +1,4 @@
-@comment Sat Mar 14 12:56:39 JST 2009
+@comment Sat Apr 18 14:30:00 JST 2009
 include/hppWalkPlanner/hppWalkPatGen.h
 include/hppWalkPlanner/hppWalkPlanner.h
 lib/libhppWalkPlanner.la
@@ -73,5 +73,4 @@ share/doc/hppWalkPlanner/html/trajectory.png
 share/doc/hppWalkPlanner/html/tree.html
 @dirrm share/doc/hppWalkPlanner/html/pictures
 @dirrm share/doc/hppWalkPlanner/html
-@dirrm share/doc/hppWalkPlanner
 @dirrm include/hppWalkPlanner
