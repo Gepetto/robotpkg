@@ -1,4 +1,4 @@
-@comment Sat Mar 14 13:25:58 JST 2009
+@comment Sat Apr 18 14:40:08 JST 2009
 include/kppInterface/kppCommandInit.h
 include/kppInterface/kppCommandPlannerPanel.h
 include/kppInterface/kppCommandSetConfig.h
@@ -107,9 +107,6 @@ share/doc/kppInterface/html/kpp_command_init_8h.html
 share/doc/kppInterface/html/kpp_command_init_8h__incl.map
 share/doc/kppInterface/html/kpp_command_init_8h__incl.md5
 share/doc/kppInterface/html/kpp_command_init_8h__incl.png
-share/doc/kppInterface/html/kpp_command_planner_panel_8h__dep__incl.map
-share/doc/kppInterface/html/kpp_command_planner_panel_8h__dep__incl.md5
-share/doc/kppInterface/html/kpp_command_planner_panel_8h__dep__incl.png
 share/doc/kppInterface/html/kpp_command_planner_panel_8h.html
 share/doc/kppInterface/html/kpp_command_planner_panel_8h__incl.map
 share/doc/kppInterface/html/kpp_command_planner_panel_8h__incl.md5
@@ -174,5 +171,4 @@ share/doc/kppInterface/html/tabs.css
 share/doc/kppInterface/html/tree.html
 @dirrm share/doc/kppInterface/html/pictures
 @dirrm share/doc/kppInterface/html
-@dirrm share/doc/kppInterface
 @dirrm include/kppInterface

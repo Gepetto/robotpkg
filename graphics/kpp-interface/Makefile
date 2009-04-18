@@ -18,7 +18,7 @@
 
 DISTNAME=	kppinterface-${VERSION}
 PKGNAME=	kpp-interface-${VERSION}
-VERSION=	1.5
+VERSION=	1.6
 
 CATEGORIES=	graphics
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
@@ -27,7 +27,7 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Graphical user interface for HPP libraries.
 
-DEPENDS+=	hpp-corbaserver>=1.5:../../devel/hpp-corbaserver
+DEPENDS+=	hpp-corbaserver>=1.7.2:../../devel/hpp-corbaserver
 
 GNU_CONFIGURE=	yes
 
