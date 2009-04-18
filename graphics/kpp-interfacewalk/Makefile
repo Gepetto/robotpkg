@@ -21,7 +21,8 @@ PKGNAME=	kpp-interfacewalk-${VERSION}
 VERSION=	1.8.1
 
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=kpp-interfacewalk/}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kpp-interfacewalk/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kppInterfaceWalk
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
