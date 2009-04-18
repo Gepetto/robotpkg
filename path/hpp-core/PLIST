@@ -1,8 +1,4 @@
-@comment Sat Mar 14 11:18:45 JST 2009
-include/hppCore/hppColPair.h
-include/hppCore/hppPlanner.h
-include/hppCore/hppProblem.h
-lib/libhppCore.la
+@comment Sat Apr 18 14:08:20 JST 2009
 lib/pkgconfig/hppCore.pc
 share/doc/hppCore/html/annotated.html
 share/doc/hppCore/html/class_chpp_col_pair.html
@@ -69,5 +65,3 @@ share/doc/hppCore/html/tabs.css
 share/doc/hppCore/html/tree.html
 @dirrm share/doc/hppCore/html/pictures
 @dirrm share/doc/hppCore/html
-@dirrm share/doc/hppCore
-@dirrm include/hppCore
