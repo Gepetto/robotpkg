@@ -1,10 +1,8 @@
-@comment Sat Mar 14 12:03:34 JST 2009
+@comment Sat Apr 18 14:19:57 JST 2009
 include/hppWalkFootPlanner/hppWalkDistance.h
-include/hppWalkFootPlanner/hppWalkFootPlanner.h
 include/hppWalkFootPlanner/hppWalkPlannerDelegate.h
 include/hppWalkFootPlanner/hppWalkSteeringMethod.h
 include/hppWalkFootPlanner/hppWalkStepSequence.h
-lib/libhppWalkFootPlanner.la
 lib/pkgconfig/hppWalkFootPlanner.pc
 share/doc/hppWalkFootPlanner/html/annotated.html
 share/doc/hppWalkFootPlanner/html/class_chpp_walk_distance.html
@@ -103,5 +101,4 @@ share/doc/hppWalkFootPlanner/html/tabs.css
 share/doc/hppWalkFootPlanner/html/tree.html
 @dirrm share/doc/hppWalkFootPlanner/html/pictures
 @dirrm share/doc/hppWalkFootPlanner/html
-@dirrm share/doc/hppWalkFootPlanner
 @dirrm include/hppWalkFootPlanner
