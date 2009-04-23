@@ -1,4 +1,4 @@
-@comment Mon Mar 16 13:58:41 JST 2009
+@comment Thu Apr 23 13:52:39 JST 2009
 lib/pkgconfig/hppDoc.pc
 share/doc/hppDoc/abstractGikTask/html/main.html
 share/doc/hppDoc/abstractRobotDynamics/html/main.html
@@ -8,10 +8,12 @@ share/doc/hppDoc/dynamicsJRLJapan/html/main.html
 share/doc/hppDoc/figures/archi.png
 share/doc/hppDoc/figures/kppInterfaceWalk.png
 share/doc/hppDoc/footer.html
+share/doc/hppDoc/graph-dependency.html
 share/doc/hppDoc/header.html
-share/doc/hppDoc/hppCmpPlanner/main.html
+share/doc/hppDoc/hppCmpPlanner/html/main.html
 share/doc/hppDoc/hppCorbaServer/html/main.html
 share/doc/hppDoc/hppCore/html/main.html
+share/doc/hppDoc/hppdoc_autotools.html
 share/doc/hppDoc/hppdoc_development.html
 share/doc/hppDoc/hppdoc_howtoinstall.html
 share/doc/hppDoc/hppDynamicObstacle/main.html
@@ -42,6 +44,7 @@ share/doc/hppDoc/main.html
 share/doc/hppDoc/movies/passing-under.mp4
 share/doc/hppDoc/movies/whole-body.mp4
 share/doc/hppDoc/package.css
+share/doc/hppDoc/pictures/dependencies.png
 share/doc/hppDoc/pictures/film.png
 share/doc/hppDoc/pictures/footer.jpg
 share/doc/hppDoc/pictures/ftv2blank.png
@@ -63,6 +66,9 @@ share/doc/hppDoc/pictures/tab_l.gif
 share/doc/hppDoc/pictures/tab_r.gif
 share/doc/hppDoc/pictures/walk.png
 share/doc/hppDoc/pictures/whole-body.png
+share/doc/hppDoc/roboptim-core/html/main.html
+share/doc/hppDoc/roboptim-posture/html/main.html
+share/doc/hppDoc/roboptim-trajectory/html/main.html
 share/doc/hppDoc/roboticComponent.html
 share/doc/hppDoc/slam3DPlanner/main.html
 share/doc/hppDoc/tree.html
@@ -78,6 +84,12 @@ share/doc/hppDoc/worldModelGrid3D/main.html
 @dirrm share/doc/hppDoc/walkGenJrl/html
 @dirrm share/doc/hppDoc/walkGenJrl
 @dirrm share/doc/hppDoc/slam3DPlanner
+@dirrm share/doc/hppDoc/roboptim-trajectory/html
+@dirrm share/doc/hppDoc/roboptim-trajectory
+@dirrm share/doc/hppDoc/roboptim-posture/html
+@dirrm share/doc/hppDoc/roboptim-posture
+@dirrm share/doc/hppDoc/roboptim-core/html
+@dirrm share/doc/hppDoc/roboptim-core
 @dirrm share/doc/hppDoc/pictures
 @dirrm share/doc/hppDoc/movies
 @dirrm share/doc/hppDoc/kwsPlus
@@ -114,6 +126,7 @@ share/doc/hppDoc/worldModelGrid3D/main.html
 @dirrm share/doc/hppDoc/hppCore
 @dirrm share/doc/hppDoc/hppCorbaServer/html
 @dirrm share/doc/hppDoc/hppCorbaServer
+@dirrm share/doc/hppDoc/hppCmpPlanner/html
 @dirrm share/doc/hppDoc/hppCmpPlanner
 @dirrm share/doc/hppDoc/figures
 @dirrm share/doc/hppDoc/dynamicsJRLJapan/html
