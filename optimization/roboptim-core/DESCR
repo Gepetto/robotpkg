@@ -1,0 +1,8 @@
+roboptim is a C++ generic non-linear optimization library for robotics. 
+
+The core level allows users to define optimization problems in a generic way in order 
+to use different back-ends. Currently the supported solvers are
+  * cfsqp
+  * ipopt
+
+
