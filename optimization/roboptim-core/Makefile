@@ -18,7 +18,7 @@
 
 DISTNAME=	roboptim-core-${VERSION}
 PKGNAME=	roboptim-core-${VERSION}
-VERSION=	0.1
+VERSION=	0.1.2
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
@@ -28,7 +28,10 @@ MAINTAINER=	roboptim-user@lists.sourceforge.net
 #HOMEPAGE=	
 COMMENT=	Optimization for robotics: common API to various solvers.
 
+DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
+
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=--with-boost=${PREFIX.boost-headers}
 
 # --------------------------------------------------------------------
 

@@ -65,6 +65,7 @@ SUBDIR+=	math
 SUBDIR+=	meta-pkgs
 SUBDIR+=	motion
 SUBDIR+=	net
+SUBDIR+=	optimization
 SUBDIR+=	path
 SUBDIR+=	pkgtools
 SUBDIR+=	robots
