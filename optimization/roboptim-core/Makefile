@@ -38,4 +38,6 @@ CONFIGURE_ARGS+=--with-boost=${PREFIX.boost-headers}
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/latex.mk
 include ../../mk/robotpkg.mk
