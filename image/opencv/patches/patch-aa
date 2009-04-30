@@ -1,13 +1,31 @@
-$NetBSD: patch-aa,v 1.1.1.1 2006/11/09 05:13:41 uebayasi Exp $
-
---- docs/Makefile.in.orig	2006-11-04 00:54:54.000000000 +0900
-+++ docs/Makefile.in
-@@ -224,7 +224,7 @@ target_alias = @target_alias@
- target_cpu = @target_cpu@
- target_os = @target_os@
+--- docs/Makefile.in.orig	2008-10-17 11:23:55.000000000 +0200
++++ docs/Makefile.in	2009-04-23 14:55:57.000000000 +0200
+@@ -199,7 +199,7 @@
+ install_sh = @install_sh@
+ libdir = @libdir@
+ libexecdir = @libexecdir@
+-localedir = @localedir@
++localedir = /home/mallet/tmp/pipo/share/locale
+ localstatedir = @localstatedir@
+ mandir = @mandir@
+ mkdir_p = @mkdir_p@
+@@ -223,7 +223,7 @@
  target_vendor = @target_vendor@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -opencvdocdir = $(pkgdatadir)/doc
 +opencvdocdir = $(datadir)/doc/opencv
  nobase_dist_opencvdoc_DATA = cvcam.rtf faq.htm index.htm \
-     license.txt opencv.jpg opencvman_old.pdf \
-     papers/algo_tracking.pdf papers/avbpa99.ps papers/camshift.pdf \
+     license.txt opencv.jpg opencv-logo.png opencv-logo2.png opencvman_old.pdf \
+     ../THANKS ../ChangeLog \
+@@ -289,8 +289,8 @@
+ 	list='$(nobase_dist_opencvdoc_DATA)'; for p in $$list; do \
+ 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+ 	  $(am__vpath_adj) \
+-	  echo " $(nobase_dist_opencvdocDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(opencvdocdir)/$$f'"; \
+-	  $(nobase_dist_opencvdocDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(opencvdocdir)/$$f"; \
++	  echo " $(nobase_dist_opencvdocDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(opencvdocdir)/$${f#../}'"; \
++	  $(nobase_dist_opencvdocDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(opencvdocdir)/$${f#../}"; \
+ 	done
+ 
+ uninstall-nobase_dist_opencvdocDATA:

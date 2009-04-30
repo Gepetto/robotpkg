@@ -1,4 +1,4 @@
-@comment Sat Dec 13 16:12:37 CET 2008
+@comment Thu Apr 23 14:51:43 CEST 2009
 bin/opencv-createsamples
 bin/opencv-haartraining
 bin/opencv-performance
@@ -12,6 +12,7 @@ include/opencv/cvmat.hpp
 include/opencv/cvtypes.h
 include/opencv/cvver.h
 include/opencv/cvvidsurv.hpp
+include/opencv/cvwimage.h
 include/opencv/cxcore.h
 include/opencv/cxcore.hpp
 include/opencv/cxerror.h
@@ -26,10 +27,14 @@ lib/libcxcore.la
 lib/libhighgui.la
 lib/libml.la
 lib/pkgconfig/opencv.pc
+share/doc/opencv/ChangeLog
+share/doc/opencv/THANKS
 share/doc/opencv/cvcam.rtf
 share/doc/opencv/faq.htm
 share/doc/opencv/index.htm
 share/doc/opencv/license.txt
+share/doc/opencv/opencv-logo.png
+share/doc/opencv/opencv-logo2.png
 share/doc/opencv/opencv.jpg
 share/doc/opencv/opencvman_old.pdf
 share/doc/opencv/papers/algo_tracking.pdf
@@ -49,6 +54,7 @@ share/doc/opencv/ref/pics/building.jpg
 share/doc/opencv/ref/pics/contoursecarea.png
 share/doc/opencv/ref/pics/cornersubpix.png
 share/doc/opencv/ref/pics/defects.png
+share/doc/opencv/ref/pics/disparity.png
 share/doc/opencv/ref/pics/ellipse.png
 share/doc/opencv/ref/pics/em1.png
 share/doc/opencv/ref/pics/em3.png
@@ -89,14 +95,17 @@ share/opencv/readme.txt
 share/opencv/samples/c/agaricus-lepiota.data
 share/opencv/samples/c/airplane.jpg
 share/opencv/samples/c/baboon.jpg
+share/opencv/samples/c/bgfg_codebook.cpp
+share/opencv/samples/c/bgfg_segm.cpp
 share/opencv/samples/c/blobtrack.cpp
+share/opencv/samples/c/box.png
+share/opencv/samples/c/box_in_scene.png
 share/opencv/samples/c/build_all.sh
 share/opencv/samples/c/camshiftdemo.c
 share/opencv/samples/c/contours.c
 share/opencv/samples/c/convert_cascade.c
 share/opencv/samples/c/convexhull.c
 share/opencv/samples/c/cvsample.dsp
-share/opencv/samples/c/cvsample.vcproj
 share/opencv/samples/c/delaunay.c
 share/opencv/samples/c/demhist.c
 share/opencv/samples/c/dft.c
@@ -106,6 +115,7 @@ share/opencv/samples/c/edge.c
 share/opencv/samples/c/facedetect.c
 share/opencv/samples/c/facedetect.cmd
 share/opencv/samples/c/ffilldemo.c
+share/opencv/samples/c/find_obj.cpp
 share/opencv/samples/c/fitellipse.c
 share/opencv/samples/c/fruits.jpg
 share/opencv/samples/c/houghlines.c
@@ -114,6 +124,19 @@ share/opencv/samples/c/inpaint.cpp
 share/opencv/samples/c/kalman.c
 share/opencv/samples/c/kmeans.c
 share/opencv/samples/c/laplace.c
+share/opencv/samples/c/left01.jpg
+share/opencv/samples/c/left02.jpg
+share/opencv/samples/c/left03.jpg
+share/opencv/samples/c/left04.jpg
+share/opencv/samples/c/left05.jpg
+share/opencv/samples/c/left06.jpg
+share/opencv/samples/c/left07.jpg
+share/opencv/samples/c/left08.jpg
+share/opencv/samples/c/left09.jpg
+share/opencv/samples/c/left11.jpg
+share/opencv/samples/c/left12.jpg
+share/opencv/samples/c/left13.jpg
+share/opencv/samples/c/left14.jpg
 share/opencv/samples/c/lena.jpg
 share/opencv/samples/c/letter-recognition.data
 share/opencv/samples/c/letter_recog.cpp
@@ -131,9 +154,53 @@ share/opencv/samples/c/pic4.png
 share/opencv/samples/c/pic5.png
 share/opencv/samples/c/pic6.png
 share/opencv/samples/c/pyramid_segmentation.c
+share/opencv/samples/c/right01.jpg
+share/opencv/samples/c/right02.jpg
+share/opencv/samples/c/right03.jpg
+share/opencv/samples/c/right04.jpg
+share/opencv/samples/c/right05.jpg
+share/opencv/samples/c/right06.jpg
+share/opencv/samples/c/right07.jpg
+share/opencv/samples/c/right08.jpg
+share/opencv/samples/c/right09.jpg
+share/opencv/samples/c/right11.jpg
+share/opencv/samples/c/right12.jpg
+share/opencv/samples/c/right13.jpg
+share/opencv/samples/c/right14.jpg
 share/opencv/samples/c/squares.c
+share/opencv/samples/c/stereo_calib.cpp
+share/opencv/samples/c/stereo_calib.txt
 share/opencv/samples/c/stuff.jpg
+share/opencv/samples/c/tree.avi
 share/opencv/samples/c/watershed.cpp
+share/opencv/samples/octave/cam-histo.m
+share/opencv/samples/octave/capture-cam.m
+share/opencv/samples/octave/chessboard.m
+share/opencv/samples/octave/contours.m
+share/opencv/samples/octave/convexhull.m
+share/opencv/samples/octave/delaunay.m
+share/opencv/samples/octave/demhist.m
+share/opencv/samples/octave/dft.m
+share/opencv/samples/octave/distrans.m
+share/opencv/samples/octave/drawing.m
+share/opencv/samples/octave/edge.m
+share/opencv/samples/octave/facedetect.m
+share/opencv/samples/octave/ffilldemo.m
+share/opencv/samples/octave/fitellipse.m
+share/opencv/samples/octave/houghlines.m
+share/opencv/samples/octave/inpaint.m
+share/opencv/samples/octave/kalman.m
+share/opencv/samples/octave/kmeans.m
+share/opencv/samples/octave/laplace.m
+share/opencv/samples/octave/lkdemo.m
+share/opencv/samples/octave/logpolar.m
+share/opencv/samples/octave/minarea.m
+share/opencv/samples/octave/minidemo.m
+share/opencv/samples/octave/morphology.m
+share/opencv/samples/octave/motempl.m
+share/opencv/samples/octave/pyramid_segmentation.m
+share/opencv/samples/octave/squares.m
+share/opencv/samples/octave/watershed.m
 share/opencv/samples/python/cam-histo.py
 share/opencv/samples/python/capture-cam.py
 share/opencv/samples/python/chessboard.py
@@ -163,6 +230,7 @@ share/opencv/samples/python/pyramid_segmentation.py
 share/opencv/samples/python/squares.py
 share/opencv/samples/python/watershed.py
 @dirrm share/opencv/samples/python
+@dirrm share/opencv/samples/octave
 @dirrm share/opencv/samples/c
 @dirrm share/opencv/samples
 @dirrm share/opencv/haarcascades

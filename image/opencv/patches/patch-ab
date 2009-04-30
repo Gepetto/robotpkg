@@ -1,12 +1,8 @@
-$NetBSD: patch-ab,v 1.1 2006/11/19 23:13:42 rillig Exp $
-
-Tags: pkgsrc-only
-
---- configure.orig	2006-11-03 16:54:49.000000000 +0100
-+++ configure	2006-11-19 23:03:44.000000000 +0100
-@@ -20433,7 +20433,7 @@ else
- echo "${ECHO_T}no" >&6
+--- configure~	2009-04-23 14:34:23.000000000 +0200
++++ configure	2009-04-23 14:38:27.000000000 +0200
+@@ -22149,7 +22149,7 @@
  fi
+ 
  
 -        if test x"$PKG_CONFIG" == "xno"; then
 +        if test x"$PKG_CONFIG" = "xno"; then

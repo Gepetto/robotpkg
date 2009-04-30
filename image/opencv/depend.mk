@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/12/13 16:17:56 tho $
+# $LAAS: depend.mk 2009/04/30 16:07:53 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -29,7 +29,7 @@ PREFER.opencv?=		robotpkg
 
 DEPEND_USE+=		opencv
 
-DEPEND_ABI.opencv?=	opencv>=1.0.0
+DEPEND_ABI.opencv?=	opencv>=1.1pre1
 DEPEND_DIR.opencv?=	../../image/opencv
 
 SYSTEM_SEARCH.opencv=\

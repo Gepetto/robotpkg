@@ -1,0 +1,30 @@
+--- cv/include/cv.h~	2008-10-05 17:26:27.000000000 +0200
++++ cv/include/cv.h	2009-04-29 12:21:43.000000000 +0200
+@@ -1245,6 +1245,7 @@
+ #define CV_CALIB_CB_ADAPTIVE_THRESH  1
+ #define CV_CALIB_CB_NORMALIZE_IMAGE  2
+ #define CV_CALIB_CB_FILTER_QUADS     4 
++#define CV_CALIB_CB_MULTILEVEL_QUADS 8
+ 
+ /* Detects corners on a chessboard calibration pattern */
+ CVAPI(int) cvFindChessboardCorners( const void* image, CvSize pattern_size,
+--- cv/src/cvcalibinit.cpp~	2008-10-14 02:07:48.000000000 +0200
++++ cv/src/cvcalibinit.cpp	2009-04-29 12:22:41.000000000 +0200
+@@ -235,7 +235,7 @@
+     if( CV_MAT_DEPTH( img->type ) != CV_8U || CV_MAT_CN( img->type ) == 2 )
+         CV_ERROR( CV_StsUnsupportedFormat, "Only 8-bit grayscale or color images are supported" );
+ 
+-    if( pattern_size.width <= 2 || pattern_size.height <= 2 )
++    if( pattern_size.width < 2 || pattern_size.height < 2 )
+         CV_ERROR( CV_StsOutOfRange, "Both width and height of the pattern should have bigger than 2" );
+ 
+     if( !out_corners )
+@@ -273,7 +273,7 @@
+     // This is necessary because some squares simply do not separate properly with a single dilation.  However,
+     // we want to use the minimum number of dilations possible since dilations cause the squares to become smaller,
+     // making it difficult to detect smaller squares.
+-    for( k = 0; k < 2; k++ )
++    for( k = 0; k < ((flags & CV_CALIB_CB_MULTILEVEL_QUADS) ? 2:1); k++ )
+     {
+         for( dilations = min_dilations; dilations <= max_dilations; dilations++ )
+         {

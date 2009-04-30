@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/13 15:45:18 tho $
+# $LAAS: Makefile 2009/04/23 14:34:20 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -16,14 +16,15 @@
 #                                      Anthony Mallet on Sun Jan 28 2007
 #
 
-DISTNAME=		opencv-1.0.0
+DISTNAME=		opencv-1.1pre1
 CATEGORIES=		image devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=opencvlibrary/}
-PKGREVISION=		4
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://opencvlibrary.sourceforge.net/
 COMMENT=		Library for computer vision problems
+
+WRKSRC=			${WRKDIR}/opencv-1.1.0
 
 USE_PKGLOCALEDIR=	yes
 INSTALLATION_DIRS+=	share/doc/opencv/papers share/doc/opencv/ref/pics \

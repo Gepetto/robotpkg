@@ -1,8 +1,6 @@
-SHA1 (opencv-1.0.0.tar.gz) = c7dd500703b0060cedfa049fcb33de0846e631fb
-RMD160 (opencv-1.0.0.tar.gz) = f041798ea63101b90e945957e0d0ad3f7497dcd4
-Size (opencv-1.0.0.tar.gz) = 11146334 bytes
-SHA1 (patch-aa) = 74cc455e45165aef59a25c9b3aeb9e6c1baf687b
-SHA1 (patch-ab) = e14d3b045dd333328ba4ba699e25f8876ed8b1fe
-SHA1 (patch-ad) = 9da9b7e39e0d0698c79171f1c09284a35e0a6591
-SHA1 (patch-ae) = 52e1da8c8b7f6ad787c7c26af0fb82d9bacf1b6b
-SHA1 (patch-af) = f4fc28d6e8e125460cc2c92646dd5cef75b1f0a7
+SHA1 (opencv-1.1pre1.tar.gz) = 4bc4bda92a250adcb82b236161d364c059021a43
+RMD160 (opencv-1.1pre1.tar.gz) = d105a97f211637edbbac1eb21dca2b140b1f37be
+Size (opencv-1.1pre1.tar.gz) = 22301291 bytes
+SHA1 (patch-aa) = 668744236c51994e319fb2bf6f6f7bebc159ee1e
+SHA1 (patch-ab) = 668e18055f2c21800b229d696ea31dd5aafd7260
+SHA1 (patch-ac) = 38d35a0847d95bae614b92a4bc0707c77762ebf4
