@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/12/09 11:07:56 mallet $
+# $LAAS: depend.mk 2009/04/30 16:19:12 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -28,7 +28,7 @@ PREFER.viam-libs?=	robotpkg
 
 DEPEND_USE+=		viam-libs
 
-DEPEND_ABI.viam-libs?=	viam-libs>=1.3r1
+DEPEND_ABI.viam-libs?=	viam-libs>=1.4
 DEPEND_DIR.viam-libs?=	../../image/viam-libs
 
 SYSTEM_SEARCH.viam-libs=\

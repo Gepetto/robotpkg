@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/04/15 15:14:36 mallet $
+# $LAAS: Makefile 2009/04/30 16:13:12 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -16,17 +16,18 @@
 #                                       Anthony Mallet on Fri Mar 14 2008
 #
 
-DISTNAME=		viam-libs-1.3
+DISTNAME=		viam-libs-1.4
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/viam-libs
-PKGREVISION=		1
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet
 COMMENT=		Versatile Image Acquisition Module - Libraries
 
 GNU_CONFIGURE=		yes
+BUILD_TARGET=		all
+INSTALL_TARGET=		install
 
 # options for dc1394 support
 PKG_SUPPORTED_OPTIONS+= dc1394
@@ -56,10 +57,11 @@ PKG_SUGGESTED_OPTIONS+= doc
 
 PKG_OPTION_DESCR.doc=	Install documentation files.
 define PKG_OPTION_SET.doc
+  BUILD_TARGET+=	doc
+  INSTALL_TARGET+=	install-doc
   DOXYGEN_PLIST_DIR+=	share/doc/viam-libs
   include ../../mk/sysdep/doxygen.mk
 endef
-PKG_OPTION_UNSET.doc:=  MAKE_ENV+= NO_INSTALL_DOC=\\\#
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
