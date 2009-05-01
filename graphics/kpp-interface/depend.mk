@@ -36,7 +36,6 @@ DEPEND_DIR.kpp-interface?=	../../graphics/kpp-interface
 
 SYSTEM_SEARCH.kpp-interface=\
 	include/kppInterface/kppInterface.h		\
-	'lib/libkppInterface.{a,so}'					\
 	'lib/pkgconfig/kppInterface.pc:/Version/s/[^0-9.]//gp'
 
 endif # --------------------------------------------------------------------
