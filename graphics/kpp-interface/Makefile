@@ -27,8 +27,6 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Graphical user interface for HPP libraries.
 
-DEPENDS+=	hpp-corbaserver>=1.7.2:../../devel/hpp-corbaserver
-
 GNU_CONFIGURE=	yes
 
 # options
@@ -37,6 +35,7 @@ PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 include ../../devel/hpp-kwsplus/depend.mk
+include ../../devel/hpp-corbaserver/depend.mk
 include ../../path/kineo-pp/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
