@@ -32,7 +32,7 @@ PREFER.kpp-interfacewalk?=	robotpkg
 DEPEND_USE+=			kpp-interfacewalk
 
 DEPEND_ABI.kpp-interfacewalk?=	kpp-interfacewalk>=1.9
-DEPEND_DIR.kpp-interfacewalk?=	../../devel/kpp-interfacewalk
+DEPEND_DIR.kpp-interfacewalk?=	../../graphics/kpp-interfacewalk
 
 SYSTEM_SEARCH.kpp-interfacewalk=\
 	include/kppInterfaceWalk/kppInterfaceWalk.h		\
