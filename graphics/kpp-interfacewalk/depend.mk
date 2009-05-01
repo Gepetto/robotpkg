@@ -36,7 +36,6 @@ DEPEND_DIR.kpp-interfacewalk?=	../../graphics/kpp-interfacewalk
 
 SYSTEM_SEARCH.kpp-interfacewalk=\
 	include/kppInterfaceWalk/kppInterfaceWalk.h		\
-	'lib/libkppInterfaceWalk.{a,so}'					\
 	'lib/pkgconfig/kppInterfaceWalk.pc:/Version/s/[^0-9.]//gp'
 
 endif # --------------------------------------------------------------------
