@@ -28,8 +28,6 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Graphical user interface for hppWalkPlanner libraries.
 
-DEPENDS+=	kpp-interface>=1.6:../../graphics/kpp-interface
-
 GNU_CONFIGURE=	yes
 DOXYGEN_PLIST_DIR+=share/doc/kppInterfaceWalk
 
@@ -41,6 +39,7 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 include ../../mk/sysdep/doxygen.mk
 include ../../path/hpp-openhrp/depend.mk
 include ../../path/hpp-walkplanner/depend.mk
+include ../../graphics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
