@@ -20,7 +20,7 @@ DISTNAME=	roboptim-core-${VERSION}
 PKGNAME=	roboptim-core-${VERSION}
 VERSION=	0.1.2
 
-CATEGORIES=	path
+CATEGORIES=	optimization
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}roboptim/core
 
