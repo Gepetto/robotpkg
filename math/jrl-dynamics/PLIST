@@ -1,4 +1,4 @@
-@comment Thu Apr 2 16:05:49 JST 2009
+@comment Fri May 8 13:48:50 JST 2009
 include/dynamicsJRLJapan/Body.h
 include/dynamicsJRLJapan/DynamicBody.h
 include/dynamicsJRLJapan/DynamicMultiBody.h
@@ -15,6 +15,4 @@ lib/libdynamicsJRLJapan.so
 lib/libdynamicsJRLJapan.so.${PKGVERSION}
 lib/pkgconfig/dynamicsJRLJapan.pc
 @dirrm share/doc
-@dirrm lib/pkgconfig
 @dirrm lib
-@dirrm include/dynamicsJRLJapan
