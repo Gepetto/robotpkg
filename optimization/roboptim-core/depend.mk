@@ -32,7 +32,7 @@ PREFER.roboptim-core?=	robotpkg
 DEPEND_USE+=			roboptim-core
 
 DEPEND_ABI.roboptim-core?=	roboptim-core>=0.1.2
-DEPEND_DIR.roboptim-core?=	../../path/roboptim-core
+DEPEND_DIR.roboptim-core?=	../../optimization/roboptim-core
 
 SYSTEM_SEARCH.roboptim-core=\
 	include/roboptim-core/fwd.hh		\
