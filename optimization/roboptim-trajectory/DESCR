@@ -1,0 +1,9 @@
+roboptim is a C++ generic non-linear optimization library for robotics composed of 3
+levels:
+  - core
+  - posture
+  - trajectory
+
+The trajectory level, proposes an extendable set of classes aiming at
+casting optimal control problems into non-linear optimization problems
+that can be numerically solved by solvers interfaced with the core level.

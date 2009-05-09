@@ -1,0 +1,20 @@
+@comment Sat May 9 14:56:18 JST 2009
+include/roboptim/trajectory/free-time-trajectory.hh
+include/roboptim/trajectory/free-time-trajectory.hxx
+include/roboptim/trajectory/fwd.hh
+include/roboptim/trajectory/spline.hh
+include/roboptim/trajectory/state-cost.hh
+include/roboptim/trajectory/state-cost.hxx
+include/roboptim/trajectory/trajectory-cost.hh
+include/roboptim/trajectory/trajectory-cost.hxx
+include/roboptim/trajectory/trajectory.hh
+include/roboptim/trajectory/trajectory.hxx
+include/roboptim/trajectory/trajectory-sum-cost.hh
+include/roboptim/trajectory/trajectory-sum-cost.hxx
+lib/libroboptim-trajectory.a
+lib/libroboptim-trajectory.la
+lib/libroboptim-trajectory.so
+lib/libroboptim-trajectory.so.0
+lib/libroboptim-trajectory.so.0.0.0
+lib/pkgconfig/roboptim-trajectory.pc
+@dirrm include/roboptim/trajectory
