@@ -35,7 +35,7 @@ DEPEND_ABI.roboptim-core?=	roboptim-core>=0.1.2
 DEPEND_DIR.roboptim-core?=	../../optimization/roboptim-core
 
 SYSTEM_SEARCH.roboptim-core=\
-	include/roboptim-core/fwd.hh		\
+	include/roboptim/core/fwd.hh		\
 	'lib/pkgconfig/roboptim-core.pc:/Version/s/[^0-9.]//gp'
 
 endif # --------------------------------------------------------------------
