@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007,2009 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -17,7 +17,7 @@
 #                                             Anthony Mallet on Wed Oct 17 2007
 #
 
-DISTNAME=		openprs-1.0b3
+DISTNAME=		openprs-1.0b4
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 
