@@ -3,6 +3,7 @@
 
 COMMENT=	Optimization tools
 
-SUBDIR+=	roboptim-core
+SUBDIR+=	roboptim-core 			\
+		ipopt
 
 include ../mk/robotpkg.subdir.mk
