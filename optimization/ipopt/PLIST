@@ -1,5 +1,5 @@
 @comment Sat May 9 13:05:47 JST 2009
-config_ipopt.h
+include/coin/config_ipopt.h
 include/coin/IpAlgTypes.hpp
 include/coin/IpCachedResults.hpp
 include/coin/IpDebug.hpp
