@@ -15,7 +15,7 @@
 #
 
 COMMENT=	GenoM module managing zones in a map
-DISTNAME=	zone-genom-1.0
+DISTNAME=	zone-genom-1.1
 CATEGORIES=	mapping
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=zone/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/zone-genom
