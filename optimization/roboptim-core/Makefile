@@ -25,7 +25,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}roboptim/core
 
 MAINTAINER=	roboptim-user@lists.sourceforge.net
-#HOMEPAGE=	
+HOMEPAGE=	http://sourceforge.net/projects/roboptim/
 COMMENT=	Optimization for robotics: common API to various solvers.
 
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
