@@ -1,0 +1,44 @@
+--- src/roboptim-core-ipopt-plugin.cc.orig	2009-05-03 17:10:30.000000000 +0900
++++ src/roboptim-core-ipopt-plugin.cc	2009-05-06 13:12:41.000000000 +0900
+@@ -37,6 +37,9 @@ namespace roboptim
+ 
+   namespace detail
+   {
++    TNLP::LinearityType cfsqp_tag (const LinearFunction& f);
++    TNLP::LinearityType cfsqp_tag (const Function& f);
++
+     /// \internal
+     /// Set "linear" tag to linear functions.
+     TNLP::LinearityType cfsqp_tag (const LinearFunction& f)
+@@ -422,6 +425,10 @@ namespace roboptim
+ 	  case OUT_OF_MEMORY:
+ 	    solver_.result_ = SolverError ("Out of memory.");
+ 	    break;
++
++	  case CPUTIME_EXCEEDED:
++	    solver_.result_ = SolverError ("Cpu time exceeded.");
++	    break;
+           }
+       }
+ 
+@@ -548,6 +555,10 @@ namespace roboptim
+       case Internal_Error:
+         result_ = SolverError ("Ipopt: internal error.");
+         break;
++
++      case Maximum_CpuTime_Exceeded:
++        result_ = SolverError ("Ipopt: maximum CPU time exceeded.");
++        break;
+       }
+   }
+ 
+@@ -564,6 +575,9 @@ extern "C"
+   using namespace roboptim;
+   typedef IpoptSolver::parent_t solver_t;
+ 
++  solver_t* create (const IpoptSolver::problem_t& pb);
++  void destroy (solver_t* p);
++
+   solver_t* create (const IpoptSolver::problem_t& pb)
+   {
+     return new IpoptSolver (pb);
