@@ -34,10 +34,12 @@ share/genom/${PKGVERSION}/autoconf/config.xenomai.mk
 share/genom/${PKGVERSION}/autoconf/configure.ac
 share/genom/${PKGVERSION}/autoconf/genom.mk
 share/genom/${PKGVERSION}/autoconf/install-sh
+share/genom/${PKGVERSION}/autoconf/libtool.m4
 share/genom/${PKGVERSION}/autoconf/ltmain.sh
 share/genom/${PKGVERSION}/autoconf/mkinstalldirs
 share/genom/${PKGVERSION}/autoconf/module-oprs.pc.in
 share/genom/${PKGVERSION}/autoconf/module.pc.in
+share/genom/${PKGVERSION}/autoconf/pkg.m4
 share/genom/${PKGVERSION}/autoconf/robots.m4
 share/genom/${PKGVERSION}/autogen
 share/genom/${PKGVERSION}/codels/Makefile.in

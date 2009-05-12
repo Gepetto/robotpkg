@@ -16,10 +16,9 @@
 #                                       Anthony Mallet on Sun Jan 28 2007
 #
 
-DISTNAME=	genom-2.2
-PKGREVISION=	0
+DISTNAME=	genom-2.3
 CATEGORIES=	architecture
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/genom
 
 MAINTAINER=	openrobots@laas.fr
