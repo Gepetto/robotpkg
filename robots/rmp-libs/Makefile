@@ -14,6 +14,7 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 DISTNAME=	rmp-libs-0.2
+PKGREVISION=	1
 CATEGORIES=	robots
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=rmp400/}
@@ -26,6 +27,7 @@ GNU_CONFIGURE=	yes
 pre-configure:	autoreconf
 
 include ../../hardware/libftdi/depend.mk
+include ../../devel/pocolibs/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
