@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/02 19:30:13 mallet $
+# $LAAS: Makefile 2009/05/28 19:05:51 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -43,7 +43,7 @@ CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
 BUILD_DIRS=		${WRKSRC}/example/swig
 
 # O1 is the highest possible optimization level: overwrite default -O3
-PKG_OPTION_UNSET.debug:= CXXFLAGS=-O1 -DNDEBUG
+_CFLAGS_NDEBUG:= -O1 -DNDEBUG
 
 include ../../architecture/yarp/depend.mk
 include ../../lang/sun-jdk6/depend.mk
