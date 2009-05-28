@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/03/24 18:11:17 mallet $
+# $LAAS: gcc.mk 2009/05/28 18:58:34 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -130,7 +130,7 @@ COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 # Each compiler can define the _CFLAGS_DEBUG and _CFLAGS_NDEBUG flags
 # corresponding to the common `debug' option.
 #
-_CFLAGS_DEBUG=	-g -O0 -Wall
-_CFLAGS_NDEBUG=	-O3 -DNDEBUG
+_CFLAGS_DEBUG?=	-g -O0 -Wall
+_CFLAGS_NDEBUG?=-O3 -DNDEBUG
 
 endif	# COMPILER_GCC_MK
