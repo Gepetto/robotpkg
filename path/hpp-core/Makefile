@@ -18,7 +18,7 @@
 
 DISTNAME=	hppcore-${VERSION}
 PKGNAME=	hpp-core-${VERSION}
-VERSION=	1.8
+VERSION=	1.8.1
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-core/}
@@ -29,6 +29,8 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Basic classes used as interfaces with KineoWorks(tm).
 
 GNU_CONFIGURE=	yes
+
+DOXYGEN_PLIST_DIR+=	share/doc/hppCore
 
 # --- options --------------------------------------------------------
 
@@ -49,6 +51,7 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 # --------------------------------------------------------------------
 
+include ../../mk/sysdep/doxygen.mk
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
