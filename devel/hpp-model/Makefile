@@ -18,7 +18,7 @@
 
 DISTNAME=	hppmodel-${VERSION}
 PKGNAME=	hpp-model-${VERSION}
-VERSION=	1.5
+VERSION=	1.6
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-model/}
@@ -29,6 +29,8 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Robots, humanoid robots, joints and bodies with dynamics properties
 
 GNU_CONFIGURE=	yes
+
+DOXYGEN_PLIST_DIR+=	share/doc/hppModel
 
 # options
 PKG_SUPPORTED_OPTIONS+=	jrl-dynamics
@@ -50,6 +52,7 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 PKG_OPTION_DESCR.verbose2=	Set the level of verbosity to 2
 PKG_OPTION_SET.verbose2:=	CXXFLAGS+=-DDEBUG=2
 
+include ../../mk/sysdep/doxygen.mk
 include ../../path/kineo-pp/depend.mk
 include ../../devel/hpp-kwsio/depend.mk
 include ../../interfaces/jrl-interface-dynamics/depend.mk
