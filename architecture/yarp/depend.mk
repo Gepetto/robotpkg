@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/01/27 18:42:45 mallet $
+# $LAAS: depend.mk 2009/05/28 18:38:25 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -36,7 +36,7 @@ DEPEND_DIR.yarp?=	../../architecture/yarp
 SYSTEM_SEARCH.yarp=\
 	'bin/yarp:s/[^.0-9]//gp:% version'	\
 	include/yarp/dev/all.h			\
-	lib/libYARP_OS.{a,so}
+	'lib/libYARP_OS.{a,so}'
 
 include ../../architecture/ace/depend.mk
 
