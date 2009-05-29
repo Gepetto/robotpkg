@@ -1,0 +1,25 @@
+diff --git src/hardware.c src/hardware.c
+index 458bd2f..d7b08c8 100644
+--- src/hardware.c
++++ src/hardware.c
+@@ -1,4 +1,4 @@
+-/* $LAAS: hardware.c 2009/04/23 12:07:22 mallet $
++/* $LAAS: hardware.c 2009/05/29 11:04:40 mallet $
+  *
+  * Copyright (c) 2007-2009 LAAS/CNRS
+  * All rights reserved.
+@@ -219,11 +219,12 @@ viam_hardware_attach(viam_handle_t vh)
+ 	  warnx("cannot attach camera %s on %s device",
+ 		viam_camera_name(c), h->name);
+ 
+-      if (!viam_camera_hwdev(c))
++      h = viam_camera_hwdev(c);
++      if (!h)
+ 	warnx("camera `%s' not found on any devices", viam_camera_name(c));
+     }
+ 
+-    if (viam_camera_hwdev(c))
++    if (h)
+       warnx("attached camera `%s' on %s device", viam_camera_name(c), h->name);
+   }
+ 
