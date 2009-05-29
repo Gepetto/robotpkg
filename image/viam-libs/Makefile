@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/04/30 16:13:12 mallet $
+# $LAAS: Makefile 2009/05/29 14:13:22 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -17,6 +17,7 @@
 #
 
 DISTNAME=		viam-libs-1.4
+PKGREVISION=		1
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/viam-libs
