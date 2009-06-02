@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.prefs.mk 2009/03/15 01:28:06 tho $
+# $LAAS: robotpkg.prefs.mk 2009/06/01 00:21:49 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -54,6 +54,9 @@ endif
 
 # calculate depth
 _ROBOTPKG_DEPTH:=$(words $(subst /, ,$(subst ${ROBOTPKG_DIR},,$(realpath .))))
+
+# clean unwanted environment variables
+include ${ROBOTPKG_DIR}/mk/internal/env.mk
 
 # import useful macros
 include ${ROBOTPKG_DIR}/mk/internal/macros.mk

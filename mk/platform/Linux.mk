@@ -19,52 +19,47 @@ ifeq (${MACHINE_ARCH},x86_64)
 endif
 
 # Standard commands
-TRUE?=			:
-FALSE?=			false
-SETENV?=		env
-TEST?=			test
-HEAD?=			head
-EXPR?=			expr
-CMP?=			cmp
-LS?=			ls
-TEE?=			tee
-WC?=			wc
-ECHO?=			echo
-CAT?=			cat
-GZCAT?=			gzcat
-BZCAT?=			bzcat
-SED?=			sed
-CP?=			cp
-LN?=			ln
-MV?=			mv
-RM?=			rm
-MKDIR?=			mkdir -p
-RMDIR?=			rmdir
-DATE?=			date
-SORT?=			sort
-TSORT?=			tsort
-AWK?=			awk
-XARGS?=			xargs -r
-SH?=			/bin/sh
-ID?=			id
-GREP?=			grep
-EGREP?=			egrep
-TOUCH?=			touch
-CHOWN?=			chown
-CHMOD?=			chmod
-FIND?=			find
-PERL?=			perl
-PAGER?=			less
-TAR?=			${PKG_TOOLS_BIN}/robotpkg_tar
-PAX?=			${PKG_TOOLS_BIN}/robotpkg_pax
-CVS?=			cvs
-BASENAME?=		basename
+$(call setdefault, TRUE,	:)
+$(call setdefault, FALSE,	false)
+$(call setdefault, TEST,	test)
+$(call setdefault, ECHO,	echo)
+$(call setdefault, SH,		/bin/sh)
+$(call setdefault, CAT,		/bin/cat)
+$(call setdefault, SETENV,	/bin/env)
+$(call setdefault, EXPR,	/usr/bin/expr)
+$(call setdefault, CMP,		/usr/bin/cmp)
+$(call setdefault, LS,		/bin/ls)
+$(call setdefault, WC,		/usr/bin/wc)
+$(call setdefault, TOUCH,	/bin/touch)
+$(call setdefault, CHOWN,	/bin/chown)
+$(call setdefault, CHMOD,	/bin/chmod)
+$(call setdefault, CP,		/bin/cp)
+$(call setdefault, LN,		/bin/ln)
+$(call setdefault, MV,		/bin/mv)
+$(call setdefault, RM,		/bin/rm)
+$(call setdefault, RMDIR,	/bin/rmdir)
+$(call setdefault, MKDIR,	/bin/mkdir -p)
+$(call setdefault, DATE,	/bin/date)
+$(call setdefault, ID,		/usr/bin/id)
+$(call setdefault, GREP,	/bin/grep)
+$(call setdefault, EGREP,	/bin/egrep)
+$(call setdefault, FIND,	/bin/find)
+$(call setdefault, SED,		/bin/sed)
+$(call setdefault, SORT,	/bin/sort)
+$(call setdefault, TSORT,	/usr/bin/tsort)
+$(call setdefault, AWK,		/bin/awk)
+$(call setdefault, BASENAME,	/bin/basename)
+$(call setdefault, XARGS,	/usr/bin/xargs -r)
+$(call setdefault, TPUT,	/usr/bin/tput)
+$(call setdefault, PAGER,	/usr/bin/less)
+$(call setdefault, TAR,		${PKG_TOOLS_BIN}/robotpkg_tar)
+$(call setdefault, PAX,		${PKG_TOOLS_BIN}/robotpkg_pax)
+
 PATCH?=			patch
 FILE_CMD?=		file
 
-TPUT?=			tput
-TPUT_BOLD?=		bold
-TPUT_RMBOLD?=		sgr0
+GZCAT?=			gzcat
+BZCAT?=			bzcat
 
 TOOLS_INSTALL=		${ROBOTPKG_DIR}/mk/internal/install-sh
 TOOLS_ECHO=		echo
@@ -73,3 +68,6 @@ TOOLS_TEST=		test
 TOOLS_GREP=		grep
 TOOLS_SORT=		sort
 DEF_UMASK?=		0022
+
+TPUT_BOLD?=		bold
+TPUT_RMBOLD?=		sgr0
