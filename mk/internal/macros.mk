@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2009/03/15 00:04:46 tho $
+# $LAAS: macros.mk 2009/06/01 00:33:14 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -39,6 +39,15 @@ endef
 define isno
 $(filter no No NO,$(1))
 endef
+
+# --- setdefault <var> <value> ---------------------------------------------
+#
+# Set <var> to <value> if <var> is empty.
+#
+override define setdefault
+$(if $(value $1),,$(eval $1=$2))
+endef
+
 
 # --- exists <file> --------------------------------------------------
 #
