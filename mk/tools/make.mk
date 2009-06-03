@@ -48,9 +48,9 @@
 
 # Define MAKE_PROGRAM to be the "make" used to build the package.
 ifneq (,$(filter gmake,${_USE_TOOLS}))
-MAKE_PROGRAM=		${GMAKE}
+MAKE_PROGRAM?=		${GMAKE}
 else
-MAKE_PROGRAM=		${MAKE}
+MAKE_PROGRAM?=		${MAKE}
 endif
 
 TOOLS_CREATE+=		make
