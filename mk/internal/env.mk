@@ -29,16 +29,16 @@
 # assigments within makefiles.
 
 _NOENV_VARS=\
-	AWK		BASENAME	CAT		CHOWN		\
-	CHMOD		CMP		CONFIG_SITE	CP		\
-	DATE		ECHO		EGREP		EXPR		\
-	FALSE		FIND		GREP		ID		\
-	LS		LN		MKDIR		MV		\
-	PAGER		PAX		RM		RMDIR		\
-	SED		SETENV		SH		SORT		\
-	TAR		TEST		TOUCH		TPUT		\
-	TRUE		TSORT		UNAME		WC		\
-	XARGS
+	AWK		ANT		BASENAME	CAT		\
+	CHOWN		CHMOD		CMAKE		CMP		\
+	CONFIG_SITE	CP		DATE		ECHO		\
+	EGREP		EXPR		FALSE		FIND		\
+	GREP		ID		LS		LN		\
+	MKDIR		MV		PAGER		PAX		\
+	RM		RMDIR		SED		SETENV		\
+	SH		SORT		TAR		TEST		\
+	TOUCH		TPUT		TRUE		TSORT		\
+	UNAME		WC		XARGS
 
 
 # --- unsetenv -------------------------------------------------------------
