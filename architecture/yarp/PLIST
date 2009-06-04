@@ -223,11 +223,8 @@ lib/libYARP_OS.so
 lib/libYARP_OS.so.${PKGVERSION}
 lib/libYARP_sig.so
 lib/libYARP_sig.so.${PKGVERSION}
-@dirrm lib
 @dirrm include/yarp/sig
 @dirrm include/yarp/os/impl
 @dirrm include/yarp/os
 @dirrm include/yarp/dev
 @dirrm include/yarp
-@dirrm include
-@dirrm bin
