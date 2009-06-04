@@ -30,7 +30,7 @@ ifeq (+,$(YARP_DEPEND_MK)) # -----------------------------------------------
 PREFER.yarp?=		robotpkg
 
 DEPEND_USE+=		yarp
-DEPEND_ABI.yarp?=	yarp>=2.2.2
+DEPEND_ABI.yarp?=	yarp>=2.2.3
 DEPEND_DIR.yarp?=	../../architecture/yarp
 
 SYSTEM_SEARCH.yarp=\
