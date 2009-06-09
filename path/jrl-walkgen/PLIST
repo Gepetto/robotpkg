@@ -10,6 +10,9 @@ include//walkGenJrl/GlobalStrategyManagers/DoubleStagePreviewControlStrategy.h
 include//walkGenJrl/GlobalStrategyManagers/GlobalStrategyManager.h
 include//walkGenJrl/Mathematics/AnalyticalZMPCOGTrajectory.h
 include//walkGenJrl/Mathematics/ConvexHull.h
+include//walkGenJrl/Mathematics/FootConstraintsAsLinearSystem.h
+include//walkGenJrl/Mathematics/OptCholesky.h
+include//walkGenJrl/Mathematics/PLDPSolver.h
 include//walkGenJrl/Mathematics/PolynomeFoot.h
 include//walkGenJrl/Mathematics/Polynome.h
 include//walkGenJrl/Mathematics/qld.h
@@ -24,6 +27,7 @@ include//walkGenJrl/MotionGeneration/UpperBodyMotion.h
 include//walkGenJrl/MotionGeneration/WaistHeightVariation.h
 include//walkGenJrl/PatternGeneratorInterface.h
 include//walkGenJrl/PGTypes.h
+include//walkGenJrl/PreviewControl/LinearizedInvertedPendulum2D.h
 include//walkGenJrl/PreviewControl/OptimalControllerSolver.h
 include//walkGenJrl/PreviewControl/PreviewControl.h
 include//walkGenJrl/PreviewControl/ZMPPreviewControlWithMultiBodyZMP.h
@@ -35,7 +39,9 @@ include//walkGenJrl/walkGenJrl_API.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/AnalyticalMorisawaAbstract.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/AnalyticalMorisawaCompact.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/AnalyticalMorisawaFull.h
+include//walkGenJrl/ZMPRefTrajectoryGeneration/FilteringAnalyticalTrajectoryByPreviewControl.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/RealTimeHarada.h
+include//walkGenJrl/ZMPRefTrajectoryGeneration/ZMPConstrainedQPFastFormulation.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/ZMPDiscretization.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/ZMPQPWithConstraint.h
 include//walkGenJrl/ZMPRefTrajectoryGeneration/ZMPRefTrajectoryGeneration.h
@@ -45,3 +51,4 @@ lib/pkgconfig/walkGenJrl.pc
 share/walkgenjrl/HRP2LinkJointRank.xml
 share/walkgenjrl/HRP2Specificities.xml
 share/walkgenjrl/PreviewControlParameters.ini
+share/walkGenJrl/walkpluginJRL.idl
