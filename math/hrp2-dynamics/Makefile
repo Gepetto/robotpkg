@@ -18,7 +18,7 @@
 
 DISTNAME=	hrp2dynamics-${VERSION}
 PKGNAME=	hrp2-dynamics-${VERSION}
-VERSION=	1.1
+VERSION=	1.2.0
 
 CATEGORIES=	math
 NO_PUBLIC_SRC=	yes
