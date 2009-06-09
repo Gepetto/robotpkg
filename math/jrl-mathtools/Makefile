@@ -16,8 +16,8 @@
 #                                      Anthony Mallet on Wed Sep 17 2008
 #
 
-DISTNAME=	jrlmathtools-1.1
-PKGNAME=	jrl-mathtools-1.1
+DISTNAME=	jrlmathtools-1.2
+PKGNAME=	jrl-mathtools-1.2
 
 CATEGORIES=	math
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
