@@ -18,7 +18,7 @@
 
 DISTNAME=	dynamicsjrljapan-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
-VERSION=	1.14
+VERSION=	1.15.0
 
 CATEGORIES=	math
 NO_PUBLIC_SRC=	yes
