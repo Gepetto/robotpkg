@@ -31,6 +31,8 @@ CONFIGURE_ARGS+=	--with-motif-includes=${PREFIX.motif}/include
 CONFIGURE_ARGS+=	--with-motif-libraries=${PREFIX.motif}/lib
 
 include ../../devel/mkdep/depend.mk
+include ../../mk/sysdep/bison.mk
+include ../../mk/sysdep/flex.mk
 include ../../mk/sysdep/motif.mk
 include ../../mk/sysdep/readline.mk
 include ../../mk/robotpkg.mk
