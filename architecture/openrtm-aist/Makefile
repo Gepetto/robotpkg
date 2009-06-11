@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/06/23 15:21:42 mallet $
+# $LAAS: Makefile 2009/06/11 23:18:41 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -31,13 +31,10 @@ WRKSRC=			${WRKDIR}/${DISTNAME:-RELEASE=}
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 
-# replace python interpreter by the one which is installed
-USE_TOOLS+=		python
-
 SUBST_CLASSES+=		rtm-python
 SUBST_STAGE.rtm-python=	pre-configure
 SUBST_MESSAGE.rtm-python=Replacing python interpreter.
-SUBST_SED.rtm-python=	'1s@^\\\#![[:space:]]*/usr/bin/env python@\\\#!${TOOLS_PYTHON}@'
+SUBST_SED.rtm-python=	'1s@^\\\#![[:space:]]*/usr/bin/env python@\\\#!${PYTHON}@'
 SUBST_FILES.rtm-python=\
 	build/*.py 				\
 	utils/rtc-template/*.py			\
@@ -48,4 +45,5 @@ SUBST_FILES.rtm-python=\
 include ../../architecture/ace/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk

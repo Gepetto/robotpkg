@@ -35,10 +35,10 @@ _NOENV_VARS=\
 	EGREP		EXPR		FALSE		FIND		\
 	GREP		ID		LS		LN		\
 	MKDIR		MV		PAGER		PAX		\
-	RM		RMDIR		SED		SETENV		\
-	SH		SORT		TAR		TEST		\
-	TOUCH		TPUT		TRUE		TSORT		\
-	UNAME		WC		XARGS
+	PYTHON		RM		RMDIR		SED		\
+	SETENV		SH		SORT		TAR		\
+	TEST		TOUCH		TPUT		TRUE		\
+	TSORT		UNAME		WC		XARGS
 
 
 # --- unsetenv -------------------------------------------------------------

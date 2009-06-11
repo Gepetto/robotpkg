@@ -1,4 +1,4 @@
-# $LAAS: tools-vars.mk 2009/03/06 00:08:42 tho $
+# $LAAS: tools-vars.mk 2009/06/12 00:29:27 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 2005, 2006 The NetBSD Foundation, Inc.
@@ -162,7 +162,6 @@ include ${ROBOTPKG_DIR}/mk/tools/digest.mk
 #.include "${ROBOTPKG_DIR}/mk/tools/imake.mk"
 #.include "${ROBOTPKG_DIR}/mk/tools/replace.mk"
 #.include "${ROBOTPKG_DIR}/mk/tools/perl.mk"
-include ${ROBOTPKG_DIR}/mk/tools/python.mk
 #.include "${ROBOTPKG_DIR}/mk/tools/pkg-config.mk"
 include ${ROBOTPKG_DIR}/mk/tools/make.mk
 #
