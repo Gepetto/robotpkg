@@ -1,4 +1,4 @@
-# $LAAS: print-plist.mk 2009/03/13 11:20:20 mallet $
+# $LAAS: print-plist.mk 2009/06/12 00:23:20 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -45,7 +45,8 @@
 #
 # Usage:
 #  - make install
-#  - make print-PLIST | brain >PLIST
+#  - make print-PLIST
+#  - cat PLIST.guess | brain >PLIST
 #
 
 # The following variables affect the outpout of print-PLIST:
@@ -57,6 +58,8 @@
 #	semicolon, that outputs any files modified since the package was
 #	extracted.
 #
+
+PRINT_PLIST_FILE?=		${PKGDIR}/PLIST.guess
 
 PRINT_PLIST_IGNORE_DIRS?=#	empty by default
 PRINT_PLIST_IGNORE_DIRS+=	${PKG_DBDIR}
@@ -126,18 +129,20 @@ else
 _PRINT_PLIST_LIBTOOLIZE_FILTER?=	${CAT}
 endif
 
-.PHONY: print-PLIST
-print-PLIST:
-	${RUN}${ECHO} '@comment '`${_CDATE_CMD}`
-	${RUN}{ ${_PRINT_PLIST_FILES_CMD} }				\
+$(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
+
+print-PLIST: print-PLIST-message install
+	${RUN} exec >${PRINT_PLIST_FILE};				\
+	${ECHO} '@comment '`${_CDATE_CMD}`;				\
+	{ ${_PRINT_PLIST_FILES_CMD} }					\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
 	 | ${AWK}  '							\
 		{ sub("${PREFIX}/(\\./)?", ""); }			\
 		${_PRINT_PLIST_AWK_IGNORE}	 			\
 		${_PRINT_PLIST_AWK_SUBST}				\
 		{ print $$0; }'						\
-	 | ${SORT} -u
-	${RUN}for i in `${_PRINT_PLIST_DIRS_CMD}			\
+	 | ${SORT} -u;							\
+	for i in `${_PRINT_PLIST_DIRS_CMD}				\
 		| ${AWK} '						\
 			/$(subst /,\/,${PREFIX})\/\.$$/ { next; }	\
 			{ sub("${PREFIX}/\\\./", ""); }			\
@@ -155,3 +160,8 @@ print-PLIST:
 			{ print $$0; }' ;				\
 	done								\
 	| ${AWK} '${_PRINT_PLIST_AWK_SUBST} { print $$0; }'
+	@${STEP_MSG} "Created ${PRINT_PLIST_FILE}"
+
+.PHONY: print-PLIST-message
+print-PLIST-message:
+	@${PHASE_MSG} "Generating PLIST"

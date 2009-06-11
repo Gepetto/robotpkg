@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006,2009 LAAS/CNRS                        --  Thu Dec  7 2006
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -43,4 +43,17 @@
 
 # This Makefile fragment provides all PLIST-related variables and targets.
 include ../../mk/plist/plist.mk
-include ../../mk/plist/print-plist.mk
+
+
+# --- print-PLIST (PUBLIC) -------------------------------------------------
+#
+# print-PLIST is a public target to generate a initial PLIST for the package.
+#
+$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+
+.PHONY: print-PLIST
+ifndef _PKGSRC_BARRIER
+  print-PLIST: barrier
+else
+  $(call require, ${ROBOTPKG_DIR}/mk/plist/print-plist.mk)
+endif

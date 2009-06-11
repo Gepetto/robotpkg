@@ -1,4 +1,4 @@
-# $LAAS: barrier.mk 2009/03/12 18:33:40 mallet $
+# $LAAS: barrier.mk 2009/06/11 23:58:55 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -67,6 +67,7 @@ _BARRIER_POST_TARGETS+=	reinstall
 _BARRIER_POST_TARGETS+=	replace
 _BARRIER_POST_TARGETS+=	package
 _BARRIER_POST_TARGETS+=	repackage
+_BARRIER_POST_TARGETS+=	print-PLIST
 
 _BARRIER_CMDLINE_TARGETS+=$(filter ${_BARRIER_POST_TARGETS},${MAKECMDGOALS})
 
