@@ -19,6 +19,7 @@ SUBDIR+=	jena
 SUBDIR+=	jrl-modelloader
 SUBDIR+=	libedit
 SUBDIR+=	libjyarp
+SUBDIR+=	libpyyarp
 SUBDIR+=	mkdep
 SUBDIR+=	omniORB
 SUBDIR+=	omniORBpy
