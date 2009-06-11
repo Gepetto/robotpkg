@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/05/28 19:05:51 mallet $
+# $LAAS: Makefile 2009/06/11 22:46:57 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,7 @@
 #                                             Anthony Mallet on Thu Jan 27 2009
 #
 
-PKGVERSION=		2.2.2
+PKGVERSION=		2.2.3
 DISTNAME=		yarp-${PKGVERSION}
 PKGNAME=		libjyarp-${PKGVERSION}
 CATEGORIES=		devel
@@ -48,6 +48,7 @@ _CFLAGS_NDEBUG:= -O1 -DNDEBUG
 include ../../architecture/yarp/depend.mk
 include ../../lang/sun-jdk6/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/swig.mk
 include ../../mk/robotpkg.mk
 
 post-configure:
@@ -58,13 +59,14 @@ post-configure:
 post-build:
 	${MKDIR} ${WRKSRC}/example/swig/build
 	${JAVA_HOME}/bin/javac -d ${WRKSRC}/example/swig/build	\
-		${WRKSRC}/example/swig/*.java
+		${WRKSRC}/example/swig/generated_src/*.java
 	${JAVA_HOME}/bin/jar cf 				\
 		${WRKSRC}/example/swig/libjyarp.jar		\
 		-C ${WRKSRC}/example/swig/build			\
 		.
 	cd ${WRKDIR} && ${MKDIR} doc && cd doc &&		\
-	${JAVA_HOME}/bin/javadoc ${WRKSRC}/example/swig/*.java
+	${JAVA_HOME}/bin/javadoc				\
+		${WRKSRC}/example/swig/generated_src/*.java
 
 do-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/java/libjyarp/lib
