@@ -1,0 +1,12 @@
+@comment Fri Jun 12 16:41:39 CEST 2009
+bin/oro-benchmark
+bin/oro-query
+include/liboro/dummy_connector.h
+include/liboro/oro.h
+include/liboro/oro_connector.h
+include/liboro/oro_exceptions.h
+include/liboro/oro_library.h
+include/liboro/position.h
+include/liboro/yarp_connector.h
+lib/liboro.so
+@dirrm include/liboro

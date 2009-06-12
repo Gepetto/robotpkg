@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/03/05 21:18:01 tho $
+# $LAAS: Makefile 2009/06/12 17:01:50 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -58,6 +58,7 @@ SUBDIR+=	graphics
 SUBDIR+=	hardware
 SUBDIR+=	image
 SUBDIR+=	interfaces
+SUBDIR+=	knowledge
 SUBDIR+=	lang
 SUBDIR+=	localization
 SUBDIR+=	mapping
