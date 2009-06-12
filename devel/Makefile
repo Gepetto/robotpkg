@@ -15,7 +15,6 @@ SUBDIR+=	hpp-corbaserver
 SUBDIR+=	hpp-kwsio
 SUBDIR+=	hpp-kwsplus
 SUBDIR+=	hpp-model
-SUBDIR+=	jena
 SUBDIR+=	jrl-modelloader
 SUBDIR+=	libedit
 SUBDIR+=	libjyarp

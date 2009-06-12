@@ -18,10 +18,10 @@
 #
 
 DISTNAME=	jena-2.6.0
-CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=jena/}
 EXTRACT_SUFX=	.zip
 
+CATEGORIES=	knowledge
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://jena.sourceforge.net/index.html
 COMMENT=	Java framework for building Semantic Web applications
