@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/04/09 12:00:14 mallet $
+# $LAAS: depend.mk 2009/06/11 17:00:31 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -80,11 +80,12 @@ endif # GENOM_DEPEND_MK ----------------------------------------------
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
 
 
-# GenoM modules use mkdep, pocolibs, pkg-config and libtool. Depend on these at
-# the global level so that the dependencies get registered as a primary
-# dependency for the packages including this file.
+# GenoM modules use mkdep, pocolibs, pkg-config, autoconf and libtool. Depend
+# on these at the global level so that the dependencies get registered as a
+# primary dependency for the packages including this file.
 #
 include ../../devel/mkdep/depend.mk
 include ../../devel/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/autoconf.mk
