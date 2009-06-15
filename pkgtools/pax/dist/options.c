@@ -120,7 +120,7 @@ static int no_op(void);
 static void printflg(unsigned int);
 static int c_frmt(const void *, const void *);
 static off_t str_offt(char *);
-static char *getline(FILE *fp);
+static char *pax_getline(FILE *fp);
 static void pax_options(int, char **);
 static void pax_usage(void);
 static void tar_options(int, char **);
@@ -1217,7 +1217,7 @@ tar_options(int argc, char **argv)
 						tty_warn(1, "Unable to open file '%s' for read", file);
 						tar_usage();
 					}
-					while ((str = getline(fp)) != NULL) {
+					while ((str = pax_getline(fp)) != NULL) {
 						if (dirisnext) {
 							dir = str;
 							dirisnext = 0;
@@ -1309,7 +1309,7 @@ tar_options(int argc, char **argv)
 					tty_warn(1, "Unable to open file '%s' for read", file);
 					tar_usage();
 				}
-				while ((str = getline(fp)) != NULL) {
+				while ((str = pax_getline(fp)) != NULL) {
 					if (dirisnext) {
 						if (ftree_add(str, 1) < 0)
 							tar_usage();
@@ -1621,7 +1621,7 @@ cpio_options(int argc, char **argv)
 				    optarg);
 				cpio_usage();
 			}
-			while ((str = getline(fp)) != NULL) {
+			while ((str = pax_getline(fp)) != NULL) {
 				pat_add(str, NULL);
 			}
 			fclose(fp);
@@ -1777,7 +1777,7 @@ cpio_options(int argc, char **argv)
 		 * no read errors allowed on updates/append operation!
 		 */
 		maxflt = 0;
-		while ((str = getline(stdin)) != NULL) {
+		while ((str = pax_getline(stdin)) != NULL) {
 			ftree_add(str, 0);
 		}
 		if (getline_error) {
@@ -2008,7 +2008,7 @@ str_offt(char *val)
 }
 
 char *
-getline(FILE *f)
+pax_getline(FILE *f)
 {
 	char *name, *temp;
 	size_t len;
