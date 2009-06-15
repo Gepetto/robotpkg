@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/11/01 19:24:08 tho $
+# $LAAS: depend.mk 2009/06/15 18:14:53 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -25,6 +25,9 @@ endif
 
 ifeq (+,$(BZIP2_DEPEND_MK))
 PREFER.bzip2?=		system
+
+SYSTEM_PKG.Linux-fedora.bzip2=	bzip2-devel
+SYSTEM_PKG.Linux-ubuntu.bzip2=	libbz2-dev
 
 SYSTEM_SEARCH.bzip2=	\
 	bin/bzip2	\
