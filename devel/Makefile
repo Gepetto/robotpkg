@@ -3,7 +3,6 @@
 
 COMMENT=	Software development tools
 
-SUBDIR+=	libtorch-laas
 SUBDIR+=	cortex-sdk
 SUBDIR+=	boost
 SUBDIR+=	boost-build
@@ -20,6 +19,7 @@ SUBDIR+=	jrl-modelloader
 SUBDIR+=	libedit
 SUBDIR+=	libjyarp
 SUBDIR+=	libpyyarp
+SUBDIR+=	libtorch-laas
 SUBDIR+=	mkdep
 SUBDIR+=	omniORB
 SUBDIR+=	omniORBpy

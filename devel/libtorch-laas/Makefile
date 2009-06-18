@@ -3,7 +3,8 @@
 #
 
 DISTNAME=		torch-3.2
-CATEGORIES=		devel pkgtools
+PKGNAME=		libtorch-laas-3.2
+CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libtorch/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/libtorch
 
