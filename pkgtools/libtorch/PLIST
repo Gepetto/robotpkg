@@ -343,8 +343,5 @@ include/torch/X.h
 include/torch/xtprobeImageDiskXFile.h
 lib/libtorch.la
 lib/pkgconfig/libtorch.pc
-@dirrm lib/pkgconfig
-@dirrm lib
 @dirrm include/torch
 @dirrm doc/torch
-@dirrm bin
