@@ -3,6 +3,7 @@
 
 COMMENT=	Software development tools
 
+SUBDIR+=	libtorch-laas
 SUBDIR+=	cortex-sdk
 SUBDIR+=	boost
 SUBDIR+=	boost-build
