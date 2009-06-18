@@ -6,6 +6,7 @@ COMMENT=	Tools for use in the packages collection
 SUBDIR+=	digest
 SUBDIR+=	libnbcompat
 SUBDIR+=	libtool
+SUBDIR+=	libtorch
 SUBDIR+=	pax
 SUBDIR+=	pkg-config
 SUBDIR+=	pkg_install
