@@ -17,7 +17,7 @@
 #                                          Severin Lemaignan on Thu Jun 04 2009
 #
 
-DISTNAME=		liboro-0.4.0
+DISTNAME=		liboro-0.4.4
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=liboro/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/liboro
 
