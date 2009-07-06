@@ -31,7 +31,7 @@ PREFER.jena?=		robotpkg
 
 DEPEND_USE+=		jena
 DEPEND_ABI.jena?=	jena>=2.6.0
-DEPEND_DIR.jena?=	../../devel/jena
+DEPEND_DIR.jena?=	../../knowledge/jena
 
 SYSTEM_SEARCH.jena=\
 	java/jena/lib/jena.jar
