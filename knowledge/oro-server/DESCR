@@ -1,0 +1,2 @@
+An ontology server for robotics, written in Java.
+It provides extended services like multi-engine reasonning, abstract transport layer, high-level access to the ontology or events registration.

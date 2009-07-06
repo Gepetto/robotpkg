@@ -1,0 +1,9 @@
+@comment Mon Jul 6 18:36:24 CEST 2009
+bin/oro-server
+etc/oro-server/oro_bench.conf
+etc/oro-server/oro.conf
+etc/oro-server/oro_test.conf
+java/oro-server/lib/oro-server.jar
+@dirrm java/oro-server/lib
+@dirrm etc/oro-server
+
