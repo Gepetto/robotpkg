@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/06/15 18:13:46 mallet $
+# $LAAS: depend.mk 2009/06/29 14:26:58 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -33,6 +33,7 @@ DEPEND_DIR.zlib?=	../../archivers/zlib
 DEPEND_LIBS.zlib+=	-lz
 
 SYSTEM_PKG.Linux-fedora.zlib=	zlib-devel
+SYSTEM_PKG.Linux-ubuntu.zlib=	zlib1g-dev
 
 SYSTEM_SEARCH.zlib=	\
 	include/zlib.h	\
