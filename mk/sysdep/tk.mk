@@ -1,6 +1,6 @@
-# $LAAS: tk.mk 2008/12/05 15:59:35 mallet $
+# $LAAS: tk.mk 2009/07/06 15:28:46 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -35,6 +35,8 @@ SYSTEM_SEARCH.tk=	\
 	'bin/wish'							\
 	'lib/{,tk{,[0-9.]*}/}tkConfig.sh:/TK_VERSION/s/[^.0-9]*//gp'	\
 	'include/{,t{k,cl}{,[0-9.]*}/}tk.h:/TK_VERSION/s/[^.0-9]*//gp'
+
+SYSTEM_PKG.Linux-ubuntu.tk=tk-dev
 
 TK_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tk})
 
