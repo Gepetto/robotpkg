@@ -1,4 +1,4 @@
-# $LAAS: gcc-c++.mk 2009/02/03 19:07:09 mallet $
+# $LAAS: gcc-c++.mk 2009/06/29 16:33:18 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -56,6 +56,8 @@ DEPEND_USE+=			${_GCC_C++_PKG}
 
 DEPEND_ABI.${_GCC_C++_PKG}?=	${_GCC_C++_PKG}${_GCC_REQUIRED}
 DEPEND_DIR.${_GCC_C++_PKG}?=	${_GCC_C++_DIR}
+
+SYSTEM_PKG.Linux-ubuntu.${_GCC_C++_PKG}=	g++
 
 SYSTEM_DESCR.${_GCC_C++_PKG}=	'gcc C++ compiler, version ${_GCC_REQUIRED}'
 SYSTEM_SEARCH.${_GCC_C++_PKG} = 'bin/g++::% -dumpversion'
