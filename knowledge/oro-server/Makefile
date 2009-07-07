@@ -51,6 +51,7 @@ endef
 
 include ../../lang/sun-jre6/depend.mk
 include ../../knowledge/jena/depend.mk
+include ../../knowledge/pellet/depend.mk
 include ../../devel/libjyarp/depend.mk
 include ../../mk/robotpkg.mk
 
