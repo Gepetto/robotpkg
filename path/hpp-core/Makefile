@@ -16,9 +16,9 @@
 #                                       Anthony Mallet on Fri Jul 13 2007
 #
 
-DISTNAME=	hppcore-${VERSION}
+DISTNAME=	hppCore-${VERSION}
 PKGNAME=	hpp-core-${VERSION}
-VERSION=	1.8.2
+VERSION=	1.9.0
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-core/}
