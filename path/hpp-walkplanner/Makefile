@@ -16,9 +16,9 @@
 #                                       Anthony Mallet on Mon Aug 27 2007
 #
 
-DISTNAME=	hppwalkplanner-${VERSION}
+DISTNAME=	hppWalkPlanner-${VERSION}
 PKGNAME=	hpp-walkplanner-${VERSION}
-VERSION=	3.1.1
+VERSION=	3.1.2
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkplanner/}
@@ -35,7 +35,6 @@ PKG_SUPPORTED_OPTIONS+=	verbose1
 PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
-REQD_BUILD_OPTIONS.hrp2_14=	with-kineo
 include ../../robots/hrp2-14/depend.mk
 include ../../path/jrl-walkgen/depend.mk
 include ../../path/hpp-walkfootplanner/depend.mk
