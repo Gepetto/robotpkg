@@ -19,6 +19,8 @@
 DISTNAME=		libdtm-1.0
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/libdtm
+
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
