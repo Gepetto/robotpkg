@@ -19,6 +19,7 @@
 DISTNAME=		dtm-genom-0.1
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/dtm-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
