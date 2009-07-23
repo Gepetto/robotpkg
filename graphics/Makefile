@@ -3,6 +3,7 @@
 
 COMMENT=	Graphics tools
 
+SUBDIR+=	Togl
 SUBDIR+=	gdhe
 SUBDIR+=	grh2
 SUBDIR+=	kpp-interface
