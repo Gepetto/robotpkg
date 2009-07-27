@@ -1,0 +1,31 @@
+@comment Mon Jul 27 13:51:40 CEST 2009
+bin/xarm
+bin/xarmSendInitRqst
+bin/xarmTest
+include/xarm/codels/joystickStruct.h
+include/xarm/codels/matrixStruct.h
+include/xarm/codels/queueStruct.h
+include/xarm/codels/tpStruct.h
+include/xarm/server/xarmEndian.h
+include/xarm/server/xarmError.h
+include/xarm/server/xarmMsgLib.h
+include/xarm/server/xarmPosterLib.h
+include/xarm/server/xarmPosterLibStruct.h
+include/xarm/server/xarmPosterReadLibProto.h
+include/xarm/server/xarmPosterShowLib.h
+include/xarm/server/xarmPosterWriteLibProto.h
+include/xarm/server/xarmPosterXMLLib.h
+include/xarm/server/xarmPrint.h
+include/xarm/server/xarmPrintXML.h
+include/xarm/server/xarmScan.h
+include/xarm/server/xarmType.h
+include/xarm/xarmConst.h
+include/xarm/xarmStruct.h
+lib/libxarmClient.la
+lib/pkgconfig/xarm.pc
+lib/tclserv/libxarmTclServ.la
+share/modules/gen/xarm.gen
+share/modules/tcl/xarmClient.tcl
+@dirrm include/xarm/server
+@dirrm include/xarm/codels
+@dirrm include/xarm
