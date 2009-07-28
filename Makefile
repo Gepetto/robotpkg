@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/06/12 17:01:50 mallet $
+# $LAAS: Makefile 2009/07/28 13:53:36 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -61,6 +61,7 @@ SUBDIR+=	interfaces
 SUBDIR+=	knowledge
 SUBDIR+=	lang
 SUBDIR+=	localization
+SUBDIR+=	manipulation
 SUBDIR+=	mapping
 SUBDIR+=	math
 SUBDIR+=	meta-pkgs

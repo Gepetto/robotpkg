@@ -1,0 +1,2 @@
+The xarm-genom is a GenoM module that controls a 6 DOF arm in cartesian space by
+using the qarm-genom module.
