@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/06/17 18:28:57 mallet $
+# $LAAS: depend.mk 2009/07/28 12:39:02 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -13,7 +13,7 @@
 #      notice  and this list of  conditions in the documentation   and/or
 #      other materials provided with the distribution.
 #
-#                                      Arnaud Degroote on Wed May 21 2008
+#                                         Nizar Sallem on Tue Jul 28 2009
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
