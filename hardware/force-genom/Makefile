@@ -16,9 +16,11 @@
 #                                         Nizar Sallem on Tue Jul 28 2009
 #
 
-DISTNAME=		force-genom-1.1
+DISTNAME=		force-genom-1.1.1
 CATEGORIES=		hardware
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=force-genom/}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/force-genom
+
 
 MAINTAINER=		daniel@laas.fr
 #HOMEPAGE=
