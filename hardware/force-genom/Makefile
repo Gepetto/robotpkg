@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/06/17 18:39:53 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -24,18 +23,12 @@ MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/force-genom
 
 MAINTAINER=		daniel@laas.fr
 #HOMEPAGE=
-COMMENT=		GenoM module for data acquisition from force sensor JR3.
+COMMENT=		GenoM module for the JR3 90M31A force sensor management.
 
 GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		force
+
 include ../../architecture/genom/depend.mk
 include ../../math/gbM/depend.mk
-
-#!!!nksallem!!! It is commentend on the gen file so why not here :)
-#include ../../robots/qarm/depend.mk
-
-#!!!nksallem!!! It is commentend on the gen file so why not here :)
-#include ../../robots/xarm/depend.mk
-
 include ../../mk/robotpkg.mk
