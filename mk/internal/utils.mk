@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/03/24 17:07:07 mallet $
+# $LAAS: utils.mk 2009/07/28 11:16:13 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -72,12 +72,12 @@ interactive:
 	if ${TEST} -t 0; then				\
 		${TOUCH} ${_INTERACTIVE_STDIN} ||:;	\
 	else						\
-		${RM} ${_INTERACTIVE_STDIN};		\
+		${RM} -f ${_INTERACTIVE_STDIN};		\
 	fi;						\
 	if ${TEST} -t 1; then				\
 		${TOUCH} ${_INTERACTIVE_STDOUT} ||:;	\
 	else						\
-		${RM} ${_INTERACTIVE_STDOUT};		\
+		${RM} -f ${_INTERACTIVE_STDOUT};	\
 	fi;						\
 
 
