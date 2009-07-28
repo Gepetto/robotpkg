@@ -9,6 +9,7 @@ SUBDIR+=	contec-pio32-headers
 SUBDIR+=	contec-pio32-kmod
 SUBDIR+=	cwiid
 SUBDIR+=	fh2805-libs
+SUBDIR+=	force-genom
 SUBDIR+=	gyroKVH1000
 SUBDIR+=	gyroKVH5000
 SUBDIR+=	jidogrip-libs
