@@ -1,0 +1,1144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>A guide to robotpkg</title>
+  </head>
+  <style type="text/css">
+
+/* --- preamble ------------------------------------------------------------ */
+
+body {
+  color:		#444;
+  background:		#fff;
+  font:			normal normal normal small/1.5em Verdana, sans-serif;
+  font-size-adjust:     none;
+  font-stretch:         normal;
+
+  text-align:		center;
+  min-width:		50em;
+}
+
+a:link, a:visited {
+  color:		#660403;
+  font-weight:		normal;
+  text-decoration:	none;
+}
+
+a:hover {
+  color:		#e90017;
+  text-decoration:	underline;
+}
+
+div.p {
+  margin:		1em 0;
+}
+
+table td {
+  border-style:		none;
+  padding:		0 4ex;
+}
+
+table td#hline {
+  border-top:		1px solid #ccc;
+}
+
+table, table tr {
+  border:		1px solid #ccc;
+}
+
+#content {
+  text-align:		left;
+  width:		50em;
+  margin-left:		auto;
+  margin-right:		auto;
+}
+
+#frontmatter, #mainmatter {
+  width:		90%;
+  text-align:		justify;
+}
+
+#preamble h1 {
+  font-size:		300%;
+  line-height:		120%;
+  border-bottom:	1px solid #ccc;
+  padding-bottom:	1ex;
+}
+
+
+/* --- front matter -------------------------------------------------------- */
+
+#frontmatter h1 {
+  width:		111%;
+
+  font-size:		250%;
+  line-height:		150%;
+
+  margin:		5ex 0 1ex 0;
+}
+
+#frontmatter a {
+  font-size:		125%;
+  line-height:		1.5em;
+}
+
+
+/* --- main matter --------------------------------------------------------- */
+
+/* chapters */
+
+#mainmatter h1 {
+  width:		111%;
+  text-align:		right;
+
+  font-size:		250%;
+  line-height:		150%;
+
+  margin:		10ex 0 2ex 0;
+  border-bottom:	1px solid #ccc;
+}
+
+#mainmatter h1 > a {
+  font-size:		150%;
+  margin:		0;
+  padding-right:	10%
+}
+
+#mainmatter h2 {
+  font-size:		150%;
+  line-height:		150%;
+
+  margin:		4ex 0 1ex 0;
+}
+
+  </style>
+  <body><div id="content">
+    <div id="preamble">
+
+
+
+
+
+
+ 
+
+<div class="p"><!----></div>
+
+   
+<div class="p"><!----></div>
+
+<h1 align="center">A guide to robotpkg </h1>
+
+<h3 align="center">
+   Anthony Mallet - <tt>anthony.mallet@laas.fr</tt><br />
+   Copyright 2006-2009 &#169; LAAS/CNRS
+ </h3>
+
+<h3 align="center">July 31, 2009</h3>
+
+<div class="p"><!----></div>
+    
+<div class="p"><!----></div>
+</div><div id="frontmatter">
+
+
+<h1>Contents </h1><a href="#tth_chAp1"
+>1&nbsp; Introduction</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.1"
+>1.1&nbsp; What is robotpkg?</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.2"
+>1.2&nbsp; Why robotpkg?</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.3"
+>1.3&nbsp; Supported platforms</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.4"
+>1.4&nbsp; Overview</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.5"
+>1.5&nbsp; Terminology</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.6"
+>1.6&nbsp; Roles involved in robotpkg</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc1.7"
+>1.7&nbsp; Typography</a><br />
+<a href="#tth_chAp2"
+>2&nbsp; The robotpkg user's guide</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.1"
+>2.1&nbsp; Where to get robotpkg and how to keep it up-to-date</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.1.1"
+>2.1.1&nbsp; Getting the binary bootstrap kit</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.1.2"
+>2.1.2&nbsp; Getting robotpkg for source compilation</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.1.3"
+>2.1.3&nbsp; Keeping robotpkg up-to-date</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.2"
+>2.2&nbsp; Bootstrapping robotpkg</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.2.1"
+>2.2.1&nbsp; Bootstrapping via the binary kit</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.2.2"
+>2.2.2&nbsp; Bootstrapping from source</a><br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3"
+>2.3&nbsp; Using robotpkg</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.1"
+>2.3.1&nbsp; Building packages from source</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.2"
+>2.3.2&nbsp; Installing binary packages</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.3"
+>2.3.3&nbsp; Removing packages</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.4"
+>2.3.4&nbsp; Getting information about installed packages</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.5"
+>2.3.5&nbsp; Other administrative functions</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4"
+>2.4&nbsp; Configuring robotpkg</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.1"
+>2.4.1&nbsp; Selecting build options</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.2"
+>2.4.2&nbsp; General configuration variables</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.3"
+>2.4.3&nbsp; Variables affecting the build process</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.4"
+>2.4.4&nbsp; Additional flags to the compiler</a><br />
+<a href="#tth_chAp3"
+>3&nbsp; The robotpkg developer's guide</a><br />
+<a href="#tth_chAp4"
+>4&nbsp; The robotpkg infrastructure internals</a><br />
+
+</div><div id="mainmatter">
+
+<div class="p"><!----></div>
+ <h1><a name="tth_chAp1">
+ 1 </a><br />Introduction</h1>
+<a name="chapter:introduction">
+</a>
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc1.1">
+1.1</a>&nbsp;&nbsp;What is robotpkg?</h2> 
+<div class="p"><!----></div>
+The robotics research  community has always been developing  a lot of software,
+in order  to illustrate theoretical concepts and  validate algorithms  on board
+real robots.  A great amount of this software was  made freely available to the
+community, especially for Unix-based systems,  and is usually available in form
+of the source code. Therefore, before such software can be used, it needs to be
+configured to  the local system, compiled and  installed.  This is exactly what
+The Robotics Packages Collection (robotpkg) does.  robotpkg also has some basic
+commands  to handle binary packages,  so that not  every user  has to build the
+packages for himself, which is a time-costly, cumbersome and error-prone task.
+
+<div class="p"><!----></div>
+The robotpkg project was initiated in the <a href="http://www.laas.fr/">Laboratory
+for Analysis and Architecture of  Systems</a> (CNRS/LAAS), France.  The motivation
+was, on the one hand,  to ease the software   maintenance tasks for the  robots
+that are used there.   On the other  hand, roboticists at CNRS/LAAS have always
+fostered  an  open-source  development   model  for   the   software they  were
+developing.  In order to  help people  working with the  laboratory to  get the
+LAAS software  running outside the laboratory,  a package management system was
+necessary.
+
+<div class="p"><!----></div>
+Although  robotpkg was an  innovative   project in  the robotics community  (it
+started in 2006), a lot of general-purpose software packages management systems
+were readily available at this time for  a great variety of Unix-based systems.
+The main requirements that we wanted  robotpkg to fullfill  were listed and the
+best existing package management system  was chosen as  a starting point.   The
+biggest requirement was the  capacity of the system to  adapt to the  nature of
+the robotic software,  being available mostly in form  of source code  only (no
+binary packages),  with unfrequent stable  releases.  robotpkg had thus to deal
+mostly with  source code  and automate the  compilation of  the  packages.  The
+system chosen  as a starting  point was <a href="http://www.pkgsrc.org">The NetBSD
+Packages  Collection</a> (pkgsrc).  robotpkg  can be considered as  a fork of this
+project and  it is still very similar  to pkgsrc in  many points, although some
+simplifications were made in order to provide  a tool geared toward people that
+are not computer scientists but roboticists.
+
+<div class="p"><!----></div>
+Due to its  origins, robotpkg provides many packages  developed at LAAS.  It is
+however not  limited to such  packages and contains, in  fact, quite some other
+software useful to  roboticists.  Of  course, robotpkg  is  not meant to  be  a
+general purpose  packaging system   (although  there  would  be   no  technical
+restriction to this) and will never  contain widely available packages that can
+be found  on  any modern  Unix  distribution. Yet, robotpkg currently  contains
+roughly one hundred and fifty packages, including:
+
+<div class="p"><!----></div>
+
+<ul>
+<li> architecture/genom - The LAAS Generator of Robotic Components
+<div class="p"><!----></div>
+</li>
+
+<li> architecture/openhrp - The Open Architecture Humanoid Robotics
+   Platform from AIST, Japan
+<div class="p"><!----></div>
+</li>
+
+<li> architecture/openrtm - The robotic distributed middleware from AIST, Japan
+<div class="p"><!----></div>
+</li>
+
+<li> architecture/yarp - The "other", yet famous, robot platform
+<div class="p"><!----></div>
+</li>
+
+<li> ...just to name a few.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc1.2">
+1.2</a>&nbsp;&nbsp;Why robotpkg?</h2> 
+<div class="p"><!----></div>
+robotpkg provides the following key features:
+
+<div class="p"><!----></div>
+
+<ul>
+<li> Easy building of software  from  source as well   as the creation  and
+   installation of binary packages. The source and latest patches are retrieved
+   from a master download site, checksum verified, then built on your system.
+<div class="p"><!----></div>
+</li>
+
+<li> All  packages are installed in a  consistent directory tree, including
+   binaries, libraries, man pages and other documentation.
+<div class="p"><!----></div>
+</li>
+
+<li>  Package dependencies, including  when performing package updates, are
+   handled automatically.
+<div class="p"><!----></div>
+</li>
+
+<li> The installation prefix, acceptable  software licenses and  build-time
+   options  for a large  number of packages  are all set  in  a simple, central
+   configuration file.
+<div class="p"><!----></div>
+</li>
+
+<li> The  entire framework source  (not including the  package distribution
+   files themselves) is freely available under a BSD license, so you may extend
+   and adapt robotpkg to your needs, like robotpkg was adapted from pkgsrc.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc1.3">
+1.3</a>&nbsp;&nbsp;Supported platforms</h2> 
+<div class="p"><!----></div>
+robotpkg consists of  a   source distribution. After retrieving    the required
+source, you can be up and running with robotpkg in just minutes!
+
+<div class="p"><!----></div>
+robotpkg  does not have much requirements  by itself and it  can work on a wide
+variety of systems  as  long as they   provide a  GNU-make utility, a   working
+C-compiler and a small, reasonably standard subset  of Unix commands (like sed,
+awk, find,  grep ...).  However, individual packages  might have their specific
+requirements.  The   following platforms  have been  reported  to  be supported
+reasonably well:
+
+<div class="p"><!----></div>
+
+<center>
+<table border="1">
+<tr><td align="center">Platform </td><td align="center">Version
+</td></tr><tr><td id="hline" colspan=0></td></tr>
+
+<tr><td align="center">Fedora </td><td align="center">3, 5 - 10</td></tr>
+<tr><td align="center">Ubuntu </td><td align="center">7.10 - 8.10</td></tr>
+<tr><td align="center">CentOS </td><td align="center">5</td></tr>
+<tr><td align="center">NetBSD </td><td align="center">4, 5</td></tr></table>
+</center>
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc1.4">
+1.4</a>&nbsp;&nbsp;Overview</h2> 
+<div class="p"><!----></div>
+This document is divided  into three parts.  <a href="#chapter:user">The first one</a>
+describes how  one  can  use  one of   the  packages  in the  Robotics  Package
+Collection, either  by installing a precompiled binary  package, or by building
+one's own  copy  using  robotpkg.   <a href="#chapter:developer">The  second  part</a>
+explains how  to prepare a package so  it can be  easily  built by  other users
+without     knowing     about     the     package's    building        details.
+<a href="#chapter:internal">The   third part</a> is  intended for  those   who want to
+understand how robotpkg is implemented.
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc1.5">
+1.5</a>&nbsp;&nbsp;Terminology</h2> 
+<div class="p"><!----></div>
+Here is a description of all the terminology used within this document.
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>Package</b></dt>
+	<dd> A set of files and building instructions that describe what's
+   necessary to build a certain piece  of software using robotpkg. Packages are
+   traditionally stored under <tt>/opt/robotpkg</tt>.</dd>
+ <dt><b>robotpkg</b></dt>
+	<dd>  This is  the The Robotics   Package Collection.  It handles
+   building (compiling), installing, and removing of packages.</dd>
+ <dt><b>Distfile</b></dt>
+	<dd> This  term describes the file  or files that are provided by
+   the author of the piece of software to distribute  his work. All the changes
+   necessary to  build are reflected  in the corresponding package. Usually the
+   distfile is in  the form of a  compressed  tar-archive, but other  types are
+   possible,     too.    Distfiles   are      usually   stored    below    <tt>
+   /opt/robotpkg/distfiles</tt>.</dd>
+ <dt><b>Precompiled/binary package</b></dt>
+	<dd> A set of binaries built with robotpkg from
+   a distfile  and stuffed together in a  single <tt>.tgz</tt> file   so it can be
+   installed  on machines of the same  machine architecture without the need to
+   recompile. Packages are usually generated in <tt>/opt/robotpkg/packages</tt>.
+
+<div class="p"><!----></div>
+   Sometimes, this is  referred to by the  term "package"  too, especially in
+   the context of precompiled packages.</dd>
+ <dt><b>Program</b></dt>
+	<dd>  The  piece  of  software to  be  installed  which  will   be
+   constructed from all the files in the distfile by the actions defined in the
+   corresponding package.</dd>
+</dl>
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc1.6">
+1.6</a>&nbsp;&nbsp;Roles involved in robotpkg</h2> 
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>robotpkg users</b></dt>
+	<dd> The  robotpkg users  are people  who  use the packages
+   provided by robotpkg.  Typically they are student  working  in robotics. The
+   usage  of the software  that is <em>inside</em> the  packages is not covered by
+   the robotpkg guide.
+
+<div class="p"><!----></div>
+   There are two  kinds of robotpkg users:  Some only want to install pre-built
+   binary packages.  Others build the robotpkg packages from source, either for
+   installing them  directly or for building binary   packages themselves.  For
+   robotpkg users, <a href="#chapter:user">Part&nbsp;<a href="#chapter:user">2</a></a>  should provide
+   all necessary documentation.</dd>
+ <dt><b>package  maintainers</b></dt>
+	<dd>   A   package maintainer  creates  packages   as
+   described in <a href="#chapter:developer">Part&nbsp;<a href="#chapter:developer">3</a></a>.</dd>
+ <dt><b>infrastructure  developers</b></dt>
+	<dd>  These people are    involved in all those
+   files that live  in the <tt>mk/</tt> directory   and below.  Only  these people
+   should             need          to               read               through
+   <a href="#chapter:internal">Part&nbsp;<a href="#chapter:internal">4</a></a>, though others might be
+   curious, too.</dd>
+</dl>
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc1.7">
+1.7</a>&nbsp;&nbsp;Typography</h2> 
+<div class="p"><!----></div>
+When giving examples for  commands,  shell prompts  are  used  to show if   the
+command  should/can be issued  as  root, or if  "normal"  user privileges are
+sufficient. We use  a <tt>#</tt>  for  root's shell  prompt, and  a <tt>%</tt>  for
+users' shell prompt, assuming they use the C-shell or tcsh.
+
+
+<div class="p"><!----></div>
+ <h1><a name="tth_chAp2">
+ 2 </a><br />The robotpkg user's guide</h1>
+<a name="chapter:user">
+</a>
+
+<div class="p"><!----></div>
+Basically, there are two ways of using robotpkg.  The  first is to only install
+the  package tools and to  use binary packages that  someone else has prepared.
+The second way is  to install the  programs from source. Then  you are  able to
+build your own packages,  and you can  still use  binary packages from  someone
+else. Sections in this document will detail both approaches where appropriate.
+
+<div class="p"><!----></div>
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc2.1">
+2.1</a>&nbsp;&nbsp;Where to get robotpkg and how to keep it up-to-date</h2> <a name="section:getting">
+</a>
+
+<div class="p"><!----></div>
+Before you download and extract the files, you need to decide where you want to
+extract  them.     <tt>robotpkg</tt>  is     by  default   installed   in   <tt>
+/opt/openrobots</tt>. Creating this directory  will probably require administration
+privileges ("<tt>root</tt>") and if you don't have such privileges, you are free
+to  install the   sources  and  binary   packages wherever you  want  in   your
+filesystem. The pathname shall not contain white-space or other characters that
+are interpreted specially  by the shell and some  other programs: a safe bet is
+to use only letters, digits, underscores and dashes.  The rest of this document
+will assume that you are using <tt>/opt/openrobots</tt>  and you should adapt this
+path to whatever location you choosed.
+
+<div class="p"><!----></div>
+Please note that you should use a prefix which is dedicated to packages and not
+shared with other programs (i.e., do not try  and use a  prefix of <tt>/usr</tt>).
+Also, you should not try to add  any of your own  files or directories (such as
+<tt>src/</tt>)  below  the prefix tree.    This is to  prevent  possible conflicts
+between programs and other files  installed by the  package system and whatever
+else may have been installed there.
+
+<div class="p"><!----></div>
+<tt>robotpkg</tt>   will <em>never</em> require   administration privileges by itself
+after the initial bootstrap phase.  We thus  recommend that you initially setup
+the <tt>/opt/openrobots</tt> directory readable and writable  by your regular user
+and work only as this  user afterwards.  If  something ever goes really  wrong,
+you might thank yourself later that you did so...  Setting up this directory
+can be done with the following commands in a shell:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;sudo&nbsp;mkdir&nbsp;-p&nbsp;/opt/openrobots
+%&nbsp;sudo&nbsp;chown&nbsp;`id&nbsp;-u`&nbsp;/opt/openrobots
+
+</pre>
+
+<div class="p"><!----></div>
+If the <tt>sudo</tt> command is not available or if you are not allowed to run it,
+you should consider installing <tt>robotpkg</tt> to a different location.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.1.1">
+2.1.1</a>&nbsp;&nbsp;Getting the binary bootstrap kit</h3>
+
+<div class="p"><!----></div>
+At the moment, the  binary bootstrap kit is not  available. Please get the <tt>
+robotpkg</tt> sources as described in the next section.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.1.2">
+2.1.2</a>&nbsp;&nbsp;Getting robotpkg for source compilation</h3>
+
+<div class="p"><!----></div>
+<tt>robotpkg</tt>    sources   are       distributed     <em>via</em>  the
+<a href="http://git-scm.com/"><tt>git</a></tt>  software  content management system.  <tt>
+git</tt> will probably be readily available on your system but if you don't have it
+installed   or if you    are  unsure  about it,   contact  your  local   system
+administrator.
+
+<div class="p"><!----></div>
+There are two download methods: the anonymous one and the authenticated
+one:
+
+<div class="p"><!----></div>
+
+<ul>
+<li>  Anonymous download is the  recommended method if  you  don't intend to
+  work on  the   robotpkg infrastructure  itself,  nor commit   any  changes or
+  packages  additions  back to  the  robotpkg main repository. Furthermore, the
+  possibility to send contributions via patches is still open.
+
+<div class="p"><!----></div>
+  As your regular user, simply run in a shell:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;cd&nbsp;/opt/openrobots
+%&nbsp;git&nbsp;clone&nbsp;http://softs.laas.fr/git/robots/robotpkg.git
+
+</pre>
+<div class="p"><!----></div>
+</li>
+
+<li> Authenticated   download requires a  valid  login on the  main robotpkg
+  repository, and will give you full commit access  to this repository.  Simply
+  run the following:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;cd&nbsp;/opt/openrobots
+%&nbsp;git&nbsp;clone&nbsp;ssh://softs.laas.fr/git/robots/robotpkg
+
+</pre>
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.1.3">
+2.1.3</a>&nbsp;&nbsp;Keeping robotpkg up-to-date</h3> 
+<div class="p"><!----></div>
+<tt>robotpkg</tt> is   a   living thing:    updates  to  the packages are     made
+perdiodicaly,  problems are fixed,   enhancements  are developed... If   you
+downloaded the robotpkg sources via git, you  should keep it up-to-date so that
+you get the most  recent packages descriptions. This is done by running <tt>
+git pull</tt> in the robotpkg source directory:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;cd&nbsp;/opt/openrobots/robotpkg
+%&nbsp;git&nbsp;pull
+
+</pre>
+
+<div class="p"><!----></div>
+When you update robotpkg, the git program will only  touch those files that are
+registered in the git repository. That means that any packages that you created
+on your own will stay unmodified. If you change  files that are managed by git,
+later updates will try to merge your changes with those that  have been done by
+others. See the <tt>git-pull</tt> manual for details.
+
+<div class="p"><!----></div>
+If you want  to be informed  of package additions  and other  updates, a public
+mailing    list  is   available    for   your    reading   pleasure.  Go     to
+<a href="https://sympa.laas.fr/sympa/info/robotpkg"><tt>https://sympa.laas.fr/sympa/info/robotpkg</tt></a>    for   more  information  and
+subscription.
+
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc2.2">
+2.2</a>&nbsp;&nbsp;Bootstrapping robotpkg</h2> <a name="section:bootstrapping">
+</a>
+
+<div class="p"><!----></div>
+Once you have  downloaded the robotpkg sources  or the binary bootstrap kit  as
+described  in  <a href="#section:getting">Section&nbsp;<a href="#section:getting">2.1</a></a>, a minimal
+set  of  the administrative package management  utilities  must be installed on
+your system  before you  can  use robotpkg.   This  is  called the  "bootstrap
+phase" and  should   be done only   once,  the very  first  time you  download
+robotpkg.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.2.1">
+2.2.1</a>&nbsp;&nbsp;Bootstrapping via the binary kit</h3> 
+<div class="p"><!----></div>
+At the moment, the binary bootstrap kit is not available. Please bootstrap <tt>
+robotpkg</tt> as described in the next section.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.2.2">
+2.2.2</a>&nbsp;&nbsp;Bootstrapping from source</h3> 
+<div class="p"><!----></div>
+You will  need a working C compiler  and the GNU-make   utility version 3.81 or
+later.    If you have  extracted  the  robotpkg  archive  into  the standard <tt>
+/opt/openrobots/robotpkg</tt> location, installing the   bootstrap kit from  source
+should then be as simple as:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;cd&nbsp;/opt/openrobots/robotpkg/bootstrap
+%&nbsp;./bootstrap
+
+</pre>
+
+<div class="p"><!----></div>
+This will  install various utilities   into <tt>/opt/openrobots/sbin</tt>.  Should
+you prefer another   location, you could  use the  <tt>--prefix</tt>  option  to
+change the default installation  prefix.  For instance, configuring robotpkg to
+install programs  into the openrobots directory  in your home directory  can be
+done like this:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;cd&nbsp;robotpkg/bootstrap
+%&nbsp;./bootstrap&nbsp;--prefix=${HOME}/openrobots
+
+</pre>
+
+<div class="p"><!----></div>
+After the bootstrap script has run, a message  indicating the success should be
+displayed.   <b>If you choosed  a  non-standard installation path, read  this
+message carefuly</b>, as it contains instructions that you have to follow in order
+to setup your shell environment correctly.  These instructions are described in
+the next section.
+
+<div class="p"><!----></div>
+
+<h4>Configuring your environment</h4> 
+<div class="p"><!----></div>
+If  you configured robotpkg,   during the bootstrap  phase,  to install to some
+other location   than <tt>/opt/openrobots</tt>, you  have   to setup manually your
+shell environment so that it contains a few  variables holding the installation
+path.  Assuming  you invoked bootstrap with <tt>-prefix=/path/to/openrobots</tt>,
+you have two options that are compatible with each other:
+
+<div class="p"><!----></div>
+
+<ul>
+<li> Add  the directory <tt>/path/to/openrobots/sbin</tt>  to your <tt>PATH</tt>
+   variable. robotpkg will    then be able  to find    its administrative tools
+   automatically and from that recover other configuration information. This is
+   the preferred method.
+<div class="p"><!----></div>
+</li>
+
+<li> Create the environment variable <tt>ROBOTPKG_BASE</tt> and set its value
+   to <tt>/path/to/openrobots</tt>.  robotpkg will  look for this variable  first,
+   so it takes precedence over the  first method.  This is  the method you have
+   to choose  if  you have  configured  several instances  of robotpkg  in your
+   system. This is ony useful in some circumstances and is not normally needed.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+If  you  don't know  how  to setup   environment variables  permanently in your
+system,  please  refer  to  your shell's  manual  or contact  your local system
+administrator.
+
+<div class="p"><!----></div>
+
+<h4>The bootstrap script usage</h4> 
+<div class="p"><!----></div>
+The <tt>bootstrap</tt> script will by default install the package administrative
+tools in <tt>/opt/openrobots/sbin</tt>, use <tt>gcc</tt> as the C compiler and <tt>
+make</tt> as the GNU-make program. This behaviour can be fine-tuned by using the
+following options:
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b><tt>--prefix &lt;path&#62;</b></dt>
+	<dd>   will   select the  prefix  location where
+   programs will be installed in.</tt></dd>
+ <dt><b><tt>--sysconfdir &lt;path&#62;</b></dt>
+	<dd> defaults to <tt>&lt;prefix&#62;/etc</tt>. This is the
+   path to the robotpkg configuration file.  Other packages configuration files
+   (if any) will also be stored in this directory.</tt></dd>
+ <dt><b><tt>--pkgdbdir  &lt;path&#62;</b></dt>
+	<dd> defaults to <tt>&lt;prefix&#62;/var/db/pkg</tt>. This
+   is the path  to the package database  directory  where robotpkg will  do its
+   internal bookkeeping.</tt></dd>
+ <dt><b><tt>--compiler &lt;program&#62;</b></dt>
+	<dd> defaults to <tt>gcc</tt>.  Use this option if
+   you want to use a different C compiler.</tt></dd>
+ <dt><b><tt>--make &lt;program&#62;</b></dt>
+	<dd> defaults to <tt>make</tt>. Use this option if you
+   want to use a different make program. This program should be compatible with
+   GNU-make.</tt></dd>
+ <dt><b><tt>--help</b></dt>
+	<dd>  displays  the <tt>bootstrap</tt> usage.  The comprehensive
+   list of recognized options will be displayed.</tt></dd>
+</dl>
+
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc2.3">
+2.3</a>&nbsp;&nbsp;Using robotpkg</h2> 
+<div class="p"><!----></div>
+After obtaining <tt>robotpkg</tt> , the  <tt>robotpkg</tt> directory now  contains a set of
+packages, organized   into  categories.  You can   browse  the online  index of
+packages, or run <tt>make index</tt> from the <tt>robotpkg</tt> directory to  build
+local <tt>index.html</tt>  files for all  packages, viewable with any web  browser
+such as <tt>lynx</tt> or <tt>firefox</tt>.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.3.1">
+2.3.1</a>&nbsp;&nbsp;Building packages from source</h3> 
+<div class="p"><!----></div>
+The  first step for  building  a  package  is  downloading the <em>distfiles</em>
+(i.e. the unmodified  source). If they have not  yet been downloaded, <tt>robotpkg</tt> 
+will  fetch them automatically  and place them  in the <tt>robotpkg/distfiles</tt>
+directory.
+
+<div class="p"><!----></div>
+Once the software  has  been downloaded,  any  patches will be applied  and the
+package will  be compiled for  you.  This may  take some time depending on your
+computer, and how many other packages the software depends on and their compile
+time.
+
+<div class="p"><!----></div>
+For  example,  type the following  commands  at the shell   prompt to build the
+robotpkg documentation package:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;cd&nbsp;/opt/openrobots/robotpkg
+%&nbsp;cd&nbsp;doc/robotpkg
+%&nbsp;make
+
+</pre>
+
+<div class="p"><!----></div>
+The next  stage is  to  actually install the newly   compiled package onto your
+system. While you   are still in  the directory  for whatever package  you  are
+installing, you can do this by entering:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;make&nbsp;install
+
+</pre>
+
+<div class="p"><!----></div>
+Installing the package on your system does  not require you  to be root (except
+for a few specific  packages). However, if   you bootstraped with a  prefix for
+which   you  don't   have  writing   permissions,    <tt>robotpkg</tt> has a     <span class="roman">
+just-in-time-sudo</span>  feature,  which allows you to  become  <tt>root</tt>  for the
+actual installation step.
+
+<div class="p"><!----></div>
+That's it, the software should now be installed   under  the prefix  of the
+packages tree - <tt>/opt/openrobots</tt> by default - and setup for use.
+
+<div class="p"><!----></div>
+You can now enter:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;make&nbsp;clean
+
+</pre>
+
+<div class="p"><!----></div>
+to remove the compiled files in the work  directory, as you shouldn't need them
+any more. If  other packages were also  added to your system (dependencies)  to
+allow your program to compile, you can also tidy these up with the command:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;make&nbsp;clean-depends
+
+</pre>
+
+<div class="p"><!----></div>
+Since  the three tasks of building,  installing and  cleaning correspond to the
+typical usage of <tt>robotpkg</tt> , a helper target doing all these tasks exists and is
+called <tt>update</tt>. Thus,  to intall a package  with a single command, you can
+simply run:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;make&nbsp;update
+
+</pre>
+
+<div class="p"><!----></div>
+In addition, <tt>make update</tt> will  also recompile all the installed packages
+that were depending on the package that you are updating. This can be quite
+time consuming if you are updating a low-level package. Also, note that all
+packages that depend on the package you are updating will be deinstalled
+first and unavailable in your system until all packages are recompiled and
+reinstalled.
+
+<div class="p"><!----></div>
+
+<div class="p"><!----></div>
+Occasionally, people want to "look under the covers" to see  what is going on
+when a  package  is building  or being  installed.  This may  be for  debugging
+purposes, or  out  of simple curiosity. A  number  of utility values have  been
+added to help with this.
+
+<div class="p"><!----></div>
+
+<ol type="1">
+<li> If you invoke the <tt>make</tt> command with <tt>PKG_DEBUG_LEVEL=1</tt>, then
+      a huge amount of information will be displayed. For example,
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;make&nbsp;patch&nbsp;PKG_DEBUG_LEVEL=1
+
+</pre>
+
+<div class="p"><!----></div>
+      will show all the commands that are invoked, up to and including the
+      "patch" stage. Using <tt>PKG_DEBUG_LEVEL=2</tt> will give you even
+      more details.
+<div class="p"><!----></div>
+</li>
+
+<li> If you want to know the value of a certain <tt>make</tt> definition, then
+   the <tt>VARNAME</tt> variable   should be used,  in  conjunction with the  <tt>
+   show-var</tt> target.  e.g.  to show the  expansion  of the  <tt>make</tt> variable
+   <tt>LOCALBASE</tt>:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;make&nbsp;show-var&nbsp;VARNAME=LOCALBASE
+
+</pre>
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+
+<div class="p"><!----></div>
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.3.2">
+2.3.2</a>&nbsp;&nbsp;Installing binary packages</h3> 
+<div class="p"><!----></div>
+At the moment, installing binary packages is not documented.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.3.3">
+2.3.3</a>&nbsp;&nbsp;Removing packages</h3> 
+<div class="p"><!----></div>
+To deinstall a package, it does not matter whether it was installed from source
+code or from a binary package.  The <tt>pkg_delete</tt> command  does not know it
+anyway.     To  delete   a  package,   you   can  just   run  <tt>pkg_delete
+&lt;package-name&#62;</tt>.  The package name can be given with or without version number.
+Wildcards  can also be used  to deinstall a  set of  packages, for example <tt>
+*genom*</tt>  all packages whose name   contain the word  <tt>genom</tt>.  Be sure to
+include them in quotes,  so that the  shell  does not  expand them  before <tt>
+pkg_delete</tt> sees them.
+
+<div class="p"><!----></div>
+The <tt>-r</tt> option is very powerful: it  removes all the packages that require
+the package in question and then removes the package itself. For example:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;pkg_delete&nbsp;-r&nbsp;genom
+
+</pre>
+
+<div class="p"><!----></div>
+will remove genom and all the packages that used it; this allows
+upgrading the <tt>genom</tt> package.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.3.4">
+2.3.4</a>&nbsp;&nbsp;Getting information about installed packages</h3> 
+<div class="p"><!----></div>
+The <tt>pkg_info</tt> shows   information  about  installed packages or    binary
+package files.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.3.5">
+2.3.5</a>&nbsp;&nbsp;Other administrative functions</h3> 
+<div class="p"><!----></div>
+The <tt>pkg_admin</tt> executes various  administrative functions on the  package
+system.
+
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc2.4">
+2.4</a>&nbsp;&nbsp;Configuring robotpkg</h2> 
+<div class="p"><!----></div>
+The whole <tt>robotpkg</tt> system is configured  <em>via</em> a single, centralized file,
+called <tt>robotpkg.conf</tt>  and  placed  in  the   <tt>/opt/openrobots/etc</tt>
+directory  by default.  This location  might be redefined  during the bootstrap
+phase,  see  <a href="#section:bootstrapping">Section&nbsp;<a href="#section:bootstrapping">2.2</a></a>.
+During    the  bootstrap, an initial configuration     file is created with the
+settings you provided to <tt>bootstrap</tt>.
+
+<div class="p"><!----></div>
+The  format of  the configuration file   is that of   the usual GNU style  <tt>
+Makefile</tt>s. The whole <tt>robotpkg</tt> configuration  is done by setting variables  in
+this  file. Note that  you can  define all  kinds of  variables, and no special
+error checking (for example for spelling mistakes)  takes place, so you have to
+try it out to see if it works.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.4.1">
+2.4.1</a>&nbsp;&nbsp;Selecting build options</h3> 
+<div class="p"><!----></div>
+Some packages have   build time options, usually   to select between  different
+dependencies,  enable  optional   support for    big   dependencies or   enable
+experimental features.
+
+<div class="p"><!----></div>
+To see   which options, if  any, a   package supports,  and  which  options are
+mutually exclusive, run <tt>make show-options</tt>, for example:
+
+<div class="p"><!----></div>
+
+<pre>
+Any&nbsp;of&nbsp;the&nbsp;following&nbsp;general&nbsp;options&nbsp;may&nbsp;be&nbsp;selected:
+&nbsp;&nbsp;&nbsp;&nbsp;debug&nbsp;&nbsp;&nbsp;Produce&nbsp;debugging&nbsp;information&nbsp;for&nbsp;binary&nbsp;programs
+&nbsp;&nbsp;&nbsp;&nbsp;doc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compile&nbsp;documentation&nbsp;material
+&nbsp;&nbsp;&nbsp;&nbsp;lex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;lex&nbsp;in&nbsp;place&nbsp;of&nbsp;flex
+&nbsp;&nbsp;&nbsp;&nbsp;tcl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable&nbsp;support&nbsp;for&nbsp;TCL&nbsp;clients
+&nbsp;&nbsp;&nbsp;&nbsp;yacc&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;yacc&nbsp;in&nbsp;place&nbsp;of&nbsp;bison
+
+These&nbsp;options&nbsp;are&nbsp;enabled&nbsp;by&nbsp;default:
+&nbsp;&nbsp;&nbsp;&nbsp;doc&nbsp;tcl
+
+These&nbsp;options&nbsp;are&nbsp;currently&nbsp;enabled:
+&nbsp;&nbsp;&nbsp;&nbsp;doc&nbsp;tcl
+
+</pre>
+
+<div class="p"><!----></div>
+The following variables can be defined  in <tt>robotpkg.conf</tt> to select which
+options to enable for a package:
+
+<div class="p"><!----></div>
+
+<ul>
+<li> <tt>PKG_DEFAULT_OPTIONS</tt>, which can be used to select or  disable
+   options  for  all packages  that  support them,
+<div class="p"><!----></div>
+</li>
+
+<li> <tt>PKG_OPTIONS.&lt;pkgbase&#62;</tt>, which can  be   used  to select  or
+   disable   options specifically for package <tt>pkgbase</tt>. Options listed
+   in these variables are selected, options preceded by <tt>-</tt> are disabled.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+A few examples:
+
+<div class="p"><!----></div>
+
+<pre>
+PKG_DEFAULT_OPTIONS=&nbsp;&nbsp;&nbsp;&nbsp;debug
+PKG_OPTIONS.genom=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doc&nbsp;-tcl
+
+</pre>
+
+<div class="p"><!----></div>
+It is important to note  that options that were  specifically suggested by  the
+package  maintainer must be  explicitely removed if you  do not wish to include
+the option.  If you  are unsure you  can view the current  state with <tt>make
+show-options</tt>.
+
+<div class="p"><!----></div>
+The following settings are  consulted in the order  given, and the last setting
+that selects or disables an option is used:
+
+<div class="p"><!----></div>
+
+<ol type="1">
+<li> the default options as suggested by the package maintainer,
+<div class="p"><!----></div>
+</li>
+
+<li> <tt>PKG_DEFAULT_OPTIONS</tt>,
+<div class="p"><!----></div>
+</li>
+
+<li> <tt>PKG_OPTIONS.&lt;pkgbase&#62;</tt>
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+For groups of mutually exclusive options, the last option selected is used, all
+others are automatically  disabled.  If  an option of  the  group is explicitly
+disabled, the previously selected option,  if any, is used.   It is an error if
+no option from  a  required group  of  options is  selected, and  building  the
+package will fail.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.4.2">
+2.4.2</a>&nbsp;&nbsp;General configuration variables</h3> 
+<div class="p"><!----></div>
+In  this  section,  you can   find some  variables   that apply  to  all <tt>robotpkg</tt> 
+packages.
+
+<div class="p"><!----></div>
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>ACCEPTABLE_LICENSES</b></dt>
+	<dd> List of acceptable licenses. Whenever you try to
+   build a package  whose license is  not in this  list, you will get  an error
+   message that includes instructions on how to change this variable.</dd>
+ <dt><b>DISTDIR</b></dt>
+	<dd> Where to store the downloaded copies of the original source
+   distributions used for building <tt>robotpkg</tt> packages. The default is
+   <tt>$ROBOTPKG_DIR/distfiles</tt>.</dd>
+ <dt><b>PACKAGES</b></dt>
+	<dd> The top level directory for the binary packages. The default
+   is  <tt>$ROBOTPKG_DIR/packages</tt>.</dd>
+ <dt><b>MASTER_SITE_BACKUP</b></dt>
+	<dd> List  of backup locations for distribution files
+   if not found locally  or  in <tt>$MASTER_SITES</tt>.  The default  is<br />
+   <tt>http://softs.laas.fr/openrobots/robotpkg/distfiles/</tt>.</dd>
+ <dt><b>PKG_DEBUG_LEVEL</b></dt>
+	<dd> The  level of debugging  output  which is displayed
+   whilst making and installing the package.  The  default value for this is 0,
+   which will not  display the commands as they  are executed (normal, default,
+   quiet  operation); the value 1 will  display all shell commands before their
+   invocation,  and  the value  2 will  display both the  shell commands before
+   their invocation, and their actual execution progress with <tt>set -x</tt>.</dd>
+</dl>
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.4.3">
+2.4.3</a>&nbsp;&nbsp;Variables affecting the build process</h3> 
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>WRKOBJDIR</b></dt>
+	<dd> The top level   directory where, if defined,  the  separate
+   working directories will get created.  This is useful for building  packages
+   on a different filesystem than the <tt>robotpkg</tt> sources.</dd>
+ <dt><b>DEPENDS_TARGET</b></dt>
+	<dd> By default,  dependencies are only installed,  and no
+   binary package is  created  for them. You  can  set  this variable  to  <tt>
+   package</tt>   to   automatically  create    binary  packages   after installing
+   dependencies.</dd>
+ <dt><b>LOCALBASE</b></dt>
+	<dd> Where packages will be installed. The default value is <tt>
+   /opt/openrobots</tt>.  Do not  mix     binary  packages with    different values
+   of <tt>LOCALBASE</tt>s!
+
+<div class="p"><!----></div>
+
+<div class="p"><!----></div>
+</dd>
+</dl>     <h3><a name="tth_sEc2.4.4">
+2.4.4</a>&nbsp;&nbsp;Additional flags to the compiler</h3> 
+<div class="p"><!----></div>
+If you wish  to set compiler variables   such as <tt>CFLAGS</tt>,  <tt>CXXFLAGS</tt>,
+<tt>FFLAGS</tt> ... please make sure to use  the <tt>+=</tt>  operator instead of the
+<tt>=</tt> operator:
+
+<div class="p"><!----></div>
+
+<pre>
+CFLAGS+=&nbsp;-your&nbsp;-flags
+
+</pre>
+
+<div class="p"><!----></div>
+Using <tt>CFLAGS=</tt> (i.e.  without the "<tt>+</tt>") may  lead to  problems with
+packages that need to add their own flags.
+
+<div class="p"><!----></div>
+If you want  to pass flags  to the linker, both in  the configure  step and the
+build step, you  can do this  in  two ways.   Either set <tt>LDFLAGS</tt> or <tt>
+LIBS</tt>.  The difference between  the two is that  <tt>LIBS</tt> will be appended to
+the command line, while <tt>LDFLAGS</tt> come earlier. <tt>LDFLAGS</tt> is pre-loaded
+with rpath settings   for machines that support  it.  As with <tt>CFLAGS</tt>  you
+should use the <tt>+=</tt> operator:
+
+<div class="p"><!----></div>
+
+<pre>
+LDFLAGS+=&nbsp;-your&nbsp;-linkerflags
+
+</pre>
+
+
+<div class="p"><!----></div>
+ <h1><a name="tth_chAp3">
+ 3 </a><br />The robotpkg developer's guide</h1>
+<a name="chapter:developer">
+</a>
+
+<div class="p"><!----></div>
+ <h1><a name="tth_chAp4">
+ 4 </a><br />The robotpkg infrastructure internals</h1>
+<a name="chapter:internal">
+</a>
+
+<div class="p"><!----></div>
+    </div></div>
+  </body>
+</html>
