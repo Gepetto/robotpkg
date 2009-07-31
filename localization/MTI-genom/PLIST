@@ -21,14 +21,6 @@ lib/tclserv/libMTITclServ.la
 share/doc/MTI/HowToUse
 share/modules/gen/MTI.gen
 share/modules/tcl/MTIClient.tcl
-@dirrm share/modules/tcl
-@dirrm share/modules/gen
 @dirrm share/doc/MTI
-@dirrm share/doc
-@dirrm lib/tclserv
-@dirrm lib/pkgconfig
-@dirrm lib
 @dirrm include/MTI/server
 @dirrm include/MTI
-@dirrm include
-@dirrm bin

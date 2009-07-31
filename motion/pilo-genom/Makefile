@@ -29,10 +29,16 @@ PKG_OPTIONS_REQUIRED_GROUPS=	robot
 PKG_OPTIONS_GROUP.robot=	 atrv b21r fake h2 jido locoDemo xr4000
 
 PKG_OPTION_DESCR.atrv=	Enable support for the atrv platform
-PKG_OPTION_SET.atrv:=	GENOM_ARGS+= -DATRV
+define PKG_OPTION_SET.atrv
+  GENOM_ARGS+= -DATRV
+  include ../../robots/rflex-genom/depend.mk
+endef
 
 PKG_OPTION_DESCR.b21r=	Enable support for the b21r platform
-PKG_OPTION_SET.b21r:=	GENOM_ARGS+= -DB21R
+define PKG_OPTION_SET.b21r
+  GENOM_ARGS+= -DB21R
+  include ../../robots/rflex-genom/depend.mk
+endef
 
 PKG_OPTION_DESCR.fake=	Enable support for a fake platform
 PKG_OPTION_SET.fake:=	GENOM_ARGS+= -DFAKE
@@ -50,8 +56,6 @@ PKG_OPTION_DESCR.xr4000=	Enable support for the xr4000 platform
 PKG_OPTION_SET.xr4000:=		GENOM_ARGS+= -XR4000
 
 GENOM_MODULE=	pilo
-
-
 include ../../architecture/genom/depend.mk
 
 include ../../architecture/genPos-genom/depend.mk
