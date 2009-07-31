@@ -28,7 +28,7 @@ PREFER.xarm-genom?=	robotpkg
 
 DEPEND_USE+=		xarm-genom
 
-DEPEND_ABI.xarm-genom?=	xarm-genom>=0.9
+DEPEND_ABI.xarm-genom?=	xarm-genom>=1.0
 DEPEND_DIR.xarm-genom?=	../../robots/xarm-genom
 
 SYSTEM_SEARCH.xarm-genom=\

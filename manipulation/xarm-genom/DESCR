@@ -1,2 +1,4 @@
-The xarm-genom is a GenoM module that controls a 6 DOF arm in cartesian space by
-using the qarm-genom module.
+The xarm-genom GenoM module allows to control the Mitsubishi PA10-6C
+arm in the Cartesian space using the qarm-genom module. Trajectories
+are planned using the Soft Motion Trajectory Planner (see the paper of
+Xavier Broquere in IROS 2008).
