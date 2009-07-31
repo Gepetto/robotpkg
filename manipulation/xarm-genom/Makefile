@@ -25,15 +25,11 @@ MAINTAINER=	xbroquer@laas.fr
 #HOMEPAGE=	softs.laas.fr:/ftp/pub/openrobots/
 COMMENT=	Controls a 6DOF arm in cartesian space.
 
-#BROKEN=		Required dependency viman-genom not packaged.
-#BROKEN+=	viman-genom should not be a dependency of this package.
-
 GNU_CONFIGURE=	yes
 
 GENOM_MODULE=	xarm
 include ../../architecture/genom/depend.mk
 include ../../hardware/mouse3d-genom/depend.mk
-#include ../../image/viam-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../math/gbM/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
