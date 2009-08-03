@@ -19,6 +19,7 @@
 DISTNAME=		MTI-genom-0.2
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/MTI-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
