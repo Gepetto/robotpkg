@@ -17,10 +17,10 @@ include/MTI/server/MTIScan.h
 include/MTI/server/MTIType.h
 lib/libMTIClient.la
 lib/pkgconfig/MTI.pc
-lib/tclserv/libMTITclServ.la
+${PLIST.tcl}lib/tclserv/libMTITclServ.la
 share/doc/MTI/HowToUse
 share/modules/gen/MTI.gen
-share/modules/tcl/MTIClient.tcl
+${PLIST.tcl}share/modules/tcl/MTIClient.tcl
 @dirrm share/doc/MTI
 @dirrm include/MTI/server
 @dirrm include/MTI

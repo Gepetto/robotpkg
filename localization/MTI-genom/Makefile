@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Thue July 17 2008
 #
 
-DISTNAME=		MTI-genom-0.2
+DISTNAME=		MTI-genom-0.3
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/MTI-genom

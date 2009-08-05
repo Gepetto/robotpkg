@@ -28,7 +28,7 @@ PREFER.MTI-genom?=	robotpkg
 
 DEPEND_USE+=		MTI-genom
 
-DEPEND_ABI.MTI-genom?=	MTI-genom>=0.2
+DEPEND_ABI.MTI-genom?=	MTI-genom>=0.3
 DEPEND_DIR.MTI-genom?=	../../localization/MTI-genom
 
 SYSTEM_SEARCH.MTI-genom=\
