@@ -21,11 +21,5 @@ lib/pkgconfig/dtm.pc
 lib/tclserv/libdtmTclServ.la
 share/modules/gen/dtm.gen
 share/modules/tcl/dtmClient.tcl
-@dirrm share/modules/tcl
-@dirrm share/modules/gen
-@dirrm lib/tclserv
-@dirrm lib/pkgconfig
-@dirrm lib
 @dirrm include/dtm/server
 @dirrm include/dtm
-@dirrm bin

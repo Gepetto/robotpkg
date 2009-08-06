@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Sat May 17 2008
 #
 
-DISTNAME=		dtm-genom-0.1
+DISTNAME=		dtm-genom-1.1
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/dtm-genom
