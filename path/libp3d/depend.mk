@@ -28,7 +28,7 @@ PREFER.libp3d?=	robotpkg
 
 DEPEND_USE+=		libp3d
 
-DEPEND_ABI.libp3d?=	libp3d>=1.0
+DEPEND_ABI.libp3d?=	libp3d>=1.1
 DEPEND_DIR.libp3d?=	../../path/libp3d
 
 SYSTEM_SEARCH.libp3d=\
