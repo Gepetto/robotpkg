@@ -28,7 +28,7 @@ PREFER.p3d-genom?=	robotpkg
 
 DEPEND_USE+=		p3d-genom
 
-DEPEND_ABI.p3d-genom?=	p3d-genom>=0.1
+DEPEND_ABI.p3d-genom?=	p3d-genom>=1.1
 DEPEND_DIR.p3d-genom?=	../../path/p3d-genom
 
 SYSTEM_SEARCH.p3d-genom=\
