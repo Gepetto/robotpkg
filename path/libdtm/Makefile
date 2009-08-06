@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Sat May 17 2008
 #
 
-DISTNAME=		libdtm-1.0
+DISTNAME=		libdtm-1.1
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/libdtm
