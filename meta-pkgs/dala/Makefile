@@ -37,7 +37,7 @@ include ../../localization/GPS-genom/depend.mk
 include ../../localization/MTI-genom/depend.mk
 include ../../localization/gyro-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
-include ../../path/dtm-genom/depend.mk
+include ../../mapping/dtm-genom/depend.mk
 include ../../path/ndd-genom/depend.mk
 include ../../path/p3d-genom/depend.mk
 include ../../hardware/platine-genom/depend.mk

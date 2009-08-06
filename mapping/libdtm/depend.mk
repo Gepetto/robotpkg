@@ -29,7 +29,7 @@ PREFER.libdtm?=	robotpkg
 DEPEND_USE+=		libdtm
 
 DEPEND_ABI.libdtm?=	libdtm>=1.1
-DEPEND_DIR.libdtm?=	../../path/libdtm
+DEPEND_DIR.libdtm?=	../../mapping/libdtm
 
 SYSTEM_SEARCH.libdtm=\
 	include/libdtm.h	\

@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2008/05/25 15:22:48 tho $
+# $LAAS: depend.mk 2008/05/25 15:19:35 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -16,20 +16,24 @@
 #                                      Arnaud Degroote on Sat May 17 2008
 #
 
-DISTNAME=		libdtm-1.1
-CATEGORIES=		path
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/libdtm
+DEPEND_DEPTH:=		${DEPEND_DEPTH}+
+DTMGENOM_DEPEND_MK:=	${DTMGENOM_DEPEND_MK}+
 
+ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=		dtm-genom
+endif
 
-MAINTAINER=		openrobots@laas.fr
-#HOMEPAGE=
-COMMENT=		Digital Terrain Modeling lib
+ifeq (+,$(DTMGENOM_DEPEND_MK))
+PREFER.dtm-genom?=	robotpkg
 
-GNU_CONFIGURE=		yes
+DEPEND_USE+=		dtm-genom
 
-include ../../graphics/gdhe/depend.mk
-include ../../image/libimages3d/depend.mk
-include ../../math/t3d/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
-include ../../mk/robotpkg.mk
+DEPEND_ABI.dtm-genom?=	dtm-genom>=0.1
+DEPEND_DIR.dtm-genom?=	../../mapping/dtm-genom
+
+SYSTEM_SEARCH.dtm-genom=\
+	include/dtm/dtmStruct.h		\
+	lib/pkgconfig/dtm.pc
+endif
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

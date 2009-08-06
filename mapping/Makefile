@@ -3,6 +3,8 @@
 
 COMMENT=	Map building software
 
+SUBDIR+=	dtm-genom
+SUBDIR+=	libdtm
 SUBDIR+=	mapkit
 SUBDIR+=	segkit
 SUBDIR+=	worldmodelgrid3d
