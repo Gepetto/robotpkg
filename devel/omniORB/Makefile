@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/11/28 18:30:06 mallet $
+# $LAAS: Makefile 2009/08/25 11:44:59 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -16,7 +16,7 @@
 #                                      Anthony Mallet on Web Jan 10 2007
 #
 
-DISTNAME=		omniORB-4.1.3
+DISTNAME=		omniORB-4.1.4
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
 
@@ -49,6 +49,7 @@ PKG_OPTION_DESCR.ipv6=	Enable support for IPv6
 PKG_OPTION_SET.ipv6:=	CONFIGURE_ARGS+=--enable-ipv6
 PKG_OPTION_UNSET.ipv6:=	CONFIGURE_ARGS+=--disable-ipv6
 
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
 
 post-install:
@@ -58,6 +59,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/sample.cfg ${PREFIX}/share/examples/omniORB/
 	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${PREFIX}/share/doc/omniORB/
 	${INSTALL_DATA} ${WRKSRC}/doc/*.pdf ${PREFIX}/share/doc/omniORB/
-	${INSTALL_DATA} ${WRKSRC}/doc/*.ps ${PREFIX}/share/doc/omniORB/
 	${INSTALL_DATA} ${WRKSRC}/doc/omniORB/* ${PREFIX}/share/doc/omniORB/omniORB/
 	${INSTALL_MAN} ${WRKSRC}/man/man1/* ${PREFIX}/${PKGMANDIR}/man1/
