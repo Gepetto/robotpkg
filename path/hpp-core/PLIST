@@ -1,9 +1,7 @@
-@comment Fri May 29 15:39:08 JST 2009
+@comment Fri Aug 28 10:42:29 JST 2009
 include/hppCore/hppColPair.h
-include/hppCore/hppPlanner.h'
+include/hppCore/hppPlanner.h
 include/hppCore/hppProblem.h
 lib/libhppCore.la
-lib/libhppCore.so
-lib/libhppCore-1.8.2.so*
-lib/libhppCore.a
 lib/pkgconfig/hppCore.pc
+@dirrm include/hppCore
