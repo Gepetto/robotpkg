@@ -16,9 +16,10 @@
 #                                      Arnaud Degroote on Sat May 17 2008
 #
 
-DISTNAME=		dtm-genom-0.1
-CATEGORIES=		path
+DISTNAME=		dtm-genom-1.1
+CATEGORIES=		mapping
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/dtm-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
@@ -46,5 +47,5 @@ include ../../image/libimages3d/depend.mk
 include ../../image/viam-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
 include ../../math/t3d/depend.mk
-include ../../path/libdtm/depend.mk
+include ../../mapping/libdtm/depend.mk
 include ../../mk/robotpkg.mk

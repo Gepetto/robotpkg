@@ -3,6 +3,3 @@ include/libdtm.h
 include/libdtm_gdhe.h
 lib/libdtm.la
 lib/pkgconfig/libdtm.pc
-@dirrm lib/pkgconfig
-@dirrm lib
-@dirrm include

@@ -32,6 +32,7 @@ DOXYGEN_PLIST_DIR+=	share/doc/stackoftasks
 
 #CONFIGURE_ARGS+=-DBOOST_THREAD_LIB_NAME=
 CONFIGURE_ARGS+=-DOPENHRP3_HOME=${PREFIX.openhrp}
+CONFIGURE_ARGS+=-DGENERATE_DOC=1
 
 include ../../path/jrl-walkgen/depend.mk
 include ../../math/jrl-dynamics/depend.mk

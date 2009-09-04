@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/01/08 15:51:35 mallet $
+# $LAAS: Makefile 2009/07/27 11:19:32 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,7 @@
 
 DISTNAME=	kwsplus-${VERSION}
 PKGNAME=	hpp-kwsplus-${VERSION}
-VERSION=	1.7
+VERSION=	1.8
 
 CATEGORIES=	devel
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kwsPlus

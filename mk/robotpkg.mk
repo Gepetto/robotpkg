@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/04/07 19:24:31 mallet $
+# $LAAS: robotpkg.mk 2009/07/28 14:05:04 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -281,6 +281,15 @@ $(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 # get into that.
 #
 # --------------------------------------------------------------------
+
+ifdef BROKEN
+  ifndef NO_BROKEN
+    PKG_FAIL_REASON+=	${hline}
+    PKG_FAIL_REASON+= "${bf}${PKGNAME} is marked as broken:${rm}"
+    PKG_FAIL_REASON+= "${BROKEN}"
+    PKG_FAIL_REASON+=	${hline}
+  endif
+endif
 
 ifdef RESTRICTED
 ifdef NO_RESTRICTED

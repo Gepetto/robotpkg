@@ -1,4 +1,4 @@
-# $LAAS: tk.mk 2009/07/06 15:28:46 mallet $
+# $LAAS: tk.mk 2009/07/31 20:41:50 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -32,7 +32,7 @@ DEPEND_USE+=		tk
 DEPEND_ABI.tk?=		tk>=8.0
 
 SYSTEM_SEARCH.tk=	\
-	'bin/wish'							\
+	'bin/wish{,[0-9.]*}'						\
 	'lib/{,tk{,[0-9.]*}/}tkConfig.sh:/TK_VERSION/s/[^.0-9]*//gp'	\
 	'include/{,t{k,cl}{,[0-9.]*}/}tk.h:/TK_VERSION/s/[^.0-9]*//gp'
 

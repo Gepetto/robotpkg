@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Sun Jan 28 2007
 #
 
-DISTNAME=	genom-2.3
+DISTNAME=	genom-2.4
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/genom

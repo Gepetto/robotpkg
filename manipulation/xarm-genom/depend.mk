@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2008/05/25 15:23:46 tho $
+# $LAAS: depend.mk 2008/05/25 14:22:52 tho $
 #
 # Copyright (c) 2008 LAAS/CNRS
 # All rights reserved.
@@ -13,31 +13,28 @@
 #      notice  and this list of  conditions in the documentation   and/or
 #      other materials provided with the distribution.
 #
-#                                      Arnaud Degroote on Sat May 17 2008
+#                                       Xavier Broquere, on Tue Mar 10 2009
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-LIBDTM_DEPEND_MK:=	${LIBDTM_DEPEND_MK}+
+XARMGENOM_DEPEND_MK:=	${XARMGENOM_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		libdtm
+DEPEND_PKG+=		xarm-genom
 endif
 
-ifeq (+,$(LIBDTM_DEPEND_MK)) # ---------------------------------------
-PREFER.libdtm?=	robotpkg
+ifeq (+,$(XARMGENOM_DEPEND_MK))# -------------------------------------
+PREFER.xarm-genom?=	robotpkg
 
-DEPEND_USE+=		libdtm
+DEPEND_USE+=		xarm-genom
 
-DEPEND_ABI.libdtm?=	libdtm>=1.0
-DEPEND_DIR.libdtm?=	../../path/libdtm
+DEPEND_ABI.xarm-genom?=	xarm-genom>=1.0
+DEPEND_DIR.xarm-genom?=	../../robots/xarm-genom
 
-SYSTEM_SEARCH.libdtm=\
-	include/libdtm.h	\
-	lib/pkgconfig/libdtm.pc
+SYSTEM_SEARCH.xarm-genom=\
+	include/xarm/xarmStruct.h		\
+	lib/pkgconfig/xarm.pc
 
-include ../../math/t3d/depend.mk
-include ../../image/libimages3d/depend.mk
-
-endif # LIBDTM_DEPEND_MK ---------------------------------------------------
+endif # XARMGENOM_DEPEND_MK -------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Mon May 19 2008
 #
 
-DISTNAME=		p3d-genom-0.1
+DISTNAME=		p3d-genom-1.1
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
@@ -34,6 +34,6 @@ include ../../architecture/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../math/t3d/depend.mk
 include ../../path/libp3d/depend.mk
-include ../../path/dtm-genom/depend.mk
+include ../../mapping/dtm-genom/depend.mk
 include ../../robots/rflex-genom/depend.mk
 include ../../mk/robotpkg.mk

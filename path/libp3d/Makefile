@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Fri May 16 2008
 #
 
-DISTNAME=		libp3d-1.0
+DISTNAME=		libp3d-1.1
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 

@@ -28,8 +28,8 @@ PREFER.dtm-genom?=	robotpkg
 
 DEPEND_USE+=		dtm-genom
 
-DEPEND_ABI.dtm-genom?=	dtm-genom>=0.1
-DEPEND_DIR.dtm-genom?=	../../path/dtm-genom
+DEPEND_ABI.dtm-genom?=	dtm-genom>=1.1
+DEPEND_DIR.dtm-genom?=	../../mapping/dtm-genom
 
 SYSTEM_SEARCH.dtm-genom=\
 	include/dtm/dtmStruct.h		\

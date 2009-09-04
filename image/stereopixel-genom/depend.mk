@@ -28,7 +28,7 @@ PREFER.stereopixel-genom?=	robotpkg
 
 DEPEND_USE+=		stereopixel-genom
 
-DEPEND_ABI.stereopixel-genom?=	stereopixel-genom>=1.1
+DEPEND_ABI.stereopixel-genom?=	stereopixel-genom>=1.2
 DEPEND_DIR.stereopixel-genom?=	../../image/stereopixel-genom
 
 SYSTEM_SEARCH.stereopixel-genom=\

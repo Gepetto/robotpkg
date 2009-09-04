@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/05/25 15:22:48 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -13,21 +12,23 @@
 #      notice  and this list of  conditions in the documentation   and/or
 #      other materials provided with the distribution.
 #
-#                                      Arnaud Degroote on Sat May 17 2008
+#                                         Nizar Sallem on Tue Jul 28 2009
 #
 
-DISTNAME=		libdtm-1.0
-CATEGORIES=		path
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+DISTNAME=		force-genom-1.1.1
+CATEGORIES=		hardware
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=force-genom/}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/force-genom
 
-MAINTAINER=		openrobots@laas.fr
+
+MAINTAINER=		daniel@laas.fr
 #HOMEPAGE=
-COMMENT=		Digital Terrain Modeling lib
+COMMENT=		GenoM module for the JR3 90M31A force sensor management.
 
 GNU_CONFIGURE=		yes
 
-include ../../graphics/gdhe/depend.mk
-include ../../image/libimages3d/depend.mk
-include ../../math/t3d/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
+GENOM_MODULE=		force
+
+include ../../architecture/genom/depend.mk
+include ../../math/gbM/depend.mk
 include ../../mk/robotpkg.mk

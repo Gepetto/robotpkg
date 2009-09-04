@@ -1,0 +1,25 @@
+@comment Tue Jul 28 11:28:07 CEST 2009
+bin/force
+bin/forceSendInitRqst
+bin/forceTest
+include/force/forceConst.h
+include/force/forceStruct.h
+include/force/server/forceEndian.h
+include/force/server/forceError.h
+include/force/server/forceMsgLib.h
+include/force/server/forcePosterLib.h
+include/force/server/forcePosterLibStruct.h
+include/force/server/forcePosterReadLibProto.h
+include/force/server/forcePosterShowLib.h
+include/force/server/forcePosterWriteLibProto.h
+include/force/server/forcePosterXMLLib.h
+include/force/server/forcePrint.h
+include/force/server/forcePrintXML.h
+include/force/server/forceScan.h
+include/force/server/forceType.h
+lib/pkgconfig/force.pc
+lib/tclserv/libforceTclServ.la
+share/modules/gen/force.gen
+share/modules/tcl/forceClient.tcl
+@dirrm include/force/server
+@dirrm include/force

@@ -1,7 +1,10 @@
-@comment $Id:$
+@comment Wed Aug 5 14:50:42 CEST 2009
 bin/stereopixel
 bin/stereopixelSendInitRqst
 bin/stereopixelTest
+${PLIST.openprs}include/stereopixel/server/openprs/stereopixelDecodeOpenprs.h
+${PLIST.openprs}include/stereopixel/server/openprs/stereopixelEncodeOpenprs.h
+${PLIST.openprs}include/stereopixel/server/openprs/stereopixelRequestsOpenprsProto.h
 include/stereopixel/server/stereopixelEndian.h
 include/stereopixel/server/stereopixelError.h
 include/stereopixel/server/stereopixelMsgLib.h
@@ -18,9 +21,15 @@ include/stereopixel/server/stereopixelType.h
 include/stereopixel/stereopixelClient.h
 include/stereopixel/stereopixelStruct.h
 lib/libstereopixelClient.la
+${PLIST.openprs}lib/openprs/libstereopixelOpenprs.la
+${PLIST.openprs}lib/pkgconfig/stereopixel-oprs.pc
 lib/pkgconfig/stereopixel.pc
-lib/tclserv/libstereopixelTclServ.la
+${PLIST.tcl}lib/tclserv/libstereopixelTclServ.la
 share/modules/gen/stereopixel.gen
-share/modules/tcl/stereopixelClient.tcl
+${PLIST.openprs}share/modules/openprs/stereopixelOpenprs.inc
+${PLIST.openprs}share/modules/openprs/stereopixelOpenprs.opf
+${PLIST.openprs}share/modules/openprs/stereopixelOpenprs.sym
+${PLIST.tcl}share/modules/tcl/stereopixelClient.tcl
+${PLIST.openprs}@dirrm include/stereopixel/server/openprs
 @dirrm include/stereopixel/server
 @dirrm include/stereopixel

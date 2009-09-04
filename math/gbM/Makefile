@@ -17,9 +17,9 @@
 #                                             Daniel Sidobre on Mon Mar  9 2009
 #
 
-DISTNAME=	gbM-1.0
+DISTNAME=	gbM-0.2
 CATEGORIES=	math
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gbM/}
 
 MAINTAINER=	daniel.sidobre@laas.fr
 #HOMEPAGE=	softs.laas.fr:/ftp/pub/openrobots/

@@ -1,12 +1,12 @@
-@comment Fri Apr 17 16:14:59 JST 2009
+@comment Mon Jul 27 11:24:16 CEST 2009
 include/kwsPlus/directPath/directPathVector.h
 include/kwsPlus/directPath/flicDirectPath.h
 include/kwsPlus/directPath/flicDistance.h
 include/kwsPlus/directPath/flicSteeringMethod.h
-include/kwsPlus/directPath/kwsPlusDirectPath.h
-include/kwsPlus/directPath/kwsPlusDistanceFactory.h
-include/kwsPlus/directPath/kwsPlusDistance.h
 include/kwsPlus/directPath/kwsPlusDPLinear.h
+include/kwsPlus/directPath/kwsPlusDirectPath.h
+include/kwsPlus/directPath/kwsPlusDistance.h
+include/kwsPlus/directPath/kwsPlusDistanceFactory.h
 include/kwsPlus/directPath/kwsPlusSMLinear.h
 include/kwsPlus/directPath/kwsPlusSteeringMethodFactory.h
 include/kwsPlus/directPath/reedsSheppDirectPath.h
@@ -22,18 +22,16 @@ include/kwsPlus/hppVisRdmBuilder.h
 include/kwsPlus/kwsPlusDiffusionNodePickerFactory.h
 include/kwsPlus/kwsPlusDiffusionShooterFactory.h
 include/kwsPlus/kwsPlusDirectPath.h
-include/kwsPlus/kwsPlusDistanceFactory.h
 include/kwsPlus/kwsPlusDistance.h
-include/kwsPlus/kwsPlusDPLinear.h
-include/kwsPlus/kwsPlusEdgeFactory.h
+include/kwsPlus/kwsPlusDistanceFactory.h
 include/kwsPlus/kwsPlusEdge.h
+include/kwsPlus/kwsPlusEdgeFactory.h
 include/kwsPlus/kwsPlusKPCARdmBuilder.h
 include/kwsPlus/kwsPlusLTRdmBuilder.h
-include/kwsPlus/kwsPlusNodeFactory.h
 include/kwsPlus/kwsPlusNode.h
+include/kwsPlus/kwsPlusNodeFactory.h
 include/kwsPlus/kwsPlusPCARdmBuilder.h
 include/kwsPlus/kwsPlusRoadmap.h
-include/kwsPlus/kwsPlusSMLinear.h
 include/kwsPlus/kwsPlusSteeringMethodFactory.h
 include/kwsPlus/kwsPlusStopRdmBuilderDelegate.h
 include/kwsPlus/kwsPlusTalkingBuilder.h
@@ -46,12 +44,12 @@ include/kwsPlus/roadmap/hppShooterActiveDof.h
 include/kwsPlus/roadmap/hppVisRdmBuilder.h
 include/kwsPlus/roadmap/kwsPlusDiffusionNodePickerFactory.h
 include/kwsPlus/roadmap/kwsPlusDiffusionShooterFactory.h
-include/kwsPlus/roadmap/kwsPlusEdgeFactory.h
 include/kwsPlus/roadmap/kwsPlusEdge.h
+include/kwsPlus/roadmap/kwsPlusEdgeFactory.h
 include/kwsPlus/roadmap/kwsPlusKPCARdmBuilder.h
 include/kwsPlus/roadmap/kwsPlusLTRdmBuilder.h
-include/kwsPlus/roadmap/kwsPlusNodeFactory.h
 include/kwsPlus/roadmap/kwsPlusNode.h
+include/kwsPlus/roadmap/kwsPlusNodeFactory.h
 include/kwsPlus/roadmap/kwsPlusPCARdmBuilder.h
 include/kwsPlus/roadmap/kwsPlusRoadmap.h
 include/kwsPlus/roadmap/kwsPlusStopRdmBuilderDelegate.h

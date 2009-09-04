@@ -1,12 +1,8 @@
-@comment jeudi 17 juillet 2008, 18:29:55 (UTC+0200)
+@comment Wed Aug 5 13:32:23 CEST 2009
 bin/MTIHardTest
 include/MTI-clients/MTComm.h
 include/MTI-clients/MTI.h
 include/MTI-clients/structMTI.h
 lib/libMTI.la
 lib/pkgconfig/MTI-clients.pc
-@dirrm lib/pkgconfig
-@dirrm lib
 @dirrm include/MTI-clients
-@dirrm include
-@dirrm bin

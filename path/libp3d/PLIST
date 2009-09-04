@@ -4,6 +4,3 @@ include/libp3d.h
 include/p3d.h
 lib/libp3d.la
 lib/pkgconfig/libp3d.pc
-@dirrm lib/pkgconfig
-@dirrm lib
-@dirrm include

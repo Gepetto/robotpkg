@@ -4,6 +4,7 @@ include/gbM/Proto_gbModeles.h
 include/gbM/gb.h
 include/gbM/gbGENOM.h
 include/gbM/gbStruct.h
+include/gbM/gbManip.h
 lib/gb.so
 lib/libgb.la
 lib/pkgconfig/gbM.pc

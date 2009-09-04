@@ -16,9 +16,10 @@
 #                                       Anthony Mallet on Fri Mar 14 2008
 #
 
-DISTNAME=		stereopixel-genom-1.1
+DISTNAME=		stereopixel-genom-1.2
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/stereopixel-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

@@ -1,9 +1,12 @@
-@comment lundi 19 mai 2008, 14:35:35 (UTC+0200)
+@comment Thu Aug 6 15:08:46 CEST 2009
 bin/p3d
 bin/p3dSendInitRqst
 bin/p3dTest
 include/p3d/demP3dPosterToP3dMap.h
 include/p3d/p3dStruct.h
+${PLIST.openprs}include/p3d/server/openprs/p3dDecodeOpenprs.h
+${PLIST.openprs}include/p3d/server/openprs/p3dEncodeOpenprs.h
+${PLIST.openprs}include/p3d/server/openprs/p3dRequestsOpenprsProto.h
 include/p3d/server/p3dEndian.h
 include/p3d/server/p3dError.h
 include/p3d/server/p3dMsgLib.h
@@ -19,17 +22,16 @@ include/p3d/server/p3dScan.h
 include/p3d/server/p3dType.h
 lib/libp3dClient.la
 lib/libp3dLib.la
+${PLIST.openprs}lib/openprs/libp3dOpenprs.la
 lib/pkgconfig/p3d-lib.pc
+${PLIST.openprs}lib/pkgconfig/p3d-oprs.pc
 lib/pkgconfig/p3d.pc
-lib/tclserv/libp3dTclServ.la
+${PLIST.tcl}lib/tclserv/libp3dTclServ.la
 share/modules/gen/p3d.gen
-share/modules/tcl/p3dClient.tcl
-@dirrm share/modules/tcl
-@dirrm share/modules/gen
-@dirrm lib/tclserv
-@dirrm lib/pkgconfig
-@dirrm lib
+${PLIST.openprs}share/modules/openprs/p3dOpenprs.inc
+${PLIST.openprs}share/modules/openprs/p3dOpenprs.opf
+${PLIST.openprs}share/modules/openprs/p3dOpenprs.sym
+${PLIST.tcl}share/modules/tcl/p3dClient.tcl
+${PLIST.openprs}@dirrm include/p3d/server/openprs
 @dirrm include/p3d/server
 @dirrm include/p3d
-@dirrm include
-@dirrm bin

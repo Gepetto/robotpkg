@@ -19,6 +19,7 @@
 DISTNAME=		pom-genom-0.5
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/pom-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

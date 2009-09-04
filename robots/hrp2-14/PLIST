@@ -1,43 +1,6 @@
-@comment Mon Mar 2 11:52:23 CET 2009
+@comment Sat Jul 11 22:26:16 JST 2009
 include/hrp2_14/hrp2_14.h
 lib/pkgconfig/hrp2_14.pc
-share/doc/hrp2_14/html/config_swap_8h.html
-share/doc/hrp2_14/html/config_swap_8h__incl.map
-share/doc/hrp2_14/html/config_swap_8h__incl.md5
-share/doc/hrp2_14/html/config_swap_8h__incl.png
-share/doc/hrp2_14/html/doxygen.png
-share/doc/hrp2_14/html/files.html
-share/doc/hrp2_14/html/ftv2blank.png
-share/doc/hrp2_14/html/ftv2doc.png
-share/doc/hrp2_14/html/ftv2folderclosed.png
-share/doc/hrp2_14/html/ftv2folderopen.png
-share/doc/hrp2_14/html/ftv2lastnode.png
-share/doc/hrp2_14/html/ftv2link.png
-share/doc/hrp2_14/html/ftv2mlastnode.png
-share/doc/hrp2_14/html/ftv2mnode.png
-share/doc/hrp2_14/html/ftv2node.png
-share/doc/hrp2_14/html/ftv2plastnode.png
-share/doc/hrp2_14/html/ftv2pnode.png
-share/doc/hrp2_14/html/ftv2vertline.png
-share/doc/hrp2_14/html/globals_defs.html
-share/doc/hrp2_14/html/globals_func.html
-share/doc/hrp2_14/html/globals.html
-share/doc/hrp2_14/html/graph_legend.dot
-share/doc/hrp2_14/html/graph_legend.html
-share/doc/hrp2_14/html/graph_legend.png
-share/doc/hrp2_14/html/hrp2__14_8h.html
-share/doc/hrp2_14/html/hrp2_14.doxytag
-share/doc/hrp2_14/html/index.html
-share/doc/hrp2_14/html/main.html
-share/doc/hrp2_14/html/package_8h.html
-share/doc/hrp2_14/html/package.css
-share/doc/hrp2_14/html/pictures/footer.jpg
-share/doc/hrp2_14/html/pictures/footer.txt
-share/doc/hrp2_14/html/tab_b.gif
-share/doc/hrp2_14/html/tab_l.gif
-share/doc/hrp2_14/html/tab_r.gif
-share/doc/hrp2_14/html/tabs.css
-share/doc/hrp2_14/html/tree.html
 share/hrp2_14/hrp2.geom
 share/hrp2_14/HRP2LinkJointRank.xml
 share/hrp2_14/HRP2Specificities.xml
@@ -53,6 +16,5 @@ share/hrp2_14/turnCW180.zmp
 share/hrp2_14/turnCW90.hip
 share/hrp2_14/turnCW90.pos
 share/hrp2_14/turnCW90.zmp
-lib/pkgconfig/hrp2_14.pc
 @dirrm share/hrp2_14
 @dirrm include/hrp2_14

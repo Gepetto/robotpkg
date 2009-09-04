@@ -19,7 +19,7 @@
 DISTNAME=		platine-genom-0.1
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	cvs cvs.laas.fr:/cvs/openrobots modules/platine
+MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/platine-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

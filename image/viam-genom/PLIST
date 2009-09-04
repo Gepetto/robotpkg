@@ -1,7 +1,10 @@
-@comment Fri Aug 22 11:48:04 CEST 2008
+@comment Wed Aug 5 14:45:30 CEST 2009
 bin/viam
 bin/viamSendInitRqst
 bin/viamTest
+${PLIST.openprs}include/viam/server/openprs/viamDecodeOpenprs.h
+${PLIST.openprs}include/viam/server/openprs/viamEncodeOpenprs.h
+${PLIST.openprs}include/viam/server/openprs/viamRequestsOpenprsProto.h
 include/viam/server/viamEndian.h
 include/viam/server/viamError.h
 include/viam/server/viamMsgLib.h
@@ -18,10 +21,16 @@ include/viam/server/viamType.h
 include/viam/viamStruct.h
 lib/libviamClient.la
 lib/libviamWeb.la
+${PLIST.openprs}lib/openprs/libviamOpenprs.la
+${PLIST.openprs}lib/pkgconfig/viam-oprs.pc
 lib/pkgconfig/viam.pc
-lib/tclserv/libviamTclServ.la
+${PLIST.tcl}lib/tclserv/libviamTclServ.la
 lib/viamWeb.so
 share/modules/gen/viam.gen
-share/modules/tcl/viamClient.tcl
+${PLIST.openprs}share/modules/openprs/viamOpenprs.inc
+${PLIST.openprs}share/modules/openprs/viamOpenprs.opf
+${PLIST.openprs}share/modules/openprs/viamOpenprs.sym
+${PLIST.tcl}share/modules/tcl/viamClient.tcl
+${PLIST.openprs}@dirrm include/viam/server/openprs
 @dirrm include/viam/server
 @dirrm include/viam

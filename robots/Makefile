@@ -9,8 +9,8 @@ SUBDIR+=	hrp2-genom
 SUBDIR+=	hrpsys-jrl
 SUBDIR+=	jloco-genom
 SUBDIR+=	neobotix-libs
+SUBDIR+=	qarm-genom
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
-SUBDIR+=	qarm-genom
 
 include ../mk/robotpkg.subdir.mk
