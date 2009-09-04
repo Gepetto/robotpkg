@@ -51,7 +51,7 @@ do-install: pellet-install-lib
 
 .PHONY: pellet-install-lib
 pellet-install-lib:
-	cd ${WRKSRC}/lib && ${PAX} -rwp ma pellet-*.jar ${PREFIX}/java/pellet/lib/
+	cd ${WRKSRC}/lib && ${PAX} -rwp ma pellet-*.jar aterm-*.jar xsdlib/*.jar ${PREFIX}/java/pellet/lib/
 
 .PHONY: pellet-install-doc
 pellet-install-doc:
