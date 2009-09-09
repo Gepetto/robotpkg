@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/09 15:18:51 tho $
+# $LAAS: Makefile 2009/09/09 13:48:16 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -27,6 +27,7 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic mathematical tools used in the JRL software.
 
+USE_LANGUAGES+=		c++
 DOXYGEN_PLIST_DIR+=	share/doc/jrlMathTools
 
 include ../../mk/sysdep/cmake.mk
