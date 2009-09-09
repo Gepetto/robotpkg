@@ -28,6 +28,8 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}/StackOfTasks
 MAINTAINER=	hpp@laas.fr
 COMMENT=	One implementation of kinematics-inverse-based control for humanoid robots.
 
+USE_LANGUAGES+=	c++ fortran
+
 DOXYGEN_PLIST_DIR+=	share/doc/stackoftasks
 
 #CONFIGURE_ARGS+=-DBOOST_THREAD_LIB_NAME=
