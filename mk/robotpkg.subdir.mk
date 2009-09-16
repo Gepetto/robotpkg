@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.subdir.mk 2009/03/05 23:02:47 tho $
+# $LAAS: robotpkg.subdir.mk 2009/09/16 15:42:01 tho $
 #
 # Copyright (c) 2007,2009 LAAS/CNRS
 # All rights reserved.
@@ -46,6 +46,37 @@ include $(realpath mk/robotpkg.prefs.mk ../mk/robotpkg.prefs.mk)
 $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 ifeq (0,${_ROBOTPKG_DEPTH})
   $(call require,${ROBOTPKG_DIR}/mk/internal/toplevel.mk)
+endif
+
+# Require confirmation for top-level targets that are likely to be a mistake
+#
+ifeq  (,$(filter confirm,${MAKECMDGOALS}))
+  MAKECMDGOALS?= ${.DEFAULT_GOAL}
+  all package extract configure build install depend reinstall deinstall update:\
+	toplevel-confirm
+
+  .PHONY: toplevel-confirm
+  toplevel-confirm:
+	@${ERROR_MSG} ${hline};						\
+	${ERROR_MSG} "robotpkg is a package collection. It provides"	\
+		"many different,";					\
+	${ERROR_MSG} "unrelated and sometimes incompatible packages.";	\
+	${ERROR_MSG} "You probably want to make ${MAKECMDGOALS} for a"	\
+		"specific package, or a";				\
+	${ERROR_MSG} "few selected packages only. In this case, simply"	\
+		"cd to the";						\
+	${ERROR_MSG} "<category>/<package> directory of your choice and"\
+		" ${MAKE} ${MAKECMDGOALS} again.";			\
+	${ERROR_MSG} "See ${ROBOTPKG_DIR}/README.txt for further"	\
+		"reference.";						\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "${bf}If your intention is really to"		\
+		"make ${MAKECMDGOALS} for all packages,${rm}";		\
+	${ERROR_MSG} "${bf}please confirm by doing:${bf}";		\
+	${ERROR_MSG} "		\`${bf}${MAKE} ${MAKECMDGOALS}"		\
+		"confirm${rm}'";					\
+	${ERROR_MSG} ${hline};						\
+	${FALSE}
 endif
 
 # Supported top-level targets
