@@ -43,7 +43,7 @@ DEPEND_USE+=		python
 DEPEND_ABI.python?=	python>=${PYTHON_REQD}
 
 SYSTEM_SEARCH.python=\
-	'bin/python{2.5,2.4,2.3,${PYTHON_REQD},}:s/[^.0-9]//gp:% --version'
+	'bin/python{[0-9].[0-9],${PYTHON_REQD},}:s/[^.0-9]//gp:% --version'
 
 export PYTHON=		$(firstword ${SYSTEM_FILES.python})
 
