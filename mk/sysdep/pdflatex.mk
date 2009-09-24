@@ -1,4 +1,4 @@
-# $LAAS: pdflatex.mk 2009/06/11 16:03:29 mallet $
+# $LAAS: pdflatex.mk 2009/09/23 19:38:50 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -33,6 +33,7 @@ SYSTEM_SEARCH.pdflatex=	\
 	'bin/pdflatex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
 
 SYSTEM_PKG.Linux-ubuntu.pdflatex=texlive-latex-extra
+SYSTEM_PKG.Linux-debian.pdflatex=texlive-latex-extra
 
 export PDFLATEX=	${PREFIX.pdflatex}/bin/pdflatex
 

@@ -1,4 +1,4 @@
-# $LAAS: termcap.mk 2009/02/20 17:24:50 tho $
+# $LAAS: termcap.mk 2009/09/23 18:57:00 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -40,6 +40,7 @@ SYSTEM_DESCR.termcap=	"curses, ncurses, termlib or termcap"
 
 SYSTEM_PKG.Linux-fedora.termcap=	"ncurses-devel"
 SYSTEM_PKG.Linux-ubuntu.termcap=	"libncurses-dev"
+SYSTEM_PKG.Linux-debian.termcap=	"libncurses-dev"
 SYSTEM_PKG.NetBSD.termcap=		"pkgsrc/devel/ncurses"
 
 SYSTEM_SEARCH.termcap=\

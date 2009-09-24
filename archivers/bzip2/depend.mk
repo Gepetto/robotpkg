@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/06/15 18:14:53 mallet $
+# $LAAS: depend.mk 2009/09/23 18:54:43 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -28,6 +28,7 @@ PREFER.bzip2?=		system
 
 SYSTEM_PKG.Linux-fedora.bzip2=	bzip2-devel
 SYSTEM_PKG.Linux-ubuntu.bzip2=	libbz2-dev
+SYSTEM_PKG.Linux-debian.bzip2=	bzip2 libbz2-dev
 
 SYSTEM_SEARCH.bzip2=	\
 	bin/bzip2	\

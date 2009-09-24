@@ -1,4 +1,4 @@
-# $LAAS: tcl.mk 2009/07/31 20:41:35 tho $
+# $LAAS: tcl.mk 2009/09/23 19:33:24 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -36,7 +36,9 @@ SYSTEM_SEARCH.tcl=	\
 	'lib/{,tcl{,[0-9]*}/}tclConfig.sh:/TCL_VERSION/s/[^.0-9]//gp'	\
 	'include/{,tcl{,[0-9]*}/}tcl.h:/TCL_VERSION/s/[^.0-9]//gp'
 
-SYSTEM_PKG.Linux-ubuntu.tcl=tcl-dev
+SYSTEM_PKG.Linux-fedora.tcl=	tcl-devel
+SYSTEM_PKG.Linux-ubuntu.tcl=	tcl-dev
+SYSTEM_PKG.Linux-debian.tcl=	tcl-dev
 
 TCL_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tcl})
 
