@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/05/25 14:19:30 tho $
+# $LAAS: Makefile 2009/09/30 12:14:52 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -16,9 +16,9 @@
 #                                       Anthony Mallet on Tue Nov 20 2007
 #
 
-DISTNAME=		insitu-1.2
+DISTNAME=		insitu-1.3
 CATEGORIES=		localization
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=insitu/}
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/05/25 14:20:02 tho $
+# $LAAS: depend.mk 2009/09/30 12:16:01 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -29,7 +29,7 @@ PREFER.insitu?=		robotpkg
 
 DEPEND_USE+=		insitu
 
-DEPEND_ABI.insitu?=	insitu>=1.2
+DEPEND_ABI.insitu?=	insitu>=1.3
 DEPEND_DIR.insitu?=	../../localization/insitu
 
 SYSTEM_SEARCH.insitu=\
