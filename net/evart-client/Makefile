@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/10/01 10:44:03 mallet $
+# $LAAS: Makefile 2009/10/01 19:13:28 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                      Anthony Mallet on Tue Jul 15 2008
 #
 
-VERSION=		1.4
+VERSION=		1.5
 DISTNAME=		evart-client-${VERSION}
 
 CATEGORIES=		net
@@ -28,7 +28,19 @@ MAINTAINER=		mallet@laas.fr
 COMMENT=		EVa Real-Time Software data streaming API.
 
 GNU_CONFIGURE=          yes
-BUILD_TARGET=		all doc
-INSTALL_TARGET=		install install-doc
+BUILD_TARGET=		all
+INSTALL_TARGET=		install
+
+# doc option
+PKG_SUPPORTED_OPTIONS+=	doc
+PKG_SUGGESTED_OPTIONS+=	doc
+PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
+
+define PKG_OPTION_SET.doc
+  BUILD_TARGET+=	doc
+  INSTALL_TARGET+=	install-doc
+  DOXYGEN_PLIST_DIR+=	share/doc/evart-client
+  include ../../mk/sysdep/doxygen.mk
+endef
 
 include ../../mk/robotpkg.mk

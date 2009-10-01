@@ -3,32 +3,3 @@ bin/evart-client
 include/evart-client.h
 lib/libevart-client.la
 lib/pkgconfig/evart-client.pc
-share/doc/evart-client/html/annotated.html
-share/doc/evart-client/html/changelog.html
-share/doc/evart-client/html/client.html
-share/doc/evart-client/html/closed.gif
-share/doc/evart-client/html/compile.html
-share/doc/evart-client/html/doxygen.css
-share/doc/evart-client/html/doxygen.png
-share/doc/evart-client/html/functions.html
-share/doc/evart-client/html/functions_vars.html
-share/doc/evart-client/html/group__constants.html
-share/doc/evart-client/html/group__control.html
-share/doc/evart-client/html/group__data.html
-share/doc/evart-client/html/group__init.html
-share/doc/evart-client/html/group__requests.html
-share/doc/evart-client/html/index.html
-share/doc/evart-client/html/license.html
-share/doc/evart-client/html/modules.html
-share/doc/evart-client/html/open.gif
-share/doc/evart-client/html/structevas__body__list__t.html
-share/doc/evart-client/html/structevas__body__markers__list__t.html
-share/doc/evart-client/html/structevas__body__markers__t.html
-share/doc/evart-client/html/structevas__msg__t.html
-share/doc/evart-client/html/structevas__unrecognized__markers__t.html
-share/doc/evart-client/html/tab_b.gif
-share/doc/evart-client/html/tab_l.gif
-share/doc/evart-client/html/tab_r.gif
-share/doc/evart-client/html/tabs.css
-@dirrm share/doc/evart-client/html
-@dirrm share/doc/evart-client
