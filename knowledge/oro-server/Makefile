@@ -17,7 +17,7 @@
 #                                          Séverin Lemaignan on Mon Jul 6 2009
 #
 
-DISTNAME=		oro-server-0.4.2
+DISTNAME=		oro-server-0.6.0
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=oro-server/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/oro-server
 
@@ -52,6 +52,5 @@ endef
 include ../../lang/sun-jre6/depend.mk
 include ../../knowledge/jena/depend.mk
 include ../../knowledge/pellet/depend.mk
-include ../../devel/libjyarp/depend.mk
 include ../../mk/robotpkg.mk
 
