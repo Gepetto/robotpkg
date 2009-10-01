@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/07/29 18:00:14 mallet $
+# $LAAS: Makefile 2009/10/01 10:44:03 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -21,6 +21,7 @@ DISTNAME=		evart-client-${VERSION}
 
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=evart/}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/evart-client
 
 MAINTAINER=		mallet@laas.fr
 #HOMEPAGE=		
