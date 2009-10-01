@@ -17,7 +17,7 @@
 #                                          Severin Lemaignan on Thu Jun 04 2009
 #
 
-DISTNAME=		liboro-0.4.4
+DISTNAME=		liboro-0.6.2
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=liboro/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/liboro
 
@@ -46,7 +46,6 @@ define PKG_OPTION_SET.doc
   include ../../mk/sysdep/doxygen.mk
 endef
 
-include ../../architecture/yarp/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../mk/sysdep/cmake.mk
