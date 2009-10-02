@@ -1,0 +1,11 @@
+--- include/walkGenJrl/PGTypes.h~
++++ include/walkGenJrl/PGTypes.h
+@@ -107,7 +107,7 @@ namespace PatternGeneratorJRL
+     MAL_MATRIX(A,double);
+     MAL_MATRIX(B,double);
+     MAL_VECTOR(Center,double);
+-    vector<int> SimilarConstraints;
++    std::vector<int> SimilarConstraints;
+     double StartingTime, EndingTime;
+   };
+   typedef struct LinearConstraintInequality_s 

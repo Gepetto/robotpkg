@@ -16,8 +16,8 @@
 #                                      Anthony Mallet on Wed Sep 17 2008
 #
 
-DISTNAME=	jrlmathtools-1.2
-PKGNAME=	jrl-mathtools-1.2
+DISTNAME=	jrlmathtools-1.3.0
+PKGNAME=	jrl-mathtools-1.3.0
 
 CATEGORIES=	math
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
@@ -27,9 +27,12 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic mathematical tools used in the JRL software.
 
-USE_LANGUAGES+=		c++
+USE_LANGUAGES+=		c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/jrlMathTools
+
+CMAKE_ARGS+=	-DBOOSTNUMERICBINDINGS_DIR=${PREFIX.boost-numeric-bindings}
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk
+include ../../devel/boost-numeric-bindings/depend.mk

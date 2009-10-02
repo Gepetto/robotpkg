@@ -1,0 +1,11 @@
+--- unitTesting/testdampedinverse.cpp~
++++ unitTesting/testdampedinverse.cpp
+@@ -47,7 +47,7 @@ int main (int argc, char** argv)
+   Jt.dampedInverse(Jp,1e-15,&U,0,&Vt );
+ 
+   std::ofstream aof;
+-  aof.open("V.txt",ofstream::out);
++  aof.open("V.txt", std::ofstream::out);
+   
+   maal::boost::Matrix M=Jt*Jp;
+ 	
