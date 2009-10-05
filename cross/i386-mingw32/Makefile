@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/07/03 02:48:58 tho $
+# $LAAS: Makefile 2009/10/05 17:23:10 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -116,7 +116,6 @@ gcc-install:
 	for file in c++ g++; do \
 		${LN} -f ${PREFIX}/bin/${TARGET_ARCH}-$$file ${TARGET_DIR}/bin/$$file; \
 	done
-	${RM} ${PREFIX}/bin/${TARGET_ARCH}-gcj
 	@cd ${GCC_WRKSRC} && ${SETENV} ${MAKE_ENV} \
 		${MAKE_PROGRAM} ${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} \
 		install-target-libstdc++-v3
