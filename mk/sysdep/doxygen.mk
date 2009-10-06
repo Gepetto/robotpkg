@@ -1,4 +1,4 @@
-# $LAAS: doxygen.mk 2009/03/01 17:12:20 tho $
+# $LAAS: doxygen.mk 2009/10/06 10:43:58 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -47,6 +47,8 @@ ifdef DOXYGEN_PLIST_DIR
 
   PRINT_PLIST_IGNORE_DIRS+=${DOXYGEN_PLIST_DIR}
 endif
+
+export DOXYGEN=		${PREFIX.doxygen}/bin/doxygen
 
 endif # DOXYGEN_DEPEND_MK --------------------------------------------------
 
