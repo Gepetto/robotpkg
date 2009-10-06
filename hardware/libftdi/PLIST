@@ -1,4 +1,4 @@
-@comment Mon Dec 22 13:41:01 CET 2008
+@comment Tue Oct 6 11:02:56 CEST 2009
 bin/bitbang
 bin/bitbang2
 bin/bitbang_cbus
@@ -9,3 +9,19 @@ bin/simple
 include/ftdi.h
 lib/libftdi.la
 lib/pkgconfig/libftdi.pc
+${PLIST.doc}man/man3/Ftdi.3
+${PLIST.doc}man/man3/Ftdi_Context.3
+${PLIST.doc}man/man3/Ftdi_Context_Private.3
+${PLIST.doc}man/man3/Ftdi_Eeprom.3
+${PLIST.doc}man/man3/Ftdi_Eeprom_Private.3
+${PLIST.doc}man/man3/Ftdi_List.3
+${PLIST.doc}man/man3/Ftdi_List_Private.3
+${PLIST.doc}man/man3/ftdi.c.3
+${PLIST.doc}man/man3/ftdi.cpp.3
+${PLIST.doc}man/man3/ftdi.h.3
+${PLIST.doc}man/man3/ftdi.hpp.3
+${PLIST.doc}man/man3/ftdi_context.3
+${PLIST.doc}man/man3/ftdi_device_list.3
+${PLIST.doc}man/man3/ftdi_eeprom.3
+${PLIST.doc}man/man3/libftdi.3
+${PLIST.doc}man/man3/usb_dev_handle.3
