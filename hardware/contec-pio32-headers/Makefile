@@ -23,10 +23,11 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=linux/}
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	header files for Contec PIO32 kernel interface
 
+NO_CONFIGURE=	yes
 NO_BUILD=	yes
 
 do-install:
-		${INSTALL_DATA} ${WRKSRC}/contec_dio.h	\
-			${ROBOTPKG_BASE}/include
+	${INSTALL_DATA_DIR} ${PREFIX}/include
+	${INSTALL_DATA} ${WRKSRC}/contec_dio.h ${PREFIX}/include
 
 include ../../mk/robotpkg.mk
