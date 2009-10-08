@@ -28,7 +28,7 @@ PREFER.GPS-genom?=	robotpkg
 
 DEPEND_USE+=		GPS-genom
 
-DEPEND_ABI.GPS-genom?=	GPS-genom>=0.2
+DEPEND_ABI.GPS-genom?=	GPS-genom>=0.3
 DEPEND_DIR.GPS-genom?=	../../localization/GPS-genom
 
 SYSTEM_SEARCH.GPS-genom=\
