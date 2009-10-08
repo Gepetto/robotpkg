@@ -16,8 +16,9 @@
 #                                      Arnaud Degroote on Tue May 20 2008
 #
 
-DISTNAME=		GPSNovatel-${VERSION}
-VERSION=		1.0.1
+PKGNAME=		GPSNovatel-${VERSION}
+DISTNAME=		gpsnovatel-${VERSION}
+VERSION=		1.2
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 

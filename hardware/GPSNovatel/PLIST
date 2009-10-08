@@ -1,16 +1,12 @@
-@comment mardi 20 mai 2008, 12:40:37 (UTC+0200)
+@comment Thu Oct 8 19:04:05 CEST 2009
+bin/GPSNovatelTest
 include/GPSNovatel/GPSNovatel.h
 include/GPSNovatel/horodatage.h
 include/GPSNovatel/logData.h
-include/GPSNovatel/moduleStruct.h
 include/GPSNovatel/msgParser.h
 include/GPSNovatel/msgStruct.h
-include/GPSNovatel/position.h
 include/GPSNovatel/sampleAPI.h
 include/GPSNovatel/serial.h
 lib/libGPSNovatel.la
 lib/pkgconfig/GPSNovatel.pc
-@dirrm lib/pkgconfig
-@dirrm lib
 @dirrm include/GPSNovatel
-@dirrm include
