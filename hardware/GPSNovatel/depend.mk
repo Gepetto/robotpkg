@@ -28,7 +28,7 @@ PREFER.GPSNovatel?=	robotpkg
 
 DEPEND_USE+=		GPSNovatel
 
-DEPEND_ABI.GPSNovatel?=	GPSNovatel>=1.0.1
+DEPEND_ABI.GPSNovatel?=	GPSNovatel>=1.2
 DEPEND_DIR.GPSNovatel?=	../../hardware/GPSNovatel
 
 SYSTEM_SEARCH.GPSNovatel=\
