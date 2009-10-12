@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/03/09 18:34:57 mallet $
+# $LAAS: Makefile 2009/10/12 18:24:21 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -16,9 +16,10 @@
 #                                       Anthony Mallet on Mon Aug 27 2007
 #
 
-DISTNAME=	hppWalkPlanner-${VERSION}
-PKGNAME=	hpp-walkplanner-${VERSION}
-VERSION=	3.1.2
+DISTNAME=	hppWalkPlanner-${PKGVERSION}
+PKGNAME=	hpp-walkplanner-${PKGVERSION}
+PKGVERSION=	3.1.2
+PKGREVISION=	1
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkplanner/}
