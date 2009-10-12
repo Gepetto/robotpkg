@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/10/12 18:24:21 mallet $
+# $LAAS: Makefile 2009/10/12 18:38:53 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -29,13 +29,15 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Path planning algorithm for a walking humanoid robot.
 
-GNU_CONFIGURE=	yes
+GNU_CONFIGURE=		yes
+DOXYGEN_PLIST_DIR+=	share/doc/hppWalkPlanner
 
 # options
-PKG_SUPPORTED_OPTIONS+=	verbose1
-PKG_OPTION_DESCR.verbose1=	Define level of verbosity
-PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+PKG_SUPPORTED_OPTIONS+=	verbose
+PKG_OPTION_DESCR.verbose=	Define level of verbosity
+PKG_OPTION_SET.verbose:=	CXXFLAGS+=-DDEBUG=1
 
+include ../../mk/sysdep/doxygen.mk
 include ../../robots/hrp2-14/depend.mk
 include ../../path/jrl-walkgen/depend.mk
 include ../../path/hpp-walkfootplanner/depend.mk
