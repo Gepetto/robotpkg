@@ -1,4 +1,4 @@
-# $LAAS: ant.mk 2009/06/03 11:11:53 mallet $
+# $LAAS: ant.mk 2009/10/13 12:13:32 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -45,8 +45,8 @@ MAKE_ENV+=		JAVACMD=$(call quote,${JAVA_HOME}/bin/java)
 
 BUILD_TARGET?=		# empty
 
-include ../../lang/sun-jdk6/depend.mk
-
 endif # ANT_DEPEND_MK ------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
+
+include ../../lang/sun-jdk6/depend.mk
