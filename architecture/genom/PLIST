@@ -5,7 +5,6 @@ bin/killmodule
 bin/killmymodules
 bin/tclserv
 include/genom/genomError.h
-include/genom/genomModulesLibProto.h
 include/genom/h2endian.h
 include/genom/h2endianProto.h
 include/genom/moduleEvents.h
