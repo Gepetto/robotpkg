@@ -1,9 +1,10 @@
-@comment Tue Jun 2 16:52:30 CEST 2009
+@comment Thu Sep 10 14:14:35 CEST 2009
 bin/yarp
 bin/yarpdev
 bin/yarphear
 bin/yarprun
 bin/yarpserver
+bin/yarpserver3
 include/yarp/AbstractCarrier.h
 include/yarp/Address.h
 include/yarp/BottleImpl.h
@@ -13,7 +14,6 @@ include/yarp/Carrier.h
 include/yarp/Carriers.h
 include/yarp/Companion.h
 include/yarp/dev/all.h
-include/yarp/dev/Attachable.h
 include/yarp/dev/AudioGrabberInterfaces.h
 include/yarp/dev/AudioVisualInterfaces.h
 include/yarp/dev/CalibratorInterfaces.h
@@ -31,7 +31,9 @@ include/yarp/dev/Drivers.h
 include/yarp/dev/FrameGrabberInterfaces.h
 include/yarp/dev/GenericSensorInterfaces.h
 include/yarp/dev/GPUInterface.h
+include/yarp/dev/PolyDriverDescriptor.h
 include/yarp/dev/PolyDriver.h
+include/yarp/dev/PolyDriverList.h
 include/yarp/dev/PreciselyTimed.h
 include/yarp/dev/RemoteFrameGrabber.h
 include/yarp/dev/SerialInterfaces.h
@@ -42,6 +44,7 @@ include/yarp/dev/ServerSoundGrabber.h
 include/yarp/dev/ServiceInterfaces.h
 include/yarp/dev/TestFrameGrabber.h
 include/yarp/dev/TestMotor.h
+include/yarp/dev/Wrapper.h
 include/yarp/DgramTwoWayStream.h
 include/yarp/Dispatcher.h
 include/yarp/Election.h
@@ -161,6 +164,7 @@ include/yarp/os/Property.h
 include/yarp/os/Random.h
 include/yarp/os/RateThread.h
 include/yarp/os/ResourceFinder.h
+include/yarp/os/RFModule.h
 include/yarp/os/Run.h
 include/yarp/os/Runnable.h
 include/yarp/os/Searchable.h
@@ -221,6 +225,7 @@ lib/libYARP_dev.so
 lib/libYARP_dev.so.${PKGVERSION}
 lib/libYARP_OS.so
 lib/libYARP_OS.so.${PKGVERSION}
+lib/libyarpserversql.so
 lib/libYARP_sig.so
 lib/libYARP_sig.so.${PKGVERSION}
 @dirrm include/yarp/sig

@@ -18,7 +18,7 @@
 #                                      Anthony Mallet on Thu Jan 22 2009
 #
 
-DISTNAME=		yarp-2.2.3
+DISTNAME=		yarp-2.2.4
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
@@ -32,6 +32,7 @@ CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 CMAKE_ARGS+=		-DACE_LINK_FLAGS=-L${PREFIX.ace}/lib
 CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
+CMAKE_ARGS+=		-DCREATE_YARPSERVER3=TRUE
 
 # XXX needs something more generic
 CXXFLAGS+=		-pthread
