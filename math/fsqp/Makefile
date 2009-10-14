@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/02/10 17:13:47 tho $
+# $LAAS: Makefile 2009/10/14 20:14:31 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -16,22 +16,37 @@
 #                                       Florent Lamiraux on Oct 14 2009
 #
 
-DISTNAME=	fsqp-${VERSION}
-PKGNAME=	fsqp-${VERSION}
-VERSION=	2.5d
+DISTNAME=	fsqp-${PKGVERSION}
+PKGVERSION=	2.5d
 
 CATEGORIES=	math
-NO_PUBLIC_SRC=	yes
-MASTER_SITES=		${MASTER_SITE_JRL}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}fsqp
+MASTER_SITES=	# non-free
 
 MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=	
+HOMEPAGE=	http://www.aemdesign.com/FSQPwhatis.htm
 COMMENT=	Feasible Sequential Quadratic Programming
+LICENSE=	aemdesign-cfsqp-license
+
+RESTRICTED=	Redistribution not permitted
+NO_PUBLIC_SRC=	${RESTRICTED}
+NO_PUBLIC_BIN=	${RESTRICTED}
+
+INTERACTIVE_STAGE=	fetch
+FETCH_MESSAGE+=\
+	"${bf}The file ${DISTNAME}${EXTRACT_SUFX} must be put manually into:${rm}"
+FETCH_MESSAGE+= "       ${DISTDIR}/"
+FETCH_MESSAGE+= ""
+FETCH_MESSAGE+= " To get the source code, contact AEM Design, Inc."
+FETCH_MESSAGE+= " Type \`${MAKE} show-license' for more information."
 
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/fsqp
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/unzip.mk
 include ../../mk/robotpkg.mk
+
+post-extract:
+	${CHMOD} +x ${WRKSRC}/install-sh
