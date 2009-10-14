@@ -1,1 +1,8 @@
-Optimized implementation of functions related to HRP-2 dynamics.
+FSQP is a source code for minimization of the maximum of a set of smooth
+objective functions subject to general smooth constraints. Two versions are
+available. One written in portable Fortran 77 (FFSQP), and the other written in
+portable standard C (CFSQP). This package contains the C version. Both versions
+have been tested and run successfully on most platforms, including Sun SPARCs,
+DECs, and IBM personal computers. Feedback from users concerning
+success/failure on various platforms would be greatly appreciated, as would
+suggested fixes in the case of a problem.
