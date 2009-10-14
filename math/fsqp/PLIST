@@ -1,0 +1,5 @@
+@comment Wed Oct 14 17:44:03 CEST 2009
+include/fsqp/cfsqpusr.h
+lib/libfsqp.la
+lib/pkgconfig/fsqp.pc
+@dirrm include/fsqp
