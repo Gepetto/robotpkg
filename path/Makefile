@@ -1,5 +1,7 @@
 # robotpkg path planning algorithms
 #
+# Please list in alphabetical order
+#
 
 COMMENT=	Path planning algorithms and tools
 
@@ -8,6 +10,7 @@ SUBDIR+=	gik-genom
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-dynamic-obstacle
 SUBDIR+=	hpp-gik
+SUBDIR+=	hpp-hik
 SUBDIR+=	hpp-openhrp
 SUBDIR+=	hpp-walkfootplanner
 SUBDIR+=	hpp-walkplanner
