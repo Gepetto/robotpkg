@@ -33,6 +33,9 @@ SYSTEM_SEARCH.fsqp=\
 	include/fsqp/cfsqpusr.h	\
 	lib/pkgconfig/fsqp.pc
 
+DEPEND_ABI.fsqp?=	fsqp>=2.5
+DEPEND_DIR.fsqp?=	../../math/fsqp
+
 endif # FSQP_DEPEND_MK --------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
