@@ -1,0 +1,30 @@
+@comment Fri Oct 16 17:45:16 CEST 2009
+include/hpplocalstepper/hppLosCentipedeFactory.hh
+include/hpplocalstepper/hppLosCentipede.hh
+include/hpplocalstepper/hppLosLink.hh
+include/hpplocalstepper/hppLosSolverBasic.hh
+include/hpplocalstepper/hppLosSolver.hh
+include/hpplocalstepper/tasks/hppLosCollisionAvoider.hh
+include/hpplocalstepper/tasks/hppLosComBoundingTask.hh
+include/hpplocalstepper/tasks/hppLosComTask.hh
+include/hpplocalstepper/tasks/hppLosConeTask.hh
+include/hpplocalstepper/tasks/hppLosConfigurationTask.hh
+include/hpplocalstepper/tasks/hppLosCoplanarTask.hh
+include/hpplocalstepper/tasks/hppLosDiscAvoider.hh
+include/hpplocalstepper/tasks/hppLosFeetAntiCollisionTask.hh
+include/hpplocalstepper/tasks/hppLosFeetAreaTask.hh
+include/hpplocalstepper/tasks/hppLosFeetProjectionTask.hh
+include/hpplocalstepper/tasks/hppLosGazeTask.hh
+include/hpplocalstepper/tasks/hppLosLinkConfigurationTask.hh
+include/hpplocalstepper/tasks/hppLosMultiTask.hh
+include/hpplocalstepper/tasks/hppLosParallelTask.hh
+include/hpplocalstepper/tasks/hppLosPlaneTask.hh
+include/hpplocalstepper/tasks/hppLosPointingTask.hh
+include/hpplocalstepper/tasks/hppLosPositionTask.hh
+include/hpplocalstepper/tasks/hppLosTask.hh
+include/hpplocalstepper/tasks/hppLosTransformationTask.hh
+include/hpplocalstepper/tasks/HRP2BasicCollisionAvoider.hh
+lib/libhpplocalstepper.la
+lib/pkgconfig/hpplocalstepper.pc
+@dirrm include/hpplocalstepper/tasks
+@dirrm include/hpplocalstepper

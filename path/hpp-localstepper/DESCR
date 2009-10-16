@@ -1,0 +1,4 @@
+Whole-body motion planning for humanoid robot with steps
+
+Given a set of tasks, compute a balanced motion from initial configuration to
+specified tasks generating a given number of steps.
