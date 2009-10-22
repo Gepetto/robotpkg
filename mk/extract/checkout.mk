@@ -1,4 +1,4 @@
-# $LAAS: checkout.mk 2009/03/16 22:59:28 tho $
+# $LAAS: checkout.mk 2009/10/22 15:49:02 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -91,6 +91,9 @@ ifeq (yes,$(call exists,${_COOKIE.checkout}))
 checkout ${_COOKIE.checkout}:;
 else
   ifdef _PKGSRC_BARRIER
+  # xxx temporary
+  $(call require,${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+
 checkout: ${_CHECKOUT_TARGETS}
   else
 checkout: barrier

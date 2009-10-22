@@ -1,4 +1,4 @@
-# $LAAS: extract.mk 2009/03/06 00:11:30 tho $
+# $LAAS: extract.mk 2009/10/22 15:49:11 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -94,6 +94,9 @@ extract:
 else
   $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
+
+  # xxx temporary
+  $(call require,${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
 
   ifdef _PKGSRC_BARRIER
 extract: ${_EXTRACT_TARGETS}
