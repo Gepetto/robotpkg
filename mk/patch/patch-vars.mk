@@ -1,4 +1,4 @@
-# $LAAS: patch-vars.mk 2009/03/08 22:34:48 tho $
+# $LAAS: patch-vars.mk 2009/10/21 23:09:42 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -71,6 +71,7 @@ _COOKIE.patch=		${WRKDIR}/.patch_done
 # Require the patch tool and patch targets if we have any patches to apply
 #
 ifneq (,$(or ${PATCHFILES},$(filter yes,$(call exists,${PATCHDIR}))))
+  DEPEND_METHOD.patch+=	bootstrap
   include ${ROBOTPKG_DIR}/mk/sysdep/patch.mk
   include ${ROBOTPKG_DIR}/mk/patch/patch.mk
 else
