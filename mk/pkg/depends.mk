@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/18 23:07:52 tho $
+# $LAAS: depends.mk 2009/10/21 23:18:05 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -159,7 +159,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 #
 # pkg-depends-file creates the robotpkg prefixes file.
 #
-.PHONE: pkg-depends-file
+.PHONY: pkg-depends-file
 pkg-depends-file: export hline:=${hline}
 pkg-depends-file: export bf:=${bf}
 pkg-depends-file: export rm:=${rm}
