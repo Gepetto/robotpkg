@@ -1,4 +1,4 @@
-# $LAAS: ncurses.mk 2009/04/02 22:06:24 tho $
+# $LAAS: ncurses.mk 2009/10/21 22:45:51 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -36,7 +36,7 @@ SYSTEM_PKG.Linux-ubuntu.ncurses=	libncurses-dev
 SYSTEM_PKG.NetBSD.ncurses=		pkgsrc/devel/ncurses
 
 SYSTEM_SEARCH.ncurses=\
-	'include/ncurses.h:/NCURSES_VERSION[ 	]/s/[^0-9.]//gp'	\
+	'include/{ncurses/,}ncurses.h:/NCURSES_VERSION[ 	]/s/[^0-9.]//gp'\
 	'lib/libncurses.{a,so}'
 
 

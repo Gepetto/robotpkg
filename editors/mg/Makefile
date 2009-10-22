@@ -16,7 +16,8 @@ MAKE_ENV=	PREFIX=${PREFIX}
 MAKE_ENV+=	LDADD=$(call quote,${LDFLAGS})
 
 # Define CFLAGS and LDFLAGS for ncurses
-DEPEND_INCDIRS.ncurses=		include
+DEPEND_INCDIRS.ncurses=		$(if $(filter NetBSD,${OPSYS}),include/ncurses)
+DEPEND_INCDIRS.ncurses+=	include
 DEPEND_LIBDIRS.ncurses=		lib
 DEPEND_RPATHDIRS.ncurses=	lib
 
