@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2009/03/08 23:23:14 tho $
+# $LAAS: resolve.mk 2009/10/21 23:13:12 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -136,7 +136,8 @@ define _dpd_adddep
       DEPENDS+=${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
     else ifneq (,$$(filter build,${DEPEND_METHOD.${1}}))
       BUILD_DEPENDS+=${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
-    else ifneq (,$$(filter bootstrap,${DEPEND_METHOD.${1}}))
+    endif
+    ifneq (,$$(filter bootstrap,${DEPEND_METHOD.${1}}))
       BOOTSTRAP_DEPENDS+=${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
     endif
   endif
