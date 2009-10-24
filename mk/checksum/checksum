@@ -58,7 +58,7 @@
 
 set -e		# exit on errors
 
-: ${DIGEST:=digest}
+: ${DIGEST:=robotpkg_digest}
 : ${CAT:=cat}
 : ${ECHO:=echo}
 : ${TEST:=test}
