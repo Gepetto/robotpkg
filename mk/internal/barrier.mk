@@ -1,4 +1,3 @@
-# $LAAS: barrier.mk 2009/06/11 23:58:55 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -35,14 +34,12 @@
 #					Anthony Mallet on Wed Dec  6 2006
 # 
 
-_COOKIE.barrier=	${WRKDIR}/.barrier_cookie
-
-
 # _BARRIER_PRE_TARGETS is a list of the targets that must be built before
 #	the "barrier" target invokes a new make.
 #
 _BARRIER_PRE_TARGETS=	makedirs
 _BARRIER_PRE_TARGETS+=	interactive
+_BARRIER_PRE_TARGETS+=	resolve-depends
 _BARRIER_PRE_TARGETS+=	checksum
 _BARRIER_PRE_TARGETS+=	depends
 
@@ -91,7 +88,7 @@ _BARRIER_CMDLINE_TARGETS+=$(filter ${_BARRIER_POST_TARGETS},${MAKECMDGOALS})
 #
 
 .PHONY: barrier
-barrier: ${_BARRIER_PRE_TARGETS} ${_COOKIE.barrier}
+barrier: ${_BARRIER_PRE_TARGETS}
 ifndef _PKGSRC_BARRIER
 	${RUN}cd ${CURDIR} && ${RECURSIVE_MAKE}				\
 		_PKGSRC_BARRIER=yes ${_BARRIER_CMDLINE_TARGETS}
@@ -99,12 +96,3 @@ ifndef _PKGSRC_BARRIER
 		"Done$(patsubst %, \`%',${_BARRIER_CMDLINE_TARGETS})"	\
 		"for ${PKGNAME}"
 endif
-
-
-# --- barrier-cookie (PRIVATE) ---------------------------------------
-#
-# barrier-cookie creates the "barrier" cookie file.
-#
-${_COOKIE.barrier}:
-	${RUN}${MKDIR} $(dir $@)
-	${RUN}${ECHO} ${PKGNAME} > $@
