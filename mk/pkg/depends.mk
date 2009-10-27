@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/10/21 23:18:05 tho $
+# $LAAS: depends.mk 2009/10/26 00:45:45 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -160,21 +160,26 @@ $(foreach _pkg_,${DEPEND_USE},						\
 # pkg-depends-file creates the robotpkg prefixes file.
 #
 .PHONY: pkg-depends-file
-pkg-depends-file: export hline:=${hline}
-pkg-depends-file: export bf:=${bf}
-pkg-depends-file: export rm:=${rm}
 pkg-depends-file:
 	${RUN}${MKDIR} $(dir ${_PKGDEP_FILE});				\
-	>${_PKGDEP_FILE}; exec 1>/dev/null 3>>${_PKGDEP_FILE};		\
+	>${_PKGDEP_FILE}; exec 3>>${_PKGDEP_FILE};			\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
 	prefix=`${PKG_INFO} -qp ${_pkg_} | ${SED} -e 's|^[^/]*||;q'`;	\
-	${_PREFIXSEARCH_CMD} -e -p "$$prefix" 				\
-		-d $(or $(call quote,${SYSTEM_DESCR.${_pkg_}}),"")	\
-		-n $(call quote,${PKGNAME})				\
-		-t robotpkg						\
+	${_PREFIXSEARCH_CMD} -p "$$prefix" 				\
 		"${_pkg_}" "${DEPEND_ABI.${_pkg_}}"			\
-		$(or ${SYSTEM_SEARCH.${_pkg_}}, "");			\
+		$(or ${SYSTEM_SEARCH.${_pkg_}}, "") >/dev/null || {	\
+		${ERROR_MSG} "${hline}";				\
+		${ERROR_MSG} "${bf}A package matching"			\
+			"\`${DEPEND_ABI.${_pkg_}}'${rm}";		\
+		${ERROR_MSG} "${bf}should be installed but some files"	\
+			"are missing.${rm}";				\
+		${ERROR_MSG} "";					\
+		${ERROR_MSG} "Please reinstall the package in"		\
+			"${DEPEND_DIR.${_pkg_}}";			\
+		${ERROR_MSG} "${hline}";				\
+		exit 2;							\
+	};								\
   )									\
 )
 
@@ -194,52 +199,78 @@ pkg-depends-install: ${_DEPENDS_FILE}
 	done
 
 
-# --- pkg-bootstrap-depends (PUBLIC, pkgsrc/mk/depends/depends.mk) ---
+# --- pkg-bootstrap-depends (PRIVATE, pkgsrc/mk/depends/bootstrap.mk) ------
 
-# bootstrap-depends is a public target to install any missing
-# dependencies needed during stages before the normal "depends"
-# stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
+# pkg-bootstrap-depends installs any missing robotpkg dependencies needed
+# during stages before the normal "depends" stage.  These dependencies are
+# package listed with DEPEND_METHOD.pkg set to bootstrap.
 #
 .PHONY: pkg-bootstrap-depends
 pkg-bootstrap-depends:
-	${RUN}args=$(call quote,$(subst :, ,${BOOTSTRAP_DEPENDS}));	\
-	set -- dummy $$args; shift;					\
-	while ${TEST} $$# -gt 0; do					\
-		pattern="$$1"; dir="$$2"; shift 2;			\
-		silent=${_BOOTSTRAP_VERBOSE};				\
-		${_DEPENDS_INSTALL_CMD};				\
-	done
+	${RUN} >${_PKGDEP_FILE};					\
+	silent=${_BOOTSTRAP_VERBOSE};					\
+  $(foreach _pkg_,${DEPEND_USE},					\
+    $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+      $(if $(filter bootstrap,${DEPEND_METHOD.${_pkg_}}),		\
+	pattern="${DEPEND_ABI.${_pkg_}}";				\
+	dir="${DEPEND_DIR.${_pkg_}}";					\
+	${_DEPENDS_INSTALL_CMD};					\
+	prefix=`${PKG_INFO} -qp "${_pkg_}" | ${SED} -e 's|^[^/]*||;q'`;	\
+	${_PREFIXSEARCH_CMD} -p "$$prefix" "${_pkg_}" "$$pattern"	\
+		$(or ${SYSTEM_SEARCH.${_pkg_}}, "")			\
+		>/dev/null 3>>${_PKGDEP_FILE} || {			\
+		${ERROR_MSG} "${hline}";				\
+		${ERROR_MSG} "${bf}A package matching"			\
+			"\`$$pattern'${rm}";				\
+		${ERROR_MSG} "${bf}is installed but some files are"	\
+			"missing.${rm}";				\
+		${ERROR_MSG} "";					\
+		${ERROR_MSG} "Please reinstall the package in $$dir";	\
+		${ERROR_MSG} "${hline}";				\
+		exit 2;							\
+	};								\
+      )									\
+    )									\
+  )
 
 # _DEPENDS_INSTALL_CMD expects "$pattern" to hold the dependency pattern
 #	and "$dir" to hold the package directory path associated with
 #	that dependency pattern.
 #
 _DEPENDS_INSTALL_CMD=							\
-	pkg=`${_PKG_BEST_EXISTS} "$$pattern" || ${TRUE}`;		\
-	case "$$pkg" in							\
+	best=`${_PKG_BEST_EXISTS} "$$pattern" || ${TRUE}`;		\
+	case "$$best" in						\
 	"")								\
-		${STEP_MSG} "Required installed package $$pattern: NOT found"; \
+		${STEP_MSG} "Required installed package $$pattern:"	\
+			"NOT found";					\
 		target=${DEPENDS_TARGET};				\
 		${STEP_MSG} "Verifying $$target for $$dir";		\
 		if ${TEST} ! -d "$$dir"; then				\
-			${ERROR_MSG} "[depends.mk] The directory \`\`$$dir'' does not exist."; \
+			${ERROR_MSG} "The directory \`$$dir' does not"	\
+				"exist.";				\
 			exit 1;						\
 		fi;							\
 		cd $$dir;						\
-		${SETENV} ${PKGSRC_MAKE_ENV} _PKGSRC_DEPS=", ${PKGNAME}${_PKGSRC_DEPS}" PKGNAME_REQD="$$pattern" ${MAKE} _AUTOMATIC=yes $$target; 	\
-		pkg=`${_PKG_BEST_EXISTS} "$$pattern" || ${TRUE}`;	\
-		case "$$pkg" in						\
-		"")	${ERROR_MSG} "[depends.mk] A package matching \`\`$$pattern'' should"; \
-			${ERROR_MSG} "    be installed, but one cannot be found.  Perhaps there is a"; \
-			${ERROR_MSG} "    stale work directory for $$dir?"; \
-			${ERROR_MSG} "    Try to ${MAKE} clean in $$dir."; \
+		${SETENV} ${PKGSRC_MAKE_ENV}				\
+			_PKGSRC_DEPS=", ${PKGNAME}${_PKGSRC_DEPS}"	\
+			PKGNAME_REQD="$$pattern"			\
+			${MAKE} _AUTOMATIC=yes $$target;		\
+		best=`${_PKG_BEST_EXISTS} "$$pattern" || ${TRUE}`;	\
+		case "$$best" in					\
+		"")	${ERROR_MSG} "A package matching \`$$pattern'"	\
+				" should";				\
+			${ERROR_MSG} "be installed, but one cannot be"	\
+				"found.  Perhaps there is a";		\
+			${ERROR_MSG} "stale work directory for $$dir?"; \
+			${ERROR_MSG} "Try to ${MAKE} clean in $$dir.";	\
 			exit 1;						\
 		esac;							\
 		${STEP_MSG} "Returning to build of ${PKGNAME}";		\
 		;;							\
 	*)								\
 		if ${TEST} -z "$$silent"; then				\
-			${STEP_MSG} "Required robotpkg package $$pattern: $$pkg found"; \
+			${STEP_MSG} "Required robotpkg package"		\
+				"$$pattern: $$best found";		\
 		fi;							\
 		;;							\
 	esac
