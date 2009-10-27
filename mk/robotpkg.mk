@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/07/28 14:05:04 mallet $
+# $LAAS: robotpkg.mk 2009/10/25 22:24:16 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -269,6 +269,9 @@ endif
 
 # Locking
 include ${ROBOTPKG_DIR}/mk/internal/locking.mk
+
+# Barrier
+$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 
 # Process user build options
 $(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
