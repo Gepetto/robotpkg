@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/10/25 10:39:50 tho $
+# $LAAS: depends.mk 2009/10/27 16:10:26 mallet $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -77,7 +77,7 @@ endif
 #
 _REAL_DEPENDS_TARGETS+=	pre-depends-hook
 _REAL_DEPENDS_TARGETS+=	depends-message
-_REAL_DEPENDS_TARGETS+= sysdep-depends
+_REAL_DEPENDS_TARGETS+= sys-depends
 _REAL_DEPENDS_TARGETS+=	pkg-depends-build-options
 _REAL_DEPENDS_TARGETS+=	pkg-depends-install
 _REAL_DEPENDS_TARGETS+=	pkg-depends-file

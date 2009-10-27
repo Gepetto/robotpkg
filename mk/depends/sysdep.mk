@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2009/03/20 11:41:55 mallet $
+# $LAAS: sysdep.mk 2009/10/27 16:50:31 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -30,32 +30,33 @@
 #                                      Anthony Mallet on Sun Mar  8 2009
 #
 
-# Compute the prefix of packages that we are pulling from the system.
-#
-_PREFIXSEARCH_CMD=\
-	${SETENV} ECHO=${ECHO}					\
-		  TEST=${TEST}					\
-		  SED=${SED}					\
-		  AWK=${AWK}					\
-		  PKG_ADMIN_CMD=$(call quote,${PKG_ADMIN_CMD})	\
-		  MAKECONF=$(call quote,${MAKECONF})		\
-	${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
+
+.PHONY: sys-depends
+sys-depends: export hline:=${hline}
+sys-depends: export bf:=${bf}
+sys-depends: export rm:=${rm}
+sys-depends:
+	$(call sys-resolve, build full, ${_SYSDEP_FILE})
+
+.PHONY: sys-bootstrap-depends
+sys-bootstrap-depends: export hline:=${hline}
+sys-bootstrap-depends: export bf:=${bf}
+sys-bootstrap-depends: export rm:=${rm}
+sys-bootstrap-depends:
+	$(call sys-resolve, bootstrap, ${_SYSBSDEP_FILE})
 
 
-# --- sysdep-depends (PRIVATE) ---------------------------------------------
+# --- sys-resolve (PRIVATE) ------------------------------------------------
 #
-# sysdep-depends checks for any missing system dependencies. These
+# sys-resolve checks for any missing system dependencies. These
 # dependencies are those listed in DEPEND_PKG with a PREFER.<pkg> set to
 # 'system' or 'auto'.
 #
-.PHONY: sysdep-depends
-sysdep-depends: export hline:=${hline}
-sysdep-depends: export bf:=${bf}
-sysdep-depends: export rm:=${rm}
-sysdep-depends:
-	${RUN}${MKDIR} $(dir ${_SYSDEP_FILE}); >${_SYSDEP_FILE};	\
+override define sys-resolve
+	${RUN}${MKDIR} $(dir ${_SYSDEP_FILE}); >$2;			\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),,				\
+    $(if $(filter $1,${DEPEND_METHOD.${_pkg_}}),			\
 	found=`${_PREFIXSEARCH_CMD} -e	 				\
 	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
 	     -n $(call quote,${PKGNAME})				\
@@ -70,10 +71,12 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	     -t	system							\
 		$(call quote,${_pkg_})					\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
-		${SYSTEM_SEARCH.${_pkg_}} 3>>${_SYSDEP_FILE}`		\
+		${SYSTEM_SEARCH.${_pkg_}} 3>>$2`			\
 	$(if $(call isyes,${SYSDEP_VERBOSE}), &&			\
 	   ${STEP_MSG} "Required system package ${DEPEND_ABI.${_pkg_}}:"\
 		"$$found found")					\
 	|| { ${RM} ${_SYSDEP_FILE}; exit 2; };				\
+    )									\
   )									\
 )
+endef
