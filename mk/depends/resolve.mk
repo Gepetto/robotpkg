@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2009/10/21 23:13:12 tho $
+# $LAAS: resolve.mk 2009/10/27 18:52:47 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -143,18 +143,6 @@ define _dpd_adddep
   endif
 endef
 $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
-
-
-# Check PREFIX.<pkg> variable for each depended packages.
-#
-ifdef _PKGSRC_BARRIER
-  override define _dpd_pkgprefix
-    ifndef PREFIX.${1}
-      PKG_FAIL_REASON+=	"The prefix for ${1} has not been defined."
-    endif
-  endef
-  $(foreach _pkg_,${DEPEND_USE},$(eval $(call _dpd_pkgprefix,${_pkg_})))
-endif
 
 
 # Generate default values for:
