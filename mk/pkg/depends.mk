@@ -77,7 +77,12 @@ pkg-depends-cookie: ${_DEPENDS_FILE}
 
 ${_DEPENDS_FILE}:
 	${RUN} ${MKDIR} $(dir $@)
-	${RUN} ${_REDUCE_DEPENDS_CMD} $(call quote,${BUILD_DEPENDS}) > $@.tmp
+	${RUN} ${_REDUCE_DEPENDS_CMD}					\
+	  $(call quote,$(foreach _pkg_,${DEPEND_USE},			\
+	    $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
+	      $(if $(filter build,${DEPEND_METHOD.${_pkg_}}),		\
+	        ${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}}		\
+	  )))) > $@.tmp
 	${RUN} exec 0< $@.tmp;						\
 	while read dep; do						\
 		pattern=`${ECHO} $$dep | ${SED} -e "s,:.*,,"`;		\
@@ -86,7 +91,12 @@ ${_DEPENDS_FILE}:
 		${TEST} -n "$$dir" || exit 1;				\
 		${ECHO} "build	$$pattern	$$dir";			\
 	done >> $@
-	${RUN} ${_REDUCE_DEPENDS_CMD} $(call quote,${DEPENDS}) > $@.tmp
+	${RUN} ${_REDUCE_DEPENDS_CMD}					\
+	  $(call quote,$(foreach _pkg_,${DEPEND_USE},			\
+	    $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
+	      $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),		\
+	        ${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}}		\
+	  )))) > $@.tmp
 	${RUN} exec 0< $@.tmp;						\
 	while read dep; do						\
 		pattern=`${ECHO} $$dep | ${SED} -e "s,:.*,,"`;		\
@@ -191,10 +201,10 @@ $(foreach _pkg_,${DEPEND_USE},						\
 #
 .PHONY: pkg-depends-install
 pkg-depends-install: ${_DEPENDS_FILE}
-	${RUN}set -- dummy `${CAT} ${_DEPENDS_FILE}`; shift;		\
+	${RUN}silent=;							\
+	set -- dummy `${CAT} ${_DEPENDS_FILE}`; shift;			\
 	while ${TEST} $$# -gt 0; do					\
 		type="$$1"; pattern="$$2"; dir="$$3"; shift 3;		\
-		silent=;						\
 		${_DEPENDS_INSTALL_CMD};				\
 	done
 
