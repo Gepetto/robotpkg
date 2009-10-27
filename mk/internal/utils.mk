@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/07/28 11:16:13 mallet $
+# $LAAS: utils.mk 2009/10/25 18:39:50 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -93,7 +93,7 @@ hline:="${bf}$(subst =,=======,==========)${rm}"
 # Create initial working directories
 #
 .PHONY: makedirs
-makedirs: ${WRKDIR}
+makedirs: ${WRKDIR} interactive
 
 ${WRKDIR}:
 	${RUN}${MKDIR} ${WRKDIR}
