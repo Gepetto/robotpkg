@@ -1,4 +1,3 @@
-# $LAAS: depends-vars.mk 2009/10/26 23:33:41 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -58,7 +57,8 @@ SYSDEP_VERBOSE?=	yes
 
 _SYSDEP_FILE=		${WRKDIR}/.sysdep
 _PKGDEP_FILE=		${WRKDIR}/.pkgdep
-_DEPENDVAR_FILE=	${WRKDIR}/.depends.vars
+_SYSBSDEP_FILE=		${WRKDIR}/.bootstrap-sysdep
+_PKGBSDEP_FILE=		${WRKDIR}/.bootstrap-pkgdep
 
 _COOKIE.bootstrapdepend=${WRKDIR}/.bootstrapdepend_done
 _COOKIE.depends=	${WRKDIR}/.depends_done
@@ -144,6 +144,8 @@ depends-clean:
 # Include the file with system package prefixes
 #
 ifdef _PKGSRC_BARRIER
+  -include ${_SYSBSDEP_FILE}
+  -include ${_PKGBSDEP_FILE}
   -include ${_SYSDEP_FILE}
   -include ${_PKGDEP_FILE}
 endif

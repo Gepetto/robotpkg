@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/10/26 00:45:45 tho $
+# $LAAS: depends.mk 2009/10/27 16:49:51 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -207,7 +207,7 @@ pkg-depends-install: ${_DEPENDS_FILE}
 #
 .PHONY: pkg-bootstrap-depends
 pkg-bootstrap-depends:
-	${RUN} >${_PKGDEP_FILE};					\
+	${RUN} >${_PKGBSDEP_FILE};					\
 	silent=${_BOOTSTRAP_VERBOSE};					\
   $(foreach _pkg_,${DEPEND_USE},					\
     $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
@@ -218,7 +218,7 @@ pkg-bootstrap-depends:
 	prefix=`${PKG_INFO} -qp "${_pkg_}" | ${SED} -e 's|^[^/]*||;q'`;	\
 	${_PREFIXSEARCH_CMD} -p "$$prefix" "${_pkg_}" "$$pattern"	\
 		$(or ${SYSTEM_SEARCH.${_pkg_}}, "")			\
-		>/dev/null 3>>${_PKGDEP_FILE} || {			\
+		>/dev/null 3>>${_PKGBSDEP_FILE} || {			\
 		${ERROR_MSG} "${hline}";				\
 		${ERROR_MSG} "${bf}A package matching"			\
 			"\`$$pattern'${rm}";				\
