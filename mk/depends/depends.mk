@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/10/27 16:10:26 mallet $
+# $LAAS: depends.mk 2009/10/27 18:34:56 mallet $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -49,6 +49,7 @@
 # depends is a public target to install missing dependencies for
 # the package.
 #
+_DEPENDS_TARGETS+=	bootstrap-depends
 _DEPENDS_TARGETS+=	acquire-depends-lock
 _DEPENDS_TARGETS+=	${_COOKIE.depends}
 _DEPENDS_TARGETS+=	release-depends-lock
