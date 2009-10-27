@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007 LAAS/CNRS                        --  Wed May 30 2007
+# Copyright (c) 2007,2009 LAAS/CNRS                        --  Wed May 30 2007
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -76,7 +76,6 @@ _cbbh:
 	@${FAIL}
 
 ifeq (no,${_CBBH})
-# XXX: bootstrap-depends is only used here because it is depended
-# upon by each of the "main" pkgsrc targets.
-bootstrap-depends: _cbbh
+fetch checksum extract patch configure all build install package: _cbbh
+update depends bootstrap-depends: _cbbh
 endif
