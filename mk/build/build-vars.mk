@@ -1,4 +1,4 @@
-# $LAAS: build-vars.mk 2009/03/13 11:19:44 mallet $
+# $LAAS: build-vars.mk 2009/10/27 17:25:04 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -107,16 +107,10 @@ ifndef NO_BUILD
   include ${ROBOTPKG_DIR}/mk/build/build.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.build}))
-build:
+    build:
 	@${DO_NADA}
   else
-    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-
-    ifdef _PKGSRC_BARRIER
-build: configure build-cookie #pkginstall
-    else
-build: barrier
-    endif
+    build: $(call barrier, depends, configure build-cookie)
   endif
 endif
 

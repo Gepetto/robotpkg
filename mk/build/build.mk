@@ -1,4 +1,4 @@
-# $LAAS: build.mk 2009/03/10 22:01:25 tho $
+# $LAAS: build.mk 2009/10/27 17:25:33 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -78,18 +78,13 @@ _BUILD_TARGETS+=	release-build-lock
 
 .PHONY: build
 ifeq (yes,$(call exists,${_COOKIE.build}))
-build:
+  build:
 	@${DO_NADA}
 else
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
 
-  ifdef _PKGSRC_BARRIER
-build: ${_BUILD_TARGETS}
-  else
-build: barrier
-  endif
+  build: $(call barrier, depends, ${_BUILD_TARGETS})
 endif
 
 .PHONY: acquire-build-lock release-build-lock

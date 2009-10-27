@@ -1,4 +1,4 @@
-# $LAAS: configure-vars.mk 2009/03/09 18:15:23 mallet $
+# $LAAS: configure-vars.mk 2009/10/27 17:22:39 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -82,22 +82,18 @@ ifndef NO_CONFIGURE
   include ${ROBOTPKG_DIR}/mk/configure/configure.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.configure}))
-configure:
+    configure:
 	@${DO_NADA}
   else
-    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
     $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
-    ifdef _PKGSRC_BARRIER
-      ifdef _EXTRACT_IS_CHECKOUT
-        configure: configure-cookie
-      else
-        $(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
-        configure: patch configure-cookie
-      endif
-    else
-      configure: barrier
+    ifndef _EXTRACT_IS_CHECKOUT
+      $(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
+      _CONFIGURE_TARGETS+=	patch
     endif
+    _CONFIGURE_TARGETS+=	configure-cookie
+
+    configure: $(call barrier, depends, ${_CONFIGURE_TARGETS})
   endif
 endif
 

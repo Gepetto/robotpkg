@@ -1,4 +1,4 @@
-# $LAAS: print-plist.mk 2009/06/12 00:23:20 tho $
+# $LAAS: print-plist.mk 2009/10/27 18:20:07 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -131,7 +131,7 @@ endif
 
 $(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 
-print-PLIST: print-PLIST-message install
+do-print-PLIST: print-PLIST-message install
 	${RUN} exec >${PRINT_PLIST_FILE};				\
 	${ECHO} '@comment '`${_CDATE_CMD}`;				\
 	{ ${_PRINT_PLIST_FILES_CMD} }					\

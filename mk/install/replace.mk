@@ -47,23 +47,18 @@ _REPLACE_TARGETS+=	replace-message
 # replace
 #
 
-.PHONY: replace
-ifdef _PKGSRC_BARRIER
   $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
-  ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
-    _SU_TARGETS+= replace
+.PHONY: replace
 
-    replace: ${_REPLACE_TARGETS} su-target-replace
-    su-replace: pkg-replace
-  else
-    replace: ${_REPLACE_TARGETS} pkg-replace
-  endif
+ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
+  _SU_TARGETS+= replace
+
+  replace: $(call barrier, depends, ${_REPLACE_TARGETS} su-target-replace)
+  su-replace: pkg-replace
 else
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-
-  replace: barrier
+  replace: $(call barrier, depends, ${_REPLACE_TARGETS} pkg-replace)
 endif
 
 .PHONY: replace-message

@@ -54,14 +54,7 @@ _INSTALL_TARGETS+=	release-install-lock
 ifeq (yes,$(call exists,${_COOKIE.install}))
   install:;
 else
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-
-  ifdef _PKGSRC_BARRIER
-    $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
-    install: ${_INSTALL_TARGETS}
-  else
-    install: barrier;
-  endif
+  install: $(call barrier, depends, ${_INSTALL_TARGETS})
 endif
 
 ifeq (yes,$(call exists,${_COOKIE.install}))

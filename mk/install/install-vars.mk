@@ -1,4 +1,4 @@
-# $LAAS: install-vars.mk 2009/03/17 18:56:53 mallet $
+# $LAAS: install-vars.mk 2009/10/27 17:29:38 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -66,14 +66,9 @@ else
     install:
 	@${DO_NADA}
   else
-    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
     $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
-    ifdef _PKGSRC_BARRIER
-      install: build install-cookie
-    else
-      install: barrier
-    endif
+    install: $(call barrier, depends, build install-cookie)
   endif
 endif
 

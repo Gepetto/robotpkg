@@ -1,4 +1,4 @@
-# $LAAS: patch-vars.mk 2009/10/21 23:09:42 tho $
+# $LAAS: patch-vars.mk 2009/10/26 23:06:36 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -63,33 +63,25 @@
 _PATCH_APPLIED_FILE=	${WRKDIR}/.patch
 _COOKIE.patch=		${WRKDIR}/.patch_done
 
-#.if (defined(PATCHDIR) && exists(${PATCHDIR})) || \
-#    (defined(LOCALPATCHES) && exists(${LOCALPATCHES}/${PKGPATH}))
-#USE_TOOLS+=	digest:bootstrap
-#.endif
 
-# Require the patch tool and patch targets if we have any patches to apply
+# --- patch (PUBLIC) -------------------------------------------------
+#
+# patch is a public target to apply the distribution and pkgsrc
+# patches to the extracted sources for the package.
 #
 ifneq (,$(or ${PATCHFILES},$(filter yes,$(call exists,${PATCHDIR}))))
-  DEPEND_METHOD.patch+=	bootstrap
-  include ${ROBOTPKG_DIR}/mk/sysdep/patch.mk
   include ${ROBOTPKG_DIR}/mk/patch/patch.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.patch}))
     patch:
 	@${DO_NADA}
   else
-    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
     $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
-    ifdef _PKGSRC_BARRIER
-      ifdef _EXTRACT_IS_CHECKOUT
-patch: checkout patch-cookie;
-      else
-patch: extract patch-cookie;
-      endif
+    ifdef _EXTRACT_IS_CHECKOUT
+      patch: $(call barrier, bootstrap-depends, checkout patch-cookie)
     else
-patch: barrier;
+      patch: $(call barrier, bootstrap-depends, extract patch-cookie)
     endif
   endif
 endif

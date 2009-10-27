@@ -1,4 +1,4 @@
-# $LAAS: fetch.mk 2009/03/09 22:11:10 tho $
+# $LAAS: fetch.mk 2009/10/25 21:56:02 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -108,15 +108,15 @@ $(foreach fetchfile,${_PATCHFILES},$(eval ${_PATCHFILES_VAR}))
 # fetch is a public target to fetch all of the package distribution
 # files.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
-_FETCH_TARGETS+=	bootstrap-depends
 _FETCH_TARGETS+=	pre-fetch
 _FETCH_TARGETS+=	do-fetch
 _FETCH_TARGETS+=	post-fetch
 
 .PHONY: fetch
-fetch: ${_FETCH_TARGETS}
+fetch: $(call barrier, bootstrap-depends, ${_FETCH_TARGETS})
 
 
 # --- pre-fetch, do-fetch, post-fetch (PUBLIC, override) -------------

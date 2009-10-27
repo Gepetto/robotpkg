@@ -1,4 +1,4 @@
-# $LAAS: configure.mk 2009/03/24 13:48:55 mallet $
+# $LAAS: configure.mk 2009/10/27 16:24:13 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -91,16 +91,11 @@ configure:
 	@${DO_NADA}
 else
   $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
   ifndef _EXTRACT_IS_CHECKOUT
     $(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
   endif
 
-  ifdef _PKGSRC_BARRIER
-configure: ${_CONFIGURE_TARGETS}
-  else
-configure: barrier
-  endif
+  configure: $(call barrier, depends, ${_CONFIGURE_TARGETS})
 endif
 
 .PHONY: acquire-configure-lock release-configure-lock

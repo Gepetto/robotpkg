@@ -1,4 +1,3 @@
-# $LAAS: patch.mk 2009/03/06 00:37:50 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -86,6 +85,13 @@
 #	man page for more details.  Defaults to "-F0" for zero fuzz.
 #
 
+# Require patch and digest tools
+DEPEND_METHOD.patch+=	bootstrap
+DEPEND_METHOD.digest+=	bootstrap
+include ${ROBOTPKG_DIR}/mk/sysdep/patch.mk
+include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
+
+
 # --- patch (PUBLIC) -------------------------------------------------
 #
 # patch is a public target to apply the distribution and pkgsrc
@@ -103,28 +109,19 @@ _PATCH_TARGETS+=	release-patch-lock
 
 .PHONY: patch
 ifeq (yes,$(call exists,${_COOKIE.patch}))
-patch:
+  patch:
 	@${DO_NADA}
 else
   $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 
-  ifdef _PKGSRC_BARRIER
-patch: ${_PATCH_TARGETS}
-  else
-patch: barrier
-  endif
+  patch: $(call barrier, bootstrap-depends, ${_PATCH_TARGETS})
 endif
 
 .PHONY: acquire-patch-lock release-patch-lock
 acquire-patch-lock: acquire-lock
 release-patch-lock: release-lock
 
-ifeq (yes,$(call exists,${_COOKIE.patch}))
-${_COOKIE.patch}:
-	@${DO_NADA}
-else
 ${_COOKIE.patch}: real-patch
-endif
 
 
 # --- real-patch (PRIVATE) -------------------------------------------
@@ -200,16 +197,6 @@ PATCH_ARGS+=		${_PATCH_BACKUP_ARG} .orig
 endif
 PATCH_FUZZ_FACTOR?=	-F0	# Default to zero fuzz
 
-_PKGSRC_PATCH_FAIL=							\
-if ${TEST} -n ${PKG_OPTIONS}"" ; then \
-	${ERROR_MSG} "=========================================================================="; \
-	${ERROR_MSG};							\
-	${ERROR_MSG} "Some of the selected build options and/or local patches may be incompatible."; \
-	${ERROR_MSG} "Please try building with fewer options or patches."; \
-	${ERROR_MSG};							\
-	${ERROR_MSG} "=========================================================================="; \
-fi; exit 1
-
 
 # --- do-distribution-patch (PRIVATE) --------------------------------
 #
@@ -262,7 +249,7 @@ $(foreach i,${PATCHFILES},						\
 	cd ${_DISTDIR};							\
 	${PATCH_DIST_CAT.$(subst =,--,${i})} |				\
 	${PATCH} ${PATCH_DIST_ARGS.$(subst =,--,${i})} ||		\
-		{ ${ERROR_MSG} "Patch ${i} failed"; ${_PKGSRC_PATCH_FAIL}; }; \
+		{ ${ERROR_MSG} "Patch ${i} failed"; exit 2; };		\
 	${ECHO} ${_DISTDIR}/${i} >> ${_PATCH_APPLIED_FILE};		\
 )
 
@@ -272,6 +259,8 @@ $(foreach i,${PATCHFILES},						\
 # do-pkgsrc-patch applies the pkgsrc patches to the extracted
 # sources.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+
 .PHONY: pkgsrc-patch-message do-pkgsrc-patch
 
 ifeq (yes,$(call exists,${PATCHDIR}))
@@ -285,13 +274,11 @@ pkgsrc-patch-message:
 	@${STEP_MSG} "Applying robotpkg patches for ${PKGNAME}"
 
 do-pkgsrc-patch:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 	fail=;								\
 	patches=$(call quote,${_PKGSRC_PATCHES});			\
 	patch_warning() {						\
-		${ECHO_MSG} "**************************************";	\
-		${ECHO_MSG} "$$1";					\
-		${ECHO_MSG} "**************************************";	\
+		${ERROR_MSG} "$$@";					\
 	};								\
 	for i in $$patches; do						\
 		${TEST} -f "$$i" || continue;				\
@@ -303,23 +290,31 @@ do-pkgsrc-patch:
 		${PATCHDIR}/patch-local-*) 				\
 			;;						\
 		${PATCHDIR}/patch-*) 					\
-			if ${TEST} ! -f ${DISTINFO_FILE}; then	\
-				patch_warning "Ignoring patch file $$i: distinfo not found"; \
+			filename=$${i##*/};				\
+			if ${TEST} ! -f ${DISTINFO_FILE}; then		\
+				patch_warning "Ignoring patch file"	\
+				  "$$filename: distinfo not found";	\
 				continue;				\
 			fi;						\
-			filename=`${BASENAME} $$i`;			\
-			algsum=`${AWK} '(NF == 4) && ($$2 == "('$$filename')") && ($$3 == "=") {print $$1 " " $$4}' ${DISTINFO_FILE} || ${TRUE}`; \
+			algsum=`${AWK} '(NF == 4) &&			\
+					($$2 == "('$$filename')") &&	\
+					($$3 == "=") {			\
+						print $$1 " " $$4	\
+					}' ${DISTINFO_FILE} || ${TRUE}`;\
 			if ${TEST} -z "$$algsum"; then			\
-				patch_warning "Ignoring patch file $$i: no checksum found"; \
+				patch_warning "Ignoring patch file"	\
+					"$$filename: no checksum found";\
 				continue;				\
 			fi;						\
 			set -- $$algsum;				\
 			alg="$$1";					\
 			recorded="$$2";					\
-			calcsum=`${TOOLS_DIGEST} $$alg < $$i`; 		\
-			${ECHO_PATCH_MSG} "Verifying $$filename (using digest algorithm $$alg)"; \
+			calcsum=`${DIGEST} $$alg < $$i`; 		\
+			${ECHO_PATCH_MSG} "Verifying $$filename"	\
+				" (using digest algorithm $$alg)";	\
 			if ${TEST} "$$calcsum" != "$$recorded"; then	\
-				patch_warning "Ignoring patch file $$i: invalid checksum"; \
+				patch_warning "Ignoring patch file"	\
+					"$$filename: invalid checksum"; \
 				fail="$$fail $$i";			\
 				continue;				\
 			fi;						\
@@ -338,9 +333,12 @@ do-pkgsrc-patch:
 		fi;							\
 	done;								\
 	if ${TEST} -n "$$fail"; then					\
-		${ERROR_MSG} "Patching failed due to modified or broken patch file(s):"; \
+		${ERROR_MSG} "${hline}";				\
+		${ERROR_MSG} "${bf}Patching failed due to modified or"	\
+			"broken patch file(s):${rm}";			\
 		for i in $$fail; do					\
-			${ERROR_MSG} "	$$i";				\
+			${ERROR_MSG} "	$${i##*/}";			\
 		done;							\
-		${_PKGSRC_PATCH_FAIL};					\
+		${ERROR_MSG} "${hline}";				\
+		exit 2;							\
 	fi

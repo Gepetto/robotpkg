@@ -1,4 +1,4 @@
-# $LAAS: extract-vars.mk 2009/03/16 23:03:18 tho $
+# $LAAS: extract-vars.mk 2009/10/27 18:28:10 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -150,14 +150,9 @@ else
 extract:
 	@${DO_NADA}
   else
-    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-    $(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
+    $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
-    ifdef _PKGSRC_BARRIER
-extract: tools extract-cookie
-    else
-extract: barrier
-    endif
+    extract: $(call barrier, bootstrap-depends, checksum extract-cookie)
   endif
 endif
 

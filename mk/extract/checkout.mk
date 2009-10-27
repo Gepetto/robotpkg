@@ -1,4 +1,4 @@
-# $LAAS: checkout.mk 2009/10/22 15:49:02 mallet $
+# $LAAS: checkout.mk 2009/10/27 18:29:11 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -81,7 +81,6 @@ endif
 #
 # checkout is a public target to perform checkout of a repository.
 #
-_CHECKOUT_TARGETS+=	tools
 _CHECKOUT_TARGETS+=	acquire-checkout-lock
 _CHECKOUT_TARGETS+=	${_COOKIE.checkout}
 _CHECKOUT_TARGETS+=	release-checkout-lock
@@ -90,16 +89,9 @@ _CHECKOUT_TARGETS+=	release-checkout-lock
 ifeq (yes,$(call exists,${_COOKIE.checkout}))
 checkout ${_COOKIE.checkout}:;
 else
-  ifdef _PKGSRC_BARRIER
-  # xxx temporary
-  $(call require,${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+  checkout: $(call barrier, bootstrap-depends, ${_CHECKOUT_TARGETS})
 
-checkout: ${_CHECKOUT_TARGETS}
-  else
-checkout: barrier
-  endif
-
-${_COOKIE.checkout}: real-checkout;
+  ${_COOKIE.checkout}: real-checkout;
 endif
 
 .PHONY: acquire-checkout-lock release-checkout-lock

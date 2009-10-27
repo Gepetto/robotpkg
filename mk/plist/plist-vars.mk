@@ -49,11 +49,7 @@ include ../../mk/plist/plist.mk
 #
 # print-PLIST is a public target to generate a initial PLIST for the package.
 #
-$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/plist/print-plist.mk)
 
 .PHONY: print-PLIST
-ifndef _PKGSRC_BARRIER
-  print-PLIST: barrier
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/plist/print-plist.mk)
-endif
+print-PLIST: $(call barrier, bootstrap-depends, do-print-PLIST)

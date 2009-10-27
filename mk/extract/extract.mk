@@ -1,4 +1,4 @@
-# $LAAS: extract.mk 2009/10/22 15:49:11 mallet $
+# $LAAS: extract.mk 2009/10/25 17:51:31 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -82,27 +82,21 @@ EXTRACT_DIR?=		${WRKDIR}
 #
 # extract is a public target to perform extraction.
 #
-_EXTRACT_TARGETS+=	tools
+_EXTRACT_TARGETS+=	checksum
 _EXTRACT_TARGETS+=	acquire-extract-lock
 _EXTRACT_TARGETS+=	${_COOKIE.extract}
 _EXTRACT_TARGETS+=	release-extract-lock
 
 .PHONY: extract
 ifeq (yes,$(call exists,${_COOKIE.extract}))
-extract:
+  extract:
 	@${DO_NADA}
 else
   $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
-  # xxx temporary
-  $(call require,${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+  extract: $(call barrier, bootstrap-depends, ${_EXTRACT_TARGETS})
 
-  ifdef _PKGSRC_BARRIER
-extract: ${_EXTRACT_TARGETS}
-  else
-extract: barrier
-  endif
 endif
 
 .PHONY: acquire-extract-lock release-extract-lock
