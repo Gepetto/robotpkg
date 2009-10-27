@@ -1,4 +1,4 @@
-# $LAAS: patch.mk 2009/01/14 22:40:48 tho $
+# $LAAS: patch.mk 2009/10/26 23:27:21 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -29,7 +29,7 @@ PREFER.patch?=		system
 
 DEPEND_USE+=		patch
 DEPEND_ABI.patch?=	patch>=2.0
-DEPEND_METHOD.patch+=	build
+DEPEND_METHOD.patch?=	build
 SYSTEM_SEARCH.patch=	'bin/patch:/[Pp]atch/s/[^0-9.]//gp:% -v'
 
 endif # PATCH_DEPEND_MK ----------------------------------------------------
