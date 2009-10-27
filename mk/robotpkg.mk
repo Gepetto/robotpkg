@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/10/25 22:24:16 tho $
+# $LAAS: robotpkg.mk 2009/10/27 15:48:40 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -54,10 +54,10 @@ $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 #    bootstrap-depends
 #    fetch
 #    checksum
-#    depends
-#    tools
 #    extract
 #    patch
+#    depends
+#    tools
 #    configure
 #    build
 #
