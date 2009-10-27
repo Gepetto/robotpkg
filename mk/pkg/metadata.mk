@@ -1,4 +1,4 @@
-# $LAAS: metadata.mk 2009/04/02 14:30:40 mallet $
+# $LAAS: metadata.mk 2009/10/27 18:26:27 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -79,6 +79,8 @@ ${PKG_DB_TMPDIR}/${_BUILD_INFO_FILE}: plist
 # involved in building the package, i.e. Makefile and patches.
 #
 _METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_BUILD_VERSION_FILE}
+
+$(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
 ${PKG_DB_TMPDIR}/${_BUILD_VERSION_FILE}:
 	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
