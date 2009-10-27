@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/03/20 11:42:49 mallet $
+# $LAAS: depends.mk 2009/10/25 10:39:50 tho $
 #
 # Copyright (c) 2006-2007,2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -67,26 +67,6 @@ else
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
   ${_COOKIE.depends}: real-depends;
-endif
-
-
-# --- bootstrap-depends (PUBLIC, OVERRIDE) ---------------------------
-#
-# bootstrap-depends is a public target to install any missing
-# dependencies needed during stages before the normal "depends"
-# stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
-#
-_BOOTSTRAPDEPENDS_TARGETS+= pkg-bootstrap-depends
-_BOOTSTRAPDEPENDS_TARGETS+= bootstrap-depends-cookie
-
-.PHONY: bootstrap-depends
-ifeq (yes,$(call exists,${_COOKIE.bootstrapdepend}))
-  bootstrap-depends:
-	@${DO_NADA}
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-
-  bootstrap-depends: ${_BOOTSTRAPDEPENDS_TARGETS}
 endif
 
 

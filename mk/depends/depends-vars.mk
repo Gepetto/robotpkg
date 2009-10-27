@@ -1,4 +1,4 @@
-# $LAAS: depends-vars.mk 2009/03/20 11:42:42 mallet $
+# $LAAS: depends-vars.mk 2009/10/26 23:33:41 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -58,6 +58,7 @@ SYSDEP_VERBOSE?=	yes
 
 _SYSDEP_FILE=		${WRKDIR}/.sysdep
 _PKGDEP_FILE=		${WRKDIR}/.pkgdep
+_DEPENDVAR_FILE=	${WRKDIR}/.depends.vars
 
 _COOKIE.bootstrapdepend=${WRKDIR}/.bootstrapdepend_done
 _COOKIE.depends=	${WRKDIR}/.depends_done
@@ -84,12 +85,24 @@ DEPENDS_TARGET=		reinstall
   endif
 endif
 
+# Compute the prefix of packages that we are pulling.
+#
+_PREFIXSEARCH_CMD=\
+	${SETENV} ECHO=${ECHO}					\
+		  TEST=${TEST}					\
+		  SED=${SED}					\
+		  AWK=${AWK}					\
+		  PKG_ADMIN_CMD=$(call quote,${PKG_ADMIN_CMD})	\
+		  MAKECONF=$(call quote,${MAKECONF})		\
+	${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
+
+
 # The following are the "public" targets provided by this module:
 #
 #    depends, bootstrap-depends, install-depends
 #
 
-# --- depends (PUBLIC) -----------------------------------------------
+# --- depends (PUBLIC) -----------------------------------------------------
 #
 # depends is a public target to install missing dependencies for
 # the package.
@@ -103,20 +116,18 @@ else
 endif
 
 
-# --- bootstrap-depends (PUBLIC, OVERRIDE) ---------------------------
+# --- bootstrap-depends (PUBLIC) -------------------------------------------
 #
-# bootstrap-depends is a public target to install any missing
-# dependencies needed during stages before the normal "depends"
-# stage.  These dependencies are listed in BOOTSTRAP_DEPENDS.
+# bootstrap-depends is a public target to install any missing dependencies
+# needed during stages before the normal "depends" stage.  These dependencies
+# are packages with DEPEND_METHOD.pkg set to bootstrap.
 #
 .PHONY: bootstrap-depends
 ifndef NO_DEPENDS
-  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends.mk)
-else ifeq (yes,$(call exists,${_COOKIE.bootstrapdepend}))
+  $(call require, ${ROBOTPKG_DIR}/mk/depends/bootstrap.mk)
+else
   bootstrap-depends:
 	@${DO_NADA}
-else
-  bootstrap-depends: bootstrap-depends-cookie
 endif
 
 
@@ -128,17 +139,6 @@ endif
 depends-clean:
 	${RUN}${RM} -f ${_COOKIE.depends}
 	${RUN}${RMDIR} -p $(dir ${_COOKIE.depends}) 2>/dev/null || ${TRUE}
-
-
-# --- bootstrap-depends-cookie (PRIVATE) -----------------------------------
-#
-# bootstrap-depends-cookie creates the "boostrap-depends" cookie file.
-#
-.PHONY: bootstrap-depends-cookie
-bootstrap-depends-cookie:
-	${RUN}${TEST} ! -f ${_COOKIE.bootstrapdepend} || ${FALSE}
-	${RUN}${MKDIR} $(dir ${_COOKIE.bootstrapdepend})
-	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.bootstrapdepend}
 
 
 # Include the file with system package prefixes
