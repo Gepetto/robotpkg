@@ -141,11 +141,9 @@ depends-clean:
 	${RUN}${RMDIR} -p $(dir ${_COOKIE.depends}) 2>/dev/null || ${TRUE}
 
 
-# Include the file with system package prefixes
+# --------------------------------------------------------------------------
 #
-ifdef _PKGSRC_BARRIER
-  -include ${_SYSBSDEP_FILE}
-  -include ${_PKGBSDEP_FILE}
-  -include ${_SYSDEP_FILE}
-  -include ${_PKGDEP_FILE}
-endif
+# Include the files holding package dependency information.
+#
+$(call -require, ${_SYSBSDEP_FILE} ${_PKGBSDEP_FILE})
+$(call -require, ${_SYSDEP_FILE} ${_PKGDEP_FILE})

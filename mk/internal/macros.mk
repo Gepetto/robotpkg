@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2009/06/01 00:33:14 tho $
+# $LAAS: macros.mk 2009/10/27 22:34:53 tho $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -55,6 +55,15 @@ endef
 #
 override define exists
 $(if $(wildcard $1),yes,no)
+endef
+
+
+# --- -require <file> ------------------------------------------------------
+#
+# Include <file> if it was not already included and it exists
+#
+override define -require
+$(foreach f,$1,$(if $(wildcard $f),$(call require, $f)))
 endef
 
 
