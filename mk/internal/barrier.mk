@@ -37,13 +37,12 @@
 # _BARRIER_PRE_TARGETS is a list of the targets that must be built before
 #	the "barrier" target invokes a new make.
 #
-_BARRIER_PRE_TARGETS=	makedirs
+_BARRIER_PRE_TARGETS+=	makedirs
 _BARRIER_PRE_TARGETS+=	interactive
-_BARRIER_PRE_TARGETS+=	resolve-depends
-_BARRIER_PRE_TARGETS+=	checksum
+_BARRIER_PRE_TARGETS+=	bootstrap-depends
 _BARRIER_PRE_TARGETS+=	depends
 
-$(call require,${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+#$(call require,${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
 
 # _BARRIER_POST_TARGETS is a list of the targets that must be built after
@@ -51,7 +50,9 @@ $(call require,${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 #	ordered so that if more than one is specified on the command-line,
 #	then robotpkg will still do the right thing.
 #
-_BARRIER_POST_TARGETS=	tools
+_BARRIER_POST_TARGETS+=	fetch
+_BARRIER_POST_TARGETS+=	checksum
+_BARRIER_POST_TARGETS+=	tools
 _BARRIER_POST_TARGETS+=	extract
 _BARRIER_POST_TARGETS+=	patch
 _BARRIER_POST_TARGETS+=	checkout
@@ -69,30 +70,32 @@ _BARRIER_POST_TARGETS+=	print-PLIST
 _BARRIER_CMDLINE_TARGETS+=$(filter ${_BARRIER_POST_TARGETS},${MAKECMDGOALS})
 
 
-# --- barrier (PRIVATE) ----------------------------------------------
+# --- barrier <targets> ----------------------------------------------------
 #
-# barrier is a helper target that can be used to separate targets
-# that should be built in a new make process from being built in
-# the current one.  The targets that must be built after the "barrier"
-# target invokes a new make should be listed in _BARRIER_POST_TARGETS,
-# and should be of the form:
+# Ouput the appropriate list of targets depending if we are before or after the
+# barrier.
 #
-#	ifndef _PKGSRC_BARRIER
-#	foo: barrier
-#	else
-#	foo: foo's real source dependencies
-#	endif
+override define barrier
+$(if ${_PKGSRC_BARRIER},$2,$1 barrier)
+endef
+
+
+# --- barrier (PRIVATE) ----------------------------------------------------
 #
-# Note that none of foo's real source dependencies should include
-# targets that occur before the barrier.
+# barrier is a helper target that can be used to separate targets that should
+# be built in a new make process from being built in the current one.  The
+# targets that must be built after the "barrier" target invokes a new make
+# should be listed in _BARRIER_POST_TARGETS, and should be of the form:
+#
+#	foo: $(call barrier, early dependencies, foo's source dependencies)
 #
 
 .PHONY: barrier
-barrier: ${_BARRIER_PRE_TARGETS}
+barrier:
 ifndef _PKGSRC_BARRIER
 	${RUN}cd ${CURDIR} && ${RECURSIVE_MAKE}				\
-		_PKGSRC_BARRIER=yes ${_BARRIER_CMDLINE_TARGETS}
+		_PKGSRC_BARRIER=yes ${MAKECMDGOALS}
 	@${PHASE_MSG}							\
-		"Done$(patsubst %, \`%',${_BARRIER_CMDLINE_TARGETS})"	\
+		"Done$(patsubst %, \`%',${MAKECMDGOALS})"		\
 		"for ${PKGNAME}"
 endif
