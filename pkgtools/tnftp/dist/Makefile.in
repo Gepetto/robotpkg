@@ -10,6 +10,8 @@ SHELL	= /bin/sh
 
 SUBDIRS	= libedit libnetbsd src
 
+.PHONY: all ftp install clean distclean
+
 all:	ftp
 
 ftp:	@LIBEDIT@ @LIBNETBSD@
