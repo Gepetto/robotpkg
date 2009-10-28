@@ -304,6 +304,7 @@ do-pkgsrc-patch:
 			if ${TEST} -z "$$algsum"; then			\
 				patch_warning "Ignoring patch file"	\
 					"$$filename: no checksum found";\
+				fail="$$fail $$i";			\
 				continue;				\
 			fi;						\
 			set -- $$algsum;				\
