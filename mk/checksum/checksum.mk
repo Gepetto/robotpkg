@@ -1,4 +1,4 @@
-# $LAAS: checksum.mk 2009/03/12 18:35:01 mallet $
+# $LAAS: checksum.mk 2009/10/26 00:01:10 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -44,122 +44,38 @@
 #
 
 $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
-$(call require, ${ROBOTPKG_DIR}/mk/tools/tools-vars.mk)
-
-
-_DIGEST_ALGORITHMS?=		SHA1 RMD160
-_PATCH_DIGEST_ALGORITHMS?=	SHA1
-_CONF_DIGEST_ALGORITHMS?=	SHA1
 
 # These variables are set by robotpkg/mk/fetch/fetch.mk.
 #_CKSUMFILES?=	# empty
 #_IGNOREFILES?=	# empty
+
+# Require digest tool
+DEPEND_METHOD.digest+=	bootstrap
+include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
+
+# The command for computing a file's checksum
+_CHECKSUM_CMD=								\
+	${SETENV} DIGEST=${DIGEST} CAT=${TOOLS_CAT}			\
+		ECHO=${TOOLS_ECHO} TEST=${TOOLS_TEST}			\
+	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
+
 
 # --- checksum (PUBLIC) ----------------------------------------------
 #
 # checksum is a public target to checksum the fetched distfiles
 # for the package.
 #
-_CHECKSUM_CMD=								\
-	${SETENV} DIGEST=${TOOLS_DIGEST} CAT=${TOOLS_CAT}		\
-		ECHO=${TOOLS_ECHO} TEST=${TOOLS_TEST}			\
-	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
-
-.PHONY: checksum
-checksum: check-configuration-file
-
 $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
-ifdef _EXTRACT_IS_CHECKOUT
-  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
-  checksum: bootstrap-depends
-else
-  checksum: fetch
-	${RUN}								\
-$(foreach _alg_,${_DIGEST_ALGORITHMS},					\
-	if cd ${DISTDIR} && ${_CHECKSUM_CMD} -a ${_alg_}		\
-		${DISTINFO_FILE} ${_CKSUMFILES}; then			\
-		${TRUE};						\
-	else								\
-		${ERROR_MSG} "Make sure the Makefile and checksum file (${DISTINFO_FILE})"; \
-		${ERROR_MSG} "are up to date.  If you want to override this check, type"; \
-		${ERROR_MSG} "\"${MAKE} NO_CHECKSUM=yes [other args]\"."; \
-		exit 1;							\
-	fi;								\
-)
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
+_CHECKSUM_TARGETS+=	check-configuration-file
+ifndef _EXTRACT_IS_CHECKOUT
+  _CHECKSUM_TARGETS+=	fetch
+  _CHECKSUM_TARGETS+=	checksum-files
 endif
 
-
-# --- makesum (PUBLIC) -----------------------------------------------
-#
-# makesum is a public target to add checksums of the distfiles for
-# the package to ${DISTINFO_FILE}.
-#
-.PHONY: makesum
-makesum: fetch
-	${RUN}								\
-	newfile=${DISTINFO_FILE}.$$$$;					\
-	cd ${DISTDIR};							\
-	for sumfile in "" ${_CKSUMFILES}; do				\
-		${TEST} -n "$$sumfile" || continue;			\
-		for a in "" ${_DIGEST_ALGORITHMS}; do			\
-			${TEST} -n "$$a" || continue;			\
-			${TOOLS_DIGEST} $$a $$sumfile >> $$newfile;	\
-		done;							\
-		${WC} -c $$sumfile |					\
-		${AWK} '{ print "Size (" $$2 ") = " $$1 " bytes" }'	\
-			>> $$newfile;					\
-	done;								\
-	for ignore in "" ${_IGNOREFILES}; do				\
-		${TEST} -n "$$ignore" || continue;			\
-		for a in "" ${_DIGEST_ALGORITHMS}; do			\
-			${TEST} -n "$$a" || continue;			\
-			${ECHO} "$$a ($$ignore) = IGNORE" >> $$newfile;	\
-		done;							\
-	done;								\
-	if ${TEST} -f ${DISTINFO_FILE}; then				\
-		${AWK} '$$2 ~ /\(patch-[a-z0-9]+\)/ { print $$0 }'	\
-			< ${DISTINFO_FILE} >> $$newfile;		\
-	fi;								\
-	if ${CMP} -s $$newfile ${DISTINFO_FILE}; then			\
-		${RM} -f $$newfile;					\
-		${ECHO_MSG} "=> distinfo: distfiles part unchanged.";	\
-	else								\
-		${MV} -f $$newfile ${DISTINFO_FILE};			\
-	fi
-
-
-# --- makepatchsum (PUBLIC) ------------------------------------------
-#
-# makepatchsum is a public target to add checksums of the patches
-# for the package to ${DISTINFO_FILE}.
-#
-.PHONY: makepatchsum
-makepatchsum:
-	${RUN}								\
-	newfile=${DISTINFO_FILE}.$$$$;					\
-	if ${TEST} -f ${DISTINFO_FILE}; then				\
-		${AWK} '$$2 !~ /\(patch-[a-z0-9]+\)/ { print $$0 }'	\
-			< ${DISTINFO_FILE} >> $$newfile;		\
-	fi;								\
-	if ${TEST} -d ${PATCHDIR}; then					\
-		( cd ${PATCHDIR};					\
-		  for sumfile in "" patch-*; do				\
-			case "$$sumfile" in				\
-			""|"patch-*") continue ;;			\
-			patch-local-*|*.orig|*.rej|*~) continue ;;	\
-			esac;						\
-			for a in "" ${_PATCH_DIGEST_ALGORITHMS}; do	\
-				${TEST} -n "$$a" || continue;		\
-				${TOOLS_DIGEST} $$a $$sumfile >> $$newfile; \
-			done;						\
-		  done );						\
-	fi;								\
-	if ${CMP} -s $$newfile ${DISTINFO_FILE}; then			\
-		${RM} -f $$newfile;					\
-		${ECHO_MSG} "=> distinfo: patches part unchanged.";	\
-	else								\
-		${MV} $$newfile ${DISTINFO_FILE};			\
-	fi
+.PHONY: checksum
+checksum: $(call barrier, bootstrap-depends, ${_CHECKSUM_TARGETS})
 
 
 # --- check-configuration-file (PRIVATE) -----------------------------
@@ -200,8 +116,29 @@ $(foreach _alg_,${_CONF_DIGEST_ALGORITHMS},				\
 	else								\
 	  for a in "" ${_CONF_DIGEST_ALGORITHMS}; do			\
 	    ${TEST} -n "$$a" || continue;				\
-	    ${TOOLS_DIGEST} $$a ${MAKECONF} >> ${_MAKECONF_CKSUM};	\
+	    ${DIGEST} $$a ${MAKECONF} >> ${_MAKECONF_CKSUM};		\
 	  done;								\
 	fi
 endif
 
+
+# --- checksum-files (PRIVATE) ---------------------------------------------
+#
+# checksum-files checks the checksum of distribution files.
+#
+.PHONY: checksum-files
+checksum-files:
+	${RUN}								\
+  $(foreach _alg_,${_DIGEST_ALGORITHMS},				\
+	if cd ${DISTDIR} && ${_CHECKSUM_CMD} -a ${_alg_}		\
+		${DISTINFO_FILE} ${_CKSUMFILES}; then			\
+		${TRUE};						\
+	else								\
+		${ERROR_MSG} "Make sure the Makefile and checksum file"	\
+			"(${DISTINFO_FILE})";				\
+		${ERROR_MSG} "are up to date.  If you want to override"	\
+			"this check, type";				\
+		${ERROR_MSG} "\"${MAKE} NO_CHECKSUM=yes [other args]\"."; \
+		exit 1;							\
+	fi;								\
+  )

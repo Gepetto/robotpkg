@@ -1,4 +1,4 @@
-# $LAAS: checksum-vars.mk 2009/03/12 18:34:27 mallet $
+# $LAAS: checksum-vars.mk 2009/10/26 00:08:49 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -50,27 +50,26 @@
 
 DISTINFO_FILE?=		${PKGDIR}/distinfo
 
+_DIGEST_ALGORITHMS?=		SHA1 RMD160
+_PATCH_DIGEST_ALGORITHMS?=	SHA1
+_CONF_DIGEST_ALGORITHMS?=	SHA1
+
 # The following are the "public" targets provided by this module:
 #
 #    checksum, makesum, makepatchsum, distinfo
 #
 
-# --- checksum, makesum, makepatchsum (PUBLIC) -----------------------
+# --- checksum (PUBLIC) ----------------------------------------------------
 #
 # checksum is a public target to checksum the fetched distfiles
 # for the package.
 #
-# makesum is a public target to add checksums of the distfiles for
-# the package to ${DISTINFO_FILE}.
-#
-# makepatchsum is a public target to add checksums of the patches
-# for the package to ${DISTINFO_FILE}.
-#
+.PHONY: checksum
+
 ifdef NO_CHECKSUM
   $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
-  .PHONY: checksum makesum makepatchsum
   ifdef _EXTRACT_IS_CHECKOUT
     checksum: bootstrap-depends
   else
@@ -78,23 +77,31 @@ ifdef NO_CHECKSUM
   endif
   checksum:
 	@${DO_NADA}
-
-  makesum makepatchsum:
-	@${DO_NADA}
 else
   include ${ROBOTPKG_DIR}/mk/checksum/checksum.mk
 endif
 
 
-# --- distinfo (PUBLIC) ----------------------------------------------
+# --- distinfo, makesum, makepatchsum (PUBLIC) -----------------------------
 #
 # distinfo is a public target to create ${DISTINFO_FILE}.
 #
-.PHONY: distinfo
-distinfo: makepatchsum makesum
+# makesum is a public target to add checksums of the distfiles for
+# the package to ${DISTINFO_FILE}.
+#
+# makepatchsum is a public target to add checksums of the patches
+# for the package to ${DISTINFO_FILE}.
+#
+.PHONY: distinfo makesum makepatchsum
+
+ifdef NO_CHECKSUM
+  distinfo makesum makepatchsum:
 	@${DO_NADA}
+else
+  include ${ROBOTPKG_DIR}/mk/checksum/distinfo.mk
+endif
 
 # Some short aliases for "makepatchsum" and "distinfo".
-.PHONY: mps mdi makedistinfo
+.PHONY: mps mdi
 mps: makepatchsum
-mdi makedistinfo: distinfo
+mdi: distinfo
