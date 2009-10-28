@@ -1,3 +1,5 @@
 SHA1 (eltclsh-1.10.tar.gz) = bd4876549612f1d9af9cf21459273334e8543c9d
 RMD160 (eltclsh-1.10.tar.gz) = 01ed8747084081448317f0e69881d23e886336aa
 Size (eltclsh-1.10.tar.gz) = 601477 bytes
+SHA1 (patch-aa) = e9feb42324a0a577a707384a983ddfffbbc7494b
+SHA1 (patch-ab) = 5db62d6349c2f68d1731522c7129124368e1a644

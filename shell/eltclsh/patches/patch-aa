@@ -1,0 +1,11 @@
+--- configure~	2009-10-28 17:29:23.726967000 +0100
++++ configure	2009-10-28 17:42:01.861393000 +0100
+@@ -21901,7 +21901,7 @@
+       $TK_PREFIX/lib                         \
+       /usr/local/lib                          \
+       /usr/lib                                \
+-      /Library/Frameworks/Tcl.framework       \
++      /Library/Frameworks/Tk.framework       \
+       $extra_lib                              \
+       ; \
+    do
