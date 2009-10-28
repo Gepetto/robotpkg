@@ -1,4 +1,4 @@
-# $LAAS: resolve.mk 2009/10/27 18:52:47 mallet $
+# $LAAS: resolve.mk 2009/10/28 17:10:14 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -226,13 +226,15 @@ DEPEND_LDFLAGS:=$(call lappend,$(addprefix -L,$(foreach 		\
 #
 # Ensure that ${LOCALBASE}/lib is first in this list.
 #
-DEPEND_LDFLAGS:=\
-  $(call append,${COMPILER_RPATH_FLAG}${LOCALBASE}/lib,${DEPEND_LDFLAGS})
+ifeq (yes,$(call isyes,${_USE_RPATH}))
+  DEPEND_LDFLAGS:=\
+    $(call append,${COMPILER_RPATH_FLAG}${LOCALBASE}/lib,${DEPEND_LDFLAGS})
 
-DEPEND_LDFLAGS:=$(call lappend,$(addprefix ${COMPILER_RPATH_FLAG},	\
-  $(foreach _pkg_,${DEPEND_USE},$(realpath $(filter-out /usr/lib,	\
-    $(addprefix ${PREFIX.${_pkg_}}/,${DEPEND_RPATHDIRS.${_pkg_}}))))),	\
+  DEPEND_LDFLAGS:=$(call lappend,$(addprefix ${COMPILER_RPATH_FLAG},	\
+    $(foreach _pkg_,${DEPEND_USE},$(realpath $(filter-out /usr/lib,	\
+      $(addprefix ${PREFIX.${_pkg_}}/,${DEPEND_RPATHDIRS.${_pkg_}}))))),\
 	${DEPEND_LDFLAGS})
+endif
 
 
 # We add DEPEND_CPPFLAGS to both CFLAGS and CXXFLAGS since much software

@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/05/28 18:58:34 mallet $
+# $LAAS: gcc.mk 2009/10/28 17:09:13 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -118,11 +118,12 @@ else
   endif
 endif
 
-## GNU ld option used to set the rpath
-LINKER_RPATH_FLAG=	-R
+## GNU ld option used to set the rpath.
+ifeq (yes,${_USE_RPATH})
+  LINKER_RPATH_FLAG=	-rpath
+  COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG},
+endif
 
-## GCC passes rpath directives to the linker using "-Wl,-R".
-COMPILER_RPATH_FLAG=	-Wl,${LINKER_RPATH_FLAG}
 
 
 # --- compiler options -----------------------------------------------------

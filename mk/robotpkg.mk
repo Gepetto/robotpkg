@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/10/28 14:58:44 mallet $
+# $LAAS: robotpkg.mk 2009/10/28 17:25:32 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -138,7 +138,9 @@ ALL_ENV+=	CFLAGS=$(call quote,${CFLAGS})
 ALL_ENV+=	CPPFLAGS=$(call quote,${CPPFLAGS})
 ALL_ENV+=	CXX=$(call quote,${CXX})
 ALL_ENV+=	CXXFLAGS=$(call quote,${CXXFLAGS})
-ALL_ENV+=	COMPILER_RPATH_FLAG=$(call quote,${COMPILER_RPATH_FLAG})
+ifeq (yes,$(call isyes,${_USE_RPATH}))
+  ALL_ENV+=	COMPILER_RPATH_FLAG=$(call quote,${COMPILER_RPATH_FLAG})
+endif
 ALL_ENV+=	F77=$(call quote,${FC})
 ALL_ENV+=	FC=$(call quote,${FC})
 ALL_ENV+=	FFLAGS=$(call quote,${FFLAGS})
