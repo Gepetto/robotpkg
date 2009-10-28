@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/10/27 15:48:40 mallet $
+# $LAAS: robotpkg.mk 2009/10/28 14:58:44 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -39,16 +39,6 @@
 # Please see the robotpkg/doc/robotpgk manual for details on the
 # variables used in this make file template.
 
-# Include any preferences, if not already included, and common
-# definitions. The file robotpkg.prefs.mk is protected against double
-# inclusion, but checking the flag here avoids loading and parsing it.
-#
-ifndef MK_ROBOTPKG_PREFS
-  include ../../mk/robotpkg.prefs.mk
-endif
-
-$(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
-
 # Make sure the default target is "all", which defaults to
 #
 #    bootstrap-depends
@@ -65,6 +55,16 @@ $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
 .PHONY: all
 all: build;
+
+# Include any preferences, if not already included, and common
+# definitions. The file robotpkg.prefs.mk is protected against double
+# inclusion, but checking the flag here avoids loading and parsing it.
+#
+ifndef MK_ROBOTPKG_PREFS
+  include ../../mk/robotpkg.prefs.mk
+endif
+
+$(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
 
 # --- Transform package Makefile variables and set defaults ----------
@@ -314,41 +314,6 @@ PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= ${hline}
   endif
-endif
-
-#
-# Now print some error messages that we know we should ignore the pkg
-#
-ifdef PKG_FAIL_REASON
-
-fetch checksum extract patch configure all build install package \
-update depends: do-check-pkg-fail-or-skip-reason
-
-.PHONY: do-check-pkg-fail-or-skip-reason
-do-check-pkg-fail-or-skip-reason:
-     ifdef SKIP_SILENT
-	@${DO_NADA}
-     else
-       ifdef PKG_FAIL_REASON
-	@for str in ${PKG_FAIL_REASON}; do				\
-		${ERROR_MSG} "$$str";					\
-	done
-       endif
-     endif
-     ifdef PKG_FAIL_REASON
-	@${FAIL}
-     endif
-endif
-
-.PHONY: do-check-pkg-fail-reason
-do-check-pkg-fail-reason:
-	@${DO_NADA}
-
-# This target should appear as a dependency of every top level target that
-# is intended to be called by the user or by a package different from the
-# current package.
-ifdef PKG_FAIL_REASON
-do-check-pkg-fail-reason: do-check-pkg-fail-or-skip-reason
 endif
 
 

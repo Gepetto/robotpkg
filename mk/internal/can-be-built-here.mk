@@ -45,8 +45,10 @@ _CBBH=			yes#, but see below.
 ifdef PKG_FAIL_REASON
 ifneq (,${PKG_FAIL_REASON})
 _CBBH=			no
-_CBBH_MSGS+=		"This package has set PKG_FAIL_REASON:"
+_CBBH_MSGS+=		"This package has failed for the following reason:"
+_CBBH_MSGS+=		"${hline}"
 _CBBH_MSGS+=		${PKG_FAIL_REASON}
+_CBBH_MSGS+=		"${hline}"
 endif
 endif
 
@@ -63,19 +65,31 @@ endif
 # whether this package can be built. If the package can not be built,
 # the reasons are given in the following lines.
 #
-.PHONY: can-be-built-here _cbbh
+.PHONY: can-be-built-here cbbh
 
 can-be-built-here:
 	@${ECHO} ${_CBBH}
 	@${ECHO} ${_CBBH_MSGS}
 
-_cbbh:
+cbbh:
 	@for str in ${_CBBH_MSGS}; do					\
 		${ERROR_MSG} "$$str";					\
 	done
-	@${FAIL}
+	@exit 2
 
 ifeq (no,${_CBBH})
-fetch checksum extract patch configure all build install package: _cbbh
-update depends bootstrap-depends: _cbbh
+  # include a fake file so that cbbh is called before anything else
+  $(if $(filter			\
+	fetch			\
+	depends			\
+	configure		\
+	build			\
+	install			\
+	update			\
+	package			\
+	bootstrap-depends	\
+	bootstrap-register,	\
+	${MAKECMDGOALS}),$(eval include ${ROBOTPKG_DIR}/mk/robotpkg.prefs.mk))
+
+  ${ROBOTPKG_DIR}/mk/robotpkg.prefs.mk: cbbh
 endif
