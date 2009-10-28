@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/10/25 18:39:50 tho $
+# $LAAS: utils.mk 2009/10/28 14:25:30 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -40,6 +40,8 @@
 
 # Used to print all the '===>' style prompts - override this to turn them off.
 #
+ECHO?=			echo
+TEST?=			test
 ECHO_MSG?=		${ECHO}
 PHASE_MSG?=		_bf() { ${ECHO_MSG} "${bf}===>" $$@ "${rm}"; }; _bf
 STEP_MSG?=		${ECHO_MSG} "=>"
