@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2008/05/25 14:22:52 tho $
+# $LAAS: depend.mk 2009/10/29 14:54:50 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -28,7 +28,7 @@ PREFER.pom-genom?=	robotpkg
 
 DEPEND_USE+=		pom-genom
 
-DEPEND_ABI.pom-genom?=	pom-genom>=0.5
+DEPEND_ABI.pom-genom?=	pom-genom>=0.5r1
 DEPEND_DIR.pom-genom?=	../../localization/pom-genom
 
 SYSTEM_SEARCH.pom-genom=\

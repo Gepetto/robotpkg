@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/10/27 22:22:38 tho $
+# $LAAS: Makefile 2009/10/29 14:54:42 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -18,6 +18,8 @@
 
 DISTNAME=		pom-genom-0.5
 CATEGORIES=		localization
+PKGREVISION=		1
+
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/pom-genom
 
