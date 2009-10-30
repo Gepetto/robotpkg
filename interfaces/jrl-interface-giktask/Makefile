@@ -28,9 +28,8 @@ MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for generalized inverse kinematics tasks.
 
-DEPENDS+=	jrl-interface-dynamics>=1.13:../../interfaces/jrl-interface-dynamics
-
 GNU_CONFIGURE=	yes
 
+include ../../interfaces/jrl-interface-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

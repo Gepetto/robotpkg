@@ -28,11 +28,10 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Generalized Inverse Kinematics for humanoid robots.
 
-DEPENDS+=	jrl-interface-giktask>=2.4:../../interfaces/jrl-interface-giktask
-
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/hppGik
 
+include ../../interfaces/jrl-interface-giktask/depend.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../math/hrp2-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
