@@ -1,0 +1,9 @@
+@comment Fri Oct 30 21:33:07 CET 2009
+include/robotbuilder/fwd.hh
+include/robotbuilder/robotbuilder.hh
+lib/librobotbuilder.la
+lib/librobotbuilder.so
+lib/librobotbuilder.so.0
+lib/librobotbuilder.so.0.0.0
+lib/pkgconfig/robotbuilder.pc
+@dirrm include/robotbuilder
