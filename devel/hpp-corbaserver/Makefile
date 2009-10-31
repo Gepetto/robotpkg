@@ -16,9 +16,9 @@
 #                                       Anthony Mallet on Mon Aug 27 2007
 #
 
-DISTNAME=	hppcorbaserver-${VERSION}
+DISTNAME=	hppCorbaServer-${VERSION}
 PKGNAME=	hpp-corbaserver-${VERSION}
-VERSION=	1.7.4
+VERSION=	1.8.0
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-corbaserver/}
@@ -54,6 +54,7 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 # --------------------------------------------------------------------
 
+include ../../robots/hrp2-builder/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
