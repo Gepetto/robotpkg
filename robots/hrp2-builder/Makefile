@@ -26,6 +26,10 @@ MAINTAINER=	hpp-source@laas.fr
 #HOMEPAGE=	
 COMMENT=	Function that builds an instance of HRP2.
 
+RESTRICTED=	Redistribution not permitted
+NO_PUBLIC_SRC=	${RESTRICTED}
+NO_PUBLIC_BIN=	${RESTRICTED}
+
 USE_LANGUAGES+=		c++
 DOXYGEN_PLIST_DIR+=	share/doc/robotbuilder
 
