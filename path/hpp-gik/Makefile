@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/27 18:09:51 mallet $
+# $LAAS: Makefile 2009/11/05 18:15:59 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -18,7 +18,8 @@
 
 DISTNAME=	hppgik-${VERSION}
 PKGNAME=	hpp-gik-${VERSION}
-VERSION=	2.4.0
+VERSION=	2.3
+#VERSION=	2.4.0 breaks gik-genom-1.3
 
 CATEGORIES=	path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hppgik/}
