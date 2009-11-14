@@ -55,7 +55,6 @@ usage="Usage: $0 "'
     [ --pkgdbdir <pkgdbdir> ]
     [ --pkgmandir <pkgmandir> ]
     [ --sysconfdir <sysconfdir> ]
-    [ --varbase <varbase> ]
     [ --fetch-cmd <ftp command> ]
     [ --compiler <compiler> ]
     [ --make <make command> ]
@@ -143,7 +142,6 @@ prefix=
 pkgdbdir=
 mandir=
 sysconfdir=
-varbase=
 compiler=""
 gmake=make
 syslibsuffix=
@@ -160,8 +158,6 @@ while [ $# -gt 0 ]; do
 	--mandir)		mandir="$2"; shift ;;
 	--sysconfdir=*)		sysconfdir=`get_optarg "$1"` ;;
 	--sysconfdir)		sysconfdir="$2"; shift ;;
-	--varbase=*)		varbase=`get_optarg "$1"` ;;
-	--varbase)		varbase="$2"; shift ;;
 	--fetch-cmd=*)		fetch_cmd=`get_optarg "$1"` ;;
 	--fetch-cmd)		fetch_cmd="$a"; shift ;;
 	--compiler=*)		compiler=`get_optarg "$1"` ;;
@@ -180,7 +176,6 @@ done
 # set defaults for system locations if not already set by the user
 [ -z "$prefix" ] && prefix=/opt/openrobots
 [ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/var/db/pkg
-[ -z "$varbase" ] && varbase=${prefix}/var
 [ -z "$mandir" ] && mandir=${prefix}/man
 [ -z "$sysconfdir" ] && sysconfdir=${prefix}/etc
 
@@ -252,7 +247,6 @@ fi
 # save environment in example mk.conf
 echo "PKG_DBDIR=		$pkgdbdir" >> ${MKCONF_EXAMPLE}
 echo "LOCALBASE=		$prefix" >> ${MKCONF_EXAMPLE}
-echo "VARBASE=		$varbase" >> ${MKCONF_EXAMPLE}
 if [ "${sysconfdir}" != "${prefix}/etc" ]; then
 	echo "PKG_SYSCONFBASE=	$sysconfdir" >> ${MKCONF_EXAMPLE}
 fi
