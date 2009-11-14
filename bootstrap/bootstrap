@@ -236,7 +236,8 @@ export MKCONF_EXAMPLE=${wrkdir}/robotpkg.conf.example
 
 echo_msg "Creating robotpkg.conf.example in ${wrkdir}"
 mkdir_p ${wrkdir}
-echo "# Example ${sysconfdir}/mk.conf file produced by robotpkg/bootstrap" > ${MKCONF_EXAMPLE}
+echo "# Example ${sysconfdir}/mk.conf file produced by" > ${MKCONF_EXAMPLE}
+echo "# robotpkg/bootstrap" >> ${MKCONF_EXAMPLE}
 echo "# `date`" >> ${MKCONF_EXAMPLE}
 echo "" >> ${MKCONF_EXAMPLE}
 
@@ -252,8 +253,6 @@ fi
 if [ "${sysconfdir}" != "${prefix}/etc" ]; then
     echo "PKG_SYSCONFBASE=	$sysconfdir" >> ${MKCONF_EXAMPLE}
 fi
-echo "PKG_TOOLS_BIN=		$prefix/sbin" >> ${MKCONF_EXAMPLE}
-echo "MAKE=			$gmake" >> ${MKCONF_EXAMPLE}
 echo "" >> ${MKCONF_EXAMPLE}
 if [ "${syslibsuffix}" != "" ]; then
 	echo "SYSLIBSUFFIX=	$syslibsuffix" >> ${MKCONF_EXAMPLE}
