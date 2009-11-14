@@ -175,7 +175,7 @@ done
 
 # set defaults for system locations if not already set by the user
 [ -z "$prefix" ] && prefix=/opt/openrobots
-[ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/var/db/pkg
+[ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/var/db/robotpkg
 [ -z "$mandir" ] && mandir=${prefix}/man
 [ -z "$sysconfdir" ] && sysconfdir=${prefix}/etc
 
@@ -245,10 +245,12 @@ if [ "$compiler" != "" ]; then
 fi
 
 # save environment in example mk.conf
-echo "PKG_DBDIR=		$pkgdbdir" >> ${MKCONF_EXAMPLE}
 echo "LOCALBASE=		$prefix" >> ${MKCONF_EXAMPLE}
+if [ "${pkgdbdir}" != "${prefix}/var/db/robotpkg" ]; then
+    echo "PKG_DBDIR=		$pkgdbdir" >> ${MKCONF_EXAMPLE}
+fi
 if [ "${sysconfdir}" != "${prefix}/etc" ]; then
-	echo "PKG_SYSCONFBASE=	$sysconfdir" >> ${MKCONF_EXAMPLE}
+    echo "PKG_SYSCONFBASE=	$sysconfdir" >> ${MKCONF_EXAMPLE}
 fi
 echo "PKG_TOOLS_BIN=		$prefix/sbin" >> ${MKCONF_EXAMPLE}
 echo "MAKE=			$gmake" >> ${MKCONF_EXAMPLE}

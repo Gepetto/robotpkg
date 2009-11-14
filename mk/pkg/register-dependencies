@@ -21,7 +21,8 @@
 #
 #	PKG_DBDIR
 #		This is the package meta-data directory in which the
-#		packages are registered.  By default, this is /var/db/pkg.
+#		packages are registered.  By default, this is
+#		/opt/openrobots/var/db/robotpkg.
 #
 ######################################################################
 
@@ -29,7 +30,7 @@
 : ${CP:=cp}
 : ${ECHO:=echo}
 : ${PKG_ADMIN:=pkg_admin}
-: ${PKG_DBDIR:=/var/db/pkg}
+: ${PKG_DBDIR:=/opt/openrobots/var/db/robotpkg}
 : ${RM:=rm}
 : ${TEST:=test}
 : ${TOUCH:=touch}
