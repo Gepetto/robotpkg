@@ -1,4 +1,4 @@
-# $LAAS: checksum.mk 2009/10/26 00:01:10 tho $
+# $LAAS: checksum.mk 2009/11/15 01:36:43 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -113,11 +113,13 @@ $(foreach _alg_,${_CONF_DIGEST_ALGORITHMS},				\
 	    exit 1;							\
 	  fi;								\
 )									\
-	else								\
+	elif ${TEST} -r ${MAKECONF}; then				\
 	  for a in "" ${_CONF_DIGEST_ALGORITHMS}; do			\
 	    ${TEST} -n "$$a" || continue;				\
 	    ${DIGEST} $$a ${MAKECONF} >> ${_MAKECONF_CKSUM};		\
 	  done;								\
+	else								\
+	    >${_MAKECONF_CKSUM};					\
 	fi
 endif
 
