@@ -1,0 +1,13 @@
+--- cxcore/include/cxmisc.h~	2008-07-29 21:05:04.000000000 +0200
++++ cxcore/include/cxmisc.h	2009-11-16 17:38:36.509979412 +0100
+@@ -130,8 +130,8 @@
+     #include <alloca.h>
+ #elif defined HAVE_ALLOCA
+     #include <stdlib.h>
+-#elif
+-    #error
++#else 
++    #error "no alloca"
+ #endif
+ 
+ /* ! DO NOT make it an inline function */
