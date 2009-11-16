@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/27 20:49:40 tho $
+# $LAAS: Makefile 2009/11/16 00:10:29 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -28,6 +28,10 @@ COMMENT=		Interactive shell for the TCL programming language.
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=	--with-tk=$(dir ${TK_CONFIG_SH})
+
+CONFIGURE_LOG_ETA=	115
+BUILD_LOG_ETA=		30
+INSTALL_LOG_ETA=	15
 
 include ../../devel/libedit/depend.mk
 include ../../mk/sysdep/tcl.mk
