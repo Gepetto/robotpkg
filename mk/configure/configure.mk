@@ -1,4 +1,4 @@
-# $LAAS: configure.mk 2009/10/27 16:24:13 mallet $
+# $LAAS: configure.mk 2009/11/15 23:54:00 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -214,7 +214,7 @@ do-configure-script:
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _dir_,${CONFIGURE_DIRS},					\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
-	${SETENV} ${_CONFIGURE_SCRIPT_ENV}				\
+	${CONFIGURE_LOGFILTER} ${SETENV} ${_CONFIGURE_SCRIPT_ENV}	\
 		${CONFIG_SHELL} ${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS};	\
 )
 

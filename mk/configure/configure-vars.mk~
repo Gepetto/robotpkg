@@ -1,4 +1,4 @@
-# $LAAS: configure-vars.mk 2009/11/16 13:55:54 mallet $
+# $LAAS: configure-vars.mk 2009/11/15 23:44:16 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -63,7 +63,7 @@ SCRIPTS_ENV+=	WRKSRC=${WRKSRC}
 
 # The filter for the default do-build action
 #
-CONFIGURE_LOGFILE?=	${WRKDIR}/configure.log
+CONFIGURE_LOGFILE?=	${WRKDIR}/.configure.log
 CONFIGURE_LOGFILTER?=\
 	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${CONFIGURE_LOGFILE}	\
 		$(if ${CONFIGURE_LOG_ETA},-a ${CONFIGURE_LOG_ETA})	\

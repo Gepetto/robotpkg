@@ -1,4 +1,4 @@
-# $LAAS: build.mk 2009/10/27 17:25:33 mallet $
+# $LAAS: build.mk 2009/11/15 23:57:32 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -170,7 +170,7 @@ do%build: .FORCE
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _dir_,${BUILD_DIRS},						\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
-	${BUILD_MAKE_CMD} ${BUILD_TARGET.${_dir_}};			\
+	${BUILD_LOGFILTER} ${BUILD_MAKE_CMD} ${BUILD_TARGET.${_dir_}};	\
 )
 
 .PHONY: pre-build post-build

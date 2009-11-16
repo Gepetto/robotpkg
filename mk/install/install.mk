@@ -226,7 +226,7 @@ do%install: .FORCE
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _dir_,${INSTALL_DIRS},					\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
-	${SETENV} ${INSTALL_ENV} ${MAKE_ENV} 				\
+	${INSTALL_LOGFILTER} ${SETENV} ${INSTALL_ENV} ${MAKE_ENV} 	\
 		${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS}	\
 			-f ${MAKE_FILE} ${INSTALL_TARGET};		\
 )

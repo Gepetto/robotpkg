@@ -1,4 +1,4 @@
-# $LAAS: build-vars.mk 2009/10/27 17:25:04 mallet $
+# $LAAS: build-vars.mk 2009/11/16 13:56:06 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -79,6 +79,14 @@ MAKE_ENV+=	LOCALBASE=${LOCALBASE}
 MAKE_ENV+=	NO_WHOLE_ARCHIVE_FLAG=${NO_WHOLE_ARCHIVE_FLAG}
 MAKE_ENV+=	WHOLE_ARCHIVE_FLAG=${WHOLE_ARCHIVE_FLAG}
 MAKE_ENV+=	PKGMANDIR=${PKGMANDIR}
+
+# The filter for the default do-build action
+#
+BUILD_LOGFILE?=	${WRKDIR}/build.log
+BUILD_LOGFILTER?=\
+	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${BUILD_LOGFILE}		\
+		$(if ${BUILD_LOG_ETA},-a ${BUILD_LOG_ETA})		\
+		--
 
 # Add these bits to the environment used when invoking the recursive make
 # processes for build-related phases.

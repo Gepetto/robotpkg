@@ -1,0 +1,167 @@
+#!/bin/sh
+#
+# Copyright (c) 2009 LAAS/CNRS
+# All rights reserved.
+#
+# Permission to use, copy, modify, and distribute this software for any purpose
+# with or without   fee is hereby granted, provided   that the above  copyright
+# notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+# PERFORMANCE OF THIS SOFTWARE.
+#
+#                                             Anthony Mallet on Sun Nov 15 2009
+#
+
+: ${ECHO:=echo}
+: ${TEST:=test}
+: ${SED:=sed}
+: ${STTY:=stty}
+: ${TPUT:=tput}
+
+self="${0##*/}"
+
+# Process optional arguments
+#
+nofilter=
+log=noverb
+logfile=
+nolog=verb
+progress=statusline
+eta=
+
+usage() {
+    ${ECHO} 1>&2 "usage: $self [-n] [-v] [-a eta] [-l file] [--] arg0 [arg...]"
+}
+
+while ${TEST} $# -gt 0; do
+    case "$1" in
+	-v)     log=verb; nolog=noverb; shift ;;
+	-a)     eta=$2; progress=percent; shift 2 ;;
+	-n)     nofilter=yes; shift;;
+	-l)     logfile=$2; shift 2;;
+
+        --)     shift; break ;;
+        -*)     ${ECHO} 1>&2 "$self: unknown option -- ${1#-}"
+                usage
+                exit 1
+                ;;
+        *)      break ;;
+    esac
+done
+
+
+# No filter mode: just exec the command line
+#
+test -n "$nofilter" && exec "$@"
+
+
+# Interactive message strings
+#
+if ${TEST} -t 1; then
+    sc=`${TPUT} sc`
+    rc=`${TPUT} rc`
+    el=`${TPUT} el`
+    civis=`${TPUT} civis`
+    cnorm=`${TPUT} cnorm`
+
+    statuslinea='--(o    )-'
+    statuslineb='-( o    )-'
+    statuslinec='-(  o   )-'
+    statuslined='-(   o  )-'
+    statuslinee='-(    o )-'
+    statuslinef='-(     o)-'
+    statuslineg='-(    o)--'
+    statuslineh='-(    o)--'
+    statuslinei='-(   o  )-'
+    statuslinej='-(  o   )-'
+    statuslinek='-( o    )-'
+    statuslinel='-(o     )-'
+    statuslinem='--(o    )-'
+    statuslist='a b c d e f g h i j k l m'
+
+    MSG=${ECHO}
+else
+    MSG=:
+fi
+
+
+# Log functions
+#
+verb() { ${ECHO} $@; }
+
+if ${TEST} -t 1; then
+    noverb() {
+	${MSG} -n "${sc}[ESC] $el"
+	$progress $eta $logged
+	${MSG} -n $rc
+    }
+
+    percent() { statusline; ${MSG} -n " ETA $(($2*100/$1))%"; }
+    statusline() {
+	set -- $statuslist
+	i=$1
+	eval ${MSG} -n '"$statusline'$i'"'
+	shift
+	statuslist="$@ $i"
+    }
+else
+    noverb() { :;}
+fi
+
+
+if ${TEST} -n "$logfile"; then
+    exec 6>$logfile
+    tofile() { ${ECHO} "$@" >&6; }
+else
+    tofile() { :;}
+fi
+
+
+# Run functions
+#
+run() { "$@" </dev/null 3>&- 4>&- 5>&-; echo $? >&4; }
+filter() {
+    logged=0;
+    while read l; do
+	logged=$(($logged+1))
+	$log "$l"
+	tofile "$l"
+	esc <&3
+    done
+}
+
+
+# Read ESC key, nonblocking
+#
+esc() {
+  read key
+  test "$key" = "" && { s=$log; log=$nolog; nolog=$s; }
+}
+
+
+# Spawn program
+#
+trap "${MSG} -n $el$cnorm; exit 127" INT QUIT ABRT
+${MSG} -n $civis
+
+exec 3<&0 4>&1 5>&1
+stty -icanon -echo min 0 <&3
+status=`{ run "$@" 2>&1 | filter; } 4>&1 >&5`
+exec 3>&- 4>&- 5>&-
+
+${MSG} -n $el$cnorm
+
+# Log last lines in case of error
+#
+${TEST} -n $logfile && ${TEST} $status -ne 0 && {
+    ${SED} -e ':a' -e '$q;N;11,$D;ba' < $logfile >&2
+    ${ECHO} "See $logfile for details" >&2
+}
+
+exit $status

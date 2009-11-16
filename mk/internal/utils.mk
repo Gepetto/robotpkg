@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/10/28 14:25:30 mallet $
+# $LAAS: utils.mk 2009/11/15 18:10:32 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -51,6 +51,9 @@ FAIL_MSG?=		${FAIL} ${ERROR_MSG}
 
 WARNING_CAT?=		${SED} -e "s|^|WARNING: |" 1>&2
 ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
+
+_LOGFILTER?=		${SH} ${ROBOTPKG_DIR}/mk/internal/logfilter
+
 
 # A temporary directory
 #
