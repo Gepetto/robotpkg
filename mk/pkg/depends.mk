@@ -1,4 +1,4 @@
-# $LAAS: depends.mk 2009/10/27 16:49:51 mallet $
+# $LAAS: depends.mk 2009/11/17 17:39:10 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -129,9 +129,9 @@ define _build_options_cmd
 	for opt in ${REQD_BUILD_OPTIONS.$1}; do				\
 	  ${ECHO} $$popts | ${GREP} $$opt 2>/dev/null 1>&2 || {		\
 	    ${ERROR_MSG} ${hline};					\
-	    ${ERROR_MSG} "${bf}The package ${PKGNAME} requires the"	\
-		"following option${rm}";				\
-	    ${ERROR_MSG} "${bf}enabled in $1:${rm}	$$opt";		\
+	    ${ERROR_MSG} "$${bf}The package ${PKGNAME} requires the"	\
+		"following option$${rm}";				\
+	    ${ERROR_MSG} "$${bf}enabled in $1:$${rm}	$$opt";		\
 	    ${ERROR_MSG} "";						\
 	    if ${TEST} "$$installed" = "yes"; then			\
 	      ${ERROR_MSG} "You must re-install $1 in"			\
@@ -180,10 +180,10 @@ $(foreach _pkg_,${DEPEND_USE},						\
 		"${_pkg_}" "${DEPEND_ABI.${_pkg_}}"			\
 		$(or ${SYSTEM_SEARCH.${_pkg_}}, "") >/dev/null || {	\
 		${ERROR_MSG} "${hline}";				\
-		${ERROR_MSG} "${bf}A package matching"			\
-			"\`${DEPEND_ABI.${_pkg_}}'${rm}";		\
-		${ERROR_MSG} "${bf}should be installed but some files"	\
-			"are missing.${rm}";				\
+		${ERROR_MSG} "$${bf}A package matching"			\
+			"\`${DEPEND_ABI.${_pkg_}}'$${rm}";		\
+		${ERROR_MSG} "$${bf}should be installed but some files"	\
+			"are missing.$${rm}";				\
 		${ERROR_MSG} "";					\
 		${ERROR_MSG} "Please reinstall the package in"		\
 			"${DEPEND_DIR.${_pkg_}}";			\
@@ -230,10 +230,10 @@ pkg-bootstrap-depends:
 		$(or ${SYSTEM_SEARCH.${_pkg_}}, "")			\
 		>/dev/null 3>>${_PKGBSDEP_FILE} || {			\
 		${ERROR_MSG} "${hline}";				\
-		${ERROR_MSG} "${bf}A package matching"			\
-			"\`$$pattern'${rm}";				\
-		${ERROR_MSG} "${bf}is installed but some files are"	\
-			"missing.${rm}";				\
+		${ERROR_MSG} "$${bf}A package matching"			\
+			"\`$$pattern'$${rm}";				\
+		${ERROR_MSG} "$${bf}is installed but some files are"	\
+			"missing.$${rm}";				\
 		${ERROR_MSG} "";					\
 		${ERROR_MSG} "Please reinstall the package in $$dir";	\
 		${ERROR_MSG} "${hline}";				\

@@ -38,7 +38,6 @@
 #	the "barrier" target invokes a new make.
 #
 _BARRIER_PRE_TARGETS+=	makedirs
-_BARRIER_PRE_TARGETS+=	interactive
 _BARRIER_PRE_TARGETS+=	bootstrap-depends
 _BARRIER_PRE_TARGETS+=	depends
 

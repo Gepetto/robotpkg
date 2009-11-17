@@ -1,4 +1,4 @@
-# $LAAS: clean.mk 2009/03/02 01:44:08 tho $
+# $LAAS: clean.mk 2009/11/17 17:35:35 mallet $
 #
 # Copyright (c) 2006,2009 LAAS/CNRS
 # All rights reserved.
@@ -112,11 +112,11 @@ ifneq (,$(call isyes,${_EXTRACT_IS_CHECKOUT}))
   .PHONY: clean-confirm
   clean-confirm:
 	@${ERROR_MSG} ${hline};							\
-	${ERROR_MSG} "${bf}A checkout is present in the build directory${rm} of"\
-		"${PKGBASE}.";							\
+	${ERROR_MSG} "$${bf}A checkout is present in the build directory$${rm}"	\
+		"of ${PKGBASE}.";						\
 	${ERROR_MSG} "";							\
 	${ERROR_MSG} "You must confirm the cleaning action by doing";		\
-	${ERROR_MSG} "		\`${bf}${MAKE} clean confirm${rm}' in"		\
+	${ERROR_MSG} "		\`$${bf}${MAKE} clean confirm$${rm}' in"	\
 		"${PKGPATH}";							\
 	${ERROR_MSG} ${hline};							\
 	${FALSE}
@@ -133,7 +133,6 @@ endif
 #	the "clean" action.
 
 ifneq (,$(realpath ${WRKDIR} $(if ${WRKOBJDIR},${BUILD_DIR}) ${WRKDIR_BASENAME}))
-  _CLEAN_TARGETS+=	interactive
   _CLEAN_TARGETS+=	clean-message
 endif
 _CLEAN_TARGETS+=	pre-clean

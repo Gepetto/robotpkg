@@ -1,4 +1,4 @@
-# $LAAS: checkout.mk 2009/10/27 18:29:11 mallet $
+# $LAAS: checkout.mk 2009/11/17 17:35:02 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -132,11 +132,11 @@ checkout-check-extract:
 ifeq (yes,$(call exists,${_COOKIE.extract}))
 	${RUN}								\
 	${ERROR_MSG} ${hline};						\
-	${ERROR_MSG} "${bf}Regular package sources are present in the"	\
-		"build directory${rm} of";				\
+	${ERROR_MSG} "$${bf}Regular package sources are present in the"	\
+		"build directory$${rm} of";				\
 	${ERROR_MSG} "${PKGBASE}. Perhaps a stale work directory?";	\
 	${ERROR_MSG} "";						\
-	${ERROR_MSG} "Try to \`${bf}${MAKE} clean${rm}' in ${PKGPATH}";	\
+	${ERROR_MSG} "Try to \`$${bf}${MAKE} clean$${rm}' in ${PKGPATH}";\
 	${ERROR_MSG} ${hline};						\
 	exit 2;
 endif

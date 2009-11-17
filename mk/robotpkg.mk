@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/11/15 18:10:46 tho $
+# $LAAS: robotpkg.mk 2009/11/17 17:39:58 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -293,7 +293,7 @@ $(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 ifdef BROKEN
   ifndef NO_BROKEN
     PKG_FAIL_REASON+=	${hline}
-    PKG_FAIL_REASON+= "${bf}${PKGNAME} is marked as broken:${rm}"
+    PKG_FAIL_REASON+= "$${bf}${PKGNAME} is marked as broken:$${rm}"
     PKG_FAIL_REASON+= "${BROKEN}"
     PKG_FAIL_REASON+=	${hline}
   endif

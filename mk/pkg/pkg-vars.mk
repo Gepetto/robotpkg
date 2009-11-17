@@ -1,4 +1,4 @@
-# $LAAS: pkg-vars.mk 2009/11/14 18:51:35 tho $
+# $LAAS: pkg-vars.mk 2009/11/17 17:39:41 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.

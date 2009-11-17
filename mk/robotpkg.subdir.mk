@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.subdir.mk 2009/09/16 15:42:01 tho $
+# $LAAS: robotpkg.subdir.mk 2009/11/17 17:40:40 mallet $
 #
 # Copyright (c) 2007,2009 LAAS/CNRS
 # All rights reserved.
@@ -57,7 +57,7 @@ ifeq  (,$(filter confirm,${MAKECMDGOALS}))
 
   .PHONY: toplevel-confirm
   toplevel-confirm:
-	@${ERROR_MSG} ${hline};						\
+	@${ERROR_MSG} ${hline};					\
 	${ERROR_MSG} "robotpkg is a package collection. It provides"	\
 		"many different,";					\
 	${ERROR_MSG} "unrelated and sometimes incompatible packages.";	\
@@ -70,11 +70,11 @@ ifeq  (,$(filter confirm,${MAKECMDGOALS}))
 	${ERROR_MSG} "See ${ROBOTPKG_DIR}/README.txt for further"	\
 		"reference.";						\
 	${ERROR_MSG} "";						\
-	${ERROR_MSG} "${bf}If your intention is really to"		\
-		"make ${MAKECMDGOALS} for all packages,${rm}";		\
-	${ERROR_MSG} "${bf}please confirm by doing:${bf}";		\
-	${ERROR_MSG} "		\`${bf}${MAKE} ${MAKECMDGOALS}"		\
-		"confirm${rm}'";					\
+	${ERROR_MSG} "$${bf}If your intention is really to"		\
+		"make ${MAKECMDGOALS} for all packages,$${rm}";		\
+	${ERROR_MSG} "$${bf}please confirm by doing:$${bf}";		\
+	${ERROR_MSG} "		\`$${bf}${MAKE} ${MAKECMDGOALS}"	\
+		"confirm$${rm}'";					\
 	${ERROR_MSG} ${hline};						\
 	${FALSE}
 endif
@@ -90,7 +90,7 @@ __targets=\
 .PHONY: ${__targets}
 ${__targets}: %: %-subdir
 
-%-subdir: interactive .FORCE
+%-subdir: .FORCE
 	@for entry in "" ${SUBDIR}; do					\
 		if [ "X$$entry" = "X" ]; then continue; fi; 		\
 		cd ${CURDIR}/$${entry};					\

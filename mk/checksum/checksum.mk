@@ -1,4 +1,4 @@
-# $LAAS: checksum.mk 2009/11/15 01:36:43 tho $
+# $LAAS: checksum.mk 2009/11/17 17:35:20 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -98,13 +98,13 @@ $(foreach _alg_,${_CONF_DIGEST_ALGORITHMS},				\
 	    ${TRUE};							\
 	  else								\
 	    ${ERROR_MSG} ${hline};					\
-	    ${ERROR_MSG} "${bf}Inconsistent configuration file for"	\
-			"${PKGNAME}.${rm}";				\
+	    ${ERROR_MSG} "$${bf}Inconsistent configuration file for"	\
+			"${PKGNAME}.$${rm}";				\
 	    ${ERROR_MSG} "The robotpkg.conf file was modified since"	\
 			"last make.";					\
 	    ${ERROR_MSG} "";						\
-	    ${ERROR_MSG} "${bf}Please do a \`${MAKE} clean' in"		\
-			"${PKGPATH}.${rm}";				\
+	    ${ERROR_MSG} "$${bf}Please do a \`${MAKE} clean' in"	\
+			"${PKGPATH}.$${rm}";				\
 	    ${ERROR_MSG} "";						\
 	    ${ERROR_MSG} "If you want to override this check, type:";	\
 	    ${ERROR_MSG} "		${MAKE} NO_CHECKSUM=yes [other"	\

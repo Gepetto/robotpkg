@@ -1,4 +1,4 @@
-# $LAAS: utils.mk 2009/11/15 18:10:32 tho $
+# $LAAS: utils.mk 2009/11/17 15:32:12 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -42,8 +42,8 @@
 #
 ECHO?=			echo
 TEST?=			test
-ECHO_MSG?=		${ECHO}
-PHASE_MSG?=		_bf() { ${ECHO_MSG} "${bf}===>" $$@ "${rm}"; }; _bf
+ECHO_MSG?=		${_SETFANCY_CMD}; ${ECHO}
+PHASE_MSG?=		trap '${ECHO} -n $$rm' 0; ${ECHO_MSG} "$${bf}===>"
 STEP_MSG?=		${ECHO_MSG} "=>"
 WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
 ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
@@ -64,33 +64,13 @@ TMPDIR?=	/tmp
 _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 
 
-# --- interactive ----------------------------------------------------
+# --- fancy decorations ----------------------------------------------------
 #
-# Determine whether the current `make' has intearctive input and output
-#
-_INTERACTIVE_STDIN=	${WRKDIR}/.interactive_stdin
-_INTERACTIVE_STDOUT=	${WRKDIR}/.interactive_stdout
+export bf:=$(shell ${TPUT} ${TPUT_BOLD})
+export rm:=$(shell ${TPUT} ${TPUT_RMBOLD})
+export hline:="$$bf$(subst =,=======,==========)$$rm"
 
-.PHONY: interactive
-interactive:
-	@${TEST} -d ${WRKDIR} || exit 0;		\
-	if ${TEST} -t 0; then				\
-		${TOUCH} ${_INTERACTIVE_STDIN} ||:;	\
-	else						\
-		${RM} -f ${_INTERACTIVE_STDIN};		\
-	fi;						\
-	if ${TEST} -t 1; then				\
-		${TOUCH} ${_INTERACTIVE_STDOUT} ||:;	\
-	else						\
-		${RM} -f ${_INTERACTIVE_STDOUT};	\
-	fi;						\
-
-
-# --- Fancy decorations ----------------------------------------------
-#
-bf:=`${TEST} -f ${_INTERACTIVE_STDOUT} && ${TPUT} ${TPUT_BOLD} 2>/dev/null ||:`
-rm:=`${TEST} -f ${_INTERACTIVE_STDOUT} && ${TPUT} ${TPUT_RMBOLD} 2>/dev/null ||:`
-hline:="${bf}$(subst =,=======,==========)${rm}"
+_SETFANCY_CMD:=${TEST} -t 1 || { bf=; rm=; }
 
 
 # --- makedirs -------------------------------------------------------
@@ -98,7 +78,7 @@ hline:="${bf}$(subst =,=======,==========)${rm}"
 # Create initial working directories
 #
 .PHONY: makedirs
-makedirs: ${WRKDIR} interactive
+makedirs: ${WRKDIR}
 
 ${WRKDIR}:
 	${RUN}${MKDIR} ${WRKDIR}

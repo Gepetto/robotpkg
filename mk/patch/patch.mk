@@ -335,8 +335,8 @@ do-pkgsrc-patch:
 	done;								\
 	if ${TEST} -n "$$fail"; then					\
 		${ERROR_MSG} "${hline}";				\
-		${ERROR_MSG} "${bf}Patching failed due to modified or"	\
-			"broken patch file(s):${rm}";			\
+		${ERROR_MSG} "$${bf}Patching failed due to modified or"	\
+			"broken patch file(s):$${rm}";			\
 		for i in $$fail; do					\
 			${ERROR_MSG} "	$${i##*/}";			\
 		done;							\

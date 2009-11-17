@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2009/03/24 18:10:35 mallet $
+# $LAAS: robotpkg.options.mk 2009/11/17 17:40:21 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -384,7 +384,7 @@ pre-depends-hook: supported-options-message
 
 .PHONY: supported-options-message
 supported-options-message:
-	@${ECHO} ${hline};						\
+	@${ECHO_MSG} ${hline};						\
 	${ECHO}	"The supported build options for ${PKGBASE} are:";	\
 	${ECHO} "";							\
 	$(foreach _o_,							\
@@ -405,7 +405,7 @@ $(if $(strip ${PKG_OPTIONS}),						\
 		"before";						\
 	${ECHO} "continuing. Be sure to run \`${MAKE} clean' after any"	\
 		"change.";						\
-	${ECHO} ${hline}
+	${ECHO_MSG} ${hline}
 
 else	# !PKG_SUPPORTED_OPTIONS
 

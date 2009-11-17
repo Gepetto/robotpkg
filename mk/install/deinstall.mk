@@ -17,7 +17,6 @@ $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 # deinstall is a public target to remove an installed package.
 #
 .PHONY: deinstall
-deinstall: interactive
 deinstall: deinstall-message
 
 _DEINSTALL_TARGETS+=	acquire-deinstall-lock

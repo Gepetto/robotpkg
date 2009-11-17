@@ -1,4 +1,4 @@
-# $LAAS: extract.mk 2009/10/25 17:51:31 tho $
+# $LAAS: extract.mk 2009/11/17 17:37:30 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.

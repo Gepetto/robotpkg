@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2009/10/27 16:50:31 mallet $
+# $LAAS: sysdep.mk 2009/11/17 15:51:55 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -32,16 +32,10 @@
 
 
 .PHONY: sys-depends
-sys-depends: export hline:=${hline}
-sys-depends: export bf:=${bf}
-sys-depends: export rm:=${rm}
 sys-depends:
 	$(call sys-resolve, build full, ${_SYSDEP_FILE})
 
 .PHONY: sys-bootstrap-depends
-sys-bootstrap-depends: export hline:=${hline}
-sys-bootstrap-depends: export bf:=${bf}
-sys-bootstrap-depends: export rm:=${rm}
 sys-bootstrap-depends:
 	$(call sys-resolve, bootstrap, ${_SYSBSDEP_FILE})
 

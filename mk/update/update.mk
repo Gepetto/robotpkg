@@ -1,4 +1,4 @@
-# $LAAS: update.mk 2009/03/17 19:14:24 mallet $
+# $LAAS: update.mk 2009/11/17 17:40:48 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
