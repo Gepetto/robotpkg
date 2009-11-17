@@ -97,12 +97,12 @@ verb() { ${ECHO} $@; }
 
 if ${TEST} -t 1; then
     noverb() {
-	${MSG} -n "${sc}[ESC] $el"
+	${MSG} -n "${sc}[ESC] "
 	$progress $eta $logged
 	${MSG} -n $rc
     }
 
-    percent() { statusline; ${MSG} -n " ETA $(($2*100/$1))%"; }
+    percent() { statusline; ${MSG} -n " ETA $(($2*100/$1))%$el"; }
     statusline() {
 	set -- $statuslist
 	i=$1
