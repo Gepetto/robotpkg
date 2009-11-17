@@ -3,9 +3,11 @@
 
 COMMENT=	Optimization tools
 
-SUBDIR+=	roboptim-core 			\
+SUBDIR+=					\
 		ipopt				\
+		roboptim-core-cfsqp-plugin	\
 		roboptim-core-ipopt-plugin	\
-		roboptim-trajectory
+		roboptim-trajectory		\
+		roboptim-core
 
 include ../mk/robotpkg.subdir.mk

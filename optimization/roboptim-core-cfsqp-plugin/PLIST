@@ -1,0 +1,6 @@
+@comment Tue Nov 17 15:41:19 CET 2009
+include/roboptim/core/plugin/cfsqp.hh
+lib/roboptim-core-cfsqp-plugin.la
+@dirrm share/doc
+@dirrm lib
+@dirrm include/roboptim/core/plugin
