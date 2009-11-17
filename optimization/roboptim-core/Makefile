@@ -18,10 +18,10 @@
 
 DISTNAME=	roboptim-core-${VERSION}
 PKGNAME=	roboptim-core-${VERSION}
-VERSION=	0.2
+VERSION=	0.4
 
 CATEGORIES=	optimization
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=roboptim/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}roboptim/core
 
 MAINTAINER=	roboptim-user@lists.sourceforge.net

@@ -1,15 +1,25 @@
-@comment Fri May 8 15:51:40 JST 2009
+@comment Tue Nov 17 15:27:45 CET 2009
+include/roboptim/core/constant-function.hh
+include/roboptim/core/debug.hh
 include/roboptim/core/derivable-function.hh
+include/roboptim/core/derivable-parametrized-function.hh
+include/roboptim/core/finite-difference-gradient.hh
+include/roboptim/core/finite-difference-gradient.hxx
 include/roboptim/core/function.hh
 include/roboptim/core/fwd.hh
 include/roboptim/core/generic-solver.hh
+include/roboptim/core/identity-function.hh
 include/roboptim/core/indent.hh
+include/roboptim/core/io.hh
 include/roboptim/core/linear-function.hh
 include/roboptim/core/n-times-derivable-function.hh
 include/roboptim/core/n-times-derivable-function.hxx
 include/roboptim/core/numeric-linear-function.hh
 include/roboptim/core/numeric-quadratic-function.hh
+include/roboptim/core/parametrized-function.hh
+include/roboptim/core/parametrized-function.hxx
 include/roboptim/core/plugin/dummy.hh
+include/roboptim/core/portability.hh
 include/roboptim/core/problem.hh
 include/roboptim/core/problem.hxx
 include/roboptim/core/quadratic-function.hh
@@ -21,6 +31,7 @@ include/roboptim/core/solver-factory.hxx
 include/roboptim/core/solver.hh
 include/roboptim/core/solver.hxx
 include/roboptim/core/solver-warning.hh
+include/roboptim/core/sys.hh
 include/roboptim/core/twice-derivable-function.hh
 include/roboptim/core/util.hh
 include/roboptim/core/util.hxx
