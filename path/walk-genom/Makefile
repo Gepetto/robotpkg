@@ -20,7 +20,7 @@ DISTNAME=	walk-genom-1.4
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=walk-genom/}
-MASTER_REPOSITORY=git ssh://softs.laas.fr/git/jrl/walk-genom
+MASTER_REPOSITORY=git ssh://softs.laas.fr/git/jrl/component/walk-genom
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
