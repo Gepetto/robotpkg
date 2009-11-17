@@ -14,11 +14,11 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                          Séverin Lemaignan on Tue Jul  7 2009
+#                                          Séverin Lemaignan on Tue Nov 16 2009
 #
 
-DISTNAME=	pellet-2.0.0-rc7
-PKGVERSION=	2.0.0rc7
+DISTNAME=	pellet-2.0.0
+PKGVERSION=	2.0.0
 PKGNAME=	pellet-${PKGVERSION}
 MASTER_SITES=	http://pellet.owldl.com/downloads/
 EXTRACT_SUFX=	.zip
@@ -31,7 +31,7 @@ COMMENT=	An open source reasoner for OWL 2 DL in Java.
 NO_CONFIGURE=	yes
 NO_BUILD= yes
 
-WRKSRC=		${WRKDIR}/pellet-2.0.0-rc7
+WRKSRC=		${WRKDIR}/pellet-2.0.0
 USE_LANGUAGES=	java
 
 # doc option
