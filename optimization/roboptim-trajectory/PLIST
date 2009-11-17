@@ -1,20 +1,35 @@
-@comment Sat May 9 14:56:18 JST 2009
+@comment Tue Nov 17 15:31:04 CET 2009
+include/roboptim/trajectory/anthropomorphic-cost-function.hh
+include/roboptim/trajectory/anthropomorphic-cost-function.hxx
 include/roboptim/trajectory/free-time-trajectory.hh
 include/roboptim/trajectory/free-time-trajectory.hxx
+include/roboptim/trajectory/freeze.hh
+include/roboptim/trajectory/freeze.hxx
+include/roboptim/trajectory/frontal-speed.hh
 include/roboptim/trajectory/fwd.hh
+include/roboptim/trajectory/limit-omega.hh
+include/roboptim/trajectory/limit-omega.hxx
+include/roboptim/trajectory/limit-speed.hh
+include/roboptim/trajectory/limit-speed.hxx
+include/roboptim/trajectory/orthogonal-speed.hh
 include/roboptim/trajectory/spline.hh
-include/roboptim/trajectory/state-cost.hh
-include/roboptim/trajectory/state-cost.hxx
+include/roboptim/trajectory/spline-length.hh
+include/roboptim/trajectory/stable-point-state-function.hh
+include/roboptim/trajectory/stable-point-state-function.hxx
+include/roboptim/trajectory/stable-time-point.hh
+include/roboptim/trajectory/state-function.hh
+include/roboptim/trajectory/state-function.hxx
+include/roboptim/trajectory/sys.hh
 include/roboptim/trajectory/trajectory-cost.hh
 include/roboptim/trajectory/trajectory-cost.hxx
 include/roboptim/trajectory/trajectory.hh
 include/roboptim/trajectory/trajectory.hxx
 include/roboptim/trajectory/trajectory-sum-cost.hh
 include/roboptim/trajectory/trajectory-sum-cost.hxx
-lib/libroboptim-trajectory.a
+include/roboptim/trajectory/visualization/limit-speed.hh
+include/roboptim/trajectory/visualization/speed.hh
+include/roboptim/trajectory/visualization/trajectory.hh
 lib/libroboptim-trajectory.la
-lib/libroboptim-trajectory.so
-lib/libroboptim-trajectory.so.0
-lib/libroboptim-trajectory.so.0.0.0
 lib/pkgconfig/roboptim-trajectory.pc
+@dirrm include/roboptim/trajectory/visualization
 @dirrm include/roboptim/trajectory

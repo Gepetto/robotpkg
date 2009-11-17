@@ -18,10 +18,10 @@
 
 DISTNAME=	roboptim-trajectory-${VERSION}
 PKGNAME=	roboptim-trajectory-${VERSION}
-VERSION=	0.2.1
+VERSION=	0.4
 
 CATEGORIES=	optimization
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=roboptim/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}roboptim/trajectory
 
 MAINTAINER=	roboptim-user@lists.sourceforge.net
