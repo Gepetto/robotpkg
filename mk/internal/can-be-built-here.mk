@@ -77,19 +77,8 @@ cbbh:
 	done
 	@exit 2
 
+# Include a file so that the cbbh target is called.
 ifeq (no,${_CBBH})
-  # include a fake file so that cbbh is called before anything else
-  $(if $(filter			\
-	fetch			\
-	depends			\
-	configure		\
-	build			\
-	install			\
-	update			\
-	package			\
-	bootstrap-depends	\
-	bootstrap-register,	\
-	${MAKECMDGOALS}),$(eval include ${ROBOTPKG_DIR}/mk/robotpkg.prefs.mk))
-
+  include ${ROBOTPKG_DIR}/mk/robotpkg.prefs.mk
   ${ROBOTPKG_DIR}/mk/robotpkg.prefs.mk: cbbh
 endif
