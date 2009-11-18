@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2009/02/02 16:36:09 mallet $
+# $LAAS: depend.mk 2009/11/18 15:01:41 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -13,11 +13,11 @@
 #      notice and  this list of  conditions in the  documentation and/or
 #      other materials provided with the distribution.
 #
-#                                      Florent Lamiraux on Oct 14, 2009
+#                                       Florent Lamiraux on Oct 14, 2009
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-FSQP_DEPEND_MK:=${FSQP_DEPEND_MK}+
+FSQP_DEPEND_MK:=	${FSQP_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		fsqp
