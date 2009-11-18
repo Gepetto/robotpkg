@@ -1,4 +1,3 @@
-# $LAAS: robotpkg.prefs.mk 2009/09/23 15:31:00 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -156,7 +155,9 @@ LOCALBASE?=		/opt/openrobots
 DEPOT_SUBDIR?=		packages
 DEPOTBASE=		${LOCALBASE}/${DEPOT_SUBDIR}
 
-PKGPATH?=		$(subst $(realpath ${CURDIR}/../..)/,,$(realpath ${CURDIR}))
+ifeq (2,${_ROBOTPKG_DEPTH})
+PKGPATH?=		$(subst ${ROBOTPKG_DIR}/,,$(realpath ${CURDIR}))
+endif
 
 DISTDIR?=		${ROBOTPKG_DIR}/distfiles
 PACKAGES?=		${ROBOTPKG_DIR}/packages
