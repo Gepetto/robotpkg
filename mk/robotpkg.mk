@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.mk 2009/11/17 17:39:58 mallet $
+# $LAAS: robotpkg.mk 2009/11/18 13:42:17 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -292,10 +292,8 @@ $(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 
 ifdef BROKEN
   ifndef NO_BROKEN
-    PKG_FAIL_REASON+=	${hline}
     PKG_FAIL_REASON+= "$${bf}${PKGNAME} is marked as broken:$${rm}"
     PKG_FAIL_REASON+= "${BROKEN}"
-    PKG_FAIL_REASON+=	${hline}
   endif
 endif
 
@@ -307,8 +305,8 @@ endif
 
 ifdef LICENSE
   ifeq (,$(filter ${LICENSE},${ACCEPTABLE_LICENSES}))
-PKG_FAIL_REASON+= ${hline}
-PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license: ${LICENSE}."
+PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license:"
+PKG_FAIL_REASON+= "	 ${LICENSE}"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= " . To view the license, enter \"${MAKE} show-license\"."
 PKG_FAIL_REASON+= " . To indicate acceptance, add this line:"
@@ -317,7 +315,6 @@ PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=${LICENSE}"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= ${hline}
   endif
 endif
 
