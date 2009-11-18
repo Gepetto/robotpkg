@@ -1,4 +1,3 @@
-# $LAAS: fetch.mk 2009/10/25 21:56:02 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -166,11 +165,11 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 	exit 1
   else
 	@${TEST} ! -f $@ || exit 0;					\
-	${ERROR_MSG} "======================================================================"; \
+	${ERROR_MSG} ${hline}; 						\
 	${ERROR_MSG} "";						\
 	for line in ${FETCH_MESSAGE}; do ${ERROR_MSG} "$$line"; done;	\
 	${ERROR_MSG} "";						\
-	${ERROR_MSG} "======================================================================"; \
+	${ERROR_MSG} ${hline};						\
 	exit 1
   endif
 endif
@@ -277,6 +276,7 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 		exit 1;							\
 	fi
 endif
+
 
 # --- mirror-distfiles (PUBLIC) --------------------------------------
 

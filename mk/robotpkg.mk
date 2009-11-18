@@ -1,4 +1,3 @@
-# $LAAS: robotpkg.mk 2009/11/18 13:42:17 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -298,9 +297,9 @@ ifdef BROKEN
 endif
 
 ifdef RESTRICTED
-ifdef NO_RESTRICTED
-PKG_FAIL_REASON+= "${PKGNAME} is restricted: ${RESTRICTED}"
-endif
+  ifdef NO_RESTRICTED
+    PKG_FAIL_REASON+= "${PKGNAME} is restricted: ${RESTRICTED}"
+  endif
 endif
 
 ifdef LICENSE
