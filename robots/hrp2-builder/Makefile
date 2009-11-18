@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/11/18 12:20:32 mallet $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -16,9 +15,12 @@
 #                                     Florent Lamiraux on Wed Oct 30 2009
 #
 
-DISTNAME=	robotbuilder-1.0
+DISTNAME=	robotbuilder-${PKGVERSION}
+PKGNAME=	hrp2-builder-${PKGVERSION}
+PKGVERSION=	1.0
+PKGREVISION=	1
 
-CATEGORIES=	robots
+CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_JRL}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/robotbuilder
 
