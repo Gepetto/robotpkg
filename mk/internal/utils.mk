@@ -41,8 +41,12 @@
 #
 ECHO?=			echo
 TEST?=			test
-ECHO_MSG?=		${_SETFANCY_CMD}; ${ECHO}
-PHASE_MSG?=		trap '${ECHO} -n $$rm' 0; ${ECHO_MSG} "$${bf}===>"
+ifndef SILENT
+  ECHO_MSG?=		${_SETFANCY_CMD}; ${ECHO}
+else
+  ECHO_MSG?=		:
+endif
+PHASE_MSG?=		_m() { ${ECHO_MSG} "$${bf}===> $$@$$rm"; }; _m
 STEP_MSG?=		${ECHO_MSG} "=>"
 WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
 ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
