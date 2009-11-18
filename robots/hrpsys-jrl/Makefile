@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/03 12:15:48 mallet $
+# $LAAS: Makefile 2009/11/18 12:19:58 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -21,9 +21,10 @@ DISTNAME=		hrpsys-hrp2jrl_3.0.1_ub804_20080922_i386
 PKGNAME=		hrpsys-jrl-${VERSION}
 
 CATEGORIES=		architecture
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		# non-free
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		HRP2 Controller for OpenHRP3
+LICENSE=		openhrp-grx-license
 
 WRKSRC=			${WRKDIR}/OpenHRP
 EXTRACT_DIR=		${WRKSRC}

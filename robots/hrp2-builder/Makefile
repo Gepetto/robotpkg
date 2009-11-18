@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/12 14:10:10 tho $
+# $LAAS: Makefile 2009/11/18 12:20:32 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -23,8 +23,9 @@ MASTER_SITES=		${MASTER_SITE_JRL}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/robotbuilder
 
 MAINTAINER=	hpp-source@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Function that builds an instance of HRP2.
+LICENSE=	openhrp-grx-license
 
 RESTRICTED=	Redistribution not permitted
 NO_PUBLIC_SRC=	${RESTRICTED}

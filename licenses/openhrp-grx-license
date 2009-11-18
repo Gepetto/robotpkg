@@ -1,0 +1,138 @@
+
+Software License Agreement for the Controller module of OpenHRP
+This Software License Agreement  (the  "Agreement")  is  a  legal  agreement
+between you (the "Customer") and General Robotix, Inc. ("GRX")  on  the  use
+of the Controller module of OpenHRP software (the "Software")  on  computers
+and humanoid robots (collectively the "Hardware").
+
+
+Section 1 (Definitions)
+
+The "Software" means all (including copies) of  the  execution  program  and
+software library pertaining to the Hardware,  the  manual  related  thereto,
+and this Agreement. The copyright on the Software belongs to GRX.
+
+The "Customer" means any person who uses the Software  on  the  Hardware  or
+who has put all or part of the Software into  or  under  his,  her,  or  its
+possession  or  control  by  downloading,  installing,  or  copying  it   as
+mentioned above.
+
+The "User" means any person who uses the Software  in  accordance  with  the
+terms and conditions of this Agreement under  the  license  granted  to  the
+Customer by GRX.
+
+The  "License  Agreement  Period"  means  the  period  in  which  the  usage
+restrictions on parts of the Software prescribed  in  an  attachment  hereto
+may be lifted.
+
+
+Section 2 (Formation, Effect, and Termination of the Agreement)
+
+1.     The license under this Agreement (the "License")  shall  take  effect
+   at the time when in accordance with  the  provisions  of  the  preceding
+   section, the Customer starts using the Software or has put all  or  part
+   of the Software into or under his, her, or its possession or control  by
+   downloading, installing, or copying it. Using the Software herein  means
+   executing the Software on the Hardware and using the manual, and copying
+   herein means producing an identical copy  of  the  original  using  some
+   medium.
+
+2.     If the Customer decides not to  use  the  program  contained  in  the
+   Software, the  Customer  may  terminate  the  License  by  deleting  and
+   destroying  all  the  Software  (including  the   Software   downloaded,
+   installed, or copied) in  or  under  his,  her,  or  its  possession  or
+   control.
+
+3.     Except in  the  License  Agreement  Period,  GRX  may  terminate  the
+   License without notifying the Customer or obtaining the prior consent of
+   the Customer. However, this provision does not preclude the  termination
+   of the License under Paragraph 2 of this  section.  In  this  case,  the
+   Customer shall, in accordance with Paragraph 4 of this  section,  delete
+   and destroy all the Software (which means the same as in Paragraph 2  of
+   this section) in or under his, her, or its possession or control.
+
+4.     If the Customer violates any of the provisions of  the  License,  the
+   License shall terminate, and the Customer shall delete and  destroy  the
+   Software (which means the same as in Paragraph 2 of this section) in  or
+   under his, her, or its possession or control together with any  and  all
+   products resulting from the violation.
+
+5.     The Customer may not, for whatever reason,  demand  any  compensation
+   or other payments whatsoever from GRX for  or  in  connection  with  the
+   termination of this Software.
+
+
+Section 3 (Licensing Provision)
+
+The Customer may use the program contained in the Software.
+
+
+Section 4 (Prohibitions)
+
+1.     The Customer may not disassemble or  otherwise  reverse-engineer  the
+   program contained in the Software (which means analyzing the program and
+   converting it into human-readable form). However, this  provision  shall
+   not apply to cases  in  which  such  reverse  engineering  is  expressly
+   permitted by applicable law.
+
+2.     The Customer  may  copy  the  Software  and  distribute  such  copies
+   exclusively to ONE laboratory  to which the Customer belongs,  providing
+   Customer  honors  the  obligations  required  of  a   User   and   takes
+   nondiscriminatory measures to assure them, use the Software  exclusively
+   on Hardware for which Orbix/E for OpenHRP for  educational  or  academic
+   research purposes has been acquired; provided that when the Software  is
+   copied, the copyright notice and other legal notices  attached  to  this
+   Agreement shall be copied at the same time.
+
+
+Section 5 (Disclaimer)
+
+1.      GRX  does  not  guarantee  the  performance  of  the  Software,  its
+   suitability for any purposes of use, or the accuracy or  reliability  of
+   the results of its use, and does not provide  warranty  of  any  content
+   whatsoever.
+
+2.     GRX does not assume the  obligation  to  provide  the  Customer  with
+   technical  services,  including  technical  support,   maintenance,   or
+   functional improvement for the Software, outside the  License  Agreement
+   Period.
+
+3.     GRX may, without obtaining the prior consent of the Customer,  change
+   or modify the specifications or contents of the Software and change  the
+   method of distribution.
+
+4.     GRX does not assume any liability for damage that  may  be  suffered,
+   directly or indirectly, by the Customer or a third party  in  connection
+   with the Software, and the Customer shall not make any demand on GRX.
+
+5.     The provisions of the preceding and the present  section  shall  also
+   apply to any information on the Software provided directly or indirectly
+   by GRX for the Customer.
+
+
+Section 6 (Confidentiality)
+
+1.      The  Customer  shall  keep  confidential  such  information  on  the
+   Software and such parts of this Agreement as  are  not  publicly  known,
+   such as the physical parameters of the Hardware, and shall not,  without
+   the prior written consent of GRX, disclose or leak the same to  a  third
+   party.
+
+
+Section 7 (Miscellaneous)
+
+1.     This Agreement shall be  governed  by  Japanese  laws  and  shall  be
+   interpreted or construed in  accordance  with  Japanese  laws.  For  any
+   disputes arising out  of  or  relating  to  this  Agreement,  the  Tokyo
+   District Court shall be the  court  of  first  instance  with  exclusive
+   jurisdiction.
+
+2.     The Customer shall strictly comply  with  the  Foreign  Exchange  and
+   Foreign Trade Law and other applicable export-  or  import-related  laws
+   and regulations of Japan and with regulations based on the laws  of  the
+   United States and other foreign countries, and shall obtain all  permits
+   and licenses required under such regulations.
+
+3.     Paragraphs 4 and 5 of Section 2, Paragraph 2 of  Section  4,  Section
+   5, Section 6, and  Section  7  shall  survive  the  termination  of  the
+   License.
