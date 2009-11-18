@@ -2,3 +2,5 @@ RobOptim provide C++ numerical optimization libraries for robotics.
 RobOptim core focuses on providing abstractions for optimization problem
 definition and infrastructure to allow the use of existing solvers as
 a back-end.
+
+This package is a CFSQP solver back-end for roboptim-core.
