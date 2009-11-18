@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/10/14 20:14:31 tho $
+# $LAAS: Makefile 2009/11/18 15:01:18 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -13,7 +13,7 @@
 #      notice  and this list of  conditions in the documentation   and/or
 #      other materials provided with the distribution.
 #
-#                                       Florent Lamiraux on Oct 14 2009
+#                                         Florent Lamiraux on Oct 14 2009
 #
 
 DISTNAME=	fsqp-${PKGVERSION}
@@ -36,7 +36,7 @@ FETCH_MESSAGE+=\
 	"${bf}The file ${DISTNAME}${EXTRACT_SUFX} must be put manually into:${rm}"
 FETCH_MESSAGE+= "       ${DISTDIR}/"
 FETCH_MESSAGE+= ""
-FETCH_MESSAGE+= " To get the source code, contact AEM Design, Inc."
+FETCH_MESSAGE+= " To get the source code, contact ${MAINTAINER}."
 FETCH_MESSAGE+= " Type \`${MAKE} show-license' for more information."
 
 GNU_CONFIGURE=		yes
