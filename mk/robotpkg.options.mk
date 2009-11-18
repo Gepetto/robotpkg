@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2009/11/17 17:40:21 mallet $
+# $LAAS: robotpkg.options.mk 2009/11/19 00:23:00 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -332,7 +332,7 @@ $(foreach _o_,${PKG_SUPPORTED_OPTIONS},					\
 #
 define _pkgopt_listopt
   $(foreach o,${1},\
-    ${ECHO} "	"$(call quote,${o})"	"$(call quote,${PKG_OPTION_DESCR.${o}});\
+    ${ECHO_MSG} "	"$(call quote,${o})"	"$(call quote,${PKG_OPTION_DESCR.${o}});\
   )
 endef
 
@@ -385,26 +385,26 @@ pre-depends-hook: supported-options-message
 .PHONY: supported-options-message
 supported-options-message:
 	@${ECHO_MSG} ${hline};						\
-	${ECHO}	"The supported build options for ${PKGBASE} are:";	\
-	${ECHO} "";							\
+	${ECHO_MSG} "The supported build options for ${PKGBASE} are:";	\
+	${ECHO_MSG} "";							\
 	$(foreach _o_,							\
 		$(sort ${PKG_SUPPORTED_OPTIONS}),			\
 		$(call _pkgopt_listopt,${_o_}))				\
-	${ECHO} "";							\
+	${ECHO_MSG} "";							\
 $(if $(strip ${PKG_OPTIONS}),						\
-	${ECHO} "Building with the following options enabled:";		\
-	${ECHO} "";							\
+	${ECHO_MSG} "Building with the following options enabled:";	\
+	${ECHO_MSG} "";							\
 	$(foreach _o_,							\
 		$(sort ${PKG_OPTIONS}),					\
 		$(call _pkgopt_listopt,${_o_}))				\
-	${ECHO} "";							\
+	${ECHO_MSG} "";							\
 )									\
-	${ECHO} "You may want to abort the process now with CTRL-C"	\
+	${ECHO_MSG} "You may want to abort the process now with CTRL-C"	\
 		"and review the";					\
-	${ECHO} "available build options with \`${MAKE} show-options'"	\
-		"before";						\
-	${ECHO} "continuing. Be sure to run \`${MAKE} clean' after any"	\
-		"change.";						\
+	${ECHO_MSG} "available build options with \`${MAKE}"		\
+		"show-options' before";					\
+	${ECHO_MSG} "continuing. Be sure to run \`${MAKE} clean' after"	\
+		"any change.";						\
 	${ECHO_MSG} ${hline}
 
 else	# !PKG_SUPPORTED_OPTIONS

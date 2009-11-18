@@ -1,4 +1,4 @@
-# $LAAS: checksum.mk 2009/11/17 17:35:20 mallet $
+# $LAAS: checksum.mk 2009/11/19 00:21:00 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -55,8 +55,8 @@ include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
 
 # The command for computing a file's checksum
 _CHECKSUM_CMD=								\
-	${SETENV} DIGEST=${DIGEST} CAT=${TOOLS_CAT}			\
-		ECHO=${TOOLS_ECHO} TEST=${TOOLS_TEST}			\
+	${SETENV} DIGEST=${DIGEST} CAT=${TOOLS_CAT} TEST=${TOOLS_TEST}	\
+		ECHO=${TOOLS_ECHO} ECHO_MSG=${ECHO_MSG}			\
 	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
 
 
