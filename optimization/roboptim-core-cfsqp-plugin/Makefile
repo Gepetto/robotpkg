@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/10/14 20:14:31 tho $
+# $LAAS: Makefile 2009/11/18 14:18:01 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -13,18 +13,17 @@
 #      notice  and this list of  conditions in the documentation   and/or
 #      other materials provided with the distribution.
 #
-#                                       Florent Lamiraux on Oct 14 2009
+#                                           Thomas Moulard on Nov 17 2009
 #
 
-DISTNAME=	roboptim-core-cfsqp-plugin-${PKGVERSION}
-PKGVERSION=	0.4
+DISTNAME=	roboptim-core-cfsqp-plugin-0.4
 
 CATEGORIES=	math
 MASTER_SITES=	# non-free
 
 MAINTAINER=	hpp@laas.fr
-HOMEPAGE=	http://www.aemdesign.com/FSQPwhatis.htm
-COMMENT=	Feasible Sequential Quadratic Programming
+HOMEPAGE=	http://roboptim.sourceforge.net
+COMMENT=	CFSQP solver back-end for roboptim-core
 LICENSE=	aemdesign-cfsqp-license
 
 RESTRICTED=	Redistribution not permitted
@@ -33,11 +32,10 @@ NO_PUBLIC_BIN=	${RESTRICTED}
 
 INTERACTIVE_STAGE=	fetch
 FETCH_MESSAGE+=\
-	"${bf}The file ${DISTNAME}${EXTRACT_SUFX} must be put manually into:${rm}"
+	"$${bf}The file ${DISTNAME}${EXTRACT_SUFX} must be put manually into:$${rm}"
 FETCH_MESSAGE+= "       ${DISTDIR}/"
 FETCH_MESSAGE+= ""
-FETCH_MESSAGE+= " To get the source code, contact AEM Design, Inc."
-FETCH_MESSAGE+= " Type \`${MAKE} show-license' for more information."
+FETCH_MESSAGE+= " To get the source code, contact ${MAINTAINER}."
 
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core-cfsqp-plugin
