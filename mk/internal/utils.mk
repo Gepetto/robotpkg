@@ -1,4 +1,3 @@
-# $LAAS: utils.mk 2009/11/17 15:32:12 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -147,28 +146,39 @@ show-license:
 # which class of dependencies to output.  The special value "all" means
 # to output every dependency.
 #
+$(call require-for, show-depends show-depends-pkgpaths,			\
+	${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
 DEPENDS_TYPE?=  all
+_DEPENDS_TYPE=
 ifneq (,$(strip $(filter build all,${DEPENDS_TYPE})))
-_ALL_DEPENDS+=	${BOOTSTRAP_DEPENDS} ${BUILD_DEPENDS}
+  _DEPENDS_TYPE+=	bootstrap build
 endif
 ifneq (,$(strip $(filter install package all,${DEPENDS_TYPE})))
-_ALL_DEPENDS+=	${DEPENDS}
+  _DEPENDS_TYPE+=	full
 endif
 
 .PHONY: show-depends
 show-depends:
-	@$(foreach _pkg_,${_ALL_DEPENDS},				\
-		${ECHO} '$(subst :,	,${_pkg_})';)
-	@${DO_NADA}
+	${RUN}{								\
+  $(foreach _pkg_,${DEPEND_USE},					\
+    $(if $(filter ${_DEPENDS_TYPE},${DEPEND_METHOD.${_pkg_}}),		\
+		${ECHO} '${DEPEND_ABI.${_pkg_}}	${DEPEND_DIR.${_pkg_}}';\
+    )									\
+  )									\
+	} | ${SORT}
 
 .PHONY: show-depends-pkgpaths
 show-depends-pkgpaths:
-	@for d in							\
-		$(sort $(subst ${ROBOTPKG_DIR}/,,$(realpath $(foreach	\
-			_d_,${_ALL_DEPENDS},				\
-			$(word 2,$(subst :, ,${_d_})))))); do		\
-		${ECHO} $$d;						\
-	done
+	${RUN}								\
+  $(foreach _pkg_,${DEPEND_USE},					\
+    $(if $(filter ${_DEPENDS_TYPE},${DEPEND_METHOD.${_pkg_}}),		\
+      $(if ${DEPEND_DIR.${_pkg_}},					\
+	${ECHO} $(subst ${ROBOTPKG_DIR}/,,$(realpath			\
+		${DEPEND_DIR.${_pkg_}}));				\
+      )									\
+    )									\
+  )
 
 
 # --- confirm --------------------------------------------------------
