@@ -27,6 +27,7 @@ $(call require, ${ROBOTPKG_DIR}/mk/depends/sysdep.mk)
 # needed during stages before the normal "depends" stage.  These dependencies
 # are packages with DEPEND_METHOD.pkg set to bootstrap.
 #
+_BOOTSTRAPDEPENDS_TARGETS+= cbbh
 _BOOTSTRAPDEPENDS_TARGETS+= makedirs
 _BOOTSTRAPDEPENDS_TARGETS+= bootstrap-depends-message
 _BOOTSTRAPDEPENDS_TARGETS+= pkg-bootstrap-depends

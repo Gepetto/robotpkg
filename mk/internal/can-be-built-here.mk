@@ -72,13 +72,9 @@ can-be-built-here:
 	@${ECHO} ${_CBBH_MSGS}
 
 cbbh:
+ifeq (no,${_CBBH})
 	@for str in ${_CBBH_MSGS}; do					\
 		${ERROR_MSG} "$$str";					\
 	done
 	@exit 2
-
-# Include a file so that the cbbh target is called.
-ifeq (no,${_CBBH})
-  include ${ROBOTPKG_DIR}/mk/robotpkg.prefs.mk
-  ${ROBOTPKG_DIR}/mk/robotpkg.prefs.mk: cbbh
 endif
