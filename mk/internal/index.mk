@@ -1,4 +1,3 @@
-# $LAAS: index.mk 2009/11/17 17:38:13 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -69,7 +68,7 @@ HTML_LICENSE=	$(if ${LICENSE},<tr><td>License:<td>${LICENSE})
 # This target is used to generate index.html files.
 #
 .PHONY: index
-index: interactive index.html
+index: index.html
 
 # get the template name corresponding to the current depth
 ifeq (2,${_ROBOTPKG_DEPTH})
