@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2009/11/17 15:51:55 mallet $
+# $LAAS: sysdep.mk 2009/11/19 01:15:50 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -66,9 +66,9 @@ $(foreach _pkg_,${DEPEND_USE},						\
 		$(call quote,${_pkg_})					\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
 		${SYSTEM_SEARCH.${_pkg_}} 3>>$2`			\
-	$(if $(call isyes,${SYSDEP_VERBOSE}), &&			\
+	$(if $(call isyes,${SYSDEP_VERBOSE}), && {			\
 	   ${STEP_MSG} "Required system package ${DEPEND_ABI.${_pkg_}}:"\
-		"$$found found")					\
+		"$$found found"; })					\
 	|| { ${RM} ${_SYSDEP_FILE}; exit 2; };				\
     )									\
   )									\
