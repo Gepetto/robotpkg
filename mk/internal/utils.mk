@@ -69,8 +69,8 @@ _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 
 # --- fancy decorations ----------------------------------------------------
 #
-export bf:=$(shell ${TPUT} ${TPUT_BOLD})
-export rm:=$(shell ${TPUT} ${TPUT_RMBOLD})
+export bf:=$(shell ${TPUT} ${TPUT_BOLD} 2>/dev/null)
+export rm:=$(shell ${TPUT} ${TPUT_RMBOLD} 2>/dev/null)
 export hline:="$$bf$(subst =,=======,==========)$$rm"
 
 _SETFANCY_CMD:=${TEST} -t 1 || { bf=; rm=; }
