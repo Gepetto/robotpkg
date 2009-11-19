@@ -40,6 +40,10 @@ FETCH_MESSAGE+= " To get the source code, contact ${MAINTAINER}."
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core-cfsqp-plugin
 
+# Make sure git-version-gen is not confused by the robotpkg ``.git''
+# directory.
+BUILD_MAKE_FLAGS+=    GIT_DIR=/dev/null
+
 include ../../optimization/roboptim-core/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
