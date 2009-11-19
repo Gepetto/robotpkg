@@ -32,6 +32,10 @@ DOXYGEN_PLIST_DIR+=	share/doc/roboptim-trajectory
 
 GNU_CONFIGURE=	yes
 
+# Make sure git-version-gen is not confused by the robotpkg ``.git''
+# directory.
+BUILD_MAKE_FLAGS+=    GIT_DIR=/dev/null
+
 # --------------------------------------------------------------------
 
 include ../../pkgtools/pkg-config/depend.mk
