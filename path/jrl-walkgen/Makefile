@@ -35,6 +35,7 @@ DOXYGEN_PLIST_DIR+=	share/doc/walkGenJrl
 
 include ../../mk/sysdep/cmake.mk
 include ../../math/jrl-dynamics/depend.mk
+include ../../robot/hrpsys-jrl/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
