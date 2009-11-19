@@ -42,6 +42,7 @@ BUILD_MAKE_FLAGS+=    GIT_DIR=/dev/null
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../mk/sysdep/libtool-ltdl.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
 include ../../mk/robotpkg.mk
