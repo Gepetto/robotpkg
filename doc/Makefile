@@ -3,6 +3,7 @@
 
 COMMENT=	Tool documentations, tutorials and other reference manuals
 
+SUBDIR+=	demo-genom
 SUBDIR+=	hpp-doc
 SUBDIR+=	robotpkg
 

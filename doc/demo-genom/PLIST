@@ -1,0 +1,35 @@
+@comment Fri Oct 30 11:09:29 CET 2009
+bin/demo
+bin/demoSendInitRqst
+bin/demoTest
+include/demo/demoConst.h
+include/demo/demoStruct.h
+include/demo/server/demoEndian.h
+include/demo/server/demoError.h
+include/demo/server/demoMsgLib.h
+include/demo/server/demoPosterLib.h
+include/demo/server/demoPosterLibStruct.h
+include/demo/server/demoPosterReadLibProto.h
+include/demo/server/demoPosterShowLib.h
+include/demo/server/demoPosterWriteLibProto.h
+include/demo/server/demoPosterXMLLib.h
+include/demo/server/demoPrint.h
+include/demo/server/demoPrintXML.h
+include/demo/server/demoScan.h
+include/demo/server/demoType.h
+${PLIST.openprs}include/demo/server/openprs/demoDecodeOpenprs.h
+${PLIST.openprs}include/demo/server/openprs/demoEncodeOpenprs.h
+${PLIST.openprs}include/demo/server/openprs/demoRequestsOpenprsProto.h
+lib/libdemoClient.la
+${PLIST.openprs}lib/openprs/libdemoOpenprs.la
+${PLIST.openprs}lib/pkgconfig/demo-oprs.pc
+lib/pkgconfig/demo.pc
+${PLIST.tcl}lib/tclserv/libdemoTclServ.la
+share/modules/gen/demo.gen
+${PLIST.openprs}share/modules/openprs/demoOpenprs.inc
+${PLIST.openprs}share/modules/openprs/demoOpenprs.opf
+${PLIST.openprs}share/modules/openprs/demoOpenprs.sym
+${PLIST.tcl}share/modules/tcl/demoClient.tcl
+${PLIST.openprs}@dirrm include/demo/server/openprs
+@dirrm include/demo/server
+@dirrm include/demo

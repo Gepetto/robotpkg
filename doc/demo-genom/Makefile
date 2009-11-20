@@ -1,0 +1,16 @@
+DISTNAME=		demo-genom-0.1
+CATEGORIES=		doc
+
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=demo/}
+MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/demo-genom
+
+MAINTAINER=		openrobots@laas.fr
+#HOMEPAGE=
+COMMENT=		sample GenoM module used in the tutorial
+
+GNU_CONFIGURE=		yes
+
+GENOM_MODULE=		demo
+
+include ../../architecture/genom/depend.mk
+include ../../mk/robotpkg.mk
