@@ -21,6 +21,7 @@ DEPEND_DEPTH:=			${DEPEND_DEPTH}+
 LIBTOOL_LTDL_DEPEND_MK:=	${LIBTOOL_LTDL_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=				libtool-ltdl
 endif
 
 ifeq (+,$(LIBTOOL_LTDL_DEPEND_MK)) # -------------------------------------------
