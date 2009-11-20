@@ -1,4 +1,4 @@
-# $LAAS: checksum-vars.mk 2009/10/26 00:08:49 tho $
+# $LAAS: checksum-vars.mk 2009/11/20 14:01:00 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -92,16 +92,15 @@ endif
 # makepatchsum is a public target to add checksums of the patches
 # for the package to ${DISTINFO_FILE}.
 #
-.PHONY: distinfo makesum makepatchsum
+.PHONY: distinfo
 
 ifdef NO_CHECKSUM
-  distinfo makesum makepatchsum:
+  distinfo:
 	@${DO_NADA}
 else
   include ${ROBOTPKG_DIR}/mk/checksum/distinfo.mk
 endif
 
-# Some short aliases for "makepatchsum" and "distinfo".
-.PHONY: mps mdi
-mps: makepatchsum
+# A short alias for "distinfo".
+.PHONY: mdi
 mdi: distinfo

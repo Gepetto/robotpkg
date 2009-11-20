@@ -345,7 +345,7 @@ $(call require-for, fetch mirror-distfiles,				\
 	${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
 # Checksum
-$(call require-for, checksum makesum makepatchsum mps mdi makedistinfo,	\
+$(call require-for, checksum mdi distinfo,				\
 	${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
 # Extract

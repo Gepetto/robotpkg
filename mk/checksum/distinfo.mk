@@ -53,15 +53,9 @@ DEPEND_METHOD.digest+=	bootstrap
 include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
 
 
-# --- distinfo, makesum, makepatchsum (PUBLIC) -----------------------------
+# --- distinfo (PUBLIC) ----------------------------------------------------
 #
 # distinfo is a public target to create ${DISTINFO_FILE}.
-#
-# makesum is a public target to add checksums of the distfiles for
-# the package to ${DISTINFO_FILE}.
-#
-# makepatchsum is a public target to add checksums of the patches
-# for the package to ${DISTINFO_FILE}.
 #
 _DISTINFO_TARGETS+=	fetch
 _DISTINFO_TARGETS+=	distinfo-message
@@ -76,10 +70,10 @@ distinfo-message:
 	@${PHASE_MSG} "Creating checksums for ${PKGNAME}"
 
 
-# --- makesum (PUBLIC) -----------------------------------------------
+# --- makesum (PRIVATE) ----------------------------------------------------
 #
-# makesum is a public target to add checksums of the distfiles for
-# the package to ${DISTINFO_FILE}.
+# makesum is a target to add checksums of the distfiles for the package to
+# ${DISTINFO_FILE}.
 #
 .PHONY: makesum
 makesum:
@@ -115,10 +109,10 @@ makesum:
 	fi
 
 
-# --- makepatchsum (PUBLIC) ------------------------------------------------
+# --- makepatchsum (PRIVATE) -----------------------------------------------
 #
-# makepatchsum is a public target to add checksums of the patches for the
-# package to ${DISTINFO_FILE}.
+# makepatchsum is a target to add checksums of the patches for the package to
+# ${DISTINFO_FILE}.
 #
 .PHONY: makepatchsum
 makepatchsum:
