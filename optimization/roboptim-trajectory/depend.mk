@@ -31,7 +31,7 @@ PREFER.roboptim-trajectory?=	robotpkg
 
 DEPEND_USE+=			roboptim-trajectory
 
-DEPEND_ABI.roboptim-trajectory?=	roboptim-trajectory>=0.2.1
+DEPEND_ABI.roboptim-trajectory?=	roboptim-trajectory>=0.4
 DEPEND_DIR.roboptim-trajectory?=	../../optimization/roboptim-trajectory
 
 SYSTEM_SEARCH.roboptim-trajectory=\
