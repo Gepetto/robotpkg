@@ -1,0 +1,15 @@
+This is the client libraries for player.
+
+Player is a network server for robot control. Running on your robot,
+Player provides a clean and simple interface to the robot's sensors
+and actuators over the IP network. Your client program talks to Player
+over a TCP socket, reading data from sensors, writing commmands to
+actuators, and configuring devices on the fly.
+
+Player supports a variety of robot hardware. The original Player
+platform is the ActivMedia Pioneer 2 family, but several other robots
+and many common sensors are supported. Player's modular architecture
+makes it easy to add support for new hardware, and an active
+user/developer community contributes new drivers.
+
+Player runs on Linux (PC and embedded), Solaris and *BSD. 

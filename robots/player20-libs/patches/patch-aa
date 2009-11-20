@@ -1,0 +1,11 @@
+--- Makefile.in.orig	2009-11-20 11:11:23.019638000 +0100
++++ Makefile.in	2009-11-20 11:11:49.416583000 +0100
+@@ -572,7 +572,7 @@
+ target_cpu = @target_cpu@
+ target_os = @target_os@
+ target_vendor = @target_vendor@
+-SUBDIRS = replace libplayerjpeg libplayercore libplayerxdr libplayertcp rtk2 server libplayercore/bindings libplayertcp/bindings config client_libs examples utils doc 
++SUBDIRS = replace libplayerjpeg libplayercore libplayerxdr client_libs
+ EXTRA_DIST = config.simulation config.p2os COPYING.lib
+ all: config.h
+ 	$(MAKE) $(AM_MAKEFLAGS) all-recursive

@@ -1,0 +1,46 @@
+@comment Fri Nov 20 11:51:28 CET 2009
+bin/playerxdrgen.py
+include/player-2.0/libplayerc++/clientproxy.h
+include/player-2.0/libplayerc++/playerc++.h
+include/player-2.0/libplayerc++/playerc++config.h
+include/player-2.0/libplayerc++/playerclient.h
+include/player-2.0/libplayerc++/playererror.h
+include/player-2.0/libplayerc++/utility.h
+include/player-2.0/libplayerc/playerc.h
+include/player-2.0/libplayercore/addr_util.h
+include/player-2.0/libplayercore/configfile.h
+include/player-2.0/libplayercore/device.h
+include/player-2.0/libplayercore/devicetable.h
+include/player-2.0/libplayercore/driver.h
+include/player-2.0/libplayercore/drivertable.h
+include/player-2.0/libplayercore/error.h
+include/player-2.0/libplayercore/globals.h
+include/player-2.0/libplayercore/interface_util.h
+include/player-2.0/libplayercore/message.h
+include/player-2.0/libplayercore/player.h
+include/player-2.0/libplayercore/playercommon.h
+include/player-2.0/libplayercore/playerconfig.h
+include/player-2.0/libplayercore/playercore.h
+include/player-2.0/libplayercore/playertime.h
+include/player-2.0/libplayercore/plugins.h
+include/player-2.0/libplayercore/wallclocktime.h
+include/player-2.0/libplayerjpeg/playerjpeg.h
+include/player-2.0/libplayerxdr/functiontable.h
+include/player-2.0/libplayerxdr/playerxdr.h
+lib/libplayerc++.la
+lib/libplayerc.la
+lib/libplayercore.la
+lib/libplayererror.la
+lib/libplayerjpeg.la
+lib/libplayerxdr.la
+lib/pkgconfig/playerc++.pc
+lib/pkgconfig/playerc.pc
+lib/pkgconfig/playercore.pc
+lib/pkgconfig/playererror.pc
+lib/pkgconfig/playerxdr.pc
+@dirrm include/player-2.0/libplayerxdr
+@dirrm include/player-2.0/libplayerjpeg
+@dirrm include/player-2.0/libplayercore
+@dirrm include/player-2.0/libplayerc++
+@dirrm include/player-2.0/libplayerc
+@dirrm include/player-2.0
