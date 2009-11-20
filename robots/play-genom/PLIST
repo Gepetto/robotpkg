@@ -1,0 +1,35 @@
+@comment Fri Nov 20 12:07:49 CET 2009
+bin/play
+bin/playSendInitRqst
+bin/playTest
+include/play/playConst.h
+include/play/playStruct.h
+${PLIST.openprs}include/play/server/openprs/playDecodeOpenprs.h
+${PLIST.openprs}include/play/server/openprs/playEncodeOpenprs.h
+${PLIST.openprs}include/play/server/openprs/playRequestsOpenprsProto.h
+include/play/server/playEndian.h
+include/play/server/playError.h
+include/play/server/playMsgLib.h
+include/play/server/playPosterLib.h
+include/play/server/playPosterLibStruct.h
+include/play/server/playPosterReadLibProto.h
+include/play/server/playPosterShowLib.h
+include/play/server/playPosterWriteLibProto.h
+include/play/server/playPosterXMLLib.h
+include/play/server/playPrint.h
+include/play/server/playPrintXML.h
+include/play/server/playScan.h
+include/play/server/playType.h
+lib/libplayClient.la
+${PLIST.openprs}lib/openprs/libplayOpenprs.la
+${PLIST.openprs}lib/pkgconfig/play-oprs.pc
+lib/pkgconfig/play.pc
+${PLIST.tcl}lib/tclserv/libplayTclServ.la
+share/modules/gen/play.gen
+${PLIST.openprs}share/modules/openprs/playOpenprs.inc
+${PLIST.openprs}share/modules/openprs/playOpenprs.opf
+${PLIST.openprs}share/modules/openprs/playOpenprs.sym
+${PLIST.tcl}share/modules/tcl/playClient.tcl
+${PLIST.openprs}@dirrm include/play/server/openprs
+@dirrm include/play/server
+@dirrm include/play
