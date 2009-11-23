@@ -272,7 +272,8 @@ copy_src $pkgsrcdir/pkgtools/libnbcompat/dist libnbcompat
 run_cmd "(						\
     cd $wrkdir/libnbcompat;				\
     $shprog ./configure -C $configure_quiet_flags	\
-	--prefix=$prefix				\
+	--prefix=$prefix --sysconfdir=$sysconfdir	\
+	--enable-bsd-getopt --enable-db			\
     && $gmake						\
 )"
 
