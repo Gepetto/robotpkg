@@ -1,3 +1,4 @@
+ls
 # $LAAS: Makefile 2009/03/27 11:40:32 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
@@ -35,7 +36,7 @@ DOXYGEN_PLIST_DIR+=	share/doc/walkGenJrl
 
 include ../../mk/sysdep/cmake.mk
 include ../../math/jrl-dynamics/depend.mk
-include ../../robot/hrpsys-jrl/depend.mk
+include ../../robots/hrpsys-jrl/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
