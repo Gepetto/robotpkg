@@ -1,4 +1,4 @@
-# $LAAS: configure.mk 2009/11/15 23:54:00 tho $
+# $LAAS: configure.mk 2009/11/20 23:20:46 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -136,6 +136,7 @@ real-configure: ${_REAL_CONFIGURE_TARGETS}
 .PHONY: configure-message
 configure-message:
 	@${PHASE_MSG} "Configuring for ${PKGNAME}"
+	@>${CONFIGURE_LOGFILE}
 
 
 # --- configure-check-interactive (PRIVATE) --------------------------

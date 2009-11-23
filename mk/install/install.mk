@@ -94,6 +94,7 @@ real-install: ${_REAL_INSTALL_TARGETS}
 .PHONY: install-message
 install-message:
 	@${PHASE_MSG} "Installing for ${PKGNAME}"
+	@>${INSTALL_LOGFILE}
 
 
 # --- install-check-interactive (PRIVATE) ----------------------------

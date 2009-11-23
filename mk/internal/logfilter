@@ -116,7 +116,7 @@ fi
 
 
 if ${TEST} -n "$logfile"; then
-    exec 6>$logfile
+    exec 6>>$logfile
     tofile() { ${ECHO} "$@" >&6; }
 else
     tofile() { :;}

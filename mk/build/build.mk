@@ -1,4 +1,4 @@
-# $LAAS: build.mk 2009/11/15 23:57:32 tho $
+# $LAAS: build.mk 2009/11/20 23:26:32 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -119,6 +119,7 @@ real-build: ${_REAL_BUILD_TARGETS}
 .PHONY: build-message
 build-message:
 	@${PHASE_MSG} "Building for ${PKGNAME}"
+	@>${BUILD_LOGFILE}
 
 
 # --- build-check-interactive (PRIVATE) ------------------------------
