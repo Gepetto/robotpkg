@@ -1,5 +1,5 @@
---- Makefile~	2008-04-18 19:26:26.000000000 +0200
-+++ Makefile	2008-04-19 17:24:17.000000000 +0200
+--- Makefile.orig	2009-11-20 22:48:36.000000000 +0100
++++ Makefile	2009-11-20 22:57:55.000000000 +0100
 @@ -10,7 +10,7 @@
  MKPIC=		no
  MKPROFILE=	no
@@ -14,13 +14,13 @@
  FETCH_WITH_OPENSSL?=	no
  
 -.if !empty(FETCH_WITH_INET6:M[yY][eE][sS])
-+ifeq (yes,$(FETCH_WITH_INET6))
++ifeq (yes,${FETCH_WITH_INET6})
  CPPFLAGS+=	-DINET6
 -.endif
 +endif
  
 -.if !empty(FETCH_WITH_OPENSSL:M[yY][eE][sS])
-+ifeq (yes,$(FETCH_WITH_OPENSSL))
++ifeq (yes,${FETCH_WITH_OPENSSL})
  CPPFLAGS+=	-DWITH_SSL
  LDADD=		-lssl -lcrypto
 -.endif
@@ -30,19 +30,22 @@
  
  WARNS?=		4
  
--ftperr.h: ${.CURDIR}/ftp.errors ${.CURDIR}/Makefile ${.CURDIR}/errlist.awk
-+all:	lib${LIB}.a
+-ftperr.h: ${.CURDIR}/ftp.errors ${.CURDIR}/Makefile ${.CURDIR}/errlist.sh
+-	${.CURDIR}/errlist.sh ftp_errlist FTP \
+-	    ${.CURDIR}/ftp.errors > ${.TARGET}
+-
+-httperr.h: ${.CURDIR}/http.errors ${.CURDIR}/Makefile ${.CURDIR}/errlist.sh
+-	${.CURDIR}/errlist.sh http_errlist HTTP \
+-	    ${.CURDIR}/http.errors > ${.TARGET}
++all: lib${LIB}.a
 +
-+ftperr.h: ${CURDIR}/ftp.errors ${CURDIR}/Makefile ${CURDIR}/errlist.awk
- 	awk -v variable=ftp_errlist -v protocol=FTP \
--	    -f ${.CURDIR}/errlist.awk ${.CURDIR}/ftp.errors > ${.TARGET}
-+	    -f ${CURDIR}/errlist.awk ${CURDIR}/ftp.errors > $@
- 
--httperr.h: ${.CURDIR}/http.errors ${.CURDIR}/Makefile ${.CURDIR}/errlist.awk
-+httperr.h: ${CURDIR}/http.errors ${CURDIR}/Makefile ${CURDIR}/errlist.awk
- 	awk -v variable=http_errlist -v protocol=HTTP \
--	    -f ${.CURDIR}/errlist.awk ${.CURDIR}/http.errors > ${.TARGET}
-+	    -f ${CURDIR}/errlist.awk ${CURDIR}/http.errors > $@
++ftperr.h: ${CURDIR}/ftp.errors ${CURDIR}/Makefile ${CURDIR}/errlist.sh
++	${CURDIR}/errlist.sh ftp_errlist FTP \
++	    ${CURDIR}/ftp.errors > $@
++
++httperr.h: ${CURDIR}/http.errors ${CURDIR}/Makefile ${CURDIR}/errlist.sh
++	${CURDIR}/errlist.sh http_errlist HTTP \
++	    ${CURDIR}/http.errors > $@
 +
 +lib${LIB}.a: ${SRCS:.c=.o}
 +	${AR} cr $@ $^
@@ -58,6 +61,6 @@
 -.include <bsd.lib.mk>
 +includes: ${INCS}
 +	@for file in ${INCS}; do \
-+		echo "${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file";\
-+		${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file;	\
-+	done
++	  echo "${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file";\
++	  ${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file;       \
++       done

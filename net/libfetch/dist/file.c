@@ -1,6 +1,7 @@
-/*	$NetBSD: file.c,v 1.5 2008/04/04 23:19:16 joerg Exp $	*/
+/*	$NetBSD: file.c,v 1.15 2009/10/15 12:36:57 joerg Exp $	*/
 /*-
  * Copyright (c) 1998-2004 Dag-Erling Coïdan Smørgrav
+ * Copyright (c) 2008, 2009 Joerg Sonnenberger <joerg@NetBSD.org>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,6 +29,13 @@
  *
  * $FreeBSD: file.c,v 1.18 2007/12/14 10:26:58 des Exp $
  */
+
+#if HAVE_CONFIG_H
+#include "config.h"
+#endif
+#ifndef NETBSD
+#include <nbcompat.h>
+#endif
 
 #include <sys/stat.h>
 
@@ -69,10 +77,22 @@ fetchFile_close(void *cookie)
 fetchIO *
 fetchXGetFile(struct url *u, struct url_stat *us, const char *flags)
 {
+	char *path;
 	fetchIO *f;
-	int fd, *cookie;
+	struct url_stat local_us;
+	int if_modified_since, fd, *cookie;
 
-	fd = open(u->doc, O_RDONLY);
+	if_modified_since = CHECK_FLAG('i');
+	if (if_modified_since && us == NULL)
+		us = &local_us;
+
+	if ((path = fetchUnquotePath(u)) == NULL) {
+		fetch_syserr();
+		return NULL;
+	}
+
+	fd = open(path, O_RDONLY);
+	free(path);
 	if (fd == -1) {
 		fetch_syserr();
 		return NULL;
@@ -80,6 +100,15 @@ fetchXGetFile(struct url *u, struct url_stat *us, const char *flags)
 
 	if (us && fetch_stat_file(fd, us) == -1) {
 		close(fd);
+		fetch_syserr();
+		return NULL;
+	}
+
+	if (if_modified_since && u->last_modified > 0 &&
+	    u->last_modified >= us->mtime) {
+		close(fd);
+		fetchLastErrCode = FETCH_UNCHANGED;
+		snprintf(fetchLastErrString, MAXERRSTRING, "Unchanged");
 		return NULL;
 	}
 
@@ -114,13 +143,21 @@ fetchGetFile(struct url *u, const char *flags)
 fetchIO *
 fetchPutFile(struct url *u, const char *flags)
 {
+	char *path;
 	fetchIO *f;
 	int fd, *cookie;
 
+	if ((path = fetchUnquotePath(u)) == NULL) {
+		fetch_syserr();
+		return NULL;
+	}
+
 	if (CHECK_FLAG('a'))
-		fd = open(u->doc, O_WRONLY | O_APPEND);
+		fd = open(path, O_WRONLY | O_APPEND);
 	else
-		fd = open(u->doc, O_WRONLY);
+		fd = open(path, O_WRONLY);
+
+	free(path);
 
 	if (fd == -1) {
 		fetch_syserr();
@@ -166,67 +203,63 @@ fetch_stat_file(int fd, struct url_stat *us)
 	return (0);
 }
 
-static int
-fetch_stat_file2(const char *fn, struct url_stat *us)
+int
+fetchStatFile(struct url *u, struct url_stat *us, const char *flags)
 {
+	char *path;
 	int fd, rv;
 
-	fd = open(fn, O_RDONLY);
+	if ((path = fetchUnquotePath(u)) == NULL) {
+		fetch_syserr();
+		return -1;
+	}
+
+	fd = open(path, O_RDONLY);
+	free(path);
+
 	if (fd == -1) {
 		fetch_syserr();
 		return -1;
 	}
+
 	rv = fetch_stat_file(fd, us);
 	close(fd);
+
 	return rv;
 }
 
 int
-fetchStatFile(struct url *u, struct url_stat *us, const char *flags)
+fetchListFile(struct url_list *ue, struct url *u, const char *pattern, const char *flags)
 {
-	return (fetch_stat_file2(u->doc, us));
-}
-
-struct url_ent *
-fetchFilteredListFile(struct url *u, const char *pattern, const char *flags)
-{
+	char *path;
 	struct dirent *de;
-	struct url_stat us;
-	struct url_ent *ue;
-	int size, len;
-	char fn[PATH_MAX], *p;
 	DIR *dir;
-	int l;
+	int ret;
 
-	if ((dir = opendir(u->doc)) == NULL) {
+	if ((path = fetchUnquotePath(u)) == NULL) {
 		fetch_syserr();
-		return (NULL);
+		return -1;
+	}
+		
+	dir = opendir(path);
+	free(path);
+
+	if (dir == NULL) {
+		fetch_syserr();
+		return -1;
 	}
 
-	ue = NULL;
-	strncpy(fn, u->doc, sizeof(fn) - 2);
-	fn[sizeof(fn) - 2] = 0;
-	strcat(fn, "/");
-	p = strchr(fn, 0);
-	l = sizeof(fn) - strlen(fn) - 1;
+	ret = 0;
 
 	while ((de = readdir(dir)) != NULL) {
-		if (fnmatch(pattern, de->d_name, 0) != 0)
+		if (pattern && fnmatch(pattern, de->d_name, 0) != 0)
 			continue;
-		strncpy(p, de->d_name, l - 1);
-		p[l - 1] = 0;
-		if (fetch_stat_file2(fn, &us) == -1) {
-			/* should I return a partial result, or abort? */
+		ret = fetch_add_entry(ue, u, de->d_name, 0);
+		if (ret)
 			break;
-		}
-		fetch_add_entry(&ue, &size, &len, de->d_name, &us);
 	}
 
-	return (ue);
-}
+	closedir(dir);
 
-struct url_ent *
-fetchListFile(struct url *u, const char *flags)
-{
-	return fetchFilteredListFile(u, "*", flags);
+	return ret;
 }

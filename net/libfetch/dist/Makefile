@@ -18,11 +18,11 @@ CPPFLAGS+=	-D_LARGEFILE_SOURCE -D_LARGE_FILES
 FETCH_WITH_INET6?=	no
 FETCH_WITH_OPENSSL?=	no
 
-ifeq (yes,$(FETCH_WITH_INET6))
+ifeq (yes,${FETCH_WITH_INET6})
 CPPFLAGS+=	-DINET6
 endif
 
-ifeq (yes,$(FETCH_WITH_OPENSSL))
+ifeq (yes,${FETCH_WITH_OPENSSL})
 CPPFLAGS+=	-DWITH_SSL
 LDADD=		-lssl -lcrypto
 endif
@@ -31,15 +31,15 @@ CPPFLAGS+=	-DFTP_COMBINE_CWDS
 
 WARNS?=		4
 
-all:	lib${LIB}.a
+all: lib${LIB}.a
 
-ftperr.h: ${CURDIR}/ftp.errors ${CURDIR}/Makefile ${CURDIR}/errlist.awk
-	awk -v variable=ftp_errlist -v protocol=FTP \
-	    -f ${CURDIR}/errlist.awk ${CURDIR}/ftp.errors > $@
+ftperr.h: ${CURDIR}/ftp.errors ${CURDIR}/Makefile ${CURDIR}/errlist.sh
+	${CURDIR}/errlist.sh ftp_errlist FTP \
+	    ${CURDIR}/ftp.errors > $@
 
-httperr.h: ${CURDIR}/http.errors ${CURDIR}/Makefile ${CURDIR}/errlist.awk
-	awk -v variable=http_errlist -v protocol=HTTP \
-	    -f ${CURDIR}/errlist.awk ${CURDIR}/http.errors > $@
+httperr.h: ${CURDIR}/http.errors ${CURDIR}/Makefile ${CURDIR}/errlist.sh
+	${CURDIR}/errlist.sh http_errlist HTTP \
+	    ${CURDIR}/http.errors > $@
 
 lib${LIB}.a: ${SRCS:.c=.o}
 	${AR} cr $@ $^
@@ -54,6 +54,6 @@ install: lib${LIB}.a
 
 includes: ${INCS}
 	@for file in ${INCS}; do \
-		echo "${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file";\
-		${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file;	\
-	done
+	  echo "${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file";\
+	  ${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file;       \
+       done

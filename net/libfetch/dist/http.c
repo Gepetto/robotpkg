@@ -1,6 +1,8 @@
-/*	$NetBSD: http.c,v 1.13 2008/04/16 15:10:18 joerg Exp $	*/
+/*	$NetBSD: http.c,v 1.25 2009/10/15 12:36:57 joerg Exp $	*/
 /*-
  * Copyright (c) 2000-2004 Dag-Erling Coïdan Smørgrav
+ * Copyright (c) 2003 Thomas Klausner <wiz@NetBSD.org>
+ * Copyright (c) 2008, 2009 Joerg Sonnenberger <joerg@NetBSD.org>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,10 +63,20 @@
  * SUCH DAMAGE.
  */
 
+#if defined(__linux__) || defined(__MINT__)
+/* Keep this down to Linux or MiNT, it can create surprises elsewhere. */
+#define _GNU_SOURCE
+#endif
+
+/* Needed for gmtime_r on Interix */
+#define _REENTRANT
+
 #if HAVE_CONFIG_H
 #include "config.h"
 #endif
+#ifndef NETBSD
 #include <nbcompat.h>
+#endif
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -72,7 +84,6 @@
 #include <ctype.h>
 #include <errno.h>
 #include <locale.h>
-#include <netdb.h>
 #include <stdarg.h>
 #ifndef NETBSD
 #include <nbcompat/stdio.h>
@@ -87,6 +98,14 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 
+#ifndef NETBSD
+#include <nbcompat/netdb.h>
+#else
+#include <netdb.h>
+#endif
+
+#include <arpa/inet.h>
+
 #include "fetch.h"
 #include "common.h"
 #include "httperr.h"
@@ -100,6 +119,7 @@
 #define HTTP_MOVED_PERM		301
 #define HTTP_MOVED_TEMP		302
 #define HTTP_SEE_OTHER		303
+#define HTTP_NOT_MODIFIED	304
 #define HTTP_TEMP_REDIRECT	307
 #define HTTP_NEED_AUTH		401
 #define HTTP_NEED_PROXY_AUTH	407
@@ -225,9 +245,12 @@ http_fillbuf(struct httpio *io, size_t len)
 
 	if (io->chunksize == 0) {
 		char endl[2];
+		ssize_t len2;
 
-		if (fetch_read(io->conn, endl, 2) != 2 ||
-		    endl[0] != '\r' || endl[1] != '\n')
+		len2 = fetch_read(io->conn, endl, 2);
+		if (len2 == 1 && fetch_read(io->conn, endl + 1, 1) != 1)
+			return (-1);
+		if (len2 == -1 || endl[0] != '\r' || endl[1] != '\n')
 			return (-1);
 	}
 
@@ -730,6 +753,21 @@ http_get_proxy(struct url * url, const char *flags)
 	return (NULL);
 }
 
+static void
+set_if_modified_since(conn_t *conn, time_t last_modified)
+{
+	static const char weekdays[] = "SunMonTueWedThuFriSat";
+	static const char months[] = "JanFebMarAprMayJunJulAugSepOctNovDec";
+	struct tm tm;
+	char buf[80];
+	gmtime_r(&last_modified, &tm);
+	snprintf(buf, sizeof(buf), "%.3s, %02d %.3s %4d %02d:%02d:%02d GMT",
+	    weekdays + tm.tm_wday * 3, tm.tm_mday, months + tm.tm_mon * 3,
+	    tm.tm_year + 1900, tm.tm_hour, tm.tm_min, tm.tm_sec);
+	http_cmd(conn, "If-Modified-Since: %s", buf);
+}
+
+
 /*****************************************************************************
  * Core
  */
@@ -746,7 +784,7 @@ http_request(struct url *URL, const char *op, struct url_stat *us,
 {
 	conn_t *conn;
 	struct url *url, *new;
-	int chunked, direct, need_auth, noredirect, verbose;
+	int chunked, direct, if_modified_since, need_auth, noredirect, verbose;
 	int e, i, n, val;
 	off_t offset, clength, length, size;
 	time_t mtime;
@@ -758,6 +796,7 @@ http_request(struct url *URL, const char *op, struct url_stat *us,
 	direct = CHECK_FLAG('d');
 	noredirect = CHECK_FLAG('A');
 	verbose = CHECK_FLAG('v');
+	if_modified_since = CHECK_FLAG('i');
 
 	if (direct && purl) {
 		fetchFreeURL(purl);
@@ -826,6 +865,9 @@ http_request(struct url *URL, const char *op, struct url_stat *us,
 			    op, url->doc);
 		}
 
+		if (if_modified_since && url->last_modified > 0)
+			set_if_modified_since(conn, url->last_modified);
+
 		/* virtual host */
 		http_cmd(conn, "Host: %s", host);
 
@@ -889,6 +931,7 @@ http_request(struct url *URL, const char *op, struct url_stat *us,
 		switch (http_get_reply(conn)) {
 		case HTTP_OK:
 		case HTTP_PARTIAL:
+		case HTTP_NOT_MODIFIED:
 			/* fine */
 			break;
 		case HTTP_MOVED_PERM:
@@ -1021,7 +1064,10 @@ http_request(struct url *URL, const char *op, struct url_stat *us,
 		}
 
 		/* we have a hit or an error */
-		if (conn->err == HTTP_OK || conn->err == HTTP_PARTIAL || HTTP_ERROR(conn->err))
+		if (conn->err == HTTP_OK ||
+		    conn->err == HTTP_PARTIAL ||
+		    conn->err == HTTP_NOT_MODIFIED ||
+		    HTTP_ERROR(conn->err))
 			break;
 
 		/* all other cases: we got a redirect */
@@ -1073,6 +1119,11 @@ http_request(struct url *URL, const char *op, struct url_stat *us,
 	/* report back real offset and size */
 	URL->offset = offset;
 	URL->length = clength;
+
+	if (conn->err == HTTP_NOT_MODIFIED) {
+		http_seterr(HTTP_NOT_MODIFIED);
+		goto ouch;
+	}
 
 	/* wrap it up in a fetchIO */
 	if ((f = http_funopen(conn, chunked)) == NULL) {
@@ -1150,22 +1201,260 @@ fetchStatHTTP(struct url *URL, struct url_stat *us, const char *flags)
 	return (0);
 }
 
-/*
- * List a directory
- */
-struct url_ent *
-fetchFilteredListHTTP(struct url *url, const char *pattern, const char *flags)
+enum http_states {
+	ST_NONE,
+	ST_LT,
+	ST_LTA,
+	ST_TAGA,
+	ST_H,
+	ST_R,
+	ST_E,
+	ST_F,
+	ST_HREF,
+	ST_HREFQ,
+	ST_TAG,
+	ST_TAGAX,
+	ST_TAGAQ
+};
+
+struct index_parser {
+	struct url_list *ue;
+	struct url *url;
+	enum http_states state;
+};
+
+static ssize_t
+parse_index(struct index_parser *parser, const char *buf, size_t len)
 {
-	fprintf(stderr, "fetchFilteredListHTTP(): not implemented\n");
-	return (NULL);
+	char *end_attr, p = *buf;
+
+	switch (parser->state) {
+	case ST_NONE:
+		/* Plain text, not in markup */
+		if (p == '<')
+			parser->state = ST_LT;
+		return 1;
+	case ST_LT:
+		/* In tag -- "<" already found */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == 'a' || p == 'A')
+			parser->state = ST_LTA;
+		else if (!isspace((unsigned char)p))
+			parser->state = ST_TAG;
+		return 1;
+	case ST_LTA:
+		/* In tag -- "<a" already found */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == '"')
+			parser->state = ST_TAGAQ;
+		else if (isspace((unsigned char)p))
+			parser->state = ST_TAGA;
+		else
+			parser->state = ST_TAG;
+		return 1;
+	case ST_TAG:
+		/* In tag, but not "<a" -- disregard */
+		if (p == '>')
+			parser->state = ST_NONE;
+		return 1;
+	case ST_TAGA:
+		/* In a-tag -- "<a " already found */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == '"')
+			parser->state = ST_TAGAQ;
+		else if (p == 'h' || p == 'H')
+			parser->state = ST_H;
+		else if (!isspace((unsigned char)p))
+			parser->state = ST_TAGAX;
+		return 1;
+	case ST_TAGAX:
+		/* In unknown keyword in a-tag */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == '"')
+			parser->state = ST_TAGAQ;
+		else if (isspace((unsigned char)p))
+			parser->state = ST_TAGA;
+		return 1;
+	case ST_TAGAQ:
+		/* In a-tag, unknown argument for keys. */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == '"')
+			parser->state = ST_TAGA;
+		return 1;
+	case ST_H:
+		/* In a-tag -- "<a h" already found */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == '"')
+			parser->state = ST_TAGAQ;
+		else if (p == 'r' || p == 'R')
+			parser->state = ST_R;
+		else if (isspace((unsigned char)p))
+			parser->state = ST_TAGA;
+		else
+			parser->state = ST_TAGAX;
+		return 1;
+	case ST_R:
+		/* In a-tag -- "<a hr" already found */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == '"')
+			parser->state = ST_TAGAQ;
+		else if (p == 'e' || p == 'E')
+			parser->state = ST_E;
+		else if (isspace((unsigned char)p))
+			parser->state = ST_TAGA;
+		else
+			parser->state = ST_TAGAX;
+		return 1;
+	case ST_E:
+		/* In a-tag -- "<a hre" already found */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == '"')
+			parser->state = ST_TAGAQ;
+		else if (p == 'f' || p == 'F')
+			parser->state = ST_F;
+		else if (isspace((unsigned char)p))
+			parser->state = ST_TAGA;
+		else
+			parser->state = ST_TAGAX;
+		return 1;
+	case ST_F:
+		/* In a-tag -- "<a href" already found */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == '"')
+			parser->state = ST_TAGAQ;
+		else if (p == '=')
+			parser->state = ST_HREF;
+		else if (!isspace((unsigned char)p))
+			parser->state = ST_TAGAX;
+		return 1;
+	case ST_HREF:
+		/* In a-tag -- "<a href=" already found */
+		if (p == '>')
+			parser->state = ST_NONE;
+		else if (p == '"')
+			parser->state = ST_HREFQ;
+		else if (!isspace((unsigned char)p))
+			parser->state = ST_TAGA;
+		return 1;
+	case ST_HREFQ:
+		/* In href of the a-tag */
+		end_attr = memchr(buf, '"', len);
+		if (end_attr == NULL)
+			return 0;
+		*end_attr = '\0';
+		parser->state = ST_TAGA;
+		if (fetch_add_entry(parser->ue, parser->url, buf, 1))
+			return -1;
+		return end_attr + 1 - buf;
+	}
+	abort();
 }
+
+struct http_index_cache {
+	struct http_index_cache *next;
+	struct url *location;
+	struct url_list ue;
+};
+
+static struct http_index_cache *index_cache;
 
 /*
  * List a directory
  */
-struct url_ent *
-fetchListHTTP(struct url *url, const char *flags)
+int
+fetchListHTTP(struct url_list *ue, struct url *url, const char *pattern, const char *flags)
 {
-	fprintf(stderr, "fetchListHTTP(): not implemented\n");
-	return (NULL);
+	fetchIO *f;
+	char buf[2 * PATH_MAX];
+	size_t buf_len, sum_processed;
+	ssize_t read_len, processed;
+	struct index_parser state;
+	struct http_index_cache *cache = NULL;
+	int do_cache, ret;
+
+	do_cache = CHECK_FLAG('c');
+
+	if (do_cache) {
+		for (cache = index_cache; cache != NULL; cache = cache->next) {
+			if (strcmp(cache->location->scheme, url->scheme))
+				continue;
+			if (strcmp(cache->location->user, url->user))
+				continue;
+			if (strcmp(cache->location->pwd, url->pwd))
+				continue;
+			if (strcmp(cache->location->host, url->host))
+				continue;
+			if (cache->location->port != url->port)
+				continue;
+			if (strcmp(cache->location->doc, url->doc))
+				continue;
+			return fetchAppendURLList(ue, &cache->ue);
+		}
+
+		cache = malloc(sizeof(*cache));
+		fetchInitURLList(&cache->ue);
+		cache->location = fetchCopyURL(url);
+	}
+
+	f = fetchGetHTTP(url, flags);
+	if (f == NULL) {
+		if (do_cache) {
+			fetchFreeURLList(&cache->ue);
+			fetchFreeURL(cache->location);
+			free(cache);
+		}
+		return -1;
+	}
+
+	state.url = url;
+	state.state = ST_NONE;
+	if (do_cache) {
+		state.ue = &cache->ue;
+	} else {
+		state.ue = ue;
+	}
+
+	buf_len = 0;
+
+	while ((read_len = fetchIO_read(f, buf + buf_len, sizeof(buf) - buf_len)) > 0) {
+		buf_len += read_len;
+		sum_processed = 0;
+		do {
+			processed = parse_index(&state, buf + sum_processed, buf_len);
+			if (processed == -1)
+				break;
+			buf_len -= processed;
+			sum_processed += processed;
+		} while (processed != 0 && buf_len > 0);
+		if (processed == -1) {
+			read_len = -1;
+			break;
+		}
+		memmove(buf, buf + sum_processed, buf_len);
+	}
+
+	fetchIO_close(f);
+
+	ret = read_len < 0 ? -1 : 0;
+
+	if (do_cache) {
+		if (ret == 0) {
+			cache->next = index_cache;
+			index_cache = cache;
+		}
+
+		if (fetchAppendURLList(ue, &cache->ue))
+			ret = -1;
+	}
+
+	return ret;
 }

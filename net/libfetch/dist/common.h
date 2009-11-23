@@ -1,4 +1,4 @@
-/*	$NetBSD: common.h,v 1.5 2008/04/05 02:42:13 joerg Exp $	*/
+/*	$NetBSD: common.h,v 1.12 2009/08/16 20:31:29 joerg Exp $	*/
 /*-
  * Copyright (c) 1998-2004 Dag-Erling Coïdan Smørgrav
  * All rights reserved.
@@ -46,7 +46,8 @@
 #endif
 
 #if !defined(__sun) && !defined(__hpux) && !defined(__INTERIX) && \
-    !defined(__digital__) && !defined(__linux) && !defined(__sgi)
+    !defined(__digital__) && !defined(__linux) && !defined(__MINT__) && \
+    !defined(__sgi)
 #define HAVE_SA_LEN
 #endif
 
@@ -57,14 +58,21 @@ struct fetchconn {
 	char		*buf;		/* buffer */
 	size_t		 bufsize;	/* buffer size */
 	size_t		 buflen;	/* length of buffer contents */
+	char		*next_buf;	/* pending buffer, e.g. after getln */
+	size_t		 next_len;	/* size of pending buffer */
 	int		 err;		/* last protocol reply code */
 #ifdef WITH_SSL
 	SSL		*ssl;		/* SSL handle */
 	SSL_CTX		*ssl_ctx;	/* SSL context */
 	X509		*ssl_cert;	/* server certificate */
-	SSL_METHOD	*ssl_meth;	/* SSL method */
+#  if OPENSSL_VERSION_NUMBER < 0x00909000L
+	SSL_METHOD *ssl_meth;		/* SSL method */
+#  else
+	const SSL_METHOD *ssl_meth;	/* SSL method */
+#  endif
 #endif
 	int		 ref;		/* reference count */
+	int		 is_active;
 };
 
 /* Structure used for error message lists */
@@ -93,10 +101,10 @@ ssize_t		 fetch_write(conn_t *, const char *, size_t);
 ssize_t		 fetch_writev(conn_t *, struct iovec *, int);
 int		 fetch_putln(conn_t *, const char *, size_t);
 int		 fetch_close(conn_t *);
-int		 fetch_add_entry(struct url_ent **, int *, int *,
-		     const char *, struct url_stat *);
+int		 fetch_add_entry(struct url_list *, struct url *, const char *, int);
 int		 fetch_netrc_auth(struct url *url);
 int		 fetch_no_proxy_match(const char *);
+int		 fetch_urlpath_safe(char);
 
 #define ftp_seterr(n)	 fetch_seterr(ftp_errlist, n)
 #define http_seterr(n)	 fetch_seterr(http_errlist, n)

@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/02/09 14:44:27 tho $
+# $LAAS: depend.mk 2009/11/22 13:47:10 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -58,7 +58,8 @@ libfetch-build:
 	@${STEP_MSG} "Building libfetch in place"
 	${RUN}								\
 	cd ${LIBFETCH_SRCDIR} && 					\
-	${SETENV} AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
+	${CONFIGURE_LOGFILTER} ${SETENV}				\
+		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}" ${MAKE_PROGRAM} depend all
   else
   # This is the regular version of libfetch package, for normal install

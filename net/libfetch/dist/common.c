@@ -1,4 +1,4 @@
-/*	$NetBSD: common.c,v 1.7 2008/04/17 19:04:12 joerg Exp $	*/
+/*	$NetBSD: common.c,v 1.21 2009/10/15 12:36:57 joerg Exp $	*/
 /*-
  * Copyright (c) 1998-2004 Dag-Erling Coïdan Smørgrav
  * Copyright (c) 2008 Joerg Sonnenberger <joerg@NetBSD.org>
@@ -30,17 +30,31 @@
  * $FreeBSD: common.c,v 1.53 2007/12/19 00:26:36 des Exp $
  */
 
+#if HAVE_CONFIG_H
+#include "config.h"
+#endif
+#ifndef NETBSD
+#include <nbcompat.h>
+#endif
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <sys/uio.h>
 
 #include <netinet/in.h>
+#include <arpa/inet.h>
 
 #include <ctype.h>
 #include <errno.h>
+#if defined(HAVE_INTTYPES_H) || defined(NETBSD)
 #include <inttypes.h>
+#endif
+#ifndef NETBSD
+#include <nbcompat/netdb.h>
+#else
 #include <netdb.h>
+#endif
 #include <pwd.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -220,7 +234,10 @@ fetch_reopen(int sd)
 	/* allocate and fill connection structure */
 	if ((conn = calloc(1, sizeof(*conn))) == NULL)
 		return (NULL);
+	conn->next_buf = NULL;
+	conn->next_len = 0;
 	conn->sd = sd;
+	conn->is_active = 0;
 	++conn->ref;
 	return (conn);
 }
@@ -245,17 +262,17 @@ int
 fetch_bind(int sd, int af, const char *addr)
 {
 	struct addrinfo hints, *res, *res0;
-	int err;
 
 	memset(&hints, 0, sizeof(hints));
 	hints.ai_family = af;
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_protocol = 0;
-	if ((err = getaddrinfo(addr, NULL, &hints, &res0)) != 0)
+	if (getaddrinfo(addr, NULL, &hints, &res0))
 		return (-1);
-	for (res = res0; res; res = res->ai_next)
+	for (res = res0; res; res = res->ai_next) {
 		if (bind(sd, res->ai_addr, res->ai_addrlen) == 0)
 			return (0);
+	}
 	return (-1);
 }
 
@@ -270,7 +287,7 @@ fetch_connect(const char *host, int port, int af, int verbose)
 	char pbuf[10];
 	const char *bindaddr;
 	struct addrinfo hints, *res, *res0;
-	int sd, err;
+	int sd, error;
 
 	if (verbose)
 		fetch_info("looking up %s", host);
@@ -281,8 +298,8 @@ fetch_connect(const char *host, int port, int af, int verbose)
 	hints.ai_family = af;
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_protocol = 0;
-	if ((err = getaddrinfo(host, pbuf, &hints, &res0)) != 0) {
-		netdb_seterr(err);
+	if ((error = getaddrinfo(host, pbuf, &hints, &res0)) != 0) {
+		netdb_seterr(error);
 		return (NULL);
 	}
 	bindaddr = getenv("FETCH_BIND_ADDRESS");
@@ -385,8 +402,20 @@ fetch_read(conn_t *conn, char *buf, size_t len)
 {
 	struct timeval now, timeout, waittv;
 	fd_set readfds;
-	ssize_t rlen, total;
+	ssize_t rlen;
 	int r;
+
+	if (len == 0)
+		return 0;
+
+	if (conn->next_len != 0) {
+		if (conn->next_len < len)
+			len = conn->next_len;
+		memmove(buf, conn->next_buf, len);
+		conn->next_len -= len;
+		conn->next_buf += len;
+		return len;
+	}
 
 	if (fetchTimeout) {
 		FD_ZERO(&readfds);
@@ -394,8 +423,7 @@ fetch_read(conn_t *conn, char *buf, size_t len)
 		timeout.tv_sec += fetchTimeout;
 	}
 
-	total = 0;
-	while (len > 0) {
+	for (;;) {
 		while (fetchTimeout && !FD_ISSET(conn->sd, &readfds)) {
 			FD_SET(conn->sd, &readfds);
 			gettimeofday(&now, NULL);
@@ -425,18 +453,13 @@ fetch_read(conn_t *conn, char *buf, size_t len)
 		else
 #endif
 			rlen = read(conn->sd, buf, len);
-		if (rlen == 0)
+		if (rlen >= 0)
 			break;
-		if (rlen < 0) {
-			if (errno == EINTR && fetchRestartCalls)
-				continue;
+	
+		if (errno != EINTR || !fetchRestartCalls)
 			return (-1);
-		}
-		len -= rlen;
-		buf += rlen;
-		total += rlen;
 	}
-	return (total);
+	return (rlen);
 }
 
 
@@ -448,10 +471,9 @@ fetch_read(conn_t *conn, char *buf, size_t len)
 int
 fetch_getln(conn_t *conn)
 {
-	char *tmp;
+	char *tmp, *next;
 	size_t tmpsize;
 	ssize_t len;
-	char c;
 
 	if (conn->buf == NULL) {
 		if ((conn->buf = malloc(MIN_BUF_SIZE)) == NULL) {
@@ -461,19 +483,30 @@ fetch_getln(conn_t *conn)
 		conn->bufsize = MIN_BUF_SIZE;
 	}
 
-	conn->buf[0] = '\0';
 	conn->buflen = 0;
+	next = NULL;
 
 	do {
-		len = fetch_read(conn, &c, 1);
+		/*
+		 * conn->bufsize != conn->buflen at this point,
+		 * so the buffer can be NUL-terminated below for
+		 * the case of len == 0.
+		 */
+		len = fetch_read(conn, conn->buf + conn->buflen,
+		    conn->bufsize - conn->buflen);
 		if (len == -1)
 			return (-1);
 		if (len == 0)
 			break;
-		conn->buf[conn->buflen++] = c;
-		if (conn->buflen == conn->bufsize) {
+		next = memchr(conn->buf + conn->buflen, '\n', len);
+		conn->buflen += len;
+		if (conn->buflen == conn->bufsize && next == NULL) {
 			tmp = conn->buf;
-			tmpsize = conn->bufsize * 2 + 1;
+			tmpsize = conn->bufsize * 2;
+			if (tmpsize < conn->bufsize) {
+				errno = ENOMEM;
+				return (-1);
+			}
 			if ((tmp = realloc(tmp, tmpsize)) == NULL) {
 				errno = ENOMEM;
 				return (-1);
@@ -481,9 +514,17 @@ fetch_getln(conn_t *conn)
 			conn->buf = tmp;
 			conn->bufsize = tmpsize;
 		}
-	} while (c != '\n');
+	} while (next == NULL);
 
-	conn->buf[conn->buflen] = '\0';
+	if (next != NULL) {
+		*next = '\0';
+		conn->next_buf = next + 1;
+		conn->next_len = conn->buflen - (conn->next_buf - conn->buf);
+		conn->buflen = next - conn->buf;
+	} else {
+		conn->buf[conn->buflen] = '\0';
+		conn->next_len = 0;
+	}
 	return (0);
 }
 
@@ -584,7 +625,7 @@ int
 fetch_putln(conn_t *conn, const char *str, size_t len)
 {
 	struct iovec iov[2];
-	int ret;
+	ssize_t ret;
 
 	iov[0].iov_base = DECONST(char *, str);
 	iov[0].iov_len = len;
@@ -620,38 +661,141 @@ fetch_close(conn_t *conn)
 /*** Directory-related utility functions *************************************/
 
 int
-fetch_add_entry(struct url_ent **p, int *size, int *len,
-    const char *name, struct url_stat *us)
+fetch_add_entry(struct url_list *ue, struct url *base, const char *name,
+    int pre_quoted)
 {
-	struct url_ent *tmp;
+	struct url *tmp;
+	char *tmp_name;
+	size_t base_doc_len, name_len, i;
+	unsigned char c;
 
-	if (*p == NULL) {
-		*size = 0;
-		*len = 0;
+	if (strchr(name, '/') != NULL ||
+	    strcmp(name, "..") == 0 ||
+	    strcmp(name, ".") == 0)
+		return 0;
+
+	if (strcmp(base->doc, "/") == 0)
+		base_doc_len = 0;
+	else
+		base_doc_len = strlen(base->doc);
+
+	name_len = 1;
+	for (i = 0; name[i] != '\0'; ++i) {
+		if ((!pre_quoted && name[i] == '%') ||
+		    !fetch_urlpath_safe(name[i]))
+			name_len += 3;
+		else
+			++name_len;
 	}
 
-	if (*len >= *size - 1) {
-		tmp = realloc(*p, (*size * 2 + 1) * sizeof(**p));
+	tmp_name = malloc( base_doc_len + name_len + 1);
+	if (tmp_name == NULL) {
+		errno = ENOMEM;
+		fetch_syserr();
+		return (-1);
+	}
+
+	if (ue->length + 1 >= ue->alloc_size) {
+		tmp = realloc(ue->urls, (ue->alloc_size * 2 + 1) * sizeof(*tmp));
+		if (tmp == NULL) {
+			free(tmp_name);
+			errno = ENOMEM;
+			fetch_syserr();
+			return (-1);
+		}
+		ue->alloc_size = ue->alloc_size * 2 + 1;
+		ue->urls = tmp;
+	}
+
+	tmp = ue->urls + ue->length;
+	strcpy(tmp->scheme, base->scheme);
+	strcpy(tmp->user, base->user);
+	strcpy(tmp->pwd, base->pwd);
+	strcpy(tmp->host, base->host);
+	tmp->port = base->port;
+	tmp->doc = tmp_name;
+	memcpy(tmp->doc, base->doc, base_doc_len);
+	tmp->doc[base_doc_len] = '/';
+
+	for (i = base_doc_len + 1; *name != '\0'; ++name) {
+		if ((!pre_quoted && *name == '%') ||
+		    !fetch_urlpath_safe(*name)) {
+			tmp->doc[i++] = '%';
+			c = (unsigned char)*name / 16;
+			if (c < 10)
+				tmp->doc[i++] = '0' + c;
+			else
+				tmp->doc[i++] = 'a' - 10 + c;
+			c = (unsigned char)*name % 16;
+			if (c < 10)
+				tmp->doc[i++] = '0' + c;
+			else
+				tmp->doc[i++] = 'a' - 10 + c;
+		} else {
+			tmp->doc[i++] = *name;
+		}
+	}
+	tmp->doc[i] = '\0';
+
+	tmp->offset = 0;
+	tmp->length = 0;
+	tmp->last_modified = -1;
+
+	++ue->length;
+
+	return (0);
+}
+
+void
+fetchInitURLList(struct url_list *ue)
+{
+	ue->length = ue->alloc_size = 0;
+	ue->urls = NULL;
+}
+
+int
+fetchAppendURLList(struct url_list *dst, const struct url_list *src)
+{
+	size_t i, j, len;
+
+	len = dst->length + src->length;
+	if (len > dst->alloc_size) {
+		struct url *tmp;
+
+		tmp = realloc(dst->urls, len * sizeof(*tmp));
 		if (tmp == NULL) {
 			errno = ENOMEM;
 			fetch_syserr();
 			return (-1);
 		}
-		*size = (*size * 2 + 1);
-		*p = tmp;
+		dst->alloc_size = len;
+		dst->urls = tmp;
 	}
 
-	tmp = *p + *len;
-	snprintf(tmp->name, PATH_MAX, "%s", name);
-	if (us)
-		memcpy(&tmp->stat, us, sizeof(*us));
-	else
-		memset(&tmp->stat, 0, sizeof(*us));
+	for (i = 0, j = dst->length; i < src->length; ++i, ++j) {
+		dst->urls[j] = src->urls[i];
+		dst->urls[j].doc = strdup(src->urls[i].doc);
+		if (dst->urls[j].doc == NULL) {
+			while (i-- > 0)
+				free(dst->urls[j].doc);
+			fetch_syserr();
+			return -1;
+		}
+	}
+	dst->length = len;
 
-	(*len)++;
-	(++tmp)->name[0] = 0;
+	return 0;
+}
 
-	return (0);
+void
+fetchFreeURLList(struct url_list *ue)
+{
+	size_t i;
+
+	for (i = 0; i < ue->length; ++i)
+		free(ue->urls[i].doc);
+	free(ue->urls);
+	ue->length = ue->alloc_size = 0;
 }
 
 
