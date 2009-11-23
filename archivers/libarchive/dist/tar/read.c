@@ -24,7 +24,7 @@
  */
 
 #include "bsdtar_platform.h"
-__FBSDID("$FreeBSD: src/usr.bin/tar/read.c,v 1.36 2008/03/15 03:06:46 kientzle Exp $");
+__FBSDID("$FreeBSD: src/usr.bin/tar/read.c,v 1.38 2008/05/26 17:10:10 kientzle Exp $");
 
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
@@ -77,12 +77,28 @@ void
 tar_mode_t(struct bsdtar *bsdtar)
 {
 	read_archive(bsdtar, 't');
+	unmatched_inclusions_warn(bsdtar, "Not found in archive");
 }
 
 void
 tar_mode_x(struct bsdtar *bsdtar)
 {
+	/* We want to catch SIGINFO and SIGUSR1. */
+	siginfo_init(bsdtar);
+
 	read_archive(bsdtar, 'x');
+
+	unmatched_inclusions_warn(bsdtar, "Not found in archive");
+	/* Restore old SIGINFO + SIGUSR1 handlers. */
+	siginfo_done(bsdtar);
+}
+
+static void
+progress_func(void * cookie)
+{
+	struct bsdtar * bsdtar = cookie;
+
+	siginfo_printinfo(bsdtar, 0);
 }
 
 /*
@@ -119,6 +135,12 @@ read_archive(struct bsdtar *bsdtar, char mode)
 
 	do_chdir(bsdtar);
 
+	if (mode == 'x') {
+		/* Set an extract callback so that we can handle SIGINFO. */
+		archive_read_extract_set_progress_callback(a, progress_func,
+		    bsdtar);
+	}
+
 	if (mode == 'x' && bsdtar->option_chroot) {
 #if HAVE_CHROOT
 		if (chroot(".") != 0)
@@ -149,6 +171,11 @@ read_archive(struct bsdtar *bsdtar, char mode)
 		}
 		if (r == ARCHIVE_FATAL)
 			break;
+
+		if (bsdtar->option_numeric_owner) {
+			archive_entry_set_uname(entry, NULL);
+			archive_entry_set_gname(entry, NULL);
+		}
 
 		/*
 		 * Exclude entries that are too old.
@@ -238,6 +265,12 @@ read_archive(struct bsdtar *bsdtar, char mode)
 				    archive_entry_pathname(entry));
 				fflush(stderr);
 			}
+
+			/* Tell the SIGINFO-handler code what we're doing. */
+			siginfo_setinfo(bsdtar, "extracting",
+			    archive_entry_pathname(entry), 0);
+			siginfo_printinfo(bsdtar, 0);
+
 			if (bsdtar->option_stdout)
 				r = archive_read_data_into_fd(a, 1);
 			else
@@ -355,7 +388,7 @@ list_item_verbose(struct bsdtar *bsdtar, FILE *out, struct archive_entry *entry)
 	if (abs(tim - now) > (365/2)*86400)
 		fmt = bsdtar->day_first ? "%e %b  %Y" : "%b %e  %Y";
 	else
-		fmt = bsdtar->day_first ? "%e %b %R" : "%b %e %R";
+		fmt = bsdtar->day_first ? "%e %b %H:%M" : "%b %e %H:%M";
 	strftime(tmp, sizeof(tmp), fmt, localtime(&tim));
 	fprintf(out, " %s ", tmp);
 	safe_fprintf(out, "%s", archive_entry_pathname(entry));

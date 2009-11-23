@@ -1,6 +1,6 @@
---- Makefile.in~	2008-04-20 20:48:18.000000000 +0200
-+++ Makefile.in	2009-09-23 19:06:18.515537000 +0200
-@@ -817,19 +817,6 @@
+--- Makefile.in~	2008-09-06 23:20:38.000000000 +0200
++++ Makefile.in	2009-11-22 14:30:02.000000000 +0100
+@@ -820,19 +820,6 @@
  .SUFFIXES: .c .lo .o .obj .y
  am--refresh:
  	@:
@@ -20,7 +20,7 @@
  .PRECIOUS: Makefile
  Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
  	@case '$?' in \
-@@ -844,11 +831,6 @@
+@@ -847,11 +834,6 @@
  $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
  	$(SHELL) ./config.status --recheck
  
@@ -32,7 +32,7 @@
  config.h: stamp-h1
  	@if test ! -f $@; then \
  	  rm -f stamp-h1; \
-@@ -858,10 +840,6 @@
+@@ -861,10 +843,6 @@
  stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
  	@rm -f stamp-h1
  	cd $(top_builddir) && $(SHELL) ./config.status config.h

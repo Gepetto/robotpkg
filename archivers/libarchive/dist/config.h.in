@@ -45,6 +45,9 @@
 /* Define to 1 if you have the `chown' function. */
 #undef HAVE_CHOWN
 
+/* Define to 1 if you have the `chroot' function. */
+#undef HAVE_CHROOT
+
 /* Define to 1 if you have the declaration of `INT64_MAX', and to 0 if you
    don't. */
 #undef HAVE_DECL_INT64_MAX
@@ -114,6 +117,9 @@
 /* Define to 1 if you have the `fchown' function. */
 #undef HAVE_FCHOWN
 
+/* Define to 1 if you have the `fcntl' function. */
+#undef HAVE_FCNTL
+
 /* Define to 1 if you have the <fcntl.h> header file. */
 #undef HAVE_FCNTL_H
 
@@ -122,6 +128,9 @@
 
 /* Define to 1 if fnmatch(3) supports the FNM_LEADING_DIR flag */
 #undef HAVE_FNM_LEADING_DIR
+
+/* Define to 1 if you have the `fork' function. */
+#undef HAVE_FORK
 
 /* Define to 1 if fseeko (and presumably ftello) exists and is declared. */
 #undef HAVE_FSEEKO
@@ -189,9 +198,6 @@
 /* Define to 1 if you have the <limits.h> header file. */
 #undef HAVE_LIMITS_H
 
-/* Define to 1 if you have the <linux/ext2_fs.h> header file. */
-#undef HAVE_LINUX_EXT2_FS_H
-
 /* Define to 1 if you have the <linux/fs.h> header file. */
 #undef HAVE_LINUX_FS_H
 
@@ -244,6 +250,9 @@
 /* Define to 1 if you have the <paths.h> header file. */
 #undef HAVE_PATHS_H
 
+/* Define to 1 if you have the `pipe' function. */
+#undef HAVE_PIPE
+
 /* Define to 1 if you have the `poll' function. */
 #undef HAVE_POLL
 
@@ -252,6 +261,9 @@
 
 /* Define to 1 if you have the <pwd.h> header file. */
 #undef HAVE_PWD_H
+
+/* Define to 1 if you have the <regex.h> header file. */
+#undef HAVE_REGEX_H
 
 /* Define to 1 if you have the `select' function. */
 #undef HAVE_SELECT
@@ -304,12 +316,6 @@
 
 /* Define to 1 if `st_mtim.tv_nsec' is member of `struct stat'. */
 #undef HAVE_STRUCT_STAT_ST_MTIM_TV_NSEC
-
-/* Define to 1 if `st_rdev' is member of `struct stat'. */
-#undef HAVE_STRUCT_STAT_ST_RDEV
-
-/* Define to 1 if `tm_gmtoff' is member of `struct tm'. */
-#undef HAVE_STRUCT_TM_TM_GMTOFF
 
 /* Define to 1 if you have the <sys/acl.h> header file. */
 #undef HAVE_SYS_ACL_H
@@ -382,6 +388,9 @@
 /* Define to 1 if you have the <utime.h> header file. */
 #undef HAVE_UTIME_H
 
+/* Define to 1 if you have the `vfork' function. */
+#undef HAVE_VFORK
+
 /* Define to 1 if you have the `vprintf' function. */
 #undef HAVE_VPRINTF
 
@@ -393,6 +402,9 @@
 
 /* Define to 1 if you have the `wcslen' function. */
 #undef HAVE_WCSLEN
+
+/* Define to 1 if you have the `wctomb' function. */
+#undef HAVE_WCTOMB
 
 /* Define to 1 if you have the `wmemcmp' function. */
 #undef HAVE_WMEMCMP

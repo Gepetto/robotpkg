@@ -23,7 +23,7 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "test.h"
-__FBSDID("$FreeBSD: src/lib/libarchive/test/test_read_format_mtree.c,v 1.1 2008/01/01 22:28:04 kientzle Exp $");
+__FBSDID("$FreeBSD: src/lib/libarchive/test/test_read_format_mtree.c,v 1.2 2008/05/26 17:00:24 kientzle Exp $");
 
 /* Single entry with a hardlink. */
 static unsigned char archive[] = {
@@ -32,18 +32,18 @@ static unsigned char archive[] = {
 	"dir type=dir\n"
 	" file\\040with\\040space type=file uid=18\n"
 	" ..\n"
-	"file\\04with\\040space\n"
+	"file\\04with\\040space type=file\n"
 	"dir2 type=dir\n"
 	" dir3a type=dir\n"
-	"  indir3a\n"
+	"  indir3a type=file\n"
 	"dir2/fullindir2 type=file mode=0777\n"
 	"  ..\n"
-	" indir2\n"
+	" indir2 type=file\n"
 	" dir3b type=dir\n"
-	"  indir3b\n"
+	"  indir3b type=file\n"
 	"  ..\n"
 	" ..\n"
-	"notindir\n"
+	"notindir type=file\n"
 	"dir2/fullindir2 mode=0644\n"
 };
 

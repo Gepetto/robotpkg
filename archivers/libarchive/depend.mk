@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/02/09 14:44:08 tho $
+# $LAAS: depend.mk 2009/11/22 14:55:26 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -30,11 +30,12 @@ PREFER.libarchive?=	robotpkg
 PREFER.libarchive?=	system
   endif
 
-SYSTEM_SEARCH.libarchive=	\
-	include/archive.h	\
-	lib/libarchive.*
+_vregex:=/VERSION_STR.*libarchive/{s/.*archive[ ]*//;s/[^.0-9]//g;p;}
+SYSTEM_SEARCH.libarchive:=		\
+	'include/archive.h:${_vregex}'	\
+	'lib/libarchive.*'
 
-DEPEND_ABI.libarchive?=	libarchive>=2.5.0b
+DEPEND_ABI.libarchive?=	libarchive>=2.5.5
 DEPEND_DIR.libarchive?=	../../archivers/libarchive
 
 DEPEND_LIBS.libarchive+=-larchive
@@ -63,7 +64,8 @@ libarchive-build:
 	@${STEP_MSG} "Building libarchive in place"
 	${RUN}								\
 	cd ${LIBARCHIVE_SRCDIR} && 					\
-	${SETENV} AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
+	${CONFIGURE_LOGFILTER} ${SETENV}				\
+		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}"					\
 		${CONFIG_SHELL} ./configure -C --disable-shared		\
 		--disable-bsdtar --disable-dependency-tracking		\

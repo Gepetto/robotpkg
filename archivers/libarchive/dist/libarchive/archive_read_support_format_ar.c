@@ -26,7 +26,7 @@
  */
 
 #include "archive_platform.h"
-__FBSDID("$FreeBSD: src/lib/libarchive/archive_read_support_format_ar.c,v 1.9 2008/03/12 21:10:26 kaiw Exp $");
+__FBSDID("$FreeBSD: src/lib/libarchive/archive_read_support_format_ar.c,v 1.10 2008/05/26 17:00:22 kientzle Exp $");
 
 #ifdef HAVE_SYS_STAT_H
 #include <sys/stat.h>
@@ -350,12 +350,16 @@ archive_read_format_ar_read_header(struct archive_read *a,
 
 		/* Parse the size of the name, adjust the file size. */
 		number = ar_atol10(h + AR_name_offset + 3, AR_name_size - 3);
-		if ((off_t)number > ar->entry_bytes_remaining) {
+		bsd_name_length = (size_t)number;
+		/* Guard against the filename + trailing NUL
+		 * overflowing a size_t and against the filename size
+		 * being larger than the entire entry. */
+		if (number > (uint64_t)(bsd_name_length + 1)
+		    || (off_t)bsd_name_length > ar->entry_bytes_remaining) {
 			archive_set_error(&a->archive, ARCHIVE_ERRNO_MISC,
 			    "Bad input file size");
 			return (ARCHIVE_FATAL);
 		}
-		bsd_name_length = (size_t)number;
 		ar->entry_bytes_remaining -= bsd_name_length;
 		/* Adjust file size reported to client. */
 		archive_entry_set_size(entry, ar->entry_bytes_remaining);

@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * $FreeBSD: src/lib/libarchive/config_freebsd.h,v 1.8 2008/03/15 04:20:50 kientzle Exp $
+ * $FreeBSD: src/lib/libarchive/config_freebsd.h,v 1.10 2008/06/15 05:12:47 kientzle Exp $
  */
 
 /* FreeBSD 5.0 and later have ACL support. */
@@ -51,6 +51,7 @@
 #define	HAVE_FCHFLAGS 1
 #define	HAVE_FCHMOD 1
 #define	HAVE_FCHOWN 1
+#define	HAVE_FCNTL 1
 #define	HAVE_FCNTL_H 1
 #define	HAVE_FSEEKO 1
 #define	HAVE_FSTAT 1
@@ -70,6 +71,7 @@
 #define	HAVE_MKDIR 1
 #define	HAVE_MKFIFO 1
 #define	HAVE_MKNOD 1
+#define	HAVE_PIPE 1
 #define	HAVE_POLL 1
 #define	HAVE_POLL_H 1
 #define	HAVE_PWD_H 1
@@ -85,8 +87,6 @@
 #define	HAVE_STRING_H 1
 #define	HAVE_STRRCHR 1
 #define	HAVE_STRUCT_STAT_ST_MTIMESPEC_TV_NSEC 1
-#define	HAVE_STRUCT_STAT_ST_RDEV 1
-#define	HAVE_STRUCT_TM_TM_GMTOFF 1
 #define	HAVE_SYS_ACL_H 1
 #define	HAVE_SYS_IOCTL_H 1
 #define	HAVE_SYS_SELECT_H 1
@@ -102,9 +102,11 @@
 #define	HAVE_UTIME 1
 #define	HAVE_UTIMES 1
 #define	HAVE_UTIME_H 1
+#define	HAVE_VFORK 1
 #define	HAVE_WCHAR_H 1
 #define	HAVE_WCSCPY 1
 #define	HAVE_WCSLEN 1
+#define	HAVE_WCTOMB 1
 #define	HAVE_WMEMCMP 1
 #define	HAVE_WMEMCPY 1
 #define	HAVE_ZLIB_H 1

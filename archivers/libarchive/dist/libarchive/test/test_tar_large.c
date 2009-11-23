@@ -23,7 +23,7 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "test.h"
-__FBSDID("$FreeBSD: src/lib/libarchive/test/test_tar_large.c,v 1.1 2008/01/01 22:28:04 kientzle Exp $");
+__FBSDID("$FreeBSD: src/lib/libarchive/test/test_tar_large.c,v 1.2 2008/05/26 17:00:24 kientzle Exp $");
 
 #include <errno.h>
 #include <stdlib.h>
@@ -242,6 +242,11 @@ DEFINE_TEST(test_tar_large)
 		archive_entry_copy_pathname(ae, namebuff);
 		archive_entry_set_mode(ae, S_IFREG | 0755);
 		filesize = tests[i];
+
+		if (filesize < 0) {
+			skipping("32-bit off_t doesn't permit testing of very large files.");
+			return;
+		}
 		archive_entry_set_size(ae, filesize);
 
 		assertA(0 == archive_write_header(a, ae));

@@ -1,11 +1,11 @@
 --- config.aux/missing~	2007-08-03 14:56:01.000000000 +0200
-+++ config.aux/missing	2008-04-19 23:32:01.000000000 +0200
++++ config.aux/missing	2009-11-22 14:34:10.000000000 +0100
 @@ -1,7 +1,7 @@
  #! /bin/sh
  # Common stub for a few missing GNU programs while installing.
  
 -scriptversion=2006-05-10.23
-+scriptversion=2008-04-19.23
++scriptversion=2009-11-22.14
  
  # Copyright (C) 1996, 1997, 1999, 2000, 2002, 2003, 2004, 2005, 2006
  #   Free Software Foundation, Inc.

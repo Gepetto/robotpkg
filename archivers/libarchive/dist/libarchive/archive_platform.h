@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * $FreeBSD: src/lib/libarchive/archive_platform.h,v 1.29 2008/02/19 06:06:13 kientzle Exp $
+ * $FreeBSD: src/lib/libarchive/archive_platform.h,v 1.30 2008/05/26 17:00:22 kientzle Exp $
  */
 
 /*
@@ -35,6 +35,9 @@
 
 #ifndef ARCHIVE_PLATFORM_H_INCLUDED
 #define	ARCHIVE_PLATFORM_H_INCLUDED
+
+/* archive.h and archive_entry.h require this. */
+#define	__LIBARCHIVE_BUILD 1
 
 #ifdef _WIN32
 #include "config_windows.h"
@@ -67,7 +70,8 @@
 /* Try to get standard C99-style integer type definitions. */
 #if HAVE_INTTYPES_H
 #include <inttypes.h>
-#elif HAVE_STDINT_H
+#endif
+#if HAVE_STDINT_H
 #include <stdint.h>
 #endif
 

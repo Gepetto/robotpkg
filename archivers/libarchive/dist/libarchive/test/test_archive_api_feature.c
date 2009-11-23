@@ -23,12 +23,12 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "test.h"
-__FBSDID("$FreeBSD: src/lib/libarchive/test/test_archive_api_feature.c,v 1.4 2008/03/14 22:31:57 kientzle Exp $");
+__FBSDID("$FreeBSD: src/lib/libarchive/test/test_archive_api_feature.c,v 1.5 2008/05/26 17:00:24 kientzle Exp $");
 
 DEFINE_TEST(test_archive_api_feature)
 {
 	char buff[128];
-	char *p;
+	const char *p;
 
 	/* This is the (hopefully) final versioning API. */
 	assertEqualInt(ARCHIVE_VERSION_NUMBER, archive_version_number());
