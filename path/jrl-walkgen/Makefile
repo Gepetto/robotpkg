@@ -1,5 +1,4 @@
-ls
-# $LAAS: Makefile 2009/03/27 11:40:32 mallet $
+# $LAAS: Makefile 2009/11/23 16:03:54 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
