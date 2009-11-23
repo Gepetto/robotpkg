@@ -4,7 +4,7 @@ NNAAMMEE
      ppkkgg__aaddmmiinn -- perform various administrative tasks to the pkg system
 
 SSYYNNOOPPSSIISS
-     ppkkgg__aaddmmiinn [--bbqqSSvvVV] [--CC _c_o_n_f_i_g] [--dd _l_s_d_i_r] [--KK _p_k_g___d_b_d_i_r] [--ss _s_f_x___p_a_t_t_e_r_n]
+     ppkkgg__aaddmmiinn [--bbqqSSVVvv] [--CC _c_o_n_f_i_g] [--dd _l_s_d_i_r] [--KK _p_k_g___d_b_d_i_r] [--ss _s_f_x___p_a_t_t_e_r_n]
                _c_o_m_m_a_n_d [args ...]
 
 DDEESSCCRRIIPPTTIIOONN
@@ -14,7 +14,7 @@ DDEESSCCRRIIPPTTIIOONN
 OOPPTTIIOONNSS
      The following command-line options are supported:
 
-     --bb      Print only the basenames when matching package names for llssaallll
+     --bb      Print only the base names when matching package names for llssaallll
              and llssbbeesstt.
 
      --CC _c_o_n_f_i_g
@@ -69,7 +69,7 @@ OOPPTTIIOONNSS
              Like aauuddiitt--ppkkgg, but read the package names or patterns one per
              line from the given files.
 
-     aauuddiitt--hhiissttoorryy [--tt _t_y_p_e] [_p_k_g_b_a_s_e] ...
+     aauuddiitt--hhiissttoorryy [--ss] [--tt _t_y_p_e] [_p_k_g_b_a_s_e] ...
              Print all vulnerabilities for the given base package names.
 
      cchheecckk [_p_k_g _._._.]
@@ -89,9 +89,22 @@ OOPPTTIIOONNSS
              targets on disk are the same as the contents recorded at package
              installation time.
 
+     cchheecckk--lliicceennssee _c_o_n_d_i_t_i_o_n
+             Check if _c_o_n_d_i_t_i_o_n can be fulfilled with the currently set of
+             accepted licenses.  Prints either yes or no to stdout if the con-
+             dition can be parsed, otherwise it exits with error.
+
      cchheecckk--ppkkgg--vvuullnneerraabbiilliittiieess [--ss] _f_i_l_e
-             Check format and hashes in the pkg-vulnerabilties file _f_i_l_e.  If
+             Check format and hashes in the pkg-vulnerabilities file _f_i_l_e.  If
              --ss is given, also check the embedded signature.
+
+     cchheecckk--ssiiggnnaattuurree _f_i_l_e _._._.
+             Reports if _f_i_l_e is a correctly signed package.
+
+     cchheecckk--ssiinnggllee--lliicceennssee _l_i_c_e_n_s_e
+             Check if _l_i_c_e_n_s_e is a valid license name and if it is in the set
+             of acceptable licenses.  Prints either yes or no to stdout if the
+             condition can be parsed, otherwise it exits with error.
 
      ccoonnffiigg--vvaarr _v_a_r_i_a_b_l_e
              Print the current value of _v_a_r_i_a_b_l_e as used after parsing the
@@ -103,13 +116,22 @@ OOPPTTIIOONNSS
              robotpkg_view(1).
 
      dduummpp    Dump the contents of the package database, similar to ppkkgg__iinnffoo
-             --FF.  Columns are printed for the keyfield used in the pkgdb - the
-             filename -, and the data field - the package the file belongs to.
+             --FF.  Columns are printed for the key field used in the pkgdb -
+             the filename -, and the data field - the package the file belongs
+             to.
 
-     ffeettcchh--ppkkgg--vvuullnneerraabbiilliittiieess [--ss]
+     ffeettcchh--ppkkgg--vvuullnneerraabbiilliittiieess [--ssuu]
              Fetch a new pkg-vulnerabilities file, check the format and if --ss
              is given the signature.  If all checks are passed, write it to
-             pkgdb.
+             pkgdb.  If --uu is given, the fetch is conditional and the file
+             transfer is only done if the remote version is newer than the one
+             in pkgdb.
+
+     ffiinnddbbeesstt _p_a_t_t_e_r_n _._._.
+             Search the entries of PKG_PATH for packages matching _p_a_t_t_e_r_n.
+             Print the URL of the best matching package to stdout for each
+             pattern.  If a pattern is not matched, it is skipped and the com-
+             mand will return a failure.
 
      llssaallll _/_d_i_r_/_p_k_g_p_a_t_t_e_r_n
 
@@ -172,6 +194,14 @@ OOPPTTIIOONNSS
              Packages that are not installed directly by the user but pulled
              in as dependencies are marked by setting ``automatic=YES''.
 
+     ggppgg--ssiiggnn--ppaacckkaaggee ppkkgg ssppkkgg
+             Sign the binary package _p_k_g using GPG and write the result to
+             _s_p_k_g.
+
+     xx550099--ssiiggnn--ppaacckkaaggee ppkkgg ssppkkgg kkeeyy cceerrtt
+             Sign the binary package _p_k_g using the key _k_e_y and the certificate
+             _c_e_r_t, using _s_p_k_g as output file.
+
      uunnsseett _v_a_r_i_a_b_l_e _p_k_g _._._.
              Remove an installation variable.
 
@@ -181,13 +211,31 @@ EENNVVIIRROONNMMEENNTT
              package database directory.  The default package database direc-
              tory is _/_v_a_r_/_d_b_/_p_k_g.
 
+CCOONNFFIIGGUURRAATTIIOONN VVAARRIIAABBLLEESS
+     The following variables change the behavior of ppkkgg__aaddmmiinn and are
+     described in pkg_install.conf(5):
+
+     CERTIFICATE_ANCHOR_PKGS
+
+     CERTIFICATE_ANCHOR_PKGVULN
+
+     CERTIFICATE_CHAIN
+
+     GPG
+
+     PKGVULNDIR
+
+     PKGVULNURL
+
+     IGNORE_URL
+
 FFIILLEESS
      /var/db/pkg/pkgdb.byfile.db
      /var/db/pkg/<pkg>/+CONTENTS
 
 SSEEEE AALLSSOO
      robotpkg_add(1), robotpkg_create(1), robotpkg_delete(1), robotpkg_info(1), robotpkg_view(1),
-     robotpkg(7)
+     pkg_install.conf(5), robotpkg(7)
 
 HHIISSTTOORRYY
      The ppkkgg__aaddmmiinn command first appeared in NetBSD 1.4.
@@ -195,4 +243,4 @@ HHIISSTTOORRYY
 AAUUTTHHOORRSS
      The ppkkgg__aaddmmiinn command was written by Hubert Feyrer.
 
-NetBSD 4.0                      March 10, 2007                      NetBSD 4.0
+NetBSD 5.0                      August 16, 2009                     NetBSD 5.0

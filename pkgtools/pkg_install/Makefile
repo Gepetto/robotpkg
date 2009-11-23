@@ -1,10 +1,23 @@
 #
 # Copyright (C) 2008-2009 LAAS/CNRS
 #
-# Authored by Anthony Mallet on Fri Apr 18 2008
+# Permission to use, copy, modify, and distribute this software for any purpose
+# with or without   fee is hereby granted, provided   that the above  copyright
+# notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+# PERFORMANCE OF THIS SOFTWARE.
+#
 # From $NetBSD: Makefile,v 1.128 2006/07/18 23:06:41 jlam Exp $
+#
+#                                             Anthony Mallet on Fri Apr 18 2008
 
-DISTNAME=		pkg_install-${VERSION}
+DISTNAME=		pkg_install-20091115
 CATEGORIES=		pkgtools
 MASTER_SITES=		# empty
 DISTFILES=		# empty
@@ -14,11 +27,8 @@ HOMEPAGE=		http://www.pkgsrc.org/
 COMMENT=		Package management and administration tools for robotpkg
 
 GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-pkgdbdir=${PKG_DBDIR}
-CONFIGURE_ARGS+=	--with-ftp="\"${FETCH_CMD}\""
-CONFIGURE_ARGS+=	--with-mtree="\"${MTREE}\""
-CONFIGURE_ARGS+=	--with-pax="\"${PAX}\""
-CONFIGURE_ARGS+=	--with-tar="\"${TAR}\""
 
 NO_PKGTOOLS_REQD_CHECK=	yes
 NO_CHECKSUM=		yes
@@ -42,19 +52,9 @@ PLIST_SUBST+=		PKG_DBDIR=${PKG_DBDIR}
 
 DEINSTALL_SRC=		# empty
 INSTALL_SRC=		${PKGDIR}/INSTALL
-FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
-			PKG_TOOLS_BIN=${PKG_TOOLS_BIN}		\
-			MKDIR=${MKDIR}
-
-VERSION=		$(shell	${AWK} -F '"' '/PKGTOOLS_VERSION/ {print $$2}' \
-				${CURDIR}/dist/lib/version.h)
-
-# for now still require these explicitely
-include ../../pkgtools/pax/depend.mk
-include ../../pkgtools/tnftp/depend.mk
 
 # depend on these with the "inplace" style for bootstrap
-LIBNBCOMPAT_CONFIGURE_ARGS+=	--enable-bsd-getopt
+LIBNBCOMPAT_CONFIGURE_ARGS+=	--enable-bsd-getopt --enable-db
 LIBNBCOMPAT_STYLE=	inplace
 include ../../pkgtools/libnbcompat/depend.mk
 ZLIB_STYLE=		inplace

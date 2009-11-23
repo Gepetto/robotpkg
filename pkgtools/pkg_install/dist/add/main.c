@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.14 2008/03/01 19:06:10 rillig Exp $	*/
+/*	$NetBSD: main.c,v 1.22 2009/10/07 12:53:26 joerg Exp $	*/
 
 #if HAVE_CONFIG_H
 #include "config.h"
@@ -7,13 +7,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-#ifndef lint
-#if 0
-static char *rcsid = "from FreeBSD Id: main.c,v 1.16 1997/10/08 07:45:43 charnier Exp";
-#else
-__RCSID("$NetBSD: main.c,v 1.14 2008/03/01 19:06:10 rillig Exp $");
-#endif
-#endif
+__RCSID("$NetBSD: main.c,v 1.22 2009/10/07 12:53:26 joerg Exp $");
 
 /*
  *
@@ -42,15 +36,13 @@ __RCSID("$NetBSD: main.c,v 1.14 2008/03/01 19:06:10 rillig Exp $");
 #if HAVE_SYS_PARAM_H
 #include <sys/param.h>
 #endif
-#if HAVE_SYS_RESOURCE_H
-#include <sys/resource.h>
-#endif
 #include "lib.h"
 #include "add.h"
-#include "verify.h"
 
-static char Options[] = "AIK:LRVW:fhm:np:s:t:uvw:";
+static char Options[] = "AIK:LP:RVW:fhm:np:t:uvw:";
 
+const char *PlainPkgdb = NULL;
+char   *Destdir = NULL;
 char   *OverrideMachine = NULL;
 char   *Prefix = NULL;
 char   *View = NULL;
@@ -59,21 +51,18 @@ Boolean NoView = FALSE;
 Boolean NoInstall = FALSE;
 Boolean NoRecord = FALSE;
 Boolean Automatic = FALSE;
+Boolean ForceDepends = FALSE;
 
-char   *Mode = NULL;
-char   *Owner = NULL;
-char   *Group = NULL;
-char   *PkgName = NULL;
-char   *Directory = NULL;
-char    FirstPen[MaxPathSize];
+int	LicenseCheck = 0;
 int     Replace = 0;
 
 static void
 usage(void)
 {
-	(void) fprintf(stderr, "%s\n%s\n%s\n",
-	    "usage: robotpkg_add [-AfhILnRuVv] [-K pkg_dbdir] [-m machine] [-p prefix]",
-	    "               [-s verification-type] [-t template] [-W viewbase] [-w view]",
+	(void) fprintf(stderr, "%s\n%s\n%s\n%s\n",
+	    "usage: robotpkg_add [-AfhILnRuVv] [-C config] [-P destdir] [-K pkg_dbdir]",
+	    "               [-m machine] [-p prefix] [-s verification-type",
+	    "               [-W viewbase] [-w view]\n",
 	    "               [[ftp|http]://[user[:password]@]host[:port]][/path/]pkg-name ...");
 	exit(1);
 }
@@ -83,8 +72,7 @@ main(int argc, char **argv)
 {
 	int     ch, error=0;
 	lpkg_head_t pkgs;
-	struct rlimit rlim;
-	int rc;
+	const char *pkgdb = NULL;
 
 	setprogname(argv[0]);
 	while ((ch = getopt(argc, argv, Options)) != -1) {
@@ -93,8 +81,16 @@ main(int argc, char **argv)
 			Automatic = TRUE;
 			break;
 
+		case 'C':
+			config_file = optarg;
+
+		case 'P':
+			Destdir = optarg;
+			break;
+
 		case 'f':
 			Force = TRUE;
+			ForceDepends = TRUE;
 			break;
 
 		case 'I':
@@ -102,7 +98,7 @@ main(int argc, char **argv)
 			break;
 
 		case 'K':
-			_pkgdb_setPKGDB_DIR(optarg);
+			pkgdb = optarg;
 			break;
 
 		case 'L':
@@ -124,14 +120,6 @@ main(int argc, char **argv)
 
 		case 'p':
 			Prefix = optarg;
-			break;
-
-		case 's':
-			set_verification(optarg);
-			break;
-
-		case 't':
-			strlcpy(FirstPen, optarg, sizeof(FirstPen));
 			break;
 
 		case 'u':
@@ -164,7 +152,22 @@ main(int argc, char **argv)
 	argc -= optind;
 	argv += optind;
 
-	path_create(getenv("PKG_PATH"));
+	pkg_install_config();
+
+	if (pkgdb == NULL)
+		pkgdb = _pkgdb_getPKGDB_DIR();
+	PlainPkgdb = xstrdup(pkgdb);
+
+	if (Destdir != NULL) {
+		char *pkgdbdir;
+
+		pkgdbdir = xasprintf("%s/%s", Destdir, pkgdb);
+		_pkgdb_setPKGDB_DIR(pkgdbdir);
+		free(pkgdbdir);
+	} else
+		_pkgdb_setPKGDB_DIR(pkgdb);
+
+	process_pkg_path();
 	TAILQ_INIT(&pkgs);
 
 	if (argc == 0) {
@@ -172,6 +175,19 @@ main(int argc, char **argv)
 		warnx("missing package name(s)");
 		usage();
 	}
+
+	if (strcasecmp(do_license_check, "no") == 0)
+		LicenseCheck = 0;
+	else if (strcasecmp(do_license_check, "yes") == 0)
+		LicenseCheck = 1;
+	else if (strcasecmp(do_license_check, "always") == 0)
+		LicenseCheck = 2;
+	else
+		errx(1, "Unknown value of the configuration variable"
+		    "CHECK_LICENSE");
+
+	if (LicenseCheck)
+		load_license_lists();
 
 	/* Get all the remaining package names, if any */
 	for (; argc > 0; --argc, ++argv) {
@@ -183,22 +199,6 @@ main(int argc, char **argv)
 			lpp = alloc_lpkg(*argv);
 
 		TAILQ_INSERT_TAIL(&pkgs, lpp, lp_link);
-	}
-	
-	/* Increase # of max. open file descriptors as high as possible */
-	/* XXX: Why is this necessary? */
-	rc = getrlimit(RLIMIT_NOFILE, &rlim);
-	if (rc == -1) {
-	  	warn("cannot retrieve max. number of open files resource limit");
-	} else {
-	   	rlim.rlim_cur = rlim.rlim_max;
-		rc = setrlimit(RLIMIT_NOFILE, &rlim);
-		if (rc == -1) {
-		  	warn("cannot increase max. number of open files resource limit, try 'ulimit'");
-		} else {
-		  	if (Verbose)
-		  		printf("increasing RLIMIT_NOFILE to max. %ld open files\n", (long)rlim.rlim_cur);
-		}
 	}
 
 	error += pkg_perform(&pkgs);

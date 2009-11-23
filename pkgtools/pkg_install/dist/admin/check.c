@@ -1,4 +1,4 @@
-/*	$NetBSD: check.c,v 1.2 2008/03/09 19:25:16 joerg Exp $	*/
+/*	$NetBSD: check.c,v 1.9 2009/04/24 14:00:25 joerg Exp $	*/
 
 #if HAVE_CONFIG_H
 #include "config.h"
@@ -7,9 +7,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-#ifndef lint
-__RCSID("$NetBSD: check.c,v 1.2 2008/03/09 19:25:16 joerg Exp $");
-#endif
+__RCSID("$NetBSD: check.c,v 1.9 2009/04/24 14:00:25 joerg Exp $");
 
 /*-
  * Copyright (c) 1999-2008 The NetBSD Foundation, Inc.
@@ -26,13 +24,6 @@ __RCSID("$NetBSD: check.c,v 1.2 2008/03/09 19:25:16 joerg Exp $");
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *        This product includes software developed by the NetBSD
- *        Foundation, Inc. and its contributors.
- * 4. Neither the name of The NetBSD Foundation nor the names of its
- *    contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
  * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -65,7 +56,9 @@ __RCSID("$NetBSD: check.c,v 1.2 2008/03/09 19:25:16 joerg Exp $");
 #if HAVE_FCNTL_H
 #include <fcntl.h>
 #endif
-#if HAVE_MD5_H
+#ifndef NETBSD
+#include <nbcompat/md5.h>
+#else
 #include <md5.h>
 #endif
 #if HAVE_LIMITS_H
@@ -103,7 +96,6 @@ check1pkg(const char *pkgdir, int *filecnt, int *pkgcnt)
 		err(EXIT_FAILURE, "can't open %s", content);
 	free(content);
 
-	Plist.head = Plist.tail = NULL;
 	read_plist(&Plist, f);
 	p = find_plist(&Plist, PLIST_NAME);
 	if (p == NULL)
@@ -125,10 +117,6 @@ check1pkg(const char *pkgdir, int *filecnt, int *pkgcnt)
 					if (strncmp(p->next->name, CHECKSUM_HEADER, ChecksumHeaderLen) == 0) {
 						if ((md5file = MD5File(file, NULL)) != NULL) {
 							/* Mismatch? */
-#ifdef PKGDB_DEBUG
-							printf("%s: md5 should=<%s>, is=<%s>\n",
-							    file, p->next->name + ChecksumHeaderLen, md5file);
-#endif
 							if (strcmp(md5file, p->next->name + ChecksumHeaderLen) != 0)
 								printf("%s fails MD5 checksum\n", file);
 
@@ -181,12 +169,11 @@ check1pkg(const char *pkgdir, int *filecnt, int *pkgcnt)
 		case PLIST_UNEXEC:
 		case PLIST_DISPLAY:
 		case PLIST_PKGDEP:
-		case PLIST_MTREE:
 		case PLIST_DIR_RM:
-		case PLIST_IGNORE_INST:
 		case PLIST_OPTION:
 		case PLIST_PKGCFL:
 		case PLIST_BLDDEP:
+		case PLIST_PKGDIR:
 			break;
 		}
 	}
@@ -239,8 +226,7 @@ check_pkg(const char *pkg, int *filecnt, int *pkgcnt, int allow_unmatched)
 		errx(EXIT_FAILURE, "No matching pkg for %s.", pkg);
 	}
 
-	if (asprintf(&pattern, "%s-[0-9]*", pkg) == -1)
-		errx(EXIT_FAILURE, "asprintf failed");
+	pattern = xasprintf("%s-[0-9]*", pkg);
 
 	if (match_installed_pkgs(pattern, checkpattern_fn, &arg) == -1)
 		errx(EXIT_FAILURE, "Cannot process pkdbdb");

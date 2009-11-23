@@ -1,3 +1,5 @@
+/*	$NetBSD: iterate.c,v 1.7 2009/08/02 17:56:45 joerg Exp $	*/
+
 /*-
  * Copyright (c) 2007 Joerg Sonnenberger <joerg@NetBSD.org>.
  * All rights reserved.
@@ -41,10 +43,6 @@
 #endif
 
 #include "lib.h"
-
-#ifndef __UNCONST
-#define __UNCONST(a)	((void *)(unsigned long)(const void *)(a))
-#endif
 
 /*
  * Generic iteration function:
@@ -180,7 +178,7 @@ match_by_basename(const char *pkg, void *cookie)
 		return 0;
 	}
 	if (strncmp(pkg, target, pkg_version - pkg) == 0 &&
-	    strlen(target) == pkg_version - pkg)
+	    pkg + strlen(target) == pkg_version)
 		return 1;
 	else
 		return 0;
@@ -196,7 +194,7 @@ match_by_pattern(const char *pkg, void *cookie)
 
 struct add_matching_arg {
 	lpkg_head_t *pkghead;
-	size_t got_match;
+	int got_match;
 	int (*match_fn)(const char *pkg, void *cookie);
 	void *cookie;
 };
@@ -280,8 +278,7 @@ match_best_installed(const char *pkg, void *cookie)
 	case 1:
 		/* Current package is better, remember it. */
 		free(arg->best_current_match);
-		if ((arg->best_current_match = strdup(pkg)) == NULL)
-			return -1;
+		arg->best_current_match = xstrdup(pkg);
 		break;
 	}
 	return 0;
@@ -367,8 +364,7 @@ match_best_file(const char *filename, void *cookie)
 			warnx("filename %s does not contain a recognized suffix", filename);
 			return -1;
 		}
-		if ((filtered_filename = malloc(len - 4 + 1)) == NULL)
-			err(EXIT_FAILURE, "malloc failed");
+		filtered_filename = xmalloc(len - 4 + 1);
 		memcpy(filtered_filename, filename, len - 4);
 		filtered_filename[len - 4] = '\0';
 		active_filename = filtered_filename;
@@ -390,15 +386,15 @@ match_best_file(const char *filename, void *cookie)
 		/* Current package is better, remember it. */
 		free(arg->best_current_match);
 		free(arg->best_current_match_filtered);
-		if ((arg->best_current_match = strdup(filename)) == NULL)
-			err(EXIT_FAILURE, "strdup failed");
+		arg->best_current_match = xstrdup(filename);
 		if (filtered_filename != NULL)
 			arg->best_current_match_filtered = filtered_filename;
-		else if ((arg->best_current_match_filtered = strdup(active_filename)) == NULL)
-			err(EXIT_FAILURE, "strdup failed");
+		else
+			arg->best_current_match_filtered = xstrdup(active_filename);
 		return 0;
 	default:
 		errx(EXIT_FAILURE, "Invalid error from pkg_order");
+		/* NOTREACHED */
 	}
 }
 
@@ -450,8 +446,7 @@ match_file_and_call(const char *filename, void *cookie)
 			warnx("filename %s does not contain a recognized suffix", filename);
 			return -1;
 		}
-		if ((filtered_filename = malloc(len - 4 + 1)) == NULL)
-			err(EXIT_FAILURE, "malloc failed");
+		filtered_filename = xmalloc(len - 4 + 1);
 		memcpy(filtered_filename, filename, len - 4);
 		filtered_filename[len - 4] = '\0';
 		active_filename = filtered_filename;

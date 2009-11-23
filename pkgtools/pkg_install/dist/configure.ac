@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.52)
-AC_INIT([pkg_install], [20070804], [joerg@NetBSD.org])
+AC_INIT([pkg_install], [20090911], [joerg@NetBSD.org])
 AC_CONFIG_SRCDIR([lib/plist.c])
 AC_CONFIG_HEADER(lib/config.h)
 
@@ -43,23 +43,11 @@ AC_ARG_WITH(pkgdbdir,
 [ pkgdbdir="/var/db/pkg" ])
 AC_SUBST(pkgdbdir)
 
-AC_ARG_WITH(ftp,
-[  --with-ftp=path         Path to tnftp (PREFIX/bin/ftp)],
-[ ftp="$with_ftp" ],
-[ ftp='$(prefix)/bin/ftp' ])
-AC_SUBST(ftp)
-
-AC_ARG_WITH(tar,
-[  --with-tar=path         Path to pax-as-tar (PREFIX/bin/tar)],
-[ tar="$with_tar" ],
-[ tar='$(prefix)/bin/tar' ])
-AC_SUBST(tar)
-
-AC_ARG_WITH(pax,
-[  --with-pax=path         Path to pax (PREFIX/bin/pax)],
-[ pax="$with_pax" ],
-[ pax='$(prefix)/bin/pax' ])
-AC_SUBST(pax)
+AC_ARG_WITH(ssl,
+[ --with-ssl		Enable OpenSSL based signature support],
+[ ssl_support=yes ],
+[ ssl_support= ])
+AC_SUBST(ssl_support)
 
 AC_ARG_ENABLE([bootstrap],
     [AS_HELP_STRING([--enable-bootstrap], [build minimal version of pkg_install])],
@@ -69,23 +57,28 @@ AC_SUBST(bootstrap)
 
 dnl Checks for libraries.
 AC_CHECK_LIB(db, __db185_open, , AC_SEARCH_LIBS(dbopen, [db db1]))
-AC_SEARCH_LIBS(tgetent, [termcap termlib curses ncurses])
 
 dnl Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS([assert.h ctype.h dirent.h err.h errno.h fnctl.h \
-	fnmatch.h glob.h grp.h inttypes.h limits.h md5.h netdb.h \
-	pwd.h regex.h signal.h stdarg.h stdio.h stdlib.h string.h \
-	termcap.h termios.h time.h unistd.h vis.h])
-AC_CHECK_HEADERS([db1/db.h db_185.h db.h])
+	fnmatch.h glob.h grp.h inttypes.h limits.h pwd.h signal.h \
+	stdarg.h stdio.h stdlib.h string.h time.h unistd.h vis.h])
 AC_CHECK_HEADERS([sys/cdefs.h sys/file.h sys/ioctl.h sys/param.h \
-	sys/poll.h sys/queue.h sys/resource.h sys/signal.h sys/stat.h \
-	sys/statvfs.h sys/time.h sys/types.h sys/utsname.h sys/vfs.h \
+	sys/queue.h sys/stat.h sys/time.h sys/types.h sys/utsname.h \
 	sys/wait.h])
 
 # Checks for library functions.
-AC_CHECK_FUNCS([chflags dbopen __db185_open tgetent vfork])
-AC_CHECK_FUNCS([getrlimit setrlimit])
+AC_CHECK_FUNCS([vfork])
+
+AC_SEARCH_LIBS([gethostbyname], [nsl])
+AC_SEARCH_LIBS([socket],
+               [socket],
+               [],
+               [AC_CHECK_LIB([socket],
+                             [socket],
+                             [LIBS="-lsocket -lnsl $LIBS"],
+                             [],
+                             [-lnsl])])
 
 dnl Check for types
 AC_TYPE_UINT8_T
@@ -149,14 +142,10 @@ AH_BOTTOM(
 #endif
 )
 
-AC_CONFIG_FILES([Makefile add/Makefile admin/Makefile 
-	audit-packages/Makefile audit-packages/audit-packages.1 \
-	audit-packages/audit-packages.cat1 audit-packages/audit-packages.conf \
-	audit-packages/audit-packages.conf.5 \
-	audit-packages/audit-packages.conf.cat5 \
-	audit-packages/download-vulnerability-list.1 \
-	audit-packages/download-vulnerability-list.cat1 \
-	audit-packages/download-vulnerability-list.sh bpm/bpm.sh \
-	create/Makefile delete/Makefile info/Makefile lib/Makefile \
-	view/Makefile view/linkfarm.sh view/robotpkg_view.sh])
+SYSCONFDIR="$sysconfdir"
+AC_SUBST(SYSCONFDIR)
+
+AC_CONFIG_FILES([Makefile add/Makefile admin/Makefile bpm/bpm.sh \
+	create/Makefile delete/Makefile info/Makefile \
+	lib/Makefile lib/pkg_install.conf.5 lib/pkg_install.conf.cat5])
 AC_OUTPUT

@@ -23,7 +23,7 @@ INSTALL=	@INSTALL@
 
 PROG=		robotpkg_create
 
-ifeq (,$(BOOTSTRAP))
+ifeq (,$(strip $(BOOTSTRAP)))
 LIBS=		-linstall -larchive -lbz2 -lz @LIBS@
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
 OBJS=	main.o perform.o pl.o util.o build.o

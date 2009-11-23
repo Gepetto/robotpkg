@@ -1,3 +1,5 @@
+/*	$NetBSD: fexec.c,v 1.12 2009/08/02 17:56:45 joerg Exp $	*/
+
 /*-
  * Copyright (c) 2003 The NetBSD Foundation, Inc.
  * All rights reserved.
@@ -13,13 +15,6 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *        This product includes software developed by the NetBSD
- *        Foundation, Inc. and its contributors.
- * 4. Neither the name of The NetBSD Foundation nor the names of its
- *    contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
  * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -64,9 +59,7 @@
 
 #include "lib.h"
 
-#ifndef lint
-__RCSID("$NetBSD: fexec.c,v 1.9 2007/09/18 15:44:18 joerg Exp $");
-#endif
+__RCSID("$NetBSD: fexec.c,v 1.12 2009/08/02 17:56:45 joerg Exp $");
 
 static int	vfcexec(const char *, int, const char *, va_list);
 
@@ -87,7 +80,7 @@ pfcexec(const char *path, const char *file, const char **argv)
 		if ((path != NULL) && (chdir(path) < 0))
 			_exit(127);
 
-		(void)execvp(file, (char ** const)argv);
+		(void)execvp(file, __UNCONST(argv));
 		_exit(127);
 		/* NOTREACHED */
 	case -1:
@@ -113,8 +106,7 @@ vfcexec(const char *path, int skipempty, const char *arg, va_list ap)
 	int retval;
 
 	argv_size = 16;
-	if ((argv = malloc(argv_size * sizeof(*argv))) == NULL)
-		err(EXIT_FAILURE, "vfcexec: malloc failed");
+	argv = xcalloc(argv_size, sizeof(*argv));
 
 	argv[0] = arg;
 	argc = 1;
@@ -122,9 +114,7 @@ vfcexec(const char *path, int skipempty, const char *arg, va_list ap)
 	do {
 		if (argc == argv_size) {
 			argv_size *= 2;
-			argv = realloc(argv, argv_size * sizeof(*argv));
-			if (argv == NULL)
-				err(EXIT_FAILURE, "vfcexec: realloc failed");
+			argv = xrealloc(argv, argv_size * sizeof(*argv));
 		}
 		arg = va_arg(ap, const char *);
 		if (skipempty && arg && strlen(arg) == 0)

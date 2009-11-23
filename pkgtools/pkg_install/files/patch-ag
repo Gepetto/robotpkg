@@ -1,0 +1,14 @@
+--- add/Makefile.in~	2009-11-23 16:45:33.378885000 +0100
++++ add/Makefile.in	2009-11-23 17:19:40.738254000 +0100
+@@ -21,9 +21,9 @@
+ SSL_SUPPORT=	@ssl_support@
+ 
+ LIBS=		-linstall -lfetch -larchive -lbz2 -lz
+-.if !empty(SSL_SUPPORT)
++ifneq (,$(strip $(SSL_SUPPORT)))
+ LIBS+=		-lcrypto
+-.endif
++endif
+ LIBS+=		@LIBS@
+ 
+ INSTALL=	@INSTALL@

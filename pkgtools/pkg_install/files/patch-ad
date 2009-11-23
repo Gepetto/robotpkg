@@ -1,11 +1,11 @@
---- create/Makefile.in~	2008-04-19 13:15:51.000000000 +0200
-+++ create/Makefile.in	2008-04-19 13:18:35.000000000 +0200
+--- create/Makefile.in~	2008-04-05 11:05:24.000000000 +0200
++++ create/Makefile.in	2009-11-23 00:13:11.000000000 +0100
 @@ -23,15 +23,15 @@
  
- PROG=		robotpkg_create
+ PROG=		pkg_create
  
 -.if empty(BOOTSTRAP)
-+ifeq (,$(BOOTSTRAP))
++ifeq (,$(strip $(BOOTSTRAP)))
  LIBS=		-linstall -larchive -lbz2 -lz @LIBS@
  CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
  OBJS=	main.o perform.o pl.o util.o build.o
