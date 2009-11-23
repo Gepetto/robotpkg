@@ -32,6 +32,16 @@ COMMENT=	Library to access HTTP/FTP server
 BUILD_TARGET=	depend all
 INSTALL_TARGET=	install includes
 
+# ssl option
+PKG_SUPPORTED_OPTIONS+=	ssl
+PKG_OPTION_DESCR.ssl?=	Enable OpenSSL support
+
+define PKG_OPTION_SET.ssl
+  DEPEND_INCDIRS.openssl+=	include
+  BUILD_MAKE_FLAGS+=		FETCH_WITH_OPENSSL=yes
+  include ../../mk/sysdep/openssl.mk
+endef
+
 LIBNBCOMPAT_STYLE=inplace
 include ../../pkgtools/libnbcompat/depend.mk
 include ../../mk/robotpkg.mk
