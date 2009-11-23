@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/11/22 14:55:26 tho $
+# $LAAS: depend.mk 2009/11/23 17:33:53 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -69,7 +69,8 @@ libarchive-build:
 		CPPFLAGS="${CPPFLAGS}"					\
 		${CONFIG_SHELL} ./configure -C --disable-shared		\
 		--disable-bsdtar --disable-dependency-tracking		\
-	&& ${MAKE_PROGRAM}
+		--disable-acl						\
+	&& ${CONFIGURE_LOGFILTER} ${MAKE_PROGRAM}
   else
   # This is the regular version of libarchive package, for normal install
   #
