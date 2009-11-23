@@ -17,7 +17,8 @@
 #
 #                                             Anthony Mallet on Fri Apr 18 2008
 
-DISTNAME=		pkg_install-20091115
+VERSION=		20091115
+DISTNAME=		pkg_install-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		# empty
 DISTFILES=		# empty
