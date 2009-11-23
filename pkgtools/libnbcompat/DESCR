@@ -1,5 +1,6 @@
 libnbcompat is a portable NetBSD compatibility library for use by
-the pkgsrc tools and other sources from NetBSD (and elsewhere).
+the robotpkg tools and other sources from NetBSD (and elsewhere) such as
+pkgsrc.
 
 It is also helpful for providing definitions and functions missing from
 other Unix platforms.

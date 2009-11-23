@@ -1,0 +1,15 @@
+--- Makefile.in~	2009-06-17 00:02:43.000000000 +0200
++++ Makefile.in	2009-11-20 00:02:54.000000000 +0100
+@@ -64,9 +64,9 @@
+ 
+ WITH_DB=	@WITH_DB@
+ 
+-.if ${WITH_DB} == "yes"
+-.  include "${.CURDIR}/db/Makefile.inc"
+-.endif
++ifeq (${WITH_DB},yes)
++  include ${CURDIR}/db/Makefile.inc
++endif
+ 
+ LINK=		$(CCLD) $(CFLAGS) $(LDFLAGS) -o $@
+ COMPILE=	$(CC) $(CPPFLAGS) $(CFLAGS)

@@ -1,8 +1,8 @@
-dnl $NetBSD: configure.ac,v 1.61 2008/04/04 15:19:10 joerg Exp $
+dnl $NetBSD: configure.ac,v 1.74 2009/06/05 19:58:04 joerg Exp $
 
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.52)
-AC_INIT([libnbcompat], [20070622], [grant@NetBSD.org])
+AC_INIT([libnbcompat], [20080605], [grant@NetBSD.org])
 AC_CONFIG_HEADER(nbcompat/config.h)
 AC_ARG_PROGRAM
 
@@ -31,18 +31,16 @@ AC_CHECK_LIB(util, fparseln)
 dnl Checks for header files.
 AC_HEADER_STDC
 AC_HEADER_TIME
-
-dnl Used by bits.c to check for sizes of integer types
-AC_CHECK_HEADERS([inttypes.h sys/types.h sys/bitypes.h bind/bitypes.h \
-	netinet/in6_machtypes.h])
+AC_HEADER_STDBOOL
 
 AC_CHECK_HEADERS([alloca.h assert.h ctype.h dirent.h err.h errno.h fcntl.h \
-	fnmatch.h fts.h grp.h libutil.h limits.h machine/endian.h ndir.h \
-	paths.h pwd.h signal.h stdarg.h stddef.h stdint.h stdio.h stdlib.h \
-	string.h sys/byteorder.h sys/cdefs.h sys/dir.h sys/endian.h \
-	sys/file.h sys/mkdev.h sys/ndir.h sys/param.h sys/stat.h \
+	fnmatch.h fts.h grp.h inttypes.h libutil.h limits.h \
+	machine/endian.h ndir.h netdb.h paths.h pwd.h signal.h \
+	stdarg.h stddef.h stdint.h stdio.h \
+	stdlib.h string.h sys/byteorder.h sys/cdefs.h sys/dir.h sys/endian.h \
+	sys/file.h sys/mkdev.h sys/ndir.h sys/param.h sys/socket.h sys/stat.h \
 	sys/statfs.h sys/statvfs.h sys/time.h sys/ttycom.h sys/types.h \
-	sys/uio.h sys/vfs.h termcap.h time.h tzfile.h unistd.h \
+	sys/uio.h sys/vfs.h sysexits.h termcap.h time.h tzfile.h unistd.h \
 	util.h utime.h
 ])
 AC_CHECK_HEADERS([sys/mount.h], [:], [:], [
@@ -135,6 +133,11 @@ AC_CHECK_FUNC(SHA512_File, [:], [
 	AC_LIBOBJ(sha2hl)
 ])
 
+AC_ARG_ENABLE([db],
+	[AS_HELP_STRING([--enable-db], [include DB implementation])])
+AC_SUBST(WITH_DB, $enable_db)
+AC_CHECK_FUNCS(issetugid)
+
 AC_ARG_ENABLE([bsd-getopt],
 	[AS_HELP_STRING([--enable-bsd-getopt],
 			[force use of BSDish getopt implementation])])
@@ -146,27 +149,18 @@ AC_CHECK_DECLS([optind, optreset], [:], [:], [
 ])
 
 
-pkg_use_nbcompat_getopt_long=yes
-AC_CHECK_HEADERS([getopt.h], [
-	AC_MSG_TRY_COMPILE([for struct option], pkg_cv_have_struct_option,
-		[ #include <getopt.h> ], [ struct option X; ],
-		[pkg_use_nbcompat_getopt_long=no],
-		[pkg_use_nbcompat_getopt_long=yes])
-])
+AC_CHECK_HEADERS([getopt.h],
+	[ AC_CHECK_TYPES([struct option],
+	    [:],
+	    [ AC_LIBOBJ(getopt_long)],
+	    [#include <getopt.h>])],
+	[ AC_LIBOBJ(getopt_long)]
+)
 
 if test "$enable_bsd_getopt" = yes; then
 	if test "$ac_cv_have_decl_optreset" = no; then
-		pkg_use_nbcompat_getopt_long=yes
+		AC_LIBOBJ(getopt)
 	fi
-fi
-
-if test $pkg_use_nbcompat_getopt_long = yes; then
-	AC_DEFINE(HAVE_NBCOMPAT_GETOPT_LONG)
-	AH_TEMPLATE([HAVE_NBCOMPAT_GETOPT_LONG], [
-		Define to 1 if the `getopt_long' function is
-		built into the library.
-	])
-	AC_LIBOBJ(getopt_long)
 fi
 
 dnl Check that this vis.h has *vis()-related functions because Solaris'
@@ -199,7 +193,15 @@ dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C___ATTRIBUTE__
 AC_TYPE_SIZE_T
 AC_TYPE_UINTPTR_T
-AC_CHECK_TYPES([long long, long double, int8_t, int16_t, int32_t, int64_t, u_int8_t, u_int16_t, u_int32_t, u_int64_t, uint8_t, uint16_t, uint32_t, uint64_t],[],[],
+AC_TYPE_INT8_T
+AC_TYPE_INT16_T
+AC_TYPE_INT32_T
+AC_TYPE_INT64_T
+AC_TYPE_UINT8_T
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+AC_CHECK_TYPES([long long, long double],[],[],
 [#if STDC_HEADERS
 #include <stdlib.h>
 #include <stddef.h>
@@ -235,38 +237,78 @@ AC_FUNC_STRERROR_R
 AC_FUNC_VFORK
 AC_FUNC_VPRINTF
 
+AC_CHECK_DECLS([snprintf, vasprintf], [], [], [#include <stdio.h>])
+
 AC_REPLACE_FUNCS([asprintf err fgetln fnmatch fparseln getenv isblank \
 	lchflags lchmod lchown lutimes mkdtemp mkstemp setenv setgroupent \
-	setpassent setprogname snprintf statvfs strdup strerror strlcat \
-	strlcpy strmode strsep strtoll unsetenv usleep utimes warn
+	setpassent setprogname shquote snprintf statvfs strdup strerror \
+	strlcat strlcpy strmode strsep strtoll unsetenv usleep utimes warn
 ])
 
-AC_CHECK_FUNCS([getenv setenv unsetenv], [:], [
+AC_CHECK_LIB(socket, socket)
+AC_CHECK_LIB(nsl, gethostbyname)
+
+need_getaddrinfo=no
+AC_CHECK_TYPES([socklen_t], [], [], [[#ifdef HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+
+#include <sys/socket.h>
+]])
+AC_CHECK_TYPES([struct addrinfo], [], [], [[#include <netdb.h>]])
+AC_CHECK_TYPES([struct in6_addr], [], [], [[#ifdef HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+#include <netinet/in.h>
+]])
+AC_CHECK_TYPES([struct sockaddr_in6], [], [], [[#ifdef HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+#include <netinet/in.h>
+]])
+AC_CHECK_TYPES([struct sockaddr_storage], [], [], [[#ifdef HAVE_SYS_TYPES_H
+# include <sys/types.h>
+#endif
+#include <sys/socket.h>
+]])
+dnl Assume that freeaddrinfo is only missing if getaddrinfo is also missing
+AC_CHECK_FUNCS([getnameinfo gai_strerror getaddrinfo], [:],
+    [need_getaddrinfo=yes])
+if test $need_getaddrinfo = yes; then
+	AC_LIBOBJ(getaddrinfo)
+fi
+
+need_findenv=no
+AC_CHECK_FUNCS([getenv setenv unsetenv], [:], [need_findenv=yes])
+if test $need_findenv = yes; then
 	AC_LIBOBJ(findenv)
-	break
-])
+fi
 
-AC_CHECK_FUNCS([mkdtemp mkstemp], [:], [
+need_gettemp=no
+AC_CHECK_FUNCS([mkdtemp mkstemp], [:], [ need_gettemp=yes ])
+if test $need_gettemp = yes; then
 	AC_LIBOBJ(gettemp)
-	break
-])
+fi
 
 AC_CHECK_FUNCS([bcopy bzero memset memcpy setlocale])
-AC_CHECK_FUNCS([getmode setmode])
-AC_CHECK_FUNCS([getmode setmode], [:], [
-	AC_LIBOBJ(setmode)
-	break
-])
 
+need_setmode=no
+AC_CHECK_FUNCS([getmode setmode], [:], [need_setmode=yes])
+
+if test $need_setmode = yes; then
+	AC_LIBOBJ(setmode)
+fi
+
+AC_CHECK_DECLS([endgrent, endpwent])
+
+need_pwcache=no
 AC_CHECK_FUNCS([gid_from_group group_from_gid pwcache_groupdb \
 	pwcache_userdb uid_from_user user_from_uid \
-])
-AC_CHECK_FUNCS([gid_from_group group_from_gid pwcache_groupdb \
-	pwcache_userdb uid_from_user user_from_uid \
-], [:], [
+], [:], [need_pwcache=yes])
+
+if test $need_pwcache = yes; then
 	AC_LIBOBJ(pwcache)
-	break
-])
+fi
 
 AC_CHECK_FUNC(fts_open, [:], [
 	AC_DEFINE(HAVE_NBCOMPAT_FTS, 1)
@@ -324,6 +366,8 @@ AC_CHECK_FUNCS([getpassphrase getpgrp memmove select])
 
 AC_CHECK_FUNC(getpgrp, [AC_FUNC_GETPGRP])
 
+AC_CHECK_MEMBERS([struct statfs.f_flags], [:], [:],
+	[ #include <sys/statfs.h> ])
 AC_CHECK_MEMBERS([struct statfs.f_fsize], [:], [:],
 	[ #include <sys/statfs.h> ])
 AC_CHECK_MEMBERS([struct statfs.f_iosize], [:], [:],

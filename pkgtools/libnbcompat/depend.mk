@@ -1,4 +1,3 @@
-# $LAAS: depend.mk 2009/02/09 14:43:34 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -25,17 +24,18 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		libnbcompat
 endif
 
-ifeq (+,$(LIBNBCOMPAT_DEPEND_MK))
+ifeq (+,$(LIBNBCOMPAT_DEPEND_MK)) # ----------------------------------------
+
 PREFER.libnbcompat?=		robotpkg
 
 SYSTEM_SEARCH.libnbcompat=	\
 	include/nbcompat.h	\
 	lib/libnbcompat.a
 
-DEPEND_ABI.libnbcompat?=libnbcompat>=20080416
-DEPEND_DIR.libnbcompat?=../../pkgtools/libnbcompat
+DEPEND_ABI.libnbcompat?=	libnbcompat>=20090610
+DEPEND_DIR.libnbcompat?=	../../pkgtools/libnbcompat
 
-DEPEND_LIBS.libnbcompat+=-lnbcompat
+DEPEND_LIBS.libnbcompat+=	-lnbcompat
 
   # pull-in the user preferences for libnbcompat now
   include ../../mk/robotpkg.prefs.mk
@@ -70,6 +70,6 @@ libnbcompat-build:
 DEPEND_USE+=		libnbcompat
   endif
 
-endif
+endif # LIBNBCOMPAT_DEPEND_MK ----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

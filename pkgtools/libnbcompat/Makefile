@@ -1,15 +1,25 @@
 #
-# Copyright (C) 2008 LAAS/CNRS
+# Copyright (C) 2008-2009 LAAS/CNRS
+# All rights reserved.
 #
-# Authored by Anthony Mallet on Fri Apr 18 2008
+# Permission to use, copy, modify, and distribute this software for any purpose
+# with or without   fee is hereby granted, provided   that the above  copyright
+# notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+# PERFORMANCE OF THIS SOFTWARE.
+#
 # From  $NetBSD: Makefile,v 1.48 2007/05/07 16:38:47 joerg Exp $
 #
+#                                             Anthony Mallet on Fri Apr 18 2008
+#
 
-# NOTE: If you update this package, it is *mandatory* that you update
-# 	pkgsrc/pkgtools/libnbcompat/files/README to reflect the actual
-#	list of tested and supported platforms.
-
-DISTNAME=		libnbcompat-20080416
+DISTNAME=		libnbcompat-20090610
 CATEGORIES=		pkgtools devel
 MASTER_SITES=		# empty
 DISTFILES=		# empty
@@ -22,11 +32,9 @@ NO_PKGTOOLS_REQD_CHECK=	yes
 NO_CHECKSUM=		yes
 
 GNU_CONFIGURE=		yes
-MAKE_ENV+=		BINMODE=${BINMODE}
+MAKE_ENV+=		LIBMODE=644
 
-PKG_INFO=		PKG_DBDIR=${_PKG_DBDIR} ${PKG_INFO_CMD}
-PKG_CREATE=		PKG_DBDIR=${_PKG_DBDIR} ${PKG_CREATE_CMD}
-PKG_DELETE=		PKG_DBDIR=${_PKG_DBDIR} ${PKG_DELETE_CMD}
+CONFIGURE_LOG_ETA=	345
 
 include ../../mk/robotpkg.mk
 

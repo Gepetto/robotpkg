@@ -1,4 +1,4 @@
-/*	$NetBSD: statvfs.c,v 1.3 2004/08/23 03:32:12 jlam Exp $	*/
+/*	$NetBSD: statvfs.c,v 1.5 2008/09/08 20:20:23 joerg Exp $	*/
 
 /*-
  * Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -15,13 +15,6 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *        This product includes software developed by the NetBSD
- *        Foundation, Inc. and its contributors.
- * 4. Neither the name of The NetBSD Foundation nor the names of its
- *    contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
  * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -46,10 +39,12 @@ static void
 fs2vfs(struct statvfs *vfs, const struct statfs *sfs)
 {
 	vfs->f_flag = 0;
+#if HAVE_STRUCT_STATFS_F_FLAGS
 	if (sfs->f_flags & MNT_RDONLY)	
 		vfs->f_flag |= ST_RDONLY;
 	if (sfs->f_flags & MNT_NOSUID)	
 		vfs->f_flag |= ST_NOSUID;
+#endif
 
 #if HAVE_STRUCT_STATFS_F_FSIZE
 	vfs->f_bsize = sfs->f_fsize

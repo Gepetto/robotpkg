@@ -1,4 +1,4 @@
-/*	$NetBSD: nbcompat.h,v 1.38 2004/08/23 03:32:12 jlam Exp $	*/
+/*	$NetBSD: nbcompat.h,v 1.43 2009/04/13 11:30:46 joerg Exp $	*/
 
 /*-
  * Copyright (c) 2003 The NetBSD Foundation, Inc.
@@ -12,13 +12,6 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *        This product includes software developed by the NetBSD
- *        Foundation, Inc. and its contributors.
- * 4. Neither the name of The NetBSD Foundation nor the names of its
- *    contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
  * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -34,13 +27,12 @@
  */
 
 #include <nbcompat/nbconfig.h>
-#include <nbcompat/nbtypes.h>
 
 #include <nbcompat/cdefs.h>
-#include <nbcompat/param.h>
+#include <nbcompat/types.h>
 #include <nbcompat/limits.h>
 #include <nbcompat/endian.h>
-#include <nbcompat/types.h>
+#include <nbcompat/param.h>
 
 #if HAVE_ERRNO_H
 #include <errno.h>
@@ -115,21 +107,18 @@
 # if HAVE_MD5_H
 #  undef HAVE_MD5_H
 # endif
-# include <nbcompat/md5.h>
 #endif
 
 #if HAVE_NBCOMPAT_RMD160
 # if HAVE_RMD160_H
 #  undef HAVE_RMD160_H
 # endif
-# include <nbcompat/rmd160.h>
 #endif
 
 #if HAVE_NBCOMPAT_SHA1
 # if HAVE_SHA1_H
 #  undef HAVE_SHA1_H
 # endif
-# include <nbcompat/sha1.h>
 #endif
 
 #if HAVE_NBCOMPAT_VIS
@@ -139,9 +128,7 @@
 # include <nbcompat/vis.h>
 #endif
 
-#if HAVE_NBCOMPAT_GETOPT_LONG
-# if HAVE_GETOPT_H
-#  undef HAVE_GETOPT_H
-# endif
+#if !HAVE_GETOPT_H || !HAVE_STRUCT_OPTION
+# undef HAVE_GETOPT_H
 # include <nbcompat/getopt.h>
 #endif
