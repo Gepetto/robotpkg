@@ -1,4 +1,3 @@
-# $LAAS: update.mk 2009/11/17 17:40:48 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -168,9 +167,14 @@ ${_DDIR}: ${_DLIST}
 	${RUN} pkgs=`${CAT} ${_DLIST}`;					\
 	if [ "$$pkgs" ]; then ${PKG_INFO} -Q PKGPATH $$pkgs; fi > ${_DDIR}
 
-# Note that "pkg_info -qR" wouldn't work here, since it lists only the
-# packages that require this package directly.
 ${_DLIST}: ${WRKDIR}
-	${RUN}								\
-	${PKG_DELETE} -nr "${PKGWILDCARD}" 2>&1				\
-	| ${SED} -n '/^deinstalling /{s///;G;h;};$${g;p;}' > ${_DLIST}
+	${RUN} >${_DLIST};						\
+	if ${PKG_INFO} -qe "${PKGWILDCARD}"; then 			\
+	  if ${TEST} ${PKGTOOLS_VERSION} -lt 20091115; then		\
+	    ${PKG_DELETE} -nr "${PKGWILDCARD}" 2>&1 |			\
+	      ${SED} -n '/^deinstalling /{s///;G;h;};$${g;p;}'		\
+		>${_DLIST};						\
+	  else								\
+	    ${PKG_INFO} -qr "${PKGWILDCARD}" > ${_DLIST};		\
+	  fi;								\
+	fi
