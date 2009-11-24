@@ -1,4 +1,3 @@
-# $LAAS: print-plist.mk 2009/10/27 18:20:07 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -39,7 +38,6 @@
 #
 # Automatic PLIST generation
 #  - files & symlinks first
-#  - @dirrm statements last
 #  - empty directories are handled properly
 #  - substitute for platform or package specifics substrings
 #
@@ -151,13 +149,10 @@ do-print-PLIST: print-PLIST-message install
 		| ${SORT} -r`;						\
 	do								\
 		if [ `${LS} -la ${PREFIX}/$$i | ${WC} -l` = 3 ]; then	\
-			${ECHO} @exec \$${MKDIR} %D/$$i | ${AWK} '	\
+			${ECHO} @pkgdir $$i | ${AWK} '			\
 				${PRINT_PLIST_AWK}			\
 				{ print $$0; }' ;			\
 		fi ;							\
-		${ECHO} @dirrm $$i | ${AWK} '				\
-			${PRINT_PLIST_AWK}				\
-			{ print $$0; }' ;				\
 	done								\
 	| ${AWK} '${_PRINT_PLIST_AWK_SUBST} { print $$0; }'
 	@${STEP_MSG} "Created ${PRINT_PLIST_FILE}"
