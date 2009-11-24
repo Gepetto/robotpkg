@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -42,7 +42,7 @@ PREFER.pkg_install=		robotpkg
 DEPEND_USE+=			pkg_install
 
 DEPEND_METHOD.pkg_install?=	bootstrap
-DEPEND_ABI.pkg_install?=	pkg_install>=20080415
+DEPEND_ABI.pkg_install?=	pkg_install>=20091115
 DEPEND_DIR.pkg_install?=	../../pkgtools/pkg_install
 endif
 
