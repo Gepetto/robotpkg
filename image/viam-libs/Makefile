@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/05/29 14:13:22 mallet $
+# $LAAS: Makefile 2009/11/24 17:53:23 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -16,8 +16,7 @@
 #                                       Anthony Mallet on Fri Mar 14 2008
 #
 
-DISTNAME=		viam-libs-1.4
-PKGREVISION=		1
+DISTNAME=		viam-libs-1.5
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/viam-libs
@@ -58,7 +57,6 @@ PKG_SUGGESTED_OPTIONS+= doc
 
 PKG_OPTION_DESCR.doc=	Install documentation files.
 define PKG_OPTION_SET.doc
-  BUILD_TARGET+=	doc
   INSTALL_TARGET+=	install-doc
   DOXYGEN_PLIST_DIR+=	share/doc/viam-libs
   include ../../mk/sysdep/doxygen.mk
