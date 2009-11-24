@@ -1,4 +1,4 @@
-# $LAAS: checksum.mk 2009/11/24 01:46:20 tho $
+# $LAAS: checksum.mk 2009/11/24 16:34:31 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -136,11 +136,13 @@ checksum-files:
 		${DISTINFO_FILE} ${_CKSUMFILES}; then			\
 		${ECHO_MSG} "=> ${_alg_} checksums OK";			\
 	else								\
-		${ERROR_MSG} "Make sure the Makefile and checksum file"	\
-			"(${DISTINFO_FILE})";				\
-		${ERROR_MSG} "are up to date.  If you want to override"	\
-			"this check, type";				\
-		${ERROR_MSG} "\"${MAKE} NO_CHECKSUM=yes [other args]\"."; \
+		${ERROR_MSG} ${hline};					\
+		${ERROR_MSG} "$${bf}Make sure the Makefile and checksum"\
+			"file are up to date:$${rm}";			\
+		${ERROR_MSG} " ${DISTINFO_FILE}";			\
+		${ERROR_MSG} "If you want to override this check, type";\
+		${ERROR_MSG} "	${MAKE} NO_CHECKSUM=yes [other args]"; 	\
+		${ERROR_MSG} ${hline};					\
 		exit 1;							\
 	fi;								\
   )
