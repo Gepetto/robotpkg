@@ -48,7 +48,6 @@ _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE:=${DIST_SUBDIR:=/}}
 ALLFILES?=	$(sort ${DISTFILES} ${PATCHFILES})
 CKSUMFILES?=	$(filter-out ${IGNOREFILES},${ALLFILES})
 
-
 # List of all files, with ${DIST_SUBDIR} in front.  Used for fetch and checksum.
 ifdef DIST_SUBDIR
 _CKSUMFILES?=	$(addprefix ${DIST_SUBDIR}/,${CKSUMFILES})
@@ -100,6 +99,16 @@ define _PATCHFILES_VAR
 SITES.$(subst =,--,$(notdir ${fetchfile}))?= ${PATCH_SITES}
 endef
 $(foreach fetchfile,${_PATCHFILES},$(eval ${_PATCHFILES_VAR}))
+
+
+# XXX require pkgtools/tnftp, although the fetch program is configurable
+ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
+  ifneq ($(words $(wildcard $(addprefix ${DISTDIR}/,${_ALLFILES}))),\
+	 $(words ${_ALLFILES}))
+    DEPEND_METHOD.tnftp+=	bootstrap
+    include ${ROBOTPKG_DIR}/pkgtools/tnftp/depend.mk
+  endif
+endif
 
 
 # --- fetch (PUBLIC) -------------------------------------------------
