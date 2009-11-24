@@ -61,7 +61,6 @@ set -e		# exit on errors
 : ${DIGEST:=robotpkg_digest}
 : ${CAT:=cat}
 : ${ECHO:=echo}
-: ${ECHO_MSG:=echo}
 : ${TEST:=test}
 
 self="${0##*/}"
@@ -163,9 +162,7 @@ fi
 			exit 1
 		fi
 		checksum=`${DIGEST} $d_alg < $file`
-		if ${TEST} "$d_checksum" = "$checksum"; then
-			${ECHO_MSG} "=> Checksum $d_alg OK for $sfile"
-		else
+		if ${TEST} "$d_checksum" != "$checksum"; then
 			${ECHO} 1>&2 "$self: Checksum $d_alg mismatch for $sfile"
 			exitcode=1
 		fi

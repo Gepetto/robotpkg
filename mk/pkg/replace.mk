@@ -1,4 +1,4 @@
-# Copyright (c) 2008 IS/AIST-ST2I/CNRS
+# Copyright (c) 2008-2009 IS/AIST-ST2I/CNRS
 #      Joint Japanese-French Robotics Laboratory (JRL).
 # All rights reserved.
 #
@@ -54,12 +54,12 @@ _REPLACE_NEWNAME_FILE=	${WRKDIR}/.replace_newname
 
 _REPLACE_OLDNAME_CMD=	\
 	[ -f ${_REPLACE_OLDNAME_FILE} ] \
-	|| ${FAIL_MSG} "[$@] ${_REPLACE_OLDNAME_FILE}: File not found"; \
+	|| { ${FAIL_MSG} "[$@] ${_REPLACE_OLDNAME_FILE}: File not found"; }; \
 	oldname=`${CAT} ${_REPLACE_OLDNAME_FILE}`
 
 _REPLACE_NEWNAME_CMD=	\
 	[ -f ${_REPLACE_NEWNAME_FILE} ] \
-	|| ${FAIL_MSG} "[$@] ${_REPLACE_NEWNAME_FILE}: File not found"; \
+	|| { ${FAIL_MSG} "[$@] ${_REPLACE_NEWNAME_FILE}: File not found"; }; \
 	newname=`${CAT} ${_REPLACE_NEWNAME_FILE}`
 
 # Computes and saves the full names of the installed package to be replaced

@@ -50,7 +50,7 @@ PHASE_MSG?=		_m() { ${ECHO_MSG} "$${bf}===> $$@$$rm"; }; _m
 STEP_MSG?=		${ECHO_MSG} "=>"
 WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
 ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
-FAIL_MSG?=		${FAIL} ${ERROR_MSG}
+FAIL_MSG?=		${FAIL} $(call quote,${ERROR_MSG})
 
 WARNING_CAT?=		${SED} -e "s|^|WARNING: |" 1>&2
 ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
