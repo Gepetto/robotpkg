@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/06/23 19:24:32 mallet $
+# $LAAS: Makefile 2009/11/24 19:05:30 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -16,7 +16,7 @@
 #                                      Anthony Mallet on Sun Jan 28 2007
 #
 
-DISTNAME=		libdc1394-2.0.2
+DISTNAME=		libdc1394-2.1.2
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=libdc1394/}
 
