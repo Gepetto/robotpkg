@@ -58,6 +58,36 @@ ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
 _LOGFILTER?=		${SH} ${ROBOTPKG_DIR}/mk/internal/logfilter
 
 
+# Debugging levels, dependent on PKG_DEBUG_LEVEL definition
+# 0 == normal, default, quiet operation
+# 1 == all shell commands echoed before invocation
+# 2 == shell "set -x" operation
+PKG_DEBUG_LEVEL?=	0
+_PKG_SILENT=		@
+_PKG_DEBUG=#		empty
+_PKG_DEBUG_SCRIPT=#	empty
+_PKG_DISCARD_STDERR=	2>/dev/null
+ifdef VERBOSE
+  _LOGFILTER_FLAGS=	-n
+else
+  _LOGFILTER_FLAGS=#	empty
+endif
+
+ifeq (1,${PKG_DEBUG_LEVEL})
+_PKG_SILENT=#		empty
+_PKG_DISCARD_STDERR=#	empty
+_LOGFILTER_FLAGS=	-v
+endif
+
+ifeq (2,${PKG_DEBUG_LEVEL})
+_PKG_SILENT=#		empty
+_PKG_DEBUG=		set -x;
+_PKG_DEBUG_SCRIPT=	${SH} -x
+_PKG_DISCARD_STDERR=#	empty
+_LOGFILTER_FLAGS=	-n
+endif
+
+
 # A temporary directory
 #
 TMPDIR?=	/tmp
