@@ -1,6 +1,6 @@
-# $LAAS: $
+# $LAAS: Makefile 2009/11/25 18:12:29 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -16,7 +16,8 @@
 #                                      Anthony Mallet on Mon Jun 23 2008
 #
 
-DISTNAME=		coriander-2.0.0
+DISTNAME=		coriander-2.0.0-rc6
+PKGNAME=		coriander-2.0.0rc6
 CATEGORIES=		image
 MASTER_SITES=		http://damien.douxchamps.net/ieee1394/coriander/archives/
 
