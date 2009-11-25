@@ -1,4 +1,4 @@
-@comment $Id: PLIST 2008/01/30 13:52:51 mallet $
+@comment Tue Nov 24 18:57:45 CET 2009
 bin/dumpiso
 bin/sendiso
 bin/testlibraw
@@ -11,4 +11,3 @@ man/man1/dumpiso.1
 man/man1/sendiso.1
 man/man1/testlibraw.1
 man/man5/isodump.5
-@dirrm include/libraw1394
