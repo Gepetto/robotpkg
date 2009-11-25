@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/06/11 17:00:31 mallet $
+# $LAAS: depend.mk 2009/11/25 12:05:45 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -71,8 +71,9 @@ ifdef GENOM_MODULE
   .PHONY: genom-generate
   genom-generate:
 	@${STEP_MSG} "Generating ${GENOM_MODULE} module"
-	${RUN}cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV}	\
-	${TOOLS.genom} ${GENOM_ARGS} ${GENOM_MODULE}
+	${RUN}cd ${WRKSRC} && ${CONFIGURE_LOGFILTER} 			\
+		${SETENV} ${CONFIGURE_ENV} 				\
+		${TOOLS.genom} ${GENOM_ARGS} ${GENOM_MODULE}
 endif # GENOM_MODULE
 
 endif # GENOM_DEPEND_MK ----------------------------------------------
