@@ -1,4 +1,3 @@
-# $LAAS: build.mk 2009/11/20 23:26:32 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -46,6 +45,12 @@
 # BUILD_TARGET is the target from ${MAKE_FILE} that should be invoked
 #	to build the sources.
 #
+# MAKE_JOBS_SAFE
+#	Whether the package supports parallel builds. If set to yes,
+#	at most MAKE_JOBS jobs are carried out in parallel. The default
+#	value is "yes", and packages that don't support it must
+#	explicitly set it to "no".
+#
 # Variables defined in this file:
 #
 # BUILD_MAKE_CMD
@@ -62,9 +67,15 @@ BUILD_TARGET?=		all
 $(foreach _d,${BUILD_DIRS},$(eval BUILD_TARGET.${_d}?= ${BUILD_TARGET}))
 
 BUILD_MAKE_CMD=\
-	${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${_MAKE_JOBS}	\
+	${SETENV} ${MAKE_ENV} MAKELEVEL= MAKEOVERRIDES= MAKEFLAGS=	\
+		${MAKE_PROGRAM} ${_MAKE_JOBS}				\
 		${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE}
 
+ifneq (,$(call isyes,${MAKE_JOBS_SAFE}))
+_MAKE_JOBS=	# nothing
+else ifneq (,$(MAKE_JOBS))
+_MAKE_JOBS=	-j${MAKE_JOBS}
+endif
 
 # --- build (PUBLIC) -------------------------------------------------
 #

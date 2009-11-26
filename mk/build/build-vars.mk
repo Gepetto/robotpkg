@@ -1,4 +1,4 @@
-# $LAAS: build-vars.mk 2009/11/16 13:56:06 mallet $
+# $LAAS: build-vars.mk 2009/11/26 15:08:21 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
