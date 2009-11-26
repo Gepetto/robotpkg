@@ -70,19 +70,19 @@ if ${TEST} -t 1; then
     civis=`${TPUT} civis`
     cnorm=`${TPUT} cnorm`
 
-    statuslinea='--(o    )-'
+    statuslinea='-(o     )-'
     statuslineb='-( o    )-'
     statuslinec='-(  o   )-'
     statuslined='-(   o  )-'
     statuslinee='-(    o )-'
     statuslinef='-(     o)-'
-    statuslineg='-(    o)--'
-    statuslineh='-(    o)--'
+    statuslineg='-(     o)-'
+    statuslineh='-(    o )-'
     statuslinei='-(   o  )-'
     statuslinej='-(  o   )-'
     statuslinek='-( o    )-'
     statuslinel='-(o     )-'
-    statuslinem='--(o    )-'
+    statuslinem='-(o     )-'
     statuslist='a b c d e f g h i j k l m'
 
     MSG=${ECHO}
