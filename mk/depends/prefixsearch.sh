@@ -1,6 +1,4 @@
 #!/bin/sh
-
-# $LAAS: prefixsearch.sh 2009/05/28 18:38:20 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -252,9 +250,9 @@ fi
 
 # If an error occured, print it
 if ${TEST} $errors = yes; then
-    eval hline=$hline
-    eval bf=$bf
-    eval rm=$rm
+    eval hline="'$hline'"
+    eval bf="'$bf'"
+    eval rm="'$rm'"
     ${ERROR_MSG} 1>&2 $hline
     ${ERROR_MSG} 1>&2 "Scanning system for $abi:"
     $0 -v -p "$sysprefix" $pkg $abi "$@" | ${SED} -e "s|^|ERROR: |" 1>&2
