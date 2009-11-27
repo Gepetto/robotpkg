@@ -131,12 +131,19 @@ install-check-version: ${_COOKIE.extract}
 	extractname=`${CAT} $^`;					\
 	pkgname=${PKGNAME};						\
 	case "$$extractname" in						\
-	"")	${WARNING_MSG} "${WRKDIR} may contain an older version of ${PKGBASE}" ;; \
-	"$$pkgname")	;;						\
-	*)	${WARNING_MSG} "Package version $$extractname in ${WRKDIR}"; \
-		${WARNING_MSG} "Current version $$pkgname in ${PKGPATH}"; \
-		${WARNING_MSG} "Cleaning and rebuilding $$pkgname...";	\
-		${RECURSIVE_MAKE} clean build ;;			\
+	  "$$pkgname")	;;						\
+	  *)								\
+	    ${ERROR_MSG} ${hline};					\
+	    ${ERROR_MSG} "$${bf}Extracted version does not match"	\
+		"current version$${rm}";				\
+	    ${ERROR_MSG} "Extracted version: $$extractname";		\
+	    ${ERROR_MSG} "Current version: $$pkgname in ${PKGPATH}"; 	\
+	    ${ERROR_MSG} ""; 						\
+	    ${ERROR_MSG} "You probably have a stale work directory,"	\
+		"try to"; 						\
+	    ${ERROR_MSG} "	${MAKE} -C ../../${PKGPATH} clean";	\
+	    ${ERROR_MSG} ${hline};					\
+	    ;;								\
 	esac
 
 
