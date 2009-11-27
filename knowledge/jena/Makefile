@@ -17,7 +17,8 @@
 #                                          Séverin Lemaignan on Wed Jun  3 2009
 #
 
-DISTNAME=	jena-2.6.0
+DISTNAME=	jena-${PKGVERSION}
+PKGVERSION=	2.6.2
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=jena/}
 EXTRACT_SUFX=	.zip
 
@@ -27,9 +28,9 @@ HOMEPAGE=	http://jena.sourceforge.net/index.html
 COMMENT=	Java framework for building Semantic Web applications
 
 NO_CONFIGURE=	yes
-BUILD_TARGET=	main
+NO_BUILD= yes
 
-WRKSRC=		${WRKDIR}/Jena-2.6.0
+WRKSRC=		${WRKDIR}/Jena-${PKGVERSION}
 USE_LANGUAGES=	java
 
 # doc option
@@ -42,7 +43,6 @@ define PKG_OPTION_SET.doc
   do-install: jena-install-doc
 endef
 
-include ../../mk/sysdep/ant.mk
 include ../../lang/sun-jre6/depend.mk
 include ../../mk/robotpkg.mk
 
@@ -52,6 +52,7 @@ do-install: jena-install-lib
 .PHONY: jena-install-lib
 jena-install-lib:
 	cd ${WRKSRC}/lib && ${PAX} -rwp ma *.jar ${PREFIX}/java/jena/lib/
+	${LN} -sf ${PREFIX}/java/jena/lib/${DISTNAME}.jar ${PREFIX}/java/jena/lib/${PKGBASE}.jar
 
 .PHONY: jena-install-doc
 jena-install-doc:
