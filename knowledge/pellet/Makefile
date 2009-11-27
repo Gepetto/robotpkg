@@ -20,7 +20,7 @@
 DISTNAME=	pellet-2.0.0
 PKGVERSION=	2.0.0
 PKGNAME=	pellet-${PKGVERSION}
-MASTER_SITES=	http://pellet.owldl.com/downloads/
+MASTER_SITES=	http://clarkparsia.com/pellet/downloads/
 EXTRACT_SUFX=	.zip
 
 CATEGORIES=	knowledge
@@ -44,6 +44,7 @@ define PKG_OPTION_SET.doc
 endef
 
 include ../../lang/sun-jre6/depend.mk
+include ../jena/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install: pellet-install-lib
