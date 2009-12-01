@@ -1,4 +1,4 @@
-# $LAAS: compiler-vars.mk 2009/03/09 21:32:23 tho $
+# $LAAS: compiler-vars.mk 2009/11/28 23:44:50 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -39,32 +39,19 @@
 # This Makefile fragment implements handling for supported C/C++/Fortran
 # compilers.
 #
-# The following variables may be set by the pkgsrc user in mk.conf:
+# The following variables may be set by the robotpkg user in robotpkg.conf:
 #
-# PKGSRC_COMPILER - XXX NOT SUPPORTED YET
+# ROBOTPKG_COMPILER
 #	A list of values specifying the chain of compilers to be used by
-#	pkgsrc to build packages.
+#	robotpkg to build packages.
 #
 #	Valid values are:
-#		ccc		Compaq C Compilers (Tru64)
 #		ccache		compiler cache (chainable)
-#		distcc		distributed C/C++ (chainable)
-#		f2c		Fortran 77 to C compiler (chainable)
-#		icc		Intel C++ Compiler (Linux)
-#		ido		SGI IRIS Development Option cc (IRIX 5)
 #		gcc		GNU
-#		mipspro		Silicon Graphics, Inc. MIPSpro (n32/n64)
-#		mipspro-ucode	Silicon Graphics, Inc. MIPSpro (o32)
-#		sunpro		Sun Microsystems, Inc. WorkShip/Forte/Sun
-#				ONE Studio
-#		xlc		IBM's XL C/C++ compiler suite (Darwin/MacOSX)
 #
-#	The default is "gcc".  You can use ccache and/or distcc with
-#	an appropriate PKGSRC_COMPILER setting, e.g. "ccache distcc
-#	gcc".  You can also use "f2c" to overlay the lang/f2c package
-#	over the C compiler instead of using the system Fortran
-#	compiler.  The chain should always end in a real compiler.
-#	This should only be set in /etc/mk.conf.
+#	The default is "gcc".  You can use ccache with an appropriate
+#	ROBOTPKG_COMPILER setting, e.g. "ccache gcc".  The chain should always
+#	end in a real compiler. This should only be set in robotpkg.conf.
 #
 #
 # The following variables may be set by a package:
@@ -84,29 +71,77 @@ ifneq (,$(filter c99,${USE_LANGUAGES}))
 USE_LANGUAGES+=	c
 endif
 
-_COMPILERS=		ccc gcc icc ido mipspro mipspro-ucode sunpro xlc
-_PSEUDO_COMPILERS=	ccache distcc f2c
+# List of supported compilers (yes, only one for now...) and pseudo compilers
+# that can be chained
+_COMPILERS=		gcc
+_PSEUDO_COMPILERS=	ccache
 
-ifneq (,${NOT_FOR_COMPILER})
-_ACCEPTABLE_COMPILERS+=	$(filter-out ${NOT_FOR_COMPILER},${_COMPILERS})
+# Compute the list of compilers for the current package
+ifdef NOT_FOR_COMPILER
+  _ACCEPTABLE_COMPILERS=$(filter-out ${NOT_FOR_COMPILER},${_COMPILERS})
+else ifdef ONLY_FOR_COMPILER
+  _ACCEPTABLE_COMPILERS=$(filter ${ONLY_FOR_COMPILER},${_COMPILERS})
 else
-  ifneq (,${ONLY_FOR_COMPILER})
-_ACCEPTABLE_COMPILERS+=	$(filter ${ONLY_FOR_COMPILER},${_COMPILERS})
-  else
-_ACCEPTABLE_COMPILERS+=	${_COMPILERS}
-  endif
+  _ACCEPTABLE_COMPILERS=${_COMPILERS}
 endif
 
+# Select the compiler according to the user choice
 ifneq (,${_ACCEPTABLE_COMPILERS})
-_COMPILER=$(firstword $(filter ${_ACCEPTABLE_COMPILERS},${PKGSRC_COMPILER}))
+  _COMPILER=$(firstword $(filter ${_ACCEPTABLE_COMPILERS},${ROBOTPKG_COMPILER}))
 endif
-
 ifeq (,${_COMPILER})
-PKG_FAIL_REASON+=	"No acceptable compiler found for ${PKGNAME}."
+  PKG_FAIL_REASON+=\
+	"$${bf}No acceptable compiler found for ${PKGNAME}.$${rm}"
+  PKG_FAIL_REASON+= ""
+  PKG_FAIL_REASON+=\
+	"Please add one of the following compilers to your ROBOTPKG_COMPILER"
+  PKG_FAIL_REASON+= "variable in robotpkg.conf:"
+  PKG_FAIL_REASON+= ""
+  PKG_FAIL_REASON+= "	${_ACCEPTABLE_COMPILERS}"
 endif
 
-_PKGSRC_COMPILER=	$(filter ${_PSEUDO_COMPILERS},${PKGSRC_COMPILER}) ${_COMPILER}
+# Prepend pseudo-compilers
+_PSEUDO=$(filter ${_PSEUDO_COMPILERS},${ROBOTPKG_COMPILER})
+_COMPILER:=${_PSEUDO} ${_COMPILER}
 
-include $(patsubst %,${ROBOTPKG_DIR}/mk/compiler/%.mk,${_PKGSRC_COMPILER})
+
+# Include compilers definitions
+ROBOTPKG_CPP=
+ROBOTPKG_CXXCPP=
+ROBOTPKG_CC=
+ROBOTPKG_CXX=
+ROBOTPKG_FC=
+$(call require,$(patsubst %,${ROBOTPKG_DIR}/mk/compiler/%.mk,${_COMPILER}))
+
+# Remaining empty variables are explicitely set to 'false' so that missing
+# languages in USE_LANGAGES are detected
+#
+ifeq (,${ROBOTPKG_CPP})
+  override CPP=	${FALSE} "*** Missing USE_LANGUAGES+=c in package Makefile"
+else
+  override CPP=	$(strip ${ROBOTPKG_CPP})
+endif
+ifeq (,${ROBOTPKG_CXXPP})
+  override CXXCPP=${CPP}
+else
+  override CXXCPP=${ROBOTPKG_CXXPP}
+endif
+ifeq (,${ROBOTPKG_CC})
+  override CC=	${FALSE} "*** Missing USE_LANGUAGES+=c in package Makefile"
+else
+  override CC=	$(strip ${ROBOTPKG_CC})
+endif
+ifeq (,${ROBOTPKG_CXX})
+  override CXX=	${FALSE} "*** Missing USE_LANGUAGES+=c++ in package Makefile"
+else
+  override CXX=	$(strip ${ROBOTPKG_CXX})
+endif
+ifeq (,${ROBOTPKG_FC})
+  override FC=	${FALSE} "*** Missing USE_LANGUAGES+=fortran in package Makefile"
+else
+  override FC=	$(strip ${ROBOTPKG_FC})
+endif
+
+export CPP CXXCPP CC CXX FC
 
 endif	# ROBOTPKG_COMPILER_MK

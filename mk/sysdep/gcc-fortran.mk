@@ -1,4 +1,4 @@
-# $LAAS: gcc-fortran.mk 2009/03/11 21:37:51 mallet $
+# $LAAS: gcc-fortran.mk 2009/11/28 22:32:57 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -66,12 +66,8 @@ SYSTEM_DESCR.${_GCC_FORTRAN_PKG}='gcc Fortran77 compiler, version ${_GCC_REQUIRE
 SYSTEM_SEARCH.${_GCC_FORTRAN_PKG}=	\
 	'bin/${_GCC_FORTRAN_BIN}:1s/[^0-9.]*\([0-9.]*\).*$$/\1/p:% -dumpversion'
 
-include ../../mk/robotpkg.prefs.mk
-ifeq (robotpkg,${PREFER.${_GCC_FORTRAN_PKG}})
-  override FC=${PREFIX.${_GCC_FORTRAN_PKG}}/bin/gfortran
-else
-  override FC=$(word 1,${SYSTEM_FILES.${_GCC_FORTRAN_PKG}})
-endif
+# make sure to use += here, for chainable compilers definitions.
+override FC+=$(word 1,${SYSTEM_FILES.${_GCC_FORTRAN_PKG}})
 
 CMAKE_ARGS+=	-DCMAKE_SHARED_LIBRARY_SONAME_Fortran_FLAG=-Wl,-soname,
 

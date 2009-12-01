@@ -1,4 +1,4 @@
-# $LAAS: gcc-c++.mk 2009/09/23 19:35:32 mallet $
+# $LAAS: gcc-c++.mk 2009/11/28 23:33:39 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -62,14 +62,13 @@ SYSTEM_PKG.Linux-ubuntu.${_GCC_C++_PKG}=	g++
 SYSTEM_PKG.Linux-debian.${_GCC_C++_PKG}=	g++
 
 SYSTEM_DESCR.${_GCC_C++_PKG}=	'gcc C++ compiler, version ${_GCC_REQUIRED}'
-SYSTEM_SEARCH.${_GCC_C++_PKG} = 'bin/g++::% -dumpversion'
+SYSTEM_SEARCH.${_GCC_C++_PKG} =\
+	'bin/g++::% -dumpversion'	\
+	'bin/cpp::% -dumpversion'
 
-include ../../mk/robotpkg.prefs.mk
-ifeq (robotpkg,${PREFER.${_GCC_C++_PKG}})
-  override CXX=${PREFIX.${_GCC_C++_PKG}}/bin/g++
-else
-  override CXX=$(word 1,${SYSTEM_FILES.${_GCC_C++_PKG}})
-endif
+# make sure to use += here, for chainable compilers definitions.
+ROBOTPKG_CXX+=$(word 1,${SYSTEM_FILES.${_GCC_C++_PKG}})
+ROBOTPKG_CXXCPP+=$(word 2,${SYSTEM_FILES.${_GCC_C++_PKG}})
 
 endif # GCC_C++_DEPEND_MK --------------------------------------------------
 

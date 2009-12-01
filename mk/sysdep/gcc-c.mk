@@ -1,4 +1,4 @@
-# $LAAS: gcc-c.mk 2009/02/03 18:17:31 mallet $
+# $LAAS: gcc-c.mk 2009/11/28 22:56:59 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -62,14 +62,9 @@ SYSTEM_SEARCH.${_GCC_C_PKG}?=	\
 	'bin/gcc::% -dumpversion'	\
 	'bin/cpp::% -dumpversion'
 
-include ../../mk/robotpkg.prefs.mk
-ifeq (robotpkg,${PREFER.${_GCC_C_PKG}})
-  override CC=${PREFIX.${_GCC_C_PKG}}/bin/gcc
-  override CPP=${PREFIX.${_GCC_C_PKG}}/bin/cpp
-else
-  override CC=$(word 1,${SYSTEM_FILES.${_GCC_C_PKG}})
-  override CPP=$(word 2,${SYSTEM_FILES.${_GCC_C_PKG}})
-endif
+# make sure to use += here, for chainable compilers definitions.
+ROBOTPKG_CC+=$(word 1,${SYSTEM_FILES.${_GCC_C_PKG}})
+ROBOTPKG_CPP+=$(word 2,${SYSTEM_FILES.${_GCC_C_PKG}})
 
 endif # GCC_C_DEPEND_MK ----------------------------------------------------
 
