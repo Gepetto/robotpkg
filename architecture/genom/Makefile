@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/11/02 15:52:50 tho $
+# $LAAS: Makefile 2009/11/28 23:41:36 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -30,7 +30,10 @@ CONFIGURE_ENV+=	PERL=${PREFIX.perl}/bin/perl
 
 # genom must be able to compile c++ modules, and it checks for a c++
 # compiler
-USE_LANGUAGES+=	c++
+USE_LANGUAGES+=	c c++
+
+# Problem with quoting ccache in mkdep invocation
+USE_CCACHE=	no
 
 # --- "tcl" option ---------------------------------------------------
 
