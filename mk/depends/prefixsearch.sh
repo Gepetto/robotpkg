@@ -250,9 +250,9 @@ fi
 
 # If an error occured, print it
 if ${TEST} $errors = yes; then
-    eval hline="'$hline'"
-    eval bf="'$bf'"
-    eval rm="'$rm'"
+    eval hline=\"$hline\"
+    eval bf=\"$bf\"
+    eval rm=\"$rm\"
     ${ERROR_MSG} 1>&2 $hline
     ${ERROR_MSG} 1>&2 "Scanning system for $abi:"
     $0 -v -p "$sysprefix" $pkg $abi "$@" | ${SED} -e "s|^|ERROR: |" 1>&2
