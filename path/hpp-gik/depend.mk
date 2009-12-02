@@ -1,6 +1,5 @@
-# $LAAS: depend.mk 2008/06/17 14:26:41 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,7 +32,7 @@ SYSTEM_SEARCH.hpp-gik=\
 
 DEPEND_USE+=		hpp-gik
 
-DEPEND_ABI.hpp-gik?=	hpp-gik>=1.9
+DEPEND_ABI.hpp-gik?=	hpp-gik>=2.4
 DEPEND_DIR.hpp-gik?=	../../path/hpp-gik
 
 endif # HPP_GIK_DEPEND_MK --------------------------------------------
