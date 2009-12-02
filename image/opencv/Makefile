@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/04/23 14:34:20 mallet $
+# $LAAS: Makefile 2009/12/02 11:31:07 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -26,6 +26,7 @@ COMMENT=		Library for computer vision problems
 
 WRKSRC=			${WRKDIR}/opencv-1.1.0
 
+USE_LANGUAGES+=		c c++
 USE_PKGLOCALEDIR=	yes
 INSTALLATION_DIRS+=	share/doc/opencv/papers share/doc/opencv/ref/pics \
 			share/opencv/haarcascades
