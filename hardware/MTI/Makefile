@@ -25,6 +25,7 @@ MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Driver and interface for MTI
 
+USE_LANGUAGES+=         c c++
 GNU_CONFIGURE=		yes
 
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep

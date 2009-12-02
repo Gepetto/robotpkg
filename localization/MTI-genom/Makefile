@@ -25,6 +25,7 @@ MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		GenoM module for MTI management
 
+USE_LANGUAGES+=         c c++
 GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		MTI
