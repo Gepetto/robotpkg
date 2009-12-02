@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/20 18:29:54 tho $
+# $LAAS: Makefile 2009/12/02 11:32:06 mallet $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -21,10 +21,10 @@ CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	3d transformations, matrices and vector package.
 
-USE_LANGUAGES+=	c++
+USE_LANGUAGES+=	c c++
 GNU_CONFIGURE=	yes
 
 BUILD_TARGET=	all
