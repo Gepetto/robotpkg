@@ -34,6 +34,8 @@ CONFIGURE_SCRIPT=	../configure
 CONFIGURE_ARGS+=	--disable-ssl#		 we don't use ssl right now
 CONFIGURE_ARGS+=	--disable-ace-tests
 
+USE_LANGUAGES+=		c c++
+
 OVERRIDE_DIRDEPTH.pkg-config=	3
 
 BUILD_DIRS=		build
