@@ -1,0 +1,10 @@
+--- ./src/yarpserver/src/SqliteTripleSource.h.orig	2009-12-03 14:44:26.000000000 +0100
++++ ./src/yarpserver/src/SqliteTripleSource.h	2009-12-03 14:44:39.000000000 +0100
+@@ -9,6 +9,7 @@
+ #ifndef YARPDB_SQLITELIVETRIPLE_INC
+ #define YARPDB_SQLITELIVETRIPLE_INC
+ 
++#include <stdio.h>
+ #include <stdlib.h>
+ 
+ #include "sqlite3.h"
