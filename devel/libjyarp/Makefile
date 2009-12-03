@@ -28,7 +28,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Java bindings for YARP
 
-USE_LANGUAGES+=		c++
+USE_LANGUAGES+=		c c++
 
 CMAKE_ARGS+=		-DCREATE_JAVA=TRUE
 CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH=${JAVA_HOME}/include
