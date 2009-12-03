@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2009/01/27 17:07:57 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -15,7 +14,7 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                      Anthony Mallet on Thu Jan 22 2009
+#                                             Anthony Mallet on Thu Jan 22 2009
 #
 
 DISTNAME=		yarp-2.2.4
@@ -36,6 +35,18 @@ CMAKE_ARGS+=		-DCREATE_YARPSERVER3=TRUE
 
 # XXX needs something more generic
 CXXFLAGS+=		-pthread
+
+# gui option
+PKG_SUPPORTED_OPTIONS+=	gui
+PKG_SUGGESTED_OPTIONS+=	gui
+PKG_OPTION_DESCR.doc?=	Install GUI utilities
+
+define PKG_OPTION_SET.gui
+  CMAKE_ARGS+=		-DCREATE_GUIS=TRUE
+
+  include ../../mk/sysdep/gtk.mk
+  include ../../mk/sysdep/glib2.mk
+endef
 
 include ../../architecture/ace/depend.mk
 include ../../mk/sysdep/cmake.mk
