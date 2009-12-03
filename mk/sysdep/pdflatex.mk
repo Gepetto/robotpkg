@@ -1,4 +1,4 @@
-# $LAAS: pdflatex.mk 2009/09/23 19:38:50 mallet $
+# $LAAS: pdflatex.mk 2009/12/03 15:10:47 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -32,6 +32,7 @@ DEPEND_ABI.pdflatex?=	pdflatex>=3.14
 SYSTEM_SEARCH.pdflatex=	\
 	'bin/pdflatex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
 
+SYSTEM_PKG.Linux-fedora.pdflatex=texlive-latex
 SYSTEM_PKG.Linux-ubuntu.pdflatex=texlive-latex-extra
 SYSTEM_PKG.Linux-debian.pdflatex=texlive-latex-extra
 
