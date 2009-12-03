@@ -26,7 +26,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Yet Another Robot Platform
 
-USE_LANGUAGES+=		c++
+USE_LANGUAGES+=		c c++
 
 CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
