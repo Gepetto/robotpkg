@@ -1,4 +1,4 @@
-@comment Thu Mar 12 18:25:15 CET 2009
+@comment Thu Dec 3 15:00:55 CET 2009
 bin/kill-mp
 bin/mp-oprs
 bin/opc
@@ -195,9 +195,4 @@ share/openprs/util/init-oprs-env
 share/openprs/util/install-if-change.sh
 share/openprs/util/install.sh
 share/openprs/util/vw-script
-@dirrm share/openprs/util
-@dirrm share/openprs/src-example
-@dirrm share/openprs/data/test
-@dirrm share/openprs/data
-@dirrm share/openprs
-@dirrm include/openprs
+${PLIST.doc}share/openprs/doc/doc/oprs.pdf
