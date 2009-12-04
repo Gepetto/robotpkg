@@ -17,7 +17,7 @@
 #                                          Severin Lemaignan on Mon Apr 29 2009
 #
 
-PKGVERSION=		2.2.4
+PKGVERSION=		2.2.5
 DISTNAME=		yarp-${PKGVERSION}
 PKGNAME=		libpyyarp-${PKGVERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
