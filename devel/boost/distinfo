@@ -1,5 +1,7 @@
-SHA1 (boost_1_34_1.tar.bz2) = b771271d5cbd3bdb0f119dd66dfd36bad7a66866
-RMD160 (boost_1_34_1.tar.bz2) = 303327ff852bc19dd7a94657fdef3c56f5882e06
-Size (boost_1_34_1.tar.bz2) = 12986931 bytes
-SHA1 (patch-aa) = 31a35de3145d5bb6fdebf7ee4d785e762d33e4b4
-SHA1 (patch-ab) = cf63e8289661bfaacd55276436c5a2971ac11f1c
+SHA1 (boost_1_41_0.tar.bz2) = 31134e28866b90c39ca4a903c263e036bb25550c
+RMD160 (boost_1_41_0.tar.bz2) = a604ef5a6f6f5bf50be59206c8534258ab431aea
+Size (boost_1_41_0.tar.bz2) = 33348161 bytes
+SHA1 (patch-aa) = 686ba001c8f2ebe7877a442fa5b580981e9a9dbe
+SHA1 (patch-ab) = e69b4e0035db55b765c9baf4339e6309df5b635b
+SHA1 (patch-ac) = 9b8e540d8211baab1b1280bb4f73ac3293bc8224
+SHA1 (patch-ad) = b6636df4740e71ad00f42189e1c2243abbc9ec7c

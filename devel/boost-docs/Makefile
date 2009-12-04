@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/10/10 14:10:27 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -32,15 +31,15 @@ NO_BUILD=		yes
 include ../../mk/robotpkg.mk
 
 do-install:
-	${INSTALL_DATA_DIR} ${DOCDIR}
-	cd ${WRKSRC} && pax -rw -pm \
+	${RUN}${INSTALL_DATA_DIR} ${DOCDIR}
+	${RUN}cd ${WRKSRC} && pax -rw -pm \
 		-s':^.*/build$$::' \
 		-s':^.*/build/.*$$::' \
 		-s':^libs/.*/test$$::' \
 		-s':^libs/.*/test/.*$$::' \
 		-s':^.*\.orig$$::' \
 		*.png *.css *.htm libs more ${DOCDIR}
-	${FIND} ${DOCDIR} \
+	${RUN}${FIND} ${DOCDIR} \
 		-type f -print | ${XARGS} ${CHOWN} ${SHAREOWN}:${SHAREGRP}
-	${FIND} ${DOCDIR} \
+	${RUN}${FIND} ${DOCDIR} \
 		-type d -print | ${XARGS} ${CHMOD} ${PKGDIRMODE}

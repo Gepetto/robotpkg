@@ -1,6 +1,5 @@
-# $LAAS: $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -38,15 +37,16 @@ post-extract:
 	${FIND} ${WRKSRC}/tools/build/v2 -type f -exec ${CHMOD} 644 {} \;
 
 do-build:
+	${RUN}								\
 	{ ${ECHO} '# System wide configuration file for Boost.Build.' ; \
 	  ${ECHO} ; \
 	  ${ECHO} 'using ${BOOST_TOOLSET} ;' ; } >${WRKDIR}/site-config.jam
 
 do-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/share/boost-build
-	cd ${WRKSRC}/tools/build/v2 && $(PAX) -rw -pp -pm		\
+	${RUN}${INSTALL_DATA_DIR} ${PREFIX}/share/boost-build
+	${RUN}cd ${WRKSRC}/tools/build/v2 && $(PAX) -rw -pp -pm		\
 		-s ':^.*\.orig$$::' . ${PREFIX}/share/boost-build
-	${INSTALL_DATA_DIR} ${EGDIR}
-	${INSTALL_DATA} ${WRKDIR}/site-config.jam ${EGDIR}
+	${RUN}${INSTALL_DATA_DIR} ${EGDIR}
+	${RUN}${INSTALL_DATA} ${WRKDIR}/site-config.jam ${EGDIR}
 
 include ../../mk/robotpkg.mk

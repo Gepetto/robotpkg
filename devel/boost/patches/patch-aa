@@ -1,13 +1,23 @@
-$NetBSD: patch-ac,v 1.2 2005/08/12 20:58:45 jmmv Exp $
+$NetBSD: patch-aa,v 1.7 2009/10/14 06:40:08 adam Exp $
 
---- libs/regex/src/wide_posix_api.cpp.orig	2005-03-30 13:38:51.000000000 +0200
-+++ libs/regex/src/wide_posix_api.cpp
-@@ -29,7 +29,7 @@
- #include <cstring>
- #include <cstdio>
+--- Jamroot.orig	2009-08-23 18:17:37.000000000 +0200
++++ Jamroot
+@@ -251,6 +251,10 @@ rule libraries-to-install ( existing-lib
+        ECHO "error: both --with-<library> and --without-<library> specified" ;
+        EXIT ;
+    }
++   if $(without-parameter) && $(without-parameter) = "*"
++   {
++       without-parameter = $(existing-libraries) ;
++   }
  
--#if defined(BOOST_NO_STDC_NAMESPACE)
-+#if defined(BOOST_NO_STDC_NAMESPACE) || defined(__NetBSD__)
- namespace std{
- #  ifndef BOOST_NO_SWPRINTF
-       using ::swprintf;
+    local wrong = [ set.difference $(with-parameter) : $(existing-libraries) ] ;
+    if $(wrong)
+@@ -439,6 +443,7 @@ install stage-proper
+     : <location>$(stage-locate)/lib
+       <install-dependencies>on <install-type>LIB
+       <install-no-version-symlinks>on
++      <dll-path>@PREFIX@/lib
+     ;
+ explicit stage-proper ;
+ 

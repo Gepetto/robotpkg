@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/10/09 19:02:28 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -30,11 +29,13 @@ BJAM_ARGS+=		--without-* # disable all libraries
 include ../../devel/boost-jam/depend.mk
 
 NO_BUILD=		yes
+CONFIGURE_LOG_ETA=	200
+INSTALL_LOG_ETA=	7750
 
 include ../../mk/robotpkg.mk
 
 do-install: bjam-install
-	${FIND} ${PREFIX}/include/boost \
+	${RUN}${FIND} ${PREFIX}/include/boost \
 		-type f -print | ${XARGS} ${CHOWN} ${SHAREOWN}:${SHAREGRP}
-	${FIND} ${PREFIX}/include/boost \
+	${RUN}${FIND} ${PREFIX}/include/boost \
 		-type d -print | ${XARGS} ${CHMOD} ${PKGDIRMODE}
