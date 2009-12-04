@@ -39,8 +39,9 @@ post-extract:
 do-build:
 	${RUN}								\
 	{ ${ECHO} '# System wide configuration file for Boost.Build.' ; \
-	  ${ECHO} ; \
-	  ${ECHO} 'using ${BOOST_TOOLSET} ;' ; } >${WRKDIR}/site-config.jam
+	  ${ECHO} ; 							\
+	  ${ECHO} 'using ${BOOST_TOOLSET}::"${CXX}" ;' ;		\
+	} >${WRKDIR}/site-config.jam
 
 do-install:
 	${RUN}${INSTALL_DATA_DIR} ${PREFIX}/share/boost-build
