@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2009/12/04 15:55:46 mallet $
+# $LAAS: depend.mk 2009/12/04 23:17:48 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -41,7 +41,7 @@ DEPEND_METHOD.boost-jam?=	build
 BJAM=			${PREFIX.boost-jam}/bin/bjam
 
 BJAM_ARGS+=		--builddir=${WRKSRC}/build
-BJAM_ARGS+=		--layout=system
+BJAM_ARGS+=		--layout=tagged
 BJAM_ARGS+=		--toolset=${BOOST_TOOLSET}
 BJAM_ARGS+=		--disable-long-double
 BJAM_ARGS+=		${BJAM_BUILD}
@@ -50,11 +50,17 @@ BJAM_BUILD+=		release
 BJAM_BUILD+=		threading=multi
 BJAM_BUILD+=		link=shared,static
 
+ifneq (,$(call isno,${MAKE_JOBS_SAFE}))
+BJAM_JOBS=		# nothing
+else ifneq (,$(MAKE_JOBS))
+BJAM_JOBS=		-j${MAKE_JOBS}
+endif
+
 BJAM_CMD=		${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
 
 bjam-build:
 	@cd ${WRKSRC} && ${BUILD_LOGFILTER}			\
-		${BJAM_CMD} --prefix=${PREFIX} stage
+		${BJAM_CMD} ${BJAM_JOBS}  --prefix=${PREFIX} stage
 
 bjam-install:
 	@cd ${WRKSRC} && ${INSTALL_LOGFILTER}			\
