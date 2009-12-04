@@ -1,4 +1,4 @@
-# $LAAS: gcc.mk 2009/11/17 17:36:00 mallet $
+# $LAAS: gcc.mk 2009/12/04 15:46:56 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -112,6 +112,9 @@ else
   endif
   ifneq (,$(filter c++,${USE_LANGUAGES}))
     include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c++.mk
+  endif
+  ifneq (,$(filter c++0x,${USE_LANGUAGES}))
+    ROBOTPKG_CXX+=	-std=c++0x
   endif
   ifneq (,$(filter fortran,${USE_LANGUAGES}))
     include ${ROBOTPKG_DIR}/mk/sysdep/gcc-fortran.mk

@@ -1,4 +1,3 @@
-# $LAAS: compiler-vars.mk 2009/11/28 23:44:50 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -66,9 +65,14 @@
 ifndef ROBOTPKG_COMPILER_MK
 ROBOTPKG_COMPILER_MK=	defined
 
-# Add c support if c99 is set
+# Add C support if c99 is set
 ifneq (,$(filter c99,${USE_LANGUAGES}))
 USE_LANGUAGES+=	c
+endif
+
+# Add C++ support if c++0x is set
+ifneq (,$(filter c++0x,${USE_LANGUAGES}))
+USE_LANGUAGES+=	c++
 endif
 
 # List of supported compilers (yes, only one for now...) and pseudo compilers
