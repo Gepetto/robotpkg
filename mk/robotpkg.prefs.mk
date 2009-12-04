@@ -179,7 +179,8 @@ NO_CONFIGURE=           yes
 NO_BUILD=               yes
 DISTFILES=#		none
 PLIST_SRC=#		none
-do-install:
+USE_LANGUAGES=#		none
+do-patch do-install:
 	@${DO_NADA}
 endif
 
