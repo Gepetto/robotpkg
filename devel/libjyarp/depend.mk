@@ -29,7 +29,7 @@ ifeq (+,$(LIBJYARP_DEPEND_MK)) # -------------------------------------------
 PREFER.libjyarp?=	robotpkg
 
 DEPEND_USE+=		libjyarp
-DEPEND_ABI.libjyarp?=	libjyarp>=2.2.4
+DEPEND_ABI.libjyarp?=	libjyarp>=2.2.5
 DEPEND_DIR.libjyarp?=	../../devel/libjyarp
 
 SYSTEM_SEARCH.libjyarp=\
