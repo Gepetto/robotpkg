@@ -1,4 +1,3 @@
-# $LAAS: gcc-c++.mk 2009/11/28 23:33:39 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -43,32 +42,30 @@ else
 endif
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		${_GCC_C++_PKG}
+DEPEND_PKG+=		gcc-c++
 endif
 
 ifeq (+,$(GCC_C++_DEPEND_MK)) # --------------------------------------------
 
-PREFER.gcc?=			system
-PREFER.${_GCC_PKG}?=		${PREFER.gcc}
-PREFER.${_GCC_C++_PKG}?=	${PREFER.${_GCC_PKG}}
+PREFER.gcc?=		system
+PREFER.gcc-c++?=	${PREFER.gcc}
 
-DEPEND_USE+=			${_GCC_C++_PKG}
+DEPEND_USE+=		gcc-c++
 
-DEPEND_ABI.${_GCC_C++_PKG}?=	${_GCC_C++_PKG}${_GCC_REQUIRED}
-DEPEND_DIR.${_GCC_C++_PKG}?=	${_GCC_C++_DIR}
+DEPEND_ABI.gcc-c++?=	gcc-c++${_GCC_REQUIRED}
 
-SYSTEM_PKG.Linux-fedora.${_GCC_C++_PKG}=	gcc-c++
-SYSTEM_PKG.Linux-ubuntu.${_GCC_C++_PKG}=	g++
-SYSTEM_PKG.Linux-debian.${_GCC_C++_PKG}=	g++
+SYSTEM_PKG.Linux-fedora.gcc-c++ =	gcc-c++
+SYSTEM_PKG.Linux-ubuntu.gcc-c++ =	g++
+SYSTEM_PKG.Linux-debian.gcc-c++ =	g++
 
-SYSTEM_DESCR.${_GCC_C++_PKG}=	'gcc C++ compiler, version ${_GCC_REQUIRED}'
-SYSTEM_SEARCH.${_GCC_C++_PKG} =\
+SYSTEM_DESCR.gcc-c++ =	gcc C++ compiler, version ${_GCC_REQUIRED}
+SYSTEM_SEARCH.gcc-c++ =\
 	'bin/g++::% -dumpversion'	\
 	'bin/cpp::% -dumpversion'
 
 # make sure to use += here, for chainable compilers definitions.
-ROBOTPKG_CXX+=$(word 1,${SYSTEM_FILES.${_GCC_C++_PKG}})
-ROBOTPKG_CXXCPP+=$(word 2,${SYSTEM_FILES.${_GCC_C++_PKG}})
+ROBOTPKG_CXX+=$(word 1,${SYSTEM_FILES.gcc-c++})
+ROBOTPKG_CXXCPP+=$(word 2,${SYSTEM_FILES.gcc-c++})
 
 endif # GCC_C++_DEPEND_MK --------------------------------------------------
 

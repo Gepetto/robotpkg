@@ -1,4 +1,3 @@
-# $LAAS: gcc-fortran.mk 2009/11/28 22:32:57 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -28,22 +27,6 @@ else # =====================================================================
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GCC_FORTRAN_DEPEND_MK:=	${GCC_FORTRAN_DEPEND_MK}+
 
-# Select gcc package according to the version required. If the package provided
-# by lang/gcc42 matches the requirements, use this one. Otherwise, rely on the
-# system.
-#
-ifeq (y,$(shell ${PKG_ADMIN} pmatch 'gcc${_GCC_REQUIRED}' 'gcc-4.2.4' && echo y))
-  _GCC_FORTRAN_BIN:=	gfortran
-  _GCC_PKG:=		gcc42
-  _GCC_FORTRAN_PKG:=	gcc42-fortran
-  _GCC_FORTRAN_DIR:=	../../lang/gcc42-fortran
-else
-  _GCC_FORTRAN_BIN:=	{gfortran,g77}
-  _GCC_PKG:=		gcc
-  _GCC_FORTRAN_PKG:=	gcc-fortran
-  _GCC_FORTRAN_DIR:=# empty
-endif
-
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		${_GCC_FORTRAN_PKG}
 endif
@@ -51,23 +34,21 @@ endif
 ifeq (+,$(GCC_FORTRAN_DEPEND_MK)) # ----------------------------------------
 
 PREFER.gcc?=			system
-PREFER.${_GCC_PKG}?=		${PREFER.gcc}
-PREFER.${_GCC_FORTRAN_PKG}?=	${PREFER.${_GCC_PKG}}
+PREFER.gcc-fortran?=		${PREFER.gcc}
 
-DEPEND_USE+=			${_GCC_FORTRAN_PKG}
+DEPEND_USE+=			gcc-fortran
 
-DEPEND_ABI.${_GCC_FORTRAN_PKG}?=${_GCC_FORTRAN_PKG}${_GCC_REQUIRED}
-DEPEND_DIR.${_GCC_FORTRAN_PKG}?=${_GCC_FORTRAN_DIR}
+DEPEND_ABI.gcc-fortran?=	gcc-fortran${_GCC_REQUIRED}
 
-SYSTEM_PKG.Linux-fedora.${_GCC_FORTRAN_PKG}=	gcc-gfortran
-SYSTEM_PKG.Linux-ubuntu.${_GCC_FORTRAN_PKG}=	gfortran
+SYSTEM_PKG.Linux-fedora.gcc-fortran=	gcc-gfortran
+SYSTEM_PKG.Linux-ubuntu.gcc-fortran=	gfortran
 
-SYSTEM_DESCR.${_GCC_FORTRAN_PKG}='gcc Fortran77 compiler, version ${_GCC_REQUIRED}'
-SYSTEM_SEARCH.${_GCC_FORTRAN_PKG}=	\
-	'bin/${_GCC_FORTRAN_BIN}:1s/[^0-9.]*\([0-9.]*\).*$$/\1/p:% -dumpversion'
+SYSTEM_DESCR.gcc-fortran=	gcc Fortran77 compiler, version ${_GCC_REQUIRED}
+SYSTEM_SEARCH.gcc-fortran=	\
+	'bin/{gfortran,g77}:1s/[^0-9.]*\([0-9.]*\).*$$/\1/p:% -dumpversion'
 
 # make sure to use += here, for chainable compilers definitions.
-override FC+=$(word 1,${SYSTEM_FILES.${_GCC_FORTRAN_PKG}})
+ROBOTPKG_FC+=$(word 1,${SYSTEM_FILES.gcc-fortran})
 
 CMAKE_ARGS+=	-DCMAKE_SHARED_LIBRARY_SONAME_Fortran_FLAG=-Wl,-soname,
 

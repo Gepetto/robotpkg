@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/03/01 21:05:49 tho $
+# $LAAS: Makefile 2009/12/06 17:17:56 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -23,17 +23,12 @@ GCC_LANGUAGES=		c
 
 GENERATE_PLIST+=						\
 	${FIND} ${GCC_PREFIX} \( -type f -o -type l \) -print	\
-		| ${SORT} | ${SED} -e "s,${PREFIX}/,,g";	\
-	${FIND} ${GCC_PREFIX} -type d -mindepth 1 -print	\
-		| ${SORT} -r | ${SED} -e "s,${PREFIX}/,@dirrm ,g";
+		| ${SORT} | ${SED} -e "s,${PREFIX}/,,g";
 
 INSTALL_TARGET=		install-gcc
 
 # don't build a shared libgcc
 CONFIGURE_ARGS+=        --disable-shared
-
-# pretend we don't use a C compiler to prevent circular dependencies
-USE_LANGUAGES=
 
 include ../../lang/gcc42/Makefile.common
 include ../../mk/robotpkg.mk

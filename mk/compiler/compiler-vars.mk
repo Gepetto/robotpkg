@@ -47,6 +47,7 @@
 #	Valid values are:
 #		ccache		compiler cache (chainable)
 #		gcc		GNU
+#		gcc42		GNU, version 4.2
 #
 #	The default is "gcc".  You can use ccache with an appropriate
 #	ROBOTPKG_COMPILER setting, e.g. "ccache gcc".  The chain should always
@@ -75,9 +76,8 @@ ifneq (,$(filter c++0x,${USE_LANGUAGES}))
 USE_LANGUAGES+=	c++
 endif
 
-# List of supported compilers (yes, only one for now...) and pseudo compilers
-# that can be chained
-_COMPILERS=		gcc
+# List of supported compilers and pseudo compilers that can be chained
+_COMPILERS=		gcc gcc42
 _PSEUDO_COMPILERS=	ccache
 
 # Compute the list of compilers for the current package
@@ -118,10 +118,10 @@ ROBOTPKG_FC=
 $(call require,$(patsubst %,${ROBOTPKG_DIR}/mk/compiler/%.mk,${_COMPILER}))
 
 # Remaining empty variables are explicitely set to 'false' so that missing
-# languages in USE_LANGAGES are detected
+# languages in USE_LANGUAGES are detected
 #
 ifeq (,${ROBOTPKG_CPP})
-  override CPP=	${FALSE} "*** Missing USE_LANGUAGES+=c in package Makefile"
+  override CPP=	${FALSE}
 else
   override CPP=	$(strip ${ROBOTPKG_CPP})
 endif
@@ -131,17 +131,17 @@ else
   override CXXCPP=${ROBOTPKG_CXXPP}
 endif
 ifeq (,${ROBOTPKG_CC})
-  override CC=	${FALSE} "*** Missing USE_LANGUAGES+=c in package Makefile"
+  override CC=	${FALSE}
 else
   override CC=	$(strip ${ROBOTPKG_CC})
 endif
 ifeq (,${ROBOTPKG_CXX})
-  override CXX=	${FALSE} "*** Missing USE_LANGUAGES+=c++ in package Makefile"
+  override CXX=	${FALSE}
 else
   override CXX=	$(strip ${ROBOTPKG_CXX})
 endif
 ifeq (,${ROBOTPKG_FC})
-  override FC=	${FALSE} "*** Missing USE_LANGUAGES+=fortran in package Makefile"
+  override FC=	${FALSE}
 else
   override FC=	$(strip ${ROBOTPKG_FC})
 endif

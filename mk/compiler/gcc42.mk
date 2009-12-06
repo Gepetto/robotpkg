@@ -1,6 +1,5 @@
-# $LAAS: gcc.mk 2009/12/06 15:17:50 tho $
 #
-# Copyright (c) 2006,2008-2009 LAAS/CNRS
+# Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -32,38 +31,33 @@
 #
 # From $NetBSD: gcc.mk,v 1.86 2006/12/02 22:32:59 jschauma Exp $
 #
-#					Anthony Mallet on Wed Dec  6 2006
+#					Anthony Mallet on Sun Dec  6 2009
 #
 
-# Select required compilers based on COMPILER_TARGET and USE_LANGUAGES.
+# Select required compilers based on USE_LANGUAGES.
 #
-ifeq (i386-mingw32,${COMPILER_TARGET})
-  ifneq (,$(filter c c++,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/cross/i386-mingw32/depend.mk
-  endif
-else
-  ifneq (,$(filter c,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c.mk
+ifneq (,$(filter c,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/lang/gcc42-c/depend.mk
 
-    ifneq (,$(filter c99,${USE_LANGUAGES}))
-      ROBOTPKG_CC+=	-std=c99
-    endif
+  ifneq (,$(filter c99,${USE_LANGUAGES}))
+    ROBOTPKG_CC+=	-std=c99
   endif
+endif
 
-  ifneq (,$(filter c++,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/mk/sysdep/gcc-c++.mk
+ifneq (,$(filter c++,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/lang/gcc42-c++/depend.mk
 
-    ifneq (,$(filter c++0x,${USE_LANGUAGES}))
-      ROBOTPKG_CXX+=	-std=c++0x
-    endif
+  ifneq (,$(filter c++0x,${USE_LANGUAGES}))
+    ROBOTPKG_CXX+=	-std=c++0x
   endif
+endif
 
-  ifneq (,$(filter fortran,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/mk/sysdep/gcc-fortran.mk
-  endif
+ifneq (,$(filter fortran,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/lang/gcc42-fortran/depend.mk
 endif
 
 
 # Include gcc common definitions
 #
+GCC_REQUIRED+=	>=4.2 <4.3
 $(call require, ${ROBOTPKG_DIR}/mk/compiler/gcc-common.mk)

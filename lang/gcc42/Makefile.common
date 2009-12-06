@@ -1,6 +1,5 @@
-# $LAAS: Makefile.common 2008/10/20 00:17:31 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -24,6 +23,8 @@ DISTNAME=		gcc-${GCC_VERSION}
 DISTFILES+=		gcc-core-${GCC_VERSION}${EXTRACT_SUFX}
 EXTRACT_SUFX=		.tar.bz2
 MASTER_SITES=		${MASTER_SITE_GNU:=gcc/gcc-${GCC_VERSION}/}
+
+PATCHDIR=		${CURDIR}/../../lang/gcc42/patches
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.gnu.org/software/gcc/gcc.html
