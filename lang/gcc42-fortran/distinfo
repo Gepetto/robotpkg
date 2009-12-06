@@ -4,3 +4,4 @@ Size (gcc-core-4.2.4.tar.bz2) = 18927613 bytes
 SHA1 (gcc-fortran-4.2.4.tar.bz2) = 7b476983f8b8405a456b30704cd91c7b238381c9
 RMD160 (gcc-fortran-4.2.4.tar.bz2) = 83694f8140dfd6b642449f2b262153a74e983c73
 Size (gcc-fortran-4.2.4.tar.bz2) = 905688 bytes
+SHA1 (patch-aa) = efc5b2584bb0dc4f340c35e90d3cfe54759b1711
