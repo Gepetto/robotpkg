@@ -1,4 +1,3 @@
-# $LAAS: depend.mk 2009/03/11 10:34:16 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -33,8 +32,8 @@ SYSTEM_PKG.Linux-ubuntu.boost-libs=	libboost-dev
 SYSTEM_PKG.NetBSD.boost-libs=		pkgsrc/devel/boost-libs
 
 SYSTEM_SEARCH.boost-libs=\
-	lib/libboost_thread-mt.*	\
-	lib/libboost_iostreams-mt.*
+	lib/libboost_thread{,-mt}.*	\
+	lib/libboost_iostreams{,-mt}.*
 
 DEPEND_USE+=		boost-libs
 

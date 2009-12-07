@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/10/10 14:01:03 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -26,6 +25,9 @@ BOOST_CONFIG=		installed
 include ../../devel/boost/Makefile.common
 
 BJAM_ARGS+=		--without-python
+
+BUILD_LOG_ETA=		
+INSTALL_LOG_ETA=	
 
 include ../../devel/boost-jam/depend.mk
 include ../../archivers/bzip2/depend.mk

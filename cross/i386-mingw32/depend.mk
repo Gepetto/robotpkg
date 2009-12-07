@@ -1,6 +1,5 @@
-# $LAAS: depend.mk 2008/12/03 23:25:11 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -35,8 +34,8 @@ DEPEND_DIR.cross-i386-mingw32?=	../../cross/i386-mingw32
 MINGW_SUBPREFIX=	i386-mingw32
 MINGW_PREFIX=		${LOCALBASE}/${MINGW_SUBPREFIX}
 
-override CC=	${LOCALBASE}/cross/bin/i386-mingw32-gcc
-override CXX=	${LOCALBASE}/cross/bin/i386-mingw32-g++
+ROBOTPKG_CC+=	${LOCALBASE}/cross/bin/i386-mingw32-gcc
+ROBOTPKG_CXX=	${LOCALBASE}/cross/bin/i386-mingw32-g++
 
 ifdef GNU_CONFIGURE
   CONFIGURE_ARGS+=	--host=i386-mingw32
@@ -45,4 +44,3 @@ endif # GNU_CONFIGURE
 endif # I386_MINGW32_DEPEND_MK ---------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-

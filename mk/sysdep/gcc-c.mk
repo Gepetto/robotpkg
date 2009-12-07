@@ -1,4 +1,3 @@
-# $LAAS: gcc-c.mk 2009/11/28 22:56:59 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -28,43 +27,27 @@ else # =====================================================================
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GCC_C_DEPEND_MK:=	${GCC_C_DEPEND_MK}+
 
-# Select gcc package according to the version required. If the package provided
-# by lang/gcc42 matches the requirements, use this one. Otherwise, rely on the
-# system.
-#
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc${_GCC_REQUIRED}' 'gcc-4.2.4' && echo y))
-  _GCC_PKG:=	gcc42
-  _GCC_C_PKG:=	gcc42-c
-  _GCC_C_DIR:=	../../lang/gcc42-c
-else
-  _GCC_PKG:=	gcc
-  _GCC_C_PKG:=	gcc-c
-  _GCC_C_DIR:=# empty
-endif
-
 ifeq (+,$(DEPEND_DEPTH))
-  DEPEND_PKG+=		${_GCC_C_PKG}
+  DEPEND_PKG+=		gcc-c
 endif
 
 ifeq (+,$(GCC_C_DEPEND_MK)) # ---------------------------------------------
 
 PREFER.gcc?=		system
-PREFER.${_GCC_PKG}?=	${PREFER.gcc}
-PREFER.${_GCC_C_PKG}?=	${PREFER.${_GCC_PKG}}
+PREFER.gcc-c?=		${PREFER.gcc}
 
-DEPEND_USE+=		${_GCC_C_PKG}
+DEPEND_USE+=		gcc-c
 
-DEPEND_ABI.${_GCC_C_PKG}?=${_GCC_C_PKG}${_GCC_REQUIRED}
-DEPEND_DIR.${_GCC_C_PKG}?=${_GCC_C_DIR}
+DEPEND_ABI.gcc-c?=	gcc-c${_GCC_REQUIRED}
 
-SYSTEM_DESCR.${_GCC_C_PKG}?=	'gcc C compiler, version ${_GCC_REQUIRED}'
-SYSTEM_SEARCH.${_GCC_C_PKG}?=	\
+SYSTEM_DESCR.gcc-c?=	'gcc C compiler, version ${_GCC_REQUIRED}'
+SYSTEM_SEARCH.gcc-c?=	\
 	'bin/gcc::% -dumpversion'	\
 	'bin/cpp::% -dumpversion'
 
 # make sure to use += here, for chainable compilers definitions.
-ROBOTPKG_CC+=$(word 1,${SYSTEM_FILES.${_GCC_C_PKG}})
-ROBOTPKG_CPP+=$(word 2,${SYSTEM_FILES.${_GCC_C_PKG}})
+ROBOTPKG_CC+=$(word 1,${SYSTEM_FILES.gcc-c})
+ROBOTPKG_CPP+=$(word 2,${SYSTEM_FILES.gcc-c})
 
 endif # GCC_C_DEPEND_MK ----------------------------------------------------
 

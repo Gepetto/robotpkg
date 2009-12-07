@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2009/02/03 17:36:29 mallet $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -27,11 +26,7 @@ MASTER_SITES=#	empty
 
 META_PACKAGE=	yes
 
-# don't use regular depend.mk files here, since this would require gcc42
-# and create a circular dependency on this package.
-#
-DEPENDS+=	gcc42-c-${GCC_VERSION}:../../lang/gcc42-c
-DEPENDS+=	gcc42-c++-${GCC_VERSION}:../../lang/gcc42-c++
-DEPENDS+=	gcc42-fortran-${GCC_VERSION}:../../lang/gcc42-fortran
-
+include ../../lang/gcc42-c/depend.mk
+include ../../lang/gcc42-c++/depend.mk
+include ../../lang/gcc42-fortran/depend.mk
 include ../../mk/robotpkg.mk

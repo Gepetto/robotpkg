@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2009/03/01 21:00:29 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -29,17 +28,16 @@ BUILD_MAKE_FLAGS+=	gcc_cv_getipinfo=no
 
 CONFIGURE_ARGS+=        --enable-shared=libstdc++
 
-# don't use regular depend.mk files here, since this would require gcc42
-# and create a circular dependency on this package.
-#
-DEPENDS+=	gcc42-c-${GCC_VERSION}:../../lang/gcc42-c
-
+include ../../lang/gcc42-c/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:
-	cd ${WRKDIR}/build/gcc && ${SETENV} ${MAKE_ENV} ${MAKE} 	\
+	${RUN}cd ${WRKDIR}/build/gcc && ${INSTALL_LOGFILTER}		\
+		${SETENV} ${MAKE_ENV} ${MAKE} 				\
                 lang.install-common lang.install-info lang.install-man
-	cd ${WRKDIR}/build && ${SETENV} ${MAKE_ENV} ${MAKE}		\
+	${RUN}cd ${WRKDIR}/build && ${INSTALL_LOGFILTER}		\
+		${SETENV} ${MAKE_ENV} ${MAKE}				\
                 install-target-libstdc++-v3
-	$(INSTALL_PROGRAM) ${WRKDIR}/build/gcc/cc1plus 			\
+	${RUN}${INSTALL_LOGFILTER} $(INSTALL_PROGRAM)			\
+		${WRKDIR}/build/gcc/cc1plus 				\
 		${GCC_PREFIX}/libexec/gcc/${GNU_CONFIGURE_HOST}/${GCC_VERSION}

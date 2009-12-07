@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/10/10 14:40:00 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -37,8 +36,8 @@ include ../../devel/boost-build/depend.mk
 include ../../mk/robotpkg.mk
 
 do-build:
-	cd ${WRKSRC}/tools/jam/src && \
+	${RUN}cd ${WRKSRC}/tools/jam/src && ${BUILD_LOGFILTER} \
 	    ${SETENV} ${MAKE_ENV} ${SH} ./build.sh ${BOOST_TOOLSET}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/tools/jam/src/bin.*/bjam ${PREFIX}/bin
+	${RUN}${INSTALL_PROGRAM} ${WRKSRC}/tools/jam/src/bin.*/bjam ${PREFIX}/bin

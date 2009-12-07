@@ -1,0 +1,11 @@
+--- libs/config/test/boost_no_scoped_enums.ipp~	2009-12-04 17:34:50.488103925 +0100
++++ libs/config/test/boost_no_scoped_enums.ipp	2009-12-04 17:44:50.500979221 +0100
+@@ -14,7 +14,7 @@
+ 
+ int test()
+ {
+-  enum class scoped_enum { yes, no, maybe };
++  enum class scoped_enum { yes, no, maybe } a = scoped_enum::yes;
+   return 0;
+ }
+ 

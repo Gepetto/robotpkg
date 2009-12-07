@@ -4,3 +4,4 @@ Size (gcc-core-4.2.4.tar.bz2) = 18927613 bytes
 SHA1 (gcc-g++-4.2.4.tar.bz2) = 8b0ed65c5314e0a598a120a841cd00eedd183760
 RMD160 (gcc-g++-4.2.4.tar.bz2) = 4ff1a578e95104adf023e124279961f711b1dfc2
 Size (gcc-g++-4.2.4.tar.bz2) = 4823317 bytes
+SHA1 (patch-aa) = efc5b2584bb0dc4f340c35e90d3cfe54759b1711

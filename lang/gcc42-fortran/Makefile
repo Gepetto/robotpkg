@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/14 01:40:47 tho $
+# $LAAS: Makefile 2009/12/06 20:03:31 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -36,20 +36,19 @@ CONFIGURE_ARGS+=\
 CONFIGURE_ARGS+=\
 	--with-gmp-lib="${PREFIX.gmp}/lib ${COMPILER_RPATH_FLAG}${PREFIX.gmp}/lib"
 
-# don't use regular depend.mk files here, since this would require gcc42
-# and create a circular dependency on this package.
-#
-DEPENDS+=	gcc42-c-${GCC_VERSION}:../../lang/gcc42-c
-
+include ../../lang/gcc42-c/depend.mk
 include ../../math/gmp/depend.mk
 include ../../math/mpfr/depend.mk
 include ../../mk/robotpkg.mk
 
 # some magic stuff to install only what's needed
 do-install:
-	cd ${WRKDIR}/build/gcc && ${SETENV} ${MAKE_ENV} ${MAKE} 	\
+	${RUN}cd ${WRKDIR}/build/gcc && ${INSTALL_LOGFILTER}		\
+		${SETENV} ${MAKE_ENV} ${MAKE} 				\
                 lang.install-common lang.install-info lang.install-man
-	$(INSTALL_PROGRAM) ${WRKDIR}/build/gcc/f951 			\
+	${RUN}${INSTALL_LOGFILTER} $(INSTALL_PROGRAM)			\
+		${WRKDIR}/build/gcc/f951 				\
 		${GCC_PREFIX}/libexec/gcc/${GNU_CONFIGURE_HOST}/${GCC_VERSION}
-	cd ${WRKDIR}/build && ${SETENV} ${MAKE_ENV} ${MAKE}		\
+	${RUN}cd ${WRKDIR}/build && ${INSTALL_LOGFILTER}		\
+		${SETENV} ${MAKE_ENV} ${MAKE}				\
                 install-target-libgfortran
