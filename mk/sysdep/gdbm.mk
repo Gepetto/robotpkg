@@ -35,9 +35,12 @@ DEPEND_ABI.gdbm?=	gdbm>=1.8
 SYSTEM_SEARCH.gdbm=	\
 	'include/gdbm.h'	\
 	'include/gdbm/gdbm.h'	\
-	'include/gdbm/dbm.h'
+	'include/gdbm/dbm.h'	\
+	'lib/libgdbm.so'
 
 SYSTEM_PKG.Linux-fedora.tcl=	gdbm-devel
+SYSTEM_PKG.Linux-ubuntu.tcl=	libgdbm-dev
+SYSTEM_PKG.Linux-debian.tcl=	libgdbm-dev
 
 endif # GDBM_DEPEND_MK ------------------------------------------------------
 
