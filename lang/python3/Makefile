@@ -63,7 +63,7 @@ PY_VER_SUFFIX=		3.1
 #.endif
 
 #PLIST_SUBST+=	PY_VER_SUFFIX=${PY_VER_SUFFIX:Q}
-
+#
 #PRINT_PLIST_AWK+=        { gsub(/${PY_PLATNAME}/, "$${PY_PLATNAME}") }
 #PRINT_PLIST_AWK+=        { gsub(/python${PY_VER_SUFFIX}/, \
 #				"python$${PY_VER_SUFFIX}") }
@@ -78,6 +78,8 @@ REPLACE_FILES.py31=	Lib/cgi.py	# explicitly demanded to be patched
 REPLACE_FILES.py31+=	Lib/test/test_bz2.py
 REPLACE_FILES.py31+=	Lib/test/test_largefile.py Lib/test/test_optparse.py
 
+post-install:
+	${LN} -sf ${PREFIX}/bin/python${PY_VER_SUFFIX} ${PREFIX}/bin/python
 
 include ../../mk/sysdep/gdbm.mk
 include ../../mk/sysdep/openssl.mk
@@ -85,6 +87,5 @@ include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/robotpkg.mk
 
-do-install:
-	${LN} -sf ${PREFIX}/bin/python${PY_VER_SUFFIX} ${PREFIX}/bin/python
+
 

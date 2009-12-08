@@ -48,8 +48,6 @@ DEPEND_METHOD.python3?=build
 SYSTEM_SEARCH.python3=\
 	'bin/python{[0-9].[0-9],${PYTHON_REQD},}:s/[^.0-9]//gp:% --version'
 
-PY_VER_SUFFIX=$(word 1,$(shell ${PYTHON} -c "import sys; print (sys.version[0:3])"))
-
 _PYTHON_VERSION=$(word 1,$(shell ${PYTHON} -c "import sys; print (sys.version)"))
 _PYTHON_PREFIX=	$(shell ${PYTHON} -c "import sys; (print sys.prefix)")
 PYTHON_SITELIB=	$(shell ${PYTHON} -c \
