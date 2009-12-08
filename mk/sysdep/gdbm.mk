@@ -34,8 +34,6 @@ DEPEND_ABI.gdbm?=	gdbm>=1.8
 
 SYSTEM_SEARCH.gdbm=	\
 	'include/gdbm.h'	\
-	'include/gdbm/gdbm.h'	\
-	'include/gdbm/dbm.h'	\
 	'lib/libgdbm.so'
 
 SYSTEM_PKG.Linux-fedora.tcl=	gdbm-devel
