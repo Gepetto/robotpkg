@@ -4,6 +4,7 @@
 COMMENT=	Graphics tools
 
 SUBDIR+=	Togl
+SUBDIR+=	blender
 SUBDIR+=	gdhe
 SUBDIR+=	grh2
 SUBDIR+=	kpp-interface
