@@ -27,20 +27,6 @@ else # =====================================================================
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GCC_C++_DEPEND_MK:=	${GCC_C++_DEPEND_MK}+
 
-# Select gcc package according to the version required. If the package provided
-# by lang/gcc42 matches the requirements, use this one. Otherwise, rely on the
-# system.
-#
-ifneq (,$(shell ${PKG_ADMIN} pmatch 'gcc${_GCC_REQUIRED}' 'gcc-4.2.4' && echo y))
-  _GCC_PKG:=		gcc42
-  _GCC_C++_PKG:=	gcc42-c++
-  _GCC_C++_DIR:=	../../lang/gcc42-c++
-else
-  _GCC_PKG:=		gcc
-  _GCC_C++_PKG:=	gcc-c++
-  _GCC_C++_DIR:=# empty
-endif
-
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		gcc-c++
 endif
