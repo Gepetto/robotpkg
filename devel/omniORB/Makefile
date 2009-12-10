@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/08/25 11:44:59 mallet $
+# $LAAS: Makefile 2009/12/10 23:38:02 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -25,7 +25,7 @@ HOMEPAGE=		http://omniorb.sourceforge.net/
 COMMENT=		ORB that implements the 2.6 specification of the CORBA
 
 USE_TOOLS+=		python
-USE_LANGUAGES+=		c++
+USE_LANGUAGES+=		c c++
 
 MAKE_FILE=		GNUmakefile
 GNU_CONFIGURE=		yes
