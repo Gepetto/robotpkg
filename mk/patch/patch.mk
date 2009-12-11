@@ -192,9 +192,6 @@ endif
 ifdef BATCH
 PATCH_ARGS+=		--batch
 endif
-ifneq (,$(call isyes,${_PATCH_CAN_BACKUP}))
-PATCH_ARGS+=		${_PATCH_BACKUP_ARG} .orig
-endif
 PATCH_FUZZ_FACTOR?=	-F0	# Default to zero fuzz
 
 

@@ -1,4 +1,3 @@
-# $NetBSD: NetBSD.mk,v 1.21 2006/07/20 20:02:23 jlam Exp $
 #
 # Variable definitions for the NetBSD operating system.
 
@@ -9,8 +8,6 @@ CPP_PRECOMP_FLAGS?=	# unset
 EXPORT_SYMBOLS_LDFLAGS?=-Wl,-E	# add symbols to the dynamic symbol table
 
 _OPSYS_SHLIB_TYPE=	ELF	# shared lib type
-_PATCH_CAN_BACKUP=	yes	# native patch(1) can make backups
-_PATCH_BACKUP_ARG?=	-V simple -b -z 	# switch to patch(1) for backup suffix
 _USE_RPATH=		yes	# add rpath to LDFLAGS
 
 # Standard commands
@@ -50,7 +47,6 @@ $(call setdefault, PAGER,	/usr/bin/less)
 $(call setdefault, TAR,		${PKG_TOOLS_BIN}/robotpkg_tar)
 $(call setdefault, PAX,		${PKG_TOOLS_BIN}/robotpkg_pax)
 
-PATCH?=			patch
 FILE_CMD?=		file
 
 GZCAT?=			gzcat

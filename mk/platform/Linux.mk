@@ -9,8 +9,6 @@ CPP_PRECOMP_FLAGS?=	# unset
 EXPORT_SYMBOLS_LDFLAGS?=-Wl,-E	# add symbols to the dynamic symbol table
 
 _OPSYS_SHLIB_TYPE=	ELF	# shared lib type
-_PATCH_CAN_BACKUP=	yes	# native patch(1) can make backups
-_PATCH_BACKUP_ARG?=	-V simple -b -z 	# switch to patch(1) for backup suffix
 _USE_RPATH=		yes	# add rpath to LDFLAGS
 
 # x86_64 put system libs in lib64
