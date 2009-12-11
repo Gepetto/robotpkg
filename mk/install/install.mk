@@ -80,6 +80,8 @@ release-install-localbase-lock: release-localbase-lock
 # real-install is a helper target onto which one can hook all of the
 # targets that do the actual installing of the built objects.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+
 _REAL_INSTALL_TARGETS+=	install-check-interactive
 ifndef _EXTRACT_IS_CHECKOUT
   _REAL_INSTALL_TARGETS+=install-check-version
