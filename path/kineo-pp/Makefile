@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/03 00:53:04 tho $
+# $LAAS: Makefile 2009/12/11 22:32:27 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -57,6 +57,7 @@ INSTALLATION_DIRS=	bin
 
 GCC_REQUIRED+=		>=4.0
 
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 KINEO_DIR=		${PREFIX}/kineo

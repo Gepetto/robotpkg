@@ -35,6 +35,7 @@ EXTRACT_ENV+=	HOME=${WRKDIR}/fake_home
 NO_BUILD=	yes
 
 include ../../lang/sun-jre6/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.prefs.mk
 include ../../mk/robotpkg.mk
 

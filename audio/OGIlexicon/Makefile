@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/16 14:45:23 mallet $
+# $LAAS: Makefile 2009/12/11 22:43:59 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -49,6 +49,7 @@ FETCH_MESSAGE+= "	${HOMEPAGE}"
 REQD_BUILD_OPTIONS.festival=	ogireslpc
 include ../../audio/festival/depend.mk
 
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:

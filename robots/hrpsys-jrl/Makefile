@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/11/18 12:19:58 mallet $
+# $LAAS: Makefile 2009/12/11 22:28:18 tho $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -58,6 +58,7 @@ GCC_REQUIRED+=	>=4.2
 
 include ../../math/blas/depend.mk
 include ../../architecture/openhrp/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 do-build:

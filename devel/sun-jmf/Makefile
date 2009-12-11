@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/10/05 17:43:10 tho $
+# $LAAS: Makefile 2009/12/11 22:40:02 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -57,6 +57,7 @@ NO_CONFIGURE=	yes
 NO_BUILD=	yes
 
 include ../../lang/sun-jre6/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 post-fetch:

@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/12/16 14:30:36 mallet $
+# $LAAS: Makefile 2009/12/11 22:43:13 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -66,6 +66,7 @@ endif
 # --------------------------------------------------------------------
 
 include ../../mk/sysdep/gcc-c++.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 ifneq (,$(filter mdi distinfo makesum,${MAKECMDGOALS}))

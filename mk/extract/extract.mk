@@ -1,4 +1,4 @@
-# $LAAS: extract.mk 2009/11/17 17:37:30 mallet $
+# $LAAS: extract.mk 2009/12/11 22:22:54 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -233,9 +233,6 @@ _EXTRACT_ENV+=	MKDIR=${TOOLS_MKDIR}
 endif
 ifdef TOOLS_RM
 _EXTRACT_ENV+=	RM=${TOOLS_RM}
-endif
-ifdef TOOLS_PAX
-_EXTRACT_ENV+=	PAX=${TOOLS_PAX}
 endif
 ifdef TOOLS_SH
 _EXTRACT_ENV+=	SH=${TOOLS_SH}

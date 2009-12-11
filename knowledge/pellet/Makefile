@@ -44,7 +44,8 @@ define PKG_OPTION_SET.doc
 endef
 
 include ../../lang/sun-jre6/depend.mk
-include ../jena/depend.mk
+include ../../knowledge/jena/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install: pellet-install-lib

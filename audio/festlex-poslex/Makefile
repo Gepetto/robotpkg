@@ -1,4 +1,4 @@
-# $Id:$
+# $Id: Makefile 2009/12/11 22:42:43 tho $
 #
 
 DISTNAME=		festlex_POSLEX
@@ -14,6 +14,7 @@ WRKSRC=			${WRKDIR}/festival
 NO_BUILD=		yes
 
 include ../../audio/festival/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:

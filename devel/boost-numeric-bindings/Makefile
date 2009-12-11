@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/02/15 14:05:52 tho $
+# $LAAS: Makefile 2009/12/11 22:41:22 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -35,6 +35,7 @@ NO_CONFIGURE=		yes
 NO_BUILD=		yes
 
 include ../../devel/boost-headers/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:

@@ -25,8 +25,8 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-
-# Authored by Anthony Mallet on Sat Apr 19 2008
+#                                       Anthony Mallet on Sat Apr 19 2008
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 PAX_DEPEND_MK:=		${PAX_DEPEND_MK}+
@@ -35,15 +35,20 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		pax
 endif
 
-ifeq (+,$(PAX_DEPEND_MK))
-PREFER.pax?=		robotpkg
+ifeq (+,$(PAX_DEPEND_MK)) # ------------------------------------------------
+
+PREFER.pax?=		system
 
 SYSTEM_SEARCH.pax=	'{,s}bin/{,robotpkg_}pax'
 
 DEPEND_USE+=		pax
 
-DEPEND_ABI.pax?=	pax>=20080110
+DEPEND_METHOD.pax?=	build
+DEPEND_ABI.pax?=	pax
 DEPEND_DIR.pax?=	../../pkgtools/pax
-endif
+
+export PAX=		$(word 1,${SYSTEM_FILES.pax})
+
+endif # PAX_DEPEND_MK ------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

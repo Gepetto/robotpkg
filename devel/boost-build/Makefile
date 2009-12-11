@@ -50,4 +50,5 @@ do-install:
 	${RUN}${INSTALL_DATA_DIR} ${EGDIR}
 	${RUN}${INSTALL_DATA} ${WRKDIR}/site-config.jam ${EGDIR}
 
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk

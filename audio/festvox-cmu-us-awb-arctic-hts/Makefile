@@ -1,4 +1,4 @@
-# $Id:$
+# $Id: Makefile 2009/12/11 22:42:15 tho $
 #
 
 DISTNAME=		festvox_cmu_us_awb_arctic_hts
@@ -16,6 +16,7 @@ NO_BUILD=		yes
 include ../../audio/festival/depend.mk
 include ../../audio/festlex-cmu/depend.mk
 include ../../audio/festlex-poslex/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:

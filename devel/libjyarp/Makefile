@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/06/11 22:46:57 tho $
+# $LAAS: Makefile 2009/12/11 22:38:48 tho $
 #
 # Copyright (c) 2009 LAAS/CNRS
 # All rights reserved.
@@ -47,6 +47,7 @@ _CFLAGS_NDEBUG:= -O1 -DNDEBUG
 
 include ../../architecture/yarp/depend.mk
 include ../../lang/sun-jdk6/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/swig.mk
 include ../../mk/robotpkg.mk
