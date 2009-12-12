@@ -28,6 +28,8 @@ MAINTAINER=	roboptim-user@lists.sourceforge.net
 HOMEPAGE=	http://sourceforge.net/projects/roboptim/
 COMMENT=	plug-in linking ipopt to roboptim-core
 
+USE_LANGUAGES+= c c++
+
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core-ipopt-plugin
 
 GNU_CONFIGURE=	yes
