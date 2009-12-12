@@ -29,6 +29,8 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Path planning algorithm for a walking humanoid robot.
 
+USE_LANGUAGES+= c c++
+
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/hppWalkPlanner
 
