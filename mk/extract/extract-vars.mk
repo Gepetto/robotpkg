@@ -1,4 +1,3 @@
-# $LAAS: extract-vars.mk 2009/10/27 18:28:10 mallet $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -61,21 +60,10 @@ endif
 # Discover which tools we need based on the file extensions of the
 # distfiles.
 #
-#.if !empty(EXTRACT_ONLY:M*.tar) || \
-#    !empty(EXTRACT_ONLY:M*.tar.*) || \
-#    !empty(EXTRACT_ONLY:M*.tbz) || \
-#    !empty(EXTRACT_ONLY:M*.tbz2) || \
-#    !empty(EXTRACT_ONLY:M*.tgz) || \
-#    !empty(EXTRACT_ONLY:M*-tar.gz) || \
-#    !empty(EXTRACT_ONLY:M*_tar.gz)
-#.  if !empty(EXTRACT_USING:Mgtar)
-#USE_TOOLS+=	gtar
-#.  elif !empty(EXTRACT_USING:Mnbtar)
-#USE_TOOLS+=	tar
-#.  else
-#USE_TOOLS+=	pax
-#.  endif
-#.endif
+ifneq (,$(filter %.tar %.tar.gz %.tar.bz2 %.tgz %.tbz2,${EXTRACT_ONLY}))
+  DEPEND_METHOD.pax+=	bootstrap
+  include ${ROBOTPKG_DIR}/pkgtools/pax/depend.mk
+endif
 #.if !empty(EXTRACT_ONLY:M*.cpio) || \
 #    !empty(EXTRACT_ONLY:M*.cpio.bz2) || \
 #    !empty(EXTRACT_ONLY:M*.cpio.gz)
