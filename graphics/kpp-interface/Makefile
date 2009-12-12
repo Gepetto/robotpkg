@@ -27,6 +27,8 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Graphical user interface for HPP libraries.
 
+USE_LANGUAGES+= c c++
+
 GNU_CONFIGURE=	yes
 
 # options
