@@ -28,6 +28,8 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Robots, humanoid robots, joints and bodies with dynamics properties
 
+USE_LANGUAGES+=	c c++
+
 GNU_CONFIGURE=	yes
 
 DOXYGEN_PLIST_DIR+=	share/doc/hppModel
