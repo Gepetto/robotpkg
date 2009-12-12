@@ -28,6 +28,8 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic classes used as interfaces with OpenHRP(tm).
 
+USE_LANGUAGES+= c c++
+
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
