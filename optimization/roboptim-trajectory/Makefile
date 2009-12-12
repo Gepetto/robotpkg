@@ -28,6 +28,8 @@ MAINTAINER=	roboptim-user@lists.sourceforge.net
 HOMEPAGE=	http://sourceforge.net/projects/roboptim/
 COMMENT=	Optimization for robotics: trajectory optimization
 
+USE_LANGUAGES+= c c++
+
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-trajectory
 
 GNU_CONFIGURE=	yes
