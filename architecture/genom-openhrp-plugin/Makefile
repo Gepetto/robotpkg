@@ -25,6 +25,8 @@ MAINTAINER=		gepetto@laas.fr
 #HOMEPAGE=
 COMMENT=		Interface plugin between GenoM and OpenHRP
 
+USE_LANGUAGES+=		c c++
+
 GNU_CONFIGURE=		yes
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
