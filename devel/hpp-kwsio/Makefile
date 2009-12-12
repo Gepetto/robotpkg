@@ -27,6 +27,8 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Input and Output functions for KineoWorks(tm) package.
 
+USE_LANGUAGES+=	c c++
+
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/kwsIO
 
