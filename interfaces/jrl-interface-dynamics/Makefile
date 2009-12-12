@@ -32,6 +32,8 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for dynamic robot model.
 
+USE_LANGUAGES+=	c c++
+
 include ../../interfaces/jrl-mal/depend.mk
 
 include ../../pkgtools/pkg-config/depend.mk
