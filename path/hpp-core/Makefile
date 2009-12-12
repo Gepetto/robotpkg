@@ -28,6 +28,8 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic classes used as interfaces with KineoWorks(tm).
 
+USE_LANGUAGES+=	c c++
+
 GNU_CONFIGURE=	yes
 
 DOXYGEN_PLIST_DIR+=	share/doc/hppCore
