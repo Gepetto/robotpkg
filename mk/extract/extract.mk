@@ -1,4 +1,3 @@
-# $LAAS: extract.mk 2009/12/11 22:22:54 tho $
 #
 # Copyright (c) 2006-2009 LAAS/CNRS
 # All rights reserved.
@@ -237,9 +236,6 @@ endif
 ifdef TOOLS_SH
 _EXTRACT_ENV+=	SH=${TOOLS_SH}
 endif
-ifdef TOOLS_TAR
-_EXTRACT_ENV+=	TAR=${TOOLS_TAR}
-endif
 ifdef TOOLS_TEST
 _EXTRACT_ENV+=	TEST=${TOOLS_TEST}
 endif
@@ -253,10 +249,6 @@ ifdef TOOLS_UNZOO
 _EXTRACT_ENV+=	UNZOO=${TOOLS_UNZOO}
 endif
 _EXTRACT_ENV+=	${EXTRACT_ENV}
-
-ifdef TOOLS_TAR
-EXTRACT_OPTS+=	-t ${TOOLS_TAR}
-endif
 
 EXTRACT_CMD_DEFAULT=							\
 	${SETENV} ${_EXTRACT_ENV}					\

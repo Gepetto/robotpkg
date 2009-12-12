@@ -52,7 +52,6 @@ $(call setdefault, BASENAME,\
 $(call setdefault, XARGS,	/usr/bin/xargs -r)
 $(call setdefault, TPUT,	/usr/bin/tput)
 $(call setdefault, PAGER,	/usr/bin/less)
-$(call setdefault, TAR,		${PKG_TOOLS_BIN}/robotpkg_tar)
 
 PATCH?=			patch
 FILE_CMD?=		file
