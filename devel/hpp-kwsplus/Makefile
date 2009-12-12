@@ -25,8 +25,10 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kwsPlus
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kwsplus/}
 
 MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Helper functions for KineoWorks(tm) package.
+
+USE_LANGUAGES+=	c c++
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-lapack=${PREFIX.lapack}
