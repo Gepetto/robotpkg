@@ -33,7 +33,7 @@ RESTRICTED=	Redistribution not permitted
 NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
 
-USE_LANGUAGES+=		c++
+USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/robotbuilder
 
 GNU_CONFIGURE=	yes
