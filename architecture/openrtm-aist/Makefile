@@ -26,6 +26,8 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.is.aist.go.jp/rt/OpenRTM-aist/html-en/FrontPage.html
 COMMENT=		Open Robot Technology Middleware from AIST.
 
+USE_LANGUAGES+=		c c++
+
 WRKSRC=			${WRKDIR}/${DISTNAME:-RELEASE=}
 
 GNU_CONFIGURE=		yes
