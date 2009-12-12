@@ -26,6 +26,8 @@ HOMEPAGE=	http://roboptim.sourceforge.net
 COMMENT=	CFSQP solver back-end for roboptim-core
 LICENSE=	aemdesign-cfsqp-license
 
+USE_LANGUAGES+= c c++
+
 RESTRICTED=	Redistribution not permitted
 NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
