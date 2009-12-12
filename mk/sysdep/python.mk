@@ -42,8 +42,13 @@ PYTHON_REQD?=		2.4
 DEPEND_USE+=		python
 DEPEND_ABI.python?=	python>=${PYTHON_REQD}
 
+_pynamespec=python{2.6,2.5,2.4,${PYTHON_REQD},[0-9].[0-9],}
 SYSTEM_SEARCH.python=\
-	'bin/python{[0-9].[0-9],${PYTHON_REQD},}:s/[^.0-9]//gp:% --version'
+	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version' 	\
+	'include/${_pynamespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'
+
+SYSTEM_PKG.Linux-fedora.python=	python-devel
+SYSTEM_PKG.NetBSD.python=	pkgsrc/lang/python$(subst .,,${PYTHON_REQD})
 
 export PYTHON=		$(firstword ${SYSTEM_FILES.python})
 
