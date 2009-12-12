@@ -1,4 +1,3 @@
-# $LAAS: resolve.mk 2009/11/17 17:36:09 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
@@ -115,7 +114,6 @@ $(foreach _pkg_,${DEPEND_USE},$(eval DEPEND_METHOD.${_pkg_}?=full))
 define _dpd_adddep
   ifneq (,$$(filter robotpkg,$${PREFER.${1}}))
     ifeq (,$(strip ${DEPEND_DIR.${1}}))
-      PKG_FAIL_REASON+=	${hline}
       PKG_FAIL_REASON+= "$${bf}Requirements for ${PKGNAME} were not met:$${rm}"
       PKG_FAIL_REASON+= ""
       ifdef SYSTEM_DESCR.${1}
@@ -124,15 +122,13 @@ define _dpd_adddep
         PKG_FAIL_REASON+= "		$${bf}$${DEPEND_ABI.${1}}$${rm}"
       endif
       PKG_FAIL_REASON+= ""
-      PKG_FAIL_REASON+= "$${bf}This package is not included in robotpkg$${rm},\
+      PKG_FAIL_REASON+= "$${bf}This package is not included in robotpkg$${rm}\
 		and you have to"
       PKG_FAIL_REASON+= "configure your preferences by setting the following\
 		variable"
       PKG_FAIL_REASON+= "in ${MAKECONF}:"
       PKG_FAIL_REASON+= ""
       PKG_FAIL_REASON+= "	. PREFER.${1}=	system"
-      PKG_FAIL_REASON+= ""
-      PKG_FAIL_REASON+=	${hline}
     endif
     ifneq (,$$(filter full,${DEPEND_METHOD.${1}}))
       DEPENDS+=${DEPEND_ABI.${1}}:${DEPEND_DIR.${1}}
