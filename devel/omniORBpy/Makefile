@@ -9,6 +9,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://omniorb.sourceforge.net/
 COMMENT=		Robust high-performance CORBA ORB for Python
 
+USE_LANGUAGES+=		c c++
 USE_TOOLS+=		python
 
 MAKE_FILE=		GNUmakefile
