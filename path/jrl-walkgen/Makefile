@@ -24,7 +24,7 @@ CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_JRL}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/jrl/walkGenJrl
 
-USE_LANGUAGES+=fortran
+USE_LANGUAGES+=fortran c c++
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/jrl/spip/-Walk-Pattern-Generator-.html
