@@ -28,7 +28,7 @@ MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=	Matrix abstraction layer for boost or vnl.
 
-USE_LANGUAGES+=		c++ fortran
+USE_LANGUAGES+=		c c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/MatrixAbstractLayer
 
 CMAKE_ARGS+= -DBLAS_blas_LIBRARY=${PREFIX.blas}/lib/libblas.so
