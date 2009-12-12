@@ -26,6 +26,8 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Data and functions specific to HRP2-14.
 
+USE_LANGUAGES+= c c++
+
 # dependency to kineo
 PKG_SUPPORTED_OPTIONS+=	with-kineo
 
