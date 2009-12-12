@@ -28,6 +28,8 @@ MAINTAINER=	roboptim-user@lists.sourceforge.net
 HOMEPAGE=	http://sourceforge.net/projects/roboptim/
 COMMENT=	Optimization for robotics: common API to various solvers.
 
+USE_LANGUAGES+= c c++
+
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
 
 GNU_CONFIGURE=	yes
