@@ -24,11 +24,12 @@ CATEGORIES=	scripts
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Python scripts creating CORBA client of hppCorbaServer
 
 GNU_CONFIGURE=	yes
 
+include ../../devel/hpp-corbaserver/depend.mk
 include ../../devel/omniORBpy/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
