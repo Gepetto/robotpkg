@@ -25,8 +25,10 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kpp-interfacewalk/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kppInterfaceWalk
 
 MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Graphical user interface for hppWalkPlanner libraries.
+
+USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
 DOXYGEN_PLIST_DIR+=share/doc/kppInterfaceWalk
