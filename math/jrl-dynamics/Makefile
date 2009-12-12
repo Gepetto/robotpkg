@@ -28,6 +28,8 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}dynamics-JRLJapan
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	JRL-Japan implementation of dynamic robot.
 
+USE_LANGUAGES+=	c c++
+
 DOXYGEN_PLIST_DIR+=	share/doc/dynamicsJRLJapan
 
 include ../../interfaces/jrl-mal/depend.mk
