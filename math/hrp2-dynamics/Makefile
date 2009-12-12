@@ -29,6 +29,8 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Optimized implementation of functions related to HRP-2 dynamics.
 
+USE_LANGUAGES+= c c++
+
 include ../../mk/sysdep/cmake.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
