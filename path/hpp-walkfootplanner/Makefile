@@ -28,6 +28,8 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Collision free walk path planning for a humanoid robot.
 
+USE_LANGUAGES+= c c++
+
 GNU_CONFIGURE=	yes
 
 DOXYGEN_PLIST_DIR+=	share/doc/hppWalkPlanner
