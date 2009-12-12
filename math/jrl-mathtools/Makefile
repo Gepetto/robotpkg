@@ -27,7 +27,7 @@ MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic mathematical tools used in the JRL software.
 
-USE_LANGUAGES+=		c++ fortran
+USE_LANGUAGES+=		c c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/jrlMathTools
 
 CMAKE_ARGS+=	-DBOOSTNUMERICBINDINGS_DIR=${PREFIX.boost-numeric-bindings}
