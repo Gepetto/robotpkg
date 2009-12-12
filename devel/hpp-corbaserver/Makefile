@@ -25,8 +25,10 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-corbaserver/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hppCorbaServer
 
 MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Corba interface with hppCore package.
+
+USE_LANGUAGES+=	c c++
 
 GNU_CONFIGURE=	yes
 DOXYGEN_PLIST_DIR+= share/doc/hppCorbaServer
