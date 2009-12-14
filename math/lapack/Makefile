@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2009/02/14 00:06:12 tho $
 #
 # Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
@@ -32,6 +31,9 @@ HOMEPAGE=	http://www.netlib.org/lapack/index.html
 COMMENT=	Linear Algebra PACKage.
 
 USE_LANGUAGES+=	fortran
+
+CMAKE_ARGS+=	-DBLAS_DIR=${PREFIX.blas}/lib
+CMAKE_ARGS+=	-DBLAS_LIBRARIES=blas
 
 include ../../math/blas/depend.mk
 include ../../mk/sysdep/cmake.mk
