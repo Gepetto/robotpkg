@@ -1,9 +1,7 @@
 # cmake file for blas-3.1
 #
-project(blas)
+project(blas Fortran)
 cmake_minimum_required(VERSION 2.6)
-
-enable_language(Fortran)
 
 # sources
 file(GLOB sources *.f)
