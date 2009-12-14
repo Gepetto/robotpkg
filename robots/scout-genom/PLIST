@@ -1,0 +1,35 @@
+@comment Mon Dec 14 18:06:15 CET 2009
+bin/scout
+bin/scoutSendInitRqst
+bin/scoutTest
+include/scout/nomadic/Nclient.h
+include/scout/scoutStruct.h
+${PLIST.openprs}include/scout/server/openprs/scoutDecodeOpenprs.h
+${PLIST.openprs}include/scout/server/openprs/scoutEncodeOpenprs.h
+${PLIST.openprs}include/scout/server/openprs/scoutRequestsOpenprsProto.h
+include/scout/server/scoutEndian.h
+include/scout/server/scoutError.h
+include/scout/server/scoutMsgLib.h
+include/scout/server/scoutPosterLib.h
+include/scout/server/scoutPosterLibStruct.h
+include/scout/server/scoutPosterReadLibProto.h
+include/scout/server/scoutPosterShowLib.h
+include/scout/server/scoutPosterWriteLibProto.h
+include/scout/server/scoutPosterXMLLib.h
+include/scout/server/scoutPrint.h
+include/scout/server/scoutPrintXML.h
+include/scout/server/scoutScan.h
+include/scout/server/scoutType.h
+lib/libNdirect.la
+lib/libscoutClient.la
+${PLIST.openprs}lib/openprs/libscoutOpenprs.la
+${PLIST.openprs}lib/pkgconfig/scout-oprs.pc
+lib/pkgconfig/scout.pc
+${PLIST.tcl}lib/tclserv/libscoutTclServ.la
+share/modules/gen/scout.gen
+${PLIST.openprs}share/modules/openprs/scoutOpenprs.inc
+${PLIST.openprs}share/modules/openprs/scoutOpenprs.opf
+${PLIST.openprs}share/modules/openprs/scoutOpenprs.sym
+${PLIST.tcl}share/modules/tcl/scoutClient.tcl
+@dirrm include/scout/server
+@dirrm include/scout

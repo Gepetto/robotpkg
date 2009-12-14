@@ -15,5 +15,6 @@ SUBDIR+=	player20-libs
 SUBDIR+=	qarm-genom
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
+SUBDIR+=	scout-genom
 
 include ../mk/robotpkg.subdir.mk
