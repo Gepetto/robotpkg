@@ -1,10 +1,10 @@
 # cmake file for lapack-3.1
 #
-project(lapack)
+project(lapack Fortran)
 cmake_minimum_required(VERSION 2.6)
 
-enable_language(Fortran)
 include(FindBLAS)
+link_directories(${BLAS_DIR})
 
 # sources
 file(GLOB sources
