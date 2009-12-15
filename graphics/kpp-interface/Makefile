@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/05/25 13:22:21 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -24,7 +23,7 @@ CATEGORIES=	graphics
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kppInterface
 MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Graphical user interface for HPP libraries.
 
 USE_LANGUAGES+= c c++
@@ -41,4 +40,6 @@ include ../../devel/hpp-corbaserver/depend.mk
 include ../../path/kineo-pp/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/mesa.mk
+include ../../mk/sysdep/glu.mk
 include ../../mk/robotpkg.mk
