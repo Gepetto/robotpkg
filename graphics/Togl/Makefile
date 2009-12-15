@@ -24,5 +24,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--exec-prefix=${PREFIX}
 
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/robotpkg.mk
