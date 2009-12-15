@@ -125,10 +125,10 @@ ifeq (,${ROBOTPKG_CPP})
 else
   override CPP=	$(strip ${ROBOTPKG_CPP})
 endif
-ifeq (,${ROBOTPKG_CXXPP})
+ifeq (,${ROBOTPKG_CXXCPP})
   override CXXCPP=${FALSE}
 else
-  override CXXCPP=${ROBOTPKG_CXXPP}
+  override CXXCPP=${ROBOTPKG_CXXCPP}
 endif
 ifeq (,${ROBOTPKG_CC})
   override CC=	${FALSE}
