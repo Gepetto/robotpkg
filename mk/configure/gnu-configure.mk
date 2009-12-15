@@ -1,6 +1,6 @@
-# $LAAS: gnu-configure.mk 2008/12/01 23:58:12 tho $
+# $LAAS: gnu-configure.mk 2009/12/15 16:55:24 mallet $
 #
-# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -111,3 +111,18 @@ configure-scripts-override:
 		done;							\
 		depth=`${EXPR} $$depth + 1`; pattern="*/$$pattern";	\
 	done
+
+
+# Add substitution rules that modify the GNU configure scripts in ${WRKSRC} so
+# that the check for a C++ preprocessor is not fatal. This is activated when a
+# package has not declared c++ in the USE_LANGUAGES variable and thus no C++
+# cpp is required.
+#
+ifeq (,$(filter c++,${USE_LANGUAGES}))
+  SUBST_CLASSES+=		fixcxxcpp
+  SUBST_STAGE.fixcxxcpp=	do-configure-pre-hook
+  SUBST_MESSAGE.fixcxxcpp=\
+	Disabling fatal errors with C++ preprocessor in GNU configure scripts
+  SUBST_FILES.fixcxxcpp=	${CONFIGURE_SCRIPT}
+  SUBST_SED.fixcxxcpp=		'/C++ preproc.*fails sanity/,/exit 1/s/exit 1/:/g'
+endif
