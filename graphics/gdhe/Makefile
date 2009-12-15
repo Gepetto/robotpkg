@@ -34,6 +34,8 @@ CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/mkdep/depend.mk
+include ../../mk/sysdep/mesa.mk
+include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/robotpkg.mk
