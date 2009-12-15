@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/05/25 14:06:40 tho $
+# $LAAS: Makefile 2009/12/15 15:29:04 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2009 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -27,9 +27,6 @@ COMMENT=		Stereo-vision by pixel correlation
 
 GNU_CONFIGURE=		yes
 
-# XXX On modern gcc, this flags is needed, even if you don't use sse code
-CFLAGS+= -flax-vector-conversions
-
 # options
 PKG_SUPPORTED_OPTIONS+=	calife sse
 
@@ -38,7 +35,9 @@ PKG_OPTION_SET.calife:=		CONFIGURE_ARGS+=--enable-calife
 PKG_OPTIONS_UNSET.calife:=	CONFIGURE_ARGS+=--disable-calife
 
 PKG_OPTION_DESCR.sse=	 	Enable sse optimization
-PKG_OPTION_SET.sse=			CFLAGS+=-msse2 -mfpmath=sse
+PKG_OPTION_SET.sse=		CFLAGS+=-msse2 -mfpmath=sse -flax-vector-conversions
+
+
 
 include ../../image/libimages3d/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
