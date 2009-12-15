@@ -1,0 +1,23 @@
+diff --git codels/stereo.c codels/stereo.c
+index 897d165..d85511f 100644
+--- codels/stereo.c
++++ codels/stereo.c
+@@ -1,7 +1,7 @@
+-/*	$Id: stereo.c 2007/12/01 21:17:48 mallet $ */
++/*	$Id: stereo.c 2009/11/16 17:59:51 mallet $ */
+ 
+ /* 
+- * Copyright (c) 2007 IS/AIST-ST2I/CNRS
++ * Copyright (c) 2007,2009 IS/AIST-ST2I/CNRS
+  *	Joint Japanese-French Robotics Laboratory (JRL).
+  * All rights reserved.
+  *
+@@ -82,7 +82,7 @@ hb_correlation_compute(unsigned char *images[2], int width, int height,
+   s = moyennes_sigmas(images[1], &images_tmp[1], &correl_params);
+   if (s != STEREO_OK) { *report = S_hueblob_STEREO; return ERROR; }
+ 
+-  s = correlation_zncc(images[0], images[1],
++  s = spix_correl_zncc(images[0], images[1],
+ 		       &images_tmp[0], &images_tmp[1],
+ 		       &correl_params, &correl_result);
+   if (s != STEREO_OK) { *report = S_hueblob_STEREO; return ERROR; }

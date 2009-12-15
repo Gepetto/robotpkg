@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2009/04/02 17:21:52 mallet $
+# $LAAS: Makefile 2009/12/15 15:47:33 mallet $
 #
 # Copyright (c) 2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -24,6 +24,7 @@ MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		GenoM module for simple object detection and localization
 
+USE_LANGUAGES=		c c++
 GNU_CONFIGURE=		yes
 
 # option for image display using opencv
