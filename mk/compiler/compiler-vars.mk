@@ -126,7 +126,7 @@ else
   override CPP=	$(strip ${ROBOTPKG_CPP})
 endif
 ifeq (,${ROBOTPKG_CXXPP})
-  override CXXCPP=${CPP}
+  override CXXCPP=${FALSE}
 else
   override CXXCPP=${ROBOTPKG_CXXPP}
 endif
