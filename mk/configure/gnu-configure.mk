@@ -1,4 +1,3 @@
-# $LAAS: gnu-configure.mk 2009/12/15 16:55:24 mallet $
 #
 # Copyright (c) 2006,2008-2009 LAAS/CNRS
 # All rights reserved.
@@ -124,5 +123,7 @@ ifeq (,$(filter c++,${USE_LANGUAGES}))
   SUBST_MESSAGE.fixcxxcpp=\
 	Disabling fatal errors with C++ preprocessor in GNU configure scripts
   SUBST_FILES.fixcxxcpp=	${CONFIGURE_SCRIPT}
-  SUBST_SED.fixcxxcpp=		'/C++ preproc.*fails sanity/,/exit 1/s/exit 1/:/g'
+  SUBST_SED.fixcxxcpp=\
+	-e '/C++ preproc.*fails sanity/,/exit 1/s/exit 1/: /g'	\
+	-e '/fn_error.*C++ preproc.*fails sanity/s/^/: /g'
 endif
