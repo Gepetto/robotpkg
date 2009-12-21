@@ -26,7 +26,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://softs.laas.fr/openrobots/
 COMMENT=		C++ interface to the oro-server ontology server.
 
-USE_LANGUAGES+=		c++
+USE_LANGUAGES+=		c c++
 BUILD_TARGET=		all
 INSTALL_TARGET=		install
 
