@@ -33,10 +33,11 @@ DEPEND_ABI.mesa?=	mesa>=7
 
 SYSTEM_SEARCH.mesa=	\
 	'include/GL/gl.h:/*.*Version/s/[^.0-9]//gp'			\
-	'lib/libGL.*'							\
-	'lib/pkgconfig/gl.pc:/Version/s/[^.0-9]//gp'
+	'lib/libGL.*'
 
 SYSTEM_PKG.Linux-fedora.mesa=	mesa-libGL-devel
+SYSTEM_PKG.Linux-ubuntu.mesa=	libgl1-mesa-dev
+SYSTEM_PKG.Linux-debian.mesa=	libgl1-mesa-dev
 SYSTEM_PKG.NetBSD.mesa=		pkgsrc/graphics/MesaLib
 
 endif # MESA_DEPEND_MK -----------------------------------------------------
