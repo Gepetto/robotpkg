@@ -1,0 +1,10 @@
+--- lib/pci/pa_pci.c~	2009-10-27 14:33:52.000000000 +0100
++++ lib/pci/pa_pci.c	2009-12-21 17:48:14.000000000 +0100
+@@ -6,7 +6,6 @@
+ #include <sys/ioctl.h>
+ #include <stdio.h>
+ #include <fcntl.h>
+-#include <error.h>
+ #include <unistd.h>
+ #include <string.h>
+ 

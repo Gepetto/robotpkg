@@ -1,3 +1,6 @@
 SHA1 (pa10-libs-1.1.2.tar.gz) = 997b4d3170ed00a08c2f1b21dbd412485913743d
 RMD160 (pa10-libs-1.1.2.tar.gz) = 7e55b2d69820c595c462f29c59cbf8e9133133d2
 Size (pa10-libs-1.1.2.tar.gz) = 211689 bytes
+SHA1 (patch-aa) = 49ec2050da9d67506738173280326dce4bf7c45e
+SHA1 (patch-ab) = 85c28dcf410a565f4fbf7c52c3b42cfd40a0856d
+SHA1 (patch-ac) = 700075d7b6cccf7fb58268999f5bb76cd8738c98

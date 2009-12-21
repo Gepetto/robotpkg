@@ -1,0 +1,10 @@
+--- lib/pa_get.c~	2009-10-27 14:33:52.000000000 +0100
++++ lib/pa_get.c	2009-12-21 17:47:31.000000000 +0100
+@@ -7,6 +7,7 @@
+ */
+ #include	<stdio.h>
+ #include	<stdlib.h>
++#include	<string.h>
+ 
+ #include	<pa.h>
+ #include	<pacmd.h>
