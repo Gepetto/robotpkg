@@ -14,17 +14,17 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                          Séverin Lemaignan on Wed Nov 4 2009
+#                                          Séverin Lemaignan on Mon Dec 21 2009
 #
 
-DISTNAME=		oro-server-0.6.6
+DISTNAME=		oro-server-0.7.0
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=oro-server/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/oro-server
 
 CATEGORIES=	knowledge
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/openrobots/
-COMMENT=	An ontology server for robotics, written in Java
+COMMENT=	A cognitive kernel for robotics, written in Java
 
 NO_CONFIGURE=	yes
 BUILD_TARGET=	oro-server
@@ -44,7 +44,6 @@ PKG_SUGGESTED_OPTIONS+=	doc
 PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
 
 define PKG_OPTION_SET.doc
-  BUILD_TARGET+=	doc
   INSTALL_TARGET+=	install-doc
 endef
 

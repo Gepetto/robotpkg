@@ -30,7 +30,7 @@ ifeq (+,$(OROSERVER_DEPEND_MK)) # ----------------------------------------------
 PREFER.oro-server?=		robotpkg
 
 DEPEND_USE+=		oro-server
-DEPEND_ABI.oro-server?=	oro-server>=0.4.2
+DEPEND_ABI.oro-server?=	oro-server>=0.7.0
 DEPEND_DIR.oro-server?=	../../knowledge/oro-server
 
 SYSTEM_SEARCH.oro-server=\
