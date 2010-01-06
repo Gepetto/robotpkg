@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2009 CNRS/LAAS
+# Copyright (c) 2008-2010 CNRS/LAAS
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -25,6 +25,8 @@ COMMENT=	interface to ftdi USB device devices
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--without-python-binding
+
+INSTALLATION_DIRS+=	man share/doc/${PKGBASE}
 
 # C++ wrappers option
 PKG_SUPPORTED_OPTIONS+=	cxx
