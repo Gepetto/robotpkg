@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/11/28 19:04:16 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -37,6 +36,7 @@ NO_BUILD=	yes
 
 include ../../lang/sun-jdk6/depend.mk
 include ../../lang/sun-jre6/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 do-extract:
