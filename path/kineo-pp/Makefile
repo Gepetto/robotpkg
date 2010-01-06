@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/12/11 22:32:27 tho $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -53,7 +52,16 @@ FETCH_MESSAGE+= " must be put manually into:"
 FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 
 NO_BUILD=		yes
-INSTALLATION_DIRS=	bin
+INSTALLATION_DIRS=\
+	bin				\
+	${KINEO_DIR}/bin		\
+	${KINEO_DIR}/include		\
+	${KINEO_DIR}/lib/modules	\
+	${KINEO_DIR}/res		\
+	${KINEO_DIR}/share/doc		\
+	${KINEO_DIR}/share/demo		\
+	${KINEO_DIR}/share/examples
+
 
 GCC_REQUIRED+=		>=4.0
 
