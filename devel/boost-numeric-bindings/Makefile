@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/12/11 22:41:22 tho $
+# $LAAS: Makefile 2010/01/06 14:35:31 mallet $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -28,7 +28,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://sourceforge.net/projects/boost-sandbox
 COMMENT=		C++ bindings for LAPACK and BLAS libraries.
 
-INSTALLATIONS_DIRS=	include/boost/numeric/bindings
+INSTALLATION_DIRS=	include/boost/numeric/bindings
 
 WRKSRC=			${WRKDIR}/boost
 NO_CONFIGURE=		yes
