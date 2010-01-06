@@ -1,0 +1,11 @@
+--- Makefile.in~	2006-03-31 06:53:45.000000000 +0200
++++ Makefile.in	2010-01-06 11:56:57.139104514 +0100
+@@ -177,7 +177,7 @@
+ sharedstatedir = @sharedstatedir@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-SUBDIRS = libdc1394 examples
++SUBDIRS = libdc1394 #examples
+ MAINTAINERCLEANFILES = Makefile.in aclocal.m4 configure config.h.in \
+ 	stamp-h.in
+ 

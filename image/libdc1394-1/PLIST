@@ -1,9 +1,4 @@
-bin/dc1394_vloopback
+@comment Wed Jan 6 11:58:59 CET 2010
 include/libdc1394/dc1394_control.h
 include/libdc1394/dc1394_vendor_avt.h
-lib/libdc1394_control.a
 lib/libdc1394_control.la
-lib/libdc1394_control.so
-lib/libdc1394_control.so.12
-lib/libdc1394_control.so.12.1.1
-@dirrm include/libdc1394
