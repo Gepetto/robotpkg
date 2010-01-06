@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -29,7 +29,7 @@ PREFER.mesa?=		system
 
 DEPEND_USE+=		mesa
 
-DEPEND_ABI.mesa?=	mesa>=7
+DEPEND_ABI.mesa?=	mesa>=6.5
 
 SYSTEM_SEARCH.mesa=	\
 	'include/GL/gl.h:/*.*Version/s/[^.0-9]//gp'			\
