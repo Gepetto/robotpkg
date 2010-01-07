@@ -9,6 +9,8 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://playerstage.sourceforge.net/index.php?src=player
 COMMENT=	Cross-platform robot device interface & server
 
+USE_LANGUAGES=	c c++
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-alldrivers --disable-jplayer  --disable-libplayerc-py
 
