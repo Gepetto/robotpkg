@@ -147,12 +147,13 @@ esc() {
 
 # Spawn program
 #
-trap "${MSG} -n $el$cnorm; exit 127" INT QUIT ABRT
+trap "${MSG} -n $el$cnorm; stty icanon echo; exit 127" INT QUIT ABRT
 ${MSG} -n $civis
 
 exec 3<&0 4>&1 5>&1
 stty -icanon -echo min 0 <&3
 status=`{ run "$@" 2>&1 | filter; } 4>&1 >&5`
+stty icanon echo <&3
 exec 3>&- 4>&- 5>&-
 
 ${MSG} -n $el$cnorm
