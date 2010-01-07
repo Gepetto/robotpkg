@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/01/06 14:35:31 mallet $
+# $LAAS: Makefile 2010/01/07 13:33:05 mallet $
 #
 # Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
@@ -39,6 +39,6 @@ include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:
-	cd ${WRKSRC} && ${PAX} -rw -pm . ${PREFIX}/${INSTALLATIONS_DIRS}
+	cd ${WRKSRC} && ${PAX} -rw -pm . ${PREFIX}/${INSTALLATION_DIRS}
 	cd ${FILESDIR} && \
-	  ${PAX} -rw -pm orgqr.hpp  ${PREFIX}/${INSTALLATIONS_DIRS}/lapack
+	  ${PAX} -rw -pm orgqr.hpp  ${PREFIX}/${INSTALLATION_DIRS}/lapack
