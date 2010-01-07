@@ -59,7 +59,7 @@ INSTALLATION_DIRS=\
 	${KINEO_DIR}/lib/modules	\
 	${KINEO_DIR}/res		\
 	${KINEO_DIR}/share/doc		\
-	${KINEO_DIR}/share/demo		\
+	${KINEO_DIR}/share/demos	\
 	${KINEO_DIR}/share/examples
 
 
