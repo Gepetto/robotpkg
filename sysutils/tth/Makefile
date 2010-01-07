@@ -18,7 +18,7 @@
 #                                             Anthony Mallet on Mon Jan 12 2009
 #
 
-PKGNAME=		tth-3.85
+PKGNAME=		tth-3.86
 DISTNAME=		tth_C
 EXTRACT_SUFX=		.tgz
 
