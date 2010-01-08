@@ -20,6 +20,7 @@ DISTNAME=		MTI-${VERSION}
 VERSION=		0.3
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	cvs cvs.laas.fr:/cvs/openrobots hardlib/MTI
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
