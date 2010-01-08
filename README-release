@@ -17,9 +17,9 @@ In openrobots/robotpkg/.../package
   - update Makefile with new version number
   - make mdi
   - make install
-  - make print-PLIST > PLIST.tmp builds the list of files and directories to be destroyed when deinstalling.
-  - edit PLIST.tmp and remove irrelevant lines.
-  - mv PLIST.tmp PLIST
+  - make print-PLIST builds the list of files and directories to be destroyed when deinstalling.
+  - edit PLIST.guess and remove irrelevant lines.
+  - mv PLIST.guess PLIST
   - make clean to remove build directory.
   - commit the modifs.
     - prefix commit message by [category/package],
