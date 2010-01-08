@@ -16,9 +16,9 @@
 #                                      Anthony Mallet on Fri Feb  2 2007
 #
 
-DISTNAME=	libt3d-2.5
+DISTNAME=	libt3d-2.6
 CATEGORIES=	math
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=libt3d/}
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
