@@ -27,6 +27,8 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hpphik
 MAINTAINER=	hpp@laas.fr
 COMMENT=Solver of hierarchical linear inequality and equality constraints
 
+USE_LANGUAGES+= c c++
+
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/hpphik
 
