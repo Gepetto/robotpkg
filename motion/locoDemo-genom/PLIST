@@ -1,4 +1,4 @@
-@comment Tue Sep 2 15:59:03 CEST 2008
+@comment Tue Jan 12 18:19:17 CET 2010
 bin/locoDemo
 bin/locoDemoSendInitRqst
 bin/locoDemoTest
@@ -17,14 +17,19 @@ include/locoDemo/server/locoDemoPrint.h
 include/locoDemo/server/locoDemoPrintXML.h
 include/locoDemo/server/locoDemoScan.h
 include/locoDemo/server/locoDemoType.h
-lib/liblocoDemoClient.a
+${PLIST.openprs}include/locoDemo/server/openprs/locoDemoDecodeOpenprs.h
+${PLIST.openprs}include/locoDemo/server/openprs/locoDemoEncodeOpenprs.h
+${PLIST.openprs}include/locoDemo/server/openprs/locoDemoRequestsOpenprsProto.h
 lib/liblocoDemoClient.la
-lib/liblocoDemoClient.so
+${PLIST.openprs}lib/openprs/liblocoDemoOpenprs.la
+${PLIST.openprs}lib/pkgconfig/locoDemo-oprs.pc
 lib/pkgconfig/locoDemo.pc
-lib/tclserv/liblocoDemoTclServ.a
-lib/tclserv/liblocoDemoTclServ.la
-lib/tclserv/liblocoDemoTclServ.so
+${PLIST.tcl}lib/tclserv/liblocoDemoTclServ.la
 share/modules/gen/locoDemo.gen
+${PLIST.openprs}share/modules/openprs/locoDemoOpenprs.inc
+${PLIST.openprs}share/modules/openprs/locoDemoOpenprs.opf
+${PLIST.openprs}share/modules/openprs/locoDemoOpenprs.sym
+${PLIST.tcl}lib/tclserv/liblocoDemoTclServ.la
 share/modules/tcl/locoDemoClient.tcl
-@dirrm include/locoDemo/server/
-@dirrm include/locoDemo/
+@dirrm include/locoDemo/server
+@dirrm include/locoDemo
