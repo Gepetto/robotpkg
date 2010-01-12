@@ -27,6 +27,8 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hpplocalstepper
 MAINTAINER=	hpp@laas.fr
 COMMENT=	Whole-body motion planning for humanoid robot with steps
 
+USE_LANGUAGES+= c c++
+
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/hpplocalstepper
 
