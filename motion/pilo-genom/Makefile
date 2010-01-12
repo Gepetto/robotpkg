@@ -47,10 +47,16 @@ PKG_OPTION_DESCR.h2=	Enable support for the Hilare 2 platform
 PKG_OPTION_SET.h2:=	GENOM_ARGS+= -DH2
 
 PKG_OPTION_DESCR.jido=	Enable support for the jido platform
-PKG_OPTION_SET.jido:=	GENOM_ARGS+= -DJIDO
+define PKG_OPTION_SET.jido	
+  GENOM_ARGS+= -DJIDO
+  include ../../robots/jloco-genom/depend.mk
+endef
 
 PKG_OPTION_DESCR.locoDemo=	Enable support for the locoDemo simulator
-PKG_OPTION_SET.locoDemo:=	GENOM_ARGS+= -DLOCODEMO
+define PKG_OPTION_SET.locoDemo
+  GENOM_ARGS+= -DLOCODEMO
+  include ../../motion/locoDemo-genom/depend.mk
+endef
 
 PKG_OPTION_DESCR.xr4000=	Enable support for the xr4000 platform
 PKG_OPTION_SET.xr4000:=		GENOM_ARGS+= -XR4000
