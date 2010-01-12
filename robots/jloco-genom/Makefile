@@ -15,6 +15,7 @@
 #
 
 DISTNAME=	jloco-genom-1.1
+PKGREVISION=	1
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=jloco/}
 MASTER_REPOSITORY=	git	ssh://trac.laas.fr/git/robots/jloco-genom
