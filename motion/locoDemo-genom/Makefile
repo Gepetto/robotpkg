@@ -15,6 +15,7 @@
 #
 
 DISTNAME=	locoDemo-genom-1.2
+PKGREVISION=	1
 CATEGORIES=	motion
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=locoDemo-genom/}
 
