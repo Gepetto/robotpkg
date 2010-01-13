@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -17,9 +17,10 @@
 #                                             Daniel Sidobre on Mon Mar  9 2009
 #
 
-DISTNAME=	gbM-0.2
+DISTNAME=	gbM-0.3
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gbM/}
+MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gbM
 
 MAINTAINER=	daniel.sidobre@laas.fr
 #HOMEPAGE=	softs.laas.fr:/ftp/pub/openrobots/
@@ -33,6 +34,7 @@ pre-configure: autoreconf
 include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
+include ../../mk/sysdep/swig.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/robotpkg.mk
