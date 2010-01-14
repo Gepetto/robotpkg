@@ -1,0 +1,11 @@
+--- Makefile~	2007-05-11 15:37:39.000000000 +0200
++++ Makefile	2010-01-14 16:43:29.206104428 +0100
+@@ -8,7 +8,7 @@
+ 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+ 
+ install:
+-	install -c -o root -g root -m 744 papci.ko $(IDIR)
++	install -c -m 744 papci.ko ${PREFIX}$(IDIR)
+ 
+ .PHONY:
+ 	install

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008 CNRS/LAAS
+# Copyright (c) 2008,2010 CNRS/LAAS
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -24,7 +24,20 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Kernel driver for Mitsubishi PA10 Arm controller
 
 BUILD_TARGET=	default
+KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/char
+KMOD=		papci.ko
+
+INSTALLATION_DIRS+=${KMOD_DIR}
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/sudo.mk
 include ../../mk/robotpkg.mk
+
+post-install: install-kmod
+
+.PHONY: install-kmod
+install-kmod:
+	@${STEP_MSG} "Becoming \`\`root'' to install kernel module (sudo)"
+	${SUDO} -u root ${CP} ${PREFIX}/${KMOD_DIR}/${KMOD} /${KMOD_DIR}/${KMOD}
+	@${STEP_MSG} "Dropping \`\`root'' privileges."
