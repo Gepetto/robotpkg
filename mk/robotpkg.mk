@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -152,7 +152,7 @@ ALL_ENV+=	LC_NUMERIC=C
 ALL_ENV+=	LC_TIME=C
 ALL_ENV+=	LDFLAGS=$(call quote,${LDFLAGS})
 ALL_ENV+=	LINKER_RPATH_FLAG=$(call quote,${LINKER_RPATH_FLAG})
-ALL_ENV+=	PATH=${PATH}:${LOCALBASE}/bin
+ALL_ENV+=	PATH=$(call quote,${PATH}:${LOCALBASE}/bin)
 ALL_ENV+=	PREFIX=${PREFIX}
 
 _BUILD_DEFS=		${BUILD_DEFS}

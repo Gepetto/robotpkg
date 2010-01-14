@@ -1,6 +1,6 @@
-# $LAAS: build-vars.mk 2009/11/26 15:08:21 mallet $
+# $LAAS: build-vars.mk 2010/01/14 17:41:00 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -91,7 +91,7 @@ BUILD_LOGFILTER?=\
 # Add these bits to the environment used when invoking the recursive make
 # processes for build-related phases.
 #
-PKGSRC_MAKE_ENV+=	PATH=${PATH}
+PKGSRC_MAKE_ENV+=	PATH=$(call quote,${PATH})
 
 
 # The following are the "public" targets provided by this module:
