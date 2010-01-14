@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -45,6 +45,8 @@ SYSTEM_SEARCH.pax=	\
 
 SYSTEM_DESCR.pax?=	pax and tar archivers
 SYSTEM_PKG.Linux-fedora.pax=	pax tar
+SYSTEM_PKG.Linux-ubuntu.pax=	pax tar
+SYSTEM_PKG.Linux-debian.pax=	pax tar
 
 DEPEND_USE+=		pax
 
