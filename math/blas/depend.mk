@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2009/02/14 10:25:52 tho $
+# $LAAS: depend.mk 2010/01/14 15:55:52 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -35,6 +35,10 @@ DEPEND_ABI.blas?=	blas>=3.1
 DEPEND_DIR.blas?=	../../math/blas
 
 SYSTEM_SEARCH.blas= 	lib/libblas.*
+
+SYSTEM_PKG.Linux-fedora.blas=	blas-devel
+SYSTEM_PKG.Linux-ubuntu.blas=	libblas-dev
+SYSTEM_PKG.Linux-debian.blas=	libblas-dev
 
 endif # BLAS_DEPEND_MK -----------------------------------------------
 
