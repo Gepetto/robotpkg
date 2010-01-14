@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2009/02/14 10:38:44 tho $
+# $LAAS: depend.mk 2010/01/14 15:54:45 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -35,6 +35,10 @@ DEPEND_ABI.lapack?=	lapack>=3.1.0
 DEPEND_DIR.lapack?=	../../math/lapack
 
 SYSTEM_SEARCH.lapack=	'lib/liblapack.*'
+
+SYSTEM_PKG.Linux-fedora.lapack=	lapack-devel
+SYSTEM_PKG.Linux-ubuntu.lapack=	liblapack-dev
+SYSTEM_PKG.Linux-debian.lapack=	liblapack-dev
 
 endif # LAPACK_DEPEND_MK ---------------------------------------------
 
