@@ -10,8 +10,9 @@ In the package
   - in configure.ac or package.pc.in: upgrade dependency versions
   - cd build; make to check that package compiles
   - cd build; make dist
-  - ftp softs.laas.fr (login jrl if MASTER_SITES=${MASTER_SITE_JRL} in pkgconfig Makefile)
+  - if MASTER_SITES=${MASTER_SITE_JRL} in the robotpkg package Makefile, then ftp softs.laas.fr, login jrl 
     > put nameofthepackage-x.y.tar.gz
+  - if MASTER_SITES=${MASTER_SITE_OPENROBOTS:=<package_name>}, then scp nameofthepackage-x.y.tar.gz softs://www/htdocs/openrobots/distfiles/<package_name>/.
 
 In openrobots/robotpkg/.../package
   - update Makefile with new version number
