@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/01/21 16:58:33 mallet $
+# $LAAS: Makefile 2010/01/21 21:04:58 mallet $
 #
 # Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                      Anthony Mallet on Tue Mar 13 2007
 #
 
-DISTNAME=		eltclsh-1.11
+DISTNAME=		eltclsh-1.11.1
 CATEGORIES=		shell
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=eltclsh/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}eltclsh
