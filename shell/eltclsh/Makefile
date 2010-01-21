@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/11/16 00:10:29 tho $
+# $LAAS: Makefile 2010/01/21 16:58:33 mallet $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -16,9 +16,9 @@
 #                                      Anthony Mallet on Tue Mar 13 2007
 #
 
-DISTNAME=		eltclsh-1.10
+DISTNAME=		eltclsh-1.11
 CATEGORIES=		shell
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=eltclsh/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}eltclsh
 
 MAINTAINER=		openrobots@laas.fr
@@ -29,9 +29,9 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=	--with-tk=$(dir ${TK_CONFIG_SH})
 
-CONFIGURE_LOG_ETA=	115
-BUILD_LOG_ETA=		30
-INSTALL_LOG_ETA=	15
+CONFIGURE_LOG_ETA=	120
+BUILD_LOG_ETA=		50
+INSTALL_LOG_ETA=	45
 
 include ../../devel/libedit/depend.mk
 include ../../mk/sysdep/tcl.mk

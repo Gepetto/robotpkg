@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -31,7 +31,7 @@ PREFER.eltclsh?=	robotpkg
 SYSTEM_SEARCH.eltclsh=	bin/eltclsh
 
 DEPEND_USE+=		eltclsh
-DEPEND_ABI.eltclsh?=	eltclsh>=1
+DEPEND_ABI.eltclsh?=	eltclsh>=1.11
 DEPEND_DIR.eltclsh?=	../../shells/eltclsh
 
 SYSTEM_PKG.NetBSD.eltclsh=	pkgsrc/shells/eltclsh
