@@ -1,0 +1,12 @@
+--- src/Makefile.in~	2010-01-21 21:02:51.000000000 +0100
++++ src/Makefile.in	2010-01-21 23:52:17.000000000 +0100
+@@ -96,7 +96,8 @@
+ # .so, while Tcl expects a .dylib
+ lib$(ELPKG).la: $(pkgobjs)
+ 	$(LTLD) -avoid-version -o $@ $(CFLAGS) $(pkgobjs)	\
+-		-rpath $(datadir) $(LDFLAGS) $(TCLSTUB_LDFLAGS) $(EL_LDFLAGS)
++		$(addprefix -XCClinker ,$(TCLSTUB_LDFLAGS))	\
++		-rpath $(datadir) $(LDFLAGS) $(EL_LDFLAGS)
+ 
+ # object files
+ ${pkgobjs}:%.lo: %.c
