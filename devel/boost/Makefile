@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/10/10 14:28:14 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,6 +32,11 @@ HOMEPAGE=	http://www.boost.org/
 COMMENT=	Free, peer-reviewed portable C++ source libraries
 
 META_PACKAGE=	yes
+
+DEPEND_ABI.boost-jam?=		boost-jam>=${BOOST_VERSION}
+DEPEND_ABI.boost-doc?=		boost-doc>=${BOOST_VERSION}
+DEPEND_ABI.boost-headers?=	boost-headers>=${BOOST_VERSION}
+DEPEND_ABI.boost-libs?=		boost-libs>=${BOOST_VERSION}
 
 include ../../devel/boost-jam/depend.mk
 include ../../devel/boost-docs/depend.mk
