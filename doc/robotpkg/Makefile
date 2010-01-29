@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/01/30 23:23:35 tho $
+# $LAAS: Makefile 2010/01/29 23:01:56 tho $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -84,6 +84,6 @@ pre-extract:
 # the permissions or ownership of installed files.
 #
 regen:
-	cd ${WRKSRC} && ${MAKE} html txt
+	${MAKE} PKG_OPTIONS.${PKGBASE}="html txt"
 	${CP} ${WRKSRC}/robotpkg.html ${ROBOTPKG_DIR}/README.html
 	${CP} ${WRKSRC}/robotpkg.txt ${ROBOTPKG_DIR}/README.txt

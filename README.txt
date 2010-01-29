@@ -1,9 +1,9 @@
                               A guide to robotpkg
 
                     Anthony Mallet - anthony.mallet@laas.fr
-                        Copyright 2006-2009 ? LAAS/CNRS
+                       Copyright 2006-2009 (C) LAAS/CNRS
 
-                                 July 31, 2009
+                               January 29, 2010
 
 Contents
 
@@ -116,18 +116,22 @@ C-compiler and a small, reasonably standard subset of Unix commands (like sed,
 awk, find, grep ...). However, individual packages might have their specific
 requirements. The following platforms have been reported to be supported
 reasonably well:
-                            +---------------------+
-                            |Platform|  Version   |
-                            |--------+------------|
-                            |--------+------------|
-                            | Fedora | 3, 5 - 10  |
-                            |--------+------------|
-                            | Ubuntu |7.10 - 8.10 |
-                            |--------+------------|
-                            | CentOS |     5      |
-                            |--------+------------|
-                            | NetBSD |    4, 5    |
-                            +---------------------+
+                        +-----------------------------+
+                        |Platform|      Version       |
+                        |--------+--------------------|
+                        |--------+--------------------|
+                        | Fedora |       5 - 12       |
+                        |--------+--------------------|
+                        | Ubuntu |    7.10 - 9.04     |
+                        |--------+--------------------|
+                        | Debian |        5.03        |
+                        |--------+--------------------|
+                        | CentOS |         5          |
+                        |--------+--------------------|
+                        | NetBSD |       4 - 5        |
+                        |--------+--------------------|
+                        | Darwin |Preliminary support |
+                        +-----------------------------+
 
 1.4  Overview
 
