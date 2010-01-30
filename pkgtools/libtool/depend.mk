@@ -1,6 +1,5 @@
-# $LAAS: depend.mk 2008/11/02 14:44:51 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -33,12 +32,19 @@ ifeq (+,$(LIBTOOL_DEPEND_MK)) # --------------------------------------
 
 PREFER.libtool?=	system
 
+# on Darwin, libtool is glibtool
+ifeq (Darwin,${OPSYS})
+  _libtool=glibtool
+else
+  _libtool=libtool
+endif
+
 SYSTEM_SEARCH.libtool=\
-	'bin/libtool:/libtool/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% --version'	\
-	'share/aclocal/libtool.m4'		\
-	'share/libtool/{,config/}config.guess'	\
-	'share/libtool/{,config/}config.sub'	\
-	'share/libtool/{,config/}ltmain.sh'
+  'bin/${_libtool}:/libtool/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% --version' \
+  'share/aclocal/libtool.m4'			\
+  'share/libtool/{,config/}config.guess'	\
+  'share/libtool/{,config/}config.sub'		\
+  'share/libtool/{,config/}ltmain.sh'
 
 DEPEND_USE+=		libtool
 DEPEND_METHOD.libtool+=	build
@@ -47,25 +53,14 @@ DEPEND_DIR.libtool?=	../../pkgtools/libtool
 DEPEND_INCDIRS.libtool?=# empty
 DEPEND_LIBDIRS.libtool?=# empty
 
-# TOOLS.libtool is the publicly-readable variable that should be
-# used by Makefiles to invoke the proper libtool.
+# LIBTOOL is the publicly-readable variable that should be used by Makefiles to
+# invoke the proper libtool.
 #
-include ../../mk/robotpkg.prefs.mk
-ifeq (robotpkg,${PREFER.libtool})
-  TOOLS.libtool?=	${PREFIX.libtool}/bin/libtool
-  TOOLS.config.guess?=	${PREFIX.libtool}/share/libtool/config.guess
-  TOOLS.config.sub?=	${PREFIX.libtool}/share/libtool/config.status
-  TOOLS.ltmain.sh?=	${PREFIX.libtool}/share/libtool/ltmain.sh
-else
-  TOOLS.libtool?=	$(word 1,${SYSTEM_FILES.libtool})
-  TOOLS.config.guess?=	$(word 3,${SYSTEM_FILES.libtool})
-  TOOLS.config.sub?=	$(word 4,${SYSTEM_FILES.libtool})
-  TOOLS.ltmain.sh?=	$(word 5,${SYSTEM_FILES.libtool})
-endif
+export LIBTOOL?=	$(word 1,${SYSTEM_FILES.libtool})
+TOOLS.config.guess?=	$(word 3,${SYSTEM_FILES.libtool})
+TOOLS.config.sub?=	$(word 4,${SYSTEM_FILES.libtool})
+TOOLS.ltmain.sh?=	$(word 5,${SYSTEM_FILES.libtool})
 
-# Define the proper libtool in make environments
-#
-MAKE_ENV+=		LIBTOOL="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
 
 # libtool-override replace any existing libtool files under ${WRKSRC}
 # with the version found by robotpkg.
@@ -75,7 +70,7 @@ MAKE_ENV+=		LIBTOOL="${TOOLS.libtool} ${LIBTOOL_FLAGS}"
 LIBTOOL_OVERRIDE?=		libtool config.guess config.sub ltmain.sh
 OVERRIDE_DIRDEPTH.libtool?=	${OVERRIDE_DIRDEPTH}
 
-OVERRIDE_PATH.libtool?=		${TOOLS.libtool}
+OVERRIDE_PATH.libtool?=		${LIBTOOL}
 OVERRIDE_PATH.config.guess?=	${TOOLS.config.guess}
 OVERRIDE_PATH.config.sub?=	${TOOLS.config.sub}
 OVERRIDE_PATH.ltmain.sh?=	${TOOLS.ltmain.sh}
