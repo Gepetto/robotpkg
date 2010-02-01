@@ -17,7 +17,7 @@
 #                                          Séverin Lemaignan on Mon Dec 21 2009
 #
 
-DISTNAME=		oro-server-0.7.0
+DISTNAME=		oro-server-0.7.1
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=oro-server/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/oro-server
 
