@@ -17,8 +17,8 @@
 #                                          Séverin Lemaignan on Tue Nov 16 2009
 #
 
-DISTNAME=	pellet-2.0.0
-PKGVERSION=	2.0.0
+DISTNAME=	pellet-2.0.1
+PKGVERSION=	2.0.1
 PKGNAME=	pellet-${PKGVERSION}
 MASTER_SITES=	http://clarkparsia.com/pellet/downloads/
 EXTRACT_SUFX=	.zip
@@ -31,7 +31,7 @@ COMMENT=	An open source reasoner for OWL 2 DL in Java.
 NO_CONFIGURE=	yes
 NO_BUILD= yes
 
-WRKSRC=		${WRKDIR}/pellet-2.0.0
+WRKSRC=		${WRKDIR}/pellet-2.0.1
 USE_LANGUAGES=	java
 
 # doc option
