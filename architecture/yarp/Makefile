@@ -17,7 +17,7 @@
 #                                             Anthony Mallet on Thu Jan 22 2009
 #
 
-DISTNAME=		yarp-2.2.5
+DISTNAME=		yarp-2.2.6
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
