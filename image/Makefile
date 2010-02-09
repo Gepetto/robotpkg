@@ -14,5 +14,6 @@ SUBDIR+=	opencv
 SUBDIR+=	stereopixel-genom
 SUBDIR+=	viam-libs
 SUBDIR+=	viam-genom
+SUBDIR+=	visp
 
 include ../mk/robotpkg.subdir.mk

@@ -1,0 +1,19 @@
+--- CMakeLists.txt~	2010-01-08 11:19:38.000000000 +0100
++++ CMakeLists.txt	2010-02-09 14:08:33.813979125 +0100
+@@ -1,6 +1,6 @@
+ #############################################################################
+ #
+-# $Id: CMakeLists.txt 2465 2010-01-08 10:19:38Z nmelchio $
++# $Id: CMakeLists.txt 2010/02/09 14:08:33 mallet $
+ #
+ # Copyright (C) 1998-2010 Inria. All rights reserved.
+ #
+@@ -1311,7 +1311,7 @@
+   ${LIBRARY_OUTPUT_PATH}/VISPConfig.cmake
+   ${LIBRARY_OUTPUT_PATH}/VISPBuildSettings.cmake
+   ${LIBRARY_OUTPUT_PATH}/VISPLibraryDepends.cmake
+-  DESTINATION lib
++  DESTINATION share/cmake
+   PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE
+   )
+   

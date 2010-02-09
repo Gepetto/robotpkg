@@ -1,0 +1,29 @@
+ViSP (ViSP states for "Visual Servoing Platform") is a modular
+software that allows fast development of visual servoing applications.
+
+Visual servoing consists in specifying a task as the regulation of a
+set of visual features.
+
+Despite all the research in this field, it seems that there is no
+software environment that allows fast prototyping of visual servoing
+tasks. The main reason is that it usually requires specific hardware
+(the robot and specific framegrabbers). The consequence is that the
+resulting applications are not portable and can be merely adapted to
+other environments. Today's software design allows us to propose
+elementary components that can be combined to build portable
+high-level applications.
+
+Various issues have thus to be considered in the design of such
+applications: among these issues we find the control of robots
+motions, the modeling of the visual features, and the tracking of the
+visual measurements. Our environment features a wide class of control
+skills as well as a library of real-time tracking processes and a
+simulation toolkit.
+
+The platform (in fact a library) is implemented in C++ and is
+available under Linux, Windows and OSX. We are still in the process of
+developing ViSP and are happy to entertain suggestions, have people
+test code, etc. You can contact ViSP authors using visp@irisa.fr.
+
+ViSP is developped and maintained by the INRIA Lagadic team located at
+INRIA Rennes.
