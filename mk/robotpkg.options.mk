@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2010/02/09 11:30:23 mallet $
+# $LAAS: robotpkg.options.mk 2010/02/09 19:20:11 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -309,7 +309,6 @@ endif
 ifdef PKG_OPTIONS_FAILED
   PKG_FAIL_REASON+=	""
   PKG_FAIL_REASON+=	"See \`${MAKE} show-options' for details."
-  PKG_FAIL_REASON+=	${hline}
 endif
 
 # Store the result in the +BUILD_INFO file so we can query for the build
