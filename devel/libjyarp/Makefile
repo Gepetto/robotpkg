@@ -18,7 +18,7 @@
 #                                             Anthony Mallet on Thu Jan 27 2009
 #
 
-PKGVERSION=		2.2.5
+PKGVERSION=		2.2.6
 DISTNAME=		yarp-${PKGVERSION}
 PKGNAME=		libjyarp-${PKGVERSION}
 CATEGORIES=		devel
