@@ -1,6 +1,6 @@
-# $LAAS: robotpkg.options.mk 2009/11/19 00:23:00 tho $
+# $LAAS: robotpkg.options.mk 2010/02/09 11:30:23 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -142,10 +142,16 @@ ifndef NO_BUILD
     define PKG_OPTION_SET.debug
       CFLAGS+=		${_CFLAGS_DEBUG}
       CXXFLAGS+=	${_CFLAGS_DEBUG}
+      ifdef USE_CMAKE
+        CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Debug
+      endif
     endef
     define PKG_OPTION_UNSET.debug
       CFLAGS+=		${_CFLAGS_NDEBUG}
       CXXFLAGS+=	${_CFLAGS_NDEBUG}
+      ifdef USE_CMAKE
+        CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
+      endif
     endef
   endif
 endif
