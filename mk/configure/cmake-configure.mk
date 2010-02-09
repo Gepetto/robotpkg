@@ -68,6 +68,6 @@ do-configure-cmake:
 	${RUN}								\
 $(foreach _dir_,${CONFIGURE_DIRS},					\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
-	${SETENV} ${_CONFIGURE_CMAKE_ENV}				\
+	${CONFIGURE_LOGFILTER} ${SETENV} ${_CONFIGURE_CMAKE_ENV}	\
 		${CMAKE} ${CMAKE_ARGS} ${CMAKE_ARG_PATH};		\
 )
