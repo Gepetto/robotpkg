@@ -15,7 +15,7 @@
 #
 
 DISTNAME=	pa10-kmod-${VERSION}
-VERSION=	1.0
+VERSION=	1.1
 CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=linux/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pa10-kmod
