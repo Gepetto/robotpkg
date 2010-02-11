@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2006,2008-2009 LAAS/CNRS
+# Copyright (c) 2006,2008-2010 LAAS/CNRS
 # Copyright (c) 2001-2002 Alistair G. Crooks.
 # All rights reserved.
 #
@@ -133,10 +133,6 @@ get_optarg()
     expr "x$1" : "x[^=]*=\\(.*\\)"
 }
 
-build_start=`date`
-echo_msg "bootstrap command: $0 $@"
-echo_msg "bootstrap started: $build_start"
-
 # user configurable options
 prefix=
 pkgdbdir=
@@ -207,6 +203,25 @@ else
 fi
 
 
+# --- preserve existing settings -------------------------------------------
+
+test -f ${sysconfdir}/robotpkg.conf && {
+  echo "===================================================================="
+  echo "An existing installation has been detected in"
+  echo "${sysconfdir}/robotpkg.conf"
+  echo
+  echo "If you really want to bootstrap to this location, move away this file"
+  echo "first. After bootstrap, you will have to manually merge your previous"
+  echo "settings into the new robotpkg.conf file created during bootstrap."
+  echo "===================================================================="
+  die '***' Fatal Error
+}
+
+build_start=`date`
+echo_msg "bootstrap command: $0 $@"
+echo_msg "bootstrap started: $build_start"
+
+
 # --- create the initial prefix directory ----------------------------
 
 [ -x "$prefix" ] || {
@@ -236,10 +251,12 @@ export MKCONF_EXAMPLE=${wrkdir}/robotpkg.conf.example
 
 echo_msg "Creating robotpkg.conf.example in ${wrkdir}"
 mkdir_p ${wrkdir}
-echo "# Example ${sysconfdir}/mk.conf file produced by" > ${MKCONF_EXAMPLE}
-echo "# robotpkg/bootstrap" >> ${MKCONF_EXAMPLE}
+>${MKCONF_EXAMPLE}
+
+echo "# Example robotpkg.conf settings produced by robotpkg/bootstrap" \
+    >> ${MKCONF_EXAMPLE}
 echo "# `date`" >> ${MKCONF_EXAMPLE}
-echo "" >> ${MKCONF_EXAMPLE}
+echo >> ${MKCONF_EXAMPLE}
 
 if [ "$compiler" != "" ]; then
 	echo "ROBOTPKG_COMPILER=	$compiler" >> ${MKCONF_EXAMPLE}
@@ -259,7 +276,7 @@ if [ "${syslibsuffix}" != "" ]; then
 fi
 echo "" >> ${MKCONF_EXAMPLE}
 
-# create directories
+# create installation directories
 mkdir_p $prefix $pkgdbdir $prefix/sbin
 mkdir_p $mandir/man1 $mandir/cat1
 mkdir_p $mandir/man8 $mandir/cat8
@@ -300,6 +317,15 @@ run_cmd "(							\
     && $gmake && $gmake install					\
 )"
 
+# Aggressively remove any previous pkg_install entries in pkgdb.
+#
+oldpkg=`$prefix/sbin/robotpkg_admin -b -d $pkgdbdir -S lsall pkg_install ||:`
+test -z "$oldpkg" || echo_msg "Removing exisiting pkg_install entries"
+for p in $oldpkg; do
+    run_cmd "$prefix/sbin/robotpkg_admin delete $p"
+    test -d $pkgdbdir/$p && run_cmd "rm -rf $pkgdbdir/$p"
+done
+
 # Register the installed package, with version = 0 so that the regular
 # package will be fetched automatically when installing other software.
 echo_msg "Registering installed package"
@@ -329,9 +355,11 @@ test -z "$LDFLAGS" || echo "LDFLAGS+=		$LDFLAGS" >> ${MKCONF_EXAMPLE}
 echo "" >> ${MKCONF_EXAMPLE}
 
 
-# Install sample config file.
+# Install sample config file
+sysconffile=${sysconfdir}/robotpkg.conf
 mkdir_p ${sysconfdir}
-run_cmd $cpprog ${MKCONF_EXAMPLE} ${sysconfdir}/robotpkg.conf 
+run_cmd $cpprog ${MKCONF_EXAMPLE} ${sysconffile}
+
 
 # --- cleanup --------------------------------------------------------
 
@@ -346,7 +374,7 @@ echo ""
 echo "An example robotpkg.conf file with the settings you provided to \"bootstrap\""
 echo "has been created for you. It can be found in:"
 echo ""
-echo "      ${sysconfdir}/robotpkg.conf"
+echo "      ${sysconffile}"
 echo ""
 echo "You can start building packages by changing to some package directory"
 echo "and then doing \"${gmake} update\" in that directory."

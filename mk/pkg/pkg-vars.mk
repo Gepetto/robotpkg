@@ -1,6 +1,5 @@
-# $LAAS: pkg-vars.mk 2009/11/17 17:39:41 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -65,7 +64,6 @@ PKGTOOLS_VERSION:=	$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo -1)
 MAKEFLAGS+=		PKGTOOLS_VERSION=${PKGTOOLS_VERSION}
 endif
 
-ifneq (pkgtools/pkg_install,${PKGPATH})
 ifeq (-1,${PKGTOOLS_VERSION})
   $(shell ${ERROR_MSG} ${hline})
   $(shell ${ERROR_MSG} "The robotpkg administrative tools are not working:")
@@ -81,7 +79,6 @@ ifeq (-1,${PKGTOOLS_VERSION})
   $(shell ${ERROR_MSG} "Otherwise, the default prefix \`/opt/openrobots' is used.")
   $(shell ${ERROR_MSG} ${hline})
   $(error Fatal error)
-endif
 endif
 
 # This is the default package database directory
