@@ -53,7 +53,7 @@ define PKG_OPTION_SET.gyroKVH1000
   GENOM_ARGS += -DGYRO=gyroKVH1000Task
 endef
 
-PKG_OPTION_DESCR.gyroKVH1000=	Enable gyro support using directly gyroKVH5000
+PKG_OPTION_DESCR.gyroKVH5000=	Enable gyro support using directly gyroKVH5000
 define PKG_OPTION_SET.gyroKVH5000
   include ../../hardware/gyroKVH5000/depend.mk
   GENOM_ARGS += -DGYRO=gyroKVH5000
