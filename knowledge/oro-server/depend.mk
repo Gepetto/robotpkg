@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -14,7 +14,7 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                          Séverin Lemaignan on Mon Jul  6 2009
+#                                          SÃ©verin Lemaignan on Mon 15 Feb 2010
 #
 
 
@@ -30,7 +30,7 @@ ifeq (+,$(OROSERVER_DEPEND_MK)) # ----------------------------------------------
 PREFER.oro-server?=		robotpkg
 
 DEPEND_USE+=		oro-server
-DEPEND_ABI.oro-server?=	oro-server>=0.7.0
+DEPEND_ABI.oro-server?=	oro-server>=0.7.3
 DEPEND_DIR.oro-server?=	../../knowledge/oro-server
 
 SYSTEM_SEARCH.oro-server=\

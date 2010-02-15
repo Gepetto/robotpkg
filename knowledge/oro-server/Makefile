@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -14,10 +14,10 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                          Séverin Lemaignan on Mon Dec 21 2009
+#                                          SÃ©verin Lemaignan on Mon Feb 15 2010
 #
 
-DISTNAME=		oro-server-0.7.1
+DISTNAME=		oro-server-0.7.3
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=oro-server/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/oro-server
 
