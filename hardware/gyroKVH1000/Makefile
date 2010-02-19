@@ -16,19 +16,20 @@
 #                                      Arnaud Degroote on Mon May 19 2008
 #
 
-DISTNAME=		gyro-${VERSION}
+DISTNAME=		gyro-libs-${VERSION}
 PKGNAME=		gyroKVH1000-${VERSION}
-VERSION=		1.1
+VERSION=		1.3
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/gyro-libs
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Driver and interface for gyroKVH1000
 
-GNU_CONFIGURE=		yes
+GNU_CONFIGURE=		Yes
 
-WRKSRC=			${WRKDIR}/gyro-${VERSION}/gyroKVH1000/
+WRKSRC=			${WRKDIR}/gyro-libs-${VERSION}/gyroKVH1000/
 
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep
 
