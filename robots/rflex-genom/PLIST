@@ -1,12 +1,15 @@
-@comment lundi 19 mai 2008, 14:11:13 (UTC+0200)
+@comment Fri Feb 19 17:32:19 CET 2010
 bin/rflex
 bin/rflexSendInitRqst
 bin/rflexTest
+include/rflex/rflexConst.h
 include/rflex/rflexConstATRV.h
 include/rflex/rflexConstATRV_JR.h
 include/rflex/rflexConstB21R.h
-include/rflex/rflexConst.h
 include/rflex/rflexStruct.h
+${PLIST.openprs}include/rflex/server/openprs/rflexDecodeOpenprs.h
+${PLIST.openprs}include/rflex/server/openprs/rflexEncodeOpenprs.h
+${PLIST.openprs}include/rflex/server/openprs/rflexRequestsOpenprsProto.h
 include/rflex/server/rflexEndian.h
 include/rflex/server/rflexError.h
 include/rflex/server/rflexMsgLib.h
@@ -21,16 +24,14 @@ include/rflex/server/rflexPrintXML.h
 include/rflex/server/rflexScan.h
 include/rflex/server/rflexType.h
 lib/librflexClient.la
+${PLIST.openprs}lib/openprs/librflexOpenprs.la
+${PLIST.openprs}lib/pkgconfig/rflex-oprs.pc
 lib/pkgconfig/rflex.pc
-lib/tclserv/librflexTclServ.la
+${PLIST.tcl}lib/tclserv/librflexTclServ.la
 share/modules/gen/rflex.gen
-share/modules/tcl/rflexClient.tcl
-@dirrm share/modules/tcl
-@dirrm share/modules/gen
-@dirrm lib/tclserv
-@dirrm lib/pkgconfig
-@dirrm lib
+${PLIST.openprs}share/modules/openprs/rflexOpenprs.inc
+${PLIST.openprs}share/modules/openprs/rflexOpenprs.opf
+${PLIST.openprs}share/modules/openprs/rflexOpenprs.sym
+${PLIST.tcl}share/modules/tcl/rflexClient.tcl
 @dirrm include/rflex/server
 @dirrm include/rflex
-@dirrm include
-@dirrm bin
