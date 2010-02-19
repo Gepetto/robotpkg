@@ -17,7 +17,7 @@
 #                                             Daniel Sidobre on Mon Mar  9 2009
 #
 
-DISTNAME=	gbM-0.3
+DISTNAME=	gbM-0.4
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gbM/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gbM
