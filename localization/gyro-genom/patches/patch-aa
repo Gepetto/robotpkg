@@ -1,0 +1,10 @@
+--- gyro-client.pc.in.orig	2008-07-16 16:43:26.000000000 +0200
++++ gyro-client.pc.in	2010-02-22 13:17:40.799553000 +0100
+@@ -6,6 +6,6 @@
+ Name: gyro
+ Description: Library to convert gyro data from one representation to another
+ Version: @PACKAGE_VERSION@
+-Requires: gyroKVH1000Hard gyro
++Requires: gyro
+ Libs: -L${libdir} -lgyroModuleClient
+ Cflags: -I${includedir}
