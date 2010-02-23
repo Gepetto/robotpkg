@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -24,6 +24,8 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=libraw1394/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://sourceforge.net/projects/libraw1394/
 COMMENT=		Provide access to the raw IEEE1394 bus
+
+ONLY_FOR_PLATFORM=	Linux-%
 
 GNU_CONFIGURE=		YES
 
