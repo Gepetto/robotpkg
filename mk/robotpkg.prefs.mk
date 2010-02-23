@@ -117,6 +117,8 @@ ifndef NODENAME
   MAKEOVERRIDES+=	NODENAME=${NODENAME}
 endif
 
+MACHINE_PLATFORM?=	${OPSYS}-${OS_VERSION}-${MACHINE_ARCH}
+
 
 # include the defaults file
 #

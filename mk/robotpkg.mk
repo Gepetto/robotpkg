@@ -291,6 +291,18 @@ PKG_FAIL_REASON+= ""
   endif
 endif
 
+ifdef NOT_FOR_PLATFORM
+  ifneq (,$(filter ${NOT_FOR_PLATFORM},${MACHINE_PLATFORM}))
+PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}"
+  endif
+endif
+
+ifdef ONLY_FOR_PLATFORM
+  ifeq (,$(filter ${ONLY_FOR_PLATFORM},${MACHINE_PLATFORM}))
+PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}"
+  endif
+endif
+
 
 # Add these defs to the ones dumped into +BUILD_DEFS
 _BUILD_DEFS+=	PKGPATH
