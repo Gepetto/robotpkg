@@ -1,0 +1,3 @@
+@comment Tue Feb 23 15:15:16 CET 2010
+include/dc1394/macosx/capture.h
+@pkgdir include/dc1394/linux

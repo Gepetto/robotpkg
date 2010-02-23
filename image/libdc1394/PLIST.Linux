@@ -1,0 +1,4 @@
+@comment Mon Jun 23 19:27:55 CEST 2008
+bin/dc1394_vloopback
+include/dc1394/linux/capture.h
+include/dc1394/linux/control.h

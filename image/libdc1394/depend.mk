@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -41,6 +41,9 @@ SYSTEM_SEARCH.libdc1394=\
 
 endif # LIBDC1394_DEPEND_MK ------------------------------------------------
 
-include ../../image/libraw1394/depend.mk
+include ../../mk/robotpkg.prefs.mk
+ifeq (Linux,${OPSYS})
+  include ../../image/libraw1394/depend.mk
+endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
