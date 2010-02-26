@@ -27,9 +27,7 @@ MAINTAINER=		openrobots@laas.fr
 
 COMMENT=		SoftMotion Planner Library
 
-USE_LANGUAGES+= c c++
-
-include ../../archivers/zlib/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../mk/sysdep/swig.mk
+include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk

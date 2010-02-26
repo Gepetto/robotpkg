@@ -1,0 +1,11 @@
+--- src/CMakeLists.txt~	2010-02-26 16:22:03.000000000 +0100
++++ src/CMakeLists.txt	2010-02-26 19:27:19.967231264 +0100
+@@ -16,7 +16,7 @@
+ #
+ #                                            Xavier BROQUERE on Fri Feb 26 2010
+ 
+-project(src)
++project(src C)
+ 
+ file(GLOB source_files ./*)
+ 

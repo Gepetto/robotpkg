@@ -1,0 +1,11 @@
+--- tclsrc/CMakeLists.txt~	2010-02-26 16:22:03.000000000 +0100
++++ tclsrc/CMakeLists.txt	2010-02-26 19:28:20.686230813 +0100
+@@ -17,7 +17,7 @@
+ #                                            Xavier BROQUERE on Fri Feb 26 2010
+ 
+ 
+-project(tcl_wrap)
++project(tcl_wrap C)
+ 
+ SET (	MODULE_NAME		jerk	)
+ SET (	INTERFACE_FILES		${CMAKE_SOURCE_DIR}/tclsrc/jerk.i)

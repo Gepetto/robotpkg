@@ -1,3 +1,7 @@
 SHA1 (softMotion-libs-0.1.tar.gz) = fd36cf8ec5c9ec802d4b7f95036f5650f0757607
 RMD160 (softMotion-libs-0.1.tar.gz) = 1e9f34c071f28cc24f0e7e9eeb863a42b0497e10
 Size (softMotion-libs-0.1.tar.gz) = 51359 bytes
+SHA1 (patch-aa) = efbf956a61e2024bba37c33b372e48cb85a1323a
+SHA1 (patch-ab) = de51299b7ff249e67e1e6efffe7613e2f6100d17
+SHA1 (patch-ac) = dfcbed6dc933d313bec9e6375ffbe46a8b15382f
+SHA1 (patch-ad) = 4d63232f144464e8adcf9da4f5dce7c3fd8f4f30
