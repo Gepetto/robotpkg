@@ -29,14 +29,14 @@ DEPEND_USE+=		pdflatex
 DEPEND_ABI.pdflatex?=	pdflatex>=3.14
 
 SYSTEM_SEARCH.pdflatex=	\
-	'bin/pdflatex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
+	'{bin/,}pdflatex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
 
 SYSTEM_PKG.Linux-fedora.pdflatex=texlive-latex
 SYSTEM_PKG.Linux-ubuntu.pdflatex=texlive-latex-extra
 SYSTEM_PKG.Linux-debian.pdflatex=texlive-latex-extra
 SYSTEM_PKG.Darwin.pdflatex=	texlive
 
-export PDFLATEX=	${PREFIX.pdflatex}/bin/pdflatex
+export PDFLATEX=	$(word 1,${SYSTEM_FILES.pdflatex})
 
 endif # PDFLATEX_DEPEND_MK -------------------------------------------
 
