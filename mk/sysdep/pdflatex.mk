@@ -1,6 +1,5 @@
-# $LAAS: pdflatex.mk 2009/12/03 15:10:47 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -35,6 +34,7 @@ SYSTEM_SEARCH.pdflatex=	\
 SYSTEM_PKG.Linux-fedora.pdflatex=texlive-latex
 SYSTEM_PKG.Linux-ubuntu.pdflatex=texlive-latex-extra
 SYSTEM_PKG.Linux-debian.pdflatex=texlive-latex-extra
+SYSTEM_PKG.Darwin.pdflatex=	texlive
 
 export PDFLATEX=	${PREFIX.pdflatex}/bin/pdflatex
 
