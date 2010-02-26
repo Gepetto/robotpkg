@@ -1,0 +1,10 @@
+include/softMotion/debug.h
+include/softMotion/matrix.h
+include/softMotion/matrixStruct.h
+include/softMotion/softMotion.h
+include/softMotion/softMotionConst.h
+include/softMotion/softMotionStruct.h
+lib/jerk.so
+lib/libsoftMotion.so
+share/softMotion/jerkTimeViewer.tcl
+share/softMotion/pkgIndex.tcl
