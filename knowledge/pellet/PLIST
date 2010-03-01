@@ -1,4 +1,4 @@
-@comment Fri Nov 27 10:48:15 CET 2009
+@comment Mon Mar 1 20:51:37 CET 2010
 java/pellet/lib/aterm-java-1.6.jar
 java/pellet/lib/pellet-cli.jar
 java/pellet/lib/pellet-core.jar
@@ -16,6 +16,9 @@ java/pellet/lib/pellet-rules.jar
 java/pellet/lib/pellet-test.jar
 java/pellet/lib/xsdlib/relaxngDatatype.jar
 java/pellet/lib/xsdlib/xsdlib.jar
+@dirrm java/pellet/lib/xsdlib
+@dirrm java/pellet/lib
+@dirrm java/pellet
 ${PLIST.doc}share/doc/pellet/FAQ.txt
 ${PLIST.doc}share/doc/pellet/index.html
 ${PLIST.doc}share/doc/pellet/javadoc/allclasses-frame.html
@@ -121,7 +124,9 @@ ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/class-use/L
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/class-use/OWLAPILoader.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/class-use/PelletLoader.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/class-use/PelletReasonerFactory.html
+${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/class-use/PelletReasoner.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/class-use/PelletVisitor.html
+${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/class-use/ProgressAdapter.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/class-use/Reasoner.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/ConceptConverter.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/EntailmentChecker.html
@@ -134,7 +139,9 @@ ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/package-tre
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/package-use.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/PelletLoader.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/PelletReasonerFactory.html
+${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/PelletReasoner.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/PelletVisitor.html
+${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/ProgressAdapter.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/owlapiv3/Reasoner.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/package-frame.html
 ${PLIST.doc}share/doc/pellet/javadoc/com/clarkparsia/pellet/package-summary.html
@@ -711,7 +718,9 @@ ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/Edge.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/EdgeList.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/class-use/InconsistentOntologyException.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/class-use/InternalReasonerException.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/class-use/PelletRuntimeException.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/class-use/TimeoutException.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/class-use/TimerInterruptedException.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/class-use/UndefinedEntityException.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/class-use/UnsupportedFeatureException.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/class-use/UnsupportedQueryException.html
@@ -721,7 +730,9 @@ ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/package-fram
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/package-summary.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/package-tree.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/package-use.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/PelletRuntimeException.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/TimeoutException.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/TimerInterruptedException.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/UndefinedEntityException.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/UnsupportedFeatureException.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/exceptions/UnsupportedQueryException.html
@@ -969,16 +980,24 @@ ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/cache/package-s
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/cache/package-tree.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/cache/package-use.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/CompletionStrategy.html
-${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/EmptySHNStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/EmptySRQStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SHINStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SHNStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SHOINStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SHOIQStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SHONStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SHOQStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SHQStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SRINStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SRNStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SROINStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SROIQIncStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SROIQStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SRONStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SROQStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/class-use/SRQStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/CompletionStrategy.html
-${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/EmptySHNStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/EmptySRQStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/incremental/BranchAddDependency.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/incremental/BranchDependency.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/incremental/ClashDependency.html
@@ -1026,8 +1045,16 @@ ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SHNS
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SHOINStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SHOIQStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SHONStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SHOQStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SHQStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SRINStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SRNStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SROINStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SROIQIncStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SROIQStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SRONStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SROQStrategy.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/tableau/completion/SRQStrategy.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/taxonomy/CDOptimizedTaxonomyBuilder.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/taxonomy/class-use/CDOptimizedTaxonomyBuilder.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/taxonomy/class-use/POTaxonomyBuilder.html
@@ -1092,6 +1119,7 @@ ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/Bool.ht
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/CandidateSet.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/Comparators.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/DisjointSet.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/DurationFormat.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/FileUtils.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/GenericIntervalList.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/GenericIntervalList.Interval.html
@@ -1117,6 +1145,7 @@ ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/URIUtil
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/class-use/VersionInfo.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/Comparators.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/DisjointSet.html
+${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/DurationFormat.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/FileUtils.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/fsm/class-use/State.html
 ${PLIST.doc}share/doc/pellet/javadoc/org/mindswap/pellet/utils/fsm/class-use/TransitionGraph.html

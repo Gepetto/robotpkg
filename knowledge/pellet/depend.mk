@@ -14,7 +14,7 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                          Séverin Lemaignan on Tue Jul 7 2009
+#                                          Séverin Lemaignan on Mon 01 mar 2010
 #
 
 
@@ -30,7 +30,7 @@ ifeq (+,$(PELLET_DEPEND_MK)) # -----------------------------------------------
 PREFER.pellet?=		robotpkg
 
 DEPEND_USE+=		pellet
-DEPEND_ABI.pellet?=	pellet>=2.0.0
+DEPEND_ABI.pellet?=	pellet>=2.0.2
 DEPEND_DIR.pellet?=	../../knowledge/pellet
 
 SYSTEM_SEARCH.pellet=\
