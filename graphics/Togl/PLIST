@@ -1,6 +1,8 @@
-@comment Thu Jul 23 16:44:44 CEST 2009
+@comment Sat Feb 27 14:42:15 CET 2010
 include/togl.h
+include/toglDecls.h
 include/togl_ws.h
+lib/Togl${PKGVERSION}/LICENSE
 lib/Togl${PKGVERSION}/libTogl${PKGVERSION}.so
 lib/Togl${PKGVERSION}/pkgIndex.tcl
-@dirrm lib/Togl${PKGVERSION}
+lib/libToglstub${PKGVERSION}.a
