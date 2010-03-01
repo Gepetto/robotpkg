@@ -31,6 +31,8 @@ RESTRICTED=	Redistribution not permitted
 NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
 
+USE_LANGUAGES+= c c++
+
 INTERACTIVE_STAGE=	fetch
 FETCH_MESSAGE+=\
 	"${bf}The file ${DISTNAME}${EXTRACT_SUFX} must be put manually into:${rm}"
