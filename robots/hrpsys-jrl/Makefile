@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/12/11 22:28:18 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -42,6 +41,7 @@ FETCH_MESSAGE+= "       ${DISTDIR}/"
 
 NO_CONFIGURE=		yes
 PREFIX=			${LOCALBASE}/OpenHRP
+INSTALLATION_DIRS+=	lib
 
 MESSAGE_SUBST+=		PREFIX.OpenHRP="${PREFIX.OpenHRP}"
 
