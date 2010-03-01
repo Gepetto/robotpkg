@@ -17,6 +17,7 @@
 #
 
 DISTNAME=	gdhe-3.8
+PKGREVISION=	1
 
 CATEGORIES=	graphics
 MASTER_SITES=	http://softs.laas.fr/openrobots/php/download.php/
