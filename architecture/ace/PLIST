@@ -1,4 +1,4 @@
-@comment Fri Nov 28 17:19:40 CET 2008
+@comment Mon Mar 1 19:37:04 CET 2010
 bin/ace_gperf
 include/ACEXML/apps/svcconf/Svcconf.h
 include/ACEXML/apps/svcconf/Svcconf_Handler.h
@@ -203,6 +203,7 @@ include/ace/Containers_T.h
 include/ace/Containers_T.inl
 include/ace/Copy_Disabled.h
 include/ace/Countdown_Time.h
+include/ace/Countdown_Time.inl
 include/ace/DEV.h
 include/ace/DEV.inl
 include/ace/DEV_Addr.h
@@ -466,6 +467,7 @@ include/ace/Monitor_Control/Bytes_Sent_Monitor.h
 include/ace/Monitor_Control/CPU_Load_Monitor.h
 include/ace/Monitor_Control/Constraint_Interpreter.h
 include/ace/Monitor_Control/Constraint_Visitor.h
+include/ace/Monitor_Control/FreeBSD_Network_Interface_Monitor.h
 include/ace/Monitor_Control/Linux_Network_Interface_Monitor.h
 include/ace/Monitor_Control/Memory_Usage_Monitor.h
 include/ace/Monitor_Control/Monitor_Control.h
@@ -583,6 +585,8 @@ include/ace/OS_NS_unistd.h
 include/ace/OS_NS_unistd.inl
 include/ace/OS_NS_wchar.h
 include/ace/OS_NS_wchar.inl
+include/ace/OS_NS_wctype.h
+include/ace/OS_NS_wctype.inl
 include/ace/OS_QoS.h
 include/ace/OS_String.h
 include/ace/OS_TLI.h
@@ -881,6 +885,8 @@ include/ace/Token_Manager.h
 include/ace/Token_Manager.inl
 include/ace/Token_Request_Reply.h
 include/ace/Token_Request_Reply.inl
+include/ace/Tokenizer_T.cpp
+include/ace/Tokenizer_T.h
 include/ace/Trace.h
 include/ace/Truncate.h
 include/ace/Typed_SV_Message.cpp
@@ -1006,6 +1012,7 @@ include/ace/os_include/os_termios.h
 include/ace/os_include/os_tgmath.h
 include/ace/os_include/os_time.h
 include/ace/os_include/os_trace.h
+include/ace/os_include/os_typeinfo.h
 include/ace/os_include/os_ucontext.h
 include/ace/os_include/os_ulimit.h
 include/ace/os_include/os_unistd.h
@@ -1061,23 +1068,4 @@ lib/pkgconfig/ACE_RMCast.pc
 lib/pkgconfig/ACE_TMCast.pc
 lib/pkgconfig/Kokyu.pc
 man/man1/ace_gperf.1
-@dirrm include/ace/os_include/sys
-@dirrm include/ace/os_include/netinet
-@dirrm include/ace/os_include/net
-@dirrm include/ace/os_include/arpa
-@dirrm include/ace/os_include
-@dirrm include/ace/TMCast
-@exec ${MKDIR} %D/include/ace/SSL
-@dirrm include/ace/SSL
-@dirrm include/ace/RMCast
-@dirrm include/ace/Monitor_Control
-@dirrm include/ace/HTBP
-@dirrm include/ace/ETCL
-@dirrm include/ace
-@dirrm include/Kokyu
-@dirrm include/ACEXML/parser/parser
-@dirrm include/ACEXML/parser
-@dirrm include/ACEXML/common
-@dirrm include/ACEXML/apps/svcconf
-@dirrm include/ACEXML/apps
-@dirrm include/ACEXML
+@pkgdir include/ace/SSL

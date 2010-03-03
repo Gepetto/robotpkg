@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/11/28 16:45:42 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -16,7 +15,7 @@
 #                                       Anthony Mallet on Wed Jan 23 2008
 #
 
-ACE_VERSION=		5.6.7
+ACE_VERSION=		5.7.6
 DISTNAME=		ACE-${ACE_VERSION}
 PKGNAME=		ace-${ACE_VERSION}
 CATEGORIES=		architecture
@@ -31,8 +30,13 @@ WRKSRC=			${WRKDIR}/ACE_wrappers
 GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		build
 CONFIGURE_SCRIPT=	../configure
-CONFIGURE_ARGS+=	--disable-ssl#		 we don't use ssl right now
+CONFIGURE_ARGS+=	--disable-ssl #		 we don't use ssl right now
 CONFIGURE_ARGS+=	--disable-ace-tests
+CONFIGURE_ARGS+=	--disable-ace-examples
+
+# Disable ACE optimization and let robotpkg pass the correct flags according to
+# user selection.
+CONFIGURE_ARGS+=	--disable-optimize
 
 USE_LANGUAGES+=		c c++
 
