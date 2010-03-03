@@ -1,4 +1,3 @@
-# $LAAS: depend.mk 2010/01/14 15:55:52 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -27,7 +26,7 @@ endif
 
 ifeq (+,$(BLAS_DEPEND_MK)) # -----------------------------------------
 
-PREFER.blas?=		robotpkg
+PREFER.blas?=		system
 
 DEPEND_USE+=		blas
 
