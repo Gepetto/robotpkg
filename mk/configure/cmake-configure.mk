@@ -1,4 +1,4 @@
-# $LAAS: cmake-configure.mk 2010/03/02 19:14:28 mallet $
+# $LAAS: cmake-configure.mk 2010/03/03 11:48:15 mallet $
 #
 # Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
@@ -53,7 +53,7 @@ ifneq (,$(filter c,${USE_LANGUAGES}))
 endif
 ifneq (,$(filter c++,${USE_LANGUAGES}))
   CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=${CXX}
-  CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS=(call quote,${CPPFLAGS} ${CXXFLAGS})
+  CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS=$(call quote,${CPPFLAGS} ${CXXFLAGS})
   CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS_DEBUG=
   CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS_RELEASE=
 endif
