@@ -1,4 +1,3 @@
-# $LAAS: depend.mk 2010/01/14 15:54:45 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -27,7 +26,7 @@ endif
 
 ifeq (+,$(LAPACK_DEPEND_MK)) # ---------------------------------------
 
-PREFER.lapack?=		robotpkg
+PREFER.lapack?=		system
 
 DEPEND_USE+=		lapack
 
