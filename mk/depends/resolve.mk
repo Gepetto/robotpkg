@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -161,8 +161,8 @@ override define _dpd_flags
   DEPEND_CPPFLAGS.${1}?=#	empty
   DEPEND_LDFLAGS.${1}?=#	empty
   DEPEND_LIBS.${1}?=#		empty
-  DEPEND_INCDIRS.${1}?=		include
-  DEPEND_LIBDIRS.${1}?=		lib
+  DEPEND_INCDIRS.${1}?=#	empty
+  DEPEND_LIBDIRS.${1}?=#	empty
   DEPEND_PKG_CONFIG.${1}?=	lib/pkgconfig
   ifneq (,$$(filter full,$${DEPEND_METHOD.${1}}))
     DEPEND_RPATHDIRS.${1}?=	$${DEPEND_LIBDIRS.${1}}
@@ -203,7 +203,7 @@ DEPEND_LIBS:=$(call lappend,						\
 DEPEND_CPPFLAGS:=$(call lappend,$(addprefix -I,$(foreach 		\
   _pkg_,${DEPEND_USE},$(realpath $(filter-out /usr/include,$(addprefix	\
       ${PREFIX.${_pkg_}}/,${DEPEND_INCDIRS.${_pkg_}}))))),		\
-	${DEPEND_LDFLAGS})
+	${DEPEND_CPPFLAGS})
 
 
 # Append DEPEND_LIBDIRS.<pkg> to DEPEND_LDFLAGS
