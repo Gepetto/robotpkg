@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2010/01/14 17:13:33 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -16,11 +15,11 @@
 #                                       Anthony Mallet on Wed Mar 19 2008
 #
 
-DISTNAME=	hrp2-genom-0.4
+DISTNAME=	hrp2-genom-1.0
 
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hrp2-genom/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hrp2-genom
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/hrp2-genom
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
@@ -35,7 +34,6 @@ GENOM_MODULE=	hrp2
 include ../../architecture/genom/depend.mk
 
 include ../../architecture/openhrp/depend.mk
-include ../../architecture/genom-openhrp-plugin/depend.mk
 include ../../architecture/netshring/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../math/t3d/depend.mk

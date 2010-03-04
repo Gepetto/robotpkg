@@ -1,4 +1,4 @@
-@comment $Id:$
+@comment Thu Mar 4 19:16:39 CET 2010
 bin/hrp2
 bin/hrp2SendInitRqst
 bin/hrp2Test
@@ -16,10 +16,9 @@ include/hrp2/server/hrp2Print.h
 include/hrp2/server/hrp2PrintXML.h
 include/hrp2/server/hrp2Scan.h
 include/hrp2/server/hrp2Type.h
+lib/genom-openhrp-plugin.la
 lib/libhrp2Client.la
 lib/pkgconfig/hrp2.pc
 lib/tclserv/libhrp2TclServ.la
 share/modules/gen/hrp2.gen
 share/modules/tcl/hrp2Client.tcl
-@dirrm include/hrp2/server
-@dirrm include/hrp2
