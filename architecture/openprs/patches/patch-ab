@@ -1,0 +1,10 @@
+--- openprs.pc.in~	2010-02-22 14:30:11.000000000 +0100
++++ openprs.pc.in	2010-03-04 10:43:47.062230780 +0100
+@@ -5,6 +5,6 @@
+ 
+ Name: openprs
+ Description: Open PRS
+-Version: @OPENPRS_MAJOR@.@OPENPRS_MINOR@
++Version: @PACKAGE_VERSION@
+ Libs: -L${libdir} -lOPList -lpu
+ Cflags: -I${includedir}
