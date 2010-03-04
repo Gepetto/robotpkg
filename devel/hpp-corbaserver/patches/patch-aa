@@ -1,0 +1,20 @@
+--- src/Makefile.in~	2010-03-04 18:05:29.266230767 +0100
++++ src/Makefile.in	2010-03-04 18:10:32.166230770 +0100
+@@ -923,7 +923,7 @@
+ 
+ 
+ .la.kab:
+-	SOFILE=`echo ".libs/$<" | sed 's/.la$$/-$(PACKAGE_VERSION).so/'`; 	\
++	-SOFILE=`echo ".libs/$<" | sed 's/.la$$/-$(PACKAGE_VERSION).so/'`; 	\
+ 	KABSRCFILE=`echo "$$SOFILE" | sed 's/.so$$/.kab/'`; 			\
+ 	KABDSTFILE=`echo "$<" | sed 's/.la$$/.kab/'`; 				\
+ 	LD_LIBRARY_PATH=$(KINEO_LIBDIR) 					\
+@@ -932,7 +932,7 @@
+ 	&& mv "$$KABSRCFILE" "$$KABDSTFILE"
+ 
+ %.kab:%
+-	BINFILE=`echo ".libs/$<"`;						\
++	-BINFILE=`echo ".libs/$<"`;						\
+ 	KABSRCFILE=`echo "$$BINFILE" | sed 's/$$/.kab/'`; 			\
+ 	KABDSTFILE=`echo "$<" | sed 's/$$/.kab/'`; 				\
+ 	LD_LIBRARY_PATH=$(KINEO_LIBDIR) 					\

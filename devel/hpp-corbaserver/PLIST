@@ -1,6 +1,5 @@
 @comment Thu May 28 18:31:08 JST 2009
 bin/hppCorbaServer
-bin/hppCorbaServer.kab
 include/hppCorbaServer/hppciObstacle.h
 include/hppCorbaServer/hppciOpenHrp.h
 include/hppCorbaServer/hppciProblem.h
