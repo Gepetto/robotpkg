@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -15,12 +15,11 @@
 #                                       Anthony Mallet on Wed May 14 2008
 #
 
-DISTNAME=	gik-genom-1.3
-PKGREVISION=	1
+DISTNAME=	gik-genom-1.4
 
 CATEGORIES=	path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=gik-genom/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}gik-genom
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/gik-genom
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
@@ -35,6 +34,6 @@ include ../../architecture/genom/depend.mk
 include ../../math/hrp2-dynamics/depend.mk
 include ../../path/hpp-gik/depend.mk
 include ../../robots/hrp2-14/depend.mk
-include ../../architecture/genom-openhrp-plugin/depend.mk
+include ../../robots/hrp2-genom/depend.mk
 include ../../architecture/netshring/depend.mk
 include ../../mk/robotpkg.mk
