@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/03/16 15:27:57 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -16,28 +15,28 @@
 #                                       Anthony Mallet on Wed May 14 2008
 #
 
-DISTNAME=	walk-genom-1.4
+DISTNAME=	walk-genom-1.5
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=walk-genom/}
-MASTER_REPOSITORY=git ssh://softs.laas.fr/git/jrl/component/walk-genom
+MASTER_REPOSITORY=git ssh://softs.laas.fr/git/robots/walk-genom
 
 MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Walk trajectories for humanoid robots - GenoM component
 
+USE_LANGUAGES+= c c++
 GNU_CONFIGURE=	yes
-
-DEPENDS+=	netshring>=1.0:../../architecture/netshring
-DEPENDS+=	hpp-corbaserver>=1.6:../../devel/hpp-corbaserver
 
 GENOM_MODULE=	walk
 include ../../architecture/genom/depend.mk
 
 include ../../path/hpp-walkplanner/depend.mk
-include ../../architecture/genom-openhrp-plugin/depend.mk
 include ../../devel/omniORB/depend.mk
+include ../../devel/hpp-corbaserver/depend.mk
 include ../../robots/hrp2-14/depend.mk
+include ../../robots/hrp2-genom/depend.mk
+include ../../architecture/netshring/depend.mk
 include ../../mk/robotpkg.mk
 
 # generate and install the Kineo license, but don't fail on errors.

@@ -1,4 +1,4 @@
-@comment Wed May 14 16:43:48 CEST 2008
+@comment Thu Mar 4 19:38:16 CET 2010
 bin/walk
 bin/walkSendInitRqst
 bin/walkTest
@@ -21,5 +21,3 @@ lib/pkgconfig/walk.pc
 lib/tclserv/libwalkTclServ.la
 share/modules/gen/walk.gen
 share/modules/tcl/walkClient.tcl
-@dirrm include/walk/server
-@dirrm include/walk
