@@ -169,12 +169,6 @@ _INTERACTIVE_COOKIE=	${.CURDIR}/.interactive_stage
 # Miscellaneous overridable commands:
 SHCOMMENT?=		${ECHO_MSG} >/dev/null '***'
 
-# This variable can be prepended to all shell commands that should not
-# be printed by default, but when PKGSRC_DEBUG_LEVEL is non-zero.
-# It also adds error checking.
-#
-RUN=			${_PKG_SILENT}${_PKG_DEBUG} set -e;
-
 
 # A few aliases for *-install targets
 INSTALL=		${TOOLS_INSTALL}
@@ -395,7 +389,8 @@ _BIN_INSTALL_FLAGS+=	${PKG_ARGS_ADD}
 $(call require-for, print-PLIST, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
 # index.html generation code.
-$(call require-for, index, ${ROBOTPKG_DIR}/mk/internal/index.mk)
+$(call require-for, index print-summary-data,				\
+	${ROBOTPKG_DIR}/mk/internal/index.mk)
 
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk
 ifdef _SU_TARGETS

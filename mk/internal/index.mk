@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -223,34 +223,42 @@ ifeq (0,${_ROBOTPKG_DEPTH})
 endif
 
 
+# --- print-summary-data ---------------------------------------------------
+#
 # This target is used by the toplevel.mk file to generate pkg database file
+#
 .PHONY: print-summary-data
 print-summary-data:
-	@${ECHO} depends ${PKGPATH} $(call quote,${DEPENDS});		\
-	${ECHO} build_depends ${PKGPATH} $(call quote,${BUILD_DEPENDS});\
-	${ECHO} conflicts ${PKGPATH} ${CONFLICTS};			\
+	${RUN}								\
 	${ECHO} index ${PKGPATH} ${PKGNAME};				\
-	${ECHO} htmlname ${PKGPATH}					\
-		'<a href="../../'`${ECHO} ${PKGPATH} | ${HTMLIFY}`'/index.html">'`${ECHO} ${PKGNAME} | ${HTMLIFY}`'</a>';					\
-	${ECHO} homepage ${PKGPATH} $(call quote,${HOMEPAGE});		\
 	${ECHO} wildcard ${PKGPATH} $(call quote,${PKGWILDCARD});	\
 	${ECHO} comment ${PKGPATH} $(call quote,${COMMENT});		\
+	${ECHO} categories ${PKGPATH} ${CATEGORIES};			\
+	${ECHO} homepage ${PKGPATH} $(call quote,${HOMEPAGE});		\
+	${ECHO} maintainer ${PKGPATH} ${MAINTAINER};			\
 	${ECHO} license ${PKGPATH} $(call quote,${LICENSE});		\
+	${ECHO} depends ${PKGPATH} $(foreach _pkg_,${DEPEND_USE},	\
+	  $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),		\
+	    $(call quote,${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}})	\
+	));								\
+	${ECHO} build_depends ${PKGPATH} $(foreach _pkg_,${DEPEND_USE},	\
+	  $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),,		\
+	    $(call quote,${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}})	\
+	));								\
+	${ECHO} conflicts ${PKGPATH} ${CONFLICTS};			\
 	if [ "${ONLY_FOR_PLATFORM}" = "" ]; then			\
-		${ECHO} "onlyfor ${PKGPATH} any";			\
+	  ${ECHO} onlyfor ${PKGPATH} any;				\
 	else								\
-		${ECHO} "onlyfor ${PKGPATH} ${ONLY_FOR_PLATFORM}";	\
+	  ${ECHO} onlyfor ${PKGPATH} $(call quote,${ONLY_FOR_PLATFORM});\
 	fi;								\
 	if [ "${NOT_FOR_PLATFORM}" = "" ]; then				\
-		${ECHO} "notfor ${PKGPATH} any";			\
+	  ${ECHO} notfor ${PKGPATH} any;				\
 	else								\
-		${ECHO} "notfor ${PKGPATH} not ${NOT_FOR_PLATFORM}";	\
+	  ${ECHO} notfor ${PKGPATH} $(call quote,${NOT_FOR_PLATFORM});	\
 	fi;								\
-	${ECHO} "maintainer ${PKGPATH} ${MAINTAINER}";			\
-	${ECHO} "categories ${PKGPATH} ${CATEGORIES}";			\
 	if [ -f ${DESCR_SRC} ]; then					\
-		${ECHO}  "descr ${PKGPATH} ${DESCR_SRC}"; 		\
+	  ${ECHO}  descr ${PKGPATH} ${DESCR_SRC}; 			\
 	else								\
-		${ECHO}  "descr ${PKGPATH} /dev/null";			\
+	  ${ECHO}  descr ${PKGPATH} /dev/null;				\
 	fi;								\
-	${ECHO} "prefix ${PKGPATH} ${PREFIX}"
+	${ECHO} prefix ${PKGPATH} ${PREFIX}

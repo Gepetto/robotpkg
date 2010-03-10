@@ -1,6 +1,6 @@
-# $LAAS: toplevel.mk 2009/03/05 23:03:14 tho $
+# $LAAS: toplevel.mk 2010/03/10 00:35:53 tho $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -47,64 +47,79 @@ db:
 
 .PHONY: ${CURDIR}/PKGDB
 ${CURDIR}/PKGDB:
-	@${RM} -f ${CURDIR}/PKGDB
-	@${ECHO_MSG} "Extracting complete dependency database.  This may take a while..."
-	@DB=${CURDIR}/PKGDB ; \
-	ROBOTPKG_DIR=${CURDIR} ; \
-	npkg=1; \
-	list=`${GREP} '^[[:space:]]*'SUBDIR */Makefile | ${SED} 's,/Makefile.*=[[:space:]]*,/,'` ; \
-	for pkgdir in $$list ; do \
-		if [ ! -d $$pkgdir ]; then  \
-			echo " " ; \
-			echo "WARNING:  the package directory $$pkgdir is listed in" > /dev/stderr ; \
-			echo $$pkgdir | ${SED} 's;/.*;/Makefile;g' > /dev/stderr ; \
-			echo "but the directory does not exist.  Please fix this!" > /dev/stderr ; \
-		else \
-			cd $$pkgdir ; \
-			l=`${MAKE} print-summary-data`  ; \
-			if [ $$? != 0 ]; then \
-				echo "WARNING (printdepends):  the package in $$pkgdir had problem with" \
-					> /dev/stderr ; \
-				echo "    ${MAKE} print-summary-data" > /dev/stderr ; \
-				echo "    database information for this package" > /dev/stderr ; \
-				echo "    will be dropped." > /dev/stderr ; \
-				${MAKE} print-summary-data  2>&1 > /dev/stderr ; \
-			else \
-				echo "$$l" >> $$DB ; \
-			fi ; \
-		fi ; \
-		${ECHO_N} "."; \
-		if [ `${EXPR} $$npkg % 100 = 0` -eq 1 ]; then \
-			echo " " ; \
-			echo "$$npkg" ; \
-		fi ; \
-		npkg=`${EXPR} $$npkg + 1` ; \
-		cd $$ROBOTPKG_DIR  ; \
-	done
+	@${ECHO_MSG} "Extracting complete dependency database."		\
+		"This may take a while..."
+	${RUN} DB=${CURDIR}/PKGDB; ROBOTPKG_DIR=${CURDIR};		\
+	${RM} -f ${DB};							\
+	list=`${AWK} '/SUBDIR/ {					\
+		sub("Makefile", "", FILENAME);				\
+		sub("[ \t]*SUBDIR[+= \t]*", "");			\
+		print FILENAME $$0 }' */Makefile`;			\
+	for pkgdir in $$list; do					\
+	  if [ ! -d $$pkgdir ]; then					\
+	    echo;							\
+	    echo "WARNING: the package directory $$pkgdir is listed in"	\
+		>/dev/stderr;						\
+	    echo $$pkgdir | ${SED} 's;/.*;/Makefile;g' >/dev/stderr;	\
+	    echo "but the directory does not exist.  Please fix this!"	\
+		>/dev/stderr;						\
+	    continue;							\
+	  fi;								\
+	  cd $$pkgdir;							\
+	  l=`${MAKE} print-summary-data`;				\
+	  if [ $$? != 0 ]; then						\
+	    echo;							\
+	    echo "WARNING: the package in $$pkgdir had problem with"	\
+		>/dev/stderr;						\
+	    echo "  ${MAKE} print-summary-data" >/dev/stderr;		\
+	    echo "Database information for this package will be dropped"\
+		>/dev/stderr;						\
+	    ${MAKE} print-summary-data  2>&1 >/dev/stderr;		\
+	    continue;							\
+	  fi;								\
+	  echo "$$l" >>$$DB;						\
+									\
+	  ${ECHO_N} ".";						\
+	  cd $$ROBOTPKG_DIR;						\
+	done;								\
+	${ECHO}
 
 ${CURDIR}/INDEX:
-	@${MAKE} ${CURDIR}/PKGDB
-	@${RM} -f ${CURDIR}/INDEX
-	@${AWK} -f ./mk/internal/gendb.awk ROBOTPKG_DIR=${CURDIR} SORT=${SORT} ${CURDIR}/PKGDB
-	@${RM} -f ${CURDIR}/PKGDB
+	${RUN}								\
+	${MAKE} ${CURDIR}/PKGDB;					\
+	${RM} -f ${CURDIR}/INDEX;					\
+	${AWK} -f ./mk/internal/gendb.awk				\
+		ROBOTPKG_DIR=${CURDIR} SORT=${SORT} ${CURDIR}/PKGDB;	\
+	${RM} -f ${CURDIR}/PKGDB
+
 
 print-db: ${CURDIR}/INDEX
-	@${AWK} -F\| '{ printf("Pkg:\t%s\nPath:\t%s\nInfo:\t%s\nMaint:\t%s\nIndex:\t%s\nB-deps:\t%s\nR-deps:\t%s\nArch:\t%s\n\n", $$1, $$2, $$4, $$6, $$7, $$8, $$9, $$10); }' < ${CURDIR}/INDEX
+	${RUN}${AWK} -F\| '{ printf(					\
+		"Pkg:\t%s\n"						\
+		"Path:\t%s\n"						\
+		"Info:\t%s\n"						\
+		"Maint:\t%s\n"						\
+		"Index:\t%s\n"						\
+		"B-deps:\t%s\n"						\
+		"R-deps:\t%s\n"						\
+		"Arch:\t%s\n\n",					\
+		$$1, $$2, $$4, $$6, $$7, $$8, $$9, $$10);		\
+	}' < ${CURDIR}/INDEX
 
-search: ${.CURDIR}/INDEX
+search: ${CURDIR}/INDEX
 ifndef key
-	@${ECHO} "The search target requires a keyword parameter,"
-	@${ECHO} "e.g.: \"${MAKE} search key=somekeyword\""
+	@${ECHO_MSG} "The search target requires a keyword parameter,"
+	@${ECHO_MSG} "e.g.: \"${MAKE} search key=somekeyword\""
 else
-	@${GREP} ${key} ${CURDIR}/INDEX | ${AWK} -F\| '{ printf("Pkg:\t%s\nPath:\t%s\nInfo:\t%s\nMaint:\t%s\nIndex:\t%s\nB-deps:\t%s\nR-deps:\t%s\nArch:\t%s\n\n", $$1, $$2, $$4, $$6, $$7, $$8, $$9, $$10); }'
-endif
-
-
-# the bulk-cache and clean-bulk-cache targets are a global-pkgsrc
-# thing and thus it makes sense to run it from the top level pkgsrc
-# directory.
-ifdef BATCH
-ifneq (,$(filter bulk-cache clean-bulk-cache,${MAKECMDGOALS}))
- include mk/bulk/bulk.mk
-endif
+	${RUN}${GREP} ${key} ${CURDIR}/INDEX | ${AWK} -F\| '{ printf(	\
+		"Pkg:\t%s\n"						\
+		"Path:\t%s\n"						\
+		"Info:\t%s\n"						\
+		"Maint:\t%s\n"						\
+		"Index:\t%s\n"						\
+		"B-deps:\t%s\n"						\
+		"R-deps:\t%s\n"						\
+		"Arch:\t%s\n\n",					\
+		$$1, $$2, $$4, $$6, $$7, $$8, $$9, $$10);		\
+	}'
 endif

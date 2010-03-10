@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -95,6 +95,12 @@ TMPDIR?=	/tmp
 # Printed dates should be agnostic regarding the locale
 #
 _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
+
+# This variable can be prepended to all shell commands that should not
+# be printed by default, but when PKGSRC_DEBUG_LEVEL is non-zero.
+# It also adds error checking.
+#
+RUN=			${_PKG_SILENT}${_PKG_DEBUG} set -e;
 
 
 # --- fancy decorations ----------------------------------------------------
