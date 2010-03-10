@@ -185,6 +185,9 @@ Linux)
 NetBSD)
 	gmake=gmake
 	;;
+SunOS)
+	gmake=gmake
+	;;
 esac
 
 # export OPSYS and MACHINE_ARCH for pkg_install. we only set
