@@ -4,6 +4,7 @@
 ECHO_N?=	printf		# ksh builtin
 
 PKGLOCALEDIR?=	share
+EXTRACT_USING=	${PAX}
 
 _USE_RPATH=		yes	# add rpath to LDFLAGS
 
