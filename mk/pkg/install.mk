@@ -1,6 +1,6 @@
-# $LAAS: install.mk 2009/11/17 17:39:32 mallet $
+# $LAAS: install.mk 2010/03/10 19:34:54 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -96,7 +96,7 @@ pkg-install-check-installed:
 #
 define _REGISTER_DEPENDENCIES
 	${SETENV} PKG_DBDIR=${_PKG_DBDIR}				\
-		AWK=${TOOLS_AWK}					\
+		AWK=${AWK}						\
 		PKG_ADMIN=${PKG_ADMIN_CMD}				\
 	${SH} ${ROBOTPKG_DIR}/mk/pkg/register-dependencies
 endef
