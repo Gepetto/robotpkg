@@ -1,6 +1,6 @@
-# $LAAS: metadata.mk 2009/10/27 18:26:27 mallet $
+# $LAAS: metadata.mk 2010/03/10 16:47:32 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -67,7 +67,7 @@ ${PKG_DB_TMPDIR}/${_BUILD_INFO_FILE}: plist
   )									\
 	${ECHO} "CATEGORIES=${CATEGORIES}" >> $@.tmp;			\
 	${ECHO} "MAINTAINER=${MAINTAINER}" >> $@.tmp;			\
-	${ECHO} "BUILD_DATE=`${_BUILD_DATE_cmd}`" >> $@.tmp;		\
+	${ECHO} "BUILD_DATE="`${_BUILD_DATE_cmd}` >> $@.tmp;		\
 	${SORT} $@.tmp > $@ && ${RM} -f $@.tmp
 
 
