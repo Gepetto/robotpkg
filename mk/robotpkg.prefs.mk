@@ -167,7 +167,7 @@ include ${ROBOTPKG_DIR}/mk/robotpkg.default.conf
 ifeq (yes,$(call exists,${ROBOTPKG_DIR}/mk/platform/${OPSYS}.mk))
   include ${ROBOTPKG_DIR}/mk/platform/${OPSYS}.mk
 else
-  PKG_FAIL_REASON+=	"missing mk/platform/${OPSYS}.mk"
+  $(error missing mk/platform/${OPSYS}.mk)
 endif
 
 LOCALBASE?=		/opt/openrobots
