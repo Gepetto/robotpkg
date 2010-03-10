@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -19,6 +19,7 @@
 #
 
 : ${ECHO:=echo}
+: ${ECHO_N:=echo -n}
 : ${TEST:=test}
 : ${SED:=sed}
 : ${STTY:=stty}
@@ -34,14 +35,16 @@ logfile=
 nolog=verb
 progress=statusline
 eta=
+interactive=
 
 usage() {
-    ${ECHO} 1>&2 "usage: $self [-n] [-v] [-a eta] [-l file] [--] arg0 [arg...]"
+    ${ECHO} 1>&2 "usage: $self [-n] [-v] [-i] [-a eta] [-l file] [--] arg0 [arg...]"
 }
 
 while ${TEST} $# -gt 0; do
     case "$1" in
 	-v)     log=verb; nolog=noverb; shift ;;
+	-i)     interactive='[ESC to toggle]'; shift;;
 	-a)     eta=$2; progress=percent; shift 2 ;;
 	-n)     nofilter=yes; shift;;
 	-l)     logfile=$2; shift 2;;
@@ -70,22 +73,22 @@ if ${TEST} -t 1; then
     civis=`${TPUT} civis`
     cnorm=`${TPUT} cnorm`
 
-    statuslinea='-(o     )-'
-    statuslineb='-( o    )-'
-    statuslinec='-(  o   )-'
-    statuslined='-(   o  )-'
-    statuslinee='-(    o )-'
-    statuslinef='-(     o)-'
-    statuslineg='-(     o)-'
-    statuslineh='-(    o )-'
-    statuslinei='-(   o  )-'
-    statuslinej='-(  o   )-'
-    statuslinek='-( o    )-'
-    statuslinel='-(o     )-'
-    statuslinem='-(o     )-'
+    statuslinea=' -(o     )-'
+    statuslineb=' -( o    )-'
+    statuslinec=' -(  o   )-'
+    statuslined=' -(   o  )-'
+    statuslinee=' -(    o )-'
+    statuslinef=' -(     o)-'
+    statuslineg=' -(     o)-'
+    statuslineh=' -(    o )-'
+    statuslinei=' -(   o  )-'
+    statuslinej=' -(  o   )-'
+    statuslinek=' -( o    )-'
+    statuslinel=' -(o     )-'
+    statuslinem=' -(o     )-'
     statuslist='a b c d e f g h i j k l m'
 
-    MSG=${ECHO}
+    MSG=${ECHO_N}
 else
     MSG=:
 fi
@@ -97,16 +100,16 @@ verb() { ${ECHO} $@; }
 
 if ${TEST} -t 1; then
     noverb() {
-	${MSG} -n "${sc}[ESC] "
+	${MSG} "${sc}Processing ${interactive} "
 	$progress $eta $logged
-	${MSG} -n $rc
+	${MSG} $rc
     }
 
-    percent() { statusline; ${MSG} -n " ETA $(($2*100/$1))%$el"; }
+    percent() { statusline; ${MSG} " ETA $(($2*100/$1))%$el"; }
     statusline() {
 	set -- $statuslist
 	i=$1
-	eval ${MSG} -n '"$statusline'$i'"'
+	eval ${MSG} '"$statusline'$i'"'
 	shift
 	statuslist="$@ $i"
     }
@@ -139,16 +142,20 @@ filter() {
 
 # Read ESC key, nonblocking
 #
-esc() {
-  read key
-  test "$key" = "" && { s=$log; log=$nolog; nolog=$s; }
-}
+if ${TEST} -n "${interactive}"; then
+    esc() {
+	read key
+	test "$key" = "" && { s=$log; log=$nolog; nolog=$s; }
+    }
+else
+    esc() { :;}
+fi
 
 
 # Spawn program
 #
-trap "${MSG} -n $el$cnorm; stty icanon echo; exit 127" INT QUIT ABRT
-${MSG} -n $civis
+trap "${MSG} $el$cnorm; stty icanon echo; exit 127" INT QUIT ABRT
+test -n "${civis}" && ${MSG} ${civis}
 
 exec 3<&0 4>&1 5>&1
 stty -icanon -echo min 0 <&3
@@ -156,7 +163,7 @@ status=`{ run "$@" 2>&1 | filter; } 4>&1 >&5`
 stty icanon echo <&3
 exec 3>&- 4>&- 5>&-
 
-${MSG} -n $el$cnorm
+${MSG} $el$cnorm
 
 # Log last lines in case of error
 #
