@@ -105,7 +105,7 @@ if ${TEST} -t 1; then
 	${MSG} $rc
     }
 
-    percent() { statusline; ${MSG} " ETA $(($2*100/$1))%$el"; }
+    percent() { statusline; ${MSG} " ETA $(($2*100/$1))\%$el"; }
     statusline() {
 	set -- $statuslist
 	i=$1
