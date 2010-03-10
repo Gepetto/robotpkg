@@ -1,7 +1,8 @@
 #
 # Variable definitions for the NetBSD operating system.
 
-ECHO_N?=	${ECHO} -n
+ECHO_N?=	printf		# ksh builtin
+
 PKGLOCALEDIR?=	share
 
 _USE_RPATH=		yes	# add rpath to LDFLAGS
