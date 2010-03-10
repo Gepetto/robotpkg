@@ -55,7 +55,9 @@ FAIL_MSG?=		${FAIL} $(call quote,${ERROR_MSG})
 WARNING_CAT?=		${SED} -e "s|^|WARNING: |" 1>&2
 ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
 
-_LOGFILTER?=		${SH} ${ROBOTPKG_DIR}/mk/internal/logfilter
+_LOGFILTER?=\
+	${SETENV} ECHO_N=$(call quote,${ECHO_N})		\
+	${SH} ${ROBOTPKG_DIR}/mk/internal/logfilter
 
 
 # Debugging levels, dependent on PKG_DEBUG_LEVEL definition
@@ -85,6 +87,11 @@ _PKG_DEBUG=		set -x;
 _PKG_DEBUG_SCRIPT=	${SH} -x
 _PKG_DISCARD_STDERR=#	empty
 _LOGFILTER_FLAGS=	-n
+endif
+
+# Solaris has problems with the interactive ESC key reading...
+ifneq (SunOS,${OPSYS})
+  _LOGFILTER_FLAGS+=	-i
 endif
 
 
