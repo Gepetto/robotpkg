@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -209,7 +209,7 @@ for p in `bracesubst $sysprefix`; do
 		version=`${SED} -ne "${spec:-p}" < $match | ${SED} $vrepl`
 	    else
 		icmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
-		version=`eval $icmd 2>&1 | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
+		version=`eval $icmd 2>&1 </dev/null | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
 	    fi
 	    : ${version:=unknown}
 
