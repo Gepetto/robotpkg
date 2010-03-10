@@ -244,7 +244,7 @@ tar)
 		fi
 		${TEST} "$exclude" = no || exclude_flag="-c"
 		$decompress_cat "$distfile" |
-			$paxprog ${EXTRACT_OPTS_PAX} $exclude_flag -O -r ${1+"$@"}
+			$paxprog ${EXTRACT_OPTS_PAX} $exclude_flag -r ${1+"$@"}
 		;;
 	*tar)
 		: ${EXTRACT_OPTS_TAR=}
