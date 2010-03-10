@@ -76,7 +76,7 @@ do
 		continue
 	fi
 
-	if ${GREP} -q "libtool library file" "$lapath"; then
+	if ${GREP} "libtool library file" "$lapath" >/dev/null 2>&1; then
 		. "$lapath"
 		if ${TEST} "$installed" = "no"; then
 			${ECHO} 1>&2 "$self: \`$lapath' was not properly installed"
