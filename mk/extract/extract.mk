@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -182,7 +182,7 @@ endif
 #
 .PHONY: pre-extract post-extract
 
-EXTRACT_USING?=		tar
+EXTRACT_USING?=		${TAR}
 EXTRACT_ELEMENTS?=	# empty
 
 ###
@@ -253,6 +253,7 @@ _EXTRACT_ENV+=	${EXTRACT_ENV}
 EXTRACT_CMD_DEFAULT=							\
 	${SETENV} ${_EXTRACT_ENV}					\
 	${SH} ${ROBOTPKG_DIR}/mk/extract/extract			\
+		-t ${EXTRACT_USING}					\
 		${EXTRACT_OPTS}						\
 		${DOWNLOADED_DISTFILE} ${EXTRACT_ELEMENTS}
 
