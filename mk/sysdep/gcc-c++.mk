@@ -47,7 +47,7 @@ SYSTEM_PKG.Linux-debian.gcc-c++ =	g++
 SYSTEM_DESCR.gcc-c++ =	gcc C++ compiler, version ${_GCC_REQUIRED}
 SYSTEM_SEARCH.gcc-c++ =\
 	'bin/g++::% -dumpversion'	\
-	'bin/cpp::% -dumpversion'
+	'{bin,lib}/{,g}cpp::% -dumpversion'
 
 # make sure to use += here, for chainable compilers definitions.
 ROBOTPKG_CXX+=$(word 1,${SYSTEM_FILES.gcc-c++})
