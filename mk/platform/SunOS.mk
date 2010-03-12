@@ -1,5 +1,5 @@
 #
-# Variable definitions for the NetBSD operating system.
+# Variable definitions for the Solaris operating system.
 
 ECHO_N?=	printf		# ksh builtin
 
