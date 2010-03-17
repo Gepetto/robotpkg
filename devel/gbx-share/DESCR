@@ -1,0 +1,8 @@
+Gearbox is a collection of software tools which could be integrated into
+complete robotic systems with one of many software integration
+frameworks. GearBox is not a framework and thus does not compete with any
+existing or future frameworks. It does not contain any "glue" code to help you
+assemble a complete system.
+
+This package contains the cmake files installed by Gearbox that are common
+to all Gearbox packages.

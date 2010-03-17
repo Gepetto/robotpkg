@@ -1,0 +1,21 @@
+@comment Wed Mar 17 16:40:30 CET 2010
+lib/gearbox/gearbox-config-version.cmake
+lib/gearbox/gearbox-config.cmake
+share/gearbox/cmake/Assert.cmake
+share/gearbox/cmake/CheckCompiler.cmake
+share/gearbox/cmake/DependencyUtils.cmake
+share/gearbox/cmake/FindGearbox.cmake
+share/gearbox/cmake/FindIceUtil.cmake
+share/gearbox/cmake/SetupBuildType.cmake
+share/gearbox/cmake/SetupDirectories.cmake
+share/gearbox/cmake/SetupOs.cmake
+share/gearbox/cmake/SetupProjectName.cmake
+share/gearbox/cmake/SetupVersion.cmake
+share/gearbox/cmake/StringToCapital.cmake
+share/gearbox/cmake/TargetUtils.cmake
+share/gearbox/cmake/UseBasicRules.cmake
+share/gearbox/cmake/UseGearbox.cmake
+share/gearbox/cmake/UseIceUtil.cmake
+share/gearbox/cmake/WriteConfigH.cmake
+share/gearbox/cmake/WritePackageConfig.cmake
+share/gearbox/cmake/gearbox-use-file.cmake
