@@ -1,4 +1,4 @@
-#	$Id: Makefile 2009/03/05 18:48:05 mallet $
+#	$Id: Makefile 2010/03/17 17:29:38 mallet $
 
 # robotpkg meta-pkgs
 
@@ -6,5 +6,6 @@
 COMMENT=	Collections of other packages
 
 SUBDIR+=	dala
+SUBDIR+=	gearbox
 
 include ../mk/robotpkg.subdir.mk
