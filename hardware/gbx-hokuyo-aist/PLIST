@@ -1,0 +1,11 @@
+@comment Wed Mar 17 17:21:37 CET 2010
+bin/hokuyo_aist_example
+include/gearbox/hokuyo_aist/hokuyo_aist.h
+lib/gearbox/libhokuyo_aist.so
+lib/gearbox/libhokuyo_aist.so.${PKGVERSION}
+lib/pkgconfig/hokuyo_aist.pc
+share/gearbox/hokuyo_aist/CMakeLists.txt
+share/gearbox/hokuyo_aist/example.cpp
+share/gearbox/hokuyo_aist/example.logr
+share/gearbox/hokuyo_aist/example.logw
+share/gearbox/hokuyo_aist/example.readme

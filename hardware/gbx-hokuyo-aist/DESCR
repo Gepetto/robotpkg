@@ -1,0 +1,12 @@
+Gearbox is a collection of software tools which could be integrated into
+complete robotic systems with one of many software integration
+frameworks. GearBox is not a framework and thus does not compete with any
+existing or future frameworks. It does not contain any "glue" code to help you
+assemble a complete system.
+
+This package contains the Hokuyo URG laser scanner driver.
+It provides a driver for Hokuyo laser scanner devices using the SCIP protocol
+version 1 or 2. It has been tested with the Hokuyo URG-04LX, UBG-04LX, UHG-08LX
+and UTM-30LX but it should work with any scanner that conforms to these
+protocol versions, including the URG-04LX-F01, the URG-04LX-UG01 (Simple-URG),
+and the UXM-30LX (Tough-URG).
