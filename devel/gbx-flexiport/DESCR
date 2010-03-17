@@ -1,0 +1,12 @@
+Gearbox is a collection of software tools which could be integrated into
+complete robotic systems with one of many software integration
+frameworks. GearBox is not a framework and thus does not compete with any
+existing or future frameworks. It does not contain any "glue" code to help you
+assemble a complete system.
+
+This package contains the FlexiPort data communications library.
+It provides a consistent interface for communicating over a range of data port
+types. Currently serial and TCP ports are supported. Support for USB ports is
+planned for when I get a suitable USB device to test with. Logging is possible,
+which allows communications sessions to be played back at a later date without
+the original hardware present.
