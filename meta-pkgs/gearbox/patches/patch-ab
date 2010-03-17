@@ -1,0 +1,15 @@
+Make sure we always include from the src dir first (avoid compiling against old
+installed headers)
+
+--- cmake/UseBasicRules.cmake	2009-06-12 14:19:14.000000000 +0200
++++ cmake/UseBasicRules.cmake	2010-03-17 15:31:14.364925000 +0100
+@@ -2,7 +2,7 @@
+ # Make it easy to include headers from library directories.
+ # e.g. #include <somelib/somelib.h>
+ #
+-include_directories( ${GBX_PROJECT_SOURCE_DIR}/src )
++include_directories( BEFORE ${GBX_PROJECT_SOURCE_DIR}/src )
+ 
+ #
+ # Do the same for the submitted directory when its compilation
+Only in gearbox-9.11/cmake: UseBasicRules.cmake~

@@ -1,0 +1,16 @@
+--- cmake/WritePackageConfig.cmake~	2009-11-17 13:58:51.000000000 +0100
++++ cmake/WritePackageConfig.cmake	2010-03-17 16:35:07.321246000 +0100
+@@ -32,10 +32,10 @@
+ # what is this thing? a list? does not seem to a variable?
+ # As it is now it will barf when all targets are disabled, e.g. with GBX_DISABLE_ALL=ON
+ # if( DEFINED ${PROJECT_NAME}-targets )
+-    install(
+-        EXPORT ${PROJECT_NAME}-targets
++#    install(
++#        EXPORT ${PROJECT_NAME}-targets
+     #     NAMESPACE import_
+-        DESTINATION ${_destination} )
++#        DESTINATION ${_destination} )
+ # endif()
+ 
+ set( _input_dir )
