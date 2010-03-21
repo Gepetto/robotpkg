@@ -16,8 +16,7 @@
 #                                      Arnaud Degroote on Mon May 19 2008
 #
 
-DISTNAME=		rflex-genom-0.2
-PKGREVISION=		1
+DISTNAME=		rflex-genom-0.3
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 

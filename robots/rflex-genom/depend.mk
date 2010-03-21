@@ -28,7 +28,7 @@ PREFER.rflex-genom?=	robotpkg
 
 DEPEND_USE+=		rflex-genom
 
-DEPEND_ABI.rflex-genom?=	rflex-genom>=0.2
+DEPEND_ABI.rflex-genom?=	rflex-genom>=0.3
 DEPEND_DIR.rflex-genom?=	../../robots/rflex-genom
 
 SYSTEM_SEARCH.rflex-genom=\
