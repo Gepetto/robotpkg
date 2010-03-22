@@ -14,10 +14,10 @@
 # OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-#                                          Séverin Lemaignan on Mon Feb 15 2010
+#                                          Séverin Lemaignan on Mon Mar 22 2010
 #
 
-DISTNAME=		oro-server-0.7.3
+DISTNAME=		oro-server-0.7.4
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=oro-server/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/oro-server
 
