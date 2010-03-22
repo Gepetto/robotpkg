@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/01/07 13:33:05 mallet $
+# $LAAS: Makefile 2010/03/22 16:02:45 mallet $
 #
 # Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
@@ -16,16 +16,15 @@
 #                                      Anthony Mallet on Mon Jan 29 2007
 #
 
-DISTNAME=		boost-numeric-bindings-20090215
+DISTNAME=		boost-numeric-bindings-20100322
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_ROBOTPKG}
 MASTER_REPOSITORY=\
-  cvs \
-  :pserver:boost-sandbox.cvs.sourceforge.net:/cvsroot/boost-sandbox \
-  boost-sandbox/boost/numeric/bindings
+  svn \
+  http://svn.boost.org/svn/boost/sandbox/numeric_bindings-v1/boost/numeric/bindings
 
 MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		http://sourceforge.net/projects/boost-sandbox
+HOMEPAGE=		http://beta.boost.org/community/sandbox.html
 COMMENT=		C++ bindings for LAPACK and BLAS libraries.
 
 INSTALLATION_DIRS=	include/boost/numeric/bindings
@@ -40,5 +39,3 @@ include ../../mk/robotpkg.mk
 
 do-install:
 	cd ${WRKSRC} && ${PAX} -rw -pm . ${PREFIX}/${INSTALLATION_DIRS}
-	cd ${FILESDIR} && \
-	  ${PAX} -rw -pm orgqr.hpp  ${PREFIX}/${INSTALLATION_DIRS}/lapack
