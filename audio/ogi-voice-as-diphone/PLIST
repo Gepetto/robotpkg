@@ -1,6 +1,3 @@
 @comment Sun May 18 16:15:59 CEST 2008
-share/festival/lib/voices/english/as_diphone
-share/festival/lib/voices/english/as_diphone/festvox
 share/festival/lib/voices/english/as_diphone/festvox/as_diphone.scm
-share/festival/lib/voices/english/as_diphone/group
 share/festival/lib/voices/english/as_diphone/group/as_diphone_resLPC.group
