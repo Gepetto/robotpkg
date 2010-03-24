@@ -1,0 +1,6 @@
+Supervision scripts for the HRP-2 "purple-ball" demonstration.
+
+This package contains a set of tcl scripts that implement the HRP2 supervision
+for the purple-ball demonstration. The robot is controlled via voice
+commands.It can walk toward a table and pick-up or release a small ball
+given its color.
