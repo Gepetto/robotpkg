@@ -39,6 +39,7 @@ include ../../image/stereopixel-genom/depend.mk
 include ../../localization/hueblob-genom/depend.mk
 include ../../path/gik-genom/depend.mk
 include ../../path/walk-genom/depend.mk
+include ../../shell/eltclsh/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/robotpkg.mk
