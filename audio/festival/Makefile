@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/12/11 22:43:13 tho $
+# $LAAS: Makefile 2010/03/24 14:07:50 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -26,6 +26,8 @@ COMMENT=		Festival Speech Synthesis System
 
 DISTFILES=		festival-1.96-beta.tar.gz	\
 			speech_tools-1.2.96-beta.tar.gz
+
+USE_LANGUAGES+=		c c++
 
 WRKSRC=			${WRKDIR}
 FESTIVAL=		${WRKSRC}/festival
@@ -65,7 +67,6 @@ endif
 
 # --------------------------------------------------------------------
 
-include ../../mk/sysdep/gcc-c++.mk
 include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
