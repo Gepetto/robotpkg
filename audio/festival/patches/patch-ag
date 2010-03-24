@@ -1,0 +1,22 @@
+--- festival/src/arch/festival/Makefile~	2010-03-24 15:23:27.599863425 +0100
++++ festival/src/arch/festival/Makefile	2010-03-24 15:47:56.481863948 +0100
+@@ -62,6 +62,6 @@
+ LOCAL_INCLUDES += $(FESTIVAL_INCLUDES)
+ 
+ festival.o: festival.cc
+-	$(CXX_COMMAND_TEMPLATES) -DFTNAME='$(PROJECT_NAME)' -DFTLIBDIRC='$(PREFIX)/share/festival/lib' -DFTVERSION='$(PROJECT_VERSION)' -DFTSTATE='$(PROJECT_STATE)'  -DFTDATE='$(PROJECT_DATE)' -DFTOSTYPE=\"$(SYSTEM_TYPE)\" festival.cc
++	$(CXX_COMMAND_TEMPLATES) -DFTNAME='$(PROJECT_NAME)' -DFTLIBDIRC='"$(PREFIX)/share/festival/lib"' -DFTVERSION='$(PROJECT_VERSION)' -DFTSTATE='$(PROJECT_STATE)'  -DFTDATE='$(PROJECT_DATE)' -DFTOSTYPE=\"$(SYSTEM_TYPE)\" festival.cc
+ 
+ 
+--- festival/src/arch/festival/festival.cc~	2005-11-15 23:26:24.000000000 +0100
++++ festival/src/arch/festival/festival.cc	2010-03-24 15:47:42.275863736 +0100
+@@ -61,7 +61,7 @@
+ // Extra level of indirection needed to get an extra macro expansion. Yeuch.
+ 
+ #ifdef FTLIBDIRC
+-#    define FTLIBDIR STRINGIZE(FTLIBDIRC)
++#    define FTLIBDIR FTLIBDIRC
+ #endif
+ #ifdef FTOSTYPEC
+ #    define FTOSTYPE STRINGIZE(FTOSTYPEC)
+ 
