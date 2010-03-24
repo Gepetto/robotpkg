@@ -1,0 +1,9 @@
+--- ./src/gbGENOM.h~	2010-02-19 13:11:33.000000000 +0100
++++ ./src/gbGENOM.h	2010-03-24 17:31:47.000000000 +0100
+@@ -26,5 +26,6 @@
+ 
+ #define GB_GENOM
+ #include "gbStruct.h"
++#include "gbManip.h"
+ 
+ #endif
