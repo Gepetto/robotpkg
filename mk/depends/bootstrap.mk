@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -17,6 +17,7 @@
 #                                             Anthony Mallet on Sat Oct 24 2009
 #
 
+$(call require, ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/sysdep.mk)
 
