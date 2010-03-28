@@ -43,9 +43,6 @@
 include $(realpath mk/robotpkg.prefs.mk ../mk/robotpkg.prefs.mk)
 
 $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
-ifeq (0,${_ROBOTPKG_DEPTH})
-  $(call require,${ROBOTPKG_DIR}/mk/internal/toplevel.mk)
-endif
 
 # Require confirmation for top-level targets that are likely to be a mistake
 #
