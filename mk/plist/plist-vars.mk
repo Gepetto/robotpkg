@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009 LAAS/CNRS
+# Copyright (c) 2006,2009-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -42,7 +42,7 @@
 #                                       Anthony Mallet on Thu Dec  7 2006
 
 # This Makefile fragment provides all PLIST-related variables and targets.
-include ../../mk/plist/plist.mk
+$(call require, ${ROBOTPKG_DIR}/mk/plist/plist.mk)
 
 
 # --- print-PLIST (PUBLIC) -------------------------------------------------
