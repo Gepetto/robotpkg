@@ -1,6 +1,5 @@
-# $LAAS: robotpkg.subdir.mk 2009/11/17 17:40:40 mallet $
 #
-# Copyright (c) 2007,2009 LAAS/CNRS
+# Copyright (c) 2007,2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -85,7 +84,7 @@ __targets=\
 	all fetch package extract configure build install clean		\
 	cleandir distclean depend reinstall tags checksum makedistinfo	\
 	makepatchsum makesum mirror-distfiles deinstall			\
-	update clean-update show-var show-vars lint
+	update clean-update show-var show-vars print-summary-data lint
 
 .PHONY: ${__targets}
 ${__targets}: %: %-subdir
