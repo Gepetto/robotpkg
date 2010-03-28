@@ -227,14 +227,19 @@ endif
 #
 # This target is used by the toplevel.mk file to generate pkg database file
 #
+$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+
 .PHONY: print-summary-data
 print-summary-data:
 	${RUN}								\
-	${ECHO} index ${PKGPATH} ${PKGNAME};				\
+	${ECHO} index ${PKGPATH} ${PKGBASE};				\
+	${ECHO} version ${PKGPATH} ${PKGVERSION};			\
 	${ECHO} wildcard ${PKGPATH} $(call quote,${PKGWILDCARD});	\
 	${ECHO} comment ${PKGPATH} $(call quote,${COMMENT});		\
 	${ECHO} categories ${PKGPATH} ${CATEGORIES};			\
 	${ECHO} homepage ${PKGPATH} $(call quote,${HOMEPAGE});		\
+	${ECHO} distfiles ${PKGPATH} $(call quote,${DISTFILES});	\
+	${ECHO} mastersites ${PKGPATH} $(call quote,${MASTER_SITES});	\
 	${ECHO} maintainer ${PKGPATH} ${MAINTAINER};			\
 	${ECHO} license ${PKGPATH} $(call quote,${LICENSE});		\
 	${ECHO} depends ${PKGPATH} $(foreach _pkg_,${DEPEND_USE},	\
@@ -246,16 +251,8 @@ print-summary-data:
 	    $(call quote,${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}})	\
 	));								\
 	${ECHO} conflicts ${PKGPATH} ${CONFLICTS};			\
-	if [ "${ONLY_FOR_PLATFORM}" = "" ]; then			\
-	  ${ECHO} onlyfor ${PKGPATH} any;				\
-	else								\
-	  ${ECHO} onlyfor ${PKGPATH} $(call quote,${ONLY_FOR_PLATFORM});\
-	fi;								\
-	if [ "${NOT_FOR_PLATFORM}" = "" ]; then				\
-	  ${ECHO} notfor ${PKGPATH} any;				\
-	else								\
-	  ${ECHO} notfor ${PKGPATH} $(call quote,${NOT_FOR_PLATFORM});	\
-	fi;								\
+	${ECHO} onlyfor ${PKGPATH} $(call quote,${ONLY_FOR_PLATFORM});	\
+	${ECHO} notfor ${PKGPATH} $(call quote,${NOT_FOR_PLATFORM});	\
 	if [ -f ${DESCR_SRC} ]; then					\
 	  ${ECHO}  descr ${PKGPATH} ${DESCR_SRC}; 			\
 	else								\
