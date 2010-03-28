@@ -1,0 +1,4 @@
+@comment Sun Mar 28 22:24:39 CEST 2010
+${PLIST.sqlite}sbin/robotpkg_search
+${PLIST.csv}share/robotpkgdb/robotpkgdb.csv
+${PLIST.sqlite}share/robotpkgdb/robotpkgdb.sqlite

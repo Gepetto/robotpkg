@@ -1,0 +1,8 @@
+A database of all packages included in robotpkg.
+
+Two kind of database are available: a csv file and an sqlite3 database. The csv
+file has pipe (|) separated columns, one value per line. The sqlite3 database
+has 5 tables: pkginfo, depend, distfiles, mastersites and categories.
+
+A robotpkg_search utility than can perform simple search on the database is
+also provided (requires the sqlite database).
