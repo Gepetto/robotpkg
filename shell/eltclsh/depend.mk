@@ -32,7 +32,7 @@ SYSTEM_SEARCH.eltclsh=	bin/eltclsh
 
 DEPEND_USE+=		eltclsh
 DEPEND_ABI.eltclsh?=	eltclsh>=1.11.1
-DEPEND_DIR.eltclsh?=	../../shells/eltclsh
+DEPEND_DIR.eltclsh?=	../../shell/eltclsh
 
 SYSTEM_PKG.NetBSD.eltclsh=	pkgsrc/shells/eltclsh
 
