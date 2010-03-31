@@ -34,11 +34,38 @@ EOF
 
 usage()
 {
-    echo "Usage: ${0##*/} [keyword]
+    echo "Usage: ${0##*/} [options] keywords
 
-${0##*/} searches for 'keyword' in the robotpkg package database."
+${0##*/} searches for 'keywords' in the robotpkg package database.
+
+OPTIONS:
+  -h Show this message"
     exit 1
 }
 
-if test $# = 0; then usage; fi
-lookup $1
+SEARCH_PATTERN=
+
+while getopts “hs:” OPTION
+do
+     case $OPTION in
+         h)
+             usage
+             exit 1
+             ;;
+         ?)
+             usage
+             exit
+             ;;
+     esac
+done
+
+shift $(($OPTIND - 1))
+SEARCH_PATTERN="$*"
+
+if test -z "$SEARCH_PATTERN"
+then 
+	usage
+	exit 1
+fi
+echo "Searching for $SEARCH_PATTERN"
+lookup $SEARCH_PATTERN
