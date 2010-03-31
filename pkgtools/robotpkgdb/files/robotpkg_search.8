@@ -1,0 +1,27 @@
+.\" Copyright (c) 2010 LAAS/CNRS
+.\"
+.Dd Mar 29, 2010
+.Os Robotpkg
+.Dt ROBOTPKG_SEARCH \&8 "Robotpkg Administrative Tools"
+.Sh NAME
+.Nm robotpkg_search
+.Nd Find packages matching a string.
+.Sh SYNOPSIS
+.Nm
+.Op Fl h
+.Op Fl l
+.Ar keyword
+.Op Ar ...
+.Sh DESCRIPTION
+.Nm
+finds any packages matching a string in the description, summary or package
+name field of all robotpkg packages.
+
+Several keywords can be speficied. They are combined with an implicit 'AND'
+semantics, so that packages matching all keywords are returned.
+.Ss Options
+.Bl -tag -width xxxx
+.It Fl l
+Output a long description of matching packages.
+.It Fl h
+Brief help.
