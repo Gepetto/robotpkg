@@ -50,6 +50,8 @@ install-csv: robotpkgdb.csv
 install-sqlite: robotpkgdb.sqlite
 	${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/sbin
 	${INSTALL_PROGRAM} robotpkg_search ${DESTDIR}${PREFIX}/sbin/.
+	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/man/man8
+	${INSTALL_DATA} robotpkg_search.8 ${DESTDIR}${PREFIX}/man/man8/.
 	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/${DBDIR}
 	${INSTALL_DATA} robotpkgdb.sqlite ${DESTDIR}${PREFIX}/${DBDIR}/.
 

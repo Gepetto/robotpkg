@@ -21,6 +21,9 @@
 : ${SQLITE:=@SQLITE@}
 : ${ROBOTPKG_DB:=@ROBOTPKG_DB@}
 
+: ${cols:=`tput cols 2>/dev/null || echo 80`}
+long=
+
 lookup()
 {
     pattern=
@@ -29,13 +32,23 @@ lookup()
     done
     pattern="$pattern%"
 
-    ${SQLITE} -column ${ROBOTPKG_DB} <<EOF
-.width 20 58
+    if test -z "$long"; then
+	${SQLITE} -column ${ROBOTPKG_DB} <<EOF
+.width $((${cols}/4)) $((${cols}*3/4-2))
 	select pkgdir,comment from pkginfo where
 		pkgdir like '$pattern' or
 		comment like '$pattern' or
 		descr like '$pattern';
 EOF
+    else
+	${SQLITE} -line ${ROBOTPKG_DB} <<EOF
+	select pkgbase,pkgversion,pkgdir,comment,home,descr from pkginfo where
+		pkgdir like '$pattern' or
+		comment like '$pattern' or
+		descr like '$pattern';
+
+EOF
+    fi
 }
 
 usage()
@@ -47,32 +60,34 @@ Keywords must be separated by spaces.
 Please note that the keyword order *does* matter.
 
 OPTIONS:
+  -l Long output (output the complete package(s) description(s))
   -h Show this message"
     exit 1
 }
 
-while getopts hs: OPTION
+while getopts hl OPTION
 do
      case $OPTION in
          h)
              usage
-             exit 1
-             ;;
-         ?)
-             usage
              exit
+             ;;
+	 l)  long=yes ;;
+
+         \?)
+             usage
+             exit 1
              ;;
      esac
 done
 
 shift $(($OPTIND - 1))
 
-
 if test -z "$*"
-then 
+then
 	usage
 	exit 1
 fi
 
-echo "Searching for \"$*\""
+echo "searching for \"$*\""
 lookup $*
