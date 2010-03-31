@@ -23,12 +23,18 @@
 
 lookup()
 {
+    pattern=
+    for k in $*; do
+      pattern="$pattern%$k"
+    done
+    pattern="$pattern%"
+
     ${SQLITE} -column ${ROBOTPKG_DB} <<EOF
 .width 20 58
 	select pkgdir,comment from pkginfo where
-		pkgdir like '%$1%' or
-		comment like '%$1%' or
-		descr like '%$1%';
+		pkgdir like '$pattern' or
+		comment like '$pattern' or
+		descr like '$pattern';
 EOF
 }
 
@@ -37,15 +43,15 @@ usage()
     echo "Usage: ${0##*/} [options] keywords
 
 ${0##*/} searches for 'keywords' in the robotpkg package database.
+Keywords must be separated by spaces.
+Please note that the keyword order *does* matter.
 
 OPTIONS:
   -h Show this message"
     exit 1
 }
 
-SEARCH_PATTERN=
-
-while getopts “hs:” OPTION
+while getopts hs: OPTION
 do
      case $OPTION in
          h)
@@ -60,12 +66,13 @@ do
 done
 
 shift $(($OPTIND - 1))
-SEARCH_PATTERN="$*"
 
-if test -z "$SEARCH_PATTERN"
+
+if test -z "$*"
 then 
 	usage
 	exit 1
 fi
-echo "Searching for $SEARCH_PATTERN"
-lookup $SEARCH_PATTERN
+
+echo "Searching for \"$*\""
+lookup $*
