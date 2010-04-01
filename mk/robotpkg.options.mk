@@ -1,4 +1,4 @@
-# $LAAS: robotpkg.options.mk 2010/02/09 19:20:11 mallet $
+# $LAAS: robotpkg.options.mk 2010/04/01 17:03:30 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -132,7 +132,7 @@
 # Define options common to all packages
 #
 ifndef NO_BUILD
-  ifneq (,$(strip ${USE_LANGUAGES}))
+  ifneq (,$(filter c c++ fortran, ${USE_LANGUAGES}))
     # option is defined here, but the _SET and UNSET scripts are defined by
     # the compilers themselves, in gcc.mk
     #
@@ -152,6 +152,22 @@ ifndef NO_BUILD
       ifdef USE_CMAKE
         CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
       endif
+    endef
+  endif
+  ifneq (,$(filter python, ${USE_LANGUAGES}))
+    # Define python version selection options
+    PKG_OPTIONS_REQUIRED_GROUPS=python
+    PKG_OPTIONS_GROUP.python=	python2 python3
+    PKG_SUGGESTED_OPTIONS+=	python2
+
+    PKG_OPTION_DESCR.python2=	Use python version 2
+    define PKG_OPTION_SET.python2
+      PYTHON_REQUIRED+=		<3
+    endef
+
+    PKG_OPTION_DESCR.python3=	Use python version 3
+    define PKG_OPTION_SET.python3
+      PYTHON_REQUIRED+=		>=3
     endef
   endif
 endif
@@ -344,28 +360,32 @@ endef
 .PHONY: show-options
 show-options:
 ifneq (,$(strip ${PKG_GENERAL_OPTIONS}))
-	@${ECHO} "Any of the following general options may be selected:"
+	@${ECHO} "$${bf}Any of the following general options may"	\
+		"be selected$${rm}:"
 	${RUN}$(foreach _o_, $(sort ${PKG_GENERAL_OPTIONS}),		\
 	  $(call _pkgopt_listopt,${_o_}))
 endif
 	${RUN}$(foreach _g_, ${PKG_OPTIONS_REQUIRED_GROUPS},		\
-	  ${ECHO} "Exactly one of the following ${_g_} options is required:";\
+	  ${ECHO}; ${ECHO} "${bf}Exactly one of the following ${_g_}"	\
+		"options is required${rm}:";				\
 	  $(call _pkgopt_listopt,${PKG_OPTIONS_GROUP.${_g_}}))
 	${RUN}$(foreach _g_, ${PKG_OPTIONS_OPTIONAL_GROUPS},		\
-	  ${ECHO} "At most one of the following ${_g_} options may be selected:";\
+	  ${ECHO}; ${ECHO} "${bf}At most one of the following ${_g_}"	\
+		"options may be selected${rm}:";			\
 	  $(call _pkgopt_listopt,${PKG_OPTIONS_GROUP.${_g_}}))
 	${RUN}$(foreach _s_, ${PKG_OPTIONS_NONEMPTY_SETS},		\
-	  ${ECHO} "At least one of the following ${_s_} options must be selected:";\
+	  ${ECHO}; ${ECHO} "$${bf}At least one of the following ${_s_}"	\
+		"options must be selected$${rm}:";			\
 	  $(call _pkgopt_listopt,${PKG_OPTIONS_SET.${_s_}}))
 	@${ECHO}
-	@${ECHO} "These options are enabled by default:"
+	@${ECHO} "$${bf}These options are enabled by default$${rm}:"
 ifneq (,$(strip ${PKG_SUGGESTED_OPTIONS}))
 	@${ECHO} $(call quote,$(sort ${PKG_SUGGESTED_OPTIONS})) | ${wordwrapfilter}
 else
 	@${ECHO} "	(none)"
 endif
 	@${ECHO} ""
-	@${ECHO} "These options are currently enabled:"
+	@${ECHO} "$${bf}These options are currently enabled$${rm}:"
 ifneq (,$(strip ${PKG_OPTIONS}))
 	@${ECHO} $(call quote,$(sort ${PKG_OPTIONS})) | ${wordwrapfilter}
 else
