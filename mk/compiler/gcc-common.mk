@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2009 LAAS/CNRS
+# Copyright (c) 2006,2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -60,38 +60,12 @@ _GCC_REQUIRED?=	>=2.8
 # strictest versions of GCC required.
 #
 ifdef GCC_REQUIRED
-  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-
-  # split constraints into <= and >= categories
-  _equ_:=$(patsubst -%,%,$(filter-out <%,$(filter-out >%,${GCC_REQUIRED})))
-  _min_:=$(sort $(filter >%,${GCC_REQUIRED}) $(addprefix >=,${_equ_}))
-  _max_:=$(sort $(filter <%,${GCC_REQUIRED}) $(addprefix <=,${_equ_}))
-
-  # find out the strictest constraint of type >=, please breathe
-  _maxmin_:=\
-    $(firstword $(foreach _rqd_,${_min_},$(if $(strip 			\
-    $(foreach _sat_,$(filter-out ${_rqd_},${_min_} ${_max_}),$(shell	\
-    ${PKG_ADMIN} pmatch 'x${_sat_}' 'x-$(call substs,> >=,,${_rqd_})' ||\
-    echo no))),,${_rqd_})))
-
-  # breathe, then find out the strictest constraint of type <=
-  _minmax_:=\
-    $(firstword $(foreach _rqd_,${_max_},$(if $(strip			\
-    $(foreach _sat_,$(filter-out ${_rqd_},${_min_} ${_max_}),$(shell	\
-    ${PKG_ADMIN} pmatch 'x${_sat_}' 'x-$(call substs,< <=,,${_rqd_})' ||\
-    echo no))),,${_rqd_})))
-
-  # _GCC_REQUIRED is the union of both
-  _GCC_REQUIRED:=	${_maxmin_}${_minmax_}
+  _GCC_REQUIRED:=$(call versionreqd,${GCC_REQUIRED})
 endif
 ifeq (,$(_GCC_REQUIRED))
-  PKG_FAIL_REASON+=	${hline}
-  PKG_FAIL_REASON+=	"The following requirements on gcc version cannot be satisfied:"
-  PKG_FAIL_REASON+=	""
-  PKG_FAIL_REASON+=	"	GCC_REQUIRED = ${GCC_REQUIRED}"
-  PKG_FAIL_REASON+=	""
-  PKG_FAIL_REASON+=	"Reverting to sane default >=2.8"
-  PKG_FAIL_REASON+=	${hline}
+  PKG_FAIL_REASON+="The following requirements on gcc version cannot be satisfied:"
+  PKG_FAIL_REASON+=""
+  PKG_FAIL_REASON+="	GCC_REQUIRED = ${GCC_REQUIRED}"
   _GCC_REQUIRED:= >=2.8
 endif
 

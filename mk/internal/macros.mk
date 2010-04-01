@@ -1,6 +1,6 @@
-# $LAAS: macros.mk 2009/10/27 22:34:53 tho $
+# $LAAS: macros.mk 2010/04/01 14:00:06 mallet $
 #
-# Copyright (c) 2006,2008-2009 LAAS/CNRS
+# Copyright (c) 2006,2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -233,6 +233,42 @@ endef
 
 define _OVERRIDE_TARGET
 @case $*"" in "-") ;; *) ${ECHO} "don't know how to make $@."; exit 2;; esac
+endef
+
+
+# --- versionreqd ----------------------------------------------------------
+
+# Distill a version requirement list into a single value that is the
+# strictest of the versions required. The input list shall be in the form of >=
+# and <= constraints.
+#
+override define _versionreqd
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
+  # split constraints into <= and >= categories
+  _equ_:=$(patsubst -%,%,$(filter-out <%,$(filter-out >%,$2)))
+  _min_:=$(sort $(filter >%,$2) $(addprefix >=,${_equ_}))
+  _max_:=$(sort $(filter <%,$2) $(addprefix <=,${_equ_}))
+
+  # find out the strictest constraint of type >=, please breathe
+  _maxmin_:=\
+    $$(firstword $$(foreach _rqd_,$${_min_},$$(if $$(strip		\
+    $$(foreach _sat_,$$(filter-out $${_rqd_},$${_min_} $${_max_}),$$(shell\
+    $${PKG_ADMIN} pmatch 'x$${_sat_}' 'x-$$(call substs,> >=,,$${_rqd_})' ||\
+    echo no))),,$${_rqd_})))
+
+  # breathe, then find out the strictest constraint of type <=
+  _minmax_:=\
+    $$(firstword $$(foreach _rqd_,$${_max_},$$(if $$(strip		\
+    $$(foreach _sat_,$$(filter-out $${_rqd_},$${_min_} $${_max_}),$$(shell\
+    $${PKG_ADMIN} pmatch 'x$${_sat_}' 'x-$$(call substs,< <=,,$${_rqd_})' ||\
+    echo no))),,$${_rqd_})))
+
+  # result is the union of both
+  $1:=$${_maxmin_}$${_minmax_}
+endef
+override define versionreqd
+$(strip $(eval $(call _versionreqd,_r_,$1)) ${_r_})
 endef
 
 endif # MK_ROBOTPKG_MACROS
