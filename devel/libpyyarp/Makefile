@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -27,9 +27,12 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Python bindings for YARP
 
-USE_LANGUAGES+=		c c++
+USE_LANGUAGES+=		c c++ python
 
 CMAKE_ARGS+=		-DCREATE_PYTHON=TRUE
+CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
+CMAKE_ARGS+=		-DPYTHON_INCLUDE_PATH=${PYTHON_INCLUDE}
+CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=		-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE
 
 CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
@@ -40,7 +43,6 @@ CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
 BUILD_DIRS=		${WRKSRC}/example/swig
 
 include ../../architecture/yarp/depend.mk
-include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/swig.mk
 include ../../mk/robotpkg.mk
