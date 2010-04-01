@@ -30,7 +30,7 @@ ifndef LANGUAGE_PYTHON_MK # ================================================
 
 # If we are included directly, simply register the language requirements
 USE_LANGUAGES+=		python
-PYTHON_REQUIRED+=	<3
+PYTHON_REQUIRED+=	<=2.99
 
 else # =====================================================================
 
