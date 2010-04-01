@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/12/10 23:38:02 tho $
+# $LAAS: Makefile 2010/04/01 18:24:19 mallet $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -49,7 +49,7 @@ PKG_OPTION_DESCR.ipv6=	Enable support for IPv6
 PKG_OPTION_SET.ipv6:=	CONFIGURE_ARGS+=--enable-ipv6
 PKG_OPTION_UNSET.ipv6:=	CONFIGURE_ARGS+=--disable-ipv6
 
-include ../../mk/sysdep/python.mk
+include ../../mk/sysdep/python2.mk
 include ../../mk/robotpkg.mk
 
 post-install:
