@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/06/11 23:18:41 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -47,5 +46,5 @@ SUBST_FILES.rtm-python=\
 include ../../architecture/ace/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
-include ../../mk/sysdep/python.mk
+include ../../mk/sysdep/python2.mk
 include ../../mk/robotpkg.mk
