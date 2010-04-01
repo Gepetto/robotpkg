@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -23,8 +23,16 @@
 #
 # Optional variables that may be defined by the package are:
 #
-#	PYTHON_REQD is the version of python required, e.g. "2.4".
+#	PYTHON_REQUIRED is the version of python required, e.g. ">=2.4".
 #
+
+ifndef LANGUAGE_PYTHON_MK # ================================================
+
+# If we are included directly, simply register the language requirements
+USE_LANGUAGES+=		python
+PYTHON_REQUIRED+=	<3
+
+else # =====================================================================
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 PYTHON_DEPEND_MK:=	${PYTHON_DEPEND_MK}+
@@ -37,32 +45,22 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 
 PREFER.python?=		system
 
-PYTHON_REQD?=		2.4
-
 DEPEND_USE+=		python
-DEPEND_ABI.python?=	python>=${PYTHON_REQD}
+DEPEND_ABI.python?=	python${_PYTHON_REQUIRED}
 
-_pynamespec=python{2.6,2.5,2.4,${PYTHON_REQD},[0-9].[0-9],}
+_pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.python=\
 	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version' 	\
 	'include/${_pynamespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'
 
 SYSTEM_PKG.Linux-fedora.python=	python-devel
-SYSTEM_PKG.NetBSD.python=	pkgsrc/lang/python$(subst .,,${PYTHON_REQD})
+SYSTEM_PKG.NetBSD.python=	pkgsrc/lang/python
 
 export PYTHON=		$(firstword ${SYSTEM_FILES.python})
 
-_PYTHON_VERSION=$(word 1,$(shell ${PYTHON} -c "import sys; print sys.version"))
-_PYTHON_PREFIX=	$(shell ${PYTHON} -c "import sys; print sys.prefix")
-PYTHON_SITELIB=	$(shell ${PYTHON} -c \
- "from distutils import sysconfig; print sysconfig.get_python_lib(0,0,prefix='')")
-
-# Add extra replacement in PLISTs
-PLIST_SUBST+=\
-	PLIST_PYTHON_SITELIB=$(call quote,${PYTHON_SITELIB})
-PRINT_PLIST_AWK_SUBST+=\
-	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");
 
 endif # PYTHON_DEPEND_MK ---------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
+
+endif # LANGUAGE_PYTHON_MK =================================================
