@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009 LAAS/CNRS
+# Copyright (c) 2006,2009-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -40,6 +40,7 @@
 # From $NetBSD: install.mk,v 1.24 2006/10/26 20:05:03 rillig Exp $
 #
 #                                       Anthony Mallet on Thu Dec  7 2006
+
 
 # --- install (PUBLIC) -----------------------------------------------
 
@@ -231,14 +232,18 @@ INSTALL_DIRS?=		${BUILD_DIRS}
 INSTALL_MAKE_FLAGS?=	# none
 INSTALL_TARGET?=	install
 
+INSTALL_MAKE_CMD?=\
+	${SETENV} ${MAKE_ENV} MAKELEVEL= MAKEOVERRIDES= MAKEFLAGS=	\
+		${MAKE_PROGRAM}						\
+		${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS} -f ${MAKE_FILE}	\
+		${INSTALL_TARGET}
+
 do%install: .FORCE
 	${_OVERRIDE_TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _dir_,${INSTALL_DIRS},					\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
-	${INSTALL_LOGFILTER} ${SETENV} ${INSTALL_ENV} ${MAKE_ENV} 	\
-		${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS}	\
-			-f ${MAKE_FILE} ${INSTALL_TARGET};		\
+	${INSTALL_LOGFILTER} $(call INSTALL_MAKE_CMD,${_dir_});	\
 )
 
 .PHONY: pre-install post-install

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -66,10 +66,11 @@ BUILD_MAKE_FLAGS?=	# none
 BUILD_TARGET?=		all
 $(foreach _d,${BUILD_DIRS},$(eval BUILD_TARGET.${_d}?= ${BUILD_TARGET}))
 
-BUILD_MAKE_CMD=\
+BUILD_MAKE_CMD?=\
 	${SETENV} ${MAKE_ENV} MAKELEVEL= MAKEOVERRIDES= MAKEFLAGS=	\
 		${MAKE_PROGRAM} ${_MAKE_JOBS}				\
-		${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE}
+		${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE}	\
+		${BUILD_TARGET.$1}
 
 ifneq (,$(call isyes,${MAKE_JOBS_SAFE}))
 _MAKE_JOBS=	# nothing
@@ -182,7 +183,7 @@ do%build: .FORCE
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach _dir_,${BUILD_DIRS},						\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
-	${BUILD_LOGFILTER} ${BUILD_MAKE_CMD} ${BUILD_TARGET.${_dir_}};	\
+	${BUILD_LOGFILTER} $(call BUILD_MAKE_CMD,${_dir_});		\
 )
 
 .PHONY: pre-build post-build
