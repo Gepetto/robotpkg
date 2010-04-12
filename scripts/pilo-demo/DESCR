@@ -1,0 +1,9 @@
+pilo-demo is a sample Tcl/Tk script that loads Gdhe, tclserv, 2 modules
+(locoDemo-genom and pilo-genom), and initializes everything.
+
+Available commands: 
+
+m <distance>  - move forward 
+t <angle_degrees> - turn 
+end - quit the demo
+
