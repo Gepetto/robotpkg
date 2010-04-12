@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008 CNRS/LAAS
+# Copyright (c) 2008-2010 CNRS/LAAS
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -18,6 +18,7 @@ DISTNAME=	locoDemo-genom-1.2
 PKGREVISION=	1
 CATEGORIES=	motion
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=locoDemo-genom/}
+MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/locoDemo-genom
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/openrobots/
