@@ -14,8 +14,7 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-DISTNAME=	locoDemo-genom-1.2
-PKGREVISION=	1
+DISTNAME=	locoDemo-genom-1.4
 CATEGORIES=	motion
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=locoDemo-genom/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/locoDemo-genom
@@ -30,6 +29,7 @@ GENOM_MODULE=	locoDemo
 
 include ../../architecture/genom/depend.mk
 
+include ../../motion/contlaw/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../architecture/genPos-genom/depend.mk
 include ../../mk/robotpkg.mk
