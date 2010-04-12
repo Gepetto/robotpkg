@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2009 LAAS/CNRS
+# Copyright (c) 2006,2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -122,7 +122,7 @@ ifeq (,$(filter c++,${USE_LANGUAGES}))
   SUBST_STAGE.fixcxxcpp=	do-configure-pre-hook
   SUBST_MESSAGE.fixcxxcpp=\
 	Disabling fatal errors with C++ preprocessor in GNU configure scripts
-  SUBST_FILES.fixcxxcpp=	${CONFIGURE_SCRIPT}
+  SUBST_FILES.fixcxxcpp=	${CONFIGURE_SCRIPT} */${CONFIGURE_SCRIPT}
   SUBST_SED.fixcxxcpp=\
 	-e '/C++ preproc.*fails sanity/,/exit 1/s/exit 1/: /g'	\
 	-e '/fn_error.*C++ preproc.*fails sanity/s/^/: /g'
