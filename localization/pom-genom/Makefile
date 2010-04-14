@@ -18,7 +18,7 @@
 
 DISTNAME=		pom-genom-0.5
 CATEGORIES=		localization
-PKGREVISION=		1
+PKGREVISION=		2
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/pom-genom
