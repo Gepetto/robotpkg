@@ -2,6 +2,9 @@
 bin/hrp2
 bin/hrp2SendInitRqst
 bin/hrp2Test
+${PLIST.openprs}include/hrp2/server/openprs/hrp2DecodeOpenprs.h
+${PLIST.openprs}include/hrp2/server/openprs/hrp2EncodeOpenprs.h
+${PLIST.openprs}include/hrp2/server/openprs/hrp2RequestsOpenprsProto.h
 include/hrp2/hrp2Struct.h
 include/hrp2/server/hrp2Endian.h
 include/hrp2/server/hrp2Error.h
@@ -18,7 +21,12 @@ include/hrp2/server/hrp2Scan.h
 include/hrp2/server/hrp2Type.h
 lib/genom-openhrp-plugin.la
 lib/libhrp2Client.la
+${PLIST.openprs}lib/openprs/libhrp2Openprs.la
+${PLIST.openprs}lib/pkgconfig/hrp2-oprs.pc
 lib/pkgconfig/hrp2.pc
-lib/tclserv/libhrp2TclServ.la
+${PLIST.tcl}lib/tclserv/libhrp2TclServ.la
 share/modules/gen/hrp2.gen
-share/modules/tcl/hrp2Client.tcl
+${PLIST.openprs}share/modules/openprs/hrp2Openprs.inc
+${PLIST.openprs}share/modules/openprs/hrp2Openprs.opf
+${PLIST.openprs}share/modules/openprs/hrp2Openprs.sym
+${PLIST.tcl}share/modules/tcl/hrp2Client.tcl

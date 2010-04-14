@@ -15,7 +15,7 @@
 #                                       Anthony Mallet on Wed Mar 19 2008
 #
 
-DISTNAME=	hrp2-genom-1.0
+DISTNAME=	hrp2-genom-1.0.1
 
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hrp2-genom/}
