@@ -28,7 +28,7 @@ PREFER.pilo-genom?=	robotpkg
 
 DEPEND_USE+=		pilo-genom
 
-DEPEND_ABI.pilo-genom?=	pilo-genom>=0.1
+DEPEND_ABI.pilo-genom?=	pilo-genom>=1.1
 DEPEND_DIR.pilo-genom?=	../../motion/pilo-genom
 
 SYSTEM_SEARCH.pilo-genom=\

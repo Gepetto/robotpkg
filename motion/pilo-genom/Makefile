@@ -14,7 +14,7 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-DISTNAME=	pilo-genom-1.0
+DISTNAME=	pilo-genom-1.1
 CATEGORIES=	motion
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=pilo/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pilo-genom
