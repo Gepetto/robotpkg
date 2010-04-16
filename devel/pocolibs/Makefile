@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/03/17 22:35:09 tho $
+# $LAAS: Makefile 2010/04/16 17:15 matthieu $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Sun Jan 28 2007
 #
 
-DISTNAME=		pocolibs-2.6
+DISTNAME=		pocolibs-2.7
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pocolibs/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pocolibs
