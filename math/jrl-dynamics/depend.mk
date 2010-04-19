@@ -33,7 +33,7 @@ DEPEND_ABI.jrl-dynamics?=jrl-dynamics>=1.11
 DEPEND_DIR.jrl-dynamics?=../../math/jrl-dynamics
 
 SYSTEM_SEARCH.jrl-dynamics=\
-	include/dynamicsJRLJapan/MultiBody.h	\
+	include/dynamicsJRLJapan/robotDynamicsImpl.h	\
 	lib/pkgconfig/dynamicsJRLJapan.pc
 
 endif # JRL_DYNAMICS_DEPEND_MK ---------------------------------------
