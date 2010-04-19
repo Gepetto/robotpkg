@@ -57,5 +57,5 @@ lib/libhpp-localstepper.so
 lib/libhpp-localstepper.so.0
 lib/libhpp-localstepper.so.0.0.0
 lib/pkgconfig/hpp-localstepper.pc
-@dirrm include/hpp/localstepper/tasks
+@dirrm include/hpp/localstepper/task
 @dirrm include/hpp/localstepper
