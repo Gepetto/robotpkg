@@ -28,8 +28,10 @@ MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for generalized inverse kinematics tasks.
 
+DOXYGEN_PLIST_DIR+=	share/doc/abstractGikTask
 GNU_CONFIGURE=	yes
 
+include ../../mk/sysdep/doxygen.mk
 include ../../interfaces/jrl-interface-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
