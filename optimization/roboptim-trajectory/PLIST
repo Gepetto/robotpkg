@@ -1,6 +1,7 @@
-@comment Tue Nov 17 15:31:04 CET 2009
+@comment Sat Feb 27 12:47:02 CET 2010
 include/roboptim/trajectory/anthropomorphic-cost-function.hh
 include/roboptim/trajectory/anthropomorphic-cost-function.hxx
+include/roboptim/trajectory/cubic-b-spline.hh
 include/roboptim/trajectory/free-time-trajectory.hh
 include/roboptim/trajectory/free-time-trajectory.hxx
 include/roboptim/trajectory/freeze.hh
@@ -12,7 +13,6 @@ include/roboptim/trajectory/limit-omega.hxx
 include/roboptim/trajectory/limit-speed.hh
 include/roboptim/trajectory/limit-speed.hxx
 include/roboptim/trajectory/orthogonal-speed.hh
-include/roboptim/trajectory/spline.hh
 include/roboptim/trajectory/spline-length.hh
 include/roboptim/trajectory/stable-point-state-function.hh
 include/roboptim/trajectory/stable-point-state-function.hxx
