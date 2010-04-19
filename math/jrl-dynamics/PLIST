@@ -1,18 +1,15 @@
-@comment Fri May 8 13:48:50 JST 2009
-include/dynamicsJRLJapan/Body.h
+@comment Sat Jan 16 16:33:11 CET 2010
+include/dynamicsJRLJapan/deprecated.h
+include/dynamicsJRLJapan/dll.h
 include/dynamicsJRLJapan/DynamicBody.h
-include/dynamicsJRLJapan/DynamicMultiBody.h
-include/dynamicsJRLJapan/dynamics-config.h
-include/dynamicsJRLJapan/fileReader.h
+include/dynamicsJRLJapan/dynamicRobot.h
+include/dynamicsJRLJapan/dynamicsJRLJapanFactory.h
+include/dynamicsJRLJapan/Foot.h
 include/dynamicsJRLJapan/Hand.h
-include/dynamicsJRLJapan/HumanoidDynamicMultiBody.h
-include/dynamicsJRLJapan/HumanoidSpecificities.h
+include/dynamicsJRLJapan/humanoidDynamicRobot.h
 include/dynamicsJRLJapan/Joint.h
-include/dynamicsJRLJapan/MultiBody.h
 include/dynamicsJRLJapan/robotDynamicsImpl.h
-include/dynamicsJRLJapan/SpiritVRMLReader.h
 lib/libdynamicsJRLJapan.so
 lib/libdynamicsJRLJapan.so.${PKGVERSION}
 lib/pkgconfig/dynamicsJRLJapan.pc
-@dirrm share/doc
-@dirrm lib
+@dirrm include/dynamicsJRLJapan
