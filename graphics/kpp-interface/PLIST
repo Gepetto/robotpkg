@@ -1,4 +1,4 @@
-@comment Sat Apr 18 14:40:08 JST 2009
+@comment Fri Feb 26 21:18:37 CET 2010
 include/kppInterface/kppCommandInit.h
 include/kppInterface/kppCommandPlannerPanel.h
 include/kppInterface/kppCommandSetConfig.h
@@ -11,6 +11,8 @@ include/kppInterface/kwsGraphicRoadmapDelegate.h
 include/kppInterface/kwsGraphicRoadmap.h
 lib/modules/${NODENAME}/libkppInterface.kab
 lib/modules/${NODENAME}/libkppInterface.la
+lib/modules/${NODENAME}/libkppInterfaceStartAll.kab
+lib/modules/${NODENAME}/libkppInterfaceStartAll.la
 lib/pkgconfig/kppInterface.pc
 share/doc/kppInterface/html/annotated.html
 share/doc/kppInterface/html/class_ckpp_command_init__coll__graph.map
@@ -54,8 +56,10 @@ share/doc/kppInterface/html/class_ckws_graphic_roadmap_delegate.html
 share/doc/kppInterface/html/class_ckws_graphic_roadmap_delegate-members.html
 share/doc/kppInterface/html/class_ckws_graphic_roadmap.html
 share/doc/kppInterface/html/class_ckws_graphic_roadmap-members.html
+share/doc/kppInterface/html/classes.html
 share/doc/kppInterface/html/doxygen.png
 share/doc/kppInterface/html/files.html
+share/doc/kppInterface/html/footer.jpg
 share/doc/kppInterface/html/ftv2blank.png
 share/doc/kppInterface/html/ftv2doc.png
 share/doc/kppInterface/html/ftv2folderclosed.png
@@ -163,7 +167,6 @@ share/doc/kppInterface/html/main.html
 share/doc/kppInterface/html/modules.html
 share/doc/kppInterface/html/package_8h.html
 share/doc/kppInterface/html/package.css
-share/doc/kppInterface/html/pictures/HRP2.jpg
 share/doc/kppInterface/html/tab_b.gif
 share/doc/kppInterface/html/tab_l.gif
 share/doc/kppInterface/html/tab_r.gif
