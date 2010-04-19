@@ -16,9 +16,9 @@
 #                                       Anthony Mallet on Wed Aug 29 2007
 #
 
-DISTNAME=	kppinterfacewalk-${VERSION}
+DISTNAME=	kpp-interfacewalk-${VERSION}
 PKGNAME=	kpp-interfacewalk-${VERSION}
-VERSION=	1.9
+VERSION=	1.11
 
 CATEGORIES=	graphics
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kpp-interfacewalk/}
@@ -31,17 +31,18 @@ COMMENT=	Graphical user interface for hppWalkPlanner libraries.
 USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
-DOXYGEN_PLIST_DIR+=share/doc/kppInterfaceWalk
+DOXYGEN_PLIST_DIR+=share/doc/kpp-interfacewalk
 
 # options
-PKG_SUPPORTED_OPTIONS+=	verbose1
-PKG_OPTION_DESCR.verbose1=	Define level of verbosity
-PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
+PKG_SUPPORTED_OPTIONS+=	verbose
+PKG_OPTION_DESCR.verbose=	Compile in verbose mode
+PKG_OPTION_SET.verbose:=	CPPFLAGS+=-DHPP_DEBUG
 
 include ../../mk/sysdep/doxygen.mk
 include ../../path/hpp-openhrp/depend.mk
 include ../../path/hpp-walkplanner/depend.mk
 include ../../graphics/kpp-interface/depend.mk
+include ../../robots/hrpsys-jrl/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

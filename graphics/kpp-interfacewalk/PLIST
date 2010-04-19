@@ -1,11 +1,9 @@
 @comment Sat Apr 18 14:48:32 JST 2009
-include/kppInterfaceWalk/kppCommandLoadHRP2.h
-include/kppInterfaceWalk/kppCommandLoadObstacle.h
-include/kppInterfaceWalk/kppCommandOutputMotion.h
-include/kppInterfaceWalk/kppCommandSetConfig.h
-include/kppInterfaceWalk/kppInterfaceWalk.h
-include/kppInterfaceWalk/openHrpConfig.h
-lib/modules/${NODENAME}/libkppInterfaceWalk.a
-lib/modules/${NODENAME}/libkppInterfaceWalk.kab
-lib/pkgconfig/kppInterfaceWalk.pc
+@comment Sat Feb 27 15:50:23 CET 2010
+include/kpp/interfacewalk/fwd.hh
+include/kpp/interfacewalk/interface.hh
+include/kpp/interfacewalk/kppinterface-nowarning.hh
+lib/modules/${NODENAME}/libkpp-interfacewalk.kab
+lib/modules/${NODENAME}/libkpp-interfacewalk.la
+lib/pkgconfig/kpp-interfacewalk.pc
 @dirrm include/kppInterfaceWalk
