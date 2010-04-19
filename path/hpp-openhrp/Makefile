@@ -46,6 +46,7 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 PKG_OPTION_DESCR.verbose2=	Set the level of verbosity to 2
 PKG_OPTION_SET.verbose2:=	CXXFLAGS+=-DDEBUG=2
 
+include ../../mk/sysdep/doxygen.mk
 include ../../architecture/openhrp/depend.mk
 include ../../robots/hrp2-14/depend.mk
 include ../../path/hpp-core/depend.mk
