@@ -2,6 +2,8 @@
 include/jrlMathTools/angle.h
 include/jrlMathTools/jrlConstants.h
 include/jrlMathTools/matrix3x3.h
+include/jrlMathTools/matrixNxP.h
+include/jrlMathTools/VectorN.h
 include/jrlMathTools/matrix4x4.h
 include/jrlMathTools/vector3.h
 include/jrlMathTools/vector4.h
