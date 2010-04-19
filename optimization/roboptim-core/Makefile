@@ -18,7 +18,7 @@
 
 DISTNAME=	roboptim-core-${VERSION}
 PKGNAME=	roboptim-core-${VERSION}
-VERSION=	0.4
+VERSION=	0.5
 
 CATEGORIES=	optimization
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=roboptim/}

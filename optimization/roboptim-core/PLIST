@@ -41,7 +41,7 @@ include/roboptim/core/visualization/gnuplot-function.hh
 include/roboptim/core/visualization/gnuplot.hh
 lib/libroboptim-core.la
 lib/pkgconfig/roboptim-core.pc
-lib/roboptim-core-dummy-plugin.la
+lib/roboptim-core/roboptim-core-dummy-plugin.la
 @dirrm include/roboptim/core/visualization
 @dirrm include/roboptim/core/plugin
 @dirrm include/roboptim/core
