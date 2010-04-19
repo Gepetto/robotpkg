@@ -102,8 +102,8 @@ share/hpp/gik/preview-controller-10ms.ini
 share/hpp/gik/preview-controller-20ms.ini
 share/hpp/gik/preview-controller-50ms.ini
 share/hpp/gik/preview-controller-5ms.ini
-@dirrm share/hpp
 @dirrm share/hpp/gik
+@dirrm share/hpp
 @dirrm include/hppGik/tasks
 @dirrm include/hppGik/robot
 @dirrm include/hppGik/motionplanners/elements
