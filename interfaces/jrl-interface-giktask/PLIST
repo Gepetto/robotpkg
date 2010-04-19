@@ -14,6 +14,4 @@ include/gikTask/jrlGikTransformationConstraint.h
 include/gikTask/jrlLinearConstraint.h
 include/gikTask/jrlRobotMotion.h
 lib/pkgconfig/abstractGikTask.pc
-@dirrm share/doc/abstractGikTask/html/pictures
-@dirrm share/doc/abstractGikTask/html
 @dirrm include/gikTask
