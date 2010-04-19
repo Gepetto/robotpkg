@@ -6,4 +6,4 @@ include/kpp/interfacewalk/kppinterface-nowarning.hh
 lib/modules/${NODENAME}/libkpp-interfacewalk.kab
 lib/modules/${NODENAME}/libkpp-interfacewalk.la
 lib/pkgconfig/kpp-interfacewalk.pc
-@dirrm include/kppInterfaceWalk
+@dirrm include/kpp/interfacewalk
