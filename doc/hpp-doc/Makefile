@@ -16,12 +16,13 @@
 #                                       Anthony Mallet on Tue Feb 19 2008
 #
 
-DISTNAME=	hppdoc-${VERSION}
+DISTNAME=	hpp-doc-${VERSION}
 PKGNAME=	hpp-doc-${VERSION}
-VERSION=	1.3
+VERSION=	2.0.2
 
 CATEGORIES=	doc
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-doc/}
+MASTER_REPOSITORY= ${MASTER_REPOSITORY_JRL}doc/hpp-doc
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
@@ -38,4 +39,6 @@ define PKG_OPTION_SET.hpp-core
 endef
 
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/asciidoc.mk
+include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk
