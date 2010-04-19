@@ -16,13 +16,13 @@
 #                                       Anthony Mallet on Tue Jun 28 2007
 #
 
-DISTNAME=	hpplocalstepper-${VERSION}
+DISTNAME=	hpp-localstepper-${VERSION}
 PKGNAME=	hpp-localstepper-${VERSION}
-VERSION=	0.1
+VERSION=	1.1.1
 
 CATEGORIES=	path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpp-localstepper/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hpplocalstepper
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hpp-localstepper
 
 MAINTAINER=	hpp@laas.fr
 COMMENT=	Whole-body motion planning for humanoid robot with steps
@@ -30,7 +30,7 @@ COMMENT=	Whole-body motion planning for humanoid robot with steps
 USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=		yes
-DOXYGEN_PLIST_DIR+=	share/doc/hpplocalstepper
+DOXYGEN_PLIST_DIR+=	share/doc/hpp-localstepper
 
 include ../../path/hpp-hik/depend.mk
 include ../../pkgtools/libtool/depend.mk

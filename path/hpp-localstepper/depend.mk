@@ -28,8 +28,8 @@ ifeq (+,$(HPP_LOCALSTEPPER_DEPEND_MK)) # --------------------------------------
 PREFER.hpp-localstepper?=	robotpkg
 
 SYSTEM_SEARCH.hpp-localstepper=\
-	include/hpplocalstepper/hppLosSolver.hh \
-	lib/pkgconfig/hpplocalstepper.pc
+	include/hpp/localstepper/solver.hh \
+	lib/pkgconfig/hpp-localstepper.pc
 DEPEND_USE+=		hpp-localstepper
 
 DEPEND_ABI.hpp-localstepper?=	hpp-localstepper>=0.1

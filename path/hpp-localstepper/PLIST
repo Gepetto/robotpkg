@@ -1,9 +1,36 @@
-@comment Fri Oct 16 17:45:16 CEST 2009
+@comment Wed Mar 3 18:33:03 CET 2010
+include/hpp/localstepper/centipede-factory.hh
+include/hpp/localstepper/centipede.hh
+include/hpp/localstepper/doc.hh
+include/hpp/localstepper/geometry.hh
 include/hpplocalstepper/hppLosCentipedeFactory.hh
 include/hpplocalstepper/hppLosCentipede.hh
+include/hpplocalstepper/hppLosGeometry.hh
+include/hpplocalstepper/hppLosLinkGeometry.hh
 include/hpplocalstepper/hppLosLink.hh
 include/hpplocalstepper/hppLosSolverBasic.hh
 include/hpplocalstepper/hppLosSolver.hh
+include/hpp/localstepper/link-geometry.hh
+include/hpp/localstepper/link.hh
+include/hpp/localstepper/solver-basic.hh
+include/hpp/localstepper/solver.hh
+include/hpp/localstepper/task/collision-avoider.hh
+include/hpp/localstepper/task/com-bounding-task.hh
+include/hpp/localstepper/task/com-task.hh
+include/hpp/localstepper/task/cone-task.hh
+include/hpp/localstepper/task/configuration-task.hh
+include/hpp/localstepper/task/coplanar-task.hh
+include/hpp/localstepper/task/disc-avoider.hh
+include/hpp/localstepper/task/feet-anti-collisiontask.hh
+include/hpp/localstepper/task/feet-area-task.hh
+include/hpp/localstepper/task/feet-projection-task.hh
+include/hpp/localstepper/task/gaze-task.hh
+include/hpp/localstepper/task/link-configuration-task.hh
+include/hpp/localstepper/task/multi-task.hh
+include/hpp/localstepper/task/parallel-task.hh
+include/hpp/localstepper/task/plane-task.hh
+include/hpp/localstepper/task/pointing-task.hh
+include/hpp/localstepper/task/position-task.hh
 include/hpplocalstepper/tasks/hppLosCollisionAvoider.hh
 include/hpplocalstepper/tasks/hppLosComBoundingTask.hh
 include/hpplocalstepper/tasks/hppLosComTask.hh
@@ -23,8 +50,12 @@ include/hpplocalstepper/tasks/hppLosPointingTask.hh
 include/hpplocalstepper/tasks/hppLosPositionTask.hh
 include/hpplocalstepper/tasks/hppLosTask.hh
 include/hpplocalstepper/tasks/hppLosTransformationTask.hh
-include/hpplocalstepper/tasks/HRP2BasicCollisionAvoider.hh
-lib/libhpplocalstepper.la
-lib/pkgconfig/hpplocalstepper.pc
-@dirrm include/hpplocalstepper/tasks
-@dirrm include/hpplocalstepper
+include/hpp/localstepper/task/task.hh
+include/hpp/localstepper/task/transformation-task.hh
+lib/libhpp-localstepper.la
+lib/libhpp-localstepper.so
+lib/libhpp-localstepper.so.0
+lib/libhpp-localstepper.so.0.0.0
+lib/pkgconfig/hpp-localstepper.pc
+@dirrm include/hpp/localstepper/tasks
+@dirrm include/hpp/localstepper
