@@ -16,9 +16,9 @@
 #                                       Anthony Mallet on Mon Aug 27 2007
 #
 
-DISTNAME=	hppopenhrp-${VERSION}
+DISTNAME=	hppOpenHRP-${VERSION}
 PKGNAME=	hpp-openhrp-${VERSION}
-VERSION=	1.6.1
+VERSION=	1.6.2
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-openhrp/}
@@ -33,6 +33,8 @@ USE_LANGUAGES+= c c++
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
+
+DOXYGEN_PLIST_DIR+=	share/doc/hppOpenHRP
 
 # options
 PKG_OPTIONS_OPTIONAL_GROUPS+=	verbose
