@@ -1,9 +1,10 @@
-@comment Thu Oct 15 09:17:40 CEST 2009
-include/hpphik/hppHikLinearSystem.hh
-include/hpphik/hppHikSlackSolver.hh
-include/hpphik/hppHikSolverBasic.hh
-include/hpphik/hppHikSolver.hh
-include/hpphik/hppHikTools.hh
-lib/libhpphik.la
-lib/pkgconfig/hpphik.pc
-@dirrm include/hpphik
+@comment Thu Mar 4 21:24:09 CET 2010
+include/hpp/hik/doc.hh
+include/hpp/hik/linear-system.hh
+include/hpp/hik/slack-solver.hh
+include/hpp/hik/solver-basic.hh
+include/hpp/hik/solver.hh
+include/hpp/hik/tools.hh
+lib/libhpp-hik.la
+lib/pkgconfig/hpp-hik.pc
+@dirrm include/hpp/hik

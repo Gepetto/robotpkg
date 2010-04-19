@@ -16,13 +16,13 @@
 #                                       Anthony Mallet on Tue Jun 28 2007
 #
 
-DISTNAME=	hpphik-${VERSION}
+DISTNAME=	hpp-hik-${VERSION}
 PKGNAME=	hpp-hik-${VERSION}
-VERSION=	1.2.1
+VERSION=	2.0.1
 
 CATEGORIES=	path
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpphik/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hpphik
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpp-hik/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hpp-hik
 
 MAINTAINER=	hpp@laas.fr
 COMMENT=Solver of hierarchical linear inequality and equality constraints
@@ -30,7 +30,7 @@ COMMENT=Solver of hierarchical linear inequality and equality constraints
 USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=		yes
-DOXYGEN_PLIST_DIR+=	share/doc/hpphik
+DOXYGEN_PLIST_DIR+=	share/doc/hpp-hik
 
 include ../../math/fsqp/depend.mk
 include ../../path/hpp-gik/depend.mk

@@ -28,8 +28,8 @@ ifeq (+,$(HPP_HIK_DEPEND_MK)) # --------------------------------------
 PREFER.hpp-hik?=	robotpkg
 
 SYSTEM_SEARCH.hpp-hik=\
-	include/hpphik/hppHikSolver.hh \
-	lib/pkgconfig/hpphik.pc
+	include/hpp/hik/solver.hh \
+	lib/pkgconfig/hpp-hik.pc
 DEPEND_USE+=		hpp-hik
 
 DEPEND_ABI.hpp-hik?=	hpp-hik>=1.2.0
