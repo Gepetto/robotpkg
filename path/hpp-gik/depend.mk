@@ -27,8 +27,8 @@ ifeq (+,$(HPP_GIK_DEPEND_MK)) # --------------------------------------
 PREFER.hpp-gik?=	robotpkg
 
 SYSTEM_SEARCH.hpp-gik=\
-	include/hppGik/core/hppGikSolver.h	\
-	lib/libhppGik.la
+	include/hpp/gik/core/solver.hh	\
+	lib/libhpp-gik.la
 
 DEPEND_USE+=		hpp-gik
 
