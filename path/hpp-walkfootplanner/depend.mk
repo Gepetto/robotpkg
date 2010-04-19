@@ -33,8 +33,8 @@ DEPEND_ABI.hpp-walkfootplanner?=hpp-walkfootplanner>=1.1
 DEPEND_DIR.hpp-walkfootplanner?=../../path/hpp-walkfootplanner
 
 SYSTEM_SEARCH.hpp-walkfootplanner=\
-	include/hppWalkFootPlanner/hppWalkFootPlanner.h	\
-	lib/libhppWalkFootPlanner.la
+	include/hpp/walkfootplanner/planner.hh	\
+	lib/libhpp-walkfootplanner.la
 
 endif # HPPWALKFOOTPLANNER_DEPEND_MK ---------------------------------
 
