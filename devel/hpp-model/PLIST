@@ -1,4 +1,4 @@
-@comment Thu May 28 14:15:22 JST 2009
+@comment Tue Nov 24 10:45:15 CET 2009
 include/hppModel/hppBody.h
 include/hppModel/hppDevice.h
 include/hppModel/hppHumanoidRobot.h
