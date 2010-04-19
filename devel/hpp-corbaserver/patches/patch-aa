@@ -1,20 +1,316 @@
---- src/Makefile.in~	2010-03-04 18:05:29.266230767 +0100
-+++ src/Makefile.in	2010-03-04 18:10:32.166230770 +0100
-@@ -923,7 +923,7 @@
+--- configure.old	2010-03-13 11:44:09.359998409 +0100
++++ configure	2010-03-13 11:49:15.310998472 +0100
+@@ -796,6 +796,10 @@
+ PKGCONFIG_REQUIRES
+ PKGCONFIG_URL
+ PKGCONFIG_DESCRIPTION
++ROBOTBUILDER_PREFIX
++ROBOTBUILDER_LIBS
++ROBOTBUILDER_CFLAGS
++ROBOTBUILDER_REQD
+ HRP2_14_LIBS
+ HRP2_14_CFLAGS
+ HRP2_14_REQD
+@@ -827,10 +831,6 @@
+ KWSPLUS_LIBS
+ KWSPLUS_CFLAGS
+ KWSPLUS_REQD
+-ROBOTBUILDER_PREFIX
+-ROBOTBUILDER_LIBS
+-ROBOTBUILDER_CFLAGS
+-ROBOTBUILDER_REQD
+ KINEO_ADDON_BUILDER
+ KINEO_LIBDIR
+ KINEO_PREFIX
+@@ -984,8 +984,6 @@
+ PKG_CONFIG
+ KINEO_CFLAGS
+ KINEO_LIBS
+-ROBOTBUILDER_CFLAGS
+-ROBOTBUILDER_LIBS
+ KWSPLUS_CFLAGS
+ KWSPLUS_LIBS
+ HPPCORE_CFLAGS
+@@ -999,7 +997,9 @@
+ HRP2DYNAMICS_CFLAGS
+ HRP2DYNAMICS_LIBS
+ HRP2_14_CFLAGS
+-HRP2_14_LIBS'
++HRP2_14_LIBS
++ROBOTBUILDER_CFLAGS
++ROBOTBUILDER_LIBS'
  
  
- .la.kab:
--	SOFILE=`echo ".libs/$<" | sed 's/.la$$/-$(PACKAGE_VERSION).so/'`; 	\
-+	-SOFILE=`echo ".libs/$<" | sed 's/.la$$/-$(PACKAGE_VERSION).so/'`; 	\
- 	KABSRCFILE=`echo "$$SOFILE" | sed 's/.so$$/.kab/'`; 			\
- 	KABDSTFILE=`echo "$<" | sed 's/.la$$/.kab/'`; 				\
- 	LD_LIBRARY_PATH=$(KINEO_LIBDIR) 					\
-@@ -932,7 +932,7 @@
- 	&& mv "$$KABSRCFILE" "$$KABDSTFILE"
+ # Initialize some variables set by options.
+@@ -1665,10 +1665,6 @@
+   KINEO_CFLAGS
+               C compiler flags for KINEO, overriding pkg-config
+   KINEO_LIBS  linker flags for KINEO, overriding pkg-config
+-  ROBOTBUILDER_CFLAGS
+-              C compiler flags for ROBOTBUILDER, overriding pkg-config
+-  ROBOTBUILDER_LIBS
+-              linker flags for ROBOTBUILDER, overriding pkg-config
+   KWSPLUS_CFLAGS
+               C compiler flags for KWSPLUS, overriding pkg-config
+   KWSPLUS_LIBS
+@@ -1697,6 +1693,10 @@
+               C compiler flags for HRP2_14, overriding pkg-config
+   HRP2_14_LIBS
+               linker flags for HRP2_14, overriding pkg-config
++  ROBOTBUILDER_CFLAGS
++              C compiler flags for ROBOTBUILDER, overriding pkg-config
++  ROBOTBUILDER_LIBS
++              linker flags for ROBOTBUILDER, overriding pkg-config
  
- %.kab:%
--	BINFILE=`echo ".libs/$<"`;						\
-+	-BINFILE=`echo ".libs/$<"`;						\
- 	KABSRCFILE=`echo "$$BINFILE" | sed 's/$$/.kab/'`; 			\
- 	KABDSTFILE=`echo "$<" | sed 's/$$/.kab/'`; 				\
- 	LD_LIBRARY_PATH=$(KINEO_LIBDIR) 					\
+ Use these variables to override the choices made by `configure' or to help
+ it to find libraries and programs with nonstandard names/locations.
+@@ -16580,123 +16580,6 @@
+ 
+ 
+ 
+-ROBOTBUILDER_REQD="robotbuilder >= 1.0.5"
+-
+-
+-pkg_failed=no
+-{ $as_echo "$as_me:$LINENO: checking for ROBOTBUILDER" >&5
+-$as_echo_n "checking for ROBOTBUILDER... " >&6; }
+-
+-if test -n "$ROBOTBUILDER_CFLAGS"; then
+-    pkg_cv_ROBOTBUILDER_CFLAGS="$ROBOTBUILDER_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
+-    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"robotbuilder >= 1.0.5\"") >&5
+-  ($PKG_CONFIG --exists --print-errors "robotbuilder >= 1.0.5") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; then
+-  pkg_cv_ROBOTBUILDER_CFLAGS=`$PKG_CONFIG --cflags "robotbuilder >= 1.0.5" 2>/dev/null`
+-else
+-  pkg_failed=yes
+-fi
+- else
+-    pkg_failed=untried
+-fi
+-if test -n "$ROBOTBUILDER_LIBS"; then
+-    pkg_cv_ROBOTBUILDER_LIBS="$ROBOTBUILDER_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
+-    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"robotbuilder >= 1.0.5\"") >&5
+-  ($PKG_CONFIG --exists --print-errors "robotbuilder >= 1.0.5") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; then
+-  pkg_cv_ROBOTBUILDER_LIBS=`$PKG_CONFIG --libs "robotbuilder >= 1.0.5" 2>/dev/null`
+-else
+-  pkg_failed=yes
+-fi
+- else
+-    pkg_failed=untried
+-fi
+-
+-
+-
+-if test $pkg_failed = yes; then
+-
+-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+-        _pkg_short_errors_supported=yes
+-else
+-        _pkg_short_errors_supported=no
+-fi
+-        if test $_pkg_short_errors_supported = yes; then
+-	        ROBOTBUILDER_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "robotbuilder >= 1.0.5" 2>&1`
+-        else
+-	        ROBOTBUILDER_PKG_ERRORS=`$PKG_CONFIG --print-errors "robotbuilder >= 1.0.5" 2>&1`
+-        fi
+-	# Put the nasty error message in config.log where it belongs
+-	echo "$ROBOTBUILDER_PKG_ERRORS" >&5
+-
+-	{ { $as_echo "$as_me:$LINENO: error: Package requirements (robotbuilder >= 1.0.5) were not met:
+-
+-$ROBOTBUILDER_PKG_ERRORS
+-
+-Consider adjusting the PKG_CONFIG_PATH environment variable if you
+-installed software in a non-standard prefix.
+-
+-Alternatively, you may set the environment variables ROBOTBUILDER_CFLAGS
+-and ROBOTBUILDER_LIBS to avoid the need to call pkg-config.
+-See the pkg-config man page for more details.
+-" >&5
+-$as_echo "$as_me: error: Package requirements (robotbuilder >= 1.0.5) were not met:
+-
+-$ROBOTBUILDER_PKG_ERRORS
+-
+-Consider adjusting the PKG_CONFIG_PATH environment variable if you
+-installed software in a non-standard prefix.
+-
+-Alternatively, you may set the environment variables ROBOTBUILDER_CFLAGS
+-and ROBOTBUILDER_LIBS to avoid the need to call pkg-config.
+-See the pkg-config man page for more details.
+-" >&2;}
+-   { (exit 1); exit 1; }; }
+-elif test $pkg_failed = untried; then
+-	{ { $as_echo "$as_me:$LINENO: error: in \`$ac_pwd':" >&5
+-$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-{ { $as_echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
+-is in your PATH or set the PKG_CONFIG environment variable to the full
+-path to pkg-config.
+-
+-Alternatively, you may set the environment variables ROBOTBUILDER_CFLAGS
+-and ROBOTBUILDER_LIBS to avoid the need to call pkg-config.
+-See the pkg-config man page for more details.
+-
+-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+-See \`config.log' for more details." >&5
+-$as_echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
+-is in your PATH or set the PKG_CONFIG environment variable to the full
+-path to pkg-config.
+-
+-Alternatively, you may set the environment variables ROBOTBUILDER_CFLAGS
+-and ROBOTBUILDER_LIBS to avoid the need to call pkg-config.
+-See the pkg-config man page for more details.
+-
+-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+-See \`config.log' for more details." >&2;}
+-   { (exit 1); exit 1; }; }; }
+-else
+-	ROBOTBUILDER_CFLAGS=$pkg_cv_ROBOTBUILDER_CFLAGS
+-	ROBOTBUILDER_LIBS=$pkg_cv_ROBOTBUILDER_LIBS
+-        { $as_echo "$as_me:$LINENO: result: yes" >&5
+-$as_echo "yes" >&6; }
+-	:
+-fi
+-ROBOTBUILDER_PREFIX=`$PKG_CONFIG robotbuilder --variable=prefix`
+-
+-
+-
+-
+-
+ KWSPLUS_REQD="kwsPlus >= 1.8"
+ 
+ 
+@@ -17528,7 +17411,124 @@
+ 	:
+ fi
+ 
+-	OPENHRP_DEPENDENCES=", hppOpenHRP >= 1.6.2, jrl-modelloader >= 1.4, hrp2Dynamics >= 1.4.0, hrp2_14 >= 1.7.3"
++
++	ROBOTBUILDER_REQD="robotbuilder >= 1.0.5"
++
++
++pkg_failed=no
++{ $as_echo "$as_me:$LINENO: checking for ROBOTBUILDER" >&5
++$as_echo_n "checking for ROBOTBUILDER... " >&6; }
++
++if test -n "$ROBOTBUILDER_CFLAGS"; then
++    pkg_cv_ROBOTBUILDER_CFLAGS="$ROBOTBUILDER_CFLAGS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"robotbuilder >= 1.0.5\"") >&5
++  ($PKG_CONFIG --exists --print-errors "robotbuilder >= 1.0.5") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; then
++  pkg_cv_ROBOTBUILDER_CFLAGS=`$PKG_CONFIG --cflags "robotbuilder >= 1.0.5" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++if test -n "$ROBOTBUILDER_LIBS"; then
++    pkg_cv_ROBOTBUILDER_LIBS="$ROBOTBUILDER_LIBS"
++ elif test -n "$PKG_CONFIG"; then
++    if test -n "$PKG_CONFIG" && \
++    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"robotbuilder >= 1.0.5\"") >&5
++  ($PKG_CONFIG --exists --print-errors "robotbuilder >= 1.0.5") 2>&5
++  ac_status=$?
++  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; then
++  pkg_cv_ROBOTBUILDER_LIBS=`$PKG_CONFIG --libs "robotbuilder >= 1.0.5" 2>/dev/null`
++else
++  pkg_failed=yes
++fi
++ else
++    pkg_failed=untried
++fi
++
++
++
++if test $pkg_failed = yes; then
++
++if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
++        _pkg_short_errors_supported=yes
++else
++        _pkg_short_errors_supported=no
++fi
++        if test $_pkg_short_errors_supported = yes; then
++	        ROBOTBUILDER_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "robotbuilder >= 1.0.5" 2>&1`
++        else
++	        ROBOTBUILDER_PKG_ERRORS=`$PKG_CONFIG --print-errors "robotbuilder >= 1.0.5" 2>&1`
++        fi
++	# Put the nasty error message in config.log where it belongs
++	echo "$ROBOTBUILDER_PKG_ERRORS" >&5
++
++	{ { $as_echo "$as_me:$LINENO: error: Package requirements (robotbuilder >= 1.0.5) were not met:
++
++$ROBOTBUILDER_PKG_ERRORS
++
++Consider adjusting the PKG_CONFIG_PATH environment variable if you
++installed software in a non-standard prefix.
++
++Alternatively, you may set the environment variables ROBOTBUILDER_CFLAGS
++and ROBOTBUILDER_LIBS to avoid the need to call pkg-config.
++See the pkg-config man page for more details.
++" >&5
++$as_echo "$as_me: error: Package requirements (robotbuilder >= 1.0.5) were not met:
++
++$ROBOTBUILDER_PKG_ERRORS
++
++Consider adjusting the PKG_CONFIG_PATH environment variable if you
++installed software in a non-standard prefix.
++
++Alternatively, you may set the environment variables ROBOTBUILDER_CFLAGS
++and ROBOTBUILDER_LIBS to avoid the need to call pkg-config.
++See the pkg-config man page for more details.
++" >&2;}
++   { (exit 1); exit 1; }; }
++elif test $pkg_failed = untried; then
++	{ { $as_echo "$as_me:$LINENO: error: in \`$ac_pwd':" >&5
++$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
++{ { $as_echo "$as_me:$LINENO: error: The pkg-config script could not be found or is too old.  Make sure it
++is in your PATH or set the PKG_CONFIG environment variable to the full
++path to pkg-config.
++
++Alternatively, you may set the environment variables ROBOTBUILDER_CFLAGS
++and ROBOTBUILDER_LIBS to avoid the need to call pkg-config.
++See the pkg-config man page for more details.
++
++To get pkg-config, see <http://pkg-config.freedesktop.org/>.
++See \`config.log' for more details." >&5
++$as_echo "$as_me: error: The pkg-config script could not be found or is too old.  Make sure it
++is in your PATH or set the PKG_CONFIG environment variable to the full
++path to pkg-config.
++
++Alternatively, you may set the environment variables ROBOTBUILDER_CFLAGS
++and ROBOTBUILDER_LIBS to avoid the need to call pkg-config.
++See the pkg-config man page for more details.
++
++To get pkg-config, see <http://pkg-config.freedesktop.org/>.
++See \`config.log' for more details." >&2;}
++   { (exit 1); exit 1; }; }; }
++else
++	ROBOTBUILDER_CFLAGS=$pkg_cv_ROBOTBUILDER_CFLAGS
++	ROBOTBUILDER_LIBS=$pkg_cv_ROBOTBUILDER_LIBS
++        { $as_echo "$as_me:$LINENO: result: yes" >&5
++$as_echo "yes" >&6; }
++	:
++fi
++	ROBOTBUILDER_PREFIX=`$PKG_CONFIG robotbuilder --variable=prefix`
++
++
++
++
++	OPENHRP_DEPENDENCES=", hppOpenHRP >= 1.6.2, jrl-modelloader >= 1.4, hrp2Dynamics >= 1.4.0, hrp2_14 >= 1.7.3, robotbuilder >= 1.0.5"
+ fi
+ 
+ 

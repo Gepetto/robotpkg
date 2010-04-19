@@ -18,7 +18,7 @@
 
 DISTNAME=	hppCorbaServer-${VERSION}
 PKGNAME=	hpp-corbaserver-${VERSION}
-VERSION=	1.8.0
+VERSION=	1.8.3
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-corbaserver/}
@@ -43,6 +43,7 @@ PKG_SUGGESTED_OPTIONS+=	openhrp
 PKG_OPTION_DESCR.openhrp=	Build an OpenHRP(tm) client.
 define PKG_OPTION_SET.openhrp
   CONFIGURE_ARGS+=	--with-openhrp
+  include ../../robots/hrp2-builder/depend.mk
   include ../../math/hrp2-dynamics/depend.mk
   include ../../path/hpp-openhrp/depend.mk
   include ../../devel/jrl-modelloader/depend.mk
@@ -56,7 +57,6 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 # --------------------------------------------------------------------
 
-include ../../robots/hrp2-builder/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk

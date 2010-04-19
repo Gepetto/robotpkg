@@ -1,4 +1,4 @@
-SHA1 (hppCorbaServer-1.8.0.tar.gz) = 7485ca0f3e17314339a6fa35964830266a125db8
-RMD160 (hppCorbaServer-1.8.0.tar.gz) = db95f14d1a95cb0040e5c4043940d92af61906e9
-Size (hppCorbaServer-1.8.0.tar.gz) = 499549 bytes
-SHA1 (patch-aa) = e5cfdda0a5b476a5894c0db6069713a813828684
+SHA1 (hppCorbaServer-1.8.3.tar.gz) = ba5a203d41f27b43c7abf2cffed0a44af8d72c69
+RMD160 (hppCorbaServer-1.8.3.tar.gz) = c181690383f1b42cbc8a4789935da4e4e37bdcd6
+Size (hppCorbaServer-1.8.3.tar.gz) = 399538 bytes
+SHA1 (patch-aa) = 1f734a1f02fe137f31f49d10d48339a208c5eec3
