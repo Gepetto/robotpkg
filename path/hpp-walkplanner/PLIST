@@ -1,6 +1,7 @@
-@comment Mon Oct 12 18:23:14 CEST 2009
-include/hppWalkPlanner/hppWalkPatGen.h
-include/hppWalkPlanner/hppWalkPlanner.h
-lib/libhppWalkPlanner.la
-lib/pkgconfig/hppWalkPlanner.pc
-@dirrm include/hppWalkPlanner
+@comment Sat Feb 27 07:33:02 CET 2010
+include/hpp/walkplanner/fwd.hh
+include/hpp/walkplanner/io.hh
+include/hpp/walkplanner/planner.hh
+lib/libhpp-walkplanner.la
+lib/pkgconfig/hpp-walkplanner.pc
+@dirrm include/hpp/walkplanner

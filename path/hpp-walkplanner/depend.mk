@@ -28,8 +28,8 @@ ifeq (+,$(HPP_WALKPLANNER_DEPEND_MK)) # ------------------------------
 PREFER.hpp-walkplanner?=	robotpkg
 
 SYSTEM_SEARCH.hpp-walkplanner=\
-	include/hppWalkPlanner/hppWalkPlanner.h	\
-	lib/libhppWalkPlanner.la
+	include/hpp/walkplanner/planner.hh	\
+	lib/libhpp-walkplanner.la
 
 DEPEND_USE+=		hpp-walkplanner
 
