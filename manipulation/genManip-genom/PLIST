@@ -1,0 +1,16 @@
+include/genManip/genManipStruct.h
+include/genManip/server/genManipEndian.h
+include/genManip/server/genManipError.h
+include/genManip/server/genManipPosterLib.h
+include/genManip/server/genManipPosterLibStruct.h
+include/genManip/server/genManipPrint.h
+include/genManip/server/genManipPrintXML.h
+include/genManip/server/genManipScan.h
+include/genManip/server/genManipType.h
+lib/libgenManipClient.la
+lib/libgenManipClient.so
+lib/pkgconfig/genManip.pc
+share/modules/gen/genManip.gen
+${PLIST.tcl}share/modules/tcl/genManipClient.tcl
+@dirrm include/genManip/server
+@dirrm include/genManip
