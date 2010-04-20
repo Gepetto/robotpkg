@@ -1,9 +1,11 @@
---- ./src/gbGENOM.h~	2010-02-19 13:11:33.000000000 +0100
-+++ ./src/gbGENOM.h	2010-03-24 17:31:47.000000000 +0100
-@@ -26,5 +26,6 @@
+--- src/Makefile.in~	2010-04-20 14:58:56.387186407 +0200
++++ src/Makefile.in	2010-04-20 14:59:28.541186441 +0200
+@@ -41,7 +41,7 @@
+ vpath %.c ${top_srcdir}/src
  
- #define GB_GENOM
- #include "gbStruct.h"
-+#include "gbManip.h"
+ # les entetes
+-HEADERS_= Proto_gb.h gb.h Proto_gbModeles.h gbStruct.h gbGENOM.h
++HEADERS_= Proto_gb.h gb.h Proto_gbModeles.h gbStruct.h gbManip.h gbGENOM.h
+ HEADERS= $(HEADERS_:%=${abs_srcdir}/src/%)
  
- #endif
+ # les sources
