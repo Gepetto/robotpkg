@@ -16,7 +16,7 @@
 #                                     Florent Lamiraux on Wed Oct 10 2007
 #
 
-DISTNAME=	hrp2_14-1.7.0
+DISTNAME=	hrp2_14-1.7.3
 
 CATEGORIES=	robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hrp2_14/}
@@ -27,17 +27,6 @@ MAINTAINER=	gepetto@laas.fr
 COMMENT=	Data and functions specific to HRP2-14.
 
 USE_LANGUAGES+= c c++
-
-# dependency to kineo
-PKG_SUPPORTED_OPTIONS+=	with-kineo
-
-PKG_OPTION_DESCR.with-kineo=	Provide configuration computations
-define PKG_OPTION_SET.with-kineo
-  CMAKE_ARGS+=	-DWITH_KINEO=true
-  include ../../path/kineo-pp/depend.mk
-endef
-
-USE_LANGUAGES+=		c++
 DOXYGEN_PLIST_DIR+=	share/doc/hrp2_14
 
 include ../../pkgtools/pkg-config/depend.mk
