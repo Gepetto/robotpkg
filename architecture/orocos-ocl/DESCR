@@ -1,0 +1,21 @@
+The Orocos Component Library is a set of basic component, build on top of the
+Orocos RTT. It contains in particular the following components :
+
+	- Reporting
+		Components to report the data flow between components to the console or a
+		file. The reporter components can be configured to report the data flow at
+		specific data ports of a component, or to report all to data flow from and 
+		to a component at once.
+
+	- Taskbrowser
+		A text oriented user interface for online interaction with components.
+		The taskbrowser allows you to interact with a component through its task
+		context interface: call methods and commands, handle properties and data 
+		ports, etc. This is your main tool during component development, testing 
+		or experimenting
+
+	- Deployment
+		Component for connecting and configuring an application.
+ 
+
+
