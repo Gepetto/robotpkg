@@ -1,0 +1,3 @@
+The Orocos Real-Time Toolkit (RTT) provides a C++ framework, or "runtime",
+targeting the implementation of (realtime and non-realtime) control systems.
+It is sometimes refered to as the 'Open Real-Time Control Services'.

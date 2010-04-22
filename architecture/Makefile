@@ -13,6 +13,7 @@ SUBDIR+=	netshring
 SUBDIR+=	openhrp
 SUBDIR+=	openprs
 SUBDIR+=	openrtm-aist
+SUBDIR+=	orocos-rtt
 SUBDIR+=	transgen
 SUBDIR+=	yarp
 
