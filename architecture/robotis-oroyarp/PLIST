@@ -1,0 +1,16 @@
+@comment Thu Apr 22 15:41:56 CEST 2010
+bin/deployer-yarp
+bin/robotis-yarp-controller
+bin/robotis-yarp-fakebot
+include/robotis/oroyarp/Orocos2Yarp.h
+include/robotis/oroyarp/YarpBottleConversion.h
+include/robotis/oroyarp/YarpDeploymentComponent.h
+include/robotis/oroyarp/YarpKDLConversion.h
+include/robotis/oroyarp/YarpPortCreator.h
+include/robotis/oroyarp/YarpReadPort.h
+include/robotis/oroyarp/YarpRWPort.h
+include/robotis/oroyarp/YarpToolkit.h
+include/robotis/oroyarp/YarpTypeConversion.h
+include/robotis/oroyarp/YarpTypeTemplateConversion.h
+include/robotis/oroyarp/YarpWritePort.h
+lib/librobotis-oroyarp.so

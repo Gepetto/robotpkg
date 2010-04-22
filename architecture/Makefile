@@ -15,6 +15,7 @@ SUBDIR+=	openprs
 SUBDIR+=	openrtm-aist
 SUBDIR+=	orocos-ocl
 SUBDIR+=	orocos-rtt
+SUBDIR+=	robotis-oroyarp
 SUBDIR+=	transgen
 SUBDIR+=	yarp
 
