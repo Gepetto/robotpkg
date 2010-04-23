@@ -26,6 +26,7 @@ HOMEPAGE=		http://www.orocos.org/rtt
 COMMENT=		The Orocos Real-Time Toolkit
 
 USE_LANGUAGES=	c c++
+DOXYGEN_PLIST_DIR+=	share/doc/liborocos-rtt
 
 CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
 
