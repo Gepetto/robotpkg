@@ -1,0 +1,38 @@
+--- ./example/swig/yarp.i.orig	2010-04-26 09:42:26.805781000 +0200
++++ ./example/swig/yarp.i	2010-04-26 09:46:01.810753000 +0200
+@@ -303,6 +303,13 @@
+ typedef yarp::os::BufferedPort<ImageRgba> BufferedPortImageRgba;
+ %}
+ 
++%{
++typedef yarp::sig::ImageOf<yarp::sig::PixelMono> ImageMono;
++typedef yarp::os::TypedReader<ImageMono> TypedReaderImageMono;
++typedef yarp::os::TypedReaderCallback<ImageMono> TypedReaderCallbackImageMono;
++typedef yarp::os::BufferedPort<ImageMono> BufferedPortImageMono;
++%}
++
+ %feature("notabstract") ImageRgb;
+ %feature("notabstract") yarp::os::BufferedPort<ImageRgb>;
+ %feature("notabstract") BufferedPortImageRgb;
+@@ -311,6 +318,10 @@
+ %feature("notabstract") yarp::os::BufferedPort<ImageRgba>;
+ %feature("notabstract") BufferedPortImageRgba;
+ 
++%feature("notabstract") ImageMono;
++%feature("notabstract") yarp::os::BufferedPort<ImageMono>;
++%feature("notabstract") BufferedPortImageMono;
++
+ %template(ImageRgb) yarp::sig::ImageOf<yarp::sig::PixelRgb>;
+ %template(TypedReaderImageRgb) yarp::os::TypedReader<yarp::sig::ImageOf<yarp::sig::PixelRgb> >;
+ %template(TypedReaderCallbackImageRgb) yarp::os::TypedReaderCallback<yarp::sig::ImageOf<yarp::sig::PixelRgb> >;
+@@ -322,6 +333,10 @@
+ %template(TypedReaderCallbackImageRgba) yarp::os::TypedReaderCallback<yarp::sig::ImageOf<yarp::sig::PixelRgba> >;
+ %template(BufferedPortImageRgba) yarp::os::BufferedPort<yarp::sig::ImageOf<yarp::sig::PixelRgba> >;
+ 
++%template(ImageMono) yarp::sig::ImageOf<yarp::sig::PixelMono>;
++%template(TypedReaderImageMono) yarp::os::TypedReader<yarp::sig::ImageOf<yarp::sig::PixelMono> >;
++%template(TypedReaderCallbackImageMono) yarp::os::TypedReaderCallback<yarp::sig::ImageOf<yarp::sig::PixelMono> >;
++%template(BufferedPortImageMono) yarp::os::BufferedPort<yarp::sig::ImageOf<yarp::sig::PixelMono> >;
+ 
+ // Now we do ImageFloat - it is a little trickey too..
+ //%template(ImageFloat) yarp::sig::ImageOf<yarp::sig::PixelFloat>;
