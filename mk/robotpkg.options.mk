@@ -1,4 +1,3 @@
-# $LAAS: robotpkg.options.mk 2010/04/01 17:03:30 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -224,7 +223,7 @@ _OPTIONS_DEFAULT_SUPPORTED:=# empty
 define _pkgopt_supported
   _opt_:=	${1}
   _popt_:=	$(patsubst -%,%,${1})#	positive option
-  ifneq (,$$(findstring $${_popt_},$(PKG_SUPPORTED_OPTIONS)))
+  ifneq (,$$(filter $${_popt_},$(PKG_SUPPORTED_OPTIONS)))
     _OPTIONS_DEFAULT_SUPPORTED:=$${_OPTIONS_DEFAULT_SUPPORTED} $${_opt_}
   endif
 endef
@@ -240,7 +239,7 @@ define _pkgopt_process
   _opt_:=	${1}
   _popt_:=	$(patsubst -%,%,${1})#	positive option
 
-  ifeq (,$$(findstring $${_popt_},${PKG_SUPPORTED_OPTIONS}))
+  ifeq (,$$(filter $${_popt_},${PKG_SUPPORTED_OPTIONS}))
     _OPTIONS_UNSUPPORTED:=$${_OPTIONS_UNSUPPORTED} $${_opt_}
   else
     ifdef _PKG_OPTIONS_GROUP_MAP.$${_popt_}
@@ -268,7 +267,6 @@ define _pkgopt_chkreqd
     ifneq (,$${PKG_FAIL_REASON})
       PKG_FAIL_REASON+=""
     endif
-    PKG_FAIL_REASON+=	${hline}
     PKG_FAIL_REASON+=	"One of the following build options must be selected: "
     PKG_FAIL_REASON+=	"	"$(call quote,${PKG_OPTIONS_GROUP.${1}})
     PKG_OPTIONS_FAILED=	yes
