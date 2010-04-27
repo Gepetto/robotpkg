@@ -21,7 +21,7 @@
 : ${SQLITE:=@SQLITE@}
 : ${ROBOTPKG_DB:=@ROBOTPKG_DB@}
 
-: ${cols:=`tput cols 2>/dev/null || echo 80`}
+cols=`tput cols || echo 80`
 long=
 
 lookup()
