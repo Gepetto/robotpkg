@@ -1,6 +1,5 @@
-# $LAAS: package.mk 2009/04/02 14:31:42 mallet $
 #
-# Copyright (c) 2006,2009 LAAS/CNRS
+# Copyright (c) 2006,2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -57,7 +56,6 @@ pkg-create: pkg-remove ${PKGFILE} pkg-links
 
 _PKG_ARGS_PACKAGE+=	${_PKG_CREATE_ARGS}
 _PKG_ARGS_PACKAGE+=	-p ${PREFIX}
-_PKG_ARGS_PACKAGE+=	-L ${PREFIX}			# @src ...
 
 ${PKGFILE}: ${_CONTENTS_TARGETS}
 	${RUN}${MKDIR} $(dir $@);					\
