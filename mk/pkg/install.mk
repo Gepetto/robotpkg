@@ -1,4 +1,3 @@
-# $LAAS: install.mk 2010/03/10 19:34:54 mallet $
 #
 # Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
@@ -54,10 +53,15 @@ ${foreach _conflict_,${CONFLICTS},					\
 }
 	${RUN}								\
 	${TEST} -f ${WRKDIR}/.CONFLICTS || exit 0;			\
-	${ECHO} "${PKGNAME} conflicts with installed package(s):";	\
+	${ECHO} ${hline};						\
+	${ECHO} "$${bf}${PKGNAME} conflicts with installed"		\
+		"package(s):$${rm}";					\
 	${CAT} ${WRKDIR}/.CONFLICTS | ${SED} -e "s|^|    |";		\
+	${ECHO};							\
 	${ECHO} "They install the same files into the same place.";	\
-	${ECHO} "Please remove conflicts first with pkg_delete(1).";	\
+	${ECHO} "Please remove conflicts first with"			\
+		"robotpkg_delete(1).";					\
+	${ECHO} ${hline};						\
 	${RM} -f ${WRKDIR}/.CONFLICTS;					\
 	exit 1
 
