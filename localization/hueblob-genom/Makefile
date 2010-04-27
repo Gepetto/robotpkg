@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/12/15 15:47:33 mallet $
+# $LAAS: Makefile 2010/04/27 23:14:01 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -43,6 +43,6 @@ include ../../architecture/genom/depend.mk
 
 include ../../image/viam-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
-include ../../image/opencv/depend.mk
+include ../../image/opencv1/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../mk/robotpkg.mk

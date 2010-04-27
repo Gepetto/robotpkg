@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/05/25 14:08:41 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -32,6 +31,6 @@ include ../../architecture/genom/depend.mk
 
 include ../../image/libstereopixel/depend.mk
 include ../../image/libimages3d/depend.mk
-include ../../image/opencv/depend.mk
+include ../../image/opencv1/depend.mk
 include ../../image/viam-genom/depend.mk
 include ../../mk/robotpkg.mk

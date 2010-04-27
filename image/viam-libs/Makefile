@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/11/24 17:53:23 mallet $
+# $LAAS: Makefile 2010/04/27 23:13:00 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -48,7 +48,7 @@ PKG_OPTION_DESCR.opencv=  Enable support for opencv.
 PKG_OPTION_UNSET.opencv:= CONFIGURE_ARGS+=--disable-opencv
 define PKG_OPTION_SET.opencv
   CONFIGURE_ARGS+=--enable-opencv
-  include ../../image/opencv/depend.mk
+  include ../../image/opencv1/depend.mk
 endef
 
 # options for doc generation
