@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2010/04/16 17:15 matthieu $
 #
 # Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
@@ -26,6 +25,15 @@ HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/pocolibs
 COMMENT=		Real-time communication library used by GenoM modules.
 
 GNU_CONFIGURE=		yes
+
+# Enable valgrind support
+PKG_SUPPORTED_OPTIONS+=	valgrind
+PKG_OPTION_DESCR.valgrind:=	Enable valgrind support
+
+define PKG_OPTION_SET.valgrind
+  CONFIGURE_ARGS+=	--enable-valgrind
+  include ../../mk/sysdep/valgrind.mk
+endef
 
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
