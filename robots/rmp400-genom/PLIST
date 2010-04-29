@@ -1,0 +1,34 @@
+@comment Thu Apr 29 15:33:44 CEST 2010
+bin/rmp400
+bin/rmp400SendInitRqst
+bin/rmp400Test
+include/rmp400/rmp400Const.h
+include/rmp400/rmp400Struct.h
+${PLIST.openprs}include/rmp400/server/openprs/rmp400DecodeOpenprs.h
+${PLIST.openprs}include/rmp400/server/openprs/rmp400EncodeOpenprs.h
+${PLIST.openprs}include/rmp400/server/openprs/rmp400RequestsOpenprsProto.h
+include/rmp400/server/rmp400Endian.h
+include/rmp400/server/rmp400Error.h
+include/rmp400/server/rmp400MsgLib.h
+include/rmp400/server/rmp400PosterLib.h
+include/rmp400/server/rmp400PosterLibStruct.h
+include/rmp400/server/rmp400PosterReadLibProto.h
+include/rmp400/server/rmp400PosterShowLib.h
+include/rmp400/server/rmp400PosterWriteLibProto.h
+include/rmp400/server/rmp400PosterXMLLib.h
+include/rmp400/server/rmp400Print.h
+include/rmp400/server/rmp400PrintXML.h
+include/rmp400/server/rmp400Scan.h
+include/rmp400/server/rmp400Type.h
+lib/librmp400Client.la
+${PLIST.openprs}lib/openprs/librmp400Openprs.la
+${PLIST.openprs}lib/pkgconfig/rmp400-oprs.pc
+lib/pkgconfig/rmp400.pc
+${PLIST.tcl}lib/tclserv/librmp400TclServ.la
+share/modules/gen/rmp400.gen
+${PLIST.openprs}share/modules/openprs/rmp400Openprs.inc
+${PLIST.openprs}share/modules/openprs/rmp400Openprs.opf
+${PLIST.openprs}share/modules/openprs/rmp400Openprs.sym
+${PLIST.tcl}share/modules/tcl/rmp400Client.tcl
+@dirrm include/rmp400/server
+@dirrm include/rmp400
