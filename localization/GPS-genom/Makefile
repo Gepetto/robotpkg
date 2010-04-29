@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/06/17 17:59:15 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -20,6 +19,7 @@ DISTNAME=		GPS-genom-${VERSION}
 VERSION=		0.3
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/GPS-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
