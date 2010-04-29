@@ -14,7 +14,7 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-DISTNAME=	pilo-genom-1.1
+DISTNAME=	pilo-genom-1.2
 CATEGORIES=	motion
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=pilo/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pilo-genom
@@ -26,7 +26,7 @@ COMMENT=	Planar trajectory execution module - Genom component
 GNU_CONFIGURE=	yes
 
 PKG_OPTIONS_REQUIRED_GROUPS=	robot
-PKG_OPTIONS_GROUP.robot=	 atrv b21r fake h2 jido locoDemo xr4000
+PKG_OPTIONS_GROUP.robot=	 atrv b21r fake h2 jido locoDemo rmp400 xr4000
 
 PKG_OPTION_DESCR.atrv=	Enable support for the atrv platform
 define PKG_OPTION_SET.atrv
@@ -50,6 +50,12 @@ PKG_OPTION_DESCR.jido=	Enable support for the jido platform
 define PKG_OPTION_SET.jido	
   GENOM_ARGS+= -DJIDO
   include ../../robots/jloco-genom/depend.mk
+endef
+
+PKG_OPTION_DESCR.rmp400=	Enable support for the rmp400 platform
+define PKG_OPTION_SET.rmp400
+  GENOM_ARGS+= -DRMP400
+  include ../../robots/rmp400-genom/depend.mk
 endef
 
 PKG_OPTION_DESCR.locoDemo=	Enable support for the locoDemo simulator
