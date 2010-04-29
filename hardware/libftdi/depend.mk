@@ -7,16 +7,19 @@ DEPEND_PKG+=		libftdi
 endif
 
 ifeq (+,$(LIBFTDI_DEPEND_MK))
-PREFER.libftdi?=	robotpkg
+PREFER.libftdi?=	system
 
 DEPEND_USE+=		libftdi
 
 DEPEND_ABI.libftdi?=	libftdi>=0.14
 DEPEND_DIR.libftdi?=	../../hardware/libftdi
 
+SYSTEM_PKG.Linux-fedora.libftdi=libftdi-devel
+SYSTEM_PKG.Linux-ubuntu.libftdi=libftdi-devel
+SYSTEM_PKG.Linux-debian.libftdi=libftdi-devel
+
 SYSTEM_SEARCH.libftdi=\
 	include/ftdi.h \
-	lib/libftdi.la \
 	lib/pkgconfig/libftdi.pc
 endif
 
