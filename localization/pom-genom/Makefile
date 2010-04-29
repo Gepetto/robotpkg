@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/10/29 14:54:42 mallet $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -21,7 +20,7 @@ CATEGORIES=		localization
 PKGREVISION=		2
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/pom-genom
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/pom-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
