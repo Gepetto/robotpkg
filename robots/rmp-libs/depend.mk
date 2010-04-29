@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008 CNRS/LAAS
+# Copyright (c) 2010 CNRS/LAAS
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -13,22 +13,27 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
-DISTNAME=	rmp-libs-0.4
-CATEGORIES=	robots
 
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=rmp400/}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp-libs
-MAINTAINER=	openrobots@laas.fr
-COMMENT=	interface library for the Segway RMP400 platform
 
-GNU_CONFIGURE=	yes
+DEPEND_DEPTH:=		${DEPEND_DEPTH}+
+RMP_LIBS_DEPEND_MK:=${RMP_LIBS_DEPEND_MK}+
 
-pre-configure:	autoreconf
+ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=		rmp-libs
+endif
 
-include ../../hardware/libftdi/depend.mk
-include ../../devel/pocolibs/depend.mk
-include ../../devel/mkdep/depend.mk
-include ../../pkgtools/libtool/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
-include ../../mk/sysdep/autoconf.mk
-include ../../mk/robotpkg.mk
+ifeq (+,$(RMP_LIBS_DEPEND_MK))
+PREFER.rmp-libs?=	robotpkg
+
+DEPEND_USE+=		rmp-libs
+
+DEPEND_ABI.rmp-libs?=	rmp-libs>=0.4
+DEPEND_DIR.rmp-libs?=	../../robots/rmp-libs
+
+SYSTEM_SEARCH.rmp-libs=\
+	bin/rmpTest \
+	include/rmp/rmpLib.h \
+	lib/pkgconfig/rmp-libs.pc
+endif
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
