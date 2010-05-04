@@ -1,0 +1,19 @@
+*** CMakeLists.txt~	2010-02-26 11:36:56.000000000 +0100
+--- CMakeLists.txt	2010-05-04 15:21:14.839611229 +0200
+***************
+*** 142,148 ****
+  
+  # Prepare the documentation
+  # -------------------------
+! OPTION(GENERATE_DOC "Generate html documentation" OFF)
+  IF (GENERATE_DOC)
+    INCLUDE(FindDoxygen)
+    IF(DOXYGEN_FOUND)
+--- 142,148 ----
+  
+  # Prepare the documentation
+  # -------------------------
+! OPTION(GENERATE_DOC "Generate html documentation" 1)
+  IF (GENERATE_DOC)
+    INCLUDE(FindDoxygen)
+    IF(DOXYGEN_FOUND)
