@@ -29,7 +29,7 @@ PREFER.hrp2-dynamics?=	robotpkg
 
 DEPEND_USE+=		hrp2-dynamics
 
-DEPEND_ABI.hrp2-dynamics?=hrp2-dynamics>=1.0
+DEPEND_ABI.hrp2-dynamics?=hrp2-dynamics>=1.5
 DEPEND_DIR.hrp2-dynamics?=../../math/hrp2-dynamics
 
 SYSTEM_SEARCH.hrp2-dynamics=\
