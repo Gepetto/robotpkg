@@ -10,9 +10,13 @@ In the package
   - in configure.ac or package.pc.in: upgrade dependency versions
   - cd build; make to check that package compiles
   - cd build; make dist
-  - if MASTER_SITES=${MASTER_SITE_JRL} in the robotpkg package Makefile, then ftp softs.laas.fr, login jrl 
-    > put nameofthepackage-x.y.tar.gz
-  - if MASTER_SITES=${MASTER_SITE_OPENROBOTS:=<package_name>}, then scp nameofthepackage-x.y.tar.gz softs://www/htdocs/openrobots/distfiles/<package_name>/.
+  - make sure the archive is readable (chmod a+r archivename.tar.gz)
+  - look into robotpkg package Makefile,
+  - if MASTER_SITES=${MASTER_SITE_JRL}
+      ftp softs.laas.fr, login jrl
+      > put nameofthepackage-x.y.tar.gz
+  - if MASTER_SITES= ${MASTER_SITE_OPENROBOTS:=directory/}
+      scp nameofthepackage-x.y.tar.gz softs.laas.fr://www/htdocs/openrobots/distfiles/directory/.
 
 In openrobots/robotpkg/.../package
   - update Makefile with new version number
@@ -39,24 +43,28 @@ cmake packages
 
 In the package 
   - be sure that your working version is up to date.
-  - make a temporary branch: git branch release-x.y <commit-id>
-  - git checkout release-x.y
+  - make a temporary branch: git checkout -b release-x.y
   - in ChangeLog: add missing commit messages and notify new release 
   - in CMakeLists.txt: upgrade the version number 
   - in CMakeLists.txt: upgrade dependency versions
   - cd build; rm -rf *; cmake -DCMAKE_INSTALL_PREFIX=/tmp ..; make install to check that package compiles
   - git commit -a
   - git archive --format=tar --prefix=nameofthepackage-x.y/ HEAD | gzip > nameofthepackage-x.y.tar.gz
-  - ftp softs.laas.fr (login jrl if MASTER_SITES=${MASTER_SITE_JRL} in pkgconfig Makefile)
-    > put nameofthepackage-x.y.tar.gz
-  
+  - make sure the archive is readable (chmod a+r nameofthepackage-x.y.tar.gz)
+  - look into robotpkg package Makefile,
+  - if MASTER_SITES=${MASTER_SITE_JRL}
+      ftp softs.laas.fr, login jrl
+      > put nameofthepackage-x.y.tar.gz
+  - if MASTER_SITES= ${MASTER_SITE_OPENROBOTS:=directory/}
+      scp nameofthepackage-x.y.tar.gz softs.laas.fr://www/htdocs/openrobots/distfiles/directory/.
+
 In openrobots/robotpkg/.../package
   - update Makefile with new version number
   - make mdi
   - make install
-  - make print-PLIST > PLIST.tmp builds the list of files and directories to be destroyed when deinstalling.
-  - edit PLIST.tmp and remove irrelevant lines.
-  - mv PLIST.tmp PLIST
+  - make print-PLIST builds the list of files and directories to be destroyed when deinstalling.
+  - edit PLIST.guess and remove irrelevant lines.
+  - mv PLIST.guess PLIST
   - make clean to remove build directory.
   - commit the modifs.
     - prefix commit message by [category/package],
