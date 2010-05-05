@@ -28,7 +28,7 @@ PREFER.jrl-interface-dynamics?=		robotpkg
 
 DEPEND_USE+=				jrl-interface-dynamics
 
-DEPEND_ABI.jrl-interface-dynamics?=	jrl-interface-dynamics>=1.14
+DEPEND_ABI.jrl-interface-dynamics?=	jrl-interface-dynamics>=1.16
 DEPEND_DIR.jrl-interface-dynamics?=	../../interfaces/jrl-interface-dynamics
 
 SYSTEM_SEARCH.jrl-interface-dynamics=\
