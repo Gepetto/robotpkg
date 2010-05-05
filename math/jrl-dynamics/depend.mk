@@ -29,11 +29,11 @@ PREFER.jrl-dynamics?=	robotpkg
 
 DEPEND_USE+=		jrl-dynamics
 
-DEPEND_ABI.jrl-dynamics?=jrl-dynamics>=1.11
+DEPEND_ABI.jrl-dynamics?=jrl-dynamics>=1.17
 DEPEND_DIR.jrl-dynamics?=../../math/jrl-dynamics
 
 SYSTEM_SEARCH.jrl-dynamics=\
-	include/dynamicsJRLJapan/robotDynamicsImpl.h	\
+	include/dynamicsJRLJapan/dynamicRobot.h	\
 	lib/pkgconfig/dynamicsJRLJapan.pc
 
 endif # JRL_DYNAMICS_DEPEND_MK ---------------------------------------
