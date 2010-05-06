@@ -26,8 +26,8 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=oro-server/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/oro-server
 
 CATEGORIES=	knowledge
-MAINTAINER=	openrobots@laas.fr
-HOMEPAGE=	http://softs.laas.fr/openrobots/
+MAINTAINER=	severin.lemaignan@laas.fr
+HOMEPAGE=	http://homepages.laas.fr/slemaign/oro-server
 COMMENT=	A plugin for oro-server that enables multiple cognitive models for \
 different agents.
 

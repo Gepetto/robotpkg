@@ -1,1 +1,8 @@
-A plugin for oro-server that enables multiple cognitive models for different agents.
+oro-alterite is a plugin for oro-server.
+
+It allows multiple cognitive models to be created by the robot (typically, one 
+per agent the robot knows).
+
+Each model must be consistent to be useful (ie, to enable reasonning), but two
+model may be inconsistent to each other. For instance, one given object may be 
+visible for one agent and currently invisible to the robot.
