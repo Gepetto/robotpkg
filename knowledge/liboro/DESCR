@@ -1,1 +1,9 @@
-liboro allows to easily interface with the oro-server ontology server in C++.
+liboro is a C++ bridge for the oro-server ontology server.
+
+It allows direct access to the server RPC methods (to add, remove statements, 
+query the ontology, etc.) as well as an object-oriented wrapper that eases the 
+creation and retrieval of objects.
+
+liboro fully supports the oro-server event system, and event callback can 
+easily be added to trigger behaviours when certains facts can be inferred is 
+from the robot's cognitive model.
