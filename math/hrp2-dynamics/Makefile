@@ -18,7 +18,7 @@
 
 DISTNAME=	hrp2dynamics-${VERSION}
 PKGNAME=	hrp2-dynamics-${VERSION}
-VERSION=	1.5.0
+VERSION=	1.5.1
 
 CATEGORIES=	math
 NO_PUBLIC_SRC=	yes
@@ -31,12 +31,15 @@ COMMENT=	Optimized implementation of functions related to HRP-2 dynamics.
 
 USE_LANGUAGES+= c c++
 
+DOXYGEN_PLIST_DIR+=	share/doc/hrp2Dynamics
+
 PKG_SUPPORTED_OPTIONS+= debug
 PKG_OPTION_DESCR.debug=	Compile in debugging mode
 PKG_OPTION_SET.debug:=	CMAKE_ARGS+= -DCMAKE_BUILD_TYPE=Debug
 
 include ../../mk/sysdep/cmake.mk
 include ../../math/jrl-dynamics/depend.mk
+include ../../mk/sysdep/doxygen.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
