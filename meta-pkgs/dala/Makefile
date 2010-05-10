@@ -1,6 +1,6 @@
 # $LAAS: Makefile 2008/06/17 18:27:43 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008, 2009, 2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -20,22 +20,22 @@
 # --- All DALA current software --------------------------------------
 #
 
-DALA_DATE=		20090218
+DALA_DATE=		20100510
 DISTNAME=       laas-dala-${DALA_DATE}
-DISTFILES=      # empty
 CATEGORIES=     meta-pkgs
 COMMENT=        Dala Software
+META_PACKAGE=	yes
 
-NO_CHECKSUM=    yes
-NO_CONFIGURE=   yes
-NO_BUILD=       yes
-WRKSRC=         ${WRKDIR}
+REQD_BUILD_OPTIONS.pilo-genom=		atrv
+REQD_BUILD_OPTIONS.libp3d=			atrv
+REQD_BUILD_OPTIONS.rflex-genom=		atrv
+REQD_BUILD_OPTIONS.rflex-genom=		gyroKVH5000
+REQD_BUILD_OPTIONS.sick-genom=		atrv
 
 include ../../image/stereopixel-genom/depend.mk
 include ../../image/viam-genom/depend.mk
 include ../../localization/GPS-genom/depend.mk
 include ../../localization/MTI-genom/depend.mk
-include ../../localization/gyro-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../mapping/dtm-genom/depend.mk
 include ../../path/ndd-genom/depend.mk
