@@ -16,11 +16,10 @@
 #                                      Arnaud Degroote on Sat May 17 2008
 #
 
-DISTNAME=	gdhe-3.8
-PKGREVISION=	1
+DISTNAME=	gdhe-3.8.1
 
 CATEGORIES=	graphics
-MASTER_SITES=	http://softs.laas.fr/openrobots/php/download.php/
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
 
 MAINTAINER=	matthieu@laas.fr
 HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/gdhe

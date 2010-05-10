@@ -1,4 +1,4 @@
-@comment Mon Aug 11 19:22:25 CEST 2008
+@comment Mon May 10 11:33:01 CEST 2010
 bin/gdhe
 bin/reader
 include/gdhe/GDHE.h
@@ -49,6 +49,7 @@ share/gdhe/tcl/pkgIndex.tcl
 share/gdhe/tcl/planet.tcl
 share/gdhe/tcl/platineRS.tcl
 share/gdhe/tcl/proba.tcl
+share/gdhe/tcl/rmp400.tcl
 share/gdhe/tcl/scout.tcl
 share/gdhe/tcl/setup.tcl
 share/gdhe/tcl/trailer.tcl
