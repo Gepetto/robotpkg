@@ -46,17 +46,14 @@ CMAKE_ARGS+=		-DBUILD_EXAMPLES=ON
 # Never use deprecated libdc1394-1
 CMAKE_ARGS+=		-DUSE_DC1394_1=OFF
 
-# Disable this one: no package available yet
-CMAKE_ARGS+=		-DUSE_LIBPLOTTER=OFF
-
 # Compilation with ffmpeg fails
 CMAKE_ARGS+=		-DUSE_FFMPEG=OFF
 
 
 # User configurable options.
 #
-PKG_SUPPORTED_OPTIONS+=	coin gsl gtk dc1394 jpeg opencv png v4l xml
-PKG_SUGGESTED_OPTIONS+= jpeg png xml
+PKG_SUPPORTED_OPTIONS+=	coin gsl gtk dc1394 jpeg opencv plotutils png v4l xml
+PKG_SUGGESTED_OPTIONS+= jpeg png xml plotutils
 
 PKG_OPTION_DESCR.dc1394?=	Enable image acquisition via libdc1394
 PKG_OPTION_UNSET.dc1394:=	CMAKE_ARGS+=-DUSE_DC1394_2=OFF
@@ -121,6 +118,15 @@ define PKG_OPTION_SET.png
   CMAKE_ARGS+=-DUSE_LIBPNG=ON
   include ../../mk/sysdep/libpng.mk
 endef
+
+# libplotter is provided by plotutils package.
+PKG_OPTION_DESCR.plotutils?=	Enable plotting via plotutils
+PKG_OPTION_UNSET.plotutils:=	CMAKE_ARGS+=-DUSE_LIBPLOTTER=OFF
+define PKG_OPTION_SET.plotutils
+  CMAKE_ARGS+=-DUSE_LIBPLOTTER=ON
+  include ../../mk/sysdep/plotutils.mk
+endef
+
 
 
 include ../../archivers/zlib/depend.mk
