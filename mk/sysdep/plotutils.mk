@@ -36,9 +36,8 @@ SYSTEM_SEARCH.plotutils=	\
 	'lib/libplot.{a,so,dylib}'
 
 SYSTEM_PKG.Linux-fedora.plotutils=	plotutils-devel
+SYSTEM_PKG.Linux-ubuntu.plotutils=	libplot-dev
 
-# FIXME: check package names.
-# SYSTEM_PKG.Linux-ubuntu.plotutils=	plotutils-dev
 # SYSTEM_PKG.Linux-debian.plotutils=	plotutils-dev
 
 endif # PLOTUTILS_DEPEND_MK --------------------------------------------------
