@@ -4,6 +4,7 @@
 COMMENT=	Mathematics
 
 SUBDIR+=	blas
+SUBDIR+=	eigen2
 SUBDIR+=	fsqp
 SUBDIR+=	gbM
 SUBDIR+=	gmp
