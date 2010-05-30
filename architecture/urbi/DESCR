@@ -1,0 +1,11 @@
+Urbi includes a C++ component library called UObject that comes with a
+robot standard API to describe motors, sensors and algorithms. Next to
+UObject, you can use the urbiscript orchestration script language to
+glue the components together and describe high level behaviors, a bit
+like python or LUA, but with embedded parallel and event-driven
+semantics to make the job easier.  The goal of Urbi is to help making
+robots compatible, and simplify the process of writing programs and
+behaviors for those robots. The range of potential applications of
+Urbi goes beyond robotics, since it has been successfully used in
+generic complex systems, where parallel and event-driven orchestration
+on multiple agents is the rule
