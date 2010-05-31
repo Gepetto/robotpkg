@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2010 LAAS/CNRS
+# Copyright (c) 2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -26,7 +26,7 @@ ifeq (+,$(BLENDER_DEPEND_MK)) # -------------------------------------
 
 PREFER.blender?=	system
 DEPEND_USE+=		blender
-DEPEND_ABI.blender?=	blender>=2.492,<2.500
+DEPEND_ABI.blender?=	blender>=2.492<2.500
 
 SYSTEM_SEARCH.blender=	\
 	'bin/blender:/Blender/{s/[^.0-9]//gp;q;}:% --version'
