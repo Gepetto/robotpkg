@@ -46,7 +46,7 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 PREFER.python3?=	robotpkg
 
 DEPEND_USE+=		python3
-DEPEND_ABI.python3?=	python3${_PYTHON_REQUIRED}
+DEPEND_ABI.python3?=	python3${_PY_REQUIRED}
 DEPEND_DIR.python3?=	../../lang/python3
 
 _pynamespec=python{3,3.0,3.1,[0-9].[0-9],}

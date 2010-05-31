@@ -46,7 +46,7 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 PREFER.python?=		system
 
 DEPEND_USE+=		python
-DEPEND_ABI.python?=	python${_PYTHON_REQUIRED}
+DEPEND_ABI.python?=	python${_PY_REQUIRED}
 
 _pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.python=\
