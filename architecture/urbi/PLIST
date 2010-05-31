@@ -25,10 +25,6 @@ bin/urbi-sendbin
 bin/urbi-sendsound
 bin/urbi-sound
 bin/urbi-talkie
-include/jconfig.h
-include/jerror.h
-include/jmorecfg.h
-include/jpeglib.h
 include/libport/algorithm
 include/libport/algorithm.hxx
 include/libport/arpa/inet.h

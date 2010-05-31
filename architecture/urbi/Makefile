@@ -37,4 +37,15 @@ CONFIGURE_ARGS+=	--enable-compilation-mode=speed
 # Generate documentation.
 CONFIGURE_ARGS+=	--enable-doc-sections=all
 
+include ../../mk/sysdep/libjpeg.mk
 include ../../mk/robotpkg.mk
+
+# Remove local libjpeg header.
+# For historical reason Urbi installs libjpeg headers.
+# This is wrong. Let's remove them to avoid conflicts.
+post-install:
+	${RM} -f 			\
+	"${PREFIX}/include/jconfig.h"	\
+	"${PREFIX}/include/jerror.h"	\
+	"${PREFIX}/include/jmorecfg.h"	\
+	"${PREFIX}/include/jpeglib.h"
