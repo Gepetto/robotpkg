@@ -72,8 +72,8 @@ PKG_OPTION_DESCR.opencv?=	Enable the OpenCV interface
 PKG_OPTION_UNSET.opencv:=	CMAKE_ARGS+=-DUSE_OPENCV=OFF
 define PKG_OPTION_SET.opencv
   CMAKE_ARGS+=-DUSE_OPENCV=ON
-  CMAKE_ARGS+=-DOpenCV_ROOT_DIR=${PREFIX.opencv1}
-  include ../../image/opencv1/depend.mk
+  CMAKE_ARGS+=-DOpenCV_ROOT_DIR=${PREFIX.opencv}
+  include ../../image/opencv/depend.mk
 endef
 
 PKG_OPTION_DESCR.coin?=		Enable use of the Coin simulator
