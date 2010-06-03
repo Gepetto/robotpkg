@@ -16,6 +16,7 @@
 #
 
 DISTNAME=		stereopixel-genom-1.2
+PKGREVISION=		1
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/stereopixel-genom
@@ -31,6 +32,6 @@ include ../../architecture/genom/depend.mk
 
 include ../../image/libstereopixel/depend.mk
 include ../../image/libimages3d/depend.mk
-include ../../image/opencv1/depend.mk
+include ../../image/opencv/depend.mk
 include ../../image/viam-genom/depend.mk
 include ../../mk/robotpkg.mk
