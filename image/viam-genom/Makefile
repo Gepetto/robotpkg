@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/04/27 23:12:41 tho $
+# $LAAS: Makefile 2010/06/03 14:00:26 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Fri Mar 14 2008
 #
 
-DISTNAME=		viam-genom-1.4
+DISTNAME=		viam-genom-1.5
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-genom/}
 MASTER_REPOSITORY=  	git ssh://softs.laas.fr/git/robots/viam-genom
@@ -39,7 +39,7 @@ define PKG_OPTION_SET.display
   CONFIGURE_ARGS+=--enable-display
   REQD_BUILD_OPTIONS.opencv+=	gtk
   REQD_BUILD_OPTIONS.viam-libs+=opencv
-  include ../../image/opencv1/depend.mk
+  include ../../image/opencv/depend.mk
 endef
 PKG_OPTION_UNSET.display:=	CONFIGURE_ARGS+=--disable-display
 
