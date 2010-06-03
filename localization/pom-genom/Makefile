@@ -15,11 +15,10 @@
 #                                       Anthony Mallet on Tue Nov 20 2007
 #
 
-DISTNAME=		pom-genom-0.5
+DISTNAME=		pom-genom-0.6
 CATEGORIES=		localization
-PKGREVISION=		2
 
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pom-genom/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/pom-genom
 
 MAINTAINER=		openrobots@laas.fr
