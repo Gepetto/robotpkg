@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/04/27 23:13:00 tho $
+# $LAAS: Makefile 2010/06/03 13:51:34 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -16,7 +16,7 @@
 #                                       Anthony Mallet on Fri Mar 14 2008
 #
 
-DISTNAME=		viam-libs-1.5
+DISTNAME=		viam-libs-1.6
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/viam-libs
@@ -48,7 +48,7 @@ PKG_OPTION_DESCR.opencv=  Enable support for opencv.
 PKG_OPTION_UNSET.opencv:= CONFIGURE_ARGS+=--disable-opencv
 define PKG_OPTION_SET.opencv
   CONFIGURE_ARGS+=--enable-opencv
-  include ../../image/opencv1/depend.mk
+  include ../../image/opencv/depend.mk
 endef
 
 # options for doc generation
