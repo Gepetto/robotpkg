@@ -1,0 +1,11 @@
+@comment Wed Jun 9 15:59:13 CEST 2010
+bin/dspfeat
+bin/match
+bin/siftfeat
+include/sift/imgfeatures.h
+include/sift/kdtree.h
+include/sift/minpq.h
+include/sift/sift.h
+include/sift/utils.h
+include/sift/xform.h
+lib/libfeat.a
