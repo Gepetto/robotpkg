@@ -37,7 +37,7 @@ do-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/include/sift
 	${INSTALL_DATA} ${WRKSRC}/include/*.h ${PREFIX}/include/sift/
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/* ${PREFIX}/bin
-	${INSTALL_LIB} ${WRKSRC}/lib/libfeat.a ${PREFIX}/lib
+	${INSTALL_LIB} ${WRKSRC}/lib/libsift.so ${PREFIX}/lib
 
 include ../../image/opencv/depend.mk
 include ../../mk/sysdep/gtk.mk

@@ -8,4 +8,4 @@ include/sift/minpq.h
 include/sift/sift.h
 include/sift/utils.h
 include/sift/xform.h
-lib/libfeat.a
+lib/libsift.so

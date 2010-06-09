@@ -1,0 +1,27 @@
+--- /home/nizar/Work/robotpkg/image/sift/work/sift/Makefile	2010-05-05 23:24:12.000000000 +0200
++++ sift/Makefile	2010-06-09 17:04:20.859283437 +0200
+@@ -7,7 +7,7 @@
+ LIB_DIR	= ./lib
+ BIN	= siftfeat match dspfeat
+ 
+-all: $(BIN) libfeat.a docs
++all: $(BIN) libfeat.a libsift.so docs
+ 
+ docs:
+ 	doxygen Doxyfile
+@@ -15,6 +15,9 @@
+ libfeat.a:
+ 	make -C $(SRC_DIR) $@
+ 
++libsift.so:
++	make -C $(SRC_DIR) $@
++
+ $(BIN):
+ 	make -C $(SRC_DIR) $@
+ 
+@@ -29,4 +32,4 @@
+ docsclean:
+ 	rm -rf $(DOC_DIR)/html/
+ 
+-.PHONY: docs clean docsclean libfeat.a
++.PHONY: docs clean docsclean libfeat.a libsift.so

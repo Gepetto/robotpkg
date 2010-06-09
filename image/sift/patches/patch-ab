@@ -1,0 +1,29 @@
+--- /home/nizar/Work/robotpkg/image/sift/work/sift/src/Makefile	2010-05-05 23:24:39.000000000 +0200
++++ sift/src/Makefile	2010-06-09 17:09:34.943832386 +0200
+@@ -1,5 +1,5 @@
+ CC	= gcc
+-CFLAGS	+=
++CFLAGS	+= -fpic
+ BIN_DIR = ../bin
+ INC_DIR	= ../include
+ LIB_DIR	= ../lib
+@@ -8,7 +8,7 @@
+ OBJ	= imgfeatures.o utils.o sift.o kdtree.o minpq.o xform.o
+ BIN     = siftfeat match dspfeat
+ 
+-all: $(BIN) libfeat.a
++all: $(BIN) libfeat.a libsift.so
+ 
+ libfeat.a: $(OBJ)
+ 	ar rc $(LIB_DIR)/$@ $(OBJ)
+@@ -41,6 +41,10 @@
+ xform.o: xform.c $(INC_DIR)/xform.h
+ 	$(CC) $(CFLAGS) $(INCL) -c xform.c -o $@
+ 
++libsift.so: $(OBJ) 
++	$(CC) -shared $(OBJ) -o $(LIB_DIR)/$@
++
++
+ clean:
+ 	rm -f *~ *.o core
+ 

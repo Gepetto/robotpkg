@@ -35,7 +35,7 @@ DEPEND_DIR.sift?=	../../image/sift
 
 SYSTEM_SEARCH.sift=\
 	include/sift/sift.h	\
-	lib/libfeat.a
+	lib/libsift.so
 
 endif # SIFT_DEPEND_MK ----------------------------------------------------
 
