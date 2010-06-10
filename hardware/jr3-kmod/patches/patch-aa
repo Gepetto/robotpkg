@@ -1,0 +1,11 @@
+--- drv_linux/Makefile.orig	2008-12-22 17:58:48.000000000 +0100
++++ drv_linux/Makefile	2010-06-10 13:37:46.205809000 +0200
+@@ -16,7 +16,7 @@
+ 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+ 
+ install:
+-	install -c -o root -g root -m 744 jr3.ko $(IDIR)
++	install -c -m 744 jr3.ko ${PREFIX}$(IDIR)
+ 
+ clean:
+ 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) clean
