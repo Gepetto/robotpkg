@@ -14,36 +14,41 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-PKGNAME=	sahand-2008.1.10
-DISTNAME=	sahand-linux_2008-01-10
+VERSION=	2008.01.10
+PKGNAME=	sahand-kmod-$(VERSION)
+DISTNAME=	sahand-linux_$(subst .,-,$(VERSION))
 
 CATEGORIES=	hardware
-COMMENT=	Schunk Antropomorphic Hand Linux driver and library
+COMMENT=	Schunk Antropomorphic Hand Linux driver
 
-MASTER_SITES=	file:///usr/local/openrobots/nonfree/hardlib/SAHand_cd/Linux/
+INTERACTIVE_STAGE=	fetch
+FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing the sahand driver version ${VERSION}"
+FETCH_MESSAGE+= ""
+FETCH_MESSAGE+= " must be put manually into:"
+FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 
-WRKSRC=		${WRKDIR}/SAHand
-NO_CONFIGURE=	yes
+WRKSRC=		${WRKDIR}/SAHand/sahand_driver
 
+BUILD_TARGET=	default
+KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/misc
+KMOD=		sahand_driver.ko
+
+INSTALLATION_DIRS+=${KMOD_DIR}
 
 RESTRICTED=	You cannot redistribute this software.
 NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
 
-do-build:
-	(cd ${WRKSRC}/sahand_driver ; ${MAKE} default )
-	(cd ${WRKSRC}/sahand_api ; sh create_sah_lib.sh)
-
 do-install:
-	(cd ${WRKSRC}/sahand_driver ; \
-		${SU_CMD} ${INSTALL_DATA} -c sahand_driver.ko \
-		/lib/modules/${OS_VERSION}/kernel/drivers/misc ; \
-	 	${INSTALL_PROGRAM} load_sahand_driver.sh ${PREFIX}/bin ; \
+	(cd ${WRKSRC}; \
+		${INSTALL_DATA} -c ${KMOD} ${PREFIX}/${KMOD_DIR} ) 
+	(cd ${WRKSRC}; \
+	 	${INSTALL_PROGRAM} load_sahand_driver.sh ${PREFIX}/bin)
+	(cd ${WRKSRC}; \
 		${INSTALL_PROGRAM} unload_sahand_driver.sh ${PREFIX}/bin )
-	(cd ${WRKSRC}/sahand_api ; \
-		${INSTALL_DATA} -c libsahand_api_41.a ${PREFIX}/lib )
-	(cd ${WRKSRC}/sahand_user; \
-		${INSTALL_DATA} -c SAHandCtrlApi.h ${PREFIX}/include )
+	@${STEP_MSG} "Becoming \`\`root'' to install kernel module (sudo)"
+	${SUDO} -u root ${CP} ${PREFIX}/${KMOD_DIR}/${KMOD} /${KMOD_DIR}/${KMOD}
+	@${STEP_MSG} "Dropping \`\`root'' privileges."
 
-
+include ../../mk/sysdep/sudo.mk
 include ../../mk/robotpkg.mk

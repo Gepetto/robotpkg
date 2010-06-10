@@ -1,0 +1,65 @@
+Fix build warnings with modern linux kernels
+
+--- sahand_driver.c~	2008-01-10 14:45:55.000000000 +0100
++++ sahand_driver.c	2010-06-10 12:11:39.707498000 +0200
+@@ -42,7 +42,10 @@
+ 
+ /****** file Global Variables***/
+ 
++
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,0)
+ static int fgi_sah_major_number=0;
++#endif
+ 
+ //static char   *fgpc_sah_buf;
+ static dev_t  fgt_sah_dev;
+@@ -55,14 +58,14 @@
+ 
+ static unsigned long fgul_base_address;
+ static unsigned long fgul_length;
+-static unsigned long fgul_sah_irq;
++static u8 fgul_sah_irq;
+ 
+ /************ Function declerations *******************/
+ 
+ static int      sah_open(struct inode *inode, struct file *filp);
+ static int      sah_release(struct inode *inode, struct file *filp);
+ static ssize_t  sah_read( struct file *filp, char *buf, size_t count, loff_t *fops);
+-static ssize_t  sah_write( struct file *filp, char *buf, size_t count, loff_t *fops);
++static ssize_t  sah_write( struct file *filp, const char __user *buf, size_t count, loff_t *fops);
+ static int      sah_mmap(struct file *filp, struct vm_area_struct *vma);
+ 
+ static int sah_driver_init_module(void);
+@@ -80,7 +83,7 @@
+ 
+ /******* PCI specific **********************************/
+ 
+-static int    sah_probe(struct pci_dev *dev, const struct pci_device_id id);
++static int    sah_probe(struct pci_dev *dev, const struct pci_device_id *id);
+ //static void   sah_remove(struct pci_dev dev);
+ 
+ static struct pci_device_id fgst_sah_pci_device_id[]=
+@@ -174,7 +177,7 @@
+ 
+ 
+ /*********** Driver exit Module ***************************/
+-static void __exit sah_driver_exit_module(void)
++static void sah_driver_exit_module(void)
+ {
+   
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,0)
+@@ -209,12 +212,12 @@
+   return 0;
+ }
+ 
+-static ssize_t sah_write(  struct file *filp, char *buf, size_t count, loff_t *f_pos)
++static ssize_t sah_write(  struct file *filp, const char __user *buf, size_t count, loff_t *f_pos)
+ {
+   return 0;
+ }
+ 
+-static int sah_probe(struct pci_dev* dev,struct pci_device_id id)
++static int sah_probe(struct pci_dev* dev,const struct pci_device_id *id)
+ {
+   int err;
+ 
