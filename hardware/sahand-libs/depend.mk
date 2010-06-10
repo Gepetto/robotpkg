@@ -34,7 +34,7 @@ DEPEND_ABI.sahand-libs?=	sahand-libs>=08.08.14
 DEPEND_DIR.sahand-libs?=	../../hardware/sahand-libs
 
 SYSTEM_SEARCH.sahand=	\
-	'include/SAHandCtrlApi.h'					\
+	'include/sahand/SAHandCtrlApi.h' \
 	'lib/libsahand.so'
 
 endif # SAHAND_LIBS_DEPEND_MK ----------------------------------------------
