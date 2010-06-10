@@ -1,0 +1,11 @@
+--- Makefile.orig	2010-06-10 12:27:18.139162000 +0200
++++ Makefile	2010-06-10 12:27:26.995687000 +0200
+@@ -10,7 +10,7 @@
+ 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+ 
+ install:
+-	install -c -o root -g root -m 744 contec_dio.ko $(IDIR)
++	install -c -m 744 contec_dio.ko ${PREFIX}$(IDIR)
+ 
+ clean:
+ 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) clean
