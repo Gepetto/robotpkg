@@ -14,8 +14,8 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-DISTNAME=	pa10-kmod-${VERSION}
-VERSION=	1.1
+DISTNAME=	pa10-kmod-1.1
+PKGREVISION=	1
 CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=linux/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pa10-kmod
@@ -29,8 +29,6 @@ KMOD=		papci.ko
 
 INSTALLATION_DIRS+=${KMOD_DIR}
 
-include ../../pkgtools/libtool/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/sudo.mk
 include ../../mk/robotpkg.mk
 
