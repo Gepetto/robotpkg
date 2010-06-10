@@ -22,6 +22,7 @@ SUBDIR+=	pa10-libs
 SUBDIR+=	peak-linux-driver
 SUBDIR+=	platine-genom
 SUBDIR+=	sahand-kmod
+SUBDIR+=	sahand-libs
 SUBDIR+=	sahand-genom
 SUBDIR+=	serial
 SUBDIR+=	sickLib
