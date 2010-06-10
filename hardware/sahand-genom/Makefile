@@ -14,7 +14,7 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #
 
-DISTNAME=	sahand-genom-0.1
+DISTNAME=	sahand-genom-0.2
 CATEGORIES=	hardware
 COMMENT=	Schunk Antropomorphic Hand control module - Genom componenent
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=sahand-genom/}
@@ -27,7 +27,7 @@ USE_LANGUAGES=	c c++
 
 GENOM_MODULE=	sahand
 
-include ../../hardware/sahand/depend.mk
+include ../../hardware/sahand-libs/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../mk/robotpkg.mk
