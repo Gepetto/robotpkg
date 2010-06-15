@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -25,6 +25,7 @@ PKGLOCALEDIR?=	share
 CPP_PRECOMP_FLAGS?=	# unset
 EXPORT_SYMBOLS_LDFLAGS?=-Wl,-E	# add symbols to the dynamic symbol table
 
+_OPSYS_SHLIB_TYPE=	dylib	# shared lib type
 _USE_RPATH=		no	# add rpath to LDFLAGS
 
 # Standard commands
