@@ -233,8 +233,12 @@ show-depends-pkgpaths:
 # confirm is an empty target that is used to confirm other targets by
 # doing `make target confirm'. It is the responsability of `target' to
 # check that confirm was specified in the MAKECMDGOALS variable.
-#
+# If 'confirm' was the only target, do 'all' by default.
 .PHONY: confirm
+ifeq (confirm,${MAKECMDGOALS})
+  MAKECMDGOALS+= all
+  confirm: all
+endif
 confirm:
 	@${DO_NADA}
 
