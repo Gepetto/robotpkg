@@ -1,6 +1,5 @@
-# $LAAS: plist.mk 2009/02/16 17:34:37 tho $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -153,17 +152,21 @@ PLIST_SUBST+=	\
 _PLIST_AWK_ENV+=	${PLIST_SUBST}
 _PLIST_AWK_ENV+=	PLIST_SUBST_VARS=$(call quote,$(foreach _s_,${PLIST_SUBST},$(firstword $(subst =, ,${_s_}))))
 
-_PLIST_AWK+=		-f ${CURDIR}/../../mk/plist/plist-functions.awk
-_PLIST_AWK+=		-f ${CURDIR}/../../mk/plist/plist-subst.awk
-_PLIST_AWK+=		-f ${CURDIR}/../../mk/plist/plist-locale.awk
-_PLIST_AWK+=		-f ${CURDIR}/../../mk/plist/plist-info.awk
-_PLIST_AWK+=		-f ${CURDIR}/../../mk/plist/plist-man.awk
-_PLIST_AWK+=		-f ${CURDIR}/../../mk/plist/plist-libtool.awk
-_PLIST_AWK+=		-f ${CURDIR}/../../mk/plist/plist-default.awk
+_PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-functions.awk
+_PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-subst.awk
+_PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-locale.awk
+_PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-info.awk
+_PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-man.awk
+_PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-libtool.awk
+_PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-default.awk
 
-_PLIST_INFO_AWK+=	-f ${CURDIR}/../../mk/plist/plist-functions.awk
-_PLIST_INFO_AWK+=	-f ${CURDIR}/../../mk/plist/plist-info.awk
-
+_SHLIB_AWKFILE.ELF=	${ROBOTPKG_DIR}/mk/plist/shlib-elf.awk
+_SHLIB_AWKFILE.dylib=	${ROBOTPKG_DIR}/mk/plist/shlib-dylib.awk
+ifdef _OPSYS_SHLIB_TYPE
+  _PLIST_SHLIB_AWK=	-f ${_SHLIB_AWKFILE.$(strip ${_OPSYS_SHLIB_TYPE})}
+else
+  _PLIST_SHLIB_AWK=	-f ${_SHLIB_AWKFILE.ELF}
+endif
 
 # --------------------------------------------------------------------
 
@@ -185,9 +188,11 @@ _GENERATE_PLIST=	${CAT} /dev/null ${PLIST_SRC}; ${GENERATE_PLIST}
 plist: ${PLIST}
 
 ${PLIST}: ${PLIST_SRC}
-	${RUN}${MKDIR} $(dir $@)
-	${RUN}							\
-	{ ${_GENERATE_PLIST} } |				\
-	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK} > $@
+	${RUN}${MKDIR} $(dir $@);				\
+	{ ${_GENERATE_PLIST} } >$@.src;				\
+	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK}	\
+		<$@.src >$@.p1;					\
+	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK}	\
+		<$@.p1 >$@
 
 ${PLIST_SRC}:;

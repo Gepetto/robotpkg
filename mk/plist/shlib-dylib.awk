@@ -1,5 +1,5 @@
-# $NetBSD: shlib-dylib.awk,v 1.3 2006/02/07 18:42:38 jlam Exp $
 #
+# Copyright (c) 2010 LAAS/CNRS
 # Copyright (c) 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -33,6 +33,9 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+#
+# From $NetBSD: shlib-dylib.awk,v 1.3 2006/02/07 18:42:38 jlam Exp $
+#
 
 #
 # This awk script is a filter that reads PLIST entries and transforms
@@ -41,9 +44,9 @@
 #
 
 BEGIN {
-	LIBTOOL_EXPAND = ENVIRON["LIBTOOL_EXPAND"] ? ENVIRON["LIBTOOL_EXPAND"] : "/usr/pkgsrc/mk/plist/libtool-expand"
+	LIBTOOL_EXPAND = ENVIRON["LIBTOOL_EXPAND"] ? ENVIRON["LIBTOOL_EXPAND"] : "/opt/robotpkg/mk/plist/libtool-expand"
 	LIBTOOLIZE_PLIST = ENVIRON["LIBTOOLIZE_PLIST"] ? ENVIRON["LIBTOOLIZE_PLIST"] : "yes"
-	PREFIX = ENVIRON["PREFIX"] ? ENVIRON["PREFIX"] : "/usr/pkg"
+	PREFIX = ENVIRON["PREFIX"] ? ENVIRON["PREFIX"] : "/opt/openrobots"
 	TEST = ENVIRON["TEST"] ? ENVIRON["TEST"] : "test"
 	nentries = 0
 }
