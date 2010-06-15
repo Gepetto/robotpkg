@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -67,6 +67,12 @@ UPDATE_TARGET=	${DEPENDS_TARGET}
   endif
 endif
 
+# Handle confirm target on command line
+#
+ifneq (,$(filter confirm,${MAKECMDGOALS}))
+  UPDATE_TARGET+=	confirm
+endif
+
 _DDIR=	${WRKDIR}/.DDIR
 _DLIST=	${WRKDIR}/.DLIST
 
@@ -88,7 +94,7 @@ ifeq (yes,$(call exists,${_DDIR}))
   do%update: .FORCE
 	${_OVERRIDE_TARGET}
 	@${PHASE_MSG} "Resuming update for ${PKGNAME}"
-    ifneq (replace,${UPDATE_TARGET})
+    ifeq (,$(filter replace,${UPDATE_TARGET}))
 	${RUN}${RECURSIVE_MAKE} deinstall				\
 		_UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes
     endif
@@ -98,7 +104,7 @@ else
 
   do%update: update-create-ddir .FORCE
 	${_OVERRIDE_TARGET}
-    ifneq (replace,${UPDATE_TARGET})
+    ifeq (,$(filter replace,${UPDATE_TARGET}))
 	${RUN}if ${PKG_INFO} -qe ${PKGBASE}; then			\
 		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes \
 		|| (${RM} ${_DDIR} && ${FALSE});			\
@@ -111,10 +117,12 @@ endif
 		(if cd ../.. && cd "$${dep}" ; then			\
 			${PHASE_MSG} "Installing in $${dep}" &&		\
 			if [ "$(strip ${RESUMEUPDATE})" = "NO" -a	\
-			     "${UPDATE_TARGET}" != "replace" ] ; then	\
+			     "$(filter replace,${UPDATE_TARGET})" !=	\
+				"replace" ] ; then			\
 				${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES; \
 			fi &&						\
-			${RECURSIVE_MAKE} ${UPDATE_TARGET}		\
+			${RECURSIVE_MAKE}				\
+				$(filter-out confirm,${UPDATE_TARGET})	\
 				DEPENDS_TARGET=${DEPENDS_TARGET} ;	\
 		else							\
 			${PHASE_MSG} "Skipping removed directory $${dep}"; \

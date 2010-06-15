@@ -256,55 +256,6 @@ $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 
 
-# --------------------------------------------------------------------
-# Many ways to disable a package.
-#
-# Don't build a package if it's restricted and we don't want to
-# get into that.
-#
-# --------------------------------------------------------------------
-
-ifdef BROKEN
-  ifndef NO_BROKEN
-    PKG_FAIL_REASON+= "$${bf}${PKGNAME} is marked as broken:$${rm}"
-    PKG_FAIL_REASON+= "${BROKEN}"
-  endif
-endif
-
-ifdef RESTRICTED
-  ifdef NO_RESTRICTED
-    PKG_FAIL_REASON+= "${PKGNAME} is restricted: ${RESTRICTED}"
-  endif
-endif
-
-ifdef LICENSE
-  ifeq (,$(filter ${LICENSE},${ACCEPTABLE_LICENSES}))
-PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license:"
-PKG_FAIL_REASON+= "	 ${LICENSE}"
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= " . To view the license, enter \"${MAKE} show-license\"."
-PKG_FAIL_REASON+= " . To indicate acceptance, add this line:"
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=${LICENSE}"
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "   to ${MAKECONF}"
-PKG_FAIL_REASON+= ""
-  endif
-endif
-
-ifdef NOT_FOR_PLATFORM
-  ifneq (,$(filter ${NOT_FOR_PLATFORM},${MACHINE_PLATFORM}))
-PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}"
-  endif
-endif
-
-ifdef ONLY_FOR_PLATFORM
-  ifeq (,$(filter ${ONLY_FOR_PLATFORM},${MACHINE_PLATFORM}))
-PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}"
-  endif
-endif
-
-
 # Add these defs to the ones dumped into +BUILD_DEFS
 _BUILD_DEFS+=	PKGPATH
 _BUILD_DEFS+=	OPSYS OS_VERSION MACHINE_ARCH MACHINE_GNU_ARCH

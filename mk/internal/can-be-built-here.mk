@@ -1,6 +1,10 @@
 #
-# Copyright (c) 2007,2009 LAAS/CNRS                        --  Wed May 30 2007
+# Copyright (c) 2007,2009-2010 LAAS/CNRS
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,12 +16,6 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: can-be-built-here.mk,v 1.4 2007/02/10 09:01:05 rillig Exp $
 #
 # THIS SOFTWARE IS PROVIDED BY THE AUTHORS AND CONTRIBUTORS ``AS IS'' AND
 # ANY  EXPRESS OR IMPLIED WARRANTIES, INCLUDING,  BUT NOT LIMITED TO, THE
@@ -31,14 +29,80 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+# From $NetBSD: can-be-built-here.mk,v 1.4 2007/02/10 09:01:05 rillig Exp $
+#
+#                                       Anthony Mallet on Wed May 30 2007
 
 #
 # This file checks whether a package can be built in the current robotpkg
-# environment. It checks the following variables:
+# environment. It sets the following variables:
 #
 # PKG_FAIL_REASON, PKG_SKIP_REASON
 #
 
+# Don't build BROKEN packages
+#
+ifdef BROKEN
+  ifndef NO_BROKEN
+    PKG_FAIL_REASON+= "$${bf}${PKGNAME} is marked as broken:$${rm}"
+    PKG_FAIL_REASON+= "${BROKEN}"
+  endif
+endif
+
+# Check RESTRICTED if we don't want to get into that
+#
+ifdef RESTRICTED
+  ifdef NO_RESTRICTED
+    PKG_FAIL_REASON+= "${PKGNAME} is restricted: ${RESTRICTED}"
+  endif
+endif
+
+# Check LICENSE
+#
+ifdef LICENSE
+  ifeq (,$(filter ${LICENSE},${ACCEPTABLE_LICENSES}))
+PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license:"
+PKG_FAIL_REASON+= "	 ${LICENSE}"
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= " . To view the license, enter \"${MAKE} show-license\"."
+PKG_FAIL_REASON+= " . To indicate acceptance, add this line:"
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=${LICENSE}"
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "   to ${MAKECONF}"
+PKG_FAIL_REASON+= ""
+  endif
+endif
+
+# Check *_FOR_PLATFORM variables, unless confirm was given on the cmdline
+#
+ifeq (,$(filter confirm,${MAKECMDGOALS}))
+  ifdef NOT_FOR_PLATFORM
+    ifneq (,$(or							\
+		$(filter ${NOT_FOR_PLATFORM},${MACHINE_PLATFORM}),	\
+		$(findstring ${NOT_FOR_PLATFORM},${MACHINE_PLATFORM})))
+PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}."
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "You can override this check by doing:"
+PKG_FAIL_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
+    endif
+  endif
+
+  ifdef ONLY_FOR_PLATFORM
+    ifeq (,$(or								\
+		$(filter ${ONLY_FOR_PLATFORM},${MACHINE_PLATFORM}),	\
+		$(findstring ${ONLY_FOR_PLATFORM},${MACHINE_PLATFORM})))
+PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}."
+PKG_FAIL_REASON+= ""
+PKG_FAIL_REASON+= "You can override this check by doing:"
+PKG_FAIL_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
+    endif
+  endif
+endif
+
+#
+# Summarize the result of tests in _CBBH
+#
 _CBBH=			yes#, but see below.
 
 # Check PKG_FAIL_REASON
