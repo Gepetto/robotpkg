@@ -93,6 +93,13 @@ PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
 PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
 PKGVERSION_NOREV:=	$(patsubst ${PKGBASE}-%,%,${PKGNAME_NOREV})
 
+# Default to building for supported platforms only.
+ifeq (undefined,$(origin ONLY_FOR_PLATFORM))
+  ifeq (undefined,$(origin NOT_FOR_PLATFORM))
+    ONLY_FOR_PLATFORM?=	Linux-% NetBSD-%-i386
+  endif
+endif
+
 # Others
 #
 BUILD_DEPENDS?=#	empty
