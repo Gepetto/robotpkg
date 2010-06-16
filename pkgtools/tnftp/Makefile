@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/11/01 22:12:53 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -37,6 +36,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--bindir=${PKG_TOOLS_BIN}
 CONFIGURE_ARGS+=	--program-transform-name='s/^/robotpkg_/'
 
+NOT_FOR_PLATFORM=	# empty
 NO_CHECKSUM=		yes
 NO_PKGTOOLS_REQD_CHECK=	yes
 PKG_PRESERVE=		yes

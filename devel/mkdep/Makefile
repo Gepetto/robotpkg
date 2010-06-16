@@ -1,6 +1,5 @@
-# $LAAS: depend.mk 2008/12/29 16:15:56 tho $
 #
-# Copyright (c) 2007 LAAS/CNRS
+# Copyright (c) 2007,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -24,6 +23,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/mkdep
 COMMENT=		Automated make(1) dependency generation
 
+NOT_FOR_PLATFORM=	# empty
 GNU_CONFIGURE=		yes
 
 include ../../mk/robotpkg.mk

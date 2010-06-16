@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2008-2009 LAAS/CNRS
+# Copyright (C) 2008-2010 LAAS/CNRS
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
 # with or without   fee is hereby granted, provided   that the above  copyright
@@ -27,6 +27,8 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.pkgsrc.org/
 COMMENT=		Package management and administration tools for robotpkg
 
+NOT_FOR_PLATFORM=	# empty
+
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-pkgdbdir=${PKG_DBDIR}
@@ -39,7 +41,7 @@ FORCE_PKG_REGISTER=	yes
 include ../../mk/robotpkg.prefs.mk
 
 # We use the newly built robotpkg_{add,create,delete} since upgrading
-# from an older pkg_install might required features of the new program. 
+# from an older pkg_install might required features of the new program.
 # robotpkg_info is used at several places in mk files, so we don't
 # override the default here.
 #

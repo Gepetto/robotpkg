@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/01/21 23:54:57 tho $
+# $LAAS: Makefile 2010/06/16 11:24:52 mallet $
 #
 # Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
@@ -25,6 +25,8 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}eltclsh
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/eltclsh
 COMMENT=		Interactive shell for the TCL programming language.
+
+NOT_FOR_PLATFORM=	# empty
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})

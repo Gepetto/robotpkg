@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/02/19 13:27:36 tho $
 #
-# Copyright (c) 2007,2009 LAAS/CNRS
+# Copyright (c) 2007,2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -26,6 +25,8 @@ MASTER_SITES=		http://www.thrysoee.dk/editline/
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.thrysoee.dk/editline/
 COMMENT=		Generic line editing and history functions.
+
+NOT_FOR_PLATFORM=	# empty
 
 GNU_CONFIGURE=		yes
 
