@@ -1,5 +1,5 @@
 --- /home/nizar/Work/robotpkg/image/sift/work/sift/Makefile	2010-05-05 23:24:12.000000000 +0200
-+++ sift/Makefile	2010-06-09 17:04:20.859283437 +0200
++++ Makefile	2010-06-09 17:04:20.859283437 +0200
 @@ -7,7 +7,7 @@
  LIB_DIR	= ./lib
  BIN	= siftfeat match dspfeat

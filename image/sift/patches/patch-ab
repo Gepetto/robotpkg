@@ -1,5 +1,5 @@
 --- /home/nizar/Work/robotpkg/image/sift/work/sift/src/Makefile	2010-05-05 23:24:39.000000000 +0200
-+++ sift/src/Makefile	2010-06-09 17:09:34.943832386 +0200
++++ src/Makefile	2010-06-09 17:09:34.943832386 +0200
 @@ -1,5 +1,5 @@
  CC	= gcc
 -CFLAGS	+=
