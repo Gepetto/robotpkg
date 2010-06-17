@@ -1,29 +1,83 @@
---- /home/nizar/Work/robotpkg/image/sift/work/sift/src/Makefile	2010-05-05 23:24:39.000000000 +0200
-+++ src/Makefile	2010-06-09 17:09:34.943832386 +0200
-@@ -1,5 +1,5 @@
- CC	= gcc
--CFLAGS	+=
-+CFLAGS	+= -fpic
+--- src/Makefile.orig	2010-05-05 23:24:39.000000000 +0200
++++ src/Makefile	2010-06-17 13:54:14.623799578 +0200
+@@ -1,47 +1,54 @@
+-CC	= gcc
++LTCC	= libtool --mode=compile ${CC} ${CFLAGS}
++LINK = libtool --mode=link ${CC} ${CFLAGS} -rpath ${PREFIX}
++INSTALL= libtool --mode=install install
+ CFLAGS	+=
  BIN_DIR = ../bin
  INC_DIR	= ../include
  LIB_DIR	= ../lib
-@@ -8,7 +8,7 @@
- OBJ	= imgfeatures.o utils.o sift.o kdtree.o minpq.o xform.o
+ INCL	= -I$(INC_DIR) `pkg-config --cflags opencv gtk-engines-2`
+-LIBS	= -L$(LIB_DIR) -lfeat `pkg-config --libs opencv gtk-engines-2`
+-OBJ	= imgfeatures.o utils.o sift.o kdtree.o minpq.o xform.o
++LIBS	= -L$(LIB_DIR) libsift.la `pkg-config --libs opencv gtk-engines-2`
++OBJ	= imgfeatures.lo utils.lo sift.lo kdtree.lo minpq.lo xform.lo
  BIN     = siftfeat match dspfeat
  
 -all: $(BIN) libfeat.a
-+all: $(BIN) libfeat.a libsift.so
++all: $(BIN) libsift.la
  
- libfeat.a: $(OBJ)
- 	ar rc $(LIB_DIR)/$@ $(OBJ)
-@@ -41,6 +41,10 @@
- xform.o: xform.c $(INC_DIR)/xform.h
- 	$(CC) $(CFLAGS) $(INCL) -c xform.c -o $@
+-libfeat.a: $(OBJ)
+-	ar rc $(LIB_DIR)/$@ $(OBJ)
+-	ranlib  $(LIB_DIR)/$@
++install: 
++	${INSTALL} -c ${BIN_DIR}/siftfeat ${PREFIX}/bin/siftfeat
++	${INSTALL} -c ${BIN_DIR}/match ${PREFIX}/bin/match
++	${INSTALL} -c ${BIN_DIR}/dspfeat ${PREFIX}/bin/dspfeat
++	${INSTALL} -c libsift.la  ${PREFIX}/lib/libsift.la
  
-+libsift.so: $(OBJ) 
-+	$(CC) -shared $(OBJ) -o $(LIB_DIR)/$@
+-siftfeat: libfeat.a siftfeat.c
+-	$(CC) $(CFLAGS) $(INCL) siftfeat.c -o $(BIN_DIR)/$@ $(LIBS)
++libsift.la: $(OBJ)
++	${LINK} ${OBJ} -o $@
+ 
+-match: libfeat.a match.c
+-	$(CC) $(CFLAGS) $(INCL) match.c -o $(BIN_DIR)/$@ $(LIBS)
++siftfeat: libsift.la siftfeat.c
++	$(LINK) $(INCL) siftfeat.c -o $(BIN_DIR)/$@ $(LIBS)
+ 
+-dspfeat: libfeat.a dspfeat.c
+-	$(CC) $(CFLAGS) $(INCL) dspfeat.c -o $(BIN_DIR)/$@ $(LIBS)
++match: libsift.la match.c
++	$(LINK) $(INCL) match.c -o $(BIN_DIR)/$@ $(LIBS)
+ 
+-imgfeatures.o: imgfeatures.c $(INC_DIR)/imgfeatures.h
+-	$(CC) $(CFLAGS) $(INCL) -c imgfeatures.c -o $@
++dspfeat: libsift.la dspfeat.c
++	$(LINK)  $(INCL) dspfeat.c -o $(BIN_DIR)/$@ $(LIBS)
+ 
+-utils.o: utils.c $(INC_DIR)/utils.h
+-	$(CC) $(CFLAGS) $(INCL) -c utils.c -o $@
++imgfeatures.lo: imgfeatures.c $(INC_DIR)/imgfeatures.h
++	$(LTCC) $(INCL) -c imgfeatures.c -o $@
+ 
+-sift.o: sift.c $(INC_DIR)/sift.h
+-	$(CC) $(CFLAGS) $(INCL) -c sift.c -o $@
++utils.lo: utils.c $(INC_DIR)/utils.h
++	$(LTCC) $(INCL) -c utils.c -o $@
+ 
+-kdtree.o: kdtree.c $(INC_DIR)/kdtree.h
+-	$(CC) $(CFLAGS) $(INCL) -c kdtree.c -o $@
++sift.lo: sift.c $(INC_DIR)/sift.h
++	$(LTCC) $(INCL) -c sift.c -o $@
+ 
+-minpq.o: minpq.c $(INC_DIR)/minpq.h
+-	$(CC) $(CFLAGS) $(INCL) -c minpq.c -o $@
++kdtree.lo: kdtree.c $(INC_DIR)/kdtree.h
++	$(LTCC) $(INCL) -c kdtree.c -o $@
+ 
+-xform.o: xform.c $(INC_DIR)/xform.h
+-	$(CC) $(CFLAGS) $(INCL) -c xform.c -o $@
++minpq.lo: minpq.c $(INC_DIR)/minpq.h
++	$(LTCC) $(INCL) -c minpq.c -o $@
 +
-+
++xform.lo: xform.c $(INC_DIR)/xform.h
++	$(LTCC) $(INCL) -c xform.c -o $@
+ 
  clean:
- 	rm -f *~ *.o core
+-	rm -f *~ *.o core
++	rm -f *~ *.lo core *.o
  
+ .PHONY: clean

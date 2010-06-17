@@ -1,27 +1,24 @@
---- /home/nizar/Work/robotpkg/image/sift/work/sift/Makefile	2010-05-05 23:24:12.000000000 +0200
-+++ Makefile	2010-06-09 17:04:20.859283437 +0200
-@@ -7,7 +7,7 @@
+--- Makefile.orig	2010-06-17 10:00:17.273943872 +0200
++++ Makefile	2010-06-17 10:07:03.763943649 +0200
+@@ -6,13 +6,19 @@
+ INC_DIR	= ./include
  LIB_DIR	= ./lib
  BIN	= siftfeat match dspfeat
++INSTALL= install
  
 -all: $(BIN) libfeat.a docs
-+all: $(BIN) libfeat.a libsift.so docs
++all: $(BIN) libsift.la docs
  
  docs:
  	doxygen Doxyfile
-@@ -15,6 +15,9 @@
- libfeat.a:
- 	make -C $(SRC_DIR) $@
  
-+libsift.so:
-+	make -C $(SRC_DIR) $@
+-libfeat.a:
++install: 
++	make -C ${SRC_DIR} $@
++	${INSTALL} -d ${PREFIX}/include/sift
++	${INSTALL} -m 644 include/*.h ${PREFIX}/include/sift
 +
- $(BIN):
++libsift.la:
  	make -C $(SRC_DIR) $@
  
-@@ -29,4 +32,4 @@
- docsclean:
- 	rm -rf $(DOC_DIR)/html/
- 
--.PHONY: docs clean docsclean libfeat.a
-+.PHONY: docs clean docsclean libfeat.a libsift.so
+ $(BIN):

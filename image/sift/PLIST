@@ -1,4 +1,4 @@
-@comment Wed Jun 9 15:59:13 CEST 2010
+@comment Thu Jun 17 10:24:04 CEST 2010
 bin/dspfeat
 bin/match
 bin/siftfeat
@@ -8,4 +8,5 @@ include/sift/minpq.h
 include/sift/sift.h
 include/sift/utils.h
 include/sift/xform.h
-lib/libsift.so
+@dirrm include/sift
+lib/libsift.la
