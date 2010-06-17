@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/06/03 14:00:26 mallet $
+# $LAAS: Makefile 2010/06/17 10:16:47 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -20,6 +20,7 @@ DISTNAME=		viam-genom-1.5
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-genom/}
 MASTER_REPOSITORY=  	git ssh://softs.laas.fr/git/robots/viam-genom
+PKGREVISION=		1
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet
