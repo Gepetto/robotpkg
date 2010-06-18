@@ -1,0 +1,19 @@
+--- MTI.gen.old	2010-03-17 10:11:52.339384011 +0100
++++ MTI.gen	2010-03-17 10:13:00.130630926 +0100
+@@ -29,6 +29,7 @@
+     // les données du capteur sont stockées dans cette structure de données
+     // cette structure donne les infos en fonction des infos d'initialisation
+     
++	GEN_STRING16	device;
+     INERTIAL_CONFIG	config;
+     INERTIAL_DATA	sensorData;
+     POM_SENSOR_POS      pomPos;
+@@ -46,7 +47,7 @@
+ 	doc:		"Open a connection on MTI and configure it";
+ 	type:		init;
+ 	exec_task:	ExecTask;
+-	input:		device::config.device;
++	input:		device::device;
+ 	input_info:	"/dev/ttyUSB0"::"device";				
+ 	c_exec_func:	MTIInitExec;
+ 	incompatible_with:	all;
