@@ -1,0 +1,24 @@
+--- rflexConstATRV.h
++++ rflexConstATRV.h
+@@ -1,12 +1,17 @@
+ #ifndef _RFLEX_CONST_ATRV_H
+ #define _RFLEX_CONST_ATRV_H
+ 
+-#define RFLEX_LIN_STEP_TO_M   140682
+-#define RFLEX_ANG_STEP_TO_RAD 69748
++// 23/04/2010 : rflex good calibration 
++#define RFLEX_LIN_STEP_TO_M   146309
++#define RFLEX_ANG_STEP_TO_RAD 73235
+ 
++/*
++ * croussil, hcao : we dont now why there are these two values, so their values are the same as the two above
++ */
+ /* Il nous faut definir 2 nouveaux parametres LIN_M_TO_STEP et ANG_RAD_TO_STEP */
+-#define RFLEX_LIN_M_TO_STEP   141920
+-#define RFLEX_ANG_RAD_TO_STEP 69762
++#define RFLEX_LIN_M_TO_STEP   146309
++#define RFLEX_ANG_RAD_TO_STEP 73235
++
+ 
+ #define RFLEX_SONARS_CONFIG_CONST { \
+ { -0.41, 0.175, 3.1415 }, { -0.33, 0.215, 1.571 }, { -0.33, -0.215, -1.571 }, \

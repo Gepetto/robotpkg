@@ -20,6 +20,7 @@ DISTNAME=		rflex-genom-0.3
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/rflex-genom
+PKGREVISION=		1
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
