@@ -33,4 +33,3 @@ ${PLIST.openprs}share/modules/openprs/viamOpenprs.sym
 ${PLIST.tcl}share/modules/tcl/viamClient.tcl
 ${PLIST.openprs}@dirrm include/viam/server/openprs
 @dirrm include/viam/server
-@dirrm include/viam
