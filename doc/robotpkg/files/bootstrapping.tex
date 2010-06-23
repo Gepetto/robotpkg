@@ -1,6 +1,6 @@
-% $LAAS: bootstrapping.tex 2009/03/04 17:01:14 mallet $
+% $LAAS: bootstrapping.tex 2010/06/23 15:04:49 mallet $
 %
-% Copyright (c) 2009 LAAS/CNRS
+% Copyright (c) 2009-2010 LAAS/CNRS
 % All rights reserved.
 %
 % Permission to use, copy, modify, and distribute this software for any purpose
@@ -47,22 +47,23 @@ should then be as simple as:
 % ./bootstrap
 \end{verbatim}
 
-This will  install various utilities   into {\tt /opt/openrobots/sbin}.  Should
-you prefer another   location, you could  use the  {\tt -{}-prefix}  option  to
-change the default installation  prefix.  For instance, configuring robotpkg to
-install programs  into the openrobots directory  in your home directory  can be
-done like this:
+This will  install various utilities   into {\tt /opt/openrobots/sbin}.
+
+Should you prefer another installation path, you could use the {\tt -{}-prefix}
+option to  change the default  installation prefix.  For  instance, configuring
+robotpkg  to  install programs  into  the  openrobots  directory in  your  home
+directory can be done like this:
 
 \begin{verbatim}
 % cd robotpkg/bootstrap
 % ./bootstrap --prefix=${HOME}/openrobots
 \end{verbatim}
 
-After the bootstrap script has run, a message  indicating the success should be
-displayed.   {\bf If you choosed  a  non-standard installation path, read  this
-message carefuly}, as it contains instructions that you have to follow in order
-to setup your shell environment correctly.  These instructions are described in
-the next section.
+{\bf  After the  bootstrap script  has run,  a message  indicating  the success
+should be  displayed.  If  you choosed a  non-standard installation  path, read
+this message carefuly}, as it contains  instructions that you have to follow in
+order  to  setup your  shell  environment  correctly.   These instructions  are
+described in the next section.
 
 
 \subsubsection{Configuring your environment} % -----------------------------

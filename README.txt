@@ -3,7 +3,7 @@
                     Anthony Mallet - anthony.mallet@laas.fr
                        Copyright 2006-2009 (C) LAAS/CNRS
 
-                               January 29, 2010
+                                 June 23, 2010
 
 Contents
 
@@ -208,33 +208,33 @@ else. Sections in this document will detail both approaches where appropriate.
 2.1  Where to get robotpkg and how to keep it up-to-date
 
 Before you download and extract the files, you need to decide where you want to
-extract them. robotpkg is by default installed in /opt/openrobots. Creating
-this directory will probably require administration privileges ("root") and if
-you don't have such privileges, you are free to install the sources and binary
-packages wherever you want in your filesystem. The pathname shall not contain
-white-space or other characters that are interpreted specially by the shell and
-some other programs: a safe bet is to use only letters, digits, underscores and
-dashes. The rest of this document will assume that you are using /opt/
-openrobots and you should adapt this path to whatever location you choosed.
-Please note that you should use a prefix which is dedicated to packages and not
-shared with other programs (i.e., do not try and use a prefix of /usr). Also,
-you should not try to add any of your own files or directories (such as src/)
-below the prefix tree. This is to prevent possible conflicts between programs
-and other files installed by the package system and whatever else may have been
-installed there.
-robotpkg will never require administration privileges by itself after the
-initial bootstrap phase. We thus recommend that you initially setup the /opt/
-openrobots directory readable and writable by your regular user and work only
-as this user afterwards. If something ever goes really wrong, you might thank
-yourself later that you did so... Setting up this directory can be done with
-the following commands in a shell:
-
-% sudo mkdir -p /opt/openrobots
-% sudo chown `id -u` /opt/openrobots
-
-
-If the sudo command is not available or if you are not allowed to run it, you
-should consider installing robotpkg to a different location.
+extract them and where you want robotpkg to install packages. By defaut, the /
+opt/openrobots directory is used. In the rest of this document, the
+installation path is called the prefix.
+robotpkg will never require administration privileges by itself. We thus
+recommend that you do not install or run robotpkg as the root user. If
+something ever goes really wrong, it might go less wrong if it is not running
+as root. If you want to install to the default location /opt/openrobots, we
+recommend that you create this directory owned by a regular user.
+Creating or using /opt/openrobots typically requires administration ( a.k.a.
+"root") privileges. If you don't have such privileges (or if you want to
+install to a different location), you have to unpack the sources and install
+the binary packages in another prefix. If you don't have any special
+administration rights on the target machine, a safe bet is to choose the $HOME/
+openrobots location, as the $HOME directory will always be writable by
+yourself.
+Any prefix will work, but please note that you should choose an installation
+path which is dedicated to robotpkg packages and not shared with other programs
+(e.g., we do not recommend to use a prefix of /usr). Also, you should not try
+to add any of your own files or directories (such as src/) below the prefix
+tree. This will prevent possible conflicts between programs and other files
+installed by the package system and whatever else may have been installed
+there.
+Finally, the installation path shall not contain white-space or other
+characters that are interpreted specially by the shell and some other programs:
+use only letters, digits, underscores and dashes.
+The rest of this document will assume that you are using /opt/openrobots as the
+prefix. You should adapt this path to whatever prefix you choosed.
 
 2.1.1  Getting the binary bootstrap kit
 
@@ -312,11 +312,11 @@ then be as simple as:
 % ./bootstrap
 
 
-This will install various utilities into /opt/openrobots/sbin. Should you
-prefer another location, you could use the --prefix option to change the
-default installation prefix. For instance, configuring robotpkg to install
-programs into the openrobots directory in your home directory can be done like
-this:
+This will install various utilities into /opt/openrobots/sbin.
+Should you prefer another installation path, you could use the --prefix option
+to change the default installation prefix. For instance, configuring robotpkg
+to install programs into the openrobots directory in your home directory can be
+done like this:
 
 % cd robotpkg/bootstrap
 % ./bootstrap --prefix=${HOME}/openrobots

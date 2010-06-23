@@ -134,7 +134,7 @@ table, table tr {
    Copyright 2006-2009 &#169; LAAS/CNRS
  </h3>
 
-<h3 align="center">January 29, 2010</h3>
+<h3 align="center">June 23, 2010</h3>
 
 <div class="p"><!----></div>
     
@@ -465,43 +465,43 @@ else. Sections in this document will detail both approaches where appropriate.
 
 <div class="p"><!----></div>
 Before you download and extract the files, you need to decide where you want to
-extract  them.     <tt>robotpkg</tt>  is     by  default   installed   in   <tt>
-/opt/openrobots</tt>. Creating this directory  will probably require administration
-privileges ("<tt>root</tt>") and if you don't have such privileges, you are free
-to  install the   sources  and  binary   packages wherever you  want  in   your
-filesystem. The pathname shall not contain white-space or other characters that
-are interpreted specially  by the shell and some  other programs: a safe bet is
-to use only letters, digits, underscores and dashes.  The rest of this document
-will assume that you are using <tt>/opt/openrobots</tt>  and you should adapt this
-path to whatever location you choosed.
+extract them and  where you want robotpkg to install  packages.  By defaut, the
+<tt>/opt/openrobots</tt> directory is  used. In  the rest  of this  document, the
+installation path is called the <em>prefix</em>.
 
 <div class="p"><!----></div>
-Please note that you should use a prefix which is dedicated to packages and not
-shared with other programs (i.e., do not try  and use a  prefix of <tt>/usr</tt>).
-Also, you should not try to add  any of your own  files or directories (such as
-<tt>src/</tt>)  below  the prefix tree.    This is to  prevent  possible conflicts
-between programs and other files  installed by the  package system and whatever
-else may have been installed there.
+<tt>robotpkg</tt>  will <em>never</em>  require administration privileges  by itself.
+We thus recommend that you do not install or run robotpkg as the root user.  If
+something ever goes really  wrong, it might go less wrong if  it is not running
+as root. If you want to  install to the default location <tt>/opt/openrobots</tt>,
+we recommend that you create this directory owned by a regular user.
 
 <div class="p"><!----></div>
-<tt>robotpkg</tt>   will <em>never</em> require   administration privileges by itself
-after the initial bootstrap phase.  We thus  recommend that you initially setup
-the <tt>/opt/openrobots</tt> directory readable and writable  by your regular user
-and work only as this  user afterwards.  If  something ever goes really  wrong,
-you might thank yourself later that you did so...  Setting up this directory
-can be done with the following commands in a shell:
+Creating or using <tt>/opt/openrobots</tt> typically requires administration (<em>
+a.k.a.</em>  "<tt>root</tt>") privileges.  If  you don't have such privileges (or if
+you want  to install to a different  location), you have to  unpack the sources
+and  install the  binary packages  in  another prefix.  If you  don't have  any
+special administration  rights on the target  machine, a safe bet  is to choose
+the <tt>$HOME/openrobots</tt> location, as  the <tt>$HOME</tt>  directory will
+always be writable by yourself.
 
 <div class="p"><!----></div>
-
-<pre>
-%&nbsp;sudo&nbsp;mkdir&nbsp;-p&nbsp;/opt/openrobots
-%&nbsp;sudo&nbsp;chown&nbsp;`id&nbsp;-u`&nbsp;/opt/openrobots
-
-</pre>
+Any prefix  will work, but please  note that you should  choose an installation
+path which is dedicated to robotpkg packages and not shared with other programs
+(e.g., we do  not recommend to use  a prefix of <tt>/usr</tt>).   Also, you should
+not try to add any of your  own files or directories (such as <tt>src/</tt>) below
+the prefix  tree.  This  will prevent possible  conflicts between  programs and
+other files  installed by the  package system and  whatever else may  have been
+installed there.
 
 <div class="p"><!----></div>
-If the <tt>sudo</tt> command is not available or if you are not allowed to run it,
-you should consider installing <tt>robotpkg</tt> to a different location.
+Finally,  the  installation  path   shall  not  contain  white-space  or  other
+characters that are interpreted specially by the shell and some other programs:
+use only letters, digits, underscores and dashes.
+
+<div class="p"><!----></div>
+The rest of this document will  assume that you are using <tt>/opt/openrobots</tt>
+as the prefix. You should adapt this path to whatever prefix you choosed.
 
 <div class="p"><!----></div>
      <h3><a name="tth_sEc2.1.1">
@@ -632,11 +632,13 @@ should then be as simple as:
 </pre>
 
 <div class="p"><!----></div>
-This will  install various utilities   into <tt>/opt/openrobots/sbin</tt>.  Should
-you prefer another   location, you could  use the  <tt>--prefix</tt>  option  to
-change the default installation  prefix.  For instance, configuring robotpkg to
-install programs  into the openrobots directory  in your home directory  can be
-done like this:
+This will  install various utilities   into <tt>/opt/openrobots/sbin</tt>.
+
+<div class="p"><!----></div>
+Should you prefer another installation path, you could use the <tt>--prefix</tt>
+option to  change the default  installation prefix.  For  instance, configuring
+robotpkg  to  install programs  into  the  openrobots  directory in  your  home
+directory can be done like this:
 
 <div class="p"><!----></div>
 
@@ -647,11 +649,11 @@ done like this:
 </pre>
 
 <div class="p"><!----></div>
-After the bootstrap script has run, a message  indicating the success should be
-displayed.   <b>If you choosed  a  non-standard installation path, read  this
-message carefuly</b>, as it contains instructions that you have to follow in order
-to setup your shell environment correctly.  These instructions are described in
-the next section.
+<b>After the  bootstrap script  has run,  a message  indicating  the success
+should be  displayed.  If  you choosed a  non-standard installation  path, read
+this message carefuly</b>, as it contains  instructions that you have to follow in
+order  to  setup your  shell  environment  correctly.   These instructions  are
+described in the next section.
 
 <div class="p"><!----></div>
 
