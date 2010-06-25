@@ -1,0 +1,11 @@
+interface library for the Velodyne Lidar sensor.
+
+This library can either read packets directly from the network interface
+of the sensor, or read libpcap capture files containing data saved by
+tcpdump. 
+
+A test program that dumps the data in a human-readable format is included.
+
+In this version, there is an atempt to use the algorithm provided by 
+Velodyne to compute 3D points from the calibration data, but this is not
+usable as is.
