@@ -1,14 +1,14 @@
-@comment Tue Feb 2 13:00:39 CET 2010
+@comment Mon Jun 28 19:48:13 CEST 2010
 bin/oro-benchmark
 bin/oro-export
-bin/oro-qos
 bin/oro-query
+bin/oro-stats
 include/liboro/dummy_connector.h
 include/liboro/oro_connector.h
+include/liboro/oro_event.h
 include/liboro/oro_exceptions.h
 include/liboro/oro.h
 include/liboro/oro_library.h
-include/liboro/position.h
 include/liboro/socket_connector.h
 lib/liboro.so
 lib/pkgconfig/liboro.pc
