@@ -1,6 +1,6 @@
-% $LAAS: using.tex 2009/03/04 16:45:50 mallet $
+% $LAAS: using.tex 2010/06/28 10:24:09 mallet $
 %
-% Copyright (c) 2009 LAAS/CNRS
+% Copyright (c) 2009-2010 LAAS/CNRS
 % All rights reserved.
 %
 % Permission to use, copy, modify, and distribute this software for any purpose
@@ -168,19 +168,19 @@ At the moment, installing binary packages is not documented.
 \subsection{Removing packages} % -------------------------------------------
 
 To deinstall a package, it does not matter whether it was installed from source
-code or from a binary package.  The {\tt pkg\_delete} command  does not know it
-anyway.     To  delete   a  package,   you   can  just   run  {\tt  pkg\_delete
+code or  from a  binary package.  The  {\tt robotpkg\_delete} command  does not
+know it  anyway.  To delete a  package, you can just  run {\tt robotpkg\_delete
 <package-name>}.  The package name can be given with or without version number.
-Wildcards  can also be used  to deinstall a  set of  packages, for example {\tt
-*genom*}  all packages whose name   contain the word  {\tt  genom}.  Be sure to
-include them in quotes,  so that the  shell  does not  expand them  before {\tt
-pkg\_delete} sees them.
+Wildcards can  also be used  to deinstall a  set of packages, for  example {\tt
+*genom*} all  packages whose  name contain  the word {\tt  genom}.  Be  sure to
+include them  in quotes,  so that the  shell does  not expand them  before {\tt
+robotpkg\_delete} sees them.
 
 The {\tt -r} option is very powerful: it  removes all the packages that require
 the package in question and then removes the package itself. For example:
 
 \begin{verbatim}
-% pkg_delete -r genom
+% robotpkg_delete -r genom
 \end{verbatim}
 
 will remove genom and all the packages that used it; this allows
@@ -189,11 +189,11 @@ upgrading the {\tt genom} package.
 
 \subsection{Getting information about installed packages} % ----------------
 
-The {\tt pkg\_info} shows   information  about  installed packages or    binary
+The {\tt  robotpkg\_info} shows information about installed  packages or binary
 package files.
 
 
 \subsection{Other administrative functions} % ------------------------------
 
-The {\tt pkg\_admin} executes various  administrative functions on the  package
-system.
+The  {\tt robotpkg\_admin}  executes  various administrative  functions on  the
+package system.

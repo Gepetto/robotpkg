@@ -134,7 +134,7 @@ table, table tr {
    Copyright 2006-2009 &#169; LAAS/CNRS
  </h3>
 
-<h3 align="center">June 23, 2010</h3>
+<h3 align="center">June 28, 2010</h3>
 
 <div class="p"><!----></div>
     
@@ -887,13 +887,13 @@ At the moment, installing binary packages is not documented.
 2.3.3</a>&nbsp;&nbsp;Removing packages</h3> 
 <div class="p"><!----></div>
 To deinstall a package, it does not matter whether it was installed from source
-code or from a binary package.  The <tt>pkg_delete</tt> command  does not know it
-anyway.     To  delete   a  package,   you   can  just   run  <tt>pkg_delete
+code or  from a  binary package.  The  <tt>robotpkg_delete</tt> command  does not
+know it  anyway.  To delete a  package, you can just  run <tt>robotpkg_delete
 &lt;package-name&#62;</tt>.  The package name can be given with or without version number.
-Wildcards  can also be used  to deinstall a  set of  packages, for example <tt>
-*genom*</tt>  all packages whose name   contain the word  <tt>genom</tt>.  Be sure to
-include them in quotes,  so that the  shell  does not  expand them  before <tt>
-pkg_delete</tt> sees them.
+Wildcards can  also be used  to deinstall a  set of packages, for  example <tt>
+*genom*</tt> all  packages whose  name contain  the word <tt>genom</tt>.  Be  sure to
+include them  in quotes,  so that the  shell does  not expand them  before <tt>
+robotpkg_delete</tt> sees them.
 
 <div class="p"><!----></div>
 The <tt>-r</tt> option is very powerful: it  removes all the packages that require
@@ -902,7 +902,7 @@ the package in question and then removes the package itself. For example:
 <div class="p"><!----></div>
 
 <pre>
-%&nbsp;pkg_delete&nbsp;-r&nbsp;genom
+%&nbsp;robotpkg_delete&nbsp;-r&nbsp;genom
 
 </pre>
 
@@ -914,15 +914,15 @@ upgrading the <tt>genom</tt> package.
      <h3><a name="tth_sEc2.3.4">
 2.3.4</a>&nbsp;&nbsp;Getting information about installed packages</h3> 
 <div class="p"><!----></div>
-The <tt>pkg_info</tt> shows   information  about  installed packages or    binary
+The <tt>robotpkg_info</tt> shows information about installed  packages or binary
 package files.
 
 <div class="p"><!----></div>
      <h3><a name="tth_sEc2.3.5">
 2.3.5</a>&nbsp;&nbsp;Other administrative functions</h3> 
 <div class="p"><!----></div>
-The <tt>pkg_admin</tt> executes various  administrative functions on the  package
-system.
+The  <tt>robotpkg_admin</tt>  executes  various administrative  functions on  the
+package system.
 
 
 <div class="p"><!----></div>

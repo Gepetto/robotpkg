@@ -3,7 +3,7 @@
                     Anthony Mallet - anthony.mallet@laas.fr
                        Copyright 2006-2009 (C) LAAS/CNRS
 
-                                 June 23, 2010
+                                 June 28, 2010
 
 Contents
 
@@ -463,16 +463,16 @@ At the moment, installing binary packages is not documented.
 2.3.3  Removing packages
 
 To deinstall a package, it does not matter whether it was installed from source
-code or from a binary package. The pkg_delete command does not know it anyway.
-To delete a package, you can just run pkg_delete <package-name>. The package
-name can be given with or without version number. Wildcards can also be used to
-deinstall a set of packages, for example *genom* all packages whose name
-contain the word genom. Be sure to include them in quotes, so that the shell
-does not expand them before pkg_delete sees them.
+code or from a binary package. The robotpkg_delete command does not know it
+anyway. To delete a package, you can just run robotpkg_delete <package-name>.
+The package name can be given with or without version number. Wildcards can
+also be used to deinstall a set of packages, for example *genom* all packages
+whose name contain the word genom. Be sure to include them in quotes, so that
+the shell does not expand them before robotpkg_delete sees them.
 The -r option is very powerful: it removes all the packages that require the
 package in question and then removes the package itself. For example:
 
-% pkg_delete -r genom
+% robotpkg_delete -r genom
 
 
 will remove genom and all the packages that used it; this allows upgrading the
@@ -480,12 +480,13 @@ genom package.
 
 2.3.4  Getting information about installed packages
 
-The pkg_info shows information about installed packages or binary package
+The robotpkg_info shows information about installed packages or binary package
 files.
 
 2.3.5  Other administrative functions
 
-The pkg_admin executes various administrative functions on the package system.
+The robotpkg_admin executes various administrative functions on the package
+system.
 
 2.4  Configuring robotpkg
 
