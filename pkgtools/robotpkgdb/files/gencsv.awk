@@ -177,6 +177,15 @@ BEGIN {
     next;
 }
 
+/^masterrepository / {
+    if( NF>=3 ) {
+	masterrepository[$2] = substr($0, index($0, $3));
+    } else {
+	masterrepository[$2] = "";
+    }
+    next;
+}
+
 /^maintainer / {
     maintainer[$2] = substr($0, index($0, $3));
     next;
@@ -253,6 +262,7 @@ END {
 	printf("%s|", descr[toppkg]) | indexf;
 	printf("%s|", distfiles[toppkg]) | indexf;
 	printf("%s|", mastersites[toppkg]) | indexf;
+	printf("%s|", masterrepository[toppkg]) | indexf;
 	printf("%s|", maintainer[toppkg]) | indexf;
 	printf("%s|", categories[toppkg]) | indexf;
 	gsub(/^ /, "", alldepends[toppkg]);

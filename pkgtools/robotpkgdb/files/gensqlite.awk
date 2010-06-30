@@ -64,6 +64,14 @@ BEGIN {
     printf("mastersite text") | sq;
     printf(");\n") | sq;
 
+    printf("drop table if exists masterrepository;\n") | sq;
+    printf("create table masterrepository(") | sq;
+    printf("pkgbase text, ") | sq;
+    printf("scm text,") | sq;
+    printf("path text,") | sq;
+    printf("element text") | sq;
+    printf(");\n") | sq;
+
     printf("drop table if exists categories;\n") | sq;
     printf("create table categories(") | sq;
     printf("pkgbase text, ") | sq;
@@ -88,10 +96,10 @@ BEGIN {
     printf("'%s',", $3) | sq;
     printf("'%s',", $4) | sq;
     printf("'%s',", descr) | sq;
-    printf("'%s',",  $8) | sq;
-    printf("'%s',",  $14) | sq;
-    printf("'%s',",  $12) | sq;
-    printf("'%s'",  $13) | sq;
+    printf("'%s',",  $9) | sq;
+    printf("'%s',",  $15) | sq;
+    printf("'%s',",  $13) | sq;
+    printf("'%s'",  $14) | sq;
     printf(");\n") | sq;
 
     split($6, dist, "[ \t]");
@@ -110,7 +118,15 @@ BEGIN {
 	printf(");\n") | sq;
     }
 
-    split($9, cat, "[ \t]");
+    split($8, repo, "[ \t]");
+    printf("insert into masterrepository values (") | sq;
+    printf("'%s',", $1) | sq;
+    printf("'%s',",  repo[1]) | sq;
+    printf("'%s',",  repo[2]) | sq;
+    printf("'%s'",  repo[3]) | sq;
+    printf(");\n") | sq;
+
+    split($10, cat, "[ \t]");
     for(f in cat) {
 	printf("insert into categories values (") | sq;
 	printf("'%s',", $1) | sq;
@@ -118,13 +134,13 @@ BEGIN {
 	printf(");\n") | sq;
     }
 
-    split($10, deps, "[ \t]");
+    split($11, deps, "[ \t]");
     for(dep in deps) {
 	insertdep($1, deps[dep], "build");
     }
     for(dep in deps) { delete deps[dep]; }
 
-    split($11, deps, "[ \t]");
+    split($12, deps, "[ \t]");
     for(dep in deps) {
 	insertdep($1, deps[dep], "run");
     }
