@@ -24,7 +24,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/pocolibs
 COMMENT=		Real-time communication library used by GenoM modules.
 
-NOT_FOR_PLATFORM=	# empty
+NOT_FOR_PLATFORM=	%-x86_64
 GNU_CONFIGURE=		yes
 
 # Enable valgrind support
