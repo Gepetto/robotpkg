@@ -1,5 +1,5 @@
---- imgfeatures.h.orig	2010-05-21 23:46:05.000000000 +0200
-+++ imgfeatures.h	2010-06-21 14:44:03.212430122 +0200
+--- include/imgfeatures.h.orig	2010-05-21 23:46:05.000000000 +0200
++++ include/imgfeatures.h	2010-06-21 14:44:03.212430122 +0200
 @@ -15,7 +15,7 @@
  enum feature_type
    {
