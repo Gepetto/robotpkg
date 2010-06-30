@@ -66,6 +66,8 @@ set -e          # exit on errors
 : ${ERROR_MSG:=${ECHO} ERROR:}
 : ${MAKECONF:=/opt/openrobots/etc/robotpkg.conf}
 
+: ${SYSLIBSUFFIX:=}
+
 : ${bf:=}
 : ${rm:=}
 : ${hline:=-----------------------------------------------------------------}
@@ -178,6 +180,15 @@ for p in `bracesubst $sysprefix`; do
 	IFS=: read -r f spec cmd <<-EOF
 		$fspec
 	EOF
+
+	# perform SYSLIBSUFFIX substitution: if a file spec starts with lib/
+	# and a directory $p/lib${SYSLIBSUFFIX} exists, the lib/ in file spec
+	# is changed to lib${SYSLIBSUFFIX}/.
+	if ${TEST} "${f#lib/}" != "$f"; then
+	    if ${TEST} -d "$p/lib${SYSLIBSUFFIX}"; then
+		f="lib${SYSLIBSUFFIX}/${f#lib/}"
+	    fi
+	fi
 
 	# iterate over file specs after glob and {,} substitutions and
 	# test existence

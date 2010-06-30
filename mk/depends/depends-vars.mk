@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -94,6 +94,7 @@ _PREFIXSEARCH_CMD=\
 		  AWK=${AWK}					\
 		  PKG_ADMIN_CMD=$(call quote,${PKG_ADMIN_CMD})	\
 		  MAKECONF=$(call quote,${MAKECONF})		\
+		  SYSLIBSUFFIX=$(call quote,${SYSLIBSUFFIX})	\
 	${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
 
 
