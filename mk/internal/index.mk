@@ -240,6 +240,8 @@ print-summary-data:
 	${ECHO} homepage ${PKGPATH} $(call quote,${HOMEPAGE});		\
 	${ECHO} distfiles ${PKGPATH} $(call quote,${DISTFILES});	\
 	${ECHO} mastersites ${PKGPATH} $(call quote,${MASTER_SITES});	\
+	${ECHO} masterrepository ${PKGPATH}				\
+		$(call quote,${MASTER_REPOSITORY});			\
 	${ECHO} maintainer ${PKGPATH} ${MAINTAINER};			\
 	${ECHO} license ${PKGPATH} $(call quote,${LICENSE});		\
 	${ECHO} depends ${PKGPATH} $(foreach _pkg_,${DEPEND_USE},	\
