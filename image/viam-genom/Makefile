@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/06/17 10:16:47 mallet $
+# $LAAS: Makefile 2010/07/01 16:53:30 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -25,6 +25,7 @@ PKGREVISION=		1
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet
 COMMENT=		Versatile Image Acquisition Module - GenoM component
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 

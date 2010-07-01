@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -25,6 +25,7 @@ MASTER_REPOSITORY=git ssh://softs.laas.fr/git/robots/speett-genom
 MAINTAINER=	mallet@laas.fr
 #HOMEPAGE=	http://softs.laas.fr/openrobots/distfiles/speett-genom/
 COMMENT=	Speech recognition engine based on Sphinx2 - GenoM module
+LICENSE=	2-clause-bsd
 
 GENOM_MODULE=	speett
 

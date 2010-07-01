@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/06/03 13:51:34 mallet $
+# $LAAS: Makefile 2010/07/01 16:53:22 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -24,6 +24,7 @@ MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/viam-libs
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet
 COMMENT=		Versatile Image Acquisition Module - Libraries
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 BUILD_TARGET=		all

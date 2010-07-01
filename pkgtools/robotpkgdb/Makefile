@@ -25,6 +25,7 @@ DISTFILES=	# empty
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/openrobots/robotpkg/pkgtools/pkgdb/index.html
 COMMENT=	A database of all packages included in robotpkg
+LICENSE=	2-clause-bsd
 
 NO_CHECKSUM=	yes
 NO_CONFIGURE=	yes

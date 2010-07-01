@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/12/02 11:32:06 mallet $
+# $LAAS: Makefile 2010/07/01 17:06:27 mallet $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -23,6 +23,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=libt3d/}
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=	3d transformations, matrices and vector package.
+LICENSE=	2-clause-bsd
 
 USE_LANGUAGES+=	c c++
 GNU_CONFIGURE=	yes

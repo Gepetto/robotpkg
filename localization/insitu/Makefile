@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/09/30 12:14:52 mallet $
+# $LAAS: Makefile 2010/07/01 17:05:53 mallet $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -23,6 +23,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=insitu/}
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Sensor location management library.
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 

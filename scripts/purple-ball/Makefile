@@ -26,6 +26,7 @@ MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/purple-ball
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=	Supervision scripts for the HRP-2 "purple-ball" demonstration
+LICENSE=	2-clause-bsd
 
 USE_LANGUAGES=	# empty
 

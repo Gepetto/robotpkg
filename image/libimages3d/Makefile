@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2008/05/25 14:04:24 tho $
+# $LAAS: Makefile 2010/07/01 17:04:59 mallet $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -23,6 +23,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Three dimensional image definition
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 

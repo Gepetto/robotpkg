@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/06/16 11:24:52 mallet $
+# $LAAS: Makefile 2010/07/01 16:58:14 mallet $
 #
 # Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
@@ -25,6 +25,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}eltclsh
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/eltclsh
 COMMENT=		Interactive shell for the TCL programming language.
+LICENSE=		2-clause-bsd
 
 NOT_FOR_PLATFORM=	# empty
 

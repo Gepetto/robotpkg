@@ -24,6 +24,7 @@ MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/stereopixel-genom
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Stereo-vision by pixel correlation - GenoM component
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 

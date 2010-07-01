@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/10/05 19:03:34 mallet $
+# $LAAS: Makefile 2010/07/01 17:08:02 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -25,6 +25,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=evart/}
 MAINTAINER=		mallet@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet/soft/mocap/evart-stream
 COMMENT=		EVa Real-Time Software data streaming server.
+LICENSE=		2-clause-bsd
 
 PREFIX=			${LOCALBASE}/i386-mingw32
 COMPILER_TARGET=	i386-mingw32

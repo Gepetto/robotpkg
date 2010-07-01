@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -22,6 +22,7 @@ CATEGORIES=	audio
 MAINTAINER=	mallet@laas.fr
 #HOMEPAGE=	http://softs.laas.fr/openrobots/distfiles/textos-genom/
 COMMENT=	Festival Speech Synthesis system - GenoM module
+LICENSE=	2-clause-bsd
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=textos-genom/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/textos-genom

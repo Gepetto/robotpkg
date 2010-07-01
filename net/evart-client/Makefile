@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/10/05 18:57:21 mallet $
+# $LAAS: Makefile 2010/07/01 17:07:54 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -24,8 +24,9 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=evart/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/evart-client
 
 MAINTAINER=		mallet@laas.fr
-#HOMEPAGE=		
+#HOMEPAGE=
 COMMENT=		EVa Real-Time Software data streaming API.
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=          yes
 BUILD_TARGET=		all

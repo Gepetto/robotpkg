@@ -1,4 +1,4 @@
-# $LAAS: Makefile 2010/06/03 14:40:13 mallet $
+# $LAAS: Makefile 2010/07/01 16:53:48 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -23,6 +23,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hueblob-genom/}
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		GenoM module for simple object detection and localization
+LICENSE=		2-clause-bsd
 
 USE_LANGUAGES=		c c++
 GNU_CONFIGURE=		yes
