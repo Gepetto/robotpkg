@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/11/28 23:41:36 tho $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -25,6 +24,8 @@ MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/genom
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/genom
 COMMENT=	Software components generator for robotics architecture.
+
+LICENSE=	2-clause-bsd
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	PERL=${PREFIX.perl}/bin/perl
