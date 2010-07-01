@@ -24,6 +24,8 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/pocolibs
 COMMENT=		Real-time communication library used by GenoM modules.
 
+LICENSE=		isc
+
 NOT_FOR_PLATFORM=	%-x86_64
 GNU_CONFIGURE=		yes
 
