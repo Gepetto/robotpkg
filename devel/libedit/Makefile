@@ -26,6 +26,8 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.thrysoee.dk/editline/
 COMMENT=		Generic line editing and history functions.
 
+LICENSE=		modified-bsd
+
 NOT_FOR_PLATFORM=	# empty
 
 GNU_CONFIGURE=		yes
