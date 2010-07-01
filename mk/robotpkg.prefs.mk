@@ -120,6 +120,13 @@ endif
 MACHINE_PLATFORM?=	${OPSYS}-${OS_VERSION}-${MACHINE_ARCH}
 
 
+# default accepted licenses (defined here so that += operator in robotpkg.conf
+# can be used to include the default list). See robotpkg.default.conf for
+# details.
+#
+ACCEPTABLE_LICENSES?=	${DEFAULT_ACCEPTABLE_LICENSES}
+
+
 # include the defaults file
 #
 ifndef MAKECONF

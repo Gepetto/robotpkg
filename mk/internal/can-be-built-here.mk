@@ -57,9 +57,10 @@ ifdef RESTRICTED
   endif
 endif
 
-# Check LICENSE
+# Check LICENSE. License may not be empty, but until all package get their
+# proper license, just print a warning.
 #
-ifdef LICENSE
+ifneq (,${LICENSE})
   ifeq (,$(filter ${LICENSE},${ACCEPTABLE_LICENSES}))
 PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license:"
 PKG_FAIL_REASON+= "	 ${LICENSE}"
@@ -72,6 +73,8 @@ PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""
   endif
+else
+  $(info *** LICENSE is empty: every package should define a license.)
 endif
 
 # Check *_FOR_PLATFORM variables, unless confirm was given on the cmdline
