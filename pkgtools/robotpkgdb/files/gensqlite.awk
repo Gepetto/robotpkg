@@ -27,6 +27,8 @@ BEGIN {
 
     printf("Generating sqlite database\n");
 
+    if( ROBOTPKG_DIR == "" ) { ROBOTPKG_DIR = "../../../.."; }
+
     if( SQLITE == "" ) { SQLITE = "sqlite3"; }
     sq = SQLITE " robotpkgdb.sqlite";
     #sq = "cat";
@@ -41,7 +43,8 @@ BEGIN {
     printf("maintainer text,") | sq;
     printf("home text,") | sq;
     printf("onlyfor text,") | sq;
-    printf("notfor text") | sq;
+    printf("notfor text,") | sq;
+    printf("license text") | sq;
     printf(");\n") | sq;
 
     printf("drop table if exists depend;\n") | sq;
@@ -78,17 +81,37 @@ BEGIN {
     printf("category text") | sq;
     printf(");\n") | sq;
 
+    printf("drop table if exists licences;\n") | sq;
+    printf("create table licenses(") | sq;
+    printf("name text unique on conflict ignore not null, ") | sq;
+    printf("text text") | sq;
+    printf(");\n") | sq;
+
     printf("begin exclusive transaction;") | sq;
 }
 
 
 {
     gsub("'", "''", $4);
+
+    # retrieve the DESCR content
     descr = ""; while ((getline l < $5) > 0) {
 	gsub("'", "''", l);
 	if (descr != "") { descr = descr "\n" l; } else { descr = l; }
     }
     close($5);
+
+    # retrieve the license text
+    if ($16 != "") {
+      f = ROBOTPKG_DIR "/licenses/" $16;
+      license = ""; while ((getline l < f) > 0) {
+	gsub("'", "''", l);
+	if (license != "") { license = license "\n" l; } else { license = l; }
+      }
+      close(f);
+    } else {
+      license = "";
+    }
 
     printf("insert into pkginfo values (") | sq;
     printf("'%s',", $1) | sq;
@@ -99,7 +122,8 @@ BEGIN {
     printf("'%s',",  $9) | sq;
     printf("'%s',",  $15) | sq;
     printf("'%s',",  $13) | sq;
-    printf("'%s'",  $14) | sq;
+    printf("'%s',",  $14) | sq;
+    printf("'%s'",  $16) | sq;
     printf(");\n") | sq;
 
     split($6, dist, "[ \t]");
@@ -144,6 +168,11 @@ BEGIN {
     for(dep in deps) {
 	insertdep($1, deps[dep], "run");
     }
+
+    printf("insert into licenses values (") | sq;
+    printf("'%s',", $16) | sq;
+    printf("'%s'", license) | sq;
+    printf(");\n") | sq;
 }
 
 END {

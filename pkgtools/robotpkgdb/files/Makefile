@@ -22,6 +22,8 @@ ECHO?=	echo
 SORT?=	sort
 SQLITE?=sqlite3
 
+ROBOTPKG_DIR?=	../../../..
+
 INSTALL_PROGRAM_DIR?=	install -d
 INSTALL_DATA_DIR?=	install -d
 INSTALL_PROGRAM?=	install -m 755
@@ -39,7 +41,8 @@ robotpkgdb.csv csv: PKGDB
 
 .PHONY: sqlite
 robotpkgdb.sqlite sqlite: robotpkgdb.csv
-	${AWK} -f ./gensqlite.awk SQLITE=${SQLITE} < robotpkgdb.csv
+	${AWK} -f ./gensqlite.awk \
+		SQLITE=${SQLITE} ROBOTPKG_DIR=${ROBOTPKG_DIR} < robotpkgdb.csv
 
 .PHONY: install-csv
 install-csv: robotpkgdb.csv

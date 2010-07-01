@@ -155,7 +155,11 @@ BEGIN {
 }
 
 /^license / {
-    license[$2] = substr($0, index($0, $3));
+    if( NF>=3 ) {
+      license[$2] = substr($0, index($0, $3));
+    } else {
+      license[$2] = "";
+    }
     next;
 }
 
@@ -249,8 +253,8 @@ END {
 
     # Output format:
     #  package-name|package-path|installation-prefix|comment|
-    #  description-file|maintainer|categories|build deps|run deps|for arch|
-    #  not for opsys|homepage
+    #  description-file|mastersite|masterrepository|maintainer|categories|
+    #  build deps|run deps|for arch|not for opsys|homepage|license-file
 
     pkgcnt = 0;
     for (toppkg in topdepends) {
@@ -273,7 +277,8 @@ END {
 	printf("%s|", flatdepends[toppkg]) | indexf;
 	printf("%s|", onlyfor[toppkg]) | indexf;
 	printf("%s|", notfor[toppkg]) | indexf;
-	printf("%s", homepage[toppkg]) | indexf;
+	printf("%s|", homepage[toppkg]) | indexf;
+	printf("%s", license[toppkg]) | indexf;
 	printf("\n") | indexf;
     }
     close(indexf);
