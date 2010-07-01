@@ -23,6 +23,8 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/mkdep
 COMMENT=		Automated make(1) dependency generation
 
+LICENSE=		2-clause-bsd
+
 NOT_FOR_PLATFORM=	# empty
 GNU_CONFIGURE=		yes
 
