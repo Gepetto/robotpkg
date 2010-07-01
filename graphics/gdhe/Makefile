@@ -25,6 +25,8 @@ MAINTAINER=	matthieu@laas.fr
 HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/gdhe
 COMMENT=	3D Visualization tools
 
+LICENSE=	2-clause-bsd
+
 USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
