@@ -74,7 +74,7 @@ PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""
   endif
 else
-  $(info *** LICENSE is empty: every package should define a license.)
+  $(shell echo >&2 '*** LICENSE is empty: every package should define a license.')
 endif
 
 # Check *_FOR_PLATFORM variables, unless confirm was given on the cmdline
