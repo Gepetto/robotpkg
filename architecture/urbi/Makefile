@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2010/05/30 19:06:00 tmoulard $
 #
 # Copyright (c) 2010 LAAS/CNRS
 # All rights reserved.
@@ -22,11 +21,11 @@ VERSION=	2.0.2
 
 CATEGORIES=	architecture
 MASTER_SITES=	http://www.gostai.com/static/downloads/
-#MASTER_REPOSITORY=
 
 MAINTAINER=	kernel@lists.gostai.com
 HOMEPAGE=	http://www.gostai.com/
 COMMENT=	Urbi middleware for robotics.
+LICENSE=	gnu-agpl-v3
 
 USE_LANGUAGES+= c c++
 
