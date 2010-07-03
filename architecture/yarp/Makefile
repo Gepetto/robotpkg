@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -24,6 +24,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Yet Another Robot Platform
+LICENSE=		gnu-gpl-v2
 
 USE_LANGUAGES+=		c c++
 
