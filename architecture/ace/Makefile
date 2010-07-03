@@ -24,6 +24,7 @@ MASTER_SITES=		http://download.dre.vanderbilt.edu/previous_versions/
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.cs.wustl.edu/~schmidt/ACE.html
 COMMENT=		The ADAPTATIVE Communication Environment ACE(tm)
+LICENSE=		doc
 
 WRKSRC=			${WRKDIR}/ACE_wrappers
 
