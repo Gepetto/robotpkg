@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/02/04 15:57:19 mallet $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -24,6 +23,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}genom-openhrp-plugin
 MAINTAINER=		gepetto@laas.fr
 #HOMEPAGE=
 COMMENT=		Interface plugin between GenoM and OpenHRP
+LICENSE=		2-clause-bsd
 
 USE_LANGUAGES+=		c c++
 
