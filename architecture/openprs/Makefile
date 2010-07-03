@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -24,6 +24,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/openprs
 COMMENT=		Open Source Procedural Reasoning System
+LICENSE=		2-clause-bsd
 
 BUILD_DIRS=		${WRKSRC}
 INSTALL_DIRS=		${WRKSRC}
