@@ -22,7 +22,7 @@ VERSION=	2.0.2
 CATEGORIES=	architecture
 MASTER_SITES=	http://www.gostai.com/static/downloads/
 
-MAINTAINER=	kernel@lists.gostai.com
+MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.gostai.com/
 COMMENT=	Urbi middleware for robotics.
 LICENSE=	gnu-agpl-v3

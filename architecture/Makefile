@@ -17,6 +17,7 @@ SUBDIR+=	orocos-ocl
 SUBDIR+=	orocos-rtt
 SUBDIR+=	robotis-oroyarp
 SUBDIR+=	transgen
+SUBDIR+=	urbi
 SUBDIR+=	yarp
 
 include ../mk/robotpkg.subdir.mk
