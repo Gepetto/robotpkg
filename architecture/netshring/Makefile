@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2008/05/25 12:14:56 tho $
 #
-# Copyright (c) 2007-2008 LAAS/CNRS
+# Copyright (c) 2007-2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -23,6 +22,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Networked FIFOs
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 
