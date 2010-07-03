@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/12/11 22:44:29 tho $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -24,6 +23,7 @@ COMMENT=		Open Architecture Humanoid Robotics Platform
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 HOMEPAGE=		http://www.openrtp.jp/openhrp3/en/index.html
+LICENSE=		eclipse
 
 MAINTAINER=		openrobots@laas.fr
 PREFIX=			${LOCALBASE}/OpenHRP
@@ -42,8 +42,6 @@ SUBST_FILES.openhrp-paths=\
 	bin/unix/ModelLoader.sh			\
 	bin/unix/GrxUI.sh			\
 	bin/unix/NameServer.sh
-
-LICENSE=	eclipse-public-license
 
 # we need g++>=4.2
 USE_LANGUAGES+=	c++
