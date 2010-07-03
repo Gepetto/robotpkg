@@ -24,6 +24,7 @@ MASTER_SITES=		http://www.openrtm.org/pub/OpenRTM-aist/cxx/${RTM_VERSION}/
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.is.aist.go.jp/rt/OpenRTM-aist/html-en/FrontPage.html
 COMMENT=		Open Robot Technology Middleware from AIST.
+LICENSE=		gnu-lgpl-v2.1
 
 USE_LANGUAGES+=		c c++
 
