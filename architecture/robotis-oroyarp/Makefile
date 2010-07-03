@@ -15,17 +15,18 @@
 #                                       Arnaud Degroote on Wed Apr 22 2008
 #
 
-OROYARP_VERSION=		1.2
+OROYARP_VERSION=	1.2
 DISTNAME=		robotis-oroyarp-${OROYARP_VERSION}
 CATEGORIES=		architecture
-MASTER_SITES=	http://robotis.onera.fr/sites/robotis.onera.fr/files/
-EXTRACT_SUFX=	.tar
+MASTER_SITES=		http://robotis.onera.fr/sites/robotis.onera.fr/files/
+EXTRACT_SUFX=		.tar
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://robotis.onera.fr
-COMMENT=		The Orocos / YARP binding 
+COMMENT=		The Orocos / YARP binding
+LICENSE=		gnu-lgpl-v3
 
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=		c c++
 
 include ../../architecture/orocos-ocl/depend.mk
 include ../../architecture/orocos-rtt/depend.mk
