@@ -2,14 +2,14 @@
 # Created:			Anthony Mallet on Thu, 22 Jan 2009
 #
 
-DISTNAME=		yarp-2.2.6
+DISTNAME=		yarp-2.3.0
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Yet Another Robot Platform
-LICENSE=		gnu-gpl-v2
+LICENSE=		gnu-lgpl-v2
 
 USE_LANGUAGES+=		c c++
 
