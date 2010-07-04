@@ -2,7 +2,7 @@
 # Created:			Severin Lemaignan on Fri, 12 Jun 2009
 #
 
-PKGVERSION=		2.2.6
+PKGVERSION=		2.3.0
 DISTNAME=		yarp-${PKGVERSION}
 PKGNAME=		libpyyarp-${PKGVERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
@@ -11,7 +11,7 @@ CATEGORIES=		devel
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Python bindings for YARP
-LICENSE=		gnu-gpl-v2
+LICENSE=		gnu-lgpl-v2
 
 USE_LANGUAGES+=		c c++ python
 
@@ -38,6 +38,7 @@ post-configure:
 	${LN} -sf ${PREFIX.yarp}/lib/libYARP_dev.so ${WRKSRC}/lib
 	${LN} -sf ${PREFIX.yarp}/lib/libYARP_sig.so ${WRKSRC}/lib
 	${LN} -sf ${PREFIX.yarp}/lib/libYARP_OS.so ${WRKSRC}/lib
+	${LN} -sf ${PREFIX.yarp}/lib/libYARP_init.so ${WRKSRC}/lib
 
 do-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/${PYTHON_SITELIB}
