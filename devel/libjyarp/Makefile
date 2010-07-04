@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 27 Jan 2009
 #
 
-PKGVERSION=		2.2.6
+PKGVERSION=		2.3.0
 DISTNAME=		yarp-${PKGVERSION}
 PKGNAME=		libjyarp-${PKGVERSION}
 CATEGORIES=		devel
@@ -42,6 +42,7 @@ post-configure:
 	${LN} -sf ${PREFIX.yarp}/lib/libYARP_dev.so ${WRKSRC}/lib
 	${LN} -sf ${PREFIX.yarp}/lib/libYARP_sig.so ${WRKSRC}/lib
 	${LN} -sf ${PREFIX.yarp}/lib/libYARP_OS.so ${WRKSRC}/lib
+	${LN} -sf ${PREFIX.yarp}/lib/libYARP_init.so ${WRKSRC}/lib
 
 post-build:
 	${MKDIR} ${WRKSRC}/example/swig/build
