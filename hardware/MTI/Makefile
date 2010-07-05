@@ -16,7 +16,7 @@
 #
 
 DISTNAME=		MTI-${VERSION}
-VERSION=		0.3
+VERSION=		0.4
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/MTI-libs
