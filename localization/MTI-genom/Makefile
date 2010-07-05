@@ -16,18 +16,17 @@
 #                                      Arnaud Degroote on Thue July 17 2008
 #
 
-DISTNAME=		MTI-genom-0.3
+DISTNAME=		MTI-genom-0.4
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/MTI-genom
-PKGREVISION=	1
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		GenoM module for MTI management
 
 USE_LANGUAGES+=         c c++
-GNU_CONFIGURE=		yes
+#GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		MTI
 include ../../architecture/genom/depend.mk
