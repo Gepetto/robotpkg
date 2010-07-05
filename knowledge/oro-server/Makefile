@@ -17,11 +17,12 @@
 #                                          Séverin Lemaignan on Mon Mar 22 2010
 #
 
-DISTNAME=		oro-server-0.7.4
+DISTNAME=		oro-server-0.7.7
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=oro-server/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/oro-server
 
 CATEGORIES=	knowledge
+LICENSE=	isc
 MAINTAINER=	severin.lemaignan@laas.fr
 HOMEPAGE=	http://homepages.laas.fr/slemaign/oro-server
 COMMENT=	A cognitive kernel for robotics, written in Java
