@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -17,12 +17,13 @@
 #                                          Severin Lemaignan on Thu Jun 04 2009
 #
 
-DISTNAME=		liboro-0.7.6
+DISTNAME=		liboro-0.7.7
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=liboro/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/liboro
 
 CATEGORIES=		knowledge
 MAINTAINER=		severin.lemaignan@laas.fr
+LICENSE=		isc
 HOMEPAGE=		http://homepages.laas.fr/slemaign/oro-server/oro-server-bindings.html
 COMMENT=		C++ interface to the oro-server ontology server.
 
