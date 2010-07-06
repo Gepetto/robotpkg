@@ -28,7 +28,6 @@ COMMENT=		Driver and interface for MTI
 USE_LANGUAGES+=         c c++
 GNU_CONFIGURE=		yes
 
-include ../../devel/pocolibs/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
