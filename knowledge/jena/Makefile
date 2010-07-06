@@ -3,11 +3,12 @@
 #
 
 DISTNAME=	jena-${PKGVERSION}
-PKGVERSION=	2.6.2
+PKGVERSION=	2.6.3
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=jena/}
 EXTRACT_SUFX=	.zip
 
 CATEGORIES=	knowledge
+LICENSE=	modified-bsd
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://jena.sourceforge.net/index.html
 COMMENT=	Java framework for building Semantic Web applications

@@ -1,15 +1,16 @@
-@comment Wed Nov 25 19:43:26 CET 2009
-java/jena/lib/arq-2.8.1.jar
+@comment Tue Jul 6 19:36:44 CEST 2010
+java/jena/lib/arq-2.8.4.jar
 java/jena/lib/icu4j-3.4.4.jar
-java/jena/lib/iri-0.7.jar
+java/jena/lib/iri-0.8.jar
+java/jena/lib/iri-0.8-sources.jar
 java/jena/lib/jena.jar
 java/jena/lib/junit-4.5.jar
 java/jena/lib/log4j-1.2.13.jar
 java/jena/lib/lucene-core-2.3.1.jar
 java/jena/lib/${PKGNAME}.jar
 java/jena/lib/${PKGNAME}-tests.jar
-java/jena/lib/slf4j-api-1.5.6.jar
-java/jena/lib/slf4j-log4j12-1.5.6.jar
+java/jena/lib/slf4j-api-1.5.8.jar
+java/jena/lib/slf4j-log4j12-1.5.8.jar
 java/jena/lib/stax-api-1.0.1.jar
 java/jena/lib/wstx-asl-3.2.9.jar
 java/jena/lib/xercesImpl-2.7.1.jar
@@ -815,6 +816,7 @@ ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/cla
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/class-use/ListNotContains.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/class-use/ListNotEqual.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/class-use/MakeInstance.html
+${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/class-use/MakeSkolem.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/class-use/MakeTemp.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/class-use/Max.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/class-use/Min.html
@@ -858,6 +860,7 @@ ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/Lis
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/ListNotContains.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/ListNotEqual.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/MakeInstance.html
+${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/MakeSkolem.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/MakeTemp.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/Max.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/reasoner/rulesys/builtins/Min.html
@@ -1146,6 +1149,7 @@ ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/class-use/DCTypes.
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/class-use/LocationMappingVocab.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/class-use/OntDocManagerVocab.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/class-use/OntEventsVocab.html
+${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/class-use/OWL2.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/class-use/OWL.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/class-use/OWLResults.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/class-use/OWLTest.html
@@ -1173,6 +1177,7 @@ ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/DCTypes.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/LocationMappingVocab.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/OntDocManagerVocab.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/OntEventsVocab.html
+${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/OWL2.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/OWL.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/OWLResults.html
 ${PLIST.doc}share/doc/jena/javadoc/com/hp/hpl/jena/vocabulary/OWLTest.html
@@ -1218,6 +1223,12 @@ ${PLIST.doc}share/doc/jena/javadoc/jena/class-use/rdfparse.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/class-use/rset.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/class-use/RuleMap.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/class-use/schemagen.html
+${PLIST.doc}share/doc/jena/javadoc/jena/class-use/schemagen.OptionDefinition.html
+${PLIST.doc}share/doc/jena/javadoc/jena/class-use/schemagen.SchemagenException.html
+${PLIST.doc}share/doc/jena/javadoc/jena/class-use/schemagen.SchemagenOptions.html
+${PLIST.doc}share/doc/jena/javadoc/jena/class-use/schemagen.SchemagenOptionsImpl.html
+${PLIST.doc}share/doc/jena/javadoc/jena/class-use/schemagen.SchemagenOptions.OPT.html
+${PLIST.doc}share/doc/jena/javadoc/jena/class-use/schemagen.SchemagenUtils.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/class-use/sparql.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/class-use/turtle.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/class-use/version.html
@@ -1239,6 +1250,12 @@ ${PLIST.doc}share/doc/jena/javadoc/jena/rdfparse.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/rset.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/RuleMap.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/schemagen.html
+${PLIST.doc}share/doc/jena/javadoc/jena/schemagen.OptionDefinition.html
+${PLIST.doc}share/doc/jena/javadoc/jena/schemagen.SchemagenException.html
+${PLIST.doc}share/doc/jena/javadoc/jena/schemagen.SchemagenOptions.html
+${PLIST.doc}share/doc/jena/javadoc/jena/schemagen.SchemagenOptionsImpl.html
+${PLIST.doc}share/doc/jena/javadoc/jena/schemagen.SchemagenOptions.OPT.html
+${PLIST.doc}share/doc/jena/javadoc/jena/schemagen.SchemagenUtils.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/sparql.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/turtle.html
 ${PLIST.doc}share/doc/jena/javadoc/jena/version.html

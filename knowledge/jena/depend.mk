@@ -15,7 +15,7 @@ ifeq (+,$(JENA_DEPEND_MK)) # -----------------------------------------------
 PREFER.jena?=		robotpkg
 
 DEPEND_USE+=		jena
-DEPEND_ABI.jena?=	jena>=2.6.2
+DEPEND_ABI.jena?=	jena>=2.6.3
 DEPEND_DIR.jena?=	../../knowledge/jena
 
 SYSTEM_SEARCH.jena=\
