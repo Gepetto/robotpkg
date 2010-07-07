@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2008-2009 LAAS/CNRS
+# Copyright (C) 2008-2010 LAAS/CNRS
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
 # with or without   fee is hereby granted, provided   that the above  copyright
@@ -25,6 +25,7 @@ DISTFILES=	# empty
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://code.google.com/p/libarchive/
 COMMENT=	Library to read/create different archive formats
+LICENSE=	2-clause-bsd
 
 NO_CHECKSUM=	yes
 
