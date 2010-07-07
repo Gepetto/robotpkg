@@ -25,6 +25,7 @@ MASTER_SITES=	http://www.bzip.org/1.0.5/
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.bzip.org/
 COMMENT=	Block-sorting file compressor
+LICENSE=	modified-bsd
 
 DISTFILES=	# empty
 
