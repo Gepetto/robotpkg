@@ -1,6 +1,5 @@
-# $LAAS: checkout.mk 2009/11/17 17:35:02 mallet $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -73,8 +72,8 @@ CHECKOUT_REPOSITORY=	$(word 2,${_MASTER_REPOSITORY})
 CHECKOUT_ELEMENTS?=\
 	$(wordlist 3,$(words ${_MASTER_REPOSITORY}),${_MASTER_REPOSITORY})
 
-ifdef CHECKOUT
-  CHECKOUT_OPTS+=	-r ${CHECKOUT}
+ifdef _CHECKOUT
+  CHECKOUT_OPTS+=	-r ${_CHECKOUT}
 endif
 
 # --- checkout (PUBLIC) ----------------------------------------------------

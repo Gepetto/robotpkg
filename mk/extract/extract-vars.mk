@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -54,6 +54,13 @@ ifdef REPOSITORY.${PKGBASE}
   _MASTER_REPOSITORY=${REPOSITORY.${PKGBASE}}
 else ifdef MASTER_REPOSITORY
   _MASTER_REPOSITORY=${MASTER_REPOSITORY}
+endif
+
+# let users override the CHECKOUT version
+ifdef CHECKOUT.${PKGBASE}
+  _CHECKOUT=${CHECKOUT.${PKGBASE}}
+else ifdef CHECKOUT
+  _CHECKOUT=${CHECKOUT}
 endif
 
 
