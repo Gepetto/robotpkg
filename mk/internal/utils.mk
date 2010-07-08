@@ -170,21 +170,21 @@ show-comment:
 #
 # browse the file pointed to by the LICENSE variable
 #
-LICENSE_FILE?=		${ROBOTPKG_DIR}/licenses/${LICENSE}
+LICENSE_FILE?=	$(addprefix ${ROBOTPKG_DIR}/licenses/,${LICENSE})
 
 .PHONY: show-license
 show-license:
-	@license=${LICENSE};						\
-	license_file=${LICENSE_FILE};					\
-	pager=${PAGER}	;						\
+	@license_file="${LICENSE_FILE}";				\
+	pager=${PAGER};							\
 	case "$$pager" in "") pager=${CAT};; esac;			\
-	case "$$license" in "") exit 0;; esac;				\
-	if ${TEST} -f "$$license_file"; then				\
-		$$pager "$$license_file";				\
-	else								\
-		${ECHO} "Generic $$license information not available";	\
-		${ECHO} "See the package description (pkg_info -d ${PKGNAME}) for more information."; \
-	fi
+	case "$$license_file" in "") exit 0;; esac;			\
+	for l in $$license_file; do					\
+	  if ${TEST} -f "$$l"; then					\
+		$$pager "$$l";						\
+	  else								\
+		${ECHO} "Generic $${l##*/} information not available";	\
+	  fi;								\
+	done
 
 
 # --- show-depends-pkgpaths ------------------------------------------------

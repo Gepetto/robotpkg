@@ -61,14 +61,16 @@ endif
 # proper license, just print a warning.
 #
 ifneq (,${LICENSE})
-  ifeq (,$(filter ${LICENSE},${ACCEPTABLE_LICENSES}))
+  ifneq (,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}))
 PKG_FAIL_REASON+= "${PKGNAME} has an unacceptable license:"
-PKG_FAIL_REASON+= "	 ${LICENSE}"
+PKG_FAIL_REASON+= "	 $(filter-out ${ACCEPTABLE_LICENSES},${LICENSE})"
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= " . To view the license, enter \"${MAKE} show-license\"."
 PKG_FAIL_REASON+= " . To indicate acceptance, add this line:"
 PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=${LICENSE}"
+$(foreach l,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}),$(eval 	\
+  PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=$l"			\
+))
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""

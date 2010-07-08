@@ -60,8 +60,9 @@ PKG_URL=	${PKG_URL_HOST}${PKG_URL_DIR}
 
 HTMLIFY=	${SED} -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
 HTML_HOMEPAGE=	$(if ${HOMEPAGE},<a href="${HOMEPAGE}">${HOMEPAGE}</a>,(none))
-HTML_LICENSE=	$(if ${LICENSE},\
-	<tr><td>License:<td><a href="../../licenses/${LICENSE}">${LICENSE}</a>)
+HTML_LICENSE=	$(if ${LICENSE},			\
+	<tr><td>License:<td>$(foreach l,${LICENSE},	\
+		<a href="../../licenses/$l">$l</a>))
 
 
 # --- index ----------------------------------------------------------------

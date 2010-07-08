@@ -1,5 +1,5 @@
 #!/usr/bin/awk -f
-# $LAAS: genindex.awk 2009/01/19 23:25:59 tho $
+# $LAAS: genindex.awk 2010/07/08 22:35:12 tho $
 #
 # Copyright (c) 2002, 2003, 2005, 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -188,7 +188,11 @@ BEGIN {
 }
 
 /^license /{
-	license[$2] = $3;
+	if( NF>=3 ) {
+	    license[$2] = substr($0, index($0, $3));
+	} else {
+	    license[$2] = "";
+	}
 	next;
 }
 
