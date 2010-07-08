@@ -103,14 +103,21 @@ BEGIN {
 
     # retrieve the license text
     if ($16 != "") {
-      f = ROBOTPKG_DIR "/licenses/" $16;
-      license = ""; while ((getline l < f) > 0) {
-	gsub("'", "''", l);
-	if (license != "") { license = license "\n" l; } else { license = l; }
+      split($16, licenses, "[ \t]");
+      for(l in licenses) {
+	  f = ROBOTPKG_DIR "/licenses/" licenses[l];
+	  license[l] = ""; while ((getline line < f) > 0) {
+	      gsub("'", "''", line);
+	      if (license[l] != "") {
+		  license[l] = license[l] "\n" line;
+	      } else {
+		  license[l] = line;
+	      }
+	  }
+	  close(f);
       }
-      close(f);
     } else {
-      license = "";
+      license[1] = "";
     }
 
     printf("insert into pkginfo values (") | sq;
@@ -169,10 +176,12 @@ BEGIN {
 	insertdep($1, deps[dep], "run");
     }
 
-    printf("insert into licenses values (") | sq;
-    printf("'%s',", $16) | sq;
-    printf("'%s'", license) | sq;
-    printf(");\n") | sq;
+    for(l in licenses) {
+	printf("insert into licenses values (") | sq;
+	printf("'%s',", licenses[l]) | sq;
+	printf("'%s'", license[l]) | sq;
+	printf(");\n") | sq;
+    }
 }
 
 END {
