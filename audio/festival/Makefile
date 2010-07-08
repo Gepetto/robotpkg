@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2010/03/24 14:07:50 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -18,11 +17,12 @@
 
 DISTNAME=		festival-1.96
 CATEGORIES=		audio
-MASTER_SITES=		http://festvox.org/packed/festival/latest/
+MASTER_SITES=		http://festvox.org/packed/festival/1.96/
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://festvox.org/index.html
 COMMENT=		Festival Speech Synthesis System
+LICENSE=		modified-bsd
 
 DISTFILES=		festival-1.96-beta.tar.gz	\
 			speech_tools-1.2.96-beta.tar.gz
@@ -50,6 +50,7 @@ SITES.OGIresLPC-2.2.tar.gz=	${OGIRESLPC.site}
 SITES.OGIlexicon-2.2.tar.gz=	${OGIRESLPC.site}
 
 define PKG_OPTION_SET.ogireslpc
+  LICENSE+=		ohsu-license
   DISTFILES+=		${OGIRESLPC.files}
   NOFETCHFILES+=	${OGIRESLPC.files}
   PKG_PATCHES+=		$(wildcard ${PATCHDIR}/ogi-patch-*)
