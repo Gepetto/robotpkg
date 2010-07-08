@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/03/07 00:13:41 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -25,6 +24,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=cmusphinx/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://cmusphinx.sourceforge.net
 COMMENT=		Carnegie Mellon University\'s speech recognition engine.
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 
