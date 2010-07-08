@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/12/11 22:43:59 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -23,6 +22,7 @@ MASTER_SITES=		http://www.cslu.ogi.edu/tts/download/data/
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://cslu.cse.ogi.edu/tts/
 COMMENT=		American English pronunciation lexicon
+LICENSE=		ohsu-license
 
 RESTRICTED=		Redistribution of repackaged binaries not permitted
 NO_PUBLIC_SRC=		${RESTRICTED}
