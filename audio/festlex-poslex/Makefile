@@ -1,4 +1,18 @@
-# $Id: Makefile 2009/12/11 22:42:43 tho $
+#
+# Copyright (c) 2008-2010 LAAS/CNRS
+# All rights reserved.
+#
+# Redistribution and use  in source  and binary  forms,  with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#   1. Redistributions of  source  code must retain the  above copyright
+#      notice and this list of conditions.
+#   2. Redistributions in binary form must reproduce the above copyright
+#      notice and  this list of  conditions in the  documentation and/or
+#      other materials provided with the distribution.
+#
+#                                      Anthony Mallet on Wed May  7 2008
 #
 
 DISTNAME=		festlex_POSLEX
@@ -9,6 +23,7 @@ MASTER_SITES=		http://festvox.org/packed/festival/latest/
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://festvox.org/index.html
 COMMENT=		English lexicon suitable for use with Festival
+LICENSE=		modified-bsd
 
 WRKSRC=			${WRKDIR}/festival
 NO_BUILD=		yes
