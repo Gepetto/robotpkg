@@ -1,5 +1,7 @@
-# $Id: Makefile 2009/12/11 22:42:15 tho $
+# $Id: Makefile 2010/07/08 23:08:58 tho $
 #
+
+BROKEN=			Distfile disappeared
 
 DISTNAME=		festvox_cmu_us_awb_arctic_hts
 PKGNAME=		festvox-cmu-us-awb-arctic-hts-20041209
