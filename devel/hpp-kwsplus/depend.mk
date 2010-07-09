@@ -34,7 +34,7 @@ SYSTEM_SEARCH.hpp-kwsplus=\
 
 DEPEND_USE+=		hpp-kwsplus
 
-DEPEND_ABI.hpp-kwsplus?=hpp-kwsplus>=1.5
+DEPEND_ABI.hpp-kwsplus?=hpp-kwsplus>=1.8
 DEPEND_DIR.hpp-kwsplus?=../../devel/hpp-kwsplus
 
 include ../../path/kineo-pp/depend.mk
