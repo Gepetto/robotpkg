@@ -15,6 +15,8 @@
 #                                       Anthony Mallet on Wed May 14 2008
 #
 
+BROKEN=		Does not compile
+
 DISTNAME=	walk-genom-1.5
 
 CATEGORIES=	path
