@@ -27,6 +27,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}roboptim/core
 MAINTAINER=	roboptim-user@lists.sourceforge.net
 HOMEPAGE=	http://sourceforge.net/projects/roboptim/
 COMMENT=	Optimization for robotics: common API to various solvers.
+LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES+= c c++
 
