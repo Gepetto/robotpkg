@@ -1,0 +1,11 @@
+--- CMakeLists.txt~	2010-07-09 17:26:30.596706360 +0200
++++ CMakeLists.txt	2010-07-09 17:26:45.915456073 +0200
+@@ -137,7 +137,7 @@
+ #--------------------------
+ #add_subdirectory(include)
+ add_subdirectory(src)
+-add_subdirectory(unitTesting)
++#add_subdirectory(unitTesting)
+ add_subdirectory(tools)
+ 
+ # Prepare the documentation
