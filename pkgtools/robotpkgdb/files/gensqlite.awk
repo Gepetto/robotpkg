@@ -186,6 +186,7 @@ BEGIN {
 
 END {
     printf("commit transaction;") | sq;
+    printf("analyze;") | sq;
 }
 
 
