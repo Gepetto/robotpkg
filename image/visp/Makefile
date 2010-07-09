@@ -25,6 +25,7 @@ MASTER_SITES=		http://gforge.inria.fr/frs/download.php/25154/
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.irisa.fr/lagadic/visp/
 COMMENT=		The Visual Servoing Platform
+LICENSE=		qpl
 
 WRKSRC=			${WRKDIR}/ViSP-code
 
