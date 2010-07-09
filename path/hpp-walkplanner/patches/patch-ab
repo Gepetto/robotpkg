@@ -1,0 +1,12 @@
+--- Makefile.in~	2010-07-09 18:49:00.629705001 +0200
++++ Makefile.in	2010-07-09 18:49:44.649704617 +0200
+@@ -369,8 +369,7 @@
+ SUBDIRS = \
+ 	include		\
+ 	src		\
+-	doc		\
+-	tests
++	doc
+ 
+ 
+ # Regenerate libtool if required, should be included by the
