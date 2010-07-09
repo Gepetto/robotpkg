@@ -1,0 +1,13 @@
+--- Makefile.in~	2010-01-08 11:14:58.000000000 +0100
++++ Makefile.in	2010-07-09 18:20:04.967705208 +0200
+@@ -1099,8 +1099,8 @@
+ 	 exit 42;							\
+ 	fi
+ 
+-install-exec-hook: check-version
+-install-data-hook: check-version
++#install-exec-hook: check-version
++#install-data-hook: check-version
+ 
+ # Check that the version is up-to-date or regenerate if required.
+ # Then, generate .tarball-version file to bundle the tarball with a
