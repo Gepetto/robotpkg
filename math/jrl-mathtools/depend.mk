@@ -29,7 +29,7 @@ PREFER.jrl-mathtools?=	robotpkg
 
 DEPEND_USE+=		jrl-mathtools
 
-DEPEND_ABI.jrl-mathtools?=jrl-mathtools>=1.1
+DEPEND_ABI.jrl-mathtools?=jrl-mathtools>=1.2
 DEPEND_DIR.jrl-mathtools?=../../math/jrl-mathtools
 
 SYSTEM_SEARCH.jrl-mathtools=\
