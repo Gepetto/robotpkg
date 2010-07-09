@@ -27,6 +27,8 @@ MASTER_SITES=	http://www.coin-or.org/download/source/Ipopt/
 MAINTAINER=	ipopt@list.coin-or.org
 HOMEPAGE=	https://projects.coin-or.org/Ipopt
 COMMENT=	Interior Point OPTimizer, pronounced I-P-Opt
+LICENSE=	cpl
+
 
 GNU_CONFIGURE=	yes
 
