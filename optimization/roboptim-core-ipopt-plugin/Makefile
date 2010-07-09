@@ -27,6 +27,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}roboptim/core
 MAINTAINER=	roboptim-user@lists.sourceforge.net
 HOMEPAGE=	http://sourceforge.net/projects/roboptim/
 COMMENT=	plug-in linking ipopt to roboptim-core
+LICENSE=	cpl
 
 USE_LANGUAGES+= c c++
 
