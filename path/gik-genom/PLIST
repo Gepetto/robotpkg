@@ -2,6 +2,9 @@
 bin/gik
 bin/gikSendInitRqst
 bin/gikTest
+${PLIST.openprs}include/gik/server/openprs/gikDecodeOpenprs.h
+${PLIST.openprs}include/gik/server/openprs/gikEncodeOpenprs.h
+${PLIST.openprs}include/gik/server/openprs/gikRequestsOpenprsProto.h
 include/gik/gikStruct.h
 include/gik/server/gikEndian.h
 include/gik/server/gikError.h
@@ -18,6 +21,11 @@ include/gik/server/gikScan.h
 include/gik/server/gikType.h
 lib/libgikClient.la
 lib/pkgconfig/gik.pc
-lib/tclserv/libgikTclServ.la
+${PLIST.openprs}lib/openprs/libgikOpenprs.la
+${PLIST.openprs}lib/pkgconfig/gik-oprs.pc
+${PLIST.tcl}lib/tclserv/libgikTclServ.la
 share/modules/gen/gik.gen
-share/modules/tcl/gikClient.tcl
+${PLIST.openprs}share/modules/openprs/gikOpenprs.inc
+${PLIST.openprs}share/modules/openprs/gikOpenprs.opf
+${PLIST.openprs}share/modules/openprs/gikOpenprs.sym
+${PLIST.tcl}share/modules/tcl/gikClient.tcl
