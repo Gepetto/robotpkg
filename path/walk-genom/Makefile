@@ -15,9 +15,7 @@
 #                                       Anthony Mallet on Wed May 14 2008
 #
 
-BROKEN=		Does not compile
-
-DISTNAME=	walk-genom-1.5
+DISTNAME=	walk-genom-1.6
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=walk-genom/}
