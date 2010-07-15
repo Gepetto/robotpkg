@@ -1,0 +1,12 @@
+--- Makefile.in~	2010-04-01 21:14:31.000000000 +0200
++++ Makefile.in	2010-07-15 11:44:27.209802152 +0200
+@@ -341,8 +341,7 @@
+ SUBDIRS = \
+ 	doc		\
+ 	include		\
+-	src		\
+-	tests
++	src
+ 
+ 
+ # Libtool rules
