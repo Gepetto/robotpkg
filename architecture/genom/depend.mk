@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2009/11/25 12:05:45 mallet $
+# $LAAS: depend.mk 2010/07/15 18:46:21 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -41,8 +41,18 @@ TOOLS.genom?=		${PREFIX.genom}/bin/genom
 GENOM_ARGS?=#		empty
 
 # Add genom-related options
-PKG_SUPPORTED_OPTIONS+=	tcl openprs
+PKG_SUPPORTED_OPTIONS+=	api tcl openprs
 PKG_SUGGESTED_OPTIONS+=	tcl
+
+PKG_OPTION_DESCR.api=	Generate module API only
+define PKG_OPTION_SET.api
+  GENOM_ARGS+=	-a
+endef
+_PKG_OPTIONS_UNSET.api:=${PKG_OPTIONS_UNSET.api}
+define PKG_OPTION_UNSET.api
+  ${_PKG_OPTIONS_UNSET.api}
+  GENOM_ARGS:=	$(filter-out -a,${GENOM_ARGS})
+endef
 
 PKG_OPTION_DESCR.tcl=	Enable the generation of the TCL client code
 define PKG_OPTION_SET.tcl
