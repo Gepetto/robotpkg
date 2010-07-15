@@ -1,6 +1,5 @@
-# $LAAS: depend.mk 2009/07/21 16:54:08 mallet $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -29,7 +28,7 @@ PREFER.jrl-mal?=	robotpkg
 
 DEPEND_USE+=		jrl-mal
 
-DEPEND_ABI.jrl-mal?=	jrl-mal>=1.7.4
+DEPEND_ABI.jrl-mal?=	jrl-mal>=1.8.3
 DEPEND_DIR.jrl-mal?=	../../interfaces/jrl-mal
 
 SYSTEM_SEARCH.jrl-mal=\
