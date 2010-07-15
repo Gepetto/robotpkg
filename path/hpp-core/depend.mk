@@ -1,6 +1,5 @@
-# $LAAS: depend.mk 2008/12/09 19:24:37 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -29,7 +28,7 @@ PREFER.hpp-core?=	robotpkg
 
 DEPEND_USE+=		hpp-core
 
-DEPEND_ABI.hpp-core?=	hpp-core>=1.6
+DEPEND_ABI.hpp-core?=	hpp-core>=1.11
 DEPEND_DIR.hpp-core?=	../../path/hpp-core
 
 SYSTEM_SEARCH.hpp-core=\
