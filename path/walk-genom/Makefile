@@ -29,18 +29,21 @@ USE_LANGUAGES+= c c++
 GNU_CONFIGURE=	yes
 
 GENOM_MODULE=	walk
-include ../../architecture/genom/depend.mk
+define PKG_OPTIONS_UNSET.api
+  include ../../path/hpp-walkplanner/depend.mk
+  include ../../devel/omniORB/depend.mk
+  include ../../devel/hpp-corbaserver/depend.mk
+  include ../../robots/hrp2-14/depend.mk
+  include ../../architecture/netshring/depend.mk
+  post-install: install-license
+endef
 
-include ../../path/hpp-walkplanner/depend.mk
-include ../../devel/omniORB/depend.mk
-include ../../devel/hpp-corbaserver/depend.mk
-include ../../robots/hrp2-14/depend.mk
 include ../../robots/hrp2-genom/depend.mk
-include ../../architecture/netshring/depend.mk
+include ../../architecture/genom/depend.mk
 include ../../mk/robotpkg.mk
 
 # generate and install the Kineo license, but don't fail on errors.
-post-install:
+install-license:
 	cd ${WRKSRC} && ${SETENV} ${INSTALL_ENV} ${MAKE_ENV} 		\
 		${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS}	\
 			license install-license || ${TRUE}

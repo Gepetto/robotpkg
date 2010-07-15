@@ -1,16 +1,16 @@
 @comment Thu Mar 4 19:38:16 CET 2010
-bin/walk
-bin/walkSendInitRqst
-bin/walkTest
+${PLIST.noapi}bin/walk
+${PLIST.noapi}bin/walkSendInitRqst
+${PLIST.noapi}bin/walkTest
 include/walk/server/walkEndian.h
 include/walk/server/walkError.h
-include/walk/server/walkMsgLib.h
+${PLIST.noapi}include/walk/server/walkMsgLib.h
 include/walk/server/walkPosterLib.h
 include/walk/server/walkPosterLibStruct.h
-include/walk/server/walkPosterReadLibProto.h
-include/walk/server/walkPosterShowLib.h
-include/walk/server/walkPosterWriteLibProto.h
-include/walk/server/walkPosterXMLLib.h
+${PLIST.noapi}include/walk/server/walkPosterReadLibProto.h
+${PLIST.noapi}include/walk/server/walkPosterShowLib.h
+${PLIST.noapi}include/walk/server/walkPosterWriteLibProto.h
+${PLIST.noapi}include/walk/server/walkPosterXMLLib.h
 include/walk/server/walkPrint.h
 include/walk/server/walkPrintXML.h
 include/walk/server/walkScan.h
@@ -23,7 +23,7 @@ lib/libwalkClient.la
 ${PLIST.openprs}lib/openprs/libwalkOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/walk-oprs.pc
 lib/pkgconfig/walk.pc
-${PLIST.tcl}lib/tclserv/libwalkTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libwalkTclServ.la
 share/modules/gen/walk.gen
 ${PLIST.openprs}share/modules/openprs/walkOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/walkOpenprs.opf
