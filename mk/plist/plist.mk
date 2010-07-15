@@ -143,8 +143,13 @@ PLIST_SUBST+=	\
 	PLIST_RMDIR=$(call quote,${RMDIR})				\
 	PLIST_RM=$(call quote,${RM})					\
 	PLIST_TRUE=$(call quote,${TRUE})				\
-	PLIST_PKGMANDIR=$(call quote,${PKGMANDIR})			\
-	$(foreach _v_,${PLIST_VARS},PLIST.${_v_}=$(call quote,${PLIST.${_v_}}))
+	PLIST_PKGMANDIR=$(call quote,${PKGMANDIR})
+
+PLIST_SUBST+=$(foreach \
+	_v_,${PLIST_VARS},PLIST.${_v_}=$(call quote,${PLIST.${_v_}}))
+PLIST_SUBST+=$(foreach \
+	_v_,${PLIST_VARS},PLIST.no${_v_}=$(call quote,${PLIST.no${_v_}}))
+
 
 # Pass the PLIST_SUBST substitutions to the subst.awk script by prepending
 # PLIST_" to all of the variable names and adding them into the environment.

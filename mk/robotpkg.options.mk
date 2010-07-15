@@ -335,7 +335,9 @@ BUILD_DEFS+=            PKG_OPTIONS
 #
 $(foreach _o_,${PKG_SUPPORTED_OPTIONS},					\
   $(eval $(if $(filter ${_o_},${PKG_OPTIONS}),				\
-    PLIST.${_o_}=,PLIST.${_o_}=@comment )))
+    PLIST.${_o_}=,PLIST.${_o_}=@comment ))				\
+  $(eval $(if $(filter ${_o_},${PKG_OPTIONS}),				\
+    PLIST.no${_o_}=@comment ,PLIST.no${_o_}=)))
 PLIST_VARS+=${PKG_SUPPORTED_OPTIONS}
 
 # Execute the PKG_OPTION_SET/UNSET scripts.
