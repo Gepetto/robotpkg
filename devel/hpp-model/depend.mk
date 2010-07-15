@@ -1,6 +1,5 @@
-# $LAAS: depend.mk 2008/12/10 22:27:24 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -34,7 +33,7 @@ SYSTEM_SEARCH.hpp-model=\
 
 DEPEND_USE+=		hpp-model
 
-DEPEND_ABI.hpp-model?=	hpp-model>=1.4
+DEPEND_ABI.hpp-model?=	hpp-model>=1.7.5
 DEPEND_DIR.hpp-model?=	../../devel/hpp-model
 
 include ../../path/kineo-pp/depend.mk
