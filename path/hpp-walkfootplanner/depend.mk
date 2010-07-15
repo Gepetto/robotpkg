@@ -1,6 +1,5 @@
-# $LAAS: depend.mk 2008/12/09 20:03:33 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -29,12 +28,13 @@ PREFER.hpp-walkfootplanner?=	robotpkg
 
 DEPEND_USE+=			hpp-walkfootplanner
 
-DEPEND_ABI.hpp-walkfootplanner?=hpp-walkfootplanner>=1.1
+DEPEND_ABI.hpp-walkfootplanner?=hpp-walkfootplanner>=2.0
 DEPEND_DIR.hpp-walkfootplanner?=../../path/hpp-walkfootplanner
 
 SYSTEM_SEARCH.hpp-walkfootplanner=\
 	include/hpp/walkfootplanner/planner.hh	\
-	lib/libhpp-walkfootplanner.la
+	lib/libhpp-walkfootplanner.la		\
+	'lib/pkgconfig/hpp-walkfootplanner.pc:/Version/s/[^0-9]//gp'
 
 endif # HPPWALKFOOTPLANNER_DEPEND_MK ---------------------------------
 
