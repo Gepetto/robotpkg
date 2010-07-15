@@ -28,7 +28,7 @@ PREFER.hpp-walkfootplanner?=	robotpkg
 
 DEPEND_USE+=			hpp-walkfootplanner
 
-DEPEND_ABI.hpp-walkfootplanner?=hpp-walkfootplanner>=2.0
+DEPEND_ABI.hpp-walkfootplanner?=hpp-walkfootplanner>=2.0r1
 DEPEND_DIR.hpp-walkfootplanner?=../../path/hpp-walkfootplanner
 
 SYSTEM_SEARCH.hpp-walkfootplanner=\

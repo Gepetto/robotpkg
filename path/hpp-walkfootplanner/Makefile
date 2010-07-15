@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/03/30 10:58:01 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -17,15 +16,14 @@
 #
 
 DISTNAME=	hpp-walkfootplanner-${VERSION}
-PKGNAME=	hpp-walkfootplanner-${VERSION}
 VERSION=	2.0
+PKGREVISION=	1
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkfootplanner/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hppWalkFootPlanner
 
 MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=	
 COMMENT=	Collision free walk path planning for a humanoid robot.
 
 USE_LANGUAGES+= c c++
@@ -48,6 +46,10 @@ include ../../math/jrl-mathtools/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../optimization/roboptim-trajectory/depend.mk
 include ../../optimization/roboptim-core-cfsqp-plugin/depend.mk
+DEPEND_ABI.boost-headers?=	boost-headers>=1.35
+include ../../devel/boost-headers/depend.mk
+DEPEND_ABI.boost-libs?=		boost-libs>=1.35
+include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
