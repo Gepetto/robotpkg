@@ -1,0 +1,57 @@
+diff --git configure.ac.user configure.ac.user
+index b4d52b0..80ba4ff 100644
+--- configure.ac.user
++++ configure.ac.user
+@@ -4,7 +4,8 @@ dnl --- Authored by Anthony Mallet on Sat Apr 12 2008 ---
+ 
+ dnl --- Look for sphinx2 ---------------------------------------------
+ 
+-AC_ARG_WITH(sphinx2,
++ifelse([$genServer$],[yes],[
++  AC_ARG_WITH(sphinx2,
+    AC_HELP_STRING([--with-sphinx2=prefix],
+ 	[configure the sphinx2 installation prefix]),
+    [
+@@ -14,27 +15,31 @@ AC_ARG_WITH(sphinx2,
+       sphinx_path=$withval
+    ], [sphinx_path="/usr /usr/local"])
+ 
+-AC_MSG_CHECKING([for sphinx2])
+-SPHINX_PREFIX=
+-for dir in '' $sphinx_path; do
++  AC_MSG_CHECKING([for sphinx2])
++  SPHINX_PREFIX=
++  for dir in '' $sphinx_path; do
+     if test -r "$dir/include/sphinx2/fbs.h"; then
+        if test -r "$dir/lib/libsphinx2.la"; then
+ 	  SPHINX_PREFIX=$dir
+ 	  break
+        fi
+     fi
+-done
++  done
+ 
+-if test "x$SPHINX_PREFIX" = "x"; then
+-   AC_MSG_RESULT([not found])
+-   AC_MSG_ERROR([sphinx2 not found. Please use --with-sphinx2])
+-else
+-   AC_MSG_RESULT([$SPHINX_PREFIX])
+-fi
++  if test "x$SPHINX_PREFIX" = "x"; then
++    AC_MSG_RESULT([not found])
++    AC_MSG_ERROR([sphinx2 not found. Please use --with-sphinx2])
++  else
++    AC_MSG_RESULT([$SPHINX_PREFIX])
++  fi
++],[])
+ 
+ AC_SUBST(SPHINX_PREFIX)
+ 
+ 
+ dnl --- Include sample language model --------------------------------
+ 
+-EXTRA_SUBDIRS="sample-lm"
++ifelse([$genServer$],[yes],[
++  EXTRA_SUBDIRS="sample-lm"
++],[])
++

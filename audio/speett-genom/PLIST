@@ -21,9 +21,6 @@ lib/pkgconfig/speett.pc
 ${PLIST.noapi}${PLIST.tcl}lib/tclserv/libspeettTclServ.la
 share/modules/gen/speett.gen
 ${PLIST.tcl}share/modules/tcl/speettClient.tcl
-share/speett/sample.dic
-share/speett/sample.fsg
-share/speett/strtonum.awk
-@dirrm share/speett
-@dirrm include/speett/server
-@dirrm include/speett
+${PLIST.noapi}share/speett/sample.dic
+${PLIST.noapi}share/speett/sample.fsg
+${PLIST.noapi}share/speett/strtonum.awk
