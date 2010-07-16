@@ -1,0 +1,52 @@
+diff --git configure.ac.user configure.ac.user
+index ab669d6..940adc2 100644
+--- configure.ac.user
++++ configure.ac.user
+@@ -6,7 +6,8 @@ dnl
+ 
+ dnl --- Look for festival --------------------------------------------
+ 
+-AC_ARG_WITH(festival,
++ifelse([$genServer$],[yes],[
++  AC_ARG_WITH(festival,
+    AC_HELP_STRING([--with-festival=prefix],
+ 	[configure the festival installation prefix]),
+    [
+@@ -16,10 +17,10 @@ AC_ARG_WITH(festival,
+       festival_path=$withval
+    ], [festival_path="/usr /usr/local $prefix"])
+ 
+-AC_MSG_CHECKING([for festival])
+-FESTIVAL_PREFIX=
+-FESTIVAL_CFLAGS=
+-for dir in '' $festival_path; do
++  AC_MSG_CHECKING([for festival])
++  FESTIVAL_PREFIX=
++  FESTIVAL_CFLAGS=
++  for dir in '' $festival_path; do
+     if test -r "$dir/include/festival/festival.h"; then
+        if test -r "$dir/lib/libFestival.a" -o -r "$dir/lib/libFestival.so"; then
+ 	  FESTIVAL_PREFIX=$dir
+@@ -35,14 +36,15 @@ for dir in '' $festival_path; do
+ 	  fi
+        fi
+     fi
+-done
++  done
+ 
+-if test "x$FESTIVAL_PREFIX" = "x"; then
+-   AC_MSG_RESULT([not found])
+-   AC_MSG_ERROR([festival not found. Please use --with-festival])
+-else
+-   AC_MSG_RESULT([$FESTIVAL_PREFIX])
+-fi
++  if test "x$FESTIVAL_PREFIX" = "x"; then
++    AC_MSG_RESULT([not found])
++    AC_MSG_ERROR([festival not found. Please use --with-festival])
++  else
++    AC_MSG_RESULT([$FESTIVAL_PREFIX])
++  fi
++],[])
+ 
+ AC_SUBST(FESTIVAL_PREFIX)
+ AC_SUBST(FESTIVAL_CFLAGS)
