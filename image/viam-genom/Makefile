@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2010/07/01 16:53:30 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -30,7 +29,6 @@ LICENSE=		2-clause-bsd
 GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		viam
-include ../../architecture/genom/depend.mk
 
 # option for image display using opencv
 PKG_SUPPORTED_OPTIONS+=	display
@@ -45,6 +43,10 @@ define PKG_OPTION_SET.display
 endef
 PKG_OPTION_UNSET.display:=	CONFIGURE_ARGS+=--disable-display
 
+PKG_OPTIONS_OPTIONAL_GROUPS+=	incompatible
+PKG_OPTIONS_GROUP.incompatible=	api display
+
 include ../../image/viam-libs/depend.mk
 include ../../localization/pom-genom/depend.mk
+include ../../architecture/genom/depend.mk
 include ../../mk/robotpkg.mk

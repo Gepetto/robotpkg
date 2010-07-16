@@ -1,19 +1,19 @@
 @comment Wed Aug 5 14:45:30 CEST 2009
-bin/viam
-bin/viamSendInitRqst
-bin/viamTest
+${PLIST.noapi}bin/viam
+${PLIST.noapi}bin/viamSendInitRqst
+${PLIST.noapi}bin/viamTest
 ${PLIST.openprs}include/viam/server/openprs/viamDecodeOpenprs.h
 ${PLIST.openprs}include/viam/server/openprs/viamEncodeOpenprs.h
 ${PLIST.openprs}include/viam/server/openprs/viamRequestsOpenprsProto.h
 include/viam/server/viamEndian.h
 include/viam/server/viamError.h
-include/viam/server/viamMsgLib.h
+${PLIST.noapi}include/viam/server/viamMsgLib.h
 include/viam/server/viamPosterLib.h
 include/viam/server/viamPosterLibStruct.h
-include/viam/server/viamPosterReadLibProto.h
-include/viam/server/viamPosterShowLib.h
-include/viam/server/viamPosterWriteLibProto.h
-include/viam/server/viamPosterXMLLib.h
+${PLIST.noapi}include/viam/server/viamPosterReadLibProto.h
+${PLIST.noapi}include/viam/server/viamPosterShowLib.h
+${PLIST.noapi}include/viam/server/viamPosterWriteLibProto.h
+${PLIST.noapi}include/viam/server/viamPosterXMLLib.h
 include/viam/server/viamPrint.h
 include/viam/server/viamPrintXML.h
 include/viam/server/viamScan.h
@@ -24,7 +24,7 @@ lib/libviamWeb.la
 ${PLIST.openprs}lib/openprs/libviamOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/viam-oprs.pc
 lib/pkgconfig/viam.pc
-${PLIST.tcl}lib/tclserv/libviamTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libviamTclServ.la
 lib/viamWeb.so
 share/modules/gen/viam.gen
 ${PLIST.openprs}share/modules/openprs/viamOpenprs.inc
@@ -32,4 +32,4 @@ ${PLIST.openprs}share/modules/openprs/viamOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/viamOpenprs.sym
 ${PLIST.tcl}share/modules/tcl/viamClient.tcl
 ${PLIST.openprs}@dirrm include/viam/server/openprs
-@dirrm include/viam/server
+
