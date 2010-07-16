@@ -1,20 +1,20 @@
 @comment Thu Mar 4 19:49:50 CET 2010
-bin/gik
-bin/gikSendInitRqst
-bin/gikTest
+${PLIST.noapi}bin/gik
+${PLIST.noapi}bin/gikSendInitRqst
+${PLIST.noapi}bin/gikTest
 ${PLIST.openprs}include/gik/server/openprs/gikDecodeOpenprs.h
 ${PLIST.openprs}include/gik/server/openprs/gikEncodeOpenprs.h
 ${PLIST.openprs}include/gik/server/openprs/gikRequestsOpenprsProto.h
 include/gik/gikStruct.h
 include/gik/server/gikEndian.h
 include/gik/server/gikError.h
-include/gik/server/gikMsgLib.h
+${PLIST.noapi}include/gik/server/gikMsgLib.h
 include/gik/server/gikPosterLib.h
 include/gik/server/gikPosterLibStruct.h
-include/gik/server/gikPosterReadLibProto.h
-include/gik/server/gikPosterShowLib.h
-include/gik/server/gikPosterWriteLibProto.h
-include/gik/server/gikPosterXMLLib.h
+${PLIST.noapi}include/gik/server/gikPosterReadLibProto.h
+${PLIST.noapi}include/gik/server/gikPosterShowLib.h
+${PLIST.noapi}include/gik/server/gikPosterWriteLibProto.h
+${PLIST.noapi}include/gik/server/gikPosterXMLLib.h
 include/gik/server/gikPrint.h
 include/gik/server/gikPrintXML.h
 include/gik/server/gikScan.h
@@ -23,7 +23,7 @@ lib/libgikClient.la
 lib/pkgconfig/gik.pc
 ${PLIST.openprs}lib/openprs/libgikOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/gik-oprs.pc
-${PLIST.tcl}lib/tclserv/libgikTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libgikTclServ.la
 share/modules/gen/gik.gen
 ${PLIST.openprs}share/modules/openprs/gikOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/gikOpenprs.opf

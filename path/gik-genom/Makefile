@@ -29,11 +29,13 @@ GNU_CONFIGURE=	yes
 USE_LANGUAGES+=	c c++
 
 GENOM_MODULE=	gik
-include ../../architecture/genom/depend.mk
+define PKG_OPTIONS_UNSET.api
+  include ../../math/hrp2-dynamics/depend.mk
+  include ../../path/hpp-gik/depend.mk
+  include ../../robots/hrp2-14/depend.mk
+  include ../../architecture/netshring/depend.mk
+endef
 
-include ../../math/hrp2-dynamics/depend.mk
-include ../../path/hpp-gik/depend.mk
-include ../../robots/hrp2-14/depend.mk
+include ../../architecture/genom/depend.mk
 include ../../robots/hrp2-genom/depend.mk
-include ../../architecture/netshring/depend.mk
 include ../../mk/robotpkg.mk
