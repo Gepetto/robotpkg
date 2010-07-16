@@ -1,6 +1,6 @@
-# $LAAS: gtk.mk 2008/12/13 15:37:33 tho $
+# $LAAS: gtk.mk 2010/07/16 16:42:34 mallet $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -32,6 +32,11 @@ DEPEND_ABI.gtk?=	gtk>=2.8.17
 SYSTEM_SEARCH.gtk=	\
 	'include/gtk-2.0/gtk/gtk.h'				\
 	'lib/pkgconfig/gtk+-2.0.pc:/Version/s/[^.0-9]//gp'
+
+SYSTEM_PKG.Linux-fedore.gtk=	gtk2-devel
+SYSTEM_PKG.Linux-ubuntu.gtk=	libgtk2.0-dev
+SYSTEM_PKG.Linux-debian.gtk=	libgtk2.0-dev
+SYSTEM_PKG.NetBSD.gtk=		x11/gtk2
 
 endif # GTK_DEPEND_MK ------------------------------------------------------
 
