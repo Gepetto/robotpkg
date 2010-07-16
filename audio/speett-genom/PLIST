@@ -1,16 +1,16 @@
 @comment Sat Mar 7 00:36:56 CET 2009
-bin/speett
-bin/speettSendInitRqst
-bin/speettTest
+${PLIST.noapi}bin/speett
+${PLIST.noapi}bin/speettSendInitRqst
+${PLIST.noapi}bin/speettTest
 include/speett/server/speettEndian.h
 include/speett/server/speettError.h
-include/speett/server/speettMsgLib.h
+${PLIST.noapi}include/speett/server/speettMsgLib.h
 include/speett/server/speettPosterLib.h
 include/speett/server/speettPosterLibStruct.h
-include/speett/server/speettPosterReadLibProto.h
-include/speett/server/speettPosterShowLib.h
-include/speett/server/speettPosterWriteLibProto.h
-include/speett/server/speettPosterXMLLib.h
+${PLIST.noapi}include/speett/server/speettPosterReadLibProto.h
+${PLIST.noapi}include/speett/server/speettPosterShowLib.h
+${PLIST.noapi}include/speett/server/speettPosterWriteLibProto.h
+${PLIST.noapi}include/speett/server/speettPosterXMLLib.h
 include/speett/server/speettPrint.h
 include/speett/server/speettPrintXML.h
 include/speett/server/speettScan.h
@@ -18,7 +18,7 @@ include/speett/server/speettType.h
 include/speett/speett-struct.h
 lib/libspeettClient.la
 lib/pkgconfig/speett.pc
-${PLIST.tcl}lib/tclserv/libspeettTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libspeettTclServ.la
 share/modules/gen/speett.gen
 ${PLIST.tcl}share/modules/tcl/speettClient.tcl
 share/speett/sample.dic

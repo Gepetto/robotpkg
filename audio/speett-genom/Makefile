@@ -29,9 +29,10 @@ LICENSE=	2-clause-bsd
 
 GENOM_MODULE=	speett
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--with-sphinx2=${PREFIX.sphinx2}
+define PKG_OPTION_UNSET.api
+  CONFIGURE_ARGS+=--with-sphinx2=${PREFIX.sphinx2}
+  include ../../audio/sphinx2/depend.mk
+endef
 
-include ../../audio/sphinx2/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../mk/robotpkg.mk
