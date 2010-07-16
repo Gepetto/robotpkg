@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2010/07/15 18:46:21 mallet $
+# $LAAS: depend.mk 2010/07/16 13:50:21 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -48,11 +48,11 @@ PKG_OPTION_DESCR.api=	Generate module API only
 define PKG_OPTION_SET.api
   GENOM_ARGS+=	-a
 endef
-_PKG_OPTIONS_UNSET.api:=${PKG_OPTIONS_UNSET.api}
-define PKG_OPTION_UNSET.api
-  ${_PKG_OPTIONS_UNSET.api}
+define _genom.unset.api
+
   GENOM_ARGS:=	$(filter-out -a,${GENOM_ARGS})
 endef
+PKG_OPTION_UNSET.api:=$(value PKG_OPTION_UNSET.api)${_genom.unset.api}
 
 PKG_OPTION_DESCR.tcl=	Enable the generation of the TCL client code
 define PKG_OPTION_SET.tcl
