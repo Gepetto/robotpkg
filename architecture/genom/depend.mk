@@ -1,4 +1,4 @@
-# $LAAS: depend.mk 2010/07/16 13:50:21 mallet $
+# $LAAS: depend.mk 2010/07/16 19:35:09 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -34,7 +34,7 @@ SYSTEM_SEARCH.genom=\
 
 DEPEND_USE+=		genom
 
-DEPEND_ABI.genom?=	genom>=2.0r2
+DEPEND_ABI.genom?=	genom>=2.5r2
 DEPEND_DIR.genom?=	../../architecture/genom
 
 TOOLS.genom?=		${PREFIX.genom}/bin/genom
