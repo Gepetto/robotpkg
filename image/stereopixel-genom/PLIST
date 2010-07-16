@@ -1,19 +1,19 @@
-@comment Wed Aug 5 14:50:42 CEST 2009
-bin/stereopixel
-bin/stereopixelSendInitRqst
-bin/stereopixelTest
+@comment Fri Jul 16 17:22:39 CEST 2010
+${PLIST.noapi}bin/stereopixel
+${PLIST.noapi}bin/stereopixelSendInitRqst
+${PLIST.noapi}bin/stereopixelTest
 ${PLIST.openprs}include/stereopixel/server/openprs/stereopixelDecodeOpenprs.h
 ${PLIST.openprs}include/stereopixel/server/openprs/stereopixelEncodeOpenprs.h
 ${PLIST.openprs}include/stereopixel/server/openprs/stereopixelRequestsOpenprsProto.h
 include/stereopixel/server/stereopixelEndian.h
 include/stereopixel/server/stereopixelError.h
-include/stereopixel/server/stereopixelMsgLib.h
+${PLIST.noapi}include/stereopixel/server/stereopixelMsgLib.h
 include/stereopixel/server/stereopixelPosterLib.h
 include/stereopixel/server/stereopixelPosterLibStruct.h
-include/stereopixel/server/stereopixelPosterReadLibProto.h
-include/stereopixel/server/stereopixelPosterShowLib.h
-include/stereopixel/server/stereopixelPosterWriteLibProto.h
-include/stereopixel/server/stereopixelPosterXMLLib.h
+${PLIST.noapi}include/stereopixel/server/stereopixelPosterReadLibProto.h
+${PLIST.noapi}include/stereopixel/server/stereopixelPosterShowLib.h
+${PLIST.noapi}include/stereopixel/server/stereopixelPosterWriteLibProto.h
+${PLIST.noapi}include/stereopixel/server/stereopixelPosterXMLLib.h
 include/stereopixel/server/stereopixelPrint.h
 include/stereopixel/server/stereopixelPrintXML.h
 include/stereopixel/server/stereopixelScan.h
@@ -24,12 +24,9 @@ lib/libstereopixelClient.la
 ${PLIST.openprs}lib/openprs/libstereopixelOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/stereopixel-oprs.pc
 lib/pkgconfig/stereopixel.pc
-${PLIST.tcl}lib/tclserv/libstereopixelTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libstereopixelTclServ.la
 share/modules/gen/stereopixel.gen
 ${PLIST.openprs}share/modules/openprs/stereopixelOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/stereopixelOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/stereopixelOpenprs.sym
 ${PLIST.tcl}share/modules/tcl/stereopixelClient.tcl
-${PLIST.openprs}@dirrm include/stereopixel/server/openprs
-@dirrm include/stereopixel/server
-@dirrm include/stereopixel
