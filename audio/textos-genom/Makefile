@@ -27,12 +27,13 @@ LICENSE=	2-clause-bsd
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=textos-genom/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/textos-genom
 
-GNU_CONFIGURE=	yes
 GENOM_MODULE=	textos
 USE_LANGUAGES=	c c++
 
-CONFIGURE_ARGS+=	--with-festival=${PREFIX.festival}
+define PKG_OPTION_UNSET.api
+  CONFIGURE_ARGS+=	--with-festival=${PREFIX.festival}
+  include ../../audio/festival/depend.mk
+endef
 
-include ../../audio/festival/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../mk/robotpkg.mk
