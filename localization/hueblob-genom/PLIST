@@ -1,17 +1,17 @@
-@comment Thu Apr 2 17:49:50 CEST 2009
-bin/hueblob
-bin/hueblobSendInitRqst
-bin/hueblobTest
+@comment Fri Jul 16 17:22:39 CEST 2010
+${PLIST.noapi}bin/hueblob
+${PLIST.noapi}bin/hueblobSendInitRqst
+${PLIST.noapi}bin/hueblobTest
 include/hueblob/hueblobStruct.h
 include/hueblob/server/hueblobEndian.h
 include/hueblob/server/hueblobError.h
-include/hueblob/server/hueblobMsgLib.h
+${PLIST.noapi}include/hueblob/server/hueblobMsgLib.h
 include/hueblob/server/hueblobPosterLib.h
 include/hueblob/server/hueblobPosterLibStruct.h
-include/hueblob/server/hueblobPosterReadLibProto.h
-include/hueblob/server/hueblobPosterShowLib.h
-include/hueblob/server/hueblobPosterWriteLibProto.h
-include/hueblob/server/hueblobPosterXMLLib.h
+${PLIST.noapi}include/hueblob/server/hueblobPosterReadLibProto.h
+${PLIST.noapi}include/hueblob/server/hueblobPosterShowLib.h
+${PLIST.noapi}include/hueblob/server/hueblobPosterWriteLibProto.h
+${PLIST.noapi}include/hueblob/server/hueblobPosterXMLLib.h
 include/hueblob/server/hueblobPrint.h
 include/hueblob/server/hueblobPrintXML.h
 include/hueblob/server/hueblobScan.h
@@ -19,7 +19,7 @@ include/hueblob/server/hueblobType.h
 lib/libhueblobClient.la
 lib/pkgconfig/hueblob.pc
 share/modules/gen/hueblob.gen
-${PLIST.tcl}lib/tclserv/libhueblobTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libhueblobTclServ.la
 ${PLIST.tcl}share/modules/tcl/hueblobClient.tcl
 ${PLIST.openprs}include/hueblob/server/openprs/hueblobDecodeOpenprs.h
 ${PLIST.openprs}include/hueblob/server/openprs/hueblobEncodeOpenprs.h
@@ -29,6 +29,3 @@ ${PLIST.openprs}lib/pkgconfig/hueblob-oprs.pc
 ${PLIST.openprs}share/modules/openprs/hueblobOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/hueblobOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/hueblobOpenprs.sym
-${PLIST.openprs}@dirrm include/hueblob/server/openprs
-@dirrm include/hueblob/server
-@dirrm include/hueblob

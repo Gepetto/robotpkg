@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2010/07/01 16:53:48 mallet $
 #
 # Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -26,7 +25,7 @@ COMMENT=		GenoM module for simple object detection and localization
 LICENSE=		2-clause-bsd
 
 USE_LANGUAGES=		c c++
-GNU_CONFIGURE=		yes
+GENOM_MODULE=		hueblob
 
 # option for image display using opencv
 PKG_SUPPORTED_OPTIONS+=	display
@@ -39,11 +38,16 @@ define PKG_OPTION_SET.display
 endef
 PKG_OPTION_UNSET.display:=	CONFIGURE_ARGS+=--without-display
 
-GENOM_MODULE=		hueblob
-include ../../architecture/genom/depend.mk
+PKG_OPTIONS_OPTIONAL_GROUPS+=	incompatible
+PKG_OPTIONS_GROUP.incompatible=	api display
+
+define PKG_OPTION_UNSET.api
+  include ../../image/libimages3d/depend.mk
+  include ../../image/opencv/depend.mk
+endef
 
 include ../../image/viam-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
-include ../../image/opencv/depend.mk
 include ../../localization/pom-genom/depend.mk
+include ../../architecture/genom/depend.mk
 include ../../mk/robotpkg.mk
