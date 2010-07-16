@@ -1,5 +1,5 @@
 diff --git configure.ac.user configure.ac.user
-index ab669d6..940adc2 100644
+index ab669d6..90a7ebb 100644
 --- configure.ac.user
 +++ configure.ac.user
 @@ -6,7 +6,8 @@ dnl
@@ -7,7 +7,7 @@ index ab669d6..940adc2 100644
  dnl --- Look for festival --------------------------------------------
  
 -AC_ARG_WITH(festival,
-+ifelse([$genServer$],[yes],[
++if test "$genServer" = yes; then
 +  AC_ARG_WITH(festival,
     AC_HELP_STRING([--with-festival=prefix],
  	[configure the festival installation prefix]),
@@ -27,7 +27,7 @@ index ab669d6..940adc2 100644
      if test -r "$dir/include/festival/festival.h"; then
         if test -r "$dir/lib/libFestival.a" -o -r "$dir/lib/libFestival.so"; then
  	  FESTIVAL_PREFIX=$dir
-@@ -35,14 +36,15 @@ for dir in '' $festival_path; do
+@@ -35,13 +36,14 @@ for dir in '' $festival_path; do
  	  fi
         fi
      fi
@@ -39,14 +39,12 @@ index ab669d6..940adc2 100644
 -   AC_MSG_ERROR([festival not found. Please use --with-festival])
 -else
 -   AC_MSG_RESULT([$FESTIVAL_PREFIX])
--fi
 +  if test "x$FESTIVAL_PREFIX" = "x"; then
 +    AC_MSG_RESULT([not found])
 +    AC_MSG_ERROR([festival not found. Please use --with-festival])
 +  else
 +    AC_MSG_RESULT([$FESTIVAL_PREFIX])
 +  fi
-+],[])
+ fi
  
  AC_SUBST(FESTIVAL_PREFIX)
- AC_SUBST(FESTIVAL_CFLAGS)
