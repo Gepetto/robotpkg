@@ -30,7 +30,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=opencvlibrary/}
 CONFLICTS+=		opencv1
 
 USE_LANGUAGES+=		c c++ python
-PYTHON_REQUIRED+=	>=2.6
+PYTHON_REQUIRED+=	>=2.5
 
 # build configuration
 CMAKE_ARGS+=		-DBUILD_PACKAGE=OFF
