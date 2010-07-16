@@ -1,7 +1,7 @@
-@comment Wed Aug 5 14:36:41 CEST 2009
-bin/pom
-bin/pomSendInitRqst
-bin/pomTest
+@comment Fri Jul 16 15:44:29 CEST 2010
+${PLIST.noapi}bin/pom
+${PLIST.noapi}bin/pomSendInitRqst
+${PLIST.noapi}bin/pomTest
 include/pom/libeuler/pomEuler.h
 include/pom/pomConst.h
 include/pom/pomStruct.h
@@ -10,13 +10,13 @@ ${PLIST.openprs}include/pom/server/openprs/pomEncodeOpenprs.h
 ${PLIST.openprs}include/pom/server/openprs/pomRequestsOpenprsProto.h
 include/pom/server/pomEndian.h
 include/pom/server/pomError.h
-include/pom/server/pomMsgLib.h
+${PLIST.noapi}include/pom/server/pomMsgLib.h
 include/pom/server/pomPosterLib.h
 include/pom/server/pomPosterLibStruct.h
-include/pom/server/pomPosterReadLibProto.h
-include/pom/server/pomPosterShowLib.h
-include/pom/server/pomPosterWriteLibProto.h
-include/pom/server/pomPosterXMLLib.h
+${PLIST.noapi}include/pom/server/pomPosterReadLibProto.h
+${PLIST.noapi}include/pom/server/pomPosterShowLib.h
+${PLIST.noapi}include/pom/server/pomPosterWriteLibProto.h
+${PLIST.noapi}include/pom/server/pomPosterXMLLib.h
 include/pom/server/pomPrint.h
 include/pom/server/pomPrintXML.h
 include/pom/server/pomScan.h
@@ -27,13 +27,9 @@ ${PLIST.openprs}lib/openprs/libpomOpenprs.la
 lib/pkgconfig/pom-euler.pc
 ${PLIST.openprs}lib/pkgconfig/pom-oprs.pc
 lib/pkgconfig/pom.pc
-${PLIST.tcl}lib/tclserv/libpomTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libpomTclServ.la
 share/modules/gen/pom.gen
 ${PLIST.openprs}share/modules/openprs/pomOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/pomOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/pomOpenprs.sym
 ${PLIST.tcl}share/modules/tcl/pomClient.tcl
-${PLIST.openprs}@dirrm include/pom/server/openprs
-@dirrm include/pom/server
-@dirrm include/pom/libeuler
-@dirrm include/pom

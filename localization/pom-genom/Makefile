@@ -22,16 +22,15 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pom-genom/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/pom-genom
 
 MAINTAINER=		openrobots@laas.fr
-#HOMEPAGE=
 COMMENT=		GenoM module for localization management.
 LICENSE=		2-clause-bsd
 
-GNU_CONFIGURE=		yes
-
 GENOM_MODULE=		pom
-include ../../architecture/genom/depend.mk
 
-include ../../localization/insitu/depend.mk
-include ../../localization/libpom/depend.mk
+define PKG_OPTION_UNSET.api
+  include ../../localization/insitu/depend.mk
+  include ../../localization/libpom/depend.mk
+endef
 include ../../math/t3d/depend.mk
+include ../../architecture/genom/depend.mk
 include ../../mk/robotpkg.mk

@@ -1,0 +1,15 @@
+diff --git pom.gen pom.gen
+index 563f3a7..ef84e9d 100644
+--- pom.gen
++++ pom.gen
+@@ -47,8 +47,8 @@ module pom {
+     version:                "0.6";
+     email:                  "openrobots@laas.fr";
+     codels_requires:	    "insitu >= 1.1",
+-			    "libpom >= 1.1",
+-			    "t3d >= 2.3";
++			    "libpom >= 1.1";
++    requires:		    "t3d >= 2.3";
+ };
+ 
+ 
