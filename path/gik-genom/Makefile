@@ -16,16 +16,16 @@
 #
 
 DISTNAME=	gik-genom-1.5.1
+PKGREVISION=	1
 
 CATEGORIES=	path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=gik-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/gik-genom
 
 MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=
 COMMENT=	Generalized Inverse Kinematics for humanoid robots - GenoM component
+LICENSE=	2-clause-bsd
 
-GNU_CONFIGURE=	yes
 USE_LANGUAGES+=	c c++
 
 GENOM_MODULE=	gik
