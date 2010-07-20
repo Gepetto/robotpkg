@@ -1,0 +1,11 @@
+--- codels/PaletteGik.cc~	2010-07-13 14:13:21.000000000 +0200
++++ codels/PaletteGik.cc	2010-07-19 11:59:29.645801777 +0200
+@@ -153,6 +153,8 @@
+     property="ComputeBackwardDynamics"; value="false";
+     robot->setProperty ( property,value );
+ 
++    (dynamic_cast<Chrp2OptHumanoidDynamicRobot *>(robot))->isKineoOrder(true);
++
+     unsigned int nDof = robot->numberDof();
+     vectorN halfsittingConf ( nDof );
+ 
