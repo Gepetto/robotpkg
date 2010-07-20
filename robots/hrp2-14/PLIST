@@ -1,11 +1,15 @@
-@comment Mon Nov 23 09:09:15 CET 2009
+@comment Tue Jul 20 17:23:21 CEST 2010
 include/hrp2_14/hrp2_14.h
 lib/pkgconfig/hrp2_14.pc
-share/hrp2_14/hrp2.geom
-share/hrp2_14/HRP2LinkJointRankSmall.xml
 share/hrp2_14/HRP2LinkJointRank.xml
-share/hrp2_14/HRP2SpecificitiesSmall.xml
 share/hrp2_14/HRP2Specificities.xml
+share/hrp2_14/bottom-left.data
+share/hrp2_14/bottom-right.data
+share/hrp2_14/bottom.data
+share/hrp2_14/hrp2.geom
+share/hrp2_14/top-left.data
+share/hrp2_14/top-right.data
+share/hrp2_14/top.data
 share/hrp2_14/turnCCW180.hip
 share/hrp2_14/turnCCW180.pos
 share/hrp2_14/turnCCW180.zmp
@@ -18,5 +22,3 @@ share/hrp2_14/turnCW180.zmp
 share/hrp2_14/turnCW90.hip
 share/hrp2_14/turnCW90.pos
 share/hrp2_14/turnCW90.zmp
-@dirrm share/hrp2_14
-@dirrm include/hrp2_14
