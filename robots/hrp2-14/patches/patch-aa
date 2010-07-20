@@ -1,0 +1,18 @@
+--- include/hrp2_14/hrp2_14.h~	2010-05-10 21:30:39.000000000 +0200
++++ include/hrp2_14/hrp2_14.h	2010-07-20 19:10:00.182802341 +0200
+@@ -59,6 +59,8 @@
+       -0.174532, 0.174532, -0.174532, 0.174532, -0.174532		\
+       };
+ 
++#if 0
++# error "Enumerators conflicts with OpenHRP headers" 
+ enum Hrp2JointId {
+   WAIST = 0,
+   WAIST_TY,
+@@ -107,5 +109,6 @@
+   LHAND_JOINT3,  // 44
+   LHAND_JOINT4   // 45
+ };
++#endif /* 0 */
+ 
+ #endif
