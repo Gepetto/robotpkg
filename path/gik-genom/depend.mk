@@ -30,7 +30,7 @@ PREFER.gik-genom?=	robotpkg
 
 DEPEND_USE+=		gik-genom
 
-DEPEND_ABI.gik-genom?=	gik-genom>=1.4
+DEPEND_ABI.gik-genom?=	gik-genom>=1.5.1r2
 DEPEND_DIR.gik-genom?=	../../path/gik-genom
 
 SYSTEM_SEARCH.gik-genom=\

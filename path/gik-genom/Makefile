@@ -16,7 +16,7 @@
 #
 
 DISTNAME=	gik-genom-1.5.1
-PKGREVISION=	1
+PKGREVISION=	2
 
 CATEGORIES=	path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=gik-genom/}
@@ -29,7 +29,7 @@ LICENSE=	2-clause-bsd
 USE_LANGUAGES+=	c c++
 
 GENOM_MODULE=	gik
-define PKG_OPTIONS_UNSET.api
+define PKG_OPTION_UNSET.api
   include ../../math/hrp2-dynamics/depend.mk
   include ../../path/hpp-gik/depend.mk
   include ../../robots/hrp2-14/depend.mk
