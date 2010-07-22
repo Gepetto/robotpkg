@@ -31,7 +31,7 @@ SYSTEM_SEARCH.hrp2_14=\
 
 DEPEND_USE+=		hrp2_14
 
-DEPEND_ABI.hrp2_14?=	hrp2_14>=1.7.4r1
+DEPEND_ABI.hrp2_14?=	hrp2_14>=1.7.5
 DEPEND_DIR.hrp2_14?=	../../robots/hrp2-14
 
 endif # HRP2_14_DEPEND_MK --------------------------------------------

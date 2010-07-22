@@ -15,8 +15,7 @@
 #                                     Florent Lamiraux on Wed Oct 10 2007
 #
 
-DISTNAME=	hrp2_14-1.7.4
-PKGREVISION=	1
+DISTNAME=	hrp2_14-1.7.5
 
 CATEGORIES=	robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hrp2_14/}
