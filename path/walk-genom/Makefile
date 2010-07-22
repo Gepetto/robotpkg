@@ -22,14 +22,14 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=walk-genom/}
 MASTER_REPOSITORY=git ssh://softs.laas.fr/git/robots/walk-genom
 
 MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=
 COMMENT=	Walk trajectories for humanoid robots - GenoM component
+LICENSE=	2-clause-bsd
 
 USE_LANGUAGES+= c c++
 GNU_CONFIGURE=	yes
 
 GENOM_MODULE=	walk
-define PKG_OPTIONS_UNSET.api
+define PKG_OPTION_UNSET.api
   include ../../path/hpp-walkplanner/depend.mk
   include ../../devel/omniORB/depend.mk
   include ../../devel/hpp-corbaserver/depend.mk
