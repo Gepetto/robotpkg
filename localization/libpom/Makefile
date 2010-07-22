@@ -15,9 +15,9 @@
 #                                       Anthony Mallet on Tue Nov 20 2007
 #
 
-DISTNAME=		libpom-1.1
+DISTNAME=		libpom-1.2
 CATEGORIES=		localization
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libpom/}
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		Global robot position management library.

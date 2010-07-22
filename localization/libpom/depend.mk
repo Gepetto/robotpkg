@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -28,7 +28,7 @@ PREFER.libpom?=		robotpkg
 
 DEPEND_USE+=		libpom
 
-DEPEND_ABI.libpom?=	libpom>=1.1
+DEPEND_ABI.libpom?=	libpom>=1.2
 DEPEND_DIR.libpom?=	../../localization/libpom
 
 SYSTEM_SEARCH.libpom=\
