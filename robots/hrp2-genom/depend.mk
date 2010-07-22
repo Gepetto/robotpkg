@@ -30,7 +30,7 @@ PREFER.hrp2-genom?=	robotpkg
 
 DEPEND_USE+=		hrp2-genom
 
-DEPEND_ABI.hrp2-genom?=	hrp2-genom>=1.0
+DEPEND_ABI.hrp2-genom?=	hrp2-genom>=1.1
 DEPEND_DIR.hrp2-genom?=	../../robots/hrp2-genom
 
 SYSTEM_SEARCH.hrp2-genom=\

@@ -15,14 +15,13 @@
 #                                       Anthony Mallet on Wed Mar 19 2008
 #
 
-DISTNAME=	hrp2-genom-1.0.1
+DISTNAME=	hrp2-genom-1.1
 
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hrp2-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/hrp2-genom
 
 MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=
 COMMENT=	Basic HRP-2 hardware control - GenoM component
 
 USE_LANGUAGES+=	c c++
