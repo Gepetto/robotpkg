@@ -1,6 +1,5 @@
-# $LAAS: depend.mk 2009/03/20 10:33:20 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -78,13 +77,15 @@ ifndef PKG_CONFIG_OVERRIDE
   )
 endif
 
-ifneq (,${PKG_CONFIG_OVERRIDE})
-  SUBST_CLASSES+=		pkgconfig
-  SUBST_STAGE.pkgconfig=	do-configure-pre-hook
-  SUBST_MESSAGE.pkgconfig=	Adding run-time search paths to pkg-config files.
-  SUBST_FILES.pkgconfig=	${PKG_CONFIG_OVERRIDE}
-  SUBST_SED.pkgconfig=\
+ifneq (,$(call isyes,${_USE_RPATH})) # when using rpath flags
+  ifneq (,${PKG_CONFIG_OVERRIDE})    # and not disabled by a package
+    SUBST_CLASSES+=		pkgconfig
+    SUBST_STAGE.pkgconfig=	do-configure-pre-hook
+    SUBST_MESSAGE.pkgconfig=	Adding run-time search paths to pkg-config files.
+    SUBST_FILES.pkgconfig=	${PKG_CONFIG_OVERRIDE}
+    SUBST_SED.pkgconfig=\
 	'/^Libs:.*[ 	]/s|-L\([ 	]*[^ 	]*\)|${COMPILER_RPATH_FLAG}\1 -L\1|g'
+  endif
 endif
 
 endif # PKG_CONFIG_DEPEND_MK -----------------------------------------
