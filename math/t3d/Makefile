@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2010/07/01 17:06:27 mallet $
 #
 # Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
@@ -25,6 +24,7 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	3d transformations, matrices and vector package.
 LICENSE=	2-clause-bsd
 
+NOT_FOR_PLATFORM= # empty
 USE_LANGUAGES+=	c c++
 GNU_CONFIGURE=	yes
 
