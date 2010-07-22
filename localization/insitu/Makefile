@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2010/07/01 17:05:53 mallet $
 #
 # Copyright (c) 2007-2010 LAAS/CNRS
 # All rights reserved.
@@ -21,10 +20,10 @@ CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=insitu/}
 
 MAINTAINER=		openrobots@laas.fr
-#HOMEPAGE=
 COMMENT=		Sensor location management library.
 LICENSE=		2-clause-bsd
 
+NOT_FOR_PLATFORM=	# empty
 GNU_CONFIGURE=		yes
 
 include ../../math/t3d/depend.mk
