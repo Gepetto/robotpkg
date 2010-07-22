@@ -36,15 +36,11 @@ DEPEND_DIR.pkg-config?=		../../pkgtools/pkg-config
 SYSTEM_PKG.Linux-fedora.pkg-config=	pkgconfig
 SYSTEM_PKG.NetBSD.pkg-config=		pkgsrc/devel/pkg-config
 
-# TOOLS.pkg-config is the publicly-readable variable that should be
-# used by Makefiles to invoke the proper pkg-config.
-#
-TOOLS.pkg-config?=		${PREFIX.pkg-config}/bin/pkg-config
 
-# Define the proper pkg-config in make and configure environments
+# Define the proper pkg-config in environment
 #
-MAKE_ENV+=		PKG_CONFIG=$(call quote,${TOOLS.pkg-config})
-CONFIGURE_ENV+=		PKG_CONFIG=$(call quote,${TOOLS.pkg-config})
+export PKG_CONFIG=$(call quote,${PREFIX.pkg-config}/bin/pkg-config)
+
 
 # Append our path in front of PKG_CONFIG_PATH
 #
