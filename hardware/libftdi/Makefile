@@ -23,6 +23,8 @@ HOMEPAGE=	http://www.intra2net.com/de/produkte/opensource/ftdi/
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	interface to ftdi USB device devices
 
+LICENSE=	gnu-lgpl-v2.1
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--without-python-binding
 
