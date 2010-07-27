@@ -25,6 +25,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://spacenav.sourceforge.net/
 COMMENT=	Daemon for spacenav 3D mouse
+LICENSE=	gnu-gpl-v3
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-x11
