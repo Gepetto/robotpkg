@@ -1,6 +1,6 @@
 # $LAAS: Makefile 2008/05/25 12:27:19 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -16,15 +16,17 @@
 #                                      Arnaud Degroote on Mon May 19 2008
 #
 
-DISTNAME=		genPos-genom-0.1
-PKGREVISION=		1
+DISTNAME=		genPos-genom-0.2
 
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/genPos-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Common position-related data structures for GenoM
+
+LICENSE=		isc
 
 GNU_CONFIGURE=		yes
 
