@@ -16,7 +16,7 @@
 #                                      Arnaud Degroote on Sat May 17 2008
 #
 
-DISTNAME=		genBasic-genom-0.2
+DISTNAME=		genBasic-genom-0.3
 CATEGORIES=		architecture
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
@@ -25,6 +25,8 @@ MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/genBasic-genom
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Common simple data structures for GenoM modules
+
+LICENSE=		isc
 
 GNU_CONFIGURE=		yes
 
