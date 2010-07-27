@@ -21,6 +21,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=linux/}
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	Kernel driver for Contec PIO32 PCI card
+LICENSE=	isc
 
 BUILD_TARGET=	default
 KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/char
