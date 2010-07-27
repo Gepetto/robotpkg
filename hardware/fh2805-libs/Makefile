@@ -21,6 +21,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=fh2805-libs/}
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	Driver and interface for Faulhaber 2805 motor controller
+LICENSE=	isc
 
 GNU_CONFIGURE=	yes
 
