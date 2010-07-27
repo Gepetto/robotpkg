@@ -22,6 +22,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=linux/}
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	header files for Contec PIO32 kernel interface
+LICENSE=	isc
 
 NO_CONFIGURE=	yes
 NO_BUILD=	yes
