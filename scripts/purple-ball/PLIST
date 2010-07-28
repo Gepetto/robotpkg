@@ -1,4 +1,4 @@
-@comment Wed Mar 24 16:15:21 CET 2010
+@comment Wed Jul 28 17:15:24 CEST 2010
 bin/purple-ball-ctl
 lib/pkgconfig/purple-ball.pc
 share/purple-ball/actions.tcl
@@ -19,6 +19,7 @@ share/purple-ball/box-green-2.ppm
 share/purple-ball/box-green.ppm
 share/purple-ball/box-red.ppm
 share/purple-ball/grammar.tcl
+share/purple-ball/green-table.ppm
 share/purple-ball/gui.tcl
 share/purple-ball/hrp2.dic
 share/purple-ball/hrp2.fsg
@@ -28,3 +29,6 @@ share/purple-ball/nappe-green.ppm
 share/purple-ball/pkgIndex.tcl
 share/purple-ball/state.tcl
 share/purple-ball/voice.tcl
+share/purple-ball/yellow-table-2.ppm
+share/purple-ball/yellow-table-3.ppm
+share/purple-ball/yellow-table.ppm

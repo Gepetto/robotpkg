@@ -17,14 +17,13 @@
 #                                            Anthony Mallet on Wed Mar 24 2010
 #
 
-DISTNAME=	purple-ball-1.0
+DISTNAME=		purple-ball-1.1
 
 CATEGORIES=		scripts
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=purple-ball/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/purple-ball
 
-MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=
+MAINTAINER=	mallet@laas.fr
 COMMENT=	Supervision scripts for the HRP-2 "purple-ball" demonstration
 LICENSE=	2-clause-bsd
 
@@ -39,9 +38,8 @@ include ../../image/viam-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
 include ../../localization/hueblob-genom/depend.mk
 include ../../path/gik-genom/depend.mk
-include ../../path/walk-genom/depend.mk
+include ../../motion/mwalk-genom/depend.mk
 include ../../shell/eltclsh/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/robotpkg.mk
-
