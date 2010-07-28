@@ -1,0 +1,24 @@
+@comment Wed Jul 28 11:58:58 CEST 2010
+include/mwalk/FootPlace.h
+include/mwalk/mwalkstate.h
+include/mwalk/PreviewTrajectory.h
+include/mwalk/PreviewControl.h
+include/mwalk/MeasureExecTime.h
+include/mwalk/CogPatternGeneratorBase.h
+include/mwalk/mwalk_common.h
+include/mwalk/LinearControl3.h
+include/mwalk/LinearControl.h
+include/mwalk/State.h
+include/mwalk/MotionInterpolator.h
+include/mwalk/MwalkGenerator.h
+include/mwalk/mphysics.h
+include/mwalk/AnalyticalSolution.h
+include/mwalk/WholeBodyMotionGenerator.h
+include/mwalk/FootMotionGenerator.h
+include/mwalk/MwalkFootPlanner.h
+include/mwalk/FootStepManager.h
+include/mwalk/ModelManager.h
+include/mwalk/ReadText.h
+include/mwalk/StateLogger.h
+lib/libmwalk.la
+lib/pkgconfig/libmwalk.pc

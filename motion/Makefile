@@ -4,6 +4,7 @@
 COMMENT=	Motion generation software
 
 SUBDIR+=	contlaw
+SUBDIR+=	libmwalk
 SUBDIR+=	locoDemo-genom
 SUBDIR+=	pilo-genom
 SUBDIR+=	softMotion-libs
