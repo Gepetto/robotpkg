@@ -33,8 +33,8 @@ DEPEND_ABI.mwalk-genom?=mwalk-genom>=1.0
 DEPEND_DIR.mwalk-genom?=../../motion/mwalk-genom
 
 SYSTEM_SEARCH.mwalk-genom=\
-	include/hrp2/hrp2Struct.h					\
-	'lib/pkgconfig/hrp2.pc:/Version/s/[^0-9.]//gp'
+	include/mwalk/mwalkStruct.h			\
+	'lib/pkgconfig/mwalk.pc:/Version/s/[^0-9.]//gp'
 
 endif # --------------------------------------------------------------------
 
