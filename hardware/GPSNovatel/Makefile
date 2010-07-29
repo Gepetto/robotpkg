@@ -17,7 +17,7 @@
 
 PKGNAME=		GPSNovatel-${VERSION}
 DISTNAME=		gpsnovatel-${VERSION}
-VERSION=		1.2
+VERSION=		1.3
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/GPSNovatel-libs
