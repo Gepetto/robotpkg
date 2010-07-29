@@ -4,6 +4,7 @@ bin/gps_receive
 bin/gps_send
 bin/GPSSendInitRqst
 bin/GPSTest
+include/GPS/GPSConst.h
 include/GPS/GPSStruct.h
 include/GPS/server/GPSEndian.h
 include/GPS/server/GPSError.h
