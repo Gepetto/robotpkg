@@ -229,14 +229,7 @@ echo_msg "bootstrap started: $build_start"
 
 [ -x "$prefix" ] || {
   echo_msg "Creating ${prefix} directory"
-  echo_cmd mkdir -p "$prefix" 2>/dev/null || {
-    echo failed
-    echo_msg "Becoming root to create ${prefix} directory"
-    echo_cmd sudo mkdir -p "$prefix" &&
-    echo_cmd sudo chown `id -u` "${prefix}"
-  }
-
-  [ -x "$prefix" ] ||
+  echo_cmd mkdir -p "$prefix" ||
     die "Please create a directory ${prefix}, writable by you.
 You can also do $0 --prefix <path> to bootstrap with <path> prefix."
 
