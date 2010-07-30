@@ -178,13 +178,15 @@ PKG_GENERAL_OPTIONS:=	${PKG_SUPPORTED_OPTIONS}
 
 
 # Create map of option to group and add group options to PKG_SUPPORTED_OPTIONS
+# if not already there.
 #
 define _pkgopt_mapgrp
   _PKG_OPTIONS_GROUP_STACK.${1}:=#empty
   ifeq (,$(strip ${PKG_OPTIONS_GROUP.${1}}))
     PKG_FAIL_REASON+=	"PKG_OPTIONS_GROUP.${1} must be non-empty."
   endif
-  PKG_SUPPORTED_OPTIONS+=${PKG_OPTIONS_GROUP.${1}}
+  PKG_SUPPORTED_OPTIONS:=$(call append,
+	${PKG_OPTIONS_GROUP.${1}},${PKG_SUPPORTED_OPTIONS})
   $$(foreach _o_,${PKG_OPTIONS_GROUP.${1}},\
 	$$(eval _PKG_OPTIONS_GROUP_MAP.$${_o_}=${1}))
 endef
