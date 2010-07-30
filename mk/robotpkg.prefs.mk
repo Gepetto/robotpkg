@@ -207,6 +207,8 @@ NO_BUILD=               yes
 DISTFILES=#		none
 PLIST_SRC=#		none
 USE_LANGUAGES=#		none
+LICENSE=		meta-pkg
+WRKSRC=			${WRKDIR}
 do-patch do-install:
 	@${DO_NADA}
 endif

@@ -1,0 +1,11 @@
+This package is a collection of several other packages. It installs no files by
+itself, but rather relies on the dependency mechanism to have all the software
+from the collection installed.
+
+The meta-package by itself does not have any license since it has no file, but
+every package from the collection has its own individual license, which you
+might accept or reject on an individual basis.
+
+Note that rejecting any license of a package in the collection will prevent the
+meta-package to install, unless the latter has some option to enable or disable
+individual components.
