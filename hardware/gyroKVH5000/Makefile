@@ -17,7 +17,7 @@
 
 DISTNAME=		gyro-libs-${VERSION}
 PKGNAME=		gyroKVH5000-${VERSION}
-VERSION=		1.3
+VERSION=		1.4
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/gyro-libs

@@ -28,7 +28,7 @@ PREFER.gyroKVH5000?=	robotpkg
 
 DEPEND_USE+=		gyroKVH5000
 
-DEPEND_ABI.gyroKVH5000?=	gyroKVH5000>=1.1
+DEPEND_ABI.gyroKVH5000?=	gyroKVH5000>=1.4
 DEPEND_DIR.gyroKVH5000?=	../../hardware/gyroKVH5000
 
 DEPEND_PKG_CONFIG.gyroKVH5000+=lib/pkgconfig
