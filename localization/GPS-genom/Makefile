@@ -16,7 +16,7 @@
 #
 
 DISTNAME=		GPS-genom-${VERSION}
-VERSION=		1.0
+VERSION=		1.1
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/GPS-genom
@@ -31,7 +31,6 @@ GENOM_MODULE=		GPS
 include ../../architecture/genom/depend.mk
 
 include ../../architecture/genBasic-genom/depend.mk
-include ../../localization/gyro-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../hardware/GPSNovatel/depend.mk
 include ../../mk/robotpkg.mk
