@@ -6,6 +6,8 @@ MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/velodyne-libs
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	interface library for the Velodyne Lidar sensor
 
+LICENSE=	isc
+
 GNU_CONFIGURE=	yes
 
 pre-configure:	autoreconf
