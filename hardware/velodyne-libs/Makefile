@@ -1,4 +1,5 @@
 DISTNAME=	velodyne-libs-0.3
+PKGREVISION=	1
 CATEGORIES=	hardware
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=velodyne/}
@@ -15,5 +16,6 @@ pre-configure:	autoreconf
 include ../../devel/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/libpcap.mk
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/robotpkg.mk
