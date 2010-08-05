@@ -1,0 +1,9 @@
+tclpcap is a Tcl extension that provides access to the Pcap packet
+capture library. This extension allows a programmer to capture and
+process packets from a Tcl script. Packets can be either captured from
+a network interface or read from a capture file from tcpdump. This
+extension allows dump files to be created so interesting tools to
+process capture files can be written purely with Tcl.
+
+Note that this extension provides no decoding capabilities. It simply
+provides the raw data from the network or capture file.

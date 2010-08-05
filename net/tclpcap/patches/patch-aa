@@ -1,0 +1,25 @@
+--- Makefile.in.orig	2010-08-05 11:00:13.881303000 +0200
++++ Makefile.in	2010-08-05 11:00:16.090818000 +0200
+@@ -232,7 +232,7 @@
+ 	@mkdir -p $(DESTDIR)$(pkglibdir)
+ 	$(INSTALL_DATA) pkgIndex.tcl $(DESTDIR)$(pkglibdir)
+ 	$(INSTALL_DATA) $(srcdir)/LICENSE $(DESTDIR)$(pkglibdir)
+-	$(INSTALL_DATA) $(srcdir)/READMEt $(DESTDIR)$(pkglibdir)
++	$(INSTALL_DATA) $(srcdir)/README $(DESTDIR)$(pkglibdir)
+ 
+ #========================================================================
+ # This rule installs platform-independent files, such as header files.
+@@ -249,11 +249,11 @@
+ 	@mkdir -p $(DESTDIR)$(pkglibdir)/html
+ 	@list='$(PKG_MAN_PAGES)'; for p in $$list; do \
+ 		html=`basename $$p|sed -e 's/.[^.]*$$//'`.html; \
+-	  	$(INSTALL_DATA) $(srcdir)/doc/$$html $(DESTDIR)$(pkglibdir)/html/; \
++	  	$(INSTALL_DATA) $(srcdir)/$$html $(DESTDIR)$(pkglibdir)/html/; \
+ 	done
+ 
+ html:
+-	@cd $(srcdir)/doc; \
++	@cd $(srcdir); \
+ 	list='$(PKG_MAN_PAGES)'; for p in $$list; do \
+ 		html=`basename $$p|sed -e 's/.[^.]*$$//'`.html; \
+ 		echo "Creating \"$$html\" from \"$$p\""; \
