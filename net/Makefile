@@ -20,5 +20,6 @@ COMMENT=        Networking tools
 
 SUBDIR+=        evart-client
 SUBDIR+=        evart-stream
+SUBDIR+=	tclpcap
 
 include ../mk/robotpkg.subdir.mk
