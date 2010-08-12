@@ -16,9 +16,9 @@
 #                                       Anthony Mallet on Wed Dec  5 2007
 #
 
-DISTNAME=		libimages3d-3.2
+DISTNAME=		libimages3d-3.3
 CATEGORIES=		image
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libimages3d/}
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
