@@ -1,0 +1,23 @@
+--- src/Makefile.am~	2009-11-14 09:32:42.000000000 +0100
++++ src/Makefile.am	2010-08-13 16:21:17.701232000 +0200
+@@ -22,9 +22,7 @@
+ 	-I$(top_srcdir) \
+ 	-I$(top_builddir)
+ 
+-tnftp_LDADD = \
+-	../libnetbsd/libnetbsd.la 
+-
++tnftp_LDADD =
+ 
+ if USE_LIBEDIT
+ tnftp_CPPFLAGS += \
+@@ -34,6 +32,9 @@
+ 	../libedit/libedit.la
+ endif
+ 
++tnftp_LDADD += \
++	../libnetbsd/libnetbsd.la 
++
+ 
+ man1_MANS = \
+ 	tnftp.1

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -38,11 +38,11 @@ endif
 ifeq (+,$(TNFTP_DEPEND_MK))
 PREFER.tnftp?=		robotpkg
 
-SYSTEM_SEARCH.tnftp=	'{,s}bin/{,robotpkg_}ftp'
+SYSTEM_SEARCH.tnftp=	'{,s}bin/{tn,}ftp'
 
 DEPEND_USE+=		tnftp
 
-DEPEND_ABI.tnftp?=	tnftp>=20070806
+DEPEND_ABI.tnftp?=	tnftp>=20091122
 DEPEND_DIR.tnftp?=	../../pkgtools/tnftp
 endif
 

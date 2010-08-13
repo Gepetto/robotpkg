@@ -1,4 +1,4 @@
-/*	$NetBSD: snprintf.c,v 1.3 2007/08/07 02:07:00 lukem Exp $	*/
+/*	$NetBSD: snprintf.c,v 1.6 2007/07/22 05:19:02 lukem Exp $	*/
 
 /*
  * Copyright Patrick Powell 1995

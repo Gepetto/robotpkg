@@ -1,4 +1,4 @@
-/*	$NetBSD: getaddrinfo.c,v 1.3 2007/08/07 02:06:59 lukem Exp $	*/
+/*	$NetBSD: getaddrinfo.c,v 1.5 2007/07/22 05:19:01 lukem Exp $	*/
 /*	from	?	*/
 
 /*

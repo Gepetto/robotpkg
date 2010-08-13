@@ -1,0 +1,16 @@
+--- tnftp.h~	2010-08-13 15:42:36.701939000 +0200
++++ tnftp.h	2010-08-13 16:17:39.608243000 +0200
+@@ -72,6 +72,13 @@
+ #endif
+ #if defined(HAVE_SYS_PARAM_H)
+ # include <sys/param.h>
++/* GLIBC >= 2.8 have ARG_MAX replaced by _SC_ARG_MAX */
++# ifdef _SC_ARG_MAX
++#  ifdef ARG_MAX
++#   undef ARG_MAX
++#  endif
++#  define ARG_MAX sysconf(_SC_ARG_MAX)
++# endif
+ #endif
+ #if defined(HAVE_SYS_STAT_H)
+ # include <sys/stat.h>

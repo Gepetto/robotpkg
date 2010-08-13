@@ -1,39 +1,47 @@
-#       $NetBSD: configure.ac,v 1.1.1.1 2007/08/06 04:42:53 lukem Exp $
+#       $NetBSD: configure.ac,v 1.21 2009/12/30 00:03:25 lukem Exp $
 #
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([tnftp], [20070806], [lukem@NetBSD.org])
+AC_INIT([tnftp], [20091122], [lukem@NetBSD.org])
 AC_PREREQ([2.61])
-AC_REVISION([$Revision: 1.1.1.1 $])
+
+AC_COPYRIGHT([
+Copyright (c) 1999-2009 The NetBSD Foundation, Inc.
+All rights reserved.
+])
+AC_REVISION([$Revision: 1.21 $])
 
 AS_SHELL_SANITIZE
 
 AC_CONFIG_SRCDIR([tnftp.h])
-AC_CONFIG_AUX_DIR(build-aux)
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_AUX_DIR([buildaux])
+AC_CONFIG_HEADERS([tnftp_config.h])
+AC_CONFIG_LIBOBJ_DIR([libnetbsd])
+
+AM_INIT_AUTOMAKE([-Wall -Werror foreign nostdinc silent-rules])
+AM_MAINTAINER_MODE
 
 #
 # Arguments for which features are included.
 #
-AC_CANONICAL_TARGET
-AC_ARG_PROGRAM
 AC_ARG_ENABLE([editcomplete],
               [AS_HELP_STRING([--enable-editcomplete],
-                              [turn on command line editing and completion.
-                               (default: enabled)])],
+                              [turn on command line editing and completion
+                               [default=enabled]])],
               [opt_editcomplete=$enableval],
               [opt_editcomplete=yes])
 AC_ARG_ENABLE([ipv6],
               [AS_HELP_STRING([--enable-ipv6],
-                              [enable IPv6 support (if your OS supports it).
-                               (default: enabled)])],
+                              [enable IPv6 support (if your OS supports it)
+                               [default=enabled]])],
               [opt_ipv6=$enableval],
               [opt_ipv6=yes])
 AC_ARG_WITH([socks],
             [AS_HELP_STRING([--with-socks],
-                            [enable support for (Dante) SOCKS5 proxy])],
+                            [enable support for (Dante) SOCKS5 proxy
+                             [default=auto]])],
             [],
-            [with_socks=check])
+            [with_socks=auto])
 
 #
 # Autoheader templates symbols.
@@ -46,18 +54,19 @@ AH_TEMPLATE([HAVE_PRINTF_QD],
 AH_TEMPLATE([HAVE_PRINTF_LONG_LONG],
             [Define if `long long' is supported and
              *printf() supports %lld or %qd to print them.])
+AH_TEMPLATE([USE_INET6],
+            [Define if using IPv6 support.])
 AH_TEMPLATE([USE_SOCKS],
+            [Define if using socks library.])
+AH_TEMPLATE([USE_SOCKS5],
             [Define if using (Dante) SOCKS5 proxy.])
 
 #
 # Checks for programs.
 #
-AC_PROG_MAKE_SET
 AC_PROG_CC
 AC_PROG_AWK
-AC_PROG_INSTALL
-AC_CHECK_TOOL([AR], [ar], [:])
-AC_CHECK_TOOL([RANLIB], [ranlib], [:])
+AC_PROG_LIBTOOL
 
 #
 # Checks for tool features.
@@ -85,9 +94,7 @@ AS_IF([test "$opt_editcomplete" = yes],
                       [],
                       [AC_MSG_ERROR(
                            [no relevant library found containing tgetent])])
-       AC_SEARCH_LIBS([el_init],
-                      [edit],
-                      [have_libedit=yes], [have_libedit=no])])
+       ])
 
 AC_SEARCH_LIBS([gethostbyname], [nsl])
 AC_SEARCH_LIBS([socket],
@@ -102,16 +109,22 @@ AC_SEARCH_LIBS([socket],
 # Check for (Dante) SOCKS5.
 #
 AS_IF([test "$with_socks" != no],
-      [AC_SEARCH_LIBS([SOCKSinit],
+      [AC_MSG_NOTICE([--with-socks=$with_socks; checking for required SOCKS5 features])
+       AC_SEARCH_LIBS([SOCKSinit],
                       [socksd socks],
                       [AC_DEFINE([USE_SOCKS], [1])
+                       AC_MSG_NOTICE([enabling SOCKS5 support])
+                       with_socks=yes
                        AS_IF([test "$opt_ipv6" = yes],
                              [AC_MSG_WARN(
                 [IPv6 is incompatible with socks, disabling IPv6 support])
                               opt_ipv6=no])],
-                      [AS_IF([test "$with_socks" != check],
+                      [AS_IF([test "$with_socks" != "auto"],
                              [AC_MSG_FAILURE(
-                [--with-socks was given, but SOCKSinit() wasn't found])])])])
+                [--with-socks was given, but SOCKSinit() wasn't found])])
+                       AC_MSG_NOTICE([disabling --with-socks])
+                       with_socks=no])
+       AC_SEARCH_LIBS([Rread], [], [AC_DEFINE([USE_SOCKS5], [1])])])
 
 #
 # Checks for header files.
@@ -128,6 +141,16 @@ accheck_includes='
 # include <stdarg.h>
 # include <stdlib.h>
 # include <string.h>
+#endif
+#if defined(TIME_WITH_SYS_TIME)
+# include <sys/time.h>
+# include <time.h>
+#else
+# if defined(HAVE_SYS_TIME_H)
+#  include <sys/time.h>
+# else
+#  include <time.h>
+# endif
 #endif
 #if defined(HAVE_LIBGEN_H)
 # include <libgen.h>
@@ -215,13 +238,20 @@ AC_SYS_LARGEFILE
 # If IPv6 is enabled, check for necessary items.
 #
 AS_IF([test "$opt_ipv6" = yes],
-      [AC_CHECK_DECLS([AF_INET6, NS_IN6ADDRSZ], [], [],
+      [AC_MSG_NOTICE([--enable-ipv6; checking for required IPv6 features])
+       AC_CHECK_DECLS([AF_INET6, NS_IN6ADDRSZ], [], [],
 [$accheck_includes
 #if defined(HAVE_ARPA_NAMESER_H)
 #include <arpa/nameser.h>
 #endif
 ])
-       AC_CHECK_TYPES([struct sockaddr_in6], [], [], [$accheck_includes])])
+       AC_CHECK_TYPES([struct sockaddr_in6], [], [opt_ipv6=no],
+                      [$accheck_includes])
+       AS_IF([test "$opt_ipv6" = yes],
+             [AC_MSG_NOTICE([enabling IPv6 support])
+              AC_DEFINE([USE_INET6], [1])],
+             [AC_MSG_NOTICE([disabling IPv6 support])])
+       ])
 
 #
 # Checks for library functions.
@@ -256,13 +286,12 @@ AC_LIBOBJ([glob])
 AS_IF([test "$ac_cv_type_long_long_int" = yes],
       [AC_MSG_CHECKING([*printf() support for %lld])
        can_printf_longlong=no
-       AC_RUN_IFELSE([AC_LANG_SOURCE([[
-#include <stdio.h>
-int main() {
-        char buf[100];
-        sprintf(buf, "%lld", 4294967300LL);
-        return (strcmp(buf, "4294967300"));
-}
+       AC_RUN_IFELSE([AC_LANG_PROGRAM([[
+$accheck_includes
+]], [[
+char buf[100];
+sprintf(buf, "%lld", 4294967300LL);
+exit(0 != strcmp(buf, "4294967300"));
 ]])],
                      [AC_MSG_RESULT([yes])
                       can_printf_longlong=yes],
@@ -270,13 +299,12 @@ int main() {
                      [AC_MSG_RESULT([unknown - cross-compiling])])
         AS_IF([test "$can_printf_longlong" != yes],
               [AC_MSG_CHECKING([*printf() support for %qd])
-               AC_RUN_IFELSE([AC_LANG_SOURCE([[
-#include <stdio.h>
-int main() {
-        char buf[100];
-        sprintf(buf, "%qd", 4294967300LL);
-        return (strcmp(buf, "4294967300"));
-}
+               AC_RUN_IFELSE([AC_LANG_PROGRAM([[
+$accheck_includes
+]], [[
+char buf[100];
+sprintf(buf, "%qd", 4294967300LL);
+exit(0 != strcmp(buf, "4294967300"));
 ]])],
                              [AC_MSG_RESULT([yes])
                               can_printf_longlong=yes
@@ -302,19 +330,26 @@ AC_CHECK_FUNC([poll],
                              [AC_DEFINE([HAVE_POLL], [1])],
                              [$accheck_includes])])
 
-# Assume libedit is not up-to-date and force own version.
+AS_IF([test "$ac_cv_func_strptime" = yes],
+      [AC_MSG_CHECKING([if strptime() needs separators between conversions])
+       AC_RUN_IFELSE([AC_LANG_PROGRAM([[
+$accheck_includes
+]], [[
+struct tm timebuf;
+char * res;
+memset(&timebuf, 0, sizeof(timebuf));
+res = strptime("20011122161900", "%Y%m%d%H%M%S", &timebuf);
+exit(!res);
+]])],
+                     [AC_MSG_RESULT([no])],
+                     [AC_MSG_RESULT([yes - using local version])
+                      AC_LIBOBJ([strptime])],
+                     [AC_MSG_RESULT([unknown - cross-compiling])])])
+
+# Use local libedit if editcomplete is requested
 #
-#have_libedit=no
 AS_IF([test "$opt_editcomplete" = yes],
-      [AC_MSG_CHECKING([for up-to-date libedit])
-       AS_IF([test "$have_libedit" = no],
-             [AC_MSG_RESULT([no - using my own])
-              INCLUDES="-I\${srcdir}/../libedit $INCLUDES"
-              LDFLAGS="-L../libedit $LDFLAGS"
-              LIBS="-ledit $LIBS"
-              LIBEDIT=libedit.a
-              LIBDEPENDS="$LIBDEPENDS ../libedit/libedit.a"],
-             [AC_MSG_RESULT([yes])])],
+      [AC_MSG_NOTICE([--enable-editcomplete; using internal libedit])],
       [CFLAGS="-DNO_EDITCOMPLETE $CFLAGS"])
 
 # Replace sl_init() (et al) if it provides the older API.
@@ -346,27 +381,27 @@ AS_IF([test "$ac_cv_header_vis_h" = yes],
 #include <vis.h>
 ])])
 
-# Build libnetbsd if necessary.
-#
-AS_IF([test -n "$LIBOBJS"],
-      [INCLUDES="$INCLUDES -I\${srcdir}/../libnetbsd"
-       LDFLAGS="$LDFLAGS -L../libnetbsd"
-       LIBS="$LIBS -lnetbsd"
-       LIBNETBSD=libnetbsd.a
-       LIBDEPENDS="$LIBDEPENDS ../libnetbsd/libnetbsd.a"])
+AM_CONDITIONAL([USE_LIBEDIT], [test "$opt_editcomplete" = yes])
 
 #
 # Create the Makefiles.
 #
-AC_SUBST(INCLUDES)
-AC_SUBST(LIBEDIT)
-AC_SUBST(LIBNETBSD)
-AC_SUBST(LIBDEPENDS)
-
-AC_CONFIG_FILES([Makefile
-                 libedit/Makefile
-                 libedit/makelist
-                 libnetbsd/Makefile
-                 src/Makefile])
+AC_CONFIG_FILES([
+        Makefile
+        libedit/Makefile
+        libedit/makelist
+        libnetbsd/Makefile
+        src/Makefile
+])
 
 AC_OUTPUT
+
+# Display feature results.
+#
+AC_MSG_NOTICE([ === Configuration results ===])
+AC_MSG_NOTICE([Package:               $PACKAGE_STRING])
+AC_MSG_NOTICE([Prefix:                $prefix])
+AC_MSG_NOTICE([Command-line editing:  $opt_editcomplete])
+AC_MSG_NOTICE([IPv6 support:          $opt_ipv6])
+AC_MSG_NOTICE([SOCKS5 proxy support:  $with_socks])
+AC_MSG_NOTICE([ =============================])

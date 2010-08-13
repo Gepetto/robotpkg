@@ -1,3 +1,2 @@
-@comment $Id: $
-sbin/robotpkg_ftp
-man/cat1/robotpkg_ftp.0
+sbin/tnftp
+man/man1/tnftp.1

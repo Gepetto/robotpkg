@@ -1,4 +1,4 @@
-/*	$NetBSD: ruserpass.c,v 1.5 2007/08/07 02:07:02 lukem Exp $	*/
+/*	$NetBSD: ruserpass.c,v 1.8 2007/08/06 04:33:24 lukem Exp $	*/
 /*	from	NetBSD: ruserpass.c,v 1.33 2007/04/17 05:52:04 lukem Exp	*/
 
 /*

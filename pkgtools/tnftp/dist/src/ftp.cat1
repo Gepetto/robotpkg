@@ -4,8 +4,8 @@ NNAAMMEE
      ffttpp -- Internet file transfer program
 
 SSYYNNOOPPSSIISS
-     ffttpp [--4466AAaaddeeffggiinnppRRttvvVV] [--NN _n_e_t_r_c] [--oo _o_u_t_p_u_t] [--PP _p_o_r_t] [--qq _q_u_i_t_t_i_m_e]
-         [--ss _s_r_c_a_d_d_r] [--rr _r_e_t_r_y] [--TT _d_i_r,_m_a_x[,_i_n_c]] [[_u_s_e_r@]_h_o_s_t [_p_o_r_t]]
+     ffttpp [--4466AAaaddeeffggiinnppRRttVVvv] [--NN _n_e_t_r_c] [--oo _o_u_t_p_u_t] [--PP _p_o_r_t] [--qq _q_u_i_t_t_i_m_e]
+         [--rr _r_e_t_r_y] [--ss _s_r_c_a_d_d_r] [--TT _d_i_r,_m_a_x[,_i_n_c]] [[_u_s_e_r@]_h_o_s_t [_p_o_r_t]]
          [[_u_s_e_r@]_h_o_s_t:[_p_a_t_h][/]] [file:///_p_a_t_h]
          [ftp://[_u_s_e_r[:_p_a_s_s_w_o_r_d]@]_h_o_s_t[:_p_o_r_t]/_p_a_t_h[/][;type=_X]]
          [http://[_u_s_e_r[:_p_a_s_s_w_o_r_d]@]_h_o_s_t[:_p_o_r_t]/_p_a_t_h] [_._._.]
@@ -50,6 +50,9 @@ DDEESSCCRRIIPPTTIIOONN
      --ii          Turns off interactive prompting during multiple file trans-
                  fers.
 
+     --NN _n_e_t_r_c    Use _n_e_t_r_c instead of _~_/_._n_e_t_r_c.  Refer to _T_H_E _._n_e_t_r_c _F_I_L_E for
+                 more information.
+
      --nn          Restrains ffttpp from attempting ``auto-login'' upon initial
                  connection for non auto-fetch transfers.  If auto-login is
                  enabled, ffttpp will check the _._n_e_t_r_c (see below) file in the
@@ -61,9 +64,6 @@ DDEESSCCRRIIPPTTIIOONN
                  auto-login for auto-fetch transfers, specify the username
                  (and optionally, password) as appropriate.
 
-     --NN _n_e_t_r_c    Use _n_e_t_r_c instead of _~_/_._n_e_t_r_c.  Refer to _T_H_E _._n_e_t_r_c _F_I_L_E for
-                 more information.
-
      --oo _o_u_t_p_u_t   When auto-fetching files, save the contents in _o_u_t_p_u_t.
                  _o_u_t_p_u_t is parsed according to the _F_I_L_E _N_A_M_I_N_G _C_O_N_V_E_N_T_I_O_N_S
                  below.  If _o_u_t_p_u_t is not `-' or doesn't start with `|', then
@@ -71,20 +71,20 @@ DDEESSCCRRIIPPTTIIOONN
                  all other files will be retrieved into the basename of their
                  remote name.
 
+     --PP _p_o_r_t     Sets the port number to _p_o_r_t.
+
      --pp          Enable passive mode operation for use behind connection fil-
                  tering firewalls.  This option has been deprecated as ffttpp now
                  tries to use passive mode by default, falling back to active
                  mode if the server does not support passive connections.
 
-     --PP _p_o_r_t     Sets the port number to _p_o_r_t.
-
      --qq _q_u_i_t_t_i_m_e
                  Quit if the connection has stalled for _q_u_i_t_t_i_m_e seconds.
 
+     --RR          Restart all non-proxied auto-fetches.
+
      --rr _w_a_i_t     Retry the connection attempt if it failed, pausing for _w_a_i_t
                  seconds.
-
-     --RR          Restart all non-proxied auto-fetches.
 
      --ss _s_r_c_a_d_d_r  Uses _s_r_c_a_d_d_r as the local IP address for all connections.
 
@@ -101,14 +101,14 @@ DDEESSCCRRIIPPTTIIOONN
                  optional target filename for single file uploads), and _f_i_l_e
                  is one or more local files to be uploaded.
 
+     --VV          Disable vveerrbboossee and pprrooggrreessss, overriding the default of
+                 enabled when output is to a terminal.
+
      --vv          Enable vveerrbboossee and pprrooggrreessss.  This is the default if output
                  is to a terminal (and in the case of pprrooggrreessss, ffttpp is the
                  foreground process).  Forces ffttpp to show all responses from
                  the remote server, as well as report on data transfer statis-
                  tics.
-
-     --VV          Disable vveerrbboossee and pprrooggrreessss, overriding the default of
-                 enabled when output is to a terminal.
 
      The client host with which ffttpp is to communicate may be specified on the
      command line.  If this is done, ffttpp will immediately attempt to establish
@@ -181,12 +181,6 @@ DDEESSCCRRIIPPTTIIOONN
                  may be distinguished from a record delimiter only when ccrr is
                  off.
 
-     ffttpp__ddeebbuugg [_f_t_p___d_e_b_u_g_-_v_a_l_u_e]
-                 Toggle debugging mode.  If an optional _f_t_p___d_e_b_u_g_-_v_a_l_u_e is
-                 specified it is used to set the debugging level.  When debug-
-                 ging is on, ffttpp prints each command sent to the remote
-                 machine, preceded by the string `-->'
-
      ddeelleettee _r_e_m_o_t_e_-_f_i_l_e
                  Delete the file _r_e_m_o_t_e_-_f_i_l_e on the remote machine.
 
@@ -208,12 +202,13 @@ DDEESSCCRRIIPPTTIIOONN
                  and file completion.  This is automatically enabled if input
                  is from a terminal, and disabled otherwise.
 
-     eeppssvv44       Toggle the use of the extended EPSV and EPRT commands on IPv4
-                 connections; first try EPSV / EPRT, and then PASV / PORT.
-                 This is enabled by default.  If an extended command fails
-                 then this option will be temporarily disabled for the dura-
-                 tion of the current connection, or until eeppssvv44 is executed
-                 again.
+     eeppssvv eeppssvv44 eeppssvv66
+                 Toggle the use of the extended EPSV and EPRT commands on all
+                 IP, IPv4, and IPv6 connections respectively.  First try EPSV
+                 / EPRT, and then PASV / PORT.  This is enabled by default.
+                 If an extended command fails then this option will be tempo-
+                 rarily disabled for the duration of the current connection,
+                 or until eeppssvv, eeppssvv44, or eeppssvv66 is executed again.
 
      eexxiitt        A synonym for bbyyee.
 
@@ -230,6 +225,12 @@ DDEESSCCRRIIPPTTIIOONN
 
      ffttpp _h_o_s_t [_p_o_r_t]
                  A synonym for ooppeenn.
+
+     ffttpp__ddeebbuugg [_f_t_p___d_e_b_u_g_-_v_a_l_u_e]
+                 Toggle debugging mode.  If an optional _f_t_p___d_e_b_u_g_-_v_a_l_u_e is
+                 specified it is used to set the debugging level.  When debug-
+                 ging is on, ffttpp prints each command sent to the remote
+                 machine, preceded by the string `-->'.
 
      ggaattee [_h_o_s_t [_p_o_r_t]]
                  Toggle gate-ftp mode, which used to connect through the TIS
@@ -994,11 +995,11 @@ TTHHEE ..nneettrrcc FFIILLEE
                a blank line (consecutive new-line characters) is encountered.
                Like the other tokens in the _._n_e_t_r_c file, a mmaaccddeeff is applica-
                ble only to the mmaacchhiinnee definition preceding it.  A mmaaccddeeff
-               entry cannot be utilized by multiple mmaacchhiinnee definitions;
-               rather, it must be defined following each mmaacchhiinnee it is
-               intended to be used with.  If a macro named iinniitt is defined, it
-               is automatically executed as the last step in the auto-login
-               process.  For example,
+               entry cannot be used by multiple mmaacchhiinnee definitions; rather,
+               it must be defined following each mmaacchhiinnee it is intended to be
+               used with.  If a macro named iinniitt is defined, it is automati-
+               cally executed as the last step in the auto-login process.  For
+               example,
 
                      default
                      macdef init
@@ -1180,4 +1181,4 @@ BBUUGGSS
      uses a SIIT translator for IPv6-to-IPv4 translation, ffttpp is unable to
      support your configuration.
 
-NetBSD 3.1.1                     July 18, 2007                    NetBSD 3.1.1
+NetBSD 3.1_STABLE                May 10, 2008                NetBSD 3.1_STABLE

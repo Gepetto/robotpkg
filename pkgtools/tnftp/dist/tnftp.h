@@ -1,9 +1,9 @@
-/*	$NetBSD: tnftp.h,v 1.12 2007/08/07 03:37:53 lukem Exp $	*/
+/*	$NetBSD: tnftp.h,v 1.33 2009/11/14 08:32:42 lukem Exp $	*/
 
 #define	FTP_PRODUCT	PACKAGE_NAME
 #define	FTP_VERSION	PACKAGE_VERSION
 
-#include "config.h"
+#include "tnftp_config.h"
 
 #include <stdio.h>
 #include <ctype.h>
@@ -217,16 +217,10 @@ typedef unsigned short sa_family_t;
 #endif
 
 #if !defined(HAVE_SOCKLEN_T)
-#ifdef __sgi
-typedef int socklen_t;
-#else
 typedef unsigned int socklen_t;
 #endif
-#endif
 
-#if HAVE_DECL_AF_INET6 \
-    && defined(HAVE_STRUCT_SOCKADDR_IN6) \
-    && HAVE_DECL_NS_IN6ADDRSZ
+#if defined(USE_INET6)
 # define INET6
 #endif
 
@@ -482,7 +476,7 @@ int utimes(const char *, const struct timeval *);
 #define	SECSPERDAY	86400
 #define	TM_YEAR_BASE	1900
 
-#if defined(USE_SOCKS)		/* (Dante) SOCKS5 */
+#if defined(USE_SOCKS) && defined(USE_SOCKS5)	/* (Dante) SOCKS5 */
 #define connect		Rconnect
 #define bind		Rbind
 #define getsockname	Rgetsockname
@@ -505,4 +499,4 @@ int utimes(const char *, const struct timeval *);
 #define recvmsg		Rrecvmsg
 #define getaddrinfo	Rgetaddrinfo
 #define getipnodebyname	Rgetipnodebyname
-#endif /* defined(USE_SOCKS) */
+#endif /* defined(USE_SOCKS) && defined (USE_SOCKS5) */

@@ -21,7 +21,7 @@
 # This version of tnftp installs into ${PKG_TOOLS_BIN} as robotpkg_ftp.
 #
 
-DISTNAME=		tnftp-20070806
+DISTNAME=		tnftp-20091122
 CATEGORIES=		pkgtools
 
 MASTER_SITES=		# empty
@@ -31,10 +31,10 @@ DISTFILES=		# empty
 
 MAINTAINER=		openrobot@laas.fr
 COMMENT=		The enhanced FTP client in NetBSD
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--bindir=${PKG_TOOLS_BIN}
-CONFIGURE_ARGS+=	--program-transform-name='s/^/robotpkg_/'
 
 NOT_FOR_PLATFORM=	# empty
 NO_CHECKSUM=		yes

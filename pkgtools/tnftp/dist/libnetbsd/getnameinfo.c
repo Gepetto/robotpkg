@@ -1,4 +1,4 @@
-/*	$NetBSD: getnameinfo.c,v 1.4 2007/08/07 02:06:59 lukem Exp $	*/
+/*	$NetBSD: getnameinfo.c,v 1.6 2007/07/22 05:19:01 lukem Exp $	*/
 /*	from	?	*/
 
 /*

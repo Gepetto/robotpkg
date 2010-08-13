@@ -1,7 +1,11 @@
 `tnftp' is a portable version of the NetBSD ftp client, hence the name.
-It was formerly known as `lukemftp'.
 
-tnftp is installed under the name robotpkg_ftp to avoid confusion with
-the regular ftp of your platform. It is used internally by the robotpkg
-system to fetch the packages distribution files. It is also used by the
-robotpkg_* package management programs to fetch the binary packages.
+tnftp (formerly known as lukemftp) is a port of the NetBSD FTP client to other
+systems. It offers many enhancements over the traditional BSD FTP client,
+including command-line editing, command-line fetches of FTP and HTTP URLs
+(including via proxies), command-line uploads of FTP URLs, context-sensitive
+word completion, dynamic progress bar, IPv6 support, modification time
+preservation, paging of local and remote files, passive mode support (with
+fallback to active mode), SOCKS support, TIS FWTK gate-ftp server support, and
+transfer rate throttling. tnftp is the default FTP client found in FreeBSD,
+MacOS X, NetBSD, and SuSE Linux.

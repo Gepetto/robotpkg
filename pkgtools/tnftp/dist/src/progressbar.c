@@ -1,8 +1,8 @@
-/*	$NetBSD: progressbar.c,v 1.6 2007/08/07 02:07:02 lukem Exp $	*/
-/*	from	NetBSD: progressbar.c,v 1.17 2007/05/05 18:09:24 martin Exp	*/
+/*	$NetBSD: progressbar.c,v 1.14 2009/05/20 12:53:47 lukem Exp $	*/
+/*	from	NetBSD: progressbar.c,v 1.21 2009/04/12 10:18:52 lukem Exp	*/
 
 /*-
- * Copyright (c) 1997-2007 The NetBSD Foundation, Inc.
+ * Copyright (c) 1997-2009 The NetBSD Foundation, Inc.
  * All rights reserved.
  *
  * This code is derived from software contributed to The NetBSD Foundation
@@ -16,13 +16,6 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *	This product includes software developed by the NetBSD
- *	Foundation, Inc. and its contributors.
- * 4. Neither the name of The NetBSD Foundation nor the names of its
- *    contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
  * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -43,7 +36,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID(" NetBSD: progressbar.c,v 1.17 2007/05/05 18:09:24 martin Exp  ");
+__RCSID(" NetBSD: progressbar.c,v 1.21 2009/04/12 10:18:52 lukem Exp  ");
 #endif /* not lint */
 
 /*
@@ -76,7 +69,7 @@ foregroundproc(void)
 	static pid_t pgrp = -1;
 
 	if (pgrp == -1)
-#if GETPGRP_VOID || defined(__OPENNT)
+#if GETPGRP_VOID
 		pgrp = getpgrp();
 #else /* ! GETPGRP_VOID */
 		pgrp = getpgrp(0);
@@ -118,7 +111,7 @@ static const char * const suffixes[] = {
 	"YiB",	/* 2^80 Yobibyte */
 #endif
 };
-#define NSUFFIXES	(sizeof(suffixes) / sizeof(suffixes[0]))
+#define NSUFFIXES	(int)(sizeof(suffixes) / sizeof(suffixes[0]))
 
 /*
  * Display a transfer progress bar if progress is non-zero.
@@ -191,8 +184,8 @@ progressmeter(int flag)
 			    "transfer aborted because stalled for %lu sec.\r\n",
 			    getprogname(), (unsigned long)wait.tv_sec);
 			(void)write(fileno(ttyout), buf, len);
-			(void)xsignal(SIGALRM, SIG_DFL);
 			alarmtimer(0);
+			(void)xsignal(SIGALRM, SIG_DFL);
 			siglongjmp(toplevel, 1);
 		}
 #endif	/* !STANDALONE_PROGRESS */
@@ -209,8 +202,8 @@ progressmeter(int flag)
 			(void)xsignal_restart(SIGALRM, updateprogressmeter, 1);
 			alarmtimer(1);		/* set alarm timer for 1 Hz */
 		} else if (flag == 1) {
-			(void)xsignal(SIGALRM, SIG_DFL);
 			alarmtimer(0);
+			(void)xsignal(SIGALRM, SIG_DFL);
 		}
 	}
 #ifndef NO_PROGRESS
@@ -237,7 +230,7 @@ progressmeter(int flag)
 			 * calculate the length of the `*' bar, ensuring that
 			 * the number of stars won't exceed the buffer size
 			 */
-		barlength = MIN(sizeof(buf) - 1, ttywidth) - BAROVERHEAD;
+		barlength = MIN((int)(sizeof(buf) - 1), ttywidth) - BAROVERHEAD;
 		if (prefix)
 			barlength -= (int)strlen(prefix);
 		if (barlength > 0) {

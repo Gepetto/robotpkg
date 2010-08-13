@@ -1,0 +1,38 @@
+--- tnftp-20091122/configure.ac~	2009-12-30 01:03:25.000000000 +0100
++++ tnftp-20091122/configure.ac	2010-08-13 14:37:26.415878000 +0200
+@@ -57,6 +57,8 @@
+ AH_TEMPLATE([USE_INET6],
+             [Define if using IPv6 support.])
+ AH_TEMPLATE([USE_SOCKS],
++            [Define if using socks library.])
++AH_TEMPLATE([USE_SOCKS5],
+             [Define if using (Dante) SOCKS5 proxy.])
+ 
+ #
+@@ -121,7 +123,8 @@
+                              [AC_MSG_FAILURE(
+                 [--with-socks was given, but SOCKSinit() wasn't found])])
+                        AC_MSG_NOTICE([disabling --with-socks])
+-                       with_socks=no])])
++                       with_socks=no])
++       AC_SEARCH_LIBS([Rread], [], [AC_DEFINE([USE_SOCKS5], [1])])])])
+ 
+ #
+ # Checks for header files.
+--- tnftp-20091122/tnftp.h~	2009-11-14 09:32:42.000000000 +0100
++++ tnftp-20091122/tnftp.h	2010-08-13 14:41:06.676541000 +0200
+@@ -469,7 +469,7 @@
+ #define	SECSPERDAY	86400
+ #define	TM_YEAR_BASE	1900
+ 
+-#if defined(USE_SOCKS)		/* (Dante) SOCKS5 */
++#if defined(USE_SOCKS) && defined(USE_SOCKS5)	/* (Dante) SOCKS5 */
+ #define connect		Rconnect
+ #define bind		Rbind
+ #define getsockname	Rgetsockname
+@@ -492,4 +492,4 @@
+ #define recvmsg		Rrecvmsg
+ #define getaddrinfo	Rgetaddrinfo
+ #define getipnodebyname	Rgetipnodebyname
+-#endif /* defined(USE_SOCKS) */
++#endif /* defined(USE_SOCKS) && defined (USE_SOCKS5) */
