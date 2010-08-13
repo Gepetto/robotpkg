@@ -1,0 +1,25 @@
+--- codels/viamCntrlTaskCodels.c.orig	2010-08-13 12:56:50.000000000 +0200
++++ codels/viamCntrlTaskCodels.c	2010-06-03 13:58:33.000000000 +0200
+@@ -608,11 +608,11 @@
+ 
+   switch(calibrationio->op) {
+     case VIAM_LOAD:
+-      s = viam_calibration_load(vh, bank, calibrationio->file.id);
++      s = viam_calibration_load(vh, bank, calibrationio->file);
+       break;
+ 
+     case VIAM_SAVE:
+-      s = viam_calibration_save(vh, bank, calibrationio->file.id);
++      s = viam_calibration_save(vh, bank, calibrationio->file);
+       break;
+   }
+   if (s) VIAM_RETURN_WITHERRNO(report, ERROR);
+@@ -741,7 +741,7 @@
+   switch (save->enable) {
+     case VIAM_ON:
+       if (!idata->file) {
+-	idata->file = strdup(save->pattern.id);
++	idata->file = strdup(save->pattern);
+ 	idata->seq = 0;
+       }
+       break;
