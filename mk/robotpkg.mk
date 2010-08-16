@@ -350,6 +350,9 @@ $(call require-for, print-PLIST, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 $(call require-for, index print-summary-data,				\
 	${ROBOTPKG_DIR}/mk/internal/index.mk)
 
+# headings generation code.
+$(call require-for, headings, ${ROBOTPKG_DIR}/mk/internal/headings.mk)
+
 include ${ROBOTPKG_DIR}/mk/internal/subst.mk
 ifdef _SU_TARGETS
   $(call require, ${ROBOTPKG_DIR}/mk/internal/su-target.mk)
