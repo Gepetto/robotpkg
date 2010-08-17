@@ -20,7 +20,7 @@
 
 DISTNAME=	abstractrobotdynamics-${VERSION}
 PKGNAME=	jrl-interface-dynamics-${VERSION}
-VERSION=	1.16.0
+VERSION=	1.17
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-interface-dynamics/}
@@ -31,6 +31,7 @@ DOXYGEN_PLIST_DIR+=	share/doc/abstractRobotDynamics
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for dynamic robot model.
+LICENSE =	original-bsd
 
 USE_LANGUAGES+=	c c++
 
