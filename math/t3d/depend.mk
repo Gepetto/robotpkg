@@ -1,18 +1,5 @@
-#
-# Copyright (c) 2008,2010 LAAS/CNRS
-# All rights reserved.
-#
-# Redistribution  and  use in source   and binary forms,  with or without
-# modification, are permitted provided that  the following conditions are
-# met:
-#
-#   1. Redistributions  of  source code must  retain  the above copyright
-#      notice and this list of conditions.
-#   2. Redistributions in binary form must  reproduce the above copyright
-#      notice  and this list of  conditions in the documentation   and/or
-#      other materials provided with the distribution.
-#
-#                                      Arnaud Degroote on Thu May 15 2008
+# robotpkg depend.mk for:	math/libt3d
+# Created:			Arnaud Degroote on Thu, 15 May 2008
 #
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 LIBT3D_DEPEND_MK:=	${LIBT3D_DEPEND_MK}+

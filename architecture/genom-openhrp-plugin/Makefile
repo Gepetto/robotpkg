@@ -1,18 +1,5 @@
-#
-# Copyright (c) 2007-2010 LAAS/CNRS
-# All rights reserved.
-#
-# Redistribution  and  use in source   and binary forms,  with or without
-# modification, are permitted provided that  the following conditions are
-# met:
-#
-#   1. Redistributions  of  source code must  retain  the above copyright
-#      notice and this list of conditions.
-#   2. Redistributions in binary form must  reproduce the above copyright
-#      notice  and this list of  conditions in the documentation   and/or
-#      other materials provided with the distribution.
-#
-#                                       Anthony Mallet on Tue Nov 13 2007
+# robotpkg Makefile for:	architecture/genom-openhrp-plugin
+# Created:			Anthony Mallet on Tue, 13 Nov 2007
 #
 
 DISTNAME=		genom-openhrp-plugin-1.4

@@ -1,3 +1,6 @@
+# robotpkg Makefile for:	robots/scout-genom
+# Created:			Matthieu Herrb on Mon, 14 Dec 2009
+#
 
 DISTNAME=		scout-genom-0.1
 CATEGORIES=		robots

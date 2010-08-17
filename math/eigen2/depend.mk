@@ -1,3 +1,6 @@
+# robotpkg depend.mk for:	math/eigen2
+# Created:			Matthieu Herrb on Wed, 19 May 2010
+#
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 EIGEN2_DEPEND_MK:=	${EIGEN2_DEPEND_MK}+
 

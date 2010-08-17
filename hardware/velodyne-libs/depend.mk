@@ -1,3 +1,6 @@
+# robotpkg depend.mk for:	hardware/velodyne-libs
+# Created:			Matthieu Herrb on Fri, 25 Jun 2010
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 VELODYNE_LIBS_DEPEND_MK:=${VELODYNE_LIBS_DEPEND_MK}+

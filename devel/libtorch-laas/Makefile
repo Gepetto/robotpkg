@@ -1,5 +1,5 @@
-#
-# robotpkg libtorch
+# robotpkg Makefile for:	devel/libtorch-laas
+# Created:			Brice Burger on Thu, 18 Jun 2009
 #
 
 DISTNAME=		torch-3.2

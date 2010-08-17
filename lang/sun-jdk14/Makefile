@@ -1,4 +1,6 @@
-# $NetBSD: Makefile,v 1.34 2006/12/28 11:51:11 joerg Exp $
+# robotpkg Makefile for:	lang/sun-jdk14
+# Created:			Anthony Mallet on Fri, 5 Jan 2007
+#
 
 DISTNAME=	j2sdk-1_4_2_13-linux-i586
 PKGNAME=	sun-jdk14-2.13

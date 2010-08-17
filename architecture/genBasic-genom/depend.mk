@@ -1,4 +1,6 @@
-# $Id: depend.mk 2008/05/25 12:49:55 tho $
+# robotpkg depend.mk for:	architecture/genBasic-genom
+# Created:			A. degroote on Sat, 17 May 2008
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GENBASICGENOM_DEPEND_MK:=	${GENBASICGENOM_DEPEND_MK}+

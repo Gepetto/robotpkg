@@ -1,5 +1,5 @@
-# Copyright (c) 2006 LAAS/CNRS                         -- Fri Dec  8 2006
-# All rights  reserved.
+# robotpkg Makefile for:	math/vnl-vw
+# Created:			Anthony Mallet on Fri, 8 Dec 2006
 #
 
 include ../../image/vw/Makefile.common

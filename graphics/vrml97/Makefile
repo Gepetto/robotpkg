@@ -1,5 +1,5 @@
-# Copyright (c) 2006 LAAS/CNRS                         -- Fri Dec  8 2006
-# All rights  reserved.
+# robotpkg Makefile for:	graphics/vrml97
+# Created:			Anthony Mallet on Wed, 10 Jan 2007
 #
 
 DISTNAME=		vrml97

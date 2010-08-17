@@ -1,4 +1,6 @@
-# $Id: Makefile 5aba98d50d4a643141568cabebe7601e 2008/02/16 19:15:04 tho $
+# robotpkg Makefile for:	math/gmp
+# Created:			Anthony Mallet on Thu, 28 Feb 2008
+#
 
 DISTNAME=	gmp-4.2.2
 CATEGORIES=	math

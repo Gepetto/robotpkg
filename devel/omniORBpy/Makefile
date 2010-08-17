@@ -1,4 +1,5 @@
-# $NetBSD$
+# robotpkg Makefile for:	devel/omniORBpy
+# Created:			Anthony Mallet on Tue, 6 Mar 2007
 #
 
 DISTNAME=		omniORBpy-3.1

@@ -1,3 +1,5 @@
+# robotpkg depend.mk for:	motion/contlaw
+# Created:			Matthieu Herrb on Fri, 13 Mar 2009
 #
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 CONTLAW_DEPEND_MK:=	${CONTLAW_DEPEND_MK}+

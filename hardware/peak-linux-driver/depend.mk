@@ -1,3 +1,6 @@
+# robotpkg depend.mk for:	hardware/peak-linux-driver
+# Created:			Matthieu Herrb on Fri, 13 Mar 2009
+#
 DEPEND_DEPTH:=	${DEPEND_DEPTH}+
 PEAK_LINUX_DRIVER_DEPEND_MK:=${PEAK_LINUX_DRIVER_DEPEND_MK}+
 

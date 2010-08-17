@@ -1,3 +1,6 @@
+# robotpkg Makefile for:	robots/play-genom
+# Created:			Matthieu Herrb on Fri, 20 Nov 2009
+#
 DISTNAME=		play-genom-0.1
 CATEGORIES=		robots
 

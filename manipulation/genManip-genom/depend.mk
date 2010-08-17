@@ -1,4 +1,6 @@
-# $Id: depend.mk 2008/05/25 12:49:55 tho $
+# robotpkg depend.mk for:	manipulation/genManip-genom
+# Created:			Xavier Broquere on Tue, 20 Apr 2010
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GENMANIPGENOM_DEPEND_MK:=	${GENMANIPGENOM_DEPEND_MK}+

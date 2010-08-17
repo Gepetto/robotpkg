@@ -1,4 +1,6 @@
-# $NetBSD: Makefile,v 1.38 2006/12/28 11:51:12 joerg Exp $
+# robotpkg Makefile for:	lang/sun-jre14
+# Created:			Anthony Mallet on Fri, 5 Jan 2007
+#
 
 DISTNAME=	j2re-1_4_2_13-linux-i586
 PKGNAME=	sun-jre14-2.13

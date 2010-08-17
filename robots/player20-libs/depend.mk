@@ -1,3 +1,6 @@
+# robotpkg depend.mk for:	robots/player20-libs
+# Created:			Matthieu Herrb on Fri, 20 Nov 2009
+#
 DEPEND_DEPTH:=			${DEPEND_DEPTH}+
 PLAYER20_LIBS_DEPEND_MK:=	${PLAYER20_LIBS_DEPEND_MK}+
 

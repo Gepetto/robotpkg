@@ -1,19 +1,5 @@
-# $LAAS: Makefile 2010/02/23 15:31:16 mallet $
-#
-# Copyright (c) 2007-2010 LAAS/CNRS
-# All rights reserved.
-#
-# Redistribution and use  in source  and binary  forms,  with or without
-# modification, are permitted provided that the following conditions are
-# met:
-#
-#   1. Redistributions of  source  code must retain the  above copyright
-#      notice and this list of conditions.
-#   2. Redistributions in binary form must reproduce the above copyright
-#      notice and  this list of  conditions in the  documentation and/or
-#      other materials provided with the distribution.
-#
-#                                      Anthony Mallet on Sun Jan 28 2007
+# robotpkg Makefile for:	image/libdc1394
+# Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
 DISTNAME=		libdc1394-2.1.2

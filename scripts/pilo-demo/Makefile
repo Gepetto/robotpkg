@@ -1,3 +1,6 @@
+# robotpkg Makefile for:	scripts/pilo-demo
+# Created:			Matthieu Herrb on Mon, 12 Apr 2010
+#
 DISTNAME=		pilo-demo-0.1
 CATEGORIES=		scripts
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pilo-demo/}

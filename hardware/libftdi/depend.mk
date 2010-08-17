@@ -1,3 +1,6 @@
+# robotpkg depend.mk for:	hardware/libftdi
+# Created:			Matthieu Herrb on Thu, 2 Apr 2009
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 LIBFTDI_DEPEND_MK:=${LIBFTDI_DEPEND_MK}+

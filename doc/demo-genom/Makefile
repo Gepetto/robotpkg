@@ -1,3 +1,6 @@
+# robotpkg Makefile for:	doc/demo-genom
+# Created:			Matthieu Herrb on Fri, 20 Nov 2009
+#
 DISTNAME=		demo-genom-0.1
 CATEGORIES=		doc
 

@@ -1,4 +1,6 @@
-# $Id: $
+# robotpkg depend.mk for:	path/jrl-walkgen
+# Created:			Anthony Mallet on Tue, 13 May 2008
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 JRL_WALKGEN_DEPEND_MK:=	${JRL_WALKGEN_DEPEND_MK}+

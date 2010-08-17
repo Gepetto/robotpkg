@@ -1,4 +1,6 @@
-# $Id: $
+# robotpkg depend.mk for:	devel/omniORBpy
+# Created:			Anthony Mallet on Thu, 13 Mar 2008
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 OMNIORBPY_DEPEND_MK:=	${OMNIORBPY_DEPEND_MK}+

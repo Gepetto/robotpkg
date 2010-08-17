@@ -1,19 +1,5 @@
-# $LAAS: depend.mk 2009/11/18 14:54:13 mallet $
-#
-# Copyright (c) 2008-2009 LAAS/CNRS
-# All rights reserved.
-#
-# Redistribution and use  in source  and binary  forms,  with or without
-# modification, are permitted provided that the following conditions are
-# met:
-#
-#   1. Redistributions of  source  code must retain the  above copyright
-#      notice and this list of conditions.
-#   2. Redistributions in binary form must reproduce the above copyright
-#      notice and  this list of  conditions in the  documentation and/or
-#      other materials provided with the distribution.
-#
-#                                          Thomas Moulard on Nov 17 2009
+# robotpkg depend.mk for:	math/roboptim-core-cfsqp-plugin
+# Created:			Thomas Moulard on Tue, 17 Nov 2009
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+

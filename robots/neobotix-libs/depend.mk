@@ -1,3 +1,6 @@
+# robotpkg depend.mk for:	robots/neobotix-libs
+# Created:			Matthieu Herrb on Fri, 13 Mar 2009
+#
 DEPEND_DEPTH:=			${DEPEND_DEPTH}+
 NEOBOTIX_LIBS_DEPEND_MK:=	${NEOBOTIX_LIBS_DEPEND_MK}+
 

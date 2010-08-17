@@ -1,4 +1,6 @@
-# $Id: depend.mk 2008/05/25 12:50:11 tho $
+# robotpkg depend.mk for:	architecture/genPos-genom
+# Created:			Arnaud Degroote on Mon, 19 May 2008
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GENPOSGENOM_DEPEND_MK:=	${GENPOSGENOM_DEPEND_MK}+

@@ -1,3 +1,6 @@
+# robotpkg Makefile for:	robots/player20-libs
+# Created:			Matthieu Herrb on Fri, 20 Nov 2009
+#
 V=2.0.5
 PKGNAME=	player20-libs-${V}
 DISTNAME=	player-${V}

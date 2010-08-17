@@ -1,4 +1,6 @@
-# $Id: $
+# robotpkg depend.mk for:	math/mpfr
+# Created:			Anthony Mallet on Thu, 28 Feb 2008
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 MPFR_DEPEND_MK:=	${MPFR_DEPEND_MK}+

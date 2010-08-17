@@ -1,3 +1,6 @@
+# robotpkg Makefile for:	math/eigen2
+# Created:			Matthieu Herrb on Wed, 19 May 2010
+#
 V=		2.0.12
 PKGNAME=	eigen2-${V}
 DISTNAME=	${V}

@@ -1,3 +1,6 @@
+# robotpkg Makefile for:	hardware/sahand-libs
+# Created:			Matthieu Herrb on Thu, 10 Jun 2010
+#
 VERSION=	08.08.14
 PKGNAME=	sahand-libs-${VERSION}
 DISTNAME=	sahapi_$(subst .,,${VERSION})

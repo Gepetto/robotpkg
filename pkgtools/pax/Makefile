@@ -1,10 +1,5 @@
-#
-# Copyright (C) 2008 LAAS/CNRS
-#
-# Authored by Anthony Mallet on Fri Apr 18 2008
-# From $NetBSD: Makefile,v 1.13 2006/07/14 20:11:10 jlam Exp $
-#
-# This version of pax installs into ${PKG_TOOLS_BIN} as robotpkg_pax.
+# robotpkg Makefile for:	pkgtools/pax
+# Created:			Anthony Mallet on Thu, 7 Dec 2006
 #
 
 DISTNAME=		pax-20080110

@@ -1,4 +1,5 @@
-# $Id:$
+# robotpkg Makefile for:	pkgtools/pkg-config
+# Created:			Anthony Mallet on Wed, 19 Mar 2008
 #
 
 DISTNAME=		pkg-config-0.23

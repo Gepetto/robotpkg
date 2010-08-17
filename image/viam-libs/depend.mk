@@ -1,19 +1,5 @@
-# $LAAS: depend.mk 2010/06/03 13:51:43 mallet $
-#
-# Copyright (c) 2008-2010 LAAS/CNRS
-# All rights reserved.
-#
-# Redistribution  and  use in source   and binary forms,  with or without
-# modification, are permitted provided that  the following conditions are
-# met:
-#
-#   1. Redistributions  of  source code must  retain  the above copyright
-#      notice and this list of conditions.
-#   2. Redistributions in binary form must  reproduce the above copyright
-#      notice  and this list of  conditions in the documentation   and/or
-#      other materials provided with the distribution.
-#
-#                                       Anthony Mallet on Fri Mar 14 2008
+# robotpkg depend.mk for:	image/viam-libs
+# Created:			Anthony Mallet on Fri, 14 Mar 2008
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+

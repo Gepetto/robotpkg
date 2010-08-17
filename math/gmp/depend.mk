@@ -1,4 +1,6 @@
-# $Id: $
+# robotpkg depend.mk for:	math/gmp
+# Created:			Anthony Mallet on Thu, 28 Feb 2008
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 GMP_DEPEND_MK:=		${GMP_DEPEND_MK}+
