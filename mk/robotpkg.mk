@@ -90,7 +90,7 @@ else
 endif
 
 PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
-PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
+PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME_NOREV})
 PKGVERSION_NOREV:=	$(patsubst ${PKGBASE}-%,%,${PKGNAME_NOREV})
 
 # Default to building for supported platforms only.
