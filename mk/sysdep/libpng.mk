@@ -29,7 +29,7 @@ PREFER.libpng?=		system
 
 DEPEND_USE+=		libpng
 
-DEPEND_ABI.libpng?=	libpng>=1
+DEPEND_ABI.libpng?=	libpng>=1.2.9
 
 SYSTEM_SEARCH.libpng=	\
 	'include/png.h'						\
