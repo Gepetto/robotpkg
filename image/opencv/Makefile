@@ -3,6 +3,7 @@
 #
 
 PKGVERSION=		2.1.0
+PKGREVISION=		1
 DISTNAME=		OpenCV-${PKGVERSION}
 PKGNAME=		opencv-${PKGVERSION}
 CATEGORIES=		image
@@ -13,6 +14,7 @@ HOMEPAGE=		http://opencv.willowgarage.com/wiki/
 COMMENT=		Open Source Computer Vision
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=opencvlibrary/}
 CONFLICTS+=		opencv1
+LICENSE=		modified-bsd
 
 USE_LANGUAGES+=		c c++ python
 PYTHON_REQUIRED+=	>=2.5
