@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	genom-2.5
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/genom

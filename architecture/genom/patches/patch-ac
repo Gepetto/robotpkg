@@ -1,0 +1,21 @@
+commit e1fb3a90ea9860a59ddb9c774951f08a1198bb9f
+Author: Matthieu Herrb <matthieu.herrb@laas.fr>
+Date:   Wed Aug 18 11:28:21 2010 +0200
+
+    Print unsigned chars with "%u" instead of "%c"
+    
+    Fixes https://softs.laas.fr/bugzilla/show_bug.cgi?id=134
+
+diff --git lib/printXML.c lib/printXML.c
+index bdf439a..30f53d7 100644
+--- lib/printXML.c
++++ lib/printXML.c
+@@ -112,7 +112,7 @@ int printXML_unsigned_char(FILE *out, char *name, unsigned char *x, int indent,
+ {
+   indent++;
+   FOR_NB_elt(nDim,dims)
+-    if (!(fprintfBuf(out, "%s<%s%s>%c</%s%s>\n", 
++    if (!(fprintfBuf(out, "%s<%s%s>%u</%s%s>\n", 
+ 	    indentStr2(indent-1), name, getIndexesStr2(nDim, dims, elt),
+ 		     *(x+elt), name, getIndexesStr2(nDim, dims, elt)))) return 0;
+   END_FOR
