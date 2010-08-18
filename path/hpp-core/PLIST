@@ -2,6 +2,11 @@
 include/hppCore/hppColPair.h
 include/hppCore/hppPlanner.h
 include/hppCore/hppProblem.h
-lib/libhppCore.la
+include/hpp/core/problem.hh
+include/hpp/core/planner.hh
+include/hpp/core/collision-pair.hh
+include/hpp/core/parser.hh
+include/hpp/core/fwd.hh
+lib/libhppCore.so
 lib/pkgconfig/hppCore.pc
 @dirrm include/hppCore
