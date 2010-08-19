@@ -10,6 +10,7 @@ DISTFILES=#		empty
 MAINTAINER=             openrobots@laas.fr
 HOMEPAGE=               http://www.laas.fr/~mallet/robotpkg
 COMMENT=                A guide to robotpkg
+LICENSE=		isc
 
 include ../../mk/robotpkg.prefs.mk
 

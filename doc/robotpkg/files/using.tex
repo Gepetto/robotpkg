@@ -1,4 +1,4 @@
-% $LAAS: using.tex 2010/06/28 10:24:09 mallet $
+% $LAAS: using.tex 2010/08/19 11:54:35 mallet $
 %
 % Copyright (c) 2009-2010 LAAS/CNRS
 % All rights reserved.
@@ -158,6 +158,86 @@ added to help with this.
 %    <filename>/usr/pkg</filename>, and that you should
 %    <emphasis>not</emphasis> install any if you use a non-standard
 %    <varname>LOCALBASE</varname>.</para>
+
+
+\subsection{Building packages from a repository checkout} % ----------------
+
+Before building a  package, \robotpkg fetches the sources  from the official(s)
+download  location(s),  as  instructed  by the  {\tt  MASTER\_SITES}  variable.
+This is the standard and expected behaviour when you work with stable packages.
+
+Occasionally, though,  it is useful to fetch  a snapshot of the  sources from a
+development repository. For instance, one  might want to quickly test a release
+candidate of a  package, or fix a simple  bug and create a patch  from the fix.
+Whenever a package defines  the {\tt MASTER\_REPOSITORY} variable, \robotpkg is
+able to temporarily  work with the repository defined in  this variable. At the
+moment, {\tt cvs}, {\tt svn} and {\tt git} repositories are supported.
+
+To enable this feature for a given package,  you have to first instruct
+\robotpkg to work from a '{\tt checkout}' (instead of the stable releases) by
+doing '{\tt make checkout}' in the package directory. For instance:
+
+\begin{verbatim}
+% cd robotpkg/foo/bar
+% make checkout
+\end{verbatim}
+
+This sets  a permanent flag in the  {\em working} directory of  the package and
+the {\em checkout}  configuration option will be retained  until the next '{\tt
+make clean}'. After a '{\tt make  clean}', the configuration option is set back
+to its default and \robotpkg will  work again with stable releases. This option
+is set on a {\em per} package  basis only: configuring one package to work with
+checkouts does not affect the behaviour of other packages.
+
+After a '{\tt make checkout}' (and until a '{\tt make clean}'), the package has
+a regular  checkout in its {\em  working} subdirectory.  You  can thus manually
+edit, commit, switch branches, etc.  in  the package sources, like in any other
+repository, by  first {\tt  cd}ing into the  working directory, then  using the
+usual repository commands ({\tt cvs}, {\tt svn} or {\tt git}).
+
+Of  course, the  individual  \robotpkg  targets are  still  available from  the
+package  entry in  the robotpkg  hierarchy.  You  can for  instance  {\tt 'make
+patch'}, {\tt 'configure'}, {\tt 'build'}, {\tt 'install'} or {\tt 'update'} as
+usual. Note that  \robotpkg is not exactly stateless, and  this is most visible
+when  working with  checkouts:  for  instance, after  a  successful {\tt  'make
+build'}, you  have to do {\tt 'make  rebuild'} to force rebuilding  if you have
+modified  the  sources.   The  same  holds  for  {\tt   'configure'}  (do  {\tt
+'reconfigure'})  or {\tt  'install'} (do  {'reinstall'}, but  since  you cannot
+install a package  twice, you normally have to use {\tt  'make replace'} in the
+particular case of reinstalling a package).
+
+The  {\tt  'clean'}  target  is  special,  in  that  it  removes  the  checkout
+configuration  option and  all checkouted  sources, including  locally modified
+sources. In order to prevent accidental deletion of precious files, you have to
+confirm the cleanign with {\tt 'clean confirm'}, as in:
+
+\begin{verbatim}
+% make clean confirm
+\end{verbatim}
+
+A  final  remark:  we {\em  STRONGLY  DISCOURAGE}  the  use  of robotpkg  as  a
+development tool  (i.e. using the {\tt  'checkout'} feature on  a {\em regular}
+basis), for at least two reasons:
+
+\begin{itemize}
+   \item \robotpkg  is not designed  for this: it  will not really help  you in
+   your  daily   development  work,   compared  to  the   manual  configuration
+   installation of the software. It will sometimes create even more trouble, by
+   ensuring  that all  the software  depending  on the  checkouted software  is
+   up-to-date, which is not necessarily something you want to do every time you
+   compile.
+
+   \item  A checkout  breaks the  notion  of 'release'  and you  loose all  the
+   benefits from working with packages.  In particular, you have no clear state
+   of what is installed: you cannot easily reproduce the situation of time T at
+   time T+n and don't know precisely  who requires which version of what. It is
+   much  more  efficient and  robust  to release  frequently  a  software in  a
+   development phase, than using a {\em rolling release} approach.
+\end{itemize}
+
+In our opinion, the {\tt 'checkout'}  target use should be limited to testing a
+release candidate or  quickly fix a bug  and create a patch from  the fix, that
+you commit upstream and put in the patches/ directory until the next release.
 
 
 \subsection{Installing binary packages} % ----------------------------------

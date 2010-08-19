@@ -3,7 +3,7 @@
                     Anthony Mallet - anthony.mallet@laas.fr
                        Copyright 2006-2009 (C) LAAS/CNRS
 
-                                 June 28, 2010
+                                August 19, 2010
 
 Contents
 
@@ -25,10 +25,11 @@ Contents
         2.2.2  Bootstrapping from source
     2.3  Using robotpkg
         2.3.1  Building packages from source
-        2.3.2  Installing binary packages
-        2.3.3  Removing packages
-        2.3.4  Getting information about installed packages
-        2.3.5  Other administrative functions
+        2.3.2  Building packages from a repository checkout
+        2.3.3  Installing binary packages
+        2.3.4  Removing packages
+        2.3.5  Getting information about installed packages
+        2.3.6  Other administrative functions
     2.4  Configuring robotpkg
         2.4.1  Selecting build options
         2.4.2  General configuration variables
@@ -456,11 +457,78 @@ added to help with this.
     % make show-var VARNAME=LOCALBASE
 
 
-2.3.2  Installing binary packages
+2.3.2  Building packages from a repository checkout
+
+Before building a package, robotpkg fetches the sources from the official(s)
+download location(s), as instructed by the MASTER_SITES variable. This is the
+standard and expected behaviour when you work with stable packages.
+Occasionally, though, it is useful to fetch a snapshot of the sources from a
+development repository. For instance, one might want to quickly test a release
+candidate of a package, or fix a simple bug and create a patch from the fix.
+Whenever a package defines the MASTER_REPOSITORY variable, robotpkg is able to
+temporarily work with the repository defined in this variable. At the moment,
+cvs, svn and git repositories are supported.
+To enable this feature for a given package, you have to first instruct robotpkg
+to work from a 'checkout' (instead of the stable releases) by doing 'make
+checkout' in the package directory. For instance:
+
+% cd robotpkg/foo/bar
+% make checkout
+
+
+This sets a permanent flag in the working directory of the package and the
+checkout configuration option will be retained until the next ' make clean'.
+After a 'make clean', the configuration option is set back to its default and
+robotpkg will work again with stable releases. This option is set on a per
+package basis only: configuring one package to work with checkouts does not
+affect the behaviour of other packages.
+After a 'make checkout' (and until a 'make clean'), the package has a regular
+checkout in its working subdirectory. You can thus manually edit, commit,
+switch branches, etc. in the package sources, like in any other repository, by
+first cding into the working directory, then using the usual repository
+commands (cvs, svn or git).
+Of course, the individual robotpkg targets are still available from the package
+entry in the robotpkg hierarchy. You can for instance 'make patch',
+'configure', 'build', 'install' or 'update' as usual. Note that robotpkg is not
+exactly stateless, and this is most visible when working with checkouts: for
+instance, after a successful 'make build', you have to do 'make rebuild' to
+force rebuilding if you have modified the sources. The same holds for
+'configure' (do 'reconfigure') or 'install' (do 'reinstall', but since you
+cannot install a package twice, you normally have to use 'make replace' in the
+particular case of reinstalling a package).
+The 'clean' target is special, in that it removes the checkout configuration
+option and all checkouted sources, including locally modified sources. In order
+to prevent accidental deletion of precious files, you have to confirm the
+cleanign with 'clean confirm', as in:
+
+% make clean confirm
+
+
+A final remark: we STRONGLY DISCOURAGE the use of robotpkg as a development
+tool (i.e. using the 'checkout' feature on a regular basis), for at least two
+reasons:
+
+  * robotpkg is not designed for this: it will not really help you in your
+    daily development work, compared to the manual configuration installation
+    of the software. It will sometimes create even more trouble, by ensuring
+    that all the software depending on the checkouted software is up-to-date,
+    which is not necessarily something you want to do every time you compile.
+  * A checkout breaks the notion of 'release' and you loose all the benefits
+    from working with packages. In particular, you have no clear state of what
+    is installed: you cannot easily reproduce the situation of time T at time
+    T+n and don't know precisely who requires which version of what. It is much
+    more efficient and robust to release frequently a software in a development
+    phase, than using a rolling release approach.
+
+In our opinion, the 'checkout' target use should be limited to testing a
+release candidate or quickly fix a bug and create a patch from the fix, that
+you commit upstream and put in the patches/ directory until the next release.
+
+2.3.3  Installing binary packages
 
 At the moment, installing binary packages is not documented.
 
-2.3.3  Removing packages
+2.3.4  Removing packages
 
 To deinstall a package, it does not matter whether it was installed from source
 code or from a binary package. The robotpkg_delete command does not know it
@@ -478,12 +546,12 @@ package in question and then removes the package itself. For example:
 will remove genom and all the packages that used it; this allows upgrading the
 genom package.
 
-2.3.4  Getting information about installed packages
+2.3.5  Getting information about installed packages
 
 The robotpkg_info shows information about installed packages or binary package
 files.
 
-2.3.5  Other administrative functions
+2.3.6  Other administrative functions
 
 The robotpkg_admin executes various administrative functions on the package
 system.

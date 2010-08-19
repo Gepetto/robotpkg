@@ -134,7 +134,7 @@ table, table tr {
    Copyright 2006-2009 &#169; LAAS/CNRS
  </h3>
 
-<h3 align="center">June 28, 2010</h3>
+<h3 align="center">August 19, 2010</h3>
 
 <div class="p"><!----></div>
     
@@ -181,13 +181,15 @@ table, table tr {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.1"
 >2.3.1&nbsp; Building packages from source</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.2"
->2.3.2&nbsp; Installing binary packages</a><br />
+>2.3.2&nbsp; Building packages from a repository checkout</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.3"
->2.3.3&nbsp; Removing packages</a><br />
+>2.3.3&nbsp; Installing binary packages</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.4"
->2.3.4&nbsp; Getting information about installed packages</a><br />
+>2.3.4&nbsp; Removing packages</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.5"
->2.3.5&nbsp; Other administrative functions</a><br />
+>2.3.5&nbsp; Getting information about installed packages</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.6"
+>2.3.6&nbsp; Other administrative functions</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4"
 >2.4&nbsp; Configuring robotpkg</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.1"
@@ -878,13 +880,114 @@ added to help with this.
 
 <div class="p"><!----></div>
      <h3><a name="tth_sEc2.3.2">
-2.3.2</a>&nbsp;&nbsp;Installing binary packages</h3> 
+2.3.2</a>&nbsp;&nbsp;Building packages from a repository checkout</h3> 
+<div class="p"><!----></div>
+Before building a  package, <tt>robotpkg</tt> fetches the sources  from the official(s)
+download  location(s),  as  instructed  by the  <tt>MASTER_SITES</tt>  variable.
+This is the standard and expected behaviour when you work with stable packages.
+
+<div class="p"><!----></div>
+Occasionally, though,  it is useful to fetch  a snapshot of the  sources from a
+development repository. For instance, one  might want to quickly test a release
+candidate of a  package, or fix a simple  bug and create a patch  from the fix.
+Whenever a package defines  the <tt>MASTER_REPOSITORY</tt> variable, <tt>robotpkg</tt> is
+able to temporarily  work with the repository defined in  this variable. At the
+moment, <tt>cvs</tt>, <tt>svn</tt> and <tt>git</tt> repositories are supported.
+
+<div class="p"><!----></div>
+To enable this feature for a given package,  you have to first instruct
+<tt>robotpkg</tt> to work from a '<tt>checkout</tt>' (instead of the stable releases) by
+doing '<tt>make checkout</tt>' in the package directory. For instance:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;cd&nbsp;robotpkg/foo/bar
+%&nbsp;make&nbsp;checkout
+
+</pre>
+
+<div class="p"><!----></div>
+This sets  a permanent flag in the  <em>working</em> directory of  the package and
+the <em>checkout</em>  configuration option will be retained  until the next '<tt>
+make clean</tt>'. After a '<tt>make  clean</tt>', the configuration option is set back
+to its default and <tt>robotpkg</tt> will  work again with stable releases. This option
+is set on a <em>per</em> package  basis only: configuring one package to work with
+checkouts does not affect the behaviour of other packages.
+
+<div class="p"><!----></div>
+After a '<tt>make checkout</tt>' (and until a '<tt>make clean</tt>'), the package has
+a regular  checkout in its <em>working</em> subdirectory.  You  can thus manually
+edit, commit, switch branches, etc.  in  the package sources, like in any other
+repository, by  first <tt>cd</tt>ing into the  working directory, then  using the
+usual repository commands (<tt>cvs</tt>, <tt>svn</tt> or <tt>git</tt>).
+
+<div class="p"><!----></div>
+Of  course, the  individual  <tt>robotpkg</tt> targets are  still  available from  the
+package  entry in  the robotpkg  hierarchy.  You  can for  instance  <tt>'make
+patch'</tt>, <tt>'configure'</tt>, <tt>'build'</tt>, <tt>'install'</tt> or <tt>'update'</tt> as
+usual. Note that  <tt>robotpkg</tt> is not exactly stateless, and  this is most visible
+when  working with  checkouts:  for  instance, after  a  successful <tt>'make
+build'</tt>, you  have to do <tt>'make  rebuild'</tt> to force rebuilding  if you have
+modified  the  sources.   The  same  holds  for  <tt>'configure'</tt>  (do  <tt>
+'reconfigure'</tt>)  or <tt>'install'</tt> (do  'reinstall', but  since  you cannot
+install a package  twice, you normally have to use <tt>'make replace'</tt> in the
+particular case of reinstalling a package).
+
+<div class="p"><!----></div>
+The  <tt>'clean'</tt>  target  is  special,  in  that  it  removes  the  checkout
+configuration  option and  all checkouted  sources, including  locally modified
+sources. In order to prevent accidental deletion of precious files, you have to
+confirm the cleanign with <tt>'clean confirm'</tt>, as in:
+
+<div class="p"><!----></div>
+
+<pre>
+%&nbsp;make&nbsp;clean&nbsp;confirm
+
+</pre>
+
+<div class="p"><!----></div>
+A  final  remark:  we <em>STRONGLY  DISCOURAGE</em>  the  use  of robotpkg  as  a
+development tool  (i.e. using the <tt>'checkout'</tt> feature on  a <em>regular</em>
+basis), for at least two reasons:
+
+<div class="p"><!----></div>
+
+<ul>
+<li> <tt>robotpkg</tt> is not designed  for this: it  will not really help  you in
+   your  daily   development  work,   compared  to  the   manual  configuration
+   installation of the software. It will sometimes create even more trouble, by
+   ensuring  that all  the software  depending  on the  checkouted software  is
+   up-to-date, which is not necessarily something you want to do every time you
+   compile.
+<div class="p"><!----></div>
+</li>
+
+<li>  A checkout  breaks the  notion  of 'release'  and you  loose all  the
+   benefits from working with packages.  In particular, you have no clear state
+   of what is installed: you cannot easily reproduce the situation of time T at
+   time T+n and don't know precisely  who requires which version of what. It is
+   much  more  efficient and  robust  to release  frequently  a  software in  a
+   development phase, than using a <em>rolling release</em> approach.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+In our opinion, the <tt>'checkout'</tt>  target use should be limited to testing a
+release candidate or  quickly fix a bug  and create a patch from  the fix, that
+you commit upstream and put in the patches/ directory until the next release.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.3.3">
+2.3.3</a>&nbsp;&nbsp;Installing binary packages</h3> 
 <div class="p"><!----></div>
 At the moment, installing binary packages is not documented.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.3.3">
-2.3.3</a>&nbsp;&nbsp;Removing packages</h3> 
+     <h3><a name="tth_sEc2.3.4">
+2.3.4</a>&nbsp;&nbsp;Removing packages</h3> 
 <div class="p"><!----></div>
 To deinstall a package, it does not matter whether it was installed from source
 code or  from a  binary package.  The  <tt>robotpkg_delete</tt> command  does not
@@ -911,15 +1014,15 @@ will remove genom and all the packages that used it; this allows
 upgrading the <tt>genom</tt> package.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.3.4">
-2.3.4</a>&nbsp;&nbsp;Getting information about installed packages</h3> 
+     <h3><a name="tth_sEc2.3.5">
+2.3.5</a>&nbsp;&nbsp;Getting information about installed packages</h3> 
 <div class="p"><!----></div>
 The <tt>robotpkg_info</tt> shows information about installed  packages or binary
 package files.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.3.5">
-2.3.5</a>&nbsp;&nbsp;Other administrative functions</h3> 
+     <h3><a name="tth_sEc2.3.6">
+2.3.6</a>&nbsp;&nbsp;Other administrative functions</h3> 
 <div class="p"><!----></div>
 The  <tt>robotpkg_admin</tt>  executes  various administrative  functions on  the
 package system.
