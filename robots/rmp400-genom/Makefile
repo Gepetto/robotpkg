@@ -3,13 +3,15 @@
 #
 
 
-DISTNAME=		rmp400-genom-0.1
+DISTNAME=		rmp400-genom-0.2
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp400-genom
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM interface module for the Segway RMP400
+
+LICENCES=		isc
 
 GNU_CONFIGURE=		yes
 
