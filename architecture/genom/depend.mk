@@ -38,7 +38,7 @@ define _genom.unset.api
 
   GENOM_ARGS:=	$(filter-out -a,${GENOM_ARGS})
 endef
-PKG_OPTION_UNSET.api:=$(value PKG_OPTION_UNSET.api)${_genom.unset.api}
+PKG_OPTION_UNSET.api:=$(value PKG_OPTION_UNSET.api)$(value _genom.unset.api)
 
 PKG_OPTION_DESCR.tcl=	Enable the generation of the TCL client code
 define PKG_OPTION_SET.tcl
