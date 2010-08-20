@@ -15,7 +15,7 @@ PREFER.hpp-walkplanner?=	robotpkg
 
 SYSTEM_SEARCH.hpp-walkplanner=\
 	include/hpp/walkplanner/planner.hh	\
-	lib/libhpp-walkplanner.la
+	lib/libhpp-walkplanner.so
 
 DEPEND_USE+=		hpp-walkplanner
 

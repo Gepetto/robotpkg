@@ -2,6 +2,6 @@
 include/hpp/walkplanner/fwd.hh
 include/hpp/walkplanner/io.hh
 include/hpp/walkplanner/planner.hh
-lib/libhpp-walkplanner.la
+lib/libhpp-walkplanner.so
 lib/pkgconfig/hpp-walkplanner.pc
 @dirrm include/hpp/walkplanner

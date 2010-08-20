@@ -4,7 +4,7 @@
 
 DISTNAME=	hpp-walkplanner-${PKGVERSION}
 PKGNAME=	hpp-walkplanner-${PKGVERSION}
-PKGVERSION=	3.2
+PKGVERSION=	3.3
 PKGREVISION=
 
 CATEGORIES=	path
@@ -17,7 +17,6 @@ COMMENT=	Path planning algorithm for a walking humanoid robot.
 
 USE_LANGUAGES+= c c++
 
-GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/hpp-walkplanner
 
 # options
@@ -29,8 +28,8 @@ PKG_SUPPORTED_OPTIONS+=	benchmark
 PKG_OPTION_DESCR.benchmark=	Measure computation times
 PKG_OPTION_SET.benchmark:=	CPPFLAGS+=-DHPP_ENABLE_BENCHMARK -DHPP_DEBUG
 
+include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
-include ../../robots/hrp2-14/depend.mk
 include ../../path/jrl-walkgen/depend.mk
 include ../../path/hpp-walkfootplanner/depend.mk
 include ../../path/hpp-core/depend.mk
