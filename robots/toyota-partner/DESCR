@@ -1,0 +1,10 @@
+This package provides 3 files representing Toyota robot Partner:
+
+    * partner.kxml: geometric and kinematic model, reading this file with
+      KineoPathPlanner builds a model tree containing a robot of type
+      CkppDeviceComponent,
+    * partner-hpp.kxml: geometric, kinematic and dynamic model, reading this
+      file with ChppPlanner::parseFile inserts an object of type ChppProblem
+      containing a robot of type ChppHumanoidRobot,
+    * partner-hpp-naked.kxml: kinematic and dynamic model, the same as above
+      but without geometric parts.

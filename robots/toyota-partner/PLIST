@@ -1,0 +1,6 @@
+@comment Fri Aug 20 11:31:19 CEST 2010
+lib/pkgconfig/toyota-partner.pc
+share/toyota-partner/partner-geometry.wrl
+share/toyota-partner/partner-hpp.kxml
+share/toyota-partner/partner-hpp-naked.kxml
+share/toyota-partner/partner.kxml
