@@ -13,6 +13,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}dynamics-JRLJapan
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	JRL-Japan implementation of dynamic robot.
+LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES+=	c c++
 
