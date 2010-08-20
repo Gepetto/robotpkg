@@ -13,6 +13,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}jrlCIR-giktask
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=	
 COMMENT=	JRL abstract interface for generalized inverse kinematics tasks.
+LICENSE=	modified-bsd
 
 DOXYGEN_PLIST_DIR+=	share/doc/abstractGikTask
 GNU_CONFIGURE=	yes
