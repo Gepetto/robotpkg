@@ -11,7 +11,7 @@ MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp400-genom
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM interface module for the Segway RMP400
 
-LICENCES=		isc
+LICENSE=		isc
 
 GNU_CONFIGURE=		yes
 
