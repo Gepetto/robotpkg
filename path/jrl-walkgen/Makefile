@@ -4,10 +4,10 @@
 
 DISTNAME=	walkgenjrl-${VERSION}
 PKGNAME=	jrl-walkgen-${VERSION}
-VERSION=	3.0.2
+VERSION=	3.0.3
 
 CATEGORIES=		path
-MASTER_SITES=		${MASTER_SITE_JRL}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-walkgen/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/jrl/walkGenJrl
 
 USE_LANGUAGES+=fortran c c++
@@ -15,6 +15,7 @@ USE_LANGUAGES+=fortran c c++
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/jrl/spip/-Walk-Pattern-Generator-.html
 COMMENT=	Walk pattern generator for the HRP-2 humanoid robot.
+LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES+=		c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/walkGenJrl
