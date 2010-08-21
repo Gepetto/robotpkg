@@ -18,8 +18,8 @@ DEPEND_ABI.libftdi?=	libftdi>=0.14
 DEPEND_DIR.libftdi?=	../../hardware/libftdi
 
 SYSTEM_PKG.Linux-fedora.libftdi=libftdi-devel
-SYSTEM_PKG.Linux-ubuntu.libftdi=libftdi-devel
-SYSTEM_PKG.Linux-debian.libftdi=libftdi-devel
+SYSTEM_PKG.Linux-ubuntu.libftdi=libftdi-dev
+SYSTEM_PKG.Linux-debian.libftdi=libftdi-dev
 
 SYSTEM_SEARCH.libftdi=\
 	include/ftdi.h \
