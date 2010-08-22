@@ -1,9 +1,17 @@
 @comment Mon Mar 9 17:04:27 CET 2009
+bin/genBasic
+bin/genBasicSendInitRqst
+bin/genBasicTest
 include/genBasic/genBasicStruct.h
 include/genBasic/server/genBasicEndian.h
 include/genBasic/server/genBasicError.h
+include/genBasic/server/genBasicMsgLib.h
 include/genBasic/server/genBasicPosterLib.h
 include/genBasic/server/genBasicPosterLibStruct.h
+include/genBasic/server/genBasicPosterReadLibProto.h
+include/genBasic/server/genBasicPosterShowLib.h
+include/genBasic/server/genBasicPosterWriteLibProto.h
+include/genBasic/server/genBasicPosterXMLLib.h
 include/genBasic/server/genBasicPrint.h
 include/genBasic/server/genBasicPrintXML.h
 include/genBasic/server/genBasicScan.h
@@ -11,10 +19,16 @@ include/genBasic/server/genBasicType.h
 ${PLIST.openprs}include/genBasic/server/openprs/genBasicDecodeOpenprs.h
 ${PLIST.openprs}include/genBasic/server/openprs/genBasicEncodeOpenprs.h
 ${PLIST.openprs}include/genBasic/server/openprs/genBasicRequestsOpenprsProto.h
+${PLIST.tclserv_client}include/genBasic/server/tclservClient/genBasicTclservClientDecode.h
+${PLIST.tclserv_client}include/genBasic/server/tclservClient/genBasicTclservClientEncode.h
+${PLIST.tclserv_client}include/genBasic/server/tclservClient/genBasicTclservClientMsgLib.h
 lib/libgenBasicClient.la
 ${PLIST.openprs}lib/openprs/libgenBasicOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/genBasic-oprs.pc
 lib/pkgconfig/genBasic.pc
+${PLIST.tclserv_client}lib/pkgconfig/genBasic-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libgenBasicTclservClient.la
+lib/tclserv/libgenBasicTclServ.la
 share/modules/gen/genBasic.gen
 ${PLIST.openprs}share/modules/openprs/genBasicOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/genBasicOpenprs.opf
