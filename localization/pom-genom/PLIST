@@ -21,12 +21,17 @@ include/pom/server/pomPrint.h
 include/pom/server/pomPrintXML.h
 include/pom/server/pomScan.h
 include/pom/server/pomType.h
+${PLIST.tclserv_client}include/pom/server/tclservClient/pomTclservClientDecode.h
+${PLIST.tclserv_client}include/pom/server/tclservClient/pomTclservClientEncode.h
+${PLIST.tclserv_client}include/pom/server/tclservClient/pomTclservClientMsgLib.h
 lib/libpomClient.la
 lib/libpomEuler.la
 ${PLIST.openprs}lib/openprs/libpomOpenprs.la
 lib/pkgconfig/pom-euler.pc
 ${PLIST.openprs}lib/pkgconfig/pom-oprs.pc
 lib/pkgconfig/pom.pc
+${PLIST.tclserv_client}lib/pkgconfig/pom-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libpomTclservClient.la
 ${PLIST.noapi}${PLIST.tcl}lib/tclserv/libpomTclServ.la
 share/modules/gen/pom.gen
 ${PLIST.openprs}share/modules/openprs/pomOpenprs.inc
