@@ -1,18 +1,18 @@
 @comment Fri Mar 13 17:32:59 CET 2009
-bin/platine
-bin/platineSendInitRqst
-bin/platineTest
+${PLIST.noapi}bin/platine
+${PLIST.noapi}bin/platineSendInitRqst
+${PLIST.noapi}bin/platineTest
 include/platine/platineConst.h
 include/platine/platineStruct.h
 include/platine/server/platineEndian.h
 include/platine/server/platineError.h
-include/platine/server/platineMsgLib.h
+${PLIST.noapi}include/platine/server/platineMsgLib.h
 include/platine/server/platinePosterLib.h
 include/platine/server/platinePosterLibStruct.h
-include/platine/server/platinePosterReadLibProto.h
-include/platine/server/platinePosterShowLib.h
-include/platine/server/platinePosterWriteLibProto.h
-include/platine/server/platinePosterXMLLib.h
+${PLIST.noapi}include/platine/server/platinePosterReadLibProto.h
+${PLIST.noapi}include/platine/server/platinePosterShowLib.h
+${PLIST.noapi}include/platine/server/platinePosterWriteLibProto.h
+${PLIST.noapi}include/platine/server/platinePosterXMLLib.h
 include/platine/server/platinePrint.h
 include/platine/server/platinePrintXML.h
 include/platine/server/platineScan.h
@@ -20,16 +20,21 @@ include/platine/server/platineType.h
 ${PLIST.openprs}include/platine/server/openprs/platineDecodeOpenprs.h
 ${PLIST.openprs}include/platine/server/openprs/platineEncodeOpenprs.h
 ${PLIST.openprs}include/platine/server/openprs/platineRequestsOpenprsProto.h
+${PLIST.tclserv_client}include/platine/server/tclservClient/platineTclservClientDecode.h
+${PLIST.tclserv_client}include/platine/server/tclservClient/platineTclservClientEncode.h
+${PLIST.tclserv_client}include/platine/server/tclservClient/platineTclservClientMsgLib.h
 lib/libplatineClient.la
 ${PLIST.openprs}lib/openprs/libplatineOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/platine-oprs.pc
 lib/pkgconfig/platine.pc
+${PLIST.tclserv_client}lib/pkgconfig/platine-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libplatineTclservClient.la
 ${PLIST.tcl}lib/tclserv/libplatineTclServ.la
 share/modules/gen/platine.gen
 ${PLIST.openprs}share/modules/openprs/platineOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/platineOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/platineOpenprs.sym
-${PLIST.tcl}share/modules/tcl/platineClient.tcl
+${PLIST.noapi}${PLIST.tcl}share/modules/tcl/platineClient.tcl
 ${PLIST.openprs}@dirrm include/platine/server/openprs
 @dirrm include/platine/server
 @dirrm include/platine
