@@ -1,0 +1,7 @@
+@comment Fri Aug 13 09:10:38 CEST 2010
+include/tclserv_client/buf.h
+include/tclserv_client/scan.h
+include/tclserv_client/socket.h
+include/tclserv_client/tclserv_client.h
+lib/libtclserv_client.la
+lib/pkgconfig/libtclserv_client.pc
