@@ -20,10 +20,15 @@ include/rmp400/server/rmp400Print.h
 include/rmp400/server/rmp400PrintXML.h
 include/rmp400/server/rmp400Scan.h
 include/rmp400/server/rmp400Type.h
+${PLIST.tclserv_client}include/rmp400/server/tclservClient/rmp400TclservClientDecode.h
+${PLIST.tclserv_client}include/rmp400/server/tclservClient/rmp400TclservClientEncode.h
+${PLIST.tclserv_client}include/rmp400/server/tclservClient/rmp400TclservClientMsgLib.h
 lib/librmp400Client.la
 ${PLIST.openprs}lib/openprs/librmp400Openprs.la
 ${PLIST.openprs}lib/pkgconfig/rmp400-oprs.pc
 lib/pkgconfig/rmp400.pc
+${PLIST.tclserv_client}lib/pkgconfig/rmp400-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/librmp400TclservClient.la
 ${PLIST.tcl}lib/tclserv/librmp400TclServ.la
 share/modules/gen/rmp400.gen
 ${PLIST.openprs}share/modules/openprs/rmp400Openprs.inc
