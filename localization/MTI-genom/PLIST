@@ -18,10 +18,15 @@ include/MTI/server/MTIType.h
 ${PLIST.openprs}include/MTI/server/openprs/MTIDecodeOpenprs.h
 ${PLIST.openprs}include/MTI/server/openprs/MTIEncodeOpenprs.h
 ${PLIST.openprs}include/MTI/server/openprs/MTIRequestsOpenprsProto.h
+${PLIST.tclserv_client}include/MTI/server/tclservClient/MTITclservClientDecode.h
+${PLIST.tclserv_client}include/MTI/server/tclservClient/MTITclservClientEncode.h
+${PLIST.tclserv_client}include/MTI/server/tclservClient/MTITclservClientMsgLib.h
 lib/libMTIClient.la
 ${PLIST.openprs}lib/openprs/libMTIOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/MTI-oprs.pc
 lib/pkgconfig/MTI.pc
+${PLIST.tclserv_client}lib/pkgconfig/MTI-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libMTITclservClient.la
 ${PLIST.tcl}lib/tclserv/libMTITclServ.la
 share/doc/MTI/HowToUse
 share/modules/gen/MTI.gen
