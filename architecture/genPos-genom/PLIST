@@ -1,4 +1,7 @@
 @comment Fri Mar 13 14:58:19 CET 2009
+bin/genPos
+bin/genPosSendInitRqst
+bin/genPosTest
 include/genPos/genPosStruct.h
 include/genPos/server/genPosEndian.h
 include/genPos/server/genPosError.h
@@ -8,6 +11,9 @@ include/genPos/server/genPosPrint.h
 include/genPos/server/genPosPrintXML.h
 include/genPos/server/genPosScan.h
 include/genPos/server/genPosType.h
+${PLIST.tclserv_client}include/genPos/server/tclservClient/genPosTclservClientDecode.h
+${PLIST.tclserv_client}include/genPos/server/tclservClient/genPosTclservClientEncode.h
+${PLIST.tclserv_client}include/genPos/server/tclservClient/genPosTclservClientMsgLib.h
 ${PLIST.openprs}include/genPos/server/openprs/genPosDecodeOpenprs.h
 ${PLIST.openprs}include/genPos/server/openprs/genPosEncodeOpenprs.h
 ${PLIST.openprs}include/genPos/server/openprs/genPosRequestsOpenprsProto.h
@@ -15,6 +21,9 @@ lib/libgenPosClient.la
 ${PLIST.openprs}lib/openprs/libgenPosOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/genPos-oprs.pc
 lib/pkgconfig/genPos.pc
+${PLIST.tclserv_client}lib/pkgconfig/genPos-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libgenPosTclservClient.la
+${PLIST.tcl}lib/tclserv/libgenPosTclServ.la
 share/modules/gen/genPos.gen
 ${PLIST.openprs}share/modules/openprs/genPosOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/genPosOpenprs.opf
