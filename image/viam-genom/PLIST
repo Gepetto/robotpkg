@@ -5,6 +5,9 @@ ${PLIST.noapi}bin/viamTest
 ${PLIST.openprs}include/viam/server/openprs/viamDecodeOpenprs.h
 ${PLIST.openprs}include/viam/server/openprs/viamEncodeOpenprs.h
 ${PLIST.openprs}include/viam/server/openprs/viamRequestsOpenprsProto.h
+${PLIST.tclserv_client}include/viam/server/tclservClient/viamTclservClientDecode.h
+${PLIST.tclserv_client}include/viam/server/tclservClient/viamTclservClientEncode.h
+${PLIST.tclserv_client}include/viam/server/tclservClient/viamTclservClientMsgLib.h
 include/viam/server/viamEndian.h
 include/viam/server/viamError.h
 ${PLIST.noapi}include/viam/server/viamMsgLib.h
@@ -24,6 +27,8 @@ lib/libviamWeb.la
 ${PLIST.openprs}lib/openprs/libviamOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/viam-oprs.pc
 lib/pkgconfig/viam.pc
+${PLIST.tclserv_client}lib/pkgconfig/viam-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libviamTclservClient.la
 ${PLIST.noapi}${PLIST.tcl}lib/tclserv/libviamTclServ.la
 lib/viamWeb.so
 share/modules/gen/viam.gen
