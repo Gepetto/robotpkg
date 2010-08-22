@@ -1,35 +1,35 @@
 @comment mercredi 16 juillet 2008, 17:41:24 (UTC+0200)
-bin/gyro
-bin/gyroSendInitRqst
-bin/gyroTest
+${PLIST.noapi}bin/gyro
+${PLIST.noapi}bin/gyroSendInitRqst
+${PLIST.noapi}bin/gyroTest
 include/gyro/gyroConst.h
 include/gyro/gyroStruct.h
 include/gyro/server/gyroEndian.h
 include/gyro/server/gyroError.h
-include/gyro/server/gyroMsgLib.h
+${PLIST.noapi}include/gyro/server/gyroMsgLib.h
 include/gyro/server/gyroPosterLib.h
 include/gyro/server/gyroPosterLibStruct.h
-include/gyro/server/gyroPosterReadLibProto.h
-include/gyro/server/gyroPosterShowLib.h
-include/gyro/server/gyroPosterWriteLibProto.h
-include/gyro/server/gyroPosterXMLLib.h
+${PLIST.noapi}include/gyro/server/gyroPosterReadLibProto.h
+${PLIST.noapi}include/gyro/server/gyroPosterShowLib.h
+${PLIST.noapi}include/gyro/server/gyroPosterWriteLibProto.h
+${PLIST.noapi}include/gyro/server/gyroPosterXMLLib.h
 include/gyro/server/gyroPrint.h
 include/gyro/server/gyroPrintXML.h
 include/gyro/server/gyroScan.h
 include/gyro/server/gyroType.h
+${PLIST.tclserv_client}include/gyro/server/tclservClient/gyroTclservClientDecode.h
+${PLIST.tclserv_client}include/gyro/server/tclservClient/gyroTclservClientEncode.h
+${PLIST.tclserv_client}include/gyro/server/tclservClient/gyroTclservClientMsgLib.h
 lib/libgyroClient.la
 lib/libgyroModuleClient.la
 lib/pkgconfig/gyro-client.pc
 lib/pkgconfig/gyro.pc
-lib/tclserv/libgyroTclServ.la
+${PLIST.tclserv_client}lib/pkgconfig/gyro-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libgyroTclservClient.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libgyroTclServ.la
 share/modules/gen/gyro.gen
 share/modules/tcl/gyroClient.tcl
 @dirrm share/modules/tcl
 @dirrm share/modules/gen
-@dirrm lib/tclserv
-@dirrm lib/pkgconfig
-@dirrm lib
 @dirrm include/gyro/server
 @dirrm include/gyro
-@dirrm include
-@dirrm bin
