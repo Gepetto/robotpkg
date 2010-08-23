@@ -1,4 +1,5 @@
-@comment Thu Jun 24 12:35:54 CEST 2010
+@comment Mon Aug 23 11:48:30 CEST 2010
 bin/velodyneTest
+include/velodyne/velodyneLib.h
 lib/libvelodyneLib.la
 lib/pkgconfig/velodyne-libs.pc
