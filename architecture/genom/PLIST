@@ -1,3 +1,4 @@
+@comment Mon Aug 23 12:00:39 CEST 2010
 bin/genom
 bin/genom-clean
 bin/genom-regen
@@ -37,6 +38,7 @@ share/genom/${PKGVERSION}/autoconf/libtool.m4
 share/genom/${PKGVERSION}/autoconf/ltmain.sh
 share/genom/${PKGVERSION}/autoconf/mkinstalldirs
 share/genom/${PKGVERSION}/autoconf/module-oprs.pc.in
+share/genom/${PKGVERSION}/autoconf/module-tclserv_client.pc.in
 share/genom/${PKGVERSION}/autoconf/module.pc.in
 share/genom/${PKGVERSION}/autoconf/pkg.m4
 share/genom/${PKGVERSION}/autoconf/robots.m4
@@ -88,6 +90,14 @@ share/genom/${PKGVERSION}/server/tcl/tclEpilog.c
 share/genom/${PKGVERSION}/server/tcl/tclPoster.c
 share/genom/${PKGVERSION}/server/tcl/tclProlog.c
 share/genom/${PKGVERSION}/server/tcl/tclRqst.c
+share/genom/${PKGVERSION}/server/tclservClient/tclservClientDecode.h
+share/genom/${PKGVERSION}/server/tclservClient/tclservClientEncode.h
+share/genom/${PKGVERSION}/server/tclservClient/tclservClientMsgCtrl.c
+share/genom/${PKGVERSION}/server/tclservClient/tclservClientMsgExec.c
+share/genom/${PKGVERSION}/server/tclservClient/tclservClientMsgLib.c
+share/genom/${PKGVERSION}/server/tclservClient/tclservClientMsgLib.h
+share/genom/${PKGVERSION}/server/tclservClient/tclservClientMsgLibCtrlProto.h
+share/genom/${PKGVERSION}/server/tclservClient/tclservClientMsgLibExecProto.h
 share/genom/${PKGVERSION}/server/test.c
 share/genom/${PKGVERSION}/server/testCntrl.c
 share/genom/${PKGVERSION}/server/testExec.c
@@ -107,15 +117,4 @@ share/tclserv/init.tcl
 share/tclserv/load.tcl
 share/tclserv/pkgIndex.tcl
 share/tclserv/server.tcl
-@dirrm share/tclserv
-@dirrm share/genom/${PKGVERSION}/tcl
-@dirrm share/genom/${PKGVERSION}/server/tcl
-@dirrm share/genom/${PKGVERSION}/server/openprs
-@dirrm share/genom/${PKGVERSION}/server
-@exec ${MKDIR} %D/share/genom/${PKGVERSION}/openprs
-@dirrm share/genom/${PKGVERSION}/openprs
-@dirrm share/genom/${PKGVERSION}/codels
-@dirrm share/genom/${PKGVERSION}/autoconf
-@dirrm share/genom/${PKGVERSION}
-@dirrm share/genom
-@dirrm include/genom
+@pkgdir share/genom/${PKGVERSION}/openprs
