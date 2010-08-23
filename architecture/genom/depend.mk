@@ -27,7 +27,7 @@ TOOLS.genom?=		${PREFIX.genom}/bin/genom
 GENOM_ARGS?=#		empty
 
 # Add genom-related options
-PKG_SUPPORTED_OPTIONS+=	api tcl openprs
+PKG_SUPPORTED_OPTIONS+=	api tcl openprs tclserv_client
 PKG_SUGGESTED_OPTIONS+=	tcl
 
 PKG_OPTION_DESCR.api=	Generate module API only
@@ -57,6 +57,16 @@ define PKG_OPTION_SET.openprs
 endef
 define PKG_OPTION_UNSET.openprs
   GENOM_ARGS:=	$(filter-out -o,${GENOM_ARGS})
+endef
+
+PKG_OPTION_DESCR.tclserv_client=Enable the generation of the C tclServ client code
+define PKG_OPTION_SET.tclserv_client
+  DEPEND_ABI.genom=  genom>=2.6
+  GENOM_ARGS+= -x
+  include ../../net/libtclserv_client/depend.mk
+endef
+define PKG_OPTION_UNSET.tclserv_client
+  GENOM_ARGS:=  $(filter-out -x,${GENOM_ARGS})
 endef
 
 ifdef GENOM_MODULE
