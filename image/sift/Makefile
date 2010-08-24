@@ -10,7 +10,8 @@ MASTER_SITES=		http://web.engr.oregonstate.edu/~hess/downloads/sift/
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://web.engr.oregonstate.edu/~hess
-COMMENT=		GPL v2 implementation of David Lowe SIFT
+COMMENT=		A C implementation of a SIFT image feature detector
+LICENSE=		modified-bsd
 
 WRKSRC=			${WRKDIR}/sift
 

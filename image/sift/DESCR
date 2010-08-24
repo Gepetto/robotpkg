@@ -1,11 +1,11 @@
-The Scale Invariant Feature Transform (SIFT) is a method by David Lowe to detect 
-feature points in images. These can be matched between images to perform tasks 
-such as object detection and recognition, or to compute geometrical 
+The Scale Invariant Feature Transform (SIFT) is a method by David Lowe to detect
+feature points in images. These can be matched between images to perform tasks
+such as object detection and recognition, or to compute geometrical
 transformations between images.
-This is Robert Hes C implementation of SIFT. It includes is a set of functions 
-to compute image transforms from feature matches using RANSAC. In addition to 
-features computed from Hess code, these functions also work with image features 
-in files from both David Lowe's SIFT detector and the Oxford VGG's affine 
+This is Robert Hes C implementation of SIFT. It includes is a set of functions
+to compute image transforms from feature matches using RANSAC. In addition to
+features computed from Hess code, these functions also work with image features
+in files from both David Lowe's SIFT detector and the Oxford VGG's affine
 covariant feature detectors.
-SIFT code relies on OpenCV library (version 2 or above) and some features 
+SIFT code relies on OpenCV library (version 2 or above) and some features
 require GTK.
