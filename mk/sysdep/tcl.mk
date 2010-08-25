@@ -1,6 +1,5 @@
-# $LAAS: tcl.mk 2009/09/23 19:33:24 mallet $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -32,7 +31,7 @@ DEPEND_USE+=		tcl
 DEPEND_ABI.tcl?=	tcl>=8.0
 
 SYSTEM_SEARCH.tcl=	\
-	'bin/tclsh{,[0-9.]*}'							\
+	'bin/tclsh{,[0-9.]*}'						\
 	'lib/{,tcl{,[0-9]*}/}tclConfig.sh:/TCL_VERSION/s/[^.0-9]//gp'	\
 	'include/{,tcl{,[0-9]*}/}tcl.h:/TCL_VERSION/s/[^.0-9]//gp'
 
@@ -40,6 +39,7 @@ SYSTEM_PKG.Linux-fedora.tcl=	tcl-devel
 SYSTEM_PKG.Linux-ubuntu.tcl=	tcl-dev
 SYSTEM_PKG.Linux-debian.tcl=	tcl-dev
 
+export TCLSH=		$(word 1,${SYSTEM_FILES.tcl})
 TCL_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tcl})
 
 endif # TCL_DEPEND_MK ------------------------------------------------
