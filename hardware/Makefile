@@ -29,6 +29,7 @@ SUBDIR+=	sickLib
 SUBDIR+=	sick-genom
 SUBDIR+=	spnav-kmod
 SUBDIR+=	spnav-libs
+SUBDIR+=	velodyne-genom
 SUBDIR+=	velodyne-libs
 
 include ../mk/robotpkg.subdir.mk

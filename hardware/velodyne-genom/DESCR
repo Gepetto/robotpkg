@@ -1,0 +1,7 @@
+GenoM module for Velodyne-HDL64 lidar data acquisition.
+
+This module can read the sensors packets from the velodyne-libs library and
+export a poster corresponding to one full panoramic scan (384 by roughly 720 3D
+points).
+
+The two important requests are: StartAcquistion() and OneShot().
