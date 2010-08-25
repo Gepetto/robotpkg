@@ -1,4 +1,4 @@
-@comment Thu Mar 4 19:21:03 CET 2010
+@comment Wed Aug 25 14:42:07 CEST 2010
 include/hpp/gik/constraint/com-constraint.hh
 include/hpp/gik/constraint/configuration-constraint.hh
 include/hpp/gik/constraint/gaze-constraint.hh
@@ -10,41 +10,17 @@ include/hpp/gik/constraint/pointing-constraint.hh
 include/hpp/gik/constraint/position-constraint.hh
 include/hpp/gik/constraint/prioritized-state-constraint.hh
 include/hpp/gik/constraint/rotation-constraint.hh
-include/hppGik/constraints/hppGikComConstraint.h
-include/hppGik/constraints/hppGikConfigurationConstraint.h
-include/hppGik/constraints/hppGikGazeConstraint.h
-include/hppGik/constraints/hppGikJointStateConstraint.h
-include/hppGik/constraints/hppGikMotionConstraint.h
-include/hppGik/constraints/hppGikParallelConstraint.h
-include/hppGik/constraints/hppGikPlaneConstraint.h
-include/hppGik/constraints/hppGikPointingConstraint.h
-include/hppGik/constraints/hppGikPositionConstraint.h
-include/hppGik/constraints/hppGikPrioritizedStateConstraint.h
-include/hppGik/constraints/hppGikRotationConstraint.h
-include/hppGik/constraints/hppGikTransformationConstraint.h
-include/hppGik/constraints/hppGikVectorizableConstraint.h
 include/hpp/gik/constraint/transformation-constraint.hh
 include/hpp/gik/constraint/vectorizable-constraint.hh
-include/hpp/gik/core/bounder.hh
-include/hppGik/core/hppGikBounder.h
-include/hppGik/core/hppGikMotionPlanColumn.h
-include/hppGik/core/hppGikMotionPlanElement.h
-include/hppGik/core/hppGikMotionPlan.h
-include/hppGik/core/hppGikMotionPlanRow.h
-include/hppGik/core/hppGikPrioritizedMotion.h
-include/hppGik/core/hppGikSolverBasic.h
-include/hppGik/core/hppGikSolver.h
+include/hpp/gik/core/lne-solver.hh
 include/hpp/gik/core/motion-plan-column.hh
 include/hpp/gik/core/motion-plan-element.hh
 include/hpp/gik/core/motion-plan.hh
 include/hpp/gik/core/motion-plan-row.hh
 include/hpp/gik/core/prioritized-motion.hh
-include/hpp/gik/core/solver-basic.hh
 include/hpp/gik/core/solver.hh
 include/hpp/gik/doc.hh
 include/hpp/gik/example/example.hh
-include/hppGik/examples/example.h
-include/hppGik/hppGikTools.h
 include/hpp/gik/motionplanner/element/com-motion.hh
 include/hpp/gik/motionplanner/element/foot-displace-element.hh
 include/hpp/gik/motionplanner/element/interpolated-element.hh
@@ -56,23 +32,7 @@ include/hpp/gik/motionplanner/element/walk-element.hh
 include/hpp/gik/motionplanner/element/zmp-shift-element.hh
 include/hpp/gik/motionplanner/locomotion-plan.hh
 include/hpp/gik/motionplanner/preview-controller.hh
-include/hppGik/motionplanners/elements/hppGikComMotion.h
-include/hppGik/motionplanners/elements/hppGikFootDisplaceElement.h
-include/hppGik/motionplanners/elements/hppGikInterpolatedElement.h
-include/hppGik/motionplanners/elements/hppGikLocomotionElement.h
-include/hppGik/motionplanners/elements/hppGikNoLocomotion.h
-include/hppGik/motionplanners/elements/hppGikReadyElement.h
-include/hppGik/motionplanners/elements/hppGikStepElement.h
-include/hppGik/motionplanners/elements/hppGikWalkElement.h
-include/hppGik/motionplanners/elements/hppGikZMPshiftElement.h
-include/hppGik/motionplanners/hppGikLocomotionPlan.h
-include/hppGik/motionplanners/hppGikPreviewController.h
 include/hpp/gik/robot/foot-print-related.hh
-include/hppGik/robot/hppGik2DShape.h
-include/hppGik/robot/hppGikFootprintRelated.h
-include/hppGik/robot/hppGikMaskFactory.h
-include/hppGik/robot/hppGikStandingRobot.h
-include/hppGik/robot/hppRobotMotion.h
 include/hpp/gik/robot/mask-factory.hh
 include/hpp/gik/robot/robot-motion.hh
 include/hpp/gik/robot/shape-2d.hh
@@ -83,40 +43,23 @@ include/hpp/gik/task/hand-task.hh
 include/hpp/gik/task/meta-task.hh
 include/hpp/gik/task/reach-task.hh
 include/hpp/gik/task/robot-task.hh
-include/hppGik/tasks/hppGikGenericTask.h
-include/hppGik/tasks/hppGikHalfSittingTask.h
-include/hppGik/tasks/hppGikHandTask.h
-include/hppGik/tasks/hppGikMetaTask.h
-include/hppGik/tasks/hppGikReachTask.h
-include/hppGik/tasks/hppGikRobotTask.h
-include/hppGik/tasks/hppGikStepBackTask.h
-include/hppGik/tasks/hppGikStepTask.h
-include/hppGik/tasks/hppGikWholeBodyTask.h
 include/hpp/gik/task/step-back-task.hh
 include/hpp/gik/task/step-task.hh
 include/hpp/gik/task/whole-body-task.hh
 include/hpp/gik/tools.hh
-lib/libhpp-gik.la
+lib/libhpp-gik.so
+lib/libhpp-gik.so.${PKGVERSION}
 lib/pkgconfig/hpp-gik.pc
 share/hpp/gik/preview-controller-10ms.ini
 share/hpp/gik/preview-controller-20ms.ini
 share/hpp/gik/preview-controller-50ms.ini
 share/hpp/gik/preview-controller-5ms.ini
-@dirrm share/hpp/gik
-@dirrm share/hpp
-@dirrm include/hppGik/tasks
-@dirrm include/hppGik/robot
-@dirrm include/hppGik/motionplanners/elements
-@dirrm include/hppGik/motionplanners
-@dirrm include/hppGik/examples
-@dirrm include/hppGik/core
-@dirrm include/hppGik/constraints
-@dirrm include/hppGik
-@dirrm include/hpp/gik/example
 @dirrm include/hpp/gik/constraint
 @dirrm include/hpp/gik/core
+@dirrm include/hpp/gik/example
 @dirrm include/hpp/gik/motionplanner/element
 @dirrm include/hpp/gik/motionplanner
 @dirrm include/hpp/gik/robot
 @dirrm include/hpp/gik/task
 @dirrm include/hpp/gik
+@dirrm share/hpp/gik
