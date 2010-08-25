@@ -1,5 +1,5 @@
-@comment Mon Aug 23 11:48:30 CEST 2010
-bin/velodyneTest
+@comment Wed Aug 25 15:43:50 CEST 2010
+bin/velodyneAcquire
 include/velodyne/velodyneLib.h
 lib/libvelodyneLib.la
 lib/pkgconfig/velodyne-libs.pc
