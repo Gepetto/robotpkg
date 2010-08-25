@@ -14,13 +14,13 @@ PREFER.velodyne-libs?=	robotpkg
 
 DEPEND_USE+=		velodyne-libs
 
-DEPEND_ABI.velodyne-libs?=	velodyne-libs>=0.2
-DEPEND_DIR.velodyne-libs?=	../../robots/velodyne-libs
+DEPEND_ABI.velodyne-libs?=	velodyne-libs>=0.4
+DEPEND_DIR.velodyne-libs?=	../../hardware/velodyne-libs
 
 SYSTEM_SEARCH.velodyne-libs=\
-	bin/velodyneTest \
-	include/velodyne/velodyneLib.h \
-	lib/pkgconfig/velodyne-libs.pc
+	bin/velodyneAcquire		\
+	include/velodyne/velodyneLib.h	\
+	'lib/pkgconfig/velodyne-libs.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
