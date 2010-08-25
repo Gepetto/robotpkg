@@ -146,6 +146,7 @@ install-check-version: ${_COOKIE.extract}
 		"try to"; 						\
 	    ${ERROR_MSG} "	${MAKE} -C ../../${PKGPATH} clean";	\
 	    ${ERROR_MSG} ${hline};					\
+	    exit 1;							\
 	    ;;								\
 	esac
 
