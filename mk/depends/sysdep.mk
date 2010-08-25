@@ -1,6 +1,6 @@
-# $LAAS: sysdep.mk 2009/11/19 01:15:50 tho $
+# $LAAS: sysdep.mk 2010/08/25 18:41:11 mallet $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -69,7 +69,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	$(if $(call isyes,${SYSDEP_VERBOSE}), && {			\
 	   ${STEP_MSG} "Required system package ${DEPEND_ABI.${_pkg_}}:"\
 		"$$found found"; })					\
-	|| { ${RM} ${_SYSDEP_FILE}; exit 2; };				\
+	|| { ${RM} -f ${_SYSDEP_FILE}; exit 2; };			\
     )									\
   )									\
 )
