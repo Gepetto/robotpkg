@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 17 Jun 2008
 #
 
-DISTNAME=		platine-genom-0.1
+DISTNAME=		platine-genom-0.2
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/platine-genom
@@ -10,6 +10,8 @@ MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/platine-genom
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		GenoM module for platine management.
+
+LICENSE=		isc
 
 GNU_CONFIGURE=		yes
 
