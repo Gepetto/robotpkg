@@ -64,24 +64,19 @@ _COOKIE.bootstrapdepend=${WRKDIR}/.bootstrapdepend_done
 _COOKIE.depends=	${WRKDIR}/.depends_done
 
 # DEPENDS_TARGET is the target that is invoked to satisfy missing
-# dependencies.  This variable is user-settable in /etc/mk.conf.
+# dependencies.  This variable is user-settable in etc/robotpkg.conf.
 #
 ifndef DEPENDS_TARGET
-  ifneq (,$(findstring package,${MAKECMDGOALS}))
-DEPENDS_TARGET=		package
-  endif
-  ifneq (,$(findstring update,${MAKECMDGOALS}))
-    ifneq (,$(findstring replace,${UPDATE_TARGET}))
-DEPENDS_TARGET=		${UPDATE_TARGET}
+  ifneq (,$(filter package,${MAKECMDGOALS}))
+    DEPENDS_TARGET=	package
+  else ifneq (,$(filter update,${MAKECMDGOALS}))
+    ifneq (,$(filter replace,${UPDATE_TARGET}))
+      DEPENDS_TARGET=	replace
     else
-DEPENDS_TARGET=		update
+      DEPENDS_TARGET=	update
     endif
-  endif
-  ifneq (,$(findstring bin-install,${MAKECMDGOALS}))
-DEPENDS_TARGET=		bin-install
-  endif
-  ifndef DEPENDS_TARGET
-DEPENDS_TARGET=		reinstall
+  else
+    DEPENDS_TARGET=	reinstall
   endif
 endif
 
