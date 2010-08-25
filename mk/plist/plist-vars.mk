@@ -52,4 +52,4 @@ $(call require, ${ROBOTPKG_DIR}/mk/plist/plist.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/plist/print-plist.mk)
 
 .PHONY: print-PLIST
-print-PLIST: $(call barrier, bootstrap-depends, do-print-PLIST)
+print-PLIST: $(call barrier, depends, do-print-PLIST)
