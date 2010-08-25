@@ -13,12 +13,18 @@ COMMENT=	interface library for the Velodyne Lidar sensor
 LICENSE=	isc
 
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=--with-tclsh=${TCLSH}
 
 pre-configure:	autoreconf
+
+DEPEND_METHOD.tcl=	build
+DEPEND_METHOD.tdom=	build
 
 include ../../devel/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/tcl.mk
+include ../../mk/sysdep/tdom.mk
 include ../../mk/sysdep/libpcap.mk
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/robotpkg.mk
