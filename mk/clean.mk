@@ -1,6 +1,6 @@
-# $LAAS: clean.mk 2009/11/17 17:35:35 mallet $
+# $LAAS: clean.mk 2010/08/25 00:11:56 tho $
 #
-# Copyright (c) 2006,2009 LAAS/CNRS
+# Copyright (c) 2006,2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -65,8 +65,7 @@ CLEANDEPENDS?=	no
 
 .PHONY: clean-depends
 clean-depends:
-	${_PKG_SILENT}${_PKG_DEBUG}				\
-	${_DEPENDS_WALK_CMD} ${PKGPATH} |			\
+	${RUN}${_DEPENDS_WALK_CMD} ${PKGPATH} |			\
 	while read dir; do					\
 		cd ${CURDIR}/../../$$dir &&			\
 		${RECURSIVE_MAKE} CLEANDEPENDS=no clean;	\
@@ -101,16 +100,16 @@ endif
   endif
 
 
-# --- clean-confirm --------------------------------------------------
+# --- clean-confirm-checkout -----------------------------------------------
 #
-# clean-confirm asks for confirmation before cleaning a checked out work
-# directory.
+# clean-confirm-checkout asks for confirmation before cleaning a checked out
+# work directory.
 #
 $(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
 ifneq (,$(call isyes,${_EXTRACT_IS_CHECKOUT}))
-  .PHONY: clean-confirm
-  clean-confirm:
+  .PHONY: clean-confirm-checkout
+  clean-confirm-checkout:
 	@${ERROR_MSG} ${hline};							\
 	${ERROR_MSG} "$${bf}A checkout is present in the build directory$${rm}"	\
 		"of ${PKGBASE}.";						\
@@ -122,7 +121,38 @@ ifneq (,$(call isyes,${_EXTRACT_IS_CHECKOUT}))
 	${FALSE}
 
   ifeq  (,$(filter confirm,${MAKECMDGOALS}))
-    _CLEAN_TARGETS+=	clean-confirm
+    _CLEAN_TARGETS+=	clean-confirm-checkout
+  endif
+endif
+
+
+# --- clean-confirm-update -------------------------------------------------
+#
+# clean-confirm-update asks for confirmation before cleaning a work directory
+# in the middle of an update.
+#
+$(call require,${ROBOTPKG_DIR}/mk/update/update-vars.mk)
+
+ifeq (yes,$(call exists,${_UPDATE_DIRS}))
+  .PHONY: clean-confirm-update
+  clean-confirm-update:
+	@${ERROR_MSG} ${hline};							\
+	${ERROR_MSG} "$${bf}An update is in progress for ${PKGPATH}$${rm}";	\
+	if ${TEST} -s ${_UPDATE_DIRS}; then					\
+	  ${ERROR_MSG} "The following packages are still to be updated:";	\
+	  while read p; do							\
+		${ERROR_MSG} "		$$p";					\
+	  done <${_UPDATE_DIRS};						\
+	fi;									\
+	${ERROR_MSG} "";							\
+	${ERROR_MSG} "You must confirm the cleaning action by doing";		\
+	${ERROR_MSG} "		\`$${bf}${MAKE} clean confirm$${rm}' in"	\
+		"${PKGPATH}";							\
+	${ERROR_MSG} ${hline};							\
+	${FALSE}
+
+  ifeq  (,$(filter confirm,${MAKECMDGOALS}))
+    _CLEAN_TARGETS+=	clean-confirm-update
   endif
 endif
 
