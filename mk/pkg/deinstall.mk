@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006,2010 LAAS/CNRS                        --  Thu Dec  7 2006
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -56,7 +56,7 @@ _PKG_ARGS_DEINSTALL+=	-v
 endif
 
 ifdef PKG_PRESERVE
-  ifneq (,$(call isyes,${_UPDATE_RUNNING}))
+  ifneq (,$(call isyes,${_UPDATE_INPROGRESS}))
 _PKG_ARGS_DEINSTALL+=	-N -f	# update w/o removing any files
   endif
 endif

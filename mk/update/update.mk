@@ -42,147 +42,125 @@
 #                                       Anthony Mallet on Thu Dec  7 2006
 #
 
-# This Makefile fragment contains the targets and variables for 
+# This Makefile fragment contains the targets and variables for
 # "make update".
-#
-# The 'update' target can be used to update a package and all
-# currently installed packages that depend upon this package.
 #
 
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
-# UPDATE_TARGET is the target that is invoked when updating packages during
-# a "make update".  This variable is user-settable within etc/robotpkg.conf.
+# --- update (PUBLIC) ------------------------------------------------------
+
+# The 'update' target is a public target to update a package and all
+# currently installed packages that depend upon this package.
 #
-ifndef UPDATE_TARGET
-  ifeq (update,${DEPENDS_TARGET})
-    ifneq (,$(filter package,${MAKECMDGOALS}))
-UPDATE_TARGET=	package
-    else
-UPDATE_TARGET=	install
-    endif
-  else
-UPDATE_TARGET=	${DEPENDS_TARGET}
+_UPDATE_TARGETS=	update-message
+_UPDATE_TARGETS+=	update-create-dlist
+ifneq (yes,$(call exists,${_UPDATE_DIRS}))
+  ifeq (,$(filter replace,${UPDATE_TARGET}))
+    _UPDATE_TARGETS+=	update-deinstall-dlist
   endif
 endif
-
-# Handle confirm target on command line
-#
-ifneq (,$(filter confirm,${MAKECMDGOALS}))
-  UPDATE_TARGET+=	confirm
-endif
-
-_DDIR=	${WRKDIR}/.DDIR
-_DLIST=	${WRKDIR}/.DLIST
-
-.PHONY: update-create-ddir
-update-create-ddir: ${_DDIR}
+_UPDATE_TARGETS+=	do-update
+_UPDATE_TARGETS+=	update-clean
+_UPDATE_TARGETS+=	update-done-message
 
 .PHONY: update
-update: do-update
-ifneq (,$(call isyes,${UPDATE_CLEAN}))
-  update: CLEAR_DIRLIST=YES
-  update: clean-update
-endif
-update: update-done-message
+update: ${_UPDATE_TARGETS}
 
-ifeq (yes,$(call exists,${_DDIR}))
-  RESUMEUPDATE?=	YES
-  CLEAR_DIRLIST?=	NO
 
-  do%update: .FORCE
+# --- do-update ------------------------------------------------------------
+
+# Perform the update target; can be overriden.
+#
+do%update: .FORCE
 	${_OVERRIDE_TARGET}
+	${RUN}${RECURSIVE_MAKE} ${UPDATE_TARGET}			\
+		DEPENDS_TARGET=${DEPENDS_TARGET}
+	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
+	  if cd "${ROBOTPKG_DIR}/$${dir}"; then				\
+	    ${RECURSIVE_MAKE} $(filter-out confirm,${UPDATE_TARGET})	\
+		DEPENDS_TARGET=${DEPENDS_TARGET} || {			\
+		${ERROR_MSG} ${hline};					\
+		${ERROR_MSG} "$${bf}'${MAKE} ${UPDATE_TARGET}' failed"	\
+			"in $${dir}$${rm}";				\
+		${ERROR_MSG} "";					\
+		${ERROR_MSG} "Fix the problem, then re-run"		\
+			"'${MAKE} ${MAKECMDGOALS}' in ${PKGPATH}";	\
+		${ERROR_MSG} ${hline};					\
+		exit 2;							\
+	    };								\
+	  else								\
+	    ${PHASE_MSG} "Skipping nonexistent directory $${dir}"; 	\
+	  fi;								\
+	done 9<${_UPDATE_DIRS}
+
+
+.PHONY: update-message
+update-message:
+ifeq (yes,$(call exists,${_UPDATE_DIRS}))
 	@${PHASE_MSG} "Resuming update for ${PKGNAME}"
-    ifeq (,$(filter replace,${UPDATE_TARGET}))
-	${RUN}${RECURSIVE_MAKE} deinstall				\
-		_UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes
-    endif
 else
-  RESUMEUPDATE?=	NO
-  CLEAR_DIRLIST?=	YES
-
-  do%update: update-create-ddir .FORCE
-	${_OVERRIDE_TARGET}
-    ifeq (,$(filter replace,${UPDATE_TARGET}))
-	${RUN}if ${PKG_INFO} -qe ${PKGBASE}; then			\
-		${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES DEINSTALLDEPENDS=yes \
-		|| (${RM} ${_DDIR} && ${FALSE});			\
-	fi
-    endif
+	@${PHASE_MSG} "Updating for ${PKGNAME}"
 endif
-	${RUN}${RECURSIVE_MAKE} ${UPDATE_TARGET} DEPENDS_TARGET=${DEPENDS_TARGET}
-	${RUN}								\
-	[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do		\
-		(if cd ../.. && cd "$${dep}" ; then			\
-			${PHASE_MSG} "Installing in $${dep}" &&		\
-			if [ "$(strip ${RESUMEUPDATE})" = "NO" -a	\
-			     "$(filter replace,${UPDATE_TARGET})" !=	\
-				"replace" ] ; then			\
-				${RECURSIVE_MAKE} deinstall _UPDATE_RUNNING=YES; \
-			fi &&						\
-			${RECURSIVE_MAKE}				\
-				$(filter-out confirm,${UPDATE_TARGET})	\
-				DEPENDS_TARGET=${DEPENDS_TARGET} ;	\
-		else							\
-			${PHASE_MSG} "Skipping removed directory $${dep}"; \
-		fi) ;							\
-	done
 
 .PHONY: update-done-message
 update-done-message:
 	@${PHASE_MSG} "Done \`update' for ${PKGNAME}"
 
-.PHONY: clean-update
-clean-update: update-create-ddir
-	${RUN}[ ! -s ${_DDIR} ] || for dep in `${CAT} ${_DDIR}` ; do	\
-	  (cd ../.. && cd $${dep} && ${RECURSIVE_MAKE} clean) || {	\
-	    noclean=$$noclean" "$$dep;					\
-	    (cd ../.. && cd $${dep} && 					\
-	      ${RECURSIVE_MAKE} install-clean ||:)			\
-	  };								\
-	done;								\
-	$(if $(filter NO, ${CLEAR_DIRLIST}),				\
-	  ${MV} ${_DDIR} ${TMPDIR}/$(notdir ${_DDIR});			\
-	  ${MV} ${_DLIST} ${TMPDIR}/$(notdir ${_DLIST});		\
-	)								\
-	${RECURSIVE_MAKE} clean || {					\
-	  noclean=$$noclean" "${PKGPATH};				\
-	  ${RECURSIVE_MAKE} install-clean ||:;				\
-	};								\
-	$(if $(filter NO,${CLEAR_DIRLIST}),				\
-		${MKDIR} -p ${WRKDIR};					\
-		${MV} ${TMPDIR}/$(notdir ${_DDIR}) ${_DDIR};		\
-		${MV} ${TMPDIR}/$(notdir ${_DLIST}) ${_DLIST};		\
-		${WARNING_MSG}						\
-			"preserved leftover directory list.  Your next";\
-		${WARNING_MSG} "\`\`${MAKE} update'' may fail."		\
-			"It is advised to use";				\
-		${WARNING_MSG}						\
-			"\`\`${MAKE} update REINSTALL=YES'' instead!";	\
-	)								\
+
+# clean update files
+.PHONY: update-clean
+update-clean:
+	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
+	  if cd "${ROBOTPKG_DIR}/$${dir}"; then				\
+	    ${RECURSIVE_MAKE} clean || noclean=$$noclean" "$$dir;	\
+	  else								\
+	    ${PHASE_MSG} "Skipping nonexistent directory $${dep}"; 	\
+	  fi;								\
+	done 9<${_UPDATE_DIRS};						\
+	cd ${CURDIR};							\
+	${RM} -f ${_UPDATE_DIRS} ${_UPDATE_LIST};			\
+	if ${TEST} "$(call isyes,${UPDATE_CLEAN})"; then		\
+	  ${RECURSIVE_MAKE} clean || noclean=$$noclean" "${PKGPATH};	\
+	fi;								\
 	if ${TEST} -n "$$noclean"; then					\
 	    ${WARNING_MSG} ${hline};					\
-	    ${WARNING_MSG} "Temporary files leftover for:";		\
+	    ${WARNING_MSG} "Unable to clean for:";			\
 	    for pkg in $$noclean; do					\
 	      ${WARNING_MSG} "		$$pkg";				\
 	    done;							\
 	    ${WARNING_MSG} ${hline};					\
-	fi;								\
+	fi
 
 
-${_DDIR}: ${_DLIST}
-	${RUN} pkgs=`${CAT} ${_DLIST}`;					\
-	if [ "$$pkgs" ]; then ${PKG_INFO} -Q PKGPATH $$pkgs; fi > ${_DDIR}
+# compute the list of packages to update
+.PHONY: update-create-dlist
+update-create-dlist: ${_UPDATE_DIRS}
 
-${_DLIST}: ${WRKDIR}
-	${RUN} >${_DLIST};						\
+${_UPDATE_DIRS}: ${_UPDATE_LIST}
+	${RUN}pkgs=`${CAT} ${_UPDATE_LIST}`;				\
+	if ${TEST} "$$pkgs"; then					\
+	  ${PKG_INFO} -Q PKGPATH $$pkgs >$@;				\
+	fi
+
+${_UPDATE_LIST}:
+	${RUN}${MKDIR} ${WRKDIR} && >$@;				\
 	if ${PKG_INFO} -qe "${PKGWILDCARD}"; then 			\
-	  if ${TEST} ${PKGTOOLS_VERSION} -lt 20091115; then		\
-	    ${PKG_DELETE} -nr "${PKGWILDCARD}" 2>&1 |			\
-	      ${SED} -n '/^deinstalling /{s///;G;h;};$${g;p;}'		\
-		>${_DLIST};						\
-	  else								\
-	    ${PKG_INFO} -qr "${PKGWILDCARD}" > ${_DLIST};		\
+	  ${PKG_INFO} -qr "${PKGWILDCARD}" >$@;				\
+	fi
+
+# deinstall existing packages
+.PHONY: update-deinstall-dlist
+update-deinstall-dlist:
+	${RUN}if ${PKG_INFO} -qe ${PKGBASE}; then			\
+	  if ${TEST} -s ${_UPDATE_DIRS}; then				\
+	    ${ECHO_MSG} "The following packages are going to be"	\
+		"removed and reinstalled:";				\
+	    while read p; do						\
+		${ECHO_MSG} "	$$p";					\
+	    done <${_UPDATE_DIRS};					\
 	  fi;								\
+	  ${RECURSIVE_MAKE} deinstall					\
+		_UPDATE_INPROGRESS=yes DEINSTALLDEPENDS=yes;		\
 	fi

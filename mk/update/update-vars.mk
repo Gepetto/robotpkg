@@ -1,6 +1,5 @@
-# $LAAS: dash-bsd-tiny-laas 2009/01/10 15:48:45 tho $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -24,5 +23,30 @@ ifdef _EXTRACT_IS_CHECKOUT
 else
   UPDATE_CLEAN?=	yes	# clean up after update
 endif
+
+# UPDATE_TARGET is the target that is invoked when updating packages during
+# a "make update".  This variable is user-settable within etc/robotpkg.conf.
+#
+ifndef UPDATE_TARGET
+  ifneq (,$(filter update,${DEPENDS_TARGET}))
+    ifneq (,$(filter package,${MAKECMDGOALS}))
+      UPDATE_TARGET=	package
+    else
+      UPDATE_TARGET=	reinstall
+    endif
+  else
+    UPDATE_TARGET=	${DEPENDS_TARGET}
+  endif
+endif
+
+# Handle confirm target given on command line
+#
+ifneq (,$(filter confirm,${MAKECMDGOALS}))
+  UPDATE_TARGET+=	confirm
+endif
+
+# state variables
+_UPDATE_DIRS=	${WRKDIR}/.DDIR
+_UPDATE_LIST=	${WRKDIR}/.DLIST
 
 include ${ROBOTPKG_DIR}/mk/update/update.mk
