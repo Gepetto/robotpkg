@@ -142,7 +142,7 @@ filter() {
 
 # Read ESC key, nonblocking
 #
-if ${TEST} -n "${interactive}"; then
+if ${TEST} -n "${interactive}" -a -t 0; then
     esc() {
 	read key
 	test "$key" = "" && { s=$log; log=$nolog; nolog=$s; }
@@ -158,9 +158,9 @@ trap "${MSG} $el$cnorm; stty icanon echo; exit 127" INT QUIT ABRT
 test -n "${civis}" && ${MSG} ${civis}
 
 exec 3<&0 4>&1 5>&1
-stty -icanon -echo min 0 <&3
+${TEST} -t 3 && stty -icanon -echo min 0 <&3 2>/dev/null
 status=`{ run "$@" 2>&1 | filter; } 4>&1 >&5`
-stty icanon echo <&3
+${TEST} -t 3 && stty icanon echo <&3 2>/dev/null
 exec 3>&- 4>&- 5>&-
 
 ${MSG} $el$cnorm
