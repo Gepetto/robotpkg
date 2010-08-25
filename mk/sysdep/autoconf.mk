@@ -1,6 +1,6 @@
-# $LAAS: autoconf.mk 2009/03/11 21:38:09 mallet $
+# $LAAS: autoconf.mk 2010/08/25 15:43:43 mallet $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -46,7 +46,7 @@ autoreconf:
 	${RUN}								\
 $(foreach _dir_,${CONFIGURE_DIRS},					\
 	${STEP_MSG} "Running ${AUTORECONF} in ${_dir_}";		\
-	cd ${WRKSRC} && cd ${_dir_} && ${SETENV}			\
+	cd ${WRKSRC} && cd ${_dir_} && ${CONFIGURE_LOGFILTER} ${SETENV}	\
 	  ${_CONFIGURE_SCRIPT_ENV} ${AUTORECONF} ${AUTORECONF_ARGS};	\
 )
 
