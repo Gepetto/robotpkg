@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -221,10 +221,10 @@ FETCH_AFTER_ARGS?=	${_FETCH_AFTER_ARGS.$(notdir ${FETCH_CMD})}
 FETCH_RESUME_ARGS?=	${_FETCH_RESUME_ARGS.$(notdir ${FETCH_CMD})}
 FETCH_OUTPUT_ARGS?=	${_FETCH_OUTPUT_ARGS.$(notdir ${FETCH_CMD})}
 
-_FETCH_BEFORE_ARGS.ftp=		# empty
-_FETCH_AFTER_ARGS.ftp=		# empty
-_FETCH_RESUME_ARGS.ftp=		-R
-_FETCH_OUTPUT_ARGS.ftp=		-o
+_FETCH_BEFORE_ARGS.tnftp=	# empty
+_FETCH_AFTER_ARGS.tnftp=	# empty
+_FETCH_RESUME_ARGS.tnftp=	-R
+_FETCH_OUTPUT_ARGS.tnftp=	-o
 
 _FETCH_CMD=\
 	${SETENV} CHECKSUM=$(call quote,${_CHECKSUM_CMD})		\
