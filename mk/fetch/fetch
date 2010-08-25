@@ -1,5 +1,5 @@
 #!/bin/sh
-# $LAAS: fetch 2008/05/25 23:06:52 tho $
+# $LAAS: fetch 2010/08/25 19:05:18 mallet $
 #
 # Copyright (c) 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -263,7 +263,7 @@ while ${TEST} $# -gt 0; do
 	  if ${TEST} -n "$resume"; then
 		fetch_cmd="${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${FETCH_RESUME_ARGS} ${FETCH_OUTPUT_ARGS} $outputfile $site$file"
 	  else
-		fetch_cmd="${FETCH_CMD} ${FETCH_BEFORE_ARGS} $site$file ${FETCH_AFTER_ARGS}"
+		fetch_cmd="${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${FETCH_OUTPUT_ARGS} $outputfile $site$file ${FETCH_AFTER_ARGS}"
 	  fi
 	  ${TEST} -z "$verbose" || ${ECHO} "$fetch_cmd"
 	  $fetch_cmd )
