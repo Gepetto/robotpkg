@@ -85,6 +85,11 @@ ifneq (,$(filter %.zip,${EXTRACT_ONLY}))
   DEPEND_METHOD.unzip+=	bootstrap
   include ${ROBOTPKG_DIR}/mk/sysdep/unzip.mk
 endif
+ifneq (,$(filter %.deb,${EXTRACT_ONLY}))
+  EXTRACT_ENV+=		DPKG=$(call quote,${DPKG})
+  DEPEND_METHOD.dpkg+=	bootstrap
+  include ${ROBOTPKG_DIR}/mk/sysdep/dpkg.mk
+endif
 #.if !empty(EXTRACT_ONLY:M*.lzh) || \
 #    !empty(EXTRACT_ONLY:M*.lha)
 #USE_TOOLS+=	lha

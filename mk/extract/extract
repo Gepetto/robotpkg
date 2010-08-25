@@ -116,6 +116,7 @@ set -u		# treat undefined variables as errors
 : ${UNRAR:=unrar}
 : ${UNZIP_CMD:=unzip}
 : ${UNZOO:=unzoo}
+: ${DPKG:=dpkg}
 
 : ${TMPDIR:=/tmp}
 
@@ -210,6 +211,7 @@ case "$distfile" in
 *.rar)		_format=rar ;;
 *.bin)		_format=jre-bin ;;
 *.gem)		_format=gem ;;
+*.deb)		_format=deb ;;
 *)		_format=none ;;
 esac
 ${TEST} -n "$format" || format="$_format"
@@ -326,6 +328,10 @@ jre-bin)
 
 gem)
 	${GEM} "$distfile"
+	;;
+
+deb)
+	${DPKG} -x "$distfile" .
 	;;
 
 none)
