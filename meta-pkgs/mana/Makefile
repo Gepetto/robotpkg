@@ -16,7 +16,7 @@
 
 # All mana current software
 
-MANA_DATE=	20100730
+MANA_DATE=	20100826
 DISTNAME=	laas-mana-${MANA_DATE}
 
 CATEGORIES=	meta-pkg
@@ -29,10 +29,12 @@ REQD_BUILD_OPTIONS.rmp400-genom=	gyroKVH1000
 
 include ../../graphics/gdhe/depend.mk
 include ../../hardware/platine-genom/depend.mk
+include ../../hardware/velodyne-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
 include ../../localization/GPS-genom/depend.mk
 include ../../localization/MTI-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
+include ../../mapping/dtm-genom/depend.mk
 include ../../motion/pilo-genom/depend.mk
 include ../../robots/rmp400-genom/depend.mk
 include ../../shell/eltclsh/depend.mk
