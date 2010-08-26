@@ -12,6 +12,7 @@ WRKSRC=		${WRKDIR}/eigen
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://eigen.tuxfamily.org/
 COMMENT=	a C++ template library for linear algebra
+LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES=	c c++
 
