@@ -89,11 +89,11 @@ ${__targets}: %: %-subdir
 
 %-subdir: .FORCE
 	@for entry in "" ${SUBDIR}; do					\
-		if [ "X$$entry" = "X" ]; then continue; fi; 		\
-		cd ${CURDIR}/$${entry};					\
-		${PHASE_MSG} "${_THISDIR_}$${entry}";			\
-		${RECURSIVE_MAKE} "_THISDIR_=${_THISDIR_}$${entry}/" 	\
-			${*:realinstall=install} || ${TRUE}; 		\
+	  if [ "X$$entry" = "X" ]; then continue; fi; 			\
+	  cd ${CURDIR}/$${entry};					\
+	  ${PHASE_MSG} "${_THISDIR_}$${entry}";				\
+	  ${RECURSIVE_MAKE} "_THISDIR_=${_THISDIR_}$${entry}/" 		\
+	    ${filter ${__targets} confirm,${MAKECMDGOALS}} || ${TRUE}; 	\
 	done
 
 
