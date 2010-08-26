@@ -71,18 +71,16 @@ $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
 # PKGBASE, PKGNAME[_NOREV], PKGVERSION
 #
-ifneq (,${PKGREVISION})
-  ifneq (0,${PKGREVISION})
-    ifdef PKGNAME
-      PKGNAME_NOREV:=	${PKGNAME}
-      PKGNAME:=		${PKGNAME}r${PKGREVISION}
-    else
-      PKGNAME?=		${DISTNAME}r${PKGREVISION}
-      PKGNAME_NOREV=	${DISTNAME}
-    endif
+ifneq (,$(filter-out 0,${PKGREVISION}))
+  ifdef PKGNAME
+    PKGNAME_NOREV:=	${PKGNAME}
+    PKGNAME:=		${PKGNAME}r${PKGREVISION}
   else
-    PKGNAME?=		${DISTNAME}
-    PKGNAME_NOREV=	${PKGNAME}
+    PKGNAME:=		${DISTNAME}r${PKGREVISION}
+    PKGNAME_NOREV:=	${DISTNAME}
+  endif
+  ifdef PKGVERSION
+    PKGVERSION:=	${PKGVERSION:r${PKGREVISION}=}r${PKGREVISION}
   endif
 else
   PKGNAME?=		${DISTNAME}
@@ -90,7 +88,7 @@ else
 endif
 
 PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
-PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME_NOREV})
+PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
 PKGVERSION_NOREV:=	$(patsubst ${PKGBASE}-%,%,${PKGNAME_NOREV})
 
 # Default to building for supported platforms only.
