@@ -75,7 +75,7 @@ PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""
   endif
-else
+else ifeq (2,${_ROBOTPKG_DEPTH})
   $(shell echo >&2 'Warning: the LICENSE of ${PKGPATH} is undefined.')
 endif
 
