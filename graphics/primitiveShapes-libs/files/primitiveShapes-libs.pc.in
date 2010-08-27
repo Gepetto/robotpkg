@@ -1,0 +1,10 @@
+prefix=@PREFIX@
+exec_prefix=@PREFIX@
+libdir=@PREFIX@/lib
+includedir=@PREFIX@/include
+ 
+Name: primitiveShapes-libs
+Description: Efficient RANSAC for Point-Cloud Shape Detection
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir}  -lMiscLib -lGfxTL -lPrimitiveShapes
+Cflags: -I${includedir}

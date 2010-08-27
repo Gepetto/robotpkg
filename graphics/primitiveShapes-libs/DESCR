@@ -1,0 +1,18 @@
+In this work we present an automatic algorithm to detect basic shapes
+in unorganized point clouds.  The algorithm decomposes the point cloud
+into a concise, hybrid structure of inherent shapes and a set of
+remaining points. Each detected shape serves as a proxy for a set of
+corresponding points.  Our method is based on random sampling and
+detects planes, spheres, cylinders, cones and tori. For models with
+surfaces composed of these basic shapes only, e.g. CAD models, we
+automatically obtain a representation solely consisting of shape
+proxies. We demonstrate that the algorithm is robust even in the
+presence of many outliers and a high degree of noise. The proposed
+method scales well with respect to the size of the input point cloud
+and the number and size of the shapes within the data.  Even point
+sets with several millions of samples are robustly decomposed within
+less than a minute.  Moreover the algorithm is conceptually simple and
+easy to implement. Application areas include measurement of physical
+parameters, scan registration, surface compression, hybrid rendering,
+shape classification, meshing, simplification, approximation and
+reverse engineering

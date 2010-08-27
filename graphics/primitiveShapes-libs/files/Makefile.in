@@ -1,0 +1,193 @@
+#
+LIBDIR = @PREFIX@/lib
+INCLUDEDIR = @PREFIX@/include
+
+SOURCES = \
+	Bitmap.cpp \
+	BitmapPrimitiveShape.cpp \
+	Candidate.cpp \
+	Cone.cpp \
+	ConePrimitiveShape.cpp \
+	ConePrimitiveShapeConstructor.cpp \
+	Cylinder.cpp \
+	CylinderPrimitiveShape.cpp \
+	CylinderPrimitiveShapeConstructor.cpp \
+	LowStretchSphereParametrization.cpp \
+	LowStretchTorusParametrization.cpp \
+	Plane.cpp \
+	PlanePrimitiveShape.cpp \
+	PlanePrimitiveShapeConstructor.cpp \
+	PointCloud.cpp \
+	RansacShapeDetector.cpp \
+	SimpleTorusParametrization.cpp \
+	Sphere.cpp \
+	SpherePrimitiveShape.cpp \
+	SpherePrimitiveShapeConstructor.cpp \
+	Torus.cpp \
+	TorusPrimitiveShape.cpp \
+	TorusPrimitiveShapeConstructor.cpp \
+	solve.cpp \
+	MiscLib/Random.cpp \
+	MiscLib/RefCount.cpp
+
+OBJECTS = $(SOURCES:%.cpp=%.o)
+
+PS_HEADERS = \
+	BasePrimitiveShape.h \
+	Bitmap.h \
+	BitmapPrimitiveShape.h \
+	Candidate.h \
+	Cone.h \
+	ConePrimitiveShape.h \
+	ConePrimitiveShapeConstructor.h \
+	Cylinder.h \
+	CylinderPrimitiveShape.h \
+	CylinderPrimitiveShapeConstructor.h \
+	FlatNormalThreshPointCompatibilityFunc.h \
+	Grid.h \
+	IndexIterator.h \
+	LevMarFitting.h \
+	LevMarFunc.h \
+	LevMarLSWeight.h \
+	LowStretchSphereParametrization.h \
+	LowStretchTorusParametrization.h \
+	Octree.h \
+	Plane.h \
+	PlanePrimitiveShape.h \
+	PlanePrimitiveShapeConstructor.h \
+	PointCloud.h \
+	PrimitiveShape.h \
+	PrimitiveShapeConstructor.h \
+	PrimitiveShapeVisitor.h \
+	RansacShapeDetector.h \
+	RebuildAACubeTreeStrategy.h \
+	ScoreAACubeTreeStrategy.h \
+	ScoreComputer.h \
+	ScorePrimitiveShapeVisitor.h \
+	SimpleTorusParametrization.h \
+	Sphere.h \
+	SpherePrimitiveShape.h \
+	SpherePrimitiveShapeConstructor.h \
+	Torus.h \
+	TorusPrimitiveShape.h \
+	TorusPrimitiveShapeConstructor.h \
+	basic.h
+
+
+GfxTL_HEADERS = \
+	AABox.h \
+	AABox.hpp \
+	AACube.h \
+	AACube.hpp \
+	AACubeTree.h \
+	AACubeTree.hpp \
+	AAKdTree.h \
+	AAKdTree.hpp \
+	AAPlane.h \
+	AAPlane.hpp \
+	Array.h \
+	ArrayArithmetic.h \
+	BBoxBuildInformationTreeStrategy.h \
+	BBoxDistanceKdTreeStrategy.h \
+	BaseTree.h \
+	BaseTree.hpp \
+	BucketSizeMaxLevelSubdivisionTreeStrategy.h \
+	BucketSizeSubdivisionTreeStrategy.h \
+	CellBBoxBuildInformationKdTreeStrategy.h \
+	CellCenterAACubeTreeStrategy.h \
+	CellLevelTreeStrategy.h \
+	CellParentTreeStrategy.h \
+	CellRangeDataTreeStrategy.h \
+	CellSizeDataTreeStrategy.h \
+	Covariance.h \
+	DynVectorKernel.h \
+	FaceNeighborAACubeTreeStrategy.h \
+	FlatCopyVector.h \
+	Frame.h \
+	HyperplaneCoordinateSystem.h \
+	ImmediateTreeDataKernels.h \
+	IncrementalDistanceKdTreeStrategy.h \
+	IndexedIterator.h \
+	IndexedTreeDataKernels.h \
+	IndexedTreeDataStrategy.h \
+	Jacobi.h \
+	KdTree.h \
+	KdTree.hpp \
+	L1Norm.h \
+	L2Norm.h \
+	LevelBuildInformationTreeStrategy.h \
+	LimitedHeap.h \
+	MathHelper.h \
+	MatrixXX.h \
+	MaxIntervalSplittingKdTreeStrategy.h \
+	MaxLevelSubdivisionTreeStrategy.h \
+	MaxNorm.h \
+	Mean.h \
+	NearestNeighbor.h \
+	NearestNeighbors.h \
+	NullClass.h \
+	NullStrategy.h \
+	NullStrategy.hpp \
+	NullTreeStrategy.h \
+	OnOff.h \
+	Orientation.h \
+	Plane.h \
+	Plane.hpp \
+	ScalarTypeConversion.h \
+	ScalarTypeDeferer.h \
+	ShuffleIndicesTreeDataKernelStrategy.h \
+	SlidingMidpointSplittingKdTreeStrategy.h \
+	StdContainerAdaptor.h \
+	StdOverrides.h \
+	Swap.h \
+	VectorKernel.h \
+	VectorXD.h \
+	WeightFunc.h
+
+MiscLib_HEADERS = \
+	AlignedAllocator.h  \
+	NoShrinkVector.h \
+	Pair.h \
+	Performance.h \
+	Random.h \
+	RefCount.h \
+	RefCountPtr.h \
+	RefCounted.h \
+	Vector.h
+
+LIB = libprimitiveShapes.so
+
+CXX = g++
+COPT = -O2
+CPPFLAGS = -DPrimitiveShapes_EXPORTS -I.
+CXXFLAGS = -msse -fPIC -Wall -Wno-unknown-pragmas $(COPT)
+
+all: $(LIB)
+
+$(LIB): $(OBJECTS)
+	$(CXX) -shared -o $@ $(OBJECTS)
+
+install:
+	mkdir -p $(DESTDIR)$(LIBDIR)
+	cp -p $(LIB) $(DESTDIR)$(LIBDIR)
+	mkdir -p $(DESTDIR)$(INCLUDEDIR)/primitiveShapes
+	@for h in $(PS_HEADERS); do \
+		cp -p $$h $(DESTDIR)$(INCLUDEDIR)/primitiveShapes; \
+	done
+	mkdir -p $(DESTDIR)$(INCLUDEDIR)/GfxTL
+	@for h in $(GfxTL_HEADERS); do \
+		cp -p GfxTL/$$h $(DESTDIR)$(INCLUDEDIR)/GfxTL; \
+	done
+	mkdir -p $(DESTDIR)$(INCLUDEDIR)/MiscLib
+	@for h in $(MiscLib_HEADERS); do \
+		cp -p MiscLib/$$h $(DESTDIR)$(INCLUDEDIR)/MiscLib; \
+	done
+	mkdir -p $(DESTDIR)$(LIBDIR)/pkgconfig
+	cp -p primitiveShapes-libs.pc $(DESTDIR)$(LIBDIR)/pkgconfig
+
+clean:
+	rm -f $(OBJECTS) $(LIB)
+
+%.o: %.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
+

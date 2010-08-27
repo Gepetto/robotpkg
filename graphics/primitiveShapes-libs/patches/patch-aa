@@ -1,0 +1,766 @@
+diff -ur ../../primitiveShapes-libs.orig/BasePrimitiveShape.h ./BasePrimitiveShape.h
+--- ../../primitiveShapes-libs.orig/BasePrimitiveShape.h	2008-07-21 09:43:30.000000000 +0200
++++ ./BasePrimitiveShape.h	2010-08-25 16:26:53.591073000 +0200
+@@ -64,7 +64,8 @@
+ 				if(d > epsilon)
+ 					continue;
+ 				float dn = n.dot(pc[indices[i]].normal);
+-				if(abs(dn) > normalThresh)
++				//if(abs(dn) > normalThresh)
++				if(fabs(dn) > normalThresh) // modif LAAS
+ 					++scores[j];
+ 			}
+ 		}
+Only in ../../primitiveShapes-libs.orig: Bitmap.o
+Only in ../../primitiveShapes-libs.orig: BitmapPrimitiveShape.o
+Only in .: CMakeLists.txt
+diff -ur ../../primitiveShapes-libs.orig/Candidate.cpp ./Candidate.cpp
+--- ../../primitiveShapes-libs.orig/Candidate.cpp	2009-06-26 10:20:58.000000000 +0200
++++ ./Candidate.cpp	2010-08-25 16:26:53.616048000 +0200
+@@ -102,7 +102,8 @@
+ 		c.m_shape->DistanceAndNormalDeviation(
+ 			pc[m_indices->at(idx)].pos,
+ 			pc[m_indices->at(idx)].normal, &dn);
+-		if(dn.first < epsilon && abs(dn.second) > normalThresh)
++		//if(dn.first < epsilon && abs(dn.second) > normalThresh) //original
++		if(dn.first < epsilon && fabs(dn.second) > normalThresh) // modif LAAS
+ 			++correct;
+ 	}
+ 	size_t tested = size;
+@@ -114,7 +115,8 @@
+ 		m_shape->DistanceAndNormalDeviation(
+ 			pc[c.m_indices->at(idx)].pos,
+ 			pc[c.m_indices->at(idx)].normal, &dn);
+-		if(dn.first < epsilon && abs(dn.second) > normalThresh)
++		//if(dn.first < epsilon && abs(dn.second) > normalThresh)
++		if(dn.first < epsilon && fabs(dn.second) > normalThresh) // modif LAAS
+ 			++correct;
+ 	}
+ 	tested += size;
+@@ -131,14 +133,16 @@
+ 		// first pass - get expectancy
+ 		float expectancy = 0.0f;
+ 		for( int i = 0; i < m_indices->size(); ++i )
+-			expectancy += abs( m_shape->NormalDeviation( pc[(*m_indices)[i]].pos, pc[(*m_indices)[i]].normal));
++			//expectancy += abs( m_shape->NormalDeviation( pc[(*m_indices)[i]].pos, pc[(*m_indices)[i]].normal));
++			expectancy += fabs( m_shape->NormalDeviation( pc[(*m_indices)[i]].pos, pc[(*m_indices)[i]].normal)); //modif LAAS
+ 
+ 		expectancy /= static_cast<float>( m_indices->size());
+ 
+ 		// second pass - get real variance
+ 		for( int i = 0; i < m_indices->size(); ++i )
+ 		{
+-			dev = abs( m_shape->NormalDeviation( pc[(*m_indices)[i]].pos, pc[(*m_indices)[i]].normal)) - expectancy;
++			//dev = abs( m_shape->NormalDeviation( pc[(*m_indices)[i]].pos, pc[(*m_indices)[i]].normal)) - expectancy;
++			dev = fabs( m_shape->NormalDeviation( pc[(*m_indices)[i]].pos, pc[(*m_indices)[i]].normal)) - expectancy;  //modif LAAS
+ 			variance += dev * dev;
+ 		}
+ 
+@@ -157,7 +161,8 @@
+ 
+ 	for( int i = 0; i < m_indices->size(); ++i )
+ 	{
+-		dev = abs( m_shape->NormalDeviation( pc[(*m_indices)[i]].pos, pc[(*m_indices)[i]].normal)) - 1.0f;
++		//dev = abs( m_shape->NormalDeviation( pc[(*m_indices)[i]].pos, pc[(*m_indices)[i]].normal)) - 1.0f;
++		dev = fabs( m_shape->NormalDeviation( pc[(*m_indices)[i]].pos, pc[(*m_indices)[i]].normal)) - 1.0f; //modif LAAS
+ 		variance += dev * dev;
+ 	}
+ 	variance /= static_cast<float>( m_indices->size());
+Only in ../../primitiveShapes-libs.orig: Candidate.o
+diff -ur ../../primitiveShapes-libs.orig/Cone.cpp ./Cone.cpp
+--- ../../primitiveShapes-libs.orig/Cone.cpp	2009-06-26 10:28:50.000000000 +0200
++++ ./Cone.cpp	2010-08-25 16:26:53.623040000 +0200
+@@ -429,7 +429,9 @@
+ 		f = 0;
+ 	else
+ 		f = std::sqrt(f);
+-	float sdist = abs(m_n2d[0] * f + ((height < 0)? -1 : 1) * m_n2d[1] * height);
++	//float sdist = abs(m_n2d[0] * f + ((height < 0)? -1 : 1) * m_n2d[1] * height);
++	float sdist = fabs(m_n2d[0] * f + ((height < 0)? -1 : 1) * m_n2d[1] * height); // modif LAAS
++
+ 	float length = std::sqrt(sqrS + sdist * sdist);
+ 	param->first = /*(height < 0)? -length :*/ length;
+ 	param->second = angle;
+@@ -493,7 +495,8 @@
+ 	Vec3f s;
+ 	for(unsigned int i = 0; i < 3; ++i)
+ 		s[i] = x[i] - param[i];
+-	float g = abs(s[0] * param[3] + s[1] * param[4] + s[2] * param[5]);
++	//float g = abs(s[0] * param[3] + s[1] * param[4] + s[2] * param[5]);
++	float g = fabs(s[0] * param[3] + s[1] * param[4] + s[2] * param[5]); // modif LAAS
+ 	float f = s.sqrLength() - (g * g);
+ 	if(f <= 0)
+ 		f = 0;
+@@ -509,7 +512,8 @@
+ 	Vec3f s;
+ 	for(unsigned int i = 0; i < 3; ++i)
+ 		s[i] = x[i] - param[i];
+-	float g = abs(s[0] * param[3] + s[1] * param[4] + s[2] * param[5]);
++	//float g = abs(s[0] * param[3] + s[1] * param[4] + s[2] * param[5]);
++	float g = fabs(s[0] * param[3] + s[1] * param[4] + s[2] * param[5]); // modif LAAS
+ 	float f = s.sqrLength() - (g * g);
+ 	if(f <= 0)
+ 		f = 0;
+diff -ur ../../primitiveShapes-libs.orig/Cone.h ./Cone.h
+--- ../../primitiveShapes-libs.orig/Cone.h	2008-07-23 16:16:44.000000000 +0200
++++ ./Cone.h	2010-08-25 16:26:53.628038000 +0200
+@@ -105,7 +105,9 @@
+ 				Vec3f s;
+ 				for(unsigned int j = 0; j < 3; ++j)
+ 					s[j] = begin[idx][j] - params[j];
+-				ScalarType g = abs(s[0] * params[3] + s[1] * params[4] + s[2] * params[5]);
++				//ScalarType g = abs(s[0] * params[3] + s[1] * params[4] + s[2] * params[5]);
++			    ScalarType g = fabs(s[0] * params[3] + s[1] * params[4] + s[2] * params[5]); //modif LAAS
++
+ 				ScalarType f = s.sqrLength() - (g * g);
+ 				if(f <= 0)
+ 					f = 0;
+@@ -130,8 +132,9 @@
+ 			{
+ 				Vec3f s;
+ 				for(unsigned int j = 0; j < 3; ++j)
+-					s[j] = begin[idx][j] - params[j];
+-				ScalarType g = abs(s[0] * params[3] + s[1] * params[4] + s[2] * params[5]);
++					s[j] = begin[idx][j] - params[j];
++				//ScalarType g = abs(s[0] * params[3] + s[1] * params[4] + s[2] * params[5]);
++				ScalarType g = fabs(s[0] * params[3] + s[1] * params[4] + s[2] * params[5]);  //modif LAAS
+ 				ScalarType ggradient[6];
+ 				for(unsigned int j = 0; j < 3; ++j)
+ 					ggradient[j] = -params[j + 3];
+@@ -209,8 +212,9 @@
+ 	float da = m_n2d[0] * f;
+ 	float db = m_n2d[1] * g;
+ 	if(g < 0 && da - db < 0) // is inside other side of cone -> disallow
+-		return std::sqrt(sqrS);
+-	return abs(da + db);
++		return std::sqrt(sqrS);
++	//return abs(da + db);
++	return fabs(da + db);  //modif LAAS
+ }
+ 
+ inline void Cone::Normal(const Vec3f &p, Vec3f *n) const
+@@ -242,7 +246,8 @@
+ 	if(g < 0 && da - db < 0) // is inside other side of cone -> disallow
+ 		dist = std::sqrt(sqrS);
+ 	else
+-		dist = abs(da + db);
++		//dist = abs(da + db);
++		dist = fabs(da + db);  //modif LAAS
+ 	// need normal
+ 	Vec3f plx = s - g * m_axisDir;
+ 	plx.normalize();
+@@ -319,7 +324,8 @@
+ 
+ float Cone::RadiusAtLength(float length) const
+ {
+-	return std::sin(m_angle) * abs(length);
++	//return std::sin(m_angle) * abs(length);
++	return std::sin(m_angle) * fabs(length);  //modif LAAS
+ }
+ 
+ float Cone::Height(const Vec3f &p) const
+@@ -403,7 +409,8 @@
+ 
+     // Solve the quadratic.  Keep only those X for which Dot(A,X-V) >= 0.
+ 	unsigned int interCount = 0;
+-    if (abs(fC2) >= 1e-7)
++    //if (abs(fC2) >= 1e-7)
++    if (fabs(fC2) >= 1e-7)  //modif LAAS
+     {
+         // c2 != 0
+         float fDiscr = fC1*fC1 - fC0*fC2;
+@@ -461,7 +468,8 @@
+                 interCount = 0;
+         }
+     }
+-    else if (abs(fC1) >= 1e-7)
++    //else if (abs(fC1) >= 1e-7)
++    else if (fabs(fC1) >= 1e-7)  //modif LAAS
+     {
+         // c2 = 0, c1 != 0 (D is a direction vector on the cone boundary)
+ 		lambda[0] = -(((float)0.5)*fC0/fC1);
+@@ -475,7 +483,8 @@
+         else
+             interCount = 0;
+     }
+-    else if (abs(fC0) >= 1e-7)
++    //else if (abs(fC0) >= 1e-7)
++    else if (fabs(fC0) >= 1e-7)  //modif LAAS
+     {
+         // c2 = c1 = 0, c0 != 0
+         interCount = 0;
+diff -ur ../../primitiveShapes-libs.orig/ConePrimitiveShape.cpp ./ConePrimitiveShape.cpp
+--- ../../primitiveShapes-libs.orig/ConePrimitiveShape.cpp	2008-07-23 16:14:54.000000000 +0200
++++ ./ConePrimitiveShape.cpp	2010-08-25 16:26:53.632037000 +0200
+@@ -342,15 +342,18 @@
+ 	MiscLib::Vector< std::pair< float, float > > *params,
+ 	size_t *uextent, size_t *vextent)
+ {
+-	*uextent = std::ceil((bbox->Max()[0] - bbox->Min()[0]) / epsilon); // no wrappig along u direction
+-	*vextent = std::ceil((bbox->Max()[1] - bbox->Min()[1]) / epsilon) + 1; // add one for wrapping
++	//*uextent = std::ceil((bbox->Max()[0] - bbox->Min()[0]) / epsilon); // no wrappig along u direction
++	*uextent = (size_t) std::ceil((bbox->Max()[0] - bbox->Min()[0]) / epsilon); // no wrappig along u direction // modif LAAS
++	//*vextent = std::ceil((bbox->Max()[1] - bbox->Min()[1]) / epsilon) + 1; // add one for wrapping
++	*vextent = (size_t) std::ceil((bbox->Max()[1] - bbox->Min()[1]) / epsilon) + 1; // add one for wrapping  // modif LAAS
+ 	if((*vextent) * (*uextent) > 1e6 && m_cone.Angle() < float(M_PI / 4))
+ 	{
+ 		// try to reparameterize
+ 		// try to find cut in the outer regions
+ 		MiscLib::Vector< float > angularParams;//(params->size());
+ 		angularParams.reserve(params->size());
+-		float outer = 3.f * std::max(abs(bbox->Min()[0]), abs(bbox->Max()[0])) / 4.f;
++		//float outer = 3.f * std::max(abs(bbox->Min()[0]), abs(bbox->Max()[0])) / 4.f;
++		float outer = 3.f * std::max(fabs(bbox->Min()[0]), fabs(bbox->Max()[0])) / 4.f; // modif LAAS
+ 		for(size_t i = 0; i < params->size(); ++i)
+ 			if((*params)[i].first > outer)
+ 				angularParams.push_back(((*params)[i].second
+@@ -386,7 +389,8 @@
+ 			if((*params)[i].second > bbox->Max()[1])
+ 				bbox->Max()[1] = (*params)[i].second;
+ 		}
+-		*vextent = std::floor((bbox->Max()[1] - bbox->Min()[1]) / epsilon) + 1;
++		//*vextent = std::floor((bbox->Max()[1] - bbox->Min()[1]) / epsilon) + 1;
++		*vextent = (size_t) std::floor((bbox->Max()[1] - bbox->Min()[1]) / epsilon) + 1; //modif LAAS
+ 	}
+ }
+ 
+@@ -395,8 +399,10 @@
+ 	size_t uextent, size_t vextent, std::pair< int, int > *inBmp) const
+ {
+ 	// convert u = length and v = arc length into bitmap coordinates
+-	inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
+-	inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	//inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
++	inBmp->first = (int) std::floor((param.first - bbox.Min()[0]) / epsilon); // modif LAAS
++	//inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	inBmp->second = (int) std::floor((param.second - bbox.Min()[1]) / epsilon);  // modif LAAS
+ }
+ 
+ void ConePrimitiveShape::PreWrapBitmap(
+@@ -410,8 +416,9 @@
+ 	{
+ 		// determine the coordinates of the last pixel in the column
+ 		// get the radius of the column
+-		float r = m_cone.RadiusAtLength(u * epsilon + bbox.Min()[0]);
+-		size_t v = std::floor((2 * float(M_PI) * r - bbox.Min()[1]) / epsilon) + 1;
++		float r = m_cone.RadiusAtLength(u * epsilon + bbox.Min()[0]);
++		//size_t v = std::floor((2 * float(M_PI) * r - bbox.Min()[1]) / epsilon) + 1;
++		size_t v = (size_t) std::floor((2 * float(M_PI) * r - bbox.Min()[1]) / epsilon) + 1; // modif LAAS
+ 		if(v >= vextent)
+ 			continue;
+ 		if((*bmp)[u])
+@@ -441,8 +448,9 @@
+ 	{
+ 		// determine the coordinates of the last pixel in the column
+ 		// get the radius of the column
+-		float r = m_cone.RadiusAtLength(u * epsilon + bbox.Min()[0]);
+-		size_t v = std::floor((2 * float(M_PI) * r  - bbox.Min()[1]) / epsilon) + 1;
++		float r = m_cone.RadiusAtLength(u * epsilon + bbox.Min()[0]);
++		//size_t v = std::floor((2 * float(M_PI) * r  - bbox.Min()[1]) / epsilon) + 1;
++		size_t v = (size_t) std::floor((2 * float(M_PI) * r  - bbox.Min()[1]) / epsilon) + 1; // modif LAAS
+ 		if(v >= vextent)
+ 			continue;
+ 		if((*componentImg)[u])
+@@ -454,7 +462,8 @@
+ 	for(size_t u = 0; u < uextent; ++u)
+ 	{
+ 		float r = m_cone.RadiusAtLength(u * epsilon + bbox.Min()[0]);
+-		size_t v = std::floor((2 * float(M_PI) * r  - bbox.Min()[1]) / epsilon) + 1;
++		//size_t v = std::floor((2 * float(M_PI) * r  - bbox.Min()[1]) / epsilon) + 1;
++		size_t v = (size_t) std::floor((2 * float(M_PI) * r  - bbox.Min()[1]) / epsilon) + 1; // modif LAAS
+ 		if(v >= vextent)
+ 			continue;
+ 		if(!(*componentImg)[v * uextent + u])
+@@ -537,7 +546,8 @@
+ 		m_cone.AxisDirection()[1], m_cone.AxisDirection()[2]);
+ 	Vec3f vvec;
+ 	q.Rotate(m_cone.AngularDirection(), &vvec);
+-	*p = std::sin(m_cone.Angle()) * abs(length) * vvec +
++	//*p = std::sin(m_cone.Angle()) * abs(length) * vvec +
++	*p = std::sin(m_cone.Angle()) * fabs(length) * vvec + // modif LAAS
+ 		std::cos(m_cone.Angle()) * length * m_cone.AxisDirection() +
+ 		m_cone.Center();
+ 	m_cone.Normal(*p, n);
+@@ -573,7 +583,8 @@
+ 		m_cone.AxisDirection()[1], m_cone.AxisDirection()[2]);
+ 	Vec3f vvec;
+ 	q.Rotate(m_cone.AngularDirection(), &vvec);
+-	*p = std::sin(m_cone.Angle()) * abs(length) * vvec +
++	//*p = std::sin(m_cone.Angle()) * abs(length) * vvec +
++	*p = std::sin(m_cone.Angle()) * fabs(length) * vvec + // modif LAAS
+ 		std::cos(m_cone.Angle()) * length * m_cone.AxisDirection() +
+ 		m_cone.Center();
+ 	// TODO: this is very lazy and should be optimized!
+diff -ur ../../primitiveShapes-libs.orig/Cylinder.cpp ./Cylinder.cpp
+--- ../../primitiveShapes-libs.orig/Cylinder.cpp	2008-07-23 16:16:44.000000000 +0200
++++ ./Cylinder.cpp	2010-08-25 16:26:53.652012000 +0200
+@@ -53,7 +53,8 @@
+ 	ydir.normalize();
+ 	// xdir is the x axis in the plane (y = 0) samples[0] is the origin
+ 	float lineBnx = ydir.dot(samples[1 + c]);
+-	if(abs(lineBnx) < 1e-6)
++	//if(abs(lineBnx) < 1e-6)
++	if(fabs(lineBnx) < 1e-6) // modif LAAS
+ 		return false;
+ 	float lineBny = -xdir.dot(samples[1 + c]);
+ 	// origin of lineB
+@@ -65,7 +66,8 @@
+ 	// point of intersection is y = 0 and x = lineBd / lineBnx
+ 	float radius = lineBd / lineBnx;
+ 	m_axisPos += samples[0] + radius * xdir;
+-	m_radius += abs(radius);
++	//m_radius += abs(radius);
++	m_radius += fabs(radius); // modif LAAS
+ 	m_radius += std::sqrt((radius - lineBOx) * (radius - lineBOx) + lineBOy * lineBOy);
+ 	m_radius /= 2;
+ 	if(m_radius > 1e6)
+@@ -123,7 +125,8 @@
+ 			ydir.normalize();
+ 			// xdir is the x axis in the plane (y = 0) samples[i] is the origin
+ 			float lineBnx = ydir.dot(samples[j + c]);
+-			if(abs(lineBnx) < .05f)
++			//if(abs(lineBnx) < .05f)
++			if(fabs(lineBnx) < .05f) // modif LAAS
+ 				continue;
+ 			float lineBny = -xdir.dot(samples[j + c]);
+ 			// origin of lineB
+@@ -135,7 +138,8 @@
+ 			// point of intersection is y = 0 and x = lineBd / lineBnx
+ 			float radius = lineBd / lineBnx;
+ 			m_axisPos += samples[i] + radius * xdir;
+-			m_radius += abs(radius);
++			//m_radius += abs(radius);
++			m_radius += fabs(radius); // modif LAAS
+ 			m_radius += std::sqrt((radius - lineBOx) * (radius - lineBOx) + lineBOy * lineBOy);
+ 			++pointCount;
+ 		}
+@@ -187,7 +191,8 @@
+ 	// point of intersection is y = 0 and x = lineBd / lineBnx
+ 	m_radius = lineBd / lineBnx;
+ 	m_axisPos = pointA + m_radius * normalA;
+-	m_radius = abs(m_radius);
++	//m_radius = abs(m_radius);
++	m_radius = fabs(m_radius); // modif LAAS
+ 	if(m_radius > 1e6)
+ 		return false;
+ 	m_hcs.FromNormal(m_axisDir);
+diff -ur ../../primitiveShapes-libs.orig/Cylinder.h ./Cylinder.h
+--- ../../primitiveShapes-libs.orig/Cylinder.h	2008-07-23 16:16:44.000000000 +0200
++++ ./Cylinder.h	2010-08-25 16:26:53.655009000 +0200
+@@ -172,7 +172,8 @@
+ 	Vec3f diff = p - m_axisPos;
+ 	float lambda = m_axisDir.dot(diff);
+ 	float axisDist = (diff - lambda * m_axisDir).length();
+-	return abs(axisDist - m_radius);
++	//return abs(axisDist - m_radius);
++	return fabs(axisDist - m_radius); // modif LAAS
+ }
+ 
+ inline void Cylinder::Normal(const Vec3f &p, Vec3f *normal) const
+@@ -191,7 +192,8 @@
+ 	float axisDist = normal->length();
+ 	if(axisDist > 0) 
+ 		*normal /= axisDist;
+-	return abs(axisDist - m_radius);
++	//return abs(axisDist - m_radius);
++  return fabs(axisDist - m_radius); // modif LAAS
+ }
+ 
+ inline float Cylinder::SignedDistance(const Vec3f &p) const
+@@ -244,7 +246,8 @@
+     // unit-length direction.
+     float fDz = m_axisDir.dot(r);
+ 
+-    if(abs(fDz) >= 1.f - 1e-7f)
++    //if(abs(fDz) >= 1.f - 1e-7f)
++    if(fabs(fDz) >= 1.f - 1e-7f) // modif LAAS
+         // The line is parallel to the cylinder axis.
+ 		return 0;
+ 
+diff -ur ../../primitiveShapes-libs.orig/CylinderPrimitiveShape.cpp ./CylinderPrimitiveShape.cpp
+--- ../../primitiveShapes-libs.orig/CylinderPrimitiveShape.cpp	2008-07-23 16:14:54.000000000 +0200
++++ ./CylinderPrimitiveShape.cpp	2010-08-25 16:26:53.658008000 +0200
+@@ -356,8 +356,10 @@
+ 	size_t uextent, size_t vextent, std::pair< int, int > *inBmp) const
+ {
+ 	// convert the parameters to bitmap coordinates
+-	inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
+-	inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	//inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
++	inBmp->first = (size_t) std::floor((param.first - bbox.Min()[0]) / epsilon); // modif LAAS
++	//inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	inBmp->second = (size_t) std::floor((param.second - bbox.Min()[1]) / epsilon); // modif LAAS
+ }
+ void CylinderPrimitiveShape::WrapBitmap(
+ 	const GfxTL::AABox< GfxTL::Vector2Df > &bbox, float epsilon, bool *uwrap,
+diff -ur ../../primitiveShapes-libs.orig/FlatNormalThreshPointCompatibilityFunc.h ./FlatNormalThreshPointCompatibilityFunc.h
+--- ../../primitiveShapes-libs.orig/FlatNormalThreshPointCompatibilityFunc.h	2008-07-21 09:43:30.000000000 +0200
++++ ./FlatNormalThreshPointCompatibilityFunc.h	2010-08-25 16:26:53.666999000 +0200
+@@ -18,13 +18,15 @@
+ 		Vec3f n;
+ 		float distance = shape.DistanceAndNormal(oct.at(i), &n);
+ 		if(distance < m_distThresh)
+-			return abs(n.dot(oct.at(i).normal)) >= m_normalThresh;
++			//return abs(n.dot(oct.at(i).normal)) >= m_normalThresh;
++			return fabs(n.dot(oct.at(i).normal)) >= m_normalThresh; // modif LAAS
+ 		return false;
+ 	}
+ 	bool operator()(float distance, float normalDeviation) const
+ 	{
+-		return distance < m_distThresh
+-			&& abs(normalDeviation) >= m_normalThresh;
++		return distance < m_distThresh
++			//&& abs(normalDeviation) >= m_normalThresh;
++			&& fabs(normalDeviation) >= m_normalThresh; // modif LAAS
+ 	}
+ 	float DistanceThresh() const { return m_distThresh; }
+ 	float NormalThresh() const { return m_normalThresh; }
+Only in ../../primitiveShapes-libs.orig: GfxTL
+diff -ur ../../primitiveShapes-libs.orig/LevMarFitting.h ./LevMarFitting.h
+--- ../../primitiveShapes-libs.orig/LevMarFitting.h	2008-07-23 16:01:02.000000000 +0200
++++ ./LevMarFitting.h	2010-08-25 16:26:53.675990000 +0200
+@@ -225,12 +225,15 @@
+ 						v[i] += F0[k * paramDim + i] * d[k];
+ 					v[i] *= -1;
+ #ifndef DOPARALLEL
+-					vmag = std::max(abs(v[i]), vmag);
++					// vmag = std::max(abs(v[i]), vmag);
++          vmag = std::max((ScalarType) fabs(v[i]), vmag); // modif LAAS
+ #endif
+ 				}
+ #ifdef DOPARALLEL
+ 				for(unsigned int i = 0; i < paramDim; ++i)
+-					vmag = std::max(abs(v[i]), vmag);
++					//vmag = std::max(abs(v[i]), vmag);
++					vmag = std::max(fabs(v[i]), vmag); // modif LAAS
++
+ #endif
+ 				// and check for convergence with magnitude of v
+ #ifndef PRECISIONLEVMAR
+@@ -247,10 +250,15 @@
+ 				if(outerIter == 1)
+ 				{
+ 					// compute magnitue of F0
+-					ScalarType fmag = abs(F0[0]);
++					//ScalarType fmag = abs(F0[0]);
++					ScalarType fmag = fabs(F0[0]); // modif LAAS
++
+ 					for(size_t i = 1; i < paramDim * size; ++i)
+-						if(fmag < abs(F0[i]))
+-							fmag = abs(F0[i]);
++						//if(fmag < abs(F0[i]))
++						//	fmag = abs(F0[i]);
++						if(fmag < fabs(F0[i])) // modif LAAS
++							fmag = fabs(F0[i]); // modif LAAS
++
+ 					lambda = 1e-3f * fmag;
+ 				}
+ 				else
+@@ -424,7 +432,9 @@
+ 					param[i] = paramNew[i];
+ 				goto cleanup;
+ 			}*/
+-			if(/*newChi <= chi &&*/ abs(chi - newChi)
++			//if(/*newChi <= chi &&*/ abs(chi - newChi)
++			if(/*newChi <= chi &&*/ fabs(chi - newChi) // modif LAAS
++
+ 				/ chi < ScalarT(1e-4))
+ 			{
+ 				for(size_t i = 0; i < paramDim; ++i)
+diff -ur ../../primitiveShapes-libs.orig/LowStretchTorusParametrization.h ./LowStretchTorusParametrization.h
+--- ../../primitiveShapes-libs.orig/LowStretchTorusParametrization.h	2008-07-21 09:43:30.000000000 +0200
++++ ./LowStretchTorusParametrization.h	2010-08-25 16:26:53.691971000 +0200
+@@ -57,7 +57,8 @@
+ 	param->second = std::atan2(minorL[1], minorL[0]); // minor angle
+ 	if(m_torus->IsAppleShaped())
+ 	{
+-		if(abs(param->second) > m_torus->AppleCutOffAngle())
++		//if(abs(param->second) > m_torus->AppleCutOffAngle())
++		if(fabs(param->second) > m_torus->AppleCutOffAngle()) // modif LAAS
+ 			param->second = GfxTL::Math< float >::Sign(param->second)
+ 				* m_torus->AppleCutOffAngle();
+ 	}
+@@ -138,7 +139,8 @@
+ 		vangles[j] = std::atan2(minorVec[1], minorVec[0]); // minor angle
+ 		if(m_torus->IsAppleShaped())
+ 		{
+-			if(abs(uangles[j]) > m_torus->AppleCutOffAngle())
++			//if(abs(uangles[j]) > m_torus->AppleCutOffAngle())
++			if(fabs(uangles[j]) > m_torus->AppleCutOffAngle()) // modif LAAS
+ 				uangles[j] = GfxTL::Math< float >::Sign(uangles[j])
+ 					* m_torus->AppleCutOffAngle();
+ 		}
+Only in ../../primitiveShapes-libs.orig: Makefile
+Only in ../../primitiveShapes-libs.orig: Makefile~
+Only in ../../primitiveShapes-libs.orig: MiscLib
+diff -ur ../../primitiveShapes-libs.orig/Plane.h ./Plane.h
+--- ../../primitiveShapes-libs.orig/Plane.h	2008-07-23 16:14:54.000000000 +0200
++++ ./Plane.h	2010-08-25 16:26:53.699969000 +0200
+@@ -27,8 +27,10 @@
+ 	bool Init(bool binary, std::istream *i);
+ 	void Init(FILE *i);
+ 	void Init(float* array);
+-	float getDistance (const Vec3f &pos) const {return abs(m_dist - m_normal.dot(pos));}
+-	float Distance(const Vec3f &pos) const { return abs(m_dist - m_normal.dot(pos)); }
++	//float getDistance (const Vec3f &pos) const {return abs(m_dist - m_normal.dot(pos));}
++	float getDistance (const Vec3f &pos) const {return fabs(m_dist - m_normal.dot(pos));}  // modif LAAS
++	//float Distance(const Vec3f &pos) const { return abs(m_dist - m_normal.dot(pos)); }
++	float Distance(const Vec3f &pos) const { return fabs(m_dist - m_normal.dot(pos)); } // modif LAAS
+ 	float SignedDistance(const Vec3f &pos) const { return m_normal.dot(pos) - m_dist; }
+ 	void Normal(const Vec3f &, Vec3f *n) const { *n = m_normal; }
+ 	float DistanceAndNormal(const Vec3f &pos, Vec3f *n) const { *n = m_normal; return Distance(pos); }
+diff -ur ../../primitiveShapes-libs.orig/PlanePrimitiveShape.cpp ./PlanePrimitiveShape.cpp
+--- ../../primitiveShapes-libs.orig/PlanePrimitiveShape.cpp	2008-07-23 16:14:54.000000000 +0200
++++ ./PlanePrimitiveShape.cpp	2010-08-25 16:26:53.702968000 +0200
+@@ -202,8 +202,10 @@
+ 	float epsilon, const GfxTL::AABox< GfxTL::Vector2Df > &bbox, size_t,
+ 	size_t, std::pair< int, int > *inBmp) const
+ {
+-	inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
+-	inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	//inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
++	inBmp->first = (size_t) std::floor((param.first - bbox.Min()[0]) / epsilon); // modif LAAS
++	//inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	inBmp->second = (size_t) std::floor((param.second - bbox.Min()[1]) / epsilon); // modif LAAS
+ }
+ void PlanePrimitiveShape::WrapBitmap(
+ 	const GfxTL::AABox< GfxTL::Vector2Df > &bbox, float epsilon, bool *uwrap,
+Only in ../../primitiveShapes-libs.orig: PrimitiveShapes.sln
+Only in ../../primitiveShapes-libs.orig: PrimitiveShapes.vcproj
+diff -ur ../../primitiveShapes-libs.orig/RansacShapeDetector.cpp ./RansacShapeDetector.cpp
+--- ../../primitiveShapes-libs.orig/RansacShapeDetector.cpp	2008-07-23 16:22:28.000000000 +0200
++++ ./RansacShapeDetector.cpp	2010-08-25 16:26:53.758905000 +0200
+@@ -665,7 +665,8 @@
+ 			++numShapes;
+ 			// update drawn candidates to reflect removal of points
+ 			// get the percentage of candidates that are invalid
+-			drawnCandidates = std::pow(1.f - (candidates.back().Indices()->size() /
++			//drawnCandidates = std::pow(1.f - (candidates.back().Indices()->size() /
++			drawnCandidates = (size_t) std::pow(1.f - (candidates.back().Indices()->size() / // modif LAAS
+ 				float(currentSize - numInvalid)), 3.f) * drawnCandidates;
+ 			numInvalid += candidates.back().Indices()->size();
+ 			candidates.pop_back();
+Only in ../../primitiveShapes-libs.orig: ReadMe.txt
+diff -ur ../../primitiveShapes-libs.orig/SimpleTorusParametrization.h ./SimpleTorusParametrization.h
+--- ../../primitiveShapes-libs.orig/SimpleTorusParametrization.h	2008-07-21 09:43:30.000000000 +0200
++++ ./SimpleTorusParametrization.h	2010-08-25 16:26:53.787876000 +0200
+@@ -47,7 +47,8 @@
+ 	param->second = std::atan2(minory, minorx); // minor angle
+ 	if(m_torus->IsAppleShaped())
+ 	{
+-		if(abs(param->second) > m_torus->AppleCutOffAngle())
++		//if(abs(param->second) > m_torus->AppleCutOffAngle())
++		if(fabs(param->second) > m_torus->AppleCutOffAngle()) // modif LAAS
+ 			param->second = GfxTL::Math< float >::Sign(param->second)
+ 				* m_torus->AppleCutOffAngle();
+ 	}
+diff -ur ../../primitiveShapes-libs.orig/Sphere.cpp ./Sphere.cpp
+--- ../../primitiveShapes-libs.orig/Sphere.cpp	2008-07-23 16:14:54.000000000 +0200
++++ ./Sphere.cpp	2010-08-25 16:26:53.791873000 +0200
+@@ -130,7 +130,8 @@
+ 	d2121 = n1[0] * n1[0] + n1[1] * n1[1] + n1[2] * n1[2];
+ 
+ 	denom = d2121 * d4343 - d4321 * d4321;
+-	if(abs(denom) < 1e-6)
++	//if(abs(denom) < 1e-6)
++	if(fabs(denom) < 1e-6) // modif LAAS
+ 		return false;
+ 	numer = d1343 * d4321 - d1321 * d4343;
+ 
+@@ -240,7 +241,8 @@
+ 	d2121 = n1[0] * n1[0] + n1[1] * n1[1] + n1[2] * n1[2];
+ 
+ 	denom = d2121 * d4343 - d4321 * d4321;
+-	if(abs(denom) < 1e-6)
++	//if(abs(denom) < 1e-6)
++	if(fabs(denom) < 1e-6) // modif LAAS
+ 		return false;
+ 	numer = d1343 * d4321 - d1321 * d4343;
+ 
+@@ -450,7 +452,8 @@
+ 	hs[1] = s.dot(m_hcs[1].Data());
+ 	hs[2] = s.dot(m_planeNormal);
+ 	float ret = hs[2];
+-	hs[2] = abs(hs[2]);
++	//hs[2] = abs(hs[2]);
++	hs[2] = fabs(hs[2]); // modif LAAS
+ 	std::pair< float, float > inDisk;
+ 	Hemisphere2Disk(hs, &inDisk);
+ 	Disk2Square(inDisk, param);
+diff -ur ../../primitiveShapes-libs.orig/Sphere.h ./Sphere.h
+--- ../../primitiveShapes-libs.orig/Sphere.h	2008-07-23 16:16:44.000000000 +0200
++++ ./Sphere.h	2010-08-25 16:26:53.794869000 +0200
+@@ -210,7 +210,8 @@
+ 
+ inline float Sphere::Distance(const Vec3f &p) const
+ {
+-	return abs((m_center - p).length() - m_radius);
++	//return abs((m_center - p).length() - m_radius);
++	return fabs((m_center - p).length() - m_radius); // modif LAAS
+ }
+ 
+ inline void Sphere::Normal(const Vec3f &p, Vec3f *normal) const
+@@ -225,7 +226,8 @@
+ 	float l = normal->length();
+ 	if(l > 0)
+ 		*normal /= l;
+-	return abs(l - m_radius);
++	//return abs(l - m_radius);
++	return fabs(l - m_radius); // modif LAAS
+ }
+ 
+ inline float Sphere::SignedDistance(const Vec3f &p) const
+diff -ur ../../primitiveShapes-libs.orig/SpherePrimitiveShape.cpp ./SpherePrimitiveShape.cpp
+--- ../../primitiveShapes-libs.orig/SpherePrimitiveShape.cpp	2008-07-23 16:14:54.000000000 +0200
++++ ./SpherePrimitiveShape.cpp	2010-08-25 16:26:53.798864000 +0200
+@@ -449,8 +449,10 @@
+ 	MiscLib::Vector< std::pair< float, float > > *params,
+ 	size_t *uextent, size_t *vextent)
+ {
+-	*uextent = std::ceil((bbox->Max()[0] - bbox->Min()[0]) / epsilon);
+-	*vextent = std::ceil((bbox->Max()[1] - bbox->Min()[1]) / epsilon);
++	//*uextent = std::ceil((bbox->Max()[0] - bbox->Min()[0]) / epsilon);
++	*uextent = (size_t) std::ceil((bbox->Max()[0] - bbox->Min()[0]) / epsilon); // modif LAAS
++	//*vextent = std::ceil((bbox->Max()[1] - bbox->Min()[1]) / epsilon);
++	*vextent = (size_t) std::ceil((bbox->Max()[1] - bbox->Min()[1]) / epsilon); // modif LAAS
+ }
+ 
+ void SpherePrimitiveShape::InBitmap(const std::pair< float, float > &param,
+@@ -458,8 +460,10 @@
+ 	size_t uextent, size_t vextent,
+ 	std::pair< int, int > *inBmp) const
+ {
+-	inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
+-	inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	//inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
++	inBmp->first = (int) std::floor((param.first - bbox.Min()[0]) / epsilon); // modif LAAS
++	//inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	inBmp->second = (int) std::floor((param.second - bbox.Min()[1]) / epsilon); // modif LAAS
+ }
+ 
+ void SpherePrimitiveShape::WrapBitmap(
+diff -ur ../../primitiveShapes-libs.orig/Torus.h ./Torus.h
+--- ../../primitiveShapes-libs.orig/Torus.h	2008-07-23 16:14:54.000000000 +0200
++++ ./Torus.h	2010-08-25 16:26:53.818850000 +0200
+@@ -71,11 +71,15 @@
+ 	float spin0 = (s - spin1 * m_normal).length();
+ 	spin0 -= m_rmajor;
+ 	if(!m_appleShaped)
+-		return abs(std::sqrt(spin0 * spin0 + spin1 * spin1) - m_rminor);
++		//return abs(std::sqrt(spin0 * spin0 + spin1 * spin1) - m_rminor);
++		return fabs(std::sqrt(spin0 * spin0 + spin1 * spin1) - m_rminor); // modif LAAS
++
+ 	// apple shaped torus distance
+ 	float minorAngle = std::atan2(spin1, spin0); // minor angle
+-	if(abs(minorAngle) < m_cutOffAngle)
+-		return abs(std::sqrt(spin0 * spin0 + spin1 * spin1) - m_rminor);
++	//if(abs(minorAngle) < m_cutOffAngle)
++	if(fabs(minorAngle) < m_cutOffAngle) // modif LAAS
++		//return abs(std::sqrt(spin0 * spin0 + spin1 * spin1) - m_rminor);
++		return fabs(std::sqrt(spin0 * spin0 + spin1 * spin1) - m_rminor); // modif LAAS
+ 	spin0 += 2 * m_rmajor - m_rminor;
+ 	if(minorAngle < 0)
+ 		spin1 += m_appleHeight;
+@@ -93,7 +97,8 @@
+ 	if(m_appleShaped)
+ 	{
+ 		float minorAngle = std::atan2(spin1, spin0); // minor angle
+-		if(abs(minorAngle) > m_cutOffAngle)
++		//if(abs(minorAngle) > m_cutOffAngle)
++		if(fabs(minorAngle) > m_cutOffAngle) // modif LAAS
+ 		{
+ 			*n = m_normal;
+ 			if(minorAngle < 0)
+@@ -117,7 +122,8 @@
+ 	if(m_appleShaped)
+ 	{
+ 		float minorAngle = std::atan2(spin1, spin0); // minor angle
+-		if(abs(minorAngle) > m_cutOffAngle)
++		//if(abs(minorAngle) > m_cutOffAngle)
++		if(fabs(minorAngle) > m_cutOffAngle) // modif LAAS
+ 		{
+ 			*n = m_normal;
+ 			if(minorAngle < 0)
+@@ -136,7 +142,8 @@
+ 	*n = spin0 * plx + tmp;
+ 	float d = std::sqrt(spin0 * spin0 + spin1 * spin1);
+ 	*n /= d;
+-	return abs(d - m_rminor);
++	//return abs(d - m_rminor);
++	return fabs(d - m_rminor); // modif LAAS
+ }
+ 
+ float Torus::SignedDistance(const Vec3f &p) const
+@@ -149,7 +156,8 @@
+ 		return std::sqrt(spin0 * spin0 + spin1 * spin1) - m_rminor;
+ 	// apple shaped torus distance
+ 	float minorAngle = std::atan2(spin1, spin0); // minor angle
+-	if(abs(minorAngle) < m_cutOffAngle)
++	//if(abs(minorAngle) < m_cutOffAngle)
++	if(fabs(minorAngle) < m_cutOffAngle) // modif LAAS
+ 		return std::sqrt(spin0 * spin0 + spin1 * spin1) - m_rminor;
+ 	spin0 += 2 * m_rmajor - m_rminor;
+ 	if(minorAngle < 0)
+@@ -168,7 +176,8 @@
+ 	if(m_appleShaped)
+ 	{
+ 		float minorAngle = std::atan2(spin1, spin0); // minor angle
+-		if(abs(minorAngle) > m_cutOffAngle)
++		//if(abs(minorAngle) > m_cutOffAngle)
++		if(fabs(minorAngle) > m_cutOffAngle) // modif LAAS
+ 		{
+ 			*n = m_normal;
+ 			if(minorAngle < 0)
+@@ -199,7 +208,8 @@
+ 	if(m_appleShaped)
+ 	{
+ 		float minorAngle = std::atan2(spin1, spin0); // minor angle
+-		if(abs(minorAngle) > m_cutOffAngle)
++		//if(abs(minorAngle) > m_cutOffAngle)
++		if(fabs(minorAngle) > m_cutOffAngle) // modif LAAS
+ 		{
+ 			*pp = m_center + GfxTL::Math< float >::Sign(minorAngle) * m_normal;
+ 			return;
+diff -ur ../../primitiveShapes-libs.orig/TorusPrimitiveShape.cpp ./TorusPrimitiveShape.cpp
+--- ../../primitiveShapes-libs.orig/TorusPrimitiveShape.cpp	2008-07-23 16:14:54.000000000 +0200
++++ ./TorusPrimitiveShape.cpp	2010-08-25 16:26:53.833833000 +0200
+@@ -368,8 +368,10 @@
+ 	MiscLib::Vector< std::pair< float, float > > *params,
+ 	size_t *uextent, size_t *vextent)
+ {
+-	*uextent = std::ceil((bbox->Max()[0] - bbox->Min()[0]) / epsilon);
+-	*vextent = std::ceil((bbox->Max()[1] - bbox->Min()[1]) / epsilon);
++	//*uextent = std::ceil((bbox->Max()[0] - bbox->Min()[0]) / epsilon);
++	*uextent = (size_t) std::ceil((bbox->Max()[0] - bbox->Min()[0]) / epsilon); // modif LAAS
++	//*vextent = std::ceil((bbox->Max()[1] - bbox->Min()[1]) / epsilon);
++	*vextent = (size_t) std::ceil((bbox->Max()[1] - bbox->Min()[1]) / epsilon); // modif LAAS
+ }
+ 
+ void TorusPrimitiveShape::InBitmap(const std::pair< float, float > &param,
+@@ -377,8 +379,10 @@
+ 	size_t uextent, size_t vextent,
+ 	std::pair< int, int > *inBmp) const
+ {
+-	inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
+-	inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	//inBmp->first = std::floor((param.first - bbox.Min()[0]) / epsilon);
++	inBmp->first = (int) std::floor((param.first - bbox.Min()[0]) / epsilon); // modif LAAS
++	//inBmp->second = std::floor((param.second - bbox.Min()[1]) / epsilon);
++	inBmp->second = (int) std::floor((param.second - bbox.Min()[1]) / epsilon); // modif LAAS
+ }
+ 
+ void TorusPrimitiveShape::WrapBitmap(
+diff -ur ../../primitiveShapes-libs.orig/solve.cpp ./solve.cpp
+--- ../../primitiveShapes-libs.orig/solve.cpp	2008-07-21 09:43:30.000000000 +0200
++++ ./solve.cpp	2010-08-25 16:26:53.869805000 +0200
+@@ -61,7 +61,9 @@
+ 
+     for ( i = j; i < n; i++ )
+     {
+-      if ( abs ( apivot ) < abs ( a[i+j*n] ) )
++      //if ( abs ( apivot ) < abs ( a[i+j*n] ) ) original
++      if ( fabs ( apivot ) < fabs ( a[i+j*n] ) )  // modif LAAS
++
+       {
+         apivot = a[i+j*n];
+         ipivot = i;
