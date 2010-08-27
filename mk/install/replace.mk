@@ -33,6 +33,7 @@
 # Updates a package in-place on the system.
 # It will acquire elevated privileges just-in-time.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
@@ -46,11 +47,17 @@ else
   su-replace: 		pkg-replace
 endif
 
+# run after the 'depends' barrier
+_REPLACE_TARGETS:=$(call barrier, depends, ${_REPLACE_TARGETS})
+
+ifneq (,$(filter replace,${MAKECMDGOALS})) # if we are asking for a replace
+  ifneq (yes,$(call for-unsafe-pkg,yes))   # and the package is unsafe
+    _REPLACE_TARGETS:= replace-up-to-date  # let us do nothing
+  endif
+endif
+
 .PHONY: replace
-replace: $(call only-for, replace,					\
-		$(call for-unsafe-pkg, 					\
-			$(call barrier, depends, ${_REPLACE_TARGETS}),	\
-			replace-up-to-date))
+replace: ${_REPLACE_TARGETS}
 
 
 # --- replace-message (PRIVATE) --------------------------------------------

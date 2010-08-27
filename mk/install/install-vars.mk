@@ -1,6 +1,5 @@
-# $LAAS: install-vars.mk 2009/11/16 13:56:14 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -72,6 +71,7 @@ else
     install:
 	@${DO_NADA}
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
     $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
     install: $(call barrier, depends, build install-cookie)

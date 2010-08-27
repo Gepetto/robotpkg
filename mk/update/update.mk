@@ -46,6 +46,7 @@
 # "make update".
 #
 
+$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
@@ -65,13 +66,19 @@ _UPDATE_TARGETS+=	do-update
 _UPDATE_TARGETS+=	update-clean
 _UPDATE_TARGETS+=	update-done-message
 
-.PHONY: update
-ifeq (yes,$(call exists,${_UPDATE_DIRS}))
-  update: ${_UPDATE_TARGETS}
-else
-  update: $(call only-for, update, \
-		$(call for-unsafe-pkg, ${_UPDATE_TARGETS}, update-up-to-date))
+# run after the 'depends' barrier
+_UPDATE_TARGETS:=$(call barrier, depends, ${_UPDATE_TARGETS})
+
+ifeq (yes,$(call only-for,update,yes))	     # if we are asking for an update
+  ifneq (yes,$(call exists,${_UPDATE_DIRS})) # not resuming a previous one
+    ifneq (yes,$(call for-unsafe-pkg,yes))   # and the package is unsafe
+      _UPDATE_TARGETS:= update-up-to-date    # let us do nothing
+    endif
+  endif
 endif
+
+.PHONY: update
+update: ${_UPDATE_TARGETS}
 
 
 # --- do-update ------------------------------------------------------------
