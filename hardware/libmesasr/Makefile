@@ -2,9 +2,10 @@
 # Created:			Matthieu Herrb on Fri, 27 Aug 2010
 #
 
-PKGNAME=	libmesasr-${VERSION}
+PKGNAME=	libmesasr-${PKGVERSION}
 DISTNAME=	libmesasr-dev-${VERSION}.i386
 VERSION=	1.0.14-653
+PKGVERSION=	1.0.14.653
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.mesa-imaging.ch/customer/driver/
 
