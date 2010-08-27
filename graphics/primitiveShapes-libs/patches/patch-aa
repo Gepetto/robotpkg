@@ -11,9 +11,6 @@ diff -ur ../../primitiveShapes-libs.orig/BasePrimitiveShape.h ./BasePrimitiveSha
  					++scores[j];
  			}
  		}
-Only in ../../primitiveShapes-libs.orig: Bitmap.o
-Only in ../../primitiveShapes-libs.orig: BitmapPrimitiveShape.o
-Only in .: CMakeLists.txt
 diff -ur ../../primitiveShapes-libs.orig/Candidate.cpp ./Candidate.cpp
 --- ../../primitiveShapes-libs.orig/Candidate.cpp	2009-06-26 10:20:58.000000000 +0200
 +++ ./Candidate.cpp	2010-08-25 16:26:53.616048000 +0200
@@ -66,7 +63,6 @@ diff -ur ../../primitiveShapes-libs.orig/Candidate.cpp ./Candidate.cpp
  		variance += dev * dev;
  	}
  	variance /= static_cast<float>( m_indices->size());
-Only in ../../primitiveShapes-libs.orig: Candidate.o
 diff -ur ../../primitiveShapes-libs.orig/Cone.cpp ./Cone.cpp
 --- ../../primitiveShapes-libs.orig/Cone.cpp	2009-06-26 10:28:50.000000000 +0200
 +++ ./Cone.cpp	2010-08-25 16:26:53.623040000 +0200
@@ -415,7 +411,6 @@ diff -ur ../../primitiveShapes-libs.orig/FlatNormalThreshPointCompatibilityFunc.
  	}
  	float DistanceThresh() const { return m_distThresh; }
  	float NormalThresh() const { return m_normalThresh; }
-Only in ../../primitiveShapes-libs.orig: GfxTL
 diff -ur ../../primitiveShapes-libs.orig/LevMarFitting.h ./LevMarFitting.h
 --- ../../primitiveShapes-libs.orig/LevMarFitting.h	2008-07-23 16:01:02.000000000 +0200
 +++ ./LevMarFitting.h	2010-08-25 16:26:53.675990000 +0200
@@ -490,9 +485,6 @@ diff -ur ../../primitiveShapes-libs.orig/LowStretchTorusParametrization.h ./LowS
  				uangles[j] = GfxTL::Math< float >::Sign(uangles[j])
  					* m_torus->AppleCutOffAngle();
  		}
-Only in ../../primitiveShapes-libs.orig: Makefile
-Only in ../../primitiveShapes-libs.orig: Makefile~
-Only in ../../primitiveShapes-libs.orig: MiscLib
 diff -ur ../../primitiveShapes-libs.orig/Plane.h ./Plane.h
 --- ../../primitiveShapes-libs.orig/Plane.h	2008-07-23 16:14:54.000000000 +0200
 +++ ./Plane.h	2010-08-25 16:26:53.699969000 +0200
@@ -525,8 +517,6 @@ diff -ur ../../primitiveShapes-libs.orig/PlanePrimitiveShape.cpp ./PlanePrimitiv
  }
  void PlanePrimitiveShape::WrapBitmap(
  	const GfxTL::AABox< GfxTL::Vector2Df > &bbox, float epsilon, bool *uwrap,
-Only in ../../primitiveShapes-libs.orig: PrimitiveShapes.sln
-Only in ../../primitiveShapes-libs.orig: PrimitiveShapes.vcproj
 diff -ur ../../primitiveShapes-libs.orig/RansacShapeDetector.cpp ./RansacShapeDetector.cpp
 --- ../../primitiveShapes-libs.orig/RansacShapeDetector.cpp	2008-07-23 16:22:28.000000000 +0200
 +++ ./RansacShapeDetector.cpp	2010-08-25 16:26:53.758905000 +0200
@@ -540,7 +530,6 @@ diff -ur ../../primitiveShapes-libs.orig/RansacShapeDetector.cpp ./RansacShapeDe
  				float(currentSize - numInvalid)), 3.f) * drawnCandidates;
  			numInvalid += candidates.back().Indices()->size();
  			candidates.pop_back();
-Only in ../../primitiveShapes-libs.orig: ReadMe.txt
 diff -ur ../../primitiveShapes-libs.orig/SimpleTorusParametrization.h ./SimpleTorusParametrization.h
 --- ../../primitiveShapes-libs.orig/SimpleTorusParametrization.h	2008-07-21 09:43:30.000000000 +0200
 +++ ./SimpleTorusParametrization.h	2010-08-25 16:26:53.787876000 +0200
