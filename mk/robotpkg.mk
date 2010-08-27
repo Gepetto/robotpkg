@@ -55,17 +55,6 @@
 .PHONY: all
 all: build;
 
-# Include any preferences, if not already included, and common
-# definitions. The file robotpkg.prefs.mk is protected against double
-# inclusion, but checking the flag here avoids loading and parsing it.
-#
-ifndef MK_ROBOTPKG_PREFS
-  include ../../mk/robotpkg.prefs.mk
-endif
-
-$(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
-
-
 # --- Transform package Makefile variables and set defaults ----------
 #
 
@@ -91,13 +80,6 @@ PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
 PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
 PKGVERSION_NOREV:=	$(patsubst ${PKGBASE}-%,%,${PKGNAME_NOREV})
 
-# Default to building for supported platforms only.
-ifeq (undefined,$(origin ONLY_FOR_PLATFORM))
-  ifeq (undefined,$(origin NOT_FOR_PLATFORM))
-    ONLY_FOR_PLATFORM?=	Linux-% NetBSD-%-i386
-  endif
-endif
-
 # Others
 #
 BUILD_DEPENDS?=#	empty
@@ -110,6 +92,25 @@ PKGWILDCARD?=		${PKGBASE}-[0-9]*
 WRKSRC?=		${WRKDIR}/${DISTNAME}
 PREFIX?=		${LOCALBASE}
 USE_LANGUAGES?=		c # most packages need a C compiler
+
+# Include any preferences, if not already included, and common
+# definitions. The file robotpkg.prefs.mk is protected against double
+# inclusion, but checking the flag here avoids loading and parsing it.
+#
+ifndef MK_ROBOTPKG_PREFS
+  include ../../mk/robotpkg.prefs.mk
+endif
+
+$(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
+
+# Default to building for supported platforms only.
+ifeq (undefined,$(origin ONLY_FOR_PLATFORM))
+  ifeq (undefined,$(origin NOT_FOR_PLATFORM))
+    ONLY_FOR_PLATFORM?=	Linux-% NetBSD-%-i386
+  endif
+endif
+
+
 
 ifneq (,$(or $(call isyes,$(INSTALL_UNSTRIPPED)), $(DEBUG_FLAGS)))
 _INSTALL_UNSTRIPPED=	# set (flag used by platform/*.mk)

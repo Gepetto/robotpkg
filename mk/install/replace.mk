@@ -1,4 +1,4 @@
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -28,39 +28,41 @@
 #                                             Anthony Mallet on Sun Jan 27 2008
 #
 
-# Public targets:
+# --- replace (PUBLIC) -----------------------------------------------------
+
+# Updates a package in-place on the system.
+# It will acquire elevated privileges just-in-time.
 #
-# replace:
-#	Updates a package in-place on the system.
-#	It will acquire elevated privileges just-in-time.
-#
-#
-# Private targets that must be defined by the package system makefiles:
-#
-# pkg-replace:
-#	Updates a package in-place on the system.
+$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
 _REPLACE_TARGETS+=	build
 _REPLACE_TARGETS+=	replace-message
-
-#
-# replace
-#
-
-  $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+ifeq (,$(call isyes,${MAKE_SUDO_INSTALL}))
+  _REPLACE_TARGETS+=	pkg-replace
+else
+  _REPLACE_TARGETS+=	su-target-replace
+  _SU_TARGETS+= 	replace
+  su-replace: 		pkg-replace
+endif
 
 .PHONY: replace
+replace: $(call only-for, replace,					\
+		$(call for-unsafe-pkg, 					\
+			$(call barrier, depends, ${_REPLACE_TARGETS}),	\
+			replace-up-to-date))
 
-ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
-  _SU_TARGETS+= replace
 
-  replace: $(call barrier, depends, ${_REPLACE_TARGETS} su-target-replace)
-  su-replace: pkg-replace
-else
-  replace: $(call barrier, depends, ${_REPLACE_TARGETS} pkg-replace)
-endif
+# --- replace-message (PRIVATE) --------------------------------------------
 
 .PHONY: replace-message
 replace-message:
 	@${PHASE_MSG} "Replacing for ${PKGNAME}"
+
+
+# --- replace-up-to-date (PRIVATE) -----------------------------------------
+
+.PHONY: replace-up-to-date
+replace-up-to-date: replace-message
+	@${ECHO_MSG} "${PKGNAME} is already installed and up-to-date."
+	@${ECHO_MSG} "Use '${MAKE} ${MAKECMDGOALS} confirm' to force updating."

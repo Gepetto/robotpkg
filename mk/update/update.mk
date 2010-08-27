@@ -66,7 +66,12 @@ _UPDATE_TARGETS+=	update-clean
 _UPDATE_TARGETS+=	update-done-message
 
 .PHONY: update
-update: ${_UPDATE_TARGETS}
+ifeq (yes,$(call exists,${_UPDATE_DIRS}))
+  update: ${_UPDATE_TARGETS}
+else
+  update: $(call only-for, update, \
+		$(call for-unsafe-pkg, ${_UPDATE_TARGETS}, update-up-to-date))
+endif
 
 
 # --- do-update ------------------------------------------------------------
@@ -103,6 +108,11 @@ ifeq (yes,$(call exists,${_UPDATE_DIRS}))
 else
 	@${PHASE_MSG} "Updating for ${PKGNAME}"
 endif
+
+.PHONY: update-up-to-date
+update-up-to-date: update-message
+	@${ECHO_MSG} "${PKGNAME} is already installed and up-to-date."
+	@${ECHO_MSG} "Use '${MAKE} ${MAKECMDGOALS} confirm' to force updating."
 
 .PHONY: update-done-message
 update-done-message:

@@ -100,6 +100,18 @@ PKG_INFO?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_INFO_CMD} ${PKGTOOLS_ARGS}
 #
 _PKG_BEST_EXISTS?=	${PKG_ADMIN} -b -d ${_PKG_DBDIR} -S lsbest
 
+# Macro that returns its first parameter only if PKGNAME is not installed or
+# has unsafe_depends{_strict} set. If package is up-to-date and safe, it
+# returns its second parameter.
+# It is important to limit as much as possible the variables used here, since
+# the evaluation of this macro will occur very early in the Makefiles parsing,
+# and not much information may be available.
+override define for-unsafe-pkg
+$(if $(or $(filter confirm,${MAKECMDGOALS}),$(shell {			\
+	${PKG_INFO} -qQ unsafe_depends ${PKGNAME} &&			\
+	${PKG_INFO} -qQ unsafe_depends_strict ${PKGNAME};		\
+  } 2>/dev/null || ${ECHO} nonexistent)),$1,$2)
+endef
 
 # Metadata filenames
 _BUILD_INFO_FILE=	+BUILD_INFO

@@ -1,4 +1,4 @@
-# $LAAS: macros.mk 2010/04/01 14:00:06 mallet $
+# $LAAS: macros.mk 2010/08/27 16:19:22 mallet $
 #
 # Copyright (c) 2006,2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -82,7 +82,16 @@ endef
 # <target>
 #
 override define require-for
-$(if $(filter $1,${MAKECMDGOALS}),$(call require,$2))
+$(only-for $1,$(call require,$2))
+endef
+
+
+# --- only-for <target> <data> ---------------------------------------------
+#
+# Expands to <data> only if <target> was specified on the command line.
+#
+override define only-for
+$(if $(filter $1,${MAKECMDGOALS}),$2)
 endef
 
 
