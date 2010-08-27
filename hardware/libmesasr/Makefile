@@ -2,10 +2,9 @@
 # Created:			Matthieu Herrb on Fri, 27 Aug 2010
 #
 
-PKGNAME=	libmesasr-${PKGVERSION}
+PKGNAME=	libmesasr-$(subst -,.,${VERSION})
 DISTNAME=	libmesasr-dev-${VERSION}.i386
 VERSION=	1.0.14-653
-PKGVERSION=	1.0.14.653
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.mesa-imaging.ch/customer/driver/
 
@@ -13,6 +12,8 @@ HOMEPAGE=	http://www.mesa-imaging.ch/
 COMMENT=	API for the MESA Imaging Swiss Ranger Time of flight camera
 
 LICENSE=	mesa-imaging-license
+NO_PUBLIC_SRC=	This package may not be redistributed
+NO_PUBLIC_BIN=	This package may not be redistributed
 
 EXTRACT_SUFX=	.deb
 
@@ -22,13 +23,8 @@ ONLY_FOR_PLATFORM=	Linux-%-i386
 
 NO_BUILD=	Yes
 
-include ../../pkgtools/libtool/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
-
-do-foo:
-	@echo "x$(DEPEND_ABI.pax)x"
 
 .PHONY: do-install
 
