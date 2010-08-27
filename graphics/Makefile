@@ -1,7 +1,7 @@
-# robotpkg graphics tools
+# robotpkg computer graphics tools
 #
 
-COMMENT=	Graphics tools
+COMMENT=	Computer graphics tools
 
 SUBDIR+=	Togl
 SUBDIR+=	gdhe
@@ -11,6 +11,8 @@ SUBDIR+=	kpp-interfacewalk
 SUBDIR+=	kpp-interfacedisplay
 SUBDIR+=	laaswm
 SUBDIR+=	laaswm-libs
+SUBDIR+=	primitiveShapes-libs
+SUBDIR+=	vcglib
 SUBDIR+=	vrml97
 SUBDIR+=	wxGTK
 
