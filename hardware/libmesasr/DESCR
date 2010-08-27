@@ -1,0 +1,24 @@
+SWISS RANGER SR-3/SR3k/SR4k LINUX DEVICE DRIVER 
+(based on Windows version 1.0.10-x)
+
+This is the Linux driver for Mesa Imaging Swiss Ranger cameras.
+
+Author: Thierry Zamofing, thierry.zamofing@mesa-imaging.ch
+        Based on alpha version by Reto Wyss, reto.wyss@csem.ch
+
+Copyright (c) 2004-2009, Mesa Imaging
+All rights reserved.
+
+REQUIREMENTS
+
+The package includes the driver and an example application. It
+requires libusb-0.1.12, which is usually included by default on most
+Linux distributions.  The driver is the basically the same as the
+windows version with folloing restrictions:
+
+  * does not automatically download calibration files over the internet (SR3k)
+  * does not check for driver updates
+  * the windows dialog boxes are not supported
+  * Ethernet version of SR3k is not supported
+
+The linux driver is based on source code of the windows version
