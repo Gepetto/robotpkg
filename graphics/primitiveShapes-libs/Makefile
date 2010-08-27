@@ -2,8 +2,8 @@
 # Created:			Matthieu Herrb on Fri, 27 Aug 2010
 #
 
-PKGNAME = 	primitiveShapes-libs
 VERSION = 	1.1
+PKGNAME = 	primitiveShapes-libs-${VERSION}
 DISTNAME = 	Software%20v${VERSION}
 EXTRACT_SUFX = 	.zip
 CATEGORIES = 	graphics
