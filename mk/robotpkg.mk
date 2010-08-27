@@ -131,6 +131,9 @@ endif
 
 # --- users's convenience targets ------------------------------------------
 
+# packages sets
+$(call require, ${ROBOTPKG_DIR}/mk/sets/sets-vars.mk)
+
 # semi-automatic PLIST generation
 $(call require-for, print-PLIST, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 

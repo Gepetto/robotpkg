@@ -100,6 +100,9 @@ ${__targets}: %: %-subdir
 ${SUBDIR}::
 	cd ${CURDIR}/$@; ${RECURSIVE_MAKE} all
 
+# Packages sets
+$(call require, ${ROBOTPKG_DIR}/mk/sets/sets-vars.mk)
+
 # index.html generation code.
 $(call require-for, index index-all, ${ROBOTPKG_DIR}/mk/internal/index.mk)
 

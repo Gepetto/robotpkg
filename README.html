@@ -134,10 +134,10 @@ table, table tr {
    Copyright 2006-2009 &#169; LAAS/CNRS
  </h3>
 
-<h3 align="center">August 19, 2010</h3>
+<h3 align="center">September  9, 2010</h3>
 
 <div class="p"><!----></div>
-    
+   
 <div class="p"><!----></div>
 </div><div id="frontmatter">
 
@@ -195,11 +195,13 @@ table, table tr {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.1"
 >2.4.1&nbsp; Selecting build options</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.2"
->2.4.2&nbsp; General configuration variables</a><br />
+>2.4.2&nbsp; Defining collections of packages</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.3"
->2.4.3&nbsp; Variables affecting the build process</a><br />
+>2.4.3&nbsp; General configuration variables</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.4"
->2.4.4&nbsp; Additional flags to the compiler</a><br />
+>2.4.4&nbsp; Variables affecting the build process</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.5"
+>2.4.5&nbsp; Additional flags to the compiler</a><br />
 <a href="#tth_chAp3"
 >3&nbsp; The robotpkg developer's guide</a><br />
 <a href="#tth_chAp4"
@@ -1141,7 +1143,78 @@ package will fail.
 
 <div class="p"><!----></div>
      <h3><a name="tth_sEc2.4.2">
-2.4.2</a>&nbsp;&nbsp;General configuration variables</h3> 
+2.4.2</a>&nbsp;&nbsp;Defining collections of packages</h3> 
+<div class="p"><!----></div>
+Instead of installing, removing or updating packages one-by-one, you can define
+collections  of  packages  in  your  <tt>robotpkg.conf</tt>.  Once  one  or  more
+collections  are defined,  they enable  special targets  that work  on  all the
+packages of a collection.
+
+<div class="p"><!----></div>
+To define a collection, you have to give it a name and list the set of packages
+forming  the  collection   in  the  special  <tt>PKGSET</tt>   variable  in  <tt>
+robotpkg.conf</tt>. The syntax is the following:
+
+<div class="p"><!----></div>
+
+<pre>
+PKGSET.&lt;name&#62;&nbsp;=&nbsp;&lt;list&#62;
+
+</pre>
+
+<div class="p"><!----></div>
+where <tt>&lt;name&#62;</tt> is the name of the collection (any string is valid) and <tt>
+&lt;list&#62;</tt>  is  the  list  of  packages  in  the  collection,  in  the  form  <tt>
+&lt;category&#62;/&lt;name&#62;</tt>. For instance,
+
+<div class="p"><!----></div>
+
+<pre>
+PKGSET.myset&nbsp;=&nbsp;architecture/genom&nbsp;devel/pocolibs
+
+</pre>
+
+<div class="p"><!----></div>
+defines  a collection named  <tt>myset</tt>  that contains  the two  packages <tt>
+genom</tt> and <tt>pocolibs</tt>.
+
+<div class="p"><!----></div>
+For each collection <tt>&lt;name&#62;</tt>  defined in <tt>robotpkg.conf</tt>, the following
+targets  are available:  <tt>clean-&lt;name&#62;</tt>,  <tt>clean-depends-&lt;name&#62;</tt>, <tt>
+fetch-&lt;name&#62;</tt>,    <tt>extract-&lt;name&#62;</tt>,    <tt>install-&lt;name&#62;</tt>,    <tt>
+replace-&lt;name&#62;</tt>,  <tt>update-&lt;name&#62;</tt>. They  perform the  same action  as their
+respective counterpart without  <tt>-&lt;name&#62;</tt> suffix, expect that  they work on
+all packages  of the set. In addition,  for the <tt>replace</tt>  and <tt>update</tt>
+targets, they sort the packages in  the order of their dependencies so that the
+job is done a sensible order.
+
+<div class="p"><!----></div>
+For  the user  convenience,  A  special <tt>installed</tt>  collection is  always
+defined  and represents all  currently installed  packages. Thus,  invoking the
+<tt>update-installed</tt> target will update all currently installed packages.
+
+<div class="p"><!----></div>
+Two <tt>robotpkg.conf</tt> variables affect the behaviour of <tt>robotpkg</tt>
+regarding packages sets:
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>PKGSET_FAILSAFE</b></dt>
+	<dd> When working on a set, and this variable is set to
+   yes, robotpkg will continue with further packages instead of stopping on an
+   error. If set to 'no', stop on first error. Default: no.</dd>
+ <dt><b>PKGSET_STRICT</b></dt>
+	<dd> Specify if package sets should be considered as
+   'strict' or include dependencies of packages defined in the set. If set to
+   'yes', only package strictly defined in sets are considered. If set to 'no',
+   dependencies of packages listed in sets are added to their respective
+   sets. Default: no.</dd>
+</dl>
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.4.3">
+2.4.3</a>&nbsp;&nbsp;General configuration variables</h3> 
 <div class="p"><!----></div>
 In  this  section,  you can   find some  variables   that apply  to  all <tt>robotpkg</tt> 
 packages.
@@ -1176,8 +1249,8 @@ packages.
 </dl>
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.4.3">
-2.4.3</a>&nbsp;&nbsp;Variables affecting the build process</h3> 
+     <h3><a name="tth_sEc2.4.4">
+2.4.4</a>&nbsp;&nbsp;Variables affecting the build process</h3> 
 <div class="p"><!----></div>
 
 <dl compact="compact">
@@ -1199,8 +1272,8 @@ packages.
 
 <div class="p"><!----></div>
 </dd>
-</dl>     <h3><a name="tth_sEc2.4.4">
-2.4.4</a>&nbsp;&nbsp;Additional flags to the compiler</h3> 
+</dl>     <h3><a name="tth_sEc2.4.5">
+2.4.5</a>&nbsp;&nbsp;Additional flags to the compiler</h3> 
 <div class="p"><!----></div>
 If you wish  to set compiler variables   such as <tt>CFLAGS</tt>,  <tt>CXXFLAGS</tt>,
 <tt>FFLAGS</tt> ... please make sure to use  the <tt>+=</tt>  operator instead of the

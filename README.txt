@@ -3,7 +3,7 @@
                     Anthony Mallet - anthony.mallet@laas.fr
                        Copyright 2006-2009 (C) LAAS/CNRS
 
-                                August 19, 2010
+                               September 9, 2010
 
 Contents
 
@@ -32,9 +32,10 @@ Contents
         2.3.6  Other administrative functions
     2.4  Configuring robotpkg
         2.4.1  Selecting build options
-        2.4.2  General configuration variables
-        2.4.3  Variables affecting the build process
-        2.4.4  Additional flags to the compiler
+        2.4.2  Defining collections of packages
+        2.4.3  General configuration variables
+        2.4.4  Variables affecting the build process
+        2.4.5  Additional flags to the compiler
 3  The robotpkg developer's guide
 4  The robotpkg infrastructure internals
 
@@ -623,7 +624,52 @@ disabled, the previously selected option, if any, is used. It is an error if no
 option from a required group of options is selected, and building the package
 will fail.
 
-2.4.2  General configuration variables
+2.4.2  Defining collections of packages
+
+Instead of installing, removing or updating packages one-by-one, you can define
+collections of packages in your robotpkg.conf. Once one or more collections are
+defined, they enable special targets that work on all the packages of a
+collection.
+To define a collection, you have to give it a name and list the set of packages
+forming the collection in the special PKGSET variable in robotpkg.conf. The
+syntax is the following:
+
+PKGSET.<name> = <list>
+
+
+where <name> is the name of the collection (any string is valid) and <list> is
+the list of packages in the collection, in the form <category>/<name>. For
+instance,
+
+PKGSET.myset = architecture/genom devel/pocolibs
+
+
+defines a collection named myset that contains the two packages genom and
+pocolibs.
+For each collection <name> defined in robotpkg.conf, the following targets are
+available: clean-<name>, clean-depends-<name>, fetch-<name>, extract-<name>,
+install-<name>, replace-<name>, update-<name>. They perform the same action as
+their respective counterpart without -<name> suffix, expect that they work on
+all packages of the set. In addition, for the replace and update targets, they
+sort the packages in the order of their dependencies so that the job is done a
+sensible order.
+For the user convenience, A special installed collection is always defined and
+represents all currently installed packages. Thus, invoking the
+update-installed target will update all currently installed packages.
+Two robotpkg.conf variables affect the behaviour of robotpkg regarding packages
+sets:
+
+PKGSET_FAILSAFE
+    When working on a set, and this variable is set to yes, robotpkg will
+    continue with further packages instead of stopping on an error. If set to
+    'no', stop on first error. Default: no.
+PKGSET_STRICT
+    Specify if package sets should be considered as 'strict' or include
+    dependencies of packages defined in the set. If set to 'yes', only package
+    strictly defined in sets are considered. If set to 'no', dependencies of
+    packages listed in sets are added to their respective sets. Default: no.
+
+2.4.3  General configuration variables
 
 In this section, you can find some variables that apply to all robotpkg
 packages.
@@ -651,7 +697,7 @@ PKG_DEBUG_LEVEL
     invocation, and the value 2 will display both the shell commands before
     their invocation, and their actual execution progress with set -x.
 
-2.4.3  Variables affecting the build process
+2.4.4  Variables affecting the build process
 
 WRKOBJDIR
     The top level directory where, if defined, the separate working directories
@@ -665,7 +711,7 @@ LOCALBASE
     Where packages will be installed. The default value is /opt/openrobots. Do
     not mix binary packages with different values of LOCALBASEs!
 
-2.4.4  Additional flags to the compiler
+2.4.5  Additional flags to the compiler
 
 If you wish to set compiler variables such as CFLAGS, CXXFLAGS, FFLAGS ...
 please make sure to use the += operator instead of the = operator:

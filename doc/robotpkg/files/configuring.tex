@@ -1,6 +1,6 @@
-% $LAAS: using.tex 2009/03/04 16:45:50 mallet $
+% $LAAS: configuring.tex 2010/09/09 15:46:20 mallet $
 %
-% Copyright (c) 2009 LAAS/CNRS
+% Copyright (c) 2009-2010 LAAS/CNRS
 % All rights reserved.
 %
 % Permission to use, copy, modify, and distribute this software for any purpose
@@ -99,6 +99,60 @@ disabled, the previously selected option,  if any, is used.   It is an error if
 no option from  a  required group  of  options is  selected, and  building  the
 package will fail.
 
+
+\subsection{Defining collections of packages} % ----------------------------
+
+Instead of installing, removing or updating packages one-by-one, you can define
+collections  of  packages  in  your  {\tt  robotpkg.conf}.  Once  one  or  more
+collections  are defined,  they enable  special targets  that work  on  all the
+packages of a collection.
+
+To define a collection, you have to give it a name and list the set of packages
+forming  the  collection   in  the  special  {\tt  PKGSET}   variable  in  {\tt
+robotpkg.conf}. The syntax is the following:
+
+\begin{verbatim}
+PKGSET.<name> = <list>
+\end{verbatim}
+
+where {\tt <name>} is the name of the collection (any string is valid) and {\tt
+<list>}  is  the  list  of  packages  in  the  collection,  in  the  form  {\tt
+<category>/<name>}. For instance,
+
+\begin{verbatim}
+PKGSET.myset = architecture/genom devel/pocolibs
+\end{verbatim}
+
+defines  a collection named  {\tt myset}  that contains  the two  packages {\tt
+genom} and {\tt pocolibs}.
+
+For each collection {\tt <name>}  defined in {\tt robotpkg.conf}, the following
+targets  are available:  {\tt clean-<name>},  {\tt  clean-depends-<name>}, {\tt
+fetch-<name>},    {\tt     extract-<name>},    {\tt    install-<name>},    {\tt
+replace-<name>},  {\tt update-<name>}. They  perform the  same action  as their
+respective counterpart without  {\tt -<name>} suffix, expect that  they work on
+all packages  of the set. In addition,  for the {\tt replace}  and {\tt update}
+targets, they sort the packages in  the order of their dependencies so that the
+job is done a sensible order.
+
+For  the user  convenience,  A  special {\tt  installed}  collection is  always
+defined  and represents all  currently installed  packages. Thus,  invoking the
+{\tt update-installed} target will update all currently installed packages.
+
+Two {\tt robotpkg.conf} variables affect the behaviour of {\tt robotpkg}
+regarding packages sets:
+
+\begin{description}
+   \item[PKGSET\_FAILSAFE] When working on a set, and this variable is set to
+   yes, robotpkg will continue with further packages instead of stopping on an
+   error. If set to 'no', stop on first error. Default: no.
+
+   \item[PKGSET\_STRICT] Specify if package sets should be considered as
+   'strict' or include dependencies of packages defined in the set. If set to
+   'yes', only package strictly defined in sets are considered. If set to 'no',
+   dependencies of packages listed in sets are added to their respective
+   sets. Default: no.
+\end{description}
 
 \subsection{General configuration variables} % -----------------------------
 
