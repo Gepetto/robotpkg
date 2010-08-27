@@ -20,7 +20,7 @@ DEPEND_DIR.libmesasr?=	../../hardware/libmesasr
 
 SYSTEM_SEARCH.libmesasr=\
 	include/libMesaSR.h \
-	lib/libmesasr.so
+	lib/libmesasr.so.1.0.14
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
