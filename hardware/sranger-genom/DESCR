@@ -1,0 +1,5 @@
+Genom component to drive the Mesa Imaging Swiss Ranger cameras.
+
+Provides requests for image acquisition, image display, filter setup
+and shape detection in the depth images, plus integration with the POM
+framework.
