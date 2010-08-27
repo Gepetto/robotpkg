@@ -1,0 +1,17 @@
+The VCG Lib could be defined as a portable C++ templated library for the
+manipulation, processing of triangle and tetrahedral meshes, but that would be
+unfair. VCG Lib is a library for managing 0,1,2 and 3-simplicial complexes,
+which means Point Sets, Edge Mesh, Triangle Mesh and Tetrahedral Meshes. To be
+completely honest, it is starting to support polygon meshes as well (stay
+tuned).
+
+It just happens that the research interests of the developers leaded to develop
+mesh processing algorithms mostly for triangle meshes, but the kernel is there
+waiting... However, to avoid annoying the reader with 0-simplices, maximal
+simplices and so on, in this tutorial we will always refer to the case of
+triangle meshes, extending the explanation to the other cases only where
+appropriate.
+
+The library, released under the GPL license, is the result of the collaborative
+efforts of the Visual Computing Lab of the ISTI - an institute of the Italian
+National Research Council (CNR).
