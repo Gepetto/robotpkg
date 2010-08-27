@@ -76,7 +76,7 @@ PKG_FAIL_REASON+= "   to ${MAKECONF}"
 PKG_FAIL_REASON+= ""
   endif
 else
-  $(shell echo >&2 '*** LICENSE is empty: every package should define a license.')
+  $(shell echo >&2 'Warning: the LICENSE of ${PKGPATH} is undefined.')
 endif
 
 # Check *_FOR_PLATFORM variables, unless confirm was given on the cmdline
