@@ -8,8 +8,8 @@ MASTER_SITES=	${MASTER_SITE_GNU:=libtool/}
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.gnu.org/software/libtool/libtool.html
-
 COMMENT=	Generic shared library support script
+LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
 

@@ -11,6 +11,7 @@ DISTFILES=		# empty
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.pkgsrc.org/
 COMMENT=		Package management and administration tools for robotpkg
+LICENSE=		2-clause-bsd
 
 NOT_FOR_PLATFORM=	# empty
 

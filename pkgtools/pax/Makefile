@@ -10,6 +10,7 @@ DISTFILES=		# empty
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.NetBSD.org/
 COMMENT=		POSIX standard archiver with many extensions
+LICENSE=		modified-bsd
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--bindir=${PKG_TOOLS_BIN}

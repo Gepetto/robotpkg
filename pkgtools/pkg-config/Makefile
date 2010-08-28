@@ -9,6 +9,7 @@ MASTER_SITES=		http://pkgconfig.freedesktop.org/releases/
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://pkgconfig.freedesktop.org/
 COMMENT=		System for managing library compile/link flags
+LICENSE=		gnu-gpl-v2
 
 GNU_CONFIGURE=		yes
 

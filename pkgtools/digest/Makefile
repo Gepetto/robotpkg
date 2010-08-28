@@ -10,6 +10,7 @@ DISTFILES=	# empty
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.NetBSD.org/Documentation/software/packages.html
 COMMENT=	Message digest wrapper utility
+LICENSE=	original-bsd
 
 NO_CHECKSUM=	yes
 NOT_FOR_PLATFORM=# empty

@@ -10,6 +10,7 @@ DISTFILES=	# none
 MAINTAINER=	anthony.mallet@laas.fr
 HOMEPAGE=	# empty
 COMMENT=	Tool to automate initial steps in building a package
+LICENSE=	public-domain
 
 WRKSRC=		${WRKDIR}
 NO_CHECKSUM=	yes

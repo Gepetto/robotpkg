@@ -10,6 +10,7 @@ DISTFILES=      # empty
 MAINTAINER=	anthony.mallet@laas.fr
 HOMEPAGE=       http://www.laas.fr/~mallet/robotpkg
 COMMENT=        Check installed packages versions against robotpkg
+LICENSE=	isc
 
 WRKSRC=		${WRKDIR}
 NO_CHECKSUM=    yes
