@@ -119,7 +119,12 @@ endif
 .PHONY: update-up-to-date
 update-up-to-date: update-message
 	@${ECHO_MSG} "${PKGNAME} is already installed and up-to-date."
-	@${ECHO_MSG} "Use '${MAKE} ${MAKECMDGOALS} confirm' to force updating."
+  ifeq (0,${MAKELEVEL})
+	@if ${TEST} -t 1; then						\
+	  ${ECHO_MSG} 							\
+	    "Use '${MAKE} ${MAKECMDGOALS} confirm' to force updating.";	\
+	fi
+  endif
 
 .PHONY: update-done-message
 update-done-message:
