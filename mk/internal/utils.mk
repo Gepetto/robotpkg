@@ -112,8 +112,12 @@ RUN=			${_PKG_SILENT}${_PKG_DEBUG} set -e;
 
 # --- fancy decorations ----------------------------------------------------
 #
-export bf:=$(shell ${TPUT} ${TPUT_BOLD} 2>/dev/null)
-export rm:=$(shell ${TPUT} ${TPUT_RMBOLD} 2>/dev/null)
+ifndef bf
+  export bf:=$(shell ${TPUT} ${TPUT_BOLD} 2>/dev/null)
+endif
+ifndef rm
+  export rm:=$(shell ${TPUT} ${TPUT_RMBOLD} 2>/dev/null)
+endif
 export hline:="$$bf$(subst =,=======,==========)$$rm"
 
 _SETFANCY_CMD:=${TEST} -t 1 || { bf=; rm=; }
