@@ -1,4 +1,3 @@
-# $LAAS: clean.mk 2010/08/25 00:11:56 tho $
 #
 # Copyright (c) 2006,2009-2010 LAAS/CNRS
 # All rights reserved.
@@ -65,10 +64,10 @@ CLEANDEPENDS?=	no
 
 .PHONY: clean-depends
 clean-depends:
-	${RUN}${_DEPENDS_WALK_CMD} ${PKGPATH} |			\
-	while read dir; do					\
-		cd ${CURDIR}/../../$$dir &&			\
-		${RECURSIVE_MAKE} CLEANDEPENDS=no clean;	\
+	${RUN}${_DEPENDS_WALK_CMD} ${PKGPATH} |		\
+	while read dir; do				\
+	  cd ${ROBOTPKG_DIR}/$$dir &&			\
+	  ${RECURSIVE_MAKE} CLEANDEPENDS=no clean ||:;	\
 	done
 
 .PHONY: pre-clean
@@ -85,19 +84,15 @@ ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
 else
   do-clean:
 endif
-	${RUN}								\
-	if ${TEST} -d ${WRKDIR}; then					\
-		if ${TEST} -w ${WRKDIR}; then				\
-			${RM} -fr ${WRKDIR};				\
-		else							\
-			${STEP_MSG} ${WRKDIR}" not writable, skipping"; \
-		fi;							\
-        fi
-  ifdef WRKOBJDIR
-	${RUN}								\
-	${RMDIR} ${BUILD_DIR} 2>/dev/null || ${TRUE};			\
-	${RM} -f ${WRKDIR_BASENAME} 2>/dev/null || ${TRUE}
-  endif
+	${RUN}dirs="$(realpath ${WRKDIR}				\
+		$(if ${WRKOBJDIR},${BUILD_DIR} ${WRKDIR_BASENAME}))";	\
+	for dir in $$dirs; do						\
+	  if ${TEST} -w "$$dir"; then					\
+	    ${RM} -rf $$dir;						\
+	  else								\
+	    ${STEP_MSG} $$dir" not writable, skipping"; 		\
+	  fi;								\
+        done
 
 
 # --- clean-confirm-checkout -----------------------------------------------
@@ -162,7 +157,7 @@ endif
 #    clean is the target that is invoked by the user to perform
 #	the "clean" action.
 
-ifneq (,$(realpath ${WRKDIR} $(if ${WRKOBJDIR},${BUILD_DIR}) ${WRKDIR_BASENAME}))
+ifneq (,$(realpath ${WRKDIR} $(if ${WRKOBJDIR},${BUILD_DIR} ${WRKDIR_BASENAME})))
   _CLEAN_TARGETS+=	clean-message
 endif
 _CLEAN_TARGETS+=	pre-clean
