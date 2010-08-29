@@ -27,4 +27,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/zlib.h ${DESTDIR}${PREFIX}/include
 
 include ../../pkgtools/libtool/depend.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk

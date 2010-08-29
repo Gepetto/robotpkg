@@ -175,47 +175,6 @@ _INTERACTIVE_COOKIE=	${.CURDIR}/.interactive_stage
 # Miscellaneous overridable commands:
 SHCOMMENT?=		${ECHO_MSG} >/dev/null '***'
 
-
-# A few aliases for *-install targets
-INSTALL=		${TOOLS_INSTALL}
-INSTALL_PROGRAM?= 	\
-	${INSTALL} ${COPY} ${_STRIPFLAG_INSTALL} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
-INSTALL_SCRIPT?= 	\
-	${INSTALL} ${COPY} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
-INSTALL_LIB?= 		\
-	${INSTALL} ${COPY} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE}
-INSTALL_DATA?= 		\
-	${INSTALL} ${COPY} -o ${SHAREOWN} -g ${SHAREGRP} -m ${SHAREMODE}
-INSTALL_MAN?= 		\
-	${INSTALL} ${COPY} -o ${MANOWN} -g ${MANGRP} -m ${MANMODE}
-INSTALL_PROGRAM_DIR?= 	\
-	${INSTALL} -d -o ${BINOWN} -g ${BINGRP} -m ${PKGDIRMODE}
-INSTALL_SCRIPT_DIR?= 	\
-	${INSTALL_PROGRAM_DIR}
-INSTALL_LIB_DIR?= 	\
-	${INSTALL_PROGRAM_DIR}
-INSTALL_DATA_DIR?= 	\
-	${INSTALL} -d -o ${SHAREOWN} -g ${SHAREGRP} -m ${PKGDIRMODE}
-INSTALL_MAN_DIR?= 	\
-	${INSTALL} -d -o ${MANOWN} -g ${MANGRP} -m ${PKGDIRMODE}
-
-INSTALL_MACROS=	BSD_INSTALL_PROGRAM=$(call quote,${INSTALL_PROGRAM})		\
-		BSD_INSTALL_SCRIPT=$(call quote,${INSTALL_SCRIPT})		\
-		BSD_INSTALL_LIB=$(call quote,${INSTALL_LIB})			\
-		BSD_INSTALL_DATA=$(call quote,${INSTALL_DATA})			\
-		BSD_INSTALL_MAN=$(call quote,${INSTALL_MAN})			\
-		BSD_INSTALL=$(call quote,${INSTALL})				\
-		BSD_INSTALL_PROGRAM_DIR=$(call quote,${INSTALL_PROGRAM_DIR})	\
-		BSD_INSTALL_SCRIPT_DIR=$(call quote,${INSTALL_SCRIPT_DIR})	\
-		BSD_INSTALL_LIB_DIR=$(call quote,${INSTALL_LIB_DIR})		\
-		BSD_INSTALL_DATA_DIR=$(call quote,${INSTALL_DATA_DIR})		\
-		BSD_INSTALL_MAN_DIR=$(call quote,${INSTALL_MAN_DIR})		\
-		BSD_INSTALL_GAME=$(call quote,${INSTALL_GAME})			\
-		BSD_INSTALL_GAME_DATA=$(call quote,${INSTALL_GAME_DATA})	\
-		BSD_INSTALL_GAME_DIR=$(call quote,${INSTALL_GAME_DIR})
-MAKE_ENV+=	${INSTALL_MACROS}
-SCRIPTS_ENV+=	${INSTALL_MACROS}
-
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.
 DO_NADA?=		${TRUE}
@@ -374,7 +333,7 @@ endif
 # --- Files included after this line must be included as late as possible --
 #
 # These files must appear near the end of the robotpkg.mk file because they do
-# immediate expansions on variables set before. 
+# immediate expansions on variables set before.
 
 # Resolve all dependencies into the adequate variable depending on the type of
 # dependency.

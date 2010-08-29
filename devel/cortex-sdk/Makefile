@@ -34,6 +34,7 @@ FETCH_MESSAGE+= " This file is located on the Cortex CDROM, in the Sdk2 director
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 post-extract:

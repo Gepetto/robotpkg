@@ -69,7 +69,6 @@ FILE_CMD?=		file
 GZCAT?=			gzcat
 BZCAT?=			bzcat
 
-TOOLS_INSTALL=		${ROBOTPKG_DIR}/mk/internal/install-sh
 TOOLS_ECHO=		echo
 TOOLS_CAT=		cat
 TOOLS_TEST=		test

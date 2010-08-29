@@ -29,7 +29,7 @@ NO_PUBLIC_BIN=	${RESTRICTED}
 
 do-install:
 	(cd ${WRKSRC}; \
-		${INSTALL_DATA} -c ${KMOD} ${PREFIX}/${KMOD_DIR} ) 
+		${INSTALL_DATA} -c ${KMOD} ${PREFIX}/${KMOD_DIR} )
 	(cd ${WRKSRC}; \
 	 	${INSTALL_PROGRAM} load_sahand_driver.sh ${PREFIX}/bin)
 	(cd ${WRKSRC}; \
@@ -38,5 +38,6 @@ do-install:
 	${SUDO} -u root ${CP} ${PREFIX}/${KMOD_DIR}/${KMOD} /${KMOD_DIR}/${KMOD}
 	@${STEP_MSG} "Dropping \`\`root'' privileges."
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/sudo.mk
 include ../../mk/robotpkg.mk

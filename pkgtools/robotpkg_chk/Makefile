@@ -38,4 +38,5 @@ do-install:
 	${INSTALL_MAN_DIR} ${PREFIX}/man/man8
 	${INSTALL_MAN} ${WRKSRC}/robotpkg_chk.8 ${PREFIX}/man/man8/robotpkg_chk.8
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk

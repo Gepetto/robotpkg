@@ -69,6 +69,7 @@ PLIST_SUBST+=		GCC_VERSION=${GCC_VERSION:Q}
 
 MINGW_WRKSRC=		${WRKDIR}/mingw-runtime-3.2
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 pre-build:

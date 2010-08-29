@@ -35,6 +35,7 @@ PKG_OPTION_DESCR.ipv6=	Enable support for IPv6
 PKG_OPTION_SET.ipv6:=	CONFIGURE_ARGS+=--enable-ipv6
 PKG_OPTION_UNSET.ipv6:=	CONFIGURE_ARGS+=--disable-ipv6
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/python2.mk
 include ../../mk/robotpkg.mk
 

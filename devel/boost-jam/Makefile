@@ -20,6 +20,7 @@ SUBST_SED.bb=		-e 's,/usr/share/boost-build,${PREFIX}/share/boost-build,g'
 INSTALLATION_DIRS=	bin
 
 include ../../devel/boost-build/depend.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 do-build:

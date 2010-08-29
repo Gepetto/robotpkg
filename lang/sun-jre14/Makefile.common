@@ -40,6 +40,7 @@ FETCH_MESSAGE= 								\
 
 EXTRACT_ENV+=	HOME=${WRKDIR}/fake_home
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 include ../../lang/sun-jre14/java-env.mk
 

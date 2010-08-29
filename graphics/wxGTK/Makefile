@@ -26,6 +26,7 @@ DOCDIR=			${PREFIX}/share/doc/wxGTK
 MAKE_ENV+=              PKGLOCALEDIR=${PKGLOCALEDIR}
 
 include ../../pkgtools/libtool/depend.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 post-install:

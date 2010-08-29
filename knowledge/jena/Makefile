@@ -31,6 +31,7 @@ endef
 
 include ../../lang/sun-jre6/depend.mk
 include ../../pkgtools/pax/depend.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install: jena-install-lib

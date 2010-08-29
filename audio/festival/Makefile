@@ -56,6 +56,7 @@ endif
 # --------------------------------------------------------------------
 
 include ../../pkgtools/pax/depend.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 ifneq (,$(filter mdi distinfo makesum,${MAKECMDGOALS}))

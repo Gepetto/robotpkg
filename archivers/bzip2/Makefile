@@ -16,6 +16,7 @@ DISTFILES=	# empty
 NO_CHECKSUM=	yes
 
 include ../../pkgtools/libtool/depend.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

@@ -27,4 +27,5 @@ ${WRKSRC}/pcan.pc:
 		-e 's|@PACKAGE_VERSION@|${VERSION}|' \
 		< ${FILESDIR}/pcan.pc.in > ${WRKSRC}/pcan.pc
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk

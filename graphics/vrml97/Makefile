@@ -19,6 +19,7 @@ EXTRACT_ONLY=		#empty
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 

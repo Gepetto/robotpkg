@@ -4,6 +4,7 @@
 COMMENT=	Tools for use in the packages collection
 
 SUBDIR+=	digest
+SUBDIR+=	install-sh
 SUBDIR+=	libnbcompat
 SUBDIR+=	libtool
 SUBDIR+=	pax

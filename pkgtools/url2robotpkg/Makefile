@@ -24,6 +24,7 @@ SUBST_SED.up=		-e 's,@MAKE@,${MAKE},g'
 SUBST_SED.up+=		-e 's,@PERL@,${PERL},g'
 
 include ../../mk/sysdep/perl.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

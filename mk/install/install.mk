@@ -195,31 +195,33 @@ endif
 # install-makedirs is a target to create directories expected to
 # exist prior to installation.
 #
+ifdef INSTALLATION_DIRS
+  include ${ROBOTPKG_DIR}/pkgtools/install-sh/depend.mk
+endif
 
 .PHONY: install-makedirs
 install-makedirs:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} -d ${PREFIX} || ${MKDIR} ${PREFIX}
+	${RUN}${TEST} -d ${PREFIX} || ${MKDIR} ${PREFIX}
 ifdef INSTALLATION_DIRS
 	@${STEP_MSG} "Creating installation directories"
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-	for dir in ${INSTALLATION_DIRS}; do				\
-		case "$$dir" in						\
-		${PREFIX}/*)						\
-			dir=`${ECHO} $$dir | ${SED} "s|^${PREFIX}/||"` ;; \
-		/*)	continue ;;					\
-		esac;							\
-		if [ -f "${PREFIX}/$$dir" ]; then			\
-			${ERROR_MSG} "[install.mk] $$dir should be a directory, but is a file."; \
-			exit 1;						\
-		fi;							\
-		case "$$dir" in						\
-		*bin|*bin/*|*libexec|*libexec/*)			\
-			${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/$$dir ;;	\
-		${PKGMANDIR}/*)						\
-			${INSTALL_MAN_DIR} ${DESTDIR}${PREFIX}/$$dir ;;		\
-		*)							\
-			${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/$$dir ;;	\
-		esac;							\
+	${RUN} for dir in ${INSTALLATION_DIRS}; do			\
+	  case "$$dir" in						\
+	    ${PREFIX}/*)						\
+		dir=`${ECHO} $$dir | ${SED} "s|^${PREFIX}/||"` ;;	\
+	    /*)	continue ;;						\
+	  esac;								\
+	  if ${TEST} -f "${PREFIX}/$$dir"; then				\
+	    ${ERROR_MSG} "$$dir should be a directory, but is a file."; \
+	    exit 1;							\
+	  fi;								\
+	  case "$$dir" in						\
+	    *bin|*bin/*|*libexec|*libexec/*)				\
+	      ${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/$$dir ;;	\
+	    ${PKGMANDIR}/*)						\
+	      ${INSTALL_MAN_DIR} ${DESTDIR}${PREFIX}/$$dir ;;		\
+	    *)								\
+	      ${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/$$dir ;;		\
+	  esac;								\
 	done
 endif	# INSTALLATION_DIRS
 

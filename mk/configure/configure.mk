@@ -1,6 +1,5 @@
-# $LAAS: configure.mk 2009/11/20 23:20:46 tho $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -204,10 +203,6 @@ do-configure-post-hook:
 # do-configure-script runs the configure script to configure the software for
 # building.
 #
-_CONFIGURE_SCRIPT_ENV+=	INSTALL=${INSTALL}\ -c\ -o\ ${BINOWN}\ -g\ ${BINGRP}
-_CONFIGURE_SCRIPT_ENV+=	INSTALL_PROGRAM=$(call quote,${INSTALL_PROGRAM})
-_CONFIGURE_SCRIPT_ENV+=	INSTALL_SCRIPT=$(call quote,${INSTALL_SCRIPT})
-_CONFIGURE_SCRIPT_ENV+=	INSTALL_DATA=$(call quote,${INSTALL_DATA})
 _CONFIGURE_SCRIPT_ENV+=	${CONFIGURE_ENV}
 
 .PHONY: do-configure-script
@@ -226,7 +221,7 @@ $(foreach _dir_,${CONFIGURE_DIRS},					\
 # targets, and may be overridden within a package Makefile.
 #
 ifdef HAS_CONFIGURE
-_DO_CONFIGURE_TARGETS+=	do-configure-script
+  _DO_CONFIGURE_TARGETS+=	do-configure-script
 endif
 
 do%configure: ${_DO_CONFIGURE_TARGETS} .FORCE

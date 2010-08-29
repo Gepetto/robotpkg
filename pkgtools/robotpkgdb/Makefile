@@ -62,6 +62,7 @@ define PKG_OPTION_SET.sqlite
   include ../../mk/sysdep/sqlite3.mk
 endef
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 # The source files are only symlinked into the WRKSRC, so that they can

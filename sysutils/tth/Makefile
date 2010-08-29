@@ -15,6 +15,7 @@ MASTER_SITES=		http://hutchinson.belmont.ma.us/tth/tth-noncom/
 
 DOCDIR=			${PREFIX}/share/doc/tth
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 do-build:

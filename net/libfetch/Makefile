@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2008-2009 LAAS/CNRS
+# Copyright (C) 2008-2010 LAAS/CNRS
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
 # with or without   fee is hereby granted, provided   that the above  copyright
@@ -44,6 +44,7 @@ endef
 
 LIBNBCOMPAT_STYLE=inplace
 include ../../pkgtools/libnbcompat/depend.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

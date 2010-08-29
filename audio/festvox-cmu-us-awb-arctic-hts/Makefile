@@ -1,4 +1,4 @@
-# $Id: Makefile 2010/07/08 23:08:58 tho $
+# $Id: Makefile 2010/08/29 18:46:11 tho $
 #
 
 BROKEN=			Distfile disappeared
@@ -19,6 +19,7 @@ include ../../audio/festival/depend.mk
 include ../../audio/festlex-cmu/depend.mk
 include ../../audio/festlex-poslex/depend.mk
 include ../../pkgtools/pax/depend.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 do-install:

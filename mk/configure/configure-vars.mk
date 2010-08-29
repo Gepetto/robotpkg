@@ -1,6 +1,5 @@
-# $LAAS: configure-vars.mk 2009/11/16 13:55:54 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -51,7 +50,6 @@ ifdef BATCH
 SCRIPTS_ENV+=	BATCH=yes
 endif
 SCRIPTS_ENV+=	CURDIR=${CURDIR}
-SCRIPTS_ENV+=	DEPENDS=$(call quote,${DEPENDS})
 SCRIPTS_ENV+=	DISTDIR=${DISTDIR}
 SCRIPTS_ENV+=	FILESDIR=${FILESDIR}
 SCRIPTS_ENV+=	LOCALBASE=${LOCALBASE}

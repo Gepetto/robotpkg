@@ -53,6 +53,7 @@ endef
 PKG_OPTIONS_NONEMPTY_SETS=	output
 PKG_OPTIONS_SET.output=		html pdf txt
 
+include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 # The source files are only symlinked into the WRKSRC, so that they can
