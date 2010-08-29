@@ -150,7 +150,9 @@ ifeq (,${ROBOTPKG_FC})
 else
   override FC=	$(strip ${ROBOTPKG_FC})
 endif
+override F77=	${FC}
 
-export CPP CXXCPP CC CXX FC
+export CPP CXXCPP CC CXX FC F77
+export CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
 
 endif	# ROBOTPKG_COMPILER_MK

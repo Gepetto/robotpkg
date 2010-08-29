@@ -112,8 +112,7 @@ ifdef BATCH
  ifneq (,$(filter install,${INTERACTIVE_STAGE}))
 	@${ERROR_MSG} "The installation stage of this package requires user interaction"
 	@${ERROR_MSG} "Please install manually with:"
-	@${ERROR_MSG} "	\"cd ${.CURDIR} && ${MAKE} install\""
-	${RUN} ${TOUCH} ${_INTERACTIVE_COOKIE}
+	@${ERROR_MSG} "	\"cd ${CURDIR} && ${MAKE} install\""
 	${RUN} ${FALSE}
  else
 	@${DO_NADA}

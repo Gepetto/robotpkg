@@ -94,6 +94,13 @@ ifneq (SunOS,${OPSYS})
   _LOGFILTER_FLAGS+=	-i
 endif
 
+# How to do nothing.  Override if you, for some strange reason, would rather
+# do something.
+DO_NADA?=		${TRUE}
+
+# the FAIL command executes its arguments and then exits with a non-zero
+# status.
+FAIL?=                  ${SH} ${ROBOTPKG_DIR}/mk/internal/fail
 
 # A temporary directory
 #

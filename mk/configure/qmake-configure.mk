@@ -1,6 +1,6 @@
-# $LAAS: qmake-configure.mk 2009/03/24 16:42:14 mallet $
+# $LAAS: qmake-configure.mk 2010/08/30 00:12:53 tho $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -34,7 +34,7 @@ include ${ROBOTPKG_DIR}/mk/sysdep/qmake.mk
 
 QMAKE_ARGS?=#		empty
 QMAKE_ARG_PATH?=	*.pro
-_BUILD_DEFS+=		QMAKE_ARGS
+BUILD_DEFS+=		QMAKE_ARGS
 
 QMAKE_ARGS+=		QMAKE_LFLAGS=$(call quote,${LDFLAGS})
 ifneq (,$(filter c,${USE_LANGUAGES}))

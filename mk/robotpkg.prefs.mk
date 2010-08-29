@@ -177,7 +177,85 @@ else
   $(error missing mk/platform/${OPSYS}.mk)
 endif
 
+
+# --- Transform package Makefile variables and set defaults ----------------
+
+# PKGNAME[_NOREV] is the package name with version [without revision number],
+ifneq (,$(filter-out 0,${PKGREVISION}))
+  ifdef PKGNAME
+    PKGNAME_NOREV:=	${PKGNAME}
+    PKGNAME:=		${PKGNAME}r${PKGREVISION}
+  else
+    PKGNAME:=		${DISTNAME}r${PKGREVISION}
+    PKGNAME_NOREV:=	${DISTNAME}
+  endif
+else
+  PKGNAME?=		${DISTNAME}
+  PKGNAME_NOREV=	${PKGNAME}
+endif
+
+# PKGVERSION is the package version number.
+ifdef PKGVERSION
+  ifneq (,$(filter-out 0,${PKGREVISION}))
+    PKGVERSION:=	${PKGVERSION:r${PKGREVISION}=}r${PKGREVISION}
+  endif
+else
+  PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
+endif
+
+# PKGBASE is the package name without version information,
+PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
+
+# PKGVERSION_NOREV is PKGVERSION without the revision number.
+PKGVERSION_NOREV:=	$(patsubst ${PKGBASE}-%,%,${PKGNAME_NOREV})
+
+# PKGWILDCARD is a pkg_install wildcard matching all versions of the package.
+PKGWILDCARD?=		${PKGBASE}-[0-9]*
+
+# DISTNAME is the distribution archive name. It might not be empty.
+ifeq (,$(DISTNAME))
+  PKG_FAIL_REASON+='DISTNAME is mandatory.'
+endif
+
+# CATEGORIES shall contain at least one category.
+ifeq (,$(CATEGORIES))
+  PKG_FAIL_REASON+='CATEGORIES are mandatory.'
+endif
+
+# COMMENT is a brief description of the package. DESCR_SRC a file containing
+# the long description.
+COMMENT?=		(no description)
+DESCR_SRC?=		${PKGDIR}/DESCR
+
+# MAINTAINER is the person in charge of maintaining the robotpkg package.
+MAINTAINER?=		openrobots@laas.fr
+
+# WRKSRC is the directory within WRKDIR where the package extracts itself.
+WRKSRC?=		${WRKDIR}/${DISTNAME}
+
+# PKG_SYSCONFDIR is where package's config file go.
+ifdef PKG_SYSCONFSUBDIR
+  PKG_SYSCONFDIR=	${PKG_SYSCONFBASE}/${PKG_SYSCONFSUBDIR}
+else
+  PKG_SYSCONFDIR=	${PKG_SYSCONFBASE}
+endif
+
+INTERACTIVE_STAGE?=	none
+USE_LANGUAGES?=		c # most packages need a C compiler
+
+# Default to building for supported platforms only.
+ifeq (undefined,$(origin ONLY_FOR_PLATFORM))
+  ifeq (undefined,$(origin NOT_FOR_PLATFORM))
+    ONLY_FOR_PLATFORM?=	Linux-% NetBSD-%-i386
+  endif
+endif
+
 LOCALBASE?=		/opt/openrobots
+PATH:=			$(call prependpath, ${LOCALBASE}/sbin,${PATH})
+PATH:=			$(call prependpath, ${LOCALBASE}/bin,${PATH})
+export PATH
+
+export PREFIX?=		${LOCALBASE}
 
 DEPOT_SUBDIR?=		packages
 DEPOTBASE=		${LOCALBASE}/${DEPOT_SUBDIR}
@@ -238,5 +316,14 @@ PKGSRC_MAKE_ENV+=       MAKECONF=${MAKECONF}
 endif
 RECURSIVE_MAKE=         ${SETENV} ${PKGSRC_MAKE_ENV} ${MAKE}
 MAKEFLAGS+=		--no-print-directory
+
+# Make sure not to use exotic locales...
+export LANG=C
+export LC_COLLATE=C
+export LC_CTYPE=C
+export LC_MESSAGES=C
+export LC_MONETARY=C
+export LC_NUMERIC=C
+export LC_TIME=C
 
 endif # MK_ROBOTPKG_PREFS

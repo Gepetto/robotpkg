@@ -64,7 +64,7 @@ _ALLFILES=	$(filter-out ${NOFETCHFILES}, 				\
 			$(sort ${_DISTFILES} ${_PATCHFILES}))
 
 
-_BUILD_DEFS+=	_DISTFILES _PATCHFILES
+BUILD_DEFS+=	DISTFILES PATCHFILES
 
 # Set up _ORDERED_SITES to work out the exact list of sites for every file,
 # using the dynamic sites script, or ordering according to the master site
@@ -168,9 +168,8 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 	fi;								\
 	if ${TEST} -n ${HOMEPAGE}""; then				\
 		${ERROR_MSG} "See the following URL for more details:";	\
-		${ERROR_MSG} "    "${HOMEPAGE};			\
+		${ERROR_MSG} "    "${HOMEPAGE};				\
 	fi;								\
-	${TOUCH} ${_INTERACTIVE_COOKIE};				\
 	exit 1
   else
 	@${TEST} ! -f $@ || exit 0;					\

@@ -164,8 +164,7 @@ ifdef BATCH
  ifneq (,$(filter fetch,${INTERACTIVE_STAGE}))
 	@${ERROR_MSG} "The extract stage of this package requires user interaction"
 	@${ERROR_MSG} "Please extract manually with:"
-	@${ERROR_MSG} "    \"cd ${.CURDIR} && ${MAKE} extract\""
-	@${TOUCH} ${_INTERACTIVE_COOKIE}
+	@${ERROR_MSG} "    \"cd ${CURDIR} && ${MAKE} extract\""
 	@${FALSE}
  else
 	@${DO_NADA}

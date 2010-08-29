@@ -60,7 +60,7 @@ endif
 CONFIGURE_SCRIPT?=	./configure
 CONFIGURE_ENV+=		${ALL_ENV}
 CONFIGURE_ARGS+=	${CONFIGURE_EXTRA_ARGS} # from cmdline
-_BUILD_DEFS+=		CONFIGURE_ENV CONFIGURE_ARGS
+BUILD_DEFS+=		CONFIGURE_ARGS
 
 #.if defined(OVERRIDE_GNU_CONFIG_SCRIPTS)
 #.  include "${ROBOTPKG_DIR}/mk/configure/config-override.mk"
@@ -149,8 +149,7 @@ ifdef BATCH
  ifneq (,$(filter configure,${INTERACTIVE_STAGE}))
 	@${ERROR_MSG} "The configure stage of this package requires user interaction"
 	@${ERROR_MSG} "Please configure manually with:"
-	@${ERROR_MSG} "    \"cd ${.CURDIR} && ${MAKE} configure\""
-	@${TOUCH} ${_INTERACTIVE_COOKIE}
+	@${ERROR_MSG} "    \"cd ${CURDIR} && ${MAKE} configure\""
 	@${FALSE}
  else
 	@${DO_NADA}

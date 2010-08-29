@@ -1,4 +1,4 @@
-# $LAAS: metadata.mk 2010/03/10 16:47:32 mallet $
+# $LAAS: metadata.mk 2010/08/30 00:29:54 tho $
 #
 # Copyright (c) 2006-2010 LAAS/CNRS
 # All rights reserved.
@@ -53,21 +53,25 @@ ${PKG_DB_TMPDIR}:
 #
 $(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
-_BUILD_DATE_cmd=	${_CDATE_CMD} "+%Y-%m-%d %H:%M:%S %z"
+_BUILD_DEFS+=	$(if ${HOMEPAGE},HOMEPAGE) CATEGORIES MAINTAINER
+_BUILD_DEFS=	LOCALBASE PREFIX PKGPATH
+_BUILD_DEFS+=	LICENSE $(if ${RESTRICTED},RESTRICTED)
+_BUILD_DEFS+=	$(if ${NO_PUBLIC_BIN},NO_PUBLIC_BIN)
+_BUILD_DEFS+=	$(if ${NO_PUBLIC_SRC},NO_PUBLIC_SRC)
+_BUILD_DEFS+=	PKGTOOLS_VERSION
+_BUILD_DEFS+=	PKG_SYSCONFDIR PKGINFODIR PKGMANDIR
+_BUILD_DEFS+=	OPSYS OS_VERSION MACHINE_ARCH MACHINE_GNU_ARCH
+_BUILD_DEFS+=	CPPFLAGS CFLAGS FFLAGS LDFLAGS
+_BUILD_DEFS+=	${BUILD_DEFS}
+
 _METADATA_TARGETS+=	${PKG_DB_TMPDIR}/${_BUILD_INFO_FILE}
 
 ${PKG_DB_TMPDIR}/${_BUILD_INFO_FILE}: plist
 	${RUN}${MKDIR} $(dir $@); >$@.tmp;				\
   $(foreach _def_,${_BUILD_DEFS},					\
-	${ECHO} ${_def_}=${${_def_}} >> $@.tmp; 			\
+	${ECHO} ${_def_}=${${_def_}} >> $@.tmp;				\
   )									\
-	${ECHO} "PKGTOOLS_VERSION=${PKGTOOLS_VERSION}" >> $@.tmp;	\
-  $(if ${HOMEPAGE},							\
-	${ECHO} "HOMEPAGE=${HOMEPAGE}" >> $@.tmp;			\
-  )									\
-	${ECHO} "CATEGORIES=${CATEGORIES}" >> $@.tmp;			\
-	${ECHO} "MAINTAINER=${MAINTAINER}" >> $@.tmp;			\
-	${ECHO} "BUILD_DATE="`${_BUILD_DATE_cmd}` >> $@.tmp;		\
+	${_CDATE_CMD} "+BUILD_DATE=%Y-%m-%d %H:%M:%S %z" >>$@.tmp;	\
 	${SORT} $@.tmp > $@ && ${RM} -f $@.tmp
 
 

@@ -4,7 +4,6 @@
 ECHO_N?=	${ECHO} -n
 PKGLOCALEDIR?=	share
 
-CPP_PRECOMP_FLAGS?=	# unset
 EXPORT_SYMBOLS_LDFLAGS?=-Wl,-E	# add symbols to the dynamic symbol table
 
 _OPSYS_SHLIB_TYPE=	ELF	# shared lib type

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -177,10 +177,8 @@ endif
 
 ifdef PATCH_DEBUG
 _PATCH_DEBUG=		yes
-ECHO_PATCH_MSG?=	${STEP_MSG}
 else
 _PATCH_DEBUG=		no
-ECHO_PATCH_MSG?=	${SHCOMMENT}
 endif
 
 PATCH_STRIP?=		-p0
@@ -242,7 +240,7 @@ distribution-patch-message:
 do-distribution-patch:
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach i,${PATCHFILES},						\
-	${ECHO_PATCH_MSG} "Applying distribution patch ${i}";		\
+	${STEP_MSG} "Applying distribution patch ${i}";			\
 	cd ${_DISTDIR};							\
 	${PATCH_DIST_CAT.$(subst =,--,${i})} |				\
 	${PATCH} ${PATCH_DIST_ARGS.$(subst =,--,${i})} ||		\
@@ -308,7 +306,7 @@ do-pkgsrc-patch:
 			alg="$$1";					\
 			recorded="$$2";					\
 			calcsum=`${DIGEST} $$alg < $$i`; 		\
-			${ECHO_PATCH_MSG} "Verifying $$filename"	\
+			${STEP_MSG} "Verifying $$filename"		\
 				" (using digest algorithm $$alg)";	\
 			if ${TEST} "$$calcsum" != "$$recorded"; then	\
 				patch_warning "Ignoring patch file"	\
@@ -318,7 +316,7 @@ do-pkgsrc-patch:
 			fi;						\
 			;;						\
 		esac;							\
-		${ECHO_PATCH_MSG} "Applying pkgsrc patch $$i";		\
+		${STEP_MSG} "Applying pkgsrc patch $$i";		\
 		fuzz_flags=;						\
 		if ${PATCH} -v >/dev/null 2>&1; then			\
 			fuzz_flags=${PATCH_FUZZ_FACTOR};		\

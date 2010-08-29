@@ -1,4 +1,4 @@
-# $LAAS: cmake-configure.mk 2010/03/03 11:48:15 mallet $
+# $LAAS: cmake-configure.mk 2010/08/30 00:12:43 tho $
 #
 # Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
@@ -34,7 +34,7 @@ include ${ROBOTPKG_DIR}/mk/sysdep/cmake.mk
 
 CMAKE_ARGS?=#	empty
 CMAKE_ARG_PATH?=.
-_BUILD_DEFS+=	CMAKE_ARGS
+BUILD_DEFS+=	CMAKE_ARGS
 
 CMAKE_CONFIGURE_PREFIX?=${PREFIX}
 

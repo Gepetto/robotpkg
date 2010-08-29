@@ -1,6 +1,5 @@
-# $LAAS: depends.mk 2009/11/17 17:39:10 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -262,7 +261,6 @@ _DEPENDS_INSTALL_CMD=							\
 		fi;							\
 		cd $$dir;						\
 		${SETENV} ${PKGSRC_MAKE_ENV}				\
-			_PKGSRC_DEPS=", ${PKGNAME}${_PKGSRC_DEPS}"	\
 			PKGNAME_REQD="$$pattern"			\
 			${MAKE} _AUTOMATIC=yes $$target;		\
 		best=`${_PKG_BEST_EXISTS} "$$pattern" || ${TRUE}`;	\
