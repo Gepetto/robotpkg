@@ -46,7 +46,6 @@
 # "make update".
 #
 
-$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
@@ -65,9 +64,6 @@ endif
 _UPDATE_TARGETS+=	do-update
 _UPDATE_TARGETS+=	update-clean
 _UPDATE_TARGETS+=	update-done-message
-
-# run after the 'depends' barrier
-_UPDATE_TARGETS:=$(call barrier, depends, ${_UPDATE_TARGETS})
 
 ifeq (yes,$(call only-for,update,yes))	     # if we are asking for an update
   ifneq (yes,$(call exists,${_UPDATE_DIRS})) # not resuming a previous one
