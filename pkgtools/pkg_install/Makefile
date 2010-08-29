@@ -61,11 +61,13 @@ do-extract:
 	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
 # Reverse the order that update does things since we need pkg_delete
-# built before we can deinstall.
-do-update:
-	${RUN}${MAKE} build
-	${RUN}${MAKE} ${UPDATE_TARGET}
-	${RUN}${MAKE} clean
+# built before we can deinstall. Do the build in the sub make so that we don't
+# trigger a barrier for the update target.
+pre-update: pkg_build
+
+.PHONY: pkg_build
+pkg_build:
+	${RECURSIVE_MAKE} build
 
 # Remove any old pkg_install versions from database
 # To be on the safe side when upgrading, rebuild the pkgdb with new tools first

@@ -55,6 +55,7 @@ $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 # currently installed packages that depend upon this package.
 #
 _UPDATE_TARGETS=	update-message
+_UPDATE_TARGETS+=	pre-update
 _UPDATE_TARGETS+=	update-create-dlist
 ifneq (yes,$(call exists,${_UPDATE_DIRS}))
   ifeq (,$(filter replace,${UPDATE_TARGET}))
@@ -62,6 +63,7 @@ ifneq (yes,$(call exists,${_UPDATE_DIRS}))
   endif
 endif
 _UPDATE_TARGETS+=	do-update
+_UPDATE_TARGETS+=	post-update
 _UPDATE_TARGETS+=	update-clean
 _UPDATE_TARGETS+=	update-done-message
 
@@ -102,6 +104,12 @@ do%update: .FORCE
 	    ${PHASE_MSG} "Skipping nonexistent directory $${dir}"; 	\
 	  fi;								\
 	done 9<${_UPDATE_DIRS}
+
+.PHONY: pre-update post-update
+
+pre-update:
+
+post-update:
 
 
 .PHONY: update-message
