@@ -48,7 +48,7 @@ headings: ${_HEADINGS_TARGETS};
 
 # process a package Makefile
 do-headings-pkg-%: %
-	@								\
+	${RUN}								\
 	h=`${GIT} log --reverse --pretty='format:%aN on %aD' master '$^'\
 	   | ${AWK} 'NR==1 { for(i=1;i<NF-2;i++) printf $$i " ";	\
 		print $$i }'`; 						\
@@ -56,9 +56,9 @@ do-headings-pkg-%: %
 	  h=`${GIT} config user.name`" on ";				\
 	  h="$$h"`${_CDATE_CMD} '+%a, %e %b %Y'`;			\
 	};								\
-	printf	'# robotpkg $^ for:\t%s\n# Created:\t\t\t%s\n#\n'	\
+	printf	'# robotpkg $^ for:\t%s\n# Created:\t\t\t%s\n#\n\n'	\
 		"$(firstword ${CATEGORIES})/${PKGBASE}" "$$h" >$^.new;	\
-	${SED} <$^ >>$^.new -e '1,/^\([^#]\|$$\)/{/^\([^#]\|$$\)/p;d;}';\
+	${AWK} <$^ >>$^.new '!done && /^(#|$$)/ {next} {done=1; print}';\
 	${CMP} -s $^ $^.new || {					\
 		${MV} $^ $^~ && ${MV} $^.new $^;			\
 		${ECHO_MSG} "done headings for $^";			\
