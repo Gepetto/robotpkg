@@ -26,13 +26,9 @@ SYSTEM_PKG.NetBSD.pkg-config=		pkgsrc/devel/pkg-config
 
 # Define the proper pkg-config in environment
 #
-export PKG_CONFIG=$(call quote,${PREFIX.pkg-config}/bin/pkg-config)
-
-
-# Append our path in front of PKG_CONFIG_PATH
-#
-CONFIGURE_ENV+= PKG_CONFIG_PATH=$(call quote,$(call \
-		prependpath,${PREFIX}/lib/pkgconfig,${PKG_CONFIG_PATH}))
+export PKG_CONFIG=	${PREFIX.pkg-config}/bin/pkg-config
+export PKG_CONFIG_PATH:=\
+	$(call prependpath,${PREFIX}/lib/pkgconfig,${PKG_CONFIG_PATH})
 
 
 # insert the compiler's "rpath" flag into pkg-config data files so that

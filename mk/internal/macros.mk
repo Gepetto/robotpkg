@@ -1,4 +1,3 @@
-# $LAAS: macros.mk 2010/08/27 16:19:22 mallet $
 #
 # Copyright (c) 2006,2008-2010 LAAS/CNRS
 # All rights reserved.
@@ -82,7 +81,7 @@ endef
 # <target>
 #
 override define require-for
-$(only-for $1,$(call require,$2))
+$(if $(filter $1,${MAKECMDGOALS}),$(call require,$2))
 endef
 
 
@@ -120,13 +119,9 @@ endef
 #
 # Escape shell's meta-charaters in string
 #
-empty=
-space=$(empty) $(empty)
-tab=$(empty)	$(empty)
-quotechars= = & { } ( ) [ ] | * < > $ , ; ' ` " \ # for fontify: "`'
+override _quote:='#'
 override define quote
-$(subst $(tab),\$(tab),$(subst $(space),\$(space),$(call \
-	substs,$(quotechars),$(addprefix \,$(quotechars)),$1)))
+${_quote}$(subst ${_quote},'\${_quote}',$1)${_quote}
 endef
 
 
