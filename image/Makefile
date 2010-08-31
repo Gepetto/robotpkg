@@ -16,6 +16,7 @@ SUBDIR+=	sift
 SUBDIR+=	stereopixel-genom
 SUBDIR+=	viam-libs
 SUBDIR+=	viam-genom
+SUBDIR+=	viman-genom
 SUBDIR+=	visp
 
 include ../mk/robotpkg.subdir.mk
