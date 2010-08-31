@@ -14,7 +14,7 @@ ifeq (+,$(LIBORO_DEPEND_MK)) # ---------------------------------------------
 PREFER.liboro?=		robotpkg
 
 SYSTEM_SEARCH.liboro=\
-	include/oro.h	\
+	include/liboro/oro.h	\
 	lib/liboro.so
 
 DEPEND_USE+=		liboro
