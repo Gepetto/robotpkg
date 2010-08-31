@@ -13,6 +13,8 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://studierstube.icg.tu-graz.ac.at/handheld_ar/artoolkitplus.php
 COMMENT=	Physical markers localization in real time
 
+LICENSE= gnu-gpl-v2
+
 USE_LANGUAGES=	c++
 WRKSRC=		${WRKDIR}
 
