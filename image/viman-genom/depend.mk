@@ -27,8 +27,9 @@ ifeq (+,$(VIMAN-GENOM_DEPEND_MK)) # ----------------------------------
 PREFER.viman-genom?=	robotpkg
 
 SYSTEM_SEARCH.viman-genom=\
-	include/??	\
-	lib/??
+	include/viman/vimanStruct.h		\
+	lib/pkgconfig/viman.pc		\
+	bin/viman
 
 DEPEND_USE+=		viman-genom
 
