@@ -14,7 +14,7 @@ PREFER.softMotion-libs?=	robotpkg
 
 DEPEND_USE+=		softMotion-libs
 
-DEPEND_ABI.softMotion-libs?=	softMotion-libs>=0.1
+DEPEND_ABI.softMotion-libs?=	softMotion-libs>=2.0
 DEPEND_DIR.softMotion-libs?=	../../motion/softMotion-libs
 
 SYSTEM_SEARCH.softMotion-libs=\
