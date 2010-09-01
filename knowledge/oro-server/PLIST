@@ -1,4 +1,4 @@
-@comment Mon Mar 22 11:34:50 CET 2010
+@comment Wed Sep 1 12:29:56 CEST 2010
 bin/oro-server
 etc/oro-server/oro_bench.conf
 etc/oro-server/oro.conf
@@ -43,6 +43,7 @@ share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/EventRegistra
 share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/IllegalStatementException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InconsistentOntologyException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidEventDescriptorException.html
+share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidModelException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidPluginException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidQueryException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/NotComparableException.html
@@ -55,6 +56,7 @@ share/doc/oro-server/laas/openrobots/ontology/exceptions/EventRegistrationExcept
 share/doc/oro-server/laas/openrobots/ontology/exceptions/IllegalStatementException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/InconsistentOntologyException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidEventDescriptorException.html
+share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidModelException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidPluginException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidQueryException.html
 share/doc/oro-server/laas/openrobots/ontology/exceptions/NotComparableException.html
@@ -83,6 +85,16 @@ share/doc/oro-server/laas/openrobots/ontology/helpers/package-tree.html
 share/doc/oro-server/laas/openrobots/ontology/helpers/package-use.html
 share/doc/oro-server/laas/openrobots/ontology/helpers/Pair.html
 share/doc/oro-server/laas/openrobots/ontology/helpers/VerboseLevel.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/AgentModel.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/AgentWatcher.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/AlteriteModule.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/class-use/AgentModel.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/class-use/AgentWatcher.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/class-use/AlteriteModule.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/package-frame.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/package-summary.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/package-tree.html
+share/doc/oro-server/laas/openrobots/ontology/modules/alterite/package-use.html
 share/doc/oro-server/laas/openrobots/ontology/modules/base/BaseModule.html
 share/doc/oro-server/laas/openrobots/ontology/modules/base/class-use/BaseModule.html
 share/doc/oro-server/laas/openrobots/ontology/modules/base/package-frame.html
