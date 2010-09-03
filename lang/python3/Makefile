@@ -38,4 +38,4 @@ include ../../mk/robotpkg.mk
 # Create a link to the freshly installed python
 post-install:
 	${TEST} -f ${PREFIX}/bin/python ||\
-	{ cd ${PREFIX}/bin && ${LN} -sf python3.1 python }
+	( cd ${PREFIX}/bin && ${LN} -sf python3.1 python )
