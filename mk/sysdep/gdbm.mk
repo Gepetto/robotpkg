@@ -36,9 +36,9 @@ SYSTEM_SEARCH.gdbm=	\
 	'include/gdbm.h'	\
 	'lib/libgdbm.so'
 
-SYSTEM_PKG.Linux-fedora.tcl=	gdbm-devel
-SYSTEM_PKG.Linux-ubuntu.tcl=	libgdbm-dev
-SYSTEM_PKG.Linux-debian.tcl=	libgdbm-dev
+SYSTEM_PKG.Linux-fedora.gdbm=	gdbm-devel
+SYSTEM_PKG.Linux-ubuntu.gdbm=	libgdbm-dev
+SYSTEM_PKG.Linux-debian.gdbm=	libgdbm-dev
 
 endif # GDBM_DEPEND_MK ------------------------------------------------------
 
