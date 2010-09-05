@@ -1,6 +1,7 @@
 # robotpkg Makefile for:	motion/softMotion-libs
 # Created:			Xavier Broquere on Fri, 26 Feb 2010
 #
+
 DISTNAME=		softMotion-libs-${PKGVERSION}
 PKGVERSION=		2.0
 

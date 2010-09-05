@@ -1,18 +1,5 @@
-# Copyright (c) 2010 LAAS/CNRS
-# All rights reserved.
-#
-# Redistribution  and  use in source   and binary forms,  with or without
-# modification, are permitted provided that  the following conditions are
-# met:
-#
-#   1. Redistributions  of  source code must  retain  the above copyright
-#      notice, this list of conditions and the following disclaimer.
-#   2. Redistributions in binary form must  reproduce the above copyright
-#      notice,  this list of  conditions and  the following disclaimer in
-#      the  documentation   and/or  other  materials   provided with  the
-#      distribution.
-#
-#                                    Severin Lemaignan on Tue 31 Aug 2010
+# robotpkg depend.mk for:	motion/softMotion-libs
+# Created:			Xavier Broquere on Fri, 26 Feb 2010
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
@@ -27,8 +14,9 @@ ifeq (+,$(SOFTMOTION-LIBS_DEPEND_MK)) # ----------------------------------
 PREFER.softMotion-libs?=	robotpkg
 
 SYSTEM_SEARCH.softMotion-libs=\
-	include/softMotion/softMotion.h \
-	lib/libsoftMotion.so
+	include/softMotion/softMotion.h 				\
+	'lib/pkgconfig/softMotion-libs.pc:/Version/s[^0-9.]//gp'	\
+	'lib/libsoftMotion.{a,so,dylib}'
 
 DEPEND_USE+=		softMotion-libs
 
