@@ -1,1 +1,5 @@
-GeNoM module for Motion Capputre, based on evart server
+A GenoM module that exports raw motion capture data, in the form of a list of
+objects and associated markers position. It gathers the data exported by EVa
+Real-Time (EVaRT) or Cortex proprietary software from Motion Analysis(tm) via
+an instance of the "evart-stream" server (net/evart-stream) running on the
+motion capture host.

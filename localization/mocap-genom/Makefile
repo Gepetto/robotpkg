@@ -1,5 +1,5 @@
-# robotpkg Makefile for:	hri/mocap-genom
-# Created:			Severin Lemaignan on Tue, 31 Aug 2010
+# robotpkg Makefile for:	localization/mocap-genom
+# Created:			Séverin Lemaignan on Wed, 1 Sep 2010
 #
 
 DISTNAME=		mocap-genom-1.1
@@ -8,7 +8,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=mocap-genom/}
 MASTER_REPOSITORY=	git ssh://trac/git/robots/mocap-genom
 
 MAINTAINER=		openrobots@laas.fr
-COMMENT=		GeNoM module for Motion Capture, based on evart server
+COMMENT=		GenoM module exporting raw motion capture data
 LICENSE=		isc
 
 
