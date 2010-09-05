@@ -1,1 +1,17 @@
-VIsion for MANipulation module
+viman is a GenoM module that does pattern-based marker detection (barcode
+style) and pose estimation.
+
+The detection is based on the ARToolKitPlus framework (version 2.1.1: the
+latest and definitive one). ARToolKitPlus detects the marker corners and
+IDs. The corner detection is refined and a 3D pose (position and orientation)
+is estimated thanks to OpenCV functions.
+
+Viman read images via the viam GenoM module (image/viam-genom). It can do
+either mono or stereo detection and pose estimation. For stereo-based
+detection, the marker pose is estimated by a triangulation if the marker is
+present in both images.
+
+Viman can localize several objects at the frame rate speed. Objects can be
+composed of several markers. Each object must be defined in an "object".cfg
+file. To load objects into the viman module, objects must be declared in a
+global configuration file. Those files must be stored in <prefix>/data/viman.
