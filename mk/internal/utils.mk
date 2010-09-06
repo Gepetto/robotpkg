@@ -232,8 +232,10 @@ show-depends-pkgpaths:
   $(foreach _pkg_,${DEPEND_USE},					\
     $(if $(filter ${_DEPENDS_TYPE},${DEPEND_METHOD.${_pkg_}}),		\
       $(if ${DEPEND_DIR.${_pkg_}},					\
-	${ECHO} $(subst ${ROBOTPKG_DIR}/,,$(realpath			\
+        $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
+	  ${ECHO} $(subst ${ROBOTPKG_DIR}/,,$(realpath			\
 		${DEPEND_DIR.${_pkg_}}));				\
+        )								\
       )									\
     )									\
   )
