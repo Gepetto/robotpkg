@@ -3,6 +3,7 @@
 #
 
 DISTNAME=	robotpkgdb-${PKGVERSION}
+PKGVERSION=	$(shell ${DATE} -u '+%Y%m%d')
 CATEGORIES=	pkgtools
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -34,9 +35,6 @@ SUBST_FILES.vars=       robotpkg_search
 SUBST_SED.vars=\
 	-e 's|@SQLITE@|${SQLITE3}|g'					\
 	-e 's|@ROBOTPKG_DB@|${PREFIX}/share/robotpkgdb/robotpkgdb.sqlite|g'
-
-include ../../mk/robotpkg.prefs.mk
-PKGVERSION:=	$(shell ${DATE} -u '+%Y%m%d')
 
 # output options
 PKG_OPTIONS_NONEMPTY_SETS=	output
