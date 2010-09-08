@@ -1,0 +1,49 @@
+Don't install javadoc since java is disabled in openvrml-libs
+
+--- doc/Makefile.in~	2010-05-28 17:59:14.000000000 +0200
++++ doc/Makefile.in	2010-09-09 00:25:48.000000000 +0200
+@@ -547,28 +547,28 @@
+                            -d javadoc \
+                            vrml vrml.field vrml.node
+ 
+-html-local: doxygen-html javadoc-html
++html-local: doxygen-html
+ 
+ installdirs-local:
+-	$(mkinstalldirs) $(DESTDIR)$(docdir)/manual \
+-                         $(DESTDIR)$(javadocdir)/resources \
+-                         $(DESTDIR)$(javadocdir)/vrml/node \
+-                         $(DESTDIR)$(javadocdir)/vrml/field
++	$(mkinstalldirs) $(DESTDIR)$(docdir)/manual
++#                        $(DESTDIR)$(javadocdir)/resources \
++#                        $(DESTDIR)$(javadocdir)/vrml/node \
++#                        $(DESTDIR)$(javadocdir)/vrml/field
+ 
+ install-data-local: installdirs-local
+ 	$(INSTALL_DATA) $(DOXYGEN_OUTPUT_FILES) $(CUSTOMIZED_IMAGES) \
+                         $(DESTDIR)$(docdir)/manual
+-	$(INSTALL_DATA) $(JAVADOC_FILES) \
+-                        $(DESTDIR)$(javadocdir)
+-	$(INSTALL_DATA) $(JAVADOC_RESOURCES_FILES) \
+-                        $(DESTDIR)$(javadocdir)/resources
+-	$(INSTALL_DATA) $(JAVADOC_VRML_FILES) \
+-                        $(DESTDIR)$(javadocdir)/vrml
+-	$(INSTALL_DATA) $(JAVADOC_VRML_FIELD_FILES) \
+-                        $(DESTDIR)$(javadocdir)/vrml/field
+-	$(INSTALL_DATA) $(JAVADOC_VRML_NODE_FILES) \
+-                        $(DESTDIR)$(javadocdir)/vrml/node
+-
++#	$(INSTALL_DATA) $(JAVADOC_FILES) \
++#                        $(DESTDIR)$(javadocdir)
++#	$(INSTALL_DATA) $(JAVADOC_RESOURCES_FILES) \
++#                        $(DESTDIR)$(javadocdir)/resources
++#	$(INSTALL_DATA) $(JAVADOC_VRML_FILES) \
++#                        $(DESTDIR)$(javadocdir)/vrml
++#	$(INSTALL_DATA) $(JAVADOC_VRML_FIELD_FILES) \
++#                        $(DESTDIR)$(javadocdir)/vrml/field
++#	$(INSTALL_DATA) $(JAVADOC_VRML_NODE_FILES) \
++#                        $(DESTDIR)$(javadocdir)/vrml/node
++#
+ uninstall-local:
+ 	rm -rf $(DESTDIR)$(docdir)/manual $(DESTDIR)$(javadocdir)
+ 

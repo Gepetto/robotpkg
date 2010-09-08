@@ -1,39 +1,24 @@
-# $LAAS: Makefile 2010/07/13 11:55:00 tmoulard $
-#
-# Copyright (c) 2010 LAAS/CNRS
-# All rights reserved.
-#
-# Permission to use, copy, modify, and distribute this software for any purpose
-# with or without   fee is hereby granted, provided   that the above  copyright
-# notice and this permission notice appear in all copies.
-#
-# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-# REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
-# AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
-# INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
-# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-# OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
-# PERFORMANCE OF THIS SOFTWARE.
-#
-#                                           Thomas Moulard on Tue Jul 13 2010
+# robotpkg Makefile for:	devel/openvrml-libs
+# Created:			Thomas Moulard on Wed, 8 Sep 2010
 #
 
-DISTNAME=		openvrml-0.18.6
-
+PKGVERSION=		0.18.6
+DISTNAME=		openvrml-${PKGVERSION}
+PKGNAME=		openvrml-libs-${PKGVERSION}
 CATEGORIES=		devel
-#MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=openvrml/openvrml/0.18.6/}
-MASTER_SITES=		http://downloads.sourceforge.net/project/openvrml/openvrml/0.18.6/
+MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=openvrml/}
 
-
-MAINTAINER=		openvrml-develop@lists.sourceforge.net
+MAINTAINER=		tmoulard@laas.fr
 HOMEPAGE=		http://www.openvrml.org
-COMMENT=		A free VRML/X3D runtime.
+COMMENT=		A free VRML/X3D runtime
+LICENSE=		gnu-lgpl-v3
 
 USE_LANGUAGES+=		c c++
+GNU_CONFIGURE=		yes
+DOXYGEN_PLIST_DIR=	share/doc/${DISTNAME}
 
-GNU_CONFIGURE=	yes
-
-# FIXME: For now, get rid of exotic/not so useful dependencies.
+# build libraries only.
+CONFIGURE_ARGS+=--disable-gecko-rpath
 CONFIGURE_ARGS+=--disable-script-node-javascript
 CONFIGURE_ARGS+=--disable-script-node-java
 CONFIGURE_ARGS+=--disable-xembed
@@ -41,4 +26,24 @@ CONFIGURE_ARGS+=--disable-player
 CONFIGURE_ARGS+=--disable-mozilla-plugin
 CONFIGURE_ARGS+=--disable-examples
 
+CONFIGURE_ARGS+=--enable-gl-renderer
+
+# get the right boost libraries suffix.
+CONFIGURE_ARGS+=BOOST_LIB_SUFFIX=${BOOST_LIB_SUFFIX}
+
+# fix detection of ltdl and boost. configure script searches in /usr only.
+CPPFLAGS+=$(addsuffix /include,$(addprefix -I,	\
+		$(sort ${PREFIX.libtool-ltdl} ${PREFIX.boost-headers})))
+LDFLAGS+=$(addsuffix /lib,$(addprefix -L,	\
+		$(sort ${PREFIX.libtool-ltdl} ${PREFIX.boost-libs})))
+
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
+include ../../mk/sysdep/libxml2.mk
+include ../../mk/sysdep/mesa.mk
+include ../../mk/sysdep/glu.mk
+include ../../mk/sysdep/libpng.mk
+include ../../mk/sysdep/libjpeg.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/libtool-ltdl.mk
 include ../../mk/robotpkg.mk
