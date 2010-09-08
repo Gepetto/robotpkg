@@ -1,18 +1,15 @@
-Correct kernel source location for Fedora systems. 
-
---- driver/Makefile.orig	2008-02-19 09:10:31.000000000 +0100
-+++ driver/Makefile	2008-12-31 11:16:21.316445000 +0100
-@@ -46,7 +46,8 @@
+--- driver/Makefile.orig	2010-06-16 23:37:49.000000000 +0200
++++ driver/Makefile	2010-09-08 09:54:43.381821000 +0200
+@@ -46,7 +46,7 @@
  #****************************************************************************
  # please modify only here if your kernel path is elsewhere located
  #
 -KERNEL_LOCATION = /usr/src/linux
-+#KERNEL_LOCATION = /usr/src/linux
-+KERNEL_LOCATION= /lib/modules/$(shell uname -r)/build
++KERNEL_LOCATION = /lib/modules/$(shell uname -r)/build
  
  #****************************************************************************
- # removed old kernel source path retrival for support of kernels < 2.2.18!
-@@ -79,7 +80,7 @@
+ # probe various standard kernel locations
+@@ -103,7 +103,7 @@
  #****************************************************************************
  # where the driver should be installed - change here for cross install
  #
@@ -21,47 +18,52 @@ Correct kernel source location for Fedora systems.
  
  #****************************************************************************
  # get extracted kernel VERSION and PATCHLEVEL for comparison
-@@ -214,8 +215,8 @@
+@@ -245,11 +245,11 @@
  #****************************************************************************
  # for local installation only: sometimes /etc/modprobe.conf.local is used
  #
--MODCONF = /etc/modprobe.conf
--MODINST = "install pcan /sbin/modprobe --ignore-install pcan; /usr/local/bin/pcan_make_devices 2"
+-MODCONF := $(shell if test -d /etc/modprobe.d ; then echo "/etc/modprobe.d/pcan" ; else echo "/etc/modules.conf.local" ; fi )
 +MODCONF = ${ROBOTPKG_BASE}/etc/modprobe.conf.sample
-+MODINST = "install pcan /sbin/modprobe --ignore-install pcan; ${ROBOTPKG_BASE}/bin/pcan_make_devices 2"
+ ifeq ($(UDEV), yes)
+ MODINST  = "install pcan /sbin/modprobe --ignore-install pcan"
+ else
+-MODINST  = "install pcan /sbin/modprobe --ignore-install pcan; /usr/local/bin/pcan_make_devices 2"
++MODINST  = "install pcan /sbin/modprobe --ignore-install pcan; ${ROBOTPKG_BASE}/bin/pcan_make_devices 2"
+ endif
  
  #****************************************************************************
- # what's the target
-@@ -262,7 +263,7 @@
+@@ -296,7 +296,7 @@
  # for local installation only: sometimes /etc/modules.conf.local is used
  #
- MODCONF = /etc/modules.conf
+ MODCONF = "/etc/modules.conf"
 -MODINST = "post-install pcan /usr/local/bin/pcan_make_devices 2"
 +MODINST = "post-install pcan ${ROBOTPKG_BASE}/bin/pcan_make_devices 2"
  
  #****************************************************************************
  # what's the target
-@@ -311,9 +312,9 @@
+@@ -345,10 +345,10 @@
  
  #********** this entry is reserved for root access only *********************
  install:
--	@if test -d $(INSTALL_LOCATION) ; then echo "info: $(INSTALL_LOCATION) exists."; else mkdir $(INSTALL_LOCATION); fi
-+	@if test -d $(INSTALL_LOCATION) ; then echo "info: $(INSTALL_LOCATION) exists."; else mkdir -p $(INSTALL_LOCATION); fi
- 	cp $(TARGET) $(INSTALL_LOCATION)/$(TARGET)
--	cp pcan_make_devices /usr/local/bin/pcan_make_devices
-+	cp pcan_make_devices ${ROBOTPKG_BASE}/bin/pcan_make_devices
- 	if test -z $(shell grep -l pcan $(MODCONF)); then\
- 		cp $(MODCONF) $(MODCONF)~;\
+-	@if test -d $(INSTALL_LOCATION) ; then echo "Info: $(INSTALL_LOCATION) exists."; else mkdir $(INSTALL_LOCATION); fi
++	@if test -d $(INSTALL_LOCATION) ; then echo "Info: $(INSTALL_LOCATION) exists."; else mkdir -p $(INSTALL_LOCATION); fi
+ 	@cp -f $(TARGET) $(INSTALL_LOCATION)/$(TARGET)
+-	@cp -f pcan_make_devices /usr/local/bin
+-	@chmod 744 /usr/local/bin/pcan_make_devices
++	@cp -f pcan_make_devices ${ROBOTPKG_BASE}/bin
++	@chmod 744 ${ROBOTPKG_BASE}/bin/pcan_make_devices
+ 	@if [ ! -f $(MODCONF) ] || test -z $(shell grep -ls pcan $(MODCONF)) ; then\
+ 		cp $(MODCONF) $(MODCONF)~ 2> /dev/NULL;\
  		echo ""                                               >> $(MODCONF);\
-@@ -323,9 +324,8 @@
- 		echo "# pcan - automatic made entry, end ----------"  >> $(MODCONF);\
- 		echo ""                                               >> $(MODCONF);\
+@@ -367,9 +367,8 @@
+ 	else\
+ 		echo "Info: No UDEV installation found.";\
  	fi
--	/sbin/depmod
--	cp pcan.h /usr/include/pcan.h
--	chmod 644 /usr/include/pcan.h
-+	cp pcan.h ${ROBOTPKG_BASE}/include/pcan.h
-+	chmod 644 ${ROBOTPKG_BASE}/include/pcan.h
+-	@/sbin/depmod
+-	@cp -f pcan.h /usr/include/pcan.h
+-	@chmod 644 /usr/include/pcan.h
++	@cp -f pcan.h ${ROBOTPKG_BASE}/include/pcan.h
++	@chmod 644 ${ROBOTPKG_BASE}/include/pcan.h
  
  #********** informations during build of driver *****************************
  .PHONY : message

@@ -1,7 +1,5 @@
-Install in ROBOTPKG_BASE
-
---- test/Makefile.orig	2007-08-08 09:40:31.000000000 +0200
-+++ test/Makefile	2008-12-31 10:59:39.656692000 +0100
+--- test/Makefile.orig	2010-02-14 23:41:17.000000000 +0100
++++ test/Makefile	2010-09-08 09:56:29.316613000 +0200
 @@ -63,9 +63,9 @@
  endif
  
@@ -13,19 +11,21 @@ Install in ROBOTPKG_BASE
 +  LDLIBS  = -L../lib -L/lib -L/usr/lib -L${ROBOTPKG_BASE}/lib
  endif
  
- ifneq ($(RT), NO_RT)
-@@ -112,10 +112,10 @@
- 	rm -f $(SRC)/*~ $(SRC)/*.o *~ $(TARGET1) $(TARGET2) $(TARGET3) $(TARGET4)
+ # enabling corss-compile from ../Makefile
+@@ -132,11 +132,11 @@
+ 	rm -f $(SRC)/*~ $(SRC)/*.o *~ $(TARGET1) $(TARGET2) $(TARGET3) $(TARGET4) $(TARGET5)
  	
  install:
 -	cp $(TARGET1) /usr/local/bin
 -	cp $(TARGET2) /usr/local/bin
 -	cp $(TARGET3) /usr/local/bin
 -	cp $(TARGET4) /usr/local/bin
+-	cp $(TARGET5) /usr/local/bin
 +	cp $(TARGET1) ${ROBOTPKG_BASE}/bin
 +	cp $(TARGET2) ${ROBOTPKG_BASE}/bin
 +	cp $(TARGET3) ${ROBOTPKG_BASE}/bin
 +	cp $(TARGET4) ${ROBOTPKG_BASE}/bin
++	cp $(TARGET5) ${ROBOTPKG_BASE}/bin
  
  
  

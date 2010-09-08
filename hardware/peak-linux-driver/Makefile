@@ -4,12 +4,14 @@
 
 DISTNAME=	peak-linux-driver.${VERSION}
 PKGNAME=	peak-linux-driver-${VERSION}
-VERSION=	6.7
+VERSION=	6.20
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.peak-system.com/fileadmin/media/linux/files/
 HOMEPAGE=	http://www.peak-system.com/fileadmin/media/linux/
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	Software Interface for PEAK-System CAN-Hardware.
+
+LICENSE=	gnu-gpl-v3
 
 WRKSRC=		${WRKDIR}/${PKGNAME}
 
