@@ -1,0 +1,13 @@
+@comment Wed Sep 8 17:35:28 CEST 2010
+include/hpp/util/assertion.hh
+include/hpp/util/config.hh
+include/hpp/util/debug.hh
+include/hpp/util/deprecated.hh
+include/hpp/util/exception.hh
+include/hpp/util/indent.hh
+include/hpp/util/portability.hh
+include/hpp/util/timer.hh
+include/hpp/util/version.hh
+lib/libhpp-util.so
+lib/libhpp-util.so.${PKGVERSION}
+lib/pkgconfig/hpp-util.pc
