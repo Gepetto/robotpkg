@@ -15,7 +15,7 @@ PREFER.openvrml-libs?=		robotpkg
 
 DEPEND_USE+=			openvrml-libs
 DEPEND_ABI.openvrml-libs?=	openvrml-libs>=0.18.6
-DEPEND_DIR.openvrml-libs?=	../../devel/openvrml
+DEPEND_DIR.openvrml-libs?=	../../graphics/openvrml-libs
 
 SYSTEM_SEARCH.openvrml-libs=\
 	include/openvrml/openvrml-common.h	\
