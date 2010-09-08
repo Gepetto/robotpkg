@@ -10,6 +10,7 @@ MASTER_SITES=		http://damien.douxchamps.net/ieee1394/coriander/archives/
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://damien.douxchamps.net/ieee1394/coriander/
 COMMENT=		Graphical user interface for controlling FireWire cameras
+LICENSE=		gnu-gpl-v2
 
 ONLY_FOR_PLATFORM=	Linux-%
 GNU_CONFIGURE=		yes
