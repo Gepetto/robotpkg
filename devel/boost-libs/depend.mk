@@ -29,6 +29,9 @@ DEPEND_DIR.boost-libs?=	../../devel/boost-libs
 
 DEPEND_METHOD.boost-libs?=	build
 
+BOOST_LIB_SUFFIX=\
+	$(findstring -mt,$(firstword ${SYSTEM_FILES.boost-libs}))
+
 endif # BOOST_LIBS_DEPEND_MK -----------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
