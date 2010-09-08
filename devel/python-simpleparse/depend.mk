@@ -28,7 +28,7 @@ PREFER.python-simpleparse?=	robotpkg
 DEPEND_USE+=			python-simpleparse
 
 DEPEND_ABI.python-simpleparse?=	python-simpleparse>=2.1.1
-DEPEND_DIR.python-simpleparse?=	../../wip/python-simpleparse
+DEPEND_DIR.python-simpleparse?=	../../devel/python-simpleparse
 
 #SYSTEM_PKG.Linux-fedora.libpng=
 SYSTEM_PKG.Linux-ubuntu.libpng=	python-simpleparse
