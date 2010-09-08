@@ -36,13 +36,12 @@ PKG_SUGGESTED_OPTIONS+=	hpp-util
 PKG_OPTION_DESCR.hpp-util=	Trigger a dependency to hpp-util
 define PKG_OPTION_SET.hpp-util
   CONFIGURE_ARGS+=	--enable-hpp-util
-  include ../../devel/hpp/Makefile.common
   include ../../devel/hpp-util/depend.mk
 endef
 
 # --------------------------------------------------------------------
 
-include ../../devel/hpp/Makefile.common
+include ../../meta-pkgs/hpp/Makefile.common
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
