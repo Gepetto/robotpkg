@@ -1,12 +1,12 @@
 # robotpkg Makefile for:	net/libtclserv_client
 # Created:			Arnaud Degroote on Sun, 22 Aug 2010
 #
-DISTNAME=	libtclserv_client-0.1
+DISTNAME=	libtclserv_client-0.2
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=libtclserv_client/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/libtclserv_client
 
-MAINTAINER=	openrobots@laas.fr
+MAINTAINER=	adegroot@laas.fr
 COMMENT=	Run-time for GeNoM module tclserv client
 LICENSE=    2-clause-bsd
 
