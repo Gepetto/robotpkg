@@ -67,6 +67,7 @@ ifeq (,$(_PY_REQUIRED))
   _PY_REQUIRED:= >=2.4<3
 endif
 
+
 # Include the depend.mk corresponding to the requirements
 ifeq (yes,$(shell ${PKG_ADMIN} pmatch 'x${_PY_REQUIRED}' 'x-3' && echo yes))
   include ${ROBOTPKG_DIR}/lang/python3/depend.mk
@@ -75,14 +76,24 @@ else
 endif
 
 # Define some variables
-PYTHON_VERSION=$(shell ${PYTHON} -c 'import distutils.sysconfig;\
+ifneq (,${PYTHON})
+  PYTHON_VERSION=$(shell ${PYTHON} -c 'import distutils.sysconfig;\
 	print(distutils.sysconfig.get_config_var("VERSION"))')
-PYTHON_INCLUDE=	$(shell ${PYTHON} -c 'import distutils.sysconfig;\
+  PYTHON_INCLUDE=$(shell ${PYTHON} -c 'import distutils.sysconfig;\
 	print(distutils.sysconfig.get_python_inc(0))')
-PYTHON_LIB=$(wildcard $(shell ${PYTHON} -c 'import distutils.sysconfig;\
+  PYTHON_LIB=$(wildcard $(shell ${PYTHON} -c 'import distutils.sysconfig;\
 	print(distutils.sysconfig.EXEC_PREFIX)')/lib/libpython${PYTHON_VERSION}.*)
-PYTHON_SITELIB=	$(shell ${PYTHON} -c 'import distutils.sysconfig;\
+  PYTHON_SITELIB=$(shell ${PYTHON} -c 'import distutils.sysconfig;\
 	print(distutils.sysconfig.get_python_lib(0,0,""))')
+  PYTHONPATH:=$(call prependpaths,${PREFIX}/${PYTHON_SITELIB},${PYTHONPATH})
+
+  PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
+  PRINT_PLIST_AWK_SUBST+=\
+	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
+endif
+
+# Setup environment
+MAKE_ENV+=	PYTHONPATH=$(call quote,${PYTHONPATH})
 
 # Add extra replacement in PLISTs
 PLIST_SUBST+=\
