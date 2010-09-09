@@ -1,6 +1,6 @@
-# $LAAS: sites.mk 2009/01/20 18:37:53 mallet $
+# $LAAS: sites.mk 2010/09/09 14:58:24 mallet $
 #
-# Copyright (c) 2006-2007,2009 LAAS/CNRS
+# Copyright (c) 2006-2007,2009-2010 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -53,21 +53,7 @@ MASTER_REPOSITORY_JRL+=	\
 	git ssh://${JRL_GIT_USER:=@}softs.laas.fr/git/jrl/
 
 MASTER_SITE_SOURCEFORGE+=	\
-	http://easynews.dl.sourceforge.net/sourceforge/ \
-	http://heanet.dl.sourceforge.net/sourceforge/ \
-	http://internap.dl.sourceforge.net/sourceforge/ \
-	http://jaist.dl.sourceforge.net/sourceforge/ \
-	http://keihanna.dl.sourceforge.net/sourceforge/ \
-	http://kent.dl.sourceforge.net/sourceforge/ \
-	http://mesh.dl.sourceforge.net/sourceforge/ \
-	http://nchc.dl.sourceforge.net/sourceforge/ \
-	http://optusnet.dl.sourceforge.net/sourceforge/ \
-	http://ovh.dl.sourceforge.net/sourceforge/ \
-	http://puzzle.dl.sourceforge.net/sourceforge/ \
-	http://surfnet.dl.sourceforge.net/sourceforge/ \
-	http://switch.dl.sourceforge.net/sourceforge/ \
-	http://ufpr.dl.sourceforge.net/sourceforge/ \
-	http://voxel.dl.sourceforge.net/sourceforge
+	http://downloads.sourceforge.net/sourceforge/
 
 MASTER_SITE_GNU+=       \
 	http://ftp.gnu.org/pub/gnu/ \
