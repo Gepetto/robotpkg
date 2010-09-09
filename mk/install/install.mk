@@ -62,6 +62,7 @@ endif
 ifeq (yes,$(call exists,${_COOKIE.install}))
   ${_COOKIE.install}:;
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
