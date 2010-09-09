@@ -1,6 +1,6 @@
 SHA1 (peak-linux-driver.6.20.tar.gz) = 58a02a3314fdb07b00379daf49540d4836a283bd
 RMD160 (peak-linux-driver.6.20.tar.gz) = 804262ccc17404c047799e4148e7f7a001c6ea33
 Size (peak-linux-driver.6.20.tar.gz) = 800913 bytes
-SHA1 (patch-aa) = bb6661268293d0c77ecaa9bde67e07334537ce6d
-SHA1 (patch-ab) = f2c6a72957acb9dfab1b69c4a7441ffe29c3f88b
-SHA1 (patch-ac) = 51b0e91743b6d07a13caa343c956f5774ed4800f
+SHA1 (patch-aa) = d3b2d40e3e1c23918e1263d2044ffe517c0e70eb
+SHA1 (patch-ab) = 10075cae4e6189bc1f007d8e7eb10fbac7dcce5e
+SHA1 (patch-ac) = 73bb0a77180079ba8ea2cd7a770e04416b344687

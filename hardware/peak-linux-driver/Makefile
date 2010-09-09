@@ -16,14 +16,14 @@ LICENSE=	gnu-gpl-v3
 WRKSRC=		${WRKDIR}/${PKGNAME}
 
 post-install:	${WRKSRC}/pcan.pc
-	${INSTALL_DATA} ${WRKSRC}/pcan.pc ${ROBOTPKG_BASE}/lib/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/pcan.pc ${PREFIX}/lib/pkgconfig
 
 BUILD_MAKE_FLAGS=	NET=NO_NETDEV_SUPPORT
 
 ${WRKSRC}/pcan.pc:
-	@${SED} -e 's|@prefix@|${ROBOTPKG_BASE}|' \
-		-e 's|@libdir@|${ROBOTPKG_BASE}/lib|' \
-		-e 's|@includedir@|${ROBOTPKG_BASE}/include|' \
+	@${SED} -e 's|@prefix@|${PREFIX}|' \
+		-e 's|@libdir@|${PREFIX}/lib|' \
+		-e 's|@includedir@|${PREFIX}/include|' \
 		-e 's|@PACKAGE_VERSION@|${VERSION}|' \
 		< ${FILESDIR}/pcan.pc.in > ${WRKSRC}/pcan.pc
 

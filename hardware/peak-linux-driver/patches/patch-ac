@@ -5,10 +5,10 @@
  
  ifeq ($(HOSTTYPE),x86_64)
 -  LDLIBS  = -L../lib -L/lib64 -L/usr/lib64 -L/usr/local/lib64
-+  LDLIBS  = -L../lib -L/lib64 -L/usr/lib64 -L${ROBOTPKG_BASE}/lib64
++  LDLIBS  = -L../lib -L/lib64 -L/usr/lib64 -L${PREFIX}/lib64
  else
 -  LDLIBS  = -L../lib -L/lib -L/usr/lib -L/usr/local/lib
-+  LDLIBS  = -L../lib -L/lib -L/usr/lib -L${ROBOTPKG_BASE}/lib
++  LDLIBS  = -L../lib -L/lib -L/usr/lib -L${PREFIX}/lib
  endif
  
  # enabling corss-compile from ../Makefile
@@ -21,11 +21,11 @@
 -	cp $(TARGET3) /usr/local/bin
 -	cp $(TARGET4) /usr/local/bin
 -	cp $(TARGET5) /usr/local/bin
-+	cp $(TARGET1) ${ROBOTPKG_BASE}/bin
-+	cp $(TARGET2) ${ROBOTPKG_BASE}/bin
-+	cp $(TARGET3) ${ROBOTPKG_BASE}/bin
-+	cp $(TARGET4) ${ROBOTPKG_BASE}/bin
-+	cp $(TARGET5) ${ROBOTPKG_BASE}/bin
++	cp $(TARGET1) ${PREFIX}/bin
++	cp $(TARGET2) ${PREFIX}/bin
++	cp $(TARGET3) ${PREFIX}/bin
++	cp $(TARGET4) ${PREFIX}/bin
++	cp $(TARGET5) ${PREFIX}/bin
  
  
  

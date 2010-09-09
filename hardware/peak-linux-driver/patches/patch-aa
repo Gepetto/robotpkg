@@ -14,7 +14,7 @@
  # where the driver should be installed - change here for cross install
  #
 -INSTALL_LOCATION = /lib/modules/$(VERSION)/misc
-+INSTALL_LOCATION = ${ROBOTPKG_BASE}/lib/modules/$(VERSION)/
++INSTALL_LOCATION = ${PREFIX}/lib/modules/$(VERSION)/
  
  #****************************************************************************
  # get extracted kernel VERSION and PATCHLEVEL for comparison
@@ -23,12 +23,12 @@
  # for local installation only: sometimes /etc/modprobe.conf.local is used
  #
 -MODCONF := $(shell if test -d /etc/modprobe.d ; then echo "/etc/modprobe.d/pcan" ; else echo "/etc/modules.conf.local" ; fi )
-+MODCONF = ${ROBOTPKG_BASE}/etc/modprobe.conf.sample
++MODCONF = ${PREFIX}/etc/modprobe.conf.sample
  ifeq ($(UDEV), yes)
  MODINST  = "install pcan /sbin/modprobe --ignore-install pcan"
  else
 -MODINST  = "install pcan /sbin/modprobe --ignore-install pcan; /usr/local/bin/pcan_make_devices 2"
-+MODINST  = "install pcan /sbin/modprobe --ignore-install pcan; ${ROBOTPKG_BASE}/bin/pcan_make_devices 2"
++MODINST  = "install pcan /sbin/modprobe --ignore-install pcan; ${PREFIX}/bin/pcan_make_devices 2"
  endif
  
  #****************************************************************************
@@ -37,7 +37,7 @@
  #
  MODCONF = "/etc/modules.conf"
 -MODINST = "post-install pcan /usr/local/bin/pcan_make_devices 2"
-+MODINST = "post-install pcan ${ROBOTPKG_BASE}/bin/pcan_make_devices 2"
++MODINST = "post-install pcan ${PREFIX}/bin/pcan_make_devices 2"
  
  #****************************************************************************
  # what's the target
@@ -50,8 +50,8 @@
  	@cp -f $(TARGET) $(INSTALL_LOCATION)/$(TARGET)
 -	@cp -f pcan_make_devices /usr/local/bin
 -	@chmod 744 /usr/local/bin/pcan_make_devices
-+	@cp -f pcan_make_devices ${ROBOTPKG_BASE}/bin
-+	@chmod 744 ${ROBOTPKG_BASE}/bin/pcan_make_devices
++	@cp -f pcan_make_devices ${PREFIX}/bin
++	@chmod 744 ${PREFIX}/bin/pcan_make_devices
  	@if [ ! -f $(MODCONF) ] || test -z $(shell grep -ls pcan $(MODCONF)) ; then\
  		cp $(MODCONF) $(MODCONF)~ 2> /dev/NULL;\
  		echo ""                                               >> $(MODCONF);\
@@ -62,8 +62,8 @@
 -	@/sbin/depmod
 -	@cp -f pcan.h /usr/include/pcan.h
 -	@chmod 644 /usr/include/pcan.h
-+	@cp -f pcan.h ${ROBOTPKG_BASE}/include/pcan.h
-+	@chmod 644 ${ROBOTPKG_BASE}/include/pcan.h
++	@cp -f pcan.h ${PREFIX}/include/pcan.h
++	@chmod 644 ${PREFIX}/include/pcan.h
  
  #********** informations during build of driver *****************************
  .PHONY : message
