@@ -4,9 +4,9 @@
 
 PKGNAME=		GPSNovatel-${VERSION}
 DISTNAME=		gpsnovatel-${VERSION}
-VERSION=		1.3
+VERSION=		1.4
 CATEGORIES=		hardware
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=GPSNovatel-libs/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/GPSNovatel-libs
 
 MAINTAINER=		openrobots@laas.fr
@@ -15,6 +15,7 @@ COMMENT=		Driver and interface for GPS Novatel
 
 GNU_CONFIGURE=		yes
 
+include ../../devel/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/mkdep/depend.mk
