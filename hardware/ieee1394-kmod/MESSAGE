@@ -1,0 +1,7 @@
+To finish installing the kernel modules run:
+
+sudo cp ${PREFIX}/lib/modules/`uname -r`/kernel/drivers/char/ieee1394.ko /lib/modules/`uname -r`/kernel/drivers/char/
+sudo cp ${PREFIX}/lib/modules/`uname -r`/kernel/drivers/char/ohci1394.ko /lib/modules/`uname -r`/kernel/drivers/char/
+sudo cp ${PREFIX}/lib/modules/`uname -r`/kernel/drivers/char/raw1394.ko /lib/modules/`uname -r`/kernel/drivers/char/
+sudo cp ${PREFIX}/lib/modules/`uname -r`/kernel/drivers/char/video1394.ko /lib/modules/`uname -r`/kernel/drivers/char/
+sudo depmod -a

@@ -13,6 +13,7 @@ SUBDIR+=	force-genom
 SUBDIR+=	gbx-hokuyo-aist
 SUBDIR+=	gyroKVH1000
 SUBDIR+=	gyroKVH5000
+SUBDIR+=	ieee1394-kmod
 SUBDIR+=	jidogrip-libs
 SUBDIR+=	jr3-kmod
 SUBDIR+=	libftdi
