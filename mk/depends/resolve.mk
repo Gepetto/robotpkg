@@ -254,3 +254,13 @@ ifneq (,$(filter pkg-config,${DEPEND_USE}))
 		${PREFIX.${_pkg_}}/,${DEPEND_PKG_CONFIG.${_pkg_}})),	\
 	${PKG_CONFIG_PATH})
 endif
+
+
+# Collect DEPEND_PYTHONPATH.<pkg>
+#
+ifneq (,$(filter python,${USE_LANGUAGES}))
+  PYTHONPATH:=$(call prependpaths,					\
+	$(foreach _pkg_,${DEPEND_USE},					\
+		$(realpath ${DEPEND_PYTHONPATH.${_pkg_}})),		\
+	${PYTHONPATH})
+endif
