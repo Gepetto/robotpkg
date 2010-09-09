@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Tue, 13 Jan 2009
 #
 
+PKGVERSION=		$(shell ${DATE} '+%Y%m%d')
 DISTNAME=               robotpkg-guide-${PKGVERSION}
 CATEGORIES=             doc
 MASTER_SITES=#		empty
@@ -12,9 +13,6 @@ HOMEPAGE=               http://www.laas.fr/~mallet/robotpkg
 COMMENT=                A guide to robotpkg
 LICENSE=		isc
 
-include ../../mk/robotpkg.prefs.mk
-
-PKGVERSION:=		$(shell ${DATE} '+%Y%m%d')
 DIST_SUBDIR=            ${PKGBASE}
 USE_LANGUAGES=#		empty
 
