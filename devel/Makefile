@@ -26,6 +26,7 @@ SUBDIR+=	mkdep
 SUBDIR+=	omniORB
 SUBDIR+=	omniORBpy
 SUBDIR+=	pocolibs
+SUBDIR+=	py-simpleparse
 SUBDIR+=	sun-java3d
 SUBDIR+=	sun-jmf
 
