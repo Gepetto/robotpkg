@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		GPS-genom-${VERSION}
-VERSION=		1.1
+VERSION=		1.2
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/GPS-genom
