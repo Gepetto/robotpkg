@@ -1,0 +1,5 @@
+MOXA Smartio/Industio family multiport serial driver.
+
+This code is loosely based on the 1.8 moxa driver which is based on
+Linux serial driver, written by Linus Torvalds, Theodore T'so and
+others.

@@ -17,6 +17,7 @@ SUBDIR+=	ieee1394-kmod
 SUBDIR+=	jidogrip-libs
 SUBDIR+=	jr3-kmod
 SUBDIR+=	libftdi
+SUBDIR+=	moxa-kmod
 SUBDIR+=	mouse3d-genom
 SUBDIR+=	pa10-kmod
 SUBDIR+=	pa10-libs

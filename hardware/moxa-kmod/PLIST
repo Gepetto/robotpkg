@@ -1,0 +1,2 @@
+@comment Thu Sep 9 18:38:03 CEST 2010
+lib/modules/${OS_VERSION}/kernel/drivers/char/mxser.ko

@@ -1,0 +1,4 @@
+To finish installing the kernel module run:
+
+sudo cp ${PREFIX}/lib/modules/`uname -r`/kernel/drivers/char/mxser.ko /lib/modules/`uname -r`/kernel/drivers/char/
+sudo depmod -a

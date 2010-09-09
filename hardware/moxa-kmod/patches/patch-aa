@@ -1,0 +1,53 @@
+
+    Add 'baudbase' hack to handle Moxa boards modified by neobotix.
+    
+    They changed the quartz from 921600Hz to 1000000Hz to make it
+    possible to get a 500000baud speed which is the Sick's maximum
+    available speed.
+    Introduce a new module parameter, 'baudbase' which should be set
+    to the quartz freqency (ie 1000000 in the Jidowanki case).
+    Based on an old version of the code by Neobotix.
+
+--- mxser.c.orig	2010-08-27 01:44:38.000000000 +0200
++++ mxser.c	2010-09-09 18:24:51.116954067 +0200
+@@ -178,6 +178,7 @@
+ 
+ static unsigned long ioaddr[MXSER_BOARDS];
+ static int ttymajor = MXSERMAJOR;
++static int baudbase =- -1;
+ 
+ /* Variables for insmod */
+ 
+@@ -186,6 +187,7 @@
+ module_param_array(ioaddr, ulong, NULL, 0);
+ MODULE_PARM_DESC(ioaddr, "ISA io addresses to look for a moxa board");
+ module_param(ttymajor, int, 0);
++module_param(baudbase, int, 0);
+ MODULE_LICENSE("GPL");
+ 
+ struct mxser_log {
+@@ -2478,12 +2480,19 @@
+ 	else
+ 		brd->vector_mask = 0x000F;
+ 	for (i = 7, bits = 0x0100; i >= 0; i--, bits <<= 1) {
+-		if (regs[12] & bits) {
+-			brd->ports[i].baud_base = 921600;
+-			brd->ports[i].max_baud = 921600;
++		if (baudbase == -1) {
++			if (regs[12] & bits) {
++				brd->ports[i].baud_base = 921600;
++				brd->ports[i].max_baud = 921600;
++			} else {
++				brd->ports[i].baud_base = 115200;
++				brd->ports[i].max_baud = 115200;
++			}
+ 		} else {
+-			brd->ports[i].baud_base = 115200;
+-			brd->ports[i].max_baud = 115200;
++			printk(KERN_INFO "setting baudbase[%d] %d\n",
++			    i, baudbase);
++			brd->ports[i].baud_base = baudbase;
++			brd->ports[i].max_baud = baudbase;
+ 		}
+ 	}
+ 	scratch2 = inb(cap + UART_LCR) & (~UART_LCR_DLAB);

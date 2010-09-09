@@ -1,0 +1,17 @@
+
+    set /dev/ entries name back to /dev/ttyM[0-4].
+    
+    For some reason it changed in the linux kernel, but since we're maintaining
+    local changes anyways, do not bother our users with this change.
+
+--- mxser.c.orig	2010-09-09 18:29:34.812953355 +0200
++++ mxser.c	2010-09-09 18:28:53.073954013 +0200
+@@ -2671,7 +2671,7 @@
+ 	/* Initialize the tty_driver structure */
+ 	mxvar_sdriver->owner = THIS_MODULE;
+ 	mxvar_sdriver->magic = TTY_DRIVER_MAGIC;
+-	mxvar_sdriver->name = "ttyMI";
++	mxvar_sdriver->name = "ttyM";
+ 	mxvar_sdriver->major = ttymajor;
+ 	mxvar_sdriver->minor_start = 0;
+ 	mxvar_sdriver->num = MXSER_PORTS + 1;
