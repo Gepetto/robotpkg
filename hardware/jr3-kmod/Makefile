@@ -11,7 +11,7 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Kernel driver for the JR3 force sensor PCI acquisition card
 
 KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/char
-KMOD=		contec_dio.ko
+KMOD=		jr3.ko
 INSTALLATION_DIRS+=${KMOD_DIR}
 
 include ../../mk/sysdep/sudo.mk
