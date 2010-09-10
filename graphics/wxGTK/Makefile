@@ -10,6 +10,7 @@ EXTRACT_SUFX=		.tar.bz2
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.wxwidgets.org/
 COMMENT=		GTK-based implementation of the wxWidgets GUI library
+LICENSE=		gnu-lgpl-v2
 
 PATCHFILES=		${DISTNAME}-libtool.diff2.bz2
 PATCH_SITES=		${MASTER_SITE_NETBSD_PKGSRC}
