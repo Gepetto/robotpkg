@@ -11,6 +11,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Java bindings for YARP
+LICENSE=		gnu-gpl-v2
 
 USE_LANGUAGES+=		c c++
 
