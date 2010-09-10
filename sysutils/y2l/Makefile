@@ -11,6 +11,7 @@ MAINTAINER=		openrobots@laas.fr
 CATEGORIES=		sysutils
 HOMEPAGE=		http://www.alchar.org/~aedil/Projects/y2l.html
 MASTER_SITES=		http://y2l.sourceforge.net/download/
+LICENSE=		artistic
 
 WRKSRC=			${WRKDIR}/${PKGNAME}
 NO_CONFIGURE=		yes
