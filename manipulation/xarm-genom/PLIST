@@ -1,31 +1,37 @@
-@comment Mon Jul 27 13:51:40 CEST 2009
-bin/xarm
-bin/xarmSendInitRqst
-bin/xarmTest
-include/xarm/codels/joystickStruct.h
-include/xarm/codels/matrixStruct.h
-include/xarm/codels/queueStruct.h
-include/xarm/codels/tpStruct.h
+@comment Fri Sep 10 12:28:25 CEST 2010
+${PLIST.noapi}bin/xarm
+${PLIST.noapi}bin/xarmSendInitRqst
+${PLIST.noapi}bin/xarmTest
+${PLIST.openprs}include/xarm/server/openprs/xarmDecodeOpenprs.h
+${PLIST.openprs}include/xarm/server/openprs/xarmEncodeOpenprs.h
+${PLIST.openprs}include/xarm/server/openprs/xarmRequestsOpenprsProto.h
+${PLIST.tclserv_client}include/xarm/server/tclservClient/xarmTclservClientDecode.h
+${PLIST.tclserv_client}include/xarm/server/tclservClient/xarmTclservClientEncode.h
+${PLIST.tclserv_client}include/xarm/server/tclservClient/xarmTclservClientMsgLib.h
 include/xarm/server/xarmEndian.h
 include/xarm/server/xarmError.h
-include/xarm/server/xarmMsgLib.h
+${PLIST.noapi}include/xarm/server/xarmMsgLib.h
 include/xarm/server/xarmPosterLib.h
 include/xarm/server/xarmPosterLibStruct.h
-include/xarm/server/xarmPosterReadLibProto.h
-include/xarm/server/xarmPosterShowLib.h
-include/xarm/server/xarmPosterWriteLibProto.h
-include/xarm/server/xarmPosterXMLLib.h
+${PLIST.noapi}include/xarm/server/xarmPosterReadLibProto.h
+${PLIST.noapi}include/xarm/server/xarmPosterShowLib.h
+${PLIST.noapi}include/xarm/server/xarmPosterWriteLibProto.h
+${PLIST.noapi}include/xarm/server/xarmPosterXMLLib.h
 include/xarm/server/xarmPrint.h
 include/xarm/server/xarmPrintXML.h
 include/xarm/server/xarmScan.h
 include/xarm/server/xarmType.h
-include/xarm/xarmConst.h
 include/xarm/xarmStruct.h
 lib/libxarmClient.la
+${PLIST.openprs}lib/openprs/libxarmOpenprs.la
+${PLIST.openprs}lib/pkgconfig/xarm-oprs.pc
 lib/pkgconfig/xarm.pc
-lib/tclserv/libxarmTclServ.la
+${PLIST.tclserv_client}lib/pkgconfig/xarm-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libxarmTclservClient.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libxarmTclServ.la
 share/modules/gen/xarm.gen
-share/modules/tcl/xarmClient.tcl
-@dirrm include/xarm/server
-@dirrm include/xarm/codels
-@dirrm include/xarm
+${PLIST.openprs}share/modules/openprs/xarmOpenprs.inc
+${PLIST.openprs}share/modules/openprs/xarmOpenprs.opf
+${PLIST.openprs}share/modules/openprs/xarmOpenprs.sym
+${PLIST.tcl}share/modules/tcl/xarmClient.tcl
+${PLIST.openprs}@dirrm include/xarm/server/openprs
