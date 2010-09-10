@@ -9,6 +9,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=libraw1394/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://sourceforge.net/projects/libraw1394/
 COMMENT=		Provide access to the raw IEEE1394 bus
+LICENSE=		gnu-lgpl-v2.1
 
 ONLY_FOR_PLATFORM=	Linux-%
 
