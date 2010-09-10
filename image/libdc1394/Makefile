@@ -9,6 +9,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=libdc1394/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://sourceforge.net/projects/libdc1394/
 COMMENT=		Programming interface to control IEEE 1394 based cameras
+LICENSE=		gnu-lgpl-v2.1
 
 ONLY_FOR_PLATFORM=	Linux-% Darwin-%-i386
 
