@@ -1,34 +1,37 @@
-@comment Fri Mar 20 17:30:47 CET 2009
-bin/mouse3d
-bin/mouse3dSendInitRqst
-bin/mouse3dTest
-include/mouse3d/mouse3dStruct.h
+@comment Fri Sep 10 12:28:25 CEST 2010
+${PLIST.noapi}bin/mouse3d
+${PLIST.noapi}bin/mouse3dSendInitRqst
+${PLIST.noapi}bin/mouse3dTest
+${PLIST.openprs}include/mouse3d/server/openprs/mouse3dDecodeOpenprs.h
+${PLIST.openprs}include/mouse3d/server/openprs/mouse3dEncodeOpenprs.h
+${PLIST.openprs}include/mouse3d/server/openprs/mouse3dRequestsOpenprsProto.h
+${PLIST.tclserv_client}include/mouse3d/server/tclservClient/mouse3dTclservClientDecode.h
+${PLIST.tclserv_client}include/mouse3d/server/tclservClient/mouse3dTclservClientEncode.h
+${PLIST.tclserv_client}include/mouse3d/server/tclservClient/mouse3dTclservClientMsgLib.h
 include/mouse3d/server/mouse3dEndian.h
 include/mouse3d/server/mouse3dError.h
-include/mouse3d/server/mouse3dMsgLib.h
+${PLIST.noapi}include/mouse3d/server/mouse3dMsgLib.h
 include/mouse3d/server/mouse3dPosterLib.h
 include/mouse3d/server/mouse3dPosterLibStruct.h
-include/mouse3d/server/mouse3dPosterReadLibProto.h
-include/mouse3d/server/mouse3dPosterShowLib.h
-include/mouse3d/server/mouse3dPosterWriteLibProto.h
-include/mouse3d/server/mouse3dPosterXMLLib.h
+${PLIST.noapi}include/mouse3d/server/mouse3dPosterReadLibProto.h
+${PLIST.noapi}include/mouse3d/server/mouse3dPosterShowLib.h
+${PLIST.noapi}include/mouse3d/server/mouse3dPosterWriteLibProto.h
+${PLIST.noapi}include/mouse3d/server/mouse3dPosterXMLLib.h
 include/mouse3d/server/mouse3dPrint.h
 include/mouse3d/server/mouse3dPrintXML.h
 include/mouse3d/server/mouse3dScan.h
 include/mouse3d/server/mouse3dType.h
+include/mouse3d/mouse3dStruct.h
 lib/libmouse3dClient.la
+${PLIST.openprs}lib/openprs/libmouse3dOpenprs.la
+${PLIST.openprs}lib/pkgconfig/mouse3d-oprs.pc
 lib/pkgconfig/mouse3d.pc
+${PLIST.tclserv_client}lib/pkgconfig/mouse3d-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libmouse3dTclservClient.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libmouse3dTclServ.la
 share/modules/gen/mouse3d.gen
-${PLIST.tcl}lib/tclserv/libmouse3dTclServ.la
-${PLIST.tcl}share/modules/tcl/mouse3dClient.tcl
-${PLIST.openprs}include/mouse3d/server/openprs/mouse3dDecodeOpenprs.h
-${PLIST.openprs}include/mouse3d/server/openprs/mouse3dEncodeOpenprs.h
-${PLIST.openprs}include/mouse3d/server/openprs/mouse3dRequestsOpenprsProto.h
 ${PLIST.openprs}share/modules/openprs/mouse3dOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/mouse3dOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/mouse3dOpenprs.sym
-${PLIST.openprs}lib/openprs/libmouse3dOpenprs.la
-${PLIST.openprs}lib/pkgconfig/mouse3d-oprs.pc
+${PLIST.tcl}share/modules/tcl/mouse3dClient.tcl
 ${PLIST.openprs}@dirrm include/mouse3d/server/openprs
-@dirrm include/mouse3d/server
-@dirrm include/mouse3d

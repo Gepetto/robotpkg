@@ -1,2 +1,13 @@
-The mouse3d-genom GenoM module exports data of the 3D Space Navigator
-using the daemon spacenavd (spnav-kmod) and the library spnav-libs.
+The mouse3d-genom GenoM module exports data of the 3D Space Navigator mouse in
+a poster.
+
+There are two main requests:
+- Init: initialize the mouse. It takes a device path (empty for
+  auto-detection).
+- Export: exports mouse data in the poster.
+
+Other requests are:
+- Stop: stops exporting data.
+- Bindings: maps raw axis numbers into x,y,z Rx,Ry,Rz b0,b1
+- Gains: apply a gain on the raw axis values.
+- Threshold: set mouse position to 0 below this threshold (after gain).
