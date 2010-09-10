@@ -5,6 +5,8 @@ GBX_PACKAGE=	share-${GBX_VERSION}
 GBX_COMMENT=	(shared files)
 
 CATEGORIES=	devel
+LICENSE=	gnu-lgpl-v2
+
 include ../../meta-pkgs/gearbox/Makefile.common
 
 CMAKE_ARGS+=	-DGBX_INSTALL_CMAKE_SCRIPTS=ON
