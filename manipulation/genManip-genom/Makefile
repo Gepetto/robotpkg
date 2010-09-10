@@ -3,7 +3,7 @@
 #
 
 
-DISTNAME=		genManip-genom-0.4
+DISTNAME=		genManip-genom-0.6
 CATEGORIES=		manipulation
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=genManip-genom/}
@@ -14,15 +14,12 @@ MAINTAINER=		xavier.broquere@laas.fr
 COMMENT=		Common manipulation-related structures for GenoM modules
 LICENSE=		gnu-lgpl-v3
 
-GNU_CONFIGURE=		yes
-
 GENOM_MODULE=		genManip
 GENOM_ARGS=		-a
 
 include ../../architecture/genom/depend.mk
+PKG_SUPPORTED_OPTIONS:=$(filter-out api,${PKG_SUPPORTED_OPTIONS})
 
 include ../../architecture/genBasic-genom/depend.mk
 include ../../math/gbM/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
-
 include ../../mk/robotpkg.mk
