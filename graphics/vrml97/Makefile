@@ -11,6 +11,7 @@ EXTRACT_SUFX=		.jar
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		Sun's Java 3D(tm) loader for VRML97 models. #'
+LICENSE=		original-bsd
 
 DEPENDS+=		sun-java3d>=1.4:../../devel/sun-java3d
 JAVA_HOME=		${LOCALBASE}/java/sun-1.4
