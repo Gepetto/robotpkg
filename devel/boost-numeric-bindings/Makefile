@@ -12,6 +12,7 @@ MASTER_REPOSITORY=\
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://beta.boost.org/community/sandbox.html
 COMMENT=		C++ bindings for LAPACK and BLAS libraries.
+LICENSE=		bsl
 
 INSTALLATION_DIRS=	include/boost/numeric/bindings
 
