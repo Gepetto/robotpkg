@@ -11,6 +11,7 @@ CATEGORIES=		devel
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Python bindings for YARP
+LICENSE=		gnu-gpl-v2
 
 USE_LANGUAGES+=		c c++ python
 
