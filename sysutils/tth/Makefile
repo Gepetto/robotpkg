@@ -12,6 +12,7 @@ MAINTAINER=		openrobots@laas.fr
 CATEGORIES=		sysutils
 HOMEPAGE=		http://hutchinson.belmont.ma.us/tth/
 MASTER_SITES=		http://hutchinson.belmont.ma.us/tth/tth-noncom/
+LICENSE=		isc
 
 DOCDIR=			${PREFIX}/share/doc/tth
 
