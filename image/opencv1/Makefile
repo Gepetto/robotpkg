@@ -11,6 +11,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=opencvlibrary/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://opencvlibrary.sourceforge.net/
 COMMENT=		Library for computer vision problems
+LICENSE=		modified-bsd
 CONFLICTS+=		opencv
 
 WRKSRC=			${WRKDIR}/opencv-1.1.0
