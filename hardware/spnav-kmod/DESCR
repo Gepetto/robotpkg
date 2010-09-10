@@ -1,4 +1,0 @@
-The spacenavd daemon is provided by the spacenav project (see
-http://spacenav.sourceforge.net). This project provides an alternative to the
-proprietary 3Dconnexion device driver and SDK, for the 3D input devices: "space
-navigator". This daemon must be used with the accompanying library: libspnav.
