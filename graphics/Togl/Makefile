@@ -11,6 +11,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=togl/}
 MAINTAINER=	matthieu.herrb@laas.fr
 HOMEPAGE=	http://togl.sourceforge.net/
 COMMENT=	a Tk OpenGL widget
+LICENSE=	isc
 
 WRKSRC=		${WRKDIR}/${DISTNAME:-src=}
 
