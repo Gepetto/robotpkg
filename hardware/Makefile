@@ -29,8 +29,6 @@ SUBDIR+=	sahand-genom
 SUBDIR+=	serial
 SUBDIR+=	sickLib
 SUBDIR+=	sick-genom
-SUBDIR+=	spnav-kmod
-SUBDIR+=	spnav-libs
 SUBDIR+=	velodyne-genom
 SUBDIR+=	velodyne-libs
 
