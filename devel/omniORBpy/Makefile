@@ -9,6 +9,7 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://omniorb.sourceforge.net/
 COMMENT=		Robust high-performance CORBA ORB for Python
+LICENSE=		gnu-lgpl-v2.1
 
 USE_LANGUAGES+=		c c++
 USE_TOOLS+=		python
