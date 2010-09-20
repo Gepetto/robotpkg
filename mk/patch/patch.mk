@@ -306,8 +306,9 @@ do-pkgsrc-patch:
 			alg="$$1";					\
 			recorded="$$2";					\
 			calcsum=`${DIGEST} $$alg < $$i`; 		\
-			${STEP_MSG} "Verifying $$filename"		\
-				" (using digest algorithm $$alg)";	\
+			$(if ${PATCH_DEBUG}, 				\
+				${STEP_MSG} "Verifying $$filename"	\
+				" (using digest algorithm $$alg)";)	\
 			if ${TEST} "$$calcsum" != "$$recorded"; then	\
 				patch_warning "Ignoring patch file"	\
 					"$$filename: invalid checksum"; \
@@ -316,7 +317,7 @@ do-pkgsrc-patch:
 			fi;						\
 			;;						\
 		esac;							\
-		${STEP_MSG} "Applying pkgsrc patch $$i";		\
+		$(if ${PATCH_DEBUG}, ${STEP_MSG} "Applying patch $$i";)	\
 		fuzz_flags=;						\
 		if ${PATCH} -v >/dev/null 2>&1; then			\
 			fuzz_flags=${PATCH_FUZZ_FACTOR};		\
