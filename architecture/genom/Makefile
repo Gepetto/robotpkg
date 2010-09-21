@@ -16,6 +16,8 @@ LICENSE=	2-clause-bsd
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	PERL=${PREFIX.perl}/bin/perl
 
+NOT_FOR_PLATFORM=	# empty
+
 # genom must be able to compile c++ modules, and it checks for a c++
 # compiler
 USE_LANGUAGES+=	c c++
@@ -57,4 +59,4 @@ include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/perl.mk
 include ../../mk/sysdep/flex.mk
 include ../../mk/sysdep/bison.mk
-include ../../mk/robotpkg.mk
+include ../../mk/robo
