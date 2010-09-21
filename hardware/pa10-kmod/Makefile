@@ -11,6 +11,8 @@ MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pa10-kmod
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	Kernel driver for Mitsubishi PA10 Arm controller
 
+ONLY_FOR_PLATFORM=	Linux-%
+
 BUILD_TARGET=	default
 KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/char
 KMOD=		papci.ko

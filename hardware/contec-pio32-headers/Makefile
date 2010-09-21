@@ -12,6 +12,8 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	header files for Contec PIO32 kernel interface
 LICENSE=	isc
 
+ONLY_FOR_PLATFORM=	Linux-%
+
 NO_CONFIGURE=	yes
 NO_BUILD=	yes
 

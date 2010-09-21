@@ -9,6 +9,8 @@ DISTNAME=	sahand-linux_$(subst .,-,$(VERSION))
 CATEGORIES=	hardware
 COMMENT=	Schunk Antropomorphic Hand Linux driver
 
+ONLY_FOR_PLATFORM=	Linux-%
+
 INTERACTIVE_STAGE=	fetch
 FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing the sahand driver version ${VERSION}"
 FETCH_MESSAGE+= ""

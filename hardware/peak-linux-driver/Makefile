@@ -13,6 +13,8 @@ COMMENT=	Software Interface for PEAK-System CAN-Hardware.
 
 LICENSE=	gnu-gpl-v3
 
+ONLY_FOR_PLATFORM=	Linux-%
+
 WRKSRC=		${WRKDIR}/${PKGNAME}
 
 post-install:	${WRKSRC}/pcan.pc
