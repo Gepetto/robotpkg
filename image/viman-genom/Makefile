@@ -18,6 +18,7 @@ USE_LANGUAGES+=		c c++
 GENOM_MODULE=		viman
 
 include ../../architecture/genom/depend.mk
+include ../../image/viam-genom/depend.mk
 include ../../image/artoolkitplus/depend.mk
 
 include ../../mk/robotpkg.mk
