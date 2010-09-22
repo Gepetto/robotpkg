@@ -59,4 +59,4 @@ include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/perl.mk
 include ../../mk/sysdep/flex.mk
 include ../../mk/sysdep/bison.mk
-include ../../mk/robo
+include ../../mk/robotpkg.mk
