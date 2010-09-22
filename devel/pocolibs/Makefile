@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-DISTNAME=		pocolibs-2.7.1
+DISTNAME=		pocolibs-2.8
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pocolibs/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pocolibs
