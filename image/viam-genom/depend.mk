@@ -14,7 +14,7 @@ PREFER.viam-genom?=	robotpkg
 
 DEPEND_USE+=		viam-genom
 
-DEPEND_ABI.viam-genom?=	viam-genom>=1.2
+DEPEND_ABI.viam-genom?=	viam-genom>=1.5r2
 DEPEND_DIR.viam-genom?=	../../image/viam-genom
 
 SYSTEM_SEARCH.viam-genom=\
