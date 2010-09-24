@@ -19,7 +19,7 @@ SYSTEM_SEARCH.liboro=\
 
 DEPEND_USE+=		liboro
 
-DEPEND_ABI.liboro?=	liboro>=0.7.6
+DEPEND_ABI.liboro?=	liboro>=0.7.9
 DEPEND_DIR.liboro?=	../../knowledge/liboro
 
 endif # LIBORO_DEPEND_MK ---------------------------------------------------
