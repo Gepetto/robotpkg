@@ -12,6 +12,7 @@ SUBDIR+=	kpp-interfacedisplay
 SUBDIR+=	laaswm
 SUBDIR+=	laaswm-libs
 SUBDIR+=	openvrml-libs
+SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
 SUBDIR+=	vcglib
 SUBDIR+=	vrml97

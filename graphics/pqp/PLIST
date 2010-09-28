@@ -1,0 +1,7 @@
+@comment Tue Sep 28 17:17:57 CEST 2010
+include/pqp/BV.h
+include/pqp/PQP.h
+include/pqp/PQP_Compile.h
+include/pqp/PQP_Internal.h
+include/pqp/Tri.h
+lib/libPQP.a

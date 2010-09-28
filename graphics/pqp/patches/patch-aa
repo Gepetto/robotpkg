@@ -1,0 +1,47 @@
+--- PQP_v1.3/Makefile.orig	2002-04-21 18:55:38.000000000 +0200
++++ PQP_v1.3/Makefile	2010-09-28 17:11:22.401221731 +0200
+@@ -1,4 +1,5 @@
+-CC = g++
++CXX ?= g++
++LIBTOOL ?= libtool
+ 
+ CFLAGS		= -O2 -I.
+ 
+@@ -11,23 +12,26 @@
+ 
+ CLEAN		= $(OBJECTS) lib/libPQP.a include/*.h
+ 
+-library: $(OBJECTS)
++all library: $(OBJECTS)
+ 	/bin/rm -f lib/libPQP.a
+-	ar ruv lib/libPQP.a $(OBJECTS)
+-	cp src/PQP.h include/
+-	cp src/PQP_Compile.h include/
+-	cp src/PQP_Internal.h include/
+-	cp src/BV.h include/
+-	cp src/Tri.h include/
++	$(LIBTOOL) --mode=link --tag=CXX $(CXX) -o lib/libPQP.a $(OBJECTS)
++
++install:
++	$(LIBTOOL) --mode=install cp lib/libPQP.a $(DESTDIR)/$(PREFIX)/lib/
++	cp src/PQP.h $(DESTDIR)/$(PREFIX)/include/pqp
++	cp src/PQP_Compile.h $(DESTDIR)/$(PREFIX)/include/pqp
++	cp src/PQP_Internal.h $(DESTDIR)/$(PREFIX)/include/pqp
++	cp src/BV.h $(DESTDIR)/$(PREFIX)/include/pqp
++	cp src/Tri.h $(DESTDIR)/$(PREFIX)/include/pqp
+ 
+ lib/BV.o: src/BV.cpp
+-	$(CC) $(CFLAGS) -c src/BV.cpp -o lib/BV.o
++	$(CXX) $(CFLAGS) -c src/BV.cpp -o lib/BV.o
+ lib/PQP.o: src/PQP.cpp
+-	$(CC) $(CFLAGS) -c src/PQP.cpp -o lib/PQP.o
++	$(CXX) $(CFLAGS) -c src/PQP.cpp -o lib/PQP.o
+ lib/Build.o: src/Build.cpp
+-	$(CC) $(CFLAGS) -c src/Build.cpp -o lib/Build.o
++	$(CXX) $(CFLAGS) -c src/Build.cpp -o lib/Build.o
+ lib/TriDist.o: src/TriDist.cpp
+-	$(CC) $(CFLAGS) -c src/TriDist.cpp -o lib/TriDist.o
++	$(CXX) $(CFLAGS) -c src/TriDist.cpp -o lib/TriDist.o
+ 
+ clean:
+ 	/bin/rm -f $(CLEAN)
