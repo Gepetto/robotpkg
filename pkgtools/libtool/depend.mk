@@ -38,7 +38,7 @@ DEPEND_LIBDIRS.libtool?=# empty
 # LIBTOOL is the publicly-readable variable that should be used by Makefiles to
 # invoke the proper libtool.
 #
-export LIBTOOL?=	$(word 1,${SYSTEM_FILES.libtool})
+export LIBTOOL=		$(word 1,${SYSTEM_FILES.libtool})
 TOOLS.config.guess?=	$(word 3,${SYSTEM_FILES.libtool})
 TOOLS.config.sub?=	$(word 4,${SYSTEM_FILES.libtool})
 TOOLS.ltmain.sh?=	$(word 5,${SYSTEM_FILES.libtool})
