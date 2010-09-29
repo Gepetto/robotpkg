@@ -5,6 +5,7 @@
 DISTNAME=	xarm-genom-1.4
 CATEGORIES=	manipulation
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=xarm/}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/xarm-genom
 
 MAINTAINER=	xbroquer@laas.fr
 COMMENT=	Controls a 6DOF arm in cartesian space.

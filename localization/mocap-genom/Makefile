@@ -5,7 +5,7 @@
 DISTNAME=		mocap-genom-1.1
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=mocap-genom/}
-MASTER_REPOSITORY=	git ssh://trac/git/robots/mocap-genom
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/mocap-genom
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM module exporting raw motion capture data

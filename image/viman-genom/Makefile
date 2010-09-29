@@ -5,7 +5,7 @@
 DISTNAME=		viman-genom-1.0
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viman-genom/}
-MASTER_REPOSITORY=	git ssh://trac/git/robots/viman-genom
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/viman-genom
 
 MAINTAINER=		xavier.broquere@laas.fr
 COMMENT=		Pattern-based marker detection and localization

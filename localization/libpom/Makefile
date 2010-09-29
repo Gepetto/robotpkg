@@ -5,6 +5,7 @@
 DISTNAME=		libpom-1.2
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libpom/}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/libpom
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		Global robot position management library.

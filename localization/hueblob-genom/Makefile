@@ -5,6 +5,7 @@
 DISTNAME=		hueblob-genom-1.2
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hueblob-genom/}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/hueblob-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

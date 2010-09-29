@@ -6,6 +6,7 @@ DISTNAME=		picoweb-1.1
 PKGREVISION=		1
 CATEGORIES=		www
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/picoweb
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/
