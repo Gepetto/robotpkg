@@ -44,13 +44,10 @@
 # information and other information for the packages
 #
 # topdepends[]  : index=pkgdir (math/scilab)
-#                 List of explicitly listed depencencies by name.
+#                 List of explicitly listed runtime depencencies by name.
 #                 I.e.  "xless-[0-9]* pvm-3.4.3"
-#
-# alldepends[]  : index=pkgdir (math/scilab)
-#                 Flattened dependency list by name.
-#
-#
+# topbuilddepends[]  : index=pkgdir (math/scilab)
+#                 List of explicitly listed build depencencies by name.
 
 
 BEGIN {
@@ -100,9 +97,9 @@ BEGIN {
 	pat2dir[pkgpat] = pkgdir;
 
 	if (deptype == "depends") {
-	    topdepends[pkg] = topdepends[pkg] " " pkgpat " ";
+	    topdepends[pkg] = topdepends[pkg] " " pkgpat;
 	} else {
-	    topbuilddepends[pkg] = topbuilddepends[pkg] " " pkgpat " ";
+	    topbuilddepends[pkg] = topbuilddepends[pkg] " " pkgpat;
 	}
     }
 
@@ -231,24 +228,6 @@ END {
     if( SORT == "" ) { SORT = "sort"; }
     indexf = SORT " > robotpkgdb.csv";
 
-    printf("Flattening dependencies\n");
-    for (toppkg in topdepends) {
-	find_all_depends(toppkg, "run");
-	if (debug)
-	    printf("%s depends on: %s\n", toppkg, alldepends[toppkg]);
-	flatdepends[toppkg] = alldepends[toppkg];
-    }
-
-    # clear out the flattened depends list and repeat for the build depends
-    for( pkg in alldepends) { delete alldepends[pkg]; }
-
-    printf("Flattening build dependencies\n");
-    for (toppkg in topbuilddepends){
-	find_all_depends(toppkg, "build");
-	if (debug)
-	    printf("%s build_depends on: %s\n", toppkg, alldepends[toppkg]);
-    }
-
     printf("Generating CSV file\n");
 
     # Output format:
@@ -269,12 +248,12 @@ END {
 	printf("%s|", masterrepository[toppkg]) | indexf;
 	printf("%s|", maintainer[toppkg]) | indexf;
 	printf("%s|", categories[toppkg]) | indexf;
-	gsub(/^ /, "", alldepends[toppkg]);
-	gsub(/ $/, "", alldepends[toppkg]);
-	printf("%s|", alldepends[toppkg]) | indexf;
-	gsub(/^ /, "", flatdepends[toppkg]);
-	gsub(/ $/, "", flatdepends[toppkg]);
-	printf("%s|", flatdepends[toppkg]) | indexf;
+	gsub(/^ /, "", topbuilddepends[toppkg]);
+	gsub(/ $/, "", topbuilddepends[toppkg]);
+	printf("%s|", topbuilddepends[toppkg]) | indexf;
+	gsub(/^ /, "", topdepends[toppkg]);
+	gsub(/ $/, "", topdepends[toppkg]);
+	printf("%s|", topdepends[toppkg]) | indexf;
 	printf("%s|", onlyfor[toppkg]) | indexf;
 	printf("%s|", notfor[toppkg]) | indexf;
 	printf("%s|", homepage[toppkg]) | indexf;
@@ -284,96 +263,4 @@ END {
     close(indexf);
     printf("Indexed %d packages\n", pkgcnt);
     exit 0;
-}
-
-function find_all_depends (pkg, type, pkgreg, i, deps, depdir, topdep) {
-    # pkg is the package directory, like math/scilab
-
-    # if we find the package already has been fully depended
-    # then return the depends list
-    if (pkg in alldepends) { return(alldepends[pkg]); }
-
-    # if this package has no top dependencies, enter an empty flat dependency
-    # list for it.
-    if ( type == "run" ) {
-	# we only want run dependencies
-	topdep = topdepends[pkg];
-    } else {
-	# we only want build dependencies
-	topdep = topbuilddepends[pkg];
-    }
-    if (topdep ~ "^[ \t]*$") {
-	alldepends[pkg] = " ";
-	return(alldepends[pkg]);
-    }
-
-    # recursively gather depends that each of the depends has
-    pkgreg = reg2str(pkg);
-    split(topdep, deps);
-    i = 1;
-    alldepends[pkg] = " ";
-    while ( i in deps ) {
-	# figure out the directory name associated with the package hame
-	# in (wild card/dewey) version form
-	depdir = pat2dir[deps[i]];
-
-	# if we do not already have this dependency (deps[i]) listed, then add
-	# it.  However, we may have already added it because another package
-	# we depend on may also have depended on deps[i].
-	if (alldepends[pkg] !~ reg2str(deps[i])) {
-	    alldepends[pkg] = alldepends[pkg] " " deps[i]
-	    if (depdir != "") {
-		alldepends[pkg] = alldepends[pkg] " "	\
-		    find_all_depends(depdir, type);
-	    }
-	}
-
-	i = i + 1;
-    } # while i
-
-    alldepends[pkg] = uniq(alldepends[pkg]);
-    return(alldepends[pkg]);
-}
-
-#
-# take a string which has special characters like '+' in it and
-# escape them.  Also put a space before and after since that's how
-# we'll distinguish things like gnome from gnome-libs
-#
-function reg2str(reg){
-    gsub(/\./, "\\.", reg);
-    gsub(/\+/, "\\+", reg);
-    gsub(/\*/, "\\*", reg);
-    gsub(/\?/, "\\?", reg);
-    gsub(/\[/, "\\[", reg);
-    gsub(/\]/, "\\]", reg);
-    reg = " "reg" ";
-    return(reg);
-}
-
-#
-# accepts a full path to a package directory, like "/usr/pkgsrc/math/scilab"
-# and returns just the last 2 directories, like "math/scilab"
-#
-function fulldir2pkgdir(d, i){
-	i = match(d, /\/[^\/]+\/[^\/]+$/);
-	return substr(d, i + 1);
-}
-
-#
-# take the depends lists and uniq them.
-#
-function uniq(list, deps, i, ulist) {
-    # split out the depends
-    split(list, deps);
-
-    i = 1;
-    ulist = " ";
-    while (i in deps) {
-	if (ulist !~reg2str(deps[i])) {
-	    ulist = ulist deps[i]" ";
-	}
-	i++;
-    }
-    return(ulist);
 }
