@@ -251,7 +251,7 @@ print-summary-data:
 	    $(call quote,${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}})	\
 	));								\
 	${ECHO} build_depends ${PKGPATH} $(foreach _pkg_,${DEPEND_USE},	\
-	  $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),,		\
+	  $(if $(filter build,${DEPEND_METHOD.${_pkg_}}),		\
 	    $(call quote,${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}})	\
 	));								\
 	${ECHO} conflicts ${PKGPATH} ${CONFLICTS};			\
