@@ -82,8 +82,7 @@ pkg-install-check-installed:
 	${ERROR_MSG} "";							\
 	${ERROR_MSG} "If so, you may use either of:";				\
 	if test -z "${PKG_PRESERVE}"; then					\
-	${ERROR_MSG} "    - \`robotpkg_delete $$found' and";			\
-	${ERROR_MSG} "      \`${MAKE} reinstall' to upgrade properly";		\
+	${ERROR_MSG} "    - \`${MAKE} deinstall reinstall' to upgrade properly";\
 	fi;									\
 	${ERROR_MSG} "    - \`${MAKE} update' to rebuild the package and all";	\
 	${ERROR_MSG} "      of its dependencies";				\
