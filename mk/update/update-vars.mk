@@ -32,7 +32,7 @@ ifndef UPDATE_TARGET
     ifneq (,$(filter package,${MAKECMDGOALS}))
       UPDATE_TARGET=	package
     else
-      UPDATE_TARGET=	reinstall
+      UPDATE_TARGET=	install
     endif
   else
     UPDATE_TARGET=	${DEPENDS_TARGET}

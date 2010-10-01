@@ -69,7 +69,7 @@ _UPDATE_TARGETS+=	update-done-message
 
 ifeq (yes,$(call only-for,update,yes))	     # if we are asking for an update
   ifneq (yes,$(call exists,${_UPDATE_DIRS})) # not resuming a previous one
-    ifneq (yes,$(call for-unsafe-pkg,yes))   # and the package is unsafe
+    ifneq (yes,$(call for-unsafe-pkg,yes))   # and the package is not unsafe
       _UPDATE_TARGETS:= update-up-to-date    # let us do nothing
     endif
   endif
@@ -86,13 +86,14 @@ update: ${_UPDATE_TARGETS}
 do%update: .FORCE
 	${_OVERRIDE_TARGET}
 	${RUN}${RECURSIVE_MAKE} ${UPDATE_TARGET}			\
-		DEPENDS_TARGET=${DEPENDS_TARGET}
+			DEPENDS_TARGET=${DEPENDS_TARGET}
 	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
 	  if cd "${ROBOTPKG_DIR}/$${dir}"; then				\
 	    ${RECURSIVE_MAKE} $(filter-out confirm,${UPDATE_TARGET})	\
-		DEPENDS_TARGET=${DEPENDS_TARGET} || {			\
+			DEPENDS_TARGET=${DEPENDS_TARGET} || {		\
 		${ERROR_MSG} ${hline};					\
-		${ERROR_MSG} "$${bf}'${MAKE} ${UPDATE_TARGET}' failed"	\
+		${ERROR_MSG} "$${bf}'${MAKE}"				\
+			"$(filter-out confirm,${UPDATE_TARGET})' failed"\
 			"in $${dir}$${rm}";				\
 		${ERROR_MSG} "";					\
 		${ERROR_MSG} "Fix the problem, then re-run"		\
