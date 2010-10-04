@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 17 Jun 2008
 #
 
-DISTNAME=		sick-genom-0.1
+DISTNAME=		sick-genom-0.2
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
