@@ -10,6 +10,8 @@ MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/demo-genom
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		sample GenoM module used in the tutorial
+LICENSE=		isc
+ONLY_FOR_PLATFORM=	# empty
 
 GNU_CONFIGURE=		yes
 
