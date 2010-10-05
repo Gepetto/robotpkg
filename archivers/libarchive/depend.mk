@@ -9,12 +9,13 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		libarchive
 endif
 
-ifeq (+,$(LIBARCHIVE_DEPEND_MK))
-  ifeq (inplace,$(strip $(LIBARCHIVE_STYLE)))
-PREFER.libarchive?=	robotpkg
-  else
-PREFER.libarchive?=	system
-  endif
+ifeq (+,$(LIBARCHIVE_DEPEND_MK)) # -----------------------------------------
+
+ifeq (inplace,$(strip $(LIBARCHIVE_STYLE)))
+  PREFER.libarchive?=	robotpkg
+else
+  PREFER.libarchive?=	system
+endif
 
 _vregex:=/VERSION_STR.*libarchive/{s/.*archive[ ]*//;s/[^.0-9]//g;p;}
 SYSTEM_SEARCH.libarchive:=		\
@@ -43,7 +44,6 @@ post-extract: libarchive-extract
 libarchive-extract:
 	@${STEP_MSG} "Extracting libarchive in place"
 	${CP} -Rp ${LIBARCHIVE_FILESDIR} ${LIBARCHIVE_SRCDIR}
-	${TOUCH} ${LIBARCHIVE_SRCDIR}/aclocal.m4
 
 pre-configure: libarchive-build
 libarchive-build:
@@ -55,6 +55,7 @@ libarchive-build:
 		CPPFLAGS="${CPPFLAGS}"					\
 		${CONFIG_SHELL} ./configure -C --disable-shared		\
 		--disable-bsdtar --disable-dependency-tracking		\
+		--disable-bsdcpio --without-expat --without-xml2	\
 		--disable-acl						\
 	&& ${CONFIGURE_LOGFILTER} ${MAKE_PROGRAM}
   else
