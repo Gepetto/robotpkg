@@ -11,7 +11,8 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		tnftp
 endif
 
-ifeq (+,$(TNFTP_DEPEND_MK))
+ifeq (+,$(TNFTP_DEPEND_MK)) # ----------------------------------------------
+
 PREFER.tnftp?=		robotpkg
 
 SYSTEM_SEARCH.tnftp=	'{,s}bin/{tn,}ftp'
@@ -20,6 +21,9 @@ DEPEND_USE+=		tnftp
 
 DEPEND_ABI.tnftp?=	tnftp>=20091122
 DEPEND_DIR.tnftp?=	../../pkgtools/tnftp
-endif
+
+export TNFTP=		$(firstword ${SYSTEM_FILES.tnftp})
+
+endif # TNFTP_DEPEND_MK ----------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
