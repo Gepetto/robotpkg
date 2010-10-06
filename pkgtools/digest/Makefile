@@ -24,6 +24,8 @@ include ../../mk/robotpkg.prefs.mk
 VERSION:=	$(shell	${AWK} -F "'" '/^PACKAGE_VERSION=/ {print $$2}' \
 			${CURDIR}/dist/configure)
 
+LIBARCHIVE_STYLE=	inplace
+include ../../archivers/libarchive/depend.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

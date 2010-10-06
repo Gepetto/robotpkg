@@ -39,6 +39,7 @@
 .Nd calculate message digests
 .Sh SYNOPSIS
 .Nm
+.Op Fl c
 .Ar algorithm
 .Op file ...
 .Sh DESCRIPTION
@@ -88,6 +89,12 @@ utility is a simple wrapper for the various different
 algorithm implementations, which are located in the standard
 C library, and was designed to be scalable as new message digest
 algorithms are developed.
+.Pp
+With
+.Fl c
+option, the message digest is computed over an archive where all irrelevant
+metadata are reset to 0. The metadata ignored are: owner id and name,
+timestamp and device number. The file mode bits are masked with 022.
 .Pp
 The
 .Nm

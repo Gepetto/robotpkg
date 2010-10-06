@@ -13,10 +13,10 @@ ifeq (+,$(DIGEST_DEPEND_MK)) # ---------------------------------------------
 PREFER.digest?=		robotpkg
 DEPEND_USE+=		digest
 
-SYSTEM_SEARCH.digest=	'{,s}bin/{,robotpkg_}digest'
+SYSTEM_SEARCH.digest=	'{s,}bin/robotpkg_digest'
 
 DEPEND_METHOD.digest?=	build
-DEPEND_ABI.digest?=	digest>=20070803
+DEPEND_ABI.digest?=	digest>=20080510
 DEPEND_DIR.digest?=	../../pkgtools/digest
 
 export DIGEST=		$(word 1,${SYSTEM_FILES.digest})

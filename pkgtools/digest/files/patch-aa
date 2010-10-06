@@ -1,0 +1,197 @@
+Add -c option and support for digesting an archive content without metadata
+
+--- digest.c~	2007-09-21 20:44:36.000000000 +0200
++++ digest.c	2010-10-06 14:33:11.869719000 +0200
+@@ -60,11 +60,14 @@
+ #include <unistd.h>
+ #endif
+ 
++#include <archive.h>
++#include <archive_entry.h>
++
+ typedef void (*HASH_init)(void *);
+ typedef void (*HASH_update)(void *, const uint8_t *, size_t);
+ typedef char *(*HASH_end)(void *, char *);
+ typedef char *(*HASH_file)(char *, char *);
+-  
++
+ /* this struct defines a message digest algorithm */
+ typedef struct alg_t {
+ 	const char     *name;
+@@ -157,18 +160,149 @@
+ 	return (rc);
+ }
+ 
++/* open callback for digest_archive() */
++static int
++digest_archive_open_callback(struct archive *ar, void *data)
++{
++	alg_t	*alg = data;
++	(*alg->hash_init)(&alg->hash_ctx);
++	return ARCHIVE_OK;
++}
++
++/* write callback for digest_archive() */
++static ssize_t
++digest_archive_write_callback(struct archive *ar, void *data,
++			      const void *buffer, size_t length)
++{
++	alg_t	*alg = data;
++	(*alg->hash_update)(&alg->hash_ctx,
++			    (uint8_t *)buffer, (unsigned)length);
++	return length;
++}
++
++/* close callback for digest_archive() */
++static int
++digest_archive_close_callback(struct archive *ar, void *data)
++{
++	return ARCHIVE_OK;
++}
++
++
++/* compute a digest of an archive content, ignoring not relevant metadata, and
++ * print the results if successful */
++static int
++digest_archive(char *fn, alg_t *alg)
++{
++	struct archive		*in, *out;
++	struct archive_entry	*entry;
++	char			buffer[BUFSIZ * 20];
++	char			*digest;
++	ssize_t			len;
++	int			s;
++
++	/* read archive from stdin, with automatic format detection */
++	in = archive_read_new();
++	if (in == NULL)
++	  errx(2, "Couldn't create archive reader.");
++	if (archive_read_support_compression_all(in) != ARCHIVE_OK)
++	  errx(2, "Couldn't enable decompression");
++	if (archive_read_support_format_all(in) != ARCHIVE_OK)
++	  errx(2, "Couldn't enable read formats");
++        if (fn == NULL) {
++	  if (archive_read_open_fd(in, STDIN_FILENO, 10240) != ARCHIVE_OK)
++	    errx(2, "Couldn't open input archive");
++	} else {
++	  if (archive_read_open_filename(in, fn, 10240) != ARCHIVE_OK)
++	    errx(2, "Couldn't open input archive");
++	}
++
++	/* write an uncompressed ustar archive to stdout. */
++	out = archive_write_new();
++	if (out == NULL)
++	  errx(2, "Couldn't create archive writer.");
++	if (archive_write_set_compression_none(out) != ARCHIVE_OK)
++	  errx(2, "Couldn't enable compression");
++	if (archive_write_set_format_ustar(out) != ARCHIVE_OK)
++	  errx(2, "Couldn't set output format");
++	if (archive_write_open(out, alg, digest_archive_open_callback,
++			       digest_archive_write_callback,
++			       digest_archive_close_callback) != ARCHIVE_OK)
++	  errx(2, "Couldn't open output archive");
++
++	/* examine each entry in the input archive */
++	while ((s = archive_read_next_header(in, &entry)) == ARCHIVE_OK) {
++
++	  /* reset owner */
++	  archive_entry_set_uid(entry, 0);
++	  archive_entry_set_uname(entry, "nobody");
++	  archive_entry_set_gid(entry, 0);
++	  archive_entry_set_gname(entry, "nobody");
++
++	  /* reset timestamp */
++	  archive_entry_set_mtime(entry, 0, 0);
++
++	  /* filter permissions */
++	  archive_entry_set_mode(entry, archive_entry_mode(entry) & ~022);
++
++	  /* reset other misc metadata */
++	  archive_entry_set_ino(entry, 0);
++	  archive_entry_set_dev(entry, 0);
++	  archive_entry_set_devmajor(entry, 0);
++	  archive_entry_set_devminor(entry, 0);
++	  archive_entry_set_rdev(entry, 0);
++	  archive_entry_set_rdevmajor(entry, 0);
++	  archive_entry_set_rdevminor(entry, 0);
++
++	  /* hash input entry */
++	  if (archive_write_header(out, entry) != ARCHIVE_OK)
++	    errx(2, "Error writing output archive");
++	  if (archive_entry_size(entry) > 0) {
++	    len = archive_read_data(in, buffer, sizeof(buffer));
++	    while (len > 0) {
++	      if (archive_write_data(out, buffer, len) != len)
++		errx(2, "Error writing output archive");
++	      len = archive_read_data(in, buffer, sizeof(buffer));
++	    }
++	    if (len < 0)
++	      errx(2, "Error reading input archive");
++	  }
++	}
++	if (s != ARCHIVE_EOF)
++	  errx(2, "Error reading archive");
++	/* Close the archives.  */
++	if (archive_read_finish(in) != ARCHIVE_OK)
++	  errx(2, "Error closing input archive");
++	if (archive_write_finish(out) != ARCHIVE_OK)
++	  errx(2, "Error closing output archive");
++
++	/* print digest */
++	digest = malloc(alg->hash_len * 2 + 1);
++	(void) (*alg->hash_end)(&alg->hash_ctx, digest);
++	if (fn == NULL) {
++		(void) printf("%s\n", digest);
++	} else {
++		(void) printf("%s (%s) = %s\n", alg->name, fn, digest);
++	}
++	free(digest);
++
++	return 1;
++}
++
+ int
+ main(int argc, char **argv)
+ {
+ 	alg_t  *alg;
+-	int	rval;
++	int	rval, copt = 0;
+ 	int	i;
+ 
+ #ifdef HAVE_SETLOCALE
+ 	(void) setlocale(LC_ALL, "");
+ #endif
+-	while ((i = getopt(argc, argv, "V")) != -1) {
++	while ((i = getopt(argc, argv, "cV")) != -1) {
+ 		switch(i) {
++		case 'c':
++			copt = 1;
++			break;
+ 		case 'V':
+ 			printf("%s\n", VERSION);
+ 			return EXIT_SUCCESS;
+@@ -176,7 +310,7 @@
+ 	}
+ 	argc -= optind;
+ 	argv += optind;
+-	
++
+ 	if (argc == 0) {
+ 		(void) fprintf(stderr, "Usage: %s algorithm [file...]\n",
+ 		    argv[-optind]);
+@@ -190,13 +324,13 @@
+ 	argv++;
+ 	rval = EXIT_SUCCESS;
+ 	if (argc == 0) {
+-		if (!digest_file(NULL, alg)) {
++		if (!(copt?digest_archive:digest_file)(NULL, alg)) {
+ 			(void) fprintf(stderr, "stdin\n");
+ 			rval = EXIT_FAILURE;
+ 		}
+ 	} else {
+ 		for (i = 0 ; i < argc ; i++) {
+-			if (!digest_file(argv[i], alg)) {
++			if (!(copt?digest_archive:digest_file)(argv[i], alg)) {
+ 				(void) fprintf(stderr, "%s\n", argv[i]);
+ 				rval = EXIT_FAILURE;
+ 			}
