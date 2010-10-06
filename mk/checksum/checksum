@@ -95,30 +95,6 @@ if ${TEST} ! -f "$distinfo"; then
 	exit 1
 fi
 
-digestcmd=
-case "${DIGEST}" in
-/*)
-	if ${TEST} -x "${DIGEST}"; then
-		digestcmd="${DIGEST}"
-	fi
-	;;
-*)
-	SAVEIFS="$IFS"; IFS=:
-	for i in $PATH; do
-		if ${TEST} -x "$i/${DIGEST}"; then
-			digestcmd="$i/${DIGEST}"
-			break
-		fi
-	done
-	IFS="$SAVEIFS"
-	;;
-esac
-
-if ${TEST} -z "$digestcmd"; then
-	${ECHO} 1>&2 "$self: \`\`${DIGEST}'' is missing"
-	exit 1
-fi
-
 { exitcode=0
   while read d_alg d_file d_equals d_checksum; do
 	case "$d_alg" in
