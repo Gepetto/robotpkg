@@ -4,11 +4,13 @@
 
 PKGVERSION=		20100824
 PKGNAME=		vcglib-${PKGVERSION}
-DISTNAME=		vcglib-${PKGVERSION_NOREV}.svn3811
+DISTNAME=		vcglib-${PKGVERSION_NOREV}
 
 CATEGORIES=		graphics
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=external/vcglib/}
-MASTER_REPOSITORY=	\
+FETCH_METHOD=		svn
+MASTER_SITES=\
+	https://vcg.svn.sourceforge.net/svnroot/vcg/trunk/vcglib@3811
+MASTER_REPOSITORY=\
 	svn https://vcg.svn.sourceforge.net/svnroot/vcg/trunk/vcglib
 
 MAINTAINER=		mallet@laas.fr
@@ -17,7 +19,6 @@ COMMENT=		C++ templated library for mesh manipulation
 LICENSE=		gnu-gpl-v2
 
 INSTALL_TARGET=		install
-WRKSRC=			${WRKDIR}/vcglib
 
 USE_LANGUAGES=		c++
 
@@ -39,7 +40,6 @@ PKG_OPTION_DESCR.doc?=  Install ${PKGBASE} documentation
 
 define PKG_OPTION_SET.doc
   INSTALL_TARGET+=	install-doc
-  WRKSRC=		${WRKDIR}/vcglib
   DOXYGEN_PLIST_DIR+=	share/doc/vcglib/html
   CMAKE_ARGS+=		-DDOXYGEN_EXECUTABLE=${DOXYGEN}
 
@@ -53,7 +53,3 @@ include ../../mk/robotpkg.mk
 post-extract:
 	${CP} ${FILESDIR}/CMakeLists.txt ${WRKSRC}
 	${RM} -rf ${WRKSRC}/vcg/Eigen
-	${RMDIR} \
-		${WRKSRC}/vcg/simplex/vertexplus	\
-		${WRKSRC}/vcg/simplex/faceplus		\
-		${WRKSRC}/vcg/simplex/edgeplus
