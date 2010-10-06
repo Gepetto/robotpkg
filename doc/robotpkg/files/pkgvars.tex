@@ -1,0 +1,89 @@
+% $LAAS: pkgvars.tex 2010/10/06 18:45:43 mallet $
+%
+% Copyright (c) 2010 LAAS/CNRS
+% All rights reserved.
+%
+% Permission to use, copy, modify, and distribute this software for any purpose
+% with or without   fee is hereby granted, provided   that the above  copyright
+% notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+% REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+% AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+% INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+% LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+% OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+% PERFORMANCE OF THIS SOFTWARE.
+%
+%                                             Anthony Mallet on Wed Oct  6 2010
+%
+\section{Package files, directories and contents} % ------------------------
+\label{section:pkgvars}
+
+Whenever you're preparing a package, there are a number of files involved which
+are described in the following sections.
+
+\subsection{Makefile} % ----------------------------------------------------
+\label{subsection:makefile}
+
+Building, installation and creation of a package are all controlled by the
+package's Makefile. The Makefile describes various things about a package,
+for example from where to get it, how to configure, build, and install it.
+
+A package Makefile contains several sections that describe the package.
+
+In the first section there are the following variables, which should appear
+exactly in the order given here. The order and grouping of the variables is
+mostly historical and has no further meaning.
+
+\begin{description}
+   \item[MASTER\_SITES] In simple cases, {\tt MASTER\_SITES}  defines all URLs
+   from where the distfile, whose name is derived from the {\tt DISTNAME}
+   variable, is fetched.
+
+   When actually fetching the distfiles, each item from {\tt MASTER\_SITES}
+   gets the name of each distfile appended to it, without an intermediate
+   slash. Therefore, all site values have to end with a slash or other
+   separator character. This allows for example to set {\tt MASTER\_SITES} to a
+   URL of a CGI script that gets the name of the distfile as a parameter. In
+   this case, the definition would look like:
+   \begin{quote}
+      {\tt MASTER\_SITES=   http://www.example.com/download.cgi?file=}
+   \end{quote}
+
+   There are some predefined values for {\tt MASTER\_SITES}, which can be used
+   in packages. The names of the variables should speak for themselves.
+   \begin{quote}\tt
+      \$\{MASTER\_SITE\_SOURCEFORGE\}\\
+      \$\{MASTER\_SITE\_GNU\}\\
+      \$\{MASTER\_SITE\_OPENROBOTS\}
+   \end{quote}
+
+   If you choose one of these predefined sites, you may want to specify a
+   subdirectory of that site. Since these macros may expand to more than one
+   actual site, {\em you must} use the following construct to specify a
+   subdirectory:
+   \begin{quote}\tt
+      MASTER\_SITES=~\$\{MASTER\_SITE\_SOURCEFORGE:=project\_name/\}
+   \end{quote}
+   Note the trailing slash after the subdirectory name.
+
+   \smallbreak
+   \item[FETCH\_METHOD] This is the method used to download the distfile from
+   {\tt MASTER\_SITES}. It defaults to '{\tt archive}' which corresponds to the
+   normal situation where distfile is an archive available from {\tt
+   MASTER\_SITES}, so it normally needs not to be set.
+
+   However, it can happen that a software provider does not provide any archive
+   available for download but has only a public repository. In this case, {\tt
+   FETCH\_METHOD} can be set to {\tt cvs}, {\tt git} or {\tt svn} according to
+   the kind of repository available. {\tt MASTER\_SITES} is then interpreted as
+   a repository of the form {\tt url[@revision[+module]]}, where the bits
+   between square brackets are optional and refer to a particular revision and
+   module in the repository located at {\tt url}. {\tt url} can take any form
+   supported by the underlying fetch tool ({\tt cvs}, {\tt git} or {\tt
+   svn}). It is {\em strongly} advised to define at least a specific revision
+   to be checked out, so that the package can be reproducibly installed in a
+   known state.
+
+\end{description}

@@ -3,7 +3,7 @@
                     Anthony Mallet - anthony.mallet@laas.fr
                        Copyright 2006-2009 (C) LAAS/CNRS
 
-                               September 9, 2010
+                                October 6, 2010
 
 Contents
 
@@ -37,6 +37,8 @@ Contents
         2.4.4  Variables affecting the build process
         2.4.5  Additional flags to the compiler
 3  The robotpkg developer's guide
+    3.1  Package files, directories and contents
+        3.1.1  Makefile
 4  The robotpkg infrastructure internals
 
 1
@@ -732,6 +734,64 @@ LDFLAGS+= -your -linkerflags
 
 3
 The robotpkg developer's guide
+
+3.1  Package files, directories and contents
+
+Whenever you're preparing a package, there are a number of files involved which
+are described in the following sections.
+
+3.1.1  Makefile
+
+Building, installation and creation of a package are all controlled by the
+package's Makefile. The Makefile describes various things about a package, for
+example from where to get it, how to configure, build, and install it.
+A package Makefile contains several sections that describe the package.
+In the first section there are the following variables, which should appear
+exactly in the order given here. The order and grouping of the variables is
+mostly historical and has no further meaning.
+
+MASTER_SITES
+    In simple cases, MASTER_SITES defines all URLs from where the distfile,
+    whose name is derived from the DISTNAME variable, is fetched.
+    When actually fetching the distfiles, each item from MASTER_SITES gets the
+    name of each distfile appended to it, without an intermediate slash.
+    Therefore, all site values have to end with a slash or other separator
+    character. This allows for example to set MASTER_SITES to a URL of a CGI
+    script that gets the name of the distfile as a parameter. In this case, the
+    definition would look like:
+
+        MASTER_SITES= http://www.example.com/download.cgi?file=
+
+    There are some predefined values for MASTER_SITES, which can be used in
+    packages. The names of the variables should speak for themselves.
+
+        ${MASTER_SITE_SOURCEFORGE}
+        ${MASTER_SITE_GNU}
+        ${MASTER_SITE_OPENROBOTS}
+
+    If you choose one of these predefined sites, you may want to specify a
+    subdirectory of that site. Since these macros may expand to more than one
+    actual site, you must use the following construct to specify a
+    subdirectory:
+
+        MASTER_SITES= ${MASTER_SITE_SOURCEFORGE:=project_name/}
+
+    Note the trailing slash after the subdirectory name.
+FETCH_METHOD
+    This is the method used to download the distfile from MASTER_SITES. It
+    defaults to 'archive' which corresponds to the normal situation where
+    distfile is an archive available from MASTER_SITES, so it normally needs
+    not to be set.
+    However, it can happen that a software provider does not provide any
+    archive available for download but has only a public repository. In this
+    case, FETCH_METHOD can be set to cvs, git or svn according to the kind of
+    repository available. MASTER_SITES is then interpreted as a repository of
+    the form url[@revision[+module]], where the bits between square brackets
+    are optional and refer to a particular revision and module in the
+    repository located at url. url can take any form supported by the
+    underlying fetch tool (cvs, git or svn). It is strongly advised to define
+    at least a specific revision to be checked out, so that the package can be
+    reproducibly installed in a known state.
 
 4
 The robotpkg infrastructure internals
