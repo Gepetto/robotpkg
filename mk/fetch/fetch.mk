@@ -41,10 +41,6 @@
 #
 #					Anthony Mallet on Tue Dec  5 2006
 #
-
-_MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP:=${DIST_SUBDIR:=/}}
-_MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE:=${DIST_SUBDIR:=/}}
-
 ALLFILES?=	$(sort ${DISTFILES} ${PATCHFILES})
 CKSUMFILES?=	$(filter-out ${IGNOREFILES},${ALLFILES})
 
@@ -62,7 +58,6 @@ _PATCHFILES?=	${PATCHFILES}
 endif
 _ALLFILES=	$(filter-out ${NOFETCHFILES}, 				\
 			$(sort ${_DISTFILES} ${_PATCHFILES}))
-
 
 BUILD_DEFS+=	DISTFILES PATCHFILES
 
@@ -101,12 +96,12 @@ endef
 $(foreach fetchfile,${_PATCHFILES},$(eval ${_PATCHFILES_VAR}))
 
 
-# XXX require pkgtools/tnftp, although the fetch program is configurable
+# depend on the proper fetch tool if required
 ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
   ifneq ($(words $(wildcard $(addprefix ${DISTDIR}/,${_ALLFILES}))),\
 	 $(words ${_ALLFILES}))
-    DEPEND_METHOD.tnftp+=	bootstrap
-    include ${ROBOTPKG_DIR}/pkgtools/tnftp/depend.mk
+    $(call require,${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+    include $(addprefix ${ROBOTPKG_DIR}/, ${_FETCH_DEPEND})
   endif
 endif
 
@@ -157,9 +152,15 @@ ifneq (,$(filter fetch,${INTERACTIVE_STAGE}))
 $(addprefix ${DISTDIR}/,${_ALLFILES}):
   ifndef FETCH_MESSAGE
 	@${TEST} ! -f $@ || exit 0;					\
-	${ERROR_MSG} "The fetch stage of this package requires user interaction to download"; \
-	${ERROR_MSG} "the distfiles.  Please fetch the distfiles manually and place them in:"; \
+	${ERROR_MSG} ${hline}; 						\
+	${ERROR_MSG} ""; 						\
+	${ERROR_MSG} "The fetch stage of this package requires user"	\
+		"interaction to download"; 				\
+	${ERROR_MSG} "the distfiles.  Please fetch the distfiles"	\
+		"manually and place them in:"; 				\
 	${ERROR_MSG} "    ${_DISTDIR}";					\
+	${ERROR_MSG} ""; 						\
+	${ERROR_MSG} ${hline}; 						\
 	if ${TEST} -n ${MASTER_SITES}""; then				\
 		${ERROR_MSG} "The distfiles are available from:";	\
 		for site in ${MASTER_SITES}; do				\
@@ -189,75 +190,39 @@ endif
 # transfer the files from the appropriate sites if needed.
 #
 #
-# FETCH_CMD is the program used to fetch files.  It must understand
-#	fetching files located via URLs, e.g. NetBSD's ftp, net/tnftp,
-#	etc.  The default value is set in pkgsrc/mk/defaults/mk.conf.
-#
-# The following variables are all lists of options to pass to he command
-# used to do the actual fetching of the file.
-#
-# FETCH_BEFORE_ARGS appear before all other options on the command line.
-#
-# FETCH_AFTER_ARGS appear after all other options on the command line.
-#
-# FETCH_RESUME_ARGS appears just after FETCH_BEFORE_ARGS and is the set
-#	of options for causing the command to resume a previous transfer.
-#
-# FETCH_OUTPUT_ARGS is a set of options for specifying the name of the
-#	local file that will hold the contents of the fetched file.
-#
-# FAILOVER_FETCH, if defined, will cause a checksum to be performed during
-#	a fetch to verify the transferred file is correct; if the checksum
-#	is incorrect, then the next site will be tried.
-#
-# PKG_RESUME_TRANSFERS is a yes/no variable that causes the fetch script
-#	to try to resume interrupted file transfers to avoid downloading
-#	the whole file.  The default is set in pkgsrc/mk/defaults/mk.conf.
-#
-#FETCH_CMD?=		ftp	# default is set by pkgsrc/mk/defaults/mk.conf
-FETCH_BEFORE_ARGS?=	${_FETCH_BEFORE_ARGS.$(notdir ${FETCH_CMD})}
-FETCH_AFTER_ARGS?=	${_FETCH_AFTER_ARGS.$(notdir ${FETCH_CMD})}
-FETCH_RESUME_ARGS?=	${_FETCH_RESUME_ARGS.$(notdir ${FETCH_CMD})}
-FETCH_OUTPUT_ARGS?=	${_FETCH_OUTPUT_ARGS.$(notdir ${FETCH_CMD})}
 
-_FETCH_BEFORE_ARGS.tnftp=	# empty
-_FETCH_AFTER_ARGS.tnftp=	# empty
-_FETCH_RESUME_ARGS.tnftp=	-R
-_FETCH_OUTPUT_ARGS.tnftp=	-o
+_FETCH_SCRIPT=${FETCH_LOGFILTER} ${SETENV}				\
+	CP=${CP} ECHO=${ECHO} MV=$(call quote,${MV})			\
+	TEST=$(call quote,${TEST}) MKDIR=$(call quote,${MKDIR})		\
+	TOUCH=$(call quote,${TOUCH}) WC=$(call quote,${WC})		\
+	FIND=$(call quote,${FIND}) SORT=$(call quote,${SORT})		\
+	CHECKSUM=$(call quote,${_CHECKSUM_CMD})				\
+	FETCH_CMD=$(call quote,${_FETCH_CMD}) 				\
+	FETCH_BEFORE_ARGS=$(call quote,${_FETCH_BEFORE_ARGS})		\
+	FETCH_AFTER_ARGS=$(call quote,${_FETCH_AFTER_ARGS})		\
+	FETCH_RESUME_ARGS=$(call quote,${_FETCH_RESUME_ARGS})		\
+	FETCH_OUTPUT_ARGS=$(call quote,${_FETCH_OUTPUT_ARGS})		\
+	${SH} ${ROBOTPKG_DIR}/mk/fetch/fetch
 
-_FETCH_CMD=\
-	${SETENV} CHECKSUM=$(call quote,${_CHECKSUM_CMD})		\
-		CP=${TOOLS_CP}						\
-		ECHO=${TOOLS_ECHO}					\
-		FETCH_CMD=${FETCH_CMD}					\
-		FETCH_BEFORE_ARGS=$(call quote,${FETCH_BEFORE_ARGS})	\
-		FETCH_AFTER_ARGS=$(call quote,${FETCH_AFTER_ARGS})	\
-		FETCH_RESUME_ARGS=$(call quote,${FETCH_RESUME_ARGS})	\
-		FETCH_OUTPUT_ARGS=$(call quote,${FETCH_OUTPUT_ARGS})	\
-		MKDIR=$(call quote,${TOOLS_MKDIR})			\
-		MV=$(call quote,${TOOLS_MV})				\
-		TEST=$(call quote,${TOOLS_TEST})			\
-		TOUCH=$(call quote,${TOOLS_TOUCH})			\
-		WC=$(call quote,${TOOLS_WC})				\
-		${SH} ${ROBOTPKG_DIR}/mk/fetch/fetch
-
+_FETCH_ARGS+=	-e $(patsubst %${EXTRACT_SUFX},%,$(notdir $@))
 ifdef PKG_VERBOSE
-_FETCH_ARGS+=	${PKG_VERBOSE}
+  _FETCH_ARGS+=	${PKG_VERBOSE}
 endif
 ifeq (yes,$(call exists,${DISTINFO_FILE}))
-_FETCH_ARGS+=	-f $(call quote,${DISTINFO_FILE})
+  ifeq (,$(filter cvs git svn,${FETCH_METHOD}))
+    _FETCH_ARGS+=-f $(call quote,${DISTINFO_FILE})
+  endif
 endif
 ifeq (,${DIST_SUBDIR})
-_FETCH_ARGS+=	-d .
+  _FETCH_ARGS+=	-d .
 else
-_FETCH_ARGS+=	-d ${DIST_SUBDIR}
+  _FETCH_ARGS+=	-d ${DIST_SUBDIR}
 endif
 
 ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
 $(addprefix ${DISTDIR}/,${_ALLFILES}):
 	@${STEP_MSG} "Fetching $(notdir $@)"
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}${MKDIR} $(dir $@);					\
 	for d in "" $(subst :, ,${DIST_PATH}); do			\
 		case $$d in						\
 		""|${DISTDIR})	continue ;;				\
@@ -268,18 +233,20 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 			${RM} -f $@;					\
 			${LN} -s $$file $@;				\
 		fi;							\
-	done
-	${_PKG_SILENT}${_PKG_DEBUG}set -e;				\
+	done;								\
 	unsorted_sites="${SITES.$(subst =,--,$(notdir $@))}";		\
-	sites="${_ORDERED_SITES} ${_MASTER_SITE_BACKUP}";		\
 	cd $(patsubst %/${DIST_SUBDIR},%,$(dir $@)) &&			\
-	${_FETCH_CMD} ${_FETCH_ARGS} $(notdir $@) $$sites
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${_FETCH_SCRIPT} -m ${FETCH_METHOD} ${_FETCH_ARGS}		\
+		$(notdir $@) ${_ORDERED_SITES};				\
+	if ${TEST} ! -f $@; then					\
+		${_FETCH_SCRIPT} -m archive ${_FETCH_ARGS}		\
+			$(notdir $@) ${_MASTER_SITE_BACKUP};		\
+	fi;								\
 	if ${TEST} ! -f $@; then					\
 		${ERROR_MSG} "Could not fetch the following file:";	\
 		${ERROR_MSG} "    $(notdir $@)";			\
 		${ERROR_MSG} "";					\
-		${ERROR_MSG} "Please retrieve this file manually into:"; \
+		${ERROR_MSG} "Please retrieve this file manually into:";\
 		${ERROR_MSG} "    $(dir $@)";				\
 		exit 1;							\
 	fi

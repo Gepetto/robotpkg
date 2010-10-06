@@ -1,5 +1,4 @@
 #!/bin/sh
-# $LAAS: fetch 2010/08/25 19:05:18 mallet $
 #
 # Copyright (c) 2006 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -44,7 +43,8 @@
 #	fetch -- fetch files via URLs
 #
 # SYNOPSIS
-#	fetch [-c] [-d dir] [-f distinfo] file site ..."
+#	fetch [-m archive|cvs|git|svn] [-e extract_dir] [-c] [-d dir]
+#		[-f distinfo] file site ..."
 #
 # DESCRIPTION
 #	fetch will attempt to fetch the file from the list of specified
@@ -57,6 +57,10 @@
 #	no fetch action is taken.
 #
 # OPTIONS
+#	-m	Fetch method. Must be archive, cvs, git or svn.
+#
+#	-e	Extract directory.
+#
 #	-c	Verify the checksum for the file.  If the checksum
 #		does not match, then the fetch is determined to be
 #		not successful.
@@ -108,28 +112,40 @@
 : ${ROBOTPKG_DIR:=/usr/robotpkg}
 : ${CHECKSUM:=${ROBOTPKG_DIR}/mk/checksum/checksum}
 : ${CP:=cp}
+: ${ID:=id}
+: ${UMASK:=umask}
 : ${ECHO:=echo}
-: ${FETCH_CMD:=ftp}
+: ${FETCH_CMD:=tnftp}
 : ${MKDIR:=mkdir}
 : ${MV:=mv}
 : ${TEST:=test}
 : ${TOUCH:=touch}
 : ${WC:=wc}
+: ${FIND:=find}
+: ${SORT:=sort}
+: ${GZIP:=gzip}
+: ${PAX:=pax}
 
 self="${0##*/}"
 
 usage() {
-	${ECHO} 1>&2 "usage: $self [-c] [-f distinfo] [-r] file site ..."
+    ${ECHO} 1>&2	\
+	"usage: $self [-m archive|cvs|git|svn] [-e extract_dir] [-c]"	\
+	"[-f distinfo] [-r] file site ..."
 }
 
 # Process optional arguments
+format=archive
+extract=work
 checksum=
 distinfo=
 fetchdir=.
 resume=
 verbose=
 while ${TEST} $# -gt 0; do
-	case "$1" in
+    case "$1" in
+	-m)	format="$2"; shift 2 ;;
+	-e)	extract="$2"; shift 2 ;;
 	-c)	checksum=yes; shift ;;
 	-d)	fetchdir="$2"; shift 2 ;;
 	-f)	distinfo="$2"; shift 2 ;;
@@ -141,7 +157,7 @@ while ${TEST} $# -gt 0; do
 		exit 1
 		;;
 	*)	break ;;
-	esac
+    esac
 done
 if ${TEST} -n "$checksum" -a -z "$distinfo"; then
 	${ECHO} 1>&2 "$self: \`\`-c'' requires \`\`-f distinfo''."
@@ -259,34 +275,79 @@ ${TEST} -z "$distsize" || ${ECHO} "=> Total size: $distsize $distunits"
 while ${TEST} $# -gt 0; do
 	site="$1"; shift
 
-	( cd $fetchdir
-	  if ${TEST} -n "$resume"; then
-		fetch_cmd="${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${FETCH_RESUME_ARGS} ${FETCH_OUTPUT_ARGS} $outputfile $site$file"
-	  else
-		fetch_cmd="${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${FETCH_OUTPUT_ARGS} $outputfile $site$file ${FETCH_AFTER_ARGS}"
-	  fi
-	  ${TEST} -z "$verbose" || ${ECHO} "$fetch_cmd"
-	  $fetch_cmd )
+	# Build repository bits from repository+module@rev format
+	repo=${site%@*}
+	rev=${site##*@}
+	${TEST} "$rev" = "$site" && rev=
+	module=${rev##*+}
+	rev=${rev%+*}
+
+	(
+	    cd $fetchdir
+	    fetch_cmd="${FETCH_CMD} ${FETCH_BEFORE_ARGS}"
+	    if ${TEST} -n "$resume"; then
+		fetch_cmd="${fetch_cmd} ${FETCH_RESUME_ARGS}"
+	    fi
+	    if ${TEST} -n "${FETCH_OUTPUT_ARGS}"; then
+		fetch_cmd="${fetch_cmd} ${FETCH_OUTPUT_ARGS} $outputfile"
+	    fi
+	    fetch_cmd="${fetch_cmd} ${FETCH_AFTER_ARGS}"
+
+	    # Use the correct extraction procedure to create the archive based
+	    # on the repository format.
+	    ${TEST} -d "$extract" && rm -rf "$extract"
+	    case "$format" in
+		archive)
+		    ${ECHO} $fetch_cmd $site$file
+		    $fetch_cmd $site$file
+		    ;;
+
+		cvs)
+		    ${ECHO} $fetch_cmd -d $repo export -r $rev $module
+		    $fetch_cmd -d $repo export -d $extract -r $rev $module &&
+		    ${FIND} $extract \! -type d | ${SORT} | ${PAX} -wzf $file
+		    ;;
+
+		git)
+		    ${ECHO} $fetch_cmd clone $repo $extract
+		    $fetch_cmd clone -n $repo $extract &&
+		    $fetch_cmd --git-dir=$extract/.git			\
+			archive --prefix=$extract/ $rev $module |	\
+			${GZIP} -c >$file
+		    ;;
+
+		svn)
+		    ${TEST} -n "$rev" && rev="-r $rev"
+		    ${ECHO} $fetch_cmd export $rev $repo $extract
+		    $fetch_cmd --non-interactive --trust-server-cert	\
+			export $rev $repo $extract &&
+		    ${FIND} $extract \! -type d | ${SORT} | ${PAX} -wzf $file
+		    ;;
+	    esac
+	    status=$?
+	    ${TEST} -d "$extract" && rm -rf "$extract"
+	    exit $status
+	)
 	if ${TEST} $? -ne 0; then
-		${ECHO} 1>&2 "$self: Unable to fetch expected file $file"
-		continue
+	    ${ECHO} 1>&2 "$self: Unable to fetch expected file $file"
+	    continue
 	fi
 	if verify_file $outputpath; then
-		${TEST} -z "$resume" || ${MV} -f $outputpath $path
-		break
+	    ${TEST} -z "$resume" || ${MV} -f $outputpath $path
+	    break
 	else
-		${ECHO} 1>&2 "$self: Unable to verify fetched file $file"
+	    ${ECHO} 1>&2 "$self: Unable to verify fetched file $file"
 	fi
 	if ${TEST} -n "$resume"; then
-		if ${TEST} -f $path; then
-			${CP} -f $path $outputpath
-		else
-			${TOUCH} $outputpath
-		fi
+	    if ${TEST} -f $path; then
+		${CP} -f $path $outputpath
+	    else
+		${TOUCH} $outputpath
+	    fi
 	fi
 done
 if ${TEST} -f $path; then
-	exit 0
+    exit 0
 else
-	exit 1
+    exit 1
 fi

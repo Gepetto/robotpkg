@@ -1,6 +1,5 @@
-# $LAAS: fetch-vars.mk 2009/03/01 15:49:33 tho $
 #
-# Copyright (c) 2006,2008-2009 LAAS/CNRS
+# Copyright (c) 2006,2008-2010 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -62,12 +61,82 @@
 # The default DISTDIR is currently set in robotpkg.prefs.mk.
 #DISTDIR?=               ${ROBOTPKG_DIR}/distfiles
 
+# The fetch method.
+FETCH_METHOD?=   	archive
+# "manual" will explicitly fail if the DISTFILES don't exist locally.
+# "custom" requires setting FETCH_CMD, FETCH_BEFORE_ARGS, FETCH_AFTER_ARGS,
+# FETCH_RESUME_ARGS and FETCH_OUTPUT_ARGS. FETCH_CMD must understand fetching
+# files located via URLs.
+# Possible: tnftp, cvs, git, svn, manual, custom
+# Default: tnftp
+ifeq (,$(filter archive cvs git svn manual custom,${FETCH_METHOD}))
+  PKG_FAIL_REASON+= "FETCH_METHOD for ${PKGNAME} must be one of"
+  PKG_FAIL_REASON+= "	archive cvs git svn manual custom"
+endif
+
+# Default archive extension
 EXTRACT_SUFX?=		.tar.gz
 
 _DISTDIR=		${DISTDIR}/${DIST_SUBDIR}
 DISTFILES?=		${DISTNAME}${EXTRACT_SUFX}
 
+# Backup site for archives
+_MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP:=${DIST_SUBDIR:=/}}
+_MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE:=${DIST_SUBDIR:=/}}
+
+# The following variables are all lists of options to pass to he command
+# used to do the actual fetching of the file.
+ifeq (archive,$(strip ${FETCH_METHOD}))
+  _FETCH_CMD=		${TNFTP}
+  _FETCH_RESUME_ARGS=	-R
+  _FETCH_OUTPUT_ARGS=	-o
+
+  _FETCH_DEPEND=	pkgtools/tnftp/depend.mk
+  DEPEND_METHOD.tnftp+=	bootstrap
+endif
+
+ifeq (cvs,$(strip ${FETCH_METHOD}))
+  _FETCH_CMD=		${CVS}
+
+  _FETCH_DEPEND=	mk/sysdep/cvs.mk pkgtools/pax/depend.mk
+  DEPEND_METHOD.cvs+=	bootstrap
+  DEPEND_METHOD.pax+=	bootstrap
+endif
+
+ifeq (git,$(strip ${FETCH_METHOD}))
+  _FETCH_CMD=		${GIT}
+
+  _FETCH_DEPEND=	mk/sysdep/git.mk
+  DEPEND_METHOD.git+=	bootstrap
+endif
+
+ifeq (svn,$(strip ${FETCH_METHOD}))
+  _FETCH_CMD=		${SVN}
+
+  _FETCH_DEPEND=	mk/sysdep/svn.mk pkgtools/pax/depend.mk
+  DEPEND_METHOD.svn+=	bootstrap
+  DEPEND_METHOD.pax+=	bootstrap
+endif
+
+ifeq (manual,$(strip ${FETCH_METHOD}))
+  _FETCH_BEFORE_ARGS=	${FALSE}
+endif
+
+ifeq (custom,$(strip ${FETCH_METHOD}))
+  # FETCH_CMD is the program used to fetch files for FETCH_USING=custom.
+  # It must understand fetching files located via URLs.
+  #
+  _FETCH_BEFORE_ARGS=	${FETCH_CMD} ${FETCH_BEFORE_ARGS}
+  _FETCH_AFTER_ARGS=	${FETCH_AFTER_ARGS}
+  _FETCH_RESUME_ARGS=	${FETCH_RESUME_ARGS}
+  _FETCH_OUTPUT_ARGS=	${FETCH_OUTPUT_ARGS}
+endif
+
+# Fetch logfile
+FETCH_LOGFILE?=		${WRKDIR}/.fetch.log
+FETCH_LOGFILTER?=\
+	${_LOGFILTER} $(if $(filter cvs git svn,${FETCH_METHOD}),,-n)	\
+	${_LOGFILTER_FLAGS} -l ${FETCH_LOGFILE} --
+
 include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
 include ${ROBOTPKG_DIR}/mk/fetch/fetch.mk
-#include "${ROBOTPKG_DIR}/mk/fetch/fetch-list.mk"
-#include "${ROBOTPKG_DIR}/mk/fetch/distclean.mk"
