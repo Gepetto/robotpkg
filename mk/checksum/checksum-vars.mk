@@ -1,6 +1,6 @@
-# $LAAS: checksum-vars.mk 2009/11/20 14:01:00 mallet $
+# $LAAS: checksum-vars.mk 2010/10/06 17:08:09 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -53,6 +53,12 @@ DISTINFO_FILE?=		${PKGDIR}/distinfo
 _DIGEST_ALGORITHMS?=		SHA1 RMD160
 _PATCH_DIGEST_ALGORITHMS?=	SHA1
 _CONF_DIGEST_ALGORITHMS?=	SHA1
+
+# Archives that are retrived from a repository are digested with archive's
+# metadata reset to know values (owner/group id, mtime, dev, umask).
+ifneq (,$(filter cvs git svn,${FETCH_METHOD}))
+  _DIGEST_ARGS+=	-c
+endif
 
 # The following are the "public" targets provided by this module:
 #

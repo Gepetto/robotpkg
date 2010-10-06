@@ -1,6 +1,5 @@
-# $LAAS: checksum.mk 2009/11/24 16:34:31 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -54,9 +53,14 @@ DEPEND_METHOD.digest+=	bootstrap
 include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
 
 # The command for computing a file's checksum
-_CHECKSUM_CMD=								\
-	${SETENV} DIGEST=${DIGEST} CAT=${TOOLS_CAT} TEST=${TOOLS_TEST}	\
-		ECHO=${TOOLS_ECHO} 					\
+_CHECKSUM_CMD= ${SETENV} 					\
+	DIGEST=$(call quote,$(strip ${DIGEST} ${_DIGEST_ARGS}))	\
+	CAT=${CAT} TEST=${TEST} ECHO=${ECHO} 			\
+	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
+
+_MAKECONF_CHECKSUM_CMD= ${SETENV} 				\
+	DIGEST=$(call quote,${DIGEST})				\
+	CAT=${CAT} TEST=${TEST} ECHO=${ECHO} 			\
 	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
 
 
@@ -83,7 +87,7 @@ checksum: $(call barrier, bootstrap-depends, ${_CHECKSUM_TARGETS})
 # check-configuration-file create a checksum of the current
 # robotpkg.conf, or checks it against a previously saved checksum. This
 # guarantees that the configuration file did not change between two make
-# invocations. 
+# invocations.
 #
 
 _MAKECONF_CKSUM=	${WRKDIR}/.conf_cksum
@@ -93,7 +97,7 @@ check-configuration-file: ${WRKDIR}
 ifdef MAKECONF
 	${RUN}if test -f ${_MAKECONF_CKSUM}; then			\
 $(foreach _alg_,${_CONF_DIGEST_ALGORITHMS},				\
-	  if ${_CHECKSUM_CMD} -a ${_alg_}				\
+	  if ${_MAKECONF_CHECKSUM_CMD} -a ${_alg_}			\
 	    ${_MAKECONF_CKSUM} ${MAKECONF}; then			\
 	    ${TRUE};							\
 	  else								\

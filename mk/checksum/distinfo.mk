@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -84,11 +84,14 @@ makesum:
 		${TEST} -n "$$sumfile" || continue;			\
 		for a in "" ${_DIGEST_ALGORITHMS}; do			\
 			${TEST} -n "$$a" || continue;			\
-			${DIGEST} $$a $$sumfile >> $$newfile;		\
+			${DIGEST} ${_DIGEST_ARGS} 			\
+				$$a $$sumfile >> $$newfile;		\
 		done;							\
-		${WC} -c $$sumfile |					\
-		${AWK} '{ print "Size (" $$2 ") = " $$1 " bytes" }'	\
+		if ${TEST} -z "$(strip ${_DIGEST_ARGS})"; then		\
+		  ${WC} -c $$sumfile |					\
+		  ${AWK} '{ print "Size (" $$2 ") = " $$1 " bytes" }'	\
 			>> $$newfile;					\
+		fi;							\
 	done;								\
 	for ignore in "" ${_IGNOREFILES}; do				\
 		${TEST} -n "$$ignore" || continue;			\
