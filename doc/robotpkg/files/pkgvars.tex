@@ -1,4 +1,4 @@
-% $LAAS: pkgvars.tex 2010/10/06 18:45:43 mallet $
+% $LAAS: pkgvars.tex 2010/10/08 17:10:38 mallet $
 %
 % Copyright (c) 2010 LAAS/CNRS
 % All rights reserved.
@@ -17,7 +17,7 @@
 %
 %                                             Anthony Mallet on Wed Oct  6 2010
 %
-\section{Package files, directories and contents} % ------------------------
+\section{Creating a new package} % -----------------------------------------
 \label{section:pkgvars}
 
 Whenever you're preparing a package, there are a number of files involved which
@@ -87,3 +87,98 @@ mostly historical and has no further meaning.
    known state.
 
 \end{description}
+
+The second section contains information about separately downloaded patches, if any.
+
+\begin{description}
+
+   \item[PATCHFILES] Name(s) of additional files that contain distribution
+   patches distributed by the author or other maintainers. There is no
+   default. robotpkg will look for them at {\tt    PATCH\_SITES}. They will
+   automatically be uncompressed before patching if    the names end with .gz
+   or .Z.
+
+   \item[PATCH\_SITES] Primary location(s) for distribution patch files (see
+   {\tt PATCHFILES} above) if not found locally.
+
+\end{description}
+
+
+\subsection{distinfo} % ----------------------------------------------------
+\label{subsection:distinfo}
+
+The distinfo file contains the message digest, or checksum, of each distfile
+needed for the package. This ensures that the distfiles retrieved from the
+Internet have not been corrupted during transfer or altered by a malign force
+to introduce a security hole. Due to recent rumor about weaknesses of digest
+algorithms, all distfiles are protected using both SHA1 and RMD160 message
+digests, as well as the file size.
+
+The distinfo file also contains the checksums for all the patches found in the
+patches directory (see
+\xref{subsection:patches}{Section~\ref{subsection:patches}}).
+
+To regenerate the distinfo file, use the {\tt make distinfo} or {\tt make mdi}
+command.
+
+
+\subsection{PLIST}
+\label{subsection:PLIST}
+
+This  file  governs the  files  that  are installed  on  your  system: all  the
+binaries, manual pages, etc. There are other directives which may be entered in
+this  file,  to control  the  creation and  deletion  of  directories, and  the
+location of inserted files.
+
+The  names used  in the  PLIST are  relative to  the installation  prefix ({\tt
+\$\{PREFIX\}}),  which  means  that  it  cannot  register  files  outside  this
+directory  (absolute path names  are not  allowed). As  a general  sanity rule,
+robotpkg must  not alter  any files outside  {\tt \$\{PREFIX\}} anyway  and, in
+particular, not modify automatically existing configuration files. If a package
+needs  to install  files  outside {\tt  \$\{PREFIX\}},  the best  option is  to
+install   them   with   robotpkg   inside  {\tt   \$\{PREFIX\}}   (e.g.    {\tt
+\$\{PREFIX\}/etc} or  {\tt \$\{PREFIX\}/var}) and  create a {\tt  MESSAGE} file
+that will instruct the  user to manually link or copy the  files in question to
+their final location. See the package {\tt hardware/ieee1394-kmod} for an
+example of such package.
+
+In  order to  create  or  update a  {\tt  PLIST}, you  can  use  the {\tt  make
+print-PLIST} command  to output  a PLIST that  matches any new  installed files
+since  the  package   was  extracted.   This  command  will   generate  a  {\tt
+PLIST.guess} file which  you must move manually to  {\tt PLIST} after reviewing
+the result of the semi-automatic generation.
+
+
+\subsection{patches/*} % ----------------------------------------------------
+\label{subsection:patches}
+
+Some packages may not work out-of-the box with robotpkg. Therefore, a number of
+custom patch  files may be needed to  make the package work.  These patch files
+are found in the {\tt patches/} directory. If you want to share patches between
+multiple packages  in robotpkg, e.g. because  they use the  same distfiles, set
+{\tt PATCHDIR} to the path where the patch files can be found, e.g.:
+\begin{quote}
+   PATCHDIR= ../../devel/boost/patches
+\end{quote}
+
+The file names of the patch files must be of the form {\tt patch-*}, and they
+are usually named {\tt patch-[a-z][a-z]}. In  the {\em  patch} phase,  these
+patches  are automatically applied  to the  files  in {\tt \$\{WRKSRC\}}
+directory after extracting them, in alphabetic order.
+
+The {\tt patch-*} files should be in {\tt diff -bu} format, and apply without a
+fuzz to avoid problems.  (To force patches to apply with fuzz  you can set {\tt
+PATCH\_FUZZ\_FACTOR=-F2} in a package's {\tt Makefile}).
+
+Each patch file should be commented so that any developer who knows the code of
+the application  can make some use of  the patch. Special care  should be taken
+for the upstream developers, since  we generally want that they accept robotpkg
+patches, so there is less work in the future. When adding a patch that corrects
+a problem in the distfile (rather than e.g. enforcing robotpkg's view of where
+man pages should go), send the patch as a bug report to the maintainer. This
+benefits non-robotpkg users of the package, and usually makes it possible to
+remove the patch in future version.
+
+When you add or modify existing patch files, remember to generate the checksums
+for the patch files by using the {\tt make mdi} command, see
+\xref{subsection:distinfo}{Section~\ref{subsection:distinfo}}.

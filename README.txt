@@ -1,9 +1,9 @@
                               A guide to robotpkg
 
                     Anthony Mallet - anthony.mallet@laas.fr
-                       Copyright 2006-2009 (C) LAAS/CNRS
+                       Copyright 2006-2010 (C) LAAS/CNRS
 
-                                October 6, 2010
+                                October 8, 2010
 
 Contents
 
@@ -37,8 +37,11 @@ Contents
         2.4.4  Variables affecting the build process
         2.4.5  Additional flags to the compiler
 3  The robotpkg developer's guide
-    3.1  Package files, directories and contents
+    3.1  Creating a new package
         3.1.1  Makefile
+        3.1.2  distinfo
+        3.1.3  PLIST
+        3.1.4  patches/*
 4  The robotpkg infrastructure internals
 
 1
@@ -735,7 +738,9 @@ LDFLAGS+= -your -linkerflags
 3
 The robotpkg developer's guide
 
-3.1  Package files, directories and contents
+This part of the documentation deals with creating and modifying packages.
+
+3.1  Creating a new package
 
 Whenever you're preparing a package, there are a number of files involved which
 are described in the following sections.
@@ -792,6 +797,79 @@ FETCH_METHOD
     underlying fetch tool (cvs, git or svn). It is strongly advised to define
     at least a specific revision to be checked out, so that the package can be
     reproducibly installed in a known state.
+
+The second section contains information about separately downloaded patches, if
+any.
+
+PATCHFILES
+    Name(s) of additional files that contain distribution patches distributed
+    by the author or other maintainers. There is no default. robotpkg will look
+    for them at PATCH_SITES. They will automatically be uncompressed before
+    patching if the names end with .gz or .Z.
+PATCH_SITES
+    Primary location(s) for distribution patch files (see PATCHFILES above) if
+    not found locally.
+
+3.1.2  distinfo
+
+The distinfo file contains the message digest, or checksum, of each distfile
+needed for the package. This ensures that the distfiles retrieved from the
+Internet have not been corrupted during transfer or altered by a malign force
+to introduce a security hole. Due to recent rumor about weaknesses of digest
+algorithms, all distfiles are protected using both SHA1 and RMD160 message
+digests, as well as the file size.
+The distinfo file also contains the checksums for all the patches found in the
+patches directory (see Section 3.1.4).
+To regenerate the distinfo file, use the make distinfo or make mdi command.
+
+3.1.3  PLIST
+
+This file governs the files that are installed on your system: all the
+binaries, manual pages, etc. There are other directives which may be entered in
+this file, to control the creation and deletion of directories, and the
+location of inserted files.
+The names used in the PLIST are relative to the installation prefix ( $
+{PREFIX}), which means that it cannot register files outside this directory
+(absolute path names are not allowed). As a general sanity rule, robotpkg must
+not alter any files outside ${PREFIX} anyway and, in particular, not modify
+automatically existing configuration files. If a package needs to install files
+outside ${PREFIX}, the best option is to install them with robotpkg inside $
+{PREFIX} (e.g. ${PREFIX}/etc or ${PREFIX}/var) and create a MESSAGE file that
+will instruct the user to manually link or copy the files in question to their
+final location. See the package hardware/ieee1394-kmod for an example of such
+package.
+In order to create or update a PLIST, you can use the make print-PLIST command
+to output a PLIST that matches any new installed files since the package was
+extracted. This command will generate a PLIST.guess file which you must move
+manually to PLIST after reviewing the result of the semi-automatic generation.
+
+3.1.4  patches/*
+
+Some packages may not work out-of-the box with robotpkg. Therefore, a number of
+custom patch files may be needed to make the package work. These patch files
+are found in the patches/ directory. If you want to share patches between
+multiple packages in robotpkg, e.g. because they use the same distfiles, set
+PATCHDIR to the path where the patch files can be found, e.g.:
+
+    PATCHDIR= ../../devel/boost/patches
+
+The file names of the patch files must be of the form patch-*, and they are
+usually named patch-[a-z][a-z]. In the patch phase, these patches are
+automatically applied to the files in ${WRKSRC} directory after extracting
+them, in alphabetic order.
+The patch-* files should be in diff -bu format, and apply without a fuzz to
+avoid problems. (To force patches to apply with fuzz you can set
+PATCH_FUZZ_FACTOR=-F2 in a package's Makefile).
+Each patch file should be commented so that any developer who knows the code of
+the application can make some use of the patch. Special care should be taken
+for the upstream developers, since we generally want that they accept robotpkg
+patches, so there is less work in the future. When adding a patch that corrects
+a problem in the distfile (rather than e.g. enforcing robotpkg's view of where
+man pages should go), send the patch as a bug report to the maintainer. This
+benefits non-robotpkg users of the package, and usually makes it possible to
+remove the patch in future version.
+When you add or modify existing patch files, remember to generate the checksums
+for the patch files by using the make mdi command, see Section 3.1.2.
 
 4
 The robotpkg infrastructure internals

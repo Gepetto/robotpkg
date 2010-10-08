@@ -131,10 +131,10 @@ table, table tr {
 
 <h3 align="center">
    Anthony Mallet - <tt>anthony.mallet@laas.fr</tt><br />
-   Copyright 2006-2009 &#169; LAAS/CNRS
+   Copyright 2006-2010 &#169; LAAS/CNRS
  </h3>
 
-<h3 align="center">October  6, 2010</h3>
+<h3 align="center">October  8, 2010</h3>
 
 <div class="p"><!----></div>
    
@@ -205,9 +205,15 @@ table, table tr {
 <a href="#tth_chAp3"
 >3&nbsp; The robotpkg developer's guide</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1"
->3.1&nbsp; Package files, directories and contents</a><br />
+>3.1&nbsp; Creating a new package</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1.1"
 >3.1.1&nbsp; Makefile</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1.2"
+>3.1.2&nbsp; distinfo</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1.3"
+>3.1.3&nbsp; PLIST</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1.4"
+>3.1.4&nbsp; patches/*</a><br />
 <a href="#tth_chAp4"
 >4&nbsp; The robotpkg infrastructure internals</a><br />
 
@@ -1316,8 +1322,13 @@ LDFLAGS+=&nbsp;-your&nbsp;-linkerflags
 <a name="chapter:developer">
 </a>
 
+<div class="p"><!----></div>
+This part of the documentation deals with creating and modifying packages.
+
+<div class="p"><!----></div>
+
  <h2><a name="tth_sEc3.1">
-3.1</a>&nbsp;&nbsp;Package files, directories and contents</h2> <a name="section:pkgvars">
+3.1</a>&nbsp;&nbsp;Creating a new package</h2> <a name="section:pkgvars">
 </a>
 
 <div class="p"><!----></div>
@@ -1404,6 +1415,119 @@ mostly historical and has no further meaning.
    to be checked out, so that the package can be reproducibly installed in a
    known state.</dd>
 </dl>
+
+<div class="p"><!----></div>
+The second section contains information about separately downloaded patches, if any.
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>PATCHFILES</b></dt>
+	<dd> Name(s) of additional files that contain distribution
+   patches distributed by the author or other maintainers. There is no
+   default. robotpkg will look for them at <tt>PATCH_SITES</tt>. They will
+   automatically be uncompressed before patching if    the names end with .gz
+   or .Z.</dd>
+ <dt><b>PATCH_SITES</b></dt>
+	<dd> Primary location(s) for distribution patch files (see
+   <tt>PATCHFILES</tt> above) if not found locally.</dd>
+</dl>
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc3.1.2">
+3.1.2</a>&nbsp;&nbsp;distinfo</h3> <a name="subsection:distinfo">
+</a>
+
+<div class="p"><!----></div>
+The distinfo file contains the message digest, or checksum, of each distfile
+needed for the package. This ensures that the distfiles retrieved from the
+Internet have not been corrupted during transfer or altered by a malign force
+to introduce a security hole. Due to recent rumor about weaknesses of digest
+algorithms, all distfiles are protected using both SHA1 and RMD160 message
+digests, as well as the file size.
+
+<div class="p"><!----></div>
+The distinfo file also contains the checksums for all the patches found in the
+patches directory (see
+<a href="#subsection:patches">Section&nbsp;<a href="#subsection:patches">3.1.4</a></a>).
+
+<div class="p"><!----></div>
+To regenerate the distinfo file, use the <tt>make distinfo</tt> or <tt>make mdi</tt>
+command.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc3.1.3">
+3.1.3</a>&nbsp;&nbsp;PLIST</h3>
+<a name="subsection:PLIST">
+</a>
+
+<div class="p"><!----></div>
+This  file  governs the  files  that  are installed  on  your  system: all  the
+binaries, manual pages, etc. There are other directives which may be entered in
+this  file,  to control  the  creation and  deletion  of  directories, and  the
+location of inserted files.
+
+<div class="p"><!----></div>
+The  names used  in the  PLIST are  relative to  the installation  prefix (<tt>
+${PREFIX}</tt>),  which  means  that  it  cannot  register  files  outside  this
+directory  (absolute path names  are not  allowed). As  a general  sanity rule,
+robotpkg must  not alter  any files outside  <tt>${PREFIX}</tt> anyway  and, in
+particular, not modify automatically existing configuration files. If a package
+needs  to install  files  outside <tt>${PREFIX}</tt>,  the best  option is  to
+install   them   with   robotpkg   inside  <tt>${PREFIX}</tt>   (e.g.    <tt>
+${PREFIX}/etc</tt> or  <tt>${PREFIX}/var</tt>) and  create a <tt>MESSAGE</tt> file
+that will instruct the  user to manually link or copy the  files in question to
+their final location. See the package <tt>hardware/ieee1394-kmod</tt> for an
+example of such package.
+
+<div class="p"><!----></div>
+In  order to  create  or  update a  <tt>PLIST</tt>, you  can  use  the <tt>make
+print-PLIST</tt> command  to output  a PLIST that  matches any new  installed files
+since  the  package   was  extracted.   This  command  will   generate  a  <tt>
+PLIST.guess</tt> file which  you must move manually to  <tt>PLIST</tt> after reviewing
+the result of the semi-automatic generation.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc3.1.4">
+3.1.4</a>&nbsp;&nbsp;patches/*</h3> <a name="subsection:patches">
+</a>
+
+<div class="p"><!----></div>
+Some packages may not work out-of-the box with robotpkg. Therefore, a number of
+custom patch  files may be needed to  make the package work.  These patch files
+are found in the <tt>patches/</tt> directory. If you want to share patches between
+multiple packages  in robotpkg, e.g. because  they use the  same distfiles, set
+<tt>PATCHDIR</tt> to the path where the patch files can be found, e.g.:
+
+<blockquote>
+   PATCHDIR= ../../devel/boost/patches
+</blockquote>
+
+<div class="p"><!----></div>
+The file names of the patch files must be of the form <tt>patch-*</tt>, and they
+are usually named <tt>patch-[a-z][a-z]</tt>. In  the <em>patch</em> phase,  these
+patches  are automatically applied  to the  files  in <tt>${WRKSRC}</tt>
+directory after extracting them, in alphabetic order.
+
+<div class="p"><!----></div>
+The <tt>patch-*</tt> files should be in <tt>diff -bu</tt> format, and apply without a
+fuzz to avoid problems.  (To force patches to apply with fuzz  you can set <tt>
+PATCH_FUZZ_FACTOR=-F2</tt> in a package's <tt>Makefile</tt>).
+
+<div class="p"><!----></div>
+Each patch file should be commented so that any developer who knows the code of
+the application  can make some use of  the patch. Special care  should be taken
+for the upstream developers, since  we generally want that they accept robotpkg
+patches, so there is less work in the future. When adding a patch that corrects
+a problem in the distfile (rather than e.g. enforcing robotpkg's view of where
+man pages should go), send the patch as a bug report to the maintainer. This
+benefits non-robotpkg users of the package, and usually makes it possible to
+remove the patch in future version.
+
+<div class="p"><!----></div>
+When you add or modify existing patch files, remember to generate the checksums
+for the patch files by using the <tt>make mdi</tt> command, see
+<a href="#subsection:distinfo">Section&nbsp;<a href="#subsection:distinfo">3.1.2</a></a>.
 
 
 <div class="p"><!----></div>
