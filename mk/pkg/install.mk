@@ -73,22 +73,23 @@ ${foreach _conflict_,${CONFLICTS},					\
 #
 .PHONY: pkg-install-check-installed
 pkg-install-check-installed:
-	${RUN}									\
-	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`";		\
-	${TEST} -n "$$found" || exit 0;						\
-	${ERROR_MSG} ${hline};							\
-	${ERROR_MSG} "$${bf}$$found is already installed.$${rm}";		\
-	${ERROR_MSG} "Perhaps an older version?";				\
-	${ERROR_MSG} "";							\
-	${ERROR_MSG} "If so, you may use either of:";				\
-	if test -z "${PKG_PRESERVE}"; then					\
-	${ERROR_MSG} "    - \`${MAKE} deinstall reinstall' to upgrade properly";\
-	fi;									\
-	${ERROR_MSG} "    - \`${MAKE} update' to rebuild the package and all";	\
-	${ERROR_MSG} "      of its dependencies";				\
-	${ERROR_MSG} "    - \`${MAKE} replace' to replace only the package without";\
-	${ERROR_MSG} "      re-linking dependencies, risking various problems.";\
-	${ERROR_MSG} ${hline};							\
+	${RUN}								\
+	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`";	\
+	${TEST} -n "$$found" || exit 0;					\
+	${ERROR_MSG} ${hline};						\
+	${ERROR_MSG} "$${bf}$$found is already installed.$${rm}";	\
+	${ERROR_MSG} "Perhaps an older version?";			\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "If so, you may use either of:";			\
+	${ERROR_MSG} "    - \`${MAKE} -C ../../${PKGPATH} update' to"	\
+		"rebuild the package";					\
+	${ERROR_MSG} "      and all of its dependencies";		\
+	${ERROR_MSG} "    - \`${MAKE} -C ../../${PKGPATH} replace' to"	\
+		"replace only the";					\
+	${ERROR_MSG} "      package without re-linking dependencies,"	\
+		"risking various";					\
+	${ERROR_MSG} "      problems.";					\
+	${ERROR_MSG} ${hline};						\
 	exit 1
 
 
