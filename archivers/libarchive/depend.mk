@@ -56,7 +56,7 @@ libarchive-build:
 		${CONFIG_SHELL} ./configure -C --disable-shared		\
 		--disable-bsdtar --disable-dependency-tracking		\
 		--disable-bsdcpio --without-expat --without-xml2	\
-		--disable-acl						\
+		-without-lzmadec --without-lzma	--disable-acl		\
 	&& ${CONFIGURE_LOGFILTER} ${MAKE_PROGRAM}
   else
   # This is the regular version of libarchive package, for normal install
