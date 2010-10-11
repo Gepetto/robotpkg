@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Thu, 22 Jan 2009
 #
 
-DISTNAME=		yarp-2.3.0
+DISTNAME=		yarp-2.3.1
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
