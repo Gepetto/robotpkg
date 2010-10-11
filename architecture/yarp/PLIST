@@ -4,7 +4,7 @@ bin/yarpdev
 bin/yarprun
 bin/yarpserver
 bin/yarpserver3
-bin/yarpview
+${PLIST.gui}bin/yarpview
 include/yarp/conf/api.h
 include/yarp/conf/options.h
 include/yarp/conf/system.h
