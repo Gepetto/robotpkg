@@ -14,7 +14,7 @@ ifeq (+,$(LIBPYYARP_DEPEND_MK)) # ----------------------------------------------
 PREFER.libpyyarp?=		robotpkg
 
 DEPEND_USE+=		libpyyarp
-DEPEND_ABI.libpyyarp?=	libpyyarp>=2.2.6
+DEPEND_ABI.libpyyarp?=	libpyyarp>=2.3.1
 DEPEND_DIR.libpyyarp?=	../../devel/libpyyarp
 
 

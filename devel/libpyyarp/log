@@ -1,0 +1,112 @@
+===> Checking bootstrap dependencies for libpyyarp-2.3.1
+=> Required robotpkg package pkg_install>=20091115: pkg_install-20091115 found
+=> Required robotpkg package digest>=20080510: digest-20080510 found
+=> Required robotpkg package pax: pax-20080110 found
+=> Required system package patch>=2.0: patch-2.6 found
+======================================================================
+The supported build options for libpyyarp are:
+
+	debug	Produce debugging information for binary programs
+	python2	Use python version 2
+	python3	Use python version 3
+
+Building with the following options enabled:
+
+	debug	Produce debugging information for binary programs
+	python2	Use python version 2
+
+You may want to abort the process now with CTRL-C and review the
+available build options with `make show-options' before
+continuing. Be sure to run `make clean' after any change.
+======================================================================
+===> Checking dependencies for libpyyarp-2.3.1
+=> Required system package install-sh: install-sh found
+=> Required system package cmake>=2.6: cmake-2.8.1 found
+=> Required system package swig>=1.3: swig-1.3.40 found
+=> Required system package gcc-c>=2.8: gcc-c-4.4.3 found
+=> Required system package gcc-c++>=2.8: gcc-c++-4.4.3 found
+=> Required system package python<3: python-2.6.5 found
+=> Required robotpkg package yarp>=2.3.1: yarp-2.3.1 found
+=> Required robotpkg package ace>=5.6: ace-5.7.6 found
+=> SHA1 checksums OK
+=> RMD160 checksums OK
+===> Extracting for libpyyarp-2.3.1
+===> Patching for libpyyarp-2.3.1
+=> Applying robotpkg patches for libpyyarp-2.3.1
+===> Configuring for libpyyarp-2.3.1
+-- The C compiler identification is GNU
+-- The CXX compiler identification is GNU
+-- Check for working C compiler: /usr/bin/gcc
+-- Check for working C compiler: /usr/bin/gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++
+-- Check for working CXX compiler: /usr/bin/g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Libraries are placed in /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/lib
+-- Executables are placed in /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/bin
+-- Check if the system is big endian
+-- Searching 16 bit integer
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of unsigned short
+-- Check size of unsigned short - done
+-- Using unsigned short
+-- Check if the system is big endian - little endian
+-- Check size of int
+-- Check size of int - done
+-- Check size of short
+-- Check size of short - done
+-- Check size of double
+-- Check size of double - done
+-- checking for module 'ACE'
+--   found ACE, version 5.7.6
+-- Found ACE library: /home/adegroot/robotpkg_build/lib/libACE.so;pthread;rt (Linux)
+-- Found ACE include: /home/adegroot/robotpkg_build/include
+-- Found ACE: /home/adegroot/robotpkg_build/lib/libACE.so;pthread;rt
+-- Check size of ACE_String_Base_Const::size_type
+-- Check size of ACE_String_Base_Const::size_type - done
+-- Performing Test YARP_ACE_ADDR_HAS_LOOPBACK_METHOD
+-- Performing Test YARP_ACE_ADDR_HAS_LOOPBACK_METHOD - Success
+-- generated /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/generated_include/yarp/conf/version.h
+-- generated /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/generated_include/yarp/conf/system.h
+-- generated /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/generated_include/yarp/conf/options.h
+-- generated /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/generated_include/yarp/conf/api.h
+-- In-tree includes: /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/generated_include;/home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/src/libYARP_OS/include;/home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/src/libYARP_sig/include;/home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/src/libYARP_dev/include
+-- YARP libraries: YARP_OS;YARP_sig;YARP_dev;YARP_init
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1
+-- The C compiler identification is GNU
+-- The CXX compiler identification is GNU
+-- Check for working C compiler: /usr/bin/gcc
+-- Check for working C compiler: /usr/bin/gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++
+-- Check for working CXX compiler: /usr/bin/g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- /usr/share/cmake-2.8/Modules/UseSWIG.cmake
+-- Using YARP without automatic linking (set YARP_AUTO_LINK for that)
+-- Found PythonLibs: /usr/lib/libpython2.6.so
+-- Found PythonInterp: /usr/bin/python2.6
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/example/swig
+/bin/ln -sf /home/adegroot/robotpkg_build/lib/libYARP_dev.so /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/lib
+/bin/ln -sf /home/adegroot/robotpkg_build/lib/libYARP_sig.so /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/lib
+/bin/ln -sf /home/adegroot/robotpkg_build/lib/libYARP_OS.so /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/lib
+/bin/ln -sf /home/adegroot/robotpkg_build/lib/libYARP_init.so /home/adegroot/robotpkg/devel/libpyyarp/work/yarp-2.3.1/lib
+===> Building for libpyyarp-2.3.1
+[ 50%] Swig source
+Scanning dependencies of target _yarp
+[100%] Building CXX object CMakeFiles/_yarp.dir/yarpPYTHON_wrap.cxx.o
+Linking CXX shared module _yarp.so
+[100%] Built target _yarp
+===> Done for libpyyarp-2.3.1
