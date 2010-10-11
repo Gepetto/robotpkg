@@ -237,10 +237,10 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 	unsorted_sites="${SITES.$(subst =,--,$(notdir $@))}";		\
 	cd $(patsubst %/${DIST_SUBDIR},%,$(dir $@)) &&			\
 	${_FETCH_SCRIPT} -m ${FETCH_METHOD} ${_FETCH_ARGS}		\
-		$(notdir $@) ${_ORDERED_SITES};				\
+		$(notdir $@) ${_ORDERED_SITES} ||:;			\
 	if ${TEST} ! -f $@; then					\
 		${_FETCH_SCRIPT} -m archive ${_FETCH_ARGS}		\
-			$(notdir $@) ${_MASTER_SITE_BACKUP};		\
+			$(notdir $@) ${_MASTER_SITE_BACKUP} ||:;	\
 	fi;								\
 	if ${TEST} ! -f $@; then					\
 		${ERROR_MSG} "Could not fetch the following file:";	\
