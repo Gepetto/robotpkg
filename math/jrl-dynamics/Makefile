@@ -9,7 +9,7 @@ VERSION=	1.17.0
 CATEGORIES=	math
 NO_PUBLIC_SRC=	yes
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-dynamics/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}dynamics-JRLJapan
+MASTER_REPOSITORY=	git@github.com:jrl-umi3218/jrl-dynamics.git
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	JRL-Japan implementation of dynamic robot.
