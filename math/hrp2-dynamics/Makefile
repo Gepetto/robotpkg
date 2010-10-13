@@ -14,6 +14,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hrp2Dynamics
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Optimized implementation of functions related to HRP-2 dynamics.
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+= c c++
 
