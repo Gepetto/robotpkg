@@ -61,7 +61,17 @@ done
 
 # No filter mode: just exec the command line
 #
-test -n "$nofilter" && exec "$@"
+if ${TEST} -n "$nofilter"; then
+    if ${TEST} -n "$logfile"; then
+	# the tricky part is to get the actual exit status of the command.
+	exec 3>&1 4>&1
+	exit `{ { "$@"; echo $? >&3; } | while read l; do
+	    echo $l >&4; echo $l>>$logfile;
+	done; } 3>&1`
+    else
+	exec "$@"
+    fi
+fi
 
 
 # Interactive message strings
