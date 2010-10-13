@@ -13,6 +13,7 @@ MASTER_REPOSITORY= ${MASTER_REPOSITORY_JRL}doc/hpp-doc
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	HPP Project documentation.
+LICENSE=	cnrs-hpp-closed-source
 
 GNU_CONFIGURE=	yes
 

@@ -12,6 +12,7 @@ NO_PUBLIC_BIN=		${RESTRICTED}
 
 MAINTAINER=		hpp@laas.fr
 COMMENT=		CORBA server for VRML model loader.
+LICENSE=		cnrs-hpp-closed-source
 
 GNU_CONFIGURE=		yes
 NO_BUILD=		yes
