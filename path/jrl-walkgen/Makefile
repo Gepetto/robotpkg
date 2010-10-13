@@ -8,7 +8,7 @@ VERSION=	3.0.3
 
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-walkgen/}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/jrl/walkGenJrl
+MASTER_REPOSITORY=	git@github.com:jrl-umi3218/jrl-walkgen.git
 
 USE_LANGUAGES+=fortran c c++
 
