@@ -7,11 +7,12 @@ PKGNAME=	jrl-mathtools-1.3.0
 
 CATEGORIES=	math
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/jrlMathTools
+MASTER_REPOSITORY=	git@github.com:jrl-umi3218/jrl-mathtools.git
 
 MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Basic mathematical tools used in the JRL software.
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=		c c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/jrlMathTools
