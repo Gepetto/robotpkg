@@ -12,6 +12,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hpp-hik
 
 MAINTAINER=	hpp@laas.fr
 COMMENT=Solver of hierarchical linear inequality and equality constraints
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+= c c++
 
