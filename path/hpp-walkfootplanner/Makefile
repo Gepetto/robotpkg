@@ -12,6 +12,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hppWalkFootPlanner
 
 MAINTAINER=	hpp@laas.fr
 COMMENT=	Collision free walk path planning for a humanoid robot.
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+= c c++
 
