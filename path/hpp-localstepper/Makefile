@@ -12,6 +12,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hpp-localstepper
 
 MAINTAINER=	hpp@laas.fr
 COMMENT=	Whole-body motion planning for humanoid robot with steps
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+= c c++
 
