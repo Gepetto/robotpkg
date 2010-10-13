@@ -14,6 +14,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hppWalkPlanner
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Path planning algorithm for a walking humanoid robot.
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+= c c++
 
