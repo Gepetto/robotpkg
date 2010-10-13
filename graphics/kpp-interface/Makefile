@@ -12,6 +12,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kppInterface
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=
 COMMENT=	Graphical user interface for HPP libraries.
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+= c c++
 
