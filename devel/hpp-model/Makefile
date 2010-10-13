@@ -13,6 +13,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hppModel
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Robots, humanoid robots, joints and bodies with dynamics properties
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=	c c++
 
