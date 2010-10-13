@@ -13,6 +13,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hppCorbaServer
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=
 COMMENT=	Corba interface with hppCore package.
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=	c c++
 
