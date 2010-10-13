@@ -13,6 +13,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kwsplus/}
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=
 COMMENT=	Helper functions for KineoWorks(tm) package.
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=	c c++
 
