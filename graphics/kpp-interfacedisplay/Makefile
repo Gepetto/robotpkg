@@ -12,6 +12,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=kpp-interfacedisplay/}
 MAINTAINER=	hpp@laas.fr
 
 COMMENT=	Graphical user interface for robotics components based on Kineo
+LICENSE=	cnrs-hpp-closed-source
 
 GNU_CONFIGURE=	yes
 DOXYGEN_PLIST_DIR+=share/doc/kppInterfaceDisplay
