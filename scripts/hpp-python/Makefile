@@ -12,6 +12,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=
 COMMENT=	Python scripts creating CORBA client of hppCorbaServer
+LICENSE=	cnrs-hpp-closed-source
 
 GNU_CONFIGURE=	yes
 
