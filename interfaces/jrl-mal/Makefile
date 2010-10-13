@@ -8,11 +8,12 @@ VERSION=	1.8.3
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}/jrl-mal/
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}/MatrixAbstractLayer
+MASTER_REPOSITORY=	git@github.com:jrl-umi3218/jrl-mal.git
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=	Matrix abstraction layer for boost or vnl.
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=		c c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/MatrixAbstractLayer
