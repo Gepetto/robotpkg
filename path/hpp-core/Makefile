@@ -13,6 +13,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hppCore
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
 COMMENT=	Basic classes used as interfaces with KineoWorks(tm).
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=	c c++
 
