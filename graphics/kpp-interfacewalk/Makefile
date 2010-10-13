@@ -13,6 +13,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kppInterfaceWalk
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=
 COMMENT=	Graphical user interface for hppWalkPlanner libraries.
+LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+= c c++
 
