@@ -1,9 +1,9 @@
 # robotpkg Makefile for:	graphics/pqp-libs
 # Created:			Severin Lemaignan on Tue, 31 Aug 2010
 #
-PKGVERSION=		1.3
+VERSION=		1.3
 PKGREVISION=		1
-DISTNAME=		pqp-${PKGVERSION}
+DISTNAME=		pqp-${VERSION}
 MASTER_SITES=		http://gamma.cs.unc.edu/software/downloads/SSV/
 
 CATEGORIES=		graphics
@@ -14,7 +14,7 @@ LICENSE=		pqp-license
 
 USE_LANGUAGES+=		c++
 NO_CONFIGURE=		yes
-BUILD_DIRS=		PQP_v${PKGVERSION}
+BUILD_DIRS=		PQP_v${PKGVERSION_NOREV}
 INSTALLATION_DIRS=	include/pqp
 
 include ../../pkgtools/libtool/depend.mk
