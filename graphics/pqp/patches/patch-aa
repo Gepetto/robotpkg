@@ -1,13 +1,22 @@
 --- PQP_v1.3/Makefile.orig	2002-04-21 18:55:38.000000000 +0200
-+++ PQP_v1.3/Makefile	2010-09-28 17:11:22.401221731 +0200
-@@ -1,4 +1,5 @@
++++ PQP_v1.3/Makefile	2010-10-14 16:38:22.505159199 +0200
+@@ -1,33 +1,38 @@
 -CC = g++
 +CXX ?= g++
 +LIBTOOL ?= libtool
  
  CFLAGS		= -O2 -I.
  
-@@ -11,23 +12,26 @@
+ .SUFFIXES: .C .cpp
+ 
+-OBJECTS		= lib/PQP.o \
+-		  lib/BV.o \
+-		  lib/Build.o \
+-		  lib/TriDist.o
++OBJECTS		= lib/PQP.lo \
++		  lib/BV.lo \
++		  lib/Build.lo \
++		  lib/TriDist.lo
  
  CLEAN		= $(OBJECTS) lib/libPQP.a include/*.h
  
@@ -20,28 +29,34 @@
 -	cp src/PQP_Internal.h include/
 -	cp src/BV.h include/
 -	cp src/Tri.h include/
-+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) -o lib/libPQP.a $(OBJECTS)
+-
+-lib/BV.o: src/BV.cpp
+-	$(CC) $(CFLAGS) -c src/BV.cpp -o lib/BV.o
+-lib/PQP.o: src/PQP.cpp
+-	$(CC) $(CFLAGS) -c src/PQP.cpp -o lib/PQP.o
+-lib/Build.o: src/Build.cpp
+-	$(CC) $(CFLAGS) -c src/Build.cpp -o lib/Build.o
+-lib/TriDist.o: src/TriDist.cpp
+-	$(CC) $(CFLAGS) -c src/TriDist.cpp -o lib/TriDist.o
++	$(LIBTOOL) --mode=link --tag=CXX $(CXX) -o lib/libPQP.la $(OBJECTS) -rpath $(PREFIX)/lib/ -release 1.3
++	$(LIBTOOL) --mode=finish $(PREFIX)/lib/
 +
 +install:
-+	$(LIBTOOL) --mode=install cp lib/libPQP.a $(DESTDIR)/$(PREFIX)/lib/
++	$(LIBTOOL) --mode=install cp lib/libPQP.la $(DESTDIR)/$(PREFIX)/lib/
 +	cp src/PQP.h $(DESTDIR)/$(PREFIX)/include/pqp
 +	cp src/PQP_Compile.h $(DESTDIR)/$(PREFIX)/include/pqp
 +	cp src/PQP_Internal.h $(DESTDIR)/$(PREFIX)/include/pqp
 +	cp src/BV.h $(DESTDIR)/$(PREFIX)/include/pqp
 +	cp src/Tri.h $(DESTDIR)/$(PREFIX)/include/pqp
- 
- lib/BV.o: src/BV.cpp
--	$(CC) $(CFLAGS) -c src/BV.cpp -o lib/BV.o
-+	$(CXX) $(CFLAGS) -c src/BV.cpp -o lib/BV.o
- lib/PQP.o: src/PQP.cpp
--	$(CC) $(CFLAGS) -c src/PQP.cpp -o lib/PQP.o
-+	$(CXX) $(CFLAGS) -c src/PQP.cpp -o lib/PQP.o
- lib/Build.o: src/Build.cpp
--	$(CC) $(CFLAGS) -c src/Build.cpp -o lib/Build.o
-+	$(CXX) $(CFLAGS) -c src/Build.cpp -o lib/Build.o
- lib/TriDist.o: src/TriDist.cpp
--	$(CC) $(CFLAGS) -c src/TriDist.cpp -o lib/TriDist.o
-+	$(CXX) $(CFLAGS) -c src/TriDist.cpp -o lib/TriDist.o
++
++lib/BV.lo: src/BV.cpp
++	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CFLAGS) -c src/BV.cpp -o lib/BV.lo
++lib/PQP.lo: src/PQP.cpp
++	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CFLAGS) -c src/PQP.cpp -o lib/PQP.lo
++lib/Build.lo: src/Build.cpp
++	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CFLAGS) -c src/Build.cpp -o lib/Build.lo
++lib/TriDist.lo: src/TriDist.cpp
++	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CFLAGS) -c src/TriDist.cpp -o lib/TriDist.lo
  
  clean:
  	/bin/rm -f $(CLEAN)
