@@ -76,21 +76,23 @@ else
 endif
 
 # Define some variables
-ifneq (,${PYTHON})
-  PYTHON_VERSION=$(shell ${PYTHON} -c 'import distutils.sysconfig;\
-	print(distutils.sysconfig.get_config_var("VERSION"))')
-  PYTHON_INCLUDE=$(shell ${PYTHON} -c 'import distutils.sysconfig;\
-	print(distutils.sysconfig.get_python_inc(0))')
-  PYTHON_LIB=$(wildcard $(shell ${PYTHON} -c 'import distutils.sysconfig;\
-	print(distutils.sysconfig.EXEC_PREFIX)')/lib/libpython${PYTHON_VERSION}.*)
-  PYTHON_SITELIB=$(shell ${PYTHON} -c 'import distutils.sysconfig;\
-	print(distutils.sysconfig.get_python_lib(0,0,""))')
-  PYTHONPATH:=$(call prependpaths,${PREFIX}/${PYTHON_SITELIB},${PYTHONPATH})
+PYTHON_VERSION=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c 		\
+	'import distutils.sysconfig;					\
+	print(distutils.sysconfig.get_config_var("VERSION"))'))
+PYTHON_INCLUDE=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
+	'import distutils.sysconfig;					\
+	print(distutils.sysconfig.get_python_inc(0))'))
+PYTHON_LIB=$(if ${PYTHON},$(wildcard $(shell ${PYTHON} 2>/dev/null -c	\
+	'import distutils.sysconfig;					\
+	print(distutils.sysconfig.EXEC_PREFIX)')/lib/libpython${PYTHON_VERSION}.*))
+PYTHON_SITELIB=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null  -c		\
+	'import distutils.sysconfig;					\
+	print(distutils.sysconfig.get_python_lib(0,0,""))'))
+PYTHONPATH:=$(call prependpaths,${PREFIX}/${PYTHON_SITELIB},${PYTHONPATH})
 
-  PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
-  PRINT_PLIST_AWK_SUBST+=\
+PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
+PRINT_PLIST_AWK_SUBST+=\
 	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
-endif
 
 # Setup environment
 MAKE_ENV+=	PYTHONPATH=$(call quote,${PYTHONPATH})
