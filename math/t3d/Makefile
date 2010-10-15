@@ -5,6 +5,7 @@
 DISTNAME=	libt3d-2.6
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=libt3d/}
+MASTER_REPOSITORY=git ssh://softs.laas.fr/git/robots/t3d
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
