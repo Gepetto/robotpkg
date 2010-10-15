@@ -14,7 +14,7 @@ PREFER.pqp?=		robotpkg
 
 SYSTEM_SEARCH.pqp=\
 	include/pqp/PQP.h	\
-	lib/libpqp.a
+	lib/libPQP.a
 
 DEPEND_USE+=		pqp
 
