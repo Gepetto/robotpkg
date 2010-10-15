@@ -3,7 +3,8 @@
 
 COMMENT=	Computer graphics tools
 
-SUBDIR+=	Togl
+SUBDIR+=	coldman-genom
+SUBDIR+=	coldman-libs
 SUBDIR+=	gdhe
 SUBDIR+=	grh2
 SUBDIR+=	kpp-interface
@@ -14,6 +15,7 @@ SUBDIR+=	laaswm-libs
 SUBDIR+=	openvrml-libs
 SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
+SUBDIR+=	Togl
 SUBDIR+=	vcglib
 SUBDIR+=	vrml97
 SUBDIR+=	wxGTK

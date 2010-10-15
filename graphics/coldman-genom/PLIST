@@ -1,0 +1,37 @@
+@comment Wed Aug 5 14:45:30 CEST 2009
+${PLIST.noapi}bin/coldman
+${PLIST.noapi}bin/coldmanSendInitRqst
+${PLIST.noapi}bin/coldmanTest
+${PLIST.openprs}include/coldman/server/openprs/coldmanDecodeOpenprs.h
+${PLIST.openprs}include/coldman/server/openprs/coldmanEncodeOpenprs.h
+${PLIST.openprs}include/coldman/server/openprs/coldmanRequestsOpenprsProto.h
+${PLIST.tclserv_client}include/coldman/server/tclservClient/coldmanTclservClientDecode.h
+${PLIST.tclserv_client}include/coldman/server/tclservClient/coldmanTclservClientEncode.h
+${PLIST.tclserv_client}include/coldman/server/tclservClient/coldmanTclservClientMsgLib.h
+include/coldman/server/coldmanEndian.h
+include/coldman/server/coldmanError.h
+${PLIST.noapi}include/coldman/server/coldmanMsgLib.h
+include/coldman/server/coldmanPosterLib.h
+include/coldman/server/coldmanPosterLibStruct.h
+${PLIST.noapi}include/coldman/server/coldmanPosterReadLibProto.h
+${PLIST.noapi}include/coldman/server/coldmanPosterShowLib.h
+${PLIST.noapi}include/coldman/server/coldmanPosterWriteLibProto.h
+${PLIST.noapi}include/coldman/server/coldmanPosterXMLLib.h
+include/coldman/server/coldmanPrint.h
+include/coldman/server/coldmanPrintXML.h
+include/coldman/server/coldmanScan.h
+include/coldman/server/coldmanType.h
+include/coldman/coldmanStruct.h
+lib/libcoldmanClient.la
+${PLIST.openprs}lib/openprs/libcoldmanOpenprs.la
+${PLIST.openprs}lib/pkgconfig/coldman-oprs.pc
+lib/pkgconfig/coldman.pc
+${PLIST.tclserv_client}lib/pkgconfig/coldman-tclserv_client.pc
+${PLIST.tclserv_client}lib/tclservClient/libcoldmanTclservClient.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libcoldmanTclServ.la
+share/modules/gen/coldman.gen
+${PLIST.openprs}share/modules/openprs/coldmanOpenprs.inc
+${PLIST.openprs}share/modules/openprs/coldmanOpenprs.opf
+${PLIST.openprs}share/modules/openprs/coldmanOpenprs.sym
+${PLIST.tcl}share/modules/tcl/coldmanClient.tcl
+${PLIST.openprs}@dirrm include/coldman/server/openprs
