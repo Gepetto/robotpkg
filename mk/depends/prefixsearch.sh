@@ -195,10 +195,12 @@ for p in `bracesubst $sysprefix`; do
 	for match in `bracesubst $p/$f`; do
 	    if ! ${TEST} -e "$match"; then
                 # special case: make /usr optional in /usr/{bin,lib}
-		if ${TEST} "${match##/usr/bin/}" != "${match}"; then
+		if ${TEST} -z "${match##/usr/bin/*}"; then
 		    alt="/bin/${match##/usr/bin/}"
-		elif ${TEST} "${match##/usr/lib/}" != "${match}"; then
+		elif ${TEST} -z "${match##/usr/lib/*}"; then
 		    alt="/lib/${match##/usr/lib/}"
+		elif ${TEST} -z "${match##/usr/lib${SYSLIBSUFFIX}/*}"; then
+		    alt="/lib${SYSLIBSUFFIX}/${match##/usr/lib${SYSLIBSUFFIX}/}"
 		else
 		    match=; continue
 		fi
@@ -208,7 +210,7 @@ for p in `bracesubst $sysprefix`; do
 		match=$alt
 	    fi
 
-	    # check file version, if needed 
+	    # check file version, if needed
 	    if ${TEST} -z "$spec$cmd"; then
 		flist="$flist $match"
 		${MSG} "found:	$match"
