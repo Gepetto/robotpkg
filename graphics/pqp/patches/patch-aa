@@ -39,10 +39,10 @@
 -lib/TriDist.o: src/TriDist.cpp
 -	$(CC) $(CFLAGS) -c src/TriDist.cpp -o lib/TriDist.o
 +	$(LIBTOOL) --mode=link --tag=CXX $(CXX) -o lib/libPQP.la $(OBJECTS) -rpath $(PREFIX)/lib/ -release 1.3
-+	$(LIBTOOL) --mode=finish $(PREFIX)/lib/
 +
 +install:
 +	$(LIBTOOL) --mode=install cp lib/libPQP.la $(DESTDIR)/$(PREFIX)/lib/
++	$(LIBTOOL) --mode=finish $(PREFIX)/lib/
 +	cp src/PQP.h $(DESTDIR)/$(PREFIX)/include/pqp
 +	cp src/PQP_Compile.h $(DESTDIR)/$(PREFIX)/include/pqp
 +	cp src/PQP_Internal.h $(DESTDIR)/$(PREFIX)/include/pqp

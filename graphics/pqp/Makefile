@@ -2,7 +2,7 @@
 # Created:			Severin Lemaignan on Tue, 31 Aug 2010
 #
 VERSION=		1.3
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		pqp-${VERSION}
 MASTER_SITES=		http://gamma.cs.unc.edu/software/downloads/SSV/
 
