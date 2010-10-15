@@ -27,7 +27,7 @@ TOOLS.genom?=		${PREFIX.genom}/bin/genom
 GENOM_ARGS?=#		empty
 
 # Add genom-related options
-PKG_SUPPORTED_OPTIONS+=	api tcl openprs tclserv_client
+PKG_SUPPORTED_OPTIONS+=	api tcl openprs tclserv_client xenomai
 PKG_SUGGESTED_OPTIONS+=	tcl
 
 PKG_OPTION_DESCR.api=	Generate module API only
@@ -67,6 +67,14 @@ define PKG_OPTION_SET.tclserv_client
 endef
 define PKG_OPTION_UNSET.tclserv_client
   GENOM_ARGS:=  $(filter-out -x,${GENOM_ARGS})
+endef
+
+PKG_OPTION_DESCR.xenomai=Enable Xenomai support
+
+define PKG_OPTION_SET.xenomai
+  CONFIGURE_ARGS+=	--with-xenomai
+  REQD_BUILD_OPTIONS.genom+= xenomai
+  include ../../mk/sysdep/xenomai.mk
 endef
 
 ifdef GENOM_MODULE

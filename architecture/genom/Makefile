@@ -25,6 +25,17 @@ USE_LANGUAGES+=	c c++
 # Problem with quoting ccache in mkdep invocation
 USE_CCACHE=	no
 
+# --- "xenomai' option -----------------------------------------------
+
+PKG_SUPPORTED_OPTIONS+=	xenomai
+PKG_OPTION_DESCR.xenomai:=	Enable Xenomai support
+
+define PKG_OPTION_SET.xenomai
+  CONFIGURE_ARGS+=	--with-xenomai
+  REQD_BUILD_OPTION.pocolibs+= xenomai
+  include ../../mk/sysdep/xenomai.mk
+endef
+
 # --- "tcl" option ---------------------------------------------------
 
 PKG_SUPPORTED_OPTIONS+=	tcl

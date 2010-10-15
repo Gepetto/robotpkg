@@ -25,6 +25,15 @@ define PKG_OPTION_SET.valgrind
   include ../../mk/sysdep/valgrind.mk
 endef
 
+# Xenomai option
+PKG_SUPPORTED_OPTIONS+=	xenomai
+PKG_OPTION_DESCR.xenomai:=	Enable Xenomai support
+
+define PKG_OPTION_SET.xenomai
+  CONFIGURE_ARGS+=	--with-xenomai
+  include ../../mk/sysdep/xenomai.mk
+endef
+
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
