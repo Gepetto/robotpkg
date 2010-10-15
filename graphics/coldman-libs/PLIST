@@ -1,0 +1,16 @@
+@comment Fri Oct 15 11:57:38 CEST 2010
+include/coldman-libs/body.h
+include/coldman-libs/bounding_volume.h
+include/coldman-libs/camera.h
+include/coldman-libs/coldman.h
+include/coldman-libs/coldmanInterfaceC.h
+include/coldman-libs/file_reader.h
+include/coldman-libs/graphics.h
+include/coldman-libs/joint.h
+include/coldman-libs/robot.h
+include/coldman-libs/texture.h
+include/coldman-libs/vector3D.h
+include/coldman-libs/workspace.h
+lib/libcoldman-libs.so
+lib/libcoldman-libs.so.${PKGVERSION}
+lib/pkgconfig/coldman-libs.pc
