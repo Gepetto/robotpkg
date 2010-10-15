@@ -63,14 +63,9 @@ set -e          # exit on errors
 : ${AWK:=awk}
 : ${PKG_ADMIN_CMD:=robotpkg_admin}
 
-: ${ERROR_MSG:=${ECHO} ERROR:}
-: ${MAKECONF:=/opt/openrobots/etc/robotpkg.conf}
+: ${ERROR_MSG:=${ECHO}}
 
 : ${SYSLIBSUFFIX:=}
-
-: ${bf:=}
-: ${rm:=}
-: ${hline:=-----------------------------------------------------------------}
 
 self="${0##*/}"
 
@@ -88,7 +83,6 @@ while ${TEST} $# -gt 0; do
 	-e)     errors=yes; shift ;;
 	-p)     sysprefix="$sysprefix ${2%/}"; shift 2 ;;
 
-	-n)     pkgname="$2"; shift 2 ;;
 	-d)     pkgdesc="$2"; shift 2 ;;
 	-s)     syspkg="$2"; shift 2 ;;
 	-o)     sys="$2"; shift 2 ;;
@@ -263,44 +257,31 @@ fi
 
 # If an error occured, print it
 if ${TEST} $errors = yes; then
-    eval hline=\"$hline\"
-    eval bf=\"$bf\"
-    eval rm=\"$rm\"
-    ${ERROR_MSG} 1>&2 $hline
-    ${ERROR_MSG} 1>&2 "Scanning system for $abi:"
-    $0 -v -p "$sysprefix" $pkg $abi "$@" | ${SED} -e "s|^|ERROR: |" 1>&2
-    ${ERROR_MSG} 1>&2
-    ${ERROR_MSG} 1>&2 "${bf}Missing $type package required for $pkgname:${rm}"
     if test -n "$pkgdesc"; then
-	${ERROR_MSG} 1>&2 "		${bf}$pkgdesc${rm}"
+	${ERROR_MSG} 1>&2 "Missing $type package $pkgdesc:"
     else
-	${ERROR_MSG} 1>&2 "		${bf}$abi${rm}"
+	${ERROR_MSG} 1>&2 "Missing $type package $abi:"
     fi
+    $0 -v -p "$sysprefix" $pkg $abi "$@" 1>&2 ||:
     ${ERROR_MSG} 1>&2
     if test -n "$syspkg"; then
-	${ERROR_MSG} 1>&2 "${bf}Please install the $sys package:${rm}"
-        ${ERROR_MSG} 1>&2 "		${bf}$syspkg${rm}"
+        ${ERROR_MSG} 1>&2 "Please install the $sys package $syspkg."
     else
-	${ERROR_MSG} 1>&2 "${bf}Please install it before continuing.${rm}"
+	${ERROR_MSG} 1>&2 "Please install it before continuing."
     fi
-    if test "$type" != "robotpkg"; then					\
-        ${ERROR_MSG} 1>&2
-	${ERROR_MSG} 1>&2 "If this package is installed in a"		\
-		"non-standard location, you have"
-	${ERROR_MSG} 1>&2 "to modify the SYSTEM_PREFIX or PREFIX.$pkg"	\
-		"variables in"
-	${ERROR_MSG} 1>&2 "${MAKECONF}"
+    if test "$type" != "robotpkg"; then
+	${ERROR_MSG} 1>&2 "- SYSTEM_PREFIX or PREFIX.$pkg can be set"	\
+		"to the installation prefix"
+	${ERROR_MSG} 1>&2 "  of this package in robotpkg.conf."
     fi
     if test -n "$robotpkg"; then
-	${ERROR_MSG} 1>&2
-	${ERROR_MSG} 1>&2 "If no $abi package can be made available"	\
+	${ERROR_MSG} 1>&2 "- If no $abi package can be made available"	\
 		"in your"
-	${ERROR_MSG} 1>&2 "system, you can use the robotpkg version,"	\
-		"by setting in"
-	${ERROR_MSG} 1>&2 "${MAKECONF}:"
+	${ERROR_MSG} 1>&2 "  system, you can use the robotpkg version,"	\
+		"by setting in robotpkg.conf"
 	${ERROR_MSG} 1>&2 "		PREFER.$pkg=	robotpkg"
     fi
-    ${ERROR_MSG} 1>&2 $hline
+    ${ERROR_MSG} 1>&2
 fi
 
 exit 2

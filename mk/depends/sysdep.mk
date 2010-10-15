@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2010/08/25 18:41:11 mallet $
+# $LAAS: sysdep.mk 2010/10/15 16:15:02 mallet $
 #
 # Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
@@ -47,13 +47,13 @@ sys-bootstrap-depends:
 # 'system' or 'auto'.
 #
 override define sys-resolve
-	${RUN}${MKDIR} $(dir ${_SYSDEP_FILE}); >$2;			\
+	${RUN}${MKDIR} $(dir ${_SYSDEP_FILE}); >$2; >${_SYSDEP_LOG}	\
+	notfound=; syspkg=;						\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),,				\
     $(if $(filter $1,${DEPEND_METHOD.${_pkg_}}),			\
-	found=`${_PREFIXSEARCH_CMD} -e	 				\
+	found=`${_PREFIXSEARCH_CMD} 2>>${_SYSDEP_LOG} -e	 	\
 	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
-	     -n $(call quote,${PKGNAME})				\
 	     -d $(or $(call quote,${SYSTEM_DESCR.${_pkg_}}),"")		\
 	     -s $(or $(call quote,$(strip				\
 		  $(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
@@ -65,12 +65,38 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	     -t	system							\
 		$(call quote,${_pkg_})					\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
-		${SYSTEM_SEARCH.${_pkg_}} 3>>$2`			\
-	$(if $(call isyes,${SYSDEP_VERBOSE}), && {			\
+		${SYSTEM_SEARCH.${_pkg_}} 3>>$2` || found=;		\
+	if ${TEST} -z "$$found"; then					\
+	  notfound="$$notfound "$(call quote,				\
+		$(or ${SYSTEM_DESCR.${_pkg_}},${DEPEND_ABI.${_pkg_}}));	\
+	  syspkg="$$syspkg "$(call quote,				\
+		$(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
+		  ${SYSTEM_PKG.${OPSYS}.${_pkg_}},:));			\
+	else								\
+	  $(if $(call isyes,${SYSDEP_VERBOSE}),				\
 	   ${STEP_MSG} "Required system package ${DEPEND_ABI.${_pkg_}}:"\
-		"$$found found"; })					\
-	|| { ${RM} -f ${_SYSDEP_FILE}; exit 2; };			\
-    )									\
-  )									\
-)
+		"$$found found",:);					\
+	fi;								\
+    )))									\
+	if ${TEST} -n "$$notfound"; then				\
+	  ${ERROR_MSG} ${hline};					\
+	  ${ERROR_MSG} "$${bf}Missing system packages required for"	\
+		"${PKGNAME}:$${rm}";					\
+	  ${ERROR_MSG};							\
+	  set -- $$syspkg; for p in $$notfound; do			\
+	    if ${TEST} "$$1" = ":"; then				\
+	      s=;							\
+	    else							\
+	      s="	("$(call quote,$(strip				\
+		  $(or ${OPSUBSYS},${OPSYS})))" package $$1)";		\
+	    fi;								\
+	    ${ERROR_MSG} "	$${bf}$$p$${rm}$$s";			\
+	    shift;							\
+	  done;								\
+	  ${ERROR_MSG};							\
+	  ${ERROR_MSG} ${hline};					\
+	  ${ECHO} 1>&2 "See ${_SYSDEP_LOG} for details.";		\
+	  ${RM} -f ${_SYSDEP_FILE};					\
+	  exit 2;							\
+	fi
 endef

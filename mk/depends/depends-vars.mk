@@ -55,6 +55,7 @@ BOOTSTRAP_DEPENDS?=	# empty
 
 SYSDEP_VERBOSE?=	yes
 
+_SYSDEP_LOG=		${WRKDIR}/sysdep.log
 _SYSDEP_FILE=		${WRKDIR}/.sysdep
 _PKGDEP_FILE=		${WRKDIR}/.pkgdep
 _SYSBSDEP_FILE=		${WRKDIR}/.bootstrap-sysdep
@@ -88,7 +89,6 @@ _PREFIXSEARCH_CMD=\
 		  SED=${SED}					\
 		  AWK=${AWK}					\
 		  PKG_ADMIN_CMD=$(call quote,${PKG_ADMIN_CMD})	\
-		  MAKECONF=$(call quote,${MAKECONF})		\
 		  SYSLIBSUFFIX=$(call quote,${SYSLIBSUFFIX})	\
 	${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
 
