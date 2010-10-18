@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2010/10/15 16:15:02 mallet $
+# $LAAS: sysdep.mk 2010/10/18 13:44:18 mallet $
 #
 # Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
@@ -94,8 +94,15 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	    shift;							\
 	  done;								\
 	  ${ERROR_MSG};							\
+	  ${ERROR_MSG} "Please use the system package management tool"	\
+		"to install these";					\
+	  ${ERROR_MSG} "dependencies. If a robotpkg version of a"	\
+		"dependency is available,";				\
+	  ${ERROR_MSG} "you can configure robotpkg.conf to use this"	\
+		"version instead.";					\
+	  ${ERROR_MSG};							\
+	  ${ERROR_MSG} "See ${_SYSDEP_LOG} for details.";		\
 	  ${ERROR_MSG} ${hline};					\
-	  ${ECHO} 1>&2 "See ${_SYSDEP_LOG} for details.";		\
 	  ${RM} -f ${_SYSDEP_FILE};					\
 	  exit 2;							\
 	fi
