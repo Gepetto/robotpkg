@@ -255,7 +255,8 @@ PATH:=			$(call prependpath, ${LOCALBASE}/sbin,${PATH})
 PATH:=			$(call prependpath, ${LOCALBASE}/bin,${PATH})
 export PATH
 
-export PREFIX?=		${LOCALBASE}
+PREFIX?=		${LOCALBASE}
+ALL_ENV+=		PREFIX=$(call quote,${PREFIX})
 
 DEPOT_SUBDIR?=		packages
 DEPOTBASE=		${LOCALBASE}/${DEPOT_SUBDIR}
