@@ -217,7 +217,7 @@ endef
 # --- wordwrapfilter -------------------------------------------------
 #
 # Shell filter to print wrap long lines at 40 characters
-# 
+#
 override define wordwrapfilter
  ${XARGS} -n 1 | ${AWK} '					\
 	BEGIN { printwidth = 40; line = "" }			\
@@ -273,6 +273,22 @@ override define _versionreqd
 endef
 override define versionreqd
 $(strip $(eval $(call _versionreqd,_r_,$1)) ${_r_})
+endef
+
+
+# --- unexport-empty -------------------------------------------------------
+
+# Unexport a variable if it's empty
+#
+override define _unexport-empty
+  ifeq (file,$$(origin $1))
+    ifeq (,$$(strip $${$1}))
+      unexport $1
+    endif
+  endif
+endef
+override define unexport-empty
+$(eval $(call _unexport-empty,$1))
 endef
 
 endif # MK_ROBOTPKG_MACROS

@@ -1,4 +1,4 @@
-# $LAAS: autoconf.mk 2010/08/25 15:43:43 mallet $
+# $LAAS: autoconf.mk 2010/10/20 17:57:40 mallet $
 #
 # Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
@@ -36,8 +36,8 @@ SYSTEM_SEARCH.autoconf=\
 	'bin/autoconf:/autoconf/{s/[^0-9.]*\([0-9.]*\).*/\1/;p;q;}:% -V' \
 	'bin/autoreconf'
 
-export AUTOCONF=		${PREFIX.autoconf}/bin/autoconf
-export AUTORECONF=		${PREFIX.autoconf}/bin/autoreconf
+export AUTOCONF=	$(addsuffix /bin/autoconf,${PREFIX.autoconf})
+export AUTORECONF=	$(addsuffix /bin/autoreconf,${PREFIX.autoconf})
 
 GNU_CONFIGURE?=		yes
 AUTORECONF_ARGS?=	-fi

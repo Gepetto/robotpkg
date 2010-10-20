@@ -157,6 +157,9 @@ $(call require, ${ROBOTPKG_DIR}/mk/depends/resolve.mk)
 # Checks whether a package can be built in the current robotpkg.
 $(call require, ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk)
 
+# Unexport empty exported variables (from not-yet-resolved dependencies)
+$(foreach v,${.VARIABLES},$(call unexport-empty,$v))
+
 # Tell 'make' not to try to rebuild any Makefile by specifing a target with no
 # dependencies and no commands.
 #
