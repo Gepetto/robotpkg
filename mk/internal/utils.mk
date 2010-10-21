@@ -212,19 +212,42 @@ _DEPENDS_TYPE=
 ifneq (,$(strip $(filter build all,${DEPENDS_TYPE})))
   _DEPENDS_TYPE+=	bootstrap build
 endif
-ifneq (,$(strip $(filter install package all,${DEPENDS_TYPE})))
+ifneq (,$(strip $(filter run all,${DEPENDS_TYPE})))
   _DEPENDS_TYPE+=	full
 endif
 
 .PHONY: show-depends
 show-depends:
-	${RUN}{								\
-  $(foreach _pkg_,${DEPEND_USE},					\
-    $(if $(filter ${_DEPENDS_TYPE},${DEPEND_METHOD.${_pkg_}}),		\
-		${ECHO} '${DEPEND_ABI.${_pkg_}}	${DEPEND_DIR.${_pkg_}}';\
-    )									\
-  )									\
-	} | ${SORT}
+	${RUN}${_SETFANCY_CMD};						\
+	{ ${RECURSIVE_MAKE} check-depends;				\
+	${_DEPENDS_WALK_CMD} ${PKGPATH} | while read dir; do		\
+	  cd ${ROBOTPKG_DIR}/$$dir &&					\
+	  ${RECURSIVE_MAKE} check-depends DEPENDS_TYPE=run || 		\
+		${ECHO} 1>&2 "could not process $$dir";			\
+	done; } | ${AWK} -v bf=$$bf -v rm=$$rm '			\
+	  /robotpkg/ {							\
+	    if ($$3 == "-") {						\
+	        r[$$2] = bf "missing - install " $$4 rm;		\
+	    } else {							\
+		r[$$2] = "found " $$3;					\
+            }								\
+	  }								\
+	  /system/ {							\
+	    if ($$3 == "-") {						\
+		s[$$2] = bf "missing - install $(strip			\
+		  $(or ${OPSUBSYS},${OPSYS})) package";			\
+	        for(i=4; i<=NF; i++) s[$$2] = s[$$2] " " $$i;		\
+		s[$$2] = s[$$2] rm;					\
+	    } else {							\
+		s[$$2] = "found " $$3 " in " $$4;			\
+	    }								\
+	  }								\
+	  END {								\
+	    print bf "Robotpkg dependencies" rm;			\
+	    for(a in r) printf("%-20s: %s\n", a, r[a]);			\
+	    print bf "\nSystem dependencies" rm;			\
+	    for(a in s) printf("%-20s: %s\n", a, s[a]);			\
+	  }'
 
 .PHONY: show-depends-pkgpaths
 show-depends-pkgpaths:
