@@ -8,6 +8,7 @@ MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pilo-demo
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		Demo application using pilo, locoDemo, Gdhe and picoweb
+LICENSE=		isc
 
 USE_LANGUAGES=		# empty
 
