@@ -198,10 +198,13 @@ for p in `bracesubst $sysprefix`; do
 		else
 		    match=; continue
 		fi
-		if ! ${TEST} -r "${alt}"; then
-		    match=; continue
-		fi
-		match=$alt
+		match=
+		for alt in $alt; do
+		    if ${TEST} -r "${alt}"; then
+			match=$alt; break
+		    fi
+		done
+		${TEST} -z "$match" && continue
 	    fi
 
 	    # check file version, if needed
