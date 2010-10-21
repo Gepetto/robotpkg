@@ -1,0 +1,24 @@
+commit 76e8fae2bf9191754cd6dbc1e0800e617fc0bf2f
+Author: Matthieu Herrb <matthieu.herrb@laas.fr>
+Date:   Thu Oct 21 18:25:31 2010 +0200
+
+    taskLib: make sure each task gets at least 64k of stack space.
+    
+    Too many Genom modules break because they used to specify less than
+    that by default.
+
+diff --git src/portLib/os/posix/taskLib.c src/portLib/os/posix/taskLib.c
+index 9ef77e0..b112c5b 100644
+--- src/portLib/os/posix/taskLib.c
++++ src/portLib/os/posix/taskLib.c
+@@ -358,7 +358,9 @@ taskSpawn(char *name, int priority, int options, int stackSize,
+      * not be the size that will actually be used.  Solaris 2.5
+      * uses a value of 0 to indicate the default.
+      */
+-    if (stackSize < PTHREAD_STACK_MIN) 
++    /* give at least 64kB */
++    if (stackSize < 65536) stackSize = 65536;
++    if (stackSize < PTHREAD_STACK_MIN)
+ 	    stackSize = PTHREAD_STACK_MIN;
+     /* round to page size */
+     if (stackSize % pagesize != 0) 
