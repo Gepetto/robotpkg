@@ -19,7 +19,7 @@ SYSTEM_SEARCH.automake=\
 	'bin/aclocal:/aclocal/{s/[^0-9.]//gp;q;}:% --version'	\
 	'bin/automake:/automake/{s/[^0-9.]//gp;q;}:% --version'
 
-export AUTOMAKE=		${PREFIX.automake}/bin/automake
+export AUTOMAKE=	$(addsuffix /bin/automake,${PREFIX.automake})
 
 GNU_CONFIGURE?=		yes
 
