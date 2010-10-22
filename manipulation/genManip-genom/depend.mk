@@ -15,7 +15,7 @@ PREFER.genManip-genom?=		robotpkg
 
 DEPEND_USE+=			genManip-genom
 
-DEPEND_ABI.genManip-genom?=	genManip-genom>=0.6
+DEPEND_ABI.genManip-genom?=	genManip-genom>=0.7
 DEPEND_DIR.genManip-genom?=	../../manipulation/genManip-genom
 
 SYSTEM_SEARCH.genManip-genom=\
