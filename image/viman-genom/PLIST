@@ -2,7 +2,6 @@
 ${PLIST.noapi}bin/viman
 ${PLIST.noapi}bin/vimanSendInitRqst
 ${PLIST.noapi}bin/vimanTest
-include/viman/libeuler/vimanEuler.h
 include/viman/vimanConst.h
 include/viman/vimanStruct.h
 ${PLIST.openprs}include/viman/server/openprs/vimanDecodeOpenprs.h
@@ -25,9 +24,7 @@ ${PLIST.tclserv_client}include/viman/server/tclservClient/vimanTclservClientDeco
 ${PLIST.tclserv_client}include/viman/server/tclservClient/vimanTclservClientEncode.h
 ${PLIST.tclserv_client}include/viman/server/tclservClient/vimanTclservClientMsgLib.h
 lib/libvimanClient.la
-lib/libvimanEuler.la
 ${PLIST.openprs}lib/openprs/libvimanOpenprs.la
-lib/pkgconfig/viman-euler.pc
 ${PLIST.openprs}lib/pkgconfig/viman-oprs.pc
 lib/pkgconfig/viman.pc
 ${PLIST.tclserv_client}lib/pkgconfig/viman-tclserv_client.pc
