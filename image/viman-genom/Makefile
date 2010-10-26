@@ -3,6 +3,7 @@
 #
 
 DISTNAME=		viman-genom-1.0
+PKGREVISION=		1
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viman-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/viman-genom
