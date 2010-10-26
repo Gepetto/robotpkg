@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		softMotion-libs-${PKGVERSION}
-PKGVERSION=		2.3
+PKGVERSION=		3.0
 
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=softMotion-libs/}
