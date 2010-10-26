@@ -1,0 +1,11 @@
+--- mocap.gen~	2010-08-25 13:07:04.000000000 +0200
++++ mocap.gen	2010-10-26 12:31:37.256079676 +0200
+@@ -10,7 +10,7 @@
+ 
+ module mocap {
+     number:		9462;
+-    version:		"0.1";
++    version:		"1.1";
+     email:		"codas@laas.fr";
+     codels_requires:	evart-client;
+     internal_data:	MOCAP_STR;

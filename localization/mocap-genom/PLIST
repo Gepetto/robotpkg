@@ -2,7 +2,6 @@
 ${PLIST.noapi}bin/mocap
 ${PLIST.noapi}bin/mocapSendInitRqst
 ${PLIST.noapi}bin/mocapTest
-include/mocap/libeuler/mocapEuler.h
 include/mocap/mocapConst.h
 include/mocap/mocapStruct.h
 ${PLIST.openprs}include/mocap/server/openprs/mocapDecodeOpenprs.h
@@ -25,9 +24,7 @@ ${PLIST.tclserv_client}include/mocap/server/tclservClient/mocapTclservClientDeco
 ${PLIST.tclserv_client}include/mocap/server/tclservClient/mocapTclservClientEncode.h
 ${PLIST.tclserv_client}include/mocap/server/tclservClient/mocapTclservClientMsgLib.h
 lib/libmocapClient.la
-lib/libmocapEuler.la
 ${PLIST.openprs}lib/openprs/libmocapOpenprs.la
-lib/pkgconfig/mocap-euler.pc
 ${PLIST.openprs}lib/pkgconfig/mocap-oprs.pc
 lib/pkgconfig/mocap.pc
 ${PLIST.tclserv_client}lib/pkgconfig/mocap-tclserv_client.pc
