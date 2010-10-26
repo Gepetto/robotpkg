@@ -14,13 +14,13 @@ ifeq (+,$(COLDMAN-GENOM_DEPEND_MK)) # ----------------------------------
 PREFER.coldman-genom?=	robotpkg
 
 SYSTEM_SEARCH.coldman-genom=\
-	bin/coldman-genom			\
+	bin/coldman			\
 	include/coldman/coldmanStruct.h		\
-	'lib/pkgconfig/coldman.pc:s/[^0-9.]//gp'
+	'lib/pkgconfig/coldman.pc:/Version/s/[^0-9.]//gp'
 
 DEPEND_USE+=		coldman-genom
 
-DEPEND_ABI.coldman-genom?=coldman-genom>=1.0
+DEPEND_ABI.coldman-genom?=coldman-genom>=1.2
 DEPEND_DIR.coldman-genom?=../../graphics/coldman-genom
 
 endif # COLDMAN-GENOM_DEPEND_MK ----------------------------------------
