@@ -9,7 +9,7 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		sahand-libs
 endif
 
-ifeq (+,$(SAHAND_DEPEND_MK)) # ---------------------------------------------
+ifeq (+,$(SAHAND_LIBS_DEPEND_MK)) # ---------------------------------------------
 
 PREFER.sahand-libs?=		robotpkg
 
