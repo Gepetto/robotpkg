@@ -50,6 +50,7 @@ endef
 GENOM_MODULE=		rflex
 include ../../architecture/genom/depend.mk
 
+include ../../architecture/genBasic-genom/depend.mk
 include ../../architecture/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../robots/rflexclients/depend.mk
