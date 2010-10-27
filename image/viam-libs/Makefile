@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 14 Mar 2008
 #
 
-DISTNAME=		viam-libs-1.6
+DISTNAME=		viam-libs-1.7
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/viam-libs
