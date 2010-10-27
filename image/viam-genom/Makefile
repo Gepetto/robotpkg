@@ -2,11 +2,10 @@
 # Created:			Anthony Mallet on Fri, 14 Mar 2008
 #
 
-DISTNAME=		viam-genom-1.5
+DISTNAME=		viam-genom-1.6
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-genom/}
 MASTER_REPOSITORY=  	git ssh://softs.laas.fr/git/robots/viam-genom
-PKGREVISION=		2
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.laas.fr/~mallet
