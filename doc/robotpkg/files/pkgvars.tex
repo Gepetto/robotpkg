@@ -1,4 +1,4 @@
-% $LAAS: pkgvars.tex 2010/10/08 17:10:38 mallet $
+% $LAAS: pkgvars.tex 2010/10/28 15:08:35 mallet $
 %
 % Copyright (c) 2010 LAAS/CNRS
 % All rights reserved.
@@ -100,6 +100,52 @@ The second section contains information about separately downloaded patches, if 
 
    \item[PATCH\_SITES] Primary location(s) for distribution patch files (see
    {\tt PATCHFILES} above) if not found locally.
+
+\end{description}
+
+The third section contains the following variables.
+
+\begin{description}
+
+   \item[MAINTAINER] is the email address of the person who feels responsible
+   for this package, and who is most likely to look at problems or questions
+   regarding this package. Other developers may contact the {\tt MAINTAINER}
+   before making changes to the package, but are not required to do so. When
+   packaging a new program, set {\tt MAINTAINER} to yourself. If you really
+   can't maintain the package for future updates, set it to
+   {\tt \string<robotpkg@laas.fr\string>}.
+
+   \item[HOMEPAGE] is a URL where users can find more information about the
+   package.
+
+   \item[COMMENT] is a one-line description of the package (should not include
+   the package name).
+
+   \item[LICENSE] Denoting that a package may be installed and used according
+   to a particular license is done by placing the license in {\tt
+   robotpkg/licenses} and setting the LICENSE variable to a string identifying
+   the license file, e.g. in {\tt shell/eltclsh}:
+   \begin{quote}
+      LICENSE=		2-clause-bsd
+   \end{quote}
+
+   The license tag mechanism is intended to address copyright-related issues
+   surrounding building, installing and using a package, and not to address
+   redistribution issues (see RESTRICTED and NO\_PUBLIC\_SRC, etc.). Packages
+   with redistribution restrictions should set these tags.
+
+\end{description}
+
+
+Other variables affecting the build process may be gathered in their own
+section:
+
+\begin{description}
+
+   \item[MAKE\_JOBS\_SAFE] Whether the package supports parallel builds. If set
+   to yes, at most {\tt MAKE\_JOBS} jobs are carried out in parallel. The
+   default value is ``yes'', and packages that don't support it must explicitly
+   set it to ``no''.
 
 \end{description}
 

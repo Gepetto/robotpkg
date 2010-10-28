@@ -134,7 +134,7 @@ table, table tr {
    Copyright 2006-2010 &#169; LAAS/CNRS
  </h3>
 
-<h3 align="center">October  8, 2010</h3>
+<h3 align="center">October 28, 2010</h3>
 
 <div class="p"><!----></div>
    
@@ -1276,7 +1276,13 @@ packages.
  <dt><b>LOCALBASE</b></dt>
 	<dd> Where packages will be installed. The default value is <tt>
    /opt/openrobots</tt>.  Do not  mix     binary  packages with    different values
-   of <tt>LOCALBASE</tt>s!
+   of <tt>LOCALBASE</tt>s!</dd>
+ <dt><b>MAKE_JOBS</b></dt>
+	<dd> When defined, specifies the maximum number of jobs that
+   are run in parallel when building packages with the default action. <tt>
+   MAKE_JOBS</tt> only affects the "build" target. <tt>MAKE_JOBS</tt> can be set to
+   any positive integer; useful values are around the number of processors on
+   the machine.
 
 <div class="p"><!----></div>
 
@@ -1431,6 +1437,57 @@ The second section contains information about separately downloaded patches, if 
  <dt><b>PATCH_SITES</b></dt>
 	<dd> Primary location(s) for distribution patch files (see
    <tt>PATCHFILES</tt> above) if not found locally.</dd>
+</dl>
+
+<div class="p"><!----></div>
+The third section contains the following variables.
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>MAINTAINER</b></dt>
+	<dd> is the email address of the person who feels responsible
+   for this package, and who is most likely to look at problems or questions
+   regarding this package. Other developers may contact the <tt>MAINTAINER</tt>
+   before making changes to the package, but are not required to do so. When
+   packaging a new program, set <tt>MAINTAINER</tt> to yourself. If you really
+   can't maintain the package for future updates, set it to
+   <tt><tt>&lt;</tt>robotpkg@laas.fr<tt>&gt;</tt></tt>.</dd>
+ <dt><b>HOMEPAGE</b></dt>
+	<dd> is a URL where users can find more information about the
+   package.</dd>
+ <dt><b>COMMENT</b></dt>
+	<dd> is a one-line description of the package (should not include
+   the package name).</dd>
+ <dt><b>LICENSE</b></dt>
+	<dd> Denoting that a package may be installed and used according
+   to a particular license is done by placing the license in <tt>
+   robotpkg/licenses</tt> and setting the LICENSE variable to a string identifying
+   the license file, e.g. in <tt>shell/eltclsh</tt>:
+   
+<blockquote>
+      LICENSE=		2-clause-bsd
+   </blockquote>
+
+<div class="p"><!----></div>
+   The license tag mechanism is intended to address copyright-related issues
+   surrounding building, installing and using a package, and not to address
+   redistribution issues (see RESTRICTED and NO_PUBLIC_SRC, etc.). Packages
+   with redistribution restrictions should set these tags.</dd>
+</dl>
+
+<div class="p"><!----></div>
+Other variables affecting the build process may be gathered in their own
+section:
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>MAKE_JOBS_SAFE</b></dt>
+	<dd> Whether the package supports parallel builds. If set
+   to yes, at most <tt>MAKE_JOBS</tt> jobs are carried out in parallel. The
+   default value is "yes", and packages that don't support it must explicitly
+   set it to "no".</dd>
 </dl>
 
 <div class="p"><!----></div>

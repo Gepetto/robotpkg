@@ -1,4 +1,4 @@
-% $LAAS: configuring.tex 2010/09/09 15:46:20 mallet $
+% $LAAS: configuring.tex 2010/10/28 14:51:18 mallet $
 %
 % Copyright (c) 2009-2010 LAAS/CNRS
 % All rights reserved.
@@ -207,6 +207,11 @@ packages.
    /opt/openrobots}.  Do not  mix     binary  packages with    different values
    of {\tt LOCALBASE}s!
 
+   \item[MAKE\_JOBS] When defined, specifies the maximum number of jobs that
+   are run in parallel when building packages with the default action. {\tt
+   MAKE\_JOBS} only affects the "build" target. {\tt MAKE\_JOBS} can be set to
+   any positive integer; useful values are around the number of processors on
+   the machine.
 
 %   \item[GCC\_REQUIRED]  This specifies requirements  on  the version of GCC to
 %   use  when  building  packages.   This  variable  should contain   a  list of

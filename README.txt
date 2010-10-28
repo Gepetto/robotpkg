@@ -3,7 +3,7 @@
                     Anthony Mallet - anthony.mallet@laas.fr
                        Copyright 2006-2010 (C) LAAS/CNRS
 
-                                October 8, 2010
+                               October 28, 2010
 
 Contents
 
@@ -715,6 +715,11 @@ DEPENDS_TARGET
 LOCALBASE
     Where packages will be installed. The default value is /opt/openrobots. Do
     not mix binary packages with different values of LOCALBASEs!
+MAKE_JOBS
+    When defined, specifies the maximum number of jobs that are run in parallel
+    when building packages with the default action. MAKE_JOBS only affects the
+    "build" target. MAKE_JOBS can be set to any positive integer; useful values
+    are around the number of processors on the machine.
 
 2.4.5  Additional flags to the compiler
 
@@ -809,6 +814,41 @@ PATCHFILES
 PATCH_SITES
     Primary location(s) for distribution patch files (see PATCHFILES above) if
     not found locally.
+
+The third section contains the following variables.
+
+MAINTAINER
+    is the email address of the person who feels responsible for this package,
+    and who is most likely to look at problems or questions regarding this
+    package. Other developers may contact the MAINTAINER before making changes
+    to the package, but are not required to do so. When packaging a new
+    program, set MAINTAINER to yourself. If you really can't maintain the
+    package for future updates, set it to <robotpkg@laas.fr>.
+HOMEPAGE
+    is a URL where users can find more information about the package.
+COMMENT
+    is a one-line description of the package (should not include the package
+    name).
+LICENSE
+    Denoting that a package may be installed and used according to a particular
+    license is done by placing the license in robotpkg/licenses and setting the
+    LICENSE variable to a string identifying the license file, e.g. in shell/
+    eltclsh:
+
+        LICENSE= 2-clause-bsd
+
+    The license tag mechanism is intended to address copyright-related issues
+    surrounding building, installing and using a package, and not to address
+    redistribution issues (see RESTRICTED and NO_PUBLIC_SRC, etc.). Packages
+    with redistribution restrictions should set these tags.
+
+Other variables affecting the build process may be gathered in their own
+section:
+
+MAKE_JOBS_SAFE
+    Whether the package supports parallel builds. If set to yes, at most
+    MAKE_JOBS jobs are carried out in parallel. The default value is "yes", and
+    packages that don't support it must explicitly set it to "no".
 
 3.1.2  distinfo
 
