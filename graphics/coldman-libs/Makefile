@@ -23,7 +23,7 @@ PKG_OPTION_DESCR.display=	Enable embedded display facility.
 define PKG_OPTION_SET.display
   CMAKE_ARGS+=-DENABLE_DISPLAY=ON
   include ../../mk/sysdep/freeglut.mk
-  include ../../mk/sysdep/libxmu.mk
+  include ../../mk/sysdep/libXmu.mk
 endef
 PKG_OPTION_UNSET.display:=	CMAKE_ARGS+=-DENABLE_DISPLAY=OFF
 
