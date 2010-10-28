@@ -1,0 +1,11 @@
+--- p3d.gen.orig	2010-10-28 10:53:14.535485000 +0200
++++ p3d.gen	2010-10-28 10:53:51.880730000 +0200
+@@ -536,7 +536,7 @@
+     period:		    60;
+     delay:		    0;
+     priority:		    150;
+-    stack_size:		    20000;
++    stack_size:		    1000000;
+     c_init_func:	    p3dExecTaskInit;
+     c_end_func:		    p3dExecTaskEnd;
+     c_func:		    p3dExecTaskPerm;

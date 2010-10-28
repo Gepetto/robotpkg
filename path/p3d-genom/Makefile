@@ -3,8 +3,10 @@
 #
 
 DISTNAME=		p3d-genom-1.1
+PKGREVISION=	1
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/p3d-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
