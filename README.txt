@@ -3,7 +3,7 @@
                     Anthony Mallet - anthony.mallet@laas.fr
                        Copyright 2006-2010 (C) LAAS/CNRS
 
-                               October 28, 2010
+                               October 29, 2010
 
 Contents
 
@@ -37,11 +37,13 @@ Contents
         2.4.4  Variables affecting the build process
         2.4.5  Additional flags to the compiler
 3  The robotpkg developer's guide
-    3.1  Creating a new package
+    3.1  Package files, directories and contents
         3.1.1  Makefile
         3.1.2  distinfo
         3.1.3  PLIST
         3.1.4  patches/*
+    3.2  Making a package work
+        3.2.1  Incrementing versions when fixing an existing package
 4  The robotpkg infrastructure internals
 
 1
@@ -745,7 +747,7 @@ The robotpkg developer's guide
 
 This part of the documentation deals with creating and modifying packages.
 
-3.1  Creating a new package
+3.1  Package files, directories and contents
 
 Whenever you're preparing a package, there are a number of files involved which
 are described in the following sections.
@@ -910,6 +912,43 @@ benefits non-robotpkg users of the package, and usually makes it possible to
 remove the patch in future version.
 When you add or modify existing patch files, remember to generate the checksums
 for the patch files by using the make mdi command, see Section 3.1.2.
+
+3.2  Making a package work
+
+3.2.1  Incrementing versions when fixing an existing package
+
+When making fixes to an existing package it can be useful to change the version
+number in PKGNAME. To avoid conflicting with future versions by the original
+author, a "r1", "r2", ... suffix can be used on package versions by setting
+PKGREVISION=1 (2, ...) in the package Makefile. E.g.
+
+    DISTNAME= foo-17.42
+    PKGREVISION= 9
+
+will result in a PKGNAME of "foo-17.42r9". The "r" is treated like a "." by the
+package tools.
+PKGREVISION should be incremented for any non-trivial change in the resulting
+binary package. Without a PKGREVISION bump, someone with the previous version
+installed has no way of knowing that their package is out of date. Thus,
+changes without increasing PKGREVISION are essentially labeled "this is so
+trivial that no reasonable person would want to upgrade", and this is the rough
+test for when increasing PKGREVISION is appropriate. Examples of changes that
+do not merit increasing PKGREVISION are:
+
+  * Changing HOMEPAGE, MAINTAINER or comments in Makefile.
+  * Changing build variables if the resulting binary package is the same.
+  * Changing DESCR.
+  * Adding PKG_OPTIONS if the default options don't change.
+
+Examples of changes that do merit an increase to PKGREVISION include:
+
+  * Security fixes
+  * Changes or additions to a patch file
+  * Changes to the PLIST
+  * A dependency is changed or renamed.
+
+PKGREVISION must also be incremented when dependencies have ABI changes.
+When a new release of the package is released, the PKGREVISION must be removed.
 
 4
 The robotpkg infrastructure internals

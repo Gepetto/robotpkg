@@ -1,0 +1,63 @@
+% $LAAS: pkgvars.tex 2010/10/29 17:22:33 mallet $
+%
+% Copyright (c) 2010 LAAS/CNRS
+% All rights reserved.
+%
+% Permission to use, copy, modify, and distribute this software for any purpose
+% with or without   fee is hereby granted, provided   that the above  copyright
+% notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+% REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+% AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+% INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+% LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+% OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+% PERFORMANCE OF THIS SOFTWARE.
+%
+%                                             Anthony Mallet on Wed Oct 29 2010
+%
+
+\section{Making a package work} % ------------------------------------------
+\label{section:fixing}
+
+\subsection{Incrementing versions when fixing an existing package} % -------
+
+When making fixes to an existing package it can be useful to change the version
+number in {\tt PKGNAME}. To avoid conflicting with future versions by the
+original author, a "r1", "r2", ... suffix can be used on package versions by
+setting {\tt PKGREVISION=1} ({\tt 2}, ...) in the package Makefile. E.g.
+\begin{quote}
+   DISTNAME=             foo-17.42\\
+   PKGREVISION=          9
+\end{quote}
+will result in a {\tt PKGNAME} of "foo-17.42r9". The "r" is treated like a "."
+by the package tools.
+
+{\tt PKGREVISION} should be incremented for any non-trivial change in the
+resulting binary package. Without a {\tt PKGREVISION} bump, someone with the
+previous version installed has no way of knowing that their package is out
+of date. Thus, changes without increasing {\tt PKGREVISION} are essentially
+labeled "this is so trivial that no reasonable person would want to
+upgrade", and this is the rough test for when increasing {\tt PKGREVISION}
+is appropriate. Examples of changes that do not merit increasing {\tt
+PKGREVISION} are:
+\begin{itemize}
+   \item Changing {\tt HOMEPAGE}, {\tt MAINTAINER} or comments in Makefile.
+   \item Changing build variables if the resulting binary package is the same.
+   \item Changing {\tt DESCR}.
+   \item Adding {\tt PKG\_OPTIONS} if the default options don't change.
+\end{itemize}
+
+Examples of changes that do merit an increase to {\tt PKGREVISION} include:
+\begin{itemize}
+   \item Security fixes
+   \item Changes or additions to a patch file
+   \item Changes to the {\tt PLIST}
+   \item A dependency is changed or renamed.
+\end{itemize}
+
+{\tt PKGREVISION} must also be incremented when dependencies have ABI changes.
+
+When a new release of the package is released, the {\tt PKGREVISION} must be
+removed.

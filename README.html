@@ -134,7 +134,7 @@ table, table tr {
    Copyright 2006-2010 &#169; LAAS/CNRS
  </h3>
 
-<h3 align="center">October 28, 2010</h3>
+<h3 align="center">October 29, 2010</h3>
 
 <div class="p"><!----></div>
    
@@ -205,7 +205,7 @@ table, table tr {
 <a href="#tth_chAp3"
 >3&nbsp; The robotpkg developer's guide</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1"
->3.1&nbsp; Creating a new package</a><br />
+>3.1&nbsp; Package files, directories and contents</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1.1"
 >3.1.1&nbsp; Makefile</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1.2"
@@ -214,6 +214,10 @@ table, table tr {
 >3.1.3&nbsp; PLIST</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1.4"
 >3.1.4&nbsp; patches/*</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2"
+>3.2&nbsp; Making a package work</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.1"
+>3.2.1&nbsp; Incrementing versions when fixing an existing package</a><br />
 <a href="#tth_chAp4"
 >4&nbsp; The robotpkg infrastructure internals</a><br />
 
@@ -1334,7 +1338,7 @@ This part of the documentation deals with creating and modifying packages.
 <div class="p"><!----></div>
 
  <h2><a name="tth_sEc3.1">
-3.1</a>&nbsp;&nbsp;Creating a new package</h2> <a name="section:pkgvars">
+3.1</a>&nbsp;&nbsp;Package files, directories and contents</h2> <a name="section:pkgvars">
 </a>
 
 <div class="p"><!----></div>
@@ -1585,6 +1589,84 @@ remove the patch in future version.
 When you add or modify existing patch files, remember to generate the checksums
 for the patch files by using the <tt>make mdi</tt> command, see
 <a href="#subsection:distinfo">Section&nbsp;<a href="#subsection:distinfo">3.1.2</a></a>.
+
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc3.2">
+3.2</a>&nbsp;&nbsp;Making a package work</h2> <a name="section:fixing">
+</a>
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc3.2.1">
+3.2.1</a>&nbsp;&nbsp;Incrementing versions when fixing an existing package</h3> 
+<div class="p"><!----></div>
+When making fixes to an existing package it can be useful to change the version
+number in <tt>PKGNAME</tt>. To avoid conflicting with future versions by the
+original author, a "r1", "r2", ... suffix can be used on package versions by
+setting <tt>PKGREVISION=1</tt> (<tt>2</tt>, ...) in the package Makefile. E.g.
+
+<blockquote>
+   DISTNAME=             foo-17.42<br />
+   PKGREVISION=          9
+</blockquote>
+will result in a <tt>PKGNAME</tt> of "foo-17.42r9". The "r" is treated like a "."
+by the package tools.
+
+<div class="p"><!----></div>
+<tt>PKGREVISION</tt> should be incremented for any non-trivial change in the
+resulting binary package. Without a <tt>PKGREVISION</tt> bump, someone with the
+previous version installed has no way of knowing that their package is out
+of date. Thus, changes without increasing <tt>PKGREVISION</tt> are essentially
+labeled "this is so trivial that no reasonable person would want to
+upgrade", and this is the rough test for when increasing <tt>PKGREVISION</tt>
+is appropriate. Examples of changes that do not merit increasing <tt>
+PKGREVISION</tt> are:
+
+<ul>
+<li> Changing <tt>HOMEPAGE</tt>, <tt>MAINTAINER</tt> or comments in Makefile.
+<div class="p"><!----></div>
+</li>
+
+<li> Changing build variables if the resulting binary package is the same.
+<div class="p"><!----></div>
+</li>
+
+<li> Changing <tt>DESCR</tt>.
+<div class="p"><!----></div>
+</li>
+
+<li> Adding <tt>PKG_OPTIONS</tt> if the default options don't change.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+Examples of changes that do merit an increase to <tt>PKGREVISION</tt> include:
+
+<ul>
+<li> Security fixes
+<div class="p"><!----></div>
+</li>
+
+<li> Changes or additions to a patch file
+<div class="p"><!----></div>
+</li>
+
+<li> Changes to the <tt>PLIST</tt>
+<div class="p"><!----></div>
+</li>
+
+<li> A dependency is changed or renamed.
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+<tt>PKGREVISION</tt> must also be incremented when dependencies have ABI changes.
+
+<div class="p"><!----></div>
+When a new release of the package is released, the <tt>PKGREVISION</tt> must be
+removed.
 
 
 <div class="p"><!----></div>
