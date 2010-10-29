@@ -20,7 +20,7 @@ SYSTEM_SEARCH.coldman-genom=\
 
 DEPEND_USE+=		coldman-genom
 
-DEPEND_ABI.coldman-genom?=coldman-genom>=1.2
+DEPEND_ABI.coldman-genom?=coldman-genom>=1.3
 DEPEND_DIR.coldman-genom?=../../graphics/coldman-genom
 
 endif # COLDMAN-GENOM_DEPEND_MK ----------------------------------------

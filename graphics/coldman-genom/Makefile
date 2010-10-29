@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 15 Oct 2010
 #
 
-DISTNAME=		coldman-genom-1.2
+DISTNAME=		coldman-genom-1.3
 CATEGORIES=		manipulation
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=coldman-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/coldman-genom
