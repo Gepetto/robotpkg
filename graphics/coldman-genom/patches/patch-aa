@@ -1,0 +1,11 @@
+--- coldman.gen~	2010-10-14 18:00:31.000000000 +0200
++++ coldman.gen	2010-10-29 16:59:32.889283073 +0200
+@@ -409,7 +409,7 @@
+     period:		    1;
+     delay:		    1;
+     priority:		    1;
+-    stack_size:		    20000;
++    stack_size:		    4000000;
+     codel_task_start:	    coldmanMainStart;
+     codel_task_end:	  coldmanMainEnd;
+     codel_task_main:	coldmanMainPerm;
