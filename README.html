@@ -1366,6 +1366,14 @@ mostly historical and has no further meaning.
 <div class="p"><!----></div>
 
 <dl compact="compact">
+ <dt><b>PKGREVISION</b></dt>
+	<dd> Defines the <tt>robotpkg</tt> revision number of the package. This
+   <em>should not be set</em> for a new package. See
+   <a href="#section:fixing:PKGREVISION">Section&nbsp;<a href="#section:fixing:PKGREVISION">3.2.1</a></a>
+   for details.
+
+<div class="p"><!----></div>
+   </dd>
  <dt><b>MASTER_SITES</b></dt>
 	<dd> In simple cases, <tt>MASTER_SITES</tt>  defines all URLs
    from where the distfile, whose name is derived from the <tt>DISTNAME</tt>
@@ -1437,7 +1445,10 @@ The second section contains information about separately downloaded patches, if 
    patches distributed by the author or other maintainers. There is no
    default. robotpkg will look for them at <tt>PATCH_SITES</tt>. They will
    automatically be uncompressed before patching if    the names end with .gz
-   or .Z.</dd>
+   or .Z.
+
+<div class="p"><!----></div>
+   </dd>
  <dt><b>PATCH_SITES</b></dt>
 	<dd> Primary location(s) for distribution patch files (see
    <tt>PATCHFILES</tt> above) if not found locally.</dd>
@@ -1456,13 +1467,22 @@ The third section contains the following variables.
    before making changes to the package, but are not required to do so. When
    packaging a new program, set <tt>MAINTAINER</tt> to yourself. If you really
    can't maintain the package for future updates, set it to
-   <tt><tt>&lt;</tt>robotpkg@laas.fr<tt>&gt;</tt></tt>.</dd>
+   <tt><tt>&lt;</tt>robotpkg@laas.fr<tt>&gt;</tt></tt>.
+
+<div class="p"><!----></div>
+   </dd>
  <dt><b>HOMEPAGE</b></dt>
 	<dd> is a URL where users can find more information about the
-   package.</dd>
+   package.
+
+<div class="p"><!----></div>
+   </dd>
  <dt><b>COMMENT</b></dt>
 	<dd> is a one-line description of the package (should not include
-   the package name).</dd>
+   the package name).
+
+<div class="p"><!----></div>
+   </dd>
  <dt><b>LICENSE</b></dt>
 	<dd> Denoting that a package may be installed and used according
    to a particular license is done by placing the license in <tt>
@@ -1598,7 +1618,9 @@ for the patch files by using the <tt>make mdi</tt> command, see
 
 <div class="p"><!----></div>
      <h3><a name="tth_sEc3.2.1">
-3.2.1</a>&nbsp;&nbsp;Incrementing versions when fixing an existing package</h3> 
+3.2.1</a>&nbsp;&nbsp;Incrementing versions when fixing an existing package</h3> <a name="section:fixing:PKGREVISION">
+</a>
+
 <div class="p"><!----></div>
 When making fixes to an existing package it can be useful to change the version
 number in <tt>PKGNAME</tt>. To avoid conflicting with future versions by the

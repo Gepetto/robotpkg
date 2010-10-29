@@ -1,4 +1,4 @@
-% $LAAS: pkgvars.tex 2010/10/29 17:31:16 mallet $
+% $LAAS: pkgvars.tex 2010/10/29 17:48:36 mallet $
 %
 % Copyright (c) 2010 LAAS/CNRS
 % All rights reserved.
@@ -37,6 +37,12 @@ exactly in the order given here. The order and grouping of the variables is
 mostly historical and has no further meaning.
 
 \begin{description}
+   \item[PKGREVISION] Defines the \robotpkg revision number of the package. This
+   {\em should not be set} for a new package. See
+   \xref{section:fixing:PKGREVISION}{Section~\ref{section:fixing:PKGREVISION}}
+   for details.
+
+   \smallbreak
    \item[MASTER\_SITES] In simple cases, {\tt MASTER\_SITES}  defines all URLs
    from where the distfile, whose name is derived from the {\tt DISTNAME}
    variable, is fetched.
@@ -98,6 +104,7 @@ The second section contains information about separately downloaded patches, if 
    automatically be uncompressed before patching if    the names end with .gz
    or .Z.
 
+   \smallbreak
    \item[PATCH\_SITES] Primary location(s) for distribution patch files (see
    {\tt PATCHFILES} above) if not found locally.
 
@@ -115,12 +122,15 @@ The third section contains the following variables.
    can't maintain the package for future updates, set it to
    {\tt \string<robotpkg@laas.fr\string>}.
 
+   \smallbreak
    \item[HOMEPAGE] is a URL where users can find more information about the
    package.
 
+   \smallbreak
    \item[COMMENT] is a one-line description of the package (should not include
    the package name).
 
+   \smallbreak
    \item[LICENSE] Denoting that a package may be installed and used according
    to a particular license is done by placing the license in {\tt
    robotpkg/licenses} and setting the LICENSE variable to a string identifying

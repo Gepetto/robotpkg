@@ -762,6 +762,9 @@ In the first section there are the following variables, which should appear
 exactly in the order given here. The order and grouping of the variables is
 mostly historical and has no further meaning.
 
+PKGREVISION
+    Defines the robotpkg revision number of the package. This should not be set
+    for a new package. See Section 3.2.1 for details.
 MASTER_SITES
     In simple cases, MASTER_SITES defines all URLs from where the distfile,
     whose name is derived from the DISTNAME variable, is fetched.
