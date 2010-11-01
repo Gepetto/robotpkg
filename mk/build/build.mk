@@ -190,14 +190,3 @@ $(foreach _dir_,${BUILD_DIRS},						\
 pre-build:
 
 post-build:
-
-
-# --- build-clean (PRIVATE) ------------------------------------------------
-#
-# build-clean removes the state files for the "build" and later phases so that
-# the "build" target may be re-invoked.
-#
-$(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
-
-build-clean: install-clean
-	${RUN}${RM} -f ${_COOKIE.build}

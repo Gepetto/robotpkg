@@ -79,10 +79,9 @@ endif
 #
 __targets=\
 	all fetch package extract configure build install clean		\
-	cleandir distclean depend reinstall tags checksum makedistinfo	\
-	makepatchsum makesum mirror-distfiles deinstall			\
-	update clean-update show-var show-vars print-summary-data lint	\
-	headings
+	distclean depend reinstall tags checksum makepatchsum makesum	\
+	mirror-distfiles deinstall update clean-update show-var		\
+	show-vars print-summary-data lint headings
 
 .PHONY: ${__targets}
 ${__targets}: %: %-subdir

@@ -156,10 +156,7 @@ endif
 #
 #    clean is the target that is invoked by the user to perform
 #	the "clean" action.
-
-ifneq (,$(realpath ${WRKDIR} $(if ${WRKOBJDIR},${BUILD_DIR} ${WRKDIR_BASENAME})))
-  _CLEAN_TARGETS+=	clean-message
-endif
+_CLEAN_TARGETS+=	clean-message
 _CLEAN_TARGETS+=	pre-clean
 ifneq (,$(call isyes,CLEANDEPENDS))
   _CLEAN_TARGETS+=	clean-depends
@@ -170,9 +167,19 @@ _CLEAN_TARGETS+=	post-clean
 .PHONY: clean
 clean: ${_CLEAN_TARGETS}
 
-.PHONY: cleandir
-cleandir: clean
+.PHONY: cleaner
+ifneq (,$(call isyes,${_EXTRACT_IS_CHECKOUT}))
+  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
+  cleaner: clean-message pre-clean depends-clean post-clean
+else
+  cleaner: clean
+endif
 
 .PHONY: clean-message
 clean-message:
+ifneq (,$(realpath ${WRKDIR} $(if ${WRKOBJDIR},${BUILD_DIR} ${WRKDIR_BASENAME})))
 	@${PHASE_MSG} "Cleaning temporary files for ${PKGNAME}"
+else
+	@${DO_NADA}
+endif

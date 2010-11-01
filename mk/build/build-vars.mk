@@ -1,4 +1,3 @@
-# $LAAS: build-vars.mk 2010/01/14 17:41:00 mallet $
 #
 # Copyright (c) 2006-2010 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -130,6 +129,17 @@ endif
 .PHONY: rebuild
 rebuild: build-clean
 	${RUN}${RECURSIVE_MAKE} build
+
+
+# --- build-clean (PRIVATE) ------------------------------------------------
+#
+# build-clean removes the state files for the "build" and later phases so that
+# the "build" target may be re-invoked.
+#
+$(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
+
+build-clean: install-clean
+	${RUN}${RM} -f ${_COOKIE.build}
 
 
 # --- build-cookie (PRIVATE) -----------------------------------------------

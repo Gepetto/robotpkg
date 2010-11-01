@@ -69,7 +69,7 @@ $(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 # --- core functionality ---------------------------------------------------
 
 # Clean
-$(call require-for, clean clean-depends su-do-clean,			\
+$(call require-for, clean cleaner su-do-clean,				\
 	${ROBOTPKG_DIR}/mk/clean.mk)
 
 # Fetch
@@ -99,7 +99,7 @@ $(if $(strip ${MAKECMDGOALS}),						\
 	$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk))
 
 # Install
-$(call require-for, install install-clean su-install-all reinstall	\
+$(call require-for, install su-install-all reinstall			\
 	deinstall su-deinstall replace su-replace bootstrap-register,	\
 	${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 

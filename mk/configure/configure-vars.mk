@@ -113,6 +113,17 @@ reconfigure: configure-clean
 	${RUN}${RECURSIVE_MAKE} configure
 
 
+# --- configure-clean (PRIVATE) --------------------------------------------
+#
+# configure-clean removes the state files for the "configure" and later phases
+# so that the "configure" target may be re-invoked.
+#
+$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+
+configure-clean: build-clean
+	${RUN}${RM} -f ${_COOKIE.configure}
+
+
 # --- configure-cookie (PRIVATE) -------------------------------------------
 #
 # configure-cookie creates the "configure" cookie file.

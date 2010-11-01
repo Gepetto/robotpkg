@@ -165,7 +165,9 @@ check-depends:
 # depends-clean removes the state files associated with the "depends" target so
 # that "depends" may be re-invoked.
 #
-depends-clean:
+$(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+
+depends-clean: configure-clean
 	${RUN}${RM} -f ${_COOKIE.depends}
 	${RUN}${RMDIR} -p $(dir ${_COOKIE.depends}) 2>/dev/null || ${TRUE}
 
