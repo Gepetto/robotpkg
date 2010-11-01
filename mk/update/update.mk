@@ -141,7 +141,7 @@ update-done-message:
 update-clean:
 	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
 	  if cd "${ROBOTPKG_DIR}/$${dir}"; then				\
-	    ${RECURSIVE_MAKE} clean || noclean=$$noclean" "$$dir;	\
+	    ${RECURSIVE_MAKE} cleaner || noclean=$$noclean" "$$dir;	\
 	  else								\
 	    ${PHASE_MSG} "Skipping nonexistent directory $${dep}"; 	\
 	  fi;								\
@@ -149,7 +149,7 @@ update-clean:
 	cd ${CURDIR};							\
 	${RM} -f ${_UPDATE_DIRS} ${_UPDATE_LIST};			\
 	if ${TEST} "$(call isyes,${UPDATE_CLEAN})"; then		\
-	  ${RECURSIVE_MAKE} clean || noclean=$$noclean" "${PKGPATH};	\
+	  ${RECURSIVE_MAKE} cleaner || noclean=$$noclean" "${PKGPATH};	\
 	fi;								\
 	if ${TEST} -n "$$noclean"; then					\
 	    ${WARNING_MSG} ${hline};					\
@@ -184,9 +184,17 @@ update-deinstall-dlist:
 	  if ${TEST} -s ${_UPDATE_DIRS}; then				\
 	    ${ECHO_MSG} "The following packages are going to be"	\
 		"removed and reinstalled:";				\
-	    while read p; do						\
-		${ECHO_MSG} "	$$p";					\
-	    done <${_UPDATE_DIRS};					\
+	    while read dir <&9; do					\
+		${ECHO_MSG} "	$$dir";					\
+	    done 9<${_UPDATE_DIRS};					\
+	    while read dir <&9; do					\
+	      if cd "${ROBOTPKG_DIR}/$${dir}"; then			\
+	        ${RECURSIVE_MAKE} cleaner || {				\
+			${RM} ${_UPDATE_DIRS}; exit 2;			\
+		};							\
+	      fi;							\
+	    done 9<${_UPDATE_DIRS};					\
+	    cd ${CURDIR};						\
 	  fi;								\
 	  ${RECURSIVE_MAKE} deinstall					\
 		_UPDATE_INPROGRESS=yes DEINSTALLDEPENDS=yes;		\
