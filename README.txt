@@ -3,7 +3,7 @@
                     Anthony Mallet - anthony.mallet@laas.fr
                        Copyright 2006-2010 (C) LAAS/CNRS
 
-                               October 29, 2010
+                               November 3, 2010
 
 Contents
 
@@ -710,6 +710,12 @@ WRKOBJDIR
     The top level directory where, if defined, the separate working directories
     will get created. This is useful for building packages on a different
     filesystem than the robotpkg sources.
+OBJHOSTNAME
+    If set to yes, use hostname-specific working directories, e.g. work.cactus,
+    work.localhost. OBJHOSTNAME takes precedence over OBJMACHINE (see below).
+OBJMACHINE
+    If set to yes (default) use machine-specific working directories, e.g.
+    work.Linux-2.6.34.7-56.fc13.i686.PAE-i386.
 DEPENDS_TARGET
     By default, dependencies are only installed, and no binary package is
     created for them. You can set this variable to package to automatically

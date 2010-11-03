@@ -300,7 +300,16 @@ else
 BUILD_DIR=		$(realpath ${CURDIR})
 endif
 
-WRKDIR_BASENAME?=	work
+# If OBJHOSTNAME is set, use hostname in directory name.
+# If OBJMACHINE is set, use ${MACHINE_PLATFORM} in the working directory name.
+#
+ifneq (,$(call isyes,${OBJHOSTNAME}))
+ WRKDIR_BASENAME?=	work.${NODENAME}
+else ifneq (,$(call isyes,${OBJMACHINE}))
+ WRKDIR_BASENAME?=	work.${OPSYS}-${MACHINE_ARCH}
+else
+ WRKDIR_BASENAME?=	work
+endif
 WRKDIR?=		${BUILD_DIR}/${WRKDIR_BASENAME}
 
 # There are many uses for a common log file, so define one.
