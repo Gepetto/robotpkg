@@ -139,7 +139,7 @@ check-depends:
       $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
 	  ${_PKG_BEST_EXISTS} '${DEPEND_ABI.${_pkg_}}' | ${AWK}		\
 	    'BEGIN { pkg="-" } NR==1 { pkg=$$0 } END {			\
-		printf("robotpkg %s %s %s\n",				\
+		printf("robotpkg|%s|%s|%s\n",				\
 		  "${DEPEND_ABI.${_pkg_}}", pkg,			\
 		  "${DEPEND_DIR.${_pkg_}}")}';				\
 	,								\
@@ -154,7 +154,7 @@ check-depends:
 		     ${DEPEND_ABI.${_pkg_}})) '				\
 	     NR==1 { pkg=$$0 } NR==2 { split($$0, p, ":="); prefix=p[2]}\
 	     END { 							\
-	       printf("system %s %s %s\n",				\
+	       printf("system|%s|%s|%s\n",				\
 		 "${DEPEND_ABI.${_pkg_}}", pkg,	prefix)			\
 	     }';							\
   )))

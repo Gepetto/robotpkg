@@ -224,7 +224,7 @@ show-depends:
 	  cd ${ROBOTPKG_DIR}/$$dir &&					\
 	  ${RECURSIVE_MAKE} check-depends DEPENDS_TYPE=run || 		\
 		${ECHO} 1>&2 "could not process $$dir";			\
-	done; } | ${AWK} -v bf=$$bf -v rm=$$rm '			\
+	done; } | ${AWK} -F'|' -v bf=$$bf -v rm=$$rm '			\
 	  /robotpkg/ {							\
 	    if ($$3 == "-") {						\
 	        r[$$2] = bf "missing - install " $$4 rm;		\

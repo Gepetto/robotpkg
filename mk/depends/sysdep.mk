@@ -1,4 +1,4 @@
-# $LAAS: sysdep.mk 2010/10/18 13:44:18 mallet $
+# $LAAS: sysdep.mk 2010/11/05 18:47:22 mallet $
 #
 # Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
@@ -67,11 +67,11 @@ $(foreach _pkg_,${DEPEND_USE},						\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
 		${SYSTEM_SEARCH.${_pkg_}} 3>>$2` || found=;		\
 	if ${TEST} -z "$$found"; then					\
-	  notfound="$$notfound "$(call quote,				\
-		$(or ${SYSTEM_DESCR.${_pkg_}},${DEPEND_ABI.${_pkg_}}));	\
-	  syspkg="$$syspkg "$(call quote,				\
-		$(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
-		  ${SYSTEM_PKG.${OPSYS}.${_pkg_}},:));			\
+	  notfound="$$notfound|"$(call quote,$(strip			\
+	    $(or ${SYSTEM_DESCR.${_pkg_}},${DEPEND_ABI.${_pkg_}})));	\
+	  syspkg="$$syspkg|"$(call quote,$(strip			\
+	    $(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},		\
+	         ${SYSTEM_PKG.${OPSYS}.${_pkg_}},:)));			\
 	else								\
 	  $(if $(call isyes,${SYSDEP_VERBOSE}),				\
 	   ${STEP_MSG} "Required system package ${DEPEND_ABI.${_pkg_}}:"\
@@ -83,7 +83,8 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	  ${ERROR_MSG} "$${bf}Missing system packages required for"	\
 		"${PKGNAME}:$${rm}";					\
 	  ${ERROR_MSG};							\
-	  set -- $$syspkg; for p in $$notfound; do			\
+	  IFS='|'; set -- $$syspkg; for p in $$notfound; do		\
+	    if ${TEST} -z "$$1" -a -z "$$p"; then shift; continue; fi;	\
 	    if ${TEST} "$$1" = ":"; then				\
 	      s=;							\
 	    else							\
@@ -91,8 +92,8 @@ $(foreach _pkg_,${DEPEND_USE},						\
 		  $(or ${OPSUBSYS},${OPSYS})))" package $$1)";		\
 	    fi;								\
 	    ${ERROR_MSG} "	$${bf}$$p$${rm}$$s";			\
-	    shift;							\
-	  done;								\
+	    shift ||:;							\
+	  done; unset IFS;						\
 	  ${ERROR_MSG};							\
 	  ${ERROR_MSG} "Please use the system package management tool"	\
 		"to install these";					\
