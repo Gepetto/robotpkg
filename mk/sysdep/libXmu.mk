@@ -12,7 +12,7 @@ ifeq (+,$(LIBXMU_DEPEND_MK)) # ---------------------------------------------
 
 PREFER.libXmu?=		system
 DEPEND_USE+=		libXmu
-DEPEND_ABI.libXmu?=	libXmu>=1.0.5
+DEPEND_ABI.libXmu?=	libXmu>=1
 
 SYSTEM_SEARCH.libXmu=	\
 	include/X11/Xmu/Xmu.h	\
