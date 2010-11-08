@@ -1,0 +1,9 @@
+@comment Mon Nov 8 15:46:11 CET 2010
+include/lbfgs.h
+lib/liblbfgs.la
+share/doc/liblbfgs/AUTHORS
+share/doc/liblbfgs/COPYING
+share/doc/liblbfgs/ChangeLog
+share/doc/liblbfgs/INSTALL
+share/doc/liblbfgs/NEWS
+share/doc/liblbfgs/README

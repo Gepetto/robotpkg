@@ -1,0 +1,53 @@
+liblbfgs is a C port of the implementation of Limited-memory
+Broyden-Fletcher-Goldfarb-Shanno (L-BFGS) method written by Jorge Nocedal. The
+original FORTRAN source code is available at:
+http://www.ece.northwestern.edu/~nocedal/lbfgs.html
+
+The L-BFGS method solves the unconstrainted minimization problem,
+
+    minimize F(x), x = (x1, x2, ..., xN),
+
+only if the objective function F(x) and its gradient G(x) are computable. The
+well-known Newton's method requires computation of the inverse of the hessian
+matrix of the objective function. However, the computational cost for the
+inverse hessian matrix is expensive especially when the objective function
+takes a large number of variables. The L-BFGS method iteratively finds a
+minimizer by approximating the inverse hessian matrix by information from last
+m iterations. This innovation saves the memory storage and computational time
+drastically for large-scaled problems.
+
+Among the various ports of L-BFGS, this library provides several features:
+
+    * Optimization with L1-norm (Orthant-Wise Limited-memory Quasi-Newton
+    (OWL-QN) method): In addition to standard minimization problems, the
+    library can minimize a function F(x) combined with L1-norm |x| of the
+    variables, {F(x) + C |x|}, where C is a constant scalar parameter. This
+    feature is useful for estimating parameters of sparse log-linear models
+    (e.g., logistic regression and maximum entropy) with L1-regularization (or
+    Laplacian prior).
+
+    * Clean C code: Unlike C codes generated automatically by f2c (Fortran 77
+    into C converter), this port includes changes based on my interpretations,
+    improvements, optimizations, and clean-ups so that the ported code would be
+    well-suited for a C code. In addition to comments inherited from the
+    original code, a number of comments were added through my interpretations.
+
+    * Callback interface: The library receives function and gradient values via
+    a callback interface. The library also notifies the progress of the
+    optimization by invoking a callback function. In the original
+    implementation, a user had to set function and gradient values every time
+    the function returns for obtaining updated values.
+
+    * Thread safe: The library is thread-safe, which is the secondary gain from
+    the callback interface.
+
+    * Cross platform. The source code can be compiled on Microsoft Visual
+    Studio 2005, GNU C Compiler (gcc), etc.
+
+    * Configurable precision: A user can choose single-precision (float) or
+    double-precision (double) accuracy by changing LBFGS_FLOAT macro.
+
+    * SSE/SSE2 optimization: This library includes SSE/SSE2 optimization
+    (written in compiler intrinsics) for vector arithmetic operations on
+    Intel/AMD processors. The library uses SSE for float values and SSE2 for
+    double values. The SSE/SSE2 optimization routine is disabled by default.

@@ -12,6 +12,7 @@ SUBDIR+=	hrp2-dynamics
 SUBDIR+=	jrl-dynamics
 SUBDIR+=	jrl-mathtools
 SUBDIR+=	lapack
+SUBDIR+=	liblbfgs
 SUBDIR+=	mpfr
 SUBDIR+=	t3d
 SUBDIR+=	tvmet
