@@ -1,9 +1,10 @@
-# robotpkg Makefile for:	devel/boost-numeric-bindings
+# robotpkg Makefile for:	math/boost-numeric-bindings
 # Created:			Anthony Mallet on Mon, 29 Jan 2007
 #
 
 DISTNAME=		boost-numeric-bindings-20100322
-CATEGORIES=		devel
+PKGNAME=		boost-numeric-bindings-v1-20100322
+CATEGORIES=		math
 MASTER_SITES=		${MASTER_SITE_ROBOTPKG}
 MASTER_REPOSITORY=\
   svn \
@@ -13,6 +14,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://beta.boost.org/community/sandbox.html
 COMMENT=		C++ bindings for LAPACK and BLAS libraries.
 LICENSE=		bsl
+CONFLICTS+=		boost-numeric-bindings
 
 INSTALLATION_DIRS=	include/boost/numeric/bindings
 

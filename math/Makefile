@@ -4,6 +4,7 @@
 COMMENT=	Mathematics
 
 SUBDIR+=	blas
+SUBDIR+=	boost-numeric-bindings-v1
 SUBDIR+=	eigen2
 SUBDIR+=	fsqp
 SUBDIR+=	gbM

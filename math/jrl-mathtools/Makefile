@@ -19,7 +19,7 @@ DOXYGEN_PLIST_DIR+=	share/doc/jrlMathTools
 
 CMAKE_ARGS+=	-DBOOSTNUMERICBINDINGS_DIR=${PREFIX.boost-numeric-bindings}
 
+include ../../math/boost-numeric-bindings-v1/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk
-include ../../devel/boost-numeric-bindings/depend.mk

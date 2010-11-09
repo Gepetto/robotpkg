@@ -28,7 +28,7 @@ PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 include ../../math/lapack/depend.mk
-include ../../devel/boost-numeric-bindings/depend.mk
+include ../../math/boost-numeric-bindings-v1/depend.mk
 include ../../devel/hpp-kwsio/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

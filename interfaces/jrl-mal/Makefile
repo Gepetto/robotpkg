@@ -42,7 +42,7 @@ PKG_OPTIONS_GROUP.matrix=	t3d jrl-mathtools
 include ../../math/jrl-mathtools/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
-include ../../devel/boost-numeric-bindings/depend.mk
+include ../../math/boost-numeric-bindings-v1/depend.mk
 include ../../math/lapack/depend.mk
 include ../../math/blas/depend.mk
 
