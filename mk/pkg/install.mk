@@ -42,26 +42,25 @@
 #
 .PHONY: pkg-install-check-conflicts
 pkg-install-check-conflicts:
-	${RUN}${RM} -f ${WRKDIR}/.CONFLICTS
-	${RUN}								\
+	${RUN}${RM} -f ${WRKDIR}/.CONFLICTS;				\
 ${foreach _conflict_,${CONFLICTS},					\
 	found="`${_PKG_BEST_EXISTS} ${_conflict_} || ${TRUE}`";		\
 	case "$$found" in						\
 	"")	;;							\
 	*)	${ECHO} "$$found" >> ${WRKDIR}/.CONFLICTS ;;		\
 	esac;								\
-}
-	${RUN}								\
+}									\
 	${TEST} -f ${WRKDIR}/.CONFLICTS || exit 0;			\
-	${ECHO} ${hline};						\
-	${ECHO} "$${bf}${PKGNAME} conflicts with installed"		\
+	${ERROR_MSG} ${hline};						\
+	${ERROR_MSG} "$${bf}${PKGNAME} conflicts with installed"		\
 		"package(s):$${rm}";					\
-	${CAT} ${WRKDIR}/.CONFLICTS | ${SED} -e "s|^|    |";		\
-	${ECHO};							\
-	${ECHO} "They install the same files into the same place.";	\
-	${ECHO} "Please remove conflicts first with"			\
+	${ERROR_MSG};							\
+	${CAT} ${WRKDIR}/.CONFLICTS | ${SED} -e "s|^|ERROR:    |";	\
+	${ERROR_MSG};							\
+	${ERROR_MSG} "They install the same files into the same place.";\
+	${ERROR_MSG} "Please remove conflicts first with"		\
 		"robotpkg_delete(1).";					\
-	${ECHO} ${hline};						\
+	${ERROR_MSG} ${hline};						\
 	${RM} -f ${WRKDIR}/.CONFLICTS;					\
 	exit 1
 
