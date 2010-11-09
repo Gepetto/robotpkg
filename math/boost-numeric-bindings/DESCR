@@ -1,0 +1,7 @@
+Boost is a set of free, peer-reviewed, C++ libraries.  The emphasis is on
+portable libraries which work well with the ISO C++ Standard Library.
+A separate Sandbox CVS is available for Boost developers wishing to
+collaborate on projects prior to formal acceptance of a new library.
+
+This package provides boost-sandbox header files that contain bindings to
+lapack and blas libraries.
