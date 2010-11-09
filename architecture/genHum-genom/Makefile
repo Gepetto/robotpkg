@@ -12,6 +12,8 @@ MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Common data structures for human models
 
+LICENSE=		isc
+
 GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		genHum
