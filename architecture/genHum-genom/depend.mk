@@ -14,7 +14,7 @@ PREFER.genHum-genom?=	robotpkg
 
 DEPEND_USE+=		genHum-genom
 
-DEPEND_ABI.genHum-genom?=	genHum-genom>=1.0
+DEPEND_ABI.genHum-genom?=	genHum-genom>=1.1
 DEPEND_DIR.genHum-genom?=	../../architecture/genHum-genom
 
 SYSTEM_SEARCH.genHum-genom=\

@@ -1,25 +1,23 @@
-@comment Tue Mar 24 18:28:44 CET 2009
+@comment Thu Nov 11 10:21:19 CET 2010
+bin/genHum
+bin/genHumSendInitRqst
+bin/genHumTest
 include/genHum/genHumStruct.h
 include/genHum/server/genHumEndian.h
 include/genHum/server/genHumError.h
+include/genHum/server/genHumMsgLib.h
 include/genHum/server/genHumPosterLib.h
 include/genHum/server/genHumPosterLibStruct.h
+include/genHum/server/genHumPosterReadLibProto.h
+include/genHum/server/genHumPosterShowLib.h
+include/genHum/server/genHumPosterWriteLibProto.h
+include/genHum/server/genHumPosterXMLLib.h
 include/genHum/server/genHumPrint.h
 include/genHum/server/genHumPrintXML.h
 include/genHum/server/genHumScan.h
 include/genHum/server/genHumType.h
-${PLIST.openprs}include/genHum/server/openprs/genHumDecodeOpenprs.h
-${PLIST.openprs}include/genHum/server/openprs/genHumEncodeOpenprs.h
-${PLIST.openprs}include/genHum/server/openprs/genHumRequestsOpenprsProto.h
 lib/libgenHumClient.la
-${PLIST.openprs}lib/openprs/libgenHumOpenprs.la
-${PLIST.openprs}lib/pkgconfig/genHum-oprs.pc
 lib/pkgconfig/genHum.pc
+lib/tclserv/libgenHumTclServ.la
 share/modules/gen/genHum.gen
-${PLIST.openprs}share/modules/openprs/genHumOpenprs.inc
-${PLIST.openprs}share/modules/openprs/genHumOpenprs.opf
-${PLIST.openprs}share/modules/openprs/genHumOpenprs.sym
-${PLIST.tcl}share/modules/tcl/genHumClient.tcl
-${PLIST.openprs}@dirrm include/genHum/server/openprs
-@dirrm include/genHum/server
-@dirrm include/genHum
+share/modules/tcl/genHumClient.tcl

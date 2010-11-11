@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Tue, 24 Mar 2009
 #
 
-DISTNAME=		genHum-genom-1.0
+DISTNAME=		genHum-genom-1.1
 CATEGORIES=		architecture
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
