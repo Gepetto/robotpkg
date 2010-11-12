@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 12 Jun 2009
 #
 
-DISTNAME=		liboro-0.7.9
+DISTNAME=		liboro-0.7.10
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=liboro/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/liboro
 
