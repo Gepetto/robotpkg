@@ -1,5 +1,5 @@
-# robotpkg depend.mk for:	brics/libunicap
-# Created:	 Azamat BRSU on 18 Aug 2010
+# robotpkg depend.mk for:	net/zeromq
+# Created:			Azamat Shakhimardanov on Thu, 7 Oct 2010
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+

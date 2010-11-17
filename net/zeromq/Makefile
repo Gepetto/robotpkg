@@ -1,5 +1,5 @@
-# robotpkg Makefile for:	brics/zeromq
-# Created:			Azamat BRSU on 17 Aug 2010
+# robotpkg Makefile for:	net/zeromq
+# Created:			Azamat Shakhimardanov on Thu, 7 Oct 2010
 #
 
 PKGVERSION=	2.0.10
