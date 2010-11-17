@@ -310,6 +310,7 @@ while ${TEST} $# -gt 0; do
 
 		git)
 		    ${ECHO} $fetch_cmd clone $repo $extract
+		    GIT_SSL_NO_VERIFY=1
 		    $fetch_cmd clone -n $repo $extract &&
 		    $fetch_cmd --git-dir=$extract/.git			\
 			archive --prefix=$extract/ $rev $module |	\
