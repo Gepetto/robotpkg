@@ -1,4 +1,4 @@
-% $LAAS: introduction.tex 2010/01/29 22:41:15 tho $
+% $LAAS: introduction.tex 2010/11/17 17:56:41 mallet $
 %
 % Copyright (c) 2009-2010 LAAS/CNRS
 % All rights reserved.
@@ -102,6 +102,51 @@ robotpkg provides the following key features:
 
 \end{itemize}
 
+
+One question often asked by people is ``why was robotpkg forked from pkgsrc
+instead of integrating the packages into pkgsrc?''. This is indeed a very good
+question and the following paragraphs try to answer it.
+
+First,  robotpkg is  not meant  to be  a replacement  for the  system's package
+management tool (it does not  superseeds pkgsrc, dpkg, macports etc.). The goal
+is to package software that is not widely available on a platform, and which is
+mostly  "lab  software" (generally  of  lesser  quality  than widely  available
+software).    Those   packages   change   (a   lot)  more   often,   and   more
+drastically. Thus, robotpkg is a little bit closer to a "development" tool than
+pkgsrc.  Other  ``system  packages''  are  correctly handled  by  a  number  of
+packaging tools, and there is no need for a new tool.
+
+Currently, pkgsrc mixes both infrastructure and packages descriptions
+themselves. For someone working on e.g. Linux, checking-out
+the whole pkgsrc tree would be cumbersome: it would be redundant with the base
+Linux package system, plus it would be difficult to isolate the specific
+robotic packages from the rest (the rest usually being available in the base
+system). robotpkg currently suffers from the same symptom: this may change in
+the future if the need for several package repositories becomes blatant.
+
+robotpkg provides a number of features not available in pkgsrc (and probably
+not really useful to pkgsrc either). The most important feature is to be able
+to detect "system packages", that are considered as "external software not in
+robotpkg but usually available on a unix system". pkgsrc has a similar system
+but much more limited -- to a few base packages only. This is so because pkgsrc
+is a full-fledged package system. Thus, it aims at being self contained, while
+robotpkg does not.
+
+Finally, there are a number of additions/changes to the pkgsrc infrastructure
+that correspond to legitimate users requests and the specifc workflow in which
+robotpkg is used. For instance, robotpkg provides the possibility to generate
+an archive of a package from a specific tag in a source repository ``on the
+fly'' or just bypass the archive generation and work directly from the source
+repository to install the software. This later workflow is not encouraged, but
+it is convenient to quickly test a -current version of some software to see if
+it causes any problem. Those features could be ported back to pkgsrc if the
+pkgsrc team would find them useful. In the meantime, robotpkg provides a
+good testbed for them.
+
+Still, robotpkg directly uses many of the pkgsrc tools unchanged and the binary
+packages are fully compatible.
+
+
 \section{Supported platforms} % --------------------------------------------
 
 robotpkg consists of  a   source distribution. After retrieving    the required
@@ -118,12 +163,12 @@ reasonably well:
 \hline
 Platform & Version
 \doublehline
-Fedora & 5 -- 12\\
-Ubuntu & 7.10 -- 9.04\\
+Fedora & 5 -- 13\\
+Ubuntu & 7.10 -- 9.10\\
 Debian & 5.03\\
 CentOS & 5\\
 NetBSD & 4 -- 5\\
-Darwin & Preliminary support\\
+Darwin & Partial support - infrastructure works, individual packages may not\\
 \hline
 \end{tabular}\end{center}
 
