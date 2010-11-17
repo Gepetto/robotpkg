@@ -1,9 +1,31 @@
                               A guide to robotpkg
 
                     Anthony Mallet - anthony.mallet@laas.fr
-                       Copyright 2006-2010 (C) LAAS/CNRS
 
-                               November 3, 2010
+                               November 17, 2010
+
+Copyright (C) 2006-2010 LAAS/CNRS.
+Copyright (C) 1997-2010 The NetBSD Foundation, Inc.
+All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+ 1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS "AS
+IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Contents
 
@@ -115,6 +137,44 @@ robotpkg provides the following key features:
     themselves) is freely available under a BSD license, so you may extend and
     adapt robotpkg to your needs, like robotpkg was adapted from pkgsrc.
 
+One question often asked by people is "why was robotpkg forked from pkgsrc
+instead of integrating the packages into pkgsrc?". This is indeed a very good
+question and the following paragraphs try to answer it.
+First, robotpkg is not meant to be a replacement for the system's package
+management tool (it does not superseeds pkgsrc, dpkg, macports etc.). The goal
+is to package software that is not widely available on a platform, and which is
+mostly "lab software" (generally of lesser quality than widely available
+software). Those packages change (a lot) more often, and more drastically.
+Thus, robotpkg is a little bit closer to a "development" tool than pkgsrc.
+Other "system packages" are correctly handled by a number of packaging tools,
+and there is no need for a new tool.
+Currently, pkgsrc mixes both infrastructure and packages descriptions
+themselves. For someone working on e.g. Linux, checking-out the whole pkgsrc
+tree would be cumbersome: it would be redundant with the base Linux package
+system, plus it would be difficult to isolate the specific robotic packages
+from the rest (the rest usually being available in the base system). robotpkg
+currently suffers from the same symptom: this may change in the future if the
+need for several package repositories becomes blatant.
+robotpkg provides a number of features not available in pkgsrc (and probably
+not really useful to pkgsrc either). The most important feature is to be able
+to detect ssystem packages", that are considered as e:xternal software not in
+robotpkg but usually available on a unix system". pkgsrc has a similar system
+but much more limited - to a few base packages only. This is so because pkgsrc
+is a full-fledged package system. Thus, it aims at being self contained, while
+robotpkg does not.
+Finally, there are a number of additions/changes to the pkgsrc infrastructure
+that correspond to legitimate users requests and the specifc workflow in which
+robotpkg is used. For instance, robotpkg provides the possibility to generate
+an archive of a package from a specific tag in a source repository "on the fly"
+or just bypass the archive generation and work directly from the source
+repository to install the software. This later workflow is not encouraged, but
+it is convenient to quickly test a -current version of some software to see if
+it causes any problem. Those features could be ported back to pkgsrc if the
+pkgsrc team would find them useful. In the meantime, robotpkg provides a good
+testbed for them.
+Still, robotpkg directly uses many of the pkgsrc tools unchanged and the binary
+packages are fully compatible.
+
 1.3  Supported platforms
 
 robotpkg consists of a source distribution. After retrieving the required
@@ -125,22 +185,22 @@ C-compiler and a small, reasonably standard subset of Unix commands (like sed,
 awk, find, grep ...). However, individual packages might have their specific
 requirements. The following platforms have been reported to be supported
 reasonably well:
-                        +-----------------------------+
-                        |Platform|      Version       |
-                        |--------+--------------------|
-                        |--------+--------------------|
-                        | Fedora |       5 - 12       |
-                        |--------+--------------------|
-                        | Ubuntu |    7.10 - 9.04     |
-                        |--------+--------------------|
-                        | Debian |        5.03        |
-                        |--------+--------------------|
-                        | CentOS |         5          |
-                        |--------+--------------------|
-                        | NetBSD |       4 - 5        |
-                        |--------+--------------------|
-                        | Darwin |Preliminary support |
-                        +-----------------------------+
++----------------------------------------------------------------------------+
+|Platform|                              Version                              |
+|--------+-------------------------------------------------------------------|
+|--------+-------------------------------------------------------------------|
+| Fedora |                              5 - 13                               |
+|--------+-------------------------------------------------------------------|
+| Ubuntu |                            7.10 - 9.10                            |
+|--------+-------------------------------------------------------------------|
+| Debian |                               5.03                                |
+|--------+-------------------------------------------------------------------|
+| CentOS |                                 5                                 |
+|--------+-------------------------------------------------------------------|
+| NetBSD |                               4 - 5                               |
+|--------+-------------------------------------------------------------------|
+| Darwin |Partial support - infrastructure works, individual packages may not|
++----------------------------------------------------------------------------+
 
 1.4  Overview
 
@@ -711,11 +771,12 @@ WRKOBJDIR
     will get created. This is useful for building packages on a different
     filesystem than the robotpkg sources.
 OBJHOSTNAME
-    If set to yes, use hostname-specific working directories, e.g. work.cactus,
-    work.localhost. OBJHOSTNAME takes precedence over OBJMACHINE (see below).
+    If set to yes (the default), use hostname-specific working directories,
+    e.g. work.cactus, work.localhost. OBJHOSTNAME takes precedence over
+    OBJMACHINE (see below).
 OBJMACHINE
-    If set to yes (default) use machine-specific working directories, e.g.
-    work.Linux-2.6.34.7-56.fc13.i686.PAE-i386.
+    If set to yes (the default) use machine-specific working directories, e.g.
+    work.Linux-i386.
 DEPENDS_TARGET
     By default, dependencies are only installed, and no binary package is
     created for them. You can set this variable to package to automatically

@@ -11,7 +11,7 @@ DISTFILES=#		empty
 MAINTAINER=             openrobots@laas.fr
 HOMEPAGE=               http://www.laas.fr/~mallet/robotpkg
 COMMENT=                A guide to robotpkg
-LICENSE=		isc
+LICENSE=		2-clause-bsd
 
 DIST_SUBDIR=            ${PKGBASE}
 USE_LANGUAGES=#		empty

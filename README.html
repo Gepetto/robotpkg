@@ -129,18 +129,56 @@ table, table tr {
 
 <h1 align="center">A guide to robotpkg </h1>
 
-<h3 align="center">
-   Anthony Mallet - <tt>anthony.mallet@laas.fr</tt><br />
-   Copyright 2006-2010 &#169; LAAS/CNRS
- </h3>
+<h3 align="center">Anthony Mallet - <tt>anthony.mallet@laas.fr</tt> </h3>
 
-<h3 align="center">November  3, 2010</h3>
+<h3 align="center">November 17, 2010</h3>
 
 <div class="p"><!----></div>
    
 <div class="p"><!----></div>
 </div><div id="frontmatter">
 
+
+<div class="p"><!----></div>
+<font size="-1">Copyright &#169; 2006-2010 LAAS/CNRS.<br />
+Copyright &#169; 1997-2010 The NetBSD Foundation, Inc.<br />
+All rights reserved.<br />
+
+<div class="p"><!----></div>
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+<div class="p"><!----></div>
+
+<ol type="1">
+<li> Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+<div class="p"><!----></div>
+</li>
+
+<li> Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+<div class="p"><!----></div>
+</li>
+</ol>
+
+<div class="p"><!----></div>
+THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS
+BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</font>
+
+<div class="p"><!----></div>
 
 <h1>Contents </h1><a href="#tth_chAp1"
 >1&nbsp; Introduction</a><br />
@@ -342,6 +380,55 @@ robotpkg provides the following key features:
 </ul>
 
 <div class="p"><!----></div>
+One question often asked by people is "why was robotpkg forked from pkgsrc
+instead of integrating the packages into pkgsrc?". This is indeed a very good
+question and the following paragraphs try to answer it.
+
+<div class="p"><!----></div>
+First,  robotpkg is  not meant  to be  a replacement  for the  system's package
+management tool (it does not  superseeds pkgsrc, dpkg, macports etc.). The goal
+is to package software that is not widely available on a platform, and which is
+mostly  "lab  software" (generally  of  lesser  quality  than widely  available
+software).    Those   packages   change   (a   lot)  more   often,   and   more
+drastically. Thus, robotpkg is a little bit closer to a "development" tool than
+pkgsrc.  Other  "system  packages"  are  correctly handled  by  a  number  of
+packaging tools, and there is no need for a new tool.
+
+<div class="p"><!----></div>
+Currently, pkgsrc mixes both infrastructure and packages descriptions
+themselves. For someone working on e.g. Linux, checking-out
+the whole pkgsrc tree would be cumbersome: it would be redundant with the base
+Linux package system, plus it would be difficult to isolate the specific
+robotic packages from the rest (the rest usually being available in the base
+system). robotpkg currently suffers from the same symptom: this may change in
+the future if the need for several package repositories becomes blatant.
+
+<div class="p"><!----></div>
+robotpkg provides a number of features not available in pkgsrc (and probably
+not really useful to pkgsrc either). The most important feature is to be able
+to detect &#223;ystem packages", that are considered as &#235;xternal software not in
+robotpkg but usually available on a unix system". pkgsrc has a similar system
+but much more limited - to a few base packages only. This is so because pkgsrc
+is a full-fledged package system. Thus, it aims at being self contained, while
+robotpkg does not.
+
+<div class="p"><!----></div>
+Finally, there are a number of additions/changes to the pkgsrc infrastructure
+that correspond to legitimate users requests and the specifc workflow in which
+robotpkg is used. For instance, robotpkg provides the possibility to generate
+an archive of a package from a specific tag in a source repository "on the
+fly" or just bypass the archive generation and work directly from the source
+repository to install the software. This later workflow is not encouraged, but
+it is convenient to quickly test a -current version of some software to see if
+it causes any problem. Those features could be ported back to pkgsrc if the
+pkgsrc team would find them useful. In the meantime, robotpkg provides a
+good testbed for them.
+
+<div class="p"><!----></div>
+Still, robotpkg directly uses many of the pkgsrc tools unchanged and the binary
+packages are fully compatible.
+
+<div class="p"><!----></div>
  <h2><a name="tth_sEc1.3">
 1.3</a>&nbsp;&nbsp;Supported platforms</h2> 
 <div class="p"><!----></div>
@@ -363,12 +450,12 @@ reasonably well:
 <tr><td align="center">Platform </td><td align="center">Version
 </td></tr><tr><td id="hline" colspan=0></td></tr>
 
-<tr><td align="center">Fedora </td><td align="center">5 - 12</td></tr>
-<tr><td align="center">Ubuntu </td><td align="center">7.10 - 9.04</td></tr>
+<tr><td align="center">Fedora </td><td align="center">5 - 13</td></tr>
+<tr><td align="center">Ubuntu </td><td align="center">7.10 - 9.10</td></tr>
 <tr><td align="center">Debian </td><td align="center">5.03</td></tr>
 <tr><td align="center">CentOS </td><td align="center">5</td></tr>
 <tr><td align="center">NetBSD </td><td align="center">4 - 5</td></tr>
-<tr><td align="center">Darwin </td><td align="center">Preliminary support</td></tr></table>
+<tr><td align="center">Darwin </td><td align="center">Partial support - infrastructure works, individual packages may not</td></tr></table>
 </center>
 
 <div class="p"><!----></div>
@@ -1273,12 +1360,12 @@ packages.
    working directories will get created.  This is useful for building  packages
    on a different filesystem than the <tt>robotpkg</tt> sources.</dd>
  <dt><b>OBJHOSTNAME</b></dt>
-	<dd> If set to yes, use hostname-specific working directories,
-   e.g. work.cactus, work.localhost. <tt>OBJHOSTNAME</tt> takes precedence over
-   <tt>OBJMACHINE</tt> (see below).</dd>
+	<dd> If set to yes (the default), use hostname-specific
+   working directories, e.g. work.cactus, work.localhost. <tt>OBJHOSTNAME</tt>
+   takes precedence over <tt>OBJMACHINE</tt> (see below).</dd>
  <dt><b>OBJMACHINE</b></dt>
-	<dd> If set to yes (default) use machine-specific working
-   directories, e.g. work.Linux-2.6.34.7-56.fc13.i686.PAE-i386.</dd>
+	<dd> If set to yes (the default) use machine-specific working
+   directories, e.g. work.Linux-i386.</dd>
  <dt><b>DEPENDS_TARGET</b></dt>
 	<dd> By default,  dependencies are only installed,  and no
    binary package is  created  for them. You  can  set  this variable  to  <tt>
