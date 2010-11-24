@@ -52,7 +52,7 @@ _pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.python=\
 	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version' 	\
 	'include/${_pynamespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'	\
-	'lib/lib${_pynamespec}.{a,so,dylib}:s/[^.0-9]//gp:${ECHO} %'
+	'lib/lib${_pynamespec}.{a,so,dylib}:s/^.*python//;s/[^.0-9]//gp:${ECHO} %'
 
 SYSTEM_PKG.Linux-fedora.python=	python-devel
 SYSTEM_PKG.NetBSD.python=	pkgsrc/lang/python
