@@ -53,6 +53,9 @@ ifndef MK_ROBOTPKG_PREFS
   include ../../mk/robotpkg.prefs.mk
 endif
 
+# User build options processing
+$(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
+
 # Helper definitions
 $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
@@ -61,9 +64,6 @@ $(call require, ${ROBOTPKG_DIR}/mk/internal/locking.mk)
 
 # Barrier
 $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-
-# User build options processing
-$(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 
 
 # --- core functionality ---------------------------------------------------
