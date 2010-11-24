@@ -12,6 +12,8 @@ HOMEPAGE=		http://www.laas.fr/~mallet
 COMMENT=		Versatile Image Acquisition Module - Libraries
 LICENSE=		2-clause-bsd
 
+NOT_FOR_PLATFORM=
+
 GNU_CONFIGURE=		yes
 BUILD_TARGET=		all
 INSTALL_TARGET=		install
