@@ -14,6 +14,7 @@ COMMENT=		Stereo-vision by pixel correlation - GenoM component
 LICENSE=		2-clause-bsd
 
 GENOM_MODULE=		stereopixel
+NOT_FOR_PLATFORM=
 
 define PKG_OPTION_UNSET.api
   include ../../image/libstereopixel/depend.mk
