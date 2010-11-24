@@ -12,9 +12,11 @@ HOMEPAGE=		http://www.laas.fr/~mallet
 COMMENT=		Versatile Image Acquisition Module - GenoM component
 LICENSE=		2-clause-bsd
 
+NOT_FOR_PLATFORM=
 GNU_CONFIGURE=		yes
-
 GENOM_MODULE=		viam
+CPPFLAGS+=		-I${PREFIX.libjpeg}/include
+LDFLAGS+=		-L${PREFIX.libjpeg}/lib
 
 # option for image display using opencv
 PKG_SUPPORTED_OPTIONS+=	display
@@ -35,4 +37,5 @@ PKG_OPTIONS_GROUP.incompatible=	api display
 include ../../image/viam-libs/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../architecture/genom/depend.mk
+include ../../mk/sysdep/libjpeg.mk
 include ../../mk/robotpkg.mk
