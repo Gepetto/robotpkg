@@ -11,6 +11,7 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Three dimensional image definition
 LICENSE=		2-clause-bsd
 
+NOT_FOR_PLATFORM=
 GNU_CONFIGURE=		yes
 
 include ../../math/t3d/depend.mk
