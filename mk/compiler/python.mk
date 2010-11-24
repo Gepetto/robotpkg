@@ -79,15 +79,7 @@ endif
 PYTHON_VERSION=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c 		\
 	'import distutils.sysconfig;					\
 	print(distutils.sysconfig.get_config_var("VERSION"))'))
-PYTHON_INCLUDE=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
-	'import distutils.sysconfig;					\
-	print(distutils.sysconfig.get_python_inc(0))'))
-PYTHON_LIB=$(if ${PYTHON},$(wildcard $(shell ${PYTHON} 2>/dev/null -c	\
-	'import distutils.sysconfig;					\
-	print(distutils.sysconfig.EXEC_PREFIX)')/lib/libpython${PYTHON_VERSION}.*))
-PYTHON_SITELIB=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null  -c		\
-	'import distutils.sysconfig;					\
-	print(distutils.sysconfig.get_python_lib(0,0,""))'))
+PYTHON_SITELIB=$(if ${PYTHON_VERSION},lib/python${PYTHON_VERSION}/site-packages)
 PYTHONPATH:=$(call prependpaths,${PREFIX}/${PYTHON_SITELIB},${PYTHONPATH})
 
 PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
