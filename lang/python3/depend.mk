@@ -28,7 +28,7 @@ endif
 
 ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 
-PREFER.python3?=	robotpkg
+PREFER.python3?=	system
 
 DEPEND_USE+=		python3
 DEPEND_ABI.python3?=	python3${_PY_REQUIRED}
