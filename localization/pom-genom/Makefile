@@ -12,6 +12,7 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM module for localization management.
 LICENSE=		2-clause-bsd
 
+NOT_FOR_PLATFORM=
 GENOM_MODULE=		pom
 
 define PKG_OPTION_UNSET.api
