@@ -185,6 +185,9 @@ Linux)
 NetBSD)
 	gmake=gmake
 	;;
+DragonFly)
+	gmake=gmake
+	;;
 SunOS)
 	gmake=gmake
 	;;

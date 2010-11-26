@@ -1,0 +1,20 @@
+--- src/vi.c~	2010-11-26 13:42:52.676812000 +0100
++++ src/vi.c	2010-11-26 13:57:09.435665000 +0100
+@@ -915,14 +915,14 @@
+  * NB: posix implies that we should enter insert mode, however
+  * this is against historical precedent...
+  */
+-#ifdef __weak_reference
+-extern char *get_alias_text(const char *) __weak_reference(get_alias_text);
++#ifdef __weak_extern
++extern char *get_alias_text(const char *) __weak_extern(get_alias_text);
+ #endif
+ protected el_action_t
+ /*ARGSUSED*/
+ vi_alias(EditLine *el, int c)
+ {
+-#ifdef __weak_reference
++#ifdef __weak_extern
+ 	char alias_name[3];
+ 	char *alias_text;
+ 
