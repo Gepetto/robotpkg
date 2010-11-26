@@ -87,6 +87,7 @@ endif
 	${RUN}dirs="$(realpath ${WRKDIR}				\
 		$(if ${WRKOBJDIR},${BUILD_DIR} ${WRKDIR_BASENAME}))";	\
 	for dir in $$dirs; do						\
+	  if ! ${TEST} -e "$$dir"; then continue; fi;			\
 	  if ${TEST} -w "$$dir"; then					\
 	    ${RM} -rf $$dir;						\
 	  else								\
@@ -178,7 +179,7 @@ endif
 
 .PHONY: clean-message
 clean-message:
-ifneq (,$(realpath ${WRKDIR} $(if ${WRKOBJDIR},${BUILD_DIR} ${WRKDIR_BASENAME})))
+ifneq (,$(wildcard ${WRKDIR} $(if ${WRKOBJDIR},${BUILD_DIR} ${WRKDIR_BASENAME})))
 	@${PHASE_MSG} "Cleaning temporary files for ${PKGNAME}"
 else
 	@${DO_NADA}
