@@ -79,9 +79,9 @@ fi
 if ${TEST} -t 1; then
     sc=`${TPUT} sc`
     rc=`${TPUT} rc`
-    el=`${TPUT} el`
-    civis=`${TPUT} civis`
-    cnorm=`${TPUT} cnorm`
+    el=`${TPUT} el 2>/dev/null || ${TPUT} ce 2>/dev/null`
+    civis=`${TPUT} civis 2>/dev/null || ${TPUT} vi 2>/dev/null`
+    cnorm=`${TPUT} cnorm 2>/dev/null || ${TPUT} ve 2>/dev/null`
 
     statuslinea=' -(o     )-'
     statuslineb=' -( o    )-'
