@@ -26,10 +26,8 @@ PKG_OPTION_SET.calife:=		CONFIGURE_ARGS+=--enable-calife
 PKG_OPTIONS_UNSET.calife:=	CONFIGURE_ARGS+=--disable-calife
 
 PKG_OPTION_DESCR.sse=	 	Enable sse optimization
-define PKG_OPTION_SET.sse=
-  CFLAGS+=-msse2 -mfpmath=sse \
-	$(if $(filter-out Darwin,${OPSYS}),-flax-vector-conversions)
-endef
+PKG_OPTION_SET.sse=		CONFIGURE_ARGS+=--enable-sse
+PKG_OPTION_UNSET.sse=		CONFIGURE_ARGS+=--disable-sse
 
 PKG_OPTION_DESCR.pthread=	Enable parallelization
 PKG_OPTION_SET.pthread=		CONFIGURE_ARGS+=--enable-threads
