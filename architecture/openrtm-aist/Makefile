@@ -20,6 +20,13 @@ WRKSRC=			${WRKDIR}/${DISTNAME:-RELEASE=}
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 
+
+# Use the preferred version of Ace.
+#  If not defined, OpenRTM will use the system package even if Ace
+#  is installed by RobotPkg which is not what is expected.
+CONFIGURE_ARGS+=        --with-ace-includes=${PREFIX.ace} \
+                        --with-ace-lib=${PREFIX.ace}
+
 SUBST_CLASSES+=		rtm-python
 SUBST_STAGE.rtm-python=	pre-configure
 SUBST_MESSAGE.rtm-python=Replacing python interpreter.
