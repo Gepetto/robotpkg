@@ -1,0 +1,11 @@
+--- src/Makefile.in~	2010-12-03 18:26:57.021036351 +0100
++++ src/Makefile.in	2010-12-03 18:26:57.021036351 +0100
+@@ -232,7 +232,7 @@
+ 	video_encode.c video_encode.h \
+ 	subtitles.c subtitles.h 
+ 
+-coriander_LDADD = -L/usr/X11R6/lib/ @PACKAGE_LIBS@ $(INTLLIBS) $(FTPLIB_LIBS) $(SDLLIB_LIBS) $(LIBDC_LIBS) $(LIBRAW_LIBS) $(XV_LIBS) $(COR_LFS_LDFLAGS) -lgthread-2.0 $(FFMPEG_LIBS)
++coriander_LDADD = -L/usr/X11R6/lib/ @PACKAGE_LIBS@ -lX11 $(INTLLIBS) $(FTPLIB_LIBS) $(SDLLIB_LIBS) $(LIBDC_LIBS) $(LIBRAW_LIBS) $(XV_LIBS) $(COR_LFS_LDFLAGS) -lgthread-2.0 $(FFMPEG_LIBS)
+ all: all-am
+ 
+ .SUFFIXES:
