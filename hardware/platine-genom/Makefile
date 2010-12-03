@@ -16,7 +16,8 @@ LICENSE=		isc
 GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		platine
-GENOM_ARGS+=		-I${PREFIX}/include/genBasic -I${PREFIX}/include/pom
+GENOM_ARGS+=		-I${PREFIX.genBasic-genom}/include/genBasic
+GENOM_ARGS+=		-I${PREFIX.pom-genom}/include/pom
 
 include ../../architecture/genom/depend.mk
 
