@@ -8,7 +8,7 @@ VERSION=	0.2
 
 CATEGORIES=	optimization
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}roboptim/core
+MASTER_REPOSITORY=git git://github.com/laas/roboptim-core-plugin-ipopt.git
 
 MAINTAINER=	roboptim-user@lists.sourceforge.net
 HOMEPAGE=	http://sourceforge.net/projects/roboptim/
