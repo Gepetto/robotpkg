@@ -1,4 +1,4 @@
-% $LAAS: configuring.tex 2010/11/03 14:24:24 mallet $
+% $LAAS: configuring.tex 2010/12/07 22:58:39 tho $
 %
 % Copyright (c) 2009-2010 LAAS/CNRS
 % All rights reserved.
@@ -153,6 +153,26 @@ regarding packages sets:
    dependencies of packages listed in sets are added to their respective
    sets. Default: no.
 \end{description}
+
+
+\subsection{Package specific configuration variables} % --------------------
+
+In this  section, you can  find variables that  apply to one  specific package.
+Each  variable is  suffixed by  {\tt.<pkg>}, where  {\tt <pkg>}  is  the actual
+package name to which the variable should apply.
+
+\begin{description}
+   \item[REPOSITORY.<pkg>] locally overrides the default {\tt
+   MASTER\_REPOSITORY} defined for a package. This is useful if you want to
+   work with an alternative, perhaps local, repository when doing a {\tt make
+   checkout}.
+
+   \item[CHECKOUT\_VCS\_OPTS.<pkg>] is a list of options used when fetching a
+   package via a {\tt make checkout} command. The options are passed to the
+   ``cvs checkout'', ``git clone'' or ``svn checkout'' command that extract the
+   source archive.
+\end{description}
+
 
 \subsection{General configuration variables} % -----------------------------
 

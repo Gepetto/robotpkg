@@ -1,4 +1,4 @@
-% $LAAS: pkgvars.tex 2010/10/29 17:48:36 mallet $
+% $LAAS: pkgvars.tex 2010/12/07 22:59:58 tho $
 %
 % Copyright (c) 2010 LAAS/CNRS
 % All rights reserved.
@@ -91,6 +91,22 @@ mostly historical and has no further meaning.
    svn}). It is {\em strongly} advised to define at least a specific revision
    to be checked out, so that the package can be reproducibly installed in a
    known state.
+
+   \smallbreak
+   \item[MASTER\_REPOSITORY] defines a VCS repository from where a ``{\tt make
+   checkout}'' will download the latest revision of a software. {\tt
+   MASTER\_REPOSITORY} is a list of 2 or 3 elements. The first element is the
+   VCS tool to be used: it must be one of {\tt cvs}, {\tt git} or {\tt svn}.
+   The second element is the location of the repository. It must be written in
+   a syntax understood by the actual VCS tool. The third optional element is a
+   list of specific elements to be checked out instead of the default (the
+   whole repository).
+
+   \smallbreak
+   \item[CHECKOUT\_VCS\_OPTS] is a list of options used when fetching a
+   package via a {\tt make checkout} command. The options are passed to the
+   ``cvs checkout'', ``git clone'' or ``svn checkout'' command that extract the
+   source archive.
 
 \end{description}
 

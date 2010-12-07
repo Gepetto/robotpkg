@@ -131,7 +131,7 @@ table, table tr {
 
 <h3 align="center">Anthony Mallet - <tt>anthony.mallet@laas.fr</tt> </h3>
 
-<h3 align="center">November 17, 2010</h3>
+<h3 align="center">December  7, 2010</h3>
 
 <div class="p"><!----></div>
    
@@ -235,11 +235,13 @@ POSSIBILITY OF SUCH DAMAGE.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.2"
 >2.4.2&nbsp; Defining collections of packages</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.3"
->2.4.3&nbsp; General configuration variables</a><br />
+>2.4.3&nbsp; Package specific configuration variables</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.4"
->2.4.4&nbsp; Variables affecting the build process</a><br />
+>2.4.4&nbsp; General configuration variables</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.5"
->2.4.5&nbsp; Additional flags to the compiler</a><br />
+>2.4.5&nbsp; Variables affecting the build process</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.6"
+>2.4.6&nbsp; Additional flags to the compiler</a><br />
 <a href="#tth_chAp3"
 >3&nbsp; The robotpkg developer's guide</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1"
@@ -1315,7 +1317,30 @@ regarding packages sets:
 
 <div class="p"><!----></div>
      <h3><a name="tth_sEc2.4.3">
-2.4.3</a>&nbsp;&nbsp;General configuration variables</h3> 
+2.4.3</a>&nbsp;&nbsp;Package specific configuration variables</h3> 
+<div class="p"><!----></div>
+In this  section, you can  find variables that  apply to one  specific package.
+Each  variable is  suffixed by  <tt>.&lt;pkg&#62;</tt>, where  <tt>&lt;pkg&#62;</tt>  is  the actual
+package name to which the variable should apply.
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>REPOSITORY.&lt;pkg&#62;</b></dt>
+	<dd> locally overrides the default <tt>
+   MASTER_REPOSITORY</tt> defined for a package. This is useful if you want to
+   work with an alternative, perhaps local, repository when doing a <tt>make
+   checkout</tt>.</dd>
+ <dt><b>CHECKOUT_VCS_OPTS.&lt;pkg&#62;</b></dt>
+	<dd> is a list of options used when fetching a
+   package via a <tt>make checkout</tt> command. The options are passed to the
+   "cvs checkout", "git clone" or "svn checkout" command that extract the
+   source archive.</dd>
+</dl>
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc2.4.4">
+2.4.4</a>&nbsp;&nbsp;General configuration variables</h3> 
 <div class="p"><!----></div>
 In  this  section,  you can   find some  variables   that apply  to  all <tt>robotpkg</tt> 
 packages.
@@ -1350,8 +1375,8 @@ packages.
 </dl>
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.4.4">
-2.4.4</a>&nbsp;&nbsp;Variables affecting the build process</h3> 
+     <h3><a name="tth_sEc2.4.5">
+2.4.5</a>&nbsp;&nbsp;Variables affecting the build process</h3> 
 <div class="p"><!----></div>
 
 <dl compact="compact">
@@ -1386,8 +1411,8 @@ packages.
 
 <div class="p"><!----></div>
 </dd>
-</dl>     <h3><a name="tth_sEc2.4.5">
-2.4.5</a>&nbsp;&nbsp;Additional flags to the compiler</h3> 
+</dl>     <h3><a name="tth_sEc2.4.6">
+2.4.6</a>&nbsp;&nbsp;Additional flags to the compiler</h3> 
 <div class="p"><!----></div>
 If you wish  to set compiler variables   such as <tt>CFLAGS</tt>,  <tt>CXXFLAGS</tt>,
 <tt>FFLAGS</tt> ... please make sure to use  the <tt>+=</tt>  operator instead of the
@@ -1525,7 +1550,27 @@ mostly historical and has no further meaning.
    supported by the underlying fetch tool (<tt>cvs</tt>, <tt>git</tt> or <tt>
    svn</tt>). It is <em>strongly</em> advised to define at least a specific revision
    to be checked out, so that the package can be reproducibly installed in a
-   known state.</dd>
+   known state.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>MASTER_REPOSITORY</b></dt>
+	<dd> defines a VCS repository from where a "<tt>make
+   checkout</tt>" will download the lastest revision of a software. <tt>
+   MASTER_REPOSITORY</tt> is a list of 2 or 3 elements. The first element is the
+   VCS tool to be used: it must be one of <tt>cvs</tt>, <tt>git</tt> or <tt>svn</tt>.
+   The second element is the location of the repository. It must be written in
+   a syntax understood by the actual VCS tool. The third optional element is a
+   list of specific elements to be checked out instead of the default (the
+   whole repository).
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>CHECKOUT_VCS_OPTS</b></dt>
+	<dd> is a list of options used when fetching a
+   package via a <tt>make checkout</tt> command. The options are passed to the
+   "cvs checkout", "git clone" or "svn checkout" command that extract the
+   source archive.</dd>
 </dl>
 
 <div class="p"><!----></div>

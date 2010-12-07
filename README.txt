@@ -2,7 +2,7 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                               November 17, 2010
+                               December 7, 2010
 
 Copyright (C) 2006-2010 LAAS/CNRS.
 Copyright (C) 1997-2010 The NetBSD Foundation, Inc.
@@ -55,9 +55,10 @@ Contents
     2.4  Configuring robotpkg
         2.4.1  Selecting build options
         2.4.2  Defining collections of packages
-        2.4.3  General configuration variables
-        2.4.4  Variables affecting the build process
-        2.4.5  Additional flags to the compiler
+        2.4.3  Package specific configuration variables
+        2.4.4  General configuration variables
+        2.4.5  Variables affecting the build process
+        2.4.6  Additional flags to the compiler
 3  The robotpkg developer's guide
     3.1  Package files, directories and contents
         3.1.1  Makefile
@@ -736,7 +737,22 @@ PKGSET_STRICT
     strictly defined in sets are considered. If set to 'no', dependencies of
     packages listed in sets are added to their respective sets. Default: no.
 
-2.4.3  General configuration variables
+2.4.3  Package specific configuration variables
+
+In this section, you can find variables that apply to one specific package.
+Each variable is suffixed by .<pkg>, where <pkg> is the actual package name to
+which the variable should apply.
+
+REPOSITORY.<pkg>
+    locally overrides the default MASTER_REPOSITORY defined for a package. This
+    is useful if you want to work with an alternative, perhaps local,
+    repository when doing a make checkout.
+CHECKOUT_VCS_OPTS.<pkg>
+    is a list of options used when fetching a package via a make checkout
+    command. The options are passed to the "cvs checkout", "git clone" or "svn
+    checkout" command that extract the source archive.
+
+2.4.4  General configuration variables
 
 In this section, you can find some variables that apply to all robotpkg
 packages.
@@ -764,7 +780,7 @@ PKG_DEBUG_LEVEL
     invocation, and the value 2 will display both the shell commands before
     their invocation, and their actual execution progress with set -x.
 
-2.4.4  Variables affecting the build process
+2.4.5  Variables affecting the build process
 
 WRKOBJDIR
     The top level directory where, if defined, the separate working directories
@@ -790,7 +806,7 @@ MAKE_JOBS
     "build" target. MAKE_JOBS can be set to any positive integer; useful values
     are around the number of processors on the machine.
 
-2.4.5  Additional flags to the compiler
+2.4.6  Additional flags to the compiler
 
 If you wish to set compiler variables such as CFLAGS, CXXFLAGS, FFLAGS ...
 please make sure to use the += operator instead of the = operator:
@@ -874,6 +890,18 @@ FETCH_METHOD
     underlying fetch tool (cvs, git or svn). It is strongly advised to define
     at least a specific revision to be checked out, so that the package can be
     reproducibly installed in a known state.
+MASTER_REPOSITORY
+    defines a VCS repository from where a "make checkout" will download the
+    lastest revision of a software. MASTER_REPOSITORY is a list of 2 or 3
+    elements. The first element is the VCS tool to be used: it must be one of
+    cvs, git or svn. The second element is the location of the repository. It
+    must be written in a syntax understood by the actual VCS tool. The third
+    optional element is a list of specific elements to be checked out instead
+    of the default (the whole repository).
+CHECKOUT_VCS_OPTS
+    is a list of options used when fetching a package via a make checkout
+    command. The options are passed to the "cvs checkout", "git clone" or "svn
+    checkout" command that extract the source archive.
 
 The second section contains information about separately downloaded patches, if
 any.
