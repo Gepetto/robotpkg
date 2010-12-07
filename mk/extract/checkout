@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# $LAAS: checkout 2010/03/22 15:48:50 mallet $
-#
 # Copyright (c) 2009-2010 LAAS/CNRS
 # All rights reserved.
 #
@@ -60,10 +58,9 @@
 #
 #
 # ENVIRONMENT
-#	CHECKOUT_OPTS_GIT
-#	CHECKOUT_OPTS_CVS
-#		These variables set additional arguments passed to the
-#		underlying clone command.
+#	CHECKOUT_VCS_OPTS
+#		This variable set additional arguments passed to the
+#		actualy checkout command (cvs checkout, git clone or svn checkout).
 #
 # --------------------------------------------------------------------------
 
@@ -77,6 +74,7 @@ set -u		# treat undefined variables as errors
 : ${SVN:=svn}
 
 : ${TMPDIR:=/tmp}
+: ${CHECKOUT_VCS_OPTS=}
 
 self="${0##*/}"
 
@@ -113,36 +111,35 @@ repository="$1"; shift
 #
 case "$format" in
 git)
-    : ${CHECKOUT_OPTS_GIT=}
     if ${TEST} -n "$revision"; then
-	${GIT} clone ${CHECKOUT_OPTS_GIT} -n $repository $extract_dir
+	${GIT} clone ${CHECKOUT_VCS_OPTS} -n $repository $extract_dir
 	${TEST} -n "$extract_dir" && {
 	    cd $extract_dir;
 	    ${GIT} checkout $revision;
 	}
     else
-	${GIT} clone ${CHECKOUT_OPTS_GIT} $repository $extract_dir
+	${GIT} clone ${CHECKOUT_VCS_OPTS} $repository $extract_dir
     fi
     ;;
 
 cvs)
-    : ${CHECKOUT_OPTS_CVS=}
     : ${_revision=}
     : ${_extract_dir=}
     : ${cwd=`pwd`}
     ${TEST} -n "$revision" && _revision="-r $revision"
     ${TEST} -n "$extract_dir" && _extract_dir="-d ${extract_dir##${cwd%/}/}"
-    ${CVS} -d $repository checkout $_revision $_extract_dir ${1+"$@"}
+    ${CVS} -d $repository checkout \
+	${CHECKOUT_VCS_OPTS} $_revision $_extract_dir ${1+"$@"}
     ;;
 
 svn)
-    : ${CHECKOUT_OPTS_SVN=}
     : ${_revision=}
     : ${_extract_dir=}
     : ${cwd=`pwd`}
     ${TEST} -n "$revision" && _revision="-r $revision"
     ${TEST} -n "$extract_dir" && _extract_dir="${extract_dir##${cwd%/}/}"
-    ${SVN} checkout $_revision $repository $_extract_dir ${1+"$@"}
+    ${SVN} checkout \
+	 ${CHECKOUT_VCS_OPTS} $_revision $repository $_extract_dir ${1+"$@"}
     ;;
 esac
 

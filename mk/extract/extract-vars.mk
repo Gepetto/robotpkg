@@ -56,6 +56,11 @@ else ifdef MASTER_REPOSITORY
   _MASTER_REPOSITORY=${MASTER_REPOSITORY}
 endif
 
+# let users define specific checkout options
+ifdef CHECKOUT_VCS_OPTS.${PKGBASE}
+  CHECKOUT_VCS_OPTS+=	${CHECKOUT_VCS_OPTS.${PKGBASE}}
+endif
+
 # let users override the CHECKOUT version
 ifdef CHECKOUT.${PKGBASE}
   _CHECKOUT=${CHECKOUT.${PKGBASE}}

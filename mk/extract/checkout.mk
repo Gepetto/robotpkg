@@ -45,6 +45,11 @@
 #	"checkout" script for a definitive list of the available options. The
 #	default list is empty.
 #
+#    CHECKOUT_VCS_OPTS is a list of options to pass to the cvs, git or svn
+#	program when using CHECKOUT_CMD_DEFAULT. Those options are actually
+#	passed as argument of the "cvs checkout", "git clone" or "svn checkout"
+#	sub commands.
+#
 #    CHECKOUT_ELEMENTS is a list of files within the repository to extract when
 #	using EXTRACT_CMD_DEFAULT. By default, this is empty, which causes all
 #	files within the repository to be extracted.
@@ -66,6 +71,8 @@
 CHECKOUT_DIR?=		${WRKDIR}
 CHECKOUT_CMD?=		${CHECKOUT_CMD_DEFAULT}
 CHECKOUT_OPTS?=#	empty
+
+CHECKOUT_ENV+=		CHECKOUT_VCS_OPTS=${CHECKOUT_VCS_OPTS}
 
 CHECKOUT_FORMAT=	$(word 1,${_MASTER_REPOSITORY})
 CHECKOUT_REPOSITORY=	$(word 2,${_MASTER_REPOSITORY})
