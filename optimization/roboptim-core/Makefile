@@ -8,7 +8,7 @@ VERSION=	0.5
 
 CATEGORIES=	optimization
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=roboptim/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}roboptim/core
+MASTER_REPOSITORY=git git://github.com/laas/roboptim-core.git
 
 MAINTAINER=	roboptim-user@lists.sourceforge.net
 HOMEPAGE=	http://sourceforge.net/projects/roboptim/
