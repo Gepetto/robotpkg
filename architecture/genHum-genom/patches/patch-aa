@@ -1,0 +1,11 @@
+--- genHum.gen~	2010-11-10 14:35:16.000000000 +0100
++++ genHum.gen	2010-12-08 10:52:31.366685818 +0100
+@@ -10,7 +10,7 @@
+ 
+ module genHum {
+     number:		    11111;
+-    version:		    "1.0";
++    version:		    "1.1";
+     email:		    "openrobots@laas.fr";
+     internal_data:	    GENHUM_STR;
+ }; 
