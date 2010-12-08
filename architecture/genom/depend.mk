@@ -34,11 +34,6 @@ PKG_OPTION_DESCR.api=	Generate module API only
 define PKG_OPTION_SET.api
   GENOM_ARGS+=	-a
 endef
-define _genom.unset.api
-
-  GENOM_ARGS:=	$(filter-out -a,${GENOM_ARGS})
-endef
-PKG_OPTION_UNSET.api:=$(value PKG_OPTION_UNSET.api)$(value _genom.unset.api)
 
 PKG_OPTION_DESCR.tcl=	Enable the generation of the TCL client code
 define PKG_OPTION_SET.tcl
@@ -46,17 +41,11 @@ define PKG_OPTION_SET.tcl
   REQD_BUILD_OPTIONS.genom+=	tcl
   include ../../mk/sysdep/tcl.mk
 endef
-define PKG_OPTION_UNSET.tcl
-  GENOM_ARGS:=	$(filter-out -t,${GENOM_ARGS})
-endef
 
 PKG_OPTION_DESCR.openprs=Enable the generation of the OpenPRS client code
 define PKG_OPTION_SET.openprs
   GENOM_ARGS+=	-o
   include ../../architecture/transgen/depend.mk
-endef
-define PKG_OPTION_UNSET.openprs
-  GENOM_ARGS:=	$(filter-out -o,${GENOM_ARGS})
 endef
 
 PKG_OPTION_DESCR.tclserv_client=Enable the generation of the C tclServ client code
@@ -64,9 +53,6 @@ define PKG_OPTION_SET.tclserv_client
   DEPEND_ABI.genom=  genom>=2.6
   GENOM_ARGS+= -x
   include ../../net/libtclserv_client/depend.mk
-endef
-define PKG_OPTION_UNSET.tclserv_client
-  GENOM_ARGS:=  $(filter-out -x,${GENOM_ARGS})
 endef
 
 PKG_OPTION_DESCR.xenomai=Enable Xenomai support
