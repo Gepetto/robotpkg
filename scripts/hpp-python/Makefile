@@ -2,17 +2,20 @@
 # Created:			florent on Wed, 10 Oct 2007
 #
 
-DISTNAME=	hpppython-${VERSION}
-PKGNAME=	hpppython-${VERSION}
-VERSION=	1.1
+DISTNAME=	hpp-python-${VERSION}
+PKGNAME=	hpp-python-${VERSION}
+VERSION=	1.2.1
 
 CATEGORIES=	scripts
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-python/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}corba/hpp-python
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=
 COMMENT=	Python scripts creating CORBA client of hppCorbaServer
 LICENSE=	cnrs-hpp-closed-source
+
+DOXYGEN_PLIST_DIR+=	share/doc/hpp-python
 
 GNU_CONFIGURE=	yes
 
