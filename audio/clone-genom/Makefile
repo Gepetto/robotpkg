@@ -14,6 +14,8 @@ GNU_CONFIGURE=	yes
 
 GENOM_MODULE=	clone
 
+USE_LANGUAGES=	c c++
+
 include ../../architecture/genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../architecture/genBasic-genom/depend.mk
