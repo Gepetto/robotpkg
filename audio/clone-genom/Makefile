@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Wed, 21 Jan 2009
 #
 
-DISTNAME=	clone-genom-0.1
+DISTNAME=	clone-genom-0.2
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=clone-genom/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}clone-genom
