@@ -4,7 +4,7 @@
 
 DISTNAME=	kppInterface-${VERSION}
 PKGNAME=	kpp-interface-${VERSION}
-VERSION=	1.6.1
+VERSION=	1.7
 
 CATEGORIES=	graphics
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kpp-interface/}
@@ -17,7 +17,7 @@ LICENSE=	cnrs-hpp-closed-source
 USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
-DOXYGEN_PLIST_DIR+=share/doc/kpp-interface
+DOXYGEN_PLIST_DIR+=share/doc/kppInterface
 
 # options
 PKG_SUPPORTED_OPTIONS+=	verbose1

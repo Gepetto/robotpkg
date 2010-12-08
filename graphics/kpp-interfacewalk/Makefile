@@ -4,7 +4,7 @@
 
 DISTNAME=	kpp-interfacewalk-${VERSION}
 PKGNAME=	kpp-interfacewalk-${VERSION}
-VERSION=	1.11
+VERSION=	1.12
 
 CATEGORIES=	graphics
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kpp-interfacewalk/}
@@ -26,7 +26,6 @@ PKG_OPTION_DESCR.verbose=	Compile in verbose mode
 PKG_OPTION_SET.verbose:=	CPPFLAGS+=-DHPP_DEBUG
 
 include ../../mk/sysdep/doxygen.mk
-include ../../path/hpp-openhrp/depend.mk
 include ../../path/hpp-walkplanner/depend.mk
 include ../../graphics/kpp-interface/depend.mk
 include ../../robots/hrpsys-jrl/depend.mk
