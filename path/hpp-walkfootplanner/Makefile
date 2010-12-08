@@ -31,6 +31,7 @@ PKG_OPTION_SET.benchmark:=	CPPFLAGS+=-DHPP_ENABLE_BENCHMARK -DHPP_DEBUG
 
 include ../../mk/sysdep/doxygen.mk
 include ../../math/jrl-mathtools/depend.mk
+include ../../devel/hpp-util/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../optimization/roboptim-trajectory/depend.mk
 include ../../optimization/roboptim-core-cfsqp-plugin/depend.mk
