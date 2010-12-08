@@ -2,13 +2,13 @@
 # Created:			Anthony Mallet on Mon, 27 Aug 2007
 #
 
-DISTNAME=	hppCorbaServer-${VERSION}
+DISTNAME=	hpp-corbaserver-${VERSION}
 PKGNAME=	hpp-corbaserver-${VERSION}
-VERSION=	1.8.3
+VERSION=	1.9
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-corbaserver/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}hppCorbaServer
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}corba/hpp-corbaServer
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=
@@ -18,7 +18,7 @@ LICENSE=	cnrs-hpp-closed-source
 USE_LANGUAGES+=	c c++
 
 GNU_CONFIGURE=	yes
-DOXYGEN_PLIST_DIR+= share/doc/hppCorbaServer
+DOXYGEN_PLIST_DIR+= share/doc/hpp-corbaserver
 
 
 # --- options --------------------------------------------------------
@@ -29,7 +29,7 @@ PKG_SUGGESTED_OPTIONS+=	openhrp
 
 PKG_OPTION_DESCR.openhrp=	Build an OpenHRP(tm) client.
 define PKG_OPTION_SET.openhrp
-  CONFIGURE_ARGS+=	--with-openhrp
+  CONFIGURE_ARGS+=	--enable-openhrp
   include ../../robots/hrp2-builder/depend.mk
   include ../../math/hrp2-dynamics/depend.mk
   include ../../path/hpp-openhrp/depend.mk
@@ -44,6 +44,7 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 # --------------------------------------------------------------------
 
+include ../../devel/hpp-util/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk

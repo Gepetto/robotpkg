@@ -1,15 +1,14 @@
-@comment Mon Nov 23 09:48:31 CET 2009
-bin/hppCorbaServer
-include/hppCorbaServer/hppciObstacle.h
-include/hppCorbaServer/hppciOpenHrp.h
-include/hppCorbaServer/hppciProblem.h
-include/hppCorbaServer/hppciRobot.h
-include/hppCorbaServer/hppciServer.h
-lib/libhppCorbaServer.la
-lib/pkgconfig/hppCorbaServer.pc
-share/idl/hppCorbaServer/hppciCommonServer.idl
-share/idl/hppCorbaServer/hppciObstacleServer.idl
-share/idl/hppCorbaServer/hppciProblemServer.idl
-share/idl/hppCorbaServer/hppciRobotServer.idl
-@dirrm share/idl/hppCorbaServer
-@dirrm include/hppCorbaServer
+@comment Tue Dec 7 11:37:30 CET 2010
+bin/hpp-corbaserver
+include/hpp/corbaserver/config.hh
+include/hpp/corbaserver/doc.hh
+include/hpp/corbaserver/fwd.hh
+include/hpp/corbaserver.hh
+include/hpp/corbaserver/server.hh
+lib/libhpp-corbaserver.la
+lib/libhpp-corbaserver.so
+lib/pkgconfig/hpp-corbaserver.pc
+share/idl/hpp/corbaserver/common.idl
+share/idl/hpp/corbaserver/obstacle.idl
+share/idl/hpp/corbaserver/problem.idl
+share/idl/hpp/corbaserver/robot.idl

@@ -19,9 +19,9 @@ DEPEND_ABI.hpp-corbaserver?=	hpp-corbaserver>=1.7.1
 DEPEND_DIR.hpp-corbaserver?=	../../devel/hpp-corbaserver
 
 SYSTEM_SEARCH.hpp-corbaserver=\
-	include/hppCorbaServer/hppciServer.h				\
-	'lib/libhppCorbaServer.{a,so}'					\
-	'lib/pkgconfig/hppCorbaServer.pc:/Version/s/[^0-9.]//gp'
+	include/hpp/corbaserver/server.hh				\
+	lib/libhpp-corbaserver.so					\
+	lib/pkgconfig/hpp-corbaserver.pc
 
 endif # --------------------------------------------------------------------
 
