@@ -3,9 +3,9 @@
 #
 
 DISTNAME=	alog-0.4
-PKGREVISION=	1
+PKGREVISION=	2
 COMMENT=	a simple log data viewing tool
-
+LICENSE=	isc
 CATEGORIES=	sysutils
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=alog/}
