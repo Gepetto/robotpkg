@@ -1,8 +1,4 @@
 @comment Fri Feb 26 22:04:18 CET 2010
-include/hpp/util/debug.hh
-include/hpp/util/indent.hh
-include/hpp/util/portability.hh
-include/hpp/util/timer.hh
 include/hpp/walkfootplanner/footstep-sequence-builder.hh
 include/hpp/walkfootplanner/footstep-sequence.hh
 include/hpp/walkfootplanner/fwd.hh
