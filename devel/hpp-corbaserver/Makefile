@@ -4,11 +4,11 @@
 
 DISTNAME=	hpp-corbaserver-${VERSION}
 PKGNAME=	hpp-corbaserver-${VERSION}
-VERSION=	1.9
+VERSION=	1.9.1
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-corbaserver/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}corba/hpp-corbaServer
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}corba/hpp-corbaserver
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=
