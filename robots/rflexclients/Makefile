@@ -6,8 +6,7 @@ DISTNAME=		rflexclients-${VERSION}
 VERSION=		1.0.1
 CATEGORIES=		robot
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=\
-	cvs cvs.laas.fr:/usr/local/cvs_hilare atrv/rFlex-clients
+MASTER_REPOSITORY=	git ssh://git/robots/rFlex-clients.git
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
