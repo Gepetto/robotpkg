@@ -2,10 +2,9 @@
 # Created:			Anthony Mallet on Wed, 5 Dec 2007
 #
 
-DISTNAME=		libstereopixel-1.3
-PKGREVISION=		1
+DISTNAME=		libstereopixel-1.4
 CATEGORIES=		image
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libstereopixel/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/libstereopixel
 
 MAINTAINER=		openrobots@laas.fr
