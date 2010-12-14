@@ -131,7 +131,7 @@ table, table tr {
 
 <h3 align="center">Anthony Mallet - <tt>anthony.mallet@laas.fr</tt> </h3>
 
-<h3 align="center">December  7, 2010</h3>
+<h3 align="center">December 14, 2010</h3>
 
 <div class="p"><!----></div>
    
@@ -258,6 +258,8 @@ POSSIBILITY OF SUCH DAMAGE.
 >3.2&nbsp; Making a package work</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.1"
 >3.2.1&nbsp; Incrementing versions when fixing an existing package</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.2"
+>3.2.2&nbsp; Substituting variable text in the package files (the <tt>SUBST</tt> framework)</a><br />
 <a href="#tth_chAp4"
 >4&nbsp; The robotpkg infrastructure internals</a><br />
 
@@ -1556,7 +1558,7 @@ mostly historical and has no further meaning.
    </dd>
  <dt><b>MASTER_REPOSITORY</b></dt>
 	<dd> defines a VCS repository from where a "<tt>make
-   checkout</tt>" will download the lastest revision of a software. <tt>
+   checkout</tt>" will download the latest revision of a software. <tt>
    MASTER_REPOSITORY</tt> is a list of 2 or 3 elements. The first element is the
    VCS tool to be used: it must be one of <tt>cvs</tt>, <tt>git</tt> or <tt>svn</tt>.
    The second element is the location of the repository. It must be written in
@@ -1828,6 +1830,68 @@ Examples of changes that do merit an increase to <tt>PKGREVISION</tt> include:
 <div class="p"><!----></div>
 When a new release of the package is released, the <tt>PKGREVISION</tt> must be
 removed.
+
+<div class="p"><!----></div>
+     <h3><a name="tth_sEc3.2.2">
+3.2.2</a>&nbsp;&nbsp;Substituting variable text in the package files
+(the <tt>SUBST</tt> framework)</h3> <a name="section:fixing:SUBST">
+</a>
+
+<div class="p"><!----></div>
+When you want to replace the same text in multiple files or when the
+replacement text varies, patches alone cannot help. This is where the SUBST
+framework comes in. It provides an easy-to-use interface for replacing text in
+files. Example:
+
+<pre>
+&nbsp;&nbsp;&nbsp;SUBST_CLASSES+=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fix-paths
+&nbsp;&nbsp;&nbsp;SUBST_STAGE.fix-paths=&nbsp;&nbsp;&nbsp;&nbsp;pre-configure
+&nbsp;&nbsp;&nbsp;SUBST_MESSAGE.fix-paths=&nbsp;&nbsp;Fixing&nbsp;absolute&nbsp;paths.
+&nbsp;&nbsp;&nbsp;SUBST_FILES.fix-paths=&nbsp;&nbsp;&nbsp;&nbsp;src/*.c
+&nbsp;&nbsp;&nbsp;SUBST_SED.fix-paths=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-e&nbsp;'s,"/usr/local,"${PREFIX},g'
+
+</pre>
+
+<div class="p"><!----></div>
+<tt>SUBST_CLASSES</tt>  is a list  of identifiers that  are used to  identify the
+different <tt>SUBST</tt> blocks  that are defined.  The <tt>SUBST</tt>  framework is
+used by  <tt>robotpkg</tt> , so it  is important to  always use the <tt>+=</tt> operator
+with this variable. Otherwise some substitutions may be skipped.
+
+<div class="p"><!----></div>
+The remaining  variables of each <tt>SUBST</tt> block are  parameterized with the
+identifier from the first line (<tt>fix-paths</tt> in this case).
+
+<div class="p"><!----></div>
+<tt>SUBST_STAGE.*</tt>  specifies the  stage at which  the replacement  will take
+place. All combinations  of pre-, do- and post- together with  a phase name are
+possible, though only few are  actually used. Most commonly used are post-patch
+and pre-configure. Of these two, pre-configure should be preferred because then
+it is possible  to run <tt>make  patch</tt> and have the state  after applying the
+patches but before making any other changes. This is especially useful when you
+are debugging  a package  in order  to create new  patches for  it.  Similarly,
+post-build  is preferred  over pre-install,  because the  install  phase should
+generally be kept as simple as  possible. When you use post-build, you have the
+same files  in the working directory that  will be installed later,  so you can
+check if the substitution has succeeded.
+
+<div class="p"><!----></div>
+<tt>SUBST_MESSAGE.*</tt> is an  optional text  that is  printed just  before the
+substitution is  done.
+
+<div class="p"><!----></div>
+<tt>SUBST_FILES.*</tt> is the list  of shell globbing patterns that specifies the
+files in which the substitution  will take place.  The patterns are interpreted
+relatively  to the <tt>WRKSRC</tt>  directory.
+
+<div class="p"><!----></div>
+<tt>SUBST_SED.*</tt>  is a  list of  arguments to <tt>sed(1)</tt> that  specify the
+actual substitution.  Every sed command should be prefixed with -e, so that all
+<tt>SUBST</tt> blocks look uniform.
+
+<div class="p"><!----></div>
+There are some more variables, but they are so seldomly used that they are only
+documented in the mk/internal/subst.mk file.
 
 
 <div class="p"><!----></div>

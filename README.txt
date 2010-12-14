@@ -2,7 +2,7 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                               December 7, 2010
+                               December 14, 2010
 
 Copyright (C) 2006-2010 LAAS/CNRS.
 Copyright (C) 1997-2010 The NetBSD Foundation, Inc.
@@ -67,6 +67,8 @@ Contents
         3.1.4  patches/*
     3.2  Making a package work
         3.2.1  Incrementing versions when fixing an existing package
+        3.2.2  Substituting variable text in the package files (the SUBST
+framework)
 4  The robotpkg infrastructure internals
 
 1
@@ -892,7 +894,7 @@ FETCH_METHOD
     reproducibly installed in a known state.
 MASTER_REPOSITORY
     defines a VCS repository from where a "make checkout" will download the
-    lastest revision of a software. MASTER_REPOSITORY is a list of 2 or 3
+    latest revision of a software. MASTER_REPOSITORY is a list of 2 or 3
     elements. The first element is the VCS tool to be used: it must be one of
     cvs, git or svn. The second element is the location of the repository. It
     must be written in a syntax understood by the actual VCS tool. The third
@@ -1047,6 +1049,48 @@ Examples of changes that do merit an increase to PKGREVISION include:
 
 PKGREVISION must also be incremented when dependencies have ABI changes.
 When a new release of the package is released, the PKGREVISION must be removed.
+
+3.2.2  Substituting variable text in the package files (the SUBST framework)
+
+When you want to replace the same text in multiple files or when the
+replacement text varies, patches alone cannot help. This is where the SUBST
+framework comes in. It provides an easy-to-use interface for replacing text in
+files. Example:
+
+   SUBST_CLASSES+=           fix-paths
+   SUBST_STAGE.fix-paths=    pre-configure
+   SUBST_MESSAGE.fix-paths=  Fixing absolute paths.
+   SUBST_FILES.fix-paths=    src/*.c
+   SUBST_SED.fix-paths=      -e 's,"/usr/local,"${PREFIX},g'
+
+
+SUBST_CLASSES is a list of identifiers that are used to identify the different
+SUBST blocks that are defined. The SUBST framework is used by robotpkg , so it
+is important to always use the += operator with this variable. Otherwise some
+substitutions may be skipped.
+The remaining variables of each SUBST block are parameterized with the
+identifier from the first line (fix-paths in this case).
+SUBST_STAGE.* specifies the stage at which the replacement will take place. All
+combinations of pre-, do- and post- together with a phase name are possible,
+though only few are actually used. Most commonly used are post-patch and
+pre-configure. Of these two, pre-configure should be preferred because then it
+is possible to run make patch and have the state after applying the patches but
+before making any other changes. This is especially useful when you are
+debugging a package in order to create new patches for it. Similarly,
+post-build is preferred over pre-install, because the install phase should
+generally be kept as simple as possible. When you use post-build, you have the
+same files in the working directory that will be installed later, so you can
+check if the substitution has succeeded.
+SUBST_MESSAGE.* is an optional text that is printed just before the
+substitution is done.
+SUBST_FILES.* is the list of shell globbing patterns that specifies the files
+in which the substitution will take place. The patterns are interpreted
+relatively to the WRKSRC directory.
+SUBST_SED.* is a list of arguments to sed(1) that specify the actual
+substitution. Every sed command should be prefixed with -e, so that all SUBST
+blocks look uniform.
+There are some more variables, but they are so seldomly used that they are only
+documented in the mk/internal/subst.mk file.
 
 4
 The robotpkg infrastructure internals
