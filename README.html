@@ -255,11 +255,13 @@ POSSIBILITY OF SUCH DAMAGE.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1.4"
 >3.1.4&nbsp; patches/*</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2"
->3.2&nbsp; Making a package work</a><br />
+>3.2&nbsp; General operation</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.1"
 >3.2.1&nbsp; Incrementing versions when fixing an existing package</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.2"
 >3.2.2&nbsp; Substituting variable text in the package files (the <tt>SUBST</tt> framework)</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.3"
+>3.3&nbsp; The build phase</a><br />
 <a href="#tth_chAp4"
 >4&nbsp; The robotpkg infrastructure internals</a><br />
 
@@ -1490,7 +1492,7 @@ mostly historical and has no further meaning.
  <dt><b>PKGREVISION</b></dt>
 	<dd> Defines the <tt>robotpkg</tt> revision number of the package. This
    <em>should not be set</em> for a new package. See
-   <a href="#section:fixing:PKGREVISION">Section&nbsp;<a href="#section:fixing:PKGREVISION">3.2.1</a></a>
+   <a href="#section:genvars:PKGREVISION">Section&nbsp;</a>
    for details.
 
 <div class="p"><!----></div>
@@ -1643,17 +1645,7 @@ The third section contains the following variables.
 
 <div class="p"><!----></div>
 Other variables affecting the build process may be gathered in their own
-section:
-
-<div class="p"><!----></div>
-
-<dl compact="compact">
- <dt><b>MAKE_JOBS_SAFE</b></dt>
-	<dd> Whether the package supports parallel builds. If set
-   to yes, at most <tt>MAKE_JOBS</tt> jobs are carried out in parallel. The
-   default value is "yes", and packages that don't support it must explicitly
-   set it to "no".</dd>
-</dl>
+section. They are described in the next sections of this chapter.
 
 <div class="p"><!----></div>
      <h3><a name="tth_sEc3.1.2">
@@ -1754,12 +1746,12 @@ for the patch files by using the <tt>make mdi</tt> command, see
 
 <div class="p"><!----></div>
  <h2><a name="tth_sEc3.2">
-3.2</a>&nbsp;&nbsp;Making a package work</h2> <a name="section:fixing">
+3.2</a>&nbsp;&nbsp;General operation</h2> <a name="section:genvars">
 </a>
 
 <div class="p"><!----></div>
      <h3><a name="tth_sEc3.2.1">
-3.2.1</a>&nbsp;&nbsp;Incrementing versions when fixing an existing package</h3> <a name="section:fixing:PKGREVISION">
+3.2.1</a>&nbsp;&nbsp;Incrementing versions when fixing an existing package</h3> <a name="section:genvars:PKGREVISION">
 </a>
 
 <div class="p"><!----></div>
@@ -1834,7 +1826,7 @@ removed.
 <div class="p"><!----></div>
      <h3><a name="tth_sEc3.2.2">
 3.2.2</a>&nbsp;&nbsp;Substituting variable text in the package files
-(the <tt>SUBST</tt> framework)</h3> <a name="section:fixing:SUBST">
+(the <tt>SUBST</tt> framework)</h3> <a name="section:genvars:SUBST">
 </a>
 
 <div class="p"><!----></div>
@@ -1892,6 +1884,66 @@ actual substitution.  Every sed command should be prefixed with -e, so that all
 <div class="p"><!----></div>
 There are some more variables, but they are so seldomly used that they are only
 documented in the mk/internal/subst.mk file.
+
+
+<div class="p"><!----></div>
+ <h2><a name="tth_sEc3.3">
+3.3</a>&nbsp;&nbsp;The build phase</h2> <a name="section:buildvars">
+</a>
+
+<div class="p"><!----></div>
+For building a package, a rough equivalent of the following code is executed.
+
+<pre>
+&nbsp;&nbsp;&nbsp;for&nbsp;d&nbsp;in&nbsp;${BUILD_DIRS};&nbsp;do&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cd&nbsp;${WRKSRC}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp;&nbsp;cd&nbsp;${d}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp;&nbsp;env&nbsp;${MAKE_ENV}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${MAKE_PROGRAM}&nbsp;${BUILD_MAKE_FLAGS}&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-f&nbsp;${MAKE_FILE}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${BUILD_TARGET}
+&nbsp;&nbsp;&nbsp;done
+
+</pre>
+
+<div class="p"><!----></div>
+The following variables affecting the build process of a package may be defined
+in a package <tt>Makefile</tt>:
+
+<div class="p"><!----></div>
+
+<dl compact="compact">
+ <dt><b>NO_BUILD</b></dt>
+	<dd> (default: unset). If there is no build step at all, set
+   <tt>NO_BUILD</tt> to "yes".
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>MAKE_PROGRAM</b></dt>
+	<dd> (default: <tt>MAKE</tt>) is the program used to perform
+   the actual build in a package.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>BUILD_DIRS</b></dt>
+	<dd> (default: ".") is a list of pathnames relative to <tt>
+   WRKSRC</tt>. In each of these directories, <tt>MAKE_PROGRAM</tt> is run with the
+   environment <tt>MAKE_ENV</tt> and arguments <tt>BUILD_MAKE_FLAGS</tt>.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>BUILD_TARGET</b></dt>
+	<dd> (default: "all") is the default <tt>make</tt> target for
+   building the package.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>MAKE_JOBS_SAFE</b></dt>
+	<dd> Whether the package supports parallel builds. If set
+   to yes, at most <tt>MAKE_JOBS</tt> jobs are carried out in parallel. The
+   default value is "yes", and packages that don't support it must explicitly
+   set it to "no".</dd>
+</dl>
 
 
 <div class="p"><!----></div>

@@ -65,10 +65,11 @@ Contents
         3.1.2  distinfo
         3.1.3  PLIST
         3.1.4  patches/*
-    3.2  Making a package work
+    3.2  General operation
         3.2.1  Incrementing versions when fixing an existing package
         3.2.2  Substituting variable text in the package files (the SUBST
 framework)
+    3.3  The build phase
 4  The robotpkg infrastructure internals
 
 1
@@ -849,7 +850,7 @@ mostly historical and has no further meaning.
 
 PKGREVISION
     Defines the robotpkg revision number of the package. This should not be set
-    for a new package. See Section 3.2.1 for details.
+    for a new package. See Section  for details.
 MASTER_SITES
     In simple cases, MASTER_SITES defines all URLs from where the distfile,
     whose name is derived from the DISTNAME variable, is fetched.
@@ -945,12 +946,7 @@ LICENSE
     with redistribution restrictions should set these tags.
 
 Other variables affecting the build process may be gathered in their own
-section:
-
-MAKE_JOBS_SAFE
-    Whether the package supports parallel builds. If set to yes, at most
-    MAKE_JOBS jobs are carried out in parallel. The default value is "yes", and
-    packages that don't support it must explicitly set it to "no".
+section. They are described in the next sections of this chapter.
 
 3.1.2  distinfo
 
@@ -1013,7 +1009,7 @@ remove the patch in future version.
 When you add or modify existing patch files, remember to generate the checksums
 for the patch files by using the make mdi command, see Section 3.1.2.
 
-3.2  Making a package work
+3.2  General operation
 
 3.2.1  Incrementing versions when fixing an existing package
 
@@ -1091,6 +1087,39 @@ substitution. Every sed command should be prefixed with -e, so that all SUBST
 blocks look uniform.
 There are some more variables, but they are so seldomly used that they are only
 documented in the mk/internal/subst.mk file.
+
+3.3  The build phase
+
+For building a package, a rough equivalent of the following code is executed.
+
+   for d in ${BUILD_DIRS}; do                \
+      cd ${WRKSRC}                           \
+      && cd ${d}                             \
+      && env ${MAKE_ENV}                     \
+         ${MAKE_PROGRAM} ${BUILD_MAKE_FLAGS} \
+            -f ${MAKE_FILE}                  \
+            ${BUILD_TARGET}
+   done
+
+
+The following variables affecting the build process of a package may be defined
+in a package Makefile:
+
+NO_BUILD
+    (default: unset). If there is no build step at all, set NO_BUILD to "yes".
+MAKE_PROGRAM
+    (default: MAKE) is the program used to perform the actual build in a
+    package.
+BUILD_DIRS
+    (default: ".") is a list of pathnames relative to WRKSRC. In each of these
+    directories, MAKE_PROGRAM is run with the environment MAKE_ENV and
+    arguments BUILD_MAKE_FLAGS.
+BUILD_TARGET
+    (default: "all") is the default make target for building the package.
+MAKE_JOBS_SAFE
+    Whether the package supports parallel builds. If set to yes, at most
+    MAKE_JOBS jobs are carried out in parallel. The default value is "yes", and
+    packages that don't support it must explicitly set it to "no".
 
 4
 The robotpkg infrastructure internals

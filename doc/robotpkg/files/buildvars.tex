@@ -1,0 +1,61 @@
+% $LAAS: genvars.tex 2010/12/14 11:31:38 mallet $
+%
+% Copyright (c) 2010 LAAS/CNRS
+% All rights reserved.
+%
+% Permission to use, copy, modify, and distribute this software for any purpose
+% with or without   fee is hereby granted, provided   that the above  copyright
+% notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+% REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+% AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+% INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+% LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+% OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+% PERFORMANCE OF THIS SOFTWARE.
+%
+%                                             Anthony Mallet on Tue Dec 14 2010
+%
+
+\section{The build phase} % ------------------------------------------------
+\label{section:buildvars}
+
+For building a package, a rough equivalent of the following code is executed.
+\begin{verbatim}
+   for d in ${BUILD_DIRS}; do                \
+      cd ${WRKSRC}                           \
+      && cd ${d}                             \
+      && env ${MAKE_ENV}                     \
+         ${MAKE_PROGRAM} ${BUILD_MAKE_FLAGS} \
+            -f ${MAKE_FILE}                  \
+            ${BUILD_TARGET}
+   done
+\end{verbatim}
+
+The following variables affecting the build process of a package may be defined
+in a package {\tt Makefile}:
+
+\begin{description}
+   \item[NO\_BUILD] (default: unset). If there is no build step at all, set
+   {\tt NO\_BUILD} to ''yes''.
+
+   \smallbreak
+   \item[MAKE\_PROGRAM] (default: {\tt MAKE}) is the program used to perform
+   the actual build in a package.
+
+   \smallbreak
+   \item[BUILD\_DIRS] (default: ``.'') is a list of pathnames relative to {\tt
+   WRKSRC}. In each of these directories, {\tt MAKE\_PROGRAM} is run with the
+   environment {\tt MAKE\_ENV} and arguments {\tt BUILD\_MAKE\_FLAGS}.
+
+   \smallbreak
+   \item[BUILD\_TARGET] (default: ``all'') is the default {\tt make} target for
+   building the package.
+
+   \smallbreak
+   \item[MAKE\_JOBS\_SAFE] Whether the package supports parallel builds. If set
+   to yes, at most {\tt MAKE\_JOBS} jobs are carried out in parallel. The
+   default value is ``yes'', and packages that don't support it must explicitly
+   set it to ``no''.
+\end{description}

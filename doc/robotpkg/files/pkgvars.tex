@@ -1,4 +1,4 @@
-% $LAAS: pkgvars.tex 2010/12/07 22:59:58 tho $
+% $LAAS: pkgvars.tex 2010/12/14 14:23:15 mallet $
 %
 % Copyright (c) 2010 LAAS/CNRS
 % All rights reserved.
@@ -39,7 +39,7 @@ mostly historical and has no further meaning.
 \begin{description}
    \item[PKGREVISION] Defines the \robotpkg revision number of the package. This
    {\em should not be set} for a new package. See
-   \xref{section:fixing:PKGREVISION}{Section~\ref{section:fixing:PKGREVISION}}
+   \xref{section:genvars:PKGREVISION}{Section~\ref{section:fixing:PKGREVISION}}
    for details.
 
    \smallbreak
@@ -164,16 +164,7 @@ The third section contains the following variables.
 
 
 Other variables affecting the build process may be gathered in their own
-section:
-
-\begin{description}
-
-   \item[MAKE\_JOBS\_SAFE] Whether the package supports parallel builds. If set
-   to yes, at most {\tt MAKE\_JOBS} jobs are carried out in parallel. The
-   default value is ``yes'', and packages that don't support it must explicitly
-   set it to ``no''.
-
-\end{description}
+section. They are described in the next sections of this chapter.
 
 
 \subsection{distinfo} % ----------------------------------------------------
