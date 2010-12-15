@@ -18,7 +18,7 @@ SYSTEM_SEARCH.pqp=\
 
 DEPEND_USE+=		pqp
 
-DEPEND_ABI.pqp?=	pqp>=1.3
+DEPEND_ABI.pqp?=	pqp>=1.3r2
 DEPEND_DIR.pqp?=	../../graphics/pqp
 
 endif # PQP_DEPEND_MK ------------------------------------------------------
