@@ -1,0 +1,17 @@
+@comment Thu Dec 16 16:10:03 CET 2010
+include/meschach/err.h
+include/meschach/iter.h
+include/meschach/machine.h
+include/meschach/matlab.h
+include/meschach/matrix.h
+include/meschach/matrix2.h
+include/meschach/meminfo.h
+include/meschach/oldnames.h
+include/meschach/sparse.h
+include/meschach/sparse2.h
+include/meschach/zmatrix.h
+include/meschach/zmatrix2.h
+lib/libmeschach.a
+share/meschach/README
+share/meschach/fnindex.txt
+share/meschach/tutorial.txt

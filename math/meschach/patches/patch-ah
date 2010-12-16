@@ -1,0 +1,10 @@
+--- MACHINES/GCC/machine.h.orig	2010-12-16 15:58:35.221665163 +0100
++++ MACHINES/GCC/machine.h	2010-12-16 15:58:52.836665212 +0100
+@@ -87,6 +87,7 @@
+ /* if the system has complex.h */
+ #ifdef HAVE_COMPLEX_H
+ #include	<complex.h>
++#undef complex /* zmachine.h defines a structure of that name. */
+ #endif
+ 
+ /* If prototypes are available & ANSI_C not yet defined, then define it,

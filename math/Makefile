@@ -15,6 +15,7 @@ SUBDIR+=	jrl-dynamics
 SUBDIR+=	jrl-mathtools
 SUBDIR+=	lapack
 SUBDIR+=	liblbfgs
+SUBDIR+=	meschach
 SUBDIR+=	mpfr
 SUBDIR+=	t3d
 SUBDIR+=	tvmet

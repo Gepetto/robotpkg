@@ -1,0 +1,45 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+includedir=@includedir@
+libdir=@libdir@
+datadir=@datadir@
+datarootdir=@datarootdir@
+
+RANLIB=@RANLIB@
+LIB= meschach
+
+SHLIB_MAJOR= 0
+SHLIB_MINOR= 0
+
+CPPFLAGS+= @DEFS@
+LDADD+= @LIBS@
+
+SRCS=  copy.c err.c matrixio.c memory.c vecop.c matop.c pxop.c		   \
+	submat.c init.c otherio.c machine.c matlab.c ivecop.c version.c	   \
+	meminfo.c memstat.c lufactor.c bkpfacto.c chfactor.c qrfactor.c	   \
+	solve.c hsehldr.c givens.c update.c norm.c hessen.c symmeig.c	   \
+	schur.c svd.c fft.c mfunc.c bdfactor.c sparse.c sprow.c sparseio.c \
+	spchfctr.c splufctr.c spbkp.c spswap.c iter0.c itersym.c	   \
+	iternsym.c zmachine.c zcopy.c zmatio.c zmemory.c zvecop.c zmatop.c \
+	znorm.c zfunc.c zlufctr.c zsolve.c zmatlab.c zhsehldr.c		   \
+	zqrfctr.c zgivens.c zhessen.c zschur.c conjgrad.c lanczos.c	   \
+	arnoldi.c
+
+HDRS=	err.h machine.h matrix.h meminfo.h sparse.h zmatrix.h iter.h	\
+	matlab.h matrix2.h oldnames.h sparse2.h zmatrix2.h
+
+OBJS=${SRCS:.c=.o}
+
+all: lib${LIB}.a
+
+lib${LIB}.a: ${OBJS}
+	${AR} cru $@ ${OBJS}
+	${RANLIB} $@
+
+.c.o:
+	${CC} -c ${CFLAGS} ${CPPFLAGS} $<
+
+install: all
+	${INSTALL_LIB} lib${LIB}.a $(libdir)/
+	${INSTALL_DATA} ${HDRS} $(includedir)/meschach/
+	${INSTALL_DATA} README ./DOC/* $(datadir)/meschach/
