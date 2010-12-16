@@ -14,6 +14,7 @@ COMMENT=	3D Visualization tools
 
 LICENSE=	2-clause-bsd
 
+MAKE_JOBS_SAFE=	no
 USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
