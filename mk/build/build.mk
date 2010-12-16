@@ -72,7 +72,7 @@ BUILD_MAKE_CMD?=\
 		${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE}	\
 		${BUILD_TARGET.$1}
 
-ifneq (,$(call isyes,${MAKE_JOBS_SAFE}))
+ifneq (,$(call isno,${MAKE_JOBS_SAFE}))
 _MAKE_JOBS=	# nothing
 else ifneq (,$(MAKE_JOBS))
 _MAKE_JOBS=	-j${MAKE_JOBS}
