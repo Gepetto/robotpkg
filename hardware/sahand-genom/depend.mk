@@ -14,7 +14,7 @@ PREFER.sahand-genom?=	robotpkg
 
 DEPEND_USE+=		sahand-genom
 
-DEPEND_ABI.sahand-genom?=	sahand-genom>=1.0
+DEPEND_ABI.sahand-genom?=	sahand-genom>=1.1
 DEPEND_DIR.sahand-genom?=	../../hardware/sahand-genom
 
 SYSTEM_SEARCH.sahand-genom=\

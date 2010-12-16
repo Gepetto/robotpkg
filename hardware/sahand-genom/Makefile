@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Wed, 21 Jan 2009
 #
 
-DISTNAME=	sahand-genom-1.0
+DISTNAME=	sahand-genom-1.1
 CATEGORIES=	hardware
 COMMENT=	Schunk Antropomorphic Hand control module - Genom componenent
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=sahand-genom/}
