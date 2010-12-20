@@ -1,4 +1,5 @@
-SHA1 (libedit-20090111-3.0.tar.gz) = ea1c4b010a787e2b906d029fb420e4bf7eaeadb7
-RMD160 (libedit-20090111-3.0.tar.gz) = d81139121f9055611a3037bd825cdbca53b4c281
-Size (libedit-20090111-3.0.tar.gz) = 466372 bytes
-SHA1 (patch-aa) = 478eb75742ad7a6379e28e636f2dc937f0b3919e
+SHA1 (libedit-20100424-3.0.tar.gz) = bbc9b77daf95c2482bf406e07d69cdbe0fa29db7
+RMD160 (libedit-20100424-3.0.tar.gz) = daa0bace15c0eb063c151f1fad26677a7673c248
+Size (libedit-20100424-3.0.tar.gz) = 442438 bytes
+SHA1 (patch-aa) = 14c7d05757dcc636429fb65cacf9df55edac146a
+SHA1 (patch-aa.1) = 67ed5b88f44666b20b1eac9fb9b9a8d1075f5039

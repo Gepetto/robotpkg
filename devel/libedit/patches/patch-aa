@@ -1,8 +1,8 @@
 DragonFly prefers __weak_extern()
 
---- src/vi.c~	2010-11-26 13:42:52.676812000 +0100
-+++ src/vi.c	2010-11-26 13:57:09.435665000 +0100
-@@ -915,14 +915,14 @@
+--- src/vi.c.orig	2010-04-22 22:09:52.000000000 +0200
++++ src/vi.c	2010-12-20 11:33:00.699752386 +0100
+@@ -918,14 +918,14 @@
   * NB: posix implies that we should enter insert mode, however
   * this is against historical precedent...
   */
@@ -13,10 +13,11 @@ DragonFly prefers __weak_extern()
  #endif
  protected el_action_t
  /*ARGSUSED*/
- vi_alias(EditLine *el, int c)
+ vi_alias(EditLine *el, Int c)
  {
 -#ifdef __weak_reference
 +#ifdef __weak_extern
  	char alias_name[3];
  	char *alias_text;
  
+
