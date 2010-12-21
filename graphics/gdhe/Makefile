@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	gdhe-3.8.1
-
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/gdhe
@@ -28,4 +28,5 @@ include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
+include ../../mk/sysdep/libjpeg.mk
 include ../../mk/robotpkg.mk
