@@ -19,7 +19,7 @@ DEPEND_ABI.hpp-util?=	hpp-util>=0.3
 DEPEND_DIR.hpp-util?=	../../devel/hpp-util
 
 SYSTEM_SEARCH.hpp-util=			\
-	include/hpp/util/debug.hh	\
+	include/hpp/util/version.hh	\
 	lib/libhpp-util.so		\
 	'lib/pkgconfig/hpp-util.pc:/Version/s/[^0-9.]//gp'
 
