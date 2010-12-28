@@ -7,6 +7,7 @@ SUBDIR+=	blender
 SUBDIR+=	coldman-genom
 SUBDIR+=	coldman-libs
 SUBDIR+=	collada-dom
+SUBDIR+=	flann
 SUBDIR+=	gdhe
 SUBDIR+=	grh2
 SUBDIR+=	kpp-interface

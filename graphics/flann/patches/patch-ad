@@ -1,0 +1,21 @@
+Required at least on netbsd-5.1 where fabsl(3) is missing
+
+--- src/cpp/flann/algorithms/dist.h~	2011-12-23 12:16:09.000000000 +0100
++++ src/cpp/flann/algorithms/dist.h	2012-07-18 17:57:55.304606497 +0200
+@@ -54,13 +54,13 @@
+ inline int abs<int>(int x) { return ::abs(x); }
+ 
+ template<>
+-inline float abs<float>(float x) { return fabsf(x); }
++inline float abs<float>(float x) { return std::abs(x); }
+ 
+ template<>
+-inline double abs<double>(double x) { return fabs(x); }
++inline double abs<double>(double x) { return std::abs(x); }
+ 
+ template<>
+-inline long double abs<long double>(long double x) { return fabsl(x); }
++inline long double abs<long double>(long double x) { return std::abs(x); }
+ 
+ 
+ template<typename T>

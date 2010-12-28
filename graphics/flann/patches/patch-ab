@@ -1,0 +1,13 @@
+Do not install files in $PREFIX/lib64
+
+--- cmake/flann_utils.cmake.orig	2011-09-12 16:55:08.455179000 +0200
++++ cmake/flann_utils.cmake	2011-09-12 16:55:13.939530000 +0200
+@@ -2,7 +2,7 @@
+     string(REGEX MATCH "Linux" OS_IS_LINUX ${CMAKE_SYSTEM_NAME})
+     if(OS_IS_LINUX)
+         if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+-            set(FLANN_LIB_INSTALL_DIR "lib64")
++            set(FLANN_LIB_INSTALL_DIR "lib")
+         else(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+             set(FLANN_LIB_INSTALL_DIR "lib")
+         endif(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")

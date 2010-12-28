@@ -1,0 +1,17 @@
+--- src/cpp/CMakeLists.txt	2012-07-18 17:37:07.660607502 +0200
++++ src/cpp/CMakeLists.txt.orig	2011-12-23 12:16:09.000000000 +0100
+@@ -60,12 +60,12 @@
+ #debug libraries
+ add_library(flann_cpp-gd SHARED ${CPP_SOURCES})
+ set_target_properties(flann_cpp-gd PROPERTIES 
+-    COMPILE_FLAGS ${CMAKE_CXX_FLAGS_DEBUG}
++    COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}"
+     DEFINE_SYMBOL FLANN_EXPORTS
+ )
+ 
+ add_library(flann_cpp_s-gd STATIC ${CPP_SOURCES})
+-set_target_properties(flann_cpp_s-gd PROPERTIES COMPILE_FLAGS ${CMAKE_CXX_FLAGS_DEBUG})
++set_target_properties(flann_cpp_s-gd PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
+ set_property(TARGET flann_cpp_s-gd PROPERTY COMPILE_DEFINITIONS FLANN_STATIC)
+ 
+ 

@@ -1,0 +1,12 @@
+Examples require hdf5 library, for which we do not have a sysdep (yet)
+
+--- CMakeLists.txt~	2011-12-23 12:16:09.000000000 +0100
++++ CMakeLists.txt	2012-07-18 17:44:41.453575103 +0200
+@@ -143,7 +143,6 @@
+ 
+ add_subdirectory( cmake )
+ add_subdirectory( src )
+-add_subdirectory( examples )
+ add_subdirectory( test )
+ add_subdirectory( doc )
+ 
