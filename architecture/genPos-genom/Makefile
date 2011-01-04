@@ -2,7 +2,7 @@
 # Created:			Arnaud Degroote on Mon, 19 May 2008
 #
 
-DISTNAME=		genPos-genom-0.2
+DISTNAME=		genPos-genom-0.3
 
 CATEGORIES=		architecture
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
