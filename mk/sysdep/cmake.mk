@@ -1,6 +1,5 @@
-# $LAAS: cmake.mk 2009/01/30 12:03:53 mallet $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -43,7 +42,8 @@ export CMAKE=		${PREFIX.cmake}/bin/cmake
 # files.
 #
 PRINT_PLIST_FILES_CMD+=\
-	${CAT} $(addsuffix /install_manifest.txt,${BUILD_DIRS}) 2>/dev/null;
+	${CAT} $(addprefix ${WRKSRC}/,	\
+		$(addsuffix /install_manifest.txt,${BUILD_DIRS})) 2>/dev/null;
 
 
 endif # CMAKE_DEPEND_MK ----------------------------------------------------
