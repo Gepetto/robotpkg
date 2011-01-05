@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2010 LAAS/CNRS
+# Copyright (c) 2008-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -154,10 +154,17 @@ ifndef NO_BUILD
     endef
   endif
   ifneq (,$(filter python, ${USE_LANGUAGES}))
-    # Define python version selection options
-    PKG_OPTIONS_REQUIRED_GROUPS=python
+    # Define python version selection options if possible
+    ifdef PYTHON_REQUIRED
+      PKG_OPTIONS_REQUIRED_GROUPS+=$(if $(and 		\
+	$(call versionreqd,${PYTHON_REQUIRED} >=3),	\
+	$(call versionreqd,${PYTHON_REQUIRED} <3)),python)
+    else
+      PKG_OPTIONS_REQUIRED_GROUPS+=python
+    endif
+    PKG_SUGGESTED_OPTIONS+=\
+	$(if $(filter python,${PKG_OPTIONS_REQUIRED_GROUPS}),python2)
     PKG_OPTIONS_GROUP.python=	python2 python3
-    PKG_SUGGESTED_OPTIONS+=	python2
 
     PKG_OPTION_DESCR.python2=	Use python version 2
     define PKG_OPTION_SET.python2
