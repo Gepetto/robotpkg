@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2010 LAAS/CNRS
+# Copyright (c) 2006,2008-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -258,18 +258,19 @@ override define _versionreqd
   _maxmin_:=\
     $$(firstword $$(foreach _rqd_,$${_min_},$$(if $$(strip		\
     $$(foreach _sat_,$$(filter-out $${_rqd_},$${_min_} $${_max_}),$$(shell\
-    $${PKG_ADMIN} pmatch 'x$${_sat_}' 'x-$$(call substs,> >=,,$${_rqd_})' ||\
-    echo no))),,$${_rqd_})))
+    $${PKG_ADMIN} pmatch 'x$$(call substs,< > =,<= >=,$${_sat_})'	\
+	'x-$$(call substs,> >=,,$${_rqd_})' || echo no))),,$${_rqd_})))
 
   # breathe, then find out the strictest constraint of type <=
   _minmax_:=\
     $$(firstword $$(foreach _rqd_,$${_max_},$$(if $$(strip		\
     $$(foreach _sat_,$$(filter-out $${_rqd_},$${_min_} $${_max_}),$$(shell\
-    $${PKG_ADMIN} pmatch 'x$${_sat_}' 'x-$$(call substs,< <=,,$${_rqd_})' ||\
-    echo no))),,$${_rqd_})))
+    $${PKG_ADMIN} pmatch 'x$$(call substs,< > =,<= >=,$${_sat_})'	\
+	'x-$$(call substs,< <=,,$${_rqd_})' || echo no))),,$${_rqd_})))
 
-  # result is the union of both
-  $1:=$${_maxmin_}$${_minmax_}
+  # result is the union of both, except if they are incompatible
+  $1:=$$(if $$(strip $$(filter-out $$(subst >,,$${_maxmin_}),		\
+	$$(subst <,,$${_minmax_}))),,$${_maxmin_}$${_minmax_})
 endef
 override define versionreqd
 $(strip $(eval $(call _versionreqd,_r_,$1)) ${_r_})
