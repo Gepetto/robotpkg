@@ -3,6 +3,7 @@
 
 COMMENT=	Computer graphics tools
 
+SUBDIR+=	blender
 SUBDIR+=	coldman-genom
 SUBDIR+=	coldman-libs
 SUBDIR+=	gdhe
