@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2010 LAAS/CNRS
+# Copyright (c) 2006,2008-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -134,9 +134,9 @@ endif
 
 # Fetch logfile
 FETCH_LOGFILE?=		${WRKDIR}/.fetch.log
-FETCH_LOGFILTER?=\
-	${_LOGFILTER} $(if $(filter cvs git svn,${FETCH_METHOD}),,-n)	\
-	${_LOGFILTER_FLAGS} -l ${FETCH_LOGFILE} --
+FETCH_LOGFILTER?=	${_LOGFILTER} ${_LOGFILTER_FLAGS} \
+	$(if $(filter cvs git svn,${FETCH_METHOD}), -l ${FETCH_LOGFILE},-n) \
+	--
 
 include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
 include ${ROBOTPKG_DIR}/mk/fetch/fetch.mk
