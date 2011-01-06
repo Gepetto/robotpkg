@@ -17,8 +17,7 @@ DEPEND_ABI.eigen2?=	eigen2>=2.0.12
 DEPEND_DIR.eigen2?=	../../math/eigen2
 
 SYSTEM_SEARCH.eigen2=	\
-	include/eigen2/Eigen/Array \
-	share/pkgconfig/eigen2.pc
+	include/eigen2/Eigen/Array
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
