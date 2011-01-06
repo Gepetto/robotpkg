@@ -15,7 +15,7 @@ PREFER.libstereopixel?=		robotpkg
 
 DEPEND_USE+=			libstereopixel
 
-DEPEND_ABI.libstereopixel?=	libstereopixel>=1.4
+DEPEND_ABI.libstereopixel?=	libstereopixel>=1.5
 DEPEND_DIR.libstereopixel?=	../../image/libstereopixel
 
 SYSTEM_SEARCH.libstereopixel=\
