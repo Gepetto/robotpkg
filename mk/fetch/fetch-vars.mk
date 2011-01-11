@@ -126,7 +126,8 @@ ifeq (custom,$(strip ${FETCH_METHOD}))
   # FETCH_CMD is the program used to fetch files for FETCH_USING=custom.
   # It must understand fetching files located via URLs.
   #
-  _FETCH_BEFORE_ARGS=	${FETCH_CMD} ${FETCH_BEFORE_ARGS}
+  _FETCH_CMD=		${FETCH_CMD}
+  _FETCH_BEFORE_ARGS=	${FETCH_BEFORE_ARGS}
   _FETCH_AFTER_ARGS=	${FETCH_AFTER_ARGS}
   _FETCH_RESUME_ARGS=	${FETCH_RESUME_ARGS}
   _FETCH_OUTPUT_ARGS=	${FETCH_OUTPUT_ARGS}
