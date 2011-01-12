@@ -12,6 +12,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/
 COMMENT=		Dedicated HTTP server for GenoM modules.
 LICENSE=		2-clause-bsd
+MAKE_JOBS_SAFE=	no
 
 GNU_CONFIGURE=		yes
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep
