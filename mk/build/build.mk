@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -95,6 +95,7 @@ ifeq (yes,$(call exists,${_COOKIE.build}))
 else
   $(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 
   build: $(call barrier, depends, ${_BUILD_TARGETS})
 endif
