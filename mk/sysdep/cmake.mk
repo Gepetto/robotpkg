@@ -33,7 +33,7 @@ DEPEND_ABI.cmake?=	cmake>=2.6
 DEPEND_METHOD.cmake+=	build
 SYSTEM_SEARCH.cmake=	'bin/cmake:s/[^-.0-9]//g;y/-/./;p:% --version'
 
-USE_CMAKE=		yes
+USE_CMAKE?=		yes
 export CMAKE=		${PREFIX.cmake}/bin/cmake
 
 
