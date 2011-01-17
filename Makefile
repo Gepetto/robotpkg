@@ -1,6 +1,6 @@
-# $LAAS: Makefile 2009/07/28 13:53:36 mallet $
+# $LAAS: Makefile 2011/01/17 17:26:31 mallet $
 #
-# Copyright (c) 2007-2009 LAAS/CNRS
+# Copyright (c) 2007-2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -65,6 +65,7 @@ SUBDIR+=	manipulation
 SUBDIR+=	mapping
 SUBDIR+=	math
 SUBDIR+=	meta-pkgs
+SUBDIR+=	middleware
 SUBDIR+=	motion
 SUBDIR+=	net
 SUBDIR+=	optimization
@@ -73,6 +74,8 @@ SUBDIR+=	pkgtools
 SUBDIR+=	robots
 SUBDIR+=	scripts
 SUBDIR+=	shell
+SUBDIR+=	simulation
+SUBDIR+=	supervision
 SUBDIR+=	sysutils
 SUBDIR+=	www
 
