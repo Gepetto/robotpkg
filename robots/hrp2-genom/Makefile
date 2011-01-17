@@ -21,7 +21,7 @@ include ../../architecture/genom/depend.mk
 
 include ../../simulation/openhrp/depend.mk
 include ../../robots/hrpsys-jrl/depend.mk
-include ../../architecture/netshring/depend.mk
+include ../../net/netshring/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../math/t3d/depend.mk
 include ../../devel/omniORB/depend.mk

@@ -4,7 +4,6 @@
 COMMENT=	Robotics architecture tools
 
 SUBDIR+=	genom
-SUBDIR+=	netshring
 SUBDIR+=	openrtm-aist
 SUBDIR+=	orocos-ocl
 SUBDIR+=	orocos-rtt

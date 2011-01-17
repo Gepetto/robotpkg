@@ -20,6 +20,6 @@ include ../../path/hpp-openhrp/depend.mk
 include ../../path/hpp-worldmodelplanner/depend.mk
 include ../../mapping/worldmodelgrid3dg-genom/depend.mk
 include ../../devel/hpp-corbaserver/depend.mk
-include ../../architecture/netshring/depend.mk
+include ../../net/netshring/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../mk/robotpkg.mk

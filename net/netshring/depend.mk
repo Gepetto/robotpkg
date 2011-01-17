@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/netshring
+# robotpkg depend.mk for:	net/netshring
 # Created:			Anthony Mallet on Thu, 9 Apr 2009
 #
 
@@ -16,7 +16,7 @@ PREFER.netshring?=	robotpkg
 DEPEND_USE+=		netshring
 
 DEPEND_ABI.netshring?=	netshring>=1.2
-DEPEND_DIR.netshring?=	../../architecture/netshring
+DEPEND_DIR.netshring?=	../../net/netshring
 
 SYSTEM_SEARCH.netshring=\
 	include/netshring.h						\

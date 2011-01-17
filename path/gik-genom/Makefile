@@ -19,7 +19,7 @@ define PKG_OPTION_UNSET.api
   include ../../math/hrp2-dynamics/depend.mk
   include ../../path/hpp-gik/depend.mk
   include ../../robots/hrp2-14/depend.mk
-  include ../../architecture/netshring/depend.mk
+  include ../../net/netshring/depend.mk
 endef
 
 include ../../architecture/genom/depend.mk

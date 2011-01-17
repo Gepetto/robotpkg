@@ -21,7 +21,7 @@ define PKG_OPTION_UNSET.api
   include ../../devel/omniORB/depend.mk
   include ../../devel/hpp-corbaserver/depend.mk
   include ../../robots/hrp2-14/depend.mk
-  include ../../architecture/netshring/depend.mk
+  include ../../net/netshring/depend.mk
   post-install: install-license
 endef
 
