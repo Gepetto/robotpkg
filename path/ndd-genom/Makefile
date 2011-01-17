@@ -15,7 +15,7 @@ GNU_CONFIGURE=		yes
 GENOM_MODULE=		ndd
 include ../../architecture/genom/depend.mk
 
-include ../../architecture/genBasic-genom/depend.mk
+include ../../interfaces/genBasic-genom/depend.mk
 include ../../architecture/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../localization/segloc-genom/depend.mk

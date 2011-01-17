@@ -16,5 +16,5 @@ GENOM_MODULE=		mouse3d
 include ../../architecture/genom/depend.mk
 include ../../math/gbM/depend.mk
 include ../../manipulation/genManip-genom/depend.mk
-include ../../architecture/genBasic-genom/depend.mk
+include ../../interfaces/genBasic-genom/depend.mk
 include ../../mk/robotpkg.mk

@@ -3,7 +3,6 @@
 
 COMMENT=	Robotics architecture tools
 
-SUBDIR+=	genBasic-genom
 SUBDIR+=	genHum-genom
 SUBDIR+=	genPos-genom
 SUBDIR+=	genom

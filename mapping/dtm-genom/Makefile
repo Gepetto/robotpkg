@@ -27,7 +27,7 @@ endef
 GENOM_MODULE=		dtm
 include ../../architecture/genom/depend.mk
 
-include ../../architecture/genBasic-genom/depend.mk
+include ../../interfaces/genBasic-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../image/libimages3d/depend.mk
 include ../../image/viam-genom/depend.mk

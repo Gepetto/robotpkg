@@ -20,6 +20,6 @@ GENOM_ARGS=		-a
 include ../../architecture/genom/depend.mk
 PKG_SUPPORTED_OPTIONS:=$(filter-out api,${PKG_SUPPORTED_OPTIONS})
 
-include ../../architecture/genBasic-genom/depend.mk
+include ../../interfaces/genBasic-genom/depend.mk
 include ../../math/gbM/depend.mk
 include ../../mk/robotpkg.mk

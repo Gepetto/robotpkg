@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/genBasic-genom
+# robotpkg depend.mk for:	interfaces/genBasic-genom
 # Created:			A. degroote on Sat, 17 May 2008
 #
 
@@ -15,7 +15,7 @@ PREFER.genBasic-genom?=	robotpkg
 DEPEND_USE+=		genBasic-genom
 
 DEPEND_ABI.genBasic-genom?=	genBasic-genom>=0.1
-DEPEND_DIR.genBasic-genom?=	../../architecture/genBasic-genom
+DEPEND_DIR.genBasic-genom?=	../../interfaces/genBasic-genom
 
 SYSTEM_SEARCH.genBasic-genom=\
 	include/genBasic/genBasicStruct.h		\

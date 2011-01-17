@@ -21,6 +21,6 @@ GENOM_ARGS+=		-I${PREFIX.pom-genom}/include/pom
 
 include ../../architecture/genom/depend.mk
 
-include ../../architecture/genBasic-genom/depend.mk
+include ../../interfaces/genBasic-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../mk/robotpkg.mk

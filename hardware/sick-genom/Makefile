@@ -32,7 +32,7 @@ PKG_OPTION_SET.sick2:=	GENOM_ARGS+= -DSICK2
 GENOM_MODULE=		sick
 include ../../architecture/genom/depend.mk
 
-include ../../architecture/genBasic-genom/depend.mk
+include ../../interfaces/genBasic-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../mapping/mapkit/depend.mk
 include ../../hardware/sickLib/depend.mk

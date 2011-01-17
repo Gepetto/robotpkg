@@ -17,7 +17,7 @@ GNU_CONFIGURE=		yes
 GENOM_MODULE=		p3d
 include ../../architecture/genom/depend.mk
 
-include ../../architecture/genBasic-genom/depend.mk
+include ../../interfaces/genBasic-genom/depend.mk
 include ../../architecture/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../math/t3d/depend.mk

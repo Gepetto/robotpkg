@@ -1,9 +1,9 @@
-# robotpkg Makefile for:	architecture/genBasic-genom
+# robotpkg Makefile for:	interfaces/genBasic-genom
 # Created:			A. degroote on Sat, 17 May 2008
 #
 
 DISTNAME=		genBasic-genom-0.3
-CATEGORIES=		architecture
+CATEGORIES=		interfaces
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/genBasic-genom
