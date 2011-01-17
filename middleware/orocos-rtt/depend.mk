@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/orocos-rtt
+# robotpkg depend.mk for:	middleware/orocos-rtt
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
@@ -16,7 +16,7 @@ PREFER.orocos-rtt?=		robotpkg
 DEPEND_USE+=		orocos-rtt
 
 DEPEND_ABI.orocos-rtt?=	orocos-rtt>=1.10
-DEPEND_DIR.orocos-rtt?=	../../architecture/orocos-rtt
+DEPEND_DIR.orocos-rtt?=	../../middleware/orocos-rtt
 
 SYSTEM_SEARCH.orocos-rtt=\
 	include/rtt/RTT.hpp					\

@@ -17,6 +17,6 @@ USE_LANGUAGES=		c c++
 
 WRKSRC=			${WRKDIR}/orocos-ocl-${OROCOS_VERSION}
 
-include ../../architecture/orocos-rtt/depend.mk
+include ../../middleware/orocos-rtt/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk

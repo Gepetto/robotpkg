@@ -16,7 +16,7 @@ LICENSE=		gnu-lgpl-v3
 USE_LANGUAGES=		c c++
 
 include ../../architecture/orocos-ocl/depend.mk
-include ../../architecture/orocos-rtt/depend.mk
+include ../../middleware/orocos-rtt/depend.mk
 include ../../architecture/yarp/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk

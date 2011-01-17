@@ -5,7 +5,6 @@ COMMENT=	Robotics architecture tools
 
 SUBDIR+=	genom
 SUBDIR+=	orocos-ocl
-SUBDIR+=	orocos-rtt
 SUBDIR+=	robotis-oroyarp
 SUBDIR+=	transgen
 SUBDIR+=	urbi

@@ -1,11 +1,11 @@
-# robotpkg Makefile for:	architecture/orocos-rtt
+# robotpkg Makefile for:	middleware/orocos-rtt
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
 OROCOS_VERSION=		1.10.3
 DISTNAME=		orocos-rtt-${OROCOS_VERSION}-src
 PKGNAME=		orocos-rtt-${OROCOS_VERSION}
-CATEGORIES=		architecture
+CATEGORIES=		middleware
 MASTER_SITES=		http://www.orocos.org/stable/rtt/v${OROCOS_VERSION}/
 
 MAINTAINER=		openrobots@laas.fr

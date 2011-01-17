@@ -5,5 +5,6 @@ COMMENT=	Middleware tools and libraries
 
 SUBDIR+=	ace
 SUBDIR+=	openrtm-aist
+SUBDIR+=	orocos-rtt
 
 include ../mk/robotpkg.subdir.mk
