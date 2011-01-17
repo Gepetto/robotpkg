@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	architecture/urbi
+# robotpkg Makefile for:	supervision/urbi
 # Created:			Thomas Moulard on Sun, 30 May 2010
 #
 
@@ -6,7 +6,7 @@ DISTNAME=	urbi-sdk-${VERSION}
 PKGNAME=	urbi-${VERSION}
 VERSION=	2.0.2
 
-CATEGORIES=	architecture
+CATEGORIES=	supervision
 MASTER_SITES=	http://www.gostai.com/static/downloads/
 
 MAINTAINER=	openrobots@laas.fr
