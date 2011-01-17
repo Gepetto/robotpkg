@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -127,9 +127,7 @@ else
 _PRINT_PLIST_LIBTOOLIZE_FILTER?=	${CAT}
 endif
 
-$(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
-
-do-print-PLIST: print-PLIST-message install
+do-print-PLIST: print-PLIST-message build
 	${RUN} exec >${PRINT_PLIST_FILE};				\
 	${ECHO} '@comment '`${_CDATE_CMD}`;				\
 	{ ${_PRINT_PLIST_FILES_CMD} }					\
