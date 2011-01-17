@@ -38,7 +38,7 @@ SUBST_FILES.rtm-python=\
 	utils/rtm-skelwrapper/*.py		\
 	utils/rtm-skelwrapper/rtm-skelwrapper
 
-include ../../architecture/ace/depend.mk
+include ../../middleware/ace/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/python2.mk

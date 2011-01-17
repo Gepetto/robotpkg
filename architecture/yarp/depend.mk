@@ -22,7 +22,7 @@ SYSTEM_SEARCH.yarp=\
 	include/yarp/dev/all.h			\
 	'lib/libYARP_OS.{a,so}'
 
-include ../../architecture/ace/depend.mk
+include ../../middleware/ace/depend.mk
 
 endif # YARP_DEPEND_MK ----------------------------------------------------
 

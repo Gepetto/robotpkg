@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/ace
+# robotpkg depend.mk for:	middleware/ace
 # Created:			Anthony Mallet on Mon, 2 Jun 2008
 #
 
@@ -16,7 +16,7 @@ PREFER.ace?=		robotpkg
 DEPEND_USE+=		ace
 
 DEPEND_ABI.ace?=	ace>=5.6
-DEPEND_DIR.ace?=	../../architecture/ace
+DEPEND_DIR.ace?=	../../middleware/ace
 
 SYSTEM_SEARCH.ace=\
 	include/ace/ACE.h					\

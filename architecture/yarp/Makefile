@@ -34,6 +34,6 @@ define PKG_OPTION_SET.gui
   include ../../mk/sysdep/glib2.mk
 endef
 
-include ../../architecture/ace/depend.mk
+include ../../middleware/ace/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk

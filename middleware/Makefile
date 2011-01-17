@@ -3,4 +3,6 @@
 
 COMMENT=	Middleware tools and libraries
 
+SUBDIR+=	ace
+
 include ../mk/robotpkg.subdir.mk
