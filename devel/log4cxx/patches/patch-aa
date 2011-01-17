@@ -1,0 +1,22 @@
+Fix doc installation dir, an unportable cp -d option.
+
+--- src/site/doxy/Makefile.in~	2008-04-01 00:44:14.000000000 +0200
++++ src/site/doxy/Makefile.in	2011-01-14 23:54:36.000000000 +0100
+@@ -16,7 +16,7 @@
+ srcdir = @srcdir@
+ top_srcdir = @top_srcdir@
+ VPATH = @srcdir@
+-pkgdatadir = $(datadir)/@PACKAGE@
++pkgdatadir = $(datadir)/doc/@PACKAGE@
+ pkglibdir = $(libdir)/@PACKAGE@
+ pkgincludedir = $(includedir)/@PACKAGE@
+ top_builddir = ../../..
+@@ -379,7 +379,7 @@
+ 
+ @DOC_TRUE@install-data-hook:
+ @DOC_TRUE@	$(mkinstalldirs) $(DESTDIR)$(htmldest)
+-@DOC_TRUE@	cp -dpR @manual_dest@/* $(DESTDIR)$(htmldest)
++@DOC_TRUE@	cp -pR @manual_dest@/* $(DESTDIR)$(htmldest)
+ 
+ # Automake's "distcheck" is sensitive to having files left over
+ # after "make uninstall", so we have to clean up the install hook.

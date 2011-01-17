@@ -1,0 +1,8 @@
+Apache log4cxx is a logging framework for C++ patterned after Apache
+log4j. Apache log4cxx uses Apache Portable Runtime for most platform-specific
+code and should be usable on any platform supported by APR. log4cxx is designed
+to be reliable, fast and extensible. Since logging is rarely the main focus of
+an application, the log4cxx API strives to be simple to understand and to use.
+
+Apache log4cxx is licensed under the Apache License, an open source license
+certified by the Open Source Initiative.
