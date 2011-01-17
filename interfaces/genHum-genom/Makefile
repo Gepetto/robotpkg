@@ -1,9 +1,9 @@
-# robotpkg Makefile for:	architecture/genHum-genom
+# robotpkg Makefile for:	interfaces/genHum-genom
 # Created:			Matthieu Herrb on Tue, 24 Mar 2009
 #
 
 DISTNAME=		genHum-genom-1.1
-CATEGORIES=		architecture
+CATEGORIES=		interfaces
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/genHum-genom

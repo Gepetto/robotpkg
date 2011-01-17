@@ -3,7 +3,6 @@
 
 COMMENT=	Robotics architecture tools
 
-SUBDIR+=	genHum-genom
 SUBDIR+=	genPos-genom
 SUBDIR+=	genom
 SUBDIR+=	genom-openhrp-plugin

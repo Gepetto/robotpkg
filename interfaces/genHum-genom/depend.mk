@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/genHum-genom
+# robotpkg depend.mk for:	interfaces/genHum-genom
 # Created:			Xavier BROQUERE on Tue, 09 Nov 2010
 #
 
@@ -15,7 +15,7 @@ PREFER.genHum-genom?=	robotpkg
 DEPEND_USE+=		genHum-genom
 
 DEPEND_ABI.genHum-genom?=	genHum-genom>=1.1
-DEPEND_DIR.genHum-genom?=	../../architecture/genHum-genom
+DEPEND_DIR.genHum-genom?=	../../interfaces/genHum-genom
 
 SYSTEM_SEARCH.genHum-genom=\
 	include/genHum/genHumStruct.h		\
