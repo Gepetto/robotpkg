@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/libjyarp
+# robotpkg depend.mk for:	middleware/libjyarp
 # Created:			Anthony Mallet on Wed, 15 Jul 2009
 #
 
@@ -15,7 +15,7 @@ PREFER.libjyarp?=	robotpkg
 
 DEPEND_USE+=		libjyarp
 DEPEND_ABI.libjyarp?=	libjyarp>=2.3.1
-DEPEND_DIR.libjyarp?=	../../devel/libjyarp
+DEPEND_DIR.libjyarp?=	../../middleware/libjyarp
 
 SYSTEM_SEARCH.libjyarp=\
 	java/libjyarp/lib/libjyarp.jar	\

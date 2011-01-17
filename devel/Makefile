@@ -19,7 +19,6 @@ SUBDIR+=	hpp-kwsplus
 SUBDIR+=	hpp-model
 SUBDIR+=	jrl-modelloader
 SUBDIR+=	libedit
-SUBDIR+=	libjyarp
 SUBDIR+=	libtorch-laas
 SUBDIR+=	log4cxx
 SUBDIR+=	mkdep

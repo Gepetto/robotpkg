@@ -1,11 +1,11 @@
-# robotpkg Makefile for:	devel/libjyarp
+# robotpkg Makefile for:	middleware/libjyarp
 # Created:			Anthony Mallet on Tue, 27 Jan 2009
 #
 
 PKGVERSION=		2.3.1
 DISTNAME=		yarp-${PKGVERSION}
 PKGNAME=		libjyarp-${PKGVERSION}
-CATEGORIES=		devel
+CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
 MAINTAINER=		openrobots@laas.fr
