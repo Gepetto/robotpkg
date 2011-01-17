@@ -712,7 +712,7 @@ where <name> is the name of the collection (any string is valid) and <list> is
 the list of packages in the collection, in the form <category>/<name>. For
 instance,
 
-PKGSET.myset = architecture/genom devel/pocolibs
+PKGSET.myset = architecture/genom middleware/pocolibs
 
 
 defines a collection named myset that contains the two packages genom and

@@ -14,7 +14,7 @@ CONFIGURE_ARGS+=--with-oprs-data-dir=${PREFIX.openprs}/share/openprs/data
 CONFIGURE_ARGS+=--with-modules-data-dir=${PREFIX.openprs}/share/modules/openprs
 
 include ../../supervision/openprs/depend.mk
-include ../../devel/pocolibs/depend.mk
+include ../../middleware/pocolibs/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/libtool/depend.mk

@@ -87,7 +87,7 @@ DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
 # primary dependency for the packages including this file.
 #
 include ../../devel/mkdep/depend.mk
-include ../../devel/pocolibs/depend.mk
+include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/autoconf.mk

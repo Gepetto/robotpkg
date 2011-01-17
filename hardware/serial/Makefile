@@ -15,7 +15,7 @@ GNU_CONFIGURE=		yes
 
 DEPENDS+=		mkdep>=2.6:../../devel/mkdep
 
-include ../../devel/pocolibs/depend.mk
+include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

@@ -19,7 +19,7 @@ pre-configure:	autoreconf
 DEPEND_METHOD.tcl=	build
 DEPEND_METHOD.tdom=	build
 
-include ../../devel/pocolibs/depend.mk
+include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/tcl.mk

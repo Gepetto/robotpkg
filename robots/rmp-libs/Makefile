@@ -14,7 +14,7 @@ GNU_CONFIGURE=	yes
 pre-configure:	autoreconf
 
 include ../../hardware/libftdi/depend.mk
-include ../../devel/pocolibs/depend.mk
+include ../../middleware/pocolibs/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

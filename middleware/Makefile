@@ -8,6 +8,7 @@ SUBDIR+=	libjyarp
 SUBDIR+=	libpyyarp
 SUBDIR+=	openrtm-aist
 SUBDIR+=	orocos-rtt
+SUBDIR+=	pocolibs
 SUBDIR+=	robotis-oroyarp
 SUBDIR+=	yarp
 

@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/pocolibs
+# robotpkg depend.mk for:	middleware/pocolibs
 # Created:			A. degroote on Sat, 17 May 2008
 #
 
@@ -15,7 +15,7 @@ PREFER.pocolibs?=	robotpkg
 DEPEND_USE+=		pocolibs
 
 DEPEND_ABI.pocolibs?=	pocolibs>=2.7
-DEPEND_DIR.pocolibs?=	../../devel/pocolibs
+DEPEND_DIR.pocolibs?=	../../middleware/pocolibs
 
 SYSTEM_SEARCH.pocolibs=\
 	bin/h2		\

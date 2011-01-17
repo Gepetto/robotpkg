@@ -65,7 +65,7 @@ define PKG_OPTION_UNSET.doc
   CONFIGURE_ENV+=	LATEX=:
 endef
 
-include ../../devel/pocolibs/depend.mk
+include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/perl.mk
