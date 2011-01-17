@@ -22,7 +22,7 @@ SYSTEM_SEARCH.libpyyarp=\
 	'lib/python[0-9.]*/{site-package,dist-packages}/yarp.py'
 	
 
-include ../../architecture/yarp/depend.mk
+include ../../middleware/yarp/depend.mk
 
 endif # LIBPYYARP_DEPEND_MK ----------------------------------------------------
 

@@ -119,7 +119,7 @@ roughly one hundred and fifty packages, including:
   * simulation/openhrp - The Open Architecture Humanoid Robotics Platform
     from AIST, Japan
   * architecture/openrtm - The robotic distributed middleware from AIST, Japan
-  * architecture/yarp - The "other", yet famous, robot platform
+  * middleware/yarp - The "other", yet famous, robot platform
   * ...just to name a few.
 
 1.2  Why robotpkg?

@@ -7,5 +7,6 @@ SUBDIR+=	ace
 SUBDIR+=	openrtm-aist
 SUBDIR+=	orocos-rtt
 SUBDIR+=	robotis-oroyarp
+SUBDIR+=	yarp
 
 include ../mk/robotpkg.subdir.mk

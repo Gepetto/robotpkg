@@ -30,7 +30,7 @@ CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
 BUILD_DIRS=		${WRKSRC}/example/swig
 
-include ../../architecture/yarp/depend.mk
+include ../../middleware/yarp/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/swig.mk

@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/yarp
+# robotpkg depend.mk for:	middleware/yarp
 # Created:			Anthony Mallet on Thu, 22 Jan 2009
 #
 
@@ -15,7 +15,7 @@ PREFER.yarp?=		robotpkg
 
 DEPEND_USE+=		yarp
 DEPEND_ABI.yarp?=	yarp>=2.3.1
-DEPEND_DIR.yarp?=	../../architecture/yarp
+DEPEND_DIR.yarp?=	../../middleware/yarp
 
 SYSTEM_SEARCH.yarp=\
 	'bin/yarp:s/[^.0-9]//gp:% version'	\

@@ -17,6 +17,6 @@ USE_LANGUAGES=		c c++
 
 include ../../architecture/orocos-ocl/depend.mk
 include ../../middleware/orocos-rtt/depend.mk
-include ../../architecture/yarp/depend.mk
+include ../../middleware/yarp/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk

@@ -30,7 +30,7 @@ BUILD_DIRS=		${WRKSRC}/example/swig
 # O1 is the highest possible optimization level: overwrite default -O3
 _CFLAGS_NDEBUG:= -O1 -DNDEBUG
 
-include ../../architecture/yarp/depend.mk
+include ../../middleware/yarp/depend.mk
 include ../../lang/sun-jdk6/depend.mk
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk

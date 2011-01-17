@@ -1,9 +1,9 @@
-# robotpkg Makefile for:	architecture/yarp
+# robotpkg Makefile for:	middleware/yarp
 # Created:			Anthony Mallet on Thu, 22 Jan 2009
 #
 
 DISTNAME=		yarp-2.3.1
-CATEGORIES=		architecture
+CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
 MAINTAINER=		openrobots@laas.fr
