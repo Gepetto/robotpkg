@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	devel/libpyyarp
+# robotpkg Makefile for:	middleware/libpyyarp
 # Created:			Severin Lemaignan on Fri, 12 Jun 2009
 #
 
@@ -9,7 +9,7 @@ DISTNAME=		yarp-${VERSION}
 PKGNAME=		libpyyarp-${PKGVERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
-CATEGORIES=		devel
+CATEGORIES=		middleware
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Python bindings for YARP
