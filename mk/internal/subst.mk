@@ -1,6 +1,6 @@
-# $LAAS: subst.mk 2008/05/25 15:58:23 tho $
+# $LAAS: subst.mk 2011/01/16 00:07:00 tho $
 #
-# Copyright (c) 2006,2008 LAAS/CNRS
+# Copyright (c) 2006,2008,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -83,7 +83,7 @@ ECHO_SUBST_MSG?=	${STEP_MSG}
 _SUBST_IS_TEXT_FILE?= \
 	{ ${TEST} -f "$$file"						\
 	  && ${FILE_CMD} "$$file"					\
-	     | ${EGREP} "(executable .* script|shell script|text|Assembler source|libtool)";	\
+	     | ${EGREP} "(executable .* script|shell script|text|Assembler source|libtool|empty)";	\
 	} >/dev/null 2>&1
 
 _SUBST_BACKUP_SUFFIX=	.subst.sav
