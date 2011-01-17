@@ -20,6 +20,6 @@ DOXYGEN_PLIST_DIR+=	share/doc/hpp-python
 GNU_CONFIGURE=	yes
 
 include ../../devel/hpp-corbaserver/depend.mk
-include ../../devel/omniORBpy/depend.mk
+include ../../middleware/omniORBpy/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

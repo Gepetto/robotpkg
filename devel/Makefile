@@ -22,7 +22,6 @@ SUBDIR+=	libedit
 SUBDIR+=	libtorch-laas
 SUBDIR+=	log4cxx
 SUBDIR+=	mkdep
-SUBDIR+=	omniORB
 SUBDIR+=	omniORBpy
 SUBDIR+=	py-simpleparse
 SUBDIR+=	sun-java3d

@@ -39,7 +39,7 @@ include ../../math/tvmet/depend.mk
 include ../../math/lapack/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
-include ../../devel/omniORB/depend.mk
+include ../../middleware/omniORB/depend.mk
 include ../../devel/sun-jmf/depend.mk
 include ../../devel/sun-java3d/depend.mk
 include ../../lang/jython/depend.mk

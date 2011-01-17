@@ -6,6 +6,7 @@ COMMENT=	Middleware tools and libraries
 SUBDIR+=	ace
 SUBDIR+=	libjyarp
 SUBDIR+=	libpyyarp
+SUBDIR+=	omniORB
 SUBDIR+=	openrtm-aist
 SUBDIR+=	orocos-rtt
 SUBDIR+=	pocolibs

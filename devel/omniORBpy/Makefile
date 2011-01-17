@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	devel/omniORBpy
+# robotpkg Makefile for:	middleware/omniORBpy
 # Created:			Anthony Mallet on Tue, 6 Mar 2007
 #
 
@@ -18,5 +18,5 @@ MAKE_FILE=		GNUmakefile
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 
-include ../../devel/omniORB/depend.mk
+include ../../middleware/omniORB/depend.mk
 include ../../mk/robotpkg.mk

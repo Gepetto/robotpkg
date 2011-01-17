@@ -28,7 +28,7 @@ endef
 # --------------------------------------------------------------------
 
 include ../../meta-pkgs/hpp/Makefile.common
-include ../../devel/omniORB/depend.mk
+include ../../middleware/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk

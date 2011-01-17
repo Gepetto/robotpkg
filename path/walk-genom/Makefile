@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 GENOM_MODULE=	walk
 define PKG_OPTION_UNSET.api
   include ../../path/hpp-walkplanner/depend.mk
-  include ../../devel/omniORB/depend.mk
+  include ../../middleware/omniORB/depend.mk
   include ../../devel/hpp-corbaserver/depend.mk
   include ../../robots/hrp2-14/depend.mk
   include ../../net/netshring/depend.mk

@@ -24,5 +24,5 @@ include ../../robots/hrpsys-jrl/depend.mk
 include ../../net/netshring/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../math/t3d/depend.mk
-include ../../devel/omniORB/depend.mk
+include ../../middleware/omniORB/depend.mk
 include ../../mk/robotpkg.mk

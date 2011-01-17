@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/omniORB
+# robotpkg depend.mk for:	middleware/omniORB
 # Created:			Anthony Mallet on Thu, 13 Mar 2008
 #
 
@@ -15,7 +15,7 @@ PREFER.omniORB?=	robotpkg
 DEPEND_USE+=		omniORB
 
 DEPEND_ABI.omniORB?=	omniORB>=4.1.1
-DEPEND_DIR.omniORB?=	../../devel/omniORB
+DEPEND_DIR.omniORB?=	../../middleware/omniORB
 
 SYSTEM_SEARCH.omniORB=	\
 	bin/omniidl			\

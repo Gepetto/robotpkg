@@ -37,7 +37,7 @@ include ../../simulation/openhrp/depend.mk
 include ../../robots/hrp2-14/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../devel/jrl-modelloader/depend.mk
-include ../../devel/omniORB/depend.mk
+include ../../middleware/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk

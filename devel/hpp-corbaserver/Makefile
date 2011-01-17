@@ -46,7 +46,7 @@ PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 include ../../devel/hpp-util/depend.mk
 include ../../path/hpp-core/depend.mk
-include ../../devel/omniORB/depend.mk
+include ../../middleware/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk

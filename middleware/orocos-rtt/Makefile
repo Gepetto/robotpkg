@@ -23,7 +23,7 @@ PKG_SUPPORTED_OPTIONS+=	corba
 define PKG_OPTION_SET.corba
   CMAKE_ARGS+=		-DENABLE_CORBA=ON -DCORBA_IMPLEMENTATION=OMNIORB
 
-  include ../../devel/omniORB/depend.mk
+  include ../../middleware/omniORB/depend.mk
 endef
 
 WRKSRC=			${WRKDIR}/orocos-rtt-${OROCOS_VERSION}

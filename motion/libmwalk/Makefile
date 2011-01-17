@@ -18,5 +18,5 @@ CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
 
 include ../../simulation/openhrp/depend.mk
 include ../../robots/hrpsys-jrl/depend.mk
-include ../../devel/omniORB/depend.mk
+include ../../middleware/omniORB/depend.mk
 include ../../mk/robotpkg.mk
