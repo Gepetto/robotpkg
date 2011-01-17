@@ -46,7 +46,7 @@ endef
 PKG_OPTION_DESCR.openprs=Enable the generation of the OpenPRS client code
 define PKG_OPTION_SET.openprs
   GENOM_ARGS+=	-o
-  include ../../architecture/transgen/depend.mk
+  include ../../supervision/transgen/depend.mk
 endef
 
 PKG_OPTION_DESCR.tclserv_client=Enable the generation of the C tclServ client code

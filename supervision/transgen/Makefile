@@ -1,8 +1,8 @@
-# robotpkg Makefile for:	architecture/transgen
+# robotpkg Makefile for:	supervision/transgen
 # Created:			Matthieu Herrb on Thu, 12 Mar 2009
 #
 DISTNAME=	transgen-1.0b1
-CATEGORIES=	architecture
+CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/transgen
 

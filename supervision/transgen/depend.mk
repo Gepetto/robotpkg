@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/transgen
+# robotpkg depend.mk for:	supervision/transgen
 # Created:			Anthony Mallet on Thu, 12 Mar 2009
 #
 
@@ -16,7 +16,7 @@ PREFER.transgen?=	robotpkg
 DEPEND_USE+=		transgen
 
 DEPEND_ABI.transgen?=	transgen>=1.0b1
-DEPEND_DIR.transgen?=	../../architecture/transgen
+DEPEND_DIR.transgen?=	../../supervision/transgen
 
 SYSTEM_SEARCH.transgen=\
 	bin/transgen			\
