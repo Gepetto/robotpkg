@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/robotis-oroyarp
+# robotpkg depend.mk for:	middleware/robotis-oroyarp
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
@@ -16,7 +16,7 @@ PREFER.robotis-oroyarp?=		robotpkg
 DEPEND_USE+=		robotis-oroyarp
 
 DEPEND_ABI.robotis-oroyarp?=	robotis-oroyarp>=1.2
-DEPEND_DIR.robotis-oroyarp?=	../../architecture/robotis-oroyarp
+DEPEND_DIR.robotis-oroyarp?=	../../middleware/robotis-oroyarp
 
 SYSTEM_SEARCH.robotis-oroyarp=\
 	bin/deployer-yarp							\

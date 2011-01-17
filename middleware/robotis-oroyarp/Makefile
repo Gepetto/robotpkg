@@ -1,10 +1,10 @@
-# robotpkg Makefile for:	architecture/robotis-oroyarp
+# robotpkg Makefile for:	middleware/robotis-oroyarp
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
 OROYARP_VERSION=	1.2
 DISTNAME=		robotis-oroyarp-${OROYARP_VERSION}
-CATEGORIES=		architecture
+CATEGORIES=		middleware
 MASTER_SITES=		http://robotis.onera.fr/sites/robotis.onera.fr/files/
 EXTRACT_SUFX=		.tar
 
