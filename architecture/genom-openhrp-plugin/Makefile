@@ -18,7 +18,7 @@ GNU_CONFIGURE=		yes
 
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
 
-include ../../architecture/openhrp/depend.mk
+include ../../simulation/openhrp/depend.mk
 include ../../robots/hrpsys-jrl/depend.mk
 include ../../devel/omniORB/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

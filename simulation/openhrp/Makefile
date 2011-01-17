@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	architecture/OpenHRP
+# robotpkg Makefile for:	simulation/OpenHRP
 # Created:			Anthony Mallet on Wed, 22 Oct 2008
 #
 
@@ -7,7 +7,7 @@ DISTNAME=		OpenHRP-${VERSION}
 EXTRACT_SUFX=		.zip
 
 COMMENT=		Open Architecture Humanoid Robotics Platform
-CATEGORIES=		architecture
+CATEGORIES=		simulation
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 HOMEPAGE=		http://www.openrtp.jp/openhrp3/en/index.html
 LICENSE=		eclipse

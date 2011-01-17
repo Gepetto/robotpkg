@@ -116,7 +116,7 @@ be found on any modern Unix distribution. Yet, robotpkg currently contains
 roughly one hundred and fifty packages, including:
 
   * architecture/genom - The LAAS Generator of Robotic Components
-  * architecture/openhrp - The Open Architecture Humanoid Robotics Platform
+  * simulation/openhrp - The Open Architecture Humanoid Robotics Platform
     from AIST, Japan
   * architecture/openrtm - The robotic distributed middleware from AIST, Japan
   * architecture/yarp - The "other", yet famous, robot platform

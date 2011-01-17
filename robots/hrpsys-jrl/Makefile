@@ -44,7 +44,7 @@ USE_LANGUAGES+=	c++
 GCC_REQUIRED+=	>=4.2
 
 include ../../math/blas/depend.mk
-include ../../architecture/openhrp/depend.mk
+include ../../simulation/openhrp/depend.mk
 include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 

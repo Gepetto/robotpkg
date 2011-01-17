@@ -19,7 +19,7 @@ CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
 GENOM_MODULE=	hrp2
 include ../../architecture/genom/depend.mk
 
-include ../../architecture/openhrp/depend.mk
+include ../../simulation/openhrp/depend.mk
 include ../../robots/hrpsys-jrl/depend.mk
 include ../../architecture/netshring/depend.mk
 include ../../localization/pom-genom/depend.mk

@@ -17,7 +17,7 @@ GENOM_MODULE=		mwalk
 CONFIGURE_ARGS+=	--with-openhrp=${PREFIX.OpenHRP}
 
 define PKG_OPTION_UNSET.api
-  include ../../architecture/openhrp/depend.mk
+  include ../../simulation/openhrp/depend.mk
   include ../../robots/hrpsys-jrl/depend.mk
   include ../../motion/libmwalk/depend.mk
 endef
