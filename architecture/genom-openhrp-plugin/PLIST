@@ -1,8 +1,0 @@
-@comment Wed Dec 10 12:15:11 CET 2008
-include/genom-openhrp/genom-hrp2.h
-lib/libgenom-openhrp.la
-lib/pkgconfig/genom-openhrp-plugin.pc
-share/genom-openhrp/genom.py
-share/idl/genom-openhrp-plugin.idl
-@dirrm share/genom-openhrp
-@dirrm include/genom-openhrp
