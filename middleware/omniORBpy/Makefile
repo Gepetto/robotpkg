@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		omniORBpy-3.1
-CATEGORIES=		devel
+CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
 
 MAINTAINER=		openrobots@laas.fr
