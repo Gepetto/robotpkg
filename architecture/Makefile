@@ -10,7 +10,6 @@ SUBDIR+=	genPos-genom
 SUBDIR+=	genom
 SUBDIR+=	genom-openhrp-plugin
 SUBDIR+=	netshring
-SUBDIR+=	openprs
 SUBDIR+=	openrtm-aist
 SUBDIR+=	orocos-ocl
 SUBDIR+=	orocos-rtt

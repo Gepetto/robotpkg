@@ -1,9 +1,9 @@
-# robotpkg Makefile for:	architecture/openprs
+# robotpkg Makefile for:	supervision/openprs
 # Created:			Anthony Mallet on Wed, 17 Oct 2007
 #
 
 DISTNAME=		openprs-1.0b7
-CATEGORIES=		architecture
+CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/openprs
 

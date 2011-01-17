@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/openprs
+# robotpkg depend.mk for:	supervision/openprs
 # Created:			Anthony Mallet on Thu, 12 Mar 2009
 #
 
@@ -16,7 +16,7 @@ PREFER.openprs?=	robotpkg
 DEPEND_USE+=		openprs
 
 DEPEND_ABI.openprs?=	openprs>=1.0b1
-DEPEND_DIR.openprs?=	../../architecture/openprs
+DEPEND_DIR.openprs?=	../../supervision/openprs
 
 SYSTEM_SEARCH.openprs=\
 	bin/oprs			\
