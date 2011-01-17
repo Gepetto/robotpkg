@@ -17,9 +17,10 @@ DEPEND_ABI.svn?=svn>=1
 SYSTEM_SEARCH.svn=	\
 	'bin/svn:p:% --version --quiet'
 
-ifdef PREFIX.svn
-  export SVN=	${PREFIX.svn}/bin/svn
-endif
+SYSTEM_PKG.Linux.svn=		subversion
+SYSTEM_PKG.NetBSD.svn=		pkgsrc/devel/subversion-base
+
+export SVN=	$(word 1,${SYSTEM_FILES.svn})
 
 endif # SVN_DEPEND_MK ------------------------------------------------------
 
