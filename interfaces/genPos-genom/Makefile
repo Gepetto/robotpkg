@@ -1,10 +1,10 @@
-# robotpkg Makefile for:	architecture/genPos-genom
+# robotpkg Makefile for:	interfaces/genPos-genom
 # Created:			Arnaud Degroote on Mon, 19 May 2008
 #
 
 DISTNAME=		genPos-genom-0.3
 
-CATEGORIES=		architecture
+CATEGORIES=		interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/genPos-genom
 

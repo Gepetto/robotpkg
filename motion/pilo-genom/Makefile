@@ -58,6 +58,6 @@ PKG_OPTION_SET.xr4000:=		GENOM_ARGS+= -XR4000
 GENOM_MODULE=	pilo
 include ../../architecture/genom/depend.mk
 
-include ../../architecture/genPos-genom/depend.mk
+include ../../interfaces/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../mk/robotpkg.mk

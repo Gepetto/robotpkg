@@ -21,5 +21,5 @@ include ../../motion/contlaw/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../localization/pom-genom/depend.mk
-include ../../architecture/genPos-genom/depend.mk
+include ../../interfaces/genPos-genom/depend.mk
 include ../../mk/robotpkg.mk

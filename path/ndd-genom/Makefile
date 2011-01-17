@@ -16,7 +16,7 @@ GENOM_MODULE=		ndd
 include ../../architecture/genom/depend.mk
 
 include ../../interfaces/genBasic-genom/depend.mk
-include ../../architecture/genPos-genom/depend.mk
+include ../../interfaces/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../localization/segloc-genom/depend.mk
 include ../../path/aspect-genom/depend.mk

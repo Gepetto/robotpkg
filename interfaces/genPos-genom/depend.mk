@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/genPos-genom
+# robotpkg depend.mk for:	interfaces/genPos-genom
 # Created:			Arnaud Degroote on Mon, 19 May 2008
 #
 
@@ -15,7 +15,7 @@ PREFER.genPos-genom?=	robotpkg
 DEPEND_USE+=		genPos-genom
 
 DEPEND_ABI.genPos-genom?=	genPos-genom>=0.1
-DEPEND_DIR.genPos-genom?=	../../architecture/genPos-genom
+DEPEND_DIR.genPos-genom?=	../../interfaces/genPos-genom
 
 SYSTEM_SEARCH.genPos-genom=\
 	include/genPos/genPosStruct.h		\
