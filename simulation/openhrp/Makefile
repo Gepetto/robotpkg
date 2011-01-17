@@ -34,7 +34,7 @@ SUBST_FILES.openhrp-paths=\
 USE_LANGUAGES+=	c++
 GCC_REQUIRED+=	>=4.2
 
-include ../../architecture/openrtm-aist/depend.mk
+include ../../middleware/openrtm-aist/depend.mk
 include ../../math/tvmet/depend.mk
 include ../../math/lapack/depend.mk
 include ../../devel/boost-headers/depend.mk

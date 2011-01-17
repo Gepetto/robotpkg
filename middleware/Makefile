@@ -4,5 +4,6 @@
 COMMENT=	Middleware tools and libraries
 
 SUBDIR+=	ace
+SUBDIR+=	openrtm-aist
 
 include ../mk/robotpkg.subdir.mk

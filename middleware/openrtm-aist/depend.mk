@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	architecture/openrtm-aist
+# robotpkg depend.mk for:	middleware/openrtm-aist
 # Created:			Anthony Mallet on Fri, 10 Oct 2008
 #
 
@@ -16,7 +16,7 @@ PREFER.openrtm-aist?=	robotpkg
 DEPEND_USE+=		openrtm-aist
 
 DEPEND_ABI.openrtm-aist?=openrtm-aist>=0.4.2
-DEPEND_DIR.openrtm-aist?=../../architecture/openrtm-aist
+DEPEND_DIR.openrtm-aist?=../../middleware/openrtm-aist
 
 SYSTEM_SEARCH.openrtm-aist=\
 	bin/rtm-config			\

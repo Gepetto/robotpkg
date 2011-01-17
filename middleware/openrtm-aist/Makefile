@@ -1,11 +1,11 @@
-# robotpkg Makefile for:	architecture/openrtm-aist
+# robotpkg Makefile for:	middleware/openrtm-aist
 # Created:			Anthony Mallet on Wed, 23 Jan 2008
 #
 
 RTM_VERSION=		0.4.2
 DISTNAME=		OpenRTM-aist-${RTM_VERSION}-RELEASE
 PKGNAME=		openrtm-aist-${RTM_VERSION}
-CATEGORIES=		architecture
+CATEGORIES=		middleware
 MASTER_SITES=		http://www.openrtm.org/pub/OpenRTM-aist/cxx/${RTM_VERSION}/
 
 MAINTAINER=		openrobots@laas.fr
