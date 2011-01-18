@@ -12,7 +12,7 @@ ifeq (+,$(SVN_DEPEND_MK)) # ------------------------------------------------
 
 PREFER.svn?=	system
 DEPEND_USE+=	svn
-DEPEND_ABI.svn?=svn>=1
+DEPEND_ABI.svn?=svn>=1.6
 
 SYSTEM_SEARCH.svn=	\
 	'bin/svn:p:% --version --quiet'
