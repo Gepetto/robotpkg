@@ -3,4 +3,4 @@
 #
 
 ROS_VERSION=	diamondback
-PREFIX=		${LOCALBASE}/opt/${ROS_VERSION}
+PREFIX=		${LOCALBASE}/opt/ros/${ROS_VERSION}
