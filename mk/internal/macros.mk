@@ -269,8 +269,10 @@ override define _versionreqd
 	'x-$$(call substs,< <=,,$${_rqd_})' || echo no))),,$${_rqd_})))
 
   # result is the union of both, except if they are incompatible
-  $1:=$$(if $$(strip $$(filter-out $$(subst >,,$${_maxmin_}),		\
-	$$(subst <,,$${_minmax_}))),,$${_maxmin_}$${_minmax_})
+  $1:=$$(if $${_minmax_},$$(if $$(filter-out $$(call			\
+    substs,> =,,$${_maxmin_}),$$(call substs,< =,,$${_minmax_}))	\
+    ,$${_maxmin_}$${_minmax_},$$(if $$(filter $$(subst >,<,$${_maxmin_})\
+    ,$${_minmax_}),$${_maxmin_}$${_minmax_})),$${_maxmin_})
 endef
 override define versionreqd
 $(strip $(eval $(call _versionreqd,_r_,$1)) ${_r_})

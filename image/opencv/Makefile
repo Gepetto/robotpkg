@@ -18,7 +18,7 @@ LICENSE=		modified-bsd
 NOT_FOR_PLATFORM=
 
 USE_LANGUAGES+=		c c++ python
-PYTHON_REQUIRED+=	>=2.5<3
+PYTHON_REQUIRED+=	>=2.5 <3
 
 # build configuration
 CMAKE_ARGS+=		-DBUILD_PACKAGE=OFF

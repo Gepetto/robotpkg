@@ -156,9 +156,10 @@ ifndef NO_BUILD
   ifneq (,$(filter python, ${USE_LANGUAGES}))
     # Define python version selection options if possible
     ifdef PYTHON_REQUIRED
-      PKG_OPTIONS_REQUIRED_GROUPS+=$(if $(and 		\
-	$(call versionreqd,${PYTHON_REQUIRED} >=3),	\
-	$(call versionreqd,${PYTHON_REQUIRED} <3)),python)
+      ifneq (,$(and $(call versionreqd,${PYTHON_REQUIRED} >=3), $(call \
+	versionreqd,${PYTHON_REQUIRED} <3)))
+        PKG_OPTIONS_REQUIRED_GROUPS+=python
+      endif
     else
       PKG_OPTIONS_REQUIRED_GROUPS+=python
     endif

@@ -67,12 +67,11 @@ ifeq (,$(_PY_REQUIRED))
   _PY_REQUIRED:= >=2.4<3
 endif
 
-
 # Include the depend.mk corresponding to the requirements
-ifeq (yes,$(shell ${PKG_ADMIN} pmatch 'x${_PY_REQUIRED}' 'x-3' && echo yes))
-  include ${ROBOTPKG_DIR}/lang/python3/depend.mk
-else
+ifeq (yes,$(shell ${PKG_ADMIN} pmatch 'x${_PY_REQUIRED}' 'x-2.99' && echo yes))
   include ${ROBOTPKG_DIR}/mk/sysdep/python2.mk
+else
+  include ${ROBOTPKG_DIR}/lang/python3/depend.mk
 endif
 
 # Define some variables
