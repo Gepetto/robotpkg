@@ -12,6 +12,8 @@ SUBDIR+=	openrtm-aist
 SUBDIR+=	orocos-rtt
 SUBDIR+=	pocolibs
 SUBDIR+=	robotis-oroyarp
+SUBDIR+=	ros-comm
+SUBDIR+=	ros-core
 SUBDIR+=	yarp
 
 include ../mk/robotpkg.subdir.mk
