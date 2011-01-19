@@ -1,0 +1,12 @@
+Fix an issue with python2.5
+
+--- core/rosbuild/bin/package_source.py~	2011-01-18 13:41:44.394664824 +0100
++++ core/rosbuild/bin/package_source.py	2011-01-18 14:03:27.556665538 +0100
+@@ -4,6 +4,7 @@
+ usage: %prog [args]
+ """
+ 
++from __future__ import with_statement
+ import os, sys, string
+ from optparse import OptionParser
+ 

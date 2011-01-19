@@ -1,0 +1,14 @@
+Use the full ldflags for boost, otherwise programs might not link because of
+missing flags.
+
+--- core/rosbuild/public.cmake~	2011-01-16 13:45:19.000000000 +0100
++++ core/rosbuild/public.cmake	2011-01-16 14:41:47.000000000 +0100
+@@ -892,7 +892,7 @@
+     endif(_first)
+   endforeach(arg)
+   set(_sysroot "--sysroot=${CMAKE_FIND_ROOT_PATH}") 
+-  execute_process(COMMAND "rosboost-cfg" ${_sysroot} "--libs" ${_libs}
++  execute_process(COMMAND "rosboost-cfg" ${_sysroot} "--lflags" ${_libs}
+                   OUTPUT_VARIABLE BOOST_LIBS
+ 		  ERROR_VARIABLE _boostcfg_error
+                   RESULT_VARIABLE _boostcfg_failed

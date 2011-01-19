@@ -1,0 +1,51 @@
+Don't call 'python' blindly and use the correct python program.
+
+--- core/rosbuild/private.cmake~	2010-12-31 02:40:39.000000000 +0100
++++ core/rosbuild/private.cmake	2011-01-19 11:14:43.497665487 +0100
+@@ -74,7 +74,7 @@
+ # Check validity of manifest.xml, to avoid esoteric build errors
+ macro(_rosbuild_check_manifest)
+   execute_process(
+-    COMMAND python -c "import roslib.manifest; roslib.manifest.parse_file('manifest.xml')"
++    COMMAND @PYTHON@ -c "import roslib.manifest; roslib.manifest.parse_file('manifest.xml')"
+     OUTPUT_VARIABLE _manifest_error
+     ERROR_VARIABLE _manifest_error
+     RESULT_VARIABLE _manifest_failed
+@@ -369,7 +369,7 @@
+ 
+ macro(_rosbuild_get_clock var)
+   execute_process(
+-    COMMAND python -c "import time, sys; sys.stdout.write(str(time.time()));"
++    COMMAND @PYTHON@ -c "import time, sys; sys.stdout.write(str(time.time()));"
+     OUTPUT_VARIABLE ${var}
+     ERROR_VARIABLE _time_error
+     RESULT_VARIABLE _time_failed
+@@ -403,7 +403,7 @@
+     # Call Python to compare the provided time to the latest mtime on all
+     # the files
+     execute_process(
+-      COMMAND python -c "import os, sys; sys.stdout.write('1' if set(${_pylist}) != set(${_cached_pylist}) or ${_t} < max(os.stat(f).st_mtime for f in ${_pylist}) else '0');"
++      COMMAND @PYTHON@ -c "import os, sys; sys.stdout.write('1' if set(${_pylist}) != set(${_cached_pylist}) or ${_t} < max(os.stat(f).st_mtime for f in ${_pylist}) else '0');"
+       OUTPUT_VARIABLE ${var}
+       ERROR_VARIABLE _mtime_error
+       RESULT_VARIABLE _mtime_failed
+--- core/rosbuild/public.cmake~	2011-01-01 00:12:15.000000000 +0100
++++ core/rosbuild/public.cmake	2011-01-19 11:15:51.425665306 +0100
+@@ -781,7 +781,7 @@
+     file(WRITE ${PROJECT_SOURCE_DIR}/srv_gen/generated "yes")
+     # Now set the mtime to something consistent.  We only want whether or not this file exists to matter
+     execute_process(
+-      COMMAND python -c "import os; os.utime('${PROJECT_SOURCE_DIR}/srv_gen/generated', (0, 0))"
++      COMMAND @PYTHON@ -c "import os; os.utime('${PROJECT_SOURCE_DIR}/srv_gen/generated', (0, 0))"
+       ERROR_VARIABLE _set_mtime_error
+       RESULT_VARIABLE _set_mtime_failed
+       OUTPUT_STRIP_TRAILING_WHITESPACE)
+@@ -816,7 +816,7 @@
+     file(WRITE ${PROJECT_SOURCE_DIR}/msg_gen/generated "yes")
+     # Now set the mtime to something consistent.  We only want whether or not this file exists to matter
+     execute_process(
+-      COMMAND python -c "import os; os.utime('${PROJECT_SOURCE_DIR}/msg_gen/generated', (0, 0))"
++      COMMAND @PYTHON@ -c "import os; os.utime('${PROJECT_SOURCE_DIR}/msg_gen/generated', (0, 0))"
+       ERROR_VARIABLE _set_mtime_error
+       RESULT_VARIABLE _set_mtime_failed
+       OUTPUT_STRIP_TRAILING_WHITESPACE)

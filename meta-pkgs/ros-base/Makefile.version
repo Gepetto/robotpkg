@@ -1,0 +1,6 @@
+# robotpkg Makefile for:	meta-pkgs/ros-base
+# Created:			Anthony Mallet on Wed, 19 Jan 2011
+#
+
+ROS_VERSION=	diamondback
+PREFIX=		${LOCALBASE}/opt/${ROS_VERSION}

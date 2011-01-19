@@ -1,0 +1,101 @@
+# robotpkg Makefile for:	meta-pkgs/ros-base
+# Created:			Anthony Mallet on Wed, 19 Jan 2011
+#
+
+ROS_PACKAGE?=			undefined
+ROS_COMMENT?=			undefined
+ROS_INSTALLATION_SUBDIR?=	undefined
+
+DISTNAME=	ros-${ROS_PACKAGE}-${PKGVERSION}
+MASTER_SITE_ROS=https://code.ros.org/svn/ros/stacks/
+FETCH_METHOD=	svn
+
+CATEGORIES?=	middleware
+MAINTAINER?=	openrobots@laas.fr
+HOMEPAGE?=	http://www.ros.org/wiki/
+COMMENT?=	The Robotic Operating System (${ROS_COMMENT})
+LICENSE=	modified-bsd
+
+USE_LANGUAGES+=	c c++ python
+PYTHON_REQUIRED+=>=2.5<3
+MESSAGE_SRC?=	../../meta-pkgs/ros-base/MESSAGE
+
+include ../../meta-pkgs/ros-base/Makefile.version
+
+# Replace python interpreter
+SUBST_CLASSES+=		rpython
+SUBST_STAGE.rpython=	pre-configure
+SUBST_MESSAGE.rpython=	Fixing python interpreter path in python scripts
+SUBST_FILES.rpython=	`${FIND} . -type f \( -name '*.py' -o -name '*.cmake' \
+				-o -perm -u+x \)`
+SUBST_SED.rpython=	-e '1s|^\\\#!.*python[0-9.]*|\\\#!${PYTHON}|'
+SUBST_SED.rpython+=	-e 's|@PYTHON@|${PYTHON}|'
+
+# Replace bash interpreter
+SUBST_CLASSES+=		rbash
+SUBST_STAGE.rbash=	pre-configure
+SUBST_MESSAGE.rbash=	Fixing bash interpreter path in bash scripts
+SUBST_FILES.rbash=	`${FIND} . -type f \( -name '*.sh' -o -perm -u+x \)`
+SUBST_SED.rbash=	-e '1s|^\\\#!.*bash|\\\#!${BASH}|'
+
+
+# Setup a build environment
+MAKE_ENV+=	MAKE=${MAKE}
+MAKE_ENV+=	WRKSRC=${WRKSRC}
+MAKE_ENV+=	ROS_INSTALLATION_SUBDIR=${ROS_INSTALLATION_SUBDIR}
+ifndef ROS_BOOTSTRAP
+  MAKE_ENV+=	PATH=$(call quote,$(strip ${PREFIX}/ros/bin:${PATH}))
+  MAKE_ENV+=	ROS_ROOT=${PREFIX}/ros
+  MAKE_ENV+=	ROS_PACKAGE_PATH=${WRKDIR}:${PREFIX}
+  PYTHONPATH+=	${PREFIX.ros-core}/ros/core/roslib/src
+
+  BUILD_MAKE_CMD=${SETENV} ${MAKE_ENV} ${PREFIX}/ros/bin/rosmake
+  BUILD_MAKE_CMD+=--no-rosdep -i -V --disable-logging ${ROS_INSTALLATION_SUBDIR}
+  ifneq (,$(call isno,${MAKE_JOBS_SAFE}))
+    BUILD_MAKE_CMD+=--pjobs=1
+  else ifneq (,$(MAKE_JOBS))
+    BUILD_MAKE_CMD+=--pjobs=$(MAKE_JOBS)
+  else
+    BUILD_MAKE_CMD+=--pjobs=1
+  endif
+
+  include ../../middleware/ros-core/depend.mk
+endif # ROS_BOOTSTRAP
+
+post-extract:
+	cd ${WRKDIR} && ${LN} -s ${WRKSRC} ${ROS_INSTALLATION_SUBDIR}
+
+do-configure:
+	@${DO_NADA}
+
+post-build:
+	${RUN}${BUILD_LOGFILTER} ${PYTHON} -m compileall -f ${WRKSRC}
+
+# install files from PLIST_SRC
+do-install:
+	${RUN}cd ${WRKDIR} && 						\
+	${AWK} '$(if $(filter dylib,${_OPSYS_SHLIB_TYPE}),		\
+	  /.*\/lib[^\/]+\.so$$/ {					\
+		sub("\\.so$$", ".dylib"); print;			\
+	  })								\
+	  /^[^@]/ {print}' ${PLIST_SRC} > ${WRKDIR}/.install_list;	\
+	${INSTALL_LOGFILTER} ${SH} -c 					\
+	 	'${PAX} -vrwp p ${PREFIX} < ${WRKDIR}/.install_list'
+
+# semi-automatic PLIST generation, from ${WRKSRC}!
+PRINT_PLIST_FILES_CMD=					\
+	${FIND} ${WRKSRC} \(				\
+		   -name 'Makefile'			\
+		-o -name 'CMakeLists.txt'		\
+		-o -name '*.cpp'			\
+		-o -path '*/build'			\
+		-o -path '*/test'			\
+	 \) -prune -o \! -type d -print |		\
+	${SED} -e 's|${WRKSRC}|${PREFIX}/${ROS_INSTALLATION_SUBDIR}|g';
+
+
+include ../../pkgtools/pax/depend.mk
+include ../../pkgtools/install-sh/depend.mk
+include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/bash.mk
+include ../../mk/sysdep/py-yaml.mk
