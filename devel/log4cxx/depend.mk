@@ -20,7 +20,7 @@ DEPEND_DIR.log4cxx?=	../../devel/log4cxx
 
 SYSTEM_SEARCH.log4cxx=\
 	include/log4cxx/log4cxx.h	\
-	'lib/pkgconfig/liblog4cxx.pc:/Version/s/[^0-9.]//gp'
+	'lib/pkgconfig/liblog4cxx.pc:/^Version/s/[^0-9.]//gp'
 
 endif # LOG4CXX_DEPEND_MK --------------------------------------------------
 
