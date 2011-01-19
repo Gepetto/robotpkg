@@ -16,12 +16,12 @@ include ../../meta-pkgs/ros-base/Makefile.common
 # Build environment and tool
 MAKE_ENV+=	PATH=$(call quote,${WRKSRC}/bin:${PATH})
 MAKE_ENV+=	ROS_ROOT=${WRKSRC}
+MAKE_ENV+=	PYTHONPATH=$(call quote,${WRKSRC}/core/roslib/src:${PYTHONPATH})
 ifeq (Darwin,${OPSYS})
   MAKE_ENV+=	DYLD_LIBRARY_PATH=${WRKSRC}/tools/rospack/lib
 else
   MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/tools/rospack/lib
 endif
-PYTHONPATH+=	${WRKSRC}/core/roslib/src
 
 BUILD_MAKE_CMD=	${SETENV} ${MAKE_ENV} ${WRKSRC}/bin/rosmake
 BUILD_MAKE_CMD+=--no-rosdep -i -V --disable-logging --bootstrap ros

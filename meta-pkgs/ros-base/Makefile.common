@@ -47,7 +47,7 @@ ifndef ROS_BOOTSTRAP
   MAKE_ENV+=	PATH=$(call quote,$(strip ${PREFIX}/ros/bin:${PATH}))
   MAKE_ENV+=	ROS_ROOT=${PREFIX}/ros
   MAKE_ENV+=	ROS_PACKAGE_PATH=${WRKDIR}:${PREFIX}
-  PYTHONPATH+=	${PREFIX.ros-core}/ros/core/roslib/src
+  MAKE_ENV+=	PYTHONPATH=$(call quote,${PREFIX}/ros/core/roslib/src:${PYTHONPATH})
 
   BUILD_MAKE_CMD=${SETENV} ${MAKE_ENV} ${PREFIX}/ros/bin/rosmake
   BUILD_MAKE_CMD+=--no-rosdep -i -V --disable-logging ${ROS_INSTALLATION_SUBDIR}
