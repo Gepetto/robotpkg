@@ -19,20 +19,20 @@ installation of other ros component won't be affected (in theory :p).
 +  # Add rpath to installation directories (the dirty way, as this leaves rpath
 +  # to the build directories as well). This works only if ENV{WRKDIR} and
 +  # ENV{PREFIX} are set (typically by robotpkg).
-+  if((DEFINED ENV{WRKSRC}) AND (DEFINED ENV{PREFIX}))
++  if(DEFINED ENV{WRKSRC} AND DEFINED ENV{PREFIX})
 +  if(APPLE)
 +    file(RELATIVE_PATH _rdir $ENV{WRKSRC} ${LIBRARY_OUTPUT_PATH})
-+    get_filename_component(_rdir "$ENV{PREFIX}/$ENV{ROS_INSTALLATION_SUBDIR}/${_rdir}" REALPATH)
++    get_filename_component(_rdir "$ENV{PREFIX}/$ENV{ROS_INSTALLATION_SUBDIR}/${_rdir}" ABSOLUTE)
 +    set_target_properties(${lib} PROPERTIES INSTALL_NAME_DIR "${_rdir}"
 +     				  BUILD_WITH_INSTALL_RPATH TRUE)
 +  else(APPLE)
 +    set(_rpaths "")
 +    foreach(_linkdir ${${PROJECT_NAME}_LIBRARY_DIRS})
 +      file(RELATIVE_PATH _rdir $ENV{WRKSRC} ${_linkdir})
-+      get_filename_component(_rdir "$ENV{PREFIX}/$ENV{ROS_INSTALLATION_SUBDIR}/${_rdir}" REALPATH)
-+      if (NOT (_rdir MATCHES "^/usr/lib"))
++      get_filename_component(_rdir "$ENV{PREFIX}/$ENV{ROS_INSTALLATION_SUBDIR}/${_rdir}" ABSOLUTE)
++      if (NOT _rdir MATCHES "^/usr/lib")
 +        list(APPEND _rpaths "${_rdir}")
-+      endif (NOT (_rdir MATCHES "^/usr/lib"))
++      endif (NOT _rdir MATCHES "^/usr/lib")
 +    endforeach(_linkdir)
 +    list(LENGTH _rpaths _rpaths_len)
 +    if (${_rpaths_len} GREATER 0)
@@ -40,7 +40,7 @@ installation of other ros component won't be affected (in theory :p).
 +      				   BUILD_WITH_INSTALL_RPATH TRUE)
 +    endif(${_rpaths_len} GREATER 0)
 +  endif(APPLE)
-+  endif((DEFINED ENV{WRKSRC}) AND (DEFINED ENV{PREFIX}))
++  endif(DEFINED ENV{WRKSRC} AND DEFINED ENV{PREFIX})
 +
    # Add ROS-wide compile and link flags (usually things like -Wall).  These
    # are set in rosconfig.cmake.
