@@ -2,22 +2,24 @@
 # Created:			Séverin Lemaignan on Tue, 7 Jul 2009
 #
 
-DISTNAME=	pellet-2.1.0
-PKGVERSION=	2.1.0
-PKGNAME=	pellet-${PKGVERSION}
-MASTER_SITES=	http://clarkparsia.com/pellet/downloads/
-EXTRACT_SUFX=	.zip
+DISTNAME=	       pellet-2.2.2
+PKGVERSION=	       2.2.2
+PKGNAME=	       pellet-${PKGVERSION}
+MASTER_SITES=	   http://clarkparsia.com/pellet/downloads/
+EXTRACT_SUFX=	   .zip
 
-CATEGORIES=	knowledge
-MAINTAINER=	openrobots@laas.fr
-HOMEPAGE=	http://clarkparsia.com/pellet
-COMMENT=	An open source reasoner for OWL 2 DL in Java.
+CATEGORIES=	       knowledge
+MAINTAINER=	       openrobots@laas.fr
+HOMEPAGE=	       http://clarkparsia.com/pellet
+COMMENT=	       An open source reasoner for OWL 2 DL in Java.
 
-NO_CONFIGURE=	yes
-NO_BUILD= yes
+LICENSE=           gnu-agpl-v3
 
-WRKSRC=		${WRKDIR}/${DISTNAME}
-USE_LANGUAGES=	java
+NO_CONFIGURE=      yes
+NO_BUILD=          yes
+
+WRKSRC=		       ${WRKDIR}/${DISTNAME}
+USE_LANGUAGES=	   java
 
 # doc option
 PKG_SUPPORTED_OPTIONS+=	doc
