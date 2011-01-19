@@ -80,14 +80,11 @@ PYTHON_VERSION=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c 		\
 	'import distutils.sysconfig;					\
 	print(distutils.sysconfig.get_config_var("VERSION"))'))
 PYTHON_SITELIB=$(if ${PYTHON_VERSION},lib/python${PYTHON_VERSION}/site-packages)
-PYTHONPATH:=$(call prependpaths,${PREFIX}/${PYTHON_SITELIB},${PYTHONPATH})
+export PYTHONPATH:=$(call prependpaths,${PREFIX}/${PYTHON_SITELIB},${PYTHONPATH})
 
 PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 PRINT_PLIST_AWK_SUBST+=\
 	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
-
-# Setup environment
-MAKE_ENV+=	PYTHONPATH=$(call quote,$(strip ${PYTHONPATH}))
 
 # Add extra replacement in PLISTs
 PLIST_SUBST+=\
