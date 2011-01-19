@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -251,8 +251,8 @@ ifeq (undefined,$(origin ONLY_FOR_PLATFORM))
 endif
 
 LOCALBASE?=		/opt/openrobots
-PATH:=			$(call prependpath, ${LOCALBASE}/sbin,${PATH})
-PATH:=			$(call prependpath, ${LOCALBASE}/bin,${PATH})
+PATH:=			$(call prependpath,${LOCALBASE}/sbin,${PATH})
+PATH:=			$(call prependpath,${LOCALBASE}/bin,${PATH})
 export PATH
 
 PREFIX?=		${LOCALBASE}
