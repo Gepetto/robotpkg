@@ -24,7 +24,7 @@ DEPEND_PYTHONPATH.py-setuptools=\
 _pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.py-setuptools=\
 	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version'			\
-	'lib/${_pynamespec}/site-packages/setuptools/__init__.py'
+	'lib/${_pynamespec}/{site,dist}-packages/setuptools/__init__.py'
 
 SYSTEM_PKG.Linux.py-setuptools=	python-setuptools
 SYSTEM_PKG.NetBSD.py-setuptools=pkgsrc/devel/py-setuptools
