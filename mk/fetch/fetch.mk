@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -96,12 +96,15 @@ endef
 $(foreach fetchfile,${_PATCHFILES},$(eval ${_PATCHFILES_VAR}))
 
 
-# depend on the proper fetch tool if required
+# depend on the proper fetch tool if required, and always on tnftp for
+# MASTER_SITE_BACKUP
 ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
   ifneq ($(words $(wildcard $(addprefix ${DISTDIR}/,${_ALLFILES}))),\
 	 $(words ${_ALLFILES}))
     $(call require,${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
     include $(addprefix ${ROBOTPKG_DIR}/, ${_FETCH_DEPEND})
+    DEPEND_METHOD.tnftp+=	bootstrap
+    include ${ROBOTPKG_DIR}/pkgtools/tnftp/depend.mk
   endif
 endif
 
@@ -190,18 +193,23 @@ endif
 # transfer the files from the appropriate sites if needed.
 #
 #
-
-_FETCH_SCRIPT=${FETCH_LOGFILTER} ${SETENV}				\
+_FETCH_ENV=\
 	CP=${CP} ECHO=${ECHO} MV=$(call quote,${MV})			\
 	TEST=$(call quote,${TEST}) MKDIR=$(call quote,${MKDIR})		\
 	TOUCH=$(call quote,${TOUCH}) WC=$(call quote,${WC})		\
 	FIND=$(call quote,${FIND}) SORT=$(call quote,${SORT})		\
-	CHECKSUM=$(call quote,${_CHECKSUM_CMD})				\
+	CHECKSUM=$(call quote,${_CHECKSUM_CMD})
+
+_FETCH_SCRIPT=${FETCH_LOGFILTER} ${SETENV} ${_FETCH_ENV}		\
 	FETCH_CMD=$(call quote,${_FETCH_CMD}) 				\
 	FETCH_BEFORE_ARGS=$(call quote,${_FETCH_BEFORE_ARGS})		\
 	FETCH_AFTER_ARGS=$(call quote,${_FETCH_AFTER_ARGS})		\
 	FETCH_RESUME_ARGS=$(call quote,${_FETCH_RESUME_ARGS})		\
 	FETCH_OUTPUT_ARGS=$(call quote,${_FETCH_OUTPUT_ARGS})		\
+	${SH} ${ROBOTPKG_DIR}/mk/fetch/fetch
+
+_FETCH_SCRIPT_BACKUP=${FETCH_LOGFILTER} ${SETENV} ${_FETCH_ENV}		\
+	FETCH_CMD=${TNFTP} FETCH_BEFORE_ARGS=-R FETCH_OUTPUT_ARGS=-o	\
 	${SH} ${ROBOTPKG_DIR}/mk/fetch/fetch
 
 _FETCH_ARGS+=	-e $(patsubst %${EXTRACT_SUFX},%,$(notdir $@))
@@ -239,7 +247,7 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 	${_FETCH_SCRIPT} -m ${FETCH_METHOD} ${_FETCH_ARGS}		\
 		$(notdir $@) ${_ORDERED_SITES} ||:;			\
 	if ${TEST} ! -f $@; then					\
-		${_FETCH_SCRIPT} -m archive ${_FETCH_ARGS}		\
+		${_FETCH_SCRIPT_BACKUP} -m archive ${_FETCH_ARGS}	\
 			$(notdir $@) ${_MASTER_SITE_BACKUP} ||:;	\
 	fi;								\
 	if ${TEST} ! -f $@; then					\
