@@ -337,6 +337,7 @@ while ${TEST} $# -gt 0; do
 	)
 	if ${TEST} $? -ne 0; then
 	    ${ECHO} 1>&2 "$self: Unable to fetch expected file $file"
+	    rm -f "$outputfile"
 	    continue
 	fi
 	if verify_file $outputpath; then
