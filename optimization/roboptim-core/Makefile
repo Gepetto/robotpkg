@@ -7,7 +7,7 @@ PKGNAME=	roboptim-core-${VERSION}
 VERSION=	0.6
 
 CATEGORIES=	optimization
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=roboptim/}
+MASTER_SITES=	https://github.com/downloads/laas/roboptim-core/
 MASTER_REPOSITORY=git git://github.com/laas/roboptim-core.git
 
 MAINTAINER=	roboptim-user@lists.sourceforge.net
