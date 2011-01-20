@@ -87,12 +87,23 @@ _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE:=${DIST_SUBDIR:=/}}
 # The following variables are all lists of options to pass to he command
 # used to do the actual fetching of the file.
 ifeq (archive,$(strip ${FETCH_METHOD}))
-  _FETCH_CMD=		${TNFTP}
-  _FETCH_RESUME_ARGS=	-R
-  _FETCH_OUTPUT_ARGS=	-o
+  # tnftp does not know about https
+  ifeq (,$(findstring https://,${MASTER_SITES}))
+    _FETCH_CMD=		${TNFTP}
+    _FETCH_RESUME_ARGS=	-R
+    _FETCH_OUTPUT_ARGS=	-o
 
-  _FETCH_DEPEND=	pkgtools/tnftp/depend.mk
-  DEPEND_METHOD.tnftp+=	bootstrap
+    _FETCH_DEPEND=	pkgtools/tnftp/depend.mk
+    DEPEND_METHOD.tnftp+=bootstrap
+  else
+    _FETCH_CMD=		${WGET}
+    _FETCH_BEFORE_ARGS=	--no-check-certificate
+    _FETCH_RESUME_ARGS=	-c
+    _FETCH_OUTPUT_ARGS=	-O
+
+    _FETCH_DEPEND=	mk/sysdep/wget.mk
+    DEPEND_METHOD.wget+=bootstrap
+  endif
 endif
 
 ifeq (cvs,$(strip ${FETCH_METHOD}))
