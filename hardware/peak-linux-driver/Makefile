@@ -2,9 +2,8 @@
 # Created:			Matthieu Herrb on Wed, 31 Dec 2008
 #
 
-DISTNAME=	peak-linux-driver.${VERSION}
-PKGNAME=	peak-linux-driver-${VERSION}
-VERSION=	6.20
+DISTNAME=	peak-linux-driver-${VERSION}
+VERSION=	6.24
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.peak-system.com/fileadmin/media/linux/files/
 HOMEPAGE=	http://www.peak-system.com/fileadmin/media/linux/
