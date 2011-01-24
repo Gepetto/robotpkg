@@ -16,6 +16,7 @@ PREFER.boost-libs?=	${PREFER.boost}
 
 SYSTEM_PKG.Linux-fedora.boost-libs=	boost-devel
 SYSTEM_PKG.Linux-ubuntu.boost-libs=	libboost-dev
+SYSTEM_PKG.Linux-debian.boost-libs=	libboost-dev
 SYSTEM_PKG.NetBSD.boost-libs=		pkgsrc/devel/boost-libs
 
 SYSTEM_SEARCH.boost-libs=\
