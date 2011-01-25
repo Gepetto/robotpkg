@@ -14,7 +14,7 @@ PREFER.openrobots-pose?=	robotpkg
 
 DEPEND_USE+=		openrobots-pose
 
-DEPEND_ABI.openrobots-pose?=	openrobots-pose>=1.1
+DEPEND_ABI.openrobots-pose?=	openrobots-pose>=1.2
 DEPEND_DIR.openrobots-pose?=	../../interfaces/openrobots-pose
 
 SYSTEM_SEARCH.openrobots-pose=\

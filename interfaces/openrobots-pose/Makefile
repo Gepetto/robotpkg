@@ -2,7 +2,7 @@
 #                            Created: Severin Lemaignan, 25 Jan 2011
 #
 
-DISTNAME=			openrobots-pose-1.1
+DISTNAME=			openrobots-pose-1.2
 
 CATEGORIES= 		interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openrobots-pose/}
