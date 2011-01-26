@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2006,2008-2010 LAAS/CNRS
+# Copyright (c) 2006,2008-2011 LAAS/CNRS
 # Copyright (c) 2001-2002 Alistair G. Crooks.
 # All rights reserved.
 #
@@ -200,6 +200,12 @@ export OPSYS
 if [ "${machine_arch}" != "" ]; then
 	MACHINE_ARCH=${machine_arch}
 	export MACHINE_ARCH
+fi
+
+if [ -n "$SH" ]; then
+    shprog="$SH"
+else
+    check_prog shprog sh
 fi
 
 if [ -n "$CP" ]; then
