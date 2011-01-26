@@ -19,7 +19,7 @@ DEPEND_DIR.libpyyarp?=	../../middleware/libpyyarp
 
 
 SYSTEM_SEARCH.libpyyarp=\
-	'lib/python[0-9.]*/{site-package,dist-packages}/yarp.py'
+	'lib/python[0-9.]*/{site,dist}-packages/yarp.py'
 	
 
 include ../../middleware/yarp/depend.mk
