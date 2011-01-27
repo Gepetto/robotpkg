@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -271,7 +271,7 @@ pkgsrc-patch-message:
 do-pkgsrc-patch:
 	${RUN}								\
 	fail=;								\
-	patches=$(call quote,${_PKGSRC_PATCHES});			\
+	patches=$(call quote,$(sort ${_PKGSRC_PATCHES}));		\
 	patch_warning() {						\
 		${ERROR_MSG} "$$@";					\
 	};								\
