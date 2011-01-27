@@ -47,7 +47,7 @@ libnbcompat-build:
 	cd ${LIBNBCOMPAT_SRCDIR} && 					\
 	${CONFIGURE_LOGFILTER} ${SETENV}				\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
-		CPPFLAGS="${CPPFLAGS}" ${CONFIG_SHELL} configure	\
+		CPPFLAGS="${CPPFLAGS}" ${CONFIG_SHELL} ./configure	\
 		${LIBNBCOMPAT_CONFIGURE_ARGS}				\
 	&& ${CONFIGURE_LOGFILTER} ${MAKE_PROGRAM}
   else
