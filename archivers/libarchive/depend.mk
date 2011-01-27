@@ -52,7 +52,7 @@ libarchive-build:
 	cd ${LIBARCHIVE_SRCDIR} && 					\
 	${CONFIGURE_LOGFILTER} ${SETENV}				\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
-		CPPFLAGS="${CPPFLAGS}"					\
+		CPPFLAGS="${CPPFLAGS}" MISSING=:			\
 		${CONFIG_SHELL} ./configure -C --disable-shared		\
 		--disable-bsdtar --disable-dependency-tracking		\
 		--disable-bsdcpio --without-expat --without-xml2	\
