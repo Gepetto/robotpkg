@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2008-2010 LAAS/CNRS
+# Copyright (c) 2008-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -246,8 +246,16 @@ for p in `bracesubst $sysprefix`; do
     break
 done
 
-# Output result
+# exit successfully if a match was found
 if ${TEST} -n "$prefix"; then
+    # warn if an abi requirement is present but no version could be found
+    if ${TEST} -z "$pkgversion"; then
+	if ${PKG_ADMIN_CMD} pmatch $abi $pkg; then :; else
+	    ${ERROR_MSG} 1>&2 "Cannot check installed version of $pkg"
+	fi
+    fi
+
+    # print result
     ${ECHO} "$pkg$pkgversion"
 
     # test fd 3 existence and print other variables there if it exists, to

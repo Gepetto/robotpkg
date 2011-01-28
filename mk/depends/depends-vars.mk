@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -143,11 +143,12 @@ check-depends:
 		  "${DEPEND_ABI.${_pkg_}}", pkg,			\
 		  "${DEPEND_DIR.${_pkg_}}")}';				\
 	,								\
-	${_PREFIXSEARCH_CMD} 	 					\
+	{ exec 9>&1; ${_PREFIXSEARCH_CMD} 	 			\
 	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
 		$(call quote,${_pkg_})					\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
-		${SYSTEM_SEARCH.${_pkg_}} | ${AWK}			\
+		${SYSTEM_SEARCH.${_pkg_}} 2>&1 1>&9 | ${WARNING_CAT};	\
+	} | ${AWK}							\
 	    -v pkg="-" -v prefix=$(call quote,				\
 		$(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
 		     ${SYSTEM_PKG.${OPSYS}.${_pkg_}},			\
