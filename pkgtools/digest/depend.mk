@@ -13,7 +13,7 @@ ifeq (+,$(DIGEST_DEPEND_MK)) # ---------------------------------------------
 PREFER.digest?=		robotpkg
 DEPEND_USE+=		digest
 
-SYSTEM_SEARCH.digest=	'{s,}bin/robotpkg_digest'
+SYSTEM_SEARCH.digest=	'{s,}bin/robotpkg_digest:p:% -V'
 
 DEPEND_METHOD.digest?=	build
 DEPEND_ABI.digest?=	digest>=20080510
