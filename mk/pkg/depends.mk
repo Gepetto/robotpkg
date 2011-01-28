@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -177,12 +177,17 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	prefix=`${PKG_INFO} -qp ${_pkg_} | ${SED} -e 's|^[^/]*||;q'`;	\
 	${_PREFIXSEARCH_CMD} -p "$$prefix" 				\
 		"${_pkg_}" "${DEPEND_ABI.${_pkg_}}"			\
-		$(or ${SYSTEM_SEARCH.${_pkg_}}, "") >/dev/null || {	\
+		$(or ${SYSTEM_SEARCH.${_pkg_}}, "") >/dev/null 2>&1 || {\
 		${ERROR_MSG} "${hline}";				\
 		${ERROR_MSG} "$${bf}A package matching"			\
 			"\`${DEPEND_ABI.${_pkg_}}'$${rm}";		\
 		${ERROR_MSG} "$${bf}should be installed but some files"	\
 			"are missing.$${rm}";				\
+		${ERROR_MSG} "";					\
+		${_PREFIXSEARCH_CMD} -v -p "$$prefix" "${_pkg_}" 	\
+		  "${DEPEND_ABI.${_pkg_}}"				\
+		   $(or ${SYSTEM_SEARCH.${_pkg_}},"") |			\
+			${AWK} '/^missing:/ {print $$2}' | ${ERROR_CAT};\
 		${ERROR_MSG} "";					\
 		${ERROR_MSG} "Please reinstall the package in"		\
 			"${DEPEND_DIR.${_pkg_}}";			\
@@ -225,14 +230,18 @@ pkg-bootstrap-depends:
 	dir="${DEPEND_DIR.${_pkg_}}";					\
 	${_DEPENDS_INSTALL_CMD};					\
 	prefix=`${PKG_INFO} -qp "${_pkg_}" | ${SED} -e 's|^[^/]*||;q'`;	\
-	${_PREFIXSEARCH_CMD} -p "$$prefix" "${_pkg_}" "$$pattern"	\
-		$(or ${SYSTEM_SEARCH.${_pkg_}}, "")			\
-		>/dev/null 3>>${_PKGBSDEP_FILE} || {			\
+	${_PREFIXSEARCH_CMD} -p "$$prefix" "${_pkg_}" 			\
+	  "$$pattern" $(or ${SYSTEM_SEARCH.${_pkg_}},"")		\
+	    >/dev/null 2>&1 3>>${_PKGBSDEP_FILE} || {			\
 		${ERROR_MSG} "${hline}";				\
 		${ERROR_MSG} "$${bf}A package matching"			\
 			"\`$$pattern'$${rm}";				\
 		${ERROR_MSG} "$${bf}is installed but some files are"	\
-			"missing.$${rm}";				\
+			"missing:$${rm}";				\
+		${ERROR_MSG} "";					\
+		${_PREFIXSEARCH_CMD} -v -p "$$prefix" "${_pkg_}" 	\
+		  "$$pattern" $(or ${SYSTEM_SEARCH.${_pkg_}},"") |	\
+			${AWK} '/^missing:/ {print $$2}' | ${ERROR_CAT};\
 		${ERROR_MSG} "";					\
 		${ERROR_MSG} "Please reinstall the package in $$dir";	\
 		${ERROR_MSG} "${hline}";				\
