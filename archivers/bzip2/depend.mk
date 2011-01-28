@@ -19,7 +19,7 @@ SYSTEM_PKG.Linux-debian.bzip2=	bzip2 libbz2-dev
 SYSTEM_SEARCH.bzip2=	\
 	bin/bzip2	\
 	include/bzlib.h	\
-	lib/libbz2.*
+	'lib/libbz2.*'
 
   # pull-in the user preferences for bzip2 now
   include ../../mk/robotpkg.prefs.mk
@@ -49,7 +49,7 @@ bzip2-build:
   #
 DEPEND_USE+=		bzip2
 
-DEPEND_ABI.bzip2?=	bzip2>=1.0.3
+DEPEND_ABI.bzip2?=	bzip2
 DEPEND_DIR.bzip2?=	../../archivers/bzip2
 
 DEPEND_LIBS.bzip2+=	-lbz2
