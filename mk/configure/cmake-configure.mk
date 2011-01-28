@@ -1,6 +1,5 @@
-# $LAAS: cmake-configure.mk 2010/08/30 00:12:43 tho $
 #
-# Copyright (c) 2009-2010 LAAS/CNRS
+# Copyright (c) 2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -39,6 +38,7 @@ BUILD_DEFS+=	CMAKE_ARGS
 CMAKE_CONFIGURE_PREFIX?=${PREFIX}
 
 CMAKE_ARGS+=	-DUNIX=1
+CMAKE_ARGS+=	-DCMAKE_VERBOSE_MAKEFILE=ON
 CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
 CMAKE_ARGS+=	-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CONFIGURE_PREFIX}
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:PATH=${CMAKE_CONFIGURE_PREFIX}/lib
