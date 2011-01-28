@@ -41,5 +41,6 @@ do-install:
 	@${STEP_MSG} "Dropping \`\`root'' privileges."
 
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/sysdep/kernel.mk
 include ../../mk/sysdep/sudo.mk
 include ../../mk/robotpkg.mk
