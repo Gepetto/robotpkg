@@ -22,10 +22,10 @@ SYSTEM_PKG.Linux-fedora.zlib=	zlib-devel
 SYSTEM_PKG.Linux-ubuntu.zlib=	zlib1g-dev
 SYSTEM_PKG.Linux-debian.zlib=	zlib1g-dev
 
-SYSTEM_SEARCH.zlib=	\
-	include/zlib.h	\
-	include/zconf.h	\
-	lib/libz.*
+SYSTEM_SEARCH.zlib=\
+	'include/zlib.h:/define ZLIB_VERSION/s/[^0-9.]//gp'	\
+	include/zconf.h						\
+	'lib/libz.*'
 
   # pull-in the user preferences for zlib now
   include ../../mk/robotpkg.prefs.mk
