@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -89,7 +89,9 @@ do%update: .FORCE
 	${RUN}${RECURSIVE_MAKE} ${UPDATE_TARGET}			\
 			DEPENDS_TARGET=${DEPENDS_TARGET}
 	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
-	  if cd "${ROBOTPKG_DIR}/$${dir}"; then				\
+	  if ${TEST} -z "$${dir}"; then continue; fi;			\
+	  if ${TEST} -d "${ROBOTPKG_DIR}/$${dir}"; then			\
+	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	    ${RECURSIVE_MAKE} $(filter-out confirm,${UPDATE_TARGET})	\
 			DEPENDS_TARGET=${DEPENDS_TARGET} || {		\
 		${ERROR_MSG} ${hline};					\
@@ -141,10 +143,12 @@ update-done-message:
 .PHONY: update-clean
 update-clean:
 	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
-	  if cd "${ROBOTPKG_DIR}/$${dir}"; then				\
+	  if ${TEST} -z "$${dir}"; then continue; fi;			\
+	  if ${TEST} -d "${ROBOTPKG_DIR}/$${dir}"; then			\
+	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	    ${RECURSIVE_MAKE} cleaner || noclean=$$noclean" "$$dir;	\
 	  else								\
-	    ${PHASE_MSG} "Skipping nonexistent directory $${dep}"; 	\
+	    nodir=$$nodir" "$$dir;					\
 	  fi;								\
 	done 9<${_UPDATE_DIRS};						\
 	cd ${CURDIR};							\
@@ -159,6 +163,19 @@ update-clean:
 	      ${WARNING_MSG} "		$$pkg";				\
 	    done;							\
 	    ${WARNING_MSG} ${hline};					\
+	fi;								\
+	if ${TEST} -n "$$nodir"; then					\
+	    ${ERROR_MSG} ${hline};					\
+	    ${ERROR_MSG} "The following packages were either moved or"	\
+		"deleted and could not";				\
+	    ${ERROR_MSG} "be reinstalled:";				\
+	    for pkg in $$nodir; do					\
+	      ${ERROR_MSG} "		$$pkg";				\
+	    done;							\
+	    ${ERROR_MSG} "";						\
+	    ${ERROR_MSG} "Please reinstall them manually.";		\
+	    ${ERROR_MSG} ${hline};					\
+	    exit 2;							\
 	fi
 
 
@@ -170,7 +187,7 @@ ${_UPDATE_DIRS}: ${_UPDATE_LIST}
 	${RUN}pkgs=`${CAT} ${_UPDATE_LIST}`;				\
 	if ${TEST} "$$pkgs"; then					\
 	  ${PKG_INFO} -Q PKGPATH $$pkgs >$@;				\
-	fi
+	fi;
 
 ${_UPDATE_LIST}:
 	${RUN}${MKDIR} ${WRKDIR} && >$@;				\
@@ -189,7 +206,8 @@ update-deinstall-dlist:
 		${ECHO_MSG} "	$$dir";					\
 	    done 9<${_UPDATE_DIRS};					\
 	    while read dir <&9; do					\
-	      if cd "${ROBOTPKG_DIR}/$${dir}"; then			\
+	      if ${TEST} -n "$$dir" -a -d "${ROBOTPKG_DIR}/$${dir}";then\
+		cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	        ${RECURSIVE_MAKE} cleaner || {				\
 			${RM} ${_UPDATE_DIRS}; exit 2;			\
 		};							\
