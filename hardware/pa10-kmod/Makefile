@@ -19,6 +19,7 @@ KMOD=		papci.ko
 
 INSTALLATION_DIRS+=${KMOD_DIR}
 
+include ../../mk/sysdep/kernel.mk
 include ../../mk/sysdep/sudo.mk
 include ../../mk/robotpkg.mk
 
