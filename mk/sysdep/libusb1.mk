@@ -19,12 +19,14 @@ PREFER.libusb1?=	system
 DEPEND_USE+=		libusb1
 DEPEND_ABI.libusb1?=	libusb1>=1.0.6
 
-SYSTEM_SEARCH.libusb1=	\
-	include/libusb-1.0/libusb.h \
-	lib/libusb-1.0.*
+SYSTEM_SEARCH.libusb1=\
+	include/libusb-1.0/libusb.h	\
+	'lib/libusb-1.0.*'		\
+	'lib/pkgconfig/libusb-1.0.pc:/^Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Linux-fedora.libusb1=libusb1-devel
-SYSTEM_PKG.Linux-ubuntu.libusb1=libusb-1.0-0-dev
+SYSTEM_PKG.Linux-fedora.libusb1=	libusb1-devel
+SYSTEM_PKG.Linux-ubuntu.libusb1=	libusb-1.0-0-dev
+SYSTEM_PKG.Linux-debian.libusb1=	libusb-1.0-0-dev
 
 endif # LIBUSB1_DEPEND_MK ---------------------------------------------------
 
