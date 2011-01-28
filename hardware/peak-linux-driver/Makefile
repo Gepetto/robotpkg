@@ -29,4 +29,6 @@ ${WRKSRC}/pcan.pc:
 		< ${FILESDIR}/pcan.pc.in > ${WRKSRC}/pcan.pc
 
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/sysdep/popt.mk
+include ../../mk/sysdep/kernel.mk
 include ../../mk/robotpkg.mk
