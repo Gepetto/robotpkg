@@ -16,6 +16,7 @@ KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/char
 KMOD=		jr3.ko
 INSTALLATION_DIRS+=${KMOD_DIR}
 
+include ../../mk/sysdep/kernel.mk
 include ../../mk/sysdep/sudo.mk
 include ../../mk/robotpkg.mk
 
