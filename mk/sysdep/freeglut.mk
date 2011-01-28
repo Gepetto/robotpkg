@@ -20,14 +20,16 @@ ifeq (+,$(FREEGLUT_DEPEND_MK)) # ---------------------------------------------
 
 PREFER.freeglut?=	system
 DEPEND_USE+=		freeglut
-DEPEND_ABI.freeglut?=	freeglut>=2.4.0
+DEPEND_ABI.freeglut?=	freeglut
 
 SYSTEM_SEARCH.freeglut=	\
 	include/GL/glut.h \
-	lib/libGLU.so
+	lib/libglut.so
 
-SYSTEM_PKG.Linux-fedora.freeglut=freeglut-devel
-SYSTEM_PKG.Linux-ubuntu.freeglut=freeglut3-dev
+SYSTEM_PKG.Linux-fedora.freeglut=	freeglut-devel
+SYSTEM_PKG.Linux-ubuntu.freeglut=	freeglut3-dev
+SYSTEM_PKG.Linux-debian.freeglut=	freeglut3-dev
+SYSTEM_PKG.NetBSD.freeglut=		pkgsrc/graphics/freeglut
 
 endif # FREEGLUT_DEPEND_MK ---------------------------------------------------
 
