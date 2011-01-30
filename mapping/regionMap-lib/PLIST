@@ -1,0 +1,5 @@
+@comment Fri Jan 28 16:21:13 CET 2011
+include/libregionMap.h
+include/libregionMap_gdhe.h
+lib/libregionMap.la
+lib/pkgconfig/libregionMap.pc
