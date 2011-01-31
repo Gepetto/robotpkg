@@ -1,0 +1,15 @@
+--- Platform/Linux-x86/Build/Makefile.orig	2010-12-11 10:51:38.815535175 +0100
++++ Platform/Linux-x86/Build/Makefile	2010-12-13 12:03:33.120924611 +0100
+@@ -64,10 +64,10 @@
+ # define a function which creates a target for each proj
+ define CREATE_PROJ_TARGET
+ $1: 
+-	$(MAKE) -C $1 CFG=$(CFG)
++	$(MAKE) -C $1 
+ 
+ $1-clean: 
+-	$(MAKE) -C $1 CFG=$(CFG) clean
++	$(MAKE) -C $1  clean
+ endef
+ 
+ ################ TARGETS ##################

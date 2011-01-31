@@ -8,6 +8,7 @@ SUBDIR+=	libjyarp
 SUBDIR+=	libpyyarp
 SUBDIR+=	omniORB
 SUBDIR+=	omniORBpy
+SUBDIR+=	openni
 SUBDIR+=	openrtm-aist
 SUBDIR+=	orocos-rtt
 SUBDIR+=	pocolibs
