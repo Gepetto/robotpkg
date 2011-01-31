@@ -12,6 +12,7 @@ SUBDIR+=	libraw1394
 SUBDIR+=	libstereopixel
 SUBDIR+=	opencv1
 SUBDIR+=	opencv
+SUBDIR+=	openni-nite
 SUBDIR+=	sift
 SUBDIR+=	stereopixel-genom
 SUBDIR+=	viam-libs
