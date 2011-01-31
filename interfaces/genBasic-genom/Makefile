@@ -2,7 +2,7 @@
 # Created:			A. degroote on Sat, 17 May 2008
 #
 
-DISTNAME=		genBasic-genom-0.3
+DISTNAME=		genBasic-genom-0.4
 CATEGORIES=		interfaces
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
