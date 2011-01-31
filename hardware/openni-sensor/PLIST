@@ -1,0 +1,9 @@
+@comment Wed Dec 15 19:43:58 CET 2010
+bin/XnSensorServer
+etc/udev/rules.d/55-primesense-usb.rules
+lib/libXnCore.so
+lib/libXnDDK.so
+lib/libXnDeviceFile.so
+lib/libXnDeviceSensorV2.so
+lib/libXnFormats.so
+share/openni/GlobalDefaults.ini

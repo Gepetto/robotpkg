@@ -1,0 +1,2 @@
+copy ${PREFIX}/etc/rules.d/${UDEV_RULES} 
+into /etc/udev/rules.d as root to finish setting up ${PKGBASE}
