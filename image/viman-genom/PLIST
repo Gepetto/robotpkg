@@ -1,4 +1,4 @@
-@comment Tue Aug 31 2010
+@comment Tue Feb 1 10:59:19 CET 2011
 ${PLIST.noapi}bin/viman
 ${PLIST.noapi}bin/vimanSendInitRqst
 ${PLIST.noapi}bin/vimanTest
