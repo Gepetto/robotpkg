@@ -90,7 +90,7 @@ do%update: .FORCE
 			DEPENDS_TARGET=${DEPENDS_TARGET}
 	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
 	  if ${TEST} -z "$${dir}"; then continue; fi;			\
-	  if ${TEST} -d "${ROBOTPKG_DIR}/$${dir}"; then			\
+	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	    ${RECURSIVE_MAKE} $(filter-out confirm,${UPDATE_TARGET})	\
 			DEPENDS_TARGET=${DEPENDS_TARGET} || {		\
@@ -144,7 +144,7 @@ update-done-message:
 update-clean:
 	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
 	  if ${TEST} -z "$${dir}"; then continue; fi;			\
-	  if ${TEST} -d "${ROBOTPKG_DIR}/$${dir}"; then			\
+	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	    ${RECURSIVE_MAKE} cleaner || noclean=$$noclean" "$$dir;	\
 	  else								\
@@ -206,7 +206,8 @@ update-deinstall-dlist:
 		${ECHO_MSG} "	$$dir";					\
 	    done 9<${_UPDATE_DIRS};					\
 	    while read dir <&9; do					\
-	      if ${TEST} -n "$$dir" -a -d "${ROBOTPKG_DIR}/$${dir}";then\
+	      if ${TEST} -n "$$dir" -a					\
+			-f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 		cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	        ${RECURSIVE_MAKE} cleaner || {				\
 			${RM} ${_UPDATE_DIRS}; exit 2;			\
