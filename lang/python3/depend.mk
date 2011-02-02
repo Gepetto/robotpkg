@@ -10,45 +10,35 @@
 #
 #	PYTHON_REQUIRED is the version of python required, e.g. ">=3.1".
 #
-
-ifndef LANGUAGE_PYTHON_MK # ================================================
-
-# If we are included directly, simply register the language requirements
-USE_LANGUAGES+=		python
-PYTHON_REQUIRED+=	>=3
-
-else # =====================================================================
-
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-PYTHON_DEPEND_MK:=	${PYTHON_DEPEND_MK}+
+PYTHON3_DEPEND_MK:=	${PYTHON3_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		python3
 endif
 
-ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
+ifeq (+,$(PYTHON3_DEPEND_MK)) # --------------------------------------------
 
 PREFER.python3?=	system
 
 DEPEND_USE+=		python3
-DEPEND_ABI.python3?=	python3${_PY_REQUIRED}
+DEPEND_ABI.python3?=	python3${_PY3_REQUIRED}
 DEPEND_DIR.python3?=	../../lang/python3
+_PY3_REQUIRED?=		>=3
 
-_pynamespec=python{3,3.0,3.1,[0-9].[0-9],}
+_py3namespec=python{3,3.0,3.1,[0-9].[0-9],}
 SYSTEM_SEARCH.python3=\
-	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version' 	\
-	'include/${_pynamespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'	\
-	'lib/lib${_pynamespec}.{so,dylib,a}:s/^.*python//;s/[^.0-9]//gp:${ECHO} %'
+	'bin/${_py3namespec}:s/[^.0-9]//gp:% --version' 	\
+	'include/${_py3namespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'	\
+	'lib/lib${_py3namespec}.{so,dylib,a}:s/^.*python//;s/[^.0-9]//gp:${ECHO} %'
 
 SYSTEM_PKG.Linux-fedora.python3=python-devel
 SYSTEM_PKG.NetBSD.python3=	pkgsrc/lang/python
 
-export PYTHON=		$(firstword ${SYSTEM_FILES.python3})
-export PYTHON_INCLUDE=	$(dir $(word 2,${SYSTEM_FILES.python3}))
-export PYTHON_LIB=	$(word 3,${SYSTEM_FILES.python3})
+export PYTHON3=		$(firstword ${SYSTEM_FILES.python3})
+export PYTHON3_INCLUDE=	$(dir $(word 2,${SYSTEM_FILES.python3}))
+export PYTHON3_LIB=	$(word 3,${SYSTEM_FILES.python3})
 
-endif # PYTHON_DEPEND_MK ---------------------------------------------------
+endif # PYTHON3_DEPEND_MK --------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-
-endif # LANGUAGE_PYTHON_MK =================================================

@@ -25,45 +25,34 @@
 #
 #	PYTHON_REQUIRED is the version of python required, e.g. ">=2.4".
 #
-
-ifndef LANGUAGE_PYTHON_MK # ================================================
-
-# If we are included directly, simply register the language requirements
-USE_LANGUAGES+=		python
-PYTHON_REQUIRED+=	<=2.99
-
-else # =====================================================================
-
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-PYTHON_DEPEND_MK:=	${PYTHON_DEPEND_MK}+
+PYTHON2_DEPEND_MK:=	${PYTHON2_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		python
+DEPEND_PKG+=		python2
 endif
 
-ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
+ifeq (+,$(PYTHON2_DEPEND_MK)) # --------------------------------------------
 
-PREFER.python?=		system
+PREFER.python2?=	system
 
-DEPEND_USE+=		python
-DEPEND_ABI.python?=	python${_PY_REQUIRED}
+DEPEND_USE+=		python2
+DEPEND_ABI.python2?=	python2${_PY2_REQUIRED}
+_PY2_REQUIRED?=		>=2.4<3
 
-_pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
-SYSTEM_SEARCH.python=\
-	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version' 	\
-	'include/${_pynamespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'	\
-	'lib/lib${_pynamespec}.{so,dylib,a}:s/^.*python//;s/[^.0-9]//gp:${ECHO} %'
+_py2namespec=python{2.7,2.6,2.5,2.4,[0-9].[0-9],}
+SYSTEM_SEARCH.python2=\
+	'bin/${_py2namespec}:s/[^.0-9]//gp:% --version' 	\
+	'include/${_py2namespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'	\
+	'lib/lib${_py2namespec}.{so,dylib,a}:s/^.*python//;s/[^.0-9]//gp:${ECHO} %'
 
-SYSTEM_PKG.Linux-fedora.python=	python-devel
-SYSTEM_PKG.NetBSD.python=	pkgsrc/lang/python
+SYSTEM_PKG.Linux-fedora.python2=python-devel
+SYSTEM_PKG.NetBSD.python2=	pkgsrc/lang/python
 
-export PYTHON=		$(firstword ${SYSTEM_FILES.python})
-export PYTHON_INCLUDE=	$(dir $(word 2,${SYSTEM_FILES.python}))
-export PYTHON_LIB=	$(word 3,${SYSTEM_FILES.python})
+export PYTHON2=		$(firstword ${SYSTEM_FILES.python2})
+export PYTHON2_INCLUDE=	$(dir $(word 2,${SYSTEM_FILES.python2}))
+export PYTHON2_LIB=	$(word 3,${SYSTEM_FILES.python2})
 
-
-endif # PYTHON_DEPEND_MK ---------------------------------------------------
+endif # PYTHON2_DEPEND_MK --------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-
-endif # LANGUAGE_PYTHON_MK =================================================

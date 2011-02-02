@@ -49,7 +49,7 @@
 ifndef LANGUAGE_PYTHON_MK
 LANGUAGE_PYTHON_MK:=	defined
 
-# Sensible default value for _PYTHON_REQUIRED
+# Sensible default value for _PY_REQUIRED
 #
 _PY_REQUIRED?=	>=2.4<3
 
@@ -69,9 +69,17 @@ endif
 
 # Include the depend.mk corresponding to the requirements
 ifeq (yes,$(shell ${PKG_ADMIN} pmatch 'x${_PY_REQUIRED}' 'x-2.99' && echo yes))
+  _PY2_REQUIRED:= ${_PY_REQUIRED}
   include ${ROBOTPKG_DIR}/mk/sysdep/python2.mk
+  export PYTHON=	${PYTHON2}
+  export PYTHON_INCLUDE=${PYTHON2_INCLUDE}
+  export PYTHON_LIB=	${PYTHON2_LIB}
 else
+  _PY3_REQUIRED:= ${_PY_REQUIRED}
   include ${ROBOTPKG_DIR}/lang/python3/depend.mk
+  export PYTHON=	${PYTHON3}
+  export PYTHON_INCLUDE=${PYTHON3_INCLUDE}
+  export PYTHON_LIB=	${PYTHON3_LIB}
 endif
 
 # Define some variables
