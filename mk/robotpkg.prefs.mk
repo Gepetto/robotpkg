@@ -163,7 +163,6 @@ ifndef MAKECONF
    endif
   endif
   MAKECONF:=		${_MAKECONF}
-  MAKEOVERRIDES+=	MAKECONF=${MAKECONF}
 endif
 -include ${MAKECONF}
 include ${ROBOTPKG_DIR}/mk/robotpkg.default.conf
@@ -322,18 +321,9 @@ PKG_OPTIONS?=		# empty
 # processes invoked by robotpkg.
 #
 ifdef MAKECONF
-PKGSRC_MAKE_ENV+=       MAKECONF=${MAKECONF}
+  MAKEOVERRIDES+=	MAKECONF=${MAKECONF}
 endif
-RECURSIVE_MAKE=         ${SETENV} ${PKGSRC_MAKE_ENV} ${MAKE}
+RECURSIVE_MAKE=         ${MAKE} ${PKGSRC_MAKE_ENV}
 MAKEFLAGS+=		--no-print-directory
-
-# Make sure not to use exotic locales...
-export LANG=C
-export LC_COLLATE=C
-export LC_CTYPE=C
-export LC_MESSAGES=C
-export LC_MONETARY=C
-export LC_NUMERIC=C
-export LC_TIME=C
 
 endif # MK_ROBOTPKG_PREFS

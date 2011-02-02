@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -20,25 +20,17 @@
 # Clean unwanted variables inherited from the environment.
 #
 # Variables cleaned by this file must be further set with an 'ifndef' construct
-# instead of a ?= assignment or, better, by using the 'setdefault' macro.
+# instead of a ?= assignment or, better, by using the 'setdefault'
+# macro. gmake-3.82 has an interesting 'undefine' command, but many systems
+# still have 3.81, so ...
 #
 # Note that even without this file, the ?= wouldn't have been effective anyway
 # since the value from the environment would have taken precedence.
-#
-# Use ${MAKE} -e to force envrionment variables to continue overriding
-# assigments within makefiles.
 
-_NOENV_VARS=\
-	AWK		ANT		BASENAME	CAT		\
-	CHOWN		CHMOD		CMAKE		CMP		\
-	CONFIG_SITE	CP		DATE		ECHO		\
-	EGREP		EXPR		FALSE		FIND		\
-	GREP		ID		LS		LN		\
-	MKDIR		MV		PAGER		PAX		\
-	PYTHON		RM		RMDIR		SED		\
-	SETENV		SH		SORT		TAR		\
-	TEST		TOUCH		TPUT		TRUE		\
-	TSORT		UNAME		WC		XARGS
+_ENV_VARS=\
+	ROBOTPKG_BASE ROBOTPKG_DIR PATH TERM TERMCAP DISPLAY XAUTHORITY	\
+	SSH_AUTH_SOCK MAKELEVEL MAKEOVERRIDES MFLAGS
+
 
 
 # --- unsetenv -------------------------------------------------------------
@@ -54,4 +46,19 @@ override define unsetenv
 endef
 
 # unsetenv each unwanted var
-$(foreach _v_, ${_NOENV_VARS}, $(eval $(call unsetenv,${_v_})))
+$(foreach _v_,$(filter-out ${_ENV_VARS},${.VARIABLES}),$(eval \
+	$(call unsetenv,${_v_})))
+
+
+# --- Force sane settings --------------------------------------------------
+
+# Reset the current locale to a sane value (that is, 'C') during the build
+# of packages.  Several utilities behave differently or even incorrectly if
+# a locale different than 'C' is set.
+export LANG=C
+export LC_COLLATE=C
+export LC_CTYPE=C
+export LC_MESSAGES=C
+export LC_MONETARY=C
+export LC_NUMERIC=C
+export LC_TIME=C

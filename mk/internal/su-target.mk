@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2010 LAAS/CNRS
+# Copyright (c) 2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -41,7 +41,7 @@ endif
 # a new make process with the target named "su-$%".
 #
 override define _ROOT_CMD
-	cd ${CURDIR} && ${SETENV} ${PKGSRC_MAKE_ENV} ${MAKE}		\
+	cd ${CURDIR} && ${RECURSIVE_MAKE}				\
 		_PKGSRC_BARRIER=yes PKG_DEBUG_LEVEL=${PKG_DEBUG_LEVEL}	\
 		${MAKEFLAGS.su-$*} su-$*
 endef
