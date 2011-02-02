@@ -16,6 +16,7 @@ SUBDIR+=	opencv
 SUBDIR+=	openni-nite
 SUBDIR+=	sift
 SUBDIR+=	stereopixel-genom
+SUBDIR+=	viam-dc1394-driver
 SUBDIR+=	viam-libs
 SUBDIR+=	viam-genom
 SUBDIR+=	viman-genom
