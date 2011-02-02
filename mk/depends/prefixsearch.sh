@@ -222,8 +222,7 @@ for p in `bracesubst $sysprefix`; do
 		version=`eval $icmd 2>&1 </dev/null | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
 	    fi
 	    : ${version:=unknown}
-
-	    if eval ${PKG_ADMIN_CMD} pmatch "'$abi'" "'$pkg-$version'"; then
+	    if ${PKG_ADMIN_CMD} pmatch "$abi" "$pkg-$version"; then
 		pkgversion=-$version
 		flist="$flist $match"
 		${MSG} "found:	$match, version $version"
