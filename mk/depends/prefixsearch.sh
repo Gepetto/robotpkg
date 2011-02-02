@@ -204,7 +204,7 @@ for p in `bracesubst $sysprefix`; do
 			match=$alt; break
 		    fi
 		done
-		${TEST} -z "$match" && continue
+		if ${TEST} -z "$match"; then continue; fi
 	    fi
 
 	    # check file version, if needed
