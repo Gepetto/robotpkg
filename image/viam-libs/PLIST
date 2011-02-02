@@ -5,5 +5,4 @@ include/viam/viamlib.h
 include/viam/viamtypes.h
 lib/libviam.la
 lib/pkgconfig/viam-libs.pc
-${PLIST.dc1394}lib/viam-drivers/dc1394.la
 lib/viam-drivers/file.la

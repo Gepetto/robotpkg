@@ -1,0 +1,22 @@
+# robotpkg Makefile for:	image/viam-libs
+# Created:			Anthony Mallet on Fri, 14 Mar 2008
+#
+
+VERSION=		1.8
+DISTNAME=		viam-libs-${VERSION}
+CATEGORIES=		image
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
+MASTER_REPOSITORY=	git http://softs.laas.fr/git/robots/viam-libs
+
+MAINTAINER=		openrobots@laas.fr
+HOMEPAGE=		http://homepages.laas.fr/mallet/soft/image/viam-libs
+COMMENT=		Versatile Image Acquisition Module - Libraries
+LICENSE=		2-clause-bsd
+
+DISTINFO_FILE=		${ROBOTPKG_DIR}/image/viam-libs/distinfo
+PATCHDIR=		${ROBOTPKG_DIR}/image/viam-libs/patches
+
+NOT_FOR_PLATFORM=
+GNU_CONFIGURE=		yes
+
+include ../../pkgtools/pkg-config/depend.mk
