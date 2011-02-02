@@ -19,6 +19,7 @@ SUBDIR+=	stereopixel-genom
 SUBDIR+=	viam-dc1394-driver
 SUBDIR+=	viam-libs
 SUBDIR+=	viam-genom
+SUBDIR+=	viam-v4l-driver
 SUBDIR+=	viman-genom
 SUBDIR+=	visp
 
