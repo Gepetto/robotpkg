@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010 LAAS/CNRS
+# Copyright (c) 2010-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -31,8 +31,9 @@ DEPEND_USE+=		libjpeg
 
 DEPEND_ABI.libjpeg?=	libjpeg>=6
 
+_libjpeg_pattern=/define JPEG_LIB_VERSION/{s/.*Version[ ]*//;s/[^0-9.a-z]//gp;}
 SYSTEM_SEARCH.libjpeg=	\
-	'include/jpeglib.h'						\
+	'include/jpeglib.h:${_libjpeg_pattern}'	\
 	'lib/libjpeg.{a,so,dylib}'
 
 SYSTEM_PKG.Linux-fedora.libjpeg=	libjpeg-devel
