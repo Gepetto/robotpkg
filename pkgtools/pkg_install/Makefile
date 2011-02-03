@@ -26,14 +26,13 @@ FORCE_PKG_REGISTER=	yes
 
 include ../../mk/robotpkg.prefs.mk
 
-# We use the newly built robotpkg_{add,create,delete} since upgrading
+# We use the newly built robotpkg_{add,create} since upgrading
 # from an older pkg_install might required features of the new program.
 # robotpkg_info is used at several places in mk files, so we don't
 # override the default here.
 #
 PKG_ADD_CMD=            ${WRKSRC}/add/robotpkg_add
 PKG_CREATE_CMD=         ${WRKSRC}/create/robotpkg_create
-PKG_DELETE_CMD=         ${WRKSRC}/delete/robotpkg_delete
 
 CPPFLAGS+=		-DDEF_UMASK=${DEF_UMASK}
 
@@ -90,5 +89,5 @@ pkg_install-remove-old:
 	{ ${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}; } | 		\
 	while read pkg; do						\
 		${ECHO_MSG} "Removing old package"; 			\
-		${PKG_DELETE} -N -f "$$pkg" || ${TRUE} ; 		\
+		${WRKSRC}/delete/robotpkg_delete -N -f "$$pkg"||${TRUE};\
 	done
