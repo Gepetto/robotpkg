@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010 LAAS/CNRS
+# Copyright (c) 2010-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -48,6 +48,9 @@ set-replace-%: .FORCE
 set-update-%: .FORCE
 	${RUN}$(call _pkgset_recursive_sorted,update)
 
+set-deinstall-%: .FORCE
+	${RUN}$(call _pkgset_recursive_detros,deinstall)
+
 
 # --- recursion ------------------------------------------------------------
 
@@ -77,6 +80,13 @@ endef
 override define _pkgset_recursive_sorted
 	${ECHO_MSG} $${bf}'[$*] Sorting dependencies'$${rm};	\
 	sorted=`${_pkgset_tsort_deps} ${PKGSET.$*}` 2>&1;	\
+	$(call _pkgset_recursive,$1,$$sorted)
+endef
+
+# sorted recursion (in reverse order)
+override define _pkgset_recursive_detros
+	${ECHO_MSG} $${bf}'[$*] Sorting dependencies'$${rm};	\
+	sorted=`${_pkgset_tsort_deps} -r ${PKGSET.$*}` 2>&1;	\
 	$(call _pkgset_recursive,$1,$$sorted)
 endef
 
