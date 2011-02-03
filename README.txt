@@ -2,9 +2,9 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                               December 14, 2010
+                               February 3, 2011
 
-Copyright (C) 2006-2010 LAAS/CNRS.
+Copyright (C) 2006-2011 LAAS/CNRS.
 Copyright (C) 1997-2010 The NetBSD Foundation, Inc.
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
@@ -116,8 +116,8 @@ be found on any modern Unix distribution. Yet, robotpkg currently contains
 roughly one hundred and fifty packages, including:
 
   * architecture/genom - The LAAS Generator of Robotic Components
-  * simulation/openhrp - The Open Architecture Humanoid Robotics Platform
-    from AIST, Japan
+  * simulation/openhrp - The Open Architecture Humanoid Robotics Platform from
+    AIST, Japan
   * architecture/openrtm - The robotic distributed middleware from AIST, Japan
   * middleware/yarp - The "other", yet famous, robot platform
   * ...just to name a few.
@@ -719,11 +719,11 @@ defines a collection named myset that contains the two packages genom and
 pocolibs.
 For each collection <name> defined in robotpkg.conf, the following targets are
 available: clean-<name>, clean-depends-<name>, fetch-<name>, extract-<name>,
-install-<name>, replace-<name>, update-<name>. They perform the same action as
-their respective counterpart without -<name> suffix, expect that they work on
-all packages of the set. In addition, for the replace and update targets, they
-sort the packages in the order of their dependencies so that the job is done a
-sensible order.
+install-<name>, replace-<name>, update-<name> and deinstall-<name>. They
+perform the same action as their respective counterpart without -<name> suffix,
+expect that they work on all packages of the set. In addition, for the replace
+and update targets, they sort the packages in the order of their dependencies
+so that the job is done a sensible order.
 For the user convenience, A special installed collection is always defined and
 represents all currently installed packages. Thus, invoking the
 update-installed target will update all currently installed packages.

@@ -1,6 +1,6 @@
-% $LAAS: configuring.tex 2010/12/07 22:58:39 tho $
+% $LAAS: configuring.tex 2011/02/03 13:47:33 mallet $
 %
-% Copyright (c) 2009-2010 LAAS/CNRS
+% Copyright (c) 2009-2011 LAAS/CNRS
 % All rights reserved.
 %
 % Permission to use, copy, modify, and distribute this software for any purpose
@@ -129,11 +129,11 @@ genom} and {\tt pocolibs}.
 For each collection {\tt <name>}  defined in {\tt robotpkg.conf}, the following
 targets  are available:  {\tt clean-<name>},  {\tt  clean-depends-<name>}, {\tt
 fetch-<name>},    {\tt     extract-<name>},    {\tt    install-<name>},    {\tt
-replace-<name>},  {\tt update-<name>}. They  perform the  same action  as their
-respective counterpart without  {\tt -<name>} suffix, expect that  they work on
-all packages  of the set. In addition,  for the {\tt replace}  and {\tt update}
-targets, they sort the packages in  the order of their dependencies so that the
-job is done a sensible order.
+replace-<name>}, {\tt  update-<name>} and {\tt  deinstall-<name>}. They perform
+the same action  as their respective counterpart without  {\tt -<name>} suffix,
+expect that  they work on all  packages of the  set. In addition, for  the {\tt
+replace} and {\tt update} targets, they sort the packages in the order of their
+dependencies so that the job is done a sensible order.
 
 For  the user  convenience,  A  special {\tt  installed}  collection is  always
 defined  and represents all  currently installed  packages. Thus,  invoking the
