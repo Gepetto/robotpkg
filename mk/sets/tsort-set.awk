@@ -1,6 +1,6 @@
 #!/usr/bin/awk -f
 #
-# Copyright (c) 2010 LAAS/CNRS
+# Copyright (c) 2010-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -31,9 +31,14 @@ BEGIN {
     ROBOTPKG_DIR =\
 	ENVIRON["ROBOTPKG_DIR"]?ENVIRON["ROBOTPKG_DIR"]:"/opt/openrobots"
     DEPS = MAKE " show-depends-pkgpaths"
+    order = 1;
 
     ARGSTART = 1
     if (ARGV[ARGSTART] == "--") {
+	ARGSTART++
+    }
+    if (ARGV[ARGSTART] == "-r") {
+	order = -1;
 	ARGSTART++
     }
 
@@ -76,7 +81,11 @@ function depgraph() {
 	n = split(deps[pkg], d)
 	print pkg " " pkg | tsort
 	for(i=1; i<=n; i++) {
-	    print d[i] " " pkg | tsort
+	    if (order > 0) {
+		print d[i] " " pkg | tsort
+	    } else {
+		print pkg " " d[i] | tsort
+	    }
 	}
     }
     close(tsort)
