@@ -218,7 +218,7 @@ ifdef PKG_VERBOSE
 endif
 ifeq (yes,$(call exists,${DISTINFO_FILE}))
   ifeq (,$(filter cvs git svn,${FETCH_METHOD}))
-    _FETCH_ARGS+=-f $(call quote,${DISTINFO_FILE})
+    _FETCH_ARGS+=-c -f $(call quote,${DISTINFO_FILE})
   endif
 endif
 ifeq (,${DIST_SUBDIR})
