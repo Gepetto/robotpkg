@@ -243,7 +243,7 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 		fi;							\
 	done;								\
 	unsorted_sites="${SITES.$(subst =,--,$(notdir $@))}";		\
-	cd $(patsubst %/${DIST_SUBDIR},%,$(dir $@)) &&			\
+	cd ${DISTDIR} &&						\
 	${_FETCH_SCRIPT} -m ${FETCH_METHOD} ${_FETCH_ARGS}		\
 		$(notdir $@) ${_ORDERED_SITES} ||:;			\
 	if ${TEST} ! -f $@; then					\
