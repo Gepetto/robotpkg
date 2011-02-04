@@ -223,7 +223,7 @@ verify_file() {
 	_file="${1#./}"
 	${TEST} -f $_file || return 1
 	if ${TEST} -n "$checksum"; then
-		${CHECKSUM} -s ".pkgsrc.resume" $distinfo ${_file} || return 1
+		eval ${CHECKSUM} -s ".pkgsrc.resume" '$distinfo' '${_file}' || return 1
 		return 0
 	elif ${TEST} -n "$distsize"; then
 		_size=`${WC} -c < $_file`
