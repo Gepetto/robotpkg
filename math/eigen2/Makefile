@@ -4,9 +4,10 @@
 V=		2.0.12
 PKGNAME=	eigen2-${V}
 DISTNAME=	${V}
+DIST_SUBDIR=	eigen2
 
 CATEGORIES=	math
-MASTER_SITES=	http://bitbucket.org/eigen/eigen/get/
+MASTER_SITES=	https://bitbucket.org/eigen/eigen/get/
 WRKSRC=		${WRKDIR}/eigen
 
 MAINTAINER=	openrobots@laas.fr
