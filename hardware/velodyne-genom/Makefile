@@ -16,6 +16,8 @@ GENOM_MODULE=		velodyne
 
 define PKG_OPTION_UNSET.api
   include ../../hardware/velodyne-libs/depend.mk
+  include ../../image/libimages3d/depend.mk
+  include ../../math/t3d/depend.mk
 endef
 include ../../localization/pom-genom/depend.mk
 include ../../architecture/genom/depend.mk
