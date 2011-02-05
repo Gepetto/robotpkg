@@ -3,7 +3,8 @@
 #
 
 
-DISTNAME=		rmp400-genom-0.2
+DISTNAME=		rmp400-genom-${VERSION}
+VERSION=		0.3
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp400-genom
@@ -36,12 +37,15 @@ define PKG_OPTION_SET.gyroKVH5000
   GENOM_ARGS += -DGYRO=gyroKVH5000
 endef
 
+define PKG_OPTION_UNSET.api
+	include ../../robots/rmp-libs/depend.mk
+	include ../../motion/contlaw/depend.mk
+endef
+
 GENOM_MODULE=		rmp400
 include ../../architecture/genom/depend.mk
 
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
-include ../../robots/rmp-libs/depend.mk
-include ../../motion/contlaw/depend.mk
 include ../../mk/robotpkg.mk
