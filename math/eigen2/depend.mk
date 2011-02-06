@@ -21,10 +21,8 @@ SYSTEM_SEARCH.eigen2=	\
 	'include/eigen2/Eigen/src/Core/util/Macros.h:${_eigen2_version_sed}'
 
 # extracting version from the .h file is challenging...
-_eigen2_version_sed=\
- /^\#define EIGEN_\(WORLD\|MAJOR\|MINOR\)_VERSION[ \t]*/{s///;H;};
-_eigen2_version_sed+=\
- $${x;s/\n/./g;s/^.//;p;}
+_eigen2_version_sed=	/^\#define EIGEN_[A-Z]*_VERSION[ \t]*/{s///;H;};
+_eigen2_version_sed+=	$${x;s/\n/./g;s/^[.]//;p;}
 
 endif
 
