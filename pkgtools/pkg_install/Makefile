@@ -26,13 +26,14 @@ FORCE_PKG_REGISTER=	yes
 
 include ../../mk/robotpkg.prefs.mk
 
-# We use the newly built robotpkg_{add,create} since upgrading
+# We use the newly built robotpkg_{add,create,delete} since upgrading
 # from an older pkg_install might required features of the new program.
 # robotpkg_info is used at several places in mk files, so we don't
 # override the default here.
 #
 PKG_ADD_CMD=            ${WRKSRC}/add/robotpkg_add
 PKG_CREATE_CMD=         ${WRKSRC}/create/robotpkg_create
+PKG_DELETE_CMD=         ${WRKSRC}/delete/robotpkg_delete
 
 CPPFLAGS+=		-DDEF_UMASK=${DEF_UMASK}
 
@@ -54,19 +55,20 @@ include ../../archivers/libarchive/depend.mk
 LIBFETCH_STYLE=		inplace
 include ../../net/libfetch/depend.mk
 
-include ../../mk/robotpkg.mk
-
 do-extract:
 	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
-# Reverse the order that update does things since we need pkg_delete
+# Reverse the order that update and deinstall do things since we need pkg_delete
 # built before we can deinstall. Do the build in the sub make so that we don't
 # trigger a barrier for the update target.
 pre-update: pkg_build
+deinstall: pkg_build
+
+include ../../mk/robotpkg.mk
 
 .PHONY: pkg_build
 pkg_build:
-	${RECURSIVE_MAKE} build
+	${RUN}${RECURSIVE_MAKE} build
 
 # Remove any old pkg_install versions from database
 # To be on the safe side when upgrading, rebuild the pkgdb with new tools first
@@ -89,5 +91,5 @@ pkg_install-remove-old:
 	{ ${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}; } | 		\
 	while read pkg; do						\
 		${ECHO_MSG} "Removing old package"; 			\
-		${WRKSRC}/delete/robotpkg_delete -N -f "$$pkg"||${TRUE};\
+		${PKG_DELETE} -N -f "$$pkg"||${TRUE};			\
 	done
