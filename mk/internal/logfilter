@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2009-2010 LAAS/CNRS
+# Copyright (c) 2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -169,6 +169,7 @@ test -n "${civis}" && ${MSG} ${civis}
 
 exec 3<&0 4>&1 5>&1
 ${TEST} -t 3 && stty -icanon -echo min 0 <&3 2>/dev/null
+tofile "Running $@"
 status=`{ run "$@" 2>&1 | filter; } 4>&1 >&5`
 ${TEST} -t 3 && stty icanon echo <&3 2>/dev/null
 exec 3>&- 4>&- 5>&-
@@ -178,8 +179,10 @@ ${MSG} $el$cnorm
 # Log last lines in case of error
 #
 ${TEST} -n $logfile && ${TEST} $status -ne 0 && {
-    ${SED} -e ':a' -e '$q;N;11,$D;ba' < $logfile >&2
-    ${ECHO} "See $logfile for details" >&2
+    ${ECHO} "An unexpected error occured. The last 10 lines are shown below." >&2
+    ${ECHO} "For a complete log file, see:" >&2
+    ${ECHO} "$logfile" >&2
+    ${SED} -e ':a' -e '$q;N;11,$D;ba' < $logfile | ${SED} -e 's/^/: /' >&2
 }
 
 exit $status
