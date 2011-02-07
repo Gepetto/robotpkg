@@ -16,7 +16,7 @@ DEPEND_USE+= 		qt4-libs
 DEPEND_ABI.qt4-libs?= 	qt4-libs>=4.6.2
 
 SYSTEM_SEARCH.qt4-libs=\
-	'include/{,qt4/{,include/}}Qt/qcoreevent.h'	\
+	'include/{,qt4/{,include/}}Qt{,Core}/qcoreevent.h'	\
 	'{,share/qt4/}lib/libQtCore.{a,so,dylib}'	\
 	'lib/pkgconfig/QtCore.pc:/Version/s/[^0-9.]//gp'
 
