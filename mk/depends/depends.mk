@@ -1,6 +1,5 @@
-# $LAAS: depends.mk 2009/10/27 18:34:56 mallet $
 #
-# Copyright (c) 2006-2007,2009 LAAS/CNRS
+# Copyright (c) 2006-2007,2009,2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -82,6 +81,7 @@ _REAL_DEPENDS_TARGETS+= sys-depends
 _REAL_DEPENDS_TARGETS+=	pkg-depends-build-options
 _REAL_DEPENDS_TARGETS+=	pkg-depends-install
 _REAL_DEPENDS_TARGETS+=	pkg-depends-file
+_REAL_DEPENDS_TARGETS+= depends-conflicts
 _REAL_DEPENDS_TARGETS+=	pkg-depends-cookie
 
 .PHONY: real-depends
@@ -99,3 +99,55 @@ depends-message:
 #
 .PHONY: pre-depends-hook
 pre-depends-hook:
+
+
+# --- depends-conflicts (PRIVATE) ------------------------------------------
+#
+# Detects multiple installations of a dependency in the list of prefixes used
+# by the package, and warn about potential conflicts.
+#
+# The list of prefixes is obtained from the SYSDEP_FILE et al. As a gross
+# heuristic, only prefixes that refer to a SYSTEM_SEARCH.pkg mentioning an
+# 'include' or 'lib' directory are considered (this filters out tools like pax,
+# pkg-config etc. that have no header or libraries and which will not generate
+# any conflicts even if they are found in multiple locations). Along the same
+# lines, only dependencies that refer to a SYSTEM_SEARCH.pkg containing
+# 'include' or 'lib' are considered.
+#
+.PHONY: depends-conflicts
+depends-conflicts:
+	${RUN}depf=;							\
+	${TEST} -r ${_PKGBSDEP_FILE} && depf=${_PKGBSDEP_FILE};		\
+	${TEST} -r ${_SYSBSDEP_FILE} && depf="$$depf ${_SYSBSDEP_FILE}";\
+	${TEST} -r ${_PKGDEP_FILE} && depf="$$depf ${_PKGDEP_FILE}";	\
+	${TEST} -r ${_SYSDEP_FILE} && depf="$$depf ${_SYSDEP_FILE}";	\
+	${TEST} -z "$$depf" && exit 0;					\
+	conflicts=;							\
+	altpfix=`{ ${ECHO} ${PREFIX};					\
+	  ${SED} -n -e '/PREFIX.*:=/{s///;h;}'				\
+		 -e '/SYSTEM_FILES.*include/{g;p;}'			\
+		 -e '/SYSTEM_FILES.*lib/{g;p;}' $$depf;} | ${SORT} -u`;	\
+$(foreach _pkg_,${DEPEND_USE},						\
+  $(if $(filter include/% lib/%,${SYSTEM_SEARCH.${_pkg_}}),		\
+	pfix=`${SED} -n -e '/PREFIX.${_pkg_}:=/{s///p;q;}' $$depf`;	\
+	vers=`${SED} -n -e '/PKGVERSION.${_pkg_}:=/{s///p;q;}' $$depf`;	\
+	for p in $$altpfix; do						\
+	  ${TEST} "$$p" = "$$pfix" && continue;				\
+	  m=`${_PREFIXSEARCH_CMD} 2>/dev/null 3>&2 	 		\
+		-p "$$p" $(call quote,${_pkg_}) $(call quote,${_pkg_})	\
+		${SYSTEM_SEARCH.${_pkg_}}` || m=;			\
+	  if ${TEST} -n "$$m"; then					\
+	    conflicts=$$conflicts" $$m $$p";				\
+	    ${WARNING_MSG} "Using $$vers in $$pfix";			\
+	  fi;								\
+	done;								\
+))									\
+	if ${TEST} -n "$$conflicts"; then				\
+	  ${WARNING_MSG} "The following packages may"			\
+		"interfere with the build because they";		\
+	  ${WARNING_MSG} "are located in paths used by other"		\
+		"dependencies:";					\
+	  set -- $$conflicts; while ${TEST} $$# -gt 0; do		\
+	    ${WARNING_MSG} "	$$1 in $$2"; shift 2;			\
+	  done;								\
+	fi
