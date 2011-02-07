@@ -262,6 +262,7 @@ if ${TEST} -n "$prefix"; then
     # stdout otherwise.
     ${TEST} : 2>/dev/null 1>&3 || exec 3>&1
     ${ECHO} 1>&3 "PREFIX.$pkg:=$prefix"
+    ${ECHO} 1>&3 "PKGVERSION.$pkg:=$pkg$pkgversion"
     ${ECHO} 1>&3 "SYSTEM_FILES.$pkg:=$flist"
     exit 0
 fi
