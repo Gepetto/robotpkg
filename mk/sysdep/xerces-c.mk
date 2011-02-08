@@ -17,7 +17,7 @@ DEPEND_ABI.xerces-c?=	xerces-c>=3
 
 SYSTEM_SEARCH.xerces-c=	\
 	'include/xercesc/util/XercesVersion.hpp:${_xerces_version_sed}'	\
-	'lib/libxerces-c.{a,so,dylib}'
+	'lib/libxerces-c.{a,so}'
 
 # extracting version from the .hpp file is challenging...
 _xerces_version_sed=\

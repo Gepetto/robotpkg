@@ -34,7 +34,7 @@ DEPEND_ABI.libjpeg?=	libjpeg>=6
 _libjpeg_pattern=/define JPEG_LIB_VERSION/{s/.*Version[ ]*//;s/[^0-9.a-z]//gp;}
 SYSTEM_SEARCH.libjpeg=	\
 	'include/jpeglib.h:${_libjpeg_pattern}'	\
-	'lib/libjpeg.{a,so,dylib}'
+	'lib/libjpeg.{a,so}'
 
 SYSTEM_PKG.Linux-fedora.libjpeg=	libjpeg-devel
 SYSTEM_PKG.Linux-ubuntu.libjpeg=	libjpeg-dev

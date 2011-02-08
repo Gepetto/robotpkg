@@ -33,7 +33,7 @@ DEPEND_ABI.libsoqt?=	libsoqt>=1.4
 
 SYSTEM_SEARCH.libsoqt=	\
  'include/{,Coin2}/Inventor/Qt/SoQtBasic.h:/SOQT_VERSION.*"/s/[^.0-9]//gp'	\
- 'lib/libSoQt.{a,so,dylib}'
+ 'lib/libSoQt.{a,so}'
 
 SYSTEM_PKG.Linux-fedora.libsoqt=	SoQt-devel
 SYSTEM_PKG.Linux-ubuntu.libsoqt=	liblibsoqt-dev

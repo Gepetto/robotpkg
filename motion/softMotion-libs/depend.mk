@@ -16,7 +16,7 @@ PREFER.softMotion-libs?=	robotpkg
 SYSTEM_SEARCH.softMotion-libs=\
 	include/softMotion/softMotion.h 				\
 	'lib/pkgconfig/softMotion-libs.pc:/Version/s/[^0-9.]//gp'	\
-	'lib/libsoftMotion.{a,so,dylib}'
+	'lib/libsoftMotion.{a,so}'
 
 DEPEND_USE+=		softMotion-libs
 

@@ -33,7 +33,7 @@ DEPEND_ABI.coin2?=	coin2>=2<3
 
 SYSTEM_SEARCH.coin2=	\
  'include/{,Coin2}/Inventor/C/basic.h:/COIN_VERSION.*"/s/[^.0-9]//gp'	\
- 'lib/libCoin.{a,so,dylib}'
+ 'lib/libCoin.{a,so}'
 
 SYSTEM_PKG.Linux-fedora.coin2=	Coin2-devel
 SYSTEM_PKG.Linux-ubuntu.coin2=	libcoin20-dev

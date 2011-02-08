@@ -20,7 +20,7 @@ DEPEND_DIR.visp?=	../../image/visp
 SYSTEM_SEARCH.visp=\
 	'bin/visp-config:p:% --dumpversion'	\
 	'include/visp/vpConfig.h'		\
-	'lib/libvisp-2.{a,so,dylib}'
+	'lib/libvisp-2.{a,so}'
 
 endif # VISP_DEPEND_MK -----------------------------------------------------
 

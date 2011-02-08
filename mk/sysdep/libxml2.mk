@@ -34,7 +34,7 @@ DEPEND_ABI.libxml2?=	libxml2>=2
 SYSTEM_SEARCH.libxml2=	\
  'include/libxml2/libxml/xmlversion.h:/LIBXML_DOTTED_VERSION.*"/s/[^.0-9]//gp'	\
  'lib/pkgconfig/libxml-2.0.pc:/Version/s/[^.0-9]//gp'				\
- 'lib/libxml2.{a,so,dylib}'
+ 'lib/libxml2.{a,so}'
 
 SYSTEM_PKG.Linux-fedora.libxml2=	libxml2-devel
 SYSTEM_PKG.Linux-ubuntu.libxml2=	libxml2-dev

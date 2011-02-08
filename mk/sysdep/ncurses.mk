@@ -37,7 +37,7 @@ SYSTEM_PKG.NetBSD.ncurses=		pkgsrc/devel/ncurses
 
 SYSTEM_SEARCH.ncurses=\
 	'include/{ncurses/,}ncurses.h:/NCURSES_VERSION[ 	]/s/[^0-9.]//gp'\
-	'lib/libncurses.{a,so,dylib}'
+	'lib/libncurses.{a,so}'
 
 
 endif # NCURSES_DEPEND_MK --------------------------------------------------

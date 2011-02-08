@@ -21,7 +21,7 @@ DEPEND_ABI.libusb?=	libusb>=0.1.12<1
 
 SYSTEM_SEARCH.libusb=\
 	include/usb.h			\
-	'lib/libusb.{so,dylib,a}'	\
+	'lib/libusb.{so,a}'	\
 	'lib/pkgconfig/libusb.pc:/^Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Linux-fedora.libusb=	libusb-devel

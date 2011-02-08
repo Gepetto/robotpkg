@@ -34,7 +34,7 @@ DEPEND_ABI.gsl?=	gsl>=1
 SYSTEM_SEARCH.gsl=	\
 	'include/gsl/gsl_version.h:/GSL_VERSION[^_]/s/[^.0-9]//gp'	\
 	'lib/pkgconfig/gsl.pc:/Version/s/[^.0-9]//gp'			\
-	'lib/libgsl.{a,so,dylib}'
+	'lib/libgsl.{a,so}'
 
 SYSTEM_PKG.Linux-fedora.gsl=	gsl-devel
 SYSTEM_PKG.Linux-ubuntu.gsl=	libgsl0-dev

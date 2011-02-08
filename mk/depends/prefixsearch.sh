@@ -66,6 +66,7 @@ set -e          # exit on errors
 : ${ERROR_MSG:=${ECHO}}
 
 : ${SYSLIBSUFFIX:=}
+: ${SHLIBTYPE:=elf}
 
 self="${0##*/}"
 
@@ -161,6 +162,41 @@ bracesubst() {
     '
 }
 
+# Remove /usr in /usr/{bin,lib}/*
+optusr() {
+    alt=
+    while ${TEST} $# -gt 0; do
+	if ${TEST} -z "${1##/usr/bin/*}"; then
+	    alt=$alt" /bin/${1##/usr/bin/}"
+	elif ${TEST} -z "${1##/usr/lib/*}"; then
+	    alt=$alt" /lib/${1##/usr/lib/}"
+	elif ${TEST} -z "${1##/usr/lib${SYSLIBSUFFIX}/*}"; then
+	    alt=$alt" /lib${SYSLIBSUFFIX}/${1##/usr/lib${SYSLIBSUFFIX}/}"
+	fi
+	shift
+    done
+    ${ECHO} $alt
+}
+
+# Replace shared lib extension according to SHLIBTYPE
+shlibext() {
+    alt=
+    while ${TEST} $# -gt 0; do
+	case "$SHLIBTYPE" in
+	    dylib)
+		if ${TEST} -z "${1%%*/lib*.so}"; then
+		    alt=$alt" ${1%.so}".dylib
+		elif ${TEST} -z "${1%%*/lib*.so.[0-9]*}"; then
+		    alt=$alt" ${1%.so.[0-9]*}${1##*.so}".dylib
+		fi
+		;;
+	esac
+	shift
+    done
+    ${ECHO} $alt
+}
+
+
 # Search files
 prefix=
 pkgversion=
@@ -189,15 +225,11 @@ for p in `bracesubst $sysprefix`; do
 	for match in `bracesubst $p/$f`; do
 	    if ! ${TEST} -e "$match"; then
                 # special case: make /usr optional in /usr/{bin,lib}
-		if ${TEST} -z "${match##/usr/bin/*}"; then
-		    alt="/bin/${match##/usr/bin/}"
-		elif ${TEST} -z "${match##/usr/lib/*}"; then
-		    alt="/lib/${match##/usr/lib/}"
-		elif ${TEST} -z "${match##/usr/lib${SYSLIBSUFFIX}/*}"; then
-		    alt="/lib${SYSLIBSUFFIX}/${match##/usr/lib${SYSLIBSUFFIX}/}"
-		else
-		    match=; continue
-		fi
+		alt=`optusr $match`
+
+		# replace shared lib extension
+		alt=$alt" "`shlibext $match $alt`
+
 		match=
 		for alt in $alt; do
 		    if ${TEST} -r "${alt}"; then
@@ -234,7 +266,11 @@ for p in `bracesubst $sysprefix`; do
 	done
 	if ${TEST} -z "$match"; then
 	    for match in `bracesubst $p/$f`; do
-		${MSG} "missing:	$match"
+		for alt in $match `shlibext $match`; do
+		    for alt in $alt `optusr $alt`; do
+			${MSG} "missing:	$alt"
+		    done
+		done
 	    done
 	    continue 2;
 	fi

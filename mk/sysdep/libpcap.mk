@@ -32,7 +32,7 @@ DEPEND_ABI.libpcap?=	libpcap>=1
 
 SYSTEM_SEARCH.libpcap=	\
 	'include/pcap.h'						\
-	'lib/libpcap.{a,so,dylib}'
+	'lib/libpcap.{a,so}'
 
 SYSTEM_PKG.Linux-fedora.libpcap=	libpcap-devel
 SYSTEM_PKG.Linux-ubuntu.libpcap=	libpcap-dev

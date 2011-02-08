@@ -35,7 +35,7 @@ SYSTEM_PKG.NetBSD.popt=		pkgsrc/devel/popt
 
 SYSTEM_SEARCH.popt=\
 	'include/popt.h'\
-	'lib/libpopt.{a,so,dylib}'
+	'lib/libpopt.{a,so}'
 
 
 endif # POPT_DEPEND_MK --------------------------------------------------

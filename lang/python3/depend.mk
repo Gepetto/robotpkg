@@ -30,7 +30,7 @@ _py3namespec=python{3,3.0,3.1,[0-9].[0-9],}
 SYSTEM_SEARCH.python3=\
 	'bin/${_py3namespec}:s/[^.0-9]//gp:% --version' 	\
 	'include/${_py3namespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'	\
-	'lib/lib${_py3namespec}.{so,dylib,a}:s/^.*python//;s/[^.0-9]//gp:${ECHO} %'
+	'lib/lib${_py3namespec}.{so,a}:s/^.*python//;s/[^.0-9]//gp:${ECHO} %'
 
 SYSTEM_PKG.Linux-fedora.python3=python-devel
 SYSTEM_PKG.NetBSD.python3=	pkgsrc/lang/python

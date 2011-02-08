@@ -33,7 +33,7 @@ DEPEND_ABI.libtiff?=	libtiff>=3
 
 SYSTEM_SEARCH.libtiff=	\
 	'include/tiffvers.h:/VERSION_STR/{s/\\\\n.*$$//;s/[^0-9.]//g;p;}' \
-	'lib/libtiff.{a,so,dylib}'
+	'lib/libtiff.{a,so}'
 
 SYSTEM_PKG.Linux-fedora.libtiff=	libtiff-devel
 SYSTEM_PKG.Linux-ubuntu.libtiff=	libtiff-dev

@@ -19,7 +19,7 @@ DEPEND_DIR.openvrml-libs?=	../../graphics/openvrml-libs
 
 SYSTEM_SEARCH.openvrml-libs=\
 	include/openvrml/openvrml-common.h	\
-	'lib/libopenvrml.{a,so,dylib}'		\
+	'lib/libopenvrml.{a,so}'		\
 	'lib/pkgconfig/openvrml.pc:/Version/s/[^0-9.]//gp'
 
 endif # OPENVRML_LIBS_DEPEND_-----------------------------------------------

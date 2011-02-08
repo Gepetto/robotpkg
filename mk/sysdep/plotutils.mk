@@ -33,7 +33,7 @@ DEPEND_ABI.plotutils?=	plotutils>=4.2
 
 SYSTEM_SEARCH.plotutils=	\
 	'include/plotter.h:/PL_LIBPLOT_VER_STRING .*"/s/[^.0-9]//gp'	\
-	'lib/libplot.{a,so,dylib}'
+	'lib/libplot.{a,so}'
 
 SYSTEM_PKG.Linux-fedora.plotutils=	plotutils-devel
 SYSTEM_PKG.Linux-ubuntu.plotutils=	libplot-dev
