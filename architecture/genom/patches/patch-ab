@@ -1,0 +1,48 @@
+Add /System/Library in the tcl search path
+Make a fatal error if tcl is wanted but not found.
+commit 5f75f19 upstream
+
+diff --git config.mk.in config.mk.in
+index 809c2fd..b502369 100644
+--- config.mk.in
++++ config.mk.in
+@@ -73,7 +73,7 @@ XENO_LDFLAGS=	@XENO_LDFLAGS@
+ 
+ HAS_TCL=	@HAS_TCL@
+ TCL_CPPFLAGS=	@TCL_CPPFLAGS@
+-TCL_LDFLAGS=	@TCL_LDFLAGS@ @TCL_LIB_FLAG@ @TCL_LIBS@
++TCL_LDFLAGS=	@TCL_LDFLAGS@ @TCL_LIB_FLAG@ @TCL_LIB_SPEC@ @TCL_LIBS@
+ 
+ ENDIANNESS=	@ENDIANNESS@
+ 
+diff --git m4/robots.m4 m4/robots.m4
+index 2d8992d..a7f247e 100644
+--- m4/robots.m4
++++ m4/robots.m4
+@@ -402,6 +402,7 @@ AC_DEFUN([ROBOT_LIB_TCL],
+       /usr/local/include                        \
+       /usr/include                              \
+       /Library/Frameworks/Tcl.framework/Headers \
++      /System/Library/Frameworks/Tcl.framework/Headers \
+       $extra_include                            \
+       ; \
+    do
+@@ -430,6 +431,7 @@ AC_DEFUN([ROBOT_LIB_TCL],
+       /usr/local/lib                          \
+       /usr/lib${libsuffix}                    \
+       /Library/Frameworks/Tcl.framework       \
++      /System/Library/Frameworks/Tcl.framework\
+       $extra_lib                              \
+       ; \
+    do
+@@ -462,6 +464,10 @@ AC_DEFUN([ROBOT_LIB_TCL],
+    fi # tclConfig.sh not found
+    fi # --with-tcl=no
+ 
++   if test "x${tcl_prefix}" != "xno" -a "x${HAS_TCL}" != "xyes"; then
++	AC_MSG_FAILURE([cannot find a usable TCL])
++   fi
++
+    AC_SUBST(HAS_TCL)
+    AC_SUBST(TCL_CONFIG_PATH)
+    AC_SUBST(TCL_CPPFLAGS)

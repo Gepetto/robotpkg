@@ -65,6 +65,16 @@ define PKG_OPTION_UNSET.doc
   CONFIGURE_ENV+=	LATEX=:
 endef
 
+# Required because patch-ab modifies configure script
+include ../../mk/sysdep/autoconf.mk
+include ../../mk/sysdep/automake.mk
+
+pre-configure:
+	${RUN}cd ${WRKSRC} && 			\
+	${LIBTOOL}ize -cf && 			\
+	${PREFIX.automake}/bin/aclocal -I m4 &&	\
+	${AUTOCONF} -f
+
 include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/libtool/depend.mk
