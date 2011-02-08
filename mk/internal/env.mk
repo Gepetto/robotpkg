@@ -62,3 +62,7 @@ export LC_MESSAGES=C
 export LC_MONETARY=C
 export LC_NUMERIC=C
 export LC_TIME=C
+
+# Set HOME diretory. This is needed for some tools, e.g. latex for font
+# generation.
+export HOME=${WRKDIR}
