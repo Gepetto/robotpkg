@@ -75,6 +75,7 @@ SUBDIR+=	robots
 SUBDIR+=	scripts
 SUBDIR+=	shell
 SUBDIR+=	simulation
+SUBDIR+=	speech
 SUBDIR+=	supervision
 SUBDIR+=	sysutils
 SUBDIR+=	www
