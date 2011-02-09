@@ -29,6 +29,9 @@ DEPEND_ABI.bwidget?=	bwidget>=1.8
 SYSTEM_SEARCH.bwidget=	\
 	'{lib,share/{tcl{,[0-9.]*},tcltk{,[0-9]*}}}/bwidget{,[0-9]*}/pkgIndex.tcl:/BWidget/{s/[^.0-9]*//gp;q;}'
 
+SYSTEM_PKG.Linux-ubuntu.bwidget=bwidget
+SYSTEM_PKG.Linux-debian.bwidget=bwidget
+
 endif # BWIDGET_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
