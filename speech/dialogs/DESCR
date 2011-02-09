@@ -1,0 +1,13 @@
+dialogs is a module for natural language parsing, analyze and dialog management.
+
+It provides:
+- a custom made, grammar-free parser for English language,
+- an sentence analyser able to handle simple assertions, questions and
+orders,
+- several conversion algorithms that generate RDF triples from natural
+language
+- a simple state machine able to lead simple dialog situation
+- a verbalization module to build back natural language sentence
+
+While not required, it is most useful in conjunction with an
+knowledge base able to store facts and answer to queries.
