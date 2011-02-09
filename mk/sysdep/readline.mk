@@ -32,6 +32,7 @@ DEPEND_USE+=		readline
 DEPEND_ABI.readline?=	readline>=5
 
 SYSTEM_PKG.Linux-fedora.readline=	"readline-devel"
+SYSTEM_PKG.Linux-ubuntu.readline=	"libreadline-dev"
 SYSTEM_PKG.NetBSD.readline=		"pkgsrc/devel/readline"
 
 SYSTEM_SEARCH.readline=\
