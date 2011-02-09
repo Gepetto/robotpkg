@@ -27,10 +27,14 @@ PREFER.dialogs?=		robotpkg
 
 DEPEND_USE+=		dialogs
 DEPEND_ABI.dialogs?=	dialogs>=0.5
-DEPEND_DIR.dialogs?=	../../wip/dialogs
+DEPEND_DIR.dialogs?=	../../speech/dialogs
 
+DEPEND_PYTHONPATH.py-setuptools=\
+	$(dir $(word 2,${SYSTEM_FILES.dialogs}))..
+
+_pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.dialogs=\
-	lib/python2.6/{site|dist}-packages/dialogs.py
+	'lib/${_pynamespec}/{site,dist}-packages/dialogs.py'
 
 endif # DIALOGS_DEPEND_MK -----------------------------------------------------
 
