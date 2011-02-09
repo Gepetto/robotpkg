@@ -40,6 +40,14 @@ SYSTEM_SEARCH.motif=\
 	'include/Xm/XmAll.h'			\
 	'lib/libXm.{a,so}'
 
+include ../../mk/robotpkg.prefs.mk
+ifeq (ubuntu,${OPSUBSYS})
+include ../../mk/sysdep/libXp.mk
+endif
+
+
 endif # MOTIF_DEPEND_MK ----------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
+
+
