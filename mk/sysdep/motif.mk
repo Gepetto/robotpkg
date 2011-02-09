@@ -33,6 +33,7 @@ DEPEND_ABI.motif?=	motif
 
 SYSTEM_DESCR.motif=		"lesstif or openmotif"
 SYSTEM_PKG.Linux-fedora.motif=	"lesstif-devel"
+SYSTEM_PKG.Linux-ubuntu.motif=	"libmotif-dev"
 SYSTEM_PKG.NetBSD.motif=	"pkgsrc/x11/lesstif or pkgsrc/x11/openmotif"
 
 SYSTEM_SEARCH.motif=\
