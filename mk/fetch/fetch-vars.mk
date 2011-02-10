@@ -130,7 +130,7 @@ ifeq (svn,$(strip ${FETCH_METHOD}))
 endif
 
 ifeq (manual,$(strip ${FETCH_METHOD}))
-  _FETCH_BEFORE_ARGS=	${FALSE}
+  _FETCH_CMD=		${FALSE}
 endif
 
 ifeq (custom,$(strip ${FETCH_METHOD}))
@@ -138,11 +138,12 @@ ifeq (custom,$(strip ${FETCH_METHOD}))
   # It must understand fetching files located via URLs.
   #
   _FETCH_CMD=		${FETCH_CMD}
-  _FETCH_BEFORE_ARGS=	${FETCH_BEFORE_ARGS}
-  _FETCH_AFTER_ARGS=	${FETCH_AFTER_ARGS}
   _FETCH_RESUME_ARGS=	${FETCH_RESUME_ARGS}
   _FETCH_OUTPUT_ARGS=	${FETCH_OUTPUT_ARGS}
 endif
+_FETCH_BEFORE_ARGS+=	${FETCH_BEFORE_ARGS}
+_FETCH_AFTER_ARGS+=	${FETCH_AFTER_ARGS}
+
 
 # Fetch logfile
 FETCH_LOGFILE?=		${WRKDIR}/.fetch.log
