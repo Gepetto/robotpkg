@@ -8,6 +8,7 @@ CATEGORIES=	graphics
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=laaswm/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/laaswm-libs
+LICENSE=	isc
 
 MAINTAINER=	matthieu.herrb@laas.fr
 
