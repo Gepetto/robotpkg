@@ -1,9 +1,10 @@
-Suppress extraneous space in -L flags on the link command line.
-Name dynamically loadable module consistently (TCLSRCLIB is gb.so even on
+- Suppress extraneous space in -L flags on the link command line.
+- Name dynamically loadable module consistently (TCLSRCLIB is gb.so even on
 Darwin, no matter what tcl says).
+- Add an explicit rule to compile wrapper, to have proper TCL_SHLIB_CFLAGS set
 
---- tclsrc/Makefile.in~	2011-01-10 13:46:28.000000000 +0100
-+++ tclsrc/Makefile.in	2011-02-07 20:16:49.814665322 +0100
+--- tclsrc/Makefile.in.orig	2011-02-10 15:20:33.745468000 +0100
++++ tclsrc/Makefile.in	2011-02-10 15:20:40.855909000 +0100
 @@ -1,5 +1,5 @@
  # 
 -# Copyright (C) 1996-2007 LAAS/CNRS 
@@ -20,14 +21,18 @@ Darwin, no matter what tcl says).
  
  WRAP_FILE=	gb_wrap.c
  OBJECT_FILES=	$(WRAP_FILE:%.c=%.o)
-@@ -65,8 +65,8 @@
+@@ -65,10 +65,11 @@
  	$(SWIG) -tcl $(SWIG_TYPEMAP) $(SWIG_VERSION) -o $@ $<
  
  $(TCLSRCLIB) : $(OBJECT_FILES)
 -	$(TCL_SHLIB_LD) $(TCL_SHLIB_LDFLAGS) -o gb.so $(OBJECT_FILES) \
 -	-L ../src -L ../src/.libs -lgb -L$(TCL_LIBDIR) $(TCL_LIB_FLAGS)
+-
 +	$(TCL_SHLIB_LD) $(TCL_SHLIB_LDFLAGS) -o $(TCLSRCLIB) $(OBJECT_FILES) \
 +	-L../src -L../src/.libs -lgb -L$(TCL_LIBDIR) $(TCL_LIB_FLAGS)
  
++%.o:   %.c
++	$(TCL_CC) -c $(CPPFLAGS) $(TCL_SHLIB_CFLAGS) $(CFLAGS) -o $@ $<
  
- 
+ ifeq ($(findstring $(MAKECMDGOALS),clean),)
+ depend DEPENDANCES: $(SRCS)
