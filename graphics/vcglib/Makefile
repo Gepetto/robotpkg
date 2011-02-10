@@ -12,6 +12,7 @@ MASTER_SITES=\
 	https://vcg.svn.sourceforge.net/svnroot/vcg/trunk/vcglib@3811
 MASTER_REPOSITORY=\
 	svn https://vcg.svn.sourceforge.net/svnroot/vcg/trunk/vcglib
+FETCH_BEFORE_ARGS=	--ignore-externals # ignore unversionned eigen external
 
 MAINTAINER=		mallet@laas.fr
 HOMEPAGE=		http://vcg.sourceforge.net/index.php/VCGLib
