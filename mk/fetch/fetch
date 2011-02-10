@@ -345,6 +345,7 @@ while ${TEST} $# -gt 0; do
 	    break
 	else
 	    ${ECHO} 1>&2 "$self: Unable to verify fetched file $file"
+	    rm -f "$outputpath"
 	fi
 	if ${TEST} -n "$resume"; then
 	    if ${TEST} -f $path; then
