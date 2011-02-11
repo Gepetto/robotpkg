@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-DISTNAME=		pocolibs-2.8
-PKGREVISION=		1
+DISTNAME=		pocolibs-2.9
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pocolibs/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pocolibs
@@ -13,8 +12,7 @@ HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/pocolibs
 COMMENT=		Real-time communication library used by GenoM modules.
 
 LICENSE=		isc
-
-NOT_FOR_PLATFORM=	%-x86_64
+NOT_FOR_PLATFORM=	# empty
 GNU_CONFIGURE=		yes
 
 # Enable valgrind support
