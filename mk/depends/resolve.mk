@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2010 LAAS/CNRS
+# Copyright (c) 2008-2011 LAAS/CNRS
 # Copyright (c) 2004 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -163,7 +163,6 @@ override define _dpd_flags
   DEPEND_LIBS.${1}?=#		empty
   DEPEND_INCDIRS.${1}?=#	empty
   DEPEND_LIBDIRS.${1}?=#	empty
-  DEPEND_PKG_CONFIG.${1}?=	lib/pkgconfig
   ifneq (,$$(filter full,$${DEPEND_METHOD.${1}}))
     DEPEND_RPATHDIRS.${1}?=	$${DEPEND_LIBDIRS.${1}}
   else
@@ -242,18 +241,6 @@ CPPFLAGS+=	${DEPEND_CPPFLAGS}
 CFLAGS+=	${DEPEND_CFLAGS} ${DEPEND_CPPFLAGS}
 CXXFLAGS+=	${DEPEND_CFLAGS} ${DEPEND_CPPFLAGS}
 LDFLAGS+=	${DEPEND_LDFLAGS} ${DEPEND_LIBS}
-
-
-# If we are using pkg-config, update the PKG_CONFIG_PATH variable by
-# prepending the value of DEPEND_PKG_CONFIG.<pkg> of all depended
-# packages.
-#
-ifneq (,$(filter pkg-config,${DEPEND_USE}))
-  PKG_CONFIG_PATH:=$(call prependpaths,					\
-	$(foreach _pkg_,${DEPEND_USE},$(addprefix			\
-		${PREFIX.${_pkg_}}/,${DEPEND_PKG_CONFIG.${_pkg_}})),	\
-	${PKG_CONFIG_PATH})
-endif
 
 
 # Collect DEPEND_PYTHONPATH.<pkg>

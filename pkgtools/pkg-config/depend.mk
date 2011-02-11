@@ -24,11 +24,16 @@ SYSTEM_PKG.Linux-fedora.pkg-config=	pkgconfig
 SYSTEM_PKG.NetBSD.pkg-config=		pkgsrc/devel/pkg-config
 
 
-# Define the proper pkg-config in environment
+# Define the proper pkg-config environment
 #
-export PKG_CONFIG=	${PREFIX.pkg-config}/bin/pkg-config
-export PKG_CONFIG_PATH:=\
-	$(call prependpath,${PREFIX}/lib/pkgconfig,${PKG_CONFIG_PATH})
+export PKG_CONFIG=		${PREFIX.pkg-config}/bin/pkg-config
+export PKG_CONFIG_LIBDIR=	/usr/lib/pkgconfig:/usr/share/pkgconfig
+export PKG_CONFIG_PATH=$(call prependpaths,				\
+	${PREFIX}/lib/pkgconfig ${PREFIX}/share/pkgconfig		\
+	$(filter-out $(subst :, ,${PKG_CONFIG_LIBDIR}),			\
+	  $(patsubst %/,%,$(foreach _pkg_,${DEPEND_USE},		\
+	    $(or ${PKG_CONFIG_PATH.${_pkg_}},				\
+	         $(dir $(filter %.pc,${SYSTEM_FILES.${_pkg_}})))))))
 
 
 # insert the compiler's "rpath" flag into pkg-config data files so that
