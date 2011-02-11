@@ -21,6 +21,7 @@
 : ${ECHO:=echo}
 : ${ECHO_N:=echo -n}
 : ${TEST:=test}
+: ${SETENV:=env}
 : ${SED:=sed}
 : ${STTY:=stty}
 : ${TPUT:=tput}
@@ -130,6 +131,9 @@ fi
 
 if ${TEST} -n "$logfile"; then
     exec 6>>$logfile
+    ${ECHO} "Environment:" >&6
+    ${SETENV} >&6
+    ${ECHO} >&6
     tofile() { ${ECHO} "$@" >&6; }
 else
     tofile() { :;}

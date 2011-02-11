@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2010 LAAS/CNRS
+# Copyright (c) 2007-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -56,7 +56,7 @@ WARNING_CAT?=		${SED} -e "s|^|WARNING: |" 1>&2
 ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
 
 _LOGFILTER?=\
-	${SETENV} ECHO_N=$(call quote,${ECHO_N})		\
+	${SETENV} SETENV=${SETENV} ECHO_N=$(call quote,${ECHO_N})	\
 	${SH} ${ROBOTPKG_DIR}/mk/internal/logfilter
 
 
