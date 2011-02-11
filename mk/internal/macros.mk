@@ -163,7 +163,8 @@ endef
 # If <path> does not exist, <path-list> is returned as-is.
 #
 override define prependpath
-$(if $(realpath $1),$(if $(strip $2),$(subst ::,:,$1:$(subst $1,,$(strip $2))),$1),$2)
+$(if $(realpath $1),$(if $(strip $2),$(patsubst \
+	%:,%,$(subst ::,:,$1:$(subst $1,,$(strip $2)))),$1),$2)
 endef
 
 
