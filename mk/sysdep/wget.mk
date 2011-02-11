@@ -21,7 +21,7 @@ DEPEND_USE+=	wget
 DEPEND_ABI.wget?=wget>=1
 
 SYSTEM_SEARCH.wget=	\
-	'bin/wget:1{s/[^0-9.]//g;s/[.]$$//;p}:% --version'
+	'bin/wget:1{s/[^0-9.]//g;s/[.]$$//;p;}:% --version'
 
 export WGET=	$(firstword ${SYSTEM_FILES.wget})
 
