@@ -31,7 +31,7 @@ _ENV_VARS=\
 	ROBOTPKG_BASE ROBOTPKG_DIR				\
 	MAKELEVEL MAKEOVERRIDES MFLAGS				\
 	PATH TERM TERMCAP DISPLAY XAUTHORITY SSH_AUTH_SOCK	\
-	http_proxy ftp_proxy
+	http_proxy https_proxy ftp_proxy
 
 
 # --- unsetenv -------------------------------------------------------------
