@@ -1,0 +1,11 @@
+--- include/ARToolKitPlus/TrackerImpl.h~	2011-02-11 12:04:03.267087000 +0100
++++ include/ARToolKitPlus/TrackerImpl.h	2011-02-11 12:05:08.243942000 +0100
+@@ -1553,7 +1553,7 @@
+ 
+     for( i = j = 0; i < prev_num; i++ ) {
+         prev_info[i].count++;
+-        if( prev_info[i].count < 4 ) {
++	if( (prev_info[i].count) < 4 ) {
+             prev_info[j] = prev_info[i];
+             j++;
+         }
