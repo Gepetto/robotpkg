@@ -17,8 +17,6 @@ DEPEND_USE+=		gyroKVH1000
 DEPEND_ABI.gyroKVH1000?=	gyroKVH1000>=1.4
 DEPEND_DIR.gyroKVH1000?=	../../hardware/gyroKVH1000
 
-DEPEND_PKG_CONFIG.gyroKVH1000+=lib/pkgconfig
-
 SYSTEM_SEARCH.gyroKVH1000=\
 	bin/gyroKVH1000TaskTest \
 	include/gyroKVH1000HardLib.h \
