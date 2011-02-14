@@ -6,9 +6,10 @@ ROS_PACKAGE?=			undefined
 ROS_COMMENT?=			undefined
 ROS_INSTALLATION_SUBDIR?=	undefined
 
-DISTNAME=	ros-${ROS_PACKAGE}-${PKGVERSION}
-MASTER_SITE_ROS=https://code.ros.org/svn/ros/stacks/
-FETCH_METHOD=	svn
+DISTNAME=			ros-${ROS_PACKAGE}-${PKGVERSION}
+MASTER_SITE_ROS=	https://code.ros.org/svn/ros/stacks/
+MASTER_SITE_ROS_PKG=https://code.ros.org/svn/ros-pkg/stacks/
+FETCH_METHOD=		svn
 
 CATEGORIES?=	middleware
 MAINTAINER?=	openrobots@laas.fr
