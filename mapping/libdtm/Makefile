@@ -2,7 +2,8 @@
 # Created:			Arnaud Degroote on Thu, 6 Aug 2009
 #
 
-DISTNAME=		libdtm-1.1
+DISTNAME=		libdtm-${VERSION}
+VERSION=		1.2
 CATEGORIES=		mapping
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/libdtm
