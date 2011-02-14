@@ -31,7 +31,7 @@ DEPEND_USE+=		libjpeg
 
 DEPEND_ABI.libjpeg?=	libjpeg>=6
 
-_libjpeg_pattern=/define JPEG_LIB_VERSION/{s/.*Version[ ]*//;s/[^0-9.a-z]//gp;}
+_libjpeg_pattern=/define JPEG_LIB_VERSION/{s/.*[Vv]ersion[ ]*//;s/[^0-9.a-z]//gp;}
 SYSTEM_SEARCH.libjpeg=	\
 	'include/jpeglib.h:${_libjpeg_pattern}'	\
 	'lib/libjpeg.{a,so}'
