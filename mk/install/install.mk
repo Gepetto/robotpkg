@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2010 LAAS/CNRS
+# Copyright (c) 2006,2009-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -237,8 +237,7 @@ INSTALL_MAKE_FLAGS?=	# none
 INSTALL_TARGET?=	install
 
 INSTALL_MAKE_CMD?=\
-	${SETENV} ${MAKE_ENV} MAKELEVEL= MAKEOVERRIDES= MAKEFLAGS=	\
-		${MAKE_PROGRAM}						\
+	${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM}				\
 		${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS} -f ${MAKE_FILE}	\
 		${INSTALL_TARGET}
 

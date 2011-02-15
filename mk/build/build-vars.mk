@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -69,6 +69,9 @@ MAKE_PROGRAM?=	${MAKE}
 MAKE_ENV?=	# empty
 MAKE_FLAGS?=	# empty
 MAKE_FILE?=	Makefile
+
+# always reset robotpkg gmake context when using gmake to build a package
+MAKE_ENV+=	MAKELEVEL= MAKEOVERRIDES= MAKEFLAGS= MFLAGS=
 
 MAKE_ENV+=	${ALL_ENV}
 ifndef NO_EXPORT_CPP
