@@ -16,8 +16,6 @@ PREFER.zlib?=		system
 DEPEND_ABI.zlib?=	zlib>=1.2.3
 DEPEND_DIR.zlib?=	../../archivers/zlib
 
-DEPEND_LIBS.zlib+=	-lz
-
 SYSTEM_PKG.Linux-fedora.zlib=	zlib-devel
 SYSTEM_PKG.Linux-ubuntu.zlib=	zlib1g-dev
 SYSTEM_PKG.Linux-debian.zlib=	zlib1g-dev

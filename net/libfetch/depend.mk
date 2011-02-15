@@ -1,6 +1,6 @@
-# $LAAS: depend.mk 2009/11/22 13:47:10 tho $
+# $LAAS: depend.mk 2011/02/16 00:36:33 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -32,8 +32,6 @@ SYSTEM_SEARCH.libfetch=	\
 
 DEPEND_ABI.libfetch?=	libfetch>=2.4
 DEPEND_DIR.libfetch?=	../../net/libfetch
-
-DEPEND_LIBS.libfetch+=	-lfetch
 
   # pull-in the user preferences for libfetch now
   include ../../mk/robotpkg.prefs.mk

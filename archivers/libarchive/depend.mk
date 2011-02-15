@@ -25,8 +25,6 @@ SYSTEM_SEARCH.libarchive:=		\
 DEPEND_ABI.libarchive?=	libarchive>=2.5.5
 DEPEND_DIR.libarchive?=	../../archivers/libarchive
 
-DEPEND_LIBS.libarchive+=-larchive
-
   # pull-in the user preferences for libarchive now
   include ../../mk/robotpkg.prefs.mk
 
@@ -38,7 +36,7 @@ LIBARCHIVE_SRCDIR=	${WRKDIR}/libarchive
 
 CPPFLAGS+=	-I${LIBARCHIVE_SRCDIR}/libarchive
 LDFLAGS+=	-L${LIBARCHIVE_SRCDIR}/.libs
-LIBS+=		-larchive
+LIBS+=		-larchive -lbz2 -lz
 
 post-extract: libarchive-extract
 libarchive-extract:

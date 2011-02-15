@@ -17,8 +17,6 @@ DEPEND_USE+=		mpfr
 DEPEND_ABI.mpfr?=	mpfr>=2.3.1
 DEPEND_DIR.mpfr?=	../../math/mpfr
 
-DEPEND_LIBS.mpfr+=	-lmpfr
-
 SYSTEM_SEARCH.mpfr=	\
 	include/mpfr.h	\
 	lib/libmpfr.so*

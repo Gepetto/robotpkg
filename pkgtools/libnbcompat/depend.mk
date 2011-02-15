@@ -20,8 +20,6 @@ SYSTEM_SEARCH.libnbcompat=	\
 DEPEND_ABI.libnbcompat?=	libnbcompat>=20090610
 DEPEND_DIR.libnbcompat?=	../../pkgtools/libnbcompat
 
-DEPEND_LIBS.libnbcompat+=	-lnbcompat
-
   # pull-in the user preferences for libnbcompat now
   include ../../mk/robotpkg.prefs.mk
 

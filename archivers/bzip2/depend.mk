@@ -51,8 +51,6 @@ DEPEND_USE+=		bzip2
 
 DEPEND_ABI.bzip2?=	bzip2
 DEPEND_DIR.bzip2?=	../../archivers/bzip2
-
-DEPEND_LIBS.bzip2+=	-lbz2
   endif
 endif
 
