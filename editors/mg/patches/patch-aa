@@ -1,23 +1,14 @@
---- os.h~	2008-08-15 22:39:24.000000000 +0200
-+++ os.h	2009-04-02 22:21:56.000000000 +0200
-@@ -13,6 +13,11 @@
- #include <sys/param.h>
- #endif
- 
-+#if defined(__NetBSD__)
-+#include <sys/param.h>
-+#include <stdio.h>
-+#endif
-+
- #if defined(__linux__)
- #include <sys/types.h>
- #include <fcntl.h>
-@@ -30,7 +35,7 @@
- int get_login_name_max(void);
- 
- 
--#ifndef __OpenBSD__
-+#if !defined(__OpenBSD__) && !defined(__NetBSD__)
- long long strtonum(const char *, long long, long long, const char **);
- u_int32_t arc4random(void);
- u_int32_t arc4random_uniform(u_int32_t);
+Don't ignore chdir() return value.
+
+--- dir.c~	2011-02-15 14:51:46.311900000 +0100
++++ dir.c	2011-02-15 14:53:21.357479000 +0100
+@@ -22,7 +22,8 @@
+ 	mgcwd[0] = '\0';
+ 	if (getcwd(mgcwd, sizeof(mgcwd)) == NULL) {
+ 		ewprintf("Can't get current directory!");
+-		chdir("/");
++		if (chdir("/") != 0) 
++			ewprintf("Can't chdir /!");
+ 	}
+ 	if (!(mgcwd[0] == '/' && mgcwd [1] == '\0'))
+ 		(void)strlcat(mgcwd, "/", sizeof(mgcwd));

@@ -1,10 +1,17 @@
---- os.c~	2008-08-15 22:39:24.000000000 +0200
-+++ os.c	2009-04-02 22:20:18.000000000 +0200
-@@ -1,6 +1,6 @@
- #include "os.h"
- 
--#if defined(__OpenBSD__) || defined (__FreeBSD__) || defined (__APPLE__)
-+#if defined(__OpenBSD__) || defined (__FreeBSD__) || defined (__NetBSD__) || defined (__APPLE__)
- int
- get_login_name_max(void)
- {
+Don't ignore fchown() return value.
+
+--- fileio.c~	2011-01-24 00:33:50.000000000 +0100
++++ fileio.c	2011-02-15 14:54:39.653617000 +0100
+@@ -115,7 +115,11 @@
+ 	 */
+ 	if (bp && bp->b_fi.fi_mode) {
+ 		fchmod(fd, bp->b_fi.fi_mode & 07777);
+-		fchown(fd, bp->b_fi.fi_uid, bp->b_fi.fi_gid);
++		if (fchown(fd, bp->b_fi.fi_uid, bp->b_fi.fi_gid) != 0) {
++			ewprintf("Cannot chown file: %s", strerror(errno));
++			close(fd);
++			return (FIOERR);
++		}
+ 	}
+ 	return (FIOSUC);
+ }
