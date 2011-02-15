@@ -54,6 +54,7 @@ SUBDIR+=	audio
 SUBDIR+=	cross
 SUBDIR+=	devel
 SUBDIR+=	doc
+SUBDIR+=	editors
 SUBDIR+=	graphics
 SUBDIR+=	hardware
 SUBDIR+=	image
