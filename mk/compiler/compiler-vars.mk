@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -153,6 +153,58 @@ endif
 override F77=	${FC}
 
 export CPP CXXCPP CC CXX FC F77
-export CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
+
+# INCLUDE_DIRS.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
+# directories) that should be added to the compiler search paths. We add
+# INCLUDE_DIRS to CPPFLAGS, CFLAGS and CXXFLAGS since much software ignores the
+# value of CPPFLAGS that we set in the environment.
+#
+INCLUDE_DIRS=$(addprefix -I,						\
+	$(call lappend, $(filter-out /usr/include,			\
+	  $(foreach _pkg_,${DEPEND_USE}, $(realpath			\
+	    $(addprefix ${PREFIX.${_pkg_}}/,${INCLUDE_DIRS.${_pkg_}})	\
+	    ${INCLUDE_DIRS.${_pkg_}})))))
+CPPFLAGS+=	${INCLUDE_DIRS}
+CFLAGS+=	${INCLUDE_DIRS}
+CXXFLAGS+=	${INCLUDE_DIRS}
+
+# LIBRARY_DIRS.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
+# directories) that should be added to the linker search paths.
+#
+_LIBRARY_DIRS=$(addprefix -L,						\
+	$(call lappend, $(filter-out /usr/lib /usr/lib${SYSLIBSUFFIX},	\
+	  $(addprefix ${PREFIX}/,					\
+	    $(patsubst ${PREFIX}/%,%,${LIBRARY_DIRS}))			\
+	  $(foreach _pkg_,${DEPEND_USE}, $(realpath			\
+	    $(addprefix ${PREFIX.${_pkg_}}/,${LIBRARY_DIRS.${_pkg_}})	\
+	    ${LIBRARY_DIRS.${_pkg_}})))))
+LDFLAGS+=	${_LIBRARY_DIRS}
+
+# RPATH_DIRS.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
+# directories) that should be added to the linker run-time search paths.
+#
+_RPATH_DIRS=$(addprefix ${COMPILER_RPATH_FLAG},				\
+	$(call lappend, $(filter-out /usr/lib /usr/lib${SYSLIBSUFFIX},	\
+	  $(addprefix ${PREFIX}/,					\
+	    $(patsubst ${PREFIX}/%,%,${RPATH_DIRS}))			\
+	  $(foreach _pkg_,${DEPEND_USE}, $(realpath			\
+	    $(addprefix ${PREFIX.${_pkg_}}/,${RPATH_DIRS.${_pkg_}})	\
+	    ${RPATH_DIRS.${_pkg_}})))))
+ifeq (yes,$(call isyes,${_USE_RPATH}))
+  LDFLAGS+=	${_RPATH_DIRS}
+endif
+
+# Append {CPP,C,CXX,LD}FLAGS.<pkg> to the corresponding variable.
+CPPFLAGS+=$(call lappend, $(foreach _pkg_,${DEPEND_USE},${CPPFLAGS.${_pkg_}}))
+CFLAGS+=$(call lappend,$(foreach _pkg_,${DEPEND_USE},${CFLAGS.${_pkg_}}))
+CXXFLAGS+=$(call lappend,$(foreach _pkg_,${DEPEND_USE},${CXXFLAGS.${_pkg_}}))
+LDFLAGS+=$(call lappend, $(foreach _pkg_,${DEPEND_USE},${LDFLAGS.${_pkg_}}))
+
+export CPPFLAGS
+export CFLAGS
+export LDFLAGS
+ifneq (,$(filter c++,${USE_LANGUAGES}))
+  export CXXFLAGS
+endif
 
 endif	# ROBOTPKG_COMPILER_MK

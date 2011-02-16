@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2010 LAAS/CNRS
+# Copyright (c) 2006,2008-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.

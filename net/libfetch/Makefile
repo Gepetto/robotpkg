@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2008-2010 LAAS/CNRS
+# Copyright (C) 2008-2011 LAAS/CNRS
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
 # with or without   fee is hereby granted, provided   that the above  copyright
@@ -37,7 +37,7 @@ PKG_SUPPORTED_OPTIONS+=	ssl
 PKG_OPTION_DESCR.ssl?=	Enable OpenSSL support
 
 define PKG_OPTION_SET.ssl
-  DEPEND_INCDIRS.openssl+=	include
+  INCLUDE_DIRS.openssl+=	include
   BUILD_MAKE_FLAGS+=		FETCH_WITH_OPENSSL=yes
   include ../../mk/sysdep/openssl.mk
 endef
