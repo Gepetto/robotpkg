@@ -1,0 +1,60 @@
+isspace() et al. are defined to take an int. These functions are defined in
+NetBSD as macros that access an array, and this triggers an "Array subscript is
+char" gcc warning.
+
+--- dired.c~	2011-01-24 00:33:50.000000000 +0100
++++ dired.c	2011-02-16 00:23:35.000000000 +0100
+@@ -578,11 +578,11 @@
+ 	ep = lp->l_text + llength(lp);
+ 	p++; /* skip action letter, if any */
+ 	for (i = 0; i < NAME_FIELD; i++) {
+-		while (p < ep && isspace(*p))
++	  while (p < ep && isspace((int)*p))
+ 			p++;
+-		while (p < ep && !isspace(*p))
++	  while (p < ep && !isspace((int)*p))
+ 			p++;
+-		while (p < ep && isspace(*p))
++	  while (p < ep && isspace((int)*p))
+ 			p++;
+ 		if (p == ep)
+ 			return (ABORT);
+--- extend.c~	2011-01-24 00:33:50.000000000 +0100
++++ extend.c	2011-02-16 00:24:49.000000000 +0100
+@@ -445,7 +445,7 @@
+ 	for (i = 0; *str && i < MAXKEY; i++) {
+ 		/* XXX - convert numbers w/ strol()? */
+ 		if (*str == '^' && *(str + 1) !=  '\0') {
+-			key.k_chars[i] = CCHR(toupper(*++str));
++		  key.k_chars[i] = CCHR(toupper((int)*++str));
+ 		} else if (*str == '\\' && *(str + 1) != '\0') {
+ 			switch (*++str) {
+ 			case '^':
+--- grep.c~	2011-01-24 00:33:50.000000000 +0100
++++ grep.c	2011-02-16 00:25:43.000000000 +0100
+@@ -150,7 +150,7 @@
+ 	/* Skip backwards over delimiters we are currently on */
+ 	while (i > 0) {
+ 		c = lgetc(curwp->w_dotp, i);
+-		if (isalnum(c) || c == '_')
++		if (isalnum((int)c) || c == '_')
+ 			break;
+ 
+ 		i--;
+@@ -159,14 +159,14 @@
+ 	/* Skip the symbol itself */
+ 	for (; i > 0; i--) {
+ 		c = lgetc(curwp->w_dotp, i - 1);
+-		if (!isalnum(c) && c != '_')
++		if (!isalnum((int)c) && c != '_')
+ 			break;
+ 	}
+ 	/* Fill the symbol in cprompt[] */
+ 	for (j = 0; j < sizeof(cprompt) - 1 && i < llength(curwp->w_dotp);
+ 	    j++, i++) {
+ 		c = lgetc(curwp->w_dotp, i);
+-		if (!isalnum(c) && c != '_')
++		if (!isalnum((int)c) && c != '_')
+ 			break;
+ 		cprompt[j] = c;
+ 	}

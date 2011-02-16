@@ -1,0 +1,13 @@
+Don't overwrite LDFLAGS from the env.
+
+--- Makefile.in~	2011-02-16 00:26:06.000000000 +0100
++++ Makefile.in	2011-02-16 00:26:21.000000000 +0100
+@@ -15,7 +15,7 @@
+ CC=		gcc
+ CFLAGS?=	-O2 -pipe
+ CFLAGS+=	-g -Wall -Werror
+-LDFLAGS= 	-lncurses
++LDFLAGS+= 	-lncurses
+ 
+ INSTALL=	/usr/bin/install
+ STRIP=		/usr/bin/strip

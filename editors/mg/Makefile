@@ -23,7 +23,11 @@ SUBST_SED.fix-paths=	  -e 's,/usr/local,${PREFIX},g'
 
 HAS_CONFIGURE=	yes
 
-MAKE_ENV=	PREFIX=${PREFIX}
+# Define CFLAGS and LDFLAGS for ncurses
+INCLUDE_DIRS.ncurses+=		include
+INCLUDE_DIRS.ncurses+=		$(dir $(word 1,${SYSTEM_FILES.ncurses}))
+LIBRARY_DIRS.ncurses+=		lib
+RPATH_DIRS.ncurses+=      	lib
 
 include ../../mk/sysdep/ncurses.mk
 include ../../mk/robotpkg.mk
