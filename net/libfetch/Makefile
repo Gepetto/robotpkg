@@ -1,21 +1,6 @@
+# robotpkg Makefile for:	net/libfetch
+# Created:			Anthony Mallet on Sat, 19 Apr 2008
 #
-# Copyright (C) 2008-2011 LAAS/CNRS
-#
-# Permission to use, copy, modify, and distribute this software for any purpose
-# with or without   fee is hereby granted, provided   that the above  copyright
-# notice and this permission notice appear in all copies.
-#
-# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-# REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
-# AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
-# INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
-# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-# OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
-# PERFORMANCE OF THIS SOFTWARE.
-#
-# From $NetBSD: Makefile,v 1.7 2008/04/16 01:01:50 joerg Exp $
-#
-#                                             Anthony Mallet on Fri Apr 18 2008
 
 DISTNAME=	libfetch-2.26
 CATEGORIES=	net
@@ -27,7 +12,7 @@ NO_CHECKSUM=	yes
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.FreeBSD.org/
 COMMENT=	Library to access HTTP/FTP server
-#LICENSE=	modified-bsd
+LICENSE=	modified-bsd
 
 BUILD_TARGET=	depend all
 INSTALL_TARGET=	install includes
