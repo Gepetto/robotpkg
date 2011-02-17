@@ -81,6 +81,7 @@ _REAL_DEPENDS_TARGETS+= sys-depends
 _REAL_DEPENDS_TARGETS+=	pkg-depends-build-options
 _REAL_DEPENDS_TARGETS+=	pkg-depends-install
 _REAL_DEPENDS_TARGETS+=	pkg-depends-file
+_REAL_DEPENDS_TARGETS+= pkg-sys-conflicts
 _REAL_DEPENDS_TARGETS+= depends-conflicts
 _REAL_DEPENDS_TARGETS+=	pkg-depends-cookie
 

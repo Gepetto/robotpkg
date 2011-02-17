@@ -164,6 +164,48 @@ $(foreach _pkg_,${DEPEND_USE},						\
 )
 
 
+# --- pkg-sys-conflicts (PRIVATE, mk/depends/depends.mk) -------------------
+#
+# pkg-sys-conflict checks that system packages that can also be provided by
+# robotpkg are not actually installed by robotpkg.
+#
+.PHONY: pkg-sys-conflicts
+pkg-sys-conflicts:
+	${RUN}conflicts=;						\
+$(foreach _pkg_,${DEPEND_USE},						\
+  $(if $(filter robotpkg,${PREFER.${_pkg_}}),,				\
+    $(if ${DEPEND_DIR.${_pkg_}},					\
+	if ${PKG_INFO} -qe "${_pkg_}"; then				\
+	  conflicts="$$conflicts ${_pkg_} $(patsubst			\
+		${ROBOTPKG_DIR}/%,%,$(realpath				\
+		${CURDIR}/${DEPEND_DIR.${_pkg_}}))";			\
+	fi;								\
+)))									\
+	if ${TEST} -n "$$conflicts"; then				\
+	  ${ERROR_MSG} "${hline}";					\
+	  ${ERROR_MSG} "$${bf}The following packages should be"		\
+		"managed externally, but they are$${rm}";		\
+	  ${ERROR_MSG} "$${bf}still installed by robotpkg:$${rm}";	\
+	  ${ERROR_MSG} "";						\
+	  set -- $$conflicts; while ${TEST} $$# -gt 0; do		\
+	    ${ERROR_MSG} "		`${PKG_INFO} -e "$$1"` in $$2";	\
+	    shift 2;							\
+	  done;								\
+	  ${ERROR_MSG} "";						\
+	  ${ERROR_MSG} "Please use \`${MAKE} deinstall\` to deinstall"	\
+		"the packages above or";				\
+	  ${ERROR_MSG} "update your settings in";			\
+	  ${ERROR_MSG} "	${MAKECONF}";				\
+	  ${ERROR_MSG} "by adding:";					\
+	  set -- $$conflicts; while ${TEST} $$# -gt 0; do		\
+	    ${ERROR_MSG} "		PREFER.$$1 = robotpkg";		\
+	    shift 2;							\
+	  done;								\
+	  ${ERROR_MSG} "${hline}";					\
+	  exit 2;							\
+	fi
+
+
 # --- pkg-depends-file (PRIVATE) -------------------------------------------
 #
 # pkg-depends-file creates the robotpkg prefixes file.
