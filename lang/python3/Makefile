@@ -20,6 +20,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-threads
 CONFIGURE_ARGS+=--enable-shared
 CONFIGURE_ARGS+=--with-system-ffi
+RPATH_DIRS=	lib
 
 # Install only suffixed binaries and files
 INSTALL_TARGET=	altinstall
