@@ -9,8 +9,6 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gdhe
 CHECKOUT_OPTS= -r gdhe-3.8-branch
 
-
-
 MAINTAINER=	matthieu@laas.fr
 HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/gdhe
 COMMENT=	3D Visualization tools
@@ -23,6 +21,9 @@ USE_LANGUAGES+= c c++
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
+CONFIGURE_ARGS+=--with-jpeg=${PREFIX.libjpeg}
+
+INCLUDE_DIRS.mesa+=include
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

@@ -2,13 +2,6 @@ Fix compilation with jpeg>=8
 
 --- modules/tkjpeg/jmem.c.orig	2010-12-21 14:26:44.681727555 +0100
 +++ modules/tkjpeg/jmem.c	2010-12-21 14:26:46.208727620 +0100
-@@ -1,5 +1,5 @@
- /*
-- * Copyright (C) 1996-2001 LAAS/CNRS 
-+ * Copyright (C) 1996-2001,2010 LAAS/CNRS 
-  * All rights reserved.
-  *
-  * Redistribution and use in source and binary forms, with or without
 @@ -95,7 +95,7 @@
   * Prepare for output to a  memory buffer
   */
@@ -52,13 +45,6 @@ Fix compilation with jpeg>=8
  #endif /* _JMEM_H */
 --- modules/tkjpeg/tkjpeg.c.orig	2010-12-21 14:30:19.224727391 +0100
 +++ modules/tkjpeg/tkjpeg.c	2010-12-21 14:30:40.687727596 +0100
-@@ -1,5 +1,5 @@
- /*
-- * Copyright (C) 1996-2008 LAAS/CNRS 
-+ * Copyright (C) 1996-2008,2010 LAAS/CNRS 
-  * All rights reserved.
-  *
-  * Redistribution and use in source and binary forms, with or without
 @@ -141,7 +141,7 @@
      /* Allocation d'une structure de decompression */
      jpeg_create_decompress(&cinfo);

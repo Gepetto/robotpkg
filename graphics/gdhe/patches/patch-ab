@@ -1,0 +1,46 @@
+Do not fail if an X11 connection is not available and a script is given
+
+--- src/main.c~	2010-05-10 10:24:04.000000000 +0200
++++ src/main.c	2011-08-10 15:23:50.460337480 +0200
+@@ -88,6 +88,7 @@
+     char buf[1024];
+     int code, c, errflag = 0;
+     struct rlimit limit;
++    int tkinit = 0;
+ 
+     /* Evite la production de core (gigantesques a cause de OpenGL) */
+     if (getrlimit(RLIMIT_CORE, &limit) == -1) {
+@@ -148,8 +149,13 @@
+     }
+ 
+     if (Tk_Init(interp) == TCL_ERROR) {
++	/* if a filename was given, still source it before failing. This let
++           pkg_mkIndex be built from the Makefile without an X11 connection */
++      fputs("cannot initialize tk\n", stderr);
++      if (!fileName) {
+ 	return TCL_ERROR;
+-    }
++      }
++    } else tkinit = 1;
+ 
+     /* Initialise le reste des variables d'environnement de Tcl */
+     TclVarInit(interp);
+@@ -167,8 +173,8 @@
+              */
+ 
+ 	     Tcl_AddErrorInfo(interp, "");
+-	     TkpDisplayWarning(Tcl_GetVar(interp, "errorInfo",
+-		     TCL_GLOBAL_ONLY), "Error in startup script");
++	     fputs(Tcl_GetVar(interp, "errorInfo",
++		     TCL_GLOBAL_ONLY), stderr);
+             Tcl_DeleteInterp(interp);
+             Tcl_Exit(1);
+         }
+@@ -207,6 +213,7 @@
+      * are no windows left, Tk_MainLoop returns and we exit.
+      */
+ 
++    if (!tkinit) return TCL_OK;
+     Tk_MainLoop();
+ 
+     Tcl_DeleteInterp(interp);
