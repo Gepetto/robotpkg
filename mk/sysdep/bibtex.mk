@@ -29,11 +29,11 @@ DEPEND_USE+=		bibtex
 DEPEND_ABI.bibtex?=	bibtex>=0.99
 
 SYSTEM_SEARCH.bibtex=	\
-	'bin/bibtex:/BibTeX/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
+	'{bin/,}bibtex:/BibTeX/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
 
 SYSTEM_PKG.Linux-fedora.bibtex=texlive
 
-export BIBTEX=	${PREFIX.bibtex}/bin/bibtex
+export BIBTEX=	$(word 1,${SYSTEM_FILES.bibtex})
 
 endif # BIBTEX_DEPEND_MK ---------------------------------------------------
 

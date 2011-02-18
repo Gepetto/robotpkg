@@ -30,8 +30,8 @@ DEPEND_USE+=		latex
 DEPEND_ABI.latex?=	latex>=3.14
 
 SYSTEM_SEARCH.latex=	\
-	'bin/latex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'	\
-	'bin/dvips'
+	'{bin/,}latex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'	\
+	'{bin/,}/dvips'
 
 endif # LATEX_DEPEND_MK ----------------------------------------------
 
