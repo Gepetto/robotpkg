@@ -160,12 +160,14 @@ install-check-version: ${_COOKIE.extract}
 #
 _INSTALL_ALL_TARGETS+=		acquire-install-localbase-lock
 ifndef NO_PKG_REGISTER
-ifndef FORCE_PKG_REGISTER
-_INSTALL_ALL_TARGETS+=		pkg-install-check-conflicts
-_INSTALL_ALL_TARGETS+=		pkg-install-check-installed
+  ifndef FORCE_PKG_REGISTER
+    _INSTALL_ALL_TARGETS+=	pkg-install-check-conflicts
+    _INSTALL_ALL_TARGETS+=	pkg-install-check-installed
+    ifeq (,$(filter confirm,${MAKECMDGOALS}))
+      _INSTALL_ALL_TARGETS+=	pkg-install-check-files
+    endif
+  endif
 endif
-endif
-#_INSTALL_ALL_TARGETS+=		check-files-pre
 _INSTALL_ALL_TARGETS+=		install-makedirs
 #_INSTALL_ALL_TARGETS+=		pre-install-script
 _INSTALL_ALL_TARGETS+=		pre-install
@@ -173,10 +175,9 @@ _INSTALL_ALL_TARGETS+=		do-install
 _INSTALL_ALL_TARGETS+=		post-install
 _INSTALL_ALL_TARGETS+=		plist
 #_INSTALL_ALL_TARGETS+=		install-script-data
-#_INSTALL_ALL_TARGETS+=		check-files-post
 #_INSTALL_ALL_TARGETS+=		post-install-script
 ifndef NO_PKG_REGISTER
-_INSTALL_ALL_TARGETS+=		pkg-register
+  _INSTALL_ALL_TARGETS+=	pkg-register
 endif
 _INSTALL_ALL_TARGETS+=		release-install-localbase-lock
 

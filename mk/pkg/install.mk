@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -90,6 +90,59 @@ pkg-install-check-installed:
 	${ERROR_MSG} "      problems.";					\
 	${ERROR_MSG} ${hline};						\
 	exit 1
+
+
+# --- pkg-install-check-files (PRIVATE, mk/install/install.mk) -------------
+#
+# pkg-install-check-files checks if files from the package PLIST would be
+# overwritten by the install. Only PLIST_SRC is considered, anything generated
+# by any custom GENERATE_PLIST script will be skipped.
+#
+$(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
+
+.PHONY: pkg-install-check-files
+pkg-install-check-files:
+	${RUN}${RM} -f ${WRKDIR}/conflicts.log;				\
+	prefix="${PREFIX}";						\
+	${CAT} /dev/null ${PLIST_SRC} |					\
+	  ${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK} |		\
+	  ${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK} |	\
+	while read f; do						\
+	  case $$f in							\
+	    @cwd*)	set -- $$f; shift; prefix="$$@";;		\
+	    @ignore*)	read f;;					\
+	    @*) ;;							\
+	    *)								\
+		f="$$prefix/$$f";					\
+		if ${TEST} -f "$$f"; then				\
+		  pkg=`${PKG_INFO} -Q PKGPATH -F "$$f" 2>/dev/null||:`;	\
+		  ${ECHO} "$${pkg:-unknown}" "$$f"			\
+			 >>${WRKDIR}/conflicts.log;			\
+		fi;;							\
+	  esac;								\
+	done;								\
+	${TEST} -f ${WRKDIR}/conflicts.log || exit 0;			\
+	${ERROR_MSG} "${hline}";					\
+	${ERROR_MSG} "$${bf}Installation of ${PKGNAME} would$${rm}";	\
+	${ERROR_MSG} "$${bf}overwrite already installed files.$${rm}";	\
+	pkg=; n=;							\
+	${SORT} <${WRKDIR}/conflicts.log | while read c; do set -- $$c;	\
+	  if ${TEST} "$$pkg" != "$$1"; then				\
+	    ${ECHO}; ${ECHO} "$${bf}Files from $$1 package:$${rm}";	\
+	  fi;								\
+	  ${ECHO} "$$2";						\
+	  pkg=$$1; n=.$$n;						\
+	  if ${TEST} "$${n##....................}" != "$$n"; then	\
+	    ${ECHO} "[more conflicting files skipped]";			\
+	    ${ECHO} "See ${WRKDIR}/conflicts.log";			\
+	    break;							\
+	  fi;								\
+	done | ${ERROR_CAT};						\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "$${bf}Use \`${MAKE} ${MAKECMDGOALS} confirm\` to"	\
+		"force installation.";					\
+	${ERROR_MSG} "${hline}";					\
+	exit 2
 
 
 # --- pkg-register (PRIVATE, mk/install/install.mk) ------------------

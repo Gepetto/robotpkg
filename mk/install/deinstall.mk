@@ -48,4 +48,4 @@ release-deinstall-lock: release-localbase-lock
 #
 .PHONY: reinstall
 reinstall: install-clean
-	${RUN}${RECURSIVE_MAKE} install
+	${RUN}${RECURSIVE_MAKE} install $(filter confirm,${MAKECMDGOALS})
