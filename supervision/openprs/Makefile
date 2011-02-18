@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 17 Oct 2007
 #
 
-DISTNAME=		openprs-1.0b8
+DISTNAME=		openprs-1.0b9
 CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/openprs
