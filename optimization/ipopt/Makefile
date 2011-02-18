@@ -15,7 +15,7 @@ HOMEPAGE=	https://projects.coin-or.org/Ipopt
 COMMENT=	Interior Point OPTimizer, pronounced I-P-Opt
 LICENSE=	cpl
 
-
+USE_LANGUAGES=	c c++ fortran
 GNU_CONFIGURE=	yes
 
 # --------------------------------------------------------------------
