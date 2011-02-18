@@ -3,6 +3,7 @@
 #
 
 VERSION=		20091115
+PKGREVISION=		1
 DISTNAME=		pkg_install-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		# empty

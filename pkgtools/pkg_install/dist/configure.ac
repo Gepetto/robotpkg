@@ -36,6 +36,9 @@ AC_SUBST(AUTOCONF)
 AUTOHEADER=${AUTOHEADER-"$srcdir/missing --run autoheader"}
 AC_SUBST(AUTOHEADER)
 
+dnl large file support (must be consistent with libarchive)
+AC_SYS_LARGEFILE
+
 dnl Set the default pkg dbdir
 AC_ARG_WITH(pkgdbdir,
 [  --with-pkgdbdir=DIR     Where to put the pkg database (/var/db/pkg)],
