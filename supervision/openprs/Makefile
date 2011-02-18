@@ -2,15 +2,17 @@
 # Created:			Anthony Mallet on Wed, 17 Oct 2007
 #
 
-DISTNAME=		openprs-1.0b7
+DISTNAME=		openprs-1.0b8
 CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/openprs
 
-MAINTAINER=		openrobots@laas.fr
+MAINTAINER=		felix@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/openprs
 COMMENT=		Open Source Procedural Reasoning System
 LICENSE=		2-clause-bsd
+
+NOT_FOR_PLATFORM=
 
 BUILD_DIRS=		${WRKSRC}
 INSTALL_DIRS=		${WRKSRC}
