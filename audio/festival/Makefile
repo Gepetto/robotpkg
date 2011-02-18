@@ -23,6 +23,9 @@ SPEECH_TOOLS=		${WRKSRC}/speech_tools
 GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		${SPEECH_TOOLS} ${FESTIVAL}
 
+# Fails on Darwin and on 64 bits arches (for different reasons)
+NOT_FOR_PLATFORM=	Darwin-% %-x86_64
+
 # --- optional OGI synthetiser ---------------------------------------
 
 PKG_SUPPORTED_OPTIONS+=	ogireslpc
