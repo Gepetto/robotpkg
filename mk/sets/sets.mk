@@ -49,7 +49,7 @@ set-update-%: .FORCE
 	${RUN}$(call _pkgset_recursive_sorted,update)
 
 set-deinstall-%: .FORCE
-	${RUN}$(call _pkgset_recursive_detros,deinstall)
+	${RUN}$(call _pkgset_recursive_sorted,deinstall,-r)
 
 
 # --- recursion ------------------------------------------------------------
@@ -76,20 +76,12 @@ override define _pkgset_recursive
 	  'for $*'$${rm}
 endef
 
-# sorted recursion
+# sorted recursion (pass $2 to tsort)
 override define _pkgset_recursive_sorted
 	${ECHO_MSG} $${bf}'[$*] Sorting dependencies'$${rm};	\
-	sorted=`${_pkgset_tsort_deps} ${PKGSET.$*}` 2>&1;	\
+	sorted=`${_pkgset_tsort_deps} $2 ${PKGSET.$*}` 2>&1;	\
 	$(call _pkgset_recursive,$1,$$sorted)
 endef
-
-# sorted recursion (in reverse order)
-override define _pkgset_recursive_detros
-	${ECHO_MSG} $${bf}'[$*] Sorting dependencies'$${rm};	\
-	sorted=`${_pkgset_tsort_deps} -r ${PKGSET.$*}` 2>&1;	\
-	$(call _pkgset_recursive,$1,$$sorted)
-endef
-
 
 
 # --- tsort dependencies ---------------------------------------------------
