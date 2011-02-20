@@ -419,28 +419,26 @@ pre-depends-hook: supported-options-message
 
 .PHONY: supported-options-message
 supported-options-message:
-	@${ECHO_MSG} ${hline};						\
-	${ECHO_MSG} "The supported build options for ${PKGBASE} are:";	\
-	${ECHO_MSG} "";							\
+	@${PHASE_MSG} "Checking build options for ${PKGNAME}";		\
+	${STEP_MSG} "Supported build options:";				\
 	$(foreach _o_,							\
 		$(sort ${PKG_SUPPORTED_OPTIONS}),			\
 		$(call _pkgopt_listopt,${_o_}))				\
-	${ECHO_MSG} "";							\
 $(if $(strip ${PKG_OPTIONS}),						\
-	${ECHO_MSG} "Building with the following options enabled:";	\
-	${ECHO_MSG} "";							\
+	${STEP_MSG} "Building with the following options:";		\
 	$(foreach _o_,							\
 		$(sort ${PKG_OPTIONS}),					\
-		$(call _pkgopt_listopt,${_o_}))				\
-	${ECHO_MSG} "";							\
+		$(call _pkgopt_listopt,${_o_})),			\
+	${STEP_MSG} "Building with no option.";				\
 )									\
-	${ECHO_MSG} "You may want to abort the process now with CTRL-C"	\
-		"and review the";					\
-	${ECHO_MSG} "available build options with \`${MAKE}"		\
+	if ${TEST} -t 1; then						\
+	  ${ECHO_MSG} "You may want to abort the process now with"	\
+		"CTRL-C and review the";				\
+	  ${ECHO_MSG} "available build options with \`${MAKE}"		\
 		"show-options' before";					\
-	${ECHO_MSG} "continuing. Be sure to run \`${MAKE} clean' after"	\
-		"any change.";						\
-	${ECHO_MSG} ${hline}
+	  ${ECHO_MSG} "continuing. Be sure to run \`${MAKE} clean'"	\
+		"after any change.";					\
+	fi
 
 else	# !PKG_SUPPORTED_OPTIONS
 
