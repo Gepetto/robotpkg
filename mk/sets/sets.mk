@@ -44,6 +44,9 @@ set-replace-%: .FORCE
 set-update-%: .FORCE
 	${RUN}$(call _pkgset_recursive,update,-1)
 
+set-bulk-%: .FORCE
+	${RUN}$(call _pkgset_recursive,bulk)
+
 set-deinstall-%: .FORCE
 	${RUN}$(call _pkgset_recursive,deinstall,-r)
 

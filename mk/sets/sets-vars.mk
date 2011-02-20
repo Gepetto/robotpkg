@@ -41,7 +41,7 @@ _pkgset_names= $(sort installed depends \
 
 # targets that are 'set'-aware
 _pkgset_targets=\
-	clean fetch extract install replace update deinstall		\
+	clean fetch extract install replace update bulk deinstall	\
 	show-var print-var
 
 # list of available sets targets (_pkgset_targets x _pkgset_names).
@@ -119,8 +119,8 @@ endif # _pkgset_goals
 # graph for a package.
 #
 override define _pkgset_tsort_deps
-  ${SETENV} $(call quote,MAKE=${MAKE}) TPUT=${TPUT}			\
-  ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/libdewey.awk			\
-	-f ${ROBOTPKG_DIR}/mk/sets/tsort-set.awk			\
+  ${SETENV} MAKE=${MAKE} TPUT=${TPUT}				\
+  ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/libdewey.awk		\
+	-f ${ROBOTPKG_DIR}/mk/sets/tsort-set.awk		\
 	--
 endef

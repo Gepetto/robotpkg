@@ -114,7 +114,6 @@ _CONTENTS_FILE=		+CONTENTS
 # is up-to-date and safe, return $2
 #
 _COOKIE.outdated=		${WRKDIR}/.outdated
-_MAKEFILE_WITH_RECIPES+=	${_COOKIE.outdated}
 
 override define if-outdated-pkg
 $(eval -include ${_COOKIE.outdated})$(if ${_OUTDATED.${PKGPATH}},$1,$2)

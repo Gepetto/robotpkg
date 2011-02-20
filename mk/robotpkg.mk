@@ -115,6 +115,10 @@ $(call require-for, bootstrap-depends depends,				\
 $(call require-for, update,						\
 	${ROBOTPKG_DIR}/mk/update/update-vars.mk)
 
+# Bulk
+$(call require-for, bulk su-bulk-%,					\
+	${ROBOTPKG_DIR}/mk/bulk/bulk-vars.mk)
+
 
 # --- optional package facilities ------------------------------------------
 
