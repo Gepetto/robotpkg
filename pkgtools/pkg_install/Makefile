@@ -25,17 +25,6 @@ NO_CHECKSUM=		yes
 PKG_PRESERVE=		yes
 FORCE_PKG_REGISTER=	yes
 
-include ../../mk/robotpkg.prefs.mk
-
-# We use the newly built robotpkg_{add,create,delete} since upgrading
-# from an older pkg_install might required features of the new program.
-# robotpkg_info is used at several places in mk files, so we don't
-# override the default here.
-#
-PKG_ADD_CMD=            ${WRKSRC}/add/robotpkg_add
-PKG_CREATE_CMD=         ${WRKSRC}/create/robotpkg_create
-PKG_DELETE_CMD=         ${WRKSRC}/delete/robotpkg_delete
-
 CPPFLAGS+=		-DDEF_UMASK=${DEF_UMASK}
 
 PLIST_SUBST+=		PKG_DBDIR=${PKG_DBDIR}
@@ -59,13 +48,21 @@ include ../../net/libfetch/depend.mk
 do-extract:
 	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
-# Reverse the order that update and deinstall do things since we need pkg_delete
-# built before we can deinstall. Do the build in the sub make so that we don't
-# trigger a barrier for the update target.
-pre-update: pkg_build
-deinstall: pkg_build
-
 include ../../mk/robotpkg.mk
+
+# We use the newly built robotpkg_{add,create,delete} when upgrading
+# from an older pkg_install, because we might required features of the new
+# program. robotpkg_info is used at several places in mk files, so we don't
+# override the default here. Make sure to properly hook the package build
+# before the new tools are needed.
+#
+PKG_ADD_CMD=	${WRKSRC}/add/robotpkg_add
+PKG_CREATE_CMD=	${WRKSRC}/create/robotpkg_create
+PKG_DELETE_CMD=	${WRKSRC}/delete/robotpkg_delete
+
+pre-update:	pkg_build
+pre-bulk:	pkg_build
+pkg-deinstall:	pkg_build
 
 .PHONY: pkg_build
 pkg_build:
