@@ -1,6 +1,11 @@
 #
-# Copyright (c) 2006,2010 LAAS/CNRS                        --  Thu Dec  7 2006
+# Copyright (c) 2006,2010-2011 LAAS/CNRS
+# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
+#
+# This project includes software developed by the NetBSD Foundation, Inc.
+# and its contributors. It is derived from the 'pkgsrc' project
+# (http://www.pkgsrc.org).
 #
 # Redistribution  and  use in source   and binary forms,  with or without
 # modification, are permitted provided that  the following conditions are
@@ -12,14 +17,6 @@
 #      notice,  this list of  conditions and  the following disclaimer in
 #      the  documentation   and/or  other  materials   provided with  the
 #      distribution.
-#
-# This project includes software developed by the NetBSD Foundation, Inc.
-# and its contributors. It is derived from the 'pkgsrc' project
-# (http://www.pkgsrc.org).
-#
-# From $NetBSD: deinstall.mk,v 1.2 2006/06/05 17:21:55 jlam Exp $
-# Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
-#
 #   3. All advertising materials mentioning   features or use of this
 #      software must display the following acknowledgement:
 #        This product includes software developed by the NetBSD
@@ -40,15 +37,23 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE  USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+# From $NetBSD: deinstall.mk,v 1.2 2006/06/05 17:21:55 jlam Exp $
+#
+#                                       Anthony Mallet on Thu Dec  7 2006
+#
 
 # Set the appropriate flags to pass to pkg_delete(1) based on the value
 # of DEINSTALLDEPENDS (see pkgsrc/mk/install/deinstall.mk).
 #
+_PKG_ARGS_DEINSTALL+=	-k
+
 ifneq (,$(call isyes,${DEINSTALLDEPENDS}))
-_PKG_ARGS_DEINSTALL+=	-r
+_PKG_ARGS_DEINSTALL_INFO+=	-r
+_PKG_ARGS_DEINSTALL+=		-r
 endif
 ifneq (,$(filter all All ALL,${DEINSTALLDEPENDS}))
-_PKG_ARGS_DEINSTALL+=	-r -R
+_PKG_ARGS_DEINSTALL_INFO+=	-r -N
+_PKG_ARGS_DEINSTALL+=		-r -R
 endif
 
 ifdef PKG_VERBOSE
@@ -68,21 +73,37 @@ endif
 #
 pkg-deinstall:
 	${RUN}								\
-	found="`${PKG_INFO} -e \"${PKGNAME}\" || ${TRUE}`";		\
-	case "$$found" in						\
-	"") found="`${_PKG_BEST_EXISTS} $(call quote,${PKGWILDCARD}) || ${TRUE}`" ;; \
-	esac;								\
+	found=`${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}`;		\
 	if ${TEST} -n "$$found"; then					\
-		${ECHO} "Running ${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} $$found"; \
-		${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} "$$found" || ${TRUE} ; \
+          $(if ${_PKG_ARGS_DEINSTALL_INFO},				\
+	    ${PKG_INFO} -q ${_PKG_ARGS_DEINSTALL_INFO} "$$found" |	\
+	      ${SED} 's/^/Removing dependency /';)			\
+	  ${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} "$$found" && {		\
+	    left=`${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}`;		\
+	    if ${TEST} -z "$$left"; then				\
+	      ${ECHO} "Removed $$found";				\
+	    else							\
+	      ${ECHO} "Preserved $$left";				\
+	    fi;								\
+          };								\
 	fi
 ifneq (,$(filter all All ALL,${DEINSTALLDEPENDS}))
 	${RUN}								\
-  $(foreach _pkg_,${BUILD_DEPENDS},		\
-	found="`${_PKG_BEST_EXISTS} $(call quote,$(word 1,$(subst :, ,${_pkg_}))) || ${TRUE}`";\
+$(foreach _pkg_,${DEPEND_USE},						\
+  $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+	found=`${_PKG_BEST_EXISTS} ${_pkg_} || ${TRUE}`;		\
 	if ${TEST} -n "$$found"; then					\
-		${ECHO} "Running ${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} $$found"; \
-		${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} "$$found" || ${TRUE}; \
+          $(if ${_PKG_ARGS_DEINSTALL_INFO},				\
+	    ${PKG_INFO} -q ${_PKG_ARGS_DEINSTALL_INFO} "$$found" |	\
+	      ${SED} 's/^/Removing dependency /';)			\
+	  ${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} "$$found" && {		\
+	    left=`${_PKG_BEST_EXISTS} ${_pkg_} || ${TRUE}`;		\
+	    if ${TEST} -z "$$left"; then				\
+	      ${ECHO} "Removed $$found";				\
+	    else							\
+	      ${ECHO} "Preserved $$left";				\
+	    fi;								\
+	  };								\
 	fi;								\
-  )
+))
 endif
