@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -32,42 +32,7 @@
 # From $NetBSD: bsd.pkg.barrier.mk,v 1.13 2006/11/03 08:01:04 joerg Exp $
 #
 #					Anthony Mallet on Wed Dec  6 2006
-# 
-
-# _BARRIER_PRE_TARGETS is a list of the targets that must be built before
-#	the "barrier" target invokes a new make.
 #
-_BARRIER_PRE_TARGETS+=	makedirs
-_BARRIER_PRE_TARGETS+=	bootstrap-depends
-_BARRIER_PRE_TARGETS+=	depends
-
-#$(call require,${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
-
-
-# _BARRIER_POST_TARGETS is a list of the targets that must be built after
-#	the "barrier" target invokes a new make.  This list is specially
-#	ordered so that if more than one is specified on the command-line,
-#	then robotpkg will still do the right thing.
-#
-_BARRIER_POST_TARGETS+=	fetch
-_BARRIER_POST_TARGETS+=	checksum
-_BARRIER_POST_TARGETS+=	tools
-_BARRIER_POST_TARGETS+=	extract
-_BARRIER_POST_TARGETS+=	patch
-_BARRIER_POST_TARGETS+=	checkout
-_BARRIER_POST_TARGETS+=	configure
-_BARRIER_POST_TARGETS+=	build
-_BARRIER_POST_TARGETS+=	test
-_BARRIER_POST_TARGETS+=	all
-_BARRIER_POST_TARGETS+=	install
-_BARRIER_POST_TARGETS+=	reinstall
-_BARRIER_POST_TARGETS+=	replace
-_BARRIER_POST_TARGETS+=	package
-_BARRIER_POST_TARGETS+=	repackage
-_BARRIER_POST_TARGETS+=	print-PLIST
-
-_BARRIER_CMDLINE_TARGETS+=$(filter ${_BARRIER_POST_TARGETS},${MAKECMDGOALS})
-
 
 # --- barrier <targets> ----------------------------------------------------
 #
@@ -84,7 +49,7 @@ endef
 # barrier is a helper target that can be used to separate targets that should
 # be built in a new make process from being built in the current one.  The
 # targets that must be built after the "barrier" target invokes a new make
-# should be listed in _BARRIER_POST_TARGETS, and should be of the form:
+# should be of the form:
 #
 #	foo: $(call barrier, early dependencies, foo's source dependencies)
 #
