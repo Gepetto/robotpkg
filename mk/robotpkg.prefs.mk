@@ -120,6 +120,15 @@ endif
 MACHINE_PLATFORM?=	${OPSYS}-${OS_VERSION}-${MACHINE_ARCH}
 
 
+# load the OS-specific definitions for program variables.
+#
+ifeq (yes,$(call exists,${ROBOTPKG_DIR}/mk/platform/${OPSYS}.mk))
+  include ${ROBOTPKG_DIR}/mk/platform/${OPSYS}.mk
+else
+  $(error missing mk/platform/${OPSYS}.mk)
+endif
+
+
 # default accepted licenses (defined here so that += operator in robotpkg.conf
 # can be used to include the default list). See robotpkg.default.conf for
 # details.
@@ -166,15 +175,6 @@ ifndef MAKECONF
 endif
 -include ${MAKECONF}
 include ${ROBOTPKG_DIR}/mk/robotpkg.default.conf
-
-
-# load the OS-specific definitions for program variables.
-#
-ifeq (yes,$(call exists,${ROBOTPKG_DIR}/mk/platform/${OPSYS}.mk))
-  include ${ROBOTPKG_DIR}/mk/platform/${OPSYS}.mk
-else
-  $(error missing mk/platform/${OPSYS}.mk)
-endif
 
 
 # --- Transform package Makefile variables and set defaults ----------------
