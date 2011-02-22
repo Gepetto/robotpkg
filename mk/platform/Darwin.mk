@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2010 LAAS/CNRS
+# Copyright (c) 2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -26,6 +26,13 @@ EXPORT_SYMBOLS_LDFLAGS?=-Wl,-E	# add symbols to the dynamic symbol table
 
 _OPSYS_SHLIB_TYPE=	dylib	# shared lib type
 _USE_RPATH=		no	# add rpath to LDFLAGS
+
+# Overwrite the default ABI under Mac OS X 10.6
+ifneq (,$(filter 10.%,${OS_VERSION}))
+  ifeq (1,$(shell /usr/sbin/sysctl -n hw.optional.x86_64))
+    MACHINE_ARCH:=x86_64
+  endif
+endif
 
 # Standard commands
 $(call setdefault, TRUE,	:)
