@@ -18,15 +18,11 @@ DEPEND_USE+=			py-simpleparse
 DEPEND_ABI.py-simpleparse?=	py-simpleparse>=2.1.1
 DEPEND_DIR.py-simpleparse?=	../../devel/py-simpleparse
 
-DEPEND_PYTHONPATH.py-setuptools=\
-	$(dir $(word 2,${SYSTEM_FILES.py-simpleparse}))..
-
 SYSTEM_PKG.Linux-ubuntu.py-simpleparse=	py-simpleparse
 
 _pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.py-simpleparse=\
-	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version'			\
-	'lib/${_pynamespec}/site-packages/simpleParse/__init__.py'
+	'lib/${_pynamespec}/site-packages/simpleparse/__init__.py'
 
 endif # PY_SIMPLEPARSE_DEPEND_MK -------------------------------------------
 

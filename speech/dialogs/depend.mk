@@ -17,9 +17,6 @@ DEPEND_USE+=		dialogs
 DEPEND_ABI.dialogs?=	dialogs>=0.5
 DEPEND_DIR.dialogs?=	../../speech/dialogs
 
-DEPEND_PYTHONPATH.py-setuptools=\
-	$(dir $(word 1,${SYSTEM_FILES.dialogs}))..
-
 _pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.dialogs=\
 	'lib/${_pynamespec}/{site,dist}-packages/dialogs/__init__.py'

@@ -22,12 +22,8 @@ USE_LANGUAGES+=		python
 DEPEND_USE+=		py-yaml
 DEPEND_ABI.py-yaml?=	py-yaml
 
-DEPEND_PYTHONPATH.py-yaml=\
-	$(dir $(word 2,${SYSTEM_FILES.py-yaml}))..
-
 _pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.py-yaml=\
-	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version'			\
 	'lib/${_pynamespec}/{site,dist}-packages/yaml/__init__.py'
 
 SYSTEM_PKG.Linux-fedora.py-yaml=	PyYAML

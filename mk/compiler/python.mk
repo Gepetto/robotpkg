@@ -83,19 +83,35 @@ else
 endif
 
 # Define some variables
-PYTHON_VERSION=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c 		\
+PYTHON_VERSION:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
 	'import distutils.sysconfig;					\
 	print(distutils.sysconfig.get_config_var("VERSION"))'))
 PYTHON_SITELIB=$(if ${PYTHON_VERSION},lib/python${PYTHON_VERSION}/site-packages)
-export PYTHONPATH:=$(call prependpaths,${PREFIX}/${PYTHON_SITELIB},${PYTHONPATH})
 
-PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
-PRINT_PLIST_AWK_SUBST+=\
-	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
+# PYTHONPATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
+# directories) that should be added to the python search paths.
+#
+_PYTHON_SYSPATH:=$(if ${PYTHON},					\
+  $(shell ${SETENV} PYTHONPATH= ${PYTHON} 2>/dev/null -c		\
+	'import sys; print(" ".join(sys.path))'))
+
+PYTHONPATH=$(call prependpaths, $(filter-out ${_PYTHON_SYSPATH},	\
+	$(patsubst %/,%,$(foreach _pkg_,${DEPEND_USE},			\
+	  $(addprefix							\
+	    ${PREFIX.${_pkg_}}/, $(patsubst ${PREFIX.${_pkg_}}/%,%,	\
+	    $(or ${PYTHONPATH.${_pkg_}},				\
+	      $(addsuffix ..,$(dir $(filter				\
+	        %/__init__.py %/__init__.pyc,${SYSTEM_FILES.${_pkg_}})))\
+	      $(dir $(filter %.py %.pyc, ${SYSTEM_FILES.${_pkg_}})))))))))
+export PYTHONPATH
+
 
 # Add extra replacement in PLISTs
+PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 PLIST_SUBST+=\
 	PLIST_PYTHON_SITELIB=$(call quote,${PYTHON_SITELIB})
+PRINT_PLIST_AWK_SUBST+=\
+	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
 PRINT_PLIST_AWK_SUBST+=\
 	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");
 

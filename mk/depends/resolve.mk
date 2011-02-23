@@ -141,12 +141,3 @@ define _dpd_adddep
   endif
 endef
 $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
-
-# Collect DEPEND_PYTHONPATH.<pkg>
-#
-ifneq (,$(filter python,${USE_LANGUAGES}))
-  PYTHONPATH:=$(call prependpaths,					\
-	$(foreach _pkg_,${DEPEND_USE},					\
-		$(realpath ${DEPEND_PYTHONPATH.${_pkg_}})),		\
-	${PYTHONPATH})
-endif

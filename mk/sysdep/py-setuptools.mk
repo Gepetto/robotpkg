@@ -18,9 +18,6 @@ USE_LANGUAGES+=			python
 DEPEND_USE+=			py-setuptools
 DEPEND_ABI.py-setuptools?=	py-setuptools
 
-DEPEND_PYTHONPATH.py-setuptools=\
-	$(dir $(word 2,${SYSTEM_FILES.py-setuptools}))..
-
 _pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.py-setuptools=\
 	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version'			\
