@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Thu,  9 Sep 2010
 #
 
-VERSION=	2.6.34.6
+VERSION=	2.6.34.7
 PKGNAME=	ieee1394-kmod-${VERSION}
 DISTNAME=	linux-${VERSION}
 EXTRACT_SUFX=	.tar.bz2
