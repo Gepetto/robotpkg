@@ -90,12 +90,6 @@ BUILD_LOGFILTER?=\
 		$(if ${BUILD_LOG_ETA},-a ${BUILD_LOG_ETA})		\
 		--
 
-# Add these bits to the environment used when invoking the recursive make
-# processes for build-related phases.
-#
-PKGSRC_MAKE_ENV+=	PATH=$(call quote,${PATH})
-
-
 # The following are the "public" targets provided by this module:
 #
 #    build
