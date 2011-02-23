@@ -29,6 +29,9 @@ LIBRARY_DIRS.freeglut=	lib
 RPATH_DIRS.libusb1=	lib
 RPATH_DIRS.freeglut=	lib
 
+# Installation rpath
+RPATH_DIRS=		lib
+
 INSTALLATION_DIRS=\
 	bin		\
 	include/ni	\
