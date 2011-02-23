@@ -18,6 +18,8 @@ LICENSE= gnu-gpl-v2
 USE_LANGUAGES=	c++
 WRKSRC=		${WRKDIR}
 
+MAKE_JOBS_SAFE=	no
+
 CONFIGURE_DIRS=	. src tools tools/IdPatGen sample sample/multi sample/simple
 CONFIGURE_ENV+=	ARTKP=${WRKSRC}
 QMAKE_ARGS+=	PREFIX=${PREFIX}
