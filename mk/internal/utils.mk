@@ -130,7 +130,7 @@ export hline:="$$bf$(subst =,=======,==========)$$rm"
 _SETFANCY_CMD:=${TEST} -t 1 || { bf=; rm=; }
 
 
-# --- makedirs -------------------------------------------------------
+# --- makedirs -------------------------------------------------------------
 #
 # Create initial working directories
 #
@@ -140,9 +140,12 @@ _COOKIE.wrkdir=	${WRKDIR}/.wrkdir_cookie
 makedirs: ${WRKDIR};
 
 ${WRKDIR}:
-	${RUN}${MKDIR} ${WRKDIR} &&					\
-	${ECHO} '${PKGNAME}' >${_COOKIE.wrkdir} &&			\
-	${ECHO} '${_COOKIE.wrkopthash}' >${_COOKIE.wrkopt}
+	${RUN}${MKDIR} ${WRKDIR};					\
+	v="${PKGVERSION}"; v=$${v%.checkout*};				\
+	exec >>${_COOKIE.wrkdir};					\
+	${ECHO} "_COOKIE.wrkdir.date:=`${_CDATE_CMD}`";			\
+	${ECHO} "_COOKIE.wrkdir.pkgversion:=$$v";			\
+	${ECHO} "_COOKIE.wrkdir.pkgoptions:=${PKG_OPTIONS}"
 
 
 # --- %-done-message -------------------------------------------------------

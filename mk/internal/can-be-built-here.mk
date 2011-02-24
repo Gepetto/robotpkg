@@ -105,6 +105,50 @@ PKG_FAIL_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
   endif
 endif
 
+
+# --- check-wrkdir-version -------------------------------------------------
+#
+# - Verify that the extracted package in ${WRKDIR} matches the version
+#   specified in the package Makefile.
+# - Verify that current package options did not change since workdir creation.
+# This is a check against stale work directories.
+#
+ifeq (yes,$(call exists,${_COOKIE.wrkdir}))
+  $(call require,${_COOKIE.wrkdir})
+
+  # filter .checkout. Grr.
+  _v_:=$(strip $(if $(filter .checkout,				\
+        $(suffix $(basename $(basename ${PKGVERSION})))),	\
+	$(basename $(basename $(basename ${PKGVERSION}))),	\
+	${PKGVERSION}))
+  ifneq (${_v_},${_COOKIE.wrkdir.pkgversion})
+    PKG_FAIL_REASON+= "$${bf}Extracted version mismatch for ${PKGNAME}$${rm}"
+    PKG_FAIL_REASON+= "Extracted version:	${_COOKIE.wrkdir.pkgversion}"
+    PKG_FAIL_REASON+= "Current version:		${_v_}"
+    PKG_FAIL_REASON+= ""
+    PKG_FAIL_REASON+= "You have a stale working directory, please"
+    PKG_FAIL_REASON+= "		\`$${bf}${MAKE} clean$${rm}\` in ${PKGPATH}"
+  endif
+
+  ifneq (${PKG_OPTIONS},${_COOKIE.wrkdir.pkgoptions})
+    PKG_FAIL_REASON+= "$${bf}Options for ${PKGNAME} have changed$${rm}"
+    ifeq (,${_COOKIE.wrkdir.pkgoptions})
+      PKG_FAIL_REASON+= "Working directory:	(none)"
+    else
+      PKG_FAIL_REASON+= "Working directory:	${_COOKIE.wrkdir.pkgoptions}"
+    endif
+    ifeq (,${PKG_OPTIONS})
+      PKG_FAIL_REASON+= "Current options:		(none)"
+    else
+      PKG_FAIL_REASON+= "Current options:		${PKG_OPTIONS}"
+    endif
+    PKG_FAIL_REASON+= ""
+    PKG_FAIL_REASON+= "You have a stale working directory, please"
+    PKG_FAIL_REASON+= "		\`$${bf}${MAKE} clean$${rm}\` in ${PKGPATH}"
+  endif
+endif
+
+
 #
 # Summarize the result of tests in _CBBH
 #
@@ -136,16 +180,16 @@ endif
 # whether this package can be built. If the package can not be built,
 # the reasons are given in the following lines.
 #
-.PHONY: can-be-built-here cbbh
-
+.PHONY: can-be-built-here
 can-be-built-here:
 	@${ECHO} ${_CBBH}
 	@${ECHO} ${_CBBH_MSGS}
 
+.PHONY: cbbh
 cbbh:
-ifeq (no,${_CBBH})
+  ifeq (no,${_CBBH})
 	@for str in ${_CBBH_MSGS}; do					\
 		${ERROR_MSG} "$$str";					\
 	done
 	@exit 2
-endif
+  endif

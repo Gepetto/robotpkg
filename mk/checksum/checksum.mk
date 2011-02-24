@@ -58,11 +58,6 @@ _CHECKSUM_CMD= ${SETENV} 					\
 	CAT=${CAT} TEST=${TEST} ECHO=${ECHO} 			\
 	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
 
-_MAKECONF_CHECKSUM_CMD= ${SETENV} 				\
-	DIGEST=$(call quote,${DIGEST})				\
-	CAT=${CAT} TEST=${TEST} ECHO=${ECHO} 			\
-	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
-
 
 # --- checksum (PUBLIC) ----------------------------------------------
 #
@@ -73,7 +68,6 @@ $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 _CHECKSUM_TARGETS=	$(call add-barrier, bootstrap-depends, checksum)
-_CHECKSUM_TARGETS+=	check-configuration-file
 ifndef _EXTRACT_IS_CHECKOUT
   _CHECKSUM_TARGETS+=	fetch
   _CHECKSUM_TARGETS+=	checksum-files
@@ -81,52 +75,6 @@ endif
 
 .PHONY: checksum
 checksum: ${_CHECKSUM_TARGETS};
-
-
-# --- check-configuration-file (PRIVATE) -----------------------------
-#
-# check-configuration-file create a checksum of the current
-# robotpkg.conf, or checks it against a previously saved checksum. This
-# guarantees that the configuration file did not change between two make
-# invocations.
-#
-
-_MAKECONF_CKSUM=	${WRKDIR}/.conf_cksum
-
-.PHONY: check-configuration-file
-check-configuration-file: ${WRKDIR}
-ifdef MAKECONF
-	${RUN}if test -f ${_MAKECONF_CKSUM}; then			\
-$(foreach _alg_,${_CONF_DIGEST_ALGORITHMS},				\
-	  if ${_MAKECONF_CHECKSUM_CMD} -a ${_alg_}			\
-	    ${_MAKECONF_CKSUM} ${MAKECONF}; then			\
-	    ${TRUE};							\
-	  else								\
-	    ${ERROR_MSG} ${hline};					\
-	    ${ERROR_MSG} "$${bf}Inconsistent configuration file for"	\
-			"${PKGNAME}.$${rm}";				\
-	    ${ERROR_MSG} "The robotpkg.conf file was modified since"	\
-			"last make.";					\
-	    ${ERROR_MSG} "";						\
-	    ${ERROR_MSG} "$${bf}Please do a \`${MAKE} clean' in"	\
-			"${PKGPATH}.$${rm}";				\
-	    ${ERROR_MSG} "";						\
-	    ${ERROR_MSG} "If you want to override this check, type:";	\
-	    ${ERROR_MSG} "		${MAKE} NO_CHECKSUM=yes [other"	\
-			"args]";					\
-	    ${ERROR_MSG} ${hline};					\
-	    exit 1;							\
-	  fi;								\
-)									\
-	elif ${TEST} -r ${MAKECONF}; then				\
-	  for a in "" ${_CONF_DIGEST_ALGORITHMS}; do			\
-	    ${TEST} -n "$$a" || continue;				\
-	    ${DIGEST} $$a ${MAKECONF} >> ${_MAKECONF_CKSUM};		\
-	  done;								\
-	else								\
-	    >${_MAKECONF_CKSUM};					\
-	fi
-endif
 
 
 # --- checksum-files (PRIVATE) ---------------------------------------------

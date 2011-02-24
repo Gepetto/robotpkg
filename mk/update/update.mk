@@ -54,7 +54,7 @@ $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 # The 'update' target is a public target to update a package and all
 # currently installed packages that depend upon this package.
 #
-_UPDATE_TARGETS=	cbbh
+_UPDATE_TARGETS+=	cbbh
 _UPDATE_TARGETS+=	update-message
 _UPDATE_TARGETS+=	pre-update
 _UPDATE_TARGETS+=	update-create-dlist

@@ -99,9 +99,6 @@ endif
 $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
 _REAL_INSTALL_TARGETS+=		install-check-interactive
-ifndef _EXTRACT_IS_CHECKOUT
-  _REAL_INSTALL_TARGETS+=	install-check-version
-endif
 ifndef NO_PKG_REGISTER
   ifndef FORCE_PKG_REGISTER
     _REAL_INSTALL_TARGETS+=	pkg-install-check-conflicts
@@ -155,35 +152,6 @@ ifdef BATCH
 else
 	@${DO_NADA}
 endif
-
-
-# --- install-check-version (PRIVATE) --------------------------------
-#
-# install-check-version will verify that the built package located in
-# ${WRKDIR} matches the version specified in the package Makefile.
-# This is a check against stale work directories.
-#
-.PHONY: install-check-version
-install-check-version: ${_COOKIE.extract}
-	${RUN}								\
-	extractname=`${CAT} $^`;					\
-	pkgname=${PKGNAME};						\
-	case "$$extractname" in						\
-	  "$$pkgname")	;;						\
-	  *)								\
-	    ${ERROR_MSG} ${hline};					\
-	    ${ERROR_MSG} "$${bf}Extracted version does not match"	\
-		"current version$${rm}";				\
-	    ${ERROR_MSG} "Extracted version: $$extractname";		\
-	    ${ERROR_MSG} "Current version: $$pkgname in ${PKGPATH}"; 	\
-	    ${ERROR_MSG} ""; 						\
-	    ${ERROR_MSG} "You probably have a stale work directory,"	\
-		"try to"; 						\
-	    ${ERROR_MSG} "	${MAKE} -C ../../${PKGPATH} clean";	\
-	    ${ERROR_MSG} ${hline};					\
-	    exit 1;							\
-	    ;;								\
-	esac
 
 
 # --- install-deinstall (PRIVATE) ------------------------------------------
