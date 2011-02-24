@@ -14,6 +14,7 @@ COMMENT=		Interactive shell for the TCL programming language.
 LICENSE=		2-clause-bsd
 
 NOT_FOR_PLATFORM=	# empty
+MAKE_JOBS_SAFE=		no
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})
