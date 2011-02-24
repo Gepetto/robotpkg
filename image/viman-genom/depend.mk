@@ -20,7 +20,7 @@ SYSTEM_SEARCH.viman-genom=\
 
 DEPEND_USE+=		viman-genom
 
-DEPEND_ABI.viman-genom?=viman-genom>=1.0
+DEPEND_ABI.viman-genom?=viman-genom>=1.2
 DEPEND_DIR.viman-genom?=../../image/viman-genom
 
 endif # VIMAN-GENOM_DEPEND_MK ----------------------------------------
