@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -44,10 +44,12 @@
 #       extracted.  The default suffix is ".tar.gz".
 #
 
-$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
-
 EXTRACT_ONLY?=		${DISTFILES}
 EXTRACT_SUFX?=		.tar.gz
+
+_COOKIE.extract=	${WRKDIR}/.extract_done
+_COOKIE.checkout=	${WRKDIR}/.checkout_done
+
 
 # let users override the MASTER_REPOSITORY defined in a package
 ifdef REPOSITORY.${PKGBASE}
@@ -68,6 +70,26 @@ else ifdef CHECKOUT
   _CHECKOUT=${CHECKOUT}
 endif
 
+# test for checkouts
+ifneq (,$(filter checkout,${MAKECMDGOALS}))
+  _EXTRACT_IS_CHECKOUT:=yes
+endif
+ifeq (yes,$(call exists,${_COOKIE.checkout}))
+  _EXTRACT_IS_CHECKOUT:=yes
+endif
+
+# redefine package name for checkouts
+ifdef _EXTRACT_IS_CHECKOUT
+  ifndef _CHECKOUT_PKGVERSION
+    $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
+    _CHECKOUT_PKGVERSION:=.checkout.$(shell ${_CDATE_CMD} "+%Y%m%d.%H%M%S")
+    MAKEOVERRIDES+=_CHECKOUT_PKGVERSION=${_CHECKOUT_PKGVERSION}
+  endif
+  PKGNAME:=		${PKGNAME}${_CHECKOUT_PKGVERSION}
+endif
+
+# For DISTFILES definition
+$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
 # Discover which tools we need based on the file extensions of the
 # distfiles.
@@ -113,25 +135,6 @@ endif
 #.if !empty(EXTRACT_ONLY:M*.gem)
 #USE_TOOLS+=	gem
 #.endif
-
-_COOKIE.extract=	${WRKDIR}/.extract_done
-_COOKIE.checkout=	${WRKDIR}/.checkout_done
-
-ifneq (,$(filter checkout,${MAKECMDGOALS}))
-  _EXTRACT_IS_CHECKOUT:=yes
-endif
-ifeq (yes,$(call exists,${_COOKIE.checkout}))
-  _EXTRACT_IS_CHECKOUT:=yes
-endif
-
-ifdef _EXTRACT_IS_CHECKOUT
-  ifndef _CHECKOUT_PKGVERSION
-    $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
-    _CHECKOUT_PKGVERSION:=.checkout.$(shell ${_CDATE_CMD} "+%Y%m%d.%H%M%S")
-    MAKEOVERRIDES+=_CHECKOUT_PKGVERSION=${_CHECKOUT_PKGVERSION}
-  endif
-  PKGNAME:=		${PKGNAME}${_CHECKOUT_PKGVERSION}
-endif
 
 # The following are the "public" targets provided by this module:
 #
@@ -197,4 +200,4 @@ extract-cookie:
 checkout-cookie:
 	${RUN}${TEST} ! -f ${_COOKIE.checkout} || ${FALSE}
 	${RUN}${MKDIR} $(dir ${_COOKIE.checkout})
-	${RUN}${ECHO} ${PKGBASE} > ${_COOKIE.checkout}
+	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.checkout}
