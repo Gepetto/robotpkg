@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 15 Oct 2010
 #
 
-PKGVERSION=		1.3
+PKGVERSION=		1.4
 DISTNAME=		coldman-libs-${PKGVERSION}
 CATEGORIES=		manipulation
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=coldman-libs/}
