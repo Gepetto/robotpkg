@@ -80,14 +80,14 @@ pkg-install-check-installed:
 	${ERROR_MSG} "Perhaps an older version?";			\
 	${ERROR_MSG} "";						\
 	${ERROR_MSG} "If so, you may use either of:";			\
-	${ERROR_MSG} "    - \`${MAKE} -C ../../${PKGPATH} update' to"	\
-		"rebuild the package";					\
-	${ERROR_MSG} "      and all of its dependencies";		\
-	${ERROR_MSG} "    - \`${MAKE} -C ../../${PKGPATH} replace' to"	\
-		"replace only the";					\
-	${ERROR_MSG} "      package without re-linking dependencies,"	\
-		"risking various";					\
-	${ERROR_MSG} "      problems.";					\
+	${ERROR_MSG} "    - '$${bf}${MAKE} update$${rm}' in ${PKGPATH}"	\
+		"to rebuild the";					\
+	${ERROR_MSG} "       package and all of its dependencies";	\
+	${ERROR_MSG} "    - '$${bf}${MAKE} replace$${rm}' in ${PKGPATH}"\
+		"to replace only";					\
+	${ERROR_MSG} "       the package without re-linking,"		\
+		"dependencies risking various";				\
+	${ERROR_MSG} "       problems.";				\
 	${ERROR_MSG} ${hline};						\
 	exit 1
 
