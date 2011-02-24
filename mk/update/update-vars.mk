@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2010 LAAS/CNRS
+# Copyright (c) 2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -46,7 +46,6 @@ ifneq (,$(filter confirm,${MAKECMDGOALS}))
 endif
 
 # state variables
-_UPDATE_DIRS=	${WRKDIR}/.DDIR
-_UPDATE_LIST=	${WRKDIR}/.DLIST
+_UPDATE_LIST=	${WRKDIR}/.update_list
 
 include ${ROBOTPKG_DIR}/mk/update/update.mk

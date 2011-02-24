@@ -129,22 +129,24 @@ endif
 #
 $(call require,${ROBOTPKG_DIR}/mk/update/update-vars.mk)
 
-ifeq (yes,$(call exists,${_UPDATE_DIRS}))
+ifeq (yes,$(call exists,${_UPDATE_LIST}))
   .PHONY: clean-confirm-update
   clean-confirm-update:
-	@${ERROR_MSG} ${hline};							\
-	${ERROR_MSG} "$${bf}An update is in progress for ${PKGPATH}$${rm}";	\
-	if ${TEST} -s ${_UPDATE_DIRS}; then					\
-	  ${ERROR_MSG} "The following packages are still to be updated:";	\
-	  while read p; do							\
-		${ERROR_MSG} "		$$p";					\
-	  done <${_UPDATE_DIRS};						\
-	fi;									\
-	${ERROR_MSG} "";							\
-	${ERROR_MSG} "You must confirm the cleaning action by doing";		\
-	${ERROR_MSG} "		\`$${bf}${MAKE} clean confirm$${rm}' in"	\
-		"${PKGPATH}";							\
-	${ERROR_MSG} ${hline};							\
+	@${ERROR_MSG} ${hline};						\
+	${ERROR_MSG} "$${bf}An update is in progress for"		\
+		"${PKGPATH}$${rm}";					\
+	if ${TEST} -s ${_UPDATE_LIST}; then				\
+	  ${ERROR_MSG} "The following packages are still to be"		\
+		"updated:";						\
+	  while read dir pkg; do					\
+		${ERROR_MSG} "		$$pkg in $$dir";		\
+	  done <${_UPDATE_LIST};					\
+	fi;								\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "You must confirm the cleaning action by doing";	\
+	${ERROR_MSG} "		'$${bf}${MAKE} clean confirm$${rm}' in"	\
+		"${PKGPATH}";						\
+	${ERROR_MSG} ${hline};						\
 	${FALSE}
 
   ifeq  (,$(filter confirm,${MAKECMDGOALS}))

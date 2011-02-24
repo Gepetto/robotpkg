@@ -58,7 +58,7 @@ _UPDATE_TARGETS=	cbbh
 _UPDATE_TARGETS+=	update-message
 _UPDATE_TARGETS+=	pre-update
 _UPDATE_TARGETS+=	update-create-dlist
-ifneq (yes,$(call exists,${_UPDATE_DIRS}))
+ifneq (yes,$(call exists,${_UPDATE_LIST}))
   ifeq (,$(filter replace,${UPDATE_TARGET}))
     _UPDATE_TARGETS+=	update-deinstall-dlist
   endif
@@ -69,7 +69,7 @@ _UPDATE_TARGETS+=	update-clean
 _UPDATE_TARGETS+=	update-done-message
 
 ifeq (yes,$(call only-for,update,yes))	     # if we are asking for an update
-  ifneq (yes,$(call exists,${_UPDATE_DIRS})) # not resuming a previous one
+  ifneq (yes,$(call exists,${_UPDATE_LIST})) # not resuming a previous one
     ifneq (yes,$(call for-unsafe-pkg,yes))   # and the package is not unsafe
       _UPDATE_TARGETS:= update-up-to-date    # let us do nothing
     endif
@@ -88,16 +88,24 @@ do%update: .FORCE
 	${_OVERRIDE_TARGET}
 	${RUN}${RECURSIVE_MAKE} ${UPDATE_TARGET}			\
 			DEPENDS_TARGET=${DEPENDS_TARGET}
-	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
+	${RUN}target='$(filter-out confirm,${UPDATE_TARGET})';		\
+	${TEST} ! -f ${_UPDATE_LIST} || while read dir pkg <&9; do	\
 	  if ${TEST} -z "$${dir}"; then continue; fi;			\
+	  ${PHASE_MSG} "Verifying $$target for $$dir";			\
+	  if ${PKG_INFO} -qe "$$pkg"; then				\
+	    set -- `${PKG_INFO} -qr '${PKGNAME}'`;			\
+	    case " $$@ " in *" $$pkg "*)				\
+	        ${STEP_MSG} "$$pkg was already reinstalled";		\
+	        continue;;						\
+	    esac;							\
+	  fi;								\
 	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
-	    ${RECURSIVE_MAKE} $(filter-out confirm,${UPDATE_TARGET})	\
+	    ${RECURSIVE_MAKE} $$target					\
 			DEPENDS_TARGET=${DEPENDS_TARGET} || {		\
 		${ERROR_MSG} ${hline};					\
-		${ERROR_MSG} "$${bf}'${MAKE}"				\
-			"$(filter-out confirm,${UPDATE_TARGET})' failed"\
-			"in $${dir}$${rm}";				\
+		${ERROR_MSG} "$${bf}'${MAKE} $$target' failed in"	\
+			"$${dir}$${rm}";				\
 		${ERROR_MSG} "";					\
 		${ERROR_MSG} "Fix the problem, then re-run"		\
 			"'${MAKE} ${MAKECMDGOALS}' in ${PKGPATH}";	\
@@ -105,9 +113,9 @@ do%update: .FORCE
 		exit 2;							\
 	    };								\
 	  else								\
-	    ${PHASE_MSG} "Skipping nonexistent directory $${dir}"; 	\
+	    ${PHASE_MSG} "Skipping nonexistent directory $${dir}";	\
 	  fi;								\
-	done 9<${_UPDATE_DIRS}
+	done 9<${_UPDATE_LIST}
 
 .PHONY: pre-update post-update
 
@@ -118,7 +126,7 @@ post-update:
 
 .PHONY: update-message
 update-message:
-ifeq (yes,$(call exists,${_UPDATE_DIRS}))
+ifeq (yes,$(call exists,${_UPDATE_LIST}))
 	@${PHASE_MSG} "Resuming update for ${PKGNAME}"
 else
 	@${PHASE_MSG} "Updating for ${PKGNAME}"
@@ -142,7 +150,7 @@ update-done-message:
 # clean update files
 .PHONY: update-clean
 update-clean:
-	${RUN}${TEST} \! -f ${_UPDATE_DIRS} || while read dir <&9; do	\
+	${RUN}${TEST} ! -f ${_UPDATE_LIST} || while read dir pkg <&9;do	\
 	  if ${TEST} -z "$${dir}"; then continue; fi;			\
 	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
@@ -150,9 +158,9 @@ update-clean:
 	  else								\
 	    nodir=$$nodir" "$$dir;					\
 	  fi;								\
-	done 9<${_UPDATE_DIRS};						\
+	done 9<${_UPDATE_LIST};						\
 	cd ${CURDIR};							\
-	${RM} -f ${_UPDATE_DIRS} ${_UPDATE_LIST};			\
+	${RM} -f ${_UPDATE_LIST};					\
 	if ${TEST} "$(call isyes,${UPDATE_CLEAN})"; then		\
 	  ${RECURSIVE_MAKE} cleaner || noclean=$$noclean" "${PKGPATH};	\
 	fi;								\
@@ -181,39 +189,35 @@ update-clean:
 
 # compute the list of packages to update
 .PHONY: update-create-dlist
-update-create-dlist: ${_UPDATE_DIRS}
-
-${_UPDATE_DIRS}: ${_UPDATE_LIST}
-	${RUN}pkgs=`${CAT} ${_UPDATE_LIST}`;				\
-	if ${TEST} "$$pkgs"; then					\
-	  ${PKG_INFO} -Q PKGPATH $$pkgs >$@;				\
-	fi;
+update-create-dlist: makedirs ${_UPDATE_LIST}
 
 ${_UPDATE_LIST}:
-	${RUN}${MKDIR} ${WRKDIR} && >$@;				\
-	if ${PKG_INFO} -qe "${PKGWILDCARD}"; then 			\
-	  ${PKG_INFO} -qr "${PKGWILDCARD}" >$@;				\
+	${RUN} >$@;							\
+	if ${PKG_INFO} -qe "${PKGWILDCARD}"; then			\
+	  for pkg in `${PKG_INFO} -qr '${PKGWILDCARD}'`; do		\
+	    ${ECHO} `${PKG_INFO} -Q PKGPATH $$pkg` $$pkg >>$@;		\
+	  done;								\
 	fi
 
 # deinstall existing packages
 .PHONY: update-deinstall-dlist
 update-deinstall-dlist:
 	${RUN}if ${PKG_INFO} -qe ${PKGBASE}; then			\
-	  if ${TEST} -s ${_UPDATE_DIRS}; then				\
+	  if ${TEST} -s ${_UPDATE_LIST}; then				\
 	    ${ECHO_MSG} "The following packages are going to be"	\
 		"removed and reinstalled:";				\
-	    while read dir <&9; do					\
-		${ECHO_MSG} "	$$dir";					\
-	    done 9<${_UPDATE_DIRS};					\
-	    while read dir <&9; do					\
+	    while read dir pkg <&9; do					\
+	      ${ECHO_MSG} "	$$pkg in $$dir";			\
+	    done 9<${_UPDATE_LIST};					\
+	    while read dir pkg <&9; do					\
 	      if ${TEST} -n "$$dir" -a					\
 			-f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 		cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	        ${RECURSIVE_MAKE} cleaner || {				\
-			${RM} ${_UPDATE_DIRS}; exit 2;			\
+			${RM} ${_UPDATE_LIST}; exit 2;			\
 		};							\
 	      fi;							\
-	    done 9<${_UPDATE_DIRS};					\
+	    done 9<${_UPDATE_LIST};					\
 	    cd ${CURDIR};						\
 	  fi;								\
 	  ${RECURSIVE_MAKE} deinstall					\
