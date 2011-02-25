@@ -6,7 +6,7 @@ DISTNAME=	gdhe-3.8.1
 PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
-MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gdhe.git
+MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gdhe
 CHECKOUT_OPTS= -r gdhe-3.8-branch
 
 
