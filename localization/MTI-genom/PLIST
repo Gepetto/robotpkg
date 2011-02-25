@@ -30,7 +30,7 @@ ${PLIST.tclserv_client}lib/tclservClient/libMTITclservClient.la
 ${PLIST.tcl}lib/tclserv/libMTITclServ.la
 share/doc/MTI/HowToUse
 share/modules/gen/MTI.gen
-${PLIST.openrs}share/modules/openprs/MTIOpenprs.inc
-${PLIST.openrs}share/modules/openprs/MTIOpenprs.opf
-${PLIST.openrs}share/modules/openprs/MTIOpenprs.sym
+${PLIST.openprs}share/modules/openprs/MTIOpenprs.inc
+${PLIST.openprs}share/modules/openprs/MTIOpenprs.opf
+${PLIST.openprs}share/modules/openprs/MTIOpenprs.sym
 ${PLIST.tcl}share/modules/tcl/MTIClient.tcl
