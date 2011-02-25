@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Tue, 31 Aug 2010
 #
 
-DISTNAME=		viman-genom-1.2
+DISTNAME=		viman-genom-1.3
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viman-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/viman-genom
