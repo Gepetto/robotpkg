@@ -6,10 +6,12 @@ DISTNAME=		sickLib-${VERSION}
 VERSION=		1.0.1
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/sick-libs
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Driver and interface for sick interface
+LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 
