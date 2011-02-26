@@ -42,70 +42,6 @@
 #                                       Anthony Mallet on Thu Nov 30 2006
 #
 
-_DEPENDS_FILE=		${WRKDIR}/.depends
-_REDUCE_DEPENDS_CMD=	${SETENV} CAT=${CAT}				\
-				PKG_ADMIN=${PKG_ADMIN_CMD}		\
-				PWD_CMD=${PWD_CMD} TEST=${TEST}		\
-			${AWK} -f ${ROBOTPKG_DIR}/mk/pkg/reduce-depends.awk
-
-# This command prints out the dependency patterns for all full (run-time)
-# dependencies of the package.
-#
-_DEPENDS_PATTERNS_CMD=	\
-	if ${TEST} -f ${_COOKIE.depends}; then				\
-		${CAT} ${_COOKIE.depends} |				\
-		${AWK} '/^full/ { print $$2 } { next }';		\
-	fi
-
-# --- pkg-depends-cookie (PRIVATE, mk/depends/depends.mk) ------------
-#
-# depends-cookie creates the "depends" cookie file.
-#
-# The "depends" cookie file contains all of the dependency information
-# for the package.  The format of each line of the cookie file is:
-#
-#    <depends_type>	<pattern>	<directory>
-#
-# Valid dependency types are "build" and "full".
-#
-.PHONY: pkg-depends-cookie
-pkg-depends-cookie: ${_DEPENDS_FILE}
-	${RUN}${TEST} ! -f ${_COOKIE.depends} || ${FALSE}
-	${RUN}${MKDIR} $(dir ${_COOKIE.depends})
-	${RUN}${MV} -f ${_DEPENDS_FILE} ${_COOKIE.depends}
-
-${_DEPENDS_FILE}:
-	${RUN} ${MKDIR} $(dir $@)
-	${RUN} ${_REDUCE_DEPENDS_CMD}					\
-	  $(call quote,$(foreach _pkg_,${DEPEND_USE},			\
-	    $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
-	      $(if $(filter build,${DEPEND_METHOD.${_pkg_}}),		\
-	        ${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}}		\
-	  )))) > $@.tmp
-	${RUN} exec 0< $@.tmp;						\
-	while read dep; do						\
-		pattern=`${ECHO} $$dep | ${SED} -e "s,:.*,,"`;		\
-		dir=`${ECHO} $$dep | ${SED} -e "s,.*:,,"`;		\
-		${TEST} -n "$$pattern" || exit 1;			\
-		${TEST} -n "$$dir" || exit 1;				\
-		${ECHO} "build	$$pattern	$$dir";			\
-	done >> $@
-	${RUN} ${_REDUCE_DEPENDS_CMD}					\
-	  $(call quote,$(foreach _pkg_,${DEPEND_USE},			\
-	    $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
-	      $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),		\
-	        ${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}}		\
-	  )))) > $@.tmp
-	${RUN} exec 0< $@.tmp;						\
-	while read dep; do						\
-		pattern=`${ECHO} $$dep | ${SED} -e "s,:.*,,"`;		\
-		dir=`${ECHO} $$dep | ${SED} -e "s,.*:,,"`;		\
-		${TEST} -n "$$pattern" || exit 1;			\
-		${TEST} -n "$$dir" || exit 1;				\
-		${ECHO} "full	$$pattern	$$dir";			\
-	done >> $@
-
-
 # -- pkg-depends-build-options ---------------------------------------------
 #
 # pkg-depends-build-options checks that required packages are or will be built
@@ -246,12 +182,15 @@ $(foreach _pkg_,${DEPEND_USE},						\
 # pkg-depends-install installs any missing dependencies.
 #
 .PHONY: pkg-depends-install
-pkg-depends-install: ${_DEPENDS_FILE}
-	${RUN}silent=;							\
-	set -- dummy `${CAT} ${_DEPENDS_FILE}`; shift;			\
-	while ${TEST} $$# -gt 0; do					\
-		type="$$1"; pattern="$$2"; dir="$$3"; shift 3;		\
-		${_DEPENDS_INSTALL_CMD};				\
+pkg-depends-install:
+	${RUN}silent=; { :;						\
+  $(foreach _pkg_,${DEPEND_USE},					\
+    $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+      $(if $(filter bootstrap,${DEPEND_METHOD.${_pkg_}}),,		\
+	${ECHO} '${DEPEND_ABI.${_pkg_}}' '${DEPEND_DIR.${_pkg_}}';	\
+  )))									\
+	} | while read pattern dir; do					\
+	  ${_DEPENDS_INSTALL_CMD};					\
 	done
 
 

@@ -1,6 +1,5 @@
-# $LAAS: metadata.mk 2010/08/30 00:29:54 tho $
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -228,8 +227,13 @@ ifndef NO_DEPENDS
 endif
 
 ${PKG_DB_TMPDIR}/${_SIZE_ALL_FILE}:
-	${RUN}${MKDIR} $(dir $@);					\
-	${_DEPENDS_PATTERNS_CMD} |					\
+	${RUN}${MKDIR} $(dir $@); { :;					\
+  $(foreach _pkg_,${DEPEND_USE},					\
+    $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+      $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),			\
+	  ${ECHO} '${DEPEND_ABI.${_pkg_}}';				\
+  )))									\
+	} |								\
 	  ${XARGS} -n 1 ${_PKG_BEST_EXISTS} | ${SORT} -u |		\
 	  ${XARGS} -n 256 ${PKG_INFO} -qs |				\
 	  ${AWK} 'BEGIN { s=0 } /^[0-9]+$$/ { s+=$$1 } END { print s }'	\
@@ -321,9 +325,14 @@ _CONTENTS_TARGETS+=	${PKG_DB_TMPDIR}/${_SIZE_PKG_FILE}
 
 ${PKG_DB_TMPDIR}/${_CONTENTS_FILE}: ${_CONTENTS_TARGETS}
 	${RUN}${MKDIR} $(dir $@);					\
-	depends=`${_DEPENDS_PATTERNS_CMD}`;				\
+	depends=;							\
+  $(foreach _pkg_,${DEPEND_USE},					\
+    $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+      $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),			\
+	depends=$$depends' ${DEPEND_ABI.${_pkg_}}';			\
+  )))									\
 	${PKG_CREATE} ${_PKG_ARGS_INSTALL}				\
-		$${depends:+-P "$${depends}"} 				\
+		$${depends:+-P "$${depends}"}				\
 		-O $(notdir ${PKGFILE}) > $@
 
 

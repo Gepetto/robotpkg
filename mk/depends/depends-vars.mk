@@ -175,6 +175,17 @@ depends-clean: configure-clean
 	${RUN}${RMDIR} -p $(dir ${_COOKIE.depends}) 2>/dev/null || ${TRUE}
 
 
+# --- depends-cookie (PRIVATE) ---------------------------------------------
+#
+# depends-cookie creates the "depends" cookie file.
+#
+.PHONY: depends-cookie
+depends-cookie:
+	${RUN}${TEST} ! -f ${_COOKIE.depends} || ${FALSE};	\
+	${MKDIR} $(dir ${_COOKIE.depends});			\
+	${ECHO} ${PKGNAME} > ${_COOKIE.depends}
+
+
 # --------------------------------------------------------------------------
 #
 # Include the files holding package dependency information.

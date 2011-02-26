@@ -170,6 +170,11 @@ pkg-register: generate-metadata
 	${RUN}								\
 	case ${_AUTOMATIC}"" in						\
 	[yY][eE][sS])	${PKG_ADMIN} set automatic=yes ${PKGNAME} ;;	\
-	esac
-	${RUN}${_DEPENDS_PATTERNS_CMD} |		\
-		${SORT} -u | ${_REGISTER_DEPENDENCIES} ${PKGNAME}
+	esac;								\
+	{ :;								\
+  $(foreach _pkg_,${DEPEND_USE},					\
+    $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+      $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),			\
+	  ${ECHO} '${DEPEND_ABI.${_pkg_}}';				\
+  )))									\
+	} | ${SORT} -u | ${_REGISTER_DEPENDENCIES} ${PKGNAME}

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2010 LAAS/CNRS
+# Copyright (c) 2006,2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -59,7 +59,12 @@ _PKG_ARGS_PACKAGE+=	-p ${PREFIX}
 
 ${PKGFILE}: ${_CONTENTS_TARGETS}
 	${RUN}${MKDIR} $(dir $@);					\
-	depends=`${_DEPENDS_PATTERNS_CMD}`;				\
+	depends=;							\
+  $(foreach _pkg_,${DEPEND_USE},					\
+    $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+      $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),			\
+	depends=$$depends' ${DEPEND_ABI.${_pkg_}}';			\
+  )))									\
 	${PKG_CREATE} ${_PKG_ARGS_PACKAGE}				\
 		$${depends:+-P "$${depends}"} $@ || {			\
 	  exitcode=$$?;							\

@@ -83,7 +83,7 @@ _REAL_DEPENDS_TARGETS+=	pkg-depends-install
 _REAL_DEPENDS_TARGETS+=	pkg-depends-file
 _REAL_DEPENDS_TARGETS+= pkg-sys-conflicts
 _REAL_DEPENDS_TARGETS+= depends-conflicts
-_REAL_DEPENDS_TARGETS+=	pkg-depends-cookie
+_REAL_DEPENDS_TARGETS+=	depends-cookie
 
 .PHONY: real-depends
 real-depends: ${_REAL_DEPENDS_TARGETS}
