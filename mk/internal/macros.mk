@@ -216,42 +216,23 @@ define _OVERRIDE_TARGET
 endef
 
 
-# --- versionreqd ----------------------------------------------------------
+# --- preduce --------------------------------------------------------------
 
-# Distill a version requirement list into a single value that is the
-# strictest of the versions required. The input list shall be in the form of >=
-# and <= constraints.
+# Distill a version requirement list into a single interval that is the
+# satifies all the requirements. The input list shall be in the form of >=,
+# == and <= constraints. (!= is recognized, but kinda weird :)
 #
-override define _versionreqd
-  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-
-  # split constraints into <= and >= categories
-  _equ_:=$(patsubst -%,%,$(filter-out <%,$(filter-out >%,$2)))
-  _min_:=$(sort $(filter >%,$2) $(addprefix >=,${_equ_}))
-  _max_:=$(sort $(filter <%,$2) $(addprefix <=,${_equ_}))
-
-  # find out the strictest constraint of type >=, please breathe
-  _maxmin_:=\
-    $$(firstword $$(foreach _rqd_,$${_min_},$$(if $$(strip		\
-    $$(foreach _sat_,$$(filter-out $${_rqd_},$${_min_} $${_max_}),$$(shell\
-    $${PKG_ADMIN} pmatch 'x$$(call substs,< > =,<= >=,$${_sat_})'	\
-	'x-$$(call substs,> >=,,$${_rqd_})' || echo no))),,$${_rqd_})))
-
-  # breathe, then find out the strictest constraint of type <=
-  _minmax_:=\
-    $$(firstword $$(foreach _rqd_,$${_max_},$$(if $$(strip		\
-    $$(foreach _sat_,$$(filter-out $${_rqd_},$${_min_} $${_max_}),$$(shell\
-    $${PKG_ADMIN} pmatch 'x$$(call substs,< > =,<= >=,$${_sat_})'	\
-	'x-$$(call substs,< <=,,$${_rqd_})' || echo no))),,$${_rqd_})))
-
-  # result is the union of both, except if they are incompatible
-  $1:=$$(if $${_minmax_},$$(if $$(filter-out $$(call			\
-    substs,> =,,$${_maxmin_}),$$(call substs,< =,,$${_minmax_}))	\
-    ,$${_maxmin_}$${_minmax_},$$(if $$(filter $$(subst >,<,$${_maxmin_})\
-    ,$${_minmax_}),$${_maxmin_}$${_minmax_})),$${_maxmin_})
+override define preduce
+$(shell ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/dewey.awk reduce '$1')
 endef
-override define versionreqd
-$(strip $(eval $(call _versionreqd,_r_,$1)) ${_r_})
+
+
+# --- pmatch --------------------------------------------------------------
+
+# Match a package pattern against a specific version
+#
+override define pmatch
+$(shell ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/dewey.awk pmatch '$1' '$2')
 endef
 
 

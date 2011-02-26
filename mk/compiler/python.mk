@@ -49,33 +49,40 @@
 ifndef LANGUAGE_PYTHON_MK
 LANGUAGE_PYTHON_MK:=	defined
 
-# Sensible default value for _PY_REQUIRED
-#
-_PY_REQUIRED?=	>=2.4<3
 
-# Distill the PYTHON_REQUIRED list into a single _PY_REQUIRED value that is
+# Distill the PYTHON_REQUIRED list into a single _py_required value that is
 # the strictest versions of python required.
 #
 ifdef PYTHON_REQUIRED
-  _PY_REQUIRED:=$(call versionreqd,${PYTHON_REQUIRED})
+  ifndef _pyreqd_${PKGBASE}
+    _pyreqd_${PKGBASE}:=$(call preduce,${PYTHON_REQUIRED})
+    _py2ok_${PKGBASE}:=$(call preduce,${_pyreqd_${PKGBASE}} <3)
+    MAKEOVERRIDES+=_pyreqd_${PKGBASE}=${_pyreqd_${PKGBASE}}
+    MAKEOVERRIDES+=_py2ok_${PKGBASE}=${_py2ok_${PKGBASE}}
+  endif
+else
+  # Sensible default value for _py_required
+  _pyreqd_${PKGBASE}:= >=2.4<3
+  _py2ok_${PKGBASE}:=<3
 endif
-ifeq (,$(_PY_REQUIRED))
+ifeq (,${_pyreqd_${PKGBASE}})
   PKG_FAIL_REASON+=\
 	"The following requirements on python version cannot be satisfied:"
   PKG_FAIL_REASON+=""
   PKG_FAIL_REASON+="	PYTHON_REQUIRED = ${PYTHON_REQUIRED}"
-  _PY_REQUIRED:= >=2.4<3
+  _pyreqd_${PKGBASE}:= >=2.4<3
+  _py2ok_${PKGBASE}:=<3
 endif
 
 # Include the depend.mk corresponding to the requirements
-ifeq (yes,$(shell ${PKG_ADMIN} pmatch 'x${_PY_REQUIRED}' 'x-2.99' && echo yes))
-  _PY2_REQUIRED:= ${_PY_REQUIRED}
+ifneq (,${_py2ok_${PKGBASE}})
+  _PY2_REQUIRED:= ${_pyreqd_${PKGBASE}}
   include ${ROBOTPKG_DIR}/mk/sysdep/python2.mk
   export PYTHON=	${PYTHON2}
   export PYTHON_INCLUDE=${PYTHON2_INCLUDE}
   export PYTHON_LIB=	${PYTHON2_LIB}
 else
-  _PY3_REQUIRED:= ${_PY_REQUIRED}
+  _PY3_REQUIRED:= ${_pyreqd_${PKGBASE}}
   include ${ROBOTPKG_DIR}/lang/python3/depend.mk
   export PYTHON=	${PYTHON3}
   export PYTHON_INCLUDE=${PYTHON3_INCLUDE}

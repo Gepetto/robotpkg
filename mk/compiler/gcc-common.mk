@@ -52,21 +52,25 @@
 ifndef COMPILER_GCC_MK
 COMPILER_GCC_MK:=	defined
 
-# Sensible default value for _GCC_REQUIRED
-#
-_GCC_REQUIRED?=	>=2.8
-
 # Distill the GCC_REQUIRED list into a single _GCC_REQUIRED value that is the
 # strictest versions of GCC required.
 #
 ifdef GCC_REQUIRED
-  _GCC_REQUIRED:=$(call versionreqd,${GCC_REQUIRED})
+  ifndef _gccreqd_${PKGBASE}
+    _gccreqd_${PKGBASE}:=$(call preduce,${GCC_REQUIRED})
+    MAKEOVERRIDES+=_gccreqd_${PKGBASE}=${_gccreqd_${PKGBASE}}
+  endif
+  _GCC_REQUIRED=${_gccreqd_${PKGBASE}}
+else
+  # Sensible default value for _GCC_REQUIRED
+  _GCC_REQUIRED?=	>=2.8
 endif
-ifeq (,$(_GCC_REQUIRED))
-  PKG_FAIL_REASON+="The following requirements on gcc version cannot be satisfied:"
+ifeq (,${_GCC_REQUIRED})
+  PKG_FAIL_REASON+=\
+    "The following requirements on gcc version cannot be satisfied:"
   PKG_FAIL_REASON+=""
   PKG_FAIL_REASON+="	GCC_REQUIRED = ${GCC_REQUIRED}"
-  _GCC_REQUIRED:= >=2.8
+  _GCC_REQUIRED?=	>=2.8
 endif
 
 
