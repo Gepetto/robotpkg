@@ -47,8 +47,8 @@
 EXTRACT_ONLY?=		${DISTFILES}
 EXTRACT_SUFX?=		.tar.gz
 
-_COOKIE.extract=	${WRKDIR}/.extract_done
-_COOKIE.checkout=	${WRKDIR}/.checkout_done
+_COOKIE.extract=	${WRKDIR}/.extract_cookie
+_COOKIE.checkout=	${WRKDIR}/.checkout_cookie
 
 
 # let users override the MASTER_REPOSITORY defined in a package
@@ -160,7 +160,8 @@ extract:
   else
     $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
-    extract: $(call barrier, bootstrap-depends, checksum extract-cookie)
+    extract: $(call add-barrier, bootstrap-depends, extract)
+    extract: checksum extract-cookie;
   endif
 endif
 
@@ -185,10 +186,11 @@ endif
 # of the package.
 #
 .PHONY: extract-cookie
-extract-cookie:
-	${RUN}${TEST} ! -f ${_COOKIE.extract} || ${FALSE}
-	${RUN}${MKDIR} $(dir ${_COOKIE.extract})
-	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.extract}
+extract-cookie: makedirs
+	${RUN}${TEST} ! -f ${_COOKIE.extract} || ${FALSE};		\
+	exec >>${_COOKIE.extract};					\
+	${ECHO} "_COOKIE.extract.date:=`${_CDATE_CMD}`";		\
+	${ECHO} "_COOKIE.extract.files:=${EXTRACT_ONLY}"
 
 
 # --- checkout-cookie (PRIVATE) --------------------------------------------
@@ -197,7 +199,7 @@ extract-cookie:
 # of the package.
 #
 .PHONY: checkout-cookie
-checkout-cookie:
-	${RUN}${TEST} ! -f ${_COOKIE.checkout} || ${FALSE}
-	${RUN}${MKDIR} $(dir ${_COOKIE.checkout})
-	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.checkout}
+checkout-cookie: makedirs
+	${RUN}${TEST} ! -f ${_COOKIE.checkout} || ${FALSE};		\
+	exec >>${_COOKIE.checkout};					\
+	${ECHO} "_COOKIE.checkout.date:=`${_CDATE_CMD}`"

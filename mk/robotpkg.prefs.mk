@@ -136,7 +136,7 @@ endif
 ACCEPTABLE_LICENSES?=	${DEFAULT_ACCEPTABLE_LICENSES}
 
 
-# include the defaults file
+# --- Include user configuration and the defaults file ---------------------
 #
 ifndef MAKECONF
   ifdef ROBOTPKG_BASE
@@ -173,7 +173,12 @@ ifndef MAKECONF
   endif
   MAKECONF:=		${_MAKECONF}
 endif
+
+# Keep track of included files for cookies dependency.
+_n_:=$(words ${MAKEFILE_LIST} +1)
 -include ${MAKECONF}
+MAKECONF_LIST:=$(wordlist ${_n_},$(words ${MAKEFILE_LIST}),${MAKEFILE_LIST})
+
 include ${ROBOTPKG_DIR}/mk/robotpkg.default.conf
 
 
@@ -325,5 +330,13 @@ ifdef MAKECONF
 endif
 RECURSIVE_MAKE=         ${MAKE} ${PKGSRC_MAKE_ENV}
 MAKEFLAGS+=		--no-print-directory
+
+# Package dependency information
+_SYSDEPENDS_FILE=	${WRKDIR}/.sysdepends
+_DEPENDS_FILE=		${WRKDIR}/.depends
+_SYSBSDEPENDS_FILE=	${WRKDIR}/.sysbsdepends
+_BSDEPENDS_FILE=	${WRKDIR}/.bsdepends
+-include ${_SYSBSDEPENDS_FILE} ${_SYSDEPENDS_FILE}
+-include ${_BSDEPENDS_FILE} ${_DEPENDS_FILE}
 
 endif # MK_ROBOTPKG_PREFS

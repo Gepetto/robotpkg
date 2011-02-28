@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -75,8 +75,11 @@ endif
 #
 # configure is a public target to configure the sources for building.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
 
+_CONFIGURE_TARGETS+=	$(call add-barrier, depends, configure)
 ifndef _EXTRACT_IS_CHECKOUT
   _CONFIGURE_TARGETS+=	patch
 endif
@@ -85,26 +88,30 @@ _CONFIGURE_TARGETS+=	${_COOKIE.configure}
 _CONFIGURE_TARGETS+=	release-configure-lock
 
 .PHONY: configure
-ifeq (yes,$(call exists,${_COOKIE.configure}))
-configure:
-	@${DO_NADA}
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
-  ifndef _EXTRACT_IS_CHECKOUT
-    $(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
-  endif
+configure: ${_CONFIGURE_TARGETS};
 
-  configure: $(call barrier, depends, ${_CONFIGURE_TARGETS})
-endif
 
 .PHONY: acquire-configure-lock release-configure-lock
 acquire-configure-lock: acquire-lock
 release-configure-lock: release-lock
 
+
+# --- ${_COOKIE.configure} -------------------------------------------------
+#
+# ${_COOKIE.configure} creates the "configure" cookie file.
+#
 ifeq (yes,$(call exists,${_COOKIE.configure}))
-  ${_COOKIE.configure}:;
+  ifneq (,$(filter configure,${MAKECMDGOALS}))
+    ${_COOKIE.configure}: .FORCE
+  endif
+
+  _MAKEFILE_WITH_RECIPES+=${_COOKIE.configure}
+  $(call require,${_COOKIE.configure})
+  ${_COOKIE.configure}: ${_COOKIE.bootstrap-depends} ${_COOKIE.depends}
+	${RUN}${MV} -f $@ $@.prev
 else
   $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+
   ${_COOKIE.configure}: real-configure;
 endif
 
@@ -128,14 +135,21 @@ _REAL_CONFIGURE_TARGETS+=	do-configure
 _REAL_CONFIGURE_TARGETS+=	do-configure-post-hook
 _REAL_CONFIGURE_TARGETS+=	post-configure
 _REAL_CONFIGURE_TARGETS+=	configure-cookie
+ifneq (,$(filter configure,${MAKECMDGOALS}))
+  _REAL_CONFIGURE_TARGETS+=	configure-done-message
+endif
 
 .PHONY: real-configure
-real-configure: ${_REAL_CONFIGURE_TARGETS}
+real-configure: ${_REAL_CONFIGURE_TARGETS};
 
 .PHONY: configure-message
 configure-message:
-	@${PHASE_MSG} "Configuring for ${PKGNAME}"
-	@>${CONFIGURE_LOGFILE}
+	@if ${TEST} -f "${_COOKIE.configure}.prev"; then		\
+	  ${PHASE_MSG} "Reconfiguring for ${PKGNAME}";			\
+	else								\
+	  ${PHASE_MSG} "Configuring for ${PKGNAME}";			\
+	fi;								\
+	>${CONFIGURE_LOGFILE}
 
 
 # --- configure-check-interactive (PRIVATE) --------------------------

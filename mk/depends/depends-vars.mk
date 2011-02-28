@@ -56,13 +56,10 @@ BOOTSTRAP_DEPENDS?=	# empty
 SYSDEP_VERBOSE?=	yes
 
 _SYSDEP_LOG=		${WRKDIR}/sysdep.log
-_SYSDEP_FILE=		${WRKDIR}/.sysdep
-_PKGDEP_FILE=		${WRKDIR}/.pkgdep
-_SYSBSDEP_FILE=		${WRKDIR}/.bootstrap-sysdep
-_PKGBSDEP_FILE=		${WRKDIR}/.bootstrap-pkgdep
 
-_COOKIE.bootstrapdepend=${WRKDIR}/.bootstrapdepend_done
-_COOKIE.depends=	${WRKDIR}/.depends_done
+_COOKIE.bootstrap-depends=\
+			${WRKDIR}/.bootstrap-depends_cookie
+_COOKIE.depends=	${WRKDIR}/.depends_cookie
 
 # DEPENDS_TARGET is the target that is invoked to satisfy missing
 # dependencies.  This variable is user-settable in etc/robotpkg.conf.
@@ -173,22 +170,3 @@ $(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
 depends-clean: configure-clean
 	${RUN}${RM} -f ${_COOKIE.depends}
 	${RUN}${RMDIR} -p $(dir ${_COOKIE.depends}) 2>/dev/null || ${TRUE}
-
-
-# --- depends-cookie (PRIVATE) ---------------------------------------------
-#
-# depends-cookie creates the "depends" cookie file.
-#
-.PHONY: depends-cookie
-depends-cookie:
-	${RUN}${TEST} ! -f ${_COOKIE.depends} || ${FALSE};	\
-	${MKDIR} $(dir ${_COOKIE.depends});			\
-	${ECHO} ${PKGNAME} > ${_COOKIE.depends}
-
-
-# --------------------------------------------------------------------------
-#
-# Include the files holding package dependency information.
-#
-$(call -require, ${_SYSBSDEP_FILE} ${_PKGBSDEP_FILE})
-$(call -require, ${_SYSDEP_FILE} ${_PKGDEP_FILE})

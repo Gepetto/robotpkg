@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -76,7 +76,7 @@ CONFIGURE_LOGFILTER?=\
 #    pre-configure, do-configure, post-configure
 #
 
-_COOKIE.configure=      ${WRKDIR}/.configure_done
+_COOKIE.configure=      ${WRKDIR}/.configure_cookie
 
 
 # --- configure (PUBLIC) ---------------------------------------------------
@@ -91,15 +91,17 @@ else
     configure:
 	@${DO_NADA}
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
     $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
+    _CONFIGURE_TARGETS+=	$(call add-barrier, depends, configure)
     ifndef _EXTRACT_IS_CHECKOUT
       $(call require, ${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
       _CONFIGURE_TARGETS+=	patch
     endif
     _CONFIGURE_TARGETS+=	configure-cookie
 
-    configure: $(call barrier, depends, ${_CONFIGURE_TARGETS})
+    configure: ${_CONFIGURE_TARGETS};
   endif
 endif
 
@@ -129,7 +131,7 @@ configure-clean: build-clean
 # configure-cookie creates the "configure" cookie file.
 #
 .PHONY: configure-cookie
-configure-cookie:
+configure-cookie: makedirs
 	${RUN}${TEST} ! -f ${_COOKIE.configure} || ${FALSE}
-	${RUN}${MKDIR} $(dir ${_COOKIE.configure})
-	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.configure}
+	${RUN}exec >>${_COOKIE.configure};				\
+	${ECHO} "_COOKIE.configure.date:=`${_CDATE_CMD}`"

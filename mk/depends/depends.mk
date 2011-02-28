@@ -48,26 +48,60 @@
 # depends is a public target to install missing dependencies for
 # the package.
 #
-_DEPENDS_TARGETS+=	bootstrap-depends
+_DEPENDS_TARGETS+=	$(call add-barrier, bootstrap-depends, depends)
 _DEPENDS_TARGETS+=	acquire-depends-lock
 _DEPENDS_TARGETS+=	${_COOKIE.depends}
 _DEPENDS_TARGETS+=	release-depends-lock
 
-depends: ${_DEPENDS_TARGETS}
+depends: ${_DEPENDS_TARGETS};
+
 
 .PHONY: acquire-depends-lock release-depends-lock
 acquire-depends-lock: acquire-lock
 release-depends-lock: release-lock
 
+
+# --- ${_COOKIE.depends} ---------------------------------------------------
+#
+# ${_COOKIE.depends} creates the "depends" cookie file.
+# When the cookie exists, data gathered by prefixsearch.sh gets included.
+# The cookie itself is included to trigger gmake's restart when the cookie is
+# outdated.
+#
 ifeq (yes,$(call exists,${_COOKIE.depends}))
-  ${_COOKIE.depends}:
-	@${DO_NADA}
+  ifneq (,$(filter depends,${MAKECMDGOALS}))
+    ${_COOKIE.depends}: .FORCE
+  endif
+
+  _MAKEFILE_WITH_RECIPES+=${_COOKIE.depends}
+  ${_COOKIE.depends}: ${_COOKIE.bootstrap-depends} ${MAKECONF_LIST}
+	${RUN}${MV} -f $@ $@.prev;				\
+	${RM} -f ${_SYSDEPENDS_FILE} ${_DEPENDS_FILE}
+
+  $(call require, ${_COOKIE.depends})
 else
   $(call require, ${ROBOTPKG_DIR}/mk/depends/sysdep.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
-  ${_COOKIE.depends}: real-depends;
+  # This defers the depends target until bootstrap-depends has completed and
+  # make has restarted with those dependencies resolved
+  ifeq (yes,$(call exists,${_COOKIE.bootstrap-depends}))
+    ${_COOKIE.depends}: real-depends;
+  else
+    ${_COOKIE.depends}:;
+  endif
 endif
+
+
+# --- depends-cookie (PRIVATE) ---------------------------------------------
+#
+# depends-cookie creates the "depends" cookie file.
+#
+.PHONY: depends-cookie
+depends-cookie: makedirs
+	${RUN}${TEST} ! -f ${_COOKIE.depends} || ${FALSE};		\
+	exec >>${_COOKIE.depends};					\
+	${ECHO} "_COOKIE.depends.date:=`${_CDATE_CMD}`"
 
 
 # --- real-depends (PRIVATE) -----------------------------------------
@@ -84,13 +118,20 @@ _REAL_DEPENDS_TARGETS+=	pkg-depends-file
 _REAL_DEPENDS_TARGETS+= pkg-sys-conflicts
 _REAL_DEPENDS_TARGETS+= depends-conflicts
 _REAL_DEPENDS_TARGETS+=	depends-cookie
+ifneq (,$(filter depends,${MAKECMDGOALS}))
+  _REAL_DEPENDS_TARGETS+=	depends-done-message
+endif
 
 .PHONY: real-depends
 real-depends: ${_REAL_DEPENDS_TARGETS}
 
 .PHONY: depends-message
 depends-message:
-	@${PHASE_MSG} "Checking dependencies for ${PKGNAME}"
+	@if ${TEST} -f "${_COOKIE.configure}.prev"; then		\
+	  ${PHASE_MSG} "Rechecking dependencies for ${PKGNAME}";	\
+	else								\
+	  ${PHASE_MSG} "Checking dependencies for ${PKGNAME}";		\
+	fi
 
 
 # --- pre-depends-hook (PRIVATE, override, hook) ---------------------
@@ -118,10 +159,10 @@ pre-depends-hook:
 .PHONY: depends-conflicts
 depends-conflicts:
 	${RUN}depf=;							\
-	${TEST} -r ${_PKGBSDEP_FILE} && depf=${_PKGBSDEP_FILE};		\
-	${TEST} -r ${_SYSBSDEP_FILE} && depf="$$depf ${_SYSBSDEP_FILE}";\
-	${TEST} -r ${_PKGDEP_FILE} && depf="$$depf ${_PKGDEP_FILE}";	\
-	${TEST} -r ${_SYSDEP_FILE} && depf="$$depf ${_SYSDEP_FILE}";	\
+	for f in ${_SYSBSDEPENDS_FILE} ${_SYSDEPENDS_FILE}		\
+		 ${_BSDEPENDS_FILE} ${_DEPENDS_FILE}; do		\
+	  ${TEST} -r $$f && depf="$$depf $$f";				\
+	done;								\
 	${TEST} -z "$$depf" && exit 0;					\
 	conflicts=;							\
 	altpfix=`{ ${ECHO} ${PREFIX};					\

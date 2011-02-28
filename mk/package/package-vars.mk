@@ -1,6 +1,5 @@
-# $LAAS: package-vars.mk 2009/10/27 18:21:35 mallet $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2009,2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -50,7 +49,7 @@
 #
 #    package, repackage
 
-_COOKIE.package=	${WRKDIR}/.package_done
+_COOKIE.package=	${WRKDIR}/.package_cookie
 
 # ---  package (PUBLIC) ----------------------------------------------
 #
@@ -102,3 +101,14 @@ tarup: pkg-tarup
 #
 package-clean:
 	${RUN}${RM} -f ${_COOKIE.package}
+
+
+# --- package-cookie (PRIVATE) ---------------------------------------------
+#
+# package-cookie creates the "package" cookie file
+#
+.PHONY: package-cookie
+package-cookie: makedirs
+	${RUN}${TEST} ! -f ${_COOKIE.package} || ${FALSE};		\
+	exec >>${_COOKIE.package};					\
+	${ECHO} "_COOKIE.package.date:=`${_CDATE_CMD}`"

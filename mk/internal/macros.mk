@@ -190,6 +190,16 @@ $(firstword $(realpath $(addsuffix /$1,$(subst :, ,$2))))
 endef
 
 
+# --- add-barrier <phase> <target> -----------------------------------------
+#
+# Register that the toplevel <target> needs to run after the barrier <phase>
+#
+override define add-barrier
+$(if ${_COOKIE.$(strip $1)},$1 $(eval _barrier.$(strip $1)+=$2),	\
+  $(error undefined barrier '$(strip $1)'))
+endef
+
+
 # --- wordwrapfilter -------------------------------------------------
 #
 # Shell filter to print wrap long lines at 40 characters

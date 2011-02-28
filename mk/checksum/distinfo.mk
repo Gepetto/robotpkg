@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2010 LAAS/CNRS
+# Copyright (c) 2009-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -57,13 +57,14 @@ include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
 #
 # distinfo is a public target to create ${DISTINFO_FILE}.
 #
+_DISTINFO_TARGETS=	$(call add-barrier, bootstrap-depends, distinfo)
 _DISTINFO_TARGETS+=	fetch
 _DISTINFO_TARGETS+=	distinfo-message
 _DISTINFO_TARGETS+=	makesum
 _DISTINFO_TARGETS+=	makepatchsum
 
-distinfo: $(call barrier, bootstrap-depends, ${_DISTINFO_TARGETS})
-	@${DO_NADA}
+distinfo: ${_DISTINFO_TARGETS};
+
 
 .PHONY: distinfo-message
 distinfo-message:

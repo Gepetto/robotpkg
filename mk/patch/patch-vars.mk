@@ -1,6 +1,5 @@
-# $LAAS: patch-vars.mk 2009/10/26 23:06:36 tho $
 #
-# Copyright (c) 2006-2009 LAAS/CNRS
+# Copyright (c) 2006-2009,2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -61,7 +60,7 @@
 #PATCHDIR?=	${CURDIR}/patches
 
 _PATCH_APPLIED_FILE=	${WRKDIR}/.patch
-_COOKIE.patch=		${WRKDIR}/.patch_done
+_COOKIE.patch=		${WRKDIR}/.patch_cookie
 
 
 # --- patch (PUBLIC) -------------------------------------------------
@@ -78,10 +77,11 @@ else
   else
     $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
+    patch: $(call add-barrier, bootstrap-depends, patch)
     ifdef _EXTRACT_IS_CHECKOUT
-      patch: $(call barrier, bootstrap-depends, checkout patch-cookie)
+      patch: checkout patch-cookie;
     else
-      patch: $(call barrier, bootstrap-depends, extract patch-cookie)
+      patch: extract patch-cookie;
     endif
   endif
 endif
@@ -95,9 +95,11 @@ endif
 .PHONY: patch-cookie
 patch-cookie:
 	${RUN}${TEST} ! -f ${_COOKIE.patch} || ${FALSE}
-	${RUN}								\
+	${RUN}exec >>${_COOKIE.patch};					\
+	${ECHO} "_COOKIE.patch.date:=`${_CDATE_CMD}`";			\
+	${ECHO} "_COOKIE.patch.applied:=";				\
 	if ${TEST} -f ${_PATCH_APPLIED_FILE}; then			\
-		${MV} -f ${_PATCH_APPLIED_FILE} ${_COOKIE.patch};	\
-	else								\
-		${TOUCH} ${TOUCH_FLAGS} ${_COOKIE.patch};		\
+	  ${SED} -e 's/^/_COOKIE.patch.applied+=/'			\
+		<${_PATCH_APPLIED_FILE};				\
+	  ${RM} -f ${_PATCH_APPLIED_FILE};				\
 	fi

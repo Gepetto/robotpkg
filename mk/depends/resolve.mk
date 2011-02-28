@@ -141,3 +141,30 @@ define _dpd_adddep
   endif
 endef
 $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
+
+
+# --- register dependencies on _COOKIE.{bootstrap-,}depends ----------------
+
+# A dependency on all files from all SYSTEM_FILES dependencies is registered as
+# an attempt to detect stale WRKDIR and trigger rebuild.
+#
+# Except when cleaning.
+#
+$(foreach _pkg_,${DEPEND_USE},						\
+  $(if $(filter bootstrap,${DEPEND_METHOD.${_pkg_}}),			\
+    $(eval ${_COOKIE.bootstrap-depends}:${SYSTEM_FILES.${_pkg_}}),	\
+    $(eval ${_COOKIE.depends}:${SYSTEM_FILES.${_pkg_}})			\
+))
+
+# Disable any recipe for files in SYSTEM_FILES
+$(sort $(foreach _pkg_,${DEPEND_USE},${SYSTEM_FILES.${_pkg_}})):;
+
+
+# Top-level targets that require {bootstrap-,}depends
+ifneq (,$(filter ${_barrier.bootstrap-depends},${MAKECMDGOALS}))
+  $(call -require, ${_COOKIE.bootstrap-depends})
+endif
+ifneq (,$(filter ${_barrier.depends},${MAKECMDGOALS}))
+  $(call -require, ${_COOKIE.bootstrap-depends})
+  $(call -require, ${_COOKIE.depends})
+endif

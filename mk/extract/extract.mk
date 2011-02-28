@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -77,35 +77,36 @@
 EXTRACT_DIR?=		${WRKDIR}
 
 
-# --- extract (PUBLIC) -----------------------------------------------
+# --- extract (PUBLIC) -----------------------------------------------------
 #
-# extract is a public target to perform extraction.
+# extract is a public target to perform extraction of the distribution files.
 #
-_EXTRACT_TARGETS+=	checksum
+_EXTRACT_TARGETS+=	$(call add-barrier, bootstrap-depends, extract)
 _EXTRACT_TARGETS+=	acquire-extract-lock
 _EXTRACT_TARGETS+=	${_COOKIE.extract}
 _EXTRACT_TARGETS+=	release-extract-lock
+ifeq (yes,$(call exists,${_COOKIE.extract}))
+  _EXTRACT_TARGETS+=	extract-check-extracted
+endif
 
 .PHONY: extract
-ifeq (yes,$(call exists,${_COOKIE.extract}))
-  extract:
-	@${DO_NADA}
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+extract: ${_EXTRACT_TARGETS};
 
-  extract: $(call barrier, bootstrap-depends, ${_EXTRACT_TARGETS})
-
-endif
 
 .PHONY: acquire-extract-lock release-extract-lock
 acquire-extract-lock: acquire-lock
 release-extract-lock: release-lock
 
+
+# --- ${_COOKIE.extract} ---------------------------------------------------
+#
+# ${_COOKIE.extract} creates the "extract" cookie file.
+#
 ifeq (yes,$(call exists,${_COOKIE.extract}))
-${_COOKIE.extract}:;
+  $(call require,${_COOKIE.extract})
 else
-${_COOKIE.extract}: real-extract;
+  $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+  ${_COOKIE.extract}: real-extract;
 endif
 
 
@@ -114,10 +115,10 @@ endif
 # real-extract is a helper target onto which one can hook all of the
 # targets that do the actual extraction work.
 #
-_REAL_EXTRACT_TARGETS+= extract-check-checkout
+_REAL_EXTRACT_TARGETS+=	extract-check-checkout
 _REAL_EXTRACT_TARGETS+=	extract-check-interactive
 _REAL_EXTRACT_TARGETS+=	extract-message
-#_REAL_EXTRACT_TARGETS+=	extract-vars
+_REAL_EXTRACT_TARGETS+=	checksum
 _REAL_EXTRACT_TARGETS+=	extract-dir
 _REAL_EXTRACT_TARGETS+=	pre-extract
 _REAL_EXTRACT_TARGETS+=	do-extract
@@ -172,6 +173,35 @@ ifdef BATCH
 else
 	@${DO_NADA}
 endif
+
+
+# --- extract-check-extracted (PRIVATE) ------------------------------------
+#
+# extract-check-extracted checks the EXTRACT_ONLY list of files to be extracted
+# for consistency between different invocations.
+#
+.PHONY: extract-check-extracted
+extract-check-extracted:
+	${RUN}								\
+	${TEST} "${_COOKIE.extract.files}" = "${EXTRACT_ONLY}" &&	\
+	  exit 0;							\
+	${ERROR_MSG} "${hline}";					\
+	${ERROR_MSG} "$${bf}Stale working directory for"		\
+		"${PKGNAME}$${rm}";					\
+	${ERROR_MSG} "The list of files to be extracted have changed:";	\
+	${ERROR_MSG} "Extracted:";					\
+	for f in ${_COOKIE.extract.files}; do				\
+	  ${ERROR_MSG} "		$$f";				\
+	done;								\
+	${ERROR_MSG} "Required:";					\
+	for f in ${EXTRACT_ONLY}; do					\
+	  ${ERROR_MSG} "		$$f";				\
+	done;								\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "Please run \`$${bf}${MAKE} clean$${rm}\` in"	\
+		"${PKGPATH}";						\
+	${ERROR_MSG} "${hline}";					\
+	exit 2
 
 
 # --- pre-extract, do-extract, post-extract (PUBLIC, override) -------
@@ -260,7 +290,7 @@ EXTRACT_CMD?=	${EXTRACT_CMD_DEFAULT}
 
 DOWNLOADED_DISTFILE=	$${extract_file}
 
-do%extract: ${WRKDIR} .FORCE
+do%extract: makedirs .FORCE
 	${_OVERRIDE_TARGET}
 	${_PKG_SILENT}${_PKG_DEBUG}					\
 $(foreach __file__,${EXTRACT_ONLY},					\

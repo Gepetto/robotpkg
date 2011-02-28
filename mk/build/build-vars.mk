@@ -99,7 +99,7 @@ BUILD_LOGFILTER?=\
 #    pre-build, do-build, post-build
 #
 
-_COOKIE.build=  ${WRKDIR}/.build_done
+_COOKIE.build=  ${WRKDIR}/.build_cookie
 
 
 # --- build (PUBLIC) -------------------------------------------------------
@@ -114,7 +114,7 @@ else
     build:
 	@${DO_NADA}
   else
-    build: $(call barrier, depends, configure build-cookie)
+    build: $(call add-barrier, depends, build) configure build-cookie
   endif
 endif
 
@@ -144,7 +144,7 @@ build-clean: install-clean
 # build-cookie creates the "build" cookie file.
 #
 .PHONY: build-cookie
-build-cookie:
+build-cookie: makedirs
 	${RUN}${TEST} ! -f ${_COOKIE.build} || ${FALSE};	\
-	${MKDIR} $(dir ${_COOKIE.build});			\
-	${ECHO} ${PKGNAME} > ${_COOKIE.build}
+	exec >>${_COOKIE.build};				\
+	${ECHO} "_COOKIE.build.date:=`${_CDATE_CMD}`"

@@ -32,11 +32,11 @@
 
 .PHONY: sys-depends
 sys-depends:
-	$(call sys-resolve, build full, ${_SYSDEP_FILE})
+	$(call sys-resolve, build full, ${_SYSDEPENDS_FILE})
 
 .PHONY: sys-bootstrap-depends
 sys-bootstrap-depends:
-	$(call sys-resolve, bootstrap, ${_SYSBSDEP_FILE})
+	$(call sys-resolve, bootstrap, ${_SYSBSDEPENDS_FILE})
 
 
 # --- sys-resolve (PRIVATE) ------------------------------------------------
@@ -46,12 +46,12 @@ sys-bootstrap-depends:
 # 'system' or 'auto'.
 #
 override define sys-resolve
-	${RUN}${MKDIR} $(dir ${_SYSDEP_FILE}); >$2; >${_SYSDEP_LOG}	\
+	${RUN} >$2; >${_SYSDEP_LOG};					\
 	notfound=; syspkg=;						\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),,				\
     $(if $(filter $1,${DEPEND_METHOD.${_pkg_}}),			\
-	found=`${_PREFIXSEARCH_CMD} 2>>${_SYSDEP_LOG} -e	 	\
+	found=`${_PREFIXSEARCH_CMD} 2>>${_SYSDEP_LOG} -e		\
 	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
 	     -d $(or $(call quote,${SYSTEM_DESCR.${_pkg_}}),"")		\
 	     -s $(or $(call quote,$(strip				\
@@ -103,7 +103,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	  ${ERROR_MSG};							\
 	  ${ERROR_MSG} "See ${_SYSDEP_LOG} for details.";		\
 	  ${ERROR_MSG} ${hline};					\
-	  ${RM} -f ${_SYSDEP_FILE};					\
+	  ${RM} -f ${_SYSDEPENDS_FILE};					\
 	  exit 2;							\
 	else								\
 	  if ${TEST} -s ${_SYSDEP_LOG}; then				\

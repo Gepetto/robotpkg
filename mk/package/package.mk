@@ -1,6 +1,5 @@
-# $LAAS: package.mk 2009/10/27 18:22:06 mallet $
 #
-# Copyright (c) 2006-2007,2009 LAAS/CNRS
+# Copyright (c) 2006-2007,2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -37,33 +36,38 @@
 #
 # package is a public target to generate a binary package.
 #
-ifneq (,$(filter replace,${MAKECMDGOALS}))
-_PACKAGE_TARGETS+=	replace
-else
-_PACKAGE_TARGETS+=	install
-endif
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
+_PACKAGE_TARGETS+=	$(call add-barrier, bootstrap-depends, package tarup)
 _PACKAGE_TARGETS+=	acquire-package-lock
 _PACKAGE_TARGETS+=	${_COOKIE.package}
 _PACKAGE_TARGETS+=	release-package-lock
 
-.PHONY: package
-ifeq (yes,$(call exists,${_COOKIE.package}))
-  package:;
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
+package: $(call barrier, depends, ${_PACKAGE_TARGETS});
 
-  package: $(call barrier, depends, ${_PACKAGE_TARGETS})
-endif
 
 .PHONY: acquire-package-lock release-package-lock
 acquire-package-lock: acquire-lock
 release-package-lock: release-lock
 
+
+# --- ${_COOKIE.package} ---------------------------------------------------
+#
+# ${_COOKIE.package} creates the "package" cookie file.
+#
 ifeq (yes,$(call exists,${_COOKIE.package}))
-  ${_COOKIE.package}:;
+  ifneq (,$(filter package,${MAKECMDGOALS}))
+    ${_COOKIE.package}: .FORCE
+  endif
+
+  _MAKEFILE_WITH_RECIPES+=${_COOKIE.package}
+  $(call require,${_COOKIE.package})
+  ${_COOKIE.package}: ${_COOKIE.install}
+	${RUN}${MV} -f $@ $@.prev
+
 else
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
   ${_COOKIE.package}: real-package;
 endif
 
@@ -78,6 +82,9 @@ _REAL_PACKAGE_TARGETS+=	pkg-check-installed
 _REAL_PACKAGE_TARGETS+=	pkg-create
 _REAL_PACKAGE_TARGETS+=	package-cookie
 _REAL_PACKAGE_TARGETS+=	package-warnings
+ifneq (,$(filter package,${MAKECMDGOALS}))
+  _REAL_PACKAGE_TARGETS+=	package-done-message
+endif
 
 .PHONY: real-package
 real-package: ${_REAL_PACKAGE_TARGETS}
@@ -85,17 +92,6 @@ real-package: ${_REAL_PACKAGE_TARGETS}
 .PHONY: package-message
 package-message:
 	@${PHASE_MSG} "Building binary package for ${PKGNAME}"
-
-
-# --- package-cookie (PRIVATE) ---------------------------------------
-#
-# package-cookie creates the "package" cookie file
-#
-.PHONY: package-cookie
-package-cookie:
-	${_PKG_SILENT}${_PKG_DEBUG}${TEST} ! -f ${_COOKIE.package} || ${FALSE}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir ${_COOKIE.package})
-	${_PKG_SILENT}${_PKG_DEBUG}${ECHO} ${PKGNAME} > ${_COOKIE.package}
 
 
 # Displays warnings about the binary package.

@@ -148,10 +148,11 @@ $(foreach _pkg_,${DEPEND_USE},						\
 #
 .PHONY: pkg-depends-file
 pkg-depends-file:
-	${RUN}${MKDIR} $(dir ${_PKGDEP_FILE});				\
-	>${_PKGDEP_FILE}; exec 3>>${_PKGDEP_FILE};			\
+	${RUN}${MKDIR} $(dir ${_DEPENDS_FILE});				\
+	>${_DEPENDS_FILE}; exec 3>>${_DEPENDS_FILE};			\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
+    $(if $(filter bootstrap,${DEPEND_METHOD.${_pkg_}}),,		\
 	prefix=`${PKG_INFO} -qp ${_pkg_} | ${SED} -e 's|^[^/]*||;q'`;	\
 	${_PREFIXSEARCH_CMD} -p "$$prefix" 				\
 		"${_pkg_}" "${DEPEND_ABI.${_pkg_}}"			\
@@ -172,6 +173,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 		${ERROR_MSG} "${hline}";				\
 		exit 2;							\
 	};								\
+    )									\
   )									\
 )
 
@@ -202,7 +204,7 @@ pkg-depends-install:
 #
 .PHONY: pkg-bootstrap-depends
 pkg-bootstrap-depends:
-	${RUN} >${_PKGBSDEP_FILE};					\
+	${RUN} >${_BSDEPENDS_FILE};					\
 	silent=${_BOOTSTRAP_VERBOSE};					\
   $(foreach _pkg_,${DEPEND_USE},					\
     $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
@@ -213,7 +215,7 @@ pkg-bootstrap-depends:
 	prefix=`${PKG_INFO} -qp "${_pkg_}" | ${SED} -e 's|^[^/]*||;q'`;	\
 	${_PREFIXSEARCH_CMD} -p "$$prefix" "${_pkg_}" 			\
 	  "$$pattern" $(or ${SYSTEM_SEARCH.${_pkg_}},"")		\
-	    >/dev/null 2>&1 3>>${_PKGBSDEP_FILE} || {			\
+	    >/dev/null 2>&1 3>>${_BSDEPENDS_FILE} || {			\
 		${ERROR_MSG} "${hline}";				\
 		${ERROR_MSG} "$${bf}A package matching"			\
 			"\`$$pattern'$${rm}";				\

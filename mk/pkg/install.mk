@@ -52,7 +52,7 @@ ${foreach _conflict_,${CONFLICTS},					\
 }									\
 	${TEST} -f ${WRKDIR}/.CONFLICTS || exit 0;			\
 	${ERROR_MSG} ${hline};						\
-	${ERROR_MSG} "$${bf}${PKGNAME} conflicts with installed"		\
+	${ERROR_MSG} "$${bf}${PKGNAME} conflicts with installed"	\
 		"package(s):$${rm}";					\
 	${ERROR_MSG};							\
 	${CAT} ${WRKDIR}/.CONFLICTS | ${SED} -e "s|^|ERROR:    |";	\
@@ -65,29 +65,33 @@ ${foreach _conflict_,${CONFLICTS},					\
 	exit 1
 
 
-# --- install-check-installed (PRIVATE, mk/install/install.mk) -------
+# --- install-check-required (PRIVATE, mk/install/install.mk) --------------
 #
-# install-check-installed checks if the package (perhaps an older
-# version) is already installed on the system.
+# install-check-required checks if the package (perhaps an older
+# version) is already installed on the system and required by other packages.
 #
-.PHONY: pkg-install-check-installed
-pkg-install-check-installed:
+.PHONY: pkg-install-check-required
+pkg-install-check-required:
 	${RUN}								\
 	found="`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`";	\
 	${TEST} -n "$$found" || exit 0;					\
+	reqd="`${PKG_INFO} -qr "$$found" || ${TRUE}`";			\
+	${TEST} -n "$$reqd" || exit 0;					\
 	${ERROR_MSG} ${hline};						\
-	${ERROR_MSG} "$${bf}$$found is already installed.$${rm}";	\
-	${ERROR_MSG} "Perhaps an older version?";			\
+	${ERROR_MSG} "$${bf}$$found is required by other"		\
+		"packages:$${rm}";					\
+	for p in $$reqd; do						\
+	  ${ERROR_MSG} "		$$p";				\
+	done;								\
 	${ERROR_MSG} "";						\
-	${ERROR_MSG} "If so, you may use either of:";			\
-	${ERROR_MSG} "    - '$${bf}${MAKE} update$${rm}' in ${PKGPATH}"	\
-		"to rebuild the";					\
-	${ERROR_MSG} "       package and all of its dependencies";	\
-	${ERROR_MSG} "    - '$${bf}${MAKE} replace$${rm}' in ${PKGPATH}"\
-		"to replace only";					\
-	${ERROR_MSG} "       the package without re-linking,"		\
-		"dependencies risking various";				\
-	${ERROR_MSG} "       problems.";				\
+	${ERROR_MSG} "You may use either of:";				\
+	${ERROR_MSG} " - '$${bf}${MAKE} update$${rm}' in ${PKGPATH}";	\
+	${ERROR_MSG} "   to rebuild the package and all dependent"	\
+		"packages";						\
+	${ERROR_MSG} " - '$${bf}${MAKE} replace$${rm}' in ${PKGPATH}";	\
+	${ERROR_MSG} "   to replace only the package without re-linking"\
+		"dependant packages,";					\
+	${ERROR_MSG} "   risking various problems.";			\
 	${ERROR_MSG} ${hline};						\
 	exit 1
 

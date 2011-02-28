@@ -1,6 +1,6 @@
-# $LAAS: checksum-vars.mk 2010/10/06 17:08:09 mallet $
+# $LAAS: checksum-vars.mk 2011/03/02 18:53:54 mallet $
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -109,4 +109,4 @@ endif
 
 # A short alias for "distinfo".
 .PHONY: mdi
-mdi: distinfo
+mdi: $(call add-barrier, bootstrap-depends, mdi) distinfo

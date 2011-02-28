@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2010 LAAS/CNRS
+# Copyright (c) 2006,2009-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -52,4 +52,4 @@ $(call require, ${ROBOTPKG_DIR}/mk/plist/plist.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/plist/print-plist.mk)
 
 .PHONY: print-PLIST
-print-PLIST: $(call barrier, depends, do-print-PLIST)
+print-PLIST: $(call add-barrier, depends, print-PLIST) do-print-PLIST

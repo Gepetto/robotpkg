@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007,2009-2010 LAAS/CNRS
+# Copyright (c) 2007,2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -130,6 +130,8 @@ _CBBH_MSGS+=		${PKG_SKIP_REASON}
 endif
 endif
 
+# --- cbbh -----------------------------------------------------------------
+#
 # In the first line, this target prints either "yes" or "no", saying
 # whether this package can be built. If the package can not be built,
 # the reasons are given in the following lines.

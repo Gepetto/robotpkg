@@ -76,8 +76,9 @@ ifeq (yes,$(call only-for,update,yes))	     # if we are asking for an update
   endif
 endif
 
-.PHONY: update
-update: ${_UPDATE_TARGETS}
+
+# .PHONY: update
+update: ${_UPDATE_TARGETS};
 
 
 # --- do-update ------------------------------------------------------------
@@ -141,11 +142,6 @@ update-up-to-date: update-message
 	    "Use '${MAKE} ${MAKECMDGOALS} confirm' to force updating.";	\
 	fi
   endif
-
-.PHONY: update-done-message
-update-done-message:
-	@${PHASE_MSG} "Done \`update' for ${PKGNAME}"
-
 
 # clean update files
 .PHONY: update-clean

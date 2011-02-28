@@ -98,6 +98,8 @@ include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
 # patches to the extracted sources for the package.
 #
 $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+
+_PATCH_TARGETS+=	$(call add-barrier, bootstrap-depends, patch)
 ifdef _EXTRACT_IS_CHECKOUT
   _PATCH_TARGETS+=	checkout
 else
@@ -106,22 +108,64 @@ endif
 _PATCH_TARGETS+=	acquire-patch-lock
 _PATCH_TARGETS+=	${_COOKIE.patch}
 _PATCH_TARGETS+=	release-patch-lock
+ifeq (yes,$(call exists,${_COOKIE.patch}))
+  _PATCH_TARGETS+=	patch-check-applied
+endif
 
 .PHONY: patch
-ifeq (yes,$(call exists,${_COOKIE.patch}))
-  patch:
-	@${DO_NADA}
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-
-  patch: $(call barrier, bootstrap-depends, ${_PATCH_TARGETS})
-endif
+patch: ${_PATCH_TARGETS};
 
 .PHONY: acquire-patch-lock release-patch-lock
 acquire-patch-lock: acquire-lock
 release-patch-lock: release-lock
 
-${_COOKIE.patch}: real-patch
+
+# --- ${_COOKIE.patch} -----------------------------------------------------
+#
+# ${_COOKIE.patch} creates the "patch" cookie file.
+#
+ifeq (yes,$(call exists,${_COOKIE.patch}))
+  $(call require,${_COOKIE.patch})
+else
+  $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+  ${_COOKIE.patch}: real-patch;
+endif
+
+
+# --- patch-check-applied (PRIVATE) ----------------------------------------
+#
+# patch-check-applied checks the PATCHFILES and _PKGSRC_PATCHES list of patches
+# for consistency between different invocations.
+#
+.PHONY: patch-check-applied
+patch-check-applied:
+	${RUN}								\
+	n="$(filter-out ${_COOKIE.patch.applied},			\
+		${PATCHFILES} ${_PKGSRC_PATCHES})";			\
+	o="$(filter-out ${PATCHFILES} ${_PKGSRC_PATCHES},		\
+		${_COOKIE.patch.applied})";				\
+	${TEST} -z "$$n$$o" && exit 0;					\
+	${ERROR_MSG} "${hline}";					\
+	${ERROR_MSG} "$${bf}Stale working directory for"		\
+		"${PKGNAME}$${rm}";					\
+	${ERROR_MSG} "The set of patches to be applies has changed:";	\
+	if ${TEST} -n "$$o"; then					\
+	  ${ERROR_MSG} "Obsolete patches:";				\
+	  for f in $$o; do						\
+	    ${ERROR_MSG} "		$$f";				\
+	  done;								\
+	fi;								\
+	if ${TEST} -n "$$n"; then					\
+	  ${ERROR_MSG} "New patches:";					\
+	  for f in "$$n"; do						\
+	    ${ERROR_MSG} "		$$f";				\
+	  done;								\
+	fi;								\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "Please run \`$${bf}${MAKE} clean$${rm}\` in"	\
+		"${PKGPATH}";						\
+	${ERROR_MSG} "${hline}";					\
+	exit 2
 
 
 # --- real-patch (PRIVATE) -------------------------------------------
@@ -130,7 +174,7 @@ ${_COOKIE.patch}: real-patch
 # targets that do the actual patching work.
 #
 _REAL_PATCH_TARGETS+=	patch-message
-#_REAL_PATCH_TARGETS+=	patch-vars
+_REAL_PATCH_TARGETS+=	clear-applied-file
 _REAL_PATCH_TARGETS+=	pre-patch
 _REAL_PATCH_TARGETS+=	do-patch
 _REAL_PATCH_TARGETS+=	post-patch
@@ -142,6 +186,10 @@ real-patch: ${_REAL_PATCH_TARGETS}
 .PHONY: patch-message
 patch-message:
 	@${PHASE_MSG} "Patching for ${PKGNAME}"
+
+.PHONY: clear-applied-file
+clear-applied-file: makedirs
+	${RUN} >${_PATCH_APPLIED_FILE}
 
 
 # --- pre-patch, do-patch, post-patch (PUBLIC, override) -------------
@@ -259,7 +307,8 @@ $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 .PHONY: pkgsrc-patch-message do-pkgsrc-patch
 
 ifeq (yes,$(call exists,${PATCHDIR}))
-_PKGSRC_PATCHES+=	$(wildcard ${PATCHDIR}/patch-*)
+_PKGSRC_PATCHES+=\
+  $(sort $(filter-out %.orig %.rej %~, $(wildcard ${PATCHDIR}/patch-*)))
 endif
 ifdef PKG_PATCHES
 _PKGSRC_PATCHES+=	${PKG_PATCHES}
@@ -282,9 +331,7 @@ do-pkgsrc-patch:
 			${STEP_MSG} "Ignoring patchfile $$i";		\
 			continue;					\
 			;;						\
-		${PATCHDIR}/patch-local-*) 				\
-			;;						\
-		${PATCHDIR}/patch-*) 					\
+		${PATCHDIR}/patch-*)					\
 			filename=$${i##*/};				\
 			if ${TEST} ! -f ${DISTINFO_FILE}; then		\
 				patch_warning "Ignoring patch file"	\

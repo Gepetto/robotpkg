@@ -114,15 +114,15 @@ endif
 # fetch is a public target to fetch all of the package distribution
 # files.
 #
-$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
+_FETCH_TARGETS+=	$(call add-barrier, bootstrap-depends, fetch)
 _FETCH_TARGETS+=	pre-fetch
 _FETCH_TARGETS+=	do-fetch
 _FETCH_TARGETS+=	post-fetch
 
 .PHONY: fetch
-fetch: $(call barrier, bootstrap-depends, ${_FETCH_TARGETS})
+fetch: ${_FETCH_TARGETS};
 
 
 # --- pre-fetch, do-fetch, post-fetch (PUBLIC, override) -------------

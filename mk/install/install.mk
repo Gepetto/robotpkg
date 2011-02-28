@@ -46,28 +46,18 @@
 
 # install is a public target to install the package.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+
+_INSTALL_TARGETS+=	$(call add-barrier, depends, install)
 _INSTALL_TARGETS+=	build
 _INSTALL_TARGETS+=	acquire-install-lock
 _INSTALL_TARGETS+=	${_COOKIE.install}
 _INSTALL_TARGETS+=	release-install-lock
 
 .PHONY: install
-ifeq (yes,$(call exists,${_COOKIE.install}))
-  install:;
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
-  install: $(call barrier, depends, ${_INSTALL_TARGETS})
-endif
+install: ${_INSTALL_TARGETS};
 
-ifeq (yes,$(call exists,${_COOKIE.install}))
-  ${_COOKIE.install}:;
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
-
-  ${_COOKIE.install}: real-install;
-endif
 
 .PHONY: acquire-install-lock release-install-lock
 acquire-install-lock: acquire-lock
@@ -78,6 +68,29 @@ acquire-install-localbase-lock: acquire-localbase-lock
 release-install-localbase-lock: release-localbase-lock
 
 
+# --- ${_COOKIE.install} ---------------------------------------------------
+#
+# ${_COOKIE.install} creates the "install" cookie file.
+#
+ifeq (yes,$(call exists,${_COOKIE.install}))
+  ifneq (,$(filter install,${MAKECMDGOALS}))
+    ${_COOKIE.install}: .FORCE
+  endif
+
+  _MAKEFILE_WITH_RECIPES+=${_COOKIE.install}
+  $(call require,${_COOKIE.install})
+  ${_COOKIE.install}: ${_COOKIE.build}
+	${RUN}${MV} -f $@ $@.prev
+
+else
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
+
+  ${_COOKIE.install}: real-install;
+endif
+
+
 # --- real-install (PRIVATE) -----------------------------------------
 #
 # real-install is a helper target onto which one can hook all of the
@@ -85,21 +98,42 @@ release-install-localbase-lock: release-localbase-lock
 #
 $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
-_REAL_INSTALL_TARGETS+=	install-check-interactive
+_REAL_INSTALL_TARGETS+=		install-check-interactive
 ifndef _EXTRACT_IS_CHECKOUT
-  _REAL_INSTALL_TARGETS+=install-check-version
+  _REAL_INSTALL_TARGETS+=	install-check-version
 endif
-_REAL_INSTALL_TARGETS+=	install-message
-_REAL_INSTALL_TARGETS+=	install-all
-_REAL_INSTALL_TARGETS+=	install-cookie
+ifndef NO_PKG_REGISTER
+  ifndef FORCE_PKG_REGISTER
+    _REAL_INSTALL_TARGETS+=	pkg-install-check-conflicts
+    _REAL_INSTALL_TARGETS+=	pkg-install-check-required
+  endif
+endif
+_REAL_INSTALL_TARGETS+=		install-deinstall
+ifndef NO_PKG_REGISTER
+  ifndef FORCE_PKG_REGISTER
+    ifeq (,$(filter confirm,${MAKECMDGOALS}))
+      _REAL_INSTALL_TARGETS+=	pkg-install-check-files
+    endif
+  endif
+endif
+_REAL_INSTALL_TARGETS+=		install-message
+_REAL_INSTALL_TARGETS+=		install-all
+_REAL_INSTALL_TARGETS+=		install-cookie
+ifneq (,$(filter install,${MAKECMDGOALS}))
+  _REAL_INSTALL_TARGETS+=	install-done-message
+endif
 
 .PHONY: real-install
 real-install: ${_REAL_INSTALL_TARGETS}
 
 .PHONY: install-message
 install-message:
-	@${PHASE_MSG} "Installing for ${PKGNAME}"
-	@>${INSTALL_LOGFILE}
+	@if ${TEST} -f "${_COOKIE.install}.prev"; then			\
+	  ${PHASE_MSG} "Reinstalling for ${PKGNAME}";			\
+	else								\
+	  ${PHASE_MSG} "Installing for ${PKGNAME}";			\
+	fi;								\
+	>${INSTALL_LOGFILE}
 
 
 # --- install-check-interactive (PRIVATE) ----------------------------
@@ -152,6 +186,18 @@ install-check-version: ${_COOKIE.extract}
 	esac
 
 
+# --- install-deinstall (PRIVATE) ------------------------------------------
+#
+# install-deinstall invokes deinstall in a sub make an print an error if the
+# package cannot be deinstalled.
+#
+.PHONY: install-deinstall
+install-deinstall:
+	${RUN}found=`${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}`;	\
+	${TEST} -n "$$found" || exit 0;					\
+	${RECURSIVE_MAKE} deinstall
+
+
 # --- install-all (PRIVATE) ------------------------------------------
 #
 # install-all is a helper target to run the install target of
@@ -159,15 +205,6 @@ install-check-version: ${_COOKIE.extract}
 # some sanity checks.
 #
 _INSTALL_ALL_TARGETS+=		acquire-install-localbase-lock
-ifndef NO_PKG_REGISTER
-  ifndef FORCE_PKG_REGISTER
-    _INSTALL_ALL_TARGETS+=	pkg-install-check-conflicts
-    _INSTALL_ALL_TARGETS+=	pkg-install-check-installed
-    ifeq (,$(filter confirm,${MAKECMDGOALS}))
-      _INSTALL_ALL_TARGETS+=	pkg-install-check-files
-    endif
-  endif
-endif
 _INSTALL_ALL_TARGETS+=		install-makedirs
 #_INSTALL_ALL_TARGETS+=		pre-install-script
 _INSTALL_ALL_TARGETS+=		pre-install

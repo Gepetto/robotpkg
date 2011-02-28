@@ -81,32 +81,41 @@ endif
 #
 # build is a public target to build the sources from the package.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+
+_BUILD_TARGETS+=	$(call add-barrier, depends, build)
 _BUILD_TARGETS+=	configure
 _BUILD_TARGETS+=	acquire-build-lock
 _BUILD_TARGETS+=	${_COOKIE.build}
 _BUILD_TARGETS+=	release-build-lock
-#_BUILD_TARGETS+=	pkginstall
 
 .PHONY: build
-ifeq (yes,$(call exists,${_COOKIE.build}))
-  build:
-	@${DO_NADA}
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+build: ${_BUILD_TARGETS};
 
-  build: $(call barrier, depends, ${_BUILD_TARGETS})
-endif
 
 .PHONY: acquire-build-lock release-build-lock
 acquire-build-lock: acquire-lock
 release-build-lock: release-lock
 
+
+# --- ${_COOKIE.build} -----------------------------------------------------
+#
+# ${_COOKIE.build} creates the "build" cookie file.
+#
 ifeq (yes,$(call exists,${_COOKIE.build}))
-${_COOKIE.build}:;
+  ifneq (,$(filter build all,${MAKECMDGOALS}))
+    ${_COOKIE.build}: .FORCE
+  endif
+
+  _MAKEFILE_WITH_RECIPES+=${_COOKIE.build}
+  $(call require,${_COOKIE.build})
+  ${_COOKIE.build}: ${_COOKIE.configure}
+	${RUN}${MV} -f $@ $@.prev
 else
-${_COOKIE.build}: real-build;
+  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+
+  ${_COOKIE.build}: real-build;
 endif
 
 
@@ -118,20 +127,25 @@ endif
 _REAL_BUILD_TARGETS+=	build-check-interactive
 _REAL_BUILD_TARGETS+=	build-message
 _REAL_BUILD_TARGETS+=	build-check-dirs
-#_REAL_BUILD_TARGETS+=	build-vars
-#_REAL_BUILD_TARGETS+=	pre-build-checks-hook
 _REAL_BUILD_TARGETS+=	pre-build
 _REAL_BUILD_TARGETS+=	do-build
 _REAL_BUILD_TARGETS+=	post-build
 _REAL_BUILD_TARGETS+=	build-cookie
+ifneq (,$(filter build all,${MAKECMDGOALS}))
+  _REAL_BUILD_TARGETS+=	build-done-message
+endif
 
 .PHONY: real-build
-real-build: ${_REAL_BUILD_TARGETS}
+real-build: ${_REAL_BUILD_TARGETS};
 
 .PHONY: build-message
 build-message:
-	@${PHASE_MSG} "Building for ${PKGNAME}"
-	@>${BUILD_LOGFILE}
+	@if ${TEST} -f "${_COOKIE.build}.prev"; then			\
+	  ${PHASE_MSG} "Rebuilding for ${PKGNAME}";			\
+	else								\
+	  ${PHASE_MSG} "Building for ${PKGNAME}";			\
+	fi;								\
+	>${BUILD_LOGFILE}
 
 
 # --- build-check-interactive (PRIVATE) ------------------------------

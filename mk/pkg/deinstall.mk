@@ -67,7 +67,7 @@ _PKG_ARGS_DEINSTALL+=	-N -f	# update w/o removing any files
 endif
 
 
-# --- deinstall-pkg (PRIVATE, pkgsrc/mk/install/deinstall.mk) --------
+# --- pkg-deinstall (PRIVATE, pkgsrc/mk/install/deinstall.mk) --------
 #
 # pkg-deinstall removes the package from the system.
 #

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -42,7 +42,10 @@
 # The default target does the following:
 #    bootstrap-depends depends fetch checksum extract patch configure build
 #
-.DEFAULT_GOAL:=all
+.DEFAULT_GOAL:=build
+ifeq (,${MAKECMDGOALS})
+  MAKECMDGOALS:=${.DEFAULT_GOAL}
+endif
 
 .PHONY: all
 all: build;
@@ -61,9 +64,6 @@ $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
 # Locking
 $(call require, ${ROBOTPKG_DIR}/mk/internal/locking.mk)
-
-# Barrier
-$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 
 
 # --- core functionality ---------------------------------------------------
@@ -162,6 +162,6 @@ $(call require, ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk)
 $(foreach v,${.VARIABLES},$(call unexport-empty,$v))
 
 # Tell 'make' not to try to rebuild any Makefile by specifing a target with no
-# dependencies and no commands.
+# dependencies and no commands, execpt for those that do have recipes.
 #
-$(sort ${MAKEFILE_LIST}):;
+$(filter-out ${_MAKEFILE_WITH_RECIPES},$(sort ${MAKEFILE_LIST})):;

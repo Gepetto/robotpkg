@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -55,7 +55,7 @@ INSTALL_LOGFILTER?=\
 		$(if ${INSTALL_LOG_ETA},-a ${INSTALL_LOG_ETA})		\
 		--
 
-_COOKIE.install=	${WRKDIR}/.install_done
+_COOKIE.install=	${WRKDIR}/.install_cookie
 _COOKIE.preinstall=	${WRKDIR}/.install_start
 
 
@@ -71,10 +71,10 @@ else
     install:
 	@${DO_NADA}
   else
-    $(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
+    $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
     $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
-    install: $(call barrier, depends, build install-cookie)
+    install: $(call add-barrier, depends, install) build install-cookie;
   endif
 endif
 
@@ -100,5 +100,5 @@ install-clean: package-clean #check-clean
 .PHONY: install-cookie
 install-cookie:
 	${RUN}${TEST} ! -f ${_COOKIE.install} || ${FALSE};	\
-	${MKDIR} $(dir ${_COOKIE.install});			\
-	${ECHO} ${PKGNAME} > ${_COOKIE.install}
+	exec >>${_COOKIE.install};				\
+	${ECHO} "_COOKIE.install.date:=`${_CDATE_CMD}`"

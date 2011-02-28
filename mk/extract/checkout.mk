@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2010 LAAS/CNRS
+# Copyright (c) 2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -83,26 +83,30 @@ ifdef _CHECKOUT
   CHECKOUT_OPTS+=	-r ${_CHECKOUT}
 endif
 
+
+# --- ${_COOKIE.checkout} --------------------------------------------------
+#
+# ${_COOKIE.checkout} creates the "checkout" cookie file.
+#
+ifeq (yes,$(call exists,${_COOKIE.checkout}))
+  $(call require,${_COOKIE.checkout})
+else
+  $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+  ${_COOKIE.checkout}: real-checkout;
+endif
+
+
 # --- checkout (PUBLIC) ----------------------------------------------------
 #
 # checkout is a public target to perform checkout of a repository.
 #
-_CHECKOUT_TARGETS+=	acquire-checkout-lock
+_CHECKOUT_TARGETS+=	$(call add-barrier, bootstrap-depends, checkout)
+_CHECKOUT_TARGETS+=	acquire-extract-lock
 _CHECKOUT_TARGETS+=	${_COOKIE.checkout}
-_CHECKOUT_TARGETS+=	release-checkout-lock
+_CHECKOUT_TARGETS+=	release-extract-lock
 
 .PHONY: checkout
-ifeq (yes,$(call exists,${_COOKIE.checkout}))
-checkout ${_COOKIE.checkout}:;
-else
-  checkout: $(call barrier, bootstrap-depends, ${_CHECKOUT_TARGETS})
-
-  ${_COOKIE.checkout}: real-checkout;
-endif
-
-.PHONY: acquire-checkout-lock release-checkout-lock
-acquire-checkout-lock: acquire-lock
-release-checkout-lock: release-lock
+checkout: ${_CHECKOUT_TARGETS};
 
 
 # --- real-checkout (PRIVATE) ----------------------------------------------

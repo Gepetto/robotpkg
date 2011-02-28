@@ -1,4 +1,4 @@
-# Copyright (c) 2008-2010 LAAS/CNRS
+# Copyright (c) 2008-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -33,22 +33,19 @@
 # Updates a package in-place on the system.
 # It will acquire elevated privileges just-in-time.
 #
-$(call require, ${ROBOTPKG_DIR}/mk/internal/barrier.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
+_REPLACE_TARGETS+=	$(call add-barrier, depends, replace)
 _REPLACE_TARGETS+=	build
 _REPLACE_TARGETS+=	replace-message
 ifeq (,$(call isyes,${MAKE_SUDO_INSTALL}))
   _REPLACE_TARGETS+=	pkg-replace
 else
   _REPLACE_TARGETS+=	su-target-replace
-  _SU_TARGETS+= 	replace
-  su-replace: 		pkg-replace
+  _SU_TARGETS+=		replace
+  su-replace:		pkg-replace
 endif
-
-# run after the 'depends' barrier
-_REPLACE_TARGETS:=$(call barrier, depends, ${_REPLACE_TARGETS})
 
 ifneq (,$(filter replace,${MAKECMDGOALS})) # if we are asking for a replace
   ifneq (yes,$(call for-unsafe-pkg,yes))   # and the package is unsafe
@@ -57,7 +54,7 @@ ifneq (,$(filter replace,${MAKECMDGOALS})) # if we are asking for a replace
 endif
 
 .PHONY: replace
-replace: ${_REPLACE_TARGETS}
+replace: ${_REPLACE_TARGETS};
 
 
 # --- replace-message (PRIVATE) --------------------------------------------

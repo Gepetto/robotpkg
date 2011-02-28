@@ -134,11 +134,22 @@ _SETFANCY_CMD:=${TEST} -t 1 || { bf=; rm=; }
 #
 # Create initial working directories
 #
+_COOKIE.wrkdir=	${WRKDIR}/.wrkdir_cookie
+
 .PHONY: makedirs
-makedirs: ${WRKDIR}
+makedirs: ${WRKDIR};
 
 ${WRKDIR}:
-	${RUN}${MKDIR} ${WRKDIR}
+	${RUN}${MKDIR} ${WRKDIR} &&					\
+	${ECHO} '${PKGNAME}' >${_COOKIE.wrkdir} &&			\
+	${ECHO} '${_COOKIE.wrkopthash}' >${_COOKIE.wrkopt}
+
+
+# --- %-done-message -------------------------------------------------------
+#
+# Print a message when a top-level target is done
+%-done-message: .FORCE
+	@${PHASE_MSG} "Done $* for ${PKGNAME}"
 
 
 # --- show-var -------------------------------------------------------------

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -72,6 +72,7 @@ _MAKECONF_CHECKSUM_CMD= ${SETENV} 				\
 $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
+_CHECKSUM_TARGETS=	$(call add-barrier, bootstrap-depends, checksum)
 _CHECKSUM_TARGETS+=	check-configuration-file
 ifndef _EXTRACT_IS_CHECKOUT
   _CHECKSUM_TARGETS+=	fetch
@@ -79,7 +80,7 @@ ifndef _EXTRACT_IS_CHECKOUT
 endif
 
 .PHONY: checksum
-checksum: $(call barrier, bootstrap-depends, ${_CHECKSUM_TARGETS})
+checksum: ${_CHECKSUM_TARGETS};
 
 
 # --- check-configuration-file (PRIVATE) -----------------------------
