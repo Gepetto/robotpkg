@@ -43,112 +43,50 @@ PKGREPOSITORYSUBDIR?=	All
 #
 .PHONY: pkg-check-installed
 pkg-check-installed:
-	${RUN}${PKG_INFO} -qe ${PKGNAME} ||				\
-	  ${FAIL_MSG} "${PKGNAME} is not installed.";			\
-
-
-# --- pkg-create (PRIVATE, pkgsrc/mk/package/package.mk) -------------
-#
-# pkg-create creates the binary package.
-#
-.PHONY: pkg-create
-pkg-create: pkg-remove ${PKGFILE} pkg-links
-
-_PKG_ARGS_PACKAGE+=	${_PKG_CREATE_ARGS}
-_PKG_ARGS_PACKAGE+=	-p ${PREFIX}
-
-${PKGFILE}: ${_CONTENTS_TARGETS}
-	${RUN}${MKDIR} $(dir $@);					\
-	depends=;							\
-  $(foreach _pkg_,${DEPEND_USE},					\
-    $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
-      $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),			\
-	depends=$$depends' ${DEPEND_ABI.${_pkg_}}';			\
-  )))									\
-	${PKG_CREATE} ${_PKG_ARGS_PACKAGE}				\
-		$${depends:+-P "$${depends}"} $@ || {			\
-	  exitcode=$$?;							\
-	  ${ERROR_MSG} "$(notdir ${PKG_CREATE}) failed ($$exitcode)";	\
-	  ${RM} -f $@;							\
-	  exit 1;							\
-	}
-
-
-# --- pkg-remove (PRIVATE) -------------------------------------------
-#
-# pkg-remove removes the binary package from the package
-# repository.
-#
-.PHONY: pkg-remove
-pkg-remove:
-	${RUN}${RM} -f ${PKGFILE}
-
-
-# --- pkg-links (PRIVATE) --------------------------------------------
-#
-# pkg-links creates symlinks to the binary package from the
-# non-primary categories to which the package belongs.
-#
-pkg-links: pkg-delete-links
-	${RUN}								\
-$(foreach _dir_,$(addprefix ${PACKAGES}/,${CATEGORIES}),		\
-	${MKDIR} ${_dir_};						\
-	if ${TEST} ! -d ${_dir_}; then					\
-		${ERROR_MSG} "Can't create directory "${_dir_}".";	\
-		exit 1;							\
-	fi;								\
-	${RM} -f ${_dir_}/$(notdir ${PKGFILE}); 			\
-	${LN} -s ../${PKGREPOSITORYSUBDIR}/$(notdir ${PKGFILE}) ${_dir_}; \
-)
-
-
-# --- pkg-delete-links (PRIVATE) -------------------------------------
-#
-# pkg-delete-links removes the symlinks to the binary package from
-# the non-primary categories to which the package belongs.
-#
-pkg-delete-links:
-	${RUN}								\
-	${FIND} ${PACKAGES} -type l -name $(notdir ${PKGFILE}) -print |	\
-	${XARGS} ${RM} -f
+	${RUN}${PKG_INFO} -qe ${PKGNAME} && exit 0;			\
+	found=`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`;		\
+	if ${TEST} -z "$$found"; then					\
+	  ${RECURSIVE_MAKE} install;					\
+	else								\
+	  $(if $(filter tarup,${MAKECMDGOALS}),:,			\
+	    ${ERROR_MSG} "${hline}";					\
+	    ${ERROR_MSG} "$${bf}$$found is already installed.$${rm}";	\
+	    ${ERROR_MSG} "${PKGNAME} is the current version.";		\
+	    ${ERROR_MSG} "";						\
+	    ${ERROR_MSG} "You may use either of:";			\
+	    ${ERROR_MSG} " - '$${bf}${MAKE} update package$${rm}' in"	\
+		"${PKGPATH}";						\
+	    ${ERROR_MSG} "   to build an up-to-date binary package";	\
+	    ${ERROR_MSG} " - '$${bf}${MAKE} tarup$${rm}' in"		\
+		"${PKGPATH}";						\
+	    ${ERROR_MSG} "   to build a binary package from $$found";	\
+	    ${ERROR_MSG} "${hline}";					\
+	    exit 2);							\
+	fi
 
 
 # --- pkg-tarup (PRIVATE) --------------------------------------------------
 #
 # pkg-tarup creates a binary package from an installed instance of
 # PKGWILDCARD. The installed version might not match the one of the current
-# Makefile, so take care to override PKGFILE before invoking other pkg-*
-# targets.
+# Makefile.
 #
-_PKG_TARUP_TARGETS+=	pkg-tarup-message
-_PKG_TARUP_TARGETS+=	pkg-remove
-_PKG_TARUP_TARGETS+=	pkg-do-tarup
-_PKG_TARUP_TARGETS+=	pkg-links
-
 .PHONY: pkg-tarup
-pkg-tarup: _PKG_TARUP_NAME=$(shell ${_PKG_BEST_EXISTS} ${PKGWILDCARD})
-pkg-tarup: override PKGFILE=${PKGREPOSITORY}/${_PKG_TARUP_NAME}${PKG_SUFX}
-pkg-tarup: ${_PKG_TARUP_TARGETS}
-
-.PHONY: pkg-tarup-message
-pkg-tarup-message:
-	${RUN}${TEST} -z "${_PKG_TARUP_NAME}" &&			\
-	  ${FAIL_MSG} "No package matching ${PKGWILDCARD} installed.";	\
-	${PHASE_MSG} "Building binary package from installed"		\
-	  "${_PKG_TARUP_NAME}"
-
-.PHONY: pkg-do-tarup
-pkg-do-tarup:
+pkg-tarup:
 	${RUN}								\
-	pkgdb=${_PKG_DBDIR}/${_PKG_TARUP_NAME};				\
+	pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
+	${TEST} -n "$$pkgfile" ||					\
+	    ${FAIL_MSG} "${PKGWILDCARD} not installed";			\
+	pkgdb=${_PKG_DBDIR}/$$pkgfile;					\
 	${TEST} -d "$$pkgdb" ||						\
 		${FAIL_MSG} "no such directory: $$pkgdb";		\
+	pkgbin=${PKGREPOSITORY}/$$pkgfile${PKG_SUFX};			\
+									\
 	chkfile() {							\
 		if ${TEST} -f "$$pkgdb/$$2"; then			\
 			${ECHO} " $$1 $$pkgdb/$$2";			\
 		fi;							\
 	};								\
-									\
 	pkg_args="-v -l";						\
 	pkg_args=$$pkg_args`chkfile -B ${_BUILD_INFO_FILE}`;		\
 	pkg_args=$$pkg_args`chkfile -b ${_BUILD_VERSION_FILE}`;		\
@@ -161,15 +99,57 @@ pkg-do-tarup:
 	pkg_args=$$pkg_args`chkfile -S ${_SIZE_ALL_FILE}`;		\
 	pkg_args=$$pkg_args`chkfile -s ${_SIZE_PKG_FILE}`;		\
 									\
-	prefix=`${PKG_INFO} -qp "${_PKG_TARUP_NAME}" | 			\
+	prefix=`${PKG_INFO} -qp "$$pkgfile" |				\
 		${SED} -e '1{s/^@cwd[ 	]*//;q;}'`;			\
-	pkg_args=$$pkg_args" -p $$prefix -L $$prefix -I $$prefix";	\
+	pkg_args=$$pkg_args" -p $$prefix -I $$prefix";			\
 									\
-	${SED}	-e '/^@name/d' 						\
-		-e '/^@comment MD5:/d' -e '/^@comment Symlink:/d'	\
-		-e '/^@mtree/d' 					\
-		-e '/^@blddep/d' -e '/^@pkgdep/d'			\
-		-e '/^@cwd/d' -e '/^@src/d' 				\
-		-e '/^@ignore/,/^.*$$/d' 				\
-                <"$$pkgdb/${_CONTENTS_FILE}" |				\
-	${PKG_CREATE} $$pkg_args -f - ${PKGFILE}
+	${MKDIR} ${PKGREPOSITORY} ||					\
+		${FAIL_MSG} "cannot create directory: ${PKGREPOSITORY}";\
+	${RM} -f $$pkgbin;						\
+	${SED} -e '/^@comment MD5:/d' -e '/^@comment Symlink:/d'	\
+	       -e '/^@cwd/d' -e '/^@src/d'				\
+	       -e '/^@ignore/,/^.*$$/d'					\
+              <"$$pkgdb/${_CONTENTS_FILE}" |				\
+	${PKG_CREATE} $$pkg_args -f - $$pkgbin;				\
+									\
+	deps=`${PKG_INFO} -qn $$pkgfile`;				\
+	for d in $$deps; do						\
+	  dep=`${_PKG_BEST_EXISTS} $$d`;				\
+	  if ${TEST} -z "$$dep"; then					\
+	    ${RECURSIVE_MAKE} depends;					\
+	    dep=`${_PKG_BEST_EXISTS} $$d`;				\
+	  fi;								\
+	  ${TEST} -n "$$dep" || ${FAIL_MSG} "$$d not installed";	\
+	  depbin=${PKGREPOSITORY}/$$dep${PKG_SUFX};			\
+	  if ${TEST} ! -f "$$depbin"; then				\
+	    dir=`${PKG_INFO} -qQ PKGPATH $$dep`;			\
+	    if cd ${ROBOTPKG_DIR}/$$dir; then				\
+	      ${RECURSIVE_MAKE} tarup;					\
+	    else							\
+	      ${FAIL_MSG} "Can't cd to $$dir";				\
+	    fi;								\
+	  fi;								\
+	done
+
+
+
+
+# --- pkg-links (PRIVATE) --------------------------------------------
+#
+# pkg-links creates symlinks to the binary package from the categories to which
+# the package belongs.
+#
+.PHONY: pkg-links
+pkg-links:
+	${RUN}pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;		\
+	${FIND} ${PACKAGES} -type l -name $$pkgfile${PKG_SUFX} -print |	\
+		${XARGS} ${RM} -f;					\
+$(foreach _dir_,$(addprefix ${PACKAGES}/,${CATEGORIES}),		\
+	${MKDIR} ${_dir_} || {						\
+	  ${ERROR_MSG} "Can't create directory "${_dir_}".";		\
+	  exit 1;							\
+	};								\
+	${RM} -f ${_dir_}/$$pkgfile${PKG_SUFX};				\
+	${LN} -s ../${PKGREPOSITORYSUBDIR}/$$pkgfile${PKG_SUFX}		\
+	  ${_dir_};							\
+)

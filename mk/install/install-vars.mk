@@ -87,9 +87,7 @@ include ${ROBOTPKG_DIR}/mk/install/replace.mk
 # install-clean removes the state files for the "install" and
 # later phases so that the "install" target may be re-invoked.
 #
-$(call require, ${ROBOTPKG_DIR}/mk/package/package-vars.mk)
-
-install-clean: package-clean #check-clean
+install-clean:
 	${RUN}${RM} -f ${PLIST} ${_COOKIE.install}
 
 

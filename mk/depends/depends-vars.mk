@@ -65,16 +65,14 @@ _COOKIE.depends=	${WRKDIR}/.depends_cookie
 # dependencies.  This variable is user-settable in etc/robotpkg.conf.
 #
 ifndef DEPENDS_TARGET
-  ifneq (,$(filter package,${MAKECMDGOALS}))
-    DEPENDS_TARGET=	package
-  else ifneq (,$(filter update,${MAKECMDGOALS}))
+  ifneq (,$(filter update,${MAKECMDGOALS}))
     ifneq (,$(filter replace,${UPDATE_TARGET}))
       DEPENDS_TARGET=	replace
     else
       DEPENDS_TARGET=	update
     endif
   else
-    DEPENDS_TARGET=	reinstall
+    DEPENDS_TARGET=	install
   endif
 endif
 

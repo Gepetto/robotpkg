@@ -38,12 +38,12 @@
 #
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
-_PACKAGE_TARGETS+=	$(call add-barrier, bootstrap-depends, package tarup)
 _PACKAGE_TARGETS+=	acquire-package-lock
-_PACKAGE_TARGETS+=	${_COOKIE.package}
+_PACKAGE_TARGETS+=	real-package
 _PACKAGE_TARGETS+=	release-package-lock
 
-package: $(call barrier, depends, ${_PACKAGE_TARGETS});
+.PHONY: package tarup
+package tarup: ${_PACKAGE_TARGETS};
 
 
 .PHONY: acquire-package-lock release-package-lock
@@ -51,53 +51,31 @@ acquire-package-lock: acquire-lock
 release-package-lock: release-lock
 
 
-# --- ${_COOKIE.package} ---------------------------------------------------
-#
-# ${_COOKIE.package} creates the "package" cookie file.
-#
-ifeq (yes,$(call exists,${_COOKIE.package}))
-  ifneq (,$(filter package,${MAKECMDGOALS}))
-    ${_COOKIE.package}: .FORCE
-  endif
-
-  _MAKEFILE_WITH_RECIPES+=${_COOKIE.package}
-  $(call require,${_COOKIE.package})
-  ${_COOKIE.package}: ${_COOKIE.install}
-	${RUN}${MV} -f $@ $@.prev
-
-else
-  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-
-  ${_COOKIE.package}: real-package;
-endif
-
-
 # --- real-package (PRIVATE) -----------------------------------------
 #
 # real-package is a helper target onto which one can hook all of the
 # targets that do the actual packaging of the built objects.
 #
-_REAL_PACKAGE_TARGETS+=	package-message
 _REAL_PACKAGE_TARGETS+=	pkg-check-installed
-_REAL_PACKAGE_TARGETS+=	pkg-create
-_REAL_PACKAGE_TARGETS+=	package-cookie
+_REAL_PACKAGE_TARGETS+=	package-message
+_REAL_PACKAGE_TARGETS+=	pkg-tarup
+_REAL_PACKAGE_TARGETS+=	pkg-links
 _REAL_PACKAGE_TARGETS+=	package-warnings
-ifneq (,$(filter package,${MAKECMDGOALS}))
-  _REAL_PACKAGE_TARGETS+=	package-done-message
-endif
 
 .PHONY: real-package
 real-package: ${_REAL_PACKAGE_TARGETS}
 
 .PHONY: package-message
 package-message:
-	@${PHASE_MSG} "Building binary package for ${PKGNAME}"
+	@found=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
+	${PHASE_MSG} "Building binary package for $$found"
 
 
 # Displays warnings about the binary package.
 .PHONY: package-warnings
 package-warnings:
 ifdef NO_PUBLIC_BIN
-	@${WARNING_MSG} "${PKGNAME} may not be publicly available:"
-	@${WARNING_MSG} $(call quote,${NO_PUBLIC_BIN})
+	@found=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
+	${WARNING_MSG} "$$found may not be publicly available:";
+	${WARNING_MSG} $(call quote,${NO_PUBLIC_BIN})
 endif

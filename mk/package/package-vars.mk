@@ -47,9 +47,8 @@
 #
 # The following are the "public" targets provided by this module:
 #
-#    package, repackage
+#    package, tarup
 
-_COOKIE.package=	${WRKDIR}/.package_cookie
 
 # ---  package (PUBLIC) ----------------------------------------------
 #
@@ -59,56 +58,7 @@ _COOKIE.package=	${WRKDIR}/.package_cookie
 ifndef NO_PACKAGE
   $(call require, ${ROBOTPKG_DIR}/mk/package/package.mk)
 else
-  ifeq (yes,$(call exists,${_COOKIE.package}))
-    package:
-	@${DO_NADA}
-  else
-    $(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
-
-    package: $(call barrier, depends, install)
-      ifdef SKIP_SILENT
-	@${DO_NADA}
-      else
+  .PHONY: package tarup
+  package tarup:
 	@${PHASE_MSG} "${PKGNAME} may not be packaged: "${NO_PACKAGE}"."
-      endif
-  endif
 endif
-
-
-# --- repackage (PUBLIC) ---------------------------------------------
-#
-# repackage is a special target to re-run the package target.
-#
-.PHONY: repackage
-repackage: package-clean package
-
-
-# --- tarup (PUBLIC) -------------------------------------------------
-#
-# tarup is a public target to generate a binary package from an
-# installed package instance.
-#
-$(call require-for, tarup, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-
-.PHONY: tarup
-tarup: pkg-tarup
-
-
-# --- package-clean (PRIVATE) ----------------------------------------
-#
-# package-clean removes the state files associated with the "package"
-# phase so that the "package" target may be re-invoked.
-#
-package-clean:
-	${RUN}${RM} -f ${_COOKIE.package}
-
-
-# --- package-cookie (PRIVATE) ---------------------------------------------
-#
-# package-cookie creates the "package" cookie file
-#
-.PHONY: package-cookie
-package-cookie: makedirs
-	${RUN}${TEST} ! -f ${_COOKIE.package} || ${FALSE};		\
-	exec >>${_COOKIE.package};					\
-	${ECHO} "_COOKIE.package.date:=`${_CDATE_CMD}`"

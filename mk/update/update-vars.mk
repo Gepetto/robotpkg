@@ -29,11 +29,7 @@ endif
 #
 ifndef UPDATE_TARGET
   ifneq (,$(filter update,${DEPENDS_TARGET}))
-    ifneq (,$(filter package,${MAKECMDGOALS}))
-      UPDATE_TARGET=	package
-    else
-      UPDATE_TARGET=	install
-    endif
+    UPDATE_TARGET=	install
   else
     UPDATE_TARGET=	${DEPENDS_TARGET}
   endif
