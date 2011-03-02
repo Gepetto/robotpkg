@@ -78,7 +78,7 @@ pkg-deinstall:
           $(if ${_PKG_ARGS_DEINSTALL_INFO},				\
 	    ${PKG_INFO} -q ${_PKG_ARGS_DEINSTALL_INFO} "$$found" |	\
 	      ${SED} 's/^/Removing dependency /';)			\
-	  ${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} "$$found" && {		\
+	  ${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} '${PKGWILDCARD}' && {	\
 	    left=`${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}`;		\
 	    if ${TEST} -z "$$left"; then				\
 	      ${ECHO} "Removed $$found";				\
