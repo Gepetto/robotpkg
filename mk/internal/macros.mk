@@ -62,7 +62,7 @@ endef
 # Include <file> if it was not already included and it exists
 #
 override define -require
-$(foreach f,$1,$(if $(wildcard $f),$(call require, $f)))
+$(foreach f,$1,$(if $(filter $f,${MAKEFILE_LIST}),,$(eval -include $f)))
 endef
 
 
@@ -180,40 +180,13 @@ $(if $1,$(call prependpaths,$(wordlist 2,$(words $1),. $1),$(call \
 endef
 
 
-# --- syslibpath <path-list> -----------------------------------------------
-#
-# Append SYSLIBSUFFIX to /usr/lib and /lib.
-#
-override define syslibpath
-$(patsubst /lib%,/lib${SYSLIBSUFFIX}%,$(patsubst				\
-	/usr/lib%,/usr/lib${SYSLIBSUFFIX}%,$1))
-endef
-
-
 # --- pathsearch <file(s)> <path> ------------------------------------
 #
-# Look for file in path, returning the first match. If file is a list of file,
-# the function returns the full path for all files. path can be a
+# Look for file $1 in path $2, returning the first match. path can be a
 # colon-separated or space-separated list of directories.
 #
-# As a special case, if a file is not found in /usr/lib, it is also searched in
-# /lib. For those two directories, we add the SYSLIBSUFFIX.
-#
 override define pathsearch
-$(strip $(foreach f,$1,$(firstword 						\
-	$(or $(wildcard $(call syslibpath,$(addsuffix /$f,$(subst :, ,$2)))),	\
-	     $(wildcard $(call syslibpath,$(subst				\
-		/usr/lib,/lib,$(addsuffix /$f,$(subst :, ,$2)))))))))
-endef
-
-
-# --- prefixsearch <file(s)> <path> ----------------------------------
-#
-# Look for file in path, returning the prefix of the first match.
-# See pathsearch.
-#
-override define prefixsearch
-$(firstword $(foreach p,$(subst :, ,$2),$(if $(call pathsearch,$1,$p),$p)))
+$(firstword $(realpath $(addsuffix /$1,$(subst :, ,$2))))
 endef
 
 
