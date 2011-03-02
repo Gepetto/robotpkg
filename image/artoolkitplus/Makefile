@@ -2,9 +2,10 @@
 # Created:			Anthony Mallet on Tue, 24 Mar 2009
 #
 
-PKGVERSION=	2.1.1
-DISTNAME=	ARToolKitPlus_${PKGVERSION}
-PKGNAME=	artoolkitplus-${PKGVERSION}
+VERSION=	2.1.1
+PKGREVISION=	1
+DISTNAME=	ARToolKitPlus_${VERSION}
+PKGNAME=	artoolkitplus-${VERSION}
 CATEGORIES=	image
 MASTER_SITES=	http://studierstube.icg.tu-graz.ac.at/handheld_ar/download/
 EXTRACT_SUFX=	.zip
