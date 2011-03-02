@@ -87,12 +87,16 @@ update: ${_UPDATE_TARGETS};
 #
 do%update: .FORCE
 	${_OVERRIDE_TARGET}
-	${RUN}${RECURSIVE_MAKE} ${UPDATE_TARGET}			\
-			DEPENDS_TARGET=${DEPENDS_TARGET}
+	${RUN}								\
+	if ${PKG_INFO} -qe '${PKGNAME}'; then				\
+	  ${STEP_MSG} "${PKGNAME} was already reinstalled";		\
+	else								\
+	  ${RECURSIVE_MAKE} ${UPDATE_TARGET}				\
+		DEPENDS_TARGET=${DEPENDS_TARGET};			\
+	fi
 	${RUN}target='$(filter-out confirm,${UPDATE_TARGET})';		\
 	${TEST} ! -f ${_UPDATE_LIST} || while read dir pkg <&9; do	\
 	  if ${TEST} -z "$${dir}"; then continue; fi;			\
-	  ${PHASE_MSG} "Verifying $$target for $$dir";			\
 	  if ${PKG_INFO} -qe "$$pkg"; then				\
 	    set -- `${PKG_INFO} -qr '${PKGNAME}'`;			\
 	    case " $$@ " in *" $$pkg "*)				\
@@ -100,6 +104,7 @@ do%update: .FORCE
 	        continue;;						\
 	    esac;							\
 	  fi;								\
+	  ${PHASE_MSG} "Verifying $$target for $$dir";			\
 	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	    ${RECURSIVE_MAKE} $$target					\
