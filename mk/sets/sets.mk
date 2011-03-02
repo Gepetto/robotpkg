@@ -56,14 +56,15 @@ set-deinstall-%: .FORCE
 
 # simple recursion
 override define _pkgset_recursive
-	$(if $(call isyes,${PKGSET_STRICT}),set="${PKGSET.$*}";)\
+	$(if $(call isyes,${PKGSET_STRICT.$*}),			\
+	  set="${PKGSET.$*}";)					\
 	for pkg in "" $2; do					\
-	  $(if $(call isyes,${PKGSET_STRICT}),			\
+	  $(if $(call isyes,${PKGSET_STRICT.$*}),		\
 	    case " $$set " in *" $$pkg "*,			\
 	    case "$$pkg" in ?*))				\
 	      if cd ${ROBOTPKG_DIR}/$$pkg 2>/dev/null; then	\
 	        ${ECHO_MSG} $${bf}'[$*] Processing' $$pkg$${rm};\
-	        ${RECURSIVE_MAKE} 				\
+	        ${RECURSIVE_MAKE}				\
 			$1 $(filter confirm,${MAKECMDGOALS}) ||	\
 	          { $(call PKGSET_RECURSIVE_ERR,$$pkg) };	\
 	      else						\

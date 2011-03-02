@@ -50,11 +50,16 @@ _pkgset_avail=\
 # list of targets actually required
 _pkgset_goals= $(filter ${MAKECMDGOALS},${_pkgset_avail})
 
+# set default flags
+$(foreach _set_,${_pkgset_names},					\
+  $(eval PKGSET_FAILSAFE.${_set_}?=${PKGSET_FAILSAFE})			\
+  $(eval PKGSET_STRICT.${_set_}?=${PKGSET_STRICT}))
+
 # compute PKGSET.installed if needed
 ifneq (,$(filter %-installed,${_pkgset_goals}))
   ifndef PKGSET.installed
     $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-    export PKGSET.installed=$(shell ${PKG_INFO} -qu -Q PKGPATH 2>/dev/null)
+    PKGSET.installed=$(shell ${PKG_INFO} -qu -Q PKGPATH 2>/dev/null)
   endif
 endif
 
@@ -70,7 +75,7 @@ ifneq (,${_pkgset_goals})
 
   # error message printed for non-existent packages in a set
   override define PKGSET_NONEXISTENTPKG_ERR
-    $(if $(call isyes,${PKGSET_FAILSAFE}),			\
+    $(if $(call isyes,${PKGSET_FAILSAFE.$*}),			\
 	:;							\
     ,	${ERROR_MSG} ${hline};					\
 	${ERROR_MSG} "Package $1 in set '$2' does not exist.";	\
@@ -81,7 +86,7 @@ ifneq (,${_pkgset_goals})
 
   # error message printed when recursion in a set fails
   override define PKGSET_RECURSIVE_ERR
-    $(if $(call isyes,${PKGSET_FAILSAFE}),			\
+    $(if $(call isyes,${PKGSET_FAILSAFE.$*}),			\
 	:;							\
     ,	${ERROR_MSG} ${hline};					\
 	${ERROR_MSG} "$${bf}An error occured in $1.$${rm}";	\
