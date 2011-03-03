@@ -1,0 +1,14 @@
+fix for 
+: extend.c:710:10: error: 'curmap' may be used uninitialized in this function
+with gcc 4.5.1 (fedora 14)
+--- extend.c~	2011-03-03 21:32:45.118570647 +0100
++++ extend.c	2011-03-03 21:36:59.087775338 +0100
+@@ -707,7 +707,7 @@
+ 	long	 nl;
+ #ifdef	FKEYS
+ 	int	 bind;
+-	KEYMAP	*curmap;
++	KEYMAP	*curmap = NULL;
+ #define BINDARG		0  /* this arg is key to bind (local/global set key) */
+ #define	BINDNO		1  /* not binding or non-quoted BINDARG */
+ #define BINDNEXT	2  /* next arg " (define-key) */
