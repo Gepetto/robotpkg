@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2010 LAAS/CNRS
+# Copyright (c) 2008-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -41,6 +41,22 @@ SYSTEM_PKG.Linux-debian.tcl=	tcl-dev
 
 export TCLSH=		$(word 1,${SYSTEM_FILES.tcl})
 TCL_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tcl})
+
+# TCLPATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
+# directories) that should be added to the tcl search paths.
+#
+_TCL_SYSPATH:=$(if ${TCLSH},						\
+  $(shell ${SETENV} TCLLIBPATH= ${ECHO} 'puts $$auto_path' |		\
+    ${TCLSH} 2>/dev/null))
+
+TCLLIBPATH=$(filter-out ${_TCL_SYSPATH},				\
+	$(patsubst %/,%,$(foreach _pkg_,${DEPEND_USE},			\
+	  $(addprefix							\
+	    ${PREFIX.${_pkg_}}/, $(patsubst ${PREFIX.${_pkg_}}/%,%,	\
+	    $(or ${TCLPATH.${_pkg_}},					\
+	      $(dir $(filter %/pkgIndex.tcl,${SYSTEM_FILES.${_pkg_}}))	\
+	))))))
+export TCLLIBPATH
 
 endif # TCL_DEPEND_MK ------------------------------------------------
 
