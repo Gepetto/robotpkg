@@ -69,12 +69,3 @@ override define _pkgset_recursive
 	${PHASE_MSG} 'Done $(patsubst set-%-$*,%,$@) for'		\
 	  '${PKGSET_DESCR.$*}'
 endef
-
-
-# --- tsort dependencies ---------------------------------------------------
-
-override define _pkgset_tsort_deps
-  ${SETENV} SETENV=${SETENV} MAKE=${MAKE} TEST=${TEST} TSORT=${TSORT}	\
-	ROBOTPKG_DIR=${ROBOTPKG_DIR}					\
-  ${AWK} -f ${ROBOTPKG_DIR}/mk/sets/tsort-set.awk --
-endef

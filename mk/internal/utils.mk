@@ -233,12 +233,12 @@ endif
 .PHONY: show-depends
 show-depends:
 	${RUN}${_SETFANCY_CMD};						\
-	{ ${RECURSIVE_MAKE} check-depends;				\
-	${_DEPENDS_WALK_CMD} ${PKGPATH} | while read dir; do		\
-	  cd ${ROBOTPKG_DIR}/$$dir &&					\
-	  ${RECURSIVE_MAKE} check-depends DEPENDS_TYPE=run || 		\
+	{ ${RECURSIVE_MAKE} check-depends &&				\
+	  ${_pkgset_tsort_deps} -n ${PKGPATH} | while read dir; do	\
+	    cd ${ROBOTPKG_DIR}/$$dir &&					\
+	    ${RECURSIVE_MAKE} check-depends DEPENDS_TYPE=run ||		\
 		${ECHO} 1>&2 "could not process $$dir";			\
-	done; } | ${AWK} -F'|' -v bf=$$bf -v rm=$$rm '			\
+	  done; } | ${AWK} -F'|' -v bf=$$bf -v rm=$$rm '		\
 	  /robotpkg/ {							\
 	    if ($$3 == "-") {						\
 	        r[$$2] = bf "missing - install " $$4 rm;		\
@@ -292,16 +292,6 @@ endif
 confirm:
 	@${DO_NADA}
 
-
-# _DEPENDS_WALK_CMD holds the command (sans arguments) to walk the
-# dependency graph for a package.
-#
-_DEPENDS_WALK_MAKEFLAGS?=	$(call quote,${MAKEFLAGS})
-_DEPENDS_WALK_CMD=							\
-	${SETENV} ECHO=${TOOLS_ECHO} MAKE=${MAKE}			\
-		MAKEFLAGS=${_DEPENDS_WALK_MAKEFLAGS}			\
-		ROBOTPKG_DIR=${ROBOTPKG_DIR} TEST=${TOOLS_TEST}		\
-	${AWK} -f ${ROBOTPKG_DIR}/mk/internal/depends-depth-first.awk --
 
 # Fake target to make pattern targets phony
 #

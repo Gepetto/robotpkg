@@ -110,3 +110,15 @@ ifneq (,${_pkgset_goals})
   endef
 
 endif # _pkgset_goals
+
+
+# --- tsort dependencies ---------------------------------------------------
+#
+# _pkgset_tsort_deps holds the command (sans arguments) to walk the dependency
+# graph for a package.
+#
+override define _pkgset_tsort_deps
+  ${SETENV} SETENV=${SETENV} MAKE=${MAKE} TEST=${TEST} TSORT=${TSORT}	\
+	ROBOTPKG_DIR=${ROBOTPKG_DIR}					\
+  ${AWK} -f ${ROBOTPKG_DIR}/mk/sets/tsort-set.awk --
+endef
