@@ -30,30 +30,68 @@ BEGIN {
     TSORT = ENVIRON["TSORT"]?ENVIRON["TSORT"]:"tsort"
     ROBOTPKG_DIR =\
 	ENVIRON["ROBOTPKG_DIR"]?ENVIRON["ROBOTPKG_DIR"]:"/opt/openrobots"
-    DEPS = MAKE " show-depends-pkgpaths"
+    DEPS = MAKE " show-depends-pkgpaths || echo '*'"
     order = 1;
+    sort = 1;
+    strict = 0;
 
     ARGSTART = 1
-    if (ARGV[ARGSTART] == "--") {
-	ARGSTART++
-    }
-    if (ARGV[ARGSTART] == "-r") {
-	order = -1;
-	ARGSTART++
+    while (ARGSTART < ARGC) {
+	option = ARGV[ARGSTART]
+	if (option == "--") {
+	    ARGSTART++
+	    break
+	} else if (option == "-r") {
+	    order = -1
+	    ARGSTART++
+	} else if (option == "-s") {
+	    strict = 1
+	    ARGSTART++
+	} else if (option == "-n") {
+	    sort = 0
+	    ARGSTART++
+	} else if (option == "-d") {
+	    ROBOTPKG_DIR = ARGV[ARGSTART + 1]
+	    ARGSTART+= 2
+	} else if (match(option, /^-.*/) != 0) {
+	    option = substr(option, RSTART + 1, RLENGTH)
+	    print ARGV[0] ": unknown option -- " option > "/dev/stderr"
+	    usage()
+	    exit 1
+	} else break
     }
 
-    while (ARGC > ARGSTART) {
-	ARGC--
-	cmd = "cd " ROBOTPKG_DIR "/" ARGV[ARGC]
-	if (system(cmd) == 0) {
-	    stack[++stack[0]] = ARGV[ARGC]
-	    pkgs = pkgs " " ARGV[ARGC]
+    if (ARGC <= ARGSTART) {
+	while (getline pkg < "-") input[pkg] = 1
+    } else {
+	while (ARGC > ARGSTART) {
+	    ARGC--
+	    input[ARGV[ARGC]] = 1
 	}
     }
 
+    for(pkg in input) {
+	cmd = TEST " -d " ROBOTPKG_DIR "/" pkg
+	if (system(cmd) == 0) {
+	    stack[++stack[0]] = pkg
+	} else {
+	    print "No such package: " pkg > "/dev/stderr"
+	    exit 2
+	}
+    }
+
+    if (stack[0] == 0) exit 0
     depgraph()
 }
 
+
+# --- usage ----------------------------------------------------------------
+#
+function usage() {
+    print "usage: " ARGV[0]						\
+	" [-- [-r] [-s] [-n] [-d robotpkgdir]] [pkgpath ...]"		\
+	> "/dev/stderr"
+}
 
 # --- depgraph -------------------------------------------------------------
 
@@ -64,23 +102,34 @@ function depgraph() {
     while (stack[0] > 0) {
 	pkg = stack[stack[0]--]
 	if (done[pkg]) continue
-	if (index(pkgs, pkg) > 0)
-	    print "scanning dependencies of " pkg > "/dev/stderr"
+	if (sort) {
+	    print "Scanning dependencies of " pkg > "/dev/stderr"
+	} else {
+	    print pkg
+	}
 	done[pkg] = 1
 
-	cmd = "cd " ROBOTPKG_DIR "/" pkg " && " DEPS
-	while (cmd | getline dep) {
-	    deps[pkg] =  deps[pkg] " " dep
-	    stack[++stack[0]] = dep
+	if (sort || !strict) {
+	    cmd = "cd " ROBOTPKG_DIR "/" pkg "&&" DEPS
+	    while (cmd | getline dep) {
+		if (dep == "*") exit 2
+		deps[pkg] =  deps[pkg] " " dep
+		stack[++stack[0]] = dep
+	    }
+	    close(cmd)
 	}
     }
+    if (!sort) return
 
     # print to tsort
     tsort = TSORT " 2>/dev/null"
     for(pkg in deps) {
-	n = split(deps[pkg], d)
+	if (strict && !(pkg in input)) continue
 	print pkg " " pkg | tsort
+
+	n = split(deps[pkg], d)
 	for(i=1; i<=n; i++) {
+	    if (strict && !(d[i] in input)) d[i] = "-" d[i]
 	    if (order > 0) {
 		print d[i] " " pkg | tsort
 	    } else {
@@ -88,5 +137,8 @@ function depgraph() {
 	    }
 	}
     }
-    close(tsort)
+    if (close(tsort)) {
+	print "unable to sort dependencies" > "/dev/stderr"
+	exit 2
+    }
 }

@@ -41,7 +41,7 @@ _pkgset_names= $(sort installed \
 
 # targets that are 'set'-aware
 _pkgset_targets=\
-	clean clean-depends fetch extract install replace update deinstall
+	clean fetch extract install replace update deinstall
 
 # list of available sets targets (_pkgset_targets x _pkgset_names).
 _pkgset_avail=\
@@ -52,16 +52,19 @@ _pkgset_goals= $(filter ${MAKECMDGOALS},${_pkgset_avail})
 
 # set default flags
 $(foreach _set_,${_pkgset_names},					\
+  $(eval PKGSET_DESCR.${_set_}?=${_set_})				\
   $(eval PKGSET_FAILSAFE.${_set_}?=${PKGSET_FAILSAFE})			\
   $(eval PKGSET_STRICT.${_set_}?=${PKGSET_STRICT}))
 
+
 # compute PKGSET.installed if needed
 ifneq (,$(filter %-installed,${_pkgset_goals}))
-  ifndef PKGSET.installed
-    $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-    PKGSET.installed=$(shell ${PKG_INFO} -qu -Q PKGPATH 2>/dev/null)
-  endif
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+  PKGSET.installed=		$(shell ${PKG_INFO} -qu -Q PKGPATH 2>/dev/null)
+  PKGSET_DESCR.installed=	user installed packages
+  PKGSET_STRICT.installed=	no
 endif
+
 
 # --- <target>-<set> (PUBLIC) ----------------------------------------------
 

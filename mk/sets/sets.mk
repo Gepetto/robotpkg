@@ -22,66 +22,52 @@
 #                                           Anthony Mallet on Thu Aug 26 2010
 #
 
-# --- set-<simple>-% -------------------------------------------------------
-
-# Simple recursive targets for a set. Make sure to put clean-depends before
-# clean, otherwise strange things happen.
+# --- set-<target>-% -------------------------------------------------------
 #
-set-clean-depends-%: .FORCE
-	${RUN}$(call _pkgset_recursive,clean-depends,${PKGSET.$*})
-
+# Recursive targets for a set.
+#
 set-clean-%: .FORCE
-	${RUN}$(call _pkgset_recursive,clean,${PKGSET.$*})
+	${RUN}$(call _pkgset_recursive,clean,-n)
 
 set-fetch-%: .FORCE
-	${RUN}$(call _pkgset_recursive,fetch clean clean-depends,${PKGSET.$*})
+	${RUN}$(call _pkgset_recursive,fetch cleaner,-n)
 
 set-extract-%: .FORCE
-	${RUN}$(call _pkgset_recursive,extract,${PKGSET.$*})
+	${RUN}$(call _pkgset_recursive,extract,-n)
 
 set-install-%: .FORCE
-	${RUN}$(call _pkgset_recursive_sorted,install)
+	${RUN}$(call _pkgset_recursive,install)
 
 set-replace-%: .FORCE
-	${RUN}$(call _pkgset_recursive_sorted,replace clean clean-depends)
+	${RUN}$(call _pkgset_recursive,replace cleaner)
 
 set-update-%: .FORCE
-	${RUN}$(call _pkgset_recursive_sorted,update)
+	${RUN}$(call _pkgset_recursive,update)
 
 set-deinstall-%: .FORCE
-	${RUN}$(call _pkgset_recursive_sorted,deinstall,-r)
+	${RUN}$(call _pkgset_recursive,deinstall,-r)
 
 
 # --- recursion ------------------------------------------------------------
 
-# simple recursion
 override define _pkgset_recursive
-	$(if $(call isyes,${PKGSET_STRICT.$*}),			\
-	  set="${PKGSET.$*}";)					\
-	for pkg in "" $2; do					\
-	  $(if $(call isyes,${PKGSET_STRICT.$*}),		\
-	    case " $$set " in *" $$pkg "*,			\
-	    case "$$pkg" in ?*))				\
-	      if cd ${ROBOTPKG_DIR}/$$pkg 2>/dev/null; then	\
-	        ${ECHO_MSG} $${bf}'[$*] Processing' $$pkg$${rm};\
-	        ${RECURSIVE_MAKE}				\
-			$1 $(filter confirm,${MAKECMDGOALS}) ||	\
-	          { $(call PKGSET_RECURSIVE_ERR,$$pkg) };	\
-	      else						\
-	        $(call PKGSET_NONEXISTENTPKG_ERR,$$pkg,$*)	\
-	      fi;;						\
-	  esac;							\
-	done;							\
-	${ECHO_MSG} $${bf}'[$*]'				\
-	  "Done$(patsubst %-$*, \`%',${MAKECMDGOALS})"		\
-	  'for $*'$${rm}
-endef
-
-# sorted recursion (pass $2 to tsort)
-override define _pkgset_recursive_sorted
-	${ECHO_MSG} $${bf}'[$*] Sorting dependencies'$${rm};	\
-	sorted=`${_pkgset_tsort_deps} $2 ${PKGSET.$*}` 2>&1;	\
-	$(call _pkgset_recursive,$1,$$sorted)
+	${PHASE_MSG} $(if $(filter -n,$2),'Scanning','Sorting')		\
+	  'packages for ${PKGSET_DESCR.$*}';				\
+	${_pkgset_tsort_deps} $2					\
+	  $(if $(call isyes,${PKGSET_STRICT.$*}),-s) ${PKGSET.$*} |	\
+	while read pkg; do						\
+	  case "$$pkg" in -*) continue;; ?*)				\
+	    if cd ${ROBOTPKG_DIR}/$$pkg 2>/dev/null; then		\
+	      ${RECURSIVE_MAKE} $1 $(filter confirm,${MAKECMDGOALS}) ||{\
+	          $(call PKGSET_RECURSIVE_ERR,$$pkg)			\
+	      };							\
+	    else							\
+	      $(call PKGSET_NONEXISTENTPKG_ERR,$$pkg,$*)		\
+	    fi;;							\
+	  esac;								\
+	done;								\
+	${PHASE_MSG} 'Done $(patsubst set-%-$*,%,$@) for'		\
+	  '${PKGSET_DESCR.$*}'
 endef
 
 
