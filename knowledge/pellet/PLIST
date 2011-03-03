@@ -1,5 +1,6 @@
-@comment Wed Jan 19 12:50:46 CET 2011
+@comment Thu Mar 3 15:59:45 CET 2011
 java/pellet/lib/aterm-java-1.6.jar
+java/pellet/lib/jgrapht/jgrapht-jdk1.5.jar
 java/pellet/lib/pellet-cli.jar
 java/pellet/lib/pellet-core.jar
 java/pellet/lib/pellet-datatypes.jar
@@ -16,9 +17,6 @@ java/pellet/lib/pellet-rules.jar
 java/pellet/lib/pellet-test.jar
 java/pellet/lib/xsdlib/relaxngDatatype.jar
 java/pellet/lib/xsdlib/xsdlib.jar
-@dirrm java/pellet/lib/xsdlib
-@dirrm java/pellet/lib
-@dirrm java/pellet
 ${PLIST.doc}share/doc/pellet/FAQ.txt
 ${PLIST.doc}share/doc/pellet/PELLINT-PATTERNS.txt
 ${PLIST.doc}share/doc/pellet/PELLINT-README.txt
@@ -1582,3 +1580,7 @@ ${PLIST.doc}share/doc/pellet/javadoc/pellet/package-use.html
 ${PLIST.doc}share/doc/pellet/javadoc/resources/inherit.gif
 ${PLIST.doc}share/doc/pellet/javadoc/serialized-form.html
 ${PLIST.doc}share/doc/pellet/javadoc/stylesheet.css
+@dirrm java/pellet/lib/xsdlib
+@dirrm java/pellet/lib/jgrapht
+@dirrm java/pellet/lib
+@dirrm java/pellet
