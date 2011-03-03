@@ -34,9 +34,9 @@ PKGSET_FAILSAFE?=	no
 PKGSET_STRICT?=		no
 
 
-# names of existing sets in robotpkg.conf, plus special 'installed' set, sorted
-# for unicity
-_pkgset_names= $(sort installed \
+# names of existing sets in robotpkg.conf, plus special 'installed' and
+# 'depends' set, sorted for unicity
+_pkgset_names= $(sort installed depends \
   $(patsubst ${PKGSET_PATTERN},%, $(filter ${PKGSET_PATTERN},${.VARIABLES})))
 
 # targets that are 'set'-aware
@@ -62,7 +62,16 @@ ifneq (,$(filter %-installed,${_pkgset_goals}))
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
   PKGSET.installed=		$(shell ${PKG_INFO} -qu -Q PKGPATH 2>/dev/null)
   PKGSET_DESCR.installed=	user installed packages
-  PKGSET_STRICT.installed=	no
+  PKGSET_STRICT.installed?=	no
+endif
+
+# define PKGSET.depends if needed
+ifdef PKGNAME
+  ifneq (,$(filter %-depends,${_pkgset_goals}))
+    PKGSET.depends=		${PKGPATH}
+    PKGSET_DESCR.depends=	dependencies of ${PKGNAME}
+    PKGSET_STRICT.depends=	no
+  endif
 endif
 
 

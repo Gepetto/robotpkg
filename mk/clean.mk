@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2010 LAAS/CNRS
+# Copyright (c) 2006,2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -38,17 +38,7 @@
 # This Makefile fragment is included to robotpkg.mk and defines the
 # relevant variables and targets for the "clean" phase.
 #
-# The following variables may be set by the package Makefile and
-# specify how cleaning happens:
-#
-#    CLEANDEPENDS specifies the whether "cleaning" will also clean
-#	in all dependencies, implied and direct.  CLEANDEPENDS
-#	defaults to "no".
-#
 # The following targets are defined by bsd.pkg.clean.mk:
-#
-#    clean-depends is the target which descends into dependencies'
-#	package directories and invokes the "clean" action.
 #
 #    do-clean is the target that does the actual cleaning, which
 #	involves removing the work directory and other temporary
@@ -57,18 +47,6 @@
 #    clean is the target that is invoked by the user to perform
 #	the "clean" action.
 #
-#    cleandir is an alias for "clean".
-#
-
-CLEANDEPENDS?=	no
-
-.PHONY: clean-depends
-clean-depends:
-	${RUN}${_DEPENDS_WALK_CMD} ${PKGPATH} |		\
-	while read dir; do				\
-	  cd ${ROBOTPKG_DIR}/$$dir &&			\
-	  ${RECURSIVE_MAKE} CLEANDEPENDS=no clean ||:;	\
-	done
 
 .PHONY: pre-clean
 pre-clean:
@@ -161,9 +139,6 @@ endif
 #	the "clean" action.
 _CLEAN_TARGETS+=	clean-message
 _CLEAN_TARGETS+=	pre-clean
-ifneq (,$(call isyes,CLEANDEPENDS))
-  _CLEAN_TARGETS+=	clean-depends
-endif
 _CLEAN_TARGETS+=	do-clean
 _CLEAN_TARGETS+=	post-clean
 
