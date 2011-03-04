@@ -193,6 +193,8 @@ endif
 # transfer the files from the appropriate sites if needed.
 #
 #
+$(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+
 _FETCH_ENV=\
 	CP=${CP} ECHO=${ECHO} MV=$(call quote,${MV})			\
 	TEST=$(call quote,${TEST}) MKDIR=$(call quote,${MKDIR})		\
