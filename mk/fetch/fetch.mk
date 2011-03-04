@@ -218,8 +218,10 @@ _FETCH_ARGS+=	-e $(patsubst %${EXTRACT_SUFX},%,$(notdir $@))
 ifdef PKG_VERBOSE
   _FETCH_ARGS+=	${PKG_VERBOSE}
 endif
-ifeq (yes,$(call exists,${DISTINFO_FILE}))
-  _FETCH_ARGS+=-c -f $(call quote,${DISTINFO_FILE})
+ifndef NO_CHECKSUM
+  ifeq (yes,$(call exists,${DISTINFO_FILE}))
+    _FETCH_ARGS+=-c -f $(call quote,${DISTINFO_FILE})
+  endif
 endif
 ifeq (,${DIST_SUBDIR})
   _FETCH_ARGS+=	-d .
