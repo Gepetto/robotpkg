@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 39396da..2e7846d 100644
+--- Makefile
++++ Makefile
+@@ -23,7 +23,7 @@ ENTRYPOINT = $(BASE_PACKAGE).OroServer
+ JENA_LIBS = $(PREFIX)/java/jena/lib
+ PELLET_LIBS = $(PREFIX)/java/pellet/lib
+ 
+-CLASSPATH = $(JENA_LIBS)/arq-2.8.4.jar:$(JENA_LIBS)/iri-0.8.jar:$(JENA_LIBS)/log4j-1.2.13.jar:$(JENA_LIBS)/icu4j-3.4.4.jar:$(JENA_LIBS)/jena-2.6.3.jar:$(JENA_LIBS)/xercesImpl-2.7.1.jar:$(JENA_LIBS)/junit-4.5.jar:$(JENA_LIBS)/slf4j-api-1.5.8.jar:$(JENA_LIBS)/slf4j-log4j12-1.5.8.jar:$(PELLET_LIBS)/aterm-java-1.6.jar:$(PELLET_LIBS)/pellet-core.jar:$(PELLET_LIBS)/pellet-datatypes.jar:$(PELLET_LIBS)/pellet-el.jar:$(PELLET_LIBS)/pellet-jena.jar:$(PELLET_LIBS)/pellet-query.jar:$(PELLET_LIBS)/pellet-rules.jar:$(PELLET_LIBS)/xsdlib/relaxngDatatype.jar:$(PELLET_LIBS)/xsdlib/xsdlib.jar
++CLASSPATH = $(JENA_LIBS)/arq-2.8.4.jar:$(JENA_LIBS)/iri-0.8.jar:$(JENA_LIBS)/log4j-1.2.13.jar:$(JENA_LIBS)/icu4j-3.4.4.jar:$(JENA_LIBS)/jena-2.6.3.jar:$(JENA_LIBS)/xercesImpl-2.7.1.jar:$(JENA_LIBS)/junit-4.5.jar:$(JENA_LIBS)/slf4j-api-1.5.8.jar:$(JENA_LIBS)/slf4j-log4j12-1.5.8.jar:$(PELLET_LIBS)/aterm-java-1.6.jar:$(PELLET_LIBS)/pellet-core.jar:$(PELLET_LIBS)/pellet-datatypes.jar:$(PELLET_LIBS)/pellet-el.jar:$(PELLET_LIBS)/pellet-jena.jar:$(PELLET_LIBS)/pellet-query.jar:$(PELLET_LIBS)/pellet-rules.jar:$(PELLET_LIBS)/xsdlib/relaxngDatatype.jar:$(PELLET_LIBS)/xsdlib/xsdlib.jar:$(PELLET_LIBS)/jgrapht/jgrapht-jdk1.5.jar
+ 
+ JAVA?= java
+ JAVAC?= javac
