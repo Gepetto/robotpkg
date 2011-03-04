@@ -1,7 +1,9 @@
-@comment Wed May 19 17:27:02 CEST 2010
+@comment Fri Mar 4 11:11:27 CET 2011
 include/eigen2/Eigen/Array
 include/eigen2/Eigen/Cholesky
 include/eigen2/Eigen/Core
+include/eigen2/Eigen/Dense
+include/eigen2/Eigen/Eigen
 include/eigen2/Eigen/Geometry
 include/eigen2/Eigen/LU
 include/eigen2/Eigen/LeastSquares
