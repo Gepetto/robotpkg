@@ -61,6 +61,7 @@ SUBST_FILES.data-xml = \
 	Samples/NiSimpleRead/NiSimpleRead.cpp \
 	Samples/NiUserTracker/main.cpp
 
+# XXX the niReg process should be handled in INSTALL/DEINSTALL scripts
 do-install:
 	${RUN}cd ${WRKSRC}/Include;					\
 	${PAX} $(if ${VERBOSE},-v) -rwp ma . ${PREFIX}/include/ni;	\

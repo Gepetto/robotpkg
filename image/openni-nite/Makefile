@@ -5,6 +5,7 @@
 DISTNAME=	NITE-Bin-Ubuntu-${NI_ARCH}-${PKG_VERSION}
 PKGNAME=	openni-nite-${PKG_VERSION}
 PKG_VERSION=	1.3.0.17
+PKGREVISION=	1
 CATEGORIES=	image
 EXTRACT_SUFX=	.tar.bz2
 
@@ -38,6 +39,7 @@ INSTALLATION_DIRS = \
 	${PREFIX}/share/openni/XnVFeatures \
 	${PREFIX}/share/openni/XnVHandGenerator
 
+# XXX the niReg process should be handled in INSTALL/DEINSTALL scripts
 do-install:
 	${INSTALL} ${WRKSRC}/Bin/libXnVNite.so ${PREFIX}/lib
 	cd ${WRKSRC}/Include; ${PAX} -rwp ma . ${PREFIX}/include/nite

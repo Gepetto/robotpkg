@@ -61,6 +61,7 @@ INSTALLATION_DIRS = \
 	${PREFIX}/share/openni \
 	${PREFIX}/etc/udev/rules.d
 
+# XXX the niReg process should be handled in INSTALL/DEINSTALL scripts
 do-install:
 	${INSTALL} ${WRKDIR}/bin/XnSensorServer ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/Data/GlobalDefaults.ini \
