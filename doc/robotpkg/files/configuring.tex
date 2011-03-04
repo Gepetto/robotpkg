@@ -1,4 +1,4 @@
-% $LAAS: configuring.tex 2011/02/03 13:47:33 mallet $
+% $LAAS: configuring.tex 2011/03/04 01:57:57 tho $
 %
 % Copyright (c) 2009-2011 LAAS/CNRS
 % All rights reserved.
@@ -113,6 +113,7 @@ robotpkg.conf}. The syntax is the following:
 
 \begin{verbatim}
 PKGSET.<name> = <list>
+PKGSET_DESCR.<name> = short, optional description of the collection
 \end{verbatim}
 
 where {\tt <name>} is the name of the collection (any string is valid) and {\tt
@@ -121,26 +122,33 @@ where {\tt <name>} is the name of the collection (any string is valid) and {\tt
 
 \begin{verbatim}
 PKGSET.myset = architecture/genom middleware/pocolibs
+PKGSET_DESCR.myset = an awesome duo
 \end{verbatim}
 
 defines  a collection named  {\tt myset}  that contains  the two  packages {\tt
-genom} and {\tt pocolibs}.
+genom} and {\tt pocolibs} and describes itself with a rather doubtful sentence.
 
 For each collection {\tt <name>}  defined in {\tt robotpkg.conf}, the following
-targets  are available:  {\tt clean-<name>},  {\tt  clean-depends-<name>}, {\tt
-fetch-<name>},    {\tt     extract-<name>},    {\tt    install-<name>},    {\tt
-replace-<name>}, {\tt  update-<name>} and {\tt  deinstall-<name>}. They perform
-the same action  as their respective counterpart without  {\tt -<name>} suffix,
-expect that  they work on all  packages of the  set. In addition, for  the {\tt
-replace} and {\tt update} targets, they sort the packages in the order of their
-dependencies so that the job is done a sensible order.
+targets   are   available:  {\tt   clean-<name>},   {\tt  fetch-<name>},   {\tt
+extract-<name>},    {\tt    install-<name>},    {\tt   replace-<name>},    {\tt
+update-<name>}  and {\tt  deinstall-<name>}. They  perform the  same  action as
+their  respective counterpart without  {\tt -<name>}  suffix, expect  that they
+work on  all packages  of the set.   In addition,  for the {\tt  replace}, {\tt
+update} and  {\tt deinstall} targets,  they sort the  packages in the  order of
+their dependencies so that the job is done a sensible order.
 
-For  the user  convenience,  A  special {\tt  installed}  collection is  always
-defined  and represents all  currently installed  packages. Thus,  invoking the
-{\tt update-installed} target will update all currently installed packages.
+For  the  user convenience,  two  special  targets  are provided.   The
+ ``{\tt installed}'' collection is always defined and represents all currently
+installed packages.  Invoking, for  instance, the {\tt update-installed} target
+will therefore update all  currently installed packages.  The ``{\tt depends}''
+collection is  available only  when the current  working directory is  inside a
+package. It merely  defines the current package and all  of its dependencies as
+the  sole  elements  of  the  collection.  Invoking,  for  instance,  the  {\tt
+update-depends}  target will  update all  dependencies  of the  package in  the
+current directory.
 
-Two {\tt robotpkg.conf} variables affect the behaviour of {\tt robotpkg}
-regarding packages sets:
+Two {\tt robotpkg.conf} variables affect the default behaviour of {\tt
+robotpkg} regarding packages sets:
 
 \begin{description}
    \item[PKGSET\_FAILSAFE] When working on a set, and this variable is set to
@@ -153,6 +161,10 @@ regarding packages sets:
    dependencies of packages listed in sets are added to their respective
    sets. Default: no.
 \end{description}
+
+Each of these variables can be defined on a per-collection basis, by adding the
+.<name> suffix to the variable name, where <name> is the name of the collection
+to be configured.
 
 
 \subsection{Package specific configuration variables} % --------------------

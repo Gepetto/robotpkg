@@ -2,7 +2,7 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                               February 3, 2011
+                                 March 4, 2011
 
 Copyright (C) 2006-2011 LAAS/CNRS.
 Copyright (C) 1997-2010 The NetBSD Foundation, Inc.
@@ -706,6 +706,7 @@ forming the collection in the special PKGSET variable in robotpkg.conf. The
 syntax is the following:
 
 PKGSET.<name> = <list>
+PKGSET_DESCR.<name> = short, optional description of the collection
 
 
 where <name> is the name of the collection (any string is valid) and <list> is
@@ -713,22 +714,28 @@ the list of packages in the collection, in the form <category>/<name>. For
 instance,
 
 PKGSET.myset = architecture/genom middleware/pocolibs
+PKGSET_DESCR.myset = an awesome duo
 
 
 defines a collection named myset that contains the two packages genom and
-pocolibs.
+pocolibs and describes itself with a rather doubtful sentence.
 For each collection <name> defined in robotpkg.conf, the following targets are
-available: clean-<name>, clean-depends-<name>, fetch-<name>, extract-<name>,
-install-<name>, replace-<name>, update-<name> and deinstall-<name>. They
-perform the same action as their respective counterpart without -<name> suffix,
-expect that they work on all packages of the set. In addition, for the replace
-and update targets, they sort the packages in the order of their dependencies
-so that the job is done a sensible order.
-For the user convenience, A special installed collection is always defined and
-represents all currently installed packages. Thus, invoking the
-update-installed target will update all currently installed packages.
-Two robotpkg.conf variables affect the behaviour of robotpkg regarding packages
-sets:
+available: clean-<name>, fetch-<name>, extract-<name>, install-<name>, replace-
+<name>, update-<name> and deinstall-<name>. They perform the same action as
+their respective counterpart without -<name> suffix, expect that they work on
+all packages of the set. In addition, for the replace, update and deinstall
+targets, they sort the packages in the order of their dependencies so that the
+job is done a sensible order.
+For the user convenience, two special targets are provided. The "installed"
+collection is always defined and represents all currently installed packages.
+Invoking, for instance, the update-installed target will therefore update all
+currently installed packages. The "depends" collection is available only when
+the current working directory is inside a package. It merely defines the
+current package and all of its dependencies as the sole elements of the
+collection. Invoking, for instance, the update-depends target will update all
+dependencies of the package in the current directory.
+Two robotpkg.conf variables affect the default behaviour of robotpkg regarding
+packages sets:
 
 PKGSET_FAILSAFE
     When working on a set, and this variable is set to yes, robotpkg will
@@ -739,6 +746,10 @@ PKGSET_STRICT
     dependencies of packages defined in the set. If set to 'yes', only package
     strictly defined in sets are considered. If set to 'no', dependencies of
     packages listed in sets are added to their respective sets. Default: no.
+
+Each of these variables can be defined on a per-collection basis, by adding the
+.<name> suffix to the variable name, where <name> is the name of the collection
+to be configured.
 
 2.4.3  Package specific configuration variables
 
