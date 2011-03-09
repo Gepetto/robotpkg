@@ -5,7 +5,7 @@
 DISTNAME=		platine-genom-0.3
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git softs.laas.fr:/git/robots/platine-genom
+MASTER_REPOSITORY=	git git://git.openrobots.org/robots/platine-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
