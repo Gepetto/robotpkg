@@ -1,0 +1,16 @@
+robotpkg policy is to install libraries in <prefix>/lib, no matter the
+architecture.
+
+--- cmake/SetupDirectories.cmake~	2009-11-07 04:39:30.000000000 +0100
++++ cmake/SetupDirectories.cmake	2011-03-09 11:51:34.417415044 +0100
+@@ -75,8 +75,8 @@
+ set( GBX_CMAKE_INSTALL_SUFFIX ${GBX_SHARE_INSTALL_SUFFIX}/cmake )
+ 
+ if( GBX_PROC_64BIT )
+-    set( GBX_LIB_INSTALL_SUFFIX lib64/${PROJECT_NAME} )
+-    set( GBX_PKGCONFIG_INSTALL_SUFFIX lib64/pkgconfig )
++    set( GBX_LIB_INSTALL_SUFFIX lib/${PROJECT_NAME} )
++    set( GBX_PKGCONFIG_INSTALL_SUFFIX lib/pkgconfig )
+ else()
+     set( GBX_LIB_INSTALL_SUFFIX lib/${PROJECT_NAME} )
+     set( GBX_PKGCONFIG_INSTALL_SUFFIX lib/pkgconfig )
