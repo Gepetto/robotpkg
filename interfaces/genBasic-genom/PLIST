@@ -1,17 +1,9 @@
 @comment Mon Mar 9 17:04:27 CET 2009
-bin/genBasic
-bin/genBasicSendInitRqst
-bin/genBasicTest
 include/genBasic/genBasicStruct.h
 include/genBasic/server/genBasicEndian.h
 include/genBasic/server/genBasicError.h
-include/genBasic/server/genBasicMsgLib.h
 include/genBasic/server/genBasicPosterLib.h
 include/genBasic/server/genBasicPosterLibStruct.h
-include/genBasic/server/genBasicPosterReadLibProto.h
-include/genBasic/server/genBasicPosterShowLib.h
-include/genBasic/server/genBasicPosterWriteLibProto.h
-include/genBasic/server/genBasicPosterXMLLib.h
 include/genBasic/server/genBasicPrint.h
 include/genBasic/server/genBasicPrintXML.h
 include/genBasic/server/genBasicScan.h
@@ -28,12 +20,8 @@ ${PLIST.openprs}lib/pkgconfig/genBasic-oprs.pc
 lib/pkgconfig/genBasic.pc
 ${PLIST.tclserv_client}lib/pkgconfig/genBasic-tclserv_client.pc
 ${PLIST.tclserv_client}lib/tclservClient/libgenBasicTclservClient.la
-lib/tclserv/libgenBasicTclServ.la
 share/modules/gen/genBasic.gen
 ${PLIST.openprs}share/modules/openprs/genBasicOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/genBasicOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/genBasicOpenprs.sym
 ${PLIST.tcl}share/modules/tcl/genBasicClient.tcl
-${PLIST.openprs}@dirrm include/genBasic/server/openprs
-@dirrm include/genBasic/server
-@dirrm include/genBasic
