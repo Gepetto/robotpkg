@@ -6,7 +6,7 @@ VERSION=		1.8
 DISTNAME=		viam-libs-${VERSION}
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}
-MASTER_REPOSITORY=	git http://softs.laas.fr/git/robots/viam-libs
+MASTER_REPOSITORY=	git git://git.openrobots.org/robots/viam-libs
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://homepages.laas.fr/mallet/soft/image/viam-libs
