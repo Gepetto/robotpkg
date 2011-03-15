@@ -92,10 +92,10 @@ _PRINT_PLIST_AWK_SUBST+=}
 
 # The awk statement that will ignore directories from PRINT_PLIST_IGNORE_DIRS
 #
-_PRINT_PLIST_AWK_IGNORE:=$(foreach __dir__,${PRINT_PLIST_IGNORE_DIRS},	\
-  ($$0 ~ /^$(subst /,\/,$(patsubst ${PREFIX}/%,%,${__dir__}))/) {	\
-	next;								\
-  })
+_PRINT_PLIST_AWK_IGNORE:=$(foreach __dir__,				\
+  $(patsubst $(abspath ${PREFIX})/%,%,					\
+    $(abspath ${PRINT_PLIST_IGNORE_DIRS})),				\
+  ($$0 ~ /^$(subst /,\/,${__dir__})/) { next; })
 
 
 ifneq (,$(call isyes,$(LIBTOOLIZE_PLIST)))
@@ -133,15 +133,17 @@ do-print-PLIST: print-PLIST-message build
 	{ ${_PRINT_PLIST_FILES_CMD} }					\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
 	 | ${AWK}  '							\
-		{ sub("${PREFIX}/(\\./)?", ""); }			\
-		${_PRINT_PLIST_AWK_IGNORE}	 			\
+		{ sub("^$(abspath ${PREFIX})/+(\\./*)?", ""); }		\
+		${_PRINT_PLIST_AWK_IGNORE}				\
 		${_PRINT_PLIST_AWK_SUBST}				\
 		{ print $$0; }'						\
 	 | ${SORT} -u;							\
 	for i in `${_PRINT_PLIST_DIRS_CMD}				\
 		| ${AWK} '						\
-			/$(subst /,\/,${PREFIX})\/\.$$/ { next; }	\
-			{ sub("${PREFIX}/\\\./", ""); }			\
+			/$(subst /,\/,$(abspath ${PREFIX}))\/+\.$$/ {	\
+				next;					\
+			}						\
+			{ sub("$(abspath ${PREFIX})/+\\\./+", ""); }	\
 			${_PRINT_PLIST_AWK_IGNORE}			\
 			{ print $$0; }'					\
 		| ${SORT} -r`;						\
