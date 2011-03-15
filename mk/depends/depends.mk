@@ -165,7 +165,7 @@ depends-conflicts:
 	done;								\
 	${TEST} -z "$$depf" && exit 0;					\
 	conflicts=;							\
-	altpfix=`{ ${ECHO} ${PREFIX};					\
+	altpfix=`{ ${ECHO} $(abspath ${PREFIX});			\
 	  ${SED} -n -e '/PREFIX.*:=/{s///;h;}'				\
 		 -e '/SYSTEM_FILES.*include/{g;p;}'			\
 		 -e '/SYSTEM_FILES.*lib/{g;p;}' $$depf;} | ${SORT} -u`;	\
@@ -175,7 +175,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	vers=`${SED} -n -e '/PKGVERSION.${_pkg_}:=/{s///p;q;}' $$depf`;	\
 	for p in $$altpfix; do						\
 	  ${TEST} "$$p" = "$$pfix" && continue;				\
-	  m=`${_PREFIXSEARCH_CMD} 2>/dev/null 3>&2 	 		\
+	  m=`${_PREFIXSEARCH_CMD} 2>/dev/null 3>&2			\
 		-p "$$p" $(call quote,${_pkg_}) $(call quote,${_pkg_})	\
 		${SYSTEM_SEARCH.${_pkg_}}` || m=;			\
 	  if ${TEST} -n "$$m"; then					\
