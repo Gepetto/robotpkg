@@ -2,10 +2,9 @@
 # Created:			Nizar Sallem on Mon, 8 Nov 2010
 #
 
-DISTNAME=	liblbfgs-1.9
+DISTNAME=	liblbfgs-1.10
 CATEGORIES=	math
-MASTER_SITES=	http://www.chokkan.org/software/dist/
-
+MASTER_SITES=	https://github.com/downloads/chokkan/liblbfgs/
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.chokkan.org/software/liblbfgs/
