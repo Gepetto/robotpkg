@@ -1,0 +1,10 @@
+Jafar is A Framework for Algorithms development in Robotics.
+
+Jafar is a development framework developed and used at LAAS. It adopts a
+modular architecture which makes it easy for developers to plug-in their own
+algorithms, and use algorithms developed by other people as well as core tools
+providing a framework for display, documentation, unit tests, debug, etc. It
+mainly relies on boost and opencv.
+
+This package defines common tools: exceptions, debug message facility, data
+logging facility,...

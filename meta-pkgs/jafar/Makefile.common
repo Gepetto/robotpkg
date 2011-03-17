@@ -1,0 +1,28 @@
+# robotpkg Makefile.common for:	meta-pkgs/jafar
+# Created:			Anthony Mallet on Mon, 10 Dec 2012
+#
+
+JAFAR_PKG?=		undefined
+JAFAR_COMMENT?=		undefined
+MASTER_SITE_JAFAR=	${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
+
+DISTNAME?=		jafar-${JAFAR_PKG}
+MASTER_SITES?=		${MASTER_SITE_JAFAR}
+
+COMMENT?=		Jafar ${JAFAR_COMMENT}
+HOMEPAGE?=		http://www.openrobots.org/wiki/jafar/
+MAINTAINER?=		jafar@laas.fr
+LICENSE?=		isc
+
+USE_LANGUAGES?=		c c++
+
+
+# --- common dependencies --------------------------------------------------
+#
+CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
+CMAKE_ARGS+=	-DBOOST_LIBDIR=${PREFIX.boost-libs}/include
+
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/cmake.mk

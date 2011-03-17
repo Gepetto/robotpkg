@@ -1,0 +1,21 @@
+@comment Wed Mar 16 17:48:16 CET 2011
+include/jafar/kernel/IdFactory.hpp
+include/jafar/kernel/csvFile.hpp
+include/jafar/kernel/dataLog.hpp
+include/jafar/kernel/jafarDebug.hpp
+include/jafar/kernel/jafarException.hpp
+include/jafar/kernel/jafarMacro.hpp
+include/jafar/kernel/jafarTestMacro.hpp
+include/jafar/kernel/kernelException.hpp
+include/jafar/kernel/keyValueFile.hpp
+include/jafar/kernel/misc.hpp
+include/jafar/kernel/progressBar.hpp
+include/jafar/kernel/threads.hpp
+include/jafar/kernel/timingTools.hpp
+lib/libjafar-kernel.so
+lib/libjafar-kernel.so.0
+lib/libjafar-kernel.so.${PKGVERSION}
+lib/pkgconfig/jafar-kernel.pc
+share/cmake/jafar/kernel-headers.cmake
+share/cmake/jafar/kernel-release.cmake
+share/cmake/jafar/kernel.cmake
