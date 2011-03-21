@@ -1,7 +1,9 @@
 @comment Sat Feb 27 07:33:02 CET 2010
+include/hpp/walkplanner/config.hh
 include/hpp/walkplanner/fwd.hh
 include/hpp/walkplanner/io.hh
 include/hpp/walkplanner/planner.hh
 lib/libhpp-walkplanner.so
+lib/libhpp-walkplanner.so.3.4
 lib/pkgconfig/hpp-walkplanner.pc
 @dirrm include/hpp/walkplanner
