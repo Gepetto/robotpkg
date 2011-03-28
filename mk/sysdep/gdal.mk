@@ -19,7 +19,7 @@ DEPEND_ABI.gdal?=		gdal>=1.6
 SYSTEM_SEARCH.gdal=	\
 	'bin/gdal-config:p:% --version' \
 	'include/gdal/gdal_version.h' \
-	'lib/libgdal[0-9\.]*.so'
+	'lib/libgdal{,[0-9]*}.so'
 
 SYSTEM_PKG.Linux-fedora.gdal=	gdal-devel
 SYSTEM_PKG.Linux-ubuntu.gdal=	libgdal1-dev
