@@ -22,6 +22,8 @@ MAKE_FLAGS+=		BIN_DIR=${WRKDIR}
 MAKE_FLAGS+=		CFG=Release
 MAKE_FLAGS+=		SSE_GENERATION=3 # hardcoded, should be an option
 
+MAKE_JOBS_SAFE=		no
+
 INCLUDE_DIRS.libusb1=	include
 INCLUDE_DIRS.freeglut=	include
 LIBRARY_DIRS.libusb1=	lib
