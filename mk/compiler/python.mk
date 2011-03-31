@@ -114,13 +114,13 @@ export PYTHONPATH
 
 
 # Add extra replacement in PLISTs
-PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 PLIST_SUBST+=\
 	PLIST_PYTHON_SITELIB=$(call quote,${PYTHON_SITELIB})
-PRINT_PLIST_AWK_SUBST+=\
-	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
+PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 PRINT_PLIST_AWK_SUBST+=\
 	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");
+PRINT_PLIST_AWK_SUBST+=\
+	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
 
 # For python packages using the distuils.setup framework, redefine the
 # BUILD_MAKE_CMD
