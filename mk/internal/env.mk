@@ -41,6 +41,7 @@ _ENV_VARS=\
 #
 override define unsetenv
   ifeq (environment,$(origin $1))
+    ${1}.env:=$$(value $1)
     $1=
     unexport $1
   endif
