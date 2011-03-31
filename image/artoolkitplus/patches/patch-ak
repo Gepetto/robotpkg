@@ -1,0 +1,33 @@
+Replace deprecated #include <malloc.h> by #include <stdlib.h>
+
+--- src/MemoryManager.cpp~	2006-05-02 13:29:10.000000000 +0200
++++ src/MemoryManager.cpp	2011-03-31 17:30:49.323328546 +0200
+@@ -39,7 +39,7 @@
+ 
+ 
+ #include <ARToolKitPlus/MemoryManager.h>
+-#include <malloc.h>
++#include <stdlib.h>
+ 
+ 
+ namespace ARToolKitPlus
+--- tools/CameraCalib/src/calib_dist.cpp~	2005-04-22 15:50:20.000000000 +0200
++++ tools/CameraCalib/src/calib_dist.cpp	2011-03-31 17:35:53.797328771 +0200
+@@ -1,7 +1,6 @@
+ #include <math.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+-#include <malloc.h>
+ //#include <ARToolKitPlus/param.h>
+ //#include <ARToolKitPlus/matrix.h>
+ 
+--- tools/CameraCalib/src/calib_inp.cpp~	2005-04-22 15:50:20.000000000 +0200
++++ tools/CameraCalib/src/calib_inp.cpp	2011-03-31 17:36:32.038328833 +0200
+@@ -1,6 +1,6 @@
+ #include <math.h>
+ #include <stdio.h>
+-#include <malloc.h>
++#include <stdlib.h>
+ //#include <AR/ar.h>
+ //#include <AR/param.h>
+ //#include <AR/matrix.h>
