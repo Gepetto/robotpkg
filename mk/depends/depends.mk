@@ -174,7 +174,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	pfix=`${SED} -n -e '/PREFIX.${_pkg_}:=/{s///p;q;}' $$depf`;	\
 	vers=`${SED} -n -e '/PKGVERSION.${_pkg_}:=/{s///p;q;}' $$depf`;	\
 	for p in $$altpfix; do						\
-	  ${TEST} "$$p" = "$$pfix" && continue;				\
+	  ${TEST} "$$p" -ef "$$pfix" && continue;			\
 	  m=`${_PREFIXSEARCH_CMD} 2>/dev/null 3>&2			\
 		-p "$$p" $(call quote,${_pkg_}) $(call quote,${_pkg_})	\
 		${SYSTEM_SEARCH.${_pkg_}}` || m=;			\
