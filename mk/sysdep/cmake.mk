@@ -42,10 +42,11 @@ export CMAKE=		${PREFIX.cmake}/bin/cmake
 # files.
 #
 PRINT_PLIST_FILES_CMD+=\
-	${CAT} 2>/dev/null $(wildcard 					\
-		$(addsuffix /install_manifest.txt,${BUILD_DIRS})	\
-		$(addprefix ${WRKSRC}/,					\
-			$(addsuffix /install_manifest.txt,${BUILD_DIRS})));
+	${CAT} 2>/dev/null $(or						\
+	  $(wildcard $(addsuffix /install_manifest.txt,${BUILD_DIRS})),	\
+	  $(wildcard $(addprefix ${WRKSRC}/,				\
+	    $(addsuffix /install_manifest.txt,${BUILD_DIRS}))),		\
+	  /dev/null);
 
 endif # CMAKE_DEPEND_MK ----------------------------------------------------
 
