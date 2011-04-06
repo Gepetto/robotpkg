@@ -71,7 +71,7 @@ include ../../mk/sysdep/automake.mk
 
 pre-configure:
 	${RUN}cd ${WRKSRC} && 			\
-	${LIBTOOL}ize -cf && 			\
+	${LIBTOOL}ize -c -f &&			\
 	${PREFIX.automake}/bin/aclocal -I m4 &&	\
 	${AUTOCONF} -f
 
