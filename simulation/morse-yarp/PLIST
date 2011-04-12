@@ -1,0 +1,7 @@
+@comment Thu Mar 31 15:27:48 CEST 2011
+${PYTHON_SITELIB}/morse/middleware/yarp/__init__.py
+${PYTHON_SITELIB}/morse/middleware/yarp/dictionary.py
+${PYTHON_SITELIB}/morse/middleware/yarp/json_mod.py
+${PYTHON_SITELIB}/morse/middleware/yarp/sick.py
+${PYTHON_SITELIB}/morse/middleware/yarp_mw.py
+${PYTHON_SITELIB}/morse/middleware/yarp_request_manager.py
