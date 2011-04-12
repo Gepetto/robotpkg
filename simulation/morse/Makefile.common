@@ -1,0 +1,31 @@
+# robotpkg Makefile for:	simulation/morse
+# Created:			Severin Lemaignan on Tue, 12 Apr 2011
+#
+
+MORSE_VERSION=		0.3
+DISTNAME=		morse-${MORSE_VERSION}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=morse/}
+MASTER_REPOSITORY=	git git://trac.laas.fr/robots/morse
+
+CATEGORIES=		simulation
+MAINTAINER=		morse-dev@laas.fr
+HOMEPAGE=		http://morse.openrobots.org
+COMMENT=		3D simulator for robotics
+LICENSE=		modified-bsd
+
+DISTINFO_FILE=		${CURDIR}/../../simulation/morse/distinfo
+PATCHDIR=		${CURDIR}/../../simulation/morse/patches
+
+USE_LANGUAGES+=		c c++ python
+PYTHON_REQUIRED+=	>=3
+
+CMAKE_ARGS+=            -DPYTHON3_EXECUTABLE=${PYTHON}
+CMAKE_ARGS+=            -DPYTHON3_INCLUDE_PATH=${PYTHON_INCLUDE}
+CMAKE_ARGS+=            -DPYTHON3_LIBRARY=${PYTHON_LIB}
+CMAKE_ARGS+=            -DPKG_CONFIG_EXECUTABLE=${PKG_CONFIG}
+
+DEPEND_ABI.blender+=	blender>=2.55
+include ../../graphics/blender/depend.mk
+
+include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/cmake.mk
