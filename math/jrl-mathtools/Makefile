@@ -2,8 +2,8 @@
 # Created:			Anthony Mallet on Wed, 17 Sep 2008
 #
 
-DISTNAME=	jrlmathtools-1.3.0
-PKGNAME=	jrl-mathtools-1.3.0
+DISTNAME=	jrl-mathtools-1.4.4
+PKGNAME=	jrl-mathtools-1.4.4
 
 CATEGORIES=	math
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
@@ -15,7 +15,7 @@ COMMENT=	Basic mathematical tools used in the JRL software.
 LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=		c c++ fortran
-DOXYGEN_PLIST_DIR+=	share/doc/jrlMathTools
+DOXYGEN_PLIST_DIR+=	share/doc/jrl-mathtools
 
 CMAKE_ARGS+=	-DBOOSTNUMERICBINDINGS_DIR=${PREFIX.boost-numeric-bindings}
 

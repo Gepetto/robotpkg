@@ -1,11 +1,16 @@
-@comment Fri Jan 30 18:55:16 CET 2009
-include/jrlMathTools/angle.h
-include/jrlMathTools/jrlConstants.h
-include/jrlMathTools/matrix3x3.h
-include/jrlMathTools/matrixNxP.h
-include/jrlMathTools/vectorN.h
-include/jrlMathTools/matrix4x4.h
-include/jrlMathTools/vector3.h
-include/jrlMathTools/vector4.h
-lib/pkgconfig/jrlMathTools.pc
-@dirrm include/jrlMathTools
+@comment Thu Apr 14 21:47:16 CEST 2011
+include/jrl/mathtools/angle.hh
+include/jrl/mathtools/config.hh
+include/jrl/mathtools/constants.hh
+include/jrl/mathtools/deprecated.hh
+include/jrl/mathtools/fwd.hh
+include/jrl/mathtools/io.hh
+include/jrl/mathtools/matrix3x3.hh
+include/jrl/mathtools/matrix4x4.hh
+include/jrl/mathtools/matrixnxp.hh
+include/jrl/mathtools/vector3.hh
+include/jrl/mathtools/vector4.hh
+include/jrl/mathtools/vectorn.hh
+include/jrl/mathtools/warning.hh
+lib/pkgconfig/jrl-mathtools.pc
+@dirrm include/jrl/mathtools

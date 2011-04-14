@@ -19,7 +19,7 @@ DEPEND_ABI.jrl-mathtools?=jrl-mathtools>=1.2
 DEPEND_DIR.jrl-mathtools?=../../math/jrl-mathtools
 
 SYSTEM_SEARCH.jrl-mathtools=\
-	include/jrlMathTools/vector4.h
+	include/jrl/mathtools/vector4.hh
 
 endif # JRLMATHTOOLS_DEPEND_MK ---------------------------------------
 
