@@ -1,26 +1,27 @@
-@comment Sat Feb 27 11:19:43 CET 2010
-include/MatrixAbstractLayer/abstract.h
-include/MatrixAbstractLayer/abstractMatrix.h
-include/MatrixAbstractLayer/abstractVector.h
-include/MatrixAbstractLayer/boost.h
-include/MatrixAbstractLayer/boostMacros.h
-include/MatrixAbstractLayer/boostMatrix.h
-include/MatrixAbstractLayer/boostMatrixSvd.h
-include/MatrixAbstractLayer/boostspecific.h
-include/MatrixAbstractLayer/boostSvd.h
-include/MatrixAbstractLayer/boostVector.h
-include/MatrixAbstractLayer/configMAL.h
-include/MatrixAbstractLayer/MatrixAbstractLayerBoost.h
-include/MatrixAbstractLayer/MatrixAbstractLayerDoc.h
-include/MatrixAbstractLayer/MatrixAbstractLayer.h
-include/MatrixAbstractLayer/MatrixAbstractLayerMatrix3x3JrlMath.h
-include/MatrixAbstractLayer/MatrixAbstractLayerMatrix4x4JrlMath.h
-include/MatrixAbstractLayer/MatrixAbstractLayerSmall.h
-include/MatrixAbstractLayer/MatrixAbstractLayerT3D.h
-include/MatrixAbstractLayer/MatrixAbstractLayerVector3JrlMath.h
-include/MatrixAbstractLayer/MatrixAbstractLayerVector4JrlMath.h
-include/MatrixAbstractLayer/MatrixAbstractLayerVNL.h
-include/MatrixAbstractLayer/MatrixAbstractLayerCheck.h
-lib/pkgconfig/MatrixAbstractLayer.pc
-@dirrm include/MatrixAbstractLayer
-
+@comment Thu Apr 14 22:27:29 CEST 2011
+include/jrl/mal/abstract.hh
+include/jrl/mal/abstractmatrix.hh
+include/jrl/mal/abstractvector.hh
+include/jrl/mal/boost.hh
+include/jrl/mal/boostmacros.hh
+include/jrl/mal/boostmatrix.hh
+include/jrl/mal/boostmatrixsvd.hh
+include/jrl/mal/boostspecific.hh
+include/jrl/mal/boostsvd.hh
+include/jrl/mal/boostvector.hh
+include/jrl/mal/config.hh
+include/jrl/mal/configmal.hh
+include/jrl/mal/deprecated.hh
+include/jrl/mal/matrixabstractlayer.hh
+include/jrl/mal/matrixabstractlayerboost.hh
+include/jrl/mal/matrixabstractlayercheck.hh
+include/jrl/mal/matrixabstractlayerdoc.hh
+include/jrl/mal/matrixabstractlayermatrix3x3jrlmath.hh
+include/jrl/mal/matrixabstractlayermatrix4x4jrlmath.hh
+include/jrl/mal/matrixabstractlayersmall.hh
+include/jrl/mal/matrixabstractlayert3d.hh
+include/jrl/mal/matrixabstractlayervector3jrlmath.hh
+include/jrl/mal/matrixabstractlayervector4jrlmath.hh
+include/jrl/mal/warning.hh
+lib/pkgconfig/jrl-mal.pc
+@dirrm include/jrl/mal

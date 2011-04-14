@@ -2,9 +2,9 @@
 # Created:			Anthony Mallet on Mon, 14 May 2007
 #
 
-DISTNAME=	matrixabstractlayer-${VERSION}
+DISTNAME=	jrl-mal-${VERSION}
 PKGNAME=	jrl-mal-${VERSION}
-VERSION=	1.8.3
+VERSION=	1.9.2
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}/jrl-mal/
@@ -16,7 +16,7 @@ COMMENT=	Matrix abstraction layer for boost or vnl.
 LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=		c c++ fortran
-DOXYGEN_PLIST_DIR+=	share/doc/MatrixAbstractLayer
+DOXYGEN_PLIST_DIR+=	share/doc/jrl-mal
 
 CMAKE_ARGS+= -DBLAS_blas_LIBRARY=${PREFIX.blas}/lib/libblas.so
 CMAKE_ARGS+= -DLAPACK_lapack_LIBRARY=${PREFIX.lapack}/lib/liblapack.so
@@ -27,13 +27,13 @@ PKG_SUGGESTED_OPTIONS+=	t3d
 
 PKG_OPTION_DESCR.t3d=	Use t3d for rigid body transformations
 define PKG_OPTION_SET.t3d
-  CMAKE_ARGS+= -DSMALLMATRIX=t3d
+  CMAKE_ARGS+= -DSMALLMATRIX=t3d -DCXX_DISABLE_WERROR=TRUE
   include ../../math/t3d/depend.mk
 endef
 
 PKG_OPTION_DESCR.jrl-mathtools=	Use jrl-mathtools for rigid body transformations
 define PKG_OPTION_SET.jrl-mathtools
-  CMAKE_ARGS+= -DSMALLMATRIX=jrlMathTools
+  CMAKE_ARGS+= -DSMALLMATRIX=jrl-mathtools
 endef
 
 PKG_OPTIONS_REQUIRED_GROUPS=	matrix

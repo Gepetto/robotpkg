@@ -19,8 +19,8 @@ DEPEND_ABI.jrl-mal?=	jrl-mal>=1.8.3
 DEPEND_DIR.jrl-mal?=	../../interfaces/jrl-mal
 
 SYSTEM_SEARCH.jrl-mal=\
-	include/MatrixAbstractLayer/abstract.h	\
-	'lib/pkgconfig/MatrixAbstractLayer.pc:/Version/s/[^0-9.]//gp'
+	include/jrl/mal/abstract.hh	\
+	'lib/pkgconfig/jrl-mal.pc:/Version/s/[^0-9.]//gp'
 
 endif # JRL_MAL_DEPEND_MK --------------------------------------------------
 
