@@ -1,0 +1,18 @@
+@comment Fri Apr 15 09:04:06 CEST 2011
+include/abstract-robot-dynamics/abstract-robot-dynamics.hh
+include/abstract-robot-dynamics/body.hh
+include/abstract-robot-dynamics/config.hh
+include/abstract-robot-dynamics/deprecated.hh
+include/abstract-robot-dynamics/dynamic-robot.hh
+include/abstract-robot-dynamics/foot.hh
+include/abstract-robot-dynamics/fwd.hh
+include/abstract-robot-dynamics/hand.hh
+include/abstract-robot-dynamics/humanoid-dynamic-robot.hh
+include/abstract-robot-dynamics/io.hh
+include/abstract-robot-dynamics/joint.hh
+include/abstract-robot-dynamics/rigid-acceleration.hh
+include/abstract-robot-dynamics/rigid-velocity.hh
+include/abstract-robot-dynamics/robot-dynamics-object-constructor.hh
+include/abstract-robot-dynamics/warning.hh
+lib/pkgconfig/abstract-robot-dynamics.pc
+@dirrm include/abstract-robot-dynamics
