@@ -2,9 +2,9 @@
 # Created:			Anthony Mallet on Mon, 14 May 2007
 #
 
-DISTNAME=	dynamicsjrljapan-${VERSION}
+DISTNAME=	jrl-dynamics-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
-VERSION=	1.17.0
+VERSION=	1.19.4
 
 CATEGORIES=	math
 NO_PUBLIC_SRC=	yes
@@ -17,7 +17,7 @@ LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES+=	c c++
 
-DOXYGEN_PLIST_DIR+=	share/doc/dynamicsJRLJapan
+DOXYGEN_PLIST_DIR+=	share/doc/jrl-dynamics
 
 include ../../interfaces/jrl-mal/depend.mk
 include ../../interfaces/abstract-robot-dynamics/depend.mk

@@ -19,8 +19,8 @@ DEPEND_ABI.jrl-dynamics?=jrl-dynamics>=1.17
 DEPEND_DIR.jrl-dynamics?=../../math/jrl-dynamics
 
 SYSTEM_SEARCH.jrl-dynamics=\
-	include/dynamicsJRLJapan/dynamicRobot.h	\
-	lib/pkgconfig/dynamicsJRLJapan.pc
+	include/jrl/dynamics/dynamicrobot.hh	\
+	lib/pkgconfig/jrl-dynamics.pc
 
 endif # JRL_DYNAMICS_DEPEND_MK ---------------------------------------
 
