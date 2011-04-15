@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Wed, 1 Sep 2010
 #
 
-DISTNAME=		mocap-genom-1.1
+DISTNAME=		mocap-genom-1.2
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=mocap-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/mocap-genom
