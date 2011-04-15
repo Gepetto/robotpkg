@@ -20,7 +20,7 @@ USE_LANGUAGES+=	c c++
 DOXYGEN_PLIST_DIR+=	share/doc/dynamicsJRLJapan
 
 include ../../interfaces/jrl-mal/depend.mk
-include ../../interfaces/jrl-interface-dynamics/depend.mk
+include ../../interfaces/abstract-robot-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk

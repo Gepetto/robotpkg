@@ -44,7 +44,7 @@ PKG_OPTION_SET.verbose2:=	CXXFLAGS+=-DDEBUG=2
 include ../../mk/sysdep/doxygen.mk
 include ../../path/kineo-pp/depend.mk
 include ../../devel/hpp-kwsio/depend.mk
-include ../../interfaces/jrl-interface-dynamics/depend.mk
+include ../../interfaces/abstract-robot-dynamics/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
