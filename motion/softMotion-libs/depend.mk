@@ -20,7 +20,7 @@ SYSTEM_SEARCH.softMotion-libs=\
 
 DEPEND_USE+=		softMotion-libs
 
-DEPEND_ABI.softMotion-libs?=softMotion-libs>=3.6
+DEPEND_ABI.softMotion-libs?=softMotion-libs>=3.7
 DEPEND_DIR.softMotion-libs?=../../motion/softMotion-libs
 
 endif # SOFTMOTION-LIBS_DEPEND_MK ----------------------------------------
