@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 15 Jul 2008
 #
 
-VERSION=		2.0
+VERSION=		2.1
 DISTNAME=		evart-client-${VERSION}
 
 CATEGORIES=		net
