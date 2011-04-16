@@ -1,6 +1,9 @@
-@comment Fri May 7 18:57:48 CEST 2010
-include/hrp2Dynamics/hrp2OptHumanoidDynamicRobot.h
-lib/libhrp2Dynamics.so
-lib/libhrp2Dynamics.so.${PKGVERSION}
-lib/pkgconfig/hrp2Dynamics.pc
-@dirrm include/hrp2Dynamics
+@comment Sat Apr 16 09:00:41 CEST 2011
+include/hrp2-dynamics/config.hh
+include/hrp2-dynamics/deprecated.hh
+include/hrp2-dynamics/hrp2OptHumanoidDynamicRobot.h
+include/hrp2-dynamics/warning.hh
+lib/libhrp2-dynamics.so
+lib/libhrp2-dynamics.so.${PKGVERSION}
+lib/pkgconfig/hrp2-dynamics.pc
+@dirrm include/hrp2-dynamics

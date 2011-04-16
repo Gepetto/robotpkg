@@ -19,8 +19,8 @@ DEPEND_ABI.hrp2-dynamics?=hrp2-dynamics>=1.5
 DEPEND_DIR.hrp2-dynamics?=../../math/hrp2-dynamics
 
 SYSTEM_SEARCH.hrp2-dynamics=\
-	include/hrp2Dynamics/hrp2OptHumanoidDynamicRobot.h	\
-	lib/pkgconfig/hrp2Dynamics.pc
+	include/hrp2-dynamics/hrp2OptHumanoidDynamicRobot.h	\
+	lib/pkgconfig/hrp2-dynamics.pc
 
 endif # HRP2_DYNAMICS_DEPEND_MK --------------------------------------
 
