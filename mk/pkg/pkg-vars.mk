@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -42,41 +42,38 @@
 #                                       Anthony Mallet on Thu Dec  7 2006
 #
 
-# This Makefile fragment is included indirectly by robotpkg.mk and
-# defines some variables which must be defined early.
+# This Makefile fragment defines variables related to the robotpkg_*
+# administrative tools, which must be defined early. It is not possible to rely
+# on the generic dependency facility, because even the bootstrap dependencies
+# use the robotpkg_* tools.
 
-# Every package needs the robotpkg_* admin tools, except for those
-# who define NO_PKGTOOLS_REQD_CHECK. In that case, we still test the
-# presence of a robotpkg_info tool below and fail if really nothing can
-# be found. This switch is required for the bootstrap process only.
+PREFIX.pkg_install?=	${ROBOTPKG_BASE}
+
+PKG_ADD_CMD?=		${PREFIX.pkg_install}/sbin/robotpkg_add
+PKG_ADMIN_CMD?=		${PREFIX.pkg_install}/sbin/robotpkg_admin
+PKG_CREATE_CMD?=	${PREFIX.pkg_install}/sbin/robotpkg_create
+PKG_DELETE_CMD?=	${PREFIX.pkg_install}/sbin/robotpkg_delete
+PKG_INFO_CMD?=		${PREFIX.pkg_install}/sbin/robotpkg_info
+
+# Still include the regular depend.mk, so that an upgrade of pkg_install can
+# be triggered as for other packages, unless the package itself cancels this by
+# defining NO_PKGTOOLS_REQD_CHECK (currently only pkg_install itself).
+#
 ifndef NO_PKGTOOLS_REQD_CHECK
   include ${ROBOTPKG_DIR}/pkgtools/pkg_install/depend.mk
 endif
 
-PKG_ADD_CMD?=		${PKG_TOOLS_BIN}/robotpkg_add
-PKG_ADMIN_CMD?=		${PKG_TOOLS_BIN}/robotpkg_admin
-PKG_CREATE_CMD?=	${PKG_TOOLS_BIN}/robotpkg_create
-PKG_DELETE_CMD?=	${PKG_TOOLS_BIN}/robotpkg_delete
-PKG_INFO_CMD?=		${PKG_TOOLS_BIN}/robotpkg_info
-
+# Make sure robotpkg_info works. If it does not, strange errors will popup:
+# better avoid this.
+#
 ifndef PKGTOOLS_VERSION
-PKGTOOLS_VERSION:=	$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo -1)
-MAKEFLAGS+=		PKGTOOLS_VERSION=${PKGTOOLS_VERSION}
+  PKGTOOLS_VERSION:=	$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo -1)
+  MAKEOVERRIDES+=	PKGTOOLS_VERSION=${PKGTOOLS_VERSION}
 endif
-
 ifeq (-1,${PKGTOOLS_VERSION})
   $(shell ${ERROR_MSG} ${hline})
-  $(shell ${ERROR_MSG} "The robotpkg administrative tools are not working:")
-  $(shell ${ERROR_MSG} "$(shell ${PKG_INFO_CMD} -V 2>&1 ||:)")
-  $(shell ${ERROR_MSG} )
-  $(shell ${ERROR_MSG} "Please make sure that <prefix>/sbin is in your PATH"	\
-		       "or that you")
-  $(shell ${ERROR_MSG} "have set the ROBOTPKG_BASE variable to <prefix> in"	\
-                       "your environment,")
-  $(shell ${ERROR_MSG} "where <prefix> is the installation prefix that you configured")
-  $(shell ${ERROR_MSG} "during the bootstrap of robotpkg.")
-  $(shell ${ERROR_MSG} )
-  $(shell ${ERROR_MSG} "Otherwise, the default prefix \`/opt/openrobots' is used.")
+  $(shell ${ERROR_MSG} "The robotpkg_info tool is not working:")
+  $(shell ${PKG_INFO_CMD} -V 2>&1 | ${ERROR_CAT})
   $(shell ${ERROR_MSG} ${hline})
   $(error Fatal error)
 endif

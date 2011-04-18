@@ -3,7 +3,7 @@
 #
 
 #
-# This version of tnftp installs into ${PKG_TOOLS_BIN} as robotpkg_ftp.
+# This version of tnftp installs into ${PREFIX/sbin} as tnftp.
 #
 
 DISTNAME=		tnftp-20091122
@@ -19,7 +19,7 @@ COMMENT=		The enhanced FTP client in NetBSD
 LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--bindir=${PKG_TOOLS_BIN}
+CONFIGURE_ARGS+=	--bindir=${PREFIX}/sbin
 
 NOT_FOR_PLATFORM=	# empty
 NO_CHECKSUM=		yes

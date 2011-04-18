@@ -16,7 +16,7 @@ NO_CHECKSUM=	yes
 NOT_FOR_PLATFORM=# empty
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--bindir=${PKG_TOOLS_BIN}
+CONFIGURE_ARGS+=	--bindir=${PREFIX}/sbin
 CONFIGURE_ARGS+=	--program-transform-name='s/^/robotpkg_/'
 
 include ../../mk/robotpkg.prefs.mk
