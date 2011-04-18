@@ -9,9 +9,12 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		pkg_install
 endif
 
-ifeq (+,$(PKG_INSTALL_DEPEND_MK))
-# it is mandatory to use the robotpkg version of these tools
-PREFER.pkg_install=		robotpkg
+ifeq (+,$(PKG_INSTALL_DEPEND_MK)) # ----------------------------------------
+
+# if pkg_install is outside LOCALBASE, make it a 'system' package.
+PREFER.pkg_install?=\
+  $(if $(filter $(realpath ${LOCALBASE}),                      \
+       $(realpath ${PREFIX.pkg_install})),robotpkg,system)
 
 DEPEND_USE+=			pkg_install
 
