@@ -45,8 +45,6 @@
 # Set the appropriate flags to pass to pkg_delete(1) based on the value
 # of DEINSTALLDEPENDS (see pkgsrc/mk/install/deinstall.mk).
 #
-_PKG_ARGS_DEINSTALL+=	-k
-
 ifneq (,$(call isyes,${DEINSTALLDEPENDS}))
 _PKG_ARGS_DEINSTALL_INFO+=	-r
 _PKG_ARGS_DEINSTALL+=		-r
@@ -60,10 +58,15 @@ ifdef PKG_VERBOSE
 _PKG_ARGS_DEINSTALL+=	-v
 endif
 
+# deal with protected packages
 ifdef PKG_PRESERVE
   ifneq (,$(call isyes,${_UPDATE_INPROGRESS}))
-_PKG_ARGS_DEINSTALL+=	-N -f	# update w/o removing any files
+    _PKG_ARGS_DEINSTALL+=	-N -f	# update w/o removing any files
+  else
+    _PKG_ARGS_DEINSTALL+=	-k
   endif
+else
+  _PKG_ARGS_DEINSTALL+=	-k
 endif
 
 
