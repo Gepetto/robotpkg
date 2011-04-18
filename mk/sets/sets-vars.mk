@@ -60,7 +60,7 @@ $(foreach _set_,${_pkgset_names},					\
 # compute PKGSET.installed if needed
 ifneq (,$(filter %-installed,${_pkgset_goals}))
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-  PKGSET.installed=		$(shell ${PKG_INFO} -qu -Q PKGPATH 2>/dev/null)
+  PKGSET.installed:=		$(shell ${PKG_INFO} -qu -Q PKGPATH 2>/dev/null)
   PKGSET_DESCR.installed=	user installed packages
   PKGSET_STRICT.installed?=	no
 endif
