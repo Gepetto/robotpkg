@@ -20,7 +20,12 @@ DEPEND_ABI.pkg_install?=	pkg_install>=20091115
 DEPEND_DIR.pkg_install?=	../../pkgtools/pkg_install
 
 SYSTEM_SEARCH.pkg_install=\
-	'{s,}bin/robotpkg_admin:p:% -V'
-endif
+	'{s,}bin/robotpkg_add'		\
+	'{s,}bin/robotpkg_admin'	\
+	'{s,}bin/robotpkg_create'	\
+	'{s,}bin/robotpkg_delete'	\
+	'{s,}bin/robotpkg_info:p:% -V'
+
+endif # PKG_INSTALL_DEPEND_MK ----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
