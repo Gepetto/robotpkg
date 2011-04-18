@@ -322,13 +322,7 @@ WRKLOG?=		${WRKDIR}/.work.log
 PKG_DEFAULT_OPTIONS?=	# empty
 PKG_OPTIONS?=		# empty
 
-# If MAKECONF is defined, then pass it down to all recursive make
-# processes invoked by robotpkg.
-#
-ifdef MAKECONF
-  MAKEOVERRIDES+=	MAKECONF=${MAKECONF}
-endif
-RECURSIVE_MAKE=         ${MAKE} ${PKGSRC_MAKE_ENV}
+RECURSIVE_MAKE=         ${MAKE} ${MAKEOVERRIDES} ${PKGSRC_MAKE_ENV}
 MAKEFLAGS+=		--no-print-directory
 
 # Package dependency information
