@@ -24,7 +24,6 @@ CONFIGURE_ARGS+=	--bindir=${PKG_TOOLS_BIN}
 NOT_FOR_PLATFORM=	# empty
 NO_CHECKSUM=		yes
 NO_PKGTOOLS_REQD_CHECK=	yes
-PKG_PRESERVE=		yes
 
 include ../../mk/sysdep/termcap.mk
 include ../../mk/robotpkg.mk
