@@ -336,7 +336,8 @@ done
 echo_msg "Registering installed package"
 run_cmd "(							\
     cd $pkgsrcdir/pkgtools/pkg_install &&			\
-    $gmake MAKECONF=${MKCONF_EXAMPLE} VERSION=0	NO_DEPENDS=yes	\
+    $gmake MAKECONF=${MKCONF_EXAMPLE} VERSION=0 PKGREVISION=0	\
+	NO_DEPENDS=yes						\
 	WRKSRC=$wrkdir/pkg_install PLIST_SRC=PLIST.bootstrap	\
 	bootstrap-register					\
 )"
