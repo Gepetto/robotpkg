@@ -255,7 +255,6 @@ ifeq (undefined,$(origin ONLY_FOR_PLATFORM))
   endif
 endif
 
-LOCALBASE?=		/opt/openrobots
 PATH:=			$(call prependpath,${LOCALBASE}/sbin,${PATH})
 PATH:=			$(call prependpath,${LOCALBASE}/bin,${PATH})
 export PATH
