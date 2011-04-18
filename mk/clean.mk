@@ -110,7 +110,8 @@ $(call require,${ROBOTPKG_DIR}/mk/update/update-vars.mk)
 ifeq (yes,$(call exists,${_UPDATE_LIST}))
   .PHONY: clean-confirm-update
   clean-confirm-update:
-	@${ERROR_MSG} ${hline};						\
+	@${TEST} -s ${_UPDATE_LIST} || exit 0;				\
+	${ERROR_MSG} ${hline};						\
 	${ERROR_MSG} "$${bf}An update is in progress for"		\
 		"${PKGPATH}$${rm}";					\
 	if ${TEST} -s ${_UPDATE_LIST}; then				\
