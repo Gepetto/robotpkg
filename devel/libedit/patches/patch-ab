@@ -1,0 +1,17 @@
+Fix vis et al. symbols: vis is a weak alias to _vis, so the goal is to define
+_vis as a replacement, not vis.
+
+--- src/unvis.c~	2011-02-27 00:17:33.000000000 +0100
++++ src/unvis.c	2011-04-16 12:57:11.000000000 +0200
+@@ -507,7 +507,11 @@
+ }
+ 
+ int
++#ifdef __weak_alias
++_strunvis(char *dst, const char *src)
++#else
+ strunvis(char *dst, const char *src)
++#endif
+ {
+ 	return strunvisx(dst, src, 0);
+ }

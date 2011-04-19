@@ -1,23 +1,77 @@
-DragonFly prefers __weak_extern()
+Fix vis et al. symbols: vis is a weak alias to _vis, so the goal is to define
+_vis as a replacement, not vis.
 
---- src/vi.c.orig	2010-04-22 22:09:52.000000000 +0200
-+++ src/vi.c	2010-12-20 11:33:00.699752386 +0100
-@@ -918,14 +918,14 @@
-  * NB: posix implies that we should enter insert mode, however
-  * this is against historical precedent...
+--- src/vis.c~	2011-04-16 12:52:52.000000000 +0200
++++ src/vis.c	2011-04-16 12:55:05.000000000 +0200
+@@ -262,7 +262,11 @@
+  *	  pointed to by `extra'
   */
--#ifdef __weak_reference
--extern char *get_alias_text(const char *) __weak_reference(get_alias_text);
-+#ifdef __weak_extern
-+extern char *get_alias_text(const char *) __weak_extern(get_alias_text);
- #endif
- protected el_action_t
- /*ARGSUSED*/
- vi_alias(EditLine *el, Int c)
+ char *
++#ifdef __weak_alias
++_svis(char *dst, int c, int flag, int nextc, const char *extra)
++#else
+ svis(char *dst, int c, int flag, int nextc, const char *extra)
++#endif
  {
--#ifdef __weak_reference
-+#ifdef __weak_extern
- 	char alias_name[3];
- 	char *alias_text;
+ 	char *nextra = NULL;
+ 	visfun_t f;
+@@ -298,7 +298,11 @@
+  *	This is useful for encoding a block of data.
+  */
+ int
++#ifdef __weak_alias
++_strsvis(char *dst, const char *csrc, int flag, const char *extra)
++#else
+ strsvis(char *dst, const char *csrc, int flag, const char *extra)
++#endif
+ {
+ 	int c;
+ 	char *start;
+@@ -324,7 +324,11 @@
  
-
+ 
+ int
++#ifdef __weak_alias
++_strsvisx(char *dst, const char *csrc, size_t len, int flag, const char *extra)
++#else
+ strsvisx(char *dst, const char *csrc, size_t len, int flag, const char *extra)
++#endif
+ {
+ 	unsigned char c;
+ 	char *start;
+@@ -357,7 +357,11 @@
+  * vis - visually encode characters
+  */
+ char *
++#ifdef __weak_alias
++_vis(char *dst, int c, int flag, int nextc)
++#else
+ vis(char *dst, int c, int flag, int nextc)
++#endif
+ {
+ 	char *extra = NULL;
+ 	unsigned char uc = (unsigned char)c;
+@@ -389,7 +389,11 @@
+  *	This is useful for encoding a block of data.
+  */
+ int
++#ifdef __weak_alias
++_strvis(char *dst, const char *src, int flag)
++#else
+ strvis(char *dst, const char *src, int flag)
++#endif
+ {
+ 	char *extra = NULL;
+ 	int rv;
+@@ -406,7 +406,11 @@
+ 
+ 
+ int
++#ifdef __weak_alias
++_strvisx(char *dst, const char *src, size_t len, int flag)
++#else
+ strvisx(char *dst, const char *src, size_t len, int flag)
++#endif
+ {
+ 	char *extra = NULL;
+ 	int rv;
