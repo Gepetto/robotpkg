@@ -4,10 +4,10 @@
 
 DISTNAME=	abstractgiktask-${VERSION}
 PKGNAME=	jrl-interface-giktask-${VERSION}
-VERSION=	2.4
+VERSION=	2.5
 
 CATEGORIES=	interfaces
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=abstract-gik-task/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}jrlCIR-giktask
 
 MAINTAINER=	openrobots@laas.fr
