@@ -16,7 +16,8 @@ PREFER.genom?=		robotpkg
 SYSTEM_SEARCH.genom=\
 	bin/genom		\
 	include/genom/modules.h	\
-	lib/libgenom.la
+	lib/libgenom.la		\
+	lib/pkgconfig/genom.pc
 
 DEPEND_USE+=		genom
 
