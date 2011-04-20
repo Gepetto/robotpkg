@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	hpp-walkfootplanner-${VERSION}
-VERSION=	2.1.2
+VERSION=	2.1.3
 PKGREVISION=	1
 
 CATEGORIES=	path
