@@ -12,6 +12,7 @@ COMMENT=	Control laws for wheeled robots with optional trailers
 
 GNU_CONFIGURE=	yes
 
+include ../../middleware/pocolibs/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
