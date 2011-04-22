@@ -17,8 +17,6 @@ CONFIGURE_ARGS+=	--bindir=${PREFIX}/sbin
 CONFIGURE_ARGS+=	--program-transform-name='s/^/robotpkg_/'
 
 NO_CHECKSUM=		yes
-NO_PKGTOOLS_REQD_CHECK= yes
-PKG_PRESERVE=           yes
 
 LIBNBCOMPAT_STYLE=	inplace
 include ../../pkgtools/libnbcompat/depend.mk
