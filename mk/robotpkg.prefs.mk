@@ -175,12 +175,7 @@ endif
 ifndef MAKECONF
   MAKECONF=${ROBOTPKG_BASE}/etc/robotpkg.conf
 endif
-
-# Keep track of included files for cookies dependency.
-_n_:=$(words ${MAKEFILE_LIST} +1)
 -include ${MAKECONF}
-MAKECONF_LIST:=$(wordlist ${_n_},$(words ${MAKEFILE_LIST}),${MAKEFILE_LIST})
-
 include ${ROBOTPKG_DIR}/mk/robotpkg.default.conf
 
 
