@@ -1,0 +1,17 @@
+@comment Fri Apr 22 15:47:42 CEST 2011
+bin/tclserv
+include/tclserv/tclServ.h
+include/tclserv/tcl_cs.h
+lib/pkgconfig/tclserv.pc
+share/tclserv/client/cs.tcl
+share/tclserv/client/editval.tcl
+share/tclserv/client/load.tcl
+share/tclserv/client/misc.tcl
+share/tclserv/client/pmtools.tcl
+share/tclserv/client/server.tcl
+share/tclserv/client/tkgenom.tcl
+share/tclserv/pkgIndex.tcl
+share/tclserv/server/cs.tcl
+share/tclserv/server/init.tcl
+share/tclserv/server/load.tcl
+share/tclserv/server/server.tcl

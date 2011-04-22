@@ -1,0 +1,9 @@
+Tclserv is a request and poster server for pocolibs-based GenoM modules.
+It can control GenoM modules running on the same host as itself and accepts
+command on a dedicated socket that are forwarded to the modules in
+question. Tclserv also provides the 'genom' tcl package that can be loaded in
+any tcl interpreter (shells/eltclsh as well). The 'genom' package is a client
+of tclserv that can load dedicated procedures to control GenoM modules
+generated with the 'tcl' option. Other clients can also use tclserv, in
+particular net/libtclserv_client (in C, for modules generated with the
+'tclserv_client' option).

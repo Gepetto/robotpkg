@@ -13,6 +13,7 @@ HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/genom
 COMMENT=	Software components generator for robotics architecture.
 
 LICENSE=	2-clause-bsd
+CONFLICTS+=	tclserv
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	PERL=${PREFIX.perl}/bin/perl

@@ -9,6 +9,7 @@ SUBDIR+=	libfetch
 SUBDIR+=	libtclserv_client
 SUBDIR+=	netshring
 SUBDIR+=	tclpcap
+SUBDIR+=	tclserv
 SUBDIR+=	zeromq
 
 include ../mk/robotpkg.subdir.mk
