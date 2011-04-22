@@ -11,6 +11,7 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.NetBSD.org/
 COMMENT=		POSIX standard archiver with many extensions
 LICENSE=		modified-bsd
+NOT_FOR_PLATFORM=	# empty
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--bindir=${PREFIX}/sbin
