@@ -69,6 +69,7 @@ bootstrap-depends-cookie: makedirs
 # real-bootstrap-depends is a helper target onto which one can hook all of the
 # targets that do the actual bootstrap dependency installation.
 #
+_REAL_BSDEPENDS_TARGETS+=	cbbh
 _REAL_BSDEPENDS_TARGETS+=	makedirs
 _REAL_BSDEPENDS_TARGETS+=	bootstrap-depends-message
 _REAL_BSDEPENDS_TARGETS+=	pkg-bootstrap-depends
