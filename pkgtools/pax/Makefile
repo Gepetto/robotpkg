@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		pax-20080110
-CATEGORIES=     	pkgtools
+CATEGORIES=		pkgtools
 MASTER_SITES=		# empty
 DISTFILES=		# empty
 
@@ -13,7 +13,7 @@ COMMENT=		POSIX standard archiver with many extensions
 LICENSE=		modified-bsd
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--bindir=${PKG_TOOLS_BIN}
+CONFIGURE_ARGS+=	--bindir=${PREFIX}/sbin
 CONFIGURE_ARGS+=	--program-transform-name='s/^/robotpkg_/'
 
 NO_CHECKSUM=		yes
