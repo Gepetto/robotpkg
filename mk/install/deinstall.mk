@@ -49,7 +49,6 @@ $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 #
 # deinstall is a public target to remove an installed package.
 #
-_DEINSTALL_TARGETS+=	cbbh
 _DEINSTALL_TARGETS+=	deinstall-message
 _DEINSTALL_TARGETS+=	acquire-deinstall-lock
 _DEINSTALL_TARGETS+=	pkg-deinstall
