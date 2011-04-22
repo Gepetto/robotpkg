@@ -44,7 +44,7 @@
 pkg-install-check-conflicts:
 	${RUN}${RM} -f ${WRKDIR}/.CONFLICTS;				\
 ${foreach _conflict_,${CONFLICTS},					\
-	found="`${_PKG_BEST_EXISTS} ${_conflict_} || ${TRUE}`";		\
+	found="`${_PKG_BEST_EXISTS} '${_conflict_}' || ${TRUE}`";	\
 	case "$$found" in						\
 	"")	;;							\
 	*)	${ECHO} "$$found" >> ${WRKDIR}/.CONFLICTS ;;		\
