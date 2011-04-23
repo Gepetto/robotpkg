@@ -7,6 +7,16 @@ GENOM_DEPEND_MK:=	${GENOM_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		genom
+
+# GenoM modules use mkdep, pocolibs, pkg-config, autoconf and libtool. Depend
+# on these at the global level so that the dependencies get registered as a
+# primary dependency for the packages including this file.
+#
+include ../../devel/mkdep/depend.mk
+include ../../middleware/pocolibs/depend.mk
+include ../../pkgtools/libtool/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/autoconf.mk
 endif
 
 ifeq (+,$(GENOM_DEPEND_MK)) # ----------------------------------------
@@ -27,7 +37,9 @@ DEPEND_DIR.genom?=	../../architecture/genom
 TOOLS.genom?=		${PREFIX.genom}/bin/genom
 GENOM_ARGS?=#		empty
 
-# Add genom-related options
+# Add genom-related options for direct dependencies
+ifeq (+,$(DEPEND_DEPTH))
+
 PKG_SUPPORTED_OPTIONS+=	api tcl openprs tclserv_client xenomai
 PKG_SUGGESTED_OPTIONS+=	tcl
 
@@ -78,17 +90,7 @@ ifdef GENOM_MODULE
 		${TOOLS.genom} ${GENOM_ARGS} ${GENOM_MODULE}
 endif # GENOM_MODULE
 
+endif # DEPEND_DEPTH==+
 endif # GENOM_DEPEND_MK ----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-
-
-# GenoM modules use mkdep, pocolibs, pkg-config, autoconf and libtool. Depend
-# on these at the global level so that the dependencies get registered as a
-# primary dependency for the packages including this file.
-#
-include ../../devel/mkdep/depend.mk
-include ../../middleware/pocolibs/depend.mk
-include ../../pkgtools/libtool/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
-include ../../mk/sysdep/autoconf.mk
