@@ -23,6 +23,9 @@ DEPEND_USE+=		mocap-genom
 DEPEND_ABI.mocap-genom?=mocap-genom>=1.1
 DEPEND_DIR.mocap-genom?=../../localization/mocap-genom
 
+
+include ../../architecture/genom/depend.mk
+
 endif # MOCAP-GENOM_DEPEND_MK ----------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -21,6 +21,9 @@ SYSTEM_SEARCH.qarm-genom=\
 	include/qarm/qarmStruct.h		\
 	lib/pkgconfig/qarm.pc
 
+
+include ../../architecture/genom/depend.mk
+
 endif # QARMGENOM_DEPEND_MK -------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

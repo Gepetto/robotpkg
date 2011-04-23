@@ -20,6 +20,9 @@ DEPEND_DIR.stereopixel-genom?=	../../image/stereopixel-genom
 SYSTEM_SEARCH.stereopixel-genom=\
 	include/stereopixel/stereopixelStruct.h		\
 	lib/pkgconfig/stereopixel.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

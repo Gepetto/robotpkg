@@ -20,6 +20,9 @@ DEPEND_DIR.ndd-genom?=	../../path/ndd-genom
 SYSTEM_SEARCH.ndd-genom=\
 	include/ndd/nddStruct.h		\
 	lib/pkgconfig/ndd.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

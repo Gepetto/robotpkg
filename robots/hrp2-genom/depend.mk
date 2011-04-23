@@ -22,6 +22,9 @@ SYSTEM_SEARCH.hrp2-genom=\
 	include/hrp2/hrp2Struct.h					\
 	'lib/pkgconfig/hrp2.pc:/Version/s/[^0-9.]//gp'
 
+
+include ../../architecture/genom/depend.mk
+
 endif # --------------------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

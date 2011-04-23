@@ -20,6 +20,9 @@ DEPEND_DIR.gyro-genom?=	../../localization/gyro-genom
 SYSTEM_SEARCH.gyro-genom=\
 	include/gyro/gyroStruct.h		\
 	lib/pkgconfig/gyro.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

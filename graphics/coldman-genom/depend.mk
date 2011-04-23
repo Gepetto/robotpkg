@@ -23,6 +23,9 @@ DEPEND_USE+=		coldman-genom
 DEPEND_ABI.coldman-genom?=coldman-genom>=1.3
 DEPEND_DIR.coldman-genom?=../../graphics/coldman-genom
 
+
+include ../../architecture/genom/depend.mk
+
 endif # COLDMAN-GENOM_DEPEND_MK ----------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -22,6 +22,9 @@ SYSTEM_SEARCH.worldmodelgrid3dg-genom=\
 	include/worldModelGrid3DG/worldModelGrid3DGStruct.h		\
 	'lib/pkgconfig/worldModelGrid3DG.pc:/Version/s/[^0-9.]//gp'
 
+
+include ../../architecture/genom/depend.mk
+
 endif # --------------------------------------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}

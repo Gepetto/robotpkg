@@ -20,6 +20,9 @@ DEPEND_DIR.aspect-genom?=	../../path/aspect-genom
 SYSTEM_SEARCH.aspect-genom=\
 	include/aspect/aspectStruct.h		\
 	lib/pkgconfig/aspect.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -22,6 +22,9 @@ SYSTEM_SEARCH.mouse3d-genom=\
 	include/mouse3d/mouse3dStruct.h				\
 	'lib/pkgconfig/mouse3d.pc:/Version/s/[^0-9.]//gp'
 
+
+include ../../architecture/genom/depend.mk
+
 endif # MOUSE3DGENOM_DEPEND_MK ---------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

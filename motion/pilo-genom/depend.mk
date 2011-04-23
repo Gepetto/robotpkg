@@ -20,6 +20,9 @@ DEPEND_DIR.pilo-genom?=	../../motion/pilo-genom
 SYSTEM_SEARCH.pilo-genom=\
 	include/pilo/piloStruct.h		\
 	'lib/pkgconfig/pilo.pc:/Version/s/[^0-9.]//gp'
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

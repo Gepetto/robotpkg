@@ -20,6 +20,9 @@ DEPEND_DIR.platine-genom?=	../../hardware/platine-genom
 SYSTEM_SEARCH.platine-genom=\
 	include/platine/platineStruct.h		\
 	lib/pkgconfig/platine.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

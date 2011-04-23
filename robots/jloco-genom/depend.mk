@@ -20,6 +20,9 @@ DEPEND_DIR.jloco-genom?=	../../robots/jloco-genom
 SYSTEM_SEARCH.jloco-genom=\
 	include/jloco/jlocoStruct.h		\
 	lib/pkgconfig/jloco.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

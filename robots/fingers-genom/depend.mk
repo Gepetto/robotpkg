@@ -20,6 +20,9 @@ DEPEND_DIR.fingers-genom?=	../../robots/fingers-genom
 SYSTEM_SEARCH.fingers-genom=\
 	include/fingers/fingersStruct.h		\
 	lib/pkgconfig/fingers.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

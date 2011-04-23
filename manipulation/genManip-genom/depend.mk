@@ -22,6 +22,9 @@ SYSTEM_SEARCH.genManip-genom=\
 	include/genManip/genManipStruct.h			\
 	'lib/pkgconfig/genManip.pc:/Version/s/[^0-9.]//gp'
 
+
+include ../../architecture/genom/depend.mk
+
 endif # GENMANIPGENOM_DEPEND_MK --------------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}

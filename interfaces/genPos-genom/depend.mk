@@ -20,6 +20,9 @@ DEPEND_DIR.genPos-genom?=	../../interfaces/genPos-genom
 SYSTEM_SEARCH.genPos-genom=\
 	include/genPos/genPosStruct.h		\
 	lib/pkgconfig/genPos.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

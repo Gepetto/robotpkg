@@ -20,6 +20,9 @@ DEPEND_DIR.rflex-genom?=	../../robots/rflex-genom
 SYSTEM_SEARCH.rflex-genom=\
 	include/rflex/rflexStruct.h		\
 	lib/pkgconfig/rflex.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

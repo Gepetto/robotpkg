@@ -20,6 +20,9 @@ DEPEND_DIR.locoDemo-genom?=	../../motion/locoDemo-genom
 SYSTEM_SEARCH.locoDemo-genom=\
 	include/locoDemo/locoDemoStruct.h		\
 	lib/pkgconfig/locoDemo.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -20,6 +20,9 @@ DEPEND_DIR.segloc-genom?=	../../localization/segloc-genom
 SYSTEM_SEARCH.segloc-genom=\
 	include/segloc/seglocStruct.h		\
 	lib/pkgconfig/segloc.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

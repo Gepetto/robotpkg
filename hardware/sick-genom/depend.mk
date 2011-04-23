@@ -20,6 +20,9 @@ DEPEND_DIR.sick-genom?=	../../hardware/sick-genom
 SYSTEM_SEARCH.sick-genom=\
 	include/sick/sickStruct.h		\
 	lib/pkgconfig/sick.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

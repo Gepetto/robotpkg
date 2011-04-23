@@ -22,6 +22,9 @@ SYSTEM_SEARCH.hueblob-genom=\
 	include/hueblob/hueblobStruct.h					\
 	'lib/pkgconfig/hueblob.pc:/Version/s/[^0-9.]//gp'
 
+
+include ../../architecture/genom/depend.mk
+
 endif # --------------------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

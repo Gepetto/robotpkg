@@ -20,6 +20,9 @@ DEPEND_DIR.imu-genom?=	../../localization/imu-genom
 SYSTEM_SEARCH.imu-genom=\
 	include/imu/imuStruct.h		\
 	lib/pkgconfig/imu.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

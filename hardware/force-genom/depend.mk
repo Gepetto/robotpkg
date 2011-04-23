@@ -20,6 +20,9 @@ DEPEND_DIR.force-genom?=	../../hardware/force-genom
 SYSTEM_SEARCH.force-genom=\
 	include/force/forceStruct.h		\
 	lib/pkgconfig/force.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

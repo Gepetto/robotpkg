@@ -22,6 +22,9 @@ SYSTEM_SEARCH.walk-genom=\
 	include/walk/walkStruct.h					\
 	'lib/pkgconfig/walk.pc:/Version/s/[^0-9.]//gp'
 
+
+include ../../architecture/genom/depend.mk
+
 endif # --------------------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

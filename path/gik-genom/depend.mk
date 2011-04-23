@@ -22,6 +22,9 @@ SYSTEM_SEARCH.gik-genom=\
 	include/gik/gikStruct.h					\
 	'lib/pkgconfig/gik.pc:/Version/s/[^0-9.]//gp'
 
+
+include ../../architecture/genom/depend.mk
+
 endif # --------------------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

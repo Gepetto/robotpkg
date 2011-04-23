@@ -20,6 +20,9 @@ DEPEND_DIR.sahand-genom?=	../../hardware/sahand-genom
 SYSTEM_SEARCH.sahand-genom=\
 	include/sahand/sahandStruct.h		\
 	lib/pkgconfig/sahand.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

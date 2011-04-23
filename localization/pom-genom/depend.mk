@@ -20,6 +20,9 @@ DEPEND_DIR.pom-genom?=	../../localization/pom-genom
 SYSTEM_SEARCH.pom-genom=\
 	include/pom/pomStruct.h		\
 	lib/pkgconfig/pom.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -20,6 +20,9 @@ DEPEND_DIR.viam-genom?=	../../image/viam-genom
 SYSTEM_SEARCH.viam-genom=\
 	include/viam/viamStruct.h		\
 	lib/pkgconfig/viam.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -20,6 +20,9 @@ DEPEND_DIR.genHum-genom?=	../../interfaces/genHum-genom
 SYSTEM_SEARCH.genHum-genom=\
 	include/genHum/genHumStruct.h		\
 	lib/pkgconfig/genHum.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

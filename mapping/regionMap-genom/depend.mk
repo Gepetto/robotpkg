@@ -20,6 +20,9 @@ DEPEND_DIR.regionMap-genom?=	../../mapping/regionMap-genom
 SYSTEM_SEARCH.regionMap-genom=\
 	include/regionMap/regionMapStruct.h		\
 	lib/pkgconfig/regionMap.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

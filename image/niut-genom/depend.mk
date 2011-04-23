@@ -20,6 +20,9 @@ DEPEND_DIR.niut-genom?=	../../image/niut-genom
 SYSTEM_SEARCH.niut-genom=\
 	include/niut/niutStruct.h		\
 	lib/pkgconfig/niut.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

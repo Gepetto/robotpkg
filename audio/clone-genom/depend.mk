@@ -20,6 +20,9 @@ DEPEND_DIR.clone-genom?=	../../audio/clone-genom
 SYSTEM_SEARCH.clone-genom=\
 	include/clone/cloneStruct.h		\
 	'lib/pkgconfig/clone.pc:/Version/s/[^0-9.]*//p'
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

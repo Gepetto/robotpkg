@@ -20,6 +20,9 @@ DEPEND_DIR.p3d-genom?=	../../path/p3d-genom
 SYSTEM_SEARCH.p3d-genom=\
 	include/p3d/p3dStruct.h		\
 	lib/pkgconfig/p3d.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

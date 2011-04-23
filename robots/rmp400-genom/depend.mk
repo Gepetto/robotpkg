@@ -20,6 +20,9 @@ DEPEND_DIR.rmp400-genom?=	../../robots/rmp400-genom
 SYSTEM_SEARCH.rmp400-genom=\
 	include/rmp400/rmp400Struct.h		\
 	lib/pkgconfig/rmp400.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

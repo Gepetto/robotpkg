@@ -20,6 +20,9 @@ DEPEND_DIR.genBasic-genom?=	../../interfaces/genBasic-genom
 SYSTEM_SEARCH.genBasic-genom=\
 	include/genBasic/genBasicStruct.h		\
 	lib/pkgconfig/genBasic.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

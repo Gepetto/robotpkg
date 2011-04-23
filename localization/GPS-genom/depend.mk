@@ -20,6 +20,9 @@ DEPEND_DIR.GPS-genom?=	../../localization/GPS-genom
 SYSTEM_SEARCH.GPS-genom=\
 	include/GPS/GPSStruct.h		\
 	lib/pkgconfig/GPS.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

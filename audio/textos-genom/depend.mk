@@ -22,6 +22,9 @@ SYSTEM_SEARCH.textos-genom=\
 	include/textos/textos-struct.h					\
 	'lib/pkgconfig/textos.pc:/Version/s/[^0-9.]//gp'
 
+
+include ../../architecture/genom/depend.mk
+
 endif # --------------------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

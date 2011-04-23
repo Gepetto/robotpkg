@@ -20,6 +20,9 @@ DEPEND_DIR.sranger-genom?=	../../hardware/sranger-genom
 SYSTEM_SEARCH.sranger-genom=\
 	include/sranger/srangerStruct.h		\
 	lib/pkgconfig/sranger.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}

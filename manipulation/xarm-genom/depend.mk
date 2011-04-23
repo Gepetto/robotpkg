@@ -21,6 +21,9 @@ SYSTEM_SEARCH.xarm-genom=\
 	include/xarm/xarmStruct.h		\
 	lib/pkgconfig/xarm.pc
 
+
+include ../../architecture/genom/depend.mk
+
 endif # XARMGENOM_DEPEND_MK -------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

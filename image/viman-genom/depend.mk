@@ -23,6 +23,9 @@ DEPEND_USE+=		viman-genom
 DEPEND_ABI.viman-genom?=viman-genom>=1.3
 DEPEND_DIR.viman-genom?=../../image/viman-genom
 
+
+include ../../architecture/genom/depend.mk
+
 endif # VIMAN-GENOM_DEPEND_MK ----------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

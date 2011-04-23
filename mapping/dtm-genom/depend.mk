@@ -20,6 +20,9 @@ DEPEND_DIR.dtm-genom?=	../../mapping/dtm-genom
 SYSTEM_SEARCH.dtm-genom=\
 	include/dtm/dtmStruct.h		\
 	lib/pkgconfig/dtm.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

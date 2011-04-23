@@ -19,6 +19,9 @@ DEPEND_DIR.MTI-genom?=	../../localization/MTI-genom
 
 SYSTEM_SEARCH.MTI-genom=\
 	lib/pkgconfig/MTI.pc
+
+include ../../architecture/genom/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
