@@ -164,9 +164,9 @@ endef
 #
 override define prependpath
 $(strip $(if $(realpath $1),$(if $(strip $2),				\
-  $(subst $(_empty) $(_empty),:,					\
-  $(realpath $1) $(filter-out $(realpath $1),$(subst :, ,$2))),		\
-  $1),$2))
+  $(subst $(_empty) $(_empty),:,$(strip					\
+  $(realpath $1) $(filter-out $(realpath $1),$(subst :, ,$2)))),	\
+  $(realpath $1)),$2))
 endef
 
 
