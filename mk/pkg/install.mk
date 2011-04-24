@@ -176,7 +176,7 @@ pkg-register: generate-metadata
 	[yY][eE][sS])	${PKG_ADMIN} set automatic=yes ${PKGNAME} ;;	\
 	esac;								\
 	{ :;								\
-  $(foreach _pkg_,${DEPEND_USE},					\
+  $(foreach _pkg_,${DEPEND_PKG},					\
     $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
       $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),			\
 	  ${ECHO} '${DEPEND_ABI.${_pkg_}}';				\
