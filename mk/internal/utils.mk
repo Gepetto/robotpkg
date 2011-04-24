@@ -137,7 +137,7 @@ _SETFANCY_CMD:=${TEST} -t 1 || { bf=; rm=; }
 _COOKIE.wrkdir=	${WRKDIR}/.wrkdir_cookie
 
 .PHONY: makedirs
-makedirs: ${WRKDIR};
+makedirs: ${WRKDIR} ${PKG_DBDIR};
 
 ${WRKDIR}:
 	${RUN}${MKDIR} ${WRKDIR};					\
@@ -146,6 +146,9 @@ ${WRKDIR}:
 	${ECHO} "_COOKIE.wrkdir.date:=`${_CDATE_CMD}`";			\
 	${ECHO} "_COOKIE.wrkdir.pkgversion:=$$v";			\
 	${ECHO} "_COOKIE.wrkdir.pkgoptions:=${PKG_OPTIONS}"
+
+${PKG_DBDIR}:
+	${RUN}${MKDIR} ${PKG_DBDIR}
 
 
 # --- %-done-message -------------------------------------------------------
