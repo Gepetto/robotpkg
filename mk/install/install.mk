@@ -80,7 +80,7 @@ ifeq (yes,$(call exists,${_COOKIE.install}))
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.install}
   $(call require,${_COOKIE.install})
   ${_COOKIE.install}: ${_COOKIE.build}
-	${RUN}${MV} -f $@ $@.prev
+	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev
 
 else
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)

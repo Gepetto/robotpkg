@@ -108,7 +108,7 @@ ifeq (yes,$(call exists,${_COOKIE.configure}))
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.configure}
   $(call require,${_COOKIE.configure})
   ${_COOKIE.configure}: ${_COOKIE.bootstrap-depends} ${_COOKIE.depends}
-	${RUN}${MV} -f $@ $@.prev
+	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev
 else
   $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
 

@@ -46,7 +46,7 @@ ifeq (yes,$(call exists,${_COOKIE.bootstrap-depends}))
 
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.bootstrap-depends}
   ${_COOKIE.bootstrap-depends}: $(filter-out ${WRKDIR}/%,${MAKEFILE_LIST})
-	${RUN}${MV} -f $@ $@.prev;					\
+	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev;			\
 	${RM} -f ${_SYSBSDEPENDS_FILE} ${_BSDEPENDS_FILE}
 
   $(call require, ${_COOKIE.bootstrap-depends})
