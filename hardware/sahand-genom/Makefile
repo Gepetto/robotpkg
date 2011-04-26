@@ -16,7 +16,10 @@ USE_LANGUAGES=	c c++
 GENOM_MODULE=	sahand
 
 include ../../hardware/sahand-libs/depend.mk
+include ../../math/gbM/depend.mk
 
 include ../../devel/mkdep/depend.mk
 include ../../architecture/genom/depend.mk
+include ../../manipulation/genBasic-genom/depend.mk
+include ../../manipulation/genManip-genom/depend.mk
 include ../../mk/robotpkg.mk
