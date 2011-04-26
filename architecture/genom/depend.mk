@@ -51,8 +51,8 @@ endef
 PKG_OPTION_DESCR.tcl=	Enable the generation of the TCL client code
 define PKG_OPTION_SET.tcl
   GENOM_ARGS+=	-t
-  REQD_BUILD_OPTIONS.genom+=	tcl
   CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})
+  include ../../net/tclserv/depend.mk
   include ../../mk/sysdep/tcl.mk
 endef
 

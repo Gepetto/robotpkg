@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-DISTNAME=	genom-2.6
-PKGREVISION=	1
+DISTNAME=	genom-2.7
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/genom
@@ -13,7 +12,6 @@ HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/genom
 COMMENT=	Software components generator for robotics architecture.
 
 LICENSE=	2-clause-bsd
-CONFLICTS+=	tclserv
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	PERL=${PREFIX.perl}/bin/perl
@@ -36,20 +34,6 @@ define PKG_OPTION_SET.xenomai
   CONFIGURE_ARGS+=	--with-xenomai
   REQD_BUILD_OPTION.pocolibs+= xenomai
   include ../../mk/sysdep/xenomai.mk
-endef
-
-# --- "tcl" option ---------------------------------------------------
-
-PKG_SUPPORTED_OPTIONS+=	tcl
-PKG_SUGGESTED_OPTIONS+=	tcl
-
-PKG_OPTION_DESCR.tcl=	Enable support for TCL clients
-define PKG_OPTION_SET.tcl
-  CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})
-  include ../../mk/sysdep/tcl.mk
-endef
-define PKG_OPTION_UNSET.tcl
-  CONFIGURE_ARGS+=	--without-tcl
 endef
 
 # --- "doc" option ---------------------------------------------------

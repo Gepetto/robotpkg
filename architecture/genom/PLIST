@@ -4,7 +4,6 @@ bin/genom-clean
 bin/genom-regen
 bin/killmodule
 bin/killmymodules
-${PLIST.tcl}bin/tclserv
 include/genom/genomError.h
 include/genom/h2endian.h
 include/genom/h2endianProto.h
@@ -16,8 +15,6 @@ include/genom/printScan.h
 include/genom/printStateProto.h
 include/genom/printXMLProto.h
 include/genom/scanProto.h
-${PLIST.tcl}include/genom/tclServ.h
-${PLIST.tcl}include/genom/tcl_cs.h
 include/genom/testLib.h
 include/genom/testLibProto.h
 lib/libgenom.la
@@ -83,9 +80,6 @@ share/genom/${PKGVERSION}/server/printXML.h
 share/genom/${PKGVERSION}/server/requestCntrl.c
 share/genom/${PKGVERSION}/server/requestExec.c
 share/genom/${PKGVERSION}/server/scan.h
-${PLIST.tcl}share/genom/${PKGVERSION}/server/tcl/tclClient.tcl
-${PLIST.tcl}share/genom/${PKGVERSION}/server/tcl/tclClientPoster.tcl
-${PLIST.tcl}share/genom/${PKGVERSION}/server/tcl/tclClientRqst.tcl
 share/genom/${PKGVERSION}/server/tcl/tclEpilog.c
 share/genom/${PKGVERSION}/server/tcl/tclPoster.c
 share/genom/${PKGVERSION}/server/tcl/tclProlog.c
@@ -104,17 +98,5 @@ share/genom/${PKGVERSION}/server/testExec.c
 share/genom/${PKGVERSION}/server/test_script
 share/genom/${PKGVERSION}/server/type.h
 share/genom/${PKGVERSION}/start.pl
-${PLIST.tcl}share/genom/${PKGVERSION}/tcl/cs.tcl
-${PLIST.tcl}share/genom/${PKGVERSION}/tcl/load.tcl
-${PLIST.tcl}share/genom/${PKGVERSION}/tcl/misc.tcl
-${PLIST.tcl}share/genom/${PKGVERSION}/tcl/pmtools.tcl
-${PLIST.tcl}share/genom/${PKGVERSION}/tcl/server.tcl
 share/genom/genom-mode.el
 ${PLIST.doc}share/genom/genom.pdf
-${PLIST.tcl}share/genom/pkgIndex.tcl
-${PLIST.tcl}share/tclserv/cs.tcl
-${PLIST.tcl}share/tclserv/init.tcl
-${PLIST.tcl}share/tclserv/load.tcl
-${PLIST.tcl}share/tclserv/pkgIndex.tcl
-${PLIST.tcl}share/tclserv/server.tcl
-@pkgdir share/genom/${PKGVERSION}/openprs
