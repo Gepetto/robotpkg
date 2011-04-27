@@ -2,7 +2,7 @@
 # Created:			Xavier Broquere on Tue, 10 Mar 2009
 #
 
-DISTNAME=	gbM-0.7
+DISTNAME=	gbM-0.8
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gbM/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gbM
