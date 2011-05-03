@@ -29,11 +29,10 @@ PREFER.libjpeg?=	system
 
 DEPEND_USE+=		libjpeg
 
-DEPEND_ABI.libjpeg?=	libjpeg>=6
+DEPEND_ABI.libjpeg?=	libjpeg
 
-_libjpeg_pattern=/define JPEG_LIB_VERSION/{s/.*[Vv]ersion[ ]*//;s/[^0-9.a-z]//gp;}
 SYSTEM_SEARCH.libjpeg=	\
-	'include/jpeglib.h:${_libjpeg_pattern}'	\
+	'include/jpeglib.h'	\
 	'lib/libjpeg.{a,so}'
 
 SYSTEM_PKG.Linux-fedora.libjpeg=	libjpeg-devel
