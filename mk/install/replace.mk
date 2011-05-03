@@ -47,9 +47,11 @@ else
   su-replace:		pkg-replace
 endif
 
-ifneq (,$(filter replace,${MAKECMDGOALS})) # if we are asking for a replace
-  ifneq (yes,$(call for-unsafe-pkg,yes))   # and the package is unsafe
-    _REPLACE_TARGETS:= replace-up-to-date  # let us do nothing
+ifneq (,$(filter replace,${MAKECMDGOALS}))   # if we are asking for a replace
+  ifeq (,$(filter confirm,${MAKECMDGOALS}))  # with no confirmation
+    ifneq (yes,$(call if-outdated-pkg,yes))  # and the package is up-to-date
+      _REPLACE_TARGETS:= replace-up-to-date  # let us do nothing
+    endif
   endif
 endif
 

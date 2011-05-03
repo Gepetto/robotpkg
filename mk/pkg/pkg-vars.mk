@@ -97,18 +97,6 @@ PKG_INFO?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_INFO_CMD} ${PKGTOOLS_ARGS}
 #
 _PKG_BEST_EXISTS?=	${PKG_ADMIN} -b -d ${_PKG_DBDIR} -S lsbest
 
-# Macro that returns its first parameter only if PKGNAME is not installed or
-# has unsafe_depends{_strict} set. If package is up-to-date and safe, it
-# returns its second parameter.
-# It is important to limit as much as possible the variables used here, since
-# the evaluation of this macro will occur very early in the Makefiles parsing,
-# and not much information may be available.
-override define for-unsafe-pkg
-$(if $(or $(filter confirm,${MAKECMDGOALS}),$(shell {			\
-	${PKG_INFO} -qQ unsafe_depends ${PKGNAME} &&			\
-	${PKG_INFO} -qQ unsafe_depends_strict ${PKGNAME};		\
-  } 2>/dev/null || ${ECHO} nonexistent)),$1,$2)
-endef
 
 # Metadata filenames
 _BUILD_INFO_FILE=	+BUILD_INFO
@@ -121,6 +109,16 @@ _SIZE_ALL_FILE=		+SIZE_ALL
 _SIZE_PKG_FILE=		+SIZE_PKG
 _CONTENTS_FILE=		+CONTENTS
 
+
+# Return $1 only if PKGNAME is not installed or should be updated. If package
+# is up-to-date and safe, return $2
+#
+_COOKIE.outdated=		${WRKDIR}/.outdated
+_MAKEFILE_WITH_RECIPES+=	${_COOKIE.outdated}
+
+override define if-outdated-pkg
+$(eval -include ${_COOKIE.outdated})$(if ${_OUTDATED.${PKGBASE}},$1,$2)
+endef
 
 include ${ROBOTPKG_DIR}/mk/pkg/depends.mk
 include ${ROBOTPKG_DIR}/mk/pkg/metadata.mk

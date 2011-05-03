@@ -70,15 +70,16 @@ _UPDATE_TARGETS+=	update-done-message
 
 ifeq (yes,$(call only-for,update,yes))	     # if we are asking for an update
   ifneq (yes,$(call exists,${_UPDATE_LIST})) # not resuming a previous one
-    ifneq (yes,$(call for-unsafe-pkg,yes))   # and the package is not unsafe
-      _UPDATE_TARGETS:= update-up-to-date    # let us do nothing
+    ifeq (,$(filter confirm,${MAKECMDGOALS}))# with no confirmation
+      ifneq (yes,$(call if-outdated-pkg,yes))# and the package is up-to-date
+        _UPDATE_TARGETS:= update-up-to-date  # let us do nothing
+      endif
     endif
   endif
 endif
 
-
-# .PHONY: update
-update: ${_UPDATE_TARGETS};
+.PHONY: update
+update: ${_UPDATE_TARGETS}
 
 
 # --- do-update ------------------------------------------------------------

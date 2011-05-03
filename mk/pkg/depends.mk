@@ -42,6 +42,38 @@
 #                                       Anthony Mallet on Thu Nov 30 2006
 #
 
+
+# --- ${_COOKIE.outdated} --------------------------------------------------
+#
+# Check if PKGNAME is not installed or has updated dependencies or has
+# unsafe_depends{_strict} set. If the package is outdated, create the
+# ${_COOKIE.outdated} file, otherwise do nothing.
+#
+${_COOKIE.outdated}: $(wildcard ${PKG_DBDIR}/${PKGNAME})
+	${RUN}${RM} -f $@; (						\
+	  ${PKG_INFO} -qe ${PKGNAME} || exit 1;				\
+									\
+	  iopts=`${PKG_INFO} -qQ PKG_OPTIONS ${PKGNAME}`;		\
+	  ${TEST} '${PKG_OPTIONS}' = "$$iopts" || exit 1;		\
+									\
+	  deps='$(sort $(foreach _pkg_,${DEPEND_USE},			\
+	    $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
+	      $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),		\
+	        ${DEPEND_ABI.${_pkg_}}))))';				\
+	  set -- `${PKG_INFO} -qn ${PKGNAME} | ${SORT}`;		\
+	  for dep in $$deps; do						\
+	    ${TEST} "$$dep" = "$$1" || exit 1;				\
+	    shift;							\
+	  done;								\
+									\
+	  for var in unsafe_depends unsafe_depends_strict; do		\
+	    ${TEST} -z "`${PKG_INFO} -qQ $$var ${PKGNAME}`" || exit 1;	\
+	  done;								\
+	) || {								\
+	  ${MKDIR} $(dir $@) && ${ECHO} _OUTDATED.${PKGBASE}:=yes >$@;	\
+	}
+
+
 # -- pkg-depends-build-options ---------------------------------------------
 #
 # pkg-depends-build-options checks that required packages are or will be built
