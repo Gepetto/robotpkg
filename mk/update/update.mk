@@ -100,7 +100,7 @@ do%update: .FORCE
 	  if ${TEST} -z "$${dir}"; then continue; fi;			\
 	  if ${PKG_INFO} -qe "$$pkg"; then				\
 	    set -- `${PKG_INFO} -qr '${PKGNAME}'`;			\
-	    case " $$@ " in *" $$pkg "*)				\
+	    case " $$@" in *" $$pkg-"*)					\
 	        ${STEP_MSG} "$$pkg was already reinstalled";		\
 	        continue;;						\
 	    esac;							\
@@ -197,7 +197,7 @@ ${_UPDATE_LIST}:
 	${RUN} >$@;							\
 	if ${PKG_INFO} -qe "${PKGWILDCARD}"; then			\
 	  for pkg in `${PKG_INFO} -qr '${PKGWILDCARD}'`; do		\
-	    ${ECHO} `${PKG_INFO} -Q PKGPATH $$pkg` $$pkg >>$@;		\
+	    ${ECHO} `${PKG_INFO} -Q PKGPATH $$pkg` $${pkg%-*} >>$@;	\
 	  done;								\
 	fi
 
