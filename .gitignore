@@ -1,12 +1,13 @@
-distfiles
-packages
-wip
+distfiles/
+packages/
+regress/
+wip/
 
 INDEX
 index.html
 index-all.html
 
-work
-work.*
+work/
+work.*/
 
 *~
