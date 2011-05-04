@@ -41,7 +41,8 @@ _pkgset_names= $(sort installed depends \
 
 # targets that are 'set'-aware
 _pkgset_targets=\
-	clean fetch extract install replace update deinstall
+	clean fetch extract install replace update deinstall		\
+	show-var
 
 # list of available sets targets (_pkgset_targets x _pkgset_names).
 _pkgset_avail=\

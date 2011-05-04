@@ -47,6 +47,9 @@ set-update-%: .FORCE
 set-deinstall-%: .FORCE
 	${RUN}$(call _pkgset_recursive,deinstall,-r)
 
+set-show-var-%: .FORCE
+	${RUN}$(call _pkgset_recursive,show-var,-n)
+
 
 # --- recursion ------------------------------------------------------------
 
