@@ -284,9 +284,7 @@ _DEPENDS_INSTALL_CMD=							\
 			exit 1;						\
 		fi;							\
 		cd $$dir;						\
-		${SETENV} ${PKGSRC_MAKE_ENV}				\
-			PKGNAME_REQD="$$pattern"			\
-			${MAKE} _AUTOMATIC=yes $$target;		\
+		${RECURSIVE_MAKE} _AUTOMATIC=yes $$target;		\
 		best=`${_PKG_BEST_EXISTS} "$$pattern" || ${TRUE}`;	\
 		case "$$best" in					\
 		"")	${ERROR_MSG} "A package matching \`$$pattern'"	\
