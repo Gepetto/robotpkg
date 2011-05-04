@@ -140,14 +140,37 @@ ACCEPTABLE_LICENSES?=	${DEFAULT_ACCEPTABLE_LICENSES}
 #
 ifndef ROBOTPKG_BASE
   _robotpkg_info:=$(call pathsearch,robotpkg_info,${PATH}:/opt/openrobots/sbin)
+  ifeq (,$(_robotpkg_info))
+    $(info ===============================================================)
+    $(info The robotpkg_info tool could not be found in:)
+    $(info $(empty)	PATH = $(or ${PATH},(empty)))
+    $(info )
+    $(info Did you run robotpkg/bootstrap/bootstrap?)
+    $(info )
+    $(info If so, please make sure that <prefix>/sbin is in your PATH or)
+    $(info that you have set the ROBOTPKG_BASE variable to <prefix> in)
+    $(info your environment.)
+    $(info )
+    $(info Note: <prefix> is the installation prefix that you configured)
+    $(info during the bootstrap of robotpkg.)
+    $(info ===============================================================)
+    $(error Fatal error)
+  endif
 else
   _robotpkg_info:=$(wildcard ${ROBOTPKG_BASE}/sbin/robotpkg_info)
-endif
-ifneq (,$(_robotpkg_info))
-  ifndef ROBOTPKG_BASE
-    export ROBOTPKG_BASE:=$(shell \
-	${_robotpkg_info} -qp pkg_install | ${SED} 's/@cwd //')
+  ifeq (,$(_robotpkg_info))
+    $(info ===============================================================)
+    $(info The robotpkg_info tool could not be found in:)
+    $(info $(empty)	ROBOTPKG_BASE = $(or ${ROBOTPKG_BASE},(empty)))
+    $(info )
+    $(info Did you run robotpkg/bootstrap/bootstrap?)
+    $(info ===============================================================)
+    $(error Fatal error)
   endif
+endif
+ifndef ROBOTPKG_BASE
+  export ROBOTPKG_BASE:=$(shell \
+	${_robotpkg_info} -qp pkg_install | ${SED} 's/@cwd //')
   ifeq (,${ROBOTPKG_BASE})
     $(info =============================================================)
     $(info The ${_robotpkg_info} tool is not working)
@@ -157,20 +180,6 @@ ifneq (,$(_robotpkg_info))
     $(info =============================================================)
     $(error Cannot run ${_robotpkg_info})
   endif
-else
-  $(info ===============================================================)
-  $(info The robotpkg_info tool could not be found.)
-  $(info )
-  $(info If you have run bootstrap already, please make sure that)
-  $(info <prefix>/sbin is in your PATH or that you have set the)
-  $(info ROBOTPKG_BASE variable to <prefix> in your environment, where)
-  $(info <prefix> is the installation prefix that you configured during)
-  $(info the bootstrap of robotpkg.)
-  $(info )
-  $(info Otherwise, you may have to run the robotpkg/bootstrap/bootstrap)
-  $(info script in order to fix this problem.)
-  $(info ===============================================================)
-  $(error Fatal error)
 endif
 ifndef MAKECONF
   MAKECONF=${ROBOTPKG_BASE}/etc/robotpkg.conf
