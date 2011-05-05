@@ -2,3 +2,5 @@ SHA1 (gdhe-3.8.1.tar.gz) = 7550c14b6d65bfad9db867381a6c41cf5f8d2286
 RMD160 (gdhe-3.8.1.tar.gz) = 8aad404067b8ed52971da9a7a3121131d7c987e0
 Size (gdhe-3.8.1.tar.gz) = 2032509 bytes
 SHA1 (patch-aa) = db437f3e817b854ae44fbe37e792570090cb6449
+SHA1 (patch-ab) = 9b48db3e9d3b0aa09e30780c9f39bc604d284aa3
+SHA1 (patch-ac) = 0e03a8938b7caf8a3a28643255d836b5a29a13c4

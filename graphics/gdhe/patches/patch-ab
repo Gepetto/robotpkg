@@ -1,0 +1,14 @@
+Avoid running gdhe to build the pkg index because gdhe requires an X11 display.
+Run tclsh instead.
+
+--- Makefile.in~	2010-03-01 14:01:19.000000000 +0100
++++ Makefile.in	2011-05-05 14:09:27.679053999 +0200
+@@ -62,7 +62,7 @@
+ 	done
+ 	$(INSTALL) gdhe.pc $(PKGCONFIGDIR)
+ 	$(MAKE_SUBDIRS)
+-	GDHE_NO_SETUP=1 src/gdhe \
++	GDHE_NO_SETUP=1 ${TCLSH} \
+ 		$(top_srcdir)/tcl/mkIndex $(DESTDIR)$(MODULESDIR)
+ 	@echo ""
+ 	@echo "Gdhe has been successfully installed in ${prefix}"

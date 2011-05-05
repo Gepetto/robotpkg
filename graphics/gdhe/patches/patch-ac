@@ -1,0 +1,12 @@
+Remove superfluous rule for pkg index (already in toplevel Makefile)
+
+--- tcl/Makefile.in~	2010-05-10 10:22:10.000000000 +0200
++++ tcl/Makefile.in	2011-05-05 14:25:55.955054102 +0200
+@@ -48,7 +48,6 @@
+ 		echo "installing $$f in $(DESTDIR)$(GDHE_TCL_DIR)"; \
+ 		$(INSTALL_DATA) @srcdir@/$$f $(DESTDIR)$(GDHE_TCL_DIR) ; \
+ 	done
+-	../src/gdhe @srcdir@/mkIndex
+ 
+ depend:
+ 	@echo "No dependencies here"
