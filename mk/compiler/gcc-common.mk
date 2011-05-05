@@ -56,11 +56,7 @@ COMPILER_GCC_MK:=	defined
 # strictest versions of GCC required.
 #
 ifdef GCC_REQUIRED
-  ifndef _gccreqd_${PKGBASE}
-    _gccreqd_${PKGBASE}:=$(call preduce,${GCC_REQUIRED})
-    MAKEOVERRIDES+=_gccreqd_${PKGBASE}=${_gccreqd_${PKGBASE}}
-  endif
-  _GCC_REQUIRED=${_gccreqd_${PKGBASE}}
+  _GCC_REQUIRED:=$(call preduce,${GCC_REQUIRED})
 else
   # Sensible default value for _GCC_REQUIRED
   _GCC_REQUIRED?=	>=2.8

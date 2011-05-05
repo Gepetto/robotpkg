@@ -54,12 +54,8 @@ LANGUAGE_PYTHON_MK:=	defined
 # the strictest versions of python required.
 #
 ifdef PYTHON_REQUIRED
-  ifndef _pyreqd_${PKGBASE}
-    _pyreqd_${PKGBASE}:=$(call preduce,${PYTHON_REQUIRED})
-    _py2ok_${PKGBASE}:=$(call preduce,${_pyreqd_${PKGBASE}} <3)
-    MAKEOVERRIDES+=_pyreqd_${PKGBASE}=${_pyreqd_${PKGBASE}}
-    MAKEOVERRIDES+=_py2ok_${PKGBASE}=${_py2ok_${PKGBASE}}
-  endif
+  _pyreqd_${PKGBASE}:=$(call preduce,${PYTHON_REQUIRED})
+  _py2ok_${PKGBASE}:=$(call preduce,${_pyreqd_${PKGBASE}} <3)
 else
   # Sensible default value for _py_required
   _pyreqd_${PKGBASE}:= >=2.4<3
