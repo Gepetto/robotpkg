@@ -1,0 +1,12 @@
+Disable unused test subdirectories that otherwise pull in horrid dependencies
+
+--- unsupported/CMakeLists.txt~	2011-03-18 10:26:21.000000000 +0100
++++ unsupported/CMakeLists.txt	2011-05-05 11:36:01.479054584 +0200
+@@ -1,7 +1,2 @@
+ add_subdirectory(Eigen)
+ add_subdirectory(doc EXCLUDE_FROM_ALL)
+-if(EIGEN_LEAVE_TEST_IN_ALL_TARGET)
+-  add_subdirectory(test) # can't do EXCLUDE_FROM_ALL here, breaks CTest
+-else()
+-  add_subdirectory(test EXCLUDE_FROM_ALL)
+-endif()

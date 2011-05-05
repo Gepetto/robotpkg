@@ -1,0 +1,50 @@
+Disable various unused subdirectories that otherwise pull in horrid
+dependencies
+
+--- CMakeLists.txt.orig	2011-05-05 12:10:37.867029766 +0200
++++ CMakeLists.txt	2011-05-05 12:10:44.451054956 +0200
+@@ -281,7 +281,7 @@
+ if(EIGEN_BUILD_PKGCONFIG)
+     configure_file(eigen3.pc.in eigen3.pc)
+     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/eigen3.pc
+-        DESTINATION share/pkgconfig
++        DESTINATION lib/pkgconfig
+         )
+ endif(EIGEN_BUILD_PKGCONFIG)
+ 
+@@ -318,7 +318,7 @@
+   set(EIGEN_MAKECOMMAND_PLACEHOLDER "${CMAKE_MAKE_PROGRAM_SAVE} buildtests")
+ endif()
+ 
+-configure_file(${CMAKE_BINARY_DIR}/DartConfiguration.tcl ${CMAKE_BINARY_DIR}/DartConfiguration.tcl)
++# configure_file(${CMAKE_BINARY_DIR}/DartConfiguration.tcl ${CMAKE_BINARY_DIR}/DartConfiguration.tcl)
+ # restore default CMAKE_MAKE_PROGRAM
+ set(CMAKE_MAKE_PROGRAM ${CMAKE_MAKE_PROGRAM_SAVE})
+ # un-set temporary variables so that it is like they never existed. 
+@@ -329,25 +329,9 @@
+ configure_file(${CMAKE_SOURCE_DIR}/CTestCustom.cmake.in ${CMAKE_BINARY_DIR}/CTestCustom.cmake)
+ 
+ 
+-if(EIGEN_LEAVE_TEST_IN_ALL_TARGET)
+-  add_subdirectory(test) # can't do EXCLUDE_FROM_ALL here, breaks CTest
+-else()
+-  add_subdirectory(test EXCLUDE_FROM_ALL)
+-endif()
+-
+-if(NOT MSVC)
+-  if(EIGEN_LEAVE_TEST_IN_ALL_TARGET)
+-    add_subdirectory(blas)
+-    add_subdirectory(lapack)
+-  else()
+-    add_subdirectory(blas EXCLUDE_FROM_ALL)
+-    add_subdirectory(lapack EXCLUDE_FROM_ALL)
+-  endif()
+-endif(NOT MSVC)
+-
+ add_subdirectory(unsupported)
+ 
+-add_subdirectory(demos EXCLUDE_FROM_ALL)
++# add_subdirectory(demos EXCLUDE_FROM_ALL)
+ 
+ # must be after test and unsupported, for configuring buildtests.in
+ add_subdirectory(scripts EXCLUDE_FROM_ALL)
