@@ -65,7 +65,7 @@ set -e          # exit on errors
 
 : ${ERROR_MSG:=${ECHO}}
 
-: ${SYSLIBSUFFIX:=}
+: ${SYSLIBDIR:=}
 : ${SHLIBTYPE:=elf}
 
 self="${0##*/}"
@@ -162,17 +162,15 @@ bracesubst() {
     '
 }
 
-# Remove /usr in /usr/{bin,lib}/*
+# Remove /usr in /usr/{bin/,lib}*
 optusr() {
     alt=
     while ${TEST} $# -gt 0; do
 	if ${TEST} -z "${1##/usr/bin/*}"; then
 	    alt=$alt" /bin/${1##/usr/bin/}"
-	elif ${TEST} -z "${1##/usr/lib/*}"; then
-	    alt=$alt" /lib/${1##/usr/lib/}"
-	elif ${TEST} -z "${1##/usr/lib${SYSLIBSUFFIX}/*}"; then
-	    alt=$alt" /lib${SYSLIBSUFFIX}/${1##/usr/lib${SYSLIBSUFFIX}/}"
-	fi
+	elif ${TEST} -z "${1##/usr/lib*}"; then
+	    alt=$alt" /lib${1##/usr/lib}"
+        fi
 	shift
     done
     ${ECHO} $alt
@@ -211,13 +209,16 @@ for p in `bracesubst $sysprefix`; do
 		$fspec
 	EOF
 
-	# perform SYSLIBSUFFIX substitution: if a file spec starts with lib/
-	# and a directory $p/lib${SYSLIBSUFFIX} exists, the lib/ in file spec
-	# is changed to lib${SYSLIBSUFFIX}/.
-	if ${TEST} "${f#lib/}" != "$f"; then
-	    if ${TEST} -d "$p/lib${SYSLIBSUFFIX}"; then
-		f="lib${SYSLIBSUFFIX}/${f#lib/}"
-	    fi
+	# perform SYSLIBDIR substitution: if a file spec starts with lib/
+	# and at least one of the directories $p/${SYSLIBDIR} exists, the lib/
+	# in file spec is changed to a pattern matching all existing
+	# $p/${SYSLIBDIR}/. Otherwise nothing is changed.
+	${TEST} -z "${SYSLIBDIR}" || if ${TEST} "${f#lib/}" != "$f"; then
+            _repl=
+            for d in ${SYSLIBDIR}; do
+                ${TEST} ! -d "$p/$d" || _repl=${_repl:+${_repl},}$d
+            done
+            ${TEST} -z "$_repl" || f="{$_repl}/${f#lib/}"
 	fi
 
 	# iterate over file specs after glob and {,} substitutions and

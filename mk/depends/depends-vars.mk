@@ -79,15 +79,11 @@ endif
 # Compute the prefix of packages that we are pulling.
 #
 _PREFIXSEARCH_CMD=\
-	${SETENV} ECHO=${ECHO}					\
-		  TEST=${TEST}					\
-		  SED=${SED}					\
-		  AWK=${AWK}					\
-		  PKG_ADMIN_CMD=$(call quote,${PKG_ADMIN_CMD})	\
-		  SYSLIBSUFFIX=$(call quote,${SYSLIBSUFFIX})	\
-		  $(if ${_OPSYS_SHLIB_TYPE},			\
-			SHLIBTYPE=${_OPSYS_SHLIB_TYPE})		\
-	${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
+  ${SETENV} ECHO=${ECHO} TEST=${TEST} SED=${SED} AWK=${AWK}		\
+  PKG_ADMIN_CMD=$(call quote,${PKG_ADMIN_CMD})				\
+  $(if ${SYSLIBDIR},SYSLIBDIR=$(call quote,$(strip ${SYSLIBDIR})))	\
+  $(if ${_OPSYS_SHLIB_TYPE},SHLIBTYPE=${_OPSYS_SHLIB_TYPE})		\
+  ${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
 
 
 # The following are the "public" targets provided by this module:

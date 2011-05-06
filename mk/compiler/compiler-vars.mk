@@ -172,7 +172,8 @@ CXXFLAGS+=	${INCLUDE_DIRS}
 # directories) that should be added to the linker search paths.
 #
 _LIBRARY_DIRS=$(addprefix -L,						\
-	$(call lappend, $(filter-out /usr/lib /usr/lib${SYSLIBSUFFIX},	\
+	$(call lappend,							\
+	  $(filter-out $(addprefix /usr/,${SYSLIBDIR} lib),		\
 	  $(addprefix ${PREFIX}/,					\
 	    $(patsubst ${PREFIX}/%,%,${LIBRARY_DIRS}))			\
 	  $(foreach _pkg_,${DEPEND_USE}, $(realpath			\
@@ -184,7 +185,8 @@ LDFLAGS+=	${_LIBRARY_DIRS}
 # directories) that should be added to the linker run-time search paths.
 #
 _RPATH_DIRS=$(addprefix ${COMPILER_RPATH_FLAG},				\
-	$(call lappend, $(filter-out /usr/lib /usr/lib${SYSLIBSUFFIX},	\
+	$(call lappend,							\
+	  $(filter-out $(addprefix /usr/,${SYSLIBDIR} lib),		\
 	  $(addprefix ${PREFIX}/,					\
 	    $(patsubst ${PREFIX}/%,%,${RPATH_DIRS}))			\
 	  $(foreach _pkg_,${DEPEND_USE}, $(realpath			\

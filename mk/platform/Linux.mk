@@ -7,10 +7,26 @@ PKGLOCALEDIR?=	share
 _OPSYS_SHLIB_TYPE=	ELF	# shared lib type
 _USE_RPATH=		yes	# add rpath to LDFLAGS
 
-# x86_64 put system libs in lib64
-ifeq (${MACHINE_ARCH},x86_64)
-  SYSLIBSUFFIX?=	64
+# Setup system library directories
+#
+ifeq (${MACHINE_ARCH},x86_64)	# 64bits arch
+  ifeq (${OPSUBSYS},ubuntu)
+    SYSLIBDIR?=\
+	$(patsubst /usr/%,%,$(wildcard			\
+		/usr/lib/${MACHINE_ARCH}-linux-gnu))	\
+	lib64
+  else
+    SYSLIBDIR?=	lib64
+  endif
+else				# 32bits arch
+  ifeq (${OPSUBSYS},ubuntu)
+    SYSLIBDIR?=\
+	$(patsubst /usr/%,%,$(wildcard			\
+		/usr/lib/${MACHINE_ARCH}-linux-gnu))	\
+	lib
+  endif
 endif
+
 
 # Standard commands
 $(call setdefault, TRUE,	:)
