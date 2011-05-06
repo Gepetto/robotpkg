@@ -11,7 +11,7 @@ LOBJS=	${OBJS:.o=.lo}
 all: libz.la
 
 libz.la: ${LOBJS}
-	${LIBTOOL} --mode=link ${CC} ${LDFLAGS} ${CFLAGS} -o $@ \
+	${LIBTOOL} --tag=CC --mode=link ${CC} ${LDFLAGS} ${CFLAGS} -o $@ \
 	    ${LOBJS} -version-info 1:2 -rpath ${PREFIX}/lib
 
 libz.a: ${OBJS}
@@ -24,4 +24,4 @@ libz.a: ${OBJS}
 	${CC} -c ${CFLAGS} -o $@ $<
 
 .c.lo:
-	${LIBTOOL} --mode=compile ${CC} -c ${CFLAGS} -o $@ $<
+	${LIBTOOL} --tag=CC --mode=compile ${CC} -c ${CFLAGS} -o $@ $<
