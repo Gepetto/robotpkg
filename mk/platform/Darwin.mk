@@ -22,8 +22,6 @@
 ECHO_N?=	${ECHO} -n
 PKGLOCALEDIR?=	share
 
-EXPORT_SYMBOLS_LDFLAGS?=-Wl,-E	# add symbols to the dynamic symbol table
-
 _OPSYS_SHLIB_TYPE=	dylib	# shared lib type
 _USE_RPATH=		no	# add rpath to LDFLAGS
 

@@ -1,11 +1,8 @@
-# $NetBSD: NetBSD.mk,v 1.21 2006/07/20 20:02:23 jlam Exp $
 #
 # Variable definitions for the Linux operating system.
 
 ECHO_N?=	${ECHO} -n
 PKGLOCALEDIR?=	share
-
-EXPORT_SYMBOLS_LDFLAGS?=-Wl,-E	# add symbols to the dynamic symbol table
 
 _OPSYS_SHLIB_TYPE=	ELF	# shared lib type
 _USE_RPATH=		yes	# add rpath to LDFLAGS
