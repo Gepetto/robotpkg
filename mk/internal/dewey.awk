@@ -214,6 +214,7 @@ function mkcomponent(ap, str) {
 #
 function mkversion(ap, str)
 {
+    split("", ap) # clean array
     ap[0] = 0
     ap[-1] = 0
     ap[-2] = str
