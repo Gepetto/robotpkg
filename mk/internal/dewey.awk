@@ -64,7 +64,7 @@ BEGIN {
 }
 
 
-# --- reduce ---------------------------------------------------------------
+# --- pmatch ---------------------------------------------------------------
 #
 # Match a pattern against a package version
 #
@@ -151,6 +151,8 @@ function reduce(	a, i, k, t, p, name, min, minop, max, maxop, ne, cur, r)
 	if (r) r = r " "
 	if (ne) r = r a "!=" ne
     }
+    sub(/^ +/, "", r)
+    sub(/ +$/, "", r)
     return r
 }
 
