@@ -15,7 +15,7 @@ COMMENT=		Fully integrated 3D graphics creation suite
 LICENSE=		gnu-gpl-v2
 
 USE_LANGUAGES+=		c c++ python
-PYTHON_REQUIRED+=	>=3
+PYTHON_REQUIRED+=	>=3 <3.2
 WRKSRC=			${WRKDIR}/${DISTNAME}-source
 
 CMAKE_ARG_PATH=		..
@@ -35,15 +35,18 @@ CMAKE_ARGS+=		-DWITH_SDL=OFF		# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_PYTHON=ON
 CMAKE_ARGS+=		-DWITH_PYTHON_INSTALL=ON
 CMAKE_ARGS+=		-DPYTHON_INC=${PYTHON_INCLUDE}
+CMAKE_ARGS+=		-DPYTHON_LIB=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_LIBPATH=$(dir ${PYTHON_LIB})
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/_build
 
 include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/freetype2.mk
 include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/libpng.mk
 include ../../mk/sysdep/libtiff.mk
 include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/mesa.mk
+include ../../mk/sysdep/libXi.mk
 include ../../mk/robotpkg.mk
