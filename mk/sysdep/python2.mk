@@ -42,11 +42,13 @@ _PY2_REQUIRED?=		>=2.4<3
 
 _py2namespec=python{2.7,2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.python2=\
-	'bin/${_py2namespec}:s/[^.0-9]//gp:% --version' 	\
-	'include/${_py2namespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'	\
-	'lib/lib${_py2namespec}.{so,a}:s/^.*python//;s/[^.0-9]//gp;s/[.]$$//:${ECHO} %'
+  'bin/${_py2namespec}:s/[^.0-9]//gp:% --version'			\
+  'include/${_py2namespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'	\
+  'lib/lib${_py2namespec}.{so,a}:s/^.*python//;s/[^.0-9]//g;s/[.]$$//;p:${ECHO} %'
 
 SYSTEM_PKG.Linux-fedora.python2=python-devel
+SYSTEM_PKG.Linux-ubuntu.python2=python-dev
+SYSTEM_PKG.Linux-debian.python2=python-dev
 SYSTEM_PKG.NetBSD.python2=	pkgsrc/lang/python
 
 export PYTHON2=		$(firstword ${SYSTEM_FILES.python2})
