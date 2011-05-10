@@ -11,6 +11,7 @@ GNU_CONFIGURE=	yes
 
 DEPENDS+=	contec-pio32-headers:../contec-pio32-headers
 
+include ../../hardware/contec-pio32-headers/depend.mk
 include ../../hardware/libftdi/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
