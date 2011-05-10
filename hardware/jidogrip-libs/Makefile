@@ -2,12 +2,14 @@
 # Created:			Matthieu Herrb on Tue, 6 Jan 2009
 #
 
-DISTNAME=	jidogrip-libs-1.1
+DISTNAME=	jidogrip-libs-1.1.1
 CATEGORIES=	hardware
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=jido/}
 
 GNU_CONFIGURE=	yes
+
+LICENSE=	isc
 
 include ../../hardware/contec-pio32-headers/depend.mk
 include ../../hardware/libftdi/depend.mk

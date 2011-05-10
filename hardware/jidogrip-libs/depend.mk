@@ -14,7 +14,7 @@ ifeq (+,$(JIDOGRIP_LIBS_DEPEND_MK)) # --------------------------------------
 PREFER.jidogrip-libs?=		robotpkg
 
 DEPEND_USE+=			jidogrip-libs
-DEPEND_ABI.jidogrip-libs?=	jidogrip-libs>=1.1
+DEPEND_ABI.jidogrip-libs?=	jidogrip-libs>=1.1.1
 DEPEND_DIR.jidogrip-libs?=	../../hardware/jidogrip-libs
 
 SYSTEM_SEARCH.jidogrip-libs=	\
