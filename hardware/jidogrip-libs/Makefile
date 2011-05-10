@@ -9,8 +9,6 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=jido/}
 
 GNU_CONFIGURE=	yes
 
-DEPENDS+=	contec-pio32-headers:../contec-pio32-headers
-
 include ../../hardware/contec-pio32-headers/depend.mk
 include ../../hardware/libftdi/depend.mk
 include ../../devel/mkdep/depend.mk
