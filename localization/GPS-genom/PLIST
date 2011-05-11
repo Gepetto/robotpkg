@@ -29,7 +29,7 @@ ${PLIST.tclserv_client}include/GPS/server/tclservClient/GPSTclservClientMsgLib.h
 lib/libGPSClient.la
 ${PLIST.openprs}lib/openprs/libGPSOpenprs.la
 lib/pkgconfig/GPS.pc
-lib/pkgconfig/GPS-oprs.pc
+${PLIST.openprs}lib/pkgconfig/GPS-oprs.pc
 ${PLIST.tclserv_client}lib/pkgconfig/GPS-tclserv_client.pc
 ${PLIST.tclserv_client}lib/tclservClient/libGPSTclservClient.la
 ${PLIST.noapi}${PLIST.tcl}lib/tclserv/libGPSTclServ.la

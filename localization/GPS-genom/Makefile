@@ -15,7 +15,6 @@ COMMENT=		GenoM module for GPS management
 LICENSE=		isc
 
 GNU_CONFIGURE=		yes
-LANGAGES=		c
 
 GENOM_MODULE=		GPS
 include ../../architecture/genom/depend.mk
