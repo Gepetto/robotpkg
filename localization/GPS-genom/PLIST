@@ -1,5 +1,6 @@
 @comment Thu Oct 8 19:15:54 CEST 2009
 ${PLIST.noapi}bin/GPS
+bin/gps_proxy
 bin/gps_receive
 bin/gps_send
 ${PLIST.noapi}bin/GPSSendInitRqst
@@ -31,12 +32,10 @@ lib/pkgconfig/GPS.pc
 lib/pkgconfig/GPS-oprs.pc
 ${PLIST.tclserv_client}lib/pkgconfig/GPS-tclserv_client.pc
 ${PLIST.tclserv_client}lib/tclservClient/libGPSTclservClient.la
-${PLIST.noacpi}${PLIST.tcl}lib/tclserv/libGPSTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libGPSTclServ.la
 share/modules/gen/GPS.gen
 ${PLIST.openprs}share/modules/openprs/GPSOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/GPSOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/GPSOpenprs.sym
 ${PLIST.tcl}share/modules/tcl/GPSClient.tcl
 ${PLIST.openprs}@dirrm include/GPS/server/openprs
-@dirrm include/GPS/server
-@dirrm include/GPS

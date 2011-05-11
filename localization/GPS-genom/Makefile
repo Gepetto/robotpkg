@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		GPS-genom-${VERSION}
-VERSION=		1.3
+VERSION=		1.4
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/GPS-genom
@@ -12,7 +12,10 @@ MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		GenoM module for GPS management
 
+LICENSE=		isc
+
 GNU_CONFIGURE=		yes
+LANGAGES=		c
 
 GENOM_MODULE=		GPS
 include ../../architecture/genom/depend.mk
