@@ -16,8 +16,8 @@ DEPEND_USE+=		tdom
 DEPEND_ABI.tdom?=	tdom>=0.8
 
 SYSTEM_SEARCH.tdom=	\
-	'lib/tcl{,[0-9]*}/tdom[0-9]*/tdom.tcl'	\
-	'lib/tcl{,[0-9]*}/tdom[0-9]*/pkgIndex.tcl:/ifneeded/s/[^0-9.]//gp'
+	'lib/tcl{,tk}{,[0-9]*}/tdom[0-9]*/tdom.tcl'	\
+	'lib/tcl{,tk}{,[0-9]*}/tdom[0-9]*/pkgIndex.tcl:/ifneeded/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Linux.tdom=	tdom
 
