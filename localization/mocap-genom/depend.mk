@@ -20,7 +20,7 @@ SYSTEM_SEARCH.mocap-genom=\
 
 DEPEND_USE+=		mocap-genom
 
-DEPEND_ABI.mocap-genom?=mocap-genom>=1.1
+DEPEND_ABI.mocap-genom?=mocap-genom>=1.3
 DEPEND_DIR.mocap-genom?=../../localization/mocap-genom
 
 
