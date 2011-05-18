@@ -2,14 +2,14 @@
 # Created:			Anthony Mallet on Tue, 15 Jul 2008
 #
 
-VERSION=		2.0
+VERSION=		2.1
 DISTNAME=		evart-stream-${VERSION}
 
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=evart/}
 
 MAINTAINER=		mallet@laas.fr
-HOMEPAGE=		http://www.laas.fr/~mallet/soft/mocap/evart-stream
+HOMEPAGE=		http://homepages.laas.fr/mallet/soft/mocap/evart-stream
 COMMENT=		EVa Real-Time Software data streaming server.
 LICENSE=		2-clause-bsd
 
