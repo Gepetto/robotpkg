@@ -2,8 +2,7 @@
 # Created:			Matthieu Herrb on Mon, 12 Jan 2009
 #
 
-DISTNAME=	alog-0.4
-PKGREVISION=	2
+DISTNAME=	alog-0.5
 COMMENT=	a simple log data viewing tool
 LICENSE=	isc
 CATEGORIES=	sysutils
