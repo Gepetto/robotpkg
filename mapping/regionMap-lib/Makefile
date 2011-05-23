@@ -3,8 +3,7 @@
 #
 
 DISTNAME=		regionMap-lib-${VERSION}
-VERSION=		0.1
-PKGREVISION=	1
+VERSION=		0.3
 CATEGORIES=		mapping
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=regionMap-lib/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/regionMap-lib
