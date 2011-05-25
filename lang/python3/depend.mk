@@ -29,7 +29,7 @@ _PY3_REQUIRED?=		>=3
 _py3namespec=python{3,3.0,3.1,3.2,[0-9].[0-9],}
 SYSTEM_SEARCH.python3=\
   'bin/${_py3namespec}:s/[^.0-9]//gp:% --version'			\
-  'include/${_py3namespec}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp' \
+  'include/${_py3namespec}{,{,d}mu}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp' \
   'lib/lib${_py3namespec}{,{,d}mu}.{so,a}:s/^.*python//;s/[^.0-9]//g;s/[.]$$//;p:${ECHO} %'
 
 SYSTEM_PKG.Linux-fedora.python3=python3-devel
