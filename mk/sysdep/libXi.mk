@@ -16,7 +16,7 @@ DEPEND_ABI.libXi?=	libXi>=1
 
 SYSTEM_SEARCH.libXi=\
 	include/X11/extensions/XInput.h			\
-	lib/libXi.{so,a}				\
+	'lib/libXi.{so,a}'				\
 	'lib/pkgconfig/xi.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Linux-fedora.libXi=	libXi-devel
