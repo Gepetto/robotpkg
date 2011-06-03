@@ -1,6 +1,6 @@
-@comment Thu Apr 2 18:37:41 CEST 2009
+@comment Fri Jun 3 09:32:51 CEST 2011
+bin/rmpJoystick
 bin/rmpTest
 include/rmp/rmpLib.h
 lib/librmpLib.la
 lib/pkgconfig/rmp-libs.pc
-@dirrm include/rmp
