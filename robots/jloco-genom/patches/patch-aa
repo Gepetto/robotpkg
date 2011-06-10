@@ -1,0 +1,20 @@
+--- jloco.gen.orig	2011-06-10 11:58:57.974201000 +0200
++++ jloco.gen	2011-06-10 11:56:25.071509000 +0200
+@@ -41,11 +41,12 @@
+     number:		    8700;
+     version:		    "1.1";
+     email:		    "openrobots@laas.fr";
+-			    #ifdef FAKE_NEOBOTIX
+-    requires:		    pom, genPos, contlaw;
+-			    #else
+-    requires:		    pom, genPos, contlaw, neobotix;
+-			    #endif // FAKE_NEOBOTIX
++    requires:		    pom, genPos;
++#ifdef FAKE_NEOBOTIX
++    codels_requires:		    contlaw;
++#else
++    codels_requires:		    contlaw, neobotix;
++#endif // FAKE_NEOBOTIX
+     lang:		    "c";
+ };
+ 

@@ -1,18 +1,18 @@
 @comment Fri Mar 13 15:45:32 CET 2009
-bin/jloco
-bin/jlocoSendInitRqst
-bin/jlocoTest
+${PLIST.noapi}bin/jloco
+${PLIST.noapi}bin/jlocoSendInitRqst
+${PLIST.noapi}bin/jlocoTest
 include/jloco/jlocoConst.h
 include/jloco/jlocoStruct.h
 include/jloco/server/jlocoEndian.h
 include/jloco/server/jlocoError.h
-include/jloco/server/jlocoMsgLib.h
+${PLIST.noapi}include/jloco/server/jlocoMsgLib.h
 include/jloco/server/jlocoPosterLib.h
 include/jloco/server/jlocoPosterLibStruct.h
-include/jloco/server/jlocoPosterReadLibProto.h
-include/jloco/server/jlocoPosterShowLib.h
-include/jloco/server/jlocoPosterWriteLibProto.h
-include/jloco/server/jlocoPosterXMLLib.h
+${PLIST.noapi}include/jloco/server/jlocoPosterReadLibProto.h
+${PLIST.noapi}include/jloco/server/jlocoPosterShowLib.h
+${PLIST.noapi}include/jloco/server/jlocoPosterWriteLibProto.h
+${PLIST.noapi}include/jloco/server/jlocoPosterXMLLib.h
 include/jloco/server/jlocoPrint.h
 include/jloco/server/jlocoPrintXML.h
 include/jloco/server/jlocoScan.h
@@ -24,7 +24,7 @@ lib/libjlocoClient.la
 ${PLIST.openprs}lib/openprs/libjlocoOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/jloco-oprs.pc
 lib/pkgconfig/jloco.pc
-${PLIST.tcl}lib/tclserv/libjlocoTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libjlocoTclServ.la
 share/modules/gen/jloco.gen
 ${PLIST.openprs}share/modules/openprs/jlocoOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/jlocoOpenprs.opf
