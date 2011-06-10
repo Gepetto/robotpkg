@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	gdhe-3.8.1
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gdhe
@@ -27,7 +27,6 @@ CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/mkdep/depend.mk
-include ../../mk/sysdep/swig.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/tcl.mk
