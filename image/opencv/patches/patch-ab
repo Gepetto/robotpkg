@@ -1,0 +1,22 @@
+merge upstream SVN revision 5067
+made ptrdiff_t visible to GCC 4.6 compiler
+--- modules/core/include/opencv2/core/core.hpp.orig	2010-12-05 04:35:24.000000000 +0100
++++ modules/core/include/opencv2/core/core.hpp	2011-06-11 11:29:41.210208838 +0200
+@@ -55,6 +55,7 @@
+ #include <limits.h>
+ #include <algorithm>
+ #include <cmath>
++#include <cstddef>
+ #include <complex>
+ #include <map>
+ #include <new>
+@@ -74,7 +75,8 @@
+ 
+ using std::vector;
+ using std::string;
+-    
++using std::ptrdiff_t;
++
+ template<typename _Tp> class CV_EXPORTS Size_;
+ template<typename _Tp> class CV_EXPORTS Point_;
+ template<typename _Tp> class CV_EXPORTS Rect_;

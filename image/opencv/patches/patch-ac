@@ -1,0 +1,67 @@
+Index: opencv/cvconfig.h.cmake
+===================================================================
+--- cvconfig.h.cmake	(revision 3528)
++++ cvconfig.h.cmake	(revision 5206)
+@@ -19,4 +19,7 @@
+ /* V4L2 capturing support */
+ #cmakedefine HAVE_CAMV4L2
++
++/* V4L/V4L2 capturing support via libv4l */
++#cmakedefine HAVE_LIBV4L
+ 
+ /* Carbon windowing environment */
+Index: modules/highgui/src/cap.cpp
+===================================================================
+--- modules/highgui/src/cap.cpp.orig	2011-06-11 16:39:05.555530344 +0200
++++ modules/highgui/src/cap.cpp	2011-06-11 16:39:39.947658356 +0200
+@@ -171,7 +171,7 @@
+             if (capture)
+                 return capture;
+         #endif
+-        #if defined (HAVE_CAMV4L) || defined (HAVE_CAMV4L2)
++        #if defined HAVE_LIBV4L || (defined (HAVE_CAMV4L) && defined (HAVE_CAMV4L2))
+             capture = cvCreateCameraCapture_V4L (index);
+             if (capture)
+                 return capture;
+Index: modules/highgui/src/cap_libv4l.cpp
+===================================================================
+--- modules/highgui/src/cap_libv4l.cpp.orig	2011-06-11 16:39:14.863564060 +0200
++++ modules/highgui/src/cap_libv4l.cpp	2011-06-11 16:39:51.227700857 +0200
+@@ -224,7 +224,7 @@
+ #include "highgui.h"
+ #include "precomp.hpp"
+ 
+-#if !defined WIN32 && defined HAVE_CAMV4L && defined HAVE_CAMV4L2
++#if !defined WIN32 && defined HAVE_LIBV4L
+ 
+ #define CLEAR(x) memset (&(x), 0, sizeof (x))
+ 
+@@ -241,8 +241,12 @@
+ #include <sys/stat.h>
+ #include <sys/ioctl.h>
+ 
++#ifdef HAVE_CAMV4L
+ #include <linux/videodev.h>
++#endif
++#ifdef HAVE_CAMV4L2
+ #include <linux/videodev2.h>
++#endif
+ 
+ #include <libv4l1.h>
+ #include <libv4l2.h>
+Index: modules/highgui/src/cap_v4l.cpp
+===================================================================
+--- modules/highgui/src/cap_v4l.cpp.orig	2010-12-05 04:35:25.000000000 +0100
++++ modules/highgui/src/cap_v4l.cpp	2011-06-11 19:00:40.188984450 +0200
+@@ -214,7 +214,11 @@
+ #include <sys/types.h>
+ #include <sys/mman.h>
+ 
++#ifdef HAVE_CAMV4L
+ #include <linux/videodev.h>
++#else
++#include <libv4l1-videodev.h>
++#endif
+ 
+ #include <string.h>
+ #include <stdlib.h>
