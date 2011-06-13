@@ -5,6 +5,7 @@
 
 DISTNAME=		rmp400-genom-${VERSION}
 VERSION=		0.3
+PKGREVISION=	1
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp400-genom
