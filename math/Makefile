@@ -13,6 +13,7 @@ SUBDIR+=	gbM
 SUBDIR+=	geometric-tools
 SUBDIR+=	hrp2-10-optimized
 SUBDIR+=	hrp2-dynamics
+SUBDIR+=	jafar-jmath
 SUBDIR+=	jrl-dynamics
 SUBDIR+=	jrl-mathtools
 SUBDIR+=	lapack
