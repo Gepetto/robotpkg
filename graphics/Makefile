@@ -11,6 +11,7 @@ SUBDIR+=	collada-dom
 SUBDIR+=	flann
 SUBDIR+=	gdhe
 SUBDIR+=	grh2
+SUBDIR+=	jafar-gdhe
 SUBDIR+=	kpp-interface
 SUBDIR+=	kpp-interfacewalk
 SUBDIR+=	kpp-interfacedisplay

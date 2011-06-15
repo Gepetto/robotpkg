@@ -1,0 +1,17 @@
+Improve pattern used to install module_headers (in particular, avoid installing
+.orig files or temporary emacs files)
+
+--- CMakeLists.txt.orig	2011-12-28 14:20:11.679766922 +0100
++++ CMakeLists.txt	2011-12-28 14:26:36.143776744 +0100
+@@ -110,7 +110,10 @@
+ 
+ 
+ # add module headers
+-file(GLOB module_headers ${jafar-gdhe_SOURCE_DIR}/include/gdhe/*.h*)
++file(GLOB module_h ${jafar-gdhe_SOURCE_DIR}/include/gdhe/*.h)
++file(GLOB module_hh ${jafar-gdhe_SOURCE_DIR}/include/gdhe/*.hh)
++file(GLOB module_hpp ${jafar-gdhe_SOURCE_DIR}/include/gdhe/*.hpp)
++set(module_headers "${module_h};${module_hh};${module_hpp}")
+ # add sources
+ file(GLOB module_sources ${jafar-gdhe_SOURCE_DIR}/src/*.cpp)
+ #remove jafarConfig.h from included headers

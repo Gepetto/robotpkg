@@ -1,0 +1,10 @@
+@comment Wed Jun 15 20:32:17 CEST 2011
+include/jafar/gdhe/client.hpp
+include/jafar/gdhe/gdheException.hpp
+lib/libjafar-gdhe.so
+lib/libjafar-gdhe.so.${PKGVERSION}
+lib/libjafar-gdhe.so.0
+lib/pkgconfig/jafar-gdhe.pc
+share/cmake/jafar/gdhe-headers.cmake
+share/cmake/jafar/gdhe-release.cmake
+share/cmake/jafar/gdhe.cmake
