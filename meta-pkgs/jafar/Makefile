@@ -13,5 +13,6 @@ META_PACKAGE=	yes
 NOT_FOR_PLATFORM=
 
 include ../../devel/jafar-kernel/depend.mk
+include ../../image/jafar-image/depend.mk
 include ../../math/jafar-jmath/depend.mk
 include ../../mk/robotpkg.mk

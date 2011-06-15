@@ -1,0 +1,11 @@
+--- CMakeLists.txt~	2012-06-12 19:03:29.000000000 +0200
++++ CMakeLists.txt	2012-12-10 19:16:43.234956737 +0100
+@@ -14,7 +14,7 @@
+ # MERCHANTABILITY AND FITNESS.						   #
+ ############################################################################
+ 
+-project(jafar-image C CXX Fortran)
++project(jafar-image C CXX)
+ 
+ cmake_minimum_required(VERSION 2.6.4 FATAL_ERROR)
+ 

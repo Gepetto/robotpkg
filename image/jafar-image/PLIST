@@ -1,0 +1,20 @@
+@comment Wed Jun 15 19:48:43 CEST 2011
+include/jafar/image/Capture.hpp
+include/jafar/image/Image.hpp
+include/jafar/image/ImagePreprocessor.hpp
+include/jafar/image/cImage.h
+include/jafar/image/filter.hpp
+include/jafar/image/imageException.hpp
+include/jafar/image/imout.hpp
+include/jafar/image/iterator.hpp
+include/jafar/image/lkTracker.hpp
+include/jafar/image/oimstream.hpp
+include/jafar/image/pyramid.hpp
+include/jafar/image/roi.hpp
+lib/libjafar-image.so
+lib/libjafar-image.so.2
+lib/libjafar-image.so.${PKGVERSION}
+lib/pkgconfig/jafar-image.pc
+share/cmake/jafar/image-headers.cmake
+share/cmake/jafar/image-release.cmake
+share/cmake/jafar/image.cmake
