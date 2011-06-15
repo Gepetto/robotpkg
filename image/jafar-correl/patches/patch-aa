@@ -1,0 +1,20 @@
+--- CMakeLists.txt~	2011-06-15 20:00:17.000000000 +0200
++++ CMakeLists.txt	2012-12-11 14:39:00.519189072 +0100
+@@ -14,7 +14,7 @@
+ # MERCHANTABILITY AND FITNESS.						   #
+ ############################################################################
+ 
+-project(jafar-correl C CXX Fortran)
++project(jafar-correl C CXX)
+ 
+ cmake_minimum_required(VERSION 2.6.4 FATAL_ERROR)
+ 
+@@ -92,7 +92,7 @@
+ 
+ 
+ # add module headers
+-file(GLOB module_headers ${jafar-correl_SOURCE_DIR}/include/correl/*.h*)
++file(GLOB module_headers ${jafar-correl_SOURCE_DIR}/include/correl/*.hpp)
+ # add sources
+ file(GLOB module_sources ${jafar-correl_SOURCE_DIR}/src/*.cpp)
+ #remove jafarConfig.h from included headers

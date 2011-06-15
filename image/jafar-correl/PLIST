@@ -1,0 +1,11 @@
+@comment Wed Jun 15 20:01:32 CEST 2011
+include/jafar/correl/correlException.hpp
+include/jafar/correl/explorer.hpp
+include/jafar/correl/zncc.hpp
+lib/libjafar-correl.so
+lib/libjafar-correl.so.0
+lib/libjafar-correl.so.${PKGVERSION}
+lib/pkgconfig/jafar-correl.pc
+share/cmake/jafar/correl-headers.cmake
+share/cmake/jafar/correl-release.cmake
+share/cmake/jafar/correl.cmake
