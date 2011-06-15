@@ -14,8 +14,8 @@ ifeq (+,$(BOOST_NUMERIC_BINDINGS_DEPEND_MK)) # -----------------------------
 PREFER.boost-numeric-bindings?=		robotpkg
 
 SYSTEM_SEARCH.boost-numeric-bindings=\
-	include/boost/numeric/bindings/lapack/lapack.h	\
-	include/boost/numeric/bindings/blas/blas.h
+	include/boost/numeric/bindings/lapack.hpp \
+	include/boost/numeric/bindings/blas.hpp
 
 DEPEND_USE+=				boost-numeric-bindings
 
