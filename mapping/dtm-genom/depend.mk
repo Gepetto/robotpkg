@@ -14,7 +14,7 @@ PREFER.dtm-genom?=	robotpkg
 
 DEPEND_USE+=		dtm-genom
 
-DEPEND_ABI.dtm-genom?=	dtm-genom>=1.1
+DEPEND_ABI.dtm-genom?=	dtm-genom>=1.3
 DEPEND_DIR.dtm-genom?=	../../mapping/dtm-genom
 
 SYSTEM_SEARCH.dtm-genom=\
