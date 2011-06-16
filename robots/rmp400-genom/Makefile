@@ -4,8 +4,7 @@
 
 
 DISTNAME=		rmp400-genom-${VERSION}
-VERSION=		0.3
-PKGREVISION=	1
+VERSION=		0.4
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp400-genom
@@ -45,7 +44,7 @@ endef
 
 GENOM_MODULE=		rmp400
 include ../../architecture/genom/depend.mk
-
+include ../../wip/mana-emergency/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
