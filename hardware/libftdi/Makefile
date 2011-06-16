@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	libftdi-${PKGVERSION}
-PKGVERSION=	0.16
+PKGVERSION=	0.19
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.intra2net.com/de/produkte/opensource/ftdi/TGZ/
 
