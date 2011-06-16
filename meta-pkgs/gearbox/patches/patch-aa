@@ -1,8 +1,5 @@
-Replace gearbox internal dependency handling system with pkg-config so that we
-can use individual installed libraries.
-
---- cmake/DependencyUtils.cmake	2009-11-17 13:56:23.000000000 +0100
-+++ cmake/DependencyUtils.cmake	2010-03-17 15:52:47.307479000 +0100
+--- cmake/DependencyUtils.cmake~	2010-02-01 04:55:11.000000000 +0100
++++ cmake/DependencyUtils.cmake	2011-06-16 14:23:05.852337640 +0200
 @@ -3,6 +3,9 @@
  # If module_type is not equal "EXE" or "LIB", prints error message and quits.
  #
@@ -13,28 +10,25 @@ can use individual installed libraries.
  macro( GBX_UTIL_CHECK_MODULE_TYPE type is_exe is_lib )
  #     message( STATUS "GBX_UTIL_CHECK_MODULE_TYPE type=${type}" )
  
-@@ -156,11 +159,10 @@
+@@ -156,7 +159,9 @@
              set( reason "${target_name} is not being built" )
          endif( ${ARGC} GREATER 5 )
- 
--        # TODO: should simply use this signature: if(NOT TARGET target_name)
--        GET_TARGET_PROPERTY( target_location ${target_name} LOCATION )
-+	pkg_check_modules(${target_name} ${target_name})
- 
-         # must dereference both var and option names once (!) and IF will evaluate their values
--        if( NOT target_location  )
+         
+-        if( NOT TARGET ${target_name} )
++        pkg_check_modules(${target_name} ${target_name})
++
 +        if( NOT ${${target_name}_FOUND} )
              set( ${cumulative_var} FALSE )
              GBX_UTIL_MAKE_OPTION_NAME( option_name ${module_type} ${module_name} )
              if( is_exe )
-@@ -168,7 +170,10 @@
+@@ -164,7 +169,10 @@
              else( is_exe )
-                 GBX_NOT_add_library( ${module_name} ${reason} )
+                 GBX_NOT_ADD_LIBRARY( ${module_name} ${reason} )
              endif( is_exe )
--        endif( NOT target_location )
+-        endif( NOT TARGET ${target_name} )
 +        else( NOT ${${target_name}_FOUND} )
-+	    link_directories(${${target_name}_LIBRARY_DIRS})
-+	    include_directories(${${target_name}_INCLUDE_DIRS})
++          link_directories(${${target_name}_LIBRARY_DIRS})
++          include_directories(${${target_name}_INCLUDE_DIRS})
 +        endif( NOT ${${target_name}_FOUND} )
  
      endif( ${cumulative_var} )

@@ -6,6 +6,8 @@ lib/gearbox/libhokuyo_aist.so.${PKGVERSION}
 lib/pkgconfig/hokuyo_aist.pc
 share/gearbox/hokuyo_aist/CMakeLists.txt
 share/gearbox/hokuyo_aist/example.cpp
-share/gearbox/hokuyo_aist/example.logr
-share/gearbox/hokuyo_aist/example.logw
+share/gearbox/hokuyo_aist/example_urg_04lx.logr
+share/gearbox/hokuyo_aist/example_urg_04lx.logw
+share/gearbox/hokuyo_aist/example_utm_30lx.logr
+share/gearbox/hokuyo_aist/example_utm_30lx.logw
 share/gearbox/hokuyo_aist/example.readme

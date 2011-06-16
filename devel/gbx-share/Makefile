@@ -3,7 +3,6 @@
 #
 GBX_PACKAGE=	share-${GBX_VERSION}
 GBX_COMMENT=	(shared files)
-PKGREVISION=	1
 
 CATEGORIES=	devel
 LICENSE=	gnu-lgpl-v2

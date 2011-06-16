@@ -1,7 +1,7 @@
-SHA1 (gearbox-9.11.tar.gz) = d977532e42d9b3832799e6966699fd3046668d15
-RMD160 (gearbox-9.11.tar.gz) = 943bb19fd7a4e9b8e9168609f46811c222e92483
-Size (gearbox-9.11.tar.gz) = 326183 bytes
-SHA1 (patch-aa) = f54cd85c3460c6105a750a46b45a2c911b712ab1
+SHA1 (gearbox-10.11.tar.gz) = ec6f890883428d3cc538a1b804657ccb41dfbeea
+RMD160 (gearbox-10.11.tar.gz) = 658b5ff76866080b3cc855cb98310ac083ed2cca
+Size (gearbox-10.11.tar.gz) = 386044 bytes
+SHA1 (patch-aa) = ee5efe25fc31543fb30730c7a1ffa8a92fc137e2
 SHA1 (patch-ab) = bdd89039070954524e18e5177d43597f92eea272
 SHA1 (patch-ac) = aa8b0e54a6ff32a89c9263150bdbd6f03c305d11
 SHA1 (patch-ad) = 53dfafbf31285d1b93cb4b890003e389784aac07

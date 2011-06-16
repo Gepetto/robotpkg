@@ -1,7 +1,7 @@
 # robotpkg Makefile for:	hardware/gbx-hokuyo-aist
 # Created:			Anthony Mallet on Wed, 17 Mar 2010
 #
-GBX_PACKAGE=	hokuyo-aist-1.0.0
+GBX_PACKAGE=	hokuyo-aist-2.0.0
 GBX_COMMENT=	Hokuyo AIST driver
 
 CATEGORIES=	hardware
