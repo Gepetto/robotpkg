@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 25 Aug 2010
 #
 
-DISTNAME=		velodyne-genom-1.0
+DISTNAME=		velodyne-genom-1.1
 CATEGORIES=		hardware
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=velodyne/}
