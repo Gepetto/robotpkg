@@ -1,0 +1,16 @@
+diff --git a/src/tclserv_client.c b/src/tclserv_client.c
+index c8e2958..bc04f77 100644
+--- src/tclserv_client.c
++++ src/tclserv_client.c
+@@ -767,8 +767,9 @@ tclserv_client_abort(TCLSERV_CLIENT_ID id, ssize_t rqstId)
+ 		return -2; // XXX wait for ack and abort ?
+ 
+ 	if (current->state == ACK) {
+-		snprintf(buf, sizeof(buf), "ABORT %d\r\n", current->activityId);
+-		return send_command_and_check_ok(id, buf, NULL);
++		snprintf(buf, sizeof(buf), "ABORT %d\r\n", current->rqstId);
++		ssize_t abortRqstId = tclserv_client_rpc(id, buf);
++		return tclserv_client_wait(id, abortRqstId, NULL);
+ 	}
+ 
+ 	return -2; // invalid state :D
