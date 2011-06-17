@@ -1,0 +1,13 @@
+diff --git a/canvas/server/tclservClient/error.c b/canvas/server/tclservClient/error.c
+index cfe3b2f..942bfe5 100644
+--- canvas/server/tclservClient/error.c
++++ canvas/server/tclservClient/error.c
+@@ -41,7 +41,7 @@ const char* $module$_error_str(int err)
+ 	   i++)
+   {
+ 	  if (err == $module$TclservClientErrMsgs[i].err)  
+-		  return $module$TclservClientErrMsgs[i].msg + sizeof("S_$module_$");
++		  return $module$TclservClientErrMsgs[i].msg + sizeof("S_$module$_");
+   }
+ 
+   return NULL;
