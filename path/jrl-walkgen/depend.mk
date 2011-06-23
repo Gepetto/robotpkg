@@ -16,6 +16,10 @@ DEPEND_USE+=		jrl-walkgen
 
 DEPEND_ABI.jrl-walkgen?=jrl-walkgen>=2.4.1
 DEPEND_DIR.jrl-walkgen?=../../path/jrl-walkgen
+
+SYSTEM_SEARCH.jrl-walkgen=\
+	include/jrl/walkgen/patterngeneratorinterface.hh\
+	lib/pkgconfig/jrl-walkgen.pc
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

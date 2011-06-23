@@ -2,13 +2,13 @@
 # Created:			Anthony Mallet on Tue, 15 May 2007
 #
 
-DISTNAME=	walkgenjrl-${VERSION}
+DISTNAME=	jrl-walkgen-${VERSION}
 PKGNAME=	jrl-walkgen-${VERSION}
-VERSION=	3.0.3
+VERSION=	3.1.5
 
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-walkgen/}
-MASTER_REPOSITORY=	git@github.com:jrl-umi3218/jrl-walkgen.git
+MASTER_REPOSITORY=	git git@github.com:jrl-umi3218/jrl-walkgen.git
 
 USE_LANGUAGES+=fortran c c++
 
@@ -18,7 +18,7 @@ COMMENT=	Walk pattern generator for the HRP-2 humanoid robot.
 LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES+=		c++ fortran
-DOXYGEN_PLIST_DIR+=	share/doc/walkGenJrl
+DOXYGEN_PLIST_DIR+=	share/doc/jrl-walkgen
 
 PKG_SUPPORTED_OPTIONS+= debug
 PKG_OPTION_DESCR.debug=	Compile in debugging mode
