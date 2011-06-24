@@ -2,8 +2,8 @@
 # Created:			Anthony Mallet on Wed, 17 Sep 2008
 #
 
-DISTNAME=	jrl-mathtools-1.4.4
-PKGNAME=	jrl-mathtools-1.4.4
+DISTNAME=	jrl-mathtools-1.5
+PKGNAME=	jrl-mathtools-1.5
 
 CATEGORIES=	math
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
