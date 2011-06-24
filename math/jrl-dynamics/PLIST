@@ -18,7 +18,7 @@ include/jrl/dynamics/joint.hh
 include/jrl/dynamics/robotdynamicsimpl.hh
 include/jrl/dynamics/warning.hh
 lib/libjrl-dynamics.so
-lib/libjrl-dynamics.so.1.19.3
+lib/libjrl-dynamics.so.${PKGVERSION}
 lib/pkgconfig/jrl-dynamics.pc
 share/jrl-dynamics/examples/CommonTools.cpp
 share/jrl-dynamics/examples/CommonTools.h
@@ -36,4 +36,4 @@ share/jrl-dynamics/examples/data/sample.wrl
 share/jrl-dynamics/examples/data/sampleInitConfig.dat
 share/jrl-dynamics/examples/data/sampleLinkJointRank.xml
 share/jrl-dynamics/examples/data/sampleSpecificities.xml
-share/jrl/dynamics/examples/CMakeLists.txt
+share/jrl-dynamics/examples/CMakeLists.txt
