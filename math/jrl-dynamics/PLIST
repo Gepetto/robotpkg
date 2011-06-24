@@ -36,4 +36,4 @@ share/jrl-dynamics/examples/data/sample.wrl
 share/jrl-dynamics/examples/data/sampleInitConfig.dat
 share/jrl-dynamics/examples/data/sampleLinkJointRank.xml
 share/jrl-dynamics/examples/data/sampleSpecificities.xml
-share/jrl-dynamics/examples/CMakeLists.txt
+share/jrl-dynamics/examples/CMakeLists.txt.example
