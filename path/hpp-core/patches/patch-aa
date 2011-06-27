@@ -1,0 +1,13 @@
+*** src/humanoid-robot.cc~	2011-04-19 16:22:00.000000000 +0200
+--- src/humanoid-robot.cc	2011-06-27 11:36:09.683841735 +0200
+***************
+*** 509,514 ****
+--- 509,516 ----
+    // Get right foot values by symmetry
+    anklePosInFootFrame(1) *= -1;
+    inRobot->rightFoot(foot);
++   foot->setAnklePositionInLocalFrame(anklePosInFootFrame);
++   foot->setSoleSize(soleLength->value(), soleWidth->value());
+  
+    // left wrist
+    name = leftWrist->value();
