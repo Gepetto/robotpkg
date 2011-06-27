@@ -1,0 +1,23 @@
+*** CMakeLists.txt.old	2011-06-23 16:48:15.948893085 +0200
+--- CMakeLists.txt	2011-06-23 16:48:25.401890317 +0200
+***************
+*** 47,54 ****
+  ADD_REQUIRED_DEPENDENCY("jrl-dynamics >= 1.19.1")
+  
+  # Optional ones.
+- ADD_OPTIONAL_DEPENDENCY("hrp2_14 >= 1.0.1")
+- ADD_OPTIONAL_DEPENDENCY("hrp2-dynamics >= 1.0.1")
+  
+  MESSAGE(STATUS "hrp2-dynamics: " ${HRP2_DYNAMICS_FOUND})
+  # Add aggressive optimization flags in release mode.
+--- 47,52 ----
+***************
+*** 76,82 ****
+  
+  # Define subdirectories to explore for cmake
+  ADD_SUBDIRECTORY(src)
+- ADD_SUBDIRECTORY(tests)
+  
+  # Generate dependency to jrl-walkgen in pc file
+  PKG_CONFIG_APPEND_LIBS("jrl-walkgen")
+--- 74,79 ----
