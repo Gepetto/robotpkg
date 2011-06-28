@@ -4,7 +4,7 @@
 
 DISTNAME=	abstract-gik-task-${VERSION}
 PKGNAME=	abstract-gik-task-${VERSION}
-VERSION=	2.5
+VERSION=	2.6
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=abstract-gik-task/}
