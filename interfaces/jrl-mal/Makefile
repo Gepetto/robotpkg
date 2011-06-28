@@ -23,7 +23,7 @@ CMAKE_ARGS+= -DLAPACK_lapack_LIBRARY=${PREFIX.lapack}/lib/liblapack.so
 
 # options
 PKG_SUPPORTED_OPTIONS+=	t3d jrl-mathtools
-PKG_SUGGESTED_OPTIONS+=	t3d
+PKG_SUGGESTED_OPTIONS+=	jrl-mathtools
 
 PKG_OPTION_DESCR.t3d=	Use t3d for rigid body transformations
 define PKG_OPTION_SET.t3d
