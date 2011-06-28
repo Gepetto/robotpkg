@@ -1,4 +1,7 @@
-@comment Sat Apr 16 15:13:29 CEST 2011
+@comment Tue Jun 28 14:29:11 CEST 2011
+include/abstract/gik/task/config.hh
+include/abstract/gik/task/deprecated.hh
+include/abstract/gik/task/warning.hh
 include/gikTask/jrlGikComConstraint.h
 include/gikTask/jrlGikGazeConstraint.h
 include/gikTask/jrlGikJointStateConstraint.h
@@ -13,5 +16,8 @@ include/gikTask/jrlGikStateConstraint.h
 include/gikTask/jrlGikTransformationConstraint.h
 include/gikTask/jrlLinearConstraint.h
 include/gikTask/jrlRobotMotion.h
-lib/pkgconfig/abstractGikTask.pc
+lib/pkgconfig/abstract-gik-task.pc
 @dirrm include/gikTask
+@dirrm include/abstract/gik/task
+@dirrm include/abstract/gik
+@dirrm include/abstract

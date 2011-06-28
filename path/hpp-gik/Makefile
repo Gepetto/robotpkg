@@ -19,7 +19,7 @@ USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/hpp-gik
 CMAKE_ARGS+=	-DDISABLE_TEST=YES
 
-include ../../interfaces/jrl-interface-giktask/depend.mk
+include ../../interfaces/abstract-gik-task/depend.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
