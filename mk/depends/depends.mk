@@ -48,6 +48,7 @@
 # depends is a public target to install missing dependencies for
 # the package.
 #
+_DEPENDS_TARGETS+=	cbbh
 _DEPENDS_TARGETS+=	$(call add-barrier, bootstrap-depends, depends)
 _DEPENDS_TARGETS+=	acquire-depends-lock
 _DEPENDS_TARGETS+=	${_COOKIE.depends}
@@ -110,6 +111,7 @@ depends-cookie: makedirs
 # real-depends is a helper target onto which one can hook all of the
 # targets that do the actual dependency installation.
 #
+_REAL_DEPENDS_TARGETS+=	cbbh
 _REAL_DEPENDS_TARGETS+=	pre-depends-hook
 _REAL_DEPENDS_TARGETS+=	depends-message
 _REAL_DEPENDS_TARGETS+= sys-depends
