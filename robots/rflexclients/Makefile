@@ -1,16 +1,17 @@
-# robotpkg Makefile for:	robot/rflexclients
+# robotpkg Makefile for:	robots/rflexclients
 # Created:			Arnaud Degroote on Mon, 19 May 2008
 #
 
 DISTNAME=		rflexclients-${VERSION}
 VERSION=		1.0.1
-CATEGORIES=		robot
+CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://git/robots/rFlex-clients.git
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Driver and interface for Rflex
+LICENSE=		isc
 
 GNU_CONFIGURE=		yes
 
