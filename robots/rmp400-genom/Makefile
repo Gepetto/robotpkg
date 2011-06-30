@@ -44,7 +44,7 @@ endef
 
 GENOM_MODULE=		rmp400
 include ../../architecture/genom/depend.mk
-include ../../wip/mana-emergency/depend.mk
+-include ../../wip/mana-emergency/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
