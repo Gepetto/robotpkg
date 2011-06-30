@@ -8,7 +8,7 @@ VERSION=	1.19.3
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}/jrl-mal/
-MASTER_REPOSITORY=	git@github.com:jrl-umi3218/jrl-mal.git
+MASTER_REPOSITORY=	git git@github.com:jrl-umi3218/jrl-mal.git
 
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
