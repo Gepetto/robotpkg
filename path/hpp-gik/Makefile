@@ -8,7 +8,7 @@ VERSION=	2.7.3
 
 CATEGORIES=	path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpp-gik/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hpp-gik
+MASTER_REPOSITORY=	git git@github.com:laas/hpp-gik
 LICENSE=	gnu-lgpl-v3
 
 MAINTAINER=	gepetto@laas.fr
