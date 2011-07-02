@@ -1,0 +1,12 @@
+*** include/kwsPlus/roadmap/kwsPlusLTRdmBuilder.h~	2009-07-27 11:01:16.000000000 +0200
+--- include/kwsPlus/roadmap/kwsPlusLTRdmBuilder.h	2011-07-02 09:25:26.016089394 +0200
+***************
+*** 15,20 ****
+--- 15,21 ----
+  #include "KineoWorks2/kwsValidatorDPCollision.h"
+  #include "KineoWorks2/kwsDiffusingRdmBuilder.h"
+  #include "KineoWorks2/kwsIPPRdmBuilder.h"
++ #include "KineoWorks2/kwsShooterConfigSpace.h"
+  #include "KineoWorks2/kwsRoadmapBuilder.h"
+  #include "KineoWorks2/kwsRoadmap.h"
+  #include "KineoWorks2/kwsDistance.h"
