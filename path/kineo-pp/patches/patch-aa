@@ -1,0 +1,29 @@
+*** interfaces/KineoUtility/kitDefine.h~	2008-07-17 17:22:10.000000000 +0200
+--- interfaces/KineoUtility/kitDefine.h	2011-07-03 11:53:06.614759241 +0200
+***************
+*** 96,107 ****
+  #define		KIT_POINTER_DEFS( t )					typedef KIT_SHARED_PTR(t) t##ShPtr; \
+  																				typedef KIT_WEAK_PTR(t) t##WkPtr; \
+  																				typedef KIT_SHARED_PTR_CONST(t) t##ConstShPtr; \
+! 																				typedef KIT_WEAK_PTR_CONST(t) t##ConstWkPtr;
+  
+  /** Makes a forward declaration of class <tt>\a t</tt> and of the four
+  *   types of shared pointers associated with it.
+  */
+! #define		KIT_PREDEF_CLASS( t )					class t; KIT_POINTER_DEFS(t);
+  
+  /** Dynamically casts the shared pointer \a x as a shared pointer to
+  *   class <tt>\a t</tt>.
+--- 96,107 ----
+  #define		KIT_POINTER_DEFS( t )					typedef KIT_SHARED_PTR(t) t##ShPtr; \
+  																				typedef KIT_WEAK_PTR(t) t##WkPtr; \
+  																				typedef KIT_SHARED_PTR_CONST(t) t##ConstShPtr; \
+! 																				typedef KIT_WEAK_PTR_CONST(t) t##ConstWkPtr
+  
+  /** Makes a forward declaration of class <tt>\a t</tt> and of the four
+  *   types of shared pointers associated with it.
+  */
+! #define		KIT_PREDEF_CLASS( t )					class t; KIT_POINTER_DEFS(t)
+  
+  /** Dynamically casts the shared pointer \a x as a shared pointer to
+  *   class <tt>\a t</tt>.
