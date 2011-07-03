@@ -1,0 +1,21 @@
+*** include/hppModel/hppJoint.h~	2011-04-21 15:29:36.000000000 +0200
+--- include/hppModel/hppJoint.h	2011-07-03 17:58:07.450966896 +0200
+***************
+*** 10,17 ****
+  #include "KineoModel/kppJointComponent.h"
+  #include "hppModel/hppDevice.h"
+  
+! KIT_PREDEF_CLASS(ChppJoint)
+! KIT_PREDEF_CLASS(ChppBody)
+  /**
+     \brief Joint of a ChppDevice
+  */
+--- 10,17 ----
+  #include "KineoModel/kppJointComponent.h"
+  #include "hppModel/hppDevice.h"
+  
+! KIT_PREDEF_CLASS(ChppJoint);
+! KIT_PREDEF_CLASS(ChppBody);
+  /**
+     \brief Joint of a ChppDevice
+  */
