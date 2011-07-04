@@ -2,8 +2,8 @@
 # Created:			Séverin Lemaignan on Tue, 7 Jul 2009
 #
 
-DISTNAME=	       pellet-2.1.0
-PKGVERSION=	       2.1.0
+DISTNAME=	       pellet-2.2.2
+PKGVERSION=	       2.2.2
 PKGNAME=	       pellet-${PKGVERSION}
 MASTER_SITES=	   http://clarkparsia.com/pellet/downloads/
 EXTRACT_SUFX=	   .zip
