@@ -3,6 +3,7 @@
 
 COMMENT=	Motion generation software
 
+SUBDIR+=	dynamic-graph
 SUBDIR+=	contlaw
 SUBDIR+=	libmwalk
 SUBDIR+=	locoDemo-genom
