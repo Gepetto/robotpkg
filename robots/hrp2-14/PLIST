@@ -1,33 +1,35 @@
-@comment Sat Apr 16 11:42:20 CEST 2011
+@comment Thu Jul 7 13:58:47 CEST 2011
+include/hrp2-14/hrp2_14.h
 include/hrp2/14/config.hh
 include/hrp2/14/deprecated.hh
 include/hrp2/14/warning.hh
-include/hrp2_14/hrp2_14.h
-lib/pkgconfig/hrp2_14.pc
-share/hrp2_14/HRP2JRLmain.wrl
-share/hrp2_14/HRP2JRLmainsmall.wrl
-share/hrp2_14/HRP2LinkJointRank.xml
-share/hrp2_14/HRP2LinkJointRankSmall.xml
-share/hrp2_14/HRP2Specificities.xml
-share/hrp2_14/HRP2SpecificitiesSmall.xml
-share/hrp2_14/bottom-left.data
-share/hrp2_14/bottom-right.data
-share/hrp2_14/bottom.data
-share/hrp2_14/hrp2.geom
-share/hrp2_14/top-left.data
-share/hrp2_14/top-right.data
-share/hrp2_14/top.data
-share/hrp2_14/turnCCW180.hip
-share/hrp2_14/turnCCW180.pos
-share/hrp2_14/turnCCW180.zmp
-share/hrp2_14/turnCCW90.hip
-share/hrp2_14/turnCCW90.pos
-share/hrp2_14/turnCCW90.zmp
-share/hrp2_14/turnCW180.hip
-share/hrp2_14/turnCW180.pos
-share/hrp2_14/turnCW180.zmp
-share/hrp2_14/turnCW90.hip
-share/hrp2_14/turnCW90.pos
-share/hrp2_14/turnCW90.zmp
-@dirrm share/hrp2_14
-@dirrm include/hrp2/14
+lib/pkgconfig/hrp2-14.pc
+share/hrp2-14/HRP2JRLInitConfig.dat
+share/hrp2-14/HRP2JRLInitConfigSmall.dat
+share/hrp2-14/HRP2JRLmain.wrl
+share/hrp2-14/HRP2JRLmainsmall.wrl
+share/hrp2-14/HRP2LinkJointRank.xml
+share/hrp2-14/HRP2LinkJointRankSmall.xml
+share/hrp2-14/HRP2Specificities.xml
+share/hrp2-14/HRP2SpecificitiesSmall.xml
+share/hrp2-14/bottom-left.data
+share/hrp2-14/bottom-right.data
+share/hrp2-14/bottom.data
+share/hrp2-14/hrp2.geom
+share/hrp2-14/top-left.data
+share/hrp2-14/top-right.data
+share/hrp2-14/top.data
+share/hrp2-14/turnCCW180.hip
+share/hrp2-14/turnCCW180.pos
+share/hrp2-14/turnCCW180.zmp
+share/hrp2-14/turnCCW90.hip
+share/hrp2-14/turnCCW90.pos
+share/hrp2-14/turnCCW90.zmp
+share/hrp2-14/turnCW180.hip
+share/hrp2-14/turnCW180.pos
+share/hrp2-14/turnCW180.zmp
+share/hrp2-14/turnCW90.hip
+share/hrp2-14/turnCW90.pos
+share/hrp2-14/turnCW90.zmp
+@dirrm include/hrp2-14
+@dirrm share/hrp2-14
