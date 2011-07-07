@@ -1,0 +1,22 @@
+@comment Thu Jul 7 15:44:02 CEST 2011
+bin/dg-python
+include/dynamic-graph/python/api.hh
+include/dynamic-graph/python/config.hh
+include/dynamic-graph/python/deprecated.hh
+include/dynamic-graph/python/exception-python.hh
+include/dynamic-graph/python/interpreter.hh
+include/dynamic-graph/python/warning.hh
+lib/libdynamic-graph-python.so
+lib/libdynamic-graph-python.so.${PKGVERSION}
+lib/pkgconfig/dynamic-graph-python.pc
+lib/python2.6/dist-packages/dynamic_graph/__init__.py
+lib/python2.6/dist-packages/dynamic_graph/attrpath.py
+lib/python2.6/dist-packages/dynamic_graph/entity.py
+lib/python2.6/dist-packages/dynamic_graph/matlab.py
+lib/python2.6/dist-packages/dynamic_graph/script_shortcuts.py
+lib/python2.6/dist-packages/dynamic_graph/signal_base.py
+lib/python2.6/dist-packages/dynamic_graph/tracer/__init__.py
+lib/python2.6/dist-packages/dynamic_graph/tracer/wrap.so
+lib/python2.6/dist-packages/dynamic_graph/tracer_real_time/__init__.py
+lib/python2.6/dist-packages/dynamic_graph/tracer_real_time/wrap.so
+lib/python2.6/dist-packages/dynamic_graph/wrap.so
