@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/hpp-template-corba
+# robotpkg depend.mk for:	middleware/hpp-template-corba
 # Created:			Thomas Moulard on Wed, 8 Sep 2010
 #
 
@@ -16,7 +16,7 @@ PREFER.hpp-template-corba?=	robotpkg
 DEPEND_USE+=			hpp-template-corba
 
 DEPEND_ABI.hpp-template-corba?=	hpp-template-corba>=0.4
-DEPEND_DIR.hpp-template-corba?=	../../devel/hpp-template-corba
+DEPEND_DIR.hpp-template-corba?=	../../middleware/hpp-template-corba
 
 SYSTEM_SEARCH.hpp-template-corba=\
 	include/hpp/corba/template/server.hh				\

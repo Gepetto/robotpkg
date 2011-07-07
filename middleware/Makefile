@@ -4,6 +4,7 @@
 COMMENT=	Middleware tools and libraries
 
 SUBDIR+=	ace
+SUBDIR+=	hpp-template-corba
 SUBDIR+=	libjyarp
 SUBDIR+=	libpyyarp
 SUBDIR+=	omniORB

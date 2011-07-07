@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	devel/hpp-template-corba
+# robotpkg Makefile for:	middleware/hpp-template-corba
 # Created:			Thomas Moulard on Wed, 8 Sep 2010
 #
 
