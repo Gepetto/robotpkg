@@ -17,7 +17,8 @@ LICENSE=	cnrs-hpp-closed-source
 USE_LANGUAGES+=		c c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/jrl-mathtools
 
-CMAKE_ARGS+=	-DBOOSTNUMERICBINDINGS_DIR=${PREFIX.boost-numeric-bindings}
+CMAKE_ARGS+=	-DBOOSTNUMERICBINDINGS_DIR=${PREFIX.boost-numeric-bindings} \
+	-DCXX_DISABLE_WERROR=True
 
 include ../../math/boost-numeric-bindings-v1/depend.mk
 include ../../mk/sysdep/cmake.mk
