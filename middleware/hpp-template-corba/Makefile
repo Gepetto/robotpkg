@@ -3,7 +3,8 @@
 #
 
 HPP_PACKAGE=	hpp-template-corba
-VERSION=	0.4
+VERSION=	1.1
+LICENSE=	gnu-lgpl-v3
 
 CATEGORIES=	devel
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}corba/hpp-template-corba
@@ -11,7 +12,6 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}corba/hpp-template-corba
 COMMENT=	Template CORBA server
 
 USE_LANGUAGES+=	c c++
-GNU_CONFIGURE=	yes
 
 # --- options --------------------------------------------------------
 
@@ -27,6 +27,7 @@ endef
 
 # --------------------------------------------------------------------
 
+include ../../mk/sysdep/cmake.mk
 include ../../meta-pkgs/hpp/Makefile.common
 include ../../middleware/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
