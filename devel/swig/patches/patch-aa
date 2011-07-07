@@ -1,0 +1,66 @@
+Disable installation of temporary eswig executable
+From $NetBSD: patch-aa,v 1.4 2010/02/04 15:39:39 taca Exp $
+
+--- Source/Makefile.in~	2011-05-21 22:56:26.000000000 +0200
++++ Source/Makefile.in	2011-07-07 21:36:40.000000000 +0200
+@@ -472,60 +472,6 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .cxx .o .obj .y
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+-	@for dep in $?; do \
+-	  case '$(am__configure_deps)' in \
+-	    *$$dep*) \
+-	      ( cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh ) \
+-	        && { if test -f $@; then exit 0; else break; fi; }; \
+-	      exit 1;; \
+-	  esac; \
+-	done; \
+-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign Source/Makefile'; \
+-	$(am__cd) $(top_srcdir) && \
+-	  $(AUTOMAKE) --foreign Source/Makefile
+-.PRECIOUS: Makefile
+-Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
+-	@case '$?' in \
+-	  *config.status*) \
+-	    cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh;; \
+-	  *) \
+-	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)'; \
+-	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe);; \
+-	esac;
+-
+-$(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+-	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-
+-$(top_srcdir)/configure:  $(am__configure_deps)
+-	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+-	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(am__aclocal_m4_deps):
+-install-binPROGRAMS: $(bin_PROGRAMS)
+-	@$(NORMAL_INSTALL)
+-	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
+-	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+-	for p in $$list; do echo "$$p $$p"; done | \
+-	sed 's/$(EXEEXT)$$//' | \
+-	while read p p1; do if test -f $$p; \
+-	  then echo "$$p"; echo "$$p"; else :; fi; \
+-	done | \
+-	sed -e 'p;s,.*/,,;n;h' -e 's|.*|.|' \
+-	    -e 'p;x;s,.*/,,;s/$(EXEEXT)$$//;$(transform);s/$$/$(EXEEXT)/' | \
+-	sed 'N;N;N;s,\n, ,g' | \
+-	$(AWK) 'BEGIN { files["."] = ""; dirs["."] = 1 } \
+-	  { d=$$3; if (dirs[d] != 1) { print "d", d; dirs[d] = 1 } \
+-	    if ($$2 == $$4) files[d] = files[d] " " $$1; \
+-	    else { print "f", $$3 "/" $$4, $$1; } } \
+-	  END { for (d in files) print "f", d, files[d] }' | \
+-	while read type dir files; do \
+-	    if test "$$dir" = .; then dir=; else dir=/$$dir; fi; \
+-	    test -z "$$files" || { \
+-	      echo " $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$files '$(DESTDIR)$(bindir)$$dir'"; \
+-	      $(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(bindir)$$dir" || exit $$?; \
+-	    } \
+-	; done
+ 
+ uninstall-binPROGRAMS:
+ 	@$(NORMAL_UNINSTALL)

@@ -35,7 +35,7 @@ include ../../lang/sun-jdk6/depend.mk
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/cmake.mk
-include ../../mk/sysdep/swig.mk
+include ../../devel/swig/depend.mk
 include ../../mk/robotpkg.mk
 
 post-configure:

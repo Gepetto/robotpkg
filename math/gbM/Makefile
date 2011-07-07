@@ -20,7 +20,7 @@ pre-configure: autoreconf
 include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
-include ../../mk/sysdep/swig.mk
+include ../../devel/swig/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/robotpkg.mk

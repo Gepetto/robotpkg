@@ -25,5 +25,6 @@ SUBDIR+=	mkdep
 SUBDIR+=	py-simpleparse
 SUBDIR+=	sun-java3d
 SUBDIR+=	sun-jmf
+SUBDIR+=	swig
 
 include ../mk/robotpkg.subdir.mk

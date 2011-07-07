@@ -16,7 +16,7 @@ COMMENT=		SoftMotion Planner Library
 
 USE_LANGUAGES+=		c c++
 
-include ../../mk/sysdep/swig.mk
+include ../../devel/swig/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
