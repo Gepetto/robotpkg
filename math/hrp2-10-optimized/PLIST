@@ -1,0 +1,12 @@
+@comment Fri Jul 8 16:35:04 CEST 2011
+include/hrp2-10-optimized/config.hh
+include/hrp2-10-optimized/deprecated.hh
+include/hrp2-10-optimized/hrp2-10-full-optimized.hh
+include/hrp2-10-optimized/hrp2-10-optimized.hh
+include/hrp2-10-optimized/hrp2-10-small-old-optimized.hh
+include/hrp2-10-optimized/hrp2-10-small-optimized.hh
+include/hrp2-10-optimized/warning.hh
+lib/libhrp2-10-optimized.so
+lib/libhrp2-10-optimized.so.${PKGVERSION}
+lib/pkgconfig/hrp2-10-optimized.pc
+@dirrm include/hrp2-10-optimized

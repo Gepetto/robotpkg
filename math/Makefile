@@ -11,6 +11,7 @@ SUBDIR+=	eigen3
 SUBDIR+=	fsqp
 SUBDIR+=	gbM
 SUBDIR+=	gmp
+SUBDIR+=	hrp2-10-optimized
 SUBDIR+=	hrp2-dynamics
 SUBDIR+=	jrl-dynamics
 SUBDIR+=	jrl-mathtools
