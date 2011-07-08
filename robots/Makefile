@@ -19,5 +19,6 @@ SUBDIR+=	rflexclients
 SUBDIR+=	rmp400-genom
 SUBDIR+=	rmp-libs
 SUBDIR+=	scout-genom
+SUBDIR+=	sot-openhrp
 
 include ../mk/robotpkg.subdir.mk
