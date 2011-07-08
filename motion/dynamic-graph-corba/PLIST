@@ -1,0 +1,20 @@
+@comment Fri Jul 8 12:29:55 CEST 2011
+bin/dg-remote
+bin/dg-server
+include/dynamic-graph/corba/api.hh
+include/dynamic-graph/corba/config.hh
+include/dynamic-graph/corba/deprecated.hh
+include/dynamic-graph/corba/interpreter.hh
+include/dynamic-graph/corba/warning.hh
+lib/libcorba-server.so
+lib/libdynamic-graph-corba.so
+lib/pkgconfig/dynamic-graph-corba.pc
+lib/python2.6/dist-packages/dynamic_graph/corba/__init__.py
+lib/python2.6/dist-packages/dynamic_graph/corba/dynamicGraph/__init__.py
+lib/python2.6/dist-packages/dynamic_graph/corba/dynamicGraph__POA/__init__.py
+lib/python2.6/dist-packages/dynamic_graph/corba/interpreter_idl.py
+lib/python2.6/dist-packages/dynamic_graph/corba/wrap.so
+lib/python2.6/dist-packages/dynamic_graph/corba_server/__init__.py
+lib/python2.6/dist-packages/dynamic_graph/corba_server/wrap.so
+share/idl/dynamic-graph/corba-signal.idl
+share/idl/dynamic-graph/interpreter.idl
