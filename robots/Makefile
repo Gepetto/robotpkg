@@ -4,6 +4,7 @@
 COMMENT=	Robots specific packages
 
 SUBDIR+=	fingers-genom
+SUBDIR+=	hrp2-10
 SUBDIR+=	hrp2-14
 SUBDIR+=	hrp2-builder
 SUBDIR+=	hrp2-genom
