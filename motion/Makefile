@@ -13,5 +13,6 @@ SUBDIR+=	mwalk-genom
 SUBDIR+=	pilo-genom
 SUBDIR+=	softMotion-libs
 SUBDIR+=	sot-core
+SUBDIR+=	sot-dynamic
 
 include ../mk/robotpkg.subdir.mk
