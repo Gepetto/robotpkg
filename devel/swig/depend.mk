@@ -15,7 +15,7 @@ PREFER.swig?=		system
 
 DEPEND_USE+=		swig
 DEPEND_ABI.swig?=	swig>=1.3
-DEPEND_DIR.swig=	devel/swig
+DEPEND_DIR.swig?=	../../devel/swig
 DEPEND_METHOD.swig+=	build
 
 SYSTEM_SEARCH.swig=	'bin/swig:/Version/{s/[^.0-9]//gp;q;}:% -version'
