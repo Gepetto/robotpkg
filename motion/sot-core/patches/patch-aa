@@ -1,0 +1,12 @@
+*** CMakeLists.txt~	2011-06-21 20:37:45.000000000 +0200
+--- CMakeLists.txt	2011-07-08 10:21:15.876775752 +0200
+***************
+*** 50,56 ****
+  
+  ADD_SUBDIRECTORY(include)
+  ADD_SUBDIRECTORY(src)
+- ADD_SUBDIRECTORY(unitTesting)
+  ADD_SUBDIRECTORY(doc)
+  
+  SETUP_PROJECT_FINALIZE()
+--- 50,55 ----
