@@ -1,5 +1,5 @@
-# robotpkg Makefile for:	robots/hrp2_14
-# Created:			florent on Wed, 10 Oct 2007
+# robotpkg Makefile for:	robots/hrp2-10
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 DISTNAME=	hrp2-10-1.1

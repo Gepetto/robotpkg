@@ -1,12 +1,12 @@
 # robotpkg Makefile for:	middleware/hpp-template-corba
-# Created:			Thomas Moulard on Wed, 8 Sep 2010
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 HPP_PACKAGE=	hpp-template-corba
 VERSION=	1.1
 LICENSE=	gnu-lgpl-v3
 
-CATEGORIES=	devel
+CATEGORIES=	middleware
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}corba/hpp-template-corba
 
 COMMENT=	Template CORBA server

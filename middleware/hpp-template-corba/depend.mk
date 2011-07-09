@@ -1,5 +1,5 @@
 # robotpkg depend.mk for:	middleware/hpp-template-corba
-# Created:			Thomas Moulard on Wed, 8 Sep 2010
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH}+

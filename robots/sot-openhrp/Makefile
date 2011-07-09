@@ -1,5 +1,5 @@
 # robotpkg Makefile for:	robots/sot-openhrp
-# Created:			florent on Wed, 10 Oct 2007
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 DISTNAME=	sot-openhrp-${VERSION}

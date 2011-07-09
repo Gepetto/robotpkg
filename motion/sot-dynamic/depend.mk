@@ -1,5 +1,5 @@
 # robotpkg depend.mk for:	motion/sot-dynamic
-# Created:			Florent Lamiraux, Thu 7 July 2011
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+

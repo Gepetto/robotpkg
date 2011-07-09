@@ -1,5 +1,5 @@
 # robotpkg Makefile for:	motion/sot-core
-# Created:			Anthony Mallet on Thu, 28 Jun 2007
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 DISTNAME=	sot-core-${VERSION}

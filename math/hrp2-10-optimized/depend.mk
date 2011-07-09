@@ -1,5 +1,5 @@
 # robotpkg depend.mk for:	math/hrp2-10-optimized
-# Created:			Anthony Mallet on Mon, 17 Nov 2008
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+

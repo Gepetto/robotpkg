@@ -1,5 +1,5 @@
 # robotpkg depend.mk for:	robots/hrp2-10
-# Created:			Florent Lamiraux, Fri Jul 8, 2011
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+

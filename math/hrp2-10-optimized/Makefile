@@ -1,5 +1,5 @@
 # robotpkg Makefile for:	math/hrp2-10-optimized
-# Created:			Florent Lamiraux, Fri July 8, 2011
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 DISTNAME=	hrp2-10-optimized-${VERSION}

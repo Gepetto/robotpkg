@@ -1,5 +1,5 @@
 # robotpkg Makefile for:	motion/sot-dynamic
-# Created:			Florent Lamiraux on Fri, Jul 8 2011
+# Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
 DISTNAME=	sot-dynamic-${VERSION}
