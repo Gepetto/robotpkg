@@ -53,10 +53,10 @@ MASTER_REPOSITORY_JRL+=	\
 	git ssh://${JRL_GIT_USER:=@}softs.laas.fr/git/jrl/
 
 MASTER_REPOSITORY_GITHUB_LAAS+= \
-	git ssh://git@github.com/laas/
+	git https://github.com/laas/
 
 MASTER_REPOSITORY_GITHUB_JRL+= \
-	git ssh://git@github.com/jrl-umi3218/
+	git https://github.com/jrl-umi3218/
 
 MASTER_SITE_SOURCEFORGE+=	\
 	http://downloads.sourceforge.net/sourceforge/
