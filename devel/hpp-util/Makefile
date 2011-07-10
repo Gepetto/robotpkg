@@ -13,7 +13,7 @@ MAINTAINER=		hpp@laas.fr
 LICENSE=		gnu-gpl-v3
 
 MASTER_REPOSITORY=	git git://github.com/laas/hpp-util.git
-MASTER_SITES=		http://github.com/downloads/laas/${PACKAGE_NAME}/
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpp-util/}
 
 
 USE_LANGUAGES+=		c c++
