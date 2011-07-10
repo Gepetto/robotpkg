@@ -1,6 +1,10 @@
-@comment Sun Jun 13 11:21:56 CEST 2010
+@comment Sun Jul 10 09:56:39 CEST 2011
+include/hpp/corba/template/config.hh
 include/hpp/corba/template/debug.hh
+include/hpp/corba/template/deprecated.hh
 include/hpp/corba/template/doc.hh
 include/hpp/corba/template/server.hh
 include/hpp/corba/template/server.hxx
+include/hpp/corba/template/warning.hh
 lib/pkgconfig/hpp-template-corba.pc
+@dirrm include/hpp/corba
