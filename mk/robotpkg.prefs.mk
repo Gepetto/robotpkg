@@ -189,35 +189,29 @@ include ${ROBOTPKG_DIR}/mk/robotpkg.default.conf
 
 
 # --- Transform package Makefile variables and set defaults ----------------
+#
+# Make sure to use $(eval) and $(value) here to avoid early expansion of
+# variable references that may be part of PKGNAME and PKGVERSION. The idea is
+# to assign PKGNAME and PKGVERSION defined in the package to their _NOREV
+# version before redefining PKGNAME and PKGVERSION from the later.
+#
+
+# [_]PKGREVISION is the local package version [prefixed with r or empty]
+PKGREVISION?=
+_pkgrevision=		$(addprefix r,$(filter-out 0,$(strip ${PKGREVISION})))
 
 # PKGNAME[_NOREV] is the package name with version [without revision number],
-ifneq (,$(filter-out 0,${PKGREVISION}))
-  ifdef PKGNAME
-    PKGNAME_NOREV:=	${PKGNAME}
-    PKGNAME:=		${PKGNAME}r${PKGREVISION}
-  else
-    PKGNAME:=		${DISTNAME}r${PKGREVISION}
-    PKGNAME_NOREV:=	${DISTNAME}
-  endif
-else
-  PKGNAME?=		${DISTNAME}
-  PKGNAME_NOREV=	${PKGNAME}
-endif
+PKGNAME?=		${DISTNAME}
+$(eval PKGNAME_NOREV=	$$(patsubst %${_pkgrevision},%,$(value PKGNAME)))
+PKGNAME=		${PKGNAME_NOREV}${_pkgrevision}
 
-# PKGVERSION is the package version number.
-ifdef PKGVERSION
-  ifneq (,$(filter-out 0,${PKGREVISION}))
-    PKGVERSION:=	${PKGVERSION:r${PKGREVISION}=}r${PKGREVISION}
-  endif
-else
-  PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
-endif
+# PKGVERSION[_NOREV] is the package version number [without revision number].
+PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
+$(eval PKGVERSION_NOREV=$$(patsubst %${_pkgrevision},%,$(value PKGVERSION)))
+PKGVERSION=		${PKGVERSION_NOREV}${_pkgrevision}
 
 # PKGBASE is the package name without version information,
 PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
-
-# PKGVERSION_NOREV is PKGVERSION without the revision number.
-PKGVERSION_NOREV:=	$(patsubst ${PKGBASE}-%,%,${PKGNAME_NOREV})
 
 # PKGWILDCARD is a pkg_install wildcard matching all versions of the package.
 PKGWILDCARD?=		${PKGBASE}-[0-9]*
