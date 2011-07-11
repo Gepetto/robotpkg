@@ -1,5 +1,5 @@
 # robotpkg depend.mk for:	robots/sot-openhrp
-# Created:			Florent Lamiraux on Sat,  9 Jul 2011
+# Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
@@ -14,7 +14,8 @@ ifeq (+,$(SOT_OPENHRP_DEPEND_MK)) # --------------------------------------
 PREFER.sot-openhrp?=	robotpkg
 
 SYSTEM_SEARCH.sot-openhrp=\
-
+	lib/pkgconfig/sot-openhrp.pc \
+	lib/libopenhrp.so
 
 DEPEND_USE+=		sot-openhrp
 

@@ -6,9 +6,13 @@ include/dynamic_graph/sot/openhrp/warning.hh
 lib/libopenhrp.so
 lib/libopenhrp.so.${PKGVERSION}
 lib/pkgconfig/sot-openhrp.pc
-lib/python2.6/dist-packages/dynamic_graph/sot/openhrp/__init__.py
-lib/python2.6/dist-packages/dynamic_graph/sot/openhrp/log.py
-lib/python2.6/dist-packages/dynamic_graph/sot/openhrp/prologue.py
-lib/python2.6/dist-packages/dynamic_graph/sot/openhrp/test_reach.py
-lib/python2.6/dist-packages/dynamic_graph/sot/openhrp/wrap.so
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/__init__.py
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/__init__.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/log.py
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/log.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/prologue.py
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/prologue.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/test_reach.py
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/test_reach.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/wrap.so
 @dirrm include/dynamic_graph/sot/openhrp
