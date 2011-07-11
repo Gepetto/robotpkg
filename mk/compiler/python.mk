@@ -89,9 +89,7 @@ endif
 PYTHON_VERSION:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
 	'import distutils.sysconfig;					\
 	print(distutils.sysconfig.get_config_var("VERSION"))'))
-PYTHON_SITELIB=$(if ${PYTHON_VERSION},$(shell ${PYTHON} 2>/dev/null -c	\
-	"from distutils import sysconfig;				\
-	print sysconfig.get_python_lib(0,0,prefix='')"))
+PYTHON_SITELIB=$(if ${PYTHON_VERSION},lib/python${PYTHON_VERSION}/site-packages)
 
 # PYTHONPATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
 # directories) that should be added to the python search paths.
