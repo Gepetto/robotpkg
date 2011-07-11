@@ -1,21 +1,20 @@
 # robotpkg Makefile for:	motion/dynamic-graph-python
-# Created:			Florent Lamiraux on Sat,  9 Jul 2011
+# Created:			Florent Lamiraux on Thu, 7 Jul 2011
 #
 
-DISTNAME=	dynamic-graph-python-${VERSION}
-PKGNAME=	dynamic-graph-python-${VERSION}
-VERSION=	2.5
-
-CATEGORIES=	motion
+VERSION=		2.5
+PKGREVISION=		1
+DISTNAME=		dynamic-graph-python-${VERSION}
+PKGNAME=		dynamic-graph-python-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-python/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL:=dynamic-graph-python}
-LICENSE=	gnu-lgpl-v3
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL}dynamic-graph-python
 
 MAINTAINER=	gepetto@laas.fr
-#HOMEPAGE=	
-COMMENT=	Python bindings for dynamic-graph
+CATEGORIES=	motion
+LICENSE=	gnu-lgpl-v3
+COMMENT=	Python bindings for motion/dynamic-graph package
 
-USE_LANGUAGES+=		c c++
+USE_LANGUAGES+=		c c++ python
 DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph-python
 
 include ../../motion/dynamic-graph/depend.mk
