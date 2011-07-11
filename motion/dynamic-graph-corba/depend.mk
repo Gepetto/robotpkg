@@ -1,5 +1,5 @@
 # robotpkg depend.mk for:	motion/dynamic-graph-corba
-# Created:			Florent Lamiraux on Sat,  9 Jul 2011
+# Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
