@@ -1,17 +1,16 @@
 # robotpkg Makefile for:	middleware/hpp-template-corba
-# Created:			Florent Lamiraux on Sat,  9 Jul 2011
+# Created:			Florent Lamiraux on Thu, 7 Jul 2011
 #
 
 HPP_PACKAGE=	hpp-template-corba
 VERSION=	1.1
-LICENSE=	gnu-lgpl-v3
+MASTER_REPOSITORY=${MASTER_REPOSITORY_GITHUB_LAAS}${HPP_PACKAGE}
 
 CATEGORIES=	middleware
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}corba/hpp-template-corba
+COMMENT=	CORBA server factory for HPP packages
+LICENSE=	gnu-lgpl-v3
 
-COMMENT=	Template CORBA server
-
-USE_LANGUAGES+=	c c++
+include ../../meta-pkgs/hpp/Makefile.common
 
 # --- options --------------------------------------------------------
 
@@ -19,7 +18,7 @@ USE_LANGUAGES+=	c c++
 PKG_SUPPORTED_OPTIONS+=	hpp-util
 PKG_SUGGESTED_OPTIONS+=	hpp-util
 
-PKG_OPTION_DESCR.hpp-util=	Trigger a dependency to hpp-util
+PKG_OPTION_DESCR.hpp-util=	Trigger a dependency on hpp-util
 define PKG_OPTION_SET.hpp-util
   CONFIGURE_ARGS+=	--enable-hpp-util
   include ../../devel/hpp-util/depend.mk
@@ -28,9 +27,5 @@ endef
 # --------------------------------------------------------------------
 
 include ../../mk/sysdep/cmake.mk
-include ../../meta-pkgs/hpp/Makefile.common
 include ../../middleware/omniORB/depend.mk
-include ../../pkgtools/libtool/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
-include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk
