@@ -1,21 +1,19 @@
 # robotpkg Makefile for:	motion/sot-dynamic
-# Created:			Florent Lamiraux on Sat,  9 Jul 2011
+# Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
-DISTNAME=	sot-dynamic-${VERSION}
-PKGNAME=	sot-dynamic-${VERSION}
-VERSION=	2.5
-
-CATEGORIES=	motion
+VERSION=		2.5
+PKGREVISION=		1
+DISTNAME=		sot-dynamic-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-dynamic/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL:=sot-dynamic}
-LICENSE=	gnu-lgpl-v3
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL}sot-dynamic
 
 MAINTAINER=	gepetto@laas.fr
-#HOMEPAGE=	
+CATEGORIES=	motion
+LICENSE=	gnu-lgpl-v3
 COMMENT=	Hierarchical task based control of humanoid robots
 
-USE_LANGUAGES+=		c c++
+USE_LANGUAGES+=		c c++ python
 DOXYGEN_PLIST_DIR+=	share/doc/sot-dynamic
 
 # Build the package in a separate directory
