@@ -45,6 +45,13 @@ sys-bootstrap-depends:
 # dependencies are those listed in DEPEND_PKG with a PREFER.<pkg> set to
 # 'system' or 'auto'.
 #
+
+# Define an empty rule for the generated files so that they are not rebuilt
+# automatically. This also prevents implicit rules for being searched.
+#
+_MAKEFILE_WITH_RECIPES+= ${_SYSBSDEPENDS_FILE} ${_SYSDEPENDS_FILE}
+${_SYSBSDEPENDS_FILE} ${_SYSDEPENDS_FILE}:;
+
 override define sys-resolve
 	${RUN} >$2; >${_SYSDEP_LOG};					\
 	notfound=; syspkg=;						\
