@@ -1,0 +1,152 @@
+#
+# Copyright (c) 2011 LAAS/CNRS
+# All rights reserved.
+#
+# Permission to use, copy, modify, and distribute this software for any purpose
+# with or without   fee is hereby granted, provided   that the above  copyright
+# notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+# REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+# INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+# PERFORMANCE OF THIS SOFTWARE.
+#
+#                                            Anthony Mallet on Tue Jul 12 2011
+#
+
+# This Makefile is included by robotpkg.mk and defines the show-% targets that
+# display miscellaneous information about a package.
+
+# basically require everything so that all possible variables are correctly
+# defined
+$(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
+
+# --- show-var -------------------------------------------------------------
+#
+# convenience target, to display make variables from command line
+# i.e. "make show-var VARNAME=var", will print var's value
+#
+$(call require-for, show-var show-vars,				\
+	$(if $(findstring PKG_, ${VARNAME} ${VARNAMES}),	\
+		${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk))
+
+.PHONY: show-var
+show-var: export _value=${${VARNAME}}
+show-var:
+	@${ECHO} "$$_value"
+
+# enhanced version of target above, to display multiple variables
+.PHONY: show-vars
+show-vars:
+	@:; $(foreach _v_,${VARNAMES},\
+		${RECURSIVE_MAKE} show-var VARNAME=${_v_};)
+
+
+# --- show-comment ---------------------------------------------------------
+#
+# print value of the COMMENT variable
+#
+.PHONY: show-comment
+show-comment:
+	@if [ $(call quote,${COMMENT})"" ]; then			\
+		${ECHO} $(call quote,${COMMENT});			\
+	elif [ -f COMMENT ] ; then					\
+		${CAT} COMMENT;						\
+	else								\
+		${ECHO} '(no description)';				\
+	fi
+
+
+# --- show-license ---------------------------------------------------------
+#
+# browse the file pointed to by the LICENSE variable
+#
+LICENSE_FILE?=	$(addprefix ${ROBOTPKG_DIR}/licenses/,${LICENSE})
+
+.PHONY: show-license
+show-license:
+	@license_file="${LICENSE_FILE}";				\
+	pager=${PAGER};							\
+	case "$$pager" in "") pager=${CAT};; esac;			\
+	case "$$license_file" in "") exit 0;; esac;			\
+	for l in $$license_file; do					\
+	  if ${TEST} -f "$$l"; then					\
+		$$pager "$$l";						\
+	  else								\
+		${ECHO} "Generic $${l##*/} information not available";	\
+	  fi;								\
+	done
+
+
+# --- show-depends ---------------------------------------------------------
+#
+# Output a human readable list of dependencies and how they resolve
+#
+.PHONY: show-depends
+show-depends:
+	${RUN}${_SETFANCY_CMD};						\
+	{ ${RECURSIVE_MAKE} check-depends &&				\
+	  ${_pkgset_tsort_deps} -n ${PKGPATH} | while read dir; do	\
+	    cd ${ROBOTPKG_DIR}/$$dir &&					\
+	    ${RECURSIVE_MAKE} check-depends ||				\
+		${ECHO} 1>&2 "could not process $$dir";			\
+	  done; } | ${AWK} -F'|' -v bf=$$bf -v rm=$$rm '		\
+	  /robotpkg/ {							\
+	    if ($$3 == "-") {						\
+	        r[$$2] = bf "missing - install " $$4 rm;		\
+	    } else {							\
+		r[$$2] = "found " $$3;					\
+            }								\
+	  }								\
+	  /system/ {							\
+	    if ($$3 == "-") {						\
+		s[$$2] = bf "missing - install $(strip			\
+		  $(or ${OPSUBSYS},${OPSYS})) package";			\
+	        for(i=4; i<=NF; i++) s[$$2] = s[$$2] " " $$i;		\
+		s[$$2] = s[$$2] rm;					\
+	    } else {							\
+		s[$$2] = "found " $$3 " in " $$4;			\
+	    }								\
+	  }								\
+	  END {								\
+	    print bf "Robotpkg dependencies" rm;			\
+	    for(a in r) printf("%-20s: %s\n", a, r[a]);			\
+	    print bf "\nSystem dependencies" rm;			\
+	    for(a in s) printf("%-20s: %s\n", a, s[a]);			\
+	  }'
+
+
+# --- show-depends-pkgpaths ------------------------------------------------
+#
+# DEPENDS_TYPE is used by the "show-depends-pkgpaths" target and specifies
+# which class of dependencies to output.  The special value "all" means
+# to output every dependency.
+#
+DEPENDS_TYPE?=  all
+_depends_type=
+ifneq (,$(strip $(filter build all,${DEPENDS_TYPE})))
+  _depends_type+=	bootstrap build
+endif
+ifneq (,$(strip $(filter run all,${DEPENDS_TYPE})))
+  _depends_type+=	full
+endif
+
+.PHONY: show-depends-pkgpaths
+show-depends-pkgpaths:
+	${RUN}								\
+  $(foreach _pkg_,${DEPEND_USE},					\
+    $(if $(filter ${_depends_type},${DEPEND_METHOD.${_pkg_}}),		\
+      $(if ${DEPEND_DIR.${_pkg_}},					\
+        $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
+	  ${ECHO} $(subst ${ROBOTPKG_DIR}/,,$(realpath			\
+		${DEPEND_DIR.${_pkg_}}));				\
+        )								\
+      )									\
+    )									\
+  )

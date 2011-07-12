@@ -135,6 +135,9 @@ endif
 # packages sets
 $(call require, ${ROBOTPKG_DIR}/mk/sets/sets-vars.mk)
 
+# informational show-% targets
+$(call require-for, show-%, ${ROBOTPKG_DIR}/mk/internal/show.mk)
+
 # semi-automatic PLIST generation
 $(call require-for, print-PLIST, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
