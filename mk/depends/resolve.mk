@@ -162,9 +162,9 @@ $(sort $(foreach _pkg_,${DEPEND_USE},${SYSTEM_FILES.${_pkg_}})):;
 
 # Top-level targets that require {bootstrap-,}depends
 ifneq (,$(filter ${_barrier.bootstrap-depends},${MAKECMDGOALS}))
-  $(call -require, ${_COOKIE.bootstrap-depends})
+  _cbbh_requires+=	${_COOKIE.bootstrap-depends}
 endif
 ifneq (,$(filter ${_barrier.depends},${MAKECMDGOALS}))
-  $(call -require, ${_COOKIE.bootstrap-depends})
-  $(call -require, ${_COOKIE.depends})
+  _cbbh_requires+=	${_COOKIE.bootstrap-depends}
+  _cbbh_requires+=	${_COOKIE.depends}
 endif

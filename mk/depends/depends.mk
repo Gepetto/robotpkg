@@ -111,7 +111,6 @@ depends-cookie: makedirs
 # real-depends is a helper target onto which one can hook all of the
 # targets that do the actual dependency installation.
 #
-_REAL_DEPENDS_TARGETS+=	cbbh
 _REAL_DEPENDS_TARGETS+=	pre-depends-hook
 _REAL_DEPENDS_TARGETS+=	depends-message
 _REAL_DEPENDS_TARGETS+= sys-depends

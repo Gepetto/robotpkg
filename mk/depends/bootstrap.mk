@@ -49,7 +49,7 @@ ifeq (yes,$(call exists,${_COOKIE.bootstrap-depends}))
 	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev;			\
 	${RM} -f ${_SYSBSDEPENDS_FILE} ${_BSDEPENDS_FILE}
 
-  $(call require, ${_COOKIE.bootstrap-depends})
+  _cbbh_requires+=	${_COOKIE.bootstrap-depends}
 else
   $(call require, ${ROBOTPKG_DIR}/mk/depends/sysdep.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
@@ -69,7 +69,6 @@ bootstrap-depends-cookie: makedirs
 # real-bootstrap-depends is a helper target onto which one can hook all of the
 # targets that do the actual bootstrap dependency installation.
 #
-_REAL_BSDEPENDS_TARGETS+=	cbbh
 _REAL_BSDEPENDS_TARGETS+=	makedirs
 _REAL_BSDEPENDS_TARGETS+=	bootstrap-depends-message
 _REAL_BSDEPENDS_TARGETS+=	pkg-bootstrap-depends

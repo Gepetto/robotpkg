@@ -109,9 +109,10 @@ ifeq (yes,$(call exists,${_COOKIE.build}))
   endif
 
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.build}
-  $(call require,${_COOKIE.build})
   ${_COOKIE.build}: ${_COOKIE.configure}
 	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev
+
+  _cbbh_requires+=	${_COOKIE.build}
 else
   $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
 

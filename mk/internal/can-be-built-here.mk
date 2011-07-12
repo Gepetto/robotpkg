@@ -193,3 +193,11 @@ cbbh:
 	done
 	@exit 2
   endif
+
+
+# Include cookies or other files required by other makefiles, so that this may
+# trigger again the corresponding phase if needed and the package allows it.
+#
+ifeq (yes,${_CBBH})
+  $(call -require,${_cbbh_requires})
+endif
