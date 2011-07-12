@@ -108,7 +108,8 @@ $(call require-for, package repackage tarup,				\
 	${ROBOTPKG_DIR}/mk/package/package-vars.mk)
 
 # Dependencies
-$(call require-for, bootstrap-depends depends check-depends,		\
+$(call require-for, bootstrap-depends depends check-depends		\
+	check-depends-%,						\
 	${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 # Update

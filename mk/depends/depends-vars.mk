@@ -125,10 +125,19 @@ endif
 # List the direct dependencies and check if they are installed
 
 .PHONY: check-depends
-check-depends:
+check-depends: check-depends-full
+
+_chkdep_type= 			full build bootstrap
+
+_chkdep_filter.full=		full build bootstrap
+_chkdep_filter.build=		build bootstrap
+_chkdep_filter.bootstrap=	bootstrap
+
+.PHONY: $(addprefix check-depends-,${_chkdep_type})
+$(addprefix check-depends-,${_chkdep_type}): check-depends-%: .FORCE
 	${RUN}								\
   $(foreach _pkg_,${DEPEND_USE},					\
-    $(if $(filter ${_DEPENDS_TYPE},${DEPEND_METHOD.${_pkg_}}),		\
+    $(if $(filter ${_chkdep_filter.$*},${DEPEND_METHOD.${_pkg_}}),	\
       $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
 	  ${_PKG_BEST_EXISTS} '${DEPEND_ABI.${_pkg_}}' | ${AWK}		\
 	    'BEGIN { pkg="-" } NR==1 { pkg=$$0 } END {			\
@@ -136,7 +145,7 @@ check-depends:
 		  "${DEPEND_ABI.${_pkg_}}", pkg,			\
 		  "${DEPEND_DIR.${_pkg_}}")}';				\
 	,								\
-	{ exec 9>&1; ${_PREFIXSEARCH_CMD} 	 			\
+	{ exec 9>&1; ${_PREFIXSEARCH_CMD}				\
 	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
 		$(call quote,${_pkg_})					\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
