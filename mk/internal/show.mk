@@ -150,3 +150,54 @@ show-depends-pkgpaths:
       )									\
     )									\
   )
+
+
+# --- show-options ---------------------------------------------------------
+#
+# print the list of available options for this package.
+#
+.PHONY: show-options
+show-options:
+ifndef PKG_SUPPORTED_OPTIONS
+	@${ECHO} "This package does not use the options framework."
+else
+  ifneq (,$(strip ${PKG_GENERAL_OPTIONS}))
+	@${ECHO} "$${bf}Any of the following general options may"	\
+		"be selected$${rm}:"
+	${RUN}$(foreach _o_, $(sort ${PKG_GENERAL_OPTIONS}),		\
+	  $(call _pkgopt_listopt,${_o_}))
+  endif
+	${RUN}$(foreach _g_, ${PKG_OPTIONS_REQUIRED_GROUPS},		\
+	  ${ECHO}; ${ECHO} "${bf}Exactly one of the following ${_g_}"	\
+		"options is required${rm}:";				\
+	  $(call _pkgopt_listopt,${PKG_OPTIONS_GROUP.${_g_}}))
+	${RUN}$(foreach _g_, ${PKG_OPTIONS_OPTIONAL_GROUPS},		\
+	  ${ECHO}; ${ECHO} "${bf}At most one of the following ${_g_}"	\
+		"options may be selected${rm}:";			\
+	  $(call _pkgopt_listopt,${PKG_OPTIONS_GROUP.${_g_}}))
+	${RUN}$(foreach _s_, ${PKG_OPTIONS_NONEMPTY_SETS},		\
+	  ${ECHO}; ${ECHO} "$${bf}At least one of the following ${_s_}"	\
+		"options must be selected$${rm}:";			\
+	  $(call _pkgopt_listopt,${PKG_OPTIONS_SET.${_s_}}))
+	@${ECHO}
+	@${ECHO} "$${bf}These options are enabled by default$${rm}:"
+  ifneq (,$(strip ${PKG_SUGGESTED_OPTIONS}))
+	@${ECHO} $(call quote,$(sort ${PKG_SUGGESTED_OPTIONS})) | ${wordwrapfilter}
+  else
+	@${ECHO} "	(none)"
+  endif
+	@${ECHO} ""
+	@${ECHO} "$${bf}These options are currently enabled$${rm}:"
+  ifneq (,$(strip ${PKG_OPTIONS}))
+	@${ECHO} $(call quote,$(sort ${PKG_OPTIONS})) | ${wordwrapfilter}
+  else
+	@${ECHO} "	(none)"
+  endif
+	@${ECHO} ""
+	@${ECHO} "You can select which build options to use by"		\
+		"setting PKG_DEFAULT_OPTIONS or "			\
+		$(call quote,${PKG_OPTIONS_VAR})" to the list of"	\
+		"desired options. Options prefixed with a dash (-)"	\
+		"will be disabled. The variables are to be set in"	\
+		${MAKECONF}"." | fmt
+endif # !PKG_SUPPORTED_OPTIONS
