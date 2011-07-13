@@ -191,9 +191,9 @@ pkg-depends-file:
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
     $(if $(filter bootstrap,${DEPEND_METHOD.${_pkg_}}),,		\
-	prefix=`${PKG_INFO} -qp ${_pkg_} | ${SED} -e 's|^[^/]*||;q'`;	\
-	${_PREFIXSEARCH_CMD} -p "$$prefix" 				\
-		"${_pkg_}" "${DEPEND_ABI.${_pkg_}}"			\
+	pattern='${DEPEND_ABI.${_pkg_}}';				\
+	prefix=`${PKG_INFO} -qp "$$pattern" | ${SED} -e 's|^[^/]*||;q'`;\
+	${_PREFIXSEARCH_CMD} -p "$$prefix" "${_pkg_}" "$$pattern"	\
 		$(or ${SYSTEM_SEARCH.${_pkg_}}, "") >/dev/null 2>&1 || {\
 		${ERROR_MSG} "${hline}";				\
 		${ERROR_MSG} "$${bf}A package matching"			\
@@ -201,9 +201,8 @@ $(foreach _pkg_,${DEPEND_USE},						\
 		${ERROR_MSG} "$${bf}should be installed but some files"	\
 			"are missing.$${rm}";				\
 		${ERROR_MSG} "";					\
-		${_PREFIXSEARCH_CMD} -v -p "$$prefix" "${_pkg_}" 	\
-		  "${DEPEND_ABI.${_pkg_}}"				\
-		   $(or ${SYSTEM_SEARCH.${_pkg_}},"") |			\
+		${_PREFIXSEARCH_CMD} -v -p "$$prefix" "${_pkg_}"	\
+		  "$$pattern" $(or ${SYSTEM_SEARCH.${_pkg_}},"") |	\
 			${AWK} '/^missing:/ {print $$2}' | ${ERROR_CAT};\
 		${ERROR_MSG} "";					\
 		${ERROR_MSG} "Please reinstall the package in"		\
@@ -256,9 +255,9 @@ pkg-bootstrap-depends:
 	pattern="${DEPEND_ABI.${_pkg_}}";				\
 	dir="${DEPEND_DIR.${_pkg_}}";					\
 	${_DEPENDS_INSTALL_CMD};					\
-	prefix=`${PKG_INFO} -qp "${_pkg_}" | ${SED} -e 's|^[^/]*||;q'`;	\
-	${_PREFIXSEARCH_CMD} -p "$$prefix" "${_pkg_}" 			\
-	  "$$pattern" $(or ${SYSTEM_SEARCH.${_pkg_}},"")		\
+	prefix=`${PKG_INFO} -qp "$$pattern" | ${SED} -e 's|^[^/]*||;q'`;\
+	${_PREFIXSEARCH_CMD} -p "$$prefix" "${_pkg_}" "$$pattern"	\
+	    $(or ${SYSTEM_SEARCH.${_pkg_}},"")				\
 	    >/dev/null 2>&1 3>>${_BSDEPENDS_FILE} || {			\
 		${ERROR_MSG} "${hline}";				\
 		${ERROR_MSG} "$${bf}A package matching"			\
@@ -266,7 +265,7 @@ pkg-bootstrap-depends:
 		${ERROR_MSG} "$${bf}is installed but some files are"	\
 			"missing:$${rm}";				\
 		${ERROR_MSG} "";					\
-		${_PREFIXSEARCH_CMD} -v -p "$$prefix" "${_pkg_}" 	\
+		${_PREFIXSEARCH_CMD} -v -p "$$prefix" "${_pkg_}"	\
 		  "$$pattern" $(or ${SYSTEM_SEARCH.${_pkg_}},"") |	\
 			${AWK} '/^missing:/ {print $$2}' | ${ERROR_CAT};\
 		${ERROR_MSG} "";					\
