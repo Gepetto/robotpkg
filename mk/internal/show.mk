@@ -115,10 +115,13 @@ show-depends:
 	    }								\
 	  }								\
 	  END {								\
+	    sort = "${SORT} 2>/dev/null";				\
 	    print bf "Robotpkg dependencies" rm;			\
-	    for(a in r) printf("%-20s: %s\n", a, r[a]);			\
+	    for(a in r) printf("%-20s: %s\n", a, r[a]) | sort;		\
+	    close(sort);						\
 	    print bf "\nSystem dependencies" rm;			\
-	    for(a in s) printf("%-20s: %s\n", a, s[a]);			\
+	    for(a in s) printf("%-20s: %s\n", a, s[a]) | sort;		\
+	    close(sort);						\
 	  }'
 
 
