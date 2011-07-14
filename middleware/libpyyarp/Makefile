@@ -2,10 +2,9 @@
 # Created:			Severin Lemaignan on Fri, 12 Jun 2009
 #
 
-VERSION=		2.3.1
-PKGVERSION=		${VERSION}
-PKGREVISION=	1
-DISTNAME=		yarp-${VERSION}
+PKGVERSION=		2.3.1
+PKGREVISION=		1
+DISTNAME=		yarp-${PKGVERSION_NOREV}
 PKGNAME=		libpyyarp-${PKGVERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
@@ -29,22 +28,22 @@ CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 
 CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
 BUILD_DIRS=		${WRKSRC}/example/swig
+INSTALLATION_DIRS=	${PYTHON_SITELIB}
 
+include ../../devel/swig/depend.mk
 include ../../middleware/yarp/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/cmake.mk
-include ../../devel/swig/depend.mk
 include ../../mk/robotpkg.mk
 
 post-configure:
-	${LN} -sf ${PREFIX.yarp}/lib/libYARP_dev.so ${WRKSRC}/lib
-	${LN} -sf ${PREFIX.yarp}/lib/libYARP_sig.so ${WRKSRC}/lib
-	${LN} -sf ${PREFIX.yarp}/lib/libYARP_OS.so ${WRKSRC}/lib
-	${LN} -sf ${PREFIX.yarp}/lib/libYARP_init.so ${WRKSRC}/lib
+	${RUN}for f in dev sig OS init; do				\
+	  ${CONFIGURE_LOGFILTER}					\
+	    ${LN} -sf ${PREFIX.yarp}/lib/libYARP_$${f}.so ${WRKSRC}/lib;\
+	done
 
 do-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/${PYTHON_SITELIB}
-	${INSTALL_DATA} ${WRKSRC}/example/swig/*.py		\
+	${RUN}${INSTALL_DATA} ${WRKSRC}/example/swig/*.py		\
 		${PREFIX}/${PYTHON_SITELIB}
-	${INSTALL_LIB} ${WRKSRC}/example/swig/_yarp.so		\
+	${RUN}${INSTALL_LIB} ${WRKSRC}/example/swig/_yarp.so		\
 		${PREFIX}/${PYTHON_SITELIB}
