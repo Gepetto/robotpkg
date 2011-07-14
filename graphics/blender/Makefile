@@ -2,9 +2,9 @@
 # Created:			Séverin Lemaignan on Mon, 7 Dec 2009
 #
 
-PKGNAME= 		blender-${VERSION}
-DISTNAME=		blender-2.56-beta
-VERSION=		2.56
+PKGNAME=		blender-${PKGVERSION}
+DISTNAME=		blender-${PKGVERSION}-beta
+PKGVERSION=		2.56
 
 CATEGORIES=		graphics
 MASTER_SITES=		http://download.blender.org/source/
@@ -39,7 +39,7 @@ CMAKE_ARGS+=		-DPYTHON_LIB=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_LIBPATH=$(dir ${PYTHON_LIB})
 
 pre-configure:
-	${MKDIR} ${WRKSRC}/_build
+	${RUN}${MKDIR} ${WRKSRC}/_build
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/freetype2.mk
