@@ -286,3 +286,26 @@ ifneq (,$(filter ${_barrier.depends},${MAKECMDGOALS}))
   _cbbh_requires+=	${_COOKIE.bootstrap-depends}
   _cbbh_requires+=	${_COOKIE.depends}
 endif
+
+
+# --- resolve-alternatives -------------------------------------------------
+
+# resolve-alternatives generates the alternative resolution results in a
+# temporary file. This file is included if present and caches the results of
+# the resolution.
+#
+# Define an empty rule for the file itself so that it is not rebuilt
+# automatically. This also prevents implicit rules for being searched.
+#
+_MAKEFILE_WITH_RECIPES+= ${_ALTERNATIVES_FILE}
+${_ALTERNATIVES_FILE}:;
+
+.PHONY: resolve-alternatives
+resolve-alternatives:
+	${RUN} >${_ALTERNATIVES_FILE}; exec 3>>${_ALTERNATIVES_FILE};	\
+  $(foreach _,${DEPEND_ALTERNATIVE},					\
+	${STEP_MSG} "Required virtual ${DEPEND_ABI.$_} provided"	\
+	  "by ${ALTERNATIVE_ABI.$_}";					\
+	${ECHO} 1>&3 'ALTERNATIVE.$_=${ALTERNATIVE.$_}';		\
+	${ECHO} 1>&3 'ALTERNATIVE_ABI.$_=${ALTERNATIVE_ABI.$_}';	\
+  )

@@ -47,7 +47,7 @@ ifeq (yes,$(call exists,${_COOKIE.bootstrap-depends}))
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.bootstrap-depends}
   ${_COOKIE.bootstrap-depends}: $(filter-out ${WRKDIR}/%,${MAKEFILE_LIST})
 	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev;			\
-	${RM} -f ${_SYSBSDEPENDS_FILE} ${_BSDEPENDS_FILE}
+	${RM} -f ${_ALTERNATIVES_FILE} ${_SYSBSDEPENDS_FILE} ${_BSDEPENDS_FILE}
 
   _cbbh_requires+=	${_COOKIE.bootstrap-depends}
 else
@@ -71,6 +71,9 @@ bootstrap-depends-cookie: makedirs
 #
 _REAL_BSDEPENDS_TARGETS+=	makedirs
 _REAL_BSDEPENDS_TARGETS+=	bootstrap-depends-message
+ifdef DEPEND_ALTERNATIVE
+  _REAL_BSDEPENDS_TARGETS+=	resolve-alternatives
+endif
 _REAL_BSDEPENDS_TARGETS+=	pkg-bootstrap-depends
 _REAL_BSDEPENDS_TARGETS+=	sys-bootstrap-depends
 _REAL_BSDEPENDS_TARGETS+=	bootstrap-depends-cookie
