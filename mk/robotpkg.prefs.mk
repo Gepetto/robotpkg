@@ -54,11 +54,17 @@ endif
 # calculate depth
 _ROBOTPKG_DEPTH:=$(words $(subst /, ,$(subst ${ROBOTPKG_DIR},,$(realpath .))))
 
-# clean unwanted environment variables
-include ${ROBOTPKG_DIR}/mk/internal/env.mk
-
 # import useful macros
 include ${ROBOTPKG_DIR}/mk/internal/macros.mk
+
+# compute PKGPATH
+ifeq (2,${_ROBOTPKG_DEPTH})
+  PKGPATH?=$(call pkgpath,${CURDIR})
+endif
+
+# clean unwanted environment variables and apply local settings defined by
+# parent make invocations
+include ${ROBOTPKG_DIR}/mk/internal/env.mk
 
 # find uname location
 ifndef UNAME
@@ -263,10 +269,6 @@ ALL_ENV+=		PREFIX=$(call quote,${PREFIX})
 
 DEPOT_SUBDIR?=		packages
 DEPOTBASE=		${LOCALBASE}/${DEPOT_SUBDIR}
-
-ifeq (2,${_ROBOTPKG_DEPTH})
-PKGPATH?=		$(subst ${ROBOTPKG_DIR}/,,$(realpath ${CURDIR}))
-endif
 
 DISTDIR?=		${ROBOTPKG_DIR}/distfiles
 PACKAGES?=		${ROBOTPKG_DIR}/packages

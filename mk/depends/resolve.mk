@@ -261,6 +261,26 @@ endef
 $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
 
 
+# --- export any overrides settings for dependencies -----------------------
+
+# The list of configuration variables for each dependency is computed from
+# DEPEND_VARS.<pkg>. The variable values are exported in _overrides.<var> and
+# the list of variables for each pkg is set in _overrides_vars.<pkgpath>.
+#
+# Note: simply passing variables on the RECURSIVE_MAKE command like would not
+# work because some targets (like show-depends) invoke MAKE themselves in many
+# directories without knowing on behalf which package they do that.
+#
+override define _dpd_export_override # (path, var)
+  export _override_vars.$(call pkgpath,$1) +=$2
+  export _overrides.$2 +=$(value $2)
+endef
+override define _dpd_overrides
+  $(foreach _,${DEPEND_VARS.$1},$(call _dpd_export_override,${DEPEND_DIR.$1},$_))
+endef
+$(foreach _,${DEPEND_USE},$(eval $(call _dpd_overrides,$_)))
+
+
 # --- register dependencies on _COOKIE.{bootstrap-,}depends ----------------
 
 # A dependency on all files from all SYSTEM_FILES dependencies is registered as

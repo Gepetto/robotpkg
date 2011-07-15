@@ -190,6 +190,15 @@ $(firstword $(realpath $(addsuffix /$1,$(subst :, ,$2))))
 endef
 
 
+# --- pkgpath <path> -------------------------------------------------------
+#
+# Return the PKGPATH (path relative to ROBOTPKG_DIR) for a package in path.
+#
+override define pkgpath
+$(subst ${ROBOTPKG_DIR}/,,$(realpath $1))
+endef
+
+
 # --- add-barrier <phase> <target> -----------------------------------------
 #
 # Register that the toplevel <target> needs to run after the barrier <phase>

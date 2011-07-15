@@ -17,24 +17,41 @@
 #                                             Anthony Mallet on Sun May 31 2009
 #
 
-# Clean unwanted variables inherited from the environment.
+# Clean unwanted variables inherited from the environment and apply any
+# overrides settings defined by parent Makefiles.
 #
 # Variables cleaned by this file must be further set with an 'ifndef' construct
 # instead of a ?= assignment or, better, by using the 'setdefault'
 # macro. gmake-3.82 has an interesting 'undefine' command, but many systems
 # still have 3.81, so ...
 #
-# Note that even without this file, the ?= wouldn't have been effective anyway
-# since the value from the environment would have taken precedence.
-
 _ENV_VARS=\
 	ROBOTPKG_BASE ROBOTPKG_DIR				\
 	MAKE MAKELEVEL MAKEOVERRIDES MAKEFLAGS MFLAGS		\
 	PATH TERM TERMCAP DISPLAY XAUTHORITY SSH_AUTH_SOCK	\
 	http_proxy https_proxy ftp_proxy
 
+# Anything in this file must be evaluated (very) early during processing. This
+# file is included at the top of robotpkg.prefs.mk which is in turn included
+# at the top of robotpkg.mk (robotpkg.prefs.mk can even be included before
+# robotpkg.mk by package Makefiles or depend.mk if needed).
 
-# --- unsetenv -------------------------------------------------------------
+
+# --- Apply overrides settings ---------------------------------------------
+#
+# Apply any settings defined in _override_vars.<pkgpath> by a parent Makefile.
+# Do this for recursive 'make' invocations only.
+#
+ifneq (0,${MAKELEVEL})
+  $(foreach _,${_override_vars.${PKGPATH}}, \
+    $(eval override $_ :=$(value _overrides.$_)))
+
+  # keep overrides settings
+  _ENV_VARS+=_override_vars.% _overrides.%
+endif
+
+
+# --- Unsetenv -------------------------------------------------------------
 #
 # Undef (set to empty) a variable that was inherited from the environment and
 # unexport it, so that it looks like it wasn't in the environment initially.
