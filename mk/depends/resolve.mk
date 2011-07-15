@@ -24,6 +24,10 @@
 #                                       Anthony Mallet on Thu Feb 28 2008
 #
 
+# This file process included "depend.mk" files, resolve alternatives and
+# perform consistency checks. It is included at the very end of robotpkg.mk
+# because no new dependency can be added after this point.
+#
 # An example package depend.mk file:
 #
 # -------------8<-------------8<-------------8<-------------8<-------------
@@ -36,10 +40,17 @@
 #
 # ifeq (+,$(FOO_DEPEND_MK))
 # DEPEND_USE+=		foo
+
+# PREFER.foo?=		robotpkg
+# DEPEND_ABI.foo?=	foo>=1.0
 # DEPEND_DIR.foo?=	../../category/foo
-# endif  # FOO_DEPEND_MK
+#
+# SYSTEM_DESCR.foo=	foo
+# SYSTEM_SEARCH.foo=	'bin/foo:p:% -v'
+# SYSTEM_PKG.Linux=	foo-dev
 #
 # include ../../category/baz/depend.mk
+# endif # FOO_DEPEND_MK
 #
 # DEPEND_DEPTH:=	${DEPEND_DEPTH:+=}
 # -------------8<-------------8<-------------8<-------------8<-------------
@@ -47,32 +58,23 @@
 # Most of the depend.mk file is protected against multiple inclusion,
 # except for the parts related to manipulating DEPEND_DEPTH.
 #
-# Note that if a depend.mk file is included, then the package Makefile
-# has the expectation that it can use the value of PREFIX.<pkg>.
+# If a depend.mk file is included, then the package Makefile can use the value
+# of PREFIX.<pkg> and PKGVERSION.<pkg>.
 # If the depend.mk tries to handle dependencies satisfied directly by
-# the base system, then it should provide an appropriate value for
-# PREFIX.<pkg> for that case.  The case where a dependency is
-# satisfied by a robotpkg-installed package is handled automatically by
-# this file.
+# the base system, then it should set PREFER.<pkg> ?= system
 #
-# The different variables that may be set in a depend.mk file are
-# described below.
 #
-# The variable name convention used in this Makefile are:
 #
-# DEPEND_*	public variables usable in other Makefiles
-# _DPD_*	private variables to this Makefile
-
 
 # DEPEND_PKG contains the list of packages for which we add a direct
 # dependency.
 #
-DEPEND_PKG?=# empty
+DEPEND_PKG?=	# empty
 
 # DEPEND_USE contains the full list of packages on which we have a
 # dependency (direct or indirect).
 #
-DEPEND_USE?=# empty
+DEPEND_USE?=	# empty
 
 # By default, prefer the robotpkg version of all packages. Individual
 # packages might override this, and users can set their preferences in
