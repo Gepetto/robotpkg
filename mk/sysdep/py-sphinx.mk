@@ -27,9 +27,6 @@ SYSTEM_SEARCH.py-sphinx=\
 SYSTEM_PKG.Linux.py-sphinx=	python-sphinx
 SYSTEM_PKG.NetBSD.py-sphinx=	pkgsrc/textproc/py-sphinx
 
-DEPEND_ABI.py-setuptools+=	py-setuptools<3
-include ../../mk/sysdep/py-setuptools.mk
-
 endif # PY_SPHINX_DEPEND_MK ------------------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
