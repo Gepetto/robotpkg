@@ -76,15 +76,44 @@ DEPEND_PKG?=	# empty
 #
 DEPEND_USE?=	# empty
 
+
+
+# --- consistency checks on dependencies -----------------------------------
+
+# NO DEPENDENCY CAN BE ADDED AFTER THIS POINT
+DEPEND_USE:=$(sort ${DEPEND_USE})
+DEPEND_PKG:=$(sort ${DEPEND_PKG})
+
 # By default, prefer the robotpkg version of all packages. Individual
 # packages might override this, and users can set their preferences in
 # robotpkg.conf.
 #
-$(foreach _pkg_,${DEPEND_USE},$(eval PREFER.${_pkg_}?=robotpkg))
+$(foreach _,${DEPEND_USE},$(eval PREFER.$_?=robotpkg))
 
 # By default, every package receives a full dependency.
-#
-$(foreach _pkg_,${DEPEND_USE},$(eval DEPEND_METHOD.${_pkg_}?=full))
+$(foreach _,${DEPEND_USE},$(eval DEPEND_METHOD.$_?=full))
+
+_empty_abi:=$(foreach _,${DEPEND_USE},$(if ${DEPEND_ABI.$_},,$_))
+ifneq (,$(strip ${_empty_abi}))
+  PKG_FAIL_REASON+=$(foreach _,${_empty_abi},"DEPEND_ABI.$_ is undefined")
+endif
+
+# DEPEND_ABI.pkg cannot be empty
+_empty_abi:=$(foreach _,${DEPEND_USE},$(if ${DEPEND_ABI.$_},,$_))
+ifneq (,$(strip ${_empty_abi}))
+  PKG_FAIL_REASON+=$(foreach _,${_empty_abi},"DEPEND_ABI.$_ is undefined")
+endif
+
+# SYSTEM_SEARCH.pkg cannot be empty
+_empty_srch=$(foreach _,${DEPEND_USE},$(if ${SYSTEM_SEARCH.$_},,$_))
+ifneq (,$(strip ${_empty_srch}))
+  PKG_FAIL_REASON+=$(foreach _,${_empty_srch},"SYSTEM_SEARCH.$_ is undefined")
+endif
+
+# DEPEND_DEPTH must be properly nested
+ifneq (,$(strip ${DEPEND_DEPTH}))
+  PKG_FAIL_REASON+=	"DEPEND_DEPTH = ${DEPEND_DEPTH} (should be empty)"
+endif
 
 
 # Add the proper dependency on each package pulled in by depend.mk
