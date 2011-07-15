@@ -126,8 +126,7 @@ ifeq (yes,$(call exists,${_COOKIE.wrkdir}))
     PKG_FAIL_REASON+= "Extracted version:	${_COOKIE.wrkdir.pkgversion}"
     PKG_FAIL_REASON+= "Current version:		${_v_}"
     PKG_FAIL_REASON+= ""
-    PKG_FAIL_REASON+= "You have a stale working directory, please"
-    PKG_FAIL_REASON+= "		\`$${bf}${MAKE} clean$${rm}\` in ${PKGPATH}"
+    _wrk_stale:=yes
   endif
 
   ifneq (${PKG_OPTIONS},${_COOKIE.wrkdir.pkgoptions})
@@ -143,6 +142,27 @@ ifeq (yes,$(call exists,${_COOKIE.wrkdir}))
       PKG_FAIL_REASON+= "Current options:		${PKG_OPTIONS}"
     endif
     PKG_FAIL_REASON+= ""
+    _wrk_stale:=yes
+  endif
+
+  _wrk_alt:=$(strip $(foreach _,${DEPEND_ALTERNATIVE},${ALTERNATIVE.$_}))
+  ifneq (,$(filter-out ${_wrk_alt},${_COOKIE.wrkdir.alternatives}))
+    PKG_FAIL_REASON+= "$${bf}Alternatives for ${PKGNAME} have changed$${rm}"
+    ifeq (,${_COOKIE.wrkdir.alternatives})
+      PKG_FAIL_REASON+= "Working directory:	(none)"
+    else
+      PKG_FAIL_REASON+= "Working directory:	${_COOKIE.wrkdir.alternatives}"
+    endif
+    ifeq (,${_wrk_alt})
+      PKG_FAIL_REASON+= "Current alternatives:	(none)"
+    else
+      PKG_FAIL_REASON+= "Current alternatives:	${_wrk_alt}"
+    endif
+    PKG_FAIL_REASON+= ""
+    _wrk_stale:=yes
+  endif
+
+  ifeq (yes,${_wrk_stale})
     PKG_FAIL_REASON+= "You have a stale working directory, please"
     PKG_FAIL_REASON+= "		\`$${bf}${MAKE} clean$${rm}\` in ${PKGPATH}"
   endif

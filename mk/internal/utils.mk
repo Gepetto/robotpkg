@@ -150,7 +150,9 @@ ${WRKDIR}:
 	exec >>${_COOKIE.wrkdir};					\
 	${ECHO} "_COOKIE.wrkdir.date:=`${_CDATE_CMD}`";			\
 	${ECHO} "_COOKIE.wrkdir.pkgversion:=$$v";			\
-	${ECHO} "_COOKIE.wrkdir.pkgoptions:=${PKG_OPTIONS}"
+	${ECHO} "_COOKIE.wrkdir.pkgoptions:=${PKG_OPTIONS}";		\
+	alt='$(foreach _,${DEPEND_ALTERNATIVE},${ALTERNATIVE.$_})';	\
+	${ECHO} "_COOKIE.wrkdir.alternatives:=$$alt"
 
 ${PKG_DBDIR}:
 	${RUN}${MKDIR} ${PKG_DBDIR}
