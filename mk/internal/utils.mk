@@ -116,6 +116,11 @@ _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 #
 RUN=			${_PKG_SILENT}${_PKG_DEBUG} set -e;
 
+# Run ${MAKE} recursively. Need to pass MAKEOVERRIDES explicitely, otherwise
+# its value is sometimes lost (gmake-3.82, see robotpkg commit 128793abe).
+RECURSIVE_MAKE=         ${MAKE} ${MAKEOVERRIDES}
+MAKEFLAGS+=		--no-print-directory
+
 
 # --- fancy decorations ----------------------------------------------------
 #

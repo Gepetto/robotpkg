@@ -321,9 +321,6 @@ WRKLOG?=		${WRKDIR}/.work.log
 PKG_DEFAULT_OPTIONS?=	# empty
 PKG_OPTIONS?=		# empty
 
-RECURSIVE_MAKE=         ${MAKE} ${MAKEOVERRIDES} ${PKGSRC_MAKE_ENV}
-MAKEFLAGS+=		--no-print-directory
-
 # Package dependency information
 _SYSDEPENDS_FILE=	${WRKDIR}/.sysdepends
 _DEPENDS_FILE=		${WRKDIR}/.depends
