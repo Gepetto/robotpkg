@@ -22,7 +22,7 @@ SYSTEM_SEARCH.morse-yarp=\
 	${PYTHON_SITELIB}/morse/middleware/yarp_mw.py
 
 DEPEND_METHOD.python3+=		bootstrap
-include ../../lang/python3/depend.mk
+include ../../lang/python31/depend.mk
 
 endif # MORSE_YARP_DEPEND_MK -----------------------------------------------
 

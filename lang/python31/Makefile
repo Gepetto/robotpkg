@@ -3,17 +3,19 @@
 #
 
 PKGVERSION=	3.1.2
-DISTNAME=	Python-${PKGVERSION}
-PKGNAME=	python3-${PKGVERSION}
-CATEGORIES=	lang
+PKGREVISION=	1
+DISTNAME=	Python-${PKGVERSION_NOREV}
+PKGNAME=	python31-${PKGVERSION}
 MASTER_SITES=	http://www.python.org/ftp/python/${PKGVERSION}/
 EXTRACT_SUFX=   .tgz
 
 MAINTAINER=	openrobots@laas.fr
+CATEGORIES=	lang
 HOMEPAGE=	http://www.python.org/
 COMMENT=	Interpreted, interactive, object-oriented programming language
 LICENSE=	psfl-v2
 
+CONFLICTS+=	python3-[0-9]*
 USE_LANGUAGES=	c c++
 
 GNU_CONFIGURE=	yes
