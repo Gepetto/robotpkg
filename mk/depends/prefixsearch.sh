@@ -114,7 +114,7 @@ fi
 ${TEST} $# -gt 2 || { usage; exit 1; }
 pkg="$1"; shift
 abi="$1"; shift
-
+abipkg=${abi%%[=><!]*}
 
 # csh-like braces substitutions: replace a{x,y}b with axb ayb
 bracesubst() {
@@ -255,7 +255,7 @@ for p in `bracesubst $sysprefix`; do
 		version=`eval $icmd 2>&1 </dev/null | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
 	    fi
 	    : ${version:=unknown}
-	    if ${PKG_ADMIN_CMD} pmatch "$abi" "$pkg-$version"; then
+	    if ${PKG_ADMIN_CMD} pmatch "$abi" "$abipkg-$version"; then
 		pkgversion=-$version
 		flist="$flist $match"
 		${MSG} "found:	$match, version $version"
@@ -286,19 +286,19 @@ done
 if ${TEST} -n "$prefix"; then
     # warn if an abi requirement is present but no version could be found
     if ${TEST} -z "$pkgversion"; then
-	if ${PKG_ADMIN_CMD} pmatch $abi $pkg; then :; else
+	if ${TEST} "$abi" != "$abipkg"; then
 	    ${ERROR_MSG} 1>&2 "Cannot check installed version of $pkg"
 	fi
     fi
 
     # print result
-    ${ECHO} "$pkg$pkgversion"
+    ${ECHO} "$abipkg$pkgversion"
 
     # test fd 3 existence and print other variables there if it exists, to
     # stdout otherwise.
     ${TEST} : 2>/dev/null 1>&3 || exec 3>&1
     ${ECHO} 1>&3 "PREFIX.$pkg:=$prefix"
-    ${ECHO} 1>&3 "PKGVERSION.$pkg:=$pkg$pkgversion"
+    ${ECHO} 1>&3 "PKGVERSION.$pkg:=$abipkg$pkgversion"
     ${ECHO} 1>&3 "SYSTEM_FILES.$pkg:=$flist"
     exit 0
 fi
