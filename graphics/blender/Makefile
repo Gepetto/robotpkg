@@ -14,8 +14,7 @@ HOMEPAGE=		http://www.blender.org/
 COMMENT=		Fully integrated 3D graphics creation suite
 LICENSE=		gnu-gpl-v2
 
-USE_LANGUAGES+=		c c++ python
-PYTHON_REQUIRED+=	>=3 <3.2
+USE_LANGUAGES+=		c c++
 WRKSRC=			${WRKDIR}/${DISTNAME}-source
 
 CMAKE_ARG_PATH=		..
@@ -40,6 +39,9 @@ CMAKE_ARGS+=		-DPYTHON_LIBPATH=$(dir ${PYTHON_LIB})
 
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
+
+DEPEND_ABI.python+=	python>=3<3.2
+include ../../mk/sysdep/python.mk
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/freetype2.mk

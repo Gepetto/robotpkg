@@ -15,8 +15,6 @@ CMAKE_ARGS+=		-DBUILD_POCOLIBS_SUPPORT=OFF
 CMAKE_ARGS+=		-DBUILD_ROS_SUPPORT=OFF
 CMAKE_ARGS+=		-DBUILD_YARP2_SUPPORT=ON
 
-REQD_BUILD_OPTIONS.libpyyarp+= python3
-
 include ../../middleware/libpyyarp/depend.mk
 include ../../simulation/morse/depend.mk
 include ../../mk/robotpkg.mk

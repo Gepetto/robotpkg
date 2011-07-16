@@ -16,8 +16,7 @@ LICENSE=		modified-bsd
 DISTINFO_FILE=		${CURDIR}/../../simulation/morse/distinfo
 PATCHDIR=		${CURDIR}/../../simulation/morse/patches
 
-USE_LANGUAGES+=		c c++ python
-PYTHON_REQUIRED+=	>=3
+USE_LANGUAGES+=		c c++
 
 CMAKE_ARGS+=            -DPYTHON3_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=            -DPYTHON3_INCLUDE_PATH=${PYTHON_INCLUDE}
@@ -26,6 +25,9 @@ CMAKE_ARGS+=            -DPKG_CONFIG_EXECUTABLE=${PKG_CONFIG}
 
 DEPEND_ABI.blender+=	blender>=2.55
 include ../../graphics/blender/depend.mk
+
+DEPEND_ABI.python+=	python>=3
+include ../../mk/sysdep/python.mk
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk

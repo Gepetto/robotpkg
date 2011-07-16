@@ -38,8 +38,10 @@ SUBST_FILES.rtm-python=\
 	utils/rtm-skelwrapper/*.py		\
 	utils/rtm-skelwrapper/rtm-skelwrapper
 
+DEPEND_ABI.python=	python<3
+include ../../mk/sysdep/python.mk
+
 include ../../middleware/ace/depend.mk
 include ../../middleware/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
-include ../../mk/sysdep/python2.mk
 include ../../mk/robotpkg.mk

@@ -3,8 +3,9 @@
 #
 
 PKGVERSION=		2.1.1a2
-PKGNAME=		py-simpleparse-${PKGVERSION}
-DISTNAME=		SimpleParse-${PKGVERSION}
+PKGREVISION=		1
+PKGNAME=		${PYPKGPREFIX}-simpleparse-${PKGVERSION}
+DISTNAME=		SimpleParse-${PKGVERSION_NOREV}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=simpleparse/}
 
 CATEGORIES=		devel
@@ -13,10 +14,12 @@ HOMEPAGE=		http://simpleparse.sourceforge.net/
 MAINTAINER=		tmoulard@laas.fr
 LICENSE=		isc
 
-USE_LANGUAGES=		c python
+CONFLICTS+=		py-simpleparse-[0-9]*
+
 PYDISTUTILSPKG=		yes
 PYSETUPINSTALLARGS=     --single-version-externally-managed
 PYSETUPINSTALLARGS+=    --root=/
 
 include ../../mk/sysdep/py-setuptools.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk

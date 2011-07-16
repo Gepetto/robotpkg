@@ -3,24 +3,26 @@
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-DIALOGS_DEPEND_MK:=	${DIALOGS_DEPEND_MK}+
+PY_DIALOGS_DEPEND_MK:=	${PY_DIALOGS_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		dialogs
+DEPEND_PKG+=		py-dialogs
 endif
 
-ifeq (+,$(DIALOGS_DEPEND_MK)) # -----------------------------------------------
+ifeq (+,$(PY_DIALOGS_DEPEND_MK)) # -----------------------------------------
 
-PREFER.dialogs?=		robotpkg
+PREFER.py-dialogs?=	robotpkg
 
-DEPEND_USE+=		dialogs
-DEPEND_ABI.dialogs?=	dialogs>=0.5
-DEPEND_DIR.dialogs?=	../../speech/dialogs
+DEPEND_USE+=		py-dialogs
+DEPEND_ABI.py-dialogs?=	${PYPKGPREFIX}-dialogs>=0.5
+DEPEND_DIR.py-dialogs?=	../../speech/dialogs
+DEPEND_VARS.py-dialogs?=ALTERNATIVE.python
 
-_pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
-SYSTEM_SEARCH.dialogs=\
-	'lib/${_pynamespec}/{site,dist}-packages/dialogs/__init__.py'
+SYSTEM_SEARCH.py-dialogs=\
+	'${PYTHON_SYSLIBSEARCH}/dialogs/__init__.py'
 
-endif # DIALOGS_DEPEND_MK -----------------------------------------------------
+include ../../mk/sysdep/python.mk
+
+endif # PY_DIALOGS_DEPEND_MK -----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

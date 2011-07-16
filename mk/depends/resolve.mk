@@ -124,7 +124,7 @@ endif # _alt_list
 # check empty or malformed ALTERNATIVE.<pkg>, and set a sane fallback for the
 # rest of the processing
 override define _alt_error
-  ifneq (1,$(words ${ALTERNATIVE.$1}))
+  ifeq (,$(filter 0 1,$(words ${ALTERNATIVE.$1})))
     PKG_FAIL_REASON+=\
       "$${bf}The $1 alternative selection must be a single choice$${rm}"\
       "	ALTERNATIVE.$1 = ${ALTERNATIVE.$1}"				\

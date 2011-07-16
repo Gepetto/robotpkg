@@ -12,11 +12,11 @@ COMMENT=		Robust high-performance CORBA ORB for Python
 LICENSE=		gnu-lgpl-v2.1
 
 USE_LANGUAGES+=		c c++
-USE_TOOLS+=		python
 
 MAKE_FILE=		GNUmakefile
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 
 include ../../middleware/omniORB/depend.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk

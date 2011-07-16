@@ -13,18 +13,16 @@ ifeq (+,$(PYSETUPTOOLS_DEPEND_MK)) # ---------------------------------------
 
 PREFER.py-setuptools?=		system
 
-USE_LANGUAGES+=			python
-
 DEPEND_USE+=			py-setuptools
-DEPEND_ABI.py-setuptools?=	py-setuptools
+DEPEND_ABI.py-setuptools?=	${PYPKGPREFIX}-setuptools
 
-_pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.py-setuptools=\
-	'bin/${_pynamespec}:s/[^.0-9]//gp:% --version'			\
-	'lib/${_pynamespec}/{site,dist}-packages/setuptools/__init__.py'
+	'${PYTHON_SYSLIBSEARCH}/setuptools/__init__.py'
 
-SYSTEM_PKG.Linux.py-setuptools=	python-setuptools
-SYSTEM_PKG.NetBSD.py-setuptools=pkgsrc/devel/py-setuptools
+SYSTEM_PKG.Linux.py-setuptools=	python-setuptools (python-${PYTHON_VERSION})
+SYSTEM_PKG.NetBSD.py-setuptools=pkgsrc/devel/${PYPKGPREFIX}-setuptools
+
+include ../../mk/sysdep/python.mk
 
 endif # PYSETUPTOOLS_DEPEND_MK ---------------------------------------------
 

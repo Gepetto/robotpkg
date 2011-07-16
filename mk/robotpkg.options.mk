@@ -153,35 +153,6 @@ ifndef NO_BUILD
       endif
     endef
   endif
-  ifneq (,$(filter python, ${USE_LANGUAGES}))
-    # Define python version selection options if possible
-    ifdef PYTHON_REQUIRED
-      ifndef _optpy_${PKGBASE}
-        _optpy_${PKGBASE}:=$(if $(and $(strip				\
-          $(call preduce,${PYTHON_REQUIRED} >=3)),$(strip		\
-          $(call preduce,${PYTHON_REQUIRED} <3))),yes,no)
-        MAKEOVERRIDES+=_optpy_${PKGBASE}=${_optpy_${PKGBASE}}
-      endif
-      ifeq (yes,${_optpy_${PKGBASE}})
-        PKG_OPTIONS_REQUIRED_GROUPS+=python
-      endif
-    else
-      PKG_OPTIONS_REQUIRED_GROUPS+=python
-    endif
-    PKG_SUGGESTED_OPTIONS+=\
-	$(if $(filter python,${PKG_OPTIONS_REQUIRED_GROUPS}),python2)
-    PKG_OPTIONS_GROUP.python=	python2 python3
-
-    PKG_OPTION_DESCR.python2=	Use python version 2
-    define PKG_OPTION_SET.python2
-      PYTHON_REQUIRED+=		<3
-    endef
-
-    PKG_OPTION_DESCR.python3=	Use python version 3
-    define PKG_OPTION_SET.python3
-      PYTHON_REQUIRED+=		>=3
-    endef
-  endif
 endif
 
 

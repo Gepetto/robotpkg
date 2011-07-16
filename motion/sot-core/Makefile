@@ -14,7 +14,7 @@ COMMENT=	Hierarchical task based control of humanoid robots
 LICENSE=	gnu-lgpl-v3
 
 # TODO: split into sot-core and py-sot-core
-USE_LANGUAGES+=		c c++ python
+USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/sot-core
 
 # Build the package in a separate directory
@@ -30,4 +30,5 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk

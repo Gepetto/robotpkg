@@ -25,5 +25,4 @@ define PKG_OPTION_UNSET.doc
   CMAKE_ARGS+=		-DBUILD_DOC_SUPPORT=OFF
 endef
 
-include ../../mk/sysdep/python2.mk
 include ../../mk/robotpkg.mk

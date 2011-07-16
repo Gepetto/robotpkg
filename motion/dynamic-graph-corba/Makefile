@@ -13,7 +13,7 @@ CATEGORIES=	motion
 COMMENT=	Corba server, client and signals for dynamic-graph
 LICENSE=	gnu-lgpl-v3
 
-USE_LANGUAGES+=		c c++ python
+USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph-corba
 
 include ../../motion/py-dynamic-graph/depend.mk
@@ -25,4 +25,5 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk

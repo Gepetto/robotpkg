@@ -20,14 +20,15 @@ PREFER.py-yaml?=	system
 USE_LANGUAGES+=		python
 
 DEPEND_USE+=		py-yaml
-DEPEND_ABI.py-yaml?=	py-yaml
+DEPEND_ABI.py-yaml?=	${PYPKGPREFIX}-yaml
 
-_pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.py-yaml=\
-	'lib/${_pynamespec}/{site,dist}-packages/yaml/__init__.py'
+	'${PYTHON_SYSLIBSEARCH}/yaml/__init__.py'
 
-SYSTEM_PKG.Linux-fedora.py-yaml=	PyYAML
-SYSTEM_PKG.NetBSD.py-yaml=		pkgsrc/textproc/py-yaml
+SYSTEM_PKG.Linux-fedora.py-yaml=	PyYAML (python-${PYTHON_VERSION})
+SYSTEM_PKG.NetBSD.py-yaml=		pkgsrc/textproc/${PYPKGPREFIX}-yaml
+
+include ../../mk/sysdep/python.mk
 
 endif # PYYAML_DEPEND_MK ---------------------------------------------------
 

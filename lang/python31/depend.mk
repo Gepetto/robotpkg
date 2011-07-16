@@ -2,14 +2,6 @@
 # Created:			Séverin Lemaignan on Mon, 7 Dec 2009
 #
 
-#
-# This Makefile fragment defines additional variables that are used
-# by packages that need python.
-#
-# Optional variables that may be defined by the package are:
-#
-#	PYTHON_REQUIRED is the version of python required, e.g. ">=3.1".
-#
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 PYTHON31_DEPEND_MK:=	${PYTHON31_DEPEND_MK}+
 
@@ -21,18 +13,15 @@ ifeq (+,$(PYTHON31_DEPEND_MK)) # -------------------------------------------
 
 DEPEND_USE+=		python31
 
-PREFER.python31?=	system
+include ../../mk/sysdep/python.mk
+PREFER.python31?=	${PREFER.python}
 
-DEPEND_USE+=           python31
-DEPEND_ABI.python31?=	python31${_PY3_REQUIRED}
+DEPEND_ABI.python31?=	python31>=3.1<3.2
 DEPEND_DIR.python31?=	../../lang/python31
-_PY3_REQUIRED?=		>=3
 
-_py3namespec=python{3,3.0,3.1,3.2,[0-9].[0-9],}
-SYSTEM_SEARCH.python31=\
-  'bin/${_py3namespec}:s/[^.0-9]//gp:% --version'			\
-  'include/${_py3namespec}{,{,d}mu}/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp' \
-  'lib/lib${_py3namespec}{,{,d}mu}.{so,a}:s/^.*python//;s/[^.0-9]//g;s/[.]$$//;p:${ECHO} %'
+# see sysdep/python.mk for the definition of SYSTEM_SEARCH.python
+_py_search31=		{3.1,3,}{,d}{,m}{,u}
+SYSTEM_SEARCH.python31=	$(call _py_syssearch,${_py_search31})
 
 SYSTEM_PKG.Linux-fedora.python31=	python3.1-devel
 SYSTEM_PKG.Linux-ubuntu.python31=	python3.1-dev

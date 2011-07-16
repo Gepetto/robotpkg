@@ -30,13 +30,21 @@
 #
 # === User-settable variables ===
 #
-# PYTHON_REQUIRED
-#	A list of constraints on python version number used to determine the
-#	range of allowed versions of python required by a package. This list
-#	should contain patterns suitable for evaluation by "robotpkg_admin
-#	pmatch", i.e. optionaly start with >,>=,<= or < and followed by a
-#	version number (see robotpkg_info(1)). This value should only be
-#	appended to by a package Makefile.
+# PKG_SELECT.python
+#	The preferred Python interpreters/versions to use. The
+#	order of the entries matters, since earlier entries are
+#	preferred over later ones.
+#
+#	Possible values: python25 python26 python27 python30 python31 python32
+#	Default: python26 python27 python31 python32
+#
+# === Package-settable variables ===
+#
+# DEPEND_ABI.python
+#	The Python versions that are acceptable for the package.
+#
+#	Possible values: any pattern
+#	Default: python>=2.5 python<3
 #
 # === Defined variables ===
 #
@@ -44,52 +52,71 @@
 #       The prefix to use in PKGNAME for extensions which are meant
 #       to be installed for multiple Python versions.
 #
-#       Example: py25
-
-ifndef LANGUAGE_PYTHON_MK
-LANGUAGE_PYTHON_MK:=	defined
-
-
-# Distill the PYTHON_REQUIRED list into a single _py_required value that is
-# the strictest versions of python required.
+#       Example: py26
 #
-ifdef PYTHON_REQUIRED
-  _pyreqd_${PKGBASE}:=$(call preduce,${PYTHON_REQUIRED})
-  _py2ok_${PKGBASE}:=$(call preduce,${_pyreqd_${PKGBASE}} <3)
-else
-  # Sensible default value for _py_required
-  _pyreqd_${PKGBASE}:= >=2.4<3
-  _py2ok_${PKGBASE}:=<3
-endif
-ifeq (,${_pyreqd_${PKGBASE}})
-  PKG_FAIL_REASON+=\
-	"The following requirements on python version cannot be satisfied:"
-  PKG_FAIL_REASON+=""
-  PKG_FAIL_REASON+="	PYTHON_REQUIRED = ${PYTHON_REQUIRED}"
-  _pyreqd_${PKGBASE}:= >=2.4<3
-  _py2ok_${PKGBASE}:=<3
+# PYTHON_VERSION
+#	The suffix to executables and in the library path, equal to
+#	sys.version[0:3].
+#
+#	Example: 2.6
+#
+DEPEND_DEPTH:=		${DEPEND_DEPTH}+
+PYTHON_DEPEND_MK:=	${PYTHON_DEPEND_MK}+
+
+ifeq (+,$(DEPEND_DEPTH))
+  DEPEND_PKG+=		${ALTERNATIVE.python}
 endif
 
-# Include the depend.mk corresponding to the requirements
-ifneq (,${_py2ok_${PKGBASE}})
-  _PY2_REQUIRED:= ${_pyreqd_${PKGBASE}}
-  include ${ROBOTPKG_DIR}/mk/sysdep/python2.mk
-  export PYTHON=	${PYTHON2}
-  export PYTHON_INCLUDE=${PYTHON2_INCLUDE}
-  export PYTHON_LIB=	${PYTHON2_LIB}
-else
-  _PY3_REQUIRED:= ${_pyreqd_${PKGBASE}}
-  include ${ROBOTPKG_DIR}/lang/python3/depend.mk
-  export PYTHON=	${PYTHON3}
-  export PYTHON_INCLUDE=${PYTHON3_INCLUDE}
-  export PYTHON_LIB=	${PYTHON3_LIB}
-endif
+ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 
-# Define some variables
-PYTHON_VERSION:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
-	'import distutils.sysconfig;					\
-	print(distutils.sysconfig.get_config_var("VERSION"))'))
-PYTHON_SITELIB=$(if ${PYTHON_VERSION},lib/python${PYTHON_VERSION}/site-packages)
+DEPEND_USE+=		${ALTERNATIVE.python}
+DEPEND_ALTERNATIVE+=	python
+
+PREFER.python?=		system
+DEPEND_ABI.python?=	python>=2.5<3.3
+
+# factorize SYSTEM_SEARCH.python* here for all python* packages
+override define _py_syssearch
+  'bin/python$1:s/[^.0-9]//gp:% --version'				\
+  'lib/libpython$1.{so,a}:s@^.*/@@;s/[^.0-9]//g;s/[.]$$//;p:${ECHO} %'	\
+  'include/python$1/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'
+endef
+
+# define an alternative for available pythons packages
+ALTERNATIVES.python=	python25 python26 python27 python31 python32
+PKG_SELECT.python?=	python26 python27 python31 python32
+
+ALTERNATIVE_ABI.python25=	python>=2.5<2.6
+ALTERNATIVE_ABI.python26=	python>=2.6<2.7
+ALTERNATIVE_ABI.python27=	python>=2.7<2.8
+ALTERNATIVE_ABI.python31=	python>=3.1<3.2
+ALTERNATIVE_ABI.python32=	python>=3.2<3.3
+
+ALTERNATIVE_MK.python25?=	../../mk/sysdep/python25.mk
+ALTERNATIVE_MK.python26?=	../../mk/sysdep/python26.mk
+ALTERNATIVE_MK.python27?=	../../mk/sysdep/python27.mk
+ALTERNATIVE_MK.python31?=	../../lang/python31/depend.mk
+ALTERNATIVE_MK.python32?=	../../mk/sysdep/python32.mk
+
+# define some variables for use in the packages
+export PYTHON=		$(firstword ${SYSTEM_FILES.${ALTERNATIVE.python}})
+export PYTHON_LIB=	$(word 2,${SYSTEM_FILES.${ALTERNATIVE.python}})
+export PYTHON_INCLUDE=	$(dir $(word 3,${SYSTEM_FILES.${ALTERNATIVE.python}}))
+
+PYPKGPREFIX=\
+  $(word 1,$(patsubst python%,py%,$(filter py%,${ALTERNATIVE.python}) py))
+PYTHON_VERSION=$(patsubst py2%,2.%,$(patsubst py3%,3.%,${PYPKGPREFIX}))
+PYTHON_SITELIB=lib/python${PYTHON_VERSION}/site-packages
+PYTHON_SYSLIBSEARCH=lib/python${PYTHON_VERSION}/{site,dist}-packages
+
+BUILD_DEFS+=	PYTHON_VERSION
+
+# require preferences for PYTHON definition and immediate expansions below
+include ../../mk/robotpkg.prefs.mk
+
+PYTHON_SYSLIB:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
+	'import distutils.sysconfig;                                    \
+	print(distutils.sysconfig.get_python_lib(0, 0, ""))'))
 
 # PYTHONPATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
 # directories) that should be added to the python search paths.
@@ -135,4 +162,6 @@ INSTALL_MAKE_CMD?=${SETENV} ${MAKE_ENV} \
 
 endif # PYDISTUTILSPKG
 
-endif # LANGUAGE_PYTHON_MK
+endif # PYTHON_DEPEND_MK ---------------------------------------------------
+
+DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

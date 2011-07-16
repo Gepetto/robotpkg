@@ -5,7 +5,7 @@
 PKGVERSION=		2.3.1
 PKGREVISION=		1
 DISTNAME=		yarp-${PKGVERSION_NOREV}
-PKGNAME=		libpyyarp-${PKGVERSION}
+PKGNAME=		${PYPKGPREFIX}-libpyyarp-${PKGVERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
 CATEGORIES=		middleware
@@ -14,7 +14,9 @@ HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Python bindings for YARP
 LICENSE=		gnu-lgpl-v2
 
-USE_LANGUAGES+=		c c++ python
+CONFLICTS+=		libpyyarp-[0-9]*
+
+USE_LANGUAGES+=		c c++
 
 CMAKE_ARGS+=		-DCREATE_PYTHON=TRUE
 CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
@@ -33,6 +35,7 @@ INSTALLATION_DIRS=	${PYTHON_SITELIB}
 include ../../devel/swig/depend.mk
 include ../../middleware/yarp/depend.mk
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
 

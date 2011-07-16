@@ -59,7 +59,7 @@
 # USE_LANGUAGES
 #	Lists the languages used in the source code of the package,
 #	and is used to determine the correct compilers to install.
-#	Valid values are: c, c99, c++, fortran, java, python.  The
+#	Valid values are: c, c99, c++, fortran, java.  The
 #       default is "c".
 #
 
@@ -119,7 +119,7 @@ ROBOTPKG_FC=
 $(call require,$(patsubst %,${ROBOTPKG_DIR}/mk/compiler/%.mk,${_COMPILER}))
 
 ifneq (,$(filter python,${USE_LANGUAGES}))
-  $(call require,${ROBOTPKG_DIR}/mk/compiler/python.mk)
+  PKG_FAIL_REASON+="USE_LANGUAGES+= python is deprecated"
 endif
 
 # Remaining empty variables are explicitely set to 'false' so that missing

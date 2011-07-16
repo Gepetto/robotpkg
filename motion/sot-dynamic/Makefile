@@ -13,7 +13,7 @@ CATEGORIES=	motion
 LICENSE=	gnu-lgpl-v3
 COMMENT=	Hierarchical task based control of humanoid robots
 
-USE_LANGUAGES+=		c c++ python
+USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/sot-dynamic
 
 # Build the package in a separate directory
@@ -34,4 +34,5 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk

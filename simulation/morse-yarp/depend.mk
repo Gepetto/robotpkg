@@ -19,10 +19,9 @@ DEPEND_ABI.morse-yarp?=		morse-yarp>=0.2
 DEPEND_DIR.morse-yarp?=		../../simulation/morse-yarp
 
 SYSTEM_SEARCH.morse-yarp=\
-	${PYTHON_SITELIB}/morse/middleware/yarp_mw.py
+	${PYTHON_SYSLIBSEARCH}/morse/middleware/yarp_mw.py
 
-DEPEND_METHOD.python3+=		bootstrap
-include ../../lang/python31/depend.mk
+include ../../lang/python/depend.mk
 
 endif # MORSE_YARP_DEPEND_MK -----------------------------------------------
 

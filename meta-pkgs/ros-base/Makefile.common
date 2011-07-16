@@ -17,8 +17,7 @@ HOMEPAGE?=	http://www.ros.org/wiki/
 COMMENT?=	The Robotic Operating System (${ROS_COMMENT})
 LICENSE=	modified-bsd
 
-USE_LANGUAGES+=	c c++ python
-PYTHON_REQUIRED+=>=2.5 <3
+USE_LANGUAGES+=	c c++
 MESSAGE_SRC?=	../../meta-pkgs/ros-base/MESSAGE
 
 include ../../meta-pkgs/ros-base/Makefile.version
@@ -94,6 +93,8 @@ PRINT_PLIST_FILES_CMD=					\
 	 \) -prune -o \! -type d -print |		\
 	${SED} -e 's|${WRKSRC}|${PREFIX}/${ROS_INSTALLATION_SUBDIR}|g';
 
+DEPEND_ABI.python=	python>=2.5<3
+include ../../mk/sysdep/python.mk
 
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk

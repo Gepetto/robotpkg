@@ -9,21 +9,21 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		libpyyarp
 endif
 
-ifeq (+,$(LIBPYYARP_DEPEND_MK)) # -----------------------------------------------
+ifeq (+,$(LIBPYYARP_DEPEND_MK)) # ------------------------------------------
 
-PREFER.libpyyarp?=		robotpkg
+PREFER.libpyyarp?=	robotpkg
 
 DEPEND_USE+=		libpyyarp
-DEPEND_ABI.libpyyarp?=	libpyyarp>=2.3.1
+DEPEND_ABI.libpyyarp?=	${PYPKGPREFIX}-libpyyarp>=2.3.1
 DEPEND_DIR.libpyyarp?=	../../middleware/libpyyarp
-
+DEPEND_VARS.libpyyarp+=	ALTERNATIVE.python
 
 SYSTEM_SEARCH.libpyyarp=\
-	'lib/python[0-9.]*/{site,dist}-packages/yarp.py'
-	
+	'${PYTHON_SYSLIBSEARCH}/yarp.py'
 
 include ../../middleware/yarp/depend.mk
+include ../../mk/sysdep/python.mk
 
-endif # LIBPYYARP_DEPEND_MK ----------------------------------------------------
+endif # LIBPYYARP_DEPEND_MK ------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -11,7 +11,6 @@ HOMEPAGE=		http://omniorb.sourceforge.net/
 COMMENT=		ORB that implements the 2.6 specification of the CORBA
 LICENSE=		gnu-lgpl-v2.1
 
-USE_TOOLS+=		python
 USE_LANGUAGES+=		c c++
 
 MAKE_FILE=		GNUmakefile
@@ -37,7 +36,7 @@ PKG_OPTION_SET.ipv6:=	CONFIGURE_ARGS+=--enable-ipv6
 PKG_OPTION_UNSET.ipv6:=	CONFIGURE_ARGS+=--disable-ipv6
 
 include ../../pkgtools/install-sh/depend.mk
-include ../../mk/sysdep/python2.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
 
 post-install:
