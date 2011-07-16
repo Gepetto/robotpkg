@@ -90,38 +90,46 @@ show-license:
 #
 .PHONY: show-depends
 show-depends:
-	${RUN}${_SETFANCY_CMD};						\
-	{ ${RECURSIVE_MAKE} check-depends &&				\
-	  ${_pkgset_tsort_deps} -n ${PKGPATH} | while read dir; do	\
-	    cd ${ROBOTPKG_DIR}/$$dir &&					\
-	    ${RECURSIVE_MAKE} check-depends ||				\
-		${ECHO} 1>&2 "could not process $$dir";			\
-	  done; } | ${AWK} -F'|' -v bf=$$bf -v rm=$$rm '		\
-	  /robotpkg/ {							\
-	    if ($$3 == "-") {						\
-	        r[$$2] = bf "missing - install " $$4 rm;		\
+	${RUN}${PHASE_MSG} "Scanning packages for ${PKGNAME}";		\
+	${_pkgset_tsort_deps} -n ${PKGPATH} | while read dir; do	\
+	  cd ${ROBOTPKG_DIR}/$$dir &&					\
+	  ${RECURSIVE_MAKE} check-depends WRKDIR=${WRKDIR}/$$dir || {	\
+	    ${ERROR_MSG} "Could not process $$dir";			\
+	  };								\
+	done | ${AWK} -F'|' -v bf=$$bf -v rm=$$rm '			\
+	  /^check-depends\|robotpkg/ {					\
+	    if ($$4 == "-") {						\
+	        r[$$3] = bf "missing - install " $$5 rm;		\
 	    } else {							\
-		r[$$2] = "found " $$3;					\
+		r[$$3] = "found " $$4;					\
             }								\
+	    rdeps=1; next;						\
 	  }								\
-	  /system/ {							\
-	    if ($$3 == "-") {						\
-		s[$$2] = bf "missing - install $(strip			\
+	  /^check-depends\|system/ {					\
+	    if ($$4 == "-") {						\
+		s[$$3] = bf "missing - install $(strip			\
 		  $(or ${OPSUBSYS},${OPSYS})) package";			\
-	        for(i=4; i<=NF; i++) s[$$2] = s[$$2] " " $$i;		\
-		s[$$2] = s[$$2] rm;					\
+	        for(i=5; i<=NF; i++) s[$$3] = s[$$3] " " $$i;		\
+		s[$$3] = s[$$3] rm;					\
 	    } else {							\
-		s[$$2] = "found " $$3 " in " $$4;			\
+		s[$$3] = "found " $$4 " in " $$5;			\
 	    }								\
+	    sdeps=1; next;						\
 	  }								\
+	  { print }							\
 	  END {								\
+	    if (rdeps || sdeps) { print ""; }				\
 	    sort = "${SORT} 2>/dev/null";				\
-	    print bf "Robotpkg dependencies" rm;			\
-	    for(a in r) printf("%-20s: %s\n", a, r[a]) | sort;		\
-	    close(sort);						\
-	    print bf "\nSystem dependencies" rm;			\
-	    for(a in s) printf("%-20s: %s\n", a, s[a]) | sort;		\
-	    close(sort);						\
+	    if (rdeps) {						\
+	      print bf "Robotpkg dependencies" rm;			\
+	      for(a in r) printf("%-20s: %s\n", a, r[a]) | sort;	\
+	      close(sort);						\
+	    }								\
+	    if (sdeps) {						\
+	      print bf "\nSystem dependencies" rm;			\
+	      for(a in s) printf("%-20s: %s\n", a, s[a]) | sort;	\
+	      close(sort);						\
+	    }								\
 	  }'
 
 
