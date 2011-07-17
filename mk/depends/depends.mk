@@ -85,11 +85,25 @@ else
   $(call require, ${ROBOTPKG_DIR}/mk/depends/sysdep.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
-  # This defers the depends target until bootstrap-depends has completed and
-  # make has restarted with those dependencies resolved
   ifeq (yes,$(call exists,${_COOKIE.bootstrap-depends}))
-    ${_COOKIE.depends}: real-depends;
+    # The goal here is to check if the 'bootstrap' cookie, while already
+    # present, needs an update and we thus want to defer 'depends' a bit
+    # more. The trick is to check if the 'bootstrap' cookie was deleted by its
+    # own rule (meaning that it was outdated). If so, we just raise an error
+    # ($TEST below) that makes the 'depends' cookie target fail early. Since
+    # 'make' is about to restart anyway, bootstrap-depends will re-run and we
+    # will eventually end up in here again (after a restart in the 'if' branch
+    # above). This works only because errors are not fatal to 'make' while
+    # rebuilding makefiles... (but note this is just to handle correctly a rare
+    # situation, though).
+    ${_COOKIE.depends}: maybe-defer-depends real-depends;
+
+    .PHONY: maybe-defer-depends
+    maybe-defer-depends: ${_COOKIE.bootstrap-depends}
+	@${TEST} -f $<
   else
+    # This defers the depends target until bootstrap-depends has completed and
+    # make has restarted with those dependencies resolved.
     ${_COOKIE.depends}:;
   endif
 endif
