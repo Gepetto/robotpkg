@@ -24,11 +24,24 @@
 # are packages with DEPEND_METHOD.pkg set to bootstrap.
 #
 _BSDEPENDS_TARGETS+=	cbbh
-_BSDEPENDS_TARGETS+=	acquire-depends-lock
-_BSDEPENDS_TARGETS+=	${_COOKIE.bootstrap-depends}
-_BSDEPENDS_TARGETS+=	release-depends-lock
+_BSDEPENDS_TARGETS+=	do-bootstrap-depends
 
 bootstrap-depends: ${_BSDEPENDS_TARGETS};
+
+# force cookie rebuilding when bootstrap-depends is explicitely requested
+ifneq (,$(filter bootstrap-depends,${MAKECMDGOALS}))
+  _cbbh_requires+=	${_COOKIE.bootstrap-depends}
+  ifeq (,${MAKE_RESTARTS})
+    ${_COOKIE.bootstrap-depends}: .FORCE
+  endif
+endif
+
+# Fails if the 'bootstrap' depends cookie does not exist: this provides better
+# error messages than those printed by gmake when it fails in the middle of the
+# cookie rebuilding target.
+.PHONY: do-bootstrap-depends
+do-bootstrap-depends:
+	@${TEST} -f ${_COOKIE.bootstrap-depends}
 
 
 # --- ${_COOKIE.bootstrap-depends} -----------------------------------------
@@ -38,12 +51,7 @@ bootstrap-depends: ${_BSDEPENDS_TARGETS};
 # The cookie itself is included to trigger gmake's restart when the cookie is
 # outdated.
 #
-
 ifeq (yes,$(call exists,${_COOKIE.bootstrap-depends}))
-  ifneq (,$(filter bootstrap-depends,${MAKECMDGOALS}))
-    ${_COOKIE.bootstrap-depends}: .FORCE
-  endif
-
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.bootstrap-depends}
   ${_COOKIE.bootstrap-depends}: $(filter-out ${WRKDIR}/%,${MAKEFILE_LIST})
 	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev;			\
@@ -70,6 +78,7 @@ bootstrap-depends-cookie: makedirs
 # targets that do the actual bootstrap dependency installation.
 #
 _REAL_BSDEPENDS_TARGETS+=	makedirs
+_REAL_BSDEPENDS_TARGETS+=	acquire-depends-lock
 _REAL_BSDEPENDS_TARGETS+=	bootstrap-depends-message
 ifdef DEPEND_ALTERNATIVE
   _REAL_BSDEPENDS_TARGETS+=	resolve-alternatives
@@ -80,6 +89,7 @@ _REAL_BSDEPENDS_TARGETS+=	bootstrap-depends-cookie
 ifneq (,$(filter bootstrap-depends,${MAKECMDGOALS}))
   _REAL_BSDEPENDS_TARGETS+=	bootstrap-depends-done-message
 endif
+_REAL_BSDEPENDS_TARGETS+=	release-depends-lock
 
 .PHONY: real-bootstrap-depends
 real-bootstrap-depends: ${_REAL_BSDEPENDS_TARGETS}

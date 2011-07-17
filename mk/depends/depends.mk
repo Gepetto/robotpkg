@@ -50,12 +50,24 @@
 #
 _DEPENDS_TARGETS+=	cbbh
 _DEPENDS_TARGETS+=	$(call add-barrier, bootstrap-depends, depends)
-_DEPENDS_TARGETS+=	acquire-depends-lock
-_DEPENDS_TARGETS+=	${_COOKIE.depends}
-_DEPENDS_TARGETS+=	release-depends-lock
+_DEPENDS_TARGETS+=	do-depends
 
 depends: ${_DEPENDS_TARGETS};
 
+# force cookie rebuilding when depends is explicitely requested
+ifneq (,$(filter depends,${MAKECMDGOALS}))
+  _cbbh_requires+=	${_COOKIE.depends}
+  ifeq (,${MAKE_RESTARTS})
+    ${_COOKIE.depends}: .FORCE
+  endif
+endif
+
+# Fails if the 'depends' cookie does not exist: this provides better
+# error messages than those printed by gmake when it fails in the middle of the
+# cookie rebuilding target.
+.PHONY: do-depends
+do-depends:
+	@${TEST} -f ${_COOKIE.depends}
 
 .PHONY: acquire-depends-lock release-depends-lock
 acquire-depends-lock: acquire-lock
@@ -70,17 +82,13 @@ release-depends-lock: release-lock
 # outdated.
 #
 ifeq (yes,$(call exists,${_COOKIE.depends}))
-  ifneq (,$(filter depends,${MAKECMDGOALS}))
-    ${_COOKIE.depends}: .FORCE
-  endif
-
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.depends}
   ${_COOKIE.depends}: $(filter-out ${WRKDIR}/%,${MAKEFILE_LIST})
   ${_COOKIE.depends}: ${_COOKIE.bootstrap-depends}
 	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev;			\
 	${RM} -f ${_SYSDEPENDS_FILE} ${_DEPENDS_FILE}
 
-  $(call require, ${_COOKIE.depends})
+  _cbbh_requires+=	${_COOKIE.depends}
 else
   $(call require, ${ROBOTPKG_DIR}/mk/depends/sysdep.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
@@ -125,6 +133,7 @@ depends-cookie: makedirs
 # real-depends is a helper target onto which one can hook all of the
 # targets that do the actual dependency installation.
 #
+_REAL_DEPENDS_TARGETS+=	acquire-depends-lock
 _REAL_DEPENDS_TARGETS+=	pre-depends-hook
 _REAL_DEPENDS_TARGETS+=	depends-message
 _REAL_DEPENDS_TARGETS+= sys-depends
@@ -137,6 +146,7 @@ _REAL_DEPENDS_TARGETS+=	depends-cookie
 ifneq (,$(filter depends,${MAKECMDGOALS}))
   _REAL_DEPENDS_TARGETS+=	depends-done-message
 endif
+_REAL_DEPENDS_TARGETS+=	release-depends-lock
 
 .PHONY: real-depends
 real-depends: ${_REAL_DEPENDS_TARGETS}

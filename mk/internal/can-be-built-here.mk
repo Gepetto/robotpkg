@@ -219,5 +219,5 @@ cbbh:
 # trigger again the corresponding phase if needed and the package allows it.
 #
 ifeq (yes,${_CBBH})
-  $(call -require,${_cbbh_requires})
+  $(call -require,$(sort ${_cbbh_requires}))
 endif
