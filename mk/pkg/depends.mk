@@ -178,12 +178,6 @@ $(foreach _pkg_,${DEPEND_USE},						\
 #
 # pkg-depends-file creates the robotpkg prefixes file.
 #
-# Define an empty rule for the file itself so that it is not rebuilt
-# automatically. This also prevents implicit rules for being searched.
-#
-_MAKEFILE_WITH_RECIPES+= ${_DEPENDS_FILE}
-${_DEPENDS_FILE}:;
-
 .PHONY: pkg-depends-file
 pkg-depends-file:
 	${RUN}${MKDIR} $(dir ${_DEPENDS_FILE});				\
@@ -239,12 +233,6 @@ pkg-depends-install:
 # during stages before the normal "depends" stage.  These dependencies are
 # package listed with DEPEND_METHOD.pkg set to bootstrap.
 #
-# Define an empty rule for the file itself so that it is not rebuilt
-# automatically. This also prevents implicit rules for being searched.
-#
-_MAKEFILE_WITH_RECIPES+= ${_BSDEPENDS_FILE}
-${_BSDEPENDS_FILE}:;
-
 .PHONY: pkg-bootstrap-depends
 pkg-bootstrap-depends:
 	${RUN} >${_BSDEPENDS_FILE};					\

@@ -314,12 +314,6 @@ endif
 # temporary file. This file is included if present and caches the results of
 # the resolution.
 #
-# Define an empty rule for the file itself so that it is not rebuilt
-# automatically. This also prevents implicit rules for being searched.
-#
-_MAKEFILE_WITH_RECIPES+= ${_ALTERNATIVES_FILE}
-${_ALTERNATIVES_FILE}:;
-
 .PHONY: resolve-alternatives
 resolve-alternatives:
 	${RUN} >${_ALTERNATIVES_FILE}; exec 3>>${_ALTERNATIVES_FILE};	\

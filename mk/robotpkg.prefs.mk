@@ -329,8 +329,8 @@ _SYSDEPENDS_FILE=	${WRKDIR}/.sysdepends
 _DEPENDS_FILE=		${WRKDIR}/.depends
 _SYSBSDEPENDS_FILE=	${WRKDIR}/.sysbsdepends
 _BSDEPENDS_FILE=	${WRKDIR}/.bsdepends
--include ${_ALTERNATIVES_FILE}
--include ${_SYSBSDEPENDS_FILE} ${_SYSDEPENDS_FILE}
--include ${_BSDEPENDS_FILE} ${_DEPENDS_FILE}
+include $(realpath ${_ALTERNATIVES_FILE})
+include $(realpath ${_SYSBSDEPENDS_FILE} ${_SYSDEPENDS_FILE})
+include $(realpath ${_BSDEPENDS_FILE} ${_DEPENDS_FILE})
 
 endif # MK_ROBOTPKG_PREFS
