@@ -129,7 +129,7 @@ real-depends: ${_REAL_DEPENDS_TARGETS}
 
 .PHONY: depends-message
 depends-message:
-	@if ${TEST} -f "${_COOKIE.configure}.prev"; then		\
+	@if ${TEST} -f "${_COOKIE.depends}.prev"; then			\
 	  ${PHASE_MSG} "Rechecking dependencies for ${PKGNAME}";	\
 	else								\
 	  ${PHASE_MSG} "Checking dependencies for ${PKGNAME}";		\
