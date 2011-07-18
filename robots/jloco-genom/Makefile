@@ -17,25 +17,22 @@ GENOM_MODULE=	jloco
 
 
 PKG_SUPPORTED_OPTIONS+= fake
-PKG_OPTION_DESCR.fake=	build with simulated hardware interface
+PKG_OPTION_DESCR.fake=	Build with simulated hardware interface
 define PKG_OPTION_SET.fake
-	GENOM_ARGS+= -DFAKE_NEOBOTIX -DFAKE_JOYSTICK
+  GENOM_ARGS+= -DFAKE_NEOBOTIX -DFAKE_JOYSTICK
 endef
 
 define PKG_OPTION_UNSET.fake
-include ../../robots/neobotix-libs/depend.mk
-include ../../motion/contlaw/depend.mk
+  include ../../robots/neobotix-libs/depend.mk
+  include ../../motion/contlaw/depend.mk
 endef
 
 ifneq (,$(filter api,${PKG_OPTIONS.jloco-genom}))
-	PKG_OPTIONS.jloco-genom+= fake
+  PKG_OPTIONS.jloco-genom+= fake
 endif
-
 
 include ../../localization/pom-genom/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../mk/robotpkg.mk
-
-
