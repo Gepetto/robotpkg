@@ -18,6 +18,7 @@ NO_CONFIGURE=	yes
 USE_LANGUAGES=	# empty
 BUILD_TARGET=	# empty
 INSTALL_TARGET=	# empty
+MAKE_JOBS_SAFE= no
 
 MAKE_ENV+=	ROBOTPKG_DIR=$(call quote,${ROBOTPKG_DIR})
 MAKE_ENV+=	ECHO=$(call quote,${ECHO})
