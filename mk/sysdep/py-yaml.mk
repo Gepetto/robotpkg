@@ -17,8 +17,6 @@ ifeq (+,$(PYYAML_DEPEND_MK)) # ---------------------------------------------
 
 PREFER.py-yaml?=	system
 
-USE_LANGUAGES+=		python
-
 DEPEND_USE+=		py-yaml
 DEPEND_ABI.py-yaml?=	${PYPKGPREFIX}-yaml
 
@@ -26,6 +24,8 @@ SYSTEM_SEARCH.py-yaml=\
 	'${PYTHON_SYSLIBSEARCH}/yaml/__init__.py'
 
 SYSTEM_PKG.Linux-fedora.py-yaml=	PyYAML (python-${PYTHON_VERSION})
+SYSTEM_PKG.Linux-ubuntu.py-yaml=	python-yaml (python-${PYTHON_VERSION})
+SYSTEM_PKG.Linux-debian.py-yaml=	python-yaml (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-yaml=		pkgsrc/textproc/${PYPKGPREFIX}-yaml
 
 include ../../mk/sysdep/python.mk
