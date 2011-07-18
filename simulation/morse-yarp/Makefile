@@ -15,6 +15,6 @@ CMAKE_ARGS+=		-DBUILD_POCOLIBS_SUPPORT=OFF
 CMAKE_ARGS+=		-DBUILD_ROS_SUPPORT=OFF
 CMAKE_ARGS+=		-DBUILD_YARP2_SUPPORT=ON
 
-include ../../middleware/libpyyarp/depend.mk
+include ../../middleware/py-yarp/depend.mk
 include ../../simulation/morse/depend.mk
 include ../../mk/robotpkg.mk
