@@ -273,7 +273,7 @@ $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
 #
 override define _dpd_export_override # (path, var)
   export _override_vars.$(call pkgpath,$1) +=$2
-  export _overrides.$2 +=$(value $2)
+  export _overrides.$2 :=$(value $2)
 endef
 override define _dpd_overrides
   $(foreach _,${DEPEND_VARS.$1},$(call _dpd_export_override,${DEPEND_DIR.$1},$_))
