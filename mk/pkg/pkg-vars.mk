@@ -120,7 +120,7 @@ _COOKIE.outdated=		${WRKDIR}/.outdated
 _MAKEFILE_WITH_RECIPES+=	${_COOKIE.outdated}
 
 override define if-outdated-pkg
-$(eval -include ${_COOKIE.outdated})$(if ${_OUTDATED.${PKGBASE}},$1,$2)
+$(eval -include ${_COOKIE.outdated})$(if ${_OUTDATED.${PKGPATH}},$1,$2)
 endef
 
 include ${ROBOTPKG_DIR}/mk/pkg/depends.mk

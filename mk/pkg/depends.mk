@@ -49,6 +49,7 @@
 # unsafe_depends{_strict} set. If the package is outdated, create the
 # ${_COOKIE.outdated} file, otherwise do nothing.
 #
+_MAKEFILE_WITH_RECIPES+=${_COOKIE.outdated}
 ${_COOKIE.outdated}: $(wildcard ${PKG_DBDIR}/${PKGNAME})
 	${RUN}${RM} -f $@; (						\
 	  ${PKG_INFO} -qe ${PKGNAME} || exit 1;				\
@@ -70,7 +71,7 @@ ${_COOKIE.outdated}: $(wildcard ${PKG_DBDIR}/${PKGNAME})
 	    ${TEST} -z "`${PKG_INFO} -qQ $$var ${PKGNAME}`" || exit 1;	\
 	  done;								\
 	) || {								\
-	  ${MKDIR} $(dir $@) && ${ECHO} _OUTDATED.${PKGBASE}:=yes >$@;	\
+	  ${MKDIR} $(dir $@) && ${ECHO} _OUTDATED.${PKGPATH}:=yes >$@;	\
 	}
 
 
