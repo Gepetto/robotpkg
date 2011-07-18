@@ -1,4 +1,4 @@
-@comment Thu Dec 3 15:00:55 CET 2009
+@comment Mon Jul 18 14:01:01 CEST 2011
 bin/kill-mp
 bin/mp-oprs
 bin/opc
@@ -172,6 +172,7 @@ share/openprs/data/test/text-opf-torture.opf
 share/openprs/data/test/wait.inc
 share/openprs/data/test/wait.opf
 share/openprs/data/unification.inc
+${PLIST.doc}share/openprs/doc/doc/oprs.pdf
 share/openprs/src-example/pu-enum.c
 share/openprs/src-example/pu-genom.c
 share/openprs/src-example/pu-mk-term.c
@@ -195,4 +196,3 @@ share/openprs/util/init-oprs-env
 share/openprs/util/install-if-change.sh
 share/openprs/util/install.sh
 share/openprs/util/vw-script
-${PLIST.doc}share/openprs/doc/doc/oprs.pdf
