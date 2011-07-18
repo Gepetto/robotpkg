@@ -1,5 +1,8 @@
-@comment Fri Jun 12 00:13:36 CEST 2009
+@comment Mon Jul 18 12:18:22 CEST 2011
 ${PYTHON_SITELIB}/_yarp.so
 ${PYTHON_SITELIB}/example.py
+${PYTHON_SITELIB}/example.pyc
 ${PYTHON_SITELIB}/example_img.py
+${PYTHON_SITELIB}/example_img.pyc
 ${PYTHON_SITELIB}/yarp.py
+${PYTHON_SITELIB}/yarp.pyc

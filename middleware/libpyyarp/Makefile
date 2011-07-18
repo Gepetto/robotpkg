@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=		2.3.1
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		yarp-${PKGVERSION_NOREV}
 PKGNAME=		${PYPKGPREFIX}-libpyyarp-${PKGVERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
@@ -46,7 +46,12 @@ post-configure:
 	done
 
 do-install:
-	${RUN}${INSTALL_DATA} ${WRKSRC}/example/swig/*.py		\
-		${PREFIX}/${PYTHON_SITELIB}
-	${RUN}${INSTALL_LIB} ${WRKSRC}/example/swig/_yarp.so		\
-		${PREFIX}/${PYTHON_SITELIB}
+	${RUN}cd ${WRKSRC}/example/swig &&				\
+	  for f in yarp.py example.py example_img.py; do		\
+	    ${INSTALL_DATA} $$f ${PREFIX}/${PYTHON_SITELIB};		\
+	  done;								\
+	  ${INSTALL_LIB} _yarp.so ${PREFIX}/${PYTHON_SITELIB}
+
+post-install: python-compile-all(					\
+	$(addprefix ${PREFIX}/${PYTHON_SITELIB}/,			\
+		yarp.py example.py example_img.py))
