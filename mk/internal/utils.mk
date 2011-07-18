@@ -118,7 +118,8 @@ RUN=			${_PKG_SILENT}${_PKG_DEBUG} set -e;
 
 # Run ${MAKE} recursively. Need to pass MAKEOVERRIDES explicitely, otherwise
 # its value is sometimes lost (gmake-3.82, see robotpkg commit 128793abe).
-RECURSIVE_MAKE=         ${MAKE} ${MAKEOVERRIDES}
+RECURSIVE_MAKE=\
+  ${SETENV} MAKEOVERRIDES=$(call quote,${MAKEOVERRIDES}) ${MAKE}
 MAKEFLAGS+=		--no-print-directory
 
 
