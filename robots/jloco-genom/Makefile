@@ -2,8 +2,7 @@
 # Created:			Matthieu Herrb on Wed, 31 Dec 2008
 #
 
-DISTNAME=	jloco-genom-1.1
-PKGREVISION=	2
+DISTNAME=	jloco-genom-1.2
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=jloco/}
 MASTER_REPOSITORY=	git	ssh://trac.laas.fr/git/robots/jloco-genom
@@ -16,12 +15,27 @@ GNU_CONFIGURE=	yes
 
 GENOM_MODULE=	jloco
 
-define PKG_OPTION_UNSET.api
+
+PKG_SUPPORTED_OPTIONS+= fake
+PKG_OPTION_DESCR.fake=	build with simulated hardware interface
+define PKG_OPTION_SET.fake
+	GENOM_ARGS+= -DFAKE_NEOBOTIX -DFAKE_JOYSTICK
+endef
+
+define PKG_OPTION_UNSET.fake
 include ../../robots/neobotix-libs/depend.mk
 include ../../motion/contlaw/depend.mk
 endef
+
+ifneq (,$(filter api,${PKG_OPTIONS.jloco-genom}))
+	PKG_OPTIONS.jloco-genom+= fake
+endif
+
+
 include ../../localization/pom-genom/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../mk/robotpkg.mk
+
+
