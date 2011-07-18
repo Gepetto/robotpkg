@@ -43,7 +43,7 @@ _ENV_VARS=\
 # Do this for recursive 'make' invocations only.
 #
 ifneq (0,${MAKELEVEL})
-  $(foreach _,${_override_vars.${PKGPATH}}, \
+  $(foreach _,$(sort ${_override_vars.${PKGPATH}}), \
     $(eval override $_ :=$(value _overrides.$_)))
 
   # keep overrides settings
