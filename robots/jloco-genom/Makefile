@@ -23,13 +23,11 @@ define PKG_OPTION_SET.fake
 endef
 
 define PKG_OPTION_UNSET.fake
-  include ../../robots/neobotix-libs/depend.mk
-  include ../../motion/contlaw/depend.mk
+  ifeq (,$(filter api,${PKG_OPTIONS}))
+    include ../../robots/neobotix-libs/depend.mk
+    include ../../motion/contlaw/depend.mk
+  endif
 endef
-
-ifneq (,$(filter api,${PKG_OPTIONS.jloco-genom}))
-  PKG_OPTIONS.jloco-genom+= fake
-endif
 
 include ../../localization/pom-genom/depend.mk
 include ../../devel/mkdep/depend.mk
