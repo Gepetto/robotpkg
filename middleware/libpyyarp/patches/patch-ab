@@ -1,0 +1,13 @@
+Fix syntax for python>=3
+
+--- example/swig/example.py~	2010-08-25 01:03:59.000000000 +0200
++++ example/swig/example.py	2011-07-18 14:48:14.516087857 +0200
+@@ -19,7 +19,7 @@
+     bottle.addInt(i)
+     bottle.addString("of")
+     bottle.addInt(top)
+-    print "Sending", bottle.toString()
++    print( "Sending", bottle.toString() )
+     p.write()
+     yarp.Time.delay(0.5)
+ 
