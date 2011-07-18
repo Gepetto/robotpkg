@@ -68,8 +68,7 @@ post-extract:
 do-configure:
 	@${DO_NADA}
 
-post-build:
-	${RUN}${BUILD_LOGFILTER} ${PYTHON} -m compileall -f ${WRKSRC}
+post-build: python-compile-all
 
 # install files from PLIST_SRC
 do-install:
