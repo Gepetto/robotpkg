@@ -145,6 +145,12 @@ PRINT_PLIST_AWK_SUBST+=\
 PRINT_PLIST_AWK_SUBST+=\
 	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
 
+# Define a post-build hook to compile all .py files
+.PHONY: python-compile-all
+python-compile-all: python-compile-all(${WRKSRC})
+python-compile-all(%): .FORCE
+	${RUN}${BUILD_LOGFILTER} ${PYTHON} -m compileall -f $%
+
 # For python packages using the distuils.setup framework, redefine the
 # BUILD_MAKE_CMD
 ifdef PYDISTUTILSPKG
