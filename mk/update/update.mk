@@ -72,7 +72,8 @@ ifeq (yes,$(call only-for,update,yes))	     # if we are asking for an update
   ifneq (yes,$(call exists,${_UPDATE_LIST})) # not resuming a previous one
     ifeq (,$(filter confirm,${MAKECMDGOALS}))# with no confirmation
       ifneq (yes,$(call if-outdated-pkg,yes))# and the package is up-to-date
-        _UPDATE_TARGETS:= update-up-to-date  # let us do nothing
+        _UPDATE_TARGETS:= cbbh               # let us do nothing
+        _UPDATE_TARGETS+= update-up-to-date
       endif
     endif
   endif
