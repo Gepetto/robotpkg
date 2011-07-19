@@ -27,6 +27,10 @@ SYSTEM_PKG.Linux-ubuntu.python32=	python3.2-dev
 SYSTEM_PKG.Linux-debian.python32=	python3.2-dev
 SYSTEM_PKG.NetBSD.python32=		pkgsrc/lang/python32
 
+# directory for byte compiled files
+PYTHON32_TAG=		.cpython-32
+PYTHON32_PYCACHE=	__pycache__
+
 export PYTHON32=	$(firstword ${SYSTEM_FILES.python32})
 export PYTHON32_LIB=	$(word 2,${SYSTEM_FILES.python32})
 export PYTHON32_INCLUDE=$(dir $(word 3,${SYSTEM_FILES.python32}))

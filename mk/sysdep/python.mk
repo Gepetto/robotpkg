@@ -103,11 +103,16 @@ export PYTHON=		$(firstword ${SYSTEM_FILES.${ALTERNATIVE.python}})
 export PYTHON_LIB=	$(word 2,${SYSTEM_FILES.${ALTERNATIVE.python}})
 export PYTHON_INCLUDE=	$(dir $(word 3,${SYSTEM_FILES.${ALTERNATIVE.python}}))
 
+PYVARPREFIX=$(subst python,PYTHON,${ALTERNATIVE.python})
 PYPKGPREFIX=\
   $(word 1,$(patsubst python%,py%,$(filter py%,${ALTERNATIVE.python}) py))
+
 PYTHON_VERSION=$(patsubst py2%,2.%,$(patsubst py3%,3.%,${PYPKGPREFIX}))
 PYTHON_SITELIB=lib/python${PYTHON_VERSION}/site-packages
 PYTHON_SYSLIBSEARCH=lib/python${PYTHON_VERSION}/{site,dist}-packages
+
+PYTHON_PYCACHE?=	$(or ${${PYVARPREFIX}_PYCACHE},.)
+PYTHON_TAG?=		$(or ${${PYVARPREFIX}_TAG},)
 
 BUILD_DEFS+=	PYTHON_VERSION
 
@@ -138,11 +143,17 @@ export PYTHONPATH
 
 # Add extra replacement in PLISTs
 PLIST_SUBST+=\
-	PLIST_PYTHON_SITELIB=$(call quote,${PYTHON_SITELIB})
-PLIST_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
+	PLIST_PYTHON_PYCACHE=$(call quote,${PYTHON_PYCACHE})		\
+	PLIST_PYTHON_SITELIB=$(call quote,${PYTHON_SITELIB})		\
+	PLIST_PYTHON_TAG=$(call quote,${PYTHON_TAG})			\
+	PYTHON_VERSION=${PYTHON_VERSION}
+
 PRINT_PLIST_AWK_SUBST+=\
-	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");
-PRINT_PLIST_AWK_SUBST+=\
+	gsub("/${PYTHON_PYCACHE}/", "/");				\
+	gsub("[^/]+[.]py[co]$$", "$${PYTHON_PYCACHE}/&");		\
+	$(if ${PYTHON_TAG},gsub("${PYTHON_TAG}.py", ".py");)		\
+	gsub("[.]py[co]$$", "$${PYTHON_TAG}&");				\
+	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");		\
 	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
 
 # Define a post-build hook to compile all .py files
