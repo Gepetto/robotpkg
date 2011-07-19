@@ -1,8 +1,11 @@
-@comment Mon Jul 18 12:18:22 CEST 2011
+@comment Tue Jul 19 17:15:55 CEST 2011
+${PYTHON_SITELIB}/${PYTHON_PYCACHE}/example${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/${PYTHON_PYCACHE}/example${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/${PYTHON_PYCACHE}/example_img${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/${PYTHON_PYCACHE}/example_img${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/${PYTHON_PYCACHE}/yarp${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/${PYTHON_PYCACHE}/yarp${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/_yarp.so
 ${PYTHON_SITELIB}/example.py
-${PYTHON_SITELIB}/example.pyc
 ${PYTHON_SITELIB}/example_img.py
-${PYTHON_SITELIB}/example_img.pyc
 ${PYTHON_SITELIB}/yarp.py
-${PYTHON_SITELIB}/yarp.pyc
