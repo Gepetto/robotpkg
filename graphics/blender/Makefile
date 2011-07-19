@@ -3,8 +3,8 @@
 #
 
 PKGNAME=		blender-${PKGVERSION}
-DISTNAME=		blender-${PKGVERSION_NOREV}-beta
-PKGVERSION=		2.56
+DISTNAME=		blender-${PKGVERSION_NOREV}
+PKGVERSION=		2.59
 
 CATEGORIES=		graphics
 MASTER_SITES=		http://download.blender.org/source/
@@ -15,7 +15,6 @@ COMMENT=		Fully integrated 3D graphics creation suite
 LICENSE=		gnu-gpl-v2
 
 USE_LANGUAGES+=		c c++
-WRKSRC=			${WRKDIR}/${DISTNAME}-source
 
 CMAKE_ARG_PATH=		..
 CONFIGURE_DIRS=		_build
@@ -29,6 +28,12 @@ CMAKE_ARGS+=		-DWITH_SAMPLERATE=OFF	# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_JACK=OFF		# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_OPENAL=OFF	# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_SDL=OFF		# Fix bug with audaspace
+CMAKE_ARGS+=		-DWITH_INSTALL_PORTABLE=OFF # Install in hier(8)
+
+# Workaroud against a gcc bug (or a faulty C file :) when building
+# view3d_select.c with -O3 (in particulary -finline-functions) and
+# -fno-strict-aliasing
+_CFLAGS_NDEBUG=-O2 -DNDEBUG
 
 # Embed Python runtime in the binary
 CMAKE_ARGS+=		-DWITH_PYTHON=ON
@@ -40,7 +45,7 @@ CMAKE_ARGS+=		-DPYTHON_LIBPATH=$(dir ${PYTHON_LIB})
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
 
-DEPEND_ABI.python+=	python>=3<3.2
+DEPEND_ABI.python+=	python>=3.2<3.3
 include ../../mk/sysdep/python.mk
 
 include ../../mk/sysdep/cmake.mk
@@ -52,3 +57,6 @@ include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/libXi.mk
 include ../../mk/robotpkg.mk
+
+post-install: python-compile-all(${PREFIX}/share/blender/${PKGVERSION}/python/lib/python${PYTHON_VERSION}) \
+	python-compile-all(${PREFIX}/share/blender/${PKGVERSION}/scripts)
