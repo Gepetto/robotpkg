@@ -6,7 +6,7 @@ PKGVERSION=	3.1.2
 PKGREVISION=	1
 DISTNAME=	Python-${PKGVERSION_NOREV}
 PKGNAME=	python31-${PKGVERSION}
-MASTER_SITES=	http://www.python.org/ftp/python/${PKGVERSION}/
+MASTER_SITES=	http://www.python.org/ftp/python/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=   .tgz
 
 MAINTAINER=	openrobots@laas.fr
