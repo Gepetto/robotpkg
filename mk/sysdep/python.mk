@@ -150,6 +150,7 @@ PRINT_PLIST_AWK_SUBST+=\
 python-compile-all: python-compile-all(${WRKSRC})
 python-compile-all(%): .FORCE
 	${RUN}${BUILD_LOGFILTER} ${PYTHON} -m compileall -f $%
+	${RUN}${BUILD_LOGFILTER} ${PYTHON} -O -m compileall -f $%
 
 # For python packages using the distuils.setup framework, redefine the
 # BUILD_MAKE_CMD
