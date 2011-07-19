@@ -143,9 +143,10 @@ _SETFANCY_CMD:=${TEST} -t 1 || { bf=; rm=; }
 _COOKIE.wrkdir=	${WRKDIR}/.wrkdir_cookie
 
 .PHONY: makedirs
-makedirs: ${WRKDIR} ${PKG_DBDIR};
+makedirs: ${_COOKIE.wrkdir} ${PKG_DBDIR};
 
-${WRKDIR}:
+_MAKEFILE_WITH_RECIPES+=${_COOKIE.wrkdir}
+${_COOKIE.wrkdir}:
 	${RUN}${MKDIR} ${WRKDIR};					\
 	v="${PKGVERSION}"; v=$${v%.checkout*};				\
 	exec >>${_COOKIE.wrkdir};					\
