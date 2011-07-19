@@ -14,7 +14,8 @@ ifeq (+,$(SWIG_DEPEND_MK)) # -----------------------------------------
 PREFER.swig?=		system
 
 DEPEND_USE+=		swig
-DEPEND_ABI.swig?=	swig>=1.3
+DEPEND_ABI.swig?=\
+	$(if $(filter python32,${DEPEND_USE}),swig>=2.0.4,swig>=1.3)
 DEPEND_DIR.swig?=	../../devel/swig
 DEPEND_METHOD.swig+=	build
 
