@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007,2009-2010 LAAS/CNRS
+# Copyright (c) 2007,2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -104,6 +104,9 @@ $(call require, ${ROBOTPKG_DIR}/mk/sets/sets-vars.mk)
 
 # index.html generation code.
 $(call require-for, index index-all, ${ROBOTPKG_DIR}/mk/internal/index.mk)
+
+# informational show-% targets
+$(call require-for, show-%, ${ROBOTPKG_DIR}/mk/internal/show.mk)
 
 
 # Tell 'make' not to try to rebuild any Makefile by specifing a target with no
