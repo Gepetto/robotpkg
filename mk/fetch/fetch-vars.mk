@@ -62,7 +62,7 @@
 #DISTDIR?=               ${ROBOTPKG_DIR}/distfiles
 
 # The fetch method.
-FETCH_METHOD?=   	archive
+FETCH_METHOD?=		archive
 # "manual" will explicitly fail if the DISTFILES don't exist locally.
 # "custom" requires setting FETCH_CMD, FETCH_BEFORE_ARGS, FETCH_AFTER_ARGS,
 # FETCH_RESUME_ARGS and FETCH_OUTPUT_ARGS. FETCH_CMD must understand fetching
@@ -77,8 +77,8 @@ endif
 # Default archive extension
 EXTRACT_SUFX?=		.tar.gz
 
-_DISTDIR=		${DISTDIR}/${DIST_SUBDIR}
-DISTFILES?=		${DISTNAME}${EXTRACT_SUFX}
+_DISTDIR=		$(addprefix $(strip ${DISTDIR})/,${DIST_SUBDIR})
+DISTFILES?=		$(addsuffix ${EXTRACT_SUFX},${DISTNAME})
 
 # Backup site for archives
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP:=${DIST_SUBDIR:=/}}
