@@ -64,6 +64,7 @@ PKG_DELETE_CMD=	${WRKSRC}/delete/robotpkg_delete
 pre-update:	pkg_build
 pre-bulk:	pkg_build
 pkg-deinstall:	pkg_build
+pkg-tarup:	pkg_build
 
 .PHONY: pkg_build
 pkg_build:
