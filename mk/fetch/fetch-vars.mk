@@ -77,7 +77,7 @@ endif
 # Default archive extension
 EXTRACT_SUFX?=		.tar.gz
 
-_DISTDIR=		$(addprefix $(strip ${DISTDIR})/,${DIST_SUBDIR})
+_DISTDIR=		$(addsuffix $(strip ${DIST_SUBDIR})/,${DISTDIR})
 DISTFILES?=		$(addsuffix ${EXTRACT_SUFX},${DISTNAME})
 
 # Backup site for archives
