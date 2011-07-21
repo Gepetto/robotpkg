@@ -82,9 +82,11 @@ release-depends-lock: release-lock
 # outdated.
 #
 ifeq (yes,$(call exists,${_COOKIE.depends}))
+  # depend on files not in WRKDIR
+  _depend_cookiedep=$(filter-out $(realpath ${WRKDIR})/%,${MAKEFILE_LIST})
+
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.depends}
-  ${_COOKIE.depends}: $(filter-out ${WRKDIR}/%,${MAKEFILE_LIST})
-  ${_COOKIE.depends}: ${_COOKIE.bootstrap-depends}
+  ${_COOKIE.depends}: ${_depend_cookiedep} ${_COOKIE.bootstrap-depends}
 	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev;			\
 	${RM} -f ${_SYSDEPENDS_FILE} ${_DEPENDS_FILE}
 

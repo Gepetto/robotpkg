@@ -52,8 +52,11 @@ do-bootstrap-depends:
 # outdated.
 #
 ifeq (yes,$(call exists,${_COOKIE.bootstrap-depends}))
+  # depend on files not in WRKDIR
+  _bsdepend_cookiedep=$(filter-out $(realpath ${WRKDIR})/%,${MAKEFILE_LIST})
+
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.bootstrap-depends}
-  ${_COOKIE.bootstrap-depends}: $(filter-out ${WRKDIR}/%,${MAKEFILE_LIST})
+  ${_COOKIE.bootstrap-depends}: ${_bsdepend_cookiedep}
 	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev;			\
 	${RM} -f ${_ALTERNATIVES_FILE} ${_SYSBSDEPENDS_FILE} ${_BSDEPENDS_FILE}
 
