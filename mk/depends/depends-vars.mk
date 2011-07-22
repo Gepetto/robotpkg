@@ -128,15 +128,16 @@ endif
 check-depends: $(call add-barrier, bootstrap-depends, check-depends)
 check-depends: check-depends-full
 
-_chkdep_type= 			full build bootstrap
+_chkdep_type=			full build bootstrap
 
 _chkdep_filter.full=		full build bootstrap
 _chkdep_filter.build=		build bootstrap
 _chkdep_filter.bootstrap=	bootstrap
 
-$(addprefix check-depends-,${_chkdep_type}): .FORCE
-$(addprefix check-depends-,${_chkdep_type}):
-  check-depends-%: $(call add-barrier, bootstrap-depends, check-depends-%)
+check-depends-build: $(call add-barrier, bootstrap-depends, check-depends-build)
+check-depends-full: $(call add-barrier, bootstrap-depends, check-depends-full)
+
+$(addprefix check-depends-,${_chkdep_type}): check-depends-%: .FORCE
 	${RUN}								\
   $(foreach _pkg_,${DEPEND_USE},					\
     $(if $(filter ${_chkdep_filter.$*},${DEPEND_METHOD.${_pkg_}}),	\
