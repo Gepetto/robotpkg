@@ -45,6 +45,10 @@ _PACKAGE_TARGETS+=	release-package-lock
 .PHONY: package tarup
 package tarup: ${_PACKAGE_TARGETS};
 
+.PHONY: pre-package post-package
+pre-package:
+post-package:
+
 
 .PHONY: acquire-package-lock release-package-lock
 acquire-package-lock: acquire-lock
@@ -58,8 +62,10 @@ release-package-lock: release-lock
 #
 _REAL_PACKAGE_TARGETS+=	pkg-check-installed
 _REAL_PACKAGE_TARGETS+=	package-message
+_REAL_PACKAGE_TARGETS+=	pre-package
 _REAL_PACKAGE_TARGETS+=	pkg-tarup
 _REAL_PACKAGE_TARGETS+=	pkg-links
+_REAL_PACKAGE_TARGETS+=	post-package
 _REAL_PACKAGE_TARGETS+=	package-warnings
 
 .PHONY: real-package
