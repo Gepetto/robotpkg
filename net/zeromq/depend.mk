@@ -20,7 +20,7 @@ DEPEND_DIR.zeromq?=	../../net/zeromq
 
 SYSTEM_SEARCH.zeromq=\
 	include/zmq.h	\
-	liblibzmq.la	\
+	lib/libzmq.la	\
 	'lib/pkgconfig/libzmq.pc:/Version/s/[^0-9.]//gp'
 
 endif # ZEROMQ_DEPEND_MK ---------------------------------------------------
