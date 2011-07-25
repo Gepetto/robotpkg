@@ -4,7 +4,7 @@
 
 
 DISTNAME=		rmp400-genom-${VERSION}
-VERSION=		0.5
+VERSION=		0.4
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp400-genom
@@ -37,13 +37,6 @@ define PKG_OPTION_SET.gyroKVH5000
   GENOM_ARGS += -DGYRO=gyroKVH5000
 endef
 
-PKG_SUPPORTED_OPTIONS+= mana_emergency
-PKG_OPTION_DESCR.mana_emergency= Enable support for Mana's emergency stop
-define PKG_OPTION_SET.mana_emergency
-  GENOM_ARGS+= -DWITH_FELIB
-  include ../../wip/mana-emergency/depend.mk
-endef
-
 define PKG_OPTION_UNSET.api
 	include ../../robots/rmp-libs/depend.mk
 	include ../../motion/contlaw/depend.mk
@@ -51,6 +44,7 @@ endef
 
 GENOM_MODULE=		rmp400
 include ../../architecture/genom/depend.mk
+-include ../../wip/mana-emergency/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
