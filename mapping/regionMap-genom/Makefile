@@ -2,7 +2,7 @@
 # Created:			Arnaud Degroote on Fri, 28 Jan 2011
 #
 
-DISTNAME=		regionMap-genom-0.2
+DISTNAME=		regionMap-genom-0.3
 CATEGORIES=		mapping
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=regionMap-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/regionMap-genom

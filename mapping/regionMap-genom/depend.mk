@@ -14,7 +14,7 @@ PREFER.regionMap-genom?=	robotpkg
 
 DEPEND_USE+=		regionMap-genom
 
-DEPEND_ABI.regionMap-genom?=	regionMap-genom>=0.1
+DEPEND_ABI.regionMap-genom?=	regionMap-genom>=0.3
 DEPEND_DIR.regionMap-genom?=	../../mapping/regionMap-genom
 
 SYSTEM_SEARCH.regionMap-genom=\
