@@ -1,4 +1,3 @@
-SHA1 (libtclserv_client-0.2.tar.gz) = 37671a12810b6b4b11dbbc119c4d571168a75492
-RMD160 (libtclserv_client-0.2.tar.gz) = 658a1eda25c79cdea9f66f5ec44072de4cd72ff9
-Size (libtclserv_client-0.2.tar.gz) = 285639 bytes
-SHA1 (patch-aa) = 525f9cb6c39ba79ff99124108451afd0bd686a42
+SHA1 (libtclserv_client-0.3.tar.gz) = 2170e186121d09246615f20bfe3172ca5e5fd697
+RMD160 (libtclserv_client-0.3.tar.gz) = 57477ada207e5337d248ae3c1faddc0e504919ab
+Size (libtclserv_client-0.3.tar.gz) = 286792 bytes

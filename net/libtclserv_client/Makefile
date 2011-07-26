@@ -1,8 +1,7 @@
 # robotpkg Makefile for:	net/libtclserv_client
 # Created:			Arnaud Degroote on Sun, 22 Aug 2010
 #
-DISTNAME=	libtclserv_client-0.2
-PKGREVISION= 1
+DISTNAME=	libtclserv_client-0.3
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=libtclserv_client/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/libtclserv_client

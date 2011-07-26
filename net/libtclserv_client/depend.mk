@@ -15,7 +15,7 @@ PREFER.libtclserv_client?=	robotpkg
 
 DEPEND_USE+=		libtclserv_client
 
-DEPEND_ABI.libtclserv_client?=	libtclserv_client>=0.2
+DEPEND_ABI.libtclserv_client?=	libtclserv_client>=0.3
 DEPEND_DIR.libtclserv_client?=	../../net/libtclserv_client
 
 SYSTEM_SEARCH.libtclserv_client=\
