@@ -5,8 +5,8 @@ NNAAMMEE
      tributions
 
 SSYYNNOOPPSSIISS
-     ppkkgg__aadddd [--AAffIILLnnRRuuVVvv] [--KK _p_k_g___d_b_d_i_r] [--mm _m_a_c_h_i_n_e] [--PP _d_e_s_t_d_i_r] [--pp _p_r_e_f_i_x]
-             [--WW _v_i_e_w_b_a_s_e] [--ww _v_i_e_w] _f_i_l_e _._._.
+     ppkkgg__aadddd [--AAffIILLnnRRUUuuVVvv] [--CC _c_o_n_f_i_g] [--KK _p_k_g___d_b_d_i_r] [--mm _m_a_c_h_i_n_e]
+             [--PP _d_e_s_t_d_i_r] [--pp _p_r_e_f_i_x] [--WW _v_i_e_w_b_a_s_e] [--ww _v_i_e_w] _f_i_l_e _._._.
              [[ftp|http]://[_u_s_e_r][:_p_a_s_s_w_o_r_d]@]_h_o_s_t[:_p_o_r_t][/_p_a_t_h_/]_p_k_g_-_n_a_m_e _._._.
 
 DDEESSCCRRIIPPTTIIOONN
@@ -53,6 +53,10 @@ OOPPTTIIOONNSS
              --AA after it had already been automatically installed, the mark is
              removed.
 
+     --CC _c_o_n_f_i_g
+             Read the configuration file from _c_o_n_f_i_g instead of the system
+             default.
+
      --ff      Force installation to proceed even if prerequisite packages are
              not installed or the install script fails.  Although ppkkgg__aadddd will
              still try to find and auto-install missing prerequisite packages,
@@ -60,14 +64,17 @@ OOPPTTIIOONNSS
              rides the fatal error when the operating system or architecture
              the package was built on differ from that of the host.
 
+     --DD      Force updating even if the dependencies of depending packages are
+             not satisfied by the new package.  This is used by "make
+             replace", after which one would typically replace the depending
+             packages.
+
      --II      If an installation script exists for a given package, do not exe-
              cute it.
 
      --KK _p_k_g___d_b_d_i_r
-             Set _p_k_g___d_b_d_i_r as the package database directory.  If this option
-             isn't specified, then the package database directory is taken
-             from the value of the environment variable PKG_DBDIR if it's set,
-             otherwise it defaults to _/_v_a_r_/_d_b_/_p_k_g.
+             Override the value of the PKG_DBDIR configuration option with the
+             value _p_k_g___d_b_d_i_r.
 
      --LL      Don't add the package to any views after installation.
 
@@ -79,41 +86,32 @@ OOPPTTIIOONNSS
      --PP _d_e_s_t_d_i_r
              Prefix all file and directory names with _d_e_s_t_d_i_r.  For packages
              without install scripts this has the same behavior as using
-             chroot.
+             chroot(8).
 
      --pp _p_r_e_f_i_x
-             Set _p_r_e_f_i_x as the directory in which to extract files from a
-             package.  If a package has set its default directory, it will be
-             overridden by this flag.  Note that only the first @@ccwwdd directive
-             will be replaced, since ppkkgg__aadddd has no way of knowing which
-             directory settings are relative and which are absolute.  Only one
-             directory transition is supported and the second one is expected
-             to go into _p_k_g_d_b.
+             Override the prefix stored in the package with _p_r_e_f_i_x.
 
      --RR      Do not record the installation of a package.  This implies --II.
              This means that you cannot deinstall it later, so only use this
              option if you know what you are doing!
 
+     --UU      Replace an already installed version from a package.  Implies --uu.
+
      --uu      If the package that's being installed is already installed, an
-             update is performed.  It is currently not possible to update to
-             an identical version.  If this is specified twice, then any
-             dependent packages that are too old will also be updated to ful-
-             fill the dependency.  See below for a more detailed description
-             of the process.
+             update is performed.  Installed dependent packages are updated
+             recursively, if they are too old to fulfill the dependencies of
+             the to-be-installed version.  See below for a more detailed
+             description of the process.
 
      --VV      Print version number and exit.
 
      --vv      Turn on verbose output.
 
      --WW _v_i_e_w_b_a_s_e
-             Set _v_i_e_w_b_a_s_e as the base directory for the managed views.  The
-             default _v_i_e_w_b_a_s_e directory is set by pkg_view(1).  This value
-             also may be set from the LOCALBASE environment variable.
+             Passed down to pkg_view(1) for managed views.
 
      --ww _v_i_e_w
-             Set the _v_i_e_w to which packages should be added after installa-
-             tion.  The default _v_i_e_w is set by pkg_view(1).  This value also
-             may be set from the PKG_VIEW environment variable.
+             Passed down to pkg_view(1) for managed views.
 
      One or more _p_k_g_-_n_a_m_e arguments may be specified, each being either a file
      containing the package (these usually ending with the ``.tgz'' suffix) or
@@ -135,17 +133,19 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
 
            1.   A check is made to determine if the package or another version
                 of it is already recorded as installed.  If it is, installa-
-                tion is terminated if the --uu option is not given.
+                tion is terminated if the --uu or --UU options are not given.
 
-                If the --uu option is given, it's assumed the package should be
-                replaced by the new version instead.  Before doing so, all
-                packages that depend on the pkg being upgraded are checked if
-                they also work with the new version.  If that test is success-
-                ful, replacing is prepared by moving an existing _+_R_E_Q_U_I_R_E_D___B_Y
-                file aside (if it exists), and running pkg_delete(1) on the
-                installed package.  Installation then proceeds as if the pack-
-                age was not installed, and restores the _+_R_E_Q_U_I_R_E_D___B_Y file
-                afterwards.
+                If the same version is installed and --UU is not given, it is
+                marked as manually installed and process stops.  If the --uu
+                option is given, it's assumed the package should be replaced
+                by the new version instead.  Before doing so, all packages
+                that depend on the pkg being upgraded are checked if they also
+                work with the new version.  If that test is not successful,
+                the dependent packages are updated first.  The replacing is
+                then prepared by moving an existing _+_R_E_Q_U_I_R_E_D___B_Y file aside
+                (if it exists), and running pkg_delete(1) on the installed
+                package.  Installation then proceeds as if the package was not
+                installed, and restores the _+_R_E_Q_U_I_R_E_D___B_Y file afterwards.
 
            2.   The package build information is extracted from the
                 _+_B_U_I_L_D___I_N_F_O file and compared against the result of uname(3).
@@ -173,10 +173,6 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
                 these required packages are not currently installed, an
                 attempt is made to find and install it; if the missing package
                 cannot be found or installed, the installation is terminated.
-                If the --uu option was specified twice, any required packages
-                that are installed, but which have a version number that is
-                considered to be too old, are also updated.  The dependent
-                packages are found according to the normal PKG_PATH rules.
 
            7.   If the package contains an _i_n_s_t_a_l_l script, it is executed with
                 the following arguments:
@@ -204,14 +200,12 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
 
            10.  After installation is complete, a copy of the packing list,
                 _d_e_i_n_s_t_a_l_l script, description, and display files are copied
-                into _/_v_a_r_/_d_b_/_p_k_g_/_<_p_k_g_-_n_a_m_e_> for subsequent possible use by
+                into _<_P_K_G___D_B_D_I_R_>_/_<_p_k_g_-_n_a_m_e_> for subsequent possible use by
                 pkg_delete(1).  Any package dependencies are recorded in the
-                other packages' _/_v_a_r_/_d_b_/_p_k_g_/_<_o_t_h_e_r_-_p_k_g_>_/_+_R_E_Q_U_I_R_E_D___B_Y file (if
-                an alternate package database directory is specified, then it
-                overrides the _/_v_a_r_/_d_b_/_p_k_g path shown above).
+                other packages' _+_R_E_Q_U_I_R_E_D___B_Y file.
 
-           11.  If the package is a depoted package, then add it to the
-                default view.
+           11.  If the package is a depoted package, then add it to the regis-
+                tered by calling pkg_view(1) accordingly.
 
            12.  Finally, if we were upgrading a package, any _+_R_E_Q_U_I_R_E_D___B_Y file
                 that was moved aside before upgrading was started is now moved
@@ -226,33 +220,13 @@ TTEECCHHNNIICCAALL DDEETTAAIILLSS
      meta-data files, and with the PKG_REFCOUNT_DBDIR environment variable set
      to the location of the package reference counts database directory.  If
      the --PP flag was given to ppkkgg__aadddd, PKG_DESTDIR will be set to _d_e_s_t_d_i_r.
+     Additionally, PKG_METADATA_DIR and PKG_REFCOUNT_DBDIR are prefixed with
+     _d_e_s_t_d_i_r.
 
 EENNVVIIRROONNMMEENNTT
-     LOCALBASE   This is the location of the _v_i_e_w_b_a_s_e directory in which all
-                 the views are managed.  The default _v_i_e_w_b_a_s_e directory is
-                 _/_u_s_r_/_p_k_g.
-
-     PKG_DBDIR   If the --KK flag isn't given, then PKG_DBDIR is the location of
-                 the package database directory.  The default package database
-                 directory is _/_v_a_r_/_d_b_/_p_k_g.
-
-     PKG_PATH    The value of the PKG_PATH variable overrides the
-                 pkg_install.conf(5) variable of the same name.  It is used if
-                 a given package can't be found, it's usually set to
-                 _/_u_s_r_/_p_k_g_s_r_c_/_p_a_c_k_a_g_e_s_/_A_l_l.  The environment variable should be
-                 a series of entries separated by semicolons.  Each entry con-
-                 sists of a directory name or URL.  The current directory may
-                 be indicated implicitly by an empty directory name, or
-                 explicitly by a single period.
-
-     PKG_REFCOUNT_DBDIR
-                 Location of the package reference counts database directory.
-                 The default location is the path to the package database
-                 directory with ``.refcount'' appended to the path, e.g.
-                 _/_v_a_r_/_d_b_/_p_k_g_._r_e_f_c_o_u_n_t.
-
-     PKG_VIEW    The default view can be specified in the PKG_VIEW environment
-                 variable.
+     See pkg_install.conf(5) for options, that can also be specified using the
+     environment.  Packages using views are also affected by the environment
+     variables documented for pkg_view(1).
 
 EEXXAAMMPPLLEESS
      In all cases, ppkkgg__aadddd will try to install binary packages listed in
@@ -268,36 +242,17 @@ EEXXAAMMPPLLEESS
      # pkg_add -v /usr/pkgsrc/packages/All/unzip
 
      You can grab a compiled binary package from remote location by specifying
-     a URL.  The URL can be put into an environment variable, PKG_PATH.
+     a URL.  The base URL can also be provided by the configuration variable,
+     PKG_PATH.
 
      # pkg_add -v ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/All/firefox-2.0.0.4.tgz
 
      # export PKG_PATH=ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/All
      # pkg_add -v firefox
 
-     Over time, as problems are found in packages, they will be moved from the
-     _A_l_l subdirectory into the _v_u_l_n_e_r_a_b_l_e subdirectory.  If you want to accept
-     vulnerable packages by default (and know what you are doing), you can add
-     the _v_u_l_n_e_r_a_b_l_e directory to your PKG_PATH like this:
-
-     # export PKG_PATH="ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/All/;ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/vulnerable/"
-
-     (The quotes are needed because semicolon (`;') is a shell meta-charac-
-     ter.)  If you do this, consider using the audit capabilities in
-     pkg_admin(1) and running it after every ppkkgg__aadddd.
-
-CCOONNFFIIGGUURRAATTIIOONN VVAARRIIAABBLLEESS
-     The following variables change the behavior of ppkkgg__aadddd and are described
-     in pkg_install.conf(5):
-           CHECK_LICENSE
-           CHECK_VULNERABILITIES
-           CERTIFICATE_ANCHOR_PKGS
-           CERTIFICATE_CHAIN
-           VERIFIED_INSTALLATION
-
 SSEEEE AALLSSOO
-     pkg_admin(1), pkg_create(1), pkg_delete(1), pkg_info(1), tar(1),
-     mktemp(3), sysconf(3), pkg_install.conf(5), pkgsrc(7)
+     pkg_admin(1), pkg_create(1), pkg_delete(1), pkg_info(1),
+     pkg_install.conf(5), pkgsrc(7)
 
 AAUUTTHHOORRSS
      Jordan Hubbard
@@ -316,4 +271,4 @@ BBUUGGSS
 
      Sure to be others.
 
-NetBSD 5.0                      August 6, 2009                      NetBSD 5.0
+NetBSD 5.0                       June 16, 2010                      NetBSD 5.0

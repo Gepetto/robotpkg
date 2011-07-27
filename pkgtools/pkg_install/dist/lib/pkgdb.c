@@ -1,4 +1,4 @@
-/*	$NetBSD: pkgdb.c,v 1.36 2009/10/22 22:51:29 joerg Exp $	*/
+/*	$NetBSD: pkgdb.c,v 1.39 2010/04/20 21:22:38 joerg Exp $	*/
 
 #if HAVE_CONFIG_H
 #include "config.h"
@@ -7,10 +7,10 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: pkgdb.c,v 1.36 2009/10/22 22:51:29 joerg Exp $");
+__RCSID("$NetBSD: pkgdb.c,v 1.39 2010/04/20 21:22:38 joerg Exp $");
 
 /*-
- * Copyright (c) 1999-2008 The NetBSD Foundation, Inc.
+ * Copyright (c) 1999-2010 The NetBSD Foundation, Inc.
  * All rights reserved.
  *
  * This code is derived from software contributed to The NetBSD Foundation
@@ -77,7 +77,18 @@ __RCSID("$NetBSD: pkgdb.c,v 1.36 2009/10/22 22:51:29 joerg Exp $");
 #define PKG_DBDIR		"PKG_DBDIR"
 
 static DB   *pkgdbp;
-static char *pkgdb_dir = NULL;
+static char pkgdb_dir_default[] = DEF_LOG_DIR;
+static char *pkgdb_dir = pkgdb_dir_default;
+static int pkgdb_dir_prio = 0;
+
+/*
+ *  Return name of cache file in the buffer that was passed.
+ */
+char *
+pkgdb_get_database(void)
+{
+	return xasprintf("%s/%s", pkgdb_get_dir(), PKGDB_FILE);
+}
 
 /*
  *  Open the pkg-database
@@ -89,7 +100,7 @@ int
 pkgdb_open(int mode)
 {
 	BTREEINFO info;
-	char	cachename[MaxPathSize];
+	char *cachename;
 
 	/* try our btree format first */
 	info.flags = 0;
@@ -100,9 +111,11 @@ pkgdb_open(int mode)
 	info.compare = NULL;
 	info.prefix = NULL;
 	info.lorder = 0;
-	pkgdbp = (DB *) dbopen(_pkgdb_getPKGDB_FILE(cachename, sizeof(cachename)),
+	cachename = pkgdb_get_database();
+	pkgdbp = (DB *) dbopen(cachename,
 	    (mode == ReadOnly) ? O_RDONLY : O_RDWR | O_CREAT,
 	    0644, DB_BTREE, (void *) &info);
+	free(cachename);
 	return (pkgdbp != NULL);
 }
 
@@ -155,6 +168,8 @@ pkgdb_retrieve(const char *key)
 {
 	DBT     keyd, vald;
 	int     status;
+	char	*eos;
+	static int corruption_warning;
 
 	if (pkgdbp == NULL)
 		return NULL;
@@ -166,9 +181,15 @@ pkgdb_retrieve(const char *key)
 	vald.data = (void *)NULL;
 	vald.size = 0;
 	status = (*pkgdbp->get) (pkgdbp, &keyd, &vald, 0);
-	if (status) {
-		vald.data = NULL;
-		vald.size = 0;
+	if (status)
+		return NULL;
+	eos = memchr(vald.data, 0, vald.size);
+	if (eos == NULL || eos + 1 != (char *)vald.data + vald.size) {
+		if (!corruption_warning) {
+			warnx("pkgdb corrupted, please run ``pkg_admin rebuild''");
+			corruption_warning = 1;
+		}
+		return NULL;
 	}
 
 	return vald.data;
@@ -231,12 +252,12 @@ pkgdb_remove_pkg(const char *pkg)
 	int	type;
 	int	ret;
 	size_t	cc;
-	char	cachename[MaxPathSize];
+	char	*cachename;
 
 	if (pkgdbp == NULL) {
 		return 0;
 	}
-	(void) _pkgdb_getPKGDB_FILE(cachename, sizeof(cachename));
+	cachename = pkgdb_get_database();
 	cc = strlen(pkg);
 	for (ret = 1, type = R_FIRST; (*pkgdbp->seq)(pkgdbp, &key, &data, type) == 0 ; type = R_NEXT) {
 		if ((cc + 1) == data.size && strncmp(data.data, pkg, cc) == 0) {
@@ -256,6 +277,7 @@ pkgdb_remove_pkg(const char *pkg)
 			}
 		}
 	}
+	free(cachename);
 	return ret;
 }
 
@@ -271,17 +293,7 @@ pkgdb_refcount_dir(void)
 	if ((tmp = getenv(PKG_REFCOUNT_DBDIR_VNAME)) != NULL)
 		strlcpy(buf, tmp, sizeof(buf));
 	else
-		snprintf(buf, sizeof(buf), "%s.refcount", _pkgdb_getPKGDB_DIR());
-	return buf;
-}
-
-/*
- *  Return name of cache file in the buffer that was passed.
- */
-char *
-_pkgdb_getPKGDB_FILE(char *buf, unsigned size)
-{
-	(void) snprintf(buf, size, "%s/%s", _pkgdb_getPKGDB_DIR(), PKGDB_FILE);
+		snprintf(buf, sizeof(buf), "%s.refcount", pkgdb_get_dir());
 	return buf;
 }
 
@@ -289,16 +301,8 @@ _pkgdb_getPKGDB_FILE(char *buf, unsigned size)
  *  Return directory where pkgdb is stored
  */
 const char *
-_pkgdb_getPKGDB_DIR(void)
+pkgdb_get_dir(void)
 {
-	char *tmp;
-
-	if (pkgdb_dir == NULL) {
-		if ((tmp = getenv(PKG_DBDIR)) != NULL)
-			_pkgdb_setPKGDB_DIR(tmp);
-		else
-			_pkgdb_setPKGDB_DIR(DEF_LOG_DIR);
-	}
 
 	return pkgdb_dir;
 }
@@ -307,19 +311,29 @@ _pkgdb_getPKGDB_DIR(void)
  *  Set the first place we look for where pkgdb is stored.
  */
 void
-_pkgdb_setPKGDB_DIR(const char *dir)
+pkgdb_set_dir(const char *dir, int prio)
 {
-	char *new_dir;
+
+	if (prio < pkgdb_dir_prio)
+		return;
+
+	pkgdb_dir_prio = prio;
 
 	if (dir == pkgdb_dir)
 		return;
-	new_dir = xstrdup(dir);
-	free(pkgdb_dir);
-	pkgdb_dir = new_dir;
+	if (pkgdb_dir != pkgdb_dir_default)
+		free(pkgdb_dir);
+	pkgdb_dir = xstrdup(dir);
+}
+
+char *
+pkgdb_pkg_dir(const char *pkg)
+{
+	return xasprintf("%s/%s", pkgdb_get_dir(), pkg);
 }
 
 char *
 pkgdb_pkg_file(const char *pkg, const char *file)
 {
-	return xasprintf("%s/%s/%s", _pkgdb_getPKGDB_DIR(), pkg, file);
+	return xasprintf("%s/%s/%s", pkgdb_get_dir(), pkg, file);
 }

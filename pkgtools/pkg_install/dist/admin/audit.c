@@ -1,4 +1,4 @@
-/*	$NetBSD: audit.c,v 1.14 2009/08/02 17:56:44 joerg Exp $	*/
+/*	$NetBSD: audit.c,v 1.16 2010/06/16 23:02:48 joerg Exp $	*/
 
 #if HAVE_CONFIG_H
 #include "config.h"
@@ -7,7 +7,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: audit.c,v 1.14 2009/08/02 17:56:44 joerg Exp $");
+__RCSID("$NetBSD: audit.c,v 1.16 2010/06/16 23:02:48 joerg Exp $");
 
 /*-
  * Copyright (c) 2008 Joerg Sonnenberger <joerg@NetBSD.org>.
@@ -73,7 +73,6 @@ __RCSID("$NetBSD: audit.c,v 1.14 2009/08/02 17:56:44 joerg Exp $");
 #include "admin.h"
 #include "lib.h"
 
-static int check_eol = 0;
 static int check_signature = 0;
 static const char *limit_vul_types = NULL;
 static int update_pkg_vuln = 0;
@@ -100,7 +99,7 @@ parse_options(int argc, char **argv, const char *options)
 	while ((ch = getopt(argc, argv, options)) != -1) {
 		switch (ch) {
 		case 'e':
-			check_eol = 1;
+			check_eol = "yes";
 			break;
 		case 's':
 			check_signature = 1;
@@ -123,8 +122,7 @@ parse_options(int argc, char **argv, const char *options)
 static int
 check_exact_pkg(const char *pkg)
 {
-	return audit_package(pv, pkg, limit_vul_types, check_eol,
-	    quiet ? 0 : 1);
+	return audit_package(pv, pkg, limit_vul_types, quiet ? 0 : 1);
 }
 
 static int
@@ -209,7 +207,7 @@ check_and_read_pkg_vulnerabilities(void)
 			    (long)(now / 86400), now / 86400 == 1 ? "" : "s");
 	}
 
-	pv = read_pkg_vulnerabilities(pkg_vulnerabilities_file, 0, check_signature);
+	pv = read_pkg_vulnerabilities_file(pkg_vulnerabilities_file, 0, check_signature);
 }
 
 void
@@ -282,7 +280,7 @@ check_pkg_vulnerabilities(int argc, char **argv)
 	if (argc != optind + 1)
 		usage();
 
-	pv = read_pkg_vulnerabilities(argv[optind], 0, check_signature);
+	pv = read_pkg_vulnerabilities_file(argv[optind], 0, check_signature);
 	free_pkg_vulnerabilities(pv);
 }
 
@@ -290,8 +288,8 @@ void
 fetch_pkg_vulnerabilities(int argc, char **argv)
 {
 	struct pkg_vulnerabilities *pv_check;
-	char *buf, *decompressed_input;
-	size_t buf_len, buf_fetched, decompressed_len;
+	char *buf;
+	size_t buf_len, buf_fetched;
 	ssize_t cur_fetched;
 	struct url *url;
 	struct url_stat st;
@@ -363,15 +361,7 @@ fetch_pkg_vulnerabilities(int argc, char **argv)
 	
 	buf[buf_len] = '\0';
 
-	if (decompress_buffer(buf, buf_len, &decompressed_input,
-	    &decompressed_len)) {
-		pv_check = parse_pkg_vulnerabilities(decompressed_input,
-		    decompressed_len, check_signature);
-		free(decompressed_input);
-	} else {
-		pv_check = parse_pkg_vulnerabilities(buf, buf_len,
-		    check_signature);
-	}
+	pv_check = read_pkg_vulnerabilities_memory(buf, buf_len, check_signature);
 	free_pkg_vulnerabilities(pv_check);
 
 	fd = open(pkg_vulnerabilities_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);

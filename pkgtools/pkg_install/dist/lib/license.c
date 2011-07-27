@@ -1,4 +1,4 @@
-/*	$NetBSD: license.c,v 1.10 2009/10/25 21:32:48 wiz Exp $	*/
+/*	$NetBSD: license.c,v 1.16 2011/02/06 18:54:50 schnoebe Exp $	*/
 
 /*-
  * Copyright (c) 2009 Joerg Sonnenberger <joerg@NetBSD.org>.
@@ -58,7 +58,13 @@ const char *default_acceptable_licenses =
     "cpl-1.0 "
     "open-font-license "
     "mpl-1.0 mpl-1.1 "
-    "zpl";
+    "png-license "
+    "zpl "
+    "python-software-foundation "
+    "ipafont "
+    "isc "
+    "info-zip "
+    "boost-license";
 
 #ifdef DEBUG
 static size_t hash_collisions;
@@ -160,7 +166,7 @@ acceptable_license(const char *license)
 
 	len = strlen(license);
 	if (strspn(license, license_chars) != len) {
-		warnx("Invalid character in license name at position %zu", len);
+		warnx("Invalid character in license name at position %" PRIzu, len);
 		return -1;
 	}
 
@@ -202,7 +208,7 @@ acceptable_pkg_license_internal(const char **licensep, int toplevel, const char 
 		} else {
 			len = strspn(license, license_chars);
 			if (len == 0) {
-				warnx("Invalid character in license name at position %zu", license - start + 1);
+				warnx("Invalid character in license name at position %" PRIzu, license - start + 1);
 				return -1;
 			}
 
@@ -217,7 +223,7 @@ acceptable_pkg_license_internal(const char **licensep, int toplevel, const char 
 
 			len = strspn(license, license_spaces);
 			if (len == 0 && *license && *license  != ')') {
-				warnx("Missing space at position %zu", license - start + 1);
+				warnx("Missing space at position %" PRIzu, license - start + 1);
 				return -1;
 			}
 			license += len;
@@ -225,7 +231,7 @@ acceptable_pkg_license_internal(const char **licensep, int toplevel, const char 
 
 		if (*license == ')') {
 			if (!need_parenthesis) {
-				warnx("Missing open parenthesis at position %zu", license - start + 1);
+				warnx("Missing open parenthesis at position %" PRIzu, license - start + 1);
 				return -1;
 			}
 			*licensep = license + 1;
@@ -233,7 +239,7 @@ acceptable_pkg_license_internal(const char **licensep, int toplevel, const char 
 		}
 		if (*license == '\0') {
 			if (need_parenthesis) {
-				warnx("Unbalanced parenthesis at position %zu", license - start + 1);
+				warnx("Unbalanced parenthesis at position %" PRIzu, license - start + 1);
 				return -1;
 			}
 			*licensep = license;
@@ -242,25 +248,25 @@ acceptable_pkg_license_internal(const char **licensep, int toplevel, const char 
 
 		if (strncmp(license, "AND", 3) == 0) {
 			if (expr_type == 1) {
-				warnx("Invalid operator in OR expression at position %zu", license - start + 1);
+				warnx("Invalid operator in OR expression at position %" PRIzu, license - start + 1);
 				return -1;
 			}
 			expr_type = 2;
 			license += 3;
 		} else if (strncmp(license, "OR", 2) == 0) {
 			if (expr_type == 2) {
-				warnx("Invalid operator in AND expression at position %zu", license - start + 1);
+				warnx("Invalid operator in AND expression at position %" PRIzu, license - start + 1);
 				return -1;
 			}
 			expr_type = 1;
 			license += 2;
 		} else {
-			warnx("Invalid operator at position %zu", license - start + 1);
+			warnx("Invalid operator at position %" PRIzu, license - start + 1);
 			return -1;
 		}
 		len = strspn(license, license_spaces);
 		if (len == 0 && *license != '(') {
-			warnx("Missing space at position %zu", license - start + 1);
+			warnx("Missing space at position %" PRIzu, license - start + 1);
 			return -1;
 		}
 		license += len;

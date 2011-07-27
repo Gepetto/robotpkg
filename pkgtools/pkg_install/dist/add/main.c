@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.22 2009/10/07 12:53:26 joerg Exp $	*/
+/*	$NetBSD: main.c,v 1.27 2010/09/14 22:26:18 gdt Exp $	*/
 
 #if HAVE_CONFIG_H
 #include "config.h"
@@ -7,7 +7,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: main.c,v 1.22 2009/10/07 12:53:26 joerg Exp $");
+__RCSID("$NetBSD: main.c,v 1.27 2010/09/14 22:26:18 gdt Exp $");
 
 /*
  *
@@ -39,9 +39,8 @@ __RCSID("$NetBSD: main.c,v 1.22 2009/10/07 12:53:26 joerg Exp $");
 #include "lib.h"
 #include "add.h"
 
-static char Options[] = "AIK:LP:RVW:fhm:np:t:uvw:";
+static char Options[] = "AC:DIK:LP:RVW:fhm:np:t:Uuvw:";
 
-const char *PlainPkgdb = NULL;
 char   *Destdir = NULL;
 char   *OverrideMachine = NULL;
 char   *Prefix = NULL;
@@ -52,9 +51,16 @@ Boolean NoInstall = FALSE;
 Boolean NoRecord = FALSE;
 Boolean Automatic = FALSE;
 Boolean ForceDepends = FALSE;
+/*
+ * Normally, updating fails if the dependencies of a depending package
+ * are not satisfied by the package to be updated.  ForceDepending
+ * turns that failure into a warning.
+ */
+Boolean ForceDepending = FALSE;
 
 int	LicenseCheck = 0;
 int     Replace = 0;
+int	ReplaceSame = 0;
 
 static void
 usage(void)
@@ -72,7 +78,6 @@ main(int argc, char **argv)
 {
 	int     ch, error=0;
 	lpkg_head_t pkgs;
-	const char *pkgdb = NULL;
 
 	setprogname(argv[0]);
 	while ((ch = getopt(argc, argv, Options)) != -1) {
@@ -83,7 +88,12 @@ main(int argc, char **argv)
 
 		case 'C':
 			config_file = optarg;
+			break;
 
+		case 'D':
+			ForceDepending = TRUE;
+			break;
+			
 		case 'P':
 			Destdir = optarg;
 			break;
@@ -91,6 +101,7 @@ main(int argc, char **argv)
 		case 'f':
 			Force = TRUE;
 			ForceDepends = TRUE;
+			ForceDepending = TRUE;
 			break;
 
 		case 'I':
@@ -98,7 +109,7 @@ main(int argc, char **argv)
 			break;
 
 		case 'K':
-			pkgdb = optarg;
+			pkgdb_set_dir(optarg, 3);
 			break;
 
 		case 'L':
@@ -122,8 +133,13 @@ main(int argc, char **argv)
 			Prefix = optarg;
 			break;
 
+		case 'U':
+			ReplaceSame = 1;
+			Replace = 1;
+			break;
+
 		case 'u':
-			Replace++;
+			Replace = 1;
 			break;
 
 		case 'V':
@@ -154,18 +170,13 @@ main(int argc, char **argv)
 
 	pkg_install_config();
 
-	if (pkgdb == NULL)
-		pkgdb = _pkgdb_getPKGDB_DIR();
-	PlainPkgdb = xstrdup(pkgdb);
-
 	if (Destdir != NULL) {
 		char *pkgdbdir;
 
-		pkgdbdir = xasprintf("%s/%s", Destdir, pkgdb);
-		_pkgdb_setPKGDB_DIR(pkgdbdir);
+		pkgdbdir = xasprintf("%s/%s", Destdir, config_pkg_dbdir);
+		pkgdb_set_dir(pkgdbdir, 4);
 		free(pkgdbdir);
-	} else
-		_pkgdb_setPKGDB_DIR(pkgdb);
+	}
 
 	process_pkg_path();
 	TAILQ_INIT(&pkgs);
