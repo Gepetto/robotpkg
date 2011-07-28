@@ -1,6 +1,6 @@
-# $NetBSD: pkgsrc.cnf,v 1.2 2009/02/02 12:49:16 joerg Exp $
+# $NetBSD: pkg.cnf,v 1.2 2009/02/02 12:49:16 joerg Exp $
 #
-# OpenSSL sample configuration file for use by pkgsrc.sh
+# OpenSSL sample configuration file for use by robotpkg.sh
 #
 
 # This definition stops the following lines choking if HOME isn't
@@ -15,7 +15,7 @@ default_ca	= CA_default		# The default ca section
 ####################################################################
 [ CA_default ]
 
-dir		= ./pkgsrc		# Where everything is kept
+dir		= ./robotpkg		# Where everything is kept
 certs		= $dir/certs		# Where the issued certs are kept
 crl_dir		= $dir/crl		# Where the issued crl are kept
 database	= $dir/index.txt	# database index file.
@@ -113,7 +113,7 @@ emailAddress			= Email Address
 emailAddress_max		= 64
 
 [ pkgkey ]
-nsComment			= "Certificate for binary pkgsrc packages"
+nsComment			= "Certificate for binary robotpkg packages"
 
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid,issuer

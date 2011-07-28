@@ -28,10 +28,10 @@
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
 .Dd October 15, 2009
-.Dt PKG_INSTALL.CONF 5
+.Dt ROBOTPKG_INSTALL.CONF \&5 "Robotpkg File Formats"
 .Os
 .Sh NAME
-.Nm pkg_install.conf
+.Nm robotpkg_install.conf
 .Nd configuration file for package installation tools
 .Sh DESCRIPTION
 The file
@@ -44,7 +44,7 @@ If the value consists of more than one line, each line is prefixed with
 .Ev VARIABLE= .
 .Pp
 The current value of a variable can be checked by running
-.Dl Ic pkg_admin config-var VARIABLE
+.Dl Ic robotpkg_admin config-var VARIABLE
 .Pp
 The following variables are supported:
 .Bl -tag -width indent
@@ -100,8 +100,8 @@ The user is always asked to confirm installation of vulnerable packages.
 .El
 .It Dv DEFAULT_ACCEPTABLE_LICENSES
 List of common Free and Open Source licenses packages are allowed to carry.
-The default value contains all OSI approved licenses in pkgsrc on the date
-pkg_install was released.
+The default value contains all OSI approved licenses in robotpkg on the date
+robotpkg_install was released.
 License names are case-sensitive.
 .It Dv GPG
 Path to
@@ -109,9 +109,9 @@ Path to
 which can be used to verify the signature in the
 .Pa pkg-vulnerabilities
 file when running
-.Dl Ic pkg_admin check-pkg-vulnerabilities -s
+.Dl Ic robotpkg_admin check-pkg-vulnerabilities -s
 or
-.Dl Ic pkg_admin fetch-pkg-vulnerabilities -s
+.Dl Ic robotpkg_admin fetch-pkg-vulnerabilities -s
 It can also be used to verify and sign binary packages.
 .It Dv GPG_KEYRING_PKGVULN
 Non-default keyring to use for verifying GPG signatures of
@@ -129,13 +129,13 @@ and
 .Ev HTTP_PROXY .
 .It Dv IGNORE_URL
 One line per advisory which should be ignored when running
-.Dl Ic pkg_admin audit
+.Dl Ic robotpkg_admin audit
 The URL from the
 .Pa pkg-vulnerabilities
 file should be used as value.
 .It Dv PKG_PATH
 Search path as used by
-.Nm pkg_add .
+.Nm robotpkg_add .
 Overridden by the environment variable
 .Ev PKG_PATH .
 .It Dv PKGVULNDIR
@@ -148,7 +148,7 @@ Default is
 URL which is used for updating the local
 .Pa pkg-vulnerabilities
 file when running
-.Dl Ic pkg_admin fetch-pkg-vulnerabilities
+.Dl Ic robotpkg_admin fetch-pkg-vulnerabilities
 The default is
 .Pa http://ftp.NetBSD.org/pub/NetBSD/packages/vulns/pkg-vulnerabilities.gz
 .Em Note :
@@ -178,10 +178,10 @@ The user is always asked interactively when installing a package.
 .El
 .El
 .Sh FILES
-.Bl -tag -width ".Pa @SYSCONFDIR@/pkg_install.conf"
-.It Pa @SYSCONFDIR@/pkg_install.conf
+.Bl -tag -width ".Pa @SYSCONFDIR@/robotpkg_install.conf"
+.It Pa @SYSCONFDIR@/robotpkg_install.conf
 Default location for the file described in this manual page.
 .El
 .Sh SEE ALSO
-.Xr pkg_add 1 ,
-.Xr pkg_admin 1
+.Xr robotpkg_add 1 ,
+.Xr robotpkg_admin 1

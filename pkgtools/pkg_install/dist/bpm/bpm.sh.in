@@ -64,7 +64,7 @@ check_prog echoprog echo
 check_prog ftpprog ftp
 check_prog idprog id
 check_prog moreprog more
-check_prog pkg_addprog pkg_add
+check_prog pkg_addprog robotpkg_add
 check_prog rmprog rm
 check_prog sedprog sed
 check_prog suprog su
@@ -81,7 +81,7 @@ tmpcategories=/tmp/categories.$$
 tmppackages=/tmp/packages.$$
 
 # some base parameters
-base=ftp://ftp.NetBSD.org/pub/pkgsrc/packages
+base=ftp://ftp.openrobots.org/pub/robotpkg/packages
 release=`${unameprog} -r | ${sedprog} -e 's/_STABLE//'`
 machine=`${unameprog} -m`
 
@@ -174,7 +174,7 @@ while true; do
 
 	# check it's not already installed
 	pkgbase=`${echoprog} ${package} | ${sedprog} -e 's|-[0-9].*||'`
-	installed=`pkg_info -e $pkgbase`
+	installed=`robotpkg_info -e $pkgbase`
 	case "$installed" in
 	"")	;;
 	*)	${echoprog} "$package selected, but $installed already installed"

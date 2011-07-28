@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-# $NetBSD: pkgsrc.sh,v 1.2 2009/02/02 12:49:16 joerg Exp $
+# $NetBSD: pkg.sh,v 1.2 2009/02/02 12:49:16 joerg Exp $
 #
 
-CA="openssl ca -config pkgsrc.cnf"
-REQ="openssl req -config pkgsrc.cnf"
+CA="openssl ca -config robotpkg.cnf"
+REQ="openssl req -config robotpkg.cnf"
 
 set -e
 
@@ -42,14 +42,14 @@ new_pkgsec() {
 
 usage() {
 	echo "$0:"
-	echo "setup - create new CA in ./pkgsrc for use by pkg_install"
+	echo "setup - create new CA in ./robotpkg for use by robotpkg_install"
 	echo "pkgkey - create and sign a certificate for binary packages"
 	echo "pkgsec - create and sign a certificate for pkg-vulnerabilities"
 }
 
 case "$1" in
 setup)
-	new_ca ./pkgsrc
+	new_ca ./robotpkg
 	;;
 pkgkey)
 	new_pkgkey

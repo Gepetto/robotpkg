@@ -18,10 +18,10 @@
 .\"     from FreeBSD: @(#)pkg_delete.1
 .\"
 .Dd August 16, 2009
-.Dt PKG_DELETE 1
+.Dt ROBOTPKG_DELETE \&1 "Robotpkg Manual"
 .Os
 .Sh NAME
-.Nm pkg_delete
+.Nm robotpkg_delete
 .Nd a utility for deleting previously installed software package distributions
 .Sh SYNOPSIS
 .Nm
@@ -39,7 +39,7 @@ The
 .Nm
 command is used to delete packages that have been previously installed
 with the
-.Xr pkg_add 1
+.Xr robotpkg_add 1
 command.
 The given packages are sorted, so that the dependencies of a package
 are deleted after the package.
@@ -88,7 +88,7 @@ file for
 and
 .Cm @unexec
 directives, and/or use the
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 command to examine the installed package control files.
 .Ef
 .Sh OPTIONS
@@ -96,7 +96,7 @@ The following command line options are supported:
 .Bl -tag -width indent
 .It Ar pkg-name ...
 The named packages are deinstalled, wildcards can be used, see
-.Xr pkg_info 1 .
+.Xr robotpkg_info 1 .
 If no version is given, the one currently installed
 will be removed.
 If the
@@ -164,7 +164,7 @@ as the directory in which to delete files from any installed packages
 which do not explicitly set theirs.
 For most packages, the prefix will
 be set automatically to the installed location by
-.Xr pkg_add 1 .
+.Xr robotpkg_add 1 .
 .It Fl R
 Recursively remove all packages that were needed by the given packages
 and that have no other dependencies left.
@@ -207,7 +207,7 @@ If a filename is given instead of a package name, the package of which
 the given file belongs to can be deleted if the
 .Fl F
 Flag is given.
-The filename needs to be absolute, see the output produced by the pkg_info
+The filename needs to be absolute, see the output produced by the robotpkg_info
 .Fl aF
 command.
 .Pp
@@ -260,7 +260,7 @@ is installed, even if the user might have changed it by specifying the
 option when running
 .Nm
 or
-.Xr pkg_add 1 .
+.Xr robotpkg_add 1 .
 The scripts are also called with the
 .Ev PKG_METADATA_DIR
 environment variable set to the location of the
@@ -294,11 +294,11 @@ appended to the path, e.g.
 .Pa /var/db/pkg.refcount .
 .El
 .Sh SEE ALSO
-.Xr pkg_add 1 ,
-.Xr pkg_admin 1 ,
-.Xr pkg_create 1 ,
-.Xr pkg_info 1 ,
-.Xr pkgsrc 7
+.Xr robotpkg_add 1 ,
+.Xr robotpkg_admin 1 ,
+.Xr robotpkg_create 1 ,
+.Xr robotpkg_info 1 ,
+.Xr robotpkg 7
 .Sh AUTHORS
 .Bl -tag -width indent -compact
 .It "Jordan Hubbard"

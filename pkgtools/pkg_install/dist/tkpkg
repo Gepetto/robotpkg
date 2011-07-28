@@ -38,15 +38,15 @@ pack append .  .menu {top fill} \
 # Make menu bar:
 #----------------------------------------------------------------
 button .menu.inst -text "Install" \
-   -command "apply_to_pkg \"pkg_add -v\""
+   -command "apply_to_pkg \"robotpkg_add -v\""
 button .menu.dein -text "Deinstall" \
-   -command "apply_to_pkg \"pkg_delete -v\""
+   -command "apply_to_pkg \"robotpkg_delete -v\""
 button .menu.installed -text "What is Installed?" \
-   -command "list_pkgs \"pkg_info -I -a |tr '	' ' '\""
+   -command "list_pkgs \"robotpkg_info -I -a |tr '	' ' '\""
 button .menu.available -text "What can I install?" \
-   -command "list_pkgs \"pkg_info -I -c [glob -nocomplain *.{tgz,tar.z,tar.gz,tar.Z}] |tr '	' ' '\""
+   -command "list_pkgs \"robotpkg_info -I -c [glob -nocomplain *.{tgz,tar.z,tar.gz,tar.Z}] |tr '	' ' '\""
 button .menu.cont -text "Contents?" \
-   -command "apply_to_pkg \"pkg_info -d -v\""
+   -command "apply_to_pkg \"robotpkg_info -d -v\""
 button .menu.quit -text "Quit" -command "destroy ."
 button .menu.help -text "Help" -command "do_help"
 
@@ -77,7 +77,7 @@ if {$archives == ""} {
   .frame.list delete 0 end
  .frame.list insert end "Warning: no compressed tar archives files found."
 } else {
-  list_pkgs "pkg_info -I -c $archives |tr '	' ' '"
+  list_pkgs "robotpkg_info -I -c $archives |tr '	' ' '"
 }
 
 #-------------------------------------------------------
@@ -88,7 +88,7 @@ proc do_description {s} {
   regexp {[^ 	]*} $s filename
   set pkgname $filename
   .f.t delete 0.0 end
-  set cmd "pkg_info -d $filename |tr -d ''"
+  set cmd "robotpkg_info -d $filename |tr -d ''"
   set f [eval "open {| csh -c \"$cmd\" } r"]
   while {![eof $f]} {
     .f.t insert end [read $f]

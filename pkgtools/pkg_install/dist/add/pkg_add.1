@@ -18,10 +18,10 @@
 .\"     @(#)pkg_add.1
 .\"
 .Dd August 6, 2009
-.Dt PKG_ADD 1
+.Dt ROBOTPKG_ADD \&1 "Robotpkg Manual"
 .Os
 .Sh NAME
-.Nm pkg_add
+.Nm robotpkg_add
 .Nd a utility for installing and upgrading software package distributions
 .Sh SYNOPSIS
 .Nm
@@ -41,7 +41,7 @@ The
 .Nm
 command is used to extract and upgrade packages that have been
 previously created with the
-.Xr pkg_create 1
+.Xr robotpkg_create 1
 command.
 Packages are prepared collections of pre-built binaries, documentation,
 configurations, installation instructions and/or other files.
@@ -62,7 +62,7 @@ You are advised to verify the competence and identity of those who
 provide installable package files.
 For extra protection, use the digital signatures provided where possible
 (see the
-.Xr pkg_install.conf 5 ) ,
+.Xr robotpkg_install.conf 5 ) ,
 or, failing that, use
 .Xr tar 1
 to extract the package file, and inspect its contents and scripts
@@ -82,7 +82,7 @@ file for
 and
 .Cm @unexec
 directives, and/or use the
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 command to examine the package file.
 .Ef
 .Sh OPTIONS
@@ -106,9 +106,9 @@ variable are searched using the wildcard processing rules.
 Mark package as installed automatically, as dependency of another
 package.
 You can use
-.Dl Ic pkg_admin set automatic=YES
+.Dl Ic robotpkg_admin set automatic=YES
 to mark packages this way after installation, and
-.Dl Ic pkg_admin unset automatic
+.Dl Ic robotpkg_admin unset automatic
 to remove the mark.
 If you
 .Nm
@@ -188,7 +188,7 @@ as the base directory for the managed views.
 The default
 .Ar viewbase
 directory is set by
-.Xr pkg_view 1 .
+.Xr robotpkg_view 1 .
 This value also may be set from the
 .Ev LOCALBASE
 environment variable.
@@ -199,7 +199,7 @@ to which packages should be added after installation.
 The default
 .Ar view
 is set by
-.Xr pkg_view 1 .
+.Xr robotpkg_view 1 .
 This value also may be set from the
 .Ev PKG_VIEW
 environment variable.
@@ -215,10 +215,10 @@ URL pointing at a file available on an ftp or web site.
 Thus you may extract files directly from their anonymous ftp or WWW
 locations (e.g.,
 .Nm
-ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/shells/bash-3.2.9.tgz
+ftp://ftp.openrobots.org/pub/robotpkg/packages/ubuntu1004/i386/simulation/morse-0.3.tgz
 or
 .Nm
-http://www.example.org/packages/screen-4.0.tbz).
+http://www.example.org/packages/eltclsh.tbz).
 Note:  For ftp transfers, if you wish to use
 .Bf -emphasis
 passive mode
@@ -261,7 +261,7 @@ pkg being upgraded are checked if they also work with the new version.
 If that test is successful, replacing is prepared by moving an existing
 .Pa +REQUIRED_BY
 file aside (if it exists), and running
-.Xr pkg_delete 1
+.Xr robotpkg_delete 1
 on the installed package.
 Installation then proceeds as if the package
 was not installed, and restores the
@@ -290,7 +290,7 @@ a warning will be issued.
 A check is made to determine if the package conflicts (from
 .Cm @pkgcfl
 directives, see
-.Xr pkg_create 1 )
+.Xr robotpkg_create 1 )
 with an already recorded as installed package or if an installed package
 conflicts with the package.
 If it is, installation is terminated.
@@ -302,7 +302,7 @@ If there is any overlap, the installation is terminated.
 All package dependencies (from
 .Cm @pkgdep
 directives, see
-.Xr pkg_create 1 )
+.Xr robotpkg_create 1 )
 are read from the packing list.
 If any of these required packages are not currently installed,
 an attempt is made to find and install it;
@@ -350,7 +350,7 @@ After installation is complete, a copy of the packing list,
 script, description, and display files are copied into
 .Pa /var/db/pkg/\*[Lt]pkg-name\*[Gt]
 for subsequent possible use by
-.Xr pkg_delete 1 .
+.Xr robotpkg_delete 1 .
 Any package dependencies are recorded in the other packages'
 .Pa /var/db/pkg/\*[Lt]other-pkg\*[Gt]/+REQUIRED_BY
 file
@@ -379,7 +379,7 @@ that reliably performs some action on the directory where the package
 is installed, even if the user might change it with the
 .Fl p
 flag to
-.Cm pkg_add .
+.Cm robotpkg_add .
 The scripts are also called with the
 .Ev PKG_METADATA_DIR
 environment variable set to the location of the
@@ -404,7 +404,7 @@ directory in which all the views are managed.
 The default
 .Ar viewbase
 directory is
-.Pa /usr/pkg .
+.Pa /opt/robotpkg .
 .It Ev PKG_DBDIR
 If the
 .Fl K
@@ -417,10 +417,10 @@ The default package database directory is
 The value of the
 .Ev PKG_PATH
 variable overrides the
-.Xr pkg_install.conf 5
+.Xr robotpkg_install.conf 5
 variable of the same name.
 It is used if a given package can't be found, it's usually set to
-.Pa /usr/pkgsrc/packages/All .
+.Pa /opt/robotpkg/packages/All .
 The environment variable
 should be a series of entries separated by semicolons.
 Each entry consists of a directory name or URL.
@@ -444,7 +444,7 @@ will try to install binary packages listed in dependencies list.
 .Pp
 You can specify a compiled binary package explicitly on the command line.
 .Bd -literal
-# pkg_add /usr/pkgsrc/packages/All/tcsh-6.14.00.tgz
+# robotpkg_add /opt/robotpkg/packages/All/morse-0.3.tgz
 .Ed
 .Pp
 If you omit the version number,
@@ -455,7 +455,7 @@ With
 .Nm
 emits more messages to terminal.
 .Bd -literal
-# pkg_add -v /usr/pkgsrc/packages/All/unzip
+# robotpkg_add -v /opt/robotpkg/packages/All/eltclsh
 .Ed
 .Pp
 You can grab a compiled binary package from remote location by specifying
@@ -463,10 +463,10 @@ a URL.
 The URL can be put into an environment variable,
 .Ev PKG_PATH .
 .Bd -literal
-# pkg_add -v ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/All/firefox-2.0.0.4.tgz
+# robotpkg_add -v ftp://ftp.openrobots.org/pub/robotpkg/packages/ubuntu1004/i386/All/pocolibs-2.9.tgz
 
-# export PKG_PATH=ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/All
-# pkg_add -v firefox
+# export PKG_PATH=ftp://ftp.openrobots.org/pub/robotpkg/packages/ubuntu1004/i386/All
+# robotpkg_add -v pocolibs
 .Ed
 .Pp
 Over time, as problems are found in packages, they will be moved
@@ -483,21 +483,21 @@ directory to your
 .Ev PKG_PATH
 like this:
 .Bd -literal
-# export PKG_PATH="ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/All/;ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/vulnerable/"
+# export PKG_PATH="ftp://ftp.openrobots.org/pub/robotpkg/packages/ubuntu1004/i386/All/;ftp://ftp.openrobots.org/pub/robotpkg/packages/ubuntu1004/i386/vulnerable/"
 .Ed
 .Pp
 (The quotes are needed because semicolon
 .Pq Sq \&;
 is a shell meta-character.)
 If you do this, consider using the audit capabilities in
-.Xr pkg_admin 1
+.Xr robotpkg_admin 1
 and running it after every
 .Nm .
 .Sh CONFIGURATION VARIABLES
 The following variables change the behavior of
 .Nm
 and are described in
-.Xr pkg_install.conf 5 :
+.Xr robotpkg_install.conf 5 :
 .Bl -tag -compact -offset indent -width CERTIFICATE_ANCHOR_PKGS
 .It Ev CHECK_LICENSE
 .It Ev CHECK_VULNERABILITIES
@@ -506,15 +506,15 @@ and are described in
 .It Ev VERIFIED_INSTALLATION
 .El
 .Sh SEE ALSO
-.Xr pkg_admin 1 ,
-.Xr pkg_create 1 ,
-.Xr pkg_delete 1 ,
-.Xr pkg_info 1 ,
+.Xr robotpkg_admin 1 ,
+.Xr robotpkg_create 1 ,
+.Xr robotpkg_delete 1 ,
+.Xr robotpkg_info 1 ,
 .Xr tar 1 ,
 .Xr mktemp 3 ,
 .Xr sysconf 3 ,
-.Xr pkg_install.conf 5 ,
-.Xr pkgsrc 7
+.Xr robotpkg_install.conf 5 ,
+.Xr robotpkg 7
 .Sh AUTHORS
 .Bl -tag -width indent -compact
 .It "Jordan Hubbard"

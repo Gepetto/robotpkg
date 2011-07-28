@@ -35,10 +35,10 @@
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
 .Dd August 16, 2009
-.Dt PKG_ADMIN 1
+.Dt ROBOTPKG_ADMIN \&1 "Robotpkg Manual"
 .Os
 .Sh NAME
-.Nm pkg_admin
+.Nm robotpkg_admin
 .Nd perform various administrative tasks to the pkg system
 .Sh SYNOPSIS
 .Nm
@@ -116,7 +116,7 @@ its
 .Pa +CONTENTS
 file together with the package they belong to into the package database.
 This should be used only by
-.Xr pkg_view 1 .
+.Xr robotpkg_view 1 .
 .It Cm audit Oo Fl es Oc Oo Fl t Ar type Oc Oo Ar pkg Oc ...
 Check the listed installed packages for vulnerabilities.
 If no package is given, check all installed packages.
@@ -150,7 +150,7 @@ value at package installation time.
 If no additional argument is given, the files of all installed packages
 are checked, else only the named packages will be checked (wildcards can
 be used here, see
-.Xr pkg_info 1 ) .
+.Xr robotpkg_info 1 ) .
 .Pp
 The packages'
 .Pa +CONTENTS
@@ -190,10 +190,10 @@ as used after parsing the configuration file.
 For each listed package, remove all file entries in the package database that
 belong to the package.
 This should be used only by
-.Xr pkg_view 1 .
+.Xr robotpkg_view 1 .
 .It Cm dump
 Dump the contents of the package database, similar to
-.Cm pkg_info -F .
+.Cm robotpkg_info -F .
 Columns are printed for the key field used in the pkgdb - the filename -,
 and the data field - the package the file belongs to.
 .It Cm fetch-pkg-vulnerabilities Oo Fl su Oc
@@ -227,27 +227,27 @@ This option implements matching of
 pkg-wildcards against arbitrary files and directories, useful mainly in
 the build system itself.
 See
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 for a description of the pattern.
 .Pp
 Example:
 .Bd -literal
-yui# cd /usr/pkgsrc/packages/i386ELF/All/
-yui# ls unzip*
-unzip-5.40.tgz  unzip-5.41.tgz
-yui# pkg_admin lsall 'unzip*'
-/usr/pkgsrc/packages/i386ELF/All/unzip-5.40.tgz
-/usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-yui# pkg_admin lsall 'unzip\*[Ge]5.40'
-/usr/pkgsrc/packages/i386ELF/All/unzip-5.40.tgz
-/usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-yui# pkg_admin lsall 'unzip\*[Ge]5.41'
-/usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-yui# pkg_admin lsbest 'unzip\*[Ge]5.40'
-/usr/pkgsrc/packages/i386ELF/All/unzip-5.41.tgz
-yui# pkg_admin lsall /usr/pkgsrc/packages/i386ELF/All/'{mit,unproven}-pthread*'
-/usr/pkgsrc/packages/i386ELF/All/mit-pthreads-1.60b6.tgz
-/usr/pkgsrc/packages/i386ELF/All/unproven-pthreads-0.15.tgz
+yui# cd /opt/robotpkg/packages/All/
+yui# ls eltclsh*
+eltclsh-1.11.1.tgz  eltclsh-1.12.tgz
+yui# robotpkg_admin lsall 'eltclsh*'
+/opt/robotpkg/packages/All/eltclsh-1.11.1.tgz
+/opt/robotpkg/packages/All/eltclsh-1.12.tgz
+yui# robotpkg_admin lsall 'eltclsh\*[Ge]1.11'
+/opt/robotpkg/packages/All/eltclsh-1.11.1.tgz
+/opt/robotpkg/packages/All/eltclsh-1.12.tgz
+yui# robotpkg_admin lsall 'eltclsh\*[Ge]1.12'
+/opt/robotpkg/packages/All/eltclsh-1.12.tgz
+yui# robotpkg_admin lsbest 'eltclsh\*[Ge]1.11'
+/opt/robotpkg/packages/All/eltclsh-1.12.tgz
+yui# robotpkg_admin lsall /opt/robotpkg/packages/All/'{py26,py31}-yarp*'
+/opt/robotpkg/packages/All/py26-yarp-2.3.1.tgz
+/opt/robotpkg/packages/All/py31-yarp-2.3.1.tgz
 .Ed
 .It Cm pmatch Ar pattern Ar pkg
 Returns true if
@@ -267,10 +267,10 @@ together with the package they belong to into the package database.
 This option is intended to be used for upgrading from non-pkgdb-pkg_*
 tools to pkgdb-pkg_* tools, further manipulation of the pkgdb will be
 done by
-.Xr pkg_add 1 ,
-.Xr pkg_delete 1 ,
+.Xr robotpkg_add 1 ,
+.Xr robotpkg_delete 1 ,
 and
-.Xr pkg_create 1 .
+.Xr robotpkg_create 1 .
 .Pp
 Needs to be run as root.
 .It Cm rebuild-tree
@@ -279,7 +279,7 @@ Rebuild the +REQUIRED_BY files from scratch by reresolving all dependencies.
 This option is intended to be used for fixing inconsistencies between
 the records of depending and depended-on packages, such as can arise
 by the use of
-.Cm pkg_delete -f .
+.Cm robotpkg_delete -f .
 .It Cm set Ar variable=value pkg ...
 Set variable with information about the installed package.
 Use
@@ -322,7 +322,7 @@ The default package database directory is
 The following variables change the behavior of
 .Nm
 and are described in
-.Xr pkg_install.conf 5 :
+.Xr robotpkg_install.conf 5 :
 .Bl -tag -width CERTIFICATE_ANCHOR_PKGS
 .It Ev CERTIFICATE_ANCHOR_PKGS
 .It Ev CERTIFICATE_ANCHOR_PKGVULN
@@ -338,13 +338,13 @@ and are described in
 .It Pa /var/db/pkg/\*[Lt]pkg\*[Gt]/+CONTENTS
 .El
 .Sh SEE ALSO
-.Xr pkg_add 1 ,
-.Xr pkg_create 1 ,
-.Xr pkg_delete 1 ,
-.Xr pkg_info 1 ,
-.Xr pkg_view 1 ,
-.Xr pkg_install.conf 5 ,
-.Xr pkgsrc 7
+.Xr robotpkg_add 1 ,
+.Xr robotpkg_create 1 ,
+.Xr robotpkg_delete 1 ,
+.Xr robotpkg_info 1 ,
+.Xr robotpkg_view 1 ,
+.Xr robotpkg_install.conf 5 ,
+.Xr robotpkg 7
 .Sh HISTORY
 The
 .Nm

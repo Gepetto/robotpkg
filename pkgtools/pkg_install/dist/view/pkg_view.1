@@ -32,10 +32,10 @@
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
 .Dd September 8, 2003
-.Dt PKG_VIEW 1
+.Dt ROBOTPKG_VIEW \&1 "Robotpkg Manual"
 .Os
 .Sh NAME
-.Nm pkg_view
+.Nm robotpkg_view
 .Nd add and delete instances of depoted packages in views
 .Sh SYNOPSIS
 .Nm
@@ -87,7 +87,7 @@ file for
 and
 .Cm @unexec
 directives, and/or use the
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 command to examine the installed package control files.
 .Ef
 .Sh OPTIONS
@@ -212,7 +212,7 @@ This is overridden by any
 setting in a package's
 .Ar build-info-file
 (see
-.Xr pkg_create 1 )
+.Xr robotpkg_create 1 )
 if it exists.
 .It Ev PKG_VIEW
 The default view can be specified in the
@@ -225,7 +225,7 @@ environment variable.
 If the package contains an
 .Ar install
 script (see
-.Xr pkg_create 1 ) ,
+.Xr robotpkg_create 1 ) ,
 then after the package instance is added into a view, the script is
 executed with the following arguments:
 .Bl -tag -width package
@@ -243,7 +243,7 @@ script exits with a non-zero status code, the installation is terminated.
 If the package contains an
 .Ar deinstall
 script (see
-.Xr pkg_create 1 ) ,
+.Xr robotpkg_create 1 ) ,
 then before the package instance is deleted from a view, the script is
 executed with the following arguments:
 .Bl -tag -width package
@@ -270,7 +270,7 @@ set to the path to the
 directory.
 .Sh SEE ALSO
 .Xr linkfarm 1 ,
-.Xr pkg_delete 1
+.Xr robotpkg_delete 1
 .Sh AUTHORS
 The
 .Nm

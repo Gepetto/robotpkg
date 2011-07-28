@@ -48,7 +48,7 @@ __RCSID("$NetBSD: parse-config.c,v 1.12 2009/10/21 17:10:36 joerg Exp $");
 
 #include "lib.h"
 
-const char     *config_file = SYSCONFDIR"/pkg_install.conf";
+const char     *config_file = SYSCONFDIR"/robotpkg_install.conf";
 
 char fetch_flags[10] = ""; /* Workaround Mac OS X linker issues with BSS */
 static const char *active_ftp;

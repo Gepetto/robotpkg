@@ -21,14 +21,14 @@ LDFLAGS=	@LDFLAGS@ -L../lib
 SSL_SUPPORT=	@ssl_support@
 
 LIBS=		-linstall -lfetch -larchive -lbz2 -lz
-.if !empty(SSL_SUPPORT)
+ifneq (,$(strip $(SSL_SUPPORT)))
 LIBS+=		-lcrypto
-.endif
+endif
 LIBS+=		@LIBS@
 
 INSTALL=	@INSTALL@
 
-PROG=		pkg_add
+PROG=		robotpkg_add
 
 OBJS=	main.o perform.o
 
@@ -46,7 +46,5 @@ clean:
 install:
 	$(INSTALL) -m 755 -d ${DESTDIR}$(sbindir)
 	$(INSTALL) -m 755 -d ${DESTDIR}$(man1dir)
-	$(INSTALL) -m 755 -d ${DESTDIR}$(cat1dir)
 	$(INSTALL) $(PROG) ${DESTDIR}$(sbindir)/$(PROG)
-	$(INSTALL) -m 444 $(PROG).1 ${DESTDIR}$(man1dir)/$(PROG).1
-	$(INSTALL) -m 444 $(PROG).cat1 ${DESTDIR}$(cat1dir)/$(PROG).0
+	$(INSTALL) -m 444 pkg_add.1 ${DESTDIR}$(man1dir)/$(PROG).1

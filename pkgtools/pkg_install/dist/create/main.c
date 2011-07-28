@@ -57,7 +57,7 @@ static void
 usage(void)
 {
 	fprintf(stderr,
-	    "usage: pkg_create [-ElOUVv] [-B build-info-file] [-b build-version-file]\n"
+	    "usage: robotpkg_create [-ElOUVv] [-B build-info-file] [-b build-version-file]\n"
             "                  [-C cpkgs] [-D displayfile] [-F compression] \n"
 	    "                  [-I realprefix] [-i iscript]\n"
             "                  [-K pkg_dbdir] [-k dscript]\n"

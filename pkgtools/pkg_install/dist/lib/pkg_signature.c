@@ -218,10 +218,10 @@ static int
 parse_hash_file(const char *hash_file, char **pkgname,
     struct signature_archive *state)
 {
-	static const char block1[] = "pkgsrc signature\n\nversion: 1\npkgname: ";
+	static const char block1[] = "robotpkg signature\n\nversion: 1\npkgname: ";
 	static const char block2[] = "algorithm: SHA512\nblock size: ";
 	static const char block3[] = "file size: ";
-	static const char block4[] = "end pkgsrc signature\n";
+	static const char block4[] = "end robotpkg signature\n";
 	char *next;
 	size_t i, len;
 
@@ -510,7 +510,7 @@ extract_pkgname(int fd)
 }
 
 static const char hash_template[] =
-"pkgsrc signature\n"
+"robotpkg signature\n"
 "\n"
 "version: 1\n"
 "pkgname: %s\n"
@@ -519,7 +519,7 @@ static const char hash_template[] =
 "file size: %lld\n"
 "\n";
 
-static const char hash_trailer[] = "end pkgsrc signature\n";
+static const char hash_trailer[] = "end robotpkg signature\n";
 
 #ifdef HAVE_SSL
 void

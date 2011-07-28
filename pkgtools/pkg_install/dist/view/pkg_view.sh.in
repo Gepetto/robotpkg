@@ -49,15 +49,15 @@ linkfarmprog="@sbindir@/linkfarm"
 lnprog="@LN@"
 mkdirprog="@MKDIR@"
 paxprog="@pax@"
-pkgadminprog="@sbindir@/pkg_admin"
-pkginfoprog="@sbindir@/pkg_info"
+pkgadminprog="@sbindir@/robotpkg_admin"
+pkginfoprog="@sbindir@/robotpkg_info"
 rmprog="@RM@"
 rmdirprog="@RMDIR@"
 sedprog="@SED@"
 touchprog="@TOUCH@"
 
 usage() {
-	echo 'Usage: pkg_view [-nVv] [-d stowdir] [-i ignore] [-k pkg_dbdir] [-W viewbase]'
+	echo 'Usage: robotpkg_view [-nVv] [-d stowdir] [-i ignore] [-k pkg_dbdir] [-W viewbase]'
 	echo '                [-w viewname] add|check|delete pkgname...'
 	exit 1
 }
@@ -69,7 +69,7 @@ version() {
 
 checkpkg() {
 	if [ ! -d "$2/$1" ]; then
-		echo "pkg_view: \`$1' doesn't exist in \`$2'" 1>&2
+		echo "robotpkg_view: \`$1' doesn't exist in \`$2'" 1>&2
 		exit 1
 	fi
 }
@@ -149,7 +149,7 @@ depot_pkg_dbdir=${stowdir:-${DEPOTBASE:-${viewbase}/packages}}
 
 case "${depot_pkg_dbdir}" in
 ${pkg_dbdir})
-	echo "pkg_view: the depot and the view package database directories are the same" 1>&2
+	echo "robotpkg_view: the depot and the view package database directories are the same" 1>&2
 	exit 1
 	;;
 esac
@@ -191,7 +191,7 @@ while [ $# -gt 0 ]; do
 	add)
 		checkpkg $1 ${depot_pkg_dbdir}
 		if [ -f ${pkg_dbdir}/$1/+DEPOT ]; then
-			echo "pkg_view: \`$1' already exists in $viewstr" 1>&2
+			echo "robotpkg_view: \`$1' already exists in $viewstr" 1>&2
 			exit 1
 		fi
 		$echo1 "Adding $1 to ${targetdir}."
@@ -223,7 +223,7 @@ while [ $# -gt 0 ]; do
 			$doit $envprog -i PKG_PREFIX=${targetdir} ${pkg_dbdir}/$1/+INSTALL $1 VIEW-INSTALL
 			ec=$?
 			if [ $ec != 0 ]; then
-				echo "pkg_view: install script returned an error." 1>&2
+				echo "robotpkg_view: install script returned an error." 1>&2
 				exit $ec
 			fi
 		fi
@@ -237,7 +237,7 @@ while [ $# -gt 0 ]; do
 	delete)
 		checkpkg $1 ${depot_pkg_dbdir}
 		if [ ! -f ${pkg_dbdir}/$1/+DEPOT ]; then
-			echo "pkg_view: \`$1' doesn't exist in $viewstr" 1>&2
+			echo "robotpkg_view: \`$1' doesn't exist in $viewstr" 1>&2
 			exit 1
 		fi
 		$echo1 "Deleting $1 from ${targetdir}."
@@ -245,7 +245,7 @@ while [ $# -gt 0 ]; do
 			if $cmpprog -s ${pkg_dbdir}/$1/+REQUIRED_BY /dev/null; then
 				: # not really required by another pkg
 			else
-				(echo "pkg_view: \`$1' is required by other packages:"
+				(echo "robotpkg_view: \`$1' is required by other packages:"
 				$sedprog -e 's|^|	|' ${pkg_dbdir}/$1/+REQUIRED_BY) 1>&2
 				exit 1
 			fi
@@ -255,7 +255,7 @@ while [ $# -gt 0 ]; do
 			$doit $envprog -i PKG_PREFIX=${targetdir} ${pkg_dbdir}/$1/+DEINSTALL $1 VIEW-DEINSTALL
 			ec=$?
 			if [ $ec != 0 ]; then
-				echo "pkg_view: de-install script returned an error." 1>&2
+				echo "robotpkg_view: de-install script returned an error." 1>&2
 				exit $ec
 			fi
 		fi

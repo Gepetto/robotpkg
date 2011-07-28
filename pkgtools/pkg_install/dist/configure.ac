@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.52)
-AC_INIT([pkg_install], [20090911], [joerg@NetBSD.org])
+AC_INIT([robotpkg_install], [20090911], [joerg@NetBSD.org])
 AC_CONFIG_SRCDIR([lib/plist.c])
 AC_CONFIG_HEADER(lib/config.h)
 
@@ -36,6 +36,9 @@ AC_SUBST(AUTOCONF)
 AUTOHEADER=${AUTOHEADER-"$srcdir/missing --run autoheader"}
 AC_SUBST(AUTOHEADER)
 
+dnl large file support (must be consistent with libarchive)
+AC_SYS_LARGEFILE
+
 dnl Set the default pkg dbdir
 AC_ARG_WITH(pkgdbdir,
 [  --with-pkgdbdir=DIR     Where to put the pkg database (/var/db/pkg)],
@@ -50,7 +53,7 @@ AC_ARG_WITH(ssl,
 AC_SUBST(ssl_support)
 
 AC_ARG_ENABLE([bootstrap],
-    [AS_HELP_STRING([--enable-bootstrap], [build minimal version of pkg_install])],
+    [AS_HELP_STRING([--enable-bootstrap], [build minimal version of robotpkg_install])],
     [bootstrap=yes], [bootstrap=])
 
 AC_SUBST(bootstrap)
@@ -147,5 +150,5 @@ AC_SUBST(SYSCONFDIR)
 
 AC_CONFIG_FILES([Makefile add/Makefile admin/Makefile bpm/bpm.sh \
 	create/Makefile delete/Makefile info/Makefile \
-	lib/Makefile lib/pkg_install.conf.5 lib/pkg_install.conf.cat5])
+	lib/Makefile lib/robotpkg_install.conf.5 lib/robotpkg_install.conf.cat5])
 AC_OUTPUT

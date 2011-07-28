@@ -28,10 +28,10 @@
 .\" SUCH DAMAGE.
 .\"
 .Dd April 11, 2009
-.Dt PKG_SUMMARY 5
+.Dt ROBOTPKG_SUMMARY \&5 "Robotpkg File Formats"
 .Os
 .Sh NAME
-.Nm pkg_summary
+.Nm robotpkg_summary
 .Nd summary of binary package repository
 .Sh DESCRIPTION
 The file
@@ -91,11 +91,11 @@ If missing, the package does not support options.
 .It Ev PKGNAME
 (required) The name of the package.
 .It Ev PKGPATH
-(required) The path of the package directory within pkgsrc.
+(required) The path of the package directory within robotpkg.
 .It Ev PKGTOOLS_VERSION
 (required) The version of the package tools used to create the package.
 .It Ev PREV_PKGPATH
-(optional) The previous path of the package directory within pkgsrc when
+(optional) The previous path of the package directory within robotpkg when
 a package was moved.
 (See
 .Ev SUPERSEDES
@@ -117,17 +117,17 @@ This is used for package renaming.
 .El
 .Pp
 The
-.Nm pkg_summary
+.Nm robotpkg_summary
 file can be generated using the
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 .Fl X
 option.
 For example, the following will list this data for all installed packages:
 .Pp
-.Dl "pkg_info -X -a"
+.Dl "robotpkg_info -X -a"
 .Sh SEE ALSO
-.Xr pkg_info 1
+.Xr robotpkg_info 1
 .Sh HISTORY
 The
-.Nm pkg_summary
+.Nm robotpkg_summary
 format was first officially documented in April 2006.

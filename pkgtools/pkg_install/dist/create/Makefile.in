@@ -21,17 +21,17 @@ LDFLAGS=	@LDFLAGS@ -L../lib
 
 INSTALL=	@INSTALL@
 
-PROG=		pkg_create
+PROG=		robotpkg_create
 
-.if empty(BOOTSTRAP)
+ifeq (,$(strip $(BOOTSTRAP)))
 LIBS=		-linstall -larchive -lbz2 -lz @LIBS@
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
 OBJS=	main.o perform.o pl.o util.o build.o
-.else
+else
 LIBS=		-linstall @LIBS@
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBOOTSTRAP
 OBJS=	main.o perform.o pl.o util.o
-.endif
+endif
 
 all: $(PROG)
 
@@ -47,7 +47,5 @@ clean:
 install:
 	$(INSTALL) -m 755 -d ${DESTDIR}$(sbindir)
 	$(INSTALL) -m 755 -d ${DESTDIR}$(man1dir)
-	$(INSTALL) -m 755 -d ${DESTDIR}$(cat1dir)
 	$(INSTALL) $(PROG) ${DESTDIR}$(sbindir)/$(PROG)
-	$(INSTALL) -m 444 $(PROG).1 ${DESTDIR}$(man1dir)/$(PROG).1
-	$(INSTALL) -m 444 $(PROG).cat1 ${DESTDIR}$(cat1dir)/$(PROG).0
+	$(INSTALL) -m 444 pkg_create.1 ${DESTDIR}$(man1dir)/$(PROG).1

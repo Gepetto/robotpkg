@@ -2,11 +2,11 @@
 
 BOOTSTRAP=	@bootstrap@
 
-.if empty(BOOTSTRAP)
+ifeq (,$(strip $(BOOTSTRAP)))
 SUBDIRS=	lib add admin create delete info
-.else
+else
 SUBDIRS=	lib admin create info
-.endif
+endif
 
 all:
 	@for dir in $(SUBDIRS); do \

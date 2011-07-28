@@ -60,7 +60,7 @@ static int delete_automatic_leaves;
 static void
 usage(void)
 {
-	fprintf(stderr, "usage: pkg_delete [-DFfkNnORrVv] [-K pkg_dbdir]"
+	fprintf(stderr, "usage: robotpkg_delete [-DFfkNnORrVv] [-K pkg_dbdir]"
 	    " [-P destdir] [-p prefix] pkg-name ...\n");
 	exit(1);
 }
@@ -425,7 +425,7 @@ remove_pkg_from_view(const char *pkg)
 			    pkg, line);
 		if (Fake)
 			continue;
-		if (fexec_skipempty(BINDIR "/pkg_delete", "-K", line,
+		if (fexec_skipempty(BINDIR "/robotpkg_delete", "-K", line,
 				    Fake ? "-n" : "",
 				    (Force > 1) ? "-f" : "",
 				    (Force > 0) ? "-f" : "",

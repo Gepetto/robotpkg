@@ -127,7 +127,7 @@ detached_gpg_verify(const char *content, size_t len,
 
 	if ((tmpdir = getenv("TMPDIR")) == NULL)
 		tmpdir = "/tmp";
-	tempsig = xasprintf("%s/pkg_install.XXXXXX", tmpdir);
+	tempsig = xasprintf("%s/robotpkg_install.XXXXXX", tmpdir);
 
 	fd = mkstemp(tempsig);
 	if (fd == -1) {

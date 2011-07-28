@@ -16,23 +16,23 @@ SSL_SUPPORT=	@ssl_support@
 
 CC=		@CC@
 CCLD=		$(CC)
-.if empty(BOOTSTRAP)
+ifeq (,$(BOOTSTRAP))
 LIBS=		-linstall -larchive -lfetch -lbz2 -lz @LIBS@
-.if !empty(SSL_SUPPORT)
+ifneq (,$(SSL_SUPPORT))
 LIBS+=		-lcrypto
-.endif
+endif
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
-.else
+else
 LIBS=		-linstall @LIBS@
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBOOTSTRAP
-.endif
+endif
 DEFS=		@DEFS@
 CFLAGS=		@CFLAGS@
 LDFLAGS=	@LDFLAGS@ -L../lib
 
 INSTALL=	@INSTALL@
 
-PROG=		pkg_info
+PROG=		robotpkg_info
 
 OBJS=	main.o perform.o show.o
 
@@ -50,7 +50,5 @@ clean:
 install:
 	$(INSTALL) -m 755 -d ${DESTDIR}$(sbindir)
 	$(INSTALL) -m 755 -d ${DESTDIR}$(man1dir)
-	$(INSTALL) -m 755 -d ${DESTDIR}$(cat1dir)
 	$(INSTALL) $(PROG) ${DESTDIR}$(sbindir)/$(PROG)
-	$(INSTALL) -m 444 $(PROG).1 ${DESTDIR}$(man1dir)/$(PROG).1
-	$(INSTALL) -m 444 $(PROG).cat1 ${DESTDIR}$(cat1dir)/$(PROG).0
+	$(INSTALL) -m 444 pkg_info.1 ${DESTDIR}$(man1dir)/$(PROG).1

@@ -725,7 +725,7 @@ add_pkgdir(const char *pkg, const char *prefix, const char *path)
 	oldvalue = pkgdb_retrieve(fullpath);
 	if (oldvalue) {
 		if (strncmp(oldvalue, "@pkgdir ", 8) != 0)
-			errx(EXIT_FAILURE, "Internal error while processing pkgdb, run pkg_admin rebuild");
+			errx(EXIT_FAILURE, "Internal error while processing pkgdb, run robotpkg_admin rebuild");
 		newvalue = xasprintf("%s %s", oldvalue, pkg);
 		pkgdb_remove(fullpath);
 	} else {
