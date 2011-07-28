@@ -92,13 +92,13 @@ dirname_of(const char *path)
 }
 
 /*
- * Does the pkgname contain any of the special chars ("{[]?*<>")? 
+ * Does the pkgname contain any of the special chars ("{[]?*<>!")?
  * If so, return 1, else 0
  */
 int
 ispkgpattern(const char *pkg)
 {
-	return strpbrk(pkg, "<>[]?*{") != NULL;
+	return strpbrk(pkg, "<>[]?*{!") != NULL;
 }
 
 /*
@@ -107,5 +107,33 @@ ispkgpattern(const char *pkg)
 char *
 addpkgwildcard(const char *pkg)
 {
-	return xasprintf("%s-[0-9]*", pkg);
+	const char *opt;
+
+	opt = strrchr(pkg, '~');
+	if (!opt) return xasprintf("%s-[0-9]*", pkg);
+
+	return xasprintf("%*.*s-[0-9]*%s", opt-pkg, opt-pkg, pkg, opt);
+}
+
+/*
+ * Return pkgbase from pkg
+ */
+char *
+strduppkgbase(const char *pkg)
+{
+	const char *opt;
+	char *dash;
+
+	opt = strrchr(pkg, '~');
+	if (opt)
+		pkg = xasprintf("%*.*s", opt-pkg, opt-pkg, pkg);
+
+	dash = strrchr(pkg, '-');
+	if (!dash) return NULL;
+
+	if (opt) {
+		*dash = '\0';
+		return pkg;
+	} else
+		return xasprintf("%*.*s", dash-pkg, dash-pkg, pkg);
 }

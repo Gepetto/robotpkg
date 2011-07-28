@@ -431,14 +431,13 @@ check_other_installed(struct pkg_task *pkg)
 		return 0;
 	}
 
-	pkgbase = xstrdup(pkg->pkgname);
+	pkgbase = strduppkgbase(pkg->pkgname);
 
-	if ((iter = strrchr(pkgbase, '-')) == NULL) {
+	if (pkgbase == NULL) {
 		free(pkgbase);
 		warnx("Invalid package name %s", pkg->pkgname);
 		return -1;
 	}
-	*iter = '\0';
 	pkg->other_version = find_best_matching_installed_pkg(pkgbase);
 	free(pkgbase);
 	if (pkg->other_version == NULL)

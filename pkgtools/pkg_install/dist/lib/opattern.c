@@ -93,6 +93,97 @@ alternate_match(const char *pattern, const char *pkg)
 }
 
 /*
+ * Extract options from a "pkg[-<>=]vers~opts" pattern.
+ */
+static char *
+mkoptions(char *buf, const char *pkg)
+{
+	const char *opt;
+
+	opt = strrchr(pkg, '~');
+	if (!opt) return NULL;
+
+	(void) strncpy(buf, pkg, (size_t) MaxPathSize);
+	buf[opt - pkg] = '\0';
+	return &buf[opt - pkg + 1];
+}
+
+/*
+ * Perform option matching on "pkg" against "reqd".
+ * Return 1 on match, 0 otherwise
+ *
+ * The matching is done according to the following algorithm ("equal" mean
+ * strcmp, "match" mean fnmatch):
+ * - one positive option in reqd matches no option in pkg -> fail.
+ * - one negative option in reqd equal one option in pkg -> fail.
+ * - one option in pkg equal no positive option in reqd
+ *   if the option matches a negative option in reqd -> fail.
+ *     if !strict -> success.
+ *     if the option matches no positive wildcard option in reqd
+ *       -> fail.
+ * - -> success.
+ */
+static int
+options_match(char *reqd, char *pkg)
+{
+	char *r, *p;
+	int cr, cp;
+	int strict = 0;
+	int neg;
+	int i, j;
+	int m;
+
+	/* catch-all */
+	if (!reqd) return 1;
+
+	/* count options in pattern */
+	cr = 0;
+	for (r = strtok(reqd, "+,"); r; r = strtok(NULL, "+,"))
+		cr++;
+
+	/* count options in pkg */
+	cp = 0;
+	if (pkg) {
+		for (p = strtok(pkg, "+,"); p; p = strtok(NULL, "+,"))
+			cp++;
+	}
+
+	/* for each option in pattern */
+	for (r = reqd, i = 0; i < cr; r += strlen(r)+1, i++) {
+		if ((neg = (r[0] == '!'))) r++;
+
+		/* test option match in pkg */
+                if (!neg && !fnmatch(r, "", 0)) continue;
+		for (p = pkg, j = 0; j < cp; p += strlen(p)+1, j++) {
+			if (neg && !strcmp(r, p)) return 0;
+			if (!neg && !fnmatch(r, p, 0)) break;
+		}
+		if (!neg && (j >= cp)) return 0;
+	}
+
+	/* for each option in pkg */
+	for (p = pkg, j = 0; j < cp; p += strlen(p)+1, j++) {
+		/* test positive option equality in pattern */
+                for (r = reqd, i = 0; i < cr; r += strlen(r)+1, i++) {
+			if (r[0] == '!') continue;
+			if (!strcmp(r, p)) break;
+		}
+		if (i < cr) continue;
+
+		/* test option match in pattern */
+		m = 0;
+                for (r = reqd, i = 0; i < cr; r += strlen(r)+1, i++) {
+			if ((neg = (r[0] == '!'))) r++;
+			if (neg && !fnmatch(r, p, 0)) return 0;
+			if (!neg && !m && !fnmatch(r, p, 0)) m = 1;
+		}
+		if (strict && !m) return 0;
+	}
+
+	return 1;
+}
+
+/*
  * Perform glob match on "pkg" against "pattern".
  * Return 1 on match, 0 otherwise
  */
@@ -139,12 +230,26 @@ quick_pkg_match(const char *pattern, const char *pkg)
 int
 pkg_match(const char *pattern, const char *pkg)
 {
+	char buf[2][MaxPathSize];
+	char *reqopts, *pkgopts;
+
 	if (!quick_pkg_match(pattern, pkg))
 		return 0;
 
 	if (strchr(pattern, '{') != (char *) NULL) {
 		/* emulate csh-type alternates */
 		return alternate_match(pattern, pkg);
+	}
+
+	/* remember options, remove from package name/pattern */
+	if ((reqopts = mkoptions(buf[0], pattern)) != NULL)
+		pattern = buf[0];
+	if ((pkgopts = mkoptions(buf[1], pkg)) != NULL)
+		pkg = buf[1];
+
+	/* match options */
+	if (!options_match(reqopts, pkgopts)) {
+		return 0;
 	}
 	if (strpbrk(pattern, "<>") != (char *) NULL) {
 		int ret;
@@ -167,7 +272,6 @@ pkg_match(const char *pattern, const char *pkg)
 
 	/* globbing patterns and simple matches may be specified with or
 	 * without the version number, so check for both cases. */
-
 	{
 		char *pattern_ver;
 		int retval;
@@ -182,8 +286,13 @@ pkg_match(const char *pattern, const char *pkg)
 int
 pkg_order(const char *pattern, const char *first_pkg, const char *second_pkg)
 {
+	const char *first_pkg_trimmed;
+	const char *second_pkg_trimmed;
 	const char *first_version;
 	const char *second_version;
+	char *first_opt;
+	char *second_opt;
+	char buf[2][MaxPathSize];
 
 	if (first_pkg == NULL && second_pkg == NULL)
 		return 0;
@@ -193,14 +302,42 @@ pkg_order(const char *pattern, const char *first_pkg, const char *second_pkg)
 	if (second_pkg == NULL)
 		return pkg_match(pattern, first_pkg) ? 1 : 0;
 
-	first_version = strrchr(first_pkg, '-');
-	second_version = strrchr(second_pkg, '-');
+	first_pkg_trimmed = first_pkg;
+	if ((first_opt = mkoptions(buf[0], first_pkg)) != NULL)
+		first_pkg_trimmed = buf[0];
+	second_pkg_trimmed = second_pkg;
+	if ((second_opt = mkoptions(buf[1], second_pkg)) != NULL)
+		second_pkg_trimmed = buf[1];
+
+	first_version = strrchr(first_pkg_trimmed, '-');
+	second_version = strrchr(second_pkg_trimmed, '-');
 
 	if (first_version == NULL || !pkg_match(pattern, first_pkg))
 		return pkg_match(pattern, second_pkg) ? 2 : 0;
 
 	if (second_version == NULL || !pkg_match(pattern, second_pkg))
 		return pkg_match(pattern, first_pkg) ? 1 : 0;
+
+	if (dewey_cmp(first_version + 1, DEWEY_EQ, second_version + 1)) {
+		char *i;
+		int c1;
+		int c2;
+
+		c1 = 0;
+		if (first_opt) {
+			for (i = strtok(first_opt, "+,"); i;
+			     i = strtok(NULL, "+,")) c1++;
+		}
+		c2 = 0;
+		if (second_opt) {
+			for (i = strtok(second_opt, "+,"); i;
+			     i = strtok(NULL, "+,")) c2++;
+		}
+		if (c1 > c2)
+			return 1;
+		else
+			return 2;
+	}
 
 	if (dewey_cmp(first_version + 1, DEWEY_GT, second_version + 1))
 		return 1;
