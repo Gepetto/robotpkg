@@ -2,8 +2,7 @@
 # Created:			tho on Thu, 9 Nov 2006
 #
 
-VERSION=		20091115
-PKGREVISION=		1
+VERSION=		20110215
 DISTNAME=		pkg_install-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		# empty
@@ -78,7 +77,7 @@ pre-install: pkg_rebuild_db pkg_install-remove-old
 pkg_rebuild_db:
 ifneq (${PKGTOOLS_VERSION},${VERSION})
 	${RUN}if [ -d ${PKG_DBDIR} ]; then				\
-		${ECHO_MSG} "Rebuilding package database"; 		\
+		${ECHO_MSG} "Rebuilding package database";		\
 		${WRKSRC}/admin/robotpkg_admin -K ${PKG_DBDIR} rebuild;	\
 	fi
 else
@@ -88,8 +87,8 @@ endif
 .PHONY: pkg_install-remove-old
 pkg_install-remove-old:
 	${RUN}								\
-	{ ${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}; } | 		\
+	{ ${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}; } |		\
 	while read pkg; do						\
-		${ECHO_MSG} "Removing old package"; 			\
+		${ECHO_MSG} "Removing old package";			\
 		${PKG_DELETE} -N -f "$$pkg"||${TRUE};			\
 	done
