@@ -14,7 +14,7 @@ PREFER.regionMap-lib?=	robotpkg
 
 DEPEND_USE+=		regionMap-lib
 
-DEPEND_ABI.regionMap-lib?=	regionMap-lib>=0.1
+DEPEND_ABI.regionMap-lib?=	regionMap-lib>=0.4
 DEPEND_DIR.regionMap-lib?=	../../mapping/regionMap-lib
 
 SYSTEM_SEARCH.regionMap-lib=\
