@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sat, 19 Apr 2008
 #
 
-DISTNAME=	libfetch-2.26
+DISTNAME=	libfetch-2.33
 CATEGORIES=	net
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -15,7 +15,8 @@ COMMENT=	Library to access HTTP/FTP server
 LICENSE=	modified-bsd
 
 BUILD_TARGET=	depend all
-INSTALL_TARGET=	install includes
+INSTALL_TARGET=	install includes man
+INSTALLATION_DIRS= include lib man/man3
 
 # ssl option
 PKG_SUPPORTED_OPTIONS+=	ssl
