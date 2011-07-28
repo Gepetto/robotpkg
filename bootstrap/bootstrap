@@ -283,8 +283,7 @@ echo "" >> ${MKCONF_EXAMPLE}
 
 # create installation directories
 mkdir_p $prefix $pkgdbdir $prefix/sbin
-mkdir_p $mandir/man1 $mandir/cat1
-mkdir_p $mandir/man8 $mandir/cat8
+mkdir_p $mandir/man1 $mandir/man5 $mandir/man7
 
 
 # --- build libnbcompat ----------------------------------------------
