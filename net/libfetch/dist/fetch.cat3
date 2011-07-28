@@ -8,7 +8,8 @@ NNAAMMEE
      ffeettcchhPPuuttHHTTTTPP, ffeettcchhSSttaattHHTTTTPP, ffeettcchhLLiissttHHTTTTPP, ffeettcchhXXGGeettFFTTPP, ffeettcchhGGeettFFTTPP,
      ffeettcchhPPuuttFFTTPP, ffeettcchhSSttaattFFTTPP, ffeettcchhLLiissttFFTTPP ffeettcchhIInniittUURRLLLLiisstt,
      ffeettcchhFFrreeeeUURRLLLLiisstt, ffeettcchhUUnnqquuootteePPaatthh, ffeettcchhUUnnqquuootteeFFiilleennaammee,
-     ffeettcchhSSttrriinnggiiffyyUURRLL, ffeettcchh -- file transfer functions
+     ffeettcchhSSttrriinnggiiffyyUURRLL, ffeettcchhCCoonnnneeccttiioonnCCaacchheeIInniitt, ffeettcchhCCoonnnneeccttiioonnCCaacchheeCClloossee,
+     ffeettcchh -- file transfer functions
 
 LLIIBBRRAARRYY
                File Transfer Library for URLs (libfetch, -lfetch)
@@ -108,6 +109,9 @@ SSYYNNOOPPSSIISS
      _v_o_i_d
      ffeettcchhIInniittUURRLLLLiisstt(_s_t_r_u_c_t _u_r_l___l_i_s_t _*_u_l);
 
+     _i_n_t
+     ffeettcchhAAppppeennddUURRLLLLiisstt(_s_t_r_u_c_t _u_r_l___l_i_s_t _*_d_s_t, _c_o_n_s_t _s_t_r_u_c_t _u_r_l___l_i_s_t _*_s_r_c);
+
      _v_o_i_d
      ffeettcchhFFrreeeeUURRLLLLiisstt(_s_t_r_u_c_t _u_r_l___l_i_s_t _*_u_l);
 
@@ -119,6 +123,12 @@ SSYYNNOOPPSSIISS
 
      _c_h_a_r _*
      ffeettcchhSSttrriinnggiiffyyUURRLL(_c_o_n_s_t _s_t_r_u_c_t _u_r_l _*_u);
+
+     _v_o_i_d
+     ffeettcchhCCoonnnneeccttiioonnCCaacchheeIInniitt(_i_n_t _g_l_o_b_a_l, _i_n_t _p_e_r___h_o_s_t);
+
+     _v_o_i_d
+     ffeettcchhCCoonnnneeccttiioonnCCaacchheeCClloossee(_v_o_i_d);
 
 DDEESSCCRRIIPPTTIIOONN
      These functions implement a high-level library for retrieving and upload-
@@ -204,7 +214,10 @@ DDEESSCCRRIIPPTTIIOONN
      };
 
      The list should be initialized by calling ffeettcchhIInniittUURRLLLLiisstt() and the
-     entries be freed by calling ffeettcchhFFrreeeeUURRLLLLiisstt().
+     entries be freed by calling ffeettcchhFFrreeeeUURRLLLLiisstt().  The function
+     ffeettcchhAAppppeennddUURRLLLLiisstt() can be used to append one URL lists to another.  If
+     the `c' (cache result) flag is specified, the library is allowed to
+     internally cache the result.
 
      ffeettcchhSSttrriinnggiiffyyUURRLL() returns the URL as string.  ffeettcchhUUnnqquuootteePPaatthh()
      returns the path name part of the URL with any quoting undone.  Query
@@ -213,6 +226,13 @@ DDEESSCCRRIIPPTTIIOONN
      returned by ffeettcchhUUnnqquuootteePPaatthh().  ffeettcchhSSttrriinnggiiffyyUURRLL(), ffeettcchhUUnnqquuootteePPaatthh(),
      and ffeettcchhUUnnqquuootteeFFiilleennaammee() return a string that should be deallocated
      with ffrreeee() after use.
+
+     ffeettcchhCCoonnnneeccttiioonnCCaacchheeIInniitt() enables the connection cache.  The first argu-
+     ment specifies the global limit on cached connections.  The second argu-
+     ment specifies the host limit.  Entries are considered to specify the
+     same host, if the host name from the URL is identical, indepent of the
+     address or address family.  ffeettcchhCCoonnnneeccttiioonnCCaacchheeCClloossee() flushed the con-
+     nection cache and closes all cached connections.
 
      ffeettcchhXXGGeett(), ffeettcchhGGeett(), ffeettcchhPPuutt(), and ffeettcchhSSttaatt() are similar to
      ffeettcchhXXGGeettUURRLL(), ffeettcchhGGeettUURRLL(), ffeettcchhPPuuttUURRLL(), and ffeettcchhSSttaattUURRLL(), except
@@ -503,4 +523,4 @@ BBUUGGSS
 
      Some parts of the code are not fully reentrant.
 
-NetBSD 5.0                     February 4, 2009                     NetBSD 5.0
+NetBSD 5.0                     January 22, 2010                     NetBSD 5.0
