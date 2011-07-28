@@ -50,10 +50,14 @@ lib${LIB}.a: ${SRCS:.c=.o}
 depend: ${DPSRCS}
 
 install: lib${LIB}.a
-	${INSTALL_LIB} lib${LIB}.a ${DESTDIR}$(prefix)/lib
+	${INSTALL_LIB} lib${LIB}.a ${DESTDIR}$(PREFIX)/lib
 
 includes: ${INCS}
 	@for file in ${INCS}; do \
-	  echo "${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file";\
-	  ${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file;       \
+	  echo "${INSTALL_DATA} $$file ${DESTDIR}$(PREFIX)/include/$$file";\
+	  ${INSTALL_DATA} $$file ${DESTDIR}$(PREFIX)/include/$$file;       \
        done
+
+man: ${MAN}
+	echo "${INSTALL_DATA} $< ${DESTDIR}$(PREFIX)/man/man3/$<"; \
+	${INSTALL_DATA} $< ${DESTDIR}$(PREFIX)/man/man3/$<
