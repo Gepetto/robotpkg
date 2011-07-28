@@ -152,7 +152,7 @@ mkcomponent(arr_t *ap, const char *num)
 			return modp->len;
 		}
 	}
-	if (strncasecmp(num, "nb", 2) == 0) {
+	if (strncasecmp(num, "r", 2) == 0) {
 		for (cp = num, num += 2, n = 0 ; isdigit((unsigned char)*num) ; num++) {
 			n = (n * 10) + (*num - '0');
 		}
