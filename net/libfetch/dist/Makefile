@@ -10,7 +10,7 @@ MKLINT=		no
 MKPIC=		no
 MKPROFILE=	no
 
-.include <bsd.own.mk>
+
 
 CPPFLAGS+=	-I.
 CPPFLAGS+=	-D_LARGEFILE_SOURCE -D_LARGE_FILES
@@ -18,25 +18,42 @@ CPPFLAGS+=	-D_LARGEFILE_SOURCE -D_LARGE_FILES
 FETCH_WITH_INET6?=	no
 FETCH_WITH_OPENSSL?=	no
 
-.if !empty(FETCH_WITH_INET6:M[yY][eE][sS])
+ifeq (yes,${FETCH_WITH_INET6})
 CPPFLAGS+=	-DINET6
-.endif
+endif
 
-.if !empty(FETCH_WITH_OPENSSL:M[yY][eE][sS])
+ifeq (yes,${FETCH_WITH_OPENSSL})
 CPPFLAGS+=	-DWITH_SSL
 LDADD=		-lssl -lcrypto
-.endif
+endif
 
 CPPFLAGS+=	-DFTP_COMBINE_CWDS
 
 WARNS?=		4
 
-ftperr.h: ${.CURDIR}/ftp.errors ${.CURDIR}/Makefile ${.CURDIR}/errlist.sh
-	${.CURDIR}/errlist.sh ftp_errlist FTP \
-	    ${.CURDIR}/ftp.errors > ${.TARGET}
+all: lib${LIB}.a
 
-httperr.h: ${.CURDIR}/http.errors ${.CURDIR}/Makefile ${.CURDIR}/errlist.sh
-	${.CURDIR}/errlist.sh http_errlist HTTP \
-	    ${.CURDIR}/http.errors > ${.TARGET}
+ftperr.h: ${CURDIR}/ftp.errors ${CURDIR}/Makefile ${CURDIR}/errlist.sh
+	${CURDIR}/errlist.sh ftp_errlist FTP \
+	    ${CURDIR}/ftp.errors > $@
 
-.include <bsd.lib.mk>
+httperr.h: ${CURDIR}/http.errors ${CURDIR}/Makefile ${CURDIR}/errlist.sh
+	${CURDIR}/errlist.sh http_errlist HTTP \
+	    ${CURDIR}/http.errors > $@
+
+lib${LIB}.a: ${SRCS:.c=.o}
+	${AR} cr $@ $^
+
+.c.o:
+	${CC} ${CFLAGS} ${CPPFLAGS} -c $<
+
+depend: ${DPSRCS}
+
+install: lib${LIB}.a
+	${INSTALL_LIB} lib${LIB}.a ${DESTDIR}$(prefix)/lib
+
+includes: ${INCS}
+	@for file in ${INCS}; do \
+	  echo "${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file";\
+	  ${INSTALL_DATA} $$file ${DESTDIR}$(prefix)/include/$$file;       \
+       done
