@@ -1,6 +1,6 @@
 #!/bin/sh
 
-robotpkg_admin=@PKG_ADMIN@
+pkg_admin=@PKG_ADMIN@
 
 usage() {
 	echo 'Usage: audit-packages [-deqsVv] [-c config_file] [-F file]' >& $2
@@ -8,7 +8,7 @@ usage() {
 	echo '                      [-K pkg_dbdir] [-n package] [-p package]' >& $2
 	echo '                      [-Q varname] [-t type]' >& $2
 	echo "Please use the audit, audit-pkg, audit-batch and fetch-pkg-vulnerabilities" >& $2
-	echo "commands of robotpkg_admin instead." >& $2
+	echo "commands of pkg_admin instead." >& $2
 	exit $1
 }
 
@@ -47,12 +47,12 @@ while [ $# -gt 0 ]; do
 		shift
 		;;
 	-V)
-		exec ${robotpkg_admin} -V
+		exec ${pkg_admin} -V
 		;;
 	-c)
 		echo "The audit-packages wrapper does not support -c" >&2
 		echo "Please use the audit, audit-pkg, audit-batch and fetch-pkg-vulnerabilities" >& 2
-		echo "commands of robotpkg_admin instead." >& 2
+		echo "commands of pkg_admin instead." >& 2
 		exit 1
 		;;
 	-d)
@@ -63,7 +63,7 @@ while [ $# -gt 0 ]; do
 		;;
 	-g)
 		echo "The audit-packages wrapper does not support -g" >&2
-		echo "Please switch to \`\`robotpkg_admin fetch-pkg-vulnerabilities''." >&2
+		echo "Please switch to \`\`pkg_admin fetch-pkg-vulnerabilities''." >&2
 		exit 1
 		;;
 	-h)
@@ -96,15 +96,15 @@ while [ $# -gt 0 ]; do
 done
 
 if [ -n "${do_fetch}" ]; then
-	exec ${robotpkg_admin} ${do_pkgdb} fetch-pkg-vulnerabilities ${do_sign}
+	exec ${pkg_admin} ${do_pkgdb} fetch-pkg-vulnerabilities ${do_sign}
 fi
 
 if [ -n "${do_check_vul_file}" ]; then
-	exec ${robotpkg_admin} ${do_pkgdb} check-pkg-vulnerabilities ${do_sign} "${do_check_vul_file}"
+	exec ${pkg_admin} ${do_pkgdb} check-pkg-vulnerabilities ${do_sign} "${do_check_vul_file}"
 fi
 
 if [ -n "${do_print_var}" ]; then
-	exec ${robotpkg_admin} ${do_pkgdb} config-var "${do_print_var}"
+	exec ${pkg_admin} ${do_pkgdb} config-var "${do_print_var}"
 fi
 
 if [ -n "${do_check_file}" ]; then
@@ -112,7 +112,7 @@ if [ -n "${do_check_file}" ]; then
 		echo "Only one of -F, -n or -p is interpreted at a time." >& 2
 		usage 1 2
 	fi
-	exec ${robotpkg_admin} ${do_pkgdb} ${do_verbose} ${do_quiet} audit-pkg \
+	exec ${pkg_admin} ${do_pkgdb} ${do_verbose} ${do_quiet} audit-pkg \
 	    ${do_eol} ${do_limit_type} ${do_check_file}
 fi
 
@@ -121,10 +121,10 @@ if [ -n "${do_check_pattern}" ]; then
 		echo "Only one of -F, -n or -p is interpreted at a time." >& 2
 		usage 1 2
 	fi
-	exec ${robotpkg_admin} ${do_pkgdb} ${do_verbose} ${do_quiet} audit-pkg \
+	exec ${pkg_admin} ${do_pkgdb} ${do_verbose} ${do_quiet} audit-pkg \
 	    ${do_eol} ${do_limit_type} ${do_check_pattern}
 fi
 
 # If do_check_installed is empty, all packages are checked.
-exec ${robotpkg_admin} ${do_pkgdb} ${do_verbose} ${do_quiet} audit \
+exec ${pkg_admin} ${do_pkgdb} ${do_verbose} ${do_quiet} audit \
     ${do_eol} ${do_limit_type} ${do_check_installed}

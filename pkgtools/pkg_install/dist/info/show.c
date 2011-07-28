@@ -316,7 +316,7 @@ show_bld_depends(const char *title, package_t *plist)
 
 
 /*
- * Show entry for robotpkg_summary.txt file.
+ * Show entry for pkg_summary.txt file.
  */
 void
 show_summary(struct pkg_meta *meta, package_t *plist, const char *binpkgfile)

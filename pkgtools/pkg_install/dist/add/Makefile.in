@@ -21,14 +21,14 @@ LDFLAGS=	@LDFLAGS@ -L../lib
 SSL_SUPPORT=	@ssl_support@
 
 LIBS=		-linstall -lfetch -larchive -lbz2 -lz
-ifneq (,$(strip $(SSL_SUPPORT)))
+.if !empty(SSL_SUPPORT)
 LIBS+=		-lcrypto
-endif
+.endif
 LIBS+=		@LIBS@
 
 INSTALL=	@INSTALL@
 
-PROG=		robotpkg_add
+PROG=		pkg_add
 
 OBJS=	main.o perform.o
 

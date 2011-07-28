@@ -2,10 +2,10 @@ Use of digital signatures in pkg_install
 ----------------------------------------
 
 (1) pkg_vulnerabilities: list of known vulnerabilities, provided by
-    the robotpkg security team and updated regulary
+    the pkgsrc security team and updated regulary
 (2) binary packages: check who provided binary packages
 
-For (1) gpg is currently the only choice. After robotpkgCon (?) a PKCS7 
+For (1) gpg is currently the only choice. After pkgsrcCon (?) a PKCS7 
 signature will be added as well. With the pkg_install-renovation branch,
 PKCS7 is the only supported verification mechanism for (2) and preferred
 for (1) once the infrastructure exists.
@@ -27,29 +27,29 @@ of C -> B (included in the package) -> A (with the chain file) and the
 signature is valid and trusted.
 
 
-Practical implications for robotpkg users:
-- get the robotpkg-security certificate and point CERTIFICATE_ANCHOR_PKGVULN to it
+Practical implications for pkgsrc users:
+- get the pkgsrc-security certificate and point CERTIFICATE_ANCHOR_PKGVULN to it
 - get the certificate used by your bulk builder and point
 CERTIFICATE_ANCHOR_PKGS to it
-- at some later point a CA for robotpkg might be created, in that case it
+- at some later point a CA for pkgsrc might be created, in that case it
 will serve as certificate for both purposes; a list of all certificates
 will be provided in that case to point CERTIFICATE_CHAIN to.
 
 
 How to create your own keys:
 
-The robotpkg.sh script and the corresponding robotpkg.cnf file provide a working
+The pkgsrc.sh script and the corresponding pkgsrc.cnf file provide a working
 wrapper around the OpenSSL command line tool.
 
-The root certificate can be created by running "sh robotpkg.sh setup",
-the output can found in the robotpkg subdirectory of the current directory.
-The meta data is for human beings and displayed e.g. by robotpkg_add, but not
-relevant for cryptographic purposes.  robotpkg/newcerts/00.pem is the
+The root certificate can be created by running "sh pkgsrc.sh setup",
+the output can found in the pkgsrc subdirectory of the current directory.
+The meta data is for human beings and displayed e.g. by pkg_add, but not
+relevant for cryptographic purposes.  pkgsrc/newcerts/00.pem is the
 public key and can be used as trust anchor.
 A certificate for signing packages can be created by running
-"sh robotpkg.sh pkgkey". The private key can be found in pkgkey_key.pem
+"sh pkgsrc.sh pkgkey". The private key can be found in pkgkey_key.pem
 and the certificate in pkgkey_cert.pem.
-Similary, "sh robotpkg.sh pkgsec" will create a certificate/key pair for
+Similary, "sh pkgsrc.sh pkgsec" will create a certificate/key pair for
 signing pkg-vulnerabilities.
 
 How to verify a certificate:

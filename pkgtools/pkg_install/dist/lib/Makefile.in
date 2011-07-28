@@ -33,16 +33,16 @@ OBJS=	automatic.o conflicts.o decompress.o dewey.o fexec.o file.o \
 
 CPPFLAGS+=	-DSYSCONFDIR=\"$(sysconfdir)\"
 
-ifneq (,$(strip $(BOOTSTRAP)))
+.if !empty(BOOTSTRAP)
 CPPFLAGS+=	-DBOOTSTRAP
-else
+.else
 OBJS+=	pkg_io.o pkg_signature.o
-endif
+.endif
 
-ifneq (,$(strip $(SSL_SUPPORT)))
+.if !empty(SSL_SUPPORT)
 CPPFLAGS+=	-DHAVE_SSL
 OBJS+=		pkcs7.o
-endif
+.endif
 
 all: $(LIB)
 
@@ -61,9 +61,9 @@ install:
 	$(INSTALL) -m 755 -d ${DESTDIR}$(cat5dir)
 	$(INSTALL) -m 755 -d ${DESTDIR}$(man7dir)
 	$(INSTALL) -m 755 -d ${DESTDIR}$(cat7dir)
-	$(INSTALL) -m 444 robotpkg_summary.5 ${DESTDIR}$(man5dir)/robotpkg_summary.5
-	$(INSTALL) -m 444 robotpkg_summary.cat5 ${DESTDIR}$(cat5dir)/robotpkg_summary.0
+	$(INSTALL) -m 444 pkg_summary.5 ${DESTDIR}$(man5dir)/pkg_summary.5
+	$(INSTALL) -m 444 pkg_summary.cat5 ${DESTDIR}$(cat5dir)/pkg_summary.0
 	$(INSTALL) -m 444 pkg_install.conf.5 ${DESTDIR}$(man5dir)/pkg_install.conf.5
 	$(INSTALL) -m 444 pkg_install.conf.cat5 ${DESTDIR}$(cat5dir)/pkg_install.conf.0
-	$(INSTALL) -m 444 robotpkg.7 ${DESTDIR}$(man7dir)/robotpkg.7
-	$(INSTALL) -m 444 robotpkg.cat7 ${DESTDIR}$(cat7dir)/robotpkg.0
+	$(INSTALL) -m 444 pkgsrc.7 ${DESTDIR}$(man7dir)/pkgsrc.7
+	$(INSTALL) -m 444 pkgsrc.cat7 ${DESTDIR}$(cat7dir)/pkgsrc.0

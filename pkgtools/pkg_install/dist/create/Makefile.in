@@ -21,17 +21,17 @@ LDFLAGS=	@LDFLAGS@ -L../lib
 
 INSTALL=	@INSTALL@
 
-PROG=		robotpkg_create
+PROG=		pkg_create
 
-ifeq (,$(strip $(BOOTSTRAP)))
+.if empty(BOOTSTRAP)
 LIBS=		-linstall -larchive -lbz2 -lz @LIBS@
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
 OBJS=	main.o perform.o pl.o util.o build.o
-else
+.else
 LIBS=		-linstall @LIBS@
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBOOTSTRAP
 OBJS=	main.o perform.o pl.o util.o
-endif
+.endif
 
 all: $(PROG)
 

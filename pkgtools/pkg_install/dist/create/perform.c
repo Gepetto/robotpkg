@@ -174,7 +174,7 @@ pkg_perform(const char *pkg)
 
 	/*
 	 * Put the build dependencies after the dependencies.
-	 * This works due to the evaluation order in robotpkg_add.
+	 * This works due to the evaluation order in pkg_add.
 	 */
 	if (BuildPkgdeps)
 		register_depends(&plist, BuildPkgdeps, 1);

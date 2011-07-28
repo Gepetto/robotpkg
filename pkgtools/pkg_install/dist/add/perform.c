@@ -1077,7 +1077,7 @@ check_dependencies(struct pkg_task *pkg)
 }
 
 /*
- * If this package uses robotpkg_views, register it in the default view.
+ * If this package uses pkg_views, register it in the default view.
  */
 static void
 pkg_register_views(struct pkg_task *pkg)
@@ -1086,14 +1086,14 @@ pkg_register_views(struct pkg_task *pkg)
 		return;
 
 	if (Verbose) {
-		printf("%s/robotpkg_view -d %s %s%s %s%s %sadd %s\n",
+		printf("%s/pkg_view -d %s %s%s %s%s %sadd %s\n",
 			BINDIR, _pkgdb_getPKGDB_DIR(),
 			View ? "-w " : "", View ? View : "",
 			Viewbase ? "-W " : "", Viewbase ? Viewbase : "",
 			Verbose ? "-v " : "", pkg->pkgname);
 	}
 
-	fexec_skipempty(BINDIR "/robotpkg_view", "-d", _pkgdb_getPKGDB_DIR(),
+	fexec_skipempty(BINDIR "/pkg_view", "-d", _pkgdb_getPKGDB_DIR(),
 			View ? "-w " : "", View ? View : "",
 			Viewbase ? "-W " : "", Viewbase ? Viewbase : "",
 			Verbose ? "-v " : "", "add", pkg->pkgname,
@@ -1135,13 +1135,13 @@ start_replacing(struct pkg_task *pkg)
 		return -1;
 
 	if (Verbose || Fake) {
-		printf("%s/robotpkg_delete -K %s -p %s%s%s '%s'\n",
+		printf("%s/pkg_delete -K %s -p %s%s%s '%s'\n",
 			BINDIR, _pkgdb_getPKGDB_DIR(), pkg->prefix,
 			Destdir ? " -P ": "", Destdir ? Destdir : "",
 			pkg->other_version);
 	}
 	if (!Fake)
-		fexec_skipempty(BINDIR "/robotpkg_delete", "-K", _pkgdb_getPKGDB_DIR(),
+		fexec_skipempty(BINDIR "/pkg_delete", "-K", _pkgdb_getPKGDB_DIR(),
 		    "-p", pkg->prefix,
 		    Destdir ? "-P": "", Destdir ? Destdir : "",
 		    pkg->other_version, NULL);
@@ -1346,7 +1346,7 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 
 		free(pkg->install_logdir);
 		pkg->install_logdir = xasprintf("%s/pkg_install.XXXXXX", tmpdir);
-		/* XXX robotpkg_add -u... */
+		/* XXX pkg_add -u... */
 		if (mkdtemp(pkg->install_logdir) == NULL) {
 			warn("mkdtemp failed");
 			goto clean_memory;
@@ -1429,7 +1429,7 @@ nuke_pkg:
 		if (pkg->other_version) {
 			warnx("Updating of %s to %s failed.",
 			    pkg->other_version, pkg->pkgname);
-			warnx("Remember to run robotpkg_admin rebuild-tree after fixing this.");
+			warnx("Remember to run pkg_admin rebuild-tree after fixing this.");
 		}
 		delete_package(FALSE, &pkg->plist, FALSE, Destdir);
 	}

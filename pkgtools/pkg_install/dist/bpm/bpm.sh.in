@@ -64,7 +64,7 @@ check_prog echoprog echo
 check_prog ftpprog ftp
 check_prog idprog id
 check_prog moreprog more
-check_prog robotpkg_addprog robotpkg_add
+check_prog pkg_addprog pkg_add
 check_prog rmprog rm
 check_prog sedprog sed
 check_prog suprog su
@@ -72,7 +72,7 @@ check_prog unameprog uname
 
 # print version and exit
 version() {
-	$robotpkg_addprog -V
+	$pkg_addprog -V
 	exit 0
 }
 
@@ -81,7 +81,7 @@ tmpcategories=/tmp/categories.$$
 tmppackages=/tmp/packages.$$
 
 # some base parameters
-base=ftp://ftp.NetBSD.org/pub/robotpkg/packages
+base=ftp://ftp.NetBSD.org/pub/pkgsrc/packages
 release=`${unameprog} -r | ${sedprog} -e 's/_STABLE//'`
 machine=`${unameprog} -m`
 
@@ -174,7 +174,7 @@ while true; do
 
 	# check it's not already installed
 	pkgbase=`${echoprog} ${package} | ${sedprog} -e 's|-[0-9].*||'`
-	installed=`robotpkg_info -e $pkgbase`
+	installed=`pkg_info -e $pkgbase`
 	case "$installed" in
 	"")	;;
 	*)	${echoprog} "$package selected, but $installed already installed"
@@ -187,7 +187,7 @@ while true; do
 	${echoprog} ""
 	${echoprog} "Adding package ${base}/${release}/${machine}/${category}/${package}"
 
-	cmd="env PKG_PATH=${base}/${release}/${machine}/All ${robotpkg_addprog} ${package}"
+	cmd="env PKG_PATH=${base}/${release}/${machine}/All ${pkg_addprog} ${package}"
 
 	# check if we need to become root for this
 	if [ `${idprog} -u` != 0 ]; then

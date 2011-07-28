@@ -18,4 +18,4 @@ Adrian Portelli.
 When making snapshots, please modify PKGTOOLS_VERSION in lib/version.h
 to that day's date.
 
-robotpkg/pkgtools/pkg_install is the canonical location for these sources.
+pkgsrc/pkgtools/pkg_install is the canonical location for these sources.

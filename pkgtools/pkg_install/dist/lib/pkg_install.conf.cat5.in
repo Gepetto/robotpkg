@@ -69,7 +69,7 @@ DDEESSCCRRIIPPTTIIOONN
      DEFAULT_ACCEPTABLE_LICENSES
              List of common Free and Open Source licenses packages are allowed
              to carry.  The default value contains all OSI approved licenses
-             in robotpkg on the date pkg_install was released.  License names
+             in pkgsrc on the date pkg_install was released.  License names
              are case-sensitive.
 
      GPG     Path to gpg(1), which can be used to verify the signature in the
@@ -144,6 +144,6 @@ FFIILLEESS
                                     this manual page.
 
 SSEEEE AALLSSOO
-     robotpkg_add(1), robotpkg_admin(1)
+     pkg_add(1), pkg_admin(1)
 
 NetBSD 5.0                     October 15, 2009                     NetBSD 5.0

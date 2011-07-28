@@ -60,7 +60,7 @@ static void
 usage(void)
 {
 	(void) fprintf(stderr, "%s\n%s\n%s\n%s\n",
-	    "usage: robotpkg_add [-AfhILnRuVv] [-C config] [-P destdir] [-K pkg_dbdir]",
+	    "usage: pkg_add [-AfhILnRuVv] [-C config] [-P destdir] [-K pkg_dbdir]",
 	    "               [-m machine] [-p prefix] [-s verification-type",
 	    "               [-W viewbase] [-w view]\n",
 	    "               [[ftp|http]://[user[:password]@]host[:port]][/path/]pkg-name ...");

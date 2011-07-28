@@ -21,9 +21,9 @@ LDFLAGS=	@LDFLAGS@ -L../lib
 
 INSTALL=	@INSTALL@
 
-PROG=		robotpkg_delete
+PROG=		pkg_delete
 
-OBJS=		robotpkg_delete.o
+OBJS=		pkg_delete.o
 
 all: $(PROG)
 

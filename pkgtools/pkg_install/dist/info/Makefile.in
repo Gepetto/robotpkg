@@ -16,23 +16,23 @@ SSL_SUPPORT=	@ssl_support@
 
 CC=		@CC@
 CCLD=		$(CC)
-ifeq (,$(strip $(BOOTSTRAP)))
+.if empty(BOOTSTRAP)
 LIBS=		-linstall -larchive -lfetch -lbz2 -lz @LIBS@
-ifneq (,$(strip $(SSL_SUPPORT)))
+.if !empty(SSL_SUPPORT)
 LIBS+=		-lcrypto
-endif
+.endif
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
-else
+.else
 LIBS=		-linstall @LIBS@
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBOOTSTRAP
-endif
+.endif
 DEFS=		@DEFS@
 CFLAGS=		@CFLAGS@
 LDFLAGS=	@LDFLAGS@ -L../lib
 
 INSTALL=	@INSTALL@
 
-PROG=		robotpkg_info
+PROG=		pkg_info
 
 OBJS=	main.o perform.o show.o
 
