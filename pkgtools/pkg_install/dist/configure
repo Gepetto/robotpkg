@@ -596,6 +596,7 @@ ac_includes_default="\
 
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
+PKG_DBDIR
 SYSCONFDIR
 EGREP
 CPP
@@ -4831,7 +4832,7 @@ return gethostbyname ();
   return 0;
 }
 _ACEOF
-for ac_lib in '' nsl; do
+for ac_lib in '' nsl network; do
   if test -z "$ac_lib"; then
     ac_res="none required"
   else
@@ -5193,6 +5194,48 @@ cat >>confdefs.h <<_ACEOF
 _ACEOF
 
 
+# The cast to long int works around a bug in the HP C Compiler
+# version HP92453-01 B.11.11.23709.GP, which incorrectly rejects
+# declarations like `int a3[[(sizeof (unsigned char)) >= 0]];'.
+# This bug is HP SR number 8606223364.
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking size of size_t" >&5
+$as_echo_n "checking size of size_t... " >&6; }
+if test "${ac_cv_sizeof_size_t+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if ac_fn_c_compute_int "$LINENO" "(long int) (sizeof (size_t))" "ac_cv_sizeof_size_t"        "$ac_includes_default"; then :
+
+else
+  if test "$ac_cv_type_size_t" = yes; then
+     { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+{ as_fn_set_status 77
+as_fn_error "cannot compute sizeof (size_t)
+See \`config.log' for more details." "$LINENO" 5; }; }
+   else
+     ac_cv_sizeof_size_t=0
+   fi
+fi
+
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_sizeof_size_t" >&5
+$as_echo "$ac_cv_sizeof_size_t" >&6; }
+
+
+
+cat >>confdefs.h <<_ACEOF
+#define SIZEOF_SIZE_T $ac_cv_sizeof_size_t
+_ACEOF
+
+
+
+case $host in
+*-*-hpux*)
+	$as_echo "#define MISSING_SIZE_T_SUPPORT 1" >>confdefs.h
+
+
+	;;
+esac
 
 case $host in
 *-*-dragonfly* |*-*-freebsd*)
@@ -5206,8 +5249,10 @@ esac
 
 SYSCONFDIR="$sysconfdir"
 
+PKG_DBDIR="$pkgdbdir"
 
-ac_config_files="$ac_config_files Makefile add/Makefile admin/Makefile bpm/bpm.sh create/Makefile delete/Makefile info/Makefile lib/Makefile lib/pkg_install.conf.5 lib/pkg_install.conf.cat5"
+
+ac_config_files="$ac_config_files Makefile add/Makefile admin/Makefile bpm/bpm.sh create/Makefile delete/Makefile info/Makefile lib/Makefile lib/pkg_install.conf.5 lib/pkg_install.conf.cat"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -5902,7 +5947,7 @@ do
     "info/Makefile") CONFIG_FILES="$CONFIG_FILES info/Makefile" ;;
     "lib/Makefile") CONFIG_FILES="$CONFIG_FILES lib/Makefile" ;;
     "lib/pkg_install.conf.5") CONFIG_FILES="$CONFIG_FILES lib/pkg_install.conf.5" ;;
-    "lib/pkg_install.conf.cat5") CONFIG_FILES="$CONFIG_FILES lib/pkg_install.conf.cat5" ;;
+    "lib/pkg_install.conf.cat") CONFIG_FILES="$CONFIG_FILES lib/pkg_install.conf.cat" ;;
 
   *) as_fn_error "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

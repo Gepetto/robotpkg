@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.in,v 1.17 2009/02/13 11:21:07 joerg Exp $
+# $NetBSD: Makefile.in,v 1.20 2010/04/20 00:39:12 joerg Exp $
 
 srcdir=		@srcdir@
 
@@ -10,6 +10,8 @@ datarootdir=	@datarootdir@
 
 man1dir=	$(mandir)/man1
 cat1dir=	$(mandir)/cat1
+man8dir=	$(mandir)/man8
+cat8dir=	$(mandir)/cat8
 
 BOOTSTRAP=	@bootstrap@
 SSL_SUPPORT=	@ssl_support@
@@ -26,7 +28,7 @@ PROG=		robotpkg_admin
 SCRIPTS=	audit-packages download-vulnerability-list
 
 ifeq (,$(strip $(BOOTSTRAP)))
-LIBS=		-linstall -lbz2 -lfetch -larchive -lbz2 -lz
+LIBS=		-linstall -lfetch
 ifneq (,$(strip $(SSL_SUPPORT)))
 LIBS+=		-lcrypto
 CFLAGS+=	-DHAVE_SSL

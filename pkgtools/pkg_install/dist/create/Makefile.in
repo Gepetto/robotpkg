@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.in,v 1.15 2008/03/10 12:14:32 wiz Exp $
+# $NetBSD: Makefile.in,v 1.18 2010/04/20 00:39:13 joerg Exp $
 
 srcdir=		@srcdir@
 
@@ -24,7 +24,7 @@ INSTALL=	@INSTALL@
 PROG=		robotpkg_create
 
 ifeq (,$(strip $(BOOTSTRAP)))
-LIBS=		-linstall -larchive -lbz2 -lz @LIBS@
+LIBS=		-linstall -larchive @LIBS@
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
 OBJS=	main.o perform.o pl.o util.o build.o
 else

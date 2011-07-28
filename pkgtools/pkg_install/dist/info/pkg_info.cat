@@ -70,10 +70,8 @@ DDEESSCCRRIIPPTTIIOONN
      --ii      Show the install script (if any) for each package.
 
      --KK _p_k_g___d_b_d_i_r
-             Set _p_k_g___d_b_d_i_r as the package database directory.  If this option
-             isn't specified, then the package database directory is taken
-             from the value of the environment variable PKG_DBDIR if it's set,
-             otherwise it defaults to _/_v_a_r_/_d_b_/_p_k_g.
+             Override the value of the PKG_DBDIR configuration option with the
+             value _p_k_g___d_b_d_i_r.
 
      --kk      Show the de-install script (if any) for each package.
 
@@ -107,7 +105,8 @@ DDEESSCCRRIIPPTTIIOONN
 
      --RR      For each package, show the packages that require it.
 
-     --rr      For each package, recursively show the packages that require it.
+     --rr      For each package, show the packages that require it.  Continue
+             recursively to show all dependents.
 
      --SS      Show the size of this package and all the packages it requires,
              in bytes.
@@ -131,7 +130,7 @@ DDEESSCCRRIIPPTTIIOONN
 TTEECCHHNNIICCAALL DDEETTAAIILLSS
      Package info is either extracted from package files named on the command
      line, or from already installed package information in
-     _/_v_a_r_/_d_b_/_p_k_g_/_<_p_k_g_-_n_a_m_e_>.
+     _<_P_K_G___D_B_D_I_R_>_/_<_p_k_g_-_n_a_m_e_>.
 
      A filename can be given instead of a (installed) package name to query
      information on the package this file belongs to.  This filename is then
@@ -169,13 +168,12 @@ PPAACCKKAAGGEE WWIILLDDCCAARRDDSS
      ordering schemes.
 
 EENNVVIIRROONNMMEENNTT
-     PKG_DBDIR  If the --KK flag isn't given, then PKG_DBDIR is the location of
-                the package database directory.  The default package database
-                directory is _/_v_a_r_/_d_b_/_p_k_g.
+     See pkg_install.conf(5) for options, that can also be specified using the
+     environment.
 
 SSEEEE AALLSSOO
-     pkg_add(1), pkg_admin(1), pkg_create(1), pkg_delete(1), mktemp(3),
-     pkgsrc(7), mtree(8)
+     pkg_add(1), pkg_admin(1), pkg_create(1), pkg_delete(1),
+     pkg_install.conf(5) pkgsrc(7)
 
 AAUUTTHHOORRSS
      Jordan Hubbard
@@ -186,4 +184,4 @@ AAUUTTHHOORRSS
              NetBSD wildcard dependency processing, pkgdb, depends displaying,
              pkg size display etc.
 
-NetBSD 5.0                       March 2, 2009                      NetBSD 5.0
+NetBSD 5.0                     January 22, 2010                     NetBSD 5.0

@@ -75,6 +75,11 @@ DDEESSCCRRIIPPTTIIOONN
              (required) The version of the package tools used to create the
              package.
 
+     PREV_PKGPATH
+             (optional) The previous path of the package directory within
+             pkgsrc when a package was moved.  (See SUPERSEDES below for a
+             renamed package.)
+
      PROVIDES
              (optional) A list of shared libraries provided by the package,
              including major version number, one per line.  If missing, this
@@ -88,6 +93,11 @@ DDEESSCCRRIIPPTTIIOONN
      SIZE_PKG
              (required) The size of the package when installed, in bytes.
 
+     SUPERSEDES
+             (optional) A list of dewey patterns of previous packages this
+             package replaces, one per line.  This is used for package renam-
+             ing.
+
      The ppkkgg__ssuummmmaarryy file can be generated using the pkg_info(1) --XX option.
      For example, the following will list this data for all installed pack-
      ages:
@@ -100,4 +110,4 @@ SSEEEE AALLSSOO
 HHIISSTTOORRYY
      The ppkkgg__ssuummmmaarryy format was first officially documented in April 2006.
 
-NetBSD 5.0                      August 29, 2007                     NetBSD 5.0
+NetBSD 5.0                      April 11, 2009                      NetBSD 5.0
