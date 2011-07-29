@@ -48,7 +48,7 @@ ifeq (,${MAKECMDGOALS})
 endif
 
 .PHONY: all
-all: build;
+all: build
 
 
 # Include any preferences, if not already included, and default definitions.

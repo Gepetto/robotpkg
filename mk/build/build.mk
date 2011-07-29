@@ -92,7 +92,7 @@ _BUILD_TARGETS+=	release-build-lock
 
 .PHONY: build
 build: ${_BUILD_TARGETS};
-
+all: $(call add-barrier, depends, all);
 
 .PHONY: acquire-build-lock release-build-lock
 acquire-build-lock: acquire-lock
