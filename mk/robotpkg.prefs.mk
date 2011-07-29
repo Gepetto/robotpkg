@@ -205,18 +205,25 @@ include ${ROBOTPKG_DIR}/mk/robotpkg.default.conf
 PKGREVISION?=
 _pkgrevision=		$(addprefix r,$(filter-out 0,$(strip ${PKGREVISION})))
 
-# PKGNAME[_NOREV] is the package name with version [without revision number],
+# _pkgtag is the '~' suffix of the package name (list of options)
+_pkgtag=		$(addprefix ~,$(call concat,$(sort ${PKG_OPTIONS}),+))
+
+# PKGNAME[_NOREV,_NOTAG] is the package name with version [without revision
+# number, without tag],
 PKGNAME?=		${DISTNAME}
-$(eval PKGNAME_NOREV=	$$(patsubst %${_pkgrevision},%,$(value PKGNAME)))
-PKGNAME=		${PKGNAME_NOREV}${_pkgrevision}
+$(eval PKGNAME_NOREV=	$$(patsubst %${_pkgrevision},%,$$(patsubst	\
+				    %$${_pkgtag},%,$(value PKGNAME))))
+PKGNAME_NOTAG=		${PKGNAME_NOREV}${_pkgrevision}
+PKGNAME=		${PKGNAME_NOTAG}${_pkgtag}
 
 # PKGVERSION[_NOREV] is the package version number [without revision number].
-PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME}))
+PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME_NOTAG}))
 $(eval PKGVERSION_NOREV=$$(patsubst %${_pkgrevision},%,$(value PKGVERSION)))
-PKGVERSION=		${PKGVERSION_NOREV}${_pkgrevision}
+PKGVERSION_NOTAG=	${PKGVERSION_NOREV}${_pkgrevision}
+PKGVERSION=		${PKGVERSION_NOTAG}${_pkgtag}
 
 # PKGBASE is the package name without version information,
-PKGBASE?=		$(patsubst %-${PKGVERSION},%,${PKGNAME})
+PKGBASE?=		$(patsubst %-${PKGVERSION_NOREV},%,${PKGNAME_NOREV})
 
 # PKGWILDCARD is a pkg_install wildcard matching all versions of the package.
 PKGWILDCARD?=		${PKGBASE}-[0-9]*

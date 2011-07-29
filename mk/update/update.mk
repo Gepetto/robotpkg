@@ -198,7 +198,8 @@ ${_UPDATE_LIST}:
 	${RUN} >$@;							\
 	if ${PKG_INFO} -qe "${PKGWILDCARD}"; then			\
 	  for pkg in `${PKG_INFO} -qr '${PKGWILDCARD}'`; do		\
-	    ${ECHO} `${PKG_INFO} -Q PKGPATH $$pkg` $${pkg%-*} >>$@;	\
+	    base=$${pkg%~*}; base=$${base%-*};				\
+	    ${ECHO} `${PKG_INFO} -Q PKGPATH $$pkg` $$base >>$@;		\
 	  done;								\
 	fi
 

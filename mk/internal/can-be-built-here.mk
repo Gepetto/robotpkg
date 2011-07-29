@@ -141,7 +141,7 @@ ifeq (yes,$(call exists,${_COOKIE.wrkdir}))
   endif
 
   ifneq (${PKG_OPTIONS},${_COOKIE.wrkdir.pkgoptions})
-    PKG_FAIL_REASON+= "$${bf}Options for ${PKGNAME} have changed$${rm}"
+    PKG_FAIL_REASON+= "$${bf}Options for ${PKGNAME_NOTAG} have changed$${rm}"
     ifeq (,${_COOKIE.wrkdir.pkgoptions})
       PKG_FAIL_REASON+= "Working directory:	(none)"
     else

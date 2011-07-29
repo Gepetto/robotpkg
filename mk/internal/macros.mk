@@ -138,6 +138,16 @@ $(wordlist 2,$(words $1),$1)
 endef
 
 
+# --- concat <list> [<string>] ---------------------------------------------
+#
+# Join words of the <list> with <string> or ',' if string is not specified
+#
+override _comma:=,
+override define concat
+$(strip $(subst ${_empty} ${_empty},$(or $2,${_comma}),$1))
+endef
+
+
 # --- iterate <count> <expr> -----------------------------------------
 #
 # Expand <expr> <count> times.
