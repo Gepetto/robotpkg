@@ -43,11 +43,15 @@
 #
 
 # This Makefile fragment defines variables related to the robotpkg_*
-# administrative tools, which must be defined early. It is not possible to rely
-# on the generic dependency facility, because even the bootstrap dependencies
-# use the robotpkg_* tools.
+# administrative tools, which must be defined early.
 
-PREFIX.pkg_install?=	${ROBOTPKG_BASE}
+# It is not possible to rely on the generic dependency facility, because even
+# the bootstrap dependencies use the robotpkg_* tools. Still include the
+# regular depend.mk, so that an upgrade of pkg_install can be triggered as for
+# other packages. No dependency is added if NO_PKGTOOLS_REQD_CHECK is defined
+# (currently only pkg_install itself).
+#
+include ${ROBOTPKG_DIR}/pkgtools/pkg_install/depend.mk
 
 PKG_ADD_CMD?=		${PREFIX.pkg_install}/sbin/robotpkg_add
 PKG_ADMIN_CMD?=		${PREFIX.pkg_install}/sbin/robotpkg_admin
@@ -55,13 +59,6 @@ PKG_CREATE_CMD?=	${PREFIX.pkg_install}/sbin/robotpkg_create
 PKG_DELETE_CMD?=	${PREFIX.pkg_install}/sbin/robotpkg_delete
 PKG_INFO_CMD?=		${PREFIX.pkg_install}/sbin/robotpkg_info
 
-# Still include the regular depend.mk, so that an upgrade of pkg_install can
-# be triggered as for other packages, unless the package itself cancels this by
-# defining NO_PKGTOOLS_REQD_CHECK (currently only pkg_install itself).
-#
-ifndef NO_PKGTOOLS_REQD_CHECK
-  include ${ROBOTPKG_DIR}/pkgtools/pkg_install/depend.mk
-endif
 
 # Make sure robotpkg_info works. If it does not, strange errors will popup:
 # better avoid this.
