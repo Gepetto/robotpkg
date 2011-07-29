@@ -51,11 +51,14 @@ BEGIN {
 
     if (ARGC < 3) { usage(); exit 2; }
     if (ARGV[1] == "pmatch") {
-	print pmatch()
+        for(a = 2; a < ARGC; a+=2)
+            print (pmatch(ARGV[a], ARGV[a+1]) ? "yes" : "no")
 	exit 0
     }
     if (ARGV[1] == "reduce") {
-	print reduce()
+        delete ARGV[0]
+        delete ARGV[1]
+	print reduce(ARGV)
 	exit 0
     }
 
@@ -68,31 +71,50 @@ BEGIN {
 #
 # Match a pattern against a package version
 #
-function pmatch(	a, t, r, version, pattern, cur, ver, m)
+function pmatch(target, pkg,	a, t, r, version, pattern, cur, ver, m, malt,
+				opts, reqd, strict)
 {
-    for(a = 2; a < ARGC; a+=2) {
-	vextract(version, ARGV[a+1])
-	if (version[2] != "==") { r[a] = "no"; continue; }
-	mkversion(ver, version[3])
+    if (match(target, /{/)) {
+        wonderbrace(pattern, target)
+        for (a = 1; a <= pattern[0]; a++) {
+            if (pmatch(pattern[a], pkg)) return 1
+        }
+        return 0
+    }
 
-	r[a] = "yes"
-	while(ARGV[a]) {
-	    ARGV[a] = pextract(pattern, ARGV[a])
-	    if (pattern[1]) m = pattern[1]
-	    if (m != version[1]) { r[a] = "no"; break; }
+    vextract(version, pkg)
+    if (version[2] != "==") return 0
+    mkversion(ver, version[3])
+    split(version[4], opts, /[,+]+/)
 
-	    t = tests[pattern[2]]
-	    mkversion(cur, pattern[3])
-	    if (!vtest(ver, t, cur)) { r[a] = "no"; break; }
+    while(target) {
+        target = pextract(pattern, target)
+        m = glob2ere(pattern[1])
+        malt = glob2ere(pattern[1] "-[0-9]*")
+        t = tests[pattern[2]]
+
+        if (4 in pattern) {
+            split(pattern[4], reqd, /[,+]+/)
+            if (!matchoptions(reqd, opts, 0))
+                return 0
+        }
+
+        if (pattern[3]) {
+            mkversion(cur, pattern[3])
+            if (!vtest(ver, t, cur)) return 0
+        }
+
+        if (version[3]) {
+            if (!match(version[1] "-" version[3], m) &&
+                !match(version[1] "-" version[3], malt))
+                return 0
+        } else {
+            if (!match(version[1], m) && !match(version[1], malt))
+                return 0
 	}
     }
 
-    m = ""
-    for(a in r) {
-	if (m) m = m " "
-	m = m r[a]
-    }
-    return m
+    return 1
 }
 
 
@@ -102,24 +124,50 @@ function pmatch(	a, t, r, version, pattern, cur, ver, m)
 # the versions requirements. '!=' tests are put apart (they do not make an
 # interval).
 #
-function reduce(	a, i, k, t, p, name, min, minop, max, maxop, ne, cur, r)
+function reduce(targets,	a, i, k, t, p, name, min, minop, max, maxop,
+				ne, cur, r, s, opts, nopts, sopts)
 {
-    for(a = 2; a < ARGC; a++) {
-	while(ARGV[a]) {
-	    ARGV[a] = pextract(pattern, ARGV[a])
+    for(a in targets) {
+	while(targets[a]) {
+	    targets[a] = pextract(pattern, targets[a])
 	    if (pattern[1]) r = pattern[1]
-	    i = name[r]++
-	    p[r,"t",i] = pattern[2]
-	    p[r,"v",i] = pattern[3]
+	    k = name[r]++
+	    p[r,"t",k] = pattern[2]
+	    p[r,"v",k] = pattern[3]
+	    if (4 in pattern) p[r,"o",k] = pattern[4]
 	}
+    }
+
+    for(a in name) {
+        for(r in name) {
+            if (r == a) continue
+            t = glob2ere(r)
+            if (a ~ t) {
+                for(k=0; k<name[r]; k++) {
+                    p[a,"t",k+name[a]] = p[r,"t",k]
+                    p[a,"v",k+name[a]] = p[r,"v",k]
+                    if ((r,"o",k) in p) p[a,"o",k+name[a]] = p[r,"o",k]
+                }
+                name[a] += name[r]
+                delete name[r]
+            }
+        }
     }
 
     r = ""
     for(a in name) {
 	minop = maxop = 0; ne = "";
+        split("", opts); split("", nopts);
 
 	for(k=0; k<name[a]; k++) {
 	    t = tests[p[a,"t",k]]
+
+            # options
+            if ((a,"o",k) in p)
+                if (!mergeoptions(opts, nopts, p[a,"o",k]))
+                    return ""
+
+            # version
 	    mkversion(cur, p[a,"v",k])
 
 	    if (t == DEWEY_LT || t == DEWEY_LE || t == DEWEY_EQ) {
@@ -140,6 +188,16 @@ function reduce(	a, i, k, t, p, name, min, minop, max, maxop, ne, cur, r)
 	    }
 	}
 
+        sopts = ""
+        for(s in opts) {
+            if (sopts) sopts = sopts "+"
+            sopts = sopts s
+        }
+        for(s in nopts) {
+            if (sopts) sopts = sopts "+"
+            sopts = sopts "!" s
+        }
+
 	if (minop && maxop && maxop != minop) {
 	    if (!vtest(max, minop, min) || !vtest(min, maxop, max)) return ""
 	}
@@ -148,12 +206,100 @@ function reduce(	a, i, k, t, p, name, min, minop, max, maxop, ne, cur, r)
 	if (a) r = r a
 	if (minop) r = r strop(minop) min[-2]
 	if (maxop && maxop != minop) r = r strop(maxop) max[-2]
-	if (r) r = r " "
+        if (sopts) r = r "~" sopts
+	if (r && ne) r = r " "
 	if (ne) r = r a "!=" ne
     }
     sub(/^ +/, "", r)
     sub(/ +$/, "", r)
     return r
+}
+
+
+# --- mergeoptions ---------------------------------------------------------
+#
+# Store the options str in the array opts/nopts.
+# BUGS: This is only a poor approximation of a real "and".
+# Return 1 on success, 0 otherwise
+#
+function mergeoptions(opts, nopts, str,	i, j, n, s, neg, o, p, m) {
+    n = split(str, o, /[,+]+/)
+    for(p in opts) {
+        if (p ~ /[[?*]/) continue
+        for(i=1; i<=n; i++) {
+            if (o[i] !~ /^!/) continue
+            if (p ~ glob2ere(substr(o[i],2))) return 0
+        }
+    }
+
+    for(i=1; i<=n; i++) {
+        if (o[i] ~ /^!/) continue
+        if (o[i] in opts && o[i] !~ /[[?*]/) continue
+        for(p in opts) if (o[i] ~ glob2ere(p)) continue
+        for(p in nopts) if (o[i] ~ glob2ere(p)) return 0
+    }
+
+    for(i=1; i<=n; i++) {
+        s = substr(o[i], 1 + (neg = (o[i] ~ /^!/)))
+        if (neg) nopts[s]; else opts[s];
+    }
+
+    return 1;
+}
+
+
+# --- matchoptions ---------------------------------------------------------
+#
+# Check options in pkg match pattern reqd.
+# Return 1 on success, 0 otherwise
+#
+# The matching is done according to the following algorithm ("equal" mean
+# strcmp, "match" mean fnmatch):
+# - one positive option in reqd matches no option in pkg -> fail.
+# - one negative option in reqd equal one option in pkg -> fail.
+# - one option in pkg equal no positive option in reqd
+#   if the option matches a negative option in reqd -> fail.
+#     if !strict -> success.
+#     if the option matches no positive wildcard option in reqd
+#       -> fail.
+# - -> success.
+#
+function matchoptions(reqd, pkg, strict,	r, p, m, neg, o, t) {
+    # for each option in pattern
+    for (r in reqd) {
+        t = glob2ere(substr(reqd[r], 1 + (neg = (reqd[r] ~ /^!/))))
+
+        # test option match in pkg
+        if (!neg && "" ~ t) continue
+        m = 0
+        for (p in pkg) {
+            if (neg && pkg[p] == t) return 0
+            if (!neg && pkg[p] ~ t) { m = 1; break }
+        }
+        if (!neg && !m) return 0
+    }
+
+    # for each option in pkg
+    for (p in pkg) {
+        # test positive equality in pattern
+        m = 0
+        for (r in reqd) {
+            if (reqd[r] ~ /^!/) continue
+            if (pkg[p] == reqd[r]) { m = 1; break }
+        }
+        if (m) continue
+
+        # test match in pattern
+        m = 0
+        for (r in reqd) {
+            t = glob2ere(substr(reqd[r], 1 + (neg = (reqd[r] ~ /^!/))))
+            if (neg && pkg[p] ~ t) return 0
+            if (!neg && !m && pkg[p] ~ t) m = 1
+        }
+        if (strict && !m) return 0
+    }
+
+    return 1;
 }
 
 
@@ -268,46 +414,183 @@ function vtest(lhs, tst, rhs,		i, c, cmp)
 
 # --- pextract -------------------------------------------------------------
 #
-# extract name, test and version
+# extract name[1], test[2], version[3] and options[4]
 #
 function pextract(pattern, str)
 {
     while(match(str, /^[ \t]+/))
 	str = substr(str, RLENGTH+1)
 
-    if (match(str, /[><=!]=?/)) {
+    split("", pattern) # clean array
+
+    if (match(str, /^[^ \t]*([><]=?|[=!]=)/)) {
+        match(str, /([><]=?|[=!]=)/)
 	pattern[1] = substr(str, 1, RSTART-1)
 	pattern[2] = substr(str, RSTART, RLENGTH)
 	str = substr(str, RSTART+RLENGTH)
-	if (match(str, /([ \t]+.*)?[><=!]=?/)) {
+	if (match(str, /([ \t]|[><]=?|[=!]=)/)) {
 	    pattern[3] = substr(str, 1, RSTART-1)
 	    str = substr(str, RSTART)
 	} else {
 	    pattern[3] = str
 	    str = ""
 	}
+        if (match(pattern[3], /~[^~]*$/)) {
+	    pattern[4] = substr(pattern[3], RSTART+1)
+	    pattern[3] = substr(pattern[3], 1, RSTART-1)
+        }
 	return str
     }
 
-    pattern[1] = str
-    return ""
+    if(match(str, /[ \t]/)) {
+        pattern[1] = substr(str, 1, RSTART-1)
+	str = substr(str, RSTART)
+    } else {
+        pattern[1] = str
+        str = ""
+    }
+
+    if (match(pattern[1], /~[^~]*$/)) {
+        pattern[4] = substr(pattern[1], RSTART+1)
+        pattern[1] = substr(pattern[1], 1, RSTART-1)
+    }
+
+    return str
 }
 
 
 # --- vextract -------------------------------------------------------------
 #
-# extract name and version
+# extract name[1], version[3] and options[4]
 #
 function vextract(pattern, str)
 {
     while(match(str, /^[ \t]+/))
 	str = substr(str, RLENGTH+1)
 
+    split("", pattern) # clean array
+
     pattern[2] = "=="
-    if (match(str, /-[^-]+$/)) {
+    if (match(str, /~[^~]*$/)) {
+        pattern[4] = substr(str, RSTART+1)
+        str = substr(str, 1, RSTART-1)
+    }
+    if (match(str, /-[0-9][^-]*$/)) {
 	pattern[1] = substr(str, 1, RSTART-1)
 	pattern[3] = substr(str, RSTART+1)
     } else {
-	pattern[3] = str
+	pattern[1] = str
     }
+}
+
+
+# --- wonderbrace ----------------------------------------------------------
+#
+# Expand {,} alternatives
+#
+function wonderbrace(alts, str,
+                     start, end, paren, alt, nalt, prefix, suffix,
+                     i, c, r, l) {
+    if (!match(str, /{/)) { alts[++alts[0]] = str; return }
+
+    start = end = RSTART
+    paren = 1
+    l = length(str)
+    for(i=start+1; i<=l; i++) {
+        c = substr(str, i, 1)
+        if (c == "{")  { ++paren; continue }
+        if (paren > 1) { if (c == "}") paren--; continue }
+        if (c == "," || c == "}")  {
+            alt[nalt++] = substr(str, end+1, i-end-1)
+            end = i;
+            if (c == "}") break; else continue
+        }
+    }
+    # if no correct braces were found, return the initial string
+    if (c != "}" || paren != 1) { alts[++alts[0]] = str; return }
+
+    prefix = substr(str, 1, start-1)
+    suffix = substr(str, end+1)
+
+    for(i=0; i<nalt; i++) {
+        wonderbrace(alts, prefix alt[i] suffix)
+    }
+}
+
+
+# --- glob2ere -------------------------------------------------------------
+#
+# The current version of this library can be found by searching
+# http://www.armory.com/~ftp/
+#
+# @(#) glob2ere 1.0 2002-01-18
+# 2002-01-18 john h. dubois iii (john@armory.com)
+#
+# Roughly translate an sh-style globbing expression to an awk-style regular
+# expression.
+# ^$()+|.{} are escaped with \
+# ?, *, and [] are translated to ., .*, and [] if not escaped with \
+# If a \ precedes ? * [] it is left in place; all other \ are removed
+# A ! immediately after an unescaped [ is translated to ^
+# A [ inside [] is taken literally
+# A ] that occurs immediately after an opening [ or [! is taken literally
+# The expression is anchored at the start and end with ^ and $
+# An sh pattern that has a [ without a matching ] does not matching anything.
+# Any pattern that includes it will result in a return value of the special
+# string ".^", which will not match anything but can also be treated as an
+# error.
+function glob2ere(globex,
+
+	cpos, len, re, c, inbrack, lastesc, lastbrack, newlastbrack,
+	newlastnot, lastnot) {
+    # State variables:
+    # lastesc: Last character was a \
+    # lastbrack: Last character was a [
+    # lastnot: Last character was a ! that followed a [
+    # inbrack: We have seen a [ but not yet a ]
+    len = length(globex)
+    for (cpos = 1; cpos <= len; cpos++) {
+	c = substr(globex,cpos,1)
+	# The "new" versions of these variables are used so that the values are
+	# cleared after one iteration.
+	newlastbrack = newlastnot = 0
+	if (lastesc) {
+	    if (index("?*[]",c))
+		c = "\\" c
+	    lastesc = 0
+	}
+	else if ((lastbrack || lastnot) && c == "]")
+            # last char was [, or ! after [
+	    # ] immediately after [ or [! becomes part of the list;
+	    # ] later after [ closes the [
+	    ;
+	else if (lastbrack && c == "!") {
+	    # ! immediately after [
+	    c = "^"
+	    newlastnot = 1
+	}
+	else if (index("^$()+|.{}",c))
+	    c = "\\" c
+	else if (c == "\\") {
+	    lastesc = 1
+	    c = ""
+	}
+	else if (inbrack) {	# do not treat ?*[ specially inside []
+	    if (c == "]")
+		inbrack = 0
+	}
+	else if (c == "?")
+	    c = "."
+	else if (c == "*")
+	    c = ".*"
+	else if (c == "[")
+	    inbrack = newlastbrack = 1
+	re = re c
+	lastbrack = newlastbrack
+	lastnot = newlastnot
+    }
+    if (inbrack)
+	return ".^"
+    else
+	return "^" re "$"
 }
