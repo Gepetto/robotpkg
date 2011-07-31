@@ -95,7 +95,7 @@ PKG_INFO?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_INFO_CMD} ${PKGTOOLS_ARGS}
 # "${PKG_INFO} -e pkgpattern" if the latter would return more than one
 # package name.
 #
-_PKG_BEST_EXISTS?=	${PKG_ADMIN} -b -d ${_PKG_DBDIR} -S lsbest
+_PKG_BEST_EXISTS?=	${PKG_INFO} -E
 
 
 # Metadata filenames
