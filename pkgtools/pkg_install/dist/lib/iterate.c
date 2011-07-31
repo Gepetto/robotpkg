@@ -171,17 +171,14 @@ static int
 match_by_basename(const char *pkg, void *cookie)
 {
 	const char *target = cookie;
-	const char *pkg_version;
+	char *target_pattern;
+	int match;
 
-	if ((pkg_version = strrchr(pkg, '-')) == NULL) {
-		warnx("Entry %s in pkgdb is not a valid package name", pkg);
-		return 0;
-	}
-	if (strncmp(pkg, target, pkg_version - pkg) == 0 &&
-	    pkg + strlen(target) == pkg_version)
-		return 1;
-	else
-		return 0;
+	target_pattern = addpkgwildcard(target);
+	match = pkg_match(target_pattern, pkg);
+	free(target_pattern);
+
+	return match;
 }
 
 static int
