@@ -223,7 +223,7 @@ check_pkg(const char *pkg, int *filecnt, int *pkgcnt, int allow_unmatched)
 		errx(EXIT_FAILURE, "No matching pkg for %s.", pkg);
 	}
 
-	pattern = xasprintf("%s-[0-9]*", pkg);
+	pattern = addpkgwildcard(pkg);
 
 	if (match_installed_pkgs(pattern, checkpattern_fn, &arg) == -1)
 		errx(EXIT_FAILURE, "Cannot process pkdbdb");

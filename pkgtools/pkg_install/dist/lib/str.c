@@ -100,3 +100,12 @@ ispkgpattern(const char *pkg)
 {
 	return strpbrk(pkg, "<>[]?*{") != NULL;
 }
+
+/*
+ * Add a version wildcard to pkg
+ */
+char *
+addpkgwildcard(const char *pkg)
+{
+	return xasprintf("%s-[0-9]*", pkg);
+}

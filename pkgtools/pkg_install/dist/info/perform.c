@@ -548,7 +548,7 @@ CheckForPkg(const char *pkgname)
 	if (arg.got_match == 0 && !ispkgpattern(pkgname)) {
 		char *pattern;
 
-		pattern = xasprintf("%s-[0-9]*", pkgname);
+		pattern = addpkgwildcard(pkgname);
 
 		arg.pattern = pattern;
 		arg.got_match = 0;
@@ -583,7 +583,7 @@ CheckForBestPkg(const char *pkgname)
 		if (ispkgpattern(pkgname))
 			return 1;
 
-		pattern = xasprintf("%s-[0-9]*", pkgname);
+		pattern = addpkgwildcard(pkgname);
 		best_match = find_best_matching_installed_pkg(pattern);
 		free(pattern);
 	}

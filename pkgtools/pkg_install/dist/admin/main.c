@@ -729,7 +729,7 @@ set_unset_variable(char **argv, Boolean unset)
 				warnx("no matching pkg for `%s'", *argv);
 				ret++;
 			} else {
-				pattern = xasprintf("%s-[0-9]*", *argv);
+				pattern = addpkgwildcard(*argv);
 
 				if (match_installed_pkgs(pattern, set_installed_info_var, &arg) == -1)
 					errx(EXIT_FAILURE, "Cannot process pkdbdb");
