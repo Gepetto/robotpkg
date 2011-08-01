@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 29 Mar 2010
 #
 
-DISTNAME=	robotpkgdb-${PKGVERSION}
+DISTNAME=	robotpkgdb-${PKGVERSION_NOREV}
 PKGVERSION=	$(shell ${DATE} -u '+%Y%m%d')
 CATEGORIES=	pkgtools
 MASTER_SITES=	# empty
