@@ -93,11 +93,11 @@ show-depends:
 	${RUN}${PHASE_MSG} "Scanning packages for ${PKGNAME}";		\
 	${_pkgset_tsort_deps} -n ${PKGPATH} | while read dir; do	\
 	  cd ${ROBOTPKG_DIR}/$$dir &&					\
-	  ${RECURSIVE_MAKE} check-depends WRKDIR=${WRKDIR}/$$dir || {	\
+	  ${RECURSIVE_MAKE} print-depends WRKDIR=${WRKDIR}/$$dir || {	\
 	    ${ERROR_MSG} "Could not process $$dir";			\
 	  };								\
 	done | ${AWK} -F'|' -v bf=$$bf -v rm=$$rm '			\
-	  /^check-depends\|robotpkg/ {					\
+	  /^print-depends\|robotpkg/ {					\
 	    if ($$4 == "-") {						\
 	        r[$$3] = bf "missing - install " $$5 rm;		\
 	    } else {							\
@@ -105,7 +105,7 @@ show-depends:
             }								\
 	    rdeps=1; next;						\
 	  }								\
-	  /^check-depends\|system/ {					\
+	  /^print-depends\|system/ {					\
 	    if ($$4 == "-") {						\
 		s[$$3] = bf "missing - install $(strip			\
 		  $(or ${OPSUBSYS},${OPSYS})) package";			\

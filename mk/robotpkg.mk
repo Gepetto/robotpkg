@@ -108,8 +108,7 @@ $(call require-for, package repackage tarup,				\
 	${ROBOTPKG_DIR}/mk/package/package-vars.mk)
 
 # Dependencies
-$(call require-for, bootstrap-depends depends check-depends		\
-	check-depends-%,						\
+$(call require-for, bootstrap-depends depends,				\
 	${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 # Update
@@ -135,8 +134,9 @@ endif
 # packages sets
 $(call require, ${ROBOTPKG_DIR}/mk/sets/sets-vars.mk)
 
-# informational show-% targets
+# informational show-% and print-% targets
 $(call require-for, show-%, ${ROBOTPKG_DIR}/mk/internal/show.mk)
+$(call require-for, print-%, ${ROBOTPKG_DIR}/mk/internal/print.mk)
 
 # semi-automatic PLIST generation
 $(call require-for, print-PLIST, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
