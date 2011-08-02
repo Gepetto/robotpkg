@@ -42,6 +42,14 @@ _ENV_VARS=\
 # Apply any settings defined in _override_vars.<pkgpath> by a parent Makefile.
 # Do this for recursive 'make' invocations only.
 #
+# The list of configuration variables for each dependency is computed from
+# _overrides.<var> and the list of variables for each pkg is set in
+# _overrides_vars.<pkgpath>.
+#
+# Note: simply passing variables on the RECURSIVE_MAKE command like would not
+# work because some targets (like show-depends) invoke MAKE themselves in many
+# directories without knowing on behalf which package they do that.
+#
 ifneq (0,${MAKELEVEL})
   $(foreach _,$(sort ${_override_vars.${PKGPATH}}), \
     $(eval override $_ :=$(value _overrides.$_)))
@@ -49,6 +57,13 @@ ifneq (0,${MAKELEVEL})
   # keep overrides settings
   _ENV_VARS+=_override_vars.% _overrides.%
 endif
+
+# Helper macro exporting variables
+override define _export_override # (path, var)
+  export _override_vars.$(call pkgpath,$1) +=$2
+  export _overrides.$2 :=$(value $2)
+endef
+
 
 
 # --- Unsetenv -------------------------------------------------------------
