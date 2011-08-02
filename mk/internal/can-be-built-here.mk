@@ -106,6 +106,17 @@ PKG_FAIL_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
 endif
 
 
+# --- check PKGREQD --------------------------------------------------------
+#
+ifdef PKGREQD
+  ifeq (no,$(call pmatch,${PKGREQD},${PKGNAME}))
+    PKG_FAIL_REASON+= "$${bf}Required package unavailable$${rm}"
+    PKG_FAIL_REASON+= "Required package:	${PKGREQD}"
+    PKG_FAIL_REASON+= "Current package:		${PKGNAME}"
+  endif
+endif
+
+
 # --- check-wrkdir-version -------------------------------------------------
 #
 # - Verify that the extracted package in ${WRKDIR} matches the version

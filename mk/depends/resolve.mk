@@ -107,6 +107,21 @@ PKG_ALTERNATIVES:=$(sort ${PKG_ALTERNATIVES})
 # list of unresolved alternatives (not in robotpkg.conf or cmdline)
 _alt_list:=$(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVE.$_},,$_))
 ifneq (,$(strip ${_alt_list}))
+  # derive alternatives from a required package name
+  override define _alt_guess # (alt, string)
+    a:=$(strip $(foreach _,${PKG_ALTERNATIVES.$1},$(strip \
+	$(if $(findstring ${PKGTAG.$_},$2),$_))))
+    ifeq (1,$$(words $$a))
+      PREFER_ALTERNATIVE.$1:=$$a
+    else ifneq (0,$$(words $$a))
+      $$(shell echo >&2	\
+	'Warning: ambiguous package name $2 for alternatives $$a.')
+    endif
+  endef
+  ifdef PKGREQD
+    $(foreach _,${PKG_ALTERNATIVES},$(eval $(call _alt_guess,$_,${PKGREQD})))
+  endif
+
   # compute acceptable alternatives
   $(foreach _,${_alt_list},$(eval \
     _alt_select.$_=$(filter ${PKG_ALTERNATIVES.$_},${PREFER_ALTERNATIVE.$_})))
@@ -250,10 +265,12 @@ $(foreach _pkg_,${DEPEND_PKG},$(eval $(call _dpd_adddep,${_pkg_})))
 
 # --- export any overrides settings for dependencies -----------------------
 
-# The list of configuration variables for each dependency is computed from
-# DEPEND_VARS.<pkg>.
+# export a PKGREQD for dependencies. This matters for those that have
+# options/alternatives requirements imposed by parents.
+#
 override define _dpd_overrides
-  $(foreach _,${DEPEND_VARS.$1},$(call _export_override,${DEPEND_DIR.$1},$_))
+  $(if ${DEPEND_DIR.$1},\
+    $(call _export_override,${DEPEND_DIR.$1},PKGREQD,${DEPEND_ABI.$1}))
 endef
 $(foreach _,${DEPEND_USE},$(eval $(call _dpd_overrides,$_)))
 

@@ -52,16 +52,16 @@ _ENV_VARS=\
 #
 ifneq (0,${MAKELEVEL})
   $(foreach _,$(sort ${_override_vars.${PKGPATH}}), \
-    $(eval override $_ :=$(value _overrides.$_)))
+    $(eval override $_ :=$(value _overrides.${PKGPATH}.$_)))
 
   # keep overrides settings
   _ENV_VARS+=_override_vars.% _overrides.%
 endif
 
 # Helper macro exporting variables
-override define _export_override # (path, var)
+override define _export_override # (path, var, value)
   export _override_vars.$(call pkgpath,$1) +=$2
-  export _overrides.$2 :=$(value $2)
+  export _overrides.$(call pkgpath,$1).$2 :=$3
 endef
 
 

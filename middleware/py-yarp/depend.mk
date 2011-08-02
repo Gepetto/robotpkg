@@ -16,7 +16,6 @@ PREFER.py-yarp?=	robotpkg
 DEPEND_USE+=		py-yarp
 DEPEND_ABI.py-yarp?=	${PKGTAG.python-}yarp>=2.3.1
 DEPEND_DIR.py-yarp?=	../../middleware/py-yarp
-DEPEND_VARS.py-yarp+=	PKG_ALTERNATIVE.python
 
 SYSTEM_SEARCH.py-yarp=\
 	'${PYTHON_SYSLIBSEARCH}/yarp.py'
