@@ -14,13 +14,13 @@ ifeq (+,$(PYSETUPTOOLS_DEPEND_MK)) # ---------------------------------------
 PREFER.py-setuptools?=		system
 
 DEPEND_USE+=			py-setuptools
-DEPEND_ABI.py-setuptools?=	${PYPKGPREFIX}-setuptools
+DEPEND_ABI.py-setuptools?=	${PKGTAG.python-}setuptools
 
 SYSTEM_SEARCH.py-setuptools=\
 	'${PYTHON_SYSLIBSEARCH}/setuptools/__init__.py'
 
 SYSTEM_PKG.Linux.py-setuptools=	python-setuptools (python-${PYTHON_VERSION})
-SYSTEM_PKG.NetBSD.py-setuptools=pkgsrc/devel/${PYPKGPREFIX}-setuptools
+SYSTEM_PKG.NetBSD.py-setuptools=pkgsrc/devel/${PKGTAG.python-}setuptools
 
 include ../../mk/sysdep/python.mk
 

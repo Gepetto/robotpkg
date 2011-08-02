@@ -30,12 +30,12 @@
 #
 # === User-settable variables ===
 #
-# PKG_SELECT.python
+# PREFER_ALTERNATIVE.python
 #	The preferred Python interpreters/versions to use. The
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: python25 python26 python27 python30 python31 python32
+#	Possible values: python25 python26 python27 python31 python32
 #	Default: python26 python27 python31 python32
 #
 # === Package-settable variables ===
@@ -48,7 +48,7 @@
 #
 # === Defined variables ===
 #
-# PYPKGPREFIX
+# PKGTAG.python
 #       The prefix to use in PKGNAME for extensions which are meant
 #       to be installed for multiple Python versions.
 #
@@ -64,13 +64,12 @@ DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 PYTHON_DEPEND_MK:=	${PYTHON_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-  DEPEND_PKG+=		${ALTERNATIVE.python}
+  DEPEND_PKG+=		${PKG_ALTERNATIVE.python}
 endif
 
 ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 
-DEPEND_USE+=		${ALTERNATIVE.python}
-DEPEND_ALTERNATIVE+=	python
+DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
 DEPEND_ABI.python?=	python>=2.5<3.3
@@ -81,43 +80,91 @@ override define _py_syssearch
   'lib/libpython$1.{so,a}:s@^.*/@@;s/[^.0-9]//g;s/[.]$$//;p:${ECHO} %'	\
   'include/python$1/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'
 endef
+# define some variables for use in the packages
+export PYTHON=$(firstword ${SYSTEM_FILES.${PKG_ALTERNATIVE.python}})
+export PYTHON_LIB=$(word 2,${SYSTEM_FILES.${PKG_ALTERNATIVE.python}})
+export PYTHON_INCLUDE=$(dir $(word 3,${SYSTEM_FILES.${PKG_ALTERNATIVE.python}}))
+
 
 # define an alternative for available pythons packages
-ALTERNATIVES.python=	python25 python26 python27 python31 python32
-PKG_SELECT.python?=	python26 python27 python31 python32
+PKG_ALTERNATIVES+=		python
+PKG_ALTERNATIVES.python=	python25 python26 python27 python31 python32
+PREFER_ALTERNATIVE.python?=	python26 python27 python31 python32
 
-ALTERNATIVE_ABI.python25=	python>=2.5<2.6
-ALTERNATIVE_ABI.python26=	python>=2.6<2.7
-ALTERNATIVE_ABI.python27=	python>=2.7<2.8
-ALTERNATIVE_ABI.python31=	python>=3.1<3.2
-ALTERNATIVE_ABI.python32=	python>=3.2<3.3
 
-ALTERNATIVE_MK.python25?=	../../mk/sysdep/python25.mk
-ALTERNATIVE_MK.python26?=	../../mk/sysdep/python26.mk
-ALTERNATIVE_MK.python27?=	../../mk/sysdep/python27.mk
-ALTERNATIVE_MK.python31?=	../../lang/python31/depend.mk
-ALTERNATIVE_MK.python32?=	../../mk/sysdep/python32.mk
+PKG_ALTERNATIVE_DESCR.python25= Use python-2.5
+PKGTAG.python25=		py25
+define PKG_ALTERNATIVE_SELECT.python25
+  $(call preduce,${DEPEND_ABI.python} python>=2.5<2.6)
+endef
+define PKG_ALTERNATIVE_SET.python25
+  _py_abi:=$(subst python,python25,${PKG_ALTERNATIVE_SELECT.python25})
+  DEPEND_ABI.python25?=	$(strip ${_py_abi})
 
-# define some variables for use in the packages
-export PYTHON=		$(firstword ${SYSTEM_FILES.${ALTERNATIVE.python}})
-export PYTHON_LIB=	$(word 2,${SYSTEM_FILES.${ALTERNATIVE.python}})
-export PYTHON_INCLUDE=	$(dir $(word 3,${SYSTEM_FILES.${ALTERNATIVE.python}}))
+  include ../../mk/sysdep/python25.mk
+endef
 
-PYVARPREFIX=$(subst python,PYTHON,${ALTERNATIVE.python})
-PYPKGPREFIX=\
-  $(word 1,$(patsubst python%,py%,$(filter py%,${ALTERNATIVE.python}) py))
+PKG_ALTERNATIVE_DESCR.python26= Use python-2.6
+PKGTAG.python26 =		py26
+define PKG_ALTERNATIVE_SELECT.python26
+  $(call preduce,${DEPEND_ABI.python} python>=2.6<2.7)
+endef
+define PKG_ALTERNATIVE_SET.python26
+  _py_abi:=$(subst python,python26,${PKG_ALTERNATIVE_SELECT.python26})
+  DEPEND_ABI.python26?=	$(strip ${_py_abi})
 
-PYTHON_VERSION=$(patsubst py2%,2.%,$(patsubst py3%,3.%,${PYPKGPREFIX}))
-PYTHON_SITELIB=lib/python${PYTHON_VERSION}/site-packages
-PYTHON_SYSLIBSEARCH=lib/python${PYTHON_VERSION}/{site,dist}-packages
+  include ../../mk/sysdep/python26.mk
+endef
 
-PYTHON_PYCACHE?=	$(or ${${PYVARPREFIX}_PYCACHE},.)
-PYTHON_TAG?=		$(or ${${PYVARPREFIX}_TAG},)
+PKG_ALTERNATIVE_DESCR.python27= Use python-2.7
+PKGTAG.python27 =		py27
+define PKG_ALTERNATIVE_SELECT.python27
+  $(call preduce,${DEPEND_ABI.python} python>=2.7<2.8)
+endef
+define PKG_ALTERNATIVE_SET.python27
+  _py_abi:=$(subst python,python27,${PKG_ALTERNATIVE_SELECT.python27})
+  DEPEND_ABI.python27?=	$(strip ${_py_abi})
 
-BUILD_DEFS+=	PYTHON_VERSION
+  include ../../mk/sysdep/python27.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python31= Use python-3.1
+PKGTAG.python31 =		py31
+define PKG_ALTERNATIVE_SELECT.python31
+  $(call preduce,${DEPEND_ABI.python} python>=3.1<3.2)
+endef
+define PKG_ALTERNATIVE_SET.python31
+  _py_abi:=$(subst python,python31,${PKG_ALTERNATIVE_SELECT.python31})
+  DEPEND_ABI.python31?=	$(strip ${_py_abi})
+
+  include ../../lang/python31/depend.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python32= Use python-3.2
+PKGTAG.python32 =		py32
+define PKG_ALTERNATIVE_SELECT.python32
+  $(call preduce,${DEPEND_ABI.python} python>=3.2<3.3)
+endef
+define PKG_ALTERNATIVE_SET.python32
+  _py_abi:=$(subst python,python32,${PKG_ALTERNATIVE_SELECT.python32})
+  DEPEND_ABI.python32?=	$(strip ${_py_abi})
+
+  include ../../mk/sysdep/python32.mk
+endef
+
 
 # require preferences for PYTHON definition and immediate expansions below
 include ../../mk/robotpkg.prefs.mk
+
+PYTHON_VERSION=$(patsubst py2%,2.%,$(patsubst py3%,3.%,${PKGTAG.python}))
+BUILD_DEFS+=		PYTHON_VERSION
+
+PYTHON_SITELIB=		lib/python${PYTHON_VERSION}/site-packages
+PYTHON_SYSLIBSEARCH=	lib/python${PYTHON_VERSION}/{site,dist}-packages
+
+PYVARPREFIX=		$(subst python,PYTHON,${PKG_ALTERNATIVE.python})
+PYTHON_PYCACHE?=	$(or ${${PYVARPREFIX}_PYCACHE},.)
+PYTHON_TAG?=		$(or ${${PYVARPREFIX}_TAG},)
 
 PYTHON_SYSLIB:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
 	'import distutils.sysconfig;                                    \

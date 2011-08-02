@@ -68,19 +68,24 @@
 # An alternative is defined by the following variables:
 #
 # -------------8<-------------8<-------------8<-------------8<-------------
-# DEPEND_ALTERNATIVE+=		pkg
-# ALTERNATIVES.pkg=		pkg1 .. pkgx .. pkgn # unsorted
-# PKG_SELECT.pkg?=		pkg2 pkg1 # sorted by preference
-# DEPEND_ABI.pkg=		pkg>=1<=n
+# PKG_ALTERNATIVES+=		pkg
+# PKG_ALTERNATIVES.pkg=		pkg1 .. pkgx .. pkgn # unsorted
+# PREFER_ALTERNATIVE.pkg?=	pkg2 pkg1 # sorted by preference
 #
 # for each pkgx:
+# PKG_ALTERNATIVE_DESCR.pkgx=	# human readable description
+# and optionnaly:
+# PKG_ALTERNATIVE_SELECT.pkgx=	# macro returning non-empty if pkgx is ok
+# PKGTAG.pkgx=			# copied to PKGTAG.pkg
+#
 # ALTERNATIVE_ABI.pkgx=		pkg>=x.0<y.0 (note: not 'pkgx>=...')
 # ALTERNATIVE_MK.pkgx=		../../mk/sysdep/pkgx.mk
 # -------------8<-------------8<-------------8<-------------8<-------------
 #
-# Users may set PKG_SELECT.pkg in robotpkg.conf. After dependency resolution,
-# ALTERNATIVE.pkg is set to the selected alternative (forcing ALTERNATIVE.pkg
-# in robotpkg.conf/cmdline is also allowed, but discouraged. Use PKG_SELECT).
+# Users may set PREFER_ALTERNATIVE.pkg in robotpkg.conf. After dependency
+# resolution, PKG_ALTERNATIVE.pkg is set to the selected alternative (forcing
+# PKG_ALTERNATIVE.pkg in robotpkg.conf/cmdline is also allowed, but
+# discouraged. Use PREFER_ALTERNATIVE).
 #
 
 # DEPEND_PKG contains the list of packages for which we add a direct
@@ -97,92 +102,65 @@ DEPEND_USE?=	# empty
 # --- resolve alternatives -------------------------------------------------
 
 # NO ALTERNATIVE CAN BE ADDED AFTER THIS POINT
-DEPEND_ALTERNATIVE:=$(sort ${DEPEND_ALTERNATIVE})
+PKG_ALTERNATIVES:=$(sort ${PKG_ALTERNATIVES})
 
 # list of unresolved alternatives (not in robotpkg.conf or cmdline)
-_alt_list:=$(foreach _,${DEPEND_ALTERNATIVE},$(if ${ALTERNATIVE.$_},,$_))
+_alt_list:=$(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVE.$_},,$_))
 ifneq (,$(strip ${_alt_list}))
   # compute acceptable alternatives
   $(foreach _,${_alt_list},$(eval \
-    _alt_select.$_=$(filter ${ALTERNATIVES.$_},${PKG_SELECT.$_})))
+    _alt_select.$_=$(filter ${PKG_ALTERNATIVES.$_},${PREFER_ALTERNATIVE.$_})))
 
-  # choose a version: generate a list of calls to 'preduce' for each
-  # pattern in order of preference. Then pass this to 'or', so that the
-  # first match wins. This demands a bit of quoting... but generates the
-  # minimum number of calls to preduce. (the trailing [,] in the macro below is
-  # not a typo).
+  # choose a version: generate a list of test for each pattern in order of
+  # preference. Then pass this to 'or', so that the first match wins. This
+  # demands a bit of quoting... but generates the minimum number of calls to
+  # the selection macros. (the trailing [,] in the macro below is not a typo).
   override define _alt_match
-    $$$$(if $$$$(call preduce,${DEPEND_ABI.$1} ${ALTERNATIVE_ABI.$2}),$2),
+    $$$$(if $$(value PKG_ALTERNATIVE_SELECT.$1),$1),
   endef
   $(foreach _,${_alt_list},$(eval \
-    _alt_test.$_=$(foreach a,${_alt_select.$_},$(call _alt_match,$_,$a))))
+    _alt_test.$_=$(foreach a,${_alt_select.$_},$(call _alt_match,$a))))
 
   $(foreach _,${_alt_list},$(eval \
-    ALTERNATIVE.$_:=$$(strip $$(or ${_alt_test.$_}))))
+    PKG_ALTERNATIVE.$_:=$$(strip $$(or ${_alt_test.$_}))))
 endif # _alt_list
 
-# check empty or malformed ALTERNATIVE.<pkg>, and set a sane fallback for the
-# rest of the processing
+# check empty or malformed PKG_ALTERNATIVE.<pkg>, and set a sane fallback for
+# the rest of the processing
 override define _alt_error
-  ifeq (,$(filter 0 1,$(words ${ALTERNATIVE.$1})))
+  ifeq (,$(filter 0 1,$(words ${PKG_ALTERNATIVE.$1})))
     PKG_FAIL_REASON+=\
       "$${bf}The $1 alternative selection must be a single choice$${rm}"\
-      "	ALTERNATIVE.$1 = ${ALTERNATIVE.$1}"				\
-      "	(use PKG_SELECT.$1 to define an ordered list)"
-    override ALTERNATIVE.$1=$(word 1,${ALTERNATIVES.$1})
+      "	PKG_ALTERNATIVE.$1 = ${PKG_ALTERNATIVE.$1}"			\
+      "	(use PREFER_ALTERNATIVE.$1 to define an ordered list)"
+    override PKG_ALTERNATIVE.$1=$(word 1,${PKG_ALTERNATIVES.$1})
   endif
-  ifeq (,$(filter ${ALTERNATIVE.$1},${ALTERNATIVES.$1}))
+  ifeq (,$(filter ${PKG_ALTERNATIVE.$1},${PKG_ALTERNATIVES.$1}))
     PKG_FAIL_REASON+=\
       "$${bf}The $1 alternatives cannot be resolved$${rm}"		\
-      "	ALTERNATIVE.$1 = ${ALTERNATIVE.$1}"				\
-      "	PKG_SELECT.$1 = ${PKG_SELECT.$1}"				\
-      "	DEPEND_ABI.$1 = ${DEPEND_ABI.$1}"
-    override ALTERNATIVE.$1=$(word 1,${ALTERNATIVES.$1})
+      "	PKG_ALTERNATIVE.$1 = ${PKG_ALTERNATIVE.$1}"			\
+      "	PREFER_ALTERNATIVE.$1 = ${PREFER_ALTERNATIVE.$1}"
+    override PKG_ALTERNATIVE.$1=$(word 1,${PKG_ALTERNATIVES.$1})
   endif
 endef
-$(foreach _,${DEPEND_ALTERNATIVE},$(eval $(call _alt_error,$_)))
+$(foreach _,${PKG_ALTERNATIVES},$(eval $(call _alt_error,$_)))
 
-# list of unresolved alternatives ABI (normally none or all)
-_altabi_list:=$(foreach _,${DEPEND_ALTERNATIVE},$(if ${ALTERNATIVE_ABI.$_},,$_))
-ifneq (,$(strip ${_altabi_list}))
-  $(foreach _,${_altabi_list},$(eval \
-    _alt_abi.$_=	${ALTERNATIVE_ABI.${ALTERNATIVE.$_}}))
+# define PGKTAG.,-PKGTAG. and PKGTAG.-
+$(foreach _,${PKG_ALTERNATIVES},$(eval \
+  PKGTAG.$_=$(or ${PKGTAG.${PKG_ALTERNATIVE.$_}},${PKG_ALTERNATIVE.$_})))
+$(foreach _,${PKG_ALTERNATIVES},$(eval -PKGTAG.$_=$(addprefix -,${PKGTAG.$_})))
+$(foreach _,${PKG_ALTERNATIVES},$(eval PKGTAG.$_-=$(addsuffix -,${PKGTAG.$_})))
 
-  # refine the required version of the selected package
-  $(foreach _,${_altabi_list},$(eval \
-    _alt_reqd.$_:=$(call preduce,${DEPEND_ABI.$_} ${_alt_abi.$_})))
-
-  $(foreach _,${_altabi_list},$(eval \
-    ALTERNATIVE_ABI.$_=$(subst $_,${ALTERNATIVE.$_},${_alt_reqd.$_})))
-endif # _altabi_list
-
-# check failures, and set a sane fallback for the rest of the processing
-override define _altabi_error
-  ifeq (,$(strip ${ALTERNATIVE_ABI.$1}))
-    PKG_FAIL_REASON+=\
-      "The requirements on $1 alternatives cannot be satisfied:"	\
-      ""								\
-      "	ALTERNATIVE.$1 = ${ALTERNATIVE.$1}"				\
-      "	DEPEND_ABI.$1 = ${DEPEND_ABI.$1}"
-    override ALTERNATIVE_ABI.$1 =${DEPEND_ABI.$1}
-  endif
-endef
-$(foreach _,${DEPEND_ALTERNATIVE},$(eval $(call _altabi_error,$_)))
-
-# enforce computed ABI requirement on the selected packages
-$(foreach _,${DEPEND_ALTERNATIVE},$(eval \
-  override DEPEND_ABI.${ALTERNATIVE.$_} =${ALTERNATIVE_ABI.$_}))
-
-# add depend method, default to full
-$(foreach _,${DEPEND_ALTERNATIVE},$(eval DEPEND_METHOD.$_?=full))
-$(foreach _,${DEPEND_ALTERNATIVE},$(eval \
-  DEPEND_METHOD.${ALTERNATIVE.$_} +=${DEPEND_METHOD.$_}))
-
-# require the mk file corresponding to the selected alternatives, but as
-# an indirect dependency only. Alternative wrappers should have added the
-# proper entry in DEPEND_PKG/DEPEND_USE at the proper dependency level.
+# execute set/unset scripts. Do this in an indirect dependency context
+# only. Alternative wrappers should have added the proper entry in
+# DEPEND_PKG/DEPEND_USE at the proper dependency level.
 DEPEND_DEPTH:=${DEPEND_DEPTH}+
-include $(foreach _,${DEPEND_ALTERNATIVE},${ALTERNATIVE_MK.${ALTERNATIVE.$_}})
+
+$(foreach _,${PKG_ALTERNATIVES},					\
+  $(eval $(value PKG_ALTERNATIVE_SET.${PKG_ALTERNATIVE.$_}))		\
+  $(foreach 1,$(filter-out ${PKG_ALTERNATIVE.$_},${PKG_ALTERNATIVES.$_}),\
+    $(eval $(value PKG_ALTERNATIVE_UNSET.$1))))
+
 DEPEND_DEPTH:=${DEPEND_DEPTH:+=}
 
 
@@ -324,9 +302,9 @@ endif
 .PHONY: resolve-alternatives
 resolve-alternatives:
 	${RUN} >${_ALTERNATIVES_FILE}; exec 3>>${_ALTERNATIVES_FILE};	\
-  $(foreach _,${DEPEND_ALTERNATIVE},					\
+  $(foreach _,${PKG_ALTERNATIVES},					\
 	${STEP_MSG} "Required virtual ${DEPEND_ABI.$_} provided"	\
 	  "by ${ALTERNATIVE_ABI.$_}";					\
-	${ECHO} 1>&3 'ALTERNATIVE.$_=${ALTERNATIVE.$_}';		\
+	${ECHO} 1>&3 'PKG_ALTERNATIVE.$_=${PKG_ALTERNATIVE.$_}';	\
 	${ECHO} 1>&3 'ALTERNATIVE_ABI.$_=${ALTERNATIVE_ABI.$_}';	\
   )

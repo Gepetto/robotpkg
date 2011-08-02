@@ -5,7 +5,7 @@
 VERSION=		2.5
 PKGREVISION=		2
 DISTNAME=		dynamic-graph-python-${VERSION}
-PKGNAME=		${PYPKGPREFIX}-dynamic-graph-${VERSION}
+PKGNAME=		${PKGTAG.python-}dynamic-graph-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-python/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL}dynamic-graph-python
 

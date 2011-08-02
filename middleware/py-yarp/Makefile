@@ -5,7 +5,7 @@
 PKGVERSION=		2.3.1
 PKGREVISION=		2
 DISTNAME=		yarp-${PKGVERSION_NOREV}
-PKGNAME=		${PYPKGPREFIX}-yarp-${PKGVERSION}
+PKGNAME=		${PKGTAG.python-}yarp-${PKGVERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
 CATEGORIES=		middleware
@@ -15,7 +15,7 @@ COMMENT=		Python bindings for YARP
 LICENSE=		gnu-lgpl-v2
 
 CONFLICTS+=		libpyyarp-[0-9]*
-CONFLICTS+=		${PYPKGPREFIX}-libpyyarp-[0-9]*
+CONFLICTS+=		${PKGTAG.python-}libpyyarp-[0-9]*
 
 USE_LANGUAGES+=		c c++
 

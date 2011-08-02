@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	    	dialogs-${PKGVERSION_NOREV}
-PKGTNAME=	    	${PYPKGPREFIX}-dialogs-${PKGVERSION}
+PKGTNAME=	    	${PKGTAG.python-}dialogs-${PKGVERSION}
 PKGVERSION=	    	0.5
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dialogs/}

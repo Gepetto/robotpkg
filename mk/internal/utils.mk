@@ -153,7 +153,7 @@ ${_COOKIE.wrkdir}:
 	${ECHO} "_COOKIE.wrkdir.date:=`${_CDATE_CMD}`";			\
 	${ECHO} "_COOKIE.wrkdir.pkgversion:=$$v";			\
 	${ECHO} "_COOKIE.wrkdir.pkgoptions:=${PKG_OPTIONS}";		\
-	alt='$(foreach _,${DEPEND_ALTERNATIVE},${ALTERNATIVE.$_})';	\
+	alt='$(foreach _,${PKG_ALTERNATIVES},${PKG_ALTERNATIVE.$_})';	\
 	${ECHO} "_COOKIE.wrkdir.alternatives:=$$alt"
 
 ${PKG_DBDIR}:

@@ -145,7 +145,7 @@ ifeq (yes,$(call exists,${_COOKIE.wrkdir}))
     _wrk_stale:=yes
   endif
 
-  _wrk_alt:=$(strip $(foreach _,${DEPEND_ALTERNATIVE},${ALTERNATIVE.$_}))
+  _wrk_alt:=$(strip $(foreach _,${PKG_ALTERNATIVES},${PKG_ALTERNATIVE.$_}))
   ifneq (,$(filter-out ${_wrk_alt},${_COOKIE.wrkdir.alternatives}))
     PKG_FAIL_REASON+= "$${bf}Alternatives for ${PKGNAME} have changed$${rm}"
     ifeq (,${_COOKIE.wrkdir.alternatives})

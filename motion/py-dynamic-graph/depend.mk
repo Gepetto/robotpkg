@@ -14,9 +14,9 @@ ifeq (+,$(PY_DYNAMIC_GRAPH_DEPEND_MK)) # -----------------------------------
 PREFER.py-dynamic-graph?=	robotpkg
 
 DEPEND_USE+=			py-dynamic-graph
-DEPEND_ABI.py-dynamic-graph?=	${PYPKGPREFIX}-dynamic-graph>=2.5
+DEPEND_ABI.py-dynamic-graph?=	${PKGTAG.python-}dynamic-graph>=2.5
 DEPEND_DIR.py-dynamic-graph?=	../../motion/py-dynamic-graph
-DEPEND_VARS.py-dynamic-graph+=	ALTERNATIVE.python
+DEPEND_VARS.py-dynamic-graph+=	PKG_ALTERNATIVE.python
 
 SYSTEM_SEARCH.py-dynamic-graph=\
 	lib/pkgconfig/dynamic-graph-python.pc \
