@@ -203,6 +203,28 @@ ifdef PKG_SUPPORTED_OPTIONS
 PKG_OPTIONS_VAR?=	PKG_OPTIONS.${PKGBASE}
 
 
+# Derive options from a required package name
+#
+ifneq (,$(findstring ~,${PKGREQD}))
+  PKGREQD_OPTIONS:=$(call pgetopts,${PKGREQD},${PKG_SUPPORTED_OPTIONS})
+
+  # Analysize conflicts with user settings
+  _pkgreqd_xopt:=$(filter ${${PKG_OPTIONS_VAR}},\
+    $(patsubst -%,%,$(filter -%,${PKGREQD_OPTIONS})))
+  _pkgreqd_mopt:=$(filter ${${PKG_OPTIONS_VAR}},\
+    $(patsubst %,-%,$(filter-out -%,${PKGREQD_OPTIONS})))
+  ifneq (,${_pkgreqd_xopt}${_pkgreqd_mopt})
+    PKG_FAIL_REASON+=							\
+	"$${bf}Inadequate options settings for ${PKGNAME_NOTAG}$${rm}:"	\
+	"The following build options are conflicting with dependencies"	\
+	"requirements and must be removed:"				\
+	"		${_pkgreqd_xopt} ${_pkgreqd_mopt}"		\
+	"" "Please update ${PKG_OPTIONS_VAR} accordingly in"		\
+	"${MAKECONF}" ""
+  endif
+endif
+
+
 # Filter out unsupported options from PKG_DEFAULT_OPTIONS.
 #
 _OPTIONS_DEFAULT_SUPPORTED:=# empty
@@ -243,7 +265,8 @@ define _pkgopt_process
   endif
 endef
 $(foreach _o_,${PKG_SUGGESTED_OPTIONS} ${_OPTIONS_DEFAULT_SUPPORTED}	\
-	${${PKG_OPTIONS_VAR}}, $(eval $(call _pkgopt_process,${_o_})))
+	 ${PKGREQD_OPTIONS} ${${PKG_OPTIONS_VAR}},			\
+	$(eval $(call _pkgopt_process,${_o_})))
 
 
 # Fail if required groups are not set
@@ -294,12 +317,11 @@ $(foreach _s_,\
 
 # Bail out if there remain some unspported options.
 #
+$(info xx $(_OPTIONS_UNSUPPORTED))
 ifneq (,$(strip $(_OPTIONS_UNSUPPORTED)))
-  ifneq (,$${PKG_FAIL_REASON})
-    PKG_FAIL_REASON+=""
-  endif
-  PKG_FAIL_REASON+=	"The following selected options are not supported:"
-  PKG_FAIL_REASON+=	"	"$(call quote,$(sort ${_OPTIONS_UNSUPPORTED}))
+  PKG_FAIL_REASON+=\
+	"$${bf}The following selected options are not supported:$${rm}"	\
+	"	$(sort ${_OPTIONS_UNSUPPORTED})"
   PKG_OPTIONS_FAILED=	yes
 endif
 
@@ -309,6 +331,7 @@ endif
 ifdef PKG_OPTIONS_FAILED
   PKG_FAIL_REASON+=	""
   PKG_FAIL_REASON+=	"See \`${MAKE} show-options' for details."
+  PKG_FAIL_REASON+=	""
 endif
 
 # Store the result in the +BUILD_INFO file so we can query for the build

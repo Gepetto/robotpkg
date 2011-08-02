@@ -31,6 +31,7 @@ function usage()
     print "Usage:"
     print "	" ARGV[0] " pmatch <patterns> <version> [<patterns> <version>]"
     print "	" ARGV[0] " reduce <patterns> [<patterns> ...]"
+    print "	" ARGV[0] " getopts <patterns> <options> [<option> ...]"
 }
 
 BEGIN {
@@ -59,6 +60,14 @@ BEGIN {
         delete ARGV[0]
         delete ARGV[1]
 	print reduce(ARGV)
+	exit 0
+    }
+    if (ARGV[1] == "getopts") {
+        for(a = 3; a < ARGC; a++)
+            l = l " " ARGV[a]
+        split(l, list)
+
+        print getopts(ARGV[2], list)
 	exit 0
     }
 
@@ -212,6 +221,56 @@ function reduce(targets,	a, i, k, t, p, name, min, minop, max, maxop,
     }
     sub(/^ +/, "", r)
     sub(/ +$/, "", r)
+    return r
+}
+
+
+# --- opts -----------------------------------------------------------------
+#
+# Distill a version requirement list into the list of options that it implies.
+# This is, in general, a NP complete problem (SAT) but we have here a very
+# specific problem that let us do some simplifications.
+#
+function getopts(target, list,	a, i, r, l, o, p, n, opts, nopts)
+{
+    while(target) {
+        target = pextract(pattern, target)
+        if (!mergeoptions(opts, nopts, pattern[4]))
+            return ""
+    }
+
+    # consider non-pattern options first
+    for (i in list) {
+        if (list[i] in opts) {
+            if (list[i] in nopts) return ""
+            p[list[i]]; delete opts[list[i]]; delete list[i]
+        } else if (list[i] in nopts) {
+            n[list[i]]; delete nopts[list[i]]; delete list[i]
+        }
+    }
+
+    # add option matching patterns
+    for(o in nopts) {
+        o = glob2ere(o)
+        for (i in list)
+            if (list[i] ~ o) {
+                n[list[i]]; delete list[i]
+            }
+    }
+    for(o in opts) {
+        o = glob2ere(o)
+        if ("" ~ o) continue
+        for (i in list)
+            if (list[i] ~ o) {
+                p[list[i]]; delete list[i]
+                break
+            }
+    }
+
+    # format output
+    for (i in p) r = r " " i
+    for (i in n) r = r " -" i
+    sub(/^ +/, "", r)
     return r
 }
 

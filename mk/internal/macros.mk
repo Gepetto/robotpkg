@@ -278,6 +278,15 @@ $(shell ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/dewey.awk pmatch '$1' '$2')
 endef
 
 
+# --- pgetopts -------------------------------------------------------------
+
+# Get required/excluded options from a package pattern
+#
+override define pgetopts
+$(shell ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/dewey.awk getopts '$1' '$2')
+endef
+
+
 # --- unexport-empty -------------------------------------------------------
 
 # Unexport a variable if it's empty
