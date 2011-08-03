@@ -96,6 +96,7 @@ show-depends:
 	  ${RECURSIVE_MAKE} print-depends WRKDIR=${WRKDIR}/$$dir || {	\
 	    ${ERROR_MSG} "Could not process $$dir";			\
 	  };								\
+	  ${RM} -rf 2>/dev/null ${WRKDIR}/$$dir ||:;			\
 	done | ${AWK} -F'|' -v bf=$$bf -v rm=$$rm '			\
 	  /^print-depends\|robotpkg/ {					\
 	    if ($$4 == "-") {						\
