@@ -201,10 +201,18 @@ $(foreach _,${DEPEND_USE},$(eval PREFER.$_?=robotpkg))
 # By default, every package receives a full dependency.
 $(foreach _,${DEPEND_USE},$(eval DEPEND_METHOD.$_?=full))
 
-_empty_abi:=$(foreach _,${DEPEND_USE},$(if ${DEPEND_ABI.$_},,$_))
-ifneq (,$(strip ${_empty_abi}))
-  PKG_FAIL_REASON+=$(foreach _,${_empty_abi},"DEPEND_ABI.$_ is undefined")
-endif
+# Reduce DEPEND_ABI.pkg if needed
+override define _dpd_reduceabi # (pkg)
+  ifneq (1,$(words ${DEPEND_ABI.$1}))
+    DEPEND_ABI.$1:=$$(call preduce,${DEPEND_ABI.$1})
+    ifneq (1,$$(words $${DEPEND_ABI.$1}))
+      PKG_FAIL_REASON+=\
+	"$$$${bf}Requirements on $1 cannot be satisfied:$$$${rm}"	\
+	$$(foreach _,${DEPEND_ABI.$1},"	$$_")
+    endif
+  endif
+endef
+$(foreach _,${DEPEND_USE},$(eval $(call _dpd_reduceabi,$_)))
 
 # DEPEND_ABI.pkg cannot be empty
 _empty_abi:=$(foreach _,${DEPEND_USE},$(if ${DEPEND_ABI.$_},,$_))
@@ -222,7 +230,6 @@ endif
 ifneq (,$(strip ${DEPEND_DEPTH}))
   PKG_FAIL_REASON+=	"DEPEND_DEPTH = ${DEPEND_DEPTH} (should be empty)"
 endif
-
 
 # Add the proper dependency on each package pulled in by depend.mk
 # files.  DEPEND_METHOD.<pkg> contains a list of either "full", "build"
