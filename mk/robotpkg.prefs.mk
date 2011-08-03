@@ -175,8 +175,7 @@ else
   endif
 endif
 ifndef ROBOTPKG_BASE
-  export ROBOTPKG_BASE:=$(shell \
-	${_robotpkg_info} -qp pkg_install | ${SED} 's/@cwd //')
+  export ROBOTPKG_BASE:=$(shell ${_robotpkg_info} -Q PREFIX pkg_install)
   ifeq (,${ROBOTPKG_BASE})
     $(info =============================================================)
     $(info The ${_robotpkg_info} tool is not working)
