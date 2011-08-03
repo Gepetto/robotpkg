@@ -255,7 +255,7 @@ for p in `bracesubst $sysprefix`; do
 		version=`eval $icmd 2>&1 </dev/null | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
 	    fi
 	    : ${version:=unknown}
-	    if ${PKG_ADMIN_CMD} pmatch "$abi" "$abipkg-$version"; then
+	    if ${PKG_ADMIN_CMD} pmatch "${abi%~*}" "$abipkg-$version"; then
 		pkgversion=-$version
 		flist="$flist $match"
 		${MSG} "found:	$match, version $version"
@@ -289,6 +289,10 @@ if ${TEST} -n "$prefix"; then
 	if ${TEST} "$abi" != "$abipkg"; then
 	    ${ERROR_MSG} 1>&2 "Cannot check installed version of $pkg"
 	fi
+    fi
+    # warn if specific options are requested
+    if ${TEST} -z "${abi%%*~*}"; then
+        ${ERROR_MSG} 1>&2 "Cannot check required '${abi##*~}' options of $pkg"
     fi
 
     # print result
