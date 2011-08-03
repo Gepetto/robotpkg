@@ -45,7 +45,8 @@ ifdef GENOM_MODULE
 
   define PKG_OPTION_SET.xenomai
     CONFIGURE_ARGS+=	--with-xenomai
-    REQD_BUILD_OPTIONS.genom+= xenomai
+    DEPEND_ABI.genom+=		genom~xenomai
+    DEPEND_ABI.pocolibs+=	pocolibs~xenomai
     include ../../mk/sysdep/xenomai.mk
   endef
 

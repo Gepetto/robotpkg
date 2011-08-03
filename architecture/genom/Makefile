@@ -33,7 +33,7 @@ PKG_OPTION_DESCR.xenomai:=	Enable Xenomai support
 
 define PKG_OPTION_SET.xenomai
   CONFIGURE_ARGS+=	--with-xenomai
-  REQD_BUILD_OPTION.pocolibs+= xenomai
+  DEPEND_ABI.pocolibs+=	pocolibs>~xenomai
   include ../../mk/sysdep/xenomai.mk
 endef
 
