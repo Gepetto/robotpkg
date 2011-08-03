@@ -17,8 +17,9 @@
 #                                             Anthony Mallet on Sun May 31 2009
 #
 
-# Clean unwanted variables inherited from the environment and apply any
-# overrides settings defined by parent Makefiles.
+# Clean unwanted variables inherited from the environment, avoid propagating
+# package-specific command line variables and apply any overrides settings
+# defined by parent Makefiles.
 #
 # Variables cleaned by this file must be further set with an 'ifndef' construct
 # instead of a ?= assignment or, better, by using the 'setdefault'
@@ -30,6 +31,10 @@ _ENV_VARS=\
 	MAKE MAKELEVEL MAKEOVERRIDES MAKEFLAGS MFLAGS MAKE_RESTARTS	\
 	PATH TERM TERMCAP DISPLAY XAUTHORITY SSH_AUTH_SOCK		\
 	http_proxy https_proxy ftp_proxy
+
+_NO_INHERIT=\
+	PKGREQD WRKDIR
+
 
 # Anything in this file must be evaluated (very) early during processing. This
 # file is included at the top of robotpkg.prefs.mk which is in turn included
@@ -82,6 +87,21 @@ endef
 # unsetenv each unwanted var
 $(foreach _v_,$(filter-out ${_ENV_VARS},${.VARIABLES}),$(eval \
 	$(call unsetenv,${_v_})))
+
+
+# --- Avoid propagation of unwanted variables ------------------------------
+#
+# Variable passed on the command line that are package-specific must not be
+# exported to recursive make.
+#
+override define _env_nopropagate # (var)
+  ifeq (command line,$(origin $1))
+    unexport $1
+    $(call _export_override,${CURDIR},$1,${$1})
+    MAKEOVERRIDES:=$$(subst $1=,$1.cmdline=,$${MAKEOVERRIDES})
+  endif
+endef
+$(foreach _,${_NO_INHERIT},$(eval $(call _env_nopropagate,$_)))
 
 
 # --- Force sane settings --------------------------------------------------
