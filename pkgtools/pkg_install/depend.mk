@@ -26,7 +26,7 @@ ifndef NO_PKGTOOLS_REQD_CHECK
   DEPEND_USE+=			pkg_install
 
   DEPEND_METHOD.pkg_install?=	bootstrap
-  DEPEND_ABI.pkg_install?=	pkg_install>=20091115
+  DEPEND_ABI.pkg_install?=	pkg_install>=20110215.1
   DEPEND_DIR.pkg_install?=	../../pkgtools/pkg_install
 
   SYSTEM_SEARCH.pkg_install=\

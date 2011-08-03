@@ -927,7 +927,7 @@ static int
 check_pkgtools_version(struct pkg_task *pkg)
 {
 	const char *val = pkg->buildinfo[BI_PKGTOOLS_VERSION];
-	int version;
+	double version;
 
 	if (val == NULL) {
 		warnx("Warning: package `%s' lacks pkg_install version data",
@@ -935,12 +935,12 @@ check_pkgtools_version(struct pkg_task *pkg)
 		return 0;
 	}
 
-	if (strlen(val) != 8 || strspn(val, "0123456789") != 8) {
+	if (strlen(val) < 8 || strspn(val, "0123456789") != 8) {
 		warnx("Warning: package `%s' contains an invalid pkg_install version",
 		    pkg->pkgname);
 		return Force ? 0 : -1;
 	}
-	version = atoi(val);
+	version = atof(val);
 	if (version > PKGTOOLS_VERSION) {
 		warnx("%s: package `%s' was built with a newer pkg_install version",
 		    Force ? "Warning" : "Error", pkg->pkgname);

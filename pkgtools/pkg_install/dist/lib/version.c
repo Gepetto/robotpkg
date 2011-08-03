@@ -43,7 +43,7 @@ __RCSID("$NetBSD: version.c,v 1.7 2010/02/03 14:20:14 joerg Exp $");
 void
 show_version(void)
 {
-	printf("%d\n", PKGTOOLS_VERSION);
+	printf("%.12g\n", PKGTOOLS_VERSION);
 	exit (0);
 }
 
