@@ -120,8 +120,12 @@ endef
 # Escape shell's meta-charaters in string
 #
 override _quote:='#'
+override define _nl
+
+
+endef
 override define quote
-${_quote}$(subst ${_quote},'\${_quote}',$1)${_quote}
+${_quote}$(subst ${_quote},'\${_quote}',$(subst ${_nl}, ,$1))${_quote}
 endef
 
 
