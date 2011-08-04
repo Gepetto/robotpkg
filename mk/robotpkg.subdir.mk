@@ -48,8 +48,8 @@ $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 #
 ifeq  (,$(filter confirm,${MAKECMDGOALS}))
   MAKECMDGOALS?= ${.DEFAULT_GOAL}
-  all package extract configure build install depend reinstall deinstall update:\
-	toplevel-confirm
+  all package extract configure build install depend:  toplevel-confirm
+  reinstall deinstall update: toplevel-confirm
 
   .PHONY: toplevel-confirm
   toplevel-confirm:
@@ -88,26 +88,32 @@ ${__targets}: %: %-subdir
 
 %-subdir: .FORCE
 	@for entry in "" ${SUBDIR}; do					\
-	  if [ "X$$entry" = "X" ]; then continue; fi; 			\
+	  if [ "X$$entry" = "X" ]; then continue; fi;			\
 	  cd ${CURDIR}/$${entry};					\
 	  ${PHASE_MSG} "${_THISDIR_}$${entry}";				\
-	  ${RECURSIVE_MAKE} "_THISDIR_=${_THISDIR_}$${entry}/" 		\
-	    ${filter ${__targets} confirm,${MAKECMDGOALS}} || ${TRUE}; 	\
+	  ${RECURSIVE_MAKE} "_THISDIR_=${_THISDIR_}$${entry}/"		\
+	    ${filter ${__targets} confirm,${MAKECMDGOALS}} || ${TRUE};	\
 	done
 
 
 ${SUBDIR}::
 	cd ${CURDIR}/$@; ${RECURSIVE_MAKE} all
 
+# Informational show-% targets
+.PHONY:
+show-subdir:
+	@$(foreach _,${SUBDIR},${ECHO} $(call quote,$_);)
+
+.PHONY:
+show-comment:
+	@${ECHO} $(call quote,$(or ${COMMENT},(no description)))
+
+
 # Packages sets
 $(call require, ${ROBOTPKG_DIR}/mk/sets/sets-vars.mk)
 
 # index.html generation code.
 $(call require-for, index index-all, ${ROBOTPKG_DIR}/mk/internal/index.mk)
-
-# informational show-% targets
-$(call require-for, show-%, ${ROBOTPKG_DIR}/mk/internal/show.mk)
-
 
 # Tell 'make' not to try to rebuild any Makefile by specifing a target with no
 # dependencies and no commands.
