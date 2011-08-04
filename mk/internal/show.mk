@@ -37,15 +37,13 @@ $(call require-for, show-var show-vars,				\
 		${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk))
 
 .PHONY: show-var
-show-var: export _value=${${VARNAME}}
 show-var:
-	@${ECHO} "$$_value"
+	@${ECHO} $(call quote,${${VARNAME}})
 
 # enhanced version of target above, to display multiple variables
 .PHONY: show-vars
 show-vars:
-	@:; $(foreach _v_,${VARNAMES},\
-		${RECURSIVE_MAKE} show-var VARNAME=${_v_};)
+	@:; $(foreach _,${VARNAMES},${ECHO} $(call quote,${$_});)
 
 
 # --- show-comment ---------------------------------------------------------
