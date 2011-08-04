@@ -1,4 +1,4 @@
-# Copyright (c) 2008-2009 IS/AIST-ST2I/CNRS
+# Copyright (c) 2008-2009,2011 IS/AIST-ST2I/CNRS
 #      Joint Japanese-French Robotics Laboratory (JRL).
 # All rights reserved.
 #
@@ -67,14 +67,10 @@ _REPLACE_NEWNAME_CMD=	\
 # names are available later.
 .PHONY: replace-names
 replace-names:
-	${RUN} if [ x"${OLDNAME}" = x ]; then				\
-		wildcard=$(call quote,${PKGWILDCARD});			\
-	else								\
-		wildcard="${OLDNAME}-[0-9]*";				\
-	fi;								\
-	${_PKG_BEST_EXISTS} "$${wildcard}" > ${_REPLACE_OLDNAME_FILE}
-	${RUN} ${ECHO} ${PKGNAME} > ${_REPLACE_NEWNAME_FILE}
-	${RUN} ${CP} -f ${_REPLACE_NEWNAME_FILE} ${_COOKIE.replace}
+	${RUN}${_PKG_BEST_EXISTS} "${PKGWILDCARD}"			\
+		>${_REPLACE_OLDNAME_FILE} ||:;				\
+	${ECHO} ${PKGNAME} > ${_REPLACE_NEWNAME_FILE};			\
+	${CP} -f ${_REPLACE_NEWNAME_FILE} ${_COOKIE.replace}
 
 # Saves and removes the +INSTALLED_INFO file from the installed package.
 .PHONY: replace-preserve-installed-info
