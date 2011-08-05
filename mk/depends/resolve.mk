@@ -147,9 +147,11 @@ $(foreach _,${PKG_ALTERNATIVES},$(eval $(call _alt_error,$_)))
 
 # define PGKTAG.,-PKGTAG. and PKGTAG.-
 $(foreach _,${PKG_ALTERNATIVES},$(eval \
-  PKGTAG.$_=$(or ${PKGTAG.${PKG_ALTERNATIVE.$_}},${PKG_ALTERNATIVE.$_})))
-$(foreach _,${PKG_ALTERNATIVES},$(eval -PKGTAG.$_=$(addprefix -,${PKGTAG.$_})))
-$(foreach _,${PKG_ALTERNATIVES},$(eval PKGTAG.$_-=$(addsuffix -,${PKGTAG.$_})))
+  PKGTAG.$_=$$(or $${PKGTAG.$${PKG_ALTERNATIVE.$_}},$${PKG_ALTERNATIVE.$_})))
+$(foreach _,${PKG_ALTERNATIVES},$(eval \
+  -PKGTAG.$_=$$(addprefix -,$${PKGTAG.$_})))
+$(foreach _,${PKG_ALTERNATIVES},$(eval \
+  PKGTAG.$_-=$$(addsuffix -,$${PKGTAG.$_})))
 
 # execute set/unset scripts. Do this in an indirect dependency context
 # only. Alternative wrappers should have added the proper entry in
