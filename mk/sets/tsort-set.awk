@@ -71,7 +71,7 @@ BEGIN {
     }
 
     for(pkg in input) {
-	cmd = TEST " -d " ROBOTPKG_DIR "/" pkg
+	cmd = TEST " -d '" ROBOTPKG_DIR "/" pkg "'"
 	if (system(cmd) == 0) {
 	    stack[++stack[0]] = pkg
 	} else {
