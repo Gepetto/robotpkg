@@ -286,20 +286,4 @@ override define pgetopts
 $(shell ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/dewey.awk getopts '$1' '$2')
 endef
 
-
-# --- unexport-empty -------------------------------------------------------
-
-# Unexport a variable if it's empty
-#
-override define _unexport-empty
-  ifeq (file,$$(origin $1))
-    ifeq (,$$(strip $${$1}))
-      unexport $1
-    endif
-  endif
-endef
-override define unexport-empty
-$(eval $(call _unexport-empty,$1))
-endef
-
 endif # MK_ROBOTPKG_MACROS
