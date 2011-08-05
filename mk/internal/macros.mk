@@ -125,6 +125,15 @@ ${_quote}$(subst ${_quote},'\${_quote}',$1)${_quote}
 endef
 
 
+# --- cdr <list> -----------------------------------------------------------
+#
+# Return all but the first element of <list>
+#
+override define cdr
+$(wordlist 2,$(words $1),$1)
+endef
+
+
 # --- iterate <count> <expr> -----------------------------------------
 #
 # Expand <expr> <count> times.
