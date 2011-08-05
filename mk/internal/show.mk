@@ -128,36 +128,6 @@ show-depends:
 	  }'
 
 
-# --- show-depends-pkgpaths ------------------------------------------------
-#
-# DEPENDS_TYPE is used by the "show-depends-pkgpaths" target and specifies
-# which class of dependencies to output.  The special value "all" means
-# to output every dependency.
-#
-DEPENDS_TYPE?=  all
-_depends_type=
-ifneq (,$(strip $(filter build all,${DEPENDS_TYPE})))
-  _depends_type+=	bootstrap build
-endif
-ifneq (,$(strip $(filter run all,${DEPENDS_TYPE})))
-  _depends_type+=	full
-endif
-
-.PHONY: show-depends-pkgpaths
-show-depends-pkgpaths:
-	${RUN}								\
-  $(foreach _pkg_,${DEPEND_USE},					\
-    $(if $(filter ${_depends_type},${DEPEND_METHOD.${_pkg_}}),		\
-      $(if ${DEPEND_DIR.${_pkg_}},					\
-        $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
-	  ${ECHO} $(subst ${ROBOTPKG_DIR}/,,$(realpath			\
-		${DEPEND_DIR.${_pkg_}}));				\
-        )								\
-      )									\
-    )									\
-  )
-
-
 # --- show-options ---------------------------------------------------------
 #
 # print the list of available options for this package.

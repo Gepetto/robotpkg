@@ -66,6 +66,28 @@ $(addprefix print-depends-,${_chkdep_type}): print-depends-%: .FORCE
   )))
 
 
+# --- print-depends-pkgpaths (PRIVATE) -------------------------------------
+#
+# List the PKGPATH for direct dependencies.
+#
+.PHONY: print-depends-pkgpaths
+print-depends-pkgpaths: print-depends-pkgpaths-full
+
+$(addprefix print-depends-pkgpaths-,${_chkdep_type}):\
+  print-depends-pkgpaths-%: .FORCE
+	${RUN}								\
+  $(foreach _,${DEPEND_USE},						\
+    $(if $(filter ${_chkdep_filter.$*},${DEPEND_METHOD.$_}),		\
+      $(if ${DEPEND_DIR.$_},						\
+        $(if $(filter robotpkg,${PREFER.$_}),				\
+	  ${ECHO} 'print-depends-pkgpaths|$(call			\
+		pkgpath,${DEPEND_DIR.$_}):${DEPEND_ABI.$_}';		\
+        )								\
+      )									\
+    )									\
+  )
+
+
 # --- print-pkgnames -------------------------------------------------------
 #
 # print value of all possible PKGNAME (taking into account current
