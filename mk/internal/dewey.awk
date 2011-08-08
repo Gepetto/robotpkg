@@ -304,7 +304,7 @@ function vextract(pattern, str)
 	str = substr(str, RLENGTH+1)
 
     pattern[2] = "=="
-    if (match(str, /-[^-]$/)) {
+    if (match(str, /-[^-]+$/)) {
 	pattern[1] = substr(str, 1, RSTART-1)
 	pattern[3] = substr(str, RSTART+1)
     } else {
