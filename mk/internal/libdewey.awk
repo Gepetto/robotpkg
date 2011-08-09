@@ -178,8 +178,12 @@ function reduce(targets,	a, i, k, t, p, name, min, minop, max, maxop,
 
 	if (r) r = r " "
 	if (a) r = r a
-	if (minop) r = r strop(minop) min[-2]
-	if (maxop && maxop != minop) r = r strop(maxop) max[-2]
+        if (min[-2] == max[-2] && minop && maxop) {
+            r = r "-" min[-2]
+        } else {
+            if (minop) r = r strop(minop) min[-2]
+            if (maxop && maxop != minop) r = r strop(maxop) max[-2]
+        }
         if (sopts) r = r "~" sopts
 	if (r && ne) r = r " "
 	if (ne) r = r a "!=" ne
@@ -476,6 +480,12 @@ function pextract(pattern, str)
 
     if (match(pattern[1], /~[^~]*$/)) {
         pattern[4] = substr(pattern[1], RSTART+1)
+        pattern[1] = substr(pattern[1], 1, RSTART-1)
+    }
+
+    if (!(2 in pattern) && match(pattern[1], /-[0-9][^-]*$/)) {
+	pattern[2] = "=="
+        pattern[3] = substr(pattern[1], RSTART+1)
         pattern[1] = substr(pattern[1], 1, RSTART-1)
     }
 
