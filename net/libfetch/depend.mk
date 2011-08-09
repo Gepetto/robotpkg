@@ -32,6 +32,12 @@ CPPFLAGS+=	-I${LIBFETCH_SRCDIR}
 LDFLAGS+=	-L${LIBFETCH_SRCDIR}
 LIBS+=		-lfetch
 
+ifeq (Darwin,${OPSYS})
+  # Make sure that the linker uses our static library instead of the
+  # (outdated) dynamic library "/usr/lib/libfetch.dylib".
+  LDFLAGS+=	-Wl,-search_paths_first
+endif
+
 post-extract: libfetch-extract
 libfetch-extract:
 	@${STEP_MSG} "Extracting libfetch in place"
