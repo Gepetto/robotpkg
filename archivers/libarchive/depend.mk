@@ -38,6 +38,12 @@ CPPFLAGS+=	-I${LIBARCHIVE_SRCDIR}/libarchive
 LDFLAGS+=	-L${LIBARCHIVE_SRCDIR}/.libs
 LIBS+=		-larchive -lbz2 -lz
 
+ifeq (Darwin,${OPSYS})
+  # Make sure that the linker uses our static library instead of the
+  # (outdated) dynamic library "/usr/lib/libarchive.dylib".
+  LDFLAGS+=	-Wl,-search_paths_first
+endif
+
 post-extract: libarchive-extract
 libarchive-extract:
 	@${STEP_MSG} "Extracting libarchive in place"
