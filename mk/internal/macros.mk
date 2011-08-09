@@ -265,7 +265,9 @@ endef
 # == and <= constraints. (!= is recognized, but kinda weird :)
 #
 override define preduce
-$(shell ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/dewey.awk reduce '$1')
+$(shell ${AWK}								\
+  $(addprefix -f ${ROBOTPKG_DIR}/mk/internal/,libdewey.awk dewey.awk)	\
+  reduce '$1')
 endef
 
 
@@ -274,7 +276,9 @@ endef
 # Match a package pattern against a specific version
 #
 override define pmatch
-$(shell ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/dewey.awk pmatch '$1' '$2')
+$(shell ${AWK}								\
+  $(addprefix -f ${ROBOTPKG_DIR}/mk/internal/,libdewey.awk dewey.awk)	\
+  pmatch '$1' '$2')
 endef
 
 
@@ -283,7 +287,9 @@ endef
 # Get required/excluded options from a package pattern
 #
 override define pgetopts
-$(shell ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/dewey.awk getopts '$1' '$2')
+$(shell ${AWK}								\
+  $(addprefix -f ${ROBOTPKG_DIR}/mk/internal/,libdewey.awk dewey.awk)	\
+  getopts '$1' '$2')
 endef
 
 endif # MK_ROBOTPKG_MACROS
