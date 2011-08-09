@@ -64,3 +64,89 @@ $(addprefix print-depends-,${_chkdep_type}): print-depends-%: .FORCE
 		 "${DEPEND_ABI.${_pkg_}}", pkg,	prefix)			\
 	     }';							\
   )))
+
+
+# --- print-pkgnames -------------------------------------------------------
+#
+# print value of all possible PKGNAME (taking into account current
+# PKG_DEFAULT_OPTIONS + PKG_OPTIONS_VAR and PREFER_ALTERNATIVE settings)
+#
+# This is done via recursive macros that output the leaves of the tree of all
+# names via $(info) to avoid overflooding memory/shell environment etc.)
+#
+
+# helper macro filtering options set or not set by user
+override define combiset+opts
+$(filter-out -%,$(filter ${PKG_SUPPORTED_OPTIONS},
+  ${PKG_DEFAULT_OPTIONS} ${${PKG_OPTIONS_VAR}}))
+endef
+override define combiset-opts
+$(patsubst -%,%,$(filter -%,${PKG_DEFAULT_OPTIONS} ${${PKG_OPTIONS_VAR}}))
+endef
+
+# generate all alternatives and return the complete list, so that it can be
+# sorted for unicity afterwards. This relies on PKGNAME_NOTAG being correctly
+# recursively defined so that merely setting PKG_ALTERNATIVE will produce the
+# right PKGNAME value.
+override define combiname-alt # (list, name)
+$(strip $(if $1,
+    $(foreach _,${PREFER_ALTERNATIVE.$(word 1,$1)},
+      $(call combiname-alt,$(call cdr,$1),$2 $(word 1,$1):=$_)),
+  $(foreach _,$2,$(eval PKG_ALTERNATIVE.$_))${PKGNAME_NOTAG}))
+endef
+
+# generate general options combinations, suffix with alternatives above and
+# output via $(info) if non in conflict with user options
+override define combiname-genopt # (list, name)
+$(strip $(if $1,
+    $(call combiname-genopt,$(call cdr,$1),$2)
+    $(call combiname-genopt,$(call cdr,$1),$2+$(word 1,$1)),
+  $(if $(strip $(foreach _,$(call combiset-opts),
+                 $(findstring +$_+,$2+))),,
+    $(if $(strip $(foreach _,$(call combiset+opts),
+                   $(if $(findstring +$_+,$2+),,$_))),,
+      $(foreach _,$(sort $(call combiname-alt,${PKG_ALTERNATIVES})),
+        $(info print-pkgnames|$_~$(patsubst +%,%,$2)))))))
+endef
+
+# generate non-emtpy set combinations for one set
+override define combiname-nonemptyopt # (list, name)
+$(strip $(if $1,
+    $(call combiname-nonemptyopt,$(call cdr,$1),$2)
+    $(call combiname-nonemptyopt,$(call cdr,$1),$2+$(word 1,$1)),
+  $(patsubst +%,%,$2)))
+endef
+
+# generate all non-emtpy set combinations
+override define combiname-nonemptyset # (list, name)
+$(strip $(if $1,
+    $(foreach _,$(call combiname-nonemptyopt,${PKG_OPTIONS_SET.$1}),
+      $(call combiname-nonemptyset,$(call cdr,$1),$2+$_)),
+  $(call combiname-genopt,${PKG_GENERAL_OPTIONS},$2)))
+endef
+
+# generate all optional groups options
+override define combiname-optopt # (list, name)
+$(strip $(if $1,
+  $(foreach _,${PKG_OPTIONS_GROUP.$(word 1,$1)},
+    $(call combiname-optopt,$(call cdr,$1),$2)
+    $(call combiname-optopt,$(call cdr,$1),$2+$_)),
+   $(call combiname-nonemptyset,${PKG_OPTIONS_NONEMPTY_SETS},$2)))
+endef
+
+# generate all required groups options
+override define combiname-reqopt # (list, name)
+$(strip $(if $1,
+    $(foreach _,${PKG_OPTIONS_GROUP.$(word 1,$1)},
+      $(call combiname-reqopt,$(call cdr,$1),$2+$_)),
+  $(call combiname-optopt,${PKG_OPTIONS_OPTIONAL_GROUPS},$2)))
+endef
+
+# general all names
+define combiname
+$(call combiname-reqopt,${PKG_OPTIONS_REQUIRED_GROUPS})
+endef
+
+.PHONY: print-pkgnames
+print-pkgnames:
+	@: $(call combiname,${PKG_ALTERNATIVES})
