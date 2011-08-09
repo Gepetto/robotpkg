@@ -42,14 +42,14 @@ _pkgset_names= $(sort installed depends \
 # targets that are 'set'-aware
 _pkgset_targets=\
 	clean fetch extract install replace update deinstall		\
-	show-var
+	show-var print-var
 
 # list of available sets targets (_pkgset_targets x _pkgset_names).
 _pkgset_avail=\
   $(sort $(foreach _t,${_pkgset_targets},$(addprefix ${_t}-,${_pkgset_names})))
 
 # list of targets actually required
-_pkgset_goals= $(filter ${MAKECMDGOALS},${_pkgset_avail})
+_pkgset_goals= $(filter ${_pkgset_avail},${MAKECMDGOALS})
 
 # set default flags
 $(foreach _set_,${_pkgset_names},					\
@@ -119,7 +119,8 @@ endif # _pkgset_goals
 # graph for a package.
 #
 override define _pkgset_tsort_deps
-  ${SETENV} SETENV=${SETENV} MAKE=${MAKE} TEST=${TEST} TSORT=${TSORT}	\
-	ROBOTPKG_DIR=${ROBOTPKG_DIR}					\
-  ${AWK} -f ${ROBOTPKG_DIR}/mk/sets/tsort-set.awk --
+  ${SETENV} $(call quote,MAKE=${MAKE}) TPUT=${TPUT}			\
+  ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/libdewey.awk			\
+	-f ${ROBOTPKG_DIR}/mk/sets/tsort-set.awk			\
+	--
 endef

@@ -85,9 +85,12 @@ show-license:
 .PHONY: show-depends
 show-depends:
 	${RUN}${PHASE_MSG} "Scanning packages for ${PKGNAME}";		\
-	${_pkgset_tsort_deps} -n ${PKGPATH} | while read dir; do	\
+	${_pkgset_tsort_deps} -n ${PKGPATH} |				\
+	while IFS=: read dir pkg; do					\
+	  if ${TEST} -z "$$dir"; then continue; fi;			\
 	  cd ${ROBOTPKG_DIR}/$$dir &&					\
-	  ${RECURSIVE_MAKE} print-depends WRKDIR=${WRKDIR}/$$dir || {	\
+	  ${RECURSIVE_MAKE} print-depends				\
+		PKGREQD="$$pkg" WRKDIR=${WRKDIR}/$$dir || {		\
 	    ${ERROR_MSG} "Could not process $$dir";			\
 	  };								\
 	  ${RM} -rf 2>/dev/null ${WRKDIR}/$$dir ||:;			\

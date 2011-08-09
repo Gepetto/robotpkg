@@ -20,6 +20,16 @@
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 
+# --- print-var ------------------------------------------------------------
+#
+# convenience target, to display make variables from command line
+# i.e. "make print-var VARNAME=var", will print var's value
+#
+.PHONY: print-var
+print-var:
+	@${ECHO} $(call quote,${VARNAME}|${${VARNAME}})
+
+
 # --- print-depends (PRIVATE) ----------------------------------------------
 
 # List the direct dependencies and check if they are installed

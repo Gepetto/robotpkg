@@ -27,7 +27,7 @@
 # Recursive targets for a set.
 #
 set-clean-%: .FORCE
-	${RUN}$(call _pkgset_recursive,clean,-n)
+	${RUN}$(call _pkgset_recursive,clean,-n -p)
 
 set-fetch-%: .FORCE
 	${RUN}$(call _pkgset_recursive,fetch cleaner,-n)
@@ -48,7 +48,10 @@ set-deinstall-%: .FORCE
 	${RUN}$(call _pkgset_recursive,deinstall,-r)
 
 set-show-var-%: .FORCE
-	${RUN}$(call _pkgset_recursive,show-var,-n)
+	${RUN}$(call _pkgset_recursive,show-var)
+
+set-print-var-%: .FORCE
+	${RUN}$(call _pkgset_recursive,print-var,-n)
 
 
 # --- recursion ------------------------------------------------------------
@@ -56,18 +59,20 @@ set-show-var-%: .FORCE
 override define _pkgset_recursive
 	${PHASE_MSG} $(if $(filter -n,$2),'Scanning','Sorting')		\
 	  'packages for ${PKGSET_DESCR.$*}';				\
-	${_pkgset_tsort_deps} $2					\
-	  $(if $(call isyes,${PKGSET_STRICT.$*}),-s) ${PKGSET.$*} |	\
-	while read pkg; do						\
-	  case "$$pkg" in -*) continue;; ?*)				\
-	    if cd ${ROBOTPKG_DIR}/$$pkg 2>/dev/null; then		\
-	      ${RECURSIVE_MAKE} $1 $(filter confirm,${MAKECMDGOALS}) ||{\
-	          $(call PKGSET_RECURSIVE_ERR,$$pkg)			\
+	${TEST} -t 1 && i="-i";						\
+	${_pkgset_tsort_deps}						\
+		$(if $(call isyes,${PKGSET_STRICT.$*}),-s) $2 $$i	\
+		$(call quote,${PKGSET.$*})				\
+	| while IFS=: read dir pkg; do					\
+	  if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;	\
+	  if cd ${ROBOTPKG_DIR}/$$dir 2>/dev/null; then			\
+	    ${RECURSIVE_MAKE} $1 $(filter confirm,${MAKECMDGOALS})	\
+		  PKGREQD="$$pkg" || {					\
+	          $(call PKGSET_RECURSIVE_ERR,$$dir)			\
 	      };							\
-	    else							\
-	      $(call PKGSET_NONEXISTENTPKG_ERR,$$pkg,$*)		\
-	    fi;;							\
-	  esac;								\
+	  else								\
+	    $(call PKGSET_NONEXISTENTPKG_ERR,$$dir,$*)			\
+	  fi;								\
 	done;								\
 	${PHASE_MSG} 'Done $(patsubst set-%-$*,%,$@) for'		\
 	  '${PKGSET_DESCR.$*}'
