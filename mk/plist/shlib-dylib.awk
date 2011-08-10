@@ -118,7 +118,7 @@ function add_dylib(lib) {
 ### module, so the entry should stay.  Convert it into a dylib name as
 ### well and record it as a dylib.
 ###
-/.*\/lib[^\/]+\.so$/ {
+/.*\/[^\/]+\.so$/ {
 	cmd = TEST " -f " PREFIX "/" $0
 	if (system(cmd) == 0) {
 		entries[++nentries] = $0
