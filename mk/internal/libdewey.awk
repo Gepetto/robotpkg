@@ -45,8 +45,8 @@ BEGIN {
 #
 # Match a pattern against a package version
 #
-function pmatch(target, pkg,	a, t, r, version, pattern, cur, ver, m, malt,
-				opts, reqd, strict)
+function pmatch(target, pkg, strict,	a, t, r, version, pattern, cur, ver, m,
+					malt, opts, reqd)
 {
     if (match(target, /{/)) {
         wonderbrace(pattern, target)
@@ -63,13 +63,13 @@ function pmatch(target, pkg,	a, t, r, version, pattern, cur, ver, m, malt,
 
     while(target) {
         target = pextract(pattern, target)
-        m = glob2ere(pattern[1])
-        malt = glob2ere(pattern[1] "-[0-9]*")
+        m = pattern[1] ? glob2ere(pattern[1]) : ""
+        malt = pattern[1] ? glob2ere(pattern[1] "-[0-9]*") : ""
         t = tests[pattern[2]]
 
         if (4 in pattern) {
             split(pattern[4], reqd, /[,+]+/)
-            if (!matchoptions(reqd, opts, 0))
+            if (!matchoptions(reqd, opts, strict))
                 return 0
         }
 
@@ -83,7 +83,7 @@ function pmatch(target, pkg,	a, t, r, version, pattern, cur, ver, m, malt,
                 !match(version[1] "-" version[3], malt))
                 return 0
         } else {
-            if (!match(version[1], m) && !match(version[1], malt))
+            if (version[1] && !match(version[1], m) && !match(version[1], malt))
                 return 0
 	}
     }
@@ -115,7 +115,7 @@ function reduce(targets,	a, i, k, t, p, name, min, minop, max, maxop,
     for(a in name) {
         for(r in name) {
             if (r == a) continue
-            t = glob2ere(r)
+            t = r ? glob2ere(r) : ""
             if (a ~ t) {
                 for(k=0; k<name[r]; k++) {
                     p[a,"t",k+name[a]] = p[r,"t",k]
