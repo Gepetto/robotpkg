@@ -317,7 +317,6 @@ $(foreach _s_,\
 
 # Bail out if there remain some unspported options.
 #
-$(info xx $(_OPTIONS_UNSUPPORTED))
 ifneq (,$(strip $(_OPTIONS_UNSUPPORTED)))
   PKG_FAIL_REASON+=\
 	"$${bf}The following selected options are not supported:$${rm}"	\
