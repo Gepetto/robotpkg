@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=		1.4
-DISTNAME=		coldman-libs-${PKGVERSION}
+DISTNAME=		coldman-libs-${PKGVERSION_NOREV}
 CATEGORIES=		manipulation
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=coldman-libs/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/coldman-libs
