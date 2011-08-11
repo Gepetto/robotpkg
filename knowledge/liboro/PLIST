@@ -1,8 +1,4 @@
-@comment Mon Jun 28 19:48:13 CEST 2010
-bin/oro-benchmark
-bin/oro-export
-bin/oro-query
-bin/oro-stats
+@comment Thu Aug 11 11:44:44 CEST 2011
 include/liboro/dummy_connector.h
 include/liboro/oro_connector.h
 include/liboro/oro_event.h
@@ -13,3 +9,30 @@ include/liboro/socket_connector.h
 lib/liboro.so
 lib/pkgconfig/liboro.pc
 @dirrm include/liboro
+${PLIST.doc}share/doc/liboro/doxygen.css
+${PLIST.doc}share/doc/liboro/doxygen.png
+${PLIST.doc}share/doc/liboro/ftv2blank.png
+${PLIST.doc}share/doc/liboro/ftv2doc.png
+${PLIST.doc}share/doc/liboro/ftv2folderclosed.png
+${PLIST.doc}share/doc/liboro/ftv2folderopen.png
+${PLIST.doc}share/doc/liboro/ftv2lastnode.png
+${PLIST.doc}share/doc/liboro/ftv2link.png
+${PLIST.doc}share/doc/liboro/ftv2mlastnode.png
+${PLIST.doc}share/doc/liboro/ftv2mnode.png
+${PLIST.doc}share/doc/liboro/ftv2node.png
+${PLIST.doc}share/doc/liboro/ftv2plastnode.png
+${PLIST.doc}share/doc/liboro/ftv2pnode.png
+${PLIST.doc}share/doc/liboro/ftv2vertline.png
+${PLIST.doc}share/doc/liboro/index.html
+${PLIST.doc}share/doc/liboro/installdox
+${PLIST.doc}share/doc/liboro/main.html
+${PLIST.doc}share/doc/liboro/search/close.png
+${PLIST.doc}share/doc/liboro/search/nomatches.html
+${PLIST.doc}share/doc/liboro/search/search.css
+${PLIST.doc}share/doc/liboro/search/search.js
+${PLIST.doc}share/doc/liboro/search/search.png
+${PLIST.doc}share/doc/liboro/tab_b.gif
+${PLIST.doc}share/doc/liboro/tab_l.gif
+${PLIST.doc}share/doc/liboro/tab_r.gif
+${PLIST.doc}share/doc/liboro/tabs.css
+${PLIST.doc}share/doc/liboro/tree.html
