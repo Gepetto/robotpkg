@@ -254,6 +254,12 @@ function mergeoptions(opts, nopts, str,	i, j, n, s, neg, o, p, m) {
     n = split(str, o, /[,+]+/)
     for(p in opts) {
         if (p ~ /[[?*]/) continue
+        m = 0;
+        for(i=1; i<=n; i++) {
+            if (o[i] ~ /^!/) continue
+            if (p == o[i]) { m = 1; break }
+        }
+        if (m) continue
         for(i=1; i<=n; i++) {
             if (o[i] !~ /^!/) continue
             if (p ~ glob2ere(substr(o[i],2))) return 0
@@ -343,7 +349,7 @@ function matchoptions(reqd, pkg, strict,	r, p, m, neg, o, t) {
 # 'rc' encodes as 'release candidate', or RC, which is -1.
 # 'nb' encodes as 'netbsd version', which is used after all other tests
 #
-function mkcomponent(ap, str) {
+function mkcomponent(ap, str,	m) {
     # digits
     if (match(str, /^[0-9]+/)) {
 	ap[0]++
@@ -524,7 +530,7 @@ function vextract(pattern, str)
 #
 function wonderbrace(alts, str,
                      start, end, paren, alt, nalt, prefix, suffix,
-                     i, c, r, l) {
+                     i, c, l) {
     if (!match(str, /{/)) { alts[++alts[0]] = str; return }
 
     start = end = RSTART
