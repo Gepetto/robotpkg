@@ -64,8 +64,8 @@ PKG_INFO_CMD?=		${PREFIX.pkg_install}/sbin/robotpkg_info
 # better avoid this.
 #
 ifndef PKGTOOLS_VERSION
-  PKGTOOLS_VERSION:=	$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo -1)
-  MAKEOVERRIDES+=	PKGTOOLS_VERSION=${PKGTOOLS_VERSION}
+  export PKGTOOLS_VERSION:=$(shell ${PKG_INFO_CMD} -V 2>/dev/null || echo -1)
+  _ENV_VARS+=PKGTOOLS_VERSION
 endif
 ifeq (-1,${PKGTOOLS_VERSION})
   $(shell ${ERROR_MSG} ${hline})

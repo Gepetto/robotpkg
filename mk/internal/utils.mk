@@ -116,20 +116,21 @@ _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 #
 RUN=			${_PKG_SILENT}${_PKG_DEBUG} set -e;
 
-# Run ${MAKE} recursively. Need to pass MAKEOVERRIDES explicitely, otherwise
+# Run ${MAKE} recursively. Need to pass MAKEFLAGS explicitely, otherwise
 # its value is sometimes lost (gmake-3.82, see robotpkg commit 128793abe).
-RECURSIVE_MAKE=\
-  ${SETENV} MAKEOVERRIDES=$(call quote,${MAKEOVERRIDES}) ${MAKE}
-MAKEFLAGS+=		--no-print-directory
+RECURSIVE_MAKE=${MAKE} $(call quote,MAKEFLAGS=${MAKEFLAGS})
+MAKEFLAGS+=--no-print-directory
 
 
 # --- fancy decorations ----------------------------------------------------
 #
-ifndef bf
+ifeq (undefined,$(origin bf))
   export bf:=$(shell ${TPUT} ${TPUT_BOLD} 2>/dev/null)
+  _ENV_VARS+=bf
 endif
-ifndef rm
+ifeq (undefined,$(origin rm))
   export rm:=$(shell ${TPUT} ${TPUT_RMBOLD} 2>/dev/null)
+  _ENV_VARS+=rm
 endif
 export hline:="$$bf$(subst =,=======,==========)$$rm"
 

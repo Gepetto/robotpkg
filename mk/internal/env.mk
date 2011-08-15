@@ -26,8 +26,8 @@
 # macro. gmake-3.82 has an interesting 'undefine' command, but many systems
 # still have 3.81, so ...
 #
-_ENV_VARS=\
-	ROBOTPKG_BASE ROBOTPKG_DIR					\
+export _ENV_VARS?=\
+	_ENV_VARS ROBOTPKG_BASE ROBOTPKG_DIR				\
 	MAKE MAKELEVEL MAKEOVERRIDES MAKEFLAGS MFLAGS MAKE_RESTARTS	\
 	PATH TERM TERMCAP DISPLAY XAUTHORITY SSH_AUTH_SOCK		\
 	http_proxy https_proxy ftp_proxy
@@ -66,7 +66,7 @@ endif
 # Helper macro exporting variables
 override define _export_override # (path, var, value)
   export _override_vars.$(call pkgpath,$1) +=$2
-  export _overrides.$(call pkgpath,$1).$2 :=$3
+  export _overrides.$(call pkgpath,$1).$(strip $2) :=$3
 endef
 
 

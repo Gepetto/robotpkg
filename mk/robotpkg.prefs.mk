@@ -46,9 +46,8 @@ MK_ROBOTPKG_PREFS:=	defined
 
 # compute ROBOTPKG_DIR
 ifndef ROBOTPKG_DIR
-  ROBOTPKG_DIR:=$(firstword $(realpath \
+  export ROBOTPKG_DIR:=$(firstword $(realpath \
 	$(dir $(realpath $(addsuffix /mk/robotpkg.mk,. .. ../..)))/..))
-  MAKEOVERRIDES+=	ROBOTPKG_DIR=${ROBOTPKG_DIR}
 endif
 
 # calculate depth
@@ -76,18 +75,18 @@ endif
 
 
 # Compute platform variables. Later, recursed make invocations will skip these
-# blocks entirely thanks to MAKEOVERRIDES.
+# blocks entirely
 #
 ifndef OPSYS
-  OPSYS:=		$(subst /,,$(shell ${UNAME} -s))
-  LOWER_OPSYS:=		$(call tolower,${OPSYS})
-  MAKEOVERRIDES+=	OPSYS=${OPSYS} LOWER_OPSYS=${LOWER_OPSYS}
+  export OPSYS:=	$(subst /,,$(shell ${UNAME} -s))
+  export LOWER_OPSYS:=	$(call tolower,${OPSYS})
+  _ENV_VARS+=		OPSYS LOWER_OPSYS
 
   ifeq (linux,${LOWER_OPSYS})
     _rfile:=$(firstword $(wildcard /etc/*release /etc/*version))
     ifneq (,${_rfile})
       OPSUBSYS:=$(call tolower,${_rfile} $(shell cat <${_rfile}))
-      OPSUBSYS:=$(or 					\
+      OPSUBSYS:=$(or					\
 	$(findstring fedora,${OPSUBSYS}),		\
 	$(findstring ubuntu,${OPSUBSYS}),		\
 	$(findstring debian,${OPSUBSYS}),		\
@@ -98,29 +97,28 @@ ifndef OPSYS
   else
       OPSUBSYS:=${LOWER_OPSYS}
   endif
-  MAKEOVERRIDES+=	OPSUBSYS=${OPSUBSYS}
+  export OPSUBSYS
+  _ENV_VARS+=	OPSUBSYS
 endif
 
 ifndef OS_VERSION
-  OS_VERSION:=		$(shell ${UNAME} -r)
-  LOWER_OS_VERSION:=	$(call tolower,${OS_VERSION})
-  MAKEOVERRIDES+=	LOWER_OS_VERSION=${LOWER_OS_VERSION}
-  MAKEOVERRIDES+=	OS_VERSION=${OS_VERSION}
+  export OS_VERSION:=		$(shell ${UNAME} -r)
+  export LOWER_OS_VERSION:=	$(call tolower,${OS_VERSION})
+  _ENV_VARS+=			LOWER_OS_VERSION OS_VERSION
 endif
 
 ifndef MACHINE_ARCH
-  LOWER_ARCH:=		$(strip $(call substs,		\
+  export LOWER_ARCH:=		$(strip $(call substs,	\
 				i486 i586 i686 ppc,	\
 				i386 i386 i386 powerpc,	\
 				$(shell ${UNAME} -m)))
-  MACHINE_ARCH:=	${LOWER_ARCH}
-  MAKEOVERRIDES+=	LOWER_ARCH=${LOWER_ARCH}
-  MAKEOVERRIDES+=	MACHINE_ARCH=${MACHINE_ARCH}
+  export MACHINE_ARCH:=		${LOWER_ARCH}
+  _ENV_VARS+=			LOWER_ARCH MACHINE_ARCH
 endif
 
 ifndef NODENAME
-  NODENAME:=		$(shell ${UNAME} -n)
-  MAKEOVERRIDES+=	NODENAME=${NODENAME}
+  export NODENAME:=		$(shell ${UNAME} -n)
+  _ENV_VARS+=			NODENAME
 endif
 
 MACHINE_PLATFORM?=	${OPSYS}-${OS_VERSION}-${MACHINE_ARCH}

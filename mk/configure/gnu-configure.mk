@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2010 LAAS/CNRS
+# Copyright (c) 2006,2008-2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -38,7 +38,8 @@ USE_GNU_CONFIGURE_HOST?=	no
 ifneq (,$(call isyes,${USE_GNU_CONFIGURE_HOST}))
   ifndef GNU_CONFIGURE_HOST
     GNU_CONFIGURE_HOST=	$(shell ${ROBOTPKG_DIR}/mk/configure/config.guess)
-    MAKEOVERRIDES+=	GNU_CONFIGURE_HOST=${GNU_CONFIGURE_HOST}
+    export GNU_CONFIGURE_HOST
+    _ENV_VARS+=GNU_CONFIGURE_HOST
   endif
   ifdef GNU_CONFIGURE_HOST
 CONFIGURE_ARGS+=	--host=${GNU_CONFIGURE_HOST}

@@ -83,7 +83,6 @@ ifdef _EXTRACT_IS_CHECKOUT
   ifndef _CHECKOUT_PKGVERSION
     $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
     _CHECKOUT_PKGVERSION:=.checkout.$(shell ${_CDATE_CMD} "+%Y%m%d.%H%M%S")
-    MAKEOVERRIDES+=_CHECKOUT_PKGVERSION=${_CHECKOUT_PKGVERSION}
   endif
   $(eval PKGNAME_NOREV=$(value PKGNAME_NOREV)$(value _CHECKOUT_PKGVERSION))
 endif
