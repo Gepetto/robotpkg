@@ -182,7 +182,7 @@ ${MSG} $el$cnorm
 
 # Log last lines in case of error
 #
-${TEST} -n $logfile && ${TEST} $status -ne 0 && {
+${TEST} -n "$logfile" && ${TEST} $status -ne 0 && {
     ${ECHO} "An unexpected error occured. The last 10 lines are shown below." >&2
     ${ECHO} "For a complete log file, see:" >&2
     ${ECHO} "$logfile" >&2
