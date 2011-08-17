@@ -98,9 +98,49 @@ function pmatch(target, pkg, strict,	a, t, r, version, pattern, cur, ver, m,
 # the versions requirements. '!=' tests are put apart (they do not make an
 # interval).
 #
-function reduce(targets,	a, i, k, t, p, name, min, minop, max, maxop,
-				ne, cur, r, s, opts, nopts, sopts)
+function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
+				maxop, ne, cur, r, s, opts, nopts, sopts,
+				pattern, alt)
 {
+    # alternatives first
+    for(a in targets) {
+        if (match(targets[a], /{/)) {
+            # expand first alternative recursively
+            wonderbrace(pattern, targets[a])
+            r = ""
+            for (k = 1; k <= pattern[0]; k++) {
+                split("", alt); for(i in targets) alt[i] = targets[i]
+                alt[a] = pattern[k]
+                s = reduce(alt, 1)
+                if (!s) continue
+                if (index(SUBSEP r SUBSEP, SUBSEP s SUBSEP)) continue
+                if (r) r = r SUBSEP
+                r = r s
+            }
+            if (recursion) return r
+            # find the longest prefix/suffix and reassemble
+            if (r !~ SUBSEP) return r
+            k = split(r, alt, SUBSEP)
+            for(s = p = alt[k]; k>0; k--) {
+                s = substr(s, length(s) - length(alt[k]) + 1)
+                while(substr(alt[k], 1, length(alt[k])-length(s)) s != alt[k])
+                    s = substr(s, 2)
+                p = substr(p, 1, length(alt[k]))
+                while(p substr(alt[k], length(p)+1) != alt[k])
+                    p = substr(p, 1, length(p)-1)
+            }
+            if (p == s) return p
+            r = ""
+            for(k in alt) {
+                i = substr(alt[k], length(p)+1,
+                           length(alt[k])-length(s)-length(p))
+                if (r) r = r SUBSEP
+                r = r i
+            }
+            if (gsub(SUBSEP, ",", r)) return p "{" r "}" s; else return p r s
+        }
+    }
+
     for(a in targets) {
 	while(targets[a]) {
 	    targets[a] = pextract(pattern, targets[a])
@@ -200,8 +240,20 @@ function reduce(targets,	a, i, k, t, p, name, min, minop, max, maxop,
 # This is, in general, a NP complete problem (SAT) but we have here a very
 # specific problem that let us do some simplifications.
 #
-function getopts(target, list,	a, i, r, l, o, p, n, opts, nopts)
+function getopts(target, list,		a, i, r, o, p, n, opts, nopts, pattern)
 {
+    if (match(target, /{/)) {
+        wonderbrace(pattern, target)
+        r = ""
+        for (i = 1; i <= pattern[0]; i++) {
+            split("", opts)
+            for(a in list) opts[a] = list[a]
+            o = getopts(pattern[i], opts)
+            if (!r || (o && split(o, p) < split(r, n))) r = o
+        }
+        return r
+    }
+
     while(target) {
         target = pextract(pattern, target)
         if (!mergeoptions(opts, nopts, pattern[4]))
@@ -229,6 +281,8 @@ function getopts(target, list,	a, i, r, l, o, p, n, opts, nopts)
     for(o in opts) {
         o = glob2ere(o)
         if ("" ~ o) continue
+        for (i in p) if (i ~ o) { o = ""; break; }
+        if (!o) continue
         for (i in list)
             if (list[i] ~ o) {
                 p[list[i]]; delete list[i]
