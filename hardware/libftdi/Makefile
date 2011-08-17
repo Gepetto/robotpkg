@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Mon, 22 Dec 2008
 #
 
-DISTNAME=	libftdi-${PKGVERSION}
+DISTNAME=	libftdi-${PKGVERSION_NOREV}
 PKGVERSION=	0.19
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.intra2net.com/de/produkte/opensource/ftdi/TGZ/
