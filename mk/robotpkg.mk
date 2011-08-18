@@ -99,7 +99,7 @@ $(if $(strip ${MAKECMDGOALS}),						\
 	$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk))
 
 # Install
-$(call require-for, install su-install-all reinstall			\
+$(call require-for, install install-failsafe su-install-all reinstall	\
 	deinstall su-deinstall replace su-replace bootstrap-register,	\
 	${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 

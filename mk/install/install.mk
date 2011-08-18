@@ -173,12 +173,9 @@ install-deinstall:
 # some sanity checks.
 #
 _INSTALL_ALL_TARGETS+=		acquire-install-localbase-lock
-_INSTALL_ALL_TARGETS+=		install-makedirs
-#_INSTALL_ALL_TARGETS+=		pre-install-script
-_INSTALL_ALL_TARGETS+=		pre-install
-_INSTALL_ALL_TARGETS+=		do-install
-_INSTALL_ALL_TARGETS+=		post-install
+_INSTALL_ALL_TARGETS+=		do-install-failsafe
 _INSTALL_ALL_TARGETS+=		plist
+_INSTALL_ALL_TARGETS+=		install-failed
 #_INSTALL_ALL_TARGETS+=		install-script-data
 #_INSTALL_ALL_TARGETS+=		post-install-script
 ifndef NO_PKG_REGISTER
@@ -230,6 +227,46 @@ ifdef INSTALLATION_DIRS
 	  esac;								\
 	done
 endif	# INSTALLATION_DIRS
+
+
+# --- install-failsafe (PRIVATE) -------------------------------------------
+#
+# Invoke install target in the package and (try to) undo installation on error
+#
+_install_failed=	${WRKDIR}/.install-failed
+
+_INSTALL_FAILSAFE_TARGETS+=	install-makedirs
+_INSTALL_FAILSAFE_TARGETS+=	pre-install
+_INSTALL_FAILSAFE_TARGETS+=	do-install
+_INSTALL_FAILSAFE_TARGETS+=	post-install
+
+.PHONY: install-failsafe
+install-failsafe: ${_INSTALL_FAILSAFE_TARGETS}
+
+.PHONY: do-install-failsafe
+do-install-failsafe:
+	${RUN}${RECURSIVE_MAKE} install-failsafe || >${_install_failed}
+
+.PHONY: install-failed
+install-failed:
+	${RUN}${TEST} -f ${_install_failed} || exit 0;			\
+	${STEP_MSG} "Undoing failed installation";			\
+	${RM} -f ${_install_failed};					\
+	prefix="${PREFIX}";						\
+	while read f; do						\
+	  case $$f in							\
+	    @cwd*)	set -- $$f; shift; prefix="$$@";;		\
+	    @ignore*)	read f;;					\
+	    @*)		;;						\
+	    *)		${RM} -f $$prefix/$$f;;				\
+	  esac;								\
+	done <${PLIST};							\
+	${ERROR_MSG} "${hline}";					\
+	${ERROR_MSG} "$${bf}Installation of ${PKGNAME} failed.$${rm}";	\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "Check ${INSTALL_LOGFILE} for details";		\
+	${ERROR_MSG} "${hline}";					\
+	exit 2
 
 
 # --- pre-install, do-install, post-install (PUBLIC, override) -------
