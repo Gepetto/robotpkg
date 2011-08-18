@@ -143,8 +143,8 @@ pkg-install-check-files:
 	  fi;								\
 	done | ${ERROR_CAT};						\
 	${ERROR_MSG} "";						\
-	${ERROR_MSG} "$${bf}Use \`${MAKE} ${MAKECMDGOALS} confirm\` to"	\
-		"force installation.";					\
+	${ERROR_MSG} "$${bf}Use \`${MAKE} ${MAKECMDGOALS} confirm\`"	\
+		"in ${PKGPATH} to force installation.";			\
 	${ERROR_MSG} "${hline}";					\
 	exit 2
 
