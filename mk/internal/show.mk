@@ -211,3 +211,31 @@ else
 		"will be disabled. The variables are to be set in"	\
 		${MAKECONF}"." | fmt
 endif # !PKG_SUPPORTED_OPTIONS
+ifdef PKG_ALTERNATIVES
+	@								\
+  $(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVE.$_},		\
+	${ECHO} "";							\
+	${ECHO} "$${bf}The following $_ alternatives may be"		\
+		"selected$${rm}:";					\
+    $(foreach 1,${PKG_ALTERNATIVES.$_},					\
+      $(if $(strip ${PKG_ALTERNATIVE_SELECT.$1}),			\
+	${ECHO} "	$1	${PKG_ALTERNATIVE_DESCR.$1}";		\
+      )									\
+    )									\
+	${ECHO} "";							\
+	${ECHO} "$${bf}The following preferences for $_ alternatives"	\
+		"are currently configured$${rm}:";			\
+	${ECHO} "	$(or ${PREFER_ALTERNATIVE.$_},(none))";		\
+	${ECHO} "";							\
+	${ECHO} "$${bf}The following $_ alternative is currently"	\
+		"enabled$${rm}:";					\
+	${ECHO} "	${PKG_ALTERNATIVE.$_}"				\
+		"	${PKG_ALTERNATIVE_DESCR.${PKG_ALTERNATIVE.$_}}";\
+	${ECHO} "";							\
+	${ECHO} "You can select a $_ alternative by setting"		\
+		"PREFER_ALTERNATIVE.$_";				\
+	${ECHO} "to a space separated list sorted by order of"		\
+		"preference";						\
+	${ECHO} "in ${MAKECONF}.";\
+  ))
+endif
