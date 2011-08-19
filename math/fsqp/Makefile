@@ -2,7 +2,7 @@
 # Created:			florent on Wed, 14 Oct 2009
 #
 
-DISTNAME=	fsqp-${PKGVERSION}
+DISTNAME=	fsqp-${PKGVERSION_NOREV}
 PKGVERSION=	2.5d
 
 CATEGORIES=	math

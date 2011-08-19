@@ -3,7 +3,7 @@
 #
 
 PKGNAME=		blender-${PKGVERSION}
-DISTNAME=		blender-${PKGVERSION}-beta
+DISTNAME=		blender-${PKGVERSION_NOREV}-beta
 PKGVERSION=		2.56
 
 CATEGORIES=		graphics

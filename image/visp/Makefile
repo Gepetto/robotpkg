@@ -1,7 +1,7 @@
 # robotpkg Makefile for:	image/visp
 # Created:			Anthony Mallet on Tue, 9 Feb 2010
 #
-DISTNAME=		visp-${PKGVERSION}
+DISTNAME=		visp-${PKGVERSION_NOREV}
 PKGVERSION=		2.4.4
 
 CATEGORIES=		image devel

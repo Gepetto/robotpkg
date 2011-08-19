@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 27 Aug 2007
 #
 
-DISTNAME=	hpp-walkplanner-${PKGVERSION}
+DISTNAME=	hpp-walkplanner-${PKGVERSION_NOREV}
 PKGNAME=	hpp-walkplanner-${PKGVERSION}
 PKGVERSION=	3.4.1
 PKGREVISION=

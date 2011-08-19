@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Thu, 23 Jul 2009
 #
 PKGNAME=	Togl-${PKGVERSION}
-DISTNAME=	Togl${PKGVERSION}-src
+DISTNAME=	Togl${PKGVERSION_NOREV}-src
 PKGVERSION=	2.0
 
 CATEGORIES=	graphics

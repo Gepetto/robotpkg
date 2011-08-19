@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=	2.0.10
-DISTNAME=	zeromq-${PKGVERSION}
+DISTNAME=	zeromq-${PKGVERSION_NOREV}
 CATEGORIES=	net
 MASTER_SITES=   http://www.zeromq.org/local--files/area:download/
 

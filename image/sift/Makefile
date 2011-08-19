@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=		1.1.2
-DISTNAME=		sift-${PKGVERSION}_20100521
+DISTNAME=		sift-${PKGVERSION_NOREV}_20100521
 PKGNAME=		sift-${PKGVERSION}
 CATEGORIES=		image
 MASTER_SITES=		http://web.engr.oregonstate.edu/~hess/downloads/sift/

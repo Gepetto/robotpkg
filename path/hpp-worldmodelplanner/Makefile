@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=	1.0
-DISTNAME=	hppworldmodelplanner-${PKGVERSION}
+DISTNAME=	hppworldmodelplanner-${PKGVERSION_NOREV}
 PKGNAME=	hpp-worldmodelplanner-${PKGVERSION}
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hppWorldModelPlanner/}

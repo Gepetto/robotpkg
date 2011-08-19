@@ -2,7 +2,7 @@
 # Created:			florent on Fri, 30 Oct 2009
 #
 
-DISTNAME=	robotbuilder-${PKGVERSION}
+DISTNAME=	robotbuilder-${PKGVERSION_NOREV}
 PKGNAME=	hrp2-builder-${PKGVERSION}
 PKGVERSION=	1.0.7
 PKGREVISION=

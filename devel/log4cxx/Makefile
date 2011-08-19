@@ -3,7 +3,7 @@
 #
 
 PKGNAME=	log4cxx-${PKGVERSION}
-DISTNAME=	apache-log4cxx-${PKGVERSION}
+DISTNAME=	apache-log4cxx-${PKGVERSION_NOREV}
 PKGVERSION=	0.10.0
 MASTER_SITES=	http://archive.apache.org/dist/logging/log4cxx/${PKGVERSION}/
 

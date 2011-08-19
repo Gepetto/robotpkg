@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=		1.0
-DISTNAME=	        boost-log-${PKGVERSION}
+DISTNAME=	        boost-log-${PKGVERSION_NOREV}
 EXTRACT_SUFX?=		.zip
 MASTER_SITES=		http://downloads.sourceforge.net/project/boost-log/
 

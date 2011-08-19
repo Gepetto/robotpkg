@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=	1.0
-DISTNAME=	hppdynamicobstacle-${PKGVERSION}
+DISTNAME=	hppdynamicobstacle-${PKGVERSION_NOREV}
 PKGNAME=	hpp-dynamic-obstacle-${PKGVERSION}
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-dynamic-obstacle/}

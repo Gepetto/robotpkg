@@ -2,7 +2,7 @@
 # Created:			Xavier Broquere on Fri, 26 Feb 2010
 #
 
-DISTNAME=		softMotion-libs-${PKGVERSION}
+DISTNAME=		softMotion-libs-${PKGVERSION_NOREV}
 PKGVERSION=		3.7
 
 CATEGORIES=		motion

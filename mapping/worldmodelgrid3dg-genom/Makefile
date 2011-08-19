@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=	1.0
-DISTNAME= 	worldModelGrid3DG-genom-${PKGVERSION}
+DISTNAME= 	worldModelGrid3DG-genom-${PKGVERSION_NOREV}
 PKGNAME=	worldmodelgrid3dg-genom-${PKGVERSION}
 CATEGORIES=	mapping
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=worldModelGrid3D-genom/}

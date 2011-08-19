@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 12 Jun 2009
 #
 
-DISTNAME=	jena-${PKGVERSION}
+DISTNAME=	jena-${PKGVERSION_NOREV}
 PKGVERSION=	2.6.3
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=jena/}
 EXTRACT_SUFX=	.zip

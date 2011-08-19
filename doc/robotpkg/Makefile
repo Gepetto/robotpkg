@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=		$(shell ${DATE} '+%Y%m%d')
-DISTNAME=               robotpkg-guide-${PKGVERSION}
+DISTNAME=               robotpkg-guide-${PKGVERSION_NOREV}
 CATEGORIES=             doc
 MASTER_SITES=#		empty
 DISTFILES=#		empty
