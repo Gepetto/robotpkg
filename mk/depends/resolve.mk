@@ -106,8 +106,9 @@ PKG_ALTERNATIVES:=$(sort ${PKG_ALTERNATIVES})
 
 # list of unresolved alternatives (not in robotpkg.conf or cmdline)
 _alt_list:=$(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVE.$_},,$_))
-ifneq (,$(strip ${_alt_list}))
-  # derive alternatives from a required package name
+
+# derive alternatives from a required package name
+ifdef PKGREQD
   override define _alt_guess # (alt, string)
     a:=$(strip $(foreach _,${PKG_ALTERNATIVES.$1},$(strip \
 	$(if $(findstring ${PKGTAG.$_},$2),$_))))
@@ -118,44 +119,45 @@ ifneq (,$(strip ${_alt_list}))
 	'Warning: ambiguous package name $2 for alternatives $$a.')
     endif
   endef
-  ifdef PKGREQD
-    $(foreach _,${PKG_ALTERNATIVES},$(eval $(call _alt_guess,$_,${PKGREQD})))
+  $(foreach _,${_alt_list},$(eval $(call _alt_guess,$_,${PKGREQD})))
+endif # PKGREQD
+
+# check enforced alternatives
+override define _alt_enforced_valid
+  ifeq (,${PKG_ALTERNATIVE_SELECT.${PKG_ALTERNATIVE.$1}})
+    PKG_FAIL_REASON+=\
+      "$${bf}The $1 alternative selection is invalid$${rm}"		\
+      "	PKG_ALTERNATIVE.$1 = ${PKG_ALTERNATIVE.$1}"			\
+      $$(if $${PKG_ALTERNATIVE.$1},					\
+        " Preferred value: $${PKG_ALTERNATIVE.$1}") ""
+    _alt_list+=$1
   endif
+endef
+$(foreach _,$(filter-out ${_alt_list},${PKG_ALTERNATIVES}),$(eval \
+  $(call _alt_enforced_valid,$_)))
 
-  # compute acceptable alternatives
-  $(foreach _,${_alt_list},$(eval \
-    _alt_select.$_=$(filter ${PKG_ALTERNATIVES.$_},${PREFER_ALTERNATIVE.$_})))
+# compute acceptable alternatives, based on PREFER_ALTERNATIVE.<pkg>
+$(foreach _,${_alt_list},$(eval \
+  _alt_select.$_:=$(filter ${PKG_ALTERNATIVES.$_},${PREFER_ALTERNATIVE.$_})))
 
-  # choose a version: generate a list of test for each pattern in order of
-  # preference. Then pass this to 'or', so that the first match wins. This
-  # demands a bit of quoting... but generates the minimum number of calls to
-  # the selection macros. (the trailing [,] in the macro below is not a typo).
-  override define _alt_match
-    $$$$(if $$(value PKG_ALTERNATIVE_SELECT.$1),$1),
-  endef
-  $(foreach _,${_alt_list},$(eval \
-    _alt_test.$_=$(foreach a,${_alt_select.$_},$(call _alt_match,$a))))
+# choose a version: generate a list of test for each pattern in order of
+# preference. Then pass this to 'or', so that the first match wins. This
+# demands a bit of quoting... but generates the minimum number of calls to
+# the selection macros. (the trailing [,] in the macro below is not a typo).
+override define _alt_match
+$$(if $$(strip $(value PKG_ALTERNATIVE_SELECT.$1)),$1),
+endef
+$(foreach _,${_alt_list},$(eval \
+  _alt_test.$_=$(foreach a,${_alt_select.$_},$(call _alt_match,$a))))
+$(foreach _,${_alt_list},$(eval \
+  override PKG_ALTERNATIVE.$_:=$$(strip $$(or $(value _alt_test.$_)))))
 
-  $(foreach _,${_alt_list},$(eval \
-    PKG_ALTERNATIVE.$_:=$$(strip $$(or ${_alt_test.$_}))))
-endif # _alt_list
-
-# check empty or malformed PKG_ALTERNATIVE.<pkg>, and set a sane fallback for
-# the rest of the processing
+# check empty PKG_ALTERNATIVE.<pkg>
 override define _alt_error
-  ifeq (,$(filter 0 1,$(words ${PKG_ALTERNATIVE.$1})))
+  ifeq (,${PKG_ALTERNATIVE.$1})
     PKG_FAIL_REASON+=\
-      "$${bf}The $1 alternative selection must be a single choice$${rm}"\
-      "	PKG_ALTERNATIVE.$1 = ${PKG_ALTERNATIVE.$1}"			\
-      "	(use PREFER_ALTERNATIVE.$1 to define an ordered list)"
-    override PKG_ALTERNATIVE.$1=$(word 1,${PKG_ALTERNATIVES.$1})
-  endif
-  ifeq (,$(filter ${PKG_ALTERNATIVE.$1},${PKG_ALTERNATIVES.$1}))
-    PKG_FAIL_REASON+=\
-      "$${bf}The $1 alternatives cannot be resolved$${rm}"		\
-      "	PKG_ALTERNATIVE.$1 = ${PKG_ALTERNATIVE.$1}"			\
-      "	PREFER_ALTERNATIVE.$1 = ${PREFER_ALTERNATIVE.$1}"
-    override PKG_ALTERNATIVE.$1=$(word 1,${PKG_ALTERNATIVES.$1})
+      "$${bf}No acceptable $1 alternatives could be found$${rm}"	\
+      "	PREFER_ALTERNATIVE.$1 = ${PREFER_ALTERNATIVE.$1}" ""
   endif
 endef
 $(foreach _,${PKG_ALTERNATIVES},$(eval $(call _alt_error,$_)))
