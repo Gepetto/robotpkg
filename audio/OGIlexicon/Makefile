@@ -33,7 +33,7 @@ FETCH_MESSAGE+= ""
 FETCH_MESSAGE+= "See the following URL for more details:"
 FETCH_MESSAGE+= "	${HOMEPAGE}"
 
-REQD_BUILD_OPTIONS.festival=	ogireslpc
+DEPEND_ABI.festival+=	festival>=1.96~ogireslpc
 include ../../audio/festival/depend.mk
 
 include ../../pkgtools/pax/depend.mk
