@@ -286,8 +286,10 @@ $(foreach _,${DEPEND_USE},$(eval $(call _dpd_overrides,$_)))
 #
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter bootstrap,${DEPEND_METHOD.${_pkg_}}),			\
-    $(eval ${_COOKIE.bootstrap-depends}:${SYSTEM_FILES.${_pkg_}}),	\
-    $(eval ${_COOKIE.depends}:${SYSTEM_FILES.${_pkg_}})			\
+    $(eval ${_COOKIE.bootstrap-depends}:				\
+	$(filter-out /notfound,${SYSTEM_FILES.${_pkg_}})),		\
+    $(eval ${_COOKIE.depends}:						\
+	$(filter-out /notfound,${SYSTEM_FILES.${_pkg_}}))		\
 ))
 
 # Disable any recipe for files in SYSTEM_FILES

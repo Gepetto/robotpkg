@@ -28,12 +28,14 @@
 #	prefixsearch.sh takes a package name, an ABI requirement and a list
 #	of file specifications that belong to the package. Each file
 #	specification may be a simple file name which is only tested for
-#	existence or a string in the form 'file:sed:prog' which tests the
-#	existence and the version of the file. If the file exists, 'prog' is
-#	executed with its standard output is passed to the 'sed' program which
-#	is expected to return the version of the file. 'prog' might contain a %
-#	character which is replaced by the actual path of the file begin
-#	tested.
+#	existence or a string in the form 'file[:sed[:prog[:option]]]' which
+#	tests the existence and the version of the file. If the file exists,
+#	'prog' is executed with its standard output is passed to the 'sed'
+#	program which is expected to return the version of the file. 'prog'
+#	might contain a % character which is replaced by the actual path of the
+#	file being tested. If 'option' is given, 'file' exists, 'prog' does not
+#	fail and 'sed' (if present) returns a non-empty result, the 'option' is
+#	added to the computed version of the package.
 #
 #	prefixsearch.sh exists with a non-zero status if the package could
 #	not be found.
@@ -114,7 +116,7 @@ fi
 ${TEST} $# -gt 2 || { usage; exit 1; }
 pkg="$1"; shift
 abi="$1"; shift
-abipkg=${abi%%[=><!]*}
+abipkg=${abi%%[=><!~]*}
 
 # csh-like braces substitutions: replace a{x,y}b with axb ayb
 bracesubst() {
@@ -198,6 +200,8 @@ shlibext() {
 # Search files
 prefix=
 pkgversion=
+pkgoption=
+optspec=
 vrepl='y/-/./;q'
 
 for p in `bracesubst $sysprefix`; do
@@ -205,9 +209,10 @@ for p in `bracesubst $sysprefix`; do
     flist=
     for fspec in "$@"; do
 	# split file specification into `:' separated fields
-	IFS=: read -r f spec cmd <<-EOF
+	IFS=: read -r f spec cmd opt <<-EOF
 		$fspec
 	EOF
+        if ${TEST} -n "$opt"; then optspec=yes; fi
 
 	# perform SYSLIBDIR substitution: if a file spec starts with lib/
 	# and at least one of the directories $p/${SYSLIBDIR} exists, the lib/
@@ -241,28 +246,44 @@ for p in `bracesubst $sysprefix`; do
 	    fi
 
 	    # check file version, if needed
-	    if ${TEST} -z "$spec$cmd"; then
-		flist="$flist $match"
+	    if ${TEST} -z "$spec$cmd$opt"; then
 		${MSG} "found:	$match"
 		break
 	    fi
 
 	    version=
+            status=0
 	    if ${TEST} -z "$cmd"; then
-		version=`${SED} -ne "${spec:-p}" < $match | ${SED} $vrepl`
+	        if ${TEST} -z "$spec"; then
+                    version=unknown
+                else
+		    version=`${SED} -ne "${spec:-p}" < $match | ${SED} $vrepl`
+                fi
 	    else
 		icmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
-		version=`eval $icmd 2>&1 </dev/null | ${SED} -ne "${spec:-p}" | ${SED} $vrepl ||:`
+		version=`eval $icmd 2>&1 </dev/null | \
+                    ${SED} -ne "${spec:-p}" | ${SED} $vrepl` || status=$?
 	    fi
-	    : ${version:=unknown}
-	    if ${PKG_ADMIN_CMD} pmatch "${abi%~*}" "$abipkg-$version"; then
+            if ${TEST} -n "$opt"; then
+                if ${TEST} $status -eq 0 -a -n "$version"; then
+                    case "+$pkgoption+" in
+                        *+$opt+*) ;;
+                        *) pkgoption=${pkgoption:+$pkgoption+}$opt ;;
+                    esac
+		    ${MSG} "found:	$match for option $opt"
+		    break
+                fi
+	        ${MSG} "found:	$match, no match for option $opt"
+                match=
+                continue
+            fi
+            if ${PKG_ADMIN_CMD} pmatch "${abi%~*}" "$abipkg-$version"; then
 		pkgversion=-$version
-		flist="$flist $match"
 		${MSG} "found:	$match, version $version"
 		break
 	    fi
 
-	    ${MSG} "found:	$match, wrong version $version"
+	    ${MSG} "found:	$match, wrong version ${version:-unknown}"
 	    match=;
 	done
 	if ${TEST} -z "$match"; then
@@ -273,9 +294,20 @@ for p in `bracesubst $sysprefix`; do
 		    done
 		done
 	    done
-	    continue 2;
-	fi
+	    if ${TEST} -z "$opt"; then continue 2; fi
+            match=
+        fi
+	flist="$flist ${match:-/notfound}"
     done
+
+    # check options
+    if ${TEST} -z "${abi%%*~*}" -a -n "$optspec"; then
+        if ! ${PKG_ADMIN_CMD} pmatch \
+            "$abipkg~${abi##*~}" "$abipkg$pkgversion~$pkgoption"; then
+	    ${MSG} "rejecting:	$abipkg$pkgversion~$pkgoption"
+            continue
+        fi
+    fi
 
     # stop on first successful match
     prefix="$p"
@@ -286,23 +318,23 @@ done
 if ${TEST} -n "$prefix"; then
     # warn if an abi requirement is present but no version could be found
     if ${TEST} -z "$pkgversion"; then
-	if ${TEST} "$abi" != "$abipkg"; then
+	if ${TEST} "${abi%~*}" != "$abipkg"; then
 	    ${ERROR_MSG} 1>&2 "Cannot check installed version of $pkg"
 	fi
     fi
     # warn if specific options are requested
-    if ${TEST} -z "${abi%%*~*}"; then
+    if ${TEST} -z "$optspec${abi%%*~*}"; then
         ${ERROR_MSG} 1>&2 "Cannot check required '${abi##*~}' options of $pkg"
     fi
 
     # print result
-    ${ECHO} "$abipkg$pkgversion"
+    ${ECHO} "$abipkg$pkgversion${pkgoption:+~$pkgoption}"
 
     # test fd 3 existence and print other variables there if it exists, to
     # stdout otherwise.
     ${TEST} : 2>/dev/null 1>&3 || exec 3>&1
     ${ECHO} 1>&3 "PREFIX.$pkg:=$prefix"
-    ${ECHO} 1>&3 "PKGVERSION.$pkg:=$abipkg$pkgversion"
+    ${ECHO} 1>&3 "PKGVERSION.$pkg:=$abipkg$pkgversion${pkgoption:+~$pkgoption}"
     ${ECHO} 1>&3 "SYSTEM_FILES.$pkg:=$flist"
     exit 0
 fi
