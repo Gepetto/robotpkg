@@ -11,13 +11,10 @@ COMMENT=		Demo application using pilo, locoDemo, Gdhe and picoweb
 LICENSE=		isc
 
 USE_LANGUAGES=		# empty
+NO_CONFIGURE=		yes
+NO_BUILD=		yes
 
 REQD_BUILD_OPTIONS.pilo-genom=	locoDemo
-
-do-configure:		
-
-do-build:
-	@/bin/true
 
 do-install:
 	mkdir -p ${PREFIX}/share/example/pilo-demo
