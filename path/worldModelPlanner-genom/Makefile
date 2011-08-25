@@ -14,8 +14,6 @@ GNU_CONFIGURE=	yes
 GENOM_MODULE=	worldModelPlanner
 USE_LANGUAGES=	c++
 
-REQD_BUILD_OPTIONS.hpp-worldmodelplanner+= $(filter openprs,${PKG_OPTIONS})
-
 include ../../path/hpp-openhrp/depend.mk
 include ../../path/hpp-worldmodelplanner/depend.mk
 include ../../mapping/worldmodelgrid3dg-genom/depend.mk
