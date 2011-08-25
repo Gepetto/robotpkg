@@ -14,8 +14,8 @@ LICENSE=		gnu-lgpl-v3
 USE_LANGUAGES+=				c c++
 GENOM_MODULE=				coldman
 define PKG_OPTION_UNSET.api
-  REQD_BUILD_OPTIONS.coldman-libs+=	display
   include ../../graphics/coldman-libs/depend.mk
+  DEPEND_ABI.coldman-libs+=		coldman-libs~display
 endef
 
 include ../../architecture/genom/depend.mk
