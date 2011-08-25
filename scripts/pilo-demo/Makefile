@@ -14,17 +14,17 @@ USE_LANGUAGES=		# empty
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
 
-REQD_BUILD_OPTIONS.pilo-genom=	locoDemo
-
-do-install:
-	mkdir -p ${PREFIX}/share/example/pilo-demo
-	cd ${WRKSRC} && ${PAX} -rwp amp . ${PREFIX}/share/example/pilo-demo
+include ../../motion/pilo-genom/depend.mk
+DEPEND_ABI.pilo-genom+=	pilo-genom~locoDemo
 
 include ../../motion/locoDemo-genom/depend.mk
-include ../../motion/pilo-genom/depend.mk
 include ../../www/picoweb/depend.mk
 include ../../graphics/gdhe/depend.mk
 include ../../shell/eltclsh/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/robotpkg.mk
+
+do-install:
+	mkdir -p ${PREFIX}/share/example/pilo-demo
+	cd ${WRKSRC} && ${PAX} -rwp amp . ${PREFIX}/share/example/pilo-demo
