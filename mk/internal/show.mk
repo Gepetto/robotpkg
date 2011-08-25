@@ -32,10 +32,6 @@ $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 # convenience target, to display make variables from command line
 # i.e. "make show-var VARNAME=var", will print var's value
 #
-$(call require-for, show-var show-vars,				\
-	$(if $(findstring PKG_, ${VARNAME} ${VARNAMES}),	\
-		${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk))
-
 .PHONY: show-var
 show-var:
 	@${ECHO} $(call quote,${${VARNAME}})
