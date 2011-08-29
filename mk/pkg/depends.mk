@@ -52,23 +52,21 @@
 _MAKEFILE_WITH_RECIPES+=${_COOKIE.outdated}
 ${_COOKIE.outdated}: $(wildcard ${PKG_DBDIR}/${PKGNAME})
 	${RUN}${RM} -f $@; (						\
-	  ${PKG_INFO} -qe ${PKGNAME} || exit 1;				\
-									\
-	  iopts=`${PKG_INFO} -qQ PKG_OPTIONS ${PKGNAME}`;		\
-	  ${TEST} '${PKG_OPTIONS}' = "$$iopts" || exit 1;		\
+	  pkg=`${_PKG_BEST_EXISTS} ${PKGNAME}` || exit 1;		\
+	  ${TEST} '${PKGNAME}' = "$$pkg" || exit 1;			\
 									\
 	  deps='$(sort $(foreach _pkg_,${DEPEND_USE},			\
 	    $(if $(filter robotpkg,${PREFER.${_pkg_}}),			\
 	      $(if $(filter full,${DEPEND_METHOD.${_pkg_}}),		\
 	        ${DEPEND_ABI.${_pkg_}}))))';				\
-	  set -- `${PKG_INFO} -qn ${PKGNAME} | ${SORT}`;		\
+	  set -- `${PKG_INFO} -qn $$pkg | ${SORT}`;			\
 	  for dep in $$deps; do						\
 	    ${TEST} "$$dep" = "$$1" || exit 1;				\
 	    shift;							\
 	  done;								\
 									\
 	  for var in unsafe_depends unsafe_depends_strict; do		\
-	    ${TEST} -z "`${PKG_INFO} -qQ $$var ${PKGNAME}`" || exit 1;	\
+	    ${TEST} -z "`${PKG_INFO} -qQ $$var $$pkg`" || exit 1;	\
 	  done;								\
 	) || {								\
 	  ${MKDIR} $(dir $@) && ${ECHO} _OUTDATED.${PKGPATH}:=yes >$@;	\
