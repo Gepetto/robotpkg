@@ -131,7 +131,7 @@ ifeq (yes,$(call exists,${_COOKIE.wrkdir}))
   _v_:=$(strip $(if $(filter .checkout,				\
         $(suffix $(basename $(basename ${PKGVERSION})))),	\
 	$(basename $(basename $(basename ${PKGVERSION}))),	\
-	${PKGVERSION}))
+	${PKGVERSION_NOTAG}))
   ifneq (${_v_},${_COOKIE.wrkdir.pkgversion})
     PKG_FAIL_REASON+= "$${bf}Extracted version mismatch for ${PKGNAME}$${rm}"
     PKG_FAIL_REASON+= "Extracted version:	${_COOKIE.wrkdir.pkgversion}"

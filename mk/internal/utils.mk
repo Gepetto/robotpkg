@@ -149,7 +149,7 @@ makedirs: ${_COOKIE.wrkdir} ${PKG_DBDIR};
 _MAKEFILE_WITH_RECIPES+=${_COOKIE.wrkdir}
 ${_COOKIE.wrkdir}:
 	${RUN}${MKDIR} ${WRKDIR};					\
-	v="${PKGVERSION}"; v=$${v%.checkout*};				\
+	v="${PKGVERSION_NOTAG}"; v=$${v%.checkout*};			\
 	exec >>${_COOKIE.wrkdir};					\
 	${ECHO} "_COOKIE.wrkdir.date:=`${_CDATE_CMD}`";			\
 	${ECHO} "_COOKIE.wrkdir.pkgversion:=$$v";			\
