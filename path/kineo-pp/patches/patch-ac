@@ -1,0 +1,68 @@
+--- interfaces/KineoController/kppInsertGeometryFileCommand.h~	2011-08-30 16:27:17.149575213 +0200
++++ interfaces/KineoController/kppInsertGeometryFileCommand.h	2011-08-30 16:29:55.669335007 +0200
+@@ -26,7 +26,7 @@
+ #include "KineoUtility/kitDefine.h"
+ 
+ KIT_PREDEF_CLASS( CkppInsertGeometryFileCommand );
+-KIT_PREDEF_CLASS( CkprParserManager )
++KIT_PREDEF_CLASS( CkprParserManager );
+ 
+ /*! \addtogroup kppController
+ * @{
+--- interfaces/KineoController/kppManipulatorMotionMediator.h~	2011-08-30 16:27:17.149575213 +0200
++++ interfaces/KineoController/kppManipulatorMotionMediator.h	2011-08-30 16:29:45.409324518 +0200
+@@ -22,7 +22,7 @@
+ 
+ #include "KineoController/kppMotionMediator.h"
+ 
+-KIT_PREDEF_CLASS( CkppManipulatorMotionMediator )
++KIT_PREDEF_CLASS( CkppManipulatorMotionMediator );
+ 
+ /*! \addtogroup kppController
+ * @{
+--- interfaces/KineoKCDModel/kppKCDCollision.h~	2011-08-30 16:27:17.145575676 +0200
++++ interfaces/KineoKCDModel/kppKCDCollision.h	2011-08-30 16:29:15.517324310 +0200
+@@ -27,7 +27,7 @@
+ #include "kcd2/kcdCollisionReport.h"
+ 
+ 
+-KIT_PREDEF_CLASS(CkppKCDCollision)
++KIT_PREDEF_CLASS(CkppKCDCollision);
+ 
+ /// \cond KineoDev
+ 
+--- interfaces/KineoKCDModel/kppKCDFlatCollision.h~	2011-08-30 16:27:17.145575676 +0200
++++ interfaces/KineoKCDModel/kppKCDFlatCollision.h	2011-08-30 16:29:30.561324637 +0200
+@@ -27,7 +27,7 @@
+ #include "kcd2/kcdFlatReport.h"
+ 
+ 
+-KIT_PREDEF_CLASS(CkppKCDFlatCollision)
++KIT_PREDEF_CLASS(CkppKCDFlatCollision);
+ 
+ /// \cond KineoDev
+ 
+--- interfaces/KineoModel/kppDeviceNode.h~	2011-08-30 16:27:17.105327136 +0200
++++ interfaces/KineoModel/kppDeviceNode.h	2011-08-30 16:28:24.293574649 +0200
+@@ -27,7 +27,7 @@
+ * @{
+ */
+ 
+-KIT_PREDEF_CLASS(CkppDeviceNode)
++KIT_PREDEF_CLASS(CkppDeviceNode);
+ 
+ /** node that stores the devices
+ */
+--- interfaces/KineoView/kppViewTreeController.h~	2011-08-30 16:27:17.113325808 +0200
++++ interfaces/KineoView/kppViewTreeController.h	2011-08-30 16:28:57.437326285 +0200
+@@ -22,8 +22,8 @@
+ 
+ #include "KineoView/kppViewController.h"
+ 
+-KIT_PREDEF_CLASS(CkppViewTree)
+-KIT_PREDEF_CLASS(CkppViewTreeItem)
++KIT_PREDEF_CLASS(CkppViewTree);
++KIT_PREDEF_CLASS(CkppViewTreeItem);
+ KIT_PREDEF_CLASS(CkppViewTreeController);
+ 
+ /// \cond KineoDev
