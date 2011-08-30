@@ -18,6 +18,11 @@ DEPEND_USE+=		kineo-pp
 DEPEND_ABI.kineo-pp?=	kineo-pp>=2.04.501r1
 DEPEND_DIR.kineo-pp?=	../../path/kineo-pp
 
+SYSTEM_SEARCH.kineo-pp=\
+	kineo/include/KineoController/kppCommand.h \
+	kineo/lib/libKineoController.so \
+	'lib/pkgconfig/KineoPathPlanner.pc:/Version/s/[^0-9]//gp'
+
 endif # KINEO_PP_DEPEND_MK -------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
