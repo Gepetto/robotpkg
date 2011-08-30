@@ -1,0 +1,11 @@
+--- src/joint.hh~	2011-04-19 16:22:00.000000000 +0200
++++ src/joint.hh	2011-08-30 16:58:15.902184351 +0200
+@@ -14,7 +14,7 @@ KIT_PREDEF_CLASS(CkwsJoint);
+ namespace hpp {
+   namespace core {
+     namespace io {
+-      KIT_PREDEF_CLASS(Joint)
++      KIT_PREDEF_CLASS(Joint);
+       class Joint
+       {
+       public:
