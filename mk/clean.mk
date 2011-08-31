@@ -110,17 +110,16 @@ $(call require,${ROBOTPKG_DIR}/mk/update/update-vars.mk)
 ifeq (yes,$(call exists,${_UPDATE_LIST}))
   .PHONY: clean-confirm-update
   clean-confirm-update:
-	@${TEST} -s ${_UPDATE_LIST} || exit 0;				\
+	@${TEST} -n "`${SED} -e '1d;q' < ${_UPDATE_LIST}`" || exit 0;	\
 	${ERROR_MSG} ${hline};						\
 	${ERROR_MSG} "$${bf}An update is in progress for"		\
 		"${PKGPATH}$${rm}";					\
-	if ${TEST} -s ${_UPDATE_LIST}; then				\
-	  ${ERROR_MSG} "The following packages are still to be"		\
+	${ERROR_MSG} "The following packages are still to be"		\
 		"updated:";						\
-	  while read dir pkg; do					\
-		${ERROR_MSG} "		$$pkg in $$dir";		\
-	  done <${_UPDATE_LIST};					\
-	fi;								\
+	while IFS=: read dir pkg; do					\
+	  ${TEST} "$$dir" != "${PKGPATH}" || continue;			\
+	  ${ERROR_MSG} "		$$pkg in $$dir";		\
+	done <${_UPDATE_LIST};						\
 	${ERROR_MSG} "";						\
 	${ERROR_MSG} "You must confirm the cleaning action by doing";	\
 	${ERROR_MSG} "		'$${bf}${MAKE} clean confirm$${rm}' in"	\

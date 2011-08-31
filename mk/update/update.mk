@@ -48,6 +48,7 @@
 
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/sets/sets-vars.mk)
 
 # --- update (PUBLIC) ------------------------------------------------------
 
@@ -89,28 +90,30 @@ update: ${_UPDATE_TARGETS}
 #
 do%update: .FORCE
 	${_OVERRIDE_TARGET}
-	${RUN}								\
-	if ${PKG_INFO} -qe '${PKGNAME}'; then				\
-	  ${STEP_MSG} "${PKGNAME} was already reinstalled";		\
-	else								\
-	  ${RECURSIVE_MAKE} ${UPDATE_TARGET}				\
-		DEPENDS_TARGET=${DEPENDS_TARGET};			\
-	fi
-	${RUN}target='$(filter-out confirm,${UPDATE_TARGET})';		\
-	${TEST} ! -f ${_UPDATE_LIST} || while read dir pkg <&9; do	\
-	  if ${TEST} -z "$${dir}"; then continue; fi;			\
-	  if ${PKG_INFO} -qe "$$pkg"; then				\
-	    set -- `${PKG_INFO} -qr '${PKGNAME}'`;			\
-	    case " $$@" in *" $$pkg-"*)					\
+	${RUN}${TEST} -f ${_UPDATE_LIST} || exit 0;			\
+	target='$(filter-out confirm,${UPDATE_TARGET})';		\
+	while IFS=: read dir pkg <&9; do				\
+	  if ${TEST} "$$dir" = "${PKGPATH}"; then			\
+	    if ${PKG_INFO} -qe "$$pkg"; then				\
+	      ${STEP_MSG} "$$pkg was already reinstalled";		\
+	      continue;							\
+	    fi;								\
+	    t="${UPDATE_TARGET}";					\
+	  else								\
+	    ${PHASE_MSG} "Verifying $$target for $$dir";		\
+	    if i=`${PKG_INFO} -E "$$pkg"`; then				\
+	      set -- `${PKG_INFO} -qr '${PKGNAME}'`;			\
+	      case " $$@ " in *" $$i "*)				\
 	        ${STEP_MSG} "$$pkg was already reinstalled";		\
 	        continue;;						\
-	    esac;							\
+	      esac;							\
+	    fi;								\
+	    t=$$target;							\
 	  fi;								\
-	  ${PHASE_MSG} "Verifying $$target for $$dir";			\
 	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
-	    ${RECURSIVE_MAKE} $$target					\
-			DEPENDS_TARGET=${DEPENDS_TARGET} || {		\
+	    ${RECURSIVE_MAKE} $$t PKGREQD="$$pkg"			\
+		 DEPENDS_TARGET=${DEPENDS_TARGET} || {			\
 		${ERROR_MSG} ${hline};					\
 		${ERROR_MSG} "$${bf}'${MAKE} $$target' failed in"	\
 			"$${dir}$${rm}";				\
@@ -145,7 +148,7 @@ update-up-to-date: update-message
 	@${ECHO_MSG} "${PKGNAME} is already installed and up-to-date."
   ifeq (0,${MAKELEVEL})
 	@if ${TEST} -t 1; then						\
-	  ${ECHO_MSG} 							\
+	  ${ECHO_MSG}							\
 	    "Use '${MAKE} ${MAKECMDGOALS} confirm' to force updating.";	\
 	fi
   endif
@@ -153,8 +156,9 @@ update-up-to-date: update-message
 # clean update files
 .PHONY: update-clean
 update-clean:
-	${RUN}${TEST} ! -f ${_UPDATE_LIST} || while read dir pkg <&9;do	\
-	  if ${TEST} -z "$${dir}"; then continue; fi;			\
+	${RUN}${TEST} ! -f ${_UPDATE_LIST} ||				\
+	while IFS=: read dir pkg <&9;do					\
+	  if ${TEST} "$$dir" = "${PKGPATH}"; then continue; fi;		\
 	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	    ${RECURSIVE_MAKE} cleaner || noclean=$$noclean" "$$dir;	\
@@ -192,35 +196,60 @@ update-clean:
 
 # compute the list of packages to update
 .PHONY: update-create-dlist
-update-create-dlist: makedirs ${_UPDATE_LIST}
+update-create-dlist: ${_UPDATE_LIST}
 
 ${_UPDATE_LIST}:
-	${RUN} >$@;							\
-	if ${PKG_INFO} -qe "${PKGWILDCARD}"; then			\
-	  for pkg in `${PKG_INFO} -qr '${PKGWILDCARD}'`; do		\
-	    base=$${pkg%~*}; base=$${base%-*};				\
-	    ${ECHO} `${PKG_INFO} -Q PKGPATH $$pkg` $$base >>$@;		\
+	${RUN} ${MKDIR} $(dir $@); >$@;					\
+	if ${PKG_INFO} -qe '${PKGWILDCARD}'; then			\
+	  ${STEP_MSG} "Building package update list";			\
+	  ${TEST} -t 1 && i="-i";					\
+	  { ${ECHO} '${PKGPATH}:${PKGREQD}';				\
+	    for pkg in `${PKG_INFO} -qr '${PKGWILDCARD}'`; do		\
+	      base=$${pkg%~*}; base=$${base%-*};			\
+	      ${ECHO} `${PKG_INFO} -Q PKGPATH $$pkg`":$$base";		\
+	    done; }							\
+	  | ${_pkgset_tsort_deps} -1 -s $$i				\
+	  | while IFS=: read dir pkg; do				\
+	    if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;	\
+	    if ${TEST} "$$dir" = "***"; then				\
+	      ${ERROR_MSG} "${hline}";					\
+	      ${ERROR_MSG} "$${bf}Cannot update for"			\
+		"$(or ${PKGREQD},${PKGNAME}):$${rm}";			\
+	      ${ERROR_MSG} "$$pkg";					\
+	      while IFS=: read dir pkg; do				\
+	        if ${TEST} "$$dir" != "***"; then continue; fi;		\
+	        ${ERROR_MSG} "$$pkg";					\
+	      done;							\
+	      ${ERROR_MSG} "";						\
+	      ${ERROR_MSG} "To continue, you may wish to";		\
+	      ${ERROR_MSG} "		$${bf}${MAKE} deinstall$${rm}"	\
+		"in ${PKGPATH}";					\
+	      ${ERROR_MSG} ${hline};					\
+	      ${RM} $@; exit 2;						\
+	    fi;								\
+	    ${ECHO} "$$dir:$$pkg" >>$@;					\
 	  done;								\
+	  ${TEST} -s $@ || exit 2;					\
+	else								\
+	  ${ECHO} '${PKGPATH}:${PKGREQD}' >>$@;				\
 	fi
 
 # deinstall existing packages
 .PHONY: update-deinstall-dlist
 update-deinstall-dlist:
 	${RUN}if ${PKG_INFO} -qe ${PKGBASE}; then			\
-	  if ${TEST} -s ${_UPDATE_LIST}; then				\
+	  if ${TEST} -n "`${SED} -e '1d;q' < ${_UPDATE_LIST}`"; then	\
 	    ${ECHO_MSG} "The following packages are going to be"	\
 		"removed and reinstalled:";				\
-	    while read dir pkg <&9; do					\
+	    while IFS=: read dir pkg <&9; do				\
 	      ${ECHO_MSG} "	$$pkg in $$dir";			\
 	    done 9<${_UPDATE_LIST};					\
-	    while read dir pkg <&9; do					\
-	      if ${TEST} -n "$$dir" -a					\
-			-f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
-		cd "${ROBOTPKG_DIR}/$${dir}" &&				\
+	    while IFS=: read dir pkg <&9; do				\
+	      ${TEST} "$$dir" != "${PKGPATH}" || continue;		\
+	      cd "${ROBOTPKG_DIR}/$${dir}" &&				\
 	        ${RECURSIVE_MAKE} cleaner || {				\
 			${RM} ${_UPDATE_LIST}; exit 2;			\
 		};							\
-	      fi;							\
 	    done 9<${_UPDATE_LIST};					\
 	    cd ${CURDIR};						\
 	  fi;								\
