@@ -1,0 +1,12 @@
+@comment Wed Aug 31 16:47:13 CEST 2011
+bin/morBaseTest
+bin/morJoyTest
+bin/morRelayTest
+bin/morSpineTest
+include/mor/harmonica.h
+include/mor/morLib.h
+include/mor/pscan.h
+include/mor/pscanErrors.h
+include/mor/relayboard.h
+lib/libmor.la
+lib/pkgconfig/mor-libs.pc
