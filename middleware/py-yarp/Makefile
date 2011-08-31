@@ -54,6 +54,5 @@ do-install:
 	  done;								\
 	  ${INSTALL_LIB} _yarp.so ${PREFIX}/${PYTHON_SITELIB}
 
-post-install: python-compile-all(					\
-	$(addprefix ${PREFIX}/${PYTHON_SITELIB}/,			\
-		yarp.py example.py example_img.py))
+post-install: python-compile-all($(addprefix				\
+ ${PREFIX}/${PYTHON_SITELIB}/,yarp.py example.py example_img.py))
