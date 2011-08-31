@@ -1,0 +1,7 @@
+mor is the Genom module that controls the MOM (mobile omnidirectional
+manipulator) robot: a neobotix MOR platform, customized for LAAS.
+
+This module provides the traditional odometry, position and speed
+controls, altogether with basic alarms, battery monitoring functions
+and spine position control.
+x
