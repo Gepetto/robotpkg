@@ -220,7 +220,9 @@ ifdef PKG_VERBOSE
 endif
 ifndef NO_CHECKSUM
   ifeq (yes,$(call exists,${DISTINFO_FILE}))
-    _FETCH_ARGS+=-c -f $(call quote,${DISTINFO_FILE})
+    ifeq (,$(filter mdi distinfo makesum,${MAKECMDGOALS}))
+      _FETCH_ARGS+=-c -f $(call quote,${DISTINFO_FILE})
+    endif
   endif
 endif
 ifeq (,${DIST_SUBDIR})
