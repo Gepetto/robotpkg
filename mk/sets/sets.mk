@@ -33,16 +33,16 @@ set-fetch-%: .FORCE
 	${RUN}$(call _pkgset_recursive,fetch cleaner,-n)
 
 set-extract-%: .FORCE
-	${RUN}$(call _pkgset_recursive,extract,-n)
+	${RUN}$(call _pkgset_recursive,extract,-1 -n)
 
 set-install-%: .FORCE
-	${RUN}$(call _pkgset_recursive,install)
+	${RUN}$(call _pkgset_recursive,install,-1)
 
 set-replace-%: .FORCE
-	${RUN}$(call _pkgset_recursive,replace cleaner)
+	${RUN}$(call _pkgset_recursive,replace cleaner,-1)
 
 set-update-%: .FORCE
-	${RUN}$(call _pkgset_recursive,update)
+	${RUN}$(call _pkgset_recursive,update,-1)
 
 set-deinstall-%: .FORCE
 	${RUN}$(call _pkgset_recursive,deinstall,-r)
@@ -65,6 +65,17 @@ override define _pkgset_recursive
 		$(call quote,${PKGSET.$*})				\
 	| while IFS=: read dir pkg; do					\
 	  if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;	\
+	  if ${TEST} "$$dir" = "***"; then				\
+	    ${ERROR_MSG} "${hline}";					\
+	    ${ERROR_MSG} "$${bf}Cannot $1 for $*:$${rm}";		\
+	    ${ERROR_MSG} "$$pkg";					\
+	    while IFS=: read dir pkg; do				\
+	      if ${TEST} "$$dir" != "***"; then continue; fi;		\
+	      ${ERROR_MSG} "$$pkg";					\
+	    done;							\
+	    ${ERROR_MSG} ${hline};					\
+	    exit 2;							\
+	  fi;								\
 	  if cd ${ROBOTPKG_DIR}/$$dir 2>/dev/null; then			\
 	    ${RECURSIVE_MAKE} $1 $(filter confirm,${MAKECMDGOALS})	\
 		  PKGREQD="$$pkg" || {					\

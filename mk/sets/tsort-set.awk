@@ -35,6 +35,7 @@ BEGIN {
     sort = 1
     strict = 0
     pathonly = 0
+    noconflict = 0
     interactive = 0
     troot = "ø"
 
@@ -44,6 +45,9 @@ BEGIN {
 	if (option == "--") {
 	    ARGSTART++
 	    break
+	} else if (option == "-1") {
+	    noconflict = 1
+	    ARGSTART++
 	} else if (option == "-r") {
 	    order = -1
 	    ARGSTART++
@@ -129,7 +133,7 @@ BEGIN {
 #
 function usage() {
     print "usage: " ARGV[0]						\
-	" [-- [-r] [-s] [-n] [-p] [-i] [-d robotpkgdir]] [pkgpath ...]" \
+	" [-- [-1] [-r] [-s] [-n] [-p] [-i] [-d robotpkgdir]] [pkgpath ...]" \
         > "/dev/stderr"
 }
 
@@ -149,7 +153,7 @@ function depgraph(		deps, d) {
             for(d in deps) pkgpush(pkg, d)
 	}
 
-        if (!sort) xprint(pkg)
+        if (!sort) xprintpkg(pkg)
         done[pkg]
         stackdone++
     }
@@ -253,7 +257,7 @@ function pkgpush(pkg, dep, uniquep, n,		i, k, r, depdir, deppat,
                 done[depdir ":" rdep]
                 stackdone++
             }
-            if (!sort) xprint(depdir ":" rdep)
+            if (!sort) xprintpkg(depdir ":" rdep)
             for(i in r) pkgpush(depdir ":" rdep, i)
         }
         return
@@ -263,6 +267,17 @@ function pkgpush(pkg, dep, uniquep, n,		i, k, r, depdir, deppat,
     pkgreqd[depdir,++pkgreqd[depdir]] = deppat
     stack[++stack[0]] = dep
     stacktodo++
+
+    if (noconflict && pkgreqd[depdir] > 1) {
+        for (i=1; i<pkgreqd[depdir]; i++) {
+            q = gensub(/~[^~]*$/,"", 1, deppat)
+            if (gensub(/~[^~]*$/,"", 1, pkgreqd[depdir,i]) == q) {
+                xprint("***:" pkgreqd[depdir,i] " is incompatible with " deppat)
+                if (pkg != troot) xprint("***:" deppat " is required by " pkg)
+                exit 2
+            }
+        }
+    }
 }
 
 
@@ -387,7 +402,7 @@ function xpkgs(patterns, path,		pattern, deps, xopts, wopts,
                 done[path ":" pattern]
                 stackdone++
             }
-            if (!sort) xprint(path ":" pattern)
+            if (!sort) xprintpkg(path ":" pattern)
             for(d in deps) pkgpush(path ":" pattern, d)
         }
         return
@@ -413,7 +428,7 @@ function xpkgs(patterns, path,		pattern, deps, xopts, wopts,
         if (pmatch(p, q, wopts)) {
             done[path ":" p]
             stackdone++
-            if (!sort) xprint(path ":" p)
+            if (!sort) xprintpkg(path ":" p)
             for(d in deps) pkgpush(path ":" p, d)
         }
 
@@ -471,6 +486,12 @@ function xprint(msg) {
     if (xlogged > 0) print ":" el cuu
     print msg
     xlogged = 0
+}
+
+function xprintpkg(pkg,		dir) {
+    dir = dir(pkg)
+    if (!strict || (dir,troot) in graph || (troot,dir) in graph)
+        xprint(pkg)
 }
 
 function xlog(msg) {
