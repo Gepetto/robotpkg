@@ -2,10 +2,11 @@
 # Created:			Anthony Mallet on Tue, 17 Jun 2008
 #
 
-DISTNAME=		sickLib-${VERSION}
-VERSION=		1.0.1
+PKGNAME=		sickLib-${VERSION}
+DISTNAME=		sicklib-${VERSION}
+VERSION=		1.1.0
 CATEGORIES=		hardware
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sick/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/sick-libs
 
 MAINTAINER=		openrobots@laas.fr

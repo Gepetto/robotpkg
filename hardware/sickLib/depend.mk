@@ -14,7 +14,7 @@ PREFER.sickLib?=	robotpkg
 
 DEPEND_USE+=		sickLib
 
-DEPEND_ABI.sickLib?=	sickLib>=1.0.1
+DEPEND_ABI.sickLib?=	sickLib>=1.0.99
 DEPEND_DIR.sickLib?=	../../hardware/sickLib
 
 SYSTEM_SEARCH.sickLib=\

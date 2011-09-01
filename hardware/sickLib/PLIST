@@ -4,10 +4,9 @@ include/sicklib/sick_lib.h
 include/sicklib/sick_lib_local_str.h
 include/sicklib/sick_lib_modes.h
 include/sicklib/sick_lib_proto.h
-include/sicklib/sick_lib_sproto.h
 include/sicklib/sick_lib_trams.h
 include/sicklib/sick_lib_transition.h
-lib/libsickLib.la
+lib/libsick.la
 lib/pkgconfig/sicklib.pc
 @dirrm lib/pkgconfig
 @dirrm lib
