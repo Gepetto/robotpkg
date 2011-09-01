@@ -125,7 +125,8 @@ override define combiname-alt # (alternative list, options)
 $(strip $(if $1,							\
     $(foreach _,${PREFER_ALTERNATIVE.$(word 1,$1)},			\
       $(call combiname-alt,$(call cdr,$1),$2,$3 $(word 1,$1):=$_)),	\
-  $(foreach _,$3,$(eval PKG_ALTERNATIVE.$_))$(eval PKG_OPTIONS:=$2)	\
+  $(foreach _,$3,$(eval override PKG_ALTERNATIVE.$_))			\
+  $(eval PKG_OPTIONS:=$2)						\
   ${PKGNAME}))
 endef
 
