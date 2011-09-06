@@ -100,7 +100,7 @@ function pmatch(target, pkg, strict,	a, t, r, version, pattern, cur, ver, m,
 #
 function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
 				maxop, ne, cur, r, s, opts, nopts, sopts,
-				pattern, alt)
+				pattern, alt, pat)
 {
     # alternatives first
     for(a in targets) {
@@ -146,9 +146,9 @@ function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
 	    targets[a] = pextract(pattern, targets[a])
 	    if (pattern[1]) r = pattern[1]
 	    k = name[r]++
-	    p[r,"t",k] = pattern[2]
-	    p[r,"v",k] = pattern[3]
-	    if (4 in pattern) p[r,"o",k] = pattern[4]
+	    pat[r,"t",k] = pattern[2]
+	    pat[r,"v",k] = pattern[3]
+	    if (4 in pattern) pat[r,"o",k] = pattern[4]
 	}
     }
 
@@ -158,9 +158,9 @@ function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
             t = r ? glob2ere(r) : ""
             if (a ~ t) {
                 for(k=0; k<name[r]; k++) {
-                    p[a,"t",k+name[a]] = p[r,"t",k]
-                    p[a,"v",k+name[a]] = p[r,"v",k]
-                    if ((r,"o",k) in p) p[a,"o",k+name[a]] = p[r,"o",k]
+                    pat[a,"t",k+name[a]] = pat[r,"t",k]
+                    pat[a,"v",k+name[a]] = pat[r,"v",k]
+                    if ((r,"o",k) in pat) pat[a,"o",k+name[a]] = pat[r,"o",k]
                 }
                 name[a] += name[r]
                 delete name[r]
@@ -174,15 +174,15 @@ function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
         split("", opts); split("", nopts);
 
 	for(k=0; k<name[a]; k++) {
-	    t = tests[p[a,"t",k]]
+	    t = tests[pat[a,"t",k]]
 
             # options
-            if ((a,"o",k) in p)
-                if (!mergeoptions(opts, nopts, p[a,"o",k]))
+            if ((a,"o",k) in pat)
+                if (!mergeoptions(opts, nopts, pat[a,"o",k]))
                     return ""
 
             # version
-	    mkversion(cur, p[a,"v",k])
+	    mkversion(cur, pat[a,"v",k])
 
 	    if (t == DEWEY_LT || t == DEWEY_LE || t == DEWEY_EQ) {
 		if (!maxop || vtest(cur, maxop, max)) {

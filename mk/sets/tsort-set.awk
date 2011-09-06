@@ -106,14 +106,14 @@ BEGIN {
 
     # expand paths
     for(i=1; i<=cmdline[0]; i++)
-        xpaths(dirs, dir(cmdline[i]), ".")
+        xpaths(dirs, pdir(cmdline[i]), ".")
 
     # expand pkgs and options
     for(d in dirs) {
         split("", patterns)
         for(i=1; i<=cmdline[0]; i++) # filter patterns for d, keep order
-            if (d ~ glob2ere(dir(cmdline[i]))) {
-                patterns[++patterns[0]] = notdir(cmdline[i])
+            if (d ~ glob2ere(pdir(cmdline[i]))) {
+                patterns[++patterns[0]] = notpdir(cmdline[i])
             }
         if (patterns[0] < 1) continue
         xpkgs(patterns, d)
@@ -148,7 +148,8 @@ function depgraph(		deps, d) {
         delete stack[stack[0]--]
 	if (pkg in done) continue
 
-	if (!strict || (dir(pkg),troot) in graph || (troot,dir(pkg)) in graph) {
+	if (!strict ||
+            (pdir(pkg),troot) in graph || (troot,pdir(pkg)) in graph) {
             pkginfos(pkg, deps)
             for(d in deps) pkgpush(pkg, d)
 	}
@@ -209,13 +210,13 @@ function pkgtsort(	k, todo, dir) {
 # elements from the expansion are already unique)
 #
 function pkgpush(pkg, dep, uniquep, n,		i, k, r, depdir, deppat,
-						pkgdir, q, rdep) {
-    pkgdir = dir(pkg)
+						pkgdir, p, q, rdep) {
+    pkgdir = pdir(pkg)
     if ((pkgdir,dep) in donedep) return
     donedep[pkgdir,dep]
 
-    depdir = dir(dep)
-    deppat = notdir(dep)
+    depdir = pdir(dep)
+    deppat = notpdir(dep)
 
     # add edge/children count in dependency graph
     if (order > 0) graphadd(pkgdir, depdir); else graphadd(depdir, pkgdir)
@@ -269,9 +270,12 @@ function pkgpush(pkg, dep, uniquep, n,		i, k, r, depdir, deppat,
     stacktodo++
 
     if (noconflict && pkgreqd[depdir] > 1) {
+        q = deppat
+        gsub(/~[^~]*$/,"", q)
         for (i=1; i<pkgreqd[depdir]; i++) {
-            q = gensub(/~[^~]*$/,"", 1, deppat)
-            if (gensub(/~[^~]*$/,"", 1, pkgreqd[depdir,i]) == q) {
+            p = pkgreqd[depdir,i]
+            gsub(/~[^~]*$/,"", p)
+            if (p == q) {
                 xprint("***:" pkgreqd[depdir,i] " is incompatible with " deppat)
                 if (pkg != troot) xprint("***:" deppat " is required by " pkg)
                 exit 2
@@ -317,11 +321,11 @@ function graphdel(dir,	i, plist) {
 #
 function pkginfos(pkg, deps, pkgnamep,		cmd, dir, i, l) {
     split("", deps)
-    dir = dir(pkg)
+    dir = pdir(pkg)
 
     xlog("Scanning " pkg)
 
-    cmd = "cd " ROBOTPKG_DIR "/" dir "&&" MAKE " PKGREQD='" notdir(pkg) "'"
+    cmd = "cd " ROBOTPKG_DIR "/" dir "&&" MAKE " PKGREQD='" notpdir(pkg) "'"
     if (pkgnamep) cmd = cmd  " print-var VARNAME=PKGNAME"
     if (!(dir in pkgnames)) cmd = cmd  " print-pkgnames"
     cmd = cmd " print-depends-pkgpaths 2>&1"
@@ -466,12 +470,12 @@ function pkgexists(path,		d) {
     return ((getline d < (ROBOTPKG_DIR "/" path "/Makefile")) <0) ? 0 : 1
 }
 
-function dir(pkg,		i) {
+function pdir(pkg,		i) {
     i = index(pkg, ":")
     return i ? substr(pkg, 1, i-1) : pkg
 }
 
-function notdir(pkg,		i) {
+function notpdir(pkg,		i) {
     i = index(pkg, ":")
     return i ? substr(pkg, i+1) : ""
 }
@@ -489,7 +493,7 @@ function xprint(msg) {
 }
 
 function xprintpkg(pkg,		dir) {
-    dir = dir(pkg)
+    dir = pdir(pkg)
     if (!strict || (dir,troot) in graph || (troot,dir) in graph)
         xprint(pkg)
 }
