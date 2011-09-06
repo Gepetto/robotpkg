@@ -229,7 +229,7 @@ ${_UPDATE_LIST}:
 	    fi;								\
 	    ${ECHO} "$$dir:$$pkg" >>$@;					\
 	  done;								\
-	  ${TEST} -s $@ || exit 2;					\
+	  ${TEST} -s $@ || { ${RM} $@; exit 2; }			\
 	else								\
 	  ${ECHO} '${PKGPATH}:${PKGREQD}' >>$@;				\
 	fi
