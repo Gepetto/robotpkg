@@ -1,0 +1,20 @@
+@comment Mon Sep 19 23:00:16 CEST 2011
+etc/rbulk.conf
+sbin/rbulk-cron
+sbin/rbulk-report
+share/examples/rbulkit/rbulk.conf
+share/rbulkit/db2html.tcl
+share/rbulkit/html/all.html
+share/rbulkit/html/broken.html
+share/rbulkit/html/categories.html
+share/rbulkit/html/category.html
+share/rbulkit/html/index.html
+share/rbulkit/html/log.html
+share/rbulkit/html/notavail.html
+share/rbulkit/html/pkg-post.html
+share/rbulkit/html/pkg-pre.html
+share/rbulkit/html/pkg.html
+share/rbulkit/html/rbulk.css
+share/rbulkit/log2db.tcl
+share/rbulkit/main.tcl
+share/rbulkit/pkgIndex.tcl

@@ -10,6 +10,7 @@ SUBDIR+=	libtool
 SUBDIR+=	pax
 SUBDIR+=	pkg-config
 SUBDIR+=	pkg_install
+SUBDIR+=	rbulkit
 SUBDIR+=	robotpkg_chk
 SUBDIR+=	robotpkgdb
 SUBDIR+=	tnftp
