@@ -38,6 +38,7 @@
 #
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
+_PACKAGE_TARGETS+=	$(call add-barrier,bootstrap-depends,package tarup)
 _PACKAGE_TARGETS+=	acquire-package-lock
 _PACKAGE_TARGETS+=	real-package
 _PACKAGE_TARGETS+=	release-package-lock
