@@ -54,6 +54,8 @@ include ../../net/libfetch/depend.mk
 do-extract:
 	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
+DEPEND_METHOD.pax+=	bootstrap
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
 
 # We use the newly built robotpkg_{add,create,delete} when upgrading
@@ -112,3 +114,32 @@ ifneq (robotpkg,${PREFER.pkg_install})
 	  ${PKG_DELETE} -ff '${PKGWILDCARD}';				\
 	fi
 endif
+
+# Generate a bootstrap kit as a plain .tar.gz
+post-package:
+	@${PHASE_MSG} "Generating bootstrap archive"
+	${RUN} tmpdb=${WRKDIR}/.bootstrap-dbdir;			\
+	{								\
+	  prefix="${PREFIX}";						\
+	  ${PKG_INFO} -qf '${PKGWILDCARD}' | while read f; do		\
+	    case $$f in							\
+	      @cwd*)	set -- $$f; shift; prefix="$$@";;		\
+	      @ignore*)	read f;;					\
+	      @*) ;;							\
+	      *)	${ECHO} "$$prefix/$$f";;			\
+	    esac;							\
+	  done;								\
+									\
+	  ${RM} -rf "$$tmpdb" && ${MKDIR} "$$tmpdb";			\
+	  for pkg in '${PKGWILDCARD}'; do				\
+	    p=`${PKG_ADMIN} -S lsbest "${PKG_DBDIR}/$$pkg"`;		\
+	    ${LN} -s "$$p" "$$tmpdb/$${p##*/}";				\
+	    ${PKG_ADMIN_CMD} -K "$$tmpdb" add "$${p##*/}";		\
+	  done;								\
+	  ${FIND} -L $$tmpdb -type f;					\
+	  ${FIND} ${PREFIX} -path ${MAKECONF};				\
+	} |								\
+	${PAX} -w -z -x ustar						\
+		-s "@^$$tmpdb@$(patsubst /%,%,${PKG_DBDIR})@" -s @^/@@	\
+		-f ${PACKAGES}/bootstrap.tar.gz;			\
+	${ECHO_MSG} "Created ${PACKAGES}/bootstrap.tar.gz"
