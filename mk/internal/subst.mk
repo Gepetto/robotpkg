@@ -1,4 +1,4 @@
-# $LAAS: subst.mk 2011/02/28 18:54:21 mallet $
+# $LAAS: subst.mk 2011/09/09 13:19:34 mallet $
 #
 # Copyright (c) 2006,2008,2011 LAAS/CNRS
 # All rights reserved.
@@ -89,9 +89,9 @@ _SUBST_IS_TEXT_FILE?= \
 _SUBST_BACKUP_SUFFIX=	.subst.sav
 
 override define _subst_vars
-  _SUBST_COOKIE.${1}=		${WRKDIR}/.subst_${1}_done
-  SUBST_FILTER_CMD.${1}?=	${SED} ${SUBST_SED.${1}}
-  SUBST_POSTCMD.${1}?=		${RM} -f "$$$$tmpfile"
+  _SUBST_COOKIE.${1}=		$${WRKDIR}/.subst_${1}_done
+  SUBST_FILTER_CMD.${1}?=	$${SED} $${SUBST_SED.${1}}
+  SUBST_POSTCMD.${1}?=		$${RM} -f "$$$$tmpfile"
 endef
 $(foreach _c_,${SUBST_CLASSES},$(eval $(call _subst_vars,${_c_})))
 
