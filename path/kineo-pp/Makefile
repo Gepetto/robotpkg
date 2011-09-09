@@ -41,6 +41,7 @@ FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 NO_BUILD=		yes
 INSTALLATION_DIRS=\
 	bin				\
+	lib/pkgconfig			\
 	${KINEO_DIR}/bin		\
 	${KINEO_DIR}/include		\
 	${KINEO_DIR}/lib/modules	\
