@@ -13,6 +13,7 @@ HOMEPAGE=		http://www.is.aist.go.jp/rt/OpenRTM-aist/html-en/FrontPage.html
 COMMENT=		Open Robot Technology Middleware from AIST.
 LICENSE=		gnu-lgpl-v2.1
 
+MAKE_JOBS_SAFE=		no
 USE_LANGUAGES+=		c c++
 
 WRKSRC=			${WRKDIR}/${DISTNAME:-RELEASE=}
