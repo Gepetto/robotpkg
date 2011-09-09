@@ -15,6 +15,7 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Corba interface with hppCore package.
 LICENSE=	cnrs-hpp-closed-source
 
+MAKE_JOBS_SAFE= no
 USE_LANGUAGES+=	c c++
 
 GNU_CONFIGURE=	yes
