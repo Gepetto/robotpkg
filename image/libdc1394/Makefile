@@ -16,7 +16,7 @@ ONLY_FOR_PLATFORM=	Linux-% Darwin-%-i386
 GNU_CONFIGURE=		yes
 
 include ../../mk/robotpkg.prefs.mk
-ifeq (Linux,${OPSYS})
+ifeq (Linux,${OS_KERNEL})
   include ../../image/libraw1394/depend.mk
 endif
 include ../../pkgtools/libtool/depend.mk

@@ -14,7 +14,7 @@ LICENSE=	isc
 ONLY_FOR_PLATFORM=	Linux-%
 
 BUILD_TARGET=	default
-KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/char
+KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char
 KMOD=		contec_dio.ko
 INSTALLATION_DIRS+=${KMOD_DIR}
 

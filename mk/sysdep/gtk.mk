@@ -34,8 +34,8 @@ SYSTEM_SEARCH.gtk=	\
 	'lib/pkgconfig/gtk+-2.0.pc:/Version/s/[^.0-9]//gp'
 
 SYSTEM_PKG.Linux-fedore.gtk=	gtk2-devel
-SYSTEM_PKG.Linux-ubuntu.gtk=	libgtk2.0-dev
-SYSTEM_PKG.Linux-debian.gtk=	libgtk2.0-dev
+SYSTEM_PKG.Ubuntu.gtk=	libgtk2.0-dev
+SYSTEM_PKG.Debian.gtk=	libgtk2.0-dev
 SYSTEM_PKG.NetBSD.gtk=		x11/gtk2
 
 endif # GTK_DEPEND_MK ------------------------------------------------------

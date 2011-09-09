@@ -31,7 +31,7 @@ DEPEND_ABI.bibtex?=	bibtex>=0.99
 SYSTEM_SEARCH.bibtex=	\
 	'{bin/,}bibtex:/BibTeX/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
 
-SYSTEM_PKG.Linux-fedora.bibtex=texlive
+SYSTEM_PKG.Fedora.bibtex=texlive
 
 export BIBTEX=	$(word 1,${SYSTEM_FILES.bibtex})
 

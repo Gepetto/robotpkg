@@ -105,8 +105,7 @@ show-depends:
 	  }								\
 	  /^print-depends\|system/ {					\
 	    if ($$4 == "-") {						\
-		s[$$3] = bf "missing - install $(strip			\
-		  $(or ${OPSUBSYS},${OPSYS})) package";			\
+		s[$$3] = bf "missing - install ${OPSYS} package";	\
 	        for(i=5; i<=NF; i++) s[$$3] = s[$$3] " " $$i;		\
 		s[$$3] = s[$$3] rm;					\
 	    } else {							\

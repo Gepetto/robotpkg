@@ -25,9 +25,9 @@ _xerces_version_sed=\
 _xerces_version_sed+=\
  $${x;s/\n/./g;s/^.//;p;}
 
-SYSTEM_PKG.Linux-fedora.xerces-c=	xerces-c-devel
-SYSTEM_PKG.Linux-ubuntu.xerces-c=	libxerces-c-dev
-SYSTEM_PKG.Linux-debian.xerces-c=	libxerces-c-dev
+SYSTEM_PKG.Fedora.xerces-c=	xerces-c-devel
+SYSTEM_PKG.Ubuntu.xerces-c=	libxerces-c-dev
+SYSTEM_PKG.Debian.xerces-c=	libxerces-c-dev
 SYSTEM_PKG.NetBSD.xerces-c=		pkgsrc/textproc/xerces-c
 
 endif # XERCES_C_DEPEND_MK -------------------------------------------------

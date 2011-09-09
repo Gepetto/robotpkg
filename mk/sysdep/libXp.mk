@@ -19,9 +19,9 @@ SYSTEM_SEARCH.libXp=	\
 	lib/libXp.so			\
 	'lib/pkgconfig/xp.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Linux-fedora.libXp=libXp-devel
-SYSTEM_PKG.Linux-ubuntu.libXp=libxp-dev
-SYSTEM_PKG.Linux-debian.libXp=libxp-dev
+SYSTEM_PKG.Fedora.libXp=libXp-devel
+SYSTEM_PKG.Ubuntu.libXp=libxp-dev
+SYSTEM_PKG.Debian.libXp=libxp-dev
 
 endif # LIBXMU_DEPEND_MK ---------------------------------------------------
 

@@ -77,51 +77,32 @@ endif
 # Compute platform variables. Later, recursed make invocations will skip these
 # blocks entirely
 #
-ifndef OPSYS
-  export OPSYS:=	$(subst /,,$(shell ${UNAME} -s))
-  export LOWER_OPSYS:=	$(call tolower,${OPSYS})
-  _ENV_VARS+=		OPSYS LOWER_OPSYS
+ifndef MACHINE_PLATFORM
+  _uname:=$(shell UNAME=${UNAME} ${SHELL} ${ROBOTPKG_DIR}/mk/platform/opsys.sh)
+  _kernel:=$(shell ${UNAME} -srn)
 
-  ifeq (linux,${LOWER_OPSYS})
-    _rfile:=$(firstword $(wildcard /etc/*release /etc/*version))
-    ifneq (,${_rfile})
-      OPSUBSYS:=$(call tolower,${_rfile} $(shell cat <${_rfile}))
-      OPSUBSYS:=$(or					\
-	$(findstring fedora,${OPSUBSYS}),		\
-	$(findstring ubuntu,${OPSUBSYS}),		\
-	$(findstring debian,${OPSUBSYS}),		\
-        unknown)
-    else
-      OPSUBSYS:=unknown
-    endif
-  else
-      OPSUBSYS:=${LOWER_OPSYS}
-  endif
-  export OPSUBSYS
-  _ENV_VARS+=	OPSUBSYS
-endif
+  export OPSYS:=		$(word 1,${_uname})
+  export LOWER_OPSYS:=		$(call tolower,${OPSYS})
+  _ENV_VARS+=			OPSYS LOWER_OPSYS
 
-ifndef OS_VERSION
-  export OS_VERSION:=		$(shell ${UNAME} -r)
+  export OS_VERSION:=		$(word 2,${_uname})
   export LOWER_OS_VERSION:=	$(call tolower,${OS_VERSION})
   _ENV_VARS+=			LOWER_OS_VERSION OS_VERSION
-endif
 
-ifndef MACHINE_ARCH
-  export LOWER_ARCH:=		$(strip $(call substs,	\
-				i486 i586 i686 ppc,	\
-				i386 i386 i386 powerpc,	\
-				$(shell ${UNAME} -m)))
-  export MACHINE_ARCH:=		${LOWER_ARCH}
-  _ENV_VARS+=			LOWER_ARCH MACHINE_ARCH
-endif
+  export MACHINE_ARCH:=		$(word 3,${_uname})
+  export LOWER_ARCH:=		${LOWER_ARCH}
+  _ENV_VARS+=			MACHINE_ARCH LOWER_ARCH
 
-ifndef NODENAME
-  export NODENAME:=		$(shell ${UNAME} -n)
+  export OS_KERNEL:=		$(word 1,${_kernel})
+  export OS_KERNEL_VERSION:=	$(word 3,${_kernel})
+  _ENV_VARS+=			OS_KERNEL OS_KERNEL_VERSION
+
+  export NODENAME:=		$(word 2,${_kernel})
   _ENV_VARS+=			NODENAME
-endif
 
-MACHINE_PLATFORM?=	${OPSYS}-${OS_VERSION}-${MACHINE_ARCH}
+  MACHINE_PLATFORM?=	${OPSYS}-${OS_VERSION}-${MACHINE_ARCH}
+  MACHINE_KERNEL?=	${OS_KERNEL}-${OS_KERNEL_VERSION}-${MACHINE_ARCH}
+endif # MACHINE_PLATFORM
 
 
 # load the OS-specific definitions for program variables.

@@ -18,9 +18,9 @@ SYSTEM_SEARCH.pax=	\
 	'{,s}bin/{,robotpkg_}tar'
 
 SYSTEM_DESCR.pax?=	pax and tar archivers
-SYSTEM_PKG.Linux-fedora.pax=	pax tar
-SYSTEM_PKG.Linux-ubuntu.pax=	pax tar
-SYSTEM_PKG.Linux-debian.pax=	pax tar
+SYSTEM_PKG.Fedora.pax=	pax tar
+SYSTEM_PKG.Ubuntu.pax=	pax tar
+SYSTEM_PKG.Debian.pax=	pax tar
 
 DEPEND_USE+=		pax
 

@@ -12,9 +12,9 @@ endif
 ifeq (+,$(BZIP2_DEPEND_MK))
 PREFER.bzip2?=		system
 
-SYSTEM_PKG.Linux-fedora.bzip2=	bzip2-devel
-SYSTEM_PKG.Linux-ubuntu.bzip2=	libbz2-dev
-SYSTEM_PKG.Linux-debian.bzip2=	bzip2 libbz2-dev
+SYSTEM_PKG.Fedora.bzip2=	bzip2-devel
+SYSTEM_PKG.Ubuntu.bzip2=	libbz2-dev
+SYSTEM_PKG.Debian.bzip2=	bzip2 libbz2-dev
 
 SYSTEM_SEARCH.bzip2=	\
 	bin/bzip2	\

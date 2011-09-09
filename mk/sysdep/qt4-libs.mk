@@ -20,9 +20,9 @@ SYSTEM_SEARCH.qt4-libs=\
 	'{,share/qt4/}lib/libQtCore.{a,so}'	\
 	'lib/pkgconfig/QtCore.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Linux-fedora.qt4-libs=	qt-devel
-SYSTEM_PKG.Linux-ubuntu.qt4-libs=	libqt4-dev
-SYSTEM_PKG.Linux-debian.qt4-libs=	libqt4-dev
+SYSTEM_PKG.Fedora.qt4-libs=	qt-devel
+SYSTEM_PKG.Ubuntu.qt4-libs=	libqt4-dev
+SYSTEM_PKG.Debian.qt4-libs=	libqt4-dev
 SYSTEM_PKG.NetBSD.qt4-libs=		pkgsrc/x11/qt4-libs pkgsrc/x11/qt4-tools
 
 endif # QT4_LIBS_DEPEND_MK -------------------------------------------------

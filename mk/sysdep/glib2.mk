@@ -28,7 +28,7 @@ PREFER.glib2?=		system
 DEPEND_USE+=		glib2
 DEPEND_ABI.glib2?=	glib2>=2.20
 
-SYSTEM_PKG.Linux-fedora.glib2=	glib2-devel
+SYSTEM_PKG.Fedora.glib2=	glib2-devel
 SYSTEM_PKG.NetBSD.glib2=	pkgsrc/devel/glib2
 
 SYSTEM_SEARCH.glib2=	\

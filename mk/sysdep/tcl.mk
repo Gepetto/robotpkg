@@ -35,9 +35,9 @@ SYSTEM_SEARCH.tcl=	\
 	'lib/{,tcl{,[0-9]*}/}tclConfig.sh:/TCL_VERSION/s/[^.0-9]//gp'	\
 	'include/{,tcl{,[0-9]*}/}tcl.h:/TCL_VERSION/s/[^.0-9]//gp'
 
-SYSTEM_PKG.Linux-fedora.tcl=	tcl-devel
-SYSTEM_PKG.Linux-ubuntu.tcl=	tcl-dev
-SYSTEM_PKG.Linux-debian.tcl=	tcl-dev
+SYSTEM_PKG.Fedora.tcl=	tcl-devel
+SYSTEM_PKG.Ubuntu.tcl=	tcl-dev
+SYSTEM_PKG.Debian.tcl=	tcl-dev
 
 export TCLSH=		$(word 1,${SYSTEM_FILES.tcl})
 TCL_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tcl})

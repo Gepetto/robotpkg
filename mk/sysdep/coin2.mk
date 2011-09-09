@@ -35,9 +35,9 @@ SYSTEM_SEARCH.coin2=	\
  'include/{,Coin2}/Inventor/C/basic.h:/COIN_VERSION.*"/s/[^.0-9]//gp'	\
  'lib/libCoin.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.coin2=	Coin2-devel
-SYSTEM_PKG.Linux-ubuntu.coin2=	libcoin20-dev
-SYSTEM_PKG.Linux-debian.coin2=	libcoin20-dev
+SYSTEM_PKG.Fedora.coin2=	Coin2-devel
+SYSTEM_PKG.Ubuntu.coin2=	libcoin20-dev
+SYSTEM_PKG.Debian.coin2=	libcoin20-dev
 SYSTEM_PKG.NetBSD.coin2=	pkgsrc/graphics/Coin
 
 endif # COIN2_DEPEND_MK --------------------------------------------------

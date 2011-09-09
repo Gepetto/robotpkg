@@ -14,11 +14,11 @@ LICENSE=		2-clause-bsd
 
 NOT_FOR_PLATFORM=
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	$(if $(filter Darwin,${OPSYS}),--disable-threads)
+CONFIGURE_ARGS+=	$(if $(filter MacOSX,${OPSYS}),--disable-threads)
 
 # options
 PKG_SUPPORTED_OPTIONS+=	calife sse
-PKG_SUPPORTED_OPTIONS+= $(if $(filter-out Darwin,${OPSYS}),pthread)
+PKG_SUPPORTED_OPTIONS+= $(if $(filter-out MacOSX,${OPSYS}),pthread)
 
 PKG_OPTION_DESCR.sse=	 	Enable sse optimization
 PKG_OPTION_SET.sse=		CONFIGURE_ARGS+=--enable-sse

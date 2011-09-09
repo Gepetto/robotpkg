@@ -30,9 +30,9 @@ PREFER.openssl?=	system
 DEPEND_USE+=		openssl
 DEPEND_ABI.openssl?=	openssl>=0.9.6
 
-SYSTEM_PKG.Linux-fedora.openssl=	openssl-devel
-SYSTEM_PKG.Linux-ubuntu.openssl=	libssl-dev
-SYSTEM_PKG.Linux-debian.openssl=	libssl-dev
+SYSTEM_PKG.Fedora.openssl=	openssl-devel
+SYSTEM_PKG.Ubuntu.openssl=	libssl-dev
+SYSTEM_PKG.Debian.openssl=	libssl-dev
 SYSTEM_PKG.NetBSD.openssl=         	pkgsrc/security/openssl
 
 _vregex:=s/^.*OpenSSL[ ]*//;s/[ -].*$$//;p

@@ -13,9 +13,9 @@ ifeq (+,$(LIBTOOL_DEPEND_MK)) # --------------------------------------
 
 PREFER.libtool?=	system
 
-# on Darwin, libtool is glibtool. Need to pull-in preferences for OPSYS.
+# on MacOSX, libtool is glibtool. Need to pull-in preferences for OPSYS.
 include ../../mk/robotpkg.prefs.mk
-ifeq (Darwin,${OPSYS})
+ifeq (MacOSX,${OPSYS})
   _libtool=glibtool
 else
   _libtool=libtool

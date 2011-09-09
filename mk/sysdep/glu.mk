@@ -35,9 +35,9 @@ SYSTEM_SEARCH.glu=	\
 	'include/GL/glu.h'						\
 	'lib/libGLU.*'
 
-SYSTEM_PKG.Linux-fedora.glu=	mesa-libGLU-devel
-SYSTEM_PKG.Linux-ubuntu.glu=	libglu1-mesa-dev
-SYSTEM_PKG.Linux-debian.glu=	libglu1-mesa-dev
+SYSTEM_PKG.Fedora.glu=	mesa-libGLU-devel
+SYSTEM_PKG.Ubuntu.glu=	libglu1-mesa-dev
+SYSTEM_PKG.Debian.glu=	libglu1-mesa-dev
 SYSTEM_PKG.NetBSD.glu=		pkgsrc/graphics/glu
 
 endif # GLU_DEPEND_MK ------------------------------------------------------

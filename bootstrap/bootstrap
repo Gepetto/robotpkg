@@ -61,8 +61,6 @@ usage="Usage: $0 "'
     [ --syslibsuffix <libsuffix> ]
     [ --help ]'
 
-opsys=`uname -s | tr -d /`
-
 die()
 {
 	echo >&2 "$@"
@@ -139,7 +137,7 @@ pkgdbdir=
 mandir=
 sysconfdir=
 compiler=""
-gmake=make
+gmake=
 syslibsuffix=
 
 while [ $# -gt 0 ]; do
@@ -175,31 +173,23 @@ done
 [ -z "$mandir" ] && mandir=${prefix}/man
 [ -z "$sysconfdir" ] && sysconfdir=${prefix}/etc
 
-case "$opsys" in
-Darwin)
-	machine_arch=`uname -p`
-	;;
-Linux)
-	machine_arch=`uname -m | sed -e 's/i.86/i386/' -e 's/ppc/powerpc/'`
-	;;
-NetBSD)
-	gmake=gmake
-	;;
-DragonFly)
-	gmake=gmake
-	;;
-SunOS)
-	gmake=gmake
-	;;
-esac
-
-# export OPSYS and MACHINE_ARCH for pkg_install. we only set
-# MACHINE_ARCH on platforms where we override bmake's value.
-OPSYS=${opsys}
+# export OPSYS and MACHINE_ARCH for pkg_install
+read OPSYS OS_RELEASE MACHINE_ARCH <<EOF
+`sh $pkgsrcdir/mk/platform/opsys.sh`
+EOF
 export OPSYS
-if [ "${machine_arch}" != "" ]; then
-	MACHINE_ARCH=${machine_arch}
-	export MACHINE_ARCH
+export MACHINE_ARCH
+
+# set programs
+if [ -z "$gmake" ]; then
+    case "$OPSYS" in
+        NetBSD|DragonFly|SunOS|Solaris)
+	    gmake=gmake
+	    ;;
+        *)
+            gmake=make
+            ;;
+    esac
 fi
 
 if [ -n "$SH" ]; then

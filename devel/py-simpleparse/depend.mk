@@ -18,7 +18,7 @@ DEPEND_USE+=			py-simpleparse
 DEPEND_ABI.py-simpleparse?=	py-simpleparse>=2.1.1
 DEPEND_DIR.py-simpleparse?=	../../devel/py-simpleparse
 
-SYSTEM_PKG.Linux-ubuntu.py-simpleparse=	py-simpleparse
+SYSTEM_PKG.Ubuntu.py-simpleparse=	py-simpleparse
 
 _pynamespec=python{2.6,2.5,2.4,[0-9].[0-9],}
 SYSTEM_SEARCH.py-simpleparse=\

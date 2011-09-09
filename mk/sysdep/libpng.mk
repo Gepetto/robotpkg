@@ -36,9 +36,9 @@ SYSTEM_SEARCH.libpng=	\
 	'lib/pkgconfig/libpng.pc:/Version/s/[^.0-9]//gp'	\
 	'lib/libpng{,14}.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.libpng=	libpng-devel
-SYSTEM_PKG.Linux-ubuntu.libpng=	libpng-dev
-SYSTEM_PKG.Linux-debian.libpng=	libpng-dev
+SYSTEM_PKG.Fedora.libpng=	libpng-devel
+SYSTEM_PKG.Ubuntu.libpng=	libpng-dev
+SYSTEM_PKG.Debian.libpng=	libpng-dev
 SYSTEM_PKG.NetBSD.libpng=	pkgsrc/graphics/png
 
 endif # LIBPNG_DEPEND_MK --------------------------------------------------

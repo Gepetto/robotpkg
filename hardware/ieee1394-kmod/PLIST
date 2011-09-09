@@ -1,5 +1,5 @@
 @comment Thu Sep 9 17:12:40 CEST 2010
-lib/modules/${OS_VERSION}/kernel/drivers/char/ieee1394.ko
-lib/modules/${OS_VERSION}/kernel/drivers/char/ohci1394.ko
-lib/modules/${OS_VERSION}/kernel/drivers/char/raw1394.ko
-lib/modules/${OS_VERSION}/kernel/drivers/char/video1394.ko
+lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char/ieee1394.ko
+lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char/ohci1394.ko
+lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char/raw1394.ko
+lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char/video1394.ko

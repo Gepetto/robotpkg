@@ -36,8 +36,8 @@ SYSTEM_SEARCH.tk=	\
 	'include/{,t{k,cl}{,[0-9.]*}/}tk.h:/TK_VERSION/s/[^.0-9]*//gp'
 
 SYSTEM_PKG.Linux-fedore.tk=	tk-devel
-SYSTEM_PKG.Linux-ubuntu.tk=	tk-dev
-SYSTEM_PKG.Linux-debian.tk=	tk-dev
+SYSTEM_PKG.Ubuntu.tk=	tk-dev
+SYSTEM_PKG.Debian.tk=	tk-dev
 SYSTEM_PKG.NetBSD.tk=		pkgsrc/x11/tk
 
 TK_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tk})

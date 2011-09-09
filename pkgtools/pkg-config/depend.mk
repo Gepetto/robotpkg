@@ -20,7 +20,7 @@ DEPEND_METHOD.pkg-config+=	build
 DEPEND_ABI.pkg-config?=		pkg-config>=0.22
 DEPEND_DIR.pkg-config?=		../../pkgtools/pkg-config
 
-SYSTEM_PKG.Linux-fedora.pkg-config=	pkgconfig
+SYSTEM_PKG.Fedora.pkg-config=	pkgconfig
 SYSTEM_PKG.NetBSD.pkg-config=		pkgsrc/devel/pkg-config
 
 

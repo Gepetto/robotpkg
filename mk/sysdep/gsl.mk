@@ -36,9 +36,9 @@ SYSTEM_SEARCH.gsl=	\
 	'lib/pkgconfig/gsl.pc:/Version/s/[^.0-9]//gp'			\
 	'lib/libgsl.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.gsl=	gsl-devel
-SYSTEM_PKG.Linux-ubuntu.gsl=	libgsl0-dev
-SYSTEM_PKG.Linux-debian.gsl=	libgl1-gsl-dev
+SYSTEM_PKG.Fedora.gsl=	gsl-devel
+SYSTEM_PKG.Ubuntu.gsl=	libgsl0-dev
+SYSTEM_PKG.Debian.gsl=	libgl1-gsl-dev
 SYSTEM_PKG.NetBSD.gsl=		pkgsrc/math/gsl
 
 endif # GSL_DEPEND_MK -----------------------------------------------------

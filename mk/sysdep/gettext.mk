@@ -34,7 +34,7 @@ SYSTEM_SEARCH.gettext=	\
 	'include/gettext-po.h'	\
 	'lib/libgettextlib.so'
 
-SYSTEM_PKG.Linux-fedora.tcl=	gettext-devel
+SYSTEM_PKG.Fedora.tcl=	gettext-devel
 
 endif # GETTEXT_DEPEND_MK ------------------------------------------------------
 

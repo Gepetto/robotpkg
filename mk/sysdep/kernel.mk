@@ -32,8 +32,8 @@ DEPEND_ABI.kernel?=	kernel>=2.6
 _version=${shell uname -r}
 
 
-SYSTEM_PKG.Linux-fedora.kernel=	kernel-devel-${_version}
-SYSTEM_PKG.Linux-ubuntu.kernel=	linux-headers-${_version}
+SYSTEM_PKG.Fedora.kernel=	kernel-devel-${_version}
+SYSTEM_PKG.Ubuntu.kernel=	linux-headers-${_version}
 
 SYSTEM_SEARCH.kernel=\
 	'lib/modules/${_version}/build/include/linux/version.h' \

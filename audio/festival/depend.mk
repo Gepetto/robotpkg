@@ -32,7 +32,7 @@ SYSTEM_DESCR.festival+=\
   $(if $(findstring ogireslpc,${DEPEND_ABI.festival}),\
 	with OGIreslpc synthetiser)
 
-SYSTEM_PKG.Linux-fedora.festival=	festival festival-devel
+SYSTEM_PKG.Fedora.festival=	festival festival-devel
 SYSTEM_PKG.NetBSD.festival=		pkgsrc/audio/festival
 
 endif # FESTIVAL_DEPEND_MK -------------------------------------------

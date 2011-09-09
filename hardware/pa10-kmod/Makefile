@@ -14,7 +14,7 @@ COMMENT=	Kernel driver for Mitsubishi PA10 Arm controller
 ONLY_FOR_PLATFORM=	Linux-%
 
 BUILD_TARGET=	default
-KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/char
+KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char
 KMOD=		papci.ko
 
 INSTALLATION_DIRS+=${KMOD_DIR}

@@ -14,9 +14,9 @@ ifeq (+,$(BOOST_HEADERS_DEPEND_MK)) # --------------------------------
 PREFER.boost?=		system
 PREFER.boost-headers?=	${PREFER.boost}
 
-SYSTEM_PKG.Linux-fedora.boost-headers=	boost-devel
-SYSTEM_PKG.Linux-ubuntu.boost-headers=	libboost-dev
-SYSTEM_PKG.Linux-debian.boost-headers=	libboost-dev
+SYSTEM_PKG.Fedora.boost-headers=	boost-devel
+SYSTEM_PKG.Ubuntu.boost-headers=	libboost-dev
+SYSTEM_PKG.Debian.boost-headers=	libboost-dev
 SYSTEM_PKG.NetBSD.boost-headers=	pkgsrc/devel/boost-headers
 
 SYSTEM_SEARCH.boost-headers=\

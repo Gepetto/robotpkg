@@ -22,9 +22,9 @@ SYSTEM_SEARCH.freetype2=\
 	'lib/libfreetype.{so,a}'				\
 	'lib/pkgconfig/freetype2.pc' # .pc contains a strange version
 
-SYSTEM_PKG.Linux-fedora.freetype2=	freetype-devel
-SYSTEM_PKG.Linux-ubuntu.freetype2=	libfreetype6-dev
-SYSTEM_PKG.Linux-debian.freetype2=	libfreetype6-dev
+SYSTEM_PKG.Fedora.freetype2=	freetype-devel
+SYSTEM_PKG.Ubuntu.freetype2=	libfreetype6-dev
+SYSTEM_PKG.Debian.freetype2=	libfreetype6-dev
 SYSTEM_PKG.NetBSD.freetype2=		pkgsrc/graphics/freetype2
 
 endif # FREETYPE2_DEPEND_MK ------------------------------------------------

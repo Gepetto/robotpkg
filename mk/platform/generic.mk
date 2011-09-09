@@ -1,12 +1,8 @@
 #
-# Variable definitions for the Solaris operating system.
-
-ECHO_N?=	printf		# ksh builtin
-
-PKGLOCALEDIR?=	share
-EXTRACT_USING=	${PAX}
-
-_USE_RPATH=		yes	# add rpath to LDFLAGS
+# Variable definitions for a generic operating system.
+#
+_OPSYS_SHLIB_TYPE?=	ELF	# shared lib type
+_USE_RPATH?=		yes	# add rpath to LDFLAGS
 
 # Standard commands
 $(call setdefault, TRUE,	:)
@@ -34,26 +30,27 @@ $(call setdefault, ID,		/usr/bin/id)
 $(call setdefault, GREP,	/usr/bin/grep)
 $(call setdefault, EGREP,	/usr/bin/egrep)
 $(call setdefault, FIND,	/usr/bin/find)
-$(call setdefault, SED,		/usr/bin/gsed)
+$(call setdefault, SED,		/usr/bin/sed)
 $(call setdefault, SORT,	/usr/bin/sort)
 $(call setdefault, TSORT,	/usr/bin/tsort)
-$(call setdefault, AWK,		/usr/bin/nawk)
-$(call setdefault, BASENAME,	/usr/bin/basename)
+$(call setdefault, AWK,		/usr/bin/awk)
 $(call setdefault, XARGS,	/usr/bin/xargs)
 $(call setdefault, TPUT,	/usr/bin/tput)
 $(call setdefault, PAGER,	/usr/bin/less)
 
+PKGLOCALEDIR?=	share
+
 FILE_CMD?=		file
+ECHO_N?=		${ECHO} -n
 
 GZCAT?=			gzcat
 BZCAT?=			bzcat
 
-TOOLS_ECHO=		echo
-TOOLS_CAT=		cat
-TOOLS_TEST=		test
-TOOLS_GREP=		grep
-TOOLS_SORT=		sort
-DEF_UMASK?=		0022
+TOOLS_ECHO?=		echo
+TOOLS_CAT?=		cat
+TOOLS_TEST?=		test
+TOOLS_GREP?=		grep
+TOOLS_SORT?=		sort
 
 TPUT_BOLD?=		bold
 TPUT_RMBOLD?=		sgr0

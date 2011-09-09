@@ -20,7 +20,7 @@ FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 WRKSRC=		${WRKDIR}/SAHand/sahand_driver
 
 BUILD_TARGET=	default
-KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/misc
+KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/misc
 KMOD=		sahand_driver.ko
 
 INSTALLATION_DIRS+=${KMOD_DIR}

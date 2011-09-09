@@ -34,9 +34,9 @@ SYSTEM_SEARCH.libpcap=	\
 	'include/pcap.h'						\
 	'lib/libpcap.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.libpcap=	libpcap-devel
-SYSTEM_PKG.Linux-ubuntu.libpcap=	libpcap-dev
-SYSTEM_PKG.Linux-debian.libpcap=	libpcap-dev
+SYSTEM_PKG.Fedora.libpcap=	libpcap-devel
+SYSTEM_PKG.Ubuntu.libpcap=	libpcap-dev
+SYSTEM_PKG.Debian.libpcap=	libpcap-dev
 
 endif # LIBPCAP_DEPEND_MK -------------------------------------------------
 

@@ -40,9 +40,9 @@ DEPEND_USE+=		gcc-c++
 
 DEPEND_ABI.gcc-c++?=	gcc-c++${_GCC_REQUIRED}
 
-SYSTEM_PKG.Linux-fedora.gcc-c++ =	gcc-c++
-SYSTEM_PKG.Linux-ubuntu.gcc-c++ =	g++
-SYSTEM_PKG.Linux-debian.gcc-c++ =	g++
+SYSTEM_PKG.Fedora.gcc-c++ =	gcc-c++
+SYSTEM_PKG.Ubuntu.gcc-c++ =	g++
+SYSTEM_PKG.Debian.gcc-c++ =	g++
 
 SYSTEM_DESCR.gcc-c++ =	gcc C++ compiler, version ${_GCC_REQUIRED}
 SYSTEM_SEARCH.gcc-c++ =\

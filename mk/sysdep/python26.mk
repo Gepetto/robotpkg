@@ -22,9 +22,9 @@ DEPEND_ABI.python26?=	python26>=2.6<2.7
 _py_search26=		{2.6,2,}
 SYSTEM_SEARCH.python26=	$(call _py_syssearch,${_py_search26})
 
-SYSTEM_PKG.Linux-fedora.python26=	python2.6-devel
-SYSTEM_PKG.Linux-ubuntu.python26=	python2.6-dev
-SYSTEM_PKG.Linux-debian.python26=	python2.6-dev
+SYSTEM_PKG.Fedora.python26=	python2.6-devel
+SYSTEM_PKG.Ubuntu.python26=	python2.6-dev
+SYSTEM_PKG.Debian.python26=	python2.6-dev
 SYSTEM_PKG.NetBSD.python26=		pkgsrc/lang/python26
 
 export PYTHON26=	$(firstword ${SYSTEM_FILES.python26})

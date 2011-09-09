@@ -20,9 +20,9 @@ DEPEND_DIR.blas?=	../../math/blas
 
 SYSTEM_SEARCH.blas= 	lib/libblas.*
 
-SYSTEM_PKG.Linux-fedora.blas=	blas-devel
-SYSTEM_PKG.Linux-ubuntu.blas=	libblas-dev
-SYSTEM_PKG.Linux-debian.blas=	libblas-dev
+SYSTEM_PKG.Fedora.blas=	blas-devel
+SYSTEM_PKG.Ubuntu.blas=	libblas-dev
+SYSTEM_PKG.Debian.blas=	libblas-dev
 
 endif # BLAS_DEPEND_MK -----------------------------------------------
 

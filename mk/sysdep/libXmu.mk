@@ -19,9 +19,9 @@ SYSTEM_SEARCH.libXmu=	\
 	lib/libXmu.so		\
 	'lib/pkgconfig/xmu.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Linux-fedora.libXmu=libXmu-devel
-SYSTEM_PKG.Linux-ubuntu.libXmu=libXmu-dev
-SYSTEM_PKG.Linux-debian.libXmu=libXmu-dev
+SYSTEM_PKG.Fedora.libXmu=libXmu-devel
+SYSTEM_PKG.Ubuntu.libXmu=libXmu-dev
+SYSTEM_PKG.Debian.libXmu=libXmu-dev
 
 endif # LIBXMU_DEPEND_MK ---------------------------------------------------
 

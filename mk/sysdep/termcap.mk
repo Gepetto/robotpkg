@@ -38,9 +38,9 @@ DEPEND_ABI.termcap?=	termcap
 
 SYSTEM_DESCR.termcap=	"curses, ncurses, termlib or termcap"
 
-SYSTEM_PKG.Linux-fedora.termcap=	"ncurses-devel"
-SYSTEM_PKG.Linux-ubuntu.termcap=	"libncurses-dev"
-SYSTEM_PKG.Linux-debian.termcap=	"libncurses-dev"
+SYSTEM_PKG.Fedora.termcap=	"ncurses-devel"
+SYSTEM_PKG.Ubuntu.termcap=	"libncurses-dev"
+SYSTEM_PKG.Debian.termcap=	"libncurses-dev"
 SYSTEM_PKG.NetBSD.termcap=		"pkgsrc/devel/ncurses"
 
 SYSTEM_SEARCH.termcap=\

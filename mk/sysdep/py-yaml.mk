@@ -23,9 +23,9 @@ DEPEND_ABI.py-yaml?=	${PKGTAG.python-}yaml
 SYSTEM_SEARCH.py-yaml=\
 	'${PYTHON_SYSLIBSEARCH}/yaml/__init__.py'
 
-SYSTEM_PKG.Linux-fedora.py-yaml=	PyYAML (python-${PYTHON_VERSION})
-SYSTEM_PKG.Linux-ubuntu.py-yaml=	python-yaml (python-${PYTHON_VERSION})
-SYSTEM_PKG.Linux-debian.py-yaml=	python-yaml (python-${PYTHON_VERSION})
+SYSTEM_PKG.Fedora.py-yaml=	PyYAML (python-${PYTHON_VERSION})
+SYSTEM_PKG.Ubuntu.py-yaml=	python-yaml (python-${PYTHON_VERSION})
+SYSTEM_PKG.Debian.py-yaml=	python-yaml (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-yaml=		pkgsrc/textproc/${PKGTAG.python-}yaml
 
 include ../../mk/sysdep/python.mk

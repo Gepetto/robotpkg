@@ -37,9 +37,9 @@ SYSTEM_SEARCH.valgrind=\
 	'include/valgrind/valgrind.h'				\
 	'lib/pkgconfig/valgrind.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Linux-fedora.valgrind=	valgrind-devel
-SYSTEM_PKG.Linux-ubuntu.valgrind=	valgrind
-SYSTEM_PKG.Linux-debian.valgrind=	valgrind
+SYSTEM_PKG.Fedora.valgrind=	valgrind-devel
+SYSTEM_PKG.Ubuntu.valgrind=	valgrind
+SYSTEM_PKG.Debian.valgrind=	valgrind
 
 export VALGRIND=	${PREFIX.valgrind}/bin/valgrind
 

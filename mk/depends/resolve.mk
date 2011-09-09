@@ -211,6 +211,18 @@ override define _dpd_reduceabi # (pkg)
 endef
 $(foreach _,${DEPEND_USE},$(eval $(call _dpd_reduceabi,$_)))
 
+# Compute SYSTEM_PKG.pkg if needed
+override define _dpd_syspkg # (pkg)
+  SYSTEM_PKG.$1 ?=$(or							\
+    ${SYSTEM_PKG.${MACHINE_KERNEL}.$1},					\
+    ${SYSTEM_PKG.${OS_KERNEL}-${OS_KERNEL_VERSION}.$1},			\
+    ${SYSTEM_PKG.${OS_KERNEL}.$1},					\
+    ${SYSTEM_PKG.${MACHINE_PLATFORM}.$1},				\
+    ${SYSTEM_PKG.${OPSYS}-${OS_VERSION}.$1},				\
+    ${SYSTEM_PKG.${OPSYS}.$1})
+endef
+$(foreach _,${DEPEND_USE},$(eval $(call _dpd_syspkg,$_)))
+
 # DEPEND_ABI.pkg cannot be empty
 _empty_abi:=$(foreach _,${DEPEND_USE},$(if ${DEPEND_ABI.$_},,$_))
 ifneq (,$(strip ${_empty_abi}))

@@ -18,8 +18,8 @@ MASTER_SITES=	http://www.kernel.org/pub/linux/kernel/v2.6/
 
 WRKSRC=		${WRKDIR}/linux-${VERSION}/drivers/char
 
-KSRCDIR=	/lib/modules/${OS_VERSION}/build
-KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/char
+KSRCDIR=	/lib/modules/${OS_KERNEL_VERSION}/build
+KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char
 
 INSTALLATION_DIRS+=${KMOD_DIR}
 

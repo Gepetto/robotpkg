@@ -18,9 +18,9 @@ DEPEND_USE+=		libdc1394
 DEPEND_ABI.libdc1394?=	libdc1394>=2.0.1
 DEPEND_DIR.libdc1394?=	../../image/libdc1394
 
-SYSTEM_PKG.Linux-fedora.libdc1394=libdc1394-devel
-SYSTEM_PKG.Linux-ubuntu.libdc1394=libdc1394-dev
-SYSTEM_PKG.Linux-debian.libdc1394=libdc1394-dev
+SYSTEM_PKG.Fedora.libdc1394=libdc1394-devel
+SYSTEM_PKG.Ubuntu.libdc1394=libdc1394-dev
+SYSTEM_PKG.Debian.libdc1394=libdc1394-dev
 
 SYSTEM_SEARCH.libdc1394=\
 	include/dc1394/dc1394.h		\
@@ -29,7 +29,7 @@ SYSTEM_SEARCH.libdc1394=\
 endif # LIBDC1394_DEPEND_MK ------------------------------------------------
 
 include ../../mk/robotpkg.prefs.mk
-ifeq (Linux,${OPSYS})
+ifeq (Linux,${OS_KERNEL})
   include ../../image/libraw1394/depend.mk
 endif
 

@@ -1,6 +1,6 @@
-# $LAAS: doxygen.mk 2009/10/06 10:43:58 mallet $
+# $LAAS: doxygen.mk 2011/09/10 23:05:23 tho $
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -32,8 +32,8 @@ DEPEND_ABI.doxygen?=	doxygen>=1.5
 DEPEND_METHOD.doxygen+=	build
 SYSTEM_SEARCH.doxygen=	'bin/doxygen:p:% --version'
 
-SYSTEM_PKG.Linux.doxygen=	"doxygen"
-SYSTEM_PKG.NetBSD.doxygen=	"pkgsrc/devel/doxygen"
+SYSTEM_PKG.Linux.doxygen=	doxygen
+SYSTEM_PKG.NetBSD.doxygen=	pkgsrc/devel/doxygen
 
 # Automatic PLIST generation for doxygen generated files
 ifdef DOXYGEN_PLIST_DIR

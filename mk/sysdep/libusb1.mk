@@ -24,9 +24,9 @@ SYSTEM_SEARCH.libusb1=\
 	'lib/libusb-1.0.*'		\
 	'lib/pkgconfig/libusb-1.0.pc:/^Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Linux-fedora.libusb1=	libusb1-devel
-SYSTEM_PKG.Linux-ubuntu.libusb1=	libusb-1.0-0-dev
-SYSTEM_PKG.Linux-debian.libusb1=	libusb-1.0-0-dev
+SYSTEM_PKG.Fedora.libusb1=	libusb1-devel
+SYSTEM_PKG.Ubuntu.libusb1=	libusb-1.0-0-dev
+SYSTEM_PKG.Debian.libusb1=	libusb-1.0-0-dev
 
 endif # LIBUSB1_DEPEND_MK ---------------------------------------------------
 

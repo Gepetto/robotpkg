@@ -23,9 +23,9 @@ DEPEND_DIR.python31?=	../../lang/python31
 _py_search31=		{3.1,3,}{,d}{,m}{,u}
 SYSTEM_SEARCH.python31=	$(call _py_syssearch,${_py_search31})
 
-SYSTEM_PKG.Linux-fedora.python31=	python3.1-devel
-SYSTEM_PKG.Linux-ubuntu.python31=	python3.1-dev
-SYSTEM_PKG.Linux-debian.python31=	python3.1-dev
+SYSTEM_PKG.Fedora.python31=	python3.1-devel
+SYSTEM_PKG.Ubuntu.python31=	python3.1-dev
+SYSTEM_PKG.Debian.python31=	python3.1-dev
 SYSTEM_PKG.NetBSD.python31=		pkgsrc/lang/python31
 
 export PYTHON31=	$(firstword ${SYSTEM_FILES.python31})

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -32,8 +32,8 @@ DEPEND_USE+=		motif
 DEPEND_ABI.motif?=	motif
 
 SYSTEM_DESCR.motif=		"lesstif or openmotif"
-SYSTEM_PKG.Linux-fedora.motif=	"lesstif-devel"
-SYSTEM_PKG.Linux-ubuntu.motif=	"libmotif-dev"
+SYSTEM_PKG.Fedora.motif=	"lesstif-devel"
+SYSTEM_PKG.Ubuntu.motif=	"libmotif-dev"
 SYSTEM_PKG.NetBSD.motif=	"pkgsrc/x11/lesstif or pkgsrc/x11/openmotif"
 
 SYSTEM_SEARCH.motif=\
@@ -41,13 +41,11 @@ SYSTEM_SEARCH.motif=\
 	'lib/libXm.{a,so}'
 
 include ../../mk/robotpkg.prefs.mk
-ifeq (ubuntu,${OPSUBSYS})
-include ../../mk/sysdep/libXp.mk
+ifeq (Ubuntu,${OPSYS})
+  include ../../mk/sysdep/libXp.mk
 endif
 
 
 endif # MOTIF_DEPEND_MK ----------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-
-

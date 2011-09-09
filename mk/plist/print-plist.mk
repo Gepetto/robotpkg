@@ -81,9 +81,11 @@ _PRINT_PLIST_DIRS_CMD=	\
 
 _PRINT_PLIST_AWK_SUBST={
 _PRINT_PLIST_AWK_SUBST+= ${PRINT_PLIST_AWK_SUBST}
-_PRINT_PLIST_AWK_SUBST+= 						\
+_PRINT_PLIST_AWK_SUBST+=						\
 	gsub(/${NODENAME}/, "$${NODENAME}");				\
 	gsub(/$(subst .,\.,${OS_VERSION})/, "$${OS_VERSION}");		\
+	gsub(/$(subst .,\.,${OS_KERNEL_VERSION})/,			\
+					"$${OS_KERNEL_VERSION}");	\
 	gsub(/${PKGNAME_NOREV}/, "$${PKGNAME}");			\
 	gsub(/$(subst .,\.,${PKGVERSION_NOREV})/, "$${PKGVERSION}");	\
 	gsub("^${PKGINFODIR}/", "info/");				\

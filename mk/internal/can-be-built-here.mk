@@ -84,8 +84,10 @@ endif
 ifeq (,$(filter confirm,${MAKECMDGOALS}))
   ifdef NOT_FOR_PLATFORM
     ifneq (,$(or							\
-		$(filter ${NOT_FOR_PLATFORM},${MACHINE_PLATFORM}),	\
-		$(findstring ${NOT_FOR_PLATFORM},${MACHINE_PLATFORM})))
+		$(filter ${NOT_FOR_PLATFORM},				\
+			${MACHINE_PLATFORM} ${MACHINE_KERNEL}),		\
+		$(findstring ${NOT_FOR_PLATFORM},			\
+			${MACHINE_PLATFORM} ${MACHINE_KERNEL})))
 PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}."
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "You can override this check by doing:"
@@ -95,8 +97,10 @@ PKG_FAIL_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
 
   ifdef ONLY_FOR_PLATFORM
     ifeq (,$(or								\
-		$(filter ${ONLY_FOR_PLATFORM},${MACHINE_PLATFORM}),	\
-		$(findstring ${ONLY_FOR_PLATFORM},${MACHINE_PLATFORM})))
+		$(filter ${ONLY_FOR_PLATFORM},				\
+			${MACHINE_PLATFORM} ${MACHINE_KERNEL}),		\
+		$(findstring ${ONLY_FOR_PLATFORM},			\
+			${MACHINE_PLATFORM} ${MACHINE_KERNEL})))
 PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}."
 PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= "You can override this check by doing:"

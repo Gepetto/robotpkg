@@ -31,8 +31,8 @@ PREFER.ncurses?=	system
 DEPEND_USE+=		ncurses
 DEPEND_ABI.ncurses?=	ncurses>=5
 
-SYSTEM_PKG.Linux-fedora.ncurses=	ncurses-devel
-SYSTEM_PKG.Linux-ubuntu.ncurses=	libncurses-dev
+SYSTEM_PKG.Fedora.ncurses=	ncurses-devel
+SYSTEM_PKG.Ubuntu.ncurses=	libncurses-dev
 SYSTEM_PKG.NetBSD.ncurses=		pkgsrc/devel/ncurses
 
 SYSTEM_SEARCH.ncurses=\

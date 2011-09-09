@@ -26,9 +26,9 @@ SYSTEM_SEARCH.freeglut=	\
 	include/GL/glut.h \
 	lib/libglut.so
 
-SYSTEM_PKG.Linux-fedora.freeglut=	freeglut-devel
-SYSTEM_PKG.Linux-ubuntu.freeglut=	freeglut3-dev
-SYSTEM_PKG.Linux-debian.freeglut=	freeglut3-dev
+SYSTEM_PKG.Fedora.freeglut=	freeglut-devel
+SYSTEM_PKG.Ubuntu.freeglut=	freeglut3-dev
+SYSTEM_PKG.Debian.freeglut=	freeglut3-dev
 SYSTEM_PKG.NetBSD.freeglut=		pkgsrc/graphics/freeglut
 
 endif # FREEGLUT_DEPEND_MK ---------------------------------------------------

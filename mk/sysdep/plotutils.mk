@@ -35,10 +35,10 @@ SYSTEM_SEARCH.plotutils=	\
 	'include/plotter.h:/PL_LIBPLOT_VER_STRING .*"/s/[^.0-9]//gp'	\
 	'lib/libplot.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.plotutils=	plotutils-devel
-SYSTEM_PKG.Linux-ubuntu.plotutils=	libplot-dev
+SYSTEM_PKG.Fedora.plotutils=	plotutils-devel
+SYSTEM_PKG.Ubuntu.plotutils=	libplot-dev
 
-# SYSTEM_PKG.Linux-debian.plotutils=	plotutils-dev
+# SYSTEM_PKG.Debian.plotutils=	plotutils-dev
 
 endif # PLOTUTILS_DEPEND_MK --------------------------------------------------
 

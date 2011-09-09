@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2010 LAAS/CNRS
+# Copyright (c) 2008-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -31,10 +31,10 @@ DEPEND_ABI.pdflatex?=	pdflatex>=3.14
 SYSTEM_SEARCH.pdflatex=	\
 	'{bin/,}pdflatex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
 
-SYSTEM_PKG.Linux-fedora.pdflatex=texlive-latex
-SYSTEM_PKG.Linux-ubuntu.pdflatex=texlive-latex-extra
-SYSTEM_PKG.Linux-debian.pdflatex=texlive-latex-extra
-SYSTEM_PKG.Darwin.pdflatex=	texlive
+SYSTEM_PKG.Fedora.pdflatex=texlive-latex
+SYSTEM_PKG.Ubuntu.pdflatex=texlive-latex-extra
+SYSTEM_PKG.Debian.pdflatex=texlive-latex-extra
+SYSTEM_PKG.MacOSX.pdflatex=	texlive
 
 export PDFLATEX=	$(word 1,${SYSTEM_FILES.pdflatex})
 

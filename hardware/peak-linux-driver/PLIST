@@ -9,5 +9,5 @@ include/pcan.h
 lib/libpcan.so
 lib/libpcan.so.0
 lib/libpcan.so.0.6
-lib/modules/${OS_VERSION}/pcan.ko
+lib/modules/${OS_KERNEL_VERSION}/pcan.ko
 lib/pkgconfig/pcan.pc

@@ -12,7 +12,7 @@ COMMENT=	Kernel driver for the JR3 force sensor PCI acquisition card
 
 ONLY_FOR_PLATFORM=	Linux-%
 
-KMOD_DIR=	lib/modules/${OS_VERSION}/kernel/drivers/char
+KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char
 KMOD=		jr3.ko
 INSTALLATION_DIRS+=${KMOD_DIR}
 

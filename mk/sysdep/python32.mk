@@ -22,9 +22,9 @@ DEPEND_ABI.python32?=	python32>=3.2<3.3
 _py_search32=		{3.2,3,}{,d}{,m}{,u}
 SYSTEM_SEARCH.python32=	$(call _py_syssearch,${_py_search32})
 
-SYSTEM_PKG.Linux-fedora.python32=	python3.2-devel
-SYSTEM_PKG.Linux-ubuntu.python32=	python3.2-dev
-SYSTEM_PKG.Linux-debian.python32=	python3.2-dev
+SYSTEM_PKG.Fedora.python32=	python3.2-devel
+SYSTEM_PKG.Ubuntu.python32=	python3.2-dev
+SYSTEM_PKG.Debian.python32=	python3.2-dev
 SYSTEM_PKG.NetBSD.python32=		pkgsrc/lang/python32
 
 # directory for byte compiled files

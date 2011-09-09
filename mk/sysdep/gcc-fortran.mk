@@ -40,8 +40,8 @@ DEPEND_USE+=			gcc-fortran
 
 DEPEND_ABI.gcc-fortran?=	gcc-fortran${_GCC_REQUIRED}
 
-SYSTEM_PKG.Linux-fedora.gcc-fortran=	gcc-gfortran
-SYSTEM_PKG.Linux-ubuntu.gcc-fortran=	gfortran
+SYSTEM_PKG.Fedora.gcc-fortran=	gcc-gfortran
+SYSTEM_PKG.Ubuntu.gcc-fortran=	gfortran
 
 SYSTEM_DESCR.gcc-fortran=	gcc Fortran77 compiler, version ${_GCC_REQUIRED}
 SYSTEM_SEARCH.gcc-fortran=	\

@@ -36,9 +36,9 @@ endif
 DEPEND_USE+=				libtool-ltdl
 DEPEND_ABI.libtool-ltdl?=		libtool-ltdl>=1.5.22
 
-SYSTEM_PKG.Linux-fedora.libtool-ltdl=   libtool-ltdl-devel
-SYSTEM_PKG.Linux-ubuntu.libtool-ltdl=	libltdl3-dev
-SYSTEM_PKG.Linux-debian.libtool-ltdl=	libltdl3-dev
+SYSTEM_PKG.Fedora.libtool-ltdl=   libtool-ltdl-devel
+SYSTEM_PKG.Ubuntu.libtool-ltdl=	libltdl3-dev
+SYSTEM_PKG.Debian.libtool-ltdl=	libltdl3-dev
 SYSTEM_PKG.NetBSD.libtool-ltdl=         pkgsrc/devel/libltdl
 
 SYSTEM_SEARCH.libtool-ltdl=\

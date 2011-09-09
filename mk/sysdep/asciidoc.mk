@@ -28,9 +28,9 @@ PREFER.asciidoc?=	system
 DEPEND_USE+=		asciidoc	
 DEPEND_ABI.asciidoc?=	asciidoc>=8.2.5
 
-SYSTEM_PKG.Linux-fedora.asciidoc=asciidoc
-SYSTEM_PKG.Linux-ubuntu.asciidoc=asciidoc
-SYSTEM_PKG.Linux-debian.asciidoc=asciidoc
+SYSTEM_PKG.Fedora.asciidoc=asciidoc
+SYSTEM_PKG.Ubuntu.asciidoc=asciidoc
+SYSTEM_PKG.Debian.asciidoc=asciidoc
 #SYSTEM_PKG.NetBSD.asciidoc=
 
 

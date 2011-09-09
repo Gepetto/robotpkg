@@ -16,9 +16,9 @@ PREFER.zlib?=		system
 DEPEND_ABI.zlib?=	zlib>=1.2.3
 DEPEND_DIR.zlib?=	../../archivers/zlib
 
-SYSTEM_PKG.Linux-fedora.zlib=	zlib-devel
-SYSTEM_PKG.Linux-ubuntu.zlib=	zlib1g-dev
-SYSTEM_PKG.Linux-debian.zlib=	zlib1g-dev
+SYSTEM_PKG.Fedora.zlib=	zlib-devel
+SYSTEM_PKG.Ubuntu.zlib=	zlib1g-dev
+SYSTEM_PKG.Debian.zlib=	zlib1g-dev
 
 SYSTEM_SEARCH.zlib=\
 	'include/zlib.h:/define ZLIB_VERSION/s/[^0-9.]//gp'	\

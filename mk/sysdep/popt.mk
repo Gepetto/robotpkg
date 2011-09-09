@@ -29,8 +29,8 @@ PREFER.popt?=	system
 DEPEND_USE+=		popt
 DEPEND_ABI.popt?=	popt>=0
 
-SYSTEM_PKG.Linux-fedora.popt=	popt-devel
-SYSTEM_PKG.Linux-ubuntu.popt=	libpopt-dev
+SYSTEM_PKG.Fedora.popt=	popt-devel
+SYSTEM_PKG.Ubuntu.popt=	libpopt-dev
 SYSTEM_PKG.NetBSD.popt=		pkgsrc/devel/popt
 
 SYSTEM_SEARCH.popt=\

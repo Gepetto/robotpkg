@@ -20,9 +20,9 @@ DEPEND_DIR.lapack?=	../../math/lapack
 
 SYSTEM_SEARCH.lapack=	'lib/liblapack.*'
 
-SYSTEM_PKG.Linux-fedora.lapack=	lapack-devel
-SYSTEM_PKG.Linux-ubuntu.lapack=	liblapack-dev
-SYSTEM_PKG.Linux-debian.lapack=	liblapack-dev
+SYSTEM_PKG.Fedora.lapack=	lapack-devel
+SYSTEM_PKG.Ubuntu.lapack=	liblapack-dev
+SYSTEM_PKG.Debian.lapack=	liblapack-dev
 
 endif # LAPACK_DEPEND_MK ---------------------------------------------
 

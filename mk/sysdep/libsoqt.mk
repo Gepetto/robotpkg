@@ -35,9 +35,9 @@ SYSTEM_SEARCH.libsoqt=	\
  'include/{,Coin2}/Inventor/Qt/SoQtBasic.h:/SOQT_VERSION.*"/s/[^.0-9]//gp'	\
  'lib/libSoQt.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.libsoqt=	SoQt-devel
-SYSTEM_PKG.Linux-ubuntu.libsoqt=	liblibsoqt-dev
-SYSTEM_PKG.Linux-debian.libsoqt=	liblibsoqt-dev
+SYSTEM_PKG.Fedora.libsoqt=	SoQt-devel
+SYSTEM_PKG.Ubuntu.libsoqt=	liblibsoqt-dev
+SYSTEM_PKG.Debian.libsoqt=	liblibsoqt-dev
 
 endif # LIBSOQT_DEPEND_MK --------------------------------------------------
 

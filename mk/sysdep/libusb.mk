@@ -24,7 +24,7 @@ SYSTEM_SEARCH.libusb=\
 	'lib/libusb.{so,a}'	\
 	'lib/pkgconfig/libusb.pc:/^Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Linux-fedora.libusb=	libusb-devel
+SYSTEM_PKG.Fedora.libusb=	libusb-devel
 SYSTEM_PKG.NetBSD.libusb=	pkgsrc/devel/libusb
 
 endif # LIBUSB_DEPEND_MK ---------------------------------------------------

@@ -65,9 +65,7 @@ $(addprefix print-depends-,${_chkdep_type}): print-depends-%: .FORCE
 		${SYSTEM_SEARCH.${_pkg_}} 2>&1 1>&9 | ${WARNING_CAT};	\
 	} | ${AWK}							\
 	    -v pkg="-" -v prefix=$(call quote,$(strip			\
-		$(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
-		     ${SYSTEM_PKG.${OPSYS}.${_pkg_}},			\
-		     ${DEPEND_ABI.${_pkg_}}))) '			\
+		$(or ${SYSTEM_PKG.${_pkg_}},${DEPEND_ABI.${_pkg_}}))) '	\
 	     NR==1 { pkg=$$0 } NR==2 { split($$0, p, ":="); prefix=p[2]}\
 	     END {							\
 	       printf("print-depends|system|%s|%s|%s\n",		\

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2010 LAAS/CNRS
+# Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -123,6 +123,8 @@ _PLIST_AWK_ENV+=	TEST=$(call quote,${TOOLS_TEST})
 PLIST_SUBST+=	\
 	PLIST_OPSYS=$(call quote,${OPSYS})				\
 	PLIST_OS_VERSION=$(call quote,${OS_VERSION})			\
+	PLIST_OS_KERNEL=$(call quote,${OS_KERNEL})			\
+	PLIST_OS_KERNEL_VERSION=$(call quote,${OS_KERNEL_VERSION})	\
 	PLIST_NODENAME=$(call quote,${NODENAME})			\
 	PLIST_MACHINE_ARCH=$(call quote,${MACHINE_ARCH})		\
 	PLIST_MACHINE_GNU_ARCH=$(call quote,${MACHINE_GNU_ARCH})	\

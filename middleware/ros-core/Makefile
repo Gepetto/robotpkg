@@ -17,7 +17,7 @@ include ../../meta-pkgs/ros-base/Makefile.common
 MAKE_ENV+=	PATH=$(call quote,${WRKSRC}/bin:${PATH})
 MAKE_ENV+=	ROS_ROOT=${WRKSRC}
 MAKE_ENV+=	PYTHONPATH=$(call quote,${WRKSRC}/core/roslib/src:${PYTHONPATH})
-ifeq (Darwin,${OPSYS})
+ifeq (MacOSX,${OPSYS})
   MAKE_ENV+=	DYLD_LIBRARY_PATH=${WRKSRC}/tools/rospack/lib
 else
   MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/tools/rospack/lib

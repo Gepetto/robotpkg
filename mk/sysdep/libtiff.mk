@@ -35,9 +35,9 @@ SYSTEM_SEARCH.libtiff=	\
 	'include/tiffvers.h:/VERSION_STR/{s/\\\\n.*$$//;s/[^0-9.]//g;p;}' \
 	'lib/libtiff.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.libtiff=	libtiff-devel
-SYSTEM_PKG.Linux-ubuntu.libtiff=	libtiff-dev
-SYSTEM_PKG.Linux-debian.libtiff=	libtiff-dev
+SYSTEM_PKG.Fedora.libtiff=	libtiff-devel
+SYSTEM_PKG.Ubuntu.libtiff=	libtiff-dev
+SYSTEM_PKG.Debian.libtiff=	libtiff-dev
 SYSTEM_PKG.NetBSD.libtiff=		pkgsrc/graphics/tiff
 
 endif # LIBTIFF_DEPEND_MK --------------------------------------------------

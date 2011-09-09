@@ -35,9 +35,9 @@ SYSTEM_SEARCH.libjpeg=	\
 	'include/jpeglib.h'	\
 	'lib/libjpeg.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.libjpeg=	libjpeg-devel
-SYSTEM_PKG.Linux-ubuntu.libjpeg=	libjpeg-dev
-SYSTEM_PKG.Linux-debian.libjpeg=	libjpeg-dev
+SYSTEM_PKG.Fedora.libjpeg=	libjpeg-devel
+SYSTEM_PKG.Ubuntu.libjpeg=	libjpeg-dev
+SYSTEM_PKG.Debian.libjpeg=	libjpeg-dev
 SYSTEM_PKG.NetBSD.libjpeg=		pkgsrc/graphics/jpeg
 
 endif # LIBJPEG_DEPEND_MK --------------------------------------------------

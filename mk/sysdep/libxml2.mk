@@ -36,9 +36,9 @@ SYSTEM_SEARCH.libxml2=	\
  'lib/pkgconfig/libxml-2.0.pc:/Version/s/[^.0-9]//gp'				\
  'lib/libxml2.{a,so}'
 
-SYSTEM_PKG.Linux-fedora.libxml2=	libxml2-devel
-SYSTEM_PKG.Linux-ubuntu.libxml2=	libxml2-dev
-SYSTEM_PKG.Linux-debian.libxml2=	libxml2-dev
+SYSTEM_PKG.Fedora.libxml2=	libxml2-devel
+SYSTEM_PKG.Ubuntu.libxml2=	libxml2-dev
+SYSTEM_PKG.Debian.libxml2=	libxml2-dev
 SYSTEM_PKG.NetBSD.libxml2=		pkgsrc/textproc/libxml2
 
 endif # LIBXML2_DEPEND_MK --------------------------------------------------

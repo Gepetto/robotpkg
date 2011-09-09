@@ -54,12 +54,8 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	found=`${_PREFIXSEARCH_CMD} 2>>${_SYSDEP_LOG} -e		\
 	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
 	     -d $(or $(call quote,${SYSTEM_DESCR.${_pkg_}}),"")		\
-	     -s $(or $(call quote,$(strip				\
-		  $(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
-		  ${SYSTEM_PKG.${OPSYS}.${_pkg_}}))),"")		\
-	     -o $(call quote,$(strip					\
-		  $(if ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},	\
-		  ${OPSUBSYS},${OPSYS})))				\
+	     -s $(call quote,${SYSTEM_PKG.${_pkg_}})			\
+	     -o $(call quote,${OPSYS})					\
 	     -r $(or ${DEPEND_DIR.${_pkg_}},"")				\
 	     -t	system							\
 		$(call quote,${_pkg_})					\
@@ -69,8 +65,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	  notfound="$$notfound|"$(call quote,$(strip			\
 	    $(or ${SYSTEM_DESCR.${_pkg_}},${DEPEND_ABI.${_pkg_}})));	\
 	  syspkg="$$syspkg|"$(call quote,$(strip			\
-	    $(or ${SYSTEM_PKG.${OPSYS}-${OPSUBSYS}.${_pkg_}},		\
-	         ${SYSTEM_PKG.${OPSYS}.${_pkg_}},:)));			\
+	    $(or ${SYSTEM_PKG.${_pkg_}},:)));				\
 	else								\
 	  $(if $(call isyes,${SYSDEP_VERBOSE}),				\
 	   ${STEP_MSG} "Required system package ${DEPEND_ABI.${_pkg_}}:"\
@@ -87,8 +82,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	    if ${TEST} "$$1" = ":"; then				\
 	      s=;							\
 	    else							\
-	      s="	("$(call quote,$(strip				\
-		  $(or ${OPSUBSYS},${OPSYS})))" package $$1)";		\
+	      s="	(${OPSYS} package $$1)";			\
 	    fi;								\
 	    ${ERROR_MSG} "	$${bf}$$p$${rm}$$s";			\
 	    shift ||:;							\
