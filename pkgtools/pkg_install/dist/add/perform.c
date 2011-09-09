@@ -41,6 +41,12 @@ __RCSID("$NetBSD: perform.c,v 1.100 2011/08/05 07:04:28 agc Exp $");
  * SUCH DAMAGE.
  */
 
+#if HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+#if HAVE_SYS_STAT_H
+#include <sys/stat.h>
+#endif
 #include <sys/utsname.h>
 #if HAVE_ERR_H
 #include <err.h>
@@ -869,6 +875,90 @@ normalise_platform(struct utsname *host_name)
 	span = strspn(host_name->release, "0123456789.");
 	host_name->release[span] = '\0';
 #endif
+
+	if (!strcmp(host_name->sysname, "Darwin")) {
+		strcpy(host_name->sysname, "MacOSX");
+		sprintf(host_name->release,
+			"10.%d", atoi(host_name->release)-4);
+	} else if (!strcmp(host_name->sysname, "Linux")) {
+		/* replace uname() by the distribution name/version */
+		char line[1024];
+		struct stat buf;
+		int found = 0;
+		char *k, *e;
+		FILE *f;
+
+		switch (stat("/etc/redhat-release", &buf)) {
+		case 0:
+			f = fopen("/etc/redhat-release", "r");
+			if (f == NULL) break;
+
+			if (!fgets(line, sizeof(line), f)) {
+				fclose(f);
+				break;
+			}
+			fclose(f);
+
+			e = line + strcspn(line, " \t\n");
+			*e = '\0';
+			strcpy(host_name->sysname, line);
+
+			k = strstr(e+1, "elease");
+			if (!k) break;
+			k += strlen("elease");
+			k += strspn(k, " \t\n");
+			e = k + strspn(k, "0123456789.");
+			*e = '\0';
+			strcpy(host_name->release, k);
+			return;
+		}
+
+		switch (stat("/etc/lsb-release", &buf)) {
+		case 0:
+			f = fopen("/etc/lsb-release", "r");
+			if (f == NULL) break;
+			found = 0;
+			while(fgets(line, sizeof(line), f)) {
+				k = strstr(line, "\n");
+				if (k) *k = '\0';
+
+				if (strstr(line, "DISTRIB_ID=")) {
+					strcpy(host_name->sysname,
+					       line + strlen("DISTRIB_ID="));
+					found |= 1;
+				} else if (strstr(line, "DISTRIB_RELEASE=")) {
+					strcpy(host_name->release,
+					       line +
+					       strlen("DISTRIB_RELEASE="));
+					found |= 2;
+				}
+				if (found == 3) break;
+			}
+			fclose(f);
+			if (found & 3) return;
+		}
+
+		switch (stat("/etc/debian_version", &buf)) {
+		case 0:
+			strcpy(host_name->sysname, "Debian");
+			f = fopen("/etc/debian_version", "r");
+			if (f == NULL) break;
+
+			if (!fgets(line, sizeof(line), f)) {
+				fclose(f);
+				break;
+			}
+			fclose(f);
+			k = strstr(line, "\n");
+			if (k) *k = '\0';
+			strcpy(host_name->release, line);
+			return;
+		}
+	} else if (!strcmp(host_name->sysname, "SunOS")) {
+		if (host_name->release[0] == '5') {
+			strcpy(host_name->sysname, "Solaris");
+		}
+	}
 }
 
 /*
@@ -899,14 +989,14 @@ check_platform(struct pkg_task *pkg)
 		effective_arch = MACHINE_ARCH;
 
 	/* If either the OS or arch are different, bomb */
-	if (strcmp(OPSYS_NAME, pkg->buildinfo[BI_OPSYS]) ||
+	if (strcmp(host_uname.sysname, pkg->buildinfo[BI_OPSYS]) ||
 	    strcmp(effective_arch, pkg->buildinfo[BI_MACHINE_ARCH]) != 0)
 		fatal = 1;
 	else
 		fatal = 0;
 
 	if (fatal ||
-	    compatible_platform(OPSYS_NAME, host_uname.release,
+	    compatible_platform(host_uname.sysname, host_uname.release,
 				pkg->buildinfo[BI_OS_VERSION]) != 1) {
 		warnx("Warning: package `%s' was built for a platform:",
 		    pkg->pkgname);
@@ -914,7 +1004,7 @@ check_platform(struct pkg_task *pkg)
 		    pkg->buildinfo[BI_OPSYS],
 		    pkg->buildinfo[BI_MACHINE_ARCH],
 		    pkg->buildinfo[BI_OS_VERSION],
-		    OPSYS_NAME,
+		    host_uname.sysname,
 		    effective_arch,
 		    host_uname.release);
 		if (!Force && fatal)
