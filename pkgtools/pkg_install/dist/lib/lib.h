@@ -283,6 +283,7 @@ int     pkg_match(const char *, const char *);
 int	pkg_order(const char *, const char *, const char *);
 int     ispkgpattern(const char *);
 char *	addpkgwildcard(const char *);
+char *	strduppkgbase(const char *);
 int	quick_pkg_match(const char *, const char *);
 
 /* Iterator functions */
