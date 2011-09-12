@@ -33,6 +33,11 @@ PLIST_SUBST+=		PKG_DBDIR=${PKG_DBDIR}
 DEINSTALL_SRC=		# empty
 INSTALL_SRC=		${PKGDIR}/INSTALL
 
+LIBRARY_DIRS.bzip2+=	lib
+RPATH_DIRS.bzip2+=	lib
+LIBRARY_DIRS.zlib+=	lib
+RPATH_DIRS.zlib+=	lib
+
 # depend on these with the "inplace" style for bootstrap
 LIBNBCOMPAT_CONFIGURE_ARGS+=	--enable-bsd-getopt --enable-db
 LIBNBCOMPAT_STYLE=	inplace
