@@ -85,6 +85,20 @@ _PREFIXSEARCH_CMD=\
   $(if ${_OPSYS_SHLIB_TYPE},SHLIBTYPE=${_OPSYS_SHLIB_TYPE})		\
   ${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
 
+# lib64 is for system packages only, we don't want it under LOCALBASE
+# (this may break prefixsearch badly, so better report the error here)
+ifdef SYSLIBDIR
+  _:=$(realpath $(addprefix ${LOCALBASE}/,$(filter-out lib,${SYSLIBDIR})))
+  ifneq (,$_)
+    PKG_FAIL_REASON+=\
+      "$${bf}A $(notdir $_) directory may not exist in LOCALBASE.$${rm}"\
+      "Having a $(notdir $_) directory within the robotpkg installation"\
+      "tree is not supported. Please remove"				\
+      $(foreach 1,$_,"	$1") ""
+  endif
+endif
+
+
 
 # The following are the "public" targets provided by this module:
 #
