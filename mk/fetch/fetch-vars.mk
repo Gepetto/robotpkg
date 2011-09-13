@@ -145,6 +145,23 @@ _FETCH_BEFORE_ARGS+=	${FETCH_BEFORE_ARGS}
 _FETCH_AFTER_ARGS+=	${FETCH_AFTER_ARGS}
 
 
+# Interactive default fetch message
+FETCH_MESSAGE?=\
+	"$${bf}The fetch stage of this package requires user		\
+		interaction$${rm}"					\
+	"Please fetch the following files manually and place them in:"	\
+	"		${_DISTDIR}" ""					\
+	"Required files:"						\
+	$(foreach _,${ALLFILES},"	$_")				\
+	$(if ${MASTER_SITES},						\
+	  "" "The files are available from:"				\
+	  $(foreach _,${MASTER_SITES},"	$_")				\
+	)								\
+	$(if ${HOMEPAGE},						\
+	  "" "See the following URL for more details:"			\
+	  "	${HOMEPAGE}"						\
+	)
+
 # Fetch logfile
 FETCH_LOGFILE?=		${WRKDIR}/.fetch.log
 FETCH_LOGFILTER?=	${_LOGFILTER} ${_LOGFILTER_FLAGS} \

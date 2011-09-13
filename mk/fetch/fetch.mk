@@ -99,8 +99,9 @@ $(foreach fetchfile,${_PATCHFILES},$(eval ${_PATCHFILES_VAR}))
 # depend on the proper fetch tool if required, and always on tnftp for
 # MASTER_SITE_BACKUP
 ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
-  ifneq ($(words $(wildcard $(addprefix ${DISTDIR}/,${_ALLFILES}))),\
-	 $(words ${_ALLFILES}))
+  _fetch_done:=$(foreach _,${_ALLFILES},$(word 1,$(wildcard		\
+	$(addsuffix /$_,${DISTDIR} $(subst :, ,${DIST_PATH})))))
+  ifneq ($(words ${_fetch_done}),$(words ${_ALLFILES}))
     $(call require,${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
     include $(addprefix ${ROBOTPKG_DIR}/, ${_FETCH_DEPEND})
     DEPEND_METHOD.tnftp+=	bootstrap
@@ -116,13 +117,15 @@ endif
 #
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
-_FETCH_TARGETS+=	$(call add-barrier, bootstrap-depends, fetch)
-_FETCH_TARGETS+=	pre-fetch
-_FETCH_TARGETS+=	do-fetch
-_FETCH_TARGETS+=	post-fetch
+ifneq (,$(foreach _,${_ALLFILES},$(if $(wildcard ${DISTDIR}/$_),,no)))
+  _FETCH_TARGETS+=	$(call add-barrier, bootstrap-depends, fetch)
+  _FETCH_TARGETS+=	pre-fetch
+  _FETCH_TARGETS+=	do-fetch
+  _FETCH_TARGETS+=	post-fetch
+endif
 
 .PHONY: fetch
-fetch: ${_FETCH_TARGETS};
+fetch: ${_FETCH_TARGETS}; @:
 
 
 # --- pre-fetch, do-fetch, post-fetch (PUBLIC, override) -------------
@@ -141,51 +144,6 @@ pre-fetch:
 
 post-fetch:
 
-.PHONY: do-fetch-file
-do-fetch-file: $(addprefix ${DISTDIR}/,${_ALLFILES})
-
-
-# --- fetch-check-interactive (PRIVATE) ------------------------------
-#
-# fetch-check-interactive is a macro target that is inserted at the
-# head of a target's command list, and will check whether the fetch
-# stage for this package requires user interaction to proceed.
-#
-ifneq (,$(filter fetch,${INTERACTIVE_STAGE}))
-$(addprefix ${DISTDIR}/,${_ALLFILES}):
-  ifndef FETCH_MESSAGE
-	@${TEST} ! -f $@ || exit 0;					\
-	${ERROR_MSG} ${hline}; 						\
-	${ERROR_MSG} ""; 						\
-	${ERROR_MSG} "The fetch stage of this package requires user"	\
-		"interaction to download"; 				\
-	${ERROR_MSG} "the distfiles.  Please fetch the distfiles"	\
-		"manually and place them in:"; 				\
-	${ERROR_MSG} "    ${_DISTDIR}";					\
-	${ERROR_MSG} ""; 						\
-	${ERROR_MSG} ${hline}; 						\
-	if ${TEST} -n ${MASTER_SITES}""; then				\
-		${ERROR_MSG} "The distfiles are available from:";	\
-		for site in ${MASTER_SITES}; do				\
-			${ERROR_MSG} "    $$site";			\
-		done;							\
-	fi;								\
-	if ${TEST} -n ${HOMEPAGE}""; then				\
-		${ERROR_MSG} "See the following URL for more details:";	\
-		${ERROR_MSG} "    "${HOMEPAGE};				\
-	fi;								\
-	exit 1
-  else
-	@${TEST} ! -f $@ || exit 0;					\
-	${ERROR_MSG} ${hline}; 						\
-	${ERROR_MSG} "";						\
-	for line in ${FETCH_MESSAGE}; do ${ERROR_MSG} "$$line"; done;	\
-	${ERROR_MSG} "";						\
-	${ERROR_MSG} ${hline};						\
-	exit 1
-  endif
-endif
-
 
 # --- do-fetch-file (PRIVATE) ----------------------------------------
 #
@@ -194,6 +152,9 @@ endif
 #
 #
 $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+
+.PHONY: do-fetch-file
+do-fetch-file: $(addprefix ${DISTDIR}/,${_ALLFILES})
 
 _FETCH_ENV=\
 	CP=${CP} ECHO=${ECHO} MV=$(call quote,${MV})			\
@@ -225,44 +186,46 @@ ifndef NO_CHECKSUM
     endif
   endif
 endif
-ifeq (,${DIST_SUBDIR})
-  _FETCH_ARGS+=	-d .
-else
-  _FETCH_ARGS+=	-d ${DIST_SUBDIR}
-endif
+_FETCH_ARGS+=	-d $(or $(strip ${DIST_SUBDIR}),.)
 
-ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
 $(addprefix ${DISTDIR}/,${_ALLFILES}):
-	@${STEP_MSG} "Fetching $(notdir $@)"
-	${RUN}${MKDIR} $(dir $@);					\
+	${RUN} ${STEP_MSG} "Fetching $(notdir $@)";			\
+	${MKDIR} $(dir $@) && ${RM} -f $@;				\
 	for d in "" $(subst :, ,${DIST_PATH}); do			\
-		case $$d in						\
-		""|${DISTDIR})	continue ;;				\
-		esac;							\
-		file="$$d/${DIST_SUBDIR}/$(notdir $@)";			\
-		if ${TEST} -f $$file; then				\
-			${ECHO} "Using $$file";				\
-			${RM} -f $@;					\
-			${LN} -s $$file $@;				\
-		fi;							\
-	done;								\
+	  case $$d in ""|${DISTDIR}) continue ;; esac;			\
+	  file="$$d/${DIST_SUBDIR}/$(notdir $@)";			\
+	  if ${TEST} -f $$file; then					\
+	    ${ECHO} "Using $$file";					\
+	    ${LN} -s $$file $@;			\
+	    break;							\
+	  fi;								\
+	done
+  ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
+	${RUN} ${TEST} ! -f $@ || exit 0;				\
 	unsorted_sites="${SITES.$(subst =,--,$(notdir $@))}";		\
 	cd ${DISTDIR} &&						\
 	${_FETCH_SCRIPT} -m ${FETCH_METHOD} ${_FETCH_ARGS}		\
 		$(notdir $@) ${_ORDERED_SITES} ||:;			\
 	if ${TEST} ! -f $@; then					\
-		${_FETCH_SCRIPT_BACKUP} -m archive ${_FETCH_ARGS}	\
+	  ${_FETCH_SCRIPT_BACKUP} -m archive ${_FETCH_ARGS}		\
 			$(notdir $@) ${_MASTER_SITE_BACKUP} ||:;	\
 	fi;								\
 	if ${TEST} ! -f $@; then					\
-		${ERROR_MSG} "Could not fetch the following file:";	\
-		${ERROR_MSG} "    $(notdir $@)";			\
-		${ERROR_MSG} "";					\
-		${ERROR_MSG} "Please retrieve this file manually into:";\
-		${ERROR_MSG} "    $(dir $@)";				\
-		exit 1;							\
+	  ${ERROR_MSG} "Could not fetch the following file:";		\
+	  ${ERROR_MSG} "    $(notdir $@)";				\
+	  ${ERROR_MSG} "";						\
+	  ${ERROR_MSG} "Please retrieve this file manually into:";	\
+	  ${ERROR_MSG} "    $(dir $@)";					\
+	  exit 1;							\
 	fi
-endif
+  else # INTERACTIVE_STAGE
+	${RUN} ${TEST} ! -f $@ || exit 0;				\
+	${ERROR_MSG} ${hline};						\
+	for line in ${FETCH_MESSAGE}; do ${ERROR_MSG} "$$line"; done;	\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} ${hline};						\
+	exit 1
+  endif
 
 
 # --- mirror-distfiles (PUBLIC) --------------------------------------
@@ -271,10 +234,12 @@ endif
 # sites that wish to provide distfiles that others may fetch.  It
 # only fetches distfiles that are freely re-distributable.
 #
-.PHONY: mirror-distfiles
-ifdef NO_PUBLIC_SRC
-mirror-distfiles:
-	@${DO_NADA}
-else
-mirror-distfiles: fetch
+ifndef NO_PUBLIC_SRC
+  ifneq (,$(foreach _,${_ALLFILES},$(if $(wildcard ${DISTDIR}/$_),,no)))
+    _MIRROR_TARGETS+=$(call add-barrier, bootstrap-depends, mirror-distfiles)
+    _MIRROR_TARGETS+=fetch
+  endif
 endif
+
+.PHONY: mirror-distfiles
+mirror-distfiles: ${_MIRROR_TARGETS}; @:
