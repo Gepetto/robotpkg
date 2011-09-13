@@ -44,7 +44,9 @@ endef
 # Set <var> to <value> if <var> is empty.
 #
 override define setdefault
-$(if $(value $1),,$(eval $1?=$2))
+$(eval ifeq (,$$(value $1))
+override $1:=$2
+endif)
 endef
 
 
