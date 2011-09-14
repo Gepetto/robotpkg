@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Mon, 9 Mar 2009
 #
 
-DISTNAME=	laaswm-libs-1.0
+DISTNAME=	laaswm-libs-1.2
 COMMENT=	Library allowing to control windows in laaswm
 CATEGORIES=	graphics
 
