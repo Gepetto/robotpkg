@@ -37,9 +37,11 @@ nolog=verb
 progress=statusline
 eta=
 interactive=
+raw=
 
 usage() {
-    ${ECHO} 1>&2 "usage: $self [-n] [-v] [-i] [-a eta] [-l file] [--] arg0 [arg...]"
+    ${ECHO} 1>&2 "usage: $self [-n] [-v] [-i] [-r] [-a eta] [-l file] [--]" \
+        "arg0 [arg...]"
 }
 
 while ${TEST} $# -gt 0; do
@@ -49,6 +51,7 @@ while ${TEST} $# -gt 0; do
 	-a)     eta=$2; progress=percent; shift 2 ;;
 	-n)     nofilter=yes; shift;;
 	-l)     logfile=$2; shift 2;;
+	-r)     raw=yes; shift;;
 
         --)     shift; break ;;
         -*)     ${ECHO} 1>&2 "$self: unknown option -- ${1#-}"
@@ -131,9 +134,11 @@ fi
 
 if ${TEST} -n "$logfile"; then
     exec 6>>$logfile
-    ${ECHO} "Environment:" >&6
-    ${SETENV} >&6
-    ${ECHO} >&6
+    if ${TEST} -z "$raw"; then
+        ${ECHO} "Environment:" >&6
+        ${SETENV} >&6
+        ${ECHO} >&6
+    fi
     tofile() { ${ECHO} "$@" >&6; }
 else
     tofile() { :;}
@@ -173,7 +178,9 @@ test -n "${civis}" && ${MSG} ${civis}
 
 exec 3<&0 4>&1 5>&1
 ${TEST} -t 3 && stty -icanon -echo min 0 <&3 2>/dev/null
-tofile "Running $@"
+if ${TEST} -z "$raw"; then
+    tofile "Running $@"
+fi
 status=`{ run "$@" 2>&1 | filter; } 4>&1 >&5`
 ${TEST} -t 3 && stty icanon echo <&3 2>/dev/null
 exec 3>&- 4>&- 5>&-
