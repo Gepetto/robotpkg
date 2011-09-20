@@ -180,22 +180,24 @@ MESSAGE_SUBST+=	PKGNAME=${PKGNAME}					\
 		LOCALBASE=${LOCALBASE}					\
 		PKG_SYSCONFDIR=${PKG_SYSCONFDIR}
 
-_MESSAGE_SUBST_SED= $(foreach _m_,$(MESSAGE_SUBST), -e s!\$${$(subst =,}!,${_m_})!g)
+_MESSAGE_SUBST_SED=\
+	$(foreach _m_,$(MESSAGE_SUBST), -e s!\$${$(subst =,}!,${_m_})!g)
 
 ${PKG_DB_TMPDIR}/${_MESSAGE_FILE}: ${MESSAGE_SRC}
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} $(dir $@)
-	${_PKG_SILENT}${_PKG_DEBUG}${CAT} $^ | \
-		${SED} ${_MESSAGE_SUBST_SED} > $@
+	${RUN}${MKDIR} $(dir $@);					\
+	${CAT} $^ | ${SED} ${_MESSAGE_SUBST_SED} > $@;			\
 
 # Display MESSAGE file
 #
 .PHONY: install-display-message
 pkg-register: install-display-message
 install-display-message: ${PKG_DB_TMPDIR}/${_MESSAGE_FILE}
-	@${STEP_MSG} "Please note the following:"
-	@${ECHO_MSG} ""
-	@${CAT} ${PKG_DB_TMPDIR}/${_MESSAGE_FILE}
-	@${ECHO_MSG} ""
+	@${STEP_MSG} "Please note the following:";			\
+	${ECHO_MSG} "${hline}";						\
+	${ECHO_MSG} "";							\
+	${CAT} ${PKG_DB_TMPDIR}/${_MESSAGE_FILE};			\
+	${ECHO_MSG} "";							\
+	${ECHO_MSG} "${hline}"
 endif	# MESSAGE_SRC
 
 
