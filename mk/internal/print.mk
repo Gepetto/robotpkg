@@ -121,7 +121,8 @@ endef
 # will produce the right PKGNAME[_NOTAG] value.
 override define combiname-alt # (alternative list, options)
 $(strip $(if $1,							\
-    $(foreach _,${PREFER_ALTERNATIVE.$(word 1,$1)},			\
+    $(foreach _,$(foreach a,${PREFER_ALTERNATIVE.$(word 1,$1)},		\
+        $(if $(strip ${PKG_ALTERNATIVE_SELECT.$a}),$a)),		\
       $(call combiname-alt,$(call cdr,$1),$2,$3 $(word 1,$1):=$_)),	\
   $(foreach _,$3,$(eval override PKG_ALTERNATIVE.$_))			\
   $(eval PKG_OPTIONS:=$2)						\
