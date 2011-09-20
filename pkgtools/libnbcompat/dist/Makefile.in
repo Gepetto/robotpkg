@@ -64,9 +64,9 @@ OBJS=		@LIBOBJS@
 
 WITH_DB=	@WITH_DB@
 
-.if ${WITH_DB} == "yes"
-.  include "${.CURDIR}/db/Makefile.inc"
-.endif
+ifeq (${WITH_DB},yes)
+  include ${CURDIR}/db/Makefile.inc
+endif
 
 LINK=		$(CCLD) $(CFLAGS) $(LDFLAGS) -o $@
 COMPILE=	$(CC) $(CPPFLAGS) $(CFLAGS)
