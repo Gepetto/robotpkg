@@ -1,6 +1,7 @@
 # $NetBSD: Makefile.inc,v 1.1 2008/10/10 00:21:43 joerg Exp $
 
-VPATH+= db/btree db/db db/hash db/mpool db/recno
+.PATH: ${.PARSEDIR}/btree ${.PARSEDIR}/db ${.PARSEDIR}/hash \
+    ${.PARSEDIR}/mpool ${.PARSEDIR}/recno
 
 CPPFLAGS+=-D__DBINTERFACE_PRIVATE
 
