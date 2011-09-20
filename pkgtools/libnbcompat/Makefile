@@ -17,8 +17,7 @@ NO_CHECKSUM=		yes
 
 GNU_CONFIGURE=		yes
 MAKE_ENV+=		LIBMODE=644
-
-CONFIGURE_LOG_ETA=	345
+CONFIGURE_ARGS+=	--enable-bsd-getopt --enable-db
 
 include ../../mk/robotpkg.mk
 
