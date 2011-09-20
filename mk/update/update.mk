@@ -94,8 +94,8 @@ do%update: .FORCE
 	target='$(filter-out confirm,${UPDATE_TARGET})';		\
 	while IFS=: read dir pkg <&9; do				\
 	  if ${TEST} "$$dir" = "${PKGPATH}"; then			\
-	    if ${PKG_INFO} -qe "$$pkg"; then				\
-	      ${STEP_MSG} "$$pkg was already reinstalled";		\
+	    if ${PKG_INFO} -qe '${PKGNAME}'; then			\
+	      ${STEP_MSG} "${PKGNAME} was already reinstalled";		\
 	      continue;							\
 	    fi;								\
 	    t="${UPDATE_TARGET}";					\
