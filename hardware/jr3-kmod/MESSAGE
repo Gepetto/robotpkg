@@ -1,0 +1,3 @@
+To finish installing the kernel module you must run as root:
+
+  ${CP} ${PREFIX}/${KMOD_DIR}/${KMOD} /${KMOD_DIR}/${KMOD}

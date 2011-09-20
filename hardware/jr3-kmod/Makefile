@@ -16,14 +16,10 @@ KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char
 KMOD=		jr3.ko
 INSTALLATION_DIRS+=${KMOD_DIR}
 
+MESSAGE_SUBST+=	CP=${CP}
+MESSAGE_SUBST+=	KMOD_DIR=${KMOD_DIR}
+MESSAGE_SUBST+=	KMOD=${KMOD}
+
 include ../../mk/sysdep/kernel.mk
 include ../../mk/sysdep/sudo.mk
 include ../../mk/robotpkg.mk
-
-post-install: install-kmod
-
-.PHONY: install-kmod
-install-kmod:
-	@${STEP_MSG} "Becoming \`\`root'' to install kernel module (sudo)"
-	${SUDO} -u root ${CP} ${PREFIX}/${KMOD_DIR}/${KMOD} /${KMOD_DIR}/${KMOD}
-	@${STEP_MSG} "Dropping \`\`root'' privileges."
