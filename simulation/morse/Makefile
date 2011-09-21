@@ -26,3 +26,5 @@ define PKG_OPTION_UNSET.doc
 endef
 
 include ../../mk/robotpkg.mk
+
+post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/morse)
