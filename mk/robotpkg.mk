@@ -50,6 +50,8 @@ endif
 .PHONY: all
 all: build
 
+# We are definitely not -j aware
+.NOTPARALLEL:
 
 # Include any preferences, if not already included, and default definitions.
 ifndef MK_ROBOTPKG_PREFS
