@@ -8,7 +8,7 @@ PKGNAME=	eigen3-${V}
 MASTER_SITES=	https://bitbucket.org/eigen/eigen/get/
 DIST_SUBDIR=	eigen3
 
-CATEGORIES=	wip
+CATEGORIES=	math
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://eigen.tuxfamily.org/
 COMMENT=	a C++ template library for linear algebra
