@@ -72,6 +72,9 @@
 #	PLIST
 #
 ifndef PLIST_SRC
+  ifeq (yes,$(call exists,${PKGDIR}/PLIST.${OS_KERNEL}))
+PLIST_SRC+=     ${PKGDIR}/PLIST.${OS_KERNEL}
+  endif
   ifeq (yes,$(call exists,${PKGDIR}/PLIST.${OPSYS}))
 PLIST_SRC+=     ${PKGDIR}/PLIST.${OPSYS}
   endif
