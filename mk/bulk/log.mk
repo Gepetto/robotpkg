@@ -102,7 +102,8 @@ bulk-metadata:
 	${BULK_META} 'DATE_START	${_bulk_date_start}';		\
 	${BULK_META} 'DATE_STOP		${_bulk_date_stop}';		\
 	${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} print-pkgnames		\
-		'PKG_DEFAULT_OPTIONS='					\
+		'_override_vars.${PKGPATH}='				\
+		'PKG_DEFAULT_OPTIONS=' 'PKGREQD='			\
 		$(if ${PKG_OPTIONS_VAR},'${PKG_OPTIONS_VAR}=')		\
 	| while IFS='|' read t p; do					\
 	  ${BULK_META} "AVAIL	$$p";					\
