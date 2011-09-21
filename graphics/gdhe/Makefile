@@ -33,4 +33,6 @@ include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/sysdep/libjpeg.mk
+include ../../mk/sysdep/libXmu.mk
+include ../../mk/sysdep/libXpm.mk
 include ../../mk/robotpkg.mk
