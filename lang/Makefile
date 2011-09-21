@@ -8,6 +8,7 @@ SUBDIR+=	gcc42-c++
 SUBDIR+=	gcc42-fortran
 SUBDIR+=	jython
 SUBDIR+=	python31
+SUBDIR+=	python32
 SUBDIR+=	sun-jdk14
 SUBDIR+=	sun-jdk6
 SUBDIR+=	sun-jre14

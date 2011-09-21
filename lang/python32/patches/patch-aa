@@ -1,0 +1,11 @@
+--- setup.py~	2011-09-03 18:16:50.000000000 +0200
++++ setup.py	2011-09-21 00:38:47.000000000 +0200
+@@ -21,7 +21,7 @@
+ COMPILED_WITH_PYDEBUG = hasattr(sys, 'gettotalrefcount')
+ 
+ # This global variable is used to hold the list of modules to be disabled.
+-disabled_module_list = []
++disabled_module_list = ["_bsddb", "_curses", "_curses_panel", "_elementtree", "_sqlite3", "_tkinter", "_gdbm", "expat", "readline"]
+ 
+ # File which contains the directory for shared mods (for sys.path fixup
+ # when running from the build dir, see Modules/getpath.c)

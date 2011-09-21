@@ -1,0 +1,10 @@
+@comment Wed Sep 21 00:45:14 CEST 2011
+lib/python3.2/plat-${PY_PLATNAME}/CDROM.py
+lib/python3.2/plat-${PY_PLATNAME}/DLFCN.py
+lib/python3.2/plat-${PY_PLATNAME}/TYPES.py
+lib/python3.2/plat-${PY_PLATNAME}/__pycache__/CDROM.cpython-32.pyc
+lib/python3.2/plat-${PY_PLATNAME}/__pycache__/CDROM.cpython-32.pyo
+lib/python3.2/plat-${PY_PLATNAME}/__pycache__/DLFCN.cpython-32.pyc
+lib/python3.2/plat-${PY_PLATNAME}/__pycache__/DLFCN.cpython-32.pyo
+lib/python3.2/plat-${PY_PLATNAME}/__pycache__/TYPES.cpython-32.pyc
+lib/python3.2/plat-${PY_PLATNAME}/__pycache__/TYPES.cpython-32.pyo
