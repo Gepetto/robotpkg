@@ -18,3 +18,6 @@ CMAKE_ARGS+=		-DBUILD_YARP2_SUPPORT=ON
 include ../../middleware/py-yarp/depend.mk
 include ../../simulation/morse/depend.mk
 include ../../mk/robotpkg.mk
+
+post-install: python-compile-all( \
+	${PREFIX}/${PYTHON_SITELIB}/morse/middleware/yarp*)
