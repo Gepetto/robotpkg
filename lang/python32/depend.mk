@@ -17,6 +17,7 @@ include ../../mk/sysdep/python.mk
 PREFER.python32?=	${PREFER.python}
 
 DEPEND_ABI.python32?=	python32>=3.2<3.3
+DEPEND_DIR.python32?=	../../lang/python32
 
 # see sysdep/python.mk for the definition of SYSTEM_SEARCH.python
 _py_search32=		{3.2,3,}{,d}{,m}{,u}
