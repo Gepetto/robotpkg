@@ -87,6 +87,15 @@ bulk-archive-log:
 	for f in ${WRKDIR}/*.log; do					\
 	  ${TEST} ! -s $$f || ${CP} -p $$f ${BULK_LOGDIR}/${PKGNAME}/;	\
 	done
+  ifdef GNU_CONFIGURE
+	${RUN} ${TEST} -s ${_bulklog_broken} || exit 0;			\
+	for dir in ${CONFIGURE_DIRS}; do				\
+	  if cd ${WRKSRC} && cd "$$dir" 1>/dev/null 2>&1; then		\
+	    ${TEST} ! -s config.log ||					\
+	      ${CP} -p config.log ${BULK_LOGDIR}/${PKGNAME}/;		\
+	  fi;								\
+	done
+  endif
 
 
 # --- bulk-metadata --------------------------------------------------------
