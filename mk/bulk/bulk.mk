@@ -335,8 +335,11 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	  ${RM} -f ${_bulklog_broken} ${_bulklog_brokenby};		\
 	  exit 0;							\
 	};								\
-	${TEST} ! -s ${_bulklog_broken} || exit 0;			\
 	t='$(if $(filter bootstrap,$*),bootstrap-depends,depends)';	\
+	${TEST} ! -s ${_bulklog_broken} || {				\
+	  ${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} sys-$$t >/dev/null ||:;	\
+	  exit 0;							\
+	};								\
 	${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} $$t ||			\
 	  ${BULK_BRK} "${MAKE}: *** [$$t] Error $$?"
 
