@@ -70,7 +70,7 @@ if ${TEST} -n "$nofilter"; then
 	# the tricky part is to get the actual exit status of the command.
 	exec 3>&1 4>&1
 	exit `{ { "$@" 3>&- 4>&-; echo $? >&3; } | while read l; do
-	    echo $l >&4; echo $l>>$logfile;
+	    echo "$l" >&4; echo "$l">>$logfile;
 	done; } 3>&1`
     else
 	exec "$@"
@@ -110,7 +110,7 @@ fi
 
 # Log functions
 #
-verb() { ${ECHO} $@; }
+verb() { ${ECHO} "$@"; }
 
 if ${TEST} -t 1; then
     noverb() {
