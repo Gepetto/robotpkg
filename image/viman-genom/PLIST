@@ -24,6 +24,10 @@ ${PLIST.tclserv_client}include/viman/server/tclservClient/vimanTclservClientDeco
 ${PLIST.tclserv_client}include/viman/server/tclservClient/vimanTclservClientEncode.h
 ${PLIST.tclserv_client}include/viman/server/tclservClient/vimanTclservClientMsgLib.h
 lib/libvimanClient.la
+lib/libvimanWeb.a
+lib/libvimanWeb.la
+lib/libvimanWeb.so
+lib/vimanWeb.so
 ${PLIST.openprs}lib/openprs/libvimanOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/viman-oprs.pc
 lib/pkgconfig/viman.pc
