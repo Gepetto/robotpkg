@@ -32,7 +32,6 @@ OVERRIDE_DIRDEPTH.pkg-config=	3
 
 BUILD_DIRS=		build
 
-include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
 
