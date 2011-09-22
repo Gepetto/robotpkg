@@ -19,8 +19,8 @@ DEPEND_ABI.libdc1394?=	libdc1394>=2.0.1
 DEPEND_DIR.libdc1394?=	../../image/libdc1394
 
 SYSTEM_PKG.Fedora.libdc1394=libdc1394-devel
-SYSTEM_PKG.Ubuntu.libdc1394=libdc1394-dev
-SYSTEM_PKG.Debian.libdc1394=libdc1394-dev
+SYSTEM_PKG.Ubuntu.libdc1394=libdc1394-22-dev
+SYSTEM_PKG.Debian.libdc1394=libdc1394-22-dev
 
 SYSTEM_SEARCH.libdc1394=\
 	include/dc1394/dc1394.h		\
