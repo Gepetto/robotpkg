@@ -1,6 +1,5 @@
-# $LAAS: gtk.mk 2010/07/16 16:42:34 mallet $
 #
-# Copyright (c) 2008,2010 LAAS/CNRS
+# Copyright (c) 2008,2010-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,7 +32,7 @@ SYSTEM_SEARCH.gtk=	\
 	'include/gtk-2.0/gtk/gtk.h'				\
 	'lib/pkgconfig/gtk+-2.0.pc:/Version/s/[^.0-9]//gp'
 
-SYSTEM_PKG.Linux-fedore.gtk=	gtk2-devel
+SYSTEM_PKG.Fedora.gtk=	gtk2-devel
 SYSTEM_PKG.Ubuntu.gtk=	libgtk2.0-dev
 SYSTEM_PKG.Debian.gtk=	libgtk2.0-dev
 SYSTEM_PKG.NetBSD.gtk=		x11/gtk2
