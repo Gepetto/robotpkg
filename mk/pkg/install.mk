@@ -130,12 +130,12 @@ pkg-install-check-files:
 	${ERROR_MSG} "$${bf}Installation of ${PKGNAME} would$${rm}";	\
 	${ERROR_MSG} "$${bf}overwrite already installed files.$${rm}";	\
 	pkg=; n=;							\
-	${SORT} <${WRKDIR}/conflicts.log | while read c; do set -- $$c;	\
-	  if ${TEST} "$$pkg" != "$$1"; then				\
-	    ${ECHO}; ${ECHO} "$${bf}Files from $$1 package:$${rm}";	\
+	${SORT} <${WRKDIR}/conflicts.log | while read p f; do		\
+	  if ${TEST} "$$pkg" != "$$p"; then				\
+	    ${ECHO}; ${ECHO} "$${bf}Files from $$p package:$${rm}";	\
 	  fi;								\
-	  ${ECHO} "$$2";						\
-	  pkg=$$1; n=.$$n;						\
+	  ${ECHO} "$$f";						\
+	  pkg="$$p"; n=.$$n;						\
 	  if ${TEST} "$${n##....................}" != "$$n"; then	\
 	    ${ECHO} "[more conflicting files skipped]";			\
 	    ${ECHO} "See ${WRKDIR}/conflicts.log";			\
