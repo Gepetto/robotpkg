@@ -14,6 +14,13 @@ ifeq (+,$(PYTHON31_DEPEND_MK)) # -------------------------------------------
 DEPEND_USE+=		python31
 
 include ../../mk/sysdep/python.mk
+ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 14,${OS_VERSION}))
+    PREFER.python31?=	system
+  else
+    PREFER.python31?=	robotpkg
+  endif
+endif
 PREFER.python31?=	${PREFER.python}
 
 DEPEND_ABI.python31?=	python31>=3.1<3.2
