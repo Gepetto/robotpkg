@@ -20,7 +20,7 @@ SYSTEM_SEARCH.libXpm=	\
 	lib/libXpm.{so,a}						\
 	'lib/pkgconfig/xpm.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.libXpm=libxpm-devel
+SYSTEM_PKG.Fedora.libXpm=libXpm-devel
 SYSTEM_PKG.Ubuntu.libXpm=libxpm-dev
 SYSTEM_PKG.Debian.libXpm=libxpm-dev
 SYSTEM_PKG.NetBSD.libXpm=pkgsrc/x11/libXpm
