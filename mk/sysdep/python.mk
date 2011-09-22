@@ -89,8 +89,23 @@ export PYTHON_INCLUDE=$(dir $(word 3,${SYSTEM_FILES.${PKG_ALTERNATIVE.python}}))
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python25 python26 python27 python31 python32
-PREFER_ALTERNATIVE.python?=	python26 python27 python31 python32
 
+# select default preferences depending on OS/VERSION
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 14,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python31 python32
+  else
+    PREFER_ALTERNATIVE.python?=	python27 python32 python31
+  endif
+else ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 10.04 10.10,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python26 python31 python32
+  else
+    PREFER_ALTERNATIVE.python?=	python27 python26 python32 python31
+  endif
+endif
+PREFER_ALTERNATIVE.python?=	python26 python27 python31 python32
 
 PKG_ALTERNATIVE_DESCR.python25= Use python-2.5
 PKGTAG.python25=		py25
