@@ -22,22 +22,20 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		kernel
 endif
 
-ifeq (+,$(KERNEL_DEPEND_MK)) # --------------------------------------------
+ifeq (+,$(KERNEL_DEPEND_MK)) # ---------------------------------------------
 
-PREFER.kernel?=	system
+PREFER.kernel?=		system
 
-DEPEND_USE+=	kernel
+DEPEND_USE+=		kernel
 DEPEND_ABI.kernel?=	kernel>=2.6
 
-_version=${shell uname -r}
+SYSTEM_PKG.Fedora.kernel=kernel-devel-${OS_KERNEL_VERSION}
+SYSTEM_PKG.Ubuntu.kernel=linux-headers-${OS_KERNEL_VERSION}
 
-
-SYSTEM_PKG.Fedora.kernel=	kernel-devel-${_version}
-SYSTEM_PKG.Ubuntu.kernel=	linux-headers-${_version}
-
+_syspath.linux-kernel=lib/modules/${OS_KERNEL_VERSION}/build/include
 SYSTEM_SEARCH.kernel=\
-	'lib/modules/${_version}/build/include/linux/version.h' \
-	'lib/modules/${_version}/build/include/{linux,generated}/utsrelease.h:/UTS_RELEASE[ 	]/s/[^0-9.-]//gp'
+	'${_syspath.linux-kernel}/linux/version.h' \
+	'${_syspath.linux-kernel}/{linux,generated}/utsrelease.h:/UTS_RELEASE[ 	]/s/[^0-9.-]//gp'
 
 
 endif # KERNEL_DEPEND_MK --------------------------------------------------
