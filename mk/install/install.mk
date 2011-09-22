@@ -258,7 +258,7 @@ install-failed:
 	    @cwd*)	set -- $$f; shift; prefix="$$@";;		\
 	    @ignore*)	read f;;					\
 	    @*)		;;						\
-	    *)		${RM} -f $$prefix/$$f;;				\
+	    *)		${RM} -f "$$prefix/$$f";;			\
 	  esac;								\
 	done <${PLIST};							\
 	${ERROR_MSG} "${hline}";					\
