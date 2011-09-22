@@ -181,7 +181,7 @@ else
 endif # !PKG_SUPPORTED_OPTIONS
 ifdef PKG_ALTERNATIVES
 	@								\
-  $(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVE.$_},		\
+  $(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVES.$_},		\
 	${ECHO} "";							\
 	${ECHO} "$${bf}The following $_ alternatives may be"		\
 		"selected$${rm}:";					\
@@ -197,7 +197,7 @@ ifdef PKG_ALTERNATIVES
 	${ECHO} "";							\
 	${ECHO} "$${bf}The following $_ alternative is currently"	\
 		"enabled$${rm}:";					\
-	${ECHO} "	${PKG_ALTERNATIVE.$_}"				\
+	${ECHO} "	$(or ${PKG_ALTERNATIVE.$_},(none))"		\
 		"	${PKG_ALTERNATIVE_DESCR.${PKG_ALTERNATIVE.$_}}";\
 	${ECHO} "";							\
 	${ECHO} "You can select a $_ alternative by setting"		\
