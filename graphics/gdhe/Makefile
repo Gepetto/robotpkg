@@ -25,7 +25,6 @@ CONFIGURE_ARGS+=--with-jpeg=${PREFIX.libjpeg}
 
 INCLUDE_DIRS.mesa+=include
 
-include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/mesa.mk
