@@ -24,6 +24,13 @@ PKG_SUPPORTED_OPTIONS+= debug
 PKG_OPTION_DESCR.debug=	Compile in debugging mode
 PKG_OPTION_SET.debug:=	CMAKE_ARGS+= -DCMAKE_BUILD_TYPE=Debug
 
+# Build the package in a separate directory
+CONFIGURE_DIRS=		_build
+CMAKE_ARG_PATH=		..
+
+pre-configure:
+	${RUN}${MKDIR} ${WRKSRC}/_build
+
 include ../../mk/sysdep/cmake.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
