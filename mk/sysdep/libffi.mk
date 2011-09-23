@@ -16,6 +16,7 @@ DEPEND_USE+=		libffi
 
 DEPEND_ABI.libffi?=	libffi>=3
 
+include ../../mk/robotpkg.prefs.mk # MACHINE_ARCH
 ifeq (i386,${MACHINE_ARCH})
   sysinc.libffi=i[3456]86-linux-gnu
 else
