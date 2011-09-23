@@ -20,6 +20,13 @@ LICENSE =	original-bsd
 USE_LANGUAGES+=	c c++
 CMAKE_ARGS+= -DCXX_DISABLE_WERROR=TRUE
 
+# Build the package in a separate directory
+CONFIGURE_DIRS=		_build
+CMAKE_ARG_PATH=		..
+
+pre-configure:
+	${RUN}${MKDIR} ${WRKSRC}/_build
+
 include ../../interfaces/jrl-mal/depend.mk
 
 include ../../pkgtools/pkg-config/depend.mk
