@@ -19,6 +19,13 @@ USE_LANGUAGES+=	c c++
 
 DOXYGEN_PLIST_DIR+=	share/doc/jrl-dynamics
 
+# Build the package in a separate directory
+CONFIGURE_DIRS=		_build
+CMAKE_ARG_PATH=		..
+
+pre-configure:
+	${RUN}${MKDIR} ${WRKSRC}/_build
+
 include ../../interfaces/jrl-mal/depend.mk
 include ../../interfaces/abstract-robot-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
