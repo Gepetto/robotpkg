@@ -56,11 +56,12 @@ include ../../mk/sysdep/autoconf.mk
 include ../../mk/sysdep/automake.mk
 
 pre-configure:
-	${RUN}cd ${WRKSRC} && 			\
+	${RUN}cd ${WRKSRC} &&			\
 	${LIBTOOL}ize -c -f &&			\
 	${PREFIX.automake}/bin/aclocal -I m4 &&	\
 	${AUTOCONF} -f
 
+include ../../devel/mkdep/depend.mk
 include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/libtool/depend.mk
