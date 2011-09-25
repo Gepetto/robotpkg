@@ -16,6 +16,7 @@ COMMENT=		Driver and interface for gyroKVH5000
 GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		gyroKVH5000
 
+include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/mkdep/depend.mk
