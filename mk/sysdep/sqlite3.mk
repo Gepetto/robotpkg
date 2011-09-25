@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010 LAAS/CNRS
+# Copyright (c) 2010-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -31,7 +31,7 @@ DEPEND_USE+=		sqlite3
 DEPEND_ABI.sqlite3?=	sqlite3>=3
 
 DEPEND_METHOD.sqlite3+=	build
-SYSTEM_SEARCH.sqlite3=	'bin/sqlite3:p:% -version'
+SYSTEM_SEARCH.sqlite3=	'bin/sqlite3:1{s/[^0-9.].*$$//;p;q;}:% -version'
 
 export SQLITE3=		${PREFIX.sqlite3}/bin/sqlite3
 
