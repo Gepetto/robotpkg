@@ -16,7 +16,7 @@ DEPEND_USE+=		sqlite3-tcl
 
 DEPEND_ABI.sqlite3-tcl?=sqlite3-tcl>=3
 
-_vregex=/ifneeded/{s/.*ifneeded sqlite3[ \t]*//;s/[ \t]*[[].*//;p;q;}
+_vregex=/ifneeded/{s/.*ifneeded sqlite3[ \t]*//;s/[ \t].*$$//;p;q;}
 SYSTEM_SEARCH.sqlite3-tcl=\
   'lib/{,tcl{,[0-9]*}/}sqlite3/pkgIndex.tcl:${_vregex}'
 
