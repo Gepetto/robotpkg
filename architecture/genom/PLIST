@@ -80,10 +80,15 @@ share/genom/${PKGVERSION}/server/printXML.h
 share/genom/${PKGVERSION}/server/requestCntrl.c
 share/genom/${PKGVERSION}/server/requestExec.c
 share/genom/${PKGVERSION}/server/scan.h
+share/genom/${PKGVERSION}/server/tcl/tclClientPoster.tcl
+share/genom/${PKGVERSION}/server/tcl/tclClientRqst.tcl
+share/genom/${PKGVERSION}/server/tcl/tclClient.tcl
 share/genom/${PKGVERSION}/server/tcl/tclEpilog.c
 share/genom/${PKGVERSION}/server/tcl/tclPoster.c
 share/genom/${PKGVERSION}/server/tcl/tclProlog.c
 share/genom/${PKGVERSION}/server/tcl/tclRqst.c
+share/genom/${PKGVERSION}/server/tclservClient/error.h
+share/genom/${PKGVERSION}/server/tclservClient/error.c
 share/genom/${PKGVERSION}/server/tclservClient/tclservClientDecode.h
 share/genom/${PKGVERSION}/server/tclservClient/tclservClientEncode.h
 share/genom/${PKGVERSION}/server/tclservClient/tclservClientMsgCtrl.c
