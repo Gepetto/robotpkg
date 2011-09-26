@@ -52,8 +52,11 @@ CMAKE_ARGS+=		-DWITH_XINE=OFF
 
 
 # option for image acquistion support
-PKG_SUGGESTED_OPTIONS+=		camera
-PKG_SUPPORTED_OPTIONS+=		camera
+include ../../mk/robotpkg.prefs.mk # OS_KERNEL
+ifneq (,$(filter Darwin Linux,${OS_KERNEL}))
+  PKG_SUGGESTED_OPTIONS+=	camera
+  PKG_SUPPORTED_OPTIONS+=	camera
+endif
 PKG_OPTION_DESCR.camera=	Enable digital camera acquisition support
 define PKG_OPTION_SET.camera
   CMAKE_ARGS+=			-DWITH_1394=ON -DWITH_V4L=ON
