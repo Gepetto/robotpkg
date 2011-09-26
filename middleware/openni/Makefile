@@ -13,6 +13,8 @@ COMMENT=	Primesense OpenNI framework for Natural Interaction
 CATEGORIES=	middleware image
 LICENSE=	gnu-lgpl-v3
 
+NOT_FOR_PLATFORM=	NetBSD-%	# missing libusb1
+
 USE_LANGUAGES=		c c++
 
 OPENNI_SHARE=		${PREFIX}/share/openni
