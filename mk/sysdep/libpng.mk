@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010 LAAS/CNRS
+# Copyright (c) 2010-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -34,7 +34,7 @@ DEPEND_ABI.libpng?=	libpng>=1.2.9
 SYSTEM_SEARCH.libpng=	\
 	'include/png.h'						\
 	'lib/pkgconfig/libpng.pc:/Version/s/[^.0-9]//gp'	\
-	'lib/libpng{,14}.{a,so}'
+	'lib/libpng{,1[45]}.{a,so}'
 
 SYSTEM_PKG.Fedora.libpng=	libpng-devel
 SYSTEM_PKG.Ubuntu.libpng=	libpng-dev
