@@ -338,7 +338,7 @@ find_new_leaves_iter(const char *pkg, void *cookie)
 	if (process_required_by(pkg, NULL, data->pkgs, 3) == 1) {
 		lpp = alloc_lpkg(pkg);
 		TAILQ_INSERT_TAIL(data->pkgs, lpp, lp_link);
-		data->progress = 0;
+		data->progress = 1;
 	}
 
 	return 0;
