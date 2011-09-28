@@ -1,0 +1,21 @@
+File config-win32-borland.h is not included in the source tarball
+
+--- ace/Makefile.in~	2011-08-23 19:10:01.000000000 +0200
++++ ace/Makefile.in	2011-09-28 18:39:09.446705586 +0200
+@@ -825,7 +825,6 @@
+ @BUILD_ACE_FOR_TAO_FALSE@  config-all.h \
+ @BUILD_ACE_FOR_TAO_FALSE@  config-lite.h \
+ @BUILD_ACE_FOR_TAO_FALSE@  config-macros.h \
+-@BUILD_ACE_FOR_TAO_FALSE@  config-win32-borland.h \
+ @BUILD_ACE_FOR_TAO_FALSE@  config-win32-common.h \
+ @BUILD_ACE_FOR_TAO_FALSE@  config-win32-msvc-7.h \
+ @BUILD_ACE_FOR_TAO_FALSE@  config-win32-msvc-8.h \
+@@ -1756,7 +1755,7 @@
+ 	WIN32_Asynch_IO.h WIN32_Proactor.h XML_Svc_Conf.h \
+ 	XTI_ATM_Mcast.h XTI_ATM_Mcast.inl ace_wchar.h ace_wchar.inl \
+ 	checked_iterator.h config-WinCE.h config-all.h config-lite.h \
+-	config-macros.h config-win32-borland.h config-win32-common.h \
++	config-macros.h config-win32-common.h \
+ 	config-win32-msvc-7.h config-win32-msvc-8.h \
+ 	config-win32-msvc.h config-win32.h config.h iosfwd.h \
+ 	os_include/arpa/os_inet.h os_include/net/os_if.h \

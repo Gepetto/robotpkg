@@ -1,4 +1,4 @@
-@comment Mon Mar 1 19:37:04 CET 2010
+@comment Wed Sep 28 18:45:46 CEST 2011
 bin/ace_gperf
 include/ACEXML/apps/svcconf/Svcconf.h
 include/ACEXML/apps/svcconf/Svcconf_Handler.h
@@ -16,8 +16,6 @@ include/ACEXML/common/DefaultHandler.h
 include/ACEXML/common/Element_Def_Builder.h
 include/ACEXML/common/Encoding.h
 include/ACEXML/common/EntityResolver.h
-include/ACEXML/common/Env.h
-include/ACEXML/common/Env.inl
 include/ACEXML/common/ErrorHandler.h
 include/ACEXML/common/Exception.h
 include/ACEXML/common/Exception.inl
@@ -42,7 +40,6 @@ include/ACEXML/common/XMLFilterImpl.h
 include/ACEXML/common/XMLFilterImpl.inl
 include/ACEXML/common/XMLReader.h
 include/ACEXML/common/XML_Codecs.h
-include/ACEXML/common/XML_Macros.h
 include/ACEXML/common/XML_Types.h
 include/ACEXML/common/XML_Util.h
 include/ACEXML/common/ZipCharStream.h
@@ -110,7 +107,6 @@ include/ace/Arg_Shifter.cpp
 include/ace/Arg_Shifter.h
 include/ace/Argv_Type_Converter.h
 include/ace/Argv_Type_Converter.inl
-include/ace/Array.h
 include/ace/Array_Base.cpp
 include/ace/Array_Base.h
 include/ace/Array_Base.inl
@@ -128,6 +124,9 @@ include/ace/Asynch_IO_Impl.inl
 include/ace/Asynch_Pseudo_Task.h
 include/ace/Atomic_Op.h
 include/ace/Atomic_Op.inl
+include/ace/Atomic_Op_GCC_T.cpp
+include/ace/Atomic_Op_GCC_T.h
+include/ace/Atomic_Op_GCC_T.inl
 include/ace/Atomic_Op_Sparc.h
 include/ace/Atomic_Op_T.cpp
 include/ace/Atomic_Op_T.h
@@ -254,7 +253,6 @@ include/ace/Event_Handler.inl
 include/ace/Event_Handler_T.cpp
 include/ace/Event_Handler_T.h
 include/ace/Event_Handler_T.inl
-include/ace/Exception_Macros.h
 include/ace/FIFO.h
 include/ace/FIFO.inl
 include/ace/FIFO_Recv.h
@@ -450,7 +448,6 @@ include/ace/Message_Queue_T.cpp
 include/ace/Message_Queue_T.h
 include/ace/Message_Queue_Vx.h
 include/ace/Message_Queue_Vx.inl
-include/ace/Method_Object.h
 include/ace/Method_Request.h
 include/ace/Min_Max.h
 include/ace/Module.cpp
@@ -511,9 +508,6 @@ include/ace/Null_Condition.h
 include/ace/Null_Mutex.h
 include/ace/Null_Semaphore.h
 include/ace/Numeric_Limits.h
-include/ace/OS.h
-include/ace/OS.inl
-include/ace/OS_Dirent.h
 include/ace/OS_Errno.h
 include/ace/OS_Errno.inl
 include/ace/OS_Log_Msg_Attributes.h
@@ -588,7 +582,6 @@ include/ace/OS_NS_wchar.inl
 include/ace/OS_NS_wctype.h
 include/ace/OS_NS_wctype.inl
 include/ace/OS_QoS.h
-include/ace/OS_String.h
 include/ace/OS_TLI.h
 include/ace/OS_TLI.inl
 include/ace/OS_Thread_Adapter.h
@@ -598,6 +591,7 @@ include/ace/Obchunk.inl
 include/ace/Object_Manager.h
 include/ace/Object_Manager.inl
 include/ace/Object_Manager_Base.h
+include/ace/Obstack.h
 include/ace/Obstack_T.cpp
 include/ace/Obstack_T.h
 include/ace/Obstack_T.inl
@@ -609,7 +603,6 @@ include/ace/POSIX_Proactor.h
 include/ace/POSIX_Proactor.inl
 include/ace/Pagefile_Memory_Pool.h
 include/ace/Pagefile_Memory_Pool.inl
-include/ace/Pair.h
 include/ace/Pair_T.cpp
 include/ace/Pair_T.h
 include/ace/Pair_T.inl
@@ -668,7 +661,6 @@ include/ace/Recursive_Thread_Mutex.h
 include/ace/Recursive_Thread_Mutex.inl
 include/ace/Recyclable.h
 include/ace/Recyclable.inl
-include/ace/Refcountable.h
 include/ace/Refcountable_T.cpp
 include/ace/Refcountable_T.h
 include/ace/Refcountable_T.inl
@@ -777,7 +769,6 @@ include/ace/Stack_Trace.h
 include/ace/Static_Object_Lock.h
 include/ace/Stats.h
 include/ace/Stats.inl
-include/ace/Strategies.h
 include/ace/Strategies_T.cpp
 include/ace/Strategies_T.h
 include/ace/Strategies_T.inl
@@ -798,8 +789,6 @@ include/ace/Svc_Handler.cpp
 include/ace/Svc_Handler.h
 include/ace/Synch.h
 include/ace/Synch_Options.h
-include/ace/Synch_T.cpp
-include/ace/Synch_T.h
 include/ace/Synch_Traits.h
 include/ace/System_Time.h
 include/ace/TLI.h
@@ -939,10 +928,7 @@ include/ace/config-WinCE.h
 include/ace/config-all.h
 include/ace/config-lite.h
 include/ace/config-macros.h
-include/ace/config-minimal.h
-include/ace/config-win32-borland.h
 include/ace/config-win32-common.h
-include/ace/config-win32-ghs.h
 include/ace/config-win32-msvc-7.h
 include/ace/config-win32-msvc-8.h
 include/ace/config-win32-msvc.h
