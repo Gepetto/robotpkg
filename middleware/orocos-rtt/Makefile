@@ -2,7 +2,7 @@
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
-OROCOS_VERSION=		1.10.3
+OROCOS_VERSION=		1.10.4
 DISTNAME=		orocos-rtt-${OROCOS_VERSION}-src
 PKGNAME=		orocos-rtt-${OROCOS_VERSION}
 CATEGORIES=		middleware
