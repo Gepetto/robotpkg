@@ -1,0 +1,12 @@
+Do not include deprecated ace/OS.h (it is not needed anyway)
+
+--- rtm/ManagerConfig.cpp~	2008-05-29 08:02:01.000000000 +0200
++++ rtm/ManagerConfig.cpp	2011-09-28 19:02:02.854705692 +0200
+@@ -22,7 +22,6 @@
+ #include <ace/Get_Opt.h>
+ #include <fstream>
+ #include <iostream>
+-#include <ace/OS.h>
+ #include <rtm/DefaultConfiguration.h>
+ 
+ namespace RTC

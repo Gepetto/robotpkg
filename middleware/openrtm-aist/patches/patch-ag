@@ -1,0 +1,12 @@
+Add required header (at least with ace>=6)
+
+--- rtm/PublisherNew.h~	2008-05-29 08:02:01.000000000 +0200
++++ rtm/PublisherNew.h	2011-09-28 19:04:48.830706468 +0200
+@@ -24,6 +24,7 @@
+ 
+ #include <ace/Task.h>
+ #include <ace/Synch.h>
++#include <ace/Condition_T.h>
+ #include <rtm/PublisherBase.h>
+ 
+ namespace RTC

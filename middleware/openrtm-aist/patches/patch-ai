@@ -1,0 +1,12 @@
+Do not include deprecated ace/OS.h (it is not needed anyway)
+
+--- rtm/InPortTcpSockConsumer.h~	2008-05-29 08:02:01.000000000 +0200
++++ rtm/InPortTcpSockConsumer.h	2011-09-28 19:43:59.978705955 +0200
+@@ -27,7 +27,6 @@
+ #include <ace/SOCK_Stream.h>
+ #include <ace/SOCK_Connector.h>
+ #include <ace/Log_Msg.h>
+-#include <ace/OS.h>
+ #include <iostream>
+ 
+ namespace RTC
