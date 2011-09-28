@@ -71,6 +71,7 @@
 /* Needed for gmtime_r on Interix */
 #define _REENTRANT
 
+#include "libfetch-config.h"
 #if HAVE_CONFIG_H
 #include "config.h"
 #endif

@@ -62,6 +62,7 @@
 #define _GNU_SOURCE
 #endif
 
+#include "libfetch-config.h"
 #if HAVE_CONFIG_H
 #include "config.h"
 #endif

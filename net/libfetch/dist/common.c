@@ -30,6 +30,7 @@
  * $FreeBSD: common.c,v 1.53 2007/12/19 00:26:36 des Exp $
  */
 
+#include "libfetch-config.h"
 #if HAVE_CONFIG_H
 #include "config.h"
 #endif

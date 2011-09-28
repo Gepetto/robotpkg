@@ -16,7 +16,7 @@ SYSTEM_SEARCH.libfetch=	\
 	include/fetch.h	\
 	lib/libfetch.a
 
-DEPEND_ABI.libfetch?=	libfetch>=2.4
+DEPEND_ABI.libfetch?=	libfetch>=2.33.1
 DEPEND_DIR.libfetch?=	../../net/libfetch
 
   # pull-in the user preferences for libfetch now
@@ -47,7 +47,8 @@ pre-configure: libfetch-build
 libfetch-build:
 	@${STEP_MSG} "Building libfetch in place"
 	${RUN}								\
-	cd ${LIBFETCH_SRCDIR} && 					\
+	cd ${LIBFETCH_SRCDIR} &&					\
+	${CONFIGURE_LOGFILTER} ${CONFIG_SHELL} ./configure -C &&	\
 	${CONFIGURE_LOGFILTER} ${SETENV}				\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}" ${MAKE_PROGRAM} depend all

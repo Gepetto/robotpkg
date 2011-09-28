@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sat, 19 Apr 2008
 #
 
-DISTNAME=	libfetch-2.33
+DISTNAME=	libfetch-2.33.1
 CATEGORIES=	net
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -14,6 +14,7 @@ HOMEPAGE=	http://www.FreeBSD.org/
 COMMENT=	Library to access HTTP/FTP server
 LICENSE=	modified-bsd
 
+GNU_CONFIGURE=	yes
 BUILD_TARGET=	depend all
 INSTALL_TARGET=	install includes man
 INSTALLATION_DIRS= include lib man/man3
