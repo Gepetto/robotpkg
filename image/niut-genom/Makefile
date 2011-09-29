@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Tue, 11 Jan 2011
 #
 
-DISTNAME=	niut-genom-0.1
+DISTNAME=	niut-genom-0.2
 CATEGORIES=	image
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=niut-genom/}
