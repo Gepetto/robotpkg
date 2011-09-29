@@ -1,0 +1,16 @@
+NetBSD-5.1 has wrong struct sigevent:sigev_notify_function signature, this was
+fixed in -current
+
+--- ace/POSIX_CB_Proactor.cpp~	2010-09-09 11:07:49.000000000 +0200
++++ ace/POSIX_CB_Proactor.cpp	2011-09-29 12:00:08.090461909 +0200
+@@ -86,6 +86,10 @@
+   result->aio_sigevent.sigev_notify = SIGEV_THREAD;
+ #  if defined (ACE_HAS_SIG_C_FUNC)
+   result->aio_sigevent.sigev_notify_function =
++#    ifdef __NetBSD__
++    /* NetBSD-5.1 has wrong signature, this was fixed in -current */
++    (void (*)(sigval *))
++#    endif
+     ACE_POSIX_CB_Proactor_aio_completion;
+ #  else
+   result->aio_sigevent.sigev_notify_function = aio_completion_func;
