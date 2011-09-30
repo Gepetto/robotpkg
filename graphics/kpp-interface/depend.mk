@@ -15,7 +15,7 @@ PREFER.kpp-interface?=	robotpkg
 
 DEPEND_USE+=			kpp-interface
 
-DEPEND_ABI.kpp-interface?=	kpp-interface>=1.6
+DEPEND_ABI.kpp-interface?=	kpp-interface>=1.8
 DEPEND_DIR.kpp-interface?=	../../graphics/kpp-interface
 
 SYSTEM_SEARCH.kpp-interface=\
