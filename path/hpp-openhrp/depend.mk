@@ -15,7 +15,7 @@ PREFER.hpp-openhrp?=	robotpkg
 
 DEPEND_USE+=		hpp-openhrp
 
-DEPEND_ABI.hpp-openhrp?=hpp-openhrp>=1.6
+DEPEND_ABI.hpp-openhrp?=hpp-openhrp>=1.9
 DEPEND_DIR.hpp-openhrp?=../../path/hpp-openhrp
 
 SYSTEM_SEARCH.hpp-openhrp=\
