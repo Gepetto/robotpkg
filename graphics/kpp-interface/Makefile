@@ -8,7 +8,7 @@ VERSION=	1.7
 
 CATEGORIES=	graphics
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kpp-interface/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kppInterface
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kpp/kpp-interface
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=
 COMMENT=	Graphical user interface for HPP libraries.
