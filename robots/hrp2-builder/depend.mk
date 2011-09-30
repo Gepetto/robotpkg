@@ -19,7 +19,7 @@ SYSTEM_SEARCH.hrp2-builder=\
 
 DEPEND_USE+=			hrp2-builder
 
-DEPEND_ABI.hrp2-builder?=	hrp2-builder>=1.0
+DEPEND_ABI.hrp2-builder?=	hrp2-builder>=1.2
 DEPEND_DIR.hrp2-builder?=	../../robots/hrp2-builder
 
 endif # HRP2_BUILDER_DEPEND_MK ---------------------------------------------
