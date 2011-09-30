@@ -3,8 +3,8 @@
 #
 
 DISTNAME=	hpp-walkfootplanner-${VERSION}
-VERSION=	2.1.3
-PKGREVISION=	1
+VERSION=	2.2
+PKGREVISION=	
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkfootplanner/}
