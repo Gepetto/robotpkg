@@ -1,10 +1,20 @@
-@comment Tue Nov 24 10:45:15 CET 2009
-include/hppModel/hppBody.h
-include/hppModel/hppDevice.h
-include/hppModel/hppHumanoidRobot.h
-include/hppModel/hppImplRobotDynamics.h
-include/hppModel/hppJoint.h
-include/hppModel/hppSpecificHumanoidRobot.h
-lib/libhppModel.la
-lib/pkgconfig/hppModel.pc
-@dirrm include/hppModel
+@comment Fri Sep 30 15:36:55 CEST 2011
+include/hpp/model/anchor-joint.hh
+include/hpp/model/body.hh
+include/hpp/model/config.hh
+include/hpp/model/deprecated.hh
+include/hpp/model/device.hh
+include/hpp/model/exception.hh
+include/hpp/model/freeflyer-joint.hh
+include/hpp/model/fwd.hh
+include/hpp/model/humanoid-robot.hh
+include/hpp/model/joint.hh
+include/hpp/model/parser.hh
+include/hpp/model/robot-dynamics-impl.hh
+include/hpp/model/rotation-joint.hh
+include/hpp/model/specific-humanoid-robot.hh
+include/hpp/model/translation-joint.hh
+include/hpp/model/warning.hh
+lib/libhpp-model.so
+lib/libhpp-model.so.${PKGVERSION}
+lib/pkgconfig/hpp-model.pc

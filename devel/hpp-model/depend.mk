@@ -14,12 +14,12 @@ ifeq (+,$(HPP_MODEL_DEPEND_MK)) # ------------------------------------
 PREFER.hpp-model?=	robotpkg
 
 SYSTEM_SEARCH.hpp-model=\
-	include/hppModel/hppDevice.h	\
-	lib/libhppModel.la
+	include/hpp/model/device.hh	\
+	lib/libhpp-model.so
 
 DEPEND_USE+=		hpp-model
 
-DEPEND_ABI.hpp-model?=	hpp-model>=1.7.5
+DEPEND_ABI.hpp-model?=	hpp-model>=2.0
 DEPEND_DIR.hpp-model?=	../../devel/hpp-model
 
 include ../../path/kineo-pp/depend.mk

@@ -2,9 +2,9 @@
 # Created:			Anthony Mallet on Mon, 18 Feb 2008
 #
 
-DISTNAME=	hppmodel-${VERSION}
+DISTNAME=	hpp-model-${VERSION}
 PKGNAME=	hpp-model-${VERSION}
-VERSION=	1.8
+VERSION=	2.0
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-model/}
@@ -17,20 +17,9 @@ LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=	c c++
 
-GNU_CONFIGURE=	yes
+DOXYGEN_PLIST_DIR+=	share/doc/hpp-model
 
-DOXYGEN_PLIST_DIR+=	share/doc/hppModel
-
-# options
-PKG_OPTIONS_OPTIONAL_GROUPS+=	verbose
-PKG_OPTIONS_GROUP.verbose=	verbose1 verbose2
-
-PKG_OPTION_DESCR.verbose1=	Set the level of verbosity to 1
-PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
-
-PKG_OPTION_DESCR.verbose2=	Set the level of verbosity to 2
-PKG_OPTION_SET.verbose2:=	CXXFLAGS+=-DDEBUG=2
-
+include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../path/kineo-pp/depend.mk
 include ../../devel/hpp-kwsio/depend.mk
