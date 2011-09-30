@@ -1,5 +1,3 @@
-SHA1 (hpp-core-1.14.tar.gz) = a4d98e72246373e02910d8a907e9acbe4a1b2341
-RMD160 (hpp-core-1.14.tar.gz) = f6ad2a4683f2771d5303e7ca29fe636e1a76fa3d
-Size (hpp-core-1.14.tar.gz) = 75287 bytes
-SHA1 (patch-aa) = c62ce98e1675e5cbdb25fe778721a952140920a8
-SHA1 (patch-ab) = 61f45bec64f4be0eacfde0c2a890ae4bc8a9caa8
+SHA1 (hpp-core-1.15.tar.gz) = e2189de6fd7991b52da24ab517621cd4c2719529
+RMD160 (hpp-core-1.15.tar.gz) = f8a8666044e0b7e927f1aeb8f9c2efb69fae1856
+Size (hpp-core-1.15.tar.gz) = 115578 bytes

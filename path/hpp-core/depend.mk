@@ -15,12 +15,12 @@ PREFER.hpp-core?=	robotpkg
 
 DEPEND_USE+=		hpp-core
 
-DEPEND_ABI.hpp-core?=	hpp-core>=1.12
+DEPEND_ABI.hpp-core?=	hpp-core>=1.15
 DEPEND_DIR.hpp-core?=	../../path/hpp-core
 
 SYSTEM_SEARCH.hpp-core=\
 	include/hpp/core/problem.hh	\
-	lib/pkgconfig/hppCore.pc
+	lib/pkgconfig/hpp-core.pc
 
 endif # HPPCORE_DEPEND_MK --------------------------------------------
 

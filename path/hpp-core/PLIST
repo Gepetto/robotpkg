@@ -1,12 +1,10 @@
-@comment Fri Aug 28 10:42:29 JST 2009
-include/hppCore/hppColPair.h
-include/hppCore/hppPlanner.h
-include/hppCore/hppProblem.h
-include/hpp/core/problem.hh
-include/hpp/core/planner.hh
+@comment Fri Sep 30 16:02:45 CEST 2011
 include/hpp/core/collision-pair.hh
-include/hpp/core/parser.hh
+include/hpp/core/config.hh
+include/hpp/core/deprecated.hh
 include/hpp/core/fwd.hh
-lib/libhppCore.so
-lib/pkgconfig/hppCore.pc
-@dirrm include/hppCore
+include/hpp/core/planner.hh
+include/hpp/core/problem.hh
+include/hpp/core/warning.hh
+lib/libhpp-core.so
+lib/pkgconfig/hpp-core.pc

@@ -4,7 +4,7 @@
 
 DISTNAME=	hpp-core-${VERSION}
 PKGNAME=	hpp-core-${VERSION}
-VERSION=	1.14
+VERSION=	1.15
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-core/}
@@ -17,24 +17,9 @@ LICENSE=	cnrs-hpp-closed-source
 
 USE_LANGUAGES+=	c c++
 
-DOXYGEN_PLIST_DIR+=	share/doc/hppCore
+DOXYGEN_PLIST_DIR+=	share/doc/hpp-core
 
 # --- options --------------------------------------------------------
-
-# ChppBody class
-PKG_SUPPORTED_OPTIONS+=	with-body
-
-PKG_OPTION_DESCR.with-body=	Use internal definition of ChppBody class.
-PKG_OPTION_SET.with-body:=	CONFIGURE_ARGS+=	-DENABLE_BODY=YES
-define PKG_OPTION_UNSET.with-body
-  CONFIGURE_ARGS+=	-DENABLE_BODY=NO
-  include ../../devel/hpp-model/depend.mk
-endef
-
-# verbosity
-PKG_SUPPORTED_OPTIONS+=	verbose1
-PKG_OPTION_DESCR.verbose1=	Define level of verbosity
-PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 # --------------------------------------------------------------------
 
