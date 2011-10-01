@@ -12,8 +12,7 @@ COMMENT=		Library to manipulate odometry data
 
 GNU_CONFIGURE=		yes
 
-DEPENDS+=		mkdep>=2.6:../../devel/mkdep
-
+include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mapping/segkit/depend.mk
