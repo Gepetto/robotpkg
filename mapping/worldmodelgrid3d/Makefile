@@ -11,7 +11,7 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Probabilistic, 3D occupancy grid building
 
 GNU_CONFIGURE=	yes
-USE_LANGUAGES=	c++
+USE_LANGUAGES=	c c++
 
 DOXYGEN_PLIST_DIR+=	share/doc/worldModelGrid3D
 
