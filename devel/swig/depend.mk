@@ -11,6 +11,21 @@ endif
 
 ifeq (+,$(SWIG_DEPEND_MK)) # -----------------------------------------
 
+include ../../mk/robotpkg.prefs.mk # OPSYS, OS_VERSION
+ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 14,${OS_VERSION}))
+    PREFER.swig?=\
+      $(if $(call preduce,${DEPEND_ABI.swig} swig<2),system,robotpkg)
+  endif
+else ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 10.04 10.10 11.04,${OS_VERSION}))
+    PREFER.swig?=\
+      $(if $(call preduce,${DEPEND_ABI.swig} swig<2),system,robotpkg)
+  endif
+else ifeq (NetBSD,${OPSYS})
+  PREFER.swig?=\
+    $(if $(call preduce,${DEPEND_ABI.swig} swig<2),system,robotpkg)
+endif
 PREFER.swig?=		system
 
 DEPEND_USE+=		swig
