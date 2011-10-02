@@ -20,6 +20,7 @@ SYSTEM_SEARCH.tdom=	\
 	'lib/tcl{,tk}{,[0-9]*}/tdom[0-9]*/pkgIndex.tcl:/ifneeded/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Linux.tdom=	tdom
+SYSTEM_PKG.NetBSD.tdom=	wip/tcl-tDOM
 
 include ../../mk/sysdep/tcl.mk
 
