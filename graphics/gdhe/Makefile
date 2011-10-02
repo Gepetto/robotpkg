@@ -22,6 +22,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
 CONFIGURE_ARGS+=--with-jpeg=${PREFIX.libjpeg}
+CONFIGURE_ARGS+=--x-includes=${PREFIX.libX11}/include
+CONFIGURE_ARGS+=--x-libraries=${PREFIX.libX11}/lib
 
 INCLUDE_DIRS.mesa+=include
 
@@ -32,6 +34,7 @@ include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/sysdep/libjpeg.mk
+include ../../mk/sysdep/libX11.mk
 include ../../mk/sysdep/libXmu.mk
 include ../../mk/sysdep/libXpm.mk
 include ../../mk/robotpkg.mk
