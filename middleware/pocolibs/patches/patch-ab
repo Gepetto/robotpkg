@@ -1,0 +1,25 @@
+From fa1a2f2673be1a2d10ec956643e90b25317bba10 Mon Sep 17 00:00:00 2001
+From: Anthony Mallet <anthony.mallet@laas.fr>
+Date: Mon, 26 Sep 2011 15:13:11 +0200
+Subject: [PATCH] Protect code using PTHREAD_STACK_MIN with #ifdef
+
+At least NetBSD-5.1 does not have PTHREAD_STACK_MIN.
+
+diff --git src/portLib/os/posix/taskLib.c src/portLib/os/posix/taskLib.c
+index 938020e..d0c228b 100644
+--- src/portLib/os/posix/taskLib.c
++++ src/portLib/os/posix/taskLib.c
+@@ -392,8 +392,10 @@ newTcb(char *name, int priority, int options, int stackSize,
+      */
+     /* give at least 64kB */
+     if (stackSize < 65536) stackSize = 65536;
++#ifdef PTHREAD_STACK_MIN
+     if (stackSize < PTHREAD_STACK_MIN)
+ 	    stackSize = PTHREAD_STACK_MIN;
++#endif
+     /* round to page size */
+     if (stackSize % pagesize != 0)
+ 	stackSize = stackSize - (stackSize % pagesize) + pagesize;
+-- 
+1.7.6
+
