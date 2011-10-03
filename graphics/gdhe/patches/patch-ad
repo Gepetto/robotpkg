@@ -1,0 +1,16 @@
+Set TCL_CC to CC if not set already, because the definition of TCL_SHLIB_LD may
+reference TCL_CC (this is so with pkgsrc).
+
+Note: TCL_CC could be set to @TCL_CC@, altough this setting will not use the
+compiler defined by robotpkg.
+
+--- Init.make.in~	2010-03-01 14:01:19.000000000 +0100
++++ Init.make.in	2011-10-03 19:02:41.000000000 +0200
+@@ -55,6 +55,7 @@
+ LTLDPURE=	$(LIBTOOL) --mode=link purify $(CC)
+ 
+ # Tcl/Tk
++TCL_CC?=			${CC}
+ TCL_CPPFLAGS=		@TCL_CPPFLAGS@
+ TCL_LDFLAGS=		@TCL_LDFLAGS@
+ TCL_LIBS=		@TCL_LIB_SPEC@ @TK_LIB_SPEC@
