@@ -261,10 +261,16 @@ for p in `bracesubst $sysprefix`; do
                 fi
 	    else
 		icmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
-		version=`eval $icmd 2>&1 </dev/null | \
-                    ${SED} -ne "${spec:-p}" | ${SED} $vrepl` || status=$?
+		version=`eval $icmd 2>&1 </dev/null` || status=$?
+		version=`echo "$version" | \
+                      ${SED} -ne "${spec:-p}" | ${SED} $vrepl` || status=$?
 	    fi
-            if ${TEST} -n "$opt"; then
+            if ${TEST} -z "$opt"; then
+                if ${TEST} $status -eq 0 -a -z "$version"; then
+                    ${MSG} "found:	$match"
+                    break
+                fi
+            else
                 if ${TEST} $status -eq 0 -a -n "$version"; then
                     case "+$pkgoption+" in
                         *+$opt+*) ;;
@@ -283,7 +289,11 @@ for p in `bracesubst $sysprefix`; do
 		break
 	    fi
 
-	    ${MSG} "found:	$match, wrong version ${version:-unknown}"
+            if ${TEST} $status -eq 0; then
+                ${MSG} "found:	$match, wrong version ${version:-unknown}"
+            else
+                ${MSG} "found:	$match, ${version:-error checking version}"
+            fi
 	    match=;
 	done
 	if ${TEST} -z "$match"; then
