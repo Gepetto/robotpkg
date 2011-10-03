@@ -1,5 +1,6 @@
-@comment $Id: PLIST 2007/08/02 16:49:00 mallet $
+@comment Mon Oct 3 16:58:35 CEST 2011
 bin/h2
+bin/h2logd
 bin/posterServ
 bin/shell
 include/commonStructLib.h
@@ -11,6 +12,7 @@ include/h2endianness.h
 include/h2errorLib.h
 include/h2evnLib.h
 include/h2initGlob.h
+include/h2logLib.h
 include/h2mathLib.h
 include/h2rngLib.h
 include/h2semLib.h
