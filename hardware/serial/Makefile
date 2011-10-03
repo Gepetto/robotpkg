@@ -16,8 +16,7 @@ COMMENT=		Driver and interface for serial ports
 GNU_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	autogen.sh
 
-DEPENDS+=		mkdep>=2.6:../../devel/mkdep
-
+include ../../devel/mkdep/depend.mk
 include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
