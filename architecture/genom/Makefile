@@ -14,6 +14,7 @@ COMMENT=	Software components generator for robotics architecture.
 
 LICENSE=	2-clause-bsd
 
+MAKE_JOBS_SAFE=	no
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	PERL=${PREFIX.perl}/bin/perl
 
@@ -46,12 +47,15 @@ PKG_OPTION_DESCR.doc=	Compile documentation material
 define PKG_OPTION_SET.doc
   CONFIGURE_ENV+=	LATEX=${PDFLATEX}
   include ../../mk/sysdep/pdflatex.mk
+
+  USE_TEX_PKGS+=	multirow.sty a4wide.sty varioref.sty
+  include ../../mk/sysdep/tex-pkg.mk
 endef
 define PKG_OPTION_UNSET.doc
   CONFIGURE_ENV+=	LATEX=:
 endef
 
-# Required because patch-ab modifies configure script
+# configure script is missing in distfile
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/sysdep/automake.mk
 
