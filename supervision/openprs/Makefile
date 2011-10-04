@@ -12,6 +12,7 @@ HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/openprs
 COMMENT=		Open Source Procedural Reasoning System
 LICENSE=		2-clause-bsd
 
+MAKE_JOBS_SAFE=		no
 NOT_FOR_PLATFORM=
 
 BUILD_DIRS=		${WRKSRC}
@@ -32,8 +33,11 @@ define PKG_OPTION_SET.doc
   BUILD_DIRS+=		doc
   INSTALL_TARGET+=	install_doc
 
+  USE_TEX_PKGS+=	graphicx.sty index.sty hyperref.sty verbatim.sty
+
   include ../../mk/sysdep/pdflatex.mk
   include ../../mk/sysdep/bibtex.mk
+  include ../../mk/sysdep/tex-pkg.mk
 endef
 
 include ../../devel/mkdep/depend.mk
