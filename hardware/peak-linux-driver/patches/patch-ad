@@ -1,0 +1,44 @@
+Detect make failures
+
+--- Makefile~	2010-02-13 20:58:25.000000000 +0100
++++ Makefile	2011-10-04 11:31:31.470581271 +0200
+@@ -52,32 +52,32 @@
+ # MACROS AND DEFINES
+ 
+ define make-all
+-@cd driver; make depend; make; cd ../lib; make; cd ../test; make; cd ..
++cd driver; make depend; make; cd ../lib; make; cd ../test; make; cd ..
+ endef
+ 
+ define make-clean
+-@cd driver; make clean; cd ../lib; make clean; cd ../test; make clean; cd ..
++cd driver; make clean; cd ../lib; make clean; cd ../test; make clean; cd ..
+ endef
+ 
+ define make-install
+-@cd driver; make install; cd ../lib; make install; cd ../test; make install; cd ..
++cd driver; make install; cd ../lib; make install; cd ../test; make install; cd ..
+ endef
+ 
+ define make-rpminstall
+-@cd driver; make rpminstall; cd ../lib; make rpminstall; cd ../test; make rpminstall; cd ..
++cd driver; make rpminstall; cd ../lib; make rpminstall; cd ../test; make rpminstall; cd ..
+ endef
+ 
+ 
+ #****************************************************************************
+ # DO IT
+ all :
+-	$(make-all)
++	@set -e; $(make-all)
+ 
+ clean:
+-	$(make-clean)
++	@set -e; $(make-clean)
+ 
+ install:
+-	$(make-install)
++	@set -e; $(make-install)
+   
+ # end
+ 
