@@ -1,0 +1,26 @@
+Look for jpeg in ubuntu's system libdir (i386-linux-gnu or x86_64-linux-gnu)
+Note the present patch assumes $jpeg_prefix is given, since this is what
+robotpkg does.
+
+--- configure~	2010-05-10 11:11:50.000000000 +0200
++++ configure	2011-10-04 14:13:38.406705623 +0200
+@@ -23333,8 +23333,19 @@
+ { $as_echo "$as_me:$LINENO: checking for JPEG library" >&5
+ $as_echo_n "checking for JPEG library... " >&6; }
+ test -z "$jpeg_test_lib" && jpeg_test_lib=jpeg
++sysjpgdir=
++case "`uname -s`" in
++  Linux)
++    if test "$ac_cv_sizeof_long_int" -eq 8; then
++      sysjpgdir=$jpeg_prefix/lib/x86_64-linux-gnu
++    else
++      sysjpgdir=$jpeg_prefix/lib/i[3456]86-linux-gnu
++    fi
++    ;;
++esac
+ for ac_dir in \
+ 	$jpeg_prefix/lib	\
++        $sysjpgdir              \
+ 	${extra_lib}		\
+ 	$x_libraries		\
+ 	/usr/X11R6/lib		\
