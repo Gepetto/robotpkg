@@ -329,7 +329,7 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	    continue;							\
 	  fi;								\
 	  ${STEP_MSG} "Installing $${pkgfile##*/}";			\
-	  ${BULK_PKG_ADD} -p ${BULKBASE} -A $$pkgfile ||		\
+	  ${BULK_PKG_ADD} -A $$pkgfile ||				\
 	    ${BULK_BRK} "Installing $${pkgfile##*/}: Error $$?";	\
 	done;								\
 	${TEST} ! -s ${_bulklog_cbbh} || {				\
