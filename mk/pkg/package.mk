@@ -110,7 +110,9 @@ pkg-tarup:
 	       -e '/^@cwd/d' -e '/^@src/d'				\
 	       -e '/^@ignore/,/^.*$$/d'					\
               <"$$pkgdb/${_CONTENTS_FILE}" |				\
-	${PKG_CREATE} $$pkg_args -f - $$pkgbin;				\
+	${PKG_CREATE} $$pkg_args -f - $$pkgbin || {			\
+	  s=$$?; ${RM} -f $$pkgbin; exit $$s;				\
+	};								\
 									\
 	deps=`${PKG_INFO} -qn $$pkgfile`;				\
 	for d in $$deps; do						\
