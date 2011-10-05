@@ -1,5 +1,4 @@
 @comment Thu Apr 1 15:30:04 CEST 2010
-bin/python
 bin/python3.1
 bin/python3.1-config
 include/python3.1/Python-ast.h
