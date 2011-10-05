@@ -5,6 +5,7 @@
 PKGNAME=		blender-${PKGVERSION}
 DISTNAME=		blender-${PKGVERSION_NOREV}
 PKGVERSION=		2.59
+PKGREVISION=		1
 
 CATEGORIES=		graphics
 MASTER_SITES=		http://download.blender.org/source/
@@ -22,7 +23,7 @@ CONFIGURE_DIRS=		_build
 # General configuration
 CMAKE_ARGS+=		-DWITH_GAMEENGINE=ON	# GameEngine
 CMAKE_ARGS+=		-DWITH_IK_ITASC=ON	# Inverse Kinematics
-CMAKE_ARGS+=		-DWITH_OPENCOLLADA=OFF	# Collada (wait for stabilization)
+CMAKE_ARGS+=		-DWITH_OPENCOLLADA=OFF	# Collada (wait stabilization)
 CMAKE_ARGS+=		-DWITH_PLAYER=ON	# Stand-alone Blender player
 CMAKE_ARGS+=		-DWITH_SAMPLERATE=OFF	# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_JACK=OFF		# Fix bug with audaspace
@@ -35,15 +36,12 @@ CMAKE_ARGS+=		-DWITH_INSTALL_PORTABLE=OFF # Install in hier(8)
 # -fno-strict-aliasing
 _CFLAGS_NDEBUG=-O2 -DNDEBUG
 
-# Embed Python runtime in the binary
+# Enable embedded Python API, but don't copy system python into blender
 CMAKE_ARGS+=		-DWITH_PYTHON=ON
 CMAKE_ARGS+=		-DWITH_PYTHON_INSTALL=OFF
 CMAKE_ARGS+=		-DPYTHON_INC=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIB=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_LIBPATH=$(dir ${PYTHON_LIB})
-
-pre-configure:
-	${RUN}${MKDIR} ${WRKSRC}/_build
 
 DEPEND_ABI.python+=	python>=3.2<3.3
 include ../../mk/sysdep/python.mk
@@ -58,5 +56,8 @@ include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/libXi.mk
 include ../../mk/robotpkg.mk
 
-post-install: python-compile-all(${PREFIX}/share/blender/${PKGVERSION}/python/lib/python${PYTHON_VERSION}) \
-	python-compile-all(${PREFIX}/share/blender/${PKGVERSION}/scripts)
+pre-configure:
+	${RUN}${MKDIR} ${WRKSRC}/_build
+
+_PYTHON_COMPILE_DIR=	${PREFIX}/share/blender/${PKGVERSION}/scripts
+post-install: python-compile-all(${_PYTHON_COMPILE_DIR})
