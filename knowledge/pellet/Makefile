@@ -2,24 +2,22 @@
 # Created:			Séverin Lemaignan on Tue, 7 Jul 2009
 #
 
-DISTNAME=	       pellet-2.2.2
-PKGVERSION=	       2.2.2
-PKGNAME=	       pellet-${PKGVERSION}
-MASTER_SITES=	   http://clarkparsia.com/pellet/downloads/
-EXTRACT_SUFX=	   .zip
+PKGVERSION=	2.2.2
+DISTNAME=	pellet-${PKGVERSION_NOREV}
+MASTER_SITES=	http://clarkparsia.com/pellet/download/${DISTNAME}
+EXTRACT_SUFX=	.zip
 
-CATEGORIES=	       knowledge
-MAINTAINER=	       openrobots@laas.fr
-HOMEPAGE=	       http://clarkparsia.com/pellet
-COMMENT=	       An open source reasoner for OWL 2 DL in Java.
+CATEGORIES=	knowledge
+COMMENT=	Open source reasoner for OWL 2 DL in Java
+HOMEPAGE=	http://clarkparsia.com/pellet
+LICENSE=	gnu-agpl-v3
+MAINTAINER=	openrobots@laas.fr
 
-LICENSE=           gnu-agpl-v3
-
-NO_CONFIGURE=      yes
-NO_BUILD=          yes
-
-WRKSRC=		       ${WRKDIR}/${DISTNAME}
-USE_LANGUAGES=	   java
+INTERACTIVE_STAGE=	fetch
+NO_CONFIGURE=		yes
+NO_BUILD=		yes
+WRKSRC=			${WRKDIR}/${DISTNAME}
+INSTALLATION_DIRS=	java/pellet/lib share/doc/pellet
 
 # doc option
 PKG_SUPPORTED_OPTIONS+=	doc
@@ -41,11 +39,12 @@ do-install: pellet-install-lib
 
 .PHONY: pellet-install-lib
 pellet-install-lib:
-	${INSTALL} -d ${PREFIX}/java/pellet
-	${INSTALL} -d ${PREFIX}/java/pellet/lib
-	cd ${WRKSRC}/lib && ${PAX} -rwp ma pellet-*.jar aterm-*.jar jgrapht/*.jar xsdlib/*.jar ${PREFIX}/java/pellet/lib/
+	${RUN} cd ${WRKSRC}/lib && ${INSTALL_LOGFILTER}			\
+	${PAX} -v -r -w -p ma						\
+		pellet-*.jar aterm-*.jar jgrapht/*.jar xsdlib/*.jar	\
+		${PREFIX}/java/pellet/lib/
 
 .PHONY: pellet-install-doc
 pellet-install-doc:
-	${INSTALL} -d ${PREFIX}/share/doc/pellet
-	cd ${WRKSRC}/doc && ${PAX} -rwp ma . ${PREFIX}/share/doc/pellet/
+	${RUN} cd ${WRKSRC}/doc && ${INSTALL_LOGFILTER}			\
+	${PAX} -v -r -w -p ma . ${PREFIX}/share/doc/pellet/
