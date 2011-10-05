@@ -13,6 +13,7 @@ HOMEPAGE=		http://www.orocos.org/rtt
 COMMENT=		The Orocos Real-Time Toolkit
 LICENSE=		gnu-gpl-v2
 
+NOT_FOR_PLATFORM=	NetBSD-%
 USE_LANGUAGES=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/liborocos-rtt
 
