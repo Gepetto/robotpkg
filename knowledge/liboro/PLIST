@@ -8,7 +8,6 @@ include/liboro/oro_library.h
 include/liboro/socket_connector.h
 lib/liboro.so
 lib/pkgconfig/liboro.pc
-@dirrm include/liboro
 ${PLIST.doc}share/doc/liboro/doxygen.css
 ${PLIST.doc}share/doc/liboro/doxygen.png
 ${PLIST.doc}share/doc/liboro/ftv2blank.png
