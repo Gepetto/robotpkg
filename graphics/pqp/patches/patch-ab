@@ -1,0 +1,18 @@
+Fix warnings triggered by C++ <cmath> about redefinition of math functions
+
+--- PQP_v1.3/src/PQP_Compile.h~	2002-04-21 20:25:30.000000000 +0200
++++ PQP_v1.3/src/PQP_Compile.h	2011-10-05 17:28:15.086706357 +0200
+@@ -41,13 +41,7 @@
+ #ifndef PQP_COMPILE_H
+ #define PQP_COMPILE_H
+ 
+-// prevents compiler warnings when PQP_REAL is float
+-
+ #include <math.h>
+-inline float sqrt(float x) { return (float)sqrt((double)x); }
+-inline float cos(float x) { return (float)cos((double)x); }
+-inline float sin(float x) { return (float)sin((double)x); }
+-inline float fabs(float x) { return (float)fabs((double)x); }
+ 
+ //-------------------------------------------------------------------------
+ //
