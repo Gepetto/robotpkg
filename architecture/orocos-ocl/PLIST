@@ -1,12 +1,12 @@
 @comment Thu Apr 22 15:11:34 CEST 2010
-bin/cdeployer-gnulinux
-bin/ctaskbrowser-gnulinux
-bin/deployer-corba-gnulinux
+${PLIST.corba}bin/cdeployer-gnulinux
+${PLIST.corba}bin/ctaskbrowser-gnulinux
+${PLIST.corba}bin/deployer-corba-gnulinux
 bin/deployer-gnulinux
 include/ocl/command.hpp
 include/ocl/ComponentLoader.hpp
 include/ocl/ConsoleReporting.hpp
-include/ocl/CorbaDeploymentComponent.hpp
+${PLIST.corba}include/ocl/CorbaDeploymentComponent.hpp
 include/ocl/datasender.hpp
 include/ocl/DeploymentComponent.hpp
 include/ocl/FileReporting.hpp
@@ -21,9 +21,9 @@ include/ocl/TaskBrowser.hpp
 include/ocl/TcpReporting.hpp
 include/ocl/TimerComponent.hpp
 include/ocl/VectorTemplateComposition.hpp
-lib/liborocos-deployment-corba-gnulinux.so
-lib/liborocos-deployment-corba-gnulinux.so.1.10
-lib/liborocos-deployment-corba-gnulinux.so.${PKGVERSION}
+${PLIST.corba}lib/liborocos-deployment-corba-gnulinux.so
+${PLIST.corba}lib/liborocos-deployment-corba-gnulinux.so.1.10
+${PLIST.corba}lib/liborocos-deployment-corba-gnulinux.so.${PKGVERSION}
 lib/liborocos-deployment-gnulinux.so
 lib/liborocos-deployment-gnulinux.so.1.10
 lib/liborocos-deployment-gnulinux.so.${PKGVERSION}

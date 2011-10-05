@@ -17,6 +17,17 @@ USE_LANGUAGES=		c c++
 
 WRKSRC=			${WRKDIR}/orocos-ocl-${OROCOS_VERSION}
 
+PKG_SUPPORTED_OPTIONS+=	corba
+
+define PKG_OPTION_SET.corba
+  CMAKE_ARGS+=			-DCORBA_ENABLED=ON
+  DEPEND_ABI.orocos-rtt+=	orocos-rtt~corba
+endef
+define PKG_OPTION_UNSET.corba
+  CMAKE_ARGS+=			-DCORBA_ENABLED=OFF
+endef
+
 include ../../middleware/orocos-rtt/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/readline.mk
 include ../../mk/robotpkg.mk
