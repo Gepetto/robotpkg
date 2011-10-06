@@ -59,5 +59,5 @@ include ../../mk/robotpkg.mk
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
 
-_PYTHON_COMPILE_DIR=	${PREFIX}/share/blender/${PKGVERSION}/scripts
+_PYTHON_COMPILE_DIR=	${PREFIX}/share/blender/${PKGVERSION_NOREV}/scripts
 post-install: python-compile-all(${_PYTHON_COMPILE_DIR})
