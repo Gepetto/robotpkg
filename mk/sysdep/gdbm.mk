@@ -1,6 +1,6 @@
-# $LAAS: gdbm.mk 2009/10/13 12:13:32 mallet $
+# $LAAS: gdbm.mk 2011/10/06 18:46:50 mallet $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -39,6 +39,7 @@ SYSTEM_SEARCH.gdbm=	\
 SYSTEM_PKG.Fedora.gdbm=	gdbm-devel
 SYSTEM_PKG.Ubuntu.gdbm=	libgdbm-dev
 SYSTEM_PKG.Debian.gdbm=	libgdbm-dev
+SYSTEM_PKG.NetBSD.gdbm=	databases/gdbm
 
 endif # GDBM_DEPEND_MK ------------------------------------------------------
 
