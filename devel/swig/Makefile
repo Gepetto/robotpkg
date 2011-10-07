@@ -28,6 +28,7 @@ define PKG_OPTION_SET.doc
   include ../../pkgtools/pax/depend.mk
 endef
 
+include ../../mk/sysdep/pcre.mk
 include ../../mk/robotpkg.mk
 
 .PHONY: swig-install-doc

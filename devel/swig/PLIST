@@ -1,5 +1,6 @@
 @comment Thu Jul 7 22:04:27 CEST 2011
 bin/ccache-swig
+bin/swig
 man/man1/ccache-swig.1
 share/swig/${PKGVERSION}/allegrocl/allegrocl.swg
 share/swig/${PKGVERSION}/allegrocl/inout_typemaps.i
@@ -8,6 +9,7 @@ share/swig/${PKGVERSION}/allegrocl/std_list.i
 share/swig/${PKGVERSION}/allegrocl/std_string.i
 share/swig/${PKGVERSION}/allegrocl/typemaps.i
 share/swig/${PKGVERSION}/allkw.swg
+share/swig/${PKGVERSION}/attribute.i
 share/swig/${PKGVERSION}/carrays.i
 share/swig/${PKGVERSION}/cdata.i
 share/swig/${PKGVERSION}/cffi/cffi.swg
