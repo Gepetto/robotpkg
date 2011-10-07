@@ -1,0 +1,15 @@
+Be consistent in definition of .so extension accross platforms
+
+--- configure~	2011-10-07 14:13:04.266705462 +0200
++++ configure	2011-10-07 14:19:18.702705591 +0200
+@@ -12693,9 +12693,8 @@
+ 		esac
+ 		;;
+ 	CYGWIN*)   SO=.dll;;
+-	Linux*|GNU*)
++	*)
+ 		   SO=.${SOABI}.so;;
+-	*)	   SO=.so;;
+ 	esac
+ else
+ 	# this might also be a termcap variable, see #610332
