@@ -25,7 +25,7 @@ SYSTEM_SEARCH.pcre=\
 	'lib/pkgconfig/libpcre.pc:/Version/s/[^0-9.]//gp'		\
 	'lib/pkgconfig/libpcrecpp.pc:/Version/s/[^0-9.]//gp'		\
 
-SYSTEM_PKG.Fedora.pcre=	libpcre-devel
+SYSTEM_PKG.Fedora.pcre=	pcre-devel
 SYSTEM_PKG.Ubuntu.pcre=	libpcre3-dev
 SYSTEM_PKG.NetBSD.pcre=	pkgsrc/devel/pcre
 
