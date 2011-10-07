@@ -1,0 +1,15 @@
+From 39baee7cae8242b4674090750d8f2d1db618a63a Mon Sep 17 00:00:00 2001
+Date: Fri, 7 Oct 2011 16:05:36 +0200
+Subject: [PATCH] velodyneLib.h needs sys/time.h for struct timeval
+
+--- velodyne/velodyneLib.h
++++ velodyne/velodyneLib.h
+@@ -16,6 +16,8 @@
+ #ifndef _VELODYNELIB_H
+ #define _VELODYNELIB_H
+ 
++#include <sys/time.h>	/* struct timeval */
++
+ #define VELODYNE_NUM_LASERS 32		/* number of lasers per shot */
+ #define VELODYNE_NUM_SHOTS 12		/* number of shots per packet */
+ #define VELODYNE_UDP_PORT 2368		/* the UDP port packets are sent to */
