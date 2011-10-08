@@ -2,22 +2,30 @@
 # Created:			Thomas Moulard on Wed, 8 Sep 2010
 #
 
-PACKAGE_NAME=		hpp-util
 VERSION=		0.4c
-DISTNAME=		${PACKAGE_NAME}-${VERSION}
-PKGNAME=		${PACKAGE_NAME}-${VERSION}
+PKGREVISION=		1
+DISTNAME=		hpp-util-${VERSION}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpp-util/}
+MASTER_REPOSITORY=	git git://github.com/laas/hpp-util.git
+
 
 CATEGORIES=		devel
-COMMENT=		Technical tools shared amongst HPP.
+COMMENT=		Technical tools shared amongst HPP
 MAINTAINER=		hpp@laas.fr
 LICENSE=		gnu-gpl-v3
 
-MASTER_REPOSITORY=	git git://github.com/laas/hpp-util.git
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpp-util/}
-
-
 USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/hpp-util
+CMAKE_ARGS+=		-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
+CMAKE_ARGS+=		-DBOOST_LIBRARYDIR=${PREFIX.boost-libs}/lib
+
+# Disable -Werror on platforms with gcc<4.3 that erroneously(?) warns about
+# virtual functions having non-virtual destructor.
+#
+CMAKE_ARGS+=\
+  $(if $(filter yes,$(call pmatch,gcc-c++<4.3,${PKGVERSION.gcc-c++})),	\
+    -DCXX_DISABLE_WERROR=ON)
+
 
 PKG_SUPPORTED_OPTIONS+=		verbose
 PKG_OPTION_DESCR.verbose=	Compile in verbose mode
@@ -31,5 +39,7 @@ PKG_SUGGESTED_OPTIONS+=		verbose benchmark
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
