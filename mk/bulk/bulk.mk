@@ -99,8 +99,8 @@ ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	  for f in ${MAKEFILE_LIST}; do					\
 	    ${TEST} ${PKGFILE} -nt $$f  || exit 1;			\
 	  done;								\
-	  prefix=`${BULK_PKG_INFO} -Q PREFIX ${PKGFILE} 2>/dev/null`;	\
-	  ${TEST} "$${prefix}" = "${PREFIX}" || exit 1;			\
+	  base=`${BULK_PKG_INFO} -Q LOCALBASE ${PKGFILE} 2>/dev/null`;	\
+	  ${TEST} "$${base}" = "${BULKBASE}" || exit 1;			\
 	  ${BULK_PKG_INFO} -qN ${PKGFILE} | while read d; do		\
 	    if ${TEST} -z "$$d"; then continue; fi;			\
 	    ${TEST} -f "${PKGREPOSITORY}/$$d${PKG_SUFX}" || exit 1;	\
