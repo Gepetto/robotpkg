@@ -19,14 +19,6 @@ DOXYGEN_PLIST_DIR+=	share/doc/hpp-util
 CMAKE_ARGS+=		-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
 CMAKE_ARGS+=		-DBOOST_LIBRARYDIR=${PREFIX.boost-libs}/lib
 
-# Disable -Werror on platforms with gcc<4.3 that erroneously(?) warns about
-# virtual functions having non-virtual destructor.
-#
-CMAKE_ARGS+=\
-  $(if $(filter yes,$(call pmatch,gcc-c++<4.3,${PKGVERSION.gcc-c++})),	\
-    -DCXX_DISABLE_WERROR=ON)
-
-
 PKG_SUPPORTED_OPTIONS+=		verbose
 PKG_OPTION_DESCR.verbose=	Compile in verbose mode
 PKG_OPTION_SET.verbose=		CXXFLAGS+=-DHPP_DEBUG
