@@ -2,25 +2,25 @@
 # Created:			florent@laas.fr on Tue, 28 Apr 2009
 #
 
-DISTNAME=	roboptim-core-${VERSION}
-PKGNAME=	roboptim-core-${VERSION}
 VERSION=	0.6
-
-CATEGORIES=	optimization
+PKGREVISION=	1
+DISTNAME=	roboptim-core-${VERSION}
 MASTER_SITES=	https://github.com/downloads/laas/roboptim-core/
 MASTER_REPOSITORY=git git://github.com/laas/roboptim-core.git
 
-MAINTAINER=	roboptim-user@lists.sourceforge.net
+CATEGORIES=	optimization
+COMMENT=	Optimization for robotics: common API to various solvers
 HOMEPAGE=	http://sourceforge.net/projects/roboptim/
-COMMENT=	Optimization for robotics: common API to various solvers.
 LICENSE=	gnu-lgpl-v3
+MAINTAINER=	roboptim-user@lists.sourceforge.net
 
-USE_LANGUAGES+= c c++
-
+USE_LANGUAGES+=		c c++
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--with-boost=${PREFIX.boost-headers}
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--with-boost=${PREFIX.boost-headers}
+LIBRARY_DIRS.libtool-ltdl=	lib
+RPATH_DIRS.libtool-ltdl=	lib
 
 # Make sure git-version-gen is not confused by the robotpkg ``.git''
 # directory.
