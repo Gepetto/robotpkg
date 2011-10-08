@@ -356,7 +356,6 @@ ${PLIST.doc}share/doc/morse/html/_images/documentation.jpg
 ${PLIST.doc}share/doc/morse/html/_images/gameproperty_object.jpg
 ${PLIST.doc}share/doc/morse/html/_images/hri.jpg
 ${PLIST.doc}share/doc/morse/html/_images/hri_import_human.jpg
-${PLIST.doc}share/doc/morse/html/_images/hri_import_human1.jpg
 ${PLIST.doc}share/doc/morse/html/_images/hri_pick_object.jpg
 ${PLIST.doc}share/doc/morse/html/_images/human_joints.png
 ${PLIST.doc}share/doc/morse/html/_images/indoors_sick.jpg
@@ -375,15 +374,9 @@ ${PLIST.doc}share/doc/morse/html/_images/python-powered.png
 ${PLIST.doc}share/doc/morse/html/_images/simu_render_indoors.jpg
 ${PLIST.doc}share/doc/morse/html/_images/simulation_main_loop_overview.png
 ${PLIST.doc}share/doc/morse/html/_static/Aller.ttf
-${PLIST.doc}share/doc/morse/html/_static/ajax-loader.gif
 ${PLIST.doc}share/doc/morse/html/_static/basic.css
-${PLIST.doc}share/doc/morse/html/_static/comment-bright.png
-${PLIST.doc}share/doc/morse/html/_static/comment-close.png
-${PLIST.doc}share/doc/morse/html/_static/comment.png
 ${PLIST.doc}share/doc/morse/html/_static/default.css
 ${PLIST.doc}share/doc/morse/html/_static/doctools.js
-${PLIST.doc}share/doc/morse/html/_static/down-pressed.png
-${PLIST.doc}share/doc/morse/html/_static/down.png
 ${PLIST.doc}share/doc/morse/html/_static/file.png
 ${PLIST.doc}share/doc/morse/html/_static/jquery.js
 ${PLIST.doc}share/doc/morse/html/_static/minus.png
@@ -394,9 +387,6 @@ ${PLIST.doc}share/doc/morse/html/_static/searchtools.js
 ${PLIST.doc}share/doc/morse/html/_static/sidebar.js
 ${PLIST.doc}share/doc/morse/html/_static/sphinx-laas.css
 ${PLIST.doc}share/doc/morse/html/_static/underscore.js
-${PLIST.doc}share/doc/morse/html/_static/up-pressed.png
-${PLIST.doc}share/doc/morse/html/_static/up.png
-${PLIST.doc}share/doc/morse/html/_static/websupport.js
 ${PLIST.doc}share/doc/morse/html/_static/www.png
 ${PLIST.doc}share/doc/morse/html/components_library.html
 ${PLIST.doc}share/doc/morse/html/contributing.html
