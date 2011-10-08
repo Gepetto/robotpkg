@@ -1,0 +1,18 @@
+Fix build on NetBSD-5.1 missing __weakref_visible in sys/cdefs_elf.h
+
+--- src/vi.c~	2011-02-26 23:42:59.000000000 +0100
++++ src/vi.c	2011-10-08 18:39:26.000000000 +0200
+@@ -919,7 +919,12 @@
+  * this is against historical precedent...
+  */
+ #ifdef __weak_reference
+-__weakref_visible char *my_get_alias_text(const char *)
++# ifdef __weakref_visible
++__weakref_visible
++# else
++extern
++# endif
++char *my_get_alias_text(const char *)
+     __weak_reference(get_alias_text);
+ #endif
+ protected el_action_t
