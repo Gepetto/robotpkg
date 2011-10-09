@@ -223,10 +223,11 @@ can-be-built-here:
 .PHONY: cbbh
 cbbh:
   ifeq (no,${_CBBH})
-	@for str in ${_CBBH_MSGS}; do					\
+	${RUN} ${_SETFANCY_CMD};					\
+	for str in ${_CBBH_MSGS}; do					\
 		${ERROR_MSG} "$$str";					\
-	done
-	@exit 2
+	done;								\
+	exit 2
   endif
 
 
