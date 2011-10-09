@@ -19,6 +19,7 @@
 
 # This Makefile fragment defines variables related to the bulk target
 #
+$(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
 # Name this session, default to MACHINE_PLATFORM
 BULK_TAG?=	$(or ${tag},${MACHINE_PLATFORM})
@@ -28,6 +29,9 @@ BULKBASE?=	/opt/openrobots
 
 # Directory in which log files from the bulk build are kept.
 BULK_LOGDIR?=	${LOCALBASE}/var/log/bulk
+
+# Where to log N/A packages (for caching the information between bulks)
+BULK_PKGFILENA?=${PACKAGES}/NotAvail/${PKGNAME}
 
 # A file wich makes all bulks a noop once created (for clean interruption)
 BULK_STOPFILE?=	${BULK_LOGDIR}/STOP

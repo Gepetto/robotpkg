@@ -95,7 +95,18 @@ bulk-done:
 _MAKEFILE_WITH_RECIPES+=${_COOKIE.bulkoutdated}
 ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	${RUN} ${TEST} -f "$@" && ${RM} -f "$@"; (			\
-	  ${TEST} -f ${PKGFILE} || exit 1;				\
+	  ${TEST} -f ${PKGFILE} || {					\
+	    ${TEST} -f ${BULK_PKGFILENA} || exit 1;			\
+	    for f in ${MAKEFILE_LIST}; do				\
+	      ${TEST} ${BULK_PKGFILENA} -nt "$$f" || exit 1;		\
+	    done;							\
+	    while read d; do						\
+	      if ${TEST} "$$d" = "--"; then break; fi;			\
+	      d="$(dir ${BULK_PKGFILENA})/$$d";				\
+	      ${TEST} ${BULK_PKGFILENA} -nt "$$d" || exit 1;		\
+	    done <${BULK_PKGFILENA};					\
+	    exit 0;							\
+	  };								\
 	  for f in ${MAKEFILE_LIST}; do					\
 	    ${TEST} ${PKGFILE} -nt $$f  || exit 1;			\
 	  done;								\
@@ -182,6 +193,7 @@ ${_BULK_DIRS}:
 .PHONY: bulk-cbbh
 bulk-cbbh:
 	${RUN}								\
+	${RM} -f ${BULK_PKGFILENA};					\
 	${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} cbbh >${_bulklog_cbbh} 2>&1	\
 	&& ${RM} -f ${_bulklog_cbbh};					\
 	${TEST} ! -s ${_bulklog_cbbh} || ${CAT} >&2 <${_bulklog_cbbh}
@@ -351,7 +363,15 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 #
 do-bulk:
 	${RUN}								\
-	${TEST} ! -s ${_bulklog_cbbh} || exit 0;			\
+	${TEST} ! -s ${_bulklog_cbbh} || {				\
+	  ${MKDIR} $(dir ${BULK_PKGFILENA});				\
+	  if ${TEST} -s ${_bulklog_cbbhby}; then			\
+	    ${CP} ${_bulklog_cbbhby} ${BULK_PKGFILENA};			\
+	  fi;								\
+	  ${ECHO} '-- ' >>${BULK_PKGFILENA};				\
+	  ${CAT} ${_bulklog_cbbh} >>${BULK_PKGFILENA};			\
+	  exit 0;							\
+	};								\
 	${TEST} ! -s ${_bulklog_broken} || exit 0;			\
 	${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} package			\
 	|| {								\
