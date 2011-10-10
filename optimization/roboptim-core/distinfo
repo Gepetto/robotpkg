@@ -1,3 +1,6 @@
 SHA1 (roboptim-core-0.6.tar.gz) = 11213df33797f36680aae7f7b14d7d78663d4874
 RMD160 (roboptim-core-0.6.tar.gz) = 5cc9605a1ad2855198a80d6b22b74f1f50018ab4
 Size (roboptim-core-0.6.tar.gz) = 513829 bytes
+SHA1 (patch-aa) = 47537161891ad587fa4231e23038c37afc70cbe0
+SHA1 (patch-ab) = e626d9c5a47c2e8100f797f7c13df8a355a55e48
+SHA1 (patch-ac) = fbfdaaf97f2b427393b6b889076c4bfc4851f4ff
