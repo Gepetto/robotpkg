@@ -1,6 +1,6 @@
-# $LAAS: qmake.mk 2009/03/23 23:22:24 tho $
+# $LAAS: qmake.mk 2011/10/10 15:00:54 mallet $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -33,7 +33,7 @@ DEPEND_USE+=		qmake
 DEPEND_ABI.qmake?=	qmake>=1
 DEPEND_METHOD.qmake+=	build
 SYSTEM_SEARCH.qmake=\
-	'bin/qmake{,-qt[0-9]}::% -query QMAKE_VERSION'
+	'{,qt[0-9]/}bin/qmake{,-qt[0-9]}::% -query QMAKE_VERSION'
 
 USE_QMAKE=		yes
 export QMAKE=		$(word 1,${SYSTEM_FILES.qmake})
