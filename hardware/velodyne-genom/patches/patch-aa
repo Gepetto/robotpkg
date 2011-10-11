@@ -1,0 +1,10 @@
+--- codels/velodyneCntrlTaskCodels.c~	2011-06-16 11:46:25.000000000 +0200
++++ codels/velodyneCntrlTaskCodels.c	2011-10-11 10:49:03.734455809 +0200
+@@ -30,6 +30,7 @@
+ #include <portLib.h>
+ 
+ /* standard librairies */
++#include <sys/time.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>

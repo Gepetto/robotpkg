@@ -1,0 +1,10 @@
+--- codels/velodyneExecTaskCodels.c~	2011-06-16 11:46:25.000000000 +0200
++++ codels/velodyneExecTaskCodels.c	2011-10-11 10:49:37.278457094 +0200
+@@ -27,6 +27,7 @@
+  **
+  **/
+ 
++#include <sys/time.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
