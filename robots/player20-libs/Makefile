@@ -11,11 +11,20 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=playerstage/}
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://playerstage.sourceforge.net/index.php?src=player
 COMMENT=	Cross-platform robot device interface & server
+LICENSE=	gnu-gpl-v2
 
 MAKE_JOBS_SAFE=	no
 USE_LANGUAGES=	c c++
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-alldrivers --disable-jplayer  --disable-libplayerc-py
+CONFIGURE_ARGS+= have_python=no have_swig=no
 
+INCLUDE_DIRS.libjpeg=	include
+LIBRARY_DIRS.libjpeg=	lib
+RPATH_DIRS.libjpeg=	lib
+
+include ../../pkgtools/pkg-config/depend.mk
+include ../../archivers/zlib/depend.mk
+include ../../mk/sysdep/libjpeg.mk
 include ../../mk/robotpkg.mk
