@@ -298,6 +298,21 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	        ${BULK_CBBHBY} "$${brk##*/}";				\
 	      fi;							\
 	      continue;							\
+	    else							\
+	      na=`${BULK_PKG_ADMIN} -d $(dir ${BULK_PKGFILENA})	-S	\
+		lsbest "$$abi"`;					\
+	      if ${TEST} -n "$$na"; then				\
+	        ${STEP_MSG} "Required $$kind package $$abi: N/A";	\
+	        ${BULK_CBBH} "Required $$kind package $$abi: N/A";	\
+	        l=; while read p; do					\
+	          if ${TEST} "$$p" = "--"; then break; fi;		\
+	          l=yes; ${BULK_CBBHBY} "$$p";				\
+	        done <"$$na";						\
+	        if ${TEST} -z "$$l"; then				\
+	          ${BULK_CBBHBY} "$${na##*/}";				\
+	        fi;							\
+	        continue;						\
+	      fi;							\
 	    fi;								\
 									\
 	    ${STEP_MSG} "Required $$kind package $$abi: NOT found";	\
