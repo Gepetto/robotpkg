@@ -33,6 +33,22 @@ GENERATE_PLIST=	cd ${PREFIX}; ${LS} -1 lib/libARToolKitPlus.*;
 
 post-extract: fix-broken-headers
 
+# NetBSD pkgsrc has a patched qmake that generates LIBTOOL-aware Makefile. The
+# problem is that libtool must be passed --tag=CXX to accept the full compiler
+# path as it is passed by robotpkg.
+#
+include ../../mk/robotpkg.prefs.mk # OPSYS
+ifeq (NetBSD,${OPSYS})
+  SUBST_CLASSES+=		libtool-fix
+  SUBST_STAGE.libtool-fix=	post-configure
+  SUBST_MESSAGE.libtool-fix=	Fixing libtool invocation
+  SUBST_FILES.libtool-fix=	$(addsuffix /Makefile,${CONFIGURE_DIRS})
+  SUBST_SED.libtool-fix=\
+	's|^LIBTOOL[ 	]=.*$$|LIBTOOL=${LIBTOOL} --tag=CXX|g'
+  include ../../pkgtools/libtool/depend.mk
+endif
+
+
 include ../../mk/sysdep/qmake.mk
 include ../../mk/robotpkg.mk
 
