@@ -1,0 +1,10 @@
+--- libsmoothtraj/piloBrokenLineLib.c~	2010-04-29 17:06:11.000000000 +0200
++++ libsmoothtraj/piloBrokenLineLib.c	2011-10-11 17:07:25.998456450 +0200
+@@ -18,7 +18,6 @@
+ #include <portLib.h>
+ #include <stdio.h>
+ #include <math.h>
+-#include <tgmath.h> /* for min() */
+ 
+ /* infinity() is not in all math lib */
+ static double infinity() {return 1.E10;}

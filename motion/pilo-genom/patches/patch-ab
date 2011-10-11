@@ -1,0 +1,10 @@
+--- libsmoothtraj/piloRSLib.c~	2010-04-29 17:06:11.000000000 +0200
++++ libsmoothtraj/piloRSLib.c	2011-10-11 17:10:26.750456256 +0200
+@@ -19,7 +19,6 @@
+ #include <portLib.h>
+ #include <stdio.h>
+ #include <math.h>
+-#include <tgmath.h>
+ 
+ /* infinity() is not in all math lib */
+ static double infinity() {return 1.E10;}
