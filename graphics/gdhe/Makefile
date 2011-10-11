@@ -27,6 +27,7 @@ CONFIGURE_ARGS+=--x-libraries=${PREFIX.libX11}/lib
 
 INCLUDE_DIRS.mesa+=include
 
+include ../../devel/swig/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/mesa.mk
