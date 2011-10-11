@@ -1,0 +1,10 @@
+@comment Tue Oct 11 14:56:37 CEST 2011
+lib/python3.1/plat-${PY_PLATNAME}/CDROM.py
+lib/python3.1/plat-${PY_PLATNAME}/CDROM.pyc
+lib/python3.1/plat-${PY_PLATNAME}/CDROM.pyo
+lib/python3.1/plat-${PY_PLATNAME}/DLFCN.py
+lib/python3.1/plat-${PY_PLATNAME}/DLFCN.pyc
+lib/python3.1/plat-${PY_PLATNAME}/DLFCN.pyo
+lib/python3.1/plat-${PY_PLATNAME}/TYPES.py
+lib/python3.1/plat-${PY_PLATNAME}/TYPES.pyc
+lib/python3.1/plat-${PY_PLATNAME}/TYPES.pyo

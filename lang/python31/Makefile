@@ -3,7 +3,7 @@
 #
 
 PKGVERSION=	3.1.2
-PKGREVISION=	1
+PKGREVISION=	2
 DISTNAME=	Python-${PKGVERSION_NOREV}
 PKGNAME=	python31-${PKGVERSION}
 MASTER_SITES=	http://www.python.org/ftp/python/${PKGVERSION_NOREV}/
@@ -34,6 +34,12 @@ SUBST_FILES.interp=	Lib/cgi.py	# explicitly demanded to be patched
 SUBST_FILES.interp+=	Lib/test/test_bz2.py
 SUBST_FILES.interp+=	Lib/test/test_largefile.py Lib/test/test_optparse.py
 SUBST_SED.interp=	'1s|.*python[^ \t]*|\\\#!${PREFIX}/bin/python3.1|'
+
+# python sys.platform name
+PY_PLATNAME=\
+  $(call tolower,${OS_KERNEL})$(word 1,$(subst ., ,${OS_KERNEL_VERSION}))
+PLIST_SUBST+=		PY_PLATNAME=${PY_PLATNAME}
+PRINT_PLIST_AWK_SUBST+= gsub("${PY_PLATNAME}/", "$${PY_PLATNAME}/");
 
 include ../../mk/sysdep/gdbm.mk
 include ../../mk/sysdep/openssl.mk
