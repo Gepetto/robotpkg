@@ -1,0 +1,13 @@
+Add missing headers for IPPROTO_TCP
+
+--- src/flexiport/tcpport.cpp~	2009-04-17 04:08:40.000000000 +0200
++++ src/flexiport/tcpport.cpp	2011-10-11 15:56:15.914456110 +0200
+@@ -34,6 +34,8 @@
+ 	#include <netdb.h>
+ #endif
+ #include <sys/types.h>
++#include <sys/socket.h>
++#include <netinet/in.h>
+ #include <fcntl.h>
+ #include <string.h>
+ #include <sstream>
