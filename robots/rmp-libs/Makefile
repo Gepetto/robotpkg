@@ -1,15 +1,17 @@
 # robotpkg Makefile for:	robots/rmp-libs
 # Created:			Matthieu Herrb on Mon, 23 Feb 2009
 #
-DISTNAME=	rmp-libs-0.4
-CATEGORIES=	robots
-
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=rmp400/}
+CATEGORIES=		robots
+DISTNAME=		rmp-libs-0.4
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp-libs
-MAINTAINER=	openrobots@laas.fr
-COMMENT=	interface library for the Segway RMP400 platform
 
-GNU_CONFIGURE=	yes
+COMMENT=		Interface library for the Segway RMP400 platform
+MAINTAINER=		openrobots@laas.fr
+LICENSE=		isc
+
+ONLY_FOR_PLATFORM=	Linux-%
+GNU_CONFIGURE=		yes
 
 pre-configure:	autoreconf
 
