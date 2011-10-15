@@ -2,36 +2,39 @@
 # Created:			Matthieu Herrb on Mon, 13 Dec 2010
 #
 
-COMMIT= 7a39cd
-PKG_VERSION= 20101214.${COMMIT}
-PKGREVISION= 1
-COMMENT= Primesense OpenNI Sensor Engine
-CATEGORIES = hardware image
-LICENSE = gnu-lgpl-v3
+COMMIT=		7a39cd
+DISTNAME=	openni-sensor-${VERSION}
+VERSION=	20101214.${COMMIT}
+PKGREVISION=	1
+CATEGORIES=	hardware image
+MASTER_SITES=	https://github.com/ros-pkg-git/Sensor.git@${COMMIT}
+FETCH_METHOD=	git
 
-DISTNAME= openni-sensor-${PKG_VERSION}
-HOMEPAGE= http://openni.org
+COMMENT=	Primesense OpenNI Sensor Engine
+HOMEPAGE=	http://openni.org
+LICENSE=	gnu-lgpl-v3
+MAINTAINER=	openrobots@laas.fr
 
-FETCH_BEFORE_ARGS= -v
-FETCH_METHOD= git
-MASTER_SITES= https://github.com/ros-pkg-git/Sensor.git@${COMMIT}
+MAKE_JOBS_SAFE=		no
+USE_LANGUAGES=		c c++
+BUILD_DIRS=		Platform/Linux-x86/Build
+INSTALLATION_DIRS=	bin lib share/openni etc/udev/rules.d
 
-USE_LANGUAGES= c c++
+UDEV_RULES=	55-primesense-usb.rules
+MESSAGE_SUBST=	UDEV_RULES=${UDEV_RULES}
 
-OPENNI= $(WRKDIR)
-OPENNI_LIB= $(PREFIX)/lib
-OPENNI_SHARE= $(PREFIX)/share/openni
+OPENNI=		$(WRKDIR)
+OPENNI_LIB=	$(PREFIX)/lib
+OPENNI_SHARE=	$(PREFIX)/share/openni
 
-BUILD_DIRS = Platform/Linux-x86/Build
+ENGINE_BIN=	${PREFIX.openni}/bin
+ENGINE_LIB=	${WRKDIR}/lib
+OPENNI_LIB=	${PREFIX.openni}/lib
 
-ENGINE_BIN = ${PREFIX.openni}/bin
-ENGINE_LIB = ${WRKDIR}/lib
-OPENNI_LIB = ${PREFIX.openni}/lib
-
-SUBST_CLASSES += core-libs
-SUBST_STAGE.core-libs = post-extract
-SUBST_MESSAGE.core-libs = Patching the output library for the core libraries...
-SUBST_SED.core-libs =  \
+SUBST_CLASSES+=		core-libs
+SUBST_STAGE.core-libs=	post-extract
+SUBST_MESSAGE.core-libs=Patching the output library for the core libraries
+SUBST_SED.core-libs=\
 	-e 's!BIN_DIR = ../../Bin!CFG=lib\nCFLAGS+=-O3 -msse3\nLDFLAGS+=-Wl,-rpath,$(OPENNI_LIB) -Wl,-rpath,$(ENGINE_LIB)\nLIB_DIRS=$(OPENNI_LIB)\nBIN_DIR=$(WRKDIR)!g' \
 	-e 's!/usr/include/ni/CommonMakefile!$(PREFIX.openni)/include/ni/CommonMakefile!g' \
 	-e 's!/usr/include!$(PREFIX.openni)/include!g'
@@ -49,17 +52,8 @@ SUBST_FILES.xnserver = Platform/Linux-x86/Build/Utils/EngineUtilMakefile
 SUBST_CLASSES += sensor
 SUBST_STAGE.sensor = post-extract
 SUBST_MESSAGE.sensor = Patching the output directory for sensor
-SUBST_SED.sensor = -e 's!/usr/bin!$(ENGINE_BIN)!g' 
+SUBST_SED.sensor = -e 's!/usr/bin!$(ENGINE_BIN)!g'
 SUBST_FILES.sensor = Source/XnDeviceSensorV2/XnSensorClient.cpp
-
-UDEV_RULES=55-primesense-usb.rules
-MESSAGE_SUBST = UDEV_RULES=${UDEV_RULES}
-
-INSTALLATION_DIRS = \
-	${PREFIX}/bin \
-	${PREFIX}/lib \
-	${PREFIX}/share/openni \
-	${PREFIX}/etc/udev/rules.d
 
 # XXX the niReg process should be handled in INSTALL/DEINSTALL scripts
 do-install:
