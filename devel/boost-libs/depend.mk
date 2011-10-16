@@ -28,8 +28,6 @@ DEPEND_USE+=		boost-libs
 DEPEND_ABI.boost-libs?=	boost-libs>=1.34.1
 DEPEND_DIR.boost-libs?=	../../devel/boost-libs
 
-DEPEND_METHOD.boost-libs?=	build
-
 BOOST_LIB_SUFFIX=\
 	$(findstring -mt,$(firstword ${SYSTEM_FILES.boost-libs}))
 
