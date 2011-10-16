@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -45,7 +45,8 @@ SYSTEM_PKG.Ubuntu.gcc-fortran=	gfortran
 
 SYSTEM_DESCR.gcc-fortran=	gcc Fortran77 compiler, version ${_GCC_REQUIRED}
 SYSTEM_SEARCH.gcc-fortran=	\
-	'bin/{gfortran,g77}:1s/[^0-9.]*\([0-9.]*\).*$$/\1/p:% -dumpversion'
+	'{,gcc[0-9]*/}bin/{gfortran,g77}:${_vregex.gcc-fortran}:% -dumpversion'
+_vregex.gcc-fortran=1s/[^0-9.]*\([0-9.]*\).*$$/\1/p
 
 # make sure to use += here, for chainable compilers definitions.
 ROBOTPKG_FC+=$(word 1,${SYSTEM_FILES.gcc-fortran})
