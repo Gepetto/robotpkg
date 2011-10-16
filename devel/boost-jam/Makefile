@@ -9,6 +9,7 @@ BOOST_PACKAGE=		jam
 BOOST_COMMENT=		(Boost.Jam utility)
 BOOST_CONFIG=		no
 
+PREFER.boost?=		robotpkg
 include ../../devel/boost/Makefile.common
 
 SUBST_CLASSES+=		bb

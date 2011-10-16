@@ -8,6 +8,7 @@
 BOOST_PACKAGE=	meta-pkg
 BOOST_COMMENT=	(meta package)
 
+PREFER.boost?=	robotpkg
 include Makefile.common
 
 CATEGORIES+=	devel

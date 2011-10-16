@@ -9,16 +9,13 @@ BOOST_PACKAGE=		headers
 BOOST_COMMENT=		(build-time headers)
 BOOST_CONFIG=		generate
 
+PREFER.boost?=		robotpkg
 include ../../devel/boost/Makefile.common
 
+NO_BUILD=		yes
 BJAM_ARGS+=		--without-* # disable all libraries
 
 include ../../devel/boost-jam/depend.mk
-
-NO_BUILD=		yes
-CONFIGURE_LOG_ETA=	200
-INSTALL_LOG_ETA=	7750
-
 include ../../mk/robotpkg.mk
 
 do-install: bjam-install
