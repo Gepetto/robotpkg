@@ -13,6 +13,7 @@ PREFER.boost?=		robotpkg
 include ../../devel/boost/Makefile.common
 
 BJAM_ARGS+=		--without-python
+INSTALLATION_DIRS=	lib
 
 include ../../devel/boost-jam/depend.mk
 include ../../archivers/bzip2/depend.mk
