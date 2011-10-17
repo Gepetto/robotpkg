@@ -18,8 +18,9 @@ DEPEND_ABI.evart-client?=	evart-client>=1.4
 DEPEND_DIR.evart-client?=	../../net/evart-client
 
 SYSTEM_SEARCH.evart-client=\
-	bin/evart-client	\
-	include/evart-client.h
+	bin/evart-client					\
+	include/evart-client.h					\
+	'lib/pkgconfig/evart-client.pc:/Version/s/[^0-9.]//gp'
 
 endif # EVART_CLIENT_DEPEND_MK ---------------------------------------
 
