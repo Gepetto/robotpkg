@@ -1,0 +1,13 @@
+Add missing -lbluetooth and -lpthread for wminput
+
+--- wminput/Makefile.in~	2007-07-28 20:47:03.000000000 +0200
++++ wminput/Makefile.in	2011-10-17 13:56:46.518456387 +0200
+@@ -14,7 +14,7 @@
+ 	-DWMINPUT_CONFIG_DIR=\"$(WMINPUT_CONFIG_DIR)\" \
+ 	-DCWIID_PLUGINS_DIR=\"$(CWIID_PLUGINS_DIR)\"
+ 
+-LDLIBS += -lcwiid -ldl
++LDLIBS += -lcwiid -lbluetooth -lpthread -ldl
+ LDFLAGS += -L@top_builddir@/libcwiid -rdynamic
+ INST_DIR = @bindir@
+ 

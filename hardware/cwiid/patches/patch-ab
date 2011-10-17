@@ -1,0 +1,13 @@
+Add missing -lbluetooth for wmgui
+
+--- wmgui/Makefile.in~	2007-07-28 20:47:03.000000000 +0200
++++ wmgui/Makefile.in	2011-10-17 13:47:28.082456410 +0200
+@@ -8,7 +8,7 @@
+ 
+ CFLAGS += @GTK_CFLAGS@ -I@top_builddir@/libcwiid
+ LDFLAGS += -L@top_builddir@/libcwiid
+-LDLIBS += @GTK_LIBS@ -lm -lcwiid
++LDLIBS += @GTK_LIBS@ -lm -lcwiid -lbluetooth
+ INST_DIR = @bindir@
+ 
+ include $(COMMON)/include/app.mak

@@ -1,0 +1,22 @@
+Fix flex/bison checks (allow full path to be given)
+
+--- configure~	2011-10-17 14:05:03.454455949 +0200
++++ configure	2011-10-17 14:06:40.894455624 +0200
+@@ -2888,7 +2888,7 @@
+ rm -f conftest.l $LEX_OUTPUT_ROOT.c
+ 
+ fi
+-if test "$LEX" != "flex"; then
++if test "${LEX##*/}" != "flex"; then
+ 	{ { echo "$as_me:$LINENO: error: flex not found" >&5
+ echo "$as_me: error: flex not found" >&2;}
+    { (exit 1); exit 1; }; }
+@@ -2941,7 +2941,7 @@
+ done
+ test -n "$YACC" || YACC="yacc"
+ 
+-if test "$YACC" != "bison -y"; then
++if test "${YACC##*/}" != "bison -y"; then
+ 	{ { echo "$as_me:$LINENO: error: bison not found" >&5
+ echo "$as_me: error: bison not found" >&2;}
+    { (exit 1); exit 1; }; }
