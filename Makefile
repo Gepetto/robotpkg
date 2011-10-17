@@ -1,4 +1,3 @@
-# $LAAS: Makefile 2011/01/17 17:26:31 mallet $
 #
 # Copyright (c) 2007-2009,2011 LAAS/CNRS
 # All rights reserved.
@@ -51,7 +50,6 @@
 SUBDIR+=	architecture
 SUBDIR+=	archivers
 SUBDIR+=	audio
-SUBDIR+=	cross
 SUBDIR+=	devel
 SUBDIR+=	doc
 SUBDIR+=	editors

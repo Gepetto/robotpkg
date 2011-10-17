@@ -1,6 +1,5 @@
-# $LAAS: gcc.mk 2009/12/06 15:17:50 tho $
 #
-# Copyright (c) 2006,2008-2009 LAAS/CNRS
+# Copyright (c) 2006,2008-2009,2011 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -38,8 +37,8 @@
 # Select required compilers based on COMPILER_TARGET and USE_LANGUAGES.
 #
 ifeq (i386-mingw32,${COMPILER_TARGET})
-  ifneq (,$(filter c c++,${USE_LANGUAGES}))
-    include ${ROBOTPKG_DIR}/cross/i386-mingw32/depend.mk
+  ifneq (,$(filter c,${USE_LANGUAGES}))
+    include ${ROBOTPKG_DIR}/mk/sysdep/mingw32-c.mk
   endif
 else
   ifneq (,$(filter c,${USE_LANGUAGES}))
