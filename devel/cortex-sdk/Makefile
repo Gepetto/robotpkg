@@ -25,24 +25,27 @@ NO_PUBLIC_SRC=          ${RESTRICTED}
 NO_PUBLIC_BIN=          ${RESTRICTED}
 
 INTERACTIVE_STAGE=      fetch
-FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing Cortex SDK2 ${VERSION}"
-FETCH_MESSAGE+= " must be put manually into:"
-FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
-FETCH_MESSAGE+= ""
-FETCH_MESSAGE+= " This file is located on the Cortex CDROM, in the Sdk2 directory."
+FETCH_MESSAGE+=\
+  "${bf}The fetch stage of this package requires user interaction${rm}"	\
+  "The file ${DISTNAME}${EXTRACT_SUFX} for Cortex SDK2 ${VERSION}"	\
+  "must be put manually into:"						\
+  "		${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"			\
+  ""									\
+  "This file is located on the Cortex CDROM, in the Sdk2 directory."	\
+  "For more information, see"						\
+  "		${HOMEPAGE}"
 
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
+INSTALLATION_DIRS=	bin include
 
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 
 post-extract:
-	${CHMOD} -R u+w ${WRKSRC}
+	${RUN} ${CHMOD} -R u+w ${WRKSRC}
 
 do-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/bin
-	${INSTALL_DATA_DIR} ${PREFIX}/include
-	${INSTALL_PROGRAM} ${WRKSRC}/EVaComm2.dll ${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/EVaComm2.lib ${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/EVaRT2.h ${PREFIX}/include
+	${RUN} ${INSTALL_PROGRAM} ${WRKSRC}/EVaComm2.dll ${PREFIX}/bin
+	${RUN} ${INSTALL_DATA} ${WRKSRC}/EVaComm2.lib ${PREFIX}/bin
+	${RUN} ${INSTALL_DATA} ${WRKSRC}/EVaRT2.h ${PREFIX}/include
