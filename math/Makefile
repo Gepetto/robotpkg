@@ -10,7 +10,6 @@ SUBDIR+=	eigen2
 SUBDIR+=	eigen3
 SUBDIR+=	fsqp
 SUBDIR+=	gbM
-SUBDIR+=	gmp
 SUBDIR+=	hrp2-10-optimized
 SUBDIR+=	hrp2-dynamics
 SUBDIR+=	jrl-dynamics
@@ -18,7 +17,6 @@ SUBDIR+=	jrl-mathtools
 SUBDIR+=	lapack
 SUBDIR+=	liblbfgs
 SUBDIR+=	meschach
-SUBDIR+=	mpfr
 SUBDIR+=	t3d
 SUBDIR+=	tvmet
 
