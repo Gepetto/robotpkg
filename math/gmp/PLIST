@@ -1,8 +1,0 @@
-@comment $Id: PLIST d1c8beb251c77985e8a0e42ef35efb7f 2008/02/17 11:50:39 tho $
-include/gmp.h
-include/gmpxx.h
-info/gmp.info
-info/gmp.info-1
-info/gmp.info-2
-lib/libgmp.la
-lib/libgmpxx.la
