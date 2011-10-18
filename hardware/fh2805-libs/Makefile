@@ -14,6 +14,7 @@ LICENSE=	isc
 GNU_CONFIGURE=	yes
 
 include ../../devel/mkdep/depend.mk
+include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
