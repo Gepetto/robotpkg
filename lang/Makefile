@@ -3,9 +3,6 @@
 
 COMMENT=	Programming languages
 
-SUBDIR+=	gcc42-c
-SUBDIR+=	gcc42-c++
-SUBDIR+=	gcc42-fortran
 SUBDIR+=	jython
 SUBDIR+=	python31
 SUBDIR+=	python32
