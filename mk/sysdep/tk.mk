@@ -40,6 +40,7 @@ SYSTEM_PKG.Ubuntu.tk=	tk-dev
 SYSTEM_PKG.Debian.tk=	tk-dev
 SYSTEM_PKG.NetBSD.tk=		pkgsrc/x11/tk
 
+export WISH=		$(word 1,${SYSTEM_FILES.tk})
 TK_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tk})
 
 endif # TK_DEPEND_MK -------------------------------------------------
