@@ -1,5 +1,0 @@
-$NetBSD: distinfo,v 1.5 2007/09/18 20:15:58 drochner Exp $
-
-SHA1 (mpfr-2.3.1.tar.gz) = 87250db0470ba853cd8ad8a297285423339713e4
-RMD160 (mpfr-2.3.1.tar.gz) = a1dc3e985b06f2b9b843c4bbc3a318742c8a8292
-Size (mpfr-2.3.1.tar.gz) = 1176118 bytes
