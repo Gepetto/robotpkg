@@ -1,0 +1,23 @@
+When building pkgIndex, don't create windows or execute code
+
+--- tcl/main.tcl.orig	2011-10-18 14:12:12.786455478 +0200
++++ tcl/main.tcl	2011-10-18 14:15:26.558455723 +0200
+@@ -14,7 +14,7 @@
+ # load various library functions
+ package require Grh2::canvas
+ package require Grh2::coord
+-package require Grh2::tk_entrydialog
++package require Grh2::entrydialog
+ 
+ #
+ # Creation de la fenetre principale
+@@ -77,6 +76,9 @@
+ 	-message  "Grh2\n\nCopyright (c) 1999-2006 LAAS/CNRS"
+ }
+ 
++# mkIndex mode
++if {![info exists argv0]} return
++
+ ##
+ ## Go
+ ##

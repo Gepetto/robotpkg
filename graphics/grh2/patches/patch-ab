@@ -1,0 +1,18 @@
+Pass required packages to mkIndex as $argv[2]
+
+--- tcl/mkIndex~	2009-04-14 15:29:20.000000000 +0200
++++ tcl/mkIndex	2011-10-18 11:44:11.962455290 +0200
+@@ -32,9 +32,12 @@
+ # Rebuild the package indexes for GRH2
+ #
+ 
+-if {[llength $argv] == 1} {
++if {[llength $argv] >= 1} {
+     set dir [lindex $argv 0]
+ }
++if {[llength $argv] >= 2} {
++  package require [lindex $argv 1]
++}
+ puts "Rebuilding package index in $dir"
+ pkg_mkIndex -verbose $dir
+ exit 0

@@ -1,0 +1,26 @@
+Use 'wish' as found by robotpkg instead of elwish to generate pkgIndex
+
+--- modules/segloc/Makefile.in~	2009-04-14 15:29:20.000000000 +0200
++++ modules/segloc/Makefile.in	2011-10-18 14:19:57.098455609 +0200
+@@ -21,7 +21,11 @@
+ mkinstalldirs=	$(SHELL) $(top_srcdir)/mkinstalldirs
+ INSTALL=	@INSTALL@
+ INSTALL_DATA=	@INSTALL_DATA@
++WISH?=		wish
+ 
++exec_prefix=	@exec_prefix@
++LIBDIR=		@libdir@
++MODULESDIR=	${LIBDIR}/grh2
+ GRH2_TCL_DIR=	$(DATADIR)/grh2/tcl
+ 
+ FILES=	seglocPoster.tcl
+@@ -38,7 +42,8 @@
+ 		echo "installing $$f in $(DESTDIR)$(GRH2_TCL_DIR)" ; \
+ 		$(INSTALL_DATA) $(srcdir)/$$f $(DESTDIR)$(GRH2_TCL_DIR); \
+ 	done
+-	elwish -package Grh2 < $(top_srcdir)/tcl/mkIndex $(DESTDIR)$(GRH2_TCL_DIR)
++	TCLLIBPATH="${MODULESDIR} ${GRH2_TCL_DIR}" \
++	  ${WISH} $(top_srcdir)/tcl/mkIndex $(DESTDIR)$(GRH2_TCL_DIR) Grh2
+ 
+ clean:
+ 	@echo "nothing to be done"

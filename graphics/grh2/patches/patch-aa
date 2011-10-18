@@ -1,0 +1,25 @@
+Use 'wish' as found by robotpkg instead of elwish to generate pkgIndex
+
+--- tcl/Makefile.in~	2009-04-14 15:29:20.000000000 +0200
++++ tcl/Makefile.in	2011-10-18 11:50:59.266455541 +0200
+@@ -23,6 +23,10 @@
+ INSTALL=	@INSTALL@
+ INSTALL_DATA=	@INSTALL_DATA@
+ 
++WISH?=         wish
++exec_prefix=	@exec_prefix@
++LIBDIR=		@libdir@
++MODULESDIR=	${LIBDIR}/grh2
+ GRH2_TCL_DIR=	$(DATADIR)/grh2/tcl
+ GRH2_ICONS_DIR=	$(DATADIR)/grh2/icons
+ 
+@@ -41,7 +43,8 @@
+ 		echo "installing $$f in $(DESTDIR)$(GRH2_TCL_DIR)" ; \
+ 		$(INSTALL_DATA) $(srcdir)/$$f $(DESTDIR)$(GRH2_TCL_DIR); \
+ 	done
+-	elwish -package Grh2 < $(srcdir)/mkIndex $(DESTDIR)$(GRH2_TCL_DIR)
++	TCLLIBPATH="${MODULESDIR} ${GRH2_TCL_DIR}" \
++	  ${WISH} $(srcdir)/mkIndex $(DESTDIR)$(GRH2_TCL_DIR) Grh2
+ 
+ clean:
+ 	@echo "nothing to be done"

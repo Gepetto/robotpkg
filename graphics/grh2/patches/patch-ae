@@ -1,0 +1,13 @@
+When building pkgIndex, don't create windows or execute code
+
+--- tcl/seglocEdit.tcl~	2009-04-14 15:29:20.000000000 +0200
++++ tcl/seglocEdit.tcl	2011-10-18 14:17:26.790455406 +0200
+@@ -9,6 +9,8 @@
+ # $Id: seglocEdit.tcl,v 1.17 2007/10/15 10:47:45 sara Exp $
+ #
+ 
++# mkIndex mode
++if {![info exists argv0]} return
+ 
+ namespace eval Grh2 {
+ }

@@ -1,0 +1,14 @@
+When building pkgIndex, don't create windows or execute code
+
+--- tcl/manip.tcl~	2009-04-14 15:29:20.000000000 +0200
++++ tcl/manip.tcl	2011-10-18 14:28:57.042455262 +0200
+@@ -6,6 +6,9 @@
+ # $Id: manip.tcl,v 1.1 2006/01/19 16:45:31 matthieu Exp $
+ #
+ 
++# mkIndex mode
++if {![info exists argv0]} return
++
+ 
+ # Verifie que POSTER_HOST est definie, sinon demande une valeur
+ if { ![info exists env(POSTER_HOST)] } {
