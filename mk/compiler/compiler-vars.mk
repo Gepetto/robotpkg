@@ -47,7 +47,6 @@
 #	Valid values are:
 #		ccache		compiler cache (chainable)
 #		gcc		GNU
-#		gcc42		GNU, version 4.2
 #
 #	The default is "gcc".  You can use ccache with an appropriate
 #	ROBOTPKG_COMPILER setting, e.g. "ccache gcc".  The chain should always
@@ -78,7 +77,7 @@ endif
 
 
 # List of supported compilers and pseudo compilers that can be chained
-_COMPILERS=		gcc gcc42
+_COMPILERS=		gcc
 _PSEUDO_COMPILERS=	ccache
 
 # Compute the list of compilers for the current package
