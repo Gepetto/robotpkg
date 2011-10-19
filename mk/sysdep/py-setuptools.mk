@@ -23,6 +23,15 @@ SYSTEM_PKG.Linux.py-setuptools=	python-setuptools (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-setuptools=pkgsrc/devel/${PKGTAG.python-}setuptools
 
 include ../../mk/sysdep/python.mk
+ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 14,${OS_VERSION}))
+    DEPEND_ABI.python+=	python{>=2.7<2.8,>=3.1<3.2}
+  else
+    DEPEND_ABI.python+=	python{>=2.7<2.8,>=3.2<3.3}
+  endif
+else ifeq (NetBSD,${OPSYS})
+  DEPEND_ABI.python+=	python>=2.6<3
+endif
 
 endif # PYSETUPTOOLS_DEPEND_MK ---------------------------------------------
 
