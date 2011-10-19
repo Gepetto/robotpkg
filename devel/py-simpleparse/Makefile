@@ -23,3 +23,5 @@ PYSETUPINSTALLARGS+=    --root=/
 include ../../mk/sysdep/py-setuptools.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
+
+post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/simpleparse)
