@@ -4,7 +4,7 @@
 
 DISTNAME=	    	dialogs-${PKGVERSION_NOREV}
 PKGTNAME=	    	${PKGTAG.python-}dialogs-${PKGVERSION}
-PKGVERSION=	    	0.5
+PKGVERSION=	    	0.6
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dialogs/}
 MASTER_REPOSITORY=	git http://trac.laas.fr/git/robots/dialogs.git
