@@ -4,14 +4,16 @@
 
 DISTNAME=		libp3d-${VERSION}
 VERSION=		1.3
+PKGREVISION=		1
 CATEGORIES=		path
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=libp3d/}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libp3d/}
 MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/libp3d
 
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
-COMMENT=		Local path planning
+COMMENT=		Local 3D path planning on a digital elevation map
+LICENSE=		isc
 
 GNU_CONFIGURE=		yes
 
@@ -30,6 +32,18 @@ PKG_OPTION_SET.trooper=	  CONFIGURE_ARGS+=--with-platform=TROOPER
 
 PKG_OPTION_DESCR.rmp400 = Enable support for RMP400 (MANA) platform
 PKG_OPTION_SET.rmp400=	  CONFIGURE_ARGS+=--with-platform=RMP400
+
+# Display option
+PKG_SUPPORTED_OPTIONS+=		display
+PKG_SUGGESTED_OPTIONS+=		display
+PKG_OPTION_DESCR.display?=	Enable support for 3D graphic display
+
+define PKG_OPTION_SET.display
+  include ../../graphics/gdhe/depend.mk
+endef
+define PKG_OPTION_UNSET.display
+  CONFIGURE_ARGS+=	HAS_GDHE=no GDHE_CFLAGS= GDHE_LIBS=
+endef
 
 include ../../math/t3d/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

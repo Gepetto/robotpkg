@@ -1,0 +1,29 @@
+Don't check for graphics/gdhe when HAS_GDHE=no is passed to configure
+Also pass -DGDHE_SUPPORT to compile src/util.c with conditional support for gdhe
+
+--- configure.orig	2011-10-19 11:46:33.298705751 +0200
++++ configure	2011-10-19 11:47:01.022705239 +0200
+@@ -10730,7 +10730,7 @@
+ fi
+ 
+ 
+-
++if test -z "$HAS_GDHE"; then
+ if test $pkg_failed = yes; then
+    	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+@@ -10758,12 +10758,13 @@
+ $as_echo "$as_me: WARNING: GDHE support disabled" >&2;}
+ 	HAS_GDHE=no
+ else
+-	GDHE_CFLAGS=$pkg_cv_GDHE_CFLAGS
++	GDHE_CFLAGS="-DGDHE_SUPPORT $pkg_cv_GDHE_CFLAGS"
+ 	GDHE_LIBS=$pkg_cv_GDHE_LIBS
+         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+ $as_echo "yes" >&6; }
+ 	HAS_GDHE=yes
+ fi
++fi
+ 
+  if test x$HAS_GDHE = xyes; then
+   GDHE_SUPPORT_TRUE=
