@@ -173,9 +173,11 @@ include ../../mk/robotpkg.prefs.mk
 
 PYTHON_VERSION=$(patsubst py2%,2.%,$(patsubst py3%,3.%,${PKGTAG.python}))
 BUILD_DEFS+=		PYTHON_VERSION
+PYTHON_MAJOR=		$(word 1,$(subst ., ,${PYTHON_VERSION}))
 
 PYTHON_SITELIB=		lib/python${PYTHON_VERSION}/site-packages
-PYTHON_SYSLIBSEARCH=	lib/python${PYTHON_VERSION}/{site,dist}-packages
+PYTHON_SYSLIBSEARCH=\
+	lib/python{${PYTHON_VERSION},${PYTHON_MAJOR}}/{site,dist}-packages
 
 PYVARPREFIX=		$(subst python,PYTHON,${PKG_ALTERNATIVE.python})
 PYTHON_PYCACHE?=	$(or ${${PYVARPREFIX}_PYCACHE},.)
