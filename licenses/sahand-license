@@ -1,0 +1,19 @@
+Schunk Anthropomorphic Hand.
+Copyright Mai 2006, Nov 2006 by Fizulrahman JamalMohamed.
+DLR (Oberpfaffenhofen), Institut fuer Robotik und Mechatronik.
+
+Redistribution not permitted.
+
+Due to the vast variety of Linux installations out there we cannot
+guarantee the operability of the provided driver and API with your
+specific Linux system. So please note that the code provided here is
+provided "AS IS" and without any express or implied warranties,
+including, but not without limitation, the implied warranties of
+merchantability and fitness for a particular purpose.
+
+In order to increase the chance that the code DOES work we do provide
+source code for driver and API, so that you can compile it by yourself
+for your specific Linux-kernel. But any CHANGES to the provided driver
+or API code are STRICTLY forbidden! Changing the code might result in
+malfunctions of the hand and it could even damage the PCI-card or the
+SAHand!
