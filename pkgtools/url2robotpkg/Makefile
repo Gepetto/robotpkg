@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 6 Mar 2009
 #
 
-DISTNAME=	url2pkg-2.7
+DISTNAME=	url2robotpkg-2.7
 CATEGORIES=	pkgtools
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -16,6 +16,7 @@ WRKSRC=		${WRKDIR}
 NO_CHECKSUM=	yes
 NO_BUILD=	yes
 USE_LANGUAGES=	# none
+INSTALLATION_DIRS=	bin man/man8
 
 SUBST_CLASSES+=		up
 SUBST_STAGE.up=		do-configure
