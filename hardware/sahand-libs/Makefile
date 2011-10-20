@@ -5,18 +5,22 @@ VERSION=	08.08.14
 PKGNAME=	sahand-libs-${VERSION}
 DISTNAME=	sahapi_$(subst .,,${VERSION})
 PKGREVISION=	1
-
 CATEGORIES=	hardware
+
 COMMENT=	Schunk Antropomorphic Hand API
+LICENSE=	sahand-license
+MAINTAINER=	openrobots@laas.fr
+
+RESTRICTED=	You cannot redistribute this software.
+NO_PUBLIC_SRC=	${RESTRICTED}
+NO_PUBLIC_BIN=	${RESTRICTED}
 
 INTERACTIVE_STAGE=	fetch
-FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing the sahand API version ${VERSION}"
-FETCH_MESSAGE+= ""
-FETCH_MESSAGE+= " must be put manually into:"
-FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 
-INSTALLATION_DIRS+= ${PREFIX}/include/sahand
-INSTALLATION_DIRS+= ${PREFIX}/share/doc/sahand
+INSTALLATION_DIRS+= include/sahand
+INSTALLATION_DIRS+= share/doc/sahand
+
+include ../../mk/robotpkg.mk
 
 pre-build:
 	$(RM) -f $(WRKSRC)/libsahand.so
@@ -28,5 +32,3 @@ do-install:
 	(cd $(WRKSRC); $(INSTALL_DATA) libsahand.so ${PREFIX}/lib)
 	(cd $(WRKSRC); $(INSTALL_DATA) Hand_Manual.pdf \
 		${PREFIX}/share/doc/sahand )
-
-include ../../mk/robotpkg.mk
