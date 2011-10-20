@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 19 Jan 2011
 #
 
-DISTNAME=	ros-base-${ROS_VERSION}
+DISTNAME=	ros-base-${ROS_NUMVERSION}
 CATEGORIES=	meta-pkgs
 
 MAINTAINER=	openrobots@laas.fr
