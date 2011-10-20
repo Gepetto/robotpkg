@@ -5,17 +5,15 @@
 VERSION=	2008.01.10
 PKGNAME=	sahand-kmod-$(VERSION)
 DISTNAME=	sahand-linux_$(subst .,-,$(VERSION))
-
 CATEGORIES=	hardware
+
 COMMENT=	Schunk Antropomorphic Hand Linux driver
+LICENSE=	sahand-license
+MAINTAINER=	openrobots@laas.fr
 
 ONLY_FOR_PLATFORM=	Linux-%
 
 INTERACTIVE_STAGE=	fetch
-FETCH_MESSAGE+= " The file ${DISTNAME}${EXTRACT_SUFX} containing the sahand driver version ${VERSION}"
-FETCH_MESSAGE+= ""
-FETCH_MESSAGE+= " must be put manually into:"
-FETCH_MESSAGE+= "       ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}"
 
 WRKSRC=		${WRKDIR}/SAHand/sahand_driver
 
