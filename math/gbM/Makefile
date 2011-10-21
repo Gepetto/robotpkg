@@ -9,11 +9,12 @@ MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gbM
 
 MAINTAINER=	daniel.sidobre@laas.fr
 #HOMEPAGE=	softs.laas.fr:/ftp/pub/openrobots/
-COMMENT=	geometry for 6R arms
+COMMENT=	Geometry for 6R arms
 LICENSE=	isc
 
 CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
+CONFIGURE_ARGS+=SWIG=$(call quote,${SWIG})
 
 pre-configure: autoreconf
 
