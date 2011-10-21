@@ -20,6 +20,8 @@ PYDISTUTILSPKG=		yes
 PYSETUPINSTALLARGS=     --single-version-externally-managed
 PYSETUPINSTALLARGS+=    --root=/
 
+DEPEND_ABI.python=	python<3
+
 include ../../mk/sysdep/py-setuptools.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
