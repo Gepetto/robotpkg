@@ -87,7 +87,10 @@ show-depends:
 	${RUN}${PHASE_MSG} "Scanning packages for ${PKGNAME}";		\
 	${_pkgset_tsort_deps} -n ${PKGPATH} |				\
 	while IFS=: read dir pkg; do					\
-	  if ${TEST} -z "$$dir"; then continue; fi;			\
+	  if ${TEST} -z "$$dir"; then ${ECHO} >&2 "$$pkg"; continue; fi;\
+	  if ${TEST} "$$dir" = "***"; then				\
+	    ${ERROR_MSG} "$$pkg"; continue;				\
+	  fi;								\
 	  cd ${ROBOTPKG_DIR}/$$dir &&					\
 	  ${RECURSIVE_MAKE} print-depends				\
 		PKGREQD="$$pkg" WRKDIR=${WRKDIR}/$$dir || {		\
