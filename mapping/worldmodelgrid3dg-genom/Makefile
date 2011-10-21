@@ -3,15 +3,16 @@
 #
 
 PKGVERSION=	1.0
-DISTNAME= 	worldModelGrid3DG-genom-${PKGVERSION_NOREV}
+DISTNAME=	worldModelGrid3DG-genom-${PKGVERSION_NOREV}
 PKGNAME=	worldmodelgrid3dg-genom-${PKGVERSION}
 CATEGORIES=	mapping
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=worldModelGrid3D-genom/}
 
 MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=	
+#HOMEPAGE=
 COMMENT=	Probabilistic, 3D occupancy grid building - GenoM component
 
+USE_LANGUAGES+=	c c++
 GENOM_MODULE=	worldModelGrid3DG
 
 include ../../architecture/genom/depend.mk
