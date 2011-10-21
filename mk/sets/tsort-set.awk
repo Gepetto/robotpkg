@@ -339,7 +339,7 @@ function pkginfos(pkg, deps, pkgnamep,		cmd, dir, i, l) {
         } else if (i[1] == "print-depends-pkgpaths") {
             if (!((dir,i[2]) in donedep)) deps[i[2]]
         } else
-            xwarn(l)
+            xwarn("[" pkg "] " l)
     }
     if (close(cmd)) exit 2
     if (pkgnamep) return pkgnamep
