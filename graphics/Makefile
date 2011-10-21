@@ -19,6 +19,5 @@ SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
 SUBDIR+=	Togl
 SUBDIR+=	vcglib
-SUBDIR+=	wxGTK
 
 include ../mk/robotpkg.subdir.mk
