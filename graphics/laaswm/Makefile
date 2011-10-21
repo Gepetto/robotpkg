@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Mon, 9 Mar 2009
 #
 
-DISTNAME=	laaswm-1.1
+DISTNAME=	laaswm-1.2
 COMMENT=	Remotely controllable window manager based on evilwm
 CATEGORIES=	graphics
 
