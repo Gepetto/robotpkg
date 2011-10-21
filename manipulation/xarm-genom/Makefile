@@ -16,5 +16,6 @@ GENOM_MODULE=	xarm
 include ../../architecture/genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../math/gbM/depend.mk
+include ../../manipulation/genManip-genom/depend.mk
 include ../../robots/qarm-genom/depend.mk
 include ../../mk/robotpkg.mk
