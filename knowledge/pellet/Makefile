@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Tue, 7 Jul 2009
 #
 
-PKGVERSION=	2.2.2
+PKGVERSION=	2.3.0
 DISTNAME=	pellet-${PKGVERSION_NOREV}
 MASTER_SITES=	http://clarkparsia.com/pellet/download/${DISTNAME}
 EXTRACT_SUFX=	.zip
