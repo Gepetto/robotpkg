@@ -18,7 +18,7 @@ ifeq (Fedora,${OPSYS})
       $(if $(call preduce,${DEPEND_ABI.swig} swig<2),system,robotpkg)
   endif
 else ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04 10.10 11.04 11.10,${OS_VERSION}))
+  ifneq (,$(filter 10.04 10.10 11.04,${OS_VERSION}))
     PREFER.swig?=\
       $(if $(call preduce,${DEPEND_ABI.swig} swig<2),system,robotpkg)
   endif
