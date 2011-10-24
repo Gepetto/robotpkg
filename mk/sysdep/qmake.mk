@@ -38,6 +38,9 @@ SYSTEM_SEARCH.qmake=\
 USE_QMAKE=		yes
 export QMAKE=		$(word 1,${SYSTEM_FILES.qmake})
 
+SYSTEM_PKG.Debian.qmake=	qt4-qmake
+SYSTEM_PKG.Ubuntu.qmake=	qt4-qmake
+
 endif # QMAKE_DEPEND_MK ----------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
