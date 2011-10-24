@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	jena-${PKGVERSION_NOREV}
-PKGVERSION=	2.6.3
+PKGVERSION=	2.6.4
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=jena/}
 EXTRACT_SUFX=	.zip
 
@@ -16,7 +16,7 @@ COMMENT=	Java framework for building Semantic Web applications
 NO_CONFIGURE=	yes
 NO_BUILD= yes
 
-WRKSRC=		${WRKDIR}/Jena-${PKGVERSION}
+WRKSRC=		${WRKDIR}/Jena-${PKGVERSION_NOREV}
 USE_LANGUAGES=	java
 
 # doc option
