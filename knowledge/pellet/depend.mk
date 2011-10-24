@@ -15,7 +15,7 @@ ifeq (+,$(PELLET_DEPEND_MK)) # -----------------------------------------------
 PREFER.pellet?=		robotpkg
 
 DEPEND_USE+=		pellet
-DEPEND_ABI.pellet?=	pellet>=2.0.2
+DEPEND_ABI.pellet?=	pellet>=2.3.0
 DEPEND_DIR.pellet?=	../../knowledge/pellet
 
 SYSTEM_SEARCH.pellet=\
