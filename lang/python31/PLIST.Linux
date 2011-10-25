@@ -1,4 +1,6 @@
 @comment Tue Oct 11 14:56:37 CEST 2011
+lib/python3.1/lib-dynload/ossaudiodev.so
+lib/python3.1/lib-dynload/spwd.so
 lib/python3.1/plat-${PY_PLATNAME}/CDROM.py
 lib/python3.1/plat-${PY_PLATNAME}/CDROM.pyc
 lib/python3.1/plat-${PY_PLATNAME}/CDROM.pyo
