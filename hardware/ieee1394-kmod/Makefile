@@ -13,6 +13,8 @@ CATEGORIES=	hardware
 LICENSE=	gnu-gpl-v2
 
 ONLY_FOR_PLATFORM=	Linux-%
+NOT_FOR_PLATFORM=	Fedora-15-% Fedora-16-%
+NOT_FOR_PLATFORM+=	Ubuntu-11.04-% Ubuntu-11.10-%
 
 MASTER_SITES=	http://www.kernel.org/pub/linux/kernel/v2.6/
 
