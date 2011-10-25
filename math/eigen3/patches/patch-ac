@@ -1,0 +1,13 @@
+Require cstddef for ptrdiff_t
+
+--- Eigen/src/StlSupport/details.h~	2011-03-18 10:26:21.000000000 +0100
++++ Eigen/src/StlSupport/details.h	2011-10-25 21:01:37.000000000 +0200
+@@ -30,6 +30,8 @@
+   #define EIGEN_ALIGNED_ALLOCATOR Eigen::aligned_allocator
+ #endif
+ 
++#include <cstddef>
++
+ namespace Eigen {
+ 
+   // This one is needed to prevent reimplementing the whole std::vector.
