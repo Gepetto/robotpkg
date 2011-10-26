@@ -1,0 +1,12 @@
+*** CMakeLists.txt~	2011-06-21 19:44:23.000000000 +0200
+--- CMakeLists.txt	2011-10-26 15:34:04.688172089 +0200
+***************
+*** 15,20 ****
+--- 15,21 ----
+  
+  CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+  
++ SET(CXX_DISABLE_WERROR YES)
+  INCLUDE(cmake/base.cmake)
+  INCLUDE(cmake/boost.cmake)
+  INCLUDE(cmake/pthread.cmake)
