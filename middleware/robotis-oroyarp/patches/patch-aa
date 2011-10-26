@@ -1,0 +1,39 @@
+Remove yarpmod library and replace by YARP_init (required in yarp-2.3.1)
+
+--- config/FindYARP2.cmake~	2009-11-04 15:54:02.000000000 +0100
++++ config/FindYARP2.cmake	2011-10-26 15:15:33.238459018 +0200
+@@ -30,8 +30,8 @@
+ 	find_library(YARP_SIG_LIBRARY
+ 		NAMES YARP_sig
+ 		PATHS /usr/lib /usr/local/lib /opt/local/lib /sw/lib)
+-	find_library(YARP_MOD_LIBRARY
+-		NAMES yarpmod
++	find_library(YARP_INIT_LIBRARY
++		NAMES YARP_init
+ 		PATHS /usr/lib /usr/local/lib /opt/local/lib /sw/lib)
+ 	# Set FOUND flags
+ 	if (YARP_OS_LIBRARY)
+@@ -43,9 +43,9 @@
+ 	if (YARP_SIG_LIBRARY)
+ 		set(YARP_SIG_FOUND TRUE)
+ 	endif (YARP_SIG_LIBRARY)
+-	if (YARP_MOD_LIBRARY)
+-		set(YARP_MOD_FOUND TRUE)
+-	endif (YARP_MOD_LIBRARY)
++	if (YARP_INIT_LIBRARY)
++		set(YARP_INIT_FOUND TRUE)
++	endif (YARP_INIT_LIBRARY)
+ 	# Set Include dirs
+ 	set(YARP2_INCLUDE_DIRS ${YARP2_INCLUDE_DIR})
+ 	# Set Libraries
+@@ -58,8 +58,8 @@
+ 	if (YARP_SIG_FOUND)
+ 		set(YARP2_LIBRARIES ${YARP2_LIBRARIES} ${YARP_SIG_LIBRARY})
+ 	endif (YARP_SIG_FOUND)
+-	if (YARP_MOD_FOUND)
+-		set(YARP2_LIBRARIES ${YARP2_LIBRARIES} ${YARP_MOD_LIBRARY})
++	if (YARP_INIT_FOUND)
++		set(YARP2_LIBRARIES ${YARP2_LIBRARIES} ${YARP_INIT_LIBRARY})
+ 	endif (YARP_MOD_FOUND)
+ 	# Set global FOUND flag
+ 	if (YARP2_INCLUDE_DIRS AND YARP2_LIBRARIES)

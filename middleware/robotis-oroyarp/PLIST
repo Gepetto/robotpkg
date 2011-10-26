@@ -1,7 +1,5 @@
 @comment Thu Apr 22 15:41:56 CEST 2010
 bin/deployer-yarp
-bin/robotis-yarp-controller
-bin/robotis-yarp-fakebot
 include/robotis/oroyarp/Orocos2Yarp.h
 include/robotis/oroyarp/YarpBottleConversion.h
 include/robotis/oroyarp/YarpDeploymentComponent.h
