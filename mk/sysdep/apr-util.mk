@@ -25,8 +25,10 @@ SYSTEM_SEARCH.apr-util=	\
 	'include/apr-1/apu.h'			\
 	'lib/libaprutil-1.la'
 
+SYSTEM_PKG.Debian.apr-util=	libaprutil1-dev
 SYSTEM_PKG.Fedora.apr-util=	apr-util-devel
-SYSTEM_PKG.NetBSD.apr-util=		pkgsrc/devel/apr-util
+SYSTEM_PKG.NetBSD.apr-util=	devel/apr-util
+SYSTEM_PKG.Ubuntu.apr-util=	libaprutil1-dev
 
 export APU_CONFIG=	$(word 1,${SYSTEM_FILES.apr-util})
 
