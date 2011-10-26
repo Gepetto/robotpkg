@@ -26,8 +26,10 @@ SYSTEM_SEARCH.apr=	\
 	'lib/libapr-1.la'			\
 	'lib/pkgconfig/apr-1.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Debian.apr=	libapr1-dev
 SYSTEM_PKG.Fedora.apr=	apr-devel
-SYSTEM_PKG.NetBSD.apr=		pkgsrc/devel/apr
+SYSTEM_PKG.NetBSD.apr=	devel/apr
+SYSTEM_PKG.Ubuntu.apr=	libapr1-dev
 
 export APR_CONFIG=	$(word 1,${SYSTEM_FILES.apr})
 
