@@ -11,7 +11,6 @@ SUBDIR+=	libimages3d
 SUBDIR+=	libraw1394
 SUBDIR+=	libstereopixel
 SUBDIR+=	niut-genom
-SUBDIR+=	opencv1
 SUBDIR+=	opencv
 SUBDIR+=	openni-nite
 SUBDIR+=	sift
