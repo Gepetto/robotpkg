@@ -3,7 +3,7 @@
 #
 
 VERSION=		2.5
-PKGREVISION=		2
+PKGREVISION=		3
 DISTNAME=		dynamic-graph-python-${VERSION}
 PKGNAME=		${PKGTAG.python-}dynamic-graph-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-python/}
@@ -19,6 +19,8 @@ CONFLICTS+=		py[0-9][0-9]-dynamic-graph-[0-9]*
 USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph-python
 
+CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
+
 include ../../mk/robotpkg.prefs.mk # MACHINE_ARCH
 ifeq (x86_64,${MACHINE_ARCH})
   # disable -Werror on x86_64: too many warnings, must be fixed upstream
@@ -33,3 +35,5 @@ include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
+
+post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/dynamic_graph)

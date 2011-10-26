@@ -1,0 +1,18 @@
+Install into robotpkg python hier, not system hier
+
+--- cmake/python.cmake~	2011-01-20 09:14:18.000000000 +0100
++++ cmake/python.cmake	2011-10-26 18:22:44.878455955 +0200
+@@ -64,10 +64,10 @@
+   # Installation
+   #
+ 
+-  EXEC_PROGRAM(${PYTHON_EXECUTABLE} ARGS "-c \"from distutils import sysconfig; print sysconfig.get_python_lib(0,0,prefix='')\""
+-    OUTPUT_VARIABLE PYTHON_SITELIB)
++#  EXEC_PROGRAM(${PYTHON_EXECUTABLE} ARGS "-c \"from distutils import sysconfig; print sysconfig.get_python_lib(0,0,prefix='')\""
++#    OUTPUT_VARIABLE PYTHON_SITELIB)
+ 
+-  SET(PYTHON_INSTALL_DIR ${PYTHON_SITELIB}/dynamic_graph/${SUBMODULENAME})
++  SET(PYTHON_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}/dynamic_graph/${SUBMODULENAME})
+ 
+   INSTALL(TARGETS ${PYTHON_MODULE}
+     DESTINATION
