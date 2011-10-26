@@ -4,7 +4,7 @@
 
 DISTNAME=		tclserv-2.7
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=tclserv/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/git/tclserv
+MASTER_REPOSITORY=	git git://git.openrobots.org/robots/tclserv
 
 CATEGORIES=		net
 MAINTAINER=		openrobots@laas.fr
