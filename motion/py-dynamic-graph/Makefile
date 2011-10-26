@@ -19,6 +19,12 @@ CONFLICTS+=		py[0-9][0-9]-dynamic-graph-[0-9]*
 USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph-python
 
+include ../../mk/robotpkg.prefs.mk # MACHINE_ARCH
+ifeq (x86_64,${MACHINE_ARCH})
+  # disable -Werror on x86_64: too many warnings, must be fixed upstream
+  CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
+endif
+
 include ../../motion/dynamic-graph/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
