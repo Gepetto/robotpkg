@@ -12,6 +12,8 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Kernel driver for Mitsubishi PA10 Arm controller
 
 ONLY_FOR_PLATFORM=	Linux-%
+NOT_FOR_PLATFORM=	Fedora-15-% Fedora-16-%
+NOT_FOR_PLATFORM+=	Ubuntu-11.04-% Ubuntu-11.10-%
 
 BUILD_TARGET=	default
 KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char
