@@ -12,7 +12,7 @@ MASTER_REPOSITORY=	git http://github.com/jrl-umi3218/jrl-mathtools.git
 MAINTAINER=	hpp@laas.fr
 HOMEPAGE=	https://github.com/jrl-umi3218/jrl-mathtools
 COMMENT=	Basic mathematical tools used in the JRL software.
-LICENSE=	cnrs-hpp-closed-source
+LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES+=		c c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/jrl-mathtools
