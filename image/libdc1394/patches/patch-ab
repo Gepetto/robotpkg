@@ -1,0 +1,22 @@
+Disable dc1394_vloopback example as this requires v4l1 (not available)
+
+--- examples/Makefile.in~	2009-06-11 06:07:20.000000000 +0200
++++ examples/Makefile.in	2011-10-26 12:38:11.346456014 +0200
+@@ -32,7 +32,7 @@
+ build_triplet = @build@
+ host_triplet = @host@
+ target_triplet = @target@
+-@HAVE_LINUX_TRUE@am__append_1 = dc1394_vloopback
++#@HAVE_LINUX_TRUE@am__append_1 = dc1394_vloopback
+ @HAVE_LINUX_TRUE@@HAVE_XV_TRUE@am__append_2 = dc1394_multiview
+ noinst_PROGRAMS = $(am__EXEEXT_4)
+ bin_PROGRAMS = $(am__EXEEXT_2)
+@@ -47,7 +47,7 @@
+ mkinstalldirs = $(install_sh) -d
+ CONFIG_HEADER = $(top_builddir)/config.h
+ CONFIG_CLEAN_FILES =
+-@HAVE_LINUX_TRUE@am__EXEEXT_1 = dc1394_vloopback$(EXEEXT)
++#@HAVE_LINUX_TRUE@am__EXEEXT_1 = dc1394_vloopback$(EXEEXT)
+ am__EXEEXT_2 = dc1394_reset_bus$(EXEEXT) $(am__EXEEXT_1)
+ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(man1dir)"
+ binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
