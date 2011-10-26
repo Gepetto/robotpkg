@@ -1,1 +1,11 @@
-Implementation of a dynamic data flow
+This software provides an efficient way to modelize a C++ data-flow.
+
+A dynamic graph data-flow is composed of:
+
+ - entities (graph nodes)
+ - signals (input/output of a graph action)
+
+Output signals can then be plugged into input signals to data transmission.
+
+An efficient caching mechanism avoid useless data recomputation and a simple
+built-in language can be used to control the graph actions.

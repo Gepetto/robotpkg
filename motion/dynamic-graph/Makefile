@@ -2,21 +2,24 @@
 # Created:			Florent Lamiraux on Sat,  9 Jul 2011
 #
 
-DISTNAME=	dynamic-graph-${VERSION}
-PKGNAME=	dynamic-graph-${VERSION}
-VERSION=	2.5
-
-CATEGORIES=	motion
+DISTNAME=		dynamic-graph-${VERSION}
+VERSION=		2.5
+CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL}dynamic-graph
-LICENSE=	gnu-lgpl-v3
 
-MAINTAINER=	gepetto@laas.fr
-#HOMEPAGE=	
-COMMENT=	Implementation of dynamic data flow
+COMMENT=		Efficient data-flow C++ library for robotics
+LICENSE=		gnu-lgpl-v3
+MAINTAINER=		gepetto@laas.fr
 
 USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph
+
+include ../../mk/robotpkg.prefs.mk # MACHINE_ARCH
+ifeq (x86_64,${MACHINE_ARCH})
+  # disable -Werror on x86_64: too many warnings, must be fixed upstream
+  CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
+endif
 
 include ../../interfaces/jrl-mal/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
