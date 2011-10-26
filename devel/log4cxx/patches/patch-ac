@@ -1,0 +1,13 @@
+Fix build with gcc-4.6
+
+--- src/main/cpp/socketoutputstream.cpp~	2008-04-01 00:34:09.000000000 +0200
++++ src/main/cpp/socketoutputstream.cpp	2011-10-26 14:36:20.154455957 +0200
+@@ -15,6 +15,8 @@
+  * limitations under the License.
+  */
+ 
++#include <cstring>
++
+ #include <log4cxx/logstring.h>
+ #include <log4cxx/helpers/socketoutputstream.h>
+ #include <log4cxx/helpers/socket.h>
