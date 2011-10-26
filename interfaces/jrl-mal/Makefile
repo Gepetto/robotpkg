@@ -13,7 +13,7 @@ MASTER_REPOSITORY=	git git@github.com:jrl-umi3218/jrl-mal.git
 MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=	Matrix abstraction layer for boost or vnl.
-LICENSE=	gnu-lgpl-v2
+LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES+=		c c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/jrl-mal
