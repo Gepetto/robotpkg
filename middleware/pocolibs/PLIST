@@ -34,7 +34,6 @@ include/taskLib.h
 include/tickLib.h
 include/wdLib.h
 lib/libcomLib.la
-lib/liberrorLib.la
 lib/libportLib.la
 lib/libposterLib.la
 lib/pkgconfig/pocolibs.pc
