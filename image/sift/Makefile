@@ -3,6 +3,7 @@
 #
 
 PKGVERSION=		1.1.2
+PKGREVISION=		1
 DISTNAME=		sift-${PKGVERSION_NOREV}_20100521
 PKGNAME=		sift-${PKGVERSION}
 CATEGORIES=		image
@@ -18,9 +19,25 @@ WRKSRC=			${WRKDIR}/sift
 USE_LANGUAGES+=		c c++
 MAKE_JOBS_SAFE=		no
 NO_CONFIGURE=		yes
+BUILD_TARGET=		all
+INSTALL_TARGET=		install
+
+# doc option
+PKG_SUPPORTED_OPTIONS+=	doc
+PKG_SUGGESTED_OPTIONS+=	doc
+PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
+
+define PKG_OPTION_SET.doc
+  BUILD_TARGET+=	docs
+  INSTALL_TARGET+=	install-doc
+  DOXYGEN_PLIST_DIR+=	share/doc/${PKGBASE}
+  include ../../mk/sysdep/doxygen.mk
+endef
 
 include ../../image/opencv/depend.mk
+include ../../pkgtools/install-sh/depend.mk
 include ../../pkgtools/libtool/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/gtk.mk
 include ../../mk/robotpkg.mk

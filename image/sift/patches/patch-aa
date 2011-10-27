@@ -1,24 +1,45 @@
---- Makefile.orig	2010-06-17 10:00:17.273943872 +0200
-+++ Makefile	2010-06-17 10:07:03.763943649 +0200
-@@ -6,13 +6,19 @@
+Add install and doc rules and don't hardcode 'make' and other program
+
+--- Makefile.orig	2011-10-27 10:49:56.474711283 +0200
++++ Makefile	2011-10-27 10:52:26.246706780 +0200
+@@ -6,21 +6,33 @@
  INC_DIR	= ./include
  LIB_DIR	= ./lib
  BIN	= siftfeat match dspfeat
-+INSTALL= install
++INSTALL?= install
++DOXYGEN?= doxygen
++PAX?=	  pax
  
 -all: $(BIN) libfeat.a docs
-+all: $(BIN) libsift.la docs
++all: $(BIN) libsift.la
  
  docs:
- 	doxygen Doxyfile
+-	doxygen Doxyfile
++	${DOXYGEN} Doxyfile
  
 -libfeat.a:
+-	make -C $(SRC_DIR) $@
 +install: 
-+	make -C ${SRC_DIR} $@
++	${MAKE} -C ${SRC_DIR} $@
 +	${INSTALL} -d ${PREFIX}/include/sift
 +	${INSTALL} -m 644 include/*.h ${PREFIX}/include/sift
 +
++install-doc:
++	${INSTALL} -d ${PREFIX}/share/doc/sift
++	cd docs/html/ && ${PAX} -v -r -w -pm . ${PREFIX}/share/doc/sift
++
 +libsift.la:
- 	make -C $(SRC_DIR) $@
++	${MAKE} -C $(SRC_DIR) $@
  
  $(BIN):
+-	make -C $(SRC_DIR) $@
++	${MAKE} -C $(SRC_DIR) $@
+ 
+ clean:
+-	make -C $(SRC_DIR) $@;	\
+-	make -C $(INC_DIR) $@;	\
++	${MAKE} -C $(SRC_DIR) $@;	\
++	${MAKE} -C $(INC_DIR) $@;	\
+ 
+ distclean: clean
+ 	rm -f $(LIB_DIR)/*
