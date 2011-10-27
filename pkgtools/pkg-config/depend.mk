@@ -27,7 +27,10 @@ SYSTEM_PKG.NetBSD.pkg-config=		pkgsrc/devel/pkg-config
 # Define the proper pkg-config environment
 #
 export PKG_CONFIG=		${PREFIX.pkg-config}/bin/pkg-config
-export PKG_CONFIG_LIBDIR=	/usr/lib/pkgconfig:/usr/share/pkgconfig
+export PKG_CONFIG_LIBDIR=\
+  $(call prependpaths,							\
+    $(addsuffix /pkgconfig,$(addprefix /usr/,$(or ${SYSLIBDIR},lib)))	\
+    /usr/share/pkgconfig,)
 export PKG_CONFIG_PATH=$(call prependpaths,				\
 	${PREFIX}/lib/pkgconfig ${PREFIX}/share/pkgconfig		\
 	$(filter-out $(subst :, ,${PKG_CONFIG_LIBDIR}),			\
