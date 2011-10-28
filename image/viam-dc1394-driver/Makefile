@@ -1,5 +1,5 @@
-# robotpkg Makefile for:	image/viam-libs
-# Created:			Anthony Mallet on Fri, 14 Mar 2008
+# robotpkg Makefile for:	image/viam-dc1394-driver
+# Created:			Anthony Mallet on Wed, 2 Feb 2011
 #
 
 PKGNAME=		viam-dc1394-driver-${VERSION}
