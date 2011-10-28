@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 22 Apr 2011
 #
 
-DISTNAME=		tclserv-2.7
+DISTNAME=		tclserv-2.8
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=tclserv/}
 MASTER_REPOSITORY=	git git://git.openrobots.org/robots/tclserv
 
