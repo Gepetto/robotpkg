@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Thu, 29 Apr 2010
 #
 
-MANA_DATE=	20100826
+MANA_DATE=	20111028
 DISTNAME=	laas-mana-${MANA_DATE}
 
 CATEGORIES=	meta-pkg
@@ -20,6 +20,8 @@ include ../../graphics/gdhe/depend.mk
 include ../../hardware/platine-genom/depend.mk
 include ../../hardware/velodyne-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
+include ../../image/viam-dc1394-driver/depend.mk
+include ../../image/viam-genom/depend.mk
 include ../../localization/GPS-genom/depend.mk
 include ../../localization/MTI-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
