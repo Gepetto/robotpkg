@@ -20,4 +20,6 @@ include ../../image/libdc1394/depend.mk
 include ../../image/libraw1394/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/libgnomeui.mk
+include ../../mk/sysdep/libXv.mk
+include ../../mk/sysdep/SDL.mk
 include ../../mk/robotpkg.mk
