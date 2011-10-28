@@ -1,5 +1,6 @@
 @comment Thu Mar 12 18:52:34 CET 2009
 bin/transgen
+bin/oprs_genom-interf.sh
 include/transgen/oprs-com.h
 include/transgen/oprs-com_f.h
 include/transgen/oprs-post_f.h
@@ -42,12 +43,3 @@ share/transgen/data/oprs-com-post.sym
 share/transgen/data/superv-util.inc
 share/transgen/data/superv-util.opf
 share/transgen/data/superv-util.sym
-@dirrm lib/transgen/java
-@dirrm lib/transgen
-@dirrm share/transgen/data
-@dirrm share/transgen/canvas/user
-@dirrm share/transgen/canvas/autoconf
-@dirrm share/transgen/canvas/auto
-@dirrm share/transgen/canvas
-@dirrm share/transgen
-@dirrm include/transgen
