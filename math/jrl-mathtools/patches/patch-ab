@@ -1,0 +1,15 @@
+Fix build on x86_64 with -Werror
+
+--- tests/damped-inverse.cc~	2011-06-24 15:03:55.000000000 +0200
++++ tests/damped-inverse.cc	2011-10-28 12:09:28.232140120 +0200
+@@ -53,8 +53,8 @@
+ 	}
+     }
+ 
+-  const unsigned int nJ = Jt.size1();
+-  const unsigned int mJ = Jt.size2();
++  const matrixNxP::size_type nJ = Jt.size1();
++  const matrixNxP::size_type mJ = Jt.size2();
+   Vt.resize(mJ,mJ);
+   U.resize(nJ,mJ);
+ 
