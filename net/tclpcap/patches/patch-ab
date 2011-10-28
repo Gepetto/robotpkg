@@ -1,0 +1,14 @@
+Delete extraneous quote (a real syntax error but in a branch of code that is
+usually not executed and that confuses dash)
+
+--- configure~	2005-06-19 16:26:39.000000000 +0200
++++ configure	2011-10-28 14:30:48.474456828 +0200
+@@ -4105,7 +4105,7 @@
+ 	    # results, and the version is kept in special file).
+ 
+ 	    if test -r /etc/.relid -a "X`uname -n`" = "X`uname -s`" ; then
+-		system=MP-RAS-`awk '{print }' /etc/.relid'`
++		system=MP-RAS-`awk '{print }' /etc/.relid`
+ 	    fi
+ 	    if test "`uname -s`" = "AIX" ; then
+ 		system=AIX-`uname -v`.`uname -r`
