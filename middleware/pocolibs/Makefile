@@ -33,6 +33,5 @@ define PKG_OPTION_SET.xenomai
   include ../../mk/sysdep/xenomai.mk
 endef
 
-include ../../devel/mkdep/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
