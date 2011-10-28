@@ -22,7 +22,7 @@ DEPEND_ABI.apr-util?=	apr-util>=1
 
 SYSTEM_SEARCH.apr-util=	\
 	'bin/apu-1-config:p:% --version'	\
-	'include/apr-1/apu.h'			\
+	'include/apr-1*/apu.h'			\
 	'lib/libaprutil-1.la'
 
 SYSTEM_PKG.Debian.apr-util=	libaprutil1-dev
