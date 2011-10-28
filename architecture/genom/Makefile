@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-DISTNAME=	genom-2.7
-PKGREVISION=	2
+DISTNAME=	genom-2.8
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/genom
