@@ -50,24 +50,16 @@ PRINT_PLIST_AWK_SUBST+=\
   endif
 endif
 
-# PKGINFODIR is the subdirectory of ${PREFIX} into which the info
-# files are installed unless the software was configured with an
-# installation prefix other than ${PREFIX}.
-#
-CONFIGURE_HAS_INFODIR?=	yes
+# Handle PKGINFODIR
 GNU_CONFIGURE_INFODIR?=	${GNU_CONFIGURE_PREFIX}/${PKGINFODIR}
 ifneq (,$(call isyes,${CONFIGURE_HAS_INFODIR}))
-CONFIGURE_ARGS+=	--infodir=${GNU_CONFIGURE_INFODIR}
+  CONFIGURE_ARGS+=	--infodir=${GNU_CONFIGURE_INFODIR}
 endif
 
-# PKGMANDIR is the subdirectory of ${PREFIX} into which the man and
-# catman pages are installed unless the software was configured with
-# an installation prefix other than ${PREFIX}.
-#
-CONFIGURE_HAS_MANDIR?=	 yes
+# Handle PKGMANDIR
 GNU_CONFIGURE_MANDIR?=	${GNU_CONFIGURE_PREFIX}/${PKGMANDIR}
 ifneq (,$(call isyes,${CONFIGURE_HAS_MANDIR}))
-CONFIGURE_ARGS+=	--mandir=${GNU_CONFIGURE_MANDIR}
+  CONFIGURE_ARGS+=	--mandir=${GNU_CONFIGURE_MANDIR}
 endif
 
 

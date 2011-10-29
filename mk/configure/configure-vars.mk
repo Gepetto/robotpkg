@@ -45,6 +45,18 @@
 CONFIGURE_DIRS?=	${WRKSRC}
 SCRIPTS_ENV?=		# empty
 
+# PKGINFODIR is the subdirectory of ${PREFIX} into which the info
+# files are installed unless the software was configured with an
+# installation prefix other than ${PREFIX}.
+#
+CONFIGURE_HAS_INFODIR?=	yes
+
+# PKGMANDIR is the subdirectory of ${PREFIX} into which the man and
+# catman pages are installed unless the software was configured with
+# an installation prefix other than ${PREFIX}.
+#
+CONFIGURE_HAS_MANDIR?=	 yes
+
 SCRIPTS_ENV+=	${ALL_ENV}
 ifdef BATCH
 SCRIPTS_ENV+=	BATCH=yes

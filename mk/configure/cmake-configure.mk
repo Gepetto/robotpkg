@@ -61,6 +61,16 @@ ifneq (,$(filter fortran,${USE_LANGUAGES}))
   CMAKE_ARGS+=	-DCMAKE_Fortran_COMPILER=${FC}
 endif
 
+# Handle PKGINFODIR
+ifneq (,$(call isyes,${CONFIGURE_HAS_INFODIR}))
+  CMAKE_ARGS+=	-DPKGINFODIR=${PKGINFODIR}
+endif
+
+# Handle PKGMANDIR
+ifneq (,$(call isyes,${CONFIGURE_HAS_MANDIR}))
+  CMAKE_ARGS+=	-DPKGMANDIR=${PKGMANDIR}
+endif
+
 
 # --- do-configure-cmake (PRIVATE) -----------------------------------------
 #
