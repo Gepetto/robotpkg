@@ -1,3 +1,6 @@
 SHA1 (dynamic-graph-2.5.tar.gz) = b8ed23d480b71d33b5150524a611624cf38676a2
 RMD160 (dynamic-graph-2.5.tar.gz) = e04857e3b44017c18fad750bf3d0676ea1b19f42
 Size (dynamic-graph-2.5.tar.gz) = 382126 bytes
+SHA1 (patch-aa) = 50ac1f375e504d3d6b90941b752f92b7e9aea602
+SHA1 (patch-ab) = 86ef4c1b7d939238250b533c64caede2b02bb066
+SHA1 (patch-ac) = 974f4c46485d5256107ae4d4dacfe2ba76e64903

@@ -51,5 +51,5 @@ lib/plugin/tracer-real-time.so
 lib/plugin/tracer.so
 share/dynamic-graph/script/shell.dg
 share/dynamic-graph/script/tracer.dg
-share/man/man1/dg-shell-plugin.1.gz
-share/man/man1/dg-shell.1.gz
+${PKGMANDIR}/man1/dg-shell-plugin.1.gz
+${PKGMANDIR}/man1/dg-shell.1.gz

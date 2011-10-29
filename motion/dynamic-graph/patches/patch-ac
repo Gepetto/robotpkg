@@ -1,0 +1,13 @@
+Do not hardcode manual pages destination dir
+
+--- cmake/man.cmake~	2011-03-16 22:49:55.000000000 +0100
++++ cmake/man.cmake	2011-10-29 13:38:23.000000000 +0200
+@@ -48,7 +48,7 @@
+   # Install man page.
+   INSTALL(
+     FILES ${CMAKE_CURRENT_BINARY_DIR}/${NAME}.1.gz
+-    DESTINATION share/man/man1)
++    DESTINATION ${PKGMANDIR}/man1)
+ 
+   LIST(APPEND LOGGING_WATCHED_VARIABLES
+     POD2MAN
