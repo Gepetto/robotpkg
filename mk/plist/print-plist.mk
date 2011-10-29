@@ -88,8 +88,8 @@ _PRINT_PLIST_AWK_SUBST+=						\
 					"$${OS_KERNEL_VERSION}");	\
 	gsub(/${PKGNAME_NOREV}/, "$${PKGNAME}");			\
 	gsub(/$(subst .,\.,${PKGVERSION_NOREV})/, "$${PKGVERSION}");	\
-	gsub("^${PKGINFODIR}/", "info/");				\
-	gsub("^${PKGMANDIR}/", "man/");
+	gsub("^${PKGINFODIR}/", "$${PKGINFODIR}/");			\
+	gsub("^${PKGMANDIR}/", "$${PKGMANDIR}/");
 _PRINT_PLIST_AWK_SUBST+=}
 
 # The awk statement that will ignore directories from PRINT_PLIST_IGNORE_DIRS
