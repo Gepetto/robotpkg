@@ -24,7 +24,7 @@ else
 endif
 
 SYSTEM_SEARCH.libffi=\
-	'include/{,${sysinc.libffi}/}ffi.h'				\
+	'{,lib/libffi*/}include/{,${sysinc.libffi}/}ffi.h'		\
 	'lib/libffi.{so,a}'						\
 	'lib/pkgconfig/libffi.pc:/Version/s/[^0-9.]//gp'
 
