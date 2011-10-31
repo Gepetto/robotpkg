@@ -1,0 +1,97 @@
+- Do not pass a const char * as a char * (this fix leaks a few bytes)
+- S_coldman_OK does not exist
+
+--- codels/coldmanMainCodels.cc~	2010-10-29 17:19:39.000000000 +0200
++++ codels/coldmanMainCodels.cc	2011-10-31 18:57:02.000000000 +0100
+@@ -98,7 +98,7 @@
+     SDI_F->display = initStruct->display;
+     if(SDI_F->display==GEN_TRUE){ 
+          coldmanDisplayInit();
+-	 coldmanSetText("Coldman Init OK", 0, 20);
++	 coldmanSetText(strdup("Coldman Init OK"), 0, 20);
+     }
+     coldmanEnvInit(initStruct->path.name, initStruct->file.name);
+   }
+@@ -298,9 +298,6 @@
+   if(coldmanDisableObstacleCollision(obstacle->name)!=0) {
+     *report=  S_coldman_OBSTACLE_UNDEFINED; 
+   }
+-  else {
+-    *report=  S_coldman_OK;
+-  }
+ 
+   return ETHER;
+ }
+@@ -325,9 +322,6 @@
+   if(coldmanEnableObstacleCollision(obstacle->name)!=0) {
+     *report=  S_coldman_OBSTACLE_UNDEFINED; 
+   }
+-  else {
+-    *report=  S_coldman_OK;
+-  }
+ 
+   return ETHER;
+ }
+@@ -352,10 +346,6 @@
+   if(coldmanDisableObstacleDisplay(obstacle->name)!=0) {
+     *report=  S_coldman_OBSTACLE_UNDEFINED; 
+   }
+-  else {
+-    *report=  S_coldman_OK;
+-  }
+-
+ 
+   return ETHER;
+ }
+@@ -380,10 +370,6 @@
+   if(coldmanEnableObstacleDisplay(obstacle->name)!=0) {
+     *report=  S_coldman_OBSTACLE_UNDEFINED; 
+   }
+-  else {
+-    *report=  S_coldman_OK;
+-  }
+-
+ 
+   return ETHER;
+ }
+@@ -410,10 +396,6 @@
+   if(coldmanSetObstaclePosition(position->name.name, position->x, position->y, position->z)!=0) {
+     *report=  S_coldman_OBSTACLE_UNDEFINED; 
+   }
+-  else {
+-    *report=  S_coldman_OK;
+-  }
+-
+ 
+   return ETHER;
+ }
+@@ -441,7 +423,6 @@
+   }
+   else {
+    coldmanDisplayRefresh();
+-    *report=  S_coldman_OK;
+   }
+ 
+   return ETHER;
+@@ -471,7 +452,6 @@
+   }
+   else {
+     coldmanDisplayRefresh();
+-    *report=  S_coldman_OK;
+   }
+ 
+ 
+@@ -611,12 +591,11 @@
+     return ETHER;
+   }
+ 
+-  if(coldmanSetObstaclePose("caisse", positions[i][0], positions[i][1], positions[i][2], orientations[i][0], orientations[i][1], orientations[i][2])!=0) {
++  if(coldmanSetObstaclePose(strdup("caisse"), positions[i][0], positions[i][1], positions[i][2], orientations[i][0], orientations[i][1], orientations[i][2])!=0) {
+     *report=  S_coldman_OBSTACLE_UNDEFINED; 
+   }
+   else {
+     coldmanDisplayRefresh();
+-    *report=  S_coldman_OK;
+   }
+ 
+  

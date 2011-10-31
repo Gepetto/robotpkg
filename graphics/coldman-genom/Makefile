@@ -3,6 +3,7 @@
 #
 
 DISTNAME=		coldman-genom-1.3
+PKGREVISION=		1
 CATEGORIES=		manipulation
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=coldman-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/coldman-genom
