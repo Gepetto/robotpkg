@@ -36,7 +36,6 @@ ifdef GENOM_MODULE
 
   PKG_OPTION_DESCR.tclserv_client=Generate C tclServ client code
   define PKG_OPTION_SET.tclserv_client
-    DEPEND_ABI.genom=  genom>=2.6
     GENOM_ARGS+= -x
     include ../../net/libtclserv_client/depend.mk
   endef
@@ -85,7 +84,7 @@ SYSTEM_SEARCH.genom=\
 
 DEPEND_USE+=		genom
 
-DEPEND_ABI.genom?=	genom>=2.5r2
+DEPEND_ABI.genom?=	genom>=2.8
 DEPEND_DIR.genom?=	../../architecture/genom
 
 TOOLS.genom?=		${PREFIX.genom}/bin/genom
