@@ -20,6 +20,7 @@ USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph-python
 
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
+CPPFLAGS+=		-DBOOST_FILESYSTEM_VERSION=2
 
 include ../../mk/robotpkg.prefs.mk # MACHINE_ARCH
 ifeq (x86_64,${MACHINE_ARCH})
@@ -34,6 +35,7 @@ include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/python.mk
+include ../../mk/sysdep/py-sphinx.mk
 include ../../mk/robotpkg.mk
 
 post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/dynamic_graph)
