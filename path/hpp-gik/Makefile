@@ -2,23 +2,23 @@
 # Created:			Anthony Mallet on Thu, 28 Jun 2007
 #
 
-DISTNAME=	hpp-gik-${VERSION}
-PKGNAME=	hpp-gik-${VERSION}
-VERSION=	2.7.3
-
-CATEGORIES=	path
+DISTNAME=		hpp-gik-${VERSION}
+VERSION=		2.7.3
+CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpp-gik/}
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-gik
-LICENSE=	gnu-lgpl-v3
 
-MAINTAINER=	gepetto@laas.fr
-#HOMEPAGE=	
-COMMENT=	Generalized Inverse Kinematics for humanoid robots.
+COMMENT=		Generalized Inverse Kinematics for humanoid robots
+LICENSE=		gnu-lgpl-v3
+MAINTAINER=		gepetto@laas.fr
 
 USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/hpp-gik
-CMAKE_ARGS+=	-DDISABLE_TEST=YES
+CMAKE_ARGS+=		-DDISABLE_TEST=YES
 
+INCLUDE_DIRS.boost-headers=	include
+
+include ../../devel/boost-headers/depend.mk
 include ../../interfaces/abstract-gik-task/depend.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
