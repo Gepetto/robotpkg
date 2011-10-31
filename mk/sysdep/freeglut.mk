@@ -22,14 +22,19 @@ PREFER.freeglut?=	system
 DEPEND_USE+=		freeglut
 DEPEND_ABI.freeglut?=	freeglut
 
-SYSTEM_SEARCH.freeglut=	\
-	include/GL/glut.h \
-	lib/libglut.so
+SYSTEM_SEARCH.freeglut= include/GL/freeglut.h
+
+include ../../mk/robotpkg.prefs.mk # OPSYS
+ifeq (NetBSD,${OPSYS})
+  SYSTEM_SEARCH.freeglut+=	lib/libfreeglut.so
+else
+  SYSTEM_SEARCH.freeglut+=	lib/libglut.so
+endif
 
 SYSTEM_PKG.Fedora.freeglut=	freeglut-devel
 SYSTEM_PKG.Ubuntu.freeglut=	freeglut3-dev
 SYSTEM_PKG.Debian.freeglut=	freeglut3-dev
-SYSTEM_PKG.NetBSD.freeglut=		pkgsrc/graphics/freeglut
+SYSTEM_PKG.NetBSD.freeglut=	graphics/freeglut
 
 endif # FREEGLUT_DEPEND_MK ---------------------------------------------------
 
