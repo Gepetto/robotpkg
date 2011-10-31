@@ -22,7 +22,12 @@ PKG_SUGGESTED_OPTIONS+=	display
 PKG_OPTION_DESCR.display=	Enable embedded display facility.
 define PKG_OPTION_SET.display
   CMAKE_ARGS+=-DENABLE_DISPLAY=ON
+  CMAKE_ARGS+=-DGLUT_INCLUDE_DIR=${PREFIX.freeglut}/include
+  CMAKE_ARGS+=-DGLUT_glut_LIBRARY=$(filter %.so,${SYSTEM_FILES.freeglut})
+  CMAKE_ARGS+=-DGLU_INC=${PREFIX.glu}/include
+  CMAKE_ARGS+=-DGLU_LIB=${PREFIX.glu}/lib
   include ../../mk/sysdep/freeglut.mk
+  include ../../mk/sysdep/glu.mk
   include ../../mk/sysdep/libXmu.mk
 endef
 PKG_OPTION_UNSET.display:=	CMAKE_ARGS+=-DENABLE_DISPLAY=OFF
