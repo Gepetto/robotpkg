@@ -47,7 +47,7 @@ define PKG_OPTION_SET.doc
   CONFIGURE_ENV+=	LATEX=${PDFLATEX}
   include ../../mk/sysdep/pdflatex.mk
 
-  USE_TEX_PKGS+=	multirow.sty a4wide.sty varioref.sty
+  USE_TEX_PKGS+=	lmodern.sty multirow.sty a4wide.sty varioref.sty
   include ../../mk/sysdep/tex-pkg.mk
 endef
 define PKG_OPTION_UNSET.doc
