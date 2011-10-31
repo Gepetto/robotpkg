@@ -24,4 +24,3 @@ include/jrl/mal/matrixabstractlayervector3jrlmath.hh
 include/jrl/mal/matrixabstractlayervector4jrlmath.hh
 include/jrl/mal/warning.hh
 lib/pkgconfig/jrl-mal.pc
-@dirrm include/jrl/mal
