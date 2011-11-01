@@ -3,15 +3,13 @@
 #
 
 DISTNAME=	jrl-mal-${VERSION}
-PKGNAME=	jrl-mal-${VERSION}
 VERSION=	1.19.3
-
+PKGREVISION=	1
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}/jrl-mal/
 MASTER_REPOSITORY=	git git@github.com:jrl-umi3218/jrl-mal.git
 
 MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=
 COMMENT=	Matrix abstraction layer for boost or vnl.
 LICENSE=	gnu-lgpl-v3
 
