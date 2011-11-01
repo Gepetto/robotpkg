@@ -1,0 +1,16 @@
+Add missing cmath
+Define isnan() in the root namespace to match WIN32 isnan definition and the
+rest of the code
+
+--- src/sot/solver-hierarchical-inequalities.cpp~	2011-06-21 20:37:45.000000000 +0200
++++ src/sot/solver-hierarchical-inequalities.cpp	2011-11-01 14:05:39.000000000 +0100
+@@ -35,6 +35,9 @@
+ 
+ #ifndef WIN32
+ #  include <sys/time.h>
++#  include <cmath>
++#  undef isnan
++#  define isnan std::isnan
+ #else /*WIN32*/
+ //isnan
+ # include <float.h>
