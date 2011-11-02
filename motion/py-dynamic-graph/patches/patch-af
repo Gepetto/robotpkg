@@ -1,0 +1,18 @@
+Fix for python3: print is a function
+
+--- src/dynamic_graph/script_shortcuts.py~	2011-06-21 10:41:18.000000000 +0200
++++ src/dynamic_graph/script_shortcuts.py	2011-11-02 11:21:14.226706433 +0100
+@@ -51,11 +51,11 @@
+ 
+ def sigCall( sig,iter ):
+     sig.recompute(iter)
+-    print sigRepr(sig)
++    print(sigRepr(sig))
+ 
+ def sigTimeIncr( sig,iter ):
+     sig.recompute(sig.time+iter)
+-    print sigRepr(sig)
++    print(sigRepr(sig))
+ 
+ setattr(SignalBase,'__repr__',sigRepr)
+ setattr(SignalBase,'__call__',sigCall)
