@@ -18,6 +18,8 @@ CONFIGURE_ARGS+=	BOOST_HEADERS=${PREFIX.boost-headers}
 USE_LANGUAGES=		c c++
 INSTALLATION_DIRS+=	include/boost
 
+CPPFLAGS+=		-DBOOST_FILESYSTEM_VERSION=2
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/libtool/depend.mk
