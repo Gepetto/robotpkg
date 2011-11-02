@@ -15,6 +15,8 @@ MAINTAINER=	matthieu.herrb@laas.fr
 
 GNU_CONFIGURE=	yes
 
-include ../../pkgtools/libtool/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/xorg-macros.mk
+include ../../mk/sysdep/libX11.mk
+include ../../mk/sysdep/libXxf86vm.mk
 include ../../mk/robotpkg.mk
-
