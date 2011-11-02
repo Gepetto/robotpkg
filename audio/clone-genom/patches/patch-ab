@@ -1,0 +1,13 @@
+Check for freeglut instead of glut
+
+--- glut.m4~	2010-12-08 21:38:25.000000000 +0100
++++ glut.m4	2011-11-02 11:56:44.982705242 +0100
+@@ -23,7 +23,7 @@
+ 	GLUT_CFLAGS="-I$ac_glut_prefix/include"
+     fi
+     CPPFLAGS="$GLUT_CFLAGS $CPPFLAGS"
+-    AC_CHECK_HEADER([GL/glut.h], [], 
++    AC_CHECK_HEADER([GL/freeglut.h], [], 
+ 	    [AC_MSG_ERROR([Cannot find glut headers, please use --with-glut])]
+ 	    )
+     

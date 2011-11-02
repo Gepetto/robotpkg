@@ -1,0 +1,20 @@
+Fix configure when /usr/lib64 exists but uname -m is i386
+
+--- opengl.m4~	2010-12-08 21:38:25.000000000 +0100
++++ opengl.m4	2011-11-02 11:50:35.978705568 +0100
+@@ -32,13 +32,14 @@
+       exit 2;
+     fi
+     AC_MSG_CHECKING([for OpenGL libraries])
+-    if test -d /usr/lib64; then
++    if test -d /usr/lib64 -a "`uname -m`" = "x86_64"; then
+ 	usrlibdir=lib64
+     else
+ 	usrlibdir=lib
+     fi
+     test -z "$ogl_test_lib" && ogl_test_lib=GL
+     for ac_dir in \
++	    $ogl_prefix/${usrlibdir}	\
+ 	    $ogl_prefix/lib		\
+ 	    /usr/${usrlibdir}	\
+ 	    $x_libraries		\

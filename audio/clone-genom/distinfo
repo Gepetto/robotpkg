@@ -1,3 +1,6 @@
 SHA1 (clone-genom-0.2.tar.gz) = 4b342e0198f018ccc2e22e2b2d8bb737d65672c7
 RMD160 (clone-genom-0.2.tar.gz) = dfdad602d908b78e6a7352547bdfbb2a58f3ee72
 Size (clone-genom-0.2.tar.gz) = 11666090 bytes
+SHA1 (patch-aa) = c2d64e10d6c519ac0e5e5e3b6c223d62edc19193
+SHA1 (patch-ab) = 7cd987e2d64694f52d7cf80cbe597325c7ae86ec
+SHA1 (patch-ac) = e0b1e7f31785a0a2bc61f1c1a9f40385c0a0f7c6
