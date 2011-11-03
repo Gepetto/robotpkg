@@ -326,9 +326,9 @@ function pkginfos(pkg, deps, pkgnamep,		cmd, dir, i, l) {
     xlog("Scanning " pkg)
 
     cmd = "cd " ROBOTPKG_DIR "/" dir "&&" MAKE " PKGREQD='" notpdir(pkg) "'"
+    cmd = cmd " print-depends-pkgpaths 2>&1"
     if (pkgnamep) cmd = cmd  " print-var VARNAME=PKGNAME"
     if (!(dir in pkgnames)) cmd = cmd  " print-pkgnames"
-    cmd = cmd " print-depends-pkgpaths 2>&1"
 
     while ((cmd | getline l) > 0) {
         split(l, i, "|")
