@@ -1,0 +1,20 @@
+Delete unused-but-set-variable reported by gcc-4.6
+
+--- tests/damped-inverse.cc~	2011-11-03 12:09:53.310706089 +0100
++++ tests/damped-inverse.cc	2011-11-03 12:11:16.114706422 +0100
+@@ -66,6 +66,7 @@
+ 
+   matrixNxP M=prod(Jt,Jp);
+ 
++#if 0
+   bool result=true;
+   for(unsigned int i=0;i<3;i++)
+       for(unsigned int j=0;j<3;j++)
+@@ -79,6 +80,7 @@
+ 	    if (M(i,j)>1e-15)
+ 	      result=false;
+ 	}
++#endif
+ 
+   double *vt = Vt.data().begin();
+   for(unsigned int i=0;i<mJ;i++)

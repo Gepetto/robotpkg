@@ -1,0 +1,20 @@
+Delete unused-but-set-variable reported by gcc-4.6
+
+--- include/jrl/mathtools/matrixnxp.hh~	2011-11-03 11:58:22.550705989 +0100
++++ include/jrl/mathtools/matrixnxp.hh	2011-11-03 11:58:31.154706205 +0100
+@@ -91,7 +91,6 @@
+     boost_ublas::vector<double> s(std::min(NR,NC));
+     char Jobu='A'; /* Compute complete U Matrix */
+     char Jobvt='A'; /* Compute complete VT Matrix */
+-    char Lw; Lw='O'; /* Compute the optimal size for the working vector */
+ 
+     {
+       double vw;
+@@ -199,7 +198,6 @@
+       boost_ublas::vector<double> s(std::min(NR,NC));
+       char Jobu='A'; /* Compute complete U Matrix */
+       char Jobvt='A'; /* Compute complete VT Matrix */
+-      char Lw; Lw='O'; /* Compute the optimal size for the working vector */
+ 
+       /* Get workspace size for svd. */
+       {
