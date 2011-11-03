@@ -5,7 +5,6 @@ include/libltdl/lt_dlloader.h
 include/libltdl/lt_error.h
 include/libltdl/lt_system.h
 include/ltdl.h
-info/dir
 info/libtool.info
 info/libtool.info-1
 info/libtool.info-2
