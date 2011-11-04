@@ -13,6 +13,9 @@ HOMEPAGE=		http://www.openvrml.org
 COMMENT=		A free VRML/X3D runtime
 LICENSE=		gnu-lgpl-v3
 
+# Triggers a g++-4.1.2 internal error
+NOT_FOR_PLATFORM+=	NetBSD-5.1-%
+
 USE_LANGUAGES+=		c c++
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR=	share/doc/${DISTNAME}
@@ -30,6 +33,9 @@ CONFIGURE_ARGS+=--enable-gl-renderer
 
 # get the right boost libraries suffix.
 CONFIGURE_ARGS+=BOOST_LIB_SUFFIX=${BOOST_LIB_SUFFIX}
+
+# required for boost>=1.46
+CPPFLAGS+=	-DBOOST_FILESYSTEM_VERSION=2
 
 # fix detection of ltdl and boost. configure script searches in /usr only.
 CPPFLAGS+=$(addsuffix /include,$(addprefix -I,	\
