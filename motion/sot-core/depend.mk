@@ -14,6 +14,9 @@ ifeq (+,$(HPP_GIK_DEPEND_MK)) # --------------------------------------
 PREFER.sot-core?=	robotpkg
 
 SYSTEM_SEARCH.sot-core=\
+	include/sot/core/device.hh				\
+	lib/libsot-core.so					\
+	'lib/pkgconfig/sot-core.pc:/Version/s/[^0-9.]//gp'
 
 DEPEND_USE+=		sot-core
 
