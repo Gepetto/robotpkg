@@ -54,5 +54,14 @@ do-install:
 	  done;								\
 	  ${INSTALL_LIB} _yarp.so ${PREFIX}/${PYTHON_SITELIB}
 
-post-install: python-compile-all($(addprefix				\
- ${PREFIX}/${PYTHON_SITELIB}/,yarp.py example.py example_img.py))
+post-install:
+	${RUN}${BUILD_LOGFILTER} ${PYTHON} -c 'import py_compile;	\
+	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/yarp.py");	\
+	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/example.py");	\
+	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/example_img.py");\
+	'
+	${RUN}${BUILD_LOGFILTER} ${PYTHON} -O -c 'import py_compile;	\
+	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/yarp.py");	\
+	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/example.py");	\
+	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/example_img.py");\
+	'
