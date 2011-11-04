@@ -24,13 +24,15 @@ else ifeq (Ubuntu,${OPSYS})
   endif
 else ifeq (NetBSD,${OPSYS})
   PREFER.swig?=\
-    $(if $(call preduce,${DEPEND_ABI.swig} swig<2),system,robotpkg)
+    $(if $(call preduce,${DEPEND_ABI.swig} swig<1.3.37),system,robotpkg)
 endif
 PREFER.swig?=		system
 
 DEPEND_USE+=		swig
-DEPEND_ABI.swig?=\
-	$(if $(filter python32,${DEPEND_USE}),swig>=2.0.4,swig>=1.3)
+DEPEND_ABI.swig?=$(strip \
+	$(if $(filter python32,${DEPEND_USE}),swig>=2.0.4,	\
+	$(if $(filter python31,${DEPEND_USE}),swig>=1.3.37,	\
+	swig>=1.3)))
 DEPEND_DIR.swig?=	../../devel/swig
 DEPEND_METHOD.swig+=	build
 
