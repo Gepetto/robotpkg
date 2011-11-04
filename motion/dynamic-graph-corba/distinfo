@@ -1,3 +1,5 @@
 SHA1 (dynamic-graph-corba-2.5.tar.gz) = a9811d3a172aa30656c56b3b820c8b53e71a915b
 RMD160 (dynamic-graph-corba-2.5.tar.gz) = 86c97df184ad4102d63378cf4829cfe3d1fd5885
 Size (dynamic-graph-corba-2.5.tar.gz) = 60531 bytes
+SHA1 (patch-aa) = c79322644e1bd74cd46d55beed971d8ce09a3901
+SHA1 (patch-ab) = 18b483db03a3b677b32a5f5e1c07e392fe279ba8

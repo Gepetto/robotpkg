@@ -1,4 +1,19 @@
-@comment Fri Jul 8 12:29:55 CEST 2011
+@comment Sun Nov 6 18:14:43 CET 2011
+${PYTHON_SITELIB}/dynamic_graph/corba/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/corba/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/corba/${PYTHON_PYCACHE}/interpreter_idl${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/corba/${PYTHON_PYCACHE}/interpreter_idl${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/corba/__init__.py
+${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph/__init__.py
+${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph__POA/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph__POA/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph__POA/__init__.py
+${PYTHON_SITELIB}/dynamic_graph/corba/interpreter_idl.py
+${PYTHON_SITELIB}/dynamic_graph/corba/wrap.so
+${PYTHON_SITELIB}/dynamic_graph/corba_server/__init__.py
+${PYTHON_SITELIB}/dynamic_graph/corba_server/wrap.so
 bin/dg-remote
 bin/dg-server
 include/dynamic-graph/corba/api.hh
@@ -9,12 +24,5 @@ include/dynamic-graph/corba/warning.hh
 lib/libcorba-server.so
 lib/libdynamic-graph-corba.so
 lib/pkgconfig/dynamic-graph-corba.pc
-${PYTHON_SITELIB}/dynamic_graph/corba/__init__.py
-${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph/__init__.py
-${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph__POA/__init__.py
-${PYTHON_SITELIB}/dynamic_graph/corba/interpreter_idl.py
-${PYTHON_SITELIB}/dynamic_graph/corba/wrap.so
-${PYTHON_SITELIB}/dynamic_graph/corba_server/__init__.py
-${PYTHON_SITELIB}/dynamic_graph/corba_server/wrap.so
 share/idl/dynamic-graph/corba-signal.idl
 share/idl/dynamic-graph/interpreter.idl
