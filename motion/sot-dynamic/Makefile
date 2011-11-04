@@ -3,7 +3,7 @@
 #
 
 VERSION=		2.5
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		sot-dynamic-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-dynamic/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL}sot-dynamic
@@ -15,6 +15,7 @@ COMMENT=	Hierarchical task based control of humanoid robots
 
 USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/sot-dynamic
+CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
 # Build the package in a separate directory
 CONFIGURE_DIRS=		_build
@@ -36,3 +37,6 @@ include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
+
+_pycompiledir=${PREFIX}/${PYTHON_SITELIB}/dynamic_graph/sot/dynamics
+post-install: python-compile-all(${_pycompiledir})
