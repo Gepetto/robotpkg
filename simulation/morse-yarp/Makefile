@@ -19,5 +19,5 @@ include ../../middleware/py-yarp/depend.mk
 include ../../simulation/morse/depend.mk
 include ../../mk/robotpkg.mk
 
-post-install: python-compile-all( \
-	${PREFIX}/${PYTHON_SITELIB}/morse/middleware/yarp*)
+_pycompiledir=${PREFIX}/${PYTHON_SITELIB}/morse/middleware/yarp*
+post-install: python-compile-all(${_pycompiledir})
