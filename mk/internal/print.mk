@@ -62,7 +62,7 @@ $(addprefix print-depends-,${_chkdep_type}): print-depends-%: .FORCE
 	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
 		$(call quote,${_pkg_})					\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
-		${SYSTEM_SEARCH.${_pkg_}} 2>&1 1>&9 | ${WARNING_CAT};	\
+		${SYSTEM_SEARCH.${_pkg_}} 2>&1 1>&9 3>&9|${WARNING_CAT};\
 	} | ${AWK}							\
 	    -v pkg="-" -v prefix=$(call quote,$(strip			\
 		$(or ${SYSTEM_PKG.${_pkg_}},${DEPEND_ABI.${_pkg_}}))) '	\
