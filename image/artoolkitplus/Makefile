@@ -9,6 +9,7 @@ PKGNAME=	artoolkitplus-${VERSION}
 CATEGORIES=	image
 MASTER_SITES=	http://studierstube.icg.tu-graz.ac.at/handheld_ar/download/
 EXTRACT_SUFX=	.zip
+EXTRACT_OPTS_ZIP=-aaqo
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://studierstube.icg.tu-graz.ac.at/handheld_ar/artoolkitplus.php
