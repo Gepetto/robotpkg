@@ -1,0 +1,12 @@
+TCL_CC is required for TCL_SHLIBLD on some platforms/tcl version
+
+--- src/Makefile.in~	2009-04-14 15:29:20.000000000 +0200
++++ src/Makefile.in	2011-11-05 19:25:39.000000000 +0100
+@@ -21,6 +21,7 @@
+ CFLAGS=		-g @TCL_EXTRA_CFLAGS@
+ 
+ # Tcl/Tk
++TCL_CC=			@TCL_CC@
+ TCL_CPPFLAGS=		@TCL_CPPFLAGS@
+ TCL_LDFLAGS=		@TCL_LDFLAGS@
+ TCL_LIBS=		@TCL_LIB_SPEC@ @TK_LIB_SPEC@
