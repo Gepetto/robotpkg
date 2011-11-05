@@ -1,0 +1,16 @@
+Look for term.h in /usr/pkg ncurses
+
+--- configure~	2011-01-24 00:33:57.000000000 +0100
++++ configure	2011-11-05 19:11:17.000000000 +0100
+@@ -322,6 +322,11 @@
+ 		extralibs="$extralibs -L/usr/$i/lib"
+ 		extraflags="$extraflags -I/usr/$i/include"
+ 		break
++            elif [ -r /usr/$i/include/ncurses/term.h ]; then
++		echo "Found in /usr/$i/include/ncurses"
++		extralibs="$extralibs -L/usr/$i/lib"
++		extraflags="$extraflags -I/usr/$i/include/ncurses"
++		break
+ 	    else
+ 		false
+ 	    fi
