@@ -1,0 +1,16 @@
+Do not trim dots from shared library version (confuses PLIST)
+While some platform may require this, this is not the case for robotpkg
+supported platforms and it is incorrectly assumed that NetBSD does not like
+dots in shared libraries.
+
+--- configure~	2011-11-05 18:45:15.000000000 +0100
++++ configure	2011-11-05 18:54:25.000000000 +0100
+@@ -4198,7 +4198,7 @@
+     EXTRA_CFLAGS=""
+     TCL_EXPORT_FILE_SUFFIX=""
+     UNSHARED_LIB_SUFFIX=""
+-    TCL_TRIM_DOTS='`echo ${VERSION} | tr -d .`'
++    TCL_TRIM_DOTS='`echo ${VERSION}`'
+     ECHO_VERSION='`echo ${VERSION}`'
+     TCL_LIB_VERSIONS_OK=ok
+     CFLAGS_DEBUG=-g

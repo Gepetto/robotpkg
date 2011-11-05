@@ -11,6 +11,7 @@ COMMENT=	Tcl interface to libpcap
 LICENSE=	modified-bsd
 
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
 
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/libpcap.mk
