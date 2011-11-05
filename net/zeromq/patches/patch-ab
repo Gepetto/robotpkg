@@ -1,0 +1,15 @@
+Delete unused variable with -DNDEBUG
+
+--- include/zmq.hpp~	2010-10-15 19:40:36.000000000 +0200
++++ include/zmq.hpp	2011-11-05 13:42:16.000000000 +0100
+@@ -176,8 +176,10 @@
+ 
+         inline ~context_t ()
+         {
++# ifndef NDEBUG
+             int rc = zmq_term (ptr);
+             assert (rc == 0);
++# endif
+         }
+ 
+     private:

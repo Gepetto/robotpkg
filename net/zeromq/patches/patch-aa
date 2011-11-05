@@ -1,0 +1,17 @@
+Do not hardcode python/perl name and path
+
+--- src/Makefile.in~	2010-10-15 19:41:01.000000000 +0200
++++ src/Makefile.in	2011-11-05 13:29:10.000000000 +0100
+@@ -1560,10 +1560,10 @@
+ 
+ 
+ @BUILD_PGM_TRUE@../foreign/openpgm/@pgm_basename@/openpgm/pgm/version.c: ../foreign/openpgm/@pgm_basename@/openpgm/pgm/version_generator.py
+-@BUILD_PGM_TRUE@	python ../foreign/openpgm/@pgm_basename@/openpgm/pgm/version_generator.py > $@
++@BUILD_PGM_TRUE@	${PYTHON} ../foreign/openpgm/@pgm_basename@/openpgm/pgm/version_generator.py > $@
+ 
+ @BUILD_PGM_TRUE@../foreign/openpgm/@pgm_basename@/openpgm/pgm/galois_tables.c: ../foreign/openpgm/@pgm_basename@/openpgm/pgm/galois_generator.pl
+-@BUILD_PGM_TRUE@	perl ../foreign/openpgm/@pgm_basename@/openpgm/pgm/galois_generator.pl > $@
++@BUILD_PGM_TRUE@	${PERL} ../foreign/openpgm/@pgm_basename@/openpgm/pgm/galois_generator.pl > $@
+ 
+ dist-hook:
+ 		-rm $(distdir)/platform.hpp

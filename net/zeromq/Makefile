@@ -14,10 +14,14 @@ LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES=	c c++
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=have_python=yes
 
 # pgm option
-PKG_SUPPORTED_OPTIONS+=	pgm
-PKG_SUGGESTED_OPTIONS+=	pgm
+include ../../mk/robotpkg.prefs.mk # OPSYS
+ifneq (,$(filter Linux Solaris,${OS_KERNEL} ${OPSYS}))
+  PKG_SUPPORTED_OPTIONS+=	pgm
+  PKG_SUGGESTED_OPTIONS+=	pgm
+endif
 PKG_OPTION_DESCR.doc?=	Compile Pragmatic General Multicast (PGM) support
 
 define PKG_OPTION_SET.pgm
@@ -29,4 +33,7 @@ define PKG_OPTION_SET.pgm
   include ../../mk/sysdep/python.mk
 endef
 
+ifneq (,$(filter Linux Solaris,${OS_KERNEL} ${OPSYS}))
+  include ../../mk/sysdep/libuuid.mk
+endif
 include ../../mk/robotpkg.mk
