@@ -4,6 +4,7 @@
 
 DISTNAME=		softMotion-libs-${PKGVERSION_NOREV}
 PKGVERSION=		3.7
+PKGREVISION=		1
 
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=softMotion-libs/}
@@ -17,6 +18,7 @@ COMMENT=		SoftMotion Planner Library
 USE_LANGUAGES+=		c c++
 
 include ../../devel/swig/depend.mk
-include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/libxml2.mk
+include ../../mk/sysdep/tcl.mk
 include ../../mk/robotpkg.mk

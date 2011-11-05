@@ -1,10 +1,14 @@
 @comment Wed Sep 1 11:10:26 CEST 2010
+include/softMotion/Sm_Approx.h
+include/softMotion/Sm_Curve.h
+include/softMotion/Sm_Traj.h
 include/softMotion/debug.h
 include/softMotion/matrix.h
 include/softMotion/matrixStruct.h
-include/softMotion/softMotionConst.h
 include/softMotion/softMotion.h
+include/softMotion/softMotionConst.h
 include/softMotion/softMotionStruct.h
+include/softMotion/softMotionStructGenom.h
 include/softMotion/time_proto.h
 lib/libsoftMotion.so
 lib/pkgconfig/softMotion-libs.pc
