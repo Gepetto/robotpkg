@@ -2,8 +2,8 @@
 +++ src/Makefile	2010-06-17 13:54:14.623799578 +0200
 @@ -1,47 +1,54 @@
 -CC	= gcc
-+LTCC	= libtool --mode=compile ${CC} ${CFLAGS}
-+LINK = libtool --mode=link ${CC} ${CFLAGS} -rpath ${PREFIX}
++LTCC	= libtool --mode=compile --tag=CC ${CC} ${CFLAGS}
++LINK = libtool --mode=link --tag=CC ${CC} ${CFLAGS} -rpath ${PREFIX}
 +INSTALL= libtool --mode=install install
  CFLAGS	+=
  BIN_DIR = ../bin
