@@ -39,3 +39,7 @@ ${PLIST.openprs}share/modules/openprs/vimanOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/vimanOpenprs.opf
 ${PLIST.openprs}share/modules/openprs/vimanOpenprs.sym
 ${PLIST.tcl}share/modules/tcl/vimanClient.tcl
+share/viman/objectList_cfg
+share/viman/cal/artk_cal_Left.cal
+share/viman/cal/artk_cal_Right.cal
+share/viman/cal/QuickCam640x480.cal

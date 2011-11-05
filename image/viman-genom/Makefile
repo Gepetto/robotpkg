@@ -3,6 +3,7 @@
 #
 
 DISTNAME=		viman-genom-1.4
+PKGREVISION=		1
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viman-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/viman-genom
@@ -16,9 +17,16 @@ LICENSE=		gnu-gpl-v2
 USE_LANGUAGES+=		c c++
 
 GENOM_MODULE=		viman
+INCLUDE_DIRS.libjpeg+=	include
+LIBRARY_DIRS.libjpeg+=	lib
+RPATHS_DIRS.libjpeg+=	lib
 
 include ../../architecture/genom/depend.mk
 include ../../image/viam-genom/depend.mk
+include ../../image/viam-libs/depend.mk
 include ../../image/artoolkitplus/depend.mk
-
+include ../../image/opencv/depend.mk
+include ../../localization/pom-genom/depend.mk
+include ../../math/t3d/depend.mk
+include ../../mk/sysdep/libjpeg.mk
 include ../../mk/robotpkg.mk
