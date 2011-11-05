@@ -7,6 +7,8 @@ COMMENT=		Versatile Image Acquisition Module - dc1394 driver
 
 include ../../image/viam-libs/Makefile.common
 
+ONLY_FOR_PLATFORM+=	Linux-% Darwin-%-i386
+
 CONFIGURE_ARGS+=	--disable-core
 CONFIGURE_ARGS+=	--disable-v4l2
 CONFIGURE_ARGS+=	--enable-dc1394
