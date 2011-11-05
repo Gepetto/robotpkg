@@ -13,6 +13,10 @@ endif
 
 ifeq (+,$(FESTIVAL_DEPEND_MK)) # -------------------------------------
 
+include ../../mk/robotpkg.prefs.mk # OPSYS, OS_VERSION
+ifeq (NetBSD,${OPSYS})
+  PREFER.festival?=	robotpkg
+endif
 PREFER.festival?=	system
 
 DEPEND_USE+=		festival
