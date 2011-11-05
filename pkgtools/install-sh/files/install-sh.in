@@ -34,15 +34,15 @@ doit="${DOITPROG-}"
 
 # put in absolute paths if you don't have them in your path; or use env. vars.
 
-awkprog="${AWKPROG-awk}"
-mvprog="${MVPROG-mv}"
-cpprog="${CPPROG-cp}"
-chmodprog="${CHMODPROG-chmod}"
-chownprog="${CHOWNPROG-chown}"
+awkprog="${AWKPROG-@AWK@}"
+mvprog="${MVPROG-@MV@}"
+cpprog="${CPPROG-@CP@}"
+chmodprog="${CHMODPROG-@CHMOD@}"
+chownprog="${CHOWNPROG-@CHOWN@}"
 chgrpprog="${CHGRPPROG-chgrp}"
 stripprog="${STRIPPROG-strip}"
-rmprog="${RMPROG-rm}"
-mkdirprog="${MKDIRPROG-mkdir}"
+rmprog="${RMPROG-@RM@}"
+mkdirprog="${MKDIRPROG-@MKDIR@}"
 
 instcmd="$mvprog"
 pathcompchmodcmd="$chmodprog @DEFAULT_INSTALL_MODE@"
