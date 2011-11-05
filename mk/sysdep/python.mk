@@ -227,6 +227,12 @@ python-compile-all(%): .FORCE
 	${RUN}${BUILD_LOGFILTER} ${PYTHON} -m compileall -f $%
 	${RUN}${BUILD_LOGFILTER} ${PYTHON} -O -m compileall -f $%
 
+python-compile-file(%): .FORCE
+	${RUN}${BUILD_LOGFILTER} ${PYTHON} -c 'import py_compile;	\
+	  py_compile.compile("$%");'
+	${RUN}${BUILD_LOGFILTER} ${PYTHON} -O -c 'import py_compile;	\
+	  py_compile.compile("$%");'
+
 # For python packages using the distuils.setup framework, redefine the
 # BUILD_MAKE_CMD
 ifdef PYDISTUTILSPKG
