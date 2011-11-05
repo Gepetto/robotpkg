@@ -21,6 +21,7 @@ include/xarm/server/xarmPrint.h
 include/xarm/server/xarmPrintXML.h
 include/xarm/server/xarmScan.h
 include/xarm/server/xarmType.h
+include/xarm/xarmConst.h
 include/xarm/xarmStruct.h
 lib/libxarmClient.la
 ${PLIST.openprs}lib/openprs/libxarmOpenprs.la

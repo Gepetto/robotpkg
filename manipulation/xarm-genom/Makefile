@@ -3,6 +3,7 @@
 #
 
 DISTNAME=	xarm-genom-1.4
+PKGREVISION=	1
 CATEGORIES=	manipulation
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=xarm/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/xarm-genom
@@ -10,6 +11,9 @@ MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/xarm-genom
 MAINTAINER=	xbroquer@laas.fr
 COMMENT=	Controls a 6DOF arm in cartesian space.
 LICENSE=	2-clause-bsd
+
+# Uses linux/joystick, so:
+ONLY_FOR_PLATFORM=	Linux-%
 
 GENOM_MODULE=	xarm
 
