@@ -8,10 +8,9 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git git://git.openrobots.org/robots/platine-genom
 
 MAINTAINER=		openrobots@laas.fr
-#HOMEPAGE=
 COMMENT=		GenoM module for platine management.
-
 LICENSE=		isc
+NOT_FOR_PLATFORM+=	NetBSD-%
 
 GNU_CONFIGURE=		yes
 
