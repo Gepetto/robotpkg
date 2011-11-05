@@ -1,0 +1,37 @@
+Add sys/time for struct timeval and struct timezone
+Fix timeval and timezone type names
+
+--- codels/MTIExecTaskCodels.cc~	2010-03-31 11:48:02.000000000 +0200
++++ codels/MTIExecTaskCodels.cc	2011-11-05 18:18:04.000000000 +0100
+@@ -13,6 +13,10 @@
+ #else
+ # include <portLib.h>
+ #endif
++#include <sys/time.h>
++#include <math.h>
++#include <stdio.h>
++
+ #include "server/MTIHeader.h"
+ 
+ #include "h2mathLib.h"
+@@ -21,9 +25,6 @@
+ 
+ #include <MTI-clients/structMTI.h>
+ #include <MTI-clients/MTI.h>
+-#include <math.h>
+-
+-#include <stdio.h>
+ 
+ MTI * MTIClient = NULL;
+ 
+@@ -31,8 +32,8 @@
+ static double meanRoll, meanPitch;
+ static double varianceRoll, variancePitch;
+ 
+-static timeval tv1, tv2;
+-static timezone tz1, tz2;
++static struct timeval tv1, tv2;
++static struct timezone tz1, tz2;
+ 
+ /*------------------------------------------------------------------------
+  *
