@@ -23,4 +23,4 @@ include ../../mk/sysdep/python.mk
 
 include ../../mk/robotpkg.mk
 
-post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/pyoro.py)
+post-install: python-compile-file(${PREFIX}/${PYTHON_SITELIB}/pyoro.py)
