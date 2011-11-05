@@ -11,6 +11,9 @@ MAINTAINER=		mallet@laas.fr
 COMMENT=		GenoM module that exports 3DConnexion mouse data
 LICENSE=		2-clause-bsd
 
+# Uses linux/input.h hid
+ONLY_FOR_PLATFORM=	Linux-%
+
 GENOM_MODULE=		mouse3d
 
 include ../../architecture/genom/depend.mk
