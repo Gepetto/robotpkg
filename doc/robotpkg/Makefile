@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Tue, 13 Jan 2009
 #
 
-PKGVERSION=		$(shell ${DATE} '+%Y%m%d')
-DISTNAME=               robotpkg-guide-${PKGVERSION_NOREV}
+DISTNAME=               robotpkg-guide-${VERSION}
 CATEGORIES=             doc
 MASTER_SITES=#		empty
 DISTFILES=#		empty
@@ -19,6 +18,9 @@ USE_LANGUAGES=#		empty
 OUTPUTS?=#		empty
 BUILD_TARGET=		$(sort ${OUTPUTS})
 INSTALL_TARGET=		$(patsubst %,install-%,$(sort ${OUTPUTS}))
+
+include ../../mk/robotpkg.prefs.mk # DATE
+VERSION:=		$(shell ${DATE} '+%Y%m%d')
 
 # option for pdf output generation
 #
