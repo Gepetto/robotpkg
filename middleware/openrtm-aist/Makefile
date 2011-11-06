@@ -19,6 +19,12 @@ USE_LANGUAGES+=		c c++
 
 WRKSRC=			${WRKDIR}/${DISTNAME:-RELEASE=}
 
+# Archive contains pax extended attributes - sadly, NetBSD pax (and maybe
+# others) does not support them.
+DEPEND_ABI.gtar=	gtar>=1.14
+DEPEND_METHOD.gtar=	bootstrap
+EXTRACT_USING=		${GTAR}
+
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 
@@ -46,4 +52,5 @@ include ../../mk/sysdep/python.mk
 include ../../middleware/ace/depend.mk
 include ../../middleware/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/gtar.mk
 include ../../mk/robotpkg.mk
