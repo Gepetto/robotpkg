@@ -16,6 +16,7 @@ DIST_SUBDIR=            ${PKGBASE}
 USE_LANGUAGES=#		empty
 
 OUTPUTS?=#		empty
+NO_CHECKSUM=		yes
 BUILD_TARGET=		$(sort ${OUTPUTS})
 INSTALL_TARGET=		$(patsubst %,install-%,$(sort ${OUTPUTS}))
 
