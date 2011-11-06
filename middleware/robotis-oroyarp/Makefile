@@ -16,6 +16,7 @@ LICENSE=		gnu-lgpl-v3
 
 USE_LANGUAGES=		c c++
 CMAKE_ARGS+=		-DBUILD_EXAMPLE=off
+CMAKE_ARGS+=		-DBUILD_TESTS=off
 CMAKE_ARGS+=		-DBoost_INCLUDE_DIRS=${PREFIX.boost-headers}/include
 CMAKE_ARGS+=		-DBoost_LIBRARY_DIRS=${PREFIX.boost-libs}/lib
 
