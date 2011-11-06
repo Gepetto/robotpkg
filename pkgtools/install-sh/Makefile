@@ -17,7 +17,7 @@ SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_MESSAGE.paths=	Configuring default programs
 SUBST_SED.paths=\
-	$(foreach _,AWK MV CP CHMOD CHOWN RM,-e 's|@$_@|${$_}|')
+	$(foreach _,AWK MV CP CHMOD CHOWN MKDIR RM,-e 's|@$_@|${$_}|')
 SUBST_FILES.paths=	install-sh.in
 
 include ../../mk/robotpkg.mk
