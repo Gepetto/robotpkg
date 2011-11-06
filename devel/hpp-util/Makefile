@@ -19,6 +19,9 @@ DOXYGEN_PLIST_DIR+=	share/doc/hpp-util
 CMAKE_ARGS+=		-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
 CMAKE_ARGS+=		-DBOOST_LIBRARYDIR=${PREFIX.boost-libs}/lib
 
+# boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
+CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
+
 PKG_SUPPORTED_OPTIONS+=		verbose
 PKG_OPTION_DESCR.verbose=	Compile in verbose mode
 PKG_OPTION_SET.verbose=		CXXFLAGS+=-DHPP_DEBUG
