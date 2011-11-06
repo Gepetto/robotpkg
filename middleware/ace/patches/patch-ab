@@ -7,7 +7,7 @@ fixed in -current
    result->aio_sigevent.sigev_notify = SIGEV_THREAD;
  #  if defined (ACE_HAS_SIG_C_FUNC)
    result->aio_sigevent.sigev_notify_function =
-+#    ifdef __NetBSD__
++#    if defined(__NetBSD__) && __NetBSD_Version__ < 599002300
 +    /* NetBSD-5.1 has wrong signature, this was fixed in -current */
 +    (void (*)(sigval *))
 +#    endif
