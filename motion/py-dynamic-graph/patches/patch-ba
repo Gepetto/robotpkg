@@ -1,0 +1,16 @@
+--- src/dynamic_graph/__init__.py~	2011-06-21 10:41:18.000000000 +0200
++++ src/dynamic_graph/__init__.py	2011-11-07 16:52:54.425703711 +0100
+@@ -3,11 +3,11 @@
+ Author: Florent Lamiraux
+ """
+ 
+-import sys, dl
++import sys, DLFCN
+ flags = sys.getdlopenflags()
+ # Import C++ symbols in a global scope
+ # This is necessary for signal compiled in different modules to be compatible
+-sys.setdlopenflags(dl.RTLD_NOW|dl.RTLD_GLOBAL)
++sys.setdlopenflags(DLFCN.RTLD_NOW|DLFCN.RTLD_GLOBAL)
+ from wrap import *
+ # Recover previous flags
+ sys.setdlopenflags(flags)
