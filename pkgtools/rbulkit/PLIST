@@ -18,3 +18,4 @@ share/rbulkit/html/rbulk.css
 share/rbulkit/log2db.tcl
 share/rbulkit/main.tcl
 share/rbulkit/pkgIndex.tcl
+share/rbulkit/rm.tcl
