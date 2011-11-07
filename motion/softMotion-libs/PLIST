@@ -1,8 +1,9 @@
-@comment Wed Sep 1 11:10:26 CEST 2010
+@comment Mon Nov 7 13:56:09 CET 2011
 include/softMotion/Sm_Approx.h
 include/softMotion/Sm_Curve.h
 include/softMotion/Sm_Traj.h
 include/softMotion/debug.h
+include/softMotion/gnuplot_i.hpp
 include/softMotion/matrix.h
 include/softMotion/matrixStruct.h
 include/softMotion/softMotion.h
