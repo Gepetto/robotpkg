@@ -19,6 +19,10 @@ pre-configure:	autoreconf
 DEPEND_METHOD.tcl=	build
 DEPEND_METHOD.tdom=	build
 
+INCLUDE_DIRS.libpcap=	include
+LIBRARY_DIRS.libpcap=	lib
+RPATH_DIRS.libpcap=	lib
+
 include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
