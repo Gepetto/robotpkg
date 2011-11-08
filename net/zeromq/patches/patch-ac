@@ -1,0 +1,13 @@
+g++ is unhappy with (intptr_t)NULL
+
+--- src/kqueue.cpp~	2010-10-15 19:40:36.000000000 +0200
++++ src/kqueue.cpp	2011-11-08 11:47:04.000000000 +0100
+@@ -74,7 +74,7 @@
+ {
+     struct kevent ev;
+ 
+-    EV_SET (&ev, fd_, filter_, EV_DELETE, 0, 0, (kevent_udata_t)NULL);
++    EV_SET (&ev, fd_, filter_, EV_DELETE, 0, 0, 0/*NULL*/);
+     int rc = kevent (kqueue_fd, &ev, 1, NULL, 0, NULL);
+     errno_assert (rc != -1);
+ }

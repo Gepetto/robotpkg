@@ -3,3 +3,4 @@ RMD160 (zeromq-2.0.10.tar.gz) = 376cc753b9e2c5d3992e015a7576604f068527af
 Size (zeromq-2.0.10.tar.gz) = 1067165 bytes
 SHA1 (patch-aa) = c19621b4b386c8825793791315539a8e3087d35e
 SHA1 (patch-ab) = c402e7de7f7febdd0758585d7a1519d41443036a
+SHA1 (patch-ac) = 25d32806f9db0236dd7c9ad68d48a4103d7cf31d
