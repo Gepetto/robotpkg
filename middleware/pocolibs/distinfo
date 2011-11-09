@@ -1,3 +1,5 @@
 SHA1 (pocolibs-2.11.tar.gz) = e3ce870a84430912f497a6c15f9fe3062b710815
 RMD160 (pocolibs-2.11.tar.gz) = 7285f15f93fb31df674c0e61e60d1005c3a19cf4
 Size (pocolibs-2.11.tar.gz) = 420283 bytes
+SHA1 (patch-aa) = 2ed6d47b4bd89b9583bbae2cf88bda3f86251377
+SHA1 (patch-ab) = 5ab1a25343fbedd348fdce3e52239ebbdec050fa

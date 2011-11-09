@@ -1,0 +1,13 @@
+Fix bindir for automake
+
+--- src/posterLib/Makefile.in~	2011-11-09 18:00:11.362261148 +0100
++++ src/posterLib/Makefile.in	2011-11-09 18:00:20.657294528 +0100
+@@ -233,7 +233,7 @@
+ libposterLib_la_LDFLAGS = -version-info 7:0:1 -no-undefined
+ libposterLib_la_LIBADD = -L../comLib -L../portLib -lcomLib -lportLib
+ AM_CPPFLAGS = -I$(top_srcdir)/include \
+-	-DPOSTER_SERV_PATH=\"$(BINDIR)/posterServ\"
++	-DPOSTER_SERV_PATH=\"$(bindir)/posterServ\"
+ 
+ libposterLib_la_SOURCES = \
+ 	os/$(OSAPI)/hostclient.c \

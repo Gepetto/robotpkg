@@ -3,6 +3,7 @@
 #
 
 DISTNAME=		pocolibs-2.11
+PKGREVISION=		1
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pocolibs/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pocolibs
