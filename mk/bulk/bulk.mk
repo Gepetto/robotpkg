@@ -113,11 +113,11 @@ ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	  done;								\
 	  base=`${BULK_PKG_INFO} -Q LOCALBASE ${PKGFILE} 2>/dev/null`;	\
 	  ${TEST} "$${base}" = "${BULKBASE}" || exit 1;			\
-	  ${BULK_PKG_INFO} -qN ${PKGFILE} | while read d; do		\
+	  ${BULK_PKG_INFO} -qn ${PKGFILE} 2>/dev/null | while read d; do\
 	    if ${TEST} -z "$$d"; then continue; fi;			\
-	    ${TEST} -f "${PKGREPOSITORY}/$$d${PKG_SUFX}" || exit 1;	\
-	    ${TEST} ${PKGFILE} -nt "${PKGREPOSITORY}/$$d${PKG_SUFX}"	\
-		|| exit 1;						\
+	    pkgfile=`${BULK_BESTAVAIL} "$$d"`;				\
+	    ${TEST} -f "$$pkgfile" || exit 1;				\
+	    ${TEST} ${PKGFILE} -nt "$$pkgfile" || exit 1;		\
 	  done;								\
 	) || {								\
 	  ${MKDIR} $(dir $@) &&						\
