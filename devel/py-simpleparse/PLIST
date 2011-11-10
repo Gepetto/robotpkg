@@ -3,6 +3,7 @@ ${PYTHON_SITELIB}/SimpleParse-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INF
 ${PYTHON_SITELIB}/SimpleParse-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
 ${PYTHON_SITELIB}/SimpleParse-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
 ${PYTHON_SITELIB}/SimpleParse-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
+${PYTHON_SITELIB}/SimpleParse-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/not-zip-safe
 ${PYTHON_SITELIB}/simpleparse/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/simpleparse/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/simpleparse/${PYTHON_PYCACHE}/baseparser${PYTHON_TAG}.pyc
@@ -179,6 +180,7 @@ ${PYTHON_SITELIB}/simpleparse/stt/TextTools/Constants/Sets.py
 ${PYTHON_SITELIB}/simpleparse/stt/TextTools/Constants/TagTables.py
 ${PYTHON_SITELIB}/simpleparse/stt/TextTools/Constants/__init__.py
 ${PYTHON_SITELIB}/simpleparse/stt/TextTools/mxTextTools/__init__.py
+${PYTHON_SITELIB}/simpleparse/stt/TextTools/mxTextTools/mxTextTools.so
 ${PYTHON_SITELIB}/simpleparse/tests/__init__.py
 ${PYTHON_SITELIB}/simpleparse/tests/genericvalues.py
 ${PYTHON_SITELIB}/simpleparse/tests/mx_flag.py
