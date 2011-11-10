@@ -2,6 +2,7 @@
 include/roboptim/trajectory/anthropomorphic-cost-function.hh
 include/roboptim/trajectory/anthropomorphic-cost-function.hxx
 include/roboptim/trajectory/cubic-b-spline.hh
+include/roboptim/trajectory/cubic-b-spline.hxx
 include/roboptim/trajectory/free-time-trajectory.hh
 include/roboptim/trajectory/free-time-trajectory.hxx
 include/roboptim/trajectory/freeze.hh
@@ -29,6 +30,7 @@ include/roboptim/trajectory/trajectory-sum-cost.hxx
 include/roboptim/trajectory/visualization/limit-speed.hh
 include/roboptim/trajectory/visualization/speed.hh
 include/roboptim/trajectory/visualization/trajectory.hh
+include/roboptim/trajectory.hh
 lib/libroboptim-trajectory.la
 lib/pkgconfig/roboptim-trajectory.pc
 @dirrm include/roboptim/trajectory/visualization
