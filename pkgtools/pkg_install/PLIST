@@ -4,7 +4,9 @@ man/man1/robotpkg_admin.1
 man/man1/robotpkg_create.1
 man/man1/robotpkg_delete.1
 man/man1/robotpkg_info.1
+man/man5/robotpkg_install.conf.5
 man/man5/robotpkg_summary.5
+man/man7/robotpkg.7
 sbin/robotpkg_add
 sbin/robotpkg_admin
 sbin/robotpkg_create
