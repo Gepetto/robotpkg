@@ -107,8 +107,9 @@ ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	    done <${BULK_PKGFILENA};					\
 	    exit 0;							\
 	  };								\
-	  for f in ${MAKEFILE_LIST}; do					\
-	    ${TEST} ${PKGFILE} -nt $$f  || exit 1;			\
+	  for f in ${MAKEFILE_LIST} ${DISTINFO_FILE} ${PLIST_SRC}; do	\
+	    ${TEST} -f $$f || continue;					\
+	    ${TEST} ${PKGFILE} -nt $$f || exit 1;			\
 	  done;								\
 	  base=`${BULK_PKG_INFO} -Q LOCALBASE ${PKGFILE} 2>/dev/null`;	\
 	  ${TEST} "$${base}" = "${BULKBASE}" || exit 1;			\
