@@ -1,25 +1,35 @@
 @comment Tue Jul 28 11:28:07 CEST 2009
-bin/force
-bin/forceSendInitRqst
-bin/forceTest
+${PLIST.noapi}bin/force
+${PLIST.noapi}bin/forceSendInitRqst
+${PLIST.noapi}bin/forceTest
+${PLIST.openprs}include/force/server/openprs/forceDecodeOpenprs.h
+${PLIST.openprs}include/force/server/openprs/forceEncodeOpenprs.h
+${PLIST.openprs}include/force/server/openprs/forceRequestsOpenprsProto.h
+${PLIST.tclserv_client}include/force/server/tclservClient/forceTclservClientDecode.h
+${PLIST.tclserv_client}include/force/server/tclservClient/forceTclservClientEncode.h
+${PLIST.tclserv_client}include/force/server/tclservClient/forceTclservClientMsgLib.h
 include/force/forceConst.h
 include/force/forceStruct.h
 include/force/server/forceEndian.h
 include/force/server/forceError.h
-include/force/server/forceMsgLib.h
+${PLIST.noapi}include/force/server/forceMsgLib.h
 include/force/server/forcePosterLib.h
 include/force/server/forcePosterLibStruct.h
-include/force/server/forcePosterReadLibProto.h
-include/force/server/forcePosterShowLib.h
-include/force/server/forcePosterWriteLibProto.h
-include/force/server/forcePosterXMLLib.h
+${PLIST.noapi}include/force/server/forcePosterReadLibProto.h
+${PLIST.noapi}include/force/server/forcePosterShowLib.h
+${PLIST.noapi}include/force/server/forcePosterWriteLibProto.h
+${PLIST.noapi}include/force/server/forcePosterXMLLib.h
 include/force/server/forcePrint.h
 include/force/server/forcePrintXML.h
 include/force/server/forceScan.h
 include/force/server/forceType.h
+lib/libforceClient.la
+${PLIST.openprs}lib/openprs/libforceOpenprs.la
+${PLIST.openprs}lib/pkgconfig/force-oprs.pc
 lib/pkgconfig/force.pc
-lib/tclserv/libforceTclServ.la
+${PLIST.noapi}${PLIST.tcl}lib/tclserv/libforceTclServ.la
 share/modules/gen/force.gen
-share/modules/tcl/forceClient.tcl
-@dirrm include/force/server
-@dirrm include/force
+${PLIST.openprs}share/modules/openprs/forceOpenprs.inc
+${PLIST.openprs}share/modules/openprs/forceOpenprs.opf
+${PLIST.openprs}share/modules/openprs/forceOpenprs.sym
+${PLIST.tcl}share/modules/tcl/forceClient.tcl
