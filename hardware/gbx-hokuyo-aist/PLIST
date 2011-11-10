@@ -1,6 +1,12 @@
 @comment Wed Mar 17 17:21:37 CET 2010
 bin/hokuyo_aist_example
+bin/hokuyo_aist_getid
 include/gearbox/hokuyo_aist/hokuyo_aist.h
+include/gearbox/hokuyo_aist/hokuyo_errors.h
+include/gearbox/hokuyo_aist/scan_data.h
+include/gearbox/hokuyo_aist/sensor.h
+include/gearbox/hokuyo_aist/sensor_info.h
+include/gearbox/hokuyo_aist/utils.h
 lib/gearbox/libhokuyo_aist.so
 lib/gearbox/libhokuyo_aist.so.${PKGVERSION}
 lib/pkgconfig/hokuyo_aist.pc
