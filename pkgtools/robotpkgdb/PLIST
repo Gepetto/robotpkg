@@ -2,3 +2,4 @@
 ${PLIST.sqlite}sbin/robotpkg_search
 ${PLIST.csv}share/robotpkgdb/robotpkgdb.csv
 ${PLIST.sqlite}share/robotpkgdb/robotpkgdb.sqlite
+man/man8/robotpkg_search.8
