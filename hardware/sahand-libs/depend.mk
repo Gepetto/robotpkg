@@ -9,7 +9,7 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		sahand-libs
 endif
 
-ifeq (+,$(SAHAND_LIBS_DEPEND_MK)) # ---------------------------------------------
+ifeq (+,$(SAHAND_LIBS_DEPEND_MK)) # ----------------------------------------
 
 PREFER.sahand-libs?=		robotpkg
 
@@ -17,7 +17,7 @@ DEPEND_USE+=			sahand-libs
 DEPEND_ABI.sahand-libs?=	sahand-libs>=08.08.14
 DEPEND_DIR.sahand-libs?=	../../hardware/sahand-libs
 
-SYSTEM_SEARCH.sahand=	\
+SYSTEM_SEARCH.sahand-libs=	\
 	'include/sahand/SAHandCtrlApi.h' \
 	'lib/libsahand.so'
 
