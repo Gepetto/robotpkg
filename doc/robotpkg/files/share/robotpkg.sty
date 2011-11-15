@@ -1,6 +1,6 @@
-% $LAAS: robotpkg.sty 2009/02/01 20:07:09 tho $
+% $LAAS: robotpkg.sty 2011/11/15 23:21:03 tho $
 %
-% Copyright (c) 2009 LAAS/CNRS
+% Copyright (c) 2009,2011 LAAS/CNRS
 % All rights reserved.
 %
 % Permission to use, copy, modify, and distribute this software for any purpose
@@ -24,7 +24,7 @@
 \RequirePackage{color}
 \definecolor{color@link}{rgb}{.4,.02,.01}
 
-\RequirePackage{type1cm}
+\RequirePackage{lmodern}
 \RequirePackage{ifpdf}
 \RequirePackage[pdftex]{hyperref}
 
@@ -57,11 +57,11 @@
       \raggedleft\normalfont%
       \ifnum\c@secnumdepth>\m@ne%
 	 \if@mainmatter%
-            \fontsize{40}{40}\fontfamily{ptm}\bfseries%
+            \fontsize{40}{40}\bfseries%
 	    \thechapter\par\vrule height 0pt width 0pt\par%
 	 \fi%
       \fi%
-      \interlinepenalty\@M\fontsize{40}{45}\bfseries%
+      \interlinepenalty\@M\fontsize{40}{45}\fontfamily{lmssq}\bfseries%
       \parbox{\textwidth}{\raggedleft#1}\par%
       \nobreak\vskip\evensidemargin%
    }%
@@ -71,7 +71,7 @@
    \vrule height 20pt width 0pt\par{%
       \parindent\z@
       \raggedleft\normalfont
-      \interlinepenalty\@M\fontsize{40}{45}\fontfamily{ptm}\bfseries
+      \interlinepenalty\@M\fontsize{40}{45}\fontfamily{lmssq}\bfseries
       \parbox{\textwidth}{\raggedleft#1}\par
       \nobreak\vskip\evensidemargin
    }

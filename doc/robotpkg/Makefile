@@ -29,6 +29,8 @@ PKG_SUGGESTED_OPTIONS+= pdf
 PKG_OPTION_DESCR.pdf=	Generate PDF output
 define PKG_OPTION_SET.pdf
   OUTPUTS+=	pdf
+  USE_TEX_PKGS+=lmodern.sty
+  include ../../mk/sysdep/tex-pkg.mk
   include ../../mk/sysdep/pdflatex.mk
 endef
 
@@ -37,6 +39,8 @@ endef
 PKG_OPTION_DESCR.html=	Generate HTML output
 define PKG_OPTION_SET.html
   OUTPUTS+=	html
+  USE_TEX_PKGS+=lmodern.sty
+  include ../../mk/sysdep/tex-pkg.mk
   include ../../mk/sysdep/pdflatex.mk
   include ../../sysutils/tth/depend.mk
 endef
@@ -46,6 +50,8 @@ endef
 PKG_OPTION_DESCR.txt=	Generate ASCII text output
 define PKG_OPTION_SET.txt
   OUTPUTS+=	txt
+  USE_TEX_PKGS+=lmodern.sty
+  include ../../mk/sysdep/tex-pkg.mk
   include ../../mk/sysdep/pdflatex.mk
   include ../../sysutils/tth/depend.mk
   include ../../mk/sysdep/w3m.mk
