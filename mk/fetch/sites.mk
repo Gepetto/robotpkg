@@ -37,11 +37,11 @@
 # distribution sites for software.
 #
 MASTER_SITE_OPENROBOTS+=	\
-	ftp://softs.laas.fr/pub/openrobots/		\
-	http://softs.laas.fr/openrobots/distfiles/
+	ftp://ftp.openrobots.org/pub/openrobots/		\
+	http://www.openrobots.org/distfiles/
 
 MASTER_REPOSITORY_OPENROBOTS+=	\
-	git ssh://${OPENROBOTS_USER:=@}trac.laas.fr/git/robots/
+	git git://git.openrobots.org/git/robots/
 
 MASTER_SITE_ROBOTPKG+=	\
 	http://softs.laas.fr/openrobots/robotpkg/distfiles/
