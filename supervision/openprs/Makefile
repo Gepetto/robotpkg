@@ -5,7 +5,7 @@
 DISTNAME=		openprs-1.0b14
 CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/openprs
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}openprs
 
 MAINTAINER=		felix@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/openprs

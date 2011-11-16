@@ -10,7 +10,7 @@ COMMENT=	Festival Speech Synthesis system - GenoM module
 LICENSE=	2-clause-bsd
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=textos-genom/}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/textos-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}textos-genom
 
 GENOM_MODULE=	textos
 USE_LANGUAGES=	c c++

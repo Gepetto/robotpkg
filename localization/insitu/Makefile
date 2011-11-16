@@ -5,7 +5,7 @@
 DISTNAME=		insitu-1.3
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=insitu/}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/insitu
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}insitu
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		Sensor location management library.

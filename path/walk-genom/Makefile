@@ -6,7 +6,7 @@ DISTNAME=	walk-genom-1.6
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=walk-genom/}
-MASTER_REPOSITORY=git ssh://softs.laas.fr/git/robots/walk-genom
+MASTER_REPOSITORY=${MASTER_REPOSITORY_OPENROBOTS}walk-genom
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	Walk trajectories for humanoid robots - GenoM component

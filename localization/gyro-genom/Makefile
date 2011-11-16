@@ -6,7 +6,7 @@ DISTNAME=		gyro-genom-0.3
 PKGREVISION=		1
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/gyro-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}gyro-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

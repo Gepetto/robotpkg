@@ -6,7 +6,7 @@ DISTNAME=		pom-genom-0.6
 CATEGORIES=		localization
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pom-genom/}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/pom-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}pom-genom
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM module for localization management.

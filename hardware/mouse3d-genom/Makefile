@@ -5,7 +5,7 @@
 DISTNAME=		mouse3d-genom-1.2
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=mouse3d/}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/mouse3d-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}mouse3d-genom
 
 MAINTAINER=		mallet@laas.fr
 COMMENT=		GenoM module that exports 3DConnexion mouse data

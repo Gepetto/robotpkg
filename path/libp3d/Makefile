@@ -7,7 +7,7 @@ VERSION=		1.3
 PKGREVISION=		1
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libp3d/}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/libp3d
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}libp3d
 
 
 MAINTAINER=		openrobots@laas.fr

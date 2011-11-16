@@ -5,7 +5,7 @@
 DISTNAME=		sick-genom-0.2
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=      git ssh://softs.laas.fr/git/robots/sick-genom
+MASTER_REPOSITORY=      ${MASTER_REPOSITORY_OPENROBOTS}sick-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

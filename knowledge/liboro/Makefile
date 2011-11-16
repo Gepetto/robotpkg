@@ -4,7 +4,7 @@
 
 DISTNAME=		liboro-1.1
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=liboro/}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/liboro
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}liboro
 
 CATEGORIES=		knowledge
 MAINTAINER=		severin.lemaignan@laas.fr

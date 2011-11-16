@@ -6,7 +6,7 @@ DISTNAME=		purple-ball-1.1
 
 CATEGORIES=		scripts
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=purple-ball/}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/purple-ball
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}purple-ball
 
 MAINTAINER=	mallet@laas.fr
 COMMENT=	Supervision scripts for the HRP-2 "purple-ball" demonstration

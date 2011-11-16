@@ -6,7 +6,7 @@ DISTNAME=		stereopixel-genom-1.2
 PKGREVISION=		1
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git ssh://softs.laas.fr/git/robots/stereopixel-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}stereopixel-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

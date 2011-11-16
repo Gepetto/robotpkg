@@ -5,7 +5,7 @@
 DISTNAME=		libstereopixel-1.5
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libstereopixel/}
-MASTER_REPOSITORY=	git http://softs.laas.fr/git/robots/libstereopixel.git
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}libstereopixel
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

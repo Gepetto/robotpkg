@@ -6,7 +6,7 @@ PKGVERSION=		1.0
 PKGNAME=		${PKGTAG.python}-oro-${PKGVERSION}
 DISTNAME=		pyoro-${PKGVERSION_NOREV}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pyoro/}
-MASTER_REPOSITORY=	git http://softs.laas.fr/git/robots/pyoro.git
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}pyoro
 
 CATEGORIES=		knowledge
 COMMENT=		Python bindings for knowledge/oro-server
