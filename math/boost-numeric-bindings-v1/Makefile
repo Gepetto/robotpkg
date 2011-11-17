@@ -5,7 +5,7 @@
 DISTNAME=		boost-numeric-bindings-20100322
 PKGNAME=		boost-numeric-bindings-v1-20100322
 CATEGORIES=		math
-MASTER_SITES=		${MASTER_SITE_ROBOTPKG}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=\
   svn \
   http://svn.boost.org/svn/boost/sandbox/numeric_bindings-v1/boost/numeric/bindings
