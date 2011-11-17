@@ -14,7 +14,7 @@ PREFER.viam-libs?=	robotpkg
 
 DEPEND_USE+=		viam-libs
 
-DEPEND_ABI.viam-libs?=	viam-libs>=1.8
+DEPEND_ABI.viam-libs?=	viam-libs>=1.9
 DEPEND_DIR.viam-libs?=	../../image/viam-libs
 
 SYSTEM_SEARCH.viam-libs=\
