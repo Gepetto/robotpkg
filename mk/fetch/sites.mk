@@ -1,6 +1,6 @@
-# $LAAS: sites.mk 2010/09/09 14:58:24 mallet $
+# $LAAS: sites.mk 2011/11/17 18:06:52 mallet $
 #
-# Copyright (c) 2006-2007,2009-2010 LAAS/CNRS
+# Copyright (c) 2006-2007,2009-2011 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -42,9 +42,6 @@ MASTER_SITE_OPENROBOTS+=	\
 
 MASTER_REPOSITORY_OPENROBOTS+=	\
 	git git://git.openrobots.org/git/robots/
-
-MASTER_SITE_ROBOTPKG+=	\
-	http://softs.laas.fr/openrobots/robotpkg/distfiles/
 
 MASTER_SITE_JRL+=	\
 	ftp://${JRL_FTP_USER}${JRL_FTP_PASSWD:%=:%}@softs.laas.fr/
