@@ -245,6 +245,25 @@ ifeq (undefined,$(origin ONLY_FOR_PLATFORM))
   endif
 endif
 
+# A meta-package is a package that does not have any files and whose only
+# purpose is to depend on other packages, giving that collection a simple
+# name. This variable must be set before including robotpkg.prefs.mk
+# directly or indirectly.
+ifdef META_PACKAGE
+NO_CHECKSUM=		yes
+NO_EXTRACT=		yes
+NO_CONFIGURE=           yes
+NO_BUILD=               yes
+DISTFILES=#		none
+PATCHDIR=		/nonexistent
+PLIST_SRC=#		none
+USE_LANGUAGES=#		none
+LICENSE=		meta-pkg
+WRKSRC=			${WRKDIR}
+do-patch do-install:
+	@${DO_NADA}
+endif
+
 PATH:=			$(call prependpath,${LOCALBASE}/sbin,${PATH})
 PATH:=			$(call prependpath,${LOCALBASE}/bin,${PATH})
 export PATH
@@ -263,24 +282,6 @@ PATCHDIR?=		${CURDIR}/patches
 SCRIPTDIR?=		${CURDIR}/scripts
 FILESDIR?=		${CURDIR}/files
 PKGDIR?=		${CURDIR}
-
-# A meta-package is a package that does not have any files and whose only
-# purpose is to depend on other packages, giving that collection a simple
-# name. This variable must be set before including robotpkg.prefs.mk
-# directly or indirectly.
-ifdef META_PACKAGE
-NO_CHECKSUM=		yes
-NO_EXTRACT=		yes
-NO_CONFIGURE=           yes
-NO_BUILD=               yes
-DISTFILES=#		none
-PLIST_SRC=#		none
-USE_LANGUAGES=#		none
-LICENSE=		meta-pkg
-WRKSRC=			${WRKDIR}
-do-patch do-install:
-	@${DO_NADA}
-endif
 
 
 # If WRKOBJDIR is set, use that tree to build
