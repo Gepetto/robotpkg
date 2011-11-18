@@ -1,2 +1,3 @@
 @comment Tue Nov 24 17:54:26 CET 2009
 lib/viam-drivers/dc1394.la
+lib/viam-drivers/ladybug.la
