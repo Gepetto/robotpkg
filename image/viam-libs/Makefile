@@ -3,6 +3,7 @@
 #
 
 include ../../image/viam-libs/Makefile.common
+PKGREVISION=		1
 
 BUILD_TARGET=		all
 INSTALL_TARGET=		install
