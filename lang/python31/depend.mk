@@ -20,6 +20,12 @@ ifeq (Fedora,${OPSYS})
   else
     PREFER.python31?=	robotpkg
   endif
+else ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 10.04 10.10 11.04,${OS_VERSION}))
+    PREFER.python31?=	system
+  else
+    PREFER.python31?=	robotpkg
+  endif
 endif
 PREFER.python31?=	${PREFER.python}
 
