@@ -14,6 +14,9 @@ NOT_FOR_PLATFORM=
 
 include ../../meta-pkgs/ros-base/Makefile.version
 
+DEPEND_ABI.ros-core+=	ros-core>=${ROS_NUMVERSION}
+DEPEND_ABI.ros-comm+=	ros-comm>=${ROS_NUMVERSION}
+
 include ../../middleware/ros-core/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../mk/robotpkg.mk
