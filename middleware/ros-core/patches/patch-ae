@@ -29,23 +29,23 @@ Don't call 'python' blindly and use the correct python program.
        OUTPUT_VARIABLE ${var}
        ERROR_VARIABLE _mtime_error
        RESULT_VARIABLE _mtime_failed
---- core/rosbuild/public.cmake~	2011-01-01 00:12:15.000000000 +0100
-+++ core/rosbuild/public.cmake	2011-01-19 11:15:51.425665306 +0100
-@@ -781,7 +781,7 @@
-     file(WRITE ${PROJECT_SOURCE_DIR}/srv_gen/generated "yes")
-     # Now set the mtime to something consistent.  We only want whether or not this file exists to matter
+--- core/rosbuild/public.cmake~ 2011-11-17 22:23:47.000000000 +0100
++++ core/rosbuild/public.cmake  2011-11-17 22:25:43.000000000 +0100
+@@ -825,7 +825,7 @@
+     # But we set it to the current time, because setting it to zero causes
+     # annoying warning, #3396.
      execute_process(
--      COMMAND python -c "import os; os.utime('${PROJECT_SOURCE_DIR}/srv_gen/generated', (0, 0))"
-+      COMMAND @PYTHON@ -c "import os; os.utime('${PROJECT_SOURCE_DIR}/srv_gen/generated', (0, 0))"
+-      COMMAND python -c "import os; os.utime('${PROJECT_SOURCE_DIR}/srv_gen/generated', (1, 1))"
++      COMMAND @PYTHON@ -c "import os; os.utime('${PROJECT_SOURCE_DIR}/srv_gen/generated', (1, 1))"
        ERROR_VARIABLE _set_mtime_error
        RESULT_VARIABLE _set_mtime_failed
        OUTPUT_STRIP_TRAILING_WHITESPACE)
-@@ -816,7 +816,7 @@
-     file(WRITE ${PROJECT_SOURCE_DIR}/msg_gen/generated "yes")
-     # Now set the mtime to something consistent.  We only want whether or not this file exists to matter
+@@ -862,7 +862,7 @@
+     # But we set it to the current time, because setting it to zero causes
+     # annoying warning, #3396.
      execute_process(
--      COMMAND python -c "import os; os.utime('${PROJECT_SOURCE_DIR}/msg_gen/generated', (0, 0))"
-+      COMMAND @PYTHON@ -c "import os; os.utime('${PROJECT_SOURCE_DIR}/msg_gen/generated', (0, 0))"
+-      COMMAND python -c "import os; os.utime('${PROJECT_SOURCE_DIR}/msg_gen/generated', (1, 1))"
++      COMMAND @PYTHON@ -c "import os; os.utime('${PROJECT_SOURCE_DIR}/msg_gen/generated', (1, 1))"
        ERROR_VARIABLE _set_mtime_error
        RESULT_VARIABLE _set_mtime_failed
        OUTPUT_STRIP_TRAILING_WHITESPACE)

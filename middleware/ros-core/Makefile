@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 19 Jan 2011
 #
 
-PKGVERSION=	1.4.0
+PKGVERSION=	1.6.6
 MASTER_SITES=	${MASTER_SITE_ROS:=ros/tags/ros-${PKGVERSION}}
 NOT_FOR_PLATFORM=
 
@@ -46,7 +46,6 @@ SUBST_STAGE.gmake=	pre-configure
 SUBST_MESSAGE.gmake=	Configuring GNU make program location
 SUBST_FILES.gmake=	bin/rosmake tools/rospack/Makefile
 SUBST_SED.gmake=	-e 's|@MAKE@|${MAKE}|'
-
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

@@ -18,7 +18,7 @@ SYSTEM_SEARCH.ros-core=\
 
 DEPEND_USE+=		ros-core
 
-DEPEND_ABI.ros-core?=	ros-core>=1.4.0
+DEPEND_ABI.ros-core?=	ros-core>=1.6.0
 DEPEND_DIR.ros-core?=	../../middleware/ros-core
 
 endif # ROS_CORE_DEPEND_MK -------------------------------------------------
