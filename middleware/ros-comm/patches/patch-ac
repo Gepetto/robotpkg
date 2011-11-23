@@ -1,39 +1,30 @@
 Don't call 'make' blindly and use the correct GNU make program.
 
---- test/test_rosbag/Makefile~	2010-05-06 00:22:45.000000000 +0200
-+++ test/test_rosbag/Makefile	2011-01-16 14:15:52.000000000 +0100
-@@ -4,7 +4,7 @@
- 	@mkdir -p build
- 	-mkdir -p bin
- 	cd build && cmake -DCMAKE_TOOLCHAIN_FILE=`rospack find rosbuild`/rostoolchain.cmake ..
--	cd build && make $(ROS_PARALLEL_JOBS)
-+	cd build && @MAKE@ $(ROS_PARALLEL_JOBS)
- 
- PACKAGE_NAME=$(shell basename $(PWD))
- 
-@@ -16,7 +16,7 @@
+--- test/test_rosbag/Makefile~	2011-02-13 23:59:16.000000000 +0100
++++ test/test_rosbag/Makefile	2011-11-20 19:39:27.000000000 +0100
+@@ -20,7 +20,7 @@
  	rm -rf msg/cpp msg/lisp msg/oct msg/java srv/cpp srv/lisp srv/oct srv/java src/$(PACKAGE_NAME)/msg src/$(PACKAGE_NAME)/srv
  
  clean:
 -	-cd build && make clean
-+	-cd build && @MAKE@ clean
++	-cd build && ${MAKE} clean
  	rm -rf msg/cpp msg/lisp msg/oct msg/java srv/cpp srv/lisp srv/oct srv/java src/$(PACKAGE_NAME)/msg src/$(PACKAGE_NAME)/srv
  	rm -rf build
  	rm -f .build-version
-@@ -26,12 +26,12 @@
+@@ -30,12 +30,12 @@
  
  # All other targets are just passed through
  test: all
 -	./generate_data; if cd build && make -k $@; then make test-results; else make test-results && exit 1; fi
-+	./generate_data; if cd build && @MAKE@ -k $@; then @MAKE@ test-results; else @MAKE@ test-results && exit 1; fi
++	./generate_data; if cd build && ${MAKE} -k $@; then ${MAKE} test-results; else ${MAKE} test-results && exit 1; fi
  tests: all
 -	cd build && make $@
-+	cd build && @MAKE@ $@
++	cd build && ${MAKE} $@
  test-future: all
 -	cd build && make -k $@
-+	cd build && @MAKE@ -k $@
++	cd build && ${MAKE} -k $@
  gcoverage: all
 -	cd build && make $@
-+	cd build && @MAKE@ $@
++	cd build && ${MAKE} $@
  
  include $(shell rospack find mk)/buildtest.mk

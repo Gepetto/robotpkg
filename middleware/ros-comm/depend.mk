@@ -18,7 +18,7 @@ SYSTEM_SEARCH.ros-comm=\
 
 DEPEND_USE+=		ros-comm
 
-DEPEND_ABI.ros-comm?=	ros-comm>=1.4.0
+DEPEND_ABI.ros-comm?=	ros-comm>=1.6.0
 DEPEND_DIR.ros-comm?=	../../middleware/ros-comm
 
 endif # ROS_COMM_DEPEND_MK -------------------------------------------------
