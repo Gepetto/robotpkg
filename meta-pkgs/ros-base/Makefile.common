@@ -68,24 +68,27 @@ post-extract:
 do-configure:
 	@${DO_NADA}
 
+# compile in build-tree (for PLIST generation) and install-tree (because .pyc
+# files record the path they were compiled from).
 post-build: python-compile-all
+post-install: python-compile-all(${PREFIX})
 
 # install files from PLIST_SRC
+include ../../mk/plist/plist-vars.mk
 do-install:
-	${RUN}cd ${WRKDIR} && 						\
-	${AWK} '$(if $(filter dylib,${_OPSYS_SHLIB_TYPE}),		\
-	  /.*\/lib[^\/]+\.so$$/ {					\
-		sub("\\.so$$", ".dylib"); print;			\
-	  })								\
-	  /^[^@]/ {print}' ${PLIST_SRC} > ${WRKDIR}/.install_list;	\
-	${INSTALL_LOGFILTER} ${SH} -c 					\
-	 	'${PAX} -vrwp p ${PREFIX} < ${WRKDIR}/.install_list'
+	${RUN}cd ${WRKDIR} &&						\
+	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK} <${PLIST_SRC} |\
+	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK} |	\
+	${AWK} '/^[^@]/ {print}' >${WRKDIR}/.install_list;		\
+	${INSTALL_LOGFILTER} ${SH} -c					\
+		'${PAX} -vrwp p ${PREFIX} < ${WRKDIR}/.install_list'
 
 # semi-automatic PLIST generation, from ${WRKSRC}!
 PRINT_PLIST_FILES_CMD=					\
 	${FIND} ${WRKSRC} \(				\
 		   -name 'Makefile'			\
 		-o -name 'CMakeLists.txt'		\
+		-o -name '*.orig'			\
 		-o -name '*.cpp'			\
 		-o -path '*/build'			\
 		-o -path '*/test'			\
