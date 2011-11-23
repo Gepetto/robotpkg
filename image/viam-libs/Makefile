@@ -2,8 +2,8 @@
 # Created:			Anthony Mallet on Fri, 14 Mar 2008
 #
 
-include ../../image/viam-libs/Makefile.common
 PKGREVISION=		1
+include ../../image/viam-libs/Makefile.common
 
 BUILD_TARGET=		all
 INSTALL_TARGET=		install
