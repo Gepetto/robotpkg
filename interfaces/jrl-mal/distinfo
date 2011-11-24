@@ -1,8 +1,3 @@
-SHA1 (jrl-mal-1.19.3.tar.gz) = cc5abd342556e7c576a103a0f985bb1121e6dcb9
-RMD160 (jrl-mal-1.19.3.tar.gz) = 59947071c8c2361e5c7a3abdc3d25e0c98b66bca
-Size (jrl-mal-1.19.3.tar.gz) = 83188 bytes
-SHA1 (patch-aa) = 857e7c862725ca90580103d5f9b2826e00563318
-SHA1 (patch-ab) = 0e8904ca1810450249e800cfa099c314824e01fa
-SHA1 (patch-ac) = ee3fe2b6e86fb0d6ed749ea9a286372778e0f5a5
-SHA1 (patch-ad) = d79212940469f5849cf5460f330d48a24365185a
-SHA1 (patch-ae) = e3d7375538b00ada4b4bf7b3419f6676d94c1ea5
+SHA1 (jrl-mal-1.19.4.tar.gz) = 0591cda2c10ed5c10faab26fb8bde3bbecff5b33
+RMD160 (jrl-mal-1.19.4.tar.gz) = a2f91bebdee9a01d639763f2c5502de8388b72d4
+Size (jrl-mal-1.19.4.tar.gz) = 83089 bytes
