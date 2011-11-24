@@ -8,7 +8,7 @@ VERSION=	1.16.2
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=abstract-robot-dynamics/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}abstractRobotDynamics
+MASTER_REPOSITORY=	git git@github.com:laas/abstract-robot-dynamics.git
 
 DOXYGEN_PLIST_DIR+=	share/doc/abstract-robot-dynamics
 
