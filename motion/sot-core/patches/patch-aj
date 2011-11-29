@@ -1,0 +1,10 @@
+--- include/CMakeLists.txt~	2011-06-21 20:37:45.000000000 +0200
++++ include/CMakeLists.txt	2011-11-29 14:20:33.308759820 +0100
+@@ -49,6 +49,7 @@
+   sot/core/vector-quaternion.hh
+   sot/core/vector-roll-pitch-yaw.hh
+   sot/core/feature-point6d.hh
++  sot/core/feature-posture.h
+   sot/core/feature-vector3.hh
+   sot/core/feature-abstract.hh
+   sot/core/feature-generic.hh
