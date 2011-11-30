@@ -1,8 +1,8 @@
 @comment Fri Jul 8 17:28:32 CEST 2011
 bin/openhrp-shell
-include/dynamic_graph/sot/openhrp/config.hh
-include/dynamic_graph/sot/openhrp/deprecated.hh
-include/dynamic_graph/sot/openhrp/warning.hh
+include/sot/openhrp/config.hh
+include/sot/openhrp/deprecated.hh
+include/sot/openhrp/warning.hh
 lib/libopenhrp.so
 lib/libopenhrp.so.${PKGVERSION}
 lib/pkgconfig/sot-openhrp.pc

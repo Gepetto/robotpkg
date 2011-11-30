@@ -1,0 +1,12 @@
+--- cmake/python.cmake~	2011-02-01 14:29:07.000000000 +0100
++++ cmake/python.cmake	2011-11-30 11:38:27.013964878 +0100
+@@ -64,9 +64,6 @@
+   # Installation
+   #
+ 
+-  EXEC_PROGRAM(${PYTHON_EXECUTABLE} ARGS "-c \"from distutils import sysconfig; print sysconfig.get_python_lib(0,0,prefix='')\""
+-    OUTPUT_VARIABLE PYTHON_SITELIB)
+-
+   SET(PYTHON_INSTALL_DIR ${PYTHON_SITELIB}/dynamic_graph/${SUBMODULENAME})
+ 
+   INSTALL(TARGETS ${PYTHON_MODULE}
