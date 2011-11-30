@@ -1,16 +1,15 @@
 @comment Fri Jul 8 10:26:53 CEST 2011
-include/sot-core/config.hh
-include/sot-core/deprecated.hh
-include/sot-core/warning.hh
 include/sot/core/additional-functions.hh
 include/sot/core/api.hh
 include/sot/core/binary-int-to-uint.hh
 include/sot/core/binary-op.hh
 include/sot/core/clamp-workspace.hh
 include/sot/core/com-freezer.hh
+include/sot/core/config.hh
 include/sot/core/constraint.hh
 include/sot/core/contiifstream.hh
 include/sot/core/debug.hh
+include/sot/core/deprecated.hh
 include/sot/core/derivator.hh
 include/sot/core/device.hh
 include/sot/core/exception-abstract.hh
@@ -80,6 +79,7 @@ include/sot/core/vector-roll-pitch-yaw.hh
 include/sot/core/vector-rotation.hh
 include/sot/core/vector-to-rotation.hh
 include/sot/core/vector-utheta.hh
+include/sot/core/warning.hh
 include/sot/core/weighted-sot.hh
 lib/libsot-core.so
 lib/libsot-core.so.${PKGVERSION}
