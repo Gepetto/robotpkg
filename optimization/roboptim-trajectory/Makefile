@@ -16,6 +16,7 @@ MAINTAINER=	roboptim-user@lists.sourceforge.net
 USE_LANGUAGES+= c c++
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-trajectory
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=	--docdir=${PREFIX}/share/doc/roboptim-trajectory
 
 INCLUDE_DIRS.boost-headers=include
 
