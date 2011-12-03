@@ -44,8 +44,14 @@ SUBST_FILES.interp+=	Lib/*.py Lib/*/*.py Lib/*/*/*.py
 SUBST_SED.interp=	'1s|.*python[^ \t]*|\\\#!${PREFIX}/bin/python3.2|'
 
 # python sys.platform name
-PY_PLATNAME=\
-  $(call tolower,${OS_KERNEL})$(word 1,$(subst ., ,${OS_KERNEL_VERSION}))
+include ../../mk/robotpkg.prefs.mk
+ifeq (Linux,${OS_KERNEL})
+  # On Linux, platform is linux2 even with linux-3.x kernel ...
+  PY_PLATNAME=linux2
+else
+  PY_PLATNAME=\
+    $(call tolower,${OS_KERNEL})$(word 1,$(subst ., ,${OS_KERNEL_VERSION}))
+endif
 PLIST_SUBST+=		PY_PLATNAME=${PY_PLATNAME}
 PRINT_PLIST_AWK_SUBST+= gsub("${PY_PLATNAME}/", "$${PY_PLATNAME}/");
 
