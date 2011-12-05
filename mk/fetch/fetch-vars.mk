@@ -69,9 +69,9 @@ FETCH_METHOD?=		archive
 # files located via URLs.
 # Possible: tnftp, cvs, git, svn, manual, custom
 # Default: tnftp
-ifeq (,$(filter archive cvs git svn manual custom,${FETCH_METHOD}))
+ifeq (,$(filter archive cvs git mercurial svn manual custom,${FETCH_METHOD}))
   PKG_FAIL_REASON+= "FETCH_METHOD for ${PKGNAME} must be one of"
-  PKG_FAIL_REASON+= "	archive cvs git svn manual custom"
+  PKG_FAIL_REASON+= "	archive cvs git mercurial svn manual custom"
 endif
 
 # Default archive extension
@@ -121,6 +121,13 @@ ifeq (git,$(strip ${FETCH_METHOD}))
   DEPEND_METHOD.git+=	bootstrap
 endif
 
+ifeq (mercurial,${FETCH_METHOD})
+  _FETCH_CMD=			${HG}
+
+  _FETCH_DEPEND=		mk/sysdep/mercurial.mk
+  DEPEND_METHOD.mercurial+=	bootstrap
+endif
+
 ifeq (svn,$(strip ${FETCH_METHOD}))
   _FETCH_CMD=		${SVN}
 
@@ -164,8 +171,9 @@ FETCH_MESSAGE?=\
 
 # Fetch logfile
 FETCH_LOGFILE?=		${WRKDIR}/.fetch.log
-FETCH_LOGFILTER?=	${_LOGFILTER} ${_LOGFILTER_FLAGS} \
-	$(if $(filter cvs git svn,${FETCH_METHOD}), -l ${FETCH_LOGFILE},-n) \
+FETCH_LOGFILTER?=	${_LOGFILTER} ${_LOGFILTER_FLAGS}	\
+	$(if $(filter cvs git mercurial svn,			\
+		${FETCH_METHOD}), -l ${FETCH_LOGFILE},-n)	\
 	--
 
 include ${ROBOTPKG_DIR}/mk/fetch/sites.mk

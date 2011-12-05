@@ -130,8 +130,8 @@ self="${0##*/}"
 
 usage() {
     ${ECHO} 1>&2	\
-	"usage: $self [-m archive|cvs|git|svn] [-e extract_dir] [-c]"	\
-	"[-f distinfo] [-r] file site ..."
+	"usage: $self [-m archive|cvs|git|mercurial|svn]"	\
+	" [-e extract_dir] [-c] [-f distinfo] [-r] file site ..."
 }
 
 # Process optional arguments
@@ -322,6 +322,13 @@ while ${TEST} $# -gt 0; do
 			archive --prefix=$extract/ $rev $module |	\
 			${GZIP} -c >$file
 		    ;;
+
+		mercurial)
+                    ${ECHO} $fetch_cmd clone $repo $extract
+                    $fetch_cmd -v -y --debug clone -U $repo $extract &&
+                    $fetch_cmd -v -y --debug -R $extract archive	\
+                        -r $rev -p $extract/ -t tar - | ${GZIP} -c >$file
+                    ;;
 
 		svn)
 		    ${TEST} -n "$rev" && rev="-r $rev"

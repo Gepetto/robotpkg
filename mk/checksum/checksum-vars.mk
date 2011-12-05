@@ -1,4 +1,3 @@
-# $LAAS: checksum-vars.mk 2011/03/02 18:53:54 mallet $
 #
 # Copyright (c) 2006-2011 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
@@ -55,8 +54,8 @@ _PATCH_DIGEST_ALGORITHMS?=	SHA1
 _CONF_DIGEST_ALGORITHMS?=	SHA1
 
 # Archives that are retrived from a repository are digested with archive's
-# metadata reset to know values (owner/group id, mtime, dev, umask).
-ifneq (,$(filter cvs git svn,${FETCH_METHOD}))
+# metadata reset to known values (owner/group id, mtime, dev, umask).
+ifneq (,$(filter cvs git mercurial svn,${FETCH_METHOD}))
   _DIGEST_ARGS+=	-c
 endif
 
