@@ -10,6 +10,8 @@ ROS_COMMENT=			communication packages
 ROS_INSTALLATION_SUBDIR=	ros_comm
 NOT_FOR_PLATFORM=
 
+BUILD_ROS_PACKAGE=		ros_comm
+
 include ../../meta-pkgs/ros-base/Makefile.common
 FETCH_METHOD=			svn
 

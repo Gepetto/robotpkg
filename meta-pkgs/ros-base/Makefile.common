@@ -50,8 +50,9 @@ ifndef ROS_BOOTSTRAP
   MAKE_ENV+=	ROS_PACKAGE_PATH=${WRKDIR}:${PREFIX}
   MAKE_ENV+=	PYTHONPATH=$(call quote,${PREFIX}/ros/core/roslib/src:${PYTHONPATH})
 
+  BUILD_ROS_PACKAGE?=${ROS_PACKAGE}
   BUILD_MAKE_CMD=${SETENV} ${MAKE_ENV} ${PREFIX}/ros/bin/rosmake
-  BUILD_MAKE_CMD+=--no-rosdep -i -V --disable-logging ${ROS_INSTALLATION_SUBDIR}
+  BUILD_MAKE_CMD+=--no-rosdep -i -V --disable-logging ${BUILD_ROS_PACKAGE}
   ifneq (,$(call isno,${MAKE_JOBS_SAFE}))
     BUILD_MAKE_CMD+=--pjobs=1
   else ifneq (,$(MAKE_JOBS))
@@ -64,7 +65,8 @@ ifndef ROS_BOOTSTRAP
 endif # ROS_BOOTSTRAP
 
 post-extract:
-	cd ${WRKDIR} && ${LN} -s ${WRKSRC} ${ROS_INSTALLATION_SUBDIR}
+	cd ${WRKDIR} && ${MKDIR} $(dir ${ROS_INSTALLATION_SUBDIR}) &&	\
+	${LN} -s ${WRKSRC} ${ROS_INSTALLATION_SUBDIR}
 
 do-configure:
 	@${DO_NADA}
@@ -93,6 +95,7 @@ PRINT_PLIST_FILES_CMD=					\
 		-o -name '*.cpp'			\
 		-o -path '*/build'			\
 		-o -path '*/test'			\
+		-o -path '*/.hg*'			\
 	 \) -prune -o \! -type d -print |		\
 	${SED} -e 's|${WRKSRC}|${PREFIX}/${ROS_INSTALLATION_SUBDIR}|g';
 
