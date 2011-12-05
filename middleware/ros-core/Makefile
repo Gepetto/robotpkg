@@ -12,6 +12,7 @@ ROS_INSTALLATION_SUBDIR=	ros
 ROS_BOOTSTRAP=			yes
 
 include ../../meta-pkgs/ros-base/Makefile.common
+FETCH_METHOD=			svn
 
 # Build environment and tool
 MAKE_ENV+=	PATH=$(call quote,${WRKSRC}/bin:${PATH})

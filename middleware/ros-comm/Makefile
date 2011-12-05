@@ -11,6 +11,7 @@ ROS_INSTALLATION_SUBDIR=	ros_comm
 NOT_FOR_PLATFORM=
 
 include ../../meta-pkgs/ros-base/Makefile.common
+FETCH_METHOD=			svn
 
 include ../../devel/log4cxx/depend.mk
 include ../../middleware/ros-core/depend.mk

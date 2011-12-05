@@ -8,8 +8,9 @@ ROS_INSTALLATION_SUBDIR?=	undefined
 
 DISTNAME=			ros-${ROS_PACKAGE}-${PKGVERSION_NOREV}
 MASTER_SITE_ROS=	https://code.ros.org/svn/ros/stacks/
-MASTER_SITE_ROS_PKG=https://code.ros.org/svn/ros-pkg/stacks/
-FETCH_METHOD=		svn
+MASTER_SITE_ROS_PKG=	https://code.ros.org/svn/ros-pkg/stacks/
+MASTER_SITE_ROS_KFORGE=	https://kforge.ros.org/
+FETCH_METHOD=		mercurial
 
 CATEGORIES?=	middleware
 MAINTAINER?=	openrobots@laas.fr
