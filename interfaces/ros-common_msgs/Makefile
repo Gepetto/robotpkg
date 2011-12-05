@@ -1,5 +1,5 @@
-# robotpkg Makefile for:	middleware/ros-comm
-# Created:			Anthony Mallet on Tue, 18 Jan 2011
+# robotpkg Makefile for:	interfaces/ros-common_msgs
+# Created:			Anthony Mallet on Wed, 23 Nov 2011
 #
 
 PKGVERSION=	1.6.0
