@@ -1,0 +1,16 @@
+Deal with installation rpath
+
+--- actionlib/CMakeLists.txt~	2011-10-20 01:57:01.000000000 +0200
++++ actionlib/CMakeLists.txt	2011-12-05 15:00:21.906379628 +0100
+@@ -28,6 +28,11 @@
+ rosbuild_add_library(${PROJECT_NAME} src/connection_monitor.cpp
+                                      src/goal_id_generator.cpp)
+ 
++# This links all executables defined with rosbuild_add_executable with
++# the correct rpath (thanks to robotpkg patched version of
++# rosbuild_add_executable).
++set(${PROJECT_NAME}_LIBRARY_DIRS ${CMAKE_SOURCE_DIR}/lib)
++
+ include_directories(${PROJECT_SOURCE_DIR}/msg/cpp/)
+ 
+ rosbuild_add_executable(add_two_ints_client test/add_two_ints_client.cpp)

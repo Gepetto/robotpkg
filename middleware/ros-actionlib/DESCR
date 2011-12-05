@@ -1,0 +1,4 @@
+The actionlib package provides a standardized interface interfacing with
+preemptible tasks on top of the standard ROS middleware tools. Examples of this
+include moving the base to a target location, performing a laser scan and
+returning the resulting point cloud, detecting the handle of a door, etc.

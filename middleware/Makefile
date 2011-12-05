@@ -14,6 +14,7 @@ SUBDIR+=	orocos-rtt
 SUBDIR+=	pocolibs
 SUBDIR+=	py-yarp
 SUBDIR+=	robotis-oroyarp
+SUBDIR+=	ros-actionlib
 SUBDIR+=	ros-comm
 SUBDIR+=	ros-core
 SUBDIR+=	yarp
