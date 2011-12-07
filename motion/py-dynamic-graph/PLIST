@@ -1,4 +1,4 @@
-@comment Thu Jul 7 15:44:02 CEST 2011
+@comment Wed Dec 7 21:42:54 CET 2011
 ${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/attrpath${PYTHON_TAG}.pyc
@@ -11,12 +11,15 @@ ${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/script_shortcuts${PYTHON_TAG}.
 ${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/script_shortcuts${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/signal_base${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/signal_base${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/tools${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/tools${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/dynamic_graph/__init__.py
 ${PYTHON_SITELIB}/dynamic_graph/attrpath.py
 ${PYTHON_SITELIB}/dynamic_graph/entity.py
 ${PYTHON_SITELIB}/dynamic_graph/matlab.py
 ${PYTHON_SITELIB}/dynamic_graph/script_shortcuts.py
 ${PYTHON_SITELIB}/dynamic_graph/signal_base.py
+${PYTHON_SITELIB}/dynamic_graph/tools.py
 ${PYTHON_SITELIB}/dynamic_graph/tracer/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/dynamic_graph/tracer/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/dynamic_graph/tracer/__init__.py

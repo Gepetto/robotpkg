@@ -1,13 +1,3 @@
-SHA1 (dynamic-graph-python-2.5.tar.gz) = 1870284bf0074e0a50e29387aa1d95c53b5402e5
-RMD160 (dynamic-graph-python-2.5.tar.gz) = af1fde16e3e25ebe6be746d9843f8a4bd7a1a91d
-Size (dynamic-graph-python-2.5.tar.gz) = 79888 bytes
-SHA1 (patch-aa) = 08bff3c312b791de9688ce627f03ec714cfcbc76
-SHA1 (patch-ab) = a05e97f7b22c6cc41e5caaaa3aa5933a890338b2
-SHA1 (patch-ac) = e517fa4b6931f2a5c44863ebe56f81f688b81fd7
-SHA1 (patch-ad) = efac9b099cc76fa0cd0ed4ed15dca8dd71c895af
-SHA1 (patch-ae) = 88777e6bb3c06193de163a9bfc11607555ec3d0d
-SHA1 (patch-af) = 53656516c85aebbc6062fc0a3f0fb36bf5370969
-SHA1 (patch-ag) = d120efdf960a7678e91a60823e538bacae22508f
-SHA1 (patch-ah) = 69d8f87650f7d64d7d36a7701c677f822b21ed1d
-SHA1 (patch-ai) = 2fe16fd6f0a3f4db0256b0e91cb8198da71438f9
-SHA1 (patch-ba) = 6a3e80ad6e45cb9ca676b212debebe7e749869f9
+SHA1 (dynamic-graph-python-2.5.1.tar.gz) = b8fbafb777d08c60f3255078f753acde9809f99a
+RMD160 (dynamic-graph-python-2.5.1.tar.gz) = 04ff6de244053871f0c2ab643d9c90148e921ea1
+Size (dynamic-graph-python-2.5.1.tar.gz) = 86389 bytes
