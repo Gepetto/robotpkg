@@ -1,13 +1,13 @@
-Do not hardcode -ldl library name (dlopen() is in libc on NetBSD)
+Do not hardcode manual pages destination dir
 
---- src/CMakeLists.txt~	2011-06-21 19:44:23.000000000 +0200
-+++ src/CMakeLists.txt	2011-10-29 13:12:23.000000000 +0200
-@@ -53,7 +53,7 @@
- PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} jrl-mal)
+--- cmake/man.cmake~	2011-03-16 22:49:55.000000000 +0100
++++ cmake/man.cmake	2011-10-29 13:38:23.000000000 +0200
+@@ -48,7 +48,7 @@
+   # Install man page.
+   INSTALL(
+     FILES ${CMAKE_CURRENT_BINARY_DIR}/${NAME}.1.gz
+-    DESTINATION share/man/man1)
++    DESTINATION ${PKGMANDIR}/man1)
  
- IF (UNIX)
--  TARGET_LINK_LIBRARIES(${LIBRARY_NAME} dl pthread)
-+  TARGET_LINK_LIBRARIES(${LIBRARY_NAME} ${CMAKE_DL_LIBS} pthread)
- ENDIF (UNIX)
- 
- TARGET_LINK_LIBRARIES(${LIBRARY_NAME} ${Boost_LIBRARIES})
+   LIST(APPEND LOGGING_WATCHED_VARIABLES
+     POD2MAN
