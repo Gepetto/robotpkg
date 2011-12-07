@@ -13,4 +13,3 @@ include/jrl/mathtools/vector4.hh
 include/jrl/mathtools/vectorn.hh
 include/jrl/mathtools/warning.hh
 lib/pkgconfig/jrl-mathtools.pc
-@dirrm include/jrl/mathtools
