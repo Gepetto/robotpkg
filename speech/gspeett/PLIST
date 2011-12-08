@@ -1,0 +1,12 @@
+@comment Thu Dec 8 18:23:55 CET 2011
+${PYTHON_SITELIB}/gSpeett-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/gspeett/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/gspeett/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/gspeett/${PYTHON_PYCACHE}/gspeett${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/gspeett/${PYTHON_PYCACHE}/gspeett${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/gspeett/${PYTHON_PYCACHE}/speex${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/gspeett/${PYTHON_PYCACHE}/speex${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/gspeett/__init__.py
+${PYTHON_SITELIB}/gspeett/gspeett.py
+${PYTHON_SITELIB}/gspeett/speex.py
+bin/gspeett

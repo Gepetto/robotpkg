@@ -1,0 +1,10 @@
+gSpeett is a simple Python client to the Google Speech-To-Text (unofficial) API.
+
+gSpeett encodes voice from the system microphone using a derivative of the speex
+encoder, send it to Google server, and returns the text on stdout. By default,
+it tries to detect silences to know when to stop recording. You can also
+explicitly specify a record duration. It supports all languages supported by
+the Google service itself (English, French and German have been successfully
+tested). It can also convert pre-recorded FLAC file. As a fancy bonus, it can
+also interface with Google Translate to automatically attempt to translate the
+output to another language.
