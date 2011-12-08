@@ -176,8 +176,11 @@ BUILD_DEFS+=		PYTHON_VERSION
 PYTHON_MAJOR=		$(word 1,$(subst ., ,${PYTHON_VERSION}))
 
 PYTHON_SITELIB=		lib/python${PYTHON_VERSION}/site-packages
-PYTHON_SYSLIBSEARCH=\
-	lib/python{${PYTHON_VERSION},${PYTHON_MAJOR}}/{site,dist}-packages
+_pysyssearch_1=\
+  lib/python{${PYTHON_VERSION},${PYTHON_MAJOR}}/{site,dist}-packages
+_pysyssearch_2=$(if $(filter Ubuntu,${OPSYS}),$(strip \
+	${_comma}share/py$(subst 2,,${PYTHON_MAJOR})shared))
+PYTHON_SYSLIBSEARCH=	{${_pysyssearch_1}${_pysyssearch_2}}
 
 PYVARPREFIX=		$(subst python,PYTHON,${PKG_ALTERNATIVE.python})
 PYTHON_PYCACHE?=	$(or ${${PYVARPREFIX}_PYCACHE},.)
