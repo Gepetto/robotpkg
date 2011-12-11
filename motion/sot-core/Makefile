@@ -2,8 +2,8 @@
 # Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
-VERSION=		2.5
-PKGREVISION=		6
+VERSION=		2.6.0
+PKGREVISION=		
 DISTNAME=		sot-core-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-core/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL}sot-core
@@ -32,11 +32,7 @@ include ../../mk/sysdep/py-sphinx.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
 
-rename-feature-posture:
-	mv ${PREFIX}/include/sot/core/feature-posture.h \
-	${PREFIX}/include/sot/core/feature-posture.hh
-
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
 
-post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/dynamic_graph/sot) rename-feature-posture
+post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/dynamic_graph/sot)

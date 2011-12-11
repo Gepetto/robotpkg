@@ -1,14 +1,4 @@
-SHA1 (sot-core-2.5.tar.gz) = fb753f7bdbe98f073b39e572dc6d66aed9396a72
-RMD160 (sot-core-2.5.tar.gz) = dc579bd029ea0802ce6ea51bf8738cb72ea62d10
-Size (sot-core-2.5.tar.gz) = 275276 bytes
+SHA1 (sot-core-2.6.0.tar.gz) = fd4a32b304706b4fbcc7aba127109e7159c564b5
+RMD160 (sot-core-2.6.0.tar.gz) = 4193b3b8df1894914f3fb0b547a2cc7013194c6d
+Size (sot-core-2.6.0.tar.gz) = 285665 bytes
 SHA1 (patch-aa) = 28df60798a2f36a6b4b26c1043d0913272dd7678
-SHA1 (patch-ab) = 9b2c7c9bdb14ce8ce13673989a9c8bf5007cac88
-SHA1 (patch-ad) = 567ec65fdd6d8388f6bc140c6ec416ff7f11d9d1
-SHA1 (patch-ae) = c3b0a4019bc32b86f5d3787540ffe8bf59431c87
-SHA1 (patch-af) = 14d1e6cb468a5778fe049630fcbda3ed5a882a07
-SHA1 (patch-ag) = c99485ad08174a87f77933ffe029674d94f8ddbe
-SHA1 (patch-ah) = 820643bbbf3f2a52f05c7e021169b8907d355e5e
-SHA1 (patch-ai) = cd8c66d8771b6e6b7295344a95804cde379d2d4d
-SHA1 (patch-aj) = 14fc9d0ce99602891562d6c5f03aa9a4cbac9a10
-SHA1 (patch-ak) = 3adb555b3aca59e75ee41fc1c6ebc2c33cf9102e
-SHA1 (patch-ba) = 3be9b2db43222e7d815fbf55d6a4945bc4029eba
