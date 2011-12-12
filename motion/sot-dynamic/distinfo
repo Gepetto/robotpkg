@@ -1,6 +1,3 @@
-SHA1 (sot-dynamic-2.5.tar.gz) = 8a6cbd1470a6734e43fcecb30a33a2c9718afa96
-RMD160 (sot-dynamic-2.5.tar.gz) = e0f17977c9314521640080416242e38a04aface1
-Size (sot-dynamic-2.5.tar.gz) = 152039 bytes
-SHA1 (patch-aa) = 2a3f4aa45622caf8a37d4c3faa73a239f911c81e
-SHA1 (patch-ab) = c79322644e1bd74cd46d55beed971d8ce09a3901
-SHA1 (patch-ba) = c4984af4a1c9e0b63256f6fe053f730456707387
+SHA1 (sot-dynamic-2.6.0.tar.gz) = a4771d4e5135f3eeb5d3bac3411764cb3fd7a6c4
+RMD160 (sot-dynamic-2.6.0.tar.gz) = 0103f141c443573a1b9eca5b6a65554cc0f22ca3
+Size (sot-dynamic-2.6.0.tar.gz) = 160681 bytes
