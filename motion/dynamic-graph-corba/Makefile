@@ -2,8 +2,8 @@
 # Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
-VERSION=		2.5
-PKGREVISION=		3
+VERSION=		2.5.1
+PKGREVISION=		
 DISTNAME=		dynamic-graph-corba-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-corba/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_LAAS}dynamic-graph-corba

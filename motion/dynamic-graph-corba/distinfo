@@ -1,8 +1,3 @@
-SHA1 (dynamic-graph-corba-2.5.tar.gz) = a9811d3a172aa30656c56b3b820c8b53e71a915b
-RMD160 (dynamic-graph-corba-2.5.tar.gz) = 86c97df184ad4102d63378cf4829cfe3d1fd5885
-Size (dynamic-graph-corba-2.5.tar.gz) = 60531 bytes
-SHA1 (patch-aa) = c79322644e1bd74cd46d55beed971d8ce09a3901
-SHA1 (patch-ab) = 18b483db03a3b677b32a5f5e1c07e392fe279ba8
-SHA1 (patch-ac) = 59f817a340e367027454dcb958e8078fbe780c11
-SHA1 (patch-ad) = 59fc5b48d06615f7b64c67e9ded9aac8d60d514c
-SHA1 (patch-ba) = 3be9b2db43222e7d815fbf55d6a4945bc4029eba
+SHA1 (dynamic-graph-corba-2.5.1.tar.gz) = 60768adf0037888fb6bf475e7461366581e2a580
+RMD160 (dynamic-graph-corba-2.5.1.tar.gz) = 0366ae34a86529b5373389b0f68352e486772777
+Size (dynamic-graph-corba-2.5.1.tar.gz) = 65639 bytes
