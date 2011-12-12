@@ -327,7 +327,7 @@ while ${TEST} $# -gt 0; do
                     ${ECHO} $fetch_cmd clone $repo $extract
                     $fetch_cmd -v -y --debug clone -U $repo $extract &&
                     $fetch_cmd -v -y --debug -R $extract archive	\
-                        -r $rev -p $extract/ -t tar - | ${GZIP} -c >$file
+                        -r $rev -p $extract/ -t tgz $file
                     ;;
 
 		svn)
