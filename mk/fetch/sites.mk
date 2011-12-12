@@ -1,4 +1,3 @@
-# $LAAS: sites.mk 2011/11/17 18:06:52 mallet $
 #
 # Copyright (c) 2006-2007,2009-2011 LAAS/CNRS
 # All rights reserved.
@@ -75,4 +74,4 @@ MASTER_SITE_NETBSD_PKGSRC+=		\
 
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
-	http://softs.laas.fr/openrobots/robotpkg/distfiles/
+	http://homepages.laas.fr/mallet/robotpkg/distfiles/
