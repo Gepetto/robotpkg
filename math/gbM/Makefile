@@ -6,11 +6,17 @@ DISTNAME=	gbM-0.8
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gbM/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gbM
+NOT_FOR_PLATFORM=
 
 MAINTAINER=	daniel.sidobre@laas.fr
 #HOMEPAGE=	softs.laas.fr:/ftp/pub/openrobots/
 COMMENT=	Geometry for 6R arms
 LICENSE=	isc
+
+## GBTCL                                                                                                              
+PKG_SUPPORTED_OPTIONS+=      nogbtcl
+PKG_OPTION_DESCR.nogbtcl=    Only this option is supported on mac
+PKG_OPTION_SET.nogbtcl:=     CONFIGURE_ARGS+=--disable-gbtcl
 
 CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
