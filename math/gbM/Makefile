@@ -3,31 +3,40 @@
 #
 
 DISTNAME=	gbM-0.8
+PKGREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gbM/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gbM
-NOT_FOR_PLATFORM=
 
 MAINTAINER=	daniel.sidobre@laas.fr
 #HOMEPAGE=	softs.laas.fr:/ftp/pub/openrobots/
 COMMENT=	Geometry for 6R arms
 LICENSE=	isc
 
-## GBTCL                                                                                                              
-PKG_SUPPORTED_OPTIONS+=      nogbtcl
-PKG_OPTION_DESCR.nogbtcl=    Only this option is supported on mac
-PKG_OPTION_SET.nogbtcl:=     CONFIGURE_ARGS+=--disable-gbtcl
+NOT_FOR_PLATFORM=	# empty
 
-CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
-CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
-CONFIGURE_ARGS+=SWIG=$(call quote,${SWIG})
+# options
+PKG_SUPPORTED_OPTIONS+=	tcl
+PKG_SUGGESTED_OPTIONS+=	tcl
+PKG_OPTION_DESCR.tcl=	Enable installation of TCL bindings
+
+define PKG_OPTION_SET.tcl
+  CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
+  CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
+  CONFIGURE_ARGS+=SWIG=$(call quote,${SWIG})
+  CONFIGURE_ARGS+=--enable-gbtcl
+
+  include ../../mk/sysdep/tcl.mk
+  include ../../mk/sysdep/tk.mk
+  include ../../devel/swig/depend.mk
+endef
+define PKG_OPTION_UNSET.tcl
+  CONFIGURE_ARGS+=--disable-gbtcl
+endef
 
 pre-configure: autoreconf
 
 include ../../devel/mkdep/depend.mk
-include ../../mk/sysdep/tcl.mk
-include ../../mk/sysdep/tk.mk
-include ../../devel/swig/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/robotpkg.mk

@@ -29,7 +29,7 @@ Darwin, no matter what tcl says).
 -	-L ../src -L ../src/.libs -lgb -L$(TCL_LIBDIR) $(TCL_LIB_FLAGS)
 -
 +	$(TCL_SHLIB_LD) $(TCL_SHLIB_LDFLAGS) -o $(TCLSRCLIB) $(OBJECT_FILES) \
-+	-L../src -L../src/.libs -lgb -L$(TCL_LIBDIR) $(TCL_LIB_FLAGS)
++	-L../src -L../src/.libs -lgb -L$(TCL_LIBDIR) $(TCL_LIBS)
  
 +%.o:   %.c
 +	$(TCL_CC) -c $(CPPFLAGS) $(TCL_SHLIB_CFLAGS) $(CFLAGS) -o $@ $<

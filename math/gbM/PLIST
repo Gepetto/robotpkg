@@ -5,10 +5,10 @@ include/gbM/gb.h
 include/gbM/gbGENOM.h
 include/gbM/gbManip.h
 include/gbM/gbStruct.h
-lib/gb.so
 lib/libgb.la
 lib/pkgconfig/gbM.pc
-share/gbM/gb.tcl
-share/gbM/gbModeles.tcl
-share/gbM/pkgIndex.tcl
-share/gbM/testGb.tcl
+${PLIST.tcl}lib/gb.so
+${PLIST.tcl}share/gbM/gb.tcl
+${PLIST.tcl}share/gbM/gbModeles.tcl
+${PLIST.tcl}share/gbM/pkgIndex.tcl
+${PLIST.tcl}share/gbM/testGb.tcl
