@@ -2,8 +2,8 @@
 # Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
-VERSION=		2.5
-PKGREVISION=		2
+VERSION=		2.5.1
+PKGREVISION=		
 DISTNAME=		sot-openhrp-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-openhrp/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL}sot-openhrp

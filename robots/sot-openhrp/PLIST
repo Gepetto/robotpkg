@@ -1,4 +1,17 @@
-@comment Fri Jul 8 17:28:32 CEST 2011
+@comment Mon Dec 12 13:47:09 CET 2011
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/${PYTHON_PYCACHE}/log${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/${PYTHON_PYCACHE}/log${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/${PYTHON_PYCACHE}/prologue${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/${PYTHON_PYCACHE}/prologue${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/${PYTHON_PYCACHE}/test_reach${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/${PYTHON_PYCACHE}/test_reach${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/__init__.py
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/log.py
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/prologue.py
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/test_reach.py
+${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/wrap.so
 bin/openhrp-shell
 include/sot/openhrp/config.hh
 include/sot/openhrp/deprecated.hh
@@ -6,13 +19,3 @@ include/sot/openhrp/warning.hh
 lib/libopenhrp.so
 lib/libopenhrp.so.${PKGVERSION}
 lib/pkgconfig/sot-openhrp.pc
-${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/__init__.py
-${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/__init__.pyc
-${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/log.py
-${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/log.pyc
-${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/prologue.py
-${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/prologue.pyc
-${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/test_reach.py
-${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/test_reach.pyc
-${PYTHON_SITELIB}/dynamic_graph/sot/openhrp/wrap.so
-@dirrm include/dynamic_graph/sot/openhrp
