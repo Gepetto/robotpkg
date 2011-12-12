@@ -170,7 +170,7 @@ FETCH_MESSAGE?=\
 	)
 
 # Fetch logfile
-FETCH_LOGFILE?=		${WRKDIR}/.fetch.log
+FETCH_LOGFILE?=		${WRKDIR}/fetch.log
 FETCH_LOGFILTER?=	${_LOGFILTER} ${_LOGFILTER_FLAGS}	\
 	$(if $(filter cvs git mercurial svn,			\
 		${FETCH_METHOD}), -l ${FETCH_LOGFILE},-n)	\
