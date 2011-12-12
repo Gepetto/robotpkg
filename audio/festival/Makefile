@@ -14,6 +14,7 @@ LICENSE=		modified-bsd
 DISTFILES=		festival-1.96-beta.tar.gz	\
 			speech_tools-1.2.96-beta.tar.gz
 
+MAKE_JOBS_SAFE=		no
 USE_LANGUAGES+=		c c++
 
 WRKSRC=			${WRKDIR}
