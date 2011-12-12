@@ -11,6 +11,7 @@ MASTER_REPOSITORY=      git ssh://trac.laas.fr/git/robots/softMotion-libs
 
 MAINTAINER=		xavier.broquere@laas.fr
 LICENSE=		gnu-lgpl-v3
+NOT_FOR_PLATFORM=
 
 COMMENT=		SoftMotion Planner Library
 
