@@ -3,7 +3,6 @@
 #
 
 VERSION=		2.5.1
-PKGREVISION=		
 DISTNAME=		dynamic-graph-corba-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-corba/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_LAAS}dynamic-graph-corba
@@ -15,6 +14,10 @@ LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph-corba
+
+CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
+CMAKE_ARGS+=		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
+CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
 include ../../motion/py-dynamic-graph/depend.mk
