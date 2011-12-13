@@ -3,7 +3,7 @@
 #
 
 VERSION=		2.6.0
-PKGREVISION=		
+PKGREVISION=		1
 DISTNAME=		sot-core-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-core/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL}sot-core
@@ -13,15 +13,20 @@ CATEGORIES=	motion
 COMMENT=	Hierarchical task based control of humanoid robots
 LICENSE=	gnu-lgpl-v3
 
-# TODO: split into sot-core and py-sot-core
 USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/sot-core
+
+CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
+CMAKE_ARGS+=		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
+CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
 # Build the package in a separate directory
 CONFIGURE_DIRS=		_build
 CMAKE_ARG_PATH=		..
 
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
 include ../../motion/py-dynamic-graph/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk

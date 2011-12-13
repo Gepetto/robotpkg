@@ -1,0 +1,35 @@
+--- src/sot/solver-hierarchical-inequalities.cpp~	2011-12-09 19:23:00.000000000 +0100
++++ src/sot/solver-hierarchical-inequalities.cpp	2011-12-13 16:45:21.329435386 +0100
+@@ -28,6 +28,7 @@
+ 
+ //#define VP_DEBUG
+ //#define VP_DEBUG_MODE 45
++#include <boost/math/special_functions/fpclassify.hpp>
+ #include <sot/core/debug.hh>
+ 
+ #include <sot/core/solver-hierarchical-inequalities.hh>
+@@ -38,7 +39,6 @@
+ #else /*WIN32*/
+ //isnan
+ # include <float.h>
+-# define isnan _isnan
+ # include <sot/core/utils-windows.hh>
+ #endif /*WIN32*/
+ #define FORTRAN_ID( id ) id##_
+@@ -984,12 +984,14 @@
+           const unsigned int rowi = row-sizee;
+           cs.Ji.assign(bub::row(Jsi,rowi));
+           cs.boundSide = ConstraintMem::BOUND_VOID;
+-          if( (esiBoundSide[rowi]&ConstraintMem::BOUND_INF)&&(!isnan(esiInf(rowi))) )
++          if( (esiBoundSide[rowi]&ConstraintMem::BOUND_INF)&&
++	      (!boost::math::isnan(esiInf(rowi))) )
+             {
+               cs.eiInf=esiInf(rowi);
+               cs.boundSide = (ConstraintMem::BoundSideType)(cs.boundSide|ConstraintMem::BOUND_INF);
+             }
+-          if( (esiBoundSide[rowi]&ConstraintMem::BOUND_SUP)&&(!isnan(esiSup(rowi))) )
++          if( (esiBoundSide[rowi]&ConstraintMem::BOUND_SUP)&&
++	      (!boost::math::isnan(esiSup(rowi))) )
+             {
+               cs.eiSup=esiSup(rowi);
+               cs.boundSide = (ConstraintMem::BoundSideType)(cs.boundSide|ConstraintMem::BOUND_SUP);
