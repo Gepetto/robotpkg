@@ -30,6 +30,8 @@ ifeq (x86_64,${MACHINE_ARCH})
   CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 endif
 
+DEPEND_ABI.python+=	python<3
+
 include ../../motion/dynamic-graph/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
