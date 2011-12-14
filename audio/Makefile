@@ -7,6 +7,7 @@ SUBDIR+=	clone-genom
 SUBDIR+=	festival
 SUBDIR+=	festlex-cmu
 SUBDIR+=	festlex-poslex
+SUBDIR+=	festvox-cmu-us-awb-arctic-hts
 SUBDIR+=	OGIlexicon
 SUBDIR+=	ogi-voice-as-diphone
 SUBDIR+=	speett-genom
