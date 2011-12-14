@@ -1,16 +1,16 @@
-# $Id: Makefile 2010/08/29 18:46:11 tho $
+# robotpkg Makefile for:	audio/festvox-cmu-us-awb-arctic-hts
+# Created:			Anthony Mallet on Wed, 7 May 2008
 #
-
-BROKEN=			Distfile disappeared
 
 DISTNAME=		festvox_cmu_us_awb_arctic_hts
 PKGNAME=		festvox-cmu-us-awb-arctic-hts-20041209
 CATEGORIES=		audio
-MASTER_SITES=		http://festvox.org/packed/festival/latest/
+MASTER_SITES=		http://festvox.org/packed/festival/1.96/
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://festvox.org/index.html
 COMMENT=		CMU ARCTIC voice by AWB
+LICENSE=		modified-bsd
 
 WRKSRC=			${WRKDIR}/festival
 NO_BUILD=		yes
