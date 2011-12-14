@@ -2,8 +2,6 @@
 # Created:			Anthony Mallet on Wed, 7 May 2008
 #
 
-# Authored by Anthony Mallet on Tue May  6 2008
-
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 FESTLEX_CMU_DEPEND_MK:=	${FESTLEX_CMU_DEPEND_MK}+
 
@@ -13,10 +11,17 @@ endif
 
 ifeq (+,$(FESTLEX_CMU_DEPEND_MK)) # ----------------------------------
 
-PREFER.festlex-cmu?=	system
+include ../../audio/festival/depend.mk
+PREFER.festlex-cmu?=	${PREFER.festival}
+
+include ../../mk/robotpkg.prefs.mk
+ifneq (${PREFER.festival},${PREFER.festlex-cmu})
+  PKG_FAIL_REASON+=\
+	"PREFER.festival and PREFER.festlex-cmu must be set to the same value."
+endif
 
 SYSTEM_SEARCH.festlex-cmu=\
-	share/festival/lib/dicts/cmu/cmulex.scm
+	share/festival/{lib/,}dicts/cmu/cmulex.scm
 
 DEPEND_USE+=		festlex-cmu
 
