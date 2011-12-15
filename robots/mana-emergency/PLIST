@@ -1,0 +1,5 @@
+@comment Thu Jun 16 16:48:03 CEST 2011
+bin/fetest
+include/fe/ftdi-emergency.h
+lib/libfe.la
+lib/pkgconfig/felib.pc

@@ -1,0 +1,13 @@
+Add missing CFLAGS for libftdi/usb
+
+--- Makefile.am~	2011-06-14 15:40:09.000000000 +0200
++++ Makefile.am	2011-12-13 15:40:56.000000000 +0100
+@@ -2,7 +2,7 @@
+ 
+ libfe_la_SOURCES = \
+ 	ftdi-emergency.c 
+-
++libfe_la_CFLAGS = $(FELIB_CFLAGS)
+ libfeincludedir = $(includedir)/fe
+ 
+ libfeinclude_HEADERS = \
