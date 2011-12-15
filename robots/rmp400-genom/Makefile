@@ -14,8 +14,6 @@ COMMENT=		GenoM interface module for the Segway RMP400
 
 LICENSE=		isc
 
-USE_LANGUAGES+=		c c++
-
 GENOM_MODULE=		rmp400
 
 PKG_OPTIONS_OPTIONAL_GROUPS=	gyro
