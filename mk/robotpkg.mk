@@ -123,19 +123,6 @@ $(call require-for, bulk su-bulk-%,					\
 	${ROBOTPKG_DIR}/mk/bulk/bulk-vars.mk)
 
 
-# --- optional package facilities ------------------------------------------
-
-# In-place files substitutions
-ifdef SUBST_CLASSES
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/subst.mk)
-endif
-
-# Just-in-time sudo
-ifdef _SU_TARGETS
-  $(call require, ${ROBOTPKG_DIR}/mk/internal/su-target.mk)
-endif
-
-
 # --- users's convenience targets ------------------------------------------
 
 # packages sets
@@ -160,6 +147,16 @@ $(call require-for, headings, ${ROBOTPKG_DIR}/mk/internal/headings.mk)
 #
 # These files must appear near the end of the robotpkg.mk file because they do
 # immediate expansions on variables set before.
+
+# In-place files substitutions
+ifdef SUBST_CLASSES
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/subst.mk)
+endif
+
+# Just-in-time sudo
+ifdef _SU_TARGETS
+  $(call require, ${ROBOTPKG_DIR}/mk/internal/su-target.mk)
+endif
 
 # Resolve all dependencies into the adequate variable depending on the type of
 # dependency.
