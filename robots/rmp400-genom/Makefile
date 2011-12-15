@@ -4,8 +4,7 @@
 
 
 DISTNAME=		rmp400-genom-${VERSION}
-VERSION=		0.4
-PKGREVISION=		1
+VERSION=		0.5
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp400-genom
@@ -15,7 +14,9 @@ COMMENT=		GenoM interface module for the Segway RMP400
 
 LICENSE=		isc
 
-GNU_CONFIGURE=		yes
+USE_LANGUAGES+=		c c++
+
+GENOM_MODULE=		rmp400
 
 PKG_OPTIONS_OPTIONAL_GROUPS=	gyro
 PKG_OPTIONS_GROUP.gyro=			gyro-client gyroKVH1000 gyroKVH5000
@@ -38,14 +39,19 @@ define PKG_OPTION_SET.gyroKVH5000
   GENOM_ARGS += -DGYRO=gyroKVH5000
 endef
 
+PKG_SUPPORTED_OPTIONS+= mana-emergency
+PKG_OPTION_DESCR.mana-emergency= Enable support for Mana emergency stop device
+define PKG_OPTION_SET.mana-emergency
+  include ../../robots/mana-emergency/depend.mk
+  GENOM_ARGS += -DWITH_FELIBS
+endef
+
 define PKG_OPTION_UNSET.api
 	include ../../robots/rmp-libs/depend.mk
 	include ../../motion/contlaw/depend.mk
 endef
 
-GENOM_MODULE=		rmp400
 include ../../architecture/genom/depend.mk
--include ../../wip/mana-emergency/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
