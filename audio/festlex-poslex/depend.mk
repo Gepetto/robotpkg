@@ -24,7 +24,7 @@ endif
 
 SYSTEM_PKG.NetBSD.festlex-poslex=	pkgsrc/audio/festlex-poslex
 SYSTEM_SEARCH.festlex-poslex=\
-	share/festival/lib/dicts/wsj.wp39.poslexR
+	share/festival/{lib/,}dicts/wsj.wp39.poslexR
 
 DEPEND_USE+=		festlex-poslex
 
