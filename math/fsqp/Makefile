@@ -20,13 +20,6 @@ NO_PUBLIC_BIN=	${RESTRICTED}
 USE_LANGUAGES+= c c++
 
 INTERACTIVE_STAGE=	fetch
-FETCH_MESSAGE+=\
-	"${bf}The file ${DISTNAME}${EXTRACT_SUFX} must be put manually into:${rm}"
-FETCH_MESSAGE+= "       ${DISTDIR}/"
-FETCH_MESSAGE+= ""
-FETCH_MESSAGE+= " To get the source code, contact ${MAINTAINER}."
-FETCH_MESSAGE+= " Type \`${MAKE} show-license' for more information."
-
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/fsqp
 
