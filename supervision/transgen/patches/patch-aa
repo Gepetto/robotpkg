@@ -1,0 +1,71 @@
+Remove non-ASCII char from comments, javac on ubuntu-11.10 don't appreciate
+them (by default)
+
+--- interface/IDGenerator.java~	2011-05-17 15:00:57.000000000 +0200
++++ interface/IDGenerator.java	2011-12-20 10:17:32.864788605 +0100
+@@ -2,7 +2,7 @@
+  * $Id: IDGenerator.java,v 1.1 2004/09/30 09:36:44 fpy Exp $
+  *
+  * Author(s):
+- *   - Frédéric Py <fpy@laas.fr>
++ *   - Frederic Py <fpy@laas.fr>
+  *
+  * Creation Date: Aug 31, 2004
+  */
+--- interface/R2CAlert.java~	2011-05-17 15:00:57.000000000 +0200
++++ interface/R2CAlert.java	2011-12-20 10:18:33.712789113 +0100
+@@ -2,7 +2,7 @@
+  * $Id: R2CAlert.java,v 1.1 2004/10/22 21:54:05 fpy Exp $
+  *
+  * Author(s):
+- *   - Frédéric Py <fpy@laas.fr>
++ *   - Frederic Py <fpy@laas.fr>
+  *
+  * Creation Date: Oct 22, 2004
+  */
+--- interface/R2CConnect.java~	2011-05-17 15:00:57.000000000 +0200
++++ interface/R2CConnect.java	2011-12-20 10:19:06.584694542 +0100
+@@ -2,7 +2,7 @@
+  * $Id: R2CConnect.java,v 1.1 2004/08/31 18:30:40 fpy Exp $
+  *
+  * Author(s):
+- *   - Frédéric Py <fpy@laas.fr>
++ *   - Frederic Py <fpy@laas.fr>
+  *
+  * Creation Date: Aug 30, 2004
+  */
+--- interface/R2CInterf.java~	2011-05-17 15:00:57.000000000 +0200
++++ interface/R2CInterf.java	2011-12-20 10:18:21.936789389 +0100
+@@ -1,8 +1,8 @@
+ /* -*- java -*-
+- * $Id: R2CInterf.java,v 1.32 2005/10/17 09:09:47 fpy Exp $
++ * $Id: R2CInterf.java 2011/12/20 10:18:07 mallet $
+  *
+  * Author(s):
+- *   - Frédéric Py <fpy@laas.fr>
++ *   - Frederic Py <fpy@laas.fr>
+  *
+  * Creation Date: Oct 04, 2004
+  */
+--- interface/R2CRange.java~	2011-05-17 15:00:57.000000000 +0200
++++ interface/R2CRange.java	2011-12-20 10:19:25.680789284 +0100
+@@ -2,7 +2,7 @@
+  * $Id: R2CRange.java,v 1.2 2004/11/16 15:05:09 fpy Exp $
+  *
+  * Author(s):
+- *   - Frédéric Py <fpy@laas.fr>
++ *   - Frederic Py <fpy@laas.fr>
+  *
+  * Creation Date: Nov 16, 2004
+  */
+--- interface/R2CSocket.java~	2011-05-17 15:00:57.000000000 +0200
++++ interface/R2CSocket.java	2011-12-20 10:18:50.216789142 +0100
+@@ -2,7 +2,7 @@
+  * $Id: R2CSocket.java,v 1.2 2005/02/09 13:06:15 fpy Exp $
+  *
+  * Author(s):
+- *   - Frédéric Py <fpy@laas.fr>
++ *   - Frederic Py <fpy@laas.fr>
+  *
+  * Creation Date: Oct 04, 2004
+  */
