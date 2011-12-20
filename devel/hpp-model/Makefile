@@ -4,7 +4,7 @@
 
 DISTNAME=	hpp-model-${VERSION}
 PKGNAME=	hpp-model-${VERSION}
-VERSION=	2.0
+VERSION=	2.1
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-model/}
@@ -24,6 +24,7 @@ include ../../mk/sysdep/doxygen.mk
 include ../../path/kineo-pp/depend.mk
 include ../../devel/hpp-kwsio/depend.mk
 include ../../math/jrl-dynamics/depend.mk
+include ../../devel/hpp-util/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
