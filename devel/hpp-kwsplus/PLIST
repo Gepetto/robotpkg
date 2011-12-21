@@ -1,4 +1,4 @@
-@comment Mon Jul 27 11:24:16 CEST 2009
+@comment Wed Dec 21 11:14:44 CET 2011
 include/kwsPlus/directPath/directPathVector.h
 include/kwsPlus/directPath/flicDirectPath.h
 include/kwsPlus/directPath/flicDistance.h
@@ -58,7 +58,3 @@ include/kwsPlus/roadmap/kwsPlusTalkingShooter.h
 include/kwsPlus/util/kitMat3.h
 lib/libkwsPlus.la
 lib/pkgconfig/kwsPlus.pc
-@dirrm include/kwsPlus/util
-@dirrm include/kwsPlus/roadmap
-@dirrm include/kwsPlus/directPath
-@dirrm include/kwsPlus
