@@ -1,9 +1,8 @@
-@comment Sat Feb 27 07:33:02 CET 2010
+@comment Wed Dec 21 14:21:30 CET 2011
 include/hpp/walkplanner/config.hh
+include/hpp/walkplanner/deprecated.hh
 include/hpp/walkplanner/fwd.hh
-include/hpp/walkplanner/io.hh
 include/hpp/walkplanner/planner.hh
+include/hpp/walkplanner/warning.hh
 lib/libhpp-walkplanner.so
-lib/libhpp-walkplanner.so.${PKGVERSION}
 lib/pkgconfig/hpp-walkplanner.pc
-@dirrm include/hpp/walkplanner
