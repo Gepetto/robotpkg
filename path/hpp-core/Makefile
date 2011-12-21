@@ -4,7 +4,7 @@
 
 DISTNAME=	hpp-core-${VERSION}
 PKGNAME=	hpp-core-${VERSION}
-VERSION=	1.15
+VERSION=	2.1
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-core/}
@@ -25,6 +25,7 @@ DOXYGEN_PLIST_DIR+=	share/doc/hpp-core
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
+include ../../devel/hpp-model/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
