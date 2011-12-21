@@ -1,0 +1,12 @@
+--- Makefile.in~	2011-12-21 11:47:06.000000000 +0100
++++ Makefile.in	2011-12-21 13:23:14.607688502 +0100
+@@ -393,8 +393,7 @@
+ 	idl		\
+ 	include		\
+ 	src		\
+-	doc		\
+-	tests
++	doc
+ 
+ 
+ # Regenerate libtool if required, should be included by the

@@ -4,7 +4,7 @@
 
 DISTNAME=	hpp-corbaserver-${VERSION}
 PKGNAME=	hpp-corbaserver-${VERSION}
-VERSION=	1.12
+VERSION=	1.13
 
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-corbaserver/}
@@ -52,9 +52,3 @@ include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk
-
-pre-configure:
-	@if test x"$$RLM_LICENSE" = x; then \
-	  echo 'Error: a Kineo License is required';\
-	  false;\
-	fi

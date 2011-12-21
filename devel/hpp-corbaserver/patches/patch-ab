@@ -1,0 +1,16 @@
+--- src/Makefile.in~	2011-12-21 11:47:06.000000000 +0100
++++ src/Makefile.in	2011-12-21 13:32:25.238687357 +0100
+@@ -472,11 +472,11 @@
+ # Add available warnings flags.
+ AM_CXXFLAGS = $(WARNING_CXXFLAGS)
+ AM_LDFLAGS = $(HPPCORE_LDFLAGS) $(OMNIORB4_LDFLAGS)
+-CLEANFILES = hpp-corbaserver.kab
++CLEANFILES = 
+ DISTCLEANFILES = 
+ EXTRA_DIST = 
+ SUFFIXES = .kab $(am__append_2)
+-BUILT_SOURCES = $(am__append_3) hpp-corbaserver.kab
++BUILT_SOURCES = $(am__append_3)
+ 
+ # Corba server library.
+ lib_LTLIBRARIES = libhpp-corbaserver.la
