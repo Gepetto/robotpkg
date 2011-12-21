@@ -1,8 +1,8 @@
-@comment Wed Aug 5 13:32:23 CEST 2009
+@comment Wed Dec 21 15:28:23 CET 2011
 bin/MTIHardTest
 include/MTI-clients/MTComm.h
 include/MTI-clients/MTI.h
+include/MTI-clients/periodicTimestampEstimator.h
 include/MTI-clients/structMTI.h
 lib/libMTI.la
 lib/pkgconfig/MTI-clients.pc
-@dirrm include/MTI-clients
