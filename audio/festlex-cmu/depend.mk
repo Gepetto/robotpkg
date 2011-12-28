@@ -21,7 +21,7 @@ ifneq (${PREFER.festival},${PREFER.festlex-cmu})
 endif
 
 SYSTEM_SEARCH.festlex-cmu=\
-	share/festival/{lib/,}dicts/cmu/cmulex.scm
+	'share/festival/{lib/,}dicts/cmu/cmulex.scm'
 
 DEPEND_USE+=		festlex-cmu
 
