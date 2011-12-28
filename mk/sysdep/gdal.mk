@@ -18,14 +18,14 @@ DEPEND_ABI.gdal?=		gdal>=1.6
 
 SYSTEM_SEARCH.gdal=	\
 	'bin/gdal-config:p:% --version' \
-	'include/gdal/gdal_version.h' \
+	'include/{gdal/,}gdal_version.h' \
 	'lib/libgdal{,[0-9]*}.so'
 
+SYSTEM_PKG.Debian.gdal=	libgdal1-dev
 SYSTEM_PKG.Fedora.gdal=	gdal-devel
 SYSTEM_PKG.Ubuntu.gdal=	libgdal1-dev
-SYSTEM_PKG.NetBSD.gdal=		pkgsrc/geography/gdal-lib
+SYSTEM_PKG.NetBSD.gdal=	geography/gdal-lib
 
 endif # GDAL_DEPEND_MK -----------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-
