@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2008-2011 LAAS/CNRS
+# Copyright (c) 2008-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -67,7 +67,7 @@ set -e          # exit on errors
 
 : ${ERROR_MSG:=${ECHO}}
 
-: ${SYSLIBDIR:=}
+: ${SYSLIBDIR:=lib}
 : ${SHLIBTYPE:=elf}
 
 self="${0##*/}"
@@ -164,6 +164,24 @@ bracesubst() {
     '
 }
 
+syslibsubst() {
+    # perform SYSLIBDIR substitution: if a file spec starts with lib/
+    # and at least one of the directories $p/${SYSLIBDIR} exists, the lib/
+    # in file spec is changed to a pattern matching all existing
+    # $p/${SYSLIBDIR}/. Otherwise nothing is changed.
+    ${AWK} -v _syslibdir="$_syslibdir" -v p="$1" '
+	BEGIN { split(_syslibdir, dirs); }
+	{
+		for(i=1; i<=NF; i++) {
+			if (match($i, "^" p "/lib/")) {
+				_r=substr($i, RLENGTH+1)
+				for(d in dirs) print p "/" dirs[d] "/" _r;
+			} else print $i;
+		}
+	}
+    '
+}
+
 # Remove /usr in /usr/{bin/,lib}*
 optusr() {
     alt=
@@ -206,6 +224,12 @@ vrepl='y/-/./;q'
 
 for p in `bracesubst $sysprefix`; do
     ${MSG} "searching in $p"
+
+    _syslibdir=
+    for d in ${SYSLIBDIR}; do
+        ${TEST} ! -d "$p/$d" || _syslibdir="$_syslibdir $d"
+    done
+
     flist=
     for fspec in "$@"; do
 	# split file specification into `:' separated fields
@@ -214,21 +238,9 @@ for p in `bracesubst $sysprefix`; do
 	EOF
         if ${TEST} -n "$opt"; then optspec=yes; fi
 
-	# perform SYSLIBDIR substitution: if a file spec starts with lib/
-	# and at least one of the directories $p/${SYSLIBDIR} exists, the lib/
-	# in file spec is changed to a pattern matching all existing
-	# $p/${SYSLIBDIR}/. Otherwise nothing is changed.
-	${TEST} -z "${SYSLIBDIR}" || if ${TEST} "${f#lib/}" != "$f"; then
-            _repl=
-            for d in ${SYSLIBDIR}; do
-                ${TEST} ! -d "$p/$d" || _repl=${_repl:+${_repl},}$d
-            done
-            ${TEST} -z "$_repl" || f="{$_repl}/${f#lib/}"
-	fi
-
 	# iterate over file specs after glob and {,} substitutions and
 	# test existence
-	for match in `bracesubst $p/$f`; do
+	for match in `bracesubst $p/$f | syslibsubst $p`; do
 	    if ! ${TEST} -e "$match"; then
                 # special case: make /usr optional in /usr/{bin,lib}
 		alt=`optusr $match`
@@ -297,7 +309,7 @@ for p in `bracesubst $sysprefix`; do
 	    match=;
 	done
 	if ${TEST} -z "$match"; then
-	    for match in `bracesubst $p/$f`; do
+	    for match in `bracesubst $p/$f | syslibsubst $p`; do
 		for alt in $match `shlibext $match`; do
 		    for alt in $alt `optusr $alt`; do
 			${MSG} "missing:	$alt"
