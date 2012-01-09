@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -47,13 +47,13 @@
 #	configure script.
 #
 
-ifdef GNU_CONFIGURE
+ifneq (,$(call isyes,${GNU_CONFIGURE}))
   include ${ROBOTPKG_DIR}/mk/configure/gnu-configure.mk
 endif
-ifdef USE_CMAKE
+ifneq (,$(call isyes,${USE_CMAKE}))
   include ${ROBOTPKG_DIR}/mk/configure/cmake-configure.mk
 endif
-ifdef USE_QMAKE
+ifneq (,$(call isyes,${USE_QMAKE}))
   include ${ROBOTPKG_DIR}/mk/configure/qmake-configure.mk
 endif
 
