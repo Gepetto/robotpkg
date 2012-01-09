@@ -5,7 +5,7 @@ DISTNAME=		visp-${PKGVERSION_NOREV}
 PKGVERSION=		2.4.4
 
 CATEGORIES=		image devel
-MASTER_SITES=		http://gforge.inria.fr/frs/download.php/25154/
+MASTER_SITES=		https://gforge.inria.fr/frs/download.php/25154/
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.irisa.fr/lagadic/visp/
