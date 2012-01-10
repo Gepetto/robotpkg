@@ -229,6 +229,7 @@ for p in `bracesubst $sysprefix`; do
     for d in ${SYSLIBDIR}; do
         ${TEST} ! -d "$p/$d" || _syslibdir="$_syslibdir $d"
     done
+    : ${_syslibdir:=lib}
 
     flist=
     for fspec in "$@"; do
