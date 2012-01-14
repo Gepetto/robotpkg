@@ -1,4 +1,5 @@
 @comment Fri Jul 8 10:26:53 CEST 2011
+include/sot/core/abstract-sot-external-interface.hh
 include/sot/core/additional-functions.hh
 include/sot/core/api.hh
 include/sot/core/binary-int-to-uint.hh
