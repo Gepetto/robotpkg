@@ -1,13 +1,15 @@
-Fix configure when /usr/lib64 exists but uname -m is i386
+Fix configure when /usr/lib64 exists but uname -m is i386.
+Look for libGL in /usr/lib/$MACHTYPE-linux-gnu for recent ubuntu.
 
---- opengl.m4~	2010-12-08 21:38:25.000000000 +0100
-+++ opengl.m4	2011-11-02 11:50:35.978705568 +0100
-@@ -32,13 +32,14 @@
+--- opengl.m4.orig	2010-12-08 21:38:25.000000000 +0100
++++ opengl.m4	2012-01-14 16:21:18.000000000 +0100
+@@ -32,15 +32,18 @@
        exit 2;
      fi
      AC_MSG_CHECKING([for OpenGL libraries])
 -    if test -d /usr/lib64; then
-+    if test -d /usr/lib64 -a "`uname -m`" = "x86_64"; then
++    mach=`uname -m | sed 's/i[[3-6]]86/i386/'`
++    if test -d /usr/lib64 -a "$mach" = "x86_64"; then
  	usrlibdir=lib64
      else
  	usrlibdir=lib
@@ -17,4 +19,7 @@ Fix configure when /usr/lib64 exists but uname -m is i386
 +	    $ogl_prefix/${usrlibdir}	\
  	    $ogl_prefix/lib		\
  	    /usr/${usrlibdir}	\
++	    /usr/${usrlibdir}/$mach-linux-gnu	\
  	    $x_libraries		\
+ 	    /usr/X11R6/${usrlibdir}	\
+ 	    /usr/openwin/lib	\
