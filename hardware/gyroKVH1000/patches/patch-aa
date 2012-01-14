@@ -1,0 +1,14 @@
+Must link libgyroKVH1000Hard.so with pocolibs for newer GNU binutils
+
+--- gyroKVH1000/gyroHardLib/Makefile.in~	2010-07-30 15:31:29.000000000 +0200
++++ gyroKVH1000/gyroHardLib/Makefile.in	2012-01-14 18:25:14.000000000 +0100
+@@ -33,7 +33,8 @@
+ all: $(LIB) $(EXE)
+ 
+ $(LIB): $(OBJS)
+-	$(LIBTOOL) --mode=link $(CC) -o $@ -rpath $(LIBDIR) -R$(LIBDIR) $(OBJS)
++	$(LIBTOOL) --mode=link $(CC) -o $@ -rpath $(LIBDIR) -R$(LIBDIR) $(OBJS)\
++	  @POCOLIBS_LIBS@
+ 
+ $(EXE): $(EXE_OBJ) $(LIB)
+ 	$(LIBTOOL) --mode=link $(CC) $(CFLAGS) $(EXE_OBJ) -o $@ $(LDFLAGS) $(LIBTOOL_LINKOPT) \
