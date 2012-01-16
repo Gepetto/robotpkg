@@ -1,0 +1,12 @@
+prefix=@PREFIX@/kineo-2.06
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+moduledir=${prefix}/bin/modules
+debug_suffix=
+
+Name: kineoController
+Description: Layer above KineoWorks and KCD to deal with kppComponents.
+Version: @KPPVERSION@.@KPPPATCH@
+Libs: -Wl,-R${libdir} -L${libdir} -lKineoController -lkprParserXML -lkprParserVRML -lKineoParser -lKineoModuleManager -lKineoModel -lKineoKCDModel -lKineoWorks2Dll -lkcd2Dll -lKwsKcd2Dll -lKineoUtilityDll -ldl -pthread
+Cflags: -I${includedir} -DUNIX

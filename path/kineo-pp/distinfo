@@ -1,6 +1,3 @@
-SHA1 (KPPSDK204502.tgz) = a80edf6ffeafbe368cf3086ec8672188d57870b3
-RMD160 (KPPSDK204502.tgz) = 31cb3bd7b4e063f9454c34426576adcc6ec8a0fd
-Size (KPPSDK204502.tgz) = 95049329 bytes
-SHA1 (patch-aa) = 20d9af0894c191f6681f6819a39f74ff01386bdc
-SHA1 (patch-ab) = d4221bfd1218cda0289dd7db2465fd0b0bb27123
-SHA1 (patch-ac) = 6b1dac8d76f374e440be7abe8888f6755d58800b
+SHA1 (KiteLab-2.06.005_x86_linux_Robotpkg.tgz) = a61b6ccb240d77e35ad215a615208005f41e7114
+RMD160 (KiteLab-2.06.005_x86_linux_Robotpkg.tgz) = a8243ca85253d7e819a1f8b403ff3f97fa9d3ec6
+Size (KiteLab-2.06.005_x86_linux_Robotpkg.tgz) = 91371623 bytes

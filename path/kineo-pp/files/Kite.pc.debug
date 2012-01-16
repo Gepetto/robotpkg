@@ -1,14 +1,13 @@
-prefix=@PREFIX@/kineo
+prefix=@PREFIX@/kineo-2.06
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
-Name: KineoPathPlanner 
+Name: Kite 
 Description: Softare platform with interface and controller for motion planning
 Version: @KPPVERSION@.@KPPPATCH@
 Requires: KineoController
-Libs: -lKineoGUI -lKineoView -lKineoWX
-Debug: -lKineoGUId -lKineoViewd -lKineoWXd
+Libs: -lKineoGUId -lKineoViewd -lKineoWXd
 Cflags: -D__x86__ -D__linux__ -D__OSVERSION__=2 -I${libdir}/wx/include/gtk2-ansi-release-2.8 -DGTK_NO_CHECK_CASTS -D__WXGTK__ -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -DNO_GCC_PRAGMA
 
 
