@@ -18,6 +18,7 @@ SUBDIR+=	hpp-kwsio
 SUBDIR+=	hpp-kwsplus
 SUBDIR+=	hpp-model
 SUBDIR+=	jrl-modelloader
+SUBDIR+=	jsoncpp
 SUBDIR+=	libedit
 SUBDIR+=	log4cxx
 SUBDIR+=	mkdep
