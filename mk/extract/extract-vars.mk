@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -80,11 +80,13 @@ endif
 
 # redefine package name for checkouts
 ifdef _EXTRACT_IS_CHECKOUT
-  ifndef _CHECKOUT_PKGVERSION
+  ifndef CHECKOUT_PKGVERSION
     $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
-    _CHECKOUT_PKGVERSION:=.checkout.$(shell ${_CDATE_CMD} "+%Y%m%d.%H%M%S")
+    CHECKOUT_PKGVERSION:=$(shell ${_CDATE_CMD} "+%Y%m%d%H%M%S")
+    $(eval $(call _export_override,${CURDIR},CHECKOUT_PKGVERSION,${CHECKOUT_PKGVERSION}))
   endif
-  $(eval PKGNAME_NOREV=$(value PKGNAME_NOREV)$(value _CHECKOUT_PKGVERSION))
+  BUILD_DEFS+=CHECKOUT_PKGVERSION
+  PKGREVISION:=$(strip ${PKGREVISION})0${CHECKOUT_PKGVERSION}
 endif
 
 # For DISTFILES definition

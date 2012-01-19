@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -190,14 +190,14 @@ _pkgtag=		$(addprefix ~,$(call concat,$(sort ${PKG_OPTIONS}),+))
 # PKGNAME[_NOREV,_NOTAG] is the package name with version [without revision
 # number, without tag],
 PKGNAME?=		${DISTNAME}
-$(eval PKGNAME_NOREV=	$$(patsubst %${_pkgrevision},%,$$(patsubst	\
+$(eval PKGNAME_NOREV=	$$(patsubst %$${_pkgrevision},%,$$(patsubst	\
 				    %$${_pkgtag},%,$(value PKGNAME))))
 PKGNAME_NOTAG=		${PKGNAME_NOREV}${_pkgrevision}
 PKGNAME=		${PKGNAME_NOTAG}${_pkgtag}
 
 # PKGVERSION[_NOREV] is the package version number [without revision number].
 PKGVERSION?=		$(lastword $(subst -, ,${PKGNAME_NOTAG}))
-$(eval PKGVERSION_NOREV=$$(patsubst %${_pkgrevision},%,$(value PKGVERSION)))
+$(eval PKGVERSION_NOREV=$$(patsubst %$${_pkgrevision},%,$(value PKGVERSION)))
 PKGVERSION_NOTAG=	${PKGVERSION_NOREV}${_pkgrevision}
 PKGVERSION=		${PKGVERSION_NOTAG}${_pkgtag}
 

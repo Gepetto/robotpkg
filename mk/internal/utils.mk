@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2011 LAAS/CNRS
+# Copyright (c) 2007-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -152,10 +152,9 @@ makedirs: ${_COOKIE.wrkdir} ${PKG_DBDIR};
 _MAKEFILE_WITH_RECIPES+=${_COOKIE.wrkdir}
 ${_COOKIE.wrkdir}:
 	${RUN}${MKDIR} ${WRKDIR};					\
-	v="${PKGVERSION_NOTAG}"; v=$${v%.checkout*};			\
 	exec >>${_COOKIE.wrkdir};					\
 	${ECHO} "_COOKIE.wrkdir.date:=`${_CDATE_CMD}`";			\
-	${ECHO} "_COOKIE.wrkdir.pkgversion:=$$v";			\
+	${ECHO} "_COOKIE.wrkdir.pkgversion:=${PKGVERSION_NOREV}";	\
 	${ECHO} "_COOKIE.wrkdir.pkgoptions:=${PKG_OPTIONS}";		\
 	alt='$(foreach _,${PKG_ALTERNATIVES},${PKG_ALTERNATIVE.$_})';	\
 	${ECHO} "_COOKIE.wrkdir.alternatives:=$$alt"

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007,2009-2011 LAAS/CNRS
+# Copyright (c) 2007,2009-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -131,15 +131,10 @@ endif
 ifeq (yes,$(call exists,${_COOKIE.wrkdir}))
   $(call require,${_COOKIE.wrkdir})
 
-  # filter .checkout. Grr.
-  _v_:=$(strip $(if $(filter .checkout,				\
-        $(suffix $(basename $(basename ${PKGVERSION})))),	\
-	$(basename $(basename $(basename ${PKGVERSION}))),	\
-	${PKGVERSION_NOTAG}))
-  ifneq (${_v_},${_COOKIE.wrkdir.pkgversion})
+  ifneq (${PKGVERSION_NOREV},${_COOKIE.wrkdir.pkgversion})
     PKG_FAIL_REASON+= "$${bf}Extracted version mismatch for ${PKGNAME}$${rm}"
     PKG_FAIL_REASON+= "Extracted version:	${_COOKIE.wrkdir.pkgversion}"
-    PKG_FAIL_REASON+= "Current version:		${_v_}"
+    PKG_FAIL_REASON+= "Current version:		${PKGVERSION_NOREV}"
     PKG_FAIL_REASON+= ""
     _wrk_stale:=yes
   endif
