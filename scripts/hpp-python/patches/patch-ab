@@ -1,0 +1,11 @@
+--- configure~	2012-01-19 16:39:04.415011324 +0100
++++ configure	2012-01-19 16:47:11.662986798 +0100
+@@ -2851,7 +2851,7 @@
+ 
+ 
+ 
+-PYTHON_SITELIB=`python -c "from distutils import sysconfig; print sysconfig.get_python_lib(0,0,prefix='')"`
++PYTHON_SITELIB=`python -c "import sys, os; print os.sep.join(['lib', 'python' + sys.version[:3], 'site-packages'])"`
+ 
+ 
+ 

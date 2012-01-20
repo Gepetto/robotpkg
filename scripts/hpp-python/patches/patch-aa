@@ -1,0 +1,11 @@
+--- configure.ac~	2010-12-08 15:46:40.000000000 +0100
++++ configure.ac	2012-01-19 16:37:43.818987241 +0100
+@@ -58,7 +58,7 @@
+ AC_SUBST(HPPCORBASERVER_PREFIX)
+ AC_SUBST(WITH_OPENHRP)
+ 
+-PYTHON_SITELIB=`python -c "from distutils import sysconfig; print sysconfig.get_python_lib(0,0,prefix='')"`
++PYTHON_SITELIB=`python -c "import sys, os; print os.sep.join(['lib', 'python' + sys.version[:3], 'site-packages'])"`
+ AC_SUBST(PYTHON_SITELIB)
+ 
+ 

@@ -1,3 +1,5 @@
 SHA1 (hpp-python-1.2.1.tar.gz) = d4894b8bb1da7dcb6bd78e631c01058b6d5f5d3c
 RMD160 (hpp-python-1.2.1.tar.gz) = 190a8394ed418d636d31f919c167739cfc1fbf18
 Size (hpp-python-1.2.1.tar.gz) = 212643 bytes
+SHA1 (patch-aa) = a3a32a096fd489ed6976c7c819e80468aaa5b37e
+SHA1 (patch-ab) = 48cf41a152b181b9454fb4a82ea9c2c3f44529a2
