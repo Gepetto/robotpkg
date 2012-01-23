@@ -14,7 +14,7 @@ PREFER.abstract-robot-dynamics?=		robotpkg
 
 DEPEND_USE+=				abstract-robot-dynamics
 
-DEPEND_ABI.abstract-robot-dynamics?=	abstract-robot-dynamics>=1.16
+DEPEND_ABI.abstract-robot-dynamics?=	abstract-robot-dynamics>=1.18.0
 DEPEND_DIR.abstract-robot-dynamics?=	../../interfaces/abstract-robot-dynamics
 
 SYSTEM_SEARCH.abstract-robot-dynamics=\
