@@ -73,7 +73,7 @@ COMPILE=	$(CC) $(CPPFLAGS) $(CFLAGS)
 
 all: nbcompat/nbconfig.h $(LIB)
 
-.c.o:
+.c.o: nbcompat/nbconfig.h
 	$(COMPILE) $(DEFS) -c $<
 
 $(LIB): $(OBJS)
