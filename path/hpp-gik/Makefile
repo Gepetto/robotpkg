@@ -4,7 +4,7 @@
 
 DISTNAME=		hpp-gik-${VERSION}
 VERSION=		2.8
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpp-gik/}
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-gik
@@ -25,6 +25,7 @@ include ../../devel/hpp-util/depend.mk
 include ../../interfaces/abstract-gik-task/depend.mk
 include ../../interfaces/abstract-robot-dynamics/depend.mk
 include ../../interfaces/jrl-mal/depend.mk
+include ../../math/boost-numeric-bindings-v1/depend.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
