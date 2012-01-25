@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2006,2008-2011 LAAS/CNRS
+# Copyright (c) 2006,2008-2012 LAAS/CNRS
 # Copyright (c) 2001-2002 Alistair G. Crooks.
 # All rights reserved.
 #
@@ -203,6 +203,22 @@ if [ -n "$CP" ]; then
 else
     check_prog cpprog cp
 fi
+
+
+# --- check compatibility --------------------------------------------------
+
+v=`$gmake --version 2>&1 ||:`
+case "$v" in *"Make 3.80"*)
+  echo "===================================================================="
+  echo "GNU-make>=3.81 is required for robotpkg."
+  echo "Please update your $gmake program. "
+  echo
+  echo "You can use the '--make' option to select another make program."
+  echo "See $0 --help."
+  echo "===================================================================="
+  die '***' Fatal Error
+  ;;
+esac
 
 
 # --- preserve existing settings -------------------------------------------

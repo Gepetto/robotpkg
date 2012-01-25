@@ -44,6 +44,11 @@
 ifndef MK_ROBOTPKG_PREFS
 MK_ROBOTPKG_PREFS:=	defined
 
+# detect obsolete/not working gmake
+ifneq (,$(filter 3.80,${MAKE_VERSION}))
+  $(error robotpkg requires GNU-make>=3.81)
+endif
+
 # compute ROBOTPKG_DIR
 ifndef ROBOTPKG_DIR
   export ROBOTPKG_DIR:=$(firstword $(realpath \
