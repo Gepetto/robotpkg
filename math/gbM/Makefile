@@ -2,14 +2,12 @@
 # Created:			Xavier Broquere on Tue, 10 Mar 2009
 #
 
-DISTNAME=	gbM-0.8
-PKGREVISION=	1
+DISTNAME=	gbM-0.9
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gbM/}
-MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gbM
+MASTER_REPOSITORY= git ssh://git.openrobots.org/git/robots/gbM
 
 MAINTAINER=	daniel.sidobre@laas.fr
-#HOMEPAGE=	softs.laas.fr:/ftp/pub/openrobots/
 COMMENT=	Geometry for 6R arms
 LICENSE=	isc
 

@@ -14,7 +14,7 @@ PREFER.gbM?=	robotpkg
 
 DEPEND_USE+=		gbM
 
-DEPEND_ABI.gbM?=	gbM>=0.7
+DEPEND_ABI.gbM?=	gbM>=0.9
 DEPEND_DIR.gbM?=	../../math/gbM
 
 SYSTEM_SEARCH.gbM=\
