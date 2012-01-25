@@ -3,7 +3,7 @@
 #
 
 
-DISTNAME=		genManip-genom-0.8
+DISTNAME=		genManip-genom-0.9
 CATEGORIES=		manipulation
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=genManip-genom/}
