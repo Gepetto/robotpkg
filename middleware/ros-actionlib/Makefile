@@ -17,4 +17,5 @@ include ../../meta-pkgs/ros-base/Makefile.common
 include ../../interfaces/ros-common_msgs/depend.mk
 include ../../middleware/ros-core/depend.mk
 include ../../middleware/ros-comm/depend.mk
+include ../../mk/sysdep/py-wxpython.mk
 include ../../mk/robotpkg.mk
