@@ -2,21 +2,20 @@
 # Created:			florent@laas.fr on Tue, 28 Apr 2009
 #
 
-VERSION=	0.6
-PKGREVISION=	1
+VERSION=	1.0
+PKGREVISION=
 DISTNAME=	roboptim-core-${VERSION}
-MASTER_SITES=	https://github.com/downloads/laas/roboptim-core/
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
 MASTER_REPOSITORY=git git://github.com/laas/roboptim-core.git
 
 CATEGORIES=	optimization
 COMMENT=	Optimization for robotics: common API to various solvers
-HOMEPAGE=	http://sourceforge.net/projects/roboptim/
+HOMEPAGE=	https://github.com/laas/roboptim-core
 LICENSE=	gnu-lgpl-v3
 MAINTAINER=	roboptim-user@lists.sourceforge.net
 
 USE_LANGUAGES+=		c c++
-GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-boost=${PREFIX.boost-headers}
+CONFIGURE_ARGS+=	-DBOOST_ROOT=${PREFIX.boost-headers}
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
 
 LIBRARY_DIRS.libtool-ltdl=	lib
@@ -28,6 +27,7 @@ BUILD_MAKE_FLAGS+=    GIT_DIR=/dev/null
 
 # --------------------------------------------------------------------
 
+include ../../mk/sysdep/cmake.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
