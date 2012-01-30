@@ -1,3 +1,7 @@
 @comment Tue Nov 17 15:41:19 CET 2009
 include/roboptim/core/plugin/cfsqp.hh
 lib/roboptim-core-cfsqp-plugin.la
+lib/roboptim-core-cfsqp-plugin.so
+lib/roboptim-core-cfsqp-plugin.so.1
+lib/roboptim-core-cfsqp-plugin.so.1.0.1
+lib/roboptim-core-plugin-cfsqp.so
