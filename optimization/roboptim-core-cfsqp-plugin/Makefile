@@ -40,4 +40,5 @@ include ../../mk/sysdep/unzip.mk
 include ../../mk/robotpkg.mk
 
 post-install:
-	$(LN) ${PREFIX}/lib/roboptim-core-cfsqp-plugin.so ${PREFIX}/lib/roboptim-core-plugin-cfsqp.so
+	${RUN} ${RM} ${PREFIX}/lib/roboptim-core-plugin-cfsqp.so
+	$(LN) -s ${PREFIX}/lib/roboptim-core-cfsqp-plugin.so ${PREFIX}/lib/roboptim-core-plugin-cfsqp.so
