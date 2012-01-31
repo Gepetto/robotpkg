@@ -1,15 +1,10 @@
-sed -i is a GNU extension
-
---- build-aux/doxygen.mk~	2010-12-07 16:41:53.000000000 +0100
-+++ build-aux/doxygen.mk	2011-10-10 14:14:39.138456332 +0200
-@@ -120,8 +120,8 @@
- Doxyfile: $(top_srcdir)/build-aux/doxygen/Doxyfile.in 	\
- 	  $(top_builddir)/config.status			\
- 	  Doxyfile.extra
--	@$(top_builddir)/config.status --file="$@":"$<" \
--	&& sed -i -e 's/^#.*//' -e '/^$$/d' "$@"	\
-+	@$(top_builddir)/config.status --file="$@.tmp":"$<"	\
-+	&& sed -e 's/^#.*//' -e '/^$$/d' "$@.tmp" >"$@"	        \
- 	&& cat Doxyfile.extra >> "$@"
+--- CMakeLists.txt.orig	2012-01-31 09:30:16.787611063 +0100
++++ CMakeLists.txt	2012-01-31 09:30:21.967025222 +0100
+@@ -83,7 +83,6 @@
+ HEADER_INSTALL("${HEADERS}")
  
- # Clean rule.
+ ADD_SUBDIRECTORY(src)
+-ADD_SUBDIRECTORY(tests)
+ 
+ SETUP_PROJECT_FINALIZE()
+ SETUP_PROJECT_CPACK()

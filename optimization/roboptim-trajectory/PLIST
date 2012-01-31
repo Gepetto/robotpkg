@@ -31,7 +31,6 @@ include/roboptim/trajectory/visualization/limit-speed.hh
 include/roboptim/trajectory/visualization/speed.hh
 include/roboptim/trajectory/visualization/trajectory.hh
 include/roboptim/trajectory.hh
-lib/libroboptim-trajectory.la
 lib/pkgconfig/roboptim-trajectory.pc
 @dirrm include/roboptim/trajectory/visualization
 @dirrm include/roboptim/trajectory
