@@ -15,7 +15,7 @@ LICENSE=	gnu-lgpl-v3
 MAINTAINER=	roboptim-user@lists.sourceforge.net
 
 USE_LANGUAGES+=		c c++
-CONFIGURE_ARGS+=	-DBOOST_ROOT=${PREFIX.boost-headers}
+CMAKE_ARGS+=		-DBOOST_ROOT=${PREFIX.boost-headers}
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
 
 LIBRARY_DIRS.libtool-ltdl=	lib
