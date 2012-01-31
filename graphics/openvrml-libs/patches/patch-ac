@@ -1,0 +1,13 @@
+Require boost/mpl/if.hpp that seems to be missing for some reason?
+(boost-1.47.0)
+
+--- src/libopenvrml/openvrml/local/error.cpp~	2010-02-13 23:16:38.000000000 +0100
++++ src/libopenvrml/openvrml/local/error.cpp	2012-01-31 19:02:06.620543960 +0100
+@@ -19,6 +19,7 @@
+ //
+ 
+ # include "error.h"
++# include <boost/mpl/if.hpp>
+ # include <boost/multi_index/detail/scope_guard.hpp>
+ # include <boost/ref.hpp>
+ 
