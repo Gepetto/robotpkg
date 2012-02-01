@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Tue, 31 Aug 2010
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		viman-genom-1.5
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viman-genom/}
@@ -28,6 +28,8 @@ include ../../image/artoolkitplus/depend.mk
 include ../../image/opencv/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
+include ../../math/gbM/depend.mk
 include ../../math/t3d/depend.mk
+include ../../manipulation/genManip-genom/depend.mk
 include ../../mk/sysdep/libjpeg.mk
 include ../../mk/robotpkg.mk
