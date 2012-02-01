@@ -3,7 +3,7 @@
 #
 
 VERSION=	1.0
-PKGREVISION=
+PKGREVISION=	1
 DISTNAME=	roboptim-core-${VERSION}
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
 MASTER_REPOSITORY=git git://github.com/laas/roboptim-core.git
@@ -18,6 +18,7 @@ USE_LANGUAGES+=		c c++
 CMAKE_ARGS+=		-DBOOST_ROOT=${PREFIX.boost-headers}
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
 
+INCLUDE_DIRS.libtool-ltdl=	include
 LIBRARY_DIRS.libtool-ltdl=	lib
 RPATH_DIRS.libtool-ltdl=	lib
 
