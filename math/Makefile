@@ -17,6 +17,7 @@ SUBDIR+=	jrl-mathtools
 SUBDIR+=	lapack
 SUBDIR+=	liblbfgs
 SUBDIR+=	meschach
+SUBDIR+=	sensFusion-libs
 SUBDIR+=	t3d
 SUBDIR+=	tvmet
 

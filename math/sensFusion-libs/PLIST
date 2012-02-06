@@ -1,0 +1,10 @@
+@comment Wed Jan 25 35:-56:67 CET 2021
+include/sensFusion-libs/lowPassFilter.hpp
+include/sensFusion-libs/matSup.hpp
+include/sensFusion-libs/matSupSub.hpp
+include/sensFusion-libs/sensException.hpp
+include/sensFusion-libs/sensFlt.hpp
+include/sensFusion-libs/uBLASmatrix.hpp
+include/sensFusion-libs/uLAPACK.hpp
+lib/libsensFusion-libs.so
+lib/pkgconfig/sensFusion-libs.pc

@@ -1,0 +1,6 @@
+Sensor Fusion Library
+
+sensFusion-libs is a C++ library for low-level sensor data fusion:
+1. Low-pass filters for vision and human tracking.
+2. Kalman filters for force sensing and modeling.
+3. Some other nonlinear Beyesian filters are about to be tested too.
