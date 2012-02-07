@@ -1,4 +1,5 @@
-@comment Wed Aug 25 14:42:07 CEST 2010
+@comment Tue Feb 7 10:08:44 CET 2012
+include/hpp/gik/config.hh
 include/hpp/gik/constraint/com-constraint.hh
 include/hpp/gik/constraint/configuration-constraint.hh
 include/hpp/gik/constraint/gaze-constraint.hh
@@ -9,16 +10,20 @@ include/hpp/gik/constraint/plane-constraint.hh
 include/hpp/gik/constraint/pointing-constraint.hh
 include/hpp/gik/constraint/position-constraint.hh
 include/hpp/gik/constraint/prioritized-state-constraint.hh
+include/hpp/gik/constraint/relative-com-constraint.hh
+include/hpp/gik/constraint/relative-transformation-constraint.hh
 include/hpp/gik/constraint/rotation-constraint.hh
 include/hpp/gik/constraint/transformation-constraint.hh
 include/hpp/gik/constraint/vectorizable-constraint.hh
 include/hpp/gik/core/lne-solver.hh
 include/hpp/gik/core/motion-plan-column.hh
 include/hpp/gik/core/motion-plan-element.hh
-include/hpp/gik/core/motion-plan.hh
 include/hpp/gik/core/motion-plan-row.hh
+include/hpp/gik/core/motion-plan.hh
 include/hpp/gik/core/prioritized-motion.hh
+include/hpp/gik/core/solver-basic.hh
 include/hpp/gik/core/solver.hh
+include/hpp/gik/deprecated.hh
 include/hpp/gik/doc.hh
 include/hpp/gik/example/example.hh
 include/hpp/gik/motionplanner/element/com-motion.hh
@@ -47,6 +52,7 @@ include/hpp/gik/task/step-back-task.hh
 include/hpp/gik/task/step-task.hh
 include/hpp/gik/task/whole-body-task.hh
 include/hpp/gik/tools.hh
+include/hpp/gik/warning.hh
 lib/libhpp-gik.so
 lib/libhpp-gik.so.${PKGVERSION}
 lib/pkgconfig/hpp-gik.pc
@@ -54,12 +60,3 @@ share/hpp/gik/preview-controller-10ms.ini
 share/hpp/gik/preview-controller-20ms.ini
 share/hpp/gik/preview-controller-50ms.ini
 share/hpp/gik/preview-controller-5ms.ini
-@dirrm include/hpp/gik/constraint
-@dirrm include/hpp/gik/core
-@dirrm include/hpp/gik/example
-@dirrm include/hpp/gik/motionplanner/element
-@dirrm include/hpp/gik/motionplanner
-@dirrm include/hpp/gik/robot
-@dirrm include/hpp/gik/task
-@dirrm include/hpp/gik
-@dirrm share/hpp/gik

@@ -3,8 +3,8 @@
 #
 
 DISTNAME=		hpp-gik-${VERSION}
-VERSION=		2.8
-PKGREVISION=		2
+VERSION=		2.9
+PKGREVISION=
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hpp-gik/}
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-gik
