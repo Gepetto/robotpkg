@@ -1,0 +1,22 @@
+Use gettimeofday() on all platforms instead of obsolete ftime()
+
+--- LibCore/Time/Wm5Time.cpp~	2011-07-30 06:55:20.000000000 +0200
++++ LibCore/Time/Wm5Time.cpp	2012-01-31 14:15:25.791505978 +0100
+@@ -12,7 +12,7 @@
+ namespace Wm5
+ {
+ 
+-#ifdef __APPLE__
++#if 1
+ #include <sys/time.h>
+ static timeval gsInitial;
+ static bool gsInitializedTime = false;
+@@ -26,7 +26,7 @@
+ //----------------------------------------------------------------------------
+ int64_t GetTimeInMicroseconds ()
+ {
+-#ifdef __APPLE__
++#if 1
+     if (!gsInitializedTime)
+     {
+         gsInitializedTime = true;

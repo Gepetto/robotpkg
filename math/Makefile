@@ -10,6 +10,7 @@ SUBDIR+=	eigen2
 SUBDIR+=	eigen3
 SUBDIR+=	fsqp
 SUBDIR+=	gbM
+SUBDIR+=	geometric-tools
 SUBDIR+=	hrp2-10-optimized
 SUBDIR+=	hrp2-dynamics
 SUBDIR+=	jrl-dynamics
