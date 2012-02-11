@@ -5,11 +5,7 @@
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 BZIP2_DEPEND_MK:=	${BZIP2_DEPEND_MK}+
 
-ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		bzip2
-endif
-
-ifeq (+,$(BZIP2_DEPEND_MK))
+ifeq (+,$(BZIP2_DEPEND_MK)) # ----------------------------------------------
 PREFER.bzip2?=		system
 
 SYSTEM_PKG.Fedora.bzip2=	bzip2-devel
@@ -24,7 +20,7 @@ SYSTEM_SEARCH.bzip2=	\
   # pull-in the user preferences for bzip2 now
   include ../../mk/robotpkg.prefs.mk
 
-  ifeq (inplace+robotpkg,$(strip $(BZIP2_STYLE)+$(PREFER.bzip2)))
+  ifeq (inplace+robotpkg,$(strip $(BZIP2_STYLE)+$(PREFER.bzip2))) # --------
   # This is the "inplace" version of bzip2 package, for bootstrap process
   #
 BZIP2_FILESDIR=	${ROBOTPKG_DIR}/archivers/bzip2/dist
@@ -36,10 +32,12 @@ LIBS+=		-lbz2
 
 post-extract: bzip2-extract
 bzip2-extract:
+	@${STEP_MSG} "Extracting bzip2 in place"
 	${CP} -Rp ${BZIP2_FILESDIR} ${BZIP2_SRCDIR}
 
 pre-configure: bzip2-build
 bzip2-build:
+	@${STEP_MSG} "Building bzip2 in place"
 	${RUN}								\
 	cd ${BZIP2_SRCDIR} && 						\
 	${SETENV} AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS} ${CPPFLAGS}"\
@@ -51,7 +49,11 @@ DEPEND_USE+=		bzip2
 
 DEPEND_ABI.bzip2?=	bzip2
 DEPEND_DIR.bzip2?=	../../archivers/bzip2
-  endif
+  endif # inplace+robotpkg -------------------------------------------------
+endif # BZIP2_DEPEND_MK ----------------------------------------------------
+
+ifeq (+,$(DEPEND_DEPTH))
+  DEPEND_PKG+=		$(filter bzip2,${DEPEND_USE})
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
