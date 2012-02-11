@@ -30,10 +30,10 @@ VERSION:=	$(shell	${AWK} -F "'" '/^PACKAGE_VERSION=/ {print $$2}' \
 			${CURDIR}/dist/configure)
 
 BZIP2_STYLE=		inplace
-include ../../archivers/bzip2/depend.mk
 LIBARCHIVE_STYLE=	inplace
-include ../../archivers/libarchive/depend.mk
 ZLIB_STYLE=		inplace
+include ../../archivers/bzip2/depend.mk
+include ../../archivers/libarchive/depend.mk
 include ../../archivers/zlib/depend.mk
 include ../../mk/robotpkg.mk
 
