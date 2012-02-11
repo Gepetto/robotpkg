@@ -5,10 +5,6 @@
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 LIBFETCH_DEPEND_MK:=	${LIBFETCH_DEPEND_MK}+
 
-ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		libfetch
-endif
-
 ifeq (+,$(LIBFETCH_DEPEND_MK))
 PREFER.libfetch?=	robotpkg
 
@@ -57,6 +53,10 @@ libfetch-build:
   #
 DEPEND_USE+=		libfetch
   endif
+endif
+
+ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=		$(filter libfetch,${DEPEND_USE})
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
