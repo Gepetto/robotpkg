@@ -5,10 +5,6 @@
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 LIBARCHIVE_DEPEND_MK:=	${LIBARCHIVE_DEPEND_MK}+
 
-ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		libarchive
-endif
-
 ifeq (+,$(LIBARCHIVE_DEPEND_MK)) # -----------------------------------------
 
 ifeq (inplace,$(strip $(LIBARCHIVE_STYLE)))
@@ -70,6 +66,10 @@ DEPEND_USE+=		libarchive
 
   include ../../archivers/bzip2/depend.mk
   include ../../archivers/zlib/depend.mk
+endif
+
+ifeq (+,$(DEPEND_DEPTH))
+  DEPEND_PKG+=		$(filter libarchive,${DEPEND_USE})
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
