@@ -3,12 +3,12 @@
 #
 
 DISTNAME=	hpp-walkfootplanner-${VERSION}
-VERSION=	2.3
+VERSION=	2.4
 PKGREVISION=	
 
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-walkfootplanner/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hppWalkFootPlanner
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hpp-walkfootplanner
 
 MAINTAINER=	hpp@laas.fr
 COMMENT=	Collision free walk path planning for a humanoid robot.
