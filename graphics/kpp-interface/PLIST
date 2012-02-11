@@ -1,17 +1,14 @@
-@comment Fri Feb 26 21:18:37 CET 2010
+@comment Sat Feb 11 19:35:34 CET 2012
 include/kppInterface/kppCommandInit.h
 include/kppInterface/kppCommandPlannerPanel.h
-include/kppInterface/kppCommandSetConfig.h
-include/kppInterface/kppCommandSolvePlanner.h
 include/kppInterface/kppCommandStartCorbaServer.h
 include/kppInterface/kppInterface.h
-include/kppInterface/kppPlannerPanelController.h
 include/kppInterface/kppPlannerPanel.h
-include/kppInterface/kwsGraphicRoadmapDelegate.h
+include/kppInterface/kppPlannerPanelController.h
 include/kppInterface/kwsGraphicRoadmap.h
+include/kppInterface/kwsGraphicRoadmapDelegate.h
 lib/modules/${NODENAME}/libkppInterface.kab
 lib/modules/${NODENAME}/libkppInterface.la
 lib/modules/${NODENAME}/libkppInterfaceStartAll.kab
 lib/modules/${NODENAME}/libkppInterfaceStartAll.la
 lib/pkgconfig/kppInterface.pc
-@dirrm include/kppInterface

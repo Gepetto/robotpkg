@@ -4,7 +4,7 @@
 
 DISTNAME=	kppInterface-${VERSION}
 PKGNAME=	kpp-interface-${VERSION}
-VERSION=	1.9.4
+VERSION=	1.10
 
 CATEGORIES=	graphics
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kpp-interface/}
