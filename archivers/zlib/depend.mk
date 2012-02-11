@@ -5,10 +5,6 @@
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 ZLIB_DEPEND_MK:=	${ZLIB_DEPEND_MK}+
 
-ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		zlib
-endif
-
 ifeq (+,$(ZLIB_DEPEND_MK)) # -----------------------------------------
 
 PREFER.zlib?=		system
@@ -40,10 +36,12 @@ LIBS+=		-lz
 
 post-extract: zlib-extract
 zlib-extract:
+	@${STEP_MSG} "Extracting zlib in place"
 	${CP} -Rp ${ZLIB_FILESDIR} ${ZLIB_SRCDIR}
 
 pre-configure: zlib-build
 zlib-build:
+	@${STEP_MSG} "Building zlib in place"
 	${RUN}								\
 	cd ${ZLIB_SRCDIR} && 						\
 	${SETENV} AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS} ${CPPFLAGS}"\
@@ -55,5 +53,9 @@ DEPEND_USE+=		zlib
   endif
 
 endif # ZLIB_DEPEND_MK -----------------------------------------------
+
+ifeq (+,$(DEPEND_DEPTH))
+DEPEND_PKG+=		$(filter zlib,${DEPEND_USE})
+endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
