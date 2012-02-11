@@ -1,0 +1,11 @@
+--- src/problem.cc.orig	2012-02-12 20:15:46.682529556 +0100
++++ src/problem.cc	2012-02-12 20:24:05.690522774 +0100
+@@ -470,7 +470,7 @@
+       CkwsPathShPtr optimizedPath;
+       if (shouldOptimize) {
+ 
+-	if (pathOptimizer()->plan(solutionPath, CkwsPathPlanner::STABLE_ENDS,
++	if (pathOptimizer()->plan(solutionPath, CkwsPathPlanner::STABLE_NONE,
+ 				  optimizedPath)
+ 	    == KD_OK) {
+ 
