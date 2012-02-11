@@ -41,14 +41,14 @@ RPATH_DIRS.zlib+=	lib
 # depend on these with the "inplace" style for bootstrap
 LIBNBCOMPAT_CONFIGURE_ARGS+=	--enable-bsd-getopt --enable-db
 LIBNBCOMPAT_STYLE=	inplace
-include ../../pkgtools/libnbcompat/depend.mk
 ZLIB_STYLE=		inplace
-include ../../archivers/zlib/depend.mk
 BZIP2_STYLE=		inplace
-include ../../archivers/bzip2/depend.mk
 LIBARCHIVE_STYLE=	inplace
-include ../../archivers/libarchive/depend.mk
 LIBFETCH_STYLE=		inplace
+include ../../pkgtools/libnbcompat/depend.mk
+include ../../archivers/zlib/depend.mk
+include ../../archivers/bzip2/depend.mk
+include ../../archivers/libarchive/depend.mk
 include ../../net/libfetch/depend.mk
 
 do-extract:
