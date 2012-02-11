@@ -1,12 +1,12 @@
-@comment Tue Dec 7 11:37:30 CET 2010
+@comment Sat Feb 11 19:05:20 CET 2012
 bin/hpp-corbaserver
+include/hpp/corbaserver.hh
 include/hpp/corbaserver/config.hh
 include/hpp/corbaserver/doc.hh
 include/hpp/corbaserver/fwd.hh
-include/hpp/corbaserver.hh
+include/hpp/corbaserver/openhrp.hh
 include/hpp/corbaserver/server.hh
 lib/libhpp-corbaserver.la
-lib/libhpp-corbaserver.so
 lib/pkgconfig/hpp-corbaserver.pc
 share/idl/hpp/corbaserver/common.idl
 share/idl/hpp/corbaserver/obstacle.idl
