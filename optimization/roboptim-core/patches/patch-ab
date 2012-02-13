@@ -1,0 +1,13 @@
+Fix for -Werror on x86_64
+
+--- include/roboptim/core/finite-difference-gradient.hh~	2012-01-30 21:32:43.000000000 +0100
++++ include/roboptim/core/finite-difference-gradient.hh	2012-02-13 10:35:21.450198318 +0100
+@@ -73,7 +73,7 @@
+     value_type maxDelta_;
+ 
+     /// \brief Component containing the maximum error.
+-    value_type maxDeltaComponent_;
++    size_type maxDeltaComponent_;
+ 
+     /// \brief Allowed threshold.
+     value_type threshold_;

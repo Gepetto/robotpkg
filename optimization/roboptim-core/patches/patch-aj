@@ -1,0 +1,13 @@
+Fix for -Werror on x86_64
+
+--- include/roboptim/core/function.hh~	2012-02-13 12:30:06.568748508 +0100
++++ include/roboptim/core/function.hh	2012-02-13 12:31:20.738767689 +0100
+@@ -283,7 +283,7 @@
+       for (size_type i = 0; i < n; ++i)
+ 	{
+ 	  value_type t =
+-	    getLowerBound (interval) + i * (delta / (n - 1));
++	    getLowerBound (interval) + (value_type)i * (delta / ((value_type)n - 1));
+ 	  if (t > getUpperBound (interval))
+ 	    t = getUpperBound (interval);
+ 	  assert (getLowerBound (interval) <= t

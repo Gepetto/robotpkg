@@ -1,0 +1,13 @@
+Fix for -Werror on x86_64
+
+--- include/roboptim/core/filter/split.hh~	2012-01-30 21:32:43.000000000 +0100
++++ include/roboptim/core/filter/split.hh	2012-02-13 11:45:14.550422332 +0100
+@@ -77,7 +77,7 @@
+ 
+   private:
+     boost::shared_ptr<const T> function_;
+-    unsigned functionId_;
++    size_type functionId_;
+   };
+ 
+   template <typename P, typename C>

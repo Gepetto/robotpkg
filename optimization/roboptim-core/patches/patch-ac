@@ -1,0 +1,22 @@
+Fix for -Werror on x86_64
+
+--- src/finite-difference-gradient.cc~	2012-01-30 21:32:43.000000000 +0100
++++ src/finite-difference-gradient.cc	2012-02-13 10:49:50.355124728 +0100
+@@ -81,7 +81,7 @@
+   {
+     ROBOPTIM_DLLLOCAL void
+     compute_deriv (const Function& adaptee,
+-		   unsigned j,
++		   Function::size_type j,
+ 		   double h,
+ 		   double& result,
+ 		   double& round,
+@@ -92,7 +92,7 @@
+     /// Algorithm from the Gnu Scientific Library.
+     ROBOPTIM_DLLLOCAL void
+     compute_deriv (const Function& adaptee,
+-		   unsigned j,
++		   Function::size_type j,
+ 		   double h,
+ 		   double& result,
+ 		   double& round,

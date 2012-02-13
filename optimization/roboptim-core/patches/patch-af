@@ -1,0 +1,13 @@
+Fix for -Werror on x86_64
+
+--- include/roboptim/core/filter/split.hxx~	2012-01-30 21:32:43.000000000 +0100
++++ include/roboptim/core/filter/split.hxx	2012-02-13 11:40:12.904504062 +0100
+@@ -29,7 +29,7 @@
+     std::string splitName (const T& fct);
+ 
+     template <typename T>
+-    std::string splitName (const T& fct, unsigned functionId)
++    std::string splitName (const T& fct, typename Split<T>::size_type functionId)
+     {
+       boost::format fmt ("%1% (split, function Id = %2%)");
+       fmt % fct.getName () % functionId;
