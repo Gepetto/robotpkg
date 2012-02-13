@@ -1,0 +1,31 @@
+Fix for -Werror on x86_64
+
+--- src/cubic-b-spline.cc~	2012-01-30 22:53:03.000000000 +0100
++++ src/cubic-b-spline.cc	2012-02-13 12:27:08.448935674 +0100
+@@ -75,7 +75,7 @@
+   CubicBSpline::value_type
+   CubicBSpline::Dt () const
+   {
+-    return length () / (nbp_ - 3.);
++    return length () / ((value_type)nbp_ - 3.);
+   }
+ 
+   CubicBSpline::size_type
+@@ -104,7 +104,7 @@
+ 
+     // Non zero basis functions are b_{i-3,3}(t), b_{i-2,3}(t), b_{i-1,3}(t),
+     // b_{i,3}(t).
+-    const value_type t_i = t3 + (i - 3) * Dt;
++    const value_type t_i = t3 + ((value_type)i - 3) * Dt;
+ 
+     const value_type tau_i = t - t_i;
+     const value_type tau_i_2 = tau_i * tau_i;
+@@ -234,7 +234,7 @@
+   CubicBSpline::value_type
+   CubicBSpline::singularPointAtRank (size_type rank) const
+   {
+-    return rank * length () / (nbp_- 3);
++    return (value_type)rank * length () / ((value_type)nbp_- 3);
+   }
+ 
+   CubicBSpline::vector_t

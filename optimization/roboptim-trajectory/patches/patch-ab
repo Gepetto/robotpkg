@@ -1,0 +1,21 @@
+Fix for -Werror on x86_64
+
+--- src/spline-length.cc~	2012-01-30 22:53:03.000000000 +0100
++++ src/spline-length.cc	2012-02-13 12:16:54.077208847 +0100
+@@ -94,7 +94,7 @@
+ 
+     const value_type delta =
+       getUpperBound (interval_) - getLowerBound (interval_);
+-    res[0] *= delta / nDiscretizationPoints_;
++    res[0] *= delta / (value_type)nDiscretizationPoints_;
+     res[0] /= 2.;
+   }
+ 
+@@ -113,6 +113,6 @@
+     foreach (interval_, nDiscretizationPoints_, sumlengthgrad);
+     const value_type delta =
+       getUpperBound (interval_) - getLowerBound (interval_);
+-    grad *= delta / nDiscretizationPoints_;
++    grad *= delta / (value_type)nDiscretizationPoints_;
+   }
+ } // end of namespace roboptim.

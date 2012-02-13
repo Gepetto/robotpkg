@@ -1,0 +1,13 @@
+Fix for -Werror on x86_64
+
+--- include/roboptim/trajectory/cubic-b-spline.hh~	2012-01-30 22:53:03.000000000 +0100
++++ include/roboptim/trajectory/cubic-b-spline.hh	2012-02-13 12:25:05.400617665 +0100
+@@ -115,7 +115,7 @@
+ 
+   private:
+     /// \brief Number of control points.
+-    unsigned int nbp_;
++    size_type nbp_;
+   };
+ 
+   /// @}

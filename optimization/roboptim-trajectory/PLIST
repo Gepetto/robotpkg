@@ -1,8 +1,10 @@
 @comment Sat Feb 27 12:47:02 CET 2010
 include/roboptim/trajectory/anthropomorphic-cost-function.hh
 include/roboptim/trajectory/anthropomorphic-cost-function.hxx
+include/roboptim/trajectory/config.hh
 include/roboptim/trajectory/cubic-b-spline.hh
 include/roboptim/trajectory/cubic-b-spline.hxx
+include/roboptim/trajectory/deprecated.hh
 include/roboptim/trajectory/free-time-trajectory.hh
 include/roboptim/trajectory/free-time-trajectory.hxx
 include/roboptim/trajectory/freeze.hh
@@ -31,6 +33,7 @@ include/roboptim/trajectory/visualization/limit-speed.hh
 include/roboptim/trajectory/visualization/speed.hh
 include/roboptim/trajectory/visualization/trajectory.hh
 include/roboptim/trajectory.hh
+include/roboptim/trajectory/warning.hh
+lib/libroboptim-trajectory.so
+lib/libroboptim-trajectory.so.1.1.0
 lib/pkgconfig/roboptim-trajectory.pc
-@dirrm include/roboptim/trajectory/visualization
-@dirrm include/roboptim/trajectory
