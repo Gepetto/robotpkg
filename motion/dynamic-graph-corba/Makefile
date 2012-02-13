@@ -3,6 +3,7 @@
 #
 
 VERSION=		2.5.1
+PKGREVISION=		1
 DISTNAME=		dynamic-graph-corba-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-corba/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_LAAS}dynamic-graph-corba
@@ -20,6 +21,7 @@ CMAKE_ARGS+=		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
+include ../../motion/dynamic-graph/depend.mk
 include ../../motion/py-dynamic-graph/depend.mk
 include ../../motion/sot-core/depend.mk
 include ../../middleware/omniORBpy/depend.mk
