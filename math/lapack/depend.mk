@@ -18,7 +18,7 @@ DEPEND_USE+=		lapack
 DEPEND_ABI.lapack?=	lapack>=3.1.0
 DEPEND_DIR.lapack?=	../../math/lapack
 
-SYSTEM_SEARCH.lapack=	'lib/liblapack.*'
+SYSTEM_SEARCH.lapack=	'lib/liblapack.{so,[^a]*,a}'
 
 SYSTEM_PKG.Fedora.lapack=	lapack-devel
 SYSTEM_PKG.Ubuntu.lapack=	liblapack-dev
