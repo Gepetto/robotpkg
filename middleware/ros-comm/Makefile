@@ -4,7 +4,7 @@
 
 PKGVERSION=	1.6.6
 PKGREVISION=	1
-MASTER_SITES=	${MASTER_SITE_ROS:=ros_comm/tags/ros_comm-${PKGVERSION}}
+MASTER_SITES=	${MASTER_SITE_ROS:=ros_comm/tags/ros_comm-${PKGVERSION_NOREV}}
 
 ROS_PACKAGE=			comm
 ROS_COMMENT=			communication packages
@@ -13,8 +13,8 @@ NOT_FOR_PLATFORM=
 
 BUILD_ROS_PACKAGE=		ros_comm
 
-include ../../meta-pkgs/ros-base/Makefile.common
 FETCH_METHOD=			svn
+include ../../meta-pkgs/ros-base/Makefile.common
 
 include ../../devel/log4cxx/depend.mk
 include ../../middleware/ros-core/depend.mk
