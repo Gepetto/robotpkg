@@ -1,51 +1,14 @@
-Don't call 'python' blindly and use the correct python program.
+Make sure to use robotpkg idea of PYTHON_EXECUTABLE
 
---- core/rosbuild/private.cmake~	2010-12-31 02:40:39.000000000 +0100
-+++ core/rosbuild/private.cmake	2011-01-19 11:14:43.497665487 +0100
-@@ -74,7 +74,7 @@
- # Check validity of manifest.xml, to avoid esoteric build errors
- macro(_rosbuild_check_manifest)
-   execute_process(
--    COMMAND python -c "import roslib.manifest; roslib.manifest.parse_file('manifest.xml')"
-+    COMMAND @PYTHON@ -c "import roslib.manifest; roslib.manifest.parse_file('manifest.xml')"
-     OUTPUT_VARIABLE _manifest_error
-     ERROR_VARIABLE _manifest_error
-     RESULT_VARIABLE _manifest_failed
-@@ -369,7 +369,7 @@
+--- core/rosbuild/private.cmake~	2012-02-14 11:23:49.295505928 +0100
++++ core/rosbuild/private.cmake	2012-02-14 11:30:43.747505246 +0100
+@@ -15,7 +15,8 @@
+ endmacro(_rosbuild_warn_deprecate_no_prefix)
  
- macro(_rosbuild_get_clock var)
-   execute_process(
--    COMMAND python -c "import time, sys; sys.stdout.write(str(time.time()));"
-+    COMMAND @PYTHON@ -c "import time, sys; sys.stdout.write(str(time.time()));"
-     OUTPUT_VARIABLE ${var}
-     ERROR_VARIABLE _time_error
-     RESULT_VARIABLE _time_failed
-@@ -403,7 +403,7 @@
-     # Call Python to compare the provided time to the latest mtime on all
-     # the files
-     execute_process(
--      COMMAND python -c "import os, sys; sys.stdout.write('1' if set(${_pylist}) != set(${_cached_pylist}) or ${_t} < max(os.stat(f).st_mtime for f in ${_pylist}) else '0');"
-+      COMMAND @PYTHON@ -c "import os, sys; sys.stdout.write('1' if set(${_pylist}) != set(${_cached_pylist}) or ${_t} < max(os.stat(f).st_mtime for f in ${_pylist}) else '0');"
-       OUTPUT_VARIABLE ${var}
-       ERROR_VARIABLE _mtime_error
-       RESULT_VARIABLE _mtime_failed
---- core/rosbuild/public.cmake~ 2011-11-17 22:23:47.000000000 +0100
-+++ core/rosbuild/public.cmake  2011-11-17 22:25:43.000000000 +0100
-@@ -825,7 +825,7 @@
-     # But we set it to the current time, because setting it to zero causes
-     # annoying warning, #3396.
-     execute_process(
--      COMMAND python -c "import os; os.utime('${PROJECT_SOURCE_DIR}/srv_gen/generated', (1, 1))"
-+      COMMAND @PYTHON@ -c "import os; os.utime('${PROJECT_SOURCE_DIR}/srv_gen/generated', (1, 1))"
-       ERROR_VARIABLE _set_mtime_error
-       RESULT_VARIABLE _set_mtime_failed
-       OUTPUT_STRIP_TRAILING_WHITESPACE)
-@@ -862,7 +862,7 @@
-     # But we set it to the current time, because setting it to zero causes
-     # annoying warning, #3396.
-     execute_process(
--      COMMAND python -c "import os; os.utime('${PROJECT_SOURCE_DIR}/msg_gen/generated', (1, 1))"
-+      COMMAND @PYTHON@ -c "import os; os.utime('${PROJECT_SOURCE_DIR}/msg_gen/generated', (1, 1))"
-       ERROR_VARIABLE _set_mtime_error
-       RESULT_VARIABLE _set_mtime_failed
-       OUTPUT_STRIP_TRAILING_WHITESPACE)
+ # look up python interpreter, store in ${PYTHON_EXECUTABLE}
+-find_package(PythonInterp)
++# make sure to use robotpkg idea of PYTHON_EXECUTABLE
++set(PYTHON_EXECUTABLE "$ENV{PYTHON}")
+ 
+ ###############################################################################
+ # Macro to turn a list into a string (why doesn't CMake have this

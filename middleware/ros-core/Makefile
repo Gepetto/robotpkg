@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Wed, 19 Jan 2011
 #
 
-PKGVERSION=	1.6.6
-PKGREVISION=	2
+PKGVERSION=	1.6.8
 MASTER_SITES=	${MASTER_SITE_ROS:=ros/tags/ros-${PKGVERSION}}
 NOT_FOR_PLATFORM=
 
