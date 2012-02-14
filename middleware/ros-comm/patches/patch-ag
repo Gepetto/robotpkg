@@ -1,0 +1,15 @@
+Make sure to encode strings with the default encoding (UTF8 for python3)
+
+diff --git a/test/test_roslib_comm/test/test_roslib_genpy.py b/test/test_roslib_comm/test/test_roslib_genpy.py
+index 282a84a..457bf92 100644
+--- test/test_roslib_comm/test/test_roslib_genpy.py
++++ test/test_roslib_comm/test/test_roslib_genpy.py
+@@ -478,7 +478,7 @@ end += 4
+         # Test Serializers
+         g = string_serializer_generator('foo', 'string', 'var_name', True)
+         self.assertEquals("""length = len(var_name)
+-buff.write(struct.pack('<I%ss'%length, length, var_name))""", '\n'.join(g))
++buff.write(struct.pack('<I%ss'%length, length, var_name.encode()))""", '\n'.join(g))
+ 
+         for t in ['uint8[]', 'byte[]', 'uint8[10]', 'byte[20]']:
+             g = string_serializer_generator('foo', 'uint8[]', 'b_name', True)

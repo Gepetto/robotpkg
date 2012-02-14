@@ -3,6 +3,7 @@
 #
 
 PKGVERSION=	1.6.6
+PKGREVISION=	1
 MASTER_SITES=	${MASTER_SITE_ROS:=ros_comm/tags/ros_comm-${PKGVERSION}}
 
 ROS_PACKAGE=			comm
