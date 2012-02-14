@@ -16,10 +16,10 @@ PREFER.tex-pkg?=	system
 override define _tex-pkg
   PREFER.tex-$(basename $1)?=		$${PREFER.tex-pkg}
   DEPEND_ABI.tex-$(basename $1)?=	tex-$(basename $1)
-  DEPEND_METHODE.tex-$(basename $1)?=	build
+  DEPEND_METHOD.tex-$(basename $1)?=	build
 
   SYSTEM_SEARCH.tex-$(basename $1)=\
-	'bin/kpsewhich:/$1/d;s/^$$$$/missing $1/p:% $1'
+	'{bin/,}kpsewhich:/$1/d;s/^$$$$/missing $1/p:% $1'
 
   SYSTEM_DESCR.tex-$(basename $1)?=	TeX package $1
   SYSTEM_PKG.Fedora.tex-$(basename $1)?=texlive-latex
