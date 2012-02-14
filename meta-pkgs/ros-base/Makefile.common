@@ -73,6 +73,7 @@ do-configure:
 
 # compile in build-tree (for PLIST generation) and install-tree (because .pyc
 # files record the path they were compiled from).
+include ../../mk/robotpkg.prefs.mk # for LOCALBASE (in PREFIX)
 post-build: python-compile-all
 post-install: python-compile-all(${PREFIX})
 
@@ -90,12 +91,13 @@ do-install:
 PRINT_PLIST_FILES_CMD=					\
 	${FIND} ${WRKSRC} \(				\
 		   -name 'Makefile'			\
-		-o -name 'CMakeLists.txt'		\
+		-o -path '${WRKSRC}/*/CMakeLists.txt'	\
 		-o -name '*.orig'			\
 		-o -name '*.cpp'			\
 		-o -path '*/build'			\
 		-o -path '*/test'			\
 		-o -path '*/.hg*'			\
+		-o -path '*/.git*'			\
 	 \) -prune -o \! -type d -print |		\
 	${SED} -e 's|${WRKSRC}|${PREFIX}/${ROS_INSTALLATION_SUBDIR}|g';
 
