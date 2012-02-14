@@ -1,6 +1,6 @@
 @comment Sun Nov 20 19:55:10 CET 2011
-ros_comm/.gitignore
 ros_comm/AUTHORS
+ros_comm/CMakeLists.txt
 ros_comm/clients/cpp/roscpp/ROS_NOBUILD
 ros_comm/clients/cpp/roscpp/cmake/rosbuild2.cmake
 ros_comm/clients/cpp/roscpp/cmake/roscpp.cmake
