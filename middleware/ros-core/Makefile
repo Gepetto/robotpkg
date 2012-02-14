@@ -4,7 +4,7 @@
 
 PKGVERSION=	1.6.8
 PKGREVISION=	1
-MASTER_SITES=	${MASTER_SITE_ROS:=ros/tags/ros-${PKGVERSION}}
+MASTER_SITES=	${MASTER_SITE_ROS:=ros/tags/ros-${PKGVERSION_NOREV}}
 NOT_FOR_PLATFORM=
 
 ROS_PACKAGE=			core
@@ -12,8 +12,8 @@ ROS_COMMENT=			core tools
 ROS_INSTALLATION_SUBDIR=	ros
 ROS_BOOTSTRAP=			yes
 
-include ../../meta-pkgs/ros-base/Makefile.common
 FETCH_METHOD=			svn
+include ../../meta-pkgs/ros-base/Makefile.common
 
 # Build environment and tool
 MAKE_ENV+=	PATH=$(call quote,${WRKSRC}/bin:${PATH})
