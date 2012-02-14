@@ -1,12 +1,9 @@
-===========================================================================
-
-A genom editing mode is available for (x)emacs users in
+A genom editing mode is available for xemacs users in
   ${PREFIX}/share/genom.
+
 In order to use it, you should add the following lines to your (x)emacs
 startup file:
 
   (setq load-path (cons "${PREFIX}/share/genom" load-path))
   (autoload 'genom-mode "genom-mode" "Genom-mode" t)
   (setq auto-mode-alist (cons '("\\.gen$" . genom-mode) auto-mode-alist))
-
-===========================================================================
