@@ -43,6 +43,24 @@ CMAKE_ARGS+=		-DPYTHON_INC=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIB=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_LIBPATH=$(dir ${PYTHON_LIB})
 
+# Options
+
+PKG_SUPPORTED_OPTIONS+=		ffmpeg
+PKG_OPTION_DESCR.ffmpeg:=	Enable ffmpeg support
+define PKG_OPTION_SET.ffmpeg
+  CMAKE_ARGS+=		-DWITH_CODEC_FFMPEG=ON
+  CMAKE_ARGS+=		-DFFMPEG=${PREFIX.libavcodec}
+  include ../../mk/sysdep/libavformat.mk
+  include ../../mk/sysdep/libavcodec.mk
+  include ../../mk/sysdep/libavutil.mk
+  include ../../mk/sysdep/libavdevice.mk
+  include ../../mk/sysdep/libswscale.mk
+endef
+define PKG_OPTION_UNSET.ffmpeg
+  CMAKE_ARGS+=		-DWITH_CODEC_FFMPEG=OFF
+endef
+
+
 DEPEND_ABI.python+=	python>=3.2<3.3
 include ../../mk/sysdep/python.mk
 
