@@ -1,0 +1,14 @@
+Fix find -perm option: +mode is deprecated on linux, not supported on NetBSD,
+and what the script really searches for is actually -perm -100.
+
+--- bin/rosrun~	2012-01-12 00:31:22.000000000 +0100
++++ bin/rosrun	2012-02-20 22:24:00.000000000 +0100
+@@ -10,7 +10,7 @@
+ # The -perm /mode usage is not available in find on the Mac
+ #exepathlist=(`find $pkgdir -name $2 -type f -perm /u+x,g+x,o+x`)
+ # -L: #3475
+-exepathlist=(`find -L $pkgdir -name $2 -type f  -perm +111 ! -regex ".*$pkgdir\/build\/.*"`)
++exepathlist=(`find -L $pkgdir -name $2 -type f  -perm -100 ! -regex ".*$pkgdir\/build\/.*"`)
+ if [[ ${#exepathlist[@]} == 0 ]] ; then
+     echo "[rosrun] Couldn't find executable named $2 below $pkgdir"
+     nonexepathlist=(`find -H $pkgdir -name $2`)
