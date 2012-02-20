@@ -17,6 +17,7 @@ SUBDIR+=	laaswm-libs
 SUBDIR+=	openvrml-libs
 SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
+SUBDIR+=	ros-rx
 SUBDIR+=	Togl
 SUBDIR+=	vcglib
 
