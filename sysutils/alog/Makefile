@@ -12,7 +12,11 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}alog
 
 MAINTAINER=	openrobots@laas.fr
 
-GNU_CONFIGURE=	yes
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	ac_cv_prog_WISH=${WISH}
+
+DEPEND_ABI.tcl=	tcl>=8.5
+DEPEND_ABI.tk=	tk>=8.5
 
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
