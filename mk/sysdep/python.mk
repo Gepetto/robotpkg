@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2011 LAAS/CNRS
+# Copyright (c) 2010-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -204,7 +204,7 @@ PYTHONPATH=$(call prependpaths, $(filter-out ${_PYTHON_SYSPATH},	\
 	    $(or ${PYTHONPATH.${_pkg_}},				\
 	      $(addsuffix ..,$(dir $(filter				\
 	        %/__init__.py %/__init__.pyc,${SYSTEM_FILES.${_pkg_}})))\
-	      $(dir $(filter %.py %.pyc, ${SYSTEM_FILES.${_pkg_}})))))))))
+	     )))))))
 export PYTHONPATH
 
 
