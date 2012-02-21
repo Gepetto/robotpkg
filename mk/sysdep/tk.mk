@@ -1,18 +1,5 @@
-#
-# Copyright (c) 2008-2009,2011 LAAS/CNRS
-# All rights reserved.
-#
-# Redistribution and use  in source  and binary  forms,  with or without
-# modification, are permitted provided that the following conditions are
-# met:
-#
-#   1. Redistributions of  source  code must retain the  above copyright
-#      notice and this list of conditions.
-#   2. Redistributions in binary form must reproduce the above copyright
-#      notice and  this list of  conditions in the  documentation and/or
-#      other materials provided with the distribution.
-#
-#                                      Anthony Mallet on Thu Oct 23 2008
+# robotpkg sysdep/tk.mk
+# Created:			Anthony Mallet on Thu Oct 23 2008
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
@@ -28,10 +15,10 @@ PREFER.tk?=		system
 
 DEPEND_USE+=		tk
 
-DEPEND_ABI.tk?=		tk>=8.0
+DEPEND_ABI.tk?=		tk>=8.4
 
 SYSTEM_SEARCH.tk=	\
-	'bin/wish{,[0-9.]*}'						\
+	'bin/wish{,[0-9]*}:{s/[^0-9.]//g;s/^$$/8.4/;p;}:echo %'		\
 	'lib/{,tk{,[0-9.]*}/}tkConfig.sh:/TK_VERSION/s/[^.0-9]*//gp'	\
 	'include/{,t{k,cl}{,[0-9.]*}/}tk.h:/TK_VERSION/s/[^.0-9]*//gp'
 
