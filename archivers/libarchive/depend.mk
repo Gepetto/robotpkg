@@ -13,9 +13,10 @@ else
   PREFER.libarchive?=	system
 endif
 
-_vregex:=/VERSION_STR.*libarchive/{s/.*archive[ ]*//;s/[^.0-9]//g;p;}
-SYSTEM_SEARCH.libarchive:=		\
-	'include/archive.h:${_vregex}'	\
+_vregex.libarchive:=\
+	/VERSION_STR.*libarchive/{s/.*archive[ ]*//;s/[^.0-9]//g;p;}
+SYSTEM_SEARCH.libarchive:=				\
+	'include/archive.h:${_vregex.libarchive}'	\
 	'lib/libarchive.*'
 
 DEPEND_ABI.libarchive?=	libarchive>=2.5.5
