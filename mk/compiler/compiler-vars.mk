@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -195,11 +195,28 @@ ifeq (yes,$(call isyes,${_USE_RPATH}))
   LDFLAGS+=	${_RPATH_DIRS}
 endif
 
+# Check user specific compile flags, with pattern option settings in the
+# absence of an explicit setting.
+#
+override define _cflags_patternopt
+  ifndef $1.${PKG_OPTIONS_SUFFIX}
+    $1.${PKG_OPTIONS_SUFFIX}:=$$(strip					\
+      $$(foreach _,$$(filter $1.%,$${.VARIABLES}),$$(strip		\
+        $$(if $$(filter $$_,$1.${PKG_OPTIONS_SUFFIX}),$$(value $$_)))))
+  endif
+endef
+$(foreach _,CPPFLAGS CFLAGS CXXFLAGS LDFLAGS,				\
+  $(eval $(call _cflags_patternopt,$_)))
+
 # Append {CPP,C,CXX,LD}FLAGS.<pkg> to the corresponding variable.
-CPPFLAGS+=$(call lappend, $(foreach _pkg_,${DEPEND_USE},${CPPFLAGS.${_pkg_}}))
-CFLAGS+=$(call lappend,$(foreach _pkg_,${DEPEND_USE},${CFLAGS.${_pkg_}}))
-CXXFLAGS+=$(call lappend,$(foreach _pkg_,${DEPEND_USE},${CXXFLAGS.${_pkg_}}))
-LDFLAGS+=$(call lappend, $(foreach _pkg_,${DEPEND_USE},${LDFLAGS.${_pkg_}}))
+CPPFLAGS+=$(call lappend,						\
+  $(foreach _,${DEPEND_USE} ${PKG_OPTIONS_SUFFIX},${CPPFLAGS.$_}))
+CFLAGS+=$(call lappend,							\
+  $(foreach _,${DEPEND_USE} ${PKG_OPTIONS_SUFFIX},${CFLAGS.$_}))
+CXXFLAGS+=$(call lappend,						\
+  $(foreach _,${DEPEND_USE} ${PKG_OPTIONS_SUFFIX},${CXXFLAGS.$_}))
+LDFLAGS+=$(call lappend,						\
+  $(foreach _,${DEPEND_USE} ${PKG_OPTIONS_SUFFIX},${LDFLAGS.$_}))
 
 export CPPFLAGS
 export CFLAGS
