@@ -17,11 +17,12 @@ DEPEND_ABI.py-wxpython?=${PKGTAG.python-}wxpython>=2.8
 
 _pydir.py-wxpython=	${PYTHON_SYSLIBSEARCH}/wx-[0-9]*/wx
 SYSTEM_SEARCH.py-wxpython=						\
+	'include/wx-[0-9].[0-9]/wx/wxPython/wxPython.h'			\
 	'${_pydir.py-wxpython}/__init__.py'				\
 	'${_pydir.py-wxpython}/__version__.py:/VERSION_STRING/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.py-wxpython=	python-wxgtk2.8 (python-${PYTHON_VERSION})
-SYSTEM_PKG.Fedora.py-wxpython=	wxPython (python-${PYTHON_VERSION})
+SYSTEM_PKG.Fedora.py-wxpython=	wxPython-devel (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-wxpython=	x11/py-wxWidgets (python-${PYTHON_VERSION})
 SYSTEM_PKG.Ubuntu.py-wxpython=	python-wxgtk2.8 (python-${PYTHON_VERSION})
 
