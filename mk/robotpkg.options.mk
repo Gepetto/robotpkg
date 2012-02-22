@@ -71,10 +71,10 @@
 #	       PKG_OPTIONS_SET.<setname>.  Options from the sets
 #	       will be automatically added to PKG_SUPPORTED_OPTIONS.
 #
-#	PKG_OPTIONS_VAR
-#		The variable the user can set to enable or disable
-#		options specifically for this package. Defaults to
-#		PKG_OPTIONS.${PKGBASE}
+#	PKG_OPTIONS_SUFFIX
+#		The suffix in PKG_OPTIONS.suffix variable the user can set to
+#		enable or disable options specifically for this
+#		package. Defaults to ${PKGBASE}
 #
 #	PKG_SUGGESTED_OPTIONS (defaults to empty)
 #		This is a list of build options which are enabled by default.
@@ -89,7 +89,7 @@
 #		supports them.  If you prefix an option with `-',
 #		it will be disabled in every package.
 #
-#	${PKG_OPTIONS_VAR}
+#	PKG_OPTIONS.${PKG_OPTIONS_SUFFIX}
 #		This variable can be used to override default
 #		options and options listed in PKG_DEFAULT_OPTIONS.
 #		The syntax is the same as PKG_DEFAULT_OPTIONS.
@@ -108,7 +108,7 @@
 # meaningful for the packages that depend on it.
 #
 # -------------8<-------------8<-------------8<-------------8<-------------
-# PKG_OPTIONS_VAR=		PKG_OPTIONS.wibble
+# PKG_OPTIONS_SUFFIX=		wibble
 # PKG_SUPPORTED_OPTIONS=	foo bar
 # PKG_OPTIONS_OPTIONAL_GROUPS=	robot
 # PKG_OPTIONS_GROUP.robot=	lama hrp2
@@ -200,7 +200,8 @@ ifdef PKG_SUPPORTED_OPTIONS
 
 # Set the default name of the PKG_OPTIONS_VAR
 #
-PKG_OPTIONS_VAR?=	PKG_OPTIONS.${PKGBASE}
+PKG_OPTIONS_SUFFIX?=	${PKGBASE}
+PKG_OPTIONS_VAR?=	PKG_OPTIONS.${PKG_OPTIONS_SUFFIX}
 
 
 # Derive options from a required package name
