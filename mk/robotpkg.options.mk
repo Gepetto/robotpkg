@@ -204,6 +204,15 @@ PKG_OPTIONS_SUFFIX?=	${PKGBASE}
 PKG_OPTIONS_VAR?=	PKG_OPTIONS.${PKG_OPTIONS_SUFFIX}
 
 
+# Check for pattern option settings in the absence of an explicit setting
+#
+ifndef ${PKG_OPTIONS_VAR}
+  ${PKG_OPTIONS_VAR}:=$(strip						\
+    $(foreach _,$(filter PKG_OPTIONS.%,${.VARIABLES}),$(strip		\
+      $(if $(filter $_,${PKG_OPTIONS_VAR}),$(value $_)))))
+endif
+
+
 # Derive options from a required package name
 #
 ifneq (,$(findstring ~,${PKGREQD}))
