@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Thu, 29 Apr 2010
 #
 
-MANA_DATE=	20111028
+MANA_DATE=	20120223
 DISTNAME=	laas-mana-${MANA_DATE}
 
 CATEGORIES=	meta-pkg
@@ -15,6 +15,9 @@ DEPEND_ABI.pilo-genom+=		pilo-genom~rmp400
 
 include ../../robots/rmp400-genom/depend.mk
 DEPEND_ABI.rmp400-genom+=	rmp400-genom~gyroKVH1000
+
+include ../../path/p3d-genom/depend.mk
+DEPEND_ABI.p3d-genom+=		~rmp400
 
 include ../../graphics/gdhe/depend.mk
 include ../../hardware/platine-genom/depend.mk
