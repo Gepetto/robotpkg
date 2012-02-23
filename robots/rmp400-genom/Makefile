@@ -4,6 +4,7 @@
 
 
 DISTNAME=		rmp400-genom-${VERSION}
+PKGREVISION=	1
 VERSION=		0.5
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
@@ -41,7 +42,7 @@ PKG_SUPPORTED_OPTIONS+= mana-emergency
 PKG_OPTION_DESCR.mana-emergency= Enable support for Mana emergency stop device
 define PKG_OPTION_SET.mana-emergency
   include ../../robots/mana-emergency/depend.mk
-  GENOM_ARGS += -DWITH_FELIBS
+  GENOM_ARGS += -DWITH_FELIB
 endef
 
 define PKG_OPTION_UNSET.api
