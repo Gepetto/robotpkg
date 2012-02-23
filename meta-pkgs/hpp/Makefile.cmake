@@ -46,8 +46,6 @@ else
   PKG_OPTION_DESCR.benchmark=	Measure computation times
   PKG_OPTION_SET.benchmark:=	CPPFLAGS+=-DHPP_ENABLE_BENCHMARK -DHPP_DEBUG
 
-  PKG_SUGGESTED_OPTIONS+= verbose benchmark
-
   include ../../mk/sysdep/cmake.mk
   include ../../mk/sysdep/doxygen.mk
   include ../../devel/boost-headers/depend.mk
