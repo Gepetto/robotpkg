@@ -31,18 +31,21 @@ PKG_OPTION_DESCR.atrv=	Enable support for atrv platform
 define PKG_OPTION_SET.atrv
   GENOM_ARGS+= -DATRV
   include ../../robots/rflex-genom/depend.mk
+  DEPEND_ABI.libp3d +=		~atrv
 endef
 
 PKG_OPTION_DESCR.atrv-junior=	Enable support for atrv-junior platform
 define PKG_OPTION_SET.atrv-junior
   GENOM_ARGS+= -DATRV
   include ../../robots/rflex-genom/depend.mk
+  DEPEND_ABI.libp3d +=		~atrv
 endef
 
 PKG_OPTION_DESCR.rmp400=	Enable support for rmp400 platform
 define PKG_OPTION_SET.rmp400
   GENOM_ARGS+= -DRMP400
   include ../../robots/rmp400-genom/depend.mk
+  DEPEND_ABI.libp3d +=		~rmp400
 endef
 
 define PKG_OPTION_UNSET.api
