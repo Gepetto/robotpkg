@@ -1,3 +1,4 @@
-SHA1 (jrl-modelloader-1.4.tar.gz) = 47e189794c570228adf2070510eca849cab71941
-RMD160 (jrl-modelloader-1.4.tar.gz) = 3c68aea302bc5ab057a9b7c0fe3ea0a07ac5dc05
-Size (jrl-modelloader-1.4.tar.gz) = 775234 bytes
+SHA1 (jrl-modelloader-1.4-ubuntu-10.04.tar.gz) = 64ac425f954ac1c6187aa9c7221a7a250a309bbb
+RMD160 (jrl-modelloader-1.4-ubuntu-10.04.tar.gz) = 432e27638dae563c5108998545637f2c805cf3d0
+Size (jrl-modelloader-1.4-ubuntu-10.04.tar.gz) = 816282 bytes
+SHA1 (patch-aa) = 982ff790cc2367b2d70556b71d3612674b018a72

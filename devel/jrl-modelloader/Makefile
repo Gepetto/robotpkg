@@ -2,7 +2,10 @@
 # Created:			Anthony Mallet on Tue, 12 Jun 2007
 #
 
-DISTNAME=		jrl-modelloader-1.4
+PKGNAME=		jrl-modelloader-1.4
+DISTNAME=		jrl-modelloader-1.4-ubuntu-10.04
+PKGREVISION=		1
+
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_JRL}
 

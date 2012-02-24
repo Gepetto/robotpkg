@@ -1,0 +1,8 @@
+--- jrl-modelloader.pc.in.old	2012-02-24 18:31:29.945928155 +0100
++++ jrl-modelloader.pc.in	2012-02-24 18:31:37.861832066 +0100
+@@ -6,4 +6,4 @@
+ 
+ Name: @PACKAGE_NAME@
+ Description: CORBA server for VRML model loading
+-Version: @PACKAGE_VERSION@
++Version: @PACKAGE_VERSION@r1
