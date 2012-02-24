@@ -20,6 +20,8 @@ DEPEND_DIR.py-yarp?=	../../middleware/py-yarp
 SYSTEM_SEARCH.py-yarp=\
 	'${PYTHON_SYSLIBSEARCH}/yarp.py'
 
+PYTHONPATH.py-yarp=	$(dir $(word 1,${SYSTEM_FILES.py-yarp}))
+
 include ../../middleware/yarp/depend.mk
 include ../../mk/sysdep/python.mk
 
