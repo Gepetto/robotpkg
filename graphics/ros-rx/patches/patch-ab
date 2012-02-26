@@ -1,0 +1,14 @@
+Fix ambiguous conversion according to gcc-4.1
+
+--- rxtools/src/rxtools/rosout_setup_dialog.cpp~	2012-01-14 22:59:55.000000000 +0100
++++ rxtools/src/rxtools/rosout_setup_dialog.cpp	2012-02-25 13:02:16.000000000 +0100
+@@ -71,7 +71,8 @@
+ 
+ void RosoutSetupDialog::onTopicBrowse(wxCommandEvent& event)
+ {
+-  TopicDisplayDialog dialog(this, false, ros::message_traits::DataType<rosgraph_msgs::Log>::value());
++  const std::string &x = ros::message_traits::DataType<rosgraph_msgs::Log>::value();
++  TopicDisplayDialog dialog(this, false, x);
+   if (dialog.ShowModal() == wxID_OK)
+   {
+     std::vector<std::string> selection;
