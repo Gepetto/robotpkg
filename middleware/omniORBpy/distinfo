@@ -1,5 +1,6 @@
-$NetBSD$
-
 SHA1 (omniORBpy-3.1.tar.gz) = 7d0af556850bfcea57440bb4bd3680b6c0cbc7c2
 RMD160 (omniORBpy-3.1.tar.gz) = dd21b23ffcd75961d0ec9d29523ba97822d695d9
 Size (omniORBpy-3.1.tar.gz) = 773522 bytes
+SHA1 (patch-aa) = dffffe4e0c1f1f8add26fc8c251f1924b5a8a791
+SHA1 (patch-ab) = 70c26a2dfad25989672de9a01481a36b880c941a
+SHA1 (patch-ac) = 42ccdddbf792b9162efcb5eed4d9f364a708ac36

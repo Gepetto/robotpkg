@@ -1,0 +1,21 @@
+Do not blindly recompile files that belong to middleware/omniORB
+
+--- omniidl_be/dir.mk~	2003-03-23 22:51:56.000000000 +0100
++++ omniidl_be/dir.mk	2012-02-26 12:41:05.000000000 +0100
+@@ -13,8 +13,6 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(PYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ 
+ ifdef INSTALLTARGET
+@@ -23,7 +21,5 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(INSTALLPYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ endif

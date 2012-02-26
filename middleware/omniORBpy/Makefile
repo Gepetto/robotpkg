@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 6 Mar 2007
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		omniORBpy-3.1
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
@@ -23,16 +23,18 @@ include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
 
 _compiledirs=\
-	omnniORB		\
+	omniORB			\
 	CosNaming		\
-	omniidl_be
+	CosNaming__POA
 _pycompiledirs=\
 	$(addprefix ${PREFIX}/${PYTHON_SITELIB}/,${_compiledirs})
 
 _compilefiles=\
 	CORBA.py		\
+	CosNaming_idl.py	\
 	PortableServer.py	\
-	PortableServer__POA.py
+	PortableServer__POA.py	\
+	omniidl_be/python.py
 _pycompilefiles=\
 	$(addprefix ${PREFIX}/${PYTHON_SITELIB}/,${_compilefiles})
 

@@ -1,0 +1,15 @@
+Do not install empty __ini__.py in the site-package root directory
+
+--- python/COS/dir.mk~	2006-12-11 11:33:56.000000000 +0100
++++ python/COS/dir.mk	2012-02-26 14:27:42.000000000 +0100
+@@ -77,10 +77,6 @@
+ EXPORTEDFILES += $(foreach f, $(FILES), $(PYLIBDIR)/$(f))
+ EXPORTEDFILES += $(foreach f, $(filter CosNaming%, $(FILES)), $(PYLIBROOT)/$(f))
+ 
+-# __init__.py to make it a package
+-FILES += __init__.py
+-INSTALLEDFILES += $(INSTALLPYTHONDIR)/__init__.py
+-
+ # A .pth file to expose omniORB/COS to the global namespace
+ FILES += omniORB.pth
+ INSTALLEDFILES += $(INSTALLPYTHONDIR)/omniORB.pth
