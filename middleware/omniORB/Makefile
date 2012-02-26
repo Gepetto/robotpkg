@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Wed, 10 Jan 2007
 #
 
+PKGREVISION=		1
 DISTNAME=		omniORB-4.1.4
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
@@ -22,11 +23,11 @@ PKGCONFIG_OVERRIDE+=	contrib/pkgconfig/omniDynamic4.pc.in
 PKGCONFIG_OVERRIDE+=	contrib/pkgconfig/omniORB4.pc.in
 PKGCONFIG_OVERRIDE+=	contrib/pkgconfig/omnithread3.pc.in
 
-OMNIORB_ETCDIR?= 	${PKG_SYSCONFDIR}
+OMNIORB_ETCDIR?=	${PKG_SYSCONFDIR}
 OMNIORB_CONFIG=		${OMNIORB_ETCDIR}/omniORB.cfg
 
-CONFIGURE_ARGS+= 	--with-omniORB-config=${OMNIORB_CONFIG}
-CONFIGURE_ARGS+= 	--with-omniNames-logdir=/tmp
+CONFIGURE_ARGS+=	--with-omniORB-config=${OMNIORB_CONFIG}
+CONFIGURE_ARGS+=	--with-omniNames-logdir=/tmp
 
 # options
 PKG_SUPPORTED_OPTIONS+=	ipv6
@@ -39,7 +40,12 @@ include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
 
-post-install:
+post-install: omni-install-doc
+post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/omniidl)
+post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/omniidl_be)
+
+.PHONY: omni-install-doc
+omni-install-doc:
 	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/omniORB/
 	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/omniORB/
 	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/omniORB/omniORB
