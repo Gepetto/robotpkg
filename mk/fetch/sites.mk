@@ -45,6 +45,9 @@ MASTER_REPOSITORY_OPENROBOTS+=	\
 MASTER_SITE_JRL+=	\
 	ftp://${JRL_FTP_USER}${JRL_FTP_PASSWD:%=:%}@softs.laas.fr/
 
+MASTER_SITE_GITHUB_GEPETTO+=	\
+	https://github.com/downloads/laas/
+
 MASTER_REPOSITORY_JRL+=	\
 	git ssh://${JRL_GIT_USER:=@}softs.laas.fr/git/jrl/
 
