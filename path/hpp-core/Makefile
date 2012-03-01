@@ -2,18 +2,18 @@
 # Created:			Anthony Mallet on Fri, 13 Jul 2007
 #
 
-HPP_PACKAGE=    hpp-core
-VERSION=	2.4
-PKGREVISION=
-
-CATEGORIES=	path
+HPP_PACKAGE=		hpp-core
+HPP_VERSION=		2.4
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}/algo/${HPP_PACKAGE}
 
-COMMENT=	Basic classes used as interfaces with KineoWorks(tm).
+CATEGORIES=	path
+HPP_COMMENT=	interface with KineoWorks(tm)
 LICENSE=	cnrs-hpp-closed-source
 
-include ../../meta-pkgs/hpp/Makefile.cmake
+HPP_BUILD_SYSTEM=	cmake
+include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../devel/hpp-model/depend.mk
+include ../../devel/hpp-util/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
 include ../../mk/robotpkg.mk

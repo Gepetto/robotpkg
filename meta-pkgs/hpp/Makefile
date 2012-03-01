@@ -2,14 +2,13 @@
 # Created:			Thomas Moulard on Wed, 8 Sep 2010
 #
 
-HPP_PACKAGE=	hpp
-VERSION=	0.1
-COMMENT=	Meta-package for the Humanoid Path Planner.
+DISTNAME=	hpp-20120103
 
+COMMENT=	Meta-package for the Humanoid Path Planner
 CATEGORIES=	meta-pkgs
-META_PACKAGE=	yes
+MAINTAINER=	hpp@laas.fr
 
-include Makefile.common
+META_PACKAGE=	yes
 
 # Core packages.
 include ../../path/hpp-core/depend.mk

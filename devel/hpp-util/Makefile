@@ -3,15 +3,16 @@
 #
 
 HPP_PACKAGE=	        hpp-util
-VERSION=		0.4c
+HPP_VERSION=		0.4c
 PKGREVISION=		1
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_LAAS}${HPP_PACKAGE}
 
 CATEGORIES=		devel
-COMMENT=		Technical tools shared amongst HPP
+HPP_COMMENT=		utility tools
 LICENSE=		gnu-gpl-v3
 
-include ../../meta-pkgs/hpp/Makefile.cmake
+HPP_BUILD_SYSTEM=	cmake
+include ../../meta-pkgs/hpp/Makefile.common
 
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
