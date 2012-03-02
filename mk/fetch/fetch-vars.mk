@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2011 LAAS/CNRS
+# Copyright (c) 2006,2008-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -60,6 +60,9 @@
 
 # The default DISTDIR is currently set in robotpkg.prefs.mk.
 #DISTDIR?=               ${ROBOTPKG_DIR}/distfiles
+
+# Require well known sites definitions
+include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
 
 # The fetch method.
 FETCH_METHOD?=		archive
@@ -176,5 +179,4 @@ FETCH_LOGFILTER?=	${_LOGFILTER} ${_LOGFILTER_FLAGS}	\
 		${FETCH_METHOD}), -l ${FETCH_LOGFILE},-n)	\
 	--
 
-include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
 include ${ROBOTPKG_DIR}/mk/fetch/fetch.mk
