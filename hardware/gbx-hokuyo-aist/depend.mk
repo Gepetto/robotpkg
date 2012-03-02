@@ -13,10 +13,10 @@ ifeq (+,$(GBX_HOKUYO_AIST_DEPEND_MK)) # ------------------------------------
 PREFER.gearbox?=	robotpkg
 PREFER.gbx-hokuyo-aist?=${PREFER.gearbox}
 
-SYSTEM_SEARCH.gbx-hokuyo_aist=\
+SYSTEM_SEARCH.gbx-hokuyo-aist=\
 	'include/gearbox/hokuyo_aist/hokuyo_aist.h'			\
 	'lib/pkgconfig/hokuyo_aist.pc:/Version/s/[^.0-9]//gp'		\
-	'lib/gearbox/libhokuyo_aist.*'
+	'lib/gearbox/libhokuyo_aist.{so,a}'
 
 DEPEND_USE+=		gbx-hokuyo-aist
 
