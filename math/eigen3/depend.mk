@@ -18,7 +18,7 @@ DEPEND_ABI.eigen3?=	eigen3>=3.0.0
 DEPEND_DIR.eigen3?=	../../math/eigen3
 
 SYSTEM_SEARCH.eigen3=	\
-	include/eigen3/signature_of_eigen3_matrix_library
+	include/eigen3/signature_of_eigen3_matrix_library  \
 	'{lib,share}/pkgconfig/eigen3.pc:/Version/s/[^0-9]//gp'
 
 endif # EIGEN3_DEPEND_MK ---------------------------------------------------
