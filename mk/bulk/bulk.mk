@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011 LAAS/CNRS
+# Copyright (c) 2011-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -357,7 +357,7 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	    continue;							\
 	  fi;								\
 	  ${STEP_MSG} "Installing $${pkgfile##*/}";			\
-	  ${BULK_PKG_ADD} -A $$pkgfile ||				\
+	  ${BULK_PKG_ADD} -u -A $$pkgfile ||				\
 	    ${BULK_BRK} "Installing $${pkgfile##*/}: Error $$?";	\
 	done;								\
 	${TEST} ! -s ${_bulklog_cbbh} || {				\
