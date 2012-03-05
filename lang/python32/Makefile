@@ -3,6 +3,7 @@
 #
 
 PKGVERSION=	3.2.2
+PKGREVISION=	1
 DISTNAME=	Python-${PKGVERSION_NOREV}
 PKGNAME=	python32-${PKGVERSION}
 MASTER_SITES=	http://www.python.org/ftp/python/${PKGVERSION_NOREV}/

@@ -1,7 +1,6 @@
 @comment Wed Sep 21 00:45:14 CEST 2011
 lib/python3.2/lib-dynload/ossaudiodev.cpython-32.so
 lib/python3.2/lib-dynload/spwd.cpython-32.so
-lib/python3.2/lib-dynload/xxlimited.cpython-32.so
 lib/python3.2/plat-${PY_PLATNAME}/CDROM.py
 lib/python3.2/plat-${PY_PLATNAME}/DLFCN.py
 lib/python3.2/plat-${PY_PLATNAME}/TYPES.py
