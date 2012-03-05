@@ -10,6 +10,14 @@ endif
 
 ifeq (+,$(EIGEN3_DEPEND_MK)) # ---------------------------------------------
 
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 10.04 10.10 11.04,${OS_VERSION}))
+    PREFER.eigen3?=	robotpkg
+  endif
+else ifeq (NetBSD,${OPSYS})
+  PREFER.eigen3?=	robotpkg
+endif
 PREFER.eigen3?=		system
 
 DEPEND_USE+=		eigen3
