@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2011 LAAS/CNRS
+# Copyright (c) 2006,2009-2012 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -40,6 +40,9 @@
 # From $NetBSD: bsd.plist.mk,v 1.1 2006/01/12 23:43:57 jlam Exp $
 #
 #                                       Anthony Mallet on Thu Dec  7 2006
+
+# This is the path to the generated PLIST file.
+PLIST=		${WRKDIR}/.PLIST
 
 # This Makefile fragment provides all PLIST-related variables and targets.
 $(call require, ${ROBOTPKG_DIR}/mk/plist/plist.mk)

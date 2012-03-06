@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -89,9 +89,6 @@ PLIST_SRC+=	${PKGDIR}/PLIST
   endif
 endif # !PLIST_SRC
 
-# This is the path to the generated PLIST file.
-PLIST=		${WRKDIR}/.PLIST
-
 # --------------------------------------------------------------------
 
 _LIBTOOL_EXPAND=							\
@@ -179,7 +176,8 @@ else
   _PLIST_SHLIB_AWK=	-f ${_SHLIB_AWKFILE.ELF}
 endif
 
-# --------------------------------------------------------------------
+
+# --- plist ----------------------------------------------------------------
 
 # GENERATE_PLIST is a sequence of commands, terminating in a semicolon,
 #	that outputs contents for a PLIST to stdout and is appended to
@@ -193,8 +191,11 @@ endif
 
 _GENERATE_PLIST=	${CAT} /dev/null ${PLIST_SRC}; ${GENERATE_PLIST}
 
+_PLIST_TARGETS+=	${PLIST}
+_PLIST_TARGETS+=	post-plist
+
 .PHONY: plist
-plist: ${PLIST}
+plist: ${_PLIST_TARGETS}
 
 ${PLIST}: ${PLIST_SRC}
 	${RUN}${MKDIR} $(dir $@);				\
@@ -203,5 +204,8 @@ ${PLIST}: ${PLIST_SRC}
 		<$@.src >$@.p1;					\
 	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK}	\
 		<$@.p1 >$@
+
+.PHONY: post-plist
+post-plist:
 
 ${PLIST_SRC}:;
