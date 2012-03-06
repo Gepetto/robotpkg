@@ -2,10 +2,11 @@
 # Created:			Severin Lemaignan on Tue, 12 Apr 2011
 #
 
-MORSE_VERSION=		0.4.1
+MORSE_VERSION=		0.5.1
 DISTNAME=		morse-${MORSE_VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=morse/}
 MASTER_REPOSITORY=	git git://trac.laas.fr/robots/morse
+EXTRACT_SUFX=		.tar.bz2
 
 CATEGORIES=		simulation
 MAINTAINER=		morse-dev@laas.fr
@@ -25,7 +26,7 @@ CMAKE_ARGS+=            -DPYTHON3_INCLUDE_DIR=${PYTHON_INCLUDE}
 CMAKE_ARGS+=            -DPYTHON3_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=            -DPKG_CONFIG_EXECUTABLE=${PKG_CONFIG}
 
-DEPEND_ABI.blender+=	blender>=2.58
+DEPEND_ABI.blender+=	blender>=2.59<2.62
 include ../../graphics/blender/depend.mk
 
 DEPEND_ABI.python+=	python>=3.2<3.3

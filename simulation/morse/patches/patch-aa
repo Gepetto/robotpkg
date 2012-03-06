@@ -1,12 +1,11 @@
-Do not hardcode installation dir. Passed with -D by robotpkg.
-
---- CMakeLists.txt~	2011-07-13 17:15:26.640086943 +0200
-+++ CMakeLists.txt	2011-07-13 17:16:51.336086964 +0200
-@@ -23,7 +23,6 @@
- 					RESULT_VARIABLE PYTHON_ERR
- 				)
+--- CMakeLists.txt~	2012-03-02 17:33:24.000000000 +0100
++++ CMakeLists.txt	2012-03-06 11:18:54.751255146 +0100
+@@ -1,7 +1,7 @@
+ cmake_minimum_required(VERSION 2.6)
  
--SET(PYTHON_INSTDIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL}) 
- MESSAGE(STATUS "will install python files in ${PYTHON_INSTDIR}")
+ set(PACKAGE_NAME morse)
+-set(PACKAGE_VERSION 0.5)
++set(PACKAGE_VERSION 0.5.1)
  
- if (NOT PYTHON3INTERP_FOUND)
+ option(BUILD_CORE_SUPPORT "Build and install morse core" ON)
+ option(BUILD_DOC_SUPPORT "Build and install morse documentation (Requiere Sphinx)" ON)

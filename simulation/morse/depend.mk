@@ -15,7 +15,7 @@ PREFER.morse?=		robotpkg
 
 SYSTEM_SEARCH.morse=\
 	'bin/morse:1s/[^0-9.]//gp:% --version' \
-	share/data/morse/morse_default.blend
+	share/morse/data/morse_default.blend
 
 DEPEND_USE+=		morse
 
