@@ -229,17 +229,43 @@ PRINT_PLIST_AWK_SUBST+=\
 	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");		\
 	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
 
-# Define a post-build hook to compile all .py files
+# Define a post-plist hook to compile all .py files
+ifndef PYTHON_NO_PLIST_COMPILE
+  post-plist: python-compile-plist
+
+  .PHONY: python-compile-plist
+  python-compile-plist:
+	@${STEP_MSG} "Compiling python files"
+	${RUN} ${INSTALL_LOGFILTER} ${AWK} '				\
+	  BEGIN {							\
+	    compile = "${PYTHON}";					\
+	    ocompile = "${PYTHON} -O";					\
+	    pre = "compileall.compile_file(\"${PREFIX}/";		\
+	    post = "\", None, 1)";					\
+	    print "import compileall" | compile;			\
+	    print "import compileall" | ocompile;			\
+	  }								\
+	  /.py$$/ {							\
+	    print pre $$0 post | compile;				\
+	    print pre $$0 post | ocompile;				\
+	  }								\
+	  END {								\
+	    if (close(compile) || close(ocompile)) { exit 2 }		\
+	  }								\
+	' ${PLIST}
+endif
+
+# Define package helper targets to compile .py files
 .PHONY: python-compile-all
 python-compile-all: python-compile-all(${WRKSRC})
 python-compile-all(%): .FORCE
-	${RUN}${BUILD_LOGFILTER} ${PYTHON} -m compileall -f $%
-	${RUN}${BUILD_LOGFILTER} ${PYTHON} -O -m compileall -f $%
+	${RUN}${INSTALL_LOGFILTER} ${PYTHON} -m compileall -f $%
+	${RUN}${INSTALL_LOGFILTER} ${PYTHON} -O -m compileall -f $%
 
 python-compile-file(%): .FORCE
-	${RUN}${BUILD_LOGFILTER} ${PYTHON} -c 'import py_compile;	\
+	${RUN}${INSTALL_LOGFILTER} ${PYTHON} -c 'import py_compile;	\
 	  py_compile.compile("$%");'
-	${RUN}${BUILD_LOGFILTER} ${PYTHON} -O -c 'import py_compile;	\
+	${RUN}${INSTALL_LOGFILTER} ${PYTHON} -O -c 'import py_compile;	\
 	  py_compile.compile("$%");'
 
 # For python packages using the distuils.setup framework, redefine the
