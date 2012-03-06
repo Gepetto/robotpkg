@@ -71,19 +71,17 @@ post-extract:
 do-configure:
 	@${DO_NADA}
 
-# compile in build-tree (for PLIST generation) and install-tree (because .pyc
-# files record the path they were compiled from).
-include ../../mk/robotpkg.prefs.mk # for LOCALBASE (in PREFIX)
-post-build: python-compile-all
-post-install: python-compile-all(${PREFIX})
+# install files from PLIST
+do-install:;@:
+post-plist: do-ros-install
+python-compile-plist: do-ros-install
 
-# install files from PLIST_SRC
-include ../../mk/plist/plist-vars.mk
-do-install:
-	${RUN}cd ${WRKDIR} &&						\
-	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK} <${PLIST_SRC} |\
-	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK} |	\
-	${AWK} '/^[^@]/ {print}' >${WRKDIR}/.install_list;		\
+.PHONY:
+do-ros-install:
+	@${STEP_MSG} "Installing files from PLIST"
+	${RUN} cd ${WRKDIR};						\
+	while read f; do ${TEST} ! -r "$$f" || ${ECHO} "$$f"; done	\
+	  <${PLIST} >${WRKDIR}/.install_list;				\
 	${INSTALL_LOGFILTER} ${SH} -c					\
 		'${PAX} -vrwp p ${PREFIX} < ${WRKDIR}/.install_list'
 
