@@ -159,5 +159,9 @@ share/doc/dialogs/input_output-doc.txt
 share/doc/dialogs/interpretation-doc.txt
 share/doc/dialogs/pseudocode.sty
 share/doc/dialogs/user_guide.tex
+share/examples/dialogs/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+share/examples/dialogs/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+share/examples/dialogs/${PYTHON_PYCACHE}/scenario_moving${PYTHON_TAG}.pyc
+share/examples/dialogs/${PYTHON_PYCACHE}/scenario_moving${PYTHON_TAG}.pyo
 share/examples/dialogs/__init__.py
 share/examples/dialogs/scenario_moving.py
