@@ -231,6 +231,9 @@ PRINT_PLIST_AWK_SUBST+=\
 
 # Define a post-plist hook to compile all .py files
 ifndef PYTHON_NO_PLIST_COMPILE
+  PYTHON_PLIST_COMPILE_PATTERN?=\
+	'/share[\/].*[.]py$$/' || '/lib[/].*[.]py$$/'
+
   post-plist: python-compile-plist
 
   .PHONY: python-compile-plist
@@ -245,7 +248,7 @@ ifndef PYTHON_NO_PLIST_COMPILE
 	    print "import compileall" | compile;			\
 	    print "import compileall" | ocompile;			\
 	  }								\
-	  /.py$$/ {							\
+	  ${PYTHON_PLIST_COMPILE_PATTERN} {				\
 	    print pre $$0 post | compile;				\
 	    print pre $$0 post | ocompile;				\
 	  }								\
