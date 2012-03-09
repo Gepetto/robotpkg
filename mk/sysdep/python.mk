@@ -232,7 +232,7 @@ PRINT_PLIST_AWK_SUBST+=\
 # Define a post-plist hook to compile all .py files
 ifndef PYTHON_NO_PLIST_COMPILE
   PYTHON_PLIST_COMPILE_PATTERN?=\
-	'/share[\/].*[.]py$$/' || '/lib[/].*[.]py$$/'
+	/share[\/].*[.]py$$/ || /lib[/].*[.]py$$/
 
   post-plist: python-compile-plist
 
@@ -243,10 +243,10 @@ ifndef PYTHON_NO_PLIST_COMPILE
 	  BEGIN {							\
 	    compile = "${PYTHON}";					\
 	    ocompile = "${PYTHON} -O";					\
-	    pre = "compileall.compile_file(\"${PREFIX}/";		\
-	    post = "\", None, 1)";					\
-	    print "import compileall" | compile;			\
-	    print "import compileall" | ocompile;			\
+	    pre = "py_compile.compile(\"${PREFIX}/";			\
+	    post = "\")";						\
+	    print "import py_compile" | compile;			\
+	    print "import py_compile" | ocompile;			\
 	  }								\
 	  ${PYTHON_PLIST_COMPILE_PATTERN} {				\
 	    print pre $$0 post | compile;				\
