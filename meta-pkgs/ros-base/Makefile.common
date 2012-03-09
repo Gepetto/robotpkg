@@ -99,7 +99,8 @@ PRINT_PLIST_FILES_CMD=					\
 	 \) -prune -o \! -type d -print |		\
 	${SED} -e 's|${WRKSRC}|${PREFIX}/${ROS_INSTALLATION_SUBDIR}|g';
 
-DEPEND_ABI.python=	python>=2.5<3
+DEPEND_ABI.python=		python>=2.5<3
+PYTHON_PLIST_COMPILE_PATTERN=	/[.]py$$/
 include ../../mk/sysdep/python.mk
 
 include ../../pkgtools/pax/depend.mk
