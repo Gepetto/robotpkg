@@ -525,6 +525,8 @@ share/morse/addons/io_export_morse_scene.py
 share/morse/addons/io_import_morse_path.py
 share/morse/addons/io_import_morse_text.py
 share/morse/addons/morse_object_utils.py
+share/morse/data/${PYTHON_PYCACHE}/morse_default${PYTHON_TAG}.pyc
+share/morse/data/${PYTHON_PYCACHE}/morse_default${PYTHON_TAG}.pyo
 share/morse/data/actuators/armature_actuator.blend
 share/morse/data/actuators/destination.blend
 share/morse/data/actuators/gripper.blend
@@ -612,6 +614,10 @@ share/morse/examples/scenarii/${PYTHON_PYCACHE}/test-1${PYTHON_TAG}.pyo
 share/morse/examples/scenarii/ROS_tutorial1_navstack.blend
 share/morse/examples/scenarii/action-1.blend
 share/morse/examples/scenarii/action-1.py
+share/morse/examples/scenarii/armature_samples/${PYTHON_PYCACHE}/armature_services_tests${PYTHON_TAG}.pyc
+share/morse/examples/scenarii/armature_samples/${PYTHON_PYCACHE}/armature_services_tests${PYTHON_TAG}.pyo
+share/morse/examples/scenarii/armature_samples/${PYTHON_PYCACHE}/pr2_services_tests${PYTHON_TAG}.pyc
+share/morse/examples/scenarii/armature_samples/${PYTHON_PYCACHE}/pr2_services_tests${PYTHON_TAG}.pyo
 share/morse/examples/scenarii/armature_samples/armature_service_test.blend
 share/morse/examples/scenarii/armature_samples/armature_services_tests.py
 share/morse/examples/scenarii/armature_samples/pr2_service_test.blend
