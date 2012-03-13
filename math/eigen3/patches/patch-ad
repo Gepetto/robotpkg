@@ -1,0 +1,11 @@
+--- ./Eigen/src/Core/Block.h~	2012-03-13 15:48:07.194993594 +0100
++++ ./Eigen/src/Core/Block.h	2012-03-13 15:48:23.231996856 +0100
+@@ -342,7 +342,7 @@
+     }
+ 
+     const typename XprType::Nested m_xpr;
+-    int m_outerStride;
++    Index m_outerStride;
+ };
+ 
+ 
