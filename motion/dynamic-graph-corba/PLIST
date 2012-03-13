@@ -12,6 +12,8 @@ ${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph__POA/${PYTHON_PYCACHE}/__init
 ${PYTHON_SITELIB}/dynamic_graph/corba/dynamicGraph__POA/__init__.py
 ${PYTHON_SITELIB}/dynamic_graph/corba/interpreter_idl.py
 ${PYTHON_SITELIB}/dynamic_graph/corba/wrap.so
+${PYTHON_SITELIB}/dynamic_graph/corba_server/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/corba_server/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/dynamic_graph/corba_server/__init__.py
 ${PYTHON_SITELIB}/dynamic_graph/corba_server/wrap.so
 bin/dg-remote

@@ -3,7 +3,7 @@
 #
 
 VERSION=		2.5.1
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		dynamic-graph-corba-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-corba/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_LAAS}dynamic-graph-corba
@@ -33,6 +33,3 @@ include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
-
-_pycompiledir=${PREFIX}/${PYTHON_SITELIB}/dynamic_graph/corba
-post-install: python-compile-all(${_pycompiledir})
