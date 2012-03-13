@@ -3,6 +3,7 @@
 #
 
 V=		3.0.0
+PKGREVISION=	1
 DISTNAME=	${V}
 PKGNAME=	eigen3-${V}
 MASTER_SITES=	https://bitbucket.org/eigen/eigen/get/
