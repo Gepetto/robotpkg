@@ -1,0 +1,27 @@
+--- data/HRP2SpecificitiesSmall.xml.orig	2012-03-15 16:17:53.011014499 +0100
++++ data/HRP2SpecificitiesSmall.xml	2012-03-15 16:29:52.411025110 +0100
+@@ -45,16 +45,16 @@
+   </Legs>
+   <Hands>
+     <Right>
+-      <Center>0.0 0.0 0.17</Center>
+-      <okayAxis>0.0 1.0 0.0 </okayAxis>
+-      <showingAxis>0.0 0.0 1.0</showingAxis>
+-      <palmAxis>1.0 0.0 0.0</palmAxis>
++      <Center>0.0 0.0 -0.17</Center>
++      <okayAxis>1.0 0.0 0.0 </okayAxis>
++      <showingAxis>0.0 0.0 -1.0</showingAxis>
++      <palmAxis>0.0 1.0 0.0</palmAxis>
+     </Right>
+     <Left>
+-      <Center>0.0 0.0 0.17</Center>
+-      <okayAxis>0.0 1.0 0.0 </okayAxis>
+-      <showingAxis>0.0 0.0 1.0</showingAxis>
+-      <palmAxis>1.0 0.0 0.0</palmAxis>
++      <Center>0.0 0.0 -0.17</Center>
++      <okayAxis>1.0 0.0 0.0 </okayAxis>
++      <showingAxis>0.0 0.0 -1.0</showingAxis>
++      <palmAxis>0.0 -1.0 0.0</palmAxis>
+     </Left>
+   </Hands>
+   <Wrists>
