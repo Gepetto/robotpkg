@@ -2,8 +2,7 @@
 # Created:			Arnaud Degroote on Sat, 17 May 2008
 #
 
-DISTNAME=	gdhe-3.8.1
-PKGREVISION=	2
+DISTNAME=	gdhe-3.8.2
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gdhe

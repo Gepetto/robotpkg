@@ -1,4 +1,4 @@
-@comment Mon May 10 11:33:01 CEST 2010
+@comment Fri Mar 16 18:29:24 CET 2012
 bin/gdhe
 bin/reader
 include/gdhe/GDHE.h
@@ -42,6 +42,7 @@ share/gdhe/tcl/karma.tcl
 share/gdhe/tcl/lama.tcl
 share/gdhe/tcl/lights.tcl
 share/gdhe/tcl/lynxmotion.tcl
+share/gdhe/tcl/mor.tcl
 share/gdhe/tcl/neobotix.tcl
 share/gdhe/tcl/p3d.tcl
 share/gdhe/tcl/pa10.tcl
