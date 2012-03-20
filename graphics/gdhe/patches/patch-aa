@@ -1,0 +1,22 @@
+Find jpeg libs on Ubuntu i386...
+
+diff --git configure configure
+index 601a2fc..c94e5cc 100755
+--- configure
++++ configure
+@@ -20126,7 +20126,14 @@ fi
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for JPEG library" >&5
+ $as_echo_n "checking for JPEG library... " >&6; }
+ test -z "$jpeg_test_lib" && jpeg_test_lib=jpeg
+-machine_arch=`uname -m`
++case $host_cpu in
++     i*86)
++     machine_arch=i[3456]86
++     ;;
++     *)
++     machine_arch=$host_cpu
++     ;;
++esac
+ for ac_dir in \
+ 	$jpeg_prefix/lib	\
+ 	${extra_lib}		\
