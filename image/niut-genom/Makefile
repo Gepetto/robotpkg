@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Tue, 11 Jan 2011
 #
 
-DISTNAME=	niut-genom-0.2
+DISTNAME=	niut-genom-0.4
 CATEGORIES=	image
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=niut-genom/}
@@ -15,6 +15,14 @@ LICENSE=	isc
 GENOM_MODULE=	niut
 
 USE_LANGUAGES=	c c++
+
+
+PKG_SUPPORTED_OPTIONS+=	filter
+PKG_OPTION_DESCR.filter=	Compile niut with the sensFusion-libs
+define PKG_OPTION_SET.filter
+  GENOM_ARGS+= -DLP_FILTER
+  include ../../math/sensFusion-libs/depend.mk
+endef
 
 
 include ../../image/openni-nite/depend.mk

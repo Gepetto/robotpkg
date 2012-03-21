@@ -14,7 +14,7 @@ PREFER.niut-genom?=	robotpkg
 
 DEPEND_USE+=		niut-genom
 
-DEPEND_ABI.niut-genom?=	niut-genom>=0.2
+DEPEND_ABI.niut-genom?=	niut-genom>=0.4
 DEPEND_DIR.niut-genom?=	../../image/niut-genom
 
 SYSTEM_SEARCH.niut-genom=\
