@@ -67,4 +67,8 @@ include ../../middleware/openni/depend.mk
 include ../../hardware/openni-sensor/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/wget.mk
+
+DEPEND_ABI.openni+=		~sse3
+DEPEND_ABI.openni-sensor+=	~sse3
+
 include ../../mk/robotpkg.mk
