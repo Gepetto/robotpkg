@@ -35,7 +35,7 @@ SUBST_CLASSES+=		core-libs
 SUBST_STAGE.core-libs=	post-extract
 SUBST_MESSAGE.core-libs=Patching the output library for the core libraries
 SUBST_SED.core-libs=\
-	-e 's!BIN_DIR = ../../Bin!CFG=lib\nCFLAGS+=-O3 -msse3\nLDFLAGS+=-Wl,-rpath,$(OPENNI_LIB) -Wl,-rpath,$(ENGINE_LIB)\nLIB_DIRS=$(OPENNI_LIB)\nBIN_DIR=$(WRKDIR)!g' \
+	-e 's!BIN_DIR = ../../Bin!CFG=lib\nCFLAGS+=-O3 -msse${SSE_GENERATION}\nLDFLAGS+=-Wl,-rpath,$(OPENNI_LIB) -Wl,-rpath,$(ENGINE_LIB)\nLIB_DIRS=$(OPENNI_LIB)\nBIN_DIR=$(WRKDIR)!g' \
 	-e 's!/usr/include/ni/CommonMakefile!$(PREFIX.openni)/include/ni/CommonMakefile!g' \
 	-e 's!/usr/include!$(PREFIX.openni)/include!g'
 SUBST_FILES.core-libs = Platform/Linux-x86/Build/EngineLibMakefile
@@ -44,7 +44,7 @@ SUBST_CLASSES += xnserver
 SUBST_STAGE.xnserver = post-extract
 SUBST_MESSAGE.xnserver = Patching the output library for XnServer...
 SUBST_SED.xnserver = \
-	-e 's!BIN_DIR = ../../../Bin!CFG=bin\nCFLAGS+=-O3 -msse3\nLDFLAGS+=-Wl,-rpath,$(OPENNI_LIB) -Wl,-rpath,$(ENGINE_LIB)\nLIB_DIRS=$(OPENNI_LIB) $(ENGINE_LIB)\nBIN_DIR=$(WRKDIR)!g' \
+	-e 's!BIN_DIR = ../../../Bin!CFG=bin\nCFLAGS+=-O3 -msse${SSE_GENERATION}\nLDFLAGS+=-Wl,-rpath,$(OPENNI_LIB) -Wl,-rpath,$(ENGINE_LIB)\nLIB_DIRS=$(OPENNI_LIB) $(ENGINE_LIB)\nBIN_DIR=$(WRKDIR)!g' \
 	-e 's!/usr/include/ni/CommonMakefile!$(PREFIX.openni)/include/ni/CommonMakefile!g' \
 	-e 's!/usr/include!$(PREFIX.openni)/include!g'
 SUBST_FILES.xnserver = Platform/Linux-x86/Build/Utils/EngineUtilMakefile
@@ -54,6 +54,17 @@ SUBST_STAGE.sensor = post-extract
 SUBST_MESSAGE.sensor = Patching the output directory for sensor
 SUBST_SED.sensor = -e 's!/usr/bin!$(ENGINE_BIN)!g'
 SUBST_FILES.sensor = Source/XnDeviceSensorV2/XnSensorClient.cpp
+
+# options
+PKG_OPTIONS_REQUIRED_GROUPS+=	sse
+PKG_SUGGESTED_OPTIONS+=		sse3
+PKG_OPTIONS_GROUP.sse=		sse2 sse3
+
+PKG_OPTION_DESCR.sse3?=	Use Streaming SIMD Extensions 3 (sse3)
+PKG_OPTION_SET.sse3:=	SSE_GENERATION=3
+
+PKG_OPTION_DESCR.sse2?=	Use Streaming SIMD Extensions 2 (sse2)
+PKG_OPTION_SET.sse2:=	SSE_GENERATION=2
 
 # XXX the niReg process should be handled in INSTALL/DEINSTALL scripts
 do-install:
@@ -75,4 +86,7 @@ do-install:
 
 include ../../middleware/openni/depend.mk
 include ../../pkgtools/install-sh/depend.mk
+
+DEPEND_ABI.openni+=	~sse${SSE_GENERATION}
+
 include ../../mk/robotpkg.mk
