@@ -22,7 +22,6 @@ OPENNI_SHARE=		${PREFIX}/share/openni
 BUILD_DIRS=		Platform/Linux-x86/Build
 MAKE_FLAGS+=		BIN_DIR=${WRKDIR}
 MAKE_FLAGS+=		CFG=Release
-MAKE_FLAGS+=		SSE_GENERATION=3 # hardcoded, should be an option
 
 MAKE_JOBS_SAFE=		no
 
@@ -88,6 +87,17 @@ do-install:
 	  $(if ${VERBOSE},${ECHO} "Installing $$file";)			\
 	  ${PREFIX}/bin/niReg -r ${PREFIX}/lib/$$file ${OPENNI_SHARE};	\
 	done
+
+# options
+PKG_OPTIONS_REQUIRED_GROUPS+=	sse
+PKG_SUGGESTED_OPTIONS+=		sse3
+PKG_OPTIONS_GROUP.sse=		sse2 sse3
+
+PKG_OPTION_DESCR.sse3?=	Use Streaming SIMD Extensions 3 (sse3)
+PKG_OPTION_SET.sse3:=	MAKE_FLAGS+=SSE_GENERATION=3
+
+PKG_OPTION_DESCR.sse2?=	Use Streaming SIMD Extensions 2 (sse2)
+PKG_OPTION_SET.sse2:=	MAKE_FLAGS+=SSE_GENERATION=2
 
 include ../../mk/sysdep/freeglut.mk
 include ../../mk/sysdep/libusb1.mk
