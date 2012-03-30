@@ -3,6 +3,7 @@
 #
 
 PKGNAME=		viam-v4l-driver-${VERSION}
+PKGREVISION=		1
 COMMENT=		Versatile Image Acquisition Module - v4l driver
 
 include ../../image/viam-libs/Makefile.common

@@ -1,0 +1,38 @@
+The v4l2 VIDIOC_S_FMT ioctl does not raise an error when passed an unsupported
+mode. Instead, it modifies the input format and changes it to the closest(?)
+supported mode. So one must not only check that width/height have not been
+modified, but also the 'pixelformat'
+
+diff --git a/drivers/v4l2.c b/drivers/v4l2.c
+index e36b1d1..7446199 100644
+--- drivers/v4l2.c
++++ drivers/v4l2.c
+@@ -403,6 +403,7 @@ viamv4l2_camera_configure(viam_handle_t vh, viam_camera_t camera)
+   struct v4l2_format hwfmt;
+   struct v4l2_buffer buffer;
+   viam_hwmode_t swmode;
++  uint32_t format;
+   int width, height;
+   int i;
+ 
+@@ -417,16 +418,19 @@ viamv4l2_camera_configure(viam_handle_t vh, viam_camera_t camera)
+     return viam_seterrno(vh, Eviamlib_UNSUPPORTED_HWMODE);
+   if (swmode.trigger != VIAM_HWTRIGGER_INTERNAL)
+     return viam_seterrno(vh, Eviamlib_UNSUPPORTED_HWMODE);
+-  if (viamv4l2_hw_fmt(swmode.format, &hwfmt.fmt.pix.pixelformat))
++  if (viamv4l2_hw_fmt(swmode.format, &format))
+     return viam_seterrno(vh, Eviamlib_UNSUPPORTED_HWMODE);
+   if (viam_hwmode_size(vh, &swmode, &width, &height, NULL, NULL))
+     return viam_seterrno(vh, Eviamlib_UNSUPPORTED_HWMODE);
++  hwfmt.fmt.pix.pixelformat = format;
+   hwfmt.fmt.pix.width = width;
+   hwfmt.fmt.pix.height = height;
+ 
+   hwfmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+   if (ioctl(c->fd, VIDIOC_S_FMT, &hwfmt))
+     return viam_seterrno(vh, Eviamlib_UNSUPPORTED_HWMODE);
++  if (hwfmt.fmt.pix.pixelformat != format)
++    return viam_seterrno(vh, Eviamlib_UNSUPPORTED_HWMODE);
+   if (hwfmt.fmt.pix.width != width || hwfmt.fmt.pix.height != height)
+     return viam_seterrno(vh, Eviamlib_UNSUPPORTED_HWMODE);
+ 
