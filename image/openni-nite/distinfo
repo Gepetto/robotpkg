@@ -1,6 +1,8 @@
-SHA1 (NITE-Bin-Ubuntu-x86-1.3.0.17.tar.bz2) = 81b1003301ca7d8874d4067d01004a7aa2e79711
-RMD160 (NITE-Bin-Ubuntu-x86-1.3.0.17.tar.bz2) = 4e58adf407184ea4c5b82148a1059246cfd9c451
-Size (NITE-Bin-Ubuntu-x86-1.3.0.17.tar.bz2) = 9065696 bytes
-SHA1 (NITE-Bin-Ubuntu-x64-1.3.0.17.tar.bz2) = 6efbf05b538e5795be60eb2faba76d1fad6933bb
-RMD160 (NITE-Bin-Ubuntu-x64-1.3.0.17.tar.bz2) = 3bd91a59c169382cc3c078b4672652f473311840
-Size (NITE-Bin-Ubuntu-x64-1.3.0.17.tar.bz2) = 9170587 bytes
+SHA1 (nite-bin-linux-x86-v1.5.2.21.tar.bz2) = 35e3cc18733c54826496972b7f402a65a1add401
+RMD160 (nite-bin-linux-x86-v1.5.2.21.tar.bz2) = f176ab160e1646414838704a93a952d9f32e17a5
+Size (nite-bin-linux-x86-v1.5.2.21.tar.bz2) = 108297796 bytes
+SHA1 (nite-bin-linux-x64-v1.5.2.21.tar.bz2) = d2bc42abec61fb17643f5122eaf5e9e408f1a638
+RMD160 (nite-bin-linux-x64-v1.5.2.21.tar.bz2) = 2c68315f584a1f915e43e0a8100025b040da2d01
+Size (nite-bin-linux-x64-v1.5.2.21.tar.bz2) = 109008570 bytes
+SHA1 (patch-aa) = b0ac220d4614c5987e1d6a0ca23561f6558b52ca
+SHA1 (patch-ab) = 686b7ba3387d1bae1bc2e0d24a4b09e1b2cb0341

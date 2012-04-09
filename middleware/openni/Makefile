@@ -2,8 +2,8 @@
 # Created:			Matthieu Herrb on Mon, 13 Dec 2010
 #
 
-COMMIT=		43c256
-PKG_VERSION=	20101213.${COMMIT}
+COMMIT=		151607
+PKG_VERSION=	20120104.${COMMIT}
 DISTNAME=	openni-${PKG_VERSION}
 MASTER_SITES=	https://github.com/OpenNI/OpenNI.git@${COMMIT}
 FETCH_METHOD=	git
@@ -19,7 +19,17 @@ USE_LANGUAGES=		c c++
 
 OPENNI_SHARE=		${PREFIX}/share/openni
 
-BUILD_DIRS=		Platform/Linux-x86/Build
+include ../../mk/robotpkg.prefs.mk
+
+ifeq (${MACHINE_ARCH},x86_64)
+  NI_ARCH=x64
+else ifeq (${MACHINE_ARCH},i386)
+  NI_ARCH=x86
+else
+  PKG_FAIL_REASON+=	"Architecture not supported"
+endif
+
+BUILD_DIRS=		Platform/Linux/Build
 MAKE_FLAGS+=		BIN_DIR=${WRKDIR}
 MAKE_FLAGS+=		CFG=Release
 
@@ -45,11 +55,9 @@ SUBST_CLASSES += xml
 SUBST_STAGE.xml = pre-patch
 SUBST_MESSAGE.xml = Patching the location of modules.xml...
 SUBST_SED.xml = \
-	-e 's!/var/lib/ni/\(modules.xml\)!$(OPENNI_SHARE)/\1!g' \
-	-e 's!/var/lib/ni/\(licenses.xml\)!$(OPENNI_SHARE)/\1!g'
+	-e 's!/var/lib/ni/!$(OPENNI_SHARE)/!g'
 SUBST_FILES.xml = \
-	Source/OpenNI/XnModuleLoader.cpp \
-	Source/OpenNI/XnLicensing.cpp
+	Source/OpenNI/XnOpenNI.cpp
 
 SUBST_CLASSES += data-xml
 SUBST_STAGE.data-xml = pre-patch
@@ -58,11 +66,16 @@ SUBST_SED.data-xml = \
 	-e 's!../../../../Data/\(SamplesConfig.xml\)!$(OPENNI_SHARE)/\1!g'
 SUBST_FILES.data-xml = \
 	Samples/NiAudioSample/NiAudioSample.cpp \
-	Samples/NiViewer/NiViewer.cpp \
+	Samples/NiCRead/NiCRead.c \
+	Samples/NiHandTracker/main.cpp \
+	Samples/NiRecordRaw/NiRecordRaw.cpp \
 	Samples/NiRecordSynthetic/NiRecordSynthetic.cpp \
-	Samples/NiSimpleViewer/NiSimpleViewer.cpp \
 	Samples/NiSimpleRead/NiSimpleRead.cpp \
-	Samples/NiUserTracker/main.cpp
+	Samples/NiSimpleSkeleton/NiSimpleSkeleton.cpp \
+	Samples/NiSimpleViewer/NiSimpleViewer.cpp \
+	Samples/NiUserSelection/UserTracker.cpp \
+	Samples/NiUserTracker/main.cpp \
+	Samples/NiViewer/NiViewer.cpp
 
 # XXX the niReg process should be handled in INSTALL/DEINSTALL scripts
 do-install:
@@ -70,9 +83,7 @@ do-install:
 	${PAX} $(if ${VERBOSE},-v) -rwp ma . ${PREFIX}/include/ni;	\
 	${INSTALL_DATA} ${WRKSRC}/Data/SamplesConfig.xml		\
 		${PREFIX}/share/openni;					\
-	${INSTALL_DATA} ${WRKSRC}/Platform/Linux-x86/Build/CommonMakefile \
-		${PREFIX}/include/ni;					\
-	cd ${WRKDIR}/Release;						\
+	cd ${WRKDIR}/${NI_ARCH}-Release;				\
 	for file in [Nn]i* Sample-[Nn]i*; do				\
 	  $(if ${VERBOSE},${ECHO} "Installing $$file";)			\
 	  ${INSTALL_PROGRAM} $$file ${PREFIX}/bin;			\
@@ -81,10 +92,10 @@ do-install:
 	  $(if ${VERBOSE},${ECHO} "Installing $$file";)			\
 	  ${INSTALL_LIB} $$file ${PREFIX}/lib;				\
 	done;								\
-	cd ${WRKSRC}/Platform/Linux-x86/CreateRedist;			\
-	files=`awk -F '=?\"' '/^MODULES=/ { print $$2 }' install.sh`;	\
+	cd ${WRKSRC}/Platform/Linux/CreateRedist;			\
+	files=`awk -F '=?\"' '/MODULES=.*\.so/ { print $$2 }' install.sh`;	\
 	for file in $$files; do						\
-	  $(if ${VERBOSE},${ECHO} "Installing $$file";)			\
+	  $(if ${VERBOSE},${ECHO} "Registering $$file";)		\
 	  ${PREFIX}/bin/niReg -r ${PREFIX}/lib/$$file ${OPENNI_SHARE};	\
 	done
 

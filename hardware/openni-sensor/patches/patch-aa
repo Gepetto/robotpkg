@@ -1,15 +1,11 @@
---- Platform/Linux-x86/Build/Makefile~	2010-12-14 13:02:05.441997583 +0100
-+++ Platform/Linux-x86/Build/Makefile	2010-12-14 13:02:05.000000000 +0100
-@@ -28,10 +28,10 @@
- .PHONY: $1 $1-clean
+--- Platform/Linux/Build/Common/CommonCppMakefile~	2012-01-04 12:43:06.000000000 +0100
++++ Platform/Linux/Build/Common/CommonCppMakefile	2012-04-09 13:42:00.906980193 +0200
+@@ -71,6 +71,8 @@
+ CFLAGS += $(INC_DIRS_OPTION) $(DEFINES_OPTION)
+ LDFLAGS += $(LIB_DIRS_OPTION) $(USED_LIBS_OPTION)
  
- $1:
--	$(MAKE) -C $1 CFG=$(CFG)
-+	$(MAKE) -C $1
- 
- $1-clean: 
--	$(MAKE) -C $1 CFG=$(CFG) clean
-+	$(MAKE) -C $1 clean
- 
- endef
- 
++LDFLAGS+= -Wl,-rpath,$(PREFIX)/lib
++
+ # some lib / exe specifics
+ ifneq "$(LIB_NAME)" ""
+ 	OUTPUT_NAME = lib$(LIB_NAME).so

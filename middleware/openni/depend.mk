@@ -14,7 +14,7 @@ PREFER.openni?=	robotpkg
 
 DEPEND_USE+=		openni
 
-DEPEND_ABI.openni?=	openni>=20101212
+DEPEND_ABI.openni?=	openni>=20120104
 DEPEND_DIR.openni?=	../../middleware/openni
 
 SYSTEM_SEARCH.openni=\

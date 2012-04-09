@@ -1,0 +1,55 @@
+--- uninstall.sh.orig	2012-04-09 15:43:47.064811661 +0200
++++ uninstall.sh	2012-04-09 15:44:14.348992227 +0200
+@@ -6,36 +6,36 @@
+         LIBEXT="so"
+ fi
+ 
+-for fmod in `ls -1 /usr/lib/libXnVFeatures*$LIBEXT`
++for fmod in `ls -1 ${PREFIX}/lib/libXnVFeatures*$LIBEXT`
+ do
+ 	niReg -u $fmod
+ done
+-for hmod in `ls -1 /usr/lib/libXnVHandGenerator*$LIBEXT`
++for hmod in `ls -1 ${PREFIX}/lib/libXnVHandGenerator*$LIBEXT`
+ do
+ 	niReg -u $hmod
+ done
+ 
+-rm /usr/lib/libXnVNite*$LIBEXT
+-rm /usr/lib/libXnVCNITE*$LIBEXT
+-rm /usr/lib/libXnVNITE.jni*$LIBEXT
+-rm /usr/lib/libXnVFeatures*$LIBEXT
+-rm /usr/lib/libXnVHandGenerator*$LIBEXT
+-rm -rf /usr/bin/XnVSceneServer*
+-rm -rf /usr/etc/primesense/Features*
+-rm -rf /usr/etc/primesense/Hands*
+-rm -rf /usr/include/nite/
+-rm /usr/share/java/com.primesense.NITE.jar
++rm ${PREFIX}/lib/libXnVNite*$LIBEXT
++rm ${PREFIX}/lib/libXnVCNITE*$LIBEXT
++rm ${PREFIX}/lib/libXnVNITE.jni*$LIBEXT
++rm ${PREFIX}/lib/libXnVFeatures*$LIBEXT
++rm ${PREFIX}/lib/libXnVHandGenerator*$LIBEXT
++rm -rf ${PREFIX}/bin/XnVSceneServer*
++rm -rf ${PREFIX}/etc/primesense/Features*
++rm -rf ${PREFIX}/etc/primesense/Hands*
++rm -rf ${PREFIX}/include/nite/
++rm ${PREFIX}/share/java/com.primesense.NITE.jar
+ 
+-if [ -f /usr/bin/gmcs ]
++if [ -f ${PREFIX}/bin/gmcs ]
+ then
+-	if [ -e /usr/etc/primesense/XnVNITE.net.dll.list ]
++	if [ -e ${PREFIX}/etc/primesense/XnVNITE.net.dll.list ]
+ 	then
+-		for netdll in `cat /usr/etc/primesense/XnVNITE.net.dll.list`
++		for netdll in `cat ${PREFIX}/etc/primesense/XnVNITE.net.dll.list`
+ 		do
+ 			netdll=`echo $netdll | sed "s/\.dll//"`
+ 			gacutil -u $netdll
+ 		done
+-		rm -rf /usr/etc/primesense/XnVNITE.net.dll.list
++		rm -rf ${PREFIX}/etc/primesense/XnVNITE.net.dll.list
+ 	fi
+ fi
+ 
