@@ -18,9 +18,9 @@ DEPEND_ABI.openni-nite?=	openni-nite>=1.3.0.17
 DEPEND_DIR.openni-nite?=	../../image/openni-nite
 
 SYSTEM_SEARCH.openni-nite=\
-	lib/libXnVHandGenerator.so \
-	lib/libXnVNite.so \
-	share/openni/XnVHandGenerator/Nite.ini \
+	lib/libXnVHandGenerator_1_5_2.so \
+	lib/libXnVNite_1_5_2.so \
+	etc/primesense/Features_1_5_2/SceneServer.ini \
 	share/openni/licenses.xml
 endif
 
