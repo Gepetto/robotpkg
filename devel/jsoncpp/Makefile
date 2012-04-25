@@ -42,6 +42,7 @@ endef
 
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/sysdep/automake.mk
+include ../../pkgtools/libtool/depend.mk
 include ../../mk/robotpkg.mk
 
 # Replace the bundled scons scripts by a good old autoconf script that will
