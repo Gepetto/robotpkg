@@ -274,8 +274,8 @@ for p in `bracesubst $sysprefix`; do
                 fi
 	    else
 		icmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
-		version=`eval $icmd 2>&1 </dev/null` || status=$?
-		version=`echo "$version" | \
+		rawversion=`eval $icmd 2>&1 </dev/null` || status=$?
+		version=`echo "$rawversion" | \
                       ${SED} -ne "${spec:-p}" | ${SED} $vrepl` || status=$?
 	    fi
             if ${TEST} -z "$opt"; then
@@ -305,7 +305,7 @@ for p in `bracesubst $sysprefix`; do
             if ${TEST} $status -eq 0; then
                 ${MSG} "found:	$match, wrong version ${version:-unknown}"
             else
-                ${MSG} "found:	$match, ${version:-error checking version}"
+                ${MSG} "found:	$match, ${rawversion:-error checking version}"
             fi
 	    match=;
 	done
