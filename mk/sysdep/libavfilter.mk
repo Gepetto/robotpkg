@@ -12,7 +12,7 @@ ifeq (+,$(LIBAVFILTER_DEPEND_MK)) # ----------------------------------------
 
 PREFER.libavfilter?=		system
 DEPEND_USE+=			libavfilter
-DEPEND_ABI.libavfilter?=	libavfilter>=52
+DEPEND_ABI.libavfilter?=	libavfilter>=1
 
 SYSTEM_SEARCH.libavfilter=\
 	include/libavfilter/avfilter.h				\
