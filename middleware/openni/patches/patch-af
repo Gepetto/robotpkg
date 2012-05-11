@@ -1,0 +1,11 @@
+--- Platform/Linux/Build/Samples/NiHandTracker/Makefile~	2012-01-04 12:35:46.000000000 +0100
++++ Platform/Linux/Build/Samples/NiHandTracker/Makefile	2012-05-11 15:00:34.561362717 +0200
+@@ -11,7 +11,7 @@
+ ifeq ("$(OSTYPE)","Darwin")
+ 	LDFLAGS += -framework OpenGL -framework GLUT
+ else
+-	USED_LIBS += glut
++	USED_LIBS += glut GL
+ endif
+ 
+ USED_LIBS += OpenNI
