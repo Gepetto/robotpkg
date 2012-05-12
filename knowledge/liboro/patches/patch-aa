@@ -1,0 +1,11 @@
+Upstream fix 6fa7fad
+
+--- liboro.pc.in~	2011-08-09 17:42:47.000000000 +0200
++++ liboro.pc.in	2012-05-12 12:06:50.420875031 +0200
+@@ -6,5 +6,5 @@
+ Name: liboro
+ Description: Allows to easily interface with the oro-server ontology server in C++.
+ Version: @CPACK_PACKAGE_VERSION_MAJOR@.@CPACK_PACKAGE_VERSION_MINOR@.@CPACK_PACKAGE_VERSION_PATCH@
+-Libs: -L${libdir} -loro -lboost_thread-mt
++Libs: -L${libdir} -loro
+ Cflags: -pthread -I${includedir}/liboro
