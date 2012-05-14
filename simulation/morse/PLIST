@@ -386,7 +386,6 @@ ${PLIST.doc}share/doc/morse/html/_images/place_cube.jpg
 ${PLIST.doc}share/doc/morse/html/_images/python-powered.png
 ${PLIST.doc}share/doc/morse/html/_images/simu_render_indoors.jpg
 ${PLIST.doc}share/doc/morse/html/_images/simulation_main_loop_overview.png
-${PLIST.doc}share/doc/morse/html/_static/Aller.ttf
 ${PLIST.doc}share/doc/morse/html/_static/basic.css
 ${PLIST.doc}share/doc/morse/html/_static/default.css
 ${PLIST.doc}share/doc/morse/html/_static/doctools.js
