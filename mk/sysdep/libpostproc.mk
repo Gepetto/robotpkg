@@ -15,7 +15,7 @@ DEPEND_USE+=			libpostproc
 DEPEND_ABI.libpostproc?=	libpostproc>=51
 
 SYSTEM_SEARCH.libpostproc=\
-	include/libpostproc/postprocess.h			\
+	'include/{,ffmpeg/}libpostproc/postprocess.h'		\
 	'lib/libpostproc.{so,a}'				\
 	'lib/pkgconfig/libpostproc.pc:/Version/s/[^0-9.]//gp'
 

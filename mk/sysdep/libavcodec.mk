@@ -15,7 +15,7 @@ DEPEND_USE+=			libavcodec
 DEPEND_ABI.libavcodec?=		libavcodec>=52
 
 SYSTEM_SEARCH.libavcodec=\
-	include/libavcodec/avcodec.h				\
+	'include/{,ffmpeg/}libavcodec/avcodec.h'		\
 	'lib/libavcodec.{so,a}'					\
 	'lib/pkgconfig/libavcodec.pc:/Version/s/[^0-9.]//gp'
 

@@ -15,7 +15,7 @@ DEPEND_USE+=			libavutil
 DEPEND_ABI.libavutil?=		libavutil>=49
 
 SYSTEM_SEARCH.libavutil=\
-	include/libavutil/avutil.h				\
+	'include/{,ffmpeg/}libavutil/avutil.h'			\
 	'lib/libavutil.{so,a}'					\
 	'lib/pkgconfig/libavutil.pc:/Version/s/[^0-9.]//gp'
 

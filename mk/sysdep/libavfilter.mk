@@ -15,7 +15,7 @@ DEPEND_USE+=			libavfilter
 DEPEND_ABI.libavfilter?=	libavfilter>=1
 
 SYSTEM_SEARCH.libavfilter=\
-	include/libavfilter/avfilter.h				\
+	'include/{,ffmpeg/}libavfilter/avfilter.h'		\
 	'lib/libavfilter.{so,a}'				\
 	'lib/pkgconfig/libavfilter.pc:/Version/s/[^0-9.]//gp'
 

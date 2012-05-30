@@ -15,7 +15,7 @@ DEPEND_USE+=			libavdevice
 DEPEND_ABI.libavdevice?=	libavdevice>=52
 
 SYSTEM_SEARCH.libavdevice=\
-	include/libavdevice/avdevice.h				\
+	'include/{,ffmpeg/}libavdevice/avdevice.h'		\
 	'lib/libavdevice.{so,a}'				\
 	'lib/pkgconfig/libavdevice.pc:/Version/s/[^0-9.]//gp'
 

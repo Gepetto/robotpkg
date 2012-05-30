@@ -15,7 +15,7 @@ DEPEND_USE+=			libavformat
 DEPEND_ABI.libavformat?=	libavformat>=52
 
 SYSTEM_SEARCH.libavformat=\
-	include/libavformat/avformat.h				\
+	'include/{,ffmpeg/}libavformat/avformat.h'		\
 	'lib/libavformat.{so,a}'				\
 	'lib/pkgconfig/libavformat.pc:/Version/s/[^0-9.]//gp'
 
