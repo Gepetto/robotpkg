@@ -1,24 +1,15 @@
---- driver/Makefile.orig	2011-01-12 14:15:30.000000000 +0100
-+++ driver/Makefile	2011-01-21 15:35:02.701285000 +0100
-@@ -47,7 +47,7 @@
- #****************************************************************************
- # please modify only here if your kernel path is elsewhere located
- #
--KERNEL_LOCATION = /usr/src/linux
-+KERNEL_LOCATION = /lib/modules/$(shell uname -r)/build
- 
- #****************************************************************************
- # probe various standard kernel locations
-@@ -104,7 +104,7 @@
+--- driver/Makefile~	2012-05-22 14:22:50.000000000 +0200
++++ driver/Makefile	2012-05-30 16:42:56.233897000 +0200
+@@ -109,7 +109,7 @@
  #****************************************************************************
  # where the driver should be installed - change here for cross install
  #
 -INSTALL_LOCATION = /lib/modules/$(VERSION)/misc
-+INSTALL_LOCATION = ${PREFIX}/lib/modules/$(VERSION)/
++INSTALL_LOCATION = ${PREFIX}/lib/modules/$(VERSION)/misc
  
  #****************************************************************************
  # get extracted kernel VERSION and PATCHLEVEL for comparison
-@@ -267,11 +267,11 @@
+@@ -280,11 +280,11 @@
  #****************************************************************************
  # for local installation only: sometimes /etc/modprobe.conf.local is used
  #
@@ -32,7 +23,7 @@
  endif
  
  #****************************************************************************
-@@ -318,7 +318,7 @@
+@@ -331,7 +331,7 @@
  # for local installation only: sometimes /etc/modules.conf.local is used
  #
  MODCONF = "/etc/modules.conf"
@@ -41,29 +32,41 @@
  
  #****************************************************************************
  # what's the target
-@@ -373,10 +373,10 @@
+@@ -389,11 +389,11 @@
+ 	@if test -d $(INSTALL_LOCATION); then\
+ 		echo "Info: $(INSTALL_LOCATION) exists.";\
+ 	else\
+-		mkdir $(INSTALL_LOCATION);\
++		mkdir -p $(INSTALL_LOCATION);\
  	fi
- 
- install: compat
--	@if test -d $(INSTALL_LOCATION) ; then echo "Info: $(INSTALL_LOCATION) exists."; else mkdir $(INSTALL_LOCATION); fi
-+	@if test -d $(INSTALL_LOCATION) ; then echo "Info: $(INSTALL_LOCATION) exists."; else mkdir -p $(INSTALL_LOCATION); fi
  	@cp -f $(TARGET) $(INSTALL_LOCATION)/$(TARGET)
 -	@cp -f pcan_make_devices /usr/local/bin
 -	@chmod 744 /usr/local/bin/pcan_make_devices
 +	@cp -f pcan_make_devices ${PREFIX}/bin
 +	@chmod 744 ${PREFIX}/bin/pcan_make_devices
  	@if [ ! -f $(MODCONF) ] || test -z $(shell grep -ls pcan $(MODCONF)) ; then\
- 		cp $(MODCONF) $(MODCONF)~ 2> /dev/NULL;\
+ 		cp $(MODCONF) $(MODCONF)~ 2> /dev/null;\
  		echo ""                                               >> $(MODCONF);\
-@@ -395,9 +395,8 @@
- 	else\
- 		echo "Info: No UDEV installation found.";\
+@@ -407,8 +407,8 @@
+ 		echo "Info: Left current 'pcan'-entry in $(MODCONF) untouched.";\
  	fi
--	@/sbin/depmod
--	@cp -f pcan.h /usr/include/pcan.h
--	@chmod 644 /usr/include/pcan.h
-+	@cp -f pcan.h ${PREFIX}/include/pcan.h
-+	@chmod 644 ${PREFIX}/include/pcan.h
- 
- #********** informations during build of driver *****************************
- .PHONY : message
+ 	@if [ $(UDEV) = "yes" ]; then\
+-		cp -f udev/pcan_usb_minor_check.bash /usr/local/bin;\
+-		chmod 744 /usr/local/bin/pcan_usb_minor_check.bash;\
++		cp -f udev/pcan_usb_minor_check.bash ${PREFIX}/bin;\
++		chmod 744 ${PREFIX}/bin/pcan_usb_minor_check.bash;\
+ 		cp -f udev/45-pcan.rules /etc/udev/rules.d;\
+ 		echo "Info: Copied 45-pcan.rules to /etc/udev/rules.d.";\
+ 		for m in $(shell awk '/^blacklist/ { print $$2 }' udev/blacklist-peak.conf); do \
+@@ -430,9 +430,9 @@
+ 	@-rmmod pcan 2> /dev/null
+ 	@rm -f $(INSTALL_LOCATION)/$(TARGET)
+ 	@rm -f /usr/include/pcan.h
+-	@rm -f /usr/local/bin/pcan_make_devices
++	@rm -f ${PREFIX}/bin/pcan_make_devices
+ 	@rm -f /etc/udev/rules.d/45-pcan.rules
+-	@rm -f /usr/local/bin/pcan_usb_minor_check.bash
++	@rm -f ${PREFIX}/bin/pcan_usb_minor_check.bash
+ 	@rm -f $(shell dirname $(MODCONF))/blacklist-peak.conf
+ 	@rm -f $(MODCONF)
+ 	@/sbin/depmod

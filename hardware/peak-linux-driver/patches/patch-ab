@@ -1,20 +1,18 @@
-Fix installation to $PREFIX
-
---- lib/Makefile.orig	2007-07-09 11:40:42.000000000 +0200
-+++ lib/Makefile	2008-12-31 10:45:18.396019000 +0100
+--- lib/Makefile~	2012-03-15 17:20:07.000000000 +0100
++++ lib/Makefile	2012-05-30 16:54:02.547251000 +0200
 @@ -68,9 +68,9 @@
  endif
  
  ifeq ($(HOSTTYPE),x86_64)
 -  LIBPATH = /usr/lib64
-+  LIBPATH = $(PREFIX)/lib64
++  LIBPATH = ${PREFIX}/lib64
  else
 -  LIBPATH = /usr/lib
-+  LIBPATH = $(PREFIX)/lib
++  LIBPATH = ${PREFIX}/lib
  endif
  
  LDNAME  = libpcan.so
-@@ -98,9 +98,7 @@
+@@ -98,12 +98,11 @@
  	cp $(TARGET) $(LIBPATH)/$(TARGET)
  	ln -sf $(LIBPATH)/$(TARGET) $(LIBPATH)/$(SONAME)
  	ln -sf $(LIBPATH)/$(SONAME) $(LIBPATH)/$(LDNAME)
@@ -22,8 +20,13 @@ Fix installation to $PREFIX
 -	chmod 644 /usr/include/libpcan.h
 -	/sbin/ldconfig
 -  
--  
-+	cp libpcan.h $(PREFIX)/include/libpcan.h
-+	chmod 644 $(PREFIX)/include/libpcan.h
++	cp libpcan.h ${PREFIX}/include/libpcan.h
++	chmod 644 ${PREFIX}/include/libpcan.h
 +
- 
+ uninstall:
+ 	@-rm -f $(LIBPATH)/$(TARGET)
+ 	@-rm -f $(LIBPATH)/$(SONAME) $(LIBPATH)/$(LDNAME)
+-	@-rm -f /usr/include/libpcan.h
+-	/sbin/ldconfig
++	@-rm -f ${PREFIX}/include/libpcan.h
++

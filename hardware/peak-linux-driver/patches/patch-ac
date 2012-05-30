@@ -1,5 +1,5 @@
---- test/Makefile.orig	2010-02-14 23:41:17.000000000 +0100
-+++ test/Makefile	2010-09-08 09:56:29.316613000 +0200
+--- test/Makefile~	2012-03-15 17:20:07.000000000 +0100
++++ test/Makefile	2012-05-30 16:54:59.616948000 +0200
 @@ -63,9 +63,9 @@
  endif
  
@@ -12,7 +12,7 @@
  endif
  
  # enabling corss-compile from ../Makefile
-@@ -132,11 +132,11 @@
+@@ -132,15 +132,15 @@
  	rm -f $(SRC)/*~ $(SRC)/*.o *~ $(TARGET1) $(TARGET2) $(TARGET3) $(TARGET4) $(TARGET5)
  	
  install:
@@ -27,5 +27,14 @@
 +	cp $(TARGET4) ${PREFIX}/bin
 +	cp $(TARGET5) ${PREFIX}/bin
  
- 
- 
+ uninstall:
+-	@-rm -f /usr/local/bin/$(TARGET1)
+-	@-rm -f /usr/local/bin/$(TARGET2)
+-	@-rm -f /usr/local/bin/$(TARGET3)
+-	@-rm -f /usr/local/bin/$(TARGET4)
+-	@-rm -f /usr/local/bin/$(TARGET5)
++	@-rm -f ${PREFIX}/bin/$(TARGET1)
++	@-rm -f ${PREFIX}/bin/$(TARGET2)
++	@-rm -f ${PREFIX}/bin/$(TARGET3)
++	@-rm -f ${PREFIX}/bin/$(TARGET4)
++	@-rm -f ${PREFIX}/bin/$(TARGET5)

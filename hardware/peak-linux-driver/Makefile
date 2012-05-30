@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	peak-linux-driver-${VERSION}
-VERSION=	6.24
+VERSION=	7.6
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.peak-system.com/fileadmin/media/linux/files/
 HOMEPAGE=	http://www.peak-system.com/fileadmin/media/linux/
@@ -13,8 +13,6 @@ COMMENT=	Software Interface for PEAK-System CAN-Hardware.
 LICENSE=	gnu-gpl-v3
 
 ONLY_FOR_PLATFORM=	Linux-%
-NOT_FOR_PLATFORM=	Fedora-15-% Fedora-16-%
-NOT_FOR_PLATFORM+=	Ubuntu-11.04-% Ubuntu-11.10-% Ubuntu-12.04-%
 MAKE_JOBS_SAFE=		no
 NO_CONFIGURE=		yes
 
