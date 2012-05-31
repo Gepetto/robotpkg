@@ -25,7 +25,7 @@ INSTALLATION_DIRS=\
 post-install:	${WRKSRC}/pcan.pc
 	${INSTALL_DATA} ${WRKSRC}/pcan.pc ${PREFIX}/lib/pkgconfig
 
-BUILD_MAKE_FLAGS=	NET=NO_NETDEV_SUPPORT
+BUILD_MAKE_FLAGS=	NET=NO_NETDEV_SUPPORT PCC=NO_PCCARD_SUPPORT
 
 ${WRKSRC}/pcan.pc:
 	@${SED} -e 's|@prefix@|${PREFIX}|' \
