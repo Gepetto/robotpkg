@@ -5,6 +5,7 @@ bin/pcan_make_devices
 bin/receivetest
 bin/transmitest
 include/libpcan.h
+include/pcan.h
 lib/libpcan.so
 lib/libpcan.so.0
 lib/libpcan.so.0.6

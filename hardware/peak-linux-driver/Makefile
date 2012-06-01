@@ -24,6 +24,7 @@ INSTALLATION_DIRS=\
 
 post-install:	${WRKSRC}/pcan.pc
 	${INSTALL_DATA} ${WRKSRC}/pcan.pc ${PREFIX}/lib/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/driver/pcan.h ${PREFIX}/include/
 
 BUILD_MAKE_FLAGS=	NET=NO_NETDEV_SUPPORT PCC=NO_PCCARD_SUPPORT
 
