@@ -194,7 +194,7 @@ ${_BULK_DIRS}:
 .PHONY: bulk-cbbh
 bulk-cbbh:
 	${RUN}								\
-	${RM} -f ${BULK_PKGFILENA};					\
+	${RM} -f ${BULK_PKGWILDNA};					\
 	${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} cbbh >${_bulklog_cbbh} 2>&1	\
 	&& ${RM} -f ${_bulklog_cbbh};					\
 	${TEST} ! -s ${_bulklog_cbbh} || ${CAT} >&2 <${_bulklog_cbbh}

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011 LAAS/CNRS
+# Copyright (c) 2011-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -32,6 +32,7 @@ BULK_LOGDIR?=	${LOCALBASE}/var/log/bulk
 
 # Where to log N/A packages (for caching the information between bulks)
 BULK_PKGFILENA?=${PACKAGES}/NotAvail/${PKGNAME}
+BULK_PKGWILDNA?=${PACKAGES}/NotAvail/${PKGWILDCARD}
 
 # A file wich makes all bulks a noop once created (for clean interruption)
 BULK_STOPFILE?=	${BULK_LOGDIR}/STOP
