@@ -1,0 +1,13 @@
+Fix for gcc-4.7
+
+--- include/ARToolKitPlus/TrackerMultiMarkerImpl.h~	2012-06-04 17:57:56.118644719 +0200
++++ include/ARToolKitPlus/TrackerMultiMarkerImpl.h	2012-06-04 17:58:39.506339232 +0200
+@@ -316,7 +316,7 @@
+ 	if(executeMultiMarkerPoseEstimator(tmp_markers, tmpNumDetected, config) < 0)
+ 		return 0;
+ 
+-	convertTransformationMatrixToOpenGLStyle(config->trans, this->gl_para);
++	this->convertTransformationMatrixToOpenGLStyle(config->trans, this->gl_para);
+ 	return numDetected;
+ }
+ 
