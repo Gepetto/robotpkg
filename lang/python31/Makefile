@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Mon, 7 Dec 2009
 #
 
-PKGVERSION=	3.1.4
+PKGVERSION=	3.1.5
 DISTNAME=	Python-${PKGVERSION_NOREV}
 PKGNAME=	python31-${PKGVERSION}
 MASTER_SITES=	http://www.python.org/ftp/python/${PKGVERSION_NOREV}/
@@ -21,6 +21,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-threads
 CONFIGURE_ARGS+=--enable-shared
 CONFIGURE_ARGS+=--with-system-ffi
+CONFIGURE_ARGS+=--with-dbmliborder=bdb
 RPATH_DIRS=	lib
 
 # Define LDFLAGS for libffi
