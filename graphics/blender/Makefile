@@ -5,7 +5,7 @@
 PKGNAME=		blender-${PKGVERSION}
 DISTNAME=		blender-${PKGVERSION_NOREV}
 PKGVERSION=		2.59
-PKGREVISION=		1
+PKGREVISION=		2
 
 CATEGORIES=		graphics
 MASTER_SITES=		http://download.blender.org/source/
