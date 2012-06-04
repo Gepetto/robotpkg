@@ -1,6 +1,7 @@
 # robotpkg Makefile for:	devel/gbx-flexiport
 # Created:			Anthony Mallet on Wed, 17 Mar 2010
 #
+PKGREVISION=	1
 GBX_PACKAGE=	flexiport-1.0.0
 GBX_COMMENT=	Flexiport (interface for a range of data port types)
 

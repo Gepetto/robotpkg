@@ -1,0 +1,12 @@
+Add missing headers for ssize_t
+
+--- src/flexiport/port.h~	2009-04-17 04:08:40.000000000 +0200
++++ src/flexiport/port.h	2012-06-04 14:00:24.173435638 +0200
+@@ -28,6 +28,7 @@
+ #ifndef __PORT_H
+ #define __PORT_H
+ 
++#include <unistd.h> /* ssize_t */
+ #include <string>
+ #include <map>
+ 
