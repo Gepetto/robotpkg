@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 14 Mar 2008
 #
 
-VERSION=		1.9
+VERSION=		1.10
 DISTNAME=		viam-libs-${VERSION}
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-libs/}

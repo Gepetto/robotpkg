@@ -3,7 +3,6 @@
 #
 
 PKGNAME=		viam-dc1394-driver-${VERSION}
-PKGREVISION=		1
 COMMENT=		Versatile Image Acquisition Module - dc1394 driver
 
 include ../../image/viam-libs/Makefile.common
