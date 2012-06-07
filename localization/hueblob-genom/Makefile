@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 17 Mar 2008
 #
 
-DISTNAME=		hueblob-genom-1.3
+DISTNAME=		hueblob-genom-1.4
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hueblob-genom/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}hueblob-genom
