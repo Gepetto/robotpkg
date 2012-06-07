@@ -1,16 +1,25 @@
-$NetBSD: patch-aa,v 1.4 2010/12/06 16:55:23 wiz Exp $
+Fix brain dead INT64_C definition
 
-NetBSD doesn't have expl(3) yet.
-https://code.ros.org/trac/opencv/ticket/736
-
---- modules/ml/src/gbt.cpp.orig	2010-12-05 03:35:25.000000000 +0000
-+++ modules/ml/src/gbt.cpp
-@@ -11,7 +11,7 @@ using namespace std;
- #define CV_CMP_FLOAT(a,b) ((a) < (b))
- static CV_IMPLEMENT_QSORT_EX( icvSortFloat, float, CV_CMP_FLOAT, float)
- 
--#if ANDROID
-+#if defined(ANDROID) || defined(__NetBSD__)
- #define expl(x) exp(x)
+--- modules/highgui/src/ffmpeg_codecs.hpp~	2012-05-31 16:06:31.000000000 +0200
++++ modules/highgui/src/ffmpeg_codecs.hpp	2012-06-07 13:44:58.769873894 +0200
+@@ -45,14 +45,13 @@
  #endif
  
+ #if !defined(WIN32) || defined(__MINGW32__)
+-// some versions of FFMPEG assume a C99 compiler, and don't define INT64_C
+-#if !defined INT64_C || !defined UINT64_C
+-#define INT64_C
+-#define UINT64_C
+- #define __STDC_CONSTANT_MACROS
+-// force re-inclusion of stdint.h to get INT64_C macro
+-#undef _STDINT_H
+ #include <stdint.h>
++// some versions of FFMPEG assume a C99 compiler, and don't define INT64_C
++#ifndef INT64_C
++#define INT64_C(c) (c ## LL)
++#endif
++#ifndef UINT64_C
++#define UINT64_C(c) (c ## ULL)
+ #endif
+ #include <errno.h>
+ #endif

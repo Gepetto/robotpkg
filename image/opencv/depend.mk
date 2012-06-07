@@ -14,7 +14,7 @@ ifeq (+,$(OPENCV_DEPEND_MK)) # ---------------------------------------------
 PREFER.opencv?=		robotpkg
 
 DEPEND_USE+=		opencv
-DEPEND_ABI.opencv?=	opencv>=2.1.0
+DEPEND_ABI.opencv?=	opencv>=2.2.0
 DEPEND_DIR.opencv?=	../../image/opencv
 
 SYSTEM_SEARCH.opencv=\
