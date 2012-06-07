@@ -1,5 +1,4 @@
-$NetBSD$
-
 SHA1 (kwsio-1.0.1.tar.gz) = 15439cc0b4b20ab7ddea43d3567c7ff4c40161aa
 RMD160 (kwsio-1.0.1.tar.gz) = abbbc84d98dd806b9951b0802f53a823c5228779
 Size (kwsio-1.0.1.tar.gz) = 309634 bytes
+SHA1 (patch-aa) = d314d43f98f700f4c4525561fb2f78aff07c59ef
