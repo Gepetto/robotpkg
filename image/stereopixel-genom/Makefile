@@ -2,11 +2,10 @@
 # Created:			Anthony Mallet on Fri, 14 Mar 2008
 #
 
-DISTNAME=		stereopixel-genom-1.2
-PKGREVISION=		1
+DISTNAME=		stereopixel-genom-1.3
 CATEGORIES=		image
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}stereopixel-genom
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=stereopixel-genom/}
+MASTER_REPOSITORY=	git git://git.openrobots.org/robots/stereopixel-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
