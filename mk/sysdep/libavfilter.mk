@@ -19,7 +19,7 @@ SYSTEM_SEARCH.libavfilter=\
 	'lib/libavfilter.{so,a}'				\
 	'lib/pkgconfig/libavfilter.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.libavfilter=ffmpeg-libs
+SYSTEM_PKG.Fedora.libavfilter=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libavfilter=libavfilter-dev
 SYSTEM_PKG.Debian.libavfilter=libavfilter-dev
 SYSTEM_PKG.NetBSD.libavfilter=multimedia/ffmpeg

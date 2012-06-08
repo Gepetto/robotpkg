@@ -19,7 +19,7 @@ SYSTEM_SEARCH.libavformat=\
 	'lib/libavformat.{so,a}'				\
 	'lib/pkgconfig/libavformat.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.libavformat=ffmpeg-libs
+SYSTEM_PKG.Fedora.libavformat=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libavformat=libavformat-dev
 SYSTEM_PKG.Debian.libavformat=libavformat-dev
 SYSTEM_PKG.NetBSD.libavformat=multimedia/ffmpeg

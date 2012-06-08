@@ -19,7 +19,7 @@ SYSTEM_SEARCH.libpostproc=\
 	'lib/libpostproc.{so,a}'				\
 	'lib/pkgconfig/libpostproc.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.libpostproc=ffmpeg-libs
+SYSTEM_PKG.Fedora.libpostproc=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libpostproc=libpostproc-dev
 SYSTEM_PKG.Debian.libpostproc=libpostproc-dev
 SYSTEM_PKG.NetBSD.libpostproc=multimedia/ffmpeg

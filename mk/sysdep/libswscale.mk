@@ -19,7 +19,7 @@ SYSTEM_SEARCH.libswscale=\
 	'lib/libswscale.{so,a}'				\
 	'lib/pkgconfig/libswscale.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.libswscale=ffmpeg-libs
+SYSTEM_PKG.Fedora.libswscale=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libswscale=libswscale-dev
 SYSTEM_PKG.Debian.libswscale=libswscale-dev
 SYSTEM_PKG.NetBSD.libswscale=multimedia/ffmpeg

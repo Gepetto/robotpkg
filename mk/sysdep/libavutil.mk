@@ -19,7 +19,7 @@ SYSTEM_SEARCH.libavutil=\
 	'lib/libavutil.{so,a}'					\
 	'lib/pkgconfig/libavutil.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.libavutil=ffmpeg-libs
+SYSTEM_PKG.Fedora.libavutil=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libavutil=libavutil-dev
 SYSTEM_PKG.Debian.libavutil=libavutil-dev
 SYSTEM_PKG.NetBSD.libavutil=multimedia/ffmpeg

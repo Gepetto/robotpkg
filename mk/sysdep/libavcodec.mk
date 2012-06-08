@@ -19,7 +19,7 @@ SYSTEM_SEARCH.libavcodec=\
 	'lib/libavcodec.{so,a}'					\
 	'lib/pkgconfig/libavcodec.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.libavcodec=ffmpeg-libs
+SYSTEM_PKG.Fedora.libavcodec=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libavcodec=libavcodec-dev
 SYSTEM_PKG.Debian.libavcodec=libavcodec-dev
 SYSTEM_PKG.NetBSD.libavcodec=multimedia/ffmpeg
