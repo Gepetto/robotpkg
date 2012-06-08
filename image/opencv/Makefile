@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
+PKGREVISION=		1
 VERSION=		2.4.1
 DISTNAME=		OpenCV-${VERSION}
 PKGNAME=		opencv-${VERSION}
@@ -16,6 +17,7 @@ CONFLICTS+=		opencv1
 LICENSE=		modified-bsd
 
 USE_LANGUAGES+=		c c++
+PKG_CONFIG_OVERRIDE=	cmake/templates/opencv-XXX.pc.cmake.in
 
 # build configuration
 CMAKE_ARGS+=	-DBUILD_PACKAGE=OFF -DBUILD_SHARED_LIBS=ON
