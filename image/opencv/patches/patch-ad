@@ -1,7 +1,17 @@
+Fix empty libdir.
 Do not store full paths in .pc (libtool issue with full shared libs path)
 
---- cmake/OpenCVGenPkgconfig.cmake~	2012-05-31 16:05:39.000000000 +0200
-+++ cmake/OpenCVGenPkgconfig.cmake	2012-06-08 13:37:59.837628651 +0200
+--- cmake/OpenCVGenPkgconfig.cmake.orig	2012-05-31 16:05:39.000000000 +0200
++++ cmake/OpenCVGenPkgconfig.cmake	2012-06-09 12:00:55.000000000 +0200
+@@ -10,7 +10,7 @@
+ # -------------------------------------------------------------------------------------------
+ set(prefix      "${CMAKE_INSTALL_PREFIX}")
+ set(exec_prefix "\${prefix}")
+-set(libdir      "") #TODO: need link paths for OpenCV_EXTRA_COMPONENTS
++set(libdir      "\${prefix}/lib") #TODO: need link paths for OpenCV_EXTRA_COMPONENTS
+ set(includedir  "\${prefix}/${OPENCV_INCLUDE_PREFIX}")
+ set(VERSION     ${OPENCV_VERSION})
+ 
 @@ -39,7 +39,7 @@
  set(OpenCV_LIB_COMPONENTS_ "")
  foreach(CVLib ${OpenCV_LIB_COMPONENTS})

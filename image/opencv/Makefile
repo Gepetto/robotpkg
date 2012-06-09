@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 VERSION=		2.4.1
 DISTNAME=		OpenCV-${VERSION}
 PKGNAME=		opencv-${VERSION}
