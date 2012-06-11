@@ -1,0 +1,11 @@
+--- Data/GlobalDefaults.ini.orig	2012-06-11 18:48:48.285506000 +0200
++++ Data/GlobalDefaults.ini	2012-06-11 18:49:04.745871000 +0200
+@@ -18,7 +18,7 @@
+ ;---------------- Server Default Configuration -------------------
+ [Server]
+ ; Use a server to access sensor. 0 - No (single application), 1 - Yes (multiple applications). Default: Arm - 0, other platforms - 1. Not supported on Mac.
+-;EnableMultiProcess=0
++EnableMultiProcess=0
+ 
+ ; When multi process is enabled, allows server and client running in different sessions. 0 - No (default), 1 - Yes
+ ;EnableMultiUsers=0

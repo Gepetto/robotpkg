@@ -4,6 +4,7 @@
 
 COMMIT=		50b8b2
 PKG_VERSION=	20120104.${COMMIT}
+PKGREVISION=	1
 DISTNAME=	openni-sensor-${PKG_VERSION}
 MASTER_SITES=	https://github.com/PrimeSense/Sensor.git@${COMMIT}
 FETCH_METHOD=	git
