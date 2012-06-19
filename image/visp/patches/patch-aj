@@ -1,0 +1,12 @@
+Require read(2), close(2) et al.
+
+--- src/tools/io/vpParallelPort.cpp~	2011-02-11 14:17:26.000000000 +0100
++++ src/tools/io/vpParallelPort.cpp	2012-06-19 18:49:39.613873601 +0200
+@@ -48,6 +48,7 @@
+ #  include <sys/stat.h>
+ #  include <fcntl.h>
+ #  include <sys/ioctl.h>
++#  include <unistd.h>
+ 
+ #  include <visp/vpParallelPort.h>
+ 

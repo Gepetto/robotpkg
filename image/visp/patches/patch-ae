@@ -1,28 +1,20 @@
---- src/tools/io/vpKeyboard.cpp~	2010-01-07 11:33:12.000000000 +0100
-+++ src/tools/io/vpKeyboard.cpp	2010-02-09 22:27:27.000000000 +0100
-@@ -1,6 +1,6 @@
- /****************************************************************************
-  *
-- * $Id: vpKeyboard.cpp 2456 2010-01-07 10:33:12Z nmelchio $
-+ * $Id: vpKeyboard.cpp 2010/02/09 22:27:27 tho $
-  *
-  * Copyright (C) 1998-2010 Inria. All rights reserved.
-  *
-@@ -132,10 +132,18 @@
-     new_settings.c_lflag &= ~ICANON;
-     new_settings.c_lflag &= ~ECHO;
-     new_settings.c_lflag &= ~ISIG;
+--- src/tools/io/vpKeyboard.cpp~	2011-02-11 14:17:26.000000000 +0100
++++ src/tools/io/vpKeyboard.cpp	2012-06-19 17:07:02.629627359 +0200
+@@ -136,10 +136,18 @@
+     new_settings.c_lflag &= (unsigned int)~ICANON;
+     new_settings.c_lflag &= (unsigned int)~ECHO;
+     new_settings.c_lflag &= (unsigned int)~ISIG;
 +#ifdef NL0
-     new_settings.c_oflag &= ~NL0;
+     new_settings.c_oflag &= (unsigned int)~NL0;
 +#endif
 +#ifdef CR0
-     new_settings.c_oflag &= ~CR0;
+     new_settings.c_oflag &= (unsigned int)~CR0;
 +#endif
 +#ifdef TAB0
-     new_settings.c_oflag &= ~TAB0;
+     new_settings.c_oflag &= (unsigned int)~TAB0;
 +#endif
 +#ifdef BS0
-     new_settings.c_oflag &=~BS0;
+     new_settings.c_oflag &= (unsigned int)~BS0;
 +#endif
      new_settings.c_cc[VMIN] = 1;
      new_settings.c_cc[VTIME] = 0;

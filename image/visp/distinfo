@@ -1,8 +1,9 @@
-SHA1 (visp-2.4.4.tar.gz) = c8812786e4bdd67e6115afb08a2449cd71e9e611
-RMD160 (visp-2.4.4.tar.gz) = e5047ecb4a63fab5e9bd4536fef7135a53af2dc7
-Size (visp-2.4.4.tar.gz) = 949721 bytes
-SHA1 (patch-aa) = 8e582c003fa2f0d62a51855e05ff7ccf3747cc58
-SHA1 (patch-ab) = f3efb648a1f7ccbdcf1e4e9ee4db1ac0349f945c
-SHA1 (patch-ac) = 7aa98f1e3e36be5926cc2fa9773ecc7dd9b8c012
-SHA1 (patch-ad) = bbc6bb9a2474c1160507bc0bd8fa8a51e2f23c9c
-SHA1 (patch-ae) = 98347e5978256f8c3f39679549242fb15cbc911f
+SHA1 (ViSP-2.6.1.tar.gz) = c617905a57e0ac84d19ec906b6cbf139b0fb5fa7
+RMD160 (ViSP-2.6.1.tar.gz) = 4fae6ce98e8b6c3254ecb22aaf9232987587cfab
+Size (ViSP-2.6.1.tar.gz) = 1317629 bytes
+SHA1 (patch-ae) = addba5780356b29edb1f443009e5fbc25bd6c5f0
+SHA1 (patch-af) = b68f666290150d2020b46e6c3843be68834f756b
+SHA1 (patch-ag) = e1cc2990b2aab4db8c7f1cee0a793928ad09aaae
+SHA1 (patch-ah) = f15e9ca2cf702af7450917cecc33c62fc5850aad
+SHA1 (patch-ai) = 96409637178cf713b29181c2a1870c19c3272e1e
+SHA1 (patch-aj) = e575590d0d176dd013f5940fb8c5a20aacf72fe6

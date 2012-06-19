@@ -1,0 +1,12 @@
+Compat with newer opencv 2.4
+
+--- src/tracking/klt/vpKltOpencv.h~	2011-09-19 11:15:03.000000000 +0200
++++ src/tracking/klt/vpKltOpencv.h	2012-06-19 18:35:04.569712673 +0200
+@@ -60,6 +60,7 @@
+ #endif
+ 
+ #if (VISP_HAVE_OPENCV_VERSION >= 0x020101) // Require opencv >= 2.1.1
++#  include <opencv2/imgproc/imgproc_c.h>
+ #  include <opencv2/imgproc/imgproc.hpp>
+ #  include <opencv2/video/tracking.hpp>
+ #else

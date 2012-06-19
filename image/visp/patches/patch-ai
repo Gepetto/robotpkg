@@ -1,0 +1,12 @@
+Require read(2), close(2) et al.
+
+--- src/robot/real-robot/afma4/vpServolens.cpp~	2011-07-19 19:09:36.000000000 +0200
++++ src/robot/real-robot/afma4/vpServolens.cpp	2012-06-19 18:40:38.549873023 +0200
+@@ -58,6 +58,7 @@
+ #include <fcntl.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <unistd.h>
+ 
+ #include <visp/vpServolens.h>
+ #include <visp/vpRobotException.h>
