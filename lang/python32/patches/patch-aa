@@ -1,5 +1,5 @@
---- setup.py~	2011-09-03 18:16:50.000000000 +0200
-+++ setup.py	2011-09-21 00:38:47.000000000 +0200
+--- setup.py.orig	2012-06-19 11:45:21.317873286 +0200
++++ setup.py	2012-06-19 11:46:41.961627811 +0200
 @@ -21,7 +21,7 @@
  COMPILED_WITH_PYDEBUG = hasattr(sys, 'gettotalrefcount')
  
@@ -9,3 +9,43 @@
  
  # File which contains the directory for shared mods (for sys.path fixup
  # when running from the build dir, see Modules/getpath.c)
+@@ -1061,6 +1061,30 @@
+         dbm_order = ['gdbm']
+         # The standard Unix dbm module:
+         if platform not in ['cygwin']:
++
++            ## Top half based on find_file
++            def find_ndbm_h(dirs):
++                ret = None
++                if sys.platform == 'darwin':
++                    sysroot = macosx_sdk_root()
++                for dir in dirs:
++                    f = os.path.join(dir, 'ndbm.h')
++                    if sys.platform == 'darwin' and is_macosx_sdk_path(dir):
++                        f = os.path.join(sysroot, dir[1:], 'ndbm.h')
++                    if not os.path.exists(f): continue
++
++                    ret = 'True'
++                    input = text_file.TextFile(f)
++                    while 1:
++                        line = input.readline()
++                        if not line: break
++                        if re.search('This file is part of GDBM', line):
++                            ret = None
++                            break
++                    input.close()
++                    break
++                return ret
++
+             config_args = [arg.strip("'")
+                            for arg in sysconfig.get_config_var("CONFIG_ARGS").split()]
+             dbm_args = [arg for arg in config_args
+@@ -1072,7 +1096,7 @@
+             dbmext = None
+             for cand in dbm_order:
+                 if cand == "ndbm":
+-                    if find_file("ndbm.h", inc_dirs, []) is not None:
++                    if find_ndbm_h(inc_dirs) is not None:
+                         # Some systems have -lndbm, others don't
+                         if self.compiler.find_library_file(lib_dirs,
+                                                                'ndbm'):
