@@ -1,0 +1,31 @@
+Appease gcc-4.7
+
+--- rtm/SystemLogger.h~	2008-05-29 08:02:01.000000000 +0200
++++ rtm/SystemLogger.h	2012-06-19 12:21:31.753874338 +0200
+@@ -725,7 +725,7 @@
+ 	    // Reset pptr() pointer to pbase()
+ 	    // __streambuf_type::sync() resets the pointer
+ 	    ret = __streambuf_type::sync();
+-	    pbump( this->pbase() - this->pptr() );
++	    this->pbump( this->pbase() - this->pptr() );
+ 	  }
+ 	}
+       return ret;
+@@ -839,7 +839,7 @@
+      */
+     int_type overflow(int_type c = _Traits::eof() )
+     {
+-      pbump( this->pbase() - this->pptr() );
++      this->pbump( this->pbase() - this->pptr() );
+       return _Traits::not_eof(c);
+     }
+     
+@@ -864,7 +864,7 @@
+      */
+     virtual int sync()
+     {
+-      pbump( this->pbase() - this->pptr() );
++      this->pbump( this->pbase() - this->pptr() );
+       return 0;
+     }
+     
