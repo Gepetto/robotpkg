@@ -2,7 +2,7 @@
 # Created:			Thomas Moulard on Wed, 8 Sep 2010
 #
 
-PKGVERSION=		0.18.6
+PKGVERSION=		0.18.9
 DISTNAME=		openvrml-${PKGVERSION_NOREV}
 PKGNAME=		openvrml-libs-${PKGVERSION}
 CATEGORIES=		devel

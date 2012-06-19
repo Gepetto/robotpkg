@@ -1,13 +1,14 @@
-Require boost/mpl/if.hpp that seems to be missing for some reason?
-(boost-1.47.0)
-
---- src/libopenvrml/openvrml/local/error.cpp~	2010-02-13 23:16:38.000000000 +0100
-+++ src/libopenvrml/openvrml/local/error.cpp	2012-01-31 19:02:06.620543960 +0100
-@@ -19,6 +19,7 @@
- //
- 
- # include "error.h"
-+# include <boost/mpl/if.hpp>
- # include <boost/multi_index/detail/scope_guard.hpp>
- # include <boost/ref.hpp>
- 
+--- src/local/libopenvrml-dl/openvrml/local/dl.cpp~	2012-05-04 07:21:30.272744070 +0200
++++ src/local/libopenvrml-dl/openvrml/local/dl.cpp	2012-06-19 15:42:04.857872993 +0200
+@@ -85,7 +85,11 @@
+     std::vector<boost::filesystem::path>::const_iterator dir =
+         search_path.begin();
+     while (dir != search_path.end()) {
++#if BOOST_FILESYSTEM_VERSION < 3
++        path << dir->string();
++#else
+         path << dir->generic_string();
++#endif
+         if (++dir != search_path.end()) { path << LT_PATHSEP_CHAR; }
+     }
+     ltforeachfile_data ltdata = { func, data };

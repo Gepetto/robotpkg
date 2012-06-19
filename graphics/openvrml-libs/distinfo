@@ -1,6 +1,6 @@
-SHA1 (openvrml-0.18.6.tar.gz) = 6ab47542c75eb0102ef71b5596dcfbc2f9c76ad6
-RMD160 (openvrml-0.18.6.tar.gz) = 3938842b795c759ac157c057f8cabcb2d975ae79
-Size (openvrml-0.18.6.tar.gz) = 4727317 bytes
+SHA1 (openvrml-0.18.9.tar.gz) = fa61682a67d2630645d0fb5bae15823fe22b98c0
+RMD160 (openvrml-0.18.9.tar.gz) = c79589b11a5dcbf91a09f454deb7fcc439c8a771
+Size (openvrml-0.18.9.tar.gz) = 5264760 bytes
 SHA1 (patch-aa) = aafb5e64db79ccfe7ef3f86ff7a2271d07759963
-SHA1 (patch-ab) = 0cf5842c6fd0593d0863e67671108124c503abef
-SHA1 (patch-ac) = 20442be022171ba1c476c7070dedab3cfa38608f
+SHA1 (patch-ab) = 01012d173103c7ee4c47079c7f0a0dbf2d77c3e8
+SHA1 (patch-ac) = 9fe67ec1cf3f5afab3f7d20f2a4c1dfe0e8e511d

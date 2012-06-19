@@ -1,7 +1,7 @@
 Disable installation of disabled components
 
---- src/Makefile.in.orig	2010-06-02 06:04:52.000000000 +0200
-+++ src/Makefile.in	2010-09-09 01:25:50.000000000 +0200
+--- src/Makefile.in~	2012-05-04 09:51:56.627473591 +0200
++++ src/Makefile.in	2012-06-19 13:47:03.481872950 +0200
 @@ -571,8 +571,8 @@
  	ps-recursive uninstall-recursive
  am__dist_openvrml_player_ui_DATA_DIST =  \
@@ -13,7 +13,7 @@ Disable installation of disabled components
  am__openvrml_gl_include_HEADERS_DIST =  \
  	libopenvrml-gl/openvrml/gl/viewer.h
  am__pkginclude_HEADERS_DIST = libopenvrml/openvrml-config.h \
-@@ -778,7 +778,7 @@
+@@ -783,7 +783,7 @@
  install_sh = @install_sh@
  java_subdir = @java_subdir@
  libdir = @libdir@
@@ -21,9 +21,9 @@ Disable installation of disabled components
 +libexecdir = #@libexecdir@
  localedir = @localedir@
  localstatedir = @localstatedir@
- lt_ECHO = @lt_ECHO@
-@@ -924,7 +924,7 @@
-         -lboost_filesystem$(BOOST_LIB_SUFFIX) \
+ mandir = @mandir@
+@@ -932,7 +932,7 @@
+         -lboost_system$(BOOST_LIB_SUFFIX) \
          -lltdl
  
 -openvrmlscriptdir = $(pkglibdir)/script
@@ -31,7 +31,7 @@ Disable installation of disabled components
  openvrmlscript_LTLIBRARIES = $(am__append_3) $(am__append_4)
  script_javascript_la_SOURCES = script/javascript.cpp
  script_javascript_la_CPPFLAGS = \
-@@ -1635,15 +1635,15 @@
+@@ -1643,15 +1643,15 @@
          local/libopenvrml-control.la \
          libopenvrml-gl/libopenvrml-gl.la
  
@@ -49,8 +49,8 @@ Disable installation of disabled components
 +openvrml_player_uidir = #$(datadir)/openvrml-player/ui
  @ENABLE_PLAYER_TRUE@dist_openvrml_player_ui_DATA = openvrml-player/openvrml-player.ui
  openvrml_player_openvrml_player_CPPFLAGS = \
-         -DG_DISABLE_DEPRECATED \
-@@ -1674,7 +1674,7 @@
+         -DOPENVRML_PLAYER_PKGDATADIR_=\"$(datadir)/openvrml-player\" \
+@@ -1679,7 +1679,7 @@
          openvrml-player/curlbrowserhost.cpp \
          openvrml-player/curlbrowserhost.h
  
