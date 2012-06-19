@@ -1,0 +1,12 @@
+getopt(3) definitions
+
+--- src/hokuyo_aist/test/example.cpp~	2010-09-24 08:13:23.000000000 +0200
++++ src/hokuyo_aist/test/example.cpp	2012-06-19 12:13:02.369873455 +0200
+@@ -20,6 +20,7 @@
+ #include <stdio.h>
+ #include <math.h>
+ #include <iostream>
++#include <unistd.h>
+ 
+ #include <hokuyo_aist/hokuyo_aist.h>
+ #include <hokuyo_aist/hokuyo_errors.h>

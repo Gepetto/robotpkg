@@ -1,0 +1,12 @@
+getopt(3) definitions
+
+--- src/hokuyo_aist/getid/getid.cpp~	2010-08-16 04:22:54.000000000 +0200
++++ src/hokuyo_aist/getid/getid.cpp	2012-06-19 12:00:18.297837905 +0200
+@@ -16,6 +16,7 @@
+  * This software is licensed under the Eclipse Public License -v 1.0 (EPL). See
+  * http://www.opensource.org/licenses/eclipse-1.0.txt
+  */
++#include <unistd.h>
+ 
+ #include <cstdio>
+ #include <cmath>
