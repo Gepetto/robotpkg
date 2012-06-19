@@ -1,0 +1,112 @@
+Fix -Wcast-qual pulled by -Werror of gcc-4.7
+
+--- src/command/value.cpp~	2011-12-07 15:35:56.000000000 +0100
++++ src/command/value.cpp	2012-06-19 11:29:11.077873488 +0200
+@@ -71,28 +71,28 @@
+     {
+       switch(type_) {
+       case BOOL:
+-	delete(bool*)value_;
++	delete(const bool*)value_;
+ 	break;
+       case UNSIGNED:
+-	delete(unsigned*)value_;
++	delete(const unsigned*)value_;
+ 	break;
+       case INT:
+-	delete(int*)value_;
++	delete(const int*)value_;
+ 	break;
+       case FLOAT:
+-	delete(float*)value_;
++	delete(const float*)value_;
+ 	break;
+       case DOUBLE:
+-	delete(double*)value_;
++	delete(const double*)value_;
+ 	break;
+       case STRING:
+-	delete(std::string*)value_;
++	delete(const std::string*)value_;
+ 	break;
+       case VECTOR:
+-	delete(Vector*)value_;
++	delete(const Vector*)value_;
+ 	break;
+       case MATRIX:
+-	delete(Matrix*)value_;
++	delete(const Matrix*)value_;
+ 	break;
+       default:;
+       }
+@@ -199,7 +199,7 @@
+     bool Value::boolValue() const
+     {
+       if(type_ == BOOL)
+-	return *((bool*)value_);
++	return *((const bool*)value_);
+       throw ExceptionAbstract(ExceptionAbstract::TOOLS,
+ 			      "value is not an bool");
+     }
+@@ -207,7 +207,7 @@
+     unsigned Value::unsignedValue() const
+     {
+       if(type_ == UNSIGNED)
+-	return *((unsigned*)value_);
++	return *((const unsigned*)value_);
+       throw ExceptionAbstract(ExceptionAbstract::TOOLS,
+ 			      "value is not an unsigned int");
+     }
+@@ -215,7 +215,7 @@
+     int Value::intValue() const
+     {
+       if(type_ == INT)
+-	return *((int*)value_);
++	return *((const int*)value_);
+       throw ExceptionAbstract(ExceptionAbstract::TOOLS,
+ 			      "value is not an int int");
+     }
+@@ -226,7 +226,7 @@
+       if(FLOAT != type_)
+ 	throw ExceptionAbstract(ExceptionAbstract::TOOLS,
+ 				"value is not a float");
+-      result = *((float*)value_);
++      result = *((const float*)value_);
+       return result;
+     }
+ 
+@@ -236,14 +236,14 @@
+       if(DOUBLE != type_)
+ 	throw ExceptionAbstract(ExceptionAbstract::TOOLS,
+ 				"value is not a double");
+-      result = *((double*)value_);
++      result = *((const double*)value_);
+       return result;
+     }
+ 
+     std::string Value::stringValue() const
+     {
+       if(type_ == STRING)
+-	return *((std::string*)value_);
++	return *((const std::string*)value_);
+       throw ExceptionAbstract(ExceptionAbstract::TOOLS,
+ 			      "value is not an string");
+     }
+@@ -251,7 +251,7 @@
+     Vector Value::vectorValue() const
+     {
+       if(type_ == VECTOR)
+-	return *((Vector*)value_);
++	return *((const Vector*)value_);
+       throw ExceptionAbstract(ExceptionAbstract::TOOLS,
+ 			      "value is not an vector");
+     }
+@@ -259,7 +259,7 @@
+     Matrix Value::matrixValue() const
+     {
+       if(type_ == MATRIX)
+-	return *((Matrix*)value_);
++	return *((const Matrix*)value_);
+       throw ExceptionAbstract(ExceptionAbstract::TOOLS,
+ 			      "value is not a matrix");
+     }
