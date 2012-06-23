@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		regionMap-genom-0.3
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=		mapping
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=regionMap-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/regionMap-genom

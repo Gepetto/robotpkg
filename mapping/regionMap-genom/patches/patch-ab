@@ -1,0 +1,15 @@
+read the correct transformations in the stereopixel case
+
+diff --git a/codels/regionMapExecCodels.c b/codels/regionMapExecCodels.c
+index 3cd3735..9566e39 100644
+--- codels/regionMapExecCodels.c
++++ codels/regionMapExecCodels.c
+@@ -794,7 +794,7 @@ regionMapUpdateMapMain(int *report)
+     memcpy(&sensorToMain.euler.euler, 
+ 	   &(stereopixelData->imageLeftPos.sensorToMain.euler), sizeof(POM_EULER));
+     memcpy(&mainToOrigin.euler.euler, 
+-	   &(stereopixelData->imageLeftPos.sensorToMain.euler), sizeof(POM_EULER));
++	   &(stereopixelData->imageLeftPos.mainToOrigin.euler), sizeof(POM_EULER));
+     break;
+   case RMAP_VELODYNE_CONNECTION:
+     /* Convert the velodyne data into a DATA_IM3D structure */
