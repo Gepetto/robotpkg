@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2011 LAAS/CNRS
+# Copyright (c) 2007-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -69,6 +69,8 @@ HTML_LICENSE=	$(if ${LICENSE},			\
 #
 # This target is used to generate index.html files.
 #
+$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+
 .PHONY: index
 index: index.html
 
@@ -108,12 +110,21 @@ ${foreach _d_,$(sort ${DEPEND_USE}),					\
 }									\
 	${SED} <${DESCR_SRC} -e 's/^$$/<p>/g' >$@.descr;		\
 	${ECHO} $(call quote,${COMMENT}) | ${HTMLIFY} > $@.comment;	\
+	${ECHO} '<ul>' >$@.distfiles;					\
+	$(foreach _,${DISTFILES},					\
+	  $(foreach __,$(addsuffix $_,${SITES.$(subst =,--,$_)}),	\
+	    ${ECHO} '<li><a href="${__}">${__}</a>' >>$@.distfiles;	\
+	))								\
+	${ECHO} '</ul>' >>$@.distfiles;					\
+	${ECHO} $(call quote,${COMMENT}) | ${HTMLIFY} > $@.comment;	\
 	${SED} <${INDEX_NAME}						\
 		-e 's!%%PORT%%!${PKGPATH}!g' 				\
 		-e '/%%COMMENT%%/r$@.comment' 				\
 		-e '/%%COMMENT%%/d' 					\
 		-e 's!%%PKG%%!${PKGNAME}!g'				\
 		-e 's!%%HOMEPAGE%%!${HTML_HOMEPAGE}!g'			\
+		-e '/%%DISTFILES%%/r$@.distfiles'			\
+		-e '/%%DISTFILES%%/d'					\
 		-e 's!%%LICENSE%%!${HTML_LICENSE}!g'			\
 		-e '/%%DESCR%%/r$@.descr'				\
 		-e '/%%DESCR%%/d' 					\
@@ -129,7 +140,7 @@ ${foreach _d_,$(sort ${DEPEND_USE}),					\
 		${ECHO_MSG} "creating index.html for ${PKGPATH}";	\
 		${MV} $@.tmp $@;					\
 	fi;								\
-	${RM} -f $@.tmp $@.bdep $@.rdep $@.descr $@.comment
+	${RM} -f $@.tmp $@.bdep $@.rdep $@.descr $@.comment $@.distfiles
 else
   # category or top-level index.html
 	@${PHASE_MSG} "Updating index.html files" 			\
@@ -229,8 +240,6 @@ endif
 #
 # This target is used by the toplevel.mk file to generate pkg database file
 #
-$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
-
 .PHONY: print-summary-data
 print-summary-data:
 	${RUN}								\

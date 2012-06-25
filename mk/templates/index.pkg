@@ -18,30 +18,38 @@
     </div>
 
     <div id="content">
-      <table>
+      <table id="summary">
+        <tr><td>Description:<td><div class="descr">
+	          %%DESCR%%
+            </div></tr>
 	<tr>
 	  <td>Directory:
 	  <td><a href=".">%%PORT%%</a>
+	  (<a href="http://trac.laas.fr/git/robotpkg/log/%%PORT%%?showmsg=1">package's history</a>)
 	</tr>
+
 	<tr>
-	  <td>Source version:
+	  <td>Package version:
 	  <td>%%PKG%%
-	  <td>browse the package's
-	    <a href="http://trac.laas.fr/git/robotpkg/log/%%PORT%%?showmsg=1">history</a>.
 	</tr>
 	<tr>
 	  <td>Home page:
 	  <td>%%HOMEPAGE%%
 	</tr>
-      %%LICENSE%%
+	<tr><td>Source archive:<td>
+          %%DISTFILES%%
+            </tr>
+            %%LICENSE%%
+
+        <tr><td>Run dependencies:<td>
+              %%RUN_DEPENDS%%
+            </tr>
+        <tr><td>Build dependencies:<td>
+              %%BUILD_DEPENDS%%
+            </tr>
       </table>
 
-      <div class="descr"><p>
-	%%DESCR%%
-      </p></div>
-
-
-For a summary on how to use the package collection, go to the
+<p>For a summary on how to use the package collection, go to the
 <a href="../../index.html">top of the packages tree</a>.
 </p>
 
@@ -50,23 +58,14 @@ reported with
 <a
 href="https://softs.laas.fr/bugzilla/buglist.cgi?bug_status=__open__&product=robotpkg">the robotpkg bugzilla.</a></p>
 
-
-<p>
-This package requires the following package(s) to build:
-%%BUILD_DEPENDS%%
-</p>
-<p>
-This package requires the following package(s) to run:
-%%RUN_DEPENDS%%
-</p>
-
-<p>
+<!-- <p>
 Select one of the links below to download the
 package in precompiled binary form for installation with pkg_add(1).
 Available machine architectures and package versions:
 <TABLE>
 %%BIN_PKGS%%
 </TABLE>
+-->
 
       <p>
 	The Robotics packages collection is designed to permit

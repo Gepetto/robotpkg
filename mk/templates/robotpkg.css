@@ -89,10 +89,8 @@ a.navigation:after {
   content:	' ]';
 }
 
-.descr { 
+#descr {
   text-align:		justify;
-  border:		#f0f0f0 1px solid;
-  padding:		10px;
 }
 
 
@@ -134,6 +132,23 @@ table {
   margin:	1em 0;
   width:	100%;
 }
+
+#summary {
+    border:		#f0f0f0 1px solid;
+    padding:		10px;
+}
+
+#summary tr td:first-child {
+    white-space:	nowrap;
+    vertical-align:	top;
+}
+
+#summary ul {
+    margin:	0;
+    padding:	0;
+    list-style:	disc inside;
+}
+
 
 thead th {
   border-bottom:20px solid #aaa;
