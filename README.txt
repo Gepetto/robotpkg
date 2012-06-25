@@ -2,10 +2,10 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                                 March 4, 2011
+                                 June 25, 2012
 
-Copyright (C) 2006-2011 LAAS/CNRS.
-Copyright (C) 1997-2010 The NetBSD Foundation, Inc.
+Copyright ? 2006-2011 LAAS/CNRS.
+Copyright ? 1997-2010 The NetBSD Foundation, Inc.
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -161,7 +161,7 @@ currently suffers from the same symptom: this may change in the future if the
 need for several package repositories becomes blatant.
 robotpkg provides a number of features not available in pkgsrc (and probably
 not really useful to pkgsrc either). The most important feature is to be able
-to detect ssystem packages", that are considered as e:xternal software not in
+to detect ?ystem packages", that are considered as ?xternal software not in
 robotpkg but usually available on a unix system". pkgsrc has a similar system
 but much more limited - to a few base packages only. This is so because pkgsrc
 is a full-fledged package system. Thus, it aims at being self contained, while
@@ -329,7 +329,7 @@ There are two download methods: the anonymous one and the authenticated one:
     As your regular user, simply run in a shell:
 
     % cd /opt/openrobots
-    % git clone http://softs.laas.fr/git/robots/robotpkg.git
+    % git clone git://git.openrobots.org/robots/robotpkg
 
 
   * Authenticated download requires a valid login on the main robotpkg
@@ -337,7 +337,7 @@ There are two download methods: the anonymous one and the authenticated one:
     run the following:
 
     % cd /opt/openrobots
-    % git clone ssh://softs.laas.fr/git/robots/robotpkg
+    % git clone ssh://openrobots.org/git/robots/robotpkg
 
 
 2.1.3  Keeping robotpkg up-to-date
