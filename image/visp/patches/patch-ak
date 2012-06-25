@@ -1,0 +1,40 @@
+Leading _ is reserved by posix
+
+--- src/simulator/image-simulator/vpImageSimulator.h~	2011-07-19 19:09:36.000000000 +0200
++++ src/simulator/image-simulator/vpImageSimulator.h	2012-06-25 10:28:28.225873594 +0200
+@@ -1,6 +1,6 @@
+ /****************************************************************************
+  *
+- * $Id: vpPose.h 2453 2010-01-07 10:01:10Z nmelchio $
++ * $Id: vpImageSimulator.h 2012/06/25 10:28:28 mallet $
+  *
+  * This file is part of the ViSP software.
+  * Copyright (C) 2005 - 2011 by INRIA. All rights reserved.
+@@ -209,12 +209,12 @@
+ 
+     
+     //creation du plan a partir de ses coordonnees 3D ds repere objet et de son image texture
+-    void init(const vpImage<unsigned char> &I,vpColVector* _X);
+-    void init(const vpImage<vpRGBa> &I,vpColVector* _X);
+-    void init(const char* file_image,vpColVector* _X);
+-    void init(const vpImage<unsigned char> &I, const std::vector<vpPoint>& _X);
+-    void init(const vpImage<vpRGBa> &I, const std::vector<vpPoint>& _X);
+-    void init(const char* file_image, const std::vector<vpPoint>& _X);
++    void init(const vpImage<unsigned char> &I,vpColVector* vp_X);
++    void init(const vpImage<vpRGBa> &I,vpColVector* vp_X);
++    void init(const char* file_image,vpColVector* vp_X);
++    void init(const vpImage<unsigned char> &I, const std::vector<vpPoint>& vp_X);
++    void init(const vpImage<vpRGBa> &I, const std::vector<vpPoint>& vp_X);
++    void init(const char* file_image, const std::vector<vpPoint>& vp_X);
+ 
+     //projection du plan par cMo => creation des deux triangles definissant projection du plan sur plan image (coord en metre)
+     void setCameraPosition(const vpHomogeneousMatrix &_cMt);
+@@ -266,7 +266,7 @@
+ #endif
+     
+   private:
+-    void initPlan(vpColVector* _X);
++    void initPlan(vpColVector* vp_X);
+     
+     //result = plan est visible.
+     //ie: un plan est oriente dans si normal_plan.focal < 0 => plan est visible sinon invisible.

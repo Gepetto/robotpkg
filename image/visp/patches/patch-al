@@ -1,0 +1,139 @@
+Leading _ is reserved by posix
+
+--- src/simulator/image-simulator/vpImageSimulator.cpp~	2011-07-19 19:09:36.000000000 +0200
++++ src/simulator/image-simulator/vpImageSimulator.cpp	2012-06-25 10:31:05.305874242 +0200
+@@ -1,6 +1,6 @@
+ /****************************************************************************
+  *
+- * $Id: vpPose.h 2453 2010-01-07 10:01:10Z nmelchio $
++ * $Id: vpImageSimulator.cpp 2012/06/25 10:31:05 mallet $
+  *
+  * This file is part of the ViSP software.
+  * Copyright (C) 2005 - 2011 by INRIA. All rights reserved.
+@@ -1492,12 +1492,12 @@
+ }
+ 
+ void
+-vpImageSimulator::initPlan(vpColVector* _X)
++vpImageSimulator::initPlan(vpColVector* vp_X)
+ {
+   for (unsigned int i = 0; i < 4; i++)
+   {
+-    X[i]=_X[i];
+-    pt[i].setWorldCoordinates(_X[i][0],_X[i][1],_X[i][2]);
++    X[i]=vp_X[i];
++    pt[i].setWorldCoordinates(vp_X[i][0],vp_X[i][1],vp_X[i][2]);
+   }
+ 
+   normal_obj=vpColVector::crossProd(X[1]-X[0],X[3]-X[0]);
+@@ -1521,11 +1521,11 @@
+   \param _X : table of the 3D coordinates corresponding to the image corners.
+ */
+ void
+-vpImageSimulator::init(const vpImage<unsigned char> &I,vpColVector* _X)
++vpImageSimulator::init(const vpImage<unsigned char> &I,vpColVector* vp_X)
+ {
+   Ig = I;
+   vpImageConvert::convert(I,Ic);
+-  initPlan(_X);
++  initPlan(vp_X);
+ }
+ 
+ /*!
+@@ -1542,11 +1542,11 @@
+   \param _X : table of the 3D coordinates corresponding to the image corners.
+ */
+ void
+-vpImageSimulator::init(const vpImage<vpRGBa> &I,vpColVector* _X)
++vpImageSimulator::init(const vpImage<vpRGBa> &I,vpColVector* vp_X)
+ {
+   Ic = I;
+   vpImageConvert::convert(I,Ig);
+-  initPlan(_X);
++  initPlan(vp_X);
+ }
+ 
+ /*!
+@@ -1563,11 +1563,11 @@
+   \param _X : table of the 3D coordinates corresponding to the image corners.
+ */
+ void
+-vpImageSimulator::init(const char* file_image,vpColVector* _X)
++vpImageSimulator::init(const char* file_image,vpColVector* vp_X)
+ {
+   vpImageIo::read(Ig,file_image);
+   vpImageIo::read(Ic,file_image);
+-  initPlan(_X);
++  initPlan(vp_X);
+ }
+ 
+ /*!
+@@ -1585,17 +1585,17 @@
+   corresponding to the image corners.
+ */
+ void
+-vpImageSimulator::init(const vpImage<unsigned char> &I, const std::vector<vpPoint>& _X)
++vpImageSimulator::init(const vpImage<unsigned char> &I, const std::vector<vpPoint>& vp_X)
+ {
+-  if(_X.size() != 4){
++  if(vp_X.size() != 4){
+     throw vpException(vpException::dimensionError, "the vector must contains 4 points to initialise the simulator");
+   }
+   vpColVector Xvec[4];
+   for(unsigned int i=0; i<4; ++i){
+     Xvec[i].resize(3);
+-    Xvec[i][0] = _X[i].get_oX();
+-    Xvec[i][1] = _X[i].get_oY();
+-    Xvec[i][2] = _X[i].get_oZ();
++    Xvec[i][0] = vp_X[i].get_oX();
++    Xvec[i][1] = vp_X[i].get_oY();
++    Xvec[i][2] = vp_X[i].get_oZ();
+   }
+ 
+   Ig = I;
+@@ -1617,17 +1617,17 @@
+   corresponding to the image corners.
+ */
+ void
+-vpImageSimulator::init(const vpImage<vpRGBa> &I, const std::vector<vpPoint>& _X)
++vpImageSimulator::init(const vpImage<vpRGBa> &I, const std::vector<vpPoint>& vp_X)
+ {
+-  if(_X.size() != 4){
++  if(vp_X.size() != 4){
+     throw vpException(vpException::dimensionError, "the vector must contains 4 points to initialise the simulator");
+   }
+   vpColVector Xvec[4];
+   for(unsigned int i=0; i<4; ++i){
+     Xvec[i].resize(3);
+-    Xvec[i][0] = _X[i].get_oX();
+-    Xvec[i][1] = _X[i].get_oY();
+-    Xvec[i][2] = _X[i].get_oZ();
++    Xvec[i][0] = vp_X[i].get_oX();
++    Xvec[i][1] = vp_X[i].get_oY();
++    Xvec[i][2] = vp_X[i].get_oZ();
+   }
+ 
+   Ic = I;
+@@ -1649,17 +1649,17 @@
+   corresponding to the image corners.
+ */
+ void
+-vpImageSimulator::init(const char* file_image, const std::vector<vpPoint>& _X)
++vpImageSimulator::init(const char* file_image, const std::vector<vpPoint>& vp_X)
+ {
+-  if(_X.size() != 4){
++  if(vp_X.size() != 4){
+     throw vpException(vpException::dimensionError, "the vector must contains 4 points to initialise the simulator");
+   }
+   vpColVector Xvec[4];
+   for(unsigned int i=0; i<4; ++i){
+     Xvec[i].resize(3);
+-    Xvec[i][0] = _X[i].get_oX();
+-    Xvec[i][1] = _X[i].get_oY();
+-    Xvec[i][2] = _X[i].get_oZ();
++    Xvec[i][0] = vp_X[i].get_oX();
++    Xvec[i][1] = vp_X[i].get_oY();
++    Xvec[i][2] = vp_X[i].get_oZ();
+   }
+ 
+   vpImageIo::read(Ig,file_image);
