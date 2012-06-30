@@ -1,0 +1,13 @@
+Only install .h files, not the whole world
+
+--- codels/Makefile.in~	2010-03-21 19:13:12.000000000 +0100
++++ codels/Makefile.in	2012-06-30 17:12:47.000000000 +0200
+@@ -47,7 +47,7 @@
+ # Files that are included in the GenoM file are automatically installed
+ # use $(includedir) to install headers
+ 
+-HEADERS=$(wildcard $(top_srcdir)/rflexConst*)
++HEADERS=$(wildcard $(top_srcdir)/rflexConst*.h)
+ user-install:
+ 	$(MKINSTALLDIRS) $(includedir)
+ 	$(INSTALL_DATA) $(HEADERS) $(includedir)
