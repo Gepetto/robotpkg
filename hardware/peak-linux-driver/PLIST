@@ -2,6 +2,7 @@
 bin/bitratetest
 bin/filtertest
 bin/pcan_make_devices
+bin/pcan-settings
 bin/receivetest
 bin/transmitest
 include/libpcan.h
