@@ -114,6 +114,8 @@ lib/OpenRTM-aist/py_helper/${PYTHON_PYCACHE}/README_gen${PYTHON_TAG}.pyc
 lib/OpenRTM-aist/py_helper/${PYTHON_PYCACHE}/README_gen${PYTHON_TAG}.pyo
 lib/OpenRTM-aist/py_helper/${PYTHON_PYCACHE}/cxx_gen${PYTHON_TAG}.pyc
 lib/OpenRTM-aist/py_helper/${PYTHON_PYCACHE}/cxx_gen${PYTHON_TAG}.pyo
+lib/OpenRTM-aist/py_helper/${PYTHON_PYCACHE}/cxx_svc_impl${PYTHON_TAG}.pyc
+lib/OpenRTM-aist/py_helper/${PYTHON_PYCACHE}/cxx_svc_impl${PYTHON_TAG}.pyo
 lib/OpenRTM-aist/py_helper/${PYTHON_PYCACHE}/gen_base${PYTHON_TAG}.pyc
 lib/OpenRTM-aist/py_helper/${PYTHON_PYCACHE}/gen_base${PYTHON_TAG}.pyo
 lib/OpenRTM-aist/py_helper/${PYTHON_PYCACHE}/profile_gen${PYTHON_TAG}.pyc
