@@ -4,6 +4,7 @@ bin/genom-clean
 bin/genom-regen
 bin/killmodule
 bin/killmymodules
+include/genom/genom.h
 include/genom/genomError.h
 include/genom/h2endian.h
 include/genom/h2endianProto.h
