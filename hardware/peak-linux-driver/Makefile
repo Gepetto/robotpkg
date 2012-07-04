@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Wed, 31 Dec 2008
 #
 
+PKGREVISION=	1
 DISTNAME=	peak-linux-driver-${VERSION}
 VERSION=	7.6
 CATEGORIES=	hardware

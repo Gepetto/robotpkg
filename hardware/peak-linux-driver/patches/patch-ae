@@ -1,0 +1,13 @@
+Delete asm/system.h - apparently useless here anyway
+http://git.kernel.org/?p=linux/kernel/git/torvalds/linux-2.6.git;a=commitdiff;h=0195c002
+
+--- driver/src/pcan_fops.c~	2012-03-08 12:25:10.000000000 +0100
++++ driver/src/pcan_fops.c	2012-07-04 11:39:13.623073289 +0200
+@@ -58,7 +58,6 @@
+ #include <linux/fcntl.h>    // O_ACCMODE
+ #include <linux/pci.h>      // all about pci
+ #include <linux/capability.h> // all about restrictions
+-#include <asm/system.h>     // cli(), *_flags
+ #include <asm/uaccess.h>    // copy_...
+ #include <linux/delay.h>    // mdelay()
+ #include <linux/poll.h>     // poll() and select()

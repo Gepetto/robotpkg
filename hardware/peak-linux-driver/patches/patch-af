@@ -1,0 +1,13 @@
+Delete asm/system.h - apparently useless here anyway
+http://git.kernel.org/?p=linux/kernel/git/torvalds/linux-2.6.git;a=commitdiff;h=0195c002
+
+--- driver/src/pcan_fifo.c~	2011-07-19 11:26:14.000000000 +0200
++++ driver/src/pcan_fifo.c	2012-07-04 11:40:14.933760616 +0200
+@@ -44,7 +44,6 @@
+ #include <linux/errno.h>    // error codes
+ #include <linux/string.h>   // memcpy
+ #include <linux/sched.h>
+-#include <asm/system.h>     // cli(), save_flags(), restore_flags()
+ #include <linux/spinlock.h>
+ 
+ #include <src/pcan_fifo.h>
