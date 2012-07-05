@@ -17,7 +17,6 @@ ONLY_FOR_PLATFORM=	Linux-%
 MAKE_JOBS_SAFE=		no
 NO_CONFIGURE=		yes
 
-WRKSRC=		${WRKDIR}/${PKGNAME}
 INSTALLATION_DIRS=\
 	bin		\
 	include		\
