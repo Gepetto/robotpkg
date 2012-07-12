@@ -20,7 +20,6 @@ SUBDIR+=	kineo-pp
 SUBDIR+=	libp3d
 SUBDIR+=	ndd-genom
 SUBDIR+=	p3d-genom
-SUBDIR+=	walk-genom
 SUBDIR+=	worldModelPlanner-genom
 
 include ../mk/robotpkg.subdir.mk
