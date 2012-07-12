@@ -2,7 +2,7 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                                 June 25, 2012
+                                 July 12, 2012
 
 Copyright ? 2006-2011 LAAS/CNRS.
 Copyright ? 1997-2010 The NetBSD Foundation, Inc.
@@ -116,8 +116,6 @@ be found on any modern Unix distribution. Yet, robotpkg currently contains
 roughly one hundred and fifty packages, including:
 
   * architecture/genom - The LAAS Generator of Robotic Components
-  * simulation/openhrp - The Open Architecture Humanoid Robotics Platform from
-    AIST, Japan
   * architecture/openrtm - The robotic distributed middleware from AIST, Japan
   * middleware/yarp - The "other", yet famous, robot platform
   * ...just to name a few.
