@@ -18,6 +18,7 @@ SUBDIR+=	openvrml-libs
 SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
 SUBDIR+=	ros-rx
+SUBDIR+=	sun-java3d
 SUBDIR+=	Togl
 SUBDIR+=	vcglib
 

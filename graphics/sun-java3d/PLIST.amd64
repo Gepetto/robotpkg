@@ -1,0 +1,5 @@
+@comment Thu Jul 12 15:33:32 CEST 2012
+java/lib/amd64/libj3dcore-ogl.so
+java/lib/ext/j3dcore.jar
+java/lib/ext/j3dutils.jar
+java/lib/ext/vecmath.jar
