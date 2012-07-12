@@ -1,8 +1,0 @@
-mwalk-genom is a walk pattern generator for the HRP-2 robots. It depends on
-libmwalk, which in turn depends on the (non-free) hrpsys-jrl package.
-
-mwalk-genom provides a simple interface for generating walking motion. A high
-level Goto request can reach a distant goal specified in 2D, and a lower level
-request can be used to dynamically push footprints to be executed by the robot.
-A tracking mode can read via a 'poster' remote such footprints coming from
-other genom components.

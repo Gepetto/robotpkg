@@ -7,7 +7,6 @@ SUBDIR+=	dynamic-graph
 SUBDIR+=	dynamic-graph-corba
 SUBDIR+=	contlaw
 SUBDIR+=	locoDemo-genom
-SUBDIR+=	mwalk-genom
 SUBDIR+=	pilo-genom
 SUBDIR+=	py-dynamic-graph
 SUBDIR+=	softMotion-libs
