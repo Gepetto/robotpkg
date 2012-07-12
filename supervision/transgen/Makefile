@@ -1,6 +1,7 @@
 # robotpkg Makefile for:	supervision/transgen
 # Created:			Matthieu Herrb on Thu, 12 Mar 2009
 #
+PKGREVISION=	1
 DISTNAME=	transgen-1.0b4
 CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=openprs/}
@@ -20,4 +21,5 @@ include ../../middleware/pocolibs/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/java.mk
 include ../../mk/robotpkg.mk
