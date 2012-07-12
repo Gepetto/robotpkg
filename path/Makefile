@@ -6,7 +6,6 @@
 COMMENT=	Path planning algorithms and tools
 
 SUBDIR+=	aspect-genom
-SUBDIR+=	gik-genom
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-dynamic-obstacle
 SUBDIR+=	hpp-gik
