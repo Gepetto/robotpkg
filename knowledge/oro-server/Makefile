@@ -34,8 +34,8 @@ define PKG_OPTION_SET.doc
 endef
 
 
-include ../../lang/sun-jdk6/depend.mk
 include ../../knowledge/jena/depend.mk
 include ../../knowledge/pellet/depend.mk
+include ../../mk/sysdep/java.mk
 include ../../mk/robotpkg.mk
 
