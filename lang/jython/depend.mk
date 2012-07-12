@@ -9,9 +9,13 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		jython
 endif
 
-ifeq (+,$(JYTHON_DEPEND_MK)) # ---------------------------------------
+ifeq (+,$(JYTHON_DEPEND_MK)) # ---------------------------------------------
 
-PREFER.jython?=		robotpkg
+include ../../mk/robotpkg.prefs.mk
+ifeq (NetBSD,${OPSYS})
+  PREFER.jython?=	robotpkg
+endif
+PREFER.jython?=		system
 
 DEPEND_USE+=		jython
 
@@ -19,11 +23,8 @@ DEPEND_ABI.jython?=	jython>=2.2.1
 DEPEND_DIR.jython?=	../../lang/jython
 
 SYSTEM_SEARCH.jython=\
-	bin/jython
+	'bin/jython:s/Jython *//p:% -V'
 
-JYTHON_HOME=		${LOCALBASE}/java/jython
-
-endif # --- SUN_JYTHON_DEPEND_MK ----------------------------------------
+endif # --- JYTHON_DEPEND_MK -----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-
