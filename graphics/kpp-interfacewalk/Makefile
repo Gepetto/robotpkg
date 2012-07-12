@@ -28,7 +28,7 @@ PKG_OPTION_SET.verbose:=	CPPFLAGS+=-DHPP_DEBUG
 include ../../mk/sysdep/doxygen.mk
 include ../../path/hpp-walkplanner/depend.mk
 include ../../graphics/kpp-interface/depend.mk
-include ../../robots/hrpsys-jrl/depend.mk
+#FIXME? include ../../robots/hrpsys-jrl/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
