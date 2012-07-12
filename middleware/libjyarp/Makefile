@@ -24,6 +24,7 @@ CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
 CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 
+INSTALLATION_DIRS=	lib share/doc java/libjyarp/lib
 CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
 BUILD_DIRS=		${WRKSRC}/example/swig
 
@@ -31,11 +32,11 @@ BUILD_DIRS=		${WRKSRC}/example/swig
 _CFLAGS_NDEBUG:= -O1 -DNDEBUG
 
 include ../../middleware/yarp/depend.mk
-include ../../lang/sun-jdk6/depend.mk
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../devel/swig/depend.mk
+include ../../mk/sysdep/java.mk
 include ../../mk/robotpkg.mk
 
 post-configure:
@@ -46,19 +47,17 @@ post-configure:
 
 post-build:
 	${MKDIR} ${WRKSRC}/example/swig/build
-	${JAVA_HOME}/bin/javac -d ${WRKSRC}/example/swig/build	\
+	${JAVAC} -d ${WRKSRC}/example/swig/build	\
 		${WRKSRC}/example/swig/generated_src/*.java
-	${JAVA_HOME}/bin/jar cf 				\
+	${JAR} cf				\
 		${WRKSRC}/example/swig/libjyarp.jar		\
 		-C ${WRKSRC}/example/swig/build			\
 		.
 	cd ${WRKDIR} && ${MKDIR} doc && cd doc &&		\
-	${JAVA_HOME}/bin/javadoc				\
+	${JAVADOC}/bin/javadoc				\
 		${WRKSRC}/example/swig/generated_src/*.java
 
 do-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/java/libjyarp/lib
-	${INSTALL_LIB_DIR} ${PREFIX}/lib
 	${INSTALL_DATA}						\
 		${WRKSRC}/example/swig/libjyarp.jar		\
 		${PREFIX}/java/libjyarp/lib
