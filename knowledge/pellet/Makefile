@@ -28,10 +28,10 @@ define PKG_OPTION_SET.doc
   do-install: pellet-install-doc
 endef
 
-include ../../lang/sun-jre6/depend.mk
 include ../../knowledge/jena/depend.mk
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/sysdep/java.mk
 include ../../mk/robotpkg.mk
 
 do-install: pellet-install-lib
