@@ -25,7 +25,7 @@ ANT_ARGS?=		# empty
 MAKE_PROGRAM?=		${ANT}
 MAKE_FILE?=		build.xml
 MAKE_ENV+=		ANT_ARGS=$(call quote,${ANT_ARGS})
-MAKE_ENV+=		JAVACMD=$(call quote,${JAVA_HOME}/bin/java)
+MAKE_ENV+=		JAVACMD=$(call quote,${JAVA})
 
 BUILD_TARGET?=		# empty
 
@@ -33,4 +33,4 @@ endif # ANT_DEPEND_MK ------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
 
-include ../../lang/sun-jdk6/depend.mk
+include ../../mk/sysdep/java.mk
