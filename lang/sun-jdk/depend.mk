@@ -20,17 +20,23 @@ DEPEND_ABI.sun-jdk?=	sun-jdk>=1.6
 DEPEND_DIR.sun-jdk?=	../../lang/sun-jdk
 DEPEND_METHOD.sun-jdk?=	${DEPEND_METHOD.java}
 
+_sun_jdk_p:=	{java/,lib/jvm/,lib/java/,}{,*sun*/}
 _sun_jdk_v:=	{y/_/./;s/[^0-9.]//g;h;}
 _sun_jdk_vv:=	/version/${_openjdk_v};/Java(TM) SE/{g;p;q;}
 SYSTEM_SEARCH.openjdk=\
-  'bin/{,sun-,sun[0-9]-}java:${_sun_jdk_vv}:% -version'		\
-  'bin/{,sun-,sun[0-9]-}javac:1${_sun_jdk_v}:% -version'	\
-  'bin/{,sun-,sun[0-9]-}jar'					\
-  'bin/{,sun-,sun[0-9]-}javadoc'
+  '${_sun_jdk_p}bin/java:${_sun_jdk_vv}:% -version'		\
+  '${_sun_jdk_p}bin/javac:1${_sun_jdk_v}:% -version'		\
+  '${_sun_jdk_p}bin/jar'					\
+  '${_sun_jdk_p}bin/javadoc'					\
+  '${_sun_jdk_p}include/jni.h'					\
+  '${_sun_jdk_p}include/*/jni_md.h'
 
 SYSTEM_PKG.NetBSD.sun-jdk=	lang/sun-jdk6
 
-export JAVA_HOME=${PREFIX.sun-jdk}
+export JAVA_HOME=	$(abspath $(dir $(word 1,${SYSTEM_FILES.openjdk}))/..)
+export JAVA_INCLUDE=	$(dir $(word 5,${SYSTEM_FILES.openjdk}))
+export JAVA_INCLUDE_MD=	$(dir $(word 6,${SYSTEM_FILES.openjdk}))
+
 export JAVA=	$(word 1,${SYSTEM_FILES.sun-jdk})
 export JAVAC=	$(word 2,${SYSTEM_FILES.sun-jdk})
 export JAR=	$(word 3,${SYSTEM_FILES.sun-jdk})
