@@ -16,15 +16,15 @@ LICENSE=		gnu-gpl-v2
 USE_LANGUAGES+=		c c++
 
 CMAKE_ARGS+=		-DCREATE_JAVA=TRUE
-CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH=${JAVA_HOME}/include
-CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH2=${JAVA_HOME}/include/linux
+CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH=${JAVA_INCLUDE}
+CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH2=${JAVA_INCLUDE_MD}
 CMAKE_ARGS+=		-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE
 
 CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
 CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 
-INSTALLATION_DIRS=	lib share/doc java/libjyarp/lib
+INSTALLATION_DIRS=	lib share/doc/libjyarp java/libjyarp/lib
 CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
 BUILD_DIRS=		${WRKSRC}/example/swig
 
@@ -40,28 +40,30 @@ include ../../mk/sysdep/java.mk
 include ../../mk/robotpkg.mk
 
 post-configure:
-	${LN} -sf ${PREFIX.yarp}/lib/libYARP_dev.so ${WRKSRC}/lib
-	${LN} -sf ${PREFIX.yarp}/lib/libYARP_sig.so ${WRKSRC}/lib
-	${LN} -sf ${PREFIX.yarp}/lib/libYARP_OS.so ${WRKSRC}/lib
+	${RUN}								\
+	${LN} -sf ${PREFIX.yarp}/lib/libYARP_dev.so ${WRKSRC}/lib;	\
+	${LN} -sf ${PREFIX.yarp}/lib/libYARP_sig.so ${WRKSRC}/lib;	\
+	${LN} -sf ${PREFIX.yarp}/lib/libYARP_OS.so ${WRKSRC}/lib;	\
 	${LN} -sf ${PREFIX.yarp}/lib/libYARP_init.so ${WRKSRC}/lib
 
 post-build:
-	${MKDIR} ${WRKSRC}/example/swig/build
-	${JAVAC} -d ${WRKSRC}/example/swig/build	\
-		${WRKSRC}/example/swig/generated_src/*.java
-	${JAR} cf				\
-		${WRKSRC}/example/swig/libjyarp.jar		\
-		-C ${WRKSRC}/example/swig/build			\
-		.
-	cd ${WRKDIR} && ${MKDIR} doc && cd doc &&		\
-	${JAVADOC}/bin/javadoc				\
-		${WRKSRC}/example/swig/generated_src/*.java
+	${RUN}								\
+	${MKDIR} ${WRKSRC}/example/swig/build;				\
+	${BUILD_LOGFILTER} ${JAVAC} -d ${WRKSRC}/example/swig/build	\
+		${WRKSRC}/example/swig/generated_src/*.java;		\
+	${BUILD_LOGFILTER} ${JAR} cf					\
+		${WRKSRC}/example/swig/libjyarp.jar			\
+		-C ${WRKSRC}/example/swig/build .;			\
+	cd ${WRKDIR} && ${MKDIR} doc && cd doc &&			\
+	${BUILD_LOGFILTER}						\
+		${JAVADOC} ${WRKSRC}/example/swig/generated_src/*.java
 
 do-install:
-	${INSTALL_DATA}						\
-		${WRKSRC}/example/swig/libjyarp.jar		\
-		${PREFIX}/java/libjyarp/lib
-	${INSTALL_LIB}						\
-		${WRKSRC}/example/swig/libjyarp.so		\
-		${PREFIX}/lib
+	${RUN}								\
+	${INSTALL_DATA}							\
+		${WRKSRC}/example/swig/libjyarp.jar			\
+		${PREFIX}/java/libjyarp/lib;				\
+	${INSTALL_LIB}							\
+		${WRKSRC}/example/swig/libjyarp.so			\
+		${PREFIX}/lib;						\
 	cd ${WRKDIR}/doc && ${PAX} -rwp ma . ${PREFIX}/share/doc/libjyarp
