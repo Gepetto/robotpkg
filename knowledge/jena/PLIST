@@ -1,8 +1,7 @@
 @comment Tue Jul 6 19:36:44 CEST 2010
-java/jena/lib/arq-2.8.4.jar
+java/jena/lib/arq-2.8.7.jar
 java/jena/lib/icu4j-3.4.4.jar
 java/jena/lib/iri-0.8.jar
-java/jena/lib/iri-0.8-sources.jar
 java/jena/lib/jena.jar
 java/jena/lib/junit-4.5.jar
 java/jena/lib/log4j-1.2.13.jar
