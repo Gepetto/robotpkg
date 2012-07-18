@@ -183,10 +183,17 @@ endif
 #	that outputs contents for a PLIST to stdout and is appended to
 #	the contents of ${PLIST_SRC}.
 #
+ifneq (,$(strip ${DYNAMIC_PLIST_DIRS}))
+  GENERATE_PLIST+=							\
+	${FIND} $(addprefix ${PREFIX}/,${DYNAMIC_PLIST_DIRS})		\
+		 \( -type f -o -type l \) -print | ${SORT}		\
+		| ${SED} -e "s,${PREFIX}/,,g";
+endif
+
 ifeq (,$(strip $(PLIST_SRC)))
-GENERATE_PLIST?=        ${ECHO} "@comment "$(call quote,${PKGNAME})" has no files.";
+GENERATE_PLIST?=  ${ECHO} "@comment "$(call quote,${PKGNAME})" has no files.";
 else
-GENERATE_PLIST?=	${TRUE};
+GENERATE_PLIST?=  ${TRUE};
 endif
 
 _GENERATE_PLIST=	${CAT} /dev/null ${PLIST_SRC}; ${GENERATE_PLIST}

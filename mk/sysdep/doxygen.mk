@@ -21,14 +21,12 @@ SYSTEM_SEARCH.doxygen=	'bin/doxygen:p:% --version'
 SYSTEM_PKG.Linux.doxygen=	doxygen
 SYSTEM_PKG.NetBSD.doxygen=	devel/doxygen
 
-# Automatic PLIST generation for doxygen generated files
+# Legacy automatic PLIST generation for doxygen generated files.
+# Now, this should be replaced by DYNAMIC_PLIST_DIRS
 ifdef DOXYGEN_PLIST_DIR
-  GENERATE_PLIST+=							\
-	${FIND} $(addprefix ${PREFIX}/,${DOXYGEN_PLIST_DIR})		\
-		 \( -type f -o -type l \) -print | ${SORT}		\
-		| ${SED} -e "s,${PREFIX}/,,g";
-
-  PRINT_PLIST_IGNORE_DIRS+=${DOXYGEN_PLIST_DIR}
+  $(shell echo >&2 'Warning: DOXYGEN_PLIST_DIR in ${PKGPATH} is deprecated.')
+  $(shell echo >&2 'Warning: use DYNAMIC_PLIST_DIRS instead.')
+  DYNAMIC_PLIST_DIRS+=	${DOXYGEN_PLIST_DIR}
 endif
 
 export DOXYGEN=		${PREFIX.doxygen}/bin/doxygen
