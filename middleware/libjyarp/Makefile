@@ -28,6 +28,8 @@ INSTALLATION_DIRS=	lib share/doc/libjyarp java/libjyarp/lib
 CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
 BUILD_DIRS=		${WRKSRC}/example/swig
 
+DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
+
 # O1 is the highest possible optimization level: overwrite default -O3
 _CFLAGS_NDEBUG:= -O1 -DNDEBUG
 
