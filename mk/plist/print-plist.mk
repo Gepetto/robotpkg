@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011 LAAS/CNRS
+# Copyright (c) 2006-2009,2011-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -56,29 +56,32 @@
 #	semicolon, that outputs any files modified since the package was
 #	extracted.
 #
-
-PRINT_PLIST_FILE?=		${PKGDIR}/PLIST.guess
-
-PRINT_PLIST_IGNORE_DIRS?=#	empty by default
-PRINT_PLIST_IGNORE_DIRS+=	${PKG_DBDIR}
-PRINT_PLIST_IGNORE_DIRS+=	${ROBOTPKG_DIR}
-
-PRINT_PLIST_FILES_CMD?=		${TRUE};
-
-# scan $PREFIX for any files/dirs modified since the package was extracted
-# will emit "@exec mkdir"-statements for empty directories
-# XXX will fail for data files that were copied using tar!
-# XXX should check $LOCALBASE, and add @cwd statements
-#
 $(call require,${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
+PRINT_PLIST_FILE?=		${PKGDIR}/PLIST.guess
+PRINT_PLIST_IGNORE_DIRS+=	${DYNAMIC_PLIST_DIRS}
+PRINT_PLIST_FILES_CMD?=		${TRUE};
+
+
+# Scan $PREFIX for any files/dirs that do not belong to any package.
+#
 _PRINT_PLIST_FILES_CMD=	\
-  ${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.build} \! -type d -print;
-_PRINT_PLIST_FILES_CMD+=	${PRINT_PLIST_FILES_CMD}
+  ${FIND} $(abspath ${PREFIX}) -xdev -ctime -1 ! -type d ! \(	\
+	-path '${MAKECONF}' -o -path '${ROBOTPKG_DIR}/*' -o	\
+	-path '${PKG_DBDIR}/*'					\
+  \) ! -exec ${PKG_INFO} -qFe {} 2>/dev/null \; -print;
+_PRINT_PLIST_FILES_CMD+= { ${PKG_INFO} -qL ${PKGNAME} 2>/dev/null||:;};
+_PRINT_PLIST_FILES_CMD+= ${PRINT_PLIST_FILES_CMD}
 
 _PRINT_PLIST_DIRS_CMD=	\
-  ${FIND} ${PREFIX}/. -xdev -newer ${_COOKIE.build} -type d -print
+  ${FIND} $(abspath ${PREFIX}) -xdev -ctime -1 -type d -empty ! \(	\
+	-path '${MAKECONF}' -o -path '${ROBOTPKG_DIR}/*' -o	\
+	-path '${PKG_DBDIR}/*'					\
+  \) -print;
 
+
+# Perform substitutions
+#
 _PRINT_PLIST_AWK_SUBST={
 _PRINT_PLIST_AWK_SUBST+= ${PRINT_PLIST_AWK_SUBST}
 _PRINT_PLIST_AWK_SUBST+=						\
@@ -92,11 +95,11 @@ _PRINT_PLIST_AWK_SUBST+=						\
 	gsub("^${PKGMANDIR}/", "$${PKGMANDIR}/");
 _PRINT_PLIST_AWK_SUBST+=}
 
+
 # The awk statement that will ignore directories from PRINT_PLIST_IGNORE_DIRS
 #
 _PRINT_PLIST_AWK_IGNORE:=$(foreach __dir__,				\
-  $(patsubst $(abspath ${PREFIX})/%,%,					\
-    $(abspath ${PRINT_PLIST_IGNORE_DIRS})),				\
+  $(patsubst $(abspath ${PREFIX})/%,%,${PRINT_PLIST_IGNORE_DIRS}),	\
   ($$0 ~ /^$(subst /,\/,${__dir__})/) { next; })
 
 
@@ -129,36 +132,29 @@ else
 _PRINT_PLIST_LIBTOOLIZE_FILTER?=	${CAT}
 endif
 
-do-print-PLIST: print-PLIST-message build
+do-print-PLIST: print-PLIST-message
 	${RUN} exec >${PRINT_PLIST_FILE};				\
 	${ECHO} '@comment '`${_CDATE_CMD}`;				\
 	{ ${_PRINT_PLIST_FILES_CMD} }					\
 	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
+	 | ${SORT} -u							\
 	 | ${AWK}  '							\
-		{ sub("^$(abspath ${PREFIX})/+(\\./*)?", ""); }		\
+		{ sub("^$(abspath ${PREFIX})/+", ""); }			\
 		${_PRINT_PLIST_AWK_IGNORE}				\
 		${_PRINT_PLIST_AWK_SUBST}				\
-		{ print $$0; }'						\
-	 | ${SORT} -u;							\
-	for i in `${_PRINT_PLIST_DIRS_CMD}				\
-		| ${AWK} '						\
-			/$(subst /,\/,$(abspath ${PREFIX}))\/+\.$$/ {	\
-				next;					\
-			}						\
-			{ sub("$(abspath ${PREFIX})/+\\\./+", ""); }	\
-			${_PRINT_PLIST_AWK_IGNORE}			\
-			{ print $$0; }'					\
-		| ${SORT} -r`;						\
-	do								\
-		if [ `${LS} -la ${PREFIX}/$$i | ${WC} -l` = 3 ]; then	\
-			${ECHO} @pkgdir $$i | ${AWK} '			\
-				${PRINT_PLIST_AWK}			\
-				{ print $$0; }' ;			\
-		fi ;							\
-	done								\
-	| ${AWK} '${_PRINT_PLIST_AWK_SUBST} { print $$0; }'
+		{ print $$0; }';					\
+	{ ${_PRINT_PLIST_DIRS_CMD} }					\
+	  | ${SORT} -r							\
+	  | ${AWK} '							\
+		{ sub("^$(abspath ${PREFIX})/+", ""); }			\
+		/^$$/ { next; }						\
+		${_PRINT_PLIST_AWK_IGNORE}				\
+		${_PRINT_PLIST_AWK_SUBST}				\
+		{ print "@pkgdir " $$0; }'
 	@${STEP_MSG} "Created ${PRINT_PLIST_FILE}"
+
 
 .PHONY: print-PLIST-message
 print-PLIST-message:
-	@${PHASE_MSG} "Generating PLIST"
+	@${PHASE_MSG} "Generating PLIST";				\
+	${ECHO_MSG} '... this may take a long time'
