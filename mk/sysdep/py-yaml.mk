@@ -18,15 +18,15 @@ ifeq (+,$(PYYAML_DEPEND_MK)) # ---------------------------------------------
 PREFER.py-yaml?=	system
 
 DEPEND_USE+=		py-yaml
-DEPEND_ABI.py-yaml?=	${PKGTAG.python-}yaml
+DEPEND_ABI.py-yaml?=	${PKGTAG.python-}yaml>=3
 
 SYSTEM_SEARCH.py-yaml=\
-	'${PYTHON_SYSLIBSEARCH}/yaml/__init__.py'
+	'${PYTHON_SYSLIBSEARCH}/yaml/__init__.py:/__version__/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Fedora.py-yaml=	PyYAML (python-${PYTHON_VERSION})
 SYSTEM_PKG.Ubuntu.py-yaml=	python-yaml (python-${PYTHON_VERSION})
 SYSTEM_PKG.Debian.py-yaml=	python-yaml (python-${PYTHON_VERSION})
-SYSTEM_PKG.NetBSD.py-yaml=		pkgsrc/textproc/${PKGTAG.python-}yaml
+SYSTEM_PKG.NetBSD.py-yaml=	pkgsrc/textproc/${PKGTAG.python-}yaml
 
 include ../../mk/sysdep/python.mk
 
