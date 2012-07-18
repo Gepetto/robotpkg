@@ -2,9 +2,11 @@
 # Created:			Séverin Lemaignan on Tue, 7 Jul 2009
 #
 
-PKGVERSION=	2.3.0
-DISTNAME=	pellet-${PKGVERSION_NOREV}
-MASTER_SITES=	http://clarkparsia.com/pellet/download/${DISTNAME}
+VERSION=	2.3.0
+DISTNAME=	pellet-${VERSION}
+# official MASTER_SITES is http://clarkparsia.com/pellet/download/${DISTNAME},
+# but it requires registration (thus preventing automatic download).
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 EXTRACT_SUFX=	.zip
 
 CATEGORIES=	knowledge
@@ -13,10 +15,8 @@ HOMEPAGE=	http://clarkparsia.com/pellet
 LICENSE=	gnu-agpl-v3
 MAINTAINER=	openrobots@laas.fr
 
-INTERACTIVE_STAGE=	fetch
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
-WRKSRC=			${WRKDIR}/${DISTNAME}
 INSTALLATION_DIRS=	java/pellet/lib share/doc/pellet
 
 # doc option
