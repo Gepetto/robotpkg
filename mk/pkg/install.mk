@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -47,6 +47,7 @@ ${foreach _conflict_,${CONFLICTS},					\
 	found="`${_PKG_BEST_EXISTS} '${_conflict_}' || ${TRUE}`";	\
 	case "$$found" in						\
 	"")	;;							\
+	"${PKGNAME}")	;;						\
 	*)	${ECHO} "$$found" >> ${WRKDIR}/.CONFLICTS ;;		\
 	esac;								\
 }									\
