@@ -3,8 +3,7 @@
 #
 
 DISTNAME=		dialogs-${PKGVERSION_NOREV}
-PKGVERSION=		0.6
-PKGREVISION=		1
+PKGVERSION=		0.7
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dialogs/}
 MASTER_REPOSITORY=	git http://trac.laas.fr/git/robots/dialogs.git
