@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Fri, 5 Aug 2011
 #
 
-PKGVERSION=		1.0
+PKGVERSION=		1.0.1
 PKGNAME=		${PKGTAG.python}-oro-${PKGVERSION}
 DISTNAME=		pyoro-${PKGVERSION_NOREV}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pyoro/}
