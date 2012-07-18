@@ -6,7 +6,7 @@ VERSION=		2.5.1
 PKGREVISION=		2
 DISTNAME=		dynamic-graph-corba-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-corba/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_LAAS}dynamic-graph-corba
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/laas/dynamic-graph-corba
 
 MAINTAINER=	gepetto@laas.fr
 CATEGORIES=	motion

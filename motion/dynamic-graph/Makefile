@@ -7,7 +7,7 @@ VERSION=		2.5.1
 PKGREVISION=		1
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB_JRL}dynamic-graph
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/dynamic-graph
 
 COMMENT=		Efficient data-flow C++ library for robotics
 LICENSE=		gnu-lgpl-v3

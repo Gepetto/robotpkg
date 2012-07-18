@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2007,2009-2011 LAAS/CNRS
+# Copyright (c) 2006-2007,2009-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -38,24 +38,13 @@
 MASTER_SITE_OPENROBOTS+=	\
 	ftp://ftp.openrobots.org/pub/openrobots/		\
 	http://www.openrobots.org/distfiles/
-
 MASTER_REPOSITORY_OPENROBOTS+=	\
 	git git://git.openrobots.org/git/robots/
 
 MASTER_SITE_JRL+=	\
 	ftp://${JRL_FTP_USER}${JRL_FTP_PASSWD:%=:%}@softs.laas.fr/
-
-MASTER_SITE_GITHUB_GEPETTO+=	\
-	https://github.com/downloads/laas/
-
 MASTER_REPOSITORY_JRL+=	\
 	git ssh://${JRL_GIT_USER:=@}softs.laas.fr/git/jrl/
-
-MASTER_REPOSITORY_GITHUB_LAAS+= \
-	git https://github.com/laas/
-
-MASTER_REPOSITORY_GITHUB_JRL+= \
-	git https://github.com/jrl-umi3218/
 
 MASTER_SITE_SOURCEFORGE+=	\
 	http://downloads.sourceforge.net/sourceforge/
@@ -71,6 +60,11 @@ MASTER_SITE_GNU+=       \
 	ftp://ftp.lip6.fr/pub/gnu/ \
 	ftp://ftp.tuwien.ac.at/linux/gnu/gnusrc/ \
 	ftp://ftp.chg.ru/pub/gnu/
+
+MASTER_SITE_GITHUB+=	\
+	https://github.com/
+MASTER_REPOSITORY_GITHUB+=	\
+	git https://github.com/
 
 MASTER_SITE_NETBSD_PKGSRC+=		\
 	ftp://ftp.NetBSD.org/pub/NetBSD/packages/distfiles/LOCAL_PORTS/
