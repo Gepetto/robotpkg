@@ -46,32 +46,38 @@ export PKG_CONFIG_PATH=$(call prependpaths,				\
 #
 # From $NetBSD: pkg-config-override.mk,v 1.3 2007/07/25 18:07:34 rillig Exp $
 #
-OVERRIDE_DIRDEPTH.pkg-config?=	${OVERRIDE_DIRDEPTH}
-PKG_CONFIG_OVERRIDE_PATTERN?=	*.pc *.pc.in
+PKG_CONFIG_OVERRIDE?=	lib/pkgconfig/.*[.]pc
 
-ifndef PKG_CONFIG_OVERRIDE
-  # pull-in preferences now, for OVERRIDE_DIRDEPTH
-  include ../../mk/robotpkg.prefs.mk
+include ../../mk/robotpkg.prefs.mk		# _USE_RPATH
+ifneq (,$(call isyes,${_USE_RPATH}))		# when using rpath flags
+  ifneq (,$(strip ${PKG_CONFIG_OVERRIDE}))	# and not disabled by a package
+    post-plist: pkg-config-add-rpath
 
-  # build the default pattern list according to the selected depth.
-  # the result is a list like *.pc */*.pc */*/.pc ...
-  #
-  $(eval PKG_CONFIG_OVERRIDE:= ${PKG_CONFIG_OVERRIDE_PATTERN}	\
-    $(call substs,{ | },$$( , ),				\
-    $(call iterate,${OVERRIDE_DIRDEPTH.pkg-config},{addprefix	\
-	*/|${PKG_CONFIG_OVERRIDE_PATTERN})			\
-    $(call iterate,${OVERRIDE_DIRDEPTH.pkg-config},}))		\
-  )
-endif
-
-ifneq (,$(call isyes,${_USE_RPATH})) # when using rpath flags
-  ifneq (,${PKG_CONFIG_OVERRIDE})    # and not disabled by a package
-    SUBST_CLASSES+=		pkgconfig
-    SUBST_STAGE.pkgconfig=	do-configure-pre-hook
-    SUBST_MESSAGE.pkgconfig=	Adding run-time search paths to pkg-config files.
-    SUBST_FILES.pkgconfig=	${PKG_CONFIG_OVERRIDE}
-    SUBST_SED.pkgconfig=\
-	'/^Libs:.*[ 	]/s|-L\([ 	]*[^ 	]*\)|${COMPILER_RPATH_FLAG}\1 -L\1|g'
+    .PHONY: pkg-config-add-rpath
+    pkg-config-add-rpath:
+	@${STEP_MSG} "Adding run-time search paths to pkg-config files"
+	${RUN} ${AWK} '/$(subst /,\/,${PKG_CONFIG_OVERRIDE})/ {print}'	\
+	  ${PLIST} | while read f; do					\
+	  ${CP} ${PREFIX}/$$f ${WRKDIR}/.pkg-config-add-rpath && {	\
+	  ${AWK} '					\
+	    /^Libs:.*[ 	]/ {						\
+	      while(match($$0, "-L[ 	]*[^ 	]*")) {			\
+	        rep = rep substr($$0, 1, RSTART-1);			\
+	        r = substr($$0, RSTART+2, RLENGTH-2);			\
+	        $$0 = substr($$0, RSTART+RLENGTH);			\
+	        sub(/[ 	]*/, "", r);					\
+	        if (rep !~ "${COMPILER_RPATH_FLAG}" r)			\
+	          rep = rep "${COMPILER_RPATH_FLAG}" r " ";		\
+	        rep = rep "-L" r;					\
+	      }								\
+	      print rep $$0; next					\
+	    }								\
+	    {print}							\
+	  ' ${WRKDIR}/.pkg-config-add-rpath >${PREFIX}/$$f || {		\
+	    ${RM} -f ${PREFIX}/$$f &&					\
+	    ${MV} ${WRKDIR}/.pkg-config-add-rpath ${PREFIX}/$$f;	\
+	  }; };								\
+	done
   endif
 endif
 
