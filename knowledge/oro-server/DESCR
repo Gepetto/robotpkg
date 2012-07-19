@@ -1,21 +1,27 @@
-oro-server focuses on the implementation of a representation framework for 
-general robots' knowledge, along with a library of basic, reusable cognitive 
-functions. This so-called cognitive kernel is actually build as a server that 
-maps cognitive service to a ontology-based backend.
+oro-server focuses on the implementation of a representation framework for
+general robots' knowledge, along with a library of basic, reusable cognitive
+functions. This so-called cognitive kernel is actually build as a Java server
+that maps cognitive service to a ontology-based backend.
 
 Amongst other features, these base cognitive functions include:
 
-* Easy addition or removal of statements on the world (ie, truths for the 
+* Easy addition or removal of statements on the world (ie, truths for the
 robot's model): add [aibo sees green_bottle],
-* Arbitrary complex queries, based on SPARQL:
-find robots [?robots sees ?object, ?object hasShape cylinder] [?robot hasWeight > 100],
-* Classification, rules application, first logic order reasonning on the set 
-of statements, through the Pellet library.
-* Possibility to assign to statements memory profiles that cause the robot to 
-forget such facts after a predefinied amount of time,
-* Event system that triggers subscribed listeners, for instance when a fact 
-becomes a true or a new object is discovered,
-* Categorization skills to find similarities or differences between concepts,
-* Explicit representation of other agents own world models (a bottle can be 
-half full for the robot and half empty for another agent)
 
+* Arbitrary complex queries, based on SPARQL:
+find robots [?robots sees ?object, ?object hasShape cylinder]
+            [?robot hasWeight > 100],
+
+* Classification, rules application, first logic order reasonning on the set
+of statements, through the Pellet library.
+
+* Possibility to assign to statements memory profiles that cause the robot to
+forget such facts after a predefinied amount of time,
+
+* Event system that triggers subscribed listeners, for instance when a fact
+becomes a true or a new object is discovered,
+
+* Categorization skills to find similarities or differences between concepts,
+
+* Explicit representation of other agents own world models (a bottle can be
+half full for the robot and half empty for another agent)

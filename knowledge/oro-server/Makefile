@@ -10,19 +10,14 @@ CATEGORIES=	knowledge
 LICENSE=	isc
 MAINTAINER=	severin.lemaignan@laas.fr
 HOMEPAGE=	http://homepages.laas.fr/slemaign/oro-server
-COMMENT=	A cognitive kernel for robotics, written in Java
+COMMENT=	Cognitive kernel for robotics
 
 NO_CONFIGURE=	yes
 BUILD_TARGET=	oro-server
 INSTALL_TARGET=	install
 
-USE_LANGUAGES=	java
+MAKE_ENV+=	JAVAC="${JAVAC} -encoding UTF8"
 
-
-MAKE_ENV+= JAVA=${JAVA_HOME}/bin/java
-MAKE_ENV+= JAVAC=${JAVA_HOME}/bin/javac
-MAKE_ENV+= JAVADOC=${JAVA_HOME}/bin/javadoc
-MAKE_ENV+= JAR=${JAVA_HOME}/bin/jar
 
 # doc option
 PKG_SUPPORTED_OPTIONS+=	doc
@@ -38,4 +33,3 @@ include ../../knowledge/jena/depend.mk
 include ../../knowledge/pellet/depend.mk
 include ../../mk/sysdep/java.mk
 include ../../mk/robotpkg.mk
-
