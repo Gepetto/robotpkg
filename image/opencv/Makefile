@@ -17,7 +17,6 @@ CONFLICTS+=		opencv1
 LICENSE=		modified-bsd
 
 USE_LANGUAGES+=		c c++
-PKG_CONFIG_OVERRIDE=	cmake/templates/opencv-XXX.pc.cmake.in
 
 # build configuration
 CMAKE_ARGS+=	-DBUILD_PACKAGE=OFF -DBUILD_SHARED_LIBS=ON
