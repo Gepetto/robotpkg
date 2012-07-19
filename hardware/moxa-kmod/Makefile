@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Thu,  9 Sep 2010
 #
 
+PKGREVISION=	1
 VERSION=	2.6.34.7
 PKGNAME=	moxa-kmod-${VERSION}
 DISTNAME=	linux-${VERSION}
