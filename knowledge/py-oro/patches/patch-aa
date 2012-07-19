@@ -1,0 +1,11 @@
+--- setup.py~	2012-04-27 15:38:30.000000000 +0200
++++ setup.py	2012-07-19 17:58:35.900857534 +0200
+@@ -3,7 +3,7 @@
+ from distutils.core import setup
+ 
+ setup(name='pyoro',
+-      version='1.0',
++      version='1.0.1',
+       description='Python Proxy for the OpenRobots Ontology Server',
+       author='Séverin Lemaignan',
+       author_email='severin.lemaignan@laas.fr',
