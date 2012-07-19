@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2011 LAAS/CNRS
+# Copyright (c) 2009-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -46,13 +46,11 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE
 
 CMAKE_ARGS+=	CMAKE_EXE_LINKER_FLAGS=$(call quote,${LDFLAGS})
 ifneq (,$(filter c,${USE_LANGUAGES}))
-  CMAKE_ARGS+=	-DCMAKE_C_COMPILER=${CC}
   CMAKE_ARGS+=	-DCMAKE_C_FLAGS=$(call quote,${CPPFLAGS} ${CFLAGS})
   CMAKE_ARGS+=	-DCMAKE_C_FLAGS_DEBUG=
   CMAKE_ARGS+=	-DCMAKE_C_FLAGS_RELEASE=
 endif
 ifneq (,$(filter c++,${USE_LANGUAGES}))
-  CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER=${CXX}
   CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS=$(call quote,${CPPFLAGS} ${CXXFLAGS})
   CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS_DEBUG=
   CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS_RELEASE=
