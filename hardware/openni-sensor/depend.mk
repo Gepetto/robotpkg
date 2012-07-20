@@ -14,7 +14,7 @@ PREFER.openni-sensor?=	robotpkg
 
 DEPEND_USE+=		openni-sensor
 
-DEPEND_ABI.openni-sensor?=	openni-sensor>=20120104
+DEPEND_ABI.openni-sensor?=	openni-sensor>=5
 DEPEND_DIR.openni-sensor?=	../../hardware/openni-sensor
 
 SYSTEM_SEARCH.openni-sensor=\

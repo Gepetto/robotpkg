@@ -2,12 +2,11 @@
 # Created:			Matthieu Herrb on Mon, 13 Dec 2010
 #
 
-COMMIT=		50b8b2
-PKG_VERSION=	20120104.${COMMIT}
-PKGREVISION=	1
-DISTNAME=	openni-sensor-${PKG_VERSION}
-MASTER_SITES=	https://github.com/PrimeSense/Sensor.git@${COMMIT}
-FETCH_METHOD=	git
+COMMIT=		50b8b2d
+VERSION=	5.1.0.41
+DISTNAME=	openni-sensor-${VERSION}
+MASTER_SITES=\
+	${MASTER_SITE_GITHUB:=PrimeSense/Sensor/tarball/Stable-${VERSION}?f=}
 
 HOMEPAGE=	http://openni.org
 COMMENT=	Primesense OpenNI Sensor Engine
@@ -17,6 +16,7 @@ MAINTAINER=	openrobots@laas.fr
 
 MAKE_JOBS_SAFE=		no
 USE_LANGUAGES=		c c++
+WRKSRC=			${WRKDIR}/PrimeSense-Sensor-${COMMIT}
 BUILD_DIRS=		Platform/Linux/Build
 INSTALLATION_DIRS=	bin lib share/openni etc/udev/rules.d
 
