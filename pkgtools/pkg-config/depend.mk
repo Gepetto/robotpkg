@@ -56,7 +56,8 @@ ifneq (,$(call isyes,${_USE_RPATH}))		# when using rpath flags
     .PHONY: pkg-config-add-rpath
     pkg-config-add-rpath:
 	@${STEP_MSG} "Adding run-time search paths to pkg-config files"
-	${RUN} ${AWK} '/$(subst /,\/,${PKG_CONFIG_OVERRIDE})/ {print}'	\
+	${RUN} ${AWK} '/^@/ {next}					\
+	  /$(subst /,\/,${PKG_CONFIG_OVERRIDE})/ {print}'		\
 	  ${PLIST} | while read f; do					\
 	  ${CP} ${PREFIX}/$$f ${WRKDIR}/.pkg-config-add-rpath && {	\
 	  ${AWK} '					\
