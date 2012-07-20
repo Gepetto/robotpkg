@@ -2,11 +2,11 @@
 # Created:			Matthieu Herrb on Mon, 13 Dec 2010
 #
 
-COMMIT=		151607
-PKG_VERSION=	20120104.${COMMIT}
-DISTNAME=	openni-${PKG_VERSION}
-MASTER_SITES=	https://github.com/OpenNI/OpenNI.git@${COMMIT}
-FETCH_METHOD=	git
+COMMIT=		1516074
+VERSION=	1.5.2.23
+DISTNAME=	openni-${VERSION}
+MASTER_SITES=\
+	${MASTER_SITE_GITHUB:=OpenNI/OpenNI/tarball/Stable-${VERSION}?f=}
 
 HOMEPAGE=	http://openni.org
 COMMENT=	Primesense OpenNI framework for Natural Interaction
@@ -29,6 +29,7 @@ else
   PKG_FAIL_REASON+=	"Architecture not supported"
 endif
 
+WRKSRC=			${WRKDIR}/OpenNI-OpenNI-${COMMIT}
 BUILD_DIRS=		Platform/Linux/Build
 MAKE_FLAGS+=		BIN_DIR=${WRKDIR}
 MAKE_FLAGS+=		CFG=Release
@@ -114,4 +115,5 @@ include ../../mk/sysdep/freeglut.mk
 include ../../mk/sysdep/libusb1.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../pkgtools/pax/depend.mk
+include ../../mk/sysdep/java.mk
 include ../../mk/robotpkg.mk
