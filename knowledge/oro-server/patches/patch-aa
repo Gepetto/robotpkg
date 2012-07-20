@@ -1,0 +1,28 @@
+echo or sed cannot reliably print "\n": use awk or a sequence of echo instead.
+
+--- Makefile~	2011-10-24 11:02:14.000000000 +0200
++++ Makefile	2012-07-20 11:25:10.980857932 +0200
+@@ -47,10 +47,10 @@
+ all : oro-server
+ 
+ oro-server: oro-jar
+-	/bin/echo -e '#!/bin/sh\n$(JAVA) -Djava.library.path=$(PREFIX)/lib -jar $(PREFIX)/java/oro-server/lib/oro-server.jar $$1' > oro-server
++	echo '#!/bin/sh' >oro-server
++	echo '$(JAVA) -Djava.library.path=$(PREFIX)/lib -jar $(PREFIX)/java/oro-server/lib/oro-server.jar $$1' >> oro-server
+ 	chmod +x oro-server
+-	
+-	#Replace paths in configuration files
++	: # Replace paths in configuration files
+ 	sed 's*@PLUGINS_PATH@*$(PLUGINS_DIR)*' etc/oro-server/oro.conf.in > etc/oro-server/oro.conf.in2
+ 	sed 's*@ONTOLOGIES_PATH@*$(ONTOLOGIES_DIR)*' etc/oro-server/oro.conf.in2 > etc/oro-server/oro.conf
+ 	$(CLEAN) etc/oro-server/oro.conf.in2
+@@ -61,7 +61,8 @@
+ 	echo "If you have the test ontology oro_test.owl, you can now run 'make test' to run the unit tests"
+ 
+ oro-jar: oro-build
+-	/bin/echo -e "Class-Path: \n `echo $(CLASSPATH) | sed 's/:/ \n /g'`" > MANIFEST.MF
++	echo '$(CLASSPATH)' | \
++	awk 'BEGIN{print "Class-Path: "} {printf(" ");gsub(":"," \n ");print}' >MANIFEST.MF
+ 	$(JAR) cfme oro-server.jar MANIFEST.MF $(ENTRYPOINT) -C $(BUILD_DIR) .
+ 	$(CLEAN) MANIFEST.MF
+ 
