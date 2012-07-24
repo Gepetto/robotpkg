@@ -1,4 +1,4 @@
-@comment Fri Mar 4 10:11:04 CET 2011
+@comment Tue Jul 24 18:16:26 CEST 2012
 bin/oro-server
 etc/oro-server/oro.conf
 etc/oro-server/oro_bench.conf
@@ -17,6 +17,7 @@ ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/OroServer.OnShuttingDo
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/OroServer.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/PartialStatement.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/PluginLoader.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/Request.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/backends/IOntologyBackend.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/backends/OpenRobotsOntology.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/backends/ResourceType.html
@@ -31,6 +32,7 @@ ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/class-use/OroServer.On
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/class-use/OroServer.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/class-use/PartialStatement.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/class-use/PluginLoader.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/class-use/Request.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/connectors/IConnector.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/connectors/SocketConnector.ClientWorker.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/connectors/SocketConnector.html
@@ -42,26 +44,34 @@ ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/connectors/package-sum
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/connectors/package-tree.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/connectors/package-use.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/AgentNotFoundException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/EventNotFoundException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/EventRegistrationException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/IllegalStatementException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/InconsistentOntologyException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidEventDescriptorException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidModelException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidPluginException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidPolicyException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidQueryException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/InvalidRuleException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/NotComparableException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/NotImplementedException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/OntologyConnectorException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/OntologyServerException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/PluginNotFoundException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/AgentNotFoundException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/EventNotFoundException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/EventRegistrationException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/IllegalStatementException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InconsistentOntologyException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidEventDescriptorException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidModelException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidPluginException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidPolicyException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidQueryException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/InvalidRuleException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/NotComparableException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/NotImplementedException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/OntologyConnectorException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/OntologyServerException.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/class-use/PluginNotFoundException.html
@@ -70,21 +80,41 @@ ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/package-sum
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/package-tree.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/exceptions/package-use.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/Helpers.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/ILoggingFilter.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/JarClassLoader.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/Logger.Colors.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/Logger.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/Namespaces.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/Pair.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/SimpleLoggingFilter.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/VerboseLevel.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/class-use/Helpers.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/class-use/ILoggingFilter.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/class-use/JarClassLoader.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/class-use/Logger.Colors.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/class-use/Logger.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/class-use/Namespaces.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/class-use/Pair.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/class-use/SimpleLoggingFilter.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/class-use/VerboseLevel.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/package-frame.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/package-summary.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/package-tree.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/helpers/package-use.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/JSONArray.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/JSONException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/JSONObject.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/JSONString.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/JSONTokener.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/class-use/JSONArray.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/class-use/JSONException.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/class-use/JSONObject.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/class-use/JSONString.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/class-use/JSONTokener.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/package-frame.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/package-summary.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/package-tree.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/json/package-use.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/modules/IModule.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/modules/alterite/AgentModel.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/modules/alterite/AgentWatcher.html
@@ -173,7 +203,11 @@ ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/tests/package-frame.ht
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/tests/package-summary.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/tests/package-tree.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/tests/package-use.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/types/Policy.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/types/PolicyMethods.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/types/ResourceDescription.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/types/class-use/Policy.html
+${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/types/class-use/PolicyMethods.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/types/class-use/ResourceDescription.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/types/package-frame.html
 ${PLIST.doc}share/doc/oro-server/laas/openrobots/ontology/types/package-summary.html
@@ -183,7 +217,6 @@ ${PLIST.doc}share/doc/oro-server/overview-frame.html
 ${PLIST.doc}share/doc/oro-server/overview-summary.html
 ${PLIST.doc}share/doc/oro-server/overview-tree.html
 ${PLIST.doc}share/doc/oro-server/package-list
+${PLIST.doc}share/doc/oro-server/resources/inherit.gif
 ${PLIST.doc}share/doc/oro-server/serialized-form.html
-@dirrm java/oro-server/lib
-@dirrm java/oro-server
-@dirrm etc/oro-server
+share/ontologies/testsuite.oro.owl

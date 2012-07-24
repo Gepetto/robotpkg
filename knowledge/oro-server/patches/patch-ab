@@ -1,0 +1,21 @@
+install -t does not exist (not in a portable way). This is useless anyway :)
+
+--- Makefile~	2012-07-20 11:26:07.228857754 +0200
++++ Makefile	2012-07-24 18:20:57.392857811 +0200
+@@ -57,7 +57,6 @@
+ 	sed 's*@PLUGINS_PATH@*$(PLUGINS_DIR)*' etc/oro-server/oro_test.conf.in > etc/oro-server/oro_test.conf.in2
+ 	sed 's*@ONTOLOGIES_PATH@*$(ONTOLOGIES_DIR)*' etc/oro-server/oro_test.conf.in2 > etc/oro-server/oro_test.conf
+ 	$(CLEAN) etc/oro-server/oro_test.conf.in2
+-	
+ 	echo "If you have the test ontology oro_test.owl, you can now run 'make test' to run the unit tests"
+ 
+ oro-jar: oro-build
+@@ -113,7 +112,7 @@
+ 	-J-Xmx180m \
+ 	-stylesheetfile $(MEDIA_DIR)/javadoc.css \
+ 	-subpackages $(BASE_PACKAGE)
+-	$(INSTALL) -t $(DOC_DIR) $(MEDIA_DIR)/*
++	$(INSTALL) $(MEDIA_DIR)/* $(DOC_DIR)
+ 
+ doc-clean:
+ 	$(CLEAN) $(DOC_DIR)
