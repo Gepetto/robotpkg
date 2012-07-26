@@ -18,13 +18,13 @@ INSTALL_TARGET=	install
 
 MAKE_ENV+=	JAVAC="${JAVAC} -encoding UTF8"
 
-
 # doc option
 PKG_SUPPORTED_OPTIONS+=	doc
 PKG_SUGGESTED_OPTIONS+=	doc
 PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
 
 define PKG_OPTION_SET.doc
+  DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
   INSTALL_TARGET+=	install-doc
 endef
 
