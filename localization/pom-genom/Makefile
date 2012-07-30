@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 20 Nov 2007
 #
 
-DISTNAME=		pom-genom-0.6
+DISTNAME=		pom-genom-0.7
 CATEGORIES=		localization
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pom-genom/}
