@@ -187,8 +187,11 @@ _pysyssearch_2=\
   $(if $(filter Ubuntu,${OPSYS}),$(strip ${_comma}share/${_pyshared}))
 _pysyssearch_3=\
   $(if $(filter Ubuntu,${OPSYS}),$(strip ${_comma}lib/${_pyshared}/${_pyver}))
+_pysyssearch_4=\
+  $(if $(filter Ubuntu,${OPSYS}),$(strip ${_comma}share/python-support))
 
-PYTHON_SYSLIBSEARCH=	{${_pysyssearch_1}${_pysyssearch_2}${_pysyssearch_3}}
+PYTHON_SYSLIBSEARCH=\
+	{${_pysyssearch_1}${_pysyssearch_2}${_pysyssearch_3}${_pysyssearch_4}}
 
 PYVARPREFIX=		$(subst python,PYTHON,${PKG_ALTERNATIVE.python})
 PYTHON_PYCACHE?=	$(or ${${PYVARPREFIX}_PYCACHE},.)
