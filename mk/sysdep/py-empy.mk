@@ -18,7 +18,7 @@ DEPEND_ABI.py-empy?=	${PKGTAG.python}-empy>=3
 
 SYSTEM_SEARCH.py-empy=\
   'bin/empy{-${PYTHON_VERSION},}:s/.*version[ ]*//p:% --version'	\
-  '${PYTHON_SYSLIBSEARCH}/em.py'
+  '${PYTHON_SYSLIBSEARCH}{,/python-empy}/em.py'
 
 SYSTEM_PKG.Debian.py-empy=	python-empy (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-empy=	python-empy (python-${PYTHON_VERSION})
