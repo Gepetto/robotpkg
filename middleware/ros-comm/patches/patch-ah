@@ -1,0 +1,16 @@
+Fix for boost>=1.50. See https://code.ros.org/trac/ros/ticket/4022
+
+--- tools/rosbag/src/recorder.cpp~	2011-01-05 01:32:22.000000000 +0100
++++ tools/rosbag/src/recorder.cpp	2012-08-21 18:00:03.000000000 +0200
+@@ -436,7 +436,11 @@
+                 break;
+             }
+             boost::xtime xt;
++#if BOOST_VERSION >= 105000
++            boost::xtime_get(&xt, boost::TIME_UTC_);
++#else
+             boost::xtime_get(&xt, boost::TIME_UTC);
++#endif
+             xt.nsec += 250000000;
+             queue_condition_.timed_wait(lock, xt);
+             if (checkDuration(ros::Time::now()))
