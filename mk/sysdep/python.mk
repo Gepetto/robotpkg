@@ -106,6 +106,8 @@ else ifeq (Ubuntu,${OPSYS})
   else
     PREFER_ALTERNATIVE.python?=	python27 python32 python31
   endif
+else ifeq (NetBSD,${OPSYS})
+  PREFER_ALTERNATIVE.python?=	python27 python31
 endif
 PREFER_ALTERNATIVE.python?=	python26 python27 python31 python32
 
