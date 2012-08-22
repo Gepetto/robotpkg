@@ -33,8 +33,8 @@ TCL_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tcl})
 # directories) that should be added to the tcl search paths.
 #
 _TCL_SYSPATH:=$(if ${TCLSH},						\
-  $(shell ${SETENV} TCLLIBPATH= ${ECHO} 'puts $$auto_path' |		\
-    ${TCLSH} 2>/dev/null))
+  $(shell ${ECHO} 'puts $$auto_path' |		\
+    ${SETENV} TCLLIBPATH= ${TCLSH} 2>/dev/null))
 
 TCLLIBPATH=$(filter-out ${_TCL_SYSPATH},				\
 	$(patsubst %/,%,$(foreach _pkg_,${DEPEND_USE},			\
