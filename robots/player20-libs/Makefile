@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Fri, 20 Nov 2009
 #
 V=2.0.5
+PKGREVISION=	1
 PKGNAME=	player20-libs-${V}
 DISTNAME=	player-${V}
 EXTRACT_SUFX=	.tar.bz2

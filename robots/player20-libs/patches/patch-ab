@@ -1,0 +1,16 @@
+Fix for boost>=1.50.
+
+--- client_libs/libplayerc++/playerclient.cc~	2006-09-25 19:00:16.000000000 +0200
++++ client_libs/libplayerc++/playerclient.cc	2012-08-22 14:08:16.367691275 +0200
+@@ -146,7 +146,11 @@
+       Read();
+     };
+     boost::xtime xt;
++#if BOOST_VERSION >= 105000
++    boost::xtime_get(&xt, boost::TIME_UTC_);
++#else
+     boost::xtime_get(&xt, boost::TIME_UTC);
++#endif
+     // we sleep for 0 seconds
+     boost::thread::sleep(xt);
+   }
