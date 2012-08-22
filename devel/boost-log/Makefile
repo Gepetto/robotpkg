@@ -2,7 +2,7 @@
 # Created:			Jan Paulus on Mon, 27 Sep 2010
 #
 
-PKGVERSION=		1.0
+PKGVERSION=		1.1
 DISTNAME=	        boost-log-${PKGVERSION_NOREV}
 EXTRACT_SUFX?=		.zip
 MASTER_SITES=		http://downloads.sourceforge.net/project/boost-log/
@@ -18,7 +18,9 @@ CONFIGURE_ARGS+=	BOOST_HEADERS=${PREFIX.boost-headers}
 USE_LANGUAGES=		c c++
 INSTALLATION_DIRS+=	include/boost
 
-CPPFLAGS+=		-DBOOST_FILESYSTEM_VERSION=2
+# O1 is the highest possible optimization level with g++-4.1.3 (internal
+# compiler error): overwrite default -O3
+_CFLAGS_NDEBUG:= -O1 -DNDEBUG
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
