@@ -3,6 +3,7 @@
 #
 
 VERSION=		2.5.1
+PKGREVISION=		1
 DISTNAME=		dynamic-graph-python-${VERSION}
 PKGNAME=		${PKGTAG.python-}dynamic-graph-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-python/}
@@ -17,19 +18,16 @@ COMMENT=	Python bindings for motion/dynamic-graph package
 CONFLICTS+=		py-dynamic-graph-[0-9]*
 CONFLICTS+=		py[0-9][0-9]-dynamic-graph-[0-9]*
 USE_LANGUAGES+=		c c++
-DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph-python
+DYNAMIC_PLIST_DIRS+=	share/doc/dynamic-graph-python
 
 CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
-CPPFLAGS+=		-DBOOST_FILESYSTEM_VERSION=2
 
-include ../../mk/robotpkg.prefs.mk # MACHINE_ARCH
-ifeq (x86_64,${MACHINE_ARCH})
-  # disable -Werror on x86_64: too many warnings, must be fixed upstream
-  CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
-endif
+# disable -Werror, some warnings from boost-filesystem (1.50, netbsd) cannot be
+# fixed here
+CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 DEPEND_ABI.python+=	python<3
 

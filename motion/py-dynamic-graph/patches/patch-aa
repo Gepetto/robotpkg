@@ -1,0 +1,25 @@
+Fix for boost filesystem v3
+
+--- src/dg-python.cc~	2011-12-11 20:47:51.000000000 +0100
++++ src/dg-python.cc	2012-08-24 11:33:06.179691127 +0200
+@@ -107,12 +107,20 @@
+       boost::filesystem::path path (pathStr);
+ 
+       std::stringstream ss;
++#if BOOST_FILESYSTEM_VERSION == 2
+       ss << "!! In file <" << path.file_string () << "> : ";
++#else
++      ss << "!! In file <" << path.string () << "> : ";
++#endif
+       std::string errorPrefix = ss.str ();
+ 
+       try
+ 	{
++#if BOOST_FILESYSTEM_VERSION == 2
+ 	  interpreter.runPythonFile (path.file_string ());
++#else
++	  interpreter.runPythonFile (path.string ());
++#endif
+ 	}
+       CATCH_EXCEPTIONS ();
+       return 0;
