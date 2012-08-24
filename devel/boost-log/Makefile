@@ -18,10 +18,6 @@ CONFIGURE_ARGS+=	BOOST_HEADERS=${PREFIX.boost-headers}
 USE_LANGUAGES=		c c++
 INSTALLATION_DIRS+=	include/boost
 
-# O1 is the highest possible optimization level with g++-4.1.3 (internal
-# compiler error): overwrite default -O3
-_CFLAGS_NDEBUG:= -O1 -DNDEBUG
-
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/libtool/depend.mk
