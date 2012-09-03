@@ -4,7 +4,7 @@
 
 DISTNAME=	abstract-robot-dynamics-${VERSION}
 PKGNAME=	abstract-robot-dynamics-${VERSION}
-VERSION=	1.18.0
+VERSION=	1.19.0
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=abstract-robot-dynamics/}
