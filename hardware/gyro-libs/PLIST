@@ -1,0 +1,7 @@
+@comment Mon Sep 3 15:46:46 CEST 2012
+bin/gyroTest
+include/gyroLib/gyro.h
+include/gyroLib/gyroTypes.h
+lib/libgyro.la
+lib/pkgconfig/gyro-libs.pc
+share/idl/gyroLib/gyroTypes.idl

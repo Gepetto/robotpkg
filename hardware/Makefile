@@ -11,6 +11,7 @@ SUBDIR+=	cwiid
 SUBDIR+=	fh2805-libs
 SUBDIR+=	force-genom
 SUBDIR+=	gbx-hokuyo-aist
+SUBDIR+=	gyro-libs
 SUBDIR+=	gyroKVH1000
 SUBDIR+=	gyroKVH5000
 SUBDIR+=	ieee1394-kmod
