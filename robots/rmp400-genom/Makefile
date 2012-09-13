@@ -4,7 +4,7 @@
 
 
 DISTNAME=		rmp400-genom-${VERSION}
-VERSION=		0.6
+VERSION=		0.7
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}rmp400-genom
@@ -16,25 +16,11 @@ LICENSE=		isc
 
 GENOM_MODULE=		rmp400
 
-PKG_OPTIONS_OPTIONAL_GROUPS=	gyro
-PKG_OPTIONS_GROUP.gyro=			gyro-client gyroKVH1000 gyroKVH5000
-
-PKG_OPTION_DESCR.gyro-client=	Enable gyro support using gyro GeNoM module
-define PKG_OPTION_SET.gyro-client
-  include ../../localization/gyro-genom/depend.mk
-  GENOM_ARGS += -DGYRO=gyro-client
-endef
-
-PKG_OPTION_DESCR.gyroKVH1000=	Enable gyro support using directly gyroKVH1000
-define PKG_OPTION_SET.gyroKVH1000
-  include ../../hardware/gyroKVH1000/depend.mk
-  GENOM_ARGS += -DGYRO=gyroKVH1000Task
-endef
-
-PKG_OPTION_DESCR.gyroKVH5000=	Enable gyro support using directly gyroKVH5000
-define PKG_OPTION_SET.gyroKVH5000
-  include ../../hardware/gyroKVH5000/depend.mk
-  GENOM_ARGS += -DGYRO=gyroKVH5000
+PKG_SUPPORTED_OPTIONS+= gyro
+PKG_OPTION_DESCR.gyro= Enable gyro support
+define PKG_OPTION_SET.gyro
+	include ../../hardware/gyro-libs/depend.mk
+	GENOM_ARGS += -DGYRO
 endef
 
 PKG_SUPPORTED_OPTIONS+= mana-emergency
