@@ -15,7 +15,7 @@ PREFER.gyro-libs?=	robotpkg
 DEPEND_USE+=		gyro-libs
 
 DEPEND_ABI.gyro-libs?=	gyro-libs>=2.0
-DEPEND_DIR.gyro-libs?=	../../wip/gyro-libs
+DEPEND_DIR.gyro-libs?=	../../hardware/gyro-libs
 
 SYSTEM_SEARCH.gyro-libs=\
 	bin/gyroTest\
