@@ -4,7 +4,7 @@
 
 HPP_PACKAGE=		hpp-model
 HPP_VERSION=		2.1
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}/algo/hpp-model
+MASTER_REPOSITORY=	git git@github.com:laas/hpp-model
 
 CATEGORIES=	devel
 HPP_COMMENT=	robots, joints and bodies with dynamics properties
