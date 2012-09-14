@@ -3,9 +3,9 @@
 #
 
 HPP_PACKAGE=		hpp-core
-HPP_VERSION=		2.5
+HPP_VERSION=		2.5.1
 PKGREVISION=
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}/algo/${HPP_PACKAGE}
+MASTER_REPOSITORY=	git git@github.com:laas/hpp-core
 
 CATEGORIES=	path
 HPP_COMMENT=	interface with KineoWorks(tm)
