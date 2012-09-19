@@ -1,0 +1,36 @@
+Handle correctly the sign of rotation of gyro KVH5000
+
+While here, fix the correction related to earth rotation, as we was
+tested on KVH5000 too
+---
+ src/KVH5000.c |    2 +-
+ src/gyroLib.c |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/KVH5000.c b/src/KVH5000.c
+index ce37fc2..d8aa6b8 100644
+--- src/KVH5000.c
++++ src/KVH5000.c
+@@ -109,7 +109,7 @@ gyroDecode(struct GYRO_KVH5000_DATA *gyro, char *buf, uint32_t date)
+ 		return;
+ 	}
+ 
+-	w = DEG_TO_RAD(w) - gyro->gd.earthSpeed;
++	w =  DEG_TO_RAD(-w) - gyro->gd.earthSpeed;
+ 
+ 	commonStructTake(gyro);
+ 	if (!val) {
+diff --git a/src/gyroLib.c b/src/gyroLib.c
+index c40c92b..b090161 100644
+--- src/gyroLib.c
++++ src/gyroLib.c
+@@ -238,7 +238,7 @@ gyroResetAngle(struct GYRO_DATA *gyroData, double angle)
+ double
+ gyroEarthSpeed(double latitude)
+ {
+-	return -2*M_PI/86164*sin(latitude);
++	return 2*M_PI/86164*sin(latitude);
+ }
+ 
+ /*----------------------------------------------------------------------*/
+
