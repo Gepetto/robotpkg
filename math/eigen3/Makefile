@@ -33,7 +33,7 @@ define PKG_OPTION_SET.doc
   post-install:		eigen3-install-doc
 
   INSTALLATION_DIRS+=	share/doc/${PKGBASE}
-  DOXYGEN_PLIST_DIR+=	share/doc/${PKGBASE}
+  DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
   include ../../mk/sysdep/doxygen.mk
 endef
 define PKG_OPTION_UNSET.doc
