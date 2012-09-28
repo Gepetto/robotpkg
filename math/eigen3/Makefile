@@ -48,7 +48,7 @@ pre-configure:
 .PHONY: eigen3-install-doc
 eigen3-install-doc:
 	${RUN}cd ${WRKSRC}/build/doc && ${INSTALL_LOGFILTER}		\
-	${PAX} -r -w -v -pm html ${DESTDIR}${PREFIX}/${DOXYGEN_PLIST_DIR}
+	${PAX} -r -w -v -pm html ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
