@@ -36,7 +36,7 @@ PKG_SUGGESTED_OPTIONS+=	doc
 PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
 
 define PKG_OPTION_SET.doc
-  DYNAMIC_PLIST_DIR+=	share/doc/${PKGBASE}
+  DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
   include ../../mk/sysdep/doxygen.mk
 
   post-install: install-doc
