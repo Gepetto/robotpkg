@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 17 Oct 2007
 #
 
-DISTNAME=		openprs-1.0b14
+DISTNAME=		openprs-1.1b1
 CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}openprs
@@ -24,28 +24,16 @@ CONFIGURE_ARGS+=	--with-readline=${PREFIX.readline}
 CONFIGURE_ARGS+=	--with-motif-includes=${PREFIX.motif}/include
 CONFIGURE_ARGS+=	--with-motif-libraries=${PREFIX.motif}/lib
 
-# doc option
-PKG_SUPPORTED_OPTIONS+=	doc
-PKG_SUGGESTED_OPTIONS+=	doc
-PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
-
-define PKG_OPTION_SET.doc
-  BUILD_DIRS+=		doc
-  INSTALL_TARGET+=	install_doc
-
-  USE_TEX_PKGS+=	graphicx.sty index.sty hyperref.sty verbatim.sty
-
-  include ../../mk/sysdep/pdflatex.mk
-  include ../../mk/sysdep/bibtex.mk
-  include ../../mk/sysdep/tex-pkg.mk
-endef
+USE_TEX_PKGS+=	graphicx.sty index.sty hyperref.sty verbatim.sty
 
 include ../../devel/mkdep/depend.mk
+include ../../mk/sysdep/bibtex.mk
 include ../../mk/sysdep/bison.mk
 include ../../mk/sysdep/flex.mk
 include ../../mk/sysdep/motif.mk
+include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/readline.mk
+include ../../mk/sysdep/tex-pkg.mk
 include ../../mk/robotpkg.mk
 
-post-extract:
-	${CHMOD} +x ${WRKSRC}/util/install.sh
+
