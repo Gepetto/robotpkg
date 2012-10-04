@@ -21,8 +21,8 @@ DEPEND_DIR.openprs?=	../../supervision/openprs
 SYSTEM_SEARCH.openprs=\
 	bin/oprs			\
 	include/openprs/oprs_f-pub.h	\
-	lib/pkgconfig/openprs.pc	\
-	lib/libMP.a
+	'lib/pkgconfig/openprs.pc:/Version/s[^0-9b.]//gp'	\
+	lib/libExtMP.la
 
 endif # OPENPRS_DEPEND_MK --------------------------------------------------
 

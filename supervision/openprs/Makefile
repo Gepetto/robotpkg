@@ -8,7 +8,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}openprs
 
 MAINTAINER=		felix@laas.fr
-HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/openprs
+HOMEPAGE=		http://www.openrobots.org/wiki/openprs
 COMMENT=		Open Source Procedural Reasoning System
 LICENSE=		2-clause-bsd
 
@@ -27,6 +27,7 @@ CONFIGURE_ARGS+=	--with-motif-libraries=${PREFIX.motif}/lib
 USE_TEX_PKGS+=	graphicx.sty index.sty hyperref.sty verbatim.sty
 
 include ../../devel/mkdep/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/bibtex.mk
 include ../../mk/sysdep/bison.mk
 include ../../mk/sysdep/flex.mk
@@ -35,5 +36,15 @@ include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/readline.mk
 include ../../mk/sysdep/tex-pkg.mk
 include ../../mk/robotpkg.mk
+
+
+
+
+
+
+
+
+
+
 
 
