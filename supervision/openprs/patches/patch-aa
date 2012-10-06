@@ -1,0 +1,15 @@
+Add missing IP headers
+
+--- src/mp-register.c~	2012-09-11 16:36:37.000000000 +0200
++++ src/mp-register.c	2012-10-06 13:20:17.000000000 +0200
+@@ -30,6 +30,10 @@
+  *
+  */
+ 
++#include <sys/socket.h>
++
++#include <netinet/in.h>
++
+ #include <unistd.h>
+ #include <stdlib.h>
+ #include <errno.h>
