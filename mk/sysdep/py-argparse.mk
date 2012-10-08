@@ -4,15 +4,19 @@
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 PY_ARGPARSE_DEPEND_MK:=	${PY_ARGPARSE_DEPEND_MK}+
 
+include ../../mk/sysdep/python.mk
+
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		py-argparse
+  # argparse was included in python-2.7
+  DEPEND_PKG+=$(if $(filter 2.5 2.6,${PYTHON_VERSION}),py-argparse)
 endif
 
 ifeq (+,$(PY_ARGPARSE_DEPEND_MK)) # ----------------------------------------
 
 PREFER.py-argparse?=	system
 
-DEPEND_USE+=		py-argparse
+# argparse was included in python-2.7
+DEPEND_USE+=$(if $(filter 2.5 2.6,${PYTHON_VERSION}),py-argparse)
 
 DEPEND_ABI.py-argparse?=${PKGTAG.python}-argparse>=1
 
@@ -23,8 +27,6 @@ SYSTEM_PKG.Debian.py-argparse=	python-argparse (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-argparse=	python-argparse (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-argparse=	devel/${PKGTAG.python}-argparse
 SYSTEM_PKG.Ubuntu.py-argparse=	python-argparse (python-${PYTHON_VERSION})
-
-include ../../mk/sysdep/python.mk
 
 endif # PY_ARGPARSE_DEPEND_MK ----------------------------------------------
 
