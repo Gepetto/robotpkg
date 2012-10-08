@@ -14,12 +14,10 @@ PREFER.googletest?=	system
 
 DEPEND_USE+=		googletest
 
-DEPEND_ABI.googletest?=	googletest>=1
+DEPEND_ABI.googletest?=	googletest
 
 SYSTEM_SEARCH.googletest=\
-  'bin/gtest-config:p:% --version'	\
-  'include/gtest/gtest.h'		\
-  'lib/libgtest.{so,a}'
+  'include/gtest/gtest.h'
 
 SYSTEM_PKG.Debian.googletest=	libgtest-dev
 SYSTEM_PKG.Fedora.googletest=	gtest-devel
