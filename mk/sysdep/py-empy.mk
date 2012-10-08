@@ -17,8 +17,7 @@ DEPEND_USE+=		py-empy
 DEPEND_ABI.py-empy?=	${PKGTAG.python}-empy>=3
 
 SYSTEM_SEARCH.py-empy=\
-  'bin/empy{-${PYTHON_VERSION},}:s/.*version[ ]*//p:% --version'	\
-  '${PYTHON_SYSLIBSEARCH}{,/python-empy}/em.py'
+  '${PYTHON_SYSLIBSEARCH}{,/python-empy}/em.py:/__version__/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.py-empy=	python-empy (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-empy=	python-empy (python-${PYTHON_VERSION})
@@ -26,8 +25,6 @@ SYSTEM_PKG.NetBSD.py-empy=	textproc/${PKGTAG.python}-empy
 SYSTEM_PKG.Ubuntu.py-empy=	python-empy (python-${PYTHON_VERSION})
 
 include ../../mk/sysdep/python.mk
-
-export EMPY=	$(word 1,${SYSTEM_FILES.py-empy})
 
 endif # PY_EMPY_DEPEND_MK --------------------------------------------------
 
