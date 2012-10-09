@@ -22,6 +22,7 @@ SYSTEM_SEARCH.pom-genom=\
 	lib/pkgconfig/pom.pc
 
 include ../../architecture/genom/depend.mk
+include ../../math/t3d/depend.mk
 
 endif
 
