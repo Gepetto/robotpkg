@@ -3,7 +3,7 @@
 #
 
 PKGREVISION=		1
-DISTNAME=		openprs-1.1b1
+DISTNAME=		openprs-1.1b2
 CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}openprs
@@ -23,7 +23,7 @@ CONFIGURE_ARGS+=	--with-motif-libraries=${PREFIX.motif}/lib
 
 USE_TEX_PKGS+=	graphicx.sty index.sty hyperref.sty verbatim.sty
 
-include ../../devel/mkdep/depend.mk
+#include ../../devel/mkdep/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/bibtex.mk
 include ../../mk/sysdep/bison.mk
