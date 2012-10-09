@@ -15,7 +15,7 @@ PREFER.transgen?=	robotpkg
 
 DEPEND_USE+=		transgen
 
-DEPEND_ABI.transgen?=	transgen>=1.0b4
+DEPEND_ABI.transgen?=	transgen>=1.1b0
 DEPEND_DIR.transgen?=	../../supervision/transgen
 
 SYSTEM_SEARCH.transgen=\
@@ -23,8 +23,6 @@ SYSTEM_SEARCH.transgen=\
 	include/transgen/oprs-com_f.h	\
 	lib/pkgconfig/transgen.pc	\
 	lib/transgen.la
-
-export TRANSGEN?=	${PREFIX.transgen}/bin/transgen
 
 endif # TRANSGEN_DEPEND_MK -------------------------------------------------
 
