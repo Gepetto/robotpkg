@@ -44,7 +44,7 @@
 #	The Python versions that are acceptable for the package.
 #
 #	Possible values: any pattern
-#	Default: python>=2.5 python<3
+#	Default: python>=2.6 python<3
 #
 # === Defined variables ===
 #
@@ -88,7 +88,7 @@ export PYTHON_INCLUDE=$(dir $(word 3,${SYSTEM_FILES.${PKG_ALTERNATIVE.python}}))
 
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
-PKG_ALTERNATIVES.python=	python25 python26 python27 python31 python32
+PKG_ALTERNATIVES.python=	python26 python27 python31 python32
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
@@ -110,18 +110,6 @@ else ifeq (NetBSD,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python31
 endif
 PREFER_ALTERNATIVE.python?=	python26 python27 python31 python32
-
-PKG_ALTERNATIVE_DESCR.python25= Use python-2.5
-PKGTAG.python25=		py25
-define PKG_ALTERNATIVE_SELECT.python25
-  $(call preduce,${DEPEND_ABI.python} python>=2.5<2.6)
-endef
-define PKG_ALTERNATIVE_SET.python25
-  _py_abi:=$(subst python,python25,${PKG_ALTERNATIVE_SELECT.python25})
-  DEPEND_ABI.python25?=	$(strip ${_py_abi})
-
-  include ../../mk/sysdep/python25.mk
-endef
 
 PKG_ALTERNATIVE_DESCR.python26= Use python-2.6
 PKGTAG.python26 =		py26
