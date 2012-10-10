@@ -166,6 +166,7 @@ _PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-subst.awk
 _PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-locale.awk
 _PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-info.awk
 _PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-libtool.awk
+_PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-cleanpath.awk
 _PLIST_AWK+=		-f ${ROBOTPKG_DIR}/mk/plist/plist-default.awk
 
 _SHLIB_AWKFILE.ELF=	${ROBOTPKG_DIR}/mk/plist/shlib-elf.awk
