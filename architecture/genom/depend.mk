@@ -30,8 +30,11 @@ ifdef GENOM_MODULE
 
   PKG_OPTION_DESCR.openprs=Generate OpenPRS client code
   define PKG_OPTION_SET.openprs
-    GENOM_ARGS+=	-o -x
-    include ../../net/libtclserv_client/depend.mk
+    ifeq (,$(filter tclserv_client,${PKG_OPTIONS}))
+      PKG_FAIL_REASON+=	"'openprs' option for ${PKGBASE} requires the"
+      PKG_FAIL_REASON+=	"'tclserv_client' option to be enabled."
+    endif
+    GENOM_ARGS+=	-o
     include ../../supervision/transgen/depend.mk
   endef
 
