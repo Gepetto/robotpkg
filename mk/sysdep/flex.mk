@@ -12,7 +12,7 @@ ifeq (+,$(FLEX_DEPEND_MK)) # -----------------------------------------
 
 PREFER.flex?=		system
 DEPEND_USE+=		flex
-DEPEND_ABI.flex?=	flex>=2.5
+DEPEND_ABI.flex?=	flex>=2.5.33
 DEPEND_METHOD.flex+=	build
 
 SYSTEM_SEARCH.flex=\
