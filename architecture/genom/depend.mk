@@ -30,7 +30,8 @@ ifdef GENOM_MODULE
 
   PKG_OPTION_DESCR.openprs=Generate OpenPRS client code
   define PKG_OPTION_SET.openprs
-    GENOM_ARGS+=	-o
+    GENOM_ARGS+=	-o -x
+    include ../../net/libtclserv_client/depend.mk
     include ../../supervision/transgen/depend.mk
   endef
 
@@ -84,7 +85,7 @@ SYSTEM_SEARCH.genom=\
 
 DEPEND_USE+=		genom
 
-DEPEND_ABI.genom?=	genom>=2.8
+DEPEND_ABI.genom?=	genom>=2.9
 DEPEND_DIR.genom?=	../../architecture/genom
 
 TOOLS.genom?=		${PREFIX.genom}/bin/genom
