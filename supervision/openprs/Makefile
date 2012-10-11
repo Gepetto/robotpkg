@@ -19,6 +19,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-readline=${PREFIX.readline}
 CONFIGURE_ARGS+=	--with-motif-includes=${PREFIX.motif}/include
 CONFIGURE_ARGS+=	--with-motif-libraries=${PREFIX.motif}/lib
+CONFIGURE_ARGS+=	LATEX='${PDFLATEX}'
 
 USE_TEX_PKGS+=	graphicx.sty index.sty hyperref.sty verbatim.sty
 
