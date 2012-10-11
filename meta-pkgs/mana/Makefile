@@ -14,7 +14,7 @@ include ../../motion/pilo-genom/depend.mk
 DEPEND_ABI.pilo-genom+=		pilo-genom~rmp400
 
 include ../../robots/rmp400-genom/depend.mk
-DEPEND_ABI.rmp400-genom+=	rmp400-genom~gyroKVH1000
+DEPEND_ABI.rmp400-genom+=	rmp400-genom~gyro
 
 include ../../path/p3d-genom/depend.mk
 DEPEND_ABI.p3d-genom+=		~rmp400
