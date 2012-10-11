@@ -1,6 +1,5 @@
-# $LAAS: bison.mk 2008/11/02 00:57:01 tho $
 #
-# Copyright (c) 2008 LAAS/CNRS
+# Copyright (c) 2008,2012 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -26,7 +25,8 @@ endif
 ifeq (+,$(BISON_DEPEND_MK)) # ----------------------------------------
 
 _YACC?=			bison -y
-CONFIGURE_ENV+=		YACC=$(call quote,${_YACC})
+CONFIGURE_ENV+=\
+  YACC=$(call quote,$(word 1,${SYSTEM_FILES.bison}) $(wordlist 2,99,${_YACC}))
 
 PREFER.bison?=		system
 DEPEND_USE+=		bison
