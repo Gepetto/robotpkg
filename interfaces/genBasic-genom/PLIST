@@ -15,7 +15,7 @@ ${PLIST.tclserv_client}include/genBasic/server/tclservClient/genBasicTclservClie
 ${PLIST.tclserv_client}include/genBasic/server/tclservClient/genBasicTclservClientEncode.h
 ${PLIST.tclserv_client}include/genBasic/server/tclservClient/genBasicTclservClientMsgLib.h
 lib/libgenBasicClient.la
-${PLIST.openprs}lib/openprs/libgenBasicOpenprs.la
+${PLIST.openprs}lib/openprs/modgenBasicOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/genBasic-oprs.pc
 lib/pkgconfig/genBasic.pc
 ${PLIST.tclserv_client}lib/pkgconfig/genBasic-tclserv_client.pc

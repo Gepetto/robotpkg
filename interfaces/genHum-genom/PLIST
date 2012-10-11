@@ -15,7 +15,7 @@ ${PLIST.tclserv_client}include/genHum/server/tclservClient/genHumTclservClientDe
 ${PLIST.tclserv_client}include/genHum/server/tclservClient/genHumTclservClientEncode.h
 ${PLIST.tclserv_client}include/genHum/server/tclservClient/genHumTclservClientMsgLib.h
 lib/libgenHumClient.la
-${PLIST.openprs}lib/openprs/libgenHumOpenprs.la
+${PLIST.openprs}lib/openprs/modgenHumOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/genHum-oprs.pc
 ${PLIST.tclserv_client}lib/pkgconfig/genHum-tclserv_client.pc
 lib/pkgconfig/genHum.pc

@@ -15,7 +15,7 @@ include/genManip/server/genManipScan.h
 include/genManip/server/genManipType.h
 include/genManip/genManipStruct.h
 lib/libgenManipClient.la
-${PLIST.openprs}lib/openprs/libgenManipOpenprs.la
+${PLIST.openprs}lib/openprs/modgenManipOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/genManip-oprs.pc
 lib/pkgconfig/genManip.pc
 ${PLIST.tclserv_client}lib/pkgconfig/genManip-tclserv_client.pc

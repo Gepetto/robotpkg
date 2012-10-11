@@ -21,7 +21,7 @@ ${PLIST.openprs}include/locoDemo/server/openprs/locoDemoDecodeOpenprs.h
 ${PLIST.openprs}include/locoDemo/server/openprs/locoDemoEncodeOpenprs.h
 ${PLIST.openprs}include/locoDemo/server/openprs/locoDemoRequestsOpenprsProto.h
 lib/liblocoDemoClient.la
-${PLIST.openprs}lib/openprs/liblocoDemoOpenprs.la
+${PLIST.openprs}lib/openprs/modlocoDemoOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/locoDemo-oprs.pc
 lib/pkgconfig/locoDemo.pc
 ${PLIST.tcl}lib/tclserv/liblocoDemoTclServ.la

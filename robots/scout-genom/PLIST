@@ -22,7 +22,7 @@ include/scout/server/scoutScan.h
 include/scout/server/scoutType.h
 lib/libNdirect.la
 lib/libscoutClient.la
-${PLIST.openprs}lib/openprs/libscoutOpenprs.la
+${PLIST.openprs}lib/openprs/modscoutOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/scout-oprs.pc
 lib/pkgconfig/scout.pc
 ${PLIST.tcl}lib/tclserv/libscoutTclServ.la

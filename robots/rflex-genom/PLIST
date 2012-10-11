@@ -27,7 +27,7 @@ ${PLIST.tclserv_client}include/rflex/server/tclservClient/rflexTclservClientDeco
 ${PLIST.tclserv_client}include/rflex/server/tclservClient/rflexTclservClientEncode.h
 ${PLIST.tclserv_client}include/rflex/server/tclservClient/rflexTclservClientMsgLib.h
 lib/librflexClient.la
-${PLIST.openprs}lib/openprs/librflexOpenprs.la
+${PLIST.openprs}lib/openprs/modrflexOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/rflex-oprs.pc
 lib/pkgconfig/rflex.pc
 ${PLIST.tclserv_client}lib/pkgconfig/rflex-tclserv_client.pc

@@ -24,7 +24,7 @@ include/velodyne/server/velodyneType.h
 include/velodyne/velodyneClient.h
 include/velodyne/velodyneStruct.h
 lib/libvelodyneClient.la
-${PLIST.openprs}lib/openprs/libvelodyneOpenprs.la
+${PLIST.openprs}lib/openprs/modvelodyneOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/velodyne-oprs.pc
 lib/pkgconfig/velodyne.pc
 ${PLIST.tclserv_client}lib/pkgconfig/velodyne-tclserv_client.pc

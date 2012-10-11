@@ -20,7 +20,7 @@ ${PLIST.openprs}include/sahand/server/openprs/sahandDecodeOpenprs.h
 ${PLIST.openprs}include/sahand/server/openprs/sahandEncodeOpenprs.h
 ${PLIST.openprs}include/sahand/server/openprs/sahandRequestsOpenprsProto.h
 lib/libsahandClient.la
-${PLIST.openprs}lib/openprs/libsahandOpenprs.la
+${PLIST.openprs}lib/openprs/modsahandOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/sahand-oprs.pc
 lib/pkgconfig/sahand.pc
 ${PLIST.tcl}lib/tclserv/libsahandTclServ.la

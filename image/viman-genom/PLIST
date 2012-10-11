@@ -28,7 +28,7 @@ lib/libvimanWeb.a
 lib/libvimanWeb.la
 lib/libvimanWeb.so
 lib/vimanWeb.so
-${PLIST.openprs}lib/openprs/libvimanOpenprs.la
+${PLIST.openprs}lib/openprs/modvimanOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/viman-oprs.pc
 lib/pkgconfig/viman.pc
 ${PLIST.tclserv_client}lib/pkgconfig/viman-tclserv_client.pc

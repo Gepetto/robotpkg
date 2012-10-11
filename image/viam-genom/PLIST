@@ -24,7 +24,7 @@ include/viam/server/viamType.h
 include/viam/viamStruct.h
 lib/libviamClient.la
 lib/libviamWeb.la
-${PLIST.openprs}lib/openprs/libviamOpenprs.la
+${PLIST.openprs}lib/openprs/modviamOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/viam-oprs.pc
 lib/pkgconfig/viam.pc
 ${PLIST.tclserv_client}lib/pkgconfig/viam-tclserv_client.pc

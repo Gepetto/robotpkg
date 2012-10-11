@@ -24,7 +24,7 @@ ${PLIST.tcl}share/modules/tcl/worldModelPlannerClient.tcl
 ${PLIST.openprs}include/worldModelPlanner/server/openprs/worldModelPlannerDecodeOpenprs.h
 ${PLIST.openprs}include/worldModelPlanner/server/openprs/worldModelPlannerEncodeOpenprs.h
 ${PLIST.openprs}include/worldModelPlanner/server/openprs/worldModelPlannerRequestsOpenprsProto.h
-${PLIST.openprs}lib/openprs/libworldModelPlannerOpenprs.la
+${PLIST.openprs}lib/openprs/modworldModelPlannerOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/worldModelPlanner-oprs.pc
 ${PLIST.openprs}share/modules/openprs/worldModelPlannerOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/worldModelPlannerOpenprs.opf

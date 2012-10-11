@@ -23,7 +23,7 @@ include/coldman/server/coldmanScan.h
 include/coldman/server/coldmanType.h
 include/coldman/coldmanStruct.h
 lib/libcoldmanClient.la
-${PLIST.openprs}lib/openprs/libcoldmanOpenprs.la
+${PLIST.openprs}lib/openprs/modcoldmanOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/coldman-oprs.pc
 lib/pkgconfig/coldman.pc
 ${PLIST.tclserv_client}lib/pkgconfig/coldman-tclserv_client.pc

@@ -15,7 +15,7 @@ ${PLIST.tclserv_client}include/genPos/server/tclservClient/genPosTclservClientDe
 ${PLIST.tclserv_client}include/genPos/server/tclservClient/genPosTclservClientEncode.h
 ${PLIST.tclserv_client}include/genPos/server/tclservClient/genPosTclservClientMsgLib.h
 lib/libgenPosClient.la
-${PLIST.openprs}lib/openprs/libgenPosOpenprs.la
+${PLIST.openprs}lib/openprs/modgenPosOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/genPos-oprs.pc
 lib/pkgconfig/genPos.pc
 ${PLIST.tclserv_client}lib/pkgconfig/genPos-tclserv_client.pc

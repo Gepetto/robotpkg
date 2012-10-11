@@ -21,7 +21,7 @@ include/play/server/playPrintXML.h
 include/play/server/playScan.h
 include/play/server/playType.h
 lib/libplayClient.la
-${PLIST.openprs}lib/openprs/libplayOpenprs.la
+${PLIST.openprs}lib/openprs/modplayOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/play-oprs.pc
 lib/pkgconfig/play.pc
 ${PLIST.tcl}lib/tclserv/libplayTclServ.la

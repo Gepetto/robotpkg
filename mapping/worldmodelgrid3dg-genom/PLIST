@@ -24,7 +24,7 @@ ${PLIST.tcl}share/modules/tcl/worldModelGrid3DGClient.tcl
 ${PLIST.openprs}include/worldModelGrid3DG/server/openprs/worldModelGrid3DGDecodeOpenprs.h
 ${PLIST.openprs}include/worldModelGrid3DG/server/openprs/worldModelGrid3DGEncodeOpenprs.h
 ${PLIST.openprs}include/worldModelGrid3DG/server/openprs/worldModelGrid3DGRequestsOpenprsProto.h
-${PLIST.openprs}lib/openprs/libworldModelGrid3DGOpenprs.la
+${PLIST.openprs}lib/openprs/modworldModelGrid3DGOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/worldModelGrid3DG-oprs.pc
 ${PLIST.openprs}share/modules/openprs/worldModelGrid3DGOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/worldModelGrid3DGOpenprs.opf

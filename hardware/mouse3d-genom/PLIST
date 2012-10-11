@@ -23,7 +23,7 @@ include/mouse3d/server/mouse3dScan.h
 include/mouse3d/server/mouse3dType.h
 include/mouse3d/mouse3dStruct.h
 lib/libmouse3dClient.la
-${PLIST.openprs}lib/openprs/libmouse3dOpenprs.la
+${PLIST.openprs}lib/openprs/modmouse3dOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/mouse3d-oprs.pc
 lib/pkgconfig/mouse3d.pc
 ${PLIST.tclserv_client}lib/pkgconfig/mouse3d-tclserv_client.pc

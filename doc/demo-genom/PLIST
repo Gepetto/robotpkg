@@ -21,7 +21,7 @@ ${PLIST.openprs}include/demo/server/openprs/demoDecodeOpenprs.h
 ${PLIST.openprs}include/demo/server/openprs/demoEncodeOpenprs.h
 ${PLIST.openprs}include/demo/server/openprs/demoRequestsOpenprsProto.h
 lib/libdemoClient.la
-${PLIST.openprs}lib/openprs/libdemoOpenprs.la
+${PLIST.openprs}lib/openprs/moddemoOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/demo-oprs.pc
 lib/pkgconfig/demo.pc
 ${PLIST.tcl}lib/tclserv/libdemoTclServ.la

@@ -24,7 +24,7 @@ ${PLIST.tclserv_client}include/stereopixel/server/tclservClient/stereopixelTclse
 include/stereopixel/stereopixelClient.h
 include/stereopixel/stereopixelStruct.h
 lib/libstereopixelClient.la
-${PLIST.openprs}lib/openprs/libstereopixelOpenprs.la
+${PLIST.openprs}lib/openprs/modstereopixelOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/stereopixel-oprs.pc
 lib/pkgconfig/stereopixel.pc
 ${PLIST.tclserv_client}lib/pkgconfig/stereopixel-tclserv_client.pc

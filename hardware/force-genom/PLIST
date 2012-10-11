@@ -24,7 +24,7 @@ include/force/server/forcePrintXML.h
 include/force/server/forceScan.h
 include/force/server/forceType.h
 lib/libforceClient.la
-${PLIST.openprs}lib/openprs/libforceOpenprs.la
+${PLIST.openprs}lib/openprs/modforceOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/force-oprs.pc
 lib/pkgconfig/force.pc
 ${PLIST.noapi}${PLIST.tcl}lib/tclserv/libforceTclServ.la

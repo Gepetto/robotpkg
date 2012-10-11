@@ -23,7 +23,7 @@ ${PLIST.tclserv_client}include/niut/server/tclservClient/niutTclservClientDecode
 ${PLIST.tclserv_client}include/niut/server/tclservClient/niutTclservClientEncode.h
 ${PLIST.tclserv_client}include/niut/server/tclservClient/niutTclservClientMsgLib.h
 lib/libniutClient.la
-${PLIST.openprs}lib/openprs/libniutOpenprs.la
+${PLIST.openprs}lib/openprs/modniutOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/niut-oprs.pc
 ${PLIST.tclserv_client}lib/pkgconfig/niut-tclserv_client.pc
 lib/pkgconfig/niut.pc

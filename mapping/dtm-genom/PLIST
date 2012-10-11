@@ -23,7 +23,7 @@ ${PLIST.tclserv_client}include/dtm/server/tclservClient/dtmTclservClientDecode.h
 ${PLIST.tclserv_client}include/dtm/server/tclservClient/dtmTclservClientEncode.h
 ${PLIST.tclserv_client}include/dtm/server/tclservClient/dtmTclservClientMsgLib.h
 lib/libdtmClient.la
-${PLIST.openprs}lib/openprs/libdtmOpenprs.la
+${PLIST.openprs}lib/openprs/moddtmOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/dtm-oprs.pc
 lib/pkgconfig/dtm.pc
 ${PLIST.tclserv_client}lib/pkgconfig/dtm-tclserv_client.pc

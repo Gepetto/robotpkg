@@ -24,7 +24,7 @@ ${PLIST.tclserv_client}include/platine/server/tclservClient/platineTclservClient
 ${PLIST.tclserv_client}include/platine/server/tclservClient/platineTclservClientEncode.h
 ${PLIST.tclserv_client}include/platine/server/tclservClient/platineTclservClientMsgLib.h
 lib/libplatineClient.la
-${PLIST.openprs}lib/openprs/libplatineOpenprs.la
+${PLIST.openprs}lib/openprs/modplatineOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/platine-oprs.pc
 lib/pkgconfig/platine.pc
 ${PLIST.tclserv_client}lib/pkgconfig/platine-tclserv_client.pc

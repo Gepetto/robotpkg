@@ -21,7 +21,7 @@ ${PLIST.openprs}include/fingers/server/openprs/fingersDecodeOpenprs.h
 ${PLIST.openprs}include/fingers/server/openprs/fingersEncodeOpenprs.h
 ${PLIST.openprs}include/fingers/server/openprs/fingersRequestsOpenprsProto.h
 lib/libfingersClient.la
-${PLIST.openprs}lib/openprs/libfingersOpenprs.la
+${PLIST.openprs}lib/openprs/modfingersOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/fingers-oprs.pc
 lib/pkgconfig/fingers.pc
 ${PLIST.tcl}lib/tclserv/libfingersTclServ.la

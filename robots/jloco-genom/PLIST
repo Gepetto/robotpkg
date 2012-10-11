@@ -21,7 +21,7 @@ ${PLIST.openprs}include/jloco/server/openprs/jlocoDecodeOpenprs.h
 ${PLIST.openprs}include/jloco/server/openprs/jlocoEncodeOpenprs.h
 ${PLIST.openprs}include/jloco/server/openprs/jlocoRequestsOpenprsProto.h
 lib/libjlocoClient.la
-${PLIST.openprs}lib/openprs/libjlocoOpenprs.la
+${PLIST.openprs}lib/openprs/modjlocoOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/jloco-oprs.pc
 lib/pkgconfig/jloco.pc
 ${PLIST.noapi}${PLIST.tcl}lib/tclserv/libjlocoTclServ.la

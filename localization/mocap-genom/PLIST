@@ -24,7 +24,7 @@ ${PLIST.tclserv_client}include/mocap/server/tclservClient/mocapTclservClientDeco
 ${PLIST.tclserv_client}include/mocap/server/tclservClient/mocapTclservClientEncode.h
 ${PLIST.tclserv_client}include/mocap/server/tclservClient/mocapTclservClientMsgLib.h
 lib/libmocapClient.la
-${PLIST.openprs}lib/openprs/libmocapOpenprs.la
+${PLIST.openprs}lib/openprs/modmocapOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/mocap-oprs.pc
 lib/pkgconfig/mocap.pc
 ${PLIST.tclserv_client}lib/pkgconfig/mocap-tclserv_client.pc

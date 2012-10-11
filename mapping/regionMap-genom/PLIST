@@ -24,7 +24,7 @@ ${PLIST.tclserv_client}include/regionMap/server/tclservClient/regionMapTclservCl
 ${PLIST.tclserv_client}include/regionMap/server/tclservClient/regionMapTclservClientEncode.h
 ${PLIST.tclserv_client}include/regionMap/server/tclservClient/regionMapTclservClientMsgLib.h
 lib/libregionMapClient.la
-${PLIST.openprs}lib/openprs/libregionMapOpenprs.la
+${PLIST.openprs}lib/openprs/modregionMapOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/regionMap-oprs.pc
 ${PLIST.tclserv_client}lib/pkgconfig/regionMap-tclserv_client.pc
 lib/pkgconfig/regionMap.pc

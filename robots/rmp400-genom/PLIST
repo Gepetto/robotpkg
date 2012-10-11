@@ -24,7 +24,7 @@ ${PLIST.tclserv_client}include/rmp400/server/tclservClient/rmp400TclservClientDe
 ${PLIST.tclserv_client}include/rmp400/server/tclservClient/rmp400TclservClientEncode.h
 ${PLIST.tclserv_client}include/rmp400/server/tclservClient/rmp400TclservClientMsgLib.h
 lib/librmp400Client.la
-${PLIST.openprs}lib/openprs/librmp400Openprs.la
+${PLIST.openprs}lib/openprs/modrmp400Openprs.la
 ${PLIST.openprs}lib/pkgconfig/rmp400-oprs.pc
 lib/pkgconfig/rmp400.pc
 ${PLIST.tclserv_client}lib/pkgconfig/rmp400-tclserv_client.pc

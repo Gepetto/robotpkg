@@ -25,7 +25,7 @@ ${PLIST.tclserv_client}include/p3d/server/tclservClient/p3dTclservClientEncode.h
 ${PLIST.tclserv_client}include/p3d/server/tclservClient/p3dTclservClientMsgLib.h
 lib/libp3dClient.la
 lib/libp3dLib.la
-${PLIST.openprs}lib/openprs/libp3dOpenprs.la
+${PLIST.openprs}lib/openprs/modp3dOpenprs.la
 lib/pkgconfig/p3d-lib.pc
 ${PLIST.openprs}lib/pkgconfig/p3d-oprs.pc
 lib/pkgconfig/p3d.pc

@@ -24,7 +24,7 @@ ${PLIST.openprs}include/mor/server/openprs/morDecodeOpenprs.h
 ${PLIST.openprs}include/mor/server/openprs/morEncodeOpenprs.h
 ${PLIST.openprs}include/mor/server/openprs/morRequestsOpenprsProto.h
 lib/libmorClient.la
-${PLIST.openprs}lib/openprs/libmorOpenprs.la
+${PLIST.openprs}lib/openprs/modmorOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/mor-oprs.pc
 ${PLIST.tclserv_client}lib/pkgconfig/mor-tclserv_client.pc
 lib/pkgconfig/mor.pc

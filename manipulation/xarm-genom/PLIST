@@ -24,7 +24,7 @@ include/xarm/server/xarmType.h
 include/xarm/xarmConst.h
 include/xarm/xarmStruct.h
 lib/libxarmClient.la
-${PLIST.openprs}lib/openprs/libxarmOpenprs.la
+${PLIST.openprs}lib/openprs/modxarmOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/xarm-oprs.pc
 lib/pkgconfig/xarm.pc
 ${PLIST.tclserv_client}lib/pkgconfig/xarm-tclserv_client.pc

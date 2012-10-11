@@ -26,7 +26,7 @@ ${PLIST.tclserv_client}include/pom/server/tclservClient/pomTclservClientEncode.h
 ${PLIST.tclserv_client}include/pom/server/tclservClient/pomTclservClientMsgLib.h
 lib/libpomClient.la
 lib/libpomEuler.la
-${PLIST.openprs}lib/openprs/libpomOpenprs.la
+${PLIST.openprs}lib/openprs/modpomOpenprs.la
 lib/pkgconfig/pom-euler.pc
 ${PLIST.openprs}lib/pkgconfig/pom-oprs.pc
 lib/pkgconfig/pom.pc

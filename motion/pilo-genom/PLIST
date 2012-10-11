@@ -24,7 +24,7 @@ ${PLIST.openprs}include/pilo/server/openprs/piloEncodeOpenprs.h
 ${PLIST.openprs}include/pilo/server/openprs/piloRequestsOpenprsProto.h
 lib/libpiloClient.la
 lib/libpiloSmoothtraj.la
-${PLIST.openprs}lib/openprs/libpiloOpenprs.la
+${PLIST.openprs}lib/openprs/modpiloOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/pilo-oprs.pc
 lib/pkgconfig/pilo-smoothtraj.pc
 lib/pkgconfig/pilo.pc

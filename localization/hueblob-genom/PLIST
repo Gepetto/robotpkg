@@ -24,7 +24,7 @@ ${PLIST.tcl}share/modules/tcl/hueblobClient.tcl
 ${PLIST.openprs}include/hueblob/server/openprs/hueblobDecodeOpenprs.h
 ${PLIST.openprs}include/hueblob/server/openprs/hueblobEncodeOpenprs.h
 ${PLIST.openprs}include/hueblob/server/openprs/hueblobRequestsOpenprsProto.h
-${PLIST.openprs}lib/openprs/libhueblobOpenprs.la
+${PLIST.openprs}lib/openprs/modhueblobOpenprs.la
 ${PLIST.openprs}lib/pkgconfig/hueblob-oprs.pc
 ${PLIST.openprs}share/modules/openprs/hueblobOpenprs.inc
 ${PLIST.openprs}share/modules/openprs/hueblobOpenprs.opf
