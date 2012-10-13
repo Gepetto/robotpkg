@@ -60,9 +60,27 @@ ifdef GENOM_MODULE
   .PHONY: genom-generate
   genom-generate:
 	@${STEP_MSG} "Generating ${GENOM_MODULE} module"
-	${RUN}cd ${WRKSRC} && ${CONFIGURE_LOGFILTER} 			\
-		${SETENV} ${CONFIGURE_ENV} 				\
+	${RUN}cd ${WRKSRC} && ${CONFIGURE_LOGFILTER}			\
+		${SETENV} ${CONFIGURE_ENV}				\
 		${TOOLS.genom} ${GENOM_ARGS} ${GENOM_MODULE}
+
+  # Add extra replacement in PLISTs and a generic template for standard genom
+  # files
+  PLIST_TEMPLATE.genom=architecture/genom/PLIST.module
+  PLIST_SUBST+=\
+	GENOM_MODULE=$(call quote,${GENOM_MODULE})
+
+  PRINT_PLIST_AWK_SUBST+=\
+	gsub("${GENOM_MODULE}", "$${GENOM_MODULE}");
+
+  PRINT_PLIST_FILTER+=\
+	${AWK} '							\
+	  BEGIN { print "@comment includes ${PLIST_TEMPLATE.genom}" }	\
+	  NR > FNR { if (!($$0 in filter)) print; next; }		\
+	  { gsub("[$$]{PLIST[^}]*}", ""); filter[$$0] }			\
+	  ' ${ROBOTPKG_DIR}/${PLIST_TEMPLATE.genom} -;
+
+  GENERATE_PLIST+= ${CAT} ${ROBOTPKG_DIR}/${PLIST_TEMPLATE.genom};
 endif # GENOM_MODULE
 
 # GenoM modules use mkdep, pocolibs, pkg-config, autoconf and libtool. Depend
