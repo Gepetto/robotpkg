@@ -56,11 +56,17 @@
 #	semicolon, that outputs any files modified since the package was
 #	extracted.
 #
+#    PRINT_PLIST_FILTER is a sequence of commands, terminating in a
+#	semicolon, that receives the generated PLIST on stdin and is expected
+#	to output the final PLIST (default: cat).
+#
 $(call require,${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
 PRINT_PLIST_FILE?=		${PKGDIR}/PLIST.guess
 PRINT_PLIST_IGNORE_DIRS+=	${DYNAMIC_PLIST_DIRS}
 PRINT_PLIST_FILES_CMD?=		${TRUE};
+
+PRINT_PLIST_FILTER?=		${CAT};
 
 
 # Scan $PREFIX for any files/dirs that do not belong to any package.
@@ -142,7 +148,8 @@ do-print-PLIST: print-PLIST-message
 		{ sub("^$(abspath ${PREFIX})/+", ""); }			\
 		${_PRINT_PLIST_AWK_IGNORE}				\
 		${_PRINT_PLIST_AWK_SUBST}				\
-		{ print $$0; }';					\
+		{ print $$0; }'						\
+	 | { ${PRINT_PLIST_FILTER} };					\
 	{ ${_PRINT_PLIST_DIRS_CMD} }					\
 	  | ${SORT} -r							\
 	  | ${AWK} '							\
