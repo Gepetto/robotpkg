@@ -1,25 +1,4 @@
-@comment Mon Mar 9 11:54:14 CET 2009
-${PLIST.noapi}bin/textos
-${PLIST.noapi}bin/textosSendInitRqst
-${PLIST.noapi}bin/textosTest
-include/textos/server/textosEndian.h
-include/textos/server/textosError.h
-${PLIST.noapi}include/textos/server/textosMsgLib.h
-include/textos/server/textosPosterLib.h
-include/textos/server/textosPosterLibStruct.h
-${PLIST.noapi}include/textos/server/textosPosterReadLibProto.h
-${PLIST.noapi}include/textos/server/textosPosterShowLib.h
-${PLIST.noapi}include/textos/server/textosPosterWriteLibProto.h
-${PLIST.noapi}include/textos/server/textosPosterXMLLib.h
-include/textos/server/textosPrint.h
-include/textos/server/textosPrintXML.h
-include/textos/server/textosScan.h
-include/textos/server/textosType.h
-include/textos/textos-struct.h
-lib/libtextosClient.la
-lib/pkgconfig/textos.pc
-${PLIST.noapi}${PLIST.tcl}lib/tclserv/libtextosTclServ.la
-share/modules/gen/textos.gen
-${PLIST.tcl}share/modules/tcl/textosClient.tcl
-@dirrm include/textos/server
-@dirrm include/textos
+@comment Sun Oct 14 10:20:49 CEST 2012
+@comment includes architecture/genom/PLIST.module
+include/${GENOM_MODULE}/${GENOM_MODULE}-struct.h
+share/modules/gen/${GENOM_MODULE}.gen
