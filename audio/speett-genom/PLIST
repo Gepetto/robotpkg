@@ -1,26 +1,7 @@
-@comment Sat Mar 7 00:36:56 CET 2009
-${PLIST.noapi}bin/speett
-${PLIST.noapi}bin/speettSendInitRqst
-${PLIST.noapi}bin/speettTest
-include/speett/server/speettEndian.h
-include/speett/server/speettError.h
-${PLIST.noapi}include/speett/server/speettMsgLib.h
-include/speett/server/speettPosterLib.h
-include/speett/server/speettPosterLibStruct.h
-${PLIST.noapi}include/speett/server/speettPosterReadLibProto.h
-${PLIST.noapi}include/speett/server/speettPosterShowLib.h
-${PLIST.noapi}include/speett/server/speettPosterWriteLibProto.h
-${PLIST.noapi}include/speett/server/speettPosterXMLLib.h
-include/speett/server/speettPrint.h
-include/speett/server/speettPrintXML.h
-include/speett/server/speettScan.h
-include/speett/server/speettType.h
-include/speett/speett-struct.h
-lib/libspeettClient.la
-lib/pkgconfig/speett.pc
-${PLIST.noapi}${PLIST.tcl}lib/tclserv/libspeettTclServ.la
-share/modules/gen/speett.gen
-${PLIST.tcl}share/modules/tcl/speettClient.tcl
-${PLIST.noapi}share/speett/sample.dic
-${PLIST.noapi}share/speett/sample.fsg
-${PLIST.noapi}share/speett/strtonum.awk
+@comment Sun Oct 14 10:14:49 CEST 2012
+@comment includes architecture/genom/PLIST.module
+include/${GENOM_MODULE}/${GENOM_MODULE}-struct.h
+share/modules/gen/${GENOM_MODULE}.gen
+${PLIST.noapi}share/${GENOM_MODULE}/sample.dic
+${PLIST.noapi}share/${GENOM_MODULE}/sample.fsg
+${PLIST.noapi}share/${GENOM_MODULE}/strtonum.awk
