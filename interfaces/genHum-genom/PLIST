@@ -1,27 +1,4 @@
-@comment Thu Nov 11 10:21:19 CET 2010
-include/genHum/genHumStruct.h
-include/genHum/server/genHumEndian.h
-include/genHum/server/genHumError.h
-include/genHum/server/genHumPosterLib.h
-include/genHum/server/genHumPosterLibStruct.h
-include/genHum/server/genHumPrint.h
-include/genHum/server/genHumPrintXML.h
-include/genHum/server/genHumScan.h
-include/genHum/server/genHumType.h
-${PLIST.openprs}include/genHum/server/openprs/genHumDecodeOpenprs.h
-${PLIST.openprs}include/genHum/server/openprs/genHumEncodeOpenprs.h
-${PLIST.openprs}include/genHum/server/openprs/genHumRequestsOpenprsProto.h
-${PLIST.tclserv_client}include/genHum/server/tclservClient/genHumTclservClientDecode.h
-${PLIST.tclserv_client}include/genHum/server/tclservClient/genHumTclservClientEncode.h
-${PLIST.tclserv_client}include/genHum/server/tclservClient/genHumTclservClientMsgLib.h
-lib/libgenHumClient.la
-${PLIST.openprs}lib/openprs/modgenHumOpenprs.la
-${PLIST.openprs}lib/pkgconfig/genHum-oprs.pc
-${PLIST.tclserv_client}lib/pkgconfig/genHum-tclserv_client.pc
-lib/pkgconfig/genHum.pc
-${PLIST.tclserv_client}lib/tclservClient/libgenHumTclservClient.la
-share/modules/gen/genHum.gen
-${PLIST.openprs}share/modules/openprs/genHumOpenprs.inc
-${PLIST.openprs}share/modules/openprs/genHumOpenprs.opf
-${PLIST.openprs}share/modules/openprs/genHumOpenprs.sym
-${PLIST.tcl}share/modules/tcl/genHumClient.tcl
+@comment Sun Oct 14 09:56:54 CEST 2012
+@comment includes architecture/genom/PLIST.module
+include/${GENOM_MODULE}/${GENOM_MODULE}Struct.h
+share/modules/gen/${GENOM_MODULE}.gen
