@@ -7,7 +7,6 @@ ${PLIST.noapi}include/${GENOM_MODULE}/server/${GENOM_MODULE}PosterReadLibProto.h
 ${PLIST.noapi}include/${GENOM_MODULE}/server/${GENOM_MODULE}PosterShowLib.h
 ${PLIST.noapi}include/${GENOM_MODULE}/server/${GENOM_MODULE}PosterWriteLibProto.h
 ${PLIST.noapi}include/${GENOM_MODULE}/server/${GENOM_MODULE}PosterXMLLib.h
-include/${GENOM_MODULE}/${GENOM_MODULE}Struct.h
 include/${GENOM_MODULE}/server/${GENOM_MODULE}Endian.h
 include/${GENOM_MODULE}/server/${GENOM_MODULE}Error.h
 include/${GENOM_MODULE}/server/${GENOM_MODULE}PosterLib.h
@@ -18,7 +17,6 @@ include/${GENOM_MODULE}/server/${GENOM_MODULE}Scan.h
 include/${GENOM_MODULE}/server/${GENOM_MODULE}Type.h
 lib/lib${GENOM_MODULE}Client.la
 lib/pkgconfig/${GENOM_MODULE}.pc
-share/modules/gen/${GENOM_MODULE}.gen
 ${PLIST.openprs}include/${GENOM_MODULE}/server/openprs/${GENOM_MODULE}DecodeOpenprs.h
 ${PLIST.openprs}include/${GENOM_MODULE}/server/openprs/${GENOM_MODULE}EncodeOpenprs.h
 ${PLIST.openprs}include/${GENOM_MODULE}/server/openprs/${GENOM_MODULE}RequestsOpenprsProto.h
