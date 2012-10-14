@@ -1,27 +1,4 @@
-@comment Fri Sep 10 11:44:12 CEST 2010
-${PLIST.openprs}include/genManip/server/openprs/genManipDecodeOpenprs.h
-${PLIST.openprs}include/genManip/server/openprs/genManipEncodeOpenprs.h
-${PLIST.openprs}include/genManip/server/openprs/genManipRequestsOpenprsProto.h
-${PLIST.tclserv_client}include/genManip/server/tclservClient/genManipTclservClientDecode.h
-${PLIST.tclserv_client}include/genManip/server/tclservClient/genManipTclservClientEncode.h
-${PLIST.tclserv_client}include/genManip/server/tclservClient/genManipTclservClientMsgLib.h
-include/genManip/server/genManipEndian.h
-include/genManip/server/genManipError.h
-include/genManip/server/genManipPosterLib.h
-include/genManip/server/genManipPosterLibStruct.h
-include/genManip/server/genManipPrint.h
-include/genManip/server/genManipPrintXML.h
-include/genManip/server/genManipScan.h
-include/genManip/server/genManipType.h
-include/genManip/genManipStruct.h
-lib/libgenManipClient.la
-${PLIST.openprs}lib/openprs/modgenManipOpenprs.la
-${PLIST.openprs}lib/pkgconfig/genManip-oprs.pc
-lib/pkgconfig/genManip.pc
-${PLIST.tclserv_client}lib/pkgconfig/genManip-tclserv_client.pc
-${PLIST.tclserv_client}lib/tclservClient/libgenManipTclservClient.la
-share/modules/gen/genManip.gen
-${PLIST.openprs}share/modules/openprs/genManipOpenprs.inc
-${PLIST.openprs}share/modules/openprs/genManipOpenprs.opf
-${PLIST.openprs}share/modules/openprs/genManipOpenprs.sym
-${PLIST.tcl}share/modules/tcl/genManipClient.tcl
+@comment Sun Oct 14 10:24:20 CEST 2012
+@comment includes architecture/genom/PLIST.module
+include/${GENOM_MODULE}/${GENOM_MODULE}Struct.h
+share/modules/gen/${GENOM_MODULE}.gen
