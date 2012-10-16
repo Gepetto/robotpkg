@@ -5,7 +5,7 @@
 MANA_DATE=	20120223
 DISTNAME=	laas-mana-${MANA_DATE}
 
-CATEGORIES=	meta-pkg
+CATEGORIES=	meta-pkgs
 COMMENT=	Mana Software
 
 META_PACKAGE=	yes
