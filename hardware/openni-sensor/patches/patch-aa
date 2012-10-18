@@ -1,5 +1,17 @@
+Fix linker flags ordering.
+Add an rpath.
+
 --- Platform/Linux/Build/Common/CommonCppMakefile~	2012-01-04 12:43:06.000000000 +0100
 +++ Platform/Linux/Build/Common/CommonCppMakefile	2012-04-09 13:42:00.906980193 +0200
+@@ -46,7 +46,7 @@
+ INC_DIRS_OPTION = $(foreach dir,$(INC_DIRS_FROM_SYSROOT),-I$(dir))
+ 
+ # append the -L switch to each library directory
+-LIB_DIRS_OPTION = $(foreach dir,$(LIB_DIRS),-L$(dir)) -L$(OUT_DIR)
++LIB_DIRS_OPTION = -L$(OUT_DIR) $(foreach dir,$(LIB_DIRS),-L$(dir))
+ 
+ # append the -l switch to each library used
+ USED_LIBS_OPTION = $(foreach lib,$(USED_LIBS),-l$(lib))
 @@ -71,6 +71,8 @@
  CFLAGS += $(INC_DIRS_OPTION) $(DEFINES_OPTION)
  LDFLAGS += $(LIB_DIRS_OPTION) $(USED_LIBS_OPTION)
