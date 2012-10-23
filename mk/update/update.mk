@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -92,22 +92,12 @@ do%update: .FORCE
 	${_OVERRIDE_TARGET}
 	${RUN}${TEST} -f ${_UPDATE_LIST} || exit 0;			\
 	target='$(filter-out confirm,${UPDATE_TARGET})';		\
+	${CP} ${_UPDATE_LIST} ${_UPDATE_LIST:=.current};		\
 	while IFS=: read dir pkg <&9; do				\
 	  if ${TEST} "$$dir" = "${PKGPATH}"; then			\
-	    if ${PKG_INFO} -qe '${PKGNAME}'; then			\
-	      ${STEP_MSG} "${PKGNAME} was already reinstalled";		\
-	      continue;							\
-	    fi;								\
 	    t="${UPDATE_TARGET}";					\
 	  else								\
 	    ${PHASE_MSG} "Verifying $$target for $$dir";		\
-	    if i=`${PKG_INFO} -E "$$pkg"`; then				\
-	      set -- `${PKG_INFO} -qr '${PKGNAME}'`;			\
-	      case " $$@ " in *" $$i "*)				\
-	        ${STEP_MSG} "$$pkg was already reinstalled";		\
-	        continue;;						\
-	      esac;							\
-	    fi;								\
 	    t=$$target;							\
 	  fi;								\
 	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
@@ -126,7 +116,9 @@ do%update: .FORCE
 	  else								\
 	    ${PHASE_MSG} "Skipping nonexistent directory $${dir}";	\
 	  fi;								\
-	done 9<${_UPDATE_LIST}
+	  ${CP} ${_UPDATE_LIST} ${_UPDATE_LIST:=.old};			\
+	  ${SED} 1d <${_UPDATE_LIST:=.old} >${_UPDATE_LIST};		\
+	done 9<${_UPDATE_LIST:=.current}
 
 .PHONY: pre-update post-update
 
@@ -156,7 +148,7 @@ update-up-to-date: update-message
 # clean update files
 .PHONY: update-clean
 update-clean:
-	${RUN}${TEST} -f ${_UPDATE_LIST} || exit 0;			\
+	${RUN}${TEST} -f ${_UPDATE_LIST:=.clean} || exit 0;		\
 	while IFS=: read dir pkg <&9;do					\
 	  if ${TEST} "$$dir" = "${PKGPATH}"; then continue; fi;		\
 	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
@@ -165,7 +157,7 @@ update-clean:
 	  else								\
 	    nodir=$$nodir" "$$dir;					\
 	  fi;								\
-	done 9<${_UPDATE_LIST};						\
+	done 9<${_UPDATE_LIST:=.clean};					\
 	if ${TEST} -n "$$noclean"; then					\
 	    ${WARNING_MSG} ${hline};					\
 	    ${WARNING_MSG} "Unable to clean for:";			\
@@ -187,7 +179,8 @@ update-clean:
 	    ${ERROR_MSG} ${hline};					\
 	    exit 2;							\
 	fi
-	${RUN} ${RM} -f ${_UPDATE_LIST};				\
+	${RUN} ${RM} -f ${_UPDATE_LIST} ${_UPDATE_LIST:=.current};	\
+	${RM} -f ${_UPDATE_LIST:=.old} ${_UPDATE_LIST:=.clean};		\
 	if ${TEST} "$(call isyes,${UPDATE_CLEAN})"; then		\
 	  ${RECURSIVE_MAKE} cleaner;					\
 	fi;								\
@@ -231,7 +224,8 @@ ${_UPDATE_LIST}:
 	  ${TEST} -s $@ || { ${RM} $@; exit 2; }			\
 	else								\
 	  ${ECHO} '${PKGPATH}:${PKGREQD}' >>$@;				\
-	fi
+	fi;								\
+	${CP} $@ ${@:=.clean}
 
 # deinstall existing packages
 .PHONY: update-deinstall-dlist
