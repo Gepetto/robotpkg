@@ -80,11 +80,7 @@ endif
 
 # redefine package name for checkouts
 ifdef _EXTRACT_IS_CHECKOUT
-  ifndef CHECKOUT_PKGVERSION
-    $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
-    CHECKOUT_PKGVERSION:=$(shell ${_CDATE_CMD} "+%Y%m%d%H%M%S")
-    $(eval $(call _export_override,${CURDIR},CHECKOUT_PKGVERSION,${CHECKOUT_PKGVERSION}))
-  endif
+  CHECKOUT_PKGVERSION:=${_ROBOTPKG_NOW}
   BUILD_DEFS+=CHECKOUT_PKGVERSION
   PKGREVISION:=$(strip ${PKGREVISION})0${CHECKOUT_PKGVERSION}
 endif

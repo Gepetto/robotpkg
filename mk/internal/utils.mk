@@ -106,9 +106,17 @@ FAIL?=                  ${SH} ${ROBOTPKG_DIR}/mk/internal/fail
 #
 TMPDIR?=	/tmp
 
-# Printed dates should be agnostic regarding the locale
+# Printed dates should be agnostic regarding the locale.
 #
 _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
+
+# Compute the date of this run. This is used to compute a consistent version
+# for checkouts accross various recursive 'make' invocation.
+#
+ifndef _ROBOTPKG_NOW
+  export _ROBOTPKG_NOW:=$(shell ${_CDATE_CMD} "+%Y%m%d%H%M%S")
+  _ENV_VARS+=	_ROBOTPKG_NOW
+endif
 
 # This variable can be prepended to all shell commands that should not
 # be printed by default, but when PKGSRC_DEBUG_LEVEL is non-zero.
