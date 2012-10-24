@@ -3,8 +3,7 @@
 #
 
 DISTNAME=		libp3d-${VERSION}
-VERSION=		1.3
-PKGREVISION=		1
+VERSION=		1.3.1
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libp3d/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}libp3d
@@ -40,6 +39,7 @@ PKG_OPTION_DESCR.display?=	Enable support for 3D graphic display
 
 define PKG_OPTION_SET.display
   include ../../graphics/gdhe/depend.mk
+  CONFIGURE_ARGS+=	--enable-gdhe
 endef
 define PKG_OPTION_UNSET.display
   CONFIGURE_ARGS+=	HAS_GDHE=no GDHE_CFLAGS= GDHE_LIBS=
