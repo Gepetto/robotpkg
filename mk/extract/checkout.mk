@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2011 LAAS/CNRS
+# Copyright (c) 2009-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -83,6 +83,11 @@ ifdef _CHECKOUT
   CHECKOUT_OPTS+=	-r ${_CHECKOUT}
 endif
 
+ifneq (,$(call isyes,${GNU_CONFIGURE}))
+  DEPEND_METHOD.autoconf+= bootstrap
+  include ${ROBOTPKG_DIR}/mk/sysdep/autoconf.mk
+  post-checkout: autoreconf
+endif
 
 # --- ${_COOKIE.checkout} --------------------------------------------------
 #
