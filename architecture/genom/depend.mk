@@ -12,7 +12,7 @@ DEPEND_PKG+=		genom
 ifdef GENOM_MODULE
   GENOM_ARGS?=#		empty
 
-  PKG_SUPPORTED_OPTIONS+=	api tcl openprs tclserv_client xenomai
+  PKG_SUPPORTED_OPTIONS+=	api tcl openprs tclserv_client python xenomai
   PKG_SUGGESTED_OPTIONS+=	tcl
 
   PKG_OPTION_DESCR.api=	Generate module API only
@@ -42,6 +42,13 @@ ifdef GENOM_MODULE
   define PKG_OPTION_SET.tclserv_client
     GENOM_ARGS+= -x
     include ../../net/libtclserv_client/depend.mk
+  endef
+
+  PKG_OPTION_DESCR.python=Enable Python client code
+  define PKG_OPTION_SET.python
+    GENOM_ARGS+=	-y
+    DEPEND_ABI.genom+=	2.10
+    include ../../mk/sysdep/python.mk
   endef
 
   PKG_OPTION_DESCR.xenomai=Enable Xenomai support

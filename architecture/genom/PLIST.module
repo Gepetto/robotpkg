@@ -33,3 +33,9 @@ ${PLIST.tclserv_client}include/${GENOM_MODULE}/server/tclservClient/${GENOM_MODU
 ${PLIST.tclserv_client}include/${GENOM_MODULE}/server/tclservClient/${GENOM_MODULE}TclservClientMsgLib.h
 ${PLIST.tclserv_client}lib/pkgconfig/${GENOM_MODULE}-tclserv_client.pc
 ${PLIST.tclserv_client}lib/tclservClient/lib${GENOM_MODULE}TclservClient.la
+${PLIST.python}share/modules/python/${GENOM_MODULE}/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PLIST.python}share/modules/python/${GENOM_MODULE}/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+${PLIST.python}share/modules/python/${GENOM_MODULE}/${PYTHON_PYCACHE}/struct${PYTHON_TAG}.pyc
+${PLIST.python}share/modules/python/${GENOM_MODULE}/${PYTHON_PYCACHE}/struct${PYTHON_TAG}.pyo
+${PLIST.python}share/modules/python/${GENOM_MODULE}/__init__.py
+${PLIST.python}share/modules/python/${GENOM_MODULE}/struct.py
