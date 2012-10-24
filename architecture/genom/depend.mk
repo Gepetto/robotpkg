@@ -47,7 +47,7 @@ ifdef GENOM_MODULE
   PKG_OPTION_DESCR.python=Enable Python client code
   define PKG_OPTION_SET.python
     GENOM_ARGS+=	-y
-    DEPEND_ABI.genom+=	2.10
+    DEPEND_ABI.genom+=	genom>=2.10
     include ../../mk/sysdep/python.mk
   endef
 
