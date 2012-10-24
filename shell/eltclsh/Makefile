@@ -20,9 +20,9 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=	--with-tk=$(dir ${TK_CONFIG_SH})
 
-CONFIGURE_LOG_ETA=	120
-BUILD_LOG_ETA=		50
-INSTALL_LOG_ETA=	45
+# for checkout target
+AUTORECONF_SCRIPT=	${WRKSRC}/autogen.sh
+AUTORECONF_ARGS=
 
 include ../../devel/libedit/depend.mk
 include ../../mk/sysdep/tcl.mk
