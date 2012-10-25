@@ -3,13 +3,13 @@
 #
 
 DISTNAME=		softMotion-libs-${PKGVERSION_NOREV}
-PKGVERSION=		3.10
+PKGVERSION=		3.11
 
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=softMotion-libs/}
 MASTER_REPOSITORY=      git ssh://trac.laas.fr/git/robots/softMotion-libs
 
-MAINTAINER=		xavier.broquere@laas.fr
+MAINTAINER=		wuwei.he@laas.fr
 LICENSE=		gnu-lgpl-v3
 NOT_FOR_PLATFORM=
 
