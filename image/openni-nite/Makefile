@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Tue, 14 Dec 2010
 #
 
+PKGREVISION=	1
 DISTNAME=	nite-bin-linux-${NI_ARCH}-v${PKG_VERSION}
 PKGNAME=	openni-nite-${PKG_VERSION}
 PKG_VERSION=	1.5.2.21
