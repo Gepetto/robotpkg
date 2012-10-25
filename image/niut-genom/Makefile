@@ -3,6 +3,7 @@
 #
 
 DISTNAME=	niut-genom-0.4
+PKGREVISION= 1
 CATEGORIES=	image
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=niut-genom/}
