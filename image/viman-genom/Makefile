@@ -2,8 +2,7 @@
 # Created:			Séverin Lemaignan on Tue, 31 Aug 2010
 #
 
-PKGREVISION=		2
-DISTNAME=		viman-genom-1.5
+DISTNAME=		viman-genom-1.6
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viman-genom/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/viman-genom
