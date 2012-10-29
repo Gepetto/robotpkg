@@ -1,0 +1,6 @@
+@comment Fri Oct 21 16:27:08 CEST 2011
+${PYTHON_SITELIB}/pypoco-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/${PYTHON_PYCACHE}/pypoco${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/${PYTHON_PYCACHE}/pypoco${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/pypoco.py
+share/doc/pypoco/LICENSE

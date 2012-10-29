@@ -1,0 +1,2 @@
+pypoco is a Python binding for the LAAS tclserv protocol used to control
+genom modules.

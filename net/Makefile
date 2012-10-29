@@ -8,6 +8,7 @@ SUBDIR+=        evart-stream
 SUBDIR+=	libfetch
 SUBDIR+=	libtclserv_client
 SUBDIR+=	netshring
+SUBDIR+=	py-poco
 SUBDIR+=	tclpcap
 SUBDIR+=	tclserv
 SUBDIR+=	zeromq
