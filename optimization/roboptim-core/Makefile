@@ -16,6 +16,7 @@ MAINTAINER=	roboptim-user@lists.sourceforge.net
 
 USE_LANGUAGES+=		c c++
 CMAKE_ARGS+=		-DBOOST_ROOT=${PREFIX.boost-headers}
+CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
 
 INCLUDE_DIRS.libtool-ltdl=	include
