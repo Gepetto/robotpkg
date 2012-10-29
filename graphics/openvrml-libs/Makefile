@@ -5,7 +5,7 @@
 PKGVERSION=		0.18.9
 DISTNAME=		openvrml-${PKGVERSION_NOREV}
 PKGNAME=		openvrml-libs-${PKGVERSION}
-CATEGORIES=		devel
+CATEGORIES=		graphics
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=openvrml/}
 
 MAINTAINER=		tmoulard@laas.fr
@@ -34,14 +34,12 @@ CONFIGURE_ARGS+=--enable-gl-renderer
 # get the right boost libraries suffix.
 CONFIGURE_ARGS+=BOOST_LIB_SUFFIX=${BOOST_LIB_SUFFIX}
 
-# required for boost>=1.46
-CPPFLAGS+=	-DBOOST_FILESYSTEM_VERSION=2
-
 # fix detection of ltdl and boost. configure script searches in /usr only.
-CPPFLAGS+=$(addsuffix /include,$(addprefix -I,	\
-		$(sort ${PREFIX.libtool-ltdl} ${PREFIX.boost-headers})))
-LDFLAGS+=$(addsuffix /lib,$(addprefix -L,	\
-		$(sort ${PREFIX.libtool-ltdl} ${PREFIX.boost-libs})))
+INCLUDE_DIRS.boost-headers+=	include
+INCLUDE_DIRS.libtool-ltdl+=	include
+
+LIBRARY_DIRS.boost-libs+=	lib
+LIBRARY_DIRS.libtool-ltdl+=	lib
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
