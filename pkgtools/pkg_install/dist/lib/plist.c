@@ -110,10 +110,24 @@ void
 add_plist(package_t *p, pl_ent_t type, const char *arg)
 {
 	plist_t *tmp;
+	size_t l;
 
 	tmp = new_plist_entry();
 	tmp->name = (arg == NULL) ? NULL : xstrdup(arg);
 	tmp->type = type;
+	switch (type) {
+		case PLIST_CWD:
+			/* strip any trailing / */
+			if (tmp->name) {
+				l = strlen(tmp->name);
+				while(l > 0 && tmp->name[l-1] == '/') {
+					tmp->name[--l] = '\0';
+				}
+			}
+			break;
+
+		default: break;
+	}
 	if (!p->head) {
 		p->head = p->tail = tmp;
 	} else {
@@ -130,10 +144,24 @@ void
 add_plist_top(package_t *p, pl_ent_t type, const char *arg)
 {
 	plist_t *tmp;
+	size_t l;
 
 	tmp = new_plist_entry();
 	tmp->name = (arg == NULL) ? NULL : xstrdup(arg);
 	tmp->type = type;
+	switch (type) {
+		case PLIST_CWD:
+			/* strip any trailing / */
+			if (tmp->name) {
+				l = strlen(tmp->name);
+				while(l > 0 && tmp->name[l-1] == '/') {
+					tmp->name[--l] = '\0';
+				}
+			}
+			break;
+
+		default: break;
+	}
 	if (!p->head) {
 		p->head = p->tail = tmp;
 	} else {
