@@ -11,7 +11,7 @@ endif
 
 ifeq (+,$(BLENDER_DEPEND_MK)) # -----------------------------------------------
 
-PREFER.blender?=	robotpkg
+PREFER.blender?=	system
 
 DEPEND_USE+=		blender
 DEPEND_ABI.blender?=	blender>=2.5

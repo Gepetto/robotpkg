@@ -4,8 +4,7 @@
 
 PKGNAME=		blender-${PKGVERSION}
 DISTNAME=		blender-${PKGVERSION_NOREV}
-PKGVERSION=		2.59
-PKGREVISION=		2
+PKGVERSION=		2.64a
 
 CATEGORIES=		graphics
 MASTER_SITES=		http://download.blender.org/source/
@@ -30,11 +29,7 @@ CMAKE_ARGS+=		-DWITH_JACK=OFF		# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_OPENAL=OFF	# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_SDL=OFF		# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_INSTALL_PORTABLE=OFF # Install in hier(8)
-
-# Workaroud against a gcc bug (or a faulty C file :) when building
-# view3d_select.c with -O3 (in particulary -finline-functions) and
-# -fno-strict-aliasing
-_CFLAGS_NDEBUG=-O2 -DNDEBUG
+CMAKE_ARGS+=		-DWITH_CYCLES=OFF
 
 # Enable embedded Python API, but don't copy system python into blender
 CMAKE_ARGS+=		-DWITH_PYTHON=ON
