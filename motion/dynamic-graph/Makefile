@@ -14,13 +14,11 @@ LICENSE=		gnu-lgpl-v3
 MAINTAINER=		gepetto@laas.fr
 
 USE_LANGUAGES+=		c c++
-DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph
+DYNAMIC_PLIST_DIRS+=	share/doc/dynamic-graph
 
-include ../../mk/robotpkg.prefs.mk # MACHINE_ARCH
-ifeq (x86_64,${MACHINE_ARCH})
-  # disable -Werror on x86_64: too many warnings, must be fixed upstream
-  CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
-endif
+# disable -Werror because of x86_64 warnings (must be fixed upstream) and
+# boost + gcc that don't cohabit well depending on their respective versions
+CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 include ../../interfaces/jrl-mal/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
