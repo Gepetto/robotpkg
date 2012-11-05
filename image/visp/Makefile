@@ -1,6 +1,7 @@
 # robotpkg Makefile for:	image/visp
 # Created:			Anthony Mallet on Tue, 9 Feb 2010
 #
+PKGREVISION=		1
 DISTNAME=		ViSP-${VERSION}
 PKGNAME=		visp-${VERSION}
 VERSION=		2.6.1
