@@ -15,7 +15,11 @@ LICENSE=	gnu-lgpl-v3
 MAINTAINER=	roboptim-user@lists.sourceforge.net
 
 USE_LANGUAGES+= c c++
-DOXYGEN_PLIST_DIR+=	share/doc/roboptim-trajectory
+DYNAMIC_PLIST_DIRS+=	share/doc/roboptim-trajectory
+
+# disable -Werror because of boost + gcc that don't cohabit well depending on
+# their respective versions
+CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 INCLUDE_DIRS.boost-headers=include
 
