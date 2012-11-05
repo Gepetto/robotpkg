@@ -64,6 +64,7 @@ include ../../mk/sysdep/freetype2.mk
 include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/libpng.mk
 include ../../mk/sysdep/libtiff.mk
+include ../../mk/sysdep/glew.mk
 include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/libXi.mk
@@ -71,6 +72,3 @@ include ../../mk/robotpkg.mk
 
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
-
-_PYTHON_COMPILE_DIR=	${PREFIX}/share/blender/${PKGVERSION_NOREV}/scripts
-post-install: python-compile-all(${_PYTHON_COMPILE_DIR})

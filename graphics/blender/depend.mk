@@ -11,6 +11,11 @@ endif
 
 ifeq (+,$(BLENDER_DEPEND_MK)) # -----------------------------------------------
 
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (NetBSD,${OPSYS})
+  # pkgsrc version is outdated
+  PREFER.blender?=	robotpkg
+endif
 PREFER.blender?=	system
 
 DEPEND_USE+=		blender
