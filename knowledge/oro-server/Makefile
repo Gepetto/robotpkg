@@ -2,9 +2,10 @@
 # Created:			Séverin Lemaignan on Mon, 6 Jul 2009
 #
 
-DISTNAME=		oro-server-0.8.0
+DISTNAME=		oro-server-0.8.1
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=oro-server/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}oro-server
+EXTRACT_SUFX=		.tar.bz2
 
 CATEGORIES=	knowledge
 LICENSE=	isc
