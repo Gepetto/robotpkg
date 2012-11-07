@@ -684,6 +684,8 @@ remove_pkg(const char *pkg)
 	setenv(PKG_METADATA_DIR_VNAME, fname, 1);
 	free(fname);
 	setenv(PKG_PREFIX_VNAME, p->name, 1);
+	if (Verbose)
+		setenv(PKG_VERBOSE_VNAME, "1", 1);
 
 	if (!no_deinstall && !unregister_only) {
 		if (run_deinstall_script(pkg, 0) && !Force)

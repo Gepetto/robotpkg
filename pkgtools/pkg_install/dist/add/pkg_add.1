@@ -365,10 +365,16 @@ The scripts are also called with the
 .Ev PKG_METADATA_DIR
 environment variable set to the location of the
 .Pa +*
-meta-data files, and with the
+meta-data files, with the
 .Ev PKG_REFCOUNT_DBDIR
 environment variable set to the location of the package reference counts
-database directory.
+database directory, and with the
+.Ev PKG_VERBOSE
+environment variable set if
+.Cm robotpkg_add
+was called with the
+.Fl v
+option.
 If the
 .Fl P
 flag was given to

@@ -126,6 +126,9 @@ enum {
 /* Prefix for extended PLIST cmd */
 #define CMD_CHAR		'@'	
 
+/* The name of the "verbose" environment variable given to scripts */
+#define PKG_VERBOSE_VNAME	"PKG_VERBOSE"
+
 /* The name of the "prefix" environment variable given to scripts */
 #define PKG_PREFIX_VNAME	"PKG_PREFIX"
 

@@ -1057,8 +1057,11 @@ run_install_script(struct pkg_task *pkg, const char *argument)
 	setenv(PKG_METADATA_DIR_VNAME, pkg->logdir, 1);
 	setenv(PKG_REFCOUNT_DBDIR_VNAME, config_pkg_refcount_dbdir, 1);
 
-	if (Verbose)
-		printf("Running install with PRE-INSTALL for %s.\n", pkg->pkgname);
+	if (Verbose) {
+		setenv(PKG_VERBOSE_VNAME, "1", 1);
+		printf("Running install with %s for %s.\n", argument,
+                       pkg->pkgname);
+        }
 	if (Fake)
 		return 0;
 

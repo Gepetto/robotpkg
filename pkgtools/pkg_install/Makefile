@@ -2,7 +2,7 @@
 # Created:			tho on Thu, 9 Nov 2006
 #
 
-VERSION=		20110805.3
+VERSION=		20110805.4
 DISTNAME=		pkg_install-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		# empty
