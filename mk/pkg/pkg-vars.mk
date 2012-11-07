@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -108,6 +108,8 @@ _PRESERVE_FILE=		+PRESERVE
 _SIZE_ALL_FILE=		+SIZE_ALL
 _SIZE_PKG_FILE=		+SIZE_PKG
 _CONTENTS_FILE=		+CONTENTS
+_INSTALL_FILE=		+INSTALL
+_DEINSTALL_FILE=	+DEINSTALL
 
 
 # Return $1 only if PKGNAME is not installed or should be updated. If package
@@ -121,6 +123,7 @@ endef
 
 include ${ROBOTPKG_DIR}/mk/pkg/depends.mk
 include ${ROBOTPKG_DIR}/mk/pkg/metadata.mk
+include ${ROBOTPKG_DIR}/mk/pkg/pkginstall.mk
 include ${ROBOTPKG_DIR}/mk/pkg/install.mk
 include ${ROBOTPKG_DIR}/mk/pkg/deinstall.mk
 include ${ROBOTPKG_DIR}/mk/pkg/replace.mk

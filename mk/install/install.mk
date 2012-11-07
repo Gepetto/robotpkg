@@ -173,11 +173,10 @@ install-deinstall:
 # some sanity checks.
 #
 _INSTALL_ALL_TARGETS+=		acquire-install-localbase-lock
+_INSTALL_ALL_TARGETS+=		generate-install-script
 _INSTALL_ALL_TARGETS+=		do-install-failsafe
 _INSTALL_ALL_TARGETS+=		plist
 _INSTALL_ALL_TARGETS+=		install-failed
-#_INSTALL_ALL_TARGETS+=		install-script-data
-#_INSTALL_ALL_TARGETS+=		post-install-script
 ifndef NO_PKG_REGISTER
   _INSTALL_ALL_TARGETS+=	pkg-register
 endif
@@ -236,9 +235,11 @@ endif	# INSTALLATION_DIRS
 _install_failed=	${WRKDIR}/.install-failed
 
 _INSTALL_FAILSAFE_TARGETS+=	install-makedirs
+_INSTALL_FAILSAFE_TARGETS+=	pre-install-script
 _INSTALL_FAILSAFE_TARGETS+=	pre-install
 _INSTALL_FAILSAFE_TARGETS+=	do-install
 _INSTALL_FAILSAFE_TARGETS+=	post-install
+_INSTALL_FAILSAFE_TARGETS+=	post-install-script
 
 .PHONY: install-failsafe
 install-failsafe: ${_INSTALL_FAILSAFE_TARGETS}
@@ -313,5 +314,5 @@ post-install:
 #
 $(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
 
-bootstrap-register: pkg-register clean
+bootstrap-register: generate-install-script pkg-register clean
 	@${DO_NADA}

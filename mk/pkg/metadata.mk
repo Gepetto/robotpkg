@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -292,22 +292,13 @@ _PKG_CREATE_ARGS+=	-s ${PKG_DB_TMPDIR}/${_SIZE_PKG_FILE}
 ifdef CONFLICTS
 _PKG_CREATE_ARGS+=	-C $(call quote,${CONFLICTS})
 endif
-ifdef INSTALL_FILE
-_PKG_CREATE_ARGS+=	`${_INSTALL_ARG_cmd}`
-endif
-ifdef DEINSTALL_FILE
-_PKG_CREATE_ARGS+=	`${_DEINSTALL_ARG_cmd}`
-endif
+_PKG_CREATE_ARGS+=\
+  $(if $(strip ${INSTALL_SRC}),-i ${PKG_DB_TMPDIR}/${_INSTALL_FILE})
+_PKG_CREATE_ARGS+=\
+  $(if $(strip ${DEINSTALL_SRC}),-k ${PKG_DB_TMPDIR}/${_DEINSTALL_FILE})
 
 _PKG_ARGS_INSTALL+=	${_PKG_CREATE_ARGS}
 _PKG_ARGS_INSTALL+=	-p ${PREFIX}
-
-_DEINSTALL_ARG_cmd=	if ${TEST} -f ${DEINSTALL_FILE}; then		\
-				${ECHO} "-k "${DEINSTALL_FILE};		\
-			fi
-_INSTALL_ARG_cmd=	if ${TEST} -f ${INSTALL_FILE}; then		\
-				${ECHO} "-i "${INSTALL_FILE};		\
-			fi
 
 ifndef NO_DEPENDS
   _CONTENTS_TARGETS+=	${_COOKIE.depends}
