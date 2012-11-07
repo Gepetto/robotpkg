@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2011 LAAS/CNRS
+# Copyright (c) 2006,2009-2012 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -248,7 +248,13 @@ do-install-failsafe:
 	${RUN}${RECURSIVE_MAKE} install-failsafe || >${_install_failed}
 
 .PHONY: install-failed
-install-failed:
+ifdef PKG_PRESERVE
+  install-failed:
+	${RUN}${TEST} -f ${_install_failed} || exit 0;			\
+	${RM} -f ${_install_failed};					\
+	exit 2
+else
+  install-failed:
 	${RUN}${TEST} -f ${_install_failed} || exit 0;			\
 	${STEP_MSG} "Undoing failed installation";			\
 	${RM} -f ${_install_failed};					\
@@ -267,6 +273,7 @@ install-failed:
 	${ERROR_MSG} "Check ${INSTALL_LOGFILE} for details";		\
 	${ERROR_MSG} "${hline}";					\
 	exit 2
+endif
 
 
 # --- pre-install, do-install, post-install (PUBLIC, override) -------
