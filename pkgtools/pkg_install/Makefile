@@ -2,7 +2,7 @@
 # Created:			tho on Thu, 9 Nov 2006
 #
 
-VERSION=		20110805.4
+VERSION=		20110805.5
 DISTNAME=		pkg_install-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		# empty
@@ -29,9 +29,7 @@ MAKE_ENV+=              MACHINE_ARCH=${MACHINE_ARCH}
 MAKE_ENV+=              OPSYS=${OPSYS}
 
 PLIST_SUBST+=		PKG_DBDIR=${PKG_DBDIR}
-
-DEINSTALL_SRC=		# empty
-INSTALL_SRC=		${PKGDIR}/INSTALL
+INSTALL_VARS+=		MKDIR PKG_DBDIR TEST
 
 LIBRARY_DIRS.bzip2+=	lib
 RPATH_DIRS.bzip2+=	lib
