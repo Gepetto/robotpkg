@@ -58,7 +58,6 @@ usage="Usage: $0 "'
     [ --fetch-cmd <ftp command> ]
     [ --compiler <compiler> ]
     [ --make <make command> ]
-    [ --syslibsuffix <libsuffix> ]
     [ --help ]'
 
 die()
@@ -136,9 +135,8 @@ prefix=
 pkgdbdir=
 mandir=
 sysconfdir=
-compiler=""
+compiler=
 gmake=
-syslibsuffix=
 
 while [ $# -gt 0 ]; do
 	case $1 in
@@ -158,20 +156,12 @@ while [ $# -gt 0 ]; do
 	--compiler)		compiler="$2"; shift ;;
 	--make=*)		gmake=`get_optarg "$1"` ;;
 	--make)			gmake="$2"; shift ;;
-	--syslibsuffix=*)	syslibsuffix=`get_optarg "$1"` ;;
-	--syslibsuffix)		syslibsuffix="$2"; shift ;;
 	--help)			echo "$usage"; exit ;;
 	-h)			echo "$usage"; exit ;;
 	--*)			echo "$usage"; exit 1 ;;
 	esac
 	shift
 done
-
-# set defaults for system locations if not already set by the user
-[ -z "$prefix" ] && prefix=/opt/openrobots
-[ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/var/db/robotpkg
-[ -z "$mandir" ] && mandir=${prefix}/man
-[ -z "$sysconfdir" ] && sysconfdir=${prefix}/etc
 
 # export OPSYS and MACHINE_ARCH for pkg_install
 read OPSYS OS_RELEASE MACHINE_ARCH <<EOF
@@ -262,30 +252,24 @@ export MKCONF_EXAMPLE=${wrkdir}/robotpkg.conf.example
 
 echo_msg "Creating robotpkg.conf.example in ${wrkdir}"
 mkdir_p ${wrkdir}
->${MKCONF_EXAMPLE}
 
-echo "# Example robotpkg.conf settings produced by robotpkg/bootstrap" \
-    >> ${MKCONF_EXAMPLE}
-echo "# `date`" >> ${MKCONF_EXAMPLE}
-echo >> ${MKCONF_EXAMPLE}
+# process robotpkg.conf template with handy shortcuts
+[ -z "$compiler" ] && compiler_set='# '
+[ -z "$pkgdbdir" ] && pkgdbdir_set='# '
+[ -z "$mandir" ] && mandir=${prefix}/man
+[ -z "$sysconfdir" ] && sysconfdir_set='# '
+while read line; do
+  eval echo \"$line\"
+done <${pkgsrcdir}/bootstrap/robotpkg.conf.example >${MKCONF_EXAMPLE}
 
-if [ "$compiler" != "" ]; then
-	echo "ROBOTPKG_COMPILER=	$compiler" >> ${MKCONF_EXAMPLE}
-fi
 
-# save environment in example mk.conf
-echo "LOCALBASE=		$prefix" >> ${MKCONF_EXAMPLE}
-if [ "${pkgdbdir}" != "${prefix}/var/db/robotpkg" ]; then
-    echo "PKG_DBDIR=		$pkgdbdir" >> ${MKCONF_EXAMPLE}
-fi
-if [ "${sysconfdir}" != "${prefix}/etc" ]; then
-    echo "PKG_SYSCONFBASE=	$sysconfdir" >> ${MKCONF_EXAMPLE}
-fi
-echo "" >> ${MKCONF_EXAMPLE}
-if [ "${syslibsuffix}" != "" ]; then
-	echo "SYSLIBSUFFIX=	$syslibsuffix" >> ${MKCONF_EXAMPLE}
-fi
-echo "" >> ${MKCONF_EXAMPLE}
+# --- set defaults ---------------------------------------------------------
+
+# set defaults for system locations if not already set by the user
+[ -z "$prefix" ] && prefix=/opt/openrobots
+[ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/var/db/robotpkg
+[ -z "$mandir" ] && mandir=${prefix}/man
+[ -z "$sysconfdir" ] && sysconfdir=${prefix}/etc
 
 # create installation directories
 mkdir_p $prefix $pkgdbdir $prefix/sbin
@@ -346,25 +330,6 @@ run_cmd "(							\
 	WRKSRC=$wrkdir/pkg_install PLIST_SRC=PLIST.bootstrap	\
 	bootstrap-register					\
 )"
-
-
-# preserve compiler and tool environment variables settings
-test -z "$CP" || echo "TOOLS_PLATFORM.cp?=		$CP" >> ${MKCONF_EXAMPLE}
-test -z "$GREP" || echo "TOOLS_PLATFORM.grep?=		$GREP" >> ${MKCONF_EXAMPLE}
-test -z "$ID" || echo "TOOLS_PLATFORM.id?=		$ID" >> ${MKCONF_EXAMPLE}
-test -z "$MKDIR" || echo "TOOLS_PLATFORM.mkdir?=		$MKDIR" >> ${MKCONF_EXAMPLE}
-test -z "$TEST" || echo "TOOLS_PLATFORM.test?=		$TEST" >> ${MKCONF_EXAMPLE}
-test -z "$TOUCH" || echo "TOOLS_PLATFORM.touch?=		$TOUCH" >> ${MKCONF_EXAMPLE}
-test -z "$XARGS" || echo "TOOLS_PLATFORM.xargs?=		$XARGS" >> ${MKCONF_EXAMPLE}
-test -z "$CFLAGS" || (
-	echo "CFLAGS+=		$CFLAGS" >> ${MKCONF_EXAMPLE}
-	echo "DBG=			# prevent DBG from adding default optimizer flags" >> ${MKCONF_EXAMPLE}
-)
-test -z "$CPPFLAGS" || echo "CPPFLAGS+=		$CPPFLAGS" >> ${MKCONF_EXAMPLE}
-test -z "$LDFLAGS" || echo "LDFLAGS+=		$LDFLAGS" >> ${MKCONF_EXAMPLE}
-
-echo "" >> ${MKCONF_EXAMPLE}
-
 
 # Install sample config file
 sysconffile=${sysconfdir}/robotpkg.conf

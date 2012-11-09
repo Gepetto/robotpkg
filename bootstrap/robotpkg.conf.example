@@ -1,0 +1,202 @@
+# This is the robotpkg configuration file.
+# Uncomment those entries which apply to your personal needs and system
+# requirements.
+
+# Initial content provided by robotpkg/bootstrap
+# `date 2>/dev/null ||:`
+
+
+# --- Package configuration ------------------------------------------------
+
+# PKG_DEFAULT_OPTIONS=	debug
+# This variable can be used to override default options for every package.
+# Options listed in this variable will be enabled in every package that
+# supports them.  If you prefix an option with '-', it will be disabled in
+# every package.
+# Possible: any option
+# Default: (undefined)
+
+# PKG_OPTIONS.<pkgbase>=	debug
+# This variable can be used to override default options and options listed in
+# PKG_DEFAULT_OPTIONS for the package <pkgbase>.  Options listed in this
+# variable will be enabled, options prefixed with '-' will be disabled. See
+# 'make show-options' in the package you are interested in for more
+# information.
+# Possible: any option
+# Default: (undefined)
+
+# PREFER.<pkgbase>=	robotpkg
+# This variable selects <pkgbase> to be installed by robotpkg or used as an
+# external (system) dependency.
+# Possible: robotpkg, system
+# Default: (undefined)
+
+# ACCEPTABLE_LICENSES+=	aemdesign-cfsqp-license
+# ACCEPTABLE_LICENSES+=	cnrs-hpp-closed-source
+# ACCEPTABLE_LICENSES+=	cnrs-stackoftasks-license
+# ACCEPTABLE_LICENSES+=	jmf-license
+# ACCEPTABLE_LICENSES+=	kineocam-license
+# ACCEPTABLE_LICENSES+=	kuka-license
+# ACCEPTABLE_LICENSES+=	mesa-imaging-license
+# ACCEPTABLE_LICENSES+=	motion-analysis-license
+# ACCEPTABLE_LICENSES+=	ohsu-license
+# ACCEPTABLE_LICENSES+=	oracle-java-license
+# ACCEPTABLE_LICENSES+=	pqp-license
+# ACCEPTABLE_LICENSES+=	primesense-license
+# ACCEPTABLE_LICENSES+=	sahand-license
+# ACCEPTABLE_LICENSES+=	sun-java3d-license
+# ACCEPTABLE_LICENSES+=	uni-bonn-research-license
+# Whitespace-delimited list of the types of license which are
+# acceptable for installation. Packages for which you need
+# to accept a license will display a message like the following:
+# ===> xv-3.10anb9 has an unacceptable license: xv-license.
+# ===>     To view the license, enter "/usr/bin/make show-license".
+# ===>     To indicate acceptance, add this line to your /etc/mk.conf:
+# ===>     ACCEPTABLE_LICENSES+=xv-license
+#
+# To include the default licences, use the += operator in robotpkg.conf. To
+# override the default, use plain = operator.
+#
+# Default: \\${DEFAULT_ACCEPTABLE_LICENSES}
+
+
+# --- Package sets ---------------------------------------------------------
+
+# PKGSET.<name> = <category1>/<package1> <category2>/<package2> ...
+# Define a collection named <name> that contains a list of packages in the form
+# category/package. For each collection <name> defined, the following targets
+# are available: clean-<name>, fetch-<name>, extract-<name>, install-<name>,
+# replace-<name>, update-<name> and deinstall-<name>. They perform the same
+# action as their respective counterpart without -<name> suffix, expect that
+# they work on all packages of the set.  In addition, for the replace, update
+# and deinstall targets, they sort the packages in the order of their
+# dependencies so that the job is done a sensible order.
+
+# PKGSET_DESCR.<name> = description
+# Define a short, optional description of a collection
+
+# PKGSET_FAILSAFE?=	no
+# When working on a set, and this variable is set to yes, robotpkg will
+# continue with further packages instead of stopping on an error. If set to
+# 'no', stop on first error.
+# Possible: yes, no
+# Default: no
+
+# PKGSET_STRICT?=	no
+# Specify if package sets should be considered as 'strict' or include
+# dependencies of packages defined in the set. If set to 'yes', only package
+# strictly defined in sets are considered. If set to 'no', dependencies of
+# packages listed in sets are added to their respective sets.
+# Possible: yes, no
+# Default: no
+
+
+# --- Directories ----------------------------------------------------------
+
+LOCALBASE =	$prefix
+# Where packages will be installed
+# Possible: any path
+# Default: \\${ROBOTPKG_BASE} if defined, or /opt/openrobots
+
+# SYSTEM_PREFIX?= /usr /usr/local /opt
+# The systems directories where to search for external (aka system) packages.
+# Possible: any path
+# Default: \\${PATH} with /{s,}bin stripped plus /usr and /usr/local
+
+# DISTDIR =	\\${ROBOTPKG_DIR}/distfiles
+# Directory where original distribution files are stored.
+# Possible: any path you like
+# Default: \\${ROBOTPKG_DIR}/distfiles
+
+# PACKAGES =	\\${ROBOTPKG_DIR}/packages
+# Store generated packages on a per-architecture base
+# Possible: any path you like
+# Default: \\${ROBOTPKG_DIR}/packages
+
+# DIST_PATH =	/cdrom/0/distfiles:\\${HOME}/distfiles
+# Colon-delimited list of directories in which to search for \\${DISTFILES} and
+# \\${PATCHFILES}.  If the requested file is not in any of the directories in
+# \\${DIST_PATH}, it will be downloaded into \\${DISTDIR}.  If the requested
+# file is in one of the directories in \\${DIST_PATH}, a symbolic link will be
+# made to it from \\${DISTDIR}.  \\${DIST_PATH} directories will will be
+# searched before \\${DISTDIR}, letting a CD hold the main distfiles archive,
+# and local \\${DISTDIR} hold any updated distfiles, for example.
+# Possible: any directories
+# Default: none
+
+# WRKOBJDIR =	/tmp
+# Build here instead of in robotpkg
+# Possible: any path
+# Default: not defined
+
+# OBJHOSTNAME?=	yes
+# use hostname-specific object directories, e.g.  work.amnesiac, work.localhost
+# OBJHOSTNAME takes precedence over OBJMACHINE (see below).
+# Possible: yes, no
+# Default: yes
+
+# OBJMACHINE?=	yes
+# use machine-specific object directories, e.g. work.Linux-i386
+# Possible: yes, no
+# Default: yes
+
+
+# --- System settings ------------------------------------------------------
+
+# MAKE_JOBS=	3
+# When defined, specifies the maximum number of jobs ("make -j")
+# that are run in parallel when building packages with the default
+# do-build action. MAKE_JOBS only affects the "build" target,
+# neither "test" nor "install".
+#
+# Possible values: any positive integer. Useful values are around
+# the number of processors on the machine.
+#
+# Default value: (undefined)
+#
+# Warning: This is experimental. Some packages will not build with
+# this. Disabling this for an individual package can be done by
+# setting MAKE_JOBS_SAFE=NO within the per package Makefile.
+
+${compiler_set}ROBOTPKG_COMPILER =	${compiler:-gcc}
+# Compiler type(s) to use for building packages
+# Possible: ccache gcc, gcc (see comments in mk/compiler/compiler-vars.mk)
+# Default: "gcc"
+
+${sysconfdir_set}PKG_SYSCONFBASE = ${sysconfdir:-\\${LOCALBASE\\}/etc}
+# This is the main config directory under which all package configuration
+# files should be found.
+# Possible: any path you like
+# Default: \\${LOCALBASE}/etc
+
+${pkgdbdir_set}PKG_DBDIR =	${pkgdbdir:-\\${LOCALBSE\\}/var/db/robotpkg}
+# Pathname of the package database directory.
+# Possible: any path
+# Default: \\${LOCALBASE}/var/db/robotpkg
+
+
+# --- Just in time 'sudo' --------------------------------------------------
+
+# MAKE_SUDO_INSTALL=	no
+# Whether to run install target as SU_USER with SU_CMD.
+# Possible: yes/no
+# Default: no
+
+# SU_CMD= sudo -u \\${SU_USER} \\${SH} -c
+# Command to perform before "make install", if the user does not have an
+# effective uid of SU_USER.  A possible substitute is "su - \\${SU_USER}".
+# Possible: su, sudo, or priv, with appropriate arguments
+# Default: sudo -u \\${SU_USER} \\${SH} -c
+
+# SU_USER= root
+# User that the SU_CMD will su to if the user does not have the effective uid
+# of this user.
+# Possible: any user name or uid.
+# Default: root
+
+# PRE_ROOT_CMD?=	\\${TRUE}
+# Command to be run by normal user, just before becoming root (see SU_CMD) to
+# install the package.  For example, "chmod -R o+w \\${WRKDIR}" would allow
+# others to write and modify files below \\${WRKDIR}.
+# Possible: any shell commands
+# Default: none
