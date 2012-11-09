@@ -94,7 +94,7 @@ checksum-files:
 	else								\
 	  ${RM} ${_COOKIE.bootstrap-depends};				\
 	  ${ERROR_MSG} ${hline};					\
-	  ${ERROR_MSG} "$${bf}Maybe you have corrupted or obsolete"	\
+	  ${ERROR_MSG} "$${bf}Maybe you have corrupt or obsolete"	\
 		"distribution files.$${rm}";				\
 	  ${ERROR_MSG} ". Try to move away the following files:";	\
     $(foreach _,$(addprefix ${DISTDIR}/,${_CKSUMFILES}),		\
