@@ -1,0 +1,86 @@
+# Modified from $NetBSD: info-files,v 1.4 2007/07/12 19:41:46 jlam Exp $
+#
+# info file registration management script
+#
+# This script supports two actions, POST-INSTALL and DEINSTALL, that will add or
+# remove entries for info files from the package associated with
+# PKG_METADATA_DIR environment variable  from the info index files (the "dir"
+# file in the same directory as the info files).
+#
+# Lines starting with "# INFO: " are data read by this script that
+# name the info files and directory containing the "dir" index that will
+# that will be updated.  If the directory is not specified, then the
+# "dir" index is assumed to be in the same directory as the info file.
+#
+#	# INFO: /usr/pkg/info/bar.info /usr/pkg/info
+#	# INFO: /usr/pkg/info/baz.info /usr/pkg/info
+#
+# For each INFO entry, if the path is relative, that it is taken to be
+# relative to ${PKG_PREFIX}.
+#
+
+AWK="@AWK@"
+ECHO="@ECHO@"
+INSTALL_INFO="@INSTALL_INFO@"
+MKDIR="@MKDIR@"
+RM="@RM@"
+SED="@SED@"
+SORT="@SORT@"
+TEST="@TEST@"
+
+echo=${PKG_VERBOSE:+${ECHO}}
+: ${echo:=:}
+
+case $2 in
+POST-INSTALL)
+  ${SED} -n "/^\# INFO: /{s/^\# INFO: //;p;}" $0 | ${SORT} -u |
+  while read file infodir; do
+    case $file in
+      "") continue ;;
+      [!/]*) file="${PKG_PREFIX}/$file" ;;
+    esac
+    ${TEST} -f "$file" || continue
+
+    case $infodir in
+      "") infodir="${file%/*}" ;;
+      [!/]*) infodir="${PKG_PREFIX}/$infodir" ;;
+    esac
+
+    ${MKDIR} "$infodir"
+    ${INSTALL_INFO} --info-dir="$infodir" --delete $file >/dev/null 2>&1
+    infoindex="$infodir/dir"
+    if ${TEST} -f $infoindex; then
+      ${AWK} '/^[*].*:.*[(].*[)]/ {++count} END {if (count) {exit 1}}' \
+             "$infoindex" && ${RM} "$infoindex"
+    fi
+
+    ${echo} "$1: registering info file $file"
+    ${INSTALL_INFO} --info-dir="$infodir" $file >/dev/null 2>&1
+  done
+;;
+
+DEINSTALL)
+  ${SED} -n "/^\# INFO: /{s/^\# INFO: //;p;}" $0 | ${SORT} -u |
+  while read file infodir; do
+    case $file in
+      "") continue ;;
+      [!/]*) file="${PKG_PREFIX}/$file" ;;
+    esac
+    ${TEST} -f "$file" || continue
+
+    case $infodir in
+      "") infodir="${file%/*}" ;;
+      [!/]*) infodir="${PKG_PREFIX}/$infodir" ;;
+    esac
+
+    ${echo} "$1: unregistering info file $file"
+    ${INSTALL_INFO} --info-dir="$infodir" --delete $file >/dev/null 2>&1
+
+    infoindex="$infodir/dir"
+    if ${TEST} -f $infoindex; then
+      ${AWK} '/^[*].*:.*[(].*[)]/ {++count} END {if (count) {exit 1}}' \
+             "$infoindex" && ${RM} "$infoindex"
+    fi
+  done
+;;
+esac
