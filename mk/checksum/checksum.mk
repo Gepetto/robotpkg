@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -81,21 +81,34 @@ checksum: ${_CHECKSUM_TARGETS};
 #
 # checksum-files checks the checksum of distribution files.
 #
+# If the test fails, the bootstrap-depends cookie has to be removed because
+# one may have to run fetch again with a new list of bootstrap dependencies.
+#
 .PHONY: checksum-files
 checksum-files:
 	${RUN}								\
   $(foreach _alg_,${_DIGEST_ALGORITHMS},				\
 	if cd ${DISTDIR} && ${_CHECKSUM_CMD} -a ${_alg_}		\
 		${DISTINFO_FILE} ${_CKSUMFILES}; then			\
-		${ECHO_MSG} "=> ${_alg_} checksums OK";			\
+	  ${ECHO_MSG} "=> ${_alg_} checksums OK";			\
 	else								\
-		${ERROR_MSG} ${hline};					\
-		${ERROR_MSG} "$${bf}Make sure the Makefile and checksum"\
-			"file are up to date:$${rm}";			\
-		${ERROR_MSG} " ${DISTINFO_FILE}";			\
-		${ERROR_MSG} "If you want to override this check, type";\
-		${ERROR_MSG} "	${MAKE} NO_CHECKSUM=yes [other args]"; 	\
-		${ERROR_MSG} ${hline};					\
-		exit 1;							\
+	  ${RM} ${_COOKIE.bootstrap-depends};				\
+	  ${ERROR_MSG} ${hline};					\
+	  ${ERROR_MSG} "$${bf}Maybe you have corrupted or obsolete"	\
+		"distribution files.$${rm}";				\
+	  ${ERROR_MSG} ". Try to move away the following files:";	\
+    $(foreach _,$(addprefix ${DISTDIR}/,${_CKSUMFILES}),		\
+	  ${ERROR_MSG} "  $_";						\
+    )									\
+	  ${ERROR_MSG} "";						\
+	  ${ERROR_MSG} ". Also make sure the Makefile and checksum file"\
+		"are up to date:$${rm}";				\
+	  ${ERROR_MSG} " ${PKGDIR}/Makefile";				\
+	  ${ERROR_MSG} " ${DISTINFO_FILE}";				\
+	  ${ERROR_MSG} "";						\
+	  ${ERROR_MSG} ". If you really want to continue anyway, run:";	\
+	  ${ERROR_MSG} "  ${MAKE} NO_CHECKSUM=yes ${MAKECMDGOALS}";	\
+	  ${ERROR_MSG} ${hline};					\
+	  exit 1;							\
 	fi;								\
   )
