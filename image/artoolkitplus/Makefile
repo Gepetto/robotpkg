@@ -3,13 +3,12 @@
 #
 
 VERSION=	2.1.1
-PKGREVISION=	2
+PKGREVISION=	3
 DISTNAME=	ARToolKitPlus_${VERSION}
 PKGNAME=	artoolkitplus-${VERSION}
 CATEGORIES=	image
 MASTER_SITES=	http://studierstube.icg.tu-graz.ac.at/handheld_ar/download/
 EXTRACT_SUFX=	.zip
-EXTRACT_OPTS_ZIP=-aaqo
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://studierstube.icg.tu-graz.ac.at/handheld_ar/artoolkitplus.php
@@ -49,9 +48,24 @@ ifeq (NetBSD,${OPSYS})
   include ../../pkgtools/libtool/depend.mk
 endif
 
+DEPEND_METHOD.unzip+=	bootstrap
 
 include ../../mk/sysdep/qmake.mk
+include ../../mk/sysdep/unzip.mk
 include ../../mk/robotpkg.mk
+
+# A custom extract procedure is required to convert CR/LF in source files
+# (mostly to get clean patches/* files) but extract pdf/png/jpg etc as binary.
+# The archive does not have the zip 'b'inary vs. 't'ext flag right.
+BINARY_FILES=	'*.pdf' '*.png' '*.gif' '*.jpg' '*.dat' '*.raw'
+do-extract:
+	${RUN}cd ${WRKDIR} && cd ${EXTRACT_DIR} &&			\
+  $(foreach _,$(addprefix ${DISTDIR}/${DIST_SUBDIR}/,${DISTFILES}),	\
+	${UNZIP_CMD} -aaqo "$_" -x ${BINARY_FILES} &&			\
+	${UNZIP_CMD} -bqo "$_" ${BINARY_FILES} &&			\
+  )									\
+	: || exit 2
+
 
 # Fix some crazy ARToolKitPlus headers
 #
