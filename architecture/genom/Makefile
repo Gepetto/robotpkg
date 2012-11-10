@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
+PKGREVISION=	1
 DISTNAME=	genom-2.10
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom/}
@@ -23,8 +24,6 @@ NOT_FOR_PLATFORM=	# empty
 # compiler
 USE_LANGUAGES+=	c c++
 
-# Problem with quoting ccache in mkdep invocation
-USE_CCACHE=	no
 
 # --- "xenomai' option -----------------------------------------------
 

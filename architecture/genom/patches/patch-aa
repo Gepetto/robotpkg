@@ -1,0 +1,41 @@
+Quote $CC in MKDEP invocation, in case $CC expands to multiple words
+
+diff --git canvas/autoconf/codels.mk canvas/autoconf/codels.mk
+index 4b8570b..ab49d8d 100644
+--- canvas/autoconf/codels.mk
++++ canvas/autoconf/codels.mk
+@@ -85,7 +85,7 @@ ifeq ($(findstring clean,$(MAKECMDGOALS)),)
+ depend $(OBJDIR)/dependencies:: $(OBJDIR);
+ 
+ depend $(OBJDIR)/dependencies:: $(codels_src)
+-	$(MKDEP) -c$(CC) -o$(OBJDIR)/dependencies -d$(OBJDIR) -t.lo \
++	$(MKDEP) -c"$(CC)" -o$(OBJDIR)/dependencies -d$(OBJDIR) -t.lo \
+ 		$(CPPFLAGS) $?
+ 
+ -include $(OBJDIR)/dependencies
+diff --git lib/Makefile.in lib/Makefile.in
+index deaff5f..81b2d95 100644
+--- lib/Makefile.in
++++ lib/Makefile.in
+@@ -99,7 +99,7 @@ distclean: clean
+ 
+ ifeq ($(findstring clean,${MAKECMDGOALS}),)
+ depend DEPENDANCES:: $(SRCS)
+-	$(MKDEP) -c$(CC) -oDEPENDANCES -t.lo $(CPPFLAGS) $?
++	$(MKDEP) -c"$(CC)" -oDEPENDANCES -t.lo $(CPPFLAGS) $?
+ 
+ include DEPENDANCES
+ endif
+diff --git src/Makefile.in src/Makefile.in
+index 81fbf40..a837e77 100644
+--- src/Makefile.in
++++ src/Makefile.in
+@@ -132,7 +132,7 @@ distclean: clean
+ 
+ ifeq ($(findstring clean,$(MAKECMDGOALS)),)
+ depend DEPENDANCES:: $(SRCS)
+-	$(MKDEP) -c$(CC) -oDEPENDANCES -t.lo $(CPPFLAGS) $?
++	$(MKDEP) -c"$(CC)" -oDEPENDANCES -t.lo $(CPPFLAGS) $?
+ 
+ include DEPENDANCES
+ endif
