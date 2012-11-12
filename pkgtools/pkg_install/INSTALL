@@ -8,7 +8,7 @@ case $2 in
     ;;
 
   POST-INSTALL)
-    if ${TEST} ! -f ${PKG_DBDIR}/pkgdb.byfile.db; then
+    if ${TEST} -f ${PKG_DBDIR}/pkgdb.byfile.db; then
       ${PKG_PREFIX}/sbin/robotpkg_admin rebuild
     fi
     ;;
