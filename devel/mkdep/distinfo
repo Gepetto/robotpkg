@@ -1,5 +1,4 @@
-$NetBSD$
-
 SHA1 (mkdep-2.7.tar.gz) = 2bdc9230806fd37f8e36a4e2342567cd11d50270
 RMD160 (mkdep-2.7.tar.gz) = 66f8acf00fd21fa658668258e6605d5d1db4b823
 Size (mkdep-2.7.tar.gz) = 103210 bytes
+SHA1 (patch-aa) = d9677f49a6420625f8c1049b28f0213812af77c2

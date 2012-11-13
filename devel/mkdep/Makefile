@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
+PKGREVISION=		1
 DISTNAME=		mkdep-2.7
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
