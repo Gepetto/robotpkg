@@ -1,6 +1,6 @@
-# $LAAS: qmake-configure.mk 2010/08/30 00:12:53 tho $
+# $LAAS: qmake-configure.mk 2012/11/13 16:05:36 mallet $
 #
-# Copyright (c) 2009-2010 LAAS/CNRS
+# Copyright (c) 2009-2010,2012 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -38,12 +38,12 @@ BUILD_DEFS+=		QMAKE_ARGS
 
 QMAKE_ARGS+=		QMAKE_LFLAGS=$(call quote,${LDFLAGS})
 ifneq (,$(filter c,${USE_LANGUAGES}))
-  QMAKE_ARGS+=		QMAKE_CC=${CC}
+  QMAKE_ARGS+=		QMAKE_CC=$(call quote,${CC})
   QMAKE_ARGS+=		QMAKE_CFLAGS_DEBUG=$(call quote,${CPPFLAGS} ${CFLAGS})
   QMAKE_ARGS+=		QMAKE_CFLAGS_RELEASE=$(call quote,${CPPFLAGS} ${CFLAGS})
 endif
 ifneq (,$(filter c++,${USE_LANGUAGES}))
-  QMAKE_ARGS+=		QMAKE_CXX=${CXX}
+  QMAKE_ARGS+=		QMAKE_CXX=$(call quote,${CXX})
   QMAKE_ARGS+=		QMAKE_CXXFLAGS_DEBUG=$(call quote,${CPPFLAGS} ${CXXFLAGS})
   QMAKE_ARGS+=		QMAKE_CXXFLAGS_RELEASE=$(call quote,${CPPFLAGS} ${CXXFLAGS})
 endif
