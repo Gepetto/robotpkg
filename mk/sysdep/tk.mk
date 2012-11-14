@@ -11,6 +11,8 @@ endif
 
 ifeq (+,$(TK_DEPEND_MK)) # -------------------------------------------
 
+include ../../mk/sysdep/tcl.mk
+
 PREFER.tk?=		system
 
 DEPEND_USE+=		tk
