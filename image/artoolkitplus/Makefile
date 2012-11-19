@@ -42,9 +42,9 @@ ifeq (NetBSD,${OPSYS})
   SUBST_CLASSES+=		libtool-fix
   SUBST_STAGE.libtool-fix=	post-configure
   SUBST_MESSAGE.libtool-fix=	Fixing libtool invocation
-  SUBST_FILES.libtool-fix=	$(addsuffix /Makefile,${CONFIGURE_DIRS})
+  SUBST_FILES.libtool-fix=	$(addsuffix /Makefile,. * */*)
   SUBST_SED.libtool-fix=\
-	's|^LIBTOOL[ 	]=.*$$|LIBTOOL=${LIBTOOL} --tag=CXX|g'
+	's|^LIBTOOL[ 	]*=.*$$|LIBTOOL=${LIBTOOL} --tag=CXX|g'
   include ../../pkgtools/libtool/depend.mk
 endif
 
