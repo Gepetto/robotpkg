@@ -1,0 +1,11 @@
+--- extern/libmv/libmv/numeric/numeric.h.orig	2012-11-19 14:01:55.155826887 +0100
++++ extern/libmv/libmv/numeric/numeric.h	2012-11-19 14:02:15.955826367 +0100
+@@ -33,7 +33,7 @@
+ #include <Eigen/QR>
+ #include <Eigen/SVD>
+ 
+-#if (defined(_WIN32) || defined(__APPLE__) || defined(__FreeBSD__)) && !defined(__MINGW64__)
++#if (defined(_WIN32) || defined(__APPLE__) || defined(__FreeBSD__) || defined(__NetBSD__)) && !defined(__MINGW64__)
+   void static sincos (double x, double *sinx, double *cosx) {
+     *sinx = sin(x);
+     *cosx = cos(x);
