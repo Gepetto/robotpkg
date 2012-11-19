@@ -23,6 +23,10 @@ INCLUDE_DIRS.libpcap=	include
 LIBRARY_DIRS.libpcap=	lib
 RPATH_DIRS.libpcap=	lib
 
+# for checkout target
+AUTORECONF_SCRIPT=	${WRKSRC}/autogen.sh
+AUTORECONF_ARGS=
+
 include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
