@@ -30,6 +30,7 @@ PKG_OPTION_DESCR.doc?=	Install GUI utilities
 define PKG_OPTION_SET.gui
   CMAKE_ARGS+=		-DCREATE_GUIS=TRUE
 
+  include ../../pkgtools/pkg-config/depend.mk
   include ../../mk/sysdep/gtk.mk
   include ../../mk/sysdep/glib2.mk
 endef
