@@ -2,8 +2,9 @@
 # Created:			Xavier Broquere on Fri, 26 Feb 2010
 #
 
-DISTNAME=		softMotion-libs-${PKGVERSION_NOREV}
-PKGVERSION=		3.11
+PKGREVISION=		1
+VERSION=		3.11
+DISTNAME=		softMotion-libs-${VERSION}
 
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=softMotion-libs/}

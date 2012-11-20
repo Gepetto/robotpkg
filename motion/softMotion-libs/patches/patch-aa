@@ -1,0 +1,33 @@
+Do not override CC, nor CXX, nor CXX_FLAGS
+
+--- src/CMakeLists.txt	2012-11-20 18:48:56.135910000 +0100
++++ src/CMakeLists.txt	2012-11-20 18:49:29.899673274 +0100
+@@ -16,17 +16,10 @@
+ #
+ #                                            Xavier BROQUERE on Fri Feb 26 2010
+ 
+-project(src)
++project(src CXX)
+ 
+ file(GLOB source_files ./*.c ./*.cpp)
+-
+-
+-
+-SET(CMAKE_CXX_FLAGS " -lm")
+-
+-
+-SET(CMAKE_C_COMPILER g++)
+-SET(CMAKE_CXX_COMPILER g++)
++set_source_files_properties(${source_files} PROPERTIES LANGUAGE CXX)
+ 
+ FIND_PACKAGE(LibXml2 REQUIRED)
+ INCLUDE_directories(${LIBXML2_INCLUDE_DIR})
+@@ -59,7 +52,7 @@
+ #${source_files}
+ #)
+ 
+-TARGET_LINK_LIBRARIES(softMotion ${LIBS})
++TARGET_LINK_LIBRARIES(softMotion ${LIBS} m)
+ 
+ #TARGET_LINK_LIBRARIES(softMotionPlannerTest ${LIBS})
+ 

@@ -1,0 +1,13 @@
+Do not override CC, nor CXX
+
+--- qt/CMakeLists.txt~	2012-10-25 09:32:05.000000000 +0200
++++ qt/CMakeLists.txt	2012-11-20 18:38:52.057823774 +0100
+@@ -156,8 +156,6 @@
+ # -------------------------------------------------------------
+ # --- Compiler and Compilation flags --------------------------
+ # -------------------------------------------------------------
+-SET(CMAKE_CXX_COMPILER g++)
+-SET(CMAKE_C_COMPILER g++)
+ 
+ IF(UNIX)
+   ADD_DEFINITIONS(-DUNIX)
