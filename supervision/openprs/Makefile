@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 17 Oct 2007
 #
 
-DISTNAME=		openprs-1.1b2
+DISTNAME=		openprs-1.1b4
 CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}openprs
