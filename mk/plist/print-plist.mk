@@ -76,7 +76,10 @@ _PRINT_PLIST_FILES_CMD=	\
 	-path '${MAKECONF}' -o -path '${ROBOTPKG_DIR}/*' -o	\
 	-path '${PKG_DBDIR}/*'					\
   \) ! -exec ${PKG_INFO} -qFe {} 2>/dev/null \; -print;
-_PRINT_PLIST_FILES_CMD+= { ${PKG_INFO} -qL ${PKGNAME} 2>/dev/null||:;};
+_PRINT_PLIST_FILES_CMD+= {						\
+  { ${PKG_INFO} -qL ${PKGNAME} 2>/dev/null||:; } | while read f; do	\
+    ${TEST} -f "$$f" && ${ECHO} "$$f";					\
+  done; };
 _PRINT_PLIST_FILES_CMD+= ${PRINT_PLIST_FILES_CMD}
 
 _PRINT_PLIST_DIRS_CMD=	\
