@@ -78,6 +78,7 @@ endef
 # define some variables for use in the packages
 export TCLSH=		$(word 1,${SYSTEM_FILES.${PKG_ALTERNATIVE.tcl}})
 TCL_CONFIG_SH=		$(word 2,${SYSTEM_FILES.${PKG_ALTERNATIVE.tcl}})
+TCL_VERSION=		$(patsubst 8%,8.%,${PKG_ALTERNATIVE.tcl})
 
 # TCLPATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
 # directories) that should be added to the tcl search paths.
