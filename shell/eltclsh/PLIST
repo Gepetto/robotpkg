@@ -1,10 +1,11 @@
-@comment Thu Jan 21 16:58:41 CET 2010
+@comment Thu Nov 22 22:47:39 CET 2012
 bin/eltclsh
 bin/elwish
+lib/libeltclsh.la
 lib/pkgconfig/eltclsh.pc
-man/man1/eltclsh.1
+${PKGMANDIR}/man1/eltclsh.1
 share/eltcl/complete.tcl
 share/eltcl/init.tcl
-share/eltcl/libeltclsh.la
 share/eltcl/pkgIndex.tcl
 share/eltcl/tools.tcl
+share/eltcl/version.tcl
