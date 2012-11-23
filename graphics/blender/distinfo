@@ -2,3 +2,6 @@ SHA1 (blender-2.64a.tar.gz) = 23aca6dc15e2ff149f51b54f008d0a1620436cdd
 RMD160 (blender-2.64a.tar.gz) = b2c78814441be92f1197c5d7ebc2c9fccb7acd4d
 Size (blender-2.64a.tar.gz) = 31388178 bytes
 SHA1 (patch-aa) = 88fcb4d3afc484a69958d90046734b70e3d51e5c
+SHA1 (patch-ab) = daadccf7fe8b2265b5df296cc9cef6564882b1bc
+SHA1 (patch-ac) = b3b5baa07795afd150ba434146c14261799fe27a
+SHA1 (patch-ad) = 1df469351d4412e02d336cb4299bfe3d24f689b3
