@@ -7,7 +7,10 @@
 
 BOOST_PACKAGE=		build
 BOOST_COMMENT=		(Boost.Build framework)
-BOOST_CONFIG=		no
+
+EGDIR=			share/examples/boost-build
+INSTALLATION_DIRS+=	share/boost-build
+INSTALLATION_DIRS+=	${EGDIR}
 
 include ../../devel/boost/Makefile.common
 
@@ -17,25 +20,18 @@ SUBST_STAGE.confdir=	pre-build
 SUBST_FILES.confdir=	tools/build/v2/build-system.jam
 SUBST_SED.confdir=	-e 's,/etc,${PKG_SYSCONFDIR},g'
 
-EGDIR=                  ${PREFIX}/share/examples/boost-build
-
-post-extract:
-	${FIND} ${WRKSRC}/tools/build/v2 -type d -exec ${CHMOD} 755 {} \;
-	${FIND} ${WRKSRC}/tools/build/v2 -type f -exec ${CHMOD} 644 {} \;
-
 do-build:
-	${RUN}								\
-	{ ${ECHO} '# System wide configuration file for Boost.Build.' ; \
-	  ${ECHO} ; 							\
-	  ${ECHO} 'using ${BOOST_TOOLSET}::"${CXX}" ;' ;		\
-	} >${WRKDIR}/site-config.jam
+	${RUN}exec >${WRKDIR}/site-config.jam;				\
+	${ECHO} '# System wide configuration file for Boost.Build.';	\
+	${ECHO};							\
+	${ECHO} 'using ${BOOST_TOOLSET}::"${CXX}" ;'
 
 do-install:
-	${RUN}${INSTALL_DATA_DIR} ${PREFIX}/share/boost-build
-	${RUN}cd ${WRKSRC}/tools/build/v2 && $(PAX) -rw -pp -pm		\
-		-s ':^.*\.orig$$::' . ${PREFIX}/share/boost-build
-	${RUN}${INSTALL_DATA_DIR} ${EGDIR}
-	${RUN}${INSTALL_DATA} ${WRKDIR}/site-config.jam ${EGDIR}
+	${RUN}cd ${WRKSRC}/tools/build/v2 && ${INSTALL_LOGFILTER}	\
+	${PAX} -rw -pp -pm -s ':^./engine.*$$::' -s ':^.*\.orig$$::'	\
+	  . ${PREFIX}/share/boost-build
+	${RUN}${INSTALL_DATA} ${WRKDIR}/site-config.jam			\
+	  ${PREFIX}/${EGDIR}/.
 
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk

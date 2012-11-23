@@ -1,87 +1,48 @@
-# $LAAS: Makefile.common 2010/09/10 18:45:25 mallet $
-#
-# Copyright (c) 2008-2010 LAAS/CNRS
-# All rights reserved.
-#
-# Redistribution and use  in source  and binary  forms,  with or without
-# modification, are permitted provided that the following conditions are
-# met:
-#
-#   1. Redistributions of  source  code must retain the  above copyright
-#      notice and this list of conditions.
-#   2. Redistributions in binary form must reproduce the above copyright
-#      notice and  this list of  conditions in the  documentation and/or
-#      other materials provided with the distribution.
-#
-#                                      Anthony Mallet on Thu Oct  9 2008
+# robotpkg Makefile.common for:	devel/boost
+# Created:			Anthony Mallet on Tue, 5 Dec 2006
 #
 
 # Borrowed from NetBSD pkgsrc,
 # $NetBSD: Makefile.common,v 1.14 2008/05/26 02:13:22 joerg Exp $
 
-BOOST_PACKAGE?=		undefined
-BOOST_COMMENT?=		undefined
+BOOST_PACKAGE?=	undefined
+BOOST_COMMENT?=	undefined
 
-BOOST_VERSION=		1.41.0
-BOOST_TOOLSET=		gcc
-USE_LANGUAGES+=		c c++
+BOOST_VERSION=	1.52.0
+BOOST_TOOLSET=	gcc
+USE_LANGUAGES+=	c c++
 
-DISTNAME=		boost_$(subst .,_,${BOOST_VERSION})
-CATEGORIES=		devel
-LICENSE=		bsl
+DISTNAME=	boost_$(subst .,_,${BOOST_VERSION})
+CATEGORIES=	devel
+LICENSE=	bsl
 
 ifeq (${BOOST_PACKAGE},meta-pkg)
 
-PKGNAME=		boost-${BOOST_VERSION}
+PKGNAME=	boost-${BOOST_VERSION}
 
 else
 
-PKGNAME=		boost-${BOOST_PACKAGE}-${BOOST_VERSION}
+PKGNAME=	boost-${BOOST_PACKAGE}-${BOOST_VERSION}
 
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=boost/}
-EXTRACT_SUFX=		.tar.bz2
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=boost/}
+EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		http://www.boost.org/
-COMMENT=		Free, peer-reviewed portable C++ source libraries ${BOOST_COMMENT}
+MAINTAINER=	openrobots@laas.fr
+HOMEPAGE=	http://www.boost.org/
+COMMENT=	Free, peer-reviewed portable C++ source libraries
+COMMENT+=	${BOOST_COMMENT}
 
-DISTINFO_FILE=		${CURDIR}/../../devel/boost/distinfo
-PATCHDIR=		${CURDIR}/../../devel/boost/patches
+DISTINFO_FILE=	${CURDIR}/../../devel/boost/distinfo
+PATCHDIR=	${CURDIR}/../../devel/boost/patches
 
-PLIST_SUBST+=		BOOST_VERSION="${BOOST_VERSION}"
+PLIST_SUBST+=	BOOST_VERSION="${BOOST_VERSION}"
+PRINT_PLIST_AWK_SUBST+=\
+	gsub(/$(subst .,\.,${BOOST_VERSION})/, "$${BOOST_VERSION}");
 
 SUBST_CLASSES+=		fixprefix
 SUBST_MESSAGE.fixprefix=Fixing prefix.
 SUBST_STAGE.fixprefix=	pre-configure
 SUBST_FILES.fixprefix=	Jamroot
 SUBST_SED.fixprefix=	-e 's,@PREFIX@,${PREFIX},g'
-
-# We can't do this at post-extract because the extract cookie will get a
-# future timestamp than the sources.  If this happens, print-PLIST does
-# not work.
-pre-configure:
-	@cd ${WRKSRC} && ${FIND} . -type f -print | ${XARGS} ${TOUCH}
-
-# Generate a new user.hpp or use the installed one, depending on the
-# package we are building.
-ifeq (${BOOST_CONFIG},installed)
-  include ../../devel/boost-headers/depend.mk
-
-do-configure:
-	${RUN}${CP} -f \
-	    ${PREFIX.boost-headers}/include/boost/config/user.hpp \
-	    ${WRKSRC}/boost/config/user.hpp
-else
-ifeq (${BOOST_CONFIG},generate)
-do-configure:
-	@cd ${WRKSRC}/libs/config && ${CONFIGURE_LOGFILTER}		\
-	    ${SETENV} ${CONFIGURE_ENV} ${SH} ./configure
-	${RUN}${CP} -f ${WRKSRC}/libs/config/user.hpp			\
-		${WRKSRC}/boost/config/user.hpp
-endif
-endif
-
-boost-install-libs:
-	cd ${WRKSRC}/stage/lib && ${PAX} -rw -p mp libboost* ${PREFIX}/lib
 
 endif # ${BOOST_PACKAGE} == meta-pkg

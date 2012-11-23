@@ -22,7 +22,7 @@ COMMENT=	Free, peer-reviewed portable C++ source libraries
 META_PACKAGE=	yes
 
 DEPEND_ABI.boost-jam?=		boost-jam>=${BOOST_VERSION}
-DEPEND_ABI.boost-doc?=		boost-doc>=${BOOST_VERSION}
+DEPEND_ABI.boost-docs?=		boost-docs>=${BOOST_VERSION}
 DEPEND_ABI.boost-headers?=	boost-headers>=${BOOST_VERSION}
 DEPEND_ABI.boost-libs?=		boost-libs>=${BOOST_VERSION}
 

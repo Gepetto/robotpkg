@@ -7,7 +7,6 @@
 
 BOOST_PACKAGE=		headers
 BOOST_COMMENT=		(build-time headers)
-BOOST_CONFIG=		generate
 
 PREFER.boost?=		robotpkg
 include ../../devel/boost/Makefile.common

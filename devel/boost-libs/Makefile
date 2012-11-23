@@ -7,7 +7,6 @@
 
 BOOST_PACKAGE=		libs
 BOOST_COMMENT=		(binary libraries)
-BOOST_CONFIG=		installed
 
 PREFER.boost?=		robotpkg
 include ../../devel/boost/Makefile.common
@@ -18,10 +17,16 @@ INSTALLATION_DIRS=	lib
 include ../../devel/boost-jam/depend.mk
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/zlib/depend.mk
+include ../../pkgtools/pax/depend.mk
 include ../../mk/robotpkg.mk
+
+do-configure:
+	${RUN}exec >${WRKSRC}/tools/build/v2/site-config.jam;	\
+	${ECHO} 'using ${BOOST_TOOLSET} : : ${CXX} ;'
 
 do-build: bjam-build
 	@${TRUE}
 
-do-install: boost-install-libs
-	@${TRUE}
+do-install:
+	${RUN}cd ${WRKSRC}/stage/lib && ${INSTALL_LOGFILTER}	\
+	  ${PAX} -rw -p mp libboost* ${PREFIX}/lib
