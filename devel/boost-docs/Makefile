@@ -9,7 +9,7 @@ BOOST_PACKAGE=		docs
 BOOST_COMMENT=		(documentation)
 BOOST_CONFIG=		no
 
-include ../../devel/boost/Makefile.common
+include ../../meta-pkgs/boost/Makefile.common
 
 DOCDIR=			${PREFIX}/share/doc/boost
 

@@ -1,5 +1,5 @@
-# robotpkg Makefile for:	devel/boost
-# Created:			tho on Tue, 5 Dec 2006
+# robotpkg Makefile for:	meta-pkgs/boost
+# Created:			Anthony Mallet on Tue, 5 Dec 2006
 #
 
 # Borrowed from NetBSD pkgsrc,
@@ -11,7 +11,7 @@ BOOST_COMMENT=	(meta package)
 PREFER.boost?=	robotpkg
 include Makefile.common
 
-CATEGORIES+=	devel
+CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 

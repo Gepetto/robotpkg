@@ -9,7 +9,7 @@ BOOST_PACKAGE=		libs
 BOOST_COMMENT=		(binary libraries)
 
 PREFER.boost?=		robotpkg
-include ../../devel/boost/Makefile.common
+include ../../meta-pkgs/boost/Makefile.common
 
 BJAM_ARGS+=		--without-python
 INSTALLATION_DIRS=	lib

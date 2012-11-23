@@ -17,6 +17,7 @@ LICENSE=		modified-bsd
 NOT_FOR_PLATFORM=	# empty
 
 GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--enable-widec
 
 include ../../mk/sysdep/termcap.mk
 include ../../mk/robotpkg.mk

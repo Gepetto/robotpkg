@@ -9,7 +9,7 @@ BOOST_PACKAGE=		jam
 BOOST_COMMENT=		(Boost.Jam utility)
 
 PREFER.boost?=		robotpkg
-include ../../devel/boost/Makefile.common
+include ../../meta-pkgs/boost/Makefile.common
 
 SUBST_CLASSES+=		bb
 SUBST_MESSAGE.bb=	Fixing path to Boost.Build files.

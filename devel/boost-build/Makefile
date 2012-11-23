@@ -12,7 +12,7 @@ EGDIR=			share/examples/boost-build
 INSTALLATION_DIRS+=	share/boost-build
 INSTALLATION_DIRS+=	${EGDIR}
 
-include ../../devel/boost/Makefile.common
+include ../../meta-pkgs/boost/Makefile.common
 
 SUBST_CLASSES+=		confdir
 SUBST_MESSAGE.confdir=	Fixing path to site-config.jam.

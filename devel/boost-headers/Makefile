@@ -9,7 +9,7 @@ BOOST_PACKAGE=		headers
 BOOST_COMMENT=		(build-time headers)
 
 PREFER.boost?=		robotpkg
-include ../../devel/boost/Makefile.common
+include ../../meta-pkgs/boost/Makefile.common
 
 NO_BUILD=		yes
 BJAM_ARGS+=		--without-* # disable all libraries

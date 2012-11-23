@@ -2,6 +2,7 @@
 
 COMMENT=	Collections of other packages
 
+SUBDIR+=	boost
 SUBDIR+=	dala
 SUBDIR+=	gearbox
 SUBDIR+=	hpp

@@ -32,8 +32,8 @@ HOMEPAGE=	http://www.boost.org/
 COMMENT=	Free, peer-reviewed portable C++ source libraries
 COMMENT+=	${BOOST_COMMENT}
 
-DISTINFO_FILE=	${CURDIR}/../../devel/boost/distinfo
-PATCHDIR=	${CURDIR}/../../devel/boost/patches
+DISTINFO_FILE=	${CURDIR}/../../meta-pkgs/boost/distinfo
+PATCHDIR=	${CURDIR}/../../meta-pkgs/boost/patches
 
 PLIST_SUBST+=	BOOST_VERSION="${BOOST_VERSION}"
 PRINT_PLIST_AWK_SUBST+=\
