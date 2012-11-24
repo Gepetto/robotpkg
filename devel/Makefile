@@ -5,7 +5,6 @@ COMMENT=	Software development tools
 
 SUBDIR+=	cortex-sdk
 SUBDIR+=	boost-build
-SUBDIR+=	boost-docs
 SUBDIR+=	boost-headers
 SUBDIR+=	boost-jam
 SUBDIR+=	boost-libs

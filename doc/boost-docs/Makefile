@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	devel/boost-docs
+# robotpkg Makefile for:	doc/boost-docs
 # Created:			Anthony Mallet on Fri, 10 Oct 2008
 #
 
@@ -11,6 +11,7 @@ BOOST_CONFIG=		no
 
 include ../../meta-pkgs/boost/Makefile.common
 
+CATEGORIES=		doc
 DOCDIR=			${PREFIX}/share/doc/boost
 
 NO_BUILD=		yes

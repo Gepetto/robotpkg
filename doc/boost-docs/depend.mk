@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/boost-docs
+# robotpkg depend.mk for:	doc/boost-docs
 # Created:			Anthony Mallet on Fri, 10 Oct 2008
 #
 
@@ -21,7 +21,7 @@ SYSTEM_SEARCH.boost-docs=\
 DEPEND_USE+=		boost-docs
 
 DEPEND_ABI.boost-docs?=	boost-docs>=1.34.1
-DEPEND_DIR.boost-docs?=	../../devel/boost-docs
+DEPEND_DIR.boost-docs?=	../../doc/boost-docs
 
 DEPEND_METHOD.boost-docs?=	build
 

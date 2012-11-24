@@ -27,7 +27,7 @@ DEPEND_ABI.boost-headers?=	boost-headers>=${BOOST_VERSION}
 DEPEND_ABI.boost-libs?=		boost-libs>=${BOOST_VERSION}
 
 include ../../devel/boost-jam/depend.mk
-include ../../devel/boost-docs/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../doc/boost-docs/depend.mk
 include ../../mk/robotpkg.mk
