@@ -16,7 +16,7 @@ PREFER.install-info?=		system
 DEPEND_ABI.install-info?=	install-info>=4
 
 SYSTEM_SEARCH.install-info=\
-	'bin/install-info:/^install-info/{s/[^0-9.]//gp;q;}:% --version'
+	'{,s}bin/install-info:/^install-info/{s/[^0-9.]//gp;q;}:% --version'
 
 export INSTALL_INFO=	$(word 1,${SYSTEM_FILES.install-info})
 
@@ -31,7 +31,7 @@ DEPEND_ABI.texinfo=		texinfo>=4
 DEPEND_METHOD.texinfo?=		build
 
 SYSTEM_SEARCH.texinfo=\
-	'bin/makeinfo:/^makeinfo/{s/[^0-9.]//gp;q;}:% --version'
+	'{,s}bin/makeinfo:/^makeinfo/{s/[^0-9.]//gp;q;}:% --version'
 
 export MAKEINFO=	$(word 1,${SYSTEM_FILES.texinfo})
 
