@@ -114,6 +114,11 @@ _CHECKOUT_TARGETS+=	release-extract-lock
 checkout: ${_CHECKOUT_TARGETS};
 
 
+.PHONY: acquire-extract-lock release-extract-lock
+acquire-extract-lock: acquire-lock
+release-extract-lock: release-lock
+
+
 # --- real-checkout (PRIVATE) ----------------------------------------------
 #
 # real-checkout is a helper target onto which one can hook all of the
