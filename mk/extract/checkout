@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2009-2010 LAAS/CNRS
+# Copyright (c) 2009-2010,2012 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -46,7 +46,7 @@
 #
 # OPTIONS
 #	-f format	Specify the repository format, by default git. Valid
-#			formats are: git, cvs.
+#			formats are: git, cvs, svn, dir.
 #
 #	-r revision	Checkout this revision instead of HEAD. The syntax of
 #			revision depends on the underlying checkout tool.
@@ -69,6 +69,9 @@ set -u		# treat undefined variables as errors
 
 : ${TEST:=test}
 : ${ECHO:=echo}
+: ${FIND:=find}
+: ${LN:=ln}
+: ${MKDIR:=mkdir -p}
 : ${GIT:=git}
 : ${CVS:=cvs}
 : ${SVN:=svn}
@@ -140,6 +143,21 @@ svn)
     ${TEST} -n "$extract_dir" && _extract_dir="${extract_dir##${cwd%/}/}"
     ${SVN} checkout \
 	 ${CHECKOUT_VCS_OPTS} $_revision $repository $_extract_dir ${1+"$@"}
+    ;;
+
+dir)
+    : ${sub=.}
+    ${TEST} -n "${1+$1}" && sub="$1"
+    ${TEST} -n "$extract_dir" || {
+        ${ECHO} 1>&2 "$self: no extract dir defined: use -d."; exit 2
+    }
+    ${TEST} -d "$extract_dir" || ${MKDIR} "$extract_dir"
+    { cd "$repository" && ${FIND} "$sub" -type d; } |
+      { cd "$extract_dir" && while read d; do ${MKDIR} "$d"; done; }
+    { cd "$repository" && ${FIND} "$sub" ! -type d; } |
+      { cd "$extract_dir" && while read d;
+          do ${LN} -sf "$repository/$d" "$d";
+        done; }
     ;;
 esac
 
