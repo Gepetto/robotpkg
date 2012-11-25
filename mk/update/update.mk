@@ -59,10 +59,8 @@ _UPDATE_TARGETS+=	cbbh
 _UPDATE_TARGETS+=	update-message
 _UPDATE_TARGETS+=	pre-update
 _UPDATE_TARGETS+=	update-create-dlist
-ifneq (yes,$(call exists,${_UPDATE_LIST}))
-  ifeq (,$(filter replace,${UPDATE_TARGET}))
-    _UPDATE_TARGETS+=	update-deinstall-dlist
-  endif
+ifeq (,$(filter replace,${UPDATE_TARGET}))
+  _UPDATE_TARGETS+=	$(call if-outdated-pkg,update-deinstall-dlist)
 endif
 _UPDATE_TARGETS+=	do-update
 _UPDATE_TARGETS+=	post-update
@@ -190,17 +188,21 @@ update-clean:
 .PHONY: update-create-dlist
 update-create-dlist: ${_UPDATE_LIST}
 
-${_UPDATE_LIST}:
-	${RUN} ${MKDIR} $(dir $@); >$@;					\
-	if ${PKG_INFO} -qe '${PKGWILDCARD}'; then			\
+${_UPDATE_LIST}: $(call if-outdated-pkg,.FORCE)
+	${RUN} ${MKDIR} $(dir $@);					\
+	if ${PKG_INFO} -qe '${PKGWILDCARD}' || ${TEST} -s $@; then	\
 	  ${STEP_MSG} "Building package update list";			\
 	  ${TEST} -t 1 && i="-i";					\
-	  { ${ECHO} '${PKGPATH}:${PKGREQD}';				\
-	    for pkg in `${PKG_INFO} -qr '${PKGWILDCARD}'`; do		\
-	      base=$${pkg%~*}; base=$${base%-*};			\
-	      ${ECHO} `${PKG_INFO} -Q PKGPATH $$pkg`":$$base";		\
-	    done; }							\
-	  | ${_pkgset_tsort_deps} -1 -s $$i				\
+	  ${TEST} -f $@ && ${CP} $@ ${@:=.old};				\
+	  >$@;								\
+	  {								\
+	    ${ECHO} '${PKGPATH}:${PKGREQD}';				\
+	    ${TEST} -f ${@:=.old} && ${CAT} ${@:=.old};			\
+	    for p in `${PKG_INFO} -qr '${PKGWILDCARD}' 2>/dev/null`; do	\
+	      base=$${p%~*}; base=$${base%-*};				\
+	      ${ECHO} `${PKG_INFO} -Q PKGPATH $$p`":$$base";		\
+	    done;							\
+	  } | ${_pkgset_tsort_deps} -1 -s $$i				\
 	  | while IFS=: read dir pkg; do				\
 	    if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;	\
 	    if ${TEST} "$$dir" = "***"; then				\
@@ -223,7 +225,7 @@ ${_UPDATE_LIST}:
 	  done;								\
 	  ${TEST} -s $@ || { ${RM} $@; exit 2; }			\
 	else								\
-	  ${ECHO} '${PKGPATH}:${PKGREQD}' >>$@;				\
+	  ${ECHO} '${PKGPATH}:${PKGREQD}' >$@;				\
 	fi;								\
 	${CP} $@ ${@:=.clean}
 
