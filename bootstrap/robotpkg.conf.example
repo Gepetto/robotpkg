@@ -31,6 +31,16 @@
 # Possible: robotpkg, system
 # Default: (undefined)
 
+# REPOSITORY.<pkgbase>=	<format> <url> [<element>]
+# This variable defines a local repository for the 'checkout' target of
+# <pkgbase>. <format> must be one of "cvs", "git", "svn" or "dir". The exact
+# meaning of <url> depends on the selected format. For cvs, git and svn this is
+# the repository url in a format that the tool understands. For "dir", this is
+# an absolute path on the local filesystem. "element" is an optional list of
+# paths that must be cloned (defaults to all).
+# Possible: any valid string
+# Default: \\${MASTER_REPOSITORY} of the package
+
 # ACCEPTABLE_LICENSES+=	aemdesign-cfsqp-license
 # ACCEPTABLE_LICENSES+=	cnrs-hpp-closed-source
 # ACCEPTABLE_LICENSES+=	cnrs-stackoftasks-license
