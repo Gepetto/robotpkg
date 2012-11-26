@@ -1,8 +1,8 @@
-dnl $NetBSD: configure.ac,v 1.77 2010/04/20 00:32:22 joerg Exp $
+dnl $NetBSD: configure.ac,v 1.79 2012/07/02 16:02:53 joerg Exp $
 
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.52)
-AC_INIT([libnbcompat], [20080605], [grant@NetBSD.org])
+AC_INIT([libnbcompat], [20120702], [joerg@NetBSD.org])
 AC_CONFIG_HEADER(nbcompat/config.h)
 AC_ARG_PROGRAM
 
@@ -76,6 +76,30 @@ AC_CHECK_FUNC(regexec, [:], [
 	AC_LIBOBJ(regerror)
 	AC_LIBOBJ(regexec)
 	AC_LIBOBJ(regfree)
+])
+
+AC_MSG_TRY_LINK([for va_copy], pkg_cv_have_va_copy, [
+#include <stdarg.h>
+], [
+	va_list ap, ap2;
+	va_copy(ap2, ap);
+	return 0;
+],	AC_DEFINE(HAVE_VA_COPY)
+	AH_TEMPLATE([HAVE_VA_COPY], [
+		Define to 1 if the `va_copy' function is supported.
+	]), [:]
+])
+
+AC_MSG_TRY_LINK([for __builtin_va_copy], pkg_cv_have___builtin_va_copy, [
+#include <stdarg.h>
+], [
+	va_list ap, ap2;
+	__builtin_va_copy(ap2, ap);
+	return 0;
+],	AC_DEFINE(HAVE___BUILTIN_VA_COPY)
+	AH_TEMPLATE([HAVE___BUILTIN_VA_COPY], [
+		Define to 1 if the `__builtin_va_copy' function is supported.
+	]), [:]
 ])
 
 AC_CHECK_HEADERS([md5.h], [
@@ -161,19 +185,23 @@ AC_CHECK_DECLS([optarg, optind, optreset], [:], [:], [
 	#include <unistd.h>
 ])
 
-
+our_getopt_long=no
 AC_CHECK_HEADERS([getopt.h],
-	[ AC_CHECK_TYPES([struct option],
-	    [:],
-	    [ AC_LIBOBJ(getopt_long)],
-	    [#include <getopt.h>])],
-	[ AC_LIBOBJ(getopt_long)]
+	[ AC_CHECK_TYPES([struct option], [:],
+	    [ our_getopt_long=yes ], [#include <getopt.h>])],
+	[ our_getopt_long=yes ]
 )
 
 if test "$enable_bsd_getopt" = yes; then
 	if test "$ac_cv_have_decl_optreset" = no; then
+		AC_MSG_NOTICE([Using included getopt and getopt_long])
 		AC_LIBOBJ(getopt)
+		our_getopt_long=yes
 	fi
+fi
+
+if test "$our_getopt_long" = "yes"; then
+	AC_LIBOBJ(getopt_long)
 fi
 
 dnl Check that this vis.h has *vis()-related functions because Solaris'
