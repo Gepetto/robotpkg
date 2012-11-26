@@ -4,6 +4,7 @@
 COMMENT=	Sysutils
 
 SUBDIR+=	alog
+SUBDIR+=	py-aafigure
 SUBDIR+=	tth
 SUBDIR+=	y2l
 

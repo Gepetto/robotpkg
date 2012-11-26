@@ -1,0 +1,11 @@
+This package provides a python module ``aafigure``, that can be used from other
+programs, and a command line tool ``aafigure``. ASCII art figures can be parsed
+and output as SVG, PNG, JPEG, PDF and more.
+
+Example, test.txt:
+
+            +-----+   ^
+            |     |   |
+        --->+     +---o--->
+            |     |   |
+            +-----+   V
