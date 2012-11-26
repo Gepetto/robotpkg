@@ -72,8 +72,9 @@ LINK=		$(CCLD) $(CFLAGS) $(LDFLAGS) -o $@
 COMPILE=	$(CC) $(CPPFLAGS) $(CFLAGS)
 
 all: nbcompat/nbconfig.h $(LIB)
+$(OBJS): nbcompat/nbconfig.h
 
-.c.o: nbcompat/nbconfig.h
+.c.o:
 	$(COMPILE) $(DEFS) -c $<
 
 $(LIB): $(OBJS)
