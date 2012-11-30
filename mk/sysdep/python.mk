@@ -209,6 +209,12 @@ PYTHONPATH=$(call prependpaths, $(filter-out ${_PYTHON_SYSPATH},	\
 export PYTHONPATH
 
 
+# Replace python interpreter in source files
+SUBST_STAGE.py-interp=	pre-configure
+SUBST_MESSAGE.py-interp=Replacing python interpreter path
+SUBST_SED.py-interp=	-e '1s|^\\\#!.*python[0-9.]*|\\\#!${PYTHON}|'
+SUBST_SED.py-interp+=	-e 's|@PYTHON@|${PYTHON}|'
+
 # Add extra replacement in PLISTs
 PLIST_SUBST+=\
 	PLIST_PYTHON_PYCACHE=$(call quote,${PYTHON_PYCACHE})		\
