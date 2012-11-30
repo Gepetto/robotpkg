@@ -182,12 +182,14 @@ syslibsubst() {
     '
 }
 
-# Remove /usr in /usr/{bin/,lib}*
+# Remove /usr in /usr/{bin/,sbin/,lib}*
 optusr() {
     alt=
     while ${TEST} $# -gt 0; do
 	if ${TEST} -z "${1##/usr/bin/*}"; then
 	    alt=$alt" /bin/${1##/usr/bin/}"
+	elif ${TEST} -z "${1##/usr/sbin/*}"; then
+	    alt=$alt" /sbin/${1##/usr/sbin/}"
 	elif ${TEST} -z "${1##/usr/lib*}"; then
 	    alt=$alt" /lib${1##/usr/lib}"
         fi
