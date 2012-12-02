@@ -95,9 +95,10 @@ bulk-done:
 _MAKEFILE_WITH_RECIPES+=${_COOKIE.bulkoutdated}
 ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	${RUN} ${TEST} -f "$@" && ${RM} -f "$@"; (			\
+	  deps='$(filter-out $(realpath ${WRKDIR})/%,${MAKEFILE_LIST})';\
 	  ${TEST} -f ${PKGFILE} || {					\
 	    ${TEST} -f ${BULK_PKGFILENA} || exit 1;			\
-	    for f in ${MAKEFILE_LIST}; do				\
+	    for f in $$deps; do						\
 	      ${TEST} ${BULK_PKGFILENA} -nt "$$f" || exit 1;		\
 	    done;							\
 	    while read d; do						\
@@ -107,7 +108,7 @@ ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	    done <${BULK_PKGFILENA};					\
 	    exit 0;							\
 	  };								\
-	  for f in ${MAKEFILE_LIST} ${DISTINFO_FILE} ${PLIST_SRC}; do	\
+	  for f in $$deps ${DISTINFO_FILE} ${PLIST_SRC}; do		\
 	    ${TEST} -f $$f || continue;					\
 	    ${TEST} ${PKGFILE} -nt $$f || exit 1;			\
 	  done;								\
