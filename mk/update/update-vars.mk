@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2011 LAAS/CNRS
+# Copyright (c) 2009-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -43,5 +43,3 @@ endif
 
 # state variables
 _UPDATE_LIST=	${WRKDIR}/.update_list
-
-include ${ROBOTPKG_DIR}/mk/update/update.mk

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -116,7 +116,8 @@ $(call require-for, bootstrap-depends sys-bootstrap-depends		\
 
 # Update
 $(call require-for, update,						\
-	${ROBOTPKG_DIR}/mk/update/update-vars.mk)
+	${ROBOTPKG_DIR}/mk/update/update-vars.mk			\
+	${ROBOTPKG_DIR}/mk/update/update.mk)
 
 # Bulk
 $(call require-for, bulk su-bulk-%,					\
