@@ -1,0 +1,4 @@
+@comment Fri Nov 23 18:21:03 CET 2012
+lib/libboost_locale-mt.a
+lib/libboost_locale-mt.so
+lib/libboost_locale-mt.so.${BOOST_VERSION}
