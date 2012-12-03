@@ -72,20 +72,22 @@
 #	PLIST
 #
 ifndef PLIST_SRC
-  ifeq (yes,$(call exists,${PKGDIR}/PLIST.${OS_KERNEL}))
-PLIST_SRC+=     ${PKGDIR}/PLIST.${OS_KERNEL}
+  ifneq (${OS_KERNEL},${OPSYS})
+    ifeq (yes,$(call exists,${PKGDIR}/PLIST.${OS_KERNEL}))
+      PLIST_SRC+=	${PKGDIR}/PLIST.${OS_KERNEL}
+    endif
   endif
   ifeq (yes,$(call exists,${PKGDIR}/PLIST.${OPSYS}))
-PLIST_SRC+=     ${PKGDIR}/PLIST.${OPSYS}
+    PLIST_SRC+=	${PKGDIR}/PLIST.${OPSYS}
   endif
   ifeq (yes,$(call exists,${PKGDIR}/PLIST.${MACHINE_ARCH}))
-PLIST_SRC+=     ${PKGDIR}/PLIST.${MACHINE_ARCH}
+    PLIST_SRC+=	${PKGDIR}/PLIST.${MACHINE_ARCH}
   endif
   ifeq (yes,$(call exists,${PKGDIR}/PLIST.${OPSYS}-${MACHINE_ARCH}))
-PLIST_SRC+=     ${PKGDIR}/PLIST.${OPSYS}-${MACHINE_ARCH}
+    PLIST_SRC+=	${PKGDIR}/PLIST.${OPSYS}-${MACHINE_ARCH}
   endif
   ifeq (yes,$(call exists,${PKGDIR}/PLIST))
-PLIST_SRC+=	${PKGDIR}/PLIST
+    PLIST_SRC+=	${PKGDIR}/PLIST
   endif
 endif # !PLIST_SRC
 
