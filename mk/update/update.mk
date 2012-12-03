@@ -198,13 +198,19 @@ ${_UPDATE_LIST}: $(call if-outdated-pkg,.FORCE)
 	  ${STEP_MSG} "Building package update list";			\
 	  ${TEST} -t 1 && i="-i";					\
 	  ${TEST} -f $@ && ${CP} $@ ${@:=.old};				\
-	  >$@;								\
+	  >$@; ${RM} ${@:=.err};					\
 	  {								\
 	    ${ECHO} '${PKGPATH}:${PKGREQD}';				\
 	    ${TEST} -f ${@:=.old} && ${CAT} ${@:=.old};			\
 	    for p in `${PKG_INFO} -qr '${PKGWILDCARD}' 2>/dev/null`; do	\
 	      base=$${p%~*}; base=$${base%-*};				\
-	      ${ECHO} `${PKG_INFO} -Q PKGPATH $$p`":$$base";		\
+	      dir=`${PKG_INFO} -Q PKGPATH $$p`;				\
+	      if ${TEST} -f "${ROBOTPKG_DIR}/$$dir/Makefile"; then	\
+	        ${ECHO} "$$dir:$$base";					\
+	      else							\
+	        ${ECHO} "$$p was moved from $$dir or is obsolete."	\
+	          >>${@:=.err};						\
+	      fi;							\
 	    done;							\
 	  } | ${_pkgset_tsort_deps} -1 -s $$i				\
 	  | while IFS=: read dir pkg; do				\
@@ -213,21 +219,27 @@ ${_UPDATE_LIST}: $(call if-outdated-pkg,.FORCE)
 	      ${ERROR_MSG} "${hline}";					\
 	      ${ERROR_MSG} "$${bf}Cannot update for"			\
 		"$(or ${PKGREQD},${PKGNAME}):$${rm}";			\
-	      ${ERROR_MSG} "$$pkg";					\
+	      ${ECHO} "$$pkg" >>${@:=.err};				\
 	      while IFS=: read dir pkg; do				\
 	        if ${TEST} "$$dir" != "***"; then continue; fi;		\
-	        ${ERROR_MSG} "$$pkg";					\
+	        ${ECHO} "$$pkg" >>${@:=.err};				\
 	      done;							\
-	      ${ERROR_MSG} "";						\
-	      ${ERROR_MSG} "To continue, you may wish to";		\
-	      ${ERROR_MSG} "		$${bf}${MAKE} deinstall$${rm}"	\
-		"in ${PKGPATH}";					\
-	      ${ERROR_MSG} ${hline};					\
-	      ${RM} $@; exit 2;						\
+	      exit 2;							\
 	    fi;								\
 	    ${ECHO} "$$dir:$$pkg" >>$@;					\
 	  done;								\
-	  ${TEST} -s $@ || { ${RM} $@; exit 2; }			\
+	  if ${TEST} -s ${@:=.err}; then				\
+	      ${ERROR_MSG} "${hline}";					\
+	      ${ERROR_MSG} "$${bf}Cannot update for"			\
+		"$(or ${PKGREQD},${PKGNAME}):$${rm}";			\
+	      ${ERROR_CAT} ${@:=.err};					\
+	      ${ERROR_MSG} "";						\
+	      ${ERROR_MSG} "To continue, you may wish to first";	\
+	      ${ERROR_MSG} "		$${bf}${MAKE} deinstall$${rm}"	\
+		"in ${PKGPATH}";					\
+	      ${ERROR_MSG} ${hline};					\
+	      ${RM} $@ ${@:=.err}; exit 2;				\
+	  fi;								\
 	else								\
 	  ${ECHO} '${PKGPATH}:${PKGREQD}' >$@;				\
 	fi;								\
