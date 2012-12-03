@@ -60,7 +60,11 @@ _UPDATE_TARGETS+=	update-message
 _UPDATE_TARGETS+=	pre-update
 _UPDATE_TARGETS+=	update-create-dlist
 ifeq (,$(filter replace,${UPDATE_TARGET}))
-  _UPDATE_TARGETS+=	$(call if-outdated-pkg,update-deinstall-dlist)
+  ifeq (,$(filter confirm,${MAKECMDGOALS}))
+    _UPDATE_TARGETS+=	$(call if-outdated-pkg,update-deinstall-dlist)
+  else
+    _UPDATE_TARGETS+=	update-deinstall-dlist
+  endif
 endif
 _UPDATE_TARGETS+=	do-update
 _UPDATE_TARGETS+=	post-update
