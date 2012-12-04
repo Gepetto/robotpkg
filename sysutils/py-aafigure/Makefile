@@ -17,5 +17,7 @@ PYDISTUTILSPKG=		yes
 SUBST_CLASSES+=		py-interp
 SUBST_FILES.py-interp+=	scripts/aafigure
 
+DEPEND_ABI.python=	python<3
+
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
