@@ -61,8 +61,10 @@ BINARY_FILES=	'*.pdf' '*.png' '*.gif' '*.jpg' '*.dat' '*.raw'
 do-extract:
 	${RUN}cd ${WRKDIR} && cd ${EXTRACT_DIR} &&			\
   $(foreach _,$(addprefix ${DISTDIR}/${DIST_SUBDIR}/,${DISTFILES}),	\
-	${UNZIP_CMD} -aaqo "$_" -x ${BINARY_FILES} &&			\
-	${UNZIP_CMD} -bqo "$_" ${BINARY_FILES} &&			\
+	${EXTRACT_LOGFILTER}						\
+		${UNZIP_CMD} -aao "$_" -x ${BINARY_FILES} &&		\
+	${EXTRACT_LOGFILTER}						\
+		${UNZIP_CMD} -o "$_" ${BINARY_FILES} &&			\
   )									\
 	: || exit 2
 
