@@ -235,7 +235,7 @@ case "$format" in
 tar)
 	case "$extract_using" in
 	*pax)
-		: ${EXTRACT_OPTS_PAX=}
+		: ${EXTRACT_OPTS_PAX=-v}
 		case "$extract_using" in
 		/*)	paxprog="$extract_using" ;;
 		*)	paxprog="${PAX}" ;;
@@ -249,7 +249,7 @@ tar)
 			$paxprog ${EXTRACT_OPTS_PAX} $exclude_flag -r ${1+"$@"}
 		;;
 	*tar)
-		: ${EXTRACT_OPTS_TAR=}
+		: ${EXTRACT_OPTS_TAR=-v}
 		case "$extract_using" in
 		/*)	tarprog="$extract_using" ;;
 		*)	tarprog="${TAR}" ;;
@@ -293,7 +293,7 @@ shar)
 	;;
 
 zip)
-	: ${EXTRACT_OPTS_ZIP=-aqo}
+	: ${EXTRACT_OPTS_ZIP=-ao}
 	${TEST} "$exclude" = "no" || exclude_flag="-x"
 	if ${TEST} -n "$exclude_file"; then
 		set -- dummy `${CAT} "$exclude_file"`; shift

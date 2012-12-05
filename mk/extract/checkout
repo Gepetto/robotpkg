@@ -115,13 +115,13 @@ repository="$1"; shift
 case "$format" in
 git)
     if ${TEST} -n "$revision"; then
-	${GIT} clone ${CHECKOUT_VCS_OPTS} -n $repository $extract_dir
+	${GIT} clone -v ${CHECKOUT_VCS_OPTS} -n $repository $extract_dir
 	${TEST} -n "$extract_dir" && {
 	    cd $extract_dir;
 	    ${GIT} checkout $revision;
 	}
     else
-	${GIT} clone ${CHECKOUT_VCS_OPTS} $repository $extract_dir
+	${GIT} clone -v ${CHECKOUT_VCS_OPTS} $repository $extract_dir
     fi
     ;;
 

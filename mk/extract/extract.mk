@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -130,7 +130,8 @@ real-extract: ${_REAL_EXTRACT_TARGETS}
 
 .PHONY: extract-message
 extract-message:
-	@${PHASE_MSG} "Extracting for ${PKGNAME}"
+	@${PHASE_MSG} "Extracting for ${PKGNAME}";			\
+	>${EXTRACT_LOGFILE}
 
 .PHONY: extract-dir
 extract-dir:
@@ -292,10 +293,11 @@ DOWNLOADED_DISTFILE=	$${extract_file}
 
 do%extract: makedirs .FORCE
 	${_OVERRIDE_TARGET}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 $(foreach __file__,${EXTRACT_ONLY},					\
 	extract_file=${_DISTDIR}/${__file__}; export extract_file;	\
-	cd ${WRKDIR} && cd ${EXTRACT_DIR} && ${EXTRACT_CMD};		\
+	cd ${WRKDIR} && cd ${EXTRACT_DIR} &&				\
+	${EXTRACT_LOGFILTER} ${EXTRACT_CMD};				\
 )
 
 pre-extract:

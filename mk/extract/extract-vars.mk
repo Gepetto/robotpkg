@@ -85,6 +85,11 @@ ifdef _EXTRACT_IS_CHECKOUT
   PKGREVISION:=$(strip ${PKGREVISION})0${CHECKOUT_PKGVERSION}
 endif
 
+# The filter for the default do-extract action
+EXTRACT_LOGFILE?=	${WRKDIR}/extract.log
+EXTRACT_LOGFILTER?=\
+	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${EXTRACT_LOGFILE}	--
+
 # For DISTFILES definition
 $(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 

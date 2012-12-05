@@ -137,7 +137,8 @@ real-checkout: ${_REAL_CHECKOUT_TARGETS}
 
 .PHONY: checkout-message
 checkout-message:
-	@${PHASE_MSG} "Checking out ${PKGNAME}"
+	@${PHASE_MSG} "Checking out ${PKGNAME}"				\
+	>${EXTRACT_LOGFILE}
 
 .PHONY: checkout-dir
 checkout-dir:
@@ -181,7 +182,8 @@ CHECKOUT_CMD_DEFAULT=							\
 
 do%checkout: ${WRKDIR} .FORCE
 	${_OVERRIDE_TARGET}
-	${RUN}cd ${WRKDIR} && cd ${CHECKOUT_DIR} && ${CHECKOUT_CMD}
+	${RUN}cd ${WRKDIR} && cd ${CHECKOUT_DIR} &&			\
+	  ${EXTRACT_LOGFILTER} ${CHECKOUT_CMD}
 
 pre-checkout:
 
