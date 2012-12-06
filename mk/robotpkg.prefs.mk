@@ -110,10 +110,13 @@ ifndef MACHINE_PLATFORM
 endif # MACHINE_PLATFORM
 
 
-# load the OS-specific definitions for program variables.
+# Load the OS-specific definitions for program variables. Look for OPSYS first
+# and fallback on OS_KERNEL.
 #
 ifeq (yes,$(call exists,${ROBOTPKG_DIR}/mk/platform/${OPSYS}.mk))
   include ${ROBOTPKG_DIR}/mk/platform/${OPSYS}.mk
+else ifeq (yes,$(call exists,${ROBOTPKG_DIR}/mk/platform/${OS_KERNEL}.mk))
+  include ${ROBOTPKG_DIR}/mk/platform/${OS_KERNEL}.mk
 else
   $(error missing mk/platform/${OPSYS}.mk)
 endif
