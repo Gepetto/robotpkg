@@ -3,8 +3,11 @@
 #
 
 # System library directories
+_syslibdir=$(patsubst /usr/%,%,$(wildcard /usr/lib/${MACHINE_ARCH}-linux-gnu))
 ifeq (${MACHINE_ARCH},x86_64)	# 64bits arch
-  SYSLIBDIR?=	lib64
+  SYSLIBDIR?=	${_syslibdir} lib64
+else				# 32bits arch
+  SYSLIBDIR?=	${_syslibdir} lib
 endif
 
 $(call setdefault, CHOWN,	/bin/chown)
