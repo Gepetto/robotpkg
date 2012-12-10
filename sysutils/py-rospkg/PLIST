@@ -1,0 +1,27 @@
+@comment Mon Dec 10 12:19:15 CET 2012
+bin/rosversion
+${PYTHON_SITELIB}/rospkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rospkg/__init__.py
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/rospkg/common.py
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/common${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/common${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/rospkg/distro.py
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/distro${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/distro${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/rospkg/environment.py
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/environment${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/environment${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/rospkg/manifest.py
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/manifest${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/manifest${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/rospkg/os_detect.py
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/os_detect${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/os_detect${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/rospkg/rospack.py
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/rospack${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/rospack${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/rospkg/stack.py
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/stack${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/rospkg/${PYTHON_PYCACHE}/stack${PYTHON_TAG}.pyo
