@@ -1,0 +1,13 @@
+# robotpkg depend.common for:	meta-pkgs/ros-base
+# Created:			Anthony Mallet on Mon, 10 Dec 2012
+#
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 10.04,${OS_VERSION}))
+    PREFER.ros?=	system
+  endif
+endif
+PREFER.ros?=		robotpkg
+
+PREFER.ros-base?=	${PREFER.ros}

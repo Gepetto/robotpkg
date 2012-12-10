@@ -7,4 +7,4 @@ not limited to:
 * implementation of commonly-used functionality
 * message-passing between processes
 
-This meta-package includes the two base packages: ros-core and ros-comm
+This meta-package includes the minimal set of base packages

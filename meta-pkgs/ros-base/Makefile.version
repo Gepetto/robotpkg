@@ -1,7 +1,0 @@
-# robotpkg Makefile for:	meta-pkgs/ros-base
-# Created:			Anthony Mallet on Wed, 19 Jan 2011
-#
-
-ROS_VERSION=	electric
-ROS_NUMVERSION=	1.6
-PREFIX=		${LOCALBASE}/opt/ros/${ROS_VERSION}

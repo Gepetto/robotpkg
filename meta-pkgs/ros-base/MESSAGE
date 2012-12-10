@@ -1,8 +1,7 @@
-In order to use ros packages, you must add the following variables in your
-environment:
+In order to use ros packages, you must add the following variables in
+your environment:
 
-	ROS_PACKAGE_PATH ${PREFIX}
-	ROS_ROOT	${ROS_PACKAGE_PATH}/ros
-	ROS_MASTER_URI	http://localhost:11311
-	PYTHONPATH	${ROS_ROOT}/core/roslib/src
-	PATH		${PATH}:${ROS_ROOT}/bin
+  ROS_PACKAGE_PATH ${PREFIX}
+  ROS_MASTER_URI   http://localhost:11311
+  PYTHONPATH       ${PREFIX}/lib/python${PYTHON_VERSION}/site-packages
+  PATH             ${PREFIX}/bin
