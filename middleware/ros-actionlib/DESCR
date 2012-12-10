@@ -1,4 +1,15 @@
-The actionlib package provides a standardized interface interfacing with
-preemptible tasks on top of the standard ROS middleware tools. Examples of this
-include moving the base to a target location, performing a laser scan and
-returning the resulting point cloud, detecting the handle of a door, etc.
+The actionlib package provides a standardized interface for interfacing with
+preemptible tasks. Examples of this include moving the base to a target
+location, performing a laser scan and returning the resulting point cloud,
+detecting the handle of a door, etc.
+
+In any large ROS based system, there are cases when someone would like to send
+a request to a node to perform some task, and also receive a reply to the
+request. This can currently be achieved via ROS services.
+
+In some cases, however, if the service takes a long time to execute, the user
+might want the ability to cancel the request during execution or get periodic
+feedback about how the request is progressing. The actionlib package provides
+tools to create servers that execute long-running goals that can be
+preempted. It also provides a client interface in order to send requests to the
+server.
