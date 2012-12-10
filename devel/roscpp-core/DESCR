@@ -1,0 +1,3 @@
+roscpp_core is an underlying library for support roscpp message data types. It
+is a lightweight/minimal library that can easily be used in non-ROS-based
+projects.

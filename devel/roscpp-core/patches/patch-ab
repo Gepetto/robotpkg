@@ -1,0 +1,14 @@
+Boost headers are required
+
+--- roscpp_serialization/CMakeLists.txt~	2012-07-03 02:44:45.000000000 +0200
++++ roscpp_serialization/CMakeLists.txt	2012-10-07 23:30:52.000000000 +0200
+@@ -8,6 +8,9 @@
+ find_package(rostime REQUIRED)
+ include_directories(${rostime_INCLUDE_DIRS})
+ 
++find_package(Boost)
++include_directories(${Boost_INCLUDE_DIRS})
++
+ find_package(roscpp_traits REQUIRED)
+ include_directories(${roscpp_traits_INCLUDE_DIRS})
+ 

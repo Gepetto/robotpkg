@@ -23,6 +23,7 @@ SUBDIR+=	log4cxx
 SUBDIR+=	mkdep
 SUBDIR+=	py-simpleparse
 SUBDIR+=	ros-core
+SUBDIR+=	roscpp-core
 SUBDIR+=	swig
 
 include ../mk/robotpkg.subdir.mk
