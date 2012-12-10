@@ -1,0 +1,10 @@
+std_msgs contains common message types representing primitive data types and
+other basic message constructs, such as multiarrays. For common, generic
+robot-specific message types, please see common_msgs.
+
+std_msgs contains wrappers for ROS primitive types, which are documented in the
+msg specification. It also contains the Empty type, which is useful for sending
+an empty signal.
+
+This package also contains the "MultiArray" types, which can be useful for
+storing sensor data.
