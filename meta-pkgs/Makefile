@@ -6,6 +6,7 @@ SUBDIR+=	boost
 SUBDIR+=	dala
 SUBDIR+=	gearbox
 SUBDIR+=	hpp
+SUBDIR+=	jafar
 SUBDIR+=	mana
 SUBDIR+=	ros-base
 

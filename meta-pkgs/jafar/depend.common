@@ -1,0 +1,4 @@
+# robotpkg depend.common for:	meta-pkgs/jafar
+# Created:			Anthony Mallet on Mon, 10 Dec 2012
+#
+PREFER.jafar?=		robotpkg
