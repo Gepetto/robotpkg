@@ -11,15 +11,30 @@ endif
 
 ifeq (+,$(ROS_COMM_DEPEND_MK)) # -------------------------------------------
 
-PREFER.ros-comm?=	robotpkg
-
-SYSTEM_SEARCH.ros-comm=\
-	ros_comm/messages/std_msgs/msg/UInt8.msg
+include ../../meta-pkgs/ros-base/depend.common
+PREFER.ros-comm?=	${PREFER.ros-base}
 
 DEPEND_USE+=		ros-comm
 
-DEPEND_ABI.ros-comm?=	ros-comm>=1.6.0<1.7
+DEPEND_ABI.ros-comm?=	ros-comm>=1.8.15<1.9
 DEPEND_DIR.ros-comm?=	../../middleware/ros-comm
+
+SYSTEM_SEARCH.ros-comm=\
+	bin/roscore							\
+	include/ros/common.h						\
+	lib/libroscpp.so						\
+	share/rosbag/cmake/rosbag-config.cmake				\
+	share/rosconsole/cmake/rosconsole-config.cmake			\
+	share/roscpp/cmake/roscpp-config.cmake				\
+	share/rosgraph_msgs/cmake/rosgraph_msgs-config.cmake		\
+	share/roslisp/cmake/roslisp-config.cmake			\
+	share/rosout/cmake/rosout-config.cmake				\
+	share/rostest/cmake/rostest-config.cmake			\
+	share/xmlrpcpp/cmake/xmlrpcpp-config.cmake			\
+	'share/ros_comm/stack.xml:/<version>/s/[^0-9.]//gp'		\
+	'lib/pkgconfig/std_srvs.pc:/Version/s/[^0-9.]//gp'
+
+include ../../devel/roscpp-core/depend.mk
 
 endif # ROS_COMM_DEPEND_MK -------------------------------------------------
 

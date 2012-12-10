@@ -1,12 +1,16 @@
-Add missing boost cflags
+Add missing dependency on boost and log4cxx headers
 
---- clients/cpp/roscpp_serialization/CMakeLists.txt~	2010-11-10 00:51:22.000000000 +0100
-+++ clients/cpp/roscpp_serialization/CMakeLists.txt	2011-01-16 14:02:32.000000000 +0100
-@@ -16,4 +16,5 @@
- #set the default path for built libraries to the "lib" directory
- set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+--- tools/rosout/CMakeLists.txt~	2012-07-17 00:18:36.000000000 +0200
++++ tools/rosout/CMakeLists.txt	2012-10-10 15:04:11.040693336 +0200
+@@ -4,5 +4,11 @@
+ add_executable(rosout rosout.cpp)
+ target_link_libraries(rosout ${ROS_LIBRARIES})
  
--rosbuild_add_library(${PROJECT_NAME} src/serialization.cpp)
-\ No newline at end of file
-+rosbuild_add_boost_directories()
-+rosbuild_add_library(${PROJECT_NAME} src/serialization.cpp)
++find_package(Boost REQUIRED)
++include_directories(${Boost_INCLUDE_DIRS})
++find_package(PkgConfig REQUIRED)
++pkg_check_modules(log4cxx REQUIRED liblog4cxx)
++include_directories(${log4cxx_INCLUDE_DIRS})
++
+ install(TARGETS rosout
+   RUNTIME DESTINATION share/rosout/bin)

@@ -1,7 +1,7 @@
 Fix for boost>=1.50. See https://code.ros.org/trac/ros/ticket/4022
 
---- tools/rosbag/src/recorder.cpp~	2011-01-05 01:32:22.000000000 +0100
-+++ tools/rosbag/src/recorder.cpp	2012-08-21 18:00:03.000000000 +0200
+--- tools/rosbag/src/recorder.cpp~	2012-07-17 00:18:36.000000000 +0200
++++ tools/rosbag/src/recorder.cpp	2012-10-10 15:17:49.821719366 +0200
 @@ -436,7 +436,11 @@
                  break;
              }

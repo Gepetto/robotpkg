@@ -2,21 +2,30 @@
 # Created:			Anthony Mallet on Tue, 18 Jan 2011
 #
 
-PKGVERSION=	1.6.6
-PKGREVISION=	2
-MASTER_SITES=	${MASTER_SITE_ROS:=ros_comm/tags/ros_comm-${PKGVERSION_NOREV}}
+ROS_PKG=		ros-comm
+ROS_VERSION=		1.8.15
+PKGNAME=		${ROS_PKG}-${ROS_VERSION}
 
-ROS_PACKAGE=			comm
-ROS_COMMENT=			communication packages
-ROS_INSTALLATION_SUBDIR=	ros_comm
-NOT_FOR_PLATFORM=
+CATEGORIES=		middleware
+ROS_COMMENT=		communications-related libraries and tools
+HOMEPAGE=		http://www.ros.org/wiki/ros_comm
 
-BUILD_ROS_PACKAGE=		ros_comm
-
-FETCH_METHOD=			svn
 include ../../meta-pkgs/ros-base/Makefile.common
 
+SUBST_CLASSES+=		py-distsetup
+
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
+include ../../devel/catkin/depend.mk
 include ../../devel/log4cxx/depend.mk
-include ../../middleware/ros-core/depend.mk
+include ../../devel/ros-core/depend.mk
+include ../../devel/roscpp-core/depend.mk
+include ../../interfaces/ros-std-msgs/depend.mk
+include ../../interfaces/ros-std-msgs/depend.mk
+include ../../lang/ros-langs-dev/depend.mk
+include ../../middleware/ros-genmsg/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/apr.mk
+include ../../mk/sysdep/py-paramiko.mk
+include ../../mk/sysdep/py-yaml.mk
 include ../../mk/robotpkg.mk
