@@ -1,0 +1,12 @@
+Do not install patch .orig files
+
+--- CMakeLists.txt~	2012-06-14 00:11:58.000000000 +0200
++++ CMakeLists.txt	2012-10-07 19:02:08.000000000 +0200
+@@ -45,6 +45,7 @@
+   #NOTE the trailing slash here.  You need it.
+   DESTINATION share/catkin/
+   USE_SOURCE_PERMISSIONS
++  PATTERN "*.orig" EXCLUDE
+   )
+ install(FILES
+        ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/tests.cmake

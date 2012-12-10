@@ -1,0 +1,3 @@
+Catkin contains CMake macros that are useful in the development of ROS-related
+systems. In ROS Fuerte and later, many of the lower-level ROS libraries are
+being migrated to be CMake only.

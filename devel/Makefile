@@ -3,6 +3,7 @@
 
 COMMENT=	Software development tools
 
+SUBDIR+=	catkin
 SUBDIR+=	cortex-sdk
 SUBDIR+=	boost-build
 SUBDIR+=	boost-headers

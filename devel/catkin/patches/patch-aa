@@ -1,0 +1,12 @@
+catkin-build-debs-of-workspace cannot work anywhere else than on debian with
+root privileges (does some apt-get install and dpkg -i) and this looks more
+like an internal maintenance script than an end-user tool.
+
+--- bin/CMakeLists.txt~	2012-06-14 00:11:58.000000000 +0200
++++ bin/CMakeLists.txt	2012-07-15 14:16:31.000000000 +0200
+@@ -1,5 +1,4 @@
+ install(PROGRAMS
+-  catkin-build-debs-of-workspace
+   catkin-bump-version
+   catkin-parse-stack
+   catkin-topological-order
