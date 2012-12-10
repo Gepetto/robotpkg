@@ -1,0 +1,6 @@
+Project genmsg exists in order to decouple code generation from ROS .msg & .srv
+format files from the parsing of these files and from impementation details of
+the build system (project directory layout, existence or nonexistence of
+utilities like rospack, values of environment variables such as
+ROS_PACKAGE_PATH): i.e. none of these are required to be set in any particular
+way.
