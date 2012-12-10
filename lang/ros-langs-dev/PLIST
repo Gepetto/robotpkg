@@ -1,0 +1,5 @@
+@comment Mon Oct 8 18:40:56 CEST 2012
+lib/pkgconfig/langs-dev.pc
+share/langs-dev/cmake/langs-dev-config-version.cmake
+share/langs-dev/cmake/langs-dev-config.cmake
+share/langs-dev/stack.xml
