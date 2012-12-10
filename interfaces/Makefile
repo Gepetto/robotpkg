@@ -10,6 +10,7 @@ SUBDIR+=	abstract-robot-dynamics
 SUBDIR+=	abstract-gik-task
 SUBDIR+=	jrl-mal
 SUBDIR+=	ros-common_msgs
+SUBDIR+=	ros-common-msgs
 SUBDIR+=	ros-std-msgs
 
 include ../mk/robotpkg.subdir.mk

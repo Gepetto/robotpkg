@@ -1,0 +1,31 @@
+Install generated .msg in the correct place (not with the full source path
+under CMAKE_INSTALL_PREFIX).
+
+--- actionlib_msgs/cmake/actionlib_msgs-extras.cmake.in~	2012-07-26 20:35:09.000000000 +0200
++++ actionlib_msgs/cmake/actionlib_msgs-extras.cmake.in	2012-10-09 18:23:34.476534949 +0200
+@@ -22,13 +22,15 @@
+     set(DIRECTORY_FULL_PATH ${CMAKE_CURRENT_SOURCE_DIR}/${ARG_DIRECTORY})
+   endif()
+ 
+-  # todo, handle relative vs full path
++  # todo, handle relative vs full path XXX handled in robotpkg
+   _prepend_path(${DIRECTORY_FULL_PATH} "${ARG_FILES}" FILES_W_PATH)
++  # XXX robotpkg tries to handle todo
++  _prepend_path(${ARG_DIRECTORY} "${ARG_FILES}" FILES_WO_PATH)
+ 
+   list(APPEND ${PROJECT_NAME}_ACTION_FILES ${FILES_W_PATH})
+ 
+   if(NOT ARG_NOINSTALL)
+-    install(FILES ${FILES_W_PATH} DESTINATION share/${PROJECT_NAME}/${ARG_DIRECTORY})
++    install(FILES ${FILES_WO_PATH} DESTINATION share/${PROJECT_NAME}/${ARG_DIRECTORY})
+   endif()
+ 
+   foreach(actionfile ${FILES_W_PATH})
+@@ -54,6 +56,7 @@
+     endif()
+ 
+     add_message_files(
++      DST actions_gen
+       DIRECTORY ${OUTPUT_DIR}
+       FILES ${OUTPUT_FILES})
+ 
