@@ -1,33 +1,25 @@
-# robotpkg Makefile for:	middleware/ros-rx
-# Created:			Anthony Mallet on Mon, 20 Feb 2012
+# robotpkg Makefile for:	middleware/ros-comm
+# Created:			Anthony Mallet on Tue,  9 Oct 2012
 #
 
-PKGVERSION=	1.6.2
-MASTER_SITES=	${MASTER_SITE_ROS:=rx/tags/rx-${PKGVERSION_NOREV}}
+ROS_PKG=		rx
+ROS_VERSION=		1.8.9
 
-CATEGORIES?=	graphics
+CATEGORIES=		graphics
+ROS_COMMENT=		GUI tools
+HOMEPAGE=		http://www.ros.org/wiki/rx
 
-ROS_PACKAGE=			rx
-ROS_COMMENT=			GUI tools
-ROS_INSTALLATION_SUBDIR=	rx
-NOT_FOR_PLATFORM=
-
-FETCH_METHOD=			svn
 include ../../meta-pkgs/ros-base/Makefile.common
 
-# Replace wx-config path
-SUBST_CLASSES+=		rwx
-SUBST_STAGE.rwx=	pre-configure
-SUBST_MESSAGE.rwx=	Fixing wx-config path in configuration files
-SUBST_FILES.rwx=	wxswig/manifest.xml
-SUBST_SED.rwx=		-e 's|wx-config|${WX_CONFIG}|'
+SUBST_CLASSES+=		py-distsetup
 
+include ../../devel/catkin/depend.mk
+include ../../devel/ros-core/depend.mk
+include ../../interfaces/ros-std-msgs/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../middleware/ros-core/depend.mk
+include ../../sysutils/rospack/depend.mk
+include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/py-matplotlib.mk
 include ../../mk/sysdep/py-wxpython.mk
 include ../../mk/sysdep/wxwidgets.mk
-
-DEPEND_ABI.py-matplotlib+=	~gtk+wx
-
 include ../../mk/robotpkg.mk

@@ -1,4 +1,3 @@
-SHA1 (ros-rx-1.6.2.tar.gz) = 167fdbe4bfb42f9adf7c145d3e0dbac28031353a
-RMD160 (ros-rx-1.6.2.tar.gz) = c7018ade9fc957097d291deb68bcd0dcff5fb313
-SHA1 (patch-aa) = e73da8c6770387c883f49c53a11cf39d9acd7afb
-SHA1 (patch-ab) = d433b961ad98f1e06b8fdacfb65adf7df85088ee
+SHA1 (ros-fuerte-rx_1.8.9.orig.tar.gz) = 65d6ccab4ffabad5a44e1a36804ac16ec8f5879c
+RMD160 (ros-fuerte-rx_1.8.9.orig.tar.gz) = 641de48544c887e106d7deb3eca183960b124984
+Size (ros-fuerte-rx_1.8.9.orig.tar.gz) = 563206 bytes
