@@ -16,6 +16,7 @@ SUBDIR+=	py-yarp
 SUBDIR+=	robotis-oroyarp
 SUBDIR+=	ros-actionlib
 SUBDIR+=	ros-comm
+SUBDIR+=	ros-genmsg
 SUBDIR+=	yarp
 
 include ../mk/robotpkg.subdir.mk
