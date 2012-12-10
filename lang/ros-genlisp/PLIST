@@ -1,0 +1,18 @@
+@comment Mon Oct 8 22:04:01 CEST 2012
+bin/gen_lisp.py
+etc/langs/genlisp
+lib/pkgconfig/genlisp.pc
+${PYTHON_SITELIB}/genlisp-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/genlisp/__init__.py
+${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/genlisp/generate.py
+${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/generate${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/generate${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/genlisp/genlisp_main.py
+${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/genlisp_main${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/genlisp_main${PYTHON_TAG}.pyo
+share/genlisp/cmake/genlisp-config-version.cmake
+share/genlisp/cmake/genlisp-config.cmake
+share/genlisp/cmake/genlisp-extras.cmake
+share/genlisp/stack.xml

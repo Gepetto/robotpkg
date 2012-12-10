@@ -7,6 +7,7 @@ SUBDIR+=	jython
 SUBDIR+=	python31
 SUBDIR+=	python32
 SUBDIR+=	ros-gencpp
+SUBDIR+=	ros-genlisp
 SUBDIR+=	ros-genpy
 SUBDIR+=	sun-jdk
 
