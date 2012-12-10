@@ -1,7 +1,0 @@
-ros-common_msgs contains messages that are widely used by other ROS packages.
-These includes messages for actions (http://ros.org/wiki/actionlib_msgs),
-diagnostics (http://ros.org/wiki/diagnostic_msgs), geometric primitives
-(http://ros.org/wiki/geometry_msgs), robot navigation
-(http://ros.org/wiki/nav_msgs), and common sensors
-(http://ros.org/wiki/sensor_msgs), such as laser range finders, cameras, point
-clouds.
