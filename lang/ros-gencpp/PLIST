@@ -1,0 +1,17 @@
+@comment Mon Oct 8 22:00:47 CEST 2012
+bin/gen_cpp.py
+etc/langs/gencpp
+lib/pkgconfig/gencpp.pc
+${PYTHON_SITELIB}/gencpp-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/gencpp/__init__.py
+${PYTHON_SITELIB}/gencpp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/gencpp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+share/gencpp/bin/${PYTHON_PYCACHE}/gen_cpp${PYTHON_TAG}.pyc
+share/gencpp/bin/${PYTHON_PYCACHE}/gen_cpp${PYTHON_TAG}.pyo
+share/gencpp/bin/gen_cpp.py
+share/gencpp/cmake/gencpp-config-version.cmake
+share/gencpp/cmake/gencpp-config.cmake
+share/gencpp/cmake/gencpp-extras.cmake
+share/gencpp/msg.h.template
+share/gencpp/srv.h.template
+share/gencpp/stack.xml
