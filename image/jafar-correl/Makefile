@@ -2,15 +2,12 @@
 # Created:			Cyril Roussillon on Wed, 15 Jun 2011
 #
 
-JAFAR_PKG=		correl-0.1
+JAFAR_PKG=		correl-0.2
 
 CATEGORIES=		image
 JAFAR_COMMENT=		image correlation functions
 
 include ../../meta-pkgs/jafar/Makefile.common
-
-CPPFLAGS += -DJFR_NDEBUG
-CXXFLAGS += -pthread
 
 include ../../devel/jafar-kernel/depend.mk
 include ../../image/jafar-image/depend.mk
