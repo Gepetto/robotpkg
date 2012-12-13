@@ -15,7 +15,7 @@ include ../../meta-pkgs/jafar/depend.common
 PREFER.jafar-kernel?=	${PREFER.jafar}
 
 DEPEND_USE+=		jafar-kernel
-DEPEND_ABI.jafar-kernel?=jafar-kernel>=0.4
+DEPEND_ABI.jafar-kernel?=jafar-kernel>=0.5
 DEPEND_DIR.jafar-kernel?=../../devel/jafar-kernel
 
 SYSTEM_SEARCH.jafar-kernel=\
