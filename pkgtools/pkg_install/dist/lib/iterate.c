@@ -87,7 +87,7 @@ pkg_dir_iter(void *cookie)
 #endif
 		len = strlen(dp->d_name);
 		/* .tbz or .tgz suffix length + some prefix*/
-		if (len < 5)
+		if (arg->filter_suffix && len < 5)
 			continue;
 		if (arg->filter_suffix == 0 ||
 		    memcmp(dp->d_name + len - 4, ".tgz", 4) == 0 ||
