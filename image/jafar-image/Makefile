@@ -2,7 +2,7 @@
 # Created:			Cyril Roussillon on Wed, 15 Jun 2011
 #
 
-JAFAR_PKG=	image-2.2
+JAFAR_PKG=	image-2.2.1
 
 CATEGORIES=	image
 JAFAR_COMMENT=	basic image processing based on OpenCV

@@ -13,7 +13,7 @@ include/jafar/image/pyramid.hpp
 include/jafar/image/roi.hpp
 lib/libjafar-image.so
 lib/libjafar-image.so.2
-lib/libjafar-image.so.${PKGVERSION}
+lib/libjafar-image.so.2.2
 lib/pkgconfig/jafar-image.pc
 share/cmake/jafar/image-headers.cmake
 share/cmake/jafar/image-release.cmake
