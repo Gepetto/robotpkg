@@ -2,7 +2,7 @@
 # Created:			Redouane Boumghar on Wed, 15 Jun 2011
 #
 
-JAFAR_PKG=	jmath-0.3
+JAFAR_PKG=	jmath-0.4
 
 CATEGORIES=	math
 JAFAR_COMMENT=	mathematical tools (vector, matrix, random number ...)
@@ -10,9 +10,6 @@ JAFAR_COMMENT=	mathematical tools (vector, matrix, random number ...)
 include ../../meta-pkgs/jafar/Makefile.common
 
 USE_LANGUAGES+=		fortran # for cmake FindLapack. Sigh.
-
-CPPFLAGS += -DJFR_NDEBUG
-CXXFLAGS += -pthread
 
 PKG_SUPPORTED_OPTIONS+=	flann
 PKG_OPTION_DESCR.FLANN=	Enable FLANN support.

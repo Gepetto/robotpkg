@@ -14,7 +14,7 @@ include ../../meta-pkgs/jafar/depend.common
 PREFER.jafar-jmath?=	${PREFER.jafar}
 
 DEPEND_USE+=		jafar-jmath
-DEPEND_ABI.jafar-jmath?=jafar-jmath>=0.3
+DEPEND_ABI.jafar-jmath?=jafar-jmath>=0.4
 DEPEND_DIR.jafar-jmath?=../../math/jafar-jmath
 
 SYSTEM_SEARCH.jafar-jmath=\
