@@ -188,6 +188,13 @@ include ${ROBOTPKG_DIR}/mk/robotpkg.default.conf
 # version before redefining PKGNAME and PKGVERSION from the later.
 #
 
+# PKGREQD is a list of requirements for the package to build. It is usually set
+# by dependent packages before a recursion, but can also be set on the command
+# line. Multiple requirements must be merged as much as possible.
+ifneq (,$(filter-out 0 1,$(words ${PKGREQD})))
+  PKGREQD:=$(call preduce,${PKGREQD})
+endif
+
 # [_]PKGREVISION is the local package version [prefixed with r or empty]
 PKGREVISION?=
 _pkgrevision=		$(addprefix r,$(filter-out 0,$(strip ${PKGREVISION})))
