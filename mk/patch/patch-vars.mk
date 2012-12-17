@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011 LAAS/CNRS
+# Copyright (c) 2006-2009,2011-2012 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -68,7 +68,11 @@ _COOKIE.patch=		${WRKDIR}/.patch_cookie
 # patch is a public target to apply the distribution and pkgsrc
 # patches to the extracted sources for the package.
 #
-ifneq (,$(or ${PATCHFILES},$(filter yes,$(call exists,${PATCHDIR}))))
+ifeq (,$(or ${PATCHFILES},$(filter yes,$(call exists,${PATCHDIR}))))
+  NO_PATCH?=yes
+endif
+
+ifndef NO_PATCH
   include ${ROBOTPKG_DIR}/mk/patch/patch.mk
 else
   ifeq (yes,$(call exists,${_COOKIE.patch}))

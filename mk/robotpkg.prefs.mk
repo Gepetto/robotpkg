@@ -267,15 +267,15 @@ endif
 ifdef META_PACKAGE
 NO_CHECKSUM=		yes
 NO_EXTRACT=		yes
+NO_PATCH=		yes
 NO_CONFIGURE=           yes
 NO_BUILD=               yes
 DISTFILES=#		none
-PATCHDIR=		/nonexistent
 PLIST_SRC=#		none
 USE_LANGUAGES=#		none
 LICENSE=		meta-pkg
 WRKSRC=			${WRKDIR}
-do-patch do-install:
+do-install:
 	@${DO_NADA}
 endif
 
