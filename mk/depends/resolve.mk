@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2011 LAAS/CNRS
+# Copyright (c) 2008-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -78,8 +78,8 @@
 # PKG_ALTERNATIVE_SELECT.pkgx=	# macro returning non-empty if pkgx is ok
 # PKGTAG.pkgx=			# copied to PKGTAG.pkg
 #
-# ALTERNATIVE_ABI.pkgx=		pkg>=x.0<y.0 (note: not 'pkgx>=...')
-# ALTERNATIVE_MK.pkgx=		../../mk/sysdep/pkgx.mk
+# PKG_ALTERNATIVE_SET.pkgx=	# Evaluated when pkgx is selected
+# PKG_ALTERNATIVE_UNSET.pkgx=	# Evaluated when pkgx is not selected
 # -------------8<-------------8<-------------8<-------------8<-------------
 #
 # Users may set PREFER_ALTERNATIVE.pkg in robotpkg.conf. After dependency
@@ -328,8 +328,7 @@ endif
 resolve-alternatives:
 	${RUN} >${_ALTERNATIVES_FILE}; exec 3>>${_ALTERNATIVES_FILE};	\
   $(foreach _,${PKG_ALTERNATIVES},					\
-	${STEP_MSG} "Required virtual ${DEPEND_ABI.$_} provided"	\
-	  "by ${ALTERNATIVE_ABI.$_}";					\
+	${STEP_MSG} "Alternative ${DEPEND_ABI.$_} provided"		\
+	  "by ${DEPEND_ABI.${PKG_ALTERNATIVE.$_}}";			\
 	${ECHO} 1>&3 'PKG_ALTERNATIVE.$_=${PKG_ALTERNATIVE.$_}';	\
-	${ECHO} 1>&3 'ALTERNATIVE_ABI.$_=${ALTERNATIVE_ABI.$_}';	\
   )

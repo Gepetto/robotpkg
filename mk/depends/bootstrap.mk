@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2011 LAAS/CNRS
+# Copyright (c) 2009-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -83,7 +83,7 @@ bootstrap-depends-cookie: makedirs
 _REAL_BSDEPENDS_TARGETS+=	makedirs
 _REAL_BSDEPENDS_TARGETS+=	acquire-depends-lock
 _REAL_BSDEPENDS_TARGETS+=	bootstrap-depends-message
-ifdef DEPEND_ALTERNATIVE
+ifdef PKG_ALTERNATIVES
   _REAL_BSDEPENDS_TARGETS+=	resolve-alternatives
 endif
 _REAL_BSDEPENDS_TARGETS+=	pkg-bootstrap-depends
