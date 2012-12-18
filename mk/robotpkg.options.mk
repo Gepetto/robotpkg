@@ -158,7 +158,14 @@ endif
 
 # Remember the general options for `show-options' target
 #
-PKG_GENERAL_OPTIONS:=	${PKG_SUPPORTED_OPTIONS}
+PKG_GENERAL_OPTIONS:=$(filter-out					\
+    $(foreach _,							\
+      ${PKG_OPTIONS_OPTIONAL_GROUPS} ${PKG_OPTIONS_REQUIRED_GROUPS},	\
+      ${PKG_OPTIONS_GROUP.$_}),						\
+    $(foreach _,							\
+      ${PKG_OPTIONS_NONEMPTY_SETS},					\
+      ${PKG_OPTIONS_SET.$_}),						\
+  ${PKG_SUPPORTED_OPTIONS})
 
 
 # Create map of option to group and add group options to PKG_SUPPORTED_OPTIONS
