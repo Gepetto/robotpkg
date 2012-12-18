@@ -173,8 +173,10 @@ install-deinstall:
 # some sanity checks.
 #
 _INSTALL_ALL_TARGETS+=		acquire-install-localbase-lock
-_INSTALL_ALL_TARGETS+=		generate-install-script
-_INSTALL_ALL_TARGETS+=		do-install-failsafe
+ifndef NO_INSTALL
+  _INSTALL_ALL_TARGETS+=	generate-install-script
+  _INSTALL_ALL_TARGETS+=	do-install-failsafe
+endif
 _INSTALL_ALL_TARGETS+=		plist
 _INSTALL_ALL_TARGETS+=		install-failed
 ifndef NO_PKG_REGISTER

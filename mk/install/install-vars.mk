@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2012 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -63,21 +63,7 @@ _COOKIE.preinstall=	${WRKDIR}/.install_start
 #
 # install is a public target to install the package.
 #
-.PHONY: install
-ifndef NO_INSTALL
-  include ${ROBOTPKG_DIR}/mk/install/install.mk
-else
-  ifeq (yes,$(call exists,${_COOKIE.install}))
-    install:
-	@${DO_NADA}
-  else
-    $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
-    $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
-
-    install: $(call add-barrier, depends, install) build install-cookie;
-  endif
-endif
-
+include ${ROBOTPKG_DIR}/mk/install/install.mk
 include ${ROBOTPKG_DIR}/mk/install/deinstall.mk
 include ${ROBOTPKG_DIR}/mk/install/replace.mk
 

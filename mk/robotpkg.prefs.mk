@@ -268,15 +268,14 @@ ifdef META_PACKAGE
 NO_CHECKSUM=		yes
 NO_EXTRACT=		yes
 NO_PATCH=		yes
-NO_CONFIGURE=           yes
-NO_BUILD=               yes
+NO_CONFIGURE=		yes
+NO_BUILD=		yes
+NO_INSTALL=		yes
 DISTFILES=#		none
 PLIST_SRC=#		none
 USE_LANGUAGES=#		none
 LICENSE=		meta-pkg
 WRKSRC=			${WRKDIR}
-do-install:
-	@${DO_NADA}
 endif
 
 PATH:=			$(call prependpath,${LOCALBASE}/sbin,${PATH})
