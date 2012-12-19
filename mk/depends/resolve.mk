@@ -328,7 +328,33 @@ endif
 resolve-alternatives:
 	${RUN} >${_ALTERNATIVES_FILE}; exec 3>>${_ALTERNATIVES_FILE};	\
   $(foreach _,${PKG_ALTERNATIVES},					\
-	${STEP_MSG} "Alternative ${DEPEND_ABI.$_} provided"		\
-	  "by ${DEPEND_ABI.${PKG_ALTERNATIVE.$_}}";			\
 	${ECHO} 1>&3 'PKG_ALTERNATIVE.$_=${PKG_ALTERNATIVE.$_}';	\
   )
+
+
+# --- supported-alternatives-message ---------------------------------------
+#
+# print an informative message that lists the available alternatives for this
+# package.
+#
+
+ifdef PKG_ALTERNATIVES
+  pre-depends-hook: supported-alternatives-message
+
+  .PHONY: supported-alternatives-message
+  supported-alternatives-message:
+	@${PHASE_MSG} "Checking alternatives for ${PKGNAME}";		\
+  $(foreach _, $(sort ${PKG_ALTERNATIVES}),				\
+	  ${STEP_MSG} '${PKG_ALTERNATIVE_DESCR.${PKG_ALTERNATIVE.$_}}:'	\
+	    '${DEPEND_ABI.$_} provided by'				\
+	    '${DEPEND_ABI.${PKG_ALTERNATIVE.$_}}';			\
+  )									\
+	if ${TEST} -t 1; then						\
+	  ${ECHO_MSG} "You may want to abort the process now with"	\
+		"CTRL-C and review the";				\
+	  ${ECHO_MSG} "available alternatives with \`${MAKE}"		\
+		"show-options' before";					\
+	  ${ECHO_MSG} "continuing. Be sure to run \`${MAKE} clean'"	\
+		"after any change.";					\
+	fi
+endif

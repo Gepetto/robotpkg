@@ -386,10 +386,6 @@ pre-depends-hook: supported-options-message
 .PHONY: supported-options-message
 supported-options-message:
 	@${PHASE_MSG} "Checking build options for ${PKGNAME}";		\
-	${STEP_MSG} "Supported build options:";				\
-	$(foreach _o_,							\
-		$(sort ${PKG_SUPPORTED_OPTIONS}),			\
-		$(call _pkgopt_listopt,${_o_}))				\
 $(if $(strip ${PKG_OPTIONS}),						\
 	${STEP_MSG} "Building with the following options:";		\
 	$(foreach _o_,							\
