@@ -161,7 +161,7 @@ endif
 PKG_GENERAL_OPTIONS:=$(filter-out					\
     $(foreach _,							\
       ${PKG_OPTIONS_OPTIONAL_GROUPS} ${PKG_OPTIONS_REQUIRED_GROUPS},	\
-      ${PKG_OPTIONS_GROUP.$_}),						\
+      ${PKG_OPTIONS_GROUP.$_})						\
     $(foreach _,							\
       ${PKG_OPTIONS_NONEMPTY_SETS},					\
       ${PKG_OPTIONS_SET.$_}),						\
