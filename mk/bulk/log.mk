@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011 LAAS/CNRS
+# Copyright (c) 2011-2012 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -62,7 +62,7 @@ bulk-leftover:
 	${FIND} ${BULKBASE} -depth					\
 		! \( ${BULK_FIND_FILES_IGNORE} \) -print		\
 	| while read f; do						\
-	  if ${TEST} -d "$$f"; then					\
+	  if ${TEST} -d "$$f" -a ! -h "$$f"; then			\
 	    ${RMDIR} "$$f" 2>>/dev/null ||:;				\
 	    continue;							\
 	  fi;								\
