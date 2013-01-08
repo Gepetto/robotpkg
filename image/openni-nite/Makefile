@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Tue, 14 Dec 2010
 #
 
-PKGREVISION=	2
+PKGREVISION=	3
 DISTNAME=	NITE-Bin-Linux-${NI_ARCH}-v${PKG_VERSION}
 PKGNAME=	openni-nite-${PKG_VERSION}
 PKG_VERSION=	1.5.2.21
@@ -18,6 +18,8 @@ NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
 
 include ../../mk/robotpkg.prefs.mk
+
+ONLY_FOR_PLATFORM=	Linux-%
 ifeq (${MACHINE_ARCH},x86_64)
   NI_ARCH=x64
 else ifeq (${MACHINE_ARCH},i386)
@@ -36,10 +38,13 @@ INSTALLATION_DIRS = \
 	${PREFIX}/include/nite \
 	${PREFIX}/share/java
 
-# XXX the niReg process should be handled in INSTALL/DEINSTALL scripts
-do-install:
-	${RUN}cd ${WRKSRC} && \
-		PREFIX=${PREFIX} ${BASH} ./install.sh 
+NIREG=		${PREFIX.openni}/bin/niReg
+NILICENSE=	${PREFIX.openni}/bin/niLicense
+
+# INSTALL/DEINSTALL script
+INSTALL_VARS+=	ECHO SED SORT TEST NIREG NILICENSE
+INSTALL_SRC+=	${WRKDIR}/register
+DEINSTALL_SRC+=	${WRKDIR}/register
 
 DEPEND_METHOD.pax+=	bootstrap
 DEPEND_METHOD.bzip2+=	bootstrap
@@ -63,3 +68,34 @@ do-extract:
 	  ${BZIP2_CMD} -cd ${DISTFILES:.zip=.bz2} |	\
 	  ${PAX} -v -r					\
 	"
+
+do-install:
+	${RUN}cd ${WRKSRC} &&						\
+	${INSTALL_LOGFILTER} ${SH} -exc '				\
+	  ${CP} Bin/libXnVNite*.so ${DESTDIR}${PREFIX}/lib/;		\
+	  ${CP} Bin/libXnVCNITE*.so ${DESTDIR}${PREFIX}/lib/;		\
+	  ${CP} Bin/libXnVNITE.jni*.so ${DESTDIR}${PREFIX}/lib/;	\
+	  ${CP} Features_1_5_2/Bin/XnVSceneServer_1_5_2			\
+	    ${DESTDIR}${PREFIX}/bin/;					\
+	  ${CHMOD} a+x ${DESTDIR}${PREFIX}/bin/XnVSceneServer_1_5_2;	\
+	  ${CP} Include/* ${DESTDIR}${PREFIX}/include/nite/;		\
+	  ${CP} Bin/com.primesense.NITE.jar				\
+	    ${DESTDIR}${PREFIX}/share/java/;				\
+	  for f in Features_* Hands_*; do				\
+	    ${MKDIR} ${DESTDIR}${PREFIX}/etc/primesense/$$f;		\
+            ${CP} -r $$f/Data/* ${DESTDIR}${PREFIX}/etc/primesense/$$f;	\
+	    for l in $$f/Bin/lib*.so; do				\
+	      ${CP} $$l ${DESTDIR}${PREFIX}/lib/;			\
+	    done;							\
+	  done								\
+	'
+
+.PHONY: ${WRKDIR}/register
+${WRKDIR}/register: ${FILESDIR}/register
+	${RUN} cd ${WRKSRC}; exec >$@;					\
+	${CAT} $^;							\
+	for f in Features_* Hands_*; do					\
+	  for l in $$f/Bin/lib*.so; do					\
+	    ${ECHO} '# NIREG:' lib/$${l##*/} etc/primesense/$$f;	\
+	  done;								\
+	done
