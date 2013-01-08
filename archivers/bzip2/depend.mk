@@ -17,6 +17,11 @@ SYSTEM_SEARCH.bzip2=	\
 	include/bzlib.h	\
 	'lib/libbz2.*'
 
+# Don't call this variable "BZIP2" because the bzip2 program uses this
+# environment variable to define default options.
+#
+export BZIP2_CMD=	$(word 1,${SYSTEM_FILES.bzip2})
+
   # pull-in the user preferences for bzip2 now
   include ../../mk/robotpkg.prefs.mk
 
