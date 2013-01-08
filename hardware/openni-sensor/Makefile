@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Mon, 13 Dec 2010
 #
 
+PKGREVISION=	1
 COMMIT=		50b8b2d
 VERSION=	5.1.0.41
 DISTNAME=	openni-sensor-${VERSION}
@@ -19,6 +20,9 @@ USE_LANGUAGES=		c c++
 WRKSRC=			${WRKDIR}/PrimeSense-Sensor-${COMMIT}
 BUILD_DIRS=		Platform/Linux/Build
 INSTALLATION_DIRS=	bin lib share/openni etc/udev/rules.d
+
+NIREG=		${PREFIX.openni}/bin/niReg
+NILICENSE=	${PREFIX.openni}/bin/niLicense
 
 include ../../mk/robotpkg.prefs.mk
 
@@ -74,7 +78,18 @@ PKG_OPTION_SET.sse3:=	SSE_GENERATION=3
 PKG_OPTION_DESCR.sse2?=	Use Streaming SIMD Extensions 2 (sse2)
 PKG_OPTION_SET.sse2:=	SSE_GENERATION=2
 
-# XXX the niReg process should be handled in INSTALL/DEINSTALL scripts
+# INSTALL/DEINSTALL script
+INSTALL_VARS+=	ECHO SED SORT TEST NIREG NILICENSE
+INSTALL_SRC+=	${WRKDIR}/register
+DEINSTALL_SRC+=	${WRKDIR}/register
+
+include ../../middleware/openni/depend.mk
+include ../../pkgtools/install-sh/depend.mk
+
+DEPEND_ABI.openni+=	~sse${SSE_GENERATION}
+
+include ../../mk/robotpkg.mk
+
 do-install:
 	${INSTALL} ${WRKDIR}/${NI_ARCH}-Release/XnSensorServer ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/Data/GlobalDefaults.ini \
@@ -83,18 +98,21 @@ do-install:
 		echo "Installing $$file"; \
 		${INSTALL} ${WRKDIR}/${NI_ARCH}-Release/$$file ${PREFIX}/lib ; \
 	done
-	@cd ${WRKSRC} ; \
-	for file in `cat Platform/Linux/CreateRedist/install.sh | grep 'MODULES=.*\.so' | sed 's/\"//g' | awk -F "=" {'print $$2'}`; do \
-		echo "Registering $$file"; \
+	${RUN}cd ${WRKSRC}/Platform/Linux/CreateRedist;			\
+	files=`awk -F '=?\"' '/MODULES=.*\.so/ {print $$2}' install.sh`;\
+	for file in $$files; do						\
+		echo "Installing $$file"; \
 		${INSTALL} ${WRKDIR}/${NI_ARCH}-Release/$$file ${PREFIX}/lib ; \
-		${PREFIX}/bin/niReg -r ${PREFIX}/lib/$$file ${OPENNI_SHARE}; \
 	done
 	${INSTALL_DATA} ${FILESDIR}/${UDEV_RULES} \
 	  ${PREFIX}/etc/udev/rules.d
 
-include ../../middleware/openni/depend.mk
-include ../../pkgtools/install-sh/depend.mk
-
-DEPEND_ABI.openni+=	~sse${SSE_GENERATION}
-
-include ../../mk/robotpkg.mk
+.PHONY: ${WRKDIR}/register
+${WRKDIR}/register: ${ROBOTPKG_DIR}/middleware/openni/files/register
+	${RUN} cd ${WRKSRC}; exec >$@;					\
+	${CAT} $^;							\
+	cd ${WRKSRC}/Platform/Linux/CreateRedist;			\
+	files=`awk -F '=?\"' '/MODULES=.*\.so/ {print $$2}' install.sh`;\
+	for file in $$files; do						\
+	  ${ECHO} '# NIREG:' lib/$$file ${OPENNI_SHARE};		\
+	done
