@@ -87,3 +87,5 @@ lib/libnimCodecs.so
 lib/libnimMockNodes.so
 lib/libnimRecorder.so
 share/openni/SamplesConfig.xml
+share/openni/licenses.xml
+share/openni/modules.xml

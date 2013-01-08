@@ -1,0 +1,17 @@
+Do not build .NET wrapper - this fails too much
+
+--- Platform/Linux/Build/Makefile~	2012-01-04 12:35:46.000000000 +0100
++++ Platform/Linux/Build/Makefile	2013-01-08 18:30:26.380449730 +0100
+@@ -93,10 +93,10 @@
+ 
+ # decide if CLR projects should be build
+ ifneq "$(realpath /usr/bin/gmcs)" ""
+-	MONO_INSTALLED = 1
++#	MONO_INSTALLED = 1
+ 	
+ 	ifneq "$(shell gacutil -l | grep System.Windows.Forms)" ""
+-		MONO_WINFORMS_INSTALLED = 1
++#		MONO_WINFORMS_INSTALLED = 1
+ 	endif
+ endif
+ 

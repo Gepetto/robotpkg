@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Mon, 13 Dec 2010
 #
 
+PKGREVISION=	1
 COMMIT=		1516074
 VERSION=	1.5.2.23
 DISTNAME=	openni-${VERSION}
@@ -35,6 +36,9 @@ MAKE_FLAGS+=		BIN_DIR=${WRKDIR}
 MAKE_FLAGS+=		CFG=Release
 
 MAKE_JOBS_SAFE=		no
+
+NIREG=			${PREFIX}/bin/niReg
+NILICENSE=		${PREFIX}/bin/niLicense
 
 INCLUDE_DIRS.libusb1=	include
 INCLUDE_DIRS.freeglut=	include
@@ -78,7 +82,28 @@ SUBST_FILES.data-xml = \
 	Samples/NiUserTracker/main.cpp \
 	Samples/NiViewer/NiViewer.cpp
 
-# XXX the niReg process should be handled in INSTALL/DEINSTALL scripts
+# options
+PKG_OPTIONS_REQUIRED_GROUPS+=	sse
+PKG_SUGGESTED_OPTIONS+=		sse3
+PKG_OPTIONS_GROUP.sse=		sse2 sse3
+
+PKG_OPTION_DESCR.sse3?=	Use Streaming SIMD Extensions 3 (sse3)
+PKG_OPTION_SET.sse3:=	MAKE_FLAGS+=SSE_GENERATION=3
+
+PKG_OPTION_DESCR.sse2?=	Use Streaming SIMD Extensions 2 (sse2)
+PKG_OPTION_SET.sse2:=	MAKE_FLAGS+=SSE_GENERATION=2
+
+# INSTALL script
+INSTALL_VARS+=	ECHO SED SORT TEST NIREG NILICENSE
+INSTALL_SRC+=	${WRKDIR}/register
+
+include ../../mk/sysdep/freeglut.mk
+include ../../mk/sysdep/libusb1.mk
+include ../../pkgtools/install-sh/depend.mk
+include ../../pkgtools/pax/depend.mk
+include ../../mk/sysdep/java.mk
+include ../../mk/robotpkg.mk
+
 do-install:
 	${RUN}cd ${WRKSRC}/Include;					\
 	${PAX} $(if ${VERBOSE},-v) -rwp ma . ${PREFIX}/include/ni;	\
@@ -93,27 +118,14 @@ do-install:
 	  $(if ${VERBOSE},${ECHO} "Installing $$file";)			\
 	  ${INSTALL_LIB} $$file ${PREFIX}/lib;				\
 	done;								\
+	${NILICENSE} -l >/dev/null 2>&1
+
+.PHONY: ${WRKDIR}/register
+${WRKDIR}/register: ${FILESDIR}/register
+	${RUN} cd ${WRKSRC}; exec >$@;					\
+	${CAT} $^;							\
 	cd ${WRKSRC}/Platform/Linux/CreateRedist;			\
-	files=`awk -F '=?\"' '/MODULES=.*\.so/ { print $$2 }' install.sh`;	\
+	files=`awk -F '=?\"' '/MODULES=.*\.so/ {print $$2}' install.sh`;\
 	for file in $$files; do						\
-	  $(if ${VERBOSE},${ECHO} "Registering $$file";)		\
-	  ${PREFIX}/bin/niReg -r ${PREFIX}/lib/$$file ${OPENNI_SHARE};	\
+	  ${ECHO} '# NIREG:' lib/$$file ${OPENNI_SHARE};		\
 	done
-
-# options
-PKG_OPTIONS_REQUIRED_GROUPS+=	sse
-PKG_SUGGESTED_OPTIONS+=		sse3
-PKG_OPTIONS_GROUP.sse=		sse2 sse3
-
-PKG_OPTION_DESCR.sse3?=	Use Streaming SIMD Extensions 3 (sse3)
-PKG_OPTION_SET.sse3:=	MAKE_FLAGS+=SSE_GENERATION=3
-
-PKG_OPTION_DESCR.sse2?=	Use Streaming SIMD Extensions 2 (sse2)
-PKG_OPTION_SET.sse2:=	MAKE_FLAGS+=SSE_GENERATION=2
-
-include ../../mk/sysdep/freeglut.mk
-include ../../mk/sysdep/libusb1.mk
-include ../../pkgtools/install-sh/depend.mk
-include ../../pkgtools/pax/depend.mk
-include ../../mk/sysdep/java.mk
-include ../../mk/robotpkg.mk
