@@ -91,11 +91,12 @@ do-install:
 	'
 
 .PHONY: ${WRKDIR}/register
-${WRKDIR}/register: ${FILESDIR}/register
+${WRKDIR}/register: ${ROBOTPKG_DIR}/middleware/openni/files/register
 	${RUN} cd ${WRKSRC}; exec >$@;					\
 	${CAT} $^;							\
 	for f in Features_* Hands_*; do					\
 	  for l in $$f/Bin/lib*.so; do					\
 	    ${ECHO} '# NIREG:' lib/$${l##*/} etc/primesense/$$f;	\
 	  done;								\
-	done
+	done;								\
+	${ECHO} '# NILIC: PrimeSense 0KOIk2JeIBYClPWVnMoRKn5cdY4='
