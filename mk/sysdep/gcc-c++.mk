@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2009 LAAS/CNRS
+# Copyright (c) 2008-2009,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -46,12 +46,11 @@ SYSTEM_PKG.Debian.gcc-c++ =	g++
 
 SYSTEM_DESCR.gcc-c++ =	gcc C++ compiler, version ${_GCC_REQUIRED}
 SYSTEM_SEARCH.gcc-c++ =\
-	'bin/g++::% -dumpversion'	\
-	'{bin,lib}/{,g}cpp::% -dumpversion'
+	'bin/g++::% -dumpversion'
 
 # make sure to use += here, for chainable compilers definitions.
 ROBOTPKG_CXX+=$(word 1,${SYSTEM_FILES.gcc-c++})
-ROBOTPKG_CXXCPP+=$(word 2,${SYSTEM_FILES.gcc-c++})
+ROBOTPKG_CXXCPP+=$(word 1,${SYSTEM_FILES.gcc-c++}) -E
 
 endif # GCC_C++_DEPEND_MK --------------------------------------------------
 

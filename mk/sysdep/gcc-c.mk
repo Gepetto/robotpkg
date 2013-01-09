@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2010 LAAS/CNRS
+# Copyright (c) 2008-2010,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -42,12 +42,11 @@ DEPEND_ABI.gcc-c?=	gcc-c${_GCC_REQUIRED}
 
 SYSTEM_DESCR.gcc-c?=	gcc C compiler, version ${_GCC_REQUIRED}
 SYSTEM_SEARCH.gcc-c?=	\
-	'bin/gcc::% -dumpversion'	\
-	'{bin,lib}/{,g}cpp::% -dumpversion'
+	'bin/gcc::% -dumpversion'
 
 # make sure to use += here, for chainable compilers definitions.
 ROBOTPKG_CC+=$(word 1,${SYSTEM_FILES.gcc-c})
-ROBOTPKG_CPP+=$(word 2,${SYSTEM_FILES.gcc-c})
+ROBOTPKG_CPP+=$(word 1,${SYSTEM_FILES.gcc-c}) -E
 
 endif # GCC_C_DEPEND_MK ----------------------------------------------------
 
