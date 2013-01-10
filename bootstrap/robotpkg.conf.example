@@ -168,11 +168,6 @@ LOCALBASE =	$prefix
 # this. Disabling this for an individual package can be done by
 # setting MAKE_JOBS_SAFE=NO within the per package Makefile.
 
-${compiler_set}ROBOTPKG_COMPILER =	${compiler:-gcc}
-# Compiler type(s) to use for building packages
-# Possible: ccache gcc, gcc (see comments in mk/compiler/compiler-vars.mk)
-# Default: "gcc"
-
 ${sysconfdir_set}PKG_SYSCONFBASE = ${sysconfdir:-\\${LOCALBASE\\}/etc}
 # This is the main config directory under which all package configuration
 # files should be found.

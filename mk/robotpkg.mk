@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -57,6 +57,9 @@ all: build
 ifndef MK_ROBOTPKG_PREFS
   include ../../mk/robotpkg.prefs.mk
 endif
+
+# XXX Tmp: move to regular depend include once USE_LANGUAGE is deprecated
+$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
 
 # User build options processing
 $(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)

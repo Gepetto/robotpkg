@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2012 LAAS/CNRS
+# Copyright (c) 2008-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -128,36 +128,9 @@
 # -------------8<-------------8<-------------8<-------------8<-------------
 #
 
-# Define options common to all packages
-#
-ifndef NO_BUILD
-  ifneq (,$(filter c c++ fortran, ${USE_LANGUAGES}))
-    # option is defined here, but the _SET and UNSET scripts are defined by
-    # the compilers themselves, in gcc.mk
-    #
-    PKG_SUPPORTED_OPTIONS+=	debug
-    PKG_OPTION_DESCR.debug:=	Produce debugging information for binary programs
-
-    define PKG_OPTION_SET.debug
-      CFLAGS+=		${_CFLAGS_DEBUG}
-      CXXFLAGS+=	${_CFLAGS_DEBUG}
-      ifneq (,$(call isyes,${USE_CMAKE}))
-        CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Debug
-      endif
-    endef
-    define PKG_OPTION_UNSET.debug
-      CFLAGS+=		${_CFLAGS_NDEBUG}
-      CXXFLAGS+=	${_CFLAGS_NDEBUG}
-      ifneq (,$(call isyes,${USE_CMAKE}))
-        CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
-      endif
-    endef
-  endif
-endif
-
-
 # Remember the general options for `show-options' target
 #
+PKG_SUPPORTED_OPTIONS:=$(sort ${PKG_SUPPORTED_OPTIONS})
 PKG_GENERAL_OPTIONS:=$(filter-out					\
     $(foreach _,							\
       ${PKG_OPTIONS_OPTIONAL_GROUPS} ${PKG_OPTIONS_REQUIRED_GROUPS},	\

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009,2011-2012 LAAS/CNRS
+# Copyright (c) 2009,2011-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -120,3 +120,11 @@ export LC_TIME=C
 # Set HOME diretory. This is needed for some tools, e.g. latex for font
 # generation.
 export HOME=${WRKDIR}
+
+# Set compilers defaults to 'false' so that missing languages dependencies are
+# detected
+export CPP=	${FALSE}
+export CC=	${FALSE}
+export CXXCPP=	${FALSE}
+export CXX=	${FALSE}
+export FC=	${FALSE}
