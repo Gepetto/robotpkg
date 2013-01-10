@@ -29,4 +29,5 @@ MAKE_ENV+=	KMOD_DIR=${KMOD_DIR}
 pre-build:
 	cp ${FILESDIR}/Makefile ${WRKSRC}/Makefile
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

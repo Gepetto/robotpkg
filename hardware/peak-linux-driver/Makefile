@@ -38,4 +38,5 @@ ${WRKSRC}/pcan.pc:
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/popt.mk
 include ../../mk/sysdep/kernel.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

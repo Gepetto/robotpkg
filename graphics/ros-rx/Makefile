@@ -22,4 +22,5 @@ include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/py-matplotlib.mk
 include ../../mk/sysdep/py-wxpython.mk
 include ../../mk/sysdep/wxwidgets.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

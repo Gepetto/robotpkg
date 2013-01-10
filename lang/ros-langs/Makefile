@@ -14,4 +14,5 @@ include ../../meta-pkgs/ros-base/Makefile.common
 include ../../devel/catkin/depend.mk
 include ../../devel/roscpp-core/depend.mk
 include ../../lang/ros-langs-dev/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

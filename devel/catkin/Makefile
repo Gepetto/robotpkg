@@ -37,4 +37,5 @@ include ../../mk/sysdep/py-argparse.mk
 include ../../mk/sysdep/py-empy.mk
 include ../../mk/sysdep/py-nose.mk
 include ../../mk/sysdep/py-yaml.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

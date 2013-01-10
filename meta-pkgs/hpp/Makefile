@@ -22,4 +22,5 @@ include ../../devel/hpp-corbaserver/depend.mk
 include ../../path/hpp-walkfootplanner/depend.mk
 include ../../path/hpp-walkplanner/depend.mk
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

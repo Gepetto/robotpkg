@@ -23,4 +23,5 @@ include ../../devel/catkin/depend.mk
 include ../../sysutils/rospack/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
 include ../../mk/sysdep/py-nose.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

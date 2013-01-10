@@ -20,4 +20,5 @@ include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../middleware/pocolibs/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

@@ -39,4 +39,5 @@ include ../../image/viam-libs/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../mk/sysdep/libjpeg.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

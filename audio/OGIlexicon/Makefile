@@ -37,6 +37,7 @@ DEPEND_ABI.festival+=	festival>=1.96~ogireslpc
 include ../../audio/festival/depend.mk
 
 include ../../pkgtools/pax/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-install:

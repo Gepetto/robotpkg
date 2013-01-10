@@ -18,4 +18,5 @@ include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../localization/odokit/depend.mk
 include ../../mapping/segkit/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

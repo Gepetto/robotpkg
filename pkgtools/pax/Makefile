@@ -22,6 +22,7 @@ NO_CHECKSUM=		yes
 LIBNBCOMPAT_STYLE=	inplace
 include ../../pkgtools/libnbcompat/depend.mk
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

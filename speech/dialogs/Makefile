@@ -26,4 +26,5 @@ SUBST_SED.rpython=	-e '1s|^\\\#!.*python[0-9.]*|\\\#!${PYTHON}|'
 
 DEPEND_ABI.python=	python>=2.5<3
 include ../../mk/sysdep/python.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

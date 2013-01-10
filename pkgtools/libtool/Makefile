@@ -13,4 +13,5 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

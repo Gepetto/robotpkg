@@ -15,6 +15,7 @@ NO_BUILD=		yes
 BJAM_ARGS+=		--without-* # disable all libraries
 
 include ../../devel/boost-jam/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-install: bjam-install

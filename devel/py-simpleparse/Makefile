@@ -24,6 +24,7 @@ DEPEND_ABI.python=	python<3
 
 include ../../mk/sysdep/py-setuptools.mk
 include ../../mk/sysdep/python.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/simpleparse)

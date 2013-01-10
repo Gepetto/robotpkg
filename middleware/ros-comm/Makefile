@@ -28,4 +28,5 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/apr.mk
 include ../../mk/sysdep/py-paramiko.mk
 include ../../mk/sysdep/py-yaml.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

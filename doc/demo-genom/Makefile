@@ -18,4 +18,5 @@ GNU_CONFIGURE=		yes
 GENOM_MODULE=		demo
 
 include ../../architecture/genom/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

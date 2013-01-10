@@ -26,4 +26,5 @@ include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

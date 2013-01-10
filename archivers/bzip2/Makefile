@@ -18,6 +18,7 @@ INSTALLATION_DIRS=	bin include lib ${PKGMANDIR}/man1
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

@@ -20,6 +20,7 @@ INTERACTIVE_STAGE=	fetch
 INSTALLATION_DIRS+= include/sahand
 INSTALLATION_DIRS+= share/doc/sahand
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 pre-build:

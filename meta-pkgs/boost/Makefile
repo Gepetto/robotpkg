@@ -30,4 +30,5 @@ include ../../devel/boost-jam/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../doc/boost-docs/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

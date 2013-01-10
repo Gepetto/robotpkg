@@ -15,4 +15,5 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/catkin/depend.mk
 include ../../lang/ros-langs/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

@@ -18,6 +18,7 @@ NO_BUILD=		yes
 include ../../audio/festival/depend.mk
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-install:

@@ -32,4 +32,5 @@ include ../../devel/hpp-model/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

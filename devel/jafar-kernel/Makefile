@@ -9,4 +9,5 @@ JAFAR_COMMENT=		common tools (exceptions, logging facility ...)
 
 include ../../meta-pkgs/jafar/Makefile.common
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

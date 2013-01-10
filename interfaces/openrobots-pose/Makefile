@@ -17,5 +17,6 @@ LICENSE=			public-domain
 NO_CONFIGURE=		yes
 NO_BUILD=			yes
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 

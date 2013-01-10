@@ -30,4 +30,5 @@ define PKG_OPTION_SET.doc
   include ../../mk/sysdep/doxygen.mk
 endef
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

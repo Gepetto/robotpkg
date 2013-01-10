@@ -40,4 +40,5 @@ include ../../architecture/genom/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

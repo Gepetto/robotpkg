@@ -72,6 +72,7 @@ GCC_REQUIRED+=		>=4.0
 
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 KINEO_DIR=		${PREFIX}/kineo-2.06

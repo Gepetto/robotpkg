@@ -15,4 +15,5 @@ SUBST_CLASSES+=		py-distsetup
 
 include ../../devel/catkin/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

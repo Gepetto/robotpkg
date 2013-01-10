@@ -13,4 +13,5 @@ include ../../devel/jafar-kernel/depend.mk
 include ../../image/jafar-image/depend.mk
 include ../../math/jafar-jmath/depend.mk
 include ../../image/opencv/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

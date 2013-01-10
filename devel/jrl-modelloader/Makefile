@@ -20,4 +20,5 @@ LICENSE=		cnrs-hpp-closed-source
 GNU_CONFIGURE=		yes
 NO_BUILD=		yes
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

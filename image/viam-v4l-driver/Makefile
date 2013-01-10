@@ -12,4 +12,5 @@ CONFIGURE_ARGS+=	--disable-dc1394
 CONFIGURE_ARGS+=	--enable-v4l2
 
 include ../../image/viam-libs/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

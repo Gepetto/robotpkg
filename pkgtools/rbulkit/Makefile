@@ -23,4 +23,5 @@ include ../../mk/sysdep/git.mk
 include ../../mk/sysdep/sqlite3.mk
 include ../../mk/sysdep/sqlite3-tcl.mk
 include ../../mk/sysdep/tcl.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

@@ -17,4 +17,5 @@ include ../../devel/boost-libs/depend.mk
 include ../../devel/catkin/depend.mk
 include ../../mk/sysdep/py-nose.mk
 include ../../mk/sysdep/googletest.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

@@ -26,6 +26,7 @@ NO_CHECKSUM=		yes
 NO_PKGTOOLS_REQD_CHECK=	yes
 
 include ../../mk/sysdep/termcap.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

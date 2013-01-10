@@ -28,6 +28,7 @@ DEPEND_METHOD.java+=bootstrap
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/java.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

@@ -18,4 +18,5 @@ include ../../interfaces/genBasic-genom/depend.mk
 include ../../hardware/sick-genom/depend.mk
 include ../../localization/segloc-genom/depend.mk
 include ../../path/aspect-genom/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

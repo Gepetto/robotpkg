@@ -21,4 +21,5 @@ define PKG_OPTION_UNSET.api
 endef
 include ../../localization/pom-genom/depend.mk
 include ../../architecture/genom/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

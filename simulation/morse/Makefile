@@ -30,4 +30,5 @@ define PKG_OPTION_UNSET.doc
   CMAKE_ARGS+=		-DBUILD_DOC_SUPPORT=OFF
 endef
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

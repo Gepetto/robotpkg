@@ -15,4 +15,5 @@ ONLY_FOR_PLATFORM=	Linux-%
 
 GNU_CONFIGURE=		YES
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

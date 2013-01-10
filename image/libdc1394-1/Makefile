@@ -20,4 +20,5 @@ CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 
 include ../../image/libraw1394/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

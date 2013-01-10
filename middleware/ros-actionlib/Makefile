@@ -20,4 +20,5 @@ include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-langs/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

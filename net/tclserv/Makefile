@@ -21,4 +21,5 @@ CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})
 include ../../pkgtools/pkg-config/depend.mk
 include ../../middleware/pocolibs/depend.mk
 include ../../mk/sysdep/tcl.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

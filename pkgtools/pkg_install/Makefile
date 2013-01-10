@@ -54,6 +54,7 @@ do-extract:
 
 DEPEND_METHOD.pax+=	bootstrap
 include ../../pkgtools/pax/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 # We use the newly built robotpkg_{add,create,delete} when upgrading

@@ -23,6 +23,7 @@ INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 INSTALLATION_DIRS+=	${DOCDIR}
 
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-install:

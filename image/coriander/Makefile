@@ -22,4 +22,5 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/libgnomeui.mk
 include ../../mk/sysdep/libXv.mk
 include ../../mk/sysdep/SDL.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

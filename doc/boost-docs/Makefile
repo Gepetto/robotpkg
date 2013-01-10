@@ -17,6 +17,7 @@ DOCDIR=			${PREFIX}/share/doc/boost
 NO_BUILD=		yes
 
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-install:

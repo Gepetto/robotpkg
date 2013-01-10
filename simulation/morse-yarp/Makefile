@@ -19,4 +19,5 @@ CMAKE_ARGS+=		-DBUILD_HLA_SUPPORT=OFF
 
 include ../../middleware/py-yarp/depend.mk
 include ../../simulation/morse/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

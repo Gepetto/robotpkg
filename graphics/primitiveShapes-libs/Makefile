@@ -25,4 +25,5 @@ pre-build:
 		< ${FILESDIR}/primitiveShapes-libs.pc.in \
 		> ${WRKSRC}/primitiveShapes-libs.pc
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

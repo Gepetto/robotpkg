@@ -41,4 +41,5 @@ do-install:
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/kernel.mk
 include ../../mk/sysdep/sudo.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

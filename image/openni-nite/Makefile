@@ -58,6 +58,7 @@ include ../../mk/sysdep/wget.mk
 DEPEND_ABI.openni+=		~sse3
 DEPEND_ABI.openni-sensor+=	~sse3
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 # This is a zipped .tar.bz2. Yay.

@@ -20,4 +20,5 @@ include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/sysdep/bwidget.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

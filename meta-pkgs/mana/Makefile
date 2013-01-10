@@ -32,4 +32,5 @@ include ../../mapping/dtm-genom/depend.mk
 include ../../motion/pilo-genom/depend.mk
 include ../../shell/eltclsh/depend.mk
 include ../../www/picoweb/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

@@ -32,4 +32,5 @@ include ../../graphics/kpp-interfacewalk/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

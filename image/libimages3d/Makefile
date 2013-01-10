@@ -16,4 +16,5 @@ GNU_CONFIGURE=		yes
 
 include ../../math/t3d/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

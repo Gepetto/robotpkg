@@ -32,4 +32,5 @@ DEPEND_ABI.pilo-genom+=		~atrv
 DEPEND_ABI.rflex-genom+=	~atrv+gyroKVH5000
 DEPEND_ABI.sick-genom+=		~atrv
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

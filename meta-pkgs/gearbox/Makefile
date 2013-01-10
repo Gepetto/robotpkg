@@ -20,4 +20,5 @@ DEPEND_ABI.gbx-hokuyo-aist?=	gbx-hokuyo-aist>=1.0.0
 include ../../devel/gbx-share/depend.mk
 include ../../devel/gbx-flexiport/depend.mk
 include ../../hardware/gbx-hokuyo-aist/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

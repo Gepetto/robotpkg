@@ -35,6 +35,7 @@ ZLIB_STYLE=		inplace
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/libarchive/depend.mk
 include ../../archivers/zlib/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-extract:

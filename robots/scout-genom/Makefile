@@ -16,4 +16,5 @@ GNU_CONFIGURE=		yes
 GENOM_MODULE=		scout
 
 include ../../architecture/genom/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

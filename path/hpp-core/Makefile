@@ -17,4 +17,5 @@ include ../../meta-pkgs/hpp/Makefile.common
 include ../../devel/hpp-model/depend.mk
 include ../../devel/hpp-util/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

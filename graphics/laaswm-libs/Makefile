@@ -16,5 +16,6 @@ GNU_CONFIGURE=	yes
 
 include ../../mk/sysdep/tcl.mk
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 

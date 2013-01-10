@@ -20,4 +20,5 @@ SUBST_FILES.py-interp+=	scripts/aafigure
 DEPEND_ABI.python=	python<3
 
 include ../../mk/sysdep/python.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

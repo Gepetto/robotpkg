@@ -31,4 +31,5 @@ LIBRARY_DIRS.ncurses+=		lib
 RPATH_DIRS.ncurses+=      	lib
 
 include ../../mk/sysdep/ncurses.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

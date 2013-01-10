@@ -24,6 +24,7 @@ NO_BUILD=		yes
 
 include ../../devel/boost-headers/depend.mk
 include ../../pkgtools/pax/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-install:

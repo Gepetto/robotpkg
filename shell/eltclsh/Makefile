@@ -24,4 +24,5 @@ LIBRARY_DIRS.libedit+=	lib
 include ../../devel/libedit/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

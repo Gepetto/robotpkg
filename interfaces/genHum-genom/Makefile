@@ -23,4 +23,5 @@ PKG_SUPPORTED_OPTIONS:=$(filter-out api,${PKG_SUPPORTED_OPTIONS})
 PLIST.noapi=	@comment
 PLIST_VARS+=	noapi
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

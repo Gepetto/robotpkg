@@ -16,5 +16,6 @@ include ../../middleware/pocolibs/depend.mk
 include ../../interfaces/genPos-genom/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 

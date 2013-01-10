@@ -21,4 +21,5 @@ DEPEND_ABI.tk=	tk>=8.5
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
 include ../../mk/sysdep/bwidget.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

@@ -19,6 +19,7 @@ DEPEND_ABI.python=	python>=2.5<3
 include ../../mk/sysdep/py-pyaudio.mk
 include ../../mk/sysdep/speex.mk
 include ../../mk/sysdep/python.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/gspeett)

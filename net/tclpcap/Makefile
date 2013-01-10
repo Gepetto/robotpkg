@@ -15,4 +15,5 @@ CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
 
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/libpcap.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

@@ -40,6 +40,7 @@ NO_BUILD=		yes
 INSTALLATION_DIRS=	bin include
 
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 post-extract:

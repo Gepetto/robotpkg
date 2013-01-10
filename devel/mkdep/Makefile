@@ -16,4 +16,5 @@ LICENSE=		2-clause-bsd
 NOT_FOR_PLATFORM=	# empty
 GNU_CONFIGURE=		yes
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

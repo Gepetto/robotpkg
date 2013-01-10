@@ -24,6 +24,7 @@ include ../../devel/hpp-corbaserver/depend.mk
 include ../../middleware/omniORBpy/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/hpp) \

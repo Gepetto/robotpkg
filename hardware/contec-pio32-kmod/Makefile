@@ -23,6 +23,7 @@ INSTALLATION_DIRS+=${KMOD_DIR}
 
 include ../../mk/sysdep/kernel.mk
 include ../../mk/sysdep/sudo.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 post-install: install-kmod

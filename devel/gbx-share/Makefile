@@ -11,4 +11,5 @@ include ../../meta-pkgs/gearbox/Makefile.common
 
 CMAKE_ARGS+=	-DGBX_INSTALL_CMAKE_SCRIPTS=ON
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

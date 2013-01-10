@@ -22,4 +22,5 @@ MESSAGE_SUBST+=	KMOD=${KMOD}
 
 include ../../mk/sysdep/kernel.mk
 include ../../mk/sysdep/sudo.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

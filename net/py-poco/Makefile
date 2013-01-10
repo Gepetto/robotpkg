@@ -18,4 +18,5 @@ PYDISTUTILSPKG=		yes
 NO_CONFIGURE=		yes
 
 include ../../mk/sysdep/python.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

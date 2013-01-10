@@ -20,6 +20,7 @@ SUBST_SED.paths=\
 	$(foreach _,AWK MV CP CHMOD CHOWN MKDIR RM,-e 's|@$_@|${$_}|')
 SUBST_FILES.paths=	install-sh.in
 
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 # Use the install script to perform installation to avoid bootstrapping

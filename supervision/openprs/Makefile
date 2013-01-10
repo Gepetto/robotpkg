@@ -33,4 +33,5 @@ include ../../mk/sysdep/motif.mk
 include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/readline.mk
 include ../../mk/sysdep/tex-pkg.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

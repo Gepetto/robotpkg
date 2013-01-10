@@ -29,4 +29,5 @@ include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 include ../../sysutils/rospack/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

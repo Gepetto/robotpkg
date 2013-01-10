@@ -18,4 +18,5 @@ GENOM_MODULE=		force
 
 include ../../architecture/genom/depend.mk
 include ../../math/gbM/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

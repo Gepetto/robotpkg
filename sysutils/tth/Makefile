@@ -17,6 +17,7 @@ DOCDIR=			${PREFIX}/share/doc/tth
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 ${DOCDIR}
 
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-build:

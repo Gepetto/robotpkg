@@ -15,4 +15,5 @@ CONFIGURE_ARGS+=	--enable-dc1394
 
 include ../../image/libdc1394/depend.mk
 include ../../image/viam-libs/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

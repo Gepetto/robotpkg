@@ -20,4 +20,5 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../net/libtclserv_client/depend.mk
 include ../../mk/sysdep/java.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

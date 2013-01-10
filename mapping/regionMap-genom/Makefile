@@ -25,4 +25,5 @@ endef
 include ../../hardware/velodyne-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

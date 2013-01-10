@@ -22,4 +22,5 @@ include ../../mk/sysdep/libXext.mk
 include ../../mk/sysdep/libXt.mk
 include ../../mk/sysdep/libXxf86vm.mk
 include ../../mk/sysdep/xproto.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

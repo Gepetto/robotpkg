@@ -34,4 +34,5 @@ include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tdom.mk
 include ../../mk/sysdep/libpcap.mk
 include ../../mk/sysdep/autoconf.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

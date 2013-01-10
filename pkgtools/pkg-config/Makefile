@@ -16,4 +16,5 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-threads
 
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

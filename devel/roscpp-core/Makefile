@@ -16,4 +16,5 @@ include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/catkin/depend.mk
 include ../../devel/ros-core/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
