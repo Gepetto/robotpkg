@@ -15,8 +15,8 @@ _language_c++_mk:=defined
 #	The preferred C++ compiler to use. The order of the entries matters,
 #	since earlier entries are preferred over later ones.
 #
-#	Possible values: g++ ccache-g++
-#	Default: g++
+#	Possible values: g++ clang++ ccache-g++ ccache-clang++
+#	Default: g++ clang++
 #
 
 # define an alternative for available c-compilers packages
@@ -36,6 +36,15 @@ define PKG_ALTERNATIVE_SET.g++
   export CXXCPP=${GXX} -E
 endef
 
+PKG_ALTERNATIVE_DESCR.clang++ =	Use the LLVM C++ compiler
+PKG_ALTERNATIVE_SELECT.clang++ ?=ok # non-empty
+define PKG_ALTERNATIVE_SET.clang++
+  include ../../mk/sysdep/clang++.mk
+
+  export CXX=	${CLANGXX}
+  export CXXCPP=${CLANGXX} -E
+endef
+
 PKG_ALTERNATIVE_DESCR.ccache-g++ =	Use ccache and the GNU C++ compiler
 PKG_ALTERNATIVE_SELECT.ccache-g++ ?=	ok # non-empty
 define PKG_ALTERNATIVE_SET.ccache-g++
@@ -44,6 +53,18 @@ define PKG_ALTERNATIVE_SET.ccache-g++
 
   export CXX=	${CCACHE} ${GXX}
   export CXXCPP=${GXX} -E
+endef
+
+PKG_ALTERNATIVE_DESCR.ccache-clang++ =	Use ccache and the LLVM C++ compiler
+PKG_ALTERNATIVE_SELECT.ccache-clang++ ?=ok # non-empty
+define PKG_ALTERNATIVE_SET.ccache-clang++
+  include ../../mk/sysdep/ccache.mk
+  include ../../mk/sysdep/clang++.mk
+
+  CPPFLAGS+=-Qunused-arguments # because of ccache
+
+  export CXX=	${CCACHE} ${CLANGXX}
+  export CXXCPP=${CLANGXX} -E
 endef
 
 # compiler flags

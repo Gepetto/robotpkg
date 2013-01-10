@@ -21,8 +21,8 @@ _language_c_mk:=defined
 
 # define an alternative for available c-compilers packages
 PKG_ALTERNATIVES+=		c-compiler
-PKG_ALTERNATIVES.c-compiler=	gcc ccache-gcc
-PREFER_ALTERNATIVE.c-compiler?=	gcc
+PKG_ALTERNATIVES.c-compiler=	gcc clang ccache-gcc ccache-clang
+PREFER_ALTERNATIVE.c-compiler?=	gcc clang
 
 PREFER.c-compiler?=		system
 DEPEND_ABI.c-compiler=		c-compiler
@@ -36,6 +36,15 @@ define PKG_ALTERNATIVE_SET.gcc
   export CPP=	${GCC} -E
 endef
 
+PKG_ALTERNATIVE_DESCR.clang=	Use the LLVM C compiler
+PKG_ALTERNATIVE_SELECT.clang=	ok # non-empty
+define PKG_ALTERNATIVE_SET.clang
+  include ../../mk/sysdep/clang.mk
+
+  export CC=	${CLANG}
+  export CPP=	${CLANG} -E
+endef
+
 PKG_ALTERNATIVE_DESCR.ccache-gcc=	Use ccache and the GNU C compiler
 PKG_ALTERNATIVE_SELECT.ccache-gcc=	ok # non-empty
 define PKG_ALTERNATIVE_SET.ccache-gcc
@@ -44,6 +53,18 @@ define PKG_ALTERNATIVE_SET.ccache-gcc
 
   export CC=	${CCACHE} ${GCC}
   export CPP=	${GCC} -E
+endef
+
+PKG_ALTERNATIVE_DESCR.ccache-clang=	Use ccache and the LLVM C compiler
+PKG_ALTERNATIVE_SELECT.ccache-clang=	ok # non-empty
+define PKG_ALTERNATIVE_SET.ccache-clang
+  include ../../mk/sysdep/ccache.mk
+  include ../../mk/sysdep/clang.mk
+
+  CPPFLAGS+=-Qunused-arguments # because of ccache
+
+  export CC=	${CCACHE} ${CLANG}
+  export CPP=	${CLANG} -E
 endef
 
 # compiler flags
