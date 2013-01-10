@@ -9,7 +9,6 @@ JAFAR_COMMENT=	mathematical tools (vector, matrix, random number ...)
 
 include ../../meta-pkgs/jafar/Makefile.common
 
-USE_LANGUAGES+=		fortran # for cmake FindLapack. Sigh.
 
 PKG_SUPPORTED_OPTIONS+=	flann
 PKG_OPTION_DESCR.FLANN=	Enable FLANN support.
@@ -24,4 +23,5 @@ endef
 include ../../devel/jafar-kernel/depend.mk
 include ../../math/boost-numeric-bindings/depend.mk
 include ../../math/lapack/depend.mk
+include ../../mk/language/fortran.mk # for cmake FindLapack. Sigh.
 include ../../mk/robotpkg.mk

@@ -12,7 +12,6 @@ COMMENT=	Path planning for environments with moving obstacles - GenoM
 
 GNU_CONFIGURE=	yes
 GENOM_MODULE=	worldModelPlanner
-USE_LANGUAGES=	c++
 
 include ../../path/hpp-openhrp/depend.mk
 include ../../path/hpp-worldmodelplanner/depend.mk
@@ -20,4 +19,5 @@ include ../../mapping/worldmodelgrid3dg-genom/depend.mk
 include ../../devel/hpp-corbaserver/depend.mk
 include ../../net/netshring/depend.mk
 include ../../architecture/genom/depend.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

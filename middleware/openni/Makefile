@@ -16,7 +16,6 @@ LICENSE=	gnu-lgpl-v3
 
 NOT_FOR_PLATFORM=	NetBSD-%	# missing libusb1
 
-USE_LANGUAGES=		c c++
 
 OPENNI_SHARE=		${PREFIX}/share/openni
 
@@ -102,6 +101,8 @@ include ../../mk/sysdep/libusb1.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../pkgtools/pax/depend.mk
 include ../../mk/sysdep/java.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 do-install:

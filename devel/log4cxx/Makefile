@@ -13,7 +13,6 @@ MAINTAINER=	mallet@laas.fr
 COMMENT=	Log4cxx is a port to C++ of the Log4j project
 LICENSE=	apache-2.0
 
-USE_LANGUAGES+=	c c++
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-apr=${APR_CONFIG}
 CONFIGURE_ARGS+=--with-apr-util=${APU_CONFIG}
@@ -34,4 +33,6 @@ endef
 
 include ../../mk/sysdep/apr.mk
 include ../../mk/sysdep/apr-util.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

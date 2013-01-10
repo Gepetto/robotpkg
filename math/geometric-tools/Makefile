@@ -21,7 +21,6 @@ WM5_VERSION_MAJOR=	5
 WM5_VERSION_MINOR=	7
 
 WRKSRC=		${WRKDIR}/GeometricTools/${WM5_NAME}${WM5_VERSION_MAJOR}
-USE_LANGUAGES+=	c c++
 NO_CONFIGURE=	yes
 
 INSTALLATION_DIRS+=\
@@ -69,6 +68,8 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/libX11.mk
 include ../../mk/sysdep/mesa.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 do-install:

@@ -19,11 +19,12 @@ CONFIGURE_ARGS+=--with-glut=${PREFIX.freeglut}
 
 GENOM_MODULE=	clone
 
-USE_LANGUAGES=	c c++
 
 include ../../architecture/genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../mk/sysdep/freeglut.mk
 include ../../mk/sysdep/mesa.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

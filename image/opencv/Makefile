@@ -16,7 +16,6 @@ MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=opencvlibrary/}
 CONFLICTS+=		opencv1
 LICENSE=		modified-bsd
 
-USE_LANGUAGES+=		c c++
 
 # build configuration
 CMAKE_ARGS+=	-DBUILD_PACKAGE=OFF -DBUILD_SHARED_LIBS=ON
@@ -112,4 +111,6 @@ include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/libpng.mk
 include ../../mk/sysdep/libswscale.mk
 include ../../mk/sysdep/libtiff.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

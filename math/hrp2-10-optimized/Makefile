@@ -16,7 +16,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Optimized implementation of HRP2-10 dynamics.
 LICENSE=	cnrs-hpp-closed-source
 
-USE_LANGUAGES+= c c++
 
 DOXYGEN_PLIST_DIR+=	share/doc/hrp2-10-optimized
 
@@ -30,4 +29,6 @@ include ../../math/jrl-dynamics/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

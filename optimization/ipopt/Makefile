@@ -15,7 +15,6 @@ HOMEPAGE=	https://projects.coin-or.org/Ipopt
 COMMENT=	Interior Point OPTimizer, pronounced I-P-Opt
 LICENSE=	cpl
 
-USE_LANGUAGES=	c c++ fortran
 GNU_CONFIGURE=	yes
 
 # --------------------------------------------------------------------
@@ -23,4 +22,7 @@ GNU_CONFIGURE=	yes
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
+include ../../mk/language/fortran.mk
 include ../../mk/robotpkg.mk

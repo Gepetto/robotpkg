@@ -15,7 +15,6 @@ MAINTAINER=	gepetto@laas.fr
 #HOMEPAGE=	
 COMMENT=	Input and Output functions for KineoWorks(tm) package.
 
-USE_LANGUAGES+=	c c++
 
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/kwsIO
@@ -25,4 +24,6 @@ include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

@@ -17,7 +17,6 @@ LICENSE=		gnu-lgpl-v2
 CONFLICTS+=		libpyyarp-[0-9]*
 CONFLICTS+=		${PKGTAG.python-}libpyyarp-[0-9]*
 
-USE_LANGUAGES+=		c c++
 PKG_OPTIONS_SUFFIX=	py-yarp
 
 CMAKE_ARGS+=		-DCREATE_PYTHON=TRUE
@@ -39,6 +38,8 @@ include ../../middleware/yarp/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 post-configure:

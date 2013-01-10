@@ -20,7 +20,6 @@ RESTRICTED=	Redistribution not permitted
 NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
 
-USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/robotbuilder
 
 GNU_CONFIGURE=	yes
@@ -30,4 +29,6 @@ include ../../devel/hpp-model/depend.mk
 include ../../math/hrp2-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

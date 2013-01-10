@@ -15,7 +15,6 @@ COMMENT=	Cross-platform robot device interface & server
 LICENSE=	gnu-gpl-v2
 
 MAKE_JOBS_SAFE=	no
-USE_LANGUAGES=	c c++
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-alldrivers --disable-jplayer  --disable-libplayerc-py
@@ -28,4 +27,6 @@ RPATH_DIRS.libjpeg=	lib
 include ../../pkgtools/pkg-config/depend.mk
 include ../../archivers/zlib/depend.mk
 include ../../mk/sysdep/libjpeg.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

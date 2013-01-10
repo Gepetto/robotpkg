@@ -14,7 +14,6 @@ COMMENT=		GenoM interface module for the MesaImaging Swiss Ranger
 LICENSE=		isc
 
 GNU_CONFIGURE=		yes
-USE_LANGUAGES+=		c c++
 
 GENOM_MODULE=		sranger
 
@@ -24,4 +23,6 @@ include ../../hardware/libmesasr/depend.mk
 include ../../image/opencv/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../math/gbM/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

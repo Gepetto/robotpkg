@@ -13,7 +13,6 @@ LICENSE=		isc
 HOMEPAGE=		http://homepages.laas.fr/slemaign/oro-server/oro-server-bindings.html
 COMMENT=		C++ interface to the oro-server ontology server.
 
-USE_LANGUAGES+=		c c++
 BUILD_TARGET=		all
 INSTALL_TARGET=		install
 
@@ -36,4 +35,6 @@ endef
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

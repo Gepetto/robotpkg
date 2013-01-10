@@ -16,7 +16,6 @@ LICENSE=	gnu-lgpl-v3
 MAINTAINER=	openrobots@laas.fr
 
 MAKE_JOBS_SAFE=		no
-USE_LANGUAGES=		c c++
 WRKSRC=			${WRKDIR}/PrimeSense-Sensor-${COMMIT}
 BUILD_DIRS=		Platform/Linux/Build
 INSTALLATION_DIRS=	bin lib share/openni etc/udev/rules.d
@@ -88,6 +87,8 @@ include ../../pkgtools/install-sh/depend.mk
 
 DEPEND_ABI.openni+=	~sse${SSE_GENERATION}
 
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 do-install:

@@ -13,7 +13,6 @@ CATEGORIES=	motion
 COMMENT=	Hierarchical task based control of humanoid robots
 LICENSE=	gnu-lgpl-v3
 
-USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/sot-core
 
 CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
@@ -35,6 +34,8 @@ include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/py-sphinx.mk
 include ../../mk/sysdep/python.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 pre-configure:

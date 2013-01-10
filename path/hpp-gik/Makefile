@@ -13,7 +13,6 @@ COMMENT=		Generalized Inverse Kinematics for humanoid robots
 LICENSE=		gnu-lgpl-v3
 MAINTAINER=		gepetto@laas.fr
 
-USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/hpp-gik
 CMAKE_ARGS+=		-DDISABLE_TEST=YES
 
@@ -32,4 +31,6 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

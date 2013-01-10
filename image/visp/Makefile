@@ -14,7 +14,6 @@ HOMEPAGE=		http://www.irisa.fr/lagadic/visp/
 COMMENT=		The Visual Servoing Platform
 LICENSE=		qpl
 
-USE_LANGUAGES+=		c c++
 EG_DIR=			share/visp/examples
 INSTALLATION_DIRS+=	${EG_DIR}
 
@@ -80,6 +79,8 @@ include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/libpng.mk
 include ../../mk/sysdep/libxml2.mk
 include ../../mk/sysdep/libX11.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 # Install examples

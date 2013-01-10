@@ -14,7 +14,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Collision free walk path planning for a humanoid robot.
 LICENSE=	cnrs-hpp-closed-source
 
-USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
 
@@ -41,4 +40,6 @@ DEPEND_ABI.boost-libs?=		boost-libs>=1.35
 include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

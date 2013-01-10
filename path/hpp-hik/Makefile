@@ -14,7 +14,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=Solver of hierarchical linear inequality and equality constraints
 LICENSE=	cnrs-hpp-closed-source
 
-USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/hpp-hik
@@ -27,4 +26,6 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

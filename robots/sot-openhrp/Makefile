@@ -13,7 +13,6 @@ CATEGORIES=	robots
 COMMENT=	hrpsys plugin for the stack of tasks
 LICENSE=	gnu-lgpl-v3
 
-USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/sot-openhrp
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
@@ -40,6 +39,8 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/python.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 pre-configure:

@@ -12,7 +12,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM module for simple object detection and localization
 LICENSE=		2-clause-bsd
 
-USE_LANGUAGES=		c c++
 GENOM_MODULE=		hueblob
 
 # option for image display using opencv
@@ -38,4 +37,6 @@ include ../../image/viam-genom/depend.mk
 include ../../image/stereopixel-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../architecture/genom/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

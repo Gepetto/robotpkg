@@ -11,7 +11,6 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Probabilistic, 3D occupancy grid building
 
 GNU_CONFIGURE=	yes
-USE_LANGUAGES=	c c++
 
 DOXYGEN_PLIST_DIR+=	share/doc/worldModelGrid3D
 
@@ -35,4 +34,6 @@ endef
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

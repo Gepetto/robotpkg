@@ -15,7 +15,6 @@ HOMEPAGE=	http://collada-dom.sourceforge.net/
 LICENSE=	mit
 MAINTAINER=	openrobots@laas.fr
 
-USE_LANGUAGES+=	c c++
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 
 CMAKE_ARGS+=	-DOPT_COLLADA14=OFF
@@ -27,4 +26,6 @@ include ../../mk/sysdep/pcre.mk
 include ../../archivers/zlib/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

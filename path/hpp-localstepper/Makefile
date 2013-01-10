@@ -14,7 +14,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Whole-body motion planning for humanoid robot with steps
 LICENSE=	cnrs-hpp-closed-source
 
-USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/hpp-localstepper
@@ -25,4 +24,6 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

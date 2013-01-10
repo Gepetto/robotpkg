@@ -17,7 +17,6 @@ NOT_FOR_PLATFORM=	NetBSD-%
 NOT_FOR_PLATFORM+=	Fedora-17-%
 NOT_FOR_PLATFORM+=	Ubuntu-12.10-%
 
-USE_LANGUAGES=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/liborocos-rtt
 
 CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
@@ -37,4 +36,6 @@ include ../../devel/boost-libs/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/xerces-c.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

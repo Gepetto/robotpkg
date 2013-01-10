@@ -14,7 +14,6 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.cs.ubc.ca/~mariusm/index.php/FLANN/FLANN
 LICENSE=	2-clause-bsd
 
-USE_LANGUAGES+=	c c++
 
 CMAKE_ARGS+=	-DBUILD_MATLAB_BINDINGS=OFF
 CMAKE_ARGS+=	-DBUILD_PYTHON_BINDINGS=OFF
@@ -29,4 +28,6 @@ CMAKE_ARGS+=	-DLATEX_OUTPUT_PATH=${WRKSRC}
 
 include ../../mk/sysdep/latex.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

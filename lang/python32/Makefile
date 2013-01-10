@@ -16,7 +16,6 @@ COMMENT=	Interpreted, interactive, object-oriented programming language
 LICENSE=	psfl-v2
 
 CONFLICTS+=	python3-[0-9]*
-USE_LANGUAGES=	c c++
 MAKE_JOBS_SAFE=	no
 
 GNU_CONFIGURE=	yes
@@ -58,4 +57,6 @@ PRINT_PLIST_AWK_SUBST+= gsub("${PY_PLATNAME}/", "$${PY_PLATNAME}/");
 
 include ../../mk/sysdep/libffi.mk
 include ../../mk/sysdep/openssl.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

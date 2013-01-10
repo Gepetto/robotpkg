@@ -12,11 +12,12 @@ COMMENT=		GenoM module exporting raw motion capture data
 LICENSE=		isc
 
 
-USE_LANGUAGES+=		c c++
 
 GENOM_MODULE=		mocap
 
 include ../../net/evart-client/depend.mk
 include ../../architecture/genom/depend.mk
 
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

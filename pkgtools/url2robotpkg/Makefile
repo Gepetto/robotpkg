@@ -15,7 +15,6 @@ LICENSE=	public-domain
 WRKSRC=		${WRKDIR}
 NO_CHECKSUM=	yes
 NO_BUILD=	yes
-USE_LANGUAGES=	# none
 INSTALLATION_DIRS=	bin man/man8
 
 SUBST_CLASSES+=		up

@@ -17,13 +17,13 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.netlib.org/lapack/index.html
 COMMENT=	Linear Algebra PACKage.
 
-USE_LANGUAGES+=	fortran
 
 CMAKE_ARGS+=	-DBLAS_DIR=${PREFIX.blas}/lib
 CMAKE_ARGS+=	-DBLAS_LIBRARIES=blas
 
 include ../../math/blas/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/fortran.mk
 include ../../mk/robotpkg.mk
 
 post-extract:

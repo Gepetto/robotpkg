@@ -12,7 +12,6 @@ MAINTAINER=		xavier.broquere@laas.fr
 COMMENT=		Display collision detection information
 LICENSE=		gnu-lgpl-v3
 
-USE_LANGUAGES+=				c c++
 GENOM_MODULE=				coldman
 define PKG_OPTION_UNSET.api
   include ../../graphics/coldman-libs/depend.mk
@@ -21,4 +20,6 @@ endef
 
 include ../../architecture/genom/depend.mk
 include ../../manipulation/genManip-genom/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

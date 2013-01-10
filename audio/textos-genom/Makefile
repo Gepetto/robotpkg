@@ -13,7 +13,6 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=textos-genom/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}textos-genom
 
 GENOM_MODULE=	textos
-USE_LANGUAGES=	c c++
 
 define PKG_OPTION_UNSET.api
   CONFIGURE_ARGS+=	--with-festival=${PREFIX.festival}
@@ -21,4 +20,6 @@ define PKG_OPTION_UNSET.api
 endef
 
 include ../../architecture/genom/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

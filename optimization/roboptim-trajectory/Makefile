@@ -14,7 +14,6 @@ HOMEPAGE=	https://github.com/laas/roboptim-trajectory
 LICENSE=	gnu-lgpl-v3
 MAINTAINER=	roboptim-user@lists.sourceforge.net
 
-USE_LANGUAGES+= c c++
 DYNAMIC_PLIST_DIRS+=	share/doc/roboptim-trajectory
 
 # disable -Werror because of boost + gcc that don't cohabit well depending on
@@ -35,4 +34,6 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../optimization/roboptim-core/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

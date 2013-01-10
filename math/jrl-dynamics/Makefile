@@ -16,7 +16,6 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	JRL-Japan implementation of dynamic robot.
 LICENSE=	gnu-lgpl-v3
 
-USE_LANGUAGES+=	c c++
 
 DOXYGEN_PLIST_DIR+=	share/doc/jrl-dynamics
 
@@ -34,4 +33,6 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

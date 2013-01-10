@@ -16,7 +16,6 @@ COMMENT=	3D Visualization tools
 LICENSE=	2-clause-bsd
 
 MAKE_JOBS_SAFE=	no
-USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
@@ -38,4 +37,6 @@ include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/libX11.mk
 include ../../mk/sysdep/libXmu.mk
 include ../../mk/sysdep/libXpm.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

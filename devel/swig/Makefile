@@ -11,7 +11,6 @@ HOMEPAGE=	http://www.swig.org/
 COMMENT=	Simplified Wrapper and Interface Generator
 LICENSE=	2-clause-bsd
 
-USE_LANGUAGES=		c c++
 GNU_CONFIGURE=		yes
 BUILD_TARGET=		swig
 
@@ -29,6 +28,8 @@ define PKG_OPTION_SET.doc
 endef
 
 include ../../mk/sysdep/pcre.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 .PHONY: swig-install-doc

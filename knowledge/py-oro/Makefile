@@ -14,7 +14,6 @@ HOMEPAGE=		http://oro.openrobots.org
 LICENSE=		2-clause-bsd
 MAINTAINER=		openrobots@laas.fr
 
-USE_LANGUAGES=
 NO_CONFIGURE=		yes
 
 DEPEND_ABI.python+=	python<3

@@ -15,7 +15,6 @@ LICENSE=	2-clause-bsd
 
 NO_CHECKSUM=	yes
 NO_CONFIGURE=	yes
-USE_LANGUAGES=	# empty
 BUILD_TARGET=	# empty
 INSTALL_TARGET=	# empty
 MAKE_JOBS_SAFE= no

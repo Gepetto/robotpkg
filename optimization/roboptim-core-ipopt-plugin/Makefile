@@ -15,7 +15,6 @@ HOMEPAGE=	http://sourceforge.net/projects/roboptim/
 COMMENT=	plug-in linking ipopt to roboptim-core
 LICENSE=	cpl
 
-USE_LANGUAGES+= c c++
 
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core-ipopt-plugin
 
@@ -28,4 +27,6 @@ include ../../optimization/ipopt/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

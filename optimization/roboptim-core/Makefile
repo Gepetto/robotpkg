@@ -14,7 +14,6 @@ HOMEPAGE=	https://github.com/laas/roboptim-core
 LICENSE=	gnu-lgpl-v3
 MAINTAINER=	roboptim-user@lists.sourceforge.net
 
-USE_LANGUAGES+=		c c++
 CMAKE_ARGS+=		-DBOOST_ROOT=${PREFIX.boost-headers}
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
@@ -36,4 +35,6 @@ include ../../devel/boost-libs/depend.mk
 include ../../mk/sysdep/libtool-ltdl.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

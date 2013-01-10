@@ -17,9 +17,9 @@ COMMENT=        Basic Linear Algebra Subprograms (Fortran)
 
 WRKSRC=		${WRKDIR}/BLAS
 
-USE_LANGUAGES+=	fortran
 
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/fortran.mk
 include ../../mk/robotpkg.mk
 
 post-extract:

@@ -12,10 +12,10 @@ MAINTAINER=		mallet@laas.fr
 COMMENT=		A Proximity Query Package
 LICENSE=		pqp-license
 
-USE_LANGUAGES+=		c++
 NO_CONFIGURE=		yes
 BUILD_DIRS=		PQP_v${PKGVERSION_NOREV}
 INSTALLATION_DIRS=	include/pqp lib
 
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

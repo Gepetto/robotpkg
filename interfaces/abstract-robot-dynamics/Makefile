@@ -17,7 +17,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	JRL abstract interface for dynamic robot model.
 LICENSE =	original-bsd
 
-USE_LANGUAGES+=	c c++
 CMAKE_ARGS+= -DCXX_DISABLE_WERROR=TRUE
 
 # Build the package in a separate directory
@@ -34,4 +33,6 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

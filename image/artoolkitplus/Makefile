@@ -16,7 +16,6 @@ COMMENT=	Physical markers localization in real time
 
 LICENSE= gnu-gpl-v2
 
-USE_LANGUAGES=	c++
 WRKSRC=		${WRKDIR}
 
 MAKE_JOBS_SAFE=	no
@@ -52,6 +51,7 @@ DEPEND_METHOD.unzip+=	bootstrap
 
 include ../../mk/sysdep/qmake.mk
 include ../../mk/sysdep/unzip.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 # A custom extract procedure is required to convert CR/LF in source files

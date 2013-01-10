@@ -13,7 +13,6 @@ LICENSE=		public-domain
 MAINTAINER=		openrobots@laas.fr
 
 NOT_FOR_PLATFORM=	# empty
-USE_LANGUAGES=		c c++
 GNU_CONFIGURE=		yes
 
 # Fix header include path
@@ -43,6 +42,8 @@ endef
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/sysdep/automake.mk
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 # Replace the bundled scons scripts by a good old autoconf script that will

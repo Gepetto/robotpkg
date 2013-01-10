@@ -13,7 +13,6 @@ COMMENT=	3d transformations, matrices and vector package.
 LICENSE=	2-clause-bsd
 
 NOT_FOR_PLATFORM= # empty
-USE_LANGUAGES+=	c c++
 GNU_CONFIGURE=	yes
 
 BUILD_TARGET=	all
@@ -31,4 +30,6 @@ define PKG_OPTION_SET.doc
   include ../../mk/sysdep/doxygen.mk
 endef
 
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

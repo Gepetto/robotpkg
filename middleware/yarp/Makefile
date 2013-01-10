@@ -11,7 +11,6 @@ HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Yet Another Robot Platform
 LICENSE=		gnu-lgpl-v2
 
-USE_LANGUAGES+=		c c++
 
 CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
@@ -37,4 +36,6 @@ endef
 
 include ../../middleware/ace/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

@@ -17,7 +17,6 @@ COMMENT=	Python bindings for motion/dynamic-graph package
 
 CONFLICTS+=		py-dynamic-graph-[0-9]*
 CONFLICTS+=		py[0-9][0-9]-dynamic-graph-[0-9]*
-USE_LANGUAGES+=		c c++
 DYNAMIC_PLIST_DIRS+=	share/doc/dynamic-graph-python
 
 CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
@@ -39,6 +38,8 @@ include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/py-sphinx.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/dynamic_graph)

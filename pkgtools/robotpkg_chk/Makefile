@@ -16,7 +16,6 @@ WRKSRC=		${WRKDIR}
 NO_CHECKSUM=    yes
 NO_BUILD=       yes
 
-USE_LANGUAGES=  # empty
 
 SUBST_CLASSES+=         vars
 SUBST_STAGE.vars=       pre-configure

@@ -12,9 +12,10 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://tvmet.sourceforge.net/index.html
 COMMENT=	Tiny Vector and Matrix Template library.
 
-USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
 
 include ../../mk/sysdep/gcc-c++.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

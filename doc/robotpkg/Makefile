@@ -13,7 +13,6 @@ COMMENT=                A guide to robotpkg
 LICENSE=		2-clause-bsd
 
 DIST_SUBDIR=            ${PKGBASE}
-USE_LANGUAGES=#		empty
 
 OUTPUTS?=#		empty
 NO_CHECKSUM=		yes

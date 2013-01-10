@@ -10,14 +10,12 @@ CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-walkgen/}
 MASTER_REPOSITORY=	git git@github.com:jrl-umi3218/jrl-walkgen.git
 
-USE_LANGUAGES+=fortran c c++
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/jrl/spip/-Walk-Pattern-Generator-.html
 COMMENT=	Walk pattern generator for the HRP-2 humanoid robot.
 LICENSE=	gnu-lgpl-v3
 
-USE_LANGUAGES+=		c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/jrl-walkgen
 
 PKG_SUPPORTED_OPTIONS+= debug
@@ -37,4 +35,7 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
+include ../../mk/language/fortran.mk
 include ../../mk/robotpkg.mk

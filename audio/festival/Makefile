@@ -15,7 +15,6 @@ DISTFILES=		festival-1.96-beta.tar.gz	\
 			speech_tools-1.2.96-beta.tar.gz
 
 MAKE_JOBS_SAFE=		no
-USE_LANGUAGES+=		c c++
 
 WRKSRC=			${WRKDIR}
 FESTIVAL=		${WRKSRC}/festival
@@ -61,6 +60,8 @@ endif
 
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 ifneq (,$(filter mdi distinfo makesum,${MAKECMDGOALS}))

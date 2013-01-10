@@ -10,7 +10,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Demo application using pilo, locoDemo, Gdhe and picoweb
 LICENSE=		isc
 
-USE_LANGUAGES=		# empty
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
 

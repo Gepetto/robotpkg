@@ -16,10 +16,11 @@ RESTRICTED=	Redistribution of repackaged binaries not permitted
 NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
 
-USE_LANGUAGES+=		c c++
 DOXYGEN_PLIST_DIR+=	share/doc/hrp2-14
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

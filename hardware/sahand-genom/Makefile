@@ -11,7 +11,6 @@ MASTER_REPOSITORY=      ${MASTER_REPOSITORY_OPENROBOTS}sahand-genom
 MAINTAINER=     openrobots@laas.fr
 
 GNU_CONFIGURE=	yes
-USE_LANGUAGES=	c c++
 
 GENOM_MODULE=	sahand
 
@@ -22,4 +21,6 @@ include ../../devel/mkdep/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../manipulation/genManip-genom/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

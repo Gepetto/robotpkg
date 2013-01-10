@@ -15,7 +15,6 @@ COMMENT=		Open Robot Technology Middleware from AIST.
 LICENSE=		gnu-lgpl-v2.1
 
 MAKE_JOBS_SAFE=		no
-USE_LANGUAGES+=		c c++
 
 WRKSRC=			${WRKDIR}/${DISTNAME:-RELEASE=}
 
@@ -53,4 +52,6 @@ include ../../middleware/ace/depend.mk
 include ../../middleware/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/gtar.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

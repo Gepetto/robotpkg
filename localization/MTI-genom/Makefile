@@ -12,7 +12,6 @@ MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		GenoM module for MTI management
 
-USE_LANGUAGES+=         c c++
 #GNU_CONFIGURE=		yes
 
 GENOM_MODULE=		MTI
@@ -21,4 +20,6 @@ include ../../architecture/genom/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../hardware/MTI/depend.mk
 include ../../localization/pom-genom/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

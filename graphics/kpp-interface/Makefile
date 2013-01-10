@@ -14,7 +14,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Graphical user interface for HPP libraries.
 LICENSE=	cnrs-hpp-closed-source
 
-USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
 DOXYGEN_PLIST_DIR+=share/doc/kppInterface
@@ -31,4 +30,6 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/glu.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

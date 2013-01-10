@@ -13,7 +13,6 @@ HOMEPAGE=		http://www.orocos.org/ocl
 COMMENT=		The Orocos Component Library
 LICENSE=		gnu-lgpl-v2.1
 
-USE_LANGUAGES=		c c++
 
 WRKSRC=			${WRKDIR}/orocos-ocl-${OROCOS_VERSION}
 
@@ -30,4 +29,6 @@ endef
 include ../../middleware/orocos-rtt/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/readline.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

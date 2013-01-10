@@ -15,7 +15,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Helper functions for KineoWorks(tm) package.
 LICENSE=	cnrs-hpp-closed-source
 
-USE_LANGUAGES+=	c c++
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-lapack=${PREFIX.lapack}
@@ -35,4 +34,6 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/latex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

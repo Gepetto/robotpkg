@@ -15,7 +15,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Graphical user interface for hppWalkPlanner libraries.
 LICENSE=	cnrs-hpp-closed-source
 
-USE_LANGUAGES+= c c++
 
 GNU_CONFIGURE=	yes
 DOXYGEN_PLIST_DIR+=share/doc/kpp-interfacewalk
@@ -31,4 +30,6 @@ include ../../graphics/kpp-interface/depend.mk
 #FIXME? include ../../robots/hrpsys-jrl/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

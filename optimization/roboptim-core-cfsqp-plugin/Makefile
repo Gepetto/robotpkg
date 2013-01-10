@@ -12,7 +12,6 @@ HOMEPAGE=	http://roboptim.sourceforge.net
 COMMENT=	CFSQP solver back-end for roboptim-core
 LICENSE=	aemdesign-cfsqp-license
 
-USE_LANGUAGES+= c c++
 
 RESTRICTED=	Redistribution not permitted
 NO_PUBLIC_SRC=	${RESTRICTED}
@@ -37,6 +36,8 @@ include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/unzip.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 post-install:

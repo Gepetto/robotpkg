@@ -14,7 +14,6 @@ HOMEPAGE=		http://ros.org/wiki/rospkg
 
 WRKSRC=			${WRKDIR}/ros-rospkg-${COMMIT}
 
-USE_LANGUAGES=
 CONFLICTS+=		py[0-9][0-9]-rospkg-${VERSION}
 
 PYDISTUTILSPKG=		yes

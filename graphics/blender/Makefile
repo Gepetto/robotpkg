@@ -14,7 +14,6 @@ HOMEPAGE=		http://www.blender.org/
 COMMENT=		Fully integrated 3D graphics creation suite
 LICENSE=		gnu-gpl-v2
 
-USE_LANGUAGES+=		c c++
 
 CMAKE_ARG_PATH=		..
 CONFIGURE_DIRS=		_build
@@ -68,6 +67,8 @@ include ../../mk/sysdep/glew.mk
 include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/libXi.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 pre-configure:

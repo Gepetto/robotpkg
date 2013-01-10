@@ -26,13 +26,14 @@ CONFIGURE_ARGS+=	--disable-ace-examples
 # user selection.
 CONFIGURE_ARGS+=	--disable-optimize
 
-USE_LANGUAGES+=		c c++
 
 OVERRIDE_DIRDEPTH.pkg-config=	3
 
 BUILD_DIRS=		build
 
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 # create the build directory

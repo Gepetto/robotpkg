@@ -13,7 +13,6 @@ MAINTAINER=		xavier.broquere@laas.fr
 COMMENT=		COLision Detection for MANipulation
 LICENSE=		gnu-lgpl-v3
 
-USE_LANGUAGES+=		c c++
 
 # option for display using glut
 PKG_SUPPORTED_OPTIONS+=	display
@@ -34,4 +33,6 @@ PKG_OPTION_UNSET.display:=	CMAKE_ARGS+=-DENABLE_DISPLAY=OFF
 
 include ../../graphics/pqp/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

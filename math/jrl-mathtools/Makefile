@@ -12,7 +12,6 @@ HOMEPAGE=	https://github.com/jrl-umi3218/jrl-mathtools
 COMMENT=	Basic mathematical tools used in the JRL software
 LICENSE=	gnu-lgpl-v3
 
-USE_LANGUAGES+=		c c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/jrl-mathtools
 
 CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
@@ -30,6 +29,9 @@ include ../../math/lapack/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
+include ../../mk/language/fortran.mk
 include ../../mk/robotpkg.mk
 
 # cmake-2.8.6 has a buggy FindLAPACK: typo in CMAKE_FIND_LIBRARY_SUFFIXES

@@ -12,7 +12,6 @@ HOMEPAGE=	http://www.zeromq.org/
 COMMENT=	Small and fast socket communication library
 LICENSE=	gnu-lgpl-v3
 
-USE_LANGUAGES=	c c++
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=have_python=yes
 
@@ -36,4 +35,6 @@ endef
 ifneq (,$(filter Linux Solaris,${OS_KERNEL} ${OPSYS}))
   include ../../mk/sysdep/libuuid.mk
 endif
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

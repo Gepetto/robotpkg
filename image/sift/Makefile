@@ -16,7 +16,6 @@ LICENSE=		modified-bsd
 
 WRKSRC=			${WRKDIR}/sift
 
-USE_LANGUAGES+=		c c++
 MAKE_JOBS_SAFE=		no
 NO_CONFIGURE=		yes
 BUILD_TARGET=		all
@@ -40,4 +39,6 @@ include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/gtk.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

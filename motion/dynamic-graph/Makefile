@@ -13,7 +13,6 @@ COMMENT=		Efficient data-flow C++ library for robotics
 LICENSE=		gnu-lgpl-v3
 MAINTAINER=		gepetto@laas.fr
 
-USE_LANGUAGES+=		c c++
 DYNAMIC_PLIST_DIRS+=	share/doc/dynamic-graph
 
 # disable -Werror because of x86_64 warnings (must be fixed upstream) and
@@ -26,4 +25,6 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

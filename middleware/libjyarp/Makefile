@@ -13,7 +13,6 @@ HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Java bindings for YARP
 LICENSE=		gnu-gpl-v2
 
-USE_LANGUAGES+=		c c++
 
 CMAKE_ARGS+=		-DCREATE_JAVA=TRUE
 CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH=${JAVA_INCLUDE}
@@ -39,6 +38,8 @@ include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../devel/swig/depend.mk
 include ../../mk/sysdep/java.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 post-configure:

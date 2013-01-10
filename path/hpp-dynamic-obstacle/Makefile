@@ -13,7 +13,6 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Path planning for environments with moving obstacles
 
 GNU_CONFIGURE=	yes
-USE_LANGUAGES=	c++
 
 DOXYGEN_PLIST_DIR+=	share/doc/hppDynamicObstacle
 
@@ -23,4 +22,5 @@ include ../../path/kineo-pp/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

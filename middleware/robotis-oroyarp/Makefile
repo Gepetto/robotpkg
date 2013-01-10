@@ -14,7 +14,6 @@ HOMEPAGE=		http://robotis.onera.fr
 COMMENT=		The Orocos / YARP binding
 LICENSE=		gnu-lgpl-v3
 
-USE_LANGUAGES=		c c++
 CMAKE_ARGS+=		-DBUILD_EXAMPLE=off
 CMAKE_ARGS+=		-DBUILD_TESTS=off
 CMAKE_ARGS+=		-DBoost_INCLUDE_DIRS=${PREFIX.boost-headers}/include
@@ -26,4 +25,6 @@ include ../../devel/boost-libs/depend.mk
 include ../../middleware/orocos-rtt/depend.mk
 include ../../middleware/yarp/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

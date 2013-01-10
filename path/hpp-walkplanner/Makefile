@@ -16,7 +16,6 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Path planning algorithm for a walking humanoid robot.
 LICENSE=	cnrs-hpp-closed-source
 
-USE_LANGUAGES+= c c++
 
 DOXYGEN_PLIST_DIR+=	share/doc/hpp-walkplanner
 
@@ -36,4 +35,6 @@ include ../../path/hpp-walkfootplanner/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

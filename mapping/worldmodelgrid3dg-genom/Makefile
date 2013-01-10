@@ -12,7 +12,6 @@ MAINTAINER=	openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=	Probabilistic, 3D occupancy grid building - GenoM component
 
-USE_LANGUAGES+=	c c++
 GENOM_MODULE=	worldModelGrid3DG
 
 include ../../architecture/genom/depend.mk
@@ -20,4 +19,6 @@ include ../../mapping/worldmodelgrid3d/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../math/t3d/depend.mk
 include ../../image/stereopixel-genom/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

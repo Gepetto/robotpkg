@@ -15,8 +15,9 @@ HOMEPAGE=	http://eigen.tuxfamily.org/
 COMMENT=	a C++ template library for linear algebra
 LICENSE=	gnu-lgpl-v3
 
-USE_LANGUAGES=	c c++
 WRKSRC=		${WRKDIR}/eigen-eigen-0938af7840b0
 
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

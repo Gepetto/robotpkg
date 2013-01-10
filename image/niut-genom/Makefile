@@ -15,7 +15,6 @@ LICENSE=	isc
 
 GENOM_MODULE=	niut
 
-USE_LANGUAGES=	c c++
 
 
 PKG_SUPPORTED_OPTIONS+=	filter
@@ -29,4 +28,6 @@ endef
 include ../../image/openni-nite/depend.mk
 include ../../interfaces/genBasic-genom/depend.mk
 include ../../architecture/genom/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

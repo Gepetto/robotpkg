@@ -52,7 +52,6 @@ JAVA_WRAPPERS=		appletviewer apt extcheck idlj jar jarsigner	\
 WRKSRC=			${WRKDIR}/jdk1.6.0_33
 PLIST_SRC=		PLIST.${JAVA_ARCH}
 INSTALLATION_DIRS+=	bin ${JAVA_PREFIX}
-USE_LANGUAGES=
 NO_BUILD=		yes
 
 # the following forces compression of jarfiles, which is a huge disk

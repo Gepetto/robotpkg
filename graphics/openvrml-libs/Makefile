@@ -16,7 +16,6 @@ LICENSE=		gnu-lgpl-v3
 # Triggers a g++-4.1.2 internal error
 NOT_FOR_PLATFORM+=	NetBSD-5.1-%
 
-USE_LANGUAGES+=		c c++
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR=	share/doc/${DISTNAME}
 
@@ -50,4 +49,6 @@ include ../../mk/sysdep/libpng.mk
 include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/libtool-ltdl.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

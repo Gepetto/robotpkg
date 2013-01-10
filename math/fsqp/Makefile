@@ -17,7 +17,6 @@ RESTRICTED=	Redistribution not permitted
 NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
 
-USE_LANGUAGES+= c c++
 
 INTERACTIVE_STAGE=	fetch
 GNU_CONFIGURE=		yes
@@ -27,6 +26,8 @@ include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/unzip.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 post-extract:

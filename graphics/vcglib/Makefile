@@ -21,7 +21,6 @@ LICENSE=		gnu-gpl-v2
 
 INSTALL_TARGET=		install
 
-USE_LANGUAGES=		c++
 
 # fix path to eigen
 SUBST_CLASSES+=		eigen
@@ -49,6 +48,7 @@ endef # doc ----------------------------------------------------------------
 
 include ../../math/eigen2/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 post-extract:

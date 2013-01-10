@@ -13,7 +13,6 @@ COMMENT=		Pattern-based marker detection and localization
 # Viman license is GPL because it links with ARToolKit which is GPL.
 LICENSE=		gnu-gpl-v2
 
-USE_LANGUAGES+=		c c++
 
 GENOM_MODULE=		viman
 INCLUDE_DIRS.libjpeg+=	include
@@ -31,4 +30,6 @@ include ../../math/gbM/depend.mk
 include ../../math/t3d/depend.mk
 include ../../manipulation/genManip-genom/depend.mk
 include ../../mk/sysdep/libjpeg.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

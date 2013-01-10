@@ -16,10 +16,11 @@ COMMENT=	JRL abstract interface for generalized inverse kinematics tasks.
 LICENSE=	modified-bsd
 
 DOXYGEN_PLIST_DIR+=	share/doc/abstract-gik-task
-USE_LANGUAGES+=	c c++
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../interfaces/abstract-robot-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

@@ -13,7 +13,6 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Matrix abstraction layer for boost or vnl.
 LICENSE=	gnu-lgpl-v3
 
-USE_LANGUAGES+=		c c++ fortran
 DOXYGEN_PLIST_DIR+=	share/doc/jrl-mal
 
 CMAKE_ARGS+= -DBLAS_blas_LIBRARY=${PREFIX.blas}/lib/libblas.so
@@ -50,4 +49,7 @@ include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/latex.mk
 
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
+include ../../mk/language/fortran.mk
 include ../../mk/robotpkg.mk
