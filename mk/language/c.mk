@@ -51,6 +51,8 @@ define PKG_ALTERNATIVE_SET.ccache-gcc
   include ../../mk/sysdep/ccache.mk
   include ../../mk/sysdep/gcc.mk
 
+  DEPEND_ABI.ccache-gcc=${DEPEND_ABI.ccache} ${DEPEND_ABI.gcc}
+
   export CC=	${CCACHE} ${GCC}
   export CPP=	${GCC} -E
 endef
@@ -61,6 +63,7 @@ define PKG_ALTERNATIVE_SET.ccache-clang
   include ../../mk/sysdep/ccache.mk
   include ../../mk/sysdep/clang.mk
 
+  DEPEND_ABI.ccache-clang=${DEPEND_ABI.ccache} ${DEPEND_ABI.clang}
   CPPFLAGS+=-Qunused-arguments # because of ccache
 
   export CC=	${CCACHE} ${CLANG}
