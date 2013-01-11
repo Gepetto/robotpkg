@@ -58,9 +58,6 @@ ifndef MK_ROBOTPKG_PREFS
   include ../../mk/robotpkg.prefs.mk
 endif
 
-# XXX Tmp: move to regular depend include once USE_LANGUAGE is deprecated
-$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
-
 # User build options processing
 $(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 

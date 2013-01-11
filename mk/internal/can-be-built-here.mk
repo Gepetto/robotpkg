@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007,2009-2012 LAAS/CNRS
+# Copyright (c) 2007,2009-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -107,6 +107,11 @@ PKG_FAIL_REASON+= "You can override this check by doing:"
 PKG_FAIL_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
     endif
   endif
+endif
+
+# Warn about obsolete USE_LANGUAGES
+ifdef USE_LANGUAGES
+  $(shell echo >&2 'Warning: USE_LANGUAGES in ${PKGPATH} is deprecated.')
 endif
 
 

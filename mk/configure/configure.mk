@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -111,8 +111,6 @@ ifeq (yes,$(call exists,${_COOKIE.configure}))
 
   _cbbh_requires+=	${_COOKIE.configure}
 else
-  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
-
   ${_COOKIE.configure}: real-configure;
 endif
 

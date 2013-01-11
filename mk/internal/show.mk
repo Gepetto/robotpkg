@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011 LAAS/CNRS
+# Copyright (c) 2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -23,7 +23,6 @@
 # basically require everything so that all possible variables are correctly
 # defined
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 

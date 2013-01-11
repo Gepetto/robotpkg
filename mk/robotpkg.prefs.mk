@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -251,7 +251,17 @@ else
 endif
 
 INTERACTIVE_STAGE?=	none
-USE_LANGUAGES?=		c # most packages need a C compiler
+
+# legacy support for obsolete USE_LANGUAGES
+ifneq (,$(filter c,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/mk/language/c.mk
+endif
+ifneq (,$(filter c++,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/mk/language/c++.mk
+endif
+ifneq (,$(filter fortran,${USE_LANGUAGES}))
+  include ${ROBOTPKG_DIR}/mk/language/fortran.mk
+endif
 
 # Default to building for supported platforms only.
 ifeq (undefined,$(origin ONLY_FOR_PLATFORM))

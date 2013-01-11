@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -59,9 +59,6 @@
 #	flags as argument.
 #
 
-$(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
-
-
 BUILD_MAKE_FLAGS?=	# none
 BUILD_TARGET?=		all
 $(foreach _d,${BUILD_DIRS},$(eval BUILD_TARGET.${_d}?= ${BUILD_TARGET}))
@@ -114,8 +111,6 @@ ifeq (yes,$(call exists,${_COOKIE.build}))
 
   _cbbh_requires+=	${_COOKIE.build}
 else
-  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
-
   ${_COOKIE.build}: real-build;
 endif
 

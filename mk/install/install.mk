@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2012 LAAS/CNRS
+# Copyright (c) 2006,2009-2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -84,7 +84,6 @@ ifeq (yes,$(call exists,${_COOKIE.install}))
   _cbbh_requires+=	${_COOKIE.install}
 else
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/compiler/compiler-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
   ${_COOKIE.install}: real-install;
