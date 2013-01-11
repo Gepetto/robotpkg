@@ -30,7 +30,7 @@ endef
 
 include ../../pkgtools/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
-include ../../mk/sysdep/java.mk
+include ../../mk/language/java.mk
 include ../../mk/robotpkg.mk
 
 do-install: jena-install-lib

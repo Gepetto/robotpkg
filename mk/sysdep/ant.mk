@@ -33,4 +33,4 @@ endif # ANT_DEPEND_MK ------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
 
-include ../../mk/sysdep/java.mk
+include ../../mk/language/java.mk

@@ -13,7 +13,7 @@ ifeq (+,$(SUN_JDK_DEPEND_MK)) # --------------------------------------------
 
 DEPEND_USE+=		sun-jdk
 
-include ../../mk/sysdep/java.mk
+include ../../mk/language/java.mk
 PREFER.sun-jdk?=	robotpkg
 
 DEPEND_ABI.sun-jdk?=	sun-jdk>=1.6

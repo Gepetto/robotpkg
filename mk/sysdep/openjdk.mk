@@ -13,7 +13,7 @@ ifeq (+,$(OPENJDK_DEPEND_MK)) # --------------------------------------------
 
 DEPEND_USE+=		openjdk
 
-include ../../mk/sysdep/java.mk
+include ../../mk/language/java.mk
 PREFER.openjdk?=	system
 
 DEPEND_ABI.openjdk?=	openjdk>=1.6
