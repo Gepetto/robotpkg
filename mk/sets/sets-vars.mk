@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2011 LAAS/CNRS
+# Copyright (c) 2010-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -32,7 +32,6 @@
 PKGSET_PATTERN?=	PKGSET.%
 PKGSET_FAILSAFE?=	no
 PKGSET_STRICT?=		no
-
 
 # names of existing sets in robotpkg.conf, plus special 'installed' and
 # 'depends' set, sorted for unicity

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2011 LAAS/CNRS
+# Copyright (c) 2010-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -80,10 +80,10 @@ override define _pkgset_recursive
 	    exit 2;							\
 	  fi;								\
 	  if cd ${ROBOTPKG_DIR}/$$dir 2>/dev/null; then			\
-	    ${RECURSIVE_MAKE} $1 $(filter confirm,${MAKECMDGOALS})	\
-		  PKGREQD="$$pkg" || {					\
-	          $(call PKGSET_RECURSIVE_ERR,$$dir)			\
-	      };							\
+	    confirm="$(filter confirm,${MAKECMDGOALS})";		\
+	    if ! ${RECURSIVE_MAKE} $1 $$confirm PKGREQD="$$pkg"; then	\
+	      $(call PKGSET_RECURSIVE_ERR,$$dir)			\
+	    fi;								\
 	  else								\
 	    $(call PKGSET_NONEXISTENTPKG_ERR,$$dir,$*)			\
 	  fi;								\

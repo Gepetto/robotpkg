@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2012 LAAS/CNRS
+# Copyright (c) 2011-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -31,8 +31,10 @@ _BULK_TARGETS+= cleaner
 _BULK_TARGETS+=	bulk-message
 _BULK_TARGETS+=	makedirs
 _BULK_TARGETS+=	bulk-makedirs
+_BULK_TARGETS+=	pre-bulk
 _BULK_TARGETS+=	real-bulk
 _BULK_TARGETS+=	bulk-log
+_BULK_TARGETS+=	post-bulk
 _BULK_TARGETS+=	bulk-clean
 _BULK_TARGETS+=	bulk-done
 
@@ -75,6 +77,9 @@ bulk-tag:
 	fi
     endif
   endif
+
+.PHONY: pre-bulk post-bulk
+pre-bulk post-bulk:
 
 .PHONY: bulk-done
 bulk-done:
