@@ -1,6 +1,6 @@
 #!/usr/bin/awk -f
 #
-# Copyright (c) 2010-2011 LAAS/CNRS
+# Copyright (c) 2010-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -37,6 +37,7 @@ BEGIN {
     pathonly = 0
     noconflict = 0
     interactive = 0
+    eta = 0
     troot = "ø"
 
     ARGSTART = 1
@@ -62,6 +63,9 @@ BEGIN {
 	    ARGSTART++
 	} else if (option == "-i") {
 	    interactive = 1
+	    ARGSTART++
+	} else if (option == "-e") {
+	    eta = 1
 	    ARGSTART++
 	} else if (option == "-d") {
 	    ROBOTPKG_DIR = ARGV[ARGSTART + 1]
@@ -126,6 +130,7 @@ BEGIN {
     }
     depgraph()
     xwarn("Scanned " stackdone " packages")
+    if (sort) pkgtsort()
 }
 
 
@@ -133,7 +138,8 @@ BEGIN {
 #
 function usage() {
     print "usage: " ARGV[0]						\
-	" [-- [-1] [-r] [-s] [-n] [-p] [-i] [-d robotpkgdir]] [pkgpath ...]" \
+	" [-- [-1] [-r] [-s] [-n] [-p] [-i] [-e]"			\
+        " [-d robotpkgdir]] [pkgpath ...]"                              \
         > "/dev/stderr"
 }
 
@@ -154,13 +160,10 @@ function depgraph(		deps, d) {
             for(d in deps) pkgpush(pkg, d)
 	}
 
-        if (!sort) xprintpkg(pkg)
         done[pkg]
         stackdone++
+        if (!sort) xprintpkg(pkg)
     }
-    if (!sort) return
-
-    pkgtsort()
 }
 
 
@@ -181,12 +184,12 @@ function pkgtsort(	k, todo, dir) {
                 continue
             }
             if (!strict || (dir,troot) in graph || (troot,dir) in graph) {
+                stackdone+=pkgreqd[dir]
                 if (pathonly)
                     xprint(dir)
                 else
                     for(k = 1; k<=pkgreqd[dir]; k++)
-                        xprint(dir ":" pkgreqd[dir,k])
-                stackdone+=pkgreqd[dir]
+                        xprintpkg(dir ":" pkgreqd[dir,k])
             }
             graphdel(dir)
         }
@@ -494,8 +497,11 @@ function xprint(msg) {
 
 function xprintpkg(pkg,		dir) {
     dir = pdir(pkg)
-    if (!strict || (dir,troot) in graph || (troot,dir) in graph)
+    if (!strict || (dir,troot) in graph || (troot,dir) in graph) {
+        if (eta && stacktodo > 0)
+            xwarn("[" int((100*stackdone)/stacktodo) "%] Processing " pkg)
         xprint(pkg)
+    }
 }
 
 function xlog(msg) {

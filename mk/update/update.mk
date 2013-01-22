@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -212,7 +212,7 @@ ${_UPDATE_LIST}: $(call if-outdated-pkg,.FORCE)
 	          >>${@:=.err};						\
 	      fi;							\
 	    done;							\
-	  } | ${_pkgset_tsort_deps} -1 -s $$i				\
+	  } | ${_pkgset_tsort_deps} -1 -s -e $$i			\
 	  | while IFS=: read dir pkg; do				\
 	    if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;	\
 	    if ${TEST} "$$dir" = "***"; then				\

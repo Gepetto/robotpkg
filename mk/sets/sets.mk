@@ -30,25 +30,25 @@ set-clean-%: .FORCE
 	${RUN}$(call _pkgset_recursive,clean,-n -p)
 
 set-fetch-%: .FORCE
-	${RUN}$(call _pkgset_recursive,fetch cleaner,-n)
+	${RUN}$(call _pkgset_recursive,fetch cleaner,-n -e)
 
 set-extract-%: .FORCE
-	${RUN}$(call _pkgset_recursive,extract,-1 -n)
+	${RUN}$(call _pkgset_recursive,extract,-1 -n -e)
 
 set-install-%: .FORCE
-	${RUN}$(call _pkgset_recursive,install,-1)
+	${RUN}$(call _pkgset_recursive,install,-1 -e)
 
 set-replace-%: .FORCE
-	${RUN}$(call _pkgset_recursive,replace cleaner,-1)
+	${RUN}$(call _pkgset_recursive,replace cleaner,-1 -e)
 
 set-update-%: .FORCE
-	${RUN}$(call _pkgset_recursive,update,-1)
+	${RUN}$(call _pkgset_recursive,update,-1 -e)
 
 set-bulk-%: .FORCE
-	${RUN}$(call _pkgset_recursive,bulk)
+	${RUN}$(call _pkgset_recursive,bulk,-e)
 
 set-deinstall-%: .FORCE
-	${RUN}$(call _pkgset_recursive,deinstall,-r)
+	${RUN}$(call _pkgset_recursive,deinstall,-e -r)
 
 set-show-var-%: .FORCE
 	${RUN}$(call _pkgset_recursive,show-var)

@@ -84,9 +84,11 @@ show-license:
 .PHONY: show-depends
 show-depends:
 	${RUN}${PHASE_MSG} "Scanning packages for ${PKGNAME}";		\
-	${_pkgset_tsort_deps} -n ${PKGPATH} |				\
+	${_pkgset_tsort_deps} -e -n ${PKGPATH} |			\
 	while IFS=: read dir pkg; do					\
-	  if ${TEST} -z "$$dir"; then ${ECHO} >&2 "$$pkg"; continue; fi;\
+	  if ${TEST} -z "$$dir"; then					\
+	     ${PHASE_MSG} >&2 "$$pkg"; continue;			\
+	  fi;								\
 	  if ${TEST} "$$dir" = "***"; then				\
 	    ${ERROR_MSG} "$$pkg"; continue;				\
 	  fi;								\
