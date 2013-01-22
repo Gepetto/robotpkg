@@ -118,10 +118,10 @@ LOCALBASE =	$prefix
 # Possible: any path you like
 # Default: \\${ROBOTPKG_DIR}/distfiles
 
-# PACKAGES =	\\${ROBOTPKG_DIR}/packages
+# PACKAGES =	\\${ROBOTPKG_DIR}/packages/\\${MACHINE_PLATFORM}
 # Store generated packages on a per-architecture base
 # Possible: any path you like
-# Default: \\${ROBOTPKG_DIR}/packages
+# Default: \\${ROBOTPKG_DIR}/packages/\\${MACHINE_PLATFORM}
 
 # DIST_PATH =	/cdrom/0/distfiles:\\${HOME}/distfiles
 # Colon-delimited list of directories in which to search for \\${DISTFILES} and
