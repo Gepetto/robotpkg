@@ -1,7 +1,22 @@
-@comment Mon Nov 12 14:29:57 CET 2012
-etc/rbulk.conf
-sbin/rbulk-cron
+@comment Tue Feb 5 15:53:44 CET 2013
+${PKGMANDIR}/man1/rbulk-build.1
+${PKGMANDIR}/man1/rbulk-dispatch.1
+${PKGMANDIR}/man1/rbulk-dispatchd.1
+${PKGMANDIR}/man1/rbulk-locked.1
+${PKGMANDIR}/man1/rbulk-notify.1
+${PKGMANDIR}/man1/rbulk-report.1
+${PKGMANDIR}/man1/rbulk-watchd.1
+sbin/rbulk-build
+sbin/rbulk-dispatch
+sbin/rbulk-dispatchd
+sbin/rbulk-locked
+sbin/rbulk-notify
 sbin/rbulk-report
+sbin/rbulk-watchd
+share/examples/rbulkit/init/rbulk-dispatchd.conf
+share/examples/rbulkit/init/rbulk-watchd.conf
+share/examples/rbulkit/rbulk-dispatchd.conf
+share/examples/rbulkit/rbulk-watchd.conf
 share/examples/rbulkit/rbulk.conf
 share/rbulkit/db2html.tcl
 share/rbulkit/html/all.html
@@ -14,6 +29,7 @@ share/rbulkit/html/notavail.html
 share/rbulkit/html/pkg-post.html
 share/rbulkit/html/pkg-pre.html
 share/rbulkit/html/pkg.html
+share/rbulkit/html/rbulk-dispatchd.html
 share/rbulkit/html/rbulk.css
 share/rbulkit/html/sortable.gif
 share/rbulkit/html/sorted_down.gif

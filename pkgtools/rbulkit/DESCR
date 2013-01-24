@@ -1,11 +1,23 @@
-rbulkit is a set of helper scripts for managing robotpkg bulk builds.
-It features:
+rbulkit is a set of helper scripts and programs for managing robotpkg bulk
+builds. It features:
 
- - rbulk_cron, an example shell script that can be installed in a crontab. The
-   script assumes that a working robotpkg source tree is available and setup
-   and invokes a bulk target from there. Errors are e-mailed back.
+ - rbulk-build, a shell script performing all the necessary tasks to run a
+   build and produce an HTML report.
 
- - rbulk_report will create (or update) an sqlite3 database from the results of
+ - rbulk-report creates (or update) an sqlite3 database from the results of
    a previous bulk build. The database is populated with the log files lefts by
    the robotpkg bulk target. rbulk_report can also generate a detailed (HTML)
    report from the bulk data available in the database.
+
+ - rbulk-dispatchd schedules N parallel jobs amongst M with priority handling
+   and job preemption.
+
+ - rbulk-dispatch sends job requests to rbulk-dispatchd
+
+ - rbulk-locked provides an advisory lock on a file from a shell script. It is
+   designed to work on NFS filesystem.
+
+ - rbulk-watchd is an inetd(8)-like daemon that executes jobs when it receives
+   a remote notification.
+
+ - rbulk-notify sends remote notifications to rbulk-watchd.
