@@ -212,7 +212,7 @@ ${_UPDATE_LIST}: $(call if-outdated-pkg,.FORCE)
 	          >>${@:=.err};						\
 	      fi;							\
 	    done;							\
-	  } | ${_pkgset_tsort_deps} -1 -s -e $$i			\
+	  } | ${_pkgset_tsort_deps} -1 -s $$i				\
 	  | while IFS=: read dir pkg; do				\
 	    if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;	\
 	    if ${TEST} "$$dir" = "***"; then				\
