@@ -259,9 +259,7 @@ bulk-check-noinstalled:
 # --- bulk-{bootstrap,full}-depends ----------------------------------------
 #
 # Install the required dependencies from existing binary packages. Missing
-# system dependencies abort the process, while non existant robotpkg
-# dependencies trigger a recursive bulk for the missing package. Dependencies
-# flagged as +PRESERVE before a recursive bulk is triggered.
+# dependencies abort the process.
 #
 bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	${RUN}								\
@@ -323,38 +321,8 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	    fi;								\
 									\
 	    ${STEP_MSG} "Required $$kind package $$abi: NOT found";	\
-	    ${STEP_MSG} "Verifying bulk for $$dir";			\
-	    if cd "$$dir" 2>/dev/null; then				\
-	      >${WRKDIR}/.bulk-preserve;				\
-	      ${BULK_PKG_INFO} -e '*' | while read p; do		\
-	         ${TEST} ! -f ${BULK_DBDIR}/$$p/${_PRESERVE_FILE} ||	\
-	           continue;						\
-	         >${BULK_DBDIR}/$$p/${_PRESERVE_FILE};			\
-	         ${ECHO} $$p >>${WRKDIR}/.bulk-preserve;		\
-	      done;							\
-	      ${RECURSIVE_MAKE} bulk PKGREQD="$$abi" || {		\
-	        ${BULK_BRK} "Recursive bulk for $$abi: Error $$?";	\
-	        brk=`${RECURSIVE_MAKE} show-var				\
-			 VARNAME=PKGNAME PKGREQD="$$abi"`;		\
-	        ${BULK_BRKBY} "$$brk";					\
-	      };							\
-	      while read p; do						\
-	         ${RM} ${BULK_DBDIR}/$$p/${_PRESERVE_FILE};		\
-	      done <${WRKDIR}/.bulk-preserve;				\
-	      ${RM} ${WRKDIR}/.bulk-preserve;				\
-	    else							\
-	      ${BULK_BRK} "Missing directory for $$abi: $$dir";		\
-	      continue;							\
-	    fi;								\
-									\
-	    pkgfile=`${BULK_BESTAVAIL} "$$abi"`;			\
-	    if ${TEST} -z "$$pkgfile"; then				\
-	      ${ERROR_MSG} "A package matching \`$$abi' should";	\
-	      ${ERROR_MSG} "have been built, but it cannot be found.";	\
-	      ${BULK_BRK} "Recursive bulk for package $$abi: MISSING";	\
-	      continue;							\
-	    fi;								\
-	    ${STEP_MSG} "Returning to bulk build of ${PKGNAME}";	\
+	    ${BULK_BRK} "Required $$kind package $$abi: NOT found";	\
+	    continue;							\
 	  fi;								\
 									\
 	  best=`${BULK_BESTINSTALLED} "$$abi" ||:`;			\
