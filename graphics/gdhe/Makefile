@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	gdhe-3.8.2
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gdhe
