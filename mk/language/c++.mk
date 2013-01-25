@@ -64,9 +64,8 @@ define PKG_ALTERNATIVE_SET.ccache-clang++
   include ../../mk/sysdep/clang++.mk
 
   DEPEND_ABI.ccache-clang++ =${DEPEND_ABI.ccache} ${DEPEND_ABI.clang++}
-  CPPFLAGS+=-Qunused-arguments # because of ccache
 
-  export CXX=	${CCACHE} ${CLANGXX}
+  export CXX=	${CCACHE} ${CLANGXX} -Qunused-arguments
   export CXXCPP=${CLANGXX} -E
 endef
 
