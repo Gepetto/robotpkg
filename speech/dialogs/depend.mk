@@ -14,7 +14,7 @@ ifeq (+,$(PY_DIALOGS_DEPEND_MK)) # -----------------------------------------
 PREFER.py-dialogs?=	robotpkg
 
 DEPEND_USE+=		py-dialogs
-DEPEND_ABI.py-dialogs?=	${PKGTAG.python-}dialogs>=0.5
+DEPEND_ABI.py-dialogs?=	${PKGTAG.python-}dialogs>=0.9
 DEPEND_DIR.py-dialogs?=	../../speech/dialogs
 
 SYSTEM_SEARCH.py-dialogs=\
