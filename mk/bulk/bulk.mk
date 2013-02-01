@@ -62,10 +62,12 @@ endif
 bulk-message:
 	@${PHASE_MSG} "Bulk building for ${PKGNAME}"
 
+# The trick is to have make(1) report another status than 0,1 or 2
 .PHONY: bulk-stop-message
 bulk-stop-message:
 	@${STEP_MSG} "Bulk cancelled by ${BULK_STOPFILE}"
-	exit 1
+	@ps -p $$$$ -o ppid= | { read ppid; kill -INT "$$ppid"; }
+
 
 .PHONY: bulk-tag
 bulk-tag:

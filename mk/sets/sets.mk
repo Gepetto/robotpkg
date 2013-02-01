@@ -81,9 +81,12 @@ override define _pkgset_recursive
 	  fi;								\
 	  if cd ${ROBOTPKG_DIR}/$$dir 2>/dev/null; then			\
 	    confirm="$(filter confirm,${MAKECMDGOALS})";		\
-	    if ! ${RECURSIVE_MAKE} $1 $$confirm PKGREQD="$$pkg"; then	\
+	    ${RECURSIVE_MAKE} $1 $$confirm PKGREQD="$$pkg" || {		\
+	      if test $$? -eq 130; then					\
+	        ${ERROR_MSG} 'Interrupt'; exit 0;			\
+	      fi;							\
 	      $(call PKGSET_RECURSIVE_ERR,$$dir)			\
-	    fi;								\
+	    };								\
 	  else								\
 	    $(call PKGSET_NONEXISTENTPKG_ERR,$$dir,$*)			\
 	  fi;								\
