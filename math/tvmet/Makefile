@@ -15,7 +15,6 @@ COMMENT=	Tiny Vector and Matrix Template library.
 
 GNU_CONFIGURE=	yes
 
-include ../../mk/sysdep/gcc-c++.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
