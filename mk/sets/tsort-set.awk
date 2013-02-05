@@ -72,7 +72,7 @@ BEGIN {
 	    ARGSTART+= 2
 	} else if (match(option, /^-.*/) != 0) {
 	    option = substr(option, RSTART + 1, RLENGTH)
-	    print ARGV[0] ": unknown option -- " option > "/dev/stderr"
+	    xprint("***:" ARGV[0] ": unknown option -- ")
 	    usage()
 	    exit 1
 	} else break
@@ -102,7 +102,7 @@ BEGIN {
     n = 0
     for(i=1; i<=cmdline[0]; i++) {
         if (cmdline[i] !~ /^[^\/:~]+\/[^\/:~]+(:[^:]*(~[^~]*)?)?$/) {
-            print "Malformed set element " cmdline[i] >"/dev/stderr"
+            xprint("***:Malformed set element " cmdline[i])
             n++
         }
     }
@@ -322,7 +322,7 @@ function graphdel(dir,	i, plist) {
 #
 # Query package information: pkgnames, depends-pkgpaths
 #
-function pkginfos(pkg, deps, pkgnamep,		cmd, dir, i, l) {
+function pkginfos(pkg, deps, pkgnamep,		cmd, dir, i, l, s) {
     split("", deps)
     dir = pdir(pkg)
 
@@ -344,7 +344,8 @@ function pkginfos(pkg, deps, pkgnamep,		cmd, dir, i, l) {
         } else
             xwarn("[" pkg "] " l)
     }
-    if (close(cmd)) exit 2
+    s = close(cmd)
+    if (s) { xprint("***:Fatal error while scanning " pkg); exit 2 }
     if (pkgnamep) return pkgnamep
 }
 
