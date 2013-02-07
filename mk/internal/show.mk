@@ -140,74 +140,69 @@ show-depends:
 #
 .PHONY: show-options
 show-options:
-ifndef PKG_SUPPORTED_OPTIONS
-	@${ECHO} "This package does not use the options framework."
-else
-  ifneq (,$(strip ${PKG_GENERAL_OPTIONS}))
-	@${ECHO} "$${bf}Any of the following general options may"	\
-		"be selected$${rm}:"
-	${RUN}$(foreach _o_, $(sort ${PKG_GENERAL_OPTIONS}),		\
-	  $(call _pkgopt_listopt,${_o_}))
-  endif
-	${RUN}$(foreach _g_, ${PKG_OPTIONS_REQUIRED_GROUPS},		\
-	  ${ECHO}; ${ECHO} "${bf}Exactly one of the following ${_g_}"	\
-		"options is required${rm}:";				\
-	  $(call _pkgopt_listopt,${PKG_OPTIONS_GROUP.${_g_}}))
-	${RUN}$(foreach _g_, ${PKG_OPTIONS_OPTIONAL_GROUPS},		\
-	  ${ECHO}; ${ECHO} "${bf}At most one of the following ${_g_}"	\
-		"options may be selected${rm}:";			\
-	  $(call _pkgopt_listopt,${PKG_OPTIONS_GROUP.${_g_}}))
-	${RUN}$(foreach _s_, ${PKG_OPTIONS_NONEMPTY_SETS},		\
-	  ${ECHO}; ${ECHO} "$${bf}At least one of the following ${_s_}"	\
-		"options must be selected$${rm}:";			\
-	  $(call _pkgopt_listopt,${PKG_OPTIONS_SET.${_s_}}))
-	@${ECHO}
-	@${ECHO} "$${bf}These options are enabled by default$${rm}:"
-  ifneq (,$(strip ${PKG_SUGGESTED_OPTIONS}))
-	@${ECHO} $(call quote,$(sort ${PKG_SUGGESTED_OPTIONS})) | ${wordwrapfilter}
-  else
-	@${ECHO} "	(none)"
-  endif
-	@${ECHO} ""
-	@${ECHO} "$${bf}These options are currently enabled$${rm}:"
-  ifneq (,$(strip ${PKG_OPTIONS}))
-	@${ECHO} $(call quote,$(sort ${PKG_OPTIONS})) | ${wordwrapfilter}
-  else
-	@${ECHO} "	(none)"
-  endif
-	@${ECHO} ""
-	@${ECHO} "You can select which build options to use by"		\
-		"setting PKG_DEFAULT_OPTIONS or "			\
-		$(call quote,${PKG_OPTIONS_VAR})" to the list of"	\
-		"desired options. Options prefixed with a dash (-)"	\
-		"will be disabled. The variables are to be set in"	\
-		${MAKECONF}"." | fmt
-endif # !PKG_SUPPORTED_OPTIONS
 ifdef PKG_ALTERNATIVES
 	@								\
   $(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVES.$_},		\
-	${ECHO} "";							\
-	${ECHO} "$${bf}The following $_ alternatives may be"		\
-		"selected$${rm}:";					\
+	${ECHO} "$${bf}Available $_ alternatives"			\
+		"(PREFER_ALTERNATIVE.$_):$${rm}";			\
     $(foreach 1,${PKG_ALTERNATIVES.$_},					\
       $(if $(strip ${PKG_ALTERNATIVE_SELECT.$1}),			\
-	${ECHO} "	$1	${PKG_ALTERNATIVE_DESCR.$1}";		\
-      )									\
-    )									\
-	${ECHO} "";							\
-	${ECHO} "$${bf}The following preferences for $_ alternatives"	\
-		"are currently configured$${rm}:";			\
-	${ECHO} "	$(or ${PREFER_ALTERNATIVE.$_},(none))";		\
-	${ECHO} "";							\
-	${ECHO} "$${bf}The following $_ alternative is currently"	\
-		"enabled$${rm}:";					\
-	${ECHO} "	$(or ${PKG_ALTERNATIVE.$_},(none))"		\
-		"	${PKG_ALTERNATIVE_DESCR.${PKG_ALTERNATIVE.$_}}";\
-	${ECHO} "";							\
-	${ECHO} "You can select a $_ alternative by setting"		\
-		"PREFER_ALTERNATIVE.$_";				\
+        $(eval 0=$(if $(filter ${PKG_ALTERNATIVE.$_},$1),*))		\
+        $(eval n=$(or $(call wordn,$1,${PREFER_ALTERNATIVE.$_})))	\
+	${PRINTF} "%s%2s %-21s$$rm ${PKG_ALTERNATIVE_DESCR.$1}\n"	\
+	  "$(if $0,$${bf})" "$0$n" "$1";))				\
+	${ECHO} "";))							\
+	${ECHO} "Alternatives are selected by setting the"		\
+		"PREFER_ALTERNATIVE.<alt> variable ";			\
 	${ECHO} "to a space separated list sorted by order of"		\
-		"preference";						\
-	${ECHO} "in ${MAKECONF}.";\
-  ))
+		"preference in";					\
+	${ECHO} "${MAKECONF}.";						\
+	${ECHO} ""
+endif
+ifdef PKG_SUPPORTED_OPTIONS
+  ifneq (,$(strip ${PKG_GENERAL_OPTIONS}))
+	@${ECHO} "$${bf}Any of the following general options may"	\
+		"be selected$${rm}:";					\
+  $(foreach _, $(sort ${PKG_GENERAL_OPTIONS}),				\
+    $(eval 0=$(if $(filter ${PKG_OPTIONS},$_),*))			\
+    $(eval d=$(if $(filter ${PKG_SUGGESTED_OPTIONS},$_),d))		\
+	${PRINTF} "%s%-2s %-20s$$rm ${PKG_OPTION_DESCR.$_}\n"		\
+		"$(if $0,$${bf})" "$0$d" "$_";)
+  endif
+	@								\
+  $(foreach -, ${PKG_OPTIONS_REQUIRED_GROUPS},				\
+	  ${ECHO}; ${ECHO} "${bf}Exactly one of the following $-"	\
+		"options is required${rm}:";				\
+    $(foreach _, ${PKG_OPTIONS_GROUP.$-},				\
+      $(eval 0=$(if $(filter ${PKG_OPTIONS},$_),*))			\
+      $(eval d=$(if $(filter ${PKG_SUGGESTED_OPTIONS},$_),d))		\
+	${PRINTF} "%s%-2s %-20s$$rm ${PKG_OPTION_DESCR.$_}\n"		\
+		"$(if $0,$${bf})" "$0$d" "$_";))			\
+  $(foreach -, ${PKG_OPTIONS_OPTIONAL_GROUPS},		\
+	${ECHO}; ${ECHO} "${bf}At most one of the following $-"		\
+		"options may be selected${rm}:";			\
+    $(foreach _, ${PKG_OPTIONS_GROUP.$-},				\
+      $(eval 0=$(if $(filter ${PKG_OPTIONS},$_),*))			\
+      $(eval d=$(if $(filter ${PKG_SUGGESTED_OPTIONS},$_),d))		\
+	${PRINTF} "%s%-2s %-20s$$rm ${PKG_OPTION_DESCR.$_}\n"		\
+		"$(if $0,$${bf})" "$0$d" "$_";))			\
+  $(foreach -, ${PKG_OPTIONS_NONEMPTY_SETS},				\
+	${ECHO}; ${ECHO} "$${bf}At least one of the following $-"	\
+		"options must be selected$${rm}:";			\
+    $(foreach _, ${PKG_OPTIONS_SET.$-},					\
+      $(eval 0=$(if $(filter ${PKG_OPTIONS},$_),*))			\
+      $(eval d=$(if $(filter ${PKG_SUGGESTED_OPTIONS},$_),d))		\
+	${PRINTF} "%s%-2s %-20s$$rm ${PKG_OPTION_DESCR.$_}\n"		\
+		"$(if $0,$${bf})" "$0$d" "$_";))			\
+	${ECHO} "";							\
+	${ECHO} "Options are selected by setting ${PKG_OPTIONS_VAR}";	\
+	${ECHO} "or PKG_DEFAULT_OPTIONS to the list of desired options"	\
+		"in";							\
+	${ECHO} "${MAKECONF}.";						\
+	${ECHO} "Options prefixed with a dash (-) will be disabled."
+endif # !PKG_SUPPORTED_OPTIONS
+ifndef PKG_SUPPORTED_OPTIONS
+  ifndef PKG_ALTERNATIVES
+	@${ECHO} "This package has no configurable options."
+  endif
 endif

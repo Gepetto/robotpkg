@@ -37,6 +37,7 @@ $(call setdefault, AWK,		/usr/bin/awk)
 $(call setdefault, XARGS,	/usr/bin/xargs)
 $(call setdefault, TPUT,	/usr/bin/tput)
 $(call setdefault, PAGER,	/usr/bin/less)
+$(call setdefault, PRINTF,	/usr/bin/printf)
 
 PKGLOCALEDIR?=	share
 

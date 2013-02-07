@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2011 LAAS/CNRS
+# Copyright (c) 2006,2008-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -147,6 +147,17 @@ endef
 override _comma:=,
 override define concat
 $(strip $(subst ${_empty} ${_empty},$(or $2,${_comma}),$1))
+endef
+
+
+# --- wordn <word> <list> --------------------------------------------------
+#
+# Return the position in <list> where <word> appears first, counting from 1, or
+# empty if word does not appear in <list>.
+#
+define wordn
+$(strip $(if $2,$(if $(filter $1,$(word 1,$2)),$(words . $3),\
+  $(call wordn,$1,$(call cdr,$2),. $3))))
 endef
 
 
