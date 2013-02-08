@@ -27,18 +27,20 @@ _MIRROR_LOG=	${WRKDIR}/mirror.log
 # wish to provide distfiles that others may fetch.  It only fetches distfiles
 # that are freely re-distributable.
 #
-ifeq (,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}))
-  ifndef NO_PUBLIC_SRC
-    _MIRROR_TARGETS+=check-distfiles
-  endif
-  ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
-    _MIRROR_TARGETS+=check-master-sites
+ifneq (,$(strip ${ALLFILES}))
+  ifeq (,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}))
     ifndef NO_PUBLIC_SRC
-      _EXTRA_CHK_SITES+=${_MASTER_SITE_BACKUP}
+      _MIRROR_TARGETS+=check-distfiles
     endif
+    ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
+      _MIRROR_TARGETS+=check-master-sites
+      ifndef NO_PUBLIC_SRC
+        _EXTRA_CHK_SITES+=${_MASTER_SITE_BACKUP}
+      endif
 
-    DEPEND_METHOD.curl+=	bootstrap
-    include ${ROBOTPKG_DIR}/mk/sysdep/curl.mk
+      DEPEND_METHOD.curl+=	bootstrap
+      include ${ROBOTPKG_DIR}/mk/sysdep/curl.mk
+    endif
   endif
 endif
 
@@ -77,7 +79,7 @@ check-master-sites:
   $(foreach distfile,${_ALLFILES},					\
 	  ${ECHO} '${distfile}'						\
 	    $(foreach _,${SITES.$(notdir ${distfile})},'$_')		\
-	    ${_EXTRA_CHK_SITES};)					\
+	    '${_EXTRA_CHK_SITES}';)					\
 	} | {								\
 	  status=2;							\
 	  ${RM} ${_MIRROR_LOG};						\
