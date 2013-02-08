@@ -14,10 +14,8 @@ MAINTAINER=	openrobots@laas.fr
 LICENSE=	oracle-java-license
 
 RESTRICTED=     Redistribution of repackaged binaries not permitted
-NO_SRC_ON_CDROM=${RESTRICTED}
-NO_SRC_ON_FTP=  ${RESTRICTED}
-NO_BIN_ON_CDROM=${RESTRICTED}
-NO_BIN_ON_FTP=  ${RESTRICTED}
+NO_PUBLIC_SRC=	${RESTRICTED}
+NO_PUBLIC_BIN=	${RESTRICTED}
 
 DOWNLOAD=\
 	http://www.oracle.com/technetwork/java/javase/downloads/index.html
