@@ -75,8 +75,10 @@ $(call require-for, clean cleaner su-do-clean,				\
 	${ROBOTPKG_DIR}/mk/clean.mk)
 
 # Fetch
-$(call require-for, fetch mirror-distfiles,				\
+$(call require-for, fetch fetch-all,					\
 	${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+$(call require-for, mirror-distfiles,					\
+	${ROBOTPKG_DIR}/mk/fetch/mirror.mk)
 
 # Checksum
 $(call require-for, checksum mdi distinfo,				\

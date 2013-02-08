@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -41,23 +41,6 @@
 #
 #					Anthony Mallet on Tue Dec  5 2006
 #
-ALLFILES?=	$(sort ${DISTFILES} ${PATCHFILES})
-CKSUMFILES?=	$(filter-out ${IGNOREFILES},${ALLFILES})
-
-# List of all files, with ${DIST_SUBDIR} in front.  Used for fetch and checksum.
-ifdef DIST_SUBDIR
-_CKSUMFILES?=	$(addprefix ${DIST_SUBDIR}/,${CKSUMFILES})
-_DISTFILES?=	$(addprefix ${DIST_SUBDIR}/,${DISTFILES})
-_IGNOREFILES?=	$(addprefix ${DIST_SUBDIR}/,${IGNOREFILES})
-_PATCHFILES?=	$(addprefix ${DIST_SUBDIR}/,${PATCHFILES})
-else
-_CKSUMFILES?=	${CKSUMFILES}
-_DISTFILES?=	${DISTFILES}
-_IGNOREFILES?=	${IGNOREFILES}
-_PATCHFILES?=	${PATCHFILES}
-endif
-_ALLFILES=	$(filter-out ${NOFETCHFILES}, 				\
-			$(sort ${_DISTFILES} ${_PATCHFILES}))
 
 BUILD_DEFS+=	DISTFILES PATCHFILES
 
@@ -82,26 +65,12 @@ _ORDERED_SITES= ${_MASTER_SITE_OVERRIDE} $$unsorted_sites
 endif
 
 
-#
-# Associate each file to fetch with the correct site(s).
-#
-define _FETCHFILE_VAR
-SITES.$(subst =,--,$(notdir ${fetchfile}))?= ${MASTER_SITES}
-endef
-$(foreach fetchfile,${_DISTFILES},$(eval ${_FETCHFILE_VAR}))
-
-define _PATCHFILES_VAR
-SITES.$(subst =,--,$(notdir ${fetchfile}))?= ${PATCH_SITES}
-endef
-$(foreach fetchfile,${_PATCHFILES},$(eval ${_PATCHFILES_VAR}))
-
-
 # depend on the proper fetch tool if required, and always on tnftp for
 # MASTER_SITE_BACKUP
 ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
-  _fetch_done:=$(foreach _,${_ALLFILES},$(word 1,$(wildcard		\
+  _fetch_done:=$(foreach _,${_FETCH_ONLY},$(word 1,$(wildcard		\
 	$(addsuffix /$_,${DISTDIR} $(subst :, ,${DIST_PATH})))))
-  ifneq ($(words ${_fetch_done}),$(words ${_ALLFILES}))
+  ifneq ($(words ${_fetch_done}),$(words ${_FETCH_ONLY}))
     $(call require,${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
     include $(addprefix ${ROBOTPKG_DIR}/, ${_FETCH_DEPEND})
     DEPEND_METHOD.tnftp+=	bootstrap
@@ -117,15 +86,24 @@ endif
 #
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
-ifneq (,$(foreach _,${_ALLFILES},$(if $(wildcard ${DISTDIR}/$_),,no)))
+ifneq (,$(foreach _,${_FETCH_ONLY},$(if $(wildcard ${DISTDIR}/$_),,no)))
   _FETCH_TARGETS+=	$(call add-barrier, bootstrap-depends, fetch)
   _FETCH_TARGETS+=	pre-fetch
   _FETCH_TARGETS+=	do-fetch
   _FETCH_TARGETS+=	post-fetch
 endif
+ifneq (,$(foreach _,${_ALLFILES},$(if $(wildcard ${DISTDIR}/$_),,no)))
+  _FETCH_ALL_TARGETS+=	$(call add-barrier, bootstrap-depends, fetch)
+  _FETCH_ALL_TARGETS+=	pre-fetch
+  _FETCH_ALL_TARGETS+=	do-fetch-all-file
+  _FETCH_ALL_TARGETS+=	post-fetch
+endif
 
 .PHONY: fetch
 fetch: ${_FETCH_TARGETS}; @:
+
+.PHONY: fetch-all
+fetch-all: ${_FETCH_ALL_TARGETS}; @:
 
 
 # --- pre-fetch, do-fetch, post-fetch (PUBLIC, override) -------------
@@ -154,7 +132,10 @@ post-fetch:
 $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
 .PHONY: do-fetch-file
-do-fetch-file: $(addprefix ${DISTDIR}/,${_ALLFILES})
+do-fetch-file: $(addprefix ${DISTDIR}/,${_FETCH_ONLY})
+
+.PHONY: do-fetch-all-file
+do-fetch-all-file: $(addprefix ${DISTDIR}/,${_ALLFILES})
 
 _FETCH_ENV=\
 	CP=${CP} ECHO=${ECHO} MV=$(call quote,${MV})			\
@@ -196,7 +177,7 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 	  file="$$d/${DIST_SUBDIR}/$(notdir $@)";			\
 	  if ${TEST} -f $$file; then					\
 	    ${ECHO} "Using $$file";					\
-	    ${LN} -s $$file $@;			\
+	    ${LN} -s $$file $@;						\
 	    break;							\
 	  fi;								\
 	done
@@ -226,20 +207,3 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 	${ERROR_MSG} ${hline};						\
 	exit 1
   endif
-
-
-# --- mirror-distfiles (PUBLIC) --------------------------------------
-
-# mirror-distfiles is a public target that is mostly of use only to
-# sites that wish to provide distfiles that others may fetch.  It
-# only fetches distfiles that are freely re-distributable.
-#
-ifndef NO_PUBLIC_SRC
-  ifneq (,$(foreach _,${_ALLFILES},$(if $(wildcard ${DISTDIR}/$_),,no)))
-    _MIRROR_TARGETS+=$(call add-barrier, bootstrap-depends, mirror-distfiles)
-    _MIRROR_TARGETS+=fetch
-  endif
-endif
-
-.PHONY: mirror-distfiles
-mirror-distfiles: ${_MIRROR_TARGETS}; @:

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2012 LAAS/CNRS
+# Copyright (c) 2006,2008-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -153,6 +153,32 @@ ifeq (custom,$(strip ${FETCH_METHOD}))
 endif
 _FETCH_BEFORE_ARGS+=	${FETCH_BEFORE_ARGS}
 _FETCH_AFTER_ARGS+=	${FETCH_AFTER_ARGS}
+
+
+# List of all files, with ${DIST_SUBDIR} in front.  Used for fetch and checksum.
+ALLFILES?=	$(sort ${DISTFILES} ${PATCHFILES})
+FETCH_ONLY?=	${ALLFILES}
+CKSUMFILES?=	$(filter-out ${IGNOREFILES},${ALLFILES})
+
+ifdef DIST_SUBDIR
+  _CKSUMFILES?=		$(addprefix ${DIST_SUBDIR}/,${CKSUMFILES})
+  _DISTFILES?=		$(addprefix ${DIST_SUBDIR}/,${DISTFILES})
+  _FETCH_ONLY?=		$(addprefix ${DIST_SUBDIR}/,${FETCH_ONLY})
+  _IGNOREFILES?=	$(addprefix ${DIST_SUBDIR}/,${IGNOREFILES})
+  _PATCHFILES?=		$(addprefix ${DIST_SUBDIR}/,${PATCHFILES})
+  _ALLFILES?=		$(addprefix ${DIST_SUBDIR}/,${ALLFILES})
+else
+  _CKSUMFILES?=		${CKSUMFILES}
+  _DISTFILES?=		${DISTFILES}
+  _FETCH_ONLY?=		${FETCH_ONLY}
+  _IGNOREFILES?=	${IGNOREFILES}
+  _PATCHFILES?=		${PATCHFILES}
+  _ALLFILES?=		${ALLFILES}
+endif
+
+# Associate each file to fetch with the correct site(s).
+$(foreach _,${_DISTFILES},$(eval SITES.$(notdir $_)?=${MASTER_SITES}))
+$(foreach _,${_PATCHFILES},$(eval SITES.$(notdir $_)?=${PATCH_SITES}))
 
 
 # Interactive default fetch message
