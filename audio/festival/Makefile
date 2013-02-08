@@ -36,25 +36,18 @@ PKG_OPTION_DESCR.ogireslpc=	Compile OGI residual LPC synthetiser.
 OGIRESLPC.files=	OGIresLPC-2.2.tar.gz
 OGIRESLPC.site=		http://www.cslu.ogi.edu/tts/download/data/
 
+CKSUMFILES=			${OGIRESLPC.files} ${DISTFILES}
 SITES.OGIresLPC-2.2.tar.gz=	${OGIRESLPC.site}
 SITES.OGIlexicon-2.2.tar.gz=	${OGIRESLPC.site}
 
 define PKG_OPTION_SET.ogireslpc
   LICENSE+=		ohsu-license
-  DISTFILES+=		${OGIRESLPC.files}
-  NOFETCHFILES+=	${OGIRESLPC.files}
   PKG_PATCHES+=		$(wildcard ${PATCHDIR}/ogi-patch-*)
   GENERATE_PLIST+=	${CAT} ${PKGDIR}/PLIST.ogireslpc;
+  EXTRACT_ONLY=		${OGIRESLPC.files} ${DISTFILES}
 
-  pre-fetch: $(addprefix ${DISTDIR}/,${OGIRESLPC.files})
+  pre-extract: $(addprefix ${DISTDIR}/,${OGIRESLPC.files})
 endef
-
-# the makesum target must compute checksum of all files, no matter what
-# options are set
-ifneq (,$(filter mdi distinfo makesum,${MAKECMDGOALS}))
-  DISTFILES+=		${OGIRESLPC.files}
-  NOFETCHFILES+=	${OGIRESLPC.files}
-endif
 
 # --------------------------------------------------------------------
 
@@ -63,10 +56,6 @@ include ../../pkgtools/install-sh/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
-
-ifneq (,$(filter mdi distinfo makesum,${MAKECMDGOALS}))
-  pre-fetch: $(addprefix ${DISTDIR}/,${OGIRESLPC.files})
-endif
 
 pre-configure:
 	${LN} -s ${WRKSRC}/speech_tools/config/systems/ix86_NetBSD.mak \
