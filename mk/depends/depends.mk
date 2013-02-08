@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2007,2009,2011 LAAS/CNRS
+# Copyright (c) 2006-2007,2009,2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -123,11 +123,28 @@ endif
 #
 # depends-cookie creates the "depends" cookie file.
 #
+# The cookie calls a callback to check that no new dependencies have been added
+# since last resolution. This can happen if no package file have changed but a
+# different package target is required (with more dependencies) in an existing
+# WRKDIR.
+#
+override define _dpd_chknew
+  ifneq (,$(filter-out ${_COOKIE.depends.use},				\
+         $(foreach _,${DEPEND_USE},					\
+           $(if $(filter bootstrap,${DEPEND_METHOD.$_}),,$_))))
+    ${_COOKIE.depends}: .FORCE
+  endif
+endef
+
 .PHONY: depends-cookie
 depends-cookie: makedirs
 	${RUN}${TEST} ! -f ${_COOKIE.depends} || ${FALSE};		\
 	exec >>${_COOKIE.depends};					\
-	${ECHO} "_COOKIE.depends.date:=`${_CDATE_CMD}`"
+	${ECHO} "_COOKIE.depends.date:=`${_CDATE_CMD}`";		\
+	${ECHO} "_COOKIE.depends.use:="					\
+	  $(foreach _,${DEPEND_USE},					\
+	    $(if $(filter bootstrap,${DEPEND_METHOD.$_}),,'$_'));	\
+	${ECHO} '$$(eval $$(call _dpd_chknew))'
 
 
 # --- real-depends (PRIVATE) -----------------------------------------

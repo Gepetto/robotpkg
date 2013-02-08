@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -91,8 +91,7 @@ checksum-files:
 	if cd ${DISTDIR} && ${_CHECKSUM_CMD} -a ${_alg_}		\
 		${DISTINFO_FILE} ${_CKSUMFILES}; then			\
 	  ${ECHO_MSG} "=> ${_alg_} checksums OK";			\
-	else								\
-	  ${RM} ${_COOKIE.bootstrap-depends};				\
+	elif ${TEST} -t 1; then						\
 	  ${ERROR_MSG} ${hline};					\
 	  ${ERROR_MSG} "$${bf}Maybe you have corrupt or obsolete"	\
 		"distribution files.$${rm}";				\

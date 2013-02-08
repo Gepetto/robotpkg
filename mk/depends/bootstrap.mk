@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2012 LAAS/CNRS
+# Copyright (c) 2009-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -68,11 +68,32 @@ else
   ${_COOKIE.bootstrap-depends}: real-bootstrap-depends;
 endif
 
+# --- depends-cookie (PRIVATE) ---------------------------------------------
+#
+# depends-cookie creates the "depends" cookie file.
+#
+# The cookie calls a callback to check that no new dependencies have been added
+# since last resolution. This can happen if no package file have changed but a
+# different package target is required (with more dependencies) in an existing
+# WRKDIR.
+#
+override define _dpd_chkbsnew
+  ifneq (,$(filter-out ${_COOKIE.bootstrap-depends.use},		\
+         $(foreach _,${DEPEND_USE},					\
+           $(if $(filter bootstrap,${DEPEND_METHOD.$_}),$_))))
+    ${_COOKIE.bootstrap-depends}: .FORCE
+  endif
+endef
+
 .PHONY: bootstrap-depends-cookie
 bootstrap-depends-cookie: makedirs
 	${RUN}${TEST} ! -f ${_COOKIE.bootstrap-depends} || ${FALSE};	\
 	exec >>${_COOKIE.bootstrap-depends};				\
-	${ECHO} "_COOKIE.bootstrap-depends.date:=`${_CDATE_CMD}`"
+	${ECHO} "_COOKIE.bootstrap-depends.date:=`${_CDATE_CMD}`";	\
+	${ECHO} "_COOKIE.bootstrap-depends.use:="			\
+	  $(foreach _,${DEPEND_USE},					\
+	    $(if $(filter bootstrap,${DEPEND_METHOD.$_}),'$_'));	\
+	${ECHO} '$$(eval $$(call _dpd_chkbsnew))'
 
 
 # --- real-bootstrap-depends (PRIVATE) -------------------------------------
