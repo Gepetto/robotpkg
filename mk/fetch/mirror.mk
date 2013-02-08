@@ -33,13 +33,15 @@ ifneq (,$(strip ${ALLFILES}))
       _MIRROR_TARGETS+=check-distfiles
     endif
     ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
-      _MIRROR_TARGETS+=check-master-sites
-      ifndef NO_PUBLIC_SRC
-        _EXTRA_CHK_SITES+=${_MASTER_SITE_BACKUP}
-      endif
+      ifneq (,$(filter archive,${FETCH_METHOD}))
+        _MIRROR_TARGETS+=check-master-sites
+        ifndef NO_PUBLIC_SRC
+          _EXTRA_CHK_SITES+=${_MASTER_SITE_BACKUP}
+        endif
 
-      DEPEND_METHOD.curl+=	bootstrap
-      include ${ROBOTPKG_DIR}/mk/sysdep/curl.mk
+        DEPEND_METHOD.curl+=	bootstrap
+        include ${ROBOTPKG_DIR}/mk/sysdep/curl.mk
+      endif
     endif
   endif
 endif
