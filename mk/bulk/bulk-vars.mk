@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2012 LAAS/CNRS
+# Copyright (c) 2011-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -43,7 +43,8 @@ BULK_DBDIR?=	${BULKBASE}/var/db/robotpkg
 # Extra arguments passed to recursive MAKE invocation
 BULK_MAKE_ARGS=\
 	LOCALBASE=${BULKBASE} PKG_DBDIR=${BULK_DBDIR}		\
-	DISTDIR=${WRKDIR}/distfiles DIST_PATH=${DISTDIR}
+	DISTDIR=${WRKDIR}/distfiles DIST_PATH=${DISTDIR}	\
+	EXPECT_TARGETS='package mirror-distfiles'
 
 # Redefinition of pkg_install commands working with bulk-built packages
 BULK_PKGTOOLS_ARGS+=	-K ${BULK_DBDIR}

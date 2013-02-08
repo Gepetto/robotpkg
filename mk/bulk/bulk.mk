@@ -150,6 +150,7 @@ _REAL_BULK_TARGETS+=	bulk-log-clean
 _REAL_BULK_TARGETS+=	bulk-cbbh
 _REAL_BULK_TARGETS+=	bulk-check-noinstalled
 _REAL_BULK_TARGETS+=	bulk-bootstrap-depends
+_REAL_BULK_TARGETS+=	bulk-mirror-distfiles
 _REAL_BULK_TARGETS+=	bulk-full-depends
 _REAL_BULK_TARGETS+=	do-bulk
 _REAL_BULK_TARGETS+=	bulk-remove-installed
@@ -347,6 +348,22 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	};								\
 	${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} $$t ||			\
 	  ${BULK_BRK} "${MAKE}: *** [$$t] Error $$?"
+
+
+# --- bulk-mirror-distfiles ------------------------------------------------
+
+# Download + check distfiles
+#
+bulk-mirror-distfiles:
+	${RUN}								\
+	${TEST} ! -s ${_bulklog_cbbh} || exit 0;			\
+	${TEST} ! -s ${_bulklog_broken} || exit 0;			\
+	${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} mirror-distfiles		\
+	|| {								\
+	  s=$$?;							\
+	  ${STEP_MSG} "Marking ${PKGNAME} as broken";			\
+	  ${BULK_BRK} "${MAKE}: *** [package] Error $$s";		\
+	}
 
 
 # --- do-bulk --------------------------------------------------------------

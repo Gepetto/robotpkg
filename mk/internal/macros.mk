@@ -83,7 +83,7 @@ endef
 # <target>
 #
 override define require-for
-$(if $(filter $1,${MAKECMDGOALS}),$(call require,$2))
+$(if $(filter $1,${MAKECMDGOALS} ${EXPECT_TARGETS}),$(call require,$2))
 endef
 
 
