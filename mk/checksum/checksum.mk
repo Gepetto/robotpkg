@@ -109,5 +109,7 @@ checksum-files:
 	  ${ERROR_MSG} "  ${MAKE} NO_CHECKSUM=yes ${MAKECMDGOALS}";	\
 	  ${ERROR_MSG} ${hline};					\
 	  exit 1;							\
+	else								\
+	  exit 1;							\
 	fi;								\
   )
