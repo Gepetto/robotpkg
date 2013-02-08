@@ -3,12 +3,12 @@
 #
 
 PKGREVISION=	3
-DISTNAME=	NITE-Bin-Linux-${NI_ARCH}-v${PKG_VERSION}
-PKGNAME=	openni-nite-${PKG_VERSION}
+DISTNAME=	openni-nite-${PKG_VERSION}
 PKG_VERSION=	1.5.2.21
 MASTER_SITES=	${HOMEPAGE}/wp-content/uploads/2012/12/
 CATEGORIES=	image
-EXTRACT_SUFX=	.tar.zip
+DISTFILES=	NITE-Bin-Linux-x64-v${PKG_VERSION}.tar.zip
+DISTFILES+=	NITE-Bin-Linux-x86-v${PKG_VERSION}.tar.zip
 
 COMMENT=	Primesense OpenNI nite binary blob
 HOMEPAGE=	http://www.openni.org
@@ -20,6 +20,7 @@ NO_PUBLIC_BIN=	${RESTRICTED}
 include ../../mk/robotpkg.prefs.mk
 
 ONLY_FOR_PLATFORM=	Linux-%
+
 ifeq (${MACHINE_ARCH},x86_64)
   NI_ARCH=x64
 else ifeq (${MACHINE_ARCH},i386)
@@ -27,6 +28,8 @@ else ifeq (${MACHINE_ARCH},i386)
 else
   PKG_FAIL_REASON+=	"Architecture not supported"
 endif
+FETCH_ONLY=	NITE-Bin-Linux-${NI_ARCH}-v${PKG_VERSION}.tar.zip
+EXTRACT_ONLY=	${FETCH_ONLY}
 
 WRKSRC= ${WRKDIR}/NITE-Bin-Dev-Linux-${NI_ARCH}-v${PKG_VERSION}
 
@@ -65,8 +68,8 @@ include ../../mk/robotpkg.mk
 do-extract:
 	${RUN}cd ${WRKDIR} &&				\
 	${EXTRACT_LOGFILTER} ${SH} -c "			\
-	  ${UNZIP_CMD} -ao ${DISTDIR}/${DISTFILES} &&	\
-	  ${BZIP2_CMD} -cd ${DISTFILES:.zip=.bz2} |	\
+	  ${UNZIP_CMD} -ao ${DISTDIR}/${EXTRACT_ONLY} &&\
+	  ${BZIP2_CMD} -cd ${EXTRACT_ONLY:.zip=.bz2} |	\
 	  ${PAX} -v -r					\
 	"
 
