@@ -83,7 +83,7 @@ check-master-sites:
 	    $(foreach _,${SITES.$(notdir ${distfile})},'$_')		\
 	    '${_EXTRA_CHK_SITES}';)					\
 	} | {								\
-	  status=2;							\
+	  fatal=0; warn=0;						\
 	  ${RM} ${_MIRROR_LOG};						\
 	  while read distfile sites; do					\
 	    ${STEP_MSG} "Checking $$distfile sites";			\
@@ -95,28 +95,46 @@ check-master-sites:
 	    done 9<${DISTINFO_FILE};					\
 	    if ${TEST} -z "$$distsize"; then				\
 	      ${ERROR_MSG} "Cannot determine expected $$distfile size";	\
-	      ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2;			\
+	      ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2			\
 		"Cannot determine expected $$distfile size";		\
-	      status=2; continue;					\
+	      fatal=1; continue;					\
 	    fi;								\
 									\
-	    for site in $$sites; do					\
-	      size=`${CURL} -ILksS "$$site$$distfile" 2>>${_MIRROR_LOG}|\
-	       ${AWK} -F: '/[Cc]ontent-[Ll]ength: [0-9]+/ {print $$2}'`;\
+	    ok=0; for site in $$sites; do				\
+	      x=0 hdr=`${CURL} -ILksS -m 60 "$$site$$distfile"		\
+	             2>>${_MIRROR_LOG}` || x=$$?;			\
+	      case $$x in						\
+	        0) ;;							\
+	        23|27|28|52|55|56)					\
+	          ${ECHO} "SKIP:  $$site";				\
+	          ${ECHO} 1>>${_MIRROR_LOG} "SKIP:  $$site";		\
+	          continue ;;						\
+	        *)							\
+	          ${ERROR_MSG} "$$site: fatal error";			\
+	          ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2			\
+	            "$$site: fatal error";				\
+	          warn=1; continue ;;					\
+	      esac;							\
+	      size=`${ECHO} "$$hdr" |					\
+	      ${AWK} -F: '/[Cc]ontent-[Ll]ength: +[0-9]+/ {print $$2}'`;\
 	      if ${TEST} -z "$$size"; then				\
-	        ${ERROR_MSG} "$$site: cannot determine file size";	\
-	        ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2			\
-		  "$$site: cannot determine file size";			\
+	        ${ECHO} "SKIP:  $$site: cannot determine file size";	\
+	        ${ECHO} 2>>${_MIRROR_LOG} 1>&2				\
+		  "SKIP:  $$site: cannot determine file size";		\
 	      elif ${TEST} "$$distsize" -ne "$$size"; then		\
 	        ${ERROR_MSG} "$$site: bad file size";			\
 	        ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2			\
 	          "$$site: bad file size";				\
+	        warn=1;							\
 	      else							\
 	        ${ECHO} "OK:    $$site";				\
 	        ${ECHO} 1>>${_MIRROR_LOG} "OK:    $$site";		\
-	        status=0;						\
+	        ok=1;							\
 	      fi;							\
 	    done;							\
+	    ${TEST} $$ok -eq 1 || fatal=1;				\
 	  done;								\
-	  exit "$$status";						\
+	  ${TEST} $$fatal -eq 0 || exit 2;				\
+	  ${TEST} $$warn -eq 0 || exit 0;				\
+	  ${RM} ${_MIRROR_LOG};						\
 	}
