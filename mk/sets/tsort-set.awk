@@ -404,13 +404,16 @@ function xpkgs(patterns, path,		pattern, deps, xopts, wopts,
     # no expansion required
     if (pattern !~ /[[*?{]/) {
         pkgpush(troot, path ":" pattern)
+
+        # optimize if the pkginfo above was for us
+        if (path ":" pattern in done) return
         if (pmatch(pattern, q, 0)) {
-            # optimize if the pkginfo above was for us
-            if (!(path ":" pattern in done)) {
-                done[path ":" pattern]
-                stackdone++
-            }
             if (!sort) xprintpkg(path ":" pattern)
+
+            done[path ":" pattern]
+            for(k = stack[0]; k>0; k--)
+                if (path ":" pattern == stack[k]) { stackdone++; break; }
+
             for(d in deps) pkgpush(path ":" pattern, d)
         }
         return
@@ -432,12 +435,16 @@ function xpkgs(patterns, path,		pattern, deps, xopts, wopts,
 
         # optimize: if the pkginfo above was for us, stack deps directly to
         # avoid another query later (saves ~50% time on dir:* patterns)
-        if ((path ":" p) in done) continue
-        if (pmatch(p, q, wopts)) {
-            done[path ":" p]
-            stackdone++
-            if (!sort) xprintpkg(path ":" p)
-            for(d in deps) pkgpush(path ":" p, d)
+        if (!(path ":" p in done)) {
+            if (pmatch(p, q, wopts)) {
+                if (!sort) xprintpkg(path ":" p)
+
+                done[path ":" p]
+                for(k = stack[0]; k>0; k--)
+                    if (path ":" p == stack[k]) { stackdone++; break; }
+
+                for(d in deps) pkgpush(path ":" p, d)
+            }
         }
 
         if (wopts && !xopts) break
