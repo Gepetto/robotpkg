@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2007,2009-2012 LAAS/CNRS
+# Copyright (c) 2006-2007,2009-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -55,11 +55,11 @@ MASTER_SITE_GNU+=       \
 	ftp://ftp.funet.fi/pub/gnu/prep/ \
 	ftp://ftp.kddlabs.co.jp/pub/gnu/gnu/ \
 	ftp://ftp.dti.ad.jp/pub/GNU/ \
-	ftp://ftp.mirror.ac.uk/sites/ftp.gnu.org/gnu/ \
-	ftp://ftp.informatik.hu-berlin.de/pub/gnu/ \
+	ftp://mirrors.kernel.org/gnu/ \
+	ftp://ftp.sunet.se/pub/gnu/ \
 	ftp://ftp.lip6.fr/pub/gnu/ \
-	ftp://ftp.tuwien.ac.at/linux/gnu/gnusrc/ \
-	ftp://ftp.chg.ru/pub/gnu/
+	http://gd.tuwien.ac.at/gnu/gnusrc/
+
 
 MASTER_SITE_GITHUB+=	\
 	https://github.com/
