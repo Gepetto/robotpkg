@@ -362,7 +362,7 @@ bulk-mirror-distfiles:
 	|| {								\
 	  s=$$?;							\
 	  ${STEP_MSG} "Marking ${PKGNAME} as broken";			\
-	  ${BULK_BRK} "${MAKE}: *** [package] Error $$s";		\
+	  ${BULK_BRK} "${MAKE}: *** [mirror-distfiles] Error $$s";	\
 	}
 
 
