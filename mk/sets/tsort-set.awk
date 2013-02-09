@@ -257,13 +257,12 @@ function pkgpush(pkg, dep, uniquep, n,		i, k, r, depdir, deppat,
         stack[++stack[0]] = depdir ":" rdep
         stacktodo++
 
+        if (depdir ":" rdep in done) return
+        # optimize if the pkginfo above was for us
         if (q && pmatch(rdep, q, 0)) {
-            # optimize if the pkginfo above was for us
-            if (!(depdir ":" rdep in done)) {
-                done[depdir ":" rdep]
-                stackdone++
-            }
             if (!sort) xprintpkg(depdir ":" rdep)
+            done[depdir ":" rdep]
+            stackdone++
             for(i in r) pkgpush(depdir ":" rdep, i)
         }
         return
