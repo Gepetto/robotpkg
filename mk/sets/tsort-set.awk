@@ -184,12 +184,14 @@ function pkgtsort(	k, todo, dir) {
                 continue
             }
             if (!strict || (dir,troot) in graph || (troot,dir) in graph) {
-                stackdone+=pkgreqd[dir]
-                if (pathonly)
+                if (pathonly) {
                     xprint(dir)
-                else
-                    for(k = 1; k<=pkgreqd[dir]; k++)
+                    stackdone+=pkgreqd[dir]
+                } else
+                    for(k = 1; k<=pkgreqd[dir]; k++) {
                         xprintpkg(dir ":" pkgreqd[dir,k])
+                        stackdone++
+                    }
             }
             graphdel(dir)
         }
