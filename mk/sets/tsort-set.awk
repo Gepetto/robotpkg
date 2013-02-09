@@ -129,7 +129,13 @@ BEGIN {
         exit 0
     }
     depgraph()
-    xwarn("Scanned " stackdone " packages")
+    if (stackdone > 1)
+        if (pkgtodo != stackdone)
+            xwarn("Scanned " stackdone " packages (" pkgtodo " unique)")
+        else
+            xwarn("Scanned " stackdone " packages")
+    else
+        xwarn("Scanned 1 package")
     if (sort) pkgtsort()
 }
 
@@ -172,6 +178,7 @@ function depgraph(		deps, d) {
 # Sort package graph. See tsort(1).
 #
 function pkgtsort(	k, todo, dir) {
+    stacktodo = pkgtodo
     stackdone = 0
     todo = 1
     while (todo) {
@@ -272,6 +279,7 @@ function pkgpush(pkg, dep, uniquep, n,		i, k, r, depdir, deppat,
     pkgreqd[depdir,++pkgreqd[depdir]] = deppat
     stack[++stack[0]] = dep
     stacktodo++
+    pkgtodo++
 
     if (noconflict && pkgreqd[depdir] > 1) {
         q = deppat
