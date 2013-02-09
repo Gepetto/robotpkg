@@ -277,10 +277,16 @@ endef
 # satifies all the requirements. The input list shall be in the form of >=,
 # == and <= constraints. (!= is recognized, but kinda weird :)
 #
-override define preduce
+override define _preduce
 $(shell ${AWK}								\
   $(addprefix -f ${ROBOTPKG_DIR}/mk/internal/,libdewey.awk dewey.awk)	\
   reduce '$1')
+endef
+override define preduce
+$(strip $(eval __predv:=$(subst $$,SS,$(subst $! $!,__,$1)))		\
+$(or $(value __predc_${__predv}),					\
+     $(eval __predc_$${__predv}:=$$(call _preduce,$1))			\
+     $(value __predc_${__predv})))
 endef
 
 
