@@ -4,7 +4,7 @@
 
 DISTNAME=	contlaw-1.0
 CATEGORIES=	motion
-MASTER_SITE=	${MASTER_SITE_OPENROBOTS}
+MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/contlaw
 
 MAINTAINER=	openrobots@laas.fr
