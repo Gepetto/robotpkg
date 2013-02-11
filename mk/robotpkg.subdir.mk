@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007,2009-2011 LAAS/CNRS
+# Copyright (c) 2007,2009-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -35,10 +35,10 @@
 
 # Include any preferences, if not already included, and common
 # definitions. The file robotpkg.prefs.mk is protected against double
-# inclusion, but checking the flag here avoids loading and parsing it.
+# inclusion.
 #
-# Need to check two places as this may be called from pkgsrc or from
-# pkgsrc/category.
+# Need to check two places as this may be called from robotpkg/. or from
+# robotpkg/category/.
 #
 include $(realpath mk/robotpkg.prefs.mk ../mk/robotpkg.prefs.mk)
 
@@ -84,15 +84,18 @@ __targets=\
 	show-vars print-summary-data lint headings
 
 .PHONY: ${__targets}
-${__targets}: %: %-subdir
+${__targets}: recursive-subdir
+	@: # prevents 'nothing to be done for...'
 
-%-subdir: .FORCE
-	@for entry in "" ${SUBDIR}; do					\
-	  if [ "X$$entry" = "X" ]; then continue; fi;			\
+.PHONY:
+recursive-subdir:
+	${RUN}for entry in "" ${SUBDIR}; do				\
+	  ${TEST} -n "$$entry" || continue;				\
+	  ${PHASE_MSG} "Entering ${_THISDIR_}$${entry}";		\
 	  cd ${CURDIR}/$${entry};					\
-	  ${PHASE_MSG} "${_THISDIR_}$${entry}";				\
 	  ${RECURSIVE_MAKE} "_THISDIR_=${_THISDIR_}$${entry}/"		\
-	    ${filter ${__targets} confirm,${MAKECMDGOALS}} || ${TRUE};	\
+	    ${filter ${__targets} confirm,${MAKECMDGOALS}};		\
+	  ${PHASE_MSG} "Leaving ${_THISDIR_}$${entry}";			\
 	done
 
 
