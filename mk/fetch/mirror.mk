@@ -77,7 +77,7 @@ check-master-sites:
 	${RUN} {							\
   $(foreach distfile,${_ALLFILES},					\
 	  ${ECHO} '${distfile}'						\
-	    $(foreach _,${SITES.$(notdir ${distfile})},'$_')		\
+	    $(foreach _,${SITES.$(notdir ${distfile})},'$_');)		\
 	} | {								\
 	  fatal=0; warn=0;						\
 	  ${RM} ${_MIRROR_LOG};						\
