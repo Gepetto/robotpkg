@@ -2,10 +2,10 @@
 # Created:			Anthony Mallet on Mon, 17 Jan 2011
 #
 
-PKGNAME=	log4cxx-${PKGVERSION}
-DISTNAME=	apache-log4cxx-${PKGVERSION_NOREV}
-PKGVERSION=	0.10.0
-MASTER_SITES=	http://archive.apache.org/dist/logging/log4cxx/${PKGVERSION}/
+PKGNAME=	log4cxx-${VERSION}
+DISTNAME=	apache-log4cxx-${VERSION}
+VERSION=	0.10.0
+MASTER_SITES=	http://archive.apache.org/dist/logging/log4cxx/${VERSION}/
 
 CATEGORIES=	devel
 HOMEPAGE=	http://logging.apache.org/log4cxx/
