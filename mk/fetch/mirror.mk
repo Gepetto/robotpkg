@@ -35,9 +35,6 @@ ifneq (,$(strip ${ALLFILES}))
     ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
       ifneq (,$(filter archive,${FETCH_METHOD}))
         _MIRROR_TARGETS+=check-master-sites
-        ifndef NO_PUBLIC_SRC
-          _EXTRA_CHK_SITES+=${_MASTER_SITE_BACKUP}
-        endif
 
         DEPEND_METHOD.curl+=	bootstrap
         include ${ROBOTPKG_DIR}/mk/sysdep/curl.mk
@@ -81,7 +78,6 @@ check-master-sites:
   $(foreach distfile,${_ALLFILES},					\
 	  ${ECHO} '${distfile}'						\
 	    $(foreach _,${SITES.$(notdir ${distfile})},'$_')		\
-	    '${_EXTRA_CHK_SITES}';)					\
 	} | {								\
 	  fatal=0; warn=0;						\
 	  ${RM} ${_MIRROR_LOG};						\
