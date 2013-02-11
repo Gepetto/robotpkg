@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2012 LAAS/CNRS
+# Copyright (c) 2008-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -310,10 +310,10 @@ $(sort $(foreach _pkg_,${DEPEND_USE},${SYSTEM_FILES.${_pkg_}})):;
 
 # Top-level targets that require {bootstrap-,}depends
 ifneq (,$(filter ${_barrier.bootstrap-depends},${MAKECMDGOALS}))
-  _cbbh_requires+=	${_COOKIE.bootstrap-depends}
+  _cbeh_requires+=	${_COOKIE.bootstrap-depends}
 endif
 ifneq (,$(filter ${_barrier.depends},${MAKECMDGOALS}))
-  _cbbh_requires+=	${_COOKIE.bootstrap-depends}
+  _cbeh_requires+=	${_COOKIE.bootstrap-depends}
   _cbbh_requires+=	${_COOKIE.depends}
 endif
 

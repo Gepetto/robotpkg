@@ -23,14 +23,14 @@
 # needed during stages before the normal "depends" stage.  These dependencies
 # are packages with DEPEND_METHOD.pkg set to bootstrap.
 #
-_BSDEPENDS_TARGETS+=	cbbh
+_BSDEPENDS_TARGETS+=	cbeh
 _BSDEPENDS_TARGETS+=	do-bootstrap-depends
 
 bootstrap-depends: ${_BSDEPENDS_TARGETS};
 
 # force cookie rebuilding when bootstrap-depends is explicitely requested
 ifneq (,$(filter bootstrap-depends,${MAKECMDGOALS}))
-  _cbbh_requires+=	${_COOKIE.bootstrap-depends}
+  _cbeh_requires+=	${_COOKIE.bootstrap-depends}
   ifeq (,${MAKE_RESTARTS})
     ${_COOKIE.bootstrap-depends}: .FORCE
   endif
@@ -60,7 +60,7 @@ ifeq (yes,$(call exists,${_COOKIE.bootstrap-depends}))
 	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev;			\
 	${RM} -f ${_ALTERNATIVES_FILE} ${_SYSBSDEPENDS_FILE} ${_BSDEPENDS_FILE}
 
-  _cbbh_requires+=	${_COOKIE.bootstrap-depends}
+  _cbeh_requires+=	${_COOKIE.bootstrap-depends}
 else
   $(call require, ${ROBOTPKG_DIR}/mk/depends/sysdep.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)

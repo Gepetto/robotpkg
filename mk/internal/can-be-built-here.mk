@@ -34,18 +34,24 @@
 #                                       Anthony Mallet on Wed May 30 2007
 
 #
-# This file checks whether a package can be built in the current robotpkg
-# environment. It sets the following variables:
+# This file checks whether a package can be extracted or built in the current
+# robotpkg environment. In addition to the checks performed here, two variables
+# can be set by packages or .mk files to indicate failure, with the following
+# behaviour:
 #
-# PKG_FAIL_REASON, PKG_SKIP_REASON
+# PKG_FAIL_REASON: most of the targets cannot be invoked
 #
+# PKG_CBBH_REASON: targets involving building the package cannot be invoked,
+#                  but the package can be fetch, extracted or patched.
+#
+
 
 # Don't build BROKEN packages
 #
 ifdef BROKEN
   ifndef NO_BROKEN
-    PKG_FAIL_REASON+= "$${bf}${PKGNAME} is marked as broken:$${rm}"
-    PKG_FAIL_REASON+= "${BROKEN}"
+    PKG_CBBH_REASON+= "$${bf}${PKGNAME} is marked as broken:$${rm}"
+    PKG_CBBH_REASON+= "${BROKEN}"
   endif
 endif
 
@@ -68,7 +74,7 @@ PKG_FAIL_REASON+= ""
 PKG_FAIL_REASON+= " . To view the license, enter \"${MAKE} show-license\"."
 PKG_FAIL_REASON+= " . To indicate acceptance, add this line:"
 PKG_FAIL_REASON+= ""
-$(foreach l,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}),$(eval 	\
+$(foreach l,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}),$(eval	\
   PKG_FAIL_REASON+= "    ACCEPTABLE_LICENSES+=$l"			\
 ))
 PKG_FAIL_REASON+= ""
@@ -88,10 +94,10 @@ ifeq (,$(filter confirm,${MAKECMDGOALS}))
 			${MACHINE_PLATFORM} ${MACHINE_KERNEL}),		\
 		$(findstring ${NOT_FOR_PLATFORM},			\
 			${MACHINE_PLATFORM} ${MACHINE_KERNEL})))
-PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}."
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "You can override this check by doing:"
-PKG_FAIL_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
+PKG_CBBH_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}."
+PKG_CBBH_REASON+= ""
+PKG_CBBH_REASON+= "You can override this check by doing:"
+PKG_CBBH_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
     endif
   endif
 
@@ -101,10 +107,10 @@ PKG_FAIL_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
 			${MACHINE_PLATFORM} ${MACHINE_KERNEL}),		\
 		$(findstring ${ONLY_FOR_PLATFORM},			\
 			${MACHINE_PLATFORM} ${MACHINE_KERNEL})))
-PKG_FAIL_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}."
-PKG_FAIL_REASON+= ""
-PKG_FAIL_REASON+= "You can override this check by doing:"
-PKG_FAIL_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
+PKG_CBBH_REASON+= "${PKGNAME} is not available for ${MACHINE_PLATFORM}."
+PKG_CBBH_REASON+= ""
+PKG_CBBH_REASON+= "You can override this check by doing:"
+PKG_CBBH_REASON+= "		${MAKE} ${MAKECMDGOALS} confirm"
     endif
   endif
 endif
@@ -184,56 +190,53 @@ ifeq (yes,$(call exists,${_COOKIE.wrkdir}))
 endif
 
 
+# --- cbeh/cbbh -------------------------------------------------------------
 #
-# Summarize the result of tests in _CBBH
+# "can-be-extracted-here" and "can-be-built-here". If the package can not be
+# extracted or built, the reasons are given in the following lines.
 #
-_CBBH=			yes#, but see below.
 
-# Check PKG_FAIL_REASON
-ifdef PKG_FAIL_REASON
-ifneq (,${PKG_FAIL_REASON})
-_CBBH=			no
-_CBBH_MSGS+=		"This package has failed for the following reason:"
-_CBBH_MSGS+=		"${hline}"
-_CBBH_MSGS+=		${PKG_FAIL_REASON}
-_CBBH_MSGS+=		"${hline}"
-endif
-endif
-
-# Check PKG_SKIP_REASON
-ifdef PKG_SKIP_REASON
-ifneq (,$(PKG_SKIP_REASON))
-_CBBH=			no
-_CBBH_MSGS+=		"This package has set PKG_SKIP_REASON:"
-_CBBH_MSGS+=		${PKG_SKIP_REASON}
-endif
-endif
-
-# --- cbbh -----------------------------------------------------------------
-#
-# In the first line, this target prints either "yes" or "no", saying
-# whether this package can be built. If the package can not be built,
-# the reasons are given in the following lines.
-#
-.PHONY: can-be-built-here
-can-be-built-here:
-	@${ECHO} ${_CBBH}
-	@${ECHO} ${_CBBH_MSGS}
-
-.PHONY: cbbh
-cbbh:
-  ifeq (no,${_CBBH})
-	${RUN} ${_SETFANCY_CMD};					\
-	for str in ${_CBBH_MSGS}; do					\
-		${ERROR_MSG} "$$str";					\
+.PHONY: cbeh
+cbeh:
+  ifeq (,$(strip ${PKG_FAIL_REASON}))
+	@:
+  else
+	${RUN}${_SETFANCY_CMD};						\
+	${ERROR_MSG}							\
+	  "This package cannot be extracted for the following reason:";	\
+	${ERROR_MSG} "${hline}";					\
+	for str in ${PKG_FAIL_REASON}; do				\
+	  ${ERROR_MSG} "$$str";						\
 	done;								\
+	${ERROR_MSG} "${hline}";					\
 	exit 2
   endif
 
 
+.PHONY: cbbh
+cbbh: cbeh
+  ifeq (,$(strip ${PKG_CBBH_REASON}))
+	@:
+  else
+	${RUN}${_SETFANCY_CMD};						\
+	${ERROR_MSG}							\
+	  "This package cannot be built for the following reason:";	\
+	${ERROR_MSG} "${hline}";					\
+	for str in ${PKG_CBBH_REASON}; do				\
+	  ${ERROR_MSG} "$$str";						\
+	done;								\
+	${ERROR_MSG} "${hline}";					\
+	exit 2
+  endif
+
 # Include cookies or other files required by other makefiles, so that this may
 # trigger again the corresponding phase if needed and the package allows it.
+# This is done as follow:
+# - if cbbh is not required, include cbeh iff !PKG_FAIL_REASON
+# - if cbbh is required, include cbeh+cbbh iff !PKG_FAIL_REASON+PKG_CBBH_REASON
 #
-ifeq (yes,${_CBBH})
-  $(call -require,$(sort ${_cbbh_requires}))
+ifeq (,$(strip ${_cbbh_requires}${PKG_FAIL_REASON}))
+  $(call -require,$(sort ${_cbeh_requires}))
+else ifeq (,$(strip ${PKG_CBBH_REASON}${PKG_FAIL_REASON}))
+  $(call -require,$(sort ${_cbeh_requires} ${_cbbh_requires}))
 endif
