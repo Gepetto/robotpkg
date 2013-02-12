@@ -96,6 +96,7 @@ if ${TEST} ! -f "$distinfo"; then
 fi
 
 { exitcode=0
+  algs=" $algorithm "
   while read d_alg d_file d_equals d_checksum; do
 	case "$d_alg" in
 	"#"*)	continue ;;	# skip comments
@@ -107,6 +108,10 @@ fi
 	if ${TEST} -n "$algorithm"; then
 		${TEST} "$d_alg" = "$algorithm" || continue
 	fi
+        case "$d_alg" in
+            *" $algs "*);;
+            *) algs="$algs $d_alg ";;
+        esac
 
 	eval "tmp=\"\$_alg_${d_alg}\""
 	${TEST} -n "$tmp" || eval "_alg_${d_alg}=\"$files\""
@@ -147,7 +152,7 @@ fi
 	eval "tmp=\"\$_alg_${d_alg}\""
 	${TEST} -n "$tmp" || eval "_alg_${d_alg}=DONE"
   done
-  if ${TEST} -n "$algorithm"; then
+  for algorithm in $algs; do
 	eval "tmp=\"\$_alg_${algorithm}\""
 	${TEST} -n "$tmp" || tmp="$files"
 	if ${TEST} "$tmp" != DONE; then
@@ -156,5 +161,5 @@ fi
 			exitcode=1
 		done
 	fi
-  fi
+  done
   exit $exitcode; } < $distinfo
