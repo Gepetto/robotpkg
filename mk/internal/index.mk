@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2012 LAAS/CNRS
+# Copyright (c) 2007-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -240,8 +240,9 @@ endif
 #
 # This target is used by the toplevel.mk file to generate pkg database file
 #
-.PHONY: print-summary-data
-print-summary-data:
+ifeq (2,${_ROBOTPKG_DEPTH})
+  .PHONY: print-summary-data
+  print-summary-data:
 	${RUN}								\
 	${ECHO} index ${PKGPATH} ${PKGBASE};				\
 	${ECHO} version ${PKGPATH} ${PKGVERSION};			\
@@ -272,3 +273,4 @@ print-summary-data:
 	  ${ECHO}  descr ${PKGPATH} /dev/null;				\
 	fi;								\
 	${ECHO} prefix ${PKGPATH} ${PREFIX}
+endif
