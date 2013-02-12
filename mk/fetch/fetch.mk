@@ -145,7 +145,7 @@ _FETCH_ENV=\
 	CHECKSUM=$(call quote,${_CHECKSUM_CMD})
 
 _FETCH_SCRIPT=${FETCH_LOGFILTER} ${SETENV} ${_FETCH_ENV}		\
-	FETCH_CMD=$(call quote,${_FETCH_CMD}) 				\
+	FETCH_CMD=$(call quote,${_FETCH_CMD})				\
 	FETCH_BEFORE_ARGS=$(call quote,${_FETCH_BEFORE_ARGS})		\
 	FETCH_AFTER_ARGS=$(call quote,${_FETCH_AFTER_ARGS})		\
 	FETCH_RESUME_ARGS=$(call quote,${_FETCH_RESUME_ARGS})		\
@@ -167,38 +167,46 @@ ifndef NO_CHECKSUM
     endif
   endif
 endif
-_FETCH_ARGS+=	-d $(or $(strip ${DIST_SUBDIR}),.)
+_FETCH_ARGS+=  -d $(or $(strip ${DIST_SUBDIR}),.)
 
 $(addprefix ${DISTDIR}/,${_ALLFILES}):
-	${RUN} ${STEP_MSG} "Fetching $(notdir $@)";			\
-	${MKDIR} $(dir $@) && ${RM} -f $@;				\
+	${RUN} distfile='$(patsubst ${DISTDIR}/%,%,$@)';		\
+	${STEP_MSG} "Fetching $$distfile";				\
+	${MKDIR} $(dir $@) && ${RM} $@;					\
 	for d in "" $(subst :, ,${DIST_PATH}); do			\
 	  case $$d in ""|${DISTDIR}) continue ;; esac;			\
-	  file="$$d/${DIST_SUBDIR}/$(notdir $@)";			\
-	  if ${TEST} -f $$file; then					\
-	    ${ECHO} "Using $$file";					\
-	    ${LN} -s $$file $@;						\
-	    break;							\
+	  if ! cd "$$d" 2>/dev/null; then continue; fi;			\
+	  if ${TEST} -f "$$distfile"; then				\
+  $(if ${NO_CHECKSUM},,							\
+    $(if $(filter yes,$(call exists,${DISTINFO_FILE})),			\
+	    ${ECHO} "Checking $$d/$$distfile";				\
+	    ${_CHECKSUM_CMD} '${DISTINFO_FILE}' "$$distfile"|| continue;\
+    ))									\
+	    ${ECHO} "Using $$d/$$distfile";				\
+	    ${LN} -s "$$d/$$distfile" $@;				\
+	    exit 0;							\
 	  fi;								\
 	done
   ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
 	${RUN} ${TEST} ! -f $@ || exit 0;				\
-	unsorted_sites="${SITES.$(subst =,--,$(notdir $@))}";		\
-	cd ${DISTDIR} &&						\
+	distfile='$(patsubst ${DISTDIR}/%,%,$@)';			\
+	unsorted_sites='${SITES.$(notdir $@)}';				\
+	${MKDIR} ${WRKDIR}/.fetch && cd ${WRKDIR}/.fetch;		\
 	${_FETCH_SCRIPT} -m ${FETCH_METHOD} ${_FETCH_ARGS}		\
-		$(notdir $@) ${_ORDERED_SITES} ||:;			\
-	if ${TEST} ! -f $@; then					\
+		"$(notdir $@)" ${_ORDERED_SITES} ||:;			\
+	if ${TEST} ! -f "$$distfile"; then				\
 	  ${_FETCH_SCRIPT_BACKUP} -m archive ${_FETCH_ARGS}		\
-			$(notdir $@) ${_MASTER_SITE_BACKUP} ||:;	\
+			"$(notdir $@)" ${_MASTER_SITE_BACKUP} ||:;	\
 	fi;								\
-	if ${TEST} ! -f $@; then					\
+	if ${TEST} ! -f "$$distfile"; then				\
 	  ${ERROR_MSG} "Could not fetch the following file:";		\
 	  ${ERROR_MSG} "    $(notdir $@)";				\
 	  ${ERROR_MSG} "";						\
 	  ${ERROR_MSG} "Please retrieve this file manually into:";	\
 	  ${ERROR_MSG} "    $(dir $@)";					\
 	  exit 1;							\
-	fi
+	fi;								\
+	${MV} -f "$$distfile" "$@"
   else # INTERACTIVE_STAGE
 	${RUN} ${TEST} ! -f $@ || exit 0;				\
 	${ERROR_MSG} ${hline};						\
