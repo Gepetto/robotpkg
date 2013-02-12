@@ -1,81 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!doctype html>
 <html>
   <head>
-    <title>The Robotics Packages Collection - %%PORT%%</title>
+    <meta charset="UTF-8">
+    <title>robotpkg/@PKGPATH@</title>
     <link href="../../mk/templates/robotpkg.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div id="header">
-      <h1>The Robotics Packages Collection</h1>
-      <a class="navigation" href="../index.html">Go up one level</a>
-      <a class="navigation" href="../../index.html">Go to top of packages tree</a>
-      <a class="navigation" href="../../index-all.html">List all packages</a>
-    </div>
-
-    <h2>%%PORT%%</h2>
-    <div id="comment">
-	 %%COMMENT%%
-    </div>
-
-    <div id="content">
-      <table id="summary">
-        <tr><td>Description:<td><div class="descr">
-	          %%DESCR%%
-            </div></tr>
-	<tr>
-	  <td>Directory:
-	  <td><a href=".">%%PORT%%</a>
-	  (<a href="http://trac.laas.fr/git/robotpkg/log/%%PORT%%?showmsg=1">package's history</a>)
-	</tr>
-
-	<tr>
-	  <td>Package version:
-	  <td>%%PKG%%
-	</tr>
-	<tr>
-	  <td>Home page:
-	  <td>%%HOMEPAGE%%
-	</tr>
-	<tr><td>Source archive:<td>
-          %%DISTFILES%%
-            </tr>
-            %%LICENSE%%
-
-        <tr><td>Run dependencies:<td>
-              %%RUN_DEPENDS%%
-            </tr>
-        <tr><td>Build dependencies:<td>
-              %%BUILD_DEPENDS%%
-            </tr>
-      </table>
-
-<p>For a summary on how to use the package collection, go to the
-<a href="../../index.html">top of the packages tree</a>.
-</p>
-
-<p>Problem reports, updates or suggestions for this package should be
-reported with
-<a
-href="https://softs.laas.fr/bugzilla/buglist.cgi?bug_status=__open__&product=robotpkg">the robotpkg bugzilla.</a></p>
-
-<!-- <p>
-Select one of the links below to download the
-package in precompiled binary form for installation with pkg_add(1).
-Available machine architectures and package versions:
-<TABLE>
-%%BIN_PKGS%%
-</TABLE>
--->
-
-      <p>
-	The Robotics packages collection is designed to permit
-	easy <a href="../../README.html">installation from source</a> -
-	particularly useful if the latest binary package is
-	not available for your chosen platform.
-      </p>
-
-      <div id="footer">
+    <div id=page>
+      <div id=hier>
+        <ul><li class=title><a href="../../index.html">All packages</a></li>
+          <li class=title>Categories</li>@HIER@</ul>
       </div>
-</div>
-</body>
+      <div id=content>
+        <h2>@PKGPATH@</h2>
+        <div class="comment">@COMMENT@</div>
+        <dl class="summary">
+	  <dt>Directory:</dt><dd><a href=".">@PKGPATH@</a>
+	  (<a href="http://trac.laas.fr/git/robotpkg/log/@PKGPATH@?showmsg=1"
+              >package's history</a>)</dd>
+	  <dt>Package version:</dt><dd>@PKGNAME@</dd>
+	  <dt>Home page:</dt><dd>@HOMEPAGE@</dd>
+	  <dt>License:</dt><dd>@LICENSE@</dd>
+	  <dt>Source archive:</dt><dd><dl>@DISTFILES@</dl></dd>
+        </dl>
+        <dl class="summary">
+          <dt>Description:</dt><dd class="descr">@DESCR@</dd>
+        </dl>
+        <dl class="summary s90">
+          <dt>Run dependencies:</dt><dd>@RUN_DEPENDS@</dd>
+          <dt>Build dependencies:</dt><dd>@BUILD_DEPENDS@</dd>
+	  @OPTIONS@
+        </dl>
+      </div>
+      <div class="footer">
+        <p>For a summary on how to use the package collection, see the
+          <a href="../../README.html">README.html</a>. robotpkg is designed to
+          permit easy installation from source - particularly useful if the
+          latest binary package is not available for your chosen platform.</p>
+        <p>Problem reports, updates or suggestions for this package should be
+          reported via the mailing list, see <a
+          href="https://sympa.laas.fr/sympa/info/robotpkg">https://sympa.laas.fr/sympa/info/robotpkg</a>
+          for more information and subscription.</p>
+        <p>This page was generated on @DATE@.</p>
+      </div>
+    </div>
+  </body>
 </html>

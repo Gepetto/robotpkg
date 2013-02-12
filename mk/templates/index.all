@@ -1,25 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!doctype html>
 <html>
   <head>
-    <title>All Packages - Robotics Packages Collection</title>
+    <meta charset="UTF-8">
+    <title>robotpkg packages index</title>
     <link href="mk/templates/robotpkg.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div id="header">
-      <h1>The Robotics Packages Collection</h1>
-      <a class="navigation" href="index.html">Go to top of packages tree</a>
+    <div id=page>
+      <div id=hier>
+        <ul><li class="pkgcategory title">All packages</li>
+          <li class=title>Categories</li>@HIER@</ul>
+      </div>
+      <div id=content>
+        <h2>robotpkg index</h2>
+        <div class="comment">The robotics packages collection</div>
+        <p>The following list contains all @NPKGS@ packages currently available
+        in robotpkg, sorted alphabetically.</p>
+        <p>Please select an entry for more details!</p>
+	<table>
+          <thead>
+	    <tr><th>Category</th><th>Package</th><th>Description</th></tr>
+          </thead>
+          <tbody class="s90">@PKGS@</tbody>
+        </table>
+      </div>
+      <div class="footer">
+        <p>For a summary on how to use the package collection, see the
+          <a href="../../README.html">README.html</a>. robotpkg is designed to
+          permit easy installation from source - particularly useful if the
+          latest binary package is not available for your chosen platform.</p>
+        <p>Problem reports, updates or suggestions for this package should be
+          reported via the mailing list, see <a
+          href="https://sympa.laas.fr/sympa/info/robotpkg">https://sympa.laas.fr/sympa/info/robotpkg</a>
+          for more information and subscription.</p>
+        <p>This page was generated on @DATE@.</p>
+      </div>
     </div>
-
-    <p>The following list contains all
-%%NPKGS%%
-      packages currently available
-      in the Robotics Packages Collection, sorted alphabetically.</p>
-    <p>Please select an entry for more details!</p>
-
-<table>
-<tr><th align="left">Package <th align="left">Category <th align="left"> Package description
-%%PKGS%%
-</table>
-
-</body>
+  </body>
 </html>

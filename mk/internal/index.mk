@@ -58,11 +58,12 @@ PKG_URL_DIR?=	/openrobots/robotpkg/packages
 
 PKG_URL=	${PKG_URL_HOST}${PKG_URL_DIR}
 
-HTMLIFY=	${SED} -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
-HTML_HOMEPAGE=	$(if ${HOMEPAGE},<a href="${HOMEPAGE}">${HOMEPAGE}</a>,(none))
-HTML_LICENSE=	$(if ${LICENSE},			\
-	<tr><td>License:<td>$(foreach l,${LICENSE},	\
-		<a href="../../licenses/$l">$l</a>))
+# transform text into html embedded string - use  as the sed delimiter (!)
+override define htmlify
+  ${ECHO} $1 | ${SED}						\
+	-e 's&\\\&amp;g'					\
+	-e 's>\\\&gt;g' -e 's<\\\&lt;g'
+endef
 
 
 # --- index ----------------------------------------------------------------
@@ -80,159 +81,278 @@ ifeq (2,${_ROBOTPKG_DEPTH})
 else ifeq (1,${_ROBOTPKG_DEPTH})
   INDEX_NAME=	${TEMPLATES}/index.category
 else ifeq (0,${_ROBOTPKG_DEPTH})
-  INDEX_NAME=	${TEMPLATES}/index.top
+  INDEX_NAME=	${TEMPLATES}/index.all
 else
   $(error "robotpkg directory not found")
 endif
 
-.PHONY: index.html
-.PRECIOUS: index.html
-index.html:
+# --- package index.html ---------------------------------------------------
+#
 ifeq (2,${_ROBOTPKG_DEPTH})
-  # package index.html
-	@>$@.bdep; >$@.rdep; bdep=; rdep=;				\
-${foreach _d_,$(sort ${DEPEND_USE}),					\
-	pkg='${DEPEND_ABI.${_d_}}';					\
-	if test "${DEPEND_DIR.${_d_}}"; then				\
-		html='<a href="${DEPEND_DIR.${_d_}}/index.html">';	\
-		html="$${html}$${pkg}"'</a>';				\
-	else								\
-		html="$${pkg}";						\
-	fi;								\
-	case "${DEPEND_METHOD.${_d_}}" in				\
-		build)							\
-			${ECHO}	$${bdep} $${html} >>$@.bdep;		\
-			bdep=';';;					\
-		full)							\
-			${ECHO}	$${rdep} $${html} >>$@.rdep;		\
-			rdep=';';;					\
-	esac;								\
-}									\
-	${SED} <${DESCR_SRC} -e 's/^$$/<p>/g' >$@.descr;		\
-	${ECHO} $(call quote,${COMMENT}) | ${HTMLIFY} > $@.comment;	\
-	${ECHO} '<ul>' >$@.distfiles;					\
-	$(foreach _,${DISTFILES},					\
-	  $(foreach __,$(addsuffix $_,${SITES.$(subst =,--,$_)}),	\
-	    ${ECHO} '<li><a href="${__}">${__}</a>' >>$@.distfiles;	\
-	))								\
-	${ECHO} '</ul>' >>$@.distfiles;					\
-	${ECHO} $(call quote,${COMMENT}) | ${HTMLIFY} > $@.comment;	\
-	${SED} <${INDEX_NAME}						\
-		-e 's!%%PORT%%!${PKGPATH}!g' 				\
-		-e '/%%COMMENT%%/r$@.comment' 				\
-		-e '/%%COMMENT%%/d' 					\
-		-e 's!%%PKG%%!${PKGNAME}!g'				\
-		-e 's!%%HOMEPAGE%%!${HTML_HOMEPAGE}!g'			\
-		-e '/%%DISTFILES%%/r$@.distfiles'			\
-		-e '/%%DISTFILES%%/d'					\
-		-e 's!%%LICENSE%%!${HTML_LICENSE}!g'			\
-		-e '/%%DESCR%%/r$@.descr'				\
-		-e '/%%DESCR%%/d' 					\
-		-e '/%%BUILD_DEPENDS%%/r$@.bdep'			\
-		-e '/%%BUILD_DEPENDS%%/d'				\
-		-e '/%%RUN_DEPENDS%%/r$@.rdep'				\
-		-e '/%%RUN_DEPENDS%%/d'					\
-		-e 's!%%BIN_PKGS%%!(none)!g'				\
-		> $@.tmp;						\
-	if [ -f $@ ] && ${CMP} -s $@.tmp $@; then 			\
-		${RM} $@.tmp; 						\
-	else 								\
-		${ECHO_MSG} "creating index.html for ${PKGPATH}";	\
-		${MV} $@.tmp $@;					\
-	fi;								\
-	${RM} -f $@.tmp $@.bdep $@.rdep $@.descr $@.comment $@.distfiles
-else
-  # category or top-level index.html
-	@${PHASE_MSG} "Updating index.html files" 			\
-		$(if $(filter 1,${_ROBOTPKG_DEPTH}),			\
-			"for $(notdir ${CURDIR})")
-	@> $@.tmp; for entry in ${SUBDIR}; do 				\
-	${ECHO} '<tr><td valign=top>'					\
-		'<a href="'$${entry}/index.html'">'			\
-$(if $(filter 0,${_ROBOTPKG_DEPTH}),					\
-		`${ECHO} $${entry} | ${HTMLIFY}`,			\
-		`cd $${entry} && 					\
-			${RECURSIVE_MAKE} show-var VARNAME=PKGNAME |	\
-			${HTMLIFY}` 					\
-)									\
-		'</a>:<td>'						\
-		`cd $${entry} && ${RECURSIVE_MAKE} show-comment |	\
-			${HTMLIFY}` >>$@.tmp; 				\
+  .PHONY: index.html
+  .PRECIOUS: index.html
+  index.html:
+	${RUN}								\
+	export hier=;							\
+	for c in `${RECURSIVE_MAKE} -C ${ROBOTPKG_DIR} show-subdir`; do	\
+	  h=' href="../../'$$c'/index.html"';				\
+	  case $$c in "$(subst $! $!,"|",${CATEGORIES})")		\
+	     d="${PKGPATH}"; d=$${d#$$c/};				\
+	     hier=$$hier'<li class="pkgcategory"><a'$$h'>'$$c'</a>';	\
+	     if ! ${TEST} "$$d" = "${PKGPATH}"; then			\
+	       hier=$$hier'<ul><li>'$$d'</li></ul>';			\
+	     fi;							\
+	     hier=$$hier'</li>';;					\
+	  *) hier=$$hier'<li><a'$$h'>'$$c'</a></li>';;			\
+	  esac;								\
 	done;								\
-	${SORT} -t '>' -k 3,4 $@.tmp > $@.tmp2;				\
-	${SED} <${INDEX_NAME}						\
-		-e 's/%%CATEGORY%%/$(notdir ${CURDIR})/g' 		\
-		-e 's/%%NUMITEMS%%/$(words ${SUBDIR})/g'		\
-		-e '/%%NUMITEMS%%/d' 					\
-		-e '/%%DESCR%%/d' 					\
-		-e '/%%SUBDIR%%/r$@.tmp2'				\
-		-e '/%%SUBDIR%%/d' 					\
-		> $@.tmp3;						\
-	if [ -f $@ ] && ${CMP} -s $@.tmp3 $@; then 			\
-		${RM} $@.tmp3; 						\
-	else 								\
-		${ECHO_MSG} "creating index.html for"			\
-			"$(notdir ${CURDIR})";				\
-		${MV} $@.tmp3 $@;					\
+	export date="`${_CDATE_CMD}`";					\
+	export comment="$$($(call htmlify,$(call quote,${COMMENT})))";	\
+	export descr="`${CAT} ${DESCR_SRC}`";				\
+	export homepage="$$($(call htmlify,'$(strip ${HOMEPAGE})'))";	\
+	if ${TEST} -n "$$homepage"; then				\
+	  homepage="<a href=\"$$homepage\">$$homepage</a>";		\
+	else								\
+	  homepage='(none)';						\
 	fi;								\
-	${RM} -f $@.tmp $@.tmp2 $@.tmp3;				\
-	for subdir in ${SUBDIR} ""; do					\
-		if [ "X$$subdir" = "X" ]; then continue; fi;		\
-		(cd $${subdir} && ${RECURSIVE_MAKE} index);		\
-	done
+	export license="`$(call htmlify,'$(strip ${LICENSE})')`";	\
+	if ${TEST} -n "$$license"; then					\
+	  license="<a href=\"../../licenses/${LICENSE}\">$$license</a>";\
+	else								\
+	  license='(none)';						\
+	fi;								\
+	export distfiles=;						\
+  $(foreach _,${DISTFILES},						\
+    $(foreach -,$(addsuffix $_,${SITES.$(notdir $_)}),			\
+	distfiles=$$distfiles'<dt><a href="$-">$-</a></dt>';))		\
+	distfiles=$${distfiles:='(none)'};				\
+									\
+	export bdep=; export rdep=;					\
+	sep=", ";							\
+  $(foreach _,$(sort ${DEPEND_USE}),					\
+	pkg='${DEPEND_ABI.$_}';						\
+    $(if ${DEPEND_DIR.$_},						\
+	html='<a href="${DEPEND_DIR.$_}/index.html">'$$pkg'</a>';,	\
+	html="$$pkg";)							\
+    $(if $(filter full,${DEPEND_METHOD.$_}),				\
+	rdep=$$rdep$${rdep:+$$sep}$$html;,				\
+	bdep=$$bdep$${bdep:+$$sep}$$html;))				\
+	rdep=$${rdep:='(none)'};					\
+	bdep=$${bdep:='(none)'};					\
+									\
+	export opts=;							\
+  $(if $(strip ${PKG_GENERAL_OPTIONS}),					\
+	opts=$$opts'<dt>General options:</dt><dd><dl class=options>';	\
+    $(foreach _, $(sort ${PKG_GENERAL_OPTIONS}),			\
+	opts=$$opts'<dt>$_</dt><dd>${PKG_OPTION_DESCR.$_}</dd>';)	\
+	opts=$$opts'</dl></dd>';)					\
+  $(foreach -, ${PKG_OPTIONS_REQUIRED_GROUPS},				\
+	opts=$$opts'<dt>$- options:</dt><dd><dl class=options>';	\
+    $(foreach _, ${PKG_OPTIONS_GROUP.$-},				\
+	opts=$$opts'<dt>$_</dt><dd>${PKG_OPTION_DESCR.$_}</dd>';)	\
+	opts=$$opts'</dl></dd>';)					\
+  $(foreach -, ${PKG_OPTIONS_OPTIONAL_GROUPS},				\
+	opts=$$opts'<dt>$- options:</dt><dd><dl class=options>';	\
+    $(foreach _, ${PKG_OPTIONS_GROUP.$-},				\
+	opts=$$opts'<dt>$_</dt><dd>${PKG_OPTION_DESCR.$_}</dd>';)	\
+	opts=$$opts'</dl></dd>';)					\
+  $(foreach -, ${PKG_OPTIONS_NONEMPTY_SETS},				\
+	opts=$$opts'<dt>$- options:</td><dd><dl class=options>';	\
+    $(foreach _, ${PKG_OPTIONS_SET.$-},					\
+	opts=$$opts'<dt>$_</dt><dd>${PKG_OPTION_DESCR.$_}</dd>';)	\
+	opts=$$opts'</dl></dd>';)					\
+  $(foreach -,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVES.$-},		\
+	opts=$$opts'<dt>$- alternatives:</td><dd><dl class=options>';	\
+    $(foreach _,${PKG_ALTERNATIVES.$-},					\
+      $(if $(strip ${PKG_ALTERNATIVE_SELECT.$_}),			\
+	opts=$$opts'<dt>$_</dt><dd>${PKG_ALTERNATIVE_DESCR.$_}</dd>';))	\
+	opts=$$opts'</dl></dd>';))					\
+									\
+	${AWK} '{							\
+	  gsub(/@PKGPATH@/, "${PKGPATH}");				\
+	  gsub(/@PKGNAME@/, "${PKGNAME_NOTAG}");			\
+	  gsub(/@COMMENT@/, ENVIRON["comment"]);			\
+	  gsub(/@HOMEPAGE@/, ENVIRON["homepage"]);			\
+	  gsub(/@LICENSE@/, ENVIRON["license"]);			\
+	  gsub(/@DISTFILES@/, ENVIRON["distfiles"]);			\
+	  gsub(/@RUN_DEPENDS@/, ENVIRON["rdep"]);			\
+	  gsub(/@BUILD_DEPENDS@/, ENVIRON["bdep"]);			\
+	  gsub(/@DESCR@/, ENVIRON["descr"]);				\
+	  gsub(/@OPTIONS@/, ENVIRON["opts"]);				\
+	  gsub(/@HIER@/, ENVIRON["hier"]);				\
+	  gsub(/@DATE@/, ENVIRON["date"]);				\
+	  print;							\
+	}' <${INDEX_NAME} >$@.tmp;					\
+	if ${TEST} -f $@ && ${CMP} -s $@.tmp $@; then			\
+	  ${RM} $@.tmp;							\
+	else								\
+	  ${ECHO_MSG} "Creating index.html for ${PKGPATH}";		\
+	  ${MV} $@.tmp $@;						\
+	fi
 endif
 
-# --- index-all ------------------------------------------------------------
+# --- category index.html --------------------------------------------------
+#
+# There is a tricky part for invoking only one sub make for each package.
+# The sub make is invoked for rebuilding a pkg index and printing a few package
+# variables (name and comment). It is piped into a read loop that either print
+# informative lines on fd#9 (dupped to stdout) or variables value to fd#1. This
+# loop is itself placed inside a backquote so that fd#1 can be eval'ed in the
+# current shell while fd#9 goes unfiltered to stdout.
+#
+ifeq (1,${_ROBOTPKG_DEPTH})
+  .PHONY: index.html
+  .PRECIOUS: index.html
+  index.html:
+	@${PHASE_MSG} "Updating index for $(notdir ${CURDIR})"
+	${RUN}								\
+	export hier=;							\
+	cat='$(notdir ${CURDIR})';					\
+	for c in `${RECURSIVE_MAKE} -C ${ROBOTPKG_DIR} show-subdir`; do	\
+	  h=' href="../'$$c'/index.html"';				\
+	  case $$c in "$$cat")						\
+	     hier=$$hier'<li class="pkgcategory">'$$c'</li>';;		\
+	  *) hier=$$hier'<li><a'$$h'>'$$c'</a></li>';;			\
+	  esac;								\
+	done;								\
+	export date="`${_CDATE_CMD}`";					\
+	export comment="$$($(call htmlify,$(call quote,${COMMENT})))";	\
+									\
+	submake() {							\
+	  ${RECURSIVE_MAKE} EXPECT_TARGETS='fetch install'		\
+	    -C "$$subdir" index print-vars				\
+	    VARNAMES="PKGNAME_NOTAG COMMENT" | while read l; do		\
+	      case "$$l" in						\
+	        'PKGNAME_NOTAG|'*|'COMMENT|'*)				\
+	          ${ECHO} "$$l" | ${SED}				\
+	            -e "s/'/'\"'\"'/g;s/|/='/;s/$$/'/;s/[*]/\*/g";;	\
+	        *) ${ECHO} "$$l" >&9;;					\
+	      esac;							\
+	    done;							\
+	};								\
+									\
+	exec 9>&1; export pkgs=;					\
+	for subdir in ${SUBDIR} ""; do					\
+	  ${TEST} -n "$$subdir" || continue;				\
+	  eval "`submake`";						\
+  $(if ${print-index-data},${ECHO}					\
+	    'INDEX|'$$cat'|'$$subdir'|'$$PKGNAME_NOTAG'|'$$COMMENT;)	\
+	  pkg="$$($(call htmlify,$$PKGNAME_NOTAG))";			\
+	  pkg='<a href="'$$subdir'/index.html">'$$pkg'</a>';		\
+	  cmt="$$($(call htmlify,$$COMMENT))";				\
+	  pkgs=$$pkgs'<tr><td>'$$pkg'</td><td>'$$cmt'</td></tr>';	\
+	done;								\
+	exec 9>&-;							\
+									\
+	${AWK} '{							\
+	  gsub(/@CATEGORY@/, "$(notdir ${CURDIR})");			\
+	  gsub(/@COMMENT@/, ENVIRON["comment"]);			\
+	  gsub(/@COMMENT@/, ENVIRON["comment"]);			\
+	  gsub(/@PKGS@/, ENVIRON["pkgs"]);				\
+	  gsub(/@HIER@/, ENVIRON["hier"]);				\
+	  gsub(/@DATE@/, ENVIRON["date"]);				\
+	  print;							\
+	}' <${INDEX_NAME} >$@.tmp;					\
+	if ${TEST} -f $@ && ${CMP} -s $@.tmp $@; then			\
+	  ${RM} $@.tmp;							\
+	else								\
+	  ${ECHO_MSG} "Creating index.html for $(notdir ${CURDIR})";	\
+	  ${MV} $@.tmp $@;						\
+	fi
+endif
+
+# --- toplevel index -------------------------------------------------------
 #
 # Generate list of all packages by extracting information from the
-# category/index.html pages
+# category/index.html pages.
 #
 ifeq (0,${_ROBOTPKG_DEPTH})
-  index: index-all
-
-  .PHONY: index-all
-  index-all: index-all.html
-
-  .PHONY: index-all.html
-  .PRECIOUS: index-all.html
-  index-all.html:
-	@${RM} -f $@.new $@.newsorted;					\
-	${PHASE_MSG} "Processing categories for $@";			\
-	hl() { echo '<a href="'$$1'/index.html">'$$1'</a>'; };		\
-	for category in ${SUBDIR} ""; do 				\
-		if [ "X$$category" = "X" ]; then continue; fi; 		\
-		if [ -f $${category}/index.html ]; then 		\
-			${ECHO} "processing $${category}"; 		\
-			${SED} -n $(join ,'/^<tr>/{			\
-				s!href="!&'$${category}'/!;		\
-				s!</a>:!&<td>('"`hl $${category}`"')!;	\
-				s!<tr>!<tr valign=top>!;		\
-				s!<td valign=top>!<td>!;		\
-			p;}') <$${category}/index.html >>$@.new;	\
-		fi; 							\
+  .PHONY: index.html
+  .PRECIOUS: index.html
+  index.html:
+	@${PHASE_MSG} "Updating index for robotpkg"
+	${RUN} ${TEST} -t 1 && echo='ECHO_MSG=${ECHO}';			\
+	export hier=;							\
+	for subdir in ${SUBDIR} ""; do					\
+	  ${TEST} -n "$$subdir" || continue;				\
+	  hier=$$hier'<li>';						\
+	  hier=$$hier'<a href="'$$subdir'/index.html">'$$subdir'</a>';	\
+	  hier=$$hier'</li>';						\
 	done;								\
-	if [ ! -f $@.new ]; then 					\
-		${ERROR_MSG} ${hline};					\
-		${ERROR_MSG} "There are no categories with index.html"	\
-			"files available."; 				\
-		${ERROR_MSG} "You need to run \`${MAKE} index' to"	\
-			"generate them before running this target."; 	\
-		${FALSE}; 						\
-	fi;								\
-	${SORT} -f -t '>' -k 4,4 <$@.new >$@.newsorted;			\
-	${AWK} '{ ++n } END { print n }' <$@.newsorted >$@.npkgs;	\
-	${SED} 	-e '/%%NPKGS%%/r$@.npkgs' 				\
-		-e '/%%NPKGS%%/d' 					\
-		-e '/%%PKGS%%/r$@.newsorted' 				\
-		-e '/%%PKGS%%/d' 					\
-		<${TEMPLATES}/index.all >$@.tmp;			\
-	if [ -f $@ ] && ${CMP} -s $@.tmp $@; then 			\
-		${RM} $@.tmp; 						\
-	else 								\
-		${ECHO_MSG} "creating index-all.html";			\
-		${MV} $@.tmp $@;					\
-	fi;								\
-	${RM} -f $@.tmp $@.npkgs $@.new $@.newsorted
+	export date="`${_CDATE_CMD}`";					\
+									\
+	exec 9>&1;							\
+	for subdir in ${SUBDIR} ""; do					\
+	  ${TEST} -n "$$subdir" || continue;				\
+	  ${RECURSIVE_MAKE} $$echo					\
+	    -C "$$subdir" index print-index-data=yes |			\
+	  while read l; do						\
+	    case "$$l" in						\
+	      'INDEX|'*) ${ECHO} "$${l#INDEX|}";;			\
+	      *) ${ECHO} "$$l" >&9;;					\
+	    esac;							\
+	  done;								\
+	done | ${SORT} -f -t '|' -k 2 | ${AWK} '			\
+	NR == FNR {							\
+	  split($$0, p, "|"); cat=p[1] "/" p[2];			\
+	  pkgs=pkgs "<tr><td>";						\
+	  pkgs=pkgs "<a href=\"" p[1] "/index.html\">" p[1] "</a>";	\
+	  pkgs=pkgs "</td><td>";					\
+	  pkgs=pkgs "<a href=\"" cat "/index.html\">" p[3] "</a>";	\
+	  pkgs=pkgs "</td><td>" p[4] "</td></tr>";			\
+	  npkgs++;							\
+	  next;								\
+	}								\
+	{								\
+	  gsub(/@NPKGS@/, npkgs);					\
+	  gsub(/@PKGS@/, pkgs);						\
+	  gsub(/@HIER@/, ENVIRON["hier"]);				\
+	  gsub(/@DATE@/, ENVIRON["date"]);				\
+	  print;							\
+	}' - ${INDEX_NAME} >$@.tmp;					\
+	if ${TEST} -f $@ && ${CMP} -s $@.tmp $@; then			\
+	  ${RM} $@.tmp;							\
+	else								\
+	  ${ECHO_MSG} "Creating toplevel index.html";			\
+	  ${MV} $@.tmp $@;						\
+	fi
+
+
+# hl() { echo '<a href="'$$1'/index.html">'$$1'</a>'; };		\
+	# for category in ${SUBDIR} ""; do 				\
+	# 	if [ "X$$category" = "X" ]; then continue; fi; 		\
+	# 	if [ -f $${category}/index.html ]; then 		\
+	# 		${ECHO} "processing $${category}"; 		\
+	# 		${SED} -n $(join ,'/^<tr>/{			\
+	# 			s!href="!&'$${category}'/!;		\
+	# 			s!</a>:!&<td>('"`hl $${category}`"')!;	\
+	# 			s!<tr>!<tr valign=top>!;		\
+	# 			s!<td valign=top>!<td>!;		\
+	# 		p;}') <$${category}/index.html >>$@.new;	\
+	# 	fi; 							\
+	# done;								\
+	# if [ ! -f $@.new ]; then 					\
+	# 	${ERROR_MSG} ${hline};					\
+	# 	${ERROR_MSG} "There are no categories with index.html"	\
+	# 		"files available."; 				\
+	# 	${ERROR_MSG} "You need to run \`${MAKE} index' to"	\
+	# 		"generate them before running this target."; 	\
+	# 	${FALSE}; 						\
+	# fi;								\
+	# ${SORT} -f -t '>' -k 4,4 <$@.new >$@.newsorted;			\
+	# ${AWK} '{ ++n } END { print n }' <$@.newsorted >$@.npkgs;	\
+	# ${SED} 	-e '/%%NPKGS%%/r$@.npkgs' 				\
+	# 	-e '/%%NPKGS%%/d' 					\
+	# 	-e '/%%PKGS%%/r$@.newsorted' 				\
+	# 	-e '/%%PKGS%%/d' 					\
+	# 	<${TEMPLATES}/index.all >$@.tmp;			\
+	# if [ -f $@ ] && ${CMP} -s $@.tmp $@; then 			\
+	# 	${RM} $@.tmp; 						\
+	# else 								\
+	# 	${ECHO_MSG} "creating index-all.html";			\
+	# 	${MV} $@.tmp $@;					\
+	# fi;								\
+	# ${RM} -f $@.tmp $@.npkgs $@.new $@.newsorted
 endif
 
 
