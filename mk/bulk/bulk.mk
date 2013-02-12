@@ -396,9 +396,8 @@ do-bulk:
 #
 .PHONY: bulk-remove-installed
 bulk-remove-installed:
-	${RUN} ${RM} -rf ${WRKDIR}/distfiles;				\
-	${RECURSIVE_MAKE} ${BULK_MAKE_ARGS}				\
-		deinstall DEINSTALLDEPENDS=all ||			\
+	${RUN} ${RECURSIVE_MAKE} ${BULK_MAKE_ARGS}			\
+	  deinstall DEINSTALLDEPENDS=all ||				\
 	  ${BULK_BRK} "${MAKE}: *** [deinstall] Error $$?";		\
 
 

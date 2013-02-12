@@ -43,9 +43,7 @@ BULK_DBDIR?=	${BULKBASE}/var/db/robotpkg
 # Extra arguments passed to recursive MAKE invocation
 BULK_MAKE_ARGS=\
 	LOCALBASE=${BULKBASE} PKG_DBDIR=${BULK_DBDIR}		\
-	DISTDIR=${WRKDIR}/distfiles				\
-	DIST_PATH=${DISTDIR}$(if ${DIST_PATH},:${DIST_PATH})	\
-	EXPECT_TARGETS='package mirror-distfiles'
+	EXPECT_TARGETS='fetch package mirror-distfiles'
 
 # Redefinition of pkg_install commands working with bulk-built packages
 BULK_PKGTOOLS_ARGS+=	-K ${BULK_DBDIR}
