@@ -76,7 +76,7 @@ $(call require-for, clean cleaner su-do-clean,				\
 
 # Fetch
 $(call require-for, fetch fetch-all,					\
-	${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+	${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
 $(call require-for, mirror-distfiles,					\
 	${ROBOTPKG_DIR}/mk/fetch/mirror.mk)
 

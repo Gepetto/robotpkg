@@ -179,7 +179,7 @@ endif
 # Associate each file to fetch with the correct site(s).
 $(foreach _,${_DISTFILES},$(eval SITES.$(notdir $_)?=${MASTER_SITES}))
 $(foreach _,${_PATCHFILES},$(eval SITES.$(notdir $_)?=${PATCH_SITES}))
-
+BUILD_DEFS+=	DISTFILES PATCHFILES
 
 # Interactive default fetch message
 FETCH_MESSAGE?=\
@@ -204,5 +204,3 @@ FETCH_LOGFILTER?=	${_LOGFILTER} ${_LOGFILTER_FLAGS}	\
 	$(if $(filter cvs git mercurial svn,			\
 		${FETCH_METHOD}), -l ${FETCH_LOGFILE},-n)	\
 	--
-
-include ${ROBOTPKG_DIR}/mk/fetch/fetch.mk

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -72,7 +72,7 @@ endif
 .PHONY: checksum
 
 ifdef NO_CHECKSUM
-  $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
   ifdef _EXTRACT_IS_CHECKOUT

@@ -41,8 +41,15 @@
 #
 #					Anthony Mallet on Tue Dec  5 2006
 #
+$(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
-BUILD_DEFS+=	DISTFILES PATCHFILES
+# depend on the proper fetch tool, and always on tnftp for MASTER_SITE_BACKUP
+ifneq (0,$(words ${_ALLFILES}))
+  DEPEND_METHOD.tnftp+=	bootstrap
+  include \
+    $(addprefix ${ROBOTPKG_DIR}/,${_FETCH_DEPEND} pkgtools/tnftp/depend.mk)
+endif
+
 
 # Set up _ORDERED_SITES to work out the exact list of sites for every file,
 # using the dynamic sites script, or ordering according to the master site
@@ -65,20 +72,6 @@ _ORDERED_SITES= ${_MASTER_SITE_OVERRIDE} $$unsorted_sites
 endif
 
 
-# depend on the proper fetch tool if required, and always on tnftp for
-# MASTER_SITE_BACKUP
-ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
-  _fetch_done:=$(foreach _,${_FETCH_ONLY},$(word 1,$(wildcard		\
-	$(addsuffix /$_,${DISTDIR} $(subst :, ,${DIST_PATH})))))
-  ifneq ($(words ${_fetch_done}),$(words ${_FETCH_ONLY}))
-    $(call require,${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
-    include $(addprefix ${ROBOTPKG_DIR}/, ${_FETCH_DEPEND})
-    DEPEND_METHOD.tnftp+=	bootstrap
-    include ${ROBOTPKG_DIR}/pkgtools/tnftp/depend.mk
-  endif
-endif
-
-
 # --- fetch (PUBLIC) -------------------------------------------------
 #
 # fetch is a public target to fetch all of the package distribution
@@ -92,15 +85,16 @@ ifneq (,$(foreach _,${_FETCH_ONLY},$(if $(wildcard ${DISTDIR}/$_),,no)))
   _FETCH_TARGETS+=	do-fetch
   _FETCH_TARGETS+=	post-fetch
 endif
+
+.PHONY: fetch
+fetch: ${_FETCH_TARGETS}; @:
+
 ifneq (,$(foreach _,${_ALLFILES},$(if $(wildcard ${DISTDIR}/$_),,no)))
   _FETCH_ALL_TARGETS+=	$(call add-barrier, bootstrap-depends, fetch)
   _FETCH_ALL_TARGETS+=	pre-fetch
   _FETCH_ALL_TARGETS+=	do-fetch-all-file
   _FETCH_ALL_TARGETS+=	post-fetch
 endif
-
-.PHONY: fetch
-fetch: ${_FETCH_TARGETS}; @:
 
 .PHONY: fetch-all
 fetch-all: ${_FETCH_ALL_TARGETS}; @:

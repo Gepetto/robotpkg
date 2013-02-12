@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2011 LAAS/CNRS
+# Copyright (c) 2009-2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -44,9 +44,8 @@
 
 $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
-# These variables are set by robotpkg/mk/fetch/fetch.mk.
-#_CKSUMFILES?=	# empty
-#_IGNOREFILES?=	# empty
+# This variable is set by robotpkg/mk/fetch/fetch-vars.mk.
+# CKSUMFILES?=	$(filter-out ${IGNOREFILES},${ALLFILES})
 
 # Require digest tool
 DEPEND_METHOD.digest+=	bootstrap
@@ -58,7 +57,11 @@ include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
 # distinfo is a public target to create ${DISTINFO_FILE}.
 #
 _DISTINFO_TARGETS=	$(call add-barrier, bootstrap-depends, distinfo)
-_DISTINFO_TARGETS+=	fetch
+ifneq ($(words ${_CKSUMFILES}),\
+       $(words $(wildcard $(addprefix ${DISTDIR}/,${_CKSUMFILES}))))
+  $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
+  _DISTINFO_TARGETS+=	fetch
+endif
 _DISTINFO_TARGETS+=	distinfo-message
 _DISTINFO_TARGETS+=	makesum
 _DISTINFO_TARGETS+=	makepatchsum
