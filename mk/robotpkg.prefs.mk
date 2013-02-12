@@ -266,7 +266,7 @@ endif
 # Default to building for supported platforms only.
 ifeq (undefined,$(origin ONLY_FOR_PLATFORM))
   ifeq (undefined,$(origin NOT_FOR_PLATFORM))
-    ONLY_FOR_PLATFORM?=	Linux-% NetBSD-%-i386
+    ONLY_FOR_PLATFORM?=	Linux-% NetBSD-%
   endif
 endif
 
