@@ -316,43 +316,6 @@ ifeq (0,${_ROBOTPKG_DEPTH})
 	  ${ECHO_MSG} "Creating toplevel index.html";			\
 	  ${MV} $@.tmp $@;						\
 	fi
-
-
-# hl() { echo '<a href="'$$1'/index.html">'$$1'</a>'; };		\
-	# for category in ${SUBDIR} ""; do 				\
-	# 	if [ "X$$category" = "X" ]; then continue; fi; 		\
-	# 	if [ -f $${category}/index.html ]; then 		\
-	# 		${ECHO} "processing $${category}"; 		\
-	# 		${SED} -n $(join ,'/^<tr>/{			\
-	# 			s!href="!&'$${category}'/!;		\
-	# 			s!</a>:!&<td>('"`hl $${category}`"')!;	\
-	# 			s!<tr>!<tr valign=top>!;		\
-	# 			s!<td valign=top>!<td>!;		\
-	# 		p;}') <$${category}/index.html >>$@.new;	\
-	# 	fi; 							\
-	# done;								\
-	# if [ ! -f $@.new ]; then 					\
-	# 	${ERROR_MSG} ${hline};					\
-	# 	${ERROR_MSG} "There are no categories with index.html"	\
-	# 		"files available."; 				\
-	# 	${ERROR_MSG} "You need to run \`${MAKE} index' to"	\
-	# 		"generate them before running this target."; 	\
-	# 	${FALSE}; 						\
-	# fi;								\
-	# ${SORT} -f -t '>' -k 4,4 <$@.new >$@.newsorted;			\
-	# ${AWK} '{ ++n } END { print n }' <$@.newsorted >$@.npkgs;	\
-	# ${SED} 	-e '/%%NPKGS%%/r$@.npkgs' 				\
-	# 	-e '/%%NPKGS%%/d' 					\
-	# 	-e '/%%PKGS%%/r$@.newsorted' 				\
-	# 	-e '/%%PKGS%%/d' 					\
-	# 	<${TEMPLATES}/index.all >$@.tmp;			\
-	# if [ -f $@ ] && ${CMP} -s $@.tmp $@; then 			\
-	# 	${RM} $@.tmp; 						\
-	# else 								\
-	# 	${ECHO_MSG} "creating index-all.html";			\
-	# 	${MV} $@.tmp $@;					\
-	# fi;								\
-	# ${RM} -f $@.tmp $@.npkgs $@.new $@.newsorted
 endif
 
 
