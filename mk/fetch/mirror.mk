@@ -46,6 +46,7 @@ endif
 .PHONY: mirror-distfiles
 ifdef _MIRROR_TARGETS
   $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
 
   mirror-distfiles: $(call add-barrier, bootstrap-depends, mirror-distfiles)
   mirror-distfiles: mirror-message ${_MIRROR_TARGETS}
