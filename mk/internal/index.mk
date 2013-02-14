@@ -115,12 +115,12 @@ ifeq (2,${_ROBOTPKG_DEPTH})
 	else								\
 	  homepage='(none)';						\
 	fi;								\
-	export license="`$(call htmlify,'$(strip ${LICENSE})')`";	\
-	if ${TEST} -n "$$license"; then					\
-	  license="<a href=\"../../licenses/${LICENSE}\">$$license</a>";\
-	else								\
-	  license='(none)';						\
-	fi;								\
+									\
+	export license=;						\
+  $(foreach _,${LICENSE},						\
+	license=$$license" <a href=\"../../licenses/$_\">$_</a>";)	\
+	license=$${license:='(none)'};					\
+									\
 	export distfiles=;						\
   $(foreach _,${DISTFILES},						\
     $(foreach -,$(addsuffix $_,${SITES.$(notdir $_)}),			\
