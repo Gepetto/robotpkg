@@ -81,7 +81,7 @@ __targets=\
 	all fetch package extract configure build install clean		\
 	distclean depend reinstall tags checksum makepatchsum makesum	\
 	mirror-distfiles deinstall update clean-update show-var		\
-	show-vars print-summary-data lint headings
+	show-vars print-var print-vars print-summary-data lint headings
 
 .PHONY: ${__targets}
 ${__targets}: recursive-subdir

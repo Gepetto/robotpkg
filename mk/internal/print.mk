@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011 LAAS/CNRS
+# Copyright (c) 2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -28,6 +28,11 @@ $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 .PHONY: print-var
 print-var:
 	@${ECHO} $(call quote,${VARNAME}|${${VARNAME}})
+
+# enhanced version of target above, to display multiple variables
+.PHONY: print-vars
+print-vars:
+	@:; $(foreach _,${VARNAMES},${ECHO} $(call quote,$_|${$_});)
 
 
 # --- print-depends (PRIVATE) ----------------------------------------------
