@@ -6,11 +6,10 @@ DISTNAME=	lapack-3.1.0
 PKGREVISION=	2
 
 CATEGORIES=	math
-MASTER_SITES=	ftp://ftp.netlib.org/lapack/			\
-		ftp://netlib.bell-labs.com/netlib/lapack/	\
-		ftp://www.hensa.ac.uk/mirrors/netlib/lapack/	\
-		ftp://netlib.no/netlib/lapack/			\
-		ftp://ftp.zib.de/netlib/lapack/
+MASTER_SITES=\
+	http://netlib.org/lapack/		\
+	http://netlib.sandia.gov/lapack/	\
+	http://www.netlib.no/netlib/lapack/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	openrobots@laas.fr
