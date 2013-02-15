@@ -6,9 +6,10 @@ DISTNAME=	blas
 PKGNAME=	blas-3.1.0
 
 CATEGORIES=	math
-MASTER_SITES= 	ftp://ftp.netlib.org/blas/ \
-		ftp://netlib.bell-labs.com/netlib/blas/ \
-		ftp://www.hensa.ac.uk/mirrors/netlib/blas/
+MASTER_SITES=\
+	http://spacehopper.org/mirrors/blas-20110419/	\
+	http://netlib.org/blas/				\
+	http://netlib.sandia.gov/blas/
 EXTRACT_SUFX=   .tgz
 
 MAINTAINER=     openrobots@laas.fr
