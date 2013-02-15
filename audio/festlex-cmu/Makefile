@@ -5,7 +5,7 @@
 DISTNAME=		festlex_CMU
 PKGNAME=		festlex-cmu-1.96
 CATEGORIES=		audio
-MASTER_SITES=		http://festvox.org/packed/festival/latest/
+MASTER_SITES=		http://festvox.org/packed/festival/1.96/
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://festvox.org/index.html
