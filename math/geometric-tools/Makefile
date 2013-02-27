@@ -49,7 +49,7 @@ CFG=			ReleaseDynamic
 LIBPATH=		-L../../SDK/Library/$(CFG) ${LDFLAGS}
 MAKE_FLAGS+=		CFG=${CFG}
 MAKE_FLAGS+=		GRF=Glx
-MAKE_FLAGS+=		CC=$(call quote,${ROBOTPKG_CXX})
+MAKE_FLAGS+=		CC=$(call quote,${CXX})
 MAKE_FLAGS+=		CFLAGS=$(call quote,${CFLAGS} -fPIC -c)
 MAKE_FLAGS+=		ARFLAGS=$(call quote,${LDFLAGS} -shared -fPIC -o)
 MAKE_FLAGS+=		LIBPATH=$(call quote,${LIBPATH})
