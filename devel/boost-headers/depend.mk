@@ -31,7 +31,7 @@ DEPEND_DIR.boost-headers?=	../../devel/boost-headers
 
 DEPEND_METHOD.boost-headers?=	build
 
-USE_LANGUAGES+=		c++
+include ../../mk/language/c++.mk
 
 endif # BOOST_HEADERS_DEPEND_MK --------------------------------------
 
