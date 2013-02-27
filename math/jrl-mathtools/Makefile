@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 17 Sep 2008
 #
 
-DISTNAME=		jrl-mathtools-1.5.1
+DISTNAME=		jrl-mathtools-1.5.2
 CATEGORIES=		math
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
 MASTER_REPOSITORY=	git http://github.com/jrl-umi3218/jrl-mathtools.git
@@ -12,7 +12,7 @@ HOMEPAGE=	https://github.com/jrl-umi3218/jrl-mathtools
 COMMENT=	Basic mathematical tools used in the JRL software
 LICENSE=	gnu-lgpl-v3
 
-DOXYGEN_PLIST_DIR+=	share/doc/jrl-mathtools
+DYNAMIC_PLIST_DIRS+=	share/doc/jrl-mathtools
 
 CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
 CMAKE_ARGS+=	-DBOOST_LIBRARYDIR=${PREFIX.boost-libs}/lib
