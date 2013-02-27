@@ -55,6 +55,7 @@ endif
 PLIST_SUBST+=		PY_PLATNAME=${PY_PLATNAME}
 PRINT_PLIST_AWK_SUBST+= gsub("${PY_PLATNAME}/", "$${PY_PLATNAME}/");
 
+include ../../mk/sysdep/gdbm.mk
 include ../../mk/sysdep/libffi.mk
 include ../../mk/sysdep/openssl.mk
 include ../../mk/language/c.mk
