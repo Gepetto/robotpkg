@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2006,2008-2012 LAAS/CNRS
+# Copyright (c) 2006,2008-2013 LAAS/CNRS
 # Copyright (c) 2001-2002 Alistair G. Crooks.
 # All rights reserved.
 #
@@ -131,7 +131,7 @@ get_optarg()
 }
 
 # user configurable options
-prefix=
+prefix=/opt/openrobots
 pkgdbdir=
 mandir=
 sysconfdir=
@@ -162,6 +162,19 @@ while [ $# -gt 0 ]; do
 	esac
 	shift
 done
+
+# --- set defaults ---------------------------------------------------------
+
+# set defaults for system locations if not already set by the user
+[ -z "$prefix" ] && prefix=/opt/openrobots
+[ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/var/db/robotpkg
+[ -z "$mandir" ] && mandir=${prefix}/man
+[ -z "$sysconfdir" ] && sysconfdir=${prefix}/etc
+
+[ -z "$compiler" ] && compiler_set='# '
+[ -z "$pkgdbdir" ] && pkgdbdir_set='# '
+[ -z "$mandir" ] && mandir=${prefix}/man
+[ -z "$sysconfdir" ] && sysconfdir_set='# '
 
 # export OPSYS and MACHINE_ARCH for pkg_install
 read OPSYS OS_RELEASE MACHINE_ARCH <<EOF
@@ -245,6 +258,10 @@ You can also do $0 --prefix <path> to bootstrap with <path> prefix."
 [ -r "$prefix" -a -w "$prefix" ] ||
   die "Please make ${prefix} readable and writable by you."
 
+# create installation directories
+mkdir_p $prefix $pkgdbdir $prefix/sbin
+mkdir_p $mandir/man1 $mandir/man5 $mandir/man7
+
 
 # --- set up an example mk.conf file ---------------------------------
 
@@ -254,26 +271,9 @@ echo_msg "Creating robotpkg.conf.example in ${wrkdir}"
 mkdir_p ${wrkdir}
 
 # process robotpkg.conf template with handy shortcuts
-[ -z "$compiler" ] && compiler_set='# '
-[ -z "$pkgdbdir" ] && pkgdbdir_set='# '
-[ -z "$mandir" ] && mandir=${prefix}/man
-[ -z "$sysconfdir" ] && sysconfdir_set='# '
 while read line; do
   eval echo \"$line\"
 done <${pkgsrcdir}/bootstrap/robotpkg.conf.example >${MKCONF_EXAMPLE}
-
-
-# --- set defaults ---------------------------------------------------------
-
-# set defaults for system locations if not already set by the user
-[ -z "$prefix" ] && prefix=/opt/openrobots
-[ -z "$pkgdbdir" ] && pkgdbdir=${prefix}/var/db/robotpkg
-[ -z "$mandir" ] && mandir=${prefix}/man
-[ -z "$sysconfdir" ] && sysconfdir=${prefix}/etc
-
-# create installation directories
-mkdir_p $prefix $pkgdbdir $prefix/sbin
-mkdir_p $mandir/man1 $mandir/man5 $mandir/man7
 
 
 # --- build libnbcompat ----------------------------------------------
