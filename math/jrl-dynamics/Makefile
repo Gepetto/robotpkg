@@ -4,7 +4,7 @@
 
 DISTNAME=	jrl-dynamics-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
-VERSION=	1.22.0
+VERSION=	1.23.0
 PKGREVISION=	
 
 CATEGORIES=	math
@@ -17,7 +17,7 @@ COMMENT=	JRL-Japan implementation of dynamic robot.
 LICENSE=	gnu-lgpl-v3
 
 
-DOXYGEN_PLIST_DIR+=	share/doc/jrl-dynamics
+DYNAMIC_PLIST_DIRS+=	share/doc/jrl-dynamics
 
 # Build the package in a separate directory
 CONFIGURE_DIRS=		_build

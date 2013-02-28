@@ -1,4 +1,4 @@
-@comment Fri Apr 15 22:19:41 CEST 2011
+@comment Thu Feb 28 05:52:55 CET 2013
 bin/CreateHPPBuilder
 bin/CreateMapleModel
 bin/CreateVRMLPoseFile
@@ -20,6 +20,7 @@ include/jrl/dynamics/warning.hh
 lib/libjrl-dynamics.so
 lib/libjrl-dynamics.so.${PKGVERSION}
 lib/pkgconfig/jrl-dynamics.pc
+share/jrl-dynamics/examples/CMakeLists.txt.example
 share/jrl-dynamics/examples/CommonTools.cpp
 share/jrl-dynamics/examples/CommonTools.h
 share/jrl-dynamics/examples/ComputeRealZMP.cpp
@@ -36,4 +37,3 @@ share/jrl-dynamics/examples/data/sample.wrl
 share/jrl-dynamics/examples/data/sampleInitConfig.dat
 share/jrl-dynamics/examples/data/sampleLinkJointRank.xml
 share/jrl-dynamics/examples/data/sampleSpecificities.xml
-share/jrl-dynamics/examples/CMakeLists.txt.example
