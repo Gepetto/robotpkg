@@ -1,6 +1,5 @@
 # robotpkg Makefile for:	supervision/openprs
 # Created:			Anthony Mallet on Wed, 17 Oct 2007
-#
 
 DISTNAME=		openprs-1.1b7
 CATEGORIES=		supervision
