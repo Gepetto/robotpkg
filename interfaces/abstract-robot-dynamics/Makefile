@@ -10,7 +10,7 @@ CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=abstract-robot-dynamics/}
 MASTER_REPOSITORY=	git git@github.com:laas/abstract-robot-dynamics.git
 
-DOXYGEN_PLIST_DIR+=	share/doc/abstract-robot-dynamics
+DYNAMIC_PLIST_DIRS+=	share/doc/abstract-robot-dynamics
 
 MAINTAINER=	hpp@laas.fr
 #HOMEPAGE=	
