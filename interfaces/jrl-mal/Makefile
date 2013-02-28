@@ -12,7 +12,7 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Matrix abstraction layer for boost or vnl.
 LICENSE=	gnu-lgpl-v3
 
-DOXYGEN_PLIST_DIR+=	share/doc/jrl-mal
+DYNAMIC_PLIST_DIRS+=	share/doc/jrl-mal
 
 CMAKE_ARGS+= -DBLAS_blas_LIBRARY=${PREFIX.blas}/lib/libblas.so
 CMAKE_ARGS+= -DLAPACK_lapack_LIBRARY=${PREFIX.lapack}/lib/liblapack.so
