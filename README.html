@@ -131,7 +131,7 @@ table, table tr {
 
 <h3 align="center">Anthony Mallet - <tt>anthony.mallet@laas.fr</tt> </h3>
 
-<h3 align="center">October 18, 2012</h3>
+<h3 align="center">February 28, 2013</h3>
 
 <div class="p"><!----></div>
     
@@ -140,7 +140,7 @@ table, table tr {
 
 
 <div class="p"><!----></div>
-<font size="-1">Copyright &#169; 2006-2011 LAAS/CNRS.<br />
+<div class="small">Copyright &#169; 2006-2011 LAAS/CNRS.<br />
 Copyright &#169; 1997-2010 The NetBSD Foundation, Inc.<br />
 All rights reserved.<br />
 
@@ -176,7 +176,7 @@ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
 CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
-</font>
+</div>
 
 <div class="p"><!----></div>
 
@@ -268,14 +268,14 @@ POSSIBILITY OF SUCH DAMAGE.
 </div><div id="mainmatter">
 
 <div class="p"><!----></div>
- <h1><a name="tth_chAp1">
- 1 </a><br />Introduction</h1>
-<a name="chapter:introduction">
+ <a id="tth_chAp1"></a><h1>
+ 1 <br />Introduction</h1>
+<a id="chapter:introduction">
 </a>
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc1.1">
-1.1</a>&nbsp;&nbsp;What is robotpkg?</h2> 
+ <a id="tth_sEc1.1"></a><h2>
+1.1&nbsp;&nbsp;What is robotpkg?</h2> 
 <div class="p"><!----></div>
 The robotics research  community has always been developing  a lot of software,
 in order  to illustrate theoretical concepts and  validate algorithms  on board
@@ -343,8 +343,8 @@ roughly one hundred and fifty packages, including:
 </ul>
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc1.2">
-1.2</a>&nbsp;&nbsp;Why robotpkg?</h2> 
+ <a id="tth_sEc1.2"></a><h2>
+1.2&nbsp;&nbsp;Why robotpkg?</h2> 
 <div class="p"><!----></div>
 robotpkg provides the following key features:
 
@@ -407,7 +407,7 @@ the future if the need for several package repositories becomes blatant.
 <div class="p"><!----></div>
 robotpkg provides a number of features not available in pkgsrc (and probably
 not really useful to pkgsrc either). The most important feature is to be able
-to detect &#223;ystem packages", that are considered as &#235;xternal software not in
+to detect "system packages", that are considered as &#235;xternal software not in
 robotpkg but usually available on a unix system". pkgsrc has a similar system
 but much more limited - to a few base packages only. This is so because pkgsrc
 is a full-fledged package system. Thus, it aims at being self contained, while
@@ -430,8 +430,8 @@ Still, robotpkg directly uses many of the pkgsrc tools unchanged and the binary
 packages are fully compatible.
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc1.3">
-1.3</a>&nbsp;&nbsp;Supported platforms</h2> 
+ <a id="tth_sEc1.3"></a><h2>
+1.3&nbsp;&nbsp;Supported platforms</h2> 
 <div class="p"><!----></div>
 robotpkg consists of  a   source distribution. After retrieving    the required
 source, you can be up and running with robotpkg in just minutes!
@@ -446,7 +446,7 @@ reasonably well:
 
 <div class="p"><!----></div>
 
-<center>
+<div style="text-align:center">
 <table border="1">
 <tr><td align="center">Platform </td><td align="center">Version
 </td></tr><tr><td id="hline" colspan=0></td></tr>
@@ -457,15 +457,15 @@ reasonably well:
 <tr><td align="center">CentOS </td><td align="center">5</td></tr>
 <tr><td align="center">NetBSD </td><td align="center">4 - 6</td></tr>
 <tr><td align="center">Darwin </td><td align="center">Partial support - infrastructure works, individual packages may not</td></tr></table>
-</center>
+</div>
 
 <div class="p"><!----></div>
 Other platforms may work, especially more recent versions of the aforementioned
 platforms.
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc1.4">
-1.4</a>&nbsp;&nbsp;Overview</h2> 
+ <a id="tth_sEc1.4"></a><h2>
+1.4&nbsp;&nbsp;Overview</h2> 
 <div class="p"><!----></div>
 This document is divided  into three parts.  <a href="#chapter:user">The first one</a>
 describes how  one  can  use  one of   the  packages  in the  Robotics  Package
@@ -477,14 +477,14 @@ without     knowing     about     the     package's    building        details.
 understand how robotpkg is implemented.
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc1.5">
-1.5</a>&nbsp;&nbsp;Terminology</h2> 
+ <a id="tth_sEc1.5"></a><h2>
+1.5&nbsp;&nbsp;Terminology</h2> 
 <div class="p"><!----></div>
 Here is a description of all the terminology used within this document.
 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>Package</b></dt>
 	<dd> A set of files and building instructions that describe what's
    necessary to build a certain piece  of software using robotpkg. Packages are
@@ -515,11 +515,11 @@ Here is a description of all the terminology used within this document.
 </dl>
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc1.6">
-1.6</a>&nbsp;&nbsp;Roles involved in robotpkg</h2> 
+ <a id="tth_sEc1.6"></a><h2>
+1.6&nbsp;&nbsp;Roles involved in robotpkg</h2> 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>robotpkg users</b></dt>
 	<dd> The  robotpkg users  are people  who  use the packages
    provided by robotpkg.  Typically they are student  working  in robotics. The
@@ -544,8 +544,8 @@ Here is a description of all the terminology used within this document.
 </dl>
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc1.7">
-1.7</a>&nbsp;&nbsp;Typography</h2> 
+ <a id="tth_sEc1.7"></a><h2>
+1.7&nbsp;&nbsp;Typography</h2> 
 <div class="p"><!----></div>
 When giving examples for  commands,  shell prompts  are  used  to show if   the
 command  should/can be issued  as  root, or if  "normal"  user privileges are
@@ -554,9 +554,9 @@ users' shell prompt, assuming they use the C-shell or tcsh.
 
 
 <div class="p"><!----></div>
- <h1><a name="tth_chAp2">
- 2 </a><br />The robotpkg user's guide</h1>
-<a name="chapter:user">
+ <a id="tth_chAp2"></a><h1>
+ 2 <br />The robotpkg user's guide</h1>
+<a id="chapter:user">
 </a>
 
 <div class="p"><!----></div>
@@ -569,8 +569,8 @@ else. Sections in this document will detail both approaches where appropriate.
 <div class="p"><!----></div>
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc2.1">
-2.1</a>&nbsp;&nbsp;Where to get robotpkg and how to keep it up-to-date</h2> <a name="section:getting">
+ <a id="tth_sEc2.1"></a><h2>
+2.1&nbsp;&nbsp;Where to get robotpkg and how to keep it up-to-date</h2> <a id="section:getting">
 </a>
 
 <div class="p"><!----></div>
@@ -614,16 +614,16 @@ The rest of this document will  assume that you are using <tt>/opt/openrobots</t
 as the prefix. You should adapt this path to whatever prefix you choosed.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.1.1">
-2.1.1</a>&nbsp;&nbsp;Getting the binary bootstrap kit</h3>
+     <a id="tth_sEc2.1.1"></a><h3>
+2.1.1&nbsp;&nbsp;Getting the binary bootstrap kit</h3>
 
 <div class="p"><!----></div>
 At the moment, the  binary bootstrap kit is not  available. Please get the <tt>
 robotpkg</tt> sources as described in the next section.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.1.2">
-2.1.2</a>&nbsp;&nbsp;Getting robotpkg for source compilation</h3>
+     <a id="tth_sEc2.1.2"></a><h3>
+2.1.2&nbsp;&nbsp;Getting robotpkg for source compilation</h3>
 
 <div class="p"><!----></div>
 <tt>robotpkg</tt>    sources   are       distributed     <em>via</em>  the
@@ -673,8 +673,8 @@ one:
 </ul>
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.1.3">
-2.1.3</a>&nbsp;&nbsp;Keeping robotpkg up-to-date</h3> 
+     <a id="tth_sEc2.1.3"></a><h3>
+2.1.3&nbsp;&nbsp;Keeping robotpkg up-to-date</h3> 
 <div class="p"><!----></div>
 <tt>robotpkg</tt> is   a   living thing:    updates  to  the packages are     made
 perdiodicaly,  problems are fixed,   enhancements  are developed... If   you
@@ -705,8 +705,8 @@ subscription.
 
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc2.2">
-2.2</a>&nbsp;&nbsp;Bootstrapping robotpkg</h2> <a name="section:bootstrapping">
+ <a id="tth_sEc2.2"></a><h2>
+2.2&nbsp;&nbsp;Bootstrapping robotpkg</h2> <a id="section:bootstrapping">
 </a>
 
 <div class="p"><!----></div>
@@ -718,15 +718,15 @@ phase" and  should   be done only   once,  the very  first  time you  download
 robotpkg.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.2.1">
-2.2.1</a>&nbsp;&nbsp;Bootstrapping via the binary kit</h3> 
+     <a id="tth_sEc2.2.1"></a><h3>
+2.2.1&nbsp;&nbsp;Bootstrapping via the binary kit</h3> 
 <div class="p"><!----></div>
 At the moment, the binary bootstrap kit is not available. Please bootstrap <tt>
 robotpkg</tt> as described in the next section.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.2.2">
-2.2.2</a>&nbsp;&nbsp;Bootstrapping from source</h3> 
+     <a id="tth_sEc2.2.2"></a><h3>
+2.2.2&nbsp;&nbsp;Bootstrapping from source</h3> 
 <div class="p"><!----></div>
 You will  need a working C compiler  and the GNU-make   utility version 3.81 or
 later.    If you have  extracted  the  robotpkg  archive  into  the standard <tt>
@@ -810,7 +810,7 @@ following options:
 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b><tt>--prefix &lt;path&#62;</b></dt>
 	<dd>   will   select the  prefix  location where
    programs will be installed in.</tt></dd>
@@ -836,8 +836,8 @@ following options:
 
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc2.3">
-2.3</a>&nbsp;&nbsp;Using robotpkg</h2> 
+ <a id="tth_sEc2.3"></a><h2>
+2.3&nbsp;&nbsp;Using robotpkg</h2> 
 <div class="p"><!----></div>
 After obtaining <tt>robotpkg</tt> , the  <tt>robotpkg</tt> directory now  contains a set of
 packages, organized   into  categories.  You can   browse  the online  index of
@@ -846,8 +846,8 @@ local <tt>index.html</tt>  files for all  packages, viewable with any web  brows
 such as <tt>lynx</tt> or <tt>firefox</tt>.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.3.1">
-2.3.1</a>&nbsp;&nbsp;Building packages from source</h3> 
+     <a id="tth_sEc2.3.1"></a><h3>
+2.3.1&nbsp;&nbsp;Building packages from source</h3> 
 <div class="p"><!----></div>
 The  first step for  building  a  package  is  downloading the <em>distfiles</em>
 (i.e. the unmodified  source). If they have not  yet been downloaded, <tt>robotpkg</tt> 
@@ -987,8 +987,8 @@ added to help with this.
 <div class="p"><!----></div>
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.3.2">
-2.3.2</a>&nbsp;&nbsp;Building packages from a repository checkout</h3> 
+     <a id="tth_sEc2.3.2"></a><h3>
+2.3.2&nbsp;&nbsp;Building packages from a repository checkout</h3> 
 <div class="p"><!----></div>
 Before building a  package, <tt>robotpkg</tt> fetches the sources  from the official(s)
 download  location(s),  as  instructed  by the  <tt>MASTER_SITES</tt>  variable.
@@ -1088,14 +1088,14 @@ release candidate or  quickly fix a bug  and create a patch from  the fix, that
 you commit upstream and put in the patches/ directory until the next release.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.3.3">
-2.3.3</a>&nbsp;&nbsp;Installing binary packages</h3> 
+     <a id="tth_sEc2.3.3"></a><h3>
+2.3.3&nbsp;&nbsp;Installing binary packages</h3> 
 <div class="p"><!----></div>
 At the moment, installing binary packages is not documented.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.3.4">
-2.3.4</a>&nbsp;&nbsp;Removing packages</h3> 
+     <a id="tth_sEc2.3.4"></a><h3>
+2.3.4&nbsp;&nbsp;Removing packages</h3> 
 <div class="p"><!----></div>
 To deinstall a package, it does not matter whether it was installed from source
 code or  from a  binary package.  The  <tt>robotpkg_delete</tt> command  does not
@@ -1122,23 +1122,23 @@ will remove genom and all the packages that used it; this allows
 upgrading the <tt>genom</tt> package.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.3.5">
-2.3.5</a>&nbsp;&nbsp;Getting information about installed packages</h3> 
+     <a id="tth_sEc2.3.5"></a><h3>
+2.3.5&nbsp;&nbsp;Getting information about installed packages</h3> 
 <div class="p"><!----></div>
 The <tt>robotpkg_info</tt> shows information about installed  packages or binary
 package files.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.3.6">
-2.3.6</a>&nbsp;&nbsp;Other administrative functions</h3> 
+     <a id="tth_sEc2.3.6"></a><h3>
+2.3.6&nbsp;&nbsp;Other administrative functions</h3> 
 <div class="p"><!----></div>
 The  <tt>robotpkg_admin</tt>  executes  various administrative  functions on  the
 package system.
 
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc2.4">
-2.4</a>&nbsp;&nbsp;Configuring robotpkg</h2> 
+ <a id="tth_sEc2.4"></a><h2>
+2.4&nbsp;&nbsp;Configuring robotpkg</h2> 
 <div class="p"><!----></div>
 The whole <tt>robotpkg</tt> system is configured  <em>via</em> a single, centralized file,
 called <tt>robotpkg.conf</tt>  and  placed  in  the   <tt>/opt/openrobots/etc</tt>
@@ -1155,8 +1155,8 @@ error checking (for example for spelling mistakes)  takes place, so you have to
 try it out to see if it works.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.4.1">
-2.4.1</a>&nbsp;&nbsp;Selecting build options</h3> 
+     <a id="tth_sEc2.4.1"></a><h3>
+2.4.1&nbsp;&nbsp;Selecting build options</h3> 
 <div class="p"><!----></div>
 Some packages have   build time options, usually   to select between  different
 dependencies,  enable  optional   support for    big   dependencies or   enable
@@ -1248,8 +1248,8 @@ no option from  a  required group  of  options is  selected, and  building  the
 package will fail.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.4.2">
-2.4.2</a>&nbsp;&nbsp;Defining collections of packages</h3> 
+     <a id="tth_sEc2.4.2"></a><h3>
+2.4.2&nbsp;&nbsp;Defining collections of packages</h3> 
 <div class="p"><!----></div>
 Instead of installing, removing or updating packages one-by-one, you can define
 collections  of  packages  in  your  <tt>robotpkg.conf</tt>.  Once  one  or  more
@@ -1313,7 +1313,7 @@ robotpkg</tt> regarding packages sets:
 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>PKGSET_FAILSAFE</b></dt>
 	<dd> When working on a set, and this variable is set to
    yes, robotpkg will continue with further packages instead of stopping on an
@@ -1332,8 +1332,8 @@ Each of these variables can be defined on a per-collection basis, by adding the
 to be configured.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.4.3">
-2.4.3</a>&nbsp;&nbsp;Package specific configuration variables</h3> 
+     <a id="tth_sEc2.4.3"></a><h3>
+2.4.3&nbsp;&nbsp;Package specific configuration variables</h3> 
 <div class="p"><!----></div>
 In this  section, you can  find variables that  apply to one  specific package.
 Each  variable is  suffixed by  <tt>.&lt;pkg&#62;</tt>, where  <tt>&lt;pkg&#62;</tt>  is  the actual
@@ -1341,7 +1341,7 @@ package name to which the variable should apply.
 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>REPOSITORY.&lt;pkg&#62;</b></dt>
 	<dd> locally overrides the default <tt>
    MASTER_REPOSITORY</tt> defined for a package. This is useful if you want to
@@ -1355,8 +1355,8 @@ package name to which the variable should apply.
 </dl>
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.4.4">
-2.4.4</a>&nbsp;&nbsp;General configuration variables</h3> 
+     <a id="tth_sEc2.4.4"></a><h3>
+2.4.4&nbsp;&nbsp;General configuration variables</h3> 
 <div class="p"><!----></div>
 In  this  section,  you can   find some  variables   that apply  to  all <tt>robotpkg</tt> 
 packages.
@@ -1365,7 +1365,7 @@ packages.
 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>ACCEPTABLE_LICENSES</b></dt>
 	<dd> List of acceptable licenses. Whenever you try to
    build a package  whose license is  not in this  list, you will get  an error
@@ -1391,11 +1391,11 @@ packages.
 </dl>
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc2.4.5">
-2.4.5</a>&nbsp;&nbsp;Variables affecting the build process</h3> 
+     <a id="tth_sEc2.4.5"></a><h3>
+2.4.5&nbsp;&nbsp;Variables affecting the build process</h3> 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>WRKOBJDIR</b></dt>
 	<dd> The top level   directory where, if defined,  the  separate
    working directories will get created.  This is useful for building  packages
@@ -1427,8 +1427,8 @@ packages.
 
 <div class="p"><!----></div>
 </dd>
-</dl>     <h3><a name="tth_sEc2.4.6">
-2.4.6</a>&nbsp;&nbsp;Additional flags to the compiler</h3> 
+</dl>     <a id="tth_sEc2.4.6"></a><h3>
+2.4.6&nbsp;&nbsp;Additional flags to the compiler</h3> 
 <div class="p"><!----></div>
 If you wish  to set compiler variables   such as <tt>CFLAGS</tt>,  <tt>CXXFLAGS</tt>,
 <tt>FFLAGS</tt> ... please make sure to use  the <tt>+=</tt>  operator instead of the
@@ -1462,9 +1462,9 @@ LDFLAGS+=&nbsp;-your&nbsp;-linkerflags
 
 
 <div class="p"><!----></div>
- <h1><a name="tth_chAp3">
- 3 </a><br />The robotpkg developer's guide</h1>
-<a name="chapter:developer">
+ <a id="tth_chAp3"></a><h1>
+ 3 <br />The robotpkg developer's guide</h1>
+<a id="chapter:developer">
 </a>
 
 <div class="p"><!----></div>
@@ -1472,8 +1472,8 @@ This part of the documentation deals with creating and modifying packages.
 
 <div class="p"><!----></div>
 
- <h2><a name="tth_sEc3.1">
-3.1</a>&nbsp;&nbsp;Package files, directories and contents</h2> <a name="section:pkgvars">
+ <a id="tth_sEc3.1"></a><h2>
+3.1&nbsp;&nbsp;Package files, directories and contents</h2> <a id="section:pkgvars">
 </a>
 
 <div class="p"><!----></div>
@@ -1481,8 +1481,8 @@ Whenever you're preparing a package, there are a number of files involved which
 are described in the following sections.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc3.1.1">
-3.1.1</a>&nbsp;&nbsp;Makefile</h3> <a name="subsection:makefile">
+     <a id="tth_sEc3.1.1"></a><h3>
+3.1.1&nbsp;&nbsp;Makefile</h3> <a id="subsection:makefile">
 </a>
 
 <div class="p"><!----></div>
@@ -1500,7 +1500,7 @@ mostly historical and has no further meaning.
 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>PKGREVISION</b></dt>
 	<dd> Defines the <tt>robotpkg</tt> revision number of the package. This
    <em>should not be set</em> for a new package. See
@@ -1522,19 +1522,19 @@ mostly historical and has no further meaning.
    URL of a CGI script that gets the name of the distfile as a parameter. In
    this case, the definition would look like:
    
-<blockquote>
+<blockquote><div>
       <tt>MASTER_SITES=   http://www.example.com/download.cgi?file=</tt>
-   </blockquote>
+   </div></blockquote>
 
 <div class="p"><!----></div>
    There are some predefined values for <tt>MASTER_SITES</tt>, which can be used
    in packages. The names of the variables should speak for themselves.
    
-<blockquote><tt>
+<blockquote><div><tt>
       ${MASTER_SITE_SOURCEFORGE}<br />
       ${MASTER_SITE_GNU}<br />
       ${MASTER_SITE_OPENROBOTS}
-   </tt></blockquote>
+   </tt></div></blockquote>
 
 <div class="p"><!----></div>
    If you choose one of these predefined sites, you may want to specify a
@@ -1542,9 +1542,9 @@ mostly historical and has no further meaning.
    actual site, <em>you must</em> use the following construct to specify a
    subdirectory:
    
-<blockquote><tt>
+<blockquote><div><tt>
       MASTER_SITES=&nbsp;${MASTER_SITE_SOURCEFORGE:=project_name/}
-   </tt></blockquote>
+   </tt></div></blockquote>
    Note the trailing slash after the subdirectory name.
 
 <div class="p"><!----></div>
@@ -1594,7 +1594,7 @@ The second section contains information about separately downloaded patches, if 
 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>PATCHFILES</b></dt>
 	<dd> Name(s) of additional files that contain distribution
    patches distributed by the author or other maintainers. There is no
@@ -1614,7 +1614,7 @@ The third section contains the following variables.
 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>MAINTAINER</b></dt>
 	<dd> is the email address of the person who feels responsible
    for this package, and who is most likely to look at problems or questions
@@ -1644,9 +1644,9 @@ The third section contains the following variables.
    robotpkg/licenses</tt> and setting the LICENSE variable to a string identifying
    the license file, e.g. in <tt>shell/eltclsh</tt>:
    
-<blockquote>
+<blockquote><div>
       LICENSE=		2-clause-bsd
-   </blockquote>
+   </div></blockquote>
 
 <div class="p"><!----></div>
    The license tag mechanism is intended to address copyright-related issues
@@ -1660,8 +1660,8 @@ Other variables affecting the build process may be gathered in their own
 section. They are described in the next sections of this chapter.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc3.1.2">
-3.1.2</a>&nbsp;&nbsp;distinfo</h3> <a name="subsection:distinfo">
+     <a id="tth_sEc3.1.2"></a><h3>
+3.1.2&nbsp;&nbsp;distinfo</h3> <a id="subsection:distinfo">
 </a>
 
 <div class="p"><!----></div>
@@ -1682,9 +1682,9 @@ To regenerate the distinfo file, use the <tt>make distinfo</tt> or <tt>make mdi<
 command.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc3.1.3">
-3.1.3</a>&nbsp;&nbsp;PLIST</h3>
-<a name="subsection:PLIST">
+     <a id="tth_sEc3.1.3"></a><h3>
+3.1.3&nbsp;&nbsp;PLIST</h3>
+<a id="subsection:PLIST">
 </a>
 
 <div class="p"><!----></div>
@@ -1714,8 +1714,8 @@ PLIST.guess</tt> file which  you must move manually to  <tt>PLIST</tt> after rev
 the result of the semi-automatic generation.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc3.1.4">
-3.1.4</a>&nbsp;&nbsp;patches/*</h3> <a name="subsection:patches">
+     <a id="tth_sEc3.1.4"></a><h3>
+3.1.4&nbsp;&nbsp;patches/*</h3> <a id="subsection:patches">
 </a>
 
 <div class="p"><!----></div>
@@ -1725,9 +1725,9 @@ are found in the <tt>patches/</tt> directory. If you want to share patches betwe
 multiple packages  in robotpkg, e.g. because  they use the  same distfiles, set
 <tt>PATCHDIR</tt> to the path where the patch files can be found, e.g.:
 
-<blockquote>
+<blockquote><div>
    PATCHDIR= ../../devel/boost/patches
-</blockquote>
+</div></blockquote>
 
 <div class="p"><!----></div>
 The file names of the patch files must be of the form <tt>patch-*</tt>, and they
@@ -1757,13 +1757,13 @@ for the patch files by using the <tt>make mdi</tt> command, see
 
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc3.2">
-3.2</a>&nbsp;&nbsp;General operation</h2> <a name="section:genvars">
+ <a id="tth_sEc3.2"></a><h2>
+3.2&nbsp;&nbsp;General operation</h2> <a id="section:genvars">
 </a>
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc3.2.1">
-3.2.1</a>&nbsp;&nbsp;Incrementing versions when fixing an existing package</h3> <a name="section:genvars:PKGREVISION">
+     <a id="tth_sEc3.2.1"></a><h3>
+3.2.1&nbsp;&nbsp;Incrementing versions when fixing an existing package</h3> <a id="section:genvars:PKGREVISION">
 </a>
 
 <div class="p"><!----></div>
@@ -1772,10 +1772,10 @@ number in <tt>PKGNAME</tt>. To avoid conflicting with future versions by the
 original author, a "r1", "r2", ... suffix can be used on package versions by
 setting <tt>PKGREVISION=1</tt> (<tt>2</tt>, ...) in the package Makefile. E.g.
 
-<blockquote>
+<blockquote><div>
    DISTNAME=             foo-17.42<br />
    PKGREVISION=          9
-</blockquote>
+</div></blockquote>
 will result in a <tt>PKGNAME</tt> of "foo-17.42r9". The "r" is treated like a "."
 by the package tools.
 
@@ -1836,9 +1836,9 @@ When a new release of the package is released, the <tt>PKGREVISION</tt> must be
 removed.
 
 <div class="p"><!----></div>
-     <h3><a name="tth_sEc3.2.2">
-3.2.2</a>&nbsp;&nbsp;Substituting variable text in the package files
-(the <tt>SUBST</tt> framework)</h3> <a name="section:genvars:SUBST">
+     <a id="tth_sEc3.2.2"></a><h3>
+3.2.2&nbsp;&nbsp;Substituting variable text in the package files
+(the <tt>SUBST</tt> framework)</h3> <a id="section:genvars:SUBST">
 </a>
 
 <div class="p"><!----></div>
@@ -1899,8 +1899,8 @@ documented in the mk/internal/subst.mk file.
 
 
 <div class="p"><!----></div>
- <h2><a name="tth_sEc3.3">
-3.3</a>&nbsp;&nbsp;The build phase</h2> <a name="section:buildvars">
+ <a id="tth_sEc3.3"></a><h2>
+3.3&nbsp;&nbsp;The build phase</h2> <a id="section:buildvars">
 </a>
 
 <div class="p"><!----></div>
@@ -1924,7 +1924,7 @@ in a package <tt>Makefile</tt>:
 
 <div class="p"><!----></div>
 
-<dl compact="compact">
+<dl>
  <dt><b>NO_BUILD</b></dt>
 	<dd> (default: unset). If there is no build step at all, set
    <tt>NO_BUILD</tt> to "yes".
@@ -1959,9 +1959,9 @@ in a package <tt>Makefile</tt>:
 
 
 <div class="p"><!----></div>
- <h1><a name="tth_chAp4">
- 4 </a><br />The robotpkg infrastructure internals</h1>
-<a name="chapter:internal">
+ <a id="tth_chAp4"></a><h1>
+ 4 <br />The robotpkg infrastructure internals</h1>
+<a id="chapter:internal">
 </a>
 
 <div class="p"><!----></div>

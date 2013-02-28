@@ -2,7 +2,7 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                               October 18, 2012
+                               February 28, 2013
 
 Copyright ? 2006-2011 LAAS/CNRS.
 Copyright ? 1997-2010 The NetBSD Foundation, Inc.
@@ -159,7 +159,7 @@ currently suffers from the same symptom: this may change in the future if the
 need for several package repositories becomes blatant.
 robotpkg provides a number of features not available in pkgsrc (and probably
 not really useful to pkgsrc either). The most important feature is to be able
-to detect ?ystem packages", that are considered as ?xternal software not in
+to detect "system packages", that are considered as ?xternal software not in
 robotpkg but usually available on a unix system". pkgsrc has a similar system
 but much more limited - to a few base packages only. This is so because pkgsrc
 is a full-fledged package system. Thus, it aims at being self contained, while
