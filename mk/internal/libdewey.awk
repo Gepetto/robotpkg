@@ -1,6 +1,6 @@
 #!/usr/bin/awk -f
 #
-# Copyright (c) 2011 LAAS/CNRS
+# Copyright (c) 2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -105,8 +105,13 @@ function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
     # alternatives first
     for(a in targets) {
         if (match(targets[a], /{/)) {
-            # expand first alternative recursively
+            # expand first alternative
             wonderbrace(pattern, targets[a])
+
+            # skip if expansion did not change anything
+            if (pattern[0] == 1 && pattern[1] == targets[a]) continue
+
+            # process expansions recursively
             r = ""
             for (k = 1; k <= pattern[0]; k++) {
                 split("", alt); for(i in targets) alt[i] = targets[i]
