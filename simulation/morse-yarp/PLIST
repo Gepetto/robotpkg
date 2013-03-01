@@ -1,22 +1,19 @@
-@comment Thu Sep 22 14:47:05 CEST 2011
+@comment Fri Mar 1 12:00:05 CET 2013
+${PYTHON_SITELIB}/morse/middleware/${PYTHON_PYCACHE}/yarp_datastream${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/morse/middleware/${PYTHON_PYCACHE}/yarp_datastream${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/morse/middleware/${PYTHON_PYCACHE}/yarp_json_request_manager${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/morse/middleware/${PYTHON_PYCACHE}/yarp_json_request_manager${PYTHON_TAG}.pyo
-${PYTHON_SITELIB}/morse/middleware/${PYTHON_PYCACHE}/yarp_mw${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/morse/middleware/${PYTHON_PYCACHE}/yarp_mw${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/morse/middleware/${PYTHON_PYCACHE}/yarp_request_manager${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/morse/middleware/${PYTHON_PYCACHE}/yarp_request_manager${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/morse/middleware/yarp/__init__.py
 ${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
-${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/dictionary${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/dictionary${PYTHON_TAG}.pyo
-${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/json_mod${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/json_mod${PYTHON_TAG}.pyo
-${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/sick${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/sick${PYTHON_TAG}.pyo
-${PYTHON_SITELIB}/morse/middleware/yarp/__init__.py
-${PYTHON_SITELIB}/morse/middleware/yarp/dictionary.py
-${PYTHON_SITELIB}/morse/middleware/yarp/json_mod.py
-${PYTHON_SITELIB}/morse/middleware/yarp/sick.py
+${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/laserscanner${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/laserscanner${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/yarp_json${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/morse/middleware/yarp/${PYTHON_PYCACHE}/yarp_json${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/morse/middleware/yarp/laserscanner.py
+${PYTHON_SITELIB}/morse/middleware/yarp/yarp_json.py
+${PYTHON_SITELIB}/morse/middleware/yarp_datastream.py
 ${PYTHON_SITELIB}/morse/middleware/yarp_json_request_manager.py
-${PYTHON_SITELIB}/morse/middleware/yarp_mw.py
 ${PYTHON_SITELIB}/morse/middleware/yarp_request_manager.py
