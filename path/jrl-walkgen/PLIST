@@ -1,4 +1,4 @@
-@comment Thu Jun 23 17:11:32 CEST 2011
+@comment Fri Mar 1 14:23:47 CET 2013
 include/jrl/walkgen/config.hh
 include/jrl/walkgen/deprecated.hh
 include/jrl/walkgen/patterngeneratorinterface.hh
