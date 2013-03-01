@@ -16,7 +16,7 @@ HOMEPAGE=	http://softs.laas.fr/jrl/spip/-Walk-Pattern-Generator-.html
 COMMENT=	Walk pattern generator for the HRP-2 humanoid robot.
 LICENSE=	gnu-lgpl-v3
 
-DYNAMICS_PLIST_DIRS+=	share/doc/jrl-walkgen
+DYNAMIC_PLIST_DIRS+=	share/doc/jrl-walkgen
 
 PKG_SUPPORTED_OPTIONS+= debug
 PKG_OPTION_DESCR.debug=	Compile in debugging mode
