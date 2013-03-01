@@ -285,7 +285,7 @@ endef
 override define preduce
 $(strip $(eval __predv:=$(subst $$,SS,$(subst $! $!,__,$1)))		\
 $(or $(value __predc_${__predv}),					\
-     $(eval __predc_$${__predv}:=$$(call _preduce,$1))			\
+     $(eval __predc_$${__predv}:=$$(call _preduce,$$1))			\
      $(value __predc_${__predv})))
 endef
 
