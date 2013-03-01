@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2012 LAAS/CNRS
+# Copyright (c) 2009-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -28,11 +28,8 @@ endif
 # a "make update".  This variable is user-settable within etc/robotpkg.conf.
 #
 ifndef UPDATE_TARGET
-  ifneq (,$(filter update,${DEPENDS_TARGET}))
-    UPDATE_TARGET=	install
-  else
-    UPDATE_TARGET=	${DEPENDS_TARGET}
-  endif
+  UPDATE_TARGET=\
+    $(if $(filter update,${DEPENDS_TARGET}),install,${DEPENDS_TARGET})
 endif
 
 # Handle confirm target given on command line
