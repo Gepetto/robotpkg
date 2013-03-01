@@ -2,7 +2,7 @@
 # Created:			Severin Lemaignan on Tue, 12 Apr 2011
 #
 
-MORSE_VERSION=		0.6
+MORSE_VERSION=		1.0
 DISTNAME=		morse-${MORSE_VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=morse/}
 MASTER_REPOSITORY=	git git://trac.laas.fr/robots/morse
@@ -16,8 +16,6 @@ LICENSE=		modified-bsd
 
 DISTINFO_FILE=		${CURDIR}/../../simulation/morse/distinfo
 PATCHDIR=		${CURDIR}/../../simulation/morse/patches
-
-USE_LANGUAGES+=		c c++
 
 CMAKE_ARGS+=		-DPYTHON_INSTDIR=${PREFIX}/${PYTHON_SITELIB}
 CMAKE_ARGS+=            -DPYTHON3_EXECUTABLE=${PYTHON}
@@ -33,4 +31,6 @@ DEPEND_ABI.python+=	python>=3.2<3.3
 include ../../mk/sysdep/python.mk
 
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/sysdep/cmake.mk
