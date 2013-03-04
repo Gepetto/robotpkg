@@ -1,0 +1,44 @@
+commit 59da3fb88b79517db760e35f3428e09997bc1e59
+Author: Matthieu Herrb <matthieu.herrb@laas.fr>
+Date:   Fri Jun 1 17:08:41 2012 +0200
+
+    Fix linking on Ubuntu 12.04
+    
+    - libmor.so needs to be linked against all its dependencies.
+    - MOR_LIBS already includes -lrt (as pocolib dependency)
+
+diff --git src/Makefile.am src/Makefile.am
+index f22362e..fd7b102 100644
+--- src/Makefile.am
++++ src/Makefile.am
+@@ -11,7 +11,7 @@ libmor_la_SOURCES = \
+ 	relayboard.c \
+ 	utils.h
+ 
+-libmor_la_LIBS = -lrt
++LIBS = $(MOR_LIBS)
+ 
+ INCLUDES = -I$(top_srcdir)
+ AM_CFLAGS = -g -Wall $(MOR_CFLAGS)
+diff --git test/Makefile.am test/Makefile.am
+index dae6ada..301d483 100644
+--- test/Makefile.am
++++ test/Makefile.am
+@@ -4,13 +4,13 @@ INCLUDES = -I$(top_srcdir)
+ AM_CFLAGS = -g -Wall $(MOR_CFLAGS)
+ 
+ morSpineTest_SOURCES = spineTest.c
+-morSpineTest_LDADD = $(top_builddir)/src/libmor.la $(MOR_LIBS) -lrt
++morSpineTest_LDADD = $(top_builddir)/src/libmor.la $(MOR_LIBS)
+ 
+ morBaseTest_SOURCES = baseTest.c
+-morBaseTest_LDADD =  $(top_builddir)/src/libmor.la $(MOR_LIBS) -lrt
++morBaseTest_LDADD =  $(top_builddir)/src/libmor.la $(MOR_LIBS)
+ 
+ morJoyTest_SOURCES = joystick.c
+-morJoyTest_LDADD =   $(top_builddir)/src/libmor.la $(MOR_LIBS) -lrt
++morJoyTest_LDADD =   $(top_builddir)/src/libmor.la $(MOR_LIBS)
+ 
+ morRelayTest_SOURCES = relayTest.c
+-morRelayTest_LDADD =   $(top_builddir)/src/libmor.la $(MOR_LIBS) -lrt
++morRelayTest_LDADD =   $(top_builddir)/src/libmor.la $(MOR_LIBS)
