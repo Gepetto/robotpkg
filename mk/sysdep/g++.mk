@@ -21,7 +21,7 @@ DEPEND_USE+=		g++
 
 DEPEND_ABI.g++ ?=	g++>=3
 
-SYSTEM_PKG.Fedora.g++ =	g++
+SYSTEM_PKG.Fedora.g++ =	gcc-c++
 SYSTEM_PKG.Ubuntu.g++ =	g++
 SYSTEM_PKG.Debian.g++ =	g++
 
