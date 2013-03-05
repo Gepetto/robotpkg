@@ -1,4 +1,4 @@
-@comment Tue Feb 5 15:53:44 CET 2013
+@comment Tue Mar 5 17:43:01 CET 2013
 ${PKGMANDIR}/man1/rbulk-build.1
 ${PKGMANDIR}/man1/rbulk-dispatch.1
 ${PKGMANDIR}/man1/rbulk-dispatchd.1
@@ -15,6 +15,7 @@ sbin/rbulk-report
 sbin/rbulk-watchd
 share/examples/rbulkit/init/rbulk-dispatchd.conf
 share/examples/rbulkit/init/rbulk-watchd.conf
+share/examples/rbulkit/init/rbulk-watchd.service
 share/examples/rbulkit/rbulk-dispatchd.conf
 share/examples/rbulkit/rbulk-watchd.conf
 share/examples/rbulkit/rbulk.conf
