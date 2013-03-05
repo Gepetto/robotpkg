@@ -2,8 +2,8 @@
 # Created:			Florent Lamiraux on Thu, 7 Jul 2011
 #
 
-VERSION=		2.5.1
-PKGREVISION=		1
+VERSION=		2.5.3
+
 DISTNAME=		dynamic-graph-python-${VERSION}
 PKGNAME=		${PKGTAG.python-}dynamic-graph-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-python/}
@@ -41,5 +41,3 @@ include ../../mk/sysdep/py-sphinx.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
-
-post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/dynamic_graph)
