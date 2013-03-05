@@ -3,8 +3,8 @@
 #
 
 DISTNAME=		dynamic-graph-${VERSION}
-VERSION=		2.5.1
-PKGREVISION=		1
+VERSION=		2.5.3
+
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/dynamic-graph
@@ -18,6 +18,11 @@ DYNAMIC_PLIST_DIRS+=	share/doc/dynamic-graph
 # disable -Werror because of x86_64 warnings (must be fixed upstream) and
 # boost + gcc that don't cohabit well depending on their respective versions
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
+
+# Handle CMAKE_INSTALL_MANDIR
+ifneq (,$(call isyes,${CONFIGURE_HAS_MANDIR}))
+ CMAKE_ARGS+=  -DCMAKE_INSTALL_MANDIR=${PKGMANDIR}
+endif
 
 include ../../interfaces/jrl-mal/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

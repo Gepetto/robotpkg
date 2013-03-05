@@ -1,4 +1,4 @@
-@comment Thu Jul 7 14:50:54 CEST 2011
+@comment Tue Mar 5 06:16:22 CET 2013
 include/dynamic-graph/all-commands.h
 include/dynamic-graph/all-signals.h
 include/dynamic-graph/command-bind.h
@@ -18,6 +18,7 @@ include/dynamic-graph/contiifstream.h
 include/dynamic-graph/debug.h
 include/dynamic-graph/deprecated.hh
 include/dynamic-graph/dynamic-graph-api.h
+include/dynamic-graph/entity-helper.h
 include/dynamic-graph/entity.h
 include/dynamic-graph/exception-abstract.h
 include/dynamic-graph/exception-factory.h
@@ -33,6 +34,7 @@ include/dynamic-graph/signal-array.h
 include/dynamic-graph/signal-base.h
 include/dynamic-graph/signal-cast-helper.h
 include/dynamic-graph/signal-caster.h
+include/dynamic-graph/signal-helper.h
 include/dynamic-graph/signal-ptr.h
 include/dynamic-graph/signal-ptr.t.cpp
 include/dynamic-graph/signal-time-dependent.h
