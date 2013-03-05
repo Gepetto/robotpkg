@@ -10,6 +10,7 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	interface library for the Velodyne Lidar sensor
 
 LICENSE=	isc
+NOT_FOR_PLATFORM=	# empty
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tclsh=${TCLSH}
