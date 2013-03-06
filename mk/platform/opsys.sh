@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2011 LAAS/CNRS
+# Copyright (c) 2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -26,6 +26,7 @@ EOF
 case $m in
     sun4*|sparc*)	m=sparc;;
     i[3456]86*)		m=i386;;
+    amd64)		m=x86_64;;
 esac
 case $s in
     Darwin)
