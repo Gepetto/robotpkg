@@ -39,7 +39,7 @@ PKG_OPTION_DESCR.display?=	Enable support for 3D graphic display
 
 define PKG_OPTION_SET.display
   include ../../graphics/gdhe/depend.mk
-  CONFIGURE_ARGS+=	--enable-gdhe
+  CONFIGURE_ARGS+=	--enable-gdhe=${PREFIX.gdhe}
 endef
 define PKG_OPTION_UNSET.display
   CONFIGURE_ARGS+=	HAS_GDHE=no GDHE_CFLAGS= GDHE_LIBS=
