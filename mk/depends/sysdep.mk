@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2011 LAAS/CNRS
+# Copyright (c) 2009-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -103,5 +103,6 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	  if ${TEST} -s ${_SYSDEP_LOG}; then				\
 	    ${WARNING_CAT} <${_SYSDEP_LOG};				\
 	  fi;								\
+	  ${RM} ${_SYSDEP_LOG};						\
 	fi
 endef
