@@ -24,6 +24,8 @@ SYSTEM_PKG.Fedora.lapack=	lapack-devel
 SYSTEM_PKG.Ubuntu.lapack=	liblapack-dev
 SYSTEM_PKG.Debian.lapack=	liblapack-dev
 
+export LAPACK_LIB=	$(word 1,${SYSTEM_FILES.lapack})
+
 endif # LAPACK_DEPEND_MK ---------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
