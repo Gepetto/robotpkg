@@ -21,8 +21,13 @@ _language_fortran_mk:=defined
 
 # define an alternative for available c-compilers packages
 PKG_ALTERNATIVES+=			fortran-compiler
-PKG_ALTERNATIVES.fortran-compiler=	gfortran
-PREFER_ALTERNATIVE.fortran-compiler?=	gfortran
+PKG_ALTERNATIVES.fortran-compiler=	gfortran g95
+
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (NetBSD,${OPSYS})
+  PREFER_ALTERNATIVE.fortran-compiler?=	g95 gfortran
+endif
+PREFER_ALTERNATIVE.fortran-compiler?=	gfortran g95
 
 PREFER.fortran-compiler?=		system
 DEPEND_ABI.fortran-compiler=		fortran-compiler
@@ -30,10 +35,17 @@ DEPEND_ABI.fortran-compiler=		fortran-compiler
 PKG_ALTERNATIVE_DESCR.gfortran =	Use the GNU fortran compiler
 PKG_ALTERNATIVE_SELECT.gfortran ?=	ok # non-empty
 define PKG_ALTERNATIVE_SET.gfortran
-  DEPEND_ABI.gfortran =	${DEPEND_ABI.gcc-fortran}
   include ../../mk/sysdep/gcc-fortran.mk
 
   export FC=	${GFORTRAN}
+endef
+
+PKG_ALTERNATIVE_DESCR.g95 =	Use the g95 fortran compiler
+PKG_ALTERNATIVE_SELECT.g95 ?=	ok # non-empty
+define PKG_ALTERNATIVE_SET.g95
+  include ../../mk/sysdep/g95.mk
+
+  export FC=	${G95}
 endef
 
 endif # _language_fortran_mk -----------------------------------------------
