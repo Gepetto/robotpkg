@@ -14,8 +14,10 @@ LICENSE=	gnu-lgpl-v3
 
 DYNAMIC_PLIST_DIRS+=	share/doc/jrl-mal
 
-CMAKE_ARGS+= -DBLAS_blas_LIBRARY=${PREFIX.blas}/lib/libblas.so
-CMAKE_ARGS+= -DLAPACK_lapack_LIBRARY=${PREFIX.lapack}/lib/liblapack.so
+# configure the path to blas/lapack libraries. cmake Find{BLAS,LAPACK}
+# have no other mean to configure a specific path.
+CMAKE_ARGS+= -DBLAS_blas_LIBRARY=${BLAS_LIB}
+CMAKE_ARGS+= -DLAPACK_lapack_LIBRARY=${LAPACK_LIB}
 
 # options
 PKG_SUPPORTED_OPTIONS+=	t3d jrl-mathtools
