@@ -18,11 +18,13 @@ DEPEND_USE+=		blas
 DEPEND_ABI.blas?=	blas>=3.1
 DEPEND_DIR.blas?=	../../math/blas
 
-SYSTEM_SEARCH.blas= 	lib/libblas.*
+SYSTEM_SEARCH.blas=	'lib/libblas.*'
 
 SYSTEM_PKG.Fedora.blas=	blas-devel
 SYSTEM_PKG.Ubuntu.blas=	libblas-dev
 SYSTEM_PKG.Debian.blas=	libblas-dev
+
+export BLAS_LIB=	$(word 1,${SYSTEM_FILES.blas})
 
 endif # BLAS_DEPEND_MK -----------------------------------------------
 
