@@ -23,7 +23,7 @@ SYSTEM_SEARCH.tdom=	\
 	'${_libdir.tdom}/pkgIndex.tcl:${_vregex.tdom}'
 
 SYSTEM_PKG.Linux.tdom=	tdom
-SYSTEM_PKG.NetBSD.tdom=	wip/tcl-tDOM
+SYSTEM_PKG.NetBSD.tdom=	textproc/tcl-tDOM
 
 include ../../mk/sysdep/tcl.mk
 
