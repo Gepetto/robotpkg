@@ -19,11 +19,11 @@ DEPEND_DIR.libftdi?=	../../hardware/libftdi
 
 SYSTEM_PKG.Fedora.libftdi=libftdi-devel
 SYSTEM_PKG.Ubuntu.libftdi=libftdi-dev
-SYSTEM_PKG.Debian.libftdi=libftdi-dev
+SYSTEM_PKG.NetBSD.libftdi=devel/libftdi
 
 SYSTEM_SEARCH.libftdi=\
 	include/ftdi.h \
-	lib/pkgconfig/libftdi.pc
+	'lib/pkgconfig/libftdi.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
