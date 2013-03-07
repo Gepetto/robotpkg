@@ -1,0 +1,13 @@
+Do not hardcode doxygen
+
+--- Makefile.in~	2010-01-08 14:56:25.000000000 +0100
++++ Makefile.in	2013-03-07 23:36:19.000000000 +0100
+@@ -780,7 +780,7 @@
+ 
+ 
+ doc: doxyfile
+-	doxygen $<
++	${DOXYGEN} $<
+ 
+ install-doc: doc
+ 	$(INSTALL) -d $(datadir)/doc/libt3d/html
