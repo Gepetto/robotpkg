@@ -1,0 +1,22 @@
+Fix variable name, fix mkdep invocation when $CC expands to multiple words
+
+--- src/Makefile.in~	2012-01-25 13:43:05.000000000 +0100
++++ src/Makefile.in	2013-03-07 14:38:55.428746478 +0100
+@@ -36,7 +36,7 @@
+ INSTALL=		@INSTALL@
+ INSTALL_PROGRAM=	@INSTALL_PROGRAM@
+ 
+-CPPFLAGS+= -I.. @TCL_CPPFLAGS@
++CPPFLAGS+= -I.. ${TCL_CPPFLAGS}
+ CFLAGS += -O3 -DNDEBUG
+ 
+ vpath %.c ${top_srcdir}/src
+@@ -88,7 +88,7 @@
+ 
+ ifeq ($(findstring $(MAKECMDGOALS),clean),)
+ depend DEPENDANCES: $(SRCS)
+-	$(MKDEP) -c$(CC) -oDEPENDANCES -t.lo $(CPPFLAGS) $?
++	$(MKDEP) -c'$(CC)' -oDEPENDANCES -t.lo $(CPPFLAGS) $?
+ 
+ include DEPENDANCES
+ endif

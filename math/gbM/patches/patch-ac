@@ -1,0 +1,42 @@
+Use libtool, fix mkdep invocation when $CC expands to multiple words
+
+--- tclsrc/Makefile.in~	2012-01-25 13:43:05.000000000 +0100
++++ tclsrc/Makefile.in	2013-03-07 15:26:34.669345525 +0100
+@@ -41,16 +41,16 @@
+ 
+ SWIG_FILES=	gb.i gbModeles.i
+ 
+-TCLSRCLIB=      gb.so
++TCLSRCLIB=      gb.la
+ 
+ WRAP_FILE=	gb_wrap.c
+-OBJECT_FILES=	$(WRAP_FILE:%.c=%.o)
++OBJECT_FILES=	$(WRAP_FILE:%.c=%.lo)
+ 
+ all:	$(TCLSRCLIB)
+ 
+ install: $(TCLSRCLIB)
+ 	$(MKINSTALLDIRS) $(LIBDIR)
+-	$(INSTALL) $(TCLSRCLIB) $(LIBDIR)
++	$(LIBTOOL) --mode=install $(INSTALL) $(TCLSRCLIB) $(LIBDIR)
+ 
+ 
+ clean:
+@@ -66,14 +66,14 @@
+ 
+ $(TCLSRCLIB) : $(OBJECT_FILES)
+ 	$(TCL_SHLIB_LD) $(TCL_SHLIB_LDFLAGS) -o $(TCLSRCLIB) $(OBJECT_FILES) \
+-	-L../src -L../src/.libs -lgb -L$(TCL_LIBDIR) $(TCL_LIBS)
++	../src/libgb.la $(TCL_LIBS)
+ 
+-%.o:   %.c
++%.lo:   %.c
+ 	$(TCL_CC) -c $(CPPFLAGS) $(TCL_SHLIB_CFLAGS) $(CFLAGS) -o $@ $<
+ 
+ ifeq ($(findstring $(MAKECMDGOALS),clean),)
+ depend DEPENDANCES: $(SRCS)
+-	$(MKDEP) -c$(CC) -oDEPENDANCES -t.lo $(CPPFLAGS) $?
++	$(MKDEP) -c'$(CC)' -oDEPENDANCES -t.lo $(CPPFLAGS) $?
+ 
+ include DEPENDANCES
+ endif

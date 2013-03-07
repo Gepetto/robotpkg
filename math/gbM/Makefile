@@ -2,6 +2,7 @@
 # Created:			Xavier Broquere on Tue, 10 Mar 2009
 #
 
+PKGREVISION=	1
 DISTNAME=	gbM-0.9
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gbM/}

@@ -7,7 +7,7 @@ include/gbM/gbManip.h
 include/gbM/gbStruct.h
 lib/libgb.la
 lib/pkgconfig/gbM.pc
-${PLIST.tcl}lib/gb.so
+${PLIST.tcl}lib/gb.la
 ${PLIST.tcl}share/gbM/gb.tcl
 ${PLIST.tcl}share/gbM/gbModeles.tcl
 ${PLIST.tcl}share/gbM/pkgIndex.tcl

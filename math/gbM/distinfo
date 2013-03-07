@@ -1,3 +1,7 @@
 SHA1 (gbM-0.9.tar.gz) = bc80b804e216a41b5c9d5b847d68df0535f9e589
 RMD160 (gbM-0.9.tar.gz) = 5d080f0f3cf3552d98ef8501af0f25523eb950be
 Size (gbM-0.9.tar.gz) = 152567 bytes
+SHA1 (patch-aa) = 531b9a529dd7452bcc35dbc5045fd2fa26eb7722
+SHA1 (patch-ab) = 2a991aee25d6ed589fb72b0b355bcf30e405016d
+SHA1 (patch-ac) = c3bc3e59d8324f12159a6d2bba1c62aa7b5c78bb
+SHA1 (patch-ad) = 2f7c1589dd3fb342c31d710a739ddff1380cb1e9

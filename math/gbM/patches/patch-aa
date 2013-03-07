@@ -1,0 +1,174 @@
+Simplify tcl/tk checks: use tclConfig.sh and tkConfig.sh
+
+--- configure.ac~	2012-01-25 13:43:05.000000000 +0100
++++ configure.ac	2013-03-07 14:33:01.662149274 +0100
+@@ -1,6 +1,6 @@
+ dnl autoconf script for gbM
+ dnl
+-dnl Copyright (c) 2001-2007,2010 CNRS/LAAS
++dnl Copyright (c) 2001-2007,2010,2013 CNRS/LAAS
+ dnl
+ dnl GPL, since some parts were copied from other configure.in
+ dnl 
+@@ -69,59 +69,6 @@
+ file=${tcl_prefix}/tclConfig.sh
+ . $file
+ fi
+-dnl substitute variables in TCL_LIB_FILE
+-eval TCL_LIB_FILE=${TCL_LIB_FILE}
+-
+-AC_MSG_CHECKING([for tcl headers])
+-test -z "$tcl_test_include" && tcl_test_include=tcl.h
+-for ac_dir in \
+-	$TCL_PREFIX/include/tcl$TCL_VERSION	\
+-	$TCL_PREFIX/include 			\
+-	/usr/local/include/tcl$TCL_VERSION 	\
+-	/usr/local/include 			\
+-	/usr/include 				\
+-	/Library/Frameworks/Tcl.framework/Headers \
+-	$extra_include 				\
+-	; \
+-  do
+-  if test -r "$ac_dir/$tcl_test_include"; then
+-    ac_tcl_includes=$ac_dir
+-    break
+-  fi
+-done
+-if test "x$ac_tcl_includes" != "x"; then
+-  AC_MSG_RESULT($ac_tcl_includes)
+-else
+-if test "$GB_TCL" = "yes"; then
+-  AC_MSG_RESULT([Not found (fatal)])
+-  exit 2;
+-fi
+-fi
+-
+-AC_MSG_CHECKING([for tcl library])
+-test -z "$tcl_test_lib" && tcl_test_lib="${TCL_LIB_FILE}"
+-for ac_dir in \
+-	$TCL_PREFIX/lib				\
+-	/usr/local/${usrlibdir}			\
+-	/usr/${usrlibdir}			\
+-	/Library/Frameworks/Tcl.framework	\
+-	$extra_lib				\
+-	; \
+-  do
+-  if test -r "$ac_dir/$tcl_test_lib"; then
+-    ac_tcl_libs=$ac_dir
+-    break
+-  fi
+-done
+-if test "x$ac_tcl_libs" != "x"; then
+-  AC_MSG_RESULT($ac_tcl_libs/$TCL_LIB_FILE)
+-else
+-if test "$GB_TCL" = "yes"; then
+-  AC_MSG_RESULT([Not found (fatal)])
+-  exit 2;
+-fi
+-fi
+-LIB_RUNTIME_DIR=$ac_tcl_libs
+ 
+ AC_ARG_WITH(tk,
+     [  --with-tk=DIR           directory containing tkConfig.sh],
+@@ -146,99 +93,11 @@
+ file=${tk_prefix}/tkConfig.sh
+ . $file
+ fi
+-dnl substitute variables in TK_LIB_FILE
+-eval TK_LIB_FILE=${TK_LIB_FILE}
+-
+ 
+-AC_MSG_CHECKING([for tk headers])
+-test -z "$tk_test_include" && tk_test_include=tk.h
+-for ac_dir in \
+-	$TK_PREFIX/include/tk$TK_VERSION	\
+-	$TK_PREFIX/include 			\
+-	$ac_tcl_includes			\
+-	/usr/local/include/tk$TK_VERSION 	\
+-	/usr/local/include 			\
+-	/usr/include 				\
+-	/Library/Frameworks/Tk.framework/Headers \
+-	$extra_include 				\
+-	; \
+-  do
+-  if test -r "$ac_dir/$tk_test_include"; then
+-    ac_tk_includes=$ac_dir
+-    break
+-  fi
+-done
+-if test "x$ac_tk_includes" != "x"; then
+-  AC_MSG_RESULT($ac_tk_includes)
+-else
+-if test "$GB_TCL" = "yes"; then
+-  AC_MSG_RESULT([Not found (fatal)])
+-  exit 2;
+-fi
+-fi
+-dnl look for tkInt.h
+-AC_MSG_CHECKING([for tkInt.h])
+-for ac_dir in \
+-	$TK_SRC_DIR/generic				\
+-	$TK_PREFIX/include			        \
+-	$TK_PREFIX/include/generic			\
+-	$TK_PREFIX/include/tk$TK_VERSION/generic	\
+-	/Library/Frameworks/Tk.framework/PrivateHeaders \
+-	$srcdir/tk/$TK_VERSION				\
+-	; \
+-  do
+-  if test -r "$ac_dir/tkInt.h"; then
+-    ac_tk_int=$ac_dir
+-    break
+-  fi
+-done
+-if test "x$ac_tk_int" != "x"; then
+-  AC_MSG_RESULT($ac_tk_int)
+-else
+-if test "$GB_TCL" = "yes"; then
+-  AC_MSG_RESULT([Not found (fatal)])
+-  exit 2;
+-fi
+-fi
+-
+-if test "$ac_tcl_includes" != "/usr/include"; then
+-  TCL_CPPFLAGS=-I$ac_tcl_includes
+-else 
+-  TCL_CPPFLAGS=""
+-fi
+-if test "$ac_tk_includes" != "$ac_tcl_includes"; then
+-	TCL_CPPFLAGS="$TCL_CPPFLAGS -I$ac_tk_includes"
+-fi
+-if test "$ac_dir" = "$srcdir/tk/$TK_VERSION"; then
+-	TCL_CPPFLAGS="$TCL_CPPFLAGS -I\${abs_srcdir}/tk/${TK_VERSION}"
+-else
+-	TCL_CPPFLAGS="$TCL_CPPFLAGS -I$ac_tk_int"
+-fi
+-AC_SUBST(TCL_CPPFLAGS)
+-AC_SUBST(TCL_EXTRA_CFLAGS)
+-
+-eval TCL_LDFLAGS=\"${TCL_LD_FLAGS} ${TCL_LD_SEARCH_FLAGS}\"
+-eval TK_LDFLAGS=\"${TK_LD_SEARCH_FLAGS}\"
+-if test "$TK_LDFLAGS" != "$TCL_LDFLAGS"; then
+-  TCL_LDFLAGS="$TCL_LDFLAGS $TK_LDFLAGS"
+-fi
+-
+-eval TK_SHLIB_LDFLAGS=\"${TK_LD_SEARCH_FLAGS}\"
+-TCL_SHLIB_LDFLAGS="$TK_SHLIB_LDFLAGS"
+-TCL_LIB_FLAGS="$TCL_LIB_FLAG $TK_LIB_FLAG"
+-
+-AC_SUBST(TCL_CC)
+-AC_SUBST(LIB_RUNTIME_DIR)
+-AC_SUBST(TCL_LDFLAGS)
++AC_SUBST(TCL_INCLUDE_SPEC)
++AC_SUBST(TK_INCLUDE_SPEC)
+ AC_SUBST(TCL_LIB_SPEC)
+ AC_SUBST(TK_LIB_SPEC)
+-AC_SUBST(TCL_SHLIB_CFLAGS)
+-AC_SUBST(TCL_SHLIB_LDFLAGS)
+-AC_SUBST(TCL_SHLIB_LD)
+-AC_SUBST(TCL_SHLIB_SUFFIX)
+-AC_SUBST(TCL_LIB_FLAGS)
+-AC_SUBST(TCL_DBGX)
+-
+ 
+ 
+ dnl  swig
