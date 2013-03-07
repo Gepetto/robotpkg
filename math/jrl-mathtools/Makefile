@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Wed, 17 Sep 2008
 #
 
+PKGREVISION=		1
 DISTNAME=		jrl-mathtools-1.5.2
 CATEGORIES=		math
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}

@@ -1,0 +1,26 @@
+BLAS wants 'int' where ublas deals with size_t
+
+--- include/jrl/mathtools/matrixnxp.hh~	2013-02-27 02:52:21.000000000 +0100
++++ include/jrl/mathtools/matrixnxp.hh	2013-03-08 01:11:51.000000000 +0100
+@@ -100,8 +100,8 @@
+       /* XXX BLAS expects integers, while matrix size is size_t */
+       const int n=static_cast<int>(NR),m=static_cast<int>(NC);
+       int lda = std::max(m,n);
+-      int lu = traits::leading_dimension(U); // NR
+-      int lvt = traits::leading_dimension(VT); // NC
++      int lu = n; // traits::leading_dimension(U); // NR
++      int lvt = m; // traits::leading_dimension(VT); // NC
+ 
+       dgesvd_(&Jobu, &Jobvt, &m, &n,
+ 	      MRAWDATA(transpOrNot), &lda,
+@@ -209,8 +209,8 @@
+           /* XXX BLAS expects integers, while matrix size is size_t */
+           const int n=static_cast<int>(NR),m=static_cast<int>(NC);
+ 	  int lda = std::max(m,n);
+-	  int lu = traits::leading_dimension(U); // NR
+-	  int lvt = traits::leading_dimension(VT); // NC
++	  int lu = n; // traits::leading_dimension(U); // NR
++         int lvt = m; // traits::leading_dimension(VT); // NC
+ 
+ 	  dgesvd_(&Jobu, &Jobvt, &m, &n,
+ 		  MRAWDATA(I), &lda,
