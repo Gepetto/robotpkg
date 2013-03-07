@@ -15,7 +15,7 @@ DEPEND_USE+=		python32
 
 include ../../mk/sysdep/python.mk
 ifeq (Fedora,${OPSYS})
-  ifneq (,$(filter 14,${OS_VERSION}))
+  ifneq (,$(filter 14 18,${OS_VERSION}))
     PREFER.python32?=	robotpkg
   endif
 else ifeq (Ubuntu,${OPSYS})
