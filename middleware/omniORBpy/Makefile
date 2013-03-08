@@ -16,29 +16,11 @@ LICENSE=		gnu-lgpl-v2.1
 MAKE_FILE=		GNUmakefile
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
+CONFIGURE_ARGS+=	am_cv_python_pythondir=${PREFIX}/${PYTHON_SITELIB}
+CONFIGURE_ARGS+=	am_cv_python_pyexecdir=${PREFIX}/${PYTHON_SITELIB}
 
 include ../../middleware/omniORB/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
-
-_compiledirs=\
-	omniORB			\
-	CosNaming		\
-	CosNaming__POA
-_pycompiledirs=\
-	$(addprefix ${PREFIX}/${PYTHON_SITELIB}/,${_compiledirs})
-
-_compilefiles=\
-	CORBA.py		\
-	CosNaming_idl.py	\
-	PortableServer.py	\
-	PortableServer__POA.py	\
-	omniidl_be/python.py
-_pycompilefiles=\
-	$(addprefix ${PREFIX}/${PYTHON_SITELIB}/,${_compilefiles})
-
-
-post-install: python-compile-all(${_pycompiledirs})
-post-install: python-compile-file(${_pycompilefiles})
