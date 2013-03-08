@@ -23,6 +23,7 @@ endif
 
 SYSTEM_SEARCH.libtool=\
   'bin/${_libtool}:/libtool/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% --version' \
+  'bin/${_libtool}ize'				\
   'share/aclocal/libtool.m4'			\
   'share/libtool/{,config/}config.guess'	\
   'share/libtool/{,config/}config.sub'		\
@@ -37,9 +38,10 @@ DEPEND_DIR.libtool?=	../../pkgtools/libtool
 # invoke the proper libtool.
 #
 export LIBTOOL=		$(word 1,${SYSTEM_FILES.libtool})
-TOOLS.config.guess?=	$(word 3,${SYSTEM_FILES.libtool})
-TOOLS.config.sub?=	$(word 4,${SYSTEM_FILES.libtool})
-TOOLS.ltmain.sh?=	$(word 5,${SYSTEM_FILES.libtool})
+export LIBTOOLIZE=	$(word 2,${SYSTEM_FILES.libtool})
+TOOLS.config.guess?=	$(word 4,${SYSTEM_FILES.libtool})
+TOOLS.config.sub?=	$(word 5,${SYSTEM_FILES.libtool})
+TOOLS.ltmain.sh?=	$(word 6,${SYSTEM_FILES.libtool})
 
 
 # libtool-override replace any existing libtool files under ${WRKSRC}
