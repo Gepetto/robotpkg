@@ -1,0 +1,13 @@
+Do not hardcode doxygen
+
+--- Makefile.in~	2011-05-18 18:22:01.000000000 +0200
++++ Makefile.in	2013-03-08 23:28:06.000000000 +0100
+@@ -794,7 +794,7 @@
+ 
+ .PHONY: doc
+ doc: doc/doxyfile doc/main.dox
+-	doxygen $<
++	${DOXYGEN} $<
+ 
+ .PHONY: install-doc
+ install-doc: doc
