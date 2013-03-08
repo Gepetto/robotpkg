@@ -27,6 +27,8 @@ OMNIORB_CONFIG=		${OMNIORB_ETCDIR}/omniORB.cfg
 
 CONFIGURE_ARGS+=	--with-omniORB-config=${OMNIORB_CONFIG}
 CONFIGURE_ARGS+=	--with-omniNames-logdir=/tmp
+CONFIGURE_ARGS+=	am_cv_python_pythondir=${PREFIX}/${PYTHON_SITELIB}
+CONFIGURE_ARGS+=	am_cv_python_pyexecdir=${PREFIX}/${PYTHON_SITELIB}
 
 # options
 PKG_SUPPORTED_OPTIONS+=	ipv6
@@ -42,8 +44,6 @@ include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 post-install: omni-install-doc
-post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/omniidl)
-post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/omniidl_be)
 
 .PHONY: omni-install-doc
 omni-install-doc:
