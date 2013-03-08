@@ -46,19 +46,25 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:PATH=${CMAKE_CONFIGURE_PREFIX}/lib
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE
 
 CMAKE_ARGS+=	CMAKE_EXE_LINKER_FLAGS=$(call quote,${LDFLAGS})
-ifneq (,$(filter c,${USE_LANGUAGES}))
-  CMAKE_ARGS+=	-DCMAKE_C_FLAGS=$(call quote,${CPPFLAGS} ${CFLAGS})
-  CMAKE_ARGS+=	-DCMAKE_C_FLAGS_DEBUG=
-  CMAKE_ARGS+=	-DCMAKE_C_FLAGS_RELEASE=
-endif
-ifneq (,$(filter c++,${USE_LANGUAGES}))
-  CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS=$(call quote,${CPPFLAGS} ${CXXFLAGS})
-  CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS_DEBUG=
-  CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS_RELEASE=
-endif
-ifneq (,$(filter fortran,${USE_LANGUAGES}))
-  CMAKE_ARGS+=	-DCMAKE_Fortran_COMPILER=${FC}
-endif
+
+# C flags
+CMAKE_ARGS+=\
+  $(if $(filter c-compiler,${PKG_ALTERNATIVES}),		\
+    -DCMAKE_C_FLAGS=$(call quote,${CPPFLAGS} ${CFLAGS})		\
+    -DCMAKE_C_FLAGS_DEBUG=					\
+    -DCMAKE_C_FLAGS_RELEASE=)
+
+# C++ flags
+CMAKE_ARGS+=\
+  $(if $(filter c++-compiler,${PKG_ALTERNATIVES}),		\
+    -DCMAKE_CXX_FLAGS=$(call quote,${CPPFLAGS} ${CXXFLAGS})	\
+    -DCMAKE_CXX_FLAGS_DEBUG=					\
+    -DCMAKE_CXX_FLAGS_RELEASE=)
+
+# Fortran compiler
+CMAKE_ARGS+=\
+  $(if $(filter fortran-compiler,${PKG_ALTERNATIVES}),		\
+    -DCMAKE_Fortran_COMPILER=${FC})
 
 # Handle PKGINFODIR
 ifneq (,$(call isyes,${CONFIGURE_HAS_INFODIR}))
