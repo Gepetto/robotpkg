@@ -19,10 +19,8 @@ DYNAMIC_PLIST_DIRS+=	share/doc/dynamic-graph
 # boost + gcc that don't cohabit well depending on their respective versions
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
-# Handle CMAKE_INSTALL_MANDIR
-ifneq (,$(call isyes,${CONFIGURE_HAS_MANDIR}))
- CMAKE_ARGS+=  -DCMAKE_INSTALL_MANDIR=${PKGMANDIR}
-endif
+# man pages location
+CMAKE_ARGS+=		-DMANDIR=${PREFIX}/${PKGMANDIR}
 
 include ../../interfaces/jrl-mal/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
