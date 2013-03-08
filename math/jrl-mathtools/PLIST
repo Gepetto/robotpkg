@@ -1,5 +1,6 @@
 @comment Thu Apr 14 21:47:16 CEST 2011
 include/jrl/mathtools/angle.hh
+include/jrl/mathtools/config.h
 include/jrl/mathtools/config.hh
 include/jrl/mathtools/constants.hh
 include/jrl/mathtools/deprecated.hh
