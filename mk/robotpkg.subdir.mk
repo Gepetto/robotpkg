@@ -57,20 +57,20 @@ ifeq  (,$(filter confirm,${MAKECMDGOALS}))
 	${ERROR_MSG} "robotpkg is a package collection. It provides"	\
 		"many different,";					\
 	${ERROR_MSG} "unrelated and sometimes incompatible packages.";	\
-	${ERROR_MSG} "You probably want to make ${MAKECMDGOALS} for a"	\
-		"specific package, or a";				\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "$${bf}You probably want to 'make ${MAKECMDGOALS}'"\
+		"for a specific package$${rm}, or a";			\
 	${ERROR_MSG} "few selected packages only. In this case, simply"	\
-		"cd to the";						\
-	${ERROR_MSG} "<category>/<package> directory of your choice and"\
-		" ${MAKE} ${MAKECMDGOALS} again.";			\
+		"run";							\
+	${ERROR_MSG} "  cd <category>/<package> && ${MAKE}"		\
+		"${MAKECMDGOALS}";					\
 	${ERROR_MSG} "See ${ROBOTPKG_DIR}/README.txt for further"	\
 		"reference.";						\
 	${ERROR_MSG} "";						\
 	${ERROR_MSG} "$${bf}If your intention is really to"		\
-		"make ${MAKECMDGOALS} for all packages,$${rm}";		\
-	${ERROR_MSG} "$${bf}please confirm by doing:$${bf}";		\
-	${ERROR_MSG} "		\`$${bf}${MAKE} ${MAKECMDGOALS}"	\
-		"confirm$${rm}'";					\
+		"'make ${MAKECMDGOALS}' for all packages,$${rm}";	\
+	${ERROR_MSG} "please confirm by running: ${MAKE}"		\
+		"${MAKECMDGOALS} confirm";				\
 	${ERROR_MSG} ${hline};						\
 	${FALSE}
 endif
@@ -85,7 +85,7 @@ __targets=\
 
 .PHONY: ${__targets}
 ${__targets}: recursive-subdir
-	@: # prevents 'nothing to be done for...'
+${__targets}:; @: # prevents 'nothing to be done for...'
 
 .PHONY:
 recursive-subdir:
