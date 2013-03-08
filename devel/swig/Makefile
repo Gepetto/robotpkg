@@ -11,8 +11,9 @@ HOMEPAGE=	http://www.swig.org/
 COMMENT=	Simplified Wrapper and Interface Generator
 LICENSE=	2-clause-bsd
 
-GNU_CONFIGURE=		yes
 BUILD_TARGET=		swig
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--with-pcre-prefix=${PREFIX.pcre}
 
 # doc option
 PKG_SUPPORTED_OPTIONS+=	doc
