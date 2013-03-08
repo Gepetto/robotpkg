@@ -14,7 +14,6 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Driver and interface for serial ports
 
 GNU_CONFIGURE=		yes
-CONFIGURE_SCRIPT=	autogen.sh
 
 include ../../devel/mkdep/depend.mk
 include ../../middleware/pocolibs/depend.mk
@@ -24,3 +23,10 @@ include ../../mk/sysdep/autoconf.mk
 include ../../mk/sysdep/automake.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
+
+pre-configure: autogen
+
+.PHONY: autogen
+autogen:
+	${RUN} cd ${WRKSRC} && ${CONFIGURE_LOGFILTER} \
+	  ${SH} -ec '${LIBTOOLIZE} -c -i -f; ${ACLOCAL} -I m4; ${AUTOCONF}'
