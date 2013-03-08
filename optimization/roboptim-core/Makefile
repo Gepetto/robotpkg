@@ -16,7 +16,7 @@ MAINTAINER=	roboptim-user@lists.sourceforge.net
 
 CMAKE_ARGS+=		-DBOOST_ROOT=${PREFIX.boost-headers}
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
-DOXYGEN_PLIST_DIR+=	share/doc/roboptim-core
+DYNAMIC_PLIST_DIRS+=	share/doc/roboptim-core
 
 INCLUDE_DIRS.libtool-ltdl=	include
 LIBRARY_DIRS.libtool-ltdl=	lib
