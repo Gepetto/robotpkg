@@ -21,6 +21,7 @@ CONFIGURE_ARGS+=	--with-motif-libraries=${PREFIX.motif}/lib
 CONFIGURE_ARGS+=	LATEX='${PDFLATEX}'
 
 USE_TEX_PKGS+=	graphicx.sty index.sty hyperref.sty verbatim.sty
+USE_TEX_PKGS+=	alpha.bst
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/bibtex.mk
