@@ -18,9 +18,11 @@ DEPEND_ABI.autoconf?=	autoconf>=2.59
 DEPEND_METHOD.autoconf?=build
 SYSTEM_SEARCH.autoconf=\
 	'bin/autoconf:/autoconf/{s/[^0-9.]*\([0-9.]*\).*/\1/;p;q;}:% -V' \
+	'bin/autom4te'		\
 	'bin/autoreconf'
 
 export AUTOCONF=	$(addsuffix /bin/autoconf,${PREFIX.autoconf})
+export AUTOM4TE=	$(addsuffix /bin/autom4te,${PREFIX.autoconf})
 export AUTORECONF=	$(addsuffix /bin/autoreconf,${PREFIX.autoconf})
 
 GNU_CONFIGURE?=		yes
