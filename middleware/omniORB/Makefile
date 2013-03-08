@@ -30,6 +30,10 @@ CONFIGURE_ARGS+=	--with-omniNames-logdir=/tmp
 CONFIGURE_ARGS+=	am_cv_python_pythondir=${PREFIX}/${PYTHON_SITELIB}
 CONFIGURE_ARGS+=	am_cv_python_pyexecdir=${PREFIX}/${PYTHON_SITELIB}
 
+INSTALLATION_DIRS=\
+	share/examples/omniORB/		\
+	share/doc/omniORB/omniORB
+
 # options
 PKG_SUPPORTED_OPTIONS+=	ipv6
 
@@ -47,11 +51,14 @@ post-install: omni-install-doc
 
 .PHONY: omni-install-doc
 omni-install-doc:
-	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/omniORB/
-	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/omniORB/
-	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/omniORB/omniORB
-	${INSTALL_DATA} ${WRKSRC}/sample.cfg ${PREFIX}/share/examples/omniORB/
-	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${PREFIX}/share/doc/omniORB/
-	${INSTALL_DATA} ${WRKSRC}/doc/*.pdf ${PREFIX}/share/doc/omniORB/
-	${INSTALL_DATA} ${WRKSRC}/doc/omniORB/* ${PREFIX}/share/doc/omniORB/omniORB/
-	${INSTALL_MAN} ${WRKSRC}/man/man1/* ${PREFIX}/${PKGMANDIR}/man1/
+	${RUN}								\
+	${INSTALL_DATA}							\
+	  ${WRKSRC}/sample.cfg ${PREFIX}/share/examples/omniORB/;	\
+	${INSTALL_DATA}							\
+	  ${WRKSRC}/doc/*.html ${PREFIX}/share/doc/omniORB/;		\
+	${INSTALL_DATA}							\
+	  ${WRKSRC}/doc/*.pdf ${PREFIX}/share/doc/omniORB/;		\
+	${INSTALL_DATA}							\
+	  ${WRKSRC}/doc/omniORB/* ${PREFIX}/share/doc/omniORB/omniORB/;	\
+	${INSTALL_MAN}							\
+	  ${WRKSRC}/man/man1/* ${PREFIX}/${PKGMANDIR}/man1/
