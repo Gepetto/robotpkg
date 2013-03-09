@@ -2,9 +2,9 @@
 +++ src/Makefile	2010-06-17 13:54:14.623799578 +0200
 @@ -1,47 +1,54 @@
 -CC	= gcc
-+LTCC	= libtool --mode=compile --tag=CC ${CC} ${CFLAGS}
-+LINK = libtool --mode=link --tag=CC ${CC} ${CFLAGS} -rpath ${PREFIX}
-+INSTALL= libtool --mode=install install
++LTCC	= ${LIBTOOL} --mode=compile --tag=CC ${CC} ${CFLAGS}
++LINK = ${LIBTOOL} --mode=link --tag=CC ${CC} ${CFLAGS} -rpath ${PREFIX}
++INSTALL= ${LIBTOOL} --mode=install install
  CFLAGS	+=
  BIN_DIR = ../bin
  INC_DIR	= ../include
@@ -12,8 +12,8 @@
 -INCL	= -I$(INC_DIR) `pkg-config --cflags opencv gtk-engines-2`
 -LIBS	= -L$(LIB_DIR) -lfeat `pkg-config --libs opencv gtk-engines-2`
 -OBJ	= imgfeatures.o utils.o sift.o kdtree.o minpq.o xform.o
-+INCL	= -I$(INC_DIR) `pkg-config --cflags opencv gtk+-2.0`
-+LIBS	= -L$(LIB_DIR) libsift.la `pkg-config --libs opencv gtk+-2.0`
++INCL	= -I$(INC_DIR) `${PKG_CONFIG} --cflags opencv gtk+-2.0`
++LIBS	= -L$(LIB_DIR) libsift.la `${PKG_CONFIG} --libs opencv gtk+-2.0`
 +OBJ	= imgfeatures.lo utils.lo sift.lo kdtree.lo minpq.lo xform.lo
  BIN     = siftfeat match dspfeat
  
