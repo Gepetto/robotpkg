@@ -1,0 +1,11 @@
+--- doc/Makefile.in~	2009-04-08 18:43:21.000000000 +0200
++++ doc/Makefile.in	2013-03-09 14:58:47.000000000 +0100
+@@ -350,7 +350,7 @@
+ 	$(INSTALL_DATA) worldModelGrid3D.doxytag $(datadir)/doc/doxytag
+ 
+ html-doc: package.dox
+-	doxygen $<
++	${DOXYGEN} $<
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:

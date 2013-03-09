@@ -12,7 +12,7 @@ COMMENT=	Probabilistic, 3D occupancy grid building
 
 GNU_CONFIGURE=	yes
 
-DOXYGEN_PLIST_DIR+=	share/doc/worldModelGrid3D
+DYNAMIC_PLIST_DIRS+=	share/doc/worldModelGrid3D
 
 
 # 3D image options
@@ -31,7 +31,6 @@ define PKG_OPTION_UNSET.boost
   include ../../image/libimages3d/depend.mk
 endef
 
-include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/language/c.mk
