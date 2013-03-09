@@ -1,8 +1,18 @@
-Disable various unused subdirectories that otherwise pull in horrid
-dependencies
+. Disable -pedantic because of a NetBSD/6.0.1 + gcc-4.5 issue (in posix_memalign()
+  prototype in mm_malloc.h).
+. Disable various unused subdirectories that otherwise pull in horrid
+  dependencies
 
 --- CMakeLists.txt.orig	2011-05-05 12:10:37.867029766 +0200
 +++ CMakeLists.txt	2011-05-05 12:10:44.451054956 +0200
+@@ -118,7 +118,6 @@
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra")
+   endif()
+ 
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
+ 
+   option(EIGEN_TEST_SSE2 "Enable/Disable SSE2 in tests/examples" OFF)
+   if(EIGEN_TEST_SSE2)
 @@ -281,7 +281,7 @@
  if(EIGEN_BUILD_PKGCONFIG)
      configure_file(eigen3.pc.in eigen3.pc)
