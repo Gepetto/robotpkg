@@ -1,4 +1,5 @@
-TCL_CC is required for TCL_SHLIBLD on some platforms/tcl version
+. TCL_CC is required for TCL_SHLIBLD on some platforms/tcl version
+. Use $TCLSH instead of tclsh, so that this does not rely on user's PATH
 
 --- src/Makefile.in~	2009-04-14 15:29:20.000000000 +0200
 +++ src/Makefile.in	2011-11-05 19:25:39.000000000 +0100
@@ -10,3 +11,12 @@ TCL_CC is required for TCL_SHLIBLD on some platforms/tcl version
  TCL_CPPFLAGS=		@TCL_CPPFLAGS@
  TCL_LDFLAGS=		@TCL_LDFLAGS@
  TCL_LIBS=		@TCL_LIB_SPEC@ @TK_LIB_SPEC@
+@@ -72,7 +72,7 @@
+ install: $(MODULE)
+ 	$(mkinstalldirs) $(DESTDIR)$(MODULESDIR)
+ 	$(INSTALL) $(MODULE) $(DESTDIR)$(MODULESDIR)
+-	tclsh $(top_srcdir)/tcl/mkIndex $(DESTDIR)$(MODULESDIR)
++	${TCLSH} $(top_srcdir)/tcl/mkIndex $(DESTDIR)$(MODULESDIR)
+ 
+ clean:
+ 	rm -f $(OBJS) $(MODULE)
