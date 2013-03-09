@@ -1,0 +1,12 @@
+TCL_LIB_FILE might be in PREFIX/lib or lib64
+
+--- configure~	2009-04-14 15:29:20.000000000 +0200
++++ configure	2013-03-09 15:20:12.000000000 +0100
+@@ -4661,6 +4661,7 @@
+ test -z "$tcl_test_lib" && tcl_test_lib="${TCL_LIB_FILE}"
+ for ac_dir in \
+ 	$TCL_PREFIX/lib				\
++	$TCL_PREFIX/lib64			\
+ 	/usr/local/${usrlibdir}			\
+ 	/usr/${usrlibdir}			\
+ 	/Library/Frameworks/Tcl.framework	\
