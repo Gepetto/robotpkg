@@ -24,6 +24,7 @@ CXXFLAGS+=	-I${WRKSRC}/include
 # Configuration flags.
 # See http://www.irisa.fr/lagadic/visp/librarieslist.html for details.
 #
+CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
 
 # Build shared libraries, enforce backward compatibility, don't build code
 # coverage tests and enforce examples building. Require fairly common
