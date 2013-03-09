@@ -29,6 +29,10 @@ SYSTEM_SEARCH.eigen3=	\
 	include/eigen3/signature_of_eigen3_matrix_library  \
 	'{lib,share}/pkgconfig/eigen3.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Debian.eigen3=	libeigen3-dev
+SYSTEM_PKG.Fedora.eigen3=	eigen3-devel
+SYSTEM_PKG.Ubuntu.eigen3=	libeigen3-dev
+
 endif # EIGEN3_DEPEND_MK ---------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
