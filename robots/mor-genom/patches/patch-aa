@@ -1,0 +1,20 @@
+Use a number in the allowed range
+
+--- mor.gen~	2011-08-31 18:51:21.000000000 +0200
++++ mor.gen	2013-03-09 17:51:04.000000000 +0100
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 2011 CNRS/LAAS
++ * Copyright (c) 2011,2013 CNRS/LAAS
+  *
+  * Permission to use, copy, modify, and/or distribute this software for any
+  * purpose with or without fee is hereby granted, provided that the above
+@@ -17,7 +17,7 @@
+        internal_data: MOR_GENOM_STR;
+        requires: pom, genPos, genBasic;
+        codels_requires: contlaw, mor-libs;
+-       number: 110800;
++       number: 11080;
+        version: "0.1";
+        email: "openrobots@laas.fr";
+ };
