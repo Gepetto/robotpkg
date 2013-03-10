@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2012 LAAS/CNRS
+# Copyright (c) 2010-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -278,6 +278,7 @@ ifdef PYDISTUTILSPKG
 PYSETUP?=               setup.py
 PYSETUPBUILDARGS?=      #empty
 PYSETUPINSTALLARGS+=    --prefix=${PREFIX}
+PYSETUPINSTALLARGS+=    --install-lib=${PREFIX}/${PYTHON_SITELIB}
 PYSETUPOPTARGS?=        -c -O1
 _PYSETUPINSTALLARGS=    ${PYSETUPINSTALLARGS} ${PYSETUPOPTARGS} ${_PYSETUPTOOLSINSTALLARGS}
 
