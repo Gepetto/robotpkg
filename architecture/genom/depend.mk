@@ -90,15 +90,16 @@ ifdef GENOM_MODULE
   GENERATE_PLIST+= ${CAT} ${ROBOTPKG_DIR}/${PLIST_TEMPLATE.genom};
 endif # GENOM_MODULE
 
-# GenoM modules use mkdep, pocolibs, pkg-config, autoconf and libtool. Depend
-# on these at the global level so that the dependencies get registered as a
-# primary dependency for the packages including this file.
+# GenoM modules use mkdep, pocolibs, pkg-config, autoconf, libtool and
+# perl. Depend on these at the global level so that the dependencies get
+# registered as a primary dependency for the packages including this file.
 #
 include ../../devel/mkdep/depend.mk
 include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/autoconf.mk
+include ../../mk/sysdep/perl.mk
 endif # DEPEND_DEPTH == +
 
 ifeq (+,$(GENOM_DEPEND_MK)) # ----------------------------------------
