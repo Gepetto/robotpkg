@@ -15,6 +15,7 @@ LICENSE=	gnu-lgpl-v2.1
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--without-python-binding
+CONFIGURE_ARGS+=HAVELIBUSB=${PREFIX.libusb}/bin/libusb-config
 
 INSTALLATION_DIRS+=	man share/doc/${PKGBASE}
 
