@@ -27,5 +27,6 @@ pre-configure: autoreconf
 
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/autoconf.mk
+include ../../mk/sysdep/automake.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
