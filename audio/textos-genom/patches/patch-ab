@@ -1,0 +1,28 @@
+Look for festival library in lib and lib64 (Fedora18 x86_64)
+
+--- configure.ac.user~	2013-03-10 19:49:12.000000000 +0100
++++ configure.ac.user	2013-03-10 19:49:54.000000000 +0100
+@@ -22,7 +22,8 @@
+   FESTIVAL_CFLAGS=
+   for dir in '' $festival_path; do
+     if test -r "$dir/include/festival/festival.h"; then
+-       if test -r "$dir/lib/libFestival.a" -o -r "$dir/lib/libFestival.so"; then
++     for lib in lib lib64; do
++       if test -r "$dir/$lib/libFestival.a" -o -r "$dir/$lib/libFestival.so"; then
+ 	  FESTIVAL_PREFIX=$dir
+ 
+ 	  if test -r "$dir/include/festival/EST.h"; then
+@@ -31,10 +32,12 @@
+ 	     FESTIVAL_CFLAGS="-I$dir/include/speech_tools"
+ 	  fi
+ 
+-	  if test -r "$dir/lib/libestools.a" -o -r "$dir/lib/libestools.so"; then
++	  if test -r "$dir/$lib/libestools.a" -o -r "$dir/$lib/libestools.so"; then
+ 	     break
+ 	  fi
+        fi
++       test -z "$FESTIVAL_PREFIX" || break;
++     done
+     fi
+   done
+ 
