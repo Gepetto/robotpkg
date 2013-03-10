@@ -118,7 +118,7 @@ check-master-sites:
 	            "$$site: fatal error";				\
 	          fatal=1; continue ;;					\
 	      esac;							\
-	      size=`${ECHO} "$$hdr" | ${AWK} -F'[ :]+'			\
+	      size=`${ECHO} "$$hdr" | ${AWK} -F'[ :\r]+'		\
 	        '/[Cc]ontent-[Ll]ength: +[0-9]+/ {print $$2}'`;		\
 	      if ${TEST} -z "$$size"; then				\
 	        ${ECHO} "SKIP:  $$site: cannot determine file size";	\
