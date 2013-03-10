@@ -1,0 +1,26 @@
+Let the perl program be configurable via the PERL environment variable
+
+diff --git a/src/parser.y b/src/parser.y
+index dd3bd4a..90b5ba1 100644
+--- src/parser.y
++++ src/parser.y
+@@ -1501,7 +1501,8 @@ main(int argc, char **argv)
+     extern FILE *yyin;
+     char nomout[MAXPATHLEN];
+     char cmdout[MAXPATHLEN];
+-    
++    static const char *perl;
++
+     char *nomTemp;
+     int opt;
+     int errFlag;
+@@ -1980,7 +1981,8 @@ main(int argc, char **argv)
+ 	    exit(1);
+ 	}
+ 	if (!noExecFlag) {
+-	     sprintf(cmdout, "perl -w %s\n", nomout);
++	     perl = getenv("PERL");
++	     sprintf(cmdout, "%s -w %s\n", perl?perl:"perl", nomout);
+ 	     fprintf(stderr,"%s", cmdout);
+ 	     status = system(cmdout);
+ 	    unlink(nomout);

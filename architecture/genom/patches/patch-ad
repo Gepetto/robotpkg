@@ -1,0 +1,16 @@
+In the generated autogen script, let the autoconf program be configurable
+via the AUTOCONF environment variable (upstream 6cb40df).
+
+diff --git a/canvas/autogen.in b/canvas/autogen.in
+index b326023..6d4661f 100755
+--- canvas/autogen.in
++++ canvas/autogen.in
+@@ -13,7 +13,7 @@ if ( ! -f $user || ! -f "local.mk.in" || ! -f "codels/Makefile.in" ) {
+ print "
+ Creating build environment ...
+   * Running autoconf\n";
+-exit 1 if system("cd autoconf && autoconf -o ../configure");
++exit 1 if system('cd autoconf && ${AUTOCONF:-autoconf} -o ../configure');
+ 
+ print "
+ 

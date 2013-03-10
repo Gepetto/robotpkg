@@ -1,0 +1,130 @@
+Redo the instance name cache (upstream c4f492d)
+
+Caching the value for the 1st call of genomInstanceName() is not
+good enough, when a C client calls several xxxClientInit() functions.
+
+So cache the instance name per module name.
+
+This still won't allow  a C client tries to use xxxClientInit() twice
+for 2 instances of the same xxx module. you need to call csClientInit()
+manually in this case.
+
+diff --git a/lib/instance.c b/lib/instance.c
+index 00c87dd..40271de 100644
+--- lib/instance.c
++++ lib/instance.c
+@@ -15,6 +15,7 @@
+  */
+ 
+ #define _GNU_SOURCE
++#include <pthread.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+@@ -23,41 +24,82 @@
+ 
+ #define GENOM_MAX_INSTANCE_NAME 256
+ 
+-static char *genomInstance;
+-static char *genomCntrlTaskInstance;
++struct INSTANCE_CACHE {
++	const char *module;
++	const char *instance;
++};
++
++static pthread_mutex_t icMutex = PTHREAD_MUTEX_INITIALIZER;
++static struct INSTANCE_CACHE *ic = NULL;
++static int icSize = 0; 
++
++static const char *
++add_ic(const char *module, const char *instance)
++{
++	struct INSTANCE_CACHE *new; 
++	const char *ret;
++	char *buf;
++
++	new = (struct INSTANCE_CACHE *)realloc(ic, 
++	    (icSize + 1)*sizeof(struct INSTANCE_CACHE));
++	if (new == NULL) {
++		return NULL;
++	}
++	new[icSize].module = strdup(module);
++	if (instance == NULL) 
++		ret = new[icSize].module;
++	else {
++		if (asprintf(&buf, "%s%s", module, instance) == -1) {
++			free(new);
++			return NULL;
++		}
++		ret = buf;
++	}
++	new[icSize].instance = ret;
++	ic = new;
++	icSize++;
++	return ret;
++}
++
++static const char *
++find_ic(const char *module)
++{
++	int i;
++
++	for (i = 0; i < icSize; i++)
++		if (strcmp(ic[i].module, module) == 0) 
++			break;
++	if (i == icSize)
++		return NULL;
++	return ic[i].instance;
++}
+ 
+-static int genomInstanceInitialized = 0;
+ 
+ const char *
+ genomInstanceName(const char *moduleName)
+ {
+-	char *instance;
++	const char *instance, *genomInstance, *ret;;
+ 	char *envvar;
+ 
+-	if (genomInstanceInitialized)
+-		return genomInstance;
+-
+-	if (asprintf(&envvar, "GENOM_INSTANCE_%s", moduleName) == -1)
+-		goto oom;
++	pthread_mutex_lock(&icMutex);
++	genomInstance = find_ic(moduleName);
++	if (genomInstance != NULL) {
++		ret = genomInstance;
++		goto done;
++	}
++	if (asprintf(&envvar, "GENOM_INSTANCE_%s", moduleName) == -1) {
++		ret = NULL;
++		goto done;
++	}
+ 	instance = getenv(envvar);
+ 	free(envvar);
+-	if (instance == NULL) {
+-		genomInstance = strdup(moduleName);
+-		if (genomInstance == NULL) 
+-			goto oom;
+-	} else {
+-		if (asprintf(&genomInstance,"%s%s",
+-			moduleName, instance) == -1)
+-			goto oom;
+-	}
+-	genomInstanceInitialized++;
+-	return &genomInstance[0];
+-oom:
+-	fprintf(stderr, "genomInstanceName: out of memory\n");
+-	return NULL;
++	ret = add_ic(moduleName, instance);
++done:
++	pthread_mutex_unlock(&icMutex);
++	return ret;
+ }
+ 
+-/* XXX mem leak */
++/* XXX mem leak, should use a cache like above */
+ const char *
+ genomInstanceSuffixName(const char *moduleName, const char *suffix)
+ {

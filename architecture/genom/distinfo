@@ -2,3 +2,6 @@ SHA1 (genom-2.10.tar.gz) = b4f083681c155ba3ed5029d457efe33bb2c89f13
 RMD160 (genom-2.10.tar.gz) = 83da209b8a1f33e28a71e241742032fc62d47d39
 Size (genom-2.10.tar.gz) = 1003907 bytes
 SHA1 (patch-aa) = fda1530e3e9c2d460b0bdb171a4a9b3ea57d9034
+SHA1 (patch-ab) = b98f4834521949d63f5921ec5a5e87d0e48798e6
+SHA1 (patch-ac) = f344ec34c49d0153bd66086a4ac36bf65d6dab48
+SHA1 (patch-ad) = 472f3a60803dc599dbfc57792d67f5196b6ab085
