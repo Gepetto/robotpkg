@@ -42,6 +42,7 @@ LIBRARY_DIRS.libtool-ltdl+=	lib
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/libxml2.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/glu.mk
