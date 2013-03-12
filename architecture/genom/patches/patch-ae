@@ -1,0 +1,24 @@
+[python] Fix the code generated for enum
+
+It was wrong because:
+  - entries was in the incorrect order
+  - it does not care about valued enum
+but genom already computes the right values for each member, so just use it.
+
+diff --git a/src/pythonInterfaceGen.c b/src/pythonInterfaceGen.c
+index af56cad..da3622c 100644
+--- src/pythonInterfaceGen.c
++++ src/pythonInterfaceGen.c
+@@ -146,8 +146,10 @@ int genPythonInterface(FILE *out)
+ 					p++;
+ 				}
+ 				fprintf(out, ") = (");
+-				for (k = 0; k < p; k++)
+-					fprintf(out, "%d, ", k);
++				for (m = t->members; m != NULL; m = m->next) {
++					fprintf(out, "%d, ", m->dcl_nom->pointeur);
++					p++;
++				}
+ 				fprintf(out, ")\n\n");
+ 				break;
+ 
