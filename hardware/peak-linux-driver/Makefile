@@ -19,6 +19,7 @@ NO_CONFIGURE=		yes
 
 INSTALLATION_DIRS=\
 	bin		\
+	etc		\
 	include		\
 	lib/pkgconfig
 
