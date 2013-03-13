@@ -14,6 +14,7 @@ CATEGORIES=	hardware
 LICENSE=	gnu-gpl-v2
 
 ONLY_FOR_PLATFORM=	Linux-%
+NOT_FOR_PLATFORM=	Fedora-18-%
 
 MASTER_SITES=	http://www.kernel.org/pub/linux/kernel/v2.6/
 
