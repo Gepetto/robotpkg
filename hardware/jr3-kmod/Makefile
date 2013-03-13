@@ -16,10 +16,14 @@ NOT_FOR_PLATFORM=	Fedora-18-%
 KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char
 KMOD=		jr3.ko
 INSTALLATION_DIRS+=${KMOD_DIR}
+MAKE_FLAGS+=	KMOD_DIR=${KMOD_DIR}
 
 MESSAGE_SUBST+=	CP=${CP}
 MESSAGE_SUBST+=	KMOD_DIR=${KMOD_DIR}
 MESSAGE_SUBST+=	KMOD=${KMOD}
+
+KDIR=$(realpath $(dir $(filter %/utsrelease.h,${SYSTEM_FILES.kernel}))/../..)
+MAKE_FLAGS+=	KDIR=${KDIR} IDIR=${KDIR}/kernel/drivers/char
 
 include ../../mk/sysdep/kernel.mk
 include ../../mk/sysdep/sudo.mk

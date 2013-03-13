@@ -5,7 +5,7 @@
  
  install:
 -	install -c -o root -g root -m 744 jr3.ko $(IDIR)
-+	install -c -m 744 jr3.ko ${PREFIX}$(IDIR)
++	install -c -m 744 jr3.ko ${PREFIX}/$(KMOD_DIR)
  
  clean:
  	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) clean
