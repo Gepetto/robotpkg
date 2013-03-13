@@ -4,6 +4,7 @@ bin/CreateMapleModel
 bin/CreateVRMLPoseFile
 bin/ReadOpenHRPFileAndExport
 bin/ReadPosFile
+include/jrl/dynamics/config.h
 include/jrl/dynamics/config.hh
 include/jrl/dynamics/deprecated.hh
 include/jrl/dynamics/dll.hh
