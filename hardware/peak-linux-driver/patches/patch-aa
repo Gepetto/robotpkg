@@ -1,5 +1,28 @@
 --- driver/Makefile~	2012-05-22 14:22:50.000000000 +0200
 +++ driver/Makefile	2012-05-30 16:42:56.233897000 +0200
+@@ -88,9 +88,11 @@
+ # whole makefile is based on availability of version.h file
+ # do a forced stop if it is not available
+ #
+-HASVERSION_H := $(shell if test -f $(KERNEL_LOCATION)/include/linux/version.h ; then echo yes ; else echo no; fi )
++HASVERSION_H := $(wildcard \
++       $(KERNEL_LOCATION)/include/linux/version.h \
++       $(KERNEL_LOCATION)/include/generated/uapi/linux/version.h)
+ 
+-ifeq ($(HASVERSION_H),no)
++ifeq (,$(HASVERSION_H))
+ $(error "Can't find $(KERNEL_LOCATION)/include/linux/version.h !")
+ else
+ 
+@@ -98,7 +100,7 @@
+ # removed old version retrival for better cross compile support
+ # old VERSION := $(shell uname -r)
+ #
+-VERSION := $(shell cpp -E -dM -I$(KERNEL_LOCATION)/include $(KERNEL_LOCATION)/include/linux/version.h \
++VERSION := $(shell cpp -E -dM -I$(KERNEL_LOCATION)/include ${HASVERSION_H} \
+             | grep UTS_RELEASE | sed -e 's;[^"]*"\(.*\)";\1;g')
+ 
+ ifeq ($(VERSION),)
 @@ -109,7 +109,7 @@
  #****************************************************************************
  # where the driver should be installed - change here for cross install
@@ -21,6 +44,15 @@
 -MODINST  = "install pcan /sbin/modprobe --ignore-install pcan; /usr/local/bin/pcan_make_devices 2"
 +MODINST  = "install pcan /sbin/modprobe --ignore-install pcan; ${PREFIX}/bin/pcan_make_devices 2"
  endif
+ 
+ #****************************************************************************
+@@ -316,6 +318,8 @@
+ all : message
+ 	$(CMDLINE)
+ 
++depend:
++
+ else # <<<<< USEKBUILD >>>>>>
  
  #****************************************************************************
 @@ -331,7 +331,7 @@
