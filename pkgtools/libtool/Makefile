@@ -12,6 +12,8 @@ COMMENT=	Generic shared library support script
 LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	yes
+INFO_FILES=	libtool.info
 
 include ../../mk/language/c.mk
+include ../../mk/sysdep/texinfo.mk
 include ../../mk/robotpkg.mk
