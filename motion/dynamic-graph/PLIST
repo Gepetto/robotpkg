@@ -13,6 +13,7 @@ include/dynamic-graph/config-contiifstream.hh
 include/dynamic-graph/config-shell-procedure.hh
 include/dynamic-graph/config-tracer-real-time.hh
 include/dynamic-graph/config-tracer.hh
+include/dynamic-graph/config.h
 include/dynamic-graph/config.hh
 include/dynamic-graph/contiifstream.h
 include/dynamic-graph/debug.h
