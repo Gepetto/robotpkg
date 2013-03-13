@@ -18,13 +18,12 @@ DEPEND_ABI.kernel?=	kernel>=2.6
 SYSTEM_PKG.Fedora.kernel=kernel-devel-${OS_KERNEL_VERSION}
 SYSTEM_PKG.Ubuntu.kernel=linux-headers-${OS_KERNEL_VERSION}
 
-_syspath.kernel=lib/modules/${OS_KERNEL_VERSION}/build/
+_syspath.kernel=src/{linux-headers-*/,kernels/*/}
 _v.kernel=/UTS_RELEASE/{s/[^\"]*//;s/\"//g;p;}
 SYSTEM_SEARCH.kernel=\
   '${_syspath.kernel}/Kconfig'						\
   '${_syspath.kernel}/include/{,generated/}{,uapi/}linux/version.h'	\
   '${_syspath.kernel}/include/{linux,generated}/utsrelease.h:${_v.kernel}'
-
 
 endif # KERNEL_DEPEND_MK --------------------------------------------------
 
