@@ -17,7 +17,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--without-python-binding
 CONFIGURE_ARGS+=HAVELIBUSB=${PREFIX.libusb}/bin/libusb-config
 
-INSTALLATION_DIRS+=	man share/doc/${PKGBASE}
+INSTALLATION_DIRS+=	man/man3 share/doc/${PKGBASE}
 
 # C++ wrappers option
 PKG_SUPPORTED_OPTIONS+=	cxx
@@ -53,5 +53,7 @@ include ../../mk/robotpkg.mk
 
 .PHONY: install-doc
 install-doc:
-	cd ${WRKSRC}/doc/man && ${PAX} -rwp ma . ${PREFIX}/man
-	cd ${WRKSRC}/doc/html && ${PAX} -rwp ma . ${PREFIX}/share/doc/${PKGBASE}
+	${RUN} cd ${WRKSRC}/doc/man/man3 && \
+	  ${PAX} -rwp ma -s @^./[^Fflu].*@@ . ${PREFIX}/man/man3
+	${RUN} cd ${WRKSRC}/doc/html && \
+	  ${PAX} -rwp ma . ${PREFIX}/share/doc/${PKGBASE}

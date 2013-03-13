@@ -18,7 +18,6 @@ ${PLIST.doc}man/man3/Ftdi_Eeprom.3
 ${PLIST.doc}man/man3/Ftdi_Eeprom_Private.3
 ${PLIST.doc}man/man3/Ftdi_List.3
 ${PLIST.doc}man/man3/Ftdi_List_Private.3
-${PLIST.doc}man/man3/deprecated.3
 ${PLIST.doc}man/man3/ftdi.c.3
 ${PLIST.doc}man/man3/ftdi.cpp.3
 ${PLIST.doc}man/man3/ftdi.h.3
