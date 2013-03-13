@@ -90,6 +90,19 @@
  		cp -f udev/45-pcan.rules /etc/udev/rules.d;\
  		echo "Info: Copied 45-pcan.rules to /etc/udev/rules.d.";\
  		for m in $(shell awk '/^blacklist/ { print $$2 }' udev/blacklist-peak.conf); do \
+@@ -425,9 +425,9 @@
+ 	else\
+ 		echo "Info: No UDEV installation found.";\
+ 	fi
+-	@/sbin/depmod
+-	@cp -f pcan.h /usr/include/pcan.h
+-	@chmod 644 /usr/include/pcan.h
++	@: /sbin/depmod
++	@cp -f pcan.h ${PREFIX}/include/pcan.h
++	@chmod 644 ${PREFIX}/include/pcan.h
+ 
+ .PHONY : uninstall
+ uninstall:
 @@ -430,9 +430,9 @@
  	@-rmmod pcan 2> /dev/null
  	@rm -f $(INSTALL_LOCATION)/$(TARGET)

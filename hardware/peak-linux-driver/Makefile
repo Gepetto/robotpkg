@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Wed, 31 Dec 2008
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 DISTNAME=	peak-linux-driver-${VERSION}
 VERSION=	7.6
 CATEGORIES=	hardware
@@ -23,10 +23,15 @@ INSTALLATION_DIRS=\
 	lib/pkgconfig
 
 post-install:	${WRKSRC}/pcan.pc
-	${INSTALL_DATA} ${WRKSRC}/pcan.pc ${PREFIX}/lib/pkgconfig
+	${RUN} \
+	${INSTALL_DATA} ${WRKSRC}/pcan.pc ${PREFIX}/lib/pkgconfig;	\
 	${INSTALL_DATA} ${WRKSRC}/driver/pcan.h ${PREFIX}/include/
 
-BUILD_MAKE_FLAGS=	NET=NO_NETDEV_SUPPORT PCC=NO_PCCARD_SUPPORT
+MAKE_FLAGS=	NET=NO_NETDEV_SUPPORT PCC=NO_PCCARD_SUPPORT UDEV=no
+MAKE_FLAGS+=	KERNEL_LOCATION=$(realpath \
+  $(dir $(filter %/utsrelease.h,${SYSTEM_FILES.kernel}))/../..)
+MAKE_FLAGS+=\
+  INSTALL_LOCATION=${PREFIX}/lib/modules/${OS_KERNEL_VERSION}/misc
 
 ${WRKSRC}/pcan.pc:
 	@${SED} -e 's|@prefix@|${PREFIX}|' \
