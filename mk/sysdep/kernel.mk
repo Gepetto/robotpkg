@@ -1,19 +1,5 @@
-#
-# Copyright (c) 2011 LAAS/CNRS
-# All rights reserved.
-#
-# Permission to use, copy, modify, and distribute this software for any purpose
-# with or without   fee is hereby granted, provided   that the above  copyright
-# notice and this permission notice appear in all copies.
-#
-# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-# REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
-# AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
-# INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
-# LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-# OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
-# PERFORMANCE OF THIS SOFTWARE.
-#
+# robotpkg sysdep/kernel.mk
+# Created:			Matthieu Herrb on Fri, 28 Jan 2011
 #
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 KERNEL_DEPEND_MK:=	${KERNEL_DEPEND_MK}+
@@ -32,10 +18,12 @@ DEPEND_ABI.kernel?=	kernel>=2.6
 SYSTEM_PKG.Fedora.kernel=kernel-devel-${OS_KERNEL_VERSION}
 SYSTEM_PKG.Ubuntu.kernel=linux-headers-${OS_KERNEL_VERSION}
 
-_syspath.linux-kernel=lib/modules/${OS_KERNEL_VERSION}/build/include
+_syspath.kernel=lib/modules/${OS_KERNEL_VERSION}/build/
+_v.kernel=/UTS_RELEASE/{s/[^\"]*//;s/\"//g;p;}
 SYSTEM_SEARCH.kernel=\
-	'${_syspath.linux-kernel}/linux/version.h' \
-	'${_syspath.linux-kernel}/{linux,generated}/utsrelease.h:/UTS_RELEASE[ 	]/s/[^0-9.-]//gp'
+  '${_syspath.kernel}/Kconfig'						\
+  '${_syspath.kernel}/include/{,generated/}{,uapi/}linux/version.h'	\
+  '${_syspath.kernel}/include/{linux,generated}/utsrelease.h:${_v.kernel}'
 
 
 endif # KERNEL_DEPEND_MK --------------------------------------------------
