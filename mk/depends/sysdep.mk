@@ -52,7 +52,9 @@ $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),,				\
     $(if $(filter $1,${DEPEND_METHOD.${_pkg_}}),			\
 	found=`${_PREFIXSEARCH_CMD} 2>>${_SYSDEP_LOG} -e		\
-	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
+	     -p $(call quote,$(or					\
+	       ${PREFIX.${_pkg_}},${SYSTEM_PREFIX.${_pkg_}},		\
+	       ${SYSTEM_PREFIX}))					\
 	     -d $(or $(call quote,${SYSTEM_DESCR.${_pkg_}}),"")		\
 	     -s $(call quote,${SYSTEM_PKG.${_pkg_}})			\
 	     -o $(call quote,${OPSYS})					\

@@ -64,7 +64,9 @@ $(addprefix print-depends-,${_chkdep_type}): print-depends-%: .FORCE
 		  "${DEPEND_DIR.${_pkg_}}")}';				\
 	,								\
 	{ exec 9>&1; ${_PREFIXSEARCH_CMD}				\
-	     -p $(call quote,$(or ${PREFIX.${_pkg_}},${SYSTEM_PREFIX}))	\
+	     -p $(call quote,$(or					\
+	       ${PREFIX.${_pkg_}},${SYSTEM_PREFIX.${_pkg_}},		\
+	       ${SYSTEM_PREFIX}))					\
 		$(call quote,${_pkg_})					\
 		$(call quote,${DEPEND_ABI.${_pkg_}})			\
 		${SYSTEM_SEARCH.${_pkg_}} 2>&1 1>&9 3>&9|${WARNING_CAT};\
