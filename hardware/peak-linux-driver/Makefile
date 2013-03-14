@@ -29,8 +29,7 @@ post-install:	${WRKSRC}/pcan.pc
 	${INSTALL_DATA} ${WRKSRC}/driver/pcan.h ${PREFIX}/include/
 
 MAKE_FLAGS=	NET=NO_NETDEV_SUPPORT PCC=NO_PCCARD_SUPPORT UDEV=no
-MAKE_FLAGS+=	KERNEL_LOCATION=$(realpath \
-  $(dir $(filter %/utsrelease.h,${SYSTEM_FILES.kernel}))/../..)
+MAKE_FLAGS+=	KERNEL_LOCATION=${PREFIX.kernel}
 MAKE_FLAGS+=\
   INSTALL_LOCATION=${PREFIX}/lib/modules/${OS_KERNEL_VERSION}/misc
 
