@@ -9,7 +9,7 @@ all:
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
 
 install:
-	install -c -m 744 mxser.ko $(PREFIX)/$(IDIR)
+	install -c -m 744 mxser.ko $(PREFIX)/$(KMOD_DIR)
 
 clean:
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) clean
