@@ -13,17 +13,19 @@ ifeq (+,$(KERNEL_DEPEND_MK)) # ---------------------------------------------
 PREFER.kernel?=		system
 
 DEPEND_USE+=		kernel
-DEPEND_ABI.kernel?=	kernel>=2.6
+DEPEND_ABI.kernel?=	kernel-${OS_KERNEL_VERSION}
 
 SYSTEM_PKG.Fedora.kernel=kernel-devel-${OS_KERNEL_VERSION}
 SYSTEM_PKG.Ubuntu.kernel=linux-headers-${OS_KERNEL_VERSION}
 
-_syspath.kernel=src/{linux-headers-*/,kernels/*/}
+SYSTEM_PREFIX.kernel?=\
+  $(SYSTEM_PREFIX:=/src/{linux-headers-*,kernels/*})
+
 _v.kernel=/UTS_RELEASE/{s/[^\"]*//;s/\"//g;p;}
 SYSTEM_SEARCH.kernel=\
-  '${_syspath.kernel}/Kconfig'						\
-  '${_syspath.kernel}/include/{,generated/}{,uapi/}linux/version.h'	\
-  '${_syspath.kernel}/include/{linux,generated}/utsrelease.h:${_v.kernel}'
+  'Kconfig'						\
+  'include/{,generated/}{,uapi/}linux/version.h'	\
+  'include/{linux,generated}/utsrelease.h:${_v.kernel}'
 
 endif # KERNEL_DEPEND_MK --------------------------------------------------
 
