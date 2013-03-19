@@ -34,7 +34,7 @@ DEPEND_ABI.libpng?=	libpng>=1.2.9
 SYSTEM_SEARCH.libpng=	\
 	'include/png.h'						\
 	'lib/pkgconfig/libpng.pc:/Version/s/[^.0-9]//gp'	\
-	'lib/libpng{,1[45]}.{a,so}'
+	'lib/libpng{,1[456]}.{a,so}'
 
 SYSTEM_PKG.Fedora.libpng=	libpng-devel
 SYSTEM_PKG.Ubuntu.libpng=	libpng-dev
