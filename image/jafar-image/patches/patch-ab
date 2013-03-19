@@ -1,0 +1,13 @@
+Fix pkg-config syntax, and gives the correct dependency name
+
+--- jafar-image.pc.in.orig	2013-03-19 12:04:50.150916037 +0100
++++ jafar-image.pc.in	2013-03-19 12:05:04.286915682 +0100
+@@ -6,6 +6,6 @@
+ Name: jafar-image
+ Description: Jafar module for basic image processing, it is based on the OpenCV library
+ Version: 2.2
+-Requires: kernel;jmath
++Requires: jafar-kernel,jafar-jmath
+-Libs: -L${CMAKE_INSTALL_PREFIX} -ljafar-image
++Libs: -L${CMAKE_INSTALL_PREFIX}/lib -ljafar-image
+ Cflags: -I${CMAKE_INSTALL_PREFIX}/include/jafar ${IMPORTED_HEADERS} ${EXTRA_COMPILE_FLAGS}
