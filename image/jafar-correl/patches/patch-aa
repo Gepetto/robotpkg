@@ -1,0 +1,13 @@
+Fix pkg-config syntax + name of requirements
+
+--- jafar-correl.pc.in.orig	2013-03-19 12:06:51.370912999 +0100
++++ jafar-correl.pc.in	2013-03-19 12:07:18.606912316 +0100
+@@ -6,6 +6,6 @@
+ Name: jafar-correl
+ Description: Jafar module with image correlation functions
+ Version: 0.2
+-Requires: kernel;image;jmath
++Requires: jafar-kernel,jafar-image,jafar-jmath
+-Libs: -L${CMAKE_INSTALL_PREFIX} -ljafar-correl
++Libs: -L${CMAKE_INSTALL_PREFIX}/lib -ljafar-correl
+ Cflags: -I${CMAKE_INSTALL_PREFIX}/include/jafar ${IMPORTED_HEADERS} ${EXTRA_COMPILE_FLAGS}
