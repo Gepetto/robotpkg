@@ -3,6 +3,7 @@
 #
 
 JAFAR_PKG=	jmath-0.4
+PKGREVISION= 1
 
 CATEGORIES=	math
 JAFAR_COMMENT=	mathematical tools (vector, matrix, random number ...)

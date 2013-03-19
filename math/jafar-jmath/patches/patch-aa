@@ -1,0 +1,13 @@
+Fix requirement names
+
+--- jafar-jmath.pc.in.orig	2013-03-19 12:09:07.338909589 +0100
++++ jafar-jmath.pc.in	2013-03-19 12:09:26.806909102 +0100
+@@ -6,6 +6,6 @@
+ Name: jafar-jmath
+ Description: Jafar module that defines some common mathematical tools: vector and matrix manipulation, random number generation,...
+ Version: 0.4
+-Requires: kernel
++Requires: jafar-kernel
+-Libs: -L${CMAKE_INSTALL_PREFIX} -ljafar-jmath
++Libs: -L${CMAKE_INSTALL_PREFIX}/lib -ljafar-jmath
+ Cflags: -I${CMAKE_INSTALL_PREFIX}/include/jafar ${IMPORTED_HEADERS} ${EXTRA_COMPILE_FLAGS}
