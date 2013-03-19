@@ -3,6 +3,7 @@
 #
 
 JAFAR_PKG=		kernel-0.5
+PKGREVISION= 	1
 
 CATEGORIES=		devel
 JAFAR_COMMENT=		common tools (exceptions, logging facility ...)
