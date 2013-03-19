@@ -1,0 +1,17 @@
+Search properly for lapack
+
+--- CMakeLists.txt.orig	2013-03-19 11:08:16.227001084 +0100
++++ CMakeLists.txt	2013-03-19 11:09:50.046998735 +0100
+@@ -103,6 +103,12 @@
+   set(LIBS ${LIBS} ${Boost_LIBRARIES})
+ endif(Boost_FOUND)
+ 
++#enable_language(Fortran)
++##
++# LAPACK
++##
++find_package(LAPACK REQUIRED)
++set(LIBS "${LIBS};${LAPACK_LIBRARIES}")
+ 
+ set(LIBS "${LIBS};${Boost_LIBRARIES}")
+ 
