@@ -1,36 +1,4 @@
-@comment Tue Jan 11 18:15:08 CET 2011
-${PLIST.noapi}bin/niut
-${PLIST.noapi}bin/niutSendInitRqst
-${PLIST.noapi}bin/niutTest
-include/niut/niutStruct.h
-include/niut/server/niutEndian.h
-include/niut/server/niutError.h
-${PLIST.noapi}include/niut/server/niutMsgLib.h
-include/niut/server/niutPosterLib.h
-include/niut/server/niutPosterLibStruct.h
-${PLIST.noapi}include/niut/server/niutPosterReadLibProto.h
-${PLIST.noapi}include/niut/server/niutPosterShowLib.h
-${PLIST.noapi}include/niut/server/niutPosterWriteLibProto.h
-${PLIST.noapi}include/niut/server/niutPosterXMLLib.h
-include/niut/server/niutPrint.h
-include/niut/server/niutPrintXML.h
-include/niut/server/niutScan.h
-include/niut/server/niutType.h
-${PLIST.openprs}include/niut/server/openprs/niutDecodeOpenprs.h
-${PLIST.openprs}include/niut/server/openprs/niutEncodeOpenprs.h
-${PLIST.openprs}include/niut/server/openprs/niutRequestsOpenprsProto.h
-${PLIST.tclserv_client}include/niut/server/tclservClient/niutTclservClientDecode.h
-${PLIST.tclserv_client}include/niut/server/tclservClient/niutTclservClientEncode.h
-${PLIST.tclserv_client}include/niut/server/tclservClient/niutTclservClientMsgLib.h
-lib/libniutClient.la
-${PLIST.openprs}lib/openprs/modniutOpenprs.la
-${PLIST.openprs}lib/pkgconfig/niut-oprs.pc
-${PLIST.tclserv_client}lib/pkgconfig/niut-tclserv_client.pc
-lib/pkgconfig/niut.pc
-${PLIST.noapi}${PLIST.tcl}lib/tclserv/libniutTclServ.la
-${PLIST.tclserv_client}lib/tclservClient/libniutTclservClient.la
-share/modules/gen/niut.gen
-${PLIST.openprs}share/modules/openprs/niutOpenprs.inc
-${PLIST.openprs}share/modules/openprs/niutOpenprs.opf
-${PLIST.openprs}share/modules/openprs/niutOpenprs.sym
-${PLIST.tcl}share/modules/tcl/niutClient.tcl
+@comment Thu Mar 21 22:01:26 CET 2013
+@comment includes architecture/genom/PLIST.module
+include/${GENOM_MODULE}/${GENOM_MODULE}Struct.h
+share/modules/gen/${GENOM_MODULE}.gen
