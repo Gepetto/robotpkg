@@ -21,7 +21,7 @@ DEPEND_DIR.morse-yarp?=		../../simulation/morse-yarp
 SYSTEM_SEARCH.morse-yarp=\
 	${PYTHON_SYSLIBSEARCH}/morse/middleware/yarp_datastream.py
 
-include ../../lang/python/depend.mk
+include ../../mk/sysdep/python.mk
 
 endif # MORSE_YARP_DEPEND_MK -----------------------------------------------
 
