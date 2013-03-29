@@ -2,8 +2,7 @@
 # Created:			Severin Lemaignan on Fri, 12 Jun 2009
 #
 
-PKGVERSION=		2.3.1
-PKGREVISION=		2
+PKGVERSION=		2.3.20.1
 DISTNAME=		yarp-${PKGVERSION_NOREV}
 PKGNAME=		${PKGTAG.python-}yarp-${PKGVERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
@@ -20,6 +19,7 @@ CONFLICTS+=		${PKGTAG.python-}libpyyarp-[0-9]*
 PKG_OPTIONS_SUFFIX=	py-yarp
 
 CMAKE_ARGS+=		-DCREATE_PYTHON=TRUE
+CMAKE_ARGS+= 		-DCOMPILE_INPLACE=TRUE
 CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=		-DPYTHON_INCLUDE_PATH=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
@@ -29,8 +29,9 @@ CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
 CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 
-CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
-BUILD_DIRS=		${WRKSRC}/example/swig
+SWIG_DIR= 			${WRKSRC}/bindings
+CONFIGURE_DIRS=		${WRKSRC} ${SWIG_DIR}
+BUILD_DIRS=			${SWIG_DIR}
 INSTALLATION_DIRS=	${PYTHON_SITELIB}
 
 include ../../devel/swig/depend.mk
@@ -49,7 +50,7 @@ post-configure:
 	done
 
 do-install:
-	${RUN}cd ${WRKSRC}/example/swig &&				\
+	${RUN}cd ${SWIG_DIR} &&				\
 	  for f in yarp.py example.py example_img.py; do		\
 	    ${INSTALL_DATA} $$f ${PREFIX}/${PYTHON_SITELIB};		\
 	  done;								\
