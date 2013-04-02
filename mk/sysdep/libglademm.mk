@@ -16,10 +16,10 @@ DEPEND_ABI.libglademm?=	libglademm>=2.4
 
 SYSTEM_SEARCH.libglademm=	\
 	'include/libglademm-2.4/libglademm.h'				\
-	'lib/libglademm-2.4.la' 							\
+	'lib/libglademm-2.4.so' 							\
 	'lib/pkgconfig/libglademm-2.4.pc:/Version/s/[^.0-9]//gp'
 
-SYSTEM_PKG.Fedora.libglademm=	libglademm2.4-devel
+SYSTEM_PKG.Fedora.libglademm=	libglademm24-devel
 SYSTEM_PKG.Ubuntu.libglademm=	libglademm-2.4-dev
 SYSTEM_PKG.Debian.libglademm=	libglademm-2.4-dev
 SYSTEM_PKG.NetBSD.libglademm=	devel/libglademm
