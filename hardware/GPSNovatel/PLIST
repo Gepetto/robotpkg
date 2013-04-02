@@ -1,5 +1,6 @@
 @comment Thu Oct 8 19:04:05 CEST 2009
 bin/GPSNovatelTest
+include/GPSNovatel/gpx.h
 include/GPSNovatel/GPSNovatel.h
 include/GPSNovatel/horodatage.h
 include/GPSNovatel/logData.h
