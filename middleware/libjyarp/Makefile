@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 27 Jan 2009
 #
 
-PKGVERSION=		2.3.1
+PKGVERSION=		2.3.20.1
 DISTNAME=		yarp-${PKGVERSION_NOREV}
 PKGNAME=		libjyarp-${PKGVERSION}
 CATEGORIES=		middleware
@@ -15,6 +15,7 @@ LICENSE=		gnu-gpl-v2
 
 
 CMAKE_ARGS+=		-DCREATE_JAVA=TRUE
+CMAKE_ARGS+= 		-DCOMPILE_INPLACE=TRUE
 CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH=${JAVA_INCLUDE}
 CMAKE_ARGS+=		-DJAVA_INCLUDE_PATH2=${JAVA_INCLUDE_MD}
 CMAKE_ARGS+=		-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE
@@ -23,9 +24,10 @@ CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
 CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 
+SWIG_DIR= 			${WRKSRC}/bindings
 INSTALLATION_DIRS=	lib share/doc/libjyarp java/libjyarp/lib
-CONFIGURE_DIRS=		${WRKSRC} ${WRKSRC}/example/swig
-BUILD_DIRS=		${WRKSRC}/example/swig
+CONFIGURE_DIRS=		${WRKSRC} ${SWIG_DIR}
+BUILD_DIRS=			${SWIG_DIR}
 
 DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
 
@@ -51,22 +53,22 @@ post-configure:
 
 post-build:
 	${RUN}								\
-	${MKDIR} ${WRKSRC}/example/swig/build;				\
-	${BUILD_LOGFILTER} ${JAVAC} -d ${WRKSRC}/example/swig/build	\
-		${WRKSRC}/example/swig/generated_src/*.java;		\
+	${MKDIR} ${SWIG_DIR}/build;				\
+	${BUILD_LOGFILTER} ${JAVAC} -d ${SWIG_DIR}/build	\
+		${SWIG_DIR}/generated_src/*.java;		\
 	${BUILD_LOGFILTER} ${JAR} cf					\
-		${WRKSRC}/example/swig/libjyarp.jar			\
-		-C ${WRKSRC}/example/swig/build .;			\
+		${SWIG_DIR}/libjyarp.jar			\
+		-C ${SWIG_DIR}/build .;			\
 	cd ${WRKDIR} && ${MKDIR} doc && cd doc &&			\
 	${BUILD_LOGFILTER}						\
-		${JAVADOC} ${WRKSRC}/example/swig/generated_src/*.java
+		${JAVADOC} ${SWIG_DIR}/generated_src/*.java
 
 do-install:
 	${RUN}								\
 	${INSTALL_DATA}							\
-		${WRKSRC}/example/swig/libjyarp.jar			\
+		${SWIG_DIR}/libjyarp.jar			\
 		${PREFIX}/java/libjyarp/lib;				\
 	${INSTALL_LIB}							\
-		${WRKSRC}/example/swig/libjyarp.so			\
+		${SWIG_DIR}/libjyarp.so			\
 		${PREFIX}/lib;						\
 	cd ${WRKDIR}/doc && ${PAX} -rwp ma . ${PREFIX}/share/doc/libjyarp
