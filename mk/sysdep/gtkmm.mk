@@ -16,10 +16,10 @@ DEPEND_ABI.gtkmm?=	gtkmm>=2.4
 
 SYSTEM_SEARCH.gtkmm=	\
 	'include/gtkmm-2.4/gtkmm.h'				\
-	'lib/libgtkmm-2.4.la'  					\
+	'lib/libgtkmm-2.4.so'  					\
 	'lib/pkgconfig/gtkmm-2.4.pc:/Version/s/[^.0-9]//gp'
 
-SYSTEM_PKG.Fedora.gtkmm=	gtkmm2.4-devel
+SYSTEM_PKG.Fedora.gtkmm=	gtkmm24-devel
 SYSTEM_PKG.Ubuntu.gtkmm=	libgtkmm-2.4-dev
 SYSTEM_PKG.Debian.gtkmm=	libgtkmm-2.4-dev
 SYSTEM_PKG.NetBSD.gtkmm=		x11/gtkmm
