@@ -5,6 +5,7 @@
 DISTNAME=		yarp-2.3.20.1
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
+MASTER_REPOSITORY=	svn https://yarp0.svn.sourceforge.net/svnroot/yarp0/trunk/yarp2
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
