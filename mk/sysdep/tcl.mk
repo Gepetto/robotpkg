@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2012 LAAS/CNRS
+# Copyright (c) 2012-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -35,7 +35,7 @@
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: tcl84 tcl85
+#	Possible values: tcl84 tcl85 tcl86
 #	Default: tcl85 tcl84
 #
 # === Package-settable variables ===
@@ -98,7 +98,7 @@ export TCLLIBPATH
 
 # define an alternative for available tcls packages
 PKG_ALTERNATIVES+=	tcl
-PKG_ALTERNATIVES.tcl=	tcl84 tcl85
+PKG_ALTERNATIVES.tcl=	tcl84 tcl85 tcl86
 
 # set default preferences
 PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
@@ -127,6 +127,19 @@ define PKG_ALTERNATIVE_SET.tcl85
   DEPEND_ABI.tk+=	tk>=8.5<8.6
 
   include ../../mk/sysdep/tcl85.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.tcl86= Use tcl-8.6
+PKGTAG.tcl86 =		tcl86
+define PKG_ALTERNATIVE_SELECT.tcl86
+  $(call preduce,${DEPEND_ABI.tcl} tcl>=8.6<8.7)
+endef
+define PKG_ALTERNATIVE_SET.tcl86
+  _tcl_abi:=$(subst tcl,tcl86,${PKG_ALTERNATIVE_SELECT.tcl86})
+  DEPEND_ABI.tcl86?=	$(strip ${_tcl_abi})
+  DEPEND_ABI.tk+=	tk>=8.6<8.7
+
+  include ../../mk/sysdep/tcl86.mk
 endef
 
 
