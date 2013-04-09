@@ -72,7 +72,7 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
-DEPEND_ABI.python?=	python>=2.5<3.3
+DEPEND_ABI.python?=	python>=2.5<3.4
 
 # factorize SYSTEM_SEARCH.python* here for all python* packages
 override define _py_syssearch
@@ -88,16 +88,12 @@ export PYTHON_INCLUDE=$(dir $(word 3,${SYSTEM_FILES.${PKG_ALTERNATIVE.python}}))
 
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
-PKG_ALTERNATIVES.python=	python26 python27 python31 python32
+PKG_ALTERNATIVES.python=	python26 python27 python31 python32 python33
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Fedora,${OPSYS})
-  ifneq (,$(filter 14,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python31 python32
-  else
-    PREFER_ALTERNATIVE.python?=	python27 python32 python31
-  endif
+  PREFER_ALTERNATIVE.python?=	python27 python33 python32 python31
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 10.04 10.10,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python26 python31 python32
@@ -157,6 +153,18 @@ define PKG_ALTERNATIVE_SET.python32
   DEPEND_ABI.python32?=	$(strip ${_py_abi})
 
   include ../../lang/python32/depend.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python33= Use python-3.3
+PKGTAG.python33 =		py33
+define PKG_ALTERNATIVE_SELECT.python33
+  $(call preduce,${DEPEND_ABI.python} python>=3.3<3.4)
+endef
+define PKG_ALTERNATIVE_SET.python33
+  _py_abi:=$(subst python,python33,${PKG_ALTERNATIVE_SELECT.python33})
+  DEPEND_ABI.python33?=	$(strip ${_py_abi})
+
+  include ../../mk/sysdep/python33.mk
 endef
 
 
