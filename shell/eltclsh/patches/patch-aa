@@ -1,0 +1,17 @@
+Do not hardcode .so in pkgIndex.tcl
+
+Use [info sharedlibextension] to figure out how to load eltclsh on a well known
+system that uses something else than .so for shared libraries extensions.
+
+--- tcl/Makefile.in	2013-04-10 12:16:57.000000000 +0200
++++ tcl/Makefile.in	2013-04-10 12:17:34.000000000 +0200
+@@ -489,7 +489,8 @@
+ 	$(ECHO) 'package provide $(PACKAGE_NAME) $(PACKAGE_VERSION)';
+ 
+ pkgIndex.tcl: Makefile
+-	l='[list load [file join ${libdir} libeltclsh.so]]';	\
++	l='[info sharedlibextension]';				\
++	l='[list load [file join ${libdir} libeltclsh'"$$l"']]';\
+ 	l="$$l"'|[list source [file join $$dir version.tcl]]';	\
+ 	for s in $(dist_sys_DATA); do				\
+ 	  l="$$l"'|[list source [file join $$dir '"$$s"']]';	\

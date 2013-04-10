@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Tue, 13 Mar 2007
 #
 
+PKGREVISION=		1
 DISTNAME=		eltclsh-1.14
 CATEGORIES=		shell
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=eltclsh/}
