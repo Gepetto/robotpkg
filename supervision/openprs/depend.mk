@@ -15,7 +15,7 @@ PREFER.openprs?=	robotpkg
 
 DEPEND_USE+=		openprs
 
-DEPEND_ABI.openprs?=	openprs>=1.1b2
+DEPEND_ABI.openprs?=	openprs>=1.1b7
 DEPEND_DIR.openprs?=	../../supervision/openprs
 
 SYSTEM_SEARCH.openprs=\
