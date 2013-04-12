@@ -1,0 +1,14 @@
+Prevent dropping action "results" by using an infinite subscription queue length
+See https://code.ros.org/trac/ros-pkg/ticket/5622
+
+--- include/actionlib/client/action_client.h~	2012-06-15 05:03:07.000000000 +0200
++++ include/actionlib/client/action_client.h	2013-04-12 18:45:00.078216000 +0200
+@@ -209,7 +209,7 @@
+   {
+     status_sub_   = queue_subscribe("status",   1, &ActionClientT::statusCb,   this, queue);
+     feedback_sub_ = queue_subscribe("feedback", 1, &ActionClientT::feedbackCb, this, queue);
+-    result_sub_   = queue_subscribe("result",   1, &ActionClientT::resultCb,   this, queue);
++    result_sub_   = queue_subscribe("result",   0, &ActionClientT::resultCb,   this, queue);
+ 
+     connection_monitor_.reset(new ConnectionMonitor(feedback_sub_, status_sub_));
+ 

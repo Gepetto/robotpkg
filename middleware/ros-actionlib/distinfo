@@ -1,3 +1,5 @@
 SHA1 (ros-fuerte-actionlib_1.8.7.orig.tar.gz) = f4ce55221dbacacd6b441c7e5b04dbf4d6758a65
 RMD160 (ros-fuerte-actionlib_1.8.7.orig.tar.gz) = 0073922fe22674e9c3318c5b820ff809255a1d9a
 Size (ros-fuerte-actionlib_1.8.7.orig.tar.gz) = 93686 bytes
+SHA1 (patch-aa) = a99c249efea21432323a718709c5446dc539800b
+SHA1 (patch-ab) = ca4e0a71b2627e77041fcf1eea5ba578e512aa6c

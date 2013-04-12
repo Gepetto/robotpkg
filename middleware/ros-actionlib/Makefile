@@ -4,6 +4,7 @@
 
 ROS_PKG=		actionlib
 ROS_VERSION=		1.8.7
+PKGREVISION=		1
 
 CATEGORIES=		middleware
 ROS_COMMENT=		standardized interface for preemptable tasks
