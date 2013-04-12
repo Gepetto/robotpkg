@@ -1,4 +1,15 @@
-@comment Tue Mar 5 22:06:53 CET 2013
+@comment Mon Apr 15 11:48:57 CEST 2013
+bin/dg-python
+include/dynamic-graph/python/api.hh
+include/dynamic-graph/python/config.h
+include/dynamic-graph/python/config.hh
+include/dynamic-graph/python/deprecated.hh
+include/dynamic-graph/python/exception-python.hh
+include/dynamic-graph/python/interpreter.hh
+include/dynamic-graph/python/warning.hh
+lib/libdynamic-graph-python.so
+lib/libdynamic-graph-python.so.${PKGVERSION}
+lib/pkgconfig/dynamic-graph-python.pc
 ${PYTHON_SITELIB}/dynamic_graph/__init__.py
 ${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/dynamic_graph/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
@@ -29,13 +40,3 @@ ${PYTHON_SITELIB}/dynamic_graph/tracer_real_time/${PYTHON_PYCACHE}/__init__${PYT
 ${PYTHON_SITELIB}/dynamic_graph/tracer_real_time/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/dynamic_graph/tracer_real_time/wrap.so
 ${PYTHON_SITELIB}/dynamic_graph/wrap.so
-bin/dg-python
-include/dynamic-graph/python/api.hh
-include/dynamic-graph/python/config.hh
-include/dynamic-graph/python/deprecated.hh
-include/dynamic-graph/python/exception-python.hh
-include/dynamic-graph/python/interpreter.hh
-include/dynamic-graph/python/warning.hh
-lib/libdynamic-graph-python.so
-lib/libdynamic-graph-python.so.${PKGVERSION}
-lib/pkgconfig/dynamic-graph-python.pc

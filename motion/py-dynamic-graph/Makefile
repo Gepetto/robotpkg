@@ -1,9 +1,8 @@
-# robotpkg Makefile for:	motion/dynamic-graph-python
+# robotpkg Makefile for:	motion/py-dynamic-graph
 # Created:			Florent Lamiraux on Thu, 7 Jul 2011
 #
 
-VERSION=		2.5.3
-PKGREVISION=		1
+VERSION=		2.5.4
 DISTNAME=		dynamic-graph-python-${VERSION}
 PKGNAME=		${PKGTAG.python-}dynamic-graph-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-python/}
@@ -23,6 +22,8 @@ CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
+
+CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
 # disable -Werror, some warnings from boost-filesystem (1.50, netbsd) cannot be
 # fixed here
