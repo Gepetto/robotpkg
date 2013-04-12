@@ -4,6 +4,7 @@
 
 ROS_PKG=		ros-comm
 ROS_VERSION=		1.8.15
+PKGREVISION=		1
 PKGNAME=		${ROS_PKG}-${ROS_VERSION}
 
 CATEGORIES=		middleware
