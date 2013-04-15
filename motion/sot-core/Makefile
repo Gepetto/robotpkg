@@ -2,9 +2,9 @@
 # Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
-VERSION=		2.6.0
-PKGREVISION=		2
 DISTNAME=		sot-core-${VERSION}
+VERSION=		2.7.0
+
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-core/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/sot-core
 
@@ -13,7 +13,7 @@ CATEGORIES=	motion
 COMMENT=	Hierarchical task based control of humanoid robots
 LICENSE=	gnu-lgpl-v3
 
-DOXYGEN_PLIST_DIR+=	share/doc/sot-core
+DYNAMIC_PLIST_DIRS+=	share/doc/sot-core
 
 CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
@@ -40,5 +40,3 @@ include ../../mk/robotpkg.mk
 
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
-
-post-install: python-compile-all(${PREFIX}/${PYTHON_SITELIB}/dynamic_graph/sot)
