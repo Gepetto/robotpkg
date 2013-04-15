@@ -1,0 +1,17 @@
+@comment Thu Apr 18 14:34:09 CEST 2013
+include/sot/tools/config.h
+include/sot/tools/config.hh
+include/sot/tools/deprecated.hh
+include/sot/tools/warning.hh
+lib/libsot-tools.so
+lib/pkgconfig/sot-tools.pc
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/__init__.py
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/quaternion.py
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/${PYTHON_PYCACHE}/quaternion${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/${PYTHON_PYCACHE}/quaternion${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/se3.py
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/${PYTHON_PYCACHE}/se3${PYTHON_TAG}.pyc
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/${PYTHON_PYCACHE}/se3${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/dynamic_graph/sot/tools/wrap.so
