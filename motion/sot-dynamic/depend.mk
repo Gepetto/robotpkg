@@ -15,7 +15,7 @@ PREFER.sot-dynamic?=	robotpkg
 
 SYSTEM_SEARCH.sot-dynamic=\
 	include/sot-dynamic/dynamic.h \
-	lib/pkgconfig/sot-dynamic.pc \
+	'lib/pkgconfig/sot-dynamic.pc:Version/s/[^0-9.]//gp' \
 	lib/plugin/dynamic.so
 
 DEPEND_USE+=		sot-dynamic

@@ -2,8 +2,7 @@
 # Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
-VERSION=		2.6.0
-PKGREVISION=		
+VERSION=		2.7.2
 DISTNAME=		sot-dynamic-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-dynamic/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/sot-dynamic
@@ -11,9 +10,9 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/sot-dynamic
 MAINTAINER=	gepetto@laas.fr
 CATEGORIES=	motion
 LICENSE=	gnu-lgpl-v3
-COMMENT=	Hierarchical task based control of humanoid robots
+COMMENT=	Create entities to compute a robot dynamics properties
 
-DOXYGEN_PLIST_DIR+=	share/doc/sot-dynamic
+DYNAMIC_PLIST_DIRS+=	share/doc/sot-dynamic
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
 # Build the package in a separate directory
@@ -25,10 +24,6 @@ pre-configure:
 
 include ../../motion/sot-core/depend.mk
 include ../../math/jrl-dynamics/depend.mk
-include ../../robots/hrp2-10/depend.mk
-include ../../robots/hrp2-14/depend.mk
-include ../../math/hrp2-dynamics/depend.mk
-include ../../math/hrp2-10-optimized/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
@@ -38,6 +33,3 @@ include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
-
-_pycompiledir=${PREFIX}/${PYTHON_SITELIB}/dynamic_graph/sot/dynamics
-post-install: python-compile-all(${_pycompiledir})
