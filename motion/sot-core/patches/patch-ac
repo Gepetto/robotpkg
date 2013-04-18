@@ -1,0 +1,16 @@
+Kill useless libraries:
+ - ${CMAKE_DL_LIBS} and pthread are already added
+ - gfortran is not used
+
+--- src/CMakeLists.txt~	2013-04-12 14:57:34.000000000 +0200
++++ src/CMakeLists.txt	2013-04-18 10:39:55.586372095 +0200
+@@ -230,9 +230,6 @@
+ 	  TARGET_LINK_LIBRARIES(${LIBRARY_NAME} ${CMAKE_DL_LIBS})
+ 	ENDIF(UNIX)
+ 
+-	IF(UNIX AND NOT APPLE)
+-	  TARGET_LINK_LIBRARIES(${LIBRARY_NAME} dl pthread gfortran)
+-	ENDIF(UNIX AND NOT APPLE)
+ 
+ 	PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} jrl-mal)
+ 	PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} dynamic-graph)
