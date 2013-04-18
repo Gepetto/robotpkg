@@ -2,9 +2,10 @@
 # Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
-DISTNAME=		sot-core-${VERSION}
+PKGNAME=		sot-core-${VERSION}
+DISTNAME=		sot-core-${VERSION}a
 VERSION=		2.7.0
-PKGREVISION=		1
+PKGREVISION=		2
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-core/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/sot-core
@@ -13,6 +14,8 @@ MAINTAINER=	gepetto@laas.fr
 CATEGORIES=	motion
 COMMENT=	Hierarchical task based control of humanoid robots
 LICENSE=	gnu-lgpl-v3
+
+WRKSRC=		${WRKDIR}/${DISTNAME:a=}
 
 DYNAMIC_PLIST_DIRS+=	share/doc/sot-core
 
