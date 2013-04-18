@@ -13,5 +13,6 @@ SUBDIR+=	py-sot-tools
 SUBDIR+=	softMotion-libs
 SUBDIR+=	sot-core
 SUBDIR+=	sot-dynamic
+SUBDIR+=	sot-pattern-generator
 
 include ../mk/robotpkg.subdir.mk

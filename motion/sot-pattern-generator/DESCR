@@ -1,0 +1,6 @@
+Create an entity to manage the walking pattern generator in a dynamic-graph.
+
+This package wraps the walk pattern generator exposed by walkGenJrl (package
+path/jrl-walkgen) for use in the stack of tasks (package motion/sot-dynamic).
+Hence, by using this package, you can create several dynamicgraph::Entity
+"entities" to control the walk pattern of a humanoid robot.
