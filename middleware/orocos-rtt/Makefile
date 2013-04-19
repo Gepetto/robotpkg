@@ -14,7 +14,7 @@ COMMENT=		The Orocos Real-Time Toolkit
 LICENSE=		gnu-gpl-v2
 
 NOT_FOR_PLATFORM=	NetBSD-%
-NOT_FOR_PLATFORM+=	Fedora-17-%
+NOT_FOR_PLATFORM+=	Fedora-17-% Fedora-18-%
 NOT_FOR_PLATFORM+=	Ubuntu-12.10-%
 
 DOXYGEN_PLIST_DIR+=	share/doc/liborocos-rtt
