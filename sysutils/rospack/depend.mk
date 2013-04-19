@@ -13,6 +13,7 @@ ifeq (+,$(ROSPACK_DEPEND_MK)) # --------------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
 PREFER.rospack?=	${PREFER.ros-base}
+SYSTEM_PREFIX.rospack?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		rospack
 

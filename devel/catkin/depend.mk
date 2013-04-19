@@ -13,6 +13,7 @@ ifeq (+,$(CATKIN_DEPEND_MK)) # ---------------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
 PREFER.catkin?=		${PREFER.ros-base}
+SYSTEM_PREFIX.catkin?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		catkin
 

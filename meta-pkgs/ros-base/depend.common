@@ -9,5 +9,7 @@ ifeq (Ubuntu,${OPSYS})
   endif
 endif
 PREFER.ros?=		robotpkg
+SYSTEM_PREFIX.ros?=	${SYSTEM_PREFIX} /opt/ros/fuerte
 
 PREFER.ros-base?=	${PREFER.ros}
+SYSTEM_PREFIX.ros-base?=${SYSTEM_PREFIX.ros}

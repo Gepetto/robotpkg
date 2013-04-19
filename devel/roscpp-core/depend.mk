@@ -12,7 +12,8 @@ endif
 ifeq (+,$(ROSCPP_CORE_DEPEND_MK)) # ----------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
-PREFER.roscpp-core?=	${PREFER.ros-base}
+PREFER.roscpp-core?=		${PREFER.ros-base}
+SYSTEM_PREFIX.roscpp-core?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		roscpp-core
 

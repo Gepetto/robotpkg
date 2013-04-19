@@ -12,7 +12,8 @@ endif
 ifeq (+,$(ROS_STD_MSGS_DEPEND_MK)) # ---------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
-PREFER.ros-std-msgs?=	${PREFER.ros-base}
+PREFER.ros-std-msgs?=		${PREFER.ros-base}
+SYSTEM_PREFIX.ros-std-msgs?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-std-msgs
 

@@ -12,7 +12,8 @@ endif
 ifeq (+,$(ROS_GENMSG_DEPEND_MK)) # -----------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
-PREFER.ros-genmsg?=	${PREFER.ros-base}
+PREFER.ros-genmsg?=		${PREFER.ros-base}
+SYSTEM_PREFIX.ros-genmsg?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-genmsg
 

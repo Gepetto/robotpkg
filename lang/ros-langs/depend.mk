@@ -12,7 +12,8 @@ endif
 ifeq (+,$(ROS_LANGS_DEPEND_MK)) # ------------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
-PREFER.ros-langs?=	${PREFER.ros-base}
+PREFER.ros-langs?=		${PREFER.ros-base}
+SYSTEM_PREFIX.ros-langs?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-langs
 

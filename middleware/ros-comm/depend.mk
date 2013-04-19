@@ -13,6 +13,7 @@ ifeq (+,$(ROS_COMM_DEPEND_MK)) # -------------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
 PREFER.ros-comm?=	${PREFER.ros-base}
+SYSTEM_PREFIX.ros-comm?=${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-comm
 

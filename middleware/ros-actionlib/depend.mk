@@ -12,7 +12,8 @@ endif
 ifeq (+,$(ROS_ACTIONLIB_DEPEND_MK)) # --------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
-PREFER.ros-actionlib?=	${PREFER.ros-base}
+PREFER.ros-actionlib?=		${PREFER.ros-base}
+SYSTEM_PREFIX.ros-actionlib?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-actionlib
 

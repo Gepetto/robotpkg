@@ -12,7 +12,8 @@ endif
 ifeq (+,$(ROS_GENPY_DEPEND_MK)) # ------------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
-PREFER.ros-genpy?=	${PREFER.ros-base}
+PREFER.ros-genpy?=		${PREFER.ros-base}
+SYSTEM_PREFIX.ros-genpy?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-genpy
 

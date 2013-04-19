@@ -12,7 +12,8 @@ endif
 ifeq (+,$(PY_ROSPKG_DEPEND_MK)) # ------------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
-PREFER.py-rospkg?=	${PREFER.ros-base}
+PREFER.py-rospkg?=		${PREFER.ros-base}
+SYSTEM_PREFIX.py-rospkg?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		py-rospkg
 

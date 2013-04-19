@@ -12,7 +12,8 @@ endif
 ifeq (+,$(ROS_GENLISP_DEPEND_MK)) # ----------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
-PREFER.ros-genlisp?=	${PREFER.ros-base}
+PREFER.ros-genlisp?=		${PREFER.ros-base}
+SYSTEM_PREFIX.ros-genlisp?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-genlisp
 
