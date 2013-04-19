@@ -23,7 +23,7 @@ SYSTEM_PREFIX.kernel?=\
 
 _v.kernel=/UTS_RELEASE/{s/[^\"]*//;s/\"//g;p;}
 SYSTEM_SEARCH.kernel=\
-  'Kconfig'						\
+  '{,arch/}Kconfig'					\
   'include/{,generated/}{,uapi/}linux/version.h'	\
   'include/{linux,generated}/utsrelease.h:${_v.kernel}'
 
