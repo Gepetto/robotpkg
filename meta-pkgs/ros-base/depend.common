@@ -4,7 +4,7 @@
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04,${OS_VERSION}))
+  ifneq (,$(filter 10.04 11.10 12.04,${OS_VERSION}))
     PREFER.ros?=	system
   endif
 endif
