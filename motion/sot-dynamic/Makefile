@@ -22,8 +22,9 @@ CMAKE_ARG_PATH=		..
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
 
-include ../../motion/sot-core/depend.mk
 include ../../math/jrl-dynamics/depend.mk
+include ../../motion/py-sot-tools/depend.mk
+include ../../motion/sot-core/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
