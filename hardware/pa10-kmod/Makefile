@@ -27,7 +27,8 @@ include ../../mk/sysdep/sudo.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
-post-install: install-kmod
+# XXX should be an INSTALL script
+# post-install: install-kmod
 
 .PHONY: install-kmod
 install-kmod:
