@@ -23,3 +23,21 @@ include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
+
+
+# Fix an installation path issue that is fixed in robotpkg in
+# middleware/ros-genmsg (patch-aa). However, this cannot be fixed when
+# installing this package against a 'system' ros-genmsg package. This hack
+# should disappear in groovy.
+#
+post-install: fix-install-paths
+
+.PHONY: fix-install-paths
+fix-install-paths:
+	@${RUN}								\
+	${MKDIR} ${PREFIX}/share/actionlib/actions_gen;			\
+	for f in ${PREFIX}/share/actionlib/${WRKSRC}/actions_gen/*; do	\
+	  ${TEST} -f $$f &&						\
+	    ${MV} -f $$f ${PREFIX}/share/actionlib/actions_gen/.;	\
+	done;								\
+	d=${WRKSRC}; ${RM} -r ${PREFIX}/share/actionlib/$${d#*/}
