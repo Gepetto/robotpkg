@@ -30,6 +30,8 @@ SYSTEM_SEARCH.catkin=\
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/cmake.mk
 
+export ROS_DIR=	${PREFIX.catkin}/share/ros/cmake
+
 endif # CATKIN_DEPEND_MK ---------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
