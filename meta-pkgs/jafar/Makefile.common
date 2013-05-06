@@ -22,6 +22,17 @@ USE_LANGUAGES?=		c c++
 CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
 CMAKE_ARGS+=	-DBOOST_LIBDIR=${PREFIX.boost-libs}/include
 
+
+# --- fix an issue with cmake<2.8.7 ----------------------------------------
+
+SUBST_STAGE.old-cmake=	pre-configure
+SUBST_MESSAGE.old-cmake=Fixing pre cmake-2.8.7 compatibility issue
+SUBST_FILES.old-cmake+=	CMakeLists.txt
+SUBST_SED.old-cmake=	-e 's/LINK_PRIVATE//'
+
+SUBST_CLASSES+=\
+  $(if $(filter yes,$(call pmatch,<2.8.7,-${PKGVERSION.cmake})),old-cmake)
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
