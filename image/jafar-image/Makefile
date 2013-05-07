@@ -3,7 +3,7 @@
 #
 
 JAFAR_PKG=	image-2.2.1
-PKGREVISION= 2
+PKGREVISION=	3
 
 CATEGORIES=	image
 JAFAR_COMMENT=	basic image processing based on OpenCV
@@ -16,4 +16,5 @@ include ../../image/opencv/depend.mk
 include ../../math/boost-numeric-bindings/depend.mk
 include ../../math/lapack/depend.mk
 include ../../mk/language/c.mk
+include ../../mk/language/fortran.mk # for cmake FindLapack. Sigh.
 include ../../mk/robotpkg.mk

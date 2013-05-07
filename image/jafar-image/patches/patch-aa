@@ -6,7 +6,7 @@ Search properly for lapack
    set(LIBS ${LIBS} ${Boost_LIBRARIES})
  endif(Boost_FOUND)
  
-+#enable_language(Fortran)
++enable_language(Fortran)
 +##
 +# LAPACK
 +##
