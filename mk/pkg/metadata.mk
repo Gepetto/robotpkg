@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -53,7 +53,7 @@ ${PKG_DB_TMPDIR}:
 $(call require, ${ROBOTPKG_DIR}/mk/plist/plist-vars.mk)
 
 _BUILD_DEFS+=	$(if ${HOMEPAGE},HOMEPAGE) CATEGORIES MAINTAINER
-_BUILD_DEFS=	LOCALBASE PREFIX PKGPATH
+_BUILD_DEFS+=	LOCALBASE PREFIX PKGPATH
 _BUILD_DEFS+=	LICENSE $(if ${RESTRICTED},RESTRICTED)
 _BUILD_DEFS+=	$(if ${NO_PUBLIC_BIN},NO_PUBLIC_BIN)
 _BUILD_DEFS+=	$(if ${NO_PUBLIC_SRC},NO_PUBLIC_SRC)
