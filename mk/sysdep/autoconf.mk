@@ -28,13 +28,14 @@ export AUTORECONF=	$(addsuffix /bin/autoreconf,${PREFIX.autoconf})
 GNU_CONFIGURE?=		yes
 AUTORECONF_SCRIPT?=	${AUTORECONF}
 AUTORECONF_ARGS?=	-fi
+AUTORECONF_DIRS?=	${CONFIGURE_DIRS}
 
 autoreconf:
 	${RUN}								\
-$(foreach _dir_,${CONFIGURE_DIRS},					\
-	cd ${WRKSRC} && cd ${_dir_};					\
+$(foreach _,${AUTORECONF_DIRS},						\
+	cd ${WRKSRC} && cd $_;						\
 	if ${TEST} -f configure.ac -o -f configure.in; then		\
-	  ${STEP_MSG} "Running autoreconf in ${_dir_}";	\
+	  ${STEP_MSG} "Running autoreconf in $(patsubst ${WRKDIR}/%,%,$_)";\
 	  ${CONFIGURE_LOGFILTER} ${SETENV} ${_CONFIGURE_SCRIPT_ENV}	\
 	    ${AUTORECONF_SCRIPT} ${AUTORECONF_ARGS};			\
 	fi;								\
