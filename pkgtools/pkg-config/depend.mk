@@ -31,7 +31,7 @@ export PKG_CONFIG_LIBDIR=\
   $(call prependpaths,							\
     $(addsuffix /pkgconfig,$(addprefix /usr/,$(or ${SYSLIBDIR},lib)))	\
     /usr/share/pkgconfig,)
-export PKG_CONFIG_PATH=$(call prependpaths,				\
+export PKG_CONFIG_PATH=$(call prependpaths,${PKG_CONFIG_DIRS}		\
 	${PREFIX}/lib/pkgconfig ${PREFIX}/share/pkgconfig		\
 	$(filter-out $(subst :, ,${PKG_CONFIG_LIBDIR}),			\
 	  $(patsubst %/,%,$(foreach _pkg_,${DEPEND_USE},		\
