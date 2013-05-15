@@ -115,11 +115,17 @@ $(addprefix print-depends-pkgpaths-,${_chkdep_type}):\
 # helper macro filtering options set or not set by user
 override define combiset+opts
 $(filter-out -%,$(filter ${PKG_SUPPORTED_OPTIONS},
-  ${PKG_DEFAULT_OPTIONS} ${${PKG_OPTIONS_VAR}}))
+  $(foreach _,${PKG_DEFAULT_OPTIONS},
+    $(if $(filter-out
+      $(patsubst -%,%,${${PKG_OPTIONS_VAR}}),$(patsubst -%,%,$_)),$_))
+  ${${PKG_OPTIONS_VAR}}))
 endef
 override define combiset-opts
 $(patsubst -%,%,$(filter -%,
-  ${PKG_DEFAULT_OPTIONS} ${${PKG_OPTIONS_VAR}}))
+  $(foreach _,${PKG_DEFAULT_OPTIONS},
+    $(if $(filter-out
+      $(patsubst -%,%,${${PKG_OPTIONS_VAR}}),$(patsubst -%,%,$_)),$_))
+  ${${PKG_OPTIONS_VAR}}))
 endef
 
 # generate all alternatives and return the PKGNAME for each so that it can be
