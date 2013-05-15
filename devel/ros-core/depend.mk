@@ -25,7 +25,10 @@ SYSTEM_SEARCH.ros-core=\
 	lib/libroslib.so				\
 	share/roslib/cmake/roslib-config.cmake		\
 	share/rosunit/cmake/rosunit-config.cmake	\
+	'${PYTHON_SYSLIBSEARCH}/ros/__init__.py'	\
 	'lib/pkgconfig/roslib.pc:/Version/s/[^0-9.]//gp'
+
+include ../../mk/sysdep/python.mk
 
 endif # ROS_CORE_DEPEND_MK -------------------------------------------------
 
