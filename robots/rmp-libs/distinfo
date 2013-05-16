@@ -2,3 +2,5 @@ SHA1 (rmp-libs-0.4.tar.gz) = b2ad14c58d6f2dd0780d0de4e52a9bf61a136fa2
 RMD160 (rmp-libs-0.4.tar.gz) = d2d33ca0aecb03d3791ef60cb1b9781264a825b0
 Size (rmp-libs-0.4.tar.gz) = 285183 bytes
 SHA1 (patch-aa) = a89dc3dc765b210fb9a8d5c5baa274557d8bf020
+SHA1 (patch-ab) = a3df8669520a6379da73b2b0fb2688a06e7d9100
+SHA1 (patch-ac) = 1a060c658688f51cd8dd4fb8a4d8663e77c327e5

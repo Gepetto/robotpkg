@@ -1,0 +1,7 @@
+--- Makefile.am~	2010-04-29 15:48:19.000000000 +0200
++++ Makefile.am	2013-05-16 15:36:38.118458970 +0200
+@@ -1,3 +1,4 @@
++ACLOCAL_AMFLAGS=-I m4
+ 
+ AUTOMAKE_OPTIONS = foreign
+ SUBDIRS = src test

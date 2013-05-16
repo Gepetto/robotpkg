@@ -13,7 +13,9 @@ LICENSE=		isc
 ONLY_FOR_PLATFORM=	Linux-%
 GNU_CONFIGURE=		yes
 
-pre-configure:	autoreconf
+pre-configure:	m4dir autoreconf
+m4dir:
+	${RUN} ${MKDIR} ${WRKSRC}/m4
 
 include ../../hardware/libftdi/depend.mk
 include ../../middleware/pocolibs/depend.mk
