@@ -17,8 +17,9 @@ SUBDIR+=	player20-libs
 SUBDIR+=	qarm-genom
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
-SUBDIR+=	rmp400-genom
 SUBDIR+=	rmp-libs
+SUBDIR+=	rmp400-genom
+SUBDIR+=	rmp440-libs
 SUBDIR+=	scout-genom
 SUBDIR+=	sot-openhrp
 

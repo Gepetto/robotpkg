@@ -1,0 +1,7 @@
+@comment Thu May 16 15:46:57 CEST 2013
+bin/rmp440Config
+bin/rmp440Joystick
+bin/rmp440Test
+include/rmp440/rmp440.h
+lib/librmp440Lib.la
+lib/pkgconfig/rmp440-libs.pc
