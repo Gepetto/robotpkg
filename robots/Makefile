@@ -19,6 +19,7 @@ SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
 SUBDIR+=	rmp-libs
 SUBDIR+=	rmp400-genom
+SUBDIR+=	rmp440-genom
 SUBDIR+=	rmp440-libs
 SUBDIR+=	scout-genom
 SUBDIR+=	sot-openhrp
