@@ -1,7 +1,7 @@
 # robotpkg Makefile for:	robots/mana-emergency
 # Created:			Matthieu Herrb on Mon, 23 Feb 2009
 #
-V=		0.1
+V=		0.1.99
 DISTNAME=	ftdi-emergency-${V}
 PKGNAME=	mana-emergency-${V}
 CATEGORIES=	robots
