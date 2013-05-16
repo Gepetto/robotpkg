@@ -16,7 +16,10 @@ LICENSE=	isc
 GNU_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	no
 
-pre-configure:	autoreconf
+# because of patch-aa
+pre-configure:	m4dir autoreconf
+m4dir:
+	${RUN}${MKDIR} ${WRKSRC}/m4
 
 include ../../hardware/libftdi/depend.mk
 include ../../pkgtools/libtool/depend.mk

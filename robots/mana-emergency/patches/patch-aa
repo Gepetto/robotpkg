@@ -1,7 +1,8 @@
 Add missing CFLAGS for libftdi/usb
+Fix a typo
 
---- Makefile.am~	2011-06-14 15:40:09.000000000 +0200
-+++ Makefile.am	2011-12-13 15:40:56.000000000 +0100
+--- Makefile.am	2013-05-16 10:26:57.000000000 +0200
++++ Makefile.am.orig	2011-06-14 15:40:09.000000000 +0200
 @@ -2,7 +2,7 @@
  
  libfe_la_SOURCES = \
@@ -11,3 +12,12 @@ Add missing CFLAGS for libftdi/usb
  libfeincludedir = $(includedir)/fe
  
  libfeinclude_HEADERS = \
+@@ -12,7 +12,7 @@
+ fetest_SOURCES = fetest.c
+ fetest_LDADD = -lfe $(FELIB_LIBS)
+ 
+-CLOCAL_AMFLAGS = -I m4
++ACLOCAL_AMFLAGS = -I m4
+ 
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = felib.pc
