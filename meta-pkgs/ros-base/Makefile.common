@@ -20,7 +20,6 @@ LICENSE?=	modified-bsd
 
 PREFIX?=	${LOCALBASE}/opt/ros/${ROS_DISTRIB}
 WRKSRC?=	${WRKDIR}/${ROS_PKGURL}-${ROS_VERSION}
-USE_LANGUAGES?=	c c++
 
 MESSAGE_SRC?=	${ROBOTPKG_DIR}/meta-pkgs/ros-base/MESSAGE
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
@@ -35,8 +34,9 @@ CMAKE_ARGS+=	-DSETUPTOOLS_DEB_LAYOUT=OFF
 
 DEPEND_ABI.python+=	python<3
 
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/sysdep/python.mk
-
 
 # --- replace interpreters -------------------------------------------------
 #
