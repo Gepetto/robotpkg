@@ -219,7 +219,7 @@ _CONFIGURE_SCRIPT_ENV+=	${CONFIGURE_ENV}
 
 .PHONY: do-configure-script
 do-configure-script:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 $(foreach _dir_,${CONFIGURE_DIRS},					\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
 	${CONFIGURE_LOGFILTER} ${SETENV} ${_CONFIGURE_SCRIPT_ENV}	\

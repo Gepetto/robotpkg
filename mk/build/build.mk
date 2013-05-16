@@ -190,7 +190,7 @@ ${foreach _dir_,$(BUILD_DIRS),						\
 
 do%build: .FORCE
 	${_OVERRIDE_TARGET}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 $(foreach _dir_,${BUILD_DIRS},						\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
 	${BUILD_LOGFILTER} $(call BUILD_MAKE_CMD,${_dir_});		\

@@ -295,10 +295,10 @@ INSTALL_MAKE_CMD?=\
 
 do%install: .FORCE
 	${_OVERRIDE_TARGET}
-	${_PKG_SILENT}${_PKG_DEBUG}					\
+	${RUN}								\
 $(foreach _dir_,${INSTALL_DIRS},					\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
-	${INSTALL_LOGFILTER} $(call INSTALL_MAKE_CMD,${_dir_});	\
+	${INSTALL_LOGFILTER} $(call INSTALL_MAKE_CMD,${_dir_});		\
 )
 
 .PHONY: pre-install post-install
