@@ -1,0 +1,13 @@
+Fix 'gdhe' option
+
+--- configure~	2012-10-24 09:57:18.000000000 +0200
++++ configure	2013-05-17 17:28:40.692033259 +0200
+@@ -11628,7 +11628,7 @@
+ 
+ fi
+ 
+- if test x$HAS_GDHE = xyes; then
++ if test x$gdhe = xyes; then
+   GDHE_SUPPORT_TRUE=
+   GDHE_SUPPORT_FALSE='#'
+ else

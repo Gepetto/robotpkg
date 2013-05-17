@@ -2,6 +2,7 @@
 # Created:			Arnaud Degroote on Fri, 16 May 2008
 #
 
+PKGREVISION=		1
 DISTNAME=		libp3d-${VERSION}
 VERSION=		1.3.1
 CATEGORIES=		path
@@ -39,10 +40,10 @@ PKG_OPTION_DESCR.display?=	Enable support for 3D graphic display
 
 define PKG_OPTION_SET.display
   include ../../graphics/gdhe/depend.mk
-  CONFIGURE_ARGS+=	--enable-gdhe=${PREFIX.gdhe}
+  CONFIGURE_ARGS+=	--enable-gdhe=yes
 endef
 define PKG_OPTION_UNSET.display
-  CONFIGURE_ARGS+=	HAS_GDHE=no GDHE_CFLAGS= GDHE_LIBS=
+  CONFIGURE_ARGS+=	--enable-gdhe=no
 endef
 
 include ../../math/t3d/depend.mk
