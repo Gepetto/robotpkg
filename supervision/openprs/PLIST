@@ -45,6 +45,7 @@ include/openprs/shashPack_f.h
 include/openprs/slistPack-pub.h
 include/openprs/slistPack.h
 include/openprs/slistPack_f.h
+include/openprs/top-lev_f-pub.h
 include/openprs/user-action.h
 include/openprs/user-end-hook-pub.h
 include/openprs/user-end-hook_f-pub.h

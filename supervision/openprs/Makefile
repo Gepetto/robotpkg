@@ -1,7 +1,7 @@
 # robotpkg Makefile for:	supervision/openprs
 # Created:			Anthony Mallet on Wed, 17 Oct 2007
 
-DISTNAME=		openprs-1.1b8
+DISTNAME=		openprs-1.1b9
 CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}openprs
@@ -29,6 +29,7 @@ include ../../mk/sysdep/bison.mk
 include ../../mk/sysdep/flex.mk
 include ../../mk/sysdep/libX11.mk
 include ../../mk/sysdep/libXt.mk
+include ../../mk/sysdep/libtool-ltdl.mk
 include ../../mk/sysdep/motif.mk
 include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/readline.mk
