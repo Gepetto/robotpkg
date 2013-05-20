@@ -30,6 +30,13 @@ SYSTEM_SEARCH.ros-core=\
 
 include ../../mk/sysdep/python.mk
 
+# Define the proper ros environment
+#
+ROS_PACKAGE_DIRS+=	${PREFIX.ros-core}
+
+export ROS_PACKAGE_PATH=$(call prependpaths,${ROS_PACKAGE_DIRS})
+export PATH:=$(call prependpaths,${PREFIX.ros-core}/bin,${PATH})
+
 endif # ROS_CORE_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
