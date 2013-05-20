@@ -398,70 +398,69 @@ function xpaths(xpath, pattern, path,	subdir, d, dir, s, p) {
 # Expand glob characters in a package pattern
 #
 function xpkgs(patterns, path,		pattern, deps, xopts, wopts,
-					f, n, d, p, q, i, k) {
+					f, n, d, p, q, i, k, l) {
     # expand pkgbase, choose first pattern that generates a match
     q = pkginfos(path ":" patterns[1], deps, 1)
 
-    f = 0
-    for (k = 1; k <= patterns[0]; k++) {
+    for (l = 1; l <= patterns[0]; l++) {
+        f = 0
         for (i = 1; i <= pkgnames[path]; i++) {
-            if (pmatch(patterns[k], pkgnames[path,i], 0)) {
-                pattern = patterns[k]
+            if (pmatch(patterns[l], pkgnames[path,i], 0)) {
+                pattern = patterns[l]
                 f = 1
                 break
             }
         }
-        if (f) break
-    }
-    if (!f) return
+        if (!f) continue
 
-    # no expansion required
-    if (pattern !~ /[[*?{]/) {
-        pkgpush(troot, path ":" pattern)
+        # no expansion required?
+        if (pattern !~ /[[*?{]/) {
+            pkgpush(troot, path ":" pattern)
 
-        # optimize if the pkginfo above was for us
-        if (path ":" pattern in done) return
-        if (pmatch(pattern, q, 0)) {
-            if (!sort) xprintpkg(path ":" pattern)
+            # optimize if the pkginfo above was for us
+            if (path ":" pattern in done) return
+            if (pmatch(pattern, q, 0)) {
+                if (!sort) xprintpkg(path ":" pattern)
 
-            done[path ":" pattern]
-            for(k = stack[0]; k>0; k--)
-                if (path ":" pattern == stack[k]) { stackdone++; break; }
-
-            for(d in deps) pkgpush(path ":" pattern, d)
-        }
-        return
-    }
-
-    # expand pkgbase and options
-    wopts = pattern ~ /~[^~]*$/
-    xopts = pattern ~ /~.*[[*?{]/
-    n = pkgreqd[path]
-    for (; i <= pkgnames[path]; i++) { # beware: reuse 'i' from above loop
-        p = pkgnames[path,i]
-        if (!wopts) sub(/~[^~]*$/, "", p)
-        if (!pmatch(pattern, p, 0)) continue
-
-        if (xopts) {
-            if (p !~ /~/) p = p "~!*"; else p = p "+!*"
-        }
-        pkgpush(troot, path ":" p, 1, n)
-
-        # optimize: if the pkginfo above was for us, stack deps directly to
-        # avoid another query later (saves ~50% time on dir:* patterns)
-        if (!(path ":" p in done)) {
-            if (pmatch(p, q, wopts)) {
-                if (!sort) xprintpkg(path ":" p)
-
-                done[path ":" p]
+                done[path ":" pattern]
                 for(k = stack[0]; k>0; k--)
-                    if (path ":" p == stack[k]) { stackdone++; break; }
+                    if (path ":" pattern == stack[k]) { stackdone++; break; }
 
-                for(d in deps) pkgpush(path ":" p, d)
+                for(d in deps) pkgpush(path ":" pattern, d)
             }
+            continue
         }
 
-        if (wopts && !xopts) break
+        # expand pkgbase and options
+        wopts = pattern ~ /~[^~]*$/
+        xopts = pattern ~ /~.*[[*?{]/
+        n = pkgreqd[path]
+        for (; i <= pkgnames[path]; i++) { # beware: reuse 'i' from above loop
+            p = pkgnames[path,i]
+            if (!wopts) sub(/~[^~]*$/, "", p)
+            if (!pmatch(pattern, p, 0)) continue
+
+            if (xopts) {
+                if (p !~ /~/) p = p "~!*"; else p = p "+!*"
+            }
+            pkgpush(troot, path ":" p, 1, n)
+
+            # optimize: if the pkginfo above was for us, stack deps directly to
+            # avoid another query later (saves ~50% time on dir:* patterns)
+            if (!(path ":" p in done)) {
+                if (pmatch(p, q, wopts)) {
+                    if (!sort) xprintpkg(path ":" p)
+
+                    done[path ":" p]
+                    for(k = stack[0]; k>0; k--)
+                        if (path ":" p == stack[k]) { stackdone++; break; }
+
+                    for(d in deps) pkgpush(path ":" p, d)
+                }
+            }
+
+            if (wopts && !xopts) break
+        }
     }
 }
 
