@@ -28,6 +28,9 @@ SYSTEM_SEARCH.rospack=\
 
 include ../../mk/sysdep/python.mk
 
+# system packages don't have any RPATH
+LD_LIBRARY_DIRS.rospack=$(if $(filter robotpkg,${PREFER.rospack}),,lib)
+
 endif # ROSPACK_DEPEND_MK --------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
