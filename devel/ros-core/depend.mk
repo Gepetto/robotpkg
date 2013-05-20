@@ -33,10 +33,10 @@ include ../../sysutils/rospack/depend.mk
 
 # Define the proper ros environment
 #
-ROS_PACKAGE_DIRS+=	${PREFIX.ros-core}
+PATH.ros-core+=			bin
 
+ROS_PACKAGE_DIRS+=		${PREFIX.ros-core}
 export ROS_PACKAGE_PATH=$(call prependpaths,${ROS_PACKAGE_DIRS})
-export PATH:=$(call prependpaths,${PREFIX.ros-core}/bin,${PATH})
 
 endif # ROS_CORE_DEPEND_MK -------------------------------------------------
 
