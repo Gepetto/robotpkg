@@ -128,3 +128,28 @@ export CC=	${FALSE}
 export CXXCPP=	${FALSE}
 export CXX=	${FALSE}
 export FC=	${FALSE}
+
+
+# PREFIX is always exported
+ALL_ENV+=	PREFIX=$(call quote,${PREFIX})
+
+
+# PATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
+# directories) that should be added to the run-time shell search paths (PATH)
+#
+ALL_ENV+= PATH=$(call quote,$(call prependpaths,			\
+  ${LOCALBASE}/bin ${LOCALBASE}/sbin					\
+  $(foreach _,${DEPEND_USE},$(realpath					\
+    $(addprefix ${PREFIX.$_}/,${PATH.$_}) ${PATH.$_})),${PATH}))
+
+
+# LD_LIBRARY_DIRS.<pkg> is a list of subdirectories of PREFIX.<pkg> (or
+# absolute directories) that should be added to the run-time linker search
+# paths (LD_LIBRARY_PATH)
+#
+ALL_ENV+= ${_LD_LIBRARY_PATH_VAR}=$(call quote,$(call prependpaths,	\
+  $(filter-out $(addprefix /usr/,${SYSLIBDIR} lib),			\
+  $(addprefix ${PREFIX}/,$(patsubst ${PREFIX}/%,%,${LD_LIBRARY_DIRS}))	\
+  $(foreach _,${DEPEND_USE},$(realpath					\
+    $(addprefix ${PREFIX.$_}/,${LD_LIBRARY_DIRS.$_})			\
+    ${LD_LIBRARY_DIRS.$_}))),${LD_LIBRARY_PATH}))
