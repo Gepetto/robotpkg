@@ -29,6 +29,7 @@ SYSTEM_SEARCH.ros-core=\
 	'lib/pkgconfig/roslib.pc:/Version/s/[^0-9.]//gp'
 
 include ../../mk/sysdep/python.mk
+include ../../sysutils/rospack/depend.mk
 
 # Define the proper ros environment
 #
