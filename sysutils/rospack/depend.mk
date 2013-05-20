@@ -27,7 +27,6 @@ SYSTEM_SEARCH.rospack=\
 	'lib/pkgconfig/rospack.pc:/Version/s/[^0-9.]//gp'
 
 include ../../mk/sysdep/python.mk
-include ../../mk/sysdep/cmake.mk
 
 endif # ROSPACK_DEPEND_MK --------------------------------------------------
 
