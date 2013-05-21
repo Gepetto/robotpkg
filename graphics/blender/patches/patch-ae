@@ -1,0 +1,10 @@
+--- intern/smoke/intern/WAVELET_NOISE.h~	2012-10-09 20:34:41.000000000 +0200
++++ intern/smoke/intern/WAVELET_NOISE.h	2013-05-21 13:50:38.067308384 +0200
+@@ -44,6 +44,7 @@
+ #define WAVELET_NOISE_H
+ 
+ #include <MERSENNETWISTER.h>
++#include <string.h>
+ 
+ #ifdef WIN32
+ #include <float.h>
