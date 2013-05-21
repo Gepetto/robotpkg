@@ -7,10 +7,10 @@ PKGREVISION=		1
 DISTNAME=		sift-${PKGVERSION_NOREV}_20100521
 PKGNAME=		sift-${PKGVERSION}
 CATEGORIES=		image
-MASTER_SITES=		http://web.engr.oregonstate.edu/~hess/downloads/sift/
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		http://web.engr.oregonstate.edu/~hess
+#HOMEPAGE was moved:	http://web.engr.oregonstate.edu/~hess
 COMMENT=		C implementation of a SIFT image feature detector
 LICENSE=		modified-bsd
 
