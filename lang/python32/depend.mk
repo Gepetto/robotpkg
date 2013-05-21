@@ -23,7 +23,7 @@ else ifeq (Ubuntu,${OPSYS})
     PREFER.python32?=	robotpkg
   endif
 else ifeq (NetBSD,${OPSYS})
-  PREFER.python32?=	robotpkg
+  PREFER.python32?=	system
 endif
 PREFER.python32?=	${PREFER.python}
 
