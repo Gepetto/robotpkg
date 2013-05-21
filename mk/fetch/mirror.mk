@@ -104,7 +104,7 @@ check-master-sites:
 									\
 	    ok=0;							\
 	    for site in $$sites; do					\
-	      x=0 hdr=`${CURL} -ILksS -m 60 "$$site$$distfile"		\
+	      x=0 hdr=`${CURL} -ILfksS -m 60 "$$site$$distfile"		\
 	             2>>${_MIRROR_LOG}` || x=$$?;			\
 	      case $$x in						\
 	        0) ;;							\
@@ -125,6 +125,7 @@ check-master-sites:
 	        ${ECHO} "SKIP:  $$site: cannot determine file size";	\
 	        ${ECHO} 2>>${_MIRROR_LOG} 1>&2				\
 		  "SKIP:  $$site: cannot determine file size";		\
+	        ok=1;							\
 	      elif ${TEST} "$$distsize" -ne "$$size"; then		\
 	        ${ERROR_MSG} "$$site: bad file size $$size";		\
 	        ${ERROR_MSG} "$$site: file size should be $$distsize";	\
