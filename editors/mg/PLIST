@@ -1,3 +1,4 @@
-@comment Tue Feb 15 15:12:20 CET 2011
+@comment Tue May 21 14:46:39 CEST 2013
 bin/mg
-man/man1/mg.1
+${PKGMANDIR}/man1/mg.1
+share/doc/mg/tutorial

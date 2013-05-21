@@ -1,17 +1,12 @@
-Don't ignore fchown() return value.
+$NetBSD: patch-ab,v 1.2 2012/12/12 12:47:50 wiz Exp $
 
---- fileio.c~	2011-01-24 00:33:50.000000000 +0100
-+++ fileio.c	2011-02-15 14:54:39.653617000 +0100
-@@ -115,7 +115,11 @@
- 	 */
- 	if (bp && bp->b_fi.fi_mode) {
- 		fchmod(fd, bp->b_fi.fi_mode & 07777);
--		fchown(fd, bp->b_fi.fi_uid, bp->b_fi.fi_gid);
-+		if (fchown(fd, bp->b_fi.fi_uid, bp->b_fi.fi_gid) != 0) {
-+			ewprintf("Cannot chown file: %s", strerror(errno));
-+			close(fd);
-+			return (FIOERR);
-+		}
- 	}
- 	return (FIOSUC);
- }
+--- sysdef.h.orig	2011-01-02 23:03:41.000000000 +0000
++++ sysdef.h
+@@ -31,6 +31,7 @@
+ #include <string.h>
+ #include <errno.h>
+ #include <signal.h>
++#include <time.h>
+ 
+ 
+ #define	KBLOCK		8192	/* Kill grow.			 */
