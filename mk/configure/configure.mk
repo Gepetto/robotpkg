@@ -220,10 +220,11 @@ _CONFIGURE_SCRIPT_ENV+=	${CONFIGURE_ENV}
 .PHONY: do-configure-script
 do-configure-script:
 	${RUN}								\
-$(foreach _dir_,${CONFIGURE_DIRS},					\
-	cd ${WRKSRC} && cd ${_dir_} &&					\
+$(foreach _,${CONFIGURE_DIRS},						\
+	cd ${WRKSRC} && cd $_ &&					\
 	${CONFIGURE_LOGFILTER} ${SETENV} ${_CONFIGURE_SCRIPT_ENV}	\
-		${CONFIG_SHELL} ${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS};	\
+	  ${CONFIG_SHELL} ${CONFIGURE_SCRIPT}				\
+	  ${CONFIGURE_ARGS} ${CONFIGURE_ARGS.$_};			\
 )
 
 
