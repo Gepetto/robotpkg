@@ -14,8 +14,6 @@ HOMEPAGE?=		http://www.openrobots.org/wiki/jafar/
 MAINTAINER?=		jafar@laas.fr
 LICENSE?=		isc
 
-USE_LANGUAGES?=		c c++
-
 
 # --- common dependencies --------------------------------------------------
 #
@@ -36,4 +34,6 @@ SUBST_CLASSES+=\
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/sysdep/cmake.mk
