@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 10 Dec 2012
 #
 
-DISTNAME=	jafar-20121210
+DISTNAME=	jafar-20130522
 CATEGORIES=	meta-pkgs
 
 MAINTAINER=	jafar@laas.fr
@@ -13,6 +13,7 @@ META_PACKAGE=	yes
 NOT_FOR_PLATFORM=
 
 include ../../devel/jafar-kernel/depend.mk
+include ../../graphics/jafar-gdhe/depend.mk
 include ../../image/jafar-correl/depend.mk
 include ../../image/jafar-image/depend.mk
 include ../../math/jafar-jmath/depend.mk
