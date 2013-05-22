@@ -15,7 +15,7 @@ PREFER.viam-dc1394-driver?=	robotpkg
 
 DEPEND_USE+=			viam-dc1394-driver
 
-DEPEND_ABI.viam-dc1394-driver?=	viam-dc1394-driver
+DEPEND_ABI.viam-dc1394-driver?=	viam-dc1394-driver>=1.10
 DEPEND_DIR.viam-dc1394-driver?=	../../image/viam-dc1394-driver
 
 SYSTEM_SEARCH.viam-dc1394-driver=\
