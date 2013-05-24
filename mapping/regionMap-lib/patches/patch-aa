@@ -1,0 +1,19 @@
+Pass the required {dtm, t3d} cflags and libs to src Makefile
+
+Before, it works by accident, when everything is more or less installed
+in the same PREFIX. But it does not work in the general case.
+Spotted by amaligo@
+
+index f17e37e..8068725 100644
+--- src/Makefile.am
++++ src/Makefile.am
+@@ -14,7 +14,7 @@ libregionMap_la_SOURCES = \
+ 
+ libregionMap_la_CPPFLAGS=	-I$(srcdir)
+ libregionMap_la_CPPFLAGS+=	-I$(top_srcdir)/include
+-libregionMap_la_CPPFLAGS+=	$(IM3D_CFLAGS)
++libregionMap_la_CPPFLAGS+=	$(T3D_CFLAGS) $(IM3D_CFLAGS) $(DTM_CFLAGS)
+ 
+-libregionMap_la_LDFLAGS=	$(IM3D_LIBS)
++libregionMap_la_LDFLAGS=	$(T3D_LIBS) $(IM3D_LIBS) $(DTM_LIBS)
+ libregionMap_la_LDFLAGS+=	-release $(PACKAGE_VERSION)
