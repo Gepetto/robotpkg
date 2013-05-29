@@ -3,7 +3,7 @@
 #
 
 PKGNAME=		morse-${MORSE_VERSION}
-PKGREVISION=	1
+PKGREVISION=	2
 
 include ../../simulation/morse/Makefile.common
 
