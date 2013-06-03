@@ -1,0 +1,43 @@
+Some distribution installs pyconfig.h in separate repository. So search
+explicity the path of pyconfig.h too.
+
+Fix the build of py33-yarp on Ubuntu 12.10 (and probably other systems).
+
+--- bindings/CMakeLists.txt.orig	2013-06-03 15:22:51.758159730 +0200
++++ bindings/CMakeLists.txt	2013-06-03 15:24:45.782156874 +0200
+@@ -113,6 +113,35 @@
+   FIND_PACKAGE(PythonLibs)
+   INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
+   LINK_LIBRARIES(${PYTHON_LIBRARY})
++
++  EXECUTE_PROCESS(COMMAND
++				  ${PYTHON_EXECUTABLE} -c "import sys; sys.stdout.write(sys.version[0:3])"
++				  OUTPUT_VARIABLE PYTHON_VERSION
++				  ERROR_VARIABLE PYTHON_STDERR
++				  RESULT_VARIABLE PYTHON_ERR
++				  )
++																					                  
++  # Search pyconfig.h because in some distribution, it is not stored in the same place than other stuff
++  FIND_PATH(PYTHON_INCLUDE_DIR2
++    NAMES pyconfig.h
++    HINTS
++      ${_PYTHON_PREFIX_HINT}/include
++    PATHS
++      ${PYTHON_FRAMEWORK_INCLUDES}
++      [HKEY_LOCAL_MACHINE\\SOFTWARE\\Python\\PythonCore\\${PYTHON_VERSION}\\InstallPath]/include
++      [HKEY_CURRENT_USER\\SOFTWARE\\Python\\PythonCore\\${PYTHON_VERSION}\\InstallPath]/include
++	  ${PYTHON_INCLUDE_PATH}
++    PATH_SUFFIXES
++      python${PYTHON_VERSION}mu
++      python${PYTHON_VERSION}m
++      python${PYTHON_VERSION}u
++      python${PYTHON_VERSION}
++	  ${CMAKE_LIBRARY_ARCHITECTURE}/python${PYTHON_VERSION}mu
++      ${CMAKE_LIBRARY_ARCHITECTURE}/python${PYTHON_VERSION}m
++      ${CMAKE_LIBRARY_ARCHITECTURE}/python${PYTHON_VERSION}u
++      ${CMAKE_LIBRARY_ARCHITECTURE}/python${PYTHON_VERSION}
++  )
++  INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_DIR2})
+   
+   ## in Windows it seems necessary to declare explictly the link_directory
+   if (WIN32)
