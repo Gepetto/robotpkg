@@ -15,7 +15,7 @@ PREFER.velodyne-genom?=	robotpkg
 
 DEPEND_USE+=			velodyne-genom
 
-DEPEND_ABI.velodyne-genom?=	velodyne-genom>=1.0
+DEPEND_ABI.velodyne-genom?=	velodyne-genom>=1.2
 DEPEND_DIR.velodyne-genom?=	../../hardware/velodyne-genom
 
 SYSTEM_SEARCH.velodyne-genom=\
