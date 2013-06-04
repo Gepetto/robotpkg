@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		libdtm-${VERSION}
-VERSION=		1.3
+VERSION=		1.4
 CATEGORIES=		mapping
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}libdtm
@@ -14,6 +14,8 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Digital Terrain Modeling lib
 
 GNU_CONFIGURE=		yes
+
+AUTORECONF_SCRIPT=     ${WRKSRC}/autogen.sh
 
 include ../../graphics/gdhe/depend.mk
 include ../../image/libimages3d/depend.mk
