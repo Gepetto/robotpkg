@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2011 LAAS/CNRS
+# Copyright (c) 2006,2009-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -33,6 +33,7 @@
 
 PKG_SUFX?=		.tgz
 PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
+PKGSUMMARY?=		${PKGREPOSITORY}/pkg_summary.gz
 PKGREPOSITORY?=		${PACKAGES}/${PKGREPOSITORYSUBDIR}
 PKGREPOSITORYSUBDIR?=	All
 
@@ -134,8 +135,6 @@ pkg-tarup:
 	done
 
 
-
-
 # --- pkg-links (PRIVATE) --------------------------------------------
 #
 # pkg-links creates symlinks to the binary package from the categories to which
@@ -155,3 +154,33 @@ $(foreach _dir_,$(addprefix ${PACKAGES}/,${CATEGORIES}),		\
 	${LN} -s ../${PKGREPOSITORYSUBDIR}/$$pkgfile${PKG_SUFX}		\
 	  ${_dir_};							\
 )
+
+
+# --- pkg-update-summary (PRIVATE) -----------------------------------------
+#
+# pkg-update-summary updates the pkg_summary.bz2 file in ${PKGREPOSITORY} for
+# the current package.
+#
+DEPEND_METHOD.gzip+=	bootstrap
+include ${ROBOTPKG_DIR}/mk/sysdep/gzip.mk
+
+.PHONY: pkg-update-summary
+pkg-update-summary:
+	${RUN} pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;		\
+	${TEST} -n "$$pkgfile" ||					\
+	  ${FAIL_MSG} "${PKGWILDCARD} not installed";			\
+	${TEST} -s ${PKGSUMMARY} ||					\
+	  ${GZIP_CMD} -c9 </dev/null >${PKGSUMMARY};			\
+	${MV} -f ${PKGSUMMARY} ${PKGSUMMARY}~;				\
+	${GZIP_CMD} -dc ${PKGSUMMARY}~ | {				\
+	  ${AWK} -F= -vskip="$$pkgfile" '				\
+	    NF {							\
+	      if ($$1 == "PKGNAME") { pkgname = $$2 };			\
+	      if (e) { e = e "\n" $$0; } else { e = $$0; }		\
+	    }								\
+	    !NF {							\
+	      if (pkgname != skip) { print e; print; }			\
+	      e = "";							\
+	    }';								\
+	  ${PKG_INFO} -X "$$pkgfile";					\
+	} | ${GZIP_CMD} -c9 > ${PKGSUMMARY}

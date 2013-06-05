@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2007,2009,2011 LAAS/CNRS
+# Copyright (c) 2006-2007,2009,2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -66,6 +66,7 @@ _REAL_PACKAGE_TARGETS+=	package-message
 _REAL_PACKAGE_TARGETS+=	pre-package
 _REAL_PACKAGE_TARGETS+=	pkg-tarup
 _REAL_PACKAGE_TARGETS+=	pkg-links
+_REAL_PACKAGE_TARGETS+=	pkg-update-summary
 _REAL_PACKAGE_TARGETS+=	post-package
 _REAL_PACKAGE_TARGETS+=	package-warnings
 
