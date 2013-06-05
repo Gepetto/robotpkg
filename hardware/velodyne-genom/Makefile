@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		velodyne-genom-1.2
-PKGREVISION= 	1
+PKGREVISION= 		2
 CATEGORIES=		hardware
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=velodyne/}

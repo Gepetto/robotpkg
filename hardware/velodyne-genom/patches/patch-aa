@@ -1,16 +1,16 @@
 Change obsolete values.h by float.h (for FLT_MAX)
+Add sys/time.h for definition of timeval
 
-diff --git a/codels/analyzeTarget.c b/codels/analyzeTarget.c
-index 3298657..5627543 100644
---- codels/analyzeTarget.c
-+++ codels/analyzeTarget.c
-@@ -26,7 +26,7 @@
+
+--- codels/analyzeTarget.c.orig	2013-06-04 14:27:04.000000000 +0200
++++ codels/analyzeTarget.c	2013-06-05 17:37:45.000000000 +0200
+@@ -26,7 +26,8 @@
  #include <stdlib.h>
  #include <string.h>
  #include <math.h>
 -#include <values.h>
 +#include <float.h>
++#include <sys/time.h>
  
  #include <portLib.h>
  #include "server/velodyneHeader.h"
-
