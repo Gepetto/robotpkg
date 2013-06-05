@@ -1,0 +1,16 @@
+Change obsolete values.h by float.h (for FLT_MAX)
+
+diff --git a/codels/analyzeTarget.c b/codels/analyzeTarget.c
+index 3298657..5627543 100644
+--- codels/analyzeTarget.c
++++ codels/analyzeTarget.c
+@@ -26,7 +26,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <math.h>
+-#include <values.h>
++#include <float.h>
+ 
+ #include <portLib.h>
+ #include "server/velodyneHeader.h"
+
