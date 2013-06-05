@@ -19,6 +19,8 @@ define PKG_OPTION_UNSET.api
   include ../../image/libimages3d/depend.mk
   include ../../math/t3d/depend.mk
 endef
+
+include ../../interfaces/genPos-genom/depend.mk
 include ../../localization/pom-genom/depend.mk
 include ../../architecture/genom/depend.mk
 include ../../mk/language/c.mk
