@@ -105,7 +105,7 @@ set -u		# treat undefined variables as errors
 : ${CP:=cp}
 : ${ECHO:=echo}
 : ${GEM:="gem unpack"}
-: ${GZCAT:="gzip -cd"}
+: ${ZCAT:="gzip -cd"}
 : ${LHA:=lha}
 : ${MKDIR:=mkdir}
 : ${PAX:=pax}
@@ -189,7 +189,7 @@ ${TEST} -n "$cformat" || cformat="$_cformat"
 # stdout, based on the file extension.
 #
 case "$cformat" in
-gzip|compress)	decompress_cat="${GZCAT}" ;;
+gzip|compress)	decompress_cat="${ZCAT}" ;;
 bzip)		decompress_cat="${BZCAT}" ;;
 none)		decompress_cat="${CAT}" ;;
 *)		decompress_cat="${CAT}" ;;

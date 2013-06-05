@@ -253,9 +253,6 @@ endif
 ifdef TOOLS_ECHO
 _EXTRACT_ENV+=	ECHO=${TOOLS_ECHO}
 endif
-ifdef TOOLS_CMDLINE.gzcat
-_EXTRACT_ENV+=	GZCAT=${TOOLS_CMDLINE.gzcat}
-endif
 ifdef TOOLS_LHA
 _EXTRACT_ENV+=	LHA=${TOOLS_LHA}
 endif

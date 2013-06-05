@@ -45,7 +45,6 @@ PKGLOCALEDIR?=	share
 FILE_CMD?=		file
 ECHO_N?=		${ECHO} -n
 
-GZCAT?=			gzcat
 BZCAT?=			bzcat
 
 TOOLS_ECHO?=		echo

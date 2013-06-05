@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -259,7 +259,7 @@ PATCH_FUZZ_FACTOR?=	-F0	# Default to zero fuzz
 PATCH_DIST_STRIP?=		-p0
 
 PATCH_DIST_CAT?=	{ case $$$$patchfile in				\
-			  *.Z|*.gz) ${GZCAT} $$$$patchfile ;;		\
+			  *.Z|*.gz) ${ZCAT} $$$$patchfile ;;		\
 			  *.bz2)    ${BZCAT} $$$$patchfile ;;		\
 			  *)	    ${CAT} $$$$patchfile ;;		\
 			  esac; }
