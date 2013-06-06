@@ -102,7 +102,8 @@ bulk-done:
 _MAKEFILE_WITH_RECIPES+=${_COOKIE.bulkoutdated}
 ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	${RUN} ${TEST} -f "$@" && ${RM} -f "$@"; (			\
-	  deps='$(filter-out $(realpath ${WRKDIR})/%,${MAKEFILE_LIST})';\
+	  deps='$(filter-out $(abspath ${WRKDIR}/%),			\
+	          $(sort $(abspath ${MAKEFILE_LIST})))';		\
 	  ${TEST} -f ${PKGFILE} || {					\
 	    ${TEST} -f ${BULK_PKGFILENA} || exit 1;			\
 	    for f in $$deps; do						\
