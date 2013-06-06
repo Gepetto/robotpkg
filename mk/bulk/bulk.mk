@@ -279,7 +279,9 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 									\
 	  if ${TEST} "$$kind" != "robotpkg"; then			\
 	    if ${TEST} "$$pkg" = "-"; then				\
-	      ${BULK_BRK} "Required $$kind package $$abi: MISSING";	\
+	      ${STEP_MSG} "Required $$kind package $$abi: MISSING";	\
+	      ${BULK_CBBH} "Required $$kind package $$abi: MISSING";	\
+	      ${BULK_CBBHBY} "$$abi";					\
 	    fi;								\
 	    continue;							\
 	  fi;								\
@@ -337,11 +339,12 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	  ${BULK_PKG_ADD} -u -A $$pkgfile ||				\
 	    ${BULK_BRK} "Installing $${pkgfile##*/}: Error $$?";	\
 	done;								\
+	t='$(if $(filter bootstrap,$*),bootstrap-depends,depends)';	\
 	${TEST} ! -s ${_bulklog_cbbh} || {				\
 	  ${RM} -f ${_bulklog_broken} ${_bulklog_brokenby};		\
+	  ${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} sys-$$t >/dev/null ||:;	\
 	  exit 0;							\
 	};								\
-	t='$(if $(filter bootstrap,$*),bootstrap-depends,depends)';	\
 	${TEST} ! -s ${_bulklog_broken} || {				\
 	  ${RECURSIVE_MAKE} ${BULK_MAKE_ARGS} sys-$$t >/dev/null ||:;	\
 	  exit 0;							\
