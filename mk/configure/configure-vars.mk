@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -75,9 +75,8 @@ SCRIPTS_ENV+=	WRKSRC=${WRKSRC}
 #
 CONFIGURE_LOGFILE?=	${WRKDIR}/configure.log
 CONFIGURE_LOGFILTER?=\
-	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${CONFIGURE_LOGFILE}	\
-		$(if ${CONFIGURE_LOG_ETA},-a ${CONFIGURE_LOG_ETA})	\
-		--
+	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${CONFIGURE_LOGFILE} --
+
 
 # The following are the "public" targets provided by this module:
 #

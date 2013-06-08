@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -51,9 +51,7 @@ INSTALLATION_DIRS_FROM_PLIST?=	yes
 
 INSTALL_LOGFILE?=	${WRKDIR}/install.log
 INSTALL_LOGFILTER?=\
-	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${INSTALL_LOGFILE}		\
-		$(if ${INSTALL_LOG_ETA},-a ${INSTALL_LOG_ETA})		\
-		--
+	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${INSTALL_LOGFILE} --
 
 _COOKIE.install=	${WRKDIR}/.install_cookie
 _COOKIE.preinstall=	${WRKDIR}/.install_start

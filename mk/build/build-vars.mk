@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -86,9 +86,8 @@ MAKE_ENV+=	PKGMANDIR=${PKGMANDIR}
 #
 BUILD_LOGFILE?=	${WRKDIR}/build.log
 BUILD_LOGFILTER?=\
-	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${BUILD_LOGFILE}		\
-		$(if ${BUILD_LOG_ETA},-a ${BUILD_LOG_ETA})		\
-		--
+	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${BUILD_LOGFILE} --
+
 
 # The following are the "public" targets provided by this module:
 #
