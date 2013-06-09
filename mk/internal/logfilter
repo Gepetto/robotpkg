@@ -17,11 +17,9 @@
 #
 #                                             Anthony Mallet on Sun Nov 15 2009
 #
-
 : ${ECHO:=echo}
 : ${ECHO_N:=echo -n}
 : ${TEST:=test}
-: ${SETENV:=env}
 : ${SED:=sed}
 : ${STTY:=stty}
 : ${TPUT:=tput}
@@ -31,24 +29,24 @@ self="${0##*/}"
 # Process optional arguments
 #
 nofilter=
-log=noverb
 logfile=
+log=noverb
+status=noverb
 nolog=verb
+nostatus=:
 interactive=
-raw=
 
 usage() {
-    ${ECHO} 1>&2 "usage: $self [-n] [-v] [-i] [-r] [-l file] [--]" \
-        "arg0 [arg...]"
+    ${ECHO} 1>&2 "usage: $self [-n] [-v] [-i] [-l file] [--] arg0 [arg...]"
 }
 
 while ${TEST} $# -gt 0; do
     case "$1" in
-	-v)     log=verb; nolog=noverb; shift ;;
-	-i)     interactive='[ESC to toggle]'; shift;;
-	-n)     nofilter=yes; shift;;
+	-v)     log=verb; nolog=noverb; status=: nostatus=noverb; shift ;;
+	-i)     interactive='[ESC toggles verbosity]'; shift;;
+	-n)     nofilter=yes; interactive=; log=verb; nolog=verb; status=:
+                shift;;
 	-l)     logfile=$2; shift 2;;
-	-r)     raw=yes; shift;;
 
         --)     shift; break ;;
         -*)     ${ECHO} 1>&2 "$self: unknown option -- ${1#-}"
@@ -59,18 +57,14 @@ while ${TEST} $# -gt 0; do
     esac
 done
 
+# magic shortcut for internal robotpkg stuff that do not need logging
+case "$1" in ":"*) eval "$@"; exit $?;; esac
 
-# No filter mode: just exec the command line
+# No filter + no log mode: just eval the command line
 #
 if ${TEST} -n "$nofilter"; then
-    if ${TEST} -n "$logfile"; then
-	# the tricky part is to get the actual exit status of the command.
-	exec 3>&1 4>&1
-	exit `{ { "$@" 3>&- 4>&-; echo $? >&3; } | while read l; do
-	    echo "$l" >&4; echo "$l">>$logfile;
-	done; } 3>&1`
-    else
-	exec "$@"
+    if ${TEST} -z "$logfile"; then
+        eval "$@"; exit $?
     fi
 fi
 
@@ -111,15 +105,9 @@ verb() { ${ECHO} "$@"; }
 
 if ${TEST} -t 1; then
     noverb() {
-	${MSG} "${sc}Processing ${interactive} "
-	statusline
-	${MSG} $rc
-    }
-
-    statusline() {
 	set -- $statuslist
 	i=$1
-	eval ${MSG} '"$statusline'$i'"'
+	eval ${MSG} '"${sc}Processing $interactive $statusline'$i'$el$rc"'
 	shift
 	statuslist="$@ $i"
     }
@@ -130,27 +118,36 @@ fi
 
 if ${TEST} -n "$logfile"; then
     exec 6>>$logfile
-    if ${TEST} -z "$raw"; then
-        ${ECHO} "Environment:" >&6
-        ${SETENV} >&6
-        ${ECHO} >&6
-    fi
     tofile() { ${ECHO} "$@" >&6; }
 else
     tofile() { :;}
 fi
 
 
-# Run functions
+# Tee-like output filter
 #
-run() { "$@" </dev/null 3>&- 4>&- 5>&-; echo $? >&4; }
 filter() {
     while read l; do
-	$log "$l"
-	tofile "$l"
-	esc <&3
+        case $l in '=> '*) ${ECHO} $el$l; $status;; *) $log "$l";; esac
+        tofile "$l"
+        esc <&3
     done
 }
+
+errfilter() {
+    while read l; do
+        ${ECHO} "$el$l"; $status
+        tofile "$l"
+    done
+}
+
+# Run arguments with empty stdin and exit status on fd 4
+#
+run() {
+    ( eval "$@" </dev/null 3>&- 4>&- 5>&- )
+    echo $? >&4
+}
+
 
 
 # Read ESC key, nonblocking
@@ -158,7 +155,10 @@ filter() {
 if ${TEST} -n "${interactive}" -a -t 0; then
     esc() {
 	read key
-	test "$key" = "" && { s=$log; log=$nolog; nolog=$s; }
+	test "$key" = "" && {
+            s=$log; log=$nolog; nolog=$s;
+            s=$status; status=$nostatus; nostatus=$s;
+        }
     }
 else
     esc() { :;}
@@ -172,10 +172,10 @@ test -n "${civis}" && ${MSG} ${civis}
 
 exec 3<&0 4>&1 5>&1
 ${TEST} -t 3 && stty -icanon -echo min 0 <&3 2>/dev/null
-if ${TEST} -z "$raw"; then
-    tofile "Running $@"
-fi
-status=`{ run "$@" 2>&1 | filter; } 4>&1 >&5`
+
+tofile "Running $@"
+result=`{ { run "$@" | filter; } 2>&1 >&5 | errfilter; } 4>&1 >&5`
+
 ${TEST} -t 3 && stty icanon echo <&3 2>/dev/null
 exec 3>&- 4>&- 5>&-
 
@@ -183,11 +183,14 @@ ${MSG} $el$cnorm
 
 # Log last lines in case of error
 #
-${TEST} -n "$logfile" && ${TEST} $status -ne 0 && {
-    ${ECHO} "An unexpected error occured. The last 10 lines are shown below." >&2
-    ${ECHO} "For a complete log file, see:" >&2
+${TEST} -n "$logfile" && ${TEST} $result -ne 0 && {
+    ${ECHO}
+    ${ECHO} "An unexpected error occured. " \
+      "The last 10 log lines are shown below." >&2
+    ${SED} -e ':a' -e '$q;N;11,$D;ba' < $logfile | ${SED} -e 's/^/| /' >&2
+    ${ECHO}
+    ${ECHO} "For details or bug reports, check the complete log file in:" >&2
     ${ECHO} "$logfile" >&2
-    ${SED} -e ':a' -e '$q;N;11,$D;ba' < $logfile | ${SED} -e 's/^/: /' >&2
 }
 
-exit $status
+exit $result
