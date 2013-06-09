@@ -248,7 +248,7 @@ ifndef PYTHON_NO_PLIST_COMPILE
   .PHONY: python-compile-plist
   python-compile-plist:
 	@${STEP_MSG} "Compiling python files"
-	${RUN} ${INSTALL_LOGFILTER} ${AWK} '				\
+	${RUN} ${AWK} '							\
 	  BEGIN {							\
 	    compile = "${PYTHON}";					\
 	    ocompile = "${PYTHON} -O";					\
@@ -271,14 +271,12 @@ endif
 .PHONY: python-compile-all
 python-compile-all: python-compile-all(${WRKSRC})
 python-compile-all(%): .FORCE
-	${RUN}${INSTALL_LOGFILTER} ${PYTHON} -m compileall -f $%
-	${RUN}${INSTALL_LOGFILTER} ${PYTHON} -O -m compileall -f $%
+	${RUN} ${PYTHON} -m compileall -f $%
+	${RUN} ${PYTHON} -O -m compileall -f $%
 
 python-compile-file(%): .FORCE
-	${RUN}${INSTALL_LOGFILTER} ${PYTHON} -c 'import py_compile;	\
-	  py_compile.compile("$%");'
-	${RUN}${INSTALL_LOGFILTER} ${PYTHON} -O -c 'import py_compile;	\
-	  py_compile.compile("$%");'
+	${RUN} ${PYTHON} -c 'import py_compile; py_compile.compile("$%");'
+	${RUN} ${PYTHON} -O -c 'import py_compile; py_compile.compile("$%");'
 
 # For python packages using the distuils.setup framework, redefine the
 # BUILD_MAKE_CMD

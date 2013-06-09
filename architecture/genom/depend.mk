@@ -67,8 +67,8 @@ ifdef GENOM_MODULE
   .PHONY: genom-generate
   genom-generate:
 	@${STEP_MSG} "Generating ${GENOM_MODULE} module"
-	${RUN}cd ${WRKSRC} && ${CONFIGURE_LOGFILTER}			\
-		${SETENV} ${CONFIGURE_ENV}				\
+	${RUN}cd ${WRKSRC} &&						\
+	${SETENV} ${CONFIGURE_ENV}					\
 		${TOOLS.genom} ${GENOM_ARGS} ${GENOM_MODULE}
 
   # Add extra replacement in PLISTs and a generic template for standard genom

@@ -46,7 +46,7 @@ pre-configure:
 # install doxygen documentation
 .PHONY: eigen3-install-doc
 eigen3-install-doc:
-	${RUN}cd ${WRKSRC}/build/doc && ${INSTALL_LOGFILTER}		\
+	${RUN}cd ${WRKSRC}/build/doc && \
 	${PAX} -r -w -v -pm html ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
 include ../../mk/sysdep/cmake.mk

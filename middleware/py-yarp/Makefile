@@ -46,8 +46,7 @@ include ../../mk/robotpkg.mk
 
 post-configure:
 	${RUN}for f in dev sig OS init; do				\
-	  ${CONFIGURE_LOGFILTER}					\
-	    ${LN} -sf ${PREFIX.yarp}/lib/libYARP_$${f}.so ${WRKSRC}/lib;\
+	  ${LN} -sf ${PREFIX.yarp}/lib/libYARP_$${f}.so ${WRKSRC}/lib;	\
 	done
 
 do-install:
@@ -58,12 +57,12 @@ do-install:
 	  ${INSTALL_LIB} _yarp.so ${PREFIX}/${PYTHON_SITELIB}
 
 post-install:
-	${RUN}${BUILD_LOGFILTER} ${PYTHON} -c 'import py_compile;	\
+	${RUN} ${PYTHON} -c 'import py_compile;				\
 	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/yarp.py");	\
 	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/example.py");	\
 	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/example_img.py");\
 	'
-	${RUN}${BUILD_LOGFILTER} ${PYTHON} -O -c 'import py_compile;	\
+	${RUN} ${PYTHON} -O -c 'import py_compile;			\
 	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/yarp.py");	\
 	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/example.py");	\
 	  py_compile.compile("${PREFIX}/${PYTHON_SITELIB}/example_img.py");\

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2012 LAAS/CNRS
+# Copyright (c) 2009-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -137,8 +137,11 @@ real-checkout: ${_REAL_CHECKOUT_TARGETS}
 
 .PHONY: checkout-message
 checkout-message:
-	@${PHASE_MSG} "Checking out ${PKGNAME}"				\
-	>${EXTRACT_LOGFILE}
+	@${PHASE_MSG} "Checking out ${PKGNAME}"
+	${RUN}								\
+	${ECHO} "--- Environment ---" >${EXTRACT_LOGFILE};		\
+	${SETENV} >>${EXTRACT_LOGFILE};					\
+	${ECHO} "---" >>${EXTRACT_LOGFILE}
 
 .PHONY: checkout-dir
 checkout-dir:
@@ -180,10 +183,12 @@ CHECKOUT_CMD_DEFAULT=							\
 		-d ${WRKSRC}						\
 		${CHECKOUT_REPOSITORY} ${CHECKOUT_ELEMENTS}
 
+pre-checkout do-checkout post-checkout: SHELL=${EXTRACT_LOGFILTER}
+pre-checkout do-checkout post-checkout: .SHELLFLAGS=--
+
 do%checkout: ${WRKDIR} .FORCE
 	${_OVERRIDE_TARGET}
-	${RUN}cd ${WRKDIR} && cd ${CHECKOUT_DIR} &&			\
-	  ${EXTRACT_LOGFILTER} ${CHECKOUT_CMD}
+	${RUN}cd ${WRKDIR} && cd ${CHECKOUT_DIR} && ${CHECKOUT_CMD}
 
 pre-checkout:
 

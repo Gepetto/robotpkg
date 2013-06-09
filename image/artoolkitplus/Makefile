@@ -16,8 +16,6 @@ COMMENT=	Physical markers localization in real time
 
 LICENSE= gnu-gpl-v2
 
-WRKSRC=		${WRKDIR}
-
 MAKE_JOBS_SAFE=	no
 
 CONFIGURE_DIRS=	. src tools tools/IdPatGen sample sample/multi sample/simple
@@ -59,12 +57,11 @@ include ../../mk/robotpkg.mk
 # The archive does not have the zip 'b'inary vs. 't'ext flag right.
 BINARY_FILES=	'*.pdf' '*.png' '*.gif' '*.jpg' '*.dat' '*.raw'
 do-extract:
-	${RUN}cd ${WRKDIR} && cd ${EXTRACT_DIR} &&			\
+	${RUN} ${MKDIR} ${WRKSRC};					\
+	cd ${WRKSRC} &&							\
   $(foreach _,$(addprefix ${DISTDIR}/${DIST_SUBDIR}/,${DISTFILES}),	\
-	${EXTRACT_LOGFILTER}						\
-		${UNZIP_CMD} -aao "$_" -x ${BINARY_FILES} &&		\
-	${EXTRACT_LOGFILTER}						\
-		${UNZIP_CMD} -o "$_" ${BINARY_FILES} &&			\
+	${UNZIP_CMD} -aao "$_" -x ${BINARY_FILES} &&			\
+	${UNZIP_CMD} -o "$_" ${BINARY_FILES} &&				\
   )									\
 	: || exit 2
 

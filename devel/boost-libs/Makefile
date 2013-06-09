@@ -29,5 +29,5 @@ do-build: bjam-build
 	@${TRUE}
 
 do-install:
-	${RUN}cd ${WRKSRC}/stage/lib && ${INSTALL_LOGFILTER}	\
+	${RUN}cd ${WRKSRC}/stage/lib &&				\
 	  ${PAX} -rw -p mp libboost* ${PREFIX}/lib

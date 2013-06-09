@@ -147,8 +147,11 @@ configure-message:
 	  ${PHASE_MSG} "Reconfiguring for ${PKGNAME}";			\
 	else								\
 	  ${PHASE_MSG} "Configuring for ${PKGNAME}";			\
-	fi;								\
-	>${CONFIGURE_LOGFILE}
+	fi
+	${RUN}								\
+	${ECHO} "--- Environment ---" >${CONFIGURE_LOGFILE};		\
+	${SETENV} >>${CONFIGURE_LOGFILE};				\
+	${ECHO} "---" >>${CONFIGURE_LOGFILE}
 
 
 # --- configure-check-interactive (PRIVATE) --------------------------
@@ -222,7 +225,7 @@ do-configure-script:
 	${RUN}								\
 $(foreach _,${CONFIGURE_DIRS},						\
 	cd ${WRKSRC} && cd $_ &&					\
-	${CONFIGURE_LOGFILTER} ${SETENV} ${_CONFIGURE_SCRIPT_ENV}	\
+	${SETENV} ${_CONFIGURE_SCRIPT_ENV}				\
 	  ${CONFIG_SHELL} ${CONFIGURE_SCRIPT}				\
 	  ${CONFIGURE_ARGS} ${CONFIGURE_ARGS.$_};			\
 )
@@ -236,6 +239,9 @@ $(foreach _,${CONFIGURE_DIRS},						\
 ifdef HAS_CONFIGURE
   _DO_CONFIGURE_TARGETS+=	do-configure-script
 endif
+
+pre-configure do-configure post-configure: SHELL=${CONFIGURE_LOGFILTER}
+pre-configure do-configure post-configure: .SHELLFLAGS=--
 
 do%configure: ${_DO_CONFIGURE_TARGETS} .FORCE
 	${_OVERRIDE_TARGET}

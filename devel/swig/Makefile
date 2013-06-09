@@ -35,9 +35,9 @@ include ../../mk/robotpkg.mk
 
 .PHONY: swig-install-doc
 swig-install-doc:
-	${RUN}cd ${WRKSRC}/Doc/Manual && ${INSTALL_LOGFILTER}		\
+	${RUN}cd ${WRKSRC}/Doc/Manual &&				\
 	${PAX} -w -r -pm -v . ${DESTDIR}${PREFIX}/share/doc/swig
-	${RUN}cd ${WRKSRC}/Examples && ${INSTALL_LOGFILTER}		\
+	${RUN}cd ${WRKSRC}/Examples &&					\
 	${PAX} -w -r -pm -v						\
 		-s ',.*CVS.*,,'						\
 		-s ',.*Makefile\.in$$,,'				\

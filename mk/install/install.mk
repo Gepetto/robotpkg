@@ -128,8 +128,11 @@ install-message:
 	  ${PHASE_MSG} "Reinstalling for ${PKGNAME}";			\
 	else								\
 	  ${PHASE_MSG} "Installing for ${PKGNAME}";			\
-	fi;								\
-	>${INSTALL_LOGFILE}
+	fi
+	${RUN}								\
+	${ECHO} "--- Environment ---" >${INSTALL_LOGFILE};		\
+	${SETENV} >>${INSTALL_LOGFILE};					\
+	${ECHO} "---" >>${INSTALL_LOGFILE}
 
 
 # --- install-check-interactive (PRIVATE) ----------------------------
@@ -293,12 +296,15 @@ INSTALL_MAKE_CMD?=\
 		${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS} -f ${MAKE_FILE}	\
 		${INSTALL_TARGET}
 
+pre-install do-install post-install: SHELL=${INSTALL_LOGFILTER}
+pre-install do-install post-install: .SHELLFLAGS=--
+
 do%install: .FORCE
 	${_OVERRIDE_TARGET}
 	${RUN}								\
 $(foreach _dir_,${INSTALL_DIRS},					\
 	cd ${WRKSRC} && cd ${_dir_} &&					\
-	${INSTALL_LOGFILTER} $(call INSTALL_MAKE_CMD,${_dir_});		\
+	$(call INSTALL_MAKE_CMD,${_dir_});				\
 )
 
 .PHONY: pre-install post-install

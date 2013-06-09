@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2012 LAAS/CNRS
+# Copyright (c) 2007-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -47,7 +47,7 @@ else
   ECHO_MSG?=		:
 endif
 PHASE_MSG?=		_m() { ${ECHO_MSG} "$${bf}===> $$@$$rm"; }; _m
-STEP_MSG?=		${ECHO_MSG} "=>"
+STEP_MSG?=		:;${ECHO_MSG} "=>"
 WARNING_MSG?=		${ECHO_MSG} 1>&2 "WARNING:"
 ERROR_MSG?=		${ECHO_MSG} 1>&2 "ERROR:"
 FAIL_MSG?=		${FAIL} $(call quote,${ERROR_MSG})
@@ -56,7 +56,7 @@ WARNING_CAT?=		${SED} -e "s|^|WARNING: |" 1>&2
 ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
 
 _LOGFILTER?=\
-	${SETENV} SETENV=${SETENV} ECHO_N=$(call quote,${ECHO_N})	\
+	${SETENV} ECHO_N=$(call quote,${ECHO_N})	\
 	${SH} ${ROBOTPKG_DIR}/mk/internal/logfilter
 
 
@@ -67,25 +67,20 @@ _LOGFILTER?=\
 PKG_DEBUG_LEVEL?=	0
 _PKG_SILENT=		@
 _PKG_DEBUG=#		empty
-_PKG_DEBUG_SCRIPT=#	empty
-_PKG_DISCARD_STDERR=	2>/dev/null
 ifdef VERBOSE
-  _LOGFILTER_FLAGS=	-n
+  _LOGFILTER_FLAGS=	-v
 else
   _LOGFILTER_FLAGS=#	empty
 endif
 
 ifeq (1,${PKG_DEBUG_LEVEL})
 _PKG_SILENT=#		empty
-_PKG_DISCARD_STDERR=#	empty
-_LOGFILTER_FLAGS=	-v
+_LOGFILTER_FLAGS=	-n
 endif
 
 ifeq (2,${PKG_DEBUG_LEVEL})
 _PKG_SILENT=#		empty
 _PKG_DEBUG=		set -x;
-_PKG_DEBUG_SCRIPT=	${SH} -x
-_PKG_DISCARD_STDERR=#	empty
 _LOGFILTER_FLAGS=	-n
 endif
 
@@ -93,6 +88,12 @@ endif
 ifneq (SunOS,${OPSYS})
   _LOGFILTER_FLAGS+=	-i
 endif
+
+# This variable can be prepended to all shell commands that should not
+# be printed by default, but when PKGSRC_DEBUG_LEVEL is non-zero.
+# It also adds error checking.
+#
+RUN=			${_PKG_SILENT}${_PKG_DEBUG} set -e;
 
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.
@@ -117,12 +118,6 @@ ifndef _ROBOTPKG_NOW
   export _ROBOTPKG_NOW:=$(shell ${_CDATE_CMD} "+%Y%m%d%H%M%S")
   _ENV_VARS+=	_ROBOTPKG_NOW
 endif
-
-# This variable can be prepended to all shell commands that should not
-# be printed by default, but when PKGSRC_DEBUG_LEVEL is non-zero.
-# It also adds error checking.
-#
-RUN=			${_PKG_SILENT}${_PKG_DEBUG} set -e;
 
 # Run ${MAKE} recursively.
 RECURSIVE_MAKE=${MAKE}

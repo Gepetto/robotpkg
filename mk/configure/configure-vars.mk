@@ -75,7 +75,7 @@ SCRIPTS_ENV+=	WRKSRC=${WRKSRC}
 #
 CONFIGURE_LOGFILE?=	${WRKDIR}/configure.log
 CONFIGURE_LOGFILTER?=\
-	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${CONFIGURE_LOGFILE} --
+	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${CONFIGURE_LOGFILE}
 
 
 # The following are the "public" targets provided by this module:

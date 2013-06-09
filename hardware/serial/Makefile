@@ -28,5 +28,5 @@ pre-configure: autogen
 
 .PHONY: autogen
 autogen:
-	${RUN} cd ${WRKSRC} && ${CONFIGURE_LOGFILTER} \
+	${RUN} cd ${WRKSRC} &&
 	  ${SH} -ec '${LIBTOOLIZE} -c -i -f; ${ACLOCAL} -I m4; ${AUTOCONF}'

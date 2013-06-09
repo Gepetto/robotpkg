@@ -45,14 +45,13 @@ endif
 BJAM_CMD=		${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
 
 bjam-build:
-	@cd ${WRKSRC} && ${BUILD_LOGFILTER}			\
-		${BJAM_CMD} ${BJAM_JOBS}  --prefix=${PREFIX} stage
+	${RUN} cd ${WRKSRC} && \
+	  ${BJAM_CMD} ${BJAM_JOBS} --prefix=${PREFIX} stage
 
 bjam-install:
-	@cd ${WRKSRC} && ${INSTALL_LOGFILTER}			\
+	${RUN} cd ${WRKSRC} && \
 		${BJAM_CMD} --prefix=${PREFIX} install
 
 endif # BOOST_JAM_DEPEND_MK ------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-

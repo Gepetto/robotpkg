@@ -86,7 +86,7 @@ MAKE_ENV+=	PKGMANDIR=${PKGMANDIR}
 #
 BUILD_LOGFILE?=	${WRKDIR}/build.log
 BUILD_LOGFILTER?=\
-	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${BUILD_LOGFILE} --
+	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${BUILD_LOGFILE}
 
 
 # The following are the "public" targets provided by this module:

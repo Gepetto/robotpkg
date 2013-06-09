@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -87,8 +87,7 @@ endif
 
 # The filter for the default do-extract action
 EXTRACT_LOGFILE?=	${WRKDIR}/extract.log
-EXTRACT_LOGFILTER?=\
-	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${EXTRACT_LOGFILE}	--
+EXTRACT_LOGFILTER?=	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${EXTRACT_LOGFILE}
 
 # For DISTFILES definition
 $(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)

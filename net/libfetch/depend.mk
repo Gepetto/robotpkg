@@ -44,8 +44,8 @@ libfetch-build:
 	@${STEP_MSG} "Building libfetch in place"
 	${RUN}								\
 	cd ${LIBFETCH_SRCDIR} &&					\
-	${CONFIGURE_LOGFILTER} ${CONFIG_SHELL} ./configure -C &&	\
-	${CONFIGURE_LOGFILTER} ${SETENV}				\
+	${CONFIG_SHELL} ./configure -C &&				\
+	${SETENV}							\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}" ${MAKE_PROGRAM} depend all
   else

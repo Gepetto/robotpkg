@@ -24,15 +24,14 @@ include ../../mk/robotpkg.mk
 
 do-build:
 	${RUN}cd ${WRKSRC} && \
-	${BUILD_LOGFILTER} ${CC} ${CPPFLAGS} ${CFLAGS} -o tth tth.c ${LDFLAGS}
+	${CC} ${CPPFLAGS} ${CFLAGS} -o tth tth.c ${LDFLAGS}
 
 do-install:
-	${RUN}cd ${WRKSRC} && ${INSTALL_LOGFILTER} ${SH} -c "		\
-		${INSTALL_PROGRAM} tth ${PREFIX}/bin;			\
-		${INSTALL_PROGRAM} latex2gif ${PREFIX}/bin;		\
-		${INSTALL_PROGRAM} ps2gif ${PREFIX}/bin;		\
-		${INSTALL_PROGRAM} ps2png ${PREFIX}/bin;		\
-		${INSTALL_DATA} tth.1 ${PREFIX}/${PKGMANDIR}/man1;	\
-		${INSTALL_DATA} tth_manual.html ${DOCDIR};		\
-		${INSTALL_DATA} tth.gif ${DOCDIR};			\
-	"
+	${RUN}cd ${WRKSRC};					\
+	${INSTALL_PROGRAM} tth ${PREFIX}/bin;			\
+	${INSTALL_PROGRAM} latex2gif ${PREFIX}/bin;		\
+	${INSTALL_PROGRAM} ps2gif ${PREFIX}/bin;		\
+	${INSTALL_PROGRAM} ps2png ${PREFIX}/bin;		\
+	${INSTALL_DATA} tth.1 ${PREFIX}/${PKGMANDIR}/man1;	\
+	${INSTALL_DATA} tth_manual.html ${DOCDIR};		\
+	${INSTALL_DATA} tth.gif ${DOCDIR}

@@ -140,8 +140,11 @@ build-message:
 	  ${PHASE_MSG} "Rebuilding for ${PKGNAME}";			\
 	else								\
 	  ${PHASE_MSG} "Building for ${PKGNAME}";			\
-	fi;								\
-	>${BUILD_LOGFILE}
+	fi
+	${RUN}								\
+	${ECHO} "--- Environment ---" >${BUILD_LOGFILE};		\
+	${SETENV} >>${BUILD_LOGFILE};					\
+	${ECHO} "---" >>${BUILD_LOGFILE}
 
 
 # --- build-check-interactive (PRIVATE) ------------------------------
@@ -188,12 +191,14 @@ ${foreach _dir_,$(BUILD_DIRS),						\
 # build targets, and may be overridden within a package Makefile.
 #
 
+pre-build do-build post-build: SHELL=${BUILD_LOGFILTER}
+pre-build do-build post-build: .SHELLFLAGS=--
+
 do%build: .FORCE
 	${_OVERRIDE_TARGET}
 	${RUN}								\
 $(foreach _dir_,${BUILD_DIRS},						\
-	cd ${WRKSRC} && cd ${_dir_} &&					\
-	${BUILD_LOGFILTER} $(call BUILD_MAKE_CMD,${_dir_});		\
+	cd ${WRKSRC} && cd ${_dir_} && $(call BUILD_MAKE_CMD,${_dir_});	\
 )
 
 .PHONY: pre-build post-build

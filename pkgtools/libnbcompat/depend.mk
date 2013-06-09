@@ -42,12 +42,12 @@ pre-configure: libnbcompat-build
 libnbcompat-build:
 	@${STEP_MSG} "Building libnbcompat in place"
 	${RUN}								\
-	cd ${LIBNBCOMPAT_SRCDIR} && 					\
-	${CONFIGURE_LOGFILTER} ${SETENV}				\
+	cd ${LIBNBCOMPAT_SRCDIR} &&					\
+	${SETENV}							\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}" ${CONFIG_SHELL} ./configure	\
 		${LIBNBCOMPAT_CONFIGURE_ARGS}				\
-	&& ${CONFIGURE_LOGFILTER} ${MAKE_PROGRAM}
+	&& ${MAKE_PROGRAM}
   else
   # This is the regular version of libnbcompat package, for normal install
   #

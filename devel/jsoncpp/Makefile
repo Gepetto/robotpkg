@@ -57,13 +57,11 @@ post-extract:
 pre-configure: autoreconf
 
 doc-build:
-	${RUN} cd ${WRKSRC} && ${BUILD_LOGFILTER}			\
-		${PYTHON} doxybuild.py					\
+	${RUN} cd ${WRKSRC} && ${PYTHON} doxybuild.py			\
 		--dot=${PREFIX.graphviz}/dot --doxygen=${DOXYGEN}	\
 		--with-dot
 
 doc-install:
 	${RUN} cd ${WRKSRC} &&						\
 	cd dist/doxygen/jsoncpp-api-html-${PKGVERSION_NOREV} &&		\
-	${INSTALL_LOGFILTER}						\
-		${PAX} -v -r -w -p m . ${PREFIX}/${DOXYGEN_PLIST_DIR}/.
+	${PAX} -v -r -w -p m . ${PREFIX}/${DOXYGEN_PLIST_DIR}/.

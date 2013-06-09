@@ -132,12 +132,15 @@ real-extract: ${_REAL_EXTRACT_TARGETS}
 
 .PHONY: extract-message
 extract-message:
-	@${PHASE_MSG} "Extracting for ${PKGNAME}";			\
-	>${EXTRACT_LOGFILE}
+	@${PHASE_MSG} "Extracting for ${PKGNAME}"
+	${RUN}								\
+	${ECHO} "--- Environment ---" >${EXTRACT_LOGFILE};		\
+	${SETENV} >>${EXTRACT_LOGFILE};					\
+	${ECHO} "---" >>${EXTRACT_LOGFILE}
 
 .PHONY: extract-dir
 extract-dir:
-	${_PKG_SILENT}${_PKG_DEBUG}${MKDIR} ${EXTRACT_DIR}
+	${RUN}${MKDIR} ${EXTRACT_DIR}
 
 
 # --- extract-check-checkout (PRIVATE) -------------------------------------
@@ -290,13 +293,15 @@ EXTRACT_CMD?=	${EXTRACT_CMD_DEFAULT}
 
 DOWNLOADED_DISTFILE=	$${extract_file}
 
+pre-extract do-extract post-extract: SHELL=${EXTRACT_LOGFILTER}
+pre-extract do-extract post-extract: .SHELLFLAGS=--
+
 do%extract: makedirs .FORCE
 	${_OVERRIDE_TARGET}
 	${RUN}								\
 $(foreach __file__,${EXTRACT_ONLY},					\
 	extract_file=${_DISTDIR}/${__file__}; export extract_file;	\
-	cd ${WRKDIR} && cd ${EXTRACT_DIR} &&				\
-	${EXTRACT_LOGFILTER} ${EXTRACT_CMD};				\
+	cd ${WRKDIR} && cd ${EXTRACT_DIR} && ${EXTRACT_CMD};		\
 )
 
 pre-extract:

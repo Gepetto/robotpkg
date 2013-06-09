@@ -26,7 +26,7 @@ include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-build:
-	${RUN}cd ${WRKSRC}/tools/build/v2/engine && ${BUILD_LOGFILTER}	\
+	${RUN}cd ${WRKSRC}/tools/build/v2/engine &&			\
 	  ${SETENV} ${MAKE_ENV} ${SH} ./build.sh ${BOOST_TOOLSET}
 
 do-install:

@@ -53,14 +53,10 @@ post-configure:
 
 post-build:
 	${RUN}								\
-	${MKDIR} ${SWIG_DIR}/build;				\
-	${BUILD_LOGFILTER} ${JAVAC} -d ${SWIG_DIR}/build	\
-		${SWIG_DIR}/generated_src/*.java;		\
-	${BUILD_LOGFILTER} ${JAR} cf					\
-		${SWIG_DIR}/libjyarp.jar			\
-		-C ${SWIG_DIR}/build .;			\
+	${MKDIR} ${SWIG_DIR}/build;					\
+	${JAVAC} -d ${SWIG_DIR}/build ${SWIG_DIR}/generated_src/*.java;	\
+	${JAR} cf ${SWIG_DIR}/libjyarp.jar -C ${SWIG_DIR}/build .;	\
 	cd ${WRKDIR} && ${MKDIR} doc && cd doc &&			\
-	${BUILD_LOGFILTER}						\
 		${JAVADOC} ${SWIG_DIR}/generated_src/*.java
 
 do-install:

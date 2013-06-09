@@ -50,15 +50,15 @@ pre-configure: libarchive-build
 libarchive-build:
 	@${STEP_MSG} "Building libarchive in place"
 	${RUN}								\
-	cd ${LIBARCHIVE_SRCDIR} && 					\
-	${CONFIGURE_LOGFILTER} ${SETENV}				\
+	cd ${LIBARCHIVE_SRCDIR} &&					\
+	${SETENV}							\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}" MISSING=:			\
 		${CONFIG_SHELL} ./configure -C --disable-shared		\
 		--disable-bsdtar --disable-dependency-tracking		\
 		--disable-bsdcpio --without-expat --without-xml2	\
 		-without-lzmadec --without-lzma	--disable-acl		\
-	&& ${CONFIGURE_LOGFILTER} ${MAKE_PROGRAM}
+	&& ${MAKE_PROGRAM}
   else
   # This is the regular version of libarchive package, for normal install
   #

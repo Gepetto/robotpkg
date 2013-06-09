@@ -40,12 +40,12 @@ do-install: pellet-install-lib
 
 .PHONY: pellet-install-lib
 pellet-install-lib:
-	${RUN} cd ${WRKSRC}/lib && ${INSTALL_LOGFILTER}			\
+	${RUN} cd ${WRKSRC}/lib &&					\
 	${PAX} -v -r -w -p ma						\
 		pellet-*.jar aterm-*.jar jgrapht/*.jar xsdlib/*.jar	\
 		${PREFIX}/java/pellet/lib/
 
 .PHONY: pellet-install-doc
 pellet-install-doc:
-	${RUN} cd ${WRKSRC}/doc && ${INSTALL_LOGFILTER}			\
+	${RUN} cd ${WRKSRC}/doc &&					\
 	${PAX} -v -r -w -p ma . ${PREFIX}/share/doc/pellet/

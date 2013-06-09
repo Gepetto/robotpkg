@@ -27,7 +27,7 @@ do-build:
 	${ECHO} 'using ${BOOST_TOOLSET}::"${CXX}" ;'
 
 do-install:
-	${RUN}cd ${WRKSRC}/tools/build/v2 && ${INSTALL_LOGFILTER}	\
+	${RUN}cd ${WRKSRC}/tools/build/v2 &&				\
 	${PAX} -rw -pp -pm -s ':^./engine.*$$::' -s ':^.*\.orig$$::'	\
 	  . ${PREFIX}/share/boost-build
 	${RUN}${INSTALL_DATA} ${WRKDIR}/site-config.jam			\

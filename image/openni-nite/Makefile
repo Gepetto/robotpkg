@@ -67,32 +67,28 @@ include ../../mk/robotpkg.mk
 # This is a zipped .tar.bz2. Yay.
 do-extract:
 	${RUN}cd ${WRKDIR} &&				\
-	${EXTRACT_LOGFILTER} ${SH} -c "			\
-	  ${UNZIP_CMD} -ao ${DISTDIR}/${EXTRACT_ONLY} &&\
-	  ${BZIP2_CMD} -cd ${EXTRACT_ONLY:.zip=.bz2} |	\
-	  ${PAX} -v -r					\
-	"
+	${UNZIP_CMD} -ao ${DISTDIR}/${EXTRACT_ONLY} &&	\
+	${BZIP2_CMD} -cd ${EXTRACT_ONLY:.zip=.bz2} |	\
+	${PAX} -v -r
 
 do-install:
-	${RUN}cd ${WRKSRC} &&						\
-	${INSTALL_LOGFILTER} ${SH} -exc '				\
-	  ${CP} Bin/libXnVNite*.so ${DESTDIR}${PREFIX}/lib/;		\
-	  ${CP} Bin/libXnVCNITE*.so ${DESTDIR}${PREFIX}/lib/;		\
-	  ${CP} Bin/libXnVNITE.jni*.so ${DESTDIR}${PREFIX}/lib/;	\
-	  ${CP} Features_1_5_2/Bin/XnVSceneServer_1_5_2			\
-	    ${DESTDIR}${PREFIX}/bin/;					\
-	  ${CHMOD} a+x ${DESTDIR}${PREFIX}/bin/XnVSceneServer_1_5_2;	\
-	  ${CP} Include/* ${DESTDIR}${PREFIX}/include/nite/;		\
-	  ${CP} Bin/com.primesense.NITE.jar				\
-	    ${DESTDIR}${PREFIX}/share/java/;				\
-	  for f in Features_* Hands_*; do				\
-	    ${MKDIR} ${DESTDIR}${PREFIX}/etc/primesense/$$f;		\
-            ${CP} -r $$f/Data/* ${DESTDIR}${PREFIX}/etc/primesense/$$f;	\
-	    for l in $$f/Bin/lib*.so; do				\
-	      ${CP} $$l ${DESTDIR}${PREFIX}/lib/;			\
-	    done;							\
-	  done								\
-	'
+	${RUN}cd ${WRKSRC};						\
+	${CP} Bin/libXnVNite*.so ${DESTDIR}${PREFIX}/lib/;		\
+	${CP} Bin/libXnVCNITE*.so ${DESTDIR}${PREFIX}/lib/;		\
+	${CP} Bin/libXnVNITE.jni*.so ${DESTDIR}${PREFIX}/lib/;		\
+	${CP} Features_1_5_2/Bin/XnVSceneServer_1_5_2			\
+	  ${DESTDIR}${PREFIX}/bin/;					\
+	${CHMOD} a+x ${DESTDIR}${PREFIX}/bin/XnVSceneServer_1_5_2;	\
+	${CP} Include/* ${DESTDIR}${PREFIX}/include/nite/;		\
+	${CP} Bin/com.primesense.NITE.jar				\
+	  ${DESTDIR}${PREFIX}/share/java/;				\
+	for f in Features_* Hands_*; do					\
+	  ${MKDIR} ${DESTDIR}${PREFIX}/etc/primesense/$$f;		\
+          ${CP} -r $$f/Data/* ${DESTDIR}${PREFIX}/etc/primesense/$$f;	\
+	  for l in $$f/Bin/lib*.so; do					\
+	    ${CP} $$l ${DESTDIR}${PREFIX}/lib/;				\
+	  done;								\
+	done								\
 
 .PHONY: ${WRKDIR}/register
 ${WRKDIR}/register: ${ROBOTPKG_DIR}/middleware/openni/files/register

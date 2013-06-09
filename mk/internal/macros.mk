@@ -267,7 +267,7 @@ override define wordwrapfilter
 endef
 
 define _OVERRIDE_TARGET
-@case $*"" in "-") ;; *) ${ECHO} "don't know how to make $@."; exit 2;; esac
+@:;case $*"" in "-") ;; *) ${ECHO} "don't know how to make $@."; exit 2;; esac
 endef
 
 

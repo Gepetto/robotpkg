@@ -81,6 +81,7 @@ $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 ifneq (,$(foreach _,${_FETCH_ONLY},$(if $(wildcard ${DISTDIR}/$_),,no)))
   _FETCH_TARGETS+=	$(call add-barrier, bootstrap-depends, fetch)
+  _FETCH_TARGETS+=	fetch-message
   _FETCH_TARGETS+=	pre-fetch
   _FETCH_TARGETS+=	do-fetch
   _FETCH_TARGETS+=	post-fetch
@@ -91,6 +92,7 @@ fetch: ${_FETCH_TARGETS}; @:
 
 ifneq (,$(foreach _,${_ALLFILES},$(if $(wildcard ${DISTDIR}/$_),,no)))
   _FETCH_ALL_TARGETS+=	$(call add-barrier, bootstrap-depends, fetch)
+  _FETCH_ALL_TARGETS+=	fetch-message
   _FETCH_ALL_TARGETS+=	pre-fetch
   _FETCH_ALL_TARGETS+=	do-fetch-all-file
   _FETCH_ALL_TARGETS+=	post-fetch
@@ -99,12 +101,23 @@ endif
 .PHONY: fetch-all
 fetch-all: ${_FETCH_ALL_TARGETS}; @:
 
+.PHONY: fetch-message
+fetch-message:
+	@${PHASE_MSG} "Fetching for ${PKGNAME}"
+	${RUN}								\
+	${ECHO} "--- Environment ---" >${FETCH_LOGFILE};		\
+	${SETENV} >>${FETCH_LOGFILE};					\
+	${ECHO} "---" >>${FETCH_LOGFILE}
+
 
 # --- pre-fetch, do-fetch, post-fetch (PUBLIC, override) -------------
 #
 # {pre,do,post}-fetch are the heart of the package-customizable
 # fetch targets, and may be overridden within a package Makefile.
 #
+
+pre-fetch do-fetch-file do-fetch-all-file post-fetch: SHELL=${FETCH_LOGFILTER}
+pre-fetch do-fetch-file do-fetch-all-file post-fetch: .SHELLFLAGS=--
 
 do%fetch: do-fetch-file .FORCE
 	${_OVERRIDE_TARGET}
@@ -138,15 +151,15 @@ _FETCH_ENV=\
 	FIND=$(call quote,${FIND}) SORT=$(call quote,${SORT})		\
 	CHECKSUM=$(call quote,${_CHECKSUM_CMD})
 
-_FETCH_SCRIPT=${FETCH_LOGFILTER} ${SETENV} ${_FETCH_ENV}		\
-	FETCH_CMD=$(call quote,${_FETCH_CMD})				\
+_FETCH_SCRIPT=${SETENV} ${_FETCH_ENV}					\
+	FETCH_CMD=${_FETCH_CMD}						\
 	FETCH_BEFORE_ARGS=$(call quote,${_FETCH_BEFORE_ARGS})		\
 	FETCH_AFTER_ARGS=$(call quote,${_FETCH_AFTER_ARGS})		\
 	FETCH_RESUME_ARGS=$(call quote,${_FETCH_RESUME_ARGS})		\
 	FETCH_OUTPUT_ARGS=$(call quote,${_FETCH_OUTPUT_ARGS})		\
 	${SH} ${ROBOTPKG_DIR}/mk/fetch/fetch
 
-_FETCH_SCRIPT_BACKUP=${FETCH_LOGFILTER} ${SETENV} ${_FETCH_ENV}		\
+_FETCH_SCRIPT_BACKUP=${SETENV} ${_FETCH_ENV}				\
 	FETCH_CMD=${TNFTP} FETCH_BEFORE_ARGS=-R FETCH_OUTPUT_ARGS=-o	\
 	${SH} ${ROBOTPKG_DIR}/mk/fetch/fetch
 
