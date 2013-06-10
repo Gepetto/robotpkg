@@ -1,0 +1,19 @@
+Various improvements, basically:
+ 
+	- add missing gdhe requirement
+	- fix the library pass
+	- pass EXTRA_COMPILE_FLAGS possibly needed by other clients
+
+--- jafar-gdhe.pc.in.orig	2013-06-10 18:27:33.398713823 +0200
++++ jafar-gdhe.pc.in	2013-06-10 18:27:44.582713541 +0200
+@@ -6,6 +6,7 @@
+ Name: jafar-gdhe
+ Description: Jafar module to talk to a gdhe server in c++
+ Version: 0.1
+-Requires: jafar-kernel,jafar-jmath
+-Libs: -L${CMAKE_INSTALL_PREFIX} -ljafar-gdhe
+-Cflags: -I${CMAKE_INSTALL_PREFIX}/include/jafar ${IMPORTED_HEADERS}
++Requires: jafar-kernel,jafar-jmath,gdhe
++Libs: -L${CMAKE_INSTALL_PREFIX}/lib -ljafar-gdhe
++Cflags: -I${CMAKE_INSTALL_PREFIX}/include/jafar ${IMPORTED_HEADERS}  ${EXTRA_COMPILE_FLAGS}
++

@@ -3,7 +3,7 @@
 #
 
 JAFAR_PKG=		gdhe-0.1
-PKGREVISION=		2
+PKGREVISION=		3
 
 CATEGORIES=		graphics
 JAFAR_COMMENT=		module to talk to a GDHE server

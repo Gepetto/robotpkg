@@ -1,0 +1,13 @@
+Make sure that the library is linked with gdhe
+
+--- CMakeLists.txt.orig	2013-06-10 18:25:21.418717129 +0200
++++ CMakeLists.txt	2013-06-10 18:25:50.646716397 +0200
+@@ -157,6 +157,8 @@
+ target_link_libraries(jafar-gdhe ${Boost_LIBRARIES})
+ message(STATUS "--> linking gdhe to Boost libraries")
+ 
++target_link_libraries(jafar-gdhe ${GDHE_LIBRARIES})
++
+ # set library properties: version, output directory, compiler flags and link flags
+ set_target_properties(jafar-gdhe PROPERTIES VERSION 0.1 SOVERSION 0)
+ if(NOT "${EXTRA_COMPILE_FLAGS}" STREQUAL "")
