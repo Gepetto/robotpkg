@@ -93,7 +93,7 @@ BULK_BRK?=\
   ${SH} -c '${ERROR_MSG} "$$@"; ${ECHO} "$$@" >>$$0' ${_bulklog_broken}
 
 override define _bulklog_filter
-${_LOGFILTER} -r ${_LOGFILTER_FLAGS} -l ${_bulklog_bulk} -- ${SH}
+${_LOGFILTER} ${_LOGFILTER_FLAGS} -r -l ${_bulklog_bulk}
 endef
 
 

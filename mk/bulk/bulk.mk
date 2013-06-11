@@ -157,7 +157,8 @@ _REAL_BULK_TARGETS+=	do-bulk
 _REAL_BULK_TARGETS+=	bulk-remove-installed
 
 .PHONY: real-bulk
-real-bulk: override SHELL:=${_bulklog_filter}
+real-bulk: SHELL=${_bulklog_filter}
+real-bulk: .SHELLFLAGS=--
 real-bulk: ${_REAL_BULK_TARGETS};
 
 

@@ -35,6 +35,7 @@ status=noverb
 nolog=verb
 nostatus=:
 interactive=
+raw=
 
 usage() {
     ${ECHO} 1>&2 "usage: $self [-n] [-v] [-i] [-l file] [--] arg0 [arg...]"
@@ -47,6 +48,7 @@ while ${TEST} $# -gt 0; do
 	-n)     nofilter=yes; interactive=; log=verb; nolog=verb; status=:
                 shift;;
 	-l)     logfile=$2; shift 2;;
+	-r)     raw=yes; shift;;
 
         -c|--)  shift; break ;;
         -*)     ${ECHO} 1>&2 "$self: unknown option -- ${1#-}"
@@ -173,7 +175,9 @@ test -n "${civis}" && ${MSG} ${civis}
 exec 3<&0 4>&1 5>&1
 ${TEST} -t 3 && stty -icanon -echo min 0 <&3 2>/dev/null
 
-tofile "Running $@"
+if ${TEST} -z "$raw"; then
+  tofile "Running $@"
+fi;
 result=`{ { run "$@" | filter; } 2>&1 >&5 | errfilter; } 4>&1 >&5`
 
 ${TEST} -t 3 && stty icanon echo <&3 2>/dev/null
