@@ -1,0 +1,20 @@
+Fix include_directories order (external last)
+
+--- src/yarp/CMakeLists.txt~	2012-07-31 15:33:40.000000000 +0200
++++ src/yarp/CMakeLists.txt	2013-06-11 13:58:36.345903193 +0200
+@@ -5,7 +5,6 @@
+ 
+ GET_PROPERTY(YARP_TREE_INCLUDE_DIRS TARGET YARP_OS PROPERTY INCLUDE_DIRS)
+ INCLUDE_DIRECTORIES(${YARP_TREE_INCLUDE_DIRS})
+-include_directories(${ACE_INCLUDE_DIRS})
+ get_filename_component(YARP_CPP yarp.cpp ABSOLUTE) # make absolute for later reference
+ ADD_EXECUTABLE(yarp ${YARP_CPP})
+ TARGET_LINK_LIBRARIES(yarp YARP_init)
+@@ -17,6 +16,7 @@
+   SET(YARPSERVER_NAME yarpserver)
+ ENDIF ()
+ 
++include_directories(${ACE_INCLUDE_DIRS})
+ ADD_EXECUTABLE(${YARPSERVER_NAME} yarpserver.cpp)
+ TARGET_LINK_LIBRARIES(${YARPSERVER_NAME} YARP_init)
+ 

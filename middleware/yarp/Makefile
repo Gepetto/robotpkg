@@ -2,22 +2,20 @@
 # Created:			Anthony Mallet on Thu, 22 Jan 2009
 #
 
+PKGREVISION=		1
 DISTNAME=		yarp-2.3.20.1
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
-MASTER_REPOSITORY=	svn https://yarp0.svn.sourceforge.net/svnroot/yarp0/trunk/yarp2
+MASTER_REPOSITORY=	git git://github.com/robotology/yarp.git
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
 COMMENT=		Yet Another Robot Platform
 LICENSE=		gnu-lgpl-v2
 
-
-CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
-CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
-CMAKE_ARGS+=		-DACE_LINK_FLAGS=-L${PREFIX.ace}/lib
+CONFIGURE_ENV+=		ACE_ROOT=${PREFIX.ace}
 CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
-CMAKE_ARGS+=		-DCREATE_YARPSERVER3=TRUE
+CMAKE_ARGS+=		-DEXPERIMENTAL_ACEFIND=TRUE
 
 # XXX needs something more generic
 CXXFLAGS+=		-pthread
@@ -31,7 +29,6 @@ PKG_OPTION_DESCR.doc?=	Install GUI utilities
 define PKG_OPTION_SET.gui
   CMAKE_ARGS+=		-DCREATE_GUIS=TRUE
 
-  include ../../pkgtools/pkg-config/depend.mk
   include ../../mk/sysdep/gtk.mk
   include ../../mk/sysdep/gtkmm.mk
   include ../../mk/sysdep/libglademm.mk
@@ -39,6 +36,7 @@ define PKG_OPTION_SET.gui
 endef
 
 include ../../middleware/ace/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/sqlite3.mk
 include ../../mk/language/c.mk

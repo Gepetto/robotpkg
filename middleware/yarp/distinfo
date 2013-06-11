@@ -2,3 +2,6 @@ SHA1 (yarp-2.3.20.1.tar.gz) = 1930fb9476ed5a7792404747d2fe250b3476d646
 RMD160 (yarp-2.3.20.1.tar.gz) = 00b2088e0f39138d7b397593d4d10cbba51855b2
 Size (yarp-2.3.20.1.tar.gz) = 6429402 bytes
 SHA1 (patch-aa) = bb02949afce0d68859c5a14380260138232c3cdb
+SHA1 (patch-ab) = d35385bd01f26d9b631b8a91fbbb3e0803e0b257
+SHA1 (patch-ac) = 7dd8e9d58649d8a29aac1360cfa73a2261183257
+SHA1 (patch-ad) = ba27bf5198226848b54c8be9e4546d742ba18d40
