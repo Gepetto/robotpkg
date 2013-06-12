@@ -120,7 +120,9 @@ ifndef _ROBOTPKG_NOW
 endif
 
 # Run ${MAKE} recursively.
-RECURSIVE_MAKE=${MAKE}
+RECURSIVE_MAKE_VARS+=\
+  RECURSIVE_PKGPATH='${PKGPATH} $(filter-out ${PKGPATH},${RECURSIVE_PKGPATH})'
+RECURSIVE_MAKE=${MAKE} ${RECURSIVE_MAKE_VARS}
 MAKEFLAGS+=--no-print-directory
 
 # Need to do this, don't know why this works but otherwise MAKEOVERRIDES is

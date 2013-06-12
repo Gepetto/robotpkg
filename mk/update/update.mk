@@ -59,6 +59,9 @@ _UPDATE_TARGETS+=	cbbh
 _UPDATE_TARGETS+=	update-message
 _UPDATE_TARGETS+=	pre-update
 _UPDATE_TARGETS+=	update-create-dlist
+ifeq (yes,$(call exists,${_UPDATE_LIST}))
+  _UPDATE_TARGETS+=	update-check-recursion
+endif
 ifeq (,$(filter replace,${UPDATE_TARGET}))
   ifeq (,$(filter confirm,${MAKECMDGOALS}))
     _UPDATE_TARGETS+=	$(call if-outdated-pkg,update-deinstall-dlist)
@@ -270,3 +273,35 @@ update-deinstall-dlist:
 	  ${RECURSIVE_MAKE} deinstall					\
 		_UPDATE_INPROGRESS=yes DEINSTALLDEPENDS=yes;		\
 	fi
+
+# avoid update recursions
+.PHONY: update-check-recursion
+update-check-recursion:
+	${RUN}								\
+	recursive='${RECURSIVE_PKGPATH}';				\
+	${TEST} -n "$$recursive" || exit 0;				\
+	conflicts=;							\
+	${ERROR_MSG} $$recursive;\
+	while IFS=: read dir pkg <&9; do				\
+	  case " $$recursive " in *" $$dir "*)				\
+	    conflicts="$$conflicts $$dir";;				\
+	  esac;								\
+	done 9<${_UPDATE_LIST};						\
+									\
+	${TEST} -n "$$conflicts" || exit 0;				\
+	${ERROR_MSG} ${hline};						\
+	${ERROR_MSG} "$${bf}Another update is in progress for"		\
+		"${PKGNAME}$${rm}";					\
+	${ERROR_MSG} "and involves packages in:";			\
+	for dir in $$conflicts; do					\
+	  ${ERROR_MSG} "		$$dir";				\
+	done;								\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "You must first complete the previous update by"	\
+		"running";						\
+	${ERROR_MSG} "  '$${bf}${MAKE} update$${rm}' in ${PKGPATH}";	\
+	${ERROR_MSG} "or cancel it by running";				\
+	${ERROR_MSG} "  '$${bf}${MAKE} clean confirm$${rm}' in"		\
+		"${PKGPATH}.";						\
+	${ERROR_MSG} ${hline};						\
+	exit 2;
