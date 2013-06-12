@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Mon, 29 Mar 2010
 #
 
-DISTNAME=	robotpkgdb-${PKGVERSION_NOREV}
-PKGVERSION=	$(shell ${DATE} -u '+%Y%m%d')
+DISTNAME=	robotpkgdb-${VERSION}
 CATEGORIES=	pkgtools
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -12,6 +11,9 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/openrobots/robotpkg/pkgtools/pkgdb/index.html
 COMMENT=	A database of all packages included in robotpkg
 LICENSE=	2-clause-bsd
+
+include ../../mk/robotpkg.prefs.mk # for DATE
+VERSION:=	$(shell ${DATE} -u '+%Y%m%d')
 
 NO_CHECKSUM=	yes
 NO_CONFIGURE=	yes
