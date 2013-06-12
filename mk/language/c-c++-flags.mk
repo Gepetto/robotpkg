@@ -8,7 +8,8 @@ _language_c_cxx_flags_mk:=defined
 # directories) that should be added to the compiler search paths.
 #
 CPPFLAGS+=$(addprefix -I,						\
-	$(call lappend, $(filter-out /usr/include,			\
+	$(call lappend,							\
+	  $(filter-out $(addprefix /usr/,${SYSINCDIR} include),		\
 	  $(foreach _pkg_,${DEPEND_USE},$(realpath			\
 	    $(addprefix ${PREFIX.${_pkg_}}/,${INCLUDE_DIRS.${_pkg_}})	\
 	    ${INCLUDE_DIRS.${_pkg_}})))))

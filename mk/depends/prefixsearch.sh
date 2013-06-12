@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2008-2012 LAAS/CNRS
+# Copyright (c) 2008-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -67,6 +67,7 @@ set -e          # exit on errors
 
 : ${ERROR_MSG:=${ECHO}}
 
+: ${SYSINCDIR:=include}
 : ${SYSLIBDIR:=lib}
 : ${SHLIBTYPE:=elf}
 
@@ -164,18 +165,22 @@ bracesubst() {
     '
 }
 
-syslibsubst() {
-    # perform SYSLIBDIR substitution: if a file spec starts with lib/
-    # and at least one of the directories $p/${SYSLIBDIR} exists, the lib/
-    # in file spec is changed to a pattern matching all existing
-    # $p/${SYSLIBDIR}/. Otherwise nothing is changed.
-    ${AWK} -v _syslibdir="$_syslibdir" -v p="$1" '
-	BEGIN { split(_syslibdir, dirs); }
+sysdirsubst() {
+    # perform SYSINCDIR and SYSLIBDIR substitution: if a file spec starts with
+    # include/ or lib/ and at least one of the directories $p/${SYSINCDIR} or
+    # $p/${SYSLIBDIR} exists, the include/ lib/ in file spec is changed to a
+    # pattern matching all existing $p/${SYSLIBDIR}/. Otherwise nothing is
+    # changed.
+    ${AWK} -v _sysincdir="$_sysincdir" -v _syslibdir="$_syslibdir" -v p="$1" '
+	BEGIN { split(_sysincdir, idirs); split(_syslibdir, ldirs); }
 	{
 		for(i=1; i<=NF; i++) {
-			if (match($i, "^" p "/lib/")) {
+			if (match($i, "^" p "/include/")) {
 				_r=substr($i, RLENGTH+1)
-				for(d in dirs) print p "/" dirs[d] "/" _r;
+				for(d in idirs) print p "/" idirs[d] "/" _r;
+			} else if (match($i, "^" p "/lib/")) {
+				_r=substr($i, RLENGTH+1)
+				for(d in ldirs) print p "/" ldirs[d] "/" _r;
 			} else print $i;
 		}
 	}
@@ -227,6 +232,12 @@ vrepl='y/-/./;q'
 for p in `bracesubst $sysprefix`; do
     ${MSG} "searching in $p"
 
+    _sysincdir=
+    for d in ${SYSINCDIR}; do
+        ${TEST} ! -d "$p/$d" || _sysincdir="$_sysincdir $d"
+    done
+    : ${_sysincdir:=include}
+
     _syslibdir=
     for d in ${SYSLIBDIR}; do
         ${TEST} ! -d "$p/$d" || _syslibdir="$_syslibdir $d"
@@ -243,7 +254,7 @@ for p in `bracesubst $sysprefix`; do
 
 	# iterate over file specs after glob and {,} substitutions and
 	# test existence
-	for match in `bracesubst $p/$f | syslibsubst $p`; do
+	for match in `bracesubst $p/$f | sysdirsubst $p`; do
 	    if ! ${TEST} -e "$match"; then
                 # special case: make /usr optional in /usr/{bin,lib}
 		alt=`optusr $match`
@@ -312,7 +323,7 @@ for p in `bracesubst $sysprefix`; do
 	    match=;
 	done
 	if ${TEST} -z "$match"; then
-	    for match in `bracesubst $p/$f | syslibsubst $p`; do
+	    for match in `bracesubst $p/$f | sysdirsubst $p`; do
 		for alt in $match `shlibext $match`; do
 		    for alt in $alt `optusr $alt`; do
 			${MSG} "missing:	$alt"

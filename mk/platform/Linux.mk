@@ -2,6 +2,15 @@
 # Variable definitions for the Linux operating system.
 #
 
+# System headers directories
+ifeq (${MACHINE_ARCH},x86_64)	# 64bits arch
+  SYSINCDIR?=	include/${MACHINE_ARCH}-linux-gnu include
+else				# 32bits arch
+  SYSINCDIR?=\
+    $(patsubst /usr/%,%,$(wildcard /usr/include/i[3456]86-linux-gnu))	\
+    include
+endif
+
 # System library directories
 _syslibdir=$(patsubst /usr/%,%,$(wildcard /usr/lib/${MACHINE_ARCH}-linux-gnu))
 ifeq (${MACHINE_ARCH},x86_64)	# 64bits arch

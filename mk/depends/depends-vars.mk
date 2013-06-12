@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -81,6 +81,7 @@ endif
 _PREFIXSEARCH_CMD=\
   ${SETENV} ECHO=${ECHO} TEST=${TEST} SED=${SED} AWK=${AWK}		\
   PKG_ADMIN_CMD=$(call quote,${PKG_ADMIN_CMD})				\
+  $(if ${SYSINCDIR},SYSINCDIR=$(call quote,$(strip ${SYSINCDIR})))	\
   $(if ${SYSLIBDIR},SYSLIBDIR=$(call quote,$(strip ${SYSLIBDIR})))	\
   $(if ${_OPSYS_SHLIB_TYPE},SHLIBTYPE=${_OPSYS_SHLIB_TYPE})		\
   ${SH} ${ROBOTPKG_DIR}/mk/depends/prefixsearch.sh
