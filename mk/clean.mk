@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2011 LAAS/CNRS
+# Copyright (c) 2006,2009-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -62,14 +62,12 @@ ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
 else
   do-clean:
 endif
-	${RUN}dirs="$(realpath ${WRKDIR}				\
-		$(if ${WRKOBJDIR},${BUILD_DIR} ${WRKDIR_BASENAME}))";	\
-	for dir in $$dirs; do						\
+	${RUN} for dir in "$(realpath ${WRKDIR})"; do			\
 	  if ! ${TEST} -e "$$dir"; then continue; fi;			\
 	  if ${TEST} -w "$$dir"; then					\
 	    ${RM} -rf $$dir;						\
 	  else								\
-	    ${STEP_MSG} $$dir" not writable, skipping"; 		\
+	    ${STEP_MSG} $$dir" not writable, skipping";			\
 	  fi;								\
         done
 
@@ -108,29 +106,47 @@ endif
 $(call require,${ROBOTPKG_DIR}/mk/update/update-vars.mk)
 
 ifeq (yes,$(call exists,${_UPDATE_LIST}))
-  .PHONY: clean-confirm-update
-  clean-confirm-update:
-	@${TEST} -n "`${SED} -e '1d;q' < ${_UPDATE_LIST}`" || exit 0;	\
-	${ERROR_MSG} ${hline};						\
-	${ERROR_MSG} "$${bf}An update is in progress for"		\
-		"${PKGPATH}$${rm}";					\
-	${ERROR_MSG} "The following packages are still to be"		\
-		"updated:";						\
+  $(call require,${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
+  .PHONY: clean-save-update-list
+  clean-save-update-list:
+	${RUN} ${TEST} -s ${_UPDATE_LIST} || exit 0;			\
+	header=;							\
 	while IFS=: read dir pkg; do					\
-	  ${TEST} "$$dir" != "${PKGPATH}" || continue;			\
-	  ${ERROR_MSG} "		$$pkg in $$dir";		\
+	  ${TEST} "$$dir" = "${PKGPATH}" && pkg='${PKGNAME}';		\
+	  ${PKG_INFO} -qe "$$pkg" && continue;				\
+	  if ${TEST} -z "$$header"; then				\
+	    header=yes;							\
+	    ${WARNING_MSG} ${hline};					\
+	    ${WARNING_MSG} "$${bf}An update is in progress for"		\
+		"${PKGPATH}$${rm}";					\
+	    ${WARNING_MSG} "The following packages are still to be"	\
+		"updated:";						\
+	  fi;								\
+	  ${WARNING_MSG} "		$$pkg in $$dir";		\
 	done <${_UPDATE_LIST};						\
-	${ERROR_MSG} "";						\
-	${ERROR_MSG} "You must confirm the cleaning action by doing";	\
-	${ERROR_MSG} "		'$${bf}${MAKE} clean confirm$${rm}' in"	\
-		"${PKGPATH}";						\
-	${ERROR_MSG} ${hline};						\
-	${FALSE}
+        ${TEST} -n "$$header" || exit 0;				\
+									\
+	${RM} -f ${WRKDIR}~uplist;					\
+	${MV} ${_UPDATE_LIST} ${WRKDIR}~update-list;			\
+									\
+	${WARNING_MSG} "";						\
+	${WARNING_MSG} "Run '$${bf}${MAKE} update$${rm}' in ${PKGPATH}";\
+	${WARNING_MSG} "to complete the update or"			\
+		"'$${bf}${MAKE} clean confirm$${rm}' to cancel it.";	\
+	${WARNING_MSG} ${hline}
 
   ifeq  (,$(filter confirm,${MAKECMDGOALS}))
-    _CLEAN_TARGETS+=	clean-confirm-update
+    _CLEAN_TARGETS+=	clean-save-update-list
   endif
 endif
+
+.PHONY: clean-restore-update-list
+clean-restore-update-list:
+	${RUN} ${TEST} -f ${WRKDIR}~update-list || exit 0;		\
+	${STEP_MSG} "Preserving update-in-progress list";		\
+	${MKDIR} ${WRKDIR};						\
+	${MV} ${WRKDIR}~update-list ${_UPDATE_LIST}
 
 
 # --- clean ----------------------------------------------------------------
@@ -140,6 +156,7 @@ endif
 _CLEAN_TARGETS+=	clean-message
 _CLEAN_TARGETS+=	pre-clean
 _CLEAN_TARGETS+=	do-clean
+_CLEAN_TARGETS+=	clean-restore-update-list
 _CLEAN_TARGETS+=	post-clean
 
 .PHONY: clean
