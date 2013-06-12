@@ -94,13 +94,20 @@ do%update: .FORCE
 	${_OVERRIDE_TARGET}
 	${RUN}${TEST} -f ${_UPDATE_LIST} || exit 0;			\
 	target='$(filter-out confirm,${UPDATE_TARGET})';		\
-	${CP} ${_UPDATE_LIST} ${_UPDATE_LIST:=.current};		\
 	while IFS=: read dir pkg <&9; do				\
 	  if ${TEST} "$$dir" = "${PKGPATH}"; then			\
+	    if ${PKG_INFO} -qe '${PKGNAME}'; then			\
+	      ${STEP_MSG} "${PKGNAME} was already reinstalled";		\
+	      continue;							\
+	    fi;								\
 	    t="${UPDATE_TARGET}";					\
 	  else								\
-	    ${PHASE_MSG} "Verifying $$target for $$dir";		\
+	    if p=`${PKG_INFO} -E "$$pkg"`; then				\
+	      ${STEP_MSG} "$$pkg was already reinstalled";		\
+	      continue;							\
+	    fi;								\
 	    t=$$target;							\
+	    ${PHASE_MSG} "Verifying $$target for $$dir";		\
 	  fi;								\
 	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
 	    cd "${ROBOTPKG_DIR}/$${dir}" &&				\
@@ -118,9 +125,7 @@ do%update: .FORCE
 	  else								\
 	    ${PHASE_MSG} "Skipping nonexistent directory $${dir}";	\
 	  fi;								\
-	  ${CP} ${_UPDATE_LIST} ${_UPDATE_LIST:=.old};			\
-	  ${SED} 1d <${_UPDATE_LIST:=.old} >${_UPDATE_LIST};		\
-	done 9<${_UPDATE_LIST:=.current}
+	done 9<${_UPDATE_LIST}
 
 .PHONY: pre-update post-update
 
@@ -150,7 +155,7 @@ update-up-to-date: update-message
 # clean update files
 .PHONY: update-clean
 update-clean:
-	${RUN}${TEST} -f ${_UPDATE_LIST:=.clean} || exit 0;		\
+	${RUN}${TEST} -f ${_UPDATE_LIST} || exit 0;			\
 	while IFS=: read dir pkg <&9;do					\
 	  if ${TEST} "$$dir" = "${PKGPATH}"; then continue; fi;		\
 	  if ${TEST} -f "${ROBOTPKG_DIR}/$${dir}/Makefile"; then	\
@@ -159,7 +164,7 @@ update-clean:
 	  else								\
 	    nodir=$$nodir" "$$dir;					\
 	  fi;								\
-	done 9<${_UPDATE_LIST:=.clean};					\
+	done 9<${_UPDATE_LIST};						\
 	if ${TEST} -n "$$noclean"; then					\
 	    ${WARNING_MSG} ${hline};					\
 	    ${WARNING_MSG} "Unable to clean for:";			\
@@ -181,8 +186,7 @@ update-clean:
 	    ${ERROR_MSG} ${hline};					\
 	    exit 2;							\
 	fi
-	${RUN} ${RM} -f ${_UPDATE_LIST} ${_UPDATE_LIST:=.current};	\
-	${RM} -f ${_UPDATE_LIST:=.old} ${_UPDATE_LIST:=.clean};		\
+	${RUN} ${RM} -f ${_UPDATE_LIST};				\
 	if ${TEST} "$(call isyes,${UPDATE_CLEAN})"; then		\
 	  ${RECURSIVE_MAKE} cleaner;					\
 	fi;								\
@@ -242,8 +246,7 @@ ${_UPDATE_LIST}: $(call if-outdated-pkg,.FORCE)
 	  fi;								\
 	else								\
 	  ${ECHO} '${PKGPATH}:${PKGREQD}' >$@;				\
-	fi;								\
-	${CP} $@ ${@:=.clean}
+	fi
 
 # deinstall existing packages
 .PHONY: update-deinstall-dlist
