@@ -68,7 +68,7 @@ override define _pkgset_recursive
 		$(if $(call isyes,${PKGSET_STRICT.$*}),-s) $2 $$i	\
 		$(call quote,${PKGSET.$*})				\
 	| while IFS=: read dir pkg; do					\
-	  if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;	\
+	  if ${TEST} -z "$$dir"; then ${ECHO_MSG} "$$pkg"; continue; fi;\
 	  if ${TEST} "$$dir" = "***"; then				\
 	    ${ERROR_MSG} "${hline}";					\
 	    ${ERROR_MSG} "$${bf}Cannot $1 for $*:$${rm}";		\
