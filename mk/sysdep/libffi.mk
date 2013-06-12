@@ -16,15 +16,8 @@ DEPEND_USE+=		libffi
 
 DEPEND_ABI.libffi?=	libffi>=3
 
-include ../../mk/robotpkg.prefs.mk # MACHINE_ARCH
-ifeq (i386,${MACHINE_ARCH})
-  sysinc.libffi=i[3456]86-linux-gnu
-else
-  sysinc.libffi=${MACHINE_ARCH}-linux-gnu
-endif
-
 SYSTEM_SEARCH.libffi=\
-	'{,lib/libffi*/}include/{,${sysinc.libffi}/}ffi.h'		\
+	'{,lib/libffi*/}include/ffi.h'					\
 	'lib/libffi.{so,a}'						\
 	'lib/pkgconfig/libffi.pc:/Version/s/[^0-9.]//gp'
 
