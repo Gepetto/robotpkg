@@ -11,5 +11,8 @@ include/softMotion/softMotionConst.h
 include/softMotion/softMotionStruct.h
 include/softMotion/softMotionStructGenom.h
 include/softMotion/time_proto.h
+${PLIST.tcl}lib/libjerk.so
 lib/libsoftMotion.so
 lib/pkgconfig/softMotion-libs.pc
+${PLIST.tcl}share/softMotion/jerkTimeViewer.tcl
+${PLIST.tcl}share/softMotion/pkgIndex.tcl
