@@ -1,0 +1,19 @@
+For an unknown reason, lib directories in ROS_PACKAGE_PATH are not searched by
+this function. This is however required for at least locating 'rosout' when
+'roscore' is started.
+
+Note: with CMAKE_PREFIX_PATH set to the ros prefix, this magically works. But
+this does not make sense at all to set CMAKE_PREFIX_PATH at runtime.
+
+--- core/roslib/src/roslib/packages.py~	2013-06-19 00:46:45.000000000 +0200
++++ core/roslib/src/roslib/packages.py	2013-06-23 00:18:47.000000000 +0200
+@@ -498,6 +498,9 @@
+     for search_path in search_paths:
+         matches.extend(_find_resource(search_path, resource_name, filter_fn=filter_fn))
+ 
++    # xxx must also check ../../lib !?
++    matches.extend(_find_resource(os.path.join(pkg_path,"..","..","lib",pkg),
++                                  resource_name, filter_fn=filter_fn))
+     matches.extend(_find_resource(pkg_path, resource_name, filter_fn=filter_fn))
+ 
+     # Uniquify the results, in case we found the same file twice, while keeping order

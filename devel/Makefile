@@ -22,8 +22,8 @@ SUBDIR+=	libedit
 SUBDIR+=	log4cxx
 SUBDIR+=	mkdep
 SUBDIR+=	py-simpleparse
-SUBDIR+=	ros-core
 SUBDIR+=	ros-catkin
+SUBDIR+=	ros-ros
 SUBDIR+=	roscpp-core
 SUBDIR+=	swig
 
