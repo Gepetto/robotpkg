@@ -1,0 +1,29 @@
+. CPATH is definitely useless at runtime
+. LD_LIBRARY_PATH is also useless in robotpkg. And better not set it anyway.
+
+--- cmake/templates/_setup_util.py.in~	2013-06-22 23:04:10.000000000 +0200
++++ cmake/templates/_setup_util.py.in	2013-06-22 23:15:27.000000000 +0200
+@@ -57,8 +57,6 @@
+ # subfolder of workspace prepended to CMAKE_PREFIX_PATH
+ ENV_VAR_SUBFOLDERS = {
+     'CMAKE_PREFIX_PATH': '',
+-    'CPATH': 'include',
+-    'LD_LIBRARY_PATH' if not IS_DARWIN else 'DYLD_LIBRARY_PATH': '@CATKIN_GLOBAL_LIB_DESTINATION@',
+     'PATH': '@CATKIN_GLOBAL_BIN_DESTINATION@',
+     'PKG_CONFIG_PATH': 'lib/pkgconfig',
+     'PYTHONPATH': '@PYTHON_INSTALL_DIR@',
+--- cmake/templates/setup.sh.in~	2013-06-18 23:56:13.000000000 +0200
++++ cmake/templates/setup.sh.in	2013-06-22 23:19:46.000000000 +0200
+@@ -22,12 +22,6 @@
+ 
+ # make sure to export all environment variables
+ export CMAKE_PREFIX_PATH
+-export CPATH
+-if [ $_IS_DARWIN -eq 0 ]; then
+-  export LD_LIBRARY_PATH
+-else
+-  export DYLD_LIBRARY_PATH
+-fi
+ export PATH
+ export PKG_CONFIG_PATH
+ export PYTHONPATH

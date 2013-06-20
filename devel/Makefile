@@ -3,7 +3,6 @@
 
 COMMENT=	Software development tools
 
-SUBDIR+=	catkin
 SUBDIR+=	cortex-sdk
 SUBDIR+=	boost-build
 SUBDIR+=	boost-headers
@@ -24,6 +23,7 @@ SUBDIR+=	log4cxx
 SUBDIR+=	mkdep
 SUBDIR+=	py-simpleparse
 SUBDIR+=	ros-core
+SUBDIR+=	ros-catkin
 SUBDIR+=	roscpp-core
 SUBDIR+=	swig
 

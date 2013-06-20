@@ -1,0 +1,12 @@
+Do not install patch .orig files
+
+--- CMakeLists.txt~	2013-06-19 01:16:00.000000000 +0200
++++ CMakeLists.txt	2013-06-20 17:39:16.057129720 +0200
+@@ -29,6 +29,7 @@
+ install(DIRECTORY cmake
+   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+   USE_SOURCE_PERMISSIONS
++  PATTERN "*.orig" EXCLUDE
+   PATTERN "catkinConfig.cmake.in" EXCLUDE
+   PATTERN "Modules" EXCLUDE)
+ 

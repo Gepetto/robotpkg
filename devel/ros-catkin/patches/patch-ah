@@ -1,0 +1,17 @@
+Fix missing prefix
+https://github.com/ros/catkin/issues/444
+
+Do not generate empty -I directives
+https://github.com/ros/catkin/issues/445
+
+--- cmake/em/pkg.pc.em.orig	2013-06-25 10:32:27.563128643 +0200
++++ cmake/em/pkg.pc.em	2013-06-25 10:32:56.519018418 +0200
+@@ -1,6 +1,7 @@
++prefix=@CMAKE_INSTALL_PREFIX
+ Name: @(CATKIN_PACKAGE_PREFIX + PROJECT_NAME)
+ Description: Description of @PROJECT_NAME
+ Version: @PROJECT_VERSION
+-Cflags: @(' '.join(['-I%s' % include for include in PROJECT_ABSOLUTE_INCLUDE_DIRS.split(';')]))
++Cflags: @(' '.join(['-I%s' % include for include in PROJECT_ABSOLUTE_INCLUDE_DIRS.split(';') if include]))
+ Libs: -L@PROJECT_SPACE_DIR/lib @(' '.join([lib for lib in PKG_CONFIG_LIBRARIES_WITH_PREFIX.split(';')]))
+ Requires: @(PROJECT_CATKIN_DEPENDS.replace(';', ' '))

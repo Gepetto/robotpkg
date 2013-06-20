@@ -1,0 +1,14 @@
+Disable '--install-layout' in python packages, this works only on linux/debian
+and we don't care anyway in robotpkg
+
+--- cmake/python.cmake~	2013-06-19 01:16:00.000000000 +0200
++++ cmake/python.cmake	2013-06-20 17:37:38.213465666 +0200
+@@ -9,7 +9,7 @@
+ 
+ set(python_use_debian_layout FALSE)
+ if(EXISTS "/etc/debian_version")
+-  set(python_use_debian_layout TRUE)
++#  set(python_use_debian_layout TRUE)
+ endif()
+ 
+ if(python_use_debian_layout)

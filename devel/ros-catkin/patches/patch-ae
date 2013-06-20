@@ -1,0 +1,10 @@
+Remove debug flag polluting stderr
+
+--- cmake/templates/python_distutils_install.sh.in~	2013-06-19 01:16:00.000000000 +0200
++++ cmake/templates/python_distutils_install.sh.in	2013-06-20 18:32:17.686053885 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/sh -x
++#!/bin/sh
+ 
+ if [ -n "$DESTDIR" ] ; then
+     case $DESTDIR in
