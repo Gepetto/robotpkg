@@ -1,25 +1,30 @@
 # robotpkg Makefile for:	meta-pkgs/ros-base
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
-ROS_DISTRIB=	fuerte
+ROS_DISTRIB=	groovy
 ROS_VERSION?=	undefined
+ROS_METAPKG?=	no
 ROS_PKG?=	undefined
+ROS_GITTAG?=	${ROS_VERSION}
+ROS_PKGURL?=	${ROS_PKG}/archive/${ROS_GITTAG}${EXTRACT_SUFX}?file=
+
 ROS_COMMENT?=	undefined
 
-ROS_PKGURL?=	ros-${ROS_DISTRIB}-${ROS_PKG}
-PKGNAME?=	ros-${ROS_PKG}-${ROS_VERSION}
-MASTER_SITE_ROS=http://packages.ros.org/ros/ubuntu/pool/main/r/
+MASTER_SITE_ROS=https://github.com/ros/
 
-MASTER_SITES?=	${MASTER_SITE_ROS:=${ROS_PKGURL}/}
-DISTNAME?=	${ROS_PKGURL}_${ROS_VERSION}.orig
+PKGNAME?=	ros-$(subst _,-,${ROS_PKG})-${ROS_VERSION}
+DISTNAME?=	${ROS_PKG}-${ROS_VERSION}
+MASTER_SITES?=	${MASTER_SITE_ROS:=${ROS_PKGURL}}
+DIST_SUBDIR?=	ros
 EXTRACT_SUFX?=	.tar.gz
 
 COMMENT?=	ROS ${ROS_COMMENT}
 MAINTAINER?=	mallet@laas.fr
 LICENSE?=	modified-bsd
+HOMEPAGE?=	http://ros.org/wiki/${ROS_PKG}
 
 PREFIX?=	${LOCALBASE}/opt/ros/${ROS_DISTRIB}
-WRKSRC?=	${WRKDIR}/${ROS_PKGURL}-${ROS_VERSION}
+WRKSRC?=	${WRKDIR}/${ROS_PKG}-${ROS_GITTAG}
 
 MESSAGE_SRC?=	${ROBOTPKG_DIR}/meta-pkgs/ros-base/MESSAGE
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
@@ -30,7 +35,6 @@ CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=	-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
 CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=	-DPYTHON_PACKAGES_DIR=site-packages
-CMAKE_ARGS+=	-DSETUPTOOLS_DEB_LAYOUT=OFF
 
 DEPEND_ABI.python+=	python<3
 
