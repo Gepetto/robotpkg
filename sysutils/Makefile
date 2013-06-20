@@ -5,6 +5,7 @@ COMMENT=	Sysutils
 
 SUBDIR+=	alog
 SUBDIR+=	py-aafigure
+SUBDIR+=	py-catkin-pkg
 SUBDIR+=	py-rospkg
 SUBDIR+=	rospack
 SUBDIR+=	tth

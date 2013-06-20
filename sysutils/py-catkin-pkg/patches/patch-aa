@@ -1,0 +1,12 @@
+--- setup.py~	2013-06-19 01:27:53.000000000 +0200
++++ setup.py	2013-06-20 18:05:26.547720051 +0200
+@@ -33,9 +33,4 @@
+     description='catkin package library',
+     long_description='Library for retrieving information about catkin packages.',
+     license='BSD',
+-    install_requires=[
+-        'argparse',
+-        'docutils',
+-        'python-dateutil'
+-    ],
+ )

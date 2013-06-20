@@ -1,0 +1,2 @@
+Standalone Python library for the catkin package system. Contains support for
+finding and introspecting catkin packages in the file system.
