@@ -1,3 +1,4 @@
-SHA1 (rospkg-1.0.16.tar.gz) = 16bd3e121b581cf3169f6d8ec71bb020706f1ba3
-RMD160 (rospkg-1.0.16.tar.gz) = 3dcf3e557c1444b77b71514e81c30a0b99d05ad4
-Size (rospkg-1.0.16.tar.gz) = 86590 bytes
+SHA1 (ros/rospkg-1.0.20.tar.gz) = fc537a8ac43b09a87d289043aca187c22859876a
+RMD160 (ros/rospkg-1.0.20.tar.gz) = 078890ed06530afaf4b881c8c7e4d2d505b5d419
+Size (ros/rospkg-1.0.20.tar.gz) = 87340 bytes
+SHA1 (patch-aa) = 19697c636cbebee435890563918535fb54fee399

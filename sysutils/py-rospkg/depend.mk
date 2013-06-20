@@ -17,7 +17,7 @@ SYSTEM_PREFIX.py-rospkg?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		py-rospkg
 
-DEPEND_ABI.py-rospkg?=	${PKGTAG.python}-rospkg>=0.10.12
+DEPEND_ABI.py-rospkg?=	${PKGTAG.python}-rospkg>=1.0.20
 DEPEND_DIR.py-rospkg?=	../../sysutils/py-rospkg
 
 SYSTEM_SEARCH.py-rospkg=\

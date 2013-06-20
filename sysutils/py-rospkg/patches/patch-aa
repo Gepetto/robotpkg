@@ -1,0 +1,16 @@
+Do not use rosdep, this is somewhat agains robotpkg philosophy.
+(yet, sysutils/py-rosdep is packaged).
+
+Although it's already optional, disable it to avoid accidentally importing
+another instance.
+
+--- src/rospkg/manifest.py~	2013-03-13 23:52:37.000000000 +0100
++++ src/rospkg/manifest.py	2013-06-25 15:10:12.032627355 +0200
+@@ -369,6 +369,7 @@
+ 
+         # split ros and system dependencies (using rosdep)
+         try:
++            raise ImportError
+             from rosdep2.rospack import init_rospack_interface, is_ros_package, is_system_dependency, is_view_empty
+             global _static_rosdep_view
+             # initialize rosdep view once
