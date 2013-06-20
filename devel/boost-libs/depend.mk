@@ -20,8 +20,8 @@ SYSTEM_PKG.Debian.boost-libs=	libboost-dev
 SYSTEM_PKG.NetBSD.boost-libs=		pkgsrc/devel/boost-libs
 
 SYSTEM_SEARCH.boost-libs=\
-	'lib/libboost_thread{,-mt}.*'	\
-	'lib/libboost_iostreams{,-mt}.*'
+  'lib/libboost_thread{,-mt}.{so.*[0-9],*}:s/.*[.]so[.]//p:${ECHO} %'	\
+  'lib/libboost_iostreams{,-mt}.*'
 
 DEPEND_USE+=		boost-libs
 
