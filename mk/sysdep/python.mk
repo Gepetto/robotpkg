@@ -257,7 +257,12 @@ ifndef PYTHON_NO_PLIST_COMPILE
 	    print "import py_compile" | compile;			\
 	    print "import py_compile" | ocompile;			\
 	  }								\
-	  ${PYTHON_PLIST_COMPILE_PATTERN} {				\
+	  !( ${PYTHON_PLIST_COMPILE_PATTERN} ) { next }			\
+	  system("${TEST} -f \"${PREFIX}/" $$0 "\"") {			\
+	    system("${ECHO} >&2 \"File " $$0 " could not be found\"");	\
+	    next							\
+	  }								\
+	  {				\
 	    print pre $$0 post | compile;				\
 	    print pre $$0 post | ocompile;				\
 	  }								\
