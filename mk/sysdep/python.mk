@@ -231,7 +231,7 @@ PLIST_SUBST+=\
 	PYTHON_VERSION=${PYTHON_VERSION}
 
 PRINT_PLIST_AWK_SUBST+=\
-	gsub("/${PYTHON_PYCACHE}/", "/");				\
+	gsub("/$(subst .,[.],${PYTHON_PYCACHE})/", "/");		\
 	gsub("[^/]+[.]py[co]$$", "$${PYTHON_PYCACHE}/&");		\
 	$(if ${PYTHON_TAG},gsub("${PYTHON_TAG}.py", ".py");)		\
 	gsub("[.]py[co]$$", "$${PYTHON_TAG}&");				\
