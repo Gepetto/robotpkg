@@ -1,4 +1,4 @@
-@comment Sun Oct 7 23:31:46 CEST 2012
+@comment Sat Jun 22 01:00:55 CEST 2013
 include/ros/builtin_message_traits.h
 include/ros/cpp_common_decl.h
 include/ros/debug.h
@@ -26,16 +26,16 @@ lib/pkgconfig/cpp_common.pc
 lib/pkgconfig/roscpp_serialization.pc
 lib/pkgconfig/roscpp_traits.pc
 lib/pkgconfig/rostime.pc
-share/cpp_common/cmake/cpp_common-config-version.cmake
-share/cpp_common/cmake/cpp_common-config.cmake
-share/cpp_common/manifest.xml
-share/roscpp_core/stack.xml
-share/roscpp_serialization/cmake/roscpp_serialization-config-version.cmake
-share/roscpp_serialization/cmake/roscpp_serialization-config.cmake
-share/roscpp_serialization/manifest.xml
-share/roscpp_traits/cmake/roscpp_traits-config-version.cmake
-share/roscpp_traits/cmake/roscpp_traits-config.cmake
-share/roscpp_traits/manifest.xml
-share/rostime/cmake/rostime-config-version.cmake
-share/rostime/cmake/rostime-config.cmake
-share/rostime/manifest.xml
+share/cpp_common/cmake/cpp_commonConfig-version.cmake
+share/cpp_common/cmake/cpp_commonConfig.cmake
+share/cpp_common/package.xml
+share/roscpp_core/package.xml
+share/roscpp_serialization/cmake/roscpp_serializationConfig-version.cmake
+share/roscpp_serialization/cmake/roscpp_serializationConfig.cmake
+share/roscpp_serialization/package.xml
+share/roscpp_traits/cmake/roscpp_traitsConfig-version.cmake
+share/roscpp_traits/cmake/roscpp_traitsConfig.cmake
+share/roscpp_traits/package.xml
+share/rostime/cmake/rostimeConfig-version.cmake
+share/rostime/cmake/rostimeConfig.cmake
+share/rostime/package.xml
