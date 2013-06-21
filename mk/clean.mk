@@ -113,7 +113,7 @@ ifeq (yes,$(call exists,${_UPDATE_LIST}))
 	${RUN} ${TEST} -s ${_UPDATE_LIST} || exit 0;			\
 	header=;							\
 	while IFS=: read dir pkg; do					\
-	  ${TEST} "$$dir" = "${PKGPATH}" && pkg='${PKGNAME}';		\
+	  ${TEST} "$$dir" = "${PKGPATH}" && continue;			\
 	  ${PKG_INFO} -qe "$$pkg" && continue;				\
 	  if ${TEST} -z "$$header"; then				\
 	    header=yes;							\
