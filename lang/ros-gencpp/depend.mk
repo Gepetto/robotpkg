@@ -17,17 +17,13 @@ SYSTEM_PREFIX.ros-gencpp?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-gencpp
 
-DEPEND_ABI.ros-gencpp?=	ros-gencpp>=0.3.4
+DEPEND_ABI.ros-gencpp?=	ros-gencpp>=0.4<0.5
 DEPEND_DIR.ros-gencpp?=	../../lang/ros-gencpp
 
 SYSTEM_SEARCH.ros-gencpp=\
-	bin/gen_cpp.py						\
-	share/gencpp/cmake/gencpp-config.cmake			\
-	'share/gencpp/stack.xml:/<version>/s/[^0-9.]//gp'	\
+	lib/gencpp/gen_cpp.py					\
+	'share/gencpp/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/gencpp.pc:/Version/s/[^0-9.]//gp'
-
-export GENCPP_BIN=	${PREFIX.ros-gencpp}/bin/gen_cpp.py
-CMAKE_ARGS+=		-DGENCPP_BIN=${GENCPP_BIN}
 
 endif # ROS_GENCPP_DEPEND_MK -----------------------------------------------
 
