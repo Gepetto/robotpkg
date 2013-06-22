@@ -17,7 +17,7 @@ SYSTEM_PREFIX.ros-message-generation?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=				ros-message-generation
 
-DEPEND_ABI.ros-message-generation?=	ros-message-generation>=0.4<0.5
+DEPEND_ABI.ros-message-generation?=	ros-message-generation>=0.2<0.3
 DEPEND_DIR.ros-message-generation?=	../../lang/ros-message-generation
 
 SYSTEM_SEARCH.ros-message-generation=\

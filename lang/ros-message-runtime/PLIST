@@ -1,0 +1,5 @@
+@comment Sat Jun 22 17:44:55 CEST 2013
+lib/pkgconfig/message_runtime.pc
+share/message_runtime/cmake/message_runtimeConfig-version.cmake
+share/message_runtime/cmake/message_runtimeConfig.cmake
+share/message_runtime/package.xml
