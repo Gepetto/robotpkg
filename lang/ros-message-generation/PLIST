@@ -1,0 +1,5 @@
+@comment Sat Jun 22 16:02:05 CEST 2013
+lib/pkgconfig/message_generation.pc
+share/message_generation/cmake/message_generationConfig-version.cmake
+share/message_generation/cmake/message_generationConfig.cmake
+share/message_generation/package.xml

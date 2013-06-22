@@ -1,0 +1,2 @@
+Package modeling the build-time dependencies for generating language bindings
+of ROS messages.
