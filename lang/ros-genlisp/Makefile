@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		genlisp
-ROS_VERSION=		0.3.3
+ROS_VERSION=		0.4.11
 
 CATEGORIES=		lang
 ROS_COMMENT=		lisp code generator for ROS .msg format
@@ -11,9 +11,11 @@ HOMEPAGE=		http://www.ros.org/wiki/roslisp
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-SUBST_CLASSES+=		py-distsetup
+SUBST_CLASSES+=		py-interp
+SUBST_FILES.py-interp+=	scripts/gen_lisp.py
 
-include ../../devel/catkin/depend.mk
+PYTHON_PLIST_COMPILE_PATTERN=/genlisp[\/].*[.]py$$/
+
+include ../../devel/ros-catkin/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
-include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
