@@ -173,7 +173,7 @@ endif
 
 .PHONY: clean-message
 clean-message:
-ifneq (,$(wildcard ${WRKDIR} $(if ${WRKOBJDIR},${BUILD_DIR} ${WRKDIR_BASENAME})))
+ifneq (,$(realpath ${WRKDIR}))
 	@${PHASE_MSG} "Cleaning temporary files for ${PKGNAME}"
 else
 	@${DO_NADA}
