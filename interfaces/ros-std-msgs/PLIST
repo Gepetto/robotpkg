@@ -1,4 +1,4 @@
-@comment Mon Oct 8 18:59:02 CEST 2012
+@comment Sat Jun 22 17:56:53 CEST 2013
 include/std_msgs/Bool.h
 include/std_msgs/Byte.h
 include/std_msgs/ByteMultiArray.h
@@ -214,13 +214,13 @@ share/common-lisp/ros/std_msgs/msg/_package_UInt64MultiArray.lisp
 share/common-lisp/ros/std_msgs/msg/_package_UInt8.lisp
 share/common-lisp/ros/std_msgs/msg/_package_UInt8MultiArray.lisp
 share/common-lisp/ros/std_msgs/msg/std_msgs-msg.asd
-share/std_msgs/cmake/std_msgs-config-version.cmake
-share/std_msgs/cmake/std_msgs-config.cmake
-share/std_msgs/manifest.xml
+share/std_msgs/cmake/std_msgs-msg-extras.cmake
+share/std_msgs/cmake/std_msgs-msg-paths.cmake
+share/std_msgs/cmake/std_msgsConfig-version.cmake
+share/std_msgs/cmake/std_msgsConfig.cmake
 share/std_msgs/msg/Bool.msg
 share/std_msgs/msg/Byte.msg
 share/std_msgs/msg/ByteMultiArray.msg
-share/std_msgs/msg/CMakeLists.txt
 share/std_msgs/msg/Char.msg
 share/std_msgs/msg/ColorRGBA.msg
 share/std_msgs/msg/Duration.msg
@@ -250,4 +250,4 @@ share/std_msgs/msg/UInt64.msg
 share/std_msgs/msg/UInt64MultiArray.msg
 share/std_msgs/msg/UInt8.msg
 share/std_msgs/msg/UInt8MultiArray.msg
-share/std_msgs/stack.xml
+share/std_msgs/package.xml
