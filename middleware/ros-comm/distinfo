@@ -1,7 +1,3 @@
-SHA1 (ros-fuerte-ros-comm_1.8.15.orig.tar.gz) = 955e664df3ce955987da8ec5f254a534130fedb4
-RMD160 (ros-fuerte-ros-comm_1.8.15.orig.tar.gz) = 51c5646aec31a2f5fb1c520b25a7f37ba45f05c9
-Size (ros-fuerte-ros-comm_1.8.15.orig.tar.gz) = 951235 bytes
-SHA1 (patch-aa) = 90f42d0f480fd2c477dd1c0053c5e144cb84f49e
-SHA1 (patch-ab) = a0bcab15bbb73eacf099909d55d6d68d80863c6d
-SHA1 (patch-ac) = 9f05dd3d29d2391a819fe34c5bbf624a550a4b96
-SHA1 (patch-ad) = f0f68b7cd7ee58d8e4ed7202935b1076fd8f9faf
+SHA1 (ros/ros_comm-1.9.46.tar.gz) = ad96e35796178e98090466b728ff9eb168f95df4
+RMD160 (ros/ros_comm-1.9.46.tar.gz) = b643314d8fc9e52899968272640927d5178f1edf
+Size (ros/ros_comm-1.9.46.tar.gz) = 872434 bytes
