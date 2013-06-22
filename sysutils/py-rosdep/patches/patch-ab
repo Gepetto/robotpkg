@@ -1,0 +1,62 @@
+No sudo required for rosdep init and rosdep update
+
+--- src/rosdep2/main.py~	2013-06-07 22:15:40.000000000 +0200
++++ src/rosdep2/main.py	2013-06-25 14:21:59.295541863 +0200
+@@ -78,7 +78,7 @@
+   generate the dependency database and print it to the console.
+ 
+ rosdep init
+-  initialize rosdep sources in /etc/ros/rosdep.  May require sudo.
++  initialize rosdep sources in @PREFIX@/etc/ros/rosdep.
+   
+ rosdep keys <stacks-and-packages>...
+   list the rosdep keys that the packages depend on.
+@@ -178,11 +178,11 @@
+ 
+     sources_list_dir = get_sources_list_dir()
+     if not os.path.exists(sources_list_dir):
+-        commands.insert(0, 'sudo rosdep init')
++        commands.insert(0, 'rosdep init')
+     else:
+         filelist = [f for f in os.listdir(sources_list_dir) if f.endswith('.list')]    
+         if not filelist:
+-            commands.insert(0, 'sudo rosdep init')
++            commands.insert(0, 'rosdep init')
+ 
+     if commands:
+         commands = '\n'.join(["    %s"%c for c in commands])
+@@ -396,7 +396,7 @@
+         print("ERROR: cannot create %s:\n\t%s"%(path, e), file=sys.stderr)
+         return 2
+     except OSError as e:
+-        print("ERROR: cannot create %s:\n\t%s\nPerhaps you need to run 'sudo rosdep init' instead"%(path, e), file=sys.stderr)
++        print("ERROR: cannot create %s:\n\t%s' instead"%(path, e), file=sys.stderr)
+         return 3
+     
+ def command_update(options):
+@@ -413,12 +413,12 @@
+     warnings.filterwarnings("ignore", category=PreRep137Warning)
+ 
+     if not os.path.exists(sources_list_dir):
+-        print("ERROR: no sources directory exists on the system meaning rosdep has not yet been initialized.\n\nPlease initialize your rosdep with\n\n\tsudo rosdep init\n")
++        print("ERROR: no sources directory exists on the system meaning rosdep has not yet been initialized.\n\nPlease initialize your rosdep with\n\n\trosdep init\n")
+         return 1
+ 
+     filelist = [f for f in os.listdir(sources_list_dir) if f.endswith('.list')]    
+     if not filelist:
+-        print("ERROR: no data sources in %s\n\nPlease initialize your rosdep with\n\n\tsudo rosdep init\n"%sources_list_dir, file=sys.stderr)
++        print("ERROR: no data sources in %s\n\nPlease initialize your rosdep with\n\n\trosdep init\n"%sources_list_dir, file=sys.stderr)
+         return 1
+     try:
+         print("reading in sources list data from %s"%(sources_list_dir))
+--- src/rosdep2/catkin_support.py~	2013-06-07 22:15:40.000000000 +0200
++++ src/rosdep2/catkin_support.py	2013-06-25 14:20:29.799882955 +0200
+@@ -103,7 +103,7 @@
+     sources_list_dir = get_sources_list_dir()
+     if not os.path.exists(sources_list_dir):
+         raise ValidationFailed("""rosdep database is not initialized, please run:
+-\tsudo rosdep init
++\trosdep init
+ """)
+ 
+     if update:

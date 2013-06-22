@@ -1,0 +1,13 @@
+Fix etc/ros prefix
+
+--- src/rosdep2/sources_list.py~	2013-06-07 22:15:40.000000000 +0200
++++ src/rosdep2/sources_list.py	2013-06-25 14:27:53.514188585 +0200
+@@ -79,7 +79,7 @@
+         # we can't use etc/ros because environment config does not carry over under sudo
+         etc_ros = rospkg.get_etc_ros_dir()
+     else:
+-        etc_ros = '/etc/ros'
++        etc_ros = '@PREFIX@/etc/ros'
+     # compute cache directory
+     return os.path.join(etc_ros, 'rosdep', SOURCES_LIST_DIR)
+ 
