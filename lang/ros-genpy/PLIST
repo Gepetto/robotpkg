@@ -1,7 +1,11 @@
-@comment Mon Oct 8 21:57:33 CEST 2012
-bin/genmsg_py.py
-bin/gensrv_py.py
-etc/langs/genpy
+@comment Sat Jun 22 15:56:26 CEST 2013
+etc/ros/genmsg/genpy
+lib/genpy/genmsg_py.py
+lib/genpy/${PYTHON_PYCACHE}/genmsg_py${PYTHON_TAG}.pyc
+lib/genpy/${PYTHON_PYCACHE}/genmsg_py${PYTHON_TAG}.pyo
+lib/genpy/gensrv_py.py
+lib/genpy/${PYTHON_PYCACHE}/gensrv_py${PYTHON_TAG}.pyc
+lib/genpy/${PYTHON_PYCACHE}/gensrv_py${PYTHON_TAG}.pyo
 lib/pkgconfig/genpy.pc
 ${PYTHON_SITELIB}/genpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/genpy/__init__.py
@@ -34,17 +38,7 @@ ${PYTHON_SITELIB}/genpy/${PYTHON_PYCACHE}/message${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/genpy/rostime.py
 ${PYTHON_SITELIB}/genpy/${PYTHON_PYCACHE}/rostime${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/genpy/${PYTHON_PYCACHE}/rostime${PYTHON_TAG}.pyo
-share/genpy/bin/${PYTHON_PYCACHE}/genmsg_py${PYTHON_TAG}.pyc
-share/genpy/bin/${PYTHON_PYCACHE}/genmsg_py${PYTHON_TAG}.pyo
-share/genpy/bin/${PYTHON_PYCACHE}/gensrv_py${PYTHON_TAG}.pyc
-share/genpy/bin/${PYTHON_PYCACHE}/gensrv_py${PYTHON_TAG}.pyo
-share/genpy/bin/genmsg_py.py
-share/genpy/bin/${PYTHON_PYCACHE}/genmsg_py${PYTHON_TAG}.pyc
-share/genpy/bin/${PYTHON_PYCACHE}/genmsg_py${PYTHON_TAG}.pyo
-share/genpy/bin/gensrv_py.py
-share/genpy/bin/${PYTHON_PYCACHE}/gensrv_py${PYTHON_TAG}.pyc
-share/genpy/bin/${PYTHON_PYCACHE}/gensrv_py${PYTHON_TAG}.pyo
-share/genpy/cmake/genpy-config-version.cmake
-share/genpy/cmake/genpy-config.cmake
 share/genpy/cmake/genpy-extras.cmake
-share/genpy/stack.xml
+share/genpy/cmake/genpyConfig-version.cmake
+share/genpy/cmake/genpyConfig.cmake
+share/genpy/package.xml

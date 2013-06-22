@@ -3,17 +3,19 @@
 #
 
 ROS_PKG=		genpy
-ROS_VERSION=		0.3.7
+ROS_VERSION=		0.4.12
 
 CATEGORIES=		lang
 ROS_COMMENT=		python code generator for ROS .msg format
-HOMEPAGE=		http://www.ros.org/wiki/genpy
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-SUBST_CLASSES+=		py-distsetup
+SUBST_CLASSES+=		py-interp
+SUBST_FILES.py-interp+=	scripts/gen*_py.py
 
-include ../../devel/catkin/depend.mk
+PYTHON_PLIST_COMPILE_PATTERN=/genpy[\/].*[.]py$$/
+
+
+include ../../devel/ros-catkin/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
-include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
