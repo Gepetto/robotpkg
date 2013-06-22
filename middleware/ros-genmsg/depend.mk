@@ -17,12 +17,11 @@ SYSTEM_PREFIX.ros-genmsg?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-genmsg
 
-DEPEND_ABI.ros-genmsg?=	ros-genmsg>=0.3.10
+DEPEND_ABI.ros-genmsg?=	ros-genmsg>=0.4<0.5
 DEPEND_DIR.ros-genmsg?=	../../middleware/ros-genmsg
 
 SYSTEM_SEARCH.ros-genmsg=\
-	share/genmsg/cmake/genmsg-config.cmake			\
-	'share/genmsg/stack.xml:/<version>/s/[^0-9.]//gp'	\
+	'share/genmsg/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/genmsg.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_GENMSG_DEPEND_MK -----------------------------------------------

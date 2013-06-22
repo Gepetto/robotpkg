@@ -1,4 +1,3 @@
-SHA1 (ros-fuerte-genmsg_0.3.10.orig.tar.gz) = 5a94a60e2aebc16bc938d0ec7792fb25e0ce2568
-RMD160 (ros-fuerte-genmsg_0.3.10.orig.tar.gz) = 63d7f7eebfb92498dc1ee84f1acca0d610ae2f17
-Size (ros-fuerte-genmsg_0.3.10.orig.tar.gz) = 55400 bytes
-SHA1 (patch-aa) = dd193db60273203221cec84a8d87b14126e39d59
+SHA1 (ros/genmsg-0.4.20.tar.gz) = e91a61ac749e92200359599f6df85e9f96390945
+RMD160 (ros/genmsg-0.4.20.tar.gz) = d09180ca1ea9e06cb8670a95c63f5d7a9d202ae5
+Size (ros/genmsg-0.4.20.tar.gz) = 56940 bytes

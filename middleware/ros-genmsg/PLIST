@@ -1,4 +1,4 @@
-@comment Mon Oct 8 17:41:14 CEST 2012
+@comment Sat Jun 22 14:14:27 CEST 2013
 lib/pkgconfig/genmsg.pc
 ${PYTHON_SITELIB}/genmsg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/genmsg/__init__.py
@@ -31,13 +31,11 @@ ${PYTHON_SITELIB}/genmsg/${PYTHON_PYCACHE}/srvs${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/genmsg/template_tools.py
 ${PYTHON_SITELIB}/genmsg/${PYTHON_PYCACHE}/template_tools${PYTHON_TAG}.pyc
 ${PYTHON_SITELIB}/genmsg/${PYTHON_PYCACHE}/template_tools${PYTHON_TAG}.pyo
-share/genmsg/cmake/generator.cmake.in
-share/genmsg/cmake/genmsg-config-version.cmake
-share/genmsg/cmake/genmsg-config.cmake
 share/genmsg/cmake/genmsg-extras.cmake
-share/genmsg/cmake/import_check.py
-share/genmsg/cmake/${PYTHON_PYCACHE}/import_check${PYTHON_TAG}.pyc
-share/genmsg/cmake/${PYTHON_PYCACHE}/import_check${PYTHON_TAG}.pyo
+share/genmsg/cmake/genmsgConfig-version.cmake
+share/genmsg/cmake/genmsgConfig.cmake
 share/genmsg/cmake/pkg-genmsg.cmake.em
 share/genmsg/cmake/pkg-genmsg.context.in
-share/genmsg/stack.xml
+share/genmsg/cmake/pkg-msg-extras.cmake.in
+share/genmsg/cmake/pkg-msg-paths.cmake.in
+share/genmsg/package.xml
