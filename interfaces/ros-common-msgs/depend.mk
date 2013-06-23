@@ -17,24 +17,24 @@ SYSTEM_PREFIX.ros-common-msgs?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			ros-common-msgs
 
-DEPEND_ABI.ros-common-msgs?=	ros-common-msgs>=1.8.13<1.9
+DEPEND_ABI.ros-common-msgs?=	ros-common-msgs>=1.9<1.10
 DEPEND_DIR.ros-common-msgs?=	../../interfaces/ros-common-msgs
 
 SYSTEM_SEARCH.ros-common-msgs=\
 	include/actionlib_msgs/GoalID.h					\
 	'${PYTHON_SYSLIBSEARCH}/actionlib_msgs/msg/_GoalID.py'		\
 	share/common-lisp/ros/actionlib_msgs/msg/GoalID.lisp		\
-	share/actionlib_msgs/cmake/actionlib_msgs-config.cmake		\
-	share/diagnostic_msgs/cmake/diagnostic_msgs-config.cmake	\
-	share/geometry_msgs/cmake/geometry_msgs-config.cmake		\
-	share/nav_msgs/cmake/nav_msgs-config.cmake			\
-	share/sensor_msgs/cmake/sensor_msgs-config.cmake		\
-	share/shape_msgs/cmake/shape_msgs-config.cmake			\
-	share/stereo_msgs/cmake/stereo_msgs-config.cmake		\
-	share/trajectory_msgs/cmake/trajectory_msgs-config.cmake	\
-	share/visualization_msgs/cmake/visualization_msgs-config.cmake	\
-	'share/common_msgs/stack.xml:/<version>/s/[^0-9.]//gp'		\
-	'lib/pkgconfig/actionlib_msgs.pc:/Version/s/[^0-9.]//gp'
+	share/actionlib_msgs/msg/GoalID.msg				\
+	'share/common_msgs/package.xml:/<version>/s/[^0-9.]//gp'	\
+	'lib/pkgconfig/actionlib_msgs.pc:/Version/s/[^0-9.]//gp'	\
+	'lib/pkgconfig/diagnostic_msgs.pc:/Version/s/[^0-9.]//gp'	\
+	'lib/pkgconfig/geometry_msgs.pc:/Version/s/[^0-9.]//gp'		\
+	'lib/pkgconfig/nav_msgs.pc:/Version/s/[^0-9.]//gp'		\
+	'lib/pkgconfig/sensor_msgs.pc:/Version/s/[^0-9.]//gp'		\
+	'lib/pkgconfig/shape_msgs.pc:/Version/s/[^0-9.]//gp'		\
+	'lib/pkgconfig/stereo_msgs.pc:/Version/s/[^0-9.]//gp'		\
+	'lib/pkgconfig/trajectory_msgs.pc:/Version/s/[^0-9.]//gp'	\
+	'lib/pkgconfig/visualization_msgs.pc:/Version/s/[^0-9.]//gp'
 
 include ../../mk/sysdep/python.mk
 
