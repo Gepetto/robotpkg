@@ -2,42 +2,26 @@
 # Created:			Anthony Mallet on Tue, 9 Oct 2012
 #
 
-ROS_PKG=		actionlib
-ROS_VERSION=		1.8.7
-PKGREVISION=		1
+ROS_PKG=	actionlib
+ROS_VERSION=	1.9.12
+ROS_GITTAG=	708826c9b9f92fcc9fb06a36dfe5755f9c3586a8
 
-CATEGORIES=		middleware
-ROS_COMMENT=		standardized interface for preemptable tasks
-HOMEPAGE=		http://www.ros.org/wiki/actionlib
+CATEGORIES=	middleware
+ROS_COMMENT=	standardized interface for preemptable tasks
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-SUBST_CLASSES+=		py-distsetup
+SUBST_CLASSES+=		py-interp
+SUBST_FILES.py-interp+=	src/actionlib/*.py
+SUBST_FILES.py-interp+=	test/*.py
+SUBST_FILES.py-interp+=	tools/*.py
 
-include ../../devel/catkin/depend.mk
-include ../../devel/ros-core/depend.mk
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
+include ../../devel/ros-catkin/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../interfaces/ros-std-msgs/depend.mk
-include ../../lang/ros-langs/depend.mk
+include ../../lang/ros-message-generation/depend.mk
+include ../../lang/ros-message-runtime/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../middleware/ros-genmsg/depend.mk
-include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
-
-
-# Fix an installation path issue that is fixed in robotpkg in
-# middleware/ros-genmsg (patch-aa). However, this cannot be fixed when
-# installing this package against a 'system' ros-genmsg package. This hack
-# should disappear in groovy.
-#
-post-install: fix-install-paths
-
-.PHONY: fix-install-paths
-fix-install-paths:
-	@${RUN}								\
-	${MKDIR} ${PREFIX}/share/actionlib/actions_gen;			\
-	for f in ${PREFIX}/share/actionlib/${WRKSRC}/actions_gen/*; do	\
-	  ${TEST} -f $$f &&						\
-	    ${MV} -f $$f ${PREFIX}/share/actionlib/actions_gen/.;	\
-	done;								\
-	d=${WRKSRC}; ${RM} -r ${PREFIX}/share/actionlib/$${d#*/}
