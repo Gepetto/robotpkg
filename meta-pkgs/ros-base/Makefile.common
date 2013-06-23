@@ -23,7 +23,6 @@ MAINTAINER?=	mallet@laas.fr
 LICENSE?=	modified-bsd
 HOMEPAGE?=	http://ros.org/wiki/${ROS_PKG}
 
-PREFIX?=	${LOCALBASE}/opt/ros/${ROS_DISTRIB}
 WRKSRC?=	${WRKDIR}/${ROS_PKG}-${ROS_GITTAG}
 
 MESSAGE_SRC?=	${ROBOTPKG_DIR}/meta-pkgs/ros-base/MESSAGE

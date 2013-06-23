@@ -4,9 +4,12 @@
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04 11.10 12.04,${OS_VERSION}))
-    PREFER.ros-base?=	system
+  ifneq (,$(filter 11.10 12.04 12.10,${OS_VERSION}))
+    PREFER.ros?=	system
   endif
 endif
-PREFER.ros-base?=	robotpkg
-SYSTEM_PREFIX.ros-base?=${SYSTEM_PREFIX} /opt/ros/groovy
+PREFER.ros?=		robotpkg
+SYSTEM_PREFIX.ros?=	${SYSTEM_PREFIX} /opt/ros/groovy
+
+PREFER.ros-base?=	${PREFER.ros}
+SYSTEM_PREFIX.ros-base?=${SYSTEM_PREFIX.ros}

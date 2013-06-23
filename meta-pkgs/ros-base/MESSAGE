@@ -1,14 +1,13 @@
-To use ros, the following environment variables must be configured to contain
-those values:
+To use ros, the following environment variables must contain those values:
 
   ROS_MASTER_URI    http://localhost:11311
-  ROS_PACKAGE_PATH  ${PREFIX}
+  ROS_PACKAGE_PATH  ${PREFIX}/share
   PYTHONPATH        ${PREFIX}/lib/python${PYTHON_VERSION}/site-packages
   PATH              ${PREFIX}/bin
 
-As an alternative to the above configuration, commands must be executed by
+As an alternative to the above configuration, commands can be executed by
 using the `env.sh' wrapper. For instance, roscore can be started like so:
-  ${PREFIX}/env.sh roscore
+  ${PREFIX}/etc/ros/env.sh roscore
 
 In Bourne shell scripts, the following file can be sourced instead:
-  ${PREFIX}/setup.sh
+  ${PREFIX}/etc/ros/setup.sh
