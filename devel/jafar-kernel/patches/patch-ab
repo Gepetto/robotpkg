@@ -1,0 +1,19 @@
+LoggerTask: release the mutex before quitting!
+
+--- src/dataLog.cpp
++++ src/dataLog.cpp
+@@ -27,11 +27,11 @@ void LoggerTask::task()
+ 
+   Loggable *object;
+ 
+-  while (true)
++  while (!stopping)
+   {
+     // wait for and get next data to save
+     cond.wait(boost::lambda::_1 != 0, false);
+-    if (stopping && !remain) break;
++    if (stopping && !remain) { cond.unlock(); break; }
+ 
+     object = queue.back();
+     queue.pop_back();
+
