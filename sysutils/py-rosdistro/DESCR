@@ -1,0 +1,11 @@
+The rosdistro tool allows you to get access to the full dependency tree and the
+vcs information of all packages and repositories. To increase performance, the
+rosdistro tool will automatically look for a cache file on your local disk. If
+no cache file is found locally, it will try to download the latest cache file
+from the server. The cache files are only used to improve performance, and are
+not needed to get correct results. rosdistro will automatically go to github to
+find any dependencies that are not part of the cache file. Note that operation
+without a cache file can be very slow, depending on your own internet
+connection and the response times of github. The rosdistro tool will always
+write the latest dependency information to a local cache file, to speed up
+performance for the next query.
