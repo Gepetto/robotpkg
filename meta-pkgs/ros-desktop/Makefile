@@ -32,7 +32,6 @@ PREFER.ros?=	robotpkg
 # robot-model-tutorials
 # robot-model-visualization
 # ros-tutorials
-# rqt-common-plugins
 # rviz
 # visualization-tutorials
 # xacro
@@ -41,8 +40,9 @@ include ../../devel/ros-bond-core/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
-include ../../graphics/ros-qt-gui-core/depend.mk
 include ../../graphics/ros-python-qt-binding/depend.mk
+include ../../graphics/ros-qt-gui-core/depend.mk
+include ../../graphics/ros-rqt-common-plugins/depend.mk
 include ../../image/ros-image-common/depend.mk
 include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
