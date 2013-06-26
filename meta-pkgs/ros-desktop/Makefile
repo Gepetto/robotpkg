@@ -39,11 +39,11 @@ MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 # ros-tutorials
 # rqt-common-plugins
 # rviz
-# vision-opencv
 # visualization-tutorials
 # xacro
 
 include ../../devel/ros-ros/depend.mk
+include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk

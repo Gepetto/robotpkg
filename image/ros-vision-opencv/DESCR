@@ -1,0 +1,5 @@
+The vision_opencv stack provides a ROS interface with the popular OpenCV
+library:
+    cv_bridge: Bridge between ROS messages and OpenCV.
+    image_geometry: Collection of methods for dealing with image and pixel
+    geometry

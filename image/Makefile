@@ -15,6 +15,7 @@ SUBDIR+=	libstereopixel
 SUBDIR+=	niut-genom
 SUBDIR+=	opencv
 SUBDIR+=	openni-nite
+SUBDIR+=	ros-vision-opencv
 SUBDIR+=	sift
 SUBDIR+=	stereopixel-genom
 SUBDIR+=	viam-dc1394-driver
