@@ -4,8 +4,8 @@
 
 ROS_PKG=	rosdistro
 ROS_VERSION=	0.2.9
+ROS_REPO=	ros-infrastructure
 PKGNAME=	${PKGTAG.python}-${ROS_PKG}-${ROS_VERSION}
-MASTER_SITES=	${MASTER_SITE_GITHUB:=ros-infrastructure/${ROS_PKGURL}}
 
 CATEGORIES=	sysutils
 ROS_COMMENT=	tool for managing ROS distributions and packages
