@@ -1,0 +1,15 @@
+@comment Thu Jun 27 01:32:40 CEST 2013
+bin/plugin_macro_update
+include/pluginlib/class_desc.h
+include/pluginlib/class_list_macros.h
+include/pluginlib/class_loader.h
+include/pluginlib/class_loader_base.h
+include/pluginlib/class_loader_imp.h
+include/pluginlib/pluginlib_exceptions.h
+lib/pkgconfig/pluginlib.pc
+lib/pluginlib/plugin_tool
+${PYTHON_SITELIB}/pluginlib-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+share/pluginlib/cmake/pluginlibConfig-version.cmake
+share/pluginlib/cmake/pluginlibConfig.cmake
+share/pluginlib/package.xml
+share/pluginlib/typed_class_loader_template.cpp

@@ -24,6 +24,7 @@ SUBDIR+=	mkdep
 SUBDIR+=	py-simpleparse
 SUBDIR+=	ros-catkin
 SUBDIR+=	ros-class-loader
+SUBDIR+=	ros-pluginlib
 SUBDIR+=	ros-ros
 SUBDIR+=	ros-roscpp-core
 SUBDIR+=	swig

@@ -30,7 +30,6 @@ MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 # laser-pipeline
 # navigation-tutorials
 # nodelet-core
-# pluginlib
 # python-qt-binding
 # qt-gui-core
 # robot-model
@@ -42,6 +41,7 @@ MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 # visualization-tutorials
 # xacro
 
+include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk

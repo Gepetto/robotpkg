@@ -1,0 +1,30 @@
+--- CMakeLists.txt.orig	2013-04-18 21:23:51.000000000 +0200
++++ CMakeLists.txt	2013-06-28 00:42:59.000000000 +0200
+@@ -3,21 +3,24 @@
+ 
+ find_package(catkin REQUIRED COMPONENTS class_loader rosconsole roslib)
+ find_package(Boost REQUIRED COMPONENTS filesystem system)
++find_file(tinyxml_HEADER tinyxml.h PATH ${TINYXML_ROOT}/include)
++find_library(tinyxml_LIBRARIES libtinyxml.so PATH ${TINYXML_ROOT}/lib)
++get_filename_component(tinyxml_INCLUDE_DIRS ${tinyxml_HEADER} PATH)
++set(tinyxml_FOUND TRUE)
+ 
+ catkin_python_setup()
+ 
+ catkin_package(
+   INCLUDE_DIRS include
+-  LIBRARIES tinyxml
+   CATKIN_DEPENDS class_loader rosconsole roslib
+-  DEPENDS Boost
++  DEPENDS Boost tinyxml
+ )
+ 
+ include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+ 
+ add_library(test_plugins EXCLUDE_FROM_ALL SHARED test/test_plugins.cpp)
+ add_executable(plugin_tool src/plugin_tool.cpp)
+-target_link_libraries(plugin_tool ${catkin_LIBRARIES} ${Boost_LIBRARIES} tinyxml)
++target_link_libraries(plugin_tool ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${tinyxml_LIBRARIES})
+ 
+ catkin_add_gtest(${PROJECT_NAME}_utest test/utest.cpp)
+ target_link_libraries(${PROJECT_NAME}_utest tinyxml ${catkin_LIBRARIES} ${Boost_LIBRARIES})
