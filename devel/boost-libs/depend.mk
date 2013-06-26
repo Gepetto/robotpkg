@@ -6,31 +6,61 @@ DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 BOOST_LIBS_DEPEND_MK:=	${BOOST_LIBS_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		boost-libs
+  DEPEND_PKG+=		$(addprefix boost-lib-,${USE_BOOST_LIBS})
 endif
 
 ifeq (+,$(BOOST_LIBS_DEPEND_MK)) # -----------------------------------
 
+DEPEND_USE+=		$(addprefix boost-lib-,${USE_BOOST_LIBS})
+
 PREFER.boost?=		system
 PREFER.boost-libs?=	${PREFER.boost}
 
-SYSTEM_PKG.Fedora.boost-libs=	boost-devel
-SYSTEM_PKG.Ubuntu.boost-libs=	libboost-all-dev
-SYSTEM_PKG.Debian.boost-libs=	libboost-dev
-SYSTEM_PKG.NetBSD.boost-libs=		pkgsrc/devel/boost-libs
-
-SYSTEM_SEARCH.boost-libs=\
-  'lib/libboost_thread{,-mt}.{so.*[0-9],*}:s/.*[.]so[.]//p:${ECHO} %'	\
-  'lib/libboost_iostreams{,-mt}.*'
-
-DEPEND_USE+=		boost-libs
-
-DEPEND_ABI.boost-libs?=	boost-libs>=1.34.1
+DEPEND_ABI.boost-libs?=	>=1.34.1
 DEPEND_DIR.boost-libs?=	../../devel/boost-libs
 
+override define _use_boost_libs
+  PREFER.boost-lib-$1?=		$${PREFER.boost-libs}
+  DEPEND_ABI.boost-lib-$1?=\
+    $(addprefix boost-lib-,$(addsuffix $${DEPEND_ABI.boost-libs},$1))
+  DEPEND_DIR.boost-libs-$1?=	../../devel/boost-libs
+
+  _boost_libs_files_$1?=	$1
+  SYSTEM_SEARCH.boost-lib-$1?=\
+    $$(foreach 2,$${_boost_libs_files_$1},	\
+      'lib/libboost_$$2{,-mt}.{so.*[0-9],*}:s/.*[.]so[.]//p:${ECHO} %')
+
+  SYSTEM_PKG.Fedora.boost-lib-$1?=	boost-libs ($1)
+  SYSTEM_PKG.Debian.boost-lib-$1?=	libboost-$1-dev
+  SYSTEM_PKG.Ubuntu.boost-lib-$1?=	libboost-$1-dev
+  SYSTEM_PKG.NetBSD.boost-lib-$1?=	devel/boost-libs
+
+  SYSTEM_FILES.boost-libs+= ${SYSTEM_FILES.boost-lib-$1}
+endef
+
+# specific library files and packages (overrides default)
+_boost_libs_files_math=			math_c99 math_tr1
+
+SYSTEM_PKG.NetBSD.boost-lib-python?=	devel/boost-python
+
+# default boost components
+USE_BOOST_LIBS?=\
+	filesystem	\
+	iostreams	\
+	math		\
+	thread
+
+# aggregate prefix - usually reduces to the single prefix of boost-libs
+PREFIX.boost-libs=\
+  $(sort $(foreach _,${USE_BOOST_LIBS},${PREFIX.boost-lib-$_}))
+
+# mt suffix
 BOOST_LIB_SUFFIX=\
-	$(findstring -mt,$(firstword ${SYSTEM_FILES.boost-libs}))
+  $(findstring -mt,$(firstword ${SYSTEM_FILES.boost-libs}))
 
 endif # BOOST_LIBS_DEPEND_MK -----------------------------------------
+
+# apply USE_BOOST_LIBS selection
+$(foreach _,${USE_BOOST_LIBS},$(eval $(call _use_boost_libs,$_)))
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
