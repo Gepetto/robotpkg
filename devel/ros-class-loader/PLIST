@@ -1,0 +1,13 @@
+@comment Thu Jun 27 01:16:23 CEST 2013
+include/class_loader/class_loader.h
+include/class_loader/class_loader_core.h
+include/class_loader/class_loader_exceptions.h
+include/class_loader/class_loader_register_macro.h
+include/class_loader/meta_object.h
+include/class_loader/multi_library_class_loader.h
+lib/libclass_loader.so
+lib/pkgconfig/class_loader.pc
+share/class_loader/cmake/class_loader-extras.cmake
+share/class_loader/cmake/class_loaderConfig-version.cmake
+share/class_loader/cmake/class_loaderConfig.cmake
+share/class_loader/package.xml

@@ -23,6 +23,7 @@ SUBDIR+=	log4cxx
 SUBDIR+=	mkdep
 SUBDIR+=	py-simpleparse
 SUBDIR+=	ros-catkin
+SUBDIR+=	ros-class-loader
 SUBDIR+=	ros-ros
 SUBDIR+=	ros-roscpp-core
 SUBDIR+=	swig
