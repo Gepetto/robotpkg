@@ -1,0 +1,7 @@
+@comment Thu Jun 27 00:59:17 CEST 2013
+include/console_bridge/console.h
+lib/libconsole_bridge.so
+lib/pkgconfig/console_bridge.pc
+share/console_bridge/cmake/console_bridgeConfig-version.cmake
+share/console_bridge/cmake/console_bridgeConfig.cmake
+share/console_bridge/package.xml

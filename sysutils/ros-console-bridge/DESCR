@@ -1,0 +1,14 @@
+console_bridge is a ROS-independent package that provides logging calls that
+mirror those found in rosconsole, but for applications that are not necessarily
+using ROS.
+
+Normally in ROS C++ code, developers can log data via rosconsole using the
+macros ROS_DEBUG, ROS_INFO, ROS_WARN, and ROS_ERROR. These logging messages are
+not only outputted to the screen (depending on log level of course), but are
+also published to /rosout so that other ROS nodes can subscribe to
+them. Applications like rqt and its predecessor rxconsole provide graphical
+interfaces for seeing logs during application runtime.
+
+The problem with this approach is that libraries that are meant to run without
+ROS infrastructure and/or may not want or need the log publishing cannot use
+the traditional rosconsole. This is where console_bridge comes in.
