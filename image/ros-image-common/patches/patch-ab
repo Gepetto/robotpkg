@@ -1,0 +1,32 @@
+Fix dependency on yaml-cpp
+
+--- camera_calibration_parsers/CMakeLists.txt.orig	2013-02-21 14:33:10.000000000 +0100
++++ camera_calibration_parsers/CMakeLists.txt	2013-06-28 01:03:13.000000000 +0200
+@@ -2,6 +2,10 @@
+ project(camera_calibration_parsers)
+ 
+ find_package(catkin REQUIRED sensor_msgs rosconsole)
++find_file(yaml_cpp_HEADER yaml.h PATH ${YAMLCPP_ROOT}/include/yaml-cpp)
++find_library(yaml_cpp_LIBRARIES libyaml-cpp.so PATH ${YAMLCPP_ROOT}/lib)
++get_filename_component(yaml_cpp_INCLUDE_DIRS ${yaml_cpp_HEADER} PATH)
++set(yaml_cpp_FOUND TRUE)
+ 
+ include_directories(include ${catkin_INCLUDE_DIRS})
+ 
+@@ -9,6 +13,7 @@
+   INCLUDE_DIRS include
+   LIBRARIES ${PROJECT_NAME}
+   CATKIN_DEPENDS sensor_msgs
++  DEPENDS yaml_cpp
+ )
+ 
+ # define the library
+@@ -17,7 +22,7 @@
+   src/parse_ini.cpp
+   src/parse_yml.cpp
+ )
+-target_link_libraries(${PROJECT_NAME} yaml-cpp ${catkin_LIBRARIES})
++target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${yaml_cpp_LIBRARIES})
+ add_dependencies(${PROJECT_NAME} sensor_msgs_gencpp)
+ 
+ install(

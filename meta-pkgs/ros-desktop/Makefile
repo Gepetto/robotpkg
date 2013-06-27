@@ -28,7 +28,6 @@ PREFER.ros?=	robotpkg
 # geometry
 # geometry-experimental
 # geometry-tutorials
-# image-common
 # laser-pipeline
 # navigation-tutorials
 # nodelet-core
@@ -45,6 +44,7 @@ PREFER.ros?=	robotpkg
 
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
+include ../../image/ros-image-common/depend.mk
 include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
