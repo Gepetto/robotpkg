@@ -26,5 +26,6 @@ SUBDIR+=	ros-catkin
 SUBDIR+=	ros-ros
 SUBDIR+=	ros-roscpp-core
 SUBDIR+=	swig
+SUBDIR+=	yaml-cpp
 
 include ../mk/robotpkg.subdir.mk
