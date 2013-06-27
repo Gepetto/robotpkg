@@ -10,6 +10,8 @@ ROS_COMMENT=	low-level build system macros and infrastructure
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
+DEPEND_ABI.cmake+= cmake>=2.8.3
+
 CMAKE_ARGS+=-DGTEST_ROOT=${PREFIX.googletest}
 CMAKE_ARGS+=-DNOSETESTS=${NOSETESTS}
 CMAKE_ARGS+=-DCMAKE_PREFIX_PATH=${PREFIX}
