@@ -13,6 +13,8 @@ ROS_COMMENT=		communications-related libraries and tools
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
+DEPEND_ABI.ros-catkin+=	ros-catkin>=0.5.67
+
 # Fix prefix
 SUBST_CLASSES+=		ros-prefix
 SUBST_STAGE.ros-prefix=	pre-configure
