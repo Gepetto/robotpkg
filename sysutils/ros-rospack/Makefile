@@ -4,6 +4,7 @@
 
 ROS_PKG=	rospack
 ROS_VERSION=	2.1.19
+PKGREVISION=	1
 
 CATEGORIES=	sysutils
 ROS_COMMENT=	command-line tool for retriving package information
@@ -12,9 +13,7 @@ CONFLICTS+=	rospack # old package name
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-INCLUDE_DIRS.tinyxml+=	include
-LIBRARY_DIRS.tinyxml+=	lib
-RPATH_DIRS.tinyxml+=	lib
+CMAKE_ARGS+=	-DTINYXML_ROOT=${PREFIX.tinyxml}
 
 DEPEND_ABI.ros-catkin+=	ros-catkin>=0.5.64
 
