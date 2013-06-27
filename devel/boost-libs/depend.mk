@@ -28,7 +28,7 @@ override define _use_boost_libs
   _boost_libs_files_$1?=	$1
   SYSTEM_SEARCH.boost-lib-$1?=\
     $$(foreach 2,$${_boost_libs_files_$1},	\
-      'lib/libboost_$$2{,-mt}.{so.*[0-9],*}:s/.*[.]so[.]//p:${ECHO} %')
+      'lib/libboost_$$2{,-mt}.{so.*[0-9],*}:s/.*[.]so[.]//p:$${ECHO} %')
 
   SYSTEM_PKG.Fedora.boost-lib-$1?=	boost-libs ($1)
   SYSTEM_PKG.Debian.boost-lib-$1?=	libboost-$1-dev
