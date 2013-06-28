@@ -1,4 +1,5 @@
 @comment Mon Nov 7 13:56:09 CET 2011
+bin/svg2traj
 include/softMotion/Sm_Approx.h
 include/softMotion/Sm_Curve.h
 include/softMotion/Sm_Traj.h
