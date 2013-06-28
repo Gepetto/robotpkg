@@ -2,6 +2,14 @@
 # Created:			Anthony Mallet on Fri, 10 Oct 2008
 #
 
+# Before including this file, the following variables can be defined:
+#
+# USE_BOOST_LIBS
+#	This is a list of boost libraries that are to be searched for. If
+#	unset, the following default set is used:
+#		filesystem iostreams math thread
+#
+
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 BOOST_LIBS_DEPEND_MK:=	${BOOST_LIBS_DEPEND_MK}+
 
@@ -16,14 +24,14 @@ DEPEND_USE+=		$(addprefix boost-lib-,${USE_BOOST_LIBS})
 PREFER.boost?=		system
 PREFER.boost-libs?=	${PREFER.boost}
 
-DEPEND_ABI.boost-libs?=	>=1.34.1
+DEPEND_ABI.boost-libs?=	boost-libs>=1.34.1
 DEPEND_DIR.boost-libs?=	../../devel/boost-libs
 
 override define _use_boost_libs
   PREFER.boost-lib-$1?=		$${PREFER.boost-libs}
   DEPEND_ABI.boost-lib-$1?=\
-    $(addprefix boost-lib-,$(addsuffix $${DEPEND_ABI.boost-libs},$1))
-  DEPEND_DIR.boost-libs-$1?=	../../devel/boost-libs
+    $$(subst boost-libs,boost-lib-$1,$${DEPEND_ABI.boost-libs})
+  DEPEND_DIR.boost-lib-$1?=	../../devel/boost-libs
 
   _boost_libs_files_$1?=	$1
   SYSTEM_SEARCH.boost-lib-$1?=\
@@ -35,7 +43,12 @@ override define _use_boost_libs
   SYSTEM_PKG.Ubuntu.boost-lib-$1?=	libboost-$1-dev
   SYSTEM_PKG.NetBSD.boost-lib-$1?=	devel/boost-libs
 
-  SYSTEM_FILES.boost-libs+= ${SYSTEM_FILES.boost-lib-$1}
+  SYSTEM_FILES.boost-libs+= $${SYSTEM_FILES.boost-lib-$1}
+
+  # propagate compile flags from meta boost-libs
+  INCLUDE_DIRS.boost-libs-$1?=	${INCLUDE_DIRS.boost-libs}
+  LIBRARY_DIRS.boost-libs-$1?=	${LIBRARY_DIRS.boost-libs}
+  RPATH_DIRS.boost-libs-$1?=	${RPATH_DIRS.boost-libs}
 endef
 
 # specific library files and packages (overrides default)
