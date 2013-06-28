@@ -21,7 +21,6 @@ PREFER.ros?=	robotpkg
 # diagnostics
 # documentation
 # driver-common
-# dynamic-reconfigure
 # executive-smach
 # filters
 # geometry
@@ -49,4 +48,5 @@ include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
+include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../mk/robotpkg.mk
