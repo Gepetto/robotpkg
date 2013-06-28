@@ -55,7 +55,7 @@ include ../../mk/robotpkg.mk
 # A custom extract procedure is required to convert CR/LF in source files
 # (mostly to get clean patches/* files) but extract pdf/png/jpg etc as binary.
 # The archive does not have the zip 'b'inary vs. 't'ext flag right.
-BINARY_FILES=	'*.pdf' '*.png' '*.gif' '*.jpg' '*.dat' '*.raw'
+BINARY_FILES=	'**.pdf' '**.png' '**.gif' '**.jpg' '**.dat' '**.raw'
 do-extract:
 	${RUN} ${MKDIR} ${WRKSRC};					\
 	cd ${WRKSRC} &&							\
