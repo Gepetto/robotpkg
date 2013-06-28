@@ -28,7 +28,6 @@ PREFER.ros?=	robotpkg
 # geometry-tutorials
 # laser-pipeline
 # navigation-tutorials
-# nodelet-core
 # python-qt-binding
 # qt-gui-core
 # robot-model
@@ -41,6 +40,7 @@ PREFER.ros?=	robotpkg
 # xacro
 
 include ../../devel/ros-bond-core/depend.mk
+include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../image/ros-image-common/depend.mk

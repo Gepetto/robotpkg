@@ -1,0 +1,10 @@
+--- nodelet_topic_tools/include/nodelet_topic_tools/nodelet_throttle.h~	2013-03-13 01:34:52.000000000 +0100
++++ nodelet_topic_tools/include/nodelet_topic_tools/nodelet_throttle.h	2013-06-28 22:18:14.000000000 +0200
+@@ -30,6 +30,7 @@
+  * POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
++#include <boost/thread/lock_guard.hpp>
+ #include <ros/ros.h>
+ #include <pluginlib/class_list_macros.h>
+ #include <nodelet/nodelet.h>

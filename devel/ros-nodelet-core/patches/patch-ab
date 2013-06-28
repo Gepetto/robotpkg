@@ -1,0 +1,17 @@
+--- nodelet/package.xml~	2013-03-13 01:34:52.000000000 +0100
++++ nodelet/package.xml	2013-06-28 22:02:39.000000000 +0200
+@@ -27,7 +27,6 @@
+   <build_depend>roscpp</build_depend>
+   <build_depend>rospy</build_depend>
+   <build_depend>std_msgs</build_depend>
+-  <build_depend>tinyxml</build_depend>
+   <build_depend>uuid</build_depend>
+ 
+   <run_depend>bondcpp</run_depend>
+@@ -36,6 +35,5 @@
+   <run_depend>rosconsole</run_depend>
+   <run_depend>roscpp</run_depend>
+   <run_depend>std_msgs</run_depend>
+-  <run_depend>tinyxml</run_depend>
+   <run_depend>uuid</run_depend>
+ </package>

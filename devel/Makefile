@@ -25,6 +25,7 @@ SUBDIR+=	py-simpleparse
 SUBDIR+=	ros-bond-core
 SUBDIR+=	ros-catkin
 SUBDIR+=	ros-class-loader
+SUBDIR+=	ros-nodelet-core
 SUBDIR+=	ros-pluginlib
 SUBDIR+=	ros-ros
 SUBDIR+=	ros-roscpp-core
