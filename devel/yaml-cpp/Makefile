@@ -5,6 +5,7 @@
 DISTNAME=		yaml-cpp-0.3.0
 CATEGORIES=		devel
 MASTER_SITES=		http://yaml-cpp.googlecode.com/files/
+MASTER_SITES+=		ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/distfiles/
 
 COMMENT=		YAML parser and emitter for C++
 HOMEPAGE=		http://code.google.com/p/yaml-cpp/
