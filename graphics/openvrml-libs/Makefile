@@ -17,7 +17,7 @@ LICENSE=		gnu-lgpl-v3
 NOT_FOR_PLATFORM+=	NetBSD-5.1-%
 
 GNU_CONFIGURE=		yes
-DOXYGEN_PLIST_DIR=	share/doc/${DISTNAME}
+DYNAMIC_PLIST_DIRS=	share/doc/${DISTNAME}
 
 # build libraries only.
 CONFIGURE_ARGS+=--disable-gecko-rpath
@@ -30,7 +30,8 @@ CONFIGURE_ARGS+=--disable-examples
 
 CONFIGURE_ARGS+=--enable-gl-renderer
 
-# get the right boost libraries suffix.
+# get the right boost libraries
+USE_BOOST_LIBS+=thread filesystem system
 CONFIGURE_ARGS+=BOOST_LIB_SUFFIX=${BOOST_LIB_SUFFIX}
 
 # fix detection of ltdl and boost. configure script searches in /usr only.
