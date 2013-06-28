@@ -22,6 +22,7 @@ SUBDIR+=	libedit
 SUBDIR+=	log4cxx
 SUBDIR+=	mkdep
 SUBDIR+=	py-simpleparse
+SUBDIR+=	ros-bond-core
 SUBDIR+=	ros-catkin
 SUBDIR+=	ros-class-loader
 SUBDIR+=	ros-pluginlib

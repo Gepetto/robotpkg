@@ -17,7 +17,6 @@ MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 PREFER.ros?=	robotpkg
 
 # TODO:
-# bond-core
 # common-tutorials
 # diagnostics
 # documentation
@@ -42,6 +41,7 @@ PREFER.ros?=	robotpkg
 # visualization-tutorials
 # xacro
 
+include ../../devel/ros-bond-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../image/ros-image-common/depend.mk
