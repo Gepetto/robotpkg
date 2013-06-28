@@ -29,14 +29,16 @@ DEPEND_DIR.boost-libs?=	../../devel/boost-libs
 
 override define _use_boost_libs
   PREFER.boost-lib-$1?=		$${PREFER.boost-libs}
-  DEPEND_ABI.boost-lib-$1?=\
-    $$(subst boost-libs,boost-lib-$1,$${DEPEND_ABI.boost-libs})
+  DEPEND_ABI.boost-lib-$1?=	$${DEPEND_ABI.boost-libs}
   DEPEND_DIR.boost-lib-$1?=	../../devel/boost-libs
 
   _boost_libs_files_$1?=	$1
   SYSTEM_SEARCH.boost-lib-$1?=\
     $$(foreach 2,$${_boost_libs_files_$1},	\
       'lib/libboost_$$2{,-mt}.{so.*[0-9],*}:s/.*[.]so[.]//p:$${ECHO} %')
+
+  SYSTEM_DESCR.boost-lib-$1?=\
+    $$(subst boost-libs,boostlib-$1,$${DEPEND_ABI.boost-lib-$1})
 
   SYSTEM_PKG.Fedora.boost-lib-$1?=	boost-libs ($1)
   SYSTEM_PKG.Debian.boost-lib-$1?=	libboost-$1-dev
