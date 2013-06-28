@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -72,7 +72,7 @@ ifeq (-1,${PKGTOOLS_VERSION})
   $(shell ${ERROR_MSG} "The robotpkg_info tool is not working:")
   $(shell ${PKG_INFO_CMD} -V 2>&1 | ${ERROR_CAT})
   $(shell ${ERROR_MSG})
-  $(shell ${ERROR_MSG} You may have to (re)run the robotpkg/bootstrap/bootstrap)
+  $(shell ${ERROR_MSG} You may have to re-run the robotpkg/bootstrap/bootstrap)
   $(shell ${ERROR_MSG} script in order to fix this problem.)
   $(shell ${ERROR_MSG} ${hline})
   $(error Fatal error)
