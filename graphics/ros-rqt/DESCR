@@ -1,0 +1,10 @@
+rqt is a Qt-based framework for GUI development for ROS. It consists of three
+parts:
+
+    rqt provides a widget rqt_gui that enables multiple `rqt` widgets to be
+    docked in a single window.
+
+    rqt_common_plugins - ROS backend tools suite that can be used on/off of
+    robot runtime.
+
+    rqt_robot_plugins - Tools for interacting with robots during their runtime.
