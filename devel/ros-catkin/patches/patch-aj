@@ -1,0 +1,16 @@
+Also consider install prefix when searching workspaces, since CMAKE_PREFIX_PATH
+makes no sense at runtime.
+
+--- python/catkin/workspace.py~	2013-06-18 23:56:13.000000000 +0200
++++ python/catkin/workspace.py	2013-06-29 15:30:42.000000000 +0200
+@@ -44,7 +44,10 @@
+     """
+     # get all cmake prefix paths
+     env_name = 'CMAKE_PREFIX_PATH'
++    # XXX/robotpkg also consider install prefix, since CMAKE_PREFIX_PATH
++    # makes no sense at runtime
+     paths = [path for path in os.environ.get(env_name, '').split(os.pathsep) if path]
++    paths.append("@PREFIX@")
+     # remove non-workspace paths
+     workspaces = [path for path in paths if os.path.isfile(os.path.join(path, CATKIN_MARKER_FILE))]
+     return workspaces

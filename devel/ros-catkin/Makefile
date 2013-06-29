@@ -4,6 +4,7 @@
 
 ROS_PKG=	catkin
 ROS_VERSION=	0.5.67
+PKGREVISION=	1
 
 CATEGORIES=	devel
 ROS_COMMENT=	low-level build system macros and infrastructure
@@ -15,6 +16,12 @@ DEPEND_ABI.cmake+= cmake>=2.8.3
 CMAKE_ARGS+=-DGTEST_ROOT=${PREFIX.googletest}
 CMAKE_ARGS+=-DNOSETESTS=${NOSETESTS}
 CMAKE_ARGS+=-DCMAKE_PREFIX_PATH=${PREFIX}
+
+SUBST_CLASSES+=			catkin
+SUBST_STAGE.catkin=		pre-configure
+SUBST_MESSAGE.catkin=		Replacing installation prefix
+SUBST_SED.catkin+=		-e 's|@PREFIX@|${PREFIX}|'
+SUBST_FILES.catkin+=		python/catkin/workspace.py
 
 SUBST_CLASSES+=			py-interp
 SUBST_FILES.py-interp+=		bin/catkin_*
