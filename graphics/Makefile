@@ -20,6 +20,7 @@ SUBDIR+=	laaswm-libs
 SUBDIR+=	openvrml-libs
 SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
+SUBDIR+=	ros-python-qt-bindings
 # SUBDIR+=	ros-rx obsolete, TODO rqt_common_plugins
 SUBDIR+=	sun-java3d
 SUBDIR+=	Togl

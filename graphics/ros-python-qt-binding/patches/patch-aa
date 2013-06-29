@@ -1,0 +1,22 @@
+pyside is explicitly disabled for now -- lacks mk/sysdep files + alternatives
+
+--- src/python_qt_binding/binding_helper.py~	2013-06-06 21:48:38.000000000 +0200
++++ src/python_qt_binding/binding_helper.py	2013-06-29 00:02:30.000000000 +0200
+@@ -10,7 +10,7 @@
+ #   * Redistributions of source code must retain the above copyright
+ #     notice, this list of conditions and the following disclaimer.
+ #   * Redistributions in binary form must reproduce the above
+-#     copyright notice, this list of conditions and the following
++#41;293;0c     copyright notice, this list of conditions and the following
+ #     disclaimer in the documentation and/or other materials provided
+ #     with the distribution.
+ #   * Neither the name of the TU Darmstadt nor the names of its
+@@ -39,7 +39,7 @@
+     global QT_BINDING, QT_BINDING_VERSION
+ 
+     # order of default bindings can be changed here
+-    DEFAULT_BINDING_ORDER = ['pyqt', 'pyside']
++    DEFAULT_BINDING_ORDER = ['pyqt']
+ 
+     # determine binding preference
+     if binding_name:

@@ -1,0 +1,6 @@
+This stack provides Python bindings for Qt.  There are two providers: pyside
+and pyqt.  PySide is released under the LGPL.  PyQt is released under the GPL.
+
+Also provided is adapter code to make the user's Python code independent of
+which binding provider was actually used which makes it very easy to switch
+between these.

@@ -28,7 +28,6 @@ PREFER.ros?=	robotpkg
 # geometry-tutorials
 # laser-pipeline
 # navigation-tutorials
-# python-qt-binding
 # qt-gui-core
 # robot-model
 # robot-model-tutorials
@@ -43,6 +42,7 @@ include ../../devel/ros-bond-core/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
+include ../../graphics/ros-python-qt-binding/depend.mk
 include ../../image/ros-image-common/depend.mk
 include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
