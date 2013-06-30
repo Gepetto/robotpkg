@@ -70,8 +70,9 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	    $(or ${SYSTEM_PKG.${_pkg_}},:)));				\
 	else								\
 	  $(if $(call isyes,${SYSDEP_VERBOSE}),				\
-	   ${STEP_MSG} "Required system package ${DEPEND_ABI.${_pkg_}}:"\
-		"$$found found",:);					\
+	   ${STEP_MSG} "Required system package"			\
+	     "$(or ${SYSTEM_DESCR.${_pkg_}},${DEPEND_ABI.${_pkg_}}):"	\
+	     "$$found found",:);					\
 	fi;								\
     )))									\
 	if ${TEST} -n "$$notfound"; then				\
