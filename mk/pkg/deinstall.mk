@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2010-2011 LAAS/CNRS
+# Copyright (c) 2006,2010-2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -94,13 +94,13 @@ ifneq (,$(filter all All ALL,${DEINSTALLDEPENDS}))
 	${RUN}								\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
-	found=`${_PKG_BEST_EXISTS} ${_pkg_} || ${TRUE}`;		\
+	found=`${_PKG_BEST_EXISTS} '${DEPEND_ABI.${_pkg_}}' ||:`;	\
 	if ${TEST} -n "$$found"; then					\
           $(if ${_PKG_ARGS_DEINSTALL_INFO},				\
 	    ${PKG_INFO} -q ${_PKG_ARGS_DEINSTALL_INFO} "$$found" |	\
 	      ${SED} 's/^/Removing dependency /';)			\
 	  ${PKG_DELETE} ${_PKG_ARGS_DEINSTALL} "$$found" && {		\
-	    left=`${_PKG_BEST_EXISTS} ${_pkg_} || ${TRUE}`;		\
+	    left=`${_PKG_BEST_EXISTS} '${DEPEND_ABI.${_pkg_}}' ||:`;	\
 	    if ${TEST} -z "$$left"; then				\
 	      ${ECHO} "Removed $$found";				\
 	    else							\
