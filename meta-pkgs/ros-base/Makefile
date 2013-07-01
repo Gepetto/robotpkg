@@ -13,6 +13,8 @@ COMMENT=	The Robotic Operating System - Bare bones
 NOT_FOR_PLATFORM=
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 
+PREFER.ros?=	robotpkg
+
 include ../../devel/ros-ros/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../mk/robotpkg.mk

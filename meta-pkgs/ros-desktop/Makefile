@@ -14,6 +14,8 @@ NOT_FOR_PLATFORM=
 MESSAGE_SRC=	../../meta-pkgs/ros-base/MESSAGE
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 
+PREFER.ros?=	robotpkg
+
 # TODO:
 # bond-core
 # common-tutorials
