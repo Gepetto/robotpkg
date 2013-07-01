@@ -34,8 +34,8 @@ AC_HEADER_TIME
 AC_HEADER_STDBOOL
 
 AC_CHECK_HEADERS([alloca.h assert.h ctype.h dirent.h endian.h err.h errno.h \
-	fcntl.h fnmatch.h fts.h grp.h inttypes.h libutil.h limits.h \
-	machine/endian.h ndir.h netdb.h paths.h pwd.h signal.h \
+	fcntl.h fnmatch.h fts.h grp.h inttypes.h bsd/libutil.h libutil.h \
+	limits.h machine/endian.h ndir.h netdb.h paths.h pwd.h signal.h \
 	stdarg.h stddef.h stdint.h stdio.h \
 	stdlib.h string.h sys/byteorder.h sys/cdefs.h sys/dir.h sys/endian.h \
 	sys/file.h sys/mkdev.h sys/ndir.h sys/param.h sys/socket.h sys/stat.h \

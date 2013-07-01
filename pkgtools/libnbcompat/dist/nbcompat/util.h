@@ -35,7 +35,9 @@
 #if HAVE_UTIL_H
 # include <util.h>
 #endif
-#if HAVE_LIBUTIL_H
+#if HAVE_BSD_LIBUTIL_H
+# include <bsd/libutil.h>
+#elif HAVE_LIBUTIL_H
 # include <libutil.h>
 #endif
 
