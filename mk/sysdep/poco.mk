@@ -15,8 +15,8 @@ DEPEND_USE+=		poco
 DEPEND_ABI.poco?=	poco>=1
 
 SYSTEM_SEARCH.poco=	\
-  'include/Poco/Poco.h'						\
-  'include/Poco/Version.h:p:${AWK} '\''${_poco_version}'\'' %'	\
+  'include/Poco/Poco.h'							\
+  'include/Poco/{Version,Foundation}.h:p:${AWK} '\''${_poco_version}'\'' %' \
   'lib/libPocoFoundation.so'
 
 _poco_version=	/POCO_VERSION/ {
