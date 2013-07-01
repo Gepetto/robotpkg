@@ -18,14 +18,17 @@ ifeq (+,$(PY_SPHINX_DEPEND_MK)) # ------------------------------------------
 PREFER.py-sphinx?=		system
 
 DEPEND_USE+=			py-sphinx
-DEPEND_ABI.py-sphinx?=		py-sphinx>=0.6
+DEPEND_ABI.py-sphinx?=		${PKGTAG.python}-sphinx>=0.6
 DEPEND_METHOD.py-sphinx?=	build
 
 SYSTEM_SEARCH.py-sphinx=\
-	'bin/sphinx-build:1s/[^0-9.]//gp:% -_'
+	'bin/sphinx-build:1s/[^0-9.]//gp:% -_'			\
+	'${PYTHON_SYSLIBSEARCH}/sphinx/__init__.py'
 
-SYSTEM_PKG.Linux.py-sphinx=	python-sphinx
-SYSTEM_PKG.NetBSD.py-sphinx=	pkgsrc/textproc/py-sphinx
+SYSTEM_PKG.Linux.py-sphinx=	python-sphinx (python-${PYTHON_VERSION})
+SYSTEM_PKG.NetBSD.py-sphinx=	textproc/${PKGTAG.python}-sphinx
+
+include ../../mk/sysdep/python.mk
 
 endif # PY_SPHINX_DEPEND_MK ------------------------------------------------
 
