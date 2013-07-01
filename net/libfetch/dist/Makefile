@@ -43,7 +43,7 @@ httperr.h: ${CURDIR}/http.errors ${CURDIR}/Makefile ${CURDIR}/errlist.sh
 lib${LIB}.a: ${SRCS:.c=.o}
 	${AR} cr $@ $^
 
-.c.o:
+.c.o: ${DPSRCS}
 	${CC} ${CFLAGS} ${CPPFLAGS} -c $<
 
 depend: ${DPSRCS}
