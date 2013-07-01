@@ -1,0 +1,27 @@
+Let javac path be configured by user
+
+--- Platform/Linux/Build/Common/CommonJavaMakefile~	2012-01-04 12:35:46.000000000 +0100
++++ Platform/Linux/Build/Common/CommonJavaMakefile	2013-07-01 10:45:05.684103425 +0200
+@@ -14,6 +14,10 @@
+ # MAIN_CLASS - [Optional] for executable jar
+ #############################################################################
+ 
++# default paths
++JAVAC?=	javac
++JAR?=	jar
++
+ # take this file's dir
+ COMMON_CS_MAKE_FILE_DIR = $(dir $(lastword $(MAKEFILE_LIST)))
+ 
+@@ -63,9 +67,9 @@
+ 
+ # Final output file
+ $(OUTPUT_FILE): | $(INT_DIR)
+-	javac $(USED_JARS_OPTION) -d $(INT_DIR) $(SRC_FILES)
++	$(JAVAC) $(USED_JARS_OPTION) -d $(INT_DIR) $(SRC_FILES)
+ 	$(JAR_MANIFEST_CREATE_COMMAND)
+-	jar $(JAR_OPTIONS) $@ $(MANIFEST_FILE) -C $(INT_DIR) .
++	$(JAR) $(JAR_OPTIONS) $@ $(MANIFEST_FILE) -C $(INT_DIR) .
+ 	$(CREATE_SHORTCUT)
+ 
+ clean-manifest:
