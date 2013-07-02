@@ -32,6 +32,10 @@ SYSTEM_SEARCH.yaml-cpp=\
 	'lib/libyaml-cpp.{so,a}'				\
 	'lib/pkgconfig/yaml-cpp.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Debian.bluez=	libyaml-cpp-dev
+SYSTEM_PKG.Fedora.bluez=	yaml-cpp-devel
+SYSTEM_PKG.Ubuntu.bluez=	libyaml-cpp-dev
+
 endif # YAML_CPP_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
