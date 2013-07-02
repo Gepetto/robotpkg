@@ -52,7 +52,6 @@ share/camera_calibration_parsers/package.xml
 share/camera_info_manager/cmake/camera_info_managerConfig-version.cmake
 share/camera_info_manager/cmake/camera_info_managerConfig.cmake
 share/camera_info_manager/package.xml
-share/catkin/cmake/catkin_package.cmake~
 share/common-lisp/ros/polled_camera/srv/GetPolledImage.lisp
 share/common-lisp/ros/polled_camera/srv/_package.lisp
 share/common-lisp/ros/polled_camera/srv/_package_GetPolledImage.lisp
