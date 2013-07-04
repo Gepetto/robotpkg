@@ -27,7 +27,7 @@ CMAKE_ARGS+=            -DPKG_CONFIG_EXECUTABLE=${PKG_CONFIG}
 DEPEND_ABI.blender+=	blender>=2.59
 include ../../graphics/blender/depend.mk
 
-DEPEND_ABI.python+=	python>=3.2<3.3
+DEPEND_ABI.python+=	python>=3.2<3.4
 include ../../mk/sysdep/python.mk
 
 include ../../pkgtools/pkg-config/depend.mk
