@@ -109,10 +109,10 @@ check-master-sites:
 	      fatal=1; continue;					\
 	    fi;								\
 									\
-	    ok=0;							\
 	    for site in $$sites; do					\
 	      case "$$site" in						\
 	        $(subst ${ } ${ },|,${_MASTER_SITES_NOCHECK}))		\
+	          ${ECHO} "CANNOT CHECK:  $$site";			\
 	          ${ECHO} 1>>${_MIRROR_LOG} "CANNOT CHECK:  $$site";	\
 	          continue ;;						\
 	      esac;							\
@@ -123,6 +123,7 @@ check-master-sites:
 	        23|27|28|52|55|56)					\
 	          ${ECHO} "SKIP:  $$site";				\
 	          ${ECHO} 1>>${_MIRROR_LOG} "SKIP:  $$site";		\
+	          warn=1;						\
 	          continue ;;						\
 	        *)							\
 	          ${ERROR_MSG} "$$site: fatal error";			\
@@ -138,7 +139,6 @@ check-master-sites:
 	        ${ECHO} "SKIP:  $$site: cannot determine file size";	\
 	        ${ECHO} 2>>${_MIRROR_LOG} 1>&2				\
 		  "SKIP:  $$site: cannot determine file size";		\
-	        ok=1;							\
 	      elif ${TEST} "$$distsize" -ne "$$size"; then		\
 	        ${ERROR_MSG} "$$site: bad file size $$size";		\
 	        ${ERROR_MSG} "$$site: file size should be $$distsize";	\
@@ -150,10 +150,8 @@ check-master-sites:
 	      else							\
 	        ${ECHO} "OK:    $$site";				\
 	        ${ECHO} 1>>${_MIRROR_LOG} "OK:    $$site";		\
-	        ok=1;							\
 	      fi;							\
 	    done;							\
-	    ${TEST} $$ok -eq 1 || warn=1;				\
 	  done;								\
 	  ${TEST} $$fatal -eq 0 || exit 2;				\
 	  ${TEST} $$warn -eq 0 || exit 0;				\
