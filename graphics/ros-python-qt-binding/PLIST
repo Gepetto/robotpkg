@@ -17,10 +17,8 @@ share/python_qt_binding/cmake/python_qt_bindingConfig.cmake
 share/python_qt_binding/cmake/shiboken_check_compiles.cmake
 share/python_qt_binding/cmake/shiboken_check_qgenericreturnargument.cmake
 share/python_qt_binding/cmake/shiboken_helper.cmake
-share/python_qt_binding/cmake/shiboken_helper.cmake.orig
 share/python_qt_binding/cmake/sip_configure.py
 share/python_qt_binding/cmake/${PYTHON_PYCACHE}/sip_configure${PYTHON_TAG}.pyc
 share/python_qt_binding/cmake/${PYTHON_PYCACHE}/sip_configure${PYTHON_TAG}.pyo
 share/python_qt_binding/cmake/sip_helper.cmake
-share/python_qt_binding/cmake/sip_helper.cmake.orig
 share/python_qt_binding/package.xml
