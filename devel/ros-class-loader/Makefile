@@ -4,6 +4,7 @@
 
 ROS_PKG=	class_loader
 ROS_VERSION=	0.1.29
+PKREVISION=	1
 
 CATEGORIES=	devel
 ROS_COMMENT=	package for dynamically loading C++ classes at runtime
