@@ -75,6 +75,13 @@ check-distfiles: fetch-all
 # check-master-sites performs a HEAD request against all sites in MASTER_SITES
 # to verify that the files are present with the correct size.
 #
+# Some sites don't handle HEAD requests. Most notably googlecode:
+# http://code.google.com/p/support/issues/detail?id=660
+# _MASTER_SITES_NOCHECK is a list of shell pattern identifying such sites.
+#
+_MASTER_SITES_NOCHECK=\
+	http*://*.googlecode.com/*
+
 .PHONY: check-master-sites
 check-master-sites:
 	${RUN} {							\
@@ -104,6 +111,11 @@ check-master-sites:
 									\
 	    ok=0;							\
 	    for site in $$sites; do					\
+	      case "$$site" in						\
+	        $(subst ${ } ${ },|,${_MASTER_SITES_NOCHECK}))		\
+	          ${ECHO} 1>>${_MIRROR_LOG} "CANNOT CHECK:  $$site";	\
+	          continue ;;						\
+	      esac;							\
 	      x=0 hdr=`${CURL} -ILfksS -m 60 "$$site$$distfile"		\
 	             2>>${_MIRROR_LOG}` || x=$$?;			\
 	      case $$x in						\
