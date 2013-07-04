@@ -17,7 +17,6 @@ include/nodelet_topic_tools/NodeletThrottleConfig.h
 include/nodelet_topic_tools/nodelet_demux.h
 include/nodelet_topic_tools/nodelet_mux.h
 include/nodelet_topic_tools/nodelet_throttle.h
-include/nodelet_topic_tools/nodelet_throttle.h.orig
 lib/libnodeletlib.so
 lib/nodelet/nodelet
 lib/pkgconfig/nodelet.pc
