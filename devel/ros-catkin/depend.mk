@@ -55,8 +55,9 @@ ifneq (,$(filter yes YES Yes,${USE_ROS_CATKIN}))
   catkin-init-workspace:
 	${RUN}							\
 	${MKDIR} ${CONFIGURE_DIRS};				\
-	cd ${CONFIGURE_DIRS} && cd ${CMAKE_ARG_PATH} &&		\
-	  ${PREFIX.ros-catkin}/bin/catkin_init_workspace
+	cd ${CONFIGURE_DIRS} && cd ${CMAKE_ARG_PATH};		\
+	${TEST} ! -h CMakeLists.txt || ${RM} CMakeLists.txt;	\
+	${PREFIX.ros-catkin}/bin/catkin_init_workspace
 
 endif
 
