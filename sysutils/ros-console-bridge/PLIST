@@ -1,0 +1,7 @@
+@comment Thu Jul 4 23:01:57 CEST 2013
+include/rosconsole_bridge/bridge.h
+lib/librosconsole_bridge.so
+lib/pkgconfig/rosconsole_bridge.pc
+share/rosconsole_bridge/cmake/rosconsole_bridgeConfig-version.cmake
+share/rosconsole_bridge/cmake/rosconsole_bridgeConfig.cmake
+share/rosconsole_bridge/package.xml
