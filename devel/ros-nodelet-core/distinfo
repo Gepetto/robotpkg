@@ -3,4 +3,4 @@ RMD160 (ros/nodelet_core-1.7.15.tar.gz) = dca33c3119d728e7e6f97d6650aac933f7df7e
 Size (ros/nodelet_core-1.7.15.tar.gz) = 25700 bytes
 SHA1 (patch-aa) = 8d2d00ca1abc8472b8abe7d76a32b62024355a03
 SHA1 (patch-ab) = 07777213329cc0af444ac7e7ce1d757bfc62eabb
-SHA1 (patch-ac) = a63f699e3370b1087a382448daed3409deb19238
+SHA1 (patch-ac) = 2326fec4d0c065849554cc49f002ac87790205d7
