@@ -15,6 +15,6 @@ LIBRARY_DIRS.poco+=	lib
 RPATH_DIRS.poco+=	lib
 
 include ../../devel/ros-catkin/depend.mk
-include ../../sysutils/ros-console-bridge/depend.mk
+include ../../sysutils/console-bridge/depend.mk
 include ../../mk/sysdep/poco.mk
 include ../../mk/robotpkg.mk
