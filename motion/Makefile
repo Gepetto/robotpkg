@@ -10,6 +10,7 @@ SUBDIR+=	locoDemo-genom
 SUBDIR+=	pilo-genom
 SUBDIR+=	py-dynamic-graph
 SUBDIR+=	py-sot-tools
+SUBDIR+=	ros-orocos-kdl
 SUBDIR+=	softMotion-libs
 SUBDIR+=	sot-core
 SUBDIR+=	sot-dynamic
