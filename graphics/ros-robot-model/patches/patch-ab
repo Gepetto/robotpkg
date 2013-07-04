@@ -1,0 +1,12 @@
+--- urdf/CMakeLists.txt~	2013-07-02 07:38:41.000000000 +0200
++++ urdf/CMakeLists.txt	2013-07-04 19:21:20.716766983 +0200
+@@ -6,7 +6,8 @@
+ catkin_package(
+   LIBRARIES ${PROJECT_NAME}
+   INCLUDE_DIRS include
+-  CATKIN_DEPENDS urdfdom urdfdom_headers collada_parser rosconsole_bridge roscpp)
++  CATKIN_DEPENDS collada_parser rosconsole_bridge roscpp
++  DEPENDS urdfdom urdfdom_headers)
+ 
+ include_directories(include)
+ 
