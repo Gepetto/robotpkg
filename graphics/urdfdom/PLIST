@@ -1,0 +1,11 @@
+@comment Thu Jul 4 18:36:13 CEST 2013
+include/urdf_parser/urdf_parser.h
+lib/liburdfdom_model.so
+lib/liburdfdom_model_state.so
+lib/liburdfdom_sensor.so
+lib/liburdfdom_world.so
+lib/pkgconfig/urdfdom.pc
+share/urdfdom/check_urdf
+share/urdfdom/cmake/urdfdom-config.cmake
+share/urdfdom/urdf_mem_test
+share/urdfdom/urdf_to_graphiz

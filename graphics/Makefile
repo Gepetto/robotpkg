@@ -26,6 +26,7 @@ SUBDIR+=	ros-rqt
 SUBDIR+=	ros-rqt-common-plugins
 SUBDIR+=	sun-java3d
 SUBDIR+=	Togl
+SUBDIR+=	urdfdom
 SUBDIR+=	urdfdom-headers
 SUBDIR+=	vcglib
 
