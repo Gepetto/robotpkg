@@ -1,0 +1,6 @@
+@comment Thu Jul 4 17:47:37 CEST 2013
+include/angles/angles.h
+lib/pkgconfig/angles.pc
+share/angles/cmake/anglesConfig-version.cmake
+share/angles/cmake/anglesConfig.cmake
+share/angles/package.xml
