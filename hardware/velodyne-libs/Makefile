@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Fri, 25 Jun 2010
 #
 DISTNAME=	velodyne-libs-0.5
+PKGREVISION=	1
 CATEGORIES=	hardware
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=velodyne/}
