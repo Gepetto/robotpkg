@@ -3,6 +3,7 @@
 
 COMMENT=	Simulation tools
 
+SUBDIR+=	bullet
 SUBDIR+=	morse
 SUBDIR+=	morse-yarp
 
