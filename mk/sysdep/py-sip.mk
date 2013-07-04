@@ -25,7 +25,7 @@ SYSTEM_SEARCH.py-sip=\
   '${PYTHON_SYSLIBSEARCH}/sip.so'
 
 SYSTEM_PKG.Debian.py-sip=	python-sip-dev (python-${PYTHON_VERSION})
-SYSTEM_PKG.Fedora.py-sip=	python-sip-devel (python-${PYTHON_VERSION})
+SYSTEM_PKG.Fedora.py-sip=	sip-devel (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-sip=	x11/${PKGTAG.python}-sip
 SYSTEM_PKG.Ubuntu.py-sip=	python-sip-dev (python-${PYTHON_VERSION})
 
