@@ -1,0 +1,13 @@
+--- dom/external-libs/minizip-1.1/ioapi.h~	2011-02-22 04:54:41.000000000 +0100
++++ dom/external-libs/minizip-1.1/ioapi.h	2013-07-05 00:25:27.000000000 +0200
+@@ -58,6 +58,10 @@
+   #define ftello64 ftell
+   #define fseeko64 fseek
+  #endif
++#else
++# define fopen64 fopen
++# define ftello64 ftello
++# define fseeko64 fseeko
+ #endif
+ #endif
+ 
