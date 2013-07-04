@@ -24,7 +24,7 @@ SYSTEM_SEARCH.py-qt4=\
   '${PYTHON_SYSLIBSEARCH}/PyQt4/pyqtconfig.py:/pyqt_version_str/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.py-qt4=	python-qt4 (python-${PYTHON_VERSION})
-SYSTEM_PKG.Fedora.py-qt4=	python-qt4 (python-${PYTHON_VERSION})
+SYSTEM_PKG.Fedora.py-qt4=	PyQt4 (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-qt4=	x11/${PKGTAG.python}-qt4
 SYSTEM_PKG.Ubuntu.py-qt4=	python-qt4 (python-${PYTHON_VERSION})
 
