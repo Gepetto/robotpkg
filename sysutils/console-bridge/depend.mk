@@ -17,7 +17,7 @@ SYSTEM_PREFIX.console-bridge?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			console-bridge
 
-DEPEND_ABI.console-bridge?=	console-bridge>=0.2
+DEPEND_ABI.console-bridge?=	console-bridge>=0.1
 DEPEND_DIR.console-bridge?=	../../sysutils/console-bridge
 
 SYSTEM_SEARCH.console-bridge=\
