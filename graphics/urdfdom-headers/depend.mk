@@ -17,7 +17,7 @@ SYSTEM_PREFIX.urdfdom-headers?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			urdfdom-headers
 
-DEPEND_ABI.urdfdom-headers?=	urdfdom-headers>=0.2.3
+DEPEND_ABI.urdfdom-headers?=	urdfdom-headers>=0.2.2
 DEPEND_DIR.urdfdom-headers?=	../../graphics/urdfdom-headers
 
 SYSTEM_SEARCH.urdfdom-headers=\
