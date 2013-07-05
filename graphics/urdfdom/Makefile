@@ -14,6 +14,7 @@ HOMEPAGE=	https://bitbucket.org/osrf/urdfdom
 COMMENT=	The URDF (U-Robot Description Format) library
 LICENSE=	modified-bsd
 
+PREFER.ros?=	robotpkg
 WRKSRC=		${WRKDIR}/osrf-urdfdom-d92e0f2d350f
 USE_BOOST_LIBS=	thread
 
