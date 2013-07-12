@@ -1,0 +1,4 @@
+pkgrepo2deb creates binary-only debian packages or debian repositories
+(packages plus administrative files Packages{,.gz} and Release{,.gpg}) from a
+robotpkg binary package repository or from specified package in the arguments
+list.

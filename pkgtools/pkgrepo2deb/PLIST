@@ -1,0 +1,3 @@
+@comment Fri Jul 12 17:36:20 CEST 2013
+${PKGMANDIR}/man1/pkgrepo2deb.1
+sbin/pkgrepo2deb
