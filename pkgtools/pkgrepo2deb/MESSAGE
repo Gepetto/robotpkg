@@ -1,0 +1,10 @@
+In order to sign packages, you have to create a signing key pair and
+place it in ${GPG_HOMEDIR}.
+
+This can be done by running the following interactive command:
+  ${GPG_CMD} --homedir=${GPG_HOMEDIR} --gen-key
+
+To export the public key into a file, use the following:
+  ${GPG_CMD} --homedir=${GPG_HOMEDIR} --output public.key -a --export
+
+To change the default directory, set GPG_HOMEDIR in robotpkg.conf

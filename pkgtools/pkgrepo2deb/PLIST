@@ -1,3 +1,4 @@
-@comment Fri Jul 12 17:36:20 CEST 2013
+@comment Mon Jul 15 18:33:07 CEST 2013
 ${PKGMANDIR}/man1/pkgrepo2deb.1
 sbin/pkgrepo2deb
+@pkgdir etc/gnupg
