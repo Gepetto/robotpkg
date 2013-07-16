@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011 LAAS/CNRS
+# Copyright (c) 2006-2009,2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -48,6 +48,9 @@
 # The following are the "public" targets provided by this module:
 #
 #    package, tarup
+
+# Binary package format list. Possible bsd, deb
+PKG_FORMAT?=	bsd
 
 
 # ---  package (PUBLIC) ----------------------------------------------

@@ -64,9 +64,14 @@ release-package-lock: release-lock
 _REAL_PACKAGE_TARGETS+=	pkg-check-installed
 _REAL_PACKAGE_TARGETS+=	package-message
 _REAL_PACKAGE_TARGETS+=	pre-package
-_REAL_PACKAGE_TARGETS+=	pkg-tarup
-_REAL_PACKAGE_TARGETS+=	pkg-links
-_REAL_PACKAGE_TARGETS+=	pkg-update-summary
+ifneq (,$(filter bsd deb,${PKG_FORMAT}))
+  _REAL_PACKAGE_TARGETS+=	pkg-tarup
+  _REAL_PACKAGE_TARGETS+=	pkg-links
+  _REAL_PACKAGE_TARGETS+=	pkg-update-summary
+endif
+ifneq (,$(filter deb,${PKG_FORMAT}))
+  _REAL_PACKAGE_TARGETS+=	deb-package
+endif
 _REAL_PACKAGE_TARGETS+=	post-package
 _REAL_PACKAGE_TARGETS+=	package-warnings
 
@@ -86,4 +91,32 @@ ifdef NO_PUBLIC_BIN
 	@found=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
 	${WARNING_MSG} "$$found may not be publicly available:";
 	${WARNING_MSG} $(call quote,${NO_PUBLIC_BIN})
+endif
+
+
+# --- deb-package (PRIVATE) ------------------------------------------------
+#
+# deb-package generates a debian binary package (.deb)
+#
+ifneq (,$(filter deb,${PKG_FORMAT}))
+  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
+
+  # pull GPG_HOMEDIR settings
+  DEPEND_METHOD.gnupg+=	bootstrap
+  include ${ROBOTPKG_DIR}/mk/sysdep/gnupg.mk
+
+  # avoid circular deps
+  ifeq (pkgrepo2deb,${PKGBASE})
+    PKGREPO2DEB?=	${PREFIX}/sbin/pkgrepo2deb
+  else
+    DEPEND_METHOD.pkgrepo2deb+=	bootstrap
+    include ${ROBOTPKG_DIR}/pkgtools/pkgrepo2deb/depend.mk
+  endif
+
+  PKGREPO2DEB_ARGS+=	-r ${PKGREPOSITORY}
+  PKGREPO2DEB_ARGS+=	-d ${DEB_PACKAGES}
+
+  .PHONY: deb-package
+  deb-package:
+	${RUN} ${PKGREPO2DEB} ${PKGREPO2DEB_ARGS} ${PKGFILE}
 endif
