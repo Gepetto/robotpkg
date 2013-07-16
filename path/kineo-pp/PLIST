@@ -1,4 +1,4 @@
-@comment Fri Jun 21 17:00:23 CEST 2013
+@comment Tue Jul 16 14:37:57 CEST 2013
 bin/KineoAddonBuilder
 bin/Kite
 kineo-2.06/bin/KineoAddonBuilder
@@ -29,6 +29,7 @@ kineo-2.06/bin/modules/KineoDeviceRes/SteeringMethods/Sequence.kxml
 kineo-2.06/bin/modules/KineoDeviceRes/deviceRef.bmp
 kineo-2.06/bin/modules/KineoInertialAnalyzer.kab
 kineo-2.06/bin/modules/KineoInertialAnalyzer.so
+kineo-2.06/bin/modules/KineoInertialAnalyzerRes/.fr-z3tFfX/KPPSDK206007/bin/modules/KineoInertialAnalyzer.so
 kineo-2.06/bin/modules/KineoInertialAnalyzerRes/reset_col.bmp
 kineo-2.06/bin/modules/KineoInertialAnalyzerRes/reset_mom2.bmp
 kineo-2.06/bin/modules/KineoInertialAnalyzerRes/reset_pca2.bmp
@@ -53,11 +54,6 @@ kineo-2.06/bin/modules/KineoPathAuthoringRes/waypointStart.bmp
 kineo-2.06/bin/modules/KineoPathAuthoringRes/waypointUnstable.bmp
 kineo-2.06/bin/modules/KineoRoadmapDisplay.kab
 kineo-2.06/bin/modules/KineoRoadmapDisplay.so
-kineo-2.06/bin/modules/Kite_Tutorial_HelloWorld.kab
-kineo-2.06/bin/modules/Kite_Tutorial_HelloWorld.so
-kineo-2.06/bin/modules/Kite_Tutorial_HelloWorldRes/HelloWorld.bmp
-kineo-2.06/bin/modules/Kite_Tutorial_IK.kab
-kineo-2.06/bin/modules/Kite_Tutorial_IK.so
 kineo-2.06/bin/modulesd/A_KineoMonitord.kab
 kineo-2.06/bin/modulesd/A_KineoMonitord.so
 kineo-2.06/bin/modulesd/KineoDeviceBased.kab
@@ -107,11 +103,6 @@ kineo-2.06/bin/modulesd/KineoPathAuthoringdRes/waypointStart.bmp
 kineo-2.06/bin/modulesd/KineoPathAuthoringdRes/waypointUnstable.bmp
 kineo-2.06/bin/modulesd/KineoRoadmapDisplayd.kab
 kineo-2.06/bin/modulesd/KineoRoadmapDisplayd.so
-kineo-2.06/bin/modulesd/Kite_Tutorial_HelloWorldd.kab
-kineo-2.06/bin/modulesd/Kite_Tutorial_HelloWorldd.so
-kineo-2.06/bin/modulesd/Kite_Tutorial_HelloWorlddRes/HelloWorld.bmp
-kineo-2.06/bin/modulesd/Kite_Tutorial_IKd.kab
-kineo-2.06/bin/modulesd/Kite_Tutorial_IKd.so
 kineo-2.06/bin/res/KineoPathPlanner_splash.bmp
 kineo-2.06/bin/res/Kite_splash.bmp
 kineo-2.06/bin/res/banner.bmp
@@ -221,22 +212,6 @@ kineo-2.06/bin/res/undo.bmp
 kineo-2.06/bin/res/warning.bmp
 kineo-2.06/bin/res/white.bmp
 kineo-2.06/bin/res/zoom.bmp
-kineo-2.06/include/Eigen/.svn/entries
-kineo-2.06/include/Eigen/.svn/text-base/Array.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/Cholesky.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/Core.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/Dense.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/Eigen.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/Geometry.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/LU.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/LeastSquares.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/NewStdVector.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/QR.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/QtAlignedMalloc.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/SVD.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/Sparse.svn-base
-kineo-2.06/include/Eigen/.svn/text-base/StdVector.svn-base
 kineo-2.06/include/Eigen/Array
 kineo-2.06/include/Eigen/CMakeLists.txt
 kineo-2.06/include/Eigen/Cholesky
@@ -252,17 +227,6 @@ kineo-2.06/include/Eigen/QtAlignedMalloc
 kineo-2.06/include/Eigen/SVD
 kineo-2.06/include/Eigen/Sparse
 kineo-2.06/include/Eigen/StdVector
-kineo-2.06/include/Eigen/src/.svn/entries
-kineo-2.06/include/Eigen/src/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Array/.svn/entries
-kineo-2.06/include/Eigen/src/Array/.svn/text-base/BooleanRedux.h.svn-base
-kineo-2.06/include/Eigen/src/Array/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Array/.svn/text-base/CwiseOperators.h.svn-base
-kineo-2.06/include/Eigen/src/Array/.svn/text-base/Functors.h.svn-base
-kineo-2.06/include/Eigen/src/Array/.svn/text-base/Norms.h.svn-base
-kineo-2.06/include/Eigen/src/Array/.svn/text-base/PartialRedux.h.svn-base
-kineo-2.06/include/Eigen/src/Array/.svn/text-base/Random.h.svn-base
-kineo-2.06/include/Eigen/src/Array/.svn/text-base/Select.h.svn-base
 kineo-2.06/include/Eigen/src/Array/BooleanRedux.h
 kineo-2.06/include/Eigen/src/Array/CMakeLists.txt
 kineo-2.06/include/Eigen/src/Array/CwiseOperators.h
@@ -272,53 +236,10 @@ kineo-2.06/include/Eigen/src/Array/PartialRedux.h
 kineo-2.06/include/Eigen/src/Array/Random.h
 kineo-2.06/include/Eigen/src/Array/Select.h
 kineo-2.06/include/Eigen/src/CMakeLists.txt
-kineo-2.06/include/Eigen/src/Cholesky/.svn/entries
-kineo-2.06/include/Eigen/src/Cholesky/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Cholesky/.svn/text-base/CholeskyInstantiations.cpp.svn-base
-kineo-2.06/include/Eigen/src/Cholesky/.svn/text-base/LDLT.h.svn-base
-kineo-2.06/include/Eigen/src/Cholesky/.svn/text-base/LLT.h.svn-base
 kineo-2.06/include/Eigen/src/Cholesky/CMakeLists.txt
 kineo-2.06/include/Eigen/src/Cholesky/CholeskyInstantiations.cpp
 kineo-2.06/include/Eigen/src/Cholesky/LDLT.h
 kineo-2.06/include/Eigen/src/Cholesky/LLT.h
-kineo-2.06/include/Eigen/src/Core/.svn/entries
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Assign.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Block.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/CacheFriendlyProduct.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Coeffs.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/CommaInitializer.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/CoreInstantiations.cpp.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Cwise.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/CwiseBinaryOp.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/CwiseNullaryOp.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/CwiseUnaryOp.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/DiagonalCoeffs.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/DiagonalMatrix.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/DiagonalProduct.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Dot.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Flagged.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Functors.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Fuzzy.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/GenericPacketMath.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/IO.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Map.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/MapBase.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/MathFunctions.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Matrix.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/MatrixBase.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/MatrixStorage.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Minor.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/NestByValue.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/NumTraits.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Part.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Product.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Redux.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/SolveTriangular.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Sum.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Swap.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Transpose.h.svn-base
-kineo-2.06/include/Eigen/src/Core/.svn/text-base/Visitor.h.svn-base
 kineo-2.06/include/Eigen/src/Core/Assign.h
 kineo-2.06/include/Eigen/src/Core/Block.h
 kineo-2.06/include/Eigen/src/Core/CMakeLists.txt
@@ -356,30 +277,11 @@ kineo-2.06/include/Eigen/src/Core/Sum.h
 kineo-2.06/include/Eigen/src/Core/Swap.h
 kineo-2.06/include/Eigen/src/Core/Transpose.h
 kineo-2.06/include/Eigen/src/Core/Visitor.h
-kineo-2.06/include/Eigen/src/Core/arch/.svn/entries
-kineo-2.06/include/Eigen/src/Core/arch/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Core/arch/AltiVec/.svn/entries
-kineo-2.06/include/Eigen/src/Core/arch/AltiVec/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Core/arch/AltiVec/.svn/text-base/PacketMath.h.svn-base
 kineo-2.06/include/Eigen/src/Core/arch/AltiVec/CMakeLists.txt
 kineo-2.06/include/Eigen/src/Core/arch/AltiVec/PacketMath.h
 kineo-2.06/include/Eigen/src/Core/arch/CMakeLists.txt
-kineo-2.06/include/Eigen/src/Core/arch/SSE/.svn/entries
-kineo-2.06/include/Eigen/src/Core/arch/SSE/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Core/arch/SSE/.svn/text-base/PacketMath.h.svn-base
 kineo-2.06/include/Eigen/src/Core/arch/SSE/CMakeLists.txt
 kineo-2.06/include/Eigen/src/Core/arch/SSE/PacketMath.h
-kineo-2.06/include/Eigen/src/Core/util/.svn/entries
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/Constants.h.svn-base
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/DisableMSVCWarnings.h.svn-base
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/EnableMSVCWarnings.h.svn-base
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/ForwardDeclarations.h.svn-base
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/Macros.h.svn-base
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/Memory.h.svn-base
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/Meta.h.svn-base
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/StaticAssert.h.svn-base
-kineo-2.06/include/Eigen/src/Core/util/.svn/text-base/XprHelper.h.svn-base
 kineo-2.06/include/Eigen/src/Core/util/CMakeLists.txt
 kineo-2.06/include/Eigen/src/Core/util/Constants.h
 kineo-2.06/include/Eigen/src/Core/util/DisableMSVCWarnings.h
@@ -390,20 +292,6 @@ kineo-2.06/include/Eigen/src/Core/util/Memory.h
 kineo-2.06/include/Eigen/src/Core/util/Meta.h
 kineo-2.06/include/Eigen/src/Core/util/StaticAssert.h
 kineo-2.06/include/Eigen/src/Core/util/XprHelper.h
-kineo-2.06/include/Eigen/src/Geometry/.svn/entries
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/AlignedBox.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/AngleAxis.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/EulerAngles.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/Hyperplane.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/OrthoMethods.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/ParametrizedLine.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/Quaternion.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/Rotation2D.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/RotationBase.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/Scaling.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/Transform.h.svn-base
-kineo-2.06/include/Eigen/src/Geometry/.svn/text-base/Translation.h.svn-base
 kineo-2.06/include/Eigen/src/Geometry/AlignedBox.h
 kineo-2.06/include/Eigen/src/Geometry/AngleAxis.h
 kineo-2.06/include/Eigen/src/Geometry/CMakeLists.txt
@@ -417,28 +305,12 @@ kineo-2.06/include/Eigen/src/Geometry/RotationBase.h
 kineo-2.06/include/Eigen/src/Geometry/Scaling.h
 kineo-2.06/include/Eigen/src/Geometry/Transform.h
 kineo-2.06/include/Eigen/src/Geometry/Translation.h
-kineo-2.06/include/Eigen/src/LU/.svn/entries
-kineo-2.06/include/Eigen/src/LU/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/LU/.svn/text-base/Determinant.h.svn-base
-kineo-2.06/include/Eigen/src/LU/.svn/text-base/Inverse.h.svn-base
-kineo-2.06/include/Eigen/src/LU/.svn/text-base/LU.h.svn-base
 kineo-2.06/include/Eigen/src/LU/CMakeLists.txt
 kineo-2.06/include/Eigen/src/LU/Determinant.h
 kineo-2.06/include/Eigen/src/LU/Inverse.h
 kineo-2.06/include/Eigen/src/LU/LU.h
-kineo-2.06/include/Eigen/src/LeastSquares/.svn/entries
-kineo-2.06/include/Eigen/src/LeastSquares/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/LeastSquares/.svn/text-base/LeastSquares.h.svn-base
 kineo-2.06/include/Eigen/src/LeastSquares/CMakeLists.txt
 kineo-2.06/include/Eigen/src/LeastSquares/LeastSquares.h
-kineo-2.06/include/Eigen/src/QR/.svn/entries
-kineo-2.06/include/Eigen/src/QR/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/QR/.svn/text-base/EigenSolver.h.svn-base
-kineo-2.06/include/Eigen/src/QR/.svn/text-base/HessenbergDecomposition.h.svn-base
-kineo-2.06/include/Eigen/src/QR/.svn/text-base/QR.h.svn-base
-kineo-2.06/include/Eigen/src/QR/.svn/text-base/QrInstantiations.cpp.svn-base
-kineo-2.06/include/Eigen/src/QR/.svn/text-base/SelfAdjointEigenSolver.h.svn-base
-kineo-2.06/include/Eigen/src/QR/.svn/text-base/Tridiagonalization.h.svn-base
 kineo-2.06/include/Eigen/src/QR/CMakeLists.txt
 kineo-2.06/include/Eigen/src/QR/EigenSolver.h
 kineo-2.06/include/Eigen/src/QR/HessenbergDecomposition.h
@@ -446,43 +318,8 @@ kineo-2.06/include/Eigen/src/QR/QR.h
 kineo-2.06/include/Eigen/src/QR/QrInstantiations.cpp
 kineo-2.06/include/Eigen/src/QR/SelfAdjointEigenSolver.h
 kineo-2.06/include/Eigen/src/QR/Tridiagonalization.h
-kineo-2.06/include/Eigen/src/SVD/.svn/entries
-kineo-2.06/include/Eigen/src/SVD/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/SVD/.svn/text-base/SVD.h.svn-base
 kineo-2.06/include/Eigen/src/SVD/CMakeLists.txt
 kineo-2.06/include/Eigen/src/SVD/SVD.h
-kineo-2.06/include/Eigen/src/Sparse/.svn/entries
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/AmbiVector.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/CMakeLists.txt.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/CholmodSupport.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/CompressedStorage.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/CoreIterators.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/DynamicSparseMatrix.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/MappedSparseMatrix.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/RandomSetter.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseAssign.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseBlock.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseCwise.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseCwiseBinaryOp.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseCwiseUnaryOp.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseDiagonalProduct.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseDot.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseFlagged.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseFuzzy.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseLDLT.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseLLT.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseLU.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseMatrix.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseMatrixBase.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseProduct.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseRedux.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseTranspose.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseUtil.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SparseVector.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/SuperLUSupport.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/TaucsSupport.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/TriangularSolver.h.svn-base
-kineo-2.06/include/Eigen/src/Sparse/.svn/text-base/UmfPackSupport.h.svn-base
 kineo-2.06/include/Eigen/src/Sparse/AmbiVector.h
 kineo-2.06/include/Eigen/src/Sparse/CMakeLists.txt
 kineo-2.06/include/Eigen/src/Sparse/CholmodSupport.h
@@ -806,6 +643,7 @@ kineo-2.06/include/KineoModel/kppClashAnalysisComponentFactory.h
 kineo-2.06/include/KineoModel/kppClashAnalysisDetailedComponent.h
 kineo-2.06/include/KineoModel/kppClashAnalysisNode.h
 kineo-2.06/include/KineoModel/kppClearOptimizerComponent.h
+kineo-2.06/include/KineoModel/kppClearanceOptimizerComponent.h
 kineo-2.06/include/KineoModel/kppClippingPlane.h
 kineo-2.06/include/KineoModel/kppCollisionEntityBuildingDelegate.h
 kineo-2.06/include/KineoModel/kppCollisionPairHolder.h
@@ -838,7 +676,6 @@ kineo-2.06/include/KineoModel/kppExtendSlidingComponent.h
 kineo-2.06/include/KineoModel/kppExtraDofComponent.h
 kineo-2.06/include/KineoModel/kppExtractingPlannerComponent.h
 kineo-2.06/include/KineoModel/kppFactory.h
-kineo-2.06/include/KineoModel/kppFeatureNames.h
 kineo-2.06/include/KineoModel/kppFileParameter.h
 kineo-2.06/include/KineoModel/kppFreeFlyerJointComponent.h
 kineo-2.06/include/KineoModel/kppFreeFlyerPathFilter.h
@@ -865,7 +702,6 @@ kineo-2.06/include/KineoModel/kppMaterialComponent.h
 kineo-2.06/include/KineoModel/kppModelDefine.h
 kineo-2.06/include/KineoModel/kppModelTree.h
 kineo-2.06/include/KineoModel/kppMultiplePlannerComponent.h
-kineo-2.06/include/KineoModel/kppNames.h
 kineo-2.06/include/KineoModel/kppNumberParameter.h
 kineo-2.06/include/KineoModel/kppOptimizerComponent.h
 kineo-2.06/include/KineoModel/kppParallelPlannerComponent.h
@@ -1078,6 +914,7 @@ kineo-2.06/include/KineoWorks2/kwsBody.h
 kineo-2.06/include/KineoWorks2/kwsCSComposite.h
 kineo-2.06/include/KineoWorks2/kwsCSVoid.h
 kineo-2.06/include/KineoWorks2/kwsClearOptimizer.h
+kineo-2.06/include/KineoWorks2/kwsClearanceOptimizer.h
 kineo-2.06/include/KineoWorks2/kwsConfig.h
 kineo-2.06/include/KineoWorks2/kwsConfigExtractor.h
 kineo-2.06/include/KineoWorks2/kwsConfigSpace.h
@@ -1596,9 +1433,6 @@ kineo-2.06/include/wx/gtk/fontpicker.h
 kineo-2.06/include/wx/gtk/frame.h
 kineo-2.06/include/wx/gtk/gauge.h
 kineo-2.06/include/wx/gtk/glcanvas.h
-kineo-2.06/include/wx/gtk/gnome/.svn/entries
-kineo-2.06/include/wx/gtk/gnome/.svn/text-base/gprint.h.svn-base
-kineo-2.06/include/wx/gtk/gnome/.svn/text-base/gvfs.h.svn-base
 kineo-2.06/include/wx/gtk/gnome/gprint.h
 kineo-2.06/include/wx/gtk/gnome/gvfs.h
 kineo-2.06/include/wx/gtk/listbox.h
@@ -1611,8 +1445,6 @@ kineo-2.06/include/wx/gtk/notebook.h
 kineo-2.06/include/wx/gtk/pen.h
 kineo-2.06/include/wx/gtk/popupwin.h
 kineo-2.06/include/wx/gtk/private.h
-kineo-2.06/include/wx/gtk/private/.svn/entries
-kineo-2.06/include/wx/gtk/private/.svn/text-base/string.h.svn-base
 kineo-2.06/include/wx/gtk/private/string.h
 kineo-2.06/include/wx/gtk/radiobox.h
 kineo-2.06/include/wx/gtk/radiobut.h
@@ -1667,7 +1499,6 @@ kineo-2.06/include/wx/gtk1/fontdlg.h
 kineo-2.06/include/wx/gtk1/frame.h
 kineo-2.06/include/wx/gtk1/gauge.h
 kineo-2.06/include/wx/gtk1/glcanvas.h
-kineo-2.06/include/wx/gtk1/gnome/.svn/entries
 kineo-2.06/include/wx/gtk1/listbox.h
 kineo-2.06/include/wx/gtk1/mdi.h
 kineo-2.06/include/wx/gtk1/menu.h
@@ -1760,13 +1591,6 @@ kineo-2.06/include/wx/listctrl.h
 kineo-2.06/include/wx/listimpl.cpp
 kineo-2.06/include/wx/log.h
 kineo-2.06/include/wx/longlong.h
-kineo-2.06/include/wx/mac/corefoundation/.svn/entries
-kineo-2.06/include/wx/mac/corefoundation/.svn/text-base/cfdataref.h.svn-base
-kineo-2.06/include/wx/mac/corefoundation/.svn/text-base/cfref.h.svn-base
-kineo-2.06/include/wx/mac/corefoundation/.svn/text-base/cfstring.h.svn-base
-kineo-2.06/include/wx/mac/corefoundation/.svn/text-base/hid.h.svn-base
-kineo-2.06/include/wx/mac/corefoundation/.svn/text-base/joystick.h.svn-base
-kineo-2.06/include/wx/mac/corefoundation/.svn/text-base/stdpaths.h.svn-base
 kineo-2.06/include/wx/mac/corefoundation/cfdataref.h
 kineo-2.06/include/wx/mac/corefoundation/cfref.h
 kineo-2.06/include/wx/mac/corefoundation/cfstring.h
@@ -1877,17 +1701,6 @@ kineo-2.06/include/wx/msw/msgdlg.h
 kineo-2.06/include/wx/msw/mslu.h
 kineo-2.06/include/wx/msw/msvcrt.h
 kineo-2.06/include/wx/msw/notebook.h
-kineo-2.06/include/wx/msw/ole/.svn/entries
-kineo-2.06/include/wx/msw/ole/.svn/text-base/access.h.svn-base
-kineo-2.06/include/wx/msw/ole/.svn/text-base/activex.h.svn-base
-kineo-2.06/include/wx/msw/ole/.svn/text-base/automtn.h.svn-base
-kineo-2.06/include/wx/msw/ole/.svn/text-base/dataform.h.svn-base
-kineo-2.06/include/wx/msw/ole/.svn/text-base/dataobj.h.svn-base
-kineo-2.06/include/wx/msw/ole/.svn/text-base/dataobj2.h.svn-base
-kineo-2.06/include/wx/msw/ole/.svn/text-base/dropsrc.h.svn-base
-kineo-2.06/include/wx/msw/ole/.svn/text-base/droptgt.h.svn-base
-kineo-2.06/include/wx/msw/ole/.svn/text-base/oleutils.h.svn-base
-kineo-2.06/include/wx/msw/ole/.svn/text-base/uuid.h.svn-base
 kineo-2.06/include/wx/msw/ole/access.h
 kineo-2.06/include/wx/msw/ole/activex.h
 kineo-2.06/include/wx/msw/ole/automtn.h
@@ -1947,19 +1760,6 @@ kineo-2.06/include/wx/msw/toplevel.h
 kineo-2.06/include/wx/msw/treectrl.h
 kineo-2.06/include/wx/msw/uxtheme.h
 kineo-2.06/include/wx/msw/uxthemep.h
-kineo-2.06/include/wx/msw/wince/.svn/entries
-kineo-2.06/include/wx/msw/wince/.svn/text-base/checklst.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/chkconf.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/choicece.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/helpwce.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/libraries.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/missing.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/net.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/resources.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/setup.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/tbarwce.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/textctrlce.h.svn-base
-kineo-2.06/include/wx/msw/wince/.svn/text-base/time.h.svn-base
 kineo-2.06/include/wx/msw/wince/checklst.h
 kineo-2.06/include/wx/msw/wince/chkconf.h
 kineo-2.06/include/wx/msw/wince/choicece.h
@@ -2044,7 +1844,6 @@ kineo-2.06/include/wx/scrolbar.h
 kineo-2.06/include/wx/scrolwin.h
 kineo-2.06/include/wx/selstore.h
 kineo-2.06/include/wx/settings.h
-kineo-2.06/include/wx/setup.h
 kineo-2.06/include/wx/setup_inc.h
 kineo-2.06/include/wx/setup_redirect.h
 kineo-2.06/include/wx/sizer.h
@@ -2236,16 +2035,18 @@ kineo-2.06/lib/libKineoWX.so
 kineo-2.06/lib/libKineoWXd.so
 kineo-2.06/lib/libKineoWorks2Dll.so
 kineo-2.06/lib/libKineoWorks2Dlld.so
-kineo-2.06/lib/libKite_Tutorial_HelloWorld.so
-kineo-2.06/lib/libKite_Tutorial_HelloWorldd.so
-kineo-2.06/lib/libKite_Tutorial_IK.so
-kineo-2.06/lib/libKite_Tutorial_IKd.so
 kineo-2.06/lib/libKwsKcd2Dll.so
 kineo-2.06/lib/libKwsKcd2Dlld.so
 kineo-2.06/lib/libavcodec.so.52
 kineo-2.06/lib/libavdevice.so.52
 kineo-2.06/lib/libavformat.so.52
 kineo-2.06/lib/libavutil.so.50
+kineo-2.06/lib/libboost_date_time-mt.a
+kineo-2.06/lib/libboost_filesystem-mt.a
+kineo-2.06/lib/libboost_python-mt.a
+kineo-2.06/lib/libboost_regex-mt.a
+kineo-2.06/lib/libboost_system-mt.a
+kineo-2.06/lib/libboost_thread-mt.a
 kineo-2.06/lib/libkcd2Dll.so
 kineo-2.06/lib/libkcd2Dlld.so
 kineo-2.06/lib/libkprParserVRML.so
@@ -2475,26 +2276,15 @@ kineo-2.06/share/demos/VRML2/TENDEUR/tendeur.kxml
 kineo-2.06/share/demos/VRML2/TENDEUR/tendeurTravers.kxml
 kineo-2.06/share/demos/VRML2/TENDEUR/washer.wrl
 kineo-2.06/share/doc/KineoWorks/KineoWorks Reference Documentation.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___basics_2_kineo_tutorial_k_c_d.cpp-example.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___multithread_2_kineo_tutorial_k_c_d_multithread.cpp-example.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_test_2ktt_proximity_query_geometry_pair.cpp-example.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_test_2ktt_report_geometry_pair.cpp-example.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_type_2ktt_detector_sphere_sphere.cpp-example.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_type_2ktt_poly_sphere.cpp-example.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_type_2ktt_sphere.cpp-example.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_type_2ktt_test_tree_sphere.cpp-example.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___virtual_2ktt_k_c_d_box.cpp-example.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___analysis.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___analysis_parameters.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___from_previous_version.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___geometry.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___introduction.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___multithread.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___new_test.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___new_type.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___performance_settings.html
-kineo-2.06/share/doc/KineoWorks/html/_k_c_d__user_manual___setup.html
+kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___basics_2_kineo_tutorial_k_c_d_8cpp-example.html
+kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___multithread_2_kineo_tutorial_k_c_d_multithread_8cpp-example.html
+kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_test_2ktt_proximity_query_geometry_pair_8cpp-example.html
+kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_test_2ktt_report_geometry_pair_8cpp-example.html
+kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_type_2ktt_detector_sphere_sphere_8cpp-example.html
+kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_type_2ktt_poly_sphere_8cpp-example.html
+kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_type_2ktt_sphere_8cpp-example.html
+kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___new_type_2ktt_test_tree_sphere_8cpp-example.html
+kineo-2.06/share/doc/KineoWorks/html/_k_c_d_2_k_c_d___tutorial___virtual_2ktt_k_c_d_box_8cpp-example.html
 kineo-2.06/share/doc/KineoWorks/html/advanced.html
 kineo-2.06/share/doc/KineoWorks/html/annotated.html
 kineo-2.06/share/doc/KineoWorks/html/assemblies.png
@@ -2836,9 +2626,13 @@ kineo-2.06/share/doc/KineoWorks/html/class_ckws_c_s_composite.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_c_s_composite.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_c_s_void-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_c_s_void.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_c_s_void.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_clear_optimizer-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_clear_optimizer.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_clear_optimizer.png
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_clearance_optimizer-members.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_clearance_optimizer.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_clearance_optimizer.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_config-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_config.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_config.png
@@ -2912,10 +2706,13 @@ kineo-2.06/share/doc/KineoWorks/html/class_ckws_distance.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_distance.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_distance_manhattan-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_distance_manhattan.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_distance_manhattan.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_distance_slerp-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_distance_slerp.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_distance_slerp.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_dof-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_dof.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_dof.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_edge-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_edge.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_edge_factory-members.html
@@ -2952,34 +2749,49 @@ kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_anchor-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_anchor.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_anchor.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_ball_and_socket-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_ball_and_socket.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_ball_and_socket.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_double_rotation-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_double_rotation.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_double_rotation.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_free_flyer-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_free_flyer.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_free_flyer.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_plan-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_plan.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_plan.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_rotation-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_rotation.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_rotation.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_translation-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_translation.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_joint_translation.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_c_d_body-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_c_d_body.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_c_d_body.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_anchor-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_anchor.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_anchor.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_free_flyer-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_free_flyer.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_free_flyer.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_plan-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_plan.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_plan.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_rotate_tait_bryant-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_rotate_tait_bryant.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_rotate_tait_bryant.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_rotate_x-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_rotate_x.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_rotate_x.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_rotate_x_y-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_rotate_x_y.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_rotate_x_y.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_translate_x-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_translate_x.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_k_e_translate_x.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_kinematical_effect-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_kinematical_effect.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_kinematical_effect.png
@@ -2999,24 +2811,34 @@ kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_absolute-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_absolute.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_absolute.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_decorator-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_decorator.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_decorator.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_euclidean-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_euclidean.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_euclidean.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_intrinsinc-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_intrinsinc.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_intrinsinc.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_joint_sweep-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_joint_sweep.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_joint_sweep.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_manhattan-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_manhattan.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_manhattan.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_revolute-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_revolute.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_revolute.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_scale-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_scale.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_scale.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_slerp-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_slerp.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_slerp.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_solid-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_solid.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_metric_solid.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_multiple_planner-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_multiple_planner.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_multiple_planner.png
@@ -3056,18 +2878,25 @@ kineo-2.06/share/doc/KineoWorks/html/class_ckws_picker_smallest_tree.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_picker_smallest_tree.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_d_discrete-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_d_discrete.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_d_discrete.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_d_gaussian-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_d_gaussian.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_d_gaussian.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_d_uniform-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_d_uniform.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_d_uniform.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_composite-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_composite.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_composite.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_linear_dof-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_linear_dof.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_linear_dof.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_slerp-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_slerp.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_slerp.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_solid-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_solid.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_r_w_solid.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_random_distribution-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_random_distribution.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_random_distribution.png
@@ -3111,18 +2940,25 @@ kineo-2.06/share/doc/KineoWorks/html/class_ckws_roadmap_builder.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_roadmap_builder.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_composite-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_composite.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_composite.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_linear-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_linear.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_linear.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_manhattan-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_manhattan.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_manhattan.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_reeds_n_shepp-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_reeds_n_shepp.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_reeds_n_shepp.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_sequence-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_sequence.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_sequence.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_slerp-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_slerp.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_slerp.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_solid_motion-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_solid_motion.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_s_m_solid_motion.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_shooter_adaptive_multi-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_shooter_adaptive_multi.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_shooter_adaptive_multi.png
@@ -3190,29 +3026,40 @@ kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_bounds-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_bounds.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_bounds.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_collision-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_collision.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_collision.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_composite-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_composite.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_composite.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_distance-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_distance.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_distance.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_dof-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_dof.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_dof.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_lock-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_lock.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_lock.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_tunnel-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_tunnel.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_cfg_tunnel.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_d_p_collision-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_d_p_collision.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_d_p_collision.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_d_p_tunnel-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_d_p_tunnel.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_d_p_tunnel.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_dof_bounds-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_dof_bounds.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_dof_bounds.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_dof_lock-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_dof_lock.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_dof_lock.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_path_collision-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_path_collision.html
+kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_path_collision.png
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_set-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_set.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_validator_set.png
@@ -3220,7 +3067,7 @@ kineo-2.06/share/doc/KineoWorks/html/class_ckws_waypoint_planner-members.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_waypoint_planner.html
 kineo-2.06/share/doc/KineoWorks/html/class_ckws_waypoint_planner.png
 kineo-2.06/share/doc/KineoWorks/html/classes.html
-kineo-2.06/share/doc/KineoWorks/html/codable_class_template.html
+kineo-2.06/share/doc/KineoWorks/html/codableclasstemplate.html
 kineo-2.06/share/doc/KineoWorks/html/deprecated.html
 kineo-2.06/share/doc/KineoWorks/html/doxygen.png
 kineo-2.06/share/doc/KineoWorks/html/examples.html
@@ -3365,28 +3212,39 @@ kineo-2.06/share/doc/KineoWorks/html/group__kwsplus.html
 kineo-2.06/share/doc/KineoWorks/html/hierarchy.html
 kineo-2.06/share/doc/KineoWorks/html/ikStructure.png
 kineo-2.06/share/doc/KineoWorks/html/index.html
-kineo-2.06/share/doc/KineoWorks/html/interpolating_matrices.html
-kineo-2.06/share/doc/KineoWorks/html/kcd__tutorial.html
-kineo-2.06/share/doc/KineoWorks/html/kcd__tutorial__compiling.html
-kineo-2.06/share/doc/KineoWorks/html/kernel__thirdparty.html
+kineo-2.06/share/doc/KineoWorks/html/interpolatingmatrices.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_tutorial.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_tutorial_compiling.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_analysis.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_analysisparameters.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_frompreviousversion.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_geometry.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_introduction.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_multithread.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_newtest.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_newtype.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_performancesettings.html
+kineo-2.06/share/doc/KineoWorks/html/kcd_usermanual_setup.html
+kineo-2.06/share/doc/KineoWorks/html/kernel_thirdparty.html
 kineo-2.06/share/doc/KineoWorks/html/logo_kineo.png
 kineo-2.06/share/doc/KineoWorks/html/magnetPointExample.png
 kineo-2.06/share/doc/KineoWorks/html/main.html
 kineo-2.06/share/doc/KineoWorks/html/modules.html
 kineo-2.06/share/doc/KineoWorks/html/notification.html
-kineo-2.06/share/doc/KineoWorks/html/optional_features.html
+kineo-2.06/share/doc/KineoWorks/html/optionalfeatures.html
 kineo-2.06/share/doc/KineoWorks/html/pages.html
-kineo-2.06/share/doc/KineoWorks/html/path_planners.html
-kineo-2.06/share/doc/KineoWorks/html/path_planners___implementation.html
-kineo-2.06/share/doc/KineoWorks/html/path_planners___introduction.html
-kineo-2.06/share/doc/KineoWorks/html/path_planners___path_optimizer_implementation.html
-kineo-2.06/share/doc/KineoWorks/html/path_planners___roadmap_builder_implementation.html
-kineo-2.06/share/doc/KineoWorks/html/path_planners___usage.html
+kineo-2.06/share/doc/KineoWorks/html/pathplanners.html
+kineo-2.06/share/doc/KineoWorks/html/pathplanners_implementation.html
+kineo-2.06/share/doc/KineoWorks/html/pathplanners_introduction.html
+kineo-2.06/share/doc/KineoWorks/html/pathplanners_pathoptimizerimplementation.html
+kineo-2.06/share/doc/KineoWorks/html/pathplanners_roadmapbuilderimplementation.html
+kineo-2.06/share/doc/KineoWorks/html/pathplanners_usage.html
 kineo-2.06/share/doc/KineoWorks/html/penetration_1.png
 kineo-2.06/share/doc/KineoWorks/html/penetration_2.png
-kineo-2.06/share/doc/KineoWorks/html/porting_to_k_w_s2045xx.html
-kineo-2.06/share/doc/KineoWorks/html/porting_to_k_w_s205.html
-kineo-2.06/share/doc/KineoWorks/html/porting_to_k_w_s206.html
+kineo-2.06/share/doc/KineoWorks/html/portingtokws2045xx.html
+kineo-2.06/share/doc/KineoWorks/html/portingtokws205.html
+kineo-2.06/share/doc/KineoWorks/html/portingtokws206.html
 kineo-2.06/share/doc/KineoWorks/html/stylesheet.css
 kineo-2.06/share/doc/KineoWorks/html/tab_b.gif
 kineo-2.06/share/doc/KineoWorks/html/tab_l.gif
@@ -3394,28 +3252,28 @@ kineo-2.06/share/doc/KineoWorks/html/tab_r.gif
 kineo-2.06/share/doc/KineoWorks/html/tabs.css
 kineo-2.06/share/doc/KineoWorks/html/threadsafety.html
 kineo-2.06/share/doc/KineoWorks/html/tree.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___adding_static_constraints.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___building_a_roadmap.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___concepts.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___customizing_kineo_works.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___editing_a_path.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___getting_started.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___introduction.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___kinematical_chain.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___magnets.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___optimizing_a_path.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___path_collision_checking.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___programming_conventions.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___programming_paradigms.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___setting_up_the_environment.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___smart_planner.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___tutorials.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___tutorials___compiling.html
-kineo-2.06/share/doc/KineoWorks/html/user_manual___using_collision_detector.html
-kineo-2.06/share/doc/KineoWorks/html/using_smart_pointers.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_addingstaticconstraints.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_buildingaroadmap.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_concepts.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_customizingkineoworks.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_editingapath.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_gettingstarted.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_introduction.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_kinematicalchain.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_magnets.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_optimizingapath.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_pathcollisionchecking.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_programmingconventions.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_programmingparadigms.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_settinguptheenvironment.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_smartplanner.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_tutorials.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_tutorials_compiling.html
+kineo-2.06/share/doc/KineoWorks/html/usermanual_usingcollisiondetector.html
+kineo-2.06/share/doc/KineoWorks/html/usingsmartpointers.html
 kineo-2.06/share/doc/KineoWorks/html/virtualBodies.png
-kineo-2.06/share/doc/KineoWorks/html/whats_new_in_k_w_s.html
+kineo-2.06/share/doc/KineoWorks/html/whatsnewinkws.html
 kineo-2.06/share/doc/Kite SDK/Kite SDK Reference Documentation.html
 kineo-2.06/share/doc/Kite SDK/html/IKTutorialDevice.png
 kineo-2.06/share/doc/Kite SDK/html/IKTutorialHomePosition.png
@@ -3503,6 +3361,9 @@ kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clash_analysis_node.png
 kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clear_optimizer_component-members.html
 kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clear_optimizer_component.html
 kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clear_optimizer_component.png
+kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clearance_optimizer_component-members.html
+kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clearance_optimizer_component.html
+kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clearance_optimizer_component.png
 kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clipboard-members.html
 kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clipboard.html
 kineo-2.06/share/doc/Kite SDK/html/class_ckpp_clipboard_insertion_filter-members.html
@@ -4432,33 +4293,33 @@ kineo-2.06/share/doc/Kite SDK/html/group__kwx.html
 kineo-2.06/share/doc/Kite SDK/html/hierarchy.html
 kineo-2.06/share/doc/Kite SDK/html/index.html
 kineo-2.06/share/doc/Kite SDK/html/installdox
-kineo-2.06/share/doc/Kite SDK/html/kppsdk___how_to___parser.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__howto.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__introduction.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__mvc.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__notions.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__projects.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__thirdparty.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__tutorial___launching.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__tutorial__contents.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__tutorial__helloworld.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__tutorial__helloworld__addon.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__tutorial__helloworld__command.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__tutorial__kxmlviewer.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__tutorial__undoredo.html
-kineo-2.06/share/doc/Kite SDK/html/kppsdk__tutorialkinmodule.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_howto.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_howto_parser.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_introduction.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_mvc.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_notions.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_projects.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_thirdparty.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_tutorial_contents.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_tutorial_helloworld.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_tutorial_helloworld_addon.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_tutorial_helloworld_command.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_tutorial_kxmlviewer.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_tutorial_launching.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_tutorial_undoredo.html
+kineo-2.06/share/doc/Kite SDK/html/kppsdk_tutorialkinmodule.html
 kineo-2.06/share/doc/Kite SDK/html/logo_kineo.png
 kineo-2.06/share/doc/Kite SDK/html/main.html
 kineo-2.06/share/doc/Kite SDK/html/modules.html
 kineo-2.06/share/doc/Kite SDK/html/notification.html
-kineo-2.06/share/doc/Kite SDK/html/page__command_panel.html
-kineo-2.06/share/doc/Kite SDK/html/page__constraint.html
-kineo-2.06/share/doc/Kite SDK/html/page__create_device_command.html
-kineo-2.06/share/doc/Kite SDK/html/page__device_sub_class.html
-kineo-2.06/share/doc/Kite SDK/html/page__ikmodule.html
-kineo-2.06/share/doc/Kite SDK/html/page__interactive_graphic.html
+kineo-2.06/share/doc/Kite SDK/html/page_commandpanel.html
+kineo-2.06/share/doc/Kite SDK/html/page_constraint.html
+kineo-2.06/share/doc/Kite SDK/html/page_createdevicecommand.html
+kineo-2.06/share/doc/Kite SDK/html/page_devicesubclass.html
+kineo-2.06/share/doc/Kite SDK/html/page_ikmodule.html
+kineo-2.06/share/doc/Kite SDK/html/page_interactivegraphic.html
 kineo-2.06/share/doc/Kite SDK/html/pages.html
-kineo-2.06/share/doc/Kite SDK/html/porting_to_k_p_p2045xx.html
+kineo-2.06/share/doc/Kite SDK/html/portingtokpp2045xx.html
 kineo-2.06/share/doc/Kite SDK/html/property.html
 kineo-2.06/share/doc/Kite SDK/html/statuscode.html
 kineo-2.06/share/doc/Kite SDK/html/struct_ckpr_stream_position-members.html
