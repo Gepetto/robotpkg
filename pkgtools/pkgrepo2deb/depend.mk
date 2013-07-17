@@ -40,7 +40,9 @@ else
   pkgrepo2deb-inplace:
 	@${STEP_MSG} "Building pkgrepo2deb in place"
 	${RUN} cd ${ROBOTPKG_DIR}/${PKGPATH}/${DEPEND_DIR.pkgrepo2deb};	\
-	${RECURSIVE_MAKE} WRKDIR=${WRKDIR}/pkgrepo2deb build
+	${RECURSIVE_MAKE} build						\
+	  WRKDIR=${WRKDIR}/pkgrepo2deb					\
+	  NO_PKGTOOLS_REQD_CHECK=yes
 
   export PKGREPO2DEB=	${SH} ${WRKDIR}/pkgrepo2deb/pkgrepo2deb/pkgrepo2deb
 endif

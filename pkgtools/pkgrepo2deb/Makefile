@@ -33,6 +33,9 @@ CONFIGURE_ARGS+=	APT_FTPARCHIVE=${PREFIX.apt}/bin/apt-ftparchive
 MESSAGE_SUBST+=		GPG_CMD=${PREFIX.gnupg}/bin/gpg
 MESSAGE_SUBST+=		GPG_HOMEDIR=${GPG_DEFHOMEDIR}
 
+DEPEND_METHOD.pkg_install+=	full
+PREFER.pkg_install?=		robotpkg
+
 include ../../pkgtools/pax/depend.mk
 include ../../mk/sysdep/apt.mk
 include ../../mk/sysdep/dpkg.mk

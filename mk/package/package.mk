@@ -113,10 +113,13 @@ ifneq (,$(filter deb,${PKG_FORMAT}))
     include ${ROBOTPKG_DIR}/pkgtools/pkgrepo2deb/depend.mk
   endif
 
+  PKGREPO2DEB_ENV+=	ROBOTPKG_ADMIN=${PKG_ADMIN_CMD}
+
   PKGREPO2DEB_ARGS+=	-r ${PKGREPOSITORY}
   PKGREPO2DEB_ARGS+=	-d ${DEB_PACKAGES}
 
   .PHONY: deb-package
   deb-package:
-	${RUN} ${PKGREPO2DEB} ${PKGREPO2DEB_ARGS} ${PKGFILE}
+	${RUN} ${SETENV} ${PKGREPO2DEB_ENV}				\
+	  ${PKGREPO2DEB} ${PKGREPO2DEB_ARGS} ${PKGFILE}
 endif
