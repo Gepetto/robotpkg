@@ -1,4 +1,4 @@
-## $NetBSD: Makefile.am,v 1.1 2009/11/14 08:32:42 lukem Exp $
+## $NetBSD: Makefile.am,v 1.4 2013/05/05 13:29:19 lukem Exp $
 
 bin_PROGRAMS = tnftp
 
@@ -22,7 +22,9 @@ tnftp_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_builddir)
 
-tnftp_LDADD =
+tnftp_LDADD = \
+	../libnetbsd/libnetbsd.la 
+
 
 if USE_LIBEDIT
 tnftp_CPPFLAGS += \
@@ -32,8 +34,18 @@ tnftp_LDADD += \
 	../libedit/libedit.la
 endif
 
+
+if WITH_SSL
+tnftp_SOURCES += \
+	ssl.c
+
+tnftp_CPPFLAGS += \
+	$(OPENSSL_INCLUDES)
+
 tnftp_LDADD += \
-	../libnetbsd/libnetbsd.la 
+	$(OPENSSL_LDFLAGS) \
+	$(OPENSSL_LIBS)
+endif
 
 
 man1_MANS = \
@@ -44,3 +56,11 @@ tnftp.1: ftp.1
 
 CLEANFILES = \
 	tnftp.1
+
+EXTRA_DIST = \
+	extern.h \
+	ftp.1 \
+	ftp_var.h \
+	progressbar.h \
+	ssl.h \
+	version.h

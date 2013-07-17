@@ -1,4 +1,4 @@
-## $NetBSD: Makefile.am,v 1.1 2009/11/14 08:32:42 lukem Exp $
+## $NetBSD: Makefile.am,v 1.3 2010/01/05 07:15:58 lukem Exp $
 
 noinst_LTLIBRARIES = libedit.la
 
@@ -7,8 +7,6 @@ libedit_la_SOURCES = \
 	common.c \
 	el.c \
 	emacs.c \
-	fcns.c \
-	help.c \
 	hist.c \
 	history.c \
 	key.c \
@@ -30,6 +28,9 @@ libedit_la_CPPFLAGS = \
 	-I$(top_srcdir)/libnetbsd \
 	-I$(top_srcdir) \
 	-I$(top_builddir)
+
+libedit_la_LIBADD = \
+	$(top_builddir)/libnetbsd/libnetbsd.la
 
 generated_files = \
 	common.h \
@@ -53,28 +54,51 @@ CLEANFILES = \
 
 vi.h: vi.c
 	@echo "Create $@"
-	sh makelist -h $(srcdir)/vi.c > $@
+	$(SHELL) ./makelist -h $(srcdir)/vi.c > $@
 
 emacs.h: emacs.c
 	@echo "Create $@"
-	sh makelist -h $(srcdir)/emacs.c > $@
+	$(SHELL) ./makelist -h $(srcdir)/emacs.c > $@
 
 common.h: common.c
 	@echo "Create $@"
-	sh makelist -h $(srcdir)/common.c > $@
+	$(SHELL) ./makelist -h $(srcdir)/common.c > $@
 
 fcns.h: vi.h emacs.h common.h
 	@echo "Create $@"
-	sh makelist -fh vi.h emacs.h common.h > $@
+	$(SHELL) ./makelist -fh vi.h emacs.h common.h > $@
 
 fcns.c: vi.h emacs.h common.h fcns.h
 	@echo "Create $@"
-	sh makelist -fc vi.h emacs.h common.h > $@
+	$(SHELL) ./makelist -fc vi.h emacs.h common.h > $@
 
 help.c: vi.c emacs.c common.c
 	@echo "Create $@"
-	sh makelist -bc $(srcdir)/vi.c $(srcdir)/emacs.c $(srcdir)/common.c > $@
+	$(SHELL) ./makelist -bc $(srcdir)/vi.c $(srcdir)/emacs.c $(srcdir)/common.c > $@
 
 help.h: vi.c emacs.c common.c
 	@echo "Create $@"
-	sh makelist -bh $(srcdir)/vi.c $(srcdir)/emacs.c $(srcdir)/common.c > $@
+	$(SHELL) ./makelist -bh $(srcdir)/vi.c $(srcdir)/emacs.c $(srcdir)/common.c > $@
+
+EXTRA_DIST = \
+	chared.h \
+	editline.3 \
+	editrc.5 \
+	el.h \
+	filecomplete.c \
+	filecomplete.h \
+	hist.h \
+	histedit.h \
+	key.h \
+	map.h \
+	parse.h \
+	prompt.h \
+	read.h \
+	readline.c \
+	readline/readline.h \
+	refresh.h \
+	search.h \
+	sig.h \
+	sys.h \
+	term.h \
+	tty.h

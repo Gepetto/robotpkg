@@ -1,4 +1,4 @@
-## $NetBSD: Makefile.am,v 1.1 2009/11/14 08:32:42 lukem Exp $
+## $NetBSD: Makefile.am,v 1.2 2010/01/04 06:24:20 lukem Exp $
 
 noinst_LTLIBRARIES = libnetbsd.la
 
@@ -11,3 +11,8 @@ CPPFLAGS = \
 	-I$(top_builddir)
 
 libnetbsd_la_LIBADD = $(LTLIBOBJS)
+
+EXTRA_DIST = \
+	fseeko.c \
+	ftpglob.h \
+	ftpvis.h

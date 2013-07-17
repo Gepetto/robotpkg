@@ -159,6 +159,9 @@
 /* Define to 1 if you have the <limits.h> header file. */
 #undef HAVE_LIMITS_H
 
+/* Define to 1 if you have the <locale.h> header file. */
+#undef HAVE_LOCALE_H
+
 /* Define to 1 if the system has the type `long double'. */
 #undef HAVE_LONG_DOUBLE
 
@@ -198,6 +201,9 @@
 /* Define to 1 if you have the <netinet/ip.h> header file. */
 #undef HAVE_NETINET_IP_H
 
+/* Define to 1 if you have the <netinet/tcp.h> header file. */
+#undef HAVE_NETINET_TCP_H
+
 /* Define to 1 if you have the <paths.h> header file. */
 #undef HAVE_PATHS_H
 
@@ -207,11 +213,11 @@
 /* Define to 1 if you have the <poll.h> header file. */
 #undef HAVE_POLL_H
 
-/* Define if `long long' is supported and *printf() supports %lld or %qd to
+/* Define if 'long long' is supported and *printf() supports %lld or %qd to
    print them. */
 #undef HAVE_PRINTF_LONG_LONG
 
-/* Define if *printf() uses %qd to print `long long' (otherwise uses %lld). */
+/* Define if *printf() uses %qd to print 'long long' (otherwise uses %lld). */
 #undef HAVE_PRINTF_QD
 
 /* Define to 1 if you have the <pwd.h> header file. */
@@ -397,6 +403,9 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
+/* Define to 1 if the system has the type `unsigned long long int'. */
+#undef HAVE_UNSIGNED_LONG_LONG_INT
+
 /* Define to 1 if you have the `usleep' function. */
 #undef HAVE_USLEEP
 
@@ -475,14 +484,19 @@
 /* Define if using IPv6 support. */
 #undef USE_INET6
 
-/* Define if using socks library. */
-#undef USE_SOCKS
-
 /* Define if using (Dante) SOCKS5 proxy. */
-#undef USE_SOCKS5
+#undef USE_SOCKS
 
 /* Version number of package */
 #undef VERSION
+
+/* Define if enabling SSL support. */
+#undef WITH_SSL
+
+/* Enable large inode numbers on Mac OS X 10.5.  */
+#ifndef _DARWIN_USE_64_BIT_INODE
+# define _DARWIN_USE_64_BIT_INODE 1
+#endif
 
 /* Number of bits in a file offset, on hosts where this is settable. */
 #undef _FILE_OFFSET_BITS

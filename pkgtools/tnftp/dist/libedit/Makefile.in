@@ -38,7 +38,13 @@ subdir = libedit
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/makelist.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/buildaux/ax_check_openssl.m4 \
+	$(top_srcdir)/buildaux/libtool.m4 \
+	$(top_srcdir)/buildaux/ltoptions.m4 \
+	$(top_srcdir)/buildaux/ltsugar.m4 \
+	$(top_srcdir)/buildaux/ltversion.m4 \
+	$(top_srcdir)/buildaux/lt~obsolete.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -46,14 +52,14 @@ CONFIG_HEADER = $(top_builddir)/tnftp_config.h
 CONFIG_CLEAN_FILES = makelist
 CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
-libedit_la_LIBADD =
+libedit_la_DEPENDENCIES = $(top_builddir)/libnetbsd/libnetbsd.la
 am_libedit_la_OBJECTS = libedit_la-chared.lo libedit_la-common.lo \
-	libedit_la-el.lo libedit_la-emacs.lo libedit_la-fcns.lo \
-	libedit_la-help.lo libedit_la-hist.lo libedit_la-history.lo \
-	libedit_la-key.lo libedit_la-map.lo libedit_la-parse.lo \
-	libedit_la-prompt.lo libedit_la-read.lo libedit_la-refresh.lo \
-	libedit_la-search.lo libedit_la-sig.lo libedit_la-term.lo \
-	libedit_la-tokenizer.lo libedit_la-tty.lo libedit_la-vi.lo
+	libedit_la-el.lo libedit_la-emacs.lo libedit_la-hist.lo \
+	libedit_la-history.lo libedit_la-key.lo libedit_la-map.lo \
+	libedit_la-parse.lo libedit_la-prompt.lo libedit_la-read.lo \
+	libedit_la-refresh.lo libedit_la-search.lo libedit_la-sig.lo \
+	libedit_la-term.lo libedit_la-tokenizer.lo libedit_la-tty.lo \
+	libedit_la-vi.lo
 am__objects_1 = libedit_la-fcns.lo libedit_la-help.lo
 nodist_libedit_la_OBJECTS = $(am__objects_1)
 libedit_la_OBJECTS = $(am_libedit_la_OBJECTS) \
@@ -109,6 +115,7 @@ CPPFLAGS = @CPPFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -133,11 +140,15 @@ LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
+OPENSSL_INCLUDES = @OPENSSL_INCLUDES@
+OPENSSL_LDFLAGS = @OPENSSL_LDFLAGS@
+OPENSSL_LIBS = @OPENSSL_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -148,6 +159,7 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PKG_CONFIG = @PKG_CONFIG@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -158,6 +170,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -190,7 +203,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -212,8 +224,6 @@ libedit_la_SOURCES = \
 	common.c \
 	el.c \
 	emacs.c \
-	fcns.c \
-	help.c \
 	hist.c \
 	history.c \
 	key.c \
@@ -236,6 +246,9 @@ libedit_la_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_builddir)
 
+libedit_la_LIBADD = \
+	$(top_builddir)/libnetbsd/libnetbsd.la
+
 generated_files = \
 	common.h \
 	emacs.h \
@@ -253,6 +266,29 @@ BUILT_SOURCES = \
 
 CLEANFILES = \
 	$(generated_files)
+
+EXTRA_DIST = \
+	chared.h \
+	editline.3 \
+	editrc.5 \
+	el.h \
+	filecomplete.c \
+	filecomplete.h \
+	hist.h \
+	histedit.h \
+	key.h \
+	map.h \
+	parse.h \
+	prompt.h \
+	read.h \
+	readline.c \
+	readline/readline.h \
+	refresh.h \
+	search.h \
+	sig.h \
+	sys.h \
+	term.h \
+	tty.h
 
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
@@ -386,22 +422,6 @@ libedit_la-emacs.lo: emacs.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libedit_la-emacs.lo `test -f 'emacs.c' || echo '$(srcdir)/'`emacs.c
 
-libedit_la-fcns.lo: fcns.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libedit_la-fcns.lo -MD -MP -MF $(DEPDIR)/libedit_la-fcns.Tpo -c -o libedit_la-fcns.lo `test -f 'fcns.c' || echo '$(srcdir)/'`fcns.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libedit_la-fcns.Tpo $(DEPDIR)/libedit_la-fcns.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='fcns.c' object='libedit_la-fcns.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libedit_la-fcns.lo `test -f 'fcns.c' || echo '$(srcdir)/'`fcns.c
-
-libedit_la-help.lo: help.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libedit_la-help.lo -MD -MP -MF $(DEPDIR)/libedit_la-help.Tpo -c -o libedit_la-help.lo `test -f 'help.c' || echo '$(srcdir)/'`help.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libedit_la-help.Tpo $(DEPDIR)/libedit_la-help.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='help.c' object='libedit_la-help.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libedit_la-help.lo `test -f 'help.c' || echo '$(srcdir)/'`help.c
-
 libedit_la-hist.lo: hist.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libedit_la-hist.lo -MD -MP -MF $(DEPDIR)/libedit_la-hist.Tpo -c -o libedit_la-hist.lo `test -f 'hist.c' || echo '$(srcdir)/'`hist.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libedit_la-hist.Tpo $(DEPDIR)/libedit_la-hist.Plo
@@ -513,6 +533,22 @@ libedit_la-vi.lo: vi.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='vi.c' object='libedit_la-vi.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libedit_la-vi.lo `test -f 'vi.c' || echo '$(srcdir)/'`vi.c
+
+libedit_la-fcns.lo: fcns.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libedit_la-fcns.lo -MD -MP -MF $(DEPDIR)/libedit_la-fcns.Tpo -c -o libedit_la-fcns.lo `test -f 'fcns.c' || echo '$(srcdir)/'`fcns.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libedit_la-fcns.Tpo $(DEPDIR)/libedit_la-fcns.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='fcns.c' object='libedit_la-fcns.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libedit_la-fcns.lo `test -f 'fcns.c' || echo '$(srcdir)/'`fcns.c
+
+libedit_la-help.lo: help.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libedit_la-help.lo -MD -MP -MF $(DEPDIR)/libedit_la-help.Tpo -c -o libedit_la-help.lo `test -f 'help.c' || echo '$(srcdir)/'`help.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libedit_la-help.Tpo $(DEPDIR)/libedit_la-help.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='help.c' object='libedit_la-help.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libedit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libedit_la-help.lo `test -f 'help.c' || echo '$(srcdir)/'`help.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -724,31 +760,31 @@ uninstall-am:
 
 vi.h: vi.c
 	@echo "Create $@"
-	sh makelist -h $(srcdir)/vi.c > $@
+	$(SHELL) ./makelist -h $(srcdir)/vi.c > $@
 
 emacs.h: emacs.c
 	@echo "Create $@"
-	sh makelist -h $(srcdir)/emacs.c > $@
+	$(SHELL) ./makelist -h $(srcdir)/emacs.c > $@
 
 common.h: common.c
 	@echo "Create $@"
-	sh makelist -h $(srcdir)/common.c > $@
+	$(SHELL) ./makelist -h $(srcdir)/common.c > $@
 
 fcns.h: vi.h emacs.h common.h
 	@echo "Create $@"
-	sh makelist -fh vi.h emacs.h common.h > $@
+	$(SHELL) ./makelist -fh vi.h emacs.h common.h > $@
 
 fcns.c: vi.h emacs.h common.h fcns.h
 	@echo "Create $@"
-	sh makelist -fc vi.h emacs.h common.h > $@
+	$(SHELL) ./makelist -fc vi.h emacs.h common.h > $@
 
 help.c: vi.c emacs.c common.c
 	@echo "Create $@"
-	sh makelist -bc $(srcdir)/vi.c $(srcdir)/emacs.c $(srcdir)/common.c > $@
+	$(SHELL) ./makelist -bc $(srcdir)/vi.c $(srcdir)/emacs.c $(srcdir)/common.c > $@
 
 help.h: vi.c emacs.c common.c
 	@echo "Create $@"
-	sh makelist -bh $(srcdir)/vi.c $(srcdir)/emacs.c $(srcdir)/common.c > $@
+	$(SHELL) ./makelist -bh $(srcdir)/vi.c $(srcdir)/emacs.c $(srcdir)/common.c > $@
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

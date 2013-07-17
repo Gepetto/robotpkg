@@ -1,10 +1,11 @@
-/*	$NetBSD: tnftp.h,v 1.33 2009/11/14 08:32:42 lukem Exp $	*/
+/*	$NetBSD: tnftp.h,v 1.35 2013/05/05 13:17:05 lukem Exp $	*/
 
 #define	FTP_PRODUCT	PACKAGE_NAME
 #define	FTP_VERSION	PACKAGE_VERSION
 
 #include "tnftp_config.h"
 
+#include <assert.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <errno.h>
@@ -40,6 +41,9 @@
 #if defined(HAVE_NETINET_IP_H)
 # include <netinet/ip.h>
 #endif
+#if defined(HAVE_NETINET_TCP_H)
+# include <netinet/tcp.h>
+#endif
 #if defined(HAVE_NETDB_H)
 # if HAVE_DECL_AI_NUMERICHOST
 #  include <netdb.h>
@@ -72,13 +76,6 @@
 #endif
 #if defined(HAVE_SYS_PARAM_H)
 # include <sys/param.h>
-/* GLIBC >= 2.8 have ARG_MAX replaced by _SC_ARG_MAX */
-# ifdef _SC_ARG_MAX
-#  ifdef ARG_MAX
-#   undef ARG_MAX
-#  endif
-#  define ARG_MAX sysconf(_SC_ARG_MAX)
-# endif
 #endif
 #if defined(HAVE_SYS_STAT_H)
 # include <sys/stat.h>
@@ -99,6 +96,9 @@
 #endif
 #if defined(HAVE_LIMITS_H)
 # include <limits.h>
+#endif
+#if defined(HAVE_LOCALE_H)
+# include <locale.h>
 #endif
 #if defined(HAVE_PWD_H)
 # include <pwd.h>
@@ -476,7 +476,7 @@ int utimes(const char *, const struct timeval *);
 #define	SECSPERDAY	86400
 #define	TM_YEAR_BASE	1900
 
-#if defined(USE_SOCKS) && defined(USE_SOCKS5)	/* (Dante) SOCKS5 */
+#if defined(USE_SOCKS)		/* (Dante) SOCKS5 */
 #define connect		Rconnect
 #define bind		Rbind
 #define getsockname	Rgetsockname
@@ -499,4 +499,16 @@ int utimes(const char *, const struct timeval *);
 #define recvmsg		Rrecvmsg
 #define getaddrinfo	Rgetaddrinfo
 #define getipnodebyname	Rgetipnodebyname
-#endif /* defined(USE_SOCKS) && defined (USE_SOCKS5) */
+#endif /* defined(USE_SOCKS) */
+
+
+/*
+ * Compatibility for stuff in NetBSD <sys/cdefs.h>
+ */
+#undef __dead
+#define __dead
+
+#ifdef __UNCONST
+#undef __UNCONST
+#endif
+#define __UNCONST(a)   ((void *)(unsigned long)(const void *)(a))

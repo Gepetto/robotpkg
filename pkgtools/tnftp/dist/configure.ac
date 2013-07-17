@@ -1,25 +1,26 @@
-#       $NetBSD: configure.ac,v 1.21 2009/12/30 00:03:25 lukem Exp $
+#       $NetBSD: configure.ac,v 1.25 2013/05/05 13:50:50 lukem Exp $
 #
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([tnftp], [20091122], [lukem@NetBSD.org])
-AC_PREREQ([2.61])
+AC_INIT([tnftp], [20130505], [lukem@NetBSD.org])
+AC_PREREQ([2.69])
 
 AC_COPYRIGHT([
-Copyright (c) 1999-2009 The NetBSD Foundation, Inc.
+Copyright (c) 1999-2013 The NetBSD Foundation, Inc.
 All rights reserved.
 ])
-AC_REVISION([$Revision: 1.21 $])
+AC_REVISION([$Revision: 1.25 $])
 
-AS_SHELL_SANITIZE
+AS_SHELL_SANITIZE()
 
 AC_CONFIG_SRCDIR([tnftp.h])
 AC_CONFIG_AUX_DIR([buildaux])
+AC_CONFIG_MACRO_DIR([buildaux])
 AC_CONFIG_HEADERS([tnftp_config.h])
 AC_CONFIG_LIBOBJ_DIR([libnetbsd])
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign nostdinc silent-rules])
-AM_MAINTAINER_MODE
+AM_MAINTAINER_MODE()
 
 #
 # Arguments for which features are included.
@@ -36,6 +37,12 @@ AC_ARG_ENABLE([ipv6],
                                [default=enabled]])],
               [opt_ipv6=$enableval],
               [opt_ipv6=yes])
+AC_ARG_ENABLE([ssl],
+              [AS_HELP_STRING([--enable-ssl],
+                              [enable SSL support (requires --with-openssl)
+                               [default=auto]])],
+              [opt_ssl=$enableval],
+              [opt_ssl=auto])
 AC_ARG_WITH([socks],
             [AS_HELP_STRING([--with-socks],
                             [enable support for (Dante) SOCKS5 proxy
@@ -49,24 +56,24 @@ AC_ARG_WITH([socks],
 AH_TEMPLATE([HAVE_POLL],
             [Define if we have poll() and it is not emulated.])
 AH_TEMPLATE([HAVE_PRINTF_QD],
-            [Define if *printf() uses %qd to print `long long'
+            [Define if *printf() uses %qd to print 'long long'
              (otherwise uses %lld).])
 AH_TEMPLATE([HAVE_PRINTF_LONG_LONG],
-            [Define if `long long' is supported and
+            [Define if 'long long' is supported and
              *printf() supports %lld or %qd to print them.])
 AH_TEMPLATE([USE_INET6],
             [Define if using IPv6 support.])
 AH_TEMPLATE([USE_SOCKS],
-            [Define if using socks library.])
-AH_TEMPLATE([USE_SOCKS5],
             [Define if using (Dante) SOCKS5 proxy.])
+AH_TEMPLATE([WITH_SSL],
+            [Define if enabling SSL support.])
 
 #
 # Checks for programs.
 #
-AC_PROG_CC
-AC_PROG_AWK
-AC_PROG_LIBTOOL
+AC_PROG_CC()
+AC_PROG_AWK()
+AC_PROG_LIBTOOL()
 
 #
 # Checks for tool features.
@@ -106,6 +113,7 @@ AC_SEARCH_LIBS([socket],
                              [],
                              [-lnsl])])
 
+#
 # Check for (Dante) SOCKS5.
 #
 AS_IF([test "$with_socks" != no],
@@ -123,8 +131,25 @@ AS_IF([test "$with_socks" != no],
                              [AC_MSG_FAILURE(
                 [--with-socks was given, but SOCKSinit() wasn't found])])
                        AC_MSG_NOTICE([disabling --with-socks])
-                       with_socks=no])
-       AC_SEARCH_LIBS([Rread], [], [AC_DEFINE([USE_SOCKS5], [1])])])
+                       with_socks=no])])
+
+#
+# Check for OpenSSL.
+#
+AX_CHECK_OPENSSL([have_ssl=yes])
+
+AS_IF([test "$with_ssl" != no],
+      [AC_MSG_NOTICE([--with-ssl=$with_ssl; checking for required OpenSSL features])
+       AS_IF([test "$have_ssl" == yes],
+             [AC_DEFINE([WITH_SSL], [1])
+              AC_MSG_NOTICE([enabling SSL support])
+              with_ssl=yes],
+             [AS_IF([test "$with_ssl" != "auto"],
+                    [AC_MSG_FAILURE([--with-ssl was given, but OpenSSL wasn't found])])
+              AC_MSG_NOTICE([disabling --with-ssl])
+              with_ssl=no])])
+
+AM_CONDITIONAL([WITH_SSL], [test "$with_ssl" = yes])
 
 #
 # Checks for header files.
@@ -175,6 +200,12 @@ accheck_includes='
 #if defined(HAVE_NETINET_IN_SYSTM_H)
 # include <netinet/in_systm.h>
 #endif
+#if defined(HAVE_NETINET_IP_H)
+# include <netinet/ip.h>
+#endif
+#if defined(HAVE_NETINET_TCP_H)
+# include <netinet/tcp.h>
+#endif
 #if defined(HAVE_NETDB_H)
 # include <netdb.h>
 #endif
@@ -200,15 +231,16 @@ accheck_includes='
 AC_CHECK_HEADERS([sys/types.h sys/ioctl.h sys/param.h sys/stat.h \
                   sys/socket.h sys/syslimits.h sys/time.h sys/wait.h],
                  [], [], [$accheck_includes])
-AC_HEADER_DIRENT
-AC_HEADER_RESOLV
-AC_HEADER_STAT
-AC_HEADER_STDC
-AC_HEADER_TIME
-AC_HEADER_TIOCGWINSZ
+AC_HEADER_DIRENT()
+AC_HEADER_RESOLV()
+AC_HEADER_STAT()
+AC_HEADER_STDC()
+AC_HEADER_TIME()
+AC_HEADER_TIOCGWINSZ()
 AC_CHECK_HEADERS([arpa/ftp.h arpa/inet.h arpa/nameser.h err.h \
-                  fcntl.h libgen.h limits.h malloc.h \
+                  fcntl.h libgen.h limits.h locale.h malloc.h \
                   netinet/in.h netinet/in_systm.h netinet/ip.h \
+                  netinet/tcp.h \
                   paths.h poll.h pwd.h sys/poll.h regex.h \
                   setjmp.h signal.h stddef.h termcap.h termios.h \
                   unistd.h utime.h vis.h],
@@ -220,20 +252,20 @@ AC_CHECK_HEADERS([arpa/ftp.h arpa/inet.h arpa/nameser.h err.h \
 AC_CHECK_DECLS([AI_NUMERICHOST, dirname, fclose, getpass, h_errno, pclose,
                 optarg, optind],
                [], [], [$accheck_includes])
-AC_TYPE_LONG_DOUBLE
-AC_TYPE_LONG_LONG_INT
-AC_TYPE_UINT32_T
-AC_TYPE_OFF_T
-AC_TYPE_PID_T
-AC_TYPE_SIGNAL
-AC_TYPE_SIZE_T
-AC_STRUCT_TM
+AC_TYPE_LONG_DOUBLE()
+AC_TYPE_LONG_LONG_INT()
+AC_TYPE_UINT32_T()
+AC_TYPE_OFF_T()
+AC_TYPE_PID_T()
+AC_TYPE_SIGNAL()
+AC_TYPE_SIZE_T()
+AC_STRUCT_TM()
 AC_CHECK_MEMBERS([struct sockaddr.sa_len, struct sockaddr_in.sin_len,
                   struct dirent.d_namlen],
                  [], [], [$accheck_includes])
 AC_CHECK_TYPES([in_port_t, sa_family_t, socklen_t, struct addrinfo],
                [], [], [$accheck_includes])
-AC_SYS_LARGEFILE
+AC_SYS_LARGEFILE()
 
 # If IPv6 is enabled, check for necessary items.
 #
@@ -257,11 +289,11 @@ AS_IF([test "$opt_ipv6" = yes],
 # Checks for library functions.
 #
 #XXX    remove alloca use
-AC_FUNC_ALLOCA
-AC_FUNC_CLOSEDIR_VOID
-AC_FUNC_FORK
-AC_FUNC_FSEEKO
-AC_FUNC_STRCOLL
+AC_FUNC_ALLOCA()
+AC_FUNC_CLOSEDIR_VOID()
+AC_FUNC_FORK()
+AC_FUNC_FSEEKO()
+AC_FUNC_STRCOLL()
 AC_REPLACE_FUNCS([dirname err fgetln getaddrinfo getnameinfo \
                   inet_ntop inet_pton mkstemp setprogname sl_init snprintf \
                   strdup strerror strlcat strlcpy strptime strsep strunvis \
@@ -394,7 +426,7 @@ AC_CONFIG_FILES([
         src/Makefile
 ])
 
-AC_OUTPUT
+AC_OUTPUT()
 
 # Display feature results.
 #
@@ -404,4 +436,5 @@ AC_MSG_NOTICE([Prefix:                $prefix])
 AC_MSG_NOTICE([Command-line editing:  $opt_editcomplete])
 AC_MSG_NOTICE([IPv6 support:          $opt_ipv6])
 AC_MSG_NOTICE([SOCKS5 proxy support:  $with_socks])
+AC_MSG_NOTICE([SSL:                   $with_ssl])
 AC_MSG_NOTICE([ =============================])

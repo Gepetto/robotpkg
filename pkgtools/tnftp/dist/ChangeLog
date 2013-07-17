@@ -1,4 +1,53 @@
-$NetBSD: ChangeLog,v 1.55 2009/12/30 00:14:35 lukem Exp $
+$NetBSD: ChangeLog,v 1.62 2013/05/05 13:53:38 lukem Exp $
+
+Sun May  5 13:51:47 UTC 2013	lukem
+
+	* Release as "tnftp 20130505"
+	
+	* Implement --enable-ssl (and --with-openssl) to enable
+	  https:// fetch support.
+
+	* Merge NetBSD ftp from 20090520 to 20130220.  Changes:
+		- https:// support.
+		  NetBSD problem report 47276 from NONAKA Kimihiro.
+		- Allow -R to restart non-existent ftp:// URIs.
+		- Don't assume AF_INET support is available.
+		  FreeBSD problem report 162661.
+		- Parse HTTP 'Date' entries in the `C' locale rather than the
+		  user's.
+		  NetBSD problem report 42917 from KAMADA Ken'ichi.
+		- Improve error handling when parsing of URI scheme.
+		- Silence connection warnings to multi-homed hosts in
+		  non-verbose mode.
+		- Fix compile warnings.
+		- In ftpvis(), prevent incomplete escape sequences at end of
+		  dst, and ensure NUL-termination of dst.
+		  Fix from Uwe Stuehler and Stefan Sperling, via Marc Balmer.
+		- When using the response to SYST to decide whether to
+		  default to 'binary' be a lot less specific.
+
+	* Replace glob with newer copy from NetBSD that does not suffer
+	  from DoS exhaustion attacks.
+	  Fix in NetBSD from Maksymilian Arciemowicz.  See CVE-2011-0418
+
+Tue Jan 12 06:58:15 UTC 2010	lukem
+
+	* Release as "tnftp 20100108"
+
+	* Rename onoff() argument "bool" to "val".
+
+Tue Jan  5 09:12:01 UTC 2010	lukem
+
+	* If ARG_MAX isn't defined, use the result from sysconf(_SC_ARG_MAX).
+	  Fixes build when using newer glibc.
+
+	* Add libnetbsd.la to the LIBADD for libedit.
+	  Fix provided by Adam Sampson.
+
+Mon Jan  4 06:28:07 UTC 2010	lukem
+
+	* Distribute various files not shipped by default automake rules,
+	  to use 'make dist' instead of 'cvs export'.
 
 Wed Dec 30 00:12:47 UTC 2009	lukem
 
