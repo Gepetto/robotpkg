@@ -6,7 +6,7 @@
 # This version of tnftp installs into ${PREFIX/sbin} as tnftp.
 #
 
-DISTNAME=		tnftp-20091122
+DISTNAME=		tnftp-20130505
 CATEGORIES=		pkgtools
 
 MASTER_SITES=		# empty
@@ -24,6 +24,19 @@ CONFIGURE_ARGS+=	--bindir=${PREFIX}/sbin
 NOT_FOR_PLATFORM=	# empty
 NO_CHECKSUM=		yes
 NO_PKGTOOLS_REQD_CHECK=	yes
+
+# ssl option
+PKG_SUPPORTED_OPTIONS+=	ssl
+PKG_SUGGESTED_OPTIONS+=	ssl
+PKG_OPTION_DESCR.ssl?=	Enable OpenSSL support
+
+define PKG_OPTION_SET.ssl
+  CONFIGURE_ARGS+=	--enable-ssl --with-openssl=${PREFIX.openssl}
+  include ../../mk/sysdep/openssl.mk
+endef
+define PKG_OPTION_UNSET.ssl
+  CONFIGURE_ARGS+=	--disable-ssl
+endef
 
 include ../../mk/sysdep/termcap.mk
 include ../../mk/language/c.mk

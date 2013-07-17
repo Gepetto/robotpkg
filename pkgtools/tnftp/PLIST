@@ -1,2 +1,3 @@
+@comment Wed Jul 17 18:32:59 CEST 2013
+${PKGMANDIR}/man1/tnftp.1
 sbin/tnftp
-man/man1/tnftp.1
