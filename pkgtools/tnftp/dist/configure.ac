@@ -140,7 +140,7 @@ AX_CHECK_OPENSSL([have_ssl=yes])
 
 AS_IF([test "$with_ssl" != no],
       [AC_MSG_NOTICE([--with-ssl=$with_ssl; checking for required OpenSSL features])
-       AS_IF([test "$have_ssl" == yes],
+       AS_IF([test "$have_ssl" = yes],
              [AC_DEFINE([WITH_SSL], [1])
               AC_MSG_NOTICE([enabling SSL support])
               with_ssl=yes],

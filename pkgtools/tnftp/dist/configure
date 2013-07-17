@@ -12277,7 +12277,7 @@ rm -f core conftest.err conftest.$ac_objext \
 if test "$with_ssl" != no; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: --with-ssl=$with_ssl; checking for required OpenSSL features" >&5
 $as_echo "$as_me: --with-ssl=$with_ssl; checking for required OpenSSL features" >&6;}
-       if test "$have_ssl" == yes; then :
+       if test "$have_ssl" = yes; then :
   $as_echo "#define WITH_SSL 1" >>confdefs.h
 
               { $as_echo "$as_me:${as_lineno-$LINENO}: enabling SSL support" >&5
