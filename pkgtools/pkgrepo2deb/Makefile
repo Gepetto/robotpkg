@@ -26,15 +26,15 @@ CONFIGURE_ARGS+=	SED=${SED}
 CONFIGURE_ARGS+=	PAX=${PAX}
 CONFIGURE_ARGS+=	GZIP_CMD=${GZIP_CMD}
 CONFIGURE_ARGS+=	GPG=$(call quote,${GPG_DEF})
-CONFIGURE_ARGS+=	ROBOTPKG_ADMIN=${PKG_ADMIN_CMD}
+CONFIGURE_ARGS+=	ROBOTPKG_ADMIN=${LOCALBASE}/sbin/robotpkg_admin
 CONFIGURE_ARGS+=	DPKG_DEB=${PREFIX.dpkg}/bin/dpkg-deb
 CONFIGURE_ARGS+=	APT_FTPARCHIVE=${PREFIX.apt}/bin/apt-ftparchive
 
 MESSAGE_SUBST+=		GPG_CMD=${PREFIX.gnupg}/bin/gpg
 MESSAGE_SUBST+=		GPG_HOMEDIR=${GPG_DEFHOMEDIR}
 
-DEPEND_METHOD.pkg_install+=	full
-PREFER.pkg_install?=		robotpkg
+# XXX missing runtime dependency on pkg_install - this cannot be added easly
+# because of bulk using pkg_install as a system package.
 
 include ../../pkgtools/pax/depend.mk
 include ../../mk/sysdep/apt.mk
