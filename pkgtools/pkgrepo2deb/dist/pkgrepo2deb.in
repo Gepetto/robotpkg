@@ -221,31 +221,70 @@ updaterepo()
 {
 	tz "(internal error)" codename DEBARCH debrepo DEBPKG && return 1
 
-	repodir=${debrepo}/${codename}/${DEBARCH}
-	mkdir -p ${repodir}
-	mv ${DEBPKG} ${repodir}
+        codenamedir=dists/${codename}
+	repodir=$codenamedir/robotpkg/binary-${DEBARCH}
+	mkdir -p ${debrepo}/${repodir}
+	mv ${DEBPKG} ${debrepo}/${repodir}/.
 
 	if ${later} || test -z "${debrepo}"; then return 0; fi
 
-	# incremental update of Packages
-	test -s ${repodir}/Packages || \
-            ${APT_FTPARCHIVE} packages ${repodir} >${repodir}/Packages
-	rm -f ${repodir}/Packages~
-	mv ${repodir}/Packages ${repodir}/Packages~
-	{
-	  ${AWK} -F: -vskip="${DEBFULLNAME}" '				\
-	    NF {							\
-	      if ($1 == "Filename") { filename = $2 };			\
-	      if (e) { e = e "\n" $0; } else { e = $0; }		\
-	    }								\
-	    !NF {							\
-	      if (!match(filename, "/" skip "$")) { print e; print; }	\
-	      e = "";							\
-	    }' ${repodir}/Packages~
-	  ${APT_FTPARCHIVE} packages ${repodir}/${DEBFULLNAME}
-	} >${repodir}/Packages
-	${GZIP_CMD} -c9 < ${repodir}/Packages > ${repodir}/Packages.gz
-	rm -f ${repodir}/Packages~
+	(
+            cd $debrepo
+
+	    # incremental update of Packages
+	    test -s ${repodir}/Packages || \
+                ${APT_FTPARCHIVE} packages ${repodir} >${repodir}/Packages
+	    rm -f ${repodir}/Packages~
+	    mv ${repodir}/Packages ${repodir}/Packages~
+	    {
+	        ${AWK} -F: -vskip="${DEBFULLNAME}" '			\
+	          NF {							\
+	            if ($1 == "Filename") { filename = $2 };		\
+	            if (e) { e = e "\n" $0; } else { e = $0; }		\
+	          }							\
+	          !NF {							\
+	            if (!match(filename, "/" skip "$")) {		\
+	              print e; print;					\
+	            }							\
+	            e = "";						\
+	          }' ${repodir}/Packages~
+	        ${APT_FTPARCHIVE} packages ${repodir}/${DEBFULLNAME}
+	    } >${repodir}/Packages
+	    ${GZIP_CMD} -c9 < ${repodir}/Packages > ${repodir}/Packages.gz
+	    rm -f ${repodir}/Packages~
+
+            # incremental update of Contents
+	    test -s ${codenamedir}/Contents-${DEBARCH} ||
+		touch ${codenamedir}/Contents-${DEBARCH}
+	    rm -f ${codenamedir}/Contents-${DEBARCH}~
+	    mv ${codenamedir}/Contents-${DEBARCH} \
+                ${codenamedir}/Contents-${DEBARCH}~
+            {
+                ${AWK} -vskip="robotpkg/${DEBBASE}" '			\
+		  {							\
+		    split($2,pkgs,/,/); $2="";				\
+		    for(p in pkgs) if (pkgs[p] != skip) {		\
+		      if ($2) $2=$2 "," pkgs[p]; else $2 = pkgs[p]	\
+		    }							\
+		    if ($2) print $1 " " $2				\
+		  }' ${codenamedir}/Contents-${DEBARCH}~
+                ${APT_FTPARCHIVE} contents ${repodir}/${DEBFULLNAME} |
+                    ${AWK} '{print $1 " robotpkg/'"${DEBBASE}"'"}'
+            } | ${AWK} '						\
+		  {							\
+		    split($2,pkgs,/,/);					\
+		    for(p in pkgs) if (file[$1]) {			\
+		      file[$1] = file[$1] "," $2;			\
+		    } else {						\
+		      file[$1] = $2					\
+		    }							\
+		  }							\
+		  END { for(f in file) print f " " file[f] }		\
+		' >${codenamedir}/Contents-${DEBARCH}
+	    ${GZIP_CMD} -c9 <${codenamedir}/Contents-${DEBARCH} \
+                >${codenamedir}/Contents-${DEBARCH}.gz
+	    rm -f ${codenamedir}/Contents-${DEBARCH}~
+	)
 }
 
 
@@ -254,10 +293,9 @@ buildrepo()
 	set +o noglob
 	(
 		cd ${debrepo} || exit 1
-		for i in */*; do
+		for i in dists/*; do
 			echo "scanning repository directory ${debrepo}/$i ..."
 			(if cd $i; then
-				test Release -nt Packages && continue
 				${APT_FTPARCHIVE} release . > Release
 				rm -f Release.gpg
 				${GPG} --output Release.gpg -ba Release
@@ -334,9 +372,12 @@ extract_rpkg()
 		set -e
 		rm -rf ${pkgroot}
 		mkdir -p ${pkgroot}/DEBIAN
-		${PAX} -rz -s ",^,$pkgroot/," -c '+*' <"${pkgpath}"
 		${PAX} -rz -s ",^,$pkgroot/DEBIAN/," '+*' <"${pkgpath}"
 		test -r "$pkgroot/DEBIAN/+BUILD_INFO"
+		test -r "$pkgroot/DEBIAN/+CONTENTS"
+		prefix=`${AWK} '/^@cw?d/ {print $2; exit}' \
+                    $pkgroot/DEBIAN/+CONTENTS`
+		${PAX} -rz -s ",^,$pkgroot/$prefix/," -c '+*' <"${pkgpath}"
 	) || {
 		echo "Cannot read robotpkg's packed file '${pkgpath}/+BUILD_INFO'" 1>&2
 		return 1

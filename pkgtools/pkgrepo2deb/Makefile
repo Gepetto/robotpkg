@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 12 Jul 2013
 #
 
-DISTNAME=		pkgrepo2deb-0.9.20130715
+DISTNAME=		pkgrepo2deb-0.9.20130718
 CATEGORIES=		pkgtools
 MASTER_SITES=		# empty, but ${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	git git://git.openrobots.org/robots/${PKGBASE}
