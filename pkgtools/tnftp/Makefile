@@ -20,6 +20,7 @@ LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--bindir=${PREFIX}/sbin
+CONFIGURE_ARGS+=	--with-socks=no
 
 NOT_FOR_PLATFORM=	# empty
 NO_CHECKSUM=		yes
