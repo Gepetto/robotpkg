@@ -23,9 +23,7 @@ MASTER_REPOSITORY?=\
 MAINTAINER?=	hpp@laas.fr
 COMMENT?=	Humanoid Path Planner (${HPP_COMMENT})
 
-USE_LANGUAGES+=c c++
-
-DOXYGEN_PLIST_DIR+=	share/doc/${HPP_PACKAGE}
+DYNAMIC_PLIST_DIRS+=	share/doc/${HPP_PACKAGE}
 
 # options
 PKG_SUPPORTED_OPTIONS+=		verbose
@@ -41,6 +39,7 @@ else ifeq (cmake,${HPP_BUILD_SYSTEM})
   # configure boost location
   CMAKE_ARGS+=-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
   CMAKE_ARGS+=-DBOOST_LIBRARYDIR=${PREFIX.boost-libs}/lib
+  CMAKE_ARGS+=-DCMAKE_INSTALL_LIBDIR=lib
 
   include ../../mk/sysdep/cmake.mk
   include ../../devel/boost-headers/depend.mk
