@@ -2,7 +2,7 @@
 # Created:			Xavier Broquere on Tue, 10 Mar 2009
 #
 
-DISTNAME=	gbM-0.10
+DISTNAME=	gbM-0.11
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gbM/}
 MASTER_REPOSITORY= git ssh://git.openrobots.org/git/robots/gbM
@@ -12,6 +12,7 @@ COMMENT=	Geometry for 6R arms
 LICENSE=	isc
 
 NOT_FOR_PLATFORM=	# empty
+GNU_CONFIGURE=	yes
 
 # options
 PKG_SUPPORTED_OPTIONS+=	tcl
@@ -32,11 +33,6 @@ define PKG_OPTION_UNSET.tcl
   CONFIGURE_ARGS+=--disable-gbtcl
 endef
 
-pre-configure: autoreconf
-
 include ../../devel/mkdep/depend.mk
-include ../../pkgtools/libtool/depend.mk
-include ../../mk/sysdep/autoconf.mk
-include ../../mk/sysdep/automake.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
