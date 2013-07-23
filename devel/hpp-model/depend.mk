@@ -19,10 +19,8 @@ SYSTEM_SEARCH.hpp-model=\
 
 DEPEND_USE+=		hpp-model
 
-DEPEND_ABI.hpp-model?=	hpp-model>=2.0
+DEPEND_ABI.hpp-model?=	hpp-model>=2.2
 DEPEND_DIR.hpp-model?=	../../devel/hpp-model
-
-include ../../path/kineo-pp/depend.mk
 
 endif # HPP_MODEL_DEPEND_MK ------------------------------------------
 
