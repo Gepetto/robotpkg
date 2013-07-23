@@ -3,13 +3,13 @@
 #
 
 HPP_PACKAGE=		hpp-core
-HPP_VERSION=		2.5.1
+HPP_VERSION=		2.5.2
 PKGREVISION=
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-core
 
 CATEGORIES=	path
 HPP_COMMENT=	interface with KineoWorks(tm)
-LICENSE=	cnrs-hpp-closed-source
+LICENSE=	gnu-lgpl-v2
 
 HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
@@ -17,5 +17,5 @@ include ../../meta-pkgs/hpp/Makefile.common
 include ../../devel/hpp-model/depend.mk
 include ../../devel/hpp-util/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
-include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
