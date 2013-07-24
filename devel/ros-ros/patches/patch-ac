@@ -1,0 +1,38 @@
+Pass rospack instance as intended by gentools
+https://github.com/ros/ros/pull/25
+
+diff --git core/roslib/scripts/gendeps core/roslib/scripts/gendeps
+index f22fc53..9cbb567 100755
+--- core/roslib/scripts/gendeps
++++ core/roslib/scripts/gendeps
+@@ -87,7 +87,7 @@ def gendeps_main(argv, stdout, stderr):
+ 
+     # rospack instance for caching of deps
+     rospack = rospkg.RosPack()
+-    retval = roslib.gentools.get_file_dependencies(f, stdout=stdout, stderr=stderr)
++    retval = roslib.gentools.get_file_dependencies(f, stdout=stdout, stderr=stderr, rospack=rospack)
+ 
+     if options.md5:
+         print >> stdout, roslib.gentools.compute_md5(retval, rospack=rospack)
+diff --git core/roslib/src/roslib/gentools.py core/roslib/src/roslib/gentools.py
+index e5158b1..f2adc2d 100644
+--- core/roslib/src/roslib/gentools.py
++++ core/roslib/src/roslib/gentools.py
+@@ -250,7 +250,7 @@ def compute_full_text(get_deps_dict):
+     # #1168: remove the trailing \n separator that is added by the concatenation logic
+     return buff.getvalue()[:-1]
+ 
+-def get_file_dependencies(f, stdout=sys.stdout, stderr=sys.stderr):
++def get_file_dependencies(f, stdout=sys.stdout, stderr=sys.stderr, rospack=None):
+     """
+     Compute dependencies of the specified message/service file
+     @param f: message or service file to get dependencies for
+@@ -272,7 +272,7 @@ def get_file_dependencies(f, stdout=sys.stdout, stderr=sys.stderr):
+         _, spec = roslib.srvs.load_from_file(f)
+     else:
+         raise Exception("[%s] does not appear to be a message or service"%spec)
+-    return get_dependencies(spec, package, stdout, stderr)
++    return get_dependencies(spec, package, stdout, stderr, rospack=rospack)
+ 
+ def get_dependencies(spec, package, compute_files=True, stdout=sys.stdout, stderr=sys.stderr, rospack=None):
+     """
