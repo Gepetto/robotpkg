@@ -16,9 +16,14 @@ PREFER.ros-catkin?=		${PREFER.ros-base}
 SYSTEM_PREFIX.ros-catkin?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			ros-catkin
+ROS_DEPEND_USE+=		ros-catkin
 
-DEPEND_ABI.ros-catkin?=		ros-catkin>=0.5
+DEPEND_ABI.ros-catkin?=		ros-catkin>=0.4
 DEPEND_DIR.ros-catkin?=		../../devel/ros-catkin
+
+DEPEND_ABI.ros-catkin.fuerte?=	ros-catkin>=0.4<0.5
+DEPEND_ABI.ros-catkin.groovy?=	ros-catkin>=0.5
+DEPEND_ABI.ros-catkin.hydro?=	ros-catkin>=0.5
 
 SYSTEM_SEARCH.ros-catkin=\
 	'bin/catkin_init_workspace'				\

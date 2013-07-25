@@ -16,16 +16,21 @@ PREFER.ros-common-msgs?=	${PREFER.ros-base}
 SYSTEM_PREFIX.ros-common-msgs?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			ros-common-msgs
+ROS_DEPEND_USE+=		ros-common-msgs
 
-DEPEND_ABI.ros-common-msgs?=	ros-common-msgs>=1.9<1.10
+DEPEND_ABI.ros-common-msgs?=	ros-common-msgs>=1.8
 DEPEND_DIR.ros-common-msgs?=	../../interfaces/ros-common-msgs
+
+DEPEND_ABI.ros-common-msgs.fuerte?=	ros-common-msgs>=1.8<1.9
+DEPEND_ABI.ros-common-msgs.groovy?=	ros-common-msgs>=1.9<1.10
+DEPEND_ABI.ros-common-msgs.hydro?=	ros-common-msgs>=1.10<1.11
 
 SYSTEM_SEARCH.ros-common-msgs=\
 	include/actionlib_msgs/GoalID.h					\
 	'${PYTHON_SYSLIBSEARCH}/actionlib_msgs/msg/_GoalID.py'		\
 	share/common-lisp/ros/actionlib_msgs/msg/GoalID.lisp		\
 	share/actionlib_msgs/msg/GoalID.msg				\
-	'share/common_msgs/package.xml:/<version>/s/[^0-9.]//gp'	\
+	'share/common_msgs/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/actionlib_msgs.pc:/Version/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/diagnostic_msgs.pc:/Version/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/geometry_msgs.pc:/Version/s/[^0-9.]//gp'		\

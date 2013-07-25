@@ -15,14 +15,17 @@ include ../../meta-pkgs/ros-base/depend.common
 PREFER.ros-angles?=		${PREFER.ros-base}
 SYSTEM_PREFIX.ros-angles?=	${SYSTEM_PREFIX.ros-base}
 
-DEPEND_USE+=		ros-angles
+DEPEND_USE+=			ros-angles
+ROS_DEPEND_USE+=		ros-angles
 
-DEPEND_ABI.ros-angles?=	ros-angles>=1.9
-DEPEND_DIR.ros-angles?=	../../math/ros-angles
+DEPEND_ABI.ros+=		ros>=groovy
+
+DEPEND_ABI.ros-angles?=		ros-angles>=1.9
+DEPEND_DIR.ros-angles?=		../../math/ros-angles
 
 SYSTEM_SEARCH.ros-angles=\
   'include/angles/angles.h'					\
-  'share/angles/package.xml:/<version>/s/[^0-9.]//gp'		\
+  'share/angles/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'		\
   'lib/pkgconfig/angles.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_ANGLES_DEPEND_MK --------------------------------------------------

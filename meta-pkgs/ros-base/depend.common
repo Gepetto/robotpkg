@@ -1,15 +1,89 @@
 # robotpkg depend.common for:	meta-pkgs/ros-base
 # Created:			Anthony Mallet on Mon, 10 Dec 2012
 #
-include ../../mk/robotpkg.prefs.mk # for OPSYS
+ROS_DEPEND_COMMON:=	${ROS_DEPEND_COMMON}+
+ifeq (+,${ROS_DEPEND_COMMON}) # --------------------------------------------
 
+# This file determines which ros version is used as a dependency for
+# a package.
+#
+# === User-settable variables ===
+#
+# PREFER_ALTERNATIVE.ros
+#	The preferred ros distribution to use. The order of the entries
+#	matters, since earlier entries are preferred over later ones.
+#
+#	Possible values: fuerte groovy hydro
+#	Default: groovy fuerte
+#
+# === Package-settable variables ===
+#
+# DEPEND_ABI.ros
+#	The ros versions that are acceptable for the package.
+#
+#	Possible values: any pattern
+#	Default: ros>=fuerte
+#
+# === Defined variables ===
+#
+# PKGTAG.ros
+#       The prefix to use in PKGNAME for extensions which are meant
+#       to be installed for multiple ros versions.
+#
+#       Example: groovy
+#
+PKG_ALTERNATIVES+=	ros
+PKG_ALTERNATIVES.ros=	fuerte groovy hydro
+
+# Set default preferences
+PREFER_ALTERNATIVE.ros?=groovy fuerte
+DEPEND_ABI.ros?=	ros>=fuerte
+
+# internal macro keeping track of a ros package DEPEND_ABI before a ros
+# alternative is selected 
+override define _ros_noaltdep
+$(eval $(if $(filter undefined,$(origin _ros_noaltdep.$1)),\
+  _ros_noaltdep.$1:=${DEPEND_ABI.$1}))${_ros_noaltdep.$1}
+endef
+
+# internal macro defining all ros alternatives
+define _ros_altdef
+  PKG_ALTERNATIVE_DESCR.$1=	Use ros $1
+  PKGTAG.$1=			$1
+  DEPEND_ABI.$1?=		ros-$1
+  PKG_ALTERNATIVE_SELECT.$1=$$(call preduce,				\
+    ros==$1 $${DEPEND_ABI.ros} 						\
+    $$(foreach _,$${ROS_DEPEND_USE},					\
+      $$(if $$(filter robotpkg,$${PREFER.$$_}),ros==groovy)		\
+      $$(call _ros_noaltdep,$$_) $${DEPEND_ABI.$$_.$1}))
+  PKG_ALTERNATIVE_SET.$1=						\
+    $$(foreach _,$${ROS_DEPEND_USE},					\
+      $$(eval DEPEND_ABI.$$_ += $$(value DEPEND_ABI.$$_.$1)))
+endef
+$(foreach _,${PKG_ALTERNATIVES.ros},$(eval $(call _ros_altdef,$_)))
+
+# Add extra replacement in PLISTs
+PLIST_SUBST+=\
+  PKG_ALTERNATIVE.ros=${PKG_ALTERNATIVE.ros}
+PRINT_PLIST_AWK_SUBST+=\
+  gsub(/$(subst .,\.,${PKG_ALTERNATIVE.ros})/, "$${PKG_ALTERNATIVE.ros}");
+
+ROS_STACKAGE.fuerte={manifest,stack}.xml
+ROS_STACKAGE=$(or ${ROS_STACKAGE.${PKG_ALTERNATIVE.ros}},package.xml)
+
+# Default ros package preference
+include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 11.10 12.04 12.10,${OS_VERSION}))
+  ifneq (,$(filter 10.04,${OS_VERSION}))
+    PREFER.ros?=	$(if $(filter fuerte,${ROS_DISTRIB}),system,robotpkg)
+  else ifneq (,$(filter 11.10 12.04 12.10,${OS_VERSION}))
     PREFER.ros?=	system
   endif
 endif
 PREFER.ros?=		robotpkg
-SYSTEM_PREFIX.ros?=	${SYSTEM_PREFIX} /opt/ros/groovy
+SYSTEM_PREFIX.ros?=	/opt/ros/${PKG_ALTERNATIVE.ros} ${SYSTEM_PREFIX}
 
 PREFER.ros-base?=	${PREFER.ros}
 SYSTEM_PREFIX.ros-base?=${SYSTEM_PREFIX.ros}
+
+endif # ROS_DEPEND_COMMON --------------------------------------------------

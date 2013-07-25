@@ -16,9 +16,14 @@ PREFER.ros-image-common?=		${PREFER.ros-base}
 SYSTEM_PREFIX.ros-image-common?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			ros-image-common
+ROS_DEPEND_USE+=		ros-image-common
 
-DEPEND_ABI.ros-image-common?=	ros-image-common>=1.10
+DEPEND_ABI.ros-image-common?=	ros-image-common>=1.8
 DEPEND_DIR.ros-image-common?=	../../image/ros-image-common
+
+DEPEND_ABI.ros-image-common.fuerte?=	ros-image-common>=1.8<1.9
+DEPEND_ABI.ros-image-common.groovy?=	ros-image-common>=1.10<1.11
+DEPEND_ABI.ros-image-common.hydro?=	ros-image-common>=1.11<1.12
 
 SYSTEM_SEARCH.ros-image-common=\
   'include/camera_calibration_parsers/parse.h'				\

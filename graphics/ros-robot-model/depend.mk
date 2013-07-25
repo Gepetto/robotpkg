@@ -16,9 +16,14 @@ PREFER.ros-robot-model?=	${PREFER.ros-base}
 SYSTEM_PREFIX.ros-robot-model?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			ros-robot-model
+ROS_DEPEND_USE+=		ros-robot-model
 
-DEPEND_ABI.ros-robot-model?=	ros-robot-model>=1.9
+DEPEND_ABI.ros-robot-model?=	ros-robot-model>=1.8
 DEPEND_DIR.ros-robot-model?=	../../graphics/ros-robot-model
+
+DEPEND_ABI.ros-robot-model.fuerte?=	ros-robot-model>=1.8<1.9
+DEPEND_ABI.ros-robot-model.groovy?=	ros-robot-model>=1.9<1.10
+DEPEND_ABI.ros-robot-model.hydro?=	ros-robot-model>=1.10<1.11
 
 SYSTEM_SEARCH.ros-robot-model=\
   'include/collada_parser/collada_parser.h'				\
@@ -34,10 +39,10 @@ SYSTEM_SEARCH.ros-robot-model=\
   'lib/pkgconfig/collada_urdf.pc:/Version/s/[^0-9.]//gp'		\
   'lib/pkgconfig/kdl_parser.pc:/Version/s/[^0-9.]//gp'			\
   'lib/pkgconfig/resource_retriever.pc:/Version/s/[^0-9.]//gp'		\
-  'share/collada_parser/package.xml:/<version>/s/[^0-9.]//gp'		\
-  'share/collada_urdf/package.xml:/<version>/s/[^0-9.]//gp'		\
-  'share/kdl_parser/package.xml:/<version>/s/[^0-9.]//gp'		\
-  'share/resource_retriever/package.xml:/<version>/s/[^0-9.]//gp'
+  'share/collada_parser/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'		\
+  'share/collada_urdf/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'		\
+  'share/kdl_parser/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'		\
+  'share/resource_retriever/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'
 
 endif # ROS_ROBOT_MODEL_DEPEND_MK ------------------------------------------
 

@@ -16,13 +16,18 @@ PREFER.ros-genlisp?=		${PREFER.ros-base}
 SYSTEM_PREFIX.ros-genlisp?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			ros-genlisp
+ROS_DEPEND_USE+=		ros-genlisp
 
-DEPEND_ABI.ros-genlisp?=	ros-genlisp>=0.4<0.5
+DEPEND_ABI.ros-genlisp?=	ros-genlisp>=0.3
 DEPEND_DIR.ros-genlisp?=	../../lang/ros-genlisp
+
+DEPEND_ABI.ros-genlisp.fuerte?=	ros-genlisp>=0.3<0.4
+DEPEND_ABI.ros-genlisp.groovy?=	ros-genlisp>=0.4<0.5
+DEPEND_ABI.ros-genlisp.hydro?=	ros-genlisp>=0.4<0.5
 
 SYSTEM_SEARCH.ros-genlisp=\
 	lib/genlisp/gen_lisp.py					\
-	'share/genlisp/package.xml:/<version>/s/[^0-9.]//gp'	\
+	'share/genlisp/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/genlisp.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_GENLISP_DEPEND_MK ----------------------------------------------

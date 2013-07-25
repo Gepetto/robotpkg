@@ -16,17 +16,22 @@ PREFER.ros-rqt?=	${PREFER.ros-base}
 SYSTEM_PREFIX.ros-rqt?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=		ros-rqt
+ROS_DEPEND_USE+=	ros-rqt
 
-DEPEND_ABI.ros-rqt?=	ros-rqt>=0.2
+DEPEND_ABI.ros-rqt?=	ros-rqt>=0.1
 DEPEND_DIR.ros-rqt?=	../../graphics/ros-rqt
+
+DEPEND_ABI.ros-rqt.fuerte?=	ros-rqt>=0.1<0.2
+DEPEND_ABI.ros-rqt.groovy?=	ros-rqt>=0.2<0.3
+DEPEND_ABI.ros-rqt.hydro?=	ros-rqt>=0.2<0.3
 
 SYSTEM_SEARCH.ros-rqt=\
   'bin/rqt'							\
   'include/rqt_gui_cpp/plugin.h'				\
   'lib/librqt_gui_cpp.so'					\
-  'share/rqt_gui/package.xml:/<version>/s/[^0-9.]//gp'		\
-  'share/rqt_gui_cpp/package.xml:/<version>/s/[^0-9.]//gp'	\
-  'share/rqt_gui_py/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'share/rqt_gui/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'		\
+  'share/rqt_gui_cpp/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+  'share/rqt_gui_py/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
   '${PYTHON_SYSLIBSEARCH}/rqt_gui/__init__.py'			\
   '${PYTHON_SYSLIBSEARCH}/rqt_gui_py/__init__.py'		\
   'lib/pkgconfig/rqt_gui.pc:/Version/s/[^0-9.]//gp'		\

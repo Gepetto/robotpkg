@@ -16,17 +16,22 @@ PREFER.ros-vision-opencv?=		${PREFER.ros-base}
 SYSTEM_PREFIX.ros-vision-opencv?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			ros-vision-opencv
+ROS_DEPEND_USE+=		ros-vision-opencv
 
-DEPEND_ABI.ros-vision-opencv?=	ros-vision-opencv>=1.10
+DEPEND_ABI.ros-vision-opencv?=	ros-vision-opencv>=1.8
 DEPEND_DIR.ros-vision-opencv?=	../../image/ros-vision-opencv
+
+DEPEND_ABI.ros-vision-opencv.fuerte?=	ros-vision-opencv>=1.8<1.9
+DEPEND_ABI.ros-vision-opencv.groovy?=	ros-vision-opencv>=1.10<1.11
+DEPEND_ABI.ros-vision-opencv.hydro?=	ros-vision-opencv>=1.10<1.11
 
 SYSTEM_SEARCH.ros-vision-opencv=\
 	include/cv_bridge/cv_bridge.h					\
 	include/image_geometry/pinhole_camera_model.h			\
 	lib/libcv_bridge.so						\
 	lib/libimage_geometry.so					\
-	'share/cv_bridge/package.xml:/<version>/s/[^0-9.]//gp'		\
-	'share/image_geometry/package.xml:/<version>/s/[^0-9.]//gp'	\
+	'share/cv_bridge/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'		\
+	'share/image_geometry/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
 	'${PYTHON_SYSLIBSEARCH}/cv_bridge/__init__.py'			\
 	'${PYTHON_SYSLIBSEARCH}/image_geometry/__init__.py'		\
 	'lib/pkgconfig/cv_bridge.pc:/Version/s/[^0-9.]//gp'		\

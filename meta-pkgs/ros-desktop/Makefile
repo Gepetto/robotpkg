@@ -15,6 +15,7 @@ MESSAGE_SRC=	../../meta-pkgs/ros-base/MESSAGE
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 
 PREFER.ros?=	robotpkg
+DEPEND_ABI.ros=	ros==groovy
 
 # TODO:
 # common-tutorials

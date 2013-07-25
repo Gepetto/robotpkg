@@ -16,15 +16,20 @@ PREFER.ros-console-bridge?=		${PREFER.ros-base}
 SYSTEM_PREFIX.ros-console-bridge?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=				ros-console-bridge
+ROS_DEPEND_USE+=			ros-console-bridge
 
-DEPEND_ABI.ros-console-bridge?=		ros-console-bridge>=0.2
+DEPEND_ABI.ros-console-bridge?=		ros-console-bridge>=0.1
 DEPEND_DIR.ros-console-bridge?=		../../sysutils/ros-console-bridge
+
+DEPEND_ABI.ros-console-bridge.fuerte?=		ros-console-bridge>=0.1<0.2
+DEPEND_ABI.ros-console-bridge.groovy?=		ros-console-bridge>=0.2<0.3
+DEPEND_ABI.ros-console-bridge.hydro?=		ros-console-bridge>=0.3<0.4
 
 SYSTEM_SEARCH.ros-console-bridge=\
   'include/rosconsole_bridge/bridge.h'				\
   'lib/librosconsole_bridge.so'					\
   'lib/pkgconfig/rosconsole_bridge.pc:/Version/s/[^0-9.]//gp'	\
-  'share/rosconsole_bridge/package.xml:/<version>/s/[^0-9.]//gp'
+  'share/rosconsole_bridge/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'
 
 endif # ROS_CONSOLE_BRIDGE_DEPEND_MK ---------------------------------------
 

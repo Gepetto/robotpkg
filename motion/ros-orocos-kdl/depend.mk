@@ -16,6 +16,9 @@ PREFER.ros-orocos-kdl?=		${PREFER.ros-base}
 SYSTEM_PREFIX.ros-orocos-kdl?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			ros-orocos-kdl
+ROS_DEPEND_USE+=		ros-orocos-kdl
+
+DEPEND_ABI.ros+=		ros>=groovy
 
 DEPEND_ABI.ros-orocos-kdl?=	ros-orocos-kdl>=1.1
 DEPEND_DIR.ros-orocos-kdl?=	../../motion/ros-orocos-kdl
@@ -23,7 +26,7 @@ DEPEND_DIR.ros-orocos-kdl?=	../../motion/ros-orocos-kdl
 SYSTEM_SEARCH.ros-orocos-kdl=\
   'include/orocos_kdl/kdl/kdl.hpp'				\
   'lib/liborocos-kdl.so'					\
-  'share/orocos_kdl/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'share/orocos_kdl/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
   'lib/pkgconfig/orocos_kdl.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_OROCOS_KDL_DEPEND_MK ----------------------------------------------

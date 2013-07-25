@@ -33,6 +33,7 @@ MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 # When building a non-ros package merely depending on a ros package, the
 # default is still 'system' where supported.
 PREFER.ros?=	robotpkg
+DEPEND_ABI.ros=	ros==${ROS_DISTRIB}
 
 # --- common dependencies --------------------------------------------------
 #
