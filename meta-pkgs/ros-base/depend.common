@@ -36,8 +36,24 @@ PKG_ALTERNATIVES+=	ros
 PKG_ALTERNATIVES.ros=	fuerte groovy hydro
 
 # Set default preferences
+# Default ros package preference
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 10.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.ros?=fuerte groovy
+    PREFER.ros?=	system
+  else ifneq (,$(filter 11.10 12.04 12.10,${OS_VERSION}))
+    PREFER.ros?=	system
+  endif
+endif
 PREFER_ALTERNATIVE.ros?=groovy fuerte
 DEPEND_ABI.ros?=	ros>=fuerte
+
+PREFER.ros?=		robotpkg
+SYSTEM_PREFIX.ros?=	/opt/ros/${PKG_ALTERNATIVE.ros} ${SYSTEM_PREFIX}
+
+PREFER.ros-base?=	${PREFER.ros}
+SYSTEM_PREFIX.ros-base?=${SYSTEM_PREFIX.ros}
 
 # internal macro keeping track of a ros package DEPEND_ABI before a ros
 # alternative is selected 
@@ -70,20 +86,5 @@ PRINT_PLIST_AWK_SUBST+=\
 
 ROS_STACKAGE.fuerte={manifest,stack}.xml
 ROS_STACKAGE=$(or ${ROS_STACKAGE.${PKG_ALTERNATIVE.ros}},package.xml)
-
-# Default ros package preference
-include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04,${OS_VERSION}))
-    PREFER.ros?=	$(if $(filter fuerte,${ROS_DISTRIB}),system,robotpkg)
-  else ifneq (,$(filter 11.10 12.04 12.10,${OS_VERSION}))
-    PREFER.ros?=	system
-  endif
-endif
-PREFER.ros?=		robotpkg
-SYSTEM_PREFIX.ros?=	/opt/ros/${PKG_ALTERNATIVE.ros} ${SYSTEM_PREFIX}
-
-PREFER.ros-base?=	${PREFER.ros}
-SYSTEM_PREFIX.ros-base?=${SYSTEM_PREFIX.ros}
 
 endif # ROS_DEPEND_COMMON --------------------------------------------------
