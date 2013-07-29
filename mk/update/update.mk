@@ -242,8 +242,7 @@ ${_UPDATE_LIST}: $(call if-outdated-pkg,.FORCE)
 	      ${ERROR_CAT} ${@:=.err};					\
 	      ${ERROR_MSG} "";						\
 	      ${ERROR_MSG} "To continue, you may wish to first";	\
-	      ${ERROR_MSG} "		$${bf}${MAKE} deinstall$${rm}"	\
-		"in ${PKGPATH}";					\
+	      ${ERROR_MSG} "  $${bf}robotpkg_delete ${PKGBASE}$${rm}";	\
 	      ${ERROR_MSG} ${hline};					\
 	      ${RM} $@ ${@:=.err}; exit 2;				\
 	  fi;								\

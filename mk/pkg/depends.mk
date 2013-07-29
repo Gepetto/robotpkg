@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011 LAAS/CNRS
+# Copyright (c) 2006-2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -159,7 +159,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	    shift 2;							\
 	  done;								\
 	  ${ERROR_MSG} "";						\
-	  ${ERROR_MSG} "Please use \`${MAKE} deinstall\` to deinstall"	\
+	  ${ERROR_MSG} "Please use \`robotpkg_delete\` to deinstall"	\
 		"the packages above or";				\
 	  ${ERROR_MSG} "update your settings in";			\
 	  ${ERROR_MSG} "	${MAKECONF}";				\
