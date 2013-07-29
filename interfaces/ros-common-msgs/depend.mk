@@ -30,7 +30,6 @@ SYSTEM_SEARCH.ros-common-msgs=\
 	'${PYTHON_SYSLIBSEARCH}/actionlib_msgs/msg/_GoalID.py'		\
 	share/common-lisp/ros/actionlib_msgs/msg/GoalID.lisp		\
 	share/actionlib_msgs/msg/GoalID.msg				\
-	'share/common_msgs/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/actionlib_msgs.pc:/Version/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/diagnostic_msgs.pc:/Version/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/geometry_msgs.pc:/Version/s/[^0-9.]//gp'		\
