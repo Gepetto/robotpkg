@@ -18,7 +18,7 @@ _tinyxmlvers=/(MAJOR|MINOR|PATCH)_VERS/ {gsub(/[^0-9]/,"");v=v $$0 "."}
 _tinyxmlvers+=END {gsub(/[.]$$/,"",v); print v}
 
 SYSTEM_SEARCH.tinyxml=	\
-	'include/tinyxml.h:p:${AWK} '\''${_tinyxmlvers}'\'' %'	\
+	'include/{,tinyxml/}tinyxml.h:p:${AWK} '\''${_tinyxmlvers}'\'' %'	\
 	lib/libtinyxml.so
 
 SYSTEM_PKG.Fedora.tinyxml=tinyxml-devel
