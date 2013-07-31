@@ -54,7 +54,7 @@ do-extract:
 	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
 DEPEND_METHOD.pax+=	bootstrap
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 

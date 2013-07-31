@@ -71,7 +71,7 @@ INSTALLATION_DIRS=\
 
 GCC_REQUIRED+=		>=4.0
 
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

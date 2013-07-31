@@ -74,7 +74,7 @@ include ../../devel/boost-libs/depend.mk
 include ../../image/opencv/depend.mk
 include ../../math/blas/depend.mk
 include ../../math/lapack/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/libpng.mk

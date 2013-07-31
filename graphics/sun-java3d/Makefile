@@ -47,7 +47,7 @@ WRKSRC=			${WRKDIR}
 NO_BUILD=		yes
 NO_CONFIGURE=		yes
 
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/language/java.mk
 include ../../mk/language/c.mk

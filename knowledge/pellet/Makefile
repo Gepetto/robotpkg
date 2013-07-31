@@ -29,7 +29,7 @@ define PKG_OPTION_SET.doc
 endef
 
 include ../../knowledge/jena/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/language/java.mk
 include ../../mk/language/c.mk

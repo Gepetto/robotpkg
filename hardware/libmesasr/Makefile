@@ -24,7 +24,7 @@ ONLY_FOR_PLATFORM=	Linux-%-i386
 NO_BUILD=	Yes
 
 include ../../pkgtools/install-sh/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 

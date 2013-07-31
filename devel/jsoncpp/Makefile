@@ -33,7 +33,7 @@ define PKG_OPTION_SET.doc
 
   INSTALLATION_DIRS+=	share/doc/${PKGBASE}
   DOXYGEN_PLIST_DIR+=	share/doc/${PKGBASE}
-  include ../../pkgtools/pax/depend.mk
+  include ../../archivers/pax/depend.mk
   include ../../mk/sysdep/doxygen.mk
   include ../../mk/sysdep/graphviz.mk
   include ../../mk/sysdep/python.mk

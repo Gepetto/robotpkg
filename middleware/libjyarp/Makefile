@@ -35,7 +35,7 @@ DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
 _CFLAGS_NDEBUG:= -O1 -DNDEBUG
 
 include ../../middleware/yarp/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../devel/swig/depend.mk

@@ -97,7 +97,7 @@ $(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 #
 ifneq (,$(filter %.tar %.tar.gz %.tar.bz2 %.tgz %.tbz2,${EXTRACT_ONLY}))
   DEPEND_METHOD.pax+=	bootstrap
-  include ${ROBOTPKG_DIR}/pkgtools/pax/depend.mk
+  include ${ROBOTPKG_DIR}/archivers/pax/depend.mk
 endif
 #.if !empty(EXTRACT_ONLY:M*.cpio) || \
 #    !empty(EXTRACT_ONLY:M*.cpio.bz2) || \

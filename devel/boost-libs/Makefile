@@ -17,7 +17,7 @@ INSTALLATION_DIRS=	lib
 include ../../devel/boost-jam/depend.mk
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/zlib/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 

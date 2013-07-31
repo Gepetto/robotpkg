@@ -1,9 +1,9 @@
-# robotpkg Makefile for:	pkgtools/pax
+# robotpkg Makefile for:	archivers/pax
 # Created:			Anthony Mallet on Thu, 7 Dec 2006
 #
 
 DISTNAME=		pax-20080110
-CATEGORIES=		pkgtools
+CATEGORIES=		archivers
 MASTER_SITES=		# empty
 DISTFILES=		# empty
 

@@ -105,7 +105,7 @@ endif
 ifeq (cvs,$(strip ${FETCH_METHOD}))
   _FETCH_CMD=		${CVS}
 
-  _FETCH_DEPEND=	mk/sysdep/cvs.mk pkgtools/pax/depend.mk
+  _FETCH_DEPEND=	mk/sysdep/cvs.mk archivers/pax/depend.mk
   DEPEND_METHOD.cvs+=	bootstrap
   DEPEND_METHOD.pax+=	bootstrap
 endif
@@ -127,7 +127,7 @@ endif
 ifeq (svn,$(strip ${FETCH_METHOD}))
   _FETCH_CMD=		${SVN}
 
-  _FETCH_DEPEND=	mk/sysdep/svn.mk pkgtools/pax/depend.mk
+  _FETCH_DEPEND=	mk/sysdep/svn.mk archivers/pax/depend.mk
   DEPEND_METHOD.svn+=	bootstrap
   DEPEND_METHOD.pax+=	bootstrap
 endif

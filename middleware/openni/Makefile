@@ -99,7 +99,7 @@ INSTALL_SRC+=	${WRKDIR}/register
 include ../../mk/sysdep/freeglut.mk
 include ../../mk/sysdep/libusb1.mk
 include ../../pkgtools/install-sh/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../mk/language/java.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

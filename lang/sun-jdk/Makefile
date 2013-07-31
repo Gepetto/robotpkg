@@ -60,7 +60,7 @@ EXTRACT_ENV+=		UNPACK200_FLAGS=-Htrue
 # don't launch internet registration ...
 EXTRACT_OPTS_BIN+=	-noregister
 
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/robotpkg.mk
 

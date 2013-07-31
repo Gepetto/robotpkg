@@ -65,7 +65,7 @@ SUBST_MESSAGE.make=	Fixing hardcoded make program.
 SUBST_FILES.make=	makefile.wm5 */makefile.wm5
 SUBST_SED.make=		-e 's/ make / $${MAKE} /g'
 
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/glu.mk

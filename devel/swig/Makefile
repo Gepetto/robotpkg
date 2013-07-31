@@ -25,7 +25,7 @@ define PKG_OPTION_SET.doc
   PLIST_SRC=		${PKGDIR}/PLIST ${PKGDIR}/PLIST.doc
   post-install: swig-install-doc
 
-  include ../../pkgtools/pax/depend.mk
+  include ../../archivers/pax/depend.mk
 endef
 
 include ../../mk/sysdep/pcre.mk

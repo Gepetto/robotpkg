@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	pkgtools/pax
+# robotpkg depend.mk for:	archivers/pax
 # Created:			Anthony Mallet on Sun, 20 Apr 2008
 #
 
@@ -26,7 +26,7 @@ DEPEND_USE+=		pax
 
 DEPEND_METHOD.pax?=	build
 DEPEND_ABI.pax?=	pax
-DEPEND_DIR.pax?=	../../pkgtools/pax
+DEPEND_DIR.pax?=	../../archivers/pax
 
 export PAX=		$(word 1,${SYSTEM_FILES.pax})
 export TAR=		$(word 2,${SYSTEM_FILES.pax})

@@ -20,7 +20,7 @@ INSTALLATION_DIRS+=	include/boost
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/libtool/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/sysdep/automake.mk
 include ../../mk/language/c.mk

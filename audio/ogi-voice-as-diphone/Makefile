@@ -37,7 +37,7 @@ FETCH_MESSAGE+= "	${HOMEPAGE}"
 include ../../audio/festival/depend.mk
 include ../../audio/OGIlexicon/depend.mk
 include ../../audio/festlex-poslex/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

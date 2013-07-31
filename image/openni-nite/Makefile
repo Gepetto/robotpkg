@@ -54,7 +54,7 @@ DEPEND_METHOD.bzip2+=	bootstrap
 include ../../archivers/bzip2/depend.mk
 include ../../middleware/openni/depend.mk
 include ../../hardware/openni-sensor/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../mk/sysdep/bash.mk
 include ../../mk/sysdep/wget.mk
 

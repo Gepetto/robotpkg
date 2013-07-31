@@ -7,7 +7,6 @@ SUBDIR+=	digest
 SUBDIR+=	install-sh
 SUBDIR+=	libnbcompat
 SUBDIR+=	libtool
-SUBDIR+=	pax
 SUBDIR+=	pkg-config
 SUBDIR+=	pkg_install
 SUBDIR+=	pkgrepo2deb

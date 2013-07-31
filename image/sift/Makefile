@@ -36,7 +36,7 @@ endef
 include ../../image/opencv/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../pkgtools/libtool/depend.mk
-include ../../pkgtools/pax/depend.mk
+include ../../archivers/pax/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/gtk.mk
 include ../../mk/language/c.mk
