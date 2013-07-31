@@ -54,6 +54,7 @@ do-extract:
 	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
 DEPEND_METHOD.pax+=	bootstrap
+PAX_STYLE=		inplace
 include ../../archivers/pax/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
