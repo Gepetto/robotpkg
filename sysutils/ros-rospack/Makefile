@@ -4,7 +4,7 @@
 
 ROS_PKG=	rospack
 ROS_VERSION=	2.1.19
-PKGREVISION=	1
+PKGREVISION=	2
 
 CATEGORIES=	sysutils
 ROS_COMMENT=	command-line tool for retriving package information

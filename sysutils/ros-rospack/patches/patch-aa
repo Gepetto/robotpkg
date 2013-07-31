@@ -14,7 +14,7 @@ necessary variables.
 -  # it provides
 -  set(tinyxml_LIBRARIES tinyxml)
 -endif() 
-+find_file(tinyxml_HEADER tinyxml.h PATH ${TINYXML_ROOT}/include)
++find_file(tinyxml_HEADER tinyxml.h PATH ${TINYXML_ROOT}/include ${TINYXML_ROOT}/include/tinyxml)
 +find_library(tinyxml_LIBRARIES libtinyxml.so PATH ${TINYXML_ROOT}/lib)
 +get_filename_component(tinyxml_INCLUDE_DIRS ${tinyxml_HEADER} PATH)
 +set(tinyxml_FOUND TRUE)
