@@ -23,7 +23,7 @@ DEPEND_ABI.apr?=	apr>=1
 SYSTEM_SEARCH.apr=	\
 	'bin/apr-1-config:p:% --version'	\
 	'include/apr-1*/apr.h'			\
-	'lib/libapr-1.la'			\
+	'lib/libapr-1.{so,a}'			\
 	'lib/pkgconfig/apr-1.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.apr=	libapr1-dev
