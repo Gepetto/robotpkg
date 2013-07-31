@@ -19,7 +19,8 @@
 +  DEPENDS Boost tinyxml
  )
  
- include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+-include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
++include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${tinyxml_INCLUDE_DIRS})
  
  add_library(test_plugins EXCLUDE_FROM_ALL SHARED test/test_plugins.cpp)
  add_executable(plugin_tool src/plugin_tool.cpp)
