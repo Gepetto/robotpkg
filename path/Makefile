@@ -11,6 +11,7 @@ SUBDIR+=	hpp-dynamic-obstacle
 SUBDIR+=	hpp-gik
 SUBDIR+=	hpp-hik
 SUBDIR+=	hpp-localstepper
+SUBDIR+=	hpp-model-urdf
 SUBDIR+=	hpp-openhrp
 SUBDIR+=	hpp-walkfootplanner
 SUBDIR+=	hpp-walkplanner
