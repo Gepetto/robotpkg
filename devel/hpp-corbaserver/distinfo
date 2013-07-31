@@ -1,5 +1,3 @@
-SHA1 (hpp-corbaserver-1.16.tar.gz) = dc1006975cde4d448c4a96a8e0945b8a0b8af65c
-RMD160 (hpp-corbaserver-1.16.tar.gz) = d22c93cb4c59cee06a7ead52a064cf0b25130e0f
-Size (hpp-corbaserver-1.16.tar.gz) = 470422 bytes
-SHA1 (patch-aa) = aaeab7cf592f550e835dac4ae5d22d33a86ae8b8
-SHA1 (patch-ab) = 40ad0396d7619ed728e97b9d238e15a8b9cb40a7
+SHA1 (hpp-corbaserver-2.0.tar.gz) = 466274605cbca38c2deae1dd2580aedc5a7ee573
+RMD160 (hpp-corbaserver-2.0.tar.gz) = f2fe1196858971d4a928d12e3a9878fa5f2c38f6
+Size (hpp-corbaserver-2.0.tar.gz) = 147491 bytes

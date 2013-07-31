@@ -2,55 +2,26 @@
 # Created:			Anthony Mallet on Mon, 27 Aug 2007
 #
 
-DISTNAME=	hpp-corbaserver-${VERSION}
-PKGNAME=	hpp-corbaserver-${VERSION}
-VERSION=	1.16
+HPP_PACKAGE=	hpp-corbaserver
+HPP_VERSION=	2.0
 PKGREVISION=
+HPP_COMMENT=	Corba server for Humanoid Path Planner
 
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-corbaserver/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}corba/hpp-corbaserver
+MASTER_REPOSITORY=	git git@github.com:laas/hpp-corbaserver.git
 
-MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=
-COMMENT=	Corba interface with hppCore package.
-LICENSE=	cnrs-hpp-closed-source
+LICENSE=	gnu-lgpl-v3
 
 MAKE_JOBS_SAFE= no
-
-GNU_CONFIGURE=	yes
-DOXYGEN_PLIST_DIR+= share/doc/hpp-corbaserver
-
-
-# --- options --------------------------------------------------------
-
-# OpenHRP(tm) support
-PKG_SUPPORTED_OPTIONS+=	openhrp
-PKG_SUGGESTED_OPTIONS+=	openhrp
-
-PKG_OPTION_DESCR.openhrp=	Build an OpenHRP(tm) client.
-define PKG_OPTION_SET.openhrp
-  CONFIGURE_ARGS+=	--enable-openhrp
-  include ../../robots/hrp2-builder/depend.mk
-  include ../../math/hrp2-dynamics/depend.mk
-  include ../../path/hpp-openhrp/depend.mk
-  include ../../devel/jrl-modelloader/depend.mk
-  include ../../robots/hrp2-14/depend.mk
-endef
-
-# Verbosity
-PKG_SUPPORTED_OPTIONS+=	verbose1
-PKG_OPTION_DESCR.verbose1=	Define level of verbosity
-PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
-
-# --------------------------------------------------------------------
+HPP_BUILD_SYSTEM=	cmake
 
 include ../../devel/hpp-util/depend.mk
-include ../../path/hpp-core/depend.mk
+include ../../meta-pkgs/hpp/Makefile.common
 include ../../middleware/omniORB/depend.mk
-include ../../pkgtools/libtool/depend.mk
+include ../../path/hpp-core/depend.mk
+include ../../path/hpp-model-urdf/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
-include ../../mk/sysdep/doxygen.mk
-include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
+include ../../mk/sysdep/doxygen.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
