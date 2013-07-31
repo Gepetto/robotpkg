@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-model-urdf
-HPP_VERSION=		0.2
+HPP_VERSION=		0.3
 PKGREVISION=
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-model-urdf
 
