@@ -1,10 +1,7 @@
-@comment Sun Apr 20 19:26:10 CEST 2008
-man/cat1/robotpkg_cpio.0
-man/cat1/robotpkg_pax.0
-man/cat1/robotpkg_tar.0
-man/man1/robotpkg_cpio.1
-man/man1/robotpkg_pax.1
-man/man1/robotpkg_tar.1
-sbin/robotpkg_cpio
-sbin/robotpkg_pax
-sbin/robotpkg_tar
+@comment Wed Jul 31 16:43:19 CEST 2013
+bin/cpio
+bin/pax
+bin/tar
+${PKGMANDIR}/man1/cpio.1
+${PKGMANDIR}/man1/pax.1
+${PKGMANDIR}/man1/tar.1

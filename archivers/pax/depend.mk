@@ -14,8 +14,8 @@ ifeq (+,$(PAX_DEPEND_MK)) # ------------------------------------------------
 PREFER.pax?=		system
 
 SYSTEM_SEARCH.pax=	\
-	'{,s}bin/{,robotpkg_}pax'	\
-	'{,s}bin/{,robotpkg_}tar'
+	'{,s}bin/pax'	\
+	'{,s}bin/tar'
 
 SYSTEM_DESCR.pax?=	pax and tar archivers
 SYSTEM_PKG.Fedora.pax=	pax tar
