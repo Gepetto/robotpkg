@@ -4,7 +4,7 @@
 
 DISTNAME=	abstract-robot-dynamics-${VERSION}
 PKGNAME=	abstract-robot-dynamics-${VERSION}
-VERSION=	1.19.0
+VERSION=	1.20
 
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=abstract-robot-dynamics/}
@@ -33,6 +33,5 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/pdflatex.mk
-include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

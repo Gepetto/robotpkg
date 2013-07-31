@@ -14,12 +14,12 @@ PREFER.abstract-robot-dynamics?=		robotpkg
 
 DEPEND_USE+=				abstract-robot-dynamics
 
-DEPEND_ABI.abstract-robot-dynamics?=	abstract-robot-dynamics>=1.18.0
+DEPEND_ABI.abstract-robot-dynamics?=	abstract-robot-dynamics>=1.20
 DEPEND_DIR.abstract-robot-dynamics?=	../../interfaces/abstract-robot-dynamics
 
 SYSTEM_SEARCH.abstract-robot-dynamics=\
 	include/abstract-robot-dynamics/dynamic-robot.hh	\
-	lib/pkgconfig/abstract-robot-dynamics.pc
+	'lib/pkgconfig/abstract-robot-dynamics.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
