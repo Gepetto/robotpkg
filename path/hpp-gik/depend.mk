@@ -15,11 +15,13 @@ PREFER.hpp-gik?=	robotpkg
 
 SYSTEM_SEARCH.hpp-gik=\
 	include/hpp/gik/core/solver.hh	\
-	lib/libhpp-gik.la
+	include/hpp/gik/constraint/configuration-constraint.hh \
+	lib/libhpp-gik.so	\
+	'lib/pkgconfig/hpp-gik.pc:/Version/s/[^0-9.]//gp'
 
 DEPEND_USE+=		hpp-gik
 
-DEPEND_ABI.hpp-gik?=	hpp-gik>=2.4
+DEPEND_ABI.hpp-gik?=	hpp-gik>=2.10
 DEPEND_DIR.hpp-gik?=	../../path/hpp-gik
 
 endif # HPP_GIK_DEPEND_MK --------------------------------------------
