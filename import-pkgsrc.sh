@@ -13,6 +13,7 @@ case $module in
   pkgtools/libnbcompat)	pkgsrc_module=pkgtools/libnbcompat/files;;
   pkgtools/pkg_install)	pkgsrc_module=pkgtools/pkg_install/files;;
   net/libfetch)		pkgsrc_module=net/libfetch/files;;
+  archivers/pax)	pkgsrc_module=archivers/pax/files;;
   *) echo 'no such module "$module"'; exit 2;;
 esac
 
