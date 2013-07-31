@@ -1,4 +1,4 @@
-/*	$NetBSD: options.c,v 1.9 2007/03/08 17:18:18 rillig Exp $	*/
+/*	$NetBSD: options.c,v 1.11 2010/03/21 16:35:01 joerg Exp $	*/
 
 /*-
  * Copyright (c) 1992 Keith Muller.
@@ -48,7 +48,7 @@
 #if 0
 static char sccsid[] = "@(#)options.c	8.2 (Berkeley) 4/18/94";
 #else
-__RCSID("$NetBSD: options.c,v 1.9 2007/03/08 17:18:18 rillig Exp $");
+__RCSID("$NetBSD: options.c,v 1.11 2010/03/21 16:35:01 joerg Exp $");
 #endif
 #endif /* not lint */
 
@@ -120,7 +120,7 @@ static int no_op(void);
 static void printflg(unsigned int);
 static int c_frmt(const void *, const void *);
 static off_t str_offt(char *);
-static char *pax_getline(FILE *fp);
+static char *get_line(FILE *fp);
 static void pax_options(int, char **);
 static void pax_usage(void);
 static void tar_options(int, char **);
@@ -130,7 +130,7 @@ static void cpio_options(int, char **);
 static void cpio_usage(void);
 #endif
 
-/* errors from getline */
+/* errors from get_line */
 #define GETLINE_FILE_CORRUPT 1
 #define GETLINE_OUT_OF_MEM 2
 static int getline_error;
@@ -1217,7 +1217,7 @@ tar_options(int argc, char **argv)
 						tty_warn(1, "Unable to open file '%s' for read", file);
 						tar_usage();
 					}
-					while ((str = pax_getline(fp)) != NULL) {
+					while ((str = get_line(fp)) != NULL) {
 						if (dirisnext) {
 							dir = str;
 							dirisnext = 0;
@@ -1309,7 +1309,7 @@ tar_options(int argc, char **argv)
 					tty_warn(1, "Unable to open file '%s' for read", file);
 					tar_usage();
 				}
-				while ((str = pax_getline(fp)) != NULL) {
+				while ((str = get_line(fp)) != NULL) {
 					if (dirisnext) {
 						if (ftree_add(str, 1) < 0)
 							tar_usage();
@@ -1621,7 +1621,7 @@ cpio_options(int argc, char **argv)
 				    optarg);
 				cpio_usage();
 			}
-			while ((str = pax_getline(fp)) != NULL) {
+			while ((str = get_line(fp)) != NULL) {
 				pat_add(str, NULL);
 			}
 			fclose(fp);
@@ -1777,7 +1777,7 @@ cpio_options(int argc, char **argv)
 		 * no read errors allowed on updates/append operation!
 		 */
 		maxflt = 0;
-		while ((str = pax_getline(stdin)) != NULL) {
+		while ((str = get_line(stdin)) != NULL) {
 			ftree_add(str, 0);
 		}
 		if (getline_error) {
@@ -2007,8 +2007,8 @@ str_offt(char *val)
 	return(num);
 }
 
-char *
-pax_getline(FILE *f)
+static char *
+get_line(FILE *f)
 {
 	char *name, *temp;
 	size_t len;
@@ -2048,7 +2048,7 @@ no_op(void)
  *	print the usage summary to the user
  */
 
-void
+static void
 pax_usage(void)
 {
 	fprintf(stderr,
@@ -2077,7 +2077,7 @@ pax_usage(void)
  *	print the usage summary to the user
  */
 
-void
+static void
 tar_usage(void)
 {
 	(void)fputs("usage: tar [-]{crtux}[-befhjlmopqvwzHOPSXZ014578] [archive] "
@@ -2094,7 +2094,7 @@ tar_usage(void)
  *	print the usage summary to the user
  */
 
-void
+static void
 cpio_usage(void)
 {
 
