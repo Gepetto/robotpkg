@@ -36,6 +36,7 @@ MESSAGE_SUBST+=		GPG_HOMEDIR=${GPG_DEFHOMEDIR}
 # XXX missing runtime dependency on pkg_install - this cannot be added easly
 # because of bulk using pkg_install as a system package.
 
+PAX_STYLE=		inplace
 include ../../archivers/pax/depend.mk
 include ../../mk/sysdep/apt.mk
 include ../../mk/sysdep/dpkg.mk
