@@ -35,12 +35,12 @@ ifneq (inplace+robotpkg,${_pax_style})
     DEPEND_PKG+=		pax
   endif
 
-  ifeq (+,$(PKGREPO2DEB_DEPEND_MK))
+  ifeq (+,$(PAX_DEPEND_MK))
     DEPEND_USE+=		pax
-  endif
 
-  export PAX=		$(word 1,${SYSTEM_FILES.pax})
-  export TAR=		$(word 2,${SYSTEM_FILES.pax})
+    export PAX=		$(word 1,${SYSTEM_FILES.pax})
+    export TAR=		$(word 2,${SYSTEM_FILES.pax})
+  endif
 else
   # This is the "inplace" version, for bootstrap process
   #
