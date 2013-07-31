@@ -27,6 +27,7 @@ SYSTEM_SEARCH.libusb1=\
 SYSTEM_PKG.Fedora.libusb1=	libusb1-devel
 SYSTEM_PKG.Ubuntu.libusb1=	libusb-1.0-0-dev
 SYSTEM_PKG.Debian.libusb1=	libusb-1.0-0-dev
+SYSTEM_PKG.NetBSD.libusb1=	devel/libusb1
 
 endif # LIBUSB1_DEPEND_MK ---------------------------------------------------
 
