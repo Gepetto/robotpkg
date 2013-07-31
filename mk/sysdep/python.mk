@@ -105,7 +105,7 @@ else ifeq (Ubuntu,${OPSYS})
 else ifeq (NetBSD,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python31 python32
 endif
-PREFER_ALTERNATIVE.python?=	python26 python27 python31 python32
+PREFER_ALTERNATIVE.python?=	python27 python32 python26 python31
 
 PKG_ALTERNATIVE_DESCR.python26= Use python-2.6
 PKGTAG.python26 =		py26
