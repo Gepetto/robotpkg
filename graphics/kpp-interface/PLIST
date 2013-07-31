@@ -1,14 +1,19 @@
-@comment Sat Feb 11 19:35:34 CET 2012
-include/kppInterface/kppCommandInit.h
-include/kppInterface/kppCommandPlannerPanel.h
-include/kppInterface/kppCommandStartCorbaServer.h
-include/kppInterface/kppInterface.h
-include/kppInterface/kppPlannerPanel.h
-include/kppInterface/kppPlannerPanelController.h
-include/kppInterface/kwsGraphicRoadmap.h
-include/kppInterface/kwsGraphicRoadmapDelegate.h
-lib/modules/${NODENAME}/libkppInterface.kab
-lib/modules/${NODENAME}/libkppInterface.la
-lib/modules/${NODENAME}/libkppInterfaceStartAll.kab
-lib/modules/${NODENAME}/libkppInterfaceStartAll.la
-lib/pkgconfig/kppInterface.pc
+@comment Wed Jul 31 10:01:20 CEST 2013
+include/kpp/interface/command-init.hh
+include/kpp/interface/command-open-file.hh
+include/kpp/interface/command-planner-panel.hh
+include/kpp/interface/command-start-corbaserver.hh
+include/kpp/interface/config.h
+include/kpp/interface/config.hh
+include/kpp/interface/deprecated.hh
+include/kpp/interface/graphic-roadmap-delegate.hh
+include/kpp/interface/graphic-roadmap.hh
+include/kpp/interface/interface.hh
+include/kpp/interface/planner-panel-controller.hh
+include/kpp/interface/planner-panel.hh
+include/kpp/interface/warning.hh
+lib/modules/${NODENAME}/libkpp-interface.kab
+lib/modules/${NODENAME}/libkpp-interface.so
+lib/modules/${NODENAME}/libkpp-interface.so.${PKGVERSION}
+lib/pkgconfig/kpp-interface.pc
+@pkgdir lib/modules/${NODENAME}
