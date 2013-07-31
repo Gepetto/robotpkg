@@ -15,12 +15,12 @@ PREFER.jrl-dynamics?=	robotpkg
 
 DEPEND_USE+=		jrl-dynamics
 
-DEPEND_ABI.jrl-dynamics?=jrl-dynamics>=1.17
+DEPEND_ABI.jrl-dynamics?=jrl-dynamics>=1.24
 DEPEND_DIR.jrl-dynamics?=../../math/jrl-dynamics
 
 SYSTEM_SEARCH.jrl-dynamics=\
 	include/jrl/dynamics/dynamicrobot.hh	\
-	lib/pkgconfig/jrl-dynamics.pc
+	'lib/pkgconfig/jrl-dynamics.pc:/Version/s/[^0-9.]//gp'
 
 endif # JRL_DYNAMICS_DEPEND_MK ---------------------------------------
 

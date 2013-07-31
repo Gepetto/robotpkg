@@ -4,15 +4,15 @@
 
 DISTNAME=	jrl-dynamics-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
-VERSION=	1.23.0
+VERSION=	1.24
 PKGREVISION=	
 
 CATEGORIES=	math
-NO_PUBLIC_SRC=	yes
+
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-dynamics/}
 MASTER_REPOSITORY=	git git@github.com:jrl-umi3218/jrl-dynamics.git
 
-MAINTAINER=	openrobots@laas.fr
+MAINTAINER=	hpp@laas.fr
 COMMENT=	JRL-Japan implementation of dynamic robot.
 LICENSE=	gnu-lgpl-v3
 
