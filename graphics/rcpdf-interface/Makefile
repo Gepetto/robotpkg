@@ -2,6 +2,7 @@
 # Created:			Florent Lamiraux on Tue,  30 Jul 2013
 #
 
+PKGREVISION=	1
 VERSION=	0.2
 DISTNAME=	rcpdf_interface-${VERSION}
 PKGNAME=	rcpdf-interface-${VERSION}
