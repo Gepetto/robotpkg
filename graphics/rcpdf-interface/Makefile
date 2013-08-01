@@ -4,6 +4,7 @@
 
 VERSION=	0.2
 DISTNAME=	rcpdf_interface-${VERSION}
+PKGNAME=	rcpdf-interface-${VERSION}
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=rcpdf_interface/}
 
