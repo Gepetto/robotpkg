@@ -16,6 +16,7 @@ LICENSE=	2-clause-bsd
 DYNAMIC_PLIST_DIRS+=	share/doc/rcpdf
 
 include ../../graphics/rcpdf-interface/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
