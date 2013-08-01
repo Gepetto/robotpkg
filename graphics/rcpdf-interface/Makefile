@@ -18,6 +18,7 @@ DYNAMIC_PLIST_DIRS+=	share/doc/rcpdf_interface
 
 include ../../middleware/ros-comm/depend.mk
 include ../../graphics/ros-robot-model/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
