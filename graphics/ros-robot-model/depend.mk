@@ -18,10 +18,10 @@ SYSTEM_PREFIX.ros-robot-model?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-robot-model
 ROS_DEPEND_USE+=		ros-robot-model
 
-DEPEND_ABI.ros-robot-model?=	ros-robot-model>=1.8
+DEPEND_ABI.ros+=		ros>=groovy
+DEPEND_ABI.ros-robot-model?=	ros-robot-model>=1.9
 DEPEND_DIR.ros-robot-model?=	../../graphics/ros-robot-model
 
-DEPEND_ABI.ros-robot-model.fuerte?=	ros-robot-model>=1.8<1.9
 DEPEND_ABI.ros-robot-model.groovy?=	ros-robot-model>=1.9<1.10
 DEPEND_ABI.ros-robot-model.hydro?=	ros-robot-model>=1.10<1.11
 
