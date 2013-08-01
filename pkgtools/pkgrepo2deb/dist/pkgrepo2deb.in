@@ -28,7 +28,10 @@
 # % ./pkgrepo2deb -d /tmp/debian -r robotpkg/packages/Ubuntu-12.10-x86_64/All -a
 # Configure a web server on /tmp/debian.
 # On a client, add to /etc/apt/sources.list:
-# deb http://<host>/debian/quantal/amd64 /
+# deb http://<host>/debian quantal robotpkg
+
+prepend=robotpkg-
+prepend_category=robotpkg/
 
 version=@PACKAGE_VERSION@
 : ${DEB_PACKAGER:=robotpkg@laas.fr}
@@ -46,10 +49,11 @@ version=@PACKAGE_VERSION@
 # todo
 # -------------------------
 #
-# buildrepo() rebuilds all Debian codename, not cool.
 # update/check all options combinations (help message and behaviour consistency)
 # system dependencies (to be done manually on the target system)
 # test pre/post-install
+# build metapackage according to default set of option (if present)
+# back to real dependencies ( >= ... )
 #
 # --------------------------
 # known bugs
@@ -227,6 +231,7 @@ updaterepo()
 	mv ${DEBPKG} ${debrepo}/${repodir}/.
 
 	if ${later} || test -z "${debrepo}"; then return 0; fi
+        if ${doitall}; then return 0; fi
 
 	(
             cd $debrepo
@@ -274,9 +279,9 @@ updaterepo()
 		  {							\
 		    split($2,pkgs,/,/);					\
 		    for(p in pkgs) if (file[$1]) {			\
-		      file[$1] = file[$1] "," $2;			\
+		      file[$1] = file[$1] "," pkgs[p]			\
 		    } else {						\
-		      file[$1] = $2					\
+		      file[$1] = pkgs[p]				\
 		    }							\
 		  }							\
 		  END { for(f in file) print f " " file[f] }		\
@@ -292,41 +297,68 @@ buildrepo()
 {
 	set +o noglob
 	(
-		cd ${debrepo} || exit 1
-		for i in dists/*; do
-			echo "scanning repository directory ${debrepo}/$i ..."
-			(if cd $i; then
-				${APT_FTPARCHIVE} release . > Release
-				rm -f Release.gpg
-				${GPG} --output Release.gpg -ba Release
-			fi)
-			echo "... done"
-		done
+	    cd ${debrepo} || exit 1
+	    for i in dists/*; do
+                test -d $i || continue;
+
+		echo "scanning repository directory ${debrepo}/$i ..."
+		if $doitall; then
+		    # generate Packages and Contents-<arch> globally
+                    for j in $i/robotpkg/binary-*; do
+                        ${APT_FTPARCHIVE} packages $j >$j/Packages
+	                ${GZIP_CMD} -c9 <$j/Packages > $j/Packages.gz
+
+                        arch=${j##*-}
+                        ${APT_FTPARCHIVE} contents $j | ${AWK} '{	\
+			      split($2,pkgs,/,/); $2="";		\
+			      for(p in pkgs) {				\
+			        if ($2) $2=$2 ",robotpkg/" pkgs[p];	\
+			        else $2 = "robotpkg/" pkgs[p]		\
+			      }						\
+			      print $1 " " $2				\
+			    }' >$i/Contents-$arch
+	                ${GZIP_CMD} -c9 <$i/Contents-$arch >$i/Contents-$arch.gz
+                    done
+		fi
+
+		${APT_FTPARCHIVE} \
+                    -o "APT::FTPArchive::Release::Origin=robotpkg"	\
+                    -o "APT::FTPArchive::Release::Suite=${i#dists/}"	\
+                    -o "APT::FTPArchive::Release::Codename=${i#dists/}"	\
+                    -o "APT::FTPArchive::Release::Components=robotpkg"	\
+                    release $i > $i/Release
+		rm -f $i/Release.gpg
+		${GPG} --output $i/Release.gpg -ba $i/Release
+		echo "... done"
+	    done
 	)
 	set -o noglob
 }
 
 debnamize()
 {
+	# todo: try to simplify this blob
 	# dependencies and conflicts:
 		# 1 remove trailing .tgz
-		# 2 mv ~opts after base name
-		# 2bis change abc-123-xyz-456 to abc==123-xyz-456
+		# 1bis prepend name
+		# 2 change abc-123-xyz-456 to abc-123-xyz=456
+		# 2bis change abc-123-xyz-456~opt1-opt2 to abc-123-xyz+opt1-opt2=456
+		# 2ter mv ~opts after base name (-> +opts)
 		# 3 transform operator to debian way [ a>=1<2 --> a (>= 1) (< 2) ]
 		# 4 duplicate name if multiple comparison statements [ --> a (>= 1), a (< 2) ] (useless here)
 		# 5,6 transform comparison operators
 		# 7 removes empty version dependency
-		# 8 replace r(revision) by debian's '-' symbol
-		# 9 rework last comma
+		# 8 rework last comma
 	${SED} -e "s#\.tgz\$##g"					\
-	    -e "s#\([a-zA-Z]\)-\([0-9]\)#\1=\2#1"			\
-	    -e "s#\([^<>=]*\)\([<>=]*\)\([^~]*\)~\([^~<>=]*\)\([^~]*\).*#\1.\4\2\3\5#g"\
+	    -e "s#^#${prepend}#1"					\
+	    -e "s#\(.*\)-\([0-9][^~-]*\)\$#\1=\2#1"			\
+	    -e "s#\(.*\)-\([0-9][^-]*\)~\(.*\)\$#\1+\3=\2#1"		\
+	    -e "s#\([^<>=]*\)\([<>=]*\)\([^~]*\)~\([^~<>=]*\)\([^~]*\).*#\1+\4\2\3\5#g"\
 	    -e "s#\([^<>=]*\)\([<>=]*\)\([^<>= ,]*\)#\1 (\2 \3)#g"	\
 	    -e "s#\([^<>=]*\)\(([^)]*)\) \(([^)]*)\)#\1\2\, \1\3#g"	\
 	    -e "s,(< ,(<< ,g"						\
 	    -e "s,(> ,(>> ,g"						\
 	    -e "s,( ),,g"						\
-	    -e "s,r\([0-9][0-9]*)\),-\1,g"				\
 	    -e "s/[, ]*$/,/g"						\
 	| tr A-Z_ a-z-					# no caps, no _
 }
@@ -340,17 +372,18 @@ debnamize_test()
 		echo "$@" | debnamize
 	}
 
-	s "ding"
-	s "ding-1.2.3r1"
-	s "ding>=1.2.3r1"
-	s "ding>=1.2.3r1<=4.5.6r2"
-	s "ding>=1.2.3~opt1-truc+opt2"
-	s "ding>=1.2.3r1~opt1-truc+opt2"
-	s "ding>=1.2.3r1~opt1-truc+opt2<=4.5.6"
-	s "ding>=1.2.3r1~opt1-truc+opt2<=4.5.6r1"
-	s "ding>=1.2.3r1~opt1-truc+opt2<=4.5.6r1~opt1-truc+opt2"
-	s "ding>=1.2.3r1<=4.5.6r1~opt1-truc+opt2"
-	s "ding>=1.2.3<=4.5.6r1~opt1-truc+opt2"
+	s "ding-dong123"
+	s "ding-dong123-1.2.3r1"
+	s "ding-dong123-1.2.3r1~opt1-truc+opt2"
+	s "ding-dong123>=1.2.3r1"
+	s "ding-dong123>=1.2.3r1<=4.5.6r2"
+	s "ding-dong123>=1.2.3~opt1-truc+opt2"
+	s "ding-dong123>=1.2.3r1~opt1-truc+opt2"
+	s "ding-dong123>=1.2.3r1~opt1-truc+opt2<=4.5.6"
+	s "ding-dong123>=1.2.3r1~opt1-truc+opt2<=4.5.6r1"
+	s "ding-dong123>=1.2.3r1~opt1-truc+opt2<=4.5.6r1~opt1-truc+opt2"
+	s "ding-dong123>=1.2.3r1<=4.5.6r1~opt1-truc+opt2"
+	s "ding-dong123>=1.2.3<=4.5.6r1~opt1-truc+opt2"
 }
 
 # evaluate rpkg variables from .tgz/+BUILD_INFO or from a pkg_summary block
@@ -368,20 +401,22 @@ extract_rpkg()
 {
 	tz "(internal error)" pkgroot pkgdir pkgfile pkgpath && return 1
 
-	(
-		set -e
-		rm -rf ${pkgroot}
-		mkdir -p ${pkgroot}/DEBIAN
-		${PAX} -rz -s ",^,$pkgroot/DEBIAN/," '+*' <"${pkgpath}"
-		test -r "$pkgroot/DEBIAN/+BUILD_INFO"
-		test -r "$pkgroot/DEBIAN/+CONTENTS"
-		prefix=`${AWK} '/^@cw?d/ {print $2; exit}' \
-                    $pkgroot/DEBIAN/+CONTENTS`
-		${PAX} -rz -s ",^,$pkgroot/$prefix/," -c '+*' <"${pkgpath}"
-	) || {
-		echo "Cannot read robotpkg's packed file '${pkgpath}/+BUILD_INFO'" 1>&2
-		return 1
+	set -e
+	rm -rf ${pkgroot}
+	mkdir -p ${pkgroot}/DEBIAN
+        ( cd ${pkgroot}/DEBIAN &&
+	    ${PAX} -rz '+*' ) <"${pkgpath}"
+        {
+	    test -r "$pkgroot/DEBIAN/+BUILD_INFO"
+	    test -r "$pkgroot/DEBIAN/+CONTENTS"
+        } || {
+            echo "Cannot read robotpkg's packed file '${pkgpath}/+BUILD_INFO'" 1>&2
+	    return 1
 	}
+
+	prefix=`${AWK} '/^@cw?d/ {print $2; exit}' $pkgroot/DEBIAN/+CONTENTS`
+	mkdir -p ${pkgroot}/$prefix
+        ( cd ${pkgroot}/$prefix && ${PAX} -rz -c '+*' ) <"${pkgpath}"
 
 	return 0
 }
@@ -395,32 +430,21 @@ debvars()
 		return 1
 	fi
 
+	PKGVERSIONNUMBER=${PKGVERSION%~*}			# remove ~options
+
+	PKGOPTIONS=${PKGVERSION#*~}				# take only options ~xxx
+	PKGOPTIONS=${PKGOPTIONS#${PKGVERSION}}			# empty if equals to original
+	PKGOPTIONS=+${PKGOPTIONS}				# prepend +
+	PKGOPTIONS=${PKGOPTIONS%+}				# remove + if empty options
+
 	DEBARCH="`echo $MACHINE_ARCH | ${SED} "s,x86_64,amd64,g"`"
-
-	PKGVERSIONONLY=${PKGVERSION%~*}				# remove ~options
-
-	PKGREV=${PKGVERSIONONLY#*r}				# take only final (r)<nnn>
-	PKGREV=${PKGREV#${PKGVERSIONONLY}}			# empty if equals to original
-
-	PKGRAWVERSION=${PKGVERSIONONLY%r${PKGREV}*}		# remove revision
-	PKGRAWVERSION=`echo ${PKGRAWVERSION}`
-
-	PKGOPTS=${PKGVERSION#*~}				# take only options (~)<xxx> (# or ## ?)
-	PKGOPTS=${PKGOPTS#${PKGVERSION}}			# empty if equals to original
-
-	PKGBASELOWCASE="`echo "${PKGBASE}" | tr A-Z_ a-z-`"	# no caps, no _
-	PKGOPTSLOWCASE="`echo "${PKGOPTS}" | tr A-Z_ a-z-`"	# no caps, no _
-	DEBBASE="${PKGBASELOWCASE}.${PKGOPTSLOWCASE}"
-	DEBBASE=${DEBBASE%.}					# remove trailing dot if empty PKGOPTS
+	DEBBASE="`echo "${prepend}${PKGBASE}${PKGOPTIONS}" | tr A-Z_ a-z-`"	# no caps, no _
+	DEBVERSION="`echo "${PKGVERSIONNUMBER}" | tr A-Z_ a-z-`"		# debian forbids _ in version
+	DEBFULLNAME="${DEBBASE}_${DEBVERSION}_${DEBARCH}.deb"
 
 	# provides main package (without options)
-	PROVIDES="${PKGBASELOWCASE}"
+	PROVIDES="`echo "${prepend}${PKGBASE}" | tr A-Z_ a-z-`"	# no caps, no _
 
-	# naming: -REV
-	DEBVERSION=${PKGRAWVERSION}-${PKGREV}
-	DEBVERSION=${DEBVERSION%-}				# remove trailing dash (if PKGREV empty)
-
-	DEBFULLNAME="${DEBBASE}_${DEBVERSION}_${DEBARCH}.deb"
 	guess_debdistrib_codename || return 1
 
 	return 0
@@ -433,7 +457,7 @@ deb_need_rebuild()
 {
 	tz "(internal error)" pkgpath codename DEBARCH DEBFULLNAME && return 1
 
-	debpath=${debrepo}/${codename}/${DEBARCH}/${DEBFULLNAME}
+	debpath=${debrepo}/dists/${codename}/robotpkg/binary-${DEBARCH}/${DEBFULLNAME}
 
 	if [ ! -z "${debrepo}" -a ${pkgpath} -ot ${debpath} ]; then
 		echo "${1}${pkgpath} older than ${debpath} ..."
@@ -461,7 +485,9 @@ make_deb()
 
 	${allowemptylicense} && [ -z "$LICENSE" ] && LICENSE="not-specified"
 
-	${verbose} && dis PKGBASE PKGVERSION PKGVERSIONONLY PKGREV PKGRAWVERSION PKGOPTS DEBBASE DEBVERSION
+	${verbose} && dis PKGBASE PKGVERSION PKGREV PKGRAWVERSION DEBBASE DEBVERSION
+
+	test -z "${rpkgrepo}" && rpkgrepo=`dirname ${pkgpath}`
 
 	# dependencies
 	rawdeps=`${SED} -ne "/^@pkgdep/s,,,gp" <${pkgroot}/DEBIAN/+CONTENTS`
@@ -493,8 +519,11 @@ make_deb()
 				   OPTIONAL="${OPTIONAL}Conflicts: ${cfls:+${cfls}, }${PROVIDES}${newline}"
 				   OPTIONAL="${OPTIONAL}Provides: ${PROVIDES}${newline}Replaces: ${PROVIDES}${newline}"
 
+	# keep first category, add prepend
+	CATEGORY=${prepend_category}${CATEGORIES%% *}
+
 	cat << EOF > ${pkgroot}/DEBIAN/control
-Section: $CATEGORIES
+Section: ${CATEGORY}
 Priority: extra
 Maintainer: $MAINTAINER
 Source: ${pkgpath}
@@ -504,7 +533,7 @@ Architecture: $DEBARCH
 ${OPTIONAL}Description: `${SED} -ne 1p <${pkgroot}/DEBIAN/+COMMENT`
  License: $LICENSE
  Debian-Packager: ${DEB_PACKAGER}
-`${SED} -ne "s,^, ,g" -e '/[^ \t]/p' < ${pkgroot}/DEBIAN/+DESC`
+`${SED} -e "s,^, ,g" -e 's,^[ \t]*$, .,g' < ${pkgroot}/DEBIAN/+DESC`
 
 EOF
 
@@ -591,9 +620,9 @@ pkgsummarysub_extract_and_debianize()
 	tz "in pkg_summary.gz" PKGNAME && { echo "see below:" 1>&2; cat ${summ} 1>&2; echo "----" 1>&2; return 1; }
 
 	PKGABI=${PKGNAME%~*}
+	PKGOPTIONS=${PKGNAME#${PKGABI}}
 	PKGBASE=${PKGABI%-*}
-	PKGVERSION=${PKGABI#$PKGBASE-}
-	# not needed here PKGOPTS=${PKGNAME#$PKGBASE-$PKGVERSION}
+	PKGVERSION=${PKGABI#$PKGBASE-}${PKGOPTIONS}
 
 	pkgdir="${rpkgrepo}"
 	pkgfile="${FILE_NAME:-${PKGNAME}}.tgz"
@@ -701,7 +730,7 @@ while [ ! -z "$1" ]; do
 			allowemptylicense=false;;
 
 		--test-debnamize)
-			transdep_test;;
+			debnamize_test;;
 
 		-*)
 			echo "bad option '$1'" 1>&2
