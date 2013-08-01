@@ -16,10 +16,10 @@ include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../devel/hpp-model/depend.mk
 include ../../devel/hpp-util/depend.mk
-include ../../graphics/assimp/depend.mk
 include ../../graphics/rcpdf/depend.mk
 include ../../graphics/ros-robot-model/depend.mk
 include ../../math/hpp-geometry/depend.mk
+include ../../mk/sysdep/assimp2.mk
 
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
