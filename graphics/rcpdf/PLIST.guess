@@ -1,8 +1,0 @@
-@comment Tue Jul 30 20:16:14 CEST 2013
-include/rcpdf/config.h
-include/rcpdf/config.hh
-include/rcpdf/deprecated.hh
-include/rcpdf/parser.hh
-include/rcpdf/warning.hh
-lib/librcpdf.so
-lib/rcpdf/check_rcpdf
