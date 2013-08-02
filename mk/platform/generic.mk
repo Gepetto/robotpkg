@@ -5,6 +5,9 @@ _OPSYS_SHLIB_TYPE?=	ELF	# shared lib type
 _USE_RPATH?=		yes	# add rpath to LDFLAGS
 _LD_LIBRARY_PATH_VAR=	LD_LIBRARY_PATH
 
+ROOT_USER?=		root
+ROOT_GROUP?=		root
+
 # Standard commands
 $(call setdefault, TRUE,	:)
 $(call setdefault, FALSE,	false)

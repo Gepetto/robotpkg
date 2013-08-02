@@ -88,7 +88,7 @@ pkg-tarup:
 			${ECHO} " $$1 $$pkgdb/$$2";			\
 		fi;							\
 	};								\
-	pkg_args="-v -l";						\
+	pkg_args="-v -l -u ${ROOT_USER} -g ${ROOT_GROUP}";		\
 	pkg_args=$$pkg_args`chkfile -B ${_BUILD_INFO_FILE}`;		\
 	pkg_args=$$pkg_args`chkfile -b ${_BUILD_VERSION_FILE}`;		\
 	pkg_args=$$pkg_args`chkfile -c ${_COMMENT_FILE}`;		\
