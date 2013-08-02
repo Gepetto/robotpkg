@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Thu, 28 Jun 2007
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-gik
 HPP_VERSION=		2.10
 HPP_COMMENT=		Generalized Inverse Kinematics for humanoid robots

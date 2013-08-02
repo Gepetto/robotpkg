@@ -1,4 +1,5 @@
 @comment Tue Feb 7 10:08:44 CET 2012
+include/hpp/gik/config.h
 include/hpp/gik/config.hh
 include/hpp/gik/constraint/com-constraint.hh
 include/hpp/gik/constraint/configuration-constraint.hh
