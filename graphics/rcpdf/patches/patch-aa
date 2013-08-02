@@ -1,0 +1,35 @@
+tinyxml provides no .pc file
+
+--- CMakeLists.txt~	2013-07-30 19:52:19.000000000 +0200
++++ CMakeLists.txt	2013-08-02 11:01:35.809403832 +0200
+@@ -22,14 +22,19 @@
+ ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2")
+ ADD_REQUIRED_DEPENDENCY("urdfdom_headers >= 0.2")
+ ADD_REQUIRED_DEPENDENCY("rcpdf_interface >= 0.2")
+-ADD_REQUIRED_DEPENDENCY("tinyxml >= 2.6")
++find_file(tinyxml_HEADER tinyxml.h
++  PATH ${TINYXML_ROOT}/include ${TINYXML_ROOT}/include/tinyxml)
++find_library(tinyxml_LIBRARIES libtinyxml.so
++  PATH ${TINYXML_ROOT}/lib)
++get_filename_component(tinyxml_INCLUDE_DIRS ${tinyxml_HEADER} PATH)
++include_directories(include ${tinyxml_INCLUDE_DIRS})
+ 
+ SET(LIBRARY_NAME ${PROJECT_NAME})
+ ADD_LIBRARY(${LIBRARY_NAME} SHARED
+   src/parser.cpp
+   )
+ 
+-PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} tinyxml)
++target_link_libraries(${LIBRARY_NAME} ${tinyxml_LIBRARIES})
+ PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} urdf)
+ PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} urdfdom)
+ PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} urdfdom_headers)
+@@ -42,7 +47,7 @@
+ SET(PROGRAM_NAME check_rcpdf)
+ ADD_EXECUTABLE(${PROGRAM_NAME} src/check_rcpdf.cpp)
+ TARGET_LINK_LIBRARIES(${PROGRAM_NAME} ${PROJECT_NAME})
+-PKG_CONFIG_USE_DEPENDENCY(${PROGRAM_NAME} tinyxml)
++target_link_libraries(${PROGRAM_NAME} ${tinyxml_LIBRARIES})
+ PKG_CONFIG_USE_DEPENDENCY(${PROGRAM_NAME} urdf)
+ PKG_CONFIG_USE_DEPENDENCY(${PROGRAM_NAME} urdfdom)
+ PKG_CONFIG_USE_DEPENDENCY(${PROGRAM_NAME} urdfdom_headers)
