@@ -117,7 +117,7 @@ dewey_mktest(int *op, const char *test)
  * 'alpha' encodes as 'alpha version', or Alpha, which is -3.
  * 'beta' encodes as 'beta version', or Beta, which is -2.
  * 'rc' encodes as 'release candidate', or RC, which is -1.
- * 'nb' encodes as 'netbsd version', which is used after all other tests
+ * 'r' encodes as 'robotpkg version', which is used after all other tests
  */
 static int
 mkcomponent(arr_t *ap, const char *num)
@@ -152,8 +152,8 @@ mkcomponent(arr_t *ap, const char *num)
 			return modp->len;
 		}
 	}
-	if (strncasecmp(num, "r", 2) == 0) {
-		for (cp = num, num += 2, n = 0 ; isdigit((unsigned char)*num) ; num++) {
+	if (strncasecmp(num, "r", 1) == 0) {
+		for (cp = num, num += 1, n = 0 ; isdigit((unsigned char)*num) ; num++) {
 			n = (n * 10) + (*num - '0');
 		}
 		ap->netbsd = n;
