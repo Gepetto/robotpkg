@@ -1,0 +1,11 @@
+The ros-geometry package contains several tools to deal with manipulation of
+geometry entities like frames.
+
+- tf
+tf is a package that lets the user keep track of multiple coordinate frames
+over time. tf maintains the relationship between coordinate frames in a tree
+structure buffered in time, and lets the user transform points, vectors, etc
+between any two coordinate frames at any desired point in time.
+
+- {tf, kdl, eigen}_conversions
+functions to convert between TF, KDL, Eigen and ROS datatypes
