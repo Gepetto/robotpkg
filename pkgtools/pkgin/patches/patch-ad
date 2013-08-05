@@ -1,0 +1,50 @@
+From dae969b83d6ccd64971108aa31e6718ef1fb5d4e Mon Sep 17 00:00:00 2001
+From: Anthony Mallet <anthony.mallet@laas.fr>
+Date: Mon, 5 Aug 2013 10:56:50 +0200
+Subject: [PATCH 4/6] Centralize "pkg_admin" tool definition
+
+This is just for consistency with other tools definitions.
+No functional change.
+---
+ pkgin.h   |    1 +
+ pkgindb.c |    2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/pkgin.h b/pkgin.h
+index 22ebdad..471106c 100644
+--- pkgin.h
++++ pkgin.h
+@@ -54,6 +54,7 @@
+ #define PKG_DELETE PKGTOOLS"/pkg_delete"
+ #define PKG_ADD PKGTOOLS"/pkg_add"
+ #define PKG_INFO PKGTOOLS"/pkg_info"
++#define PKG_ADMIN PKGTOOLS"/pkg_admin"
+ 
+ #define PKG_SUMMARY "pkg_summary"
+ #define PKGIN_SQL_LOG PKGIN_DB"/sql.log"
+diff --git a/pkgindb.c b/pkgindb.c
+index 7f3f63d..382b2fd 100644
+--- pkgindb.c
++++ pkgindb.c
+@@ -55,7 +55,7 @@ get_pkg_dbdir(void)
+ 	char **exec_cmd;
+ 
+ 	if ((exec_cmd =
+-			exec_list(PKGTOOLS"/pkg_admin config-var PKG_DBDIR", NULL))
++			exec_list(PKG_ADMIN" config-var PKG_DBDIR", NULL))
+ 		== NULL)
+ 		strcpy(pkg_dbdir, PKG_DBDIR);
+ 	else {
+diff --git a/summary.c b/summary.c
+index 8948399..815cbb2 100644
+--- summary.c
++++ summary.c
+@@ -532,7 +532,7 @@ update_localdb(char **pkgkeep)
+ 
+ 	printf(MSG_READING_LOCAL_SUMMARY);
+ 	/* generate summary locally */
+-	summary = exec_list(PKGTOOLS "/pkg_info -Xa", NULL);
++	summary = exec_list(PKG_INFO" -Xa", NULL);
+ 
+ 	printf(MSG_PROCESSING_LOCAL_SUMMARY);
+ 

@@ -1,0 +1,15 @@
+Use bsd/libutil.h when available, to avoid upsetting modern linuces
+
+--- tools.h~	2013-08-05 14:16:51.933938532 +0200
++++ tools.h	2013-08-05 14:19:50.693421529 +0200
+@@ -74,7 +74,9 @@
+ #if HAVE_SYS_UTSNAME_H
+ #include <sys/utsname.h>
+ #endif
+-#if defined(HAVE_LIBUTIL_H)
++#if defined(HAVE_BSD_LIBUTIL_H)
++#include <bsd/libutil.h>
++#elif defined(HAVE_LIBUTIL_H)
+ #include <libutil.h>
+ #elif defined(HAVE_UTIL_H)
+ #include <util.h>

@@ -1,0 +1,91 @@
+robotpkg package names may have a ~options suffix.
+
+--- pkg_str.c.orig	2013-08-05 14:35:37.174776076 +0200
++++ pkg_str.c	2013-08-05 14:35:42.502762315 +0200
+@@ -32,7 +32,7 @@
+ 
+ #include "pkgin.h"
+ 
+-#define GLOBCHARS "{<>[]?*"
++#define GLOBCHARS "{<>[]?*~"
+ 
+ /**
+  * \fn unique_pkg
+@@ -58,7 +58,7 @@
+ 
+ 	best_match = SLIST_FIRST(plist->P_Plisthead);
+ 	SLIST_FOREACH(current, plist->P_Plisthead, next) 
+-		if (dewey_cmp(current->version, DEWEY_GT, best_match->version))
++		if (pkg_order("*", current->full, best_match->full) == 1)
+ 			best_match = current;
+ 
+ 	XSTRDUP(u_pkg, best_match->full);
+@@ -88,17 +88,25 @@
+ int
+ exact_pkgfmt(const char *pkgname)
+ {
+-	char	*p;
++	char	*p, *tmp;
++	int	n;
+ 
+-	if ((p = strrchr(pkgname, '-')) == NULL)
++	XSTRDUP(tmp, pkgname);
++	trunc_str(tmp, '~', STR_BACKWARD);
++
++	if ((p = strrchr(tmp, '-')) == NULL) {
++		free(tmp);
+ 		return 0;
++	}
+ 
+ 	p++;
+ 
+ 	/* naive assumption, will fail with foo-100bar, hopefully, there's
+ 	 * only a few packages needing to be fully specified
+ 	 */
+-	return isdigit((int)*p);
++	n = isdigit((int)*p);
++	free(tmp);
++	return n;
+ }
+ 
+ /* 
+@@ -126,6 +134,7 @@
+ 			 * foo-bar-1.0 -> foo-bar
+ 			 * and set len to tmppkg
+ 			 */
++			trunc_str(tmppkg, '~', STR_BACKWARD);
+ 			trunc_str(tmppkg, '-', STR_BACKWARD);
+ 		}
+ 		/* tmplen = strlen("foo-1{.vers}") */
+@@ -148,20 +157,7 @@
+ int
+ version_check(char *first_pkg, char *second_pkg)
+ {
+-	char *first_ver, *second_ver;
+-
+-	first_ver = strrchr(first_pkg, '-');
+-	second_ver = strrchr(second_pkg, '-');
+-
+-	if (first_ver == NULL)
+-		return 2;
+-	if (second_ver == NULL)
+-		return 1;
+-
+-	if (dewey_cmp(first_ver + 1, DEWEY_GT, second_ver + 1))
+-		return 1;
+-	else
+-		return 2;
++	return pkg_order("*", first_pkg, second_pkg);
+ }
+ 
+ static void
+@@ -179,6 +175,9 @@
+ {
+ 	char	*exten;
+ 
++	/* have we got foo~something ? */
++	trunc_str(pkgname, '~', STR_BACKWARD);
++
+ 	/* have we got foo-something ? */
+ 	if ((exten = strrchr(pkgname, '-')) == NULL)
+ 		return;

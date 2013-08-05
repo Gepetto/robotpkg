@@ -1,0 +1,112 @@
+Introduce $osname variable, and compute $arch, $osrelease and $osname the same
+way that robotpkg does.
+
+--- fsops.c~	2013-06-16 16:00:45.000000000 +0200
++++ fsops.c	2013-08-02 17:39:37.249262543 +0200
+@@ -45,6 +45,7 @@
+ } var[] = {
+ 	{ "$arch", getosarch },
+ 	{ "$osrelease", getosrelease },
++	{ "$osname", getosname },
+ 	{ NULL, NULL }
+ };
+ 
+--- tools.h~	2013-06-16 16:00:45.000000000 +0200
++++ tools.h	2013-08-02 17:39:50.761226276 +0200
+@@ -220,6 +220,7 @@
+ extern char *strreplace(char *, const char *, const char *);
+ extern char *getosarch(void);
+ extern char *getosrelease(void);
++extern char *getosname(void);
+ extern int check_yesno(uint8_t);
+ 
+ #endif
+--- tools.c.orig	2013-08-05 11:57:28.242707482 +0200
++++ tools.c	2013-08-05 11:57:28.282707357 +0200
+@@ -31,6 +31,7 @@
+  */
+ 
+ #include "tools.h"
++#include "opsys.h"
+ 
+ int
+ charcount(char *str, char c)
+@@ -220,39 +221,57 @@
+ char *
+ getosarch(void)
+ {
+-	char			*ret;
+-	struct utsname	un;
++  char *ret, buf[1024];
+ 
+-	memset(&un, 0, sizeof(un));
+-	if (uname(&un) < 0)
+-		return NULL;
++  FILE *u = popen(robotpkg_opsys, "r");
++  if (!u) return NULL;
+ 
+-	XSTRDUP(ret, un.machine);
++  if (!fgets(buf, sizeof(buf), u)) return NULL;
++  pclose(u);
+ 
+-	return ret;
++  ret = strtok(buf, " \t\n");
++  ret = strtok(NULL, " \t\n");
++  ret = strtok(NULL, " \t\n");
++  if (!ret) return NULL;
++
++  return strdup(ret);
+ }
+ 
+ /* Return release numbers or NULL in case of failure */
+ char *
+ getosrelease(void)
+ {
+-	struct utsname	un;
+-	char			*ret, *p;
++  char *ret, buf[1024];
++
++  FILE *u = popen(robotpkg_opsys, "r");
++  if (!u) return NULL;
++
++  if (!fgets(buf, sizeof(buf), u)) return NULL;
++  pclose(u);
++
++  ret = strtok(buf, " \t\n");
++  ret = strtok(NULL, " \t\n");
++  if (!ret) return NULL;
++
++  return strdup(ret);
++}
++
++/* Return os name or NULL in case of failure */
++char *
++getosname(void)
++{
++  char *ret, buf[1024];
++
++  FILE *u = popen(robotpkg_opsys, "r");
++  if (!u) return NULL;
+ 
+-	memset(&un, 0, sizeof(un));
+-	if (uname(&un) < 0)
+-		return NULL;
+-
+-#ifdef _MINIX
+-	asprintf(&ret, "%s.%s", un.release, un.version);
+-#else
+-	XSTRDUP(ret, un.release);
+-#endif
++  if (!fgets(buf, sizeof(buf), u)) return NULL;
++  pclose(u);
+ 
+-	for (p = ret; isdigit((int)*p) || *p == '.'; p++);
+-	*p = '\0';
++  ret = strtok(buf, " \t\n");
++  if (!ret) return NULL;
+ 
+-	return ret;
++  return strdup(ret);
+ }
+ 
+ /*

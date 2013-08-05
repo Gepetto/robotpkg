@@ -1,0 +1,25 @@
+robotpkg package names may have a ~options suffix.
+
+--- summary.c.orig	2013-06-16 16:00:45.000000000 +0200
++++ summary.c	2013-08-04 22:52:10.000000000 +0200
+@@ -403,7 +403,7 @@
+ {
+ 	int			i;
+ 	static int	pkgid = 1;
+-	char		*pkgname, *pkgvers, **psum, query[BUFSIZ], tmpname[BUFSIZ];
++	char		*pkgname, *pkgvers, *pkgopts, **psum, query[BUFSIZ], tmpname[BUFSIZ];
+ 	const char	*alnum = ALNUM;
+ 
+ 	if (summary == NULL) {
+@@ -455,8 +452,11 @@
+ 			add_to_slist("FULLPKGNAME", pkgname);
+ 
+ 			/* split PKGNAME and VERSION */
++			pkgopts = strrchr(pkgname, '~');
++                        if (pkgopts) *pkgopts = '\0';
+ 			pkgvers = strrchr(pkgname, '-');
+ 			*pkgvers++ = '\0';
++                        if (pkgopts) *pkgopts = '~';
+ 
+ 			add_to_slist("PKGNAME", pkgname);
+ 			add_to_slist("PKGVERS", pkgvers);

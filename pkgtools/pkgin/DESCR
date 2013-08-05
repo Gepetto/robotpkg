@@ -1,0 +1,4 @@
+pkgin is aimed at being an apt / yum like tool for managing pkgsrc (and
+robotpkg) binary packages. It relies on robotpkg_summary(5) for installation,
+removal and upgrade of packages and associated dependencies, using a remote
+repository.

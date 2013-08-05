@@ -9,6 +9,7 @@ SUBDIR+=	libnbcompat
 SUBDIR+=	libtool
 SUBDIR+=	pkg-config
 SUBDIR+=	pkg_install
+SUBDIR+=	pkgin
 SUBDIR+=	pkgrepo2deb
 SUBDIR+=	rbulkit
 SUBDIR+=	robotpkg_chk

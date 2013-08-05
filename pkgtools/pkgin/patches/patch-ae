@@ -1,0 +1,27 @@
+From 833d7a730e12af76f1f2aee82dae9ffd9971f04f Mon Sep 17 00:00:00 2001
+From: Anthony Mallet <anthony.mallet@laas.fr>
+Date: Mon, 5 Aug 2013 11:15:15 +0200
+Subject: [PATCH 5/6] Do not assume a package version contains a dot
+
+A package version in pkgsrc is defined as the last -[0-9]* glob pattern.
+Assuming the version contains a dot is wrong, see for instance
+pkgtools/pkg_install or pkgtools/digest.
+---
+ pkg_str.c |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/pkg_str.c b/pkg_str.c
+index 3a96c85..27c2350 100644
+--- pkg_str.c
++++ pkg_str.c
+@@ -188,8 +188,8 @@ cleanup_version(char *pkgname)
+ 	if ((exten = strrchr(pkgname, '-')) == NULL)
+ 		return;
+ 
+-	/* -something has a dot, it's a version number */
+-	if (strchr(exten, '.') != NULL)
++	/* -something starts with a digit, it's a version number */
++	if (isdigit((int)(exten[1])))
+ 		*exten = '\0';
+ }
+ 

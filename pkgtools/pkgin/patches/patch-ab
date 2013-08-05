@@ -1,0 +1,87 @@
+From 240f7b389466aed9a062be37dcf804aff0787540 Mon Sep 17 00:00:00 2001
+From: Anthony Mallet <anthony.mallet@laas.fr>
+Date: Sun, 4 Aug 2013 23:08:05 +0200
+Subject: [PATCH 2/6] Improve insert_summary() by robustly detecting record
+ separators
+
+The heuristic assuming PKGNAME comes first in a pkg_summary(5) file is fragile,
+and even more fragile is the heuristic dealing with CONFLICS sometimes
+appearing before PKGNAME.
+
+So properly detect the empty line separating records instead.
+---
+ summary.c |   40 +++++++++++++++++++---------------------
+ 1 file changed, 19 insertions(+), 21 deletions(-)
+
+diff --git a/summary.c b/summary.c
+index b14a514..2d8b349 100644
+--- summary.c
++++ summary.c
+@@ -428,7 +428,7 @@ insert_summary(struct Summary sum, char **summary, char *cur_repo)
+ 	psum = summary;
+ 	/* main pkg_summary analysis loop */
+ 	while (*psum != NULL) {
+-		/* CONFLICTS may appear before PKGNAME... */
++		/* CONFLICTS  */
+ 		if ((pkgname = field_record("CONFLICTS", *psum)) != NULL) {
+ 			snprintf(query, BUFSIZ,
+ 				"INSERT INTO %s (PKG_ID,%s_PKGNAME) VALUES (%d,\"%s\");",
+@@ -438,13 +438,10 @@ insert_summary(struct Summary sum, char **summary, char *cur_repo)
+ 			commit_idx++;
+ 			XREALLOC(commit_list, (commit_idx + 1) * sizeof(char *));
+ 			XSTRDUP(commit_list[commit_idx], query);
+-
+-			psum++;
+-			continue; /* there may be more */
+ 		}
+ 
+-		/* PKGNAME record, should always be true  */
+-		if ((pkgname = field_record("PKGNAME", *psum)) != NULL) {
++		/* PKGNAME record */
++		else if ((pkgname = field_record("PKGNAME", *psum)) != NULL) {
+ 
+ 			/* some rare packages have no version */
+ 			if (!exact_pkgfmt(pkgname)) {
+@@ -465,26 +462,27 @@ insert_summary(struct Summary sum, char **summary, char *cur_repo)
+ 			progress(pkgname[0]);
+ 		}
+ 
+-		psum++;
+-
+-		/* browse entries following PKGNAME and build the SQL query */
+-		while (*psum != NULL && !chk_pkgname(*psum, *(psum - 1))) {
+-			update_col(sum, pkgid, *psum);
+-			psum++;
+-		}
++		/* end of record */
++		else if (**psum == '\0') {
++			/* build INSERT query */
++			prepare_insert(pkgid, sum, cur_repo);
+ 
+-		/* build INSERT query */
+-		prepare_insert(pkgid, sum, cur_repo);
++			/* next PKG_ID */
++			pkgid++;
+ 
+-		/* next PKG_ID */
+-		pkgid++;
++			/* free the SLIST containing this package's key/vals */
++			free_insertlist();
+ 
+-		/* free the SLIST containing this package's key/vals */
+-		free_insertlist();
++			/* reset max query size */
++			query_size = BUFSIZ;
++		}
+ 
+-		/* reset max query size */
+-		query_size = BUFSIZ;
++		/* browse entries following PKGNAME and build the SQL query */
++		else {
++			update_col(sum, pkgid, *psum);
++		}
+ 
++		psum++;
+ 	} /* while *psum != NULL */
+ 
+ 	commit_idx++;

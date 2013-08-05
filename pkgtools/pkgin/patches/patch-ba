@@ -1,0 +1,107 @@
+Fix BSD-isms, and use some defininitions from the robotpkg environment.
+
+--- Makefile.in.orig	2013-08-05 14:16:07.942065573 +0200
++++ Makefile.in	2013-08-05 14:16:22.730022877 +0200
+@@ -8,39 +8,26 @@
+ 		pkg_check.c pkg_infos.c
+ # included from libinstall
+ SRCS+=		automatic.c decompress.c dewey.c fexec.c global.c \
+-		opattern.c pkgdb.c var.c
++		opattern.c pkgdb.c var.c xwrapper.c
+ # included from openssh
+ SRCS+=		progressmeter.c
+ 
+ SRCS+=		@SRCS@
+ 
+-DPSRCS=	pkgindb_create.h
++DPSRCS=	pkgindb_create.h opsys.h
+ 
+ CC=		@CC@
+ INSTALL=	@INSTALL@
+ 
+-OPSYS!=		uname
+-OS_VER!=	uname -r
+-OS_ARCH!=	uname -p
+-
+-# satisfy mk.conf
+-BSD_PKG_MK=	1
+-.for MK_CONF in /etc/mk.conf @prefix@/etc/mk.conf /etc/pkgsrc.conf
+-.	if exists(${MK_CONF})
+-.		include "${MK_CONF}"
+-.	endif
+-.endfor
+-
+-.if ${OPSYS} == "Minix"
+-PKGTOOLS?=	${PKG_TOOLS_BIN}
+-CPPFLAGS+=	-D_NETBSD_SOURCE -D_MINIX
+-.endif
++OPSYS?=		${OPSYS}
++OS_VER?=	${OS_VERSION}
++OS_ARCH?=	${MACHINE_ARCH}
+ 
+ LOCALBASE?=		@prefix@
+ BINDIR?=		${LOCALBASE}/bin
+ PKG_SYSCONFDIR?=	${LOCALBASE}/etc
+ VARBASE?=		/var
+-PKG_DBDIR?=		${VARBASE}/db/pkg
++PKG_DBDIR?=		${VARBASE}/db/robotpkg
+ 
+ PKGTOOLS?=	${LOCALBASE}/sbin
+ 
+@@ -48,24 +35,14 @@
+ 
+ CPPFLAGS+=	-DPKGIN_VERSION=\"${PKGIN_VERSION}\"
+ 
+-.include <bsd.own.mk>
+-
+-.PATH:	external
+-
+-.if defined(DEBUG)
+-CPPFLAGS+=	-DDEBUG
+-PKGIN_DB!=	pwd
+-.else
+ PKGIN_DB=	${VARBASE}/db/pkgin
+-.endif
++VPATH = external
+ 
+-.if ${OPSYS} == "NetBSD"
+-WARNS=		2
++ifeq (${OPSYS},NetBSD)
+ CPPFLAGS+=	-DNETBSD
+-.endif
++endif
+ 
+ CPPFLAGS+=	@CPPFLAGS@
+-CPPFLAGS+=	-g
+ 
+ CPPFLAGS+=	-DLOCALBASE=\"${LOCALBASE}\" 			\
+ 		-DPKG_SYSCONFDIR=\"${PKG_SYSCONFDIR}\"		\
+@@ -90,6 +67,14 @@
+ pkgindb_create.h:
+ 	@SEDCMD=@SED@ ./mkpkgindb.sh > pkgindb_create.h
+ 
++opsys.h:
++	exec >$@;							\
++	echo 'static const char robotpkg_opsys[] =';			\
++	@SED@ -e "s|UNAME:=uname|UNAME:=${UNAME}|"			\
++	  -e 's/"/\\"/g' -e 's/^/"/' -e 's/$$/\\n"/'			\
++	  <${ROBOTPKG_DIR}/mk/platform/opsys.sh;			\
++	echo ';';
++
+ afterinstall:	configinstall
+ 
+ beforeinstall:
+@@ -121,4 +106,12 @@
+ 		${WIPHOME}/pkgin/Makefile
+ 	cd ${WIPHOME}/pkgin && make makesum
+ 
+-.include <bsd.prog.mk>
++all: ${PROG}
++
++${PROG}: ${SRCS:.c=.o}
++	${CC} ${SRCS:.c=.o} ${LDFLAGS} ${LDADD} -o $@
++
++.c.o:
++	${CC} ${CFLAGS} ${CPPFLAGS} -c -o $@ $<
++
++${SRCS:.c=.o}: ${DPSRCS}

@@ -1,0 +1,31 @@
+--- repositories.conf.orig	2013-06-16 16:00:45.000000000 +0200
++++ repositories.conf	2013-08-03 16:31:56.000000000 +0200
+@@ -1,4 +1,4 @@
+-# $Id: repositories.conf,v 1.3 2012/06/13 13:50:17 imilh Exp $
++# $Id: repositories.conf 2013/08/03 16:31:56 tho $
+ #
+ # Pkgin repositories list
+ #
+@@ -11,15 +11,16 @@
+ # This file format supports the following macros:
+ # $arch to define the machine hardware platform
+ # $osrelease to define the release version for the operating system
++# $osname to define the name for the operating system
+ #
+-# Remote ftp repository
+-#
+-# ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD/$arch/5.1/All
++# Official remote http repository
+ #
+-# Remote http repository
++http://robotpkg.openrobots.org/packages/bsd/$osname-$osrelease-$arch/All
++
++# Remote ftp repository
+ #
+-# http://mirror-master.dragonflybsd.org/packages/$arch/DragonFly-$osrelease/stable/All
++# ftp://example.com/pub/robotpkg/packages/bsd/$arch-$osrelease/All
+ #
+ # Local repository (must contain a pkg_summary.gz or bz2)
+ #
+-# file:///usr/pkgsrc/packages/All
++# file:///opt/robotpkg/packages/$arch-$osrelease/All

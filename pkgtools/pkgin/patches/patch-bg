@@ -1,0 +1,33 @@
+--- pkgin.h.orig	2013-06-16 16:00:45.000000000 +0200
++++ pkgin.h	2013-08-03 17:34:34.000000000 +0200
+@@ -50,17 +50,17 @@
+ #ifndef PKGTOOLS
+ #define PKGTOOLS "/usr/sbin"
+ #endif
+-#define PKG_DELETE PKGTOOLS"/pkg_delete"
+-#define PKG_ADD PKGTOOLS"/pkg_add"
+-#define PKG_INFO PKGTOOLS"/pkg_info"
+-#define PKG_ADMIN PKGTOOLS"/pkg_admin"
++#define PKG_DELETE PKGTOOLS"/robotpkg_delete"
++#define PKG_ADD PKGTOOLS"/robotpkg_add"
++#define PKG_INFO PKGTOOLS"/robotpkg_info"
++#define PKG_ADMIN PKGTOOLS"/robotpkg_admin"
+ 
+ #define PKG_SUMMARY "pkg_summary"
+ #define PKGIN_SQL_LOG PKGIN_DB"/sql.log"
+ #define PKG_INSTALL_ERR_LOG PKGIN_DB"/pkg_install-err.log"
+ #define PKGIN_CACHE PKGIN_DB"/cache"
+ #define PKG_EXT ".tgz"
+-#define PKGIN_CONF PKG_SYSCONFDIR"/pkgin"
++#define PKGIN_CONF PKG_SYSCONFDIR"/robotpkgin"
+ #define REPOS_FILE "repositories.conf"
+ #define PKG_INSTALL "pkg_install"
+ #define PREFERRED_PKGS "preferred.conf"
+@@ -288,5 +288,6 @@
+ void		show_pkg_info(char, char *);
+ /* pkgindb.c */
+ void		get_pkg_dbdir(void);
+-
++/* xwrapper.c */
++char *		xasprintf(const char *fmt, ...);
+ #endif

@@ -1,0 +1,7 @@
+First steps before using pkgin.
+
+. Check ${PKG_SYSCONFDIR}/robotpkgin/repositories.conf
+  to suit your platform.
+. Initialize the database :
+
+	# robotpkgin update

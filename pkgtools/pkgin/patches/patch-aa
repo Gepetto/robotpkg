@@ -1,0 +1,36 @@
+From 8e76c2487e9baa8dd2c46efd200d579f575307ae Mon Sep 17 00:00:00 2001
+From: Anthony Mallet <anthony.mallet@laas.fr>
+Date: Sun, 4 Aug 2013 23:03:42 +0200
+Subject: [PATCH 1/6] Do not discard empty fields in splitstr()
+
+splitstr() is used only with a "\n" separator, and either for splitting a
+summary (either remote or local) or in exec_list() for getting the result of
+`pkg_admin config-var PKG_DBDIR`.
+
+Not discarding empty lines has no impact on existing code, and allows to
+properly detect record separators in the remote or local summaries.
+---
+ tools.c |   10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/tools.c b/tools.c
+index 23b19ce..ee53d12 100644
+--- tools.c
++++ tools.c
+@@ -82,12 +82,10 @@ splitstr(char *str, const char *sep)
+ 	i = 0;
+ 	for (p = str; p != NULL;)
+ 		while ((tmp = strsep(&p, sep)) != NULL) {
+-			if (*tmp != '\0') {
+-				while (*tmp == ' ' || *tmp == '\t')
+-					tmp++;
+-				XSTRDUP(split[i], tmp);
+-				i++;
+-			}
++			while (*tmp == ' ' || *tmp == '\t')
++				tmp++;
++			XSTRDUP(split[i], tmp);
++			i++;
+ 		}
+ 
+ 	split[i] = NULL;

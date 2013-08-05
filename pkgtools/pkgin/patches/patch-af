@@ -1,0 +1,109 @@
+From f948d651c2b1042fc3ac395e844cc4e65e52e9b0 Mon Sep 17 00:00:00 2001
+From: Anthony Mallet <anthony.mallet@laas.fr>
+Date: Mon, 5 Aug 2013 11:21:40 +0200
+Subject: [PATCH 6/6] Factor out the code cleaning up a package version number
+
+Replace calls to trunc_str() that are used solely to strip the version number
+of a package name by the corresponding cleanup_version() call, and make the
+later function public. This improves the code readability and maintainability.
+
+No functional change intended.
+---
+ actions.c    |    4 ++--
+ autoremove.c |    2 +-
+ impact.c     |    6 +++---
+ pkg_str.c    |    2 +-
+ pkgin.h      |    1 +
+ 5 files changed, 8 insertions(+), 7 deletions(-)
+
+diff --git a/actions.c b/actions.c
+index 6055587..04485a7 100644
+--- actions.c
++++ actions.c
+@@ -580,7 +580,7 @@ pkgin_remove(char **pkgargs)
+ 			continue;
+ 		}
+ 		XSTRDUP(ppkg, pkgname);
+-		trunc_str(ppkg, '-', STR_BACKWARD);
++		cleanup_version(ppkg);
+ 
+ 		/* record full reverse dependency list for package */
+ 		full_dep_tree(ppkg, LOCAL_REVERSE_DEPS, pdphead);
+@@ -617,7 +617,7 @@ pkgin_remove(char **pkgargs)
+ 			pdp->level = 0;
+ 
+ 		XSTRDUP(pdp->name, pdp->depend);
+-		trunc_str(pdp->name, '-', STR_BACKWARD);
++		cleanup_version(pdp->name);
+ 
+ 		SLIST_INSERT_HEAD(pdphead, pdp, next);
+ 	} /* for pkgargs */
+diff --git a/autoremove.c b/autoremove.c
+index eb0ec13..da3247d 100644
+--- autoremove.c
++++ autoremove.c
+@@ -190,7 +190,7 @@ pkg_keep(int type, char **pkgargs)
+ 		/* find real package name */
+ 		if ((pkgname = unique_pkg(*pkeep, LOCAL_PKG)) != NULL) {
+ 
+-			trunc_str(pkgname, '-', STR_BACKWARD);
++			cleanup_version(pkgname);
+ 
+ 			SLIST_FOREACH(pkglist, &l_plisthead, next)
+ 				/* PKGNAME match */
+diff --git a/impact.c b/impact.c
+index 57cfe50..7b2d33b 100644
+--- impact.c
++++ impact.c
+@@ -89,7 +89,7 @@ break_depends(Plisthead *impacthead)
+ 		rdphead = init_head();
+ 
+ 		XSTRDUP(pkgname, pimpact->old);
+-		trunc_str(pkgname, '-', STR_BACKWARD);
++		cleanup_version(pkgname);
+ 
+ 		/* fetch old package reverse dependencies */
+ 		full_dep_tree(pkgname, LOCAL_REVERSE_DEPS, rdphead);
+@@ -116,7 +116,7 @@ break_depends(Plisthead *impacthead)
+ 			 * use it and strip it
+ 			 */
+ 			XSTRDUP(rpkg, rdp->depend);
+-			trunc_str(rpkg, '-', STR_BACKWARD);
++			cleanup_version(rpkg);
+ 
+ 			/* fetch dependencies for rdp */
+ 			full_dep_tree(rpkg, DIRECT_DEPS, fdphead);
+@@ -398,7 +398,7 @@ pkg_impact(char **pkgargs, int *rc)
+ 		pdp = malloc_pkglist(DEPTREE);
+ 	
+ 		XSTRDUP(pdp->name, pkgname);
+-		trunc_str(pdp->name, '-', STR_BACKWARD);
++		cleanup_version(pdp->name);
+ 
+ 		/* pkgname is not already recorded */
+ 		if (!pkg_in_impact(impacthead, pkgname)) {
+diff --git a/pkg_str.c b/pkg_str.c
+index 27c2350..e3bd427 100644
+--- pkg_str.c
++++ pkg_str.c
+@@ -179,7 +179,7 @@ clear_pattern(char *depend)
+ 		*p = '\0';
+ }
+ 
+-static void
++void
+ cleanup_version(char *pkgname)
+ {
+ 	char	*exten;
+diff --git a/pkgin.h b/pkgin.h
+index 471106c..eca674a 100644
+--- pkgin.h
++++ pkgin.h
+@@ -276,6 +276,7 @@ char		*get_pkgname_from_depend(char *);
+ int		exact_pkgfmt(const char *);
+ char		*find_exact_pkg(Plisthead *, const char *);
+ int		version_check(char *, char *);
++void		cleanup_version(char *);
+ char		**glob_to_pkgarg(char **, int *);
+ /* selection.c */
+ void		export_keep(void);
