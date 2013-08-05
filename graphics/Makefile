@@ -24,6 +24,7 @@ SUBDIR+=	rcpdf
 SUBDIR+=	rcpdf-interface
 SUBDIR+=	ros-python-qt-binding
 SUBDIR+=	ros-qt-gui-core
+SUBDIR+=	ros-robot-model
 SUBDIR+=	ros-rqt
 SUBDIR+=	ros-rqt-common-plugins
 SUBDIR+=	ros-srdfdom
