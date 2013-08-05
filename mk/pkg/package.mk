@@ -158,7 +158,7 @@ $(foreach _dir_,$(addprefix ${PACKAGES}/,${CATEGORIES}),		\
 
 # --- pkg-update-summary (PRIVATE) -----------------------------------------
 #
-# pkg-update-summary updates the pkg_summary.bz2 file in ${PKGREPOSITORY} for
+# pkg-update-summary updates the pkg_summary.gz file in ${PKGREPOSITORY} for
 # the current package.
 #
 DEPEND_METHOD.gzip+=	bootstrap
@@ -166,9 +166,11 @@ include ${ROBOTPKG_DIR}/mk/sysdep/gzip.mk
 
 .PHONY: pkg-update-summary
 pkg-update-summary:
-	${RUN} pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;		\
+	${RUN}								\
+	pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
+	pkgbin="${PKGREPOSITORY}/$$pkgfile${PKG_SUFX}";			\
 	${TEST} -n "$$pkgfile" ||					\
-	  ${FAIL_MSG} "${PKGWILDCARD} not installed";			\
+	  ${FAIL_MSG} "${PKGWILDCARD} not found";			\
 	${TEST} -s ${PKGSUMMARY} ||					\
 	  ${GZIP_CMD} -c9 </dev/null >${PKGSUMMARY};			\
 	${MV} -f ${PKGSUMMARY} ${PKGSUMMARY}~;				\
@@ -182,5 +184,5 @@ pkg-update-summary:
 	      if (pkgname != skip) { print e; print; }			\
 	      e = "";							\
 	    }';								\
-	  ${PKG_INFO} -X "$$pkgfile";					\
+	  ${PKG_INFO} -X "$$pkgbin";					\
 	} | ${GZIP_CMD} -c9 > ${PKGSUMMARY}
