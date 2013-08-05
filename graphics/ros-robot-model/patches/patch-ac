@@ -1,10 +1,15 @@
---- collada_urdf/CMakeLists.txt~	2013-07-02 07:38:41.000000000 +0200
-+++ collada_urdf/CMakeLists.txt	2013-07-05 00:14:49.000000000 +0200
-@@ -2,11 +2,12 @@
+--- collada_urdf/CMakeLists.txt.orig	2013-07-02 05:38:41.000000000 +0000
++++ collada_urdf/CMakeLists.txt	2013-08-05 16:29:49.000000000 +0000
+@@ -2,11 +2,17 @@
  project(collada_urdf)
  
  find_package(catkin REQUIRED COMPONENTS angles collada_parser resource_retriever urdf)
 +find_package(COLLADA_DOM 2.3 COMPONENTS 1.5)
++
++find_file(tinyxml_HEADER tinyxml.h PATH ${TINYXML_ROOT}/include ${TINYXML_ROOT}/include/tinyxml)
++find_library(tinyxml_LIBRARIES libtinyxml.so PATH ${TINYXML_ROOT}/lib)
++get_filename_component(tinyxml_INCLUDE_DIRS ${tinyxml_HEADER} PATH)
++set(tinyxml_FOUND TRUE)
  
  catkin_package(
    LIBRARIES ${PROJECT_NAME}
@@ -14,22 +19,27 @@
  
  include_directories(include)
  
-@@ -41,17 +42,14 @@
+@@ -39,19 +45,14 @@
+   set(IS_ASSIMP3 0) # most likely not
+ endif()
  
- find_library(tinyxml_library tinyxml)
- 
+-find_library(tinyxml_library tinyxml)
+-
 -find_package(COLLADA_DOM 2.3 COMPONENTS 1.5)
 -if( COLLADA_DOM_FOUND )
-   include_directories(${COLLADA_DOM_INCLUDE_DIRS})
-   link_directories(${COLLADA_DOM_LIBRARY_DIRS})
+-  include_directories(${COLLADA_DOM_INCLUDE_DIRS})
+-  link_directories(${COLLADA_DOM_LIBRARY_DIRS})
 -endif()
++include_directories(${COLLADA_DOM_INCLUDE_DIRS})
++link_directories(${COLLADA_DOM_LIBRARY_DIRS})
  
- include_directories(${catkin_INCLUDE_DIRS})
+-include_directories(${catkin_INCLUDE_DIRS})
++include_directories(${catkin_INCLUDE_DIRS} ${tinyxml_INCLUDE_DIRS})
  link_directories(${catkin_LIBRARY_DIRS})
  
  add_library(${PROJECT_NAME} src/collada_urdf.cpp)
 -target_link_libraries(${PROJECT_NAME} ${tinyxml_library} ${ASSIMP_LIBRARIES} ${catkin_LIBRARIES} ${COLLADA_DOM_LIBRARIES}  
-+target_link_libraries(${PROJECT_NAME} ${tinyxml_library} ${ASSIMP_LIBRARIES} ${catkin_LIBRARIES}
++target_link_libraries(${PROJECT_NAME} ${tinyxml_LIBRARIES} ${ASSIMP_LIBRARIES} ${catkin_LIBRARIES}
    ${Boost_LIBRARIES})
  set_target_properties(${PROJECT_NAME} PROPERTIES COMPILER_FLAGS "${ASSIMP_CXX_FLAGS} ${ASSIMP_CFLAGS_OTHER}")
  set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "${ASSIMP_LINK_FLAGS}") 

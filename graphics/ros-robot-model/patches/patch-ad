@@ -1,0 +1,30 @@
+--- kdl_parser/CMakeLists.txt.orig	2013-08-05 16:31:55.000000000 +0000
++++ kdl_parser/CMakeLists.txt	2013-08-05 16:34:03.000000000 +0000
+@@ -5,13 +5,16 @@
+ find_package(Boost REQUIRED)
+ include_directories(${Boost_INCLUDE_DIR})
+ 
+-find_library(tinyxml_library tinyxml)
++find_file(tinyxml_HEADER tinyxml.h PATH ${TINYXML_ROOT}/include ${TINYXML_ROOT}/include/tinyxml)
++find_library(tinyxml_LIBRARIES libtinyxml.so PATH ${TINYXML_ROOT}/lib)
++get_filename_component(tinyxml_INCLUDE_DIRS ${tinyxml_HEADER} PATH)
++set(tinyxml_FOUND TRUE)
+ 
+ find_package(catkin REQUIRED
+   COMPONENTS collada_parser orocos_kdl roscpp rosconsole urdf
+ )
+ 
+-include_directories(include ${catkin_INCLUDE_DIRS})
++include_directories(include ${catkin_INCLUDE_DIRS} ${tinyxml_INCLUDE_DIRS})
+ 
+ catkin_package(
+   LIBRARIES ${PROJECT_NAME}
+@@ -21,7 +24,7 @@
+ 
+ add_library(${PROJECT_NAME} src/kdl_parser.cpp)
+ target_link_libraries(${PROJECT_NAME}
+-  ${tinyxml_library} ${catkin_LIBRARIES}
++  ${tinyxml_LIBRARIES} ${catkin_LIBRARIES}
+ )
+ 
+ add_executable(check_kdl_parser src/check_kdl_parser.cpp )

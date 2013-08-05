@@ -5,6 +5,7 @@
 ROS_PKG=		robot_model
 ROS_METAPKG=		yes
 ROS_VERSION=		1.9.36
+PKGREVISION=            1
 ROS_REPO=		ros
 
 CATEGORIES=		graphics
@@ -13,6 +14,7 @@ ROS_COMMENT=		robot modeling in Xml Robot Description Format (URDF)
 include ../../meta-pkgs/ros-base/Makefile.common
 
 CMAKE_ARGS+=		-DCOLLADA_DOM_DIR=${PREFIX.collada-dom}
+CMAKE_ARGS+=            -DTINYXML_ROOT=${PREFIX.tinyxml}
 
 SUBST_CLASSES+=		py-interp
 SUBST_FILES.py-interp+=\
