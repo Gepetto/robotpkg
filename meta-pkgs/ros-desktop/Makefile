@@ -22,7 +22,6 @@ DEPEND_ABI.ros=	ros==groovy
 # common-tutorials
 # documentation
 # executive-smach
-# filters
 # geometry-experimental
 # geometry-tutorials
 # laser-pipeline
@@ -34,6 +33,7 @@ DEPEND_ABI.ros=	ros==groovy
 # visualization-tutorials
 
 include ../../devel/ros-bond-core/depend.mk
+include ../../devel/ros-filters/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk

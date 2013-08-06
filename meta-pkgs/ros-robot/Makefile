@@ -19,13 +19,13 @@ DEPEND_ABI.ros=	ros==groovy
 
 # TODO:
 # executive-smach
-# filters
 
 # ros-base
 include ../../middleware/ros-comm/depend.mk
 include ../../devel/ros-ros/depend.mk
 
 include ../../devel/ros-bond-core/depend.mk
+include ../../devel/ros-filters/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-xacro/depend.mk

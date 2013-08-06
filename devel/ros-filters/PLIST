@@ -1,0 +1,19 @@
+@comment Tue Aug 6 14:07:07 CEST 2013
+include/filters/filter_base.h
+include/filters/filter_chain.h
+include/filters/increment.h
+include/filters/mean.h
+include/filters/median.h
+include/filters/param_test.h
+include/filters/realtime_circular_buffer.h
+include/filters/transfer_function.h
+lib/libincrement.so
+lib/libmean.so
+lib/libmedian.so
+lib/libparams.so
+lib/libtransfer_function.so
+lib/pkgconfig/filters.pc
+share/filters/cmake/filtersConfig-version.cmake
+share/filters/cmake/filtersConfig.cmake
+share/filters/default_plugins.xml
+share/filters/package.xml
