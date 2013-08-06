@@ -1,0 +1,14 @@
+Robot Operating System (ROS) is a meta-operating system for your robot.
+It provides several services for a robot control system, including but
+not limited to:
+* language-independent and network-transparent communication
+* including hardware abstraction
+* low-level device control
+* implementation of commonly-used functionality
+* message-passing between processes
+
+This meta-package includes the packages from the 'robot' variant.
+The robot variant is defined to be core, stable, ROS libraries for any robot
+hardware. It is the "general robotics" libraries of ROS. It may not contain any
+GUI dependencies.
+

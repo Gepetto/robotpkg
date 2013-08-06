@@ -10,5 +10,6 @@ SUBDIR+=	jafar
 SUBDIR+=	mana
 SUBDIR+=	ros-base
 SUBDIR+=	ros-desktop
+SUBDIR+=	ros-robot
 
 include ../mk/robotpkg.subdir.mk
