@@ -44,6 +44,12 @@ SYSTEM_SEARCH.ros-robot-model=\
   'share/kdl_parser/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'		\
   'share/resource_retriever/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'
 
+# kdl_parser uses tinyxml in its public interface
+include ../../mk/sysdep/tinyxml.mk
+INCLUDE_DIRS.tinyxml = $(dir $(filter %/tinyxml.h,${SYSTEM_FILES.tinyxml}))
+LIBRARY_DIRS.tinyxml = lib
+RPATH_DIRS.tinyxml = lib
+
 endif # ROS_ROBOT_MODEL_DEPEND_MK ------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
