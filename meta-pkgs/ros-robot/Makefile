@@ -2,6 +2,7 @@
 # Created:			Séverin Lemaignan on Tue, 06 Aug 2013
 #
 
+PKGREVISION=	1
 DISTNAME=	ros-robot-1.9
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
@@ -18,7 +19,6 @@ PREFER.ros?=	robotpkg
 DEPEND_ABI.ros=	ros==groovy
 
 # TODO:
-# driver-common
 # executive-smach
 # filters
 # xacro
@@ -39,4 +39,5 @@ include ../../sysutils/ros-diagnostics/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../localization/ros-robot-state-publisher/depend.mk
+include ../../hardware/ros-driver-common/depend.mk
 include ../../mk/robotpkg.mk

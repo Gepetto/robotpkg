@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 23 Jun 2013
 #
 
-PKGREVISION=	3
+PKGREVISION=	4
 DISTNAME=	ros-desktop-1.9
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
@@ -21,7 +21,6 @@ DEPEND_ABI.ros=	ros==groovy
 # TODO:
 # common-tutorials
 # documentation
-# driver-common
 # executive-smach
 # filters
 # geometry-experimental
@@ -52,4 +51,5 @@ include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../localization/ros-robot-state-publisher/depend.mk
+include ../../hardware/ros-driver-common/depend.mk
 include ../../mk/robotpkg.mk

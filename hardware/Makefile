@@ -25,6 +25,7 @@ SUBDIR+=	pa10-kmod
 SUBDIR+=	pa10-libs
 SUBDIR+=	peak-linux-driver
 SUBDIR+=	platine-genom
+SUBDIR+=	ros-driver-common
 SUBDIR+=	sahand-kmod
 SUBDIR+=	sahand-libs
 SUBDIR+=	sahand-genom
