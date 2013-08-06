@@ -1,0 +1,78 @@
+rename rmp440Test -> rmp440BasicTest
+
+diff -ur ../rmp440-libs-0.2/test/Makefile.in ./test/Makefile.in
+--- ../rmp440-libs-0.2/test/Makefile.in	2013-08-06 18:11:17.000000000 +0200
++++ ./test/Makefile.in	2013-08-06 18:30:18.000000000 +0200
+@@ -34,7 +34,7 @@
+ POST_UNINSTALL = :
+ build_triplet = @build@
+ host_triplet = @host@
+-bin_PROGRAMS = rmp440Test$(EXEEXT) rmp440Joystick$(EXEEXT) \
++bin_PROGRAMS = rmp440BasicTest$(EXEEXT) rmp440Joystick$(EXEEXT) \
+ 	rmp440Config$(EXEEXT)
+ subdir = test
+ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+@@ -51,15 +51,15 @@
+ CONFIG_CLEAN_VPATH_FILES =
+ am__installdirs = "$(DESTDIR)$(bindir)"
+ PROGRAMS = $(bin_PROGRAMS)
++am_rmp440BasicTest_OBJECTS = rmpTask.$(OBJEXT)
++rmp440BasicTest_OBJECTS = $(am_rmp440BasicTest_OBJECTS)
++rmp440BasicTest_DEPENDENCIES = $(top_builddir)/src/librmp440Lib.la
+ am_rmp440Config_OBJECTS = tconfig.$(OBJEXT)
+ rmp440Config_OBJECTS = $(am_rmp440Config_OBJECTS)
+ rmp440Config_DEPENDENCIES = $(top_builddir)/src/librmp440Lib.la
+ am_rmp440Joystick_OBJECTS = joystick.$(OBJEXT)
+ rmp440Joystick_OBJECTS = $(am_rmp440Joystick_OBJECTS)
+ rmp440Joystick_DEPENDENCIES = $(top_builddir)/src/librmp440Lib.la
+-am_rmp440Test_OBJECTS = rmpTask.$(OBJEXT)
+-rmp440Test_OBJECTS = $(am_rmp440Test_OBJECTS)
+-rmp440Test_DEPENDENCIES = $(top_builddir)/src/librmp440Lib.la
+ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
+ depcomp = $(SHELL) $(top_srcdir)/depcomp
+ am__depfiles_maybe = depfiles
+@@ -73,10 +73,10 @@
+ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+ 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+ 	$(LDFLAGS) -o $@
+-SOURCES = $(rmp440Config_SOURCES) $(rmp440Joystick_SOURCES) \
+-	$(rmp440Test_SOURCES)
+-DIST_SOURCES = $(rmp440Config_SOURCES) $(rmp440Joystick_SOURCES) \
+-	$(rmp440Test_SOURCES)
++SOURCES = $(rmp440BasicTest_SOURCES) $(rmp440Config_SOURCES) \
++	$(rmp440Joystick_SOURCES)
++DIST_SOURCES = $(rmp440BasicTest_SOURCES) $(rmp440Config_SOURCES) \
++	$(rmp440Joystick_SOURCES)
+ ETAGS = etags
+ CTAGS = ctags
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+@@ -195,8 +195,8 @@
+ top_srcdir = @top_srcdir@
+ INCLUDES = -I$(top_srcdir)
+ AM_CFLAGS = -pthread -Wall
+-rmp440Test_SOURCES = rmpTask.c
+-rmp440Test_LDADD = $(top_builddir)/src/librmp440Lib.la
++rmp440BasicTest_SOURCES = rmpTask.c
++rmp440BasicTest_LDADD = $(top_builddir)/src/librmp440Lib.la
+ rmp440Joystick_SOURCES = joystick.c
+ rmp440Joystick_LDADD = $(top_builddir)/src/librmp440Lib.la
+ rmp440Config_SOURCES = tconfig.c
+@@ -278,15 +278,15 @@
+ 	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
+ 	echo " rm -f" $$list; \
+ 	rm -f $$list
++rmp440BasicTest$(EXEEXT): $(rmp440BasicTest_OBJECTS) $(rmp440BasicTest_DEPENDENCIES) $(EXTRA_rmp440BasicTest_DEPENDENCIES) 
++	@rm -f rmp440BasicTest$(EXEEXT)
++	$(LINK) $(rmp440BasicTest_OBJECTS) $(rmp440BasicTest_LDADD) $(LIBS)
+ rmp440Config$(EXEEXT): $(rmp440Config_OBJECTS) $(rmp440Config_DEPENDENCIES) $(EXTRA_rmp440Config_DEPENDENCIES) 
+ 	@rm -f rmp440Config$(EXEEXT)
+ 	$(LINK) $(rmp440Config_OBJECTS) $(rmp440Config_LDADD) $(LIBS)
+ rmp440Joystick$(EXEEXT): $(rmp440Joystick_OBJECTS) $(rmp440Joystick_DEPENDENCIES) $(EXTRA_rmp440Joystick_DEPENDENCIES) 
+ 	@rm -f rmp440Joystick$(EXEEXT)
+ 	$(LINK) $(rmp440Joystick_OBJECTS) $(rmp440Joystick_LDADD) $(LIBS)
+-rmp440Test$(EXEEXT): $(rmp440Test_OBJECTS) $(rmp440Test_DEPENDENCIES) $(EXTRA_rmp440Test_DEPENDENCIES) 
+-	@rm -f rmp440Test$(EXEEXT)
+-	$(LINK) $(rmp440Test_OBJECTS) $(rmp440Test_LDADD) $(LIBS)
+ 
+ mostlyclean-compile:
+ 	-rm -f *.$(OBJEXT)
