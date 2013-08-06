@@ -21,7 +21,6 @@ DEPEND_ABI.ros=	ros==groovy
 # TODO:
 # common-tutorials
 # documentation
-# executive-smach
 # geometry-experimental
 # geometry-tutorials
 # laser-pipeline
@@ -52,4 +51,5 @@ include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../localization/ros-robot-state-publisher/depend.mk
 include ../../hardware/ros-driver-common/depend.mk
+include ../../supervision/ros-executive-smach/depend.mk
 include ../../mk/robotpkg.mk

@@ -17,9 +17,6 @@ MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 PREFER.ros?=	robotpkg
 DEPEND_ABI.ros=	ros==groovy
 
-# TODO:
-# executive-smach
-
 # ros-base
 include ../../middleware/ros-comm/depend.mk
 include ../../devel/ros-ros/depend.mk
@@ -39,4 +36,5 @@ include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../localization/ros-robot-state-publisher/depend.mk
 include ../../hardware/ros-driver-common/depend.mk
+include ../../supervision/ros-executive-smach/depend.mk
 include ../../mk/robotpkg.mk

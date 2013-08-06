@@ -1,0 +1,14 @@
+SMACH is useful when you want a robot to execute some complex plan, where all
+possible states and state transitions can be described explicitly. This
+basically takes the hacking out of hacking together different modules to make
+systems like mobile robotic manipulators do interesting things.
+
+- Fast prototyping: The straightforward Python-based SMACH syntax makes it easy
+  to quickly prototype a state machine and start running it.
+
+- Complex state machines: SMACH allows you to design, maintain and debug large,
+  complex hierarchical state machines. You can find an example of a complex
+  hierarchical state machine here.
+
+- Introspection: SMACH gives you full introspection in your state machines,
+  state transitions, data flow, etc. See the smach_viewer for more details. 
