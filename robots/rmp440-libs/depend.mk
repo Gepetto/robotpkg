@@ -14,7 +14,7 @@ PREFER.rmp440-libs?=	robotpkg
 
 DEPEND_USE+=		rmp440-libs
 
-DEPEND_ABI.rmp440-libs?=	rmp440-libs>=0.1
+DEPEND_ABI.rmp440-libs?=	rmp440-libs>=0.2
 DEPEND_DIR.rmp440-libs?=	../../robots/rmp440-libs
 
 SYSTEM_SEARCH.rmp440-libs=\

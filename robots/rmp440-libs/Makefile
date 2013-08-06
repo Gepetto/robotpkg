@@ -3,7 +3,7 @@
 #
 
 CATEGORIES=		robots
-DISTNAME=		rmp440-libs-0.1
+DISTNAME=		rmp440-libs-0.2
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp440/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp440-libs
 
