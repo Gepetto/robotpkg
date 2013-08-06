@@ -11,6 +11,7 @@ SUBDIR+=	py-rosdep
 SUBDIR+=	py-rosdistro
 SUBDIR+=	py-rospkg
 SUBDIR+=	ros-console-bridge
+SUBDIR+=	ros-diagnostics
 SUBDIR+=	ros-rospack
 SUBDIR+=	tth
 SUBDIR+=	y2l

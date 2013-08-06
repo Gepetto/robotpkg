@@ -1,0 +1,4 @@
+The ROS diagnostics system is designed to collect information from hardware drivers
+and robot hardware to users and operators for analysis, troubleshooting and
+logging. The diagnostics stack contains tools for collecting, publishing,
+analyzing and viewing diagnostics data. 

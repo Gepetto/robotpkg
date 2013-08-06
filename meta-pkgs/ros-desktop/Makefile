@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 23 Jun 2013
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 DISTNAME=	ros-desktop-1.9
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
@@ -20,7 +20,6 @@ DEPEND_ABI.ros=	ros==groovy
 
 # TODO:
 # common-tutorials
-# diagnostics
 # documentation
 # driver-common
 # executive-smach
@@ -48,6 +47,7 @@ include ../../image/ros-image-common/depend.mk
 include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../math/ros-geometry/depend.mk
+include ../../sysutils/ros-diagnostics/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
