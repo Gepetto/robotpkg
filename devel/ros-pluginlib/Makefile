@@ -4,7 +4,7 @@
 
 ROS_PKG=	pluginlib
 ROS_VERSION=	1.9.20
-PKGREVISION=	1
+PKGREVISION=	2
 
 CATEGORIES=	devel
 ROS_COMMENT=	tools for dynamically loading plugins
