@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 23 Jun 2013
 #
 
-PKGREVISION=	4
+PKGREVISION=	5
 DISTNAME=	ros-desktop-1.9
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
@@ -32,12 +32,12 @@ DEPEND_ABI.ros=	ros==groovy
 # ros-tutorials
 # rviz
 # visualization-tutorials
-# xacro
 
 include ../../devel/ros-bond-core/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
+include ../../devel/ros-xacro/depend.mk
 include ../../graphics/ros-python-qt-binding/depend.mk
 include ../../graphics/ros-qt-gui-core/depend.mk
 include ../../graphics/ros-robot-model/depend.mk

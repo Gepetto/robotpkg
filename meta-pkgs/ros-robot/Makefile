@@ -2,7 +2,6 @@
 # Created:			Séverin Lemaignan on Tue, 06 Aug 2013
 #
 
-PKGREVISION=	3
 DISTNAME=	ros-robot-1.9
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
@@ -21,7 +20,6 @@ DEPEND_ABI.ros=	ros==groovy
 # TODO:
 # executive-smach
 # filters
-# xacro
 
 # ros-base
 include ../../middleware/ros-comm/depend.mk
@@ -30,6 +28,7 @@ include ../../devel/ros-ros/depend.mk
 include ../../devel/ros-bond-core/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
+include ../../devel/ros-xacro/depend.mk
 include ../../graphics/ros-robot-model/depend.mk
 include ../../graphics/ros-ivcon/depend.mk
 include ../../graphics/ros-convex-decomposition/depend.mk

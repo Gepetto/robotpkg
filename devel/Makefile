@@ -29,6 +29,7 @@ SUBDIR+=	ros-nodelet-core
 SUBDIR+=	ros-pluginlib
 SUBDIR+=	ros-ros
 SUBDIR+=	ros-roscpp-core
+SUBDIR+=	ros-xacro
 SUBDIR+=	swig
 SUBDIR+=	yaml-cpp
 
