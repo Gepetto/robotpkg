@@ -24,7 +24,6 @@ DEPEND_ABI.ros=	ros==groovy
 # xacro
 # convex_decomposition
 # ivcon
-# robot_state_publisher
 
 # ros-base
 include ../../middleware/ros-comm/depend.mk
@@ -39,4 +38,5 @@ include ../../math/ros-geometry/depend.mk
 include ../../sysutils/ros-diagnostics/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
+include ../../localization/ros-robot-state-publisher/depend.mk
 include ../../mk/robotpkg.mk

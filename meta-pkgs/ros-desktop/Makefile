@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 23 Jun 2013
 #
 
-PKGREVISION=	2
+PKGREVISION=	3
 DISTNAME=	ros-desktop-1.9
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
@@ -51,4 +51,5 @@ include ../../sysutils/ros-diagnostics/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
+include ../../localization/ros-robot-state-publisher/depend.mk
 include ../../mk/robotpkg.mk

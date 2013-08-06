@@ -13,6 +13,7 @@ SUBDIR+=	libpom
 SUBDIR+=	mocap-genom
 SUBDIR+=	odokit
 SUBDIR+=	pom-genom
+SUBDIR+=	ros-robot-state-publisher
 SUBDIR+=	segloc-genom
 
 include ../mk/robotpkg.subdir.mk
