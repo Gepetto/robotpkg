@@ -1,0 +1,6 @@
+@comment Tue Aug 6 11:54:57 CEST 2013
+bin/convex_decomposition
+lib/pkgconfig/convex_decomposition.pc
+share/convex_decomposition/cmake/convex_decompositionConfig-version.cmake
+share/convex_decomposition/cmake/convex_decompositionConfig.cmake
+share/convex_decomposition/package.xml

@@ -1,0 +1,6 @@
+convex_decomposition contains the Convex Mesh Generation Library, by John
+Ratcliff. This library is used to auto-generate convex decomposed meshes for
+collision and visualization of robot links. 
+
+ROS package that wraps (with some patches) the original project:
+http://www.amillionpixels.us/ConvexDecomposition.zip

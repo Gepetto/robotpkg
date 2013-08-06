@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Tue, 06 Aug 2013
 #
 
-PKGREVISION=	2
+PKGREVISION=	3
 DISTNAME=	ros-robot-1.9
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
@@ -22,7 +22,6 @@ DEPEND_ABI.ros=	ros==groovy
 # executive-smach
 # filters
 # xacro
-# convex_decomposition
 
 # ros-base
 include ../../middleware/ros-comm/depend.mk
@@ -33,6 +32,7 @@ include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../graphics/ros-robot-model/depend.mk
 include ../../graphics/ros-ivcon/depend.mk
+include ../../graphics/ros-convex-decomposition/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../math/ros-geometry/depend.mk
 include ../../sysutils/ros-diagnostics/depend.mk
