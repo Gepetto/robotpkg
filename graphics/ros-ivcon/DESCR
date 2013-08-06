@@ -1,0 +1,3 @@
+Mesh Conversion Utility Used to generate '.iv' files from '.stl' files.
+
+ROS package that wraps the original project: https://sourceforge.net/projects/ivcon/

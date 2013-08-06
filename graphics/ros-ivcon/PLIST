@@ -1,0 +1,6 @@
+@comment Tue Aug 6 11:42:31 CEST 2013
+bin/ivcon
+lib/pkgconfig/ivcon.pc
+share/ivcon/cmake/ivconConfig-version.cmake
+share/ivcon/cmake/ivconConfig.cmake
+share/ivcon/package.xml
