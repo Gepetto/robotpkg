@@ -1,0 +1,6 @@
+NAOqi, the embedded NAO software, includes a fast, secure and reliable,
+cross-platform, distributed robotics framework that provides a solid foundation
+on which developers can leverage and improve NAO's functionality.
+
+NAOqi allows algorithms to share their APIs with others and helps prepare
+modules to run on NAO or remote PCs.
