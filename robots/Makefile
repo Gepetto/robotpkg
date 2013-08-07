@@ -10,6 +10,7 @@ SUBDIR+=	jloco-genom
 SUBDIR+=	mana-emergency
 SUBDIR+=	mor-genom
 SUBDIR+=	mor-libs
+SUBDIR+=	nao-robot
 SUBDIR+=	neobotix-libs
 SUBDIR+=	play-genom
 SUBDIR+=	player20-libs
