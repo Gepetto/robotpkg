@@ -3,8 +3,7 @@
 #
 
 ROS_PKG=	catkin
-ROS_VERSION=	0.5.67
-PKGREVISION=	1
+ROS_VERSION=	0.5.71
 
 CATEGORIES=	devel
 ROS_COMMENT=	low-level build system macros and infrastructure
@@ -16,6 +15,7 @@ DEPEND_ABI.cmake+= cmake>=2.8.3
 CMAKE_ARGS+=-DGTEST_ROOT=${PREFIX.googletest}
 CMAKE_ARGS+=-DNOSETESTS=${NOSETESTS}
 CMAKE_ARGS+=-DCMAKE_PREFIX_PATH=${PREFIX}
+CMAKE_ARGS+=-DSETUPTOOLS_DEB_LAYOUT=OFF
 
 SUBST_CLASSES+=			catkin
 SUBST_STAGE.catkin=		pre-configure
