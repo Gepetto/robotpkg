@@ -3,6 +3,7 @@ bin/rosbag
 bin/roscore
 bin/rosgraph
 bin/roslaunch
+bin/roslaunch-complete
 bin/roslaunch-deps
 bin/roslaunch-logs
 bin/rosmaster

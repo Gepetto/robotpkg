@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		ros_comm
-ROS_VERSION=		1.9.46
+ROS_VERSION=		1.9.47
 ROS_METAPKG=		yes
 
 PKGNAME=		$(subst _,-,${ROS_PKG})-${ROS_VERSION}
@@ -13,7 +13,7 @@ ROS_COMMENT=		communications-related libraries and tools
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-DEPEND_ABI.ros-catkin+=	ros-catkin>=0.5.67
+DEPEND_ABI.ros-catkin+=	ros-catkin>=0.5.68
 
 # Fix prefix
 SUBST_CLASSES+=		ros-prefix
