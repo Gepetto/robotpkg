@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 27 Jan 2009
 #
 
-PKGVERSION=		2.3.20.1
+PKGVERSION=		2.3.22
 DISTNAME=		yarp-${PKGVERSION_NOREV}
 PKGNAME=		libjyarp-${PKGVERSION}
 CATEGORIES=		middleware
