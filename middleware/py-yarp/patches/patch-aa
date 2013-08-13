@@ -3,10 +3,10 @@ explicity the path of pyconfig.h too.
 
 Fix the build of py33-yarp on Ubuntu 12.10 (and probably other systems).
 
---- bindings/CMakeLists.txt.orig	2013-06-03 15:22:51.758159730 +0200
-+++ bindings/CMakeLists.txt	2013-06-03 15:24:45.782156874 +0200
-@@ -113,6 +113,35 @@
-   FIND_PACKAGE(PythonLibs)
+--- bindings/CMakeLists.txt.orig	2013-08-13 16:50:52.700031544 +0200
++++ bindings/CMakeLists.txt	2013-08-13 16:51:23.832033056 +0200
+@@ -115,6 +115,35 @@
+   FIND_PACKAGE(PythonLibs ${CREATE_PYTHON_VERSION})
    INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
    LINK_LIBRARIES(${PYTHON_LIBRARY})
 +
