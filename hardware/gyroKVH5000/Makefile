@@ -12,6 +12,7 @@ MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/gyro-libs
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Driver and interface for gyroKVH5000
+LICENSE=		isc
 
 GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		gyroKVH5000
