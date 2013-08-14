@@ -1,0 +1,25 @@
+From 4f3a94e2306e6fd9c9af604f036cddc43dcdf4a8 Mon Sep 17 00:00:00 2001
+From: Matthieu Herrb <matthieu.herrb@laas.fr>
+Date: Wed, 14 Aug 2013 10:37:21 +0200
+Subject: [PATCH] Fix internal log format string (remove extra %g)
+
+---
+ codels/rmp440Log.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git codels/rmp440Log.c codels/rmp440Log.c
+index 8202d43..7321c2f 100644
+--- codels/rmp440Log.c
++++ codels/rmp440Log.c
+@@ -210,7 +210,7 @@ rmp440LogInternalDataExec(GEN_STRING128 *fileName, int *report)
+ 		"\t%d\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g"
+ 		"\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g"
+ 		"\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g"
+-		"\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g"
++		"\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g"
+ 		"\t0x%08x\t0x%08x\t0x%08x\t%.6g\t0x%08x\t0x%08x"
+ 		"\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g\t%.6g"
+ 		"\n",
+-- 
+1.7.9.5
+
