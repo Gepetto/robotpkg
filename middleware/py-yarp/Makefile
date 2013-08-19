@@ -2,9 +2,9 @@
 # Created:			Severin Lemaignan on Fri, 12 Jun 2009
 #
 
-PKGVERSION=		2.3.22
-DISTNAME=		yarp-${PKGVERSION_NOREV}
-PKGNAME=		${PKGTAG.python-}yarp-${PKGVERSION}
+VERSION=		2.3.22
+DISTNAME=		yarp-${VERSION}
+PKGNAME=		${PKGTAG.python-}yarp-${VERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
 CATEGORIES=		middleware
@@ -33,6 +33,9 @@ SWIG_DIR= 			${WRKSRC}/bindings
 CONFIGURE_DIRS=		${WRKSRC} ${SWIG_DIR}
 BUILD_DIRS=			${SWIG_DIR}
 INSTALLATION_DIRS=	${PYTHON_SITELIB}
+
+DEPEND_ABI.cmake= 	cmake>=2.8.7
+DEPEND_ABI.yarp=    yarp>=${VERSION}<=${VERSION}
 
 include ../../devel/swig/depend.mk
 include ../../middleware/yarp/depend.mk
