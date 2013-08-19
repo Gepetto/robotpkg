@@ -2,6 +2,8 @@
 # Variable definitions for the Ubuntu operating system.
 #
 
+OS_FAMILY?=	Debian
+
 # System library directories
 ifeq (${MACHINE_ARCH},x86_64)	# 64bits arch
   _syslibdir=\
@@ -15,4 +17,4 @@ ifeq (${MACHINE_ARCH},x86_64)	# 64bits arch
   endif
 endif
 
-include ${ROBOTPKG_DIR}/mk/platform/Linux.mk
+include ${ROBOTPKG_DIR}/mk/platform/Debian.mk
