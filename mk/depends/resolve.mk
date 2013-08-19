@@ -219,7 +219,8 @@ override define _dpd_syspkg # (pkg)
     ${SYSTEM_PKG.${OS_KERNEL}.$1},					\
     ${SYSTEM_PKG.${MACHINE_PLATFORM}.$1},				\
     ${SYSTEM_PKG.${OPSYS}-${OS_VERSION}.$1},				\
-    ${SYSTEM_PKG.${OPSYS}.$1})
+    ${SYSTEM_PKG.${OPSYS}.$1},						\
+    ${SYSTEM_PKG.${OS_FAMILY}.$1})
 endef
 $(foreach _,${DEPEND_USE},$(eval $(call _dpd_syspkg,$_)))
 
