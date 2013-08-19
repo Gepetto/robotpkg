@@ -34,6 +34,8 @@ define PKG_OPTION_SET.gui
   include ../../mk/sysdep/glib2.mk
 endef
 
+DEPEND_ABI.cmake= 	cmake>=2.8.7
+
 include ../../middleware/ace/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
