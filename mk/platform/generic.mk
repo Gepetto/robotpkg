@@ -1,6 +1,8 @@
 #
 # Variable definitions for a generic operating system.
 #
+OS_FAMILY?=		${OPSYS}
+
 _OPSYS_SHLIB_TYPE?=	ELF	# shared lib type
 _USE_RPATH?=		yes	# add rpath to LDFLAGS
 _LD_LIBRARY_PATH_VAR=	LD_LIBRARY_PATH
