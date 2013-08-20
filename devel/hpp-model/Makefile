@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-model
-HPP_VERSION=		2.2
+HPP_VERSION=		2.3
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-model
 
 CATEGORIES=	devel

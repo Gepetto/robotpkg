@@ -1,6 +1,8 @@
-@comment Fri Sep 30 15:36:55 CEST 2011
+@comment Thu Sep 26 09:47:10 CEST 2013
 include/hpp/model/anchor-joint.hh
-include/hpp/model/body.hh
+include/hpp/model/body-distance.hh
+include/hpp/model/capsule-body-distance.hh
+include/hpp/model/config.h
 include/hpp/model/config.hh
 include/hpp/model/deprecated.hh
 include/hpp/model/device.hh
@@ -14,6 +16,7 @@ include/hpp/model/robot-dynamics-impl.hh
 include/hpp/model/rotation-joint.hh
 include/hpp/model/specific-humanoid-robot.hh
 include/hpp/model/translation-joint.hh
+include/hpp/model/types.hh
 include/hpp/model/warning.hh
 lib/libhpp-model.so
 lib/libhpp-model.so.${PKGVERSION}
