@@ -2,9 +2,9 @@
 # Created:			Anthony Mallet on Tue, 27 Jan 2009
 #
 
-PKGVERSION=		2.3.22
-DISTNAME=		yarp-${PKGVERSION_NOREV}
-PKGNAME=		libjyarp-${PKGVERSION}
+VERSION=		2.3.22
+DISTNAME=		yarp-${VERSION}
+PKGNAME=		libjyarp-${VERSION}
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
 
@@ -28,6 +28,9 @@ SWIG_DIR= 			${WRKSRC}/bindings
 INSTALLATION_DIRS=	lib share/doc/libjyarp java/libjyarp/lib
 CONFIGURE_DIRS=		${WRKSRC} ${SWIG_DIR}
 BUILD_DIRS=			${SWIG_DIR}
+
+DEPEND_ABI.cmake= 	cmake>=2.8.7
+DEPEND_ABI.yarp=    yarp>=${VERSION}<=${VERSION}
 
 DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
 
