@@ -53,7 +53,6 @@ MASTER_SITE_GNU+=       \
 	http://ftp.gnu.org/pub/gnu/ \
 	ftp://ftp.gnu.org/pub/gnu/ \
 	ftp://ftp.funet.fi/pub/gnu/prep/ \
-	ftp://ftp.kddlabs.co.jp/pub/gnu/gnu/ \
 	ftp://mirrors.kernel.org/gnu/ \
 	ftp://ftp.sunet.se/pub/gnu/ \
 	ftp://ftp.lip6.fr/pub/gnu/ \
