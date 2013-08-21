@@ -1,32 +1,28 @@
---- lib/Makefile~	2012-03-15 17:20:07.000000000 +0100
-+++ lib/Makefile	2012-05-30 16:54:02.547251000 +0200
-@@ -68,9 +68,9 @@
+--- lib/Makefile.orig	2013-01-24 11:26:48.000000000 +0100
++++ lib/Makefile	2013-08-21 14:02:57.717038992 +0200
+@@ -67,12 +67,8 @@
+ RT_CFLAGS       ?= $(shell $(RT_CONFIG) --$(SKIN)-cflags)
  endif
  
- ifeq ($(HOSTTYPE),x86_64)
+-ifeq ($(HOSTTYPE),x86_64)
 -  LIBPATH = /usr/lib64
-+  LIBPATH = ${PREFIX}/lib64
- else
+-else
 -  LIBPATH = /usr/lib
-+  LIBPATH = ${PREFIX}/lib
- endif
+-endif
+-INCPATH = /usr/include
++LIBPATH = /lib
++INCPATH = /include
  
  LDNAME  = libpcan.so
-@@ -98,12 +98,11 @@
- 	cp $(TARGET) $(LIBPATH)/$(TARGET)
- 	ln -sf $(LIBPATH)/$(TARGET) $(LIBPATH)/$(SONAME)
- 	ln -sf $(LIBPATH)/$(SONAME) $(LIBPATH)/$(LDNAME)
--	cp libpcan.h /usr/include/libpcan.h
--	chmod 644 /usr/include/libpcan.h
--	/sbin/ldconfig
--  
-+	cp libpcan.h ${PREFIX}/include/libpcan.h
-+	chmod 644 ${PREFIX}/include/libpcan.h
-+
- uninstall:
- 	@-rm -f $(LIBPATH)/$(TARGET)
- 	@-rm -f $(LIBPATH)/$(SONAME) $(LIBPATH)/$(LDNAME)
--	@-rm -f /usr/include/libpcan.h
--	/sbin/ldconfig
-+	@-rm -f ${PREFIX}/include/libpcan.h
-+
+ SONAME  = $(LDNAME).0
+@@ -94,8 +94,8 @@
+ install:
+ 	mkdir -p $(DESTDIR)$(LIBPATH)
+ 	cp $(TARGET) $(DESTDIR)$(LIBPATH)/$(TARGET)
+-	ln -sf $(DESTDIR)$(LIBPATH)/$(TARGET) $(DESTDIR)$(LIBPATH)/$(SONAME)
+-	ln -sf $(DESTDIR)$(LIBPATH)/$(SONAME) $(DESTDIR)$(LIBPATH)/$(LDNAME)
++	ln -sf $(TARGET) $(DESTDIR)$(LIBPATH)/$(SONAME)
++	ln -sf $(SONAME) $(DESTDIR)$(LIBPATH)/$(LDNAME)
+ 	mkdir -p $(DESTDIR)$(INCPATH)
+ 	cp libpcan.h $(DESTDIR)$(INCPATH)/libpcan.h
+ 	chmod 644 $(DESTDIR)$(INCPATH)/libpcan.h

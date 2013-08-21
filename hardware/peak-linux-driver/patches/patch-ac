@@ -1,40 +1,23 @@
---- test/Makefile~	2012-03-15 17:20:07.000000000 +0100
-+++ test/Makefile	2012-05-30 16:54:59.616948000 +0200
+--- test/Makefile.orig	2013-01-24 11:26:48.000000000 +0100
++++ test/Makefile	2013-08-21 14:04:33.396730257 +0200
+@@ -32,7 +32,7 @@
+ SRC     = src
+ INC     = -I. -I../lib -I../driver
+ RT      = NO_RT
+-BINDIR  = $(DESTDIR)/usr/local/bin
++BINDIR  = $(DESTDIR)/bin
+ 
+ ifeq ($(RT), XENOMAI)
+ SKIN = xeno
 @@ -63,9 +63,9 @@
  endif
  
  ifeq ($(HOSTTYPE),x86_64)
 -  LDLIBS  = -L../lib -L/lib64 -L/usr/lib64 -L/usr/local/lib64
-+  LDLIBS  = -L../lib -L/lib64 -L/usr/lib64 -L${PREFIX}/lib64
++  LDLIBS  = -L../lib -L/lib64 -L/usr/lib64 -L${DESTDIR}/lib64
  else
 -  LDLIBS  = -L../lib -L/lib -L/usr/lib -L/usr/local/lib
-+  LDLIBS  = -L../lib -L/lib -L/usr/lib -L${PREFIX}/lib
++  LDLIBS  = -L../lib -L/lib -L/usr/lib -L${DESTDIR}/lib
  endif
  
  # enabling corss-compile from ../Makefile
-@@ -132,15 +132,15 @@
- 	rm -f $(SRC)/*~ $(SRC)/*.o *~ $(TARGET1) $(TARGET2) $(TARGET3) $(TARGET4) $(TARGET5)
- 	
- install:
--	cp $(TARGET1) /usr/local/bin
--	cp $(TARGET2) /usr/local/bin
--	cp $(TARGET3) /usr/local/bin
--	cp $(TARGET4) /usr/local/bin
--	cp $(TARGET5) /usr/local/bin
-+	cp $(TARGET1) ${PREFIX}/bin
-+	cp $(TARGET2) ${PREFIX}/bin
-+	cp $(TARGET3) ${PREFIX}/bin
-+	cp $(TARGET4) ${PREFIX}/bin
-+	cp $(TARGET5) ${PREFIX}/bin
- 
- uninstall:
--	@-rm -f /usr/local/bin/$(TARGET1)
--	@-rm -f /usr/local/bin/$(TARGET2)
--	@-rm -f /usr/local/bin/$(TARGET3)
--	@-rm -f /usr/local/bin/$(TARGET4)
--	@-rm -f /usr/local/bin/$(TARGET5)
-+	@-rm -f ${PREFIX}/bin/$(TARGET1)
-+	@-rm -f ${PREFIX}/bin/$(TARGET2)
-+	@-rm -f ${PREFIX}/bin/$(TARGET3)
-+	@-rm -f ${PREFIX}/bin/$(TARGET4)
-+	@-rm -f ${PREFIX}/bin/$(TARGET5)

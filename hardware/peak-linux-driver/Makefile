@@ -2,9 +2,8 @@
 # Created:			Matthieu Herrb on Wed, 31 Dec 2008
 #
 
-PKGREVISION=	2
 DISTNAME=	peak-linux-driver-${VERSION}
-VERSION=	7.6
+VERSION=	7.9
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.peak-system.com/fileadmin/media/linux/files/
 HOMEPAGE=	http://www.peak-system.com/fileadmin/media/linux/
@@ -28,6 +27,7 @@ post-install:	${WRKSRC}/pcan.pc
 	${INSTALL_DATA} ${WRKSRC}/pcan.pc ${PREFIX}/lib/pkgconfig;	\
 	${INSTALL_DATA} ${WRKSRC}/driver/pcan.h ${PREFIX}/include/
 
+MAKE_ENV+=	DESTDIR=${PREFIX}
 MAKE_FLAGS=	NET=NO_NETDEV_SUPPORT PCC=NO_PCCARD_SUPPORT UDEV=no
 MAKE_FLAGS+=	KERNEL_LOCATION=${PREFIX.kernel}
 MAKE_FLAGS+=\

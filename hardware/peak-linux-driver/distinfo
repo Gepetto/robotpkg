@@ -1,10 +1,7 @@
-SHA1 (peak-linux-driver-7.6.tar.gz) = 56bbc0637878a801562475dcf0ceb59b0b189e6d
-RMD160 (peak-linux-driver-7.6.tar.gz) = 537194d4d17f16a0f13a2c1ba6df2bb3802c4ace
-Size (peak-linux-driver-7.6.tar.gz) = 851669 bytes
-SHA1 (patch-aa) = 69f33730f32292d8b7a5c448c3cfb71b153d769b
-SHA1 (patch-ab) = f5b69ecc3367d8f2abcf5db91f81d50a2ca49c35
-SHA1 (patch-ac) = 1fc5fbd7a6fc8973894f0c4b639d17862679191d
-SHA1 (patch-ad) = 490988943410bd6da0c872371c124d1d2f561cfc
-SHA1 (patch-ae) = 92470a075acd96594beaac0b900d7732762432e3
-SHA1 (patch-af) = 8befb43426c6e70ac8d0492110e5942ff1bb537a
+SHA1 (peak-linux-driver-7.9.tar.gz) = 2e5d6cf5cb19611ca509a4fcf66434c2b0683bf0
+RMD160 (peak-linux-driver-7.9.tar.gz) = c8b7ef366886ed4d0a61553cf3e84a4967a7274e
+Size (peak-linux-driver-7.9.tar.gz) = 853749 bytes
+SHA1 (patch-aa) = 12dd83a333c61dff7b1d0ea48636faba9fd8ea66
+SHA1 (patch-ab) = 8b761b8379e45cf98dd7aebeaacfe928cb7e0c24
+SHA1 (patch-ac) = ffc696e28ed6b3f856e0eba2f284e6fc3acd080d
 SHA1 (patch-ag) = 5f0bb79d2e74470ca6625f15f1de297203fb5f39
