@@ -82,7 +82,6 @@ endif
 ifdef _EXTRACT_IS_CHECKOUT
   CHECKOUT_PKGVERSION:=${_ROBOTPKG_NOW}
   BUILD_DEFS+=CHECKOUT_PKGVERSION
-  PKGREVISION:=$(strip ${PKGREVISION})0${CHECKOUT_PKGVERSION}
 endif
 
 # The filter for the default do-extract action

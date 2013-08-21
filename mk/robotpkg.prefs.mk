@@ -195,9 +195,12 @@ ifneq (,$(filter-out 0 1,$(words ${PKGREQD})))
   PKGREQD:=$(call preduce,${PKGREQD})
 endif
 
-# [_]PKGREVISION is the local package version [prefixed with r or empty]
+# [_]PKGREVISION is the local package revision number [prefixed with r] and the
+# checkout version number [prefixed with pl]
 PKGREVISION?=
-_pkgrevision=		$(addprefix r,$(filter-out 0,$(strip ${PKGREVISION})))
+_pkgrevision=$(subst $ 	$ ,,$(subst $  $ ,,				\
+			$(addprefix r,$(filter-out 0,${PKGREVISION}))	\
+			$(addprefix pl,${CHECKOUT_PKGVERSION})))
 
 # _pkgtag is the '~' suffix of the package name (list of options)
 _pkgtag=		$(addprefix ~,$(call concat,$(sort ${PKG_OPTIONS}),+))

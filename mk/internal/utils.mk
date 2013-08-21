@@ -115,7 +115,7 @@ _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 # for checkouts accross various recursive 'make' invocation.
 #
 ifndef _ROBOTPKG_NOW
-  export _ROBOTPKG_NOW:=$(shell ${_CDATE_CMD} "+%Y%m%d%H%M%S")
+  export _ROBOTPKG_NOW:=$(shell ${_CDATE_CMD} "+%m%d%H%M%S")
   _ENV_VARS+=	_ROBOTPKG_NOW
 endif
 
