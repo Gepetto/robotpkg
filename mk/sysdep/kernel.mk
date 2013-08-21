@@ -16,14 +16,13 @@ DEPEND_USE+=		kernel
 DEPEND_ABI.kernel?=	kernel-${OS_KERNEL_VERSION}
 
 SYSTEM_PKG.Fedora.kernel=kernel-devel-${OS_KERNEL_VERSION}
-SYSTEM_PKG.Ubuntu.kernel=linux-headers-${OS_KERNEL_VERSION}
+SYSTEM_PKG.Debian.kernel=linux-headers-${OS_KERNEL_VERSION}
 
 SYSTEM_PREFIX.kernel?=\
   $(SYSTEM_PREFIX:=/src/{linux-headers-*,kernels/*})
 
 _v.kernel=/UTS_RELEASE/{s/[^\"]*//;s/\"//g;p;}
 SYSTEM_SEARCH.kernel=\
-  '{,arch/}Kconfig'					\
   'include/{,generated/}{,uapi/}linux/version.h'	\
   'include/{linux,generated}/utsrelease.h:${_v.kernel}'
 
