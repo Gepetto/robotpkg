@@ -16,6 +16,7 @@ LICENSE=		gnu-gpl-v2
 NOT_FOR_PLATFORM=	NetBSD-%
 NOT_FOR_PLATFORM+=	Fedora-17-% Fedora-18-%
 NOT_FOR_PLATFORM+=	Ubuntu-12.10-%
+NOT_FOR_PLATFORM+=	Debian-7%
 
 DOXYGEN_PLIST_DIR+=	share/doc/liborocos-rtt
 
