@@ -9,8 +9,15 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		omniORB
 endif
 
-ifeq (+,$(OMNIORB_DEPEND_MK))
-PREFER.omniORB?=	robotpkg
+ifeq (+,$(OMNIORB_DEPEND_MK)) # --------------------------------------------
+
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 10.04,${OS_VERSION}))
+    PREFER.omniORB?=	robotpkg
+  endif
+endif
+PREFER.omniORB?=	system
 
 DEPEND_USE+=		omniORB
 
@@ -20,6 +27,11 @@ DEPEND_DIR.omniORB?=	../../middleware/omniORB
 SYSTEM_SEARCH.omniORB=	\
 	bin/omniidl			\
 	lib/pkgconfig/omniORB4.pc
-endif
+
+SYSTEM_PKG.Debian.omniORB =	omniorb
+SYSTEM_PKG.Fedora.omniORB =	omniORB-devel
+SYSTEM_PKG.NetBSD.omniORB =	net/omniORB
+
+endif # OMNIORB_DEPEND_MK --------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
