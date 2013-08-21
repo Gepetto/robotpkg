@@ -2,25 +2,24 @@
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
-OROCOS_VERSION=		1.10.4
-DISTNAME=		orocos-rtt-${OROCOS_VERSION}-src
+OROCOS_VERSION=	2.6.0
+DISTNAME=		orocos-toolchain-${OROCOS_VERSION}-src
 PKGNAME=		orocos-rtt-${OROCOS_VERSION}
 CATEGORIES=		middleware
-MASTER_SITES=		http://www.orocos.org/stable/rtt/v${OROCOS_VERSION}/
+MASTER_SITES=	http://people.mech.kuleuven.be/~orocos/pub/stable/toolchain/v${OROCOS_VERSION}/
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://www.orocos.org/rtt
 COMMENT=		The Orocos Real-Time Toolkit
 LICENSE=		gnu-gpl-v2
 
-NOT_FOR_PLATFORM=	NetBSD-%
-NOT_FOR_PLATFORM+=	Fedora-17-% Fedora-18-%
-NOT_FOR_PLATFORM+=	Ubuntu-12.10-%
-NOT_FOR_PLATFORM+=	Debian-7%
-
-DOXYGEN_PLIST_DIR+=	share/doc/liborocos-rtt
+DYNAMIC_PLIST_DIRS+=	share/doc/liborocos-rtt
 
 CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
+CMAKE_ARGS+=	-DBOOST_LIBDIR=${PREFIX.boost-headers}/lib
+
+DEPEND_ABI.boost-libs=boost-libs>=1.38
+DEPEND_ABI.boost-headers=boost-headers>=1.38
 
 PKG_SUPPORTED_OPTIONS+=	corba
 
@@ -30,7 +29,7 @@ define PKG_OPTION_SET.corba
   include ../../middleware/omniORB/depend.mk
 endef
 
-WRKSRC=			${WRKDIR}/orocos-rtt-${OROCOS_VERSION}
+WRKSRC=			${WRKDIR}/orocos-toolchain-${OROCOS_VERSION}/rtt
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

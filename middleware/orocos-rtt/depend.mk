@@ -15,13 +15,13 @@ PREFER.orocos-rtt?=		robotpkg
 
 DEPEND_USE+=		orocos-rtt
 
-DEPEND_ABI.orocos-rtt?=	orocos-rtt>=1.10
+DEPEND_ABI.orocos-rtt?=	orocos-rtt>=2.6.0
 DEPEND_DIR.orocos-rtt?=	../../middleware/orocos-rtt
 
 SYSTEM_SEARCH.orocos-rtt=\
 	include/rtt/RTT.hpp					\
 	lib/liborocos-rtt-gnulinux.so		\
-	lib/pkgconfig/orocos-rtt-gnulinux.pc 
+	lib/pkgconfig/orocos-rtt-gnulinux.pc
 
 endif # OROCOS_RTT_DEPEND_MK ------------------------------------------------
 
