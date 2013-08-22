@@ -15,13 +15,13 @@ PREFER.orocos-ocl?=		robotpkg
 
 DEPEND_USE+=		orocos-ocl
 
-DEPEND_ABI.orocos-ocl?=	orocos-ocl>=1.10
+DEPEND_ABI.orocos-ocl?=	orocos-ocl>=2.6.0
 DEPEND_DIR.orocos-ocl?=	../../architecture/orocos-ocl
 
 SYSTEM_SEARCH.orocos-ocl=\
-	include/ocl/OCL.hpp						\
-	lib/liborocos-deployment-gnulinux.so	\
-	lib/pkgconfig/orocos-ocl-gnulinux.pc
+	include/orocos/ocl/OCL.hpp						\
+	lib/liborocos-ocl-deployment-gnulinux.so        \
+	lib/pkgconfig/ocl-gnulinux.pc
 
 endif # OROCOS_OCL_DEPEND_MK ------------------------------------------------
 
