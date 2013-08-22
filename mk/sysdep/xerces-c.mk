@@ -13,7 +13,7 @@ ifeq (+,$(XERCES_C_DEPEND_MK)) # -------------------------------------------
 PREFER.xerces-c?=	system
 
 DEPEND_USE+=		xerces-c
-DEPEND_ABI.xerces-c?=	xerces-c>=3
+DEPEND_ABI.xerces-c?=	xerces-c>=2
 
 SYSTEM_SEARCH.xerces-c=	\
 	'include/xercesc/util/XercesVersion.hpp:${_xerces_version_sed}'	\
