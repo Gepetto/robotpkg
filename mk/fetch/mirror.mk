@@ -77,10 +77,12 @@ check-distfiles: fetch-all
 #
 # Some sites don't handle HEAD requests. Most notably googlecode:
 # http://code.google.com/p/support/issues/detail?id=660
+# and github has too many sporadic failures to reliably check anything...
 # _MASTER_SITES_NOCHECK is a list of shell pattern identifying such sites.
 #
 _MASTER_SITES_NOCHECK=\
-	http*://*.googlecode.com/*
+	http*://*.googlecode.com/*	\
+	http*://*.github.com/*
 
 .PHONY: check-master-sites
 check-master-sites:
