@@ -1,0 +1,11 @@
+The Orocos Toolchain is your primary tool to create real-time robotics
+applications using modular, run-time configurable software components.
+
+It provides:
+
+    Multi-platform support: Linux, Windows (Visual Studio) and Mac OS-X
+    Extensions to other robotics frameworks: ROS, Rock, Yarp
+    Code generators to transfer user-defined data between distributed components
+    Run-time & real-time configurable and scriptable components
+    Logging and reporting of system events and communicated data.
+

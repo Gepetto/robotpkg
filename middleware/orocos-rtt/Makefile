@@ -2,13 +2,11 @@
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
-OROCOS_VERSION=	2.6.0
-DISTNAME=		orocos-toolchain-${OROCOS_VERSION}-src
-PKGNAME=		orocos-rtt-${OROCOS_VERSION}
-CATEGORIES=		middleware
-MASTER_SITES=	http://people.mech.kuleuven.be/~orocos/pub/stable/toolchain/v${OROCOS_VERSION}/
+OROCOS_PKG=rtt
+CATEGORIES=middleware
 
-MAINTAINER=		openrobots@laas.fr
+include  ../../meta-pkgs/orocos-toolchain/Makefile.common
+
 HOMEPAGE=		http://www.orocos.org/rtt
 COMMENT=		The Orocos Real-Time Toolkit
 LICENSE=		gnu-gpl-v2
@@ -28,8 +26,6 @@ define PKG_OPTION_SET.corba
 
   include ../../middleware/omniORB/depend.mk
 endef
-
-WRKSRC=			${WRKDIR}/orocos-toolchain-${OROCOS_VERSION}/rtt
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

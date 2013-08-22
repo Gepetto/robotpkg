@@ -1,0 +1,15 @@
+# robotpkg Makefile for:	meta-pkgs/orocos-toolchain
+# Created:			Arnaud Degroote on Thu, 22 Aug 2013
+#
+#
+OROCOS_VERSION= 2.6.0
+DISTNAME?=       orocos-toolchain-${OROCOS_VERSION}-src
+PKGNAME?=        orocos-${OROCOS_PKG}-${OROCOS_VERSION}
+MASTER_SITES?=   http://people.mech.kuleuven.be/~orocos/pub/stable/toolchain/v${OROCOS_VERSION}/
+MASTER_REPOSITORY?= 	git git://gitorious.org/orocos-toolchain/${OROCOS-PKG}.git
+
+MAINTAINER=     openrobots@laas.fr
+
+DISTINFO_FILE?=		${CURDIR}/../../meta-pkgs/orocos-toolchain/distinfo
+
+WRKSRC?=         ${WRKDIR}/orocos-toolchain-${OROCOS_VERSION}/${OROCOS_PKG}

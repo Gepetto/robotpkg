@@ -2,13 +2,12 @@
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
-OROCOS_VERSION=	2.6.0
-DISTNAME=		orocos-toolchain-${OROCOS_VERSION}-src
-PKGNAME=		orocos-ocl-${OROCOS_VERSION}
+OROCOS_PKG= 	ocl
 CATEGORIES=		architecture
-MASTER_SITES=	http://people.mech.kuleuven.be/~orocos/pub/stable/toolchain/v${OROCOS_VERSION}/
+DISTINFO_FILE=  ${CURDIR}/distinfo
 
-MAINTAINER=		openrobots@laas.fr
+include ../../meta-pkgs/orocos-toolchain/Makefile.common
+
 HOMEPAGE=		http://www.orocos.org/ocl
 COMMENT=		The Orocos Component Library
 LICENSE=        gnu-lgpl-v2.1
@@ -28,8 +27,6 @@ endef
 define PKG_OPTION_UNSET.lua
 	CMAKE_ARGS+= 	-DBUILD_LUA_RTT=OFF
 endef
-
-WRKSRC=			${WRKDIR}/orocos-toolchain-${OROCOS_VERSION}/ocl
 
 PKG_SUPPORTED_OPTIONS+= corba
 PKG_OPTION_DESCR.corba = Enable corba support in orocos
