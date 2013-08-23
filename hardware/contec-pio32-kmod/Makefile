@@ -11,10 +11,7 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Kernel driver for Contec PIO32 PCI card
 LICENSE=	isc
 
-ONLY_FOR_PLATFORM=	Linux-%
-NOT_FOR_PLATFORM=	Fedora-15-% Fedora-16-% Fedora-17-% Fedora-18-%
-NOT_FOR_PLATFORM+=	Ubuntu-11.04-% Ubuntu-11.10-% Ubuntu-12.04-%
-NOT_FOR_PLATFORM+=	Ubuntu-12.10-%
+ONLY_FOR_PLATFORM=	Ubuntu-10.04-%
 
 BUILD_TARGET=	default
 KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char
