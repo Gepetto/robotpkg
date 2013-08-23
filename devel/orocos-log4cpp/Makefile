@@ -4,6 +4,8 @@
 
 OROCOS_PKG= 	log4cpp
 CATEGORIES=		devel
+DISTINFO_FILE=  ${CURDIR}/distinfo
+PKGREVISION=    1
 
 include ../../meta-pkgs/orocos-toolchain/Makefile.common
 

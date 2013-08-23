@@ -1,0 +1,32 @@
+Only set O_LARGEFILE in Linux case
+
+--- src/FileAppender.cpp.orig	2013-08-23 08:58:07.000000000 +0200
++++ src/FileAppender.cpp	2013-08-23 08:59:00.000000000 +0200
+@@ -30,10 +30,10 @@
+                                mode_t mode) : 
+             LayoutAppender(name),
+             _fileName(fileName),
+-#ifdef __APPLE__
+-            _flags(O_CREAT | O_APPEND | O_WRONLY),
+-#else
++#ifdef __linux__
+             _flags(O_CREAT | O_APPEND | O_WRONLY | O_LARGEFILE),
++#else
++            _flags(O_CREAT | O_APPEND | O_WRONLY),
+ #endif
+             _mode(mode) {
+         if (!append)
+@@ -45,10 +45,10 @@
+         LayoutAppender(name),
+         _fileName(""),
+         _fd(fd),
+-#ifdef __APPLE__
+-        _flags(O_CREAT | O_APPEND | O_WRONLY),
+-#else
++#ifdef __linux__
+         _flags(O_CREAT | O_APPEND | O_WRONLY | O_LARGEFILE),
++#else
++        _flags(O_CREAT | O_APPEND | O_WRONLY),
+ #endif
+         _mode(00644) {
+     }
