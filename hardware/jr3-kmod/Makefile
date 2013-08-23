@@ -11,7 +11,7 @@ MAINTAINER=	openrobots@laas.fr
 COMMENT=	Kernel driver for the JR3 force sensor PCI acquisition card
 
 ONLY_FOR_PLATFORM=	Linux-%
-NOT_FOR_PLATFORM=	Fedora-18-%
+NOT_FOR_PLATFORM=	Fedora-18-% Fedora-19-%
 
 KMOD_DIR=	lib/modules/${OS_KERNEL_VERSION}/kernel/drivers/char
 KMOD=		jr3.ko
