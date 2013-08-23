@@ -4,12 +4,16 @@
 
 OROCOS_PKG=rtt
 CATEGORIES=middleware
+DISTINFO_FILE=  ${CURDIR}/distinfo
+PKGREVISION= 1
 
 include  ../../meta-pkgs/orocos-toolchain/Makefile.common
 
 HOMEPAGE=		http://www.orocos.org/rtt
 COMMENT=		The Orocos Real-Time Toolkit
 LICENSE=		gnu-gpl-v2
+
+NOT_FOR_PLATFORM=	NetBSD-%
 
 DYNAMIC_PLIST_DIRS+=	share/doc/liborocos-rtt
 
