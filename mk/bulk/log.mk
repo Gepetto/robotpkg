@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2012 LAAS/CNRS
+# Copyright (c) 2011-2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -41,8 +41,8 @@ bulk-log-message:
 .PHONY: bulk-log-clean
 bulk-log-clean:
 	${RUN}${RM} -f							\
-	  ${_bulklog_cbbh} ${_bulklog_broken} ${_bulklog_brokenby}	\
-	  ${_bulklog_leftover} ${_bulklog_bulk};			\
+	  ${_bulklog_cbbh} ${_bulklog_cbbhby} ${_bulklog_broken}	\
+	  ${_bulklog_brokenby} ${_bulklog_leftover} ${_bulklog_bulk};	\
 	${RM} -rf ${BULK_LOGDIR}/${PKGNAME}
 
 

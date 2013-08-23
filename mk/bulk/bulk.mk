@@ -381,8 +381,10 @@ do-bulk:
 	  ${MKDIR} $(dir ${BULK_PKGFILENA});				\
 	  if ${TEST} -s ${_bulklog_cbbhby}; then			\
 	    ${CP} ${_bulklog_cbbhby} ${BULK_PKGFILENA};			\
+	    ${ECHO} '-- ' >>${BULK_PKGFILENA};				\
+	  else								\
+	    ${ECHO} '-- ' >${BULK_PKGFILENA};				\
 	  fi;								\
-	  ${ECHO} '-- ' >>${BULK_PKGFILENA};				\
 	  ${CAT} ${_bulklog_cbbh} >>${BULK_PKGFILENA};			\
 	  exit 0;							\
 	};								\
