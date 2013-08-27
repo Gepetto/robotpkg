@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 6 Mar 2007
 #
 
-PKGREVISION=		2
+PKGREVISION=		3
 DISTNAME=		omniORBpy-3.1
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
@@ -18,6 +18,13 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 CONFIGURE_ARGS+=	am_cv_python_pythondir=${PREFIX}/${PYTHON_SITELIB}
 CONFIGURE_ARGS+=	am_cv_python_pyexecdir=${PREFIX}/${PYTHON_SITELIB}
+
+# [ Tue Feb 28 17:44:28 NZDT 2012 : sbd ]
+# The omniORB and omniORBpy packages install files into
+# ${PYSITELIB}/omniidl_be, but the only files that conflicts are __init__.py
+# with the comment and __init__.pyc. DYNAMIC_PLIST_DIRS alows to handle this
+# smoothly.
+DYNAMIC_PLIST_DIRS+=	${PYTHON_SITELIB}/omniidl_be
 
 include ../../middleware/omniORB/depend.mk
 include ../../mk/sysdep/python.mk

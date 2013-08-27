@@ -25,11 +25,13 @@ DEPEND_ABI.omniORBpy?=	omniORBpy>=3.1
 DEPEND_DIR.omniORBpy?=	../../middleware/omniORBpy
 
 SYSTEM_SEARCH.omniORBpy=\
-	include/omniORBpy.h
+  '${PYTHON_SYSLIBSEARCH}/omniORB/__init__.py'
 
 SYSTEM_PKG.Debian.omniORBpy =	python-omniorb
 SYSTEM_PKG.Fedora.omniORBpy =	omniORB-devel
 SYSTEM_PKG.NetBSD.omniORBpy =	net/omniORB
+
+include ../../mk/sysdep/python.mk
 
 endif # OMNIORBPY_DEPEND_MK ------------------------------------------------
 
