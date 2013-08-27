@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -188,9 +188,10 @@ endif
 #
 ifneq (,$(strip ${DYNAMIC_PLIST_DIRS}))
   GENERATE_PLIST+=							\
-	${FIND} $(addprefix ${PREFIX}/,${DYNAMIC_PLIST_DIRS})		\
-		 \( -type f -o -type l \) -print | ${SORT}		\
-		| ${SED} -e "s,${PREFIX}/,,g";
+    ${FIND} $(addprefix ${PREFIX}/,${DYNAMIC_PLIST_DIRS})		\
+      \( -type f -o -type l \)						\
+      ! -exec ${PKG_INFO} -qFe {} 2>/dev/null \; -print | ${SORT}	\
+    | ${SED} -e "s,${PREFIX}/,,g";
 endif
 
 ifeq (,$(strip $(PLIST_SRC)))
