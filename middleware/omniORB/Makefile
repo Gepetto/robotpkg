@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 10 Jan 2007
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		omniORB-4.1.4
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
