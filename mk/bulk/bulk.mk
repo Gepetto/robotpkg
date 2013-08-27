@@ -107,11 +107,13 @@ ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	  ${TEST} -f ${PKGFILE} || {					\
 	    ${TEST} -f ${BULK_PKGFILENA} || exit 1;			\
 	    for f in $$deps; do						\
+	      ${TEST} -f "$$f" || exit 1;				\
 	      ${TEST} ${BULK_PKGFILENA} -nt "$$f" || exit 1;		\
 	    done;							\
 	    while read d; do						\
 	      if ${TEST} "$$d" = "--"; then break; fi;			\
 	      d="$(dir ${BULK_PKGFILENA})/$$d";				\
+	      ${TEST} -f "$$d" || exit 1;				\
 	      ${TEST} ${BULK_PKGFILENA} -nt "$$d" || exit 1;		\
 	    done <${BULK_PKGFILENA};					\
 	    exit 0;							\
