@@ -99,8 +99,10 @@ else ifeq (Ubuntu,${OPSYS})
     PREFER_ALTERNATIVE.python?=	python26 python31 python32
   else ifneq (,$(filter 11.04 11.10,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python26 python32 python31
-  else
+  else ifneq (,$(filter 12.04 12.10,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python32 python31
+  else
+    PREFER_ALTERNATIVE.python?=	python27 python33
   endif
 else ifeq (NetBSD,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python31 python32
