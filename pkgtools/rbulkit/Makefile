@@ -2,8 +2,8 @@
 # Created:			Anthony Mallet on Mon, 19 Sep 2011
 #
 
-VERSION=		20130823
-DISTNAME?=		rbulkit-${VERSION}
+VERSION=		20130827
+DISTNAME=		rbulkit-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rbulkit/}
 MASTER_REPOSITORY=	git git://git.openrobots.org/robots/rbulkit
