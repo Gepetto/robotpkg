@@ -18,10 +18,14 @@ DEPEND_ABI.dtm-genom?=	dtm-genom>=1.3
 DEPEND_DIR.dtm-genom?=	../../mapping/dtm-genom
 
 SYSTEM_SEARCH.dtm-genom=\
-	include/dtm/dtmStruct.h		\
-	lib/pkgconfig/dtm.pc
+  'include/dtm/dtmStruct.h'			\
+  'lib/pkgconfig/dtm.pc:/Version/s/[^0-9.]//gp'
 
 include ../../architecture/genom/depend.mk
+include ../../hardware/velodyne-genom/depend.mk
+include ../../image/stereopixel-genom/depend.mk
+include ../../interfaces/genBasic-genom/depend.mk
+include ../../localization/pom-genom/depend.mk
 
 endif
 
