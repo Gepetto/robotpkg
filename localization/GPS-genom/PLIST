@@ -1,41 +1,8 @@
-@comment Thu Oct 8 19:15:54 CEST 2009
-${PLIST.noapi}bin/GPS
+@comment Tue Aug 27 09:58:41 CEST 2013
+@comment includes architecture/genom/PLIST.module
 bin/gps_proxy
 bin/gps_receive
 bin/gps_send
-${PLIST.noapi}bin/GPSSendInitRqst
-${PLIST.noapi}bin/GPSTest
-include/GPS/GPSConst.h
-include/GPS/GPSStruct.h
-include/GPS/server/GPSEndian.h
-include/GPS/server/GPSError.h
-${PLIST.noapi}include/GPS/server/GPSMsgLib.h
-include/GPS/server/GPSPosterLib.h
-include/GPS/server/GPSPosterLibStruct.h
-${PLIST.noapi}include/GPS/server/GPSPosterReadLibProto.h
-${PLIST.noapi}include/GPS/server/GPSPosterShowLib.h
-${PLIST.noapi}include/GPS/server/GPSPosterWriteLibProto.h
-${PLIST.noapi}include/GPS/server/GPSPosterXMLLib.h
-include/GPS/server/GPSPrint.h
-include/GPS/server/GPSPrintXML.h
-include/GPS/server/GPSScan.h
-include/GPS/server/GPSType.h
-${PLIST.openprs}include/GPS/server/openprs/GPSDecodeOpenprs.h
-${PLIST.openprs}include/GPS/server/openprs/GPSEncodeOpenprs.h
-${PLIST.openprs}include/GPS/server/openprs/GPSRequestsOpenprsProto.h
-${PLIST.tclserv_client}include/GPS/server/tclservClient/GPSTclservClientDecode.h
-${PLIST.tclserv_client}include/GPS/server/tclservClient/GPSTclservClientEncode.h
-${PLIST.tclserv_client}include/GPS/server/tclservClient/GPSTclservClientMsgLib.h
-lib/libGPSClient.la
-${PLIST.openprs}lib/openprs/modGPSOpenprs.la
-lib/pkgconfig/GPS.pc
-${PLIST.openprs}lib/pkgconfig/GPS-oprs.pc
-${PLIST.tclserv_client}lib/pkgconfig/GPS-tclserv_client.pc
-${PLIST.tclserv_client}lib/tclservClient/libGPSTclservClient.la
-${PLIST.noapi}${PLIST.tcl}lib/tclserv/libGPSTclServ.la
-share/modules/gen/GPS.gen
-${PLIST.openprs}share/modules/openprs/GPSOpenprs.inc
-${PLIST.openprs}share/modules/openprs/GPSOpenprs.opf
-${PLIST.openprs}share/modules/openprs/GPSOpenprs.sym
-${PLIST.tcl}share/modules/tcl/GPSClient.tcl
-${PLIST.openprs}@dirrm include/GPS/server/openprs
+include/${GENOM_MODULE}/${GENOM_MODULE}Const.h
+include/${GENOM_MODULE}/${GENOM_MODULE}Struct.h
+share/modules/gen/${GENOM_MODULE}.gen
