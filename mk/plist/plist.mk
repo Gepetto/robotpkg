@@ -186,6 +186,9 @@ endif
 #	that outputs contents for a PLIST to stdout and is appended to
 #	the contents of ${PLIST_SRC}.
 #
+# PLIST_FILTER is a sequence of commands, each starting with a pipe, that
+# filter out the generated PLIST
+#
 ifneq (,$(strip ${DYNAMIC_PLIST_DIRS}))
   GENERATE_PLIST+=							\
     ${FIND} $(addprefix ${PREFIX}/,${DYNAMIC_PLIST_DIRS})		\
@@ -197,10 +200,12 @@ endif
 ifeq (,$(strip $(PLIST_SRC)))
 GENERATE_PLIST?=  ${ECHO} "@comment "$(call quote,${PKGNAME})" has no files.";
 else
-GENERATE_PLIST?=  ${TRUE};
+GENERATE_PLIST?=
 endif
 
 _GENERATE_PLIST=	${CAT} /dev/null ${PLIST_SRC}; ${GENERATE_PLIST}
+
+PLIST_FILTER?=
 
 _PLIST_TARGETS+=	${PLIST}
 _PLIST_TARGETS+=	post-plist
@@ -209,12 +214,11 @@ _PLIST_TARGETS+=	post-plist
 plist: ${_PLIST_TARGETS}
 
 ${PLIST}: ${PLIST_SRC}
-	${RUN}${MKDIR} $(dir $@);				\
-	{ ${_GENERATE_PLIST} } >$@.src;				\
-	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK}	\
-		<$@.src >$@.p1;					\
-	${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK}	\
-		<$@.p1 >$@
+	${RUN}${MKDIR} $(dir $@);					\
+	{ ${_GENERATE_PLIST} } ${PLIST_FILTER}				\
+	| ${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK}		\
+	| ${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK}	\
+	>$@
 
 .PHONY: post-plist
 post-plist:
