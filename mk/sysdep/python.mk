@@ -195,7 +195,7 @@ PYTHON_SYSLIBSEARCH=\
 	{${_pysyssearch_1}${_pysyssearch_2}${_pysyssearch_3}${_pysyssearch_4}}
 
 PYVARPREFIX=		$(subst python,PYTHON,${PKG_ALTERNATIVE.python})
-PYTHON_PYCACHE?=	$(or ${${PYVARPREFIX}_PYCACHE},.)
+PYTHON_PYCACHE?=	$(or ${${PYVARPREFIX}_PYCACHE},)
 PYTHON_TAG?=		$(or ${${PYVARPREFIX}_TAG},)
 
 PYTHON_SYSLIB:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
@@ -234,14 +234,16 @@ PLIST_SUBST+=\
 	PYTHON_VERSION=${PYTHON_VERSION}
 
 PRINT_PLIST_AWK_SUBST+=\
-	gsub("/$(subst .,[.],${PYTHON_PYCACHE})/", "/");		\
-	gsub("[^/]+[.]py[co]$$", "$${PYTHON_PYCACHE}/&");		\
-	$(if ${PYTHON_TAG},gsub("${PYTHON_TAG}.py", ".py");)		\
-	gsub("[.]py[co]$$", "$${PYTHON_TAG}&");				\
 	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");		\
 	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");
 
-# Define a post-plist hook to compile all .py files
+# Only for backward compatibility: .py{c,o} files are not explicitly in PLISTs
+PLIST_SUBST+=\
+	PLIST_PYTHON_PYCACHE=$(call quote,${PYTHON_PYCACHE})		\
+	PLIST_PYTHON_TAG=$(call quote,${PYTHON_TAG})			\
+
+# Define a post-plist hook to compile all .py files and a plist filter to
+# include .py{c,o} in the PLIST
 ifndef PYTHON_NO_PLIST_COMPILE
   PYTHON_PLIST_COMPILE_PATTERN?=\
 	/share[\/].*[.]py$$/ || /lib[\/].*[.]py$$/
@@ -265,7 +267,7 @@ ifndef PYTHON_NO_PLIST_COMPILE
 	    system("${ECHO} >&2 \"File " $$0 " could not be found\"");	\
 	    next							\
 	  }								\
-	  {				\
+	  {								\
 	    print pre $$0 post | compile;				\
 	    print pre $$0 post | ocompile;				\
 	  }								\
@@ -273,6 +275,24 @@ ifndef PYTHON_NO_PLIST_COMPILE
 	    if (close(compile) || close(ocompile)) { exit 2 }		\
 	  }								\
 	' ${PLIST}
+
+  PLIST_FILTER+=| ${AWK} '						\
+    { print }								\
+    ( ${PYTHON_PLIST_COMPILE_PATTERN} ) {				\
+      $(if ${PYTHON_PYCACHE},						\
+        gsub("[^/]+[.]py$$", "${PYTHON_PYCACHE}/&");)			\
+      $(if ${PYTHON_TAG},gsub("[.]py$$", "${PYTHON_TAG}&");)		\
+      print $$0 "c"; print $$0 "o"					\
+    }'
+
+  PRINT_PLIST_FILTER+=| ${AWK} '					\
+    ! /.py[co]$$/ { print; next; }					\
+    {									\
+      orig=$$0;								\
+      gsub("${PYTHON_TAG}[.]py[co]$$", ".py");				\
+      $(if ${PYTHON_PYCACHE},gsub("${PYTHON_PYCACHE}","");)		\
+    }									\
+    ! ( ${PYTHON_PLIST_COMPILE_PATTERN} ) { print orig; }'
 endif
 
 # Define package helper targets to compile .py files
