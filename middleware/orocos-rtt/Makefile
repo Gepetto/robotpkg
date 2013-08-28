@@ -2,10 +2,10 @@
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
-OROCOS_PKG=rtt
-CATEGORIES=middleware
-DISTINFO_FILE=  ${CURDIR}/distinfo
-PKGREVISION= 1
+OROCOS_PKG=		rtt
+CATEGORIES=		middleware
+DISTINFO_FILE=		${CURDIR}/distinfo
+PKGREVISION=		2
 
 include  ../../meta-pkgs/orocos-toolchain/Makefile.common
 

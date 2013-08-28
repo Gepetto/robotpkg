@@ -1,0 +1,25 @@
+From 8486fe6b26acc00dc5d3ae4f027a6e44d5099fbc Mon Sep 17 00:00:00 2001
+From: Peter Soetens <peter@thesourceworks.com>
+Date: Tue, 11 Dec 2012 11:28:39 +0100
+Subject: [PATCH] fix for bug #979: added missing public keyword.
+
+Signed-off-by: Peter Soetens <peter@thesourceworks.com>
+---
+ rtt/transports/corba/TaskContextFactory.hpp |    1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/rtt/transports/corba/TaskContextFactory.hpp b/rtt/transports/corba/TaskContextFactory.hpp
+index b0f3428..bc18692 100644
+--- rtt/transports/corba/TaskContextFactory.hpp
++++ rtt/transports/corba/TaskContextFactory.hpp
+@@ -51,6 +51,7 @@ namespace RTT
+      */
+     class TaskContextFactory
+     {
++    public:
+         /**
+          * Invoke this method once to initialise the Orb which will
+          * run the task servers.
+-- 
+1.7.9.5
+

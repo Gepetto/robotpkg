@@ -1,0 +1,40 @@
+From 8590ad687bffad4d9490360ddf15b47c403b9e7e Mon Sep 17 00:00:00 2001
+From: Peter Soetens <peter@thesourceworks.com>
+Date: Fri, 30 Nov 2012 09:59:35 +0100
+Subject: [PATCH] corba: document TaskContextFactory.
+
+Signed-off-by: Peter Soetens <peter@thesourceworks.com>
+---
+ rtt/transports/corba/TaskContextFactory.hpp |   11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/rtt/transports/corba/TaskContextFactory.hpp b/rtt/transports/corba/TaskContextFactory.hpp
+index 31afb0e..b0f3428 100644
+--- rtt/transports/corba/TaskContextFactory.hpp
++++ rtt/transports/corba/TaskContextFactory.hpp
+@@ -44,14 +44,19 @@
+ namespace RTT
+ {namespace corba
+ {
++    /**
++     * Use this class to create Corba TaskContext proxies, without including any
++     * CORBA header. This allows you to build applications that don't link with
++     * a CORBA library.
++     */
+     class TaskContextFactory
+     {
+         /**
+          * Invoke this method once to initialise the Orb which will
+          * run the task servers.
+-	 * @param orb_timeout timeout value for each remote call, expressed in seconds.
+-	 * The resolution is up to 100 nano seconds. Anything smaller will be interpreted
+-	 * as a zero.
++         * @param orb_timeout timeout value for each remote call, expressed in seconds.
++         * The resolution is up to 100 nano seconds. Anything smaller will be interpreted
++         * as a zero.
+          */
+         static bool InitOrb(int argc, char* argv[], Seconds orb_timeout=0 );
+ 
+-- 
+1.7.9.5
+
