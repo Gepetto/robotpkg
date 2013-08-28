@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011-2012 LAAS/CNRS
+# Copyright (c) 2006-2009,2011-2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -56,9 +56,9 @@
 #	semicolon, that outputs any files modified since the package was
 #	extracted.
 #
-#    PRINT_PLIST_FILTER is a sequence of commands, terminating in a
-#	semicolon, that receives the generated PLIST on stdin and is expected
-#	to output the final PLIST (default: cat).
+#    PRINT_PLIST_FILTER is a sequence of commands, each starting with a pipe,
+#	that receives the generated PLIST on stdin and is expected
+#	to output the final PLIST (default: empty).
 #
 $(call require,${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
@@ -66,7 +66,7 @@ PRINT_PLIST_FILE?=		${PKGDIR}/PLIST.guess
 PRINT_PLIST_IGNORE_DIRS+=	${DYNAMIC_PLIST_DIRS}
 PRINT_PLIST_FILES_CMD?=		${TRUE};
 
-PRINT_PLIST_FILTER?=		${CAT};
+PRINT_PLIST_FILTER?=
 
 
 # Scan $PREFIX for any files/dirs that do not belong to any package.
@@ -113,8 +113,7 @@ _PRINT_PLIST_AWK_IGNORE:=$(foreach __dir__,				\
 
 
 ifneq (,$(call isyes,$(LIBTOOLIZE_PLIST)))
-_PRINT_PLIST_LIBTOOLIZE_FILTER?=					\
-	(								\
+  PRINT_PLIST_LIBTOOLIZE=| (						\
 	  if ${TEST} -d ${WRKDIR}; then					\
 	  	tmpdir="${WRKDIR}";					\
 	  else								\
@@ -122,6 +121,7 @@ _PRINT_PLIST_LIBTOOLIZE_FILTER?=					\
 	  fi;								\
 	  fileslist="$$tmpdir/print.plist.files.$$$$";			\
 	  libslist="$$tmpdir/print.plist.libs.$$$$";			\
+	  cd ${PREFIX};							\
 	  while read file; do						\
 		case $$file in						\
 		*.la)							\
@@ -137,22 +137,25 @@ _PRINT_PLIST_LIBTOOLIZE_FILTER?=					\
 	  fi;								\
 	  ${RM} -f "$$fileslist" "$$libslist";				\
 	)
-else
-_PRINT_PLIST_LIBTOOLIZE_FILTER?=	${CAT}
 endif
 
 do-print-PLIST: print-PLIST-message
 	${RUN} exec >${PRINT_PLIST_FILE};				\
 	${ECHO} '@comment '`${_CDATE_CMD}`;				\
 	{ ${_PRINT_PLIST_FILES_CMD} }					\
-	 | ${_PRINT_PLIST_LIBTOOLIZE_FILTER}				\
+	 | ${AWK} '{ sub("^$(abspath ${PREFIX})/", ""); print; }'	\
+         ${PRINT_PLIST_LIBTOOLIZE}					\
+         ${PRINT_PLIST_FILTER}						\
 	 | ${SORT} -u							\
-	 | ${AWK}  '							\
-		{ sub("^$(abspath ${PREFIX})/+", ""); }			\
-		${_PRINT_PLIST_AWK_IGNORE}				\
-		${_PRINT_PLIST_AWK_SUBST}				\
-		{ print $$0; }'						\
-	 | { ${PRINT_PLIST_FILTER} };					\
+	 | ${AWK} '							\
+           {								\
+	     while(gsub("//", "/"));					\
+	     gsub("[^/][^/]*/[.][.]/", "");				\
+	     gsub("/[.]/", "/"); gsub("^[.]/", ""); gsub("/[.]$$", "");	\
+	   }								\
+	   ${_PRINT_PLIST_AWK_IGNORE}					\
+	   ${_PRINT_PLIST_AWK_SUBST}					\
+	   { print $$0; }';						\
 	{ ${_PRINT_PLIST_DIRS_CMD} }					\
 	  | ${SORT} -r							\
 	  | ${AWK} '							\
