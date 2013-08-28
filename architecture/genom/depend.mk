@@ -80,12 +80,14 @@ ifdef GENOM_MODULE
   PRINT_PLIST_AWK_SUBST+=\
 	gsub("${GENOM_MODULE}", "$${GENOM_MODULE}");
 
-  PRINT_PLIST_FILTER+=\
-	${AWK} '							\
+  PRINT_PLIST_FILTER+=| ${AWK} '					\
 	  BEGIN { print "@comment includes ${PLIST_TEMPLATE.genom}" }	\
 	  NR > FNR { if (!($$0 in filter)) print; next; }		\
-	  { gsub("[$$]{PLIST[^}]*}", ""); filter[$$0] }			\
-	  ' ${ROBOTPKG_DIR}/${PLIST_TEMPLATE.genom} -;
+	  {								\
+	    gsub("[$$]{GENOM_MODULE}", "${GENOM_MODULE}");		\
+	    gsub("[$$]{PLIST[^}]*}", "");				\
+	    filter[$$0];						\
+	  }' ${ROBOTPKG_DIR}/${PLIST_TEMPLATE.genom} -
 
   GENERATE_PLIST+= ${CAT} ${ROBOTPKG_DIR}/${PLIST_TEMPLATE.genom};
 endif # GENOM_MODULE
