@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-PKGREVISION=	3
+PKGREVISION=	4
 DISTNAME=	genom-2.10
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom/}
