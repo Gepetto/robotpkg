@@ -107,7 +107,7 @@ configure-scripts-override:
 # package has not declared c++ in the USE_LANGUAGES variable and thus no C++
 # cpp is required.
 #
-SUBST_CLASSES+=		$(if ${_language_c++_mk},fixcxxcpp)
+SUBST_CLASSES+=		$(if ${_language_c++_mk},,fixcxxcpp)
 SUBST_STAGE.fixcxxcpp=	do-configure-pre-hook
 SUBST_MESSAGE.fixcxxcpp=\
 	Disabling fatal errors with C++ preprocessor in GNU configure scripts
