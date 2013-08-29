@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Wed, 23 Jan 2008
 #
 
+PKGREVISION=		1
 ACE_VERSION=		6.0.4
 DISTNAME=		ACE-${ACE_VERSION}
 PKGNAME=		ace-${ACE_VERSION}
@@ -26,6 +27,10 @@ CONFIGURE_ARGS+=	--disable-ace-examples
 # user selection.
 CONFIGURE_ARGS+=	--disable-optimize
 
+# Disable runtime test enabling or not fast_memcpy(), this is for sure not
+# reproducible and may break the public interface. On supported systems, there
+# is no reason not to use system's memcpy() anyway.
+CONFIGURE_ARGS+=	ace_cv_memcpy_loop_unroll=no
 
 OVERRIDE_DIRDEPTH.pkg-config=	3
 
