@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		grh2-2.1
-PKGREVISION=		2
+PKGREVISION=		3
 CATEGORIES=		graphics
 COMMENT=		2D graphical interface for Hilare 2 robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=grh2/}

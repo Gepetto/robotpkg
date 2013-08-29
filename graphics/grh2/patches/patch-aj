@@ -1,0 +1,17 @@
+--- configure~	2013-08-29 14:24:53.071592596 +0200
++++ configure	2013-08-29 14:25:28.911469714 +0200
+@@ -4659,7 +4659,14 @@
+ { $as_echo "$as_me:$LINENO: checking for tcl library" >&5
+ $as_echo_n "checking for tcl library... " >&6; }
+ test -z "$tcl_test_lib" && tcl_test_lib="${TCL_LIB_FILE}"
++tcl_lib_spec_dirs=
++for i in $TCL_LIB_SPEC; do
++  case $i in -L*)
++    test -d ${i#-L} && tcl_lib_spec_dirs="$tcl_lib_spec_dirs ${i#-L}";;
++  esac
++done
+ for ac_dir in \
++	$tcl_lib_spec_dirs                      \
+ 	$TCL_PREFIX/lib				\
+ 	$TCL_PREFIX/lib64			\
+ 	/usr/local/${usrlibdir}			\
