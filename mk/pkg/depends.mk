@@ -195,8 +195,8 @@ $(foreach _pkg_,${DEPEND_USE},						\
 			"are missing.$${rm}";				\
 		${ERROR_MSG} "";					\
 		${_PREFIXSEARCH_CMD} -v -p "$$prefix" "${_pkg_}"	\
-		  "$$pattern" $(or ${SYSTEM_SEARCH.${_pkg_}},"") |	\
-			${AWK} '/^missing:/ {print $$2}' | ${ERROR_CAT};\
+		  "$$pattern" $(or ${SYSTEM_SEARCH.${_pkg_}},"")	\
+			| ${ERROR_CAT};					\
 		${ERROR_MSG} "";					\
 		${ERROR_MSG} "Please reinstall the package in"		\
 			"${DEPEND_DIR.${_pkg_}}";			\
