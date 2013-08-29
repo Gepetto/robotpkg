@@ -1,0 +1,19 @@
+Fix tcl library detection - see upstream commit 0d37c28
+
+--- configure.orig	2013-08-29 13:51:01.678555018 +0200
++++ configure	2013-08-29 13:51:30.098457812 +0200
+@@ -19191,7 +19191,14 @@
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for tcl library" >&5
+ $as_echo_n "checking for tcl library... " >&6; }
+ test -z "$tcl_test_lib" && tcl_test_lib="${TCL_LIB_FILE}"
++tcl_lib_spec_dirs=
++for i in $TCL_LIB_SPEC; do
++  case $i in -L*)
++    test -d ${i#-L} && tcl_lib_spec_dirs="$tcl_lib_spec_dirs ${i#-L}";;
++  esac
++done
+ for ac_dir in \
++	$tcl_lib_spec_dirs			\
+ 	$TCL_PREFIX/lib				\
+ 	${extra_lib}				\
+ 	/usr/local/${usrlibdir}			\

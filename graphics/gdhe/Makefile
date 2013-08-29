@@ -2,6 +2,7 @@
 # Created:			Arnaud Degroote on Sat, 17 May 2008
 #
 
+PKGREVISION=	1
 DISTNAME=	gdhe-3.8.3
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
