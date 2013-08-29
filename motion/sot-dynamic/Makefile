@@ -6,6 +6,7 @@ VERSION=		2.7.2
 DISTNAME=		sot-dynamic-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-dynamic/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/sot-dynamic
+PKGVERSION=			1
 
 MAINTAINER=	gepetto@laas.fr
 CATEGORIES=	motion
@@ -14,6 +15,8 @@ COMMENT=	Create entities to compute a robot dynamics properties
 
 DYNAMIC_PLIST_DIRS+=	share/doc/sot-dynamic
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
+CMAKE_ARGS+=		-DPYTHON_INCLUDE_PATH=${PYTHON_INCLUDE}
+CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 
 # Build the package in a separate directory
 CONFIGURE_DIRS=		_build
@@ -21,6 +24,8 @@ CMAKE_ARG_PATH=		..
 
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
+
+DEPEND_ABI.python+= python<3.0
 
 include ../../math/jrl-dynamics/depend.mk
 include ../../motion/py-sot-tools/depend.mk
