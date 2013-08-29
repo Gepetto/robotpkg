@@ -4,6 +4,7 @@
 
 DISTNAME=		dynamic-graph-${VERSION}
 VERSION=		2.5.3
+PKGREVISION=		1
 
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph/}
@@ -27,7 +28,9 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/gzip.mk
 include ../../mk/sysdep/pdflatex.mk
+include ../../mk/sysdep/podlators.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
