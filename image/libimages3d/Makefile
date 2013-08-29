@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 5 Dec 2007
 #
 
-DISTNAME=		libimages3d-3.3
+DISTNAME=		libimages3d-3.4
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libimages3d/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}libimages3d
