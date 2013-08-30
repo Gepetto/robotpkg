@@ -15,7 +15,7 @@ LICENSE=	gnu-gpl-v2
 
 ONLY_FOR_PLATFORM=	Linux-%
 NOT_FOR_PLATFORM=	Fedora-18-% Fedora-19-%
-NOT_FOR_PLATFORM+=	Ubuntu-10.04-%
+NOT_FOR_PLATFORM+=	Ubuntu-10.04-% Ubuntu-13.04-%
 
 MASTER_SITES=	http://www.kernel.org/pub/linux/kernel/v2.6/
 
