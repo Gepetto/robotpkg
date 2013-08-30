@@ -82,7 +82,7 @@ check-distfiles: fetch-all
 #
 _MASTER_SITES_NOCHECK=\
 	http*://*.googlecode.com/*	\
-	http*://*.github.com/*
+	http*://github.com/*
 
 .PHONY: check-master-sites
 check-master-sites:
