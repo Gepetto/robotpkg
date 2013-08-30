@@ -5,4 +5,5 @@ include/rcpdf/deprecated.hh
 include/rcpdf/parser.hh
 include/rcpdf/warning.hh
 lib/librcpdf.so
+lib/pkgconfig/rcpdf.pc
 lib/rcpdf/check_rcpdf

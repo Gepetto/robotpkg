@@ -2,7 +2,7 @@
 # Created:			Florent Lamiraux on Tue,  30 Jul 2013
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 VERSION=	0.2
 DISTNAME=	rcpdf-${VERSION}
 
