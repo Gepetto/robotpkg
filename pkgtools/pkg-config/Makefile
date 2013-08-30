@@ -18,3 +18,7 @@ CONFIGURE_ARGS+=	--disable-threads
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
+
+# hack: there is a recursive configure script to be patched against CXXCPP
+# failures
+SUBST_FILES.fixcxxcpp+=	glib-*/configure
