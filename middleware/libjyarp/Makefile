@@ -7,6 +7,7 @@ DISTNAME=		yarp-${VERSION}
 PKGNAME=		libjyarp-${VERSION}
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
+PKGREVISION= 	1
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
