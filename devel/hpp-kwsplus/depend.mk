@@ -22,8 +22,6 @@ DEPEND_USE+=		hpp-kwsplus
 DEPEND_ABI.hpp-kwsplus?=hpp-kwsplus>=1.8
 DEPEND_DIR.hpp-kwsplus?=../../devel/hpp-kwsplus
 
-include ../../path/kineo-pp/depend.mk
-
 endif # HPP_KWSPLUS_DEPEND_MK ----------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

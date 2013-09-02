@@ -17,7 +17,6 @@ SUBDIR+=	hpp-walkfootplanner
 SUBDIR+=	hpp-walkplanner
 SUBDIR+=	hpp-worldmodelplanner
 SUBDIR+=	jrl-walkgen
-SUBDIR+=	kineo-pp
 SUBDIR+=	libp3d
 SUBDIR+=	ndd-genom
 SUBDIR+=	p3d-genom

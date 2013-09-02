@@ -26,13 +26,14 @@ PKG_SUPPORTED_OPTIONS+=	verbose1
 PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
+include ../../devel/hpp-kwsio/depend.mk
 include ../../math/lapack/depend.mk
 include ../../math/boost-numeric-bindings-v1/depend.mk
-include ../../devel/hpp-kwsio/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/kineoworks.mk
 include ../../mk/sysdep/latex.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

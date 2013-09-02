@@ -19,11 +19,11 @@ COMMENT=	Input and Output functions for KineoWorks(tm) package.
 GNU_CONFIGURE=		yes
 DOXYGEN_PLIST_DIR+=	share/doc/kwsIO
 
-include ../../path/kineo-pp/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/kineoworks.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

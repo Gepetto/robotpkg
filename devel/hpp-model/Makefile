@@ -17,6 +17,6 @@ include ../../devel/hpp-kwsio/depend.mk
 include ../../devel/hpp-util/depend.mk
 include ../../math/hpp-geometry/depend.mk
 include ../../math/jrl-dynamics/depend.mk
-include ../../path/kineo-pp/depend.mk
+include ../../mk/sysdep/kineoworks.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

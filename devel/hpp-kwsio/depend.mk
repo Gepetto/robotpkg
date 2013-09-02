@@ -22,8 +22,6 @@ DEPEND_USE+=		hpp-kwsio
 DEPEND_ABI.hpp-kwsio?=	hpp-kwsio>=1.0.1
 DEPEND_DIR.hpp-kwsio?=	../../devel/hpp-kwsio
 
-include ../../path/kineo-pp/depend.mk
-
 endif # HPP_KWSIO_DEPEND_MK ------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

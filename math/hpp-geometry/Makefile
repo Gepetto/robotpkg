@@ -17,7 +17,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 CMAKE_ARGS+=	-DGEOMETRIC_TOOLS_INSTALL_PREFIX=${PREFIX.geometric-tools}
 
 include ../../math/geometric-tools/depend.mk
-include ../../path/kineo-pp/depend.mk
+include ../../mk/sysdep/kineoworks.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../mk/language/c++.mk

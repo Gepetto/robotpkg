@@ -18,7 +18,7 @@ DOXYGEN_PLIST_DIR+=	share/doc/hppWorldModelPlanner
 
 include ../../path/hpp-dynamic-obstacle/depend.mk
 include ../../path/hpp-walkplanner/depend.mk
-include ../../path/kineo-pp/depend.mk
+include ../../mk/sysdep/kineoworks.mk
 include ../../mapping/worldmodelgrid3d/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
