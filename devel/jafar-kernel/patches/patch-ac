@@ -1,0 +1,83 @@
+Add macros JFR_DEBUG_VSEND and JFR_DEBUG_VVSEND to
+ include verbose debug in the same line as non verbose debug
+
+--- include/kernel/jafarDebug.hpp
++++ include/kernel/jafarDebug.hpp
+@@ -107,7 +107,7 @@ namespace jafar {
+       /** Call this method before sending any data to the stream.
+        * \warning usual developpers do not use it directly.
+        */
+-      static void setup(std::string const& module_, Level level_);
++      static void setup(std::string const& module_, Level level_, bool display_ = true);
+ 
+       /** Send the given location to the debug stream. Format of this
+        * location is controlled by the flag JFR_DEBUG_FULL_PATH.
+
+--- include/kernel/jafarMacro.hpp
++++ include/kernel/jafarMacro.hpp
+@@ -507,6 +507,26 @@ using jafar::debug::DebugStream;
+ }
+ 
+ /**
++ * Use to send a verbose message to debug stream
++ */
++#define JFR_DEBUG_VSEND(message) \
++{                                 \
++    DebugStream::setup(_JFR_MODULE_, DebugStream::VerboseDebug, false); \
++    DebugStream::instance() << message; \
++    DebugStream::setup(_JFR_MODULE_, DebugStream::Debug, false); \
++}
++
++/**
++ * Use to send a very verbose message to debug stream
++ */
++#define JFR_DEBUG_VVSEND(message) \
++{                                 \
++    DebugStream::setup(_JFR_MODULE_, DebugStream::VeryVerboseDebug, false); \
++    DebugStream::instance() << message; \
++    DebugStream::setup(_JFR_MODULE_, DebugStream::Debug, false); \
++}
++
++/**
+  * Use when you want to close a line of debug
+  */
+ #define JFR_DEBUG_END() \
+@@ -515,6 +535,7 @@ using jafar::debug::DebugStream;
+ }
+ 
+ 
++
+ /** Send \a message to the debug stream with level
+  * DebugStream::Debug. \c operator<< can be used to format the
+  * message.
+@@ -664,6 +685,8 @@ using jafar::debug::DebugStream;
+ 
+ #  define JFR_DEBUG_BEGIN()  ((void)0)
+ #  define JFR_DEBUG_SEND(message)  ((void)0)
++#  define JFR_DEBUG_VSEND(message)  ((void)0)
++#  define JFR_DEBUG_VVSEND(message)  ((void)0)
+ #  define JFR_DEBUG_END()  ((void)0)
+ 
+ #  define JFR_DEBUG(message) ((void)0)
+
+--- src/jafarDebug.cpp
++++ src/jafarDebug.cpp
+@@ -35,7 +35,7 @@ DebugStream::~DebugStream()
+ #endif
+ }
+ 
+-void DebugStream::setup(std::string const& module_, Level level_)
++void DebugStream::setup(std::string const& module_, Level level_, bool display_)
+ {
+   DebugStream& dbg = instance();
+ 
+@@ -45,7 +45,7 @@ void DebugStream::setup(std::string const& module_, Level level_)
+   else
+     dbg.debugging = level_ <= dbg.defaultLevel;
+ 
+-  if (dbg.isDebugging()) {
++  if (dbg.isDebugging() && display_) {
+     switch (level_) {
+     case Trace:
+       dbg << "E:";
+

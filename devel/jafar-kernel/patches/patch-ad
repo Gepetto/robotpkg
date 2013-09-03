@@ -1,0 +1,20 @@
+Fix another -DJAFAR_NDEBUG instead of -DJFR_NDEBUG
+
+---
+ share/template_package/CMakeLists.txt.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/share/template_package/CMakeLists.txt.in b/share/template_package/CMakeLists.txt.in
+index 6ddba7e..74c8b91 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -35,7 +35,7 @@ if (${CMAKE_GENERATOR} MATCHES ".*Makefiles")
+   endif()
+ endif()
+ set(CMAKE_CXX_FLAGS "-pthread ${CMAKE_CXX_FLAGS}")
+-set(CMAKE_CXX_FLAGS_RELEASE "-O2 -g0 -DNDEBUG -DJAFAR_NDEBUG -DBOOST_UBLAS_NDEBUG ${CMAKE_CXX_FLAGS_RELEASE}")
++set(CMAKE_CXX_FLAGS_RELEASE "-O2 -g0 -DNDEBUG -DJFR_NDEBUG -DBOOST_UBLAS_NDEBUG ${CMAKE_CXX_FLAGS_RELEASE}")
+ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g3 -ggdb ${CMAKE_CXX_FLAGS_DEBUG}")
+ 
+ #-----------------------------------------------------------------------------
+
