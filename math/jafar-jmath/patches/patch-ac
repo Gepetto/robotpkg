@@ -1,0 +1,68 @@
+Add ublasExtra::normalized(), function version of procedure
+ normalize()
+
+---
+ include/jmath/interpol.hpp   |  2 +-
+ include/jmath/ublasExtra.hpp | 16 ++++++++++++++--
+ 2 files changed, 15 insertions(+), 3 deletions(-)
+
+diff --git a/include/jmath/interpol.hpp b/include/jmath/interpol.hpp
+index 2265a9b..afe5188 100644
+--- include/jmath/interpol.hpp
++++ include/jmath/interpol.hpp
+@@ -117,7 +117,7 @@ static inline double  parabolWidth(double a, double b, double c, double y0=0)
+ {
+ 	c -= y0;
+ 	double delta = b*b-4.0*a*c;
+-	if (delta <= 0) return 0; else return sqrt(delta)/(2*std::abs(a));
++	if (delta <= 0) return 0; else return sqrt(delta)/(2*fabs(a));
+ }
+ 
+ 
+diff --git a/include/jmath/ublasExtra.hpp b/include/jmath/ublasExtra.hpp
+index 7e1f3d7..2badea8 100644
+--- include/jmath/ublasExtra.hpp
++++ include/jmath/ublasExtra.hpp
+@@ -122,8 +122,9 @@ namespace jafar {
+ 			}
+ 
+ 			/**
+-			 Convert an aligned full symmetric matrix (jblas::vec or c array) to a sym_mat
++			 Convert a subblock of an aligned full symmetric matrix (jblas::vec or c array) to a sym_mat
+ 			 @param v the vector that contains the upper triangle aligned
++			 @param shift constant shift
+ 			 @param csize container size
+ 			 @param pos block position
+ 			 @param size block size
+@@ -143,9 +144,10 @@ namespace jafar {
+ 			}
+ 
+ 			/**
+-			 Convert an aligned full symmetric matrix (jblas::vec or c array) to a sym_mat
++			 Copy a sym_mat to a subblock of an aligned full symmetric matrix (jblas::vec or c array)
+ 			 @param m the matrix to convert
+ 			 @param v the vector that will contains the upper triangle aligned (needs to be allocated to the right size)
++			 @param shift constant shift
+ 			 @param csize container size
+ 			 @param pos block position
+ 			 @param size block size
+@@ -224,6 +226,16 @@ namespace jafar {
+ 				v /= n;
+ 			}
+ 
++			/** normalized vector.
++			 */
++			template<class V>
++			jblas::vec normalized(V const & v) {
++				double n = ublas::norm_2(v);
++				JFR_NUMERIC(n > details::EPSILON,
++						"ublasExtra::normalize: vector too small");
++				return v / n;
++			}
++
+ 			/** General matrix inversion routine.
+ 			 *  It uses lu_factorize and lu_substitute in uBLAS to invert a matrix
+ 			 */
+-- 
+1.8.1.5
+
