@@ -3,7 +3,7 @@
 #
 
 JAFAR_PKG=	image-2.2.1
-PKGREVISION=	3
+PKGREVISION=	4
 
 CATEGORIES=	image
 JAFAR_COMMENT=	basic image processing based on OpenCV
