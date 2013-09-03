@@ -3,11 +3,13 @@
 #
 
 JAFAR_PKG?=		undefined
+JAFAR_PKG_RAW=		`echo ${JAFAR_PKG} | sed "s/-.*//g"`
 JAFAR_COMMENT?=		undefined
 MASTER_SITE_JAFAR=	${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 
 DISTNAME?=		jafar-${JAFAR_PKG}
 MASTER_SITES?=		${MASTER_SITE_JAFAR}
+MASTER_REPOSITORY=      git git://git.openrobots.org/robots/jafar/modules/${JAFAR_PKG_RAW}
 
 COMMENT?=		Jafar ${JAFAR_COMMENT}
 HOMEPAGE?=		http://www.openrobots.org/wiki/jafar/
