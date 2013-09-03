@@ -1,0 +1,24 @@
+Add protection for float exceptions in debug mode, to
+ allow their use
+
+---
+ include/correl/zncc.hpp | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/include/correl/zncc.hpp b/include/correl/zncc.hpp
+index 9326841..489413e 100644
+--- include/correl/zncc.hpp
++++ include/correl/zncc.hpp
+@@ -132,6 +132,9 @@ namespace jafar {
+ 					// this second bound seems globally less efficient, but more efficient at the end, after height/2
+ //					double best_remain2 = sqrt(partialSumSqr1*partialSumSqr2) - mean2*partialSum1 - mean1*partialSum2 + partialCount*mean12;
+ 					
++					#ifndef JFR_NDEBUG
++					if (sigma12 == 0.0) best_score1 = 1.0; else
++					#endif
+ 					best_score1 = (current + best_remain1) / (sigma12);
+ //					best_score2 = (current + best_remain2) / (sigma12);
+ 					if (best_score1 < minScore) return -2;
+-- 
+1.8.1.5
+

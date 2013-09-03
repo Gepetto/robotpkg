@@ -3,7 +3,7 @@
 #
 
 JAFAR_PKG=		correl-0.2
-PKGREVISION= 	1
+PKGREVISION= 	2
 
 CATEGORIES=		image
 JAFAR_COMMENT=		image correlation functions
