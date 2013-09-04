@@ -1,10 +1,13 @@
-@comment $Id: PLIST 2009/01/08 15:26:17 mallet $
-include/kwsIO/kwsioConfig.h
-include/kwsIO/kwsioDevice.h
-include/kwsIO/kwsioInterface.h
-include/kwsIO/kwsioMat.h
-include/kwsIO/kwsioPath.h
-lib/libkwsIO.la
-lib/pkgconfig/kwsIO.pc
-share/doc/doxytag/kwsIO.doxytag
-@dirrm include/kwsIO
+@comment Wed Sep 25 16:33:58 CEST 2013
+include/hpp/kwsio/config.h
+include/hpp/kwsio/config.hh
+include/hpp/kwsio/configuration.hh
+include/hpp/kwsio/deprecated.hh
+include/hpp/kwsio/device.hh
+include/hpp/kwsio/interface.hh
+include/hpp/kwsio/mat.hh
+include/hpp/kwsio/path.hh
+include/hpp/kwsio/warning.hh
+lib/libhpp-kwsio.so
+lib/libhpp-kwsio.so.${PKGVERSION}
+lib/pkgconfig/hpp-kwsio.pc

@@ -2,24 +2,19 @@
 # Created:			Anthony Mallet on Fri, 13 Jul 2007
 #
 
-DISTNAME=	kwsio-${VERSION}
-PKGNAME=	hpp-kwsio-${VERSION}
-VERSION=	1.0.1
-PKGREVISION=	1
+HPP_PACKAGE=		hpp-kwsio
+HPP_VERSION=		1.2
+PKGREVISION=
+MASTER_REPOSITORY=	git git@github.com:laas/hpp-kwsio
 
-CATEGORIES=	devel
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kwsIO
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS}
+CATEGORIES=		devel
+HPP_COMMENT=		Input and Output functions for KineoWorks(tm) package.
+LICENSE=		gnu-lgpl-v2
 
-MAINTAINER=	gepetto@laas.fr
-#HOMEPAGE=	
-COMMENT=	Input and Output functions for KineoWorks(tm) package.
+HPP_BUILD_SYSTEM=	cmake
 
+include ../../meta-pkgs/hpp/Makefile.common
 
-GNU_CONFIGURE=		yes
-DOXYGEN_PLIST_DIR+=	share/doc/kwsIO
-
-include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk

@@ -14,12 +14,12 @@ ifeq (+,$(HPP_KWSIO_DEPEND_MK)) # ------------------------------------
 PREFER.hpp-kwsio?=	robotpkg
 
 SYSTEM_SEARCH.hpp-kwsio=\
-	include/kwsIO/kwsioConfig.h	\
-	lib/libkwsIO.la
+	include/hpp/kwsio/interface.hh	\
+	lib/libhpp-kwsio.so
 
 DEPEND_USE+=		hpp-kwsio
 
-DEPEND_ABI.hpp-kwsio?=	hpp-kwsio>=1.0.1
+DEPEND_ABI.hpp-kwsio?=	hpp-kwsio>=1.2
 DEPEND_DIR.hpp-kwsio?=	../../devel/hpp-kwsio
 
 endif # HPP_KWSIO_DEPEND_MK ------------------------------------------
