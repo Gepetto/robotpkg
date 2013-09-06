@@ -14,12 +14,13 @@ ifeq (+,$(HPP_KWSPLUS_DEPEND_MK)) # ----------------------------------
 PREFER.hpp-kwsplus?=	robotpkg
 
 SYSTEM_SEARCH.hpp-kwsplus=\
-	include/kwsPlus/kwsPlusRoadmap.h	\
-	lib/libkwsPlus.la
+	include/hpp/kwsplus/roadmap/roadmap.hh		\
+	include/hpp/kwsplus/direct-path/direct-path.hh	\
+	lib/libhpp-kwsplus.so
 
 DEPEND_USE+=		hpp-kwsplus
 
-DEPEND_ABI.hpp-kwsplus?=hpp-kwsplus>=1.8
+DEPEND_ABI.hpp-kwsplus?=hpp-kwsplus>=2.3
 DEPEND_DIR.hpp-kwsplus?=../../devel/hpp-kwsplus
 
 endif # HPP_KWSPLUS_DEPEND_MK ----------------------------------------

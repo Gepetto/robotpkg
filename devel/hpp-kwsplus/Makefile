@@ -2,24 +2,18 @@
 # Created:			Anthony Mallet on Fri, 13 Jul 2007
 #
 
-DISTNAME=	kwsplus-${VERSION}
-PKGNAME=	hpp-kwsplus-${VERSION}
-VERSION=	2.1
+HPP_PACKAGE=		hpp-kwsplus
+HPP_VERSION=		2.3
+PKGREVISION=
+MASTER_REPOSITORY=	git git@github.com:laas/hpp-kwsplus
 
-CATEGORIES=	devel
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}kwsPlus
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=kwsplus/}
+CATEGORIES=		devel
+HPP_COMMENT=		Helper functions for KineoWorks(tm) package.
+LICENSE=		cnrs-hpp-closed-source
 
-MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=
-COMMENT=	Helper functions for KineoWorks(tm) package.
-LICENSE=	cnrs-hpp-closed-source
+HPP_BUILD_SYSTEM=	cmake
 
-
-GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-lapack=${PREFIX.lapack}
-
-DOXYGEN_PLIST_DIR+=	share/doc/kwsPlus
+include ../../meta-pkgs/hpp/Makefile.common
 
 # Options
 PKG_SUPPORTED_OPTIONS+=	verbose1
@@ -27,11 +21,8 @@ PKG_OPTION_DESCR.verbose1=	Define level of verbosity
 PKG_OPTION_SET.verbose1:=	CXXFLAGS+=-DDEBUG=1
 
 include ../../devel/hpp-kwsio/depend.mk
-include ../../math/lapack/depend.mk
 include ../../math/boost-numeric-bindings-v1/depend.mk
-include ../../pkgtools/libtool/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
-include ../../mk/sysdep/doxygen.mk
+include ../../math/lapack/depend.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/kineoworks.mk
 include ../../mk/sysdep/latex.mk
