@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-geometry
-HPP_VERSION=		1.1
+HPP_VERSION=		1.2
 PKGREVISION=
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-geometry
 
