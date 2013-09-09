@@ -1,8 +1,7 @@
 # robotpkg Makefile for:	hardware/velodyne-libs
 # Created:			Matthieu Herrb on Fri, 25 Jun 2010
 #
-DISTNAME=	velodyne-libs-0.5
-PKGREVISION=	1
+DISTNAME=	velodyne-libs-0.6
 CATEGORIES=	hardware
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=velodyne/}
