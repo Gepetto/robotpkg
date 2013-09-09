@@ -2,15 +2,14 @@
 # Created:			Anthony Mallet on Wed, 25 Aug 2010
 #
 
-DISTNAME=		velodyne-genom-1.2
-PKGREVISION= 		2
+DISTNAME=		velodyne-genom-1.3
 CATEGORIES=		hardware
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=velodyne/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/velodyne-genom
 
 MAINTAINER=		mallet@laas.fr
-COMMENT=		GenoM module for Velodyne-HDL{32,64} lidar data acquisition
+COMMENT=		GenoM module for Velodyne-HDL{32,64} LiDAR data acquisition
 LICENSE=		2-clause-bsd
 
 GENOM_MODULE=		velodyne
