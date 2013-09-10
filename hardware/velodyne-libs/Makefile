@@ -3,6 +3,7 @@
 #
 DISTNAME=	velodyne-libs-0.6
 CATEGORIES=	hardware
+PKGREVISION= 1
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=velodyne/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/velodyne-libs
