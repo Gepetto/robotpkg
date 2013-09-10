@@ -2,7 +2,7 @@
 # pkgrepo2deb autoconf file
 #
 AC_PREREQ(2.62)
-AC_INIT([pkgrepo2deb],[0.9.20130801],[gauchard@laas.fr])
+AC_INIT([pkgrepo2deb],[0.9.20130910],[gauchard@laas.fr])
 
 AC_CONFIG_AUX_DIR([autoconf])
 AC_CONFIG_MACRO_DIR([autoconf])

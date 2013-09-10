@@ -248,9 +248,8 @@ updaterepo()
 	            if (e) { e = e "\n" $0; } else { e = $0; }		\
 	          }							\
 	          !NF {							\
-	            if (!match(filename, "/" skip "$")) {		\
-	              print e; print;					\
-	            }							\
+		    sub(".*/", "", filename);				\
+	            if (filename != skip) { print e; print; }		\
 	            e = "";						\
 	          }' ${repodir}/Packages~
 	        ${APT_FTPARCHIVE} packages ${repodir}/${DEBFULLNAME}
