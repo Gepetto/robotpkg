@@ -1,6 +1,5 @@
-% $LAAS: pkgvars.tex 2010/12/14 14:23:15 mallet $
 %
-% Copyright (c) 2010 LAAS/CNRS
+% Copyright (c) 2010,2013 LAAS/CNRS
 % All rights reserved.
 %
 % Permission to use, copy, modify, and distribute this software for any purpose
@@ -39,7 +38,7 @@ mostly historical and has no further meaning.
 \begin{description}
    \item[PKGREVISION] Defines the \robotpkg revision number of the package. This
    {\em should not be set} for a new package. See
-   \xref{section:genvars:PKGREVISION}{Section~\ref{section:fixing:PKGREVISION}}
+   \xref{section:genvars:PKGREVISION}{Section~\ref{section:genvars:PKGREVISION}}
    for details.
 
    \smallbreak
@@ -107,7 +106,6 @@ mostly historical and has no further meaning.
    package via a {\tt make checkout} command. The options are passed to the
    ``cvs checkout'', ``git clone'' or ``svn checkout'' command that extract the
    source archive.
-
 \end{description}
 
 The second section contains information about separately downloaded patches, if any.
@@ -164,7 +162,16 @@ The third section contains the following variables.
 
 
 Other variables affecting the build process may be gathered in their own
-section. They are described in the next sections of this chapter.
+section.
+
+\begin{description}
+
+   \item[PKG\_SUPPORTED\_OPTIONS] is the list of build options supported by the
+   package. A number of related variables are used in combination with {\tt
+   PKG\_SUPPORTED\_OPTIONS}. See \xref{section:genvars:PKG_SUPPORTED_OPTIONS}
+   {Section~\ref{section:genvars:PKG_SUPPORTED_OPTIONS}} for details.
+
+\end{description}
 
 
 \subsection{distinfo} % ----------------------------------------------------

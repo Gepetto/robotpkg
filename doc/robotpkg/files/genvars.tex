@@ -1,6 +1,5 @@
-% $LAAS: genvars.tex 2010/12/14 14:21:56 mallet $
 %
-% Copyright (c) 2010 LAAS/CNRS
+% Copyright (c) 2010,2013 LAAS/CNRS
 % All rights reserved.
 %
 % Permission to use, copy, modify, and distribute this software for any purpose
@@ -20,6 +19,99 @@
 
 \section{General operation} % ----------------------------------------------
 \label{section:genvars}
+
+\subsection{Adding build options to a package} % ---------------------------
+\label{section:genvars:PKG_SUPPORTED_OPTIONS}
+
+Build options (see \xref{section:configuring:build_options}%
+{section~\ref{section:configuring:build_options}} for details) can be defined
+in a package by properly configuring the following variables.
+
+\begin{description}
+
+   \item[PKG\_SUPPORTED\_OPTIONS]
+   This is a list of build options supported by the package. This variable
+   should be set in a package Makefile.  E.g.,
+\begin{verbatim}
+	PKG_SUPPORTED_OPTIONS=	ipv6 ssl
+\end{verbatim}
+   If this variable is not defined, {\tt PKG\_OPTIONS} is set to the empty list
+   and the package is otherwise treated as not using the options framework.
+
+   \smallbreak
+   \item[PKG\_OPTION\_DESCR.<opt>]
+   This is the textual description of the option <opt> which is displayed by
+   the {\tt make show-options} target. E.g.,
+\begin{verbatim}
+	PKG_OPTION_DESCR.bar=	Enable the bar option.
+\end{verbatim}
+
+   \smallbreak
+   \item[PKG\_OPTION\_SET.<opt> (resp. PKG\_OPTION\_UNSET.<opt>)]
+   This is a makefile fragment that is evaluated when the option <opt> is set
+   (resp unset) for the package. E.g.,
+\begin{verbatim}
+	PKG_OPTION_SET.bar=	CFLAGS+=-DBAR
+	PKG_OPTION_UNSET.bar=	CFLAGS+=-DNO_BAR
+\end{verbatim}
+   Complex (multiline) {\tt \_SET} or {\tt \_UNSET} actions can be defined with
+   the {\tt define} command of GNU-make. It is for instance possible to add
+   additional dependencies: see the example below.
+
+   \smallbreak
+   \item[PKG\_OPTIONS\_OPTIONAL\_GROUPS]
+   This is a list of names of groups of mutually exclusive options.  The
+   options in each group are listed in {\tt PKG\_OPTIONS\_GROUP.<groupname>}.
+   The most specific setting of any option from the group takes precedence over
+   all other options in the group.  Options from the groups will be
+   automatically added to {\tt PKG\_SUPPORTED\_OPTIONS}.
+
+   \smallbreak
+   \item[PKG\_OPTIONS\_REQUIRED\_GROUPS]
+   Like {\tt PKG\_OPTIONS\_OPTIONAL\_GROUPS}, but building the packages will
+   fail if no option from the group is selected.
+
+   \smallbreak
+   \item[PKG\_OPTIONS\_NONEMPTY\_SETS]
+   This is a list of names of sets of options.  At least one option from each
+   set must be selected. The options in each set are listed in {\tt
+   PKG\_OPTIONS\_SET.<setname>}.  Options from the sets will be automatically
+   added to {\tt PKG\_SUPPORTED\_OPTIONS}.
+
+   \smallbreak
+   \item[PKG\_OPTIONS\_SUFFIX]
+   The suffix in {\tt PKG\_OPTIONS.suffix} variable the user can set to enable
+   or disable options specifically for this package. Defaults to {\tt
+   \$\{PKGBASE\}}.
+
+   \smallbreak
+   \item[PKG\_SUGGESTED\_OPTIONS]
+   This is a list of build options which are enabled by default. This defaults
+   to the empty list.
+
+\end{description}
+
+Here is an example Makefile fragment for a 'wibble' package. This fragment
+should be included in the 'wibble' package Makefile.
+
+\begin{verbatim}
+	PKG_OPTIONS_SUFFIX=		wibble # this is the default
+	PKG_SUPPORTED_OPTIONS=		foo bar
+	PKG_OPTIONS_OPTIONAL_GROUPS=	robot
+	PKG_OPTIONS_GROUP.robot=	lama hrp2
+	PKG_SUGGESTED_OPTIONS=		foo
+
+	PKG_OPTION_DESCR.foo=		Enable the foo option.
+	PKG_OPTION_DESCR.bar=		Build with the bar package.
+	PKG_OPTION_DESCR.lama=		Build for the lama robot.
+	PKG_OPTION_DESCR.hrp2=		Build for the hrp2 robot.
+
+	define PKG_OPTION_SET.bar
+	 CFLAGS+=-DNO_BAR
+	 include ../../pkg/bar/depend.mk
+	endef
+	PKG_OPTION_UNSET.bar=		CFLAGS+=-DNO_BAR
+\end{verbatim}
 
 \subsection{Incrementing versions when fixing an existing package} % -------
 \label{section:genvars:PKGREVISION}
@@ -64,8 +156,7 @@ When a new release of the package is released, the {\tt PKGREVISION} must be
 removed.
 
 
-\subsection{Substituting variable text in the package files
-(the {\tt SUBST} framework)} % ---------------------------------------------------
+\subsection{Substituting variable text in the package files} % -------------
 \label{section:genvars:SUBST}
 
 When you want to replace the same text in multiple files or when the
