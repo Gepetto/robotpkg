@@ -1,6 +1,5 @@
-% $LAAS: using.tex 2010/08/19 11:54:35 mallet $
 %
-% Copyright (c) 2009-2010 LAAS/CNRS
+% Copyright (c) 2009-2010,2013 LAAS/CNRS
 % All rights reserved.
 %
 % Permission to use, copy, modify, and distribute this software for any purpose
@@ -25,6 +24,12 @@ packages, organized   into  categories.  You can   browse  the online  index of
 packages, or run {\tt  make index} from the {\tt  robotpkg} directory to  build
 local {\tt index.html}  files for all  packages, viewable with any web  browser
 such as {\tt lynx} or {\tt firefox}.
+
+\robotpkg is  essentially based on the  {\tt make(1)} program.  All actions are
+triggered by invoking {\tt make} with the proper target. The following sections
+document          the           most          useful          ones          and
+\xref{section:using:targets}{section~\ref{section:using:targets}} recaps a more
+comprehensive list.
 
 
 \subsection{Building packages from source} % -------------------------------
@@ -161,6 +166,7 @@ added to help with this.
 
 
 \subsection{Building packages from a repository checkout} % ----------------
+\label{section:using:checkout}
 
 Before building a  package, \robotpkg fetches the sources  from the official(s)
 download  location(s),  as  instructed  by the  {\tt  MASTER\_SITES}  variable.
@@ -244,7 +250,6 @@ you commit upstream and put in the patches/ directory until the next release.
 
 At the moment, installing binary packages is not documented.
 
-
 \subsection{Removing packages} % -------------------------------------------
 
 To deinstall a package, it does not matter whether it was installed from source
@@ -266,7 +271,6 @@ the package in question and then removes the package itself. For example:
 will remove genom and all the packages that used it; this allows
 upgrading the {\tt genom} package.
 
-
 \subsection{Getting information about installed packages} % ----------------
 
 The {\tt  robotpkg\_info} shows information about installed  packages or binary
@@ -277,3 +281,88 @@ package files.
 
 The  {\tt robotpkg\_admin}  executes  various administrative  functions on  the
 package system.
+
+\subsection{Available {\tt make} targets} % --------------------------------
+\label{section:using:targets}
+
+The following targets are available in a package directory. They can be invoked
+by   running  {\tt   make  <target>}   after   {\tt  cd}ing   into  some   {\tt
+robotpkg/category/package}.
+
+\subsubsection{Source manipulation}
+\begin{description}
+   \item[{\tt fetch}] Download the {\tt\$\{DISTFILES\}}.
+
+   \item[{\tt extract}] Extract the contents of {\tt\$\{DISTFILES\}} into the
+   work directory {\tt\$\{WRKDIR\}}.
+
+   \item[{\tt patch}] Apply local patches available in {\tt\$\{PATCHDIR\}}
+   (usually the {\tt patches} directory in the package).
+
+   \item[{\tt checkout}] Extract the sources in {\tt\$\{WRKDIR\}} from
+   {\tt\$\{MASTER\_REPOSITORY\}} instead of {\tt\$\{MASTER\_SITES\}}. This can
+   be used to fetch a not yet released version instead of the latest
+   release. This is mutually exclusive with the {\tt fetch} and {\tt extract}
+   targets. See
+   \xref{section:using:checkout}{section~\ref{section:using:checkout}} for
+   details.
+
+   \item[{\tt configure}] Perform the necessary actions to configure the
+   sources. This may for instance involve running {\tt configure} or {\tt
+   cmake}. If no configuration is required, this step simply does nothing.
+
+   \item[{\tt build}] Or  just {\tt make}, the default  target. It compiles the
+   package locally in {\tt\$\{WRKDIR\}}.
+
+   \item[{\tt install}] Install the package into {\tt\$\{PREFIX\}}. The package
+   is then available to the rest of the system. If an older version of the
+   package is installed and required by other packages, this target requires
+   confirmation. Otherwise, any older version of the package is first
+   deinstalled.
+
+   \item[{\tt replace}] Same as {\tt install}, but does not remove packages
+   that depend on the replaced package. This saves some time, since already
+   installed package are not touched, but if the replaced package is
+   incompatible with the older version, you will run into trouble. Use with
+   care and when you know what you are doing.
+
+   \item[{\tt clean}] Tidy the work directory and removes {\tt\$\{WRKDIR\}}. If
+   the package was extracted using {\tt checkout}, this target requires
+   confirmation as it may delete locally modified files that will be lost.
+
+   \item[{\tt update}] This is a shortcut target for {\tt fetch}, {\tt
+   extract}, {\tt configure}, {\tt build}, {\tt install} and {\tt clean}. If
+   the package is already installed and up-to-date, the target asks for
+   confirmation.
+
+\end{description}
+
+\subsubsection{Introspection}
+\begin{description}
+   \item[{\tt show-depends}] Recursively display all the required dependencies
+   of a package. The results are splitted between system and \robotpkg
+   dependencies, and missing dependencies are indicated.
+
+   \item[{\tt show-var}] Display the contents of a variable. This must be
+   invoked as {\tt make show-var VARNAME=foo}, where {\tt foo} is the name of
+   the variable to be displayed.
+\end{description}
+
+\subsubsection{Package sets}
+
+\begin{description}
+   \item[{\tt fetch-depends}, {\tt replace-depends}, {\tt update-depends}, {\tt
+   clean-depends}]
+   This runs the same action as {\tt fetch}, {\tt replace}, {\tt update} or
+   {\tt clean} (respectively), but on all dependencies of the package,
+   including the package itself. Useful to update a meta-packages, for instance.
+
+   \item[{\tt fetch-<set>}, {\tt replace-<set>}, {\tt update-<set>}, {\tt
+   clean-<set>}]
+   This runs the same action as {\tt fetch}, {\tt replace}, {\tt update} or
+   {\tt clean} (respectively), but on all members of the package set named {\tt
+   <set>}. See
+   \xref{section:configuring:sets}{section~\ref{section:configuring:sets}} 
+   for an explanation of package sets and how to configure them.
+
+\end{description}
