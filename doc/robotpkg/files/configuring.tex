@@ -42,34 +42,36 @@ dependencies,  enable  optional   support for    big   dependencies or   enable
 experimental features.
 
 To see   which options, if  any, a   package supports,  and  which  options are
-mutually exclusive, run {\tt make show-options}, for example:
+mutually exclusive, run {\tt make show-options}. For example:
 
 \begin{verbatim}
 Any of the following general options may be selected:
-    debug   Produce debugging information for binary programs
-    doc     Compile documentation material
-    lex     Use lex in place of flex
-    tcl     Enable support for TCL clients
-    yacc    Use yacc in place of bison
-
-These options are enabled by default:
-    doc tcl
-
-These options are currently enabled:
-    doc tcl
+   api                  Generate module API only
+   debug                Produce debugging information for binary programs
+*  openprs              Generate OpenPRS client code
+*  python               Enable Python client code
+*d tcl                  Generate TCL client code
+*  tclserv_client       Generate C tclServ client code
+   xenomai              Enable Xenomai support
 \end{verbatim}
+
+This indicates  that the package  supports a number of options ({\tt api}, {\tt
+debug}, {\tt openprs} ...). The currently enabled options are indicated by a
+star ({\tt *}) and the default options are shown by the small letter {\tt d} in
+front of each option (here, only the {\tt tcl} is enabled by default).
 
 The following variables can be defined  in {\tt robotpkg.conf} to select which
 options to enable for a package:
 
-\begin{itemize}
-   \item {\tt PKG\_DEFAULT\_OPTIONS}, which can be used to select or  disable
+\begin{description}
+   \item[{\tt PKG\_DEFAULT\_OPTIONS}] can be used to select or  disable
    options  for  all packages  that  support them,
 
-   \item {\tt PKG\_OPTIONS.<pkgbase>}, which can  be   used  to select  or
-   disable   options specifically for package {\tt pkgbase}. Options listed
-   in these variables are selected, options preceded by {\tt -} are disabled.
-\end{itemize}
+   \item[{\tt PKG\_OPTIONS.<pkgbase>}] can  be   used  to select  or
+   disable   options specifically for package {\tt <pkgbase>}. Options listed
+   in these variables are selected, options prefixed by {\tt -} are disabled
+   (e.g. {\tt -tcl} would disable the {\tt tcl} option).
+\end{description}
 
 A few examples:
 
@@ -99,6 +101,43 @@ others are automatically  disabled.  If  an option of  the  group is explicitly
 disabled, the previously selected option,  if any, is used.   It is an error if
 no option from  a  required group  of  options is  selected, and  building  the
 package will fail.
+
+
+\subsection{Selecting build alternatives} % --------------------------------
+\label{section:configuring:alternatives}
+
+Some  packages  have  alternative   dependencies,  usually  to  select  between
+equivalent components or versions of components. This is similar to options but
+the  configuration  is  done  globally  for  all packages  that  use  the  same
+alternatives (this is to ensure consistency between packages).
+
+To see   which alternatives, if  any, a   package uses, run {\tt make
+show-options}. For example:
+\begin{verbatim}
+Available c-compiler alternatives (PREFER_ALTERNATIVE.c-compiler):
+*1 gcc                   Use the GNU C compiler
+ 2 clang                 Use the LLVM C compiler
+   ccache-gcc            Use ccache and the GNU C compiler
+   ccache-clang          Use ccache and the LLVM C compiler
+\end{verbatim}
+This indicates  that the package  supports a {\tt c-compiler}  alternative, for
+which {\tt  gcc}, {\tt clang}, {\tt  ccache-gcc} and {\tt  ccache-clang} can be
+used. The  currently selected alternative is  shown by the star  ({\tt *}), and
+the  user  preferences  (or the  default  if  the  user  has not  set  explicit
+preferences) are indicated by the integer in front of the alternative item
+(here {\tt gcc} is the preferred alternative, then {\tt clang} should be used
+if {\tt gcc} is not available. {\tt ccache} should not be used).
+
+The following variables can be defined  in {\tt robotpkg.conf} to select which
+alternative to use:
+
+\begin{description}
+   \item[{\tt PREFER\_ALTERNATIVE.<alt>}]
+   Alternatives are selected by setting the variable corresponding to the
+   alternative ({\tt PREFER\_ALTERNATIVE.c-compiler} in the example above) to a
+   space separated list, sorted by order of preference, containing one or
+   several of the items shown by {\tt make show-options}.
+\end{description}
 
 
 \subsection{Defining collections of packages} % ----------------------------
