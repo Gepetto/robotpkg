@@ -1,0 +1,163 @@
+%
+% Copyright (c) 2013 LAAS/CNRS
+% All rights reserved.
+%
+% Permission to use, copy, modify, and distribute this software for any purpose
+% with or without   fee is hereby granted, provided   that the above  copyright
+% notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+% REGARD TO THIS  SOFTWARE INCLUDING ALL  IMPLIED WARRANTIES OF MERCHANTABILITY
+% AND FITNESS. IN NO EVENT SHALL THE AUTHOR  BE LIABLE FOR ANY SPECIAL, DIRECT,
+% INDIRECT, OR CONSEQUENTIAL DAMAGES OR  ANY DAMAGES WHATSOEVER RESULTING  FROM
+% LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+% OTHER TORTIOUS ACTION,   ARISING OUT OF OR IN    CONNECTION WITH THE USE   OR
+% PERFORMANCE OF THIS SOFTWARE.
+%
+%                                             Anthony Mallet on Wed Sep 11 2013
+%
+
+\section{Creating binary packages for everything} % ------------------------
+
+There are  two ways of  getting a  set of binary  packages: manually building
+the packages you need, or using {\tt robotpkg} ``bulk build'' infrastructure.
+
+Bulk builds can also be used to test that packages compile and install cleanly,
+and {\tt robotpkg} provides reporting tools that can summarize the results of a
+``bulk build''.
+
+\subsection{Initial setup} % -----------------------------------------------
+\label{section:bulk:setup}
+
+The required setup for running bulk build merely consists in properly setting
+up {\tt robotpkg} itself. Details can be found in sections
+\xref{section:bootstrapping}{\ref{section:bootstrapping}} and
+\xref{section:configuring}{\ref{section:configuring}}.
+
+For instance, setup {\tt robotpkg} in the {\tt /local/robotpkg} directory:
+\begin{verbatim}
+	% mkdir -p /local/var/lib
+	% cd /local/var/lib
+	% git clone git://git.openrobots.org/git/robots/robotpkg
+	% cd robotpkg/bootstrap
+	% ./bootstrap --prefix=/local/robotpkg
+\end{verbatim}
+
+You should install at least {\tt pkgtools/pkg\_install}, {\tt pkgtools/digest}
+and {\tt pkgtools/tnftp}. Optionally, you can install {\tt pkgtools/rbulkit}
+that can generate pretty HTML reports
+(\xref{section:bulk:report}{section~\ref{section:bulk:report}}).
+\begin{verbatim}
+	% cd /local/var/lib/robotpkg
+	% cd pkgtools/rbulkit
+	% make update
+\end{verbatim}
+
+You must configure the prefix  directory where binary packages are built.  This
+is important: since binary package  are not relocatable, this directory will be
+the installation directory of all  generated packages. However, if you use bulk
+builds only as a  way to test the build of your  packages, any directory can be
+configured. The following variables can be customized in {\tt robotpkg.conf}:
+
+\begin{description}
+
+   \item[BULKBASE?=	/opt/openrobots]
+   The installation prefix of binary packages. This {\bf must} be different
+   from the {\tt\$\{LOCALBASE\}} directory where regular robotpkg packages are
+   installed. The default is {\tt /opt/openrobots}.
+
+   \smallskip
+   \item[BULK\_LOGDIR?=	\$\{LOCALBASE\}/var/log/bulk]
+   The directory where log files are kept. The default is to put log files in
+   the regular installation prefix of robotpkg ({\tt
+   /local/robotpkg/var/log/bulk} in the example setup above).
+
+   \smallskip \item[BULK\_TAG]
+   A name (alphanumeric characters) for that bulk session.  The default name is
+   based on the machine operating  system and version.  Giving a different name
+   can be  used to distinguish between different  runs, but in this  case it is
+   probably easier to pass that variable definition on the command line.
+
+\end{description}
+
+Finally,    you    must   define    at    least    one    package   set    (see
+\xref{section:configuring:sets}{section~\ref{section:configuring:sets}})
+containing  the list  of packages  to  build (running  bulk build  on a  single
+package is also supported, but has only limited interest). For instance, create
+a ``{\tt huge}'' and a ``{\tt tiny}'' set by placing the following definitions
+in your {\tt robotpkg.conf} file:
+\begin{verbatim}
+	PKGSET_DESCR.huge=	Huge bulk set: everything!
+	PKGSET.huge=		*/*:*
+
+	PKGSET_DESCR.tiny=	Tiny bulk set: just one package + dependencies
+	PKGSET.tiny=		shell/eltclsh
+	PKGSET_STRICT.tiny=	no
+\end{verbatim}
+
+
+\subsection{Running bulk builds} % -----------------------------------------
+\label{section:bulk:run}
+
+The target for running bulk builds is called {\tt bulk}. You can run a bulk
+build for one package by just running {\tt make bulk} in the package
+directory. Running {\tt make bulk-depends} would run the bulk target on the
+package and all of its dependencies. More useful though is to use some
+predefined sets of packages as explained in the previous section:
+\begin{verbatim}
+	% cd /local/var/lib/robotpkg
+	% make bulk-tiny
+\end{verbatim}
+This would run the {\tt bulk} target on each package of the {\tt tiny} set (see
+\xref{section:configuring:sets}{section~\ref{section:configuring:sets}}  for an
+explanation of the -<set> targets).
+
+This should run for a while and enventually populate {\tt\$\{BULK\_LOGDIR\}}
+with lots of log files. You can then examine them manually, or generate some
+reports with {\tt rbulkit}.
+
+\subsection{Generating pretty reports} % -----------------------------------
+\label{section:bulk:report}
+
+If you installed the {\tt pkgtools/rbulkit} package, you can use the {\tt
+rbulk-report} program (installed in {\tt <prefix>/sbin}) to generate:
+\begin{itemize}
+   \item an {\tt sqlite} database containing the bulk results
+   \item an HTML report
+\end{itemize}
+
+With the sample setup used throughout this chapter, the {\tt sqlite} database
+can be populated like so:
+\begin{verbatim}
+	% rbulk-report log2db /local/robotpkg/var/log/bulk sqlite.db
+\end{verbatim}
+Note that the command will {\em append} the results to a pre-existing {\tt
+sqlite.db}. Only results using the same {\tt BULK\_TAG} will be overwritten.
+
+The HTML report can then be updated like so:
+\begin{verbatim}
+	% rbulk-report db2html sqlite.db /tmp/bulk-report/
+\end{verbatim}
+The report can then be viewed by pointing a web browser to {\tt
+/tmp/bulk-report/index.html}.
+
+To go further, please read the {\tt rbulk-report(1)} manual for available
+commands and options.
+
+\subsection{Automated bulk builds} % ---------------------------------------
+\label{section:bulk:auto}
+
+The {\tt  pkgtools/rbulkit} package contains  sample scripts and  programs that
+can be  used to  automate bulk  builds. First, there  is the  {\tt rbulk-build}
+script, that does essentially all the steps described in the previous sections.
+See {\tt rbulk-build(1)} for more information. It relies on a properly setup
+{\tt robotpkg} and {\tt robotpkg.conf}.
+
+There are also the {\tt rbulk-watchd} and {\tt rbulk-notify} programs, than can
+respectively wait for and signal notifications over TCP. This can be used to
+trigger a bulk build in a commit hook, for instance. See {\tt rbulk-watchd(1)}
+and {\tt rbulk-notify(1)}.
+
+Finally, {\tt rbulk-dispatch} and {\tt rbulk-dispatchd} are able to parallelize
+jobs on a group of machines according to user defined priorities. See
+{\tt rbulk\--dispatchd(1)}.

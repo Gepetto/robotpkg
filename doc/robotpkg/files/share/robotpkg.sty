@@ -1,6 +1,6 @@
-% $LAAS: robotpkg.sty 2011/11/15 23:21:03 tho $
+% $LAAS: robotpkg.sty 2013/09/11 15:08:19 mallet $
 %
-% Copyright (c) 2009,2011 LAAS/CNRS
+% Copyright (c) 2009,2011,2013 LAAS/CNRS
 % All rights reserved.
 %
 % Permission to use, copy, modify, and distribute this software for any purpose
@@ -80,7 +80,10 @@
 
 % output a coma if not already looking at a punctuation sign
 %
-\def\singlepunct{\@ifnextchar.\relax{\@ifnextchar,\relax{, }}}
+\def\singlepunct{%
+\@ifnextchar.\relax{%
+\@ifnextchar,\relax{%
+\@ifnextchar)\relax{, }}}}
 
 \def\xref#1#2{#2, \nameref{#1}\singlepunct}
 \def\doublehline{\\\hline\hline}

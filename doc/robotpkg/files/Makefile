@@ -40,7 +40,8 @@ AUX_SRC=\
 		using.tex		\
 		configuring.tex		\
 		pkgvars.tex		\
-		genvars.tex
+		genvars.tex		\
+		bulk.tex
 
 export TEXINPUTS=	.:share:
 
