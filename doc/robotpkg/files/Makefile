@@ -1,6 +1,5 @@
-# $LAAS: Makefile 2009/03/05 11:59:51 mallet $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -39,7 +38,9 @@ AUX_SRC=\
 		getting.tex		\
 		bootstrapping.tex	\
 		using.tex		\
-		configuring.tex
+		configuring.tex		\
+		pkgvars.tex		\
+		genvars.tex
 
 export TEXINPUTS=	.:share:
 
