@@ -131,7 +131,7 @@ table, table tr {
 
 <h3 align="center">Anthony Mallet - <tt>anthony.mallet@laas.fr</tt> </h3>
 
-<h3 align="center">February 28, 2013</h3>
+<h3 align="center">September 11, 2013</h3>
 
 <div class="p"><!----></div>
     
@@ -140,7 +140,7 @@ table, table tr {
 
 
 <div class="p"><!----></div>
-<div class="small">Copyright &#169; 2006-2011 LAAS/CNRS.<br />
+<div class="small">Copyright &#169; 2006-2011,2013 LAAS/CNRS.<br />
 Copyright &#169; 1997-2010 The NetBSD Foundation, Inc.<br />
 All rights reserved.<br />
 
@@ -228,20 +228,37 @@ POSSIBILITY OF SUCH DAMAGE.
 >2.3.5&nbsp; Getting information about installed packages</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.6"
 >2.3.6&nbsp; Other administrative functions</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.3.7"
+>2.3.7&nbsp; Available <tt>make</tt> targets</a><br />
+
+
+
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4"
 >2.4&nbsp; Configuring robotpkg</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.1"
 >2.4.1&nbsp; Selecting build options</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.2"
->2.4.2&nbsp; Defining collections of packages</a><br />
+>2.4.2&nbsp; Selecting build alternatives</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.3"
->2.4.3&nbsp; Package specific configuration variables</a><br />
+>2.4.3&nbsp; Defining collections of packages</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.4"
->2.4.4&nbsp; General configuration variables</a><br />
+>2.4.4&nbsp; Package specific configuration variables</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.5"
->2.4.5&nbsp; Variables affecting the build process</a><br />
+>2.4.5&nbsp; General configuration variables</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.6"
->2.4.6&nbsp; Additional flags to the compiler</a><br />
+>2.4.6&nbsp; Variables affecting the build process</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.4.7"
+>2.4.7&nbsp; Additional flags to the compiler</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.5"
+>2.5&nbsp; Creating binary packages for everything</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.5.1"
+>2.5.1&nbsp; Initial setup</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.5.2"
+>2.5.2&nbsp; Running bulk builds</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.5.3"
+>2.5.3&nbsp; Generating pretty reports</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc2.5.4"
+>2.5.4&nbsp; Automated bulk builds</a><br />
 <a href="#tth_chAp3"
 >3&nbsp; The robotpkg developer's guide</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.1"
@@ -257,13 +274,17 @@ POSSIBILITY OF SUCH DAMAGE.
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2"
 >3.2&nbsp; General operation</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.1"
->3.2.1&nbsp; Incrementing versions when fixing an existing package</a><br />
+>3.2.1&nbsp; Adding build options to a package</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.2"
->3.2.2&nbsp; Substituting variable text in the package files (the <tt>SUBST</tt> framework)</a><br />
+>3.2.2&nbsp; Customizing the PLIST</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.3"
+>3.2.3&nbsp; Customizing the semi-automatic PLIST generation</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.4"
+>3.2.4&nbsp; Incrementing versions when fixing an existing package</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.2.5"
+>3.2.5&nbsp; Substituting variable text in the package files</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#tth_sEc3.3"
 >3.3&nbsp; The build phase</a><br />
-<a href="#tth_chAp4"
->4&nbsp; The robotpkg infrastructure internals</a><br />
 
 </div><div id="mainmatter">
 
@@ -451,9 +472,9 @@ reasonably well:
 <tr><td align="center">Platform </td><td align="center">Version
 </td></tr><tr><td id="hline" colspan=0></td></tr>
 
-<tr><td align="center">Fedora </td><td align="center">5 - 17</td></tr>
-<tr><td align="center">Ubuntu </td><td align="center">7.10 - 12.04</td></tr>
-<tr><td align="center">Debian </td><td align="center">5.03</td></tr>
+<tr><td align="center">Fedora </td><td align="center">5 - 19</td></tr>
+<tr><td align="center">Ubuntu </td><td align="center">7.10 - 13.04</td></tr>
+<tr><td align="center">Debian </td><td align="center">5.03 - 7.1</td></tr>
 <tr><td align="center">CentOS </td><td align="center">5</td></tr>
 <tr><td align="center">NetBSD </td><td align="center">4 - 6</td></tr>
 <tr><td align="center">Darwin </td><td align="center">Partial support - infrastructure works, individual packages may not</td></tr></table>
@@ -539,7 +560,7 @@ Here is a description of all the terminology used within this document.
 	<dd>  These people are    involved in all those
    files that live  in the <tt>mk/</tt> directory   and below.  Only  these people
    should             need          to               read               through
-   <a href="#chapter:internal">Part&nbsp;<a href="#chapter:internal">4</a></a>, though others might be
+   <a href="#chapter:internal">Part&nbsp;</a>, though others might be
    curious, too.</dd>
 </dl>
 
@@ -846,6 +867,13 @@ local <tt>index.html</tt>  files for all  packages, viewable with any web  brows
 such as <tt>lynx</tt> or <tt>firefox</tt>.
 
 <div class="p"><!----></div>
+<tt>robotpkg</tt> is  essentially based on the  <tt>make(1)</tt> program.  All actions are
+triggered by invoking <tt>make</tt> with the proper target. The following sections
+document          the           most          useful          ones          and
+<a href="#section:using:targets">section&nbsp;<a href="#section:using:targets">2.3.7</a></a> recaps a more
+comprehensive list.
+
+<div class="p"><!----></div>
      <a id="tth_sEc2.3.1"></a><h3>
 2.3.1&nbsp;&nbsp;Building packages from source</h3> 
 <div class="p"><!----></div>
@@ -988,7 +1016,9 @@ added to help with this.
 
 <div class="p"><!----></div>
      <a id="tth_sEc2.3.2"></a><h3>
-2.3.2&nbsp;&nbsp;Building packages from a repository checkout</h3> 
+2.3.2&nbsp;&nbsp;Building packages from a repository checkout</h3> <a id="section:using:checkout">
+</a>
+
 <div class="p"><!----></div>
 Before building a  package, <tt>robotpkg</tt> fetches the sources  from the official(s)
 download  location(s),  as  instructed  by the  <tt>MASTER_SITES</tt>  variable.
@@ -1135,10 +1165,116 @@ package files.
 The  <tt>robotpkg_admin</tt>  executes  various administrative  functions on  the
 package system.
 
+<div class="p"><!----></div>
+     <a id="tth_sEc2.3.7"></a><h3>
+2.3.7&nbsp;&nbsp;Available <tt>make</tt> targets</h3> <a id="section:using:targets">
+</a>
+
+<div class="p"><!----></div>
+The following targets are available in a package directory. They can be invoked
+by   running  <tt>make  &lt;target&#62;</tt>   after   <tt>cd</tt>ing   into  some   <tt>
+robotpkg/category/package</tt>.
+
+<div class="p"><!----></div>
+
+<h4>Source manipulation</h4>
+
+<dl>
+ <dt><b><tt>fetch</tt></b></dt>
+	<dd> Download the <tt>${DISTFILES}</tt>.</dd>
+ <dt><b><tt>extract</tt></b></dt>
+	<dd> Extract the contents of <tt>${DISTFILES}</tt> into the
+   work directory <tt>${WRKDIR}</tt>.</dd>
+ <dt><b><tt>patch</tt></b></dt>
+	<dd> Apply local patches available in <tt>${PATCHDIR}</tt>
+   (usually the <tt>patches</tt> directory in the package).</dd>
+ <dt><b><tt>checkout</tt></b></dt>
+	<dd> Extract the sources in <tt>${WRKDIR}</tt> from
+   <tt>${MASTER_REPOSITORY}</tt> instead of <tt>${MASTER_SITES}</tt>. This can
+   be used to fetch a not yet released version instead of the latest
+   release. This is mutually exclusive with the <tt>fetch</tt> and <tt>extract</tt>
+   targets. See
+   <a href="#section:using:checkout">section&nbsp;<a href="#section:using:checkout">2.3.2</a></a> for
+   details.</dd>
+ <dt><b><tt>configure</tt></b></dt>
+	<dd> Perform the necessary actions to configure the
+   sources. This may for instance involve running <tt>configure</tt> or <tt>
+   cmake</tt>. If no configuration is required, this step simply does nothing.</dd>
+ <dt><b><tt>build</tt></b></dt>
+	<dd> Or  just <tt>make</tt>, the default  target. It compiles the
+   package locally in <tt>${WRKDIR}</tt>.</dd>
+ <dt><b><tt>install</tt></b></dt>
+	<dd> Install the package into <tt>${PREFIX}</tt>. The package
+   is then available to the rest of the system. If an older version of the
+   package is installed and required by other packages, this target requires
+   confirmation. Otherwise, any older version of the package is first
+   deinstalled.</dd>
+ <dt><b><tt>replace</tt></b></dt>
+	<dd> Same as <tt>install</tt>, but does not remove packages
+   that depend on the replaced package. This saves some time, since already
+   installed package are not touched, but if the replaced package is
+   incompatible with the older version, you will run into trouble. Use with
+   care and when you know what you are doing.</dd>
+ <dt><b><tt>clean</tt></b></dt>
+	<dd> Tidy the work directory and removes <tt>${WRKDIR}</tt>. If
+   the package was extracted using <tt>checkout</tt>, this target requires
+   confirmation as it may delete locally modified files that will be lost.</dd>
+ <dt><b><tt>update</tt></b></dt>
+	<dd> This is a shortcut target for <tt>fetch</tt>, <tt>
+   extract</tt>, <tt>configure</tt>, <tt>build</tt>, <tt>install</tt> and <tt>clean</tt>. If
+   the package is already installed and up-to-date, the target asks for
+   confirmation.</dd>
+</dl>
+
+<div class="p"><!----></div>
+
+<h4>Introspection</h4>
+
+<dl>
+ <dt><b><tt>show-options</tt></b></dt>
+	<dd> Display the list of available alternatives (see
+   <a href="#section:configuring:alternatives">section&nbsp;<a href="#section:configuring:alternatives">2.4.2</a></a>)
+   and build options (see
+   <a href="#section:configuring:build_options">section&nbsp;<a href="#section:configuring:build_options">2.4.1</a></a>).</dd>
+ <dt><b><tt>show-depends</tt></b></dt>
+	<dd> Recursively display all the required dependencies
+   of a package. The results are splitted between system and <tt>robotpkg</tt> 
+dependencies, and missing dependencies are indicated.</dd>
+ <dt><b><tt>show-var</tt></b></dt>
+	<dd> Display the contents of a variable. This must be
+   invoked as <tt>make show-var VARNAME=foo</tt>, where <tt>foo</tt> is the name of
+   the variable to be displayed.</dd>
+</dl>
+
+<div class="p"><!----></div>
+
+<h4>Package sets</h4>
+
+<div class="p"><!----></div>
+
+<dl>
+ <dt><b><tt>fetch-depends</tt>, <tt>replace-depends</tt>, <tt>update-depends</tt>, <tt>
+   clean-depends</tt></b></dt>
+	<dd>
+   This runs the same action as <tt>fetch</tt>, <tt>replace</tt>, <tt>update</tt> or
+   <tt>clean</tt> (respectively), but on all dependencies of the package,
+   including the package itself. Useful to update a meta-packages, for instance.</dd>
+ <dt><b><tt>fetch-&lt;set&#62;</tt>, <tt>replace-&lt;set&#62;</tt>, <tt>update-&lt;set&#62;</tt>, <tt>
+   clean-&lt;set&#62;</tt></b></dt>
+	<dd>
+   This runs the same action as <tt>fetch</tt>, <tt>replace</tt>, <tt>update</tt> or
+   <tt>clean</tt> (respectively), but on all members of the package set named <tt>
+   &lt;set&#62;</tt>. See
+   <a href="#section:configuring:sets">section&nbsp;<a href="#section:configuring:sets">2.4.3</a></a> 
+   for an explanation of package sets and how to configure them.</dd>
+</dl>
+
 
 <div class="p"><!----></div>
  <a id="tth_sEc2.4"></a><h2>
-2.4&nbsp;&nbsp;Configuring robotpkg</h2> 
+2.4&nbsp;&nbsp;Configuring robotpkg</h2> <a id="section:configuring">
+</a>
+
 <div class="p"><!----></div>
 The whole <tt>robotpkg</tt> system is configured  <em>via</em> a single, centralized file,
 called <tt>robotpkg.conf</tt>  and  placed  in  the   <tt>/opt/openrobots/etc</tt>
@@ -1156,7 +1292,9 @@ try it out to see if it works.
 
 <div class="p"><!----></div>
      <a id="tth_sEc2.4.1"></a><h3>
-2.4.1&nbsp;&nbsp;Selecting build options</h3> 
+2.4.1&nbsp;&nbsp;Selecting build options</h3> <a id="section:configuring:build_options">
+</a>
+
 <div class="p"><!----></div>
 Some packages have   build time options, usually   to select between  different
 dependencies,  enable  optional   support for    big   dependencies or   enable
@@ -1164,25 +1302,27 @@ experimental features.
 
 <div class="p"><!----></div>
 To see   which options, if  any, a   package supports,  and  which  options are
-mutually exclusive, run <tt>make show-options</tt>, for example:
+mutually exclusive, run <tt>make show-options</tt>. For example:
 
 <div class="p"><!----></div>
 
 <pre>
 Any&nbsp;of&nbsp;the&nbsp;following&nbsp;general&nbsp;options&nbsp;may&nbsp;be&nbsp;selected:
-&nbsp;&nbsp;&nbsp;&nbsp;debug&nbsp;&nbsp;&nbsp;Produce&nbsp;debugging&nbsp;information&nbsp;for&nbsp;binary&nbsp;programs
-&nbsp;&nbsp;&nbsp;&nbsp;doc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compile&nbsp;documentation&nbsp;material
-&nbsp;&nbsp;&nbsp;&nbsp;lex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;lex&nbsp;in&nbsp;place&nbsp;of&nbsp;flex
-&nbsp;&nbsp;&nbsp;&nbsp;tcl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable&nbsp;support&nbsp;for&nbsp;TCL&nbsp;clients
-&nbsp;&nbsp;&nbsp;&nbsp;yacc&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;yacc&nbsp;in&nbsp;place&nbsp;of&nbsp;bison
-
-These&nbsp;options&nbsp;are&nbsp;enabled&nbsp;by&nbsp;default:
-&nbsp;&nbsp;&nbsp;&nbsp;doc&nbsp;tcl
-
-These&nbsp;options&nbsp;are&nbsp;currently&nbsp;enabled:
-&nbsp;&nbsp;&nbsp;&nbsp;doc&nbsp;tcl
+&nbsp;&nbsp;&nbsp;api&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generate&nbsp;module&nbsp;API&nbsp;only
+&nbsp;&nbsp;&nbsp;debug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Produce&nbsp;debugging&nbsp;information&nbsp;for&nbsp;binary&nbsp;programs
+*&nbsp;&nbsp;openprs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generate&nbsp;OpenPRS&nbsp;client&nbsp;code
+*&nbsp;&nbsp;python&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable&nbsp;Python&nbsp;client&nbsp;code
+*d&nbsp;tcl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generate&nbsp;TCL&nbsp;client&nbsp;code
+*&nbsp;&nbsp;tclserv_client&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generate&nbsp;C&nbsp;tclServ&nbsp;client&nbsp;code
+&nbsp;&nbsp;&nbsp;xenomai&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enable&nbsp;Xenomai&nbsp;support
 
 </pre>
+
+<div class="p"><!----></div>
+This indicates  that the package  supports a number of options (<tt>api</tt>, <tt>
+debug</tt>, <tt>openprs</tt> ...). The currently enabled options are indicated by a
+star (<tt>*</tt>) and the default options are shown by the small letter <tt>d</tt> in
+front of each option (here, only the <tt>tcl</tt> is enabled by default).
 
 <div class="p"><!----></div>
 The following variables can be defined  in <tt>robotpkg.conf</tt> to select which
@@ -1190,18 +1330,16 @@ options to enable for a package:
 
 <div class="p"><!----></div>
 
-<ul>
-<li> <tt>PKG_DEFAULT_OPTIONS</tt>, which can be used to select or  disable
-   options  for  all packages  that  support them,
-<div class="p"><!----></div>
-</li>
-
-<li> <tt>PKG_OPTIONS.&lt;pkgbase&#62;</tt>, which can  be   used  to select  or
-   disable   options specifically for package <tt>pkgbase</tt>. Options listed
-   in these variables are selected, options preceded by <tt>-</tt> are disabled.
-<div class="p"><!----></div>
-</li>
-</ul>
+<dl>
+ <dt><b><tt>PKG_DEFAULT_OPTIONS</tt></b></dt>
+	<dd> can be used to select or  disable
+   options  for  all packages  that  support them,</dd>
+ <dt><b><tt>PKG_OPTIONS.&lt;pkgbase&#62;</tt></b></dt>
+	<dd> can  be   used  to select  or
+   disable   options specifically for package <tt>&lt;pkgbase&#62;</tt>. Options listed
+   in these variables are selected, options prefixed by <tt>-</tt> are disabled
+   (e.g. <tt>-tcl</tt> would disable the <tt>tcl</tt> option).</dd>
+</dl>
 
 <div class="p"><!----></div>
 A few examples:
@@ -1249,7 +1387,55 @@ package will fail.
 
 <div class="p"><!----></div>
      <a id="tth_sEc2.4.2"></a><h3>
-2.4.2&nbsp;&nbsp;Defining collections of packages</h3> 
+2.4.2&nbsp;&nbsp;Selecting build alternatives</h3> <a id="section:configuring:alternatives">
+</a>
+
+<div class="p"><!----></div>
+Some  packages  have  alternative   dependencies,  usually  to  select  between
+equivalent components or versions of components. This is similar to options but
+the  configuration  is  done  globally  for  all packages  that  use  the  same
+alternatives (this is to ensure consistency between packages).
+
+<div class="p"><!----></div>
+To see   which alternatives, if  any, a   package uses, run <tt>make
+show-options</tt>. For example:
+
+<pre>
+Available&nbsp;c-compiler&nbsp;alternatives&nbsp;(PREFER_ALTERNATIVE.c-compiler):
+*1&nbsp;gcc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;the&nbsp;GNU&nbsp;C&nbsp;compiler
+&nbsp;2&nbsp;clang&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;the&nbsp;LLVM&nbsp;C&nbsp;compiler
+&nbsp;&nbsp;&nbsp;ccache-gcc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;ccache&nbsp;and&nbsp;the&nbsp;GNU&nbsp;C&nbsp;compiler
+&nbsp;&nbsp;&nbsp;ccache-clang&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use&nbsp;ccache&nbsp;and&nbsp;the&nbsp;LLVM&nbsp;C&nbsp;compiler
+
+</pre>
+This indicates  that the package  supports a <tt>c-compiler</tt>  alternative, for
+which <tt>gcc</tt>, <tt>clang</tt>, <tt>ccache-gcc</tt> and <tt>ccache-clang</tt> can be
+used. The  currently selected alternative is  shown by the star  (<tt>*</tt>), and
+the  user  preferences  (or the  default  if  the  user  has not  set  explicit
+preferences) are indicated by the integer in front of the alternative item
+(here <tt>gcc</tt> is the preferred alternative, then <tt>clang</tt> should be used
+if <tt>gcc</tt> is not available. <tt>ccache</tt> should not be used).
+
+<div class="p"><!----></div>
+The following variables can be defined  in <tt>robotpkg.conf</tt> to select which
+alternative to use:
+
+<div class="p"><!----></div>
+
+<dl>
+ <dt><b><tt>PREFER_ALTERNATIVE.&lt;alt&#62;</tt></b></dt>
+	<dd>
+   Alternatives are selected by setting the variable corresponding to the
+   alternative (<tt>PREFER_ALTERNATIVE.c-compiler</tt> in the example above) to a
+   space separated list, sorted by order of preference, containing one or
+   several of the items shown by <tt>make show-options</tt>.</dd>
+</dl>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc2.4.3"></a><h3>
+2.4.3&nbsp;&nbsp;Defining collections of packages</h3> <a id="section:configuring:sets">
+</a>
+
 <div class="p"><!----></div>
 Instead of installing, removing or updating packages one-by-one, you can define
 collections  of  packages  in  your  <tt>robotpkg.conf</tt>.  Once  one  or  more
@@ -1332,8 +1518,8 @@ Each of these variables can be defined on a per-collection basis, by adding the
 to be configured.
 
 <div class="p"><!----></div>
-     <a id="tth_sEc2.4.3"></a><h3>
-2.4.3&nbsp;&nbsp;Package specific configuration variables</h3> 
+     <a id="tth_sEc2.4.4"></a><h3>
+2.4.4&nbsp;&nbsp;Package specific configuration variables</h3> 
 <div class="p"><!----></div>
 In this  section, you can  find variables that  apply to one  specific package.
 Each  variable is  suffixed by  <tt>.&lt;pkg&#62;</tt>, where  <tt>&lt;pkg&#62;</tt>  is  the actual
@@ -1355,8 +1541,8 @@ package name to which the variable should apply.
 </dl>
 
 <div class="p"><!----></div>
-     <a id="tth_sEc2.4.4"></a><h3>
-2.4.4&nbsp;&nbsp;General configuration variables</h3> 
+     <a id="tth_sEc2.4.5"></a><h3>
+2.4.5&nbsp;&nbsp;General configuration variables</h3> 
 <div class="p"><!----></div>
 In  this  section,  you can   find some  variables   that apply  to  all <tt>robotpkg</tt> 
 packages.
@@ -1391,8 +1577,8 @@ packages.
 </dl>
 
 <div class="p"><!----></div>
-     <a id="tth_sEc2.4.5"></a><h3>
-2.4.5&nbsp;&nbsp;Variables affecting the build process</h3> 
+     <a id="tth_sEc2.4.6"></a><h3>
+2.4.6&nbsp;&nbsp;Variables affecting the build process</h3> 
 <div class="p"><!----></div>
 
 <dl>
@@ -1427,8 +1613,8 @@ packages.
 
 <div class="p"><!----></div>
 </dd>
-</dl>     <a id="tth_sEc2.4.6"></a><h3>
-2.4.6&nbsp;&nbsp;Additional flags to the compiler</h3> 
+</dl>     <a id="tth_sEc2.4.7"></a><h3>
+2.4.7&nbsp;&nbsp;Additional flags to the compiler</h3> 
 <div class="p"><!----></div>
 If you wish  to set compiler variables   such as <tt>CFLAGS</tt>,  <tt>CXXFLAGS</tt>,
 <tt>FFLAGS</tt> ... please make sure to use  the <tt>+=</tt>  operator instead of the
@@ -1459,6 +1645,200 @@ should use the <tt>+=</tt> operator:
 LDFLAGS+=&nbsp;-your&nbsp;-linkerflags
 
 </pre>
+
+
+<div class="p"><!----></div>
+ <a id="tth_sEc2.5"></a><h2>
+2.5&nbsp;&nbsp;Creating binary packages for everything</h2> 
+<div class="p"><!----></div>
+There are  two ways of  getting a  set of binary  packages: manually building
+the packages you need, or using <tt>robotpkg</tt> "bulk build" infrastructure.
+
+<div class="p"><!----></div>
+Bulk builds can also be used to test that packages compile and install cleanly,
+and <tt>robotpkg</tt> provides reporting tools that can summarize the results of a
+"bulk build".
+
+<div class="p"><!----></div>
+     <a id="tth_sEc2.5.1"></a><h3>
+2.5.1&nbsp;&nbsp;Initial setup</h3> <a id="section:bulk:setup">
+</a>
+
+<div class="p"><!----></div>
+The required setup for running bulk build merely consists in properly setting
+up <tt>robotpkg</tt> itself. Details can be found in sections
+<a href="#section:bootstrapping"><a href="#section:bootstrapping">2.2</a></a> and
+<a href="#section:configuring"><a href="#section:configuring">2.4</a></a>.
+
+<div class="p"><!----></div>
+For instance, setup <tt>robotpkg</tt> in the <tt>/local/robotpkg</tt> directory:
+
+<pre>
+	%&nbsp;mkdir&nbsp;-p&nbsp;/local/var/lib
+	%&nbsp;cd&nbsp;/local/var/lib
+	%&nbsp;git&nbsp;clone&nbsp;git://git.openrobots.org/git/robots/robotpkg
+	%&nbsp;cd&nbsp;robotpkg/bootstrap
+	%&nbsp;./bootstrap&nbsp;--prefix=/local/robotpkg
+
+</pre>
+
+<div class="p"><!----></div>
+You should install at least <tt>pkgtools/pkg_install</tt>, <tt>pkgtools/digest</tt>
+and <tt>pkgtools/tnftp</tt>. Optionally, you can install <tt>pkgtools/rbulkit</tt>
+that can generate pretty HTML reports
+(<a href="#section:bulk:report">section&nbsp;<a href="#section:bulk:report">2.5.3</a></a>).
+
+<pre>
+	%&nbsp;cd&nbsp;/local/var/lib/robotpkg
+	%&nbsp;cd&nbsp;pkgtools/rbulkit
+	%&nbsp;make&nbsp;update
+
+</pre>
+
+<div class="p"><!----></div>
+You must configure the prefix  directory where binary packages are built.  This
+is important: since binary package  are not relocatable, this directory will be
+the installation directory of all  generated packages. However, if you use bulk
+builds only as a  way to test the build of your  packages, any directory can be
+configured. The following variables can be customized in <tt>robotpkg.conf</tt>:
+
+<div class="p"><!----></div>
+
+<dl>
+ <dt><b>BULKBASE?=	/opt/openrobots</b></dt>
+	<dd>
+   The installation prefix of binary packages. This <b>must</b> be different
+   from the <tt>${LOCALBASE}</tt> directory where regular robotpkg packages are
+   installed. The default is <tt>/opt/openrobots</tt>.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>BULK_LOGDIR?=	${LOCALBASE}/var/log/bulk</b></dt>
+	<dd>
+   The directory where log files are kept. The default is to put log files in
+   the regular installation prefix of robotpkg (<tt>
+   /local/robotpkg/var/log/bulk</tt> in the example setup above).
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>BULK_TAG</b></dt>
+	<dd>
+   A name (alphanumeric characters) for that bulk session.  The default name is
+   based on the machine operating  system and version.  Giving a different name
+   can be  used to distinguish between different  runs, but in this  case it is
+   probably easier to pass that variable definition on the command line.</dd>
+</dl>
+
+<div class="p"><!----></div>
+Finally,    you    must   define    at    least    one    package   set    (see
+<a href="#section:configuring:sets">section&nbsp;<a href="#section:configuring:sets">2.4.3</a></a>)
+containing  the list  of packages  to  build (running  bulk build  on a  single
+package is also supported, but has only limited interest). For instance, create
+a "<tt>huge</tt>" and a "<tt>tiny</tt>" set by placing the following definitions
+in your <tt>robotpkg.conf</tt> file:
+
+<pre>
+	PKGSET_DESCR.huge=	Huge&nbsp;bulk&nbsp;set:&nbsp;everything!
+	PKGSET.huge=		*/*:*
+
+	PKGSET_DESCR.tiny=	Tiny&nbsp;bulk&nbsp;set:&nbsp;just&nbsp;one&nbsp;package&nbsp;+&nbsp;dependencies
+	PKGSET.tiny=		shell/eltclsh
+	PKGSET_STRICT.tiny=	no
+
+</pre>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc2.5.2"></a><h3>
+2.5.2&nbsp;&nbsp;Running bulk builds</h3> <a id="section:bulk:run">
+</a>
+
+<div class="p"><!----></div>
+The target for running bulk builds is called <tt>bulk</tt>. You can run a bulk
+build for one package by just running <tt>make bulk</tt> in the package
+directory. Running <tt>make bulk-depends</tt> would run the bulk target on the
+package and all of its dependencies. More useful though is to use some
+predefined sets of packages as explained in the previous section:
+
+<pre>
+	%&nbsp;cd&nbsp;/local/var/lib/robotpkg
+	%&nbsp;make&nbsp;bulk-tiny
+
+</pre>
+This would run the <tt>bulk</tt> target on each package of the <tt>tiny</tt> set (see
+<a href="#section:configuring:sets">section&nbsp;<a href="#section:configuring:sets">2.4.3</a></a>  for an
+explanation of the -&lt;set&#62; targets).
+
+<div class="p"><!----></div>
+This should run for a while and enventually populate <tt>${BULK_LOGDIR}</tt>
+with lots of log files. You can then examine them manually, or generate some
+reports with <tt>rbulkit</tt>.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc2.5.3"></a><h3>
+2.5.3&nbsp;&nbsp;Generating pretty reports</h3> <a id="section:bulk:report">
+</a>
+
+<div class="p"><!----></div>
+If you installed the <tt>pkgtools/rbulkit</tt> package, you can use the <tt>
+rbulk-report</tt> program (installed in <tt>&lt;prefix&#62;/sbin</tt>) to generate:
+
+<ul>
+<li> an <tt>sqlite</tt> database containing the bulk results
+<div class="p"><!----></div>
+</li>
+
+<li> an HTML report
+<div class="p"><!----></div>
+</li>
+</ul>
+
+<div class="p"><!----></div>
+With the sample setup used throughout this chapter, the <tt>sqlite</tt> database
+can be populated like so:
+
+<pre>
+	%&nbsp;rbulk-report&nbsp;log2db&nbsp;/local/robotpkg/var/log/bulk&nbsp;sqlite.db
+
+</pre>
+Note that the command will <em>append</em> the results to a pre-existing <tt>
+sqlite.db</tt>. Only results using the same <tt>BULK_TAG</tt> will be overwritten.
+
+<div class="p"><!----></div>
+The HTML report can then be updated like so:
+
+<pre>
+	%&nbsp;rbulk-report&nbsp;db2html&nbsp;sqlite.db&nbsp;/tmp/bulk-report/
+
+</pre>
+The report can then be viewed by pointing a web browser to <tt>
+/tmp/bulk-report/index.html</tt>.
+
+<div class="p"><!----></div>
+To go further, please read the <tt>rbulk-report(1)</tt> manual for available
+commands and options.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc2.5.4"></a><h3>
+2.5.4&nbsp;&nbsp;Automated bulk builds</h3> <a id="section:bulk:auto">
+</a>
+
+<div class="p"><!----></div>
+The <tt>pkgtools/rbulkit</tt> package contains  sample scripts and  programs that
+can be  used to  automate bulk  builds. First, there  is the  <tt>rbulk-build</tt>
+script, that does essentially all the steps described in the previous sections.
+See <tt>rbulk-build(1)</tt> for more information. It relies on a properly setup
+<tt>robotpkg</tt> and <tt>robotpkg.conf</tt>.
+
+<div class="p"><!----></div>
+There are also the <tt>rbulk-watchd</tt> and <tt>rbulk-notify</tt> programs, than can
+respectively wait for and signal notifications over TCP. This can be used to
+trigger a bulk build in a commit hook, for instance. See <tt>rbulk-watchd(1)</tt>
+and <tt>rbulk-notify(1)</tt>.
+
+<div class="p"><!----></div>
+Finally, <tt>rbulk-dispatch</tt> and <tt>rbulk-dispatchd</tt> are able to parallelize
+jobs on a group of machines according to user defined priorities. See
+<tt>rbulk-dispatchd(1)</tt>.
 
 
 <div class="p"><!----></div>
@@ -1504,7 +1884,7 @@ mostly historical and has no further meaning.
  <dt><b>PKGREVISION</b></dt>
 	<dd> Defines the <tt>robotpkg</tt> revision number of the package. This
    <em>should not be set</em> for a new package. See
-   <a href="#section:genvars:PKGREVISION">Section&nbsp;</a>
+   <a href="#section:genvars:PKGREVISION">Section&nbsp;<a href="#section:genvars:PKGREVISION">3.2.4</a></a>
    for details.
 
 <div class="p"><!----></div>
@@ -1657,7 +2037,16 @@ The third section contains the following variables.
 
 <div class="p"><!----></div>
 Other variables affecting the build process may be gathered in their own
-section. They are described in the next sections of this chapter.
+section.
+
+<div class="p"><!----></div>
+
+<dl>
+ <dt><b>PKG_SUPPORTED_OPTIONS</b></dt>
+	<dd> is the list of build options supported by the
+   package. A number of related variables are used in combination with <tt>
+   PKG_SUPPORTED_OPTIONS</tt>. See <a href="#section:genvars:PKG_SUPPORTED_OPTIONS">Section&nbsp;<a href="#section:genvars:PKG_SUPPORTED_OPTIONS">3.2.1</a></a> for details.</dd>
+</dl>
 
 <div class="p"><!----></div>
      <a id="tth_sEc3.1.2"></a><h3>
@@ -1711,7 +2100,11 @@ In  order to  create  or  update a  <tt>PLIST</tt>, you  can  use  the <tt>make
 print-PLIST</tt> command  to output  a PLIST that  matches any new  installed files
 since  the  package   was  extracted.   This  command  will   generate  a  <tt>
 PLIST.guess</tt> file which  you must move manually to  <tt>PLIST</tt> after reviewing
-the result of the semi-automatic generation.
+the result  of the semi-automatic  generation. In order  to fine tune  the <tt>
+PLIST</tt>  or  its semi-automatic  generation,  specific  variables documented  in
+<a href="#section:genvars:PLIST">section&nbsp;<a href="#section:genvars:PLIST">3.2.2</a></a> and
+<a href="#section:genvars:print-PLIST">section&nbsp;<a href="#section:genvars:print-PLIST">3.2.3</a></a>
+may be used.
 
 <div class="p"><!----></div>
      <a id="tth_sEc3.1.4"></a><h3>
@@ -1763,7 +2156,244 @@ for the patch files by using the <tt>make mdi</tt> command, see
 
 <div class="p"><!----></div>
      <a id="tth_sEc3.2.1"></a><h3>
-3.2.1&nbsp;&nbsp;Incrementing versions when fixing an existing package</h3> <a id="section:genvars:PKGREVISION">
+3.2.1&nbsp;&nbsp;Adding build options to a package</h3> <a id="section:genvars:PKG_SUPPORTED_OPTIONS">
+</a>
+
+<div class="p"><!----></div>
+Build options (see <a href="#section:configuring:build_options">section&nbsp;<a href="#section:configuring:build_options">2.4.1</a></a> for details) can be defined
+in a package by properly configuring the following variables.
+
+<div class="p"><!----></div>
+
+<dl>
+ <dt><b>PKG_SUPPORTED_OPTIONS</b></dt>
+	<dd>
+   This is a list of build options supported by the package. This variable
+   should be set in a package Makefile.  E.g.,
+
+<pre>
+	PKG_SUPPORTED_OPTIONS=	ipv6&nbsp;ssl
+
+</pre>
+   If this variable is not defined, <tt>PKG_OPTIONS</tt> is set to the empty list
+   and the package is otherwise treated as not using the options framework.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>PKG_OPTION_DESCR.&lt;opt&#62;</b></dt>
+	<dd>
+   This is the textual description of the option &lt;opt&#62; which is displayed by
+   the <tt>make show-options</tt> target. E.g.,
+
+<pre>
+	PKG_OPTION_DESCR.bar=	Enable&nbsp;the&nbsp;bar&nbsp;option.
+
+</pre>
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>PKG_OPTION_SET.&lt;opt&#62; (resp. PKG_OPTION_UNSET.&lt;opt&#62;)</b></dt>
+	<dd>
+   This is a makefile fragment that is evaluated when the option &lt;opt&#62; is set
+   (resp unset) for the package. E.g.,
+
+<pre>
+	PKG_OPTION_SET.bar=	CFLAGS+=-DBAR
+	PKG_OPTION_UNSET.bar=	CFLAGS+=-DNO_BAR
+
+</pre>
+   Complex (multiline) <tt>_SET</tt> or <tt>_UNSET</tt> actions can be defined with
+   the <tt>define</tt> command of GNU-make. It is for instance possible to add
+   additional dependencies: see the example below.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>PKG_OPTIONS_OPTIONAL_GROUPS</b></dt>
+	<dd>
+   This is a list of names of groups of mutually exclusive options.  The
+   options in each group are listed in <tt>PKG_OPTIONS_GROUP.&lt;groupname&#62;</tt>.
+   The most specific setting of any option from the group takes precedence over
+   all other options in the group.  Options from the groups will be
+   automatically added to <tt>PKG_SUPPORTED_OPTIONS</tt>.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>PKG_OPTIONS_REQUIRED_GROUPS</b></dt>
+	<dd>
+   Like <tt>PKG_OPTIONS_OPTIONAL_GROUPS</tt>, but building the packages will
+   fail if no option from the group is selected.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>PKG_OPTIONS_NONEMPTY_SETS</b></dt>
+	<dd>
+   This is a list of names of sets of options.  At least one option from each
+   set must be selected. The options in each set are listed in <tt>
+   PKG_OPTIONS_SET.&lt;setname&#62;</tt>.  Options from the sets will be automatically
+   added to <tt>PKG_SUPPORTED_OPTIONS</tt>.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>PKG_OPTIONS_SUFFIX</b></dt>
+	<dd>
+   The suffix in <tt>PKG_OPTIONS.suffix</tt> variable the user can set to enable
+   or disable options specifically for this package. Defaults to <tt>
+   ${PKGBASE}</tt>.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>PKG_SUGGESTED_OPTIONS</b></dt>
+	<dd>
+   This is a list of build options which are enabled by default. This defaults
+   to the empty list.</dd>
+</dl>
+
+<div class="p"><!----></div>
+Here is an example Makefile fragment for a 'wibble' package. This fragment
+should be included in the 'wibble' package Makefile.
+
+<div class="p"><!----></div>
+
+<pre>
+	PKG_OPTIONS_SUFFIX=		wibble&nbsp;#&nbsp;this&nbsp;is&nbsp;the&nbsp;default
+	PKG_SUPPORTED_OPTIONS=		foo&nbsp;bar
+	PKG_OPTIONS_OPTIONAL_GROUPS=	robot
+	PKG_OPTIONS_GROUP.robot=	lama&nbsp;hrp2
+	PKG_SUGGESTED_OPTIONS=		foo
+
+	PKG_OPTION_DESCR.foo=		Enable&nbsp;the&nbsp;foo&nbsp;option.
+	PKG_OPTION_DESCR.bar=		Build&nbsp;with&nbsp;the&nbsp;bar&nbsp;package.
+	PKG_OPTION_DESCR.lama=		Build&nbsp;for&nbsp;the&nbsp;lama&nbsp;robot.
+	PKG_OPTION_DESCR.hrp2=		Build&nbsp;for&nbsp;the&nbsp;hrp2&nbsp;robot.
+
+	define&nbsp;PKG_OPTION_SET.bar
+	&nbsp;CFLAGS+=-DNO_BAR
+	&nbsp;include&nbsp;../../pkg/bar/depend.mk
+	endef
+	PKG_OPTION_UNSET.bar=		CFLAGS+=-DNO_BAR
+
+</pre>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc3.2.2"></a><h3>
+3.2.2&nbsp;&nbsp;Customizing the PLIST</h3> <a id="section:genvars:PLIST">
+</a>
+
+<div class="p"><!----></div>
+The packing list of a package is usually computed from the <tt>PLIST</tt> file
+located in the package directory. The following variables determine how the
+final packing list is setup:
+
+<div class="p"><!----></div>
+
+<dl>
+ <dt><b>PLIST_SRC</b></dt>
+	<dd>
+   The source file(s) for the final packing list.  By default, its value
+   is constructed from the PLIST.* files within the package directory:
+
+<pre>
+&nbsp;&nbsp;&nbsp;&nbsp;PLIST_SRC+=	${PKGDIR}/PLIST.${OS_KERNEL}
+&nbsp;&nbsp;&nbsp;&nbsp;PLIST_SRC+=	${PKGDIR}/PLIST.${OPSYS}
+&nbsp;&nbsp;&nbsp;&nbsp;PLIST_SRC+=	${PKGDIR}/PLIST.${MACHINE_ARCH}
+&nbsp;&nbsp;&nbsp;&nbsp;PLIST_SRC+=	${PKGDIR}/PLIST.${OPSYS}-${MACHINE_ARCH}
+&nbsp;&nbsp;&nbsp;&nbsp;PLIST_SRC+=	${PKGDIR}/PLIST
+
+</pre>
+   If a Makefile sets <tt>PLIST_SRC</tt>, the defaults are not used.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>DYNAMIC_PLIST_DIRS</b></dt>
+	<dd>
+   A list of directories, absolute or relative to the installation
+   <tt>${PREFIX}</tt>, whose contents are dynamically added to the final packing
+   list. This is useful to handle non-deterministic packing lists, most notably
+   those generated by <tt>doxygen</tt>. This should be used with care, since <tt>
+   DYNAMIC_PLIST_DIRS</tt> somewhat defeats the purpose of the packing list.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>PLIST_SUBST</b></dt>
+	<dd>
+   The <tt>PLIST</tt> file(s) of a  package may also  contain variable references
+   (in the  <tt>${VAR}</tt> form)  that are expanded  at intallation  time.  The
+   following variables are supported by default:
+
+<pre>
+	PKGBASE
+	PKGNAME
+	PKGVERSION
+
+	OPSYS
+	OS_VERSION
+	OS_KERNEL
+	OS_KERNEL_VERSION
+
+	PKGMANDIR
+	PKGINFODIR
+
+	PLIST.&lt;opt&#62;&nbsp;#&nbsp;for&nbsp;all&nbsp;supported&nbsp;options
+	PLIST.no&lt;opt&#62;
+
+</pre>
+   <tt>PLIST.&lt;opt&#62;</tt> is special: one such variable is defined for each
+   supported build option of the package. It can be used to dynamically enable
+   an entry of the packing list, depending on the build options configuration.
+   A <tt>${PLIST.&lt;opt&#62;}</tt> variable may only be present only at the beginning
+   of a line. Technically, <tt>${PLIST.&lt;opt&#62;}</tt> expands to a packing list
+   comment <tt>@comment</tt> when the option <tt>&lt;opt&#62;</tt> is not enabled, and to
+   the empty string otherwise.
+
+<div class="p"><!----></div>
+   <tt>PLIST.no&lt;opt&#62;</tt> is similar to <tt>PLIST.&lt;opt&#62;</tt>, but it enables a <tt>
+   PLIST</tt> entry only if the corresponding option is not enabled.
+
+<div class="p"><!----></div>
+   Other substitutions may be added by adding definitions to the <tt>
+   PLIST_SUBST</tt> variable. For instance, a package may define the <tt>FOO</tt>
+   variable substitution like so:
+
+<pre>
+	PLIST_SUBST+=&nbsp;FOO=${FOO}
+
+</pre>
+   This would instruct the packing list generator to replace all occurences of
+   <tt>${FOO}</tt> by the value of the <tt>${FOO}</tt> variable in the Makefile.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>GENERATE_PLIST</b></dt>
+	<dd>
+   A sequence of commands, terminating in a semicolon, that outputs contents
+   for a PLIST to stdout and is appended to the contents of
+   <tt>${PLIST_SRC}</tt>. The default works for almost all packages, and it is
+   usually not needed to define a custom command.
+
+<div class="p"><!----></div>
+   </dd>
+ <dt><b>PLIST_FILTER</b></dt>
+	<dd>
+   A sequence of commands, each starting with a pipe, that filter out the
+   packing list. This is to be used only in rare situations, and a standard
+   package should not need to customize this.</dd>
+</dl>
+
+<div class="p"><!----></div>
+     <a id="tth_sEc3.2.3"></a><h3>
+3.2.3&nbsp;&nbsp;Customizing the semi-automatic PLIST generation</h3> <a id="section:genvars:print-PLIST">
+</a>
+
+<div class="p"><!----></div>
+The semi-automatic  initial PLIST generation  does not handle  package options.
+If  the  list  of  installed  files  depends  on  the  package  build  options,
+<tt>${PLIST.&lt;opt&#62;}</tt>       variable       references,       detailed       in
+<a href="#section:genvars:PLIST">section&nbsp;<a href="#section:genvars:PLIST">3.2.2</a></a>,    must   be
+manually added to the result of <tt>make print-PLIST</tt>.
+
+<div class="p"><!----></div>
+     <a id="tth_sEc3.2.4"></a><h3>
+3.2.4&nbsp;&nbsp;Incrementing versions when fixing an existing package</h3> <a id="section:genvars:PKGREVISION">
 </a>
 
 <div class="p"><!----></div>
@@ -1836,9 +2466,8 @@ When a new release of the package is released, the <tt>PKGREVISION</tt> must be
 removed.
 
 <div class="p"><!----></div>
-     <a id="tth_sEc3.2.2"></a><h3>
-3.2.2&nbsp;&nbsp;Substituting variable text in the package files
-(the <tt>SUBST</tt> framework)</h3> <a id="section:genvars:SUBST">
+     <a id="tth_sEc3.2.5"></a><h3>
+3.2.5&nbsp;&nbsp;Substituting variable text in the package files</h3> <a id="section:genvars:SUBST">
 </a>
 
 <div class="p"><!----></div>
@@ -1959,10 +2588,6 @@ in a package <tt>Makefile</tt>:
 
 
 <div class="p"><!----></div>
- <a id="tth_chAp4"></a><h1>
- 4 <br />The robotpkg infrastructure internals</h1>
-<a id="chapter:internal">
-</a>
 
 <div class="p"><!----></div>
     </div></div>

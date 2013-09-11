@@ -2,9 +2,9 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                               February 28, 2013
+                              September 11, 2013
 
-Copyright ? 2006-2011 LAAS/CNRS.
+Copyright ? 2006-2011,2013 LAAS/CNRS.
 Copyright ? 1997-2010 The NetBSD Foundation, Inc.
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
@@ -52,13 +52,20 @@ Contents
         2.3.4  Removing packages
         2.3.5  Getting information about installed packages
         2.3.6  Other administrative functions
+        2.3.7  Available make targets
     2.4  Configuring robotpkg
         2.4.1  Selecting build options
-        2.4.2  Defining collections of packages
-        2.4.3  Package specific configuration variables
-        2.4.4  General configuration variables
-        2.4.5  Variables affecting the build process
-        2.4.6  Additional flags to the compiler
+        2.4.2  Selecting build alternatives
+        2.4.3  Defining collections of packages
+        2.4.4  Package specific configuration variables
+        2.4.5  General configuration variables
+        2.4.6  Variables affecting the build process
+        2.4.7  Additional flags to the compiler
+    2.5  Creating binary packages for everything
+        2.5.1  Initial setup
+        2.5.2  Running bulk builds
+        2.5.3  Generating pretty reports
+        2.5.4  Automated bulk builds
 3  The robotpkg developer's guide
     3.1  Package files, directories and contents
         3.1.1  Makefile
@@ -66,11 +73,12 @@ Contents
         3.1.3  PLIST
         3.1.4  patches/*
     3.2  General operation
-        3.2.1  Incrementing versions when fixing an existing package
-        3.2.2  Substituting variable text in the package files (the SUBST
-framework)
+        3.2.1  Adding build options to a package
+        3.2.2  Customizing the PLIST
+        3.2.3  Customizing the semi-automatic PLIST generation
+        3.2.4  Incrementing versions when fixing an existing package
+        3.2.5  Substituting variable text in the package files
     3.3  The build phase
-4  The robotpkg infrastructure internals
 
 1
 Introduction
@@ -191,11 +199,11 @@ reasonably well:
 |Platform|                              Version                              |
 |--------+-------------------------------------------------------------------|
 |--------+-------------------------------------------------------------------|
-| Fedora |                              5 - 17                               |
+| Fedora |                              5 - 19                               |
 |--------+-------------------------------------------------------------------|
-| Ubuntu |                           7.10 - 12.04                            |
+| Ubuntu |                           7.10 - 13.04                            |
 |--------+-------------------------------------------------------------------|
-| Debian |                               5.03                                |
+| Debian |                            5.03 - 7.1                             |
 |--------+-------------------------------------------------------------------|
 | CentOS |                                 5                                 |
 |--------+-------------------------------------------------------------------|
@@ -259,7 +267,7 @@ package maintainers
     A package maintainer creates packages as described in Part 3.
 infrastructure developers
     These people are involved in all those files that live in the mk/ directory
-    and below. Only these people should need to read through Part 4, though
+    and below. Only these people should need to read through Part , though
     others might be curious, too.
 
 1.7  Typography
@@ -453,6 +461,9 @@ packages, organized into categories. You can browse the online index of
 packages, or run make index from the robotpkg directory to build local
 index.html files for all packages, viewable with any web browser such as lynx
 or firefox.
+robotpkg is essentially based on the make(1) program. All actions are triggered
+by invoking make with the proper target. The following sections document the
+most useful ones and section 2.3.7 recaps a more comprehensive list.
 
 2.3.1  Building packages from source
 
@@ -628,6 +639,76 @@ files.
 The robotpkg_admin executes various administrative functions on the package
 system.
 
+2.3.7  Available make targets
+
+The following targets are available in a package directory. They can be invoked
+by running make <target> after cding into some robotpkg/category/package.
+
+Source manipulation
+
+fetch
+    Download the ${DISTFILES}.
+extract
+    Extract the contents of ${DISTFILES} into the work directory ${WRKDIR}.
+patch
+    Apply local patches available in ${PATCHDIR} (usually the patches directory
+    in the package).
+checkout
+    Extract the sources in ${WRKDIR} from ${MASTER_REPOSITORY} instead of $
+    {MASTER_SITES}. This can be used to fetch a not yet released version
+    instead of the latest release. This is mutually exclusive with the fetch
+    and extract targets. See section 2.3.2 for details.
+configure
+    Perform the necessary actions to configure the sources. This may for
+    instance involve running configure or cmake. If no configuration is
+    required, this step simply does nothing.
+build
+    Or just make, the default target. It compiles the package locally in $
+    {WRKDIR}.
+install
+    Install the package into ${PREFIX}. The package is then available to the
+    rest of the system. If an older version of the package is installed and
+    required by other packages, this target requires confirmation. Otherwise,
+    any older version of the package is first deinstalled.
+replace
+    Same as install, but does not remove packages that depend on the replaced
+    package. This saves some time, since already installed package are not
+    touched, but if the replaced package is incompatible with the older
+    version, you will run into trouble. Use with care and when you know what
+    you are doing.
+clean
+    Tidy the work directory and removes ${WRKDIR}. If the package was extracted
+    using checkout, this target requires confirmation as it may delete locally
+    modified files that will be lost.
+update
+    This is a shortcut target for fetch, extract, configure, build, install and
+    clean. If the package is already installed and up-to-date, the target asks
+    for confirmation.
+
+Introspection
+
+show-options
+    Display the list of available alternatives (see section 2.4.2) and build
+    options (see section 2.4.1).
+show-depends
+    Recursively display all the required dependencies of a package. The results
+    are splitted between system and robotpkg dependencies, and missing
+    dependencies are indicated.
+show-var
+    Display the contents of a variable. This must be invoked as make show-var
+    VARNAME=foo, where foo is the name of the variable to be displayed.
+
+Package sets
+
+fetch-depends, replace-depends, update-depends, clean-depends
+    This runs the same action as fetch, replace, update or clean
+    (respectively), but on all dependencies of the package, including the
+    package itself. Useful to update a meta-packages, for instance.
+fetch-<set>, replace-<set>, update-<set>, clean-<set>
+    This runs the same action as fetch, replace, update or clean
+    (respectively), but on all members of the package set named <set>. See
+    section 2.4.3 for an explanation of package sets and how to configure them.
+
 2.4  Configuring robotpkg
 
 The whole robotpkg system is configured via a single, centralized file, called
@@ -647,30 +728,32 @@ Some packages have build time options, usually to select between different
 dependencies, enable optional support for big dependencies or enable
 experimental features.
 To see which options, if any, a package supports, and which options are
-mutually exclusive, run make show-options, for example:
+mutually exclusive, run make show-options. For example:
 
 Any of the following general options may be selected:
-    debug   Produce debugging information for binary programs
-    doc     Compile documentation material
-    lex     Use lex in place of flex
-    tcl     Enable support for TCL clients
-    yacc    Use yacc in place of bison
-
-These options are enabled by default:
-    doc tcl
-
-These options are currently enabled:
-    doc tcl
+   api                  Generate module API only
+   debug                Produce debugging information for binary programs
+*  openprs              Generate OpenPRS client code
+*  python               Enable Python client code
+*d tcl                  Generate TCL client code
+*  tclserv_client       Generate C tclServ client code
+   xenomai              Enable Xenomai support
 
 
+This indicates that the package supports a number of options (api, debug,
+openprs ...). The currently enabled options are indicated by a star (*) and the
+default options are shown by the small letter d in front of each option (here,
+only the tcl is enabled by default).
 The following variables can be defined in robotpkg.conf to select which options
 to enable for a package:
 
-  * PKG_DEFAULT_OPTIONS, which can be used to select or disable options for all
-    packages that support them,
-  * PKG_OPTIONS.<pkgbase>, which can be used to select or disable options
-    specifically for package pkgbase. Options listed in these variables are
-    selected, options preceded by - are disabled.
+PKG_DEFAULT_OPTIONS
+    can be used to select or disable options for all packages that support
+    them,
+PKG_OPTIONS.<pkgbase>
+    can be used to select or disable options specifically for package
+    <pkgbase>. Options listed in these variables are selected, options prefixed
+    by - are disabled (e.g. -tcl would disable the tcl option).
 
 A few examples:
 
@@ -695,7 +778,38 @@ disabled, the previously selected option, if any, is used. It is an error if no
 option from a required group of options is selected, and building the package
 will fail.
 
-2.4.2  Defining collections of packages
+2.4.2  Selecting build alternatives
+
+Some packages have alternative dependencies, usually to select between
+equivalent components or versions of components. This is similar to options but
+the configuration is done globally for all packages that use the same
+alternatives (this is to ensure consistency between packages).
+To see which alternatives, if any, a package uses, run make show-options. For
+example:
+
+Available c-compiler alternatives (PREFER_ALTERNATIVE.c-compiler):
+*1 gcc                   Use the GNU C compiler
+ 2 clang                 Use the LLVM C compiler
+   ccache-gcc            Use ccache and the GNU C compiler
+   ccache-clang          Use ccache and the LLVM C compiler
+
+
+This indicates that the package supports a c-compiler alternative, for which
+gcc, clang, ccache-gcc and ccache-clang can be used. The currently selected
+alternative is shown by the star (*), and the user preferences (or the default
+if the user has not set explicit preferences) are indicated by the integer in
+front of the alternative item (here gcc is the preferred alternative, then
+clang should be used if gcc is not available. ccache should not be used).
+The following variables can be defined in robotpkg.conf to select which
+alternative to use:
+
+PREFER_ALTERNATIVE.<alt>
+    Alternatives are selected by setting the variable corresponding to the
+    alternative (PREFER_ALTERNATIVE.c-compiler in the example above) to a space
+    separated list, sorted by order of preference, containing one or several of
+    the items shown by make show-options.
+
+2.4.3  Defining collections of packages
 
 Instead of installing, removing or updating packages one-by-one, you can define
 collections of packages in your robotpkg.conf. Once one or more collections are
@@ -751,7 +865,7 @@ Each of these variables can be defined on a per-collection basis, by adding the
 .<name> suffix to the variable name, where <name> is the name of the collection
 to be configured.
 
-2.4.3  Package specific configuration variables
+2.4.4  Package specific configuration variables
 
 In this section, you can find variables that apply to one specific package.
 Each variable is suffixed by .<pkg>, where <pkg> is the actual package name to
@@ -766,7 +880,7 @@ CHECKOUT_VCS_OPTS.<pkg>
     command. The options are passed to the "cvs checkout", "git clone" or "svn
     checkout" command that extract the source archive.
 
-2.4.4  General configuration variables
+2.4.5  General configuration variables
 
 In this section, you can find some variables that apply to all robotpkg
 packages.
@@ -794,7 +908,7 @@ PKG_DEBUG_LEVEL
     invocation, and the value 2 will display both the shell commands before
     their invocation, and their actual execution progress with set -x.
 
-2.4.5  Variables affecting the build process
+2.4.6  Variables affecting the build process
 
 WRKOBJDIR
     The top level directory where, if defined, the separate working directories
@@ -820,7 +934,7 @@ MAKE_JOBS
     "build" target. MAKE_JOBS can be set to any positive integer; useful values
     are around the number of processors on the machine.
 
-2.4.6  Additional flags to the compiler
+2.4.7  Additional flags to the compiler
 
 If you wish to set compiler variables such as CFLAGS, CXXFLAGS, FFLAGS ...
 please make sure to use the += operator instead of the = operator:
@@ -838,6 +952,128 @@ machines that support it. As with CFLAGS you should use the += operator:
 
 LDFLAGS+= -your -linkerflags
 
+
+2.5  Creating binary packages for everything
+
+There are two ways of getting a set of binary packages: manually building the
+packages you need, or using robotpkg "bulk build" infrastructure.
+Bulk builds can also be used to test that packages compile and install cleanly,
+and robotpkg provides reporting tools that can summarize the results of a "bulk
+build".
+
+2.5.1  Initial setup
+
+The required setup for running bulk build merely consists in properly setting
+up robotpkg itself. Details can be found in sections  2.2 and  2.4.
+For instance, setup robotpkg in the /local/robotpkg directory:
+
+        % mkdir -p /local/var/lib
+        % cd /local/var/lib
+        % git clone git://git.openrobots.org/git/robots/robotpkg
+        % cd robotpkg/bootstrap
+        % ./bootstrap --prefix=/local/robotpkg
+
+
+You should install at least pkgtools/pkg_install, pkgtools/digest and pkgtools/
+tnftp. Optionally, you can install pkgtools/rbulkit that can generate pretty
+HTML reports (section 2.5.3).
+
+        % cd /local/var/lib/robotpkg
+        % cd pkgtools/rbulkit
+        % make update
+
+
+You must configure the prefix directory where binary packages are built. This
+is important: since binary package are not relocatable, this directory will be
+the installation directory of all generated packages. However, if you use bulk
+builds only as a way to test the build of your packages, any directory can be
+configured. The following variables can be customized in robotpkg.conf:
+
+BULKBASE?= /opt/openrobots
+    The installation prefix of binary packages. This must be different from the
+    ${LOCALBASE} directory where regular robotpkg packages are installed. The
+    default is /opt/openrobots.
+BULK_LOGDIR?= ${LOCALBASE}/var/log/bulk
+    The directory where log files are kept. The default is to put log files in
+    the regular installation prefix of robotpkg ( /local/robotpkg/var/log/bulk
+    in the example setup above).
+BULK_TAG
+    A name (alphanumeric characters) for that bulk session. The default name is
+    based on the machine operating system and version. Giving a different name
+    can be used to distinguish between different runs, but in this case it is
+    probably easier to pass that variable definition on the command line.
+
+Finally, you must define at least one package set (see section 2.4.3)
+containing the list of packages to build (running bulk build on a single
+package is also supported, but has only limited interest). For instance, create
+a "huge" and a "tiny" set by placing the following definitions in your
+robotpkg.conf file:
+
+        PKGSET_DESCR.huge=      Huge bulk set: everything!
+        PKGSET.huge=            */*:*
+
+        PKGSET_DESCR.tiny=      Tiny bulk set: just one package + dependencies
+        PKGSET.tiny=            shell/eltclsh
+        PKGSET_STRICT.tiny=     no
+
+
+2.5.2  Running bulk builds
+
+The target for running bulk builds is called bulk. You can run a bulk build for
+one package by just running make bulk in the package directory. Running make
+bulk-depends would run the bulk target on the package and all of its
+dependencies. More useful though is to use some predefined sets of packages as
+explained in the previous section:
+
+        % cd /local/var/lib/robotpkg
+        % make bulk-tiny
+
+
+This would run the bulk target on each package of the tiny set (see section 
+2.4.3 for an explanation of the -<set> targets).
+This should run for a while and enventually populate ${BULK_LOGDIR} with lots
+of log files. You can then examine them manually, or generate some reports with
+rbulkit.
+
+2.5.3  Generating pretty reports
+
+If you installed the pkgtools/rbulkit package, you can use the rbulk-report
+program (installed in <prefix>/sbin) to generate:
+
+  * an sqlite database containing the bulk results
+  * an HTML report
+
+With the sample setup used throughout this chapter, the sqlite database can be
+populated like so:
+
+        % rbulk-report log2db /local/robotpkg/var/log/bulk sqlite.db
+
+
+Note that the command will append the results to a pre-existing sqlite.db. Only
+results using the same BULK_TAG will be overwritten.
+The HTML report can then be updated like so:
+
+        % rbulk-report db2html sqlite.db /tmp/bulk-report/
+
+
+The report can then be viewed by pointing a web browser to /tmp/bulk-report/
+index.html.
+To go further, please read the rbulk-report(1) manual for available commands
+and options.
+
+2.5.4  Automated bulk builds
+
+The pkgtools/rbulkit package contains sample scripts and programs that can be
+used to automate bulk builds. First, there is the rbulk-build script, that does
+essentially all the steps described in the previous sections. See rbulk-build
+(1) for more information. It relies on a properly setup robotpkg and
+robotpkg.conf.
+There are also the rbulk-watchd and rbulk-notify programs, than can
+respectively wait for and signal notifications over TCP. This can be used to
+trigger a bulk build in a commit hook, for instance. See rbulk-watchd(1) and
+rbulk-notify(1).
+Finally, rbulk-dispatch and rbulk-dispatchd are able to parallelize jobs on a
+group of machines according to user defined priorities. See rbulk-dispatchd(1).
 
 3
 The robotpkg developer's guide
@@ -861,7 +1097,7 @@ mostly historical and has no further meaning.
 
 PKGREVISION
     Defines the robotpkg revision number of the package. This should not be set
-    for a new package. See Section  for details.
+    for a new package. See Section 3.2.4 for details.
 MASTER_SITES
     In simple cases, MASTER_SITES defines all URLs from where the distfile,
     whose name is derived from the DISTNAME variable, is fetched.
@@ -957,7 +1193,12 @@ LICENSE
     with redistribution restrictions should set these tags.
 
 Other variables affecting the build process may be gathered in their own
-section. They are described in the next sections of this chapter.
+section.
+
+PKG_SUPPORTED_OPTIONS
+    is the list of build options supported by the package. A number of related
+    variables are used in combination with PKG_SUPPORTED_OPTIONS. See Section 
+    3.2.1 for details.
 
 3.1.2  distinfo
 
@@ -991,6 +1232,8 @@ In order to create or update a PLIST, you can use the make print-PLIST command
 to output a PLIST that matches any new installed files since the package was
 extracted. This command will generate a PLIST.guess file which you must move
 manually to PLIST after reviewing the result of the semi-automatic generation.
+In order to fine tune the PLIST or its semi-automatic generation, specific
+variables documented in section 3.2.2 and section 3.2.3 may be used.
 
 3.1.4  patches/*
 
@@ -1022,7 +1265,160 @@ for the patch files by using the make mdi command, see Section 3.1.2.
 
 3.2  General operation
 
-3.2.1  Incrementing versions when fixing an existing package
+3.2.1  Adding build options to a package
+
+Build options (see section 2.4.1 for details) can be defined in a package by
+properly configuring the following variables.
+
+PKG_SUPPORTED_OPTIONS
+    This is a list of build options supported by the package. This variable
+    should be set in a package Makefile. E.g.,
+
+            PKG_SUPPORTED_OPTIONS=  ipv6 ssl
+
+
+    If this variable is not defined, PKG_OPTIONS is set to the empty list and
+    the package is otherwise treated as not using the options framework.
+PKG_OPTION_DESCR.<opt>
+    This is the textual description of the option <opt> which is displayed by
+    the make show-options target. E.g.,
+
+            PKG_OPTION_DESCR.bar=   Enable the bar option.
+
+
+PKG_OPTION_SET.<opt> (resp. PKG_OPTION_UNSET.<opt>)
+    This is a makefile fragment that is evaluated when the option <opt> is set
+    (resp unset) for the package. E.g.,
+
+            PKG_OPTION_SET.bar=     CFLAGS+=-DBAR
+            PKG_OPTION_UNSET.bar=   CFLAGS+=-DNO_BAR
+
+
+    Complex (multiline) _SET or _UNSET actions can be defined with the define
+    command of GNU-make. It is for instance possible to add additional
+    dependencies: see the example below.
+PKG_OPTIONS_OPTIONAL_GROUPS
+    This is a list of names of groups of mutually exclusive options. The
+    options in each group are listed in PKG_OPTIONS_GROUP.<groupname>. The most
+    specific setting of any option from the group takes precedence over all
+    other options in the group. Options from the groups will be automatically
+    added to PKG_SUPPORTED_OPTIONS.
+PKG_OPTIONS_REQUIRED_GROUPS
+    Like PKG_OPTIONS_OPTIONAL_GROUPS, but building the packages will fail if no
+    option from the group is selected.
+PKG_OPTIONS_NONEMPTY_SETS
+    This is a list of names of sets of options. At least one option from each
+    set must be selected. The options in each set are listed in
+    PKG_OPTIONS_SET.<setname>. Options from the sets will be automatically
+    added to PKG_SUPPORTED_OPTIONS.
+PKG_OPTIONS_SUFFIX
+    The suffix in PKG_OPTIONS.suffix variable the user can set to enable or
+    disable options specifically for this package. Defaults to ${PKGBASE}.
+PKG_SUGGESTED_OPTIONS
+    This is a list of build options which are enabled by default. This defaults
+    to the empty list.
+
+Here is an example Makefile fragment for a 'wibble' package. This fragment
+should be included in the 'wibble' package Makefile.
+
+        PKG_OPTIONS_SUFFIX=             wibble # this is the default
+        PKG_SUPPORTED_OPTIONS=          foo bar
+        PKG_OPTIONS_OPTIONAL_GROUPS=    robot
+        PKG_OPTIONS_GROUP.robot=        lama hrp2
+        PKG_SUGGESTED_OPTIONS=          foo
+
+        PKG_OPTION_DESCR.foo=           Enable the foo option.
+        PKG_OPTION_DESCR.bar=           Build with the bar package.
+        PKG_OPTION_DESCR.lama=          Build for the lama robot.
+        PKG_OPTION_DESCR.hrp2=          Build for the hrp2 robot.
+
+        define PKG_OPTION_SET.bar
+         CFLAGS+=-DNO_BAR
+         include ../../pkg/bar/depend.mk
+        endef
+        PKG_OPTION_UNSET.bar=           CFLAGS+=-DNO_BAR
+
+
+3.2.2  Customizing the PLIST
+
+The packing list of a package is usually computed from the PLIST file located
+in the package directory. The following variables determine how the final
+packing list is setup:
+
+PLIST_SRC
+    The source file(s) for the final packing list. By default, its value is
+    constructed from the PLIST.* files within the package directory:
+
+        PLIST_SRC+= ${PKGDIR}/PLIST.${OS_KERNEL}
+        PLIST_SRC+= ${PKGDIR}/PLIST.${OPSYS}
+        PLIST_SRC+= ${PKGDIR}/PLIST.${MACHINE_ARCH}
+        PLIST_SRC+= ${PKGDIR}/PLIST.${OPSYS}-${MACHINE_ARCH}
+        PLIST_SRC+= ${PKGDIR}/PLIST
+
+
+    If a Makefile sets PLIST_SRC, the defaults are not used.
+DYNAMIC_PLIST_DIRS
+    A list of directories, absolute or relative to the installation ${PREFIX},
+    whose contents are dynamically added to the final packing list. This is
+    useful to handle non-deterministic packing lists, most notably those
+    generated by doxygen. This should be used with care, since
+    DYNAMIC_PLIST_DIRS somewhat defeats the purpose of the packing list.
+PLIST_SUBST
+    The PLIST file(s) of a package may also contain variable references (in the
+    ${VAR} form) that are expanded at intallation time. The following variables
+    are supported by default:
+
+            PKGBASE
+            PKGNAME
+            PKGVERSION
+
+            OPSYS
+            OS_VERSION
+            OS_KERNEL
+            OS_KERNEL_VERSION
+
+            PKGMANDIR
+            PKGINFODIR
+
+            PLIST.<opt> # for all supported options
+            PLIST.no<opt>
+
+
+    PLIST.<opt> is special: one such variable is defined for each supported
+    build option of the package. It can be used to dynamically enable an entry
+    of the packing list, depending on the build options configuration. A $
+    {PLIST.<opt>} variable may only be present only at the beginning of a line.
+    Technically, ${PLIST.<opt>} expands to a packing list comment @comment when
+    the option <opt> is not enabled, and to the empty string otherwise.
+    PLIST.no<opt> is similar to PLIST.<opt>, but it enables a PLIST entry only
+    if the corresponding option is not enabled.
+    Other substitutions may be added by adding definitions to the PLIST_SUBST
+    variable. For instance, a package may define the FOO variable substitution
+    like so:
+
+            PLIST_SUBST+= FOO=${FOO}
+
+
+    This would instruct the packing list generator to replace all occurences of
+    ${FOO} by the value of the ${FOO} variable in the Makefile.
+GENERATE_PLIST
+    A sequence of commands, terminating in a semicolon, that outputs contents
+    for a PLIST to stdout and is appended to the contents of ${PLIST_SRC}. The
+    default works for almost all packages, and it is usually not needed to
+    define a custom command.
+PLIST_FILTER
+    A sequence of commands, each starting with a pipe, that filter out the
+    packing list. This is to be used only in rare situations, and a standard
+    package should not need to customize this.
+
+3.2.3  Customizing the semi-automatic PLIST generation
+
+The semi-automatic initial PLIST generation does not handle package options. If
+the list of installed files depends on the package build options, ${PLIST.
+<opt>} variable references, detailed in section 3.2.2, must be manually added
+to the result of make print-PLIST.
+
+3.2.4  Incrementing versions when fixing an existing package
 
 When making fixes to an existing package it can be useful to change the version
 number in PKGNAME. To avoid conflicting with future versions by the original
@@ -1057,7 +1453,7 @@ Examples of changes that do merit an increase to PKGREVISION include:
 PKGREVISION must also be incremented when dependencies have ABI changes.
 When a new release of the package is released, the PKGREVISION must be removed.
 
-3.2.2  Substituting variable text in the package files (the SUBST framework)
+3.2.5  Substituting variable text in the package files
 
 When you want to replace the same text in multiple files or when the
 replacement text varies, patches alone cannot help. This is where the SUBST
@@ -1131,7 +1527,4 @@ MAKE_JOBS_SAFE
     Whether the package supports parallel builds. If set to yes, at most
     MAKE_JOBS jobs are carried out in parallel. The default value is "yes", and
     packages that don't support it must explicitly set it to "no".
-
-4
-The robotpkg infrastructure internals
 
