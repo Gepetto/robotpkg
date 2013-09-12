@@ -12,6 +12,8 @@ MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
 COMMENT=		Driver and interface for MTI
 
+AUTORECONF_SCRIPT=     ${WRKSRC}/autogen.sh
+
 GNU_CONFIGURE=		yes
 
 include ../../devel/mkdep/depend.mk
