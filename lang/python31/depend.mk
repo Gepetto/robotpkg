@@ -26,6 +26,8 @@ else ifeq (Ubuntu,${OPSYS})
   else
     PREFER.python31?=	robotpkg
   endif
+else ifeq (Debian,${OPSYS})
+  PREFER.python31?=	robotpkg
 endif
 PREFER.python31?=	${PREFER.python}
 
