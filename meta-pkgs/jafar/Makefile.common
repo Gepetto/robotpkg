@@ -3,7 +3,7 @@
 #
 
 JAFAR_PKG?=		undefined
-JAFAR_PKG_RAW=		`echo ${JAFAR_PKG} | sed "s/-.*//g"`
+JAFAR_PKG_RAW=		$(patsubst jafar-%,%,${PKGBASE})
 JAFAR_COMMENT?=		undefined
 MASTER_SITE_JAFAR=	${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 
