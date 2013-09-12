@@ -16,6 +16,10 @@ ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 10.04,${OS_VERSION}))
     PREFER.omniORBpy?=	robotpkg
   endif
+else ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 18 19,${OS_VERSION}))
+    PREFER.omniORBpy?=	robotpkg
+  endif
 endif
 PREFER.omniORBpy?=	system
 
