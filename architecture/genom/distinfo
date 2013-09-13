@@ -1,10 +1,3 @@
-SHA1 (genom-2.10.tar.gz) = b4f083681c155ba3ed5029d457efe33bb2c89f13
-RMD160 (genom-2.10.tar.gz) = 83da209b8a1f33e28a71e241742032fc62d47d39
-Size (genom-2.10.tar.gz) = 1003907 bytes
-SHA1 (patch-aa) = fda1530e3e9c2d460b0bdb171a4a9b3ea57d9034
-SHA1 (patch-ab) = b98f4834521949d63f5921ec5a5e87d0e48798e6
-SHA1 (patch-ac) = f344ec34c49d0153bd66086a4ac36bf65d6dab48
-SHA1 (patch-ad) = 472f3a60803dc599dbfc57792d67f5196b6ab085
-SHA1 (patch-ae) = e51c74e2f5094f57192144653d0b3ec71188c10f
-SHA1 (patch-af) = c6e3768e980cfbeb31a651fcc4b13340adc4acc3
-SHA1 (patch-ag) = b474a6043e048fa5b72858de27a24731e621546d
+SHA1 (genom-2.11.tar.gz) = cfe7ec130b8b5743be6d70f4621923b6f8a930be
+RMD160 (genom-2.11.tar.gz) = 4a9effa15d186c7b903e56a48f97ae6a63aea8d9
+Size (genom-2.11.tar.gz) = 1004191 bytes
