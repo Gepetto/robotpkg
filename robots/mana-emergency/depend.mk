@@ -15,7 +15,7 @@ PREFER.mana-emergency?=	robotpkg
 
 DEPEND_USE+=		mana-emergency
 
-DEPEND_ABI.mana-emergency?=	mana-emergency>=0.1
+DEPEND_ABI.mana-emergency?=	mana-emergency>=0.2
 DEPEND_DIR.mana-emergency?=	../../robots/mana-emergency
 
 SYSTEM_SEARCH.mana-emergency=\
