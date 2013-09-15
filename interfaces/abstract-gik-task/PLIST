@@ -1,4 +1,5 @@
-@comment Tue Jun 28 14:29:11 CEST 2011
+@comment Sun Sep 15 21:36:48 CEST 2013
+include/abstract/gik/task/config.h
 include/abstract/gik/task/config.hh
 include/abstract/gik/task/deprecated.hh
 include/abstract/gik/task/warning.hh
@@ -17,7 +18,3 @@ include/gikTask/jrlGikTransformationConstraint.h
 include/gikTask/jrlLinearConstraint.h
 include/gikTask/jrlRobotMotion.h
 lib/pkgconfig/abstract-gik-task.pc
-@dirrm include/gikTask
-@dirrm include/abstract/gik/task
-@dirrm include/abstract/gik
-@dirrm include/abstract

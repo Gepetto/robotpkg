@@ -3,19 +3,16 @@
 #
 
 DISTNAME=	abstract-gik-task-${VERSION}
-PKGNAME=	abstract-gik-task-${VERSION}
-VERSION=	2.6
+VERSION=	2.7
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=abstract-gik-task/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/abstract-gik-task
 
 CATEGORIES=	interfaces
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=abstract-gik-task/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}jrlCIR-giktask
-
-MAINTAINER=	openrobots@laas.fr
-#HOMEPAGE=	
+MAINTAINER=	hpp@laas.fr
 COMMENT=	JRL abstract interface for generalized inverse kinematics tasks.
 LICENSE=	modified-bsd
 
-DOXYGEN_PLIST_DIR+=	share/doc/abstract-gik-task
+DYNAMIC_PLIST_DIRS+=	share/doc/abstract-gik-task
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk

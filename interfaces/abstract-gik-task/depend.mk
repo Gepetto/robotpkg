@@ -14,7 +14,7 @@ PREFER.abstract-gik-task?=		robotpkg
 
 DEPEND_USE+=				abstract-gik-task
 
-DEPEND_ABI.abstract-gik-task?=	abstract-gik-task>=2.4
+DEPEND_ABI.abstract-gik-task?=	abstract-gik-task>=2.7
 DEPEND_DIR.abstract-gik-task?=	../../interfaces/abstract-gik-task
 
 SYSTEM_SEARCH.abstract-gik-task=\
