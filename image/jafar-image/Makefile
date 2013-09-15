@@ -8,6 +8,8 @@ PKGREVISION=	4
 CATEGORIES=	image
 JAFAR_COMMENT=	basic image processing based on OpenCV
 
+CMAKE_ARGS+= -DPATH_TO_BOOST_SANDBOX=${PREFIX.boost-numeric-bindings}/include
+
 include ../../meta-pkgs/jafar/Makefile.common
 
 include ../../devel/jafar-kernel/depend.mk
