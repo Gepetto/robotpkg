@@ -215,10 +215,10 @@ plist: ${_PLIST_TARGETS}
 
 ${PLIST}: ${PLIST_SRC}
 	${RUN}${MKDIR} $(dir $@);					\
-	{ ${_GENERATE_PLIST} } ${PLIST_FILTER}				\
+	{ ${_GENERATE_PLIST} }						\
 	| ${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK}		\
 	| ${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK}	\
-	>$@
+	${PLIST_FILTER} >$@
 
 .PHONY: post-plist
 post-plist:
