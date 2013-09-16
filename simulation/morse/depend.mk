@@ -19,7 +19,7 @@ SYSTEM_SEARCH.morse=\
 
 DEPEND_USE+=		morse
 
-DEPEND_ABI.morse?=	morse>=0.4
+DEPEND_ABI.morse?=	morse>=1.0
 DEPEND_DIR.morse?=	../../simulation/morse
 
 endif # MORSE_DEPEND_MK ----------------------------------------------------
