@@ -218,7 +218,12 @@ ${PLIST}: ${PLIST_SRC}
 	{ ${_GENERATE_PLIST} }						\
 	| ${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_AWK}		\
 	| ${SETENV} ${_PLIST_AWK_ENV} ${AWK} ${_PLIST_SHLIB_AWK}	\
-	${PLIST_FILTER} >$@
+	${PLIST_FILTER}							\
+	| ${AWK}							\
+	  -f ${ROBOTPKG_DIR}/mk/plist/plist-functions.awk		\
+	  -f ${ROBOTPKG_DIR}/mk/plist/plist-cleanpath.awk		\
+	  -f ${ROBOTPKG_DIR}/mk/plist/plist-default.awk			\
+	>$@
 
 .PHONY: post-plist
 post-plist:
