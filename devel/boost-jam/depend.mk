@@ -36,11 +36,8 @@ BJAM_BUILD+=		release
 BJAM_BUILD+=		threading=multi
 BJAM_BUILD+=		link=shared,static
 
-ifneq (,$(call isno,${MAKE_JOBS_SAFE}))
-BJAM_JOBS=		# nothing
-else ifneq (,$(MAKE_JOBS))
-BJAM_JOBS=		-j${MAKE_JOBS}
-endif
+BJAM_JOBS+=\
+  $(if $(filter no No NO,${MAKE_JOBS_SAFE}),,$(addprefix -j,${MAKE_JOBS}))
 
 BJAM_CMD=		${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_ARGS}
 
