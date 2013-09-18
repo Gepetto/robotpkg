@@ -10,7 +10,6 @@ BOOST_COMMENT?=	undefined
 
 BOOST_VERSION=	1.52.0
 BOOST_TOOLSET=	gcc
-USE_LANGUAGES+=	c c++
 
 DISTNAME=	boost_$(subst .,_,${BOOST_VERSION})
 CATEGORIES=	devel
@@ -44,5 +43,8 @@ SUBST_MESSAGE.fixprefix=Fixing prefix.
 SUBST_STAGE.fixprefix=	pre-configure
 SUBST_FILES.fixprefix=	Jamroot
 SUBST_SED.fixprefix=	-e 's,@PREFIX@,${PREFIX},g'
+
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 
 endif # ${BOOST_PACKAGE} == meta-pkg
