@@ -550,31 +550,56 @@ EOF
 	cp -R ${pkgroot}/DEBIAN/* ${pkgroot}${PREFIX}/share/doc/debian/${PKGBASE}
 	set -o noglob
 
+
 	# postinst and prerm
+        metadir="$PKG_PREFIX/share/doc/debian/$PKGBASE"
+        postinst=
+        prerm=
 
-	if [ -x ${pkgroot}/DEBIAN/+INSTALL ]; then
-		cat << EOF > ${pkgroot}/DEBIAN/postinst
+        if test -x ${pkgroot}/DEBIAN/+INSTALL; then
+            postinst=$postinst'$PKG_METADATA_DIR/+INSTALL'
+            postinst=$postinst' "$PKGBASE-$PKGVERSION" POST-INSTALL;'
+        fi
+
+        if test -x ${pkgroot}/DEBIAN/+DEINSTALL; then
+            prerm=$prerm'$PKG_METADATA_DIR/+DEINSTALL'
+            prerm=$prerm' "${PKGBASE}-${PKGVERSION}" DEINSTALL;'
+        fi
+
+        if test -f ${pkgroot}/DEBIAN/+DISPLAY; then
+            ruler='========================================================='
+            postinst=$postinst'echo Please note the following:;'
+            postinst=$postinst"echo $ruler;"
+            postinst=$postinst'while read l; do echo $l; done'
+            postinst=$postinst' <$PKG_METADATA_DIR/+DISPLAY;'
+            postinst=$postinst"echo $ruler;"
+        fi
+
+        if test -n "$postinst"; then
+            cat << EOF > ${pkgroot}/DEBIAN/postinst
 #!/bin/sh
 set -e 1
-`dis PKGBASE PKGVERSION DEBBASE DEBVERSION | ${SED} "s,^,# ,g"`
-PKG_PREFIX=${PREFIX}
-export PKG_PREFIX
-$PREFIX/share/doc/debian/${PKGBASE}/+INSTALL ${PKGBASE}-${PKGVERSION} POST-INSTALL
+export PKGBASE='$PKGBASE'
+export PKGVERSION='$PKGVERSION'
+export PKG_PREFIX='$PREFIX'
+export PKG_METADATA_DIR='$PREFIX/share/doc/debian/$PKGBASE'
+$postinst
 EOF
-		chmod 0755 ${pkgroot}/DEBIAN/postinst
-	fi
+            chmod 0755 ${pkgroot}/DEBIAN/postinst
+        fi
 
-	if [ -x ${pkgroot}/DEBIAN/+DEINSTALL ]; then
-		cat << EOF > ${pkgroot}/DEBIAN/prerm
+        if test -n "$prerm"; then
+            cat << EOF > ${pkgroot}/DEBIAN/prerm
 #!/bin/sh
 set -e 1
-`dis PKGBASE PKGVERSION DEBBASE DEBVERSION | ${SED} "s,^,# ,g"`
-PKG_PREFIX=${PREFIX}
-export PKG_PREFIX
-$PREFIX/share/doc/debian/${PKGBASE}/+DEINSTALL ${PKGBASE}-${PKGVERSION} DEINSTALL
+export PKGBASE='${PKGBASE}'
+export PKGVERSION='${PKGVERSION}'
+export PKG_PREFIX='${PREFIX}'
+export PKG_METADATA_DIR='$PREFIX/share/doc/debian/$PKGBASE'
+$prerm
 EOF
-		chmod 0755 ${pkgroot}/DEBIAN/prerm
-	fi
+            chmod 0755 ${pkgroot}/DEBIAN/prerm
+        fi
 
 	# build deb package
 
@@ -624,7 +649,7 @@ pkgsummarysub_extract_and_debianize()
 	PKGVERSION=${PKGABI#$PKGBASE-}${PKGOPTIONS}
 
 	pkgdir="${rpkgrepo}"
-	pkgfile="${FILE_NAME:-${PKGNAME}}.tgz"
+	pkgfile="${FILE_NAME:-${PKGNAME}.tgz}"
 	pkgroot="${TEMPNAME}.${pkgfile}"
 	pkgpath=${pkgdir}/${pkgfile}
 
@@ -748,7 +773,7 @@ done
 tx ${ROBOTPKG_ADMIN} ${PAX} ${GZIP_CMD} ${DPKG_DEB} ${APT_FTPARCHIVE} || exit 1
 test -z "${rpkgrepo}" || test -r "${rpkgrepo}/pkg_summary.gz" || { echo "cannot find pkg_summary.gz in directory '${rpkgrepo}' (-r option)" 1>&2; exit 1; }
 
-TEMPNAME="/tmp/pkg2deb.$$"
+TEMPNAME="${TMPDIR:-/tmp}/pkg2deb.$$"
 exitval=0
 newline='
 '

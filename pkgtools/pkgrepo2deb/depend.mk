@@ -8,7 +8,7 @@ PKGREPO2DEB_DEPEND_MK:=	${PKGREPO2DEB_DEPEND_MK}+
 ifeq (+,$(PKGREPO2DEB_DEPEND_MK)) # ----------------------------------------
   PREFER.pkgrepo2deb?=		robotpkg
 
-  DEPEND_ABI.pkgrepo2deb?=	pkgrepo2deb>=0.9.20130712
+  DEPEND_ABI.pkgrepo2deb?=	pkgrepo2deb>=0.9.20130919
   DEPEND_DIR.pkgrepo2deb?=	../../pkgtools/pkgrepo2deb
 
   SYSTEM_SEARCH.pkgrepo2deb=	\
