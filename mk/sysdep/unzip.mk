@@ -39,6 +39,8 @@ SYSTEM_SEARCH.unzip=	'bin/unzip'
 #
 export UNZIP_CMD=	${PREFIX.unzip}/bin/unzip
 
+SYSTEM_PKG.Gentoo.unzip=	app-arch/unzip
+
 endif # UNZIP_DEPEND_MK ----------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

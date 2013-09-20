@@ -23,6 +23,7 @@ SYSTEM_PKG.Debian.py-empy=	python-empy (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-empy=	python-empy (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-empy=	textproc/${PKGTAG.python}-empy
 SYSTEM_PKG.Ubuntu.py-empy=	python-empy (python-${PYTHON_VERSION})
+SYSTEM_PKG.Gentoo.py-empy=	dev-python/empy (python-${PYTHON_VERSION})
 
 include ../../mk/sysdep/python.mk
 

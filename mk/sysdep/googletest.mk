@@ -23,6 +23,7 @@ SYSTEM_PKG.Debian.googletest=	libgtest-dev
 SYSTEM_PKG.Fedora.googletest=	gtest-devel
 SYSTEM_PKG.NetBSD.googletest=	devel/googletest
 SYSTEM_PKG.Ubuntu.googletest=	libgtest-dev
+SYSTEM_PKG.Gentoo.googletest=	dev-cpp/gtest
 
 endif # GOOGLETEST_DEPEND_MK -----------------------------------------------
 

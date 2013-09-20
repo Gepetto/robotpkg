@@ -23,6 +23,7 @@ SYSTEM_PKG.Fedora.cppunit=cppunit-devel
 SYSTEM_PKG.Ubuntu.cppunit=libcppunit-dev
 SYSTEM_PKG.Debian.cppunit=libcppunit-dev
 SYSTEM_PKG.NetBSD.cppunit=devel/cppunit
+SYSTEM_PKG.Gentoo.cppunit=dev-util/cppunit
 
 endif # CPPUNIT_DEPEND_MK --------------------------------------------------
 

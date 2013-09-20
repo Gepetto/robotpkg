@@ -26,6 +26,7 @@ SYSTEM_PKG.Debian.log4cxx=	liblog4cxx10-dev
 SYSTEM_PKG.Fedora.log4cxx=	log4cxx-devel
 SYSTEM_PKG.Ubuntu.log4cxx=	liblog4cxx10-dev
 SYSTEM_PKG.NetBSD.log4cxx=	devel/log4cxx
+SYSTEM_PKG.Gentoo.log4cxx=	dev-libs/log4cxx
 
 endif # LOG4CXX_DEPEND_MK --------------------------------------------------
 

@@ -28,6 +28,7 @@ SYSTEM_PKG.Fedora.poco=poco-devel
 SYSTEM_PKG.Ubuntu.poco=libpoco-dev
 SYSTEM_PKG.Debian.poco=libpoco-dev
 SYSTEM_PKG.NetBSD.poco=devel/poco
+SYSTEM_PKG.Gentoo.poco=dev-libs/poco
 
 endif # POCO_DEPEND_MK -----------------------------------------------------
 

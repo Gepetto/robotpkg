@@ -22,6 +22,7 @@ SYSTEM_PKG.Fedora.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
 SYSTEM_PKG.Ubuntu.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
 SYSTEM_PKG.Debian.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-netifaces=	net/${PKGTAG.python-}netifaces
+SYSTEM_PKG.Gentoo.py-netifaces=	dev-python/netifaces (python-${PYTHON_VERSION})
 
 include ../../mk/sysdep/python.mk
 

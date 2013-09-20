@@ -24,6 +24,7 @@ SYSTEM_PKG.Debian.py-nose=	python-nose (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-nose=	python-nose (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-nose=	devel/${PKGTAG.python}-nose
 SYSTEM_PKG.Ubuntu.py-nose=	python-nose (python-${PYTHON_VERSION})
+SYSTEM_PKG.Gentoo.py-nose=	dev-python/nose (python-${PYTHON_VERSION})
 
 include ../../mk/sysdep/python.mk
 

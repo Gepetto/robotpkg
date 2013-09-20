@@ -22,6 +22,7 @@ SYSTEM_PKG.Fedora.py-imaging=	python-imaging (python-${PYTHON_VERSION})
 SYSTEM_PKG.Ubuntu.py-imaging=	python-imaging (python-${PYTHON_VERSION})
 SYSTEM_PKG.Debian.py-imaging=	python-imaging (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-imaging=	graphics/${PKGTAG.python-}imaging
+SYSTEM_PKG.Gentoo.py-imaging=	dev-python/imaging (python-${PYTHON_VERSION})
 
 include ../../mk/sysdep/python.mk
 

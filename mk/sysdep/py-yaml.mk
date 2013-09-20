@@ -27,6 +27,7 @@ SYSTEM_PKG.Fedora.py-yaml=	PyYAML (python-${PYTHON_VERSION})
 SYSTEM_PKG.Ubuntu.py-yaml=	python-yaml (python-${PYTHON_VERSION})
 SYSTEM_PKG.Debian.py-yaml=	python-yaml (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-yaml=	pkgsrc/textproc/${PKGTAG.python-}yaml
+SYSTEM_PKG.Gentoo.py-yaml=	dev-python/pyyaml (python-${PYTHON_VERSION})
 
 include ../../mk/sysdep/python.mk
 

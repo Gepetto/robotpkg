@@ -15,6 +15,7 @@ DEPEND_DIR.zlib?=	../../archivers/zlib
 SYSTEM_PKG.Fedora.zlib=	zlib-devel
 SYSTEM_PKG.Ubuntu.zlib=	zlib1g-dev
 SYSTEM_PKG.Debian.zlib=	zlib1g-dev
+SYSTEM_PKG.Gentoo.zlib=	sys-libs/zlib
 
 SYSTEM_SEARCH.zlib=\
 	'include/zlib.h:/define ZLIB_VERSION/s/[^0-9.]//gp'	\

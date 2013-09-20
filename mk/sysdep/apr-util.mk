@@ -29,6 +29,7 @@ SYSTEM_PKG.Debian.apr-util=	libaprutil1-dev
 SYSTEM_PKG.Fedora.apr-util=	apr-util-devel
 SYSTEM_PKG.NetBSD.apr-util=	devel/apr-util
 SYSTEM_PKG.Ubuntu.apr-util=	libaprutil1-dev
+SYSTEM_PKG.Gentoo.apr-util=	dev-libs/apr-util
 
 export APU_CONFIG=	$(word 1,${SYSTEM_FILES.apr-util})
 
