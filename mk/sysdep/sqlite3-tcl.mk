@@ -19,12 +19,13 @@ DEPEND_ABI.sqlite3-tcl?=sqlite3-tcl>=3
 _vregex.sqlitetcl=\
   /ifneeded.*[0-9]/{s/.*ifneeded sqlite3[ \t]*//;s/[ \t].*$$//;p;q;}
 SYSTEM_SEARCH.sqlite3-tcl=\
-  'lib/{,tcl{,[0-9]*,tk}/}sqlite3/pkgIndex.tcl:${_vregex.sqlitetcl}'
+  'lib/{,tcl{,[0-9]*,tk}/}sqlite{3,-3*}/pkgIndex.tcl:${_vregex.sqlitetcl}'
 
 SYSTEM_PKG.Fedora.sqlite3-tcl=	sqlite-tcl
 SYSTEM_PKG.Ubuntu.sqlite3-tcl=	libsqlite3-tcl
 SYSTEM_PKG.Debian.sqlite3-tcl=	libsqlite3-tcl
 SYSTEM_PKG.NetBSD.sqlite3-tcl=	databases/sqlite3-tcl
+SYSTEM_PKG.Gentoo.sqlite3-tcl=	dev-db/sqlite[tcl]
 
 include ../../mk/sysdep/tcl.mk
 
