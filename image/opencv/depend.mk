@@ -11,7 +11,7 @@ endif
 
 ifeq (+,$(OPENCV_DEPEND_MK)) # ---------------------------------------------
 
-PREFER.opencv?=		robotpkg
+PREFER.opencv?=		system
 
 DEPEND_USE+=		opencv
 DEPEND_ABI.opencv?=	opencv>=2.2.0
