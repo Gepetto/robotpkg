@@ -179,6 +179,7 @@ if ${TEST} -z "$raw"; then
   tofile "Running $@"
 fi;
 result=`{ { run "$@" | filter; } 2>&1 >&5 | errfilter; } 4>&1 >&5`
+: ${result:=255}
 
 ${TEST} -t 3 && stty icanon echo <&3 2>/dev/null
 exec 3>&- 4>&- 5>&-
@@ -187,7 +188,7 @@ ${MSG} $el$cnorm
 
 # Log last lines in case of error
 #
-${TEST} -n "$logfile" && ${TEST} $result -ne 0 && {
+${TEST} -n "$logfile" && ${TEST} "$result" -ne 0 && {
     ${ECHO}
     ${ECHO} "An unexpected error occured. " \
       "The last 10 log lines are shown below." >&2
@@ -197,4 +198,4 @@ ${TEST} -n "$logfile" && ${TEST} $result -ne 0 && {
     ${ECHO} "$logfile" >&2
 }
 
-exit $result
+exit "$result"
