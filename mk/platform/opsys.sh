@@ -73,6 +73,13 @@ case $s in
             echo Debian $release $m
             exit 0
         fi
+        if test -f /etc/gentoo-release; then
+            read gentoo base system release version </etc/gentoo-release
+            if test "$release" = "release"; then
+                echo Gentoo $version $m
+                exit 0
+            fi
+        fi
         ;;
     SunOS)
         case $r in
