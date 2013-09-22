@@ -20,6 +20,8 @@ else ifeq (Fedora,${OPSYS})
   ifneq (,$(filter 18 19,${OS_VERSION}))
     PREFER.omniORBpy?=	robotpkg
   endif
+else ifeq (Gentoo,${OS_FAMILY})
+  PREFER.omniORBpy?=	robotpkg
 endif
 PREFER.omniORBpy?=	system
 
