@@ -33,9 +33,8 @@ override define _use_boost_libs
   DEPEND_DIR.boost-lib-$1?=	../../devel/boost-libs
 
   _boost_libs_files_$1?=	$1
-  SYSTEM_SEARCH.boost-lib-$1?=\
-    $$(foreach 2,$${_boost_libs_files_$1},	\
-      'lib/libboost_$$2{,-mt}.{so.*[0-9],*}:s/.*[.]so[.]//p:$${ECHO} %')
+  SYSTEM_SEARCH.boost-lib-$1?=$$(foreach 2,$${_boost_libs_files_$1},	\
+    'lib/libboost_$$2{,-mt}{,-[0-9]*}.{so.*[0-9],*}:s/.*[.]so[.]//p:$${ECHO} %')
 
   SYSTEM_DESCR.boost-lib-$1?=\
     $$(subst boost-libs,boostlib-$1,$${DEPEND_ABI.boost-lib-$1})
