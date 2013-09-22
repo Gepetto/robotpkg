@@ -23,5 +23,6 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/bison.mk
 include ../../mk/sysdep/bluez.mk
 include ../../mk/sysdep/flex.mk
+include ../../mk/sysdep/gtk.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
