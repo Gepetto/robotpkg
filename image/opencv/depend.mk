@@ -18,7 +18,7 @@ DEPEND_ABI.opencv?=	opencv>=2.2.0
 DEPEND_DIR.opencv?=	../../image/opencv
 
 SYSTEM_SEARCH.opencv=\
-	include/opencv/cv.h		\
+	include/opencv2/core/version.hpp		\
 	'lib/pkgconfig/opencv.pc:/Version/s/[^.0-9]//gp'
 
 endif # OPENCV_DEPEND_MK ---------------------------------------------------
