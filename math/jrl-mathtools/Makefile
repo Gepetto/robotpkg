@@ -18,14 +18,18 @@ DYNAMIC_PLIST_DIRS+=	share/doc/jrl-mathtools
 CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
 CMAKE_ARGS+=	-DBOOST_LIBRARYDIR=${PREFIX.boost-libs}/lib
 
-# See pre-configure below for an explanation
-CMAKE_ARGS+=	-DCMAKE_MODULE_PATH=${WRKSRC}/cmake
-
 DEPEND_ABI.boost-headers=	boost-headers>=1.40
 DEPEND_ABI.boost-libs=		boost-libs>=1.40
 
+# configure the path to blas/lapack libraries. cmake Find{BLAS,LAPACK}
+# have no other mean to configure a specific path.
+CMAKE_ARGS+=\
+  '-DBLAS_LIBRARIES=$(filter %.so %a %.dylib,${SYSTEM_FILES.blas})'	\
+  '-DLAPACK_LIBRARIES=$(filter %.so %a %.dylib,${SYSTEM_FILES.lapack})'
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../math/blas/depend.mk
 include ../../math/lapack/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
@@ -34,10 +38,3 @@ include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/language/fortran.mk
 include ../../mk/robotpkg.mk
-
-# cmake-2.8.6 has a buggy FindLAPACK: typo in CMAKE_FIND_LIBRARY_SUFFIXES
-# spelling (#12624)
-pre-configure:
-	${RUN}if ${TEST} "${PKGVERSION.cmake}" = "cmake-2.8.6"; then	\
-	  ${CP} ${FILESDIR}/FindLAPACK.cmake ${WRKSRC}/cmake/.;		\
-	fi
