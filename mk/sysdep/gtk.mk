@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008,2010-2011 LAAS/CNRS
+# Copyright (c) 2008,2010-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -26,16 +26,16 @@ ifeq (+,$(GTK_DEPEND_MK)) # ------------------------------------------------
 
 PREFER.gtk?=		system
 DEPEND_USE+=		gtk
-DEPEND_ABI.gtk?=	gtk>=2.8.17
+DEPEND_ABI.gtk?=	gtk>=2.8.17<3
 
 SYSTEM_SEARCH.gtk=	\
 	'include/gtk-2.0/gtk/gtk.h'				\
 	'lib/pkgconfig/gtk+-2.0.pc:/Version/s/[^.0-9]//gp'
 
-SYSTEM_PKG.Fedora.gtk=	gtk2-devel
-SYSTEM_PKG.Ubuntu.gtk=	libgtk2.0-dev
 SYSTEM_PKG.Debian.gtk=	libgtk2.0-dev
-SYSTEM_PKG.NetBSD.gtk=		x11/gtk2
+SYSTEM_PKG.Fedora.gtk=	gtk2-devel
+SYSTEM_PKG.Gentoo.gtk=	<x11-libs/gtk+-3
+SYSTEM_PKG.NetBSD.gtk=	x11/gtk2
 
 endif # GTK_DEPEND_MK ------------------------------------------------------
 
