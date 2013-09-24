@@ -31,10 +31,14 @@ DEPEND_ABI.omniORBpy?=	omniORBpy>=3.1
 DEPEND_DIR.omniORBpy?=	../../middleware/omniORBpy
 
 SYSTEM_SEARCH.omniORBpy=\
-  '${PYTHON_SYSLIBSEARCH}/omniORB/__init__.py'
+  '${PYTHON_SYSLIBSEARCH}/omniORB/__init__.py'		\
+  '${PYTHON_SYSLIBSEARCH}/omniidl_be/__init__.py'	\
+  '${PYTHON_SYSLIBSEARCH}/omniidl_be/python.py'
 
-SYSTEM_PKG.Debian.omniORBpy =	python-omniorb
-SYSTEM_PKG.Fedora.omniORBpy =	omniORB-devel
+# need omniidl_be in PYTHONPATH
+PYTHONPATH.omniORBpy+=	$(dir $(word 3,${SYSTEM_FILES.omniORBpy}))
+
+SYSTEM_PKG.Debian.omniORBpy =	python-omniorb omniidl-python
 SYSTEM_PKG.NetBSD.omniORBpy =	net/omniORB
 
 include ../../mk/sysdep/python.mk
