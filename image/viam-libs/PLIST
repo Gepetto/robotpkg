@@ -5,4 +5,5 @@ include/viam/viamlib.h
 include/viam/viamtypes.h
 lib/libviam.la
 lib/pkgconfig/viam-libs.pc
+${PLIST.opencv}lib/pkgconfig/viam-libs-cv.pc
 lib/viam-drivers/file.la

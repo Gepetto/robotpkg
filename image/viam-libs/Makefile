@@ -28,7 +28,7 @@ PKG_SUGGESTED_OPTIONS+= doc
 PKG_OPTION_DESCR.doc=	Install documentation files.
 define PKG_OPTION_SET.doc
   INSTALL_TARGET+=	install-doc
-  DOXYGEN_PLIST_DIR+=	share/doc/viam-libs
+  DYNAMIC_PLIST_DIRS+=	share/doc/viam-libs
   include ../../mk/sysdep/doxygen.mk
 endef
 
