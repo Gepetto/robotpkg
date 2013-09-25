@@ -22,7 +22,7 @@ SYSTEM_SEARCH.SDL=\
 SYSTEM_PKG.Debian.SDL=	libsdl1.2-dev
 SYSTEM_PKG.Fedora.SDL=	SDL-devel
 SYSTEM_PKG.NetBSD.SDL=	devel/SDL
-SYSTEM_PKG.Ubuntu.SDL=	libsdl1.2-dev
+SYSTEM_PKG.Gentoo.SDL=	media-libs/libsdl
 
 endif # SDL_DEPEND_MK ------------------------------------------------------
 

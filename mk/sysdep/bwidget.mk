@@ -26,7 +26,7 @@ SYSTEM_SEARCH.bwidget=	\
 SYSTEM_PKG.Debian.bwidget=bwidget
 SYSTEM_PKG.Fedora.bwidget=bwidget
 SYSTEM_PKG.NetBSD.bwidget=x11/tk-BWidget
-SYSTEM_PKG.Ubuntu.bwidget=bwidget
+SYSTEM_PKG.Gentoo.bwidget=dev-tcltk/bwidget
 
 endif # BWIDGET_DEPEND_MK -------------------------------------------------
 

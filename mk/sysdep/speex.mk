@@ -25,7 +25,7 @@ SYSTEM_SEARCH.speex=\
 SYSTEM_PKG.Debian.speex=	libspeex-dev
 SYSTEM_PKG.Fedora.speex=	speex-devel
 SYSTEM_PKG.NetBSD.speex=	audio/speex
-SYSTEM_PKG.Ubuntu.speex=	libspeex-dev
+SYSTEM_PKG.Gentoo.speex=	media-libs/speex
 
 endif # SPEEX_DEPEND_MK ----------------------------------------------------
 

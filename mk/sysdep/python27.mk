@@ -23,9 +23,9 @@ _py_search27=		{2.7,2,}
 SYSTEM_SEARCH.python27=	$(call _py_syssearch,${_py_search27})
 
 SYSTEM_PKG.Fedora.python27=	python2.7-devel
-SYSTEM_PKG.Ubuntu.python27=	python2.7-dev
 SYSTEM_PKG.Debian.python27=	python2.7-dev
-SYSTEM_PKG.NetBSD.python27=		pkgsrc/lang/python27
+SYSTEM_PKG.NetBSD.python27=	lang/python27
+SYSTEM_PKG.Gentoo.python27=	'=dev-lang/python-2.7*'
 
 export PYTHON27=	$(firstword ${SYSTEM_FILES.python27})
 export PYTHON27_LIB=	$(word 2,${SYSTEM_FILES.python27})

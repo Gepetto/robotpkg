@@ -39,9 +39,9 @@ _py_search31=		{3.1,3,}{,d}{,m}{,u}
 SYSTEM_SEARCH.python31=	$(call _py_syssearch,${_py_search31})
 
 SYSTEM_PKG.Fedora.python31=	python3.1-devel
-SYSTEM_PKG.Ubuntu.python31=	python3.1-dev
 SYSTEM_PKG.Debian.python31=	python3.1-dev
-SYSTEM_PKG.NetBSD.python31=		pkgsrc/lang/python31
+SYSTEM_PKG.NetBSD.python31=	lang/python31
+SYSTEM_PKG.Gentoo.python31=	'=dev-lang/python-3.1*'
 
 export PYTHON31=	$(firstword ${SYSTEM_FILES.python31})
 export PYTHON31_LIB=	$(word 2,${SYSTEM_FILES.python31})

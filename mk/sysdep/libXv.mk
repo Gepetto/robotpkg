@@ -22,7 +22,7 @@ SYSTEM_SEARCH.libXv=	\
 SYSTEM_PKG.Debian.libXv=libxv-dev
 SYSTEM_PKG.Fedora.libXv=libXv-devel
 SYSTEM_PKG.NetBSD.libXv=x11/libXv
-SYSTEM_PKG.Ubuntu.libXv=libxv-dev
+SYSTEM_PKG.Gentoo.libXv=x11-libs/libXv
 
 endif # LIBXV_DEPEND_MK ----------------------------------------------------
 

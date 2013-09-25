@@ -22,9 +22,9 @@ SYSTEM_SEARCH.glu=	\
 	'lib/pkgconfig/glu.pc:/Version/s/[^.0-9]//gp'
 
 SYSTEM_PKG.Fedora.glu=	mesa-libGLU-devel
-SYSTEM_PKG.Ubuntu.glu=	libglu1-mesa-dev
 SYSTEM_PKG.Debian.glu=	libglu1-mesa-dev
 SYSTEM_PKG.NetBSD.glu=		pkgsrc/graphics/glu
+SYSTEM_PKG.Gentoo.glu=		virtual/glu
 
 endif # GLU_DEPEND_MK ------------------------------------------------------
 

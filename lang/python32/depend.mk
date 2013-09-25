@@ -33,9 +33,9 @@ _py_search32=		{3.2,3,}{,d}{,m}{,u}
 SYSTEM_SEARCH.python32=	$(call _py_syssearch,${_py_search32})
 
 SYSTEM_PKG.Fedora.python32=	python3.2-devel
-SYSTEM_PKG.Ubuntu.python32=	python3.2-dev
 SYSTEM_PKG.Debian.python32=	python3.2-dev
-SYSTEM_PKG.NetBSD.python32=	pkgsrc/lang/python32
+SYSTEM_PKG.NetBSD.python32=	lang/python32
+SYSTEM_PKG.Gentoo.python32=	'=dev-lang/python-3.2*'
 
 # directory for byte compiled files
 PYTHON32_TAG=		.cpython-32

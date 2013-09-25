@@ -23,7 +23,7 @@ _py-pyaudio.v=s/.*\/PyAudio-//;s/[^0-9.].*//;s/[.]$$//;p
 
 SYSTEM_PKG.Debian.py-pyaudio=	python-pyaudio (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-pyaudio=	pyaudio (python-${PYTHON_VERSION})
-SYSTEM_PKG.Ubuntu.py-pyaudio=	python-pyaudio (python-${PYTHON_VERSION})
+SYSTEM_PKG.Gentoo.py-pyaudio=	dev-python/pyaudio (python-${PYTHON_VERSION})
 
 # pyaudio N/A on these platforms
 NOT_FOR_PLATFORM+=	NetBSD-%

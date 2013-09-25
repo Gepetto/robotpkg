@@ -18,8 +18,8 @@ DEPEND_ABI.doxygen?=	doxygen>=1.5
 DEPEND_METHOD.doxygen+=	build
 SYSTEM_SEARCH.doxygen=	'bin/doxygen:p:% --version'
 
-SYSTEM_PKG.Linux.doxygen=	doxygen
 SYSTEM_PKG.NetBSD.doxygen=	devel/doxygen
+SYSTEM_PKG.Gentoo.doxygen=	app-doc/doxygen
 
 # Legacy automatic PLIST generation for doxygen generated files.
 # Now, this should be replaced by DYNAMIC_PLIST_DIRS

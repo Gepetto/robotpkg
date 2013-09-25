@@ -31,7 +31,7 @@ SYSTEM_SEARCH.eigen3=	\
 
 SYSTEM_PKG.Debian.eigen3=	libeigen3-dev
 SYSTEM_PKG.Fedora.eigen3=	eigen3-devel
-SYSTEM_PKG.Ubuntu.eigen3=	libeigen3-dev
+SYSTEM_PKG.Gentoo.eigen3=	dev-cpp/eigen
 
 endif # EIGEN3_DEPEND_MK ---------------------------------------------------
 

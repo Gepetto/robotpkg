@@ -31,9 +31,9 @@ SYSTEM_SEARCH.openjdk=\
   '${_openjdk_p}include/*/jni_md.h'
 
 SYSTEM_PKG.Fedora.openjdk=	java-1.[67].0-openjdk-devel
-SYSTEM_PKG.Ubuntu.openjdk=	openjdk-[67]-jdk
 SYSTEM_PKG.Debian.openjdk=	openjdk-[67]-jdk
 SYSTEM_PKG.NetBSD.openjdk=	lang/openjdk7
+SYSTEM_PKG.Gentoo.openjdk=	virtual/jdk
 
 export JAVA_HOME=	$(abspath $(dir $(word 1,${SYSTEM_FILES.openjdk}))/..)
 export JAVA_INCLUDE=	$(dir $(word 5,${SYSTEM_FILES.openjdk}))

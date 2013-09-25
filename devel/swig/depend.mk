@@ -38,6 +38,8 @@ DEPEND_METHOD.swig+=	build
 
 SYSTEM_SEARCH.swig=	'bin/swig:/Version/{s/[^.0-9]//gp;q;}:% -version'
 
+SYSTEM_PKG.Gentoo.swig=	dev-lang/swig
+
 export SWIG=		$(word 1,${SYSTEM_FILES.swig})
 
 endif # SWIG_DEPEND_MK -----------------------------------------------

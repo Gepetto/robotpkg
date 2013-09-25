@@ -22,9 +22,9 @@ SYSTEM_SEARCH.mesa=	\
 	'lib/pkgconfig/gl.pc:/Version/s/[^.0-9]//gp'
 
 SYSTEM_PKG.Fedora.mesa=	mesa-libGL-devel
-SYSTEM_PKG.Ubuntu.mesa=	libgl1-mesa-dev
 SYSTEM_PKG.Debian.mesa=	libgl1-mesa-dev
-SYSTEM_PKG.NetBSD.mesa=		pkgsrc/graphics/MesaLib
+SYSTEM_PKG.NetBSD.mesa=	graphics/MesaLib
+SYSTEM_PKG.Gentoo.mesa=	media-libs/mesa
 
 endif # MESA_DEPEND_MK -----------------------------------------------------
 

@@ -39,7 +39,7 @@ SYSTEM_DESCR.festival+=\
 SYSTEM_PKG.Debian.festival=	festival festival-dev
 SYSTEM_PKG.Fedora.festival=	festival festival-devel
 SYSTEM_PKG.NetBSD.festival=	audio/festival
-SYSTEM_PKG.Ubuntu.festival=	festival festival-dev
+SYSTEM_PKG.Gentoo.festival=	app-accessibility/festival
 
 endif # FESTIVAL_DEPEND_MK -------------------------------------------
 

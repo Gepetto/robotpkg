@@ -21,8 +21,8 @@ DEPEND_ABI.tcl85?=	tcl85>=8.5<8.6
 SYSTEM_SEARCH.tcl85=	${_tcl_syssearch}
 
 SYSTEM_PKG.Fedora.tcl85=tcl-devel
-SYSTEM_PKG.Ubuntu.tcl85=tcl-dev
 SYSTEM_PKG.Debian.tcl85=tcl-dev
+SYSTEM_PKG.Gentoo.tcl85='=dev-lang/tcl-8.5*'
 
 endif # TCL85_DEPEND_MK ----------------------------------------------------
 

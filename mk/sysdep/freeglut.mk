@@ -32,9 +32,9 @@ else
 endif
 
 SYSTEM_PKG.Fedora.freeglut=	freeglut-devel
-SYSTEM_PKG.Ubuntu.freeglut=	freeglut3-dev
 SYSTEM_PKG.Debian.freeglut=	freeglut3-dev
 SYSTEM_PKG.NetBSD.freeglut=	graphics/freeglut
+SYSTEM_PKG.Gentoo.freeglut=	media-libs/freeglut
 
 endif # FREEGLUT_DEPEND_MK ---------------------------------------------------
 

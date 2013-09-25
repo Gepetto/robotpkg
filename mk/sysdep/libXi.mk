@@ -23,6 +23,7 @@ SYSTEM_PKG.Fedora.libXi=	libXi-devel
 SYSTEM_PKG.Ubuntu.libXi=	libxi-dev
 SYSTEM_PKG.Debian.libXi=	libXi-dev
 SYSTEM_PKG.NetBSD.libXi=	pkgsrc/x11/libXi
+SYSTEM_PKG.Gentoo.libXi=	x11-libs/libXi
 
 endif # LIBXI_DEPEND_MK ----------------------------------------------------
 
