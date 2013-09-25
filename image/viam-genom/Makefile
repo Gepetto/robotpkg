@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 14 Mar 2008
 #
 
-DISTNAME=		viam-genom-1.9
+DISTNAME=		viam-genom-1.10
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-genom/}
 MASTER_REPOSITORY=	git git://git.openrobots.org/robots/viam-genom
@@ -19,6 +19,12 @@ GENOM_MODULE=		viam
 CPPFLAGS+=		-I${PREFIX.libjpeg}/include
 LDFLAGS+=		-L${PREFIX.libjpeg}/lib
 
+# codels
+define PKG_OPTION_UNSET.api
+  include ../../image/opencv/depend.mk
+  DEPEND_ABI.viam-libs+=viam-libs~opencv
+endef
+
 # option for image display using opencv
 PKG_SUPPORTED_OPTIONS+=	display
 PKG_SUGGESTED_OPTIONS+=	display
@@ -28,16 +34,16 @@ define PKG_OPTION_SET.display
   CONFIGURE_ARGS+=--enable-display
   include ../../image/opencv/depend.mk
   DEPEND_ABI.opencv+=	opencv~gtk
-  DEPEND_ABI.viam-libs+=viam-libs~opencv
 endef
 PKG_OPTION_UNSET.display:=	CONFIGURE_ARGS+=--disable-display
 
 PKG_OPTIONS_OPTIONAL_GROUPS+=	incompatible
 PKG_OPTIONS_GROUP.incompatible=	api display
 
+include ../../architecture/genom/depend.mk
 include ../../image/viam-libs/depend.mk
 include ../../localization/pom-genom/depend.mk
-include ../../architecture/genom/depend.mk
 include ../../mk/sysdep/libjpeg.mk
 include ../../mk/language/c.mk
+
 include ../../mk/robotpkg.mk
