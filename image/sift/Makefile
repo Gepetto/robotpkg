@@ -20,7 +20,7 @@ MAKE_JOBS_SAFE=		no
 NO_CONFIGURE=		yes
 BUILD_TARGET=		all
 INSTALL_TARGET=		install
-INSTALLATION_DIRS=	bin
+INSTALLATION_DIRS=	bin lib
 
 # doc option
 PKG_SUPPORTED_OPTIONS+=	doc
@@ -30,7 +30,7 @@ PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
 define PKG_OPTION_SET.doc
   BUILD_TARGET+=	docs
   INSTALL_TARGET+=	install-doc
-  DOXYGEN_PLIST_DIR+=	share/doc/${PKGBASE}
+  DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
   include ../../mk/sysdep/doxygen.mk
 endef
 
