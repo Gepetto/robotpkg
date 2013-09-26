@@ -17,8 +17,8 @@ DYNAMIC_PLIST_DIRS+=	share/doc/jrl-mal
 # configure the path to blas/lapack libraries. cmake Find{BLAS,LAPACK}
 # have no other mean to configure a specific path.
 CMAKE_ARGS+=\
-  '-DBLAS_LIBRARIES=$(filter %.so %a %.dylib,${SYSTEM_FILES.blas})'	\
-  '-DLAPACK_LIBRARIES=$(filter %.so %a %.dylib,${SYSTEM_FILES.lapack})'
+  '-DBLAS_LIBRARIES=${BLAS_LIB}'			\
+  '-DLAPACK_LIBRARIES=${LAPACK_LIB};${BLAS_LIB}'
 
 # options
 PKG_SUPPORTED_OPTIONS+=	t3d jrl-mathtools
