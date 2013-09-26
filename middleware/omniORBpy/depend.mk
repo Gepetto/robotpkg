@@ -31,9 +31,9 @@ DEPEND_ABI.omniORBpy?=	omniORBpy>=3.1
 DEPEND_DIR.omniORBpy?=	../../middleware/omniORBpy
 
 SYSTEM_SEARCH.omniORBpy=\
-  '${PYTHON_SYSLIBSEARCH}/omniORB/__init__.py'		\
-  '${PYTHON_SYSLIBSEARCH}/omniidl_be/__init__.py'	\
-  '${PYTHON_SYSLIBSEARCH}/omniidl_be/python.py'
+  '${PYTHON_SYSLIBSEARCH}/omniORB/__init__.py'			\
+  '{${PYTHON_SYSLIBSEARCH},lib/omniidl}/omniidl_be/__init__.py'	\
+  '{${PYTHON_SYSLIBSEARCH},lib/omniidl}/omniidl_be/python.py'
 
 # need omniidl_be in PYTHONPATH
 PYTHONPATH.omniORBpy+=	$(dir $(word 3,${SYSTEM_FILES.omniORBpy}))
