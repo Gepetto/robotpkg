@@ -16,8 +16,10 @@ LICENSE=		2-clause-bsd
 NOT_FOR_PLATFORM=
 GNU_CONFIGURE=		yes
 GENOM_MODULE=		viam
-CPPFLAGS+=		-I${PREFIX.libjpeg}/include
-LDFLAGS+=		-L${PREFIX.libjpeg}/lib
+
+INCLUDE_DIRS.libjpeg+=	include
+LIBRARY_DIRS.libjpeg+=	lib
+RPATH_DIRS.libjpeg+=	lib
 
 # codels
 define PKG_OPTION_UNSET.api
