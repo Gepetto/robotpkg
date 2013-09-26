@@ -231,7 +231,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	    fi;								\
 	  done;								\
 	fi;								\
-))									\
+)									\
 	if ${TEST} -n "$$conflicts"; then				\
 	  ${WARNING_MSG} "The following packages may"			\
 		"interfere with the build because they";		\
