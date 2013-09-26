@@ -15,6 +15,7 @@ SUBDIR+=	hpp-hik
 SUBDIR+=	hpp-localstepper
 SUBDIR+=	hpp-model-urdf
 SUBDIR+=	hpp-openhrp
+SUBDIR+=	hpp-roboptim
 SUBDIR+=	hpp-walkfootplanner
 SUBDIR+=	hpp-walkplanner
 SUBDIR+=	hpp-worldmodelplanner

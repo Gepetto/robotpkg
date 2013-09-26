@@ -1,0 +1,10 @@
+@comment Thu Sep 26 19:02:39 CEST 2013
+include/hpp/roboptim/config.h
+include/hpp/roboptim/config.hh
+include/hpp/roboptim/deprecated.hh
+include/hpp/roboptim/fwd.hh
+include/hpp/roboptim/spline-directpath.hh
+include/hpp/roboptim/warning.hh
+lib/libhpp-roboptim.so
+lib/libhpp-roboptim.so.${PKGVERSION}
+lib/pkgconfig/hpp-roboptim.pc
