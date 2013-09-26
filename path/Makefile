@@ -18,6 +18,7 @@ SUBDIR+=	hpp-openhrp
 SUBDIR+=	hpp-roboptim
 SUBDIR+=	hpp-walkfootplanner
 SUBDIR+=	hpp-walkplanner
+SUBDIR+=	hpp-wholebody-step-planner
 SUBDIR+=	hpp-worldmodelplanner
 SUBDIR+=	jrl-walkgen
 SUBDIR+=	libp3d
