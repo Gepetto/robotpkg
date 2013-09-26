@@ -19,10 +19,12 @@ DEPEND_DIR.opencv?=	../../image/opencv
 
 SYSTEM_SEARCH.opencv=\
   'include/opencv/cv.h'					\
+  'include/opencv/highgui.h'				\
   'include/opencv2/core/version.hpp'			\
+  'include/opencv2/highgui/highgui.hpp'			\
   'lib/pkgconfig/opencv.pc:/Version/s/[^.0-9]//gp'
 
-SYSTEM_PKG.Debian=	libopencv-dev libcv-dev
+SYSTEM_PKG.Debian=	libopencv-dev libcv-dev libhighgui-dev
 SYSTEM_PKG.Fedora=	opencv-devel
 SYSTEM_PKG.Gentoo=	media-libs/opencv
 SYSTEM_PKG.NetBSD=	graphics/opencv
