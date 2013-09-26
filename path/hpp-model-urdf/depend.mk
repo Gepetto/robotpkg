@@ -15,7 +15,7 @@ PREFER.hpp-model-urdf?=	robotpkg
 
 DEPEND_USE+=		hpp-model-urdf
 
-DEPEND_ABI.hpp-model-urdf?=	hpp-model-urdf>=0.3
+DEPEND_ABI.hpp-model-urdf?=	hpp-model-urdf>=0.4
 DEPEND_DIR.hpp-model-urdf?=	../../path/hpp-model-urdf
 
 SYSTEM_SEARCH.hpp-model-urdf=			\
