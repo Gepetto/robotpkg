@@ -72,8 +72,9 @@ PREFIX.boost-libs=\
 # `.', sort this out and make sure it's consistent.
 BOOST_LIB_SUFFIX=\
   $(sort $(foreach _,${USE_BOOST_LIBS},					\
-    $(patsubst libboost_$_%,%,						\
-      $(word 1,$(subst ., ,$(notdir ${SYSTEM_FILES.boost-lib-$_}))))))
+    $(foreach __,${_boost_libs_files_$_},				\
+      $(patsubst libboost_${__}%,%,					\
+      $(word 1,$(subst ., ,$(notdir ${SYSTEM_FILES.boost-lib-${__}})))))))
 PKG_FAIL_REASON+=\
   $(if $(filter-out 0 1,$(words ${BOOST_LIB_SUFFIX})),			\
     "Boost libraries have inconsistent suffixes: ${BOOST_LIB_SUFFIX}"	\
