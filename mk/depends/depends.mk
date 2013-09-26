@@ -212,22 +212,25 @@ depends-conflicts:
 	conflicts=;							\
 	altpfix=`{ ${ECHO} $(abspath ${PREFIX});			\
 	  ${SED} -n -e '/PREFIX.*:=/{s///;h;}'				\
-		 -e '/SYSTEM_FILES.*include/{g;p;}'			\
-		 -e '/SYSTEM_FILES.*lib/{g;p;}' $$depf;} | ${SORT} -u`;	\
+	    -e '/SYSTEM_FILES.*\/include/{g;p;}'			\
+	    -e '/SYSTEM_FILES.*\/lib*/{g;p;}' $$depf;} | ${SORT} -u`;	\
 $(foreach _pkg_,${DEPEND_USE},						\
-  $(if $(filter include/% lib/%,${SYSTEM_SEARCH.${_pkg_}}),		\
-	pfix=`${SED} -n -e '/PREFIX.${_pkg_}:=/{s///p;q;}' $$depf`;	\
+	pfix=`${SED} -n -e '/PREFIX.${_pkg_}:=/{s///;h;}'		\
+		-e '/SYSTEM_FILES.${_pkg_}.*\/include/{g;p;q;}'		\
+		-e '/SYSTEM_FILES.${_pkg_}.*\/lib*/{g;p;q;}' $$depf`;	\
 	vers=`${SED} -n -e '/PKGVERSION.${_pkg_}:=/{s///p;q;}' $$depf`;	\
-	for p in $$altpfix; do						\
-	  ${TEST} "$$p" -ef "$$pfix" && continue;			\
-	  m=`${_PREFIXSEARCH_CMD} 2>/dev/null 3>&2			\
+	if ${TEST} -n "$$pfix"; then					\
+	  for p in $$altpfix; do					\
+	    ${TEST} "$$p" -ef "$$pfix" && continue;			\
+	    m=`${_PREFIXSEARCH_CMD} 2>/dev/null 3>&2			\
 		-p "$$p" $(call quote,${_pkg_}) $(call quote,${_pkg_})	\
 		${SYSTEM_SEARCH.${_pkg_}}` || m=;			\
-	  if ${TEST} -n "$$m"; then					\
-	    conflicts=$$conflicts" $$m $$p";				\
-	    ${WARNING_MSG} "Using $$vers in $$pfix";			\
-	  fi;								\
-	done;								\
+	    if ${TEST} -n "$$m"; then					\
+	      conflicts=$$conflicts" $$m $$p";				\
+	      ${WARNING_MSG} "Using $$vers in $$pfix";			\
+	    fi;								\
+	  done;								\
+	fi;								\
 ))									\
 	if ${TEST} -n "$$conflicts"; then				\
 	  ${WARNING_MSG} "The following packages may"			\
