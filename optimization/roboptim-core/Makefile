@@ -6,13 +6,13 @@ VERSION=	1.0
 PKGREVISION=	2
 DISTNAME=	roboptim-core-${VERSION}
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
-MASTER_REPOSITORY=git git://github.com/laas/roboptim-core.git
+MASTER_REPOSITORY=git git://github.com/roboptim/roboptim-core.git
 
 CATEGORIES=	optimization
 COMMENT=	Optimization for robotics: common API to various solvers
-HOMEPAGE=	https://github.com/laas/roboptim-core
+HOMEPAGE=	http://www.roboptim.net
 LICENSE=	gnu-lgpl-v3
-MAINTAINER=	roboptim-user@lists.sourceforge.net
+MAINTAINER=	roboptim@googlegroups.com
 
 CMAKE_ARGS+=		-DBOOST_ROOT=${PREFIX.boost-headers}
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
