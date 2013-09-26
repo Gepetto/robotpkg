@@ -18,11 +18,11 @@ DEPEND_ABI.opencv?=	opencv>=2.2.0
 DEPEND_DIR.opencv?=	../../image/opencv
 
 SYSTEM_SEARCH.opencv=\
-  'include/opencv/cv.h'					\
-  'include/opencv/highgui.h'				\
-  'include/opencv2/core/version.hpp'			\
-  'include/opencv2/highgui/highgui.hpp'			\
-  'lib/pkgconfig/opencv.pc:/Version/s/[^.0-9]//gp'
+  'include{,/opencv-*}/opencv/cv.h'					\
+  'include{,/opencv-*}/opencv/highgui.h'				\
+  'include{,/opencv-*}/opencv2/core/version.hpp'			\
+  'include{,/opencv-*}/opencv2/highgui/highgui.hpp'			\
+  'lib/pkgconfig/opencv{,-[0-9]*}.pc:/Version/s/[^.0-9]//gp'
 
 SYSTEM_PKG.Debian=	libopencv-dev libcv-dev libhighgui-dev
 SYSTEM_PKG.Fedora=	opencv-devel
