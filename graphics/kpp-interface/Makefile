@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=	kpp-interface
-HPP_VERSION=	2.0.2
+HPP_VERSION=	2.1
 PKGREVISION=
 
 CATEGORIES=	graphics

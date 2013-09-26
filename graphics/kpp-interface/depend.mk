@@ -15,12 +15,12 @@ PREFER.kpp-interface?=	robotpkg
 
 DEPEND_USE+=			kpp-interface
 
-DEPEND_ABI.kpp-interface?=	kpp-interface>=1.8
+DEPEND_ABI.kpp-interface?=	kpp-interface>=2.1
 DEPEND_DIR.kpp-interface?=	../../graphics/kpp-interface
 
 SYSTEM_SEARCH.kpp-interface=\
-	include/kppInterface/kppInterface.h		\
-	'lib/pkgconfig/kppInterface.pc:/Version/s/[^0-9.]//gp'
+	include/kpp/interface/interface.hh		\
+	'lib/pkgconfig/kpp-interface.pc:/Version/s/[^0-9.]//gp'
 
 endif # --------------------------------------------------------------------
 
