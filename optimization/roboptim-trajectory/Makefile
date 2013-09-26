@@ -6,13 +6,13 @@ VERSION=	1.0
 PKGREVISION=	1
 DISTNAME=	roboptim-trajectory-${VERSION}
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
-MASTER_REPOSITORY=git git://github.com/laas/roboptim-trajectory.git
+MASTER_REPOSITORY=git git://github.com/roboptim/roboptim-trajectory.git
 
 CATEGORIES=	optimization
 COMMENT=	Optimization for robotics: trajectory optimization
-HOMEPAGE=	https://github.com/laas/roboptim-trajectory
+HOMEPAGE=	http://www.roboptim.net
 LICENSE=	gnu-lgpl-v3
-MAINTAINER=	roboptim-user@lists.sourceforge.net
+MAINTAINER=	roboptim@googlegroups.com
 
 DYNAMIC_PLIST_DIRS+=	share/doc/roboptim-trajectory
 
