@@ -1,0 +1,14 @@
+@comment Thu Sep 26 20:57:33 CEST 2013
+include/hpp/corbaserver/constrained/config.hh
+include/hpp/corbaserver/constrained/deprecated.hh
+include/hpp/corbaserver/constrained/fwd.hh
+include/hpp/corbaserver/constrained/server.hh
+include/hpp/corbaserver/constrained/warning.hh
+lib/libhpp-constrained-corba.so
+lib/libhpp-constrained-corba.so.${PKGVERSION}
+lib/pkgconfig/hpp-constrained-corba.pc
+lib/python2.7/site-packages/hpp/corbaserver/constrained/__init__.py
+lib/python2.7/site-packages/hpp/corbaserver/constrained/client.py
+lib/python2.7/site-packages/hpp/corbaserver/constrained/constrained_idl.py
+lib/python2.7/site-packages/hpp/corbaserver/constrained/hpp/__init__.py
+lib/python2.7/site-packages/hpp/corbaserver/constrained/hpp__POA/__init__.py
