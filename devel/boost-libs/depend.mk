@@ -34,7 +34,7 @@ override define _use_boost_libs
 
   _boost_libs_files_$1?=	$1
   SYSTEM_SEARCH.boost-lib-$1?=$$(foreach 2,$${_boost_libs_files_$1},	\
-    'lib/libboost_$$2{,-mt}{,-[0-9]*}.{so.*[0-9],*}:s/.*[.]so[.]//p:$${ECHO} %')
+    'lib/libboost_$$2{-mt,}{-[0-9]*,}.so{.*[0-9],}:s/.*[.]so[.]//p:$${ECHO} %')
 
   SYSTEM_DESCR.boost-lib-$1?=\
     $$(subst boost-libs,boostlib-$1,$${DEPEND_ABI.boost-lib-$1})
@@ -68,9 +68,16 @@ USE_BOOST_LIBS?=\
 PREFIX.boost-libs=\
   $(sort $(foreach _,${USE_BOOST_LIBS},${PREFIX.boost-lib-$_}))
 
-# mt suffix
+# mt and/or version suffix. Hairy inside: find anything after `-' and before
+# `.', sort this out and make sure it's consistent.
 BOOST_LIB_SUFFIX=\
-  $(findstring -mt,$(firstword ${SYSTEM_FILES.boost-libs}))
+  $(sort $(foreach _,${USE_BOOST_LIBS},					\
+    $(patsubst libboost_$_%,%,						\
+      $(word 1,$(subst ., ,$(notdir ${SYSTEM_FILES.boost-lib-$_}))))))
+PKG_FAIL_REASON+=\
+  $(if $(filter-out 0 1,$(words ${BOOST_LIB_SUFFIX})),			\
+    "Boost libraries have inconsistent suffixes: ${BOOST_LIB_SUFFIX}"	\
+    ${SYSTEM_FILES.boost-libs})
 
 endif # BOOST_LIBS_DEPEND_MK -----------------------------------------
 
