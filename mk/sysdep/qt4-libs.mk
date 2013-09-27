@@ -21,9 +21,9 @@ SYSTEM_SEARCH.qt4-libs=\
   'lib/pkgconfig/QtCore.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Fedora.qt4-libs=	qt-devel
-SYSTEM_PKG.Ubuntu.qt4-libs=	libqt4-dev
 SYSTEM_PKG.Debian.qt4-libs=	libqt4-dev
 SYSTEM_PKG.NetBSD.qt4-libs=	x11/qt4-libs x11/qt4-tools
+SYSTEM_PKG.Gentoo.qt4-libs=	x11-libs/qt-meta
 
 endif # QT4_LIBS_DEPEND_MK -------------------------------------------------
 

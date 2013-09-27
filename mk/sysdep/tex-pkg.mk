@@ -23,9 +23,9 @@ override define _tex-pkg
 
   SYSTEM_DESCR.tex-$(basename $1)?=	TeX package $1
   SYSTEM_PKG.Fedora.tex-$(basename $1)?=texlive-latex
-  SYSTEM_PKG.Ubuntu.tex-$(basename $1)?=texlive-latex-extra
   SYSTEM_PKG.Debian.tex-$(basename $1)?=texlive-latex-extra
   SYSTEM_PKG.MacOSX.tex-$(basename $1)?=texlive
+  SYSTEM_PKG.Gentoo.tex-$(basename $1)?=dev-texlive/texlive-latexextra
 endef
 
 ifeq (,${USE_TEX_PKGS})
