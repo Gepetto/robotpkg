@@ -28,7 +28,7 @@ SYSTEM_SEARCH.py-qt4=\
 SYSTEM_PKG.Debian.py-qt4=python-qt4 python-qt4-dev (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-qt4=PyQt4-devel (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-qt4=x11/${PKGTAG.python}-qt4
-SYSTEM_PKG.Gentoo.py-qt4='dev-python/PyQt4[multimedia]'
+SYSTEM_PKG.Gentoo.py-qt4='dev-python/PyQt4[X]'
 
 
 endif # PY_QT4_DEPEND_MK ----------------------------------------------
