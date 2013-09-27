@@ -21,6 +21,7 @@ define PKG_OPTION_SET.tcl
   include ../../devel/swig/depend.mk
   include ../../mk/sysdep/libxml2.mk
   include ../../mk/sysdep/tcl.mk
+  include ../../mk/sysdep/tk.mk
 endef
 
 include ../../mk/sysdep/cmake.mk
