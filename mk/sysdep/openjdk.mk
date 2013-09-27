@@ -19,7 +19,7 @@ PREFER.openjdk?=	system
 DEPEND_ABI.openjdk?=	openjdk>=1.6
 DEPEND_METHOD.openjdk?=	${DEPEND_METHOD.java}
 
-_openjdk_p:=	{java/,lib/jvm/,lib/java/,}{,*openjdk*/}
+_openjdk_p:=	{java/,lib/jvm/,lib/java/,}{,*openjdk*/,*icedtea*/}
 _openjdk_v:=	{y/_/./;s/[^0-9.]//g;h;}
 _openjdk_vv:=	/version/${_openjdk_v};/OpenJDK/{g;p;q;}
 SYSTEM_SEARCH.openjdk=\
@@ -33,7 +33,7 @@ SYSTEM_SEARCH.openjdk=\
 SYSTEM_PKG.Fedora.openjdk=	java-1.[67].0-openjdk-devel
 SYSTEM_PKG.Debian.openjdk=	openjdk-[67]-jdk
 SYSTEM_PKG.NetBSD.openjdk=	lang/openjdk7
-SYSTEM_PKG.Gentoo.openjdk=	virtual/jdk
+SYSTEM_PKG.Gentoo.openjdk=	dev-java/icedtea
 
 export JAVA_HOME=	$(abspath $(dir $(word 1,${SYSTEM_FILES.openjdk}))/..)
 export JAVA_INCLUDE=	$(dir $(word 5,${SYSTEM_FILES.openjdk}))
