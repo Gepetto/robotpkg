@@ -1,0 +1,30 @@
+FindBoost sometimes put 'optimized' or 'debug' keywords in Boost_LIBRARIES.
+This works only with the cmake target_link_library() function.
+
+--- cmake/sip_helper.cmake~	2013-06-06 21:48:38.000000000 +0200
++++ cmake/sip_helper.cmake	2013-09-28 01:52:14.458703455 +0200
+@@ -175,10 +175,23 @@
+     set(SIP_BUILD_DIR ${sip_BINARY_DIR}/sip/${PROJECT_NAME})
+
+     set(INCLUDE_DIRS ${${PROJECT_NAME}_INCLUDE_DIRS})
+-    set(LIBRARIES ${${PROJECT_NAME}_LIBRARIES})
+     set(LIBRARY_DIRS ${${PROJECT_NAME}_LIBRARY_DIRS})
+     set(LDFLAGS_OTHER ${${PROJECT_NAME}_LDFLAGS_OTHER})
+
++    # braindead code to remove 'optimized' or 'debug' keywords from the
++    # libraries. Enjoy!
++    set(LIBRARIES)
++    set(_lprev)
++    foreach(_l ${${PROJECT_NAME}_LIBRARIES})
++      if("${_lprev}" STREQUAL "debug")
++      elseif("${_l}" STREQUAL "optimized")
++      elseif("${_l}" STREQUAL "debug")
++      else()
++        list(APPEND LIBRARIES ${_l})
++      endif()
++      set(_lprev "${_l}")
++    endforeach()
++
+     assert(PYTHON_EXECUTABLE)
+     add_custom_command(
+         OUTPUT ${SIP_BUILD_DIR}/Makefile

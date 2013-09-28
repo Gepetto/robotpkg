@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Tue,  9 Oct 2012
 #
 
+PKGREVISION=	1
 ROS_PKG=	python_qt_binding
 ROS_VERSION=	0.2.10
 ROS_REPO=	ros-visualization
