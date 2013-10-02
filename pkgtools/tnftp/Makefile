@@ -24,7 +24,6 @@ CONFIGURE_ARGS+=	--with-socks=no
 
 NOT_FOR_PLATFORM=	# empty
 NO_CHECKSUM=		yes
-NO_PKGTOOLS_REQD_CHECK=	yes
 
 # ssl option
 PKG_SUPPORTED_OPTIONS+=	ssl
