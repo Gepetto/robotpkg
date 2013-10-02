@@ -66,15 +66,6 @@ include ${ROBOTPKG_DIR}/mk/install/deinstall.mk
 include ${ROBOTPKG_DIR}/mk/install/replace.mk
 
 
-# --- install-clean (PRIVATE) ----------------------------------------
-#
-# install-clean removes the state files for the "install" and
-# later phases so that the "install" target may be re-invoked.
-#
-install-clean:
-	${RUN}${RM} -f ${PLIST} ${_COOKIE.install}
-
-
 # --- install-cookie (PRIVATE) ---------------------------------------------
 #
 # install-cookie creates the "install" cookie file.

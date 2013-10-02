@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011 LAAS/CNRS
+# Copyright (c) 2006-2009,2011,2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -53,7 +53,6 @@ _DEINSTALL_TARGETS+=	deinstall-message
 _DEINSTALL_TARGETS+=	acquire-deinstall-lock
 _DEINSTALL_TARGETS+=	pkg-deinstall
 _DEINSTALL_TARGETS+=	release-deinstall-lock
-_DEINSTALL_TARGETS+=	install-clean
 
 .PHONY: deinstall
 ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
@@ -74,12 +73,3 @@ release-deinstall-lock: release-localbase-lock
 .PHONY: deinstall-message
 deinstall-message:
 	@${PHASE_MSG} "Deinstalling for ${PKGBASE}"
-
-
-# --- reinstall (PUBLIC) ---------------------------------------------
-#
-# reinstall is a special target to re-run the install target.
-#
-.PHONY: reinstall
-reinstall: install-clean
-	${RUN}${RECURSIVE_MAKE} install $(filter confirm,${MAKECMDGOALS})

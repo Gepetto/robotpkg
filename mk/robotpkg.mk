@@ -93,22 +93,22 @@ $(call require-for, patch,						\
 	${ROBOTPKG_DIR}/mk/patch/patch-vars.mk)
 
 # Configure
-$(call require-for, configure reconfigure,				\
+$(call require-for, configure,						\
 	${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
 
 # Build
 $(if $(strip ${MAKECMDGOALS}),						\
-	$(call require-for, all build rebuild,				\
+	$(call require-for, all build,					\
 		${ROBOTPKG_DIR}/mk/build/build-vars.mk),		\
 	$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk))
 
 # Install
-$(call require-for, install install-failsafe su-install-all reinstall	\
+$(call require-for, install install-failsafe su-install-all		\
 	deinstall su-deinstall replace su-replace bootstrap-register,	\
 	${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 
 # Package
-$(call require-for, package repackage tarup,				\
+$(call require-for, package tarup,					\
 	${ROBOTPKG_DIR}/mk/package/package-vars.mk)
 
 # Dependencies

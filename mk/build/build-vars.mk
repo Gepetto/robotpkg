@@ -118,26 +118,6 @@ else
 endif
 
 
-# --- rebuild (PUBLIC) -----------------------------------------------------
-#
-# rebuild is a special target to re-run the build target.
-#
-.PHONY: rebuild
-rebuild: build-clean
-	${RUN}${RECURSIVE_MAKE} build
-
-
-# --- build-clean (PRIVATE) ------------------------------------------------
-#
-# build-clean removes the state files for the "build" and later phases so that
-# the "build" target may be re-invoked.
-#
-$(call require, ${ROBOTPKG_DIR}/mk/install/install-vars.mk)
-
-build-clean: install-clean
-	${RUN}${RM} -f ${_COOKIE.build}
-
-
 # --- build-cookie (PRIVATE) -----------------------------------------------
 #
 # build-cookie creates the "build" cookie file.
