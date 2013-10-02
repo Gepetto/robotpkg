@@ -138,7 +138,11 @@ endef
 
 .PHONY: depends-cookie
 depends-cookie: makedirs
-	${RUN}${TEST} ! -f ${_COOKIE.depends} || ${FALSE};		\
+	${RUN}								\
+	if ${TEST} -f ${_COOKIE.depends}; then				\
+	  >>${_COOKIE.depends};						\
+	  exit 0;							\
+	fi;								\
 	exec >>${_COOKIE.depends};					\
 	${ECHO} "_COOKIE.depends.date:=`${_CDATE_CMD}`";		\
 	${ECHO} "_COOKIE.depends.use:="					\

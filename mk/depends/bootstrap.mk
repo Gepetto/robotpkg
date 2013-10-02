@@ -87,7 +87,11 @@ endef
 
 .PHONY: bootstrap-depends-cookie
 bootstrap-depends-cookie: makedirs
-	${RUN}${TEST} ! -f ${_COOKIE.bootstrap-depends} || ${FALSE};	\
+	${RUN}								\
+	if ${TEST} -f ${_COOKIE.bootstrap-depends}; then		\
+	  >>${_COOKIE.bootstrap-depends};				\
+	  exit 0;							\
+	fi;								\
 	exec >>${_COOKIE.bootstrap-depends};				\
 	${ECHO} "_COOKIE.bootstrap-depends.date:=`${_CDATE_CMD}`";	\
 	${ECHO} "_COOKIE.bootstrap-depends.use:="			\
