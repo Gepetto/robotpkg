@@ -48,7 +48,6 @@ ZLIB_STYLE=		inplace
 BZIP2_STYLE=		inplace
 LIBARCHIVE_STYLE=	inplace
 LIBFETCH_STYLE=		inplace
-PKGREPO2DEB_STYLE=	inplace # for PKG_FORMAT=deb
 include ../../pkgtools/libnbcompat/depend.mk
 include ../../archivers/zlib/depend.mk
 include ../../archivers/bzip2/depend.mk

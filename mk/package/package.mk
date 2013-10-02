@@ -101,17 +101,8 @@ endif
 # deb-package generates a debian binary package (.deb)
 #
 ifneq (,$(filter deb,${PKG_FORMAT}))
-  # pull GPG_HOMEDIR settings
-  DEPEND_METHOD.gnupg+=	bootstrap
-  include ${ROBOTPKG_DIR}/mk/sysdep/gnupg.mk
-
-  # avoid circular deps
-  ifeq (pkgrepo2deb,${PKGBASE})
-    PKGREPO2DEB?=	${PREFIX}/sbin/pkgrepo2deb
-  else
-    DEPEND_METHOD.pkgrepo2deb+=	bootstrap
-    include ${ROBOTPKG_DIR}/pkgtools/pkgrepo2deb/depend.mk
-  endif
+  DEPEND_METHOD.pkgrepo2deb+=	bootstrap
+  include ${ROBOTPKG_DIR}/pkgtools/pkgrepo2deb/depend.mk
 
   PKGREPO2DEB_ENV+=	ROBOTPKG_ADMIN=${PKG_ADMIN_CMD}
   PKGREPO2DEB_ENV+=	TMPDIR=${WRKDIR}
