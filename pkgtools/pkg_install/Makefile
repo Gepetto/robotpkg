@@ -76,7 +76,7 @@ ifeq (robotpkg,${PREFER.pkg_install})
 
   .PHONY: pkg_build
   pkg_build:
-	${RUN}${RECURSIVE_MAKE} build
+	${RUN}${MAKE} build
 endif
 
 # Remove any old pkg_install versions from database

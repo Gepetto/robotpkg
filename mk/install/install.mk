@@ -165,7 +165,7 @@ endif
 install-deinstall:
 	${RUN}found=`${PKG_INFO} -e '${PKGWILDCARD}' || ${TRUE}`;	\
 	${TEST} -n "$$found" || exit 0;					\
-	${RECURSIVE_MAKE} deinstall
+	${MAKE} deinstall
 
 
 # --- install-all (PRIVATE) ------------------------------------------
@@ -250,7 +250,7 @@ install-failsafe: ${_INSTALL_FAILSAFE_TARGETS}
 
 .PHONY: do-install-failsafe
 do-install-failsafe:
-	${RUN}${RECURSIVE_MAKE} install-failsafe || >${_install_failed}
+	${RUN}${MAKE} install-failsafe || >${_install_failed}
 
 .PHONY: install-failed
 ifdef PKG_PRESERVE

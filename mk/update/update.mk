@@ -191,7 +191,7 @@ update-clean:
 	fi
 	${RUN} ${RM} -f ${_UPDATE_LIST};				\
 	if ${TEST} "$(call isyes,${UPDATE_CLEAN})"; then		\
-	  ${RECURSIVE_MAKE} cleaner;					\
+	  ${MAKE} cleaner;						\
 	fi;								\
 
 
@@ -269,7 +269,7 @@ update-deinstall-dlist:
 	    done 9<${_UPDATE_LIST};					\
 	    cd ${CURDIR};						\
 	  fi;								\
-	  ${RECURSIVE_MAKE} deinstall					\
+	  ${MAKE} deinstall						\
 		_UPDATE_INPROGRESS=yes DEINSTALLDEPENDS=yes;		\
 	fi
 

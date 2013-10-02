@@ -64,9 +64,9 @@ mirror-message:
 .PHONY: check-distfiles
 check-distfiles: fetch-all
 	${RUN}								\
-	if ! ${RECURSIVE_MAKE} SILENT=yes checksum; then		\
+	if ! ${MAKE} SILENT=yes checksum; then				\
 	  ${RM} $(addprefix ${DISTDIR}/,${_ALLFILES});			\
-	  ${RECURSIVE_MAKE} fetch-all checksum;				\
+	  ${MAKE} fetch-all checksum;					\
 	fi
 
 
