@@ -17,9 +17,6 @@ NOT_FOR_PLATFORM=	NetBSD-%
 
 DYNAMIC_PLIST_DIRS+=	share/doc/liborocos-rtt
 
-CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
-CMAKE_ARGS+=	-DBOOST_LIBDIR=${PREFIX.boost-headers}/lib
-
 DEPEND_ABI.boost-libs=boost-libs>=1.38
 DEPEND_ABI.boost-headers=boost-headers>=1.38
 

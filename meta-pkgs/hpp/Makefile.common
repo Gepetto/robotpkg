@@ -36,9 +36,6 @@ PKG_OPTION_SET.benchmark:=	CPPFLAGS+=-DHPP_ENABLE_BENCHMARK -DHPP_DEBUG
 
 ifeq (autoconf,${HPP_BUILD_SYSTEM})
 else ifeq (cmake,${HPP_BUILD_SYSTEM})
-  # configure boost location
-  CMAKE_ARGS+=-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
-  CMAKE_ARGS+=-DBOOST_LIBRARYDIR=${PREFIX.boost-libs}/lib
   CMAKE_ARGS+=-DCMAKE_INSTALL_LIBDIR=lib
 
   include ../../mk/sysdep/cmake.mk

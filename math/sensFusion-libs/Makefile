@@ -14,9 +14,6 @@ LICENSE=		mit
 
 COMMENT=		Sensor Fusion Library
 
-
-CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
-
 DEPEND_ABI.boost-headers = boost-headers>=1.41
 include ../../devel/boost-headers/depend.mk
 include ../../mk/sysdep/cmake.mk

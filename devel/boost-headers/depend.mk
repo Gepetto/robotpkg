@@ -31,6 +31,9 @@ DEPEND_DIR.boost-headers?=	../../devel/boost-headers
 
 DEPEND_METHOD.boost-headers?=	build
 
+# For cmake/FindBoost users
+CMAKE_ARGS+=	'-DBOOST_INCLUDEDIR=${PREFIX.boost-headers:=/include}'
+
 include ../../mk/language/c++.mk
 
 endif # BOOST_HEADERS_DEPEND_MK --------------------------------------

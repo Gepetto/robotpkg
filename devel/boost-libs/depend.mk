@@ -80,6 +80,10 @@ PKG_FAIL_REASON+=\
     "Boost libraries have inconsistent suffixes: ${BOOST_LIB_SUFFIX}"	\
     ${SYSTEM_FILES.boost-libs})
 
+# For cmake/FindBoost users
+CMAKE_ARGS+=	'-DBOOST_LIBRARYDIR=${PREFIX.boost-libs:=/lib}'
+
+
 endif # BOOST_LIBS_DEPEND_MK -----------------------------------------
 
 # apply USE_BOOST_LIBS selection

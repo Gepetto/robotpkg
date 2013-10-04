@@ -15,9 +15,6 @@ LICENSE=	gnu-lgpl-v3
 
 DYNAMIC_PLIST_DIRS+=	share/doc/jrl-mathtools
 
-CMAKE_ARGS+=	-DBOOST_INCLUDEDIR=${PREFIX.boost-headers}/include
-CMAKE_ARGS+=	-DBOOST_LIBRARYDIR=${PREFIX.boost-libs}/lib
-
 DEPEND_ABI.boost-headers=	boost-headers>=1.40
 DEPEND_ABI.boost-libs=		boost-libs>=1.40
 
