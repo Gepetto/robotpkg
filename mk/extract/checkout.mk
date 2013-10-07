@@ -68,6 +68,8 @@
 #	tweaked by setting CHECKOUT_OPTS and CHECKOUT_ELEMENTS.
 #
 
+$(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+
 CHECKOUT_DIR?=		${WRKDIR}
 CHECKOUT_CMD?=		${CHECKOUT_CMD_DEFAULT}
 CHECKOUT_OPTS?=#	empty
@@ -89,10 +91,18 @@ ifneq (,$(call isyes,${GNU_CONFIGURE}))
   post-checkout: autoreconf
 endif
 
-# --- ${_COOKIE.checkout} --------------------------------------------------
+
+# --- checkout-cookie (PRIVATE) --------------------------------------------
 #
-# ${_COOKIE.checkout} creates the "checkout" cookie file.
+# checkout-cookie creates the "checkout" cookie file. The contents are the name
+# of the package.
 #
+.PHONY: checkout-cookie
+checkout-cookie: makedirs
+	${RUN}${TEST} ! -f ${_COOKIE.checkout} || ${FALSE};		\
+	exec >>${_COOKIE.checkout};					\
+	${ECHO} "_COOKIE.checkout.date:=`${_CDATE_CMD}`"
+
 ifeq (yes,$(call exists,${_COOKIE.checkout}))
   $(call require,${_COOKIE.checkout})
 else
@@ -105,18 +115,34 @@ endif
 #
 # checkout is a public target to perform checkout of a repository.
 #
-_CHECKOUT_TARGETS+=	$(call add-barrier, bootstrap-depends, checkout)
-_CHECKOUT_TARGETS+=	acquire-extract-lock
-_CHECKOUT_TARGETS+=	${_COOKIE.checkout}
-_CHECKOUT_TARGETS+=	release-extract-lock
+ifdef _MASTER_REPOSITORY
+  _CHECKOUT_TARGETS+=	$(call add-barrier, bootstrap-depends, checkout)
+  _CHECKOUT_TARGETS+=	acquire-extract-lock
+  _CHECKOUT_TARGETS+=	${_COOKIE.checkout}
+  _CHECKOUT_TARGETS+=	release-extract-lock
+else
+  _CHECKOUT_TARGETS+=	no-checkout-message
+endif
 
 .PHONY: checkout
 checkout: ${_CHECKOUT_TARGETS};
 
-
 .PHONY: acquire-extract-lock release-extract-lock
 acquire-extract-lock: acquire-lock
 release-extract-lock: release-lock
+
+.PHONY: checkout-message
+no-checkout-message:
+	${RUN}								\
+	${ERROR_MSG} ${hline};						\
+	${ERROR_MSG} "$${bf}Unknown repository for ${PKGBASE}$${rm}";	\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "The package defines no MASTER_REPOSITORY."	\
+		"You can configure a local";				\
+	${ERROR_MSG} "repository by defining REPOSITORY.${PKGBASE} in";	\
+	${ERROR_MSG} "${MAKECONF}.";					\
+	${ERROR_MSG} ${hline};						\
+	exit 2;
 
 
 # --- real-checkout (PRIVATE) ----------------------------------------------
@@ -131,6 +157,9 @@ _REAL_CHECKOUT_TARGETS+=	pre-checkout
 _REAL_CHECKOUT_TARGETS+=	do-checkout
 _REAL_CHECKOUT_TARGETS+=	post-checkout
 _REAL_CHECKOUT_TARGETS+=	checkout-cookie
+ifneq (,$(filter checkout,${MAKECMDGOALS}))
+  _REAL_CHECKOUT_TARGETS+=	checkout-done-message
+endif
 
 .PHONY: real-checkout
 real-checkout: ${_REAL_CHECKOUT_TARGETS}

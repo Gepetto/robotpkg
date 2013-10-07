@@ -166,20 +166,6 @@ extract:
 endif
 
 
-# --- checkout (PUBLIC) ----------------------------------------------
-#
-# checkout is a public target to perform repository checkout.
-#
-.PHONY: checkout
-ifdef _MASTER_REPOSITORY
-  include ${ROBOTPKG_DIR}/mk/extract/checkout.mk
-else
-checkout:
-	@${ECHO} This package does not define any repository for checkout.
-	@${FALSE}
-endif
-
-
 # --- extract-cookie (PRIVATE) ---------------------------------------------
 #
 # extract-cookie creates the "extract" cookie file. The contents are the name
@@ -191,15 +177,3 @@ extract-cookie: makedirs
 	exec >>${_COOKIE.extract};					\
 	${ECHO} "_COOKIE.extract.date:=`${_CDATE_CMD}`";		\
 	${ECHO} "_COOKIE.extract.files:=${EXTRACT_ONLY}"
-
-
-# --- checkout-cookie (PRIVATE) --------------------------------------------
-#
-# checkout-cookie creates the "checkout" cookie file. The contents are the name
-# of the package.
-#
-.PHONY: checkout-cookie
-checkout-cookie: makedirs
-	${RUN}${TEST} ! -f ${_COOKIE.checkout} || ${FALSE};		\
-	exec >>${_COOKIE.checkout};					\
-	${ECHO} "_COOKIE.checkout.date:=`${_CDATE_CMD}`"
