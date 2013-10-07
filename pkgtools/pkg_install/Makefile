@@ -59,23 +59,26 @@ include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 # We use the newly built robotpkg_{add,create,delete} when upgrading
-# from an older pkg_install, because we might required features of the new
+# from an older pkg_install, because we might require features of the new
 # program. robotpkg_info is used at several places in mk files, so we don't
 # override the default here. Make sure to properly hook the package build
 # before the new tools are needed.
 #
 ifeq (robotpkg,${PREFER.pkg_install})
-  PKG_ADD_CMD=		${WRKSRC}/add/robotpkg_add
-  PKG_CREATE_CMD=	${WRKSRC}/create/robotpkg_create
-  PKG_DELETE_CMD=	${WRKSRC}/delete/robotpkg_delete
+  ifneq (${PKGTOOLS_VERSION},${VERSION})
+    PKG_ADD_CMD=	${WRKSRC}/add/robotpkg_add
+    PKG_CREATE_CMD=	${WRKSRC}/create/robotpkg_create
+    PKG_DELETE_CMD=	${WRKSRC}/delete/robotpkg_delete
 
-  pre-update:		pkg_build
-  pkg-deinstall:	pkg_build
-  pkg-tarup:		pkg_build
+    pre-update:		pkg_build
+    pkg-deinstall:	pkg_build
+    pkg-tarup:		pkg_build
+    pre-bulk:		pkg_build
 
-  .PHONY: pkg_build
-  pkg_build:
+    .PHONY: pkg_build
+    pkg_build:
 	${RUN}${MAKE} build
+  endif
 endif
 
 # Remove any old pkg_install versions from database
