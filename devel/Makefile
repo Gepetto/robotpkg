@@ -15,6 +15,7 @@ SUBDIR+=	hpp-corbaserver
 SUBDIR+=	hpp-kwsio
 SUBDIR+=	hpp-kwsplus
 SUBDIR+=	hpp-model
+SUBDIR+=	hpp-util
 SUBDIR+=	jafar-kernel
 SUBDIR+=	jrl-modelloader
 SUBDIR+=	jsoncpp
