@@ -35,6 +35,12 @@ RPATH_DIRS.bzip2+=	lib
 LIBRARY_DIRS.zlib+=	lib
 RPATH_DIRS.zlib+=	lib
 
+# pax is needed for the package/tarup targets
+DEPEND_METHOD.pax+=	bootstrap
+include ../../mk/robotpkg.prefs.mk
+$(call require-for, package tarup, ../../archivers/pax/depend.mk)
+
+
 # depend on these with the "inplace" style for bootstrap
 LIBNBCOMPAT_CONFIGURE_ARGS+=	--enable-bsd-getopt --enable-db
 LIBNBCOMPAT_STYLE=	inplace
@@ -48,15 +54,12 @@ include ../../archivers/zlib/depend.mk
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/libarchive/depend.mk
 include ../../net/libfetch/depend.mk
+include ../../mk/language/c.mk
+include ../../mk/robotpkg.mk
 
 do-extract:
 	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
-DEPEND_METHOD.pax+=	bootstrap
-PAX_STYLE=		inplace
-include ../../archivers/pax/depend.mk
-include ../../mk/language/c.mk
-include ../../mk/robotpkg.mk
 
 # We use the newly built robotpkg_{add,create,delete} when upgrading
 # from an older pkg_install, because we might require features of the new
