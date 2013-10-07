@@ -15,7 +15,7 @@ PREFER.hpp-geometry?=	robotpkg
 
 DEPEND_USE+=		hpp-geometry
 
-DEPEND_ABI.hpp-geometry?=	hpp-geometry>=1.1
+DEPEND_ABI.hpp-geometry?=	hpp-geometry>=1.3
 DEPEND_DIR.hpp-geometry?=	../../math/hpp-geometry
 
 SYSTEM_SEARCH.hpp-geometry=\
