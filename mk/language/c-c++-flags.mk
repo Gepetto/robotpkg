@@ -50,10 +50,10 @@ endef
 $(foreach _,CPPFLAGS CFLAGS CXXFLAGS LDFLAGS,$(eval $(call _flags_pattern,$_)))
 
 # Export flags
-export CPPFLAGS
-export CFLAGS
-export LDFLAGS
-export CXXFLAGS
+ALL_ENV+= $(call quote,CPPFLAGS=$(strip ${CPPFLAGS}))
+ALL_ENV+= $(call quote,CFLAGS=$(strip ${CFLAGS}))
+ALL_ENV+= $(call quote,LDFLAGS=$(strip ${LDFLAGS}))
+ALL_ENV+= $(call quote,CXXFLAGS=$(strip ${CXXFLAGS}))
 
 
 # define a common debug option (make sure to append to any existing script)
