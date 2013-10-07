@@ -45,12 +45,6 @@
 # This Makefile fragment defines variables related to the robotpkg_*
 # administrative tools, which must be defined early.
 
-# It is not possible to rely on the generic dependency facility, because even
-# the bootstrap dependencies use the robotpkg_* tools. Still include the
-# regular depend.mk, so that an upgrade of pkg_install can be triggered as for
-# other packages. No dependency is added if NO_PKGTOOLS_REQD_CHECK is defined
-# (currently only pkg_install itself).
-#
 include ${ROBOTPKG_DIR}/pkgtools/pkg_install/depend.mk
 
 PKG_ADD_CMD?=		${PREFIX.pkg_install}/sbin/robotpkg_add
