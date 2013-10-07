@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Tue, 11 Jan 2011
 #
 
-DISTNAME=	niut-genom-0.5
+DISTNAME=	niut-genom-0.6
 CATEGORIES=	image
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=niut-genom/}
 MASTER_REPOSITORY=	git git://git.openrobots.org/git/robots/niut-genom
