@@ -180,15 +180,17 @@ function depgraph(		deps, d) {
 #
 # Sort package graph. See tsort(1).
 #
-function pkgtsort(	k, todo, dir) {
+function pkgtsort(	k, todo, did, dir, cpkg, cycles) {
     stacktodo = pkgtodo
     stackdone = 0
-    todo = 1
-    while (todo) {
+    cycles = 0
+    while (1) {
         todo = 0
+        did = 0
         for (dir in graphcnt) {
-            if (graphcnt[dir] > 0) continue
             todo = 1
+            if (graphcnt[dir] > 0) continue
+            did = 1
             if (dir == troot) {
                 graphdel(dir)
                 continue
@@ -205,15 +207,31 @@ function pkgtsort(	k, todo, dir) {
             }
             graphdel(dir)
         }
-        if (todo) continue
+        if (did) continue
+        if (!todo) break;
 
+        todo = 0
         for (dir in graphcnt) {
-            xwarn("ERROR: cycle around " dir " " graph[dir])
-            todo = 1
-            graphdel(dir)
-            break
+            if (dir == troot) continue
+            if (!todo || graphcnt[dir] < todo) {
+                todo = graphcnt[dir]
+                cpkg = dir
+            }
         }
+        if (!todo) {
+            xprint("***:Unable to sort packages")
+            xprint("***:This should not happend and must be reported upstream")
+            exit 2
+        }
+
+        if (!cycles)
+            xprint("***:Circular dependencies with the following packages: ")
+        xprint("***:  " cpkg)
+        graphcnt[cpkg] = 0
+        cycles++
     }
+
+    if (cycles) { exit 2 }
 }
 
 
