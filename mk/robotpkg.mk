@@ -97,10 +97,8 @@ $(call require-for, configure,						\
 	${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
 
 # Build
-$(if $(strip ${MAKECMDGOALS}),						\
-	$(call require-for, all build,					\
-		${ROBOTPKG_DIR}/mk/build/build-vars.mk),		\
-	$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk))
+$(call require-for, all build,						\
+	${ROBOTPKG_DIR}/mk/build/build.mk)
 
 # Install
 $(call require-for, install install-failsafe su-install-all		\

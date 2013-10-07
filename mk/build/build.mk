@@ -59,6 +59,8 @@
 #	flags as argument.
 #
 
+$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+
 BUILD_MAKE_FLAGS?=	# none
 BUILD_TARGET?=		all
 $(foreach _d,${BUILD_DIRS},$(eval BUILD_TARGET.${_d}?= ${BUILD_TARGET}))
@@ -96,7 +98,7 @@ acquire-build-lock: acquire-lock
 release-build-lock: release-lock
 
 
-# --- ${_COOKIE.build} -----------------------------------------------------
+# --- build-cookie (PRIVATE) -----------------------------------------------
 #
 # ${_COOKIE.build} creates the "build" cookie file.
 #
@@ -114,21 +116,31 @@ else
   ${_COOKIE.build}: real-build;
 endif
 
+.PHONY: build-cookie
+build-cookie: makedirs
+	${RUN}${TEST} ! -f ${_COOKIE.build} || ${FALSE};	\
+	exec >>${_COOKIE.build};				\
+	${ECHO} "_COOKIE.build.date:=`${_CDATE_CMD}`"
+
 
 # --- real-build (PRIVATE) -------------------------------------------
 #
 # real-build is a helper target onto which one can hook all of the
 # targets that do the actual building of the sources.
 #
-_REAL_BUILD_TARGETS+=	build-check-interactive
-_REAL_BUILD_TARGETS+=	build-message
-_REAL_BUILD_TARGETS+=	build-check-dirs
-_REAL_BUILD_TARGETS+=	pre-build
-_REAL_BUILD_TARGETS+=	do-build
-_REAL_BUILD_TARGETS+=	post-build
-_REAL_BUILD_TARGETS+=	build-cookie
-ifneq (,$(filter build all,${MAKECMDGOALS}))
-  _REAL_BUILD_TARGETS+=	build-done-message
+ifdef NO_BUILD
+  _REAL_BUILD_TARGETS+=	build-cookie
+else
+  _REAL_BUILD_TARGETS+=	build-check-interactive
+  _REAL_BUILD_TARGETS+=	build-message
+  _REAL_BUILD_TARGETS+=	build-check-dirs
+  _REAL_BUILD_TARGETS+=	pre-build
+  _REAL_BUILD_TARGETS+=	do-build
+  _REAL_BUILD_TARGETS+=	post-build
+  _REAL_BUILD_TARGETS+=	build-cookie
+  ifneq (,$(filter build all,${MAKECMDGOALS}))
+    _REAL_BUILD_TARGETS+=	build-done-message
+  endif
 endif
 
 .PHONY: real-build

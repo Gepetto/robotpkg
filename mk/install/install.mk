@@ -47,7 +47,7 @@
 # install is a public target to install the package.
 #
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
-$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/build/build.mk)
 
 _INSTALL_TARGETS+=	$(call add-barrier, depends, install)
 _INSTALL_TARGETS+=	build

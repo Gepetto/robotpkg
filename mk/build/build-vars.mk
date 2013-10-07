@@ -99,31 +99,3 @@ BUILD_LOGFILTER?=\
 #
 
 _COOKIE.build=  ${WRKDIR}/.build_cookie
-
-
-# --- build (PUBLIC) -------------------------------------------------------
-#
-# build is a public target to build the sources for the package.
-#
-.PHONY: build
-ifndef NO_BUILD
-  include ${ROBOTPKG_DIR}/mk/build/build.mk
-else
-  ifeq (yes,$(call exists,${_COOKIE.build}))
-    build:
-	@${DO_NADA}
-  else
-    build: $(call add-barrier, depends, build) configure build-cookie
-  endif
-endif
-
-
-# --- build-cookie (PRIVATE) -----------------------------------------------
-#
-# build-cookie creates the "build" cookie file.
-#
-.PHONY: build-cookie
-build-cookie: makedirs
-	${RUN}${TEST} ! -f ${_COOKIE.build} || ${FALSE};	\
-	exec >>${_COOKIE.build};				\
-	${ECHO} "_COOKIE.build.date:=`${_CDATE_CMD}`"

@@ -1,4 +1,4 @@
-# Copyright (c) 2008-2011 LAAS/CNRS
+# Copyright (c) 2008-2011,2013 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -33,7 +33,7 @@
 # Updates a package in-place on the system.
 # It will acquire elevated privileges just-in-time.
 #
-$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/build/build.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
 _REPLACE_TARGETS+=	$(call add-barrier, depends, replace)
