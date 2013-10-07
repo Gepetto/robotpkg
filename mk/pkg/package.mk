@@ -46,8 +46,10 @@ pkg-check-installed:
 	else								\
 	  $(if $(filter tarup,${MAKECMDGOALS}),:,			\
 	    ${ERROR_MSG} "${hline}";					\
-	    ${ERROR_MSG} "$${bf}$$found is already installed.$${rm}";	\
-	    ${ERROR_MSG} "${PKGNAME} is the current version.";		\
+	    ${ERROR_MSG} "$${bf}Mismatched versions for"		\
+		"${PKGBASE}.$${rm}";					\
+	    ${ERROR_MSG} "Installed version:	$$found";		\
+	    ${ERROR_MSG} "Up-to-date version:	${PKGNAME}";		\
 	    ${ERROR_MSG} "";						\
 	    ${ERROR_MSG} "You may use either of:";			\
 	    ${ERROR_MSG} " - '$${bf}${MAKE} update package$${rm}' in"	\
@@ -55,7 +57,7 @@ pkg-check-installed:
 	    ${ERROR_MSG} "   to build an up-to-date binary package";	\
 	    ${ERROR_MSG} " - '$${bf}${MAKE} tarup$${rm}' in"		\
 		"${PKGPATH}";						\
-	    ${ERROR_MSG} "   to build a binary package from $$found";	\
+	    ${ERROR_MSG} "   to build a binary package for $$found";	\
 	    ${ERROR_MSG} "${hline}";					\
 	    exit 2);							\
 	fi
