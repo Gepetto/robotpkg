@@ -13,7 +13,6 @@ HOMEPAGE=		http://www.NetBSD.org/
 COMMENT=		Portable NetBSD compatibility library
 LICENSE=		2-clause-bsd modified-bsd original-bsd
 
-NO_PKGTOOLS_REQD_CHECK=	yes
 NO_CHECKSUM=		yes
 
 GNU_CONFIGURE=		yes
