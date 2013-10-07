@@ -30,12 +30,7 @@
 #
 #                                      Anthony Mallet on Thu Nov 30 2006
 #
-
-PKG_SUFX?=		.tgz
-PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
-PKGSUMMARY?=		${PKGREPOSITORY}/pkg_summary.gz
-PKGREPOSITORY?=		${PACKAGES}/${PKGREPOSITORYSUBDIR}
-PKGREPOSITORYSUBDIR?=	All
+$(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
 # --- pkg-check-installed (PRIVATE, pkgsrc/mk/package/package.mk) ----
 #

@@ -31,12 +31,14 @@
 #                                      Anthony Mallet on Mon Dec  4 2006
 #
 
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/pkg/package.mk)
+
 
 # --- package (PUBLIC) -----------------------------------------------
 #
 # package is a public target to generate a binary package.
 #
-$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 _PACKAGE_TARGETS+=	$(call add-barrier,bootstrap-depends,package tarup)
 _PACKAGE_TARGETS+=	acquire-package-lock
@@ -99,8 +101,6 @@ endif
 # deb-package generates a debian binary package (.deb)
 #
 ifneq (,$(filter deb,${PKG_FORMAT}))
-  $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
-
   # pull GPG_HOMEDIR settings
   DEPEND_METHOD.gnupg+=	bootstrap
   include ${ROBOTPKG_DIR}/mk/sysdep/gnupg.mk

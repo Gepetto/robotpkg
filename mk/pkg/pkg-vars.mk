@@ -112,6 +112,14 @@ _INSTALL_FILE=		+INSTALL
 _DEINSTALL_FILE=	+DEINSTALL
 
 
+# Binary package files and directories
+PKG_SUFX?=		.tgz
+PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
+PKGSUMMARY?=		${PKGREPOSITORY}/pkg_summary.gz
+PKGREPOSITORY?=		${PACKAGES}/${PKGREPOSITORYSUBDIR}
+PKGREPOSITORYSUBDIR?=	All
+
+
 # Return $1 only if PKGNAME is not installed or should be updated. If package
 # is up-to-date and safe, return $2
 #
@@ -127,4 +135,3 @@ include ${ROBOTPKG_DIR}/mk/pkg/pkginstall.mk
 include ${ROBOTPKG_DIR}/mk/pkg/install.mk
 include ${ROBOTPKG_DIR}/mk/pkg/deinstall.mk
 include ${ROBOTPKG_DIR}/mk/pkg/replace.mk
-include ${ROBOTPKG_DIR}/mk/pkg/package.mk
