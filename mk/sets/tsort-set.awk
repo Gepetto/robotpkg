@@ -68,8 +68,7 @@ BEGIN {
 	    eta = 1
 	    ARGSTART++
 	} else if (option == "-t") {
-            if (expect) expect = expect " "
-	    expect = expect ARGV[ARGSTART + 1]
+	    MAKE = MAKE " '" ARGV[ARGSTART + 1] "'"
 	    ARGSTART+= 2
 	} else if (option == "-d") {
 	    ROBOTPKG_DIR = ARGV[ARGSTART + 1]
@@ -343,7 +342,6 @@ function pkginfos(pkg, deps, pkgnamep,		cmd, dir, i, l, s) {
 
     cmd = "cd " ROBOTPKG_DIR "/" dir "&&" MAKE " PKGREQD='" notpdir(pkg) "'"
     cmd = cmd " print-depends-pkgpaths 2>&1"
-    if (expect) cmd = cmd  " EXPECT_TARGETS='" expect "'"
     if (pkgnamep) cmd = cmd  " print-var VARNAME=PKGNAME"
     if (!(dir in pkgnames)) cmd = cmd  " print-pkgnames"
 
