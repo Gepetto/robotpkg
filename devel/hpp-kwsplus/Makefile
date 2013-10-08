@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-kwsplus
-HPP_VERSION=		2.3
+HPP_VERSION=		2.4.1
 PKGREVISION=
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-kwsplus
 
