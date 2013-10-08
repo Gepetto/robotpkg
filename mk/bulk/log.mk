@@ -87,12 +87,21 @@ bulk-archive-log:
 	for f in ${WRKDIR}/*.log; do					\
 	  ${TEST} ! -s $$f || ${CP} -p $$f ${BULK_LOGDIR}/${PKGNAME}/;	\
 	done
-  ifdef GNU_CONFIGURE
+  ifneq (,$(call isyes,${GNU_CONFIGURE}))
 	${RUN} ${TEST} -s ${_bulklog_broken} || exit 0;			\
 	for dir in ${CONFIGURE_DIRS}; do				\
 	  if cd ${WRKSRC} 2>/dev/null && cd "$$dir" 2>/dev/null; then	\
-	    ${TEST} ! -s config.log ||					\
-	      ${CP} -p config.log ${BULK_LOGDIR}/${PKGNAME}/;		\
+	    ${TEST} -s config.log || continue;				\
+	    ${CP} -p config.log ${BULK_LOGDIR}/${PKGNAME}/autoconf.log;	\
+	  fi;								\
+	done
+  endif
+  ifneq (,$(call isyes,${USE_CMAKE}))
+	${RUN} ${TEST} -s ${_bulklog_broken} || exit 0;			\
+	for dir in ${CONFIGURE_DIRS}; do				\
+	  if cd ${WRKSRC} 2>/dev/null && cd "$$dir" 2>/dev/null; then	\
+	    ${TEST} -s CMakeCache.txt || continue;			\
+	    ${CP} -p CMakeCache.txt ${BULK_LOGDIR}/${PKGNAME}/cmake.log;\
 	  fi;								\
 	done
   endif
