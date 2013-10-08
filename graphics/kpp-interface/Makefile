@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=	kpp-interface
-HPP_VERSION=	2.1
+HPP_VERSION=	2.1.1
 PKGREVISION=
 
 CATEGORIES=	graphics
@@ -20,5 +20,6 @@ include ../../devel/hpp-corbaserver/depend.mk
 include ../../mk/sysdep/kineoworks.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/glu.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
