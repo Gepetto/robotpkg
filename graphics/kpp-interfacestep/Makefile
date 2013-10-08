@@ -2,10 +2,11 @@
 # Created:			Antonio El Khoury on Thu, 26 Sep 2013
 #
 
-HPP_PACKAGE=		kpp-interfacestep
-HPP_VERSION=		0.2
-MASTER_REPOSITORY=	git git@github.com:laas/kpp-interfacestep.git
+HPP_PACKAGE=	kpp-interfacestep
+HPP_VERSION=	0.3
+PKGREVISION=
 
+MASTER_REPOSITORY=	git git@github.com:laas/kpp-interfacestep.git
 CATEGORIES=	graphics
 HPP_COMMENT=	Graphical user interface for hpp-wholebody-step-planner
 LICENSE=	gnu-lgpl-v3
@@ -20,6 +21,7 @@ include ../../path/hpp-wholebody-step-planner/depend.mk
 include ../../mk/sysdep/glu.mk
 include ../../mk/sysdep/kineoworks.mk
 include ../../mk/sysdep/mesa.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 

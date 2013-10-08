@@ -15,7 +15,7 @@ PREFER.kpp-interfacestep?=	robotpkg
 
 DEPEND_USE+=			kpp-interfacestep
 
-DEPEND_ABI.kpp-interfacestep?=	kpp-interfacestep>=0.2
+DEPEND_ABI.kpp-interfacestep?=	kpp-interfacestep>=0.3
 DEPEND_DIR.kpp-interfacestep?=	../../graphics/kpp-interfacestep
 
 SYSTEM_SEARCH.kpp-interfacestep=\
