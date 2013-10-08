@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-roboptim
-HPP_VERSION=		1.0.0
+HPP_VERSION=		1.0.1
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-roboptim
 
 CATEGORIES=		path
