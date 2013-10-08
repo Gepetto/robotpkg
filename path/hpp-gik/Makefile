@@ -2,9 +2,9 @@
 # Created:			Anthony Mallet on Thu, 28 Jun 2007
 #
 
-PKGREVISION=		1
+PKGREVISION=
 HPP_PACKAGE=		hpp-gik
-HPP_VERSION=		2.10
+HPP_VERSION=		2.10.1
 HPP_COMMENT=		Generalized Inverse Kinematics for humanoid robots
 HPP_BUILD_SYSTEM=	cmake
 PKGREVISION=
