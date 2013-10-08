@@ -2,6 +2,7 @@
 # Created:			Antonio El Khoury on Thu, 26 Sep 2013
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-roboptim
 HPP_VERSION=		1.0.1
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-roboptim
@@ -18,5 +19,6 @@ include ../../devel/hpp-model/depend.mk
 include ../../devel/hpp-util/depend.mk
 include ../../optimization/roboptim-trajectory/depend.mk
 include ../../mk/sysdep/assimp2.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
