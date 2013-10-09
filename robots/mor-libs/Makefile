@@ -20,8 +20,9 @@ pre-configure:	autoreconf
 
 include ../../hardware/peak-linux-driver/depend.mk
 include ../../middleware/pocolibs/depend.mk
-include ../../mk/sysdep/automake.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
+include ../../mk/sysdep/autoconf.mk
+include ../../mk/sysdep/automake.mk
 include ../../mk/robotpkg.mk
