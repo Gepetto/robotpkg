@@ -25,6 +25,10 @@ export CCACHE=		${PREFIX.ccache}/bin/ccache
 CCACHE_DIR?=		${HOME.env}/.ccache
 export CCACHE_DIR
 
+# Log ccache, so that problems can be tracked down
+CCACHE_LOGFILE?=  ${WRKDIR}/ccache.log
+export CCACHE_LOGFILE
+
 endif # CCACHE_DEPEND_MK ---------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
