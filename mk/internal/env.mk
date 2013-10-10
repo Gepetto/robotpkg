@@ -17,30 +17,9 @@
 #                                             Anthony Mallet on Sun May 31 2009
 #
 
-# Clean unwanted variables inherited from the environment, avoid propagating
-# package-specific command line variables and apply any overrides settings
-# defined by parent Makefiles.
+# Avoid propagating package-specific command line variables and apply any
+# overrides settings defined by parent Makefiles.
 #
-# Variables cleaned by this file must be further set with an 'ifndef' construct
-# instead of a ?= assignment or, better, by using the 'setdefault'
-# macro. gmake-3.82 has an interesting 'undefine' command, but many systems
-# still have 3.81, so ...
-#
-export _ENV_VARS?=\
-	_ENV_VARS MAKECONF ROBOTPKG_BASE ROBOTPKG_DIR			\
-	MAKE MAKELEVEL MAKEOVERRIDES MAKEFLAGS MFLAGS MAKE_RESTARTS	\
-	PATH TERM TERMCAP DISPLAY XAUTHORITY SSH_AUTH_SOCK		\
-	http_proxy https_proxy ftp_proxy
-
-_NO_INHERIT=\
-	PKGREQD WRKDIR
-
-
-# Anything in this file must be evaluated (very) early during processing. This
-# file is included at the top of robotpkg.prefs.mk which is in turn included
-# at the top of robotpkg.mk (robotpkg.prefs.mk can even be included before
-# robotpkg.mk by package Makefiles or depend.mk if needed).
-
 
 # --- Apply overrides settings ---------------------------------------------
 #
@@ -58,9 +37,6 @@ _NO_INHERIT=\
 ifneq (0,${MAKELEVEL})
   $(foreach _,$(sort ${_override_vars.${PKGPATH}}), \
     $(eval $_ =$(value _overrides.${PKGPATH}.$_)))
-
-  # keep overrides settings
-  _ENV_VARS+=_override_vars.% _overrides.%
 endif
 
 # Helper macro exporting variables
@@ -70,30 +46,13 @@ override define _export_override # (path, var, value)
 endef
 
 
-
-# --- Unsetenv -------------------------------------------------------------
-#
-# Undef (set to empty) a variable that was inherited from the environment and
-# unexport it, so that it looks like it wasn't in the environment initially.
-#
-override define unsetenv
-  ifeq (environment,$(origin $1))
-    ${1}.env:=$$(value $1)
-    $1=
-    unexport $1
-  endif
-endef
-
-# unsetenv each unwanted var
-$(foreach _v_,$(filter-out ${_ENV_VARS},${.VARIABLES}),$(eval \
-	$(call unsetenv,${_v_})))
-
-
 # --- Avoid propagation of unwanted variables ------------------------------
 #
 # Variable passed on the command line that are package-specific must not be
 # exported to recursive make.
 #
+_NO_INHERIT=	PREFIX PKGREQD WRKDIR
+
 override define _env_nopropagate # (var)
   ifeq (command line,$(origin $1))
     unexport $1
@@ -117,10 +76,6 @@ export LC_MONETARY=C
 export LC_NUMERIC=C
 export LC_TIME=C
 
-# Set HOME diretory. This is needed for some tools, e.g. latex for font
-# generation.
-export HOME=${WRKDIR}
-
 # Set compilers defaults to 'false' so that missing languages dependencies are
 # detected
 export CPP=	${FALSE}
@@ -132,6 +87,10 @@ export FC=	${FALSE}
 
 # PREFIX is always exported
 ALL_ENV+=	PREFIX=$(call quote,${PREFIX})
+
+# Set HOME directory. This is needed for some tools, e.g. latex for font
+# generation.
+ALL_ENV+=	HOME=${WRKDIR}
 
 
 # PATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute

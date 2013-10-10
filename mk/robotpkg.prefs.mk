@@ -56,7 +56,8 @@ ifndef ROBOTPKG_DIR
 endif
 
 # calculate depth
-_ROBOTPKG_DEPTH:=$(words $(subst /, ,$(subst ${ROBOTPKG_DIR},,$(realpath .))))
+_ROBOTPKG_DEPTH:=\
+  $(words $(subst /, ,$(subst ${ROBOTPKG_DIR},,$(realpath ${CURDIR}))))
 
 # import useful macros
 include ${ROBOTPKG_DIR}/mk/internal/macros.mk
@@ -66,25 +67,31 @@ ifeq (2,${_ROBOTPKG_DEPTH})
   PKGPATH?=$(call pkgpath,${CURDIR})
 endif
 
-# clean unwanted environment variables and apply local settings defined by
-# parent make invocations
-include ${ROBOTPKG_DIR}/mk/internal/env.mk
-
-# find uname location
-ifndef UNAME
-  UNAME:=$(call pathsearch,uname,/usr/bin:/bin)
-  ifeq (,${UNAME})
-    UNAME:=echo Unknown
-  endif
-endif
-
-
 # Compute platform variables. Later, recursed make invocations will skip these
 # blocks entirely
 #
 ifndef MACHINE_PLATFORM
-  _uname:=$(shell UNAME=${UNAME} ${SHELL} ${ROBOTPKG_DIR}/mk/platform/opsys.sh)
-  _kernel:=$(shell ${UNAME} -srn)
+  # find uname location
+  _UNAME=$(or ${UNAME},$(call pathsearch,uname,/usr/bin:/bin))
+  ifeq (,$(_UNAME))
+    $(info ===============================================================)
+    $(info The uname tool could not be found.)
+    $(info )
+    $(info Please set the UNAME environment variable to the path of the)
+    $(info uname tool on your system.)
+    $(info ===============================================================)
+    $(error Unknown platform)
+  endif
+
+  _uname:=$(shell UNAME=${_UNAME} ${SHELL} ${ROBOTPKG_DIR}/mk/platform/opsys.sh)
+  ifneq (3,$(words ${_uname}))
+    $(error Unknown platform)
+  endif
+
+  _kernel:=$(shell ${_UNAME} -srn 2>/dev/null)
+  ifneq (3,$(words ${_kernel}))
+    $(error Unknown kernel)
+  endif
 
   export OPSYS:=		$(word 1,${_uname})
   export LOWER_OPSYS:=		$(call tolower,${OPSYS})
@@ -95,7 +102,7 @@ ifndef MACHINE_PLATFORM
   _ENV_VARS+=			LOWER_OS_VERSION OS_VERSION
 
   export MACHINE_ARCH:=		$(word 3,${_uname})
-  export LOWER_ARCH:=		${LOWER_ARCH}
+  export LOWER_ARCH:=		$(call tolower,${MACHINE_ARCH})
   _ENV_VARS+=			MACHINE_ARCH LOWER_ARCH
 
   export OS_KERNEL:=		$(word 1,${_kernel})
@@ -105,8 +112,9 @@ ifndef MACHINE_PLATFORM
   export NODENAME:=		$(word 2,${_kernel})
   _ENV_VARS+=			NODENAME
 
-  MACHINE_PLATFORM?=	${OPSYS}-${OS_VERSION}-${MACHINE_ARCH}
-  MACHINE_KERNEL?=	${OS_KERNEL}-${OS_KERNEL_VERSION}-${MACHINE_ARCH}
+  export MACHINE_PLATFORM=${OPSYS}-${OS_VERSION}-${MACHINE_ARCH}
+  export MACHINE_KERNEL=${OS_KERNEL}-${OS_KERNEL_VERSION}-${MACHINE_ARCH}
+  _ENV_VARS+=			MACHINE_PLATFORM MACHINE_KERNEL
 endif # MACHINE_PLATFORM
 
 

@@ -58,6 +58,15 @@ ifndef MK_ROBOTPKG_PREFS
   include ../../mk/robotpkg.prefs.mk
 endif
 
+ifndef ROBOTPKG_TRUSTED_ENV # ==============================================
+
+  include ${ROBOTPKG_DIR}/mk/internal/trusted.mk
+
+else # =====================================================================
+
+# apply local settings defined by parent make invocations
+$(call require, ${ROBOTPKG_DIR}/mk/internal/env.mk)
+
 # User build options processing
 $(call require, ${ROBOTPKG_DIR}/mk/robotpkg.options.mk)
 
@@ -174,3 +183,5 @@ $(call require, ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk)
 # dependencies and no commands, execpt for those that do have recipes.
 #
 $(filter-out ${_MAKEFILE_WITH_RECIPES},$(sort ${MAKEFILE_LIST})):;
+
+endif # ROBOTPKG_TRUSTED_ENV ===============================================

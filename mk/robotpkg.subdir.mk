@@ -42,6 +42,13 @@
 #
 include $(realpath mk/robotpkg.prefs.mk ../mk/robotpkg.prefs.mk)
 
+ifndef ROBOTPKG_TRUSTED_ENV # ==============================================
+
+  include ${ROBOTPKG_DIR}/mk/internal/trusted.mk
+
+else # =====================================================================
+
+# Helper definitions
 $(call require,${ROBOTPKG_DIR}/mk/internal/utils.mk)
 
 # Require confirmation for top-level targets that are likely to be a mistake
@@ -122,3 +129,5 @@ $(call require-for, index index-all, ${ROBOTPKG_DIR}/mk/internal/index.mk)
 # dependencies and no commands.
 #
 $(sort ${MAKEFILE_LIST}):;
+
+endif # ROBOTPKG_TRUSTED_ENV ===============================================

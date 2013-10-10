@@ -39,7 +39,6 @@ ifneq (,$(call isyes,${USE_GNU_CONFIGURE_HOST}))
   ifndef GNU_CONFIGURE_HOST
     GNU_CONFIGURE_HOST=	$(shell ${ROBOTPKG_DIR}/mk/configure/config.guess)
     export GNU_CONFIGURE_HOST
-    _ENV_VARS+=GNU_CONFIGURE_HOST
   endif
   ifdef GNU_CONFIGURE_HOST
 CONFIGURE_ARGS+=	--host=${GNU_CONFIGURE_HOST}

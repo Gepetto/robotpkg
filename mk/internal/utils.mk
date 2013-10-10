@@ -116,7 +116,6 @@ _CDATE_CMD:=	${SETENV} LC_ALL=C ${DATE}
 #
 ifndef _ROBOTPKG_NOW
   export _ROBOTPKG_NOW:=$(shell ${_CDATE_CMD} "+%m%d%H%M%S")
-  _ENV_VARS+=	_ROBOTPKG_NOW
 endif
 
 # Run ${MAKE} recursively.
@@ -134,11 +133,9 @@ export MAKEOVERRIDES:=${MAKEOVERRIDES}
 #
 ifeq (undefined,$(origin bf))
   export bf:=$(shell ${TPUT} ${TPUT_BOLD} 2>/dev/null)
-  _ENV_VARS+=bf
 endif
 ifeq (undefined,$(origin rm))
   export rm:=$(shell ${TPUT} ${TPUT_RMBOLD} 2>/dev/null)
-  _ENV_VARS+=rm
 endif
 export hline:="$$bf$(subst =,=======,==========)$$rm"
 
