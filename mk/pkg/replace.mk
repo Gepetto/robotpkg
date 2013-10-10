@@ -1,4 +1,4 @@
-# Copyright (c) 2008-2009,2011 IS/AIST-ST2I/CNRS
+# Copyright (c) 2008-2009,2011,2013 IS/AIST-ST2I/CNRS
 #      Joint Japanese-French Robotics Laboratory (JRL).
 # All rights reserved.
 #
@@ -34,8 +34,7 @@
 _PKG_REPLACE_TARGETS+=	replace-names
 _PKG_REPLACE_TARGETS+=	replace-preserve-installed-info
 _PKG_REPLACE_TARGETS+=	replace-preserve-required-by
-_PKG_REPLACE_TARGETS+=	deinstall
-_PKG_REPLACE_TARGETS+=	reinstall
+_PKG_REPLACE_TARGETS+=	install
 _PKG_REPLACE_TARGETS+=	replace-fixup-required-by
 _PKG_REPLACE_TARGETS+=	replace-fixup-installed-info
 
