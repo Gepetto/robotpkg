@@ -166,7 +166,7 @@ clean: ${_CLEAN_TARGETS}
 ifneq (,$(call isyes,${_EXTRACT_IS_CHECKOUT}))
   $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
-  cleaner: clean-message pre-clean depends-clean post-clean
+  cleaner: clean-message pre-clean post-clean
 else
   cleaner: clean
 endif
