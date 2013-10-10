@@ -156,7 +156,8 @@ do-print-PLIST: print-PLIST-message
 	   }								\
 	   ${_PRINT_PLIST_AWK_IGNORE}					\
 	   ${_PRINT_PLIST_AWK_SUBST}					\
-	   { print $$0; }';						\
+	   { if ($$0 in entries) next; entries[$$0]; }			\
+	   { print $$0 }';						\
 	{ ${_PRINT_PLIST_DIRS_CMD} }					\
 	  | ${SORT} -r							\
 	  | ${AWK} '							\
@@ -164,6 +165,7 @@ do-print-PLIST: print-PLIST-message
 		/^$$/ { next; }						\
 		${_PRINT_PLIST_AWK_IGNORE}				\
 		${_PRINT_PLIST_AWK_SUBST}				\
+		{ if ($$0 in entries) next; entries[$$0]; };		\
 		{ print "@pkgdir " $$0; }'
 	@${STEP_MSG} "Created ${PRINT_PLIST_FILE}"
 
