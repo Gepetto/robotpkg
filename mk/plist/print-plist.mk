@@ -60,6 +60,7 @@
 #	that receives the generated PLIST on stdin and is expected
 #	to output the final PLIST (default: empty).
 #
+$(call require,${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require,${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
 PRINT_PLIST_FILE?=		${PKGDIR}/PLIST.guess
