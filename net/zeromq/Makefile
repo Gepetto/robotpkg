@@ -5,7 +5,7 @@
 PKGVERSION=	2.0.10
 DISTNAME=	zeromq-${PKGVERSION_NOREV}
 CATEGORIES=	net
-MASTER_SITES=   http://www.zeromq.org/local--files/area:download/
+MASTER_SITES=	http://download.zeromq.org/
 
 MAINTAINER=	robotpkg@laas.fr
 HOMEPAGE=	http://www.zeromq.org/
