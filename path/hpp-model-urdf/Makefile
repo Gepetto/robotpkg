@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-model-urdf
-HPP_VERSION=		0.4.1
+HPP_VERSION=		0.4.2
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-model-urdf
 
 CATEGORIES=	path
@@ -20,5 +20,6 @@ include ../../graphics/ros-robot-model/depend.mk
 include ../../math/hpp-geometry/depend.mk
 include ../../mk/sysdep/assimp2.mk
 
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
