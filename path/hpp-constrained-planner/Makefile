@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-constrained-planner
-HPP_VERSION=		1.0.0
+HPP_VERSION=		1.0.1
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-constrained-planner
 
 CATEGORIES=		path
@@ -18,5 +18,6 @@ include ../../devel/hpp-util/depend.mk
 include ../../path/hpp-constrained/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../mk/sysdep/assimp2.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
