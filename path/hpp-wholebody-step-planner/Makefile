@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-wholebody-step-planner
-HPP_VERSION=		0.2.1
+HPP_VERSION=		0.3
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-wholebody-step-planner
 
 CATEGORIES=		path
@@ -20,5 +20,6 @@ include ../../path/hpp-constrained-planner/depend.mk
 include ../../path/hpp-constrained/depend.mk
 include ../../path/hpp-roboptim/depend.mk
 include ../../mk/sysdep/assimp2.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
