@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-constrained
-HPP_VERSION=		1.0.2
+HPP_VERSION=		1.1
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-constrained
 
 CATEGORIES=		path
@@ -20,5 +20,6 @@ include ../../path/hpp-gik/depend.mk
 include ../../interfaces/abstract-gik-task/depend.mk
 include ../../devel/hpp-util/depend.mk
 include ../../mk/sysdep/assimp2.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
