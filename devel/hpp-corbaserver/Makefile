@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Mon, 27 Aug 2007
 #
 
+PKGREVISION=	1
 HPP_PACKAGE=	hpp-corbaserver
 HPP_VERSION=	2.3
 PKGREVISION=
