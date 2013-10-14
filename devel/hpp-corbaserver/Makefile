@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=	hpp-corbaserver
-HPP_VERSION=	2.2
+HPP_VERSION=	2.3
 PKGREVISION=
 HPP_COMMENT=	Corba server for Humanoid Path Planner
 
@@ -21,6 +21,7 @@ include ../../middleware/omniORB/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../path/hpp-model-urdf/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/python.mk
