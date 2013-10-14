@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-constrained
-HPP_VERSION=		1.1
+HPP_VERSION=		1.2
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-constrained
 
 CATEGORIES=		path
