@@ -2,6 +2,7 @@
 # Created:			Antonio El Khoury on Thu, 26 Sep 2013
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-wholebody-step-corba
 HPP_VERSION=		0.2
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-wholebody-step-corba
@@ -19,5 +20,6 @@ include ../../devel/hpp-util/depend.mk
 include ../../middleware/hpp-template-corba/depend.mk
 include ../../path/hpp-wholebody-step-planner/depend.mk
 include ../../mk/sysdep/assimp2.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
