@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-core
-HPP_VERSION=		2.6.0
+HPP_VERSION=		2.7.1
 PKGREVISION=
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-core
 
@@ -17,5 +17,6 @@ include ../../meta-pkgs/hpp/Makefile.common
 include ../../devel/hpp-model/depend.mk
 include ../../devel/hpp-util/depend.mk
 include ../../devel/hpp-kwsplus/depend.mk
+include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
