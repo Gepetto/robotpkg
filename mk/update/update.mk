@@ -100,13 +100,13 @@ do%update: .FORCE
 	while IFS=: read dir pkg <&9; do				\
 	  if ${TEST} "$$dir" = "${PKGPATH}"; then			\
 	    if ${PKG_INFO} -qe '${PKGNAME}'; then			\
-	      ${STEP_MSG} "${PKGNAME} was already reinstalled";		\
+	      ${PHASE_MSG} "${PKGNAME} was already reinstalled";	\
 	      continue;							\
 	    fi;								\
 	    t="${UPDATE_TARGET}";					\
 	  else								\
 	    if p=`${PKG_INFO} -E "$$pkg"`; then				\
-	      ${STEP_MSG} "$$pkg was already reinstalled";		\
+	      ${PHASE_MSG} "$$pkg was already reinstalled";		\
 	      continue;							\
 	    fi;								\
 	    t=$$target;							\
@@ -141,6 +141,13 @@ post-update:
 update-message:
 ifeq (yes,$(call exists,${_UPDATE_LIST}))
 	@${PHASE_MSG} "Resuming update for ${PKGNAME}"
+	${RUN} ${TEST} -s ${_UPDATE_LIST} || exit 0;			\
+	${ECHO_MSG} "The following packages are going to be updated:";	\
+	while IFS=: read dir pkg; do					\
+	  ${ECHO_MSG} "	$$pkg in $$dir";				\
+	done <${_UPDATE_LIST};						\
+	${ECHO_MSG} "Run '${MAKE} clean confirm' in ${PKGPATH} to"	\
+	  "cancel the update list.";
 else
 	@${PHASE_MSG} "Updating for ${PKGNAME}"
 endif
