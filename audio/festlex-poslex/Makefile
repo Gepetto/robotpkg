@@ -5,7 +5,9 @@
 DISTNAME=		festlex_POSLEX
 PKGNAME=		festlex-poslex-1.96
 CATEGORIES=		audio
-MASTER_SITES=		http://festvox.org/packed/festival/1.96/
+MASTER_SITES=\
+	http://festvox.org/packed/festival/1.96/			\
+	ftp://ftp.freebsd.org/pub/FreeBSD/ports/distfiles/festival/
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://festvox.org/index.html
