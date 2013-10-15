@@ -125,13 +125,12 @@ check-master-sites:
 	        23|27|28|52|55|56)					\
 	          ${ECHO} "SKIP:  $$site";				\
 	          ${ECHO} 1>>${_MIRROR_LOG} "SKIP:  $$site";		\
-	          warn=1;						\
-	          continue ;;						\
+	          warn=1; continue ;;					\
 	        *)							\
 	          ${ERROR_MSG} "$$site: fatal error";			\
 	          ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2			\
 	            "$$site: fatal error";				\
-	          fatal=1; continue ;;					\
+	          warn=1; continue ;;					\
 	      esac;							\
 	      size=`${ECHO} "$$hdr" | ${AWK} -F'[ :\r]+'		\
 	        '/^HTTP\/1[.][0-9]/ {l=""}				\
