@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-PKGREVISION=		2
+PKGREVISION=		3
 VERSION=		2.4.1
 DISTNAME=		OpenCV-${VERSION}
 PKGNAME=		opencv-${VERSION}
@@ -59,6 +59,10 @@ CMAKE_ARGS+=	-DWITH_UNICAP=OFF
 # dependencies
 CMAKE_ARGS+=	-DEIGEN_INCLUDE_PATH=${PREFIX.eigen2}/include/eigen2
 
+# ccache is broken wrt. precompiled headers
+# https://bugzilla.samba.org/show_bug.cgi?id=10212
+CMAKE_ARGS+=\
+  $(if $(filter ccache,${DEPEND_USE}),-DENABLE_PRECOMPILED_HEADER=OFF)
 
 # option for image acquistion support
 include ../../mk/robotpkg.prefs.mk # OS_KERNEL
