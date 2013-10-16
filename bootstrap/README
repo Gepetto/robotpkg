@@ -1,0 +1,33 @@
+To try to get robotpkg working on your system, please try the following:
+
+# ./bootstrap
+    [ --prefix <prefix> ]
+    [ --workdir <workdir> ]
+    [ --help ]
+
+The default for the prefix argument is as follows:
+
+        --prefix        /opt/openrobots
+        --workdir       work
+
+A working directory will be created if it doesn't exist and has to be
+writable by the user executing ./bootstrap.
+
+If the prefix does not exist already, it will also be created. Since this will
+usually fail for regular users (because of permissions), it is advised to
+create it as root first and change its ownership to the user executing
+./bootstrap. robotpkg does not require root privileges at all.
+
+Make sure that you have a working C compiler and make(1) binary in
+your path (GNUmake >= 3.81 required).
+
+See robotpkg/README.txt or http://robotpkg.openrobots.org/robotpkg/README.html
+for more information about bootstrapping and using robotpkg.
+
+Please remember to add $prefix/bin AND $prefix/sbin to your PATH environment
+variable and $prefix/man to your MANPATH environment variable, if necessary.
+(See above for --prefix and its default value.)
+
+The bootstrap script will create an example robotpkg.conf file located
+in your prefix as "etc/robotpkg.conf". It contains the settings you provided to
+the bootstrap.
