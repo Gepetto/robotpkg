@@ -62,7 +62,7 @@ CMAKE_ARGS+=	-DEIGEN_INCLUDE_PATH=${PREFIX.eigen2}/include/eigen2
 # ccache is broken wrt. precompiled headers
 # https://bugzilla.samba.org/show_bug.cgi?id=10212
 CMAKE_ARGS+=\
-  $(if $(filter ccache,${DEPEND_USE}),-DENABLE_PRECOMPILED_HEADER=OFF)
+  $(if $(filter ccache,${DEPEND_USE}),-DENABLE_PRECOMPILED_HEADERS=OFF)
 
 # option for image acquistion support
 include ../../mk/robotpkg.prefs.mk # OS_KERNEL
