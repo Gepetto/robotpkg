@@ -4,7 +4,7 @@
 
 HPP_PACKAGE=		hpp-geometry
 HPP_VERSION=		1.3.1
-PKGREVISION=
+PKGREVISION=		1
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-geometry
 
 CATEGORIES=	math

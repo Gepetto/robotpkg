@@ -1,3 +1,5 @@
 SHA1 (hpp-geometry-1.3.1.tar.gz) = 69d35b8fe1effe205f3e855871eac3d4c2272e07
 RMD160 (hpp-geometry-1.3.1.tar.gz) = a1798467fa1733012a78cdb400714929a31edef5
 Size (hpp-geometry-1.3.1.tar.gz) = 139633 bytes
+SHA1 (patch-aa) = a673899728bf3dc18d992c3f444ad1e3d2e088dc
+SHA1 (patch-ab) = 6608aafd3db5ccae6b061f8560dd4f2a073d786e

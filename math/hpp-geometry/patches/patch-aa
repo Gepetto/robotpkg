@@ -1,0 +1,12 @@
+--- tests/segment-obb-proximity-query-performance.cc~	2013-10-07 21:52:16.000000000 +0200
++++ tests/segment-obb-proximity-query-performance.cc	2013-10-16 15:37:37.157906021 +0200
+@@ -92,7 +92,9 @@
+   analysis->leftObjectEmbedded (embeddedPoly);
+   analysis->rightObjectEmbedded (embeddedSegment1);
+   analysis->analysisData ()->analysisType (CkcdAnalysisType::EXACT_DISTANCE);
++#ifndef KIT_MONOTHREAD
+   analysis->analysisData ()->maximumSpawnedThreadCount (0);
++#endif
+ 
+   long TICKS_PER_SECOND = 1e6;
+   struct timeval tv_start, tv_stop;
