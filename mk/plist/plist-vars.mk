@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2012 LAAS/CNRS
+# Copyright (c) 2006,2009-2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -52,6 +52,7 @@ $(call require, ${ROBOTPKG_DIR}/mk/plist/plist.mk)
 #
 # print-PLIST is a public target to generate a initial PLIST for the package.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/plist/print-plist.mk)
 
 .PHONY: print-PLIST
