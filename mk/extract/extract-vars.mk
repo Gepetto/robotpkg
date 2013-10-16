@@ -44,7 +44,7 @@
 #       extracted.  The default suffix is ".tar.gz".
 #
 
-EXTRACT_ONLY?=		${DISTFILES}
+EXTRACT_ONLY?=		${FETCH_ONLY}
 EXTRACT_SUFX?=		.tar.gz
 
 _COOKIE.extract=	${WRKDIR}/.extract_cookie
