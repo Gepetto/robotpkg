@@ -181,7 +181,7 @@ FETCH_MESSAGE?=\
 	"Please fetch the following files manually and place them in:"	\
 	"		${_DISTDIR}" ""					\
 	"Required files:"						\
-	$(foreach _,${ALLFILES},"	$_")				\
+	$(foreach _,${FETCH_ONLY},"	$_")				\
 	$(if ${MASTER_SITES},						\
 	  "" "The files are available from:"				\
 	  $(foreach _,${MASTER_SITES},"	$_")				\
