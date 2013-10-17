@@ -8,8 +8,7 @@ PKGNAME=	blas-3.1.0
 CATEGORIES=	math
 MASTER_SITES=\
 	http://spacehopper.org/mirrors/blas-20110419/	\
-	http://netlib.org/blas/				\
-	http://netlib.sandia.gov/blas/
+	http://netlib.org/blas/
 EXTRACT_SUFX=   .tgz
 
 MAINTAINER=     openrobots@laas.fr
