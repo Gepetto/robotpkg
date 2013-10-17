@@ -8,7 +8,6 @@ PKGREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=\
 	http://netlib.org/lapack/		\
-	http://netlib.sandia.gov/lapack/	\
 	http://www.netlib.no/netlib/lapack/
 EXTRACT_SUFX=	.tgz
 
