@@ -6,6 +6,7 @@ COMMENT=	Middleware tools and libraries
 SUBDIR+=	ace
 SUBDIR+=	hpp-template-corba
 SUBDIR+=	libjyarp
+SUBDIR+=	naoqi
 SUBDIR+=	omniORB
 SUBDIR+=	omniORBpy
 SUBDIR+=	openni
