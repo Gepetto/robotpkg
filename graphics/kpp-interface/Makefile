@@ -16,7 +16,7 @@ post-install:
 	$(MAKE) -C ${WRKSRC} license
 
 include ../../meta-pkgs/hpp/Makefile.common
-include ../../devel/hpp-corbaserver/depend.mk
+include ../../path/hpp-corbaserver/depend.mk
 include ../../mk/sysdep/kineoworks.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/glu.mk

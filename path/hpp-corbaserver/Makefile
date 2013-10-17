@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	devel/hpp-corbaserver
+# robotpkg Makefile for:	path/hpp-corbaserver
 # Created:			Anthony Mallet on Mon, 27 Aug 2007
 #
 

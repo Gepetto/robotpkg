@@ -15,7 +15,7 @@ HPP_BUILD_SYSTEM=	cmake
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../devel/hpp-corbaserver/depend.mk
+include ../../path/hpp-corbaserver/depend.mk
 include ../../devel/hpp-util/depend.mk
 include ../../middleware/hpp-template-corba/depend.mk
 include ../../path/hpp-wholebody-step-planner/depend.mk

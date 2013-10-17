@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/hpp-corbaserver
+# robotpkg depend.mk for:	path/hpp-corbaserver
 # Created:			Anthony Mallet on Thu, 9 Apr 2009
 #
 
@@ -16,7 +16,7 @@ PREFER.hpp-corbaserver?=	robotpkg
 DEPEND_USE+=			hpp-corbaserver
 
 DEPEND_ABI.hpp-corbaserver?=	hpp-corbaserver>=2.1
-DEPEND_DIR.hpp-corbaserver?=	../../devel/hpp-corbaserver
+DEPEND_DIR.hpp-corbaserver?=	../../path/hpp-corbaserver
 
 SYSTEM_SEARCH.hpp-corbaserver=\
 	include/hpp/corbaserver/server.hh				\

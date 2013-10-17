@@ -11,7 +11,6 @@ SUBDIR+=	boost-libs
 SUBDIR+=	boost-log
 SUBDIR+=	gbx-share
 SUBDIR+=	gbx-flexiport
-SUBDIR+=	hpp-corbaserver
 SUBDIR+=	hpp-kwsio
 SUBDIR+=	hpp-kwsplus
 SUBDIR+=	hpp-model

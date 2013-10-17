@@ -16,7 +16,7 @@ include ../../devel/hpp-model/depend.mk
 include ../../devel/hpp-util/depend.mk
 
 # CORBA packages.
-include ../../devel/hpp-corbaserver/depend.mk
+include ../../path/hpp-corbaserver/depend.mk
 
 # Algorithms.
 include ../../path/hpp-walkfootplanner/depend.mk

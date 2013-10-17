@@ -9,6 +9,7 @@ SUBDIR+=	aspect-genom
 SUBDIR+=	hpp-constrained
 SUBDIR+=	hpp-constrained-corba
 SUBDIR+=	hpp-constrained-planner
+SUBDIR+=	hpp-corbaserver
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-dynamic-obstacle
 SUBDIR+=	hpp-gik
