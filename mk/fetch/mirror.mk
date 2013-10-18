@@ -47,16 +47,36 @@ endif
 ifdef _MIRROR_TARGETS
   $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
+
+  _MD_TARGETS+=	$(call add-barrier, bootstrap-depends, mirror-distfiles)
+  _MD_TARGETS+=	cleaner
+  _MD_TARGETS+=	mirror-message
+  _MD_TARGETS+=	${_MIRROR_TARGETS}
+  _MD_TARGETS+=	mirror-log
 
   mirror-distfiles: $(call add-barrier, bootstrap-depends, mirror-distfiles)
-  mirror-distfiles: mirror-message ${_MIRROR_TARGETS}
+  mirror-distfiles: ${_MD_TARGETS}
 endif
 mirror-distfiles:
-	@:
+	${RUN} status=0;						\
+	if ${TEST} -f ${_mirrorlog_broken}; then			\
+	  status=2;							\
+	fi;								\
+	${MAKE} cleaner;						\
+	if ${TEST} "$$status" -ne 0; then				\
+	  status=2;							\
+	  ${PHASE_MSG} "Failed to mirror distfiles for ${PKGNAME}";	\
+	  ${ERROR_MSG} "For details, check the log files in:";		\
+	  ${ERROR_MSG} "${MIRROR_LOGDIR}/${PKGNAME}" >&2;		\
+	else								\
+	  ${PHASE_MSG} "Done mirror-distfiles for ${PKGNAME}";		\
+	fi
 
 .PHONY: mirror-message
 mirror-message:
 	@${PHASE_MSG} "Mirroring distfiles for ${PKGNAME}"
+
 
 
 # --- check-distfiles (PRIVATE) --------------------------------------------
@@ -84,6 +104,9 @@ _MASTER_SITES_NOCHECK=\
 	http*://*.googlecode.com/*	\
 	http*://github.com/*
 
+_MIRROR_CURL_OPT=	-ILfksS
+_MIRROR_CURL_OPT+=	--trace-ascii "${WRKDIR}/$$trace.log"
+
 .PHONY: check-master-sites
 check-master-sites:
 	${RUN} {							\
@@ -105,31 +128,28 @@ check-master-sites:
 	      distsize="$$d_size"; break;				\
 	    done 9<${DISTINFO_FILE};					\
 	    if ${TEST} -z "$$distsize"; then				\
-	      ${ERROR_MSG} "Cannot determine expected $$distfile size";	\
-	      ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2			\
-		"Cannot determine expected $$distfile size";		\
+	      ${MIRROR_BRK} "unknown size for $$distfile";		\
 	      fatal=1; continue;					\
 	    fi;								\
 									\
+	    one=0;							\
 	    for site in $$sites; do					\
 	      case "$$site" in						\
 	        $(subst ${ } ${ },|,${_MASTER_SITES_NOCHECK}))		\
-	          ${ECHO} "CANNOT CHECK:  $$site";			\
-	          ${ECHO} 1>>${_MIRROR_LOG} "CANNOT CHECK:  $$site";	\
+	          ${MIRROR_LOG} "CANNOT CHECK:  $$site";		\
 	          continue ;;						\
 	      esac;							\
-	      x=0 hdr=`${CURL} -ILfksS -m 60 "$$site$$distfile"		\
+	      trace="fetch($${site#*//}";				\
+	      trace="$${trace%%/*})::$$distfile";			\
+	      x=0 hdr=`${CURL} ${_MIRROR_CURL_OPT} "$$site$$distfile"	\
 	             2>>${_MIRROR_LOG}` || x=$$?;			\
 	      case $$x in						\
 	        0) ;;							\
 	        23|27|28|52|55|56)					\
-	          ${ECHO} "SKIP:  $$site";				\
-	          ${ECHO} 1>>${_MIRROR_LOG} "SKIP:  $$site";		\
+	          ${MIRROR_LOG} "SKIP:  $$site";			\
 	          warn=1; continue ;;					\
 	        *)							\
-	          ${ERROR_MSG} "$$site: fatal error";			\
-	          ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2			\
-	            "$$site: fatal error";				\
+	          ${MIRROR_LOG} "$$site: fatal error";			\
 	          warn=1; continue ;;					\
 	      esac;							\
 	      size=`${ECHO} "$$hdr" | ${AWK} -F'[ :\r]+'		\
@@ -137,24 +157,65 @@ check-master-sites:
 	         /[Cc]ontent-[Ll]ength: +[0-9]+/ {l=$$2}		\
 		 END {print l}'`;					\
 	      if ${TEST} -z "$$size"; then				\
-	        ${ECHO} "SKIP:  $$site: cannot determine file size";	\
-	        ${ECHO} 2>>${_MIRROR_LOG} 1>&2				\
-		  "SKIP:  $$site: cannot determine file size";		\
+	        ${MIRROR_LOG}						\
+	          "SKIP:  $$site: cannot determine file size";		\
 	      elif ${TEST} "$$distsize" -ne "$$size"; then		\
-	        ${ERROR_MSG} "$$site: bad file size $$size";		\
-	        ${ERROR_MSG} "$$site: file size should be $$distsize";	\
-	        ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2			\
-	          "$$site: bad file size $$size";			\
-	        ${ERROR_MSG} 2>>${_MIRROR_LOG} 1>&2			\
-	          "$$site: file size should be $$distsize";		\
+	        ${MIRROR_LOG} "$$site: bad file size $$size";		\
+	        ${MIRROR_LOG} "$$site: file size should be $$distsize";	\
+	        ${MIRROR_BRK} "bad size for $$distfile";		\
 	        fatal=1;						\
 	      else							\
 	        ${ECHO} "OK:    $$site";				\
 	        ${ECHO} 1>>${_MIRROR_LOG} "OK:    $$site";		\
+	        ${RM} -f "${WRKDIR}/$$trace.log";			\
+	        one=1;							\
 	      fi;							\
 	    done;							\
+	    ${TEST} $$one -eq 0 || continue;				\
+	    ${MIRROR_BRK} "cannot fetch $$distfile";			\
 	  done;								\
-	  ${TEST} $$fatal -eq 0 || exit 2;				\
+	  ${TEST} -s ${_mirrorlog_broken} && exit 0;			\
+	  ${TEST} $$fatal -eq 0 || exit 0;				\
 	  ${TEST} $$warn -eq 0 || exit 0;				\
 	  ${RM} ${_MIRROR_LOG};						\
 	}
+
+
+# --- mirror-log -----------------------------------------------------------
+#
+# Save log files. This tries to be compatible with bulk-log, so that
+# rbulk-report(1) works, but this duplicates a few lines of code. Oh, well...
+#
+_mirrorlog_meta=	${MIRROR_LOGDIR}/${PKGNAME}/meta.txt
+_mirrorlog_broken=	${WRKDIR}/broken.log
+
+MIRROR_META?=		${ECHO} >>${_mirrorlog_meta}
+MIRROR_BRK?=\
+  ${SH} -c '${ERROR_MSG} "$$@"; ${ECHO} "$$@" >>$$0' ${_mirrorlog_broken}
+MIRROR_LOG?=\
+  ${SH} -c '${ECHO} "$$@"; ${ECHO} "$$@" >>$$0' ${_MIRROR_LOG}
+
+_mirror_date_start:=	$(shell ${DATE} '+%s')
+_mirror_date_stop=	$(shell ${DATE} '+%s')
+
+.PHONY: mirror-log
+mirror-log:
+	${RUN} ${STEP_MSG} "Creating mirror log files";			\
+	${RM} -rf ${MIRROR_LOGDIR}/${PKGNAME};				\
+	${MKDIR} ${MIRROR_LOGDIR}/${PKGNAME};				\
+	for f in ${WRKDIR}/*.log; do					\
+	  ${TEST} ! -s $$f || ${CP} -p $$f ${MIRROR_LOGDIR}/${PKGNAME}/;\
+	done;								\
+	$(foreach _,PKGNAME PKGBASE PKGPATH CATEGORIES,			\
+	  ${MIRROR_META} '$_	${$_}';					\
+	)								\
+	${MIRROR_META} 'BULK_TAG Mirror';				\
+	${MIRROR_META} 'DATE_START	${_mirror_date_start}';		\
+	${MIRROR_META} 'DATE_STOP	${_mirror_date_stop}';		\
+	${MAKE} print-pkgnames						\
+		'_override_vars.${PKGPATH}='				\
+		'PKG_DEFAULT_OPTIONS=' 'PKGREQD='			\
+		$(if ${PKG_OPTIONS_VAR},'${PKG_OPTIONS_VAR}=')		\
+	| while IFS='|' read t p; do					\
+	  ${MIRROR_META} "AVAIL	$$p";					\
+	done

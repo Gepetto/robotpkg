@@ -61,6 +61,9 @@
 # The default DISTDIR is currently set in robotpkg.prefs.mk.
 #DISTDIR?=               ${ROBOTPKG_DIR}/distfiles
 
+# Directory in which log files from the mirror-distfiles target are kept.
+MIRROR_LOGDIR?=	${LOCALBASE}/var/log/mirror
+
 # Require well known sites definitions
 include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
 

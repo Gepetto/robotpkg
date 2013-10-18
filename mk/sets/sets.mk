@@ -46,11 +46,14 @@ set-update-%: .FORCE
 
 set-bulk-%: .FORCE
 	${RUN}$(call _pkgset_recursive,bulk,-e				\
-	  -t 'LOCALBASE=${BULKBASE}'					\
-	  -t 'EXPECT_TARGETS=fetch package mirror-distfiles')
+	  -t 'LOCALBASE=${BULKBASE}' -t 'EXPECT_TARGETS=fetch package')
 
 set-deinstall-%: .FORCE
 	${RUN}$(call _pkgset_recursive,deinstall,-e -r)
+
+set-mirror-distfiles-%: .FORCE
+	${RUN}$(call _pkgset_recursive,mirror-distfiles,-e		\
+	  -t 'EXPECT_TARGETS=mirror-distfiles')
 
 set-show-var-%: .FORCE
 	${RUN}$(call _pkgset_recursive,show-var)
