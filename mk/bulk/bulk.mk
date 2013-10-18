@@ -17,6 +17,7 @@
 #                                           Anthony Mallet on Sat Feb 19 2011
 #
 
+$(call require, ${ROBOTPKG_DIR}/mk/bulk/bulk-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
 

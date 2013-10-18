@@ -134,7 +134,7 @@ $(call require-for, update,						\
 
 # Bulk
 $(call require-for, bulk su-bulk-%,					\
-	${ROBOTPKG_DIR}/mk/bulk/bulk-vars.mk)
+	${ROBOTPKG_DIR}/mk/bulk/bulk.mk)
 
 
 # --- users's convenience targets ------------------------------------------

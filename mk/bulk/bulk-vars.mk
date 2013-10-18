@@ -19,6 +19,7 @@
 
 # This Makefile fragment defines variables related to the bulk target
 #
+$(call require, ${ROBOTPKG_DIR}/mk/bulk/bulk-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 
 # Name this session, default to MACHINE_PLATFORM
@@ -95,8 +96,3 @@ BULK_BRK?=\
 override define _bulklog_filter
 ${_LOGFILTER} ${_LOGFILTER_FLAGS} -r -l ${_bulklog_bulk}
 endef
-
-
-# Rules for bulk-%
-include ${ROBOTPKG_DIR}/mk/bulk/bulk.mk
-include ${ROBOTPKG_DIR}/mk/bulk/log.mk
