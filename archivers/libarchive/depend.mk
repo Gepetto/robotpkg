@@ -53,12 +53,12 @@ libarchive-build:
 	cd ${LIBARCHIVE_SRCDIR} &&					\
 	${SETENV}							\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
-		CPPFLAGS="${CPPFLAGS}" MISSING=:			\
+		CPPFLAGS="${CPPFLAGS}"					\
 		${CONFIG_SHELL} ./configure -C --disable-shared		\
 		--disable-bsdtar --disable-dependency-tracking		\
 		--disable-bsdcpio --without-expat --without-xml2	\
 		-without-lzmadec --without-lzma	--disable-acl		\
-	&& ${MAKE_PROGRAM}
+	&& ${MAKE}
   else
   # This is the regular version of libarchive package, for normal install
   #
