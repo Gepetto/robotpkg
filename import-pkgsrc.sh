@@ -10,10 +10,11 @@ netbsd_root=anoncvs@anoncvs.netbsd.org:/cvsroot
 pkgsrc_repo=pkgsrc
 module=$1; shift
 case $module in
+  archivers/libarchive)	pkgsrc_module=archivers/libarchive/files;;
+  archivers/pax)	pkgsrc_module=archivers/pax/files;;
+  net/libfetch)		pkgsrc_module=net/libfetch/files;;
   pkgtools/libnbcompat)	pkgsrc_module=pkgtools/libnbcompat/files;;
   pkgtools/pkg_install)	pkgsrc_module=pkgtools/pkg_install/files;;
-  net/libfetch)		pkgsrc_module=net/libfetch/files;;
-  archivers/pax)	pkgsrc_module=archivers/pax/files;;
   *) echo 'no such module "$module"'; exit 2;;
 esac
 
