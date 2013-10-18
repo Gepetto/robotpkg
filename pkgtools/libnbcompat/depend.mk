@@ -47,7 +47,7 @@ libnbcompat-build:
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}" ${CONFIG_SHELL} ./configure	\
 		${LIBNBCOMPAT_CONFIGURE_ARGS}				\
-	&& ${MAKE_PROGRAM}
+	&& ${MAKE}
   else
   # This is the regular version of libnbcompat package, for normal install
   #
