@@ -287,7 +287,6 @@ update-check-recursion:
 	recursive='${RECURSIVE_PKGPATH}';				\
 	${TEST} -n "$$recursive" || exit 0;				\
 	conflicts=;							\
-	${ERROR_MSG} $$recursive;\
 	while IFS=: read dir pkg <&9; do				\
 	  case " $$recursive " in *" $$dir "*)				\
 	    conflicts="$$conflicts $$dir";;				\
