@@ -47,7 +47,7 @@ libfetch-build:
 	${CONFIG_SHELL} ./configure -C &&				\
 	${SETENV}							\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
-		CPPFLAGS="${CPPFLAGS}" ${MAKE_PROGRAM} depend all
+		CPPFLAGS="${CPPFLAGS}" ${MAKE} depend all
   else
   # This is the regular version of libfetch package, for normal install
   #
