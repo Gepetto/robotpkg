@@ -55,7 +55,7 @@ libarchive-build:
 	${SETENV}							\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}"					\
-		${CONFIG_SHELL} ./configure -C --disable-shared		\
+		${CONFIG_SHELL} ./configure --disable-shared		\
 		--disable-bsdtar --disable-dependency-tracking		\
 		--disable-bsdcpio --without-expat --without-xml2	\
 		-without-lzmadec --without-lzma	--disable-acl		\
