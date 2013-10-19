@@ -179,9 +179,9 @@ $(call require, ${ROBOTPKG_DIR}/mk/depends/resolve.mk)
 # Checks whether a package can be built in the current robotpkg.
 $(call require, ${ROBOTPKG_DIR}/mk/internal/can-be-built-here.mk)
 
+endif # ROBOTPKG_TRUSTED_ENV ===============================================
+
 # Tell 'make' not to try to rebuild any Makefile by specifing a target with no
 # dependencies and no commands, execpt for those that do have recipes.
 #
 $(filter-out ${_MAKEFILE_WITH_RECIPES},$(sort ${MAKEFILE_LIST})):;
-
-endif # ROBOTPKG_TRUSTED_ENV ===============================================
