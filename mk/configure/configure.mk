@@ -106,12 +106,24 @@ ifeq (yes,$(call exists,${_COOKIE.configure}))
   endif
 
   _MAKEFILE_WITH_RECIPES+=${_COOKIE.configure}
-  ${_COOKIE.configure}: ${_COOKIE.bootstrap-depends} ${_COOKIE.depends}
+  ${_COOKIE.configure}: ${_COOKIE.depends}
 	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev
 
   _cbbh_requires+=	${_COOKIE.configure}
 else
-  ${_COOKIE.configure}: real-configure;
+  ifeq (yes,$(call exists,${_COOKIE.depends}))
+    ${_COOKIE.configure}: maybe-defer-configure real-configure;
+
+    # This defers the configure target until an outdated depends has completed.
+    # See mk/depend.mk for a more detailed explanation.
+    .PHONY: maybe-defer-configure
+    maybe-defer-configure: ${_COOKIE.depends}
+	@${TEST} -f $<
+  else
+    # This defers the configure target until depends has completed and
+    # make has restarted with those dependencies resolved.
+    ${_COOKIE.configure}:;
+  endif
 endif
 
 
