@@ -36,6 +36,7 @@ LIBS+=		 -lnbcompat
 post-extract: libnbcompat-extract
 libnbcompat-extract:
 	@${STEP_MSG} "Extracting libnbcompat in place"
+	${RUN}${RM} -r ${LIBNBCOMPAT_SRCDIR} &&				\
 	${CP} -Rp ${LIBNBCOMPAT_FILESDIR} ${LIBNBCOMPAT_SRCDIR}
 
 pre-configure: libnbcompat-build

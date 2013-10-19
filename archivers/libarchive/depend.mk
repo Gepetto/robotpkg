@@ -44,6 +44,7 @@ endif
 post-extract: libarchive-extract
 libarchive-extract:
 	@${STEP_MSG} "Extracting libarchive in place"
+	${RUN}${RM} -r ${LIBARCHIVE_SRCDIR} &&				\
 	${CP} -Rp ${LIBARCHIVE_FILESDIR} ${LIBARCHIVE_SRCDIR}
 
 pre-configure: libarchive-build

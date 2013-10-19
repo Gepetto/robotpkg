@@ -37,6 +37,7 @@ endif
 post-extract: libfetch-extract
 libfetch-extract:
 	@${STEP_MSG} "Extracting libfetch in place"
+	${RUN}${RM} -r ${LIBFETCH_SRCDIR} &&				\
 	${CP} -Rp ${LIBFETCH_FILESDIR} ${LIBFETCH_SRCDIR}
 
 pre-configure: libfetch-build

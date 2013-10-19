@@ -57,7 +57,7 @@ include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
 do-extract:
-	${CP} -Rp ${CURDIR}/dist ${WRKSRC}
+	${RUN}${RM} -r ${WRKSRC} && ${CP} -Rp ${CURDIR}/dist ${WRKSRC}
 
 
 # We use the newly built robotpkg_{add,create,delete} when upgrading
