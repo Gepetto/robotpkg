@@ -50,7 +50,6 @@ ifdef _MIRROR_TARGETS
   $(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
 
   _MD_TARGETS+=	$(call add-barrier, bootstrap-depends, mirror-distfiles)
-  _MD_TARGETS+=	cleaner
   _MD_TARGETS+=	mirror-message
   _MD_TARGETS+=	${_MIRROR_TARGETS}
   _MD_TARGETS+=	mirror-log
