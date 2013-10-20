@@ -49,6 +49,7 @@ ifdef _MIRROR_TARGETS
   $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
   $(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
 
+  _MD_TARGETS+=	mirror-tag
   _MD_TARGETS+=	$(call add-barrier, bootstrap-depends, mirror-distfiles)
   _MD_TARGETS+=	mirror-message
   _MD_TARGETS+=	${_MIRROR_TARGETS}
@@ -71,6 +72,17 @@ mirror-distfiles:
 	else								\
 	  ${PHASE_MSG} "Done mirror-distfiles for ${PKGNAME}";		\
 	fi
+
+.PHONY: mirror-tag
+mirror-tag:
+  ifeq (0,${MAKELEVEL})
+	@${STEP_MSG} 'Using $(if ${tag},,default )tag "${MIRROR_TAG}"'
+    ifndef tag
+	@if ${TEST} -t 1; then ${ECHO_MSG}				\
+	  "Use '${MAKE} ${MAKECMDGOALS} tag=<tag>' to override.";	\
+	fi
+    endif
+  endif
 
 .PHONY: mirror-message
 mirror-message:
@@ -208,7 +220,7 @@ mirror-log:
 	$(foreach _,PKGNAME PKGBASE PKGPATH CATEGORIES,			\
 	  ${MIRROR_META} '$_	${$_}';					\
 	)								\
-	${MIRROR_META} 'BULK_TAG Mirror';				\
+	${MIRROR_META} 'BULK_TAG	${MIRROR_TAG}';			\
 	${MIRROR_META} 'DATE_START	${_mirror_date_start}';		\
 	${MIRROR_META} 'DATE_STOP	${_mirror_date_stop}';		\
 	${MAKE} print-pkgnames						\

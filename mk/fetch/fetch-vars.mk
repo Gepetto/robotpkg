@@ -64,6 +64,9 @@
 # Directory in which log files from the mirror-distfiles target are kept.
 MIRROR_LOGDIR?=	${LOCALBASE}/var/log/mirror
 
+# Name the mirror-distfiles session
+MIRROR_TAG?=	$(or ${tag},Distfiles mirror)
+
 # Require well known sites definitions
 include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
 
