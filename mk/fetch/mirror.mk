@@ -148,6 +148,7 @@ check-master-sites:
 	      case "$$site" in						\
 	        $(subst ${ } ${ },|,${_MASTER_SITES_NOCHECK}))		\
 	          ${MIRROR_LOG} "CANNOT CHECK:  $$site";		\
+	          one=1;						\
 	          continue ;;						\
 	      esac;							\
 	      trace="fetch($${site#*//}";				\
@@ -170,6 +171,7 @@ check-master-sites:
 	      if ${TEST} -z "$$size"; then				\
 	        ${MIRROR_LOG}						\
 	          "SKIP:  $$site: cannot determine file size";		\
+		one=1;							\
 	      elif ${TEST} "$$distsize" -ne "$$size"; then		\
 	        ${MIRROR_LOG} "$$site: bad file size $$size";		\
 	        ${MIRROR_LOG} "$$site: file size should be $$distsize";	\
