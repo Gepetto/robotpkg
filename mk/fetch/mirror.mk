@@ -27,6 +27,9 @@ _MIRROR_LOG=	${WRKDIR}/mirror.log
 # wish to provide distfiles that others may fetch.  It only fetches distfiles
 # that are freely re-distributable.
 #
+$(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
+
 ifneq (,$(strip ${ALLFILES}))
   ifeq (,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}))
     ifndef NO_PUBLIC_SRC
@@ -41,24 +44,21 @@ ifneq (,$(strip ${ALLFILES}))
       endif
     endif
   endif
+
+  _MD_TARGETS+=	makedirs
+  _MD_TARGETS+=	mirror-message
+  _MD_TARGETS+=	mirror-tag
+  ifdef _MIRROR_TARGETS
+    _MD_TARGETS+=	$(call add-barrier, bootstrap-depends, mirror-distfiles)
+    _MD_TARGETS+=	${_MIRROR_TARGETS}
+  else
+    _MD_TARGETS+=	mirror-na
+  endif
+  _MD_TARGETS+=	mirror-log
 endif
 
 .PHONY: mirror-distfiles
-ifdef _MIRROR_TARGETS
-  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
-
-  _MD_TARGETS+=	mirror-tag
-  _MD_TARGETS+=	$(call add-barrier, bootstrap-depends, mirror-distfiles)
-  _MD_TARGETS+=	mirror-message
-  _MD_TARGETS+=	${_MIRROR_TARGETS}
-  _MD_TARGETS+=	mirror-log
-
-  mirror-distfiles: $(call add-barrier, bootstrap-depends, mirror-distfiles)
-  mirror-distfiles: ${_MD_TARGETS}
-endif
-mirror-distfiles:
+mirror-distfiles: ${_MD_TARGETS}
 	${RUN} status=0;						\
 	if ${TEST} -f ${_mirrorlog_broken}; then			\
 	  status=2;							\
@@ -88,6 +88,10 @@ mirror-tag:
 mirror-message:
 	@${PHASE_MSG} "Mirroring distfiles for ${PKGNAME}"
 
+
+.PHONY: mirror-na
+mirror-na:
+	${RUN}${MAKE} cbbh >${_mirrorlog_cbbh} 2>&1 ||:
 
 
 # --- check-distfiles (PRIVATE) --------------------------------------------
@@ -201,6 +205,7 @@ check-master-sites:
 #
 _mirrorlog_meta=	${MIRROR_LOGDIR}/${PKGNAME}/meta.txt
 _mirrorlog_broken=	${WRKDIR}/broken.log
+_mirrorlog_cbbh=	${WRKDIR}/cbbh.log
 
 MIRROR_META?=		${ECHO} >>${_mirrorlog_meta}
 MIRROR_BRK?=\
