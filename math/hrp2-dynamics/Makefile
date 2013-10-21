@@ -4,7 +4,7 @@
 
 DISTNAME=	hrp2-dynamics-${VERSION}
 PKGNAME=	hrp2-dynamics-${VERSION}
-VERSION=	1.5.2
+VERSION=	1.5.3
 
 CATEGORIES=	math
 NO_PUBLIC_SRC=	yes
@@ -16,8 +16,8 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	Optimized implementation of functions related to HRP-2 dynamics.
 LICENSE=	cnrs-hpp-closed-source
 
-
-DOXYGEN_PLIST_DIR+=	share/doc/hrp2-dynamics
+CMAKE_ARGS+=-DCMAKE_INSTALL_LIBDIR=lib
+DYNAMIC_PLIST_DIRS+=	share/doc/hrp2-dynamics
 
 PKG_SUPPORTED_OPTIONS+= debug
 PKG_OPTION_DESCR.debug=	Compile in debugging mode
