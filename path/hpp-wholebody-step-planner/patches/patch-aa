@@ -1,0 +1,14 @@
+--- src/shooter-humanoid.cc~	2013-10-14 21:42:10.000000000 +0200
++++ src/shooter-humanoid.cc	2013-10-17 17:02:21.735659249 +0200
+@@ -76,9 +76,9 @@
+ 	    (dof->vmin (), dof->vmax ());
+ 	} else {
+ 	  // If dof is not bounded use normal distribution about initial value.
+-	  hppDout (info, "standardDeviation: " << standardDeviation);
++	  hppDout (info, "standardDeviation: " << standardDeviation_);
+ 	  dofValues [i] = diffusionConfig.dofValue (i) +
+-	    randomGenerator_->generateNormal (standardDeviation);
++	    randomGenerator_->generateNormal (standardDeviation_);
+ 	}
+       }
+       ktStatus result = cfg.setDofValues (dofValues);

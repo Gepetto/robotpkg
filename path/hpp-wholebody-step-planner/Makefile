@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-wholebody-step-planner
 HPP_VERSION=		0.3
+PKGREVISION=		1
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-wholebody-step-planner
 
 CATEGORIES=		path
