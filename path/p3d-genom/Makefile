@@ -48,10 +48,10 @@ define PKG_OPTION_SET.rmp400
   DEPEND_ABI.libp3d +=		~rmp400
 endef
 
-PKG_OPTION_DESCR.rmp400=	Enable support for rmp440 platform
+PKG_OPTION_DESCR.rmp440=	Enable support for rmp440 platform
 define PKG_OPTION_SET.rmp440
   GENOM_ARGS+= -DRMP440
-  include ../../robots/rmp400-genom/depend.mk
+  include ../../robots/rmp440-genom/depend.mk
   DEPEND_ABI.libp3d +=		~rmp440
 endef
 
