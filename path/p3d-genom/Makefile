@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		p3d-genom-${VERSION}
-VERSION=		1.4
+VERSION=		1.5
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}p3d-genom
@@ -25,7 +25,7 @@ define PKG_OPTIONS_UNSET.gdhe
 endef
 
 PKG_OPTIONS_REQUIRED_GROUPS=	robot
-PKG_OPTIONS_GROUP.robot=	atrv atrv-junior rmp400
+PKG_OPTIONS_GROUP.robot=	atrv atrv-junior rmp400 rmp440
 
 PKG_OPTION_DESCR.atrv=	Enable support for atrv platform
 define PKG_OPTION_SET.atrv
@@ -46,6 +46,13 @@ define PKG_OPTION_SET.rmp400
   GENOM_ARGS+= -DRMP400
   include ../../robots/rmp400-genom/depend.mk
   DEPEND_ABI.libp3d +=		~rmp400
+endef
+
+PKG_OPTION_DESCR.rmp400=	Enable support for rmp440 platform
+define PKG_OPTION_SET.rmp440
+  GENOM_ARGS+= -DRMP440
+  include ../../robots/rmp400-genom/depend.mk
+  DEPEND_ABI.libp3d +=		~rmp440
 endef
 
 define PKG_OPTION_UNSET.api
