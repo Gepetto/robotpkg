@@ -34,6 +34,8 @@
 #					Anthony Mallet on Thu Dec  7 2006
 #
 
+$(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+
 #
 # CONFIGURE_SCRIPT is the path to the script to run in order to
 #	configure the software for building.  If the path is relative,
@@ -96,7 +98,7 @@ acquire-configure-lock: acquire-lock
 release-configure-lock: release-lock
 
 
-# --- ${_COOKIE.configure} -------------------------------------------------
+# --- configure-cookie (PRIVATE) -------------------------------------------
 #
 # ${_COOKIE.configure} creates the "configure" cookie file.
 #
@@ -126,6 +128,12 @@ else
   endif
 endif
 
+.PHONY: configure-cookie
+configure-cookie: makedirs
+	${RUN}${TEST} ! -f ${_COOKIE.configure} || ${FALSE}
+	${RUN}exec >>${_COOKIE.configure};				\
+	${ECHO} "_COOKIE.configure.date:=`${_CDATE_CMD}`"
+
 
 # --- real-configure (PRIVATE) ---------------------------------------------
 #
@@ -135,19 +143,21 @@ endif
 # Note: pre-configure-checks-hook comes after pre-configure to allow packages
 # for fixing bad files with SUBST_STAGE.* = pre-configure.
 #
-_REAL_CONFIGURE_TARGETS+=	configure-check-interactive
-_REAL_CONFIGURE_TARGETS+=	configure-message
-#_REAL_CONFIGURE_TARGETS+=	configure-vars
-_REAL_CONFIGURE_TARGETS+=	pre-configure
-#_REAL_CONFIGURE_TARGETS+=	pre-configure-checks-hook
-_REAL_CONFIGURE_TARGETS+=	do-configure-pre-hook
-_REAL_CONFIGURE_TARGETS+=	configure-check-dirs
-_REAL_CONFIGURE_TARGETS+=	do-configure
-_REAL_CONFIGURE_TARGETS+=	do-configure-post-hook
-_REAL_CONFIGURE_TARGETS+=	post-configure
-_REAL_CONFIGURE_TARGETS+=	configure-cookie
-ifneq (,$(filter configure,${MAKECMDGOALS}))
-  _REAL_CONFIGURE_TARGETS+=	configure-done-message
+ifdef NO_CONFIGURE
+  _REAL_CONFIGURE_TARGETS+=	configure-cookie
+else
+  _REAL_CONFIGURE_TARGETS+=	configure-check-interactive
+  _REAL_CONFIGURE_TARGETS+=	configure-message
+  _REAL_CONFIGURE_TARGETS+=	pre-configure
+  _REAL_CONFIGURE_TARGETS+=	do-configure-pre-hook
+  _REAL_CONFIGURE_TARGETS+=	configure-check-dirs
+  _REAL_CONFIGURE_TARGETS+=	do-configure
+  _REAL_CONFIGURE_TARGETS+=	do-configure-post-hook
+  _REAL_CONFIGURE_TARGETS+=	post-configure
+  _REAL_CONFIGURE_TARGETS+=	configure-cookie
+  ifneq (,$(filter configure,${MAKECMDGOALS}))
+    _REAL_CONFIGURE_TARGETS+=	configure-done-message
+  endif
 endif
 
 .PHONY: real-configure

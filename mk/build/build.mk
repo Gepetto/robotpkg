@@ -81,7 +81,7 @@ endif
 # build is a public target to build the sources from the package.
 #
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
-$(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/configure/configure.mk)
 
 _BUILD_TARGETS+=	$(call add-barrier, depends, build)
 _BUILD_TARGETS+=	configure

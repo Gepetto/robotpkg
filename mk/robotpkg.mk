@@ -107,7 +107,7 @@ $(call require-for, patch,						\
 
 # Configure
 $(call require-for, configure,						\
-	${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
+	${ROBOTPKG_DIR}/mk/configure/configure.mk)
 
 # Build
 $(call require-for, all build,						\
