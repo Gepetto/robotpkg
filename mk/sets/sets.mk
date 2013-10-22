@@ -46,7 +46,8 @@ set-update-%: .FORCE
 
 set-bulk-%: .FORCE
 	${RUN}$(call _pkgset_recursive,bulk,-e				\
-	  -t 'LOCALBASE=${BULKBASE}' -t 'EXPECT_TARGETS=fetch package')
+	  -t 'LOCALBASE=${BULKBASE}'					\
+	  -t 'EXPECT_TARGETS=fetch install package')
 
 set-deinstall-%: .FORCE
 	${RUN}$(call _pkgset_recursive,deinstall,-e -r)
