@@ -22,7 +22,8 @@ SYSTEM_SEARCH.opencv=\
   'include{,/opencv-*}/opencv/highgui.h'				\
   'include{,/opencv-*}/opencv2/core/version.hpp'			\
   'include{,/opencv-*}/opencv2/highgui/highgui.hpp'			\
-  'lib/pkgconfig/opencv{,-[0-9]*}.pc:/Version/s/[^.0-9]//gp'
+  'lib/pkgconfig/opencv{,-[0-9]*}.pc:/Version/s/[^.0-9]//gp'		\
+  '{lib/cmake,share}/OpenCV/OpenCVConfig.cmake'
 
 SYSTEM_PKG.Debian.opencv=	libopencv-dev libcv-dev libhighgui-dev
 SYSTEM_PKG.Fedora.opencv=	opencv-devel
