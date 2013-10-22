@@ -2,9 +2,9 @@
 # Created:			Anthony Mallet on Mon, 18 Feb 2008
 #
 
-PKGREVISION=		1
+PKGREVISION=
 HPP_PACKAGE=		hpp-model
-HPP_VERSION=		2.4.0
+HPP_VERSION=		2.4.1
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-model
 
 CATEGORIES=	devel
