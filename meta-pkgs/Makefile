@@ -8,6 +8,7 @@ SUBDIR+=	gearbox
 SUBDIR+=	hpp
 SUBDIR+=	jafar
 SUBDIR+=	mana
+SUBDIR+=	minnie
 SUBDIR+= 	orocos-toolchain
 SUBDIR+=	ros-base
 SUBDIR+=	ros-desktop
