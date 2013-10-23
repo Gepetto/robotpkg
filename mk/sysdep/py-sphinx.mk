@@ -18,17 +18,23 @@ ifeq (+,$(PY_SPHINX_DEPEND_MK)) # ------------------------------------------
 PREFER.py-sphinx?=		system
 
 DEPEND_USE+=			py-sphinx
-DEPEND_ABI.py-sphinx?=		${PKGTAG.python}-sphinx>=0.6
+DEPEND_ABI.py-sphinx?=		py-sphinx>=0.6
 DEPEND_METHOD.py-sphinx?=	build
 
+# sphinx-apidoc for python code needs a python compatible with the code (sigh).
+# To keep it simple, this requirement is transformed as follow:
+#  - require the _same_ python version as the package if python is used
+#  - don't care about python if python is not otherwise used
+#
 SYSTEM_SEARCH.py-sphinx=\
-	'bin/sphinx-build:1s/[^0-9.]//gp:% -_'			\
-	'${PYTHON_SYSLIBSEARCH}/sphinx/__init__.py'
+  'bin/sphinx-build:1s/[^0-9.]//gp:% -_'				\
+  'bin/sphinx-apidoc'							\
+  $(if ${PYTHON_DEPEND_MK},'${PYTHON_SYSLIBSEARCH}/sphinx/__init__.py')
 
-SYSTEM_PKG.Linux.py-sphinx=	python-sphinx (python-${PYTHON_VERSION})
-SYSTEM_PKG.NetBSD.py-sphinx=	textproc/${PKGTAG.python}-sphinx
-
-include ../../mk/sysdep/python.mk
+SYSTEM_PKG.Linux.py-sphinx=\
+  python-sphinx$(if ${PYTHON_DEPEND_MK}, (python-${PYTHON_VERSION}))
+SYSTEM_PKG.NetBSD.py-sphinx=\
+  textproc/$(if ${PYTHON_DEPEND_MK},${PKGTAG.python},py)-sphinx
 
 endif # PY_SPHINX_DEPEND_MK ------------------------------------------------
 
