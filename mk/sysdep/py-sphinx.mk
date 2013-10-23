@@ -31,8 +31,11 @@ SYSTEM_SEARCH.py-sphinx=\
   'bin/sphinx-apidoc'							\
   $(if ${PYTHON_DEPEND_MK},'${PYTHON_SYSLIBSEARCH}/sphinx/__init__.py')
 
-SYSTEM_PKG.Linux.py-sphinx=\
-  python-sphinx$(if ${PYTHON_DEPEND_MK}, (python-${PYTHON_VERSION}))
+_py-sphinx-pyver=$(if ${PYTHON_DEPEND_MK}, (python-${PYTHON_VERSION}))
+
+SYSTEM_PKG.Debian.py-sphinx=	python$(filter-out 2,${PYTHON_MAJOR})-sphinx
+SYSTEM_PKG.Fedora.py-sphinx=	python-sphinx${_py-sphinx-pyver}
+SYSTEM_PKG.Gentoo.py-sphinx=	python-sphinx${_py-sphinx-pyver}
 SYSTEM_PKG.NetBSD.py-sphinx=\
   textproc/$(if ${PYTHON_DEPEND_MK},${PKGTAG.python},py)-sphinx
 
