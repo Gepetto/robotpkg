@@ -61,20 +61,6 @@
 
 $(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
 
-BUILD_MAKE_FLAGS?=	# none
-BUILD_TARGET?=		all
-$(foreach _d,${BUILD_DIRS},$(eval BUILD_TARGET.${_d}?= ${BUILD_TARGET}))
-
-BUILD_MAKE_CMD?=\
-	${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${_MAKE_JOBS}		\
-		${MAKE_FLAGS} ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE}	\
-		${BUILD_TARGET.$1}
-
-ifneq (,$(call isno,${MAKE_JOBS_SAFE}))
-_MAKE_JOBS=	# nothing
-else ifneq (,$(MAKE_JOBS))
-_MAKE_JOBS=	-j${MAKE_JOBS}
-endif
 
 # --- build (PUBLIC) -------------------------------------------------
 #

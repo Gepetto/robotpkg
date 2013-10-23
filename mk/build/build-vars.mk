@@ -64,38 +64,50 @@
 
 $(call require, ${ROBOTPKG_DIR}/mk/configure/configure-vars.mk)
 
+# Supported build tools (in mk/build/<tool>.mk)
+# Use gmake by default.
+#
+BUILD_TOOLS=	gmake
+
+BUILD_TOOL=\
+  $(basename $(notdir \
+    $(filter $(addprefix %/build/,${BUILD_TOOLS:=.mk}),${MAKEFILE_LIST})))
+
+ifeq (0,$(words ${BUILD_TOOL}))
+  $(call require, ${ROBOTPKG_DIR}/mk/build/gmake.mk)
+else ifneq (1,$(words ${BUILD_TOOL}))
+  PKG_FAIL_REASON+= "Multiple build tools defined: ${BUILD_TOOL}"
+endif
+
+
+# Build variables
+#
 BUILD_DIRS?=	${CONFIGURE_DIRS}
-MAKE_PROGRAM?=	${MAKE}
+BUILD_TARGET?=
+$(foreach _,${BUILD_DIRS},$(eval BUILD_TARGET.$_?= ${BUILD_TARGET}))
+
+MAKE_PROGRAM?=	${FALSE}
 MAKE_ENV?=	# empty
 MAKE_FLAGS?=	# empty
-MAKE_FILE?=	Makefile
-
-# always reset robotpkg gmake context when using gmake to build a package
-MAKE_ENV+=	MAKELEVEL= MAKEOVERRIDES= MAKEFLAGS= MFLAGS=
+MAKE_FILE?=	/dev/null
 
 MAKE_ENV+=	${ALL_ENV}
-ifndef NO_EXPORT_CPP
-MAKE_ENV+=	CPP=$(call quote,${CPP})
-endif
 MAKE_ENV+=	LOCALBASE=${LOCALBASE}
-MAKE_ENV+=	NO_WHOLE_ARCHIVE_FLAG=${NO_WHOLE_ARCHIVE_FLAG}
-MAKE_ENV+=	WHOLE_ARCHIVE_FLAG=${WHOLE_ARCHIVE_FLAG}
 MAKE_ENV+=	PKGMANDIR=${PKGMANDIR}
 
-# The filter for the default do-build action
+BUILD_MAKE_FLAGS?=
+BUILD_MAKE_CMD?=\
+  ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS}		\
+    ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE} ${BUILD_TARGET.$1}
+
+
+# The filter for the {pre,post,}-build targets
 #
 BUILD_LOGFILE?=	${WRKDIR}/build.log
 BUILD_LOGFILTER?=\
 	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${BUILD_LOGFILE}
 
 
-# The following are the "public" targets provided by this module:
+# The build cookie
 #
-#    build
-#
-# The following targets may be overridden in a package Makefile:
-#
-#    pre-build, do-build, post-build
-#
-
 _COOKIE.build=  ${WRKDIR}/.build_cookie
