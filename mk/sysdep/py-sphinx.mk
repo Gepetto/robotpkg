@@ -18,7 +18,7 @@ ifeq (+,$(PY_SPHINX_DEPEND_MK)) # ------------------------------------------
 PREFER.py-sphinx?=		system
 
 DEPEND_USE+=			py-sphinx
-DEPEND_ABI.py-sphinx?=		py-sphinx>=0.6
+DEPEND_ABI.py-sphinx?=		py-sphinx>=1.1
 DEPEND_METHOD.py-sphinx?=	build
 
 # sphinx-apidoc for python code needs a python compatible with the code (sigh).
