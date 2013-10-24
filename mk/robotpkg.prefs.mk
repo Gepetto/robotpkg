@@ -106,8 +106,9 @@ ifndef MACHINE_PLATFORM
   _ENV_VARS+=			MACHINE_ARCH LOWER_ARCH
 
   export OS_KERNEL:=		$(word 1,${_kernel})
+  export LOWER_OS_KERNEL:=	$(call tolower,${OS_KERNEL})
   export OS_KERNEL_VERSION:=	$(word 3,${_kernel})
-  _ENV_VARS+=			OS_KERNEL OS_KERNEL_VERSION
+  _ENV_VARS+=			OS_KERNEL LOWER_OS_KERNEL OS_KERNEL_VERSION
 
   export NODENAME:=		$(word 2,${_kernel})
   _ENV_VARS+=			NODENAME

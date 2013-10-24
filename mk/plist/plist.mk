@@ -126,6 +126,7 @@ PLIST_SUBST+=	\
 	PLIST_OPSYS=$(call quote,${OPSYS})				\
 	PLIST_OS_VERSION=$(call quote,${OS_VERSION})			\
 	PLIST_OS_KERNEL=$(call quote,${OS_KERNEL})			\
+	PLIST_LOWER_OS_KERNEL=$(call quote,${LOWER_OS_KERNEL})		\
 	PLIST_OS_KERNEL_VERSION=$(call quote,${OS_KERNEL_VERSION})	\
 	PLIST_NODENAME=$(call quote,${NODENAME})			\
 	PLIST_MACHINE_ARCH=$(call quote,${MACHINE_ARCH})		\
