@@ -49,7 +49,7 @@ else
 endif
 
 ifneq (hpp-util,${HPP_PACKAGE})
-  include ../../devel/hpp-util/depend.mk
+  include ../../path/hpp-util/depend.mk
 endif
 include ../../mk/sysdep/doxygen.mk
 include ../../pkgtools/pkg-config/depend.mk

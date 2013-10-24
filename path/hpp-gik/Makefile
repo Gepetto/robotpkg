@@ -21,7 +21,7 @@ INCLUDE_DIRS.boost-headers=	include
 include ../../meta-pkgs/hpp/Makefile.common
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
-include ../../devel/hpp-util/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../interfaces/abstract-gik-task/depend.mk
 include ../../interfaces/abstract-robot-dynamics/depend.mk
 include ../../interfaces/jrl-mal/depend.mk

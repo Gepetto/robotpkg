@@ -16,7 +16,7 @@ GNU_CONFIGURE=	yes
 
 DOXYGEN_PLIST_DIR+=	share/doc/hppDynamicObstacle
 
-include ../../devel/hpp-kwsplus/depend.mk
+include ../../path/hpp-kwsplus/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../mk/sysdep/kineoworks.mk
 include ../../pkgtools/libtool/depend.mk

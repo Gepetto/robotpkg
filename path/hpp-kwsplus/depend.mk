@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/hpp-kwsplus
+# robotpkg depend.mk for:	path/hpp-kwsplus
 # Created:			Anthony Mallet on Thu, 24 Apr 2008
 #
 
@@ -21,7 +21,7 @@ SYSTEM_SEARCH.hpp-kwsplus=\
 DEPEND_USE+=		hpp-kwsplus
 
 DEPEND_ABI.hpp-kwsplus?=hpp-kwsplus>=2.3
-DEPEND_DIR.hpp-kwsplus?=../../devel/hpp-kwsplus
+DEPEND_DIR.hpp-kwsplus?=../../path/hpp-kwsplus
 
 endif # HPP_KWSPLUS_DEPEND_MK ----------------------------------------
 

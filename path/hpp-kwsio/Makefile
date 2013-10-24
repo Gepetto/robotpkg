@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	devel/hpp-kwsio
+# robotpkg Makefile for:	path/hpp-kwsio
 # Created:			Anthony Mallet on Fri, 13 Jul 2007
 #
 
@@ -7,7 +7,7 @@ HPP_VERSION=		1.2
 PKGREVISION=
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-kwsio
 
-CATEGORIES=		devel
+CATEGORIES=		path
 HPP_COMMENT=		Input and Output functions for KineoWorks(tm) package.
 LICENSE=		gnu-lgpl-v2
 

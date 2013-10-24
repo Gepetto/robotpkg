@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/hpp-kwsio
+# robotpkg depend.mk for:	path/hpp-kwsio
 # Created:			Anthony Mallet on Wed, 17 Sep 2008
 #
 
@@ -20,7 +20,7 @@ SYSTEM_SEARCH.hpp-kwsio=\
 DEPEND_USE+=		hpp-kwsio
 
 DEPEND_ABI.hpp-kwsio?=	hpp-kwsio>=1.2
-DEPEND_DIR.hpp-kwsio?=	../../devel/hpp-kwsio
+DEPEND_DIR.hpp-kwsio?=	../../path/hpp-kwsio
 
 endif # HPP_KWSIO_DEPEND_MK ------------------------------------------
 

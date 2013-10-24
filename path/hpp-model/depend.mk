@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/hpp-model
+# robotpkg depend.mk for:	path/hpp-model
 # Created:			Anthony Mallet on Wed, 14 May 2008
 #
 
@@ -20,7 +20,7 @@ SYSTEM_SEARCH.hpp-model=\
 DEPEND_USE+=		hpp-model
 
 DEPEND_ABI.hpp-model?=	hpp-model>=2.3
-DEPEND_DIR.hpp-model?=	../../devel/hpp-model
+DEPEND_DIR.hpp-model?=	../../path/hpp-model
 
 endif # HPP_MODEL_DEPEND_MK ------------------------------------------
 

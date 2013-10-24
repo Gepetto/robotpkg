@@ -14,7 +14,7 @@ HPP_BUILD_SYSTEM=	cmake
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../devel/hpp-util/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../path/hpp-constrained/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../mk/sysdep/assimp2.mk

@@ -15,8 +15,8 @@ HPP_BUILD_SYSTEM=	cmake
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../devel/hpp-kwsplus/depend.mk
-include ../../devel/hpp-util/depend.mk
+include ../../path/hpp-kwsplus/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../path/hpp-constrained-planner/depend.mk
 include ../../path/hpp-constrained/depend.mk
 include ../../path/hpp-roboptim/depend.mk

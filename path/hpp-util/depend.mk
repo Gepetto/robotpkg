@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/hpp-util
+# robotpkg depend.mk for:	path/hpp-util
 # Created:			Thomas Moulard on Wed, 8 Sep 2010
 #
 
@@ -16,7 +16,7 @@ PREFER.hpp-util?=	robotpkg
 DEPEND_USE+=		hpp-util
 
 DEPEND_ABI.hpp-util?=	hpp-util>=0.8
-DEPEND_DIR.hpp-util?=	../../devel/hpp-util
+DEPEND_DIR.hpp-util?=	../../path/hpp-util
 
 SYSTEM_SEARCH.hpp-util=			\
 	include/hpp/util/version.hh	\

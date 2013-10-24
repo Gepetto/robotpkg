@@ -12,8 +12,8 @@ META_PACKAGE=	yes
 
 # Core packages.
 include ../../path/hpp-core/depend.mk
-include ../../devel/hpp-model/depend.mk
-include ../../devel/hpp-util/depend.mk
+include ../../path/hpp-model/depend.mk
+include ../../path/hpp-util/depend.mk
 
 # CORBA packages.
 include ../../path/hpp-corbaserver/depend.mk

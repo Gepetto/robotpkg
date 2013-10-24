@@ -15,7 +15,7 @@ LICENSE=	gnu-lgpl-v3
 MAKE_JOBS_SAFE= no
 HPP_BUILD_SYSTEM=	cmake
 
-include ../../devel/hpp-util/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../meta-pkgs/hpp/Makefile.common
 include ../../middleware/omniORB/depend.mk
 include ../../path/hpp-core/depend.mk

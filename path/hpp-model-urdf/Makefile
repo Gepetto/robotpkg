@@ -13,8 +13,8 @@ LICENSE=	gnu-lgpl-v3
 HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../devel/hpp-model/depend.mk
-include ../../devel/hpp-util/depend.mk
+include ../../path/hpp-model/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../graphics/rcpdf/depend.mk
 include ../../graphics/ros-robot-model/depend.mk
 include ../../math/hpp-geometry/depend.mk

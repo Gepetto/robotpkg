@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	devel/hpp-util
+# robotpkg Makefile for:	path/hpp-util
 # Created:			Thomas Moulard on Wed, 8 Sep 2010
 #
 
@@ -8,7 +8,7 @@ PKGREVISION=
 
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/laas/${HPP_PACKAGE}
 
-CATEGORIES=		devel
+CATEGORIES=		path
 HPP_COMMENT=		utility tools
 LICENSE=		gnu-gpl-v3
 
