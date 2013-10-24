@@ -2,9 +2,9 @@
 # Created:			Anthony Mallet on Mon, 27 Aug 2007
 #
 
-PKGREVISION=	1
+PKGREVISION=
 HPP_PACKAGE=	hpp-corbaserver
-HPP_VERSION=	2.4
+HPP_VERSION=	2.5
 PKGREVISION=
 HPP_COMMENT=	Corba server for Humanoid Path Planner
 
