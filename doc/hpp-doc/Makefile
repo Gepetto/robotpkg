@@ -4,7 +4,7 @@
 
 DISTNAME=	hpp-doc-${VERSION}
 PKGNAME=	hpp-doc-${VERSION}
-VERSION=	2.0.4
+VERSION=	2.1
 
 CATEGORIES=	doc
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=hpp-doc/}
@@ -16,6 +16,7 @@ COMMENT=	HPP Project documentation.
 LICENSE=	cnrs-hpp-closed-source
 
 GNU_CONFIGURE=	yes
+DINAMIC_PLIST_DIRS+=	share/doc/hpp-doc
 
 # options
 PKG_SUPPORTED_OPTIONS+=	hpp-core
