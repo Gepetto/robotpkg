@@ -3,8 +3,8 @@
 #
 
 HPP_PACKAGE=		hpp-geometry
-HPP_VERSION=		1.3.1
-PKGREVISION=		1
+HPP_VERSION=		1.3.2
+PKGREVISION=
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-geometry
 
 CATEGORIES=	math
