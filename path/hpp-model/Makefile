@@ -4,7 +4,7 @@
 
 PKGREVISION=
 HPP_PACKAGE=		hpp-model
-HPP_VERSION=		2.4.1
+HPP_VERSION=		2.4.2
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-model
 
 CATEGORIES=	path
