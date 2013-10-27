@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-model-urdf
-HPP_VERSION=		0.4.4
+HPP_VERSION=		0.4.5
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-model-urdf
 
 CATEGORIES=	path
