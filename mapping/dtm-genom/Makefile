@@ -21,7 +21,7 @@ define PKG_OPTION_SET.gdhe
   GENOM_ARGS+= -DGDHE
   include ../../graphics/gdhe/depend.mk
 endef
-define PKG_OPTIONS_UNSET.gdhe
+define PKG_OPTION_UNSET.gdhe
  GENOM_ARGS:=	$(filter-out -DGDHE,${GENOM_ARGS})
 endef
 
