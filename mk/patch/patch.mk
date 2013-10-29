@@ -101,8 +101,10 @@ $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
 _PATCH_TARGETS+=	$(call add-barrier, bootstrap-depends, patch)
 ifdef _EXTRACT_IS_CHECKOUT
+  $(call require, ${ROBOTPKG_DIR}/mk/extract/checkout.mk)
   _PATCH_TARGETS+=	checkout
 else
+  $(call require, ${ROBOTPKG_DIR}/mk/extract/extract.mk)
   _PATCH_TARGETS+=	extract
 endif
 _PATCH_TARGETS+=	acquire-patch-lock

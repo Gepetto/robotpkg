@@ -94,8 +94,8 @@ $(call require-for, checksum mdi distinfo,				\
 	${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
 # Extract
-$(call require-for, extract checkout,					\
-	${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+$(call require-for, extract,						\
+	${ROBOTPKG_DIR}/mk/extract/extract.mk)
 
 # Checkout
 $(call require-for, checkout,						\

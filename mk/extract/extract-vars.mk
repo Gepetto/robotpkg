@@ -43,9 +43,11 @@
 #    EXTRACT_SUFX is the suffix for the default distfile to be
 #       extracted.  The default suffix is ".tar.gz".
 #
+$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
 
 EXTRACT_ONLY?=		${FETCH_ONLY}
 EXTRACT_SUFX?=		.tar.gz
+EXTRACT_DIR?=		${WRKDIR}
 
 _COOKIE.extract=	${WRKDIR}/.extract_cookie
 _COOKIE.checkout=	${WRKDIR}/.checkout_cookie
@@ -87,93 +89,3 @@ endif
 # The filter for the default do-extract action
 EXTRACT_LOGFILE?=	${WRKDIR}/extract.log
 EXTRACT_LOGFILTER?=	${_LOGFILTER} ${_LOGFILTER_FLAGS} -l ${EXTRACT_LOGFILE}
-
-# For DISTFILES definition
-$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
-
-# Discover which tools we need based on the file extensions of the
-# distfiles.
-#
-ifneq (,$(filter %.tar %.tar.gz %.tar.bz2 %.tgz %.tbz2,${EXTRACT_ONLY}))
-  DEPEND_METHOD.pax+=	bootstrap
-  include ${ROBOTPKG_DIR}/archivers/pax/depend.mk
-endif
-#.if !empty(EXTRACT_ONLY:M*.cpio) || \
-#    !empty(EXTRACT_ONLY:M*.cpio.bz2) || \
-#    !empty(EXTRACT_ONLY:M*.cpio.gz)
-#USE_TOOLS+=	pax
-#.endif
-#.if !empty(EXTRACT_ONLY:M*.bz2) || \
-#    !empty(EXTRACT_ONLY:M*.tbz) || \
-#    !empty(EXTRACT_ONLY:M*.tbz2)
-#USE_TOOLS+=	bzcat
-#.endif
-ifneq (,$(filter %.zip,${EXTRACT_ONLY}))
-  DEPEND_METHOD.unzip+=	bootstrap
-  include ${ROBOTPKG_DIR}/mk/sysdep/unzip.mk
-endif
-ifneq (,$(filter %.deb,${EXTRACT_ONLY}))
-  EXTRACT_ENV+=		DPKG=$(call quote,${DPKG})
-  DEPEND_METHOD.dpkg+=	bootstrap
-  include ${ROBOTPKG_DIR}/mk/sysdep/dpkg.mk
-endif
-#.if !empty(EXTRACT_ONLY:M*.lzh) || \
-#    !empty(EXTRACT_ONLY:M*.lha)
-#USE_TOOLS+=	lha
-#.endif
-#.if !empty(EXTRACT_ONLY:M*.gz) || \
-#    !empty(EXTRACT_ONLY:M*.tgz) || \
-#    !empty(EXTRACT_ONLY:M*.Z)
-#USE_TOOLS+=	gzcat
-#.endif
-#.if !empty(EXTRACT_ONLY:M*.zoo)
-#USE_TOOLS+=	unzoo
-#.endif
-#.if !empty(EXTRACT_ONLY:M*.rar)
-#USE_TOOLS+=	unrar
-#.endif
-#.if !empty(EXTRACT_ONLY:M*.gem)
-#USE_TOOLS+=	gem
-#.endif
-
-# The following are the "public" targets provided by this module:
-#
-#    extract, checkout
-#
-# The following targets may be overridden in a package Makefile:
-#
-#    pre-extract, do-extract, post-extract
-#    pre-checkout, do-checkout, post-checkout
-#
-
-# --- extract (PUBLIC) -----------------------------------------------
-#
-# extract is a public target to perform extraction.
-#
-.PHONY: extract
-ifndef NO_EXTRACT
-  include ${ROBOTPKG_DIR}/mk/extract/extract.mk
-else
-  ifeq (yes,$(call exists,${_COOKIE.extract}))
-extract:
-	@${DO_NADA}
-  else
-    $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
-
-    extract: $(call add-barrier, bootstrap-depends, extract)
-    extract: checksum extract-cookie;
-  endif
-endif
-
-
-# --- extract-cookie (PRIVATE) ---------------------------------------------
-#
-# extract-cookie creates the "extract" cookie file. The contents are the name
-# of the package.
-#
-.PHONY: extract-cookie
-extract-cookie: makedirs
-	${RUN}${TEST} ! -f ${_COOKIE.extract} || ${FALSE};		\
-	exec >>${_COOKIE.extract};					\
-	${ECHO} "_COOKIE.extract.date:=`${_CDATE_CMD}`";		\
-	${ECHO} "_COOKIE.extract.files:=${EXTRACT_ONLY}"

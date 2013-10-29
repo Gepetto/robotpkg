@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011-2012 LAAS/CNRS
+# Copyright (c) 2006-2009,2011-2013 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -83,8 +83,10 @@ else
 
     patch: $(call add-barrier, bootstrap-depends, patch)
     ifdef _EXTRACT_IS_CHECKOUT
+      $(call require, ${ROBOTPKG_DIR}/mk/extract/checkout.mk)
       patch: checkout patch-cookie;
     else
+      $(call require, ${ROBOTPKG_DIR}/mk/extract/extract.mk)
       patch: extract patch-cookie;
     endif
   endif

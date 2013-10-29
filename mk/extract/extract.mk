@@ -74,7 +74,24 @@
 #	EXTRACT_OPTS, EXTRACT_USING and EXTRACT_ELEMENTS.
 #
 
-EXTRACT_DIR?=		${WRKDIR}
+$(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
+
+# Discover which tools we need based on the file extensions of the
+# distfiles.
+#
+ifneq (,$(filter %.tar %.tar.gz %.tar.bz2 %.tgz %.tbz2,${EXTRACT_ONLY}))
+  DEPEND_METHOD.pax+=	bootstrap
+  include ${ROBOTPKG_DIR}/archivers/pax/depend.mk
+endif
+ifneq (,$(filter %.zip,${EXTRACT_ONLY}))
+  DEPEND_METHOD.unzip+=	bootstrap
+  include ${ROBOTPKG_DIR}/mk/sysdep/unzip.mk
+endif
+ifneq (,$(filter %.deb,${EXTRACT_ONLY}))
+  EXTRACT_ENV+=		DPKG=$(call quote,${DPKG})
+  DEPEND_METHOD.dpkg+=	bootstrap
+  include ${ROBOTPKG_DIR}/mk/sysdep/dpkg.mk
+endif
 
 
 # --- extract (PUBLIC) -----------------------------------------------------
@@ -82,8 +99,10 @@ EXTRACT_DIR?=		${WRKDIR}
 # extract is a public target to perform extraction of the distribution files.
 #
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
 
 _EXTRACT_TARGETS+=	$(call add-barrier, bootstrap-depends, extract)
+_EXTRACT_TARGETS+=	fetch
 _EXTRACT_TARGETS+=	acquire-extract-lock
 _EXTRACT_TARGETS+=	${_COOKIE.extract}
 _EXTRACT_TARGETS+=	release-extract-lock
@@ -100,10 +119,12 @@ acquire-extract-lock: acquire-lock
 release-extract-lock: release-lock
 
 
-# --- ${_COOKIE.extract} ---------------------------------------------------
+# --- extract-cookie (PRIVATE) ---------------------------------------------
 #
-# ${_COOKIE.extract} creates the "extract" cookie file.
+# extract-cookie creates the "extract" cookie file. The contents are the name
+# of the package.
 #
+
 ifeq (yes,$(call exists,${_COOKIE.extract}))
   $(call require,${_COOKIE.extract})
 else
@@ -111,21 +132,32 @@ else
   ${_COOKIE.extract}: real-extract;
 endif
 
+.PHONY: extract-cookie
+extract-cookie: makedirs
+	${RUN}${TEST} ! -f ${_COOKIE.extract} || ${FALSE};		\
+	exec >>${_COOKIE.extract};					\
+	${ECHO} "_COOKIE.extract.date:=`${_CDATE_CMD}`";		\
+	${ECHO} "_COOKIE.extract.files:=${EXTRACT_ONLY}"
+
 
 # --- real-extract (PRIVATE) -----------------------------------------
 #
 # real-extract is a helper target onto which one can hook all of the
 # targets that do the actual extraction work.
 #
-_REAL_EXTRACT_TARGETS+=	extract-check-checkout
-_REAL_EXTRACT_TARGETS+=	extract-check-interactive
-_REAL_EXTRACT_TARGETS+=	extract-message
-_REAL_EXTRACT_TARGETS+=	checksum
-_REAL_EXTRACT_TARGETS+=	extract-dir
-_REAL_EXTRACT_TARGETS+=	pre-extract
-_REAL_EXTRACT_TARGETS+=	do-extract
-_REAL_EXTRACT_TARGETS+=	post-extract
-_REAL_EXTRACT_TARGETS+=	extract-cookie
+ifdef NO_EXTRACT
+  _REAL_EXTRACT_TARGETS+=	extract-cookie
+else
+  _REAL_EXTRACT_TARGETS+=	extract-check-checkout
+  _REAL_EXTRACT_TARGETS+=	extract-check-interactive
+  _REAL_EXTRACT_TARGETS+=	extract-message
+  _REAL_EXTRACT_TARGETS+=	checksum
+  _REAL_EXTRACT_TARGETS+=	extract-dir
+  _REAL_EXTRACT_TARGETS+=	pre-extract
+  _REAL_EXTRACT_TARGETS+=	do-extract
+  _REAL_EXTRACT_TARGETS+=	post-extract
+  _REAL_EXTRACT_TARGETS+=	extract-cookie
+endif
 
 .PHONY: real-extract
 real-extract: ${_REAL_EXTRACT_TARGETS}
