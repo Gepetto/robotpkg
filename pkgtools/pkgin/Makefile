@@ -1,5 +1,6 @@
 #
 
+PKGREVISION=		1
 DISTNAME=		pkgin-0.6.4
 CATEGORIES=		pkgtools
 MASTER_SITES=		ftp://ftp.NetBSD.org/pub/NetBSD/misc/imil/
@@ -23,7 +24,7 @@ SUBST_SED.path+=	-e "s|pkgin|robotpkgin|g" -e "s|PKGIN|ROBOTPKGIN|g"
 SUBST_SED.path+=	-e "s|pkg_|robotpkg_|g"
 
 GNU_CONFIGURE=		yes
-MAKE_ENV+=		UNAME=${UNAME}
+MAKE_ENV+=		UNAME=$(or ${UNAME},uname)
 MAKE_ENV+=		PKGTOOLS=${PREFIX}/sbin
 MAKE_ENV+=		VARBASE=${PREFIX}/var
 
