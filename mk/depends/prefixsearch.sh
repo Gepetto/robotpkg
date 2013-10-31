@@ -28,14 +28,16 @@
 #	prefixsearch.sh takes a package name, an ABI requirement and a list
 #	of file specifications that belong to the package. Each file
 #	specification may be a simple file name which is only tested for
-#	existence or a string in the form 'file[:sed[:prog[:option]]]' which
-#	tests the existence and the version of the file. If the file exists,
-#	'prog' is executed with its standard output is passed to the 'sed'
-#	program which is expected to return the version of the file. 'prog'
-#	might contain a % character which is replaced by the actual path of the
-#	file being tested. If 'option' is given, 'file' exists, 'prog' does not
-#	fail and 'sed' (if present) returns a non-empty result, the 'option' is
-#	added to the computed version of the package.
+#	existence or a string in the form 'file[:sed[:prog[:option[:comment]]]]'
+#	which tests the existence and the version of the file. If the file
+#	exists, 'prog' is executed with its standard output is passed to the
+#	'sed' program which is expected to return the version of the file.
+#	'prog' might contain a % character which is replaced by the actual path
+#	of the file being tested. If 'option' is given, 'file' exists, 'prog'
+#	does not fail and 'sed' (if present) returns a non-empty result, the
+#	'option' is added to the computed version of the package. 'comment' is
+#	printed in error logs in lieu of the actual file name currently
+#	checked, with % replaced by the full path to the file.
 #
 #	prefixsearch.sh exists with a non-zero status if the package could
 #	not be found.
@@ -248,7 +250,7 @@ for p in `bracesubst $sysprefix`; do
     flist=
     for fspec in "$@"; do
 	# split file specification into `:' separated fields
-	IFS=: read -r f spec cmd opt <<-EOF
+	IFS=: read -r f spec cmd opt comment <<-EOF
 		$fspec
 	EOF
         if ${TEST} -n "$opt"; then optspec=yes; fi
@@ -271,10 +273,11 @@ for p in `bracesubst $sysprefix`; do
 		done
 		if ${TEST} -z "$match"; then continue; fi
 	    fi
+            display=`echo "${comment:-$match}" | ${SED} -e 's@%@'$match'@g'`
 
 	    # check file version, if needed
 	    if ${TEST} -z "$spec$cmd$opt"; then
-		${MSG} "found:	$match"
+		${MSG} "found:	$display"
 		break
 	    fi
 
@@ -292,42 +295,45 @@ for p in `bracesubst $sysprefix`; do
 		version=`echo "$rawversion" | \
                       ${SED} -ne "${spec:-p}" | ${SED} $vrepl` || status=$?
 	    fi
-            if ${TEST} -z "$opt"; then
-                if ${TEST} $status -eq 0 -a -z "$version"; then
-                    ${MSG} "found:	$match"
-                    break
-                fi
-            else
+            if ${TEST} -n "$opt"; then
                 if ${TEST} $status -eq 0 -a -n "$version"; then
                     case "+$pkgoption+" in
                         *+$opt+*) ;;
                         *) pkgoption=${pkgoption:+$pkgoption+}$opt ;;
                     esac
-		    ${MSG} "found:	$match for option $opt"
+		    ${MSG} "found:	$display for option $opt"
 		    break
                 fi
-	        ${MSG} "found:	$match, no match for option $opt"
+	        ${MSG} "found:	$display, no match for option $opt"
                 match=
                 continue
             fi
+
+            if ${TEST} $status -ne 0; then
+                ${MSG} "found:	$display, ${rawversion:-error checking version}"
+                match=
+                continue
+            fi
+            if ${TEST} -z "$version"; then
+                ${MSG} "found:	$display"
+                break
+            fi
+
             if ${PKG_ADMIN_CMD} pmatch "${abi%~*}" "$abipkg-$version"; then
 		pkgversion=-$version
-		${MSG} "found:	$match, version $version"
+		${MSG} "found:	$display, version $version"
 		break
 	    fi
 
-            if ${TEST} $status -eq 0; then
-                ${MSG} "found:	$match, wrong version ${version:-unknown}"
-            else
-                ${MSG} "found:	$match, ${rawversion:-error checking version}"
-            fi
+            ${MSG} "found:	$display, wrong version ${version:-unknown}"
 	    match=;
 	done
 	if ${TEST} -z "$match"; then
 	    for match in `bracesubst $p/$f | sysdirsubst $p`; do
 		for alt in $match `shlibext $match`; do
 		    for alt in $alt `optusr $alt`; do
-			${MSG} "missing:	$alt"
+                        dis=`echo "${comment:-$alt}" | ${SED} -e 's@%@'$alt'@g'`
+			${MSG} "missing:	$dis"
 		    done
 		done
 	    done
