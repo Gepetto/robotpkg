@@ -34,7 +34,9 @@ _ENV_VARS+=	http_proxy https_proxy ftp_proxy
 .PHONY: unsetenv
 unsetenv:
 	@${SETENV} -i							\
-	  $(foreach _,${_ENV_VARS},$(call quote,$_=${$_}))		\
+	  $(foreach _,${_ENV_VARS},					\
+	    $(if $(filter environment,$(origin $_)),			\
+	      $(call quote,$_=${$_})))					\
 	  ROBOTPKG_TRUSTED_ENV=robotpkg					\
 	  ${MAKE} ${MFLAGS} ${MAKEOVERRIDES} ${MAKECMDGOALS}
 
