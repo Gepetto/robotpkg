@@ -3,8 +3,8 @@
 #
 
 HPP_PACKAGE=		hpp-wholebody-step-planner
-HPP_VERSION=		0.3
-PKGREVISION=		1
+HPP_VERSION=		1.0
+PKGREVISION=
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-wholebody-step-planner
 
 CATEGORIES=		path
