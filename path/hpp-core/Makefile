@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-core
-HPP_VERSION=		2.7.2
+HPP_VERSION=		2.7.3
 PKGREVISION=		
 MASTER_REPOSITORY=	git git@github.com:laas/hpp-core
 
