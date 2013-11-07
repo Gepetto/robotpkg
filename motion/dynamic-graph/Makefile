@@ -3,12 +3,12 @@
 #
 
 DISTNAME=		dynamic-graph-${VERSION}
-VERSION=		2.5.3
+VERSION=		2.5.5
 PKGREVISION=		1
 
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/dynamic-graph
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/stack-of-tasks/dynamic-graph
 
 COMMENT=		Efficient data-flow C++ library for robotics
 LICENSE=		gnu-lgpl-v3
@@ -22,6 +22,8 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 # man pages location
 CMAKE_ARGS+=		-DMANDIR=${PREFIX}/${PKGMANDIR}
+# library location
+CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
 include ../../interfaces/jrl-mal/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
