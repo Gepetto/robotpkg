@@ -1,7 +1,3 @@
-SHA1 (jafar-correl-0.2.tar.gz) = 7d34ed695e23f9dafe5f4ad1161384df50419ce2
-RMD160 (jafar-correl-0.2.tar.gz) = 66647ee61adfca43b11e8de9d27c227b1362b4f4
-Size (jafar-correl-0.2.tar.gz) = 62139 bytes
-SHA1 (patch-aa) = b4f009737420ef727bad0bda846cc52c0effd46a
-SHA1 (patch-ab) = edc5a648138c50a24036bf058783c0529ca5db31
-SHA1 (patch-ac) = 0435f2366a3c1aae379457b4a6901df54d2b1b6d
-SHA1 (patch-ad) = 6da14cc4154b09eff1c64f19df456668f67fc303
+SHA1 (jafar-correl-0.3.tar.gz) = b6e8d9b02942b1f22cf9b567b54f3ecf4234ef34
+RMD160 (jafar-correl-0.3.tar.gz) = 9a3458a3a40434df0e4a1d2af191f51d4aa50852
+Size (jafar-correl-0.3.tar.gz) = 62226 bytes

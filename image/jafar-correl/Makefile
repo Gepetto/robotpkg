@@ -2,8 +2,7 @@
 # Created:			Cyril Roussillon on Wed, 15 Jun 2011
 #
 
-JAFAR_PKG=		correl-0.2
-PKGREVISION= 	2
+JAFAR_PKG=		correl-0.3
 
 CATEGORIES=		image
 JAFAR_COMMENT=		image correlation functions
