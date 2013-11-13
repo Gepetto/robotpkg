@@ -2,8 +2,7 @@
 # Created:			Redouane Boumghar on Wed, 15 Jun 2011
 #
 
-JAFAR_PKG=	jmath-0.4
-PKGREVISION= 2
+JAFAR_PKG=	jmath-0.5
 
 CATEGORIES=	math
 JAFAR_COMMENT=	mathematical tools (vector, matrix, random number ...)
@@ -21,8 +20,9 @@ define PKG_OPTION_UNSET.flann
   CMAKE_ARGS+=-DHAVE_FLANN=OFF
 endef
 
+CMAKE_ARGS+= -DPATH_TO_BOOST_SANDBOX=${PREFIX.boost-numeric-bindings}/include
+
 include ../../devel/jafar-kernel/depend.mk
 include ../../math/boost-numeric-bindings/depend.mk
 include ../../math/lapack/depend.mk
-include ../../mk/language/fortran.mk # for cmake FindLapack. Sigh.
 include ../../mk/robotpkg.mk
