@@ -1,0 +1,20 @@
+Normalize the cost of the trajectory
+
+It improves a lot of behaviour of p3d near the goal
+---
+ src/p3dFullImpl.h |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/p3dFullImpl.h b/src/p3dFullImpl.h
+index 53e39fd..2992532 100644
+--- src/p3dFullImpl.h
++++ src/p3dFullImpl.h
+@@ -10,7 +10,7 @@ void  p3dArcPonderateCost(P3DArc * arcs, int n);
+ 
+ static inline double p3dFullComputeScore(const P3DArc *a)
+ {
+-	return a->nodes[a->current].remain + a->cost_balanced;
++	return a->nodes[a->current].remain + (a->cost_balanced / a->current);
+ }
+ 
+ static inline int 
