@@ -1,9 +1,8 @@
 # robotpkg Makefile for:	hardware/velodyne-libs
 # Created:			Matthieu Herrb on Fri, 25 Jun 2010
 #
-DISTNAME=	velodyne-libs-0.6
+DISTNAME=	velodyne-libs-0.7
 CATEGORIES=	hardware
-PKGREVISION= 1
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=velodyne/}
 MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/velodyne-libs
