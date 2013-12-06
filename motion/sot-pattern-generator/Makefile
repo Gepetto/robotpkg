@@ -2,12 +2,12 @@
 # Created:			Olivier Stasse on Thu, 18 Apr 2013
 #
 
-VERSION=		2.7.0
+VERSION=		2.8.0
 
 DISTNAME=		sot-pattern-generator-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-pattern-generator/}
 MASTER_REPOSITORY=\
-	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/sot-pattern-generator
+	${MASTER_REPOSITORY_GITHUB}stack-of-tasks/sot-pattern-generator/
 
 MAINTAINER=		gepetto@laas.fr
 CATEGORIES=		motion
@@ -20,6 +20,7 @@ CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
+CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
