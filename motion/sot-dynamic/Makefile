@@ -2,11 +2,10 @@
 # Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
-VERSION=		2.7.2
+VERSION=		2.9.1
 DISTNAME=		sot-dynamic-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-dynamic/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/jrl-umi3218/sot-dynamic
-PKGREVISION=			2
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}stack-of-tasks/sot-dynamic/
 
 MAINTAINER=	gepetto@laas.fr
 CATEGORIES=	motion
@@ -17,6 +16,7 @@ DYNAMIC_PLIST_DIRS+=	share/doc/sot-dynamic
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 CMAKE_ARGS+=		-DPYTHON_INCLUDE_PATH=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
+CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
 # Build the package in a separate directory
 CONFIGURE_DIRS=		_build
