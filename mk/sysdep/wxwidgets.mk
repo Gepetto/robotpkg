@@ -13,7 +13,7 @@ ifeq (+,$(WXWIDGETS_DEPEND_MK)) # ------------------------------------------
 PREFER.wxwidgets?=	system
 
 DEPEND_USE+=		wxwidgets
-DEPEND_ABI.wxwidgets?=	wxpython>=2.8
+DEPEND_ABI.wxwidgets?=	wxwidgets>=2.8
 
 SYSTEM_SEARCH.wxwidgets=					\
 	'bin/wx-config::% --version'				\
