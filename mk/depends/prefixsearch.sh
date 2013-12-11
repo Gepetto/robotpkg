@@ -121,7 +121,7 @@ abipkg=${abi%%[=><!~]*}
 
 # csh-like braces substitutions: replace a{x,y}b with axb ayb
 bracesubst() {
-    ${ECHO} "$*" | ${AWK} '
+    while ${TEST} $# -gt 0; do ${ECHO} "$1" | ${AWK} '
 	/(^|[^\\\\]){/ { print brasub($0); next }
 	{ print }
 
@@ -158,11 +158,12 @@ bracesubst() {
 	    suffix = substr(str, end+1)
 
 	    for(i=0; i<nalt-1; i++) {
-		r = r brasub(prefix alt[i] suffix) " "
+	      r = r brasub(prefix alt[i] suffix) " "
 	    }
 	    return r brasub(prefix alt[nalt-1] suffix)
 	}
     '
+    shift; done
 }
 
 sysdirsubst() {
