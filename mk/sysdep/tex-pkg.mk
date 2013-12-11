@@ -19,9 +19,9 @@ override define _tex-pkg
   DEPEND_METHOD.tex-$(basename $1)?=	build
 
   SYSTEM_SEARCH.tex-$(basename $1)=\
-	'{bin/,}kpsewhich:/$1/d;s/^$$$$/missing $1/p:% $1'
+	'{bin/,}kpsewhich:/$1/d:% $1::% $1'
 
-  SYSTEM_DESCR.tex-$(basename $1)?=	TeX package $1
+  SYSTEM_DESCR.tex-$(basename $1)?=	TeX $(basename $1)
   SYSTEM_PKG.Fedora.tex-$(basename $1)?=texlive-latex
   SYSTEM_PKG.Debian.tex-$(basename $1)?=texlive-latex-extra
   SYSTEM_PKG.MacOSX.tex-$(basename $1)?=texlive
