@@ -230,15 +230,8 @@ ${_UPDATE_LIST}: $(call if-outdated-pkg,.FORCE)
 	  | while IFS=: read dir pkg; do				\
 	    if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;	\
 	    if ${TEST} "$$dir" = "***"; then				\
-	      ${ERROR_MSG} "${hline}";					\
-	      ${ERROR_MSG} "$${bf}Cannot update for"			\
-		"$(or ${PKGREQD},${PKGNAME}):$${rm}";			\
 	      ${ECHO} "$$pkg" >>${@:=.err};				\
-	      while IFS=: read dir pkg; do				\
-	        if ${TEST} "$$dir" != "***"; then continue; fi;		\
-	        ${ECHO} "$$pkg" >>${@:=.err};				\
-	      done;							\
-	      exit 2;							\
+	      continue;							\
 	    fi;								\
 	    ${ECHO} "$$dir:$$pkg" >>$@;					\
 	  done;								\
