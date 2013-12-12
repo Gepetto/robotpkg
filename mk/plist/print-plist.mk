@@ -108,10 +108,9 @@ _PRINT_PLIST_AWK_SUBST+=}
 
 # The awk statement that will ignore directories from PRINT_PLIST_IGNORE_DIRS
 #
-_PRINT_PLIST_AWK_IGNORE:=$(foreach __dir__,				\
+_PRINT_PLIST_AWK_IGNORE=$(foreach __dir__,				\
   $(patsubst $(abspath ${PREFIX})/%,%,${PRINT_PLIST_IGNORE_DIRS}),	\
   ($$0 ~ /^$(subst /,\/,${__dir__})/) { next; })
-
 
 ifneq (,$(call isyes,$(LIBTOOLIZE_PLIST)))
   PRINT_PLIST_LIBTOOLIZE=| (						\
