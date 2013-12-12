@@ -192,7 +192,8 @@ endif
 #
 ifneq (,$(strip ${DYNAMIC_PLIST_DIRS}))
   GENERATE_PLIST+=							\
-    ${FIND} $(addprefix ${PREFIX}/,${DYNAMIC_PLIST_DIRS})		\
+    ${FIND} $(addprefix ${PREFIX}/,					\
+      $(patsubst $(abspath ${PREFIX})/%,%,${DYNAMIC_PLIST_DIRS}))	\
       \( -type f -o -type l \)						\
       ! -exec ${PKG_INFO} -qFe {} 2>/dev/null \; -print | ${SORT}	\
     | ${SED} -e "s,${PREFIX}/,,g";
