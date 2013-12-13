@@ -131,10 +131,11 @@ endif
 override define _dpd_chknew
   ifneq (,$(filter-out ${_COOKIE.depends.use},				\
          $(foreach _,${DEPEND_USE},					\
-           $(if $(filter bootstrap,${DEPEND_METHOD.$_}),,$_))))
+           $(if $(filter-out bootstrap,${DEPEND_METHOD.$_}),$_))))
     ${_COOKIE.depends}: .FORCE
   endif
 endef
+
 
 .PHONY: depends-cookie
 depends-cookie: makedirs
@@ -147,7 +148,7 @@ depends-cookie: makedirs
 	${ECHO} "_COOKIE.depends.date:=`${_CDATE_CMD}`";		\
 	${ECHO} "_COOKIE.depends.use:="					\
 	  $(foreach _,${DEPEND_USE},					\
-	    $(if $(filter bootstrap,${DEPEND_METHOD.$_}),,'$_'));	\
+	    $(if $(filter-out bootstrap,${DEPEND_METHOD.$_}),'$_'));	\
 	${ECHO} '$$(eval $$(call _dpd_chknew))'
 
 
