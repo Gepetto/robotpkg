@@ -202,16 +202,19 @@ endif
 # configure-check-dirs checks whether the configure directories exist.
 #
 configure-check-dirs:
-	${_PKG_SILENT}${_PKG_DEBUG}					\
-${foreach _dir_,$(CONFIGURE_DIRS),					\
-	if (cd $(WRKSRC) && cd $(_dir_)) 1>/dev/null 2>&1; then :; else	\
-	$(ERROR_MSG) "The configure directory of $(PKGNAME) cannot be found.";\
-	$(ERROR_MSG) "Perhaps a stale work directory?";			\
-	$(ERROR_MSG) "Try to";						\
-	$(ERROR_MSG) "	${MAKE} clean in $(PKGPATH)"; 			\
-	exit 2;								\
-	fi;								\
-}
+	${RUN}								\
+  $(foreach _,${CONFIGURE_DIRS},					\
+	{ cd ${WRKSRC} && cd "$_" 1>/dev/null 2>&1; } || {		\
+	  ${ERROR_MSG} "${hline}";					\
+	  ${ERROR_MSG} "$${bf}The configure directory of ${PKGNAME}"	\
+		"could not be found$${rm}:";				\
+	  ${ERROR_MSG} "	$_";					\
+	  ${ERROR_MSG} "";						\
+	  ${ERROR_MSG} "This should be reported to"			\
+		"$(or ${MAINTAINER},the package maintainer).";		\
+	  ${ERROR_MSG} "${hline}";					\
+	  exit 2;							\
+	};)
 
 
 # --- do-configure-pre-hook (PRIVATE) --------------------------------------
