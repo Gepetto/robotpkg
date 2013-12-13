@@ -59,6 +59,7 @@ ifneq (,$(call isyes,${_USE_RPATH}))		# when using rpath flags
 	${RUN} ${AWK} '/^@/ {next}					\
 	  /$(subst /,\/,${PKG_CONFIG_OVERRIDE})/ {print}'		\
 	  ${PLIST} | while read f; do					\
+	  ${TEST} -r ${PREFIX}/$$f || continue;				\
 	  ${CP} ${PREFIX}/$$f ${WRKDIR}/.pkg-config-add-rpath && {	\
 	  ${AWK} '					\
 	    /^Libs:.*[ 	]/ {						\
