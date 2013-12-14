@@ -50,6 +50,13 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE
 
 CMAKE_ARGS+=	CMAKE_EXE_LINKER_FLAGS=$(call quote,${LDFLAGS})
 
+# build program in cmake - otherwise cmake picks up the first make in the PATH.
+# This does not influence cmake itself, but individual packages may want to use
+# this setting for doing fancy stuff.
+#
+$(call require, ${ROBOTPKG_DIR}/mk/build/build-vars.mk)
+CMAKE_ARGS+=	-DCMAKE_MAKE_PROGRAM=${MAKE_PROGRAM}
+
 # C flags
 CMAKE_ARGS+=\
   $(if $(filter c-compiler,${PKG_ALTERNATIVES}),		\
