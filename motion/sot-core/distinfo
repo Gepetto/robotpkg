@@ -3,3 +3,5 @@ RMD160 (sot-core-2.9.0.tar.gz) = 93de71084080c1049505e9acd2fe0e268c70dc86
 Size (sot-core-2.9.0.tar.gz) = 369865 bytes
 SHA1 (patch-ac) = b65389cc4c3f096e52ba933adbfbdcf4c9637ecf
 SHA1 (patch-ad) = 5e9f029c641eb8d66ca40446692bb60c502ec19d
+SHA1 (patch-ae) = 22361851f24e1515d9f680079b7cb81c1e2eb937
+SHA1 (patch-af) = 0233e10d69e189759eb8fb40b74d73c56e3d3684
