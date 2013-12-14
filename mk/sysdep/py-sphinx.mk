@@ -27,7 +27,7 @@ DEPEND_METHOD.py-sphinx?=	build
 #  - don't care about python if python is not otherwise used
 #
 SYSTEM_SEARCH.py-sphinx=\
-  'bin/sphinx-build:1s/[^0-9.]//gp:% -_'				\
+  'bin/sphinx-build:1s/[^0-9.]//gp:% -_ ||:'				\
   'bin/sphinx-apidoc'							\
   $(if ${PYTHON_DEPEND_MK},'${PYTHON_SYSLIBSEARCH}/sphinx/__init__.py')
 
