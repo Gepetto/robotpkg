@@ -26,8 +26,13 @@ DEPEND_METHOD.py-sphinx?=	build
 #  - require the _same_ python version as the package if python is used
 #  - don't care about python if python is not otherwise used
 #
+# `sphinx-build -_` will exit 1 because _ is an invalid option, but this is the
+# only way to have sphinx report its version number. We should ignore the error
+# with something like "||:", but colons are reserved for IFS in a SYSTEM_SEARCH
+# specification.
+#
 SYSTEM_SEARCH.py-sphinx=\
-  'bin/sphinx-build:1s/[^0-9.]//gp:% -_ ||:'				\
+  'bin/sphinx-build:1s/[^0-9.]//gp:{ % -_ || dummy=; }'			\
   'bin/sphinx-apidoc'							\
   $(if ${PYTHON_DEPEND_MK},'${PYTHON_SYSLIBSEARCH}/sphinx/__init__.py')
 
