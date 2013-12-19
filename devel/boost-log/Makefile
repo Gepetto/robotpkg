@@ -13,9 +13,27 @@ HOMEPAGE=		http://sourceforge.net/projects/boost-log
 COMMENT=		C++ logging library
 LICENSE=		bsl
 
-CONFIGURE_ARGS+=	BOOST_LIBS=${PREFIX.boost-libs}
-CONFIGURE_ARGS+=	BOOST_HEADERS=${PREFIX.boost-headers}
 INSTALLATION_DIRS+=	include/boost
+
+USE_BOOST_LIBS= date_time filesystem system thread
+
+INCLUDE_DIRS.boost-headers=${PREFIX.boost-headers}/include
+
+LIBRARY_DIRS.boost-lib-date_time=$(dir ${SYSTEM_FILES.boost-lib-date_time})
+RPATH_DIRS.boost-lib-date_time=$(dir ${SYSTEM_FILES.boost-lib-date_time})
+LDFLAGS+=	-lboost_date_time${BOOST_LIB_SUFFIX}
+
+LIBRARY_DIRS.boost-lib-filesystem=$(dir ${SYSTEM_FILES.boost-lib-filesystem})
+RPATH_DIRS.boost-lib-filesystem=$(dir ${SYSTEM_FILES.boost-lib-filesystem})
+LDFLAGS+=	-lboost_filesystem${BOOST_LIB_SUFFIX}
+
+LIBRARY_DIRS.boost-lib-system=$(dir ${SYSTEM_FILES.boost-lib-system})
+RPATH_DIRS.boost-lib-system=$(dir ${SYSTEM_FILES.boost-lib-system})
+LDFLAGS+=	-lboost_system${BOOST_LIB_SUFFIX}
+
+LIBRARY_DIRS.boost-lib-thread=$(dir ${SYSTEM_FILES.boost-lib-thread})
+RPATH_DIRS.boost-lib-thread=$(dir ${SYSTEM_FILES.boost-lib-thread})
+LDFLAGS+=	-lboost_thread${BOOST_LIB_SUFFIX}
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

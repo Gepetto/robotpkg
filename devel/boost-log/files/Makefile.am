@@ -37,11 +37,6 @@ libboost_log_mt_la_SOURCES=\
 
 libboost_log_mt_la_LDFLAGS= -no-undefined -release $(PACKAGE_VERSION)
 libboost_log_mt_la_LDFLAGS+= -rpath $(libdir)
-libboost_log_mt_la_LDFLAGS+= -R$(BOOST_LIBS)/lib -L$(BOOST_LIBS)/lib
-libboost_log_mt_la_LDFLAGS+= -lboost_date_time-mt
-libboost_log_mt_la_LDFLAGS+= -lboost_filesystem-mt
-libboost_log_mt_la_LDFLAGS+= -lboost_system-mt
-libboost_log_mt_la_LDFLAGS+= -lboost_thread-mt
-libboost_log_mt_la_CPPFLAGS= -I$(srcpath) -I$(BOOST_HEADERS)/include
+libboost_log_mt_la_CPPFLAGS= -I$(srcpath)
 libboost_log_mt_la_CPPFLAGS+= -DBOOST_LOG_DLL
 libboost_log_mt_la_CPPFLAGS+=-DBOOST_LOG_USE_NATIVE_SYSLOG
