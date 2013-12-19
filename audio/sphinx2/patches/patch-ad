@@ -1,0 +1,13 @@
+Missing -lm for math functions
+
+--- src/libsphinx2/Makefile.in~	2005-10-13 20:31:37.000000000 +0200
++++ src/libsphinx2/Makefile.in	2013-12-19 11:39:44.545023149 +0100
+@@ -247,7 +247,7 @@
+ CONFIG_CLEAN_FILES =
+ LTLIBRARIES = $(lib_LTLIBRARIES)
+ 
+-libsphinx2_la_LIBADD =
++libsphinx2_la_LIBADD = -lm
+ am_libsphinx2_la_OBJECTS = CM_funcs.lo add-table.lo agc_emax.lo \
+ 	allphone.lo areadchar.lo areaddouble.lo areadfloat.lo \
+ 	areadint.lo areadshort.lo awritechar.lo awritedouble.lo \
