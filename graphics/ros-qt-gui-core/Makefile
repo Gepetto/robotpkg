@@ -4,7 +4,7 @@
 
 ROS_PKG=	qt_gui_core
 ROS_METAPKG=	yes
-ROS_VERSION=	0.2.16
+ROS_VERSION=	0.2.18
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	graphics
@@ -20,6 +20,9 @@ SUBST_CLASSES+=		py-interp
 SUBST_FILES.py-interp+=	qt_dotgraph/test/*.py
 SUBST_FILES.py-interp+= qt_gui/src/qt_gui/main.py
 SUBST_FILES.py-interp+= qt_gui_app/scripts/qt_gui_app
+
+DEPEND_ABI.ros-pluginlib.groovy+= ros-pluginlib>=1.9.23
+DEPEND_ABI.ros-python-qt-binding.groovy+= ros-python-qt-binding>=0.2.11
 
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
