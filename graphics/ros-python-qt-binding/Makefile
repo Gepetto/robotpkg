@@ -2,9 +2,8 @@
 # Created:			Anthony Mallet on Tue,  9 Oct 2012
 #
 
-PKGREVISION=	1
 ROS_PKG=	python_qt_binding
-ROS_VERSION=	0.2.10
+ROS_VERSION=	0.2.11
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	graphics
@@ -23,6 +22,8 @@ SUBST_FILES.sip-path+=	cmake/sip_helper.cmake
 # Replace python interpreter in source files
 SUBST_CLASSES+=		py-interp
 SUBST_FILES.py-interp+=	src/python_qt_binding/*.py
+
+SUBST_CLASSES+=		py-distsetup
 
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-ros/depend.mk

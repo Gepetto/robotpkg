@@ -1,17 +1,17 @@
 Configure paths
 
---- cmake/sip_helper.cmake~	2013-06-06 21:48:38.000000000 +0200
-+++ cmake/sip_helper.cmake	2013-06-29 11:48:43.000000000 +0200
-@@ -3,7 +3,7 @@
- endif()
- set(__PYTHON_QT_BINDING_SIP_HELPER_INCLUDED TRUE)
+--- cmake/sip_helper.cmake~	2013-08-22 03:37:48.000000000 +0200
++++ cmake/sip_helper.cmake	2013-12-19 14:37:07.666485991 +0100
+@@ -8,7 +8,7 @@
+ find_package(PythonInterp REQUIRED)
+ assert(PYTHON_EXECUTABLE)
  
 -find_program(SIP_EXECUTABLE sip)
 +set(SIP_EXECUTABLE @SIP@)
- 
- # Provide cmake_parse_arguments() for versions of cmake before 2.8.3.
- if(${CMAKE_VERSION} VERSION_LESS 2.8.3)
-@@ -194,7 +194,7 @@
+ if(NOT SIP_EXECUTABLE_NOTFOUND)
+   message(STATUS "SIP binding generator available.")
+   set(sip_helper_FOUND TRUE)
+@@ -216,7 +216,7 @@
  
      add_custom_command(
          OUTPUT ${sip_LIBRARY_DIR}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}
