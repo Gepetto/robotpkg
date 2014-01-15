@@ -1,0 +1,37 @@
+diff --git codels/velodyneRead.c codels/velodyneRead.c
+index 9ec95cc..c3680bd 100644
+--- codels/velodyneRead.c
++++ codels/velodyneRead.c
+@@ -128,7 +128,7 @@ int
+ velodynePosFileRead(FILE* fileId, double* timespec, POM_EULER* pos)
+ {
+   int result;
+-  result = fscanf(fileId, "%lf\t%f\t%f\t%f\t%f\t%f\t%f\n",
++  result = fscanf(fileId, "%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",
+                   timespec,
+                   &(pos->yaw), &(pos->pitch), &(pos->roll),
+                   &(pos->x), &(pos->y), &(pos->z));
+@@ -148,6 +148,7 @@ velodyneReadPlayback(void* positionFileId)
+   bool oneShotRequired = false;
+   double errCurr, errNext;
+   int posFileReadResult;
++  int dateCurr = 0; /* Number of current position. */
+ 
+   /* Initializes current position. */
+   posFileReadResult = velodynePosFileRead(posFileId, &tCurr, &mainToOriginCurr);
+@@ -205,6 +206,7 @@ velodyneReadPlayback(void* positionFileId)
+     while (errNext < errCurr) {
+       tCurr = tNext;
+       mainToOriginCurr = mainToOriginNext;
++      dateCurr++;
+       errCurr = errNext;
+       posFileReadResult = velodynePosFileRead(posFileId, &tNext,
+                                               &mainToOriginNext);
+@@ -224,6 +226,7 @@ velodyneReadPlayback(void* positionFileId)
+     }
+ 
+     /* Puts position in the buffer. */
++    task.buffer.packets[task.buffer.write].position.date = dateCurr;
+     task.buffer.packets[task.buffer.write].position.sensorToMain.euler
+         = SDI_F->sensorToMain;
+     task.buffer.packets[task.buffer.write].position.mainToOrigin.euler
