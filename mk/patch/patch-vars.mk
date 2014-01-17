@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011-2013 LAAS/CNRS
+# Copyright (c) 2006-2009,2011-2014 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -79,6 +79,7 @@ else
     patch:
 	@${DO_NADA}
   else
+    $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
     $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
     patch: $(call add-barrier, bootstrap-depends, patch)
