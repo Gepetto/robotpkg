@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013 LAAS/CNRS
+# Copyright (c) 2006-2014 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -222,27 +222,36 @@ ${_UPDATE_LIST}: $(call if-outdated-pkg,.FORCE)
 	      if ${TEST} -f "${ROBOTPKG_DIR}/$$dir/Makefile"; then	\
 	        ${ECHO} "$$dir:$$base";					\
 	      else							\
+	        ${ECHO} >>${@:=.err};					\
 	        ${ECHO} "$$p was moved from $$dir or is obsolete."	\
 	          >>${@:=.err};						\
+	        ${ECHO} "To continue, first"				\
+	          "$${bf}robotpkg_delete $$p$${rm}" >>${@:=.err};	\
 	      fi;							\
 	    done;							\
 	  } | ${_pkgset_tsort_deps} -1 -s $$i				\
-	  | while IFS=: read dir pkg; do				\
-	    if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;	\
-	    if ${TEST} "$$dir" = "***"; then				\
-	      ${ECHO} "$$pkg" >>${@:=.err};				\
-	      continue;							\
+	  | {								\
+	    while IFS=: read dir pkg; do				\
+	      if ${TEST} -z "$$dir"; then ${ECHO} "$$pkg"; continue; fi;\
+	      if ${TEST} "$$dir" = "***"; then				\
+	        ${TEST} -z "$$errs" && ${ECHO} >>${@:=.err};		\
+	        ${ECHO} "$$pkg" >>${@:=.err};				\
+	        errs=y; continue;					\
+	      fi;							\
+	      ${ECHO} "$$dir:$$pkg" >>$@;				\
+	    done;							\
+	    if ${TEST} -n "$$errs"; then				\
+	      ${ECHO} >>${@:=.err};					\
+	      ${ECHO} >>${@:=.err} "To continue, you may have to";	\
+	      ${ECHO} >>${@:=.err}					\
+	        "  $${bf}robotpkg_delete ${PKGBASE}$${rm}";		\
 	    fi;								\
-	    ${ECHO} "$$dir:$$pkg" >>$@;					\
-	  done;								\
+	  };								\
 	  if ${TEST} -s ${@:=.err}; then				\
 	      ${ERROR_MSG} "${hline}";					\
 	      ${ERROR_MSG} "$${bf}Cannot update for"			\
 		"$(or ${PKGREQD},${PKGNAME}):$${rm}";			\
 	      ${ERROR_CAT} ${@:=.err};					\
-	      ${ERROR_MSG} "";						\
-	      ${ERROR_MSG} "To continue, you may wish to first";	\
-	      ${ERROR_MSG} "  $${bf}robotpkg_delete ${PKGBASE}$${rm}";	\
 	      ${ERROR_MSG} ${hline};					\
 	      ${RM} $@ ${@:=.err}; exit 2;				\
 	  fi;								\
