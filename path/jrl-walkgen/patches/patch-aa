@@ -1,15 +1,6 @@
---- CMakeLists.txt.orig	2013-03-01 13:42:34.000000000 +0100
-+++ CMakeLists.txt	2013-03-01 14:14:58.372557014 +0100
-@@ -47,8 +47,6 @@
- ADD_REQUIRED_DEPENDENCY("jrl-dynamics >= 1.19.1")
- 
- # Optional ones.
--ADD_OPTIONAL_DEPENDENCY("hrp2-14 >= 1.0.1")
--ADD_OPTIONAL_DEPENDENCY("hrp2-dynamics >= 1.0.1")
- 
- MESSAGE(STATUS "hrp2-dynamics: " ${HRP2_DYNAMICS_FOUND})
- # Add aggressive optimization flags in release mode.
-@@ -76,8 +74,6 @@
+--- CMakeLists.txt.orig	2014-01-20 09:16:21.000000000 +0100
++++ CMakeLists.txt	2014-01-20 10:25:56.723748000 +0100
+@@ -80,8 +80,6 @@
  
  # Define subdirectories to explore for cmake
  ADD_SUBDIRECTORY(src)
