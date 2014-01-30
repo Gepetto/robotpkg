@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2013 LAAS/CNRS
+# Copyright (c) 2006,2009-2014 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -73,7 +73,7 @@ release-install-localbase-lock: release-localbase-lock
 # ${_COOKIE.install} creates the "install" cookie file.
 #
 ifeq (yes,$(call exists,${_COOKIE.install}))
-  ifneq (,$(filter install,${MAKECMDGOALS}))
+  ifneq (,$(filter install replace,${MAKECMDGOALS}))
     ${_COOKIE.install}: .FORCE
   endif
 
