@@ -1,4 +1,4 @@
-@comment Mon Sep 16 11:06:17 CEST 2013
+@comment Fri Jan 31 11:57:18 CET 2014
 bin/morse
 bin/morse_inspector
 bin/morseexec
@@ -86,6 +86,7 @@ ${PYTHON_SITELIB}/morse/core/datastream.py
 ${PYTHON_SITELIB}/morse/core/exceptions.py
 ${PYTHON_SITELIB}/morse/core/mathutils.py
 ${PYTHON_SITELIB}/morse/core/modifier.py
+${PYTHON_SITELIB}/morse/core/morse_time.py
 ${PYTHON_SITELIB}/morse/core/multinode.py
 ${PYTHON_SITELIB}/morse/core/object.py
 ${PYTHON_SITELIB}/morse/core/overlay.py
@@ -95,6 +96,7 @@ ${PYTHON_SITELIB}/morse/core/sensor.py
 ${PYTHON_SITELIB}/morse/core/services.py
 ${PYTHON_SITELIB}/morse/core/status.py
 ${PYTHON_SITELIB}/morse/core/wheeled_robot.py
+${PYTHON_SITELIB}/morse/core/zone.py
 ${PYTHON_SITELIB}/morse/environments.py
 ${PYTHON_SITELIB}/morse/helpers/__init__.py
 ${PYTHON_SITELIB}/morse/helpers/colors.py
@@ -105,12 +107,14 @@ ${PYTHON_SITELIB}/morse/helpers/morse_logging.py
 ${PYTHON_SITELIB}/morse/helpers/morse_math.py
 ${PYTHON_SITELIB}/morse/helpers/motion.py
 ${PYTHON_SITELIB}/morse/helpers/passive_objects.py
+${PYTHON_SITELIB}/morse/helpers/statistics.py
 ${PYTHON_SITELIB}/morse/helpers/transformation.py
 ${PYTHON_SITELIB}/morse/middleware/__init__.py
 ${PYTHON_SITELIB}/morse/middleware/abstract_datastream.py
 ${PYTHON_SITELIB}/morse/middleware/socket_datastream.py
 ${PYTHON_SITELIB}/morse/middleware/socket_request_manager.py
 ${PYTHON_SITELIB}/morse/middleware/sockets/__init__.py
+${PYTHON_SITELIB}/morse/middleware/sockets/depth_camera.py
 ${PYTHON_SITELIB}/morse/middleware/sockets/jointstate.py
 ${PYTHON_SITELIB}/morse/middleware/sockets/video_camera.py
 ${PYTHON_SITELIB}/morse/middleware/text_datastream.py
@@ -126,8 +130,8 @@ ${PYTHON_SITELIB}/morse/multinode/socket.py
 ${PYTHON_SITELIB}/morse/robots/__init__.py
 ${PYTHON_SITELIB}/morse/robots/atrv.py
 ${PYTHON_SITELIB}/morse/robots/b21.py
-${PYTHON_SITELIB}/morse/robots/environment.py
-${PYTHON_SITELIB}/morse/robots/grasper.py
+${PYTHON_SITELIB}/morse/robots/fakerobot.py
+${PYTHON_SITELIB}/morse/robots/grasping_robot.py
 ${PYTHON_SITELIB}/morse/robots/human.py
 ${PYTHON_SITELIB}/morse/robots/hummer.py
 ${PYTHON_SITELIB}/morse/robots/jido.py
@@ -147,6 +151,7 @@ ${PYTHON_SITELIB}/morse/sensors/accelerometer.py
 ${PYTHON_SITELIB}/morse/sensors/armature_pose.py
 ${PYTHON_SITELIB}/morse/sensors/battery.py
 ${PYTHON_SITELIB}/morse/sensors/camera.py
+${PYTHON_SITELIB}/morse/sensors/clock.py
 ${PYTHON_SITELIB}/morse/sensors/collision.py
 ${PYTHON_SITELIB}/morse/sensors/compound.py
 ${PYTHON_SITELIB}/morse/sensors/depth_camera.py
@@ -154,7 +159,6 @@ ${PYTHON_SITELIB}/morse/sensors/gps.py
 ${PYTHON_SITELIB}/morse/sensors/gyroscope.py
 ${PYTHON_SITELIB}/morse/sensors/human_posture.py
 ${PYTHON_SITELIB}/morse/sensors/imu.py
-${PYTHON_SITELIB}/morse/sensors/kinect.py
 ${PYTHON_SITELIB}/morse/sensors/laserscanner.py
 ${PYTHON_SITELIB}/morse/sensors/mocap_posture.py
 ${PYTHON_SITELIB}/morse/sensors/odometry.py
@@ -172,6 +176,7 @@ ${PYTHON_SITELIB}/morse/sensors/zbuffertodepth.so
 ${PYTHON_SITELIB}/morse/services/__init__.py
 ${PYTHON_SITELIB}/morse/services/communication_services.py
 ${PYTHON_SITELIB}/morse/services/supervision_services.py
+${PYTHON_SITELIB}/morse/services/time_services.py
 ${PYTHON_SITELIB}/morse/testing/__init__.py
 ${PYTHON_SITELIB}/morse/testing/exceptions.py
 ${PYTHON_SITELIB}/morse/testing/ros.py
@@ -268,12 +273,13 @@ share/morse/examples/scenarii/ros_depth.py
 share/morse/examples/scenarii/ros_example_multi.py
 share/morse/examples/scenarii/rosace-1.py
 share/morse/examples/scenarii/test-1.py
-share/morse/examples/scenarii/travis-save.py
 share/morse/examples/tutorials/cat_mouse_game.py
 share/morse/examples/tutorials/collision.py
 share/morse/examples/tutorials/flying_outdoor_cat_mouse_game.py
 share/morse/examples/tutorials/interactive_human_tutorial.py
 share/morse/examples/tutorials/joystick.py
+share/morse/examples/tutorials/kinect/kinect.launch
+share/morse/examples/tutorials/kinect/kinect.py
 share/morse/examples/tutorials/multinode.py
 share/morse/examples/tutorials/multinode/dala_simple.py
 share/morse/examples/tutorials/multinode/tutorial-hla-hybrid.py
