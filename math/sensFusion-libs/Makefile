@@ -7,7 +7,7 @@ PKGVERSION=		1.3
 
 CATEGORIES=		math
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sensFusion-libs/}
-MASTER_REPOSITORY=      git git://git.openrobots.org/git/robots/sensFusion-libs
+MASTER_REPOSITORY=      ${MASTER_REPOSITORY_OPENROBOTS_TRAC}sensFusion-libs
 
 MAINTAINER=		whe@laas.fr
 LICENSE=		mit

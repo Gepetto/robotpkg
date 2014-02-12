@@ -5,7 +5,7 @@
 DISTNAME=	speett-genom-1.0
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=speett-genom/}
-MASTER_REPOSITORY=${MASTER_REPOSITORY_OPENROBOTS}speett-genom
+MASTER_REPOSITORY=${MASTER_REPOSITORY_OPENROBOTS_TRAC}speett-genom
 
 MAINTAINER=	mallet@laas.fr
 #HOMEPAGE=	http://softs.laas.fr/openrobots/distfiles/speett-genom/

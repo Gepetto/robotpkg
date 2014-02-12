@@ -5,7 +5,7 @@
 DISTNAME=		pkgrepo2deb-0.9.20130919
 CATEGORIES=		pkgtools
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/robots/${PKGBASE}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}${PKGBASE}
 
 COMMENT=		Convert robotpkg binary packages to debian packages
 LICENSE=		2-clause-bsd

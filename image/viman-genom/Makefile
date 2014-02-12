@@ -5,7 +5,7 @@
 DISTNAME=		viman-genom-1.6
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viman-genom/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/git/robots/viman-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}viman-genom
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		Pattern-based marker detection and localization

@@ -6,7 +6,7 @@ DISTNAME=	clone-genom-0.2
 PKGREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=clone-genom/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}clone-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}clone-genom
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	3D Animated speaking head - genom component

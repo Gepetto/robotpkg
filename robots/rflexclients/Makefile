@@ -6,7 +6,7 @@ DISTNAME=		rflexclients-${VERSION}
 VERSION=		2.0
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git git://git.openrobots.org/robots/rFlex-clients.git
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}rFlex-clients.git
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

@@ -5,7 +5,7 @@
 DISTNAME=		platine-genom-0.4
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git git://git.openrobots.org/robots/platine-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}platine-genom
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM module for platine management.

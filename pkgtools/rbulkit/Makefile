@@ -6,7 +6,7 @@ VERSION=		20130927
 DISTNAME=		rbulkit-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rbulkit/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/robots/rbulkit
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}rbulkit
 
 COMMENT=		Helper scripts for robotpkg bulk builds
 LICENSE=		isc

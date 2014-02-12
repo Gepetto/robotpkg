@@ -5,7 +5,7 @@
 DISTNAME=		stereopixel-genom-1.3
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=stereopixel-genom/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/robots/stereopixel-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}stereopixel-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

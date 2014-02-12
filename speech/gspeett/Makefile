@@ -5,7 +5,7 @@
 DISTNAME=		gspeett-${PKGVERSION_NOREV}
 PKGVERSION=		1.2
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=gspeett/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/robots/gspeett
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}gspeett
 
 CATEGORIES=		speech
 LICENSE=		2-clause-bsd

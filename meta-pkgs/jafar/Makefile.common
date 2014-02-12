@@ -9,7 +9,7 @@ MASTER_SITE_JAFAR=	${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 
 DISTNAME?=		jafar-${JAFAR_PKG}
 MASTER_SITES?=		${MASTER_SITE_JAFAR}
-MASTER_REPOSITORY=      git git://git.openrobots.org/robots/jafar/modules/${JAFAR_PKG_RAW}
+MASTER_REPOSITORY=      ${MASTER_REPOSITORY_OPENROBOTS_TRAC}jafar/modules/${JAFAR_PKG_RAW}
 
 COMMENT?=		Jafar ${JAFAR_COMMENT}
 HOMEPAGE?=		http://www.openrobots.org/wiki/jafar/

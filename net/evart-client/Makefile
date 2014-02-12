@@ -7,7 +7,7 @@ DISTNAME=		evart-client-${VERSION}
 
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=evart/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}evart-client
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}evart-client
 
 MAINTAINER=		mallet@laas.fr
 HOMEPAGE=		http://homepages.laas.fr/mallet/soft/mocap/evart-client

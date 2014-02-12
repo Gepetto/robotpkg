@@ -6,7 +6,7 @@ DISTNAME=	sahand-genom-1.1
 CATEGORIES=	hardware
 COMMENT=	Schunk Antropomorphic Hand control module - Genom componenent
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=sahand-genom/}
-MASTER_REPOSITORY=      ${MASTER_REPOSITORY_OPENROBOTS}sahand-genom
+MASTER_REPOSITORY=      ${MASTER_REPOSITORY_OPENROBOTS_TRAC}sahand-genom
 
 MAINTAINER=     openrobots@laas.fr
 

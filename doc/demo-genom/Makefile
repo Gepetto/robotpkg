@@ -5,7 +5,7 @@ DISTNAME=		demo-genom-0.1
 CATEGORIES=		doc
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=demo/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/robots/demo-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}demo-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=

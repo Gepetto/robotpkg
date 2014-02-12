@@ -6,7 +6,7 @@ VERSION=		1.5
 PKGNAME=		${PKGTAG.python}-poco-${VERSION}
 DISTNAME=		pypoco-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pypoco/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/git/robots/pypoco
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}pypoco
 
 CATEGORIES=		net
 LICENSE=		isc

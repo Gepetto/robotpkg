@@ -5,7 +5,7 @@
 DISTNAME=		viam-genom-1.10
 CATEGORIES=		image
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=viam-genom/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/robots/viam-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}viam-genom
 CHECKOUT_OPTS=		-r viam-genom-1
 
 MAINTAINER=		openrobots@laas.fr

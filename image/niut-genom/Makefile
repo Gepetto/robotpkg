@@ -5,7 +5,7 @@
 DISTNAME=	niut-genom-0.6
 CATEGORIES=	image
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=niut-genom/}
-MASTER_REPOSITORY=	git git://git.openrobots.org/git/robots/niut-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}niut-genom
 
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	GenoM module for the NITE user tracker from PrimeSense

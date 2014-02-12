@@ -5,7 +5,7 @@
 DISTNAME=		libpom-1.2
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libpom/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}libpom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}libpom
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		Global robot position management library.
