@@ -2,7 +2,7 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                              September 11, 2013
+                               February 13, 2014
 
 Copyright ? 2006-2011,2013 LAAS/CNRS.
 Copyright ? 1997-2010 The NetBSD Foundation, Inc.
@@ -338,6 +338,8 @@ There are two download methods: the anonymous one and the authenticated one:
 
     % cd /opt/openrobots
     % git clone git://git.openrobots.org/robots/robotpkg
+    % # or
+    % git clone https://git.openrobots.org/robots/robotpkg.git
 
 
   * Authenticated download requires a valid login on the main robotpkg
@@ -345,7 +347,7 @@ There are two download methods: the anonymous one and the authenticated one:
     run the following:
 
     % cd /opt/openrobots
-    % git clone ssh://openrobots.org/git/robots/robotpkg
+    % git clone ssh://git@git.openrobots.org/robots/robotpkg
 
 
 2.1.3  Keeping robotpkg up-to-date
