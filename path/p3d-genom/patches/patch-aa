@@ -1,0 +1,29 @@
+From 6ec12e21d8c9da2d40bd065b8ef38d87ecfd1e67 Mon Sep 17 00:00:00 2001
+From: Pierrick Koch <pierrick.koch@gmail.com>
+Date: Thu, 20 Feb 2014 18:38:51 +0100
+Subject: [PATCH] add setter for p3d poster name, finally.
+
+---
+ p3d.gen |    6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/p3d.gen b/p3d.gen
+index 8d17cdf..04e082d 100644
+--- p3d.gen
++++ p3d.gen
+@@ -323,6 +323,12 @@ request TrackStop {
+     incompatible_with:	    TrackStop, Track;
+ };
+ 
++request SetP3dPoster {
++    doc:        "Set P3d Poster containing the map";
++    type:       control;
++    input:      demP3dPosterName::demP3dPosterName;
++    input_info: P3D_DEFAULT_DTM_POSTER_NAME::"Name of dem Poster";
++};
+ 
+ /* Read dem Poster to get a dem map */
+ request ReadDemP3dPoster {
+-- 
+1.7.9.5
+
