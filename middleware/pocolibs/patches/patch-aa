@@ -1,0 +1,23 @@
+Set errno to ENOMEM when internal_malloc fails in smMemAlloc()
+Upstream pocolibs:commit:babf493
+
+diff --git src/comLib/smMemLib.c src/comLib/smMemLib.c
+index b97c2c2..941594e 100644
+--- src/comLib/smMemLib.c
++++ src/comLib/smMemLib.c
+@@ -20,6 +20,7 @@
+  ***/
+ #include "pocolibs-config.h"
+ 
++#include <errno.h>
+ #include <stdio.h>
+ #include <string.h>
+ #include <assert.h>
+@@ -212,6 +213,7 @@ internal_malloc(size_t size)
+ 	    return((void *)(c+1));
+ 	}
+     } else {
++	errnoSet(ENOMEM);
+ 	return NULL;
+     }
+ 
