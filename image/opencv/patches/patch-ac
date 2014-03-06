@@ -1,16 +1,16 @@
 Docs go to share/doc
 
---- CMakeLists.txt~	2012-05-31 16:06:56.000000000 +0200
-+++ CMakeLists.txt	2012-06-07 14:39:55.533873206 +0200
-@@ -214,9 +214,9 @@
+--- CMakeLists.txt~	2013-12-27 18:09:18.000000000 +0100
++++ CMakeLists.txt	2014-03-06 22:27:43.000000000 +0100
+@@ -256,9 +256,9 @@
  if(ANDROID OR WIN32)
-     set(OPENCV_DOC_INSTALL_PATH doc)
+   set(OPENCV_DOC_INSTALL_PATH doc)
  elseif(INSTALL_TO_MANGLED_PATHS)
--    set(OPENCV_DOC_INSTALL_PATH share/OpenCV-${OPENCV_VERSION}/doc)
-+    set(OPENCV_DOC_INSTALL_PATH share/doc/OpenCV-${OPENCV_VERSION})
+-  set(OPENCV_DOC_INSTALL_PATH share/OpenCV-${OPENCV_VERSION}/doc)
++  set(OPENCV_DOC_INSTALL_PATH share/doc/OpenCV-${OPENCV_VERSION})
  else()
--    set(OPENCV_DOC_INSTALL_PATH share/OpenCV/doc)
-+    set(OPENCV_DOC_INSTALL_PATH share/doc/OpenCV)
+-  set(OPENCV_DOC_INSTALL_PATH share/OpenCV/doc)
++  set(OPENCV_DOC_INSTALL_PATH share/doc/OpenCV)
  endif()
  
- if(ANDROID)
+ if(WIN32)

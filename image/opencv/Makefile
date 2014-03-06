@@ -2,17 +2,16 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-PKGREVISION=		3
-VERSION=		2.4.1
-DISTNAME=		OpenCV-${VERSION}
-PKGNAME=		opencv-${VERSION}
+VERSION=		2.4.8
+DISTNAME=		opencv-${VERSION}
+DISTFILES=		${VERSION}${EXTRACT_SUFX}
+DIST_SUBDIR=		opencv
 CATEGORIES=		image
-EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		http://opencv.willowgarage.com/wiki/
+HOMEPAGE=		http://opencv.org/
 COMMENT=		Open Source Computer Vision
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=opencvlibrary/}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=itseez/opencv/archive/}
 CONFLICTS+=		opencv1
 LICENSE=		modified-bsd
 
@@ -55,6 +54,7 @@ CMAKE_ARGS+=	-DWITH_GSTREAMER=OFF -DWITH_XINE=OFF
 CMAKE_ARGS+=	-DWITH_OPENNI=OFF
 CMAKE_ARGS+=	-DWITH_EIGEN=ON
 CMAKE_ARGS+=	-DWITH_UNICAP=OFF
+CMAKE_ARGS+=	-DWITH_OPENCL=OFF
 
 # dependencies
 CMAKE_ARGS+=	-DEIGEN_INCLUDE_PATH=${PREFIX.eigen2}/include/eigen2

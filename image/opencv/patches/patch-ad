@@ -1,18 +1,18 @@
 Fix empty libdir.
 Do not store full paths in .pc (libtool issue with full shared libs path)
 
---- cmake/OpenCVGenPkgconfig.cmake.orig	2012-05-31 16:05:39.000000000 +0200
-+++ cmake/OpenCVGenPkgconfig.cmake	2012-06-09 12:00:55.000000000 +0200
+--- cmake/OpenCVGenPkgconfig.cmake~	2013-12-27 18:09:18.000000000 +0100
++++ cmake/OpenCVGenPkgconfig.cmake	2014-03-06 22:26:25.000000000 +0100
 @@ -10,7 +10,7 @@
  # -------------------------------------------------------------------------------------------
  set(prefix      "${CMAKE_INSTALL_PREFIX}")
  set(exec_prefix "\${prefix}")
 -set(libdir      "") #TODO: need link paths for OpenCV_EXTRA_COMPONENTS
 +set(libdir      "\${prefix}/lib") #TODO: need link paths for OpenCV_EXTRA_COMPONENTS
- set(includedir  "\${prefix}/${OPENCV_INCLUDE_PREFIX}")
- set(VERSION     ${OPENCV_VERSION})
+ set(includedir  "\${prefix}/${OPENCV_INCLUDE_INSTALL_PATH}")
  
-@@ -39,7 +39,7 @@
+ if(CMAKE_BUILD_TYPE MATCHES "Release")
+@@ -38,7 +38,7 @@
  set(OpenCV_LIB_COMPONENTS_ "")
  foreach(CVLib ${OpenCV_LIB_COMPONENTS})
    get_target_property(libpath ${CVLib} LOCATION_${CMAKE_BUILD_TYPE})
@@ -21,7 +21,7 @@ Do not store full paths in .pc (libtool issue with full shared libs path)
  
    if(INSTALL_TO_MANGLED_PATHS)
      set(libname "${libname}.${OPENCV_VERSION}")
-@@ -48,11 +48,14 @@
+@@ -47,11 +47,14 @@
    #need better solution....
    if(libpath MATCHES "3rdparty")
      set(installDir "share/OpenCV/3rdparty/${OPENCV_LIB_INSTALL_PATH}")
