@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2013 LAAS/CNRS
+# Copyright (c) 2010-2014 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -92,22 +92,7 @@ PKG_ALTERNATIVES.python=	python26 python27 python31 python32 python33
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Fedora,${OPSYS})
-  PREFER_ALTERNATIVE.python?=	python27 python33 python32 python31
-else ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04 10.10,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python26 python31 python32
-  else ifneq (,$(filter 11.04 11.10,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python26 python32 python31
-  else ifneq (,$(filter 12.04 12.10,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python32 python31
-  else
-    PREFER_ALTERNATIVE.python?=	python27 python33
-  endif
-else ifeq (NetBSD,${OPSYS})
-  PREFER_ALTERNATIVE.python?=	python27 python31 python32
-endif
-PREFER_ALTERNATIVE.python?=	python27 python32 python26 python31
+PREFER_ALTERNATIVE.python?=	python27 python33 python32 python31
 
 PKG_ALTERNATIVE_DESCR.python26= Use python-2.6
 PKGTAG.python26 =		py26
@@ -166,7 +151,7 @@ define PKG_ALTERNATIVE_SET.python33
   _py_abi:=$(subst python,python33,${PKG_ALTERNATIVE_SELECT.python33})
   DEPEND_ABI.python33?=	$(strip ${_py_abi})
 
-  include ../../mk/sysdep/python33.mk
+  include ../../lang/python33/depend.mk
 endef
 
 
