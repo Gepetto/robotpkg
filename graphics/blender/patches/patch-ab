@@ -1,5 +1,5 @@
---- extern/libmv/libmv/tracking/brute_region_tracker.cc.orig    2012-11-23 07:55:37.827964198 +0100
-+++ extern/libmv/libmv/tracking/brute_region_tracker.cc 2012-11-23 07:58:08.295960427 +0100
+--- ./extern/libmv/libmv/tracking/brute_region_tracker.cc.orig	2014-03-11 09:08:06.203673501 +0100
++++ ./extern/libmv/libmv/tracking/brute_region_tracker.cc	2014-03-11 09:17:22.051678069 +0100
 @@ -60,7 +60,7 @@
    // they work natively with SSE types with no further work.
    CHECK_EQ(alignment, 16);
@@ -7,6 +7,5 @@
 -#elif __FreeBSD__
 +#elif defined(__FreeBSD__) || defined(__NetBSD__)
    void *result;
-
-   if(posix_memalign(&result, alignment, size)) {
-
+ 
+   if (posix_memalign(&result, alignment, size)) {

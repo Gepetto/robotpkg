@@ -13,17 +13,15 @@ ifeq (+,$(BLENDER_DEPEND_MK)) # -----------------------------------------------
 
 # the following systems have an outdated blender version
 include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (NetBSD,${OPSYS})
-  PREFER.blender?=	robotpkg
-else ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04,${OS_VERSION}))
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 12.%,${OS_VERSION}))
     PREFER.blender?=	robotpkg
   endif
 endif
 PREFER.blender?=	system
 
 DEPEND_USE+=		blender
-DEPEND_ABI.blender?=	blender>=2.50
+DEPEND_ABI.blender?=	blender>=2.65
 DEPEND_DIR.blender?=	../../graphics/blender
 
 SYSTEM_SEARCH.blender=\

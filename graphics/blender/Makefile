@@ -4,7 +4,7 @@
 
 PKGNAME=		blender-${PKGVERSION}
 DISTNAME=		blender-${PKGVERSION_NOREV}
-PKGVERSION=		2.64a
+PKGVERSION=		2.69
 
 CATEGORIES=		graphics
 MASTER_SITES=		http://download.blender.org/source/
@@ -29,10 +29,12 @@ CMAKE_ARGS+=		-DWITH_OPENAL=OFF	# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_SDL=OFF		# Fix bug with audaspace
 CMAKE_ARGS+=		-DWITH_INSTALL_PORTABLE=OFF # Install in hier(8)
 CMAKE_ARGS+=		-DWITH_CYCLES=OFF
+CMAKE_ARGS+=  		-DWITH_OPENCOLORIO=OFF # Not available on various platform
 
 # Enable embedded Python API, but don't copy system python into blender
 CMAKE_ARGS+=		-DWITH_PYTHON=ON
 CMAKE_ARGS+=		-DWITH_PYTHON_INSTALL=OFF
+CMAKE_ARGS+=		-DWITH_PYTHON_INSTALL_NUMPY=OFF
 CMAKE_ARGS+=		-DPYTHON_INC=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIB=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_LIBPATH=$(dir ${PYTHON_LIB})
@@ -55,7 +57,7 @@ define PKG_OPTION_UNSET.ffmpeg
 endef
 
 
-DEPEND_ABI.python+=	python>=3.2<3.3
+DEPEND_ABI.python+=	python>=3.3<3.4
 include ../../mk/sysdep/python.mk
 
 include ../../mk/sysdep/cmake.mk
