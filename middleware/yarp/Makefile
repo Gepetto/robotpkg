@@ -19,6 +19,11 @@ CMAKE_ARGS+=		-DEXPERIMENTAL_ACEFIND=TRUE
 # XXX needs something more generic
 CXXFLAGS+=		-pthread
 
+# PLIST depends on cmake version
+PLIST_VARS+=  cmake2812
+PLIST.cmake2812=$(if $(filter yes,\
+  $(call pmatch,cmake>=2.8.12,${PKGVERSION.cmake})),@comment)
+
 # gui option
 PKG_SUPPORTED_OPTIONS+=	gui
 PKG_SUGGESTED_OPTIONS+=	gui
@@ -34,7 +39,7 @@ define PKG_OPTION_SET.gui
   include ../../mk/sysdep/glib2.mk
 endef
 
-DEPEND_ABI.cmake= 	cmake>=2.8.7
+DEPEND_ABI.cmake=	cmake>=2.8.7
 
 include ../../middleware/ace/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

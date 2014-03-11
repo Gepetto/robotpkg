@@ -331,11 +331,11 @@ share/yarp/cmake/YarpDeprecatedWarning.cmake
 share/yarp/cmake/YarpDevice.cmake
 share/yarp/cmake/YarpIDL.cmake
 share/yarp/cmake/YarpPlugin.cmake
-share/yarp/cmake/cmake-2.8.12/Modules/CMakeParseArguments.cmake
-share/yarp/cmake/cmake-2.8.12/Modules/FindFreetype.cmake
-share/yarp/cmake/cmake-2.8.12/Modules/FindGTK2.cmake
-share/yarp/cmake/cmake-2.8.12/Modules/FindPackageHandleStandardArgs.cmake
-share/yarp/cmake/cmake-2.8.12/Modules/FindPackageMessage.cmake
+${PLIST.cmake2812}share/yarp/cmake/cmake-2.8.12/Modules/CMakeParseArguments.cmake
+${PLIST.cmake2812}share/yarp/cmake/cmake-2.8.12/Modules/FindFreetype.cmake
+${PLIST.cmake2812}share/yarp/cmake/cmake-2.8.12/Modules/FindGTK2.cmake
+${PLIST.cmake2812}share/yarp/cmake/cmake-2.8.12/Modules/FindPackageHandleStandardArgs.cmake
+${PLIST.cmake2812}share/yarp/cmake/cmake-2.8.12/Modules/FindPackageMessage.cmake
 share/yarp/cmake/template/YarpTweakIDL.cmake.in
 share/yarp/cmake/template/placeGeneratedYarpIdlFiles.cmake.in
 share/yarp/cmake/template/yarp_plugin_carrier.cpp.in
