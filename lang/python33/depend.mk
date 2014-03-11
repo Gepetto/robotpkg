@@ -18,6 +18,14 @@ ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04,${OS_VERSION}))
     PREFER.python33?=	robotpkg
   endif
+else ifeq (Debian,${OPSYS})
+  ifneq (,$(filter 7.%,${OS_VERSION}))
+    PREFER.python33?=	robotpkg
+  endif
+else ifeq (OpenNao,${OPSYS})
+  ifneq (,$(filter 1.14.%,${OS_VERSION}))
+    PREFER.python33?=	robotpkg
+  endif
 endif
 PREFER.python33?=	${PREFER.python}
 
