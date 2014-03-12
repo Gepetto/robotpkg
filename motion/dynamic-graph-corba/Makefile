@@ -13,7 +13,7 @@ CATEGORIES=	motion
 COMMENT=	Corba server, client and signals for dynamic-graph
 LICENSE=	gnu-lgpl-v3
 
-DOXYGEN_PLIST_DIR+=	share/doc/dynamic-graph-corba
+DYNAMIC_PLIST_DIRS+=	share/doc/dynamic-graph-corba
 
 CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
