@@ -122,6 +122,27 @@ do%update: .FORCE
 		${ERROR_MSG} "";					\
 		${ERROR_MSG} "Fix the problem, then re-run"		\
 			"'${MAKE} ${MAKECMDGOALS}' in ${PKGPATH}";	\
+		if ${TEST} -s ${_UPDATE_LIST}; then			\
+		  header=;						\
+		  while IFS=: read dir pkg; do				\
+		    ${TEST} "$$dir" = "${PKGPATH}" && continue;		\
+		    if ${TEST} -z "$$header"; then			\
+		      header=yes;					\
+		      ${ERROR_MSG} "";					\
+		      ${ERROR_MSG} "The following list of packages are"	\
+			"still marked for an update and will";		\
+		      ${ERROR_MSG} "be reinstalled during the next run"	\
+			"of '${MAKE} update':";				\
+		    fi;							\
+		    ${ERROR_MSG} "	$$pkg in $$dir";		\
+		  done <${_UPDATE_LIST};				\
+		  if ${TEST} -n "$$header"; then			\
+		    ${ERROR_MSG} "";					\
+		    ${ERROR_MSG} "Run '${MAKE} clean confirm' if you"	\
+			"want to clear this list and update";		\
+		    ${ERROR_MSG} "only ${PKGNAME}.";			\
+		  fi;							\
+		fi;							\
 		${ERROR_MSG} ${hline};					\
 		exit 2;							\
 	    };								\
@@ -142,12 +163,12 @@ update-message:
 ifeq (yes,$(call exists,${_UPDATE_LIST}))
 	@${PHASE_MSG} "Resuming update for ${PKGNAME}"
 	${RUN} ${TEST} -s ${_UPDATE_LIST} || exit 0;			\
-	${ECHO_MSG} "The following packages are going to be updated:";	\
+	${ECHO_MSG} "The following packages are marked to be updated:";	\
 	while IFS=: read dir pkg; do					\
 	  ${ECHO_MSG} "	$$pkg in $$dir";				\
 	done <${_UPDATE_LIST};						\
 	${ECHO_MSG} "Run '${MAKE} clean confirm' in ${PKGPATH} to"	\
-	  "cancel the update list.";
+	  "cancel this update list and clear the associated state.";
 else
 	@${PHASE_MSG} "Updating for ${PKGNAME}"
 endif
