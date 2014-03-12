@@ -5,6 +5,7 @@
 PKGNAME=		blender-${PKGVERSION}
 DISTNAME=		blender-${PKGVERSION_NOREV}
 PKGVERSION=		2.69
+PKGREVISION= 	1
 
 CATEGORIES=		graphics
 MASTER_SITES=		http://download.blender.org/source/
@@ -56,6 +57,11 @@ define PKG_OPTION_UNSET.ffmpeg
   CMAKE_ARGS+=		-DWITH_CODEC_FFMPEG=OFF
 endef
 
+USE_BOOST_LIBS=filesystem regex system thread date_time locale
+DEPEND_ABI.boost-libs=	boost-libs>=1.48
+DEPEND_ABI.boost-headers= boost-headers>=1.48
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
 
 DEPEND_ABI.python+=	python>=3.3<3.4
 include ../../mk/sysdep/python.mk
