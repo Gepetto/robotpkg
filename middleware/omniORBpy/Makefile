@@ -26,6 +26,8 @@ CONFIGURE_ARGS+=	am_cv_python_pyexecdir=${PREFIX}/${PYTHON_SITELIB}
 # smoothly.
 DYNAMIC_PLIST_DIRS+=	${PYTHON_SITELIB}/omniidl_be
 
+DEPEND_ABI.python+=	python<3
+
 include ../../middleware/omniORB/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
