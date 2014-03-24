@@ -21,6 +21,7 @@ PKG_OPTION_DESCR.lua =	Enable lua support in orocos-ocl
 define PKG_OPTION_SET.lua
   CMAKE_ARGS+=	-DBUILD_LUA_RTT=ON
   include ../../mk/sysdep/lua.mk
+  include ../../mk/sysdep/liblua.mk
 endef
 define PKG_OPTION_UNSET.lua
   CMAKE_ARGS+=	-DBUILD_LUA_RTT=OFF
