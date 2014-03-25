@@ -6,6 +6,7 @@ VERSION=		2.3.22
 DISTNAME=		yarp-${VERSION}
 PKGNAME=		${PKGTAG.python-}yarp-${VERSION}
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
+PKGREVISION= 	1
 
 CATEGORIES=		middleware
 MAINTAINER=		openrobots@laas.fr
