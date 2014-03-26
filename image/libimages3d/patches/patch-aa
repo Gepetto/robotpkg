@@ -1,17 +1,28 @@
-From 8182af75d5ffe8c81b89f15e0787399f2d9e3e38 Mon Sep 17 00:00:00 2001
+From 2e18b762c019519b39965a0089fee177057739a8 Mon Sep 17 00:00:00 2001
 From: Pierrick Koch <pierrick.koch@gmail.com>
 Date: Wed, 26 Mar 2014 15:01:28 +0100
 Subject: [PATCH] [io] f{write,read} all in one
 
+[io] revert test fread and rm unused point
+
+[io] fix test fread return value
 ---
- src/io.c |   17 ++---------------
- 1 file changed, 2 insertions(+), 15 deletions(-)
+ src/io.c |   22 ++++------------------
+ 1 file changed, 4 insertions(+), 18 deletions(-)
 
 diff --git a/src/io.c b/src/io.c
-index 6547430..949c40b 100644
+index 6547430..53a29bf 100644
 --- src/io.c
 +++ src/io.c
-@@ -490,13 +490,7 @@ int write_data_im3d_binaire (DATA_IM3D*  im3d,
+@@ -468,7 +468,6 @@ int write_data_im3d_binaire (DATA_IM3D*  im3d,
+   int          nblig;
+   int          nbcol;
+   int          i,j,k;		/* Pour boucler */
+-  DATA_PT3D*   point;
+ 
+   /* On sauve dans le cwd */
+   fichier = fopen(nom_fichier, "w9");
+@@ -490,13 +489,7 @@ int write_data_im3d_binaire (DATA_IM3D*  im3d,
  
    /* C'est parti pour les points (les covariances et normales sont ecrites apres) */
    if (im3d->header.points == POINTS_CALCULES) {
@@ -26,7 +37,16 @@ index 6547430..949c40b 100644
    }
  
    /* That's it, on ferme la porte et on met les bouts */
-@@ -566,14 +560,7 @@ read_data_im3d_binaire (DATA_IM3D*  im3d,
+@@ -520,8 +513,6 @@ read_data_im3d_binaire (DATA_IM3D*  im3d,
+   FILE*		fichier;
+   int		nblig;
+   int		nbcol;
+-  int		i,j,k;		/* Pour boucler */
+-  DATA_PT3D*	point;
+   int		s;
+   int		tmp;
+ 
+@@ -566,14 +557,9 @@ read_data_im3d_binaire (DATA_IM3D*  im3d,
  
    /* C'est parti pour les points (les covariances et normales sont ecrites apres) */
    if (im3d->header.points == POINTS_CALCULES) {
@@ -38,7 +58,9 @@ index 6547430..949c40b 100644
 -	point++;
 -      }
 -    }
-+    fread(im3d->points_tab, sizeof(DATA_PT3D), nblig * nbcol, fichier);
++    tmp = nblig * nbcol;
++    if (fread(im3d->points_tab, sizeof(DATA_PT3D), tmp, fichier) != tmp)
++      return (ERR_IM3D_READ_ASCII_FILE);
    }
  
    /* That's it, on ferme la porte et on met les bouts */
