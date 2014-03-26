@@ -1,0 +1,47 @@
+From 8182af75d5ffe8c81b89f15e0787399f2d9e3e38 Mon Sep 17 00:00:00 2001
+From: Pierrick Koch <pierrick.koch@gmail.com>
+Date: Wed, 26 Mar 2014 15:01:28 +0100
+Subject: [PATCH] [io] f{write,read} all in one
+
+---
+ src/io.c |   17 ++---------------
+ 1 file changed, 2 insertions(+), 15 deletions(-)
+
+diff --git a/src/io.c b/src/io.c
+index 6547430..949c40b 100644
+--- src/io.c
++++ src/io.c
+@@ -490,13 +490,7 @@ int write_data_im3d_binaire (DATA_IM3D*  im3d,
+ 
+   /* C'est parti pour les points (les covariances et normales sont ecrites apres) */
+   if (im3d->header.points == POINTS_CALCULES) {
+-    point = im3d->points_tab;
+-    for (i = 0; i < nblig; i++) {
+-      for (j = 0; j < nbcol; j++) {
+-	fwrite (point, sizeof(DATA_PT3D), 1, fichier);
+-	point++;
+-      }
+-    }
++    fwrite(im3d->points_tab, sizeof(DATA_PT3D), nblig * nbcol, fichier);
+   }
+ 
+   /* That's it, on ferme la porte et on met les bouts */
+@@ -566,14 +560,7 @@ read_data_im3d_binaire (DATA_IM3D*  im3d,
+ 
+   /* C'est parti pour les points (les covariances et normales sont ecrites apres) */
+   if (im3d->header.points == POINTS_CALCULES) {
+-    point = im3d->points_tab;
+-    for (i = 0; i < nblig; i++) {
+-      for (j = 0; j < nbcol; j++) {
+-	if (fread (point, sizeof(DATA_PT3D), 1, fichier) != 1)
+-	  return (ERR_IM3D_READ_ASCII_FILE);
+-	point++;
+-      }
+-    }
++    fread(im3d->points_tab, sizeof(DATA_PT3D), nblig * nbcol, fichier);
+   }
+ 
+   /* That's it, on ferme la porte et on met les bouts */
+-- 
+1.7.9.5
+
