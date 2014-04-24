@@ -1,0 +1,159 @@
+diff --git src/socket.c src/socket.c
+index f61688f..adeac19 100644
+--- src/socket.c
++++ src/socket.c
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (c) 2010-2012 LAAS/CNRS
++ * Copyright (c) 2010-2012,2014 LAAS/CNRS
+  * Arnaud Degroote - Wed Aug 11 2010
+  * All rights reserved.
+  *
+@@ -142,6 +142,7 @@ tclserv_client_socket_read_request(tclserv_client_socket_t sock, buf_t buf)
+ ssize_t 
+ tclserv_client_socket_timed_read_request(tclserv_client_socket_t sock, buf_t buf, struct timeval* timeout)
+ {
++	struct timeval deadline, tv;
+ 	fd_set rfds;
+ 	ssize_t err;
+ 	int nb_to_read = 0;
+@@ -150,62 +151,100 @@ tclserv_client_socket_timed_read_request(tclserv_client_socket_t sock, buf_t buf
+ 
+ 	if (sock == NULL || buf == NULL) return -1;
+ 
+-	// wait for something to read
+-	FD_ZERO(&rfds);
+-	FD_SET(sock->socket, &rfds);
+-
+-
+-	PROTECT_SYSCALL_FROM_EINTR(err, 
+-				   select(sock->socket + 1, &rfds, NULL, NULL, timeout));
+-	if (err == -1) {
+-	    fprintf(stderr, "error in select : %s\n", strerror(errno));
++        if (timeout) {
++            gettimeofday(&deadline, NULL);
++            deadline.tv_sec += timeout->tv_sec;
++            deadline.tv_usec += timeout->tv_usec;
++            if (deadline.tv_usec >= 1000000) {
++                deadline.tv_usec -= 1000000;
++                deadline.tv_sec++;
++            }
++        }
++        buf->len = 0;
++        do {
++            // wait for something to read
++            FD_ZERO(&rfds);
++            FD_SET(sock->socket, &rfds);
++
++            if (timeout) {
++                int us;
++
++                gettimeofday(&tv, NULL);
++                if (tv.tv_sec > deadline.tv_sec ||
++                    (tv.tv_sec == deadline.tv_sec &&
++                     tv.tv_usec >= deadline.tv_usec)) {
++                    errno = ETIME;
++                    return -1;
++                }
++                tv.tv_sec = deadline.tv_sec - tv.tv_sec;
++                us = deadline.tv_usec - tv.tv_usec;
++                if (us < 0) {
++                    us += 1000000;
++                    tv.tv_sec--;
++                }
++                tv.tv_usec = us;
++            }
++
++            PROTECT_SYSCALL_FROM_EINTR(
++                err,
++                select(sock->socket + 1, &rfds, NULL, NULL, timeout?&tv:NULL));
++            if (err == -1) {
++                fprintf(stderr, "error in select : %s\n", strerror(errno));
+ 		return -1;
+-	}
+-	
+-	if (err == 0) {
++            }
++
++            if (err == 0) {
+ 		errno = ETIME;
+ 		return -1;
+-	}
++            }
+ 
+-	// get the len of the buffer
+-	if (ioctl(sock->socket, FIONREAD, &nb_to_read) == -1)
+-	{
+-		fprintf(stderr, "failed to call ioctl FIONREAD : %s\n", strerror(errno));
++            // get the len of the buffer
++            if (ioctl(sock->socket, FIONREAD, &nb_to_read) == -1)
++            {
++                fprintf(stderr, "failed to call ioctl FIONREAD : %s\n", strerror(errno));
+ 		return -1;
+-	}
++            }
+ 
+-	err = buf_reserve(buf, nb_to_read+1);
+-	if (err == -1) {
+-		fprintf(stderr, "Can't reserve enough memory for reading : %s\n", 
+-				strerror(errno));
++            err = buf_reserve(buf, buf->len + nb_to_read+1);
++            if (err == -1) {
++		fprintf(stderr, "Can't reserve enough memory for reading : %s\n",
++                        strerror(errno));
+ 		return -1;
+-	}
++            }
+ 
+-	PROTECT_SYSCALL_FROM_EINTR(err,
+-		 recv(sock->socket, buf->data, nb_to_read, MSG_PEEK));
+-	if (err == -1) {
++            PROTECT_SYSCALL_FROM_EINTR(
++                err,
++                recv(sock->socket, buf->data + buf->len, nb_to_read, MSG_PEEK));
++            if (err == -1) {
+ 		fprintf(stderr, "Failed to recv : %s\n", strerror(errno));
+ 		return -1;
+-	}
++            }
+ 
+-	if (err == 0) {
++            if (err == 0) {
+ 		close(sock->socket);
+ 		sock->socket = -1;
+ 		fprintf(stderr, "Peer deconnection\n");
+ 		return -1;
+-	}
++            }
+ 
+-	// look if we can find a rqst
+-	p = strstr(buf->data, "\r\n");
+-	if (p == NULL) { assert(0); } // XXX WTF here
+-	size_request = p - buf->data + 2;
++            // look if we can find a rqst
++            p = strstr(buf->data + buf->len, "\r\n");
++            size_request = (p == NULL) ? err : p - (buf->data + buf->len) + 2;
+ 
+-	PROTECT_SYSCALL_FROM_EINTR(err,
+-		recv(sock->socket, buf->data, size_request, 0));
+-	buf->data[err] = 0;
+-	DPRINTF("DEBUG >>> reading %s\n", buf->data);
+-	buf->len = err;
+-	return err;
++            PROTECT_SYSCALL_FROM_EINTR(
++                err,
++                recv(sock->socket, buf->data + buf->len, size_request, 0));
++            if (err == -1) {
++		fprintf(stderr, "Failed to recv : %s\n", strerror(errno));
++		return -1;
++            }
++            buf->len += err;
++        } while (p == NULL);
++
++        buf->data[buf->len] = 0;
++        DPRINTF("DEBUG >>> reading %s\n", buf->data);
++
++	return buf->len;
+ }
+ 
+ void 
