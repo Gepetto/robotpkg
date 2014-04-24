@@ -5,6 +5,7 @@ DISTNAME=	libtclserv_client-0.5
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=libtclserv_client/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/libtclserv_client
+PKGREVISION=	1
 
 MAINTAINER=	adegroot@laas.fr
 COMMENT=	Run-time for GeNoM module tclserv client
