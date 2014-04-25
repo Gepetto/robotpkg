@@ -1,0 +1,16 @@
+Don't pull extra Tcl CFLAGS, which contain garbage^W unwanted flags in
+ubuntu 14.04.
+
+This was added in commit:efa3ee6 upstream for MacOSX, but it's not even sure
+that this is required.
+
+--- Init.make.in~	2013-06-23 17:33:35.000000000 +0200
++++ Init.make.in	2014-04-23 14:21:57.647005000 +0200
+@@ -46,7 +46,6 @@
+ MKDEP=		@MKDEP@
+ 
+ CPPFLAGS+=	-I$(GDHE_CLIENT_SRC) -I$(GDHE_TOGL_SRC) -I$(GDHE_TOGL_BUILD)
+-CFLAGS+=	@TCL_EXTRA_CFLAGS@
+ 
+ 
+ LIBTOOL=	@LIBTOOL@
