@@ -78,13 +78,26 @@ DEPEND_ABI.python?=	python>=2.5<3.4
 override define _py_syssearch
   'bin/python$1:s/[^.0-9]//gp:% --version'				\
   'lib/libpython$1.{so,a}:s@^.*/@@;s/[^.0-9]//g;s/[.]$$//;p:${ECHO} %'	\
-  'include/python$1/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'
+  'include/python$1/patchlevel.h:/PY_VERSION/s/[^.0-9]//gp'		\
+  'include/python$1/pyconfig.h'
 endef
 # define some variables for use in the packages
 export PYTHON=$(firstword ${SYSTEM_FILES.${PKG_ALTERNATIVE.python}})
 export PYTHON_LIB=$(word 2,${SYSTEM_FILES.${PKG_ALTERNATIVE.python}})
 export PYTHON_INCLUDE=$(dir $(word 3,${SYSTEM_FILES.${PKG_ALTERNATIVE.python}}))
+export PYTHON_INCLUDE_CONFIG=\
+  $(dir $(word 4,${SYSTEM_FILES.${PKG_ALTERNATIVE.python}}))
 
+# For cmake/FindPython users. Recent cmake (at least 2.8.11) use the
+# internal PYTHON_INCLUDE_DIR2 for pyconfig.h, which is installed apart on
+# debian systems. But it's not always properly defined when one passes
+# PYTHON_INCLUDE_DIR. Sigh.
+# See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=709181
+#
+CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON}
+CMAKE_ARGS+=	-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
+CMAKE_ARGS+=	-DPYTHON_INCLUDE_DIR2=${PYTHON_INCLUDE_CONFIG}
+CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
