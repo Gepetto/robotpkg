@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2008-2013 LAAS/CNRS
+# Copyright (c) 2008-2014 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -257,6 +257,7 @@ for p in `bracesubst $sysprefix`; do
 
 	# iterate over file specs after glob and {,} substitutions and
 	# test existence
+        found=
 	for match in `bracesubst $p/$f | sysdirsubst $p`; do
 	    if ! ${TEST} -e "$match"; then
                 # special case: make /usr optional in /usr/{bin,lib}
@@ -265,7 +266,7 @@ for p in `bracesubst $sysprefix`; do
 		# replace shared lib extension
 		alt=$alt" "`shlibext $match $alt`
 
-		match=
+                match=
 		for alt in $alt; do
 		    if ${TEST} -r "${alt}"; then
 			match=$alt; break
@@ -278,6 +279,7 @@ for p in `bracesubst $sysprefix`; do
 	    # check file version, if needed
 	    if ${TEST} -z "$spec$cmd$opt"; then
 		${MSG} "found:	$display"
+                found=$match
 		break
 	    fi
 
@@ -302,33 +304,33 @@ for p in `bracesubst $sysprefix`; do
                         *) pkgoption=${pkgoption:+$pkgoption+}$opt ;;
                     esac
 		    ${MSG} "found:	$display for option $opt"
+                    found=$match
 		    break
                 fi
 	        ${MSG} "found:	$display, no match for option $opt"
-                match=
                 continue
             fi
 
             if ${TEST} $status -ne 0; then
                 ${MSG} "found:	$display, ${rawversion:-error checking version}"
-                match=
                 continue
             fi
             if ${TEST} -z "$version"; then
-                ${MSG} "found:	$display"
-                break
+                ${MSG} "found:	$display, no version (used as a last resort)"
+                found=$match
+                continue
             fi
 
             if ${PKG_ADMIN_CMD} pmatch "${abi%~*}" "$abipkg-$version"; then
 		pkgversion=-$version
 		${MSG} "found:	$display, version $version"
+                found=$match
 		break
 	    fi
 
             ${MSG} "found:	$display, wrong version ${version:-unknown}"
-	    match=;
 	done
-	if ${TEST} -z "$match"; then
+	if ${TEST} -z "$found"; then
 	    for match in `bracesubst $p/$f | sysdirsubst $p`; do
 		for alt in $match `shlibext $match`; do
 		    for alt in $alt `optusr $alt`; do
@@ -338,9 +340,8 @@ for p in `bracesubst $sysprefix`; do
 		done
 	    done
 	    if ${TEST} -z "$opt"; then continue 2; fi
-            match=
         fi
-	flist="$flist ${match:-/notfound}"
+	flist="$flist ${found:-/notfound}"
     done
 
     # check options
