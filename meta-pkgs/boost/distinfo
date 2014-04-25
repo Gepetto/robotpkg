@@ -9,6 +9,7 @@ SHA1 (patch-ae) = 3cc35fd21704fe7154da4810c2f275a35150e262
 SHA1 (patch-ag) = 0186142f104f1a3fe3a8723c605181bf63a64947
 SHA1 (patch-ai) = 7f1d0b802813ff04e650f9a1717696794e4fc465
 SHA1 (patch-ar) = 3cc51effb1eed4b3c814544e80ba9584f50f3d8d
+SHA1 (patch-as) = d6d52d70cea732c091cfa8cad6230d578f08a860
 SHA1 (patch-boost_foreach.hpp) = 59ca9fd9d60b66acee850862dfdaa609552fcc74
 SHA1 (patch-boost_foreach_fwd.hpp) = 6eebf3afd0a2cd4321178ccf85a0f6b70e35c1f1
 SHA1 (patch-libs_filesystem_src_unique_path.cpp) = 2cdb33f65541f669dec89930c1652efcd0e266b4
