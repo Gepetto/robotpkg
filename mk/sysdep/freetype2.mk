@@ -18,7 +18,7 @@ DEPEND_ABI.freetype2?=	freetype2>=2
 
 SYSTEM_SEARCH.freetype2=\
 	'bin/freetype-config::% --ftversion'			\
-	'include/freetype2/freetype/freetype.h'			\
+	'include/freetype2/{,freetype/}freetype.h'		\
 	'lib/libfreetype.{so,a}'				\
 	'lib/pkgconfig/freetype2.pc' # .pc contains a strange version
 
