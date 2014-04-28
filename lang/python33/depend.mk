@@ -15,7 +15,7 @@ DEPEND_USE+=		python33
 
 include ../../mk/sysdep/python.mk
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04,${OS_VERSION}))
+  ifneq (,$(filter 12.04 14.04,${OS_VERSION}))
     PREFER.python33?=	robotpkg
   endif
 else ifeq (Debian,${OPSYS})
