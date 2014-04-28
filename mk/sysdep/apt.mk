@@ -17,7 +17,7 @@ DEPEND_METHOD.apt?=	build
 DEPEND_ABI.apt?=	apt>=0
 
 SYSTEM_SEARCH.apt=	\
-	'bin/apt-get:1{s/[^0-9]*//;s/[^0-9.].*//;p;}:% -V'
+	'bin/apt-get:1{s/[^0-9]*//;s/[^0-9.].*//;p;}:% --version'
 
 SYSTEM_PKG.Linux.apt=	apt
 
