@@ -35,8 +35,7 @@
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: python25 python26 python27 python31 python32
-#	Default: python26 python27 python31 python32
+#	Possible values: python26 python27 python31 python32 python33 python34
 #
 # === Package-settable variables ===
 #
@@ -72,7 +71,7 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
-DEPEND_ABI.python?=	python>=2.5<3.4
+DEPEND_ABI.python?=	python>=2.5<3.5
 
 # factorize SYSTEM_SEARCH.python* here for all python* packages
 override define _py_syssearch
@@ -101,10 +100,16 @@ CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
-PKG_ALTERNATIVES.python=	python26 python27 python31 python32 python33
+PKG_ALTERNATIVES.python=	python26 python27
+PKG_ALTERNATIVES.python+=	python31 python32 python33 python34
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 14.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python34 python33
+  endif
+endif
 PREFER_ALTERNATIVE.python?=	python27 python33 python32 python31
 
 PKG_ALTERNATIVE_DESCR.python26= Use python-2.6
@@ -165,6 +170,18 @@ define PKG_ALTERNATIVE_SET.python33
   DEPEND_ABI.python33?=	$(strip ${_py_abi})
 
   include ../../lang/python33/depend.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python34= Use python-3.4
+PKGTAG.python34 =		py34
+define PKG_ALTERNATIVE_SELECT.python34
+  $(call preduce,${DEPEND_ABI.python} python>=3.4<3.5)
+endef
+define PKG_ALTERNATIVE_SET.python34
+  _py_abi:=$(subst python,python34,${PKG_ALTERNATIVE_SELECT.python34})
+  DEPEND_ABI.python34?=	$(strip ${_py_abi})
+
+  include ../../mk/sysdep/python34.mk
 endef
 
 
