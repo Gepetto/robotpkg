@@ -19,8 +19,12 @@ DEPEND_ABI.libp3d?=	libp3d>=1.3
 DEPEND_DIR.libp3d?=	../../path/libp3d
 
 SYSTEM_SEARCH.libp3d=\
-  'include/libp3d.h'		\
-  'lib/pkgconfig/libp3d.pc'
+  'include/libp3d.h'					\
+  'lib/pkgconfig/libp3d.pc:/Version/s/[^0-9.]//gp'	\
+							\
+  'lib/pkgconfig/libp3d.pc:/Cflags.*ATRV/p::atrv'	\
+  'lib/pkgconfig/libp3d.pc:/Cflags.*RMP400/p::rmp400'	\
+  'lib/pkgconfig/libp3d.pc:/Cflags.*RMP440/p::rmp440'
 
 endif # --------------------------------------------------------------------
 
