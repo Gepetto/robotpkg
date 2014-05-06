@@ -27,7 +27,9 @@
 
 # PREFER.<pkgbase>=	robotpkg
 # This variable selects <pkgbase> to be installed by robotpkg or used as an
-# external (system) dependency.
+# external (system) dependency. Note that manually installed packages
+# (i.e. installed from source, outside robotpkg) also fall into the 'system'
+# package category, and must be configured as such.
 # Possible: robotpkg, system
 # Default: (undefined)
 
@@ -109,7 +111,10 @@ LOCALBASE =	$prefix
 # Default: \\${ROBOTPKG_BASE} if defined, or /opt/openrobots
 
 # SYSTEM_PREFIX?= /usr /usr/local /opt
-# The systems directories where to search for external (aka system) packages.
+# The system directories where to search for external (aka system) packages.
+# This variable should not contain any directory located inside \\${LOCALBASE},
+# since system or manually installed package must reside outside the robotpkg
+# hierarchy.
 # Possible: any path
 # Default: \\${PATH} with /{s,}bin stripped plus /usr and /usr/local
 
