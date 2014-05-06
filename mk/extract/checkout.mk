@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2013 LAAS/CNRS
+# Copyright (c) 2009-2014 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -116,6 +116,8 @@ endif
 # checkout is a public target to perform checkout of a repository.
 #
 ifdef _MASTER_REPOSITORY
+  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
   _CHECKOUT_TARGETS+=	$(call add-barrier, bootstrap-depends, checkout)
   _CHECKOUT_TARGETS+=	acquire-extract-lock
   _CHECKOUT_TARGETS+=	${_COOKIE.checkout}
