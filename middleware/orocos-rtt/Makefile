@@ -5,7 +5,7 @@
 OROCOS_PKG=		rtt
 CATEGORIES=		middleware
 DISTINFO_FILE=		${CURDIR}/distinfo
-PKGREVISION=		4
+PKGREVISION=		5
 
 include  ../../meta-pkgs/orocos-toolchain/Makefile.common
 

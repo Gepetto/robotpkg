@@ -1,0 +1,62 @@
+From 13fe95c744752741c0e23a92a2eb7804fa7e24da Mon Sep 17 00:00:00 2001
+From: Steven Bellens <steven.bellens@mech.kuleuven.be>
+Date: Thu, 3 Feb 2011 14:05:09 +0100
+Subject: [PATCH] EnumTypeInfo: implement read() and write() function
+
+The write() function makes the TaskBrowser display the actual content of the
+enum type, instead of just the general _type_ of the enum.
+The read() function is a first implementation attempt, but currently fails to
+compile. Commented out as it is not required at the moment.
+
+Signed-off-by: Steven Bellens <steven.bellens@mech.kuleuven.be>
+---
+ rtt/types/EnumTypeInfo.hpp |   35 +++++++++++++++++++++++++++++++++++
+ 1 files changed, 35 insertions(+), 0 deletions(-)
+
+diff --git a/rtt/types/EnumTypeInfo.hpp b/rtt/types/EnumTypeInfo.hpp
+index 7383837..d4b5d50 100644
+--- rtt/types/EnumTypeInfo.hpp
++++ rtt/types/EnumTypeInfo.hpp
+@@ -89,6 +89,42 @@
+                 return false;
+             }
+ 
++            virtual std::ostream& write(std::ostream& os, base::DataSourceBase::shared_ptr in) const
++            {
++                // Convert enum to string
++                typename internal::DataSource<T>::shared_ptr ds = internal::DataSource<T>::narrow( in.get() );
++                if ( ds )
++                {
++                    // if not available, just convert to int.
++                    if ( to_string.count( ds->get() ) == 0 ) {
++                        return os << ds->get();
++                    }
++                    os << to_string.find(ds->get())->second;
++                }
++                return os;
++            }
++            /*virtual std::istream& read(std::istream& is, base::DataSourceBase::shared_ptr out) const
++            {
++                // Convert enum to string
++                typename internal::AssignableDataSource<T>::shared_ptr ds = internal::AssignableDataSource<T>( out );
++                if ( ds )
++                {
++                    std::string input;
++                    is >> input;
++                    if ( is.good() ) {
++                        for (typename MapType::iterator it = to_string.begin(); it != to_string.end(); it++) {
++                            if ( it->second == input ) {
++                                ds->set( it->first );
++                                return is;
++                            }
++                        }
++                        log(Warning) << "Could not read Enum type " << tname << " from stream: unknown value:"<< input <<endlog();
++                    } else
++                       log(Warning) << "Could not read Enum type " << tname << " from stream: not a string." <<endlog();
++                }
++                return is;
++            }*/
++
+             /**
+              * Composition also checks if source is an int or string, and if so, converts
+              * it to the enum of type T kept in result.
