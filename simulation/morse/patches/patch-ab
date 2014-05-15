@@ -1,0 +1,27 @@
+From ff756ba1333f30f500e5f8b78ea4d6abd5def53b Mon Sep 17 00:00:00 2001
+From: Charles Lesire <charles.lesire@onera.fr>
+Date: Thu, 15 May 2014 07:24:59 +0200
+Subject: [PATCH] [waypoint] fix vertical moves when FreeZ
+
+---
+ src/morse/actuators/waypoint.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/morse/actuators/waypoint.py b/src/morse/actuators/waypoint.py
+index d60675b..94d49c0 100644
+--- src/morse/actuators/waypoint.py
++++ src/morse/actuators/waypoint.py
+@@ -370,8 +370,8 @@ class Waypoint(morse.core.actuator.Actuator):
+ 
+             try:
+                 dt = 1 / self.frequency
+-                if projection_distance < speed * dt:
+-                    v = projection_distance  / dt
++                if distance < speed * dt:
++                    v = distance  / dt
+                 else:
+                     v = speed
+ 
+-- 
+1.8.3.2
+
