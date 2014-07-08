@@ -4,7 +4,7 @@
 
 DISTNAME=	jrl-walkgen-${VERSION}
 PKGNAME=	jrl-walkgen-${VERSION}
-VERSION=	3.1.8
+VERSION=	3.2.0
 
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-walkgen/}
