@@ -2,7 +2,7 @@
 # Created:			Olivier Stasse on Thu, 18 Apr 2013
 #
 
-VERSION=		2.8.0
+VERSION=		2.9.0
 
 DISTNAME=		sot-pattern-generator-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-pattern-generator/}
@@ -26,6 +26,7 @@ include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../path/jrl-walkgen/depend.mk
 include ../../math/jrl-dynamics/depend.mk
+include ../../math/jrl-dynamics-urdf/depend.mk
 include ../../motion/sot-core/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
