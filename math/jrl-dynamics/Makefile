@@ -4,8 +4,7 @@
 
 DISTNAME=	jrl-dynamics-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
-VERSION=	1.24
-PKGREVISION=	
+VERSION=	1.25.0
 
 CATEGORIES=	math
 
