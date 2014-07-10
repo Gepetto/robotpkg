@@ -4,7 +4,7 @@
 
 ROS_PKG=	roscpp_core
 ROS_METAPKG=	yes
-ROS_VERSION=	0.3.15
+ROS_VERSION=	0.3.16
 
 CATEGORIES=	devel
 ROS_COMMENT=	underlying data libraries for roscpp messages
