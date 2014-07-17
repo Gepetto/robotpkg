@@ -11,17 +11,10 @@ endif
 
 ifeq (+,$(BLENDER_DEPEND_MK)) # -----------------------------------------------
 
-# the following systems have an outdated blender version
-include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.%,${OS_VERSION}))
-    PREFER.blender?=	robotpkg
-  endif
-endif
 PREFER.blender?=	system
 
 DEPEND_USE+=		blender
-DEPEND_ABI.blender?=	blender>=2.65
+DEPEND_ABI.blender?=	blender>=2.62
 DEPEND_DIR.blender?=	../../graphics/blender
 
 SYSTEM_SEARCH.blender=\
