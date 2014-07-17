@@ -109,6 +109,9 @@ ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 14.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python34 python33
   endif
+  ifneq (,$(filter 12.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python32 python33
+  endif
 endif
 PREFER_ALTERNATIVE.python?=	python27 python33 python32 python31
 
