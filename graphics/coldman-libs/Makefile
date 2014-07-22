@@ -33,6 +33,7 @@ PKG_OPTION_UNSET.display:=	CMAKE_ARGS+=-DENABLE_DISPLAY=OFF
 
 include ../../graphics/pqp/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/libxml2.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
