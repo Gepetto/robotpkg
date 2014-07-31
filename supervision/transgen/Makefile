@@ -1,7 +1,7 @@
 # robotpkg Makefile for:	supervision/transgen
 # Created:			Matthieu Herrb on Thu, 12 Mar 2009
 #
-DISTNAME=		transgen-1.1b0
+DISTNAME=		transgen-1.1b1
 CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=transgen/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}transgen
