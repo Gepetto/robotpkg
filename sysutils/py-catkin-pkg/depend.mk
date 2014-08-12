@@ -17,7 +17,7 @@ SYSTEM_PREFIX.py-catkin-pkg?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			py-catkin-pkg
 
-DEPEND_ABI.py-catkin-pkg?=	${PKGTAG.python}-catkin-pkg>=0.1.15
+DEPEND_ABI.py-catkin-pkg?=	${PKGTAG.python}-catkin-pkg>=0.2
 DEPEND_DIR.py-catkin-pkg?=	../../sysutils/py-catkin-pkg
 
 SYSTEM_SEARCH.py-catkin-pkg=\
