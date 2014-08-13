@@ -1,19 +1,12 @@
-@comment Sat Jun 22 15:47:09 CEST 2013
+@comment Wed Aug 13 13:59:22 CEST 2014
 etc/ros/genmsg/genlisp
 lib/genlisp/gen_lisp.py
-lib/genlisp/${PYTHON_PYCACHE}/gen_lisp${PYTHON_TAG}.pyc
-lib/genlisp/${PYTHON_PYCACHE}/gen_lisp${PYTHON_TAG}.pyo
 lib/pkgconfig/genlisp.pc
 ${PYTHON_SITELIB}/genlisp-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/genlisp/__init__.py
-${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/genlisp/generate.py
-${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/generate${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/generate${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/genlisp/genlisp_main.py
-${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/genlisp_main${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/genlisp/${PYTHON_PYCACHE}/genlisp_main${PYTHON_TAG}.pyo
+share/common-lisp/rospack_nosubdirs
 share/genlisp/cmake/genlisp-extras.cmake
 share/genlisp/cmake/genlispConfig-version.cmake
 share/genlisp/cmake/genlispConfig.cmake

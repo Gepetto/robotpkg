@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		genlisp
-ROS_VERSION=		0.4.11
+ROS_VERSION=		0.4.14
 
 CATEGORIES=		lang
 ROS_COMMENT=		lisp code generator for ROS .msg format
