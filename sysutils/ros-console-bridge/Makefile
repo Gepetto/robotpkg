@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	rosconsole_bridge
-ROS_VERSION=	0.2.7
+ROS_VERSION=	0.4.2
 PKGNAME=	ros-console-bridge-${ROS_VERSION}
 
 CATEGORIES=	sysutils
