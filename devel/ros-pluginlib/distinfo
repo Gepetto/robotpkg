@@ -1,4 +1,3 @@
-SHA1 (ros/pluginlib-1.9.23.tar.gz) = ac14406c466342aa34687465b6913f9436acdbc9
-RMD160 (ros/pluginlib-1.9.23.tar.gz) = 4a4f7549b7ed577a1feedbb9602282bdcdcbaa69
-Size (ros/pluginlib-1.9.23.tar.gz) = 16834 bytes
-SHA1 (patch-aa) = e09ed0bd994d86b718b333ee94f9a709d280b489
+SHA1 (ros/pluginlib/1.10.0.tar.gz) = 074cf21eafe55d6e1f78fe7cdd4ab4ecca2690b2
+RMD160 (ros/pluginlib/1.10.0.tar.gz) = 40a88caff60d12e46496046e06efca74bf5b0c76
+Size (ros/pluginlib/1.10.0.tar.gz) = 16993 bytes

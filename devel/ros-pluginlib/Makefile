@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	pluginlib
-ROS_VERSION=	1.9.23
+ROS_VERSION=	1.10.0
 
 CATEGORIES=	devel
 ROS_COMMENT=	tools for dynamically loading plugins
@@ -11,7 +11,7 @@ HOMEPAGE=	http://www.ros.org/wiki/ROS
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-CMAKE_ARGS+=	-DTINYXML_ROOT=${PREFIX.tinyxml}
+CMAKE_ARGS+=	-DTinyXML_ROOT_DIR=${PREFIX.tinyxml}
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
