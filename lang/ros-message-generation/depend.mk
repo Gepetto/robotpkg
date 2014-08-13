@@ -18,13 +18,11 @@ SYSTEM_PREFIX.ros-message-generation?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=				ros-message-generation
 ROS_DEPEND_USE+=			ros-message-generation
 
-DEPEND_ABI.ros+= ros>=groovy
-
 DEPEND_ABI.ros-message-generation?=	ros-message-generation>=0.2<0.3
 DEPEND_DIR.ros-message-generation?=	../../lang/ros-message-generation
 
 SYSTEM_SEARCH.ros-message-generation=\
-	'share/message_generation/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+	'share/message_generation/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/message_generation.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_MESSAGE_GENERATION_DEPEND_MK -----------------------------------
