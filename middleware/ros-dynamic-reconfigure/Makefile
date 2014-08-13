@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	dynamic_reconfigure
-ROS_VERSION=	1.5.32
+ROS_VERSION=	1.5.37
 
 CATEGORIES=	middleware
 ROS_COMMENT=	runtime parameter configuration
@@ -11,6 +11,7 @@ ROS_COMMENT=	runtime parameter configuration
 include ../../meta-pkgs/ros-base/Makefile.common
 
 SUBST_CLASSES+=		py-interp
+SUBST_FILES.py-interp+=	cfg/Test.cfg
 SUBST_FILES.py-interp+=	cmake/*/*.py cmake/gendeps
 SUBST_FILES.py-interp+=	scripts/reconfigure_gui scripts/dynparam
 SUBST_FILES.py-interp+=	test/*.py

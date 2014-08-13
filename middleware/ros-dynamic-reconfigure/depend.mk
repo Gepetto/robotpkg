@@ -18,16 +18,16 @@ SYSTEM_PREFIX.ros-dynamic-reconfigure?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=				ros-dynamic-reconfigure
 ROS_DEPEND_USE+=			ros-dynamic-reconfigure
 
-DEPEND_ABI.ros-dynamic-reconfigure?=	ros-dynamic-reconfigure>=1.4
+DEPEND_ABI.ros-dynamic-reconfigure?=	ros-dynamic-reconfigure>=1.5
 DEPEND_DIR.ros-dynamic-reconfigure?=	../../middleware/ros-dynamic-reconfigure
 
-DEPEND_ABI.ros-dynamic-reconfigure.fuerte?=ros-dynamic-reconfigure>=1.4<1.5
 DEPEND_ABI.ros-dynamic-reconfigure.groovy?=ros-dynamic-reconfigure>=1.5.32<1.6
 DEPEND_ABI.ros-dynamic-reconfigure.hydro?= ros-dynamic-reconfigure>=1.5.32<1.6
+DEPEND_ABI.ros-dynamic-reconfigure.indigo?=ros-dynamic-reconfigure>=1.5.32<1.6
 
 SYSTEM_SEARCH.ros-dynamic-reconfigure=\
   'include/dynamic_reconfigure/Config.h'				\
-  'share/dynamic_reconfigure/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+  'share/dynamic_reconfigure/package.xml:/<version>/s/[^0-9.]//gp'	\
   '${PYTHON_SYSLIBSEARCH}/dynamic_reconfigure/__init__.py'		\
   'lib/pkgconfig/dynamic_reconfigure.pc:/Version/s/[^0-9.]//gp'
 
