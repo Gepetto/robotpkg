@@ -18,16 +18,16 @@ SYSTEM_PREFIX.ros-rospack?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-rospack
 ROS_DEPEND_USE+=		ros-rospack
 
-DEPEND_ABI.ros-rospack?=	ros-rospack>=2.0
+DEPEND_ABI.ros-rospack?=	ros-rospack>=2.1
 DEPEND_DIR.ros-rospack?=	../../sysutils/ros-rospack
 
-DEPEND_ABI.ros-ros.fuerte?=	ros-ros>=2.0<2.1
-DEPEND_ABI.ros-ros.groovy?=	ros-ros>=2.1
-DEPEND_ABI.ros-ros.hydro?=	ros-ros>=2.1
+DEPEND_ABI.ros-ros.groovy?=	ros-ros>=2.1<2.2
+DEPEND_ABI.ros-ros.hydro?=	ros-ros>=2.1<2.2
+DEPEND_ABI.ros-ros.indigo?=	ros-ros>=2.2<2.3
 
 SYSTEM_SEARCH.ros-rospack=\
 	bin/rospack						\
-	'share/rospack/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+	'share/rospack/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/rospack.pc:/Version/s/[^0-9.]//gp'
 
 include ../../mk/sysdep/python.mk
