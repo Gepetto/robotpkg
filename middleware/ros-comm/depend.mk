@@ -18,18 +18,18 @@ SYSTEM_PREFIX.ros-comm?=${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=		ros-comm
 ROS_DEPEND_USE+=	ros-comm
 
-DEPEND_ABI.ros-comm?=	ros-comm>=1.8
+DEPEND_ABI.ros-comm?=	ros-comm>=1.9
 DEPEND_DIR.ros-comm?=	../../middleware/ros-comm
 
-DEPEND_ABI.ros-comm.fuerte?=	ros-comm>=1.8<1.9
-DEPEND_ABI.ros-comm.groovy?=	ros-comm>=1.9
-DEPEND_ABI.ros-comm.hydro?=	ros-comm>=1.9
+DEPEND_ABI.ros-comm.groovy?=	ros-comm>=1.9<1.10
+DEPEND_ABI.ros-comm.hydro?=	ros-comm>=1.10<1.11
+DEPEND_ABI.ros-comm.indigo?=	ros-comm>=1.11<1.12
 
 SYSTEM_SEARCH.ros-comm=\
 	bin/roscore							\
 	include/ros/ros.h						\
 	lib/libroscpp.so						\
-	'share/ros_comm/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'		\
+	'share/ros_comm/package.xml:/<version>/s/[^0-9.]//gp'		\
 	'lib/pkgconfig/roscpp.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_COMM_DEPEND_MK -------------------------------------------------

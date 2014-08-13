@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		ros_comm
-ROS_VERSION=		1.9.47
+ROS_VERSION=		1.11.8
 ROS_METAPKG=		yes
 
 PKGNAME=		$(subst _,-,${ROS_PKG})-${ROS_VERSION}
@@ -41,12 +41,14 @@ include ../../devel/log4cxx/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../devel/ros-roscpp-core/depend.mk
+include ../../interfaces/ros-comm-msgs/depend.mk
 include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
 include ../../mk/sysdep/apr.mk
 include ../../mk/sysdep/bash.mk
+include ../../mk/sysdep/lz4.mk
 include ../../mk/sysdep/py-imaging.mk
 include ../../mk/sysdep/py-netifaces.mk
 include ../../mk/sysdep/py-numpy.mk
