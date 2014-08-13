@@ -2,17 +2,18 @@ Don't make eggs.
 
 --- setup.py.orig	2013-06-25 13:51:06.850561571 +0200
 +++ setup.py	2013-06-25 13:51:16.274525652 +0200
-@@ -1,4 +1,4 @@
+@@ -1,5 +1,5 @@
+ import os
 -from setuptools import setup
 +from distutils.core import setup
  
- import sys
- sys.path.insert(0, 'src')
-@@ -10,10 +10,6 @@
+ exec(open(os.path.join(os.path.dirname(__file__), 'src', 'rosdep2', '_version.py')).read())
+ 
+@@ -8,10 +8,6 @@
      version=__version__,
      packages=['rosdep2', 'rosdep2.platforms'],
      package_dir={'': 'src'},
--    install_requires=['catkin_pkg', 'rospkg', 'rosdistro >= 0.2.1', 'PyYAML >= 3.1'],
+-    install_requires=['catkin_pkg', 'rospkg', 'rosdistro >= 0.3.0', 'PyYAML >= 3.1'],
 -    setup_requires=['nose >= 1.0'],
 -    test_suite='nose.collector',
 -    test_requires=['mock'],

@@ -1,6 +1,5 @@
-SHA1 (ros/rosdep-0.10.19.tar.gz) = 0fd06dbd370d2d1762bd25e7df0866e84f4ad172
-RMD160 (ros/rosdep-0.10.19.tar.gz) = a4838fa9bbb39c3fc6fe58810779706f453c8f8f
-Size (ros/rosdep-0.10.19.tar.gz) = 99166 bytes
-SHA1 (patch-aa) = ad3f8ab493905493a3fdd4e9371a588d911348a8
-SHA1 (patch-ab) = 6a4d0e84f77f69fbe9d08bf2ad2c4e64da91d661
+SHA1 (ros/rosdep/0.10.30.tar.gz) = 96cea857e08fbd9bcecb1f7fb6e72325d5177c9a
+RMD160 (ros/rosdep/0.10.30.tar.gz) = 7340c5f240a9e802867d08881a3ea0471c713d86
+Size (ros/rosdep/0.10.30.tar.gz) = 103347 bytes
+SHA1 (patch-aa) = 25d80aaa436542f7ee49f652781f129e4a5ae53f
 SHA1 (patch-ac) = 867a2e711eceb342bb3be640a8b27ccd37c4e66c

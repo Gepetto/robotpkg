@@ -22,7 +22,7 @@ DEPEND_DIR.py-rosdep?=		../../sysutils/py-rosdep
 
 SYSTEM_SEARCH.py-rosdep=\
   'bin/rosdep'								\
-  '${PYTHON_SYSLIBSEARCH}/rosdep2/__init__.py:/__version__/s/[^0-9.]//gp'
+  '${PYTHON_SYSLIBSEARCH}/rosdep2/_version.py:/__version__/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Ubuntu.py-rosdep=	python-rosdep
 
