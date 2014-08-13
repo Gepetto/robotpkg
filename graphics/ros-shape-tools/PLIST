@@ -1,0 +1,9 @@
+@comment Wed Aug 13 18:24:30 CEST 2014
+include/shape_tools/shape_extents.h
+include/shape_tools/shape_to_marker.h
+include/shape_tools/solid_primitive_dims.h
+lib/libshape_tools.so
+lib/pkgconfig/shape_tools.pc
+share/shape_tools/cmake/shape_toolsConfig-version.cmake
+share/shape_tools/cmake/shape_toolsConfig.cmake
+share/shape_tools/package.xml
