@@ -4,8 +4,7 @@
 
 ROS_PKG=	common_msgs
 ROS_METAPKG=	yes
-ROS_VERSION=	1.9.16
-ROS_GITTAG=	7c5ea2f30e5f279714af4771f395ae3277c03fa2
+ROS_VERSION=	1.11.4
 
 CATEGORIES=	interfaces
 ROS_COMMENT=	common messages definition

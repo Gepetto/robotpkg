@@ -18,12 +18,12 @@ SYSTEM_PREFIX.ros-common-msgs?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-common-msgs
 ROS_DEPEND_USE+=		ros-common-msgs
 
-DEPEND_ABI.ros-common-msgs?=	ros-common-msgs>=1.8
+DEPEND_ABI.ros-common-msgs?=	ros-common-msgs>=1.9
 DEPEND_DIR.ros-common-msgs?=	../../interfaces/ros-common-msgs
 
-DEPEND_ABI.ros-common-msgs.fuerte?=	ros-common-msgs>=1.8<1.9
 DEPEND_ABI.ros-common-msgs.groovy?=	ros-common-msgs>=1.9<1.10
 DEPEND_ABI.ros-common-msgs.hydro?=	ros-common-msgs>=1.10<1.11
+DEPEND_ABI.ros-common-msgs.indigo?=	ros-common-msgs>=1.11<1.12
 
 SYSTEM_SEARCH.ros-common-msgs=\
 	include/actionlib_msgs/GoalID.h					\
