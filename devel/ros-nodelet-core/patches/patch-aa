@@ -1,41 +1,37 @@
 --- nodelet/CMakeLists.txt~	2013-03-13 01:34:52.000000000 +0100
 +++ nodelet/CMakeLists.txt	2013-06-28 22:01:39.000000000 +0200
-@@ -17,11 +17,16 @@
+@@ -3,6 +3,8 @@
  
- # Find common packages
- find_package(Boost)
--find_package(catkin REQUIRED bondcpp message_generation pluginlib rosconsole roscpp std_msgs)
-+find_package(catkin REQUIRED bondcpp message_generation pluginlib rosconsole
-+roscpp std_msgs)
+ ## Find catkin dependencies
+ find_package(catkin REQUIRED bondcpp message_generation pluginlib rosconsole roscpp std_msgs)
 +find_package(PkgConfig)
 +pkg_check_modules(UUID uuid)
- include_directories(SYSTEM ${catkin_INCLUDE_DIRS}
-                            ${BOOST_INCLUDE_DIRS}
-+                           ${UUID_INCLUDE_DIRS}
- )
- include_directories(include)
-+link_directories(${UUID_LIBRARY_DIRS})
  
- # Deal with the services
- add_service_files(DIRECTORY srv FILES NodeletList.srv  NodeletLoad.srv  NodeletUnload.srv)
-@@ -30,9 +35,9 @@
+ ## Find Boost (only headers)
+ find_package(Boost REQUIRED)
+@@ -15,12 +17,13 @@
  
  catkin_package(
    INCLUDE_DIRS include
 -  LIBRARIES nodeletlib uuid
 +  LIBRARIES nodeletlib
-   CATKIN_DEPENDS bondcpp message_runtime rosconsole roscpp std_msgs
+   CATKIN_DEPENDS bondcpp message_runtime pluginlib rosconsole roscpp std_msgs
 -  DEPENDS Boost
 +  DEPENDS Boost uuid
  )
  
+-include_directories(include ${catkin_INCLUDE_DIRS} ${BOOST_INCLUDE_DIRS})
++include_directories(include ${catkin_INCLUDE_DIRS} ${BOOST_INCLUDE_DIRS} ${UUID_INCLUDE_DIRS})
++link_directories(${UUID_LIBRARY_DIRS})
+ 
  # Debug only, collects stats on how callbacks are doled out to worker threads
-@@ -43,7 +48,7 @@
- add_dependencies(nodeletlib ${PROJECT_NAME}_gencpp)
+ #add_definitions(-DNODELET_QUEUE_DEBUG)
+@@ -30,7 +33,7 @@
+ add_dependencies(nodeletlib ${nodelet_EXPORTED_TARGETS})
  
  add_executable(nodelet src/nodelet.cpp)
 -target_link_libraries(nodelet nodeletlib uuid ${catkin_LIBRARIES} ${BOOST_LIBRARIES})
 +target_link_libraries(nodelet nodeletlib ${UUID_LIBRARIES} ${catkin_LIBRARIES} ${BOOST_LIBRARIES})
  
- # See: https://code.ros.org/trac/ros-pkg/ticket/5144
- if(APPLE)
+ # install
+ install(DIRECTORY include/${PROJECT_NAME}/

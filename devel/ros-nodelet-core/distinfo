@@ -1,7 +1,7 @@
-SHA1 (ros/nodelet_core-1.7.15.tar.gz) = 8e9b578f3e2ba04d5d9cd8583dd765af2ef5b420
-RMD160 (ros/nodelet_core-1.7.15.tar.gz) = dca33c3119d728e7e6f97d6650aac933f7df7ea3
-Size (ros/nodelet_core-1.7.15.tar.gz) = 25700 bytes
-SHA1 (patch-aa) = 8d2d00ca1abc8472b8abe7d76a32b62024355a03
+SHA1 (ros/nodelet_core/1.9.0.tar.gz) = 5f19297ad1c33f7f8ad8d9d5b24619f1a60f1d6f
+RMD160 (ros/nodelet_core/1.9.0.tar.gz) = 83ba6ca66997efa783085bd945f77019fedca2c5
+Size (ros/nodelet_core/1.9.0.tar.gz) = 31897 bytes
+SHA1 (patch-aa) = a0aad75c79b006f1b7304cb3c4ba8319dff664d8
 SHA1 (patch-ab) = 07777213329cc0af444ac7e7ce1d757bfc62eabb
 SHA1 (patch-ac) = 2326fec4d0c065849554cc49f002ac87790205d7
 SHA1 (patch-ad) = 03a9235c0683a257769423fd482de8c352facecd

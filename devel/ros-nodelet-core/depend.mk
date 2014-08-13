@@ -18,19 +18,19 @@ SYSTEM_PREFIX.ros-nodelet-core?=${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-nodelet-core
 ROS_DEPEND_USE+=		ros-nodelet-core
 
-DEPEND_ABI.ros-nodelet-core?=	ros-nodelet-core>=1.6
+DEPEND_ABI.ros-nodelet-core?=	ros-nodelet-core>=1.7
 DEPEND_DIR.ros-nodelet-core?=	../../devel/ros-nodelet-core
 
-DEPEND_ABI.ros-nodelet-core.fuerte?=	ros-nodelet-core>=1.6<1.7
 DEPEND_ABI.ros-nodelet-core.groovy?=	ros-nodelet-core>=1.7<1.8
 DEPEND_ABI.ros-nodelet-core.hydro?=	ros-nodelet-core>=1.8<1.9
+DEPEND_ABI.ros-nodelet-core.indigo?=	ros-nodelet-core>=1.9<1.10
 
 SYSTEM_SEARCH.ros-nodelet-core=\
   'include/nodelet/nodelet.h'						\
   'lib/libnodeletlib.so'						\
   '${PYTHON_SYSLIBSEARCH}/nodelet/__init__.py'				\
-  'share/nodelet_topic_tools/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
-  'share/nodelet/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'			\
+  'share/nodelet_topic_tools/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'share/nodelet/package.xml:/<version>/s/[^0-9.]//gp'			\
   'lib/pkgconfig/nodelet_topic_tools.pc:/Version/s/[^0-9.]//gp'		\
   'lib/pkgconfig/nodelet.pc:/Version/s/[^0-9.]//gp'
 

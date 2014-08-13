@@ -1,4 +1,4 @@
-@comment Fri Jun 28 22:20:20 CEST 2013
+@comment Wed Aug 13 16:24:00 CEST 2014
 include/nodelet/NodeletList.h
 include/nodelet/NodeletListRequest.h
 include/nodelet/NodeletListResponse.h
@@ -24,29 +24,13 @@ lib/pkgconfig/nodelet_topic_tools.pc
 lib/pkgconfig/test_nodelet.pc
 lib/pkgconfig/test_nodelet_topic_tools.pc
 ${PYTHON_SITELIB}/nodelet/__init__.py
-${PYTHON_SITELIB}/nodelet/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/nodelet/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/nodelet/srv/_NodeletList.py
-${PYTHON_SITELIB}/nodelet/srv/${PYTHON_PYCACHE}/_NodeletList${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/nodelet/srv/${PYTHON_PYCACHE}/_NodeletList${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/nodelet/srv/_NodeletLoad.py
-${PYTHON_SITELIB}/nodelet/srv/${PYTHON_PYCACHE}/_NodeletLoad${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/nodelet/srv/${PYTHON_PYCACHE}/_NodeletLoad${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/nodelet/srv/_NodeletUnload.py
-${PYTHON_SITELIB}/nodelet/srv/${PYTHON_PYCACHE}/_NodeletUnload${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/nodelet/srv/${PYTHON_PYCACHE}/_NodeletUnload${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/nodelet/srv/__init__.py
-${PYTHON_SITELIB}/nodelet/srv/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/nodelet/srv/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/nodelet_topic_tools/__init__.py
-${PYTHON_SITELIB}/nodelet_topic_tools/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/nodelet_topic_tools/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/nodelet_topic_tools/cfg/NodeletThrottleConfig.py
-${PYTHON_SITELIB}/nodelet_topic_tools/cfg/${PYTHON_PYCACHE}/NodeletThrottleConfig${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/nodelet_topic_tools/cfg/${PYTHON_PYCACHE}/NodeletThrottleConfig${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/nodelet_topic_tools/cfg/__init__.py
-${PYTHON_SITELIB}/nodelet_topic_tools/cfg/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/nodelet_topic_tools/cfg/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 share/common-lisp/ros/nodelet/srv/NodeletList.lisp
 share/common-lisp/ros/nodelet/srv/NodeletLoad.lisp
 share/common-lisp/ros/nodelet/srv/NodeletUnload.lisp
