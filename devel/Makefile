@@ -24,6 +24,7 @@ SUBDIR+=	ros-catkin
 SUBDIR+=	ros-cmake-modules
 SUBDIR+=	ros-class-loader
 SUBDIR+=	ros-filters
+SUBDIR+=	ros-lint
 SUBDIR+=	ros-nodelet-core
 SUBDIR+=	ros-pluginlib
 SUBDIR+=	ros-ros

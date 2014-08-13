@@ -1,0 +1,4 @@
+CMake lint commands for ROS packages.
+
+The lint commands perform static checking of Python or C++ source code for
+errors and standards compliance.
