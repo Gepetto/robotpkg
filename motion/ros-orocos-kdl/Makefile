@@ -2,25 +2,20 @@
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
-ROS_PKG=	orocos_kdl
-ROS_METAPKG=	yes
-ROS_VERSION=	1.1.99
-ROS_GITTAG=	0f75b5c73cce829c62018247a6b5206f48cb22df
-ROS_REPO=	ros-gbp
-ROS_PKGURL?=	${ROS_PKG}-release/archive/${ROS_GITTAG}${EXTRACT_SUFX}?file=
+PKGNAME=	ros-orocos-kdl-${ROS_VERSION}
+ROS_PKG=	orocos_kinematics_dynamics
+ROS_VERSION=	1.3.0
+ROS_REPO=	orocos
+ROS_PKGURL?=	${ROS_PKG}/archive/v
 
 CATEGORIES=	motion
-ROS_COMMENT=	Kinematics and Dynamics Library from Orocos
+ROS_COMMENT=	package wrapper for Kinematics and Dynamics Library
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-WRKSRC=		${WRKDIR}/${ROS_PKG}-release-$(subst /,-,${ROS_GITTAG})
-
-SUBST_CLASSES+=		py-interp
-SUBST_FILES.py-interp+=	orocos_kdl/tests/PyKDLtest.py
+WRKSRC=		${WRKDIR}/${ROS_PKG}-${ROS_VERSION}/orocos_kinematics_dynamics
 
 include ../../devel/ros-catkin/depend.mk
-include ../../math/eigen3/depend.mk
-include ../../mk/sysdep/py-sip.mk
-include ../../mk/sysdep/cppunit.mk
+include ../../motion/orocos-kdl/depend.mk
+include ../../motion/py-orocos-kdl/depend.mk
 include ../../mk/robotpkg.mk

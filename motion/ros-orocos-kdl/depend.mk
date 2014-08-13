@@ -24,10 +24,7 @@ DEPEND_ABI.ros-orocos-kdl?=	ros-orocos-kdl>=1.1
 DEPEND_DIR.ros-orocos-kdl?=	../../motion/ros-orocos-kdl
 
 SYSTEM_SEARCH.ros-orocos-kdl=\
-  'include/orocos_kdl/kdl/kdl.hpp'				\
-  'lib/liborocos-kdl.so'					\
-  'share/orocos_kdl/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
-  'lib/pkgconfig/orocos_kdl.pc:/Version/s/[^0-9.]//gp'
+  'share/orocos_kinematics_dynamics/package.xml:/<version>/s/[^0-9.]//gp'
 
 endif # ROS_OROCOS_KDL_DEPEND_MK ----------------------------------------------
 

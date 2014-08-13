@@ -1,2 +1,2 @@
-This package contains a recent version of the Kinematics and Dynamics Library
-(KDL), distributed by the Orocos Project.
+This package is a dependency wrapper for Kinematics and Dynamics Library (KDL),
+distributed by the Orocos Project.
