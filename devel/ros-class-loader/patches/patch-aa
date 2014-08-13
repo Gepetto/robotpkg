@@ -1,9 +1,0 @@
---- cmake/FindPoco.cmake~	2013-06-06 19:55:46.000000000 +0200
-+++ cmake/FindPoco.cmake	2013-06-27 01:07:32.000000000 +0200
-@@ -200,5 +200,5 @@
- #I added this in to add "libdl" on non-Windows systems. Technically dl is only neded if the "Foundation" component is used,
- #but i doesn't hurt to add it in anyway - mas
- if(Poco_FOUND AND NOT WIN32)
--  LIST(APPEND Poco_LIBRARIES "dl")
-+  LIST(APPEND Poco_LIBRARIES ${CMAKE_DL_LIBS})
- endif(Poco_FOUND AND NOT WIN32)
