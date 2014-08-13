@@ -1,14 +1,10 @@
-@comment Tue Aug 6 12:14:07 CEST 2013
-bin/xacro.py
+@comment Wed Aug 13 16:51:29 CEST 2014
 lib/pkgconfig/xacro.pc
 ${PYTHON_SITELIB}/xacro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/xacro/__init__.py
-${PYTHON_SITELIB}/xacro/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/xacro/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
-lib/xacro/xacro.py
-lib/xacro/${PYTHON_PYCACHE}/xacro${PYTHON_TAG}.pyc
-lib/xacro/${PYTHON_PYCACHE}/xacro${PYTHON_TAG}.pyo
+lib/xacro/xacro
 share/xacro/cmake/xacro-extras.cmake
 share/xacro/cmake/xacroConfig-version.cmake
 share/xacro/cmake/xacroConfig.cmake
 share/xacro/package.xml
+share/xacro/xacro.py
