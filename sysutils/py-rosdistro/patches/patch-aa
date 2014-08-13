@@ -14,7 +14,7 @@ Don't be a chicken, don't make eggs.
  setup(
      name='rosdistro',
      version=__version__,
--    install_requires=['argparse', 'catkin_pkg', 'distribute', 'rospkg', 'PyYAML'],
+-    install_requires=['argparse', 'catkin_pkg', 'rospkg', 'PyYAML', 'setuptools'],
 -    packages=find_packages('src'),
 +    packages=['rosdistro', 'rosdistro/manifest_provider', 'rosdistro/external'],
      package_dir={'': 'src'},
