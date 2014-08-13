@@ -18,17 +18,17 @@ SYSTEM_PREFIX.ros-genpy?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-genpy
 ROS_DEPEND_USE+=		ros-genpy
 
-DEPEND_ABI.ros-genpy?=		ros-genpy>=0.3
+DEPEND_ABI.ros-genpy?=		ros-genpy>=0.4
 DEPEND_DIR.ros-genpy?=		../../lang/ros-genpy
 
-DEPEND_ABI.ros-genpy.fuerte?=	ros-genpy>=0.3<0.4
 DEPEND_ABI.ros-genpy.groovy?=	ros-genpy>=0.4<0.5
 DEPEND_ABI.ros-genpy.hydro?=	ros-genpy>=0.4<0.5
+DEPEND_ABI.ros-genpy.indigo?=	ros-genpy>=0.5<0.6
 
 SYSTEM_SEARCH.ros-genpy=\
 	'{lib/genpy,share/genpy/bin}/genmsg_py.py'		\
 	'{lib/genpy,share/genpy/bin}/gensrv_py.py'		\
-	'share/genpy/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+	'share/genpy/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/genpy.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_GENPY_DEPEND_MK ------------------------------------------------
