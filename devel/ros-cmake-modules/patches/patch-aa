@@ -1,0 +1,13 @@
+Find for debian multiarch
+
+--- cmake/Modules/FindTinyXML.cmake~	2014-05-08 00:11:34.000000000 +0200
++++ cmake/Modules/FindTinyXML.cmake	2014-08-13 11:46:23.484704444 +0200
+@@ -55,7 +55,7 @@
+ 
+ # Find headers and libraries
+ find_path(TinyXML_INCLUDE_DIR NAMES tinyxml.h PATH_SUFFIXES "tinyxml" ${TinyXML_INCLUDE_PATH})
+-find_library(TinyXML_LIBRARY  NAMES tinyxml   PATH_SUFFIXES "tinyxml" ${TinyXML_LIBRARY_PATH})
++find_library(TinyXML_LIBRARY  NAMES tinyxml   PATH_SUFFIXES "${CMAKE_LIBRARY_ARCHITECTURE}" "tinyxml" ${TinyXML_LIBRARY_PATH})
+ 
+ mark_as_advanced(TinyXML_INCLUDE_DIR
+                  TinyXML_LIBRARY)

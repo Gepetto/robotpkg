@@ -1,0 +1,11 @@
+@comment Wed Aug 13 11:04:02 CEST 2014
+lib/pkgconfig/cmake_modules.pc
+share/cmake_modules/cmake/Modules/FindEigen.cmake
+share/cmake_modules/cmake/Modules/FindNUMPY.cmake
+share/cmake_modules/cmake/Modules/FindTBB.cmake
+share/cmake_modules/cmake/Modules/FindTinyXML.cmake
+share/cmake_modules/cmake/Modules/FindXenomai.cmake
+share/cmake_modules/cmake/cmake_modules-extras.cmake
+share/cmake_modules/cmake/cmake_modulesConfig-version.cmake
+share/cmake_modules/cmake/cmake_modulesConfig.cmake
+share/cmake_modules/package.xml

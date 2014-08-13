@@ -21,6 +21,7 @@ SUBDIR+=	orocos-log4cpp
 SUBDIR+=	py-simpleparse
 SUBDIR+=	ros-bond-core
 SUBDIR+=	ros-catkin
+SUBDIR+=	ros-cmake-modules
 SUBDIR+=	ros-class-loader
 SUBDIR+=	ros-filters
 SUBDIR+=	ros-nodelet-core
