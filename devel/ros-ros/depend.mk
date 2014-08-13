@@ -18,17 +18,17 @@ SYSTEM_PREFIX.ros-ros?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=		ros-ros
 ROS_DEPEND_USE+=	ros-ros
 
-DEPEND_ABI.ros-ros?=	ros-ros>=1.8
+DEPEND_ABI.ros-ros?=	ros-ros>=1.9
 DEPEND_DIR.ros-ros?=	../../devel/ros-ros
 
-DEPEND_ABI.ros-ros.fuerte?=	ros-ros>=1.8<1.9
 DEPEND_ABI.ros-ros.groovy?=	ros-ros>=1.9<1.10
 DEPEND_ABI.ros-ros.hydro?=	ros-ros>=1.10<1.11
+DEPEND_ABI.ros-ros.indigo?=	ros-ros>=1.11<1.12
 
 SYSTEM_SEARCH.ros-ros=\
 	bin/rosrun					\
 	lib/libroslib.so				\
-	'share/ros/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'\
+	'share/ros/package.xml:/<version>/s/[^0-9.]//gp'\
 	'${PYTHON_SYSLIBSEARCH}/ros/__init__.py'	\
 	'lib/pkgconfig/roslib.pc:/Version/s/[^0-9.]//gp'
 

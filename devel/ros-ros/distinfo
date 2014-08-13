@@ -1,7 +1,3 @@
-SHA1 (ros/ros-1.9.49.tar.gz) = b9a05b1375e6762ca5c1a05aea33bcad11f54d2a
-RMD160 (ros/ros-1.9.49.tar.gz) = 8865d9a72713d87853db7a4a56c5c6e5e0c64f6f
-Size (ros/ros-1.9.49.tar.gz) = 154566 bytes
-SHA1 (patch-aa) = 632d31d526484d21dfcf218208d259c9ecb46459
-SHA1 (patch-ab) = 040e42a9b3129ef82333f0c395733d87a3abab7e
-SHA1 (patch-ac) = d8e1bac81a6ce80fbf0006dbf118338078b8baea
-SHA1 (patch-ad) = 207414f742c312dfcc775a99a417006093b84585
+SHA1 (ros/ros/1.11.4.tar.gz) = 2711abd822386c847740c7678fc3abe4f05fc9e0
+RMD160 (ros/ros/1.11.4.tar.gz) = 6e1dc4572aa30f17c2c690f3862607f4875aaf21
+Size (ros/ros/1.11.4.tar.gz) = 157530 bytes
