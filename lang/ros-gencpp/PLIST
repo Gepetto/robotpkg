@@ -1,13 +1,9 @@
-@comment Sat Jun 22 15:52:14 CEST 2013
+@comment Wed Aug 13 12:20:58 CEST 2014
 etc/ros/genmsg/gencpp
 lib/gencpp/gen_cpp.py
-lib/gencpp/${PYTHON_PYCACHE}/gen_cpp${PYTHON_TAG}.pyc
-lib/gencpp/${PYTHON_PYCACHE}/gen_cpp${PYTHON_TAG}.pyo
 lib/pkgconfig/gencpp.pc
 ${PYTHON_SITELIB}/gencpp-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/gencpp/__init__.py
-${PYTHON_SITELIB}/gencpp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/gencpp/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 share/gencpp/cmake/gencpp-extras.cmake
 share/gencpp/cmake/gencppConfig-version.cmake
 share/gencpp/cmake/gencppConfig.cmake

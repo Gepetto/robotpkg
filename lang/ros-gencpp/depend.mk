@@ -18,16 +18,16 @@ SYSTEM_PREFIX.ros-gencpp?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-gencpp
 ROS_DEPEND_USE+=		ros-gencpp
 
-DEPEND_ABI.ros-gencpp?=		ros-gencpp>=0.3
+DEPEND_ABI.ros-gencpp?=		ros-gencpp>=0.4
 DEPEND_DIR.ros-gencpp?=		../../lang/ros-gencpp
 
-DEPEND_ABI.ros-gencpp.fuerte?=	ros-gencpp>=0.3<0.4
 DEPEND_ABI.ros-gencpp.groovy?=	ros-gencpp>=0.4<0.5
 DEPEND_ABI.ros-gencpp.hydro?=	ros-gencpp>=0.4<0.5
+DEPEND_ABI.ros-gencpp.indigo?=	ros-gencpp>=0.5<0.6
 
 SYSTEM_SEARCH.ros-gencpp=\
 	'{lib/gencpp,share/gencpp/bin}/gen_cpp.py'		\
-	'share/gencpp/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+	'share/gencpp/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/gencpp.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_GENCPP_DEPEND_MK -----------------------------------------------
