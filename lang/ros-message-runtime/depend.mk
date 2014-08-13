@@ -18,13 +18,11 @@ SYSTEM_PREFIX.ros-message-runtime?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=				ros-message-runtime
 ROS_DEPEND_USE+=			ros-message-runtime
 
-DEPEND_ABI.ros+= ros>=groovy
-
 DEPEND_ABI.ros-message-runtime?=	ros-message-runtime>=0.4<0.5
 DEPEND_DIR.ros-message-runtime?=	../../lang/ros-message-runtime
 
 SYSTEM_SEARCH.ros-message-runtime=\
-	'share/message_runtime/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+	'share/message_runtime/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/message_runtime.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_MESSAGE_RUNTIME_DEPEND_MK --------------------------------------

@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	message_runtime
-ROS_VERSION=	0.4.11
+ROS_VERSION=	0.4.12
 
 CATEGORIES=	lang
 ROS_COMMENT=	run-time dependency for language bindings of messages
