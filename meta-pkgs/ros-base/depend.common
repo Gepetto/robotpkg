@@ -13,8 +13,8 @@ ifeq (+,${ROS_DEPEND_COMMON}) # --------------------------------------------
 #	The preferred ros distribution to use. The order of the entries
 #	matters, since earlier entries are preferred over later ones.
 #
-#	Possible values: fuerte groovy hydro
-#	Default: groovy fuerte
+#	Possible values: groovy hydro indigo
+#	Default: groovy
 #
 # === Package-settable variables ===
 #
@@ -22,7 +22,7 @@ ifeq (+,${ROS_DEPEND_COMMON}) # --------------------------------------------
 #	The ros versions that are acceptable for the package.
 #
 #	Possible values: any pattern
-#	Default: ros>=fuerte
+#	Default: ros>=groovy
 #
 # === Defined variables ===
 #
@@ -33,21 +33,25 @@ ifeq (+,${ROS_DEPEND_COMMON}) # --------------------------------------------
 #       Example: groovy
 #
 PKG_ALTERNATIVES+=	ros
-PKG_ALTERNATIVES.ros=	fuerte groovy hydro
+PKG_ALTERNATIVES.ros=	groovy hydro indigo
 
 # Set default preferences
 # Default ros package preference
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=fuerte groovy
-    PREFER.ros?=	system
-  else ifneq (,$(filter 11.10 12.04 12.10,${OS_VERSION}))
-    PREFER.ros?=	system
+  PREFER.ros?=	system
+  ifneq (,$(filter 10.04 11.10,${OS_VERSION}))
+    PREFER_ALTERNATIVE.ros?=groovy
+  else ifneq (,$(filter 12.04 12.10,${OS_VERSION}))
+    PREFER_ALTERNATIVE.ros?=hydro groovy
+  else ifneq (,$(filter 13.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.ros?=hydro
+  else ifneq (,$(filter 13.10 14.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.ros?=indigo
   endif
 endif
-PREFER_ALTERNATIVE.ros?=groovy fuerte
-DEPEND_ABI.ros?=	ros>=fuerte
+PREFER_ALTERNATIVE.ros?=indigo hydro groovy
+DEPEND_ABI.ros?=	ros>=groovy
 
 PREFER.ros?=		robotpkg
 SYSTEM_PREFIX.ros?=	/opt/ros/${PKG_ALTERNATIVE.ros} ${SYSTEM_PREFIX}
@@ -56,7 +60,7 @@ PREFER.ros-base?=	${PREFER.ros}
 SYSTEM_PREFIX.ros-base?=${SYSTEM_PREFIX.ros}
 
 # internal macro keeping track of a ros package DEPEND_ABI before a ros
-# alternative is selected 
+# alternative is selected
 override define _ros_noaltdep
 $(eval $(if $(filter undefined,$(origin _ros_noaltdep.$1)),\
   _ros_noaltdep.$1:=${DEPEND_ABI.$1}))${_ros_noaltdep.$1}
@@ -68,9 +72,9 @@ define _ros_altdef
   PKGTAG.$1=			$1
   DEPEND_ABI.$1?=		ros-$1
   PKG_ALTERNATIVE_SELECT.$1=$$(call preduce,				\
-    ros==$1 $${DEPEND_ABI.ros} 						\
+    ros==$1 $${DEPEND_ABI.ros}						\
     $$(foreach _,$${ROS_DEPEND_USE},					\
-      $$(if $$(filter robotpkg,$${PREFER.$$_}),ros==groovy)		\
+      $$(if $$(filter robotpkg,$${PREFER.$$_}),ros==indigo)		\
       $$(call _ros_noaltdep,$$_) $${DEPEND_ABI.$$_.$1}))
   PKG_ALTERNATIVE_SET.$1=						\
     $$(foreach _,$${ROS_DEPEND_USE},					\
@@ -83,8 +87,5 @@ PLIST_SUBST+=\
   PKG_ALTERNATIVE.ros=${PKG_ALTERNATIVE.ros}
 PRINT_PLIST_AWK_SUBST+=\
   gsub(/$(subst .,\.,${PKG_ALTERNATIVE.ros})/, "$${PKG_ALTERNATIVE.ros}");
-
-ROS_STACKAGE.fuerte={manifest,stack}.xml
-ROS_STACKAGE=$(or ${ROS_STACKAGE.${PKG_ALTERNATIVE.ros}},package.xml)
 
 endif # ROS_DEPEND_COMMON --------------------------------------------------

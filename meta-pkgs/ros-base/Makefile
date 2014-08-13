@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 19 Jan 2011
 #
 
-DISTNAME=	ros-base-1.9
+DISTNAME=	ros-base-1.11
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
 
@@ -14,7 +14,7 @@ NOT_FOR_PLATFORM=
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 
 PREFER.ros?=	robotpkg
-DEPEND_ABI.ros=	ros==groovy
+DEPEND_ABI.ros=	ros==indigo
 
 include ../../devel/ros-ros/depend.mk
 include ../../middleware/ros-comm/depend.mk

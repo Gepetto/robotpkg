@@ -1,20 +1,21 @@
 # robotpkg Makefile for:	meta-pkgs/ros-base
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
-ROS_DISTRIB=	groovy
+ROS_DISTRIB=	indigo
 ROS_VERSION?=	undefined
 ROS_METAPKG?=	no
 ROS_PKG?=	undefined
 ROS_GITTAG?=	${ROS_VERSION}
-ROS_PKGURL?=	${ROS_PKG}/archive/${ROS_GITTAG}${EXTRACT_SUFX}?file=
+ROS_PKGURL?=	${ROS_PKG}/archive/
 ROS_REPO?=	ros
 
 ROS_COMMENT?=	undefined
 
 PKGNAME?=	ros-$(subst _,-,${ROS_PKG})-${ROS_VERSION}
 DISTNAME?=	${ROS_PKG}-${ROS_VERSION}
+DISTFILES?=	${ROS_GITTAG}${EXTRACT_SUFX}
 MASTER_SITES?=	${MASTER_SITE_GITHUB:=${ROS_REPO}/${ROS_PKGURL}}
-DIST_SUBDIR?=	ros
+DIST_SUBDIR?=	ros/${ROS_PKG}
 EXTRACT_SUFX?=	.tar.gz
 
 COMMENT?=	ROS ${ROS_COMMENT}
@@ -41,8 +42,6 @@ CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=	-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
 CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=	-DPYTHON_PACKAGES_DIR=site-packages
-
-DEPEND_ABI.python+=	python<3
 
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
