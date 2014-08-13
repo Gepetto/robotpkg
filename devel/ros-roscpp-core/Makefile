@@ -4,7 +4,7 @@
 
 ROS_PKG=	roscpp_core
 ROS_METAPKG=	yes
-ROS_VERSION=	0.3.16
+ROS_VERSION=	0.5.4
 
 CATEGORIES=	devel
 ROS_COMMENT=	underlying data libraries for roscpp messages
@@ -14,4 +14,5 @@ include ../../meta-pkgs/ros-base/Makefile.common
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
+include ../../sysutils/console-bridge/depend.mk
 include ../../mk/robotpkg.mk

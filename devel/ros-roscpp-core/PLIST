@@ -1,12 +1,15 @@
-@comment Sat Jun 22 01:00:55 CEST 2013
+@comment Wed Aug 13 12:15:00 CEST 2014
 include/ros/builtin_message_traits.h
 include/ros/cpp_common_decl.h
+include/ros/datatypes.h
 include/ros/debug.h
 include/ros/duration.h
 include/ros/exception.h
+include/ros/header.h
 include/ros/impl/duration.h
 include/ros/impl/time.h
 include/ros/macros.h
+include/ros/message_event.h
 include/ros/message_forward.h
 include/ros/message_operations.h
 include/ros/message_traits.h
