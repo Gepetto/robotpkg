@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	srdfdom
-ROS_VERSION=	0.2.5
+ROS_VERSION=	0.2.7
 ROS_REPO=	ros-planning
 
 CATEGORIES=	graphics
