@@ -1,5 +1,6 @@
-@comment Thu Jul 4 22:35:27 CEST 2013
+@comment Wed Aug 13 12:13:14 CEST 2014
 include/console_bridge/console.h
+include/console_bridge/exportdecl.h
 lib/libconsole_bridge.so
 lib/pkgconfig/console_bridge.pc
 share/console_bridge/cmake/console_bridge-config.cmake

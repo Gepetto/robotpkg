@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	console_bridge
-ROS_VERSION=	0.2.4
+ROS_VERSION=	0.2.7
 PKGNAME=	$(subst _,-,${ROS_PKG})-${ROS_VERSION}
 
 CATEGORIES=	sysutils
