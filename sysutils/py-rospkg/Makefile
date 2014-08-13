@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	rospkg
-ROS_VERSION=	1.0.20
+ROS_VERSION=	1.0.29
 PKGNAME=	${PKGTAG.python}-${ROS_PKG}-${ROS_VERSION}
 
 CATEGORIES=	sysutils
