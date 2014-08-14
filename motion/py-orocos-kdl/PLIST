@@ -1,0 +1,3 @@
+@comment Thu Aug 14 14:25:59 CEST 2014
+${PYTHON_SITELIB}/PyKDL.so
+share/python_orocos_kdl/package.xml
