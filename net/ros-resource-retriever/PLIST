@@ -1,0 +1,9 @@
+@comment Thu Aug 14 10:41:54 CEST 2014
+include/resource_retriever/retriever.h
+lib/libresource_retriever.so
+lib/pkgconfig/resource_retriever.pc
+${PYTHON_SITELIB}/resource_retriever-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/resource_retriever/__init__.py
+share/resource_retriever/cmake/resource_retrieverConfig-version.cmake
+share/resource_retriever/cmake/resource_retrieverConfig.cmake
+share/resource_retriever/package.xml
