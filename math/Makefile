@@ -21,6 +21,7 @@ SUBDIR+=	lapack
 SUBDIR+=	liblbfgs
 SUBDIR+=	meschach
 SUBDIR+=	ros-angles
+SUBDIR+=	ros-eigen-stl-containers
 SUBDIR+=	ros-geometry
 SUBDIR+=	sensFusion-libs
 SUBDIR+=	t3d

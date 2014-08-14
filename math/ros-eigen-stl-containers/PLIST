@@ -1,0 +1,8 @@
+@comment Thu Aug 14 10:26:14 CEST 2014
+include/eigen_stl_containers/eigen_stl_containers.h
+include/eigen_stl_containers/eigen_stl_map_container.h
+include/eigen_stl_containers/eigen_stl_vector_container.h
+lib/pkgconfig/eigen_stl_containers.pc
+share/eigen_stl_containers/cmake/eigen_stl_containersConfig-version.cmake
+share/eigen_stl_containers/cmake/eigen_stl_containersConfig.cmake
+share/eigen_stl_containers/package.xml

@@ -1,0 +1,2 @@
+This package provides a set of typedef's that allow using Eigen datatypes in
+STL containers.
