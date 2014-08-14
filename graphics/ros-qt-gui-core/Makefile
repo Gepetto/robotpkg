@@ -4,7 +4,7 @@
 
 ROS_PKG=	qt_gui_core
 ROS_METAPKG=	yes
-ROS_VERSION=	0.2.18
+ROS_VERSION=	0.2.25
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	graphics

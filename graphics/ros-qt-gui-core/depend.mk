@@ -18,21 +18,21 @@ SYSTEM_PREFIX.ros-qt-gui-core?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-qt-gui-core
 ROS_DEPEND_USE+=		ros-qt-gui-core
 
-DEPEND_ABI.ros-qt-gui-core?=	ros-qt-gui-core>=0.1
+DEPEND_ABI.ros-qt-gui-core?=	ros-qt-gui-core>=0.2
 DEPEND_DIR.ros-qt-gui-core?=	../../graphics/ros-qt-gui-core
 
-DEPEND_ABI.ros-qt-gui-core.fuerte?=	ros-qt-gui-core>=0.1<0.2
 DEPEND_ABI.ros-qt-gui-core.groovy?=	ros-qt-gui-core>=0.2<0.3
 DEPEND_ABI.ros-qt-gui-core.hydro?=	ros-qt-gui-core>=0.2<0.3
+DEPEND_ABI.ros-qt-gui-core.indigo?=	ros-qt-gui-core>=0.2<0.3
 
 SYSTEM_SEARCH.ros-qt-gui-core=\
   'include/qt_gui_cpp/settings.h'				\
   'lib/libqt_gui_cpp.so'					\
-  'share/qt_dotgraph/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
-  'share/qt_gui/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'		\
-  'share/qt_gui_cpp/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
-  'share/qt_gui_py_common/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
-  'share/qt_gui_app/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+  'share/qt_dotgraph/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'share/qt_gui/package.xml:/<version>/s/[^0-9.]//gp'		\
+  'share/qt_gui_cpp/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'share/qt_gui_py_common/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'share/qt_gui_app/package.xml:/<version>/s/[^0-9.]//gp'	\
   '${PYTHON_SYSLIBSEARCH}/qt_dotgraph/__init__.py'		\
   '${PYTHON_SYSLIBSEARCH}/qt_gui/__init__.py'			\
   '${PYTHON_SYSLIBSEARCH}/qt_gui_cpp/__init__.py'		\
