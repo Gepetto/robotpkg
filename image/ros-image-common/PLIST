@@ -1,4 +1,4 @@
-@comment Fri Jun 28 01:09:47 CEST 2013
+@comment Thu Aug 14 17:38:10 CEST 2014
 include/camera_calibration_parsers/parse.h
 include/camera_calibration_parsers/parse_ini.h
 include/camera_calibration_parsers/parse_yml.h
@@ -38,14 +38,8 @@ lib/pkgconfig/image_transport.pc
 lib/pkgconfig/polled_camera.pc
 lib/polled_camera/poller
 ${PYTHON_SITELIB}/polled_camera/__init__.py
-${PYTHON_SITELIB}/polled_camera/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/polled_camera/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/polled_camera/srv/_GetPolledImage.py
-${PYTHON_SITELIB}/polled_camera/srv/${PYTHON_PYCACHE}/_GetPolledImage${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/polled_camera/srv/${PYTHON_PYCACHE}/_GetPolledImage${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/polled_camera/srv/__init__.py
-${PYTHON_SITELIB}/polled_camera/srv/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/polled_camera/srv/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 share/camera_calibration_parsers/cmake/camera_calibration_parsersConfig-version.cmake
 share/camera_calibration_parsers/cmake/camera_calibration_parsersConfig.cmake
 share/camera_calibration_parsers/package.xml
