@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Tue, 06 Aug 2013
 #
 
-DISTNAME=	ros-robot-1.9
+DISTNAME=	ros-robot-1.11
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
 
@@ -15,7 +15,7 @@ MESSAGE_SRC=	../../meta-pkgs/ros-base/MESSAGE
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 
 PREFER.ros?=	robotpkg
-DEPEND_ABI.ros=	ros==groovy
+DEPEND_ABI.ros=	ros==indigo
 
 # ros-base
 include ../../middleware/ros-comm/depend.mk
