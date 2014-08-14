@@ -7,6 +7,7 @@ SUBDIR+=	dynamic-graph
 SUBDIR+=	dynamic-graph-corba
 SUBDIR+=	contlaw
 SUBDIR+=	locoDemo-genom
+SUBDIR+=	orocos-kdl
 SUBDIR+=	pilo-genom
 SUBDIR+=	py-dynamic-graph
 SUBDIR+=	py-sot-tools
