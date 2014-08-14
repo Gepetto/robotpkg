@@ -2,16 +2,16 @@ Configure paths
 
 --- cmake/sip_helper.cmake~	2013-08-22 03:37:48.000000000 +0200
 +++ cmake/sip_helper.cmake	2013-12-19 14:37:07.666485991 +0100
-@@ -8,7 +8,7 @@
- find_package(PythonInterp REQUIRED)
+@@ -10,7 +10,7 @@
  assert(PYTHON_EXECUTABLE)
+ find_package(PythonLibs "${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}" REQUIRED)
  
 -find_program(SIP_EXECUTABLE sip)
 +set(SIP_EXECUTABLE @SIP@)
  if(NOT SIP_EXECUTABLE_NOTFOUND)
    message(STATUS "SIP binding generator available.")
    set(sip_helper_FOUND TRUE)
-@@ -216,7 +216,7 @@
+@@ -218,7 +218,7 @@
  
      add_custom_command(
          OUTPUT ${sip_LIBRARY_DIR}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}

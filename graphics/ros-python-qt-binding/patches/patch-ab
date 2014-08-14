@@ -2,21 +2,19 @@ pyside is explicitly disabled for now -- lacks mk/sysdep files + alternatives
 
 --- cmake/shiboken_helper.cmake~	2013-08-22 03:37:48.000000000 +0200
 +++ cmake/shiboken_helper.cmake	2013-12-19 14:35:49.538869092 +0100
-@@ -2,7 +2,7 @@
-   return()
+@@ -3,6 +3,7 @@
  endif()
  set(__PYTHON_QT_BINDING_SHIBOKEN_HELPER_INCLUDED TRUE)
--
-+if (0)
- find_package(Shiboken)
- find_package(PySide)
- find_package(PythonLibs)
-@@ -23,7 +23,7 @@
+ 
++if(0)
+ if("${PYTHON_VERSION_MAJOR}" STREQUAL "2")
+   set(PYTHON_SUFFIX "-python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
+ elseif("${PYTHON_VERSION_MAJOR}" STREQUAL "3")
+@@ -41,6 +42,7 @@
    message(WARNING "Shiboken binding generator NOT available.")
    set(shiboken_helper_NOTFOUND TRUE)
  endif()
--
 +endif()
  
+ 
  macro(_shiboken_generator_command VAR GLOBAL TYPESYSTEM INCLUDE_PATH BUILD_DIR)
-     # See ticket https://code.ros.org/trac/ros-pkg/ticket/5219

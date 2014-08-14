@@ -1,7 +1,7 @@
-SHA1 (ros/python_qt_binding-0.2.11.tar.gz) = 7650a36359e06c89ecffa5cd75418a9107aed6b6
-RMD160 (ros/python_qt_binding-0.2.11.tar.gz) = 34987c68ad21d07ed5b5473d82c82fadb1fa6349
-Size (ros/python_qt_binding-0.2.11.tar.gz) = 10862 bytes
+SHA1 (ros/python_qt_binding/0.2.14.tar.gz) = 3c891f628ea38ceca769700462254c510d78a0e7
+RMD160 (ros/python_qt_binding/0.2.14.tar.gz) = 08c8ad7cc874a3b7ea45515ddd2643b76235009c
+Size (ros/python_qt_binding/0.2.14.tar.gz) = 11402 bytes
 SHA1 (patch-aa) = ff4042f6233c7fcd54a2098c11e3eae8f873fcd4
-SHA1 (patch-ab) = 3addc9bce7e84b8c096d4acc37d2a122992abb7d
-SHA1 (patch-ac) = e1a25f378e7b1099dd80f5983f49cb3809d4be23
-SHA1 (patch-ae) = c376860ecbea762cd2fdc6a3827a93200de47c01
+SHA1 (patch-ab) = cc9d9248a6f2bc8f8c3e03fef15c32f4afeed60b
+SHA1 (patch-ac) = 4b646b38cb1348e5f17ac4188c3c510357c862a6
+SHA1 (patch-ae) = 707e1fa5fe1f09680500592ad1f6a5e93a1bd0b3
