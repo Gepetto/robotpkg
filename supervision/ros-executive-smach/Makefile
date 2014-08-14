@@ -3,9 +3,8 @@
 #
 
 ROS_PKG=	executive_smach
-ROS_VERSION=	1.3.0
+ROS_VERSION=	2.0.0
 ROS_METAPKG=	yes
-ROS_GITTAG=	dab61502086ebca000ab420a224f08104d44a675
 
 CATEGORIES=	supervision
 ROS_COMMENT=	procedural python-based task execution framework
