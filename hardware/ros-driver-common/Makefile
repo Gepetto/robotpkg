@@ -2,9 +2,9 @@
 # Created:			Séverin Lemaignan on Tue, 06 Aug 2013
 #
 
-ROS_PKG=		driver_common
-ROS_VERSION=	1.6.6
-ROS_REPO=		ros-drivers
+ROS_PKG=	driver_common
+ROS_VERSION=	1.6.8
+ROS_REPO=	ros-drivers
 ROS_METAPKG=	yes
 
 CATEGORIES=	hardware
