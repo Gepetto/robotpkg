@@ -4,8 +4,7 @@
 
 ROS_PKG=		vision_opencv
 ROS_METAPKG=		yes
-ROS_VERSION=		1.10.6
-ROS_GITTAG=		982b5d404856b9f44f4aec1b78854812ee2542d9
+ROS_VERSION=		1.11.4
 ROS_REPO=		ros-perception
 
 CATEGORIES=		image

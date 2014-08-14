@@ -1,4 +1,4 @@
-@comment Wed Jun 26 15:03:17 CEST 2013
+@comment Thu Aug 14 17:42:52 CEST 2014
 include/cv_bridge/cv_bridge.h
 include/image_geometry/pinhole_camera_model.h
 include/image_geometry/stereo_camera_model.h
@@ -9,22 +9,12 @@ lib/pkgconfig/image_geometry.pc
 lib/pkgconfig/opencv_tests.pc
 ${PYTHON_SITELIB}/cv_bridge-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/cv_bridge/__init__.py
-${PYTHON_SITELIB}/cv_bridge/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/cv_bridge/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/cv_bridge/boost/__init__.py
-${PYTHON_SITELIB}/cv_bridge/boost/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/cv_bridge/boost/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/cv_bridge/boost/cv_bridge_boost.so
 ${PYTHON_SITELIB}/cv_bridge/core.py
-${PYTHON_SITELIB}/cv_bridge/${PYTHON_PYCACHE}/core${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/cv_bridge/${PYTHON_PYCACHE}/core${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/image_geometry-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/image_geometry/__init__.py
-${PYTHON_SITELIB}/image_geometry/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/image_geometry/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/image_geometry/cameramodels.py
-${PYTHON_SITELIB}/image_geometry/${PYTHON_PYCACHE}/cameramodels${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/image_geometry/${PYTHON_PYCACHE}/cameramodels${PYTHON_TAG}.pyo
 share/cv_bridge/cmake/cv_bridgeConfig-version.cmake
 share/cv_bridge/cmake/cv_bridgeConfig.cmake
 share/cv_bridge/package.xml

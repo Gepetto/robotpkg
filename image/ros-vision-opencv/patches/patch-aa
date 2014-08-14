@@ -1,7 +1,0 @@
---- /dev/null	2013-06-26 23:03:19.000000000 +0200
-+++ vision_opencv/CMakeLists.txt	2013-06-26 23:04:19.000000000 +0200
-@@ -0,0 +1,4 @@
-+cmake_minimum_required(VERSION 2.8.3)
-+project(vision_opencv)
-+find_package(catkin REQUIRED)
-+catkin_metapackage()
