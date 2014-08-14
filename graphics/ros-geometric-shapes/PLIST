@@ -1,0 +1,12 @@
+@comment Thu Aug 14 11:12:10 CEST 2014
+include/geometric_shapes/bodies.h
+include/geometric_shapes/body_operations.h
+include/geometric_shapes/mesh_operations.h
+include/geometric_shapes/shape_messages.h
+include/geometric_shapes/shape_operations.h
+include/geometric_shapes/shapes.h
+lib/libgeometric_shapes.so
+lib/pkgconfig/geometric_shapes.pc
+share/geometric_shapes/cmake/geometric_shapesConfig-version.cmake
+share/geometric_shapes/cmake/geometric_shapesConfig.cmake
+share/geometric_shapes/package.xml
