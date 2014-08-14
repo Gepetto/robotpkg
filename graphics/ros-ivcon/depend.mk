@@ -18,13 +18,12 @@ SYSTEM_PREFIX.ros-ivcon?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-ivcon
 ROS_DEPEND_USE+=		ros-ivcon
 
-DEPEND_ABI.ros+= ros>=groovy
 DEPEND_ABI.ros-ivcon?=	ros-ivcon>=0.1
 DEPEND_DIR.ros-ivcon=	../../graphics/ros-ivcon
 
 SYSTEM_SEARCH.ros-ivcon=\
 	bin/ivcon		\
-	'share/ivcon/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+	'share/ivcon/package.xml:/<version>/s/[^0-9.]//gp'	\
 
 endif # ROS_IVCON_DEPEND_MK --------------------------------------------
 
