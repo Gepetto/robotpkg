@@ -9,7 +9,7 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=			ros-convex-decomposition
 endif
 
-ifeq (+,$(ROS_CONVEX_DECOMPOSITION_DEPEND_MK)) # --------------------------------------
+ifeq (+,$(ROS_CONVEX_DECOMPOSITION_DEPEND_MK)) # ---------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
 PREFER.ros-convex-decomposition?=		${PREFER.ros-base}
@@ -18,14 +18,13 @@ SYSTEM_PREFIX.ros-convex-decomposition?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-convex-decomposition
 ROS_DEPEND_USE+=		ros-convex-decomposition
 
-DEPEND_ABI.ros+= ros>=groovy
 DEPEND_ABI.ros-convex-decomposition?=	ros-convex-decomposition>=0.1
 DEPEND_DIR.ros-convex-decomposition=	../../graphics/ros-convex-decomposition
 
 SYSTEM_SEARCH.ros-convex-decomposition=\
 	bin/convex_decomposition		\
-	'share/convex_decomposition/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+	'share/convex_decomposition/package.xml:/<version>/s/[^0-9.]//gp'
 
-endif # ROS_CONVEX_DECOMPOSITION_DEPEND_MK --------------------------------------------
+endif # ROS_CONVEX_DECOMPOSITION_DEPEND_MK ---------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
