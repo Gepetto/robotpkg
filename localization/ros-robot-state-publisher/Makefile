@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	robot_state_publisher
-ROS_VERSION=	1.9.9
+ROS_VERSION=	1.10.3
 
 CATEGORIES=	localization
 ROS_COMMENT=	publish the state of a robot
