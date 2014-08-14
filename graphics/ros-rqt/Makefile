@@ -4,7 +4,7 @@
 
 ROS_PKG=		rqt
 ROS_METAPKG=		yes
-ROS_VERSION=		0.2.9
+ROS_VERSION=		0.2.14
 ROS_REPO=		ros-visualization
 
 CATEGORIES=		graphics
