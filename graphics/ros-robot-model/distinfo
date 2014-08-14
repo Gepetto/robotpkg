@@ -1,7 +1,5 @@
-SHA1 (ros/robot_model-1.9.36.tar.gz) = fc67bbce13afeb3c734718353be08d387941035d
-RMD160 (ros/robot_model-1.9.36.tar.gz) = e9bace71389ff791498dc3fb29898770e69600dd
-Size (ros/robot_model-1.9.36.tar.gz) = 141154 bytes
-SHA1 (patch-aa) = 47e57cf5df6c01d80ee7f9f8da34528416e56fb0
-SHA1 (patch-ab) = 52d36f28e925163f6a37792ec992fea763dbeced
-SHA1 (patch-ac) = 1c6bcf110e7f7c6180a32be0866dcaeb71597028
-SHA1 (patch-ad) = e2169934ea4ab4f2bedc2a9902e9c1678856b7b9
+SHA1 (ros/robot_model/1.11.5.tar.gz) = 502be20737518efdf6a9b5e8a09f246d7ac0efe9
+RMD160 (ros/robot_model/1.11.5.tar.gz) = f0d90224254cc7baa621c157bb6da3dbf309d57a
+Size (ros/robot_model/1.11.5.tar.gz) = 366933 bytes
+SHA1 (patch-aa) = b8798d0be9643e8ae870d834d8bb28111d4f7ecf
+SHA1 (patch-ac) = e0f3fb537b311a39de8c1af733fb41f6ff09ef47

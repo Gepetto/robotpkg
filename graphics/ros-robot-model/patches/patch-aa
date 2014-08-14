@@ -1,6 +1,6 @@
 --- collada_parser/CMakeLists.txt.orig	2013-07-02 07:38:41.000000000 +0200
 +++ collada_parser/CMakeLists.txt	2013-07-05 00:14:00.000000000 +0200
-@@ -2,24 +2,23 @@
+@@ -2,6 +2,9 @@
  project(collada_parser)
  
  find_package(Boost REQUIRED system)
@@ -8,17 +8,18 @@
 +pkg_check_modules(urdfdom_headers urdfdom_headers)
 +find_package(COLLADA_DOM 2.3 COMPONENTS 1.5)
  
- find_package(catkin REQUIRED COMPONENTS urdfdom_headers roscpp)
- 
- catkin_package( 
+ find_package(catkin REQUIRED COMPONENTS urdf_parser_plugin roscpp class_loader)
+ find_package(urdfdom_headers REQUIRED)
+@@ -10,19 +13,14 @@
    LIBRARIES ${PROJECT_NAME}
    INCLUDE_DIRS include
--  CATKIN_DEPENDS urdfdom_headers roscpp)
-+  CATKIN_DEPENDS roscpp
-+  DEPENDS urdfdom_headers COLLADA_DOM)
+   CATKIN_DEPENDS roscpp urdf_parser_plugin
+-  DEPENDS urdfdom_headers
++  DEPENDS urdfdom_headers COLLADA_DOM
+ )
  
  include_directories(${Boost_INCLUDE_DIR})
- include_directories(include ${catkin_INCLUDE_DIRS})
+ include_directories(include ${catkin_INCLUDE_DIRS} ${urdfdom_headers_INCLUDE_DIRS})
  
 -set(CMAKE_MODULE_PATH  ${PROJECT_SOURCE_DIR}/cmake-extensions/)
 -find_package(PkgConfig)
@@ -32,12 +33,12 @@
  
  # necessary for collada reader to create the temporary dae files due
  # to limitations in the URDF geometry
-@@ -32,7 +31,7 @@
- #common commands for building c++ executables and libraries
+@@ -35,7 +33,7 @@
+ # build the parser lib
  add_library(${PROJECT_NAME} src/collada_parser.cpp)
  target_link_libraries(${PROJECT_NAME}
 -  ${COLLADA_DOM_LIBRARIES} ${Boost_LIBRARIES} ${catkin_LIBRARIES}
 +  ${Boost_LIBRARIES} ${catkin_LIBRARIES}
  )
  
- set_target_properties(${PROJECT_NAME}
+ # build the plugin for the parser
