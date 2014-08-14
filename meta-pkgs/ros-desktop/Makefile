@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Sun, 23 Jun 2013
 #
 
-PKGREVISION=	5
-DISTNAME=	ros-desktop-1.9
+DISTNAME=	ros-desktop-1.11
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
 
@@ -16,7 +15,7 @@ MESSAGE_SRC=	../../meta-pkgs/ros-base/MESSAGE
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 
 PREFER.ros?=	robotpkg
-DEPEND_ABI.ros=	ros==groovy
+DEPEND_ABI.ros=	ros==indigo
 
 # TODO:
 # common-tutorials
