@@ -18,12 +18,12 @@ SYSTEM_PREFIX.ros-actionlib?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-actionlib
 ROS_DEPEND_USE+=		ros-actionlib
 
-DEPEND_ABI.ros-actionlib?=	ros-actionlib>=1.8
+DEPEND_ABI.ros-actionlib?=	ros-actionlib>=1.9
 DEPEND_DIR.ros-actionlib=	../../middleware/ros-actionlib
 
-DEPEND_ABI.ros-actionlib.fuerte+=	ros-actionlib>=1.8<1.9
 DEPEND_ABI.ros-actionlib.groovy+=	ros-actionlib>=1.9<1.10
 DEPEND_ABI.ros-actionlib.hydro+=	ros-actionlib>=1.10<1.11
+DEPEND_ABI.ros-actionlib.indigo+=	ros-actionlib>=1.11<1.12
 
 SYSTEM_SEARCH.ros-actionlib=\
 	include/actionlib/server/action_server.h		\

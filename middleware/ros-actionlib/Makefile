@@ -3,8 +3,7 @@
 #
 
 ROS_PKG=	actionlib
-ROS_VERSION=	1.9.12
-ROS_GITTAG=	708826c9b9f92fcc9fb06a36dfe5755f9c3586a8
+ROS_VERSION=	1.11.2
 
 CATEGORIES=	middleware
 ROS_COMMENT=	standardized interface for preemptable tasks
@@ -15,6 +14,8 @@ SUBST_CLASSES+=		py-interp
 SUBST_FILES.py-interp+=	src/actionlib/*.py
 SUBST_FILES.py-interp+=	test/*.py
 SUBST_FILES.py-interp+=	tools/*.py
+
+USE_BOOST_LIBS=	thread
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
