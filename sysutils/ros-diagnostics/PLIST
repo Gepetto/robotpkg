@@ -1,4 +1,7 @@
-@comment Tue Aug 6 10:48:54 CEST 2013
+@comment Thu Aug 14 15:20:40 CEST 2014
+bin/run_selftest
+bin/selftest_example
+bin/selftest_rostest
 include/diagnostic_aggregator/aggregator.h
 include/diagnostic_aggregator/analyzer.h
 include/diagnostic_aggregator/analyzer_group.h
@@ -16,6 +19,11 @@ include/self_test/self_test.h
 include/test_diagnostic_aggregator/fail_init_analyzer.h
 include/test_diagnostic_aggregator/match_no_analyze_analyzer.h
 lib/diagnostic_aggregator/aggregator_node
+lib/diagnostic_aggregator/analyzer_loader
+lib/diagnostic_common_diagnostics/hd_monitor.py
+lib/diagnostic_common_diagnostics/ntp_monitor.py
+lib/diagnostic_common_diagnostics/sensors_monitor.py
+lib/diagnostic_common_diagnostics/tf_monitor.py
 lib/libdiagnostic_aggregator.so
 lib/pkgconfig/diagnostic_aggregator.pc
 lib/pkgconfig/diagnostic_analysis.pc
@@ -23,22 +31,22 @@ lib/pkgconfig/diagnostic_common_diagnostics.pc
 lib/pkgconfig/diagnostic_updater.pc
 lib/pkgconfig/self_test.pc
 lib/pkgconfig/test_diagnostic_aggregator.pc
+${PYTHON_SITELIB}/diagnostic_analysis-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/diagnostic_analysis/__init__.py
+${PYTHON_SITELIB}/diagnostic_analysis/exporter.py
+${PYTHON_SITELIB}/diagnostic_analysis/sparse.py
 ${PYTHON_SITELIB}/diagnostic_common_diagnostics-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/diagnostic_common_diagnostics/__init__.py
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/__init__${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/diagnostic_common_diagnostics/hd_monitor.py
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/hd_monitor${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/hd_monitor${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/diagnostic_common_diagnostics/ntp_monitor.py
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/ntp_monitor${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/ntp_monitor${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/diagnostic_common_diagnostics/sensors_monitor.py
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/sensors_monitor${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/sensors_monitor${PYTHON_TAG}.pyo
 ${PYTHON_SITELIB}/diagnostic_common_diagnostics/tf_monitor.py
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/tf_monitor${PYTHON_TAG}.pyc
-${PYTHON_SITELIB}/diagnostic_common_diagnostics/${PYTHON_PYCACHE}/tf_monitor${PYTHON_TAG}.pyo
+${PYTHON_SITELIB}/diagnostic_updater-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/diagnostic_updater/__init__.py
+${PYTHON_SITELIB}/diagnostic_updater/_diagnostic_status_wrapper.py
+${PYTHON_SITELIB}/diagnostic_updater/_diagnostic_updater.py
+${PYTHON_SITELIB}/diagnostic_updater/_publisher.py
+${PYTHON_SITELIB}/diagnostic_updater/_update_functions.py
 share/diagnostic_aggregator/analyzer_plugins.xml
 share/diagnostic_aggregator/cmake/diagnostic_aggregatorConfig-version.cmake
 share/diagnostic_aggregator/cmake/diagnostic_aggregatorConfig.cmake
