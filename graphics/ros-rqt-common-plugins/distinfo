@@ -1,4 +1,4 @@
-SHA1 (ros/rqt_common_plugins-0.2.16.tar.gz) = a7069282dfcc11a97372f439eb591ab13104922e
-RMD160 (ros/rqt_common_plugins-0.2.16.tar.gz) = 979fe691ad9c5fcb29fe74e0a581f88c0ee205ac
-Size (ros/rqt_common_plugins-0.2.16.tar.gz) = 191037 bytes
-SHA1 (patch-aa) = 2d37f777cca50e41ad49405573fae9b4ca90db60
+SHA1 (ros/rqt_common_plugins/0.3.8.tar.gz) = e78ff0d273363781e87c23f208c66cfe24221051
+RMD160 (ros/rqt_common_plugins/0.3.8.tar.gz) = b27dbabaddc6be632993a195b01f7a7e2c0cc038
+Size (ros/rqt_common_plugins/0.3.8.tar.gz) = 239235 bytes
+SHA1 (patch-aa) = e53566350f107362e562411d376ea47fd0ee3a7e

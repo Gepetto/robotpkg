@@ -4,7 +4,7 @@
 
 ROS_PKG=		rqt_common_plugins
 ROS_METAPKG=		yes
-ROS_VERSION=		0.2.16
+ROS_VERSION=		0.3.8
 ROS_REPO=		ros-visualization
 
 CATEGORIES=		graphics
@@ -35,6 +35,7 @@ include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
+include ../../mk/sysdep/marble.mk
 include ../../mk/sysdep/py-matplotlib.mk
 include ../../mk/sysdep/qmake.mk
 include ../../mk/sysdep/qt4-libs.mk

@@ -1,8 +1,8 @@
 --- rqt_image_view/CMakeLists.txt~	2013-04-09 22:33:27.000000000 +0200
 +++ rqt_image_view/CMakeLists.txt	2013-06-29 22:52:58.000000000 +0200
 @@ -32,7 +32,6 @@
- 	LIBRARIES ${PROJECT_NAME} 
- 	CATKIN_DEPENDS rqt_gui rqt_gui_cpp image_transport sensor_msgs cv_bridge
+   LIBRARIES ${PROJECT_NAME}
+   CATKIN_DEPENDS rqt_gui rqt_gui_cpp image_transport sensor_msgs cv_bridge
  )
 -catkin_python_setup()
  
