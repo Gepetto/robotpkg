@@ -1,0 +1,7 @@
+@comment Thu Aug 14 10:54:06 CEST 2014
+include/random_numbers/random_numbers.h
+lib/librandom_numbers.so
+lib/pkgconfig/random_numbers.pc
+share/random_numbers/cmake/random_numbersConfig-version.cmake
+share/random_numbers/cmake/random_numbersConfig.cmake
+share/random_numbers/package.xml

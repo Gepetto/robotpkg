@@ -23,6 +23,7 @@ SUBDIR+=	meschach
 SUBDIR+=	ros-angles
 SUBDIR+=	ros-eigen-stl-containers
 SUBDIR+=	ros-geometry
+SUBDIR+=	ros-random-numbers
 SUBDIR+=	sensFusion-libs
 SUBDIR+=	t3d
 SUBDIR+=	tvmet
