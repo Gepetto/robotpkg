@@ -15,6 +15,7 @@ CMAKE_ARGS+=	-DTinyXML_ROOT_DIR=${PREFIX.tinyxml}
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../devel/ros-cmake-modules/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-class-loader/depend.mk
 include ../../devel/ros-ros/depend.mk
