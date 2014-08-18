@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011,2013 LAAS/CNRS
+# Copyright (c) 2011,2013-2014 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -148,9 +148,11 @@ ifdef PKG_ALTERNATIVES
     $(foreach 1,${PKG_ALTERNATIVES.$_},					\
       $(if $(strip ${PKG_ALTERNATIVE_SELECT.$1}),			\
         $(eval 0=$(if $(filter ${PKG_ALTERNATIVE.$_},$1),*))		\
-        $(eval n=$(or $(call wordn,$1,${PREFER_ALTERNATIVE.$_})))	\
-	${PRINTF} "%s%2s %-21s$$rm ${PKG_ALTERNATIVE_DESCR.$1}\n"	\
-	  "$(if $0,$${bf})" "$0$n" "$1";))				\
+        $(eval n=$(or $(call wordn,$1,${PREFER_ALTERNATIVE.$_}))),	\
+        $(eval 0=)							\
+        $(eval n=n/a))							\
+	${PRINTF} "%s%3s %-21s$$rm ${PKG_ALTERNATIVE_DESCR.$1}\n"	\
+	  "$(if $0,$${bf})" "$0$n" "$1";)				\
 	${ECHO} "";))							\
 	${ECHO} "Alternatives are selected by setting the"		\
 		"PREFER_ALTERNATIVE.<alt> variable ";			\
