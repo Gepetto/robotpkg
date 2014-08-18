@@ -1,9 +1,8 @@
-@comment Mon Jan 12 22:21:08 CET 2009
+@comment Mon Aug 18 18:25:56 CEST 2014
 bin/latex2gif
 bin/ps2gif
 bin/ps2png
 bin/tth
-man/man1/tth.1
+${PKGMANDIR}/man1/tth.1
 share/doc/tth/tth.gif
 share/doc/tth/tth_manual.html
-@dirrm share/doc/tth
