@@ -35,6 +35,7 @@ SUBST_FILES.py-interp+=	utilities/roswtf/scripts/roswtf
 SUBST_FILES.py-interp+=	test/test_rospy/nodes/talker
 
 include ../../archivers/bzip2/depend.mk
+include ../../archivers/lz4/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/log4cxx/depend.mk
@@ -48,7 +49,6 @@ include ../../middleware/ros-genmsg/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
 include ../../mk/sysdep/apr.mk
 include ../../mk/sysdep/bash.mk
-include ../../mk/sysdep/lz4.mk
 include ../../mk/sysdep/py-imaging.mk
 include ../../mk/sysdep/py-netifaces.mk
 include ../../mk/sysdep/py-numpy.mk

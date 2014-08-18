@@ -5,6 +5,7 @@ COMMENT=	Archivers
 
 SUBDIR+=	bzip2
 SUBDIR+=	libarchive
+SUBDIR+=	lz4
 SUBDIR+=	pax
 SUBDIR+=	zlib
 

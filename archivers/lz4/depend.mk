@@ -1,5 +1,6 @@
-# robotpkg sysdep/lz4.mk
-# Created:			Anthony Mallet on Wed Aug 13 2014
+# robotpkg depend.mk for:	archivers/lz4
+# Created:			Anthony Mallet on Mon, 18 Aug 2014
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 LZ4_DEPEND_MK:=		${LZ4_DEPEND_MK}+
@@ -10,6 +11,14 @@ endif
 
 ifeq (+,$(LZ4_DEPEND_MK)) # ------------------------------------------------
 
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 12.04,${OS_VERSION}))
+    PREFER.lz4?=	robotpkg
+  endif
+else ifeq (OpenNao,${OPSYS})
+  PREFER.lz4?=		robotpkg
+endif
 PREFER.lz4?=		system
 DEPEND_USE+=		lz4
 DEPEND_ABI.lz4?=	lz4
