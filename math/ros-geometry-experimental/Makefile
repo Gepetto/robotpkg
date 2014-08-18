@@ -12,6 +12,7 @@ ROS_COMMENT=	second generation transform library
 include ../../meta-pkgs/ros-base/Makefile.common
 
 include ../../devel/ros-catkin/depend.mk
+include ../../devel/ros-cmake-modules/depend.mk
 include ../../devel/ros-roscpp-core/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
