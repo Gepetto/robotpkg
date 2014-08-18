@@ -4,7 +4,7 @@
 
 DISTNAME=		yaml-cpp-0.3.0
 CATEGORIES=		devel
-MASTER_SITES=		ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/distfiles/
+MASTER_SITES=		http://distcache.freebsd.org/ports-distfiles
 
 # The original MASTER_SITES= http://yaml-cpp.googlecode.com/files/
 # has intermittent error 404 with HEAD http requests.
