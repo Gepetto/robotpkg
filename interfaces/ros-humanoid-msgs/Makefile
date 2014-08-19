@@ -4,7 +4,7 @@
 
 ROS_PKG=	humanoid_msgs
 ROS_METAPKG=	yes
-ROS_VERSION=	0.2.0
+ROS_VERSION=	0.3.0
 ROS_REPO=	ahornung
 
 CATEGORIES=	interfaces

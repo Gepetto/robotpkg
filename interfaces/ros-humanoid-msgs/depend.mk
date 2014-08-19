@@ -25,7 +25,7 @@ SYSTEM_SEARCH.ros-humanoid-msgs=\
   'include/humanoid_nav_msgs/ClipFootstep.h'				\
   '${PYTHON_SYSLIBSEARCH}/humanoid_nav_msgs/msg/_ExecFootstepsAction.py'\
   'share/humanoid_nav_msgs/msg/StepTarget.msg'				\
-  'share/humanoid_nav_msgs/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+  'share/humanoid_nav_msgs/package.xml:/<version>/s/[^0-9.]//gp'	\
   'lib/pkgconfig/humanoid_nav_msgs.pc:/Version/s/[^0-9.]//gp'
 
 include ../../mk/sysdep/python.mk

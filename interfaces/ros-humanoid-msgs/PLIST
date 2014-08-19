@@ -1,4 +1,4 @@
-@comment Mon Oct 28 15:34:34 CET 2013
+@comment Tue Aug 19 11:29:05 CEST 2014
 include/humanoid_nav_msgs/ClipFootstep.h
 include/humanoid_nav_msgs/ClipFootstepRequest.h
 include/humanoid_nav_msgs/ClipFootstepResponse.h
@@ -10,6 +10,9 @@ include/humanoid_nav_msgs/ExecFootstepsFeedback.h
 include/humanoid_nav_msgs/ExecFootstepsGoal.h
 include/humanoid_nav_msgs/ExecFootstepsResult.h
 include/humanoid_nav_msgs/PlanFootsteps.h
+include/humanoid_nav_msgs/PlanFootstepsBetweenFeet.h
+include/humanoid_nav_msgs/PlanFootstepsBetweenFeetRequest.h
+include/humanoid_nav_msgs/PlanFootstepsBetweenFeetResponse.h
 include/humanoid_nav_msgs/PlanFootstepsRequest.h
 include/humanoid_nav_msgs/PlanFootstepsResponse.h
 include/humanoid_nav_msgs/StepTarget.h
@@ -29,6 +32,7 @@ ${PYTHON_SITELIB}/humanoid_nav_msgs/msg/_StepTarget.py
 ${PYTHON_SITELIB}/humanoid_nav_msgs/msg/__init__.py
 ${PYTHON_SITELIB}/humanoid_nav_msgs/srv/_ClipFootstep.py
 ${PYTHON_SITELIB}/humanoid_nav_msgs/srv/_PlanFootsteps.py
+${PYTHON_SITELIB}/humanoid_nav_msgs/srv/_PlanFootstepsBetweenFeet.py
 ${PYTHON_SITELIB}/humanoid_nav_msgs/srv/_StepTargetService.py
 ${PYTHON_SITELIB}/humanoid_nav_msgs/srv/__init__.py
 share/common-lisp/ros/humanoid_nav_msgs/msg/ExecFootstepsAction.lisp
@@ -51,10 +55,12 @@ share/common-lisp/ros/humanoid_nav_msgs/msg/_package_StepTarget.lisp
 share/common-lisp/ros/humanoid_nav_msgs/msg/humanoid_nav_msgs-msg.asd
 share/common-lisp/ros/humanoid_nav_msgs/srv/ClipFootstep.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/PlanFootsteps.lisp
+share/common-lisp/ros/humanoid_nav_msgs/srv/PlanFootstepsBetweenFeet.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/StepTargetService.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/_package.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/_package_ClipFootstep.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/_package_PlanFootsteps.lisp
+share/common-lisp/ros/humanoid_nav_msgs/srv/_package_PlanFootstepsBetweenFeet.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/_package_StepTargetService.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/humanoid_nav_msgs-srv.asd
 share/humanoid_msgs/package.xml
@@ -74,4 +80,5 @@ share/humanoid_nav_msgs/msg/StepTarget.msg
 share/humanoid_nav_msgs/package.xml
 share/humanoid_nav_msgs/srv/ClipFootstep.srv
 share/humanoid_nav_msgs/srv/PlanFootsteps.srv
+share/humanoid_nav_msgs/srv/PlanFootstepsBetweenFeet.srv
 share/humanoid_nav_msgs/srv/StepTargetService.srv
