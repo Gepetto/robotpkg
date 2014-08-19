@@ -15,7 +15,7 @@ DEPEND_USE+=	svn
 DEPEND_ABI.svn?=svn>=1.6
 
 SYSTEM_SEARCH.svn=	\
-	'bin/svn:p:% --version --quiet'
+	'bin/svn:/^[0-9.]*$$/p:% --version --quiet'
 
 SYSTEM_PKG.Linux.svn=		subversion
 SYSTEM_PKG.NetBSD.svn=		pkgsrc/devel/subversion-base
