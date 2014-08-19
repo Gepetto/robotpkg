@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Mon, 18 Aug 2014
 #
 
+PKGREVISION=	1
 VERSION=	121
 DISTNAME=	lz4-r${VERSION}
 PKGNAME=	lz4-${VERSION}
@@ -15,7 +16,7 @@ HOMEPAGE=	http://code.google.com/p/lz4/
 COMMENT=	Extremely Fast Compression algorithm
 LICENSE=	2-clause-bsd
 
-INSTALLATION_DIRS=bin include lib ${PKGMANDIR}/man1
+INSTALLATION_DIRS=bin include lib/pkgconfig ${PKGMANDIR}/man1
 
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/language/c.mk
