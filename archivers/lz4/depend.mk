@@ -22,6 +22,7 @@ endif
 PREFER.lz4?=		system
 DEPEND_USE+=		lz4
 DEPEND_ABI.lz4?=	lz4
+DEPEND_DIR.lz4?=	../../archivers/lz4
 
 SYSTEM_SEARCH.lz4=\
 	include/lz4.h			\
