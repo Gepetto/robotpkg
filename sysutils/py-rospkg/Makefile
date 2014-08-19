@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
 
+PKGREVISION=	1
 ROS_PKG=	rospkg
 ROS_VERSION=	1.0.29
 PKGNAME=	${PKGTAG.python}-${ROS_PKG}-${ROS_VERSION}
