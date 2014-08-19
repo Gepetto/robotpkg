@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Thu, 14 Aug 2014
 #
 
+PKGREVISION=	1
 VERSION=	1.3.0
 DISTNAME=	${PKGTAG.python-}orocos-kdl-${VERSION}
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
@@ -18,6 +19,8 @@ LICENSE=	gnu-lgpl-v2
 WRKSRC=		${WRKDIR}/orocos_kinematics_dynamics-1.3.0/python_orocos_kdl
 
 CMAKE_ARGS+=	-DPYTHON_SITE_PACKAGES_INSTALL_DIR=${PREFIX}/${PYTHON_SITELIB}
+
+DEPEND_ABI.python+=	python<3
 
 include ../../motion/orocos-kdl/depend.mk
 include ../../mk/sysdep/cmake.mk
