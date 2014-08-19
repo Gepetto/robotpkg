@@ -2,7 +2,7 @@
 # Created:			Florent Lamiraux on Tue,  30 Jul 2013
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 VERSION=	0.2
 DISTNAME=	rcpdf_interface-${VERSION}
 PKGNAME=	rcpdf-interface-${VERSION}
@@ -16,6 +16,9 @@ COMMENT=	Robot Contact Point Description Format interfaces
 LICENSE=	2-clause-bsd
 
 DYNAMIC_PLIST_DIRS+=	share/doc/rcpdf_interface
+
+# this uses the deprecated urdf_interface package that was removed in hydro
+DEPEND_ABI.ros+=	ros<=groovy
 
 include ../../middleware/ros-comm/depend.mk
 include ../../graphics/ros-robot-model/depend.mk
