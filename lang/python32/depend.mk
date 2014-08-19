@@ -17,11 +17,11 @@ include ../../mk/sysdep/python.mk
 ifeq (Fedora,${OPSYS})
   PREFER.python32?=	robotpkg
 else ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04 10.10,${OS_VERSION}))
+  ifneq (,$(filter 10.04 10.10 13.10 14.04,${OS_VERSION}))
     PREFER.python32?=	robotpkg
   endif
 else ifeq (NetBSD,${OPSYS})
-  PREFER.python32?=	system
+  PREFER.python32?=	robotpkg
 endif
 PREFER.python32?=	${PREFER.python}
 

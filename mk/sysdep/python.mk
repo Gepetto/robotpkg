@@ -105,15 +105,21 @@ PKG_ALTERNATIVES.python+=	python31 python32 python33 python34
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Ubuntu,${OPSYS})
+ifeq (Debian,${OPSYS})
+  ifneq (,$(filter 7.%,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python32
+  endif
+else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 14.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python34 python33
+    PREFER_ALTERNATIVE.python?=	python27 python34
   endif
   ifneq (,$(filter 12.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python32 python33
+    PREFER_ALTERNATIVE.python?=	python27 python32
   endif
+else ifeq (OpenNao,${OPSYS})
+  PREFER_ALTERNATIVE.python?=	python27 python32
 endif
-PREFER_ALTERNATIVE.python?=	python27 python33 python32 python31
+PREFER_ALTERNATIVE.python?=	python27 python33
 
 PKG_ALTERNATIVE_DESCR.python26= Use python-2.6
 PKGTAG.python26 =		py26
