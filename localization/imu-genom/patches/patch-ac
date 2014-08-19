@@ -1,0 +1,29 @@
+Fix unknown error() function.
+Upstream commit:b3f9563
+
+--- lib/monitor.c~	2008-07-16 16:54:40.000000000 +0200
++++ lib/monitor.c	2014-08-19 15:57:06.367790377 +0200
+@@ -75,12 +75,12 @@
+ 
+   pitchRateBuffer = calloc (nbCycles, sizeof (float));
+   if (pitchRateBuffer  == NULL ) {
+-    return error (ERR_IMU_MALLOC);
++    return ERR_IMU_MALLOC;
+   }
+ 
+   rollRateBuffer = calloc (nbCycles, sizeof (float));
+   if (rollRateBuffer  == NULL ) {
+-    return error (ERR_IMU_MALLOC);
++    return ERR_IMU_MALLOC;
+   }
+   
+ 
+@@ -107,7 +107,7 @@
+ 
+   if(timeWidth_nbCycles <= 0) {
+     fprintf(stderr,"imuComputeEnergy: timeWidth_nbCycles=%d not valid \n", timeWidth_nbCycles);
+-    return error(ERR_IMU_BADPARAMS);
++    return ERR_IMU_BADPARAMS;
+   } 
+ 
+   /* new squares needed */
