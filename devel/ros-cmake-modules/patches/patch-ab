@@ -1,0 +1,11 @@
+Don't install garbage files (e.g. *.orig)
+
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -7,4 +7,5 @@
+ 
+ ## Install all cmake files
+ install(DIRECTORY cmake/Modules
+-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/cmake)
++  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/cmake
++  FILES_MATCHING PATTERN "*.cmake")
