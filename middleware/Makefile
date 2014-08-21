@@ -10,6 +10,7 @@ SUBDIR+=	naoqi
 SUBDIR+=	omniORB
 SUBDIR+=	omniORBpy
 SUBDIR+=	openni
+SUBDIR+=	openni2
 SUBDIR+=	openrtm-aist
 SUBDIR+=	orocos-rtt
 SUBDIR+=	pocolibs

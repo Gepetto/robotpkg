@@ -1,0 +1,8 @@
+The OpenNI 2.0 API provides access to PrimeSense compatible depth sensors. It
+allows an application to initialize a sensor and receive depth, RGB, and IR
+video streams from the device.  It provides a single unified interface to
+sensors and .ONI recordings created with depth sensors.  OpenNI also provides a
+uniform interface that third party middleware developers can use to interact
+with depth sensors. Applications are then able to make use of both the third
+party middleware, as well as underlying basic depth and video data provided
+directly by OpenNI.

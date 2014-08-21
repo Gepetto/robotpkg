@@ -1,0 +1,52 @@
+Do not hardcode CFLAGS/LDFLAGS
+
+--- ThirdParty/PSCommon/BuildSystem/CommonCppMakefile~	2013-11-12 15:12:23.000000000 +0100
++++ ThirdParty/PSCommon/BuildSystem/CommonCppMakefile	2014-08-21 14:01:51.522576505 +0200
+@@ -55,28 +55,11 @@
+ # append the -D switch to each define
+ DEFINES_OPTION = $(foreach def,$(DEFINES),-D$(def))
+ 
+-# tell compiler to use the target system root
+-ifdef TARGET_SYS_ROOT
+-	CFLAGS += --sysroot=$(TARGET_SYS_ROOT)
+-	LDFLAGS += --sysroot=$(TARGET_SYS_ROOT)
+-endif
+-
+-# set Debug / Release flags
+-ifeq "$(CFG)" "Debug"
+-	CFLAGS += -O0 -g
+-endif
+-ifeq "$(CFG)" "Release"
+-	CFLAGS += -O2 -DNDEBUG
+-endif
+-
+ CFLAGS += $(INC_DIRS_OPTION) $(DEFINES_OPTION)
+ CFLAGS += -fPIC -fvisibility=hidden
+ 
+-ifneq "$(ALLOW_WARNINGS)" "1"
+-	CFLAGS += -Werror
+-endif
+-
+ LDFLAGS += $(LIB_DIRS_OPTION) $(USED_LIBS_OPTION)
++LDFLAGS += -Wl,-rpath,$(PREFIX)
+ 
+ # some lib / exe specifics
+ ifneq "$(LIB_NAME)" ""
+@@ -93,8 +76,6 @@
+ endif
+ ifneq "$(EXE_NAME)" ""
+ 	OUTPUT_NAME = $(EXE_NAME)
+-	# We want the executables to look for the .so's locally first:
+-	LDFLAGS += -Wl,-rpath ./
+ 	OUTPUT_COMMAND = $(CXX) -o $(OUTPUT_FILE) $(OBJ_FILES) $(LDFLAGS)
+ endif
+ ifneq "$(SLIB_NAME)" ""
+@@ -137,7 +118,7 @@
+ 
+ clean-objs:
+ 	rm -rf $(OBJ_FILES)
+-	
++
+ clean-defs:
+ 	rm -rf $(DEP_FILES)
+ 

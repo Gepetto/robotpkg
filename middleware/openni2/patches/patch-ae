@@ -1,0 +1,26 @@
+Do not hardcode java
+
+--- ThirdParty/PSCommon/BuildSystem/CommonJavaMakefile
++++ ThirdParty/PSCommon/BuildSystem/CommonJavaMakefile
+@@ -14,6 +14,9 @@
+ # MAIN_CLASS - [Optional] for executable jar
+ #############################################################################
+ 
++JAVAC?=	javac
++JAR?=	jar
++
+ # take this file's dir
+ COMMON_JAVA_MAKE_FILE_DIR = $(dir $(lastword $(MAKEFILE_LIST)))
+ 
+@@ -63,9 +66,9 @@
+ 
+ # Final output file
+ $(OUTPUT_FILE): $(SRC_FILES_LIST) | $(OUT_DIR) $(INT_DIR)
+-	javac $(USED_JARS_OPTION) -d $(INT_DIR) $(SRC_FILES)
++	$(JAVAC) $(USED_JARS_OPTION) -d $(INT_DIR) $(SRC_FILES)
+ 	$(JAR_MANIFEST_CREATE_COMMAND)
+-	jar $(JAR_OPTIONS) $@ $(MANIFEST_FILE) -C $(INT_DIR) .
++	$(JAR) $(JAR_OPTIONS) $@ $(MANIFEST_FILE) -C $(INT_DIR) .
+ 	$(CREATE_SHORTCUT)
+ 
+ clean-int:

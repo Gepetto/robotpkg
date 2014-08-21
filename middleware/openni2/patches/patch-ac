@@ -1,0 +1,13 @@
+Missing pthread
+
+--- Source/Tools/NiViewer/Makefile~	2013-11-12 15:12:23.000000000 +0100
++++ Source/Tools/NiViewer/Makefile	2014-08-21 14:25:06.025629582 +0200
+@@ -30,6 +30,7 @@
+ 
+ EXE_NAME = NiViewer
+ 
+-CFLAGS += -Wall
++CFLAGS += -pthread
++LDFLAGS += -pthread
+ 
+ include ../../../ThirdParty/PSCommon/BuildSystem/CommonCppMakefile

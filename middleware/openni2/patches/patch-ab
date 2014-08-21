@@ -1,0 +1,12 @@
+For some reason, -fno-stack-protector is required.
+
+--- Wrappers/java/OpenNI.jni/Makefile~	2013-11-12 15:12:23.000000000 +0100
++++ Wrappers/java/OpenNI.jni/Makefile	2014-08-21 14:16:49.531390435 +0200
+@@ -13,6 +13,6 @@
+ 
+ LIB_NAME = OpenNI2.jni
+ 
+-CFLAGS += -Wall
++CFLAGS += -fno-stack-protector
+ 
+ include ../../../ThirdParty/PSCommon/BuildSystem/CommonCppMakefile
