@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Mon, 13 Dec 2010
 #
 
+PKGREVISION=	1
 VERSION=	2.2-beta2
 DISTNAME=	openni2-$(subst -,,${VERSION})
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
@@ -40,6 +41,7 @@ RPATH_DIRS.libusb1=	lib
 RPATH_DIRS.freeglut=	lib
 
 include ../../mk/sysdep/freeglut.mk
+include ../../mk/sysdep/libudev.mk
 include ../../mk/sysdep/libusb1.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/language/java.mk

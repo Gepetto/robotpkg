@@ -4,6 +4,7 @@ bin/EventBasedRead
 bin/MWClosestPointApp
 bin/MultiDepthViewer
 bin/MultipleStreamRead
+bin/NiViewer
 bin/PS1080Console
 bin/PSLinkConsole
 bin/SimpleRead

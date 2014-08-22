@@ -1,4 +1,6 @@
-Hardcode platform name, we only support linux anyway.
+Hardcode build directory name (the Makefile PLATFORM variable is also used to
+include platform specific flags, but they only set optimization flags which
+should be done at the robotpkg level anyway).
 
 --- ThirdParty/PSCommon/BuildSystem/CommonDefs.mak~	2013-11-12 15:12:23.000000000 +0100
 +++ ThirdParty/PSCommon/BuildSystem/CommonDefs.mak	2014-08-21 14:31:05.280359848 +0200
@@ -41,7 +43,7 @@ Hardcode platform name, we only support linux anyway.
 -		endif
 -	endif
 -endif
-+PLATFORM=x86# works for x86_64 and i386
++PLATFORM=x86# works for all supported archs
  
  # expand file list
  SRC_FILES_LIST = $(wildcard $(SRC_FILES))
