@@ -20,7 +20,7 @@ SYSTEM_SEARCH.sot-pattern-generator=\
 	include/sot-pattern-generator/pg.h				\
 	lib/plugin/pg.so						\
 	'lib/pkgconfig/sot-pattern-generator.pc:/Version/s/[^0-9.]//pg'	\
-	${PYTHON_SYSLIBSEARCH}/dynamic_graph/sot/pattern_generator/__init__.py
+	'${PYTHON_SYSLIBSEARCH}/dynamic_graph/sot/pattern_generator/__init__.py'
 
 include ../../mk/sysdep/python.mk
 
