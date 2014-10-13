@@ -2,21 +2,22 @@
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
-VERSION=	0.2.8
-DISTNAME=	${VERSION}
-PKGNAME=	urdfdom-${VERSION}
-MASTER_SITES=	https://bitbucket.org/osrf/urdfdom/get/
+VERSION=	0.3.0
+DISTNAME=	urdfdom-${VERSION}
+DISTFILES=	${VERSION}${EXTRACT_SUFX}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=ros/urdfdom/archive/}
 DIST_SUBDIR=	${PKGBASE}
 
 CATEGORIES=	graphics
 MAINTAINER=	openrobots@laas.fr
-HOMEPAGE=	https://bitbucket.org/osrf/urdfdom
+HOMEPAGE=	http://ros.org/wiki/urdf
 COMMENT=	The URDF (U-Robot Description Format) library
 LICENSE=	modified-bsd
 
-PREFER.ros?=	robotpkg
-WRKSRC=		${WRKDIR}/osrf-urdfdom-d92e0f2d350f
 USE_BOOST_LIBS=	thread
+
+# make sure to depend on the proper api
+DEPEND_ABI.urdfdom-headers+=	urdfdom-headers>=${VERSION}
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

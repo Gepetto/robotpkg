@@ -11,9 +11,15 @@ endif
 
 ifeq (+,$(URDFDOM_DEPEND_MK)) # --------------------------------------------
 
-include ../../meta-pkgs/ros-base/depend.common
-PREFER.urdfdom?=	${PREFER.ros-base}
-SYSTEM_PREFIX.urdfdom?=	${SYSTEM_PREFIX.ros-base}
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 12.04 12.10 13.04,${OS_VERSION}))
+    PREFER.urdfdom?=	robotpkg
+  else
+    PREFER.urdfdom?=	system
+  endif
+endif
+PREFER.urdfdom?=	robotpkg
 
 DEPEND_USE+=		urdfdom
 
@@ -24,6 +30,8 @@ SYSTEM_SEARCH.urdfdom=\
   'include/urdf_parser/urdf_parser.h'				\
   'lib/liburdfdom_model.so'					\
   'lib/pkgconfig/urdfdom.pc:/Version/s/[^0-9.]//gp'
+
+SYSTEM_PKG.Debian.urdfdom=liburdfdom-dev
 
 endif # URDFDOM_DEPEND_MK --------------------------------------------------
 
