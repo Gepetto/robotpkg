@@ -1,11 +1,23 @@
-@comment Thu Jul 4 18:36:13 CEST 2013
+@comment Mon Oct 13 17:49:11 CEST 2014
+bin/check_urdf
+bin/urdf_mem_test
+bin/urdf_to_graphiz
+include/urdf_parser/exportdecl.h
 include/urdf_parser/urdf_parser.h
 lib/liburdfdom_model.so
+lib/liburdfdom_model.so.0.2
 lib/liburdfdom_model_state.so
+lib/liburdfdom_model_state.so.0.2
 lib/liburdfdom_sensor.so
+lib/liburdfdom_sensor.so.0.2
 lib/liburdfdom_world.so
+lib/liburdfdom_world.so.0.2
 lib/pkgconfig/urdfdom.pc
-share/urdfdom/check_urdf
+${PYTHON_SITELIB}/urdf_parser_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/urdf_parser_py/__init__.py
+${PYTHON_SITELIB}/urdf_parser_py/sdf.py
+${PYTHON_SITELIB}/urdf_parser_py/urdf.py
+${PYTHON_SITELIB}/urdf_parser_py/xml_reflection/__init__.py
+${PYTHON_SITELIB}/urdf_parser_py/xml_reflection/basics.py
+${PYTHON_SITELIB}/urdf_parser_py/xml_reflection/core.py
 share/urdfdom/cmake/urdfdom-config.cmake
-share/urdfdom/urdf_mem_test
-share/urdfdom/urdf_to_graphiz

@@ -1,0 +1,12 @@
+Fix installation dir
+
+--- urdf_parser_py/CMakeLists.txt~	2014-02-16 04:47:43.000000000 +0100
++++ urdf_parser_py/CMakeLists.txt	2014-10-13 17:45:30.766988572 +0200
+@@ -2,6 +2,6 @@
+ 
+ if (PYTHON)
+   set(SETUP_PY "${CMAKE_CURRENT_SOURCE_DIR}/setup.py")
+-  install(CODE "execute_process(COMMAND \"${PYTHON}\" \"${SETUP_PY}\" build --build-base \"${CMAKE_CURRENT_BINARY_DIR}/pybuild\" install --install-layout deb --prefix \"${CMAKE_INSTALL_PREFIX}\"
++  install(CODE "execute_process(COMMAND \"${PYTHON}\" \"${SETUP_PY}\" build --build-base \"${CMAKE_CURRENT_BINARY_DIR}/pybuild\" install --install-lib=${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB} --prefix \"${CMAKE_INSTALL_PREFIX}\"
+                 WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\")")
+ endif()
