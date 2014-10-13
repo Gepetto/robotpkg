@@ -11,9 +11,15 @@ endif
 
 ifeq (+,$(CONSOLE_BRIDGE_DEPEND_MK)) # -------------------------------------
 
-include ../../meta-pkgs/ros-base/depend.common
-PREFER.console-bridge?=		${PREFER.ros-base}
-SYSTEM_PREFIX.console-bridge?=	${SYSTEM_PREFIX.ros-base}
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 12.04 12.10 13.04,${OS_VERSION}))
+    PREFER.console-bridge?=	robotpkg
+  else
+    PREFER.console-bridge?=	system
+  endif
+endif
+PREFER.console-bridge?=		robotpkg
 
 DEPEND_USE+=			console-bridge
 
@@ -24,6 +30,8 @@ SYSTEM_SEARCH.console-bridge=\
   'include/console_bridge/console.h'				\
   'lib/libconsole_bridge.so'					\
   'lib/pkgconfig/console_bridge.pc:/Version/s/[^0-9.]//gp'
+
+SYSTEM_PKG.Debian.console-bridge=libconsole-bridge-dev
 
 endif # CONSOLE_BRIDGE_DEPEND_MK -------------------------------------------
 

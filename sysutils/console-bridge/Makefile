@@ -2,14 +2,18 @@
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
-ROS_PKG=	console_bridge
-ROS_VERSION=	0.2.7
-PKGNAME=	$(subst _,-,${ROS_PKG})-${ROS_VERSION}
+VERSION=	0.2.7
+DISTNAME=	console_bridge-${VERSION}
+DISTFILES=	${VERSION}${EXTRACT_SUFX}
+PKGNAME=	$(subst _,-,${DISTNAME})
+MASTER_SITES=	${MASTER_SITE_GITHUB:=ros/console_bridge/archive/}
+DIST_SUBDIR=	${PKGBASE}
 
 CATEGORIES=	sysutils
-ROS_COMMENT=	logging for ROS-independent applications
-
-include ../../meta-pkgs/ros-base/Makefile.common
+MAINTAINER=	openrobots@laas.fr
+HOMEPAGE=	http://wiki.ros.org/console_bridge
+COMMENT=	Logging for ROS-independent applications
+LICENSE=	modified-bsd
 
 USE_BOOST_LIBS+=thread system
 
