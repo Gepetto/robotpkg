@@ -11,9 +11,15 @@ endif
 
 ifeq (+,$(URDFDOM_HEADERS_DEPEND_MK)) # ------------------------------------
 
-include ../../meta-pkgs/ros-base/depend.common
-PREFER.urdfdom-headers?=	${PREFER.ros-base}
-SYSTEM_PREFIX.urdfdom-headers?=	${SYSTEM_PREFIX.ros-base}
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 12.04 12.10 13.04,${OS_VERSION}))
+    PREFER.urdfdom-headers?=	robotpkg
+  else
+    PREFER.urdfdom-headers?=	system
+  endif
+endif
+PREFER.urdfdom-headers?=	robotpkg
 
 DEPEND_USE+=			urdfdom-headers
 
@@ -23,6 +29,8 @@ DEPEND_DIR.urdfdom-headers?=	../../graphics/urdfdom-headers
 SYSTEM_SEARCH.urdfdom-headers=\
   'include/urdf_model/model.h'					\
   'lib/pkgconfig/urdfdom_headers.pc:/Version/s/[^0-9.]//gp'
+
+SYSTEM_PKG.Debian.urdfdom-headers=liburdfdom-headers-dev
 
 endif # URDFDOM_HEADERS_DEPEND_MK ------------------------------------------
 
