@@ -16,6 +16,7 @@ SUBDIR+=	hrp2-10-optimized
 SUBDIR+=	hrp2-dynamics
 SUBDIR+=	jafar-jmath
 SUBDIR+=	jrl-dynamics
+SUBDIR+=	jrl-dynamics-urdf
 SUBDIR+=	jrl-mathtools
 SUBDIR+=	lapack
 SUBDIR+=	liblbfgs
