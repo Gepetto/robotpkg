@@ -2,3 +2,5 @@ SHA1 (jrl-dynamics-urdf-2.2.0.tar.gz) = 691ec29131b7dd8cf058eac2e23c2a8fd8967545
 RMD160 (jrl-dynamics-urdf-2.2.0.tar.gz) = 27cff7b64411e504aa5e229f5e23253e1dd6cb85
 Size (jrl-dynamics-urdf-2.2.0.tar.gz) = 87211 bytes
 SHA1 (patch-aa) = 9d7e87f694698a6c52a0f23b692d332005cd932b
+SHA1 (patch-ab) = d4aa07a25a305be11b11e3b2fc798165a0ba4db0
+SHA1 (patch-ac) = 59a0d53d1befd629e4a12e9abd1fc194fabebaad

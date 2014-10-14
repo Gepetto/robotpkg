@@ -1,0 +1,10 @@
+Add missing roscpp dependency (needed at this level for xmlrcpp)
+
+--- tests/CMakeLists.txt.orig	2014-10-09 07:49:21.080796000 +0200
++++ tests/CMakeLists.txt	2014-10-09 08:05:09.825506000 +0200
+@@ -23,4 +23,5 @@
+ ADD_EXECUTABLE(one_dof_revolute_x one_dof_revolute_x.cpp)
+ PKG_CONFIG_USE_DEPENDENCY(one_dof_revolute_x jrl-mal)
+ PKG_CONFIG_USE_DEPENDENCY(one_dof_revolute_x urdfdom_headers)
++PKG_CONFIG_USE_DEPENDENCY(one_dof_revolute_x roscpp)
+ TARGET_LINK_LIBRARIES(one_dof_revolute_x jrl-dynamics-urdf)
