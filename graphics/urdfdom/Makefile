@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 VERSION=	0.3.0
 DISTNAME=	urdfdom-${VERSION}
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
@@ -18,7 +18,9 @@ LICENSE=	modified-bsd
 USE_BOOST_LIBS=	thread
 CMAKE_ARGS+=	-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
-# make sure to depend on the proper api
+# make sure to depend on the proper api and default the headers package to
+# robotpkg when building this one from robotpkg
+PREFER.urdfdom-headers?=	robotpkg
 DEPEND_ABI.urdfdom-headers+=	urdfdom-headers>=${VERSION}
 
 include ../../devel/boost-headers/depend.mk
