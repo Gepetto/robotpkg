@@ -2,6 +2,7 @@
 # Created:			Olivier Stasse on Thu, 27 Jun 2013
 #
 DISTNAME=		jrl-dynamics-urdf-2.2.0
+PKGREVISION=	1
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-dynamics-urdf/}
 MASTER_REPOSITORY=	git git://github.com/laas/jrl_dynamics_urdf.git
 
@@ -25,6 +26,7 @@ include ../../interfaces/jrl-mal/depend.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../simulation/bullet/depend.mk
+include ../../middleware/ros-comm/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/googletest.mk
