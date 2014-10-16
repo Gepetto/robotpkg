@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Fri, 20 Sep 2013
 #
 
-NAOQI_VERSION=		1.14.5
+NAOQI_VERSION=		2.1.0.19
 DISTNAME=		naoqi-${NAOQI_VERSION}
 CATEGORIES=		middleware
 MASTER_SITES=		https://community.aldebaran-robotics.com/
@@ -40,7 +40,7 @@ NO_CONFIGURE=		yes
 NO_BUILD=		yes
 
 WRKSRC=			${WRKDIR}/${FETCH_ONLY:.tar.gz=}
-PREFIX=			${LOCALBASE}/opt/nao
+PREFIX=			${LOCALBASE}/opt/naoqi
 
 # Fix .la for missing static Qt libraries
 SUBST_CLASSES+=		fixqtla
