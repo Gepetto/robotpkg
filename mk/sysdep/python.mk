@@ -193,6 +193,11 @@ define PKG_ALTERNATIVE_SET.python34
   include ../../mk/sysdep/python34.mk
 endef
 
+# default tag value before alternative resolution (used in particular by
+# PKG_OPTIONS_VAR)
+PKGTAG.python=	py
+-PKGTAG.python=	-${PKGTAG.python}
+PKGTAG.python-=	${PKGTAG.python}-
 
 # require preferences for PYTHON definition and immediate expansions below
 include ../../mk/robotpkg.prefs.mk

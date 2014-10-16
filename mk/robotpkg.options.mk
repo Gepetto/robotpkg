@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2013 LAAS/CNRS
+# Copyright (c) 2008-2014 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -183,6 +183,11 @@ ifdef PKG_SUPPORTED_OPTIONS
 PKG_OPTIONS_SUFFIX?=	${PKGBASE}
 PKG_OPTIONS_VAR?=	PKG_OPTIONS.${PKG_OPTIONS_SUFFIX}
 
+# require immediate expansion of PKG_OPTIONS_VAR - it is implicitly treated
+# like so below, but show-options could displays the wrong value if the
+# PKG_OPTIONS_SUFFIX variable contains variable references (like for py*
+# packages).
+PKG_OPTIONS_VAR:=	${PKG_OPTIONS_VAR}
 
 # Collect user-defined options. Make sure to append ${PKG_OPTIONS_VAR} last, so
 # that it wins in case of conflicts. Other conflicts resolution are
