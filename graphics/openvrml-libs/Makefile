@@ -33,7 +33,7 @@ CONFIGURE_ARGS+=--enable-gl-renderer
 # get the right boost libraries
 USE_BOOST_LIBS+=thread filesystem system
 CONFIGURE_ARGS+=BOOST_LIB_SUFFIX=${BOOST_LIB_SUFFIX}
-CONFIGURE_ARGS+=ov_cv_boost_thread=${SYSTEM_FILES.boost-lib-thread}
+CONFIGURE_ARGS+=ov_cv_boost_thread=$(lastword ${SYSTEM_FILES.boost-lib-thread})
 
 # fix detection of ltdl and boost. configure script searches in /usr only.
 INCLUDE_DIRS.boost-headers+=	include
