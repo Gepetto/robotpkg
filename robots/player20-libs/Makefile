@@ -20,8 +20,9 @@ USE_BOOST_LIBS=	thread signals system
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-alldrivers --disable-jplayer  --disable-libplayerc-py
 CONFIGURE_ARGS+= have_python=no have_swig=no
-CONFIGURE_ARGS+= --with-boost-thread=${SYSTEM_FILES.boost-lib-thread}
-CONFIGURE_ARGS+= --with-boost-signals=${SYSTEM_FILES.boost-lib-signals}
+CONFIGURE_ARGS+=\
+  --with-boost-thread=$(lastword ${SYSTEM_FILES.boost-lib-thread})	\
+  --with-boost-signals=$(lastword ${SYSTEM_FILES.boost-lib-signals})
 
 # unfortunately, the configure script does not check for the required
 # boost_system library
