@@ -24,6 +24,8 @@ CMAKE_ARGS+=\
   '-DBLAS_LIBRARIES=${BLAS_LIB}'			\
   '-DLAPACK_LIBRARIES=${LAPACK_LIB};${BLAS_LIB}'
 
+USE_BOOST_LIBS= filesystem system thread program_options unit_test_framework
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../math/blas/depend.mk
