@@ -1,0 +1,12 @@
+Do not define the bin script twice
+
+--- tcl/Makefile.in~	2011-05-18 13:58:57.000000000 +0200
++++ tcl/Makefile.in	2014-10-17 10:53:32.031115378 +0200
+@@ -171,7 +171,6 @@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ bin_SCRIPTS = alogview
+-dist_bin_SCRIPTS = alogview
+ all: all-am
+ 
+ .SUFFIXES:
