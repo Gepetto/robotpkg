@@ -80,3 +80,5 @@ ${PYTHON_SITELIB}/dynamic_graph/sot/pattern_generator/walking.py
 ${PYTHON_SITELIB}/dynamic_graph/sot/pattern_generator/which_foot_upper/__init__.py
 ${PYTHON_SITELIB}/dynamic_graph/sot/pattern_generator/which_foot_upper/wrap.so
 ${PYTHON_SITELIB}/dynamic_graph/tutorial/walk_romeo.py
+${PYTHON_SITELIB}/dynamic_graph/tutorial/walk_romeo_small.py
+

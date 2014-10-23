@@ -2,7 +2,7 @@
 # Created:			Olivier Stasse on Thu, 18 Apr 2013
 #
 
-VERSION=		2.9.0
+VERSION=		2.9.1
 
 DISTNAME=		sot-pattern-generator-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-pattern-generator/}
