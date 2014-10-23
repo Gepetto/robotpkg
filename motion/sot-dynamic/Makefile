@@ -2,7 +2,7 @@
 # Created:			Florent Lamiraux on Fri, 8 Jul 2011
 #
 
-VERSION=		2.9.1
+VERSION=		2.9.2
 DISTNAME=		sot-dynamic-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=sot-dynamic/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}stack-of-tasks/sot-dynamic/

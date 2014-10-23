@@ -60,3 +60,4 @@ ${PYTHON_SITELIB}/dynamic_graph/sot/dynamics/zmp_from_forces/wrap.so
 ${PYTHON_SITELIB}/dynamic_graph/sot/dynamics/zmpreffromcom/__init__.py
 ${PYTHON_SITELIB}/dynamic_graph/sot/dynamics/zmpreffromcom/wrap.so
 ${PYTHON_SITELIB}/dynamic_graph/tutorial/kine_romeo.py
+${PYTHON_SITELIB}/dynamic_graph/tutorial/kine_romeo_small.py
