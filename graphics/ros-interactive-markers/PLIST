@@ -1,0 +1,17 @@
+@comment Mon Oct 27 11:46:25 CET 2014
+include/interactive_markers/detail/message_context.h
+include/interactive_markers/detail/single_client.h
+include/interactive_markers/detail/state_machine.h
+include/interactive_markers/interactive_marker_client.h
+include/interactive_markers/interactive_marker_server.h
+include/interactive_markers/menu_handler.h
+include/interactive_markers/tools.h
+lib/libinteractive_markers.so
+lib/pkgconfig/interactive_markers.pc
+${PYTHON_SITELIB}/interactive_markers-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/interactive_markers/__init__.py
+${PYTHON_SITELIB}/interactive_markers/interactive_marker_server.py
+${PYTHON_SITELIB}/interactive_markers/menu_handler.py
+share/interactive_markers/cmake/interactive_markersConfig-version.cmake
+share/interactive_markers/cmake/interactive_markersConfig.cmake
+share/interactive_markers/package.xml

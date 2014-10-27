@@ -25,6 +25,7 @@ SUBDIR+=	rcpdf
 SUBDIR+=	rcpdf-interface
 SUBDIR+=	ros-convex-decomposition
 SUBDIR+=	ros-geometric-shapes
+SUBDIR+=	ros-interactive-markers
 SUBDIR+=	ros-ivcon
 SUBDIR+=	ros-python-qt-binding
 SUBDIR+=	ros-qt-gui-core
