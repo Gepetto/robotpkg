@@ -20,9 +20,9 @@ SYSTEM_SEARCH.libogre=\
   'lib/libOgreMain.so'					\
   'lib/pkgconfig/OGRE.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.libogre=ogre-devel
-SYSTEM_PKG.Ubuntu.libogre=libogre-dev
 SYSTEM_PKG.Debian.libogre=libogre-dev
+SYSTEM_PKG.Fedora.libogre=ogre-devel
+SYSTEM_PKG.Gentoo.libogre=dev-games/ogre
 SYSTEM_PKG.NetBSD.libogre=devel/ogre
 
 endif # LIBOGRE_DEPEND_MK ---------------------------------------------------
