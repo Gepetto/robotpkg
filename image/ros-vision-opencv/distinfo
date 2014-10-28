@@ -2,3 +2,5 @@ SHA1 (ros/vision_opencv/1.11.4.tar.gz) = 49b264041999890cc7be7fa8c04805c41039e7e
 RMD160 (ros/vision_opencv/1.11.4.tar.gz) = d9556fafb2b7110b6be24cf0865def8ac2831645
 Size (ros/vision_opencv/1.11.4.tar.gz) = 46881 bytes
 SHA1 (patch-ac) = 84c97ba0dbc7ea67b90ba482885f09b5064e6a18
+SHA1 (patch-ad) = 3b49c5531be0d39ae6e7b93b95bbc019a61598c4
+SHA1 (patch-ae) = 5fa769ea67d830b4cab790bc63b3b688e20b9602

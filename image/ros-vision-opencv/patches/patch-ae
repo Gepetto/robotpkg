@@ -1,0 +1,14 @@
+Fix OpenCV libraries variable name (OpenCV-2.3 does not include backward
+compat with 2.2 while OpenCV-2.4 does...)
+
+--- cv_bridge/src/CMakeLists.txt~	2014-07-27 17:53:13.000000000 +0200
++++ cv_bridge/src/CMakeLists.txt	2014-10-28 15:35:35.847515043 +0100
+@@ -1,7 +1,7 @@
+ # add library
+ add_library(${PROJECT_NAME} cv_bridge.cpp)
+ add_dependencies(${PROJECT_NAME} sensor_msgs_gencpp)
+-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
++target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${catkin_LIBRARIES})
+ 
+ install(TARGETS ${PROJECT_NAME} DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
+ 
