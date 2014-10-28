@@ -1,0 +1,10 @@
+@comment Mon Oct 27 12:11:33 CET 2014
+include/laser_geometry/laser_geometry.h
+lib/liblaser_geometry.so
+lib/pkgconfig/laser_geometry.pc
+${PYTHON_SITELIB}/laser_geometry-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/laser_geometry/__init__.py
+${PYTHON_SITELIB}/laser_geometry/laser_geometry.py
+share/laser_geometry/cmake/laser_geometryConfig-version.cmake
+share/laser_geometry/cmake/laser_geometryConfig.cmake
+share/laser_geometry/package.xml
