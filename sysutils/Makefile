@@ -13,6 +13,7 @@ SUBDIR+=	py-rospkg
 SUBDIR+=	ros-console-bridge
 SUBDIR+=	ros-diagnostics
 SUBDIR+=	ros-rospack
+SUBDIR+=	ros-rviz
 SUBDIR+=	tth
 SUBDIR+=	y2l
 
