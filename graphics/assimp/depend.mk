@@ -11,7 +11,21 @@ endif
 
 ifeq (+,$(ASSIMP_DEPEND_MK)) # ---------------------------------------------
 
-PREFER.assimp?=		robotpkg
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 12.04 12.10 13.04,${OS_VERSION}))
+    PREFER.assimp?=	robotpkg
+  endif
+else ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 19,${OS_VERSION}))
+    PREFER.assimp?=	robotpkg
+  endif
+else ifeq (Gentoo,${OPSYS})
+  PREFER.assimp?=	robotpkg
+else ifeq (NetBSD,${OPSYS})
+  PREFER.assimp?=	robotpkg
+endif
+PREFER.assimp?=		system
 
 DEPEND_USE+=		assimp
 
