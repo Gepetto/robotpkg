@@ -20,7 +20,7 @@ else ifeq (Fedora,${OPSYS})
   ifneq (,$(filter 19,${OS_VERSION}))
     PREFER.assimp?=	robotpkg
   endif
-else ifeq (Gentoo,${OPSYS})
+else ifeq (Gentoo,${OS_FAMILY})
   PREFER.assimp?=	robotpkg
 else ifeq (NetBSD,${OPSYS})
   PREFER.assimp?=	robotpkg
