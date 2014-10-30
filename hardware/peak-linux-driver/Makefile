@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	peak-linux-driver-${VERSION}
-VERSION=	7.9
+VERSION=	7.13
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.peak-system.com/fileadmin/media/linux/files/
 HOMEPAGE=	http://www.peak-system.com/fileadmin/media/linux/
