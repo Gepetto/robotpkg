@@ -2,7 +2,7 @@
 # Created:			Florent Lamiraux on Thu, 7 Jul 2011
 #
 
-VERSION=		2.5.5
+VERSION=		2.5.6
 DISTNAME=		dynamic-graph-python-${VERSION}
 PKGNAME=		${PKGTAG.python-}dynamic-graph-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-python/}
