@@ -1,0 +1,14 @@
+Typo
+This is only an issue with gcc-4.9 - no idea why yet.
+
+--- src/libYARP_dev/src/ControlBoardInterfacesImpl.cpp~	2013-07-26 14:48:52.000000000 +0200
++++ src/libYARP_dev/src/ControlBoardInterfacesImpl.cpp	2014-11-05 18:40:53.687739392 +0100
+@@ -13,7 +13,7 @@
+ #include <stdio.h>
+ using namespace yarp::dev;
+ 
+-bool StubImplPositionControlRaw::NOT_YET_IMPLEMENTED(const char *func)
++bool StubImplPositionControl2Raw::NOT_YET_IMPLEMENTED(const char *func)
+ {
+     if (func)
+         fprintf(stderr, "%s:", func);

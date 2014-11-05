@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Thu, 22 Jan 2009
 #
 
+PKGREVISION=		1
 DISTNAME=		yarp-2.3.22
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
