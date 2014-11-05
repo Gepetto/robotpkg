@@ -81,6 +81,10 @@ case $s in
                 exit 0
             fi
         fi
+        if test -f /etc/arch-release; then
+            echo ArchLinux ${r%-ARCH} $m
+            exit 0
+        fi
         ;;
     SunOS)
         case $r in
