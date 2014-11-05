@@ -21,6 +21,8 @@ DEPEND_DIR.boost-log?=	../../devel/boost-log
 SYSTEM_SEARCH.boost-log=\
 	include/boost/log/core.hpp
 
+SYSTEM_PKG.ArchLinux.boost-log= boost
+
 endif # BOOST-LOG_DEPEND_MK ------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

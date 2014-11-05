@@ -18,6 +18,7 @@ SYSTEM_PKG.Fedora.boost-headers=	boost-devel
 SYSTEM_PKG.Ubuntu.boost-headers=	libboost-dev
 SYSTEM_PKG.Debian.boost-headers=	libboost-dev
 SYSTEM_PKG.NetBSD.boost-headers=	pkgsrc/devel/boost-headers
+SYSTEM_PKG.ArchLinux.boost-headers=	boost
 
 SYSTEM_SEARCH.boost-headers=\
 	'include/boost/version.hpp:/BOOST_LIB_VERSION.*"/{s/.*"\([0-9_]*\)".*/\1/g;y/_/./;p;}'	\
