@@ -110,12 +110,13 @@ ifeq (Debian,${OPSYS})
     PREFER_ALTERNATIVE.python?=	python27 python32
   endif
 else ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 14.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python34
-  endif
   ifneq (,$(filter 12.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python32
   endif
+  ifneq (,$(filter 12.10 13.04 13.10,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python33
+  endif
+  PREFER_ALTERNATIVE.python?=	python27 python34
 else ifeq (OpenNao,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python32
 endif
