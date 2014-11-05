@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Wed, 31 Dec 2008
 #
 
+PKGREVISION=	1
 DISTNAME=	peak-linux-driver-${VERSION}
 VERSION=	7.13
 CATEGORIES=	hardware
@@ -28,7 +29,6 @@ post-install:	${WRKSRC}/pcan.pc
 	${INSTALL_DATA} ${WRKSRC}/driver/pcan.h ${PREFIX}/include/
 
 MAKE_ENV+=	DESTDIR=${PREFIX}
-MAKE_ENV+=	EXTRA_CFLAGS=-Wno-error=date-time
 MAKE_FLAGS=	NET=NO_NETDEV_SUPPORT PCC=NO_PCCARD_SUPPORT UDEV=no
 MAKE_FLAGS+=	KERNEL_LOCATION=${PREFIX.kernel}
 MAKE_FLAGS+=\
