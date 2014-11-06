@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
+PKGREVISION=		1
 VERSION=		2.4.8
 DISTNAME=		opencv-${VERSION}
 DISTFILES=		${VERSION}${EXTRACT_SUFX}
