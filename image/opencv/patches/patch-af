@@ -7,7 +7,7 @@ libavcodec-56 does not support old codec id anymore
  } AVCodecTag;
  
 +// transition from libavcodec-54 to 56
-+#ifdef CODEC_ID_H264
++#if LIBAVCODEC_VERSION_MAJOR < 56
 +# define OPENCV_AVCODEC_ID(x) x
 +#else
 +# define OPENCV_AVCODEC_ID(x) AV_ ## x
