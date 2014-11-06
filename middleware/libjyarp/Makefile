@@ -31,7 +31,7 @@ CONFIGURE_DIRS=		${WRKSRC} ${SWIG_DIR}
 BUILD_DIRS=			${SWIG_DIR}
 
 DEPEND_ABI.cmake= 	cmake>=2.8.7
-DEPEND_ABI.yarp=    yarp>=${VERSION}<=${VERSION}
+DEPEND_ABI.yarp=	yarp>=${VERSION}<2.3.60
 
 DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
 

@@ -36,7 +36,7 @@ BUILD_DIRS=			${SWIG_DIR}
 INSTALLATION_DIRS=	${PYTHON_SITELIB}
 
 DEPEND_ABI.cmake= 	cmake>=2.8.7
-DEPEND_ABI.yarp=    yarp>=${VERSION}<=${VERSION}
+DEPEND_ABI.yarp=	yarp>=${VERSION}<2.3.60
 
 include ../../devel/swig/depend.mk
 include ../../middleware/yarp/depend.mk
