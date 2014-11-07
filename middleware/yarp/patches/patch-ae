@@ -1,14 +1,24 @@
-Typo
+Missing function implementation
 This is only an issue with gcc-4.9 - no idea why yet.
 
 --- src/libYARP_dev/src/ControlBoardInterfacesImpl.cpp~	2013-07-26 14:48:52.000000000 +0200
-+++ src/libYARP_dev/src/ControlBoardInterfacesImpl.cpp	2014-11-05 18:40:53.687739392 +0100
-@@ -13,7 +13,7 @@
- #include <stdio.h>
- using namespace yarp::dev;
++++ src/libYARP_dev/src/ControlBoardInterfacesImpl.cpp	2014-11-07 14:46:19.523339737 +0100
+@@ -25,6 +25,18 @@
+     return false;
+ }
  
--bool StubImplPositionControlRaw::NOT_YET_IMPLEMENTED(const char *func)
 +bool StubImplPositionControl2Raw::NOT_YET_IMPLEMENTED(const char *func)
++{
++    if (func)
++        fprintf(stderr, "%s:", func);
++    else
++        fprintf(stderr, "Function ");
++
++    fprintf(stderr, "not yet implemented\n");
++
++    return false;
++}
++
+ bool StubImplEncodersRaw::NOT_YET_IMPLEMENTED(const char *func)
  {
      if (func)
-         fprintf(stderr, "%s:", func);
