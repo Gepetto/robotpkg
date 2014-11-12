@@ -39,7 +39,6 @@ PKG_ALTERNATIVES.ros=	groovy hydro indigo
 # Default ros package preference
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
-  PREFER.ros?=	system
   ifneq (,$(filter 10.04 11.10,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=groovy indigo
   else ifneq (,$(filter 12.04 12.10,${OS_VERSION}))
@@ -48,7 +47,10 @@ ifeq (Ubuntu,${OPSYS})
     PREFER_ALTERNATIVE.ros?=hydro indigo
   else ifneq (,$(filter 13.10 14.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=indigo
+  else ifneq (,$(filter 14.10,${OS_VERSION}))
+    PREFER.ros?=robotpkg
   endif
+  PREFER.ros?=	system
 endif
 PREFER_ALTERNATIVE.ros?=indigo hydro groovy
 DEPEND_ABI.ros?=	ros>=groovy
