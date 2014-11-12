@@ -20,7 +20,7 @@ SYSTEM_SEARCH.dynamic-graph=\
 
 DEPEND_USE+=		dynamic-graph
 
-DEPEND_ABI.dynamic-graph?=	dynamic-graph>=2.5
+DEPEND_ABI.dynamic-graph?=	dynamic-graph>=2.5.6
 DEPEND_DIR.dynamic-graph?=	../../motion/dynamic-graph
 
 endif # HPP_GIK_DEPEND_MK --------------------------------------------

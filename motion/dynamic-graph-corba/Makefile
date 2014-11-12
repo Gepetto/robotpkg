@@ -3,7 +3,7 @@
 #
 
 VERSION=		2.5.1
-PKGREVISION=		2
+PKGREVISION=		3
 DISTNAME=		dynamic-graph-corba-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=dynamic-graph-corba/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/laas/dynamic-graph-corba

@@ -2,6 +2,7 @@
 # Created:			Florent Lamiraux on Thu, 7 Jul 2011
 #
 
+PKGREVISION=		1
 VERSION=		2.5.6
 DISTNAME=		dynamic-graph-python-${VERSION}
 PKGNAME=		${PKGTAG.python-}dynamic-graph-${VERSION}
