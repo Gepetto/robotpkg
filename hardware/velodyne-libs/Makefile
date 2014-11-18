@@ -1,11 +1,14 @@
 # robotpkg Makefile for:	hardware/velodyne-libs
 # Created:			Matthieu Herrb on Fri, 25 Jun 2010
 #
-DISTNAME=	velodyne-libs-0.7
-CATEGORIES=	hardware
+NAME=			velodyne-libs
+VERSION=		0.7
+CATEGORIES=		hardware
+DISTNAME=		${NAME}-${VERSION}
+# MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${NAME}/}
+MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=velodyne/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}${NAME}
 
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=velodyne/}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/velodyne-libs
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	interface library for the Velodyne Lidar sensor
 
