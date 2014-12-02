@@ -17,6 +17,11 @@ ifndef DEB_HOST_MULTIARCH
   _ENV_VARS+=DEB_HOST_MULTIARCH
 endif
 
+# System headers directories
+SYSINCDIR?=\
+  $(addprefix include/,${DEB_HOST_MULTIARCH})	\
+  include
+
 # System library directories
 SYSLIBDIR?=\
   $(addprefix lib/,${DEB_HOST_MULTIARCH})	\
