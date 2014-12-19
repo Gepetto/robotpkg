@@ -5,7 +5,7 @@
 DISTNAME=		pocolibs-2.14
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pocolibs/}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/pocolibs
+MASTER_REPOSITORY=	git git://git.openrobots.org/robots/pocolibs.git
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/pocolibs
