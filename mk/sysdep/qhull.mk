@@ -22,7 +22,7 @@ DEPEND_USE+=		qhull
 DEPEND_ABI.qhull?=	qhull
 
 SYSTEM_SEARCH.qhull=	\
-	include/qhull/qhull.h \
+	include/{,lib}qhull/{,lib}qhull.h \
 	lib/libqhull.so
 
 SYSTEM_PKG.Fedora.qhull=qhull-devel
