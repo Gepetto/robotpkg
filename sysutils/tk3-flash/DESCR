@@ -1,0 +1,7 @@
+tk3-flash is a command-line utility used to update the program stored
+in permanent memory of microcontrollers. Currently, it supports only
+programming the AVR microcontrollers with the Mikrokopter bootloader.
+
+tk3-flash supports flashing the EEPROM or the flash memory. It also
+allows to set parameters specific to the flashed program, without the
+need for changing the program itself.

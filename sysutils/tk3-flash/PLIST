@@ -1,0 +1,3 @@
+@comment Tue Jan 27 15:37:39 CET 2015
+${PKGMANDIR}/man1/tk3-flash.1
+sbin/tk3-flash
