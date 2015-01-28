@@ -1,8 +1,8 @@
-# robotpkg Makefile for:	sysutils/alog
-# Created:			Matthieu Herrb on Mon, 12 Jan 2009
+# robotpkg Makefile for:	sysutils/tk3-flash
+# Created:			Anthony Mallet on Tue, 27 Jan 2015
 #
 
-DISTNAME=		tk3-flash-1.0
+DISTNAME=		tk3-flash-1.1
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=tk3-flash/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}tk3-flash
@@ -14,5 +14,6 @@ MAINTAINER=	openrobots@laas.fr
 
 GNU_CONFIGURE=	yes
 
+include ../../mk/sysdep/libelf.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
