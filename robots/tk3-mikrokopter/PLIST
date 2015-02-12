@@ -1,0 +1,8 @@
+@comment Thu Feb 12 14:07:13 CET 2015
+lib/pkgconfig/tk3-mikrokopter.pc
+lib/tk3-firmware/mkbl
+lib/tk3-firmware/mkfl
+share/doc/tk3-mikrokopter/communication.html
+share/doc/tk3-mikrokopter/index.html
+share/doc/tk3-mikrokopter/install.html
+share/doc/tk3-mikrokopter/parameters.html
