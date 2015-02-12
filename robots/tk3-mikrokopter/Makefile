@@ -14,6 +14,8 @@ LICENSE=	2-clause-bsd
 
 GNU_CONFIGURE=	yes
 
+DEPEND_ABI.avr-gcc+= avr-gcc>=4.6
+
 include ../../mk/sysdep/avr-libc.mk
 include ../../mk/language/avr-c.mk
 include ../../mk/robotpkg.mk
