@@ -5,6 +5,7 @@ COMMENT=	Sysutils
 
 SUBDIR+=	alog
 SUBDIR+=	console-bridge
+SUBDIR+=	interceptty
 SUBDIR+=	py-aafigure
 SUBDIR+=	py-catkin-pkg
 SUBDIR+=	py-rosdep

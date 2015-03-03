@@ -1,0 +1,4 @@
+@comment Tue Mar 3 21:54:34 CET 2015
+bin/interceptty
+bin/interceptty-nicedump
+${PKGMANDIR}/man1/interceptty.1
