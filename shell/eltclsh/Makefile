@@ -8,7 +8,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=eltclsh/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}eltclsh
 
 MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/eltclsh
+HOMEPAGE=		https://git.openrobots.org/projects/eltclsh
 COMMENT=		Interactive shell for the TCL programming language.
 LICENSE=		2-clause-bsd
 
