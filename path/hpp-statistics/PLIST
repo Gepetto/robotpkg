@@ -1,0 +1,11 @@
+@comment Sat Mar 7 16:18:45 CET 2015
+include/hpp/statistics/bin.hh
+include/hpp/statistics/config.h
+include/hpp/statistics/config.hh
+include/hpp/statistics/deprecated.hh
+include/hpp/statistics/distribution.hh
+include/hpp/statistics/fwd.hh
+include/hpp/statistics/success-bin.hh
+include/hpp/statistics/warning.hh
+lib/libhpp-statistics.so
+lib/pkgconfig/hpp-statistics.pc

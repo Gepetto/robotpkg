@@ -23,6 +23,7 @@ SUBDIR+=	hpp-model
 SUBDIR+=	hpp-model-urdf
 SUBDIR+=	hpp-openhrp
 SUBDIR+=	hpp-roboptim
+SUBDIR+=	hpp-statistics
 SUBDIR+=	hpp-util
 SUBDIR+=	hpp-walkfootplanner
 SUBDIR+=	hpp-walkplanner
