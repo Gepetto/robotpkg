@@ -1,0 +1,15 @@
+Missing link edition with boost_system
+
+--- tests/CMakeLists.txt~	2015-02-25 22:37:08.000000000 +0100
++++ tests/CMakeLists.txt	2015-04-28 18:53:33.181931598 +0200
+@@ -15,6 +15,10 @@
+ # You should have received a copy of the GNU Lesser General Public License
+ # along with hpp-constraints  If not, see <http://www.gnu.org/licenses/>.
+ 
++
++SET(BOOST_COMPONENTS system)
++INCLUDE(../cmake/boost.cmake)
++SEARCH_FOR_BOOST()
+ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+ 
+ # Make Boost.Test generates the main function in test cases.

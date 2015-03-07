@@ -6,7 +6,7 @@
 COMMENT=	Path planning algorithms and tools
 
 SUBDIR+=	aspect-genom
-SUBDIR+=	hpp-constrained
+SUBDIR+=	hpp-constraints
 SUBDIR+=	hpp-constrained-corba
 SUBDIR+=	hpp-constrained-planner
 SUBDIR+=	hpp-corbaserver
