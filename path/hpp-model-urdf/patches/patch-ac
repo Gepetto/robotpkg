@@ -1,0 +1,11 @@
+For some reason, this makes doxygen-1.8.6 segfault
+
+--- doc/Doxyfile.extra.in~	2015-02-20 14:20:04.000000000 +0100
++++ doc/Doxyfile.extra.in	2015-04-29 14:59:33.787841337 +0200
+@@ -8,5 +8,5 @@
+ HTML_HEADER            = @CMAKE_SOURCE_DIR@/doc/header.html
+ HTML_FOOTER            = @CMAKE_SOURCE_DIR@/doc/footer.html
+ 
+-TAGFILES               = @HPP_MODEL_DOXYGENDOCDIR@/hpp-model.doxytag=@HPP_MODEL_DOXYGENDOCDIR@
++#TAGFILES               = @HPP_MODEL_DOXYGENDOCDIR@/hpp-model.doxytag=@HPP_MODEL_DOXYGENDOCDIR@
+ 

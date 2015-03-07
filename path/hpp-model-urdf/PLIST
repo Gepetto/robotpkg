@@ -1,5 +1,4 @@
-@comment Tue Jul 30 22:32:01 CEST 2013
-include/hpp/model/rcpdf/parser.hh
+@comment Sat Mar 7 17:20:00 CET 2015
 include/hpp/model/srdf/parser.hh
 include/hpp/model/urdf/config.h
 include/hpp/model/urdf/config.hh
@@ -8,5 +7,4 @@ include/hpp/model/urdf/parser.hh
 include/hpp/model/urdf/util.hh
 include/hpp/model/urdf/warning.hh
 lib/libhpp-model-urdf.so
-lib/libhpp-model-urdf.so.${PKGVERSION}
 lib/pkgconfig/hpp-model-urdf.pc

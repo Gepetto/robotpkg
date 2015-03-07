@@ -1,0 +1,32 @@
+Compatibility with assimp3 headers
+
+--- src/urdf/parser.cc~	2015-02-20 14:20:04.000000000 +0100
++++ src/urdf/parser.cc	2015-04-29 13:28:27.474684763 +0200
+@@ -30,12 +30,21 @@
+ #include <boost/format.hpp>
+ 
+ #include <resource_retriever/retriever.h>
+-#include <assimp/DefaultLogger.h>
+-#include <assimp/assimp.hpp>
+-#include <assimp/aiScene.h>
+-#include <assimp/aiPostProcess.h>
+-#include <assimp/IOStream.h>
+-#include <assimp/IOSystem.h>
++#ifdef ASSIMP_UNIFIED_HEADER_NAMES
++# include <assimp/DefaultLogger.hpp>
++# include <assimp/scene.h>
++# include <assimp/postprocess.h>
++# include <assimp/IOStream.hpp>
++# include <assimp/IOSystem.hpp>
++# include <assimp/Importer.hpp>
++#else
++# include <assimp/DefaultLogger.h>
++# include <assimp/assimp.hpp>
++# include <assimp/aiScene.h>
++# include <assimp/aiPostProcess.h>
++# include <assimp/IOStream.h>
++# include <assimp/IOSystem.h>
++#endif
+ 
+ #include <hpp/util/debug.hh>
+ #include <hpp/util/assertion.hh>
