@@ -4,8 +4,7 @@
 
 PKGREVISION=
 HPP_PACKAGE=		hpp-model
-HPP_VERSION=		2.4.3
-MASTER_REPOSITORY=	git git@github.com:laas/hpp-model
+HPP_VERSION=		3.1.1
 
 CATEGORIES=	path
 HPP_COMMENT=	robots, joints and bodies with dynamics properties
@@ -14,11 +13,18 @@ LICENSE=	gnu-lgpl-v2
 HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../path/hpp-kwsio/depend.mk
+# Needs eigen3 >= 3.2: override PREFER defaults where needed
+DEPEND_ABI.eigen3 += eigen3>=3.2.0
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 12.04,${OS_VERSION}))
+    PREFER.eigen3?=	robotpkg
+  endif
+endif
+
 include ../../path/hpp-util/depend.mk
-include ../../math/hpp-geometry/depend.mk
-include ../../math/jrl-dynamics/depend.mk
-include ../../mk/sysdep/kineoworks.mk
+include ../../path/hpp-fcl/depend.mk
+include ../../math/eigen3/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

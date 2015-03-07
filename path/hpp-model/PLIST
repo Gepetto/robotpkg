@@ -1,23 +1,23 @@
-@comment Thu Sep 26 09:47:10 CEST 2013
-include/hpp/model/anchor-joint.hh
-include/hpp/model/body-distance.hh
-include/hpp/model/capsule-body-distance.hh
+@comment Tue Apr 28 18:19:45 CEST 2015
+include/hpp/model/body.hh
+include/hpp/model/center-of-mass-computation.hh
+include/hpp/model/children-iterator.hh
+include/hpp/model/collision-object.hh
 include/hpp/model/config.h
 include/hpp/model/config.hh
+include/hpp/model/configuration.hh
 include/hpp/model/deprecated.hh
 include/hpp/model/device.hh
-include/hpp/model/exception.hh
-include/hpp/model/freeflyer-joint.hh
+include/hpp/model/distance-result.hh
+include/hpp/model/extra-config-space.hh
+include/hpp/model/fcl-to-eigen.hh
 include/hpp/model/fwd.hh
+include/hpp/model/gripper.hh
 include/hpp/model/humanoid-robot.hh
+include/hpp/model/joint-configuration.hh
 include/hpp/model/joint.hh
-include/hpp/model/parser.hh
-include/hpp/model/robot-dynamics-impl.hh
-include/hpp/model/rotation-joint.hh
-include/hpp/model/specific-humanoid-robot.hh
-include/hpp/model/translation-joint.hh
-include/hpp/model/types.hh
+include/hpp/model/object-factory.hh
+include/hpp/model/object-iterator.hh
 include/hpp/model/warning.hh
 lib/libhpp-model.so
-lib/libhpp-model.so.${PKGVERSION}
 lib/pkgconfig/hpp-model.pc
