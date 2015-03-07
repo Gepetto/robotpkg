@@ -1,55 +1,48 @@
-. Disable -pedantic because of a NetBSD/6.0.1 + gcc-4.5 issue (in posix_memalign()
-  prototype in mm_malloc.h).
+. Disable running mercurial, this does not make sense in a distfile
+. Disable -pedantic because of a NetBSD/6.0.1 + gcc-4.5 issue (in
+  posix_memalign() prototype in mm_malloc.h).
 . Disable various unused subdirectories that otherwise pull in horrid
   dependencies
 
---- CMakeLists.txt.orig	2011-05-05 12:10:37.867029766 +0200
-+++ CMakeLists.txt	2011-05-05 12:10:44.451054956 +0200
-@@ -118,7 +118,6 @@
-     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra")
+--- CMakeLists.txt.orig	2015-03-12 18:13:22.108669419 +0100
++++ CMakeLists.txt	2015-03-12 18:14:02.188531663 +0100
+@@ -38,8 +38,8 @@
+ 
+ # if the mercurial program is absent, this will leave the EIGEN_HG_CHANGESET string empty,
+ # but won't stop CMake.
+-execute_process(COMMAND hg tip -R ${CMAKE_SOURCE_DIR} OUTPUT_VARIABLE EIGEN_HGTIP_OUTPUT)
+-execute_process(COMMAND hg branch -R ${CMAKE_SOURCE_DIR} OUTPUT_VARIABLE EIGEN_BRANCH_OUTPUT)
++#execute_process(COMMAND hg tip -R ${CMAKE_SOURCE_DIR} OUTPUT_VARIABLE EIGEN_HGTIP_OUTPUT)
++#execute_process(COMMAND hg branch -R ${CMAKE_SOURCE_DIR} OUTPUT_VARIABLE EIGEN_BRANCH_OUTPUT)
+ 
+ # if this is the default (aka development) branch, extract the mercurial changeset number from the hg tip output...
+ if(EIGEN_BRANCH_OUTPUT MATCHES "default")
+@@ -129,7 +129,6 @@
+     set(CMAKE_REQUIRED_FLAGS "-Werror")
    endif()
+   
+-  ei_add_cxx_compiler_flag("-pedantic")
+   ei_add_cxx_compiler_flag("-Wall")
+   ei_add_cxx_compiler_flag("-Wextra")
+   #ei_add_cxx_compiler_flag("-Weverything")              # clang
+@@ -351,24 +350,9 @@
+ # fixme, not sure this line is still needed:
+ enable_testing() # must be called from the root CMakeLists, see man page
  
--  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
- 
-   option(EIGEN_TEST_SSE2 "Enable/Disable SSE2 in tests/examples" OFF)
-   if(EIGEN_TEST_SSE2)
-@@ -281,7 +281,7 @@
- if(EIGEN_BUILD_PKGCONFIG)
-     configure_file(eigen3.pc.in eigen3.pc)
-     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/eigen3.pc
--        DESTINATION share/pkgconfig
-+        DESTINATION lib/pkgconfig
-         )
- endif(EIGEN_BUILD_PKGCONFIG)
- 
-@@ -318,7 +318,7 @@
-   set(EIGEN_MAKECOMMAND_PLACEHOLDER "${CMAKE_MAKE_PROGRAM_SAVE} buildtests")
- endif()
- 
--configure_file(${CMAKE_BINARY_DIR}/DartConfiguration.tcl ${CMAKE_BINARY_DIR}/DartConfiguration.tcl)
-+# configure_file(${CMAKE_BINARY_DIR}/DartConfiguration.tcl ${CMAKE_BINARY_DIR}/DartConfiguration.tcl)
- # restore default CMAKE_MAKE_PROGRAM
- set(CMAKE_MAKE_PROGRAM ${CMAKE_MAKE_PROGRAM_SAVE})
- # un-set temporary variables so that it is like they never existed. 
-@@ -329,25 +329,9 @@
- configure_file(${CMAKE_SOURCE_DIR}/CTestCustom.cmake.in ${CMAKE_BINARY_DIR}/CTestCustom.cmake)
- 
- 
+-
 -if(EIGEN_LEAVE_TEST_IN_ALL_TARGET)
 -  add_subdirectory(test) # can't do EXCLUDE_FROM_ALL here, breaks CTest
 -else()
 -  add_subdirectory(test EXCLUDE_FROM_ALL)
 -endif()
 -
--if(NOT MSVC)
--  if(EIGEN_LEAVE_TEST_IN_ALL_TARGET)
--    add_subdirectory(blas)
--    add_subdirectory(lapack)
--  else()
--    add_subdirectory(blas EXCLUDE_FROM_ALL)
--    add_subdirectory(lapack EXCLUDE_FROM_ALL)
--  endif()
--endif(NOT MSVC)
+-if(EIGEN_LEAVE_TEST_IN_ALL_TARGET)
+-  add_subdirectory(blas)
+-  add_subdirectory(lapack)
+-else()
+-  add_subdirectory(blas EXCLUDE_FROM_ALL)
+-  add_subdirectory(lapack EXCLUDE_FROM_ALL)
+-endif()
 -
  add_subdirectory(unsupported)
  

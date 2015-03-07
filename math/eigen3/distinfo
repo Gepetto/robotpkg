@@ -1,8 +1,7 @@
-SHA1 (eigen3/3.0.0.tar.gz) = 9d3d808450c332979dd08080db1e9cdc84dabbaf
-RMD160 (eigen3/3.0.0.tar.gz) = 6b55c1813832d1fbf20d757f852fb9a372181257
-Size (eigen3/3.0.0.tar.gz) = 1154130 bytes
-SHA1 (patch-aa) = 987fe1aa32c606f739552f5ff976907bc5069398
-SHA1 (patch-ab) = 83fdf13b79fd1cd91750a3f0b180dbbb4f3b57a7
+SHA1 (eigen3/3.2.4.tar.gz) = b826f665bdfe31784795eef79c75540db71ab702
+RMD160 (eigen3/3.2.4.tar.gz) = a11cb1169250550cf69714cbceb543fa7232eaa8
+Size (eigen3/3.2.4.tar.gz) = 1481562 bytes
+SHA1 (patch-aa) = f7ef6444fa931eba02169e3cf581792dcc1de2d7
+SHA1 (patch-ab) = e6c372723ffe3d80125e0e891f9620dd16710aaf
 SHA1 (patch-ac) = 794c0093ed923794695ab81d8b177888b381e827
-SHA1 (patch-ad) = 3227f3f7045805949bb651792481e5113f841f76
-SHA1 (patch-ae) = f2392f06f17f2a77a3fb7690b6563101f75be32b
+SHA1 (patch-ad) = 8a1c8b29599beeec0f573f46c37dd627e9b79625

@@ -2,8 +2,8 @@
 # Created:			Nizar Sallem on Tue, 26 Apr 2011
 #
 
-V=		3.0.0
-PKGREVISION=	1
+V=		3.2.4
+PKGREVISION=
 DISTNAME=	${V}
 PKGNAME=	eigen3-${V}
 MASTER_SITES=	https://bitbucket.org/eigen/eigen/get/
@@ -15,12 +15,13 @@ HOMEPAGE=	http://eigen.tuxfamily.org/
 COMMENT=	a C++ template library for linear algebra
 LICENSE=	gnu-lgpl-v3
 
-WRKSRC=		${WRKDIR}/eigen-eigen-65ee2328342f
+WRKSRC=		${WRKDIR}/eigen-eigen-10219c95fe65
 
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..
 CMAKE_ARGS+=		-DBUILD_TESTING=OFF
 CMAKE_ARGS+=		-DEIGEN_BUILD_PKGCONFIG=ON
+CMAKE_ARGS+=		-Dpkg_config_libdir=${PREFIX}/lib
 
 # doc option
 PKG_SUPPORTED_OPTIONS+=	doc
