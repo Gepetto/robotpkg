@@ -1,0 +1,17 @@
+@comment Sat Mar 7 22:40:45 CET 2015
+include/hpp/manipulation/parser/factories/ignoretag.hh
+include/hpp/manipulation/parser/factories/sequence.hh
+include/hpp/manipulation/parser/parser.hh
+include/hpp/manipulation/srdf/factories.hh
+include/hpp/manipulation/srdf/factories/contact.hh
+include/hpp/manipulation/srdf/factories/gripper.hh
+include/hpp/manipulation/srdf/factories/handle.hh
+include/hpp/manipulation/srdf/factories/position.hh
+include/hpp/manipulation/srdf/factories/robot.hh
+include/hpp/manipulation/srdf/util.hh
+include/hpp/manipulation/urdf/config.h
+include/hpp/manipulation/urdf/config.hh
+include/hpp/manipulation/urdf/deprecated.hh
+include/hpp/manipulation/urdf/warning.hh
+lib/libhpp-manipulation-urdf.so
+lib/pkgconfig/hpp-manipulation-urdf.pc
