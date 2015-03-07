@@ -1,0 +1,4 @@
+Manipulation problem definition and resolution
+
+This package extends the functionalities of hpp-core.
+It implements a solver for manipulation planning problems.

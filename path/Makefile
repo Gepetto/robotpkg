@@ -19,6 +19,7 @@ SUBDIR+=	hpp-hik
 SUBDIR+=	hpp-kwsio
 SUBDIR+=	hpp-kwsplus
 SUBDIR+=	hpp-localstepper
+SUBDIR+=	hpp-manipulation
 SUBDIR+=	hpp-model
 SUBDIR+=	hpp-model-urdf
 SUBDIR+=	hpp-openhrp
