@@ -1,0 +1,12 @@
+--- tests/CMakeLists.txt~	2015-03-07 17:02:33.000000000 +0100
++++ tests/CMakeLists.txt	2015-04-29 11:26:29.849677478 +0200
+@@ -15,6 +15,9 @@
+ # You should have received a copy of the GNU Lesser General Public License
+ # along with hpp-core  If not, see <http://www.gnu.org/licenses/>.
+ 
++SET(BOOST_COMPONENTS system)
++INCLUDE(../cmake/boost.cmake)
++SEARCH_FOR_BOOST()
+ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src)
+ 
