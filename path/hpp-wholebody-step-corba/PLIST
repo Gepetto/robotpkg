@@ -1,6 +1,5 @@
-@comment Thu Sep 26 21:25:59 CEST 2013
+@comment Wed Apr 29 15:14:46 CEST 2015
 bin/hpp-wholebody-step-server
-bin/hpp-wholebody-step-server.kab
 include/hpp/corbaserver/wholebody-step/config.h
 include/hpp/corbaserver/wholebody-step/config.hh
 include/hpp/corbaserver/wholebody-step/deprecated.hh
@@ -8,10 +7,7 @@ include/hpp/corbaserver/wholebody-step/fwd.hh
 include/hpp/corbaserver/wholebody-step/server.hh
 include/hpp/corbaserver/wholebody-step/warning.hh
 lib/libhpp-wholebody-step-corba.so
-lib/libhpp-wholebody-step-corba.so.${PKGVERSION}
 lib/pkgconfig/hpp-wholebody-step-corba.pc
-lib/python2.7/site-packages/hpp/corbaserver/wholebody_step/__init__.py
-lib/python2.7/site-packages/hpp/corbaserver/wholebody_step/client.py
-lib/python2.7/site-packages/hpp/corbaserver/wholebody_step/hpp/__init__.py
-lib/python2.7/site-packages/hpp/corbaserver/wholebody_step/hpp__POA/__init__.py
-lib/python2.7/site-packages/hpp/corbaserver/wholebody_step/wholebody_step_idl.py
+${PYTHON_SITELIB}/hpp/corbaserver/wholebody_step/__init__.py
+${PYTHON_SITELIB}/hpp/corbaserver/wholebody_step/client.py
+${PYTHON_SITELIB}/hpp/corbaserver/wholebody_step/problem_idl.py

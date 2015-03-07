@@ -15,7 +15,7 @@ PREFER.hpp-wholebody-step-corba?=	robotpkg
 
 DEPEND_USE+=		hpp-wholebody-step-corba
 
-DEPEND_ABI.hpp-wholebody-step-corba?=	hpp-wholebody-step-corba>=0.1
+DEPEND_ABI.hpp-wholebody-step-corba?=	hpp-wholebody-step-corba>=3.1.0
 DEPEND_DIR.hpp-wholebody-step-corba?=	../../path/hpp-wholebody-step-corba
 
 SYSTEM_SEARCH.hpp-wholebody-step-corba=			\
