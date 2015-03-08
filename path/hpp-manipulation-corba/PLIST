@@ -1,0 +1,20 @@
+@comment Wed Apr 29 15:53:34 CEST 2015
+bin/hpp-manipulation-server
+include/hpp/corbaserver/manipulation/config.h
+include/hpp/corbaserver/manipulation/config.hh
+include/hpp/corbaserver/manipulation/deprecated.hh
+include/hpp/corbaserver/manipulation/fwd.hh
+include/hpp/corbaserver/manipulation/server.hh
+include/hpp/corbaserver/manipulation/warning.hh
+lib/libhpp-manipulation-corba.so
+lib/pkgconfig/hpp-manipulation-corba.pc
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/__init__.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/client.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/common_idl.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/constraint_graph.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/gcommon_idl.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/graph_idl.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/problem_idl.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/problem_solver.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/robot.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/robot_idl.py
