@@ -1,0 +1,17 @@
+@comment Wed Apr 29 17:21:34 CEST 2015
+bin/gepetto-viewer-server
+include/gepetto/viewer/corba/client.hh
+include/gepetto/viewer/corba/config.h
+include/gepetto/viewer/corba/config.hh
+include/gepetto/viewer/corba/deprecated.hh
+include/gepetto/viewer/corba/graphical-interface.hh
+include/gepetto/viewer/corba/se3.hh
+include/gepetto/viewer/corba/warning.hh
+lib/libgepetto-viewer-corba.so
+lib/pkgconfig/gepetto-viewer-corba.pc
+${PYTHON_SITELIB}/gepetto/__init__.py
+${PYTHON_SITELIB}/gepetto/corbaserver/__init__.py
+${PYTHON_SITELIB}/gepetto/corbaserver/client.py
+${PYTHON_SITELIB}/gepetto/corbaserver/graphical_interface_idl.py
+${PYTHON_SITELIB}/gepetto/quaternion.py
+share/idl/gepetto/corbaserver/graphical-interface.idl

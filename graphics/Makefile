@@ -11,6 +11,7 @@ SUBDIR+=	collada-dom
 SUBDIR+=	flann
 SUBDIR+=	gdhe
 SUBDIR+=	gepetto-viewer
+SUBDIR+=	gepetto-viewer-corba
 SUBDIR+=	grh2
 SUBDIR+=	jafar-gdhe
 SUBDIR+=	kpp-interface
