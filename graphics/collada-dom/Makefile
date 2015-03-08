@@ -17,7 +17,7 @@ MAINTAINER=	openrobots@laas.fr
 
 WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 
-CMAKE_ARGS+=	-DOPT_COLLADA14=OFF
+CMAKE_ARGS+=	-DOPT_COLLADA14=ON
 CMAKE_ARGS+=	-DOPT_COLLADA15=ON
 
 include ../../mk/sysdep/cmake.mk
