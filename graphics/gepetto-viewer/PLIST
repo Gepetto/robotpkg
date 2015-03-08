@@ -1,0 +1,22 @@
+@comment Sun Mar 8 14:57:43 CET 2015
+include/gepetto/viewer/config-osg.h
+include/gepetto/viewer/config.h
+include/gepetto/viewer/config.hh
+include/gepetto/viewer/deprecated.hh
+include/gepetto/viewer/group-node.h
+include/gepetto/viewer/leaf-node-box.h
+include/gepetto/viewer/leaf-node-capsule.h
+include/gepetto/viewer/leaf-node-collada.h
+include/gepetto/viewer/leaf-node-cone.h
+include/gepetto/viewer/leaf-node-cylinder.h
+include/gepetto/viewer/leaf-node-face.h
+include/gepetto/viewer/leaf-node-ground.h
+include/gepetto/viewer/leaf-node-line.h
+include/gepetto/viewer/leaf-node-sphere.h
+include/gepetto/viewer/macros.h
+include/gepetto/viewer/node.h
+include/gepetto/viewer/urdf-parser.h
+include/gepetto/viewer/warning.hh
+include/gepetto/viewer/window-manager.h
+lib/libgepetto-viewer.so
+lib/pkgconfig/gepetto-viewer.pc

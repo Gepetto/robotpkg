@@ -10,6 +10,7 @@ SUBDIR+=	coldman-libs
 SUBDIR+=	collada-dom
 SUBDIR+=	flann
 SUBDIR+=	gdhe
+SUBDIR+=	gepetto-viewer
 SUBDIR+=	grh2
 SUBDIR+=	jafar-gdhe
 SUBDIR+=	kpp-interface
