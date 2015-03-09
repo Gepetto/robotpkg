@@ -1,0 +1,15 @@
+@comment Wed Apr 29 17:27:57 CEST 2015
+include/hpp/gepetto/viewer/config.h
+include/hpp/gepetto/viewer/config.hh
+include/hpp/gepetto/viewer/deprecated.hh
+include/hpp/gepetto/viewer/warning.hh
+lib/pkgconfig/hpp-gepetto-viewer.pc
+${PYTHON_SITELIB}/hpp/gepetto/__init__.py
+${PYTHON_SITELIB}/hpp/gepetto/manipulation/__init__.py
+${PYTHON_SITELIB}/hpp/gepetto/manipulation/viewer.py
+${PYTHON_SITELIB}/hpp/gepetto/manipulation/viewer_factory.py
+${PYTHON_SITELIB}/hpp/gepetto/path_player.py
+${PYTHON_SITELIB}/hpp/gepetto/path_player_gui.glade
+${PYTHON_SITELIB}/hpp/gepetto/path_player_gui.py
+${PYTHON_SITELIB}/hpp/gepetto/viewer.py
+${PYTHON_SITELIB}/hpp/gepetto/viewer_factory.py
