@@ -5,7 +5,6 @@ COMMENT=	Hardware drivers and low-level software
 
 SUBDIR+=	GPSNovatel
 SUBDIR+=	MTI
-SUBDIR+=	contec-pio32-headers
 SUBDIR+=	contec-pio32-kmod
 SUBDIR+=	cwiid
 SUBDIR+=	fh2805-libs
