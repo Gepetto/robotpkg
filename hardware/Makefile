@@ -6,7 +6,6 @@ COMMENT=	Hardware drivers and low-level software
 SUBDIR+=	GPSNovatel
 SUBDIR+=	MTI
 SUBDIR+=	cwiid
-SUBDIR+=	fh2805-libs
 SUBDIR+=	force-genom
 SUBDIR+=	gbx-hokuyo-aist
 SUBDIR+=	gyro-libs
