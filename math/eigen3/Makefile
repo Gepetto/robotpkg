@@ -25,7 +25,6 @@ CMAKE_ARGS+=		-Dpkg_config_libdir=${PREFIX}/lib
 
 # doc option
 PKG_SUPPORTED_OPTIONS+=	doc
-PKG_SUGGESTED_OPTIONS+=	doc
 PKG_OPTION_DESCR.doc=	Install ${PKGBASE} documentation
 
 define PKG_OPTION_SET.doc
