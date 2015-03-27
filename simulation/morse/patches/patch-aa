@@ -1,0 +1,49 @@
+[pocolibs] Pocolibs -> PocolibsDatastreamManager
+
+5dc6c545c9abe040cd6cee9a401a3c2fe33ca95c in mainstream
+
+
+diff --git a/src/morse/middleware/pocolibs/sensors/stereopixel.py b/src/morse/middleware/pocolibs/sensors/stereopixel.py
+index 16b3130..b3ae7f5 100644
+--- src/morse/middleware/pocolibs/sensors/stereopixel.py
++++ src/morse/middleware/pocolibs/sensors/stereopixel.py
+@@ -1,7 +1,7 @@
+ import logging; logger = logging.getLogger("morse." + __name__)
+ from morse.core import blenderapi
+ from morse.middleware import AbstractDatastream
+-from morse.middleware.pocolibs_datastream import poster_name, Pocolibs
++from morse.middleware.pocolibs_datastream import poster_name, PocolibsDatastreamManager
+ 
+ try:
+     from morse.middleware.pocolibs.stereopixel import *
+@@ -24,7 +24,7 @@ class Spix3DImagePoster(AbstractDatastream):
+             return
+ 
+         main_to_origin = self.component_instance.robot_parent.position_3d
+-        pom_date, t = Pocolibs.compute_date()
++        pom_date, t = PocolibsDatastreamManager.compute_date()
+         main_to_sensor = main_to_origin.transformation3d_with(
+                     self.component_instance.position_3d)
+ 
+diff --git a/src/morse/middleware/pocolibs/sensors/viam.py b/src/morse/middleware/pocolibs/sensors/viam.py
+index ab2ccba..20d0c58 100644
+--- src/morse/middleware/pocolibs/sensors/viam.py
++++ src/morse/middleware/pocolibs/sensors/viam.py
+@@ -2,7 +2,7 @@ import logging; logger = logging.getLogger("morse." + __name__)
+ import math
+ from morse.core import blenderapi
+ from morse.middleware import AbstractDatastream
+-from morse.middleware.pocolibs_datastream import poster_name, Pocolibs
++from morse.middleware.pocolibs_datastream import poster_name, PocolibsDatastreamManager
+ 
+ try:
+     from morse.middleware.pocolibs.viam import *
+@@ -80,7 +80,7 @@ class ViamPoster(AbstractDatastream):
+         pom_robot_position.roll = main_to_origin.roll
+ 
+         # Compute the current time
+-        pom_date, t = Pocolibs.compute_date()
++        pom_date, t = PocolibsDatastreamManager.compute_date()
+ 
+         ors_cameras = []
+         ors_images = []
