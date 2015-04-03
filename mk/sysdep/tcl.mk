@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2012-2013 LAAS/CNRS
+# Copyright (c) 2012-2013,2015 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -100,8 +100,22 @@ export TCLLIBPATH
 PKG_ALTERNATIVES+=	tcl
 PKG_ALTERNATIVES.tcl=	tcl84 tcl85 tcl86
 
-# set default preferences
-PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
+# set default preferences depending on OS/VERSION
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Debian,${OPSYS})
+  ifneq (,$(filter 7.%,${OS_VERSION}))
+     PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
+  endif
+else ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 12.04,${OS_VERSION}))
+     PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
+  endif
+else ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 19,${OS_VERSION}))
+     PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
+  endif
+endif
+PREFER_ALTERNATIVE.tcl?=	tcl86 tcl85
 
 PKG_ALTERNATIVE_DESCR.tcl84= Use tcl-8.4
 PKGTAG.tcl84 =		tcl84
