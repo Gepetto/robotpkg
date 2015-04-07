@@ -1,0 +1,13 @@
+Fix printf format (to appease gcc-4.9)
+
+--- sample/simple/src/main.cpp~	2006-07-25 16:05:46.000000000 +0200
++++ sample/simple/src/main.cpp	2015-04-07 11:59:36.887562604 +0200
+@@ -51,7 +51,7 @@
+ {
+     void artLog(const char* nStr)
+     {
+-        printf(nStr);
++       printf("%s", nStr);
+     }
+ };
+ 
