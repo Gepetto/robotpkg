@@ -275,7 +275,7 @@ ${TEST} -z "$distsize" || ${ECHO} "=> Total size: $distsize $distunits"
 while ${TEST} $# -gt 0; do
 	site="$1"; shift
 
-	# Build repository bits from repository+module@rev format
+	# Build repository bits from repository@rev+module format
 	repo=${site%@*}
 	rev=${site##*@}
 	${TEST} "$rev" = "$site" && rev=
