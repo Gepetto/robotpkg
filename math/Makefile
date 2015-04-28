@@ -19,6 +19,7 @@ SUBDIR+=	jrl-dynamics
 SUBDIR+=	jrl-dynamics-urdf
 SUBDIR+=	jrl-mathtools
 SUBDIR+=	lapack
+SUBDIR+=	libccd
 SUBDIR+=	liblbfgs
 SUBDIR+=	meschach
 SUBDIR+=	ros-angles

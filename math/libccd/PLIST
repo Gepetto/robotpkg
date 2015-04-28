@@ -1,0 +1,11 @@
+@comment Tue Apr 28 17:52:55 CEST 2015
+include/ccd/ccd.h
+include/ccd/compiler.h
+include/ccd/config.h
+include/ccd/quat.h
+include/ccd/vec3.h
+lib/libccd.a
+lib/libccd.so
+lib/libccd.so.2
+lib/libccd.so.${PKGVERSION}
+lib/pkgconfig/ccd.pc
