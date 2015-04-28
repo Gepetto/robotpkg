@@ -111,9 +111,13 @@ else ifeq (Ubuntu,${OPSYS})
      PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
   endif
 else ifeq (Fedora,${OPSYS})
-  ifneq (,$(filter 19,${OS_VERSION}))
+  ifneq (,$(filter 19 20,${OS_VERSION}))
      PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
   endif
+else ifeq (NetBSD,${OPSYS})
+  PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
+else ifeq (Gentoo,${OS_FAMILY})
+  PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
 endif
 PREFER_ALTERNATIVE.tcl?=	tcl86 tcl85
 

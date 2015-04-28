@@ -22,8 +22,8 @@ SYSTEM_PKG.Ubuntu.libftdi=libftdi-dev
 SYSTEM_PKG.NetBSD.libftdi=devel/libftdi
 
 SYSTEM_SEARCH.libftdi=\
-	include/ftdi.h \
-	'lib/pkgconfig/libftdi.pc:/Version/s/[^0-9.]//gp'
+	'include/{,libftdi1/}ftdi.h' \
+	'lib/pkgconfig/libftdi{,1}.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
