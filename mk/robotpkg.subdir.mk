@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007,2009-2011,2013 LAAS/CNRS
+# Copyright (c) 2007,2009-2011,2013,2015 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -32,6 +32,9 @@
 #
 
 .DEFAULT_GOAL:=all
+ifeq (,${MAKECMDGOALS})
+  MAKECMDGOALS:=${.DEFAULT_GOAL}
+endif
 
 # Include any preferences, if not already included, and common
 # definitions. The file robotpkg.prefs.mk is protected against double
