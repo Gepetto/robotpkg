@@ -22,6 +22,7 @@ PREFER.eigen3?=		system
 
 DEPEND_USE+=		eigen3
 
+DEPEND_METHOD.eigen3?=	build
 DEPEND_ABI.eigen3?=	eigen3>=3.0.0
 DEPEND_DIR.eigen3?=	../../math/eigen3
 
