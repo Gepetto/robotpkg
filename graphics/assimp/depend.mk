@@ -26,7 +26,7 @@ DEPEND_DIR.assimp?=	../../graphics/assimp
 
 SYSTEM_SEARCH.assimp=\
 	bin/assimp						\
-	include/assimp/{aiV,v}ersion.h				\
+	'include/assimp/{aiV,v}ersion.h'			\
 	'lib/pkgconfig/assimp.pc:/Version/s/[^0-9.]//gp'	\
 	lib/libassimp.so
 
