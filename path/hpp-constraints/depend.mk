@@ -25,4 +25,6 @@ SYSTEM_SEARCH.hpp-constraints=				\
 
 endif # HPP_CONSTRAINTS_DEPEND_MK --------------------------------------------
 
+include ../../path/hpp-model/depend.mk
+
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
