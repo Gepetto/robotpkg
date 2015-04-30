@@ -1,0 +1,13 @@
+Configuration_t expects double, not int
+
+--- src/equation.cc~	2015-03-07 17:02:33.000000000 +0100
++++ src/equation.cc	2015-04-30 15:24:30.225053978 +0200
+@@ -47,7 +47,7 @@
+       comparison_ (comp), rhs_ (rhs)
+     {
+       if (comparison_->constantRightHandSide ())
+-        rhs_ = vector_t (0);
++        rhs_ = vector_t (0.);
+     }
+   } // namespace core
+ } // namespace hpp
