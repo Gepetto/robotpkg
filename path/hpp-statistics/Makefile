@@ -13,6 +13,9 @@ LICENSE=	gnu-lgpl-v2
 HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
+# the software may not be 64bits clean, but let it build
+CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
+
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
