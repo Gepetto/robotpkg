@@ -13,6 +13,16 @@ HPP_BUILD_SYSTEM=	cmake
 
 include ../../meta-pkgs/hpp/Makefile.common
 
+# Needs eigen3 >= 3.2: override PREFER defaults where needed
+DEPEND_ABI.eigen3 += eigen3>=3.2.0
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 12.04,${OS_VERSION}))
+    PREFER.eigen3?=	robotpkg
+  endif
+endif
+
+include ../../math/eigen3/depend.mk
 include ../../path/hpp-model/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
