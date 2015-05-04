@@ -22,9 +22,7 @@ DEPEND_USE+=		hpp-model
 DEPEND_ABI.hpp-model?=	hpp-model>=3.1.1
 DEPEND_DIR.hpp-model?=	../../path/hpp-model
 
-endif # HPP_MODEL_DEPEND_MK ------------------------------------------
-
-# This package leaks eigen3 in its public headers.
+# This package has an eigen3 dependencies in its public headers.
 # And it requires eigen3 >= 3.2: override PREFER defaults where needed.
 # This works only if this file is included before math/eigen3/depend.mk
 ifneq (,$(filter eigen3,${DEPEND_USE}))
@@ -40,5 +38,7 @@ ifeq (Ubuntu,${OPSYS})
   endif
 endif
 include ../../math/eigen3/depend.mk
+
+endif # HPP_MODEL_DEPEND_MK ------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
