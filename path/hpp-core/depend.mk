@@ -23,6 +23,9 @@ SYSTEM_SEARCH.hpp-core=\
 	'lib/pkgconfig/hpp-core.pc:/Version/s/[^0-9.]//gp' \
 	lib/libhpp-core.so
 
+# This package has a path/hpp-model dependency in its public headers.
+include ../../path/hpp-model/depend.mk
+
 endif # HPPCORE_DEPEND_MK --------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
