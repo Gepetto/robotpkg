@@ -18,6 +18,7 @@ HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../middleware/omniORB/depend.mk
+include ../../middleware/omniORBpy/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../path/hpp-model-urdf/depend.mk
 include ../../path/hpp-util/depend.mk
