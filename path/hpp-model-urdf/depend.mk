@@ -23,6 +23,9 @@ SYSTEM_SEARCH.hpp-model-urdf=			\
 	include/hpp/model/urdf/parser.hh	\
 	'lib/pkgconfig/hpp-model-urdf.pc:/Version/s/[^0-9.]//gp'
 
+# This package has a ros-robot-model dependency in its public headers.
+include ../../graphics/ros-robot-model/depend.mk
+
 endif # HPP_MODEL_URDF_DEPEND_MK --------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
