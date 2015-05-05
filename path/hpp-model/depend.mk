@@ -36,6 +36,8 @@ ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04,${OS_VERSION}))
     PREFER.eigen3?=	robotpkg
   endif
+else ifeq (OpenNao,${OPSYS})
+  PREFER.eigen3?=	robotpkg
 endif
 include ../../math/eigen3/depend.mk
 
