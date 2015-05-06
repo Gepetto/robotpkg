@@ -1,0 +1,32 @@
+Fix ambigous boost::asign::list_of
+https://svn.boost.org/trac/boost/ticket/7364
+
+--- include/hpp/constraints/relative-orientation.hh~	2015-02-25 22:37:08.000000000 +0100
++++ include/hpp/constraints/relative-orientation.hh	2015-05-06 15:00:08.938248463 +0200
+@@ -73,7 +73,7 @@
+       static RelativeOrientationPtr_t create
+ 	(const std::string& name, const DevicePtr_t& robot,
+          const JointPtr_t& joint1, const JointPtr_t& joint2,
+-         const matrix3_t& reference, std::vector <bool> mask = boost::assign::list_of (true)(true)(true));
++         const matrix3_t& reference, std::vector <bool> mask = boost::assign::list_of (true)(true)(true).convert_to_container<std::vector<bool> >());
+       /// Return a shared pointer to a new instance
+       ///
+       /// \param robot the robot the constraints is applied to,
+@@ -86,7 +86,7 @@
+       static RelativeOrientationPtr_t create
+ 	(const DevicePtr_t& robot, const JointPtr_t& joint1,
+ 	 const JointPtr_t& joint2, const matrix3_t& reference,
+-	 std::vector <bool> mask = boost::assign::list_of (true)(true)(true));
++	 std::vector <bool> mask = boost::assign::list_of (true)(true)(true).convert_to_container<std::vector<bool> >());
+       virtual ~RelativeOrientation () throw () {}
+       /// Set desired relative orientation as a rotation matrix
+       void reference (const matrix3_t& reference)
+@@ -109,7 +109,7 @@
+       RelativeOrientation (const std::string& name, const DevicePtr_t&,
+                            const JointPtr_t& joint1, const JointPtr_t& joint2,
+ 			   const matrix3_t& reference, std::vector <bool> mask =
+-			   boost::assign::list_of (true)(true)(true));
++			   boost::assign::list_of (true)(true)(true).convert_to_container<std::vector<bool> >());
+     protected:
+       /// Compute value of error
+       ///
