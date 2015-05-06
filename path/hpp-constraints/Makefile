@@ -2,6 +2,7 @@
 # Created:			Antonio El Khoury on Thu, 26 Sep 2013
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-constraints
 HPP_VERSION=		3.1.0
 
