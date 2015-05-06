@@ -2,3 +2,6 @@ SHA1 (hpp-manipulation-urdf-1.1.0.tar.gz) = 2bc4ef9bbf132db8076246e82dd57a5fbd5e
 RMD160 (hpp-manipulation-urdf-1.1.0.tar.gz) = e11ea4a508b258705ecec62a0e1a594d50faabc8
 Size (hpp-manipulation-urdf-1.1.0.tar.gz) = 92184 bytes
 SHA1 (patch-aa) = 552e08660fcab3c77c50d2c3ab6324702978bd6e
+SHA1 (patch-ab) = 9397e01bdec9bf7aa9eac1ae6f7f77e623db9b2b
+SHA1 (patch-ac) = a2c7e5931d3d6fba2a7412c1fd4c2a53d6cb5ab6
+SHA1 (patch-ad) = 49930952f5db13aa16efcdfff6c8bdb353e06170

@@ -1,0 +1,22 @@
+tinyxml2 has not always a .pc file
+
+--- src/CMakeLists.txt~	2015-03-11 12:09:24.000000000 +0100
++++ src/CMakeLists.txt	2015-05-06 12:17:21.353129802 +0200
+@@ -33,9 +33,16 @@
+   ${${LIBRARY_NAME}_SOURCES}
+   )
+ 
+-PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} tinyxml)
+ PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} hpp-util)
+ PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} hpp-model-urdf)
+ PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} hpp-manipulation)
+ 
++find_file(tinyxml_HEADER tinyxml.h
++  PATH ${TINYXML_ROOT}/include ${TINYXML_ROOT}/include/tinyxml)
++find_library(tinyxml_LIBRARIES libtinyxml.so
++  PATH ${TINYXML_ROOT}/lib)
++get_filename_component(tinyxml_INCLUDE_DIRS ${tinyxml_HEADER} PATH)
++include_directories(include ${tinyxml_INCLUDE_DIRS})
++target_link_libraries(${LIBRARY_NAME} ${tinyxml_LIBRARIES})
++
+ INSTALL(TARGETS ${LIBRARY_NAME} DESTINATION lib)
