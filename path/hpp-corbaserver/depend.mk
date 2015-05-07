@@ -23,6 +23,8 @@ SYSTEM_SEARCH.hpp-corbaserver=\
 	lib/libhpp-corbaserver.so					\
 	'lib/pkgconfig/hpp-corbaserver.pc:/Version/s/[^0-9.]//gp'
 
+include ../../path/hpp-model-urdf/depend.mk
+
 endif # --------------------------------------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
