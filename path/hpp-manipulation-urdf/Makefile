@@ -20,6 +20,7 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 include ../../path/hpp-manipulation/depend.mk
 include ../../path/hpp-model-urdf/depend.mk
+include ../../path/hpp-model/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/sysdep/tinyxml.mk
 include ../../mk/robotpkg.mk
