@@ -25,6 +25,7 @@ SYSTEM_SEARCH.hpp-model-urdf=			\
 
 # This package has a ros-robot-model dependency in its public headers.
 include ../../graphics/ros-robot-model/depend.mk
+include ../../net/ros-resource-retriever/depend.mk
 
 endif # HPP_MODEL_URDF_DEPEND_MK --------------------------------------------
 
