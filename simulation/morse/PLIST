@@ -1,4 +1,4 @@
-@comment Fri Jan 31 11:57:18 CET 2014
+@comment Mon May 11 09:03:59 CEST 2015
 bin/morse
 bin/morse_inspector
 bin/morseexec
@@ -6,6 +6,7 @@ bin/multinode_server
 ${PYTHON_SITELIB}/morse/__init__.py
 ${PYTHON_SITELIB}/morse/actuators/__init__.py
 ${PYTHON_SITELIB}/morse/actuators/armature.py
+${PYTHON_SITELIB}/morse/actuators/arucomarker.py
 ${PYTHON_SITELIB}/morse/actuators/destination.py
 ${PYTHON_SITELIB}/morse/actuators/force_torque.py
 ${PYTHON_SITELIB}/morse/actuators/gripper.py
@@ -17,6 +18,7 @@ ${PYTHON_SITELIB}/morse/actuators/orientation.py
 ${PYTHON_SITELIB}/morse/actuators/pa_10.py
 ${PYTHON_SITELIB}/morse/actuators/ptu.py
 ${PYTHON_SITELIB}/morse/actuators/rotorcraft_attitude.py
+${PYTHON_SITELIB}/morse/actuators/rotorcraft_velocity.py
 ${PYTHON_SITELIB}/morse/actuators/rotorcraft_waypoint.py
 ${PYTHON_SITELIB}/morse/actuators/sound.py
 ${PYTHON_SITELIB}/morse/actuators/stabilized_quadrotor.py
@@ -149,6 +151,7 @@ ${PYTHON_SITELIB}/morse/robots/victim.py
 ${PYTHON_SITELIB}/morse/sensors/__init__.py
 ${PYTHON_SITELIB}/morse/sensors/accelerometer.py
 ${PYTHON_SITELIB}/morse/sensors/armature_pose.py
+${PYTHON_SITELIB}/morse/sensors/barometer.py
 ${PYTHON_SITELIB}/morse/sensors/battery.py
 ${PYTHON_SITELIB}/morse/sensors/camera.py
 ${PYTHON_SITELIB}/morse/sensors/clock.py
@@ -165,6 +168,7 @@ ${PYTHON_SITELIB}/morse/sensors/odometry.py
 ${PYTHON_SITELIB}/morse/sensors/pose.py
 ${PYTHON_SITELIB}/morse/sensors/proximity.py
 ${PYTHON_SITELIB}/morse/sensors/ptu_posture.py
+${PYTHON_SITELIB}/morse/sensors/radar_altimeter.py
 ${PYTHON_SITELIB}/morse/sensors/search_and_rescue.py
 ${PYTHON_SITELIB}/morse/sensors/semantic_camera.py
 ${PYTHON_SITELIB}/morse/sensors/stereo_unit.py
@@ -182,20 +186,11 @@ ${PYTHON_SITELIB}/morse/testing/exceptions.py
 ${PYTHON_SITELIB}/morse/testing/ros.py
 ${PYTHON_SITELIB}/morse/testing/testing.py
 ${PYTHON_SITELIB}/morse/version.py
-${PLIST.doc}share/man/man1/morse-add.1.gz
-${PLIST.doc}share/man/man1/morse-check.1.gz
-${PLIST.doc}share/man/man1/morse-create.1.gz
-${PLIST.doc}share/man/man1/morse-edit.1.gz
-${PLIST.doc}share/man/man1/morse-import.1.gz
-${PLIST.doc}share/man/man1/morse-rm.1.gz
-${PLIST.doc}share/man/man1/morse-run.1.gz
-${PLIST.doc}share/man/man1/morse.1.gz
-${PLIST.doc}share/man/man1/morseexec.1.gz
-${PLIST.doc}share/man/man1/multinode_server.1.gz
 share/morse/addons/io_export_morse_scene.py
 share/morse/addons/io_import_morse_path.py
 share/morse/addons/io_import_morse_text.py
 share/morse/addons/morse_object_utils.py
+share/morse/data/actuators/arucomarker.blend
 share/morse/data/actuators/gripper.blend
 share/morse/data/actuators/kuka_lwr.blend
 share/morse/data/actuators/pa_10.blend
@@ -286,6 +281,7 @@ share/morse/examples/tutorials/multinode/tutorial-hla-hybrid.py
 share/morse/examples/tutorials/multinode/tutorial-hla.py
 share/morse/examples/tutorials/multinode/tutorial-socket.py
 share/morse/examples/tutorials/noise_ghost_tutorial.py
+share/morse/examples/tutorials/ros_navigation/default.py
 share/morse/examples/tutorials/ros_navigation/morse_2dnav/CMakeLists.txt
 share/morse/examples/tutorials/ros_navigation/morse_2dnav/Makefile
 share/morse/examples/tutorials/ros_navigation/morse_2dnav/manifest.xml
@@ -306,7 +302,6 @@ share/morse/examples/tutorials/ros_navigation/morse_2dnav/morse_move_base/move_b
 share/morse/examples/tutorials/ros_navigation/morse_2dnav/morse_move_base/trajectory_planner_ros.yaml
 share/morse/examples/tutorials/ros_navigation/morse_2dnav/nav.launch
 share/morse/examples/tutorials/ros_navigation/morse_2dnav/pr2.urdf
-share/morse/examples/tutorials/ros_navigation/scenario.py
 share/morse/examples/tutorials/sound.py
 share/morse/examples/tutorials/tutorial-1-moos-lidar.py
 share/morse/examples/tutorials/tutorial-1-moos.py
@@ -314,3 +309,4 @@ share/morse/examples/tutorials/tutorial-1-ros.py
 share/morse/examples/tutorials/tutorial-1-sockets.py
 share/morse/examples/tutorials/tutorial-1.py
 share/morse/examples/tutorials/tutorial-2-yarp.py
+share/morse/examples/tutorials/tutorial_hla.py
