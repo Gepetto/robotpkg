@@ -4,7 +4,7 @@
 
 HPP_PACKAGE=	        hpp-manipulation-corba
 HPP_VERSION=		1.1.0
-PKGREVISION=
+PKGREVISION=		1
 
 CATEGORIES=		path
 HPP_COMMENT=		CORBA interface for hpp-manipulation
@@ -19,10 +19,14 @@ include ../../meta-pkgs/hpp/Makefile.common
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
-include ../../path/hpp-manipulation/depend.mk
-include ../../path/hpp-manipulation-urdf/depend.mk
-include ../../path/hpp-wholebody-step-corba/depend.mk
+include ../../middleware/omniORB/depend.mk
+include ../../middleware/omniORBpy/depend.mk
 include ../../path/hpp-corbaserver/depend.mk
+include ../../path/hpp-manipulation-urdf/depend.mk
+include ../../path/hpp-manipulation/depend.mk
+include ../../path/hpp-model/depend.mk
+include ../../path/hpp-util/depend.mk
+include ../../path/hpp-wholebody-step-corba/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
