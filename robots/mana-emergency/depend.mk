@@ -22,6 +22,9 @@ SYSTEM_SEARCH.mana-emergency=\
 	bin/fetest \
 	include/fe/ftdi-emergency.h \
 	lib/pkgconfig/felib.pc
+
+include ../../hardware/libftdi/depend.mk
+
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

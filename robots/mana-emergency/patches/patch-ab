@@ -1,0 +1,12 @@
+Export the actual dependency on libftdi, as found by configure
+
+--- felib.pc.in~	2011-06-14 16:03:47.000000000 +0200
++++ felib.pc.in	2015-05-29 17:08:38.407036210 +0200
+@@ -6,6 +6,6 @@
+ Name: @PACKAGE_NAME@
+ Description: Emercency stop lib for Mana
+ Version: @PACKAGE_VERSION@
+-Requires: libftdi 
++Requires: @ftdipkg@
+ Libs: -L${libdir} -lfe
+ Cflags: -I${includedir}

@@ -1,6 +1,7 @@
 # robotpkg Makefile for:	robots/mana-emergency
 # Created:			Matthieu Herrb on Mon, 23 Feb 2009
 #
+PKGREVISION=	1
 V=		0.2.1
 DISTNAME=	ftdi-emergency-${V}
 PKGNAME=	mana-emergency-${V}
@@ -21,5 +22,8 @@ include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/sysdep/automake.mk
+include ../../mk/sysdep/libusb.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
+
+pre-configure: autoreconf

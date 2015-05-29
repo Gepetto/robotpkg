@@ -1,0 +1,17 @@
+Look for libftdi or libftdi1
+
+--- configure.ac~	2013-09-12 18:58:38.000000000 +0200
++++ configure.ac	2015-05-29 17:08:15.607123380 +0200
+@@ -8,8 +8,11 @@
+ AC_PROG_CC
+ AC_PROG_LIBTOOL
+ 
+-PKG_CHECK_MODULES(FELIB, libusb libftdi)
++PKG_CHECK_MODULES(FELIB, libusb libftdi,ftdipkg=libftdi,[
++  PKG_CHECK_MODULES(FELIB, libusb libftdi1, ftdipkg=libftdi1)
++])
+ 
++AC_SUBST(ftdipkg)
+ AC_SUBST(FELIB_CFLAGS)
+ AC_SUBST(FELIB_LIBS)
+ 

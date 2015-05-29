@@ -1,3 +1,5 @@
 SHA1 (ftdi-emergency-0.2.1.tar.gz) = 2be24d6030293bb68119ee042a4d0efd8be7fb91
 RMD160 (ftdi-emergency-0.2.1.tar.gz) = 97285ad96313af6e76af53331602d4996f5134cc
 Size (ftdi-emergency-0.2.1.tar.gz) = 293568 bytes
+SHA1 (patch-aa) = bcdad9a422806b066b4450e7544593e7cb20ea27
+SHA1 (patch-ab) = dc85c85e8f72308f7593cb4c8d9cedb1ba66041d
