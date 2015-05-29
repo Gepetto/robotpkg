@@ -1,6 +1,7 @@
 # robotpkg Makefile for:	robots/rmp-libs
 # Created:			Matthieu Herrb on Mon, 23 Feb 2009
 #
+PKGREVISION=		1
 CATEGORIES=		robots
 DISTNAME=		rmp-libs-0.4
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
