@@ -2,14 +2,20 @@
 # Created:			Arnaud Degroote on Thu, 22 Aug 2013
 #
 #
-OROCOS_VERSION= 2.6.0
-DISTNAME?=       orocos-toolchain-${OROCOS_VERSION}-src
-PKGNAME?=        orocos-${OROCOS_PKG}-${OROCOS_VERSION}
-MASTER_SITES?=   http://people.mech.kuleuven.be/~orocos/pub/stable/toolchain/v${OROCOS_VERSION}/
-MASTER_REPOSITORY?= 	git git://gitorious.org/orocos-toolchain/${OROCOS-PKG}.git
+OROCOS_VERSION=   2.8.0rc1
+DISTNAME?=        orocos-${OROCOS_PKG}-${OROCOS_VERSION}
+FETCH_METHOD= 		git
+MASTER_SITES?=  	git://github.com/orocos-toolchain/${OROCOS_PKG}.git@v2.8.0-rc1
+MASTER_REPOSITORY?= 	git git://github.com/orocos-toolchain/${OROCOS_PKG}.git
 
-MAINTAINER=     openrobots@laas.fr
+MAINTAINER=       	arnaud.degroote@isae-supaero.fr
 
-DISTINFO_FILE?=		${CURDIR}/../../meta-pkgs/orocos-toolchain/distinfo
 
-WRKSRC?=         ${WRKDIR}/orocos-toolchain-${OROCOS_VERSION}/${OROCOS_PKG}
+PKG_SUPPORTED_OPTIONS+= catkin	
+
+PKG_OPTION_DESCR.catkin = Enable catkin support
+define PKG_OPTION_SET.catkin
+  CMAKE_ARGS+=		-DWITH_CATKIN_SUPPORT=ON
+
+  include ../../devel/ros-catkin/depend.mk
+endef
