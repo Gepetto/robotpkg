@@ -1,0 +1,15 @@
+Also look for libftdi1 (Fedora21 has no libftdi<1 package)
+
+--- configure.ac~	2015-05-29 15:02:26.591517716 +0200
++++ configure.ac	2015-05-29 15:04:17.163107585 +0200
+@@ -25,7 +25,9 @@
+ AC_PROG_CC
+ AC_PROG_LIBTOOL
+ 
+-PKG_CHECK_MODULES(RMPLIB, libusb libftdi pocolibs)
++PKG_CHECK_MODULES(RMPLIB, libusb libftdi pocolibs,,[
++  PKG_CHECK_MODULES(RMPLIB, libusb libftdi1 pocolibs)
++])
+ 
+ AC_SUBST(RMPLIB_CFLAGS)
+ AC_SUBST(RMPLIB_LIBS)
