@@ -28,7 +28,6 @@ DYNAMIC_PLIST_DIRS+=	${PYTHON_SITELIB}/omniidl_be
 
 DEPEND_ABI.python+=	python<3
 DEPEND_ABI.omniORB+=	omniORB>=4.1<4.2
-PREFER.omniORB?=	robotpkg
 
 include ../../middleware/omniORB/depend.mk
 include ../../mk/sysdep/python.mk
