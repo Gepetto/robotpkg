@@ -4,8 +4,6 @@
 
 OROCOS_PKG=	ocl
 CATEGORIES=	architecture
-DISTINFO_FILE=  ${CURDIR}/distinfo
-PKGREVISION=	2
 
 include ../../meta-pkgs/orocos-toolchain/Makefile.common
 

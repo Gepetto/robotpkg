@@ -15,7 +15,7 @@ PREFER.orocos-ocl?=		robotpkg
 
 DEPEND_USE+=		orocos-ocl
 
-DEPEND_ABI.orocos-ocl?=	orocos-ocl>=2.6.0
+DEPEND_ABI.orocos-ocl?=	orocos-ocl>=2.8.0rc1
 DEPEND_DIR.orocos-ocl?=	../../architecture/orocos-ocl
 
 SYSTEM_SEARCH.orocos-ocl=\
