@@ -15,7 +15,7 @@ PREFER.orocos-log4cpp?=		robotpkg
 
 DEPEND_USE+=		orocos-log4cpp
 
-DEPEND_ABI.orocos-log4cpp?=	orocos-log4cpp>=2.6.0
+DEPEND_ABI.orocos-log4cpp?=	orocos-log4cpp>=2.8.0rc1
 DEPEND_DIR.orocos-log4cpp?=	../../devel/orocos-log4cpp
 
 SYSTEM_SEARCH.orocos-log4cpp=\

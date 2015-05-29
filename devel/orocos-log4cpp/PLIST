@@ -1,4 +1,4 @@
-@comment Wed Aug 21 17:33:23 CEST 2013
+@comment Thu May 28 16:54:53 CEST 2015
 include/log4cpp/AbortAppender.hh
 include/log4cpp/Appender.hh
 include/log4cpp/AppenderSkeleton.hh
@@ -14,6 +14,7 @@ include/log4cpp/FactoryParams.hh
 include/log4cpp/FileAppender.hh
 include/log4cpp/Filter.hh
 include/log4cpp/FixedContextCategory.hh
+include/log4cpp/GenerationalFileAppender.hh
 include/log4cpp/HierarchyMaintainer.hh
 include/log4cpp/IdsaAppender.hh
 include/log4cpp/Layout.hh
@@ -54,3 +55,7 @@ lib/liblog4cpp.so
 lib/liblog4cpp.so.6.0
 lib/liblog4cpp.so.6.0.0
 lib/pkgconfig/log4cpp.pc
+share/log4cpp/package.xml
+@pkgdir share/doc/liborocos-rtt/xml/images/icons/hires
+@pkgdir share/doc/liborocos-rtt/xml/images/hires
+@pkgdir share/doc/liborocos-rtt/api/html
