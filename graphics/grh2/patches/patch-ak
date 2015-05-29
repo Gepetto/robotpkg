@@ -1,0 +1,27 @@
+. Make sure the package entry point is visible, even with
+  gcc -fvisibility=hidden
+
+. Don't fail if no X11 display is available, because pkgIndex needs to load the
+  package.
+
+--- src/grh2.c~	2015-05-29 15:39:41.171023120 +0200
++++ src/grh2.c	2015-05-29 15:49:41.513799623 +0200
+@@ -28,7 +28,7 @@
+  ** Widget Tcl Grh2
+  **/
+ 
+-int
++int __attribute__ ((visibility("default")))
+ Grh_Init(Tcl_Interp *interp)
+ {
+     int code;
+@@ -48,6 +48,9 @@
+ 	    return TCL_ERROR;
+     }
+ #endif
++    if (Tcl_PkgRequire(interp, "Tk", "8.0", 0) == NULL) {
++      return TCL_OK; /* needed to build pkg index without X11 */
++    }
+ 
+     /* Initialise variables a` partir de Tcl */
+     obj = Tcl_ObjGetVar2(interp, Tcl_NewStringObj("::Grh2::scale", -1), 
