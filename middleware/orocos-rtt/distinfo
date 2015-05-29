@@ -1,11 +1,3 @@
-SHA1 (orocos-toolchain-2.6.0-src.tar.gz) = e6e8323bf42f984326957a5ee4ec433486af7036
-RMD160 (orocos-toolchain-2.6.0-src.tar.gz) = 54ca31047bfc7f87cdf6c9cfb9f8459f76aa13b9
-Size (orocos-toolchain-2.6.0-src.tar.gz) = 6530942 bytes
-SHA1 (patch-aa) = 186b4a0505ff47c2e5ff5eb385932e7e7a90150c
-SHA1 (patch-ba) = 84580c12d2fd9ffda33f20e720d67cf35ac75b4e
-SHA1 (patch-bb) = 861a86018a2f6d6d10332e4b5066931071af04e0
-SHA1 (patch-bc) = 4fcc5ac144350909094e96bba508bc00cbcd76ce
-SHA1 (patch-ca) = e47ad936314ab92435dbad5355351d064f683cf6
-SHA1 (patch-cb) = 4f33c60cd6368d1a3d009adb8de5b94c3d724a15
-SHA1 (patch-da) = ace98260f58e6e1c02870bd950927835609e874a
-SHA1 (patch-ea) = 0124851b460bc245875c30b066af59e18b5b13a5
+SHA1 (orocos-rtt-2.8.0rc1.tar.gz) = 31483809c5aaa8821584d253cd3f95b6efdc8e5d
+RMD160 (orocos-rtt-2.8.0rc1.tar.gz) = 48016fd0565a446945ceccd0b2679cbd0808be99
+SHA1 (patch-aa) = 9d23a3ddc935149d55fc49dc7abcdc083f33cc7c

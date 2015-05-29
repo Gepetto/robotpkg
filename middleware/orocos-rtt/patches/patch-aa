@@ -1,23 +1,13 @@
-Fix the build for boost >= 1.53.
-From upstream, 0ba760e6eceb13
-
---- rtt/Service.hpp
-+++ rtt/rtt/Service.hpp
-@@ -58,7 +58,7 @@
- #include <boost/type_traits/function_traits.hpp>
- #include <boost/function_types/components.hpp>
- #include <boost/enable_shared_from_this.hpp>
--#if BOOST_VERSION >= 104000
-+#if BOOST_VERSION >= 104000 && BOOST_VERSION <= 105030
- #include <boost/smart_ptr/enable_shared_from_this2.hpp>
- #endif
+--- CMakeLists.txt.orig	2015-05-29 08:37:10.512830506 +0200
++++ CMakeLists.txt	2015-05-29 08:37:27.632829999 +0200
+@@ -179,8 +179,10 @@
+ # Install package.xml
+ INSTALL(FILES package.xml DESTINATION share/rtt)
  
-@@ -82,7 +82,7 @@
-         : public OperationInterface,
-           public ConfigurationInterface,
-           public DataFlowInterface,
--#if BOOST_VERSION >= 104000
-+#if BOOST_VERSION >= 104000 && BOOST_VERSION <= 105030
-           public boost::enable_shared_from_this2<Service>
- #else
-           public boost::enable_shared_from_this<Service>
++if (WITH_CATKIN_SUPPORT)
+ # Install an env-hook if catkin is found
+ find_package(catkin QUIET)
+ if(catkin_FOUND)
+   catkin_add_env_hooks(00.rtt SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
+ endif()
++endif()

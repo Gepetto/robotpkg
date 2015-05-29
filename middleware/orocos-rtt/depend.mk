@@ -15,7 +15,7 @@ PREFER.orocos-rtt?=		robotpkg
 
 DEPEND_USE+=		orocos-rtt
 
-DEPEND_ABI.orocos-rtt?=	orocos-rtt>=2.6.0
+DEPEND_ABI.orocos-rtt?=	orocos-rtt>=2.8.0rc1
 DEPEND_DIR.orocos-rtt?=	../../middleware/orocos-rtt
 
 SYSTEM_SEARCH.orocos-rtt=\

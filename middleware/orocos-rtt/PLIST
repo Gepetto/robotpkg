@@ -1,4 +1,5 @@
-@comment Wed Aug 21 16:44:46 CEST 2013
+@comment Thu May 28 17:12:39 CEST 2015
+${PLIST.catkin}etc/catkin/profile.d/00.rtt.sh
 include/rtt/Activity.hpp
 include/rtt/ArgumentDescription.hpp
 include/rtt/Attribute.hpp
@@ -104,6 +105,7 @@ include/rtt/internal/AssignCommand.hpp
 include/rtt/internal/AtomicMWSRQueue.hpp
 include/rtt/internal/AtomicQueue.hpp
 include/rtt/internal/BindStorage.hpp
+include/rtt/internal/CatchConfig.hpp
 include/rtt/internal/ChannelBufferElement.hpp
 include/rtt/internal/ChannelDataElement.hpp
 include/rtt/internal/Channels.hpp
@@ -142,7 +144,6 @@ include/rtt/internal/LocalOperationCaller.hpp
 include/rtt/internal/LockedQueue.hpp
 include/rtt/internal/MWSRQueue.hpp
 include/rtt/internal/NA.hpp
-include/rtt/internal/OffsetPartDataSource.hpp
 include/rtt/internal/OperationCallerBinder.hpp
 include/rtt/internal/OperationCallerC.hpp
 include/rtt/internal/OperationInterfacePartFused.hpp
@@ -344,6 +345,8 @@ ${PLIST.corba}include/rtt/transports/corba/ServiceI.h
 ${PLIST.corba}include/rtt/transports/corba/ServiceRequester.idl
 ${PLIST.corba}include/rtt/transports/corba/ServiceRequesterC.h
 ${PLIST.corba}include/rtt/transports/corba/ServiceRequesterI.h
+${PLIST.corba}include/rtt/transports/corba/StdException.idl
+${PLIST.corba}include/rtt/transports/corba/StdExceptionC.h
 ${PLIST.corba}include/rtt/transports/corba/TaskContext.idl
 ${PLIST.corba}include/rtt/transports/corba/TaskContextC.h
 ${PLIST.corba}include/rtt/transports/corba/TaskContextFactory.hpp
@@ -360,6 +363,7 @@ include/rtt/transports/mqueue/MQLib.hpp
 include/rtt/transports/mqueue/MQSendRecv.hpp
 include/rtt/transports/mqueue/MQSerializationProtocol.hpp
 include/rtt/transports/mqueue/MQTemplateProtocol.hpp
+include/rtt/transports/mqueue/MQTemplateProtocolBase.hpp
 include/rtt/transports/mqueue/TransportPlugin.hpp
 include/rtt/transports/mqueue/binary_data_archive.hpp
 include/rtt/transports/mqueue/rtt-mqueue-config.h
@@ -390,6 +394,7 @@ include/rtt/types/PropertyDecomposition.hpp
 include/rtt/types/SequenceConstructor.hpp
 include/rtt/types/SequenceTypeInfo.hpp
 include/rtt/types/SequenceTypeInfoBase.hpp
+include/rtt/types/StdVectorTemplateTypeInfo.hpp
 include/rtt/types/StreamFactory.hpp
 include/rtt/types/StructTypeInfo.hpp
 include/rtt/types/TemplateCompositionFactory.hpp
@@ -412,7 +417,6 @@ include/rtt/types/TypekitPlugin.hpp
 include/rtt/types/TypekitRepository.hpp
 include/rtt/types/Types.hpp
 include/rtt/types/ValueFactory.hpp
-include/rtt/types/VectorComposition.hpp
 include/rtt/types/VectorTemplateComposition.hpp
 include/rtt/types/carray.hpp
 include/rtt/types/rtt-types-fwd.hpp
@@ -426,24 +430,25 @@ lib/cmake/orocos-rtt/orocos-rtt-config.cmake
 lib/cmake/orocos-rtt/orocos-rtt-gnulinux-libraries-release.cmake
 lib/cmake/orocos-rtt/orocos-rtt-gnulinux-libraries.cmake
 ${PLIST.corba}lib/liborocos-rtt-corba-gnulinux.so
-${PLIST.corba}lib/liborocos-rtt-corba-gnulinux.so.2.6
-${PLIST.corba}lib/liborocos-rtt-corba-gnulinux.so.${PKGVERSION}
+${PLIST.corba}lib/liborocos-rtt-corba-gnulinux.so.2.8
+${PLIST.corba}lib/liborocos-rtt-corba-gnulinux.so.2.8.0
 lib/liborocos-rtt-gnulinux.so
-lib/liborocos-rtt-gnulinux.so.2.6
-lib/liborocos-rtt-gnulinux.so.${PKGVERSION}
+lib/liborocos-rtt-gnulinux.so.2.8
+lib/liborocos-rtt-gnulinux.so.2.8.0
 lib/liborocos-rtt-mqueue-gnulinux.so
-lib/liborocos-rtt-mqueue-gnulinux.so.2.6
-lib/liborocos-rtt-mqueue-gnulinux.so.${PKGVERSION}
+lib/liborocos-rtt-mqueue-gnulinux.so.2.8
+lib/liborocos-rtt-mqueue-gnulinux.so.2.8.0
 lib/orocos/gnulinux/plugins/librtt-marshalling-gnulinux.so
-lib/orocos/gnulinux/plugins/librtt-marshalling-gnulinux.so.${PKGVERSION}
+lib/orocos/gnulinux/plugins/librtt-marshalling-gnulinux.so.2.8.0
 lib/orocos/gnulinux/plugins/librtt-scripting-gnulinux.so
-lib/orocos/gnulinux/plugins/librtt-scripting-gnulinux.so.${PKGVERSION}
+lib/orocos/gnulinux/plugins/librtt-scripting-gnulinux.so.2.8.0
 ${PLIST.corba}lib/orocos/gnulinux/types/librtt-transport-corba-gnulinux.so
-${PLIST.corba}lib/orocos/gnulinux/types/librtt-transport-corba-gnulinux.so.${PKGVERSION}
+${PLIST.corba}lib/orocos/gnulinux/types/librtt-transport-corba-gnulinux.so.2.8.0
 lib/orocos/gnulinux/types/librtt-transport-mqueue-gnulinux.so
-lib/orocos/gnulinux/types/librtt-transport-mqueue-gnulinux.so.${PKGVERSION}
+lib/orocos/gnulinux/types/librtt-transport-mqueue-gnulinux.so.2.8.0
 lib/orocos/gnulinux/types/librtt-typekit-gnulinux.so
-lib/orocos/gnulinux/types/librtt-typekit-gnulinux.so.${PKGVERSION}
+lib/orocos/gnulinux/types/librtt-typekit-gnulinux.so.2.8.0
 ${PLIST.corba}lib/pkgconfig/orocos-rtt-corba-gnulinux.pc
 lib/pkgconfig/orocos-rtt-gnulinux.pc
 lib/pkgconfig/orocos-rtt-mqueue-gnulinux.pc
+share/rtt/package.xml
