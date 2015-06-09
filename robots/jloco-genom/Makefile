@@ -2,13 +2,13 @@
 # Created:			Matthieu Herrb on Wed, 31 Dec 2008
 #
 
-DISTNAME=	jloco-genom-1.2
+DISTNAME=	jloco-genom-2.0
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=jloco/}
 MASTER_REPOSITORY=	git	git://git.openrobots.org/robots/jido/jloco-genom.git
 
 MAINTAINER=	openrobots@laas.fr
-HOMEPAGE=	http://softs.laas.fr/openrobots/
+HOMEPAGE=	http://git.openrobots.org/openrobots/
 COMMENT=	Jido locomotion module - Genom component
 
 GNU_CONFIGURE=	yes
