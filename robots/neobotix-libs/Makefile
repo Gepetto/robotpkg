@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Wed, 31 Dec 2008
 #
 
-DISTNAME=	neobotix-libs-1.1
+DISTNAME=	neobotix-libs-2.0
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=neobotix/}
 
