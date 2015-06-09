@@ -13,7 +13,7 @@ PREFER.neobotix-libs?=		robotpkg
 
 DEPEND_USE+=			neobotix-libs
 
-DEPEND_ABI.neobotix-libs?=	neobotix-libs>=1.1
+DEPEND_ABI.neobotix-libs?=	neobotix-libs>=2.1
 DEPEND_DIR.neobotix-libs?=	../../robots/neobotix-libs
 
 SYSTEM_SEARCH.neobotix-libs= \
