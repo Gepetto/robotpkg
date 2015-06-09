@@ -3,6 +3,7 @@
 #
 
 DISTNAME=	neobotix-libs-2.0
+PKGREVISION=	1
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=neobotix/}
 
@@ -12,9 +13,7 @@ COMMENT=	Interface library for the neobotix platform
 
 GNU_CONFIGURE=	yes
 
-include ../../hardware/peak-linux-driver/depend.mk
 include ../../devel/mkdep/depend.mk
-include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
