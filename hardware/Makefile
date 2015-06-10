@@ -14,7 +14,6 @@ SUBDIR+=	gyroKVH5000
 SUBDIR+=	libftdi
 SUBDIR+=	mouse3d-genom
 SUBDIR+=	openni-sensor
-SUBDIR+=	pa10-libs
 SUBDIR+=	peak-linux-driver
 SUBDIR+=	platine-genom
 SUBDIR+=	ros-driver-common
