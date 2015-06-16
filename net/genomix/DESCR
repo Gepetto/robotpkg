@@ -1,0 +1,3 @@
+The genomix HTTP server is a generic interface between clients and genom
+components (using the generic genom C client template). Control is done be the
+mean of specific HTTP GET requests (not yet documented...).

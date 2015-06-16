@@ -1,0 +1,10 @@
+@comment Fri Oct 19 17:19:01 CEST 2012
+bin/genomixd
+lib/pkgconfig/genomix.pc
+share/genomix/main.tcl
+share/genomix/pkgIndex.tcl
+share/genomix/request.tcl
+share/genomix/server.tcl
+share/genomix/session.tcl
+share/genomix/uri.tcl
+share/genomix/version.tcl
