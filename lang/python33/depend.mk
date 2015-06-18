@@ -22,6 +22,10 @@ else ifeq (Debian,${OPSYS})
   ifneq (,$(filter 7.%,${OS_VERSION}))
     PREFER.python33?=	robotpkg
   endif
+else ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 21,${OS_VERSION}))
+    PREFER.python33?=	robotpkg
+  endif
 else ifeq (OpenNao,${OPSYS})
   ifneq (,$(filter 1.14.%,${OS_VERSION}))
     PREFER.python33?=	robotpkg
