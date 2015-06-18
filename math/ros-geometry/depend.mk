@@ -42,6 +42,8 @@ SYSTEM_SEARCH.ros-geometry=\
   'lib/pkgconfig/tf.pc:/Version/s/[^0-9.]//gp'				\
   'lib/pkgconfig/tf_conversions.pc:/Version/s/[^0-9.]//gp'
 
+include ../../math/eigen3/depend.mk
+
 endif # ROS_GEOMETRY_DEPEND_MK ---------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
