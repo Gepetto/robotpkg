@@ -11,6 +11,9 @@ LICENSE=	isc
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	Interface library for the neobotix platform
 
+# uses linux/can.h
+ONLY_FOR_PLATFORM=      Linux-%
+
 GNU_CONFIGURE=	yes
 
 include ../../pkgtools/pkg-config/depend.mk
