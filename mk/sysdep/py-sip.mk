@@ -22,7 +22,7 @@ DEPEND_ABI.py-sip?=	${PKGTAG.python}-sip>=4
 SYSTEM_SEARCH.py-sip=\
   'bin/sip{${PYTHON_VERSION},}:p:% -V'					\
   'include/python${PYTHON_VERSION}/sip.h:/VERSION_STR/s/[^0-9.]//gp'	\
-  '${PYTHON_SYSLIBSEARCH}/sip.so'
+  '${PYTHON_SYSLIBSEARCH}/sip.{,${DEB_HOST_MULTIARCH:=.}}so'
 
 SYSTEM_PKG.Debian.py-sip=	python-sip-dev (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-sip=	sip-devel (python-${PYTHON_VERSION})
