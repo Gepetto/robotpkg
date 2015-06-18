@@ -24,6 +24,8 @@ SYSTEM_SEARCH.orocos-kdl=\
   'share/orocos_kdl/package.xml:/<version>/s/[^0-9.]//gp'	\
   'lib/pkgconfig/orocos_kdl.pc:/Version/s/[^0-9.]//gp'
 
+include ../../math/eigen3/depend.mk
+
 endif # OROCOS_KDL_DEPEND_MK -----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
