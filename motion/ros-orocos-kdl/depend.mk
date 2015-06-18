@@ -26,6 +26,8 @@ DEPEND_DIR.ros-orocos-kdl?=	../../motion/ros-orocos-kdl
 SYSTEM_SEARCH.ros-orocos-kdl=\
   'share/orocos_kinematics_dynamics/package.xml:/<version>/s/[^0-9.]//gp'
 
+include ../../motion/orocos-kdl/depend.mk
+
 endif # ROS_OROCOS_KDL_DEPEND_MK ----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
