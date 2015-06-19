@@ -310,3 +310,13 @@ share/morse/examples/tutorials/tutorial-1-sockets.py
 share/morse/examples/tutorials/tutorial-1.py
 share/morse/examples/tutorials/tutorial-2-yarp.py
 share/morse/examples/tutorials/tutorial_hla.py
+${PLIST.doc}share/man/man1/morse.1.gz
+${PLIST.doc}share/man/man1/morse-edit.1.gz
+${PLIST.doc}share/man/man1/morse-run.1.gz
+${PLIST.doc}share/man/man1/morse-add.1.gz
+${PLIST.doc}share/man/man1/morse-rm.1.gz
+${PLIST.doc}share/man/man1/morse-create.1.gz
+${PLIST.doc}share/man/man1/morseexec.1.gz
+${PLIST.doc}share/man/man1/multinode_server.1.gz
+${PLIST.doc}share/man/man1/morse-import.1.gz
+${PLIST.doc}share/man/man1/morse-check.1.gz 
