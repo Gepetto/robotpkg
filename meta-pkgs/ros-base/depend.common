@@ -47,7 +47,8 @@ ifeq (Ubuntu,${OPSYS})
     PREFER_ALTERNATIVE.ros?=hydro indigo
   else ifneq (,$(filter 13.10 14.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=indigo
-  else ifneq (,$(filter 14.10,${OS_VERSION}))
+  else
+    PREFER_ALTERNATIVE.ros?=indigo
     PREFER.ros?=robotpkg
   endif
   PREFER.ros?=	system
