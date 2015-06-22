@@ -1,0 +1,5 @@
+The rosix HTTP server is a generic interface between clients and ros
+nodes. Control is done by the mean of specific HTTP GET requests.
+
+This server is compatible with the genomix server, meaning that genomix clients
+can be used directly with this server.

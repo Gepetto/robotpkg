@@ -11,6 +11,7 @@ SUBDIR+=	libtclserv_client
 SUBDIR+=	netshring
 SUBDIR+=	py-poco
 SUBDIR+=	ros-resource-retriever
+SUBDIR+=	rosix
 SUBDIR+=	tclpcap
 SUBDIR+=	tclserv
 SUBDIR+=	zeromq

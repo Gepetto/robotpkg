@@ -1,0 +1,10 @@
+@comment Mon Jun 22 16:54:47 CEST 2015
+bin/rosix
+${PYTHON_SITELIB}/rosix/__init__.py
+${PYTHON_SITELIB}/rosix/loader.py
+${PYTHON_SITELIB}/rosix/main.py
+${PYTHON_SITELIB}/rosix/node.py
+${PYTHON_SITELIB}/rosix/server.py
+${PYTHON_SITELIB}/rosix/session.py
+${PYTHON_SITELIB}/rosix/util.py
+${PYTHON_SITELIB}/rosix/version.py
