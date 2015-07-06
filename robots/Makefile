@@ -21,6 +21,7 @@ SUBDIR+=	rmp440-genom
 SUBDIR+=	rmp440-libs
 SUBDIR+=	scout-genom
 SUBDIR+=	sot-openhrp
+SUBDIR+=	tk3-matlab
 SUBDIR+=	tk3-mikrokopter
 
 include ../mk/robotpkg.subdir.mk
