@@ -1,8 +1,8 @@
-# robotpkg Makefile for:	supervision/matlab-genomix
-# Created:			Anthony Mallet on Tue, 16 Jun 2015
+# robotpkg Makefile for:	robots/tk3-matlab
+# Created:			Anthony Mallet on Mon, 6 Jul 2015
 #
 
-DISTNAME=	tk3-matlab-1.0
+DISTNAME=	tk3-matlab-1.1
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=tk3-matlab/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}telekyb3/tk3-matlab

@@ -1,5 +1,5 @@
-# robotpkg depend.mk for:	supervision/tk3-matlab
-# Created:			Anthony Mallet on Tue, 16 Jun 2015
+# robotpkg depend.mk for:	robots/tk3-matlab
+# Created:			Anthony Mallet on Mon, 6 Jul 2015
 #
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH}+
