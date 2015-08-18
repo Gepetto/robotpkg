@@ -6,7 +6,7 @@ DISTNAME=	mor-libs-0.1
 PKGREVISION=	1
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=neobotix/}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/mor-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}jido/mor-genom
 
 LICENSE=	isc
 

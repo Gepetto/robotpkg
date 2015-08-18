@@ -6,7 +6,7 @@ PKGREVISION=	1
 DISTNAME=	mor-genom-0.1
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=neobotix/}
-MASTER_REPOSITORY=	git	ssh://trac.laas.fr/git/robots/mor-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}jido/mor-genom
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://softs.laas.fr/openrobots/
