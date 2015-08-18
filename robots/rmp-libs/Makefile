@@ -5,7 +5,7 @@ PKGREVISION=		1
 CATEGORIES=		robots
 DISTNAME=		rmp-libs-0.4
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/rmp-libs
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}segway-robots/rmp-libs
 
 COMMENT=		Interface library for the Segway RMP400 platform
 MAINTAINER=		openrobots@laas.fr

@@ -5,7 +5,7 @@
 DISTNAME=		gyro-libs-2.1
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/gyro-libs
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}kvh-gyro/gyro-libs
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
