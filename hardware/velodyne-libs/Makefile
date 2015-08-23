@@ -2,8 +2,7 @@
 # Created:			Matthieu Herrb on Fri, 25 Jun 2010
 #
 NAME=			velodyne-libs
-VERSION=		0.7
-PKGREVISION=		1
+VERSION=		0.8
 CATEGORIES=		hardware
 DISTNAME=		${NAME}-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=velodyne/}
