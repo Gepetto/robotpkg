@@ -1,0 +1,6 @@
+@comment Sat Aug 22 19:16:50 CEST 2015
+bin/ivmobInfo
+bin/ivmobTestInit
+include/ivmob/ivmob.h
+lib/libivmob.la
+lib/pkgconfig/ivmob-libs.pc
