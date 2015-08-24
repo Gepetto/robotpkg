@@ -20,7 +20,7 @@ DEPEND_DIR.rmp440-libs?=	../../robots/rmp440-libs
 SYSTEM_SEARCH.rmp440-libs=\
 	bin/rmp440Joystick \
 	include/rmp440/rmp440.h \
-	lib/pkgconfig/rmp440-libs.pc
+	'lib/pkgconfig/rmp440-libs.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

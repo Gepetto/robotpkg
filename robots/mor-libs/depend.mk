@@ -20,7 +20,7 @@ DEPEND_DIR.mor-libs?=		../../robots/mor-libs
 SYSTEM_SEARCH.mor-libs= \
 				include/mor/morLib.h \
 				lib/libmor.la \
-				lib/pkgconfig/mor-libs.pc
+				'lib/pkgconfig/mor-libs.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}

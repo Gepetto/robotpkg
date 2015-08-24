@@ -19,7 +19,7 @@ DEPEND_DIR.rmp440-genom?=	../../robots/rmp440-genom
 
 SYSTEM_SEARCH.rmp440-genom=\
 	include/rmp440/rmp440Struct.h		\
-	lib/pkgconfig/rmp440.pc
+	'lib/pkgconfig/rmp440.pc:/Version/s/[^0-9.]//gp'
 
 include ../../architecture/genom/depend.mk
 

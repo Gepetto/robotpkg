@@ -21,7 +21,7 @@ DEPEND_DIR.mana-emergency?=	../../robots/mana-emergency
 SYSTEM_SEARCH.mana-emergency=\
 	bin/fetest \
 	include/fe/ftdi-emergency.h \
-	lib/pkgconfig/felib.pc
+	'lib/pkgconfig/felib.pc:/Version/s/[^0-9.]//gp'
 
 include ../../hardware/libftdi/depend.mk
 

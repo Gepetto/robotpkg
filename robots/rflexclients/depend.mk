@@ -20,7 +20,7 @@ DEPEND_DIR.rflexclients?=	../../robots/rflexclients
 SYSTEM_SEARCH.rflexclients=\
 	bin/rflexComm \
 	include/rflexclients/rFlex.h \
-	lib/pkgconfig/rflexclients.pc
+	'lib/pkgconfig/rflexclients.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

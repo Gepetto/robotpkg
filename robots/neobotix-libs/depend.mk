@@ -19,7 +19,7 @@ DEPEND_DIR.neobotix-libs?=	../../robots/neobotix-libs
 SYSTEM_SEARCH.neobotix-libs= \
 				include/neobotix/neo.h \
 				lib/libneobotix.la \
-				lib/pkgconfig/neobotix.pc
+				'lib/pkgconfig/neobotix.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}

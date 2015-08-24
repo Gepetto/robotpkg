@@ -19,7 +19,7 @@ DEPEND_DIR.mor-genom?=	../../robots/mor-genom
 
 SYSTEM_SEARCH.mor-genom=\
 	include/mor/morStruct.h		\
-	lib/pkgconfig/mor.pc
+	'lib/pkgconfig/mor.pc:/Version/s/[^0-9.]//gp'
 
 include ../../architecture/genom/depend.mk
 

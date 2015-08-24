@@ -19,7 +19,7 @@ DEPEND_DIR.rflex-genom?=	../../robots/rflex-genom
 
 SYSTEM_SEARCH.rflex-genom=\
 	include/rflex/rflexStruct.h		\
-	lib/pkgconfig/rflex.pc
+	'lib/pkgconfig/rflex.pc:/Version/s/[^0-9.]//gp'
 
 include ../../architecture/genom/depend.mk
 
