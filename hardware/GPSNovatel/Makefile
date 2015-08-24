@@ -4,8 +4,7 @@
 
 PKGNAME=		GPSNovatel-${VERSION}
 DISTNAME=		gpsnovatel-${VERSION}
-VERSION=		1.7
-PKGREVISION=		1
+VERSION=		1.8
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=GPSNovatel-libs/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}gps/gpsnovatel-libs
@@ -19,6 +18,5 @@ GNU_CONFIGURE=		yes
 include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
-include ../../devel/mkdep/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
