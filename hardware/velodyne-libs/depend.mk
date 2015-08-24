@@ -14,7 +14,7 @@ PREFER.velodyne-libs?=	robotpkg
 
 DEPEND_USE+=		velodyne-libs
 
-DEPEND_ABI.velodyne-libs?=	velodyne-libs>=0.7
+DEPEND_ABI.velodyne-libs?=	velodyne-libs>=0.8
 DEPEND_DIR.velodyne-libs?=	../../hardware/velodyne-libs
 
 SYSTEM_SEARCH.velodyne-libs=\
