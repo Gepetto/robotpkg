@@ -1,0 +1,1130 @@
+diff --git include/p3d.h include/p3d.h
+index 305c726..0be14d5 100644
+--- include/p3d.h
++++ include/p3d.h
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (C) 2001 LAAS/CNRS 
++ * Copyright (C) 2001 LAAS/CNRS
+  *
+  * Anthony Mallet - Wed Jul  4 2001
+  *
+@@ -86,7 +86,7 @@ extern "C" {
+  * must actually be considered.
+  */
+ 
+-#define HAS_BODY_SUPPORT defined(ATRV) || defined(ATRV_JUNIOR) || defined(TROOPER) || defined(RMP400) || defined(RMP440)
++#define HAS_BODY_SUPPORT defined(ATRV) || defined(ATRV_JUNIOR) || defined(TROOPER) || defined(RMP400) || defined(RMP440) || defined(IVMOB)
+ 
+ /* Lama */
+ typedef struct P3DRobotGeometry {
+@@ -103,7 +103,7 @@ typedef struct P3DRobotGeometry {
+   double groundClear;  /* ground clearance (garde au sol) */
+ #endif
+ 
+-  /* Limits of angle : 
++  /* Limits of angle :
+    * xLimits[0] is the limit between the easy and the medium configuration angle
+    * xLimits[1] is the limit betwwen the medium and hard configuration angle
+    * xLimits[2] is the limit between hard and impossible angle
+@@ -119,7 +119,7 @@ typedef struct P3DRobotGeometry {
+ #define betaMax betaLimits[2]
+ 
+    double unkMax;	/* max percentage of unkown terrain */
+-} P3DRobotGeometry; 
++} P3DRobotGeometry;
+ 
+ #define		EASY	(4.0)
+ #define		MEDIUM	(8.0)
+@@ -130,7 +130,7 @@ typedef struct P3DRobotConfig {
+    double q;		/* quality in [0;1], <0 indicates error */
+ 
+    double x,y,z,theta;	/* Robot's position wrt the map */
+-  
++
+   double dzBodyGround;  /* min. height between robot body bottom and ground */
+ 
+    double roll, pitch;	/* of middle axle */
+@@ -142,7 +142,7 @@ typedef struct P3DRobotConfig {
+    double sigmaPitch;   /* sigma associated to config. placement */
+    double sigmaRoll;
+   double sigmaz;
+-} P3DRobotConfig; 
++} P3DRobotConfig;
+ 
+ 
+ /*
+@@ -150,7 +150,7 @@ typedef struct P3DRobotConfig {
+  *
+  * XXX Elements are generic wheel profiles, but it is still
+  * Lama-dependant since P3DRobot only consider left and right wheels.
+- * Who cares? 
++ * Who cares?
+  */
+ 
+ /* The same structure is used to compute a bitmap of Dala's body */
+@@ -196,7 +196,7 @@ typedef struct P3DRobot {
+ 
+ typedef struct P3DNode {
+    double x,y,theta;	/* horizontal position relative to the robot */
+-  
++
+    P3DRobotConfig conf;	/* robot configuration */
+    P3DRobotConfig *prev;/* previous configuration */
+ 
+@@ -233,10 +233,10 @@ typedef struct P3DArc {
+    int number;		/* arc number */
+    struct P3DArc *parent;/* arc parent (NULL for toplevel) */
+ 
+-   int is_elected; 
++   int is_elected;
+ } P3DArc;
+ 
+-/* 
++/*
+  * The following structure are quite similar to P3DNode and P3dArc
+  * The only difference is that they are linear in memory and so it can be
+  * used in poster
+@@ -292,9 +292,9 @@ typedef struct P3DPlanner {
+ typedef struct P3DPlanSolution {
+ 	int is_valid;
+ 
+-	double curv;		
++	double curv;
+ 	double d;
+-	double cost; 
++	double cost;
+ 
+ 	double v;			/* speed in m/s */
+ 	double w;			/* angular speed in rad/s */
+diff --git src/geom.c src/geom.c
+index d786ead..11723c3 100644
+--- src/geom.c
++++ src/geom.c
+@@ -1,6 +1,6 @@
+ /**
+  ** David Bonnafous - Anthony Mallet - Thu Jul  5 2001
+- ** Copyright (c) 2001 LAAS/CNRS 
++ ** Copyright (c) 2001 LAAS/CNRS
+  **
+  ** $Log: geom.c,v $
+  ** Revision 1.5  2007/11/27 10:41:19  adegroot
+@@ -61,7 +61,7 @@
+  ** Add functions adapted to Dala's structure instead of Lama. These functions are used if there's a flag -DATRV in Makefile. Otherwise, the lib will keep working with Lama adapted functions
+  **
+  ** Revision 1.7  2001/09/28 16:12:01  mallet
+- ** Le test de validité du numéro de profil de roue était buggé...
++ ** Le test de validitï¿½ du numï¿½ro de profil de roue ï¿½tait buggï¿½...
+  **
+  ** Revision 1.6  2001/07/16 19:45:54  mallet
+  ** fonctions de sauvegarde/restauration de mnt
+@@ -123,19 +123,19 @@ static double	p3dGetAxleRoll(P3DRobot *robot, P3DRobotGeometry *geom,
+ static double	p3dGetWheelHeight(P3DElement *wheel, double x, double y,
+ 			double theta, P3D_MAP *map, double *wu,
+ 			double *wv, double *wh, double *pUnk, double *sigma);
+-static void	p3dWarnUnstable(double x, double y, double theta, 
++static void	p3dWarnUnstable(double x, double y, double theta,
+ 			const char *message);
+ static void init_config(P3DRobotConfig *config);
+ 
+ #if (HAS_BODY_SUPPORT && BODYTEST)
+ static double
+ p3dBodyCollisionTest(P3DElement *body,
+-			 double x, double y, double z, double theta, 
++			 double x, double y, double z, double theta,
+ 			 P3D_MAP *map,
+ 			 double *wu, double *wv, double *wh, double *pUnk);
+ 
+ static int
+-p3dCheckBodyCollision(P3DRobot *robot, P3DRobotGeometry * geom, P3D_MAP *map, 
++p3dCheckBodyCollision(P3DRobot *robot, P3DRobotGeometry * geom, P3D_MAP *map,
+ 		P3DRobotConfig *config);
+ 
+ #endif /* ATRV */
+@@ -144,7 +144,7 @@ static void
+ init_config(P3DRobotConfig *config)
+ {
+    /* Initialize config, in case it can't be computed */
+-   config->q = -1.0;		
++   config->q = -1.0;
+    config->x = 0.0;
+    config->y = 0.0;
+    config->z = 0.0;
+@@ -198,7 +198,7 @@ p3dPlaceRobot(P3DRobot *robot, P3DRobotGeometry *geom,
+       return -1.0;
+    }
+ 
+-	/* 
++	/*
+ 	 * If we can't place the middle axle because we don't know what is the
+ 	 * ground under us, it is not relevant to place other axle particulary when
+ 	 * we take in account the position of this axle (which is not known).
+@@ -258,7 +258,7 @@ p3dPlaceRobot(P3DRobot *robot, P3DRobotGeometry *geom,
+    config->alpha1 = fRoll - mRoll;
+    config->alpha2 = bRoll - mRoll;
+    config->beta3 = M_PI + fPitch - bPitch;
+-   
++
+    /* unkown */
+    config->pUnk = MAX(mpUnk, MAX(fpUnk, bpUnk));
+ 
+@@ -269,23 +269,23 @@ p3dPlaceRobot(P3DRobot *robot, P3DRobotGeometry *geom,
+ /**********************************************************************
+   *
+   * Computation of the Dubins distance to a non-oriented goal. The equations
+-  * come from appendix A of the PhD thesis of John Joseph Enright  
++  * come from appendix A of the PhD thesis of John Joseph Enright
+   * "Efficient Routing of Multi-vehicle Systems: Limited Sensing and
+   * Nonholonomic Motion Constraints", 2008 (easily found on the net).
+   *
+-  * gx, gy : position of the goal 
++  * gx, gy : position of the goal
+   * x, y, theta : position of the robot
+   * r : minimum turning radius
+-  * 
++  *
+   * return dubins distance
+   *
+-   
++
+ **********************************************************************/
+ 
+ double
+ p3dDubins (double gx, double gy, double x, double y, double theta,  double r)
+ {
+-    double cost = cos(theta), sint = sin(theta); 
++    double cost = cos(theta), sint = sin(theta);
+     double Gx, Gy;		/* Goal position in the robot frame */
+ 	double dGoalNear;	/* Distance between the goal and the  center of the
+ 						   closest circle  */
+@@ -333,11 +333,11 @@ p3dDubins (double gx, double gy, double x, double y, double theta,  double r)
+  * in [0;1] (1.0=best, <0.0=error). "roll" is set to the roll angle,
+  * "height" to the elevation of middle point and "pitch" is pitch the
+  * angle measured from the horizontal plane. pUnk is the percentage of
+- * unknown terrain under the axle.  
++ * unknown terrain under the axle.
+  */
+ 
+ static double
+-p3dGetConstrainedAxleRoll(P3DRobot *robot, P3DRobotGeometry *geom, 
++p3dGetConstrainedAxleRoll(P3DRobot *robot, P3DRobotGeometry *geom,
+ 			  double x, double y, double z, double theta,
+ 			  double len, P3D_MAP *map,
+ 			  double *roll, double *pitch, double *height,
+@@ -402,11 +402,11 @@ p3dGetConstrainedAxleRoll(P3DRobot *robot, P3DRobotGeometry *geom,
+  * Return the quality of placement (average of the one of the two wheels)
+  * in [0;1] (1.0=best, <0.0=error). roll is set to the roll angle, height
+  * to the elevation of middle point and pUnk is the percentage of unknown
+- * terrain under the axle. 
++ * terrain under the axle.
+  */
+ 
+ static double
+-p3dGetAxleRoll(P3DRobot *robot, P3DRobotGeometry *geom, 
++p3dGetAxleRoll(P3DRobot *robot, P3DRobotGeometry *geom,
+ 	       double x, double y, double theta, P3D_MAP *map,
+ 	       double *roll, double *height, double *pUnk, double *var, double *var_z)
+ {
+@@ -444,7 +444,7 @@ p3dGetAxleRoll(P3DRobot *robot, P3DRobotGeometry *geom,
+       dRoll = atan2(lWh-rWh, lWv-rWv);
+       damping *= robot->damping;
+ 
+-   } while (fabs(damping*dRoll) >= robot->rollStep && 
++   } while (fabs(damping*dRoll) >= robot->rollStep &&
+ 	    ++nIter < robot->nIter);
+ 
+    /* unstable */
+@@ -457,7 +457,8 @@ p3dGetAxleRoll(P3DRobot *robot, P3DRobotGeometry *geom,
+    /* special case for new terrain */
+    if (lpUnk >= geom->unkMax || rpUnk >= geom->unkMax) {
+      *roll = 0.0;
+-#if defined(ATRV) || defined(TROOPER) || defined(RMP400) || defined(RMP440)/* rad0 (wheel radius) should be the z of axle on flat terrain */
++#if defined(ATRV) || defined(TROOPER) || defined(RMP400) || defined(RMP440) || defined(IVMOB)
++     /* rad0 (wheel radius) should be the z of axle on flat terrain */
+      *height = geom->rad[0];
+ #else
+      *height = 0.0;
+@@ -508,7 +509,7 @@ p3dGetWheelHeight(P3DElement *wheel,
+    float *wp;
+ 
+    P3D_MAP_CELL  *mapCell;  /* current map cell */
+-   
++
+    /**** NEW: To compute the sigma_z average ****/
+    float sigma_z_sum=0.0, sigma_average;
+    int   num_sigma_z=0;
+@@ -647,7 +648,7 @@ p3dWarnUnstable(double x, double y, double theta, const char *message)
+  *
+  * Compute robot horizontal position and orientation given an arc
+  * (r=curvature), a distance to follow (ds) and an initial position (x0,
+- * y0, theta0). 
++ * y0, theta0).
+  */
+ 
+ void
+@@ -656,9 +657,9 @@ p3dGetArcPos(double r, double ds, double x0, double y0, double theta0,
+ {
+    double dx, dy, dth;
+    double cth, sth;
+-   
++
+    dth = r*ds;
+-   
++
+    if (fabs(r)<1e-5) {
+       dx = ds;
+       dy = 0.0;
+@@ -750,7 +751,7 @@ p3dPlaceRobotDala(P3DRobot *robot, P3DRobotGeometry *geom,
+ 	}
+ 
+    /* We have now bRoll and bz */
+-   
++
+    /* place front axle */
+    /* geom->arm[0] doit etre la distance entre le centre du robot et le front axle */
+    /* le point de reference utilise ici sera bx,by,bz plutot, avec len=long.interaxles */
+@@ -812,7 +813,7 @@ p3dPlaceRobotDala(P3DRobot *robot, P3DRobotGeometry *geom,
+ 
+    /* beta3 should be set to some useless constant value or simply removed from the structure */
+    config->beta3 = M_PI ;
+-   
++
+    /*** NEW: computation of a sigma for that placement ***/
+    /** variance due to discretization (cf rollStep) must be added **/
+    vard = SQ( robot->rollStep*P3D_DISCRETISATION_FACTOR );
+@@ -882,7 +883,7 @@ p3dBodyCollisionTest(P3DElement *body,
+    /* position of back left corner of body (B) */
+    u = (body->y*cost - body->x*sint + x) / map->scale;
+    v = (body->y*sint + body->x*cost + y) / map->scale;
+-   
++
+    l = floor(u);
+    if (l < 0 || l >= map->nbLines) { errno = EINVAL; return -1; }
+    c = floor(v);
+@@ -959,7 +960,7 @@ p3dBodyCollisionTest(P3DElement *body,
+ 		  My = i;
+ 		}
+ 	    }
+-	    else 
++	    else
+ 	      {
+ 		/* Get out of the loop -> placement too dangerous */
+ /* 		fprintf(stderr, "p3d: position %f %f %f: robot body collision with the ground\n", x, y, theta); */
+@@ -981,7 +982,7 @@ p3dBodyCollisionTest(P3DElement *body,
+       Bx = sBx + Vx; l = Bx>>FIX;
+       By = sBy + Vy; c = By>>FIX;
+    }
+-   
++
+ 
+    /* position of max height */
+    if (Mx == UNDEF || My == UNDEF) {
+@@ -1004,7 +1005,7 @@ p3dBodyCollisionTest(P3DElement *body,
+  * It is not a problem because it is the last operation
+  */
+ static int
+-p3dCheckBodyCollision(P3DRobot *robot, P3DRobotGeometry *geom, 
++p3dCheckBodyCollision(P3DRobot *robot, P3DRobotGeometry *geom,
+ 		P3D_MAP *map, P3DRobotConfig *config)
+ {
+ 	double resultCollision=0.0; /* 0.0 means no body collision test has been made */
+@@ -1019,16 +1020,16 @@ p3dCheckBodyCollision(P3DRobot *robot, P3DRobotGeometry *geom,
+ 	numRoll = (int) floor( (config->roll - robot->bodyRollMin)/robot->bodyRollStep +0.5 );
+ 	numPitch = (int) floor( (config->pitch - robot->bodyPitchMin)/robot->bodyPitchStep +0.5 );
+ 
+-	/* If roll or pitch are over limits, do not try to check body collision */ 
++	/* If roll or pitch are over limits, do not try to check body collision */
+ 	/* (it is useless and there are no body bitmaps prepared for ) */
+ 	if(numRoll >= robot->nBodyRoll || numPitch >= robot->nBodyPitch
+ 			|| numRoll < 0 || numPitch < 0 )
+ 	{
+-		fprintf(stderr, 
++		fprintf(stderr,
+ 				"p3dCheckBodyCollision: WARNING: numRoll or numPitch over limits\n");
+-		fprintf(stderr, 
++		fprintf(stderr,
+ 				"p3dCheckBodyCollision: numRoll=%d, numPitch=%d\n", numRoll, numPitch);
+-		fprintf(stderr, 
++		fprintf(stderr,
+ 				"p3dCheckBodyCollision: config->roll=%lf, config->pitch=%lf\n",
+ 				config->roll, config->pitch);
+ 		fprintf(stderr, "p3dCheckBodyCollision: Could not compute delta_z\n");
+@@ -1039,8 +1040,8 @@ p3dCheckBodyCollision(P3DRobot *robot, P3DRobotGeometry *geom,
+ 		/* If unknown terrain, should not test body collision with ground */
+ 		/* besides, it would not work as zAxle(s) have been set to zero */
+ 		if (config->pUnk < geom->unkMax) {
+-			resultCollision = 
+-				p3dBodyCollisionTest(robot->body[numRoll][numPitch], 
++			resultCollision =
++				p3dBodyCollisionTest(robot->body[numRoll][numPitch],
+ 						config->x, config->y, config->z, config->theta, map,
+ 						&body_u, &body_v, &body_dz, &body_pUnk);
+ #if DEBUG
+@@ -1073,7 +1074,7 @@ double  p3dPlaceRobotTrooper(P3DRobot *robot, P3DRobotGeometry *geom,
+ {
+ 	double res;
+ 	res = p3dPlaceRobot(robot, geom, x, y, theta, map, config);
+-	if (res < 0.0) 
++	if (res < 0.0)
+ 		return res;
+ 
+ #if BODYTEST
+@@ -1083,7 +1084,3 @@ double  p3dPlaceRobotTrooper(P3DRobot *robot, P3DRobotGeometry *geom,
+ 
+ 	return config->q;
+ }
+-
+-
+-
+-
+diff --git src/p3dInt.h src/p3dInt.h
+index 7209152..6b79253 100644
+--- src/p3dInt.h
++++ src/p3dInt.h
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (C) 2001 LAAS/CNRS 
++ * Copyright (C) 2001 LAAS/CNRS
+  *
+  * Anthony Mallet - Thu Jul  5 2001
+  *
+@@ -125,7 +125,7 @@ void		p3dArcsDestroy(P3DArc *arcs, int n);
+ void		p3dArcsResetFlags(P3DArc *arcs, int n);
+ void		p3dArcsReset(P3DArc *arcs, int n, double x, double y,
+ 			double theta, double gx, double gy, double goalTol);
+-void		p3dArcComputeNodePosition(P3DArc *arcs, int n, double x, double y, 
++void		p3dArcComputeNodePosition(P3DArc *arcs, int n, double x, double y,
+ 									  double theta, double stop_distance);
+ 
+ double		p3dPlaceRobot(P3DRobot *robot, P3DRobotGeometry *geom,
+@@ -163,7 +163,7 @@ double	p3dEvalConfigDala(P3DRobotGeometry *geom,
+ P3DElement *  p3dDalaWheelCreate(double len[3], double rad[2],
+ 				    double roll, double scale);
+ 
+-P3DElement *  p3dDalaBodyCreate(double length, double width, double zBody, 
++P3DElement *  p3dDalaBodyCreate(double length, double width, double zBody,
+ 				double roll, double pitch, double scale);
+ 
+ /**********************************************************************/
+@@ -185,7 +185,7 @@ double	p3dEvalConfigTrooper(P3DRobotGeometry *geom,
+ 
+ /*********************************************************************/
+ 
+-#if defined(ATRV) || defined(RMP400) || defined(RMP440)
++#if defined(ATRV) || defined(RMP400) || defined(RMP440) || defined(IVMOB)
+ #define PLACE_ROBOT(robot,geom,x,y,theta,map,config) \
+ 		p3dPlaceRobotDala((robot), (geom), (x), (y), (theta), (map), (config))
+ #define EVAL_CONFIG(geom, current, prev) \
+@@ -211,7 +211,7 @@ void p3dComputeRobotMovement(double *px, double *py, double *ptheta,
+ void check_unknow(P3DRobotGeometry *geom, P3DArc *a, int current_node);
+ 
+ /**********************************************************************/
+-void p3dComputeRobotPositionInMap(P3D_MAP * map, T3D *mainToOrigin, 
++void p3dComputeRobotPositionInMap(P3D_MAP * map, T3D *mainToOrigin,
+ 		T3D *mainToCenterOfMap, T3D *goalToOrigin, T3D *goalToCenterOfMap);
+ 
+ /**********************************************************************/
+@@ -219,7 +219,7 @@ void p3dComputeRobotPositionInMap(P3D_MAP * map, T3D *mainToOrigin,
+ 
+ void p3dResetPlanSolution(P3DPlanSolution *sol);
+ void p3dSetPlanSolution(P3DPlanSolution *sol, P3DPlanner *planner, P3DArc *best);
+-		
++
+ /**********************************************************************/
+ double p3dGetVehiculeSize(P3DPlanner *planner);
+ double p3dGetDistanceFixAndMobileAxle(P3DPlanner *planner);
+diff --git src/robot.c src/robot.c
+index 49bed09..872af70 100644
+--- src/robot.c
++++ src/robot.c
+@@ -1,6 +1,6 @@
+ /**
+  ** David Bonnafous - Anthony Mallet - Fri Jul  6 2001
+- ** Copyright (c) 2001 LAAS/CNRS 
++ ** Copyright (c) 2001 LAAS/CNRS
+  **
+  ** $Log: robot.c,v $
+  ** Revision 1.4  2007/11/27 10:41:20  adegroot
+@@ -99,6 +99,8 @@ p3dCreateRobot(P3DRobotGeometry *geom, double scale, double rollStep, double vMi
+    const char* name = "RMP400";
+ #elif defined(RMP440)
+    const char* name = "RMP440";
++#elif defined(IVMOB)
++   const char* name = "IVMOB";
+ #endif
+ 
+    n = 2 * (geom->rollMax + geom->alphaMax) / rollStep;
+@@ -114,7 +116,7 @@ p3dCreateRobot(P3DRobotGeometry *geom, double scale, double rollStep, double vMi
+    robot->rollStep = rollStep;
+    robot->nProfiles = n;
+    robot->lWheel = calloc(n, sizeof(*robot->lWheel));
+-   if (robot->lWheel == NULL) { 
++   if (robot->lWheel == NULL) {
+ 	  errno = ENOMEM;
+ 	  p3dRobotDestroy(robot);
+       return NULL;
+@@ -126,7 +128,7 @@ p3dCreateRobot(P3DRobotGeometry *geom, double scale, double rollStep, double vMi
+       return NULL;
+    }
+ 
+-#if (defined(ATRV) /* Dala */ || defined(TROOPER) || defined(RMP400) || defined(RMP440))
++#if (defined(ATRV) /* Dala */ || defined(TROOPER) || defined(RMP400) || defined(RMP440) || defined(IVMOB))
+    /*-------------- ATRV wheels bitmaps --------------------------*/
+    /* Creation of wheels profile for ATRV */
+    for(i=0; i<n; i++) {
+@@ -167,7 +169,7 @@ p3dCreateRobot(P3DRobotGeometry *geom, double scale, double rollStep, double vMi
+    nPitch = 2 * geom->pitchMax / bodyPitchStep;
+    nBody = nRoll * nPitch;
+    if (nRoll < 1 || nBody < 1) { errno = EINVAL; p3dRobotDestroy(robot); return NULL; }
+-   
++
+    robot->nBodyRoll = nRoll;
+    robot->nBodyPitch = nPitch;
+    robot->nBodyProfiles = nBody;
+@@ -175,7 +177,7 @@ p3dCreateRobot(P3DRobotGeometry *geom, double scale, double rollStep, double vMi
+    /* Allocations */
+    /* for roll indexation */
+    robot->body = calloc(nRoll, sizeof(*robot->body));
+-   if (robot->body == NULL) { 
++   if (robot->body == NULL) {
+ 	  errno = ENOMEM;
+ 	  p3dRobotDestroy(robot);
+       return NULL;
+@@ -183,7 +185,7 @@ p3dCreateRobot(P3DRobotGeometry *geom, double scale, double rollStep, double vMi
+    for(i=0; i<nRoll; i++)
+      {
+        robot->body[i] = calloc(nPitch, sizeof(**robot->body));
+-       if (robot->body[i] == NULL) { 
++       if (robot->body[i] == NULL) {
+ 		   errno = ENOMEM;
+ 		   p3dRobotDestroy(robot);
+ 		   return NULL;
+@@ -195,7 +197,7 @@ p3dCreateRobot(P3DRobotGeometry *geom, double scale, double rollStep, double vMi
+      for(j=0; j<nPitch; j++) {
+        robot->body[i][j] =
+ 	 p3dDalaBodyCreate(geom->bodyLength, geom->bodyWidth, geom->zBody,
+-			   i*bodyRollStep + bodyRollMin, 
++			   i*bodyRollStep + bodyRollMin,
+ 			   j*bodyPitchStep + robot->bodyPitchMin, scale);
+      if (robot->body[i][j] == NULL) {
+        p3dRobotDestroy(robot);
+@@ -209,7 +211,7 @@ p3dCreateRobot(P3DRobotGeometry *geom, double scale, double rollStep, double vMi
+      fprintf(stderr, "p3d: creation of %s Body profile %d/%d\r", name, i*j, nBody);
+    }
+    fprintf(stderr, "p3d: created all %s body profiles\t\n", name);
+-   
++
+ #else  /* Lama */
+ 
+    /*-------------- LAMA wheels bitmaps --------------------------*/
+@@ -345,7 +347,7 @@ static double
+ p3dEvalAngle(double angle, double max, double coeff)
+ {
+    double d = fabs(angle)/max;
+-   
++
+    /* This can be changed to whatever you want */
+ 
+    if (d > 1.0-1e-5) return 1e10;
+@@ -402,7 +404,7 @@ p3dLamaWheelCreate(double len[3], double rad[2], double roll, double scale)
+ 
+    wheel->w = ceil(w/scale);
+    wheel->h = ceil(h/scale);
+-   if (wheel->w < 1 || wheel->h < 1) { 
++   if (wheel->w < 1 || wheel->h < 1) {
+       errno = EINVAL; free(wheel);
+       return NULL;
+    }
+@@ -466,11 +468,11 @@ p3dLamaWheelCreate(double len[3], double rad[2], double roll, double scale)
+ 	 /* right cylinder */
+ 	 if (r<=rad[0]) {
+ 	    x = sqrt(rad[0]*rad[0]-r*r);
+-	    if (x*tanr+l >= len[2]+len[1] && 
++	    if (x*tanr+l >= len[2]+len[1] &&
+ 		x*tanr+l <= len[2]+len[1]+len[0])
+ 	       z = MIN(z, e+x*SIGN(cosr)*sqrt(1+SQ(tanr)));
+ 
+-	    if (-x*tanr+l >= len[2]+len[1] && 
++	    if (-x*tanr+l >= len[2]+len[1] &&
+ 		-x*tanr+l <= len[2]+len[1]+len[0])
+ 	       z = MIN(z, e-x*SIGN(cosr)*sqrt(1+SQ(tanr)));
+ 	 }
+@@ -482,17 +484,17 @@ p3dLamaWheelCreate(double len[3], double rad[2], double roll, double scale)
+ 	    double b = rad[1]-a*len[2];
+ 	    double rb = a*l+b;
+ 
+-	    /* discriminant de x²+y²=r² */
++	    /* discriminant de xï¿½+yï¿½=rï¿½ */
+ 	    y = (SQ(a*tanr)-1)*SQ(r) + SQ(rb);
+ 
+ 	    if (y >= 0) {
+ 	       x = (a*tanr*rb + sqrt(y))/(1-SQ(a*tanr));
+-	       if (x*tanr+l >= len[2] && 
++	       if (x*tanr+l >= len[2] &&
+ 		   x*tanr+l <= len[2]+len[1])
+ 		  z = MIN(z, e+x*SIGN(cosr)*sqrt(1+SQ(tanr)));
+ 
+ 	       x = (a*tanr*rb - sqrt(y))/(1-SQ(a*tanr));
+-	       if (x*tanr+l >= len[2] && 
++	       if (x*tanr+l >= len[2] &&
+ 		   x*tanr+l <= len[2]+len[1])
+ 		  z = MIN(z, e+x*SIGN(cosr)*sqrt(1+SQ(tanr)));
+ 	    }
+@@ -547,7 +549,7 @@ p3dP3dElementDestroy(P3DElement *wheel)
+  * !!!!! Pour se simplifier la vie, on considerera pour le moment que le cylindre 2 est un CONE... (comme sur Lama)
+  *
+  * The sizes of this element are given by lengths[] and radius[]. The reference point is centered on the left side.
+- *                  
++ *
+  *      ref          +-----+ ^
+  *       v______     |     | |
+  *       |      |____|     | |
+@@ -584,7 +586,7 @@ p3dDalaWheelCreate(double len[3], double rad[2], double roll, double scale)
+ 
+    wheel->w = ceil(w/scale);
+    wheel->h = ceil(h/scale);
+-   if (wheel->w < 1 || wheel->h < 1) { 
++   if (wheel->w < 1 || wheel->h < 1) {
+       errno = EINVAL; free(wheel);
+       return NULL;
+    }
+@@ -632,11 +634,11 @@ p3dDalaWheelCreate(double len[3], double rad[2], double roll, double scale)
+ 	 /* right cylinder */
+ 	 if (r<=rad[0]) {
+ 	    x = sqrt(rad[0]*rad[0]-r*r);
+-	    if (x*tanr+l >= len[2]+len[1] && 
++	    if (x*tanr+l >= len[2]+len[1] &&
+ 		x*tanr+l <= len[2]+len[1]+len[0])
+ 	       z = MIN(z, e+x*SIGN(cosr)*sqrt(1+SQ(tanr)));
+ 
+-	    if (-x*tanr+l >= len[2]+len[1] && 
++	    if (-x*tanr+l >= len[2]+len[1] &&
+ 		-x*tanr+l <= len[2]+len[1]+len[0])
+ 	       z = MIN(z, e-x*SIGN(cosr)*sqrt(1+SQ(tanr)));
+ 	 }
+@@ -667,10 +669,10 @@ p3dEvalAngleDifficulty(double angle, double angleLimits[3])
+ 		return -1.0;
+ 
+ 	if (absolute_angle < angleLimits[0])
+-		return EASY; 
++		return EASY;
+ 
+ 	if (absolute_angle < angleLimits[1])
+-		return MEDIUM; 
++		return MEDIUM;
+ 
+ 	return HARD;
+ }
+@@ -692,9 +694,9 @@ p3dEvalAngleDifficulty(double angle, double angleLimits[3])
+ 	d = p3dEvalAngleDifficulty((a), (b)); \
+ 	if ( d < 0 ) \
+ 	  return d; \
+-	sum += d;	  
++	sum += d;
+ 
+-/* 
++/*
+  * Maybe we need to favour the same trajectory using eval_relative
+  * instead of eval
+  */
+@@ -743,19 +745,19 @@ p3dEvalConfigDala(P3DRobotGeometry *geom,
+    prev_alpha = prev->alpha1 - prev->alpha2;
+    /* check relative bounds */
+    if (fabs(current->roll - prev->roll) > geom->rollMax) {
+-	   DPRINTF(("%s : relative roll (%lf) > rollMax (%lf)\n", __func__, 
++	   DPRINTF(("%s : relative roll (%lf) > rollMax (%lf)\n", __func__,
+ 			   current->roll - prev->roll, geom->rollMax));
+ 	   return -1.0;
+    }
+ 
+    if (fabs(current->pitch - prev->pitch) > geom->pitchMax) {
+-	   DPRINTF(("%s : relative pitch (%lf) > pitchMax (%lf)\n", __func__, 
++	   DPRINTF(("%s : relative pitch (%lf) > pitchMax (%lf)\n", __func__,
+ 			   current->pitch - prev->pitch, geom->pitchMax));
+ 	   return -1.0;
+    }
+ 
+    if (fabs(alpha - prev_alpha) > geom->alphaMax) {
+-	   DPRINTF(("%s : relative alpha (%lf) >alphahMax (%lf)\n", __func__, 
++	   DPRINTF(("%s : relative alpha (%lf) >alphahMax (%lf)\n", __func__,
+ 			   alpha - prev_alpha, geom->alphaMax));
+ 	   return -1.0;
+    }
+@@ -778,7 +780,7 @@ p3dEvalConfigDala(P3DRobotGeometry *geom,
+    eval(alpha - prev_alpha, geom->alphaLimits);
+ 
+    /* Here we normalize because we want to have a result in [1..+inf[ */
+-   sum /= 6; 
++   sum /= 6;
+ 
+    /* TODO: Ajouter ici le danger lie a la proximite de DEM et de la caisse */
+ 
+@@ -844,7 +846,7 @@ p3dEvalConfigTrooper(P3DRobotGeometry *geom,
+  * Create a 2D bitmap with heights of Dala above body at the given resolution
+  * (scale is the size of pixels in meters).
+  * For efficiency, several bitmaps are computed for different
+- * orientations (roll and pitch angles) 
++ * orientations (roll and pitch angles)
+  * [this function computes only one bitmap].
+  *
+  * For Dala, this is a simple rectangle to be projected
+@@ -858,10 +860,10 @@ p3dEvalConfigTrooper(P3DRobotGeometry *geom,
+  * (x axis) | |        x        |
+  *          | |                 |
+  *          | |B               C|
+- *          v -------------------  
++ *          v -------------------
+  *
+  *  zBody is the delta_z between robot's center z and center of the fond de caisse
+- * 
++ *
+  */
+ 
+ P3DElement *
+@@ -928,7 +930,7 @@ p3dDalaBodyCreate(double length, double width, double zBody, double roll, double
+ 
+   body->w = ceil(w/scale);
+   body->h = ceil(h/scale);
+-  if (body->w < 1 || body->h < 1) { 
++  if (body->w < 1 || body->h < 1) {
+       errno = EINVAL; free(body);
+       return NULL;
+    }
+@@ -937,7 +939,7 @@ p3dDalaBodyCreate(double length, double width, double zBody, double roll, double
+    if (body->height == NULL) { errno = ENOMEM; free(body); return NULL; }
+ 
+    body->scale = scale;
+-   
++
+    /* center of body */
+    t3dInit(&pointToBody, T3D_EULER, T3D_ALLOW_CONVERSION);
+    pointToBody.euler.euler[3] = 0.0;
+@@ -951,21 +953,21 @@ p3dDalaBodyCreate(double length, double width, double zBody, double roll, double
+    /*---------------- fill height map now --------------------------*/
+    body->nElem = 0;
+    height = body->height;
+-   
++
+    /* compute x and y scales on bdy plane */
+    scale_x = width / ( (double) body->h );
+    scale_y = length / ( (double) body->w );
+ 
+    for(i=0; i<body->h; i++) {  /* along x */
+-     
++
+      /* radial position between [-width/2;width/2] (meters) */
+      r = width/2.0*(2.0*i/(body->h-1) - 1.0);  /* to be checked */
+ 
+      for(j=0; j<body->w; j++, height++) {   /* along y */
+-       
++
+        /* horizontal position between [-length/2;length/2] (meters) */
+        l = length/2.0*(2.0*i/(body->w-1) - 1.0);  /* to be checked */
+-       
++
+        /* altitude if undef by default */
+        z = P3D_UNDEF_ELEM;
+ 
+@@ -979,7 +981,7 @@ p3dDalaBodyCreate(double length, double width, double zBody, double roll, double
+        /* Compute current point position in RobotRed to get the z */
+        t3dCompIn(&pointToRobotRed, &pointToBody, &bodyToRobotRed);
+        t3dConvertTo(T3D_EULER, &pointToRobotRed);
+-       
++
+        z = pointToRobotRed.euler.euler[5];
+ 
+        /* fixed point height */
+@@ -997,21 +999,21 @@ p3dDalaBodyCreate(double length, double width, double zBody, double roll, double
+    return body;
+ }
+ 
+-static void 
++static void
+ write_P3DElement(FILE *fp, const P3DElement* el)
+ {
+ 	int i;
+-	fprintf(fp, "%d %d %f %f %f %d\n", el->w, el->h, el->x, el->y, 
++	fprintf(fp, "%d %d %f %f %f %d\n", el->w, el->h, el->x, el->y,
+ 			el->scale, el->nElem);
+ 
+ 	for (i = 0; i < el->w * el->h; i++) {
+ 		fprintf(fp, "%f ", el->height[i]);
+-	}	
++	}
+ 
+ 	fprintf(fp,"\n");
+ }
+ 
+-static P3DElement* 
++static P3DElement*
+ read_P3DElement(FILE *fp)
+ {
+ 	int i;
+@@ -1025,7 +1027,7 @@ read_P3DElement(FILE *fp)
+ 
+ 	fscanf(fp, "%d %d %f %f %f %d\n", &el->w, &el->h, &el->x, &el->y,
+ 			&el->scale, &el->nElem);
+-	
++
+ 	el->height = malloc(el->w * el->h * sizeof(*el->height));
+ 	if (el->height == NULL) {
+ 		fprintf(stderr, "%s : can't allocate memory for height\n", __func__);
+@@ -1117,7 +1119,7 @@ p3dReadP3DRobot(FILE *fp)
+ 	fscanf(fp, "%d %d %d\n", &robot->nBodyProfiles, &robot->nBodyRoll, &robot->nBodyPitch);
+ 
+ 	robot->body = calloc(robot->nBodyRoll, sizeof(*robot->body));
+-	if (robot->body == NULL) { 
++	if (robot->body == NULL) {
+ 		fprintf(stderr, "%s : can't allocate memory for body\n", __func__);
+ 		p3dRobotDestroy(robot);
+ 		return NULL;
+@@ -1126,7 +1128,7 @@ p3dReadP3DRobot(FILE *fp)
+ 	for(i=0; i< robot->nBodyRoll; i++)
+ 	{
+ 		robot->body[i] = calloc(robot->nBodyPitch, sizeof(**robot->body));
+-		if (robot->body[i] == NULL) { 
++		if (robot->body[i] == NULL) {
+ 			fprintf(stderr, "%s : can't allocate memory for body\n", __func__);
+ 			p3dRobotDestroy(robot);
+ 			return NULL;
+diff --git src/util.c src/util.c
+index ca12389..81fbbd9 100644
+--- src/util.c
++++ src/util.c
+@@ -1,6 +1,6 @@
+ /**
+  ** Thierry Peynot - Mon Mar 21 2005
+- ** Copyright (c) 2005 LAAS/CNRS 
++ ** Copyright (c) 2005 LAAS/CNRS
+  **
+  ** Useful functions to manage P3D_MAP struct
+  **
+@@ -32,35 +32,35 @@
+  *
+  **********************************************************************/
+ 
+-P3D_MAP*	
++P3D_MAP*
+ create_p3dmap ()
+ 
+ {
+   P3D_MAP*   p3dmap;
+   int        i,j;
+-  
++
+   p3dmap = (P3D_MAP*) malloc (sizeof(P3D_MAP));
+-  
++
+   if (p3dmap == NULL) {
+-	fprintf(stderr, "%s : Can't allocate memory for p3dMap\n", __func__);   
++	fprintf(stderr, "%s : Can't allocate memory for p3dMap\n", __func__);
+     return (NULL);
+   }
+ 
+   /* Initializes parameters */
+   p3dmap->nbLines = 0;
+   p3dmap->nbCols = 0;
+-  
++
+   p3dmap->scale = 0.0;
+   p3dmap->zScale = 0.0;
+ 
+   p3dmap->xOrigin = 0.0;
+   p3dmap->yOrigin = 0.0;
+   p3dmap->zOrigin = 0.0;
+-  
++
+   /** Init the map mainToOrigin as a T3DEuler **/
+   p3dmap->mainToOrigin = t3dNew(T3D_EULER, T3D_ALLOW_CONVERSION);
+ 
+-  
++
+   /* Default: all cells EMPTY */
+   for(i = 0; i < P3D_MAP_MAX_LINES; i++)
+    {
+@@ -70,7 +70,7 @@ create_p3dmap ()
+ 	 p3dmap->cells[i][j].z = 0.0;
+        }
+    }
+-  
++
+ 
+   return(p3dmap);
+ }
+@@ -87,7 +87,7 @@ create_p3dmap ()
+ void
+ destroy_p3dmap (P3D_MAP*  p3dMap)
+ {
+-  
++
+   if(p3dMap->mainToOrigin != NULL)
+     t3dDelete(p3dMap->mainToOrigin);
+ 
+@@ -104,7 +104,7 @@ destroy_p3dmap (P3D_MAP*  p3dMap)
+  *
+  **********************************************************************/
+ 
+-int 
++int
+ write_p3dmap(const P3D_MAP* map, const char* fileName)
+ {
+   FILE*  file;
+@@ -128,8 +128,8 @@ write_p3dmap(const P3D_MAP* map, const char* fileName)
+   /* print the cells in file */
+   for(i = 0; i < map->nbLines; i++)
+ 	  for(j = 0; j < map->nbCols; j++)
+-		  fprintf(file, "%d\t%f\t\t%f\n", map->cells[i][j].state, 
+-											map->cells[i][j].z, 
++		  fprintf(file, "%d\t%f\t\t%f\n", map->cells[i][j].state,
++											map->cells[i][j].z,
+ 											map->cells[i][j].sigma_z);
+ 
+   fclose(file);
+@@ -169,9 +169,9 @@ read_p3dmap(P3D_MAP* map, const char* filename)
+ 
+ 	for(i = 0; i < map->nbLines; i++)
+ 		for(j = 0; j < map->nbCols; j++)
+-			fscanf(f, "%d\t%f\t%f\n", 
+-					&map->cells[i][j].state, 
+-					&map->cells[i][j].z, 
++			fscanf(f, "%d\t%f\t%f\n",
++					&map->cells[i][j].state,
++					&map->cells[i][j].z,
+ 					&map->cells[i][j].sigma_z);
+ 	fclose(f);
+ 
+@@ -199,7 +199,7 @@ p3dmap_to_gdhe(const P3D_MAP* map, const char* filename)
+ 
+ 	f = fopen(filename, "w");
+ 	if (f == NULL) {
+-		fprintf(stderr, "p3d: %s : failed to open file %s : %s\n", __func__, 
++		fprintf(stderr, "p3d: %s : failed to open file %s : %s\n", __func__,
+ 				filename, strerror(errno));
+ 		return -1;
+ 	}
+@@ -307,7 +307,7 @@ p3dInfoP3DPlanner(P3DPlanner*  planner)
+       printf("planner->arcs->nodes[%d].conf.pUnk   = %lf\n", k, arc->nodes[k].conf.pUnk);
+       printf("planner->arcs->nodes[%d].cost  = %lf\n", k, arc->nodes[k].cost);
+     }
+-  
++
+ }
+ 
+ 
+@@ -368,11 +368,11 @@ p3dPlaceRobotOnMap(P3DRobotConfig*  config, /* output: predicted config. */
+   mainToOrigin->euler.euler[4] = robot_y;
+ 
+   p3dComputeRobotPositionInMap(p3dMap, mainToOrigin, &mainToCenterOfMap, NULL, NULL);
+-  
++
+    x = mainToCenterOfMap.euler.euler[3];
+    y = mainToCenterOfMap.euler.euler[4];
+    theta = mainToCenterOfMap.euler.euler[0];
+-   
++
+    /* Check that given position is in the map */
+    if( (x >= p3dMap->nbLines*p3dMap->scale) || (y >= p3dMap->nbCols*p3dMap->scale))
+      {
+@@ -400,16 +400,16 @@ p3dPlaceRobotOnMap(P3DRobotConfig*  config, /* output: predicted config. */
+        fprintf(stderr,"p3dPlaceRobot: quality = %lf, config->q = %lf\n", quality, config->q);
+        fprintf(stderr,"p3dPlaceRobot: config->x.y.z = %lf %lf %lf\n", config->x, config->y, config->z);
+        fprintf(stderr,"p3dPlaceRobot: dzBodyGround: %lf\n", config->dzBodyGround);
+-       fprintf(stderr,"p3dPlaceRobot: roll(deg): %lf pitch(deg) = %lf\n", 
++       fprintf(stderr,"p3dPlaceRobot: roll(deg): %lf pitch(deg) = %lf\n",
+ 	       RAD_TO_DEG(config->roll), RAD_TO_DEG(config->pitch) );
+-       fprintf(stderr,"p3dPlaceRobot: sigmaPitch: %lf sigmaRoll = %lf sigma_z = %lf\n", 
++       fprintf(stderr,"p3dPlaceRobot: sigmaPitch: %lf sigmaRoll = %lf sigma_z = %lf\n",
+ 	       config->sigmaPitch, config->sigmaRoll, config->sigmaz );
+-       fprintf(stderr,"p3dPlaceRobot: alpha1(deg): %lf alpha2(deg) = %lf\n", 
++       fprintf(stderr,"p3dPlaceRobot: alpha1(deg): %lf alpha2(deg) = %lf\n",
+ 	       RAD_TO_DEG(config->alpha1), RAD_TO_DEG(config->alpha2) );
+        fprintf(stderr,"p3dPlaceRobot: pUnk: %lf\n", config->pUnk);
+    fprintf(stderr,"p3dPlaceRobot:---------------------------------\n");
+      }
+-   
++
+ 
+    t3dDelete(mainToOrigin);
+    return 0;
+@@ -495,8 +495,8 @@ p3dPlaceRobotOnWholeMap(P3DPlanner* p3dplanner,
+ 
+   fprintf(stderr, "------------ Bilan -------------\n");
+   fprintf(stderr, "Total time (s): %f\n", timesec1-timesec0 );
+-  fprintf(stderr, "For a %dx%d map, ie: %d positions\n", 
+-	  maxLineNb-minLineNb, maxColNb-minColNb, 
++  fprintf(stderr, "For a %dx%d map, ie: %d positions\n",
++	  maxLineNb-minLineNb, maxColNb-minColNb,
+ 	  (maxLineNb-minLineNb)*(maxColNb-minColNb) );
+   fprintf(stderr, "--------------------------------\n");
+ 
+@@ -507,7 +507,7 @@ p3dPlaceRobotOnWholeMap(P3DPlanner* p3dplanner,
+ 
+ 
+ 
+-int 
++int
+ p3dMap_2_ima1 (P3D_MAP*	p3dMap,
+ 	       unsigned char*	pixel)
+ {
+@@ -518,18 +518,18 @@ p3dMap_2_ima1 (P3D_MAP*	p3dMap,
+   P3D_MAP_CELL*		p3dMapPixel;
+ 
+   currentPixel = pixel;
+-  p3dMapPixel  = p3dMap->cells; 
++  p3dMapPixel  = p3dMap->cells;
+ 
+-  for (i = 0; i < p3dMap->nbLines; i++) { 
+-	  for (j = 0; j < p3dMap->nbCols; j++) { 
++  for (i = 0; i < p3dMap->nbLines; i++) {
++	  for (j = 0; j < p3dMap->nbCols; j++) {
+ 		  /*-- Display in Calife way --*/
+-		  *currentPixel = (unsigned char) (255 * p3dMap->cells[i][j].state); 
++		  *currentPixel = (unsigned char) (255 * p3dMap->cells[i][j].state);
+ 		  /*-- Swap to get same display as with pom/GDHE --*/
+-		  *currentPixel = (unsigned char) (255 * p3dMap->cells[p3dMap->nbLines-i-1][p3dMap->nbCols-j-1].state); 
+-		  currentPixel++; 
+-		  p3dMapPixel++; 
+-	  } 
+-  } 
++		  *currentPixel = (unsigned char) (255 * p3dMap->cells[p3dMap->nbLines-i-1][p3dMap->nbCols-j-1].state);
++		  currentPixel++;
++		  p3dMapPixel++;
++	  }
++  }
+ #endif
+ 
+ 
+@@ -541,7 +541,7 @@ p3dMap_2_ima1 (P3D_MAP*	p3dMap,
+       if (p3dMap->cells[i][j].state == P3D_MAP_CELL_FILLED) {
+ 	/* Swap (cf dem) pour remettre le mnt dans le sens habituel */
+  	currentPixel = (pixel + ((p3dMap->nbCols - j  - 1)* p3dMap->nbLines) + (p3dMap->nbLines - i - 1));
+-	
++
+ 	*pixel = (unsigned char) (255 * p3dMap->cells[i][j].state);
+       }
+     }
+@@ -572,10 +572,10 @@ p3dmap_to_imaf (P3D_MAP*  p3dmap,
+ 
+ /*   if (dem->cells != CELLS_DETERMINEES) */
+ /*     return error (ERR_DEM_VIDE); */
+-  
++
+   /* On initialise l'image ÃƒÂ  0.0 */
+   memset ((float*) q_image, 0, nblig * nbcol * sizeof (float));
+-  
++
+   /* cell = p3dmap->cells; */
+   pixel = q_image;
+ 
+@@ -610,7 +610,7 @@ p3dmap_to_imaf (P3D_MAP*  p3dmap,
+       /* pixel++; */
+     }
+   }
+-  
++
+   /* On ÃƒÂ©crit ce qui est codÃƒÂ© dans l'image */
+   printf ("\n\tThe image represents ");
+   switch (infoType) {
+@@ -662,7 +662,7 @@ create_P3DPlanSolution(int depth, int nNodes)
+ 	{
+ 		res->bestArc[i].nodes = calloc(nNodes, sizeof(P3DNode));
+ 		if (res->bestArc[i].nodes == NULL) {
+-			for (j = 0; j < i ; ++j) 
++			for (j = 0; j < i ; ++j)
+ 				free(res->bestArc[j].nodes);
+ 			free(res->bestArc);
+ 			free(res);
+@@ -731,7 +731,7 @@ reset_P3DPlanSolution(P3DPlanSolution *sol)
+  * Substract two timeval and returns the result in second
+  */
+ 
+-double 
++double
+ sub_timeval(struct timeval *begin, struct timeval *end)
+ {
+ 	long sec = end->tv_sec - begin->tv_sec;
+@@ -754,7 +754,7 @@ p3dGetStopDistance(double v, P3DPlanner * planner)
+ }
+ 
+ double
+-max_speed(const P3DArc *a, const P3DPlanner *planner) 
++max_speed(const P3DArc *a, const P3DPlanner *planner)
+ {
+ 	double max_know_distance;
+ 	double max_speed_unknow;
+@@ -820,7 +820,7 @@ p3dComputeRobotMovement(double *px, double *py, double *ptheta, P3DPlanSolution
+ 	theta = *ptheta;
+ 	/*
+ 	 * For Trooper, we only can rely on x,y,theta, v, alpha
+-	 * Other information may be different than the one we have computed in p3d 
++	 * Other information may be different than the one we have computed in p3d
+ 	 * (as we may not be the elected algo)
+ 	 */
+ #if (defined(TROOPER))
+@@ -831,13 +831,13 @@ p3dComputeRobotMovement(double *px, double *py, double *ptheta, P3DPlanSolution
+ 	curv = sol->bestArc->r;
+ #endif
+ 
+-	/* 
+-	 * On first call, we can't compute the new position of the robot but 
++	/*
++	 * On first call, we can't compute the new position of the robot but
+ 	 * it is not a problem because normally our speed is 0 at the beginning
+ 	 * of the world
+ 	 */
+ 
+-	if (sol->ncalls) { 
++	if (sol->ncalls) {
+ 		average_dist = sol->v * sol->average_time;
+ 
+ 		while (average_dist > ds) {
+@@ -848,7 +848,7 @@ p3dComputeRobotMovement(double *px, double *py, double *ptheta, P3DPlanSolution
+ 			theta = theta_new;
+ 		}
+ 
+-		/* the last case if average_dist <= ds. We compute the arc and 
++		/* the last case if average_dist <= ds. We compute the arc and
+ 		 * we compute the approximal position using a linear approx */
+ 
+ 		p3dGetArcPos(curv, ds, x, y, theta, &x_new, &y_new, &theta_new);
+@@ -863,7 +863,7 @@ p3dComputeRobotMovement(double *px, double *py, double *ptheta, P3DPlanSolution
+ }
+ 
+ void
+-p3dComputeRobotPositionInMap(P3D_MAP * map, T3D *mainToOrigin, T3D *mainToCenterOfMap, 
++p3dComputeRobotPositionInMap(P3D_MAP * map, T3D *mainToOrigin, T3D *mainToCenterOfMap,
+ 		T3D *goalToOrigin, T3D *goalToCenterOfMap)
+ {
+ 	T3D tmp;
+@@ -874,7 +874,7 @@ p3dComputeRobotPositionInMap(P3D_MAP * map, T3D *mainToOrigin, T3D *mainToCenter
+ 	tmp.flags |= T3D_ALLOW_CONVERSION;
+ 	t3dInvert(&tmp);
+ 
+-	if (mainToOrigin != NULL && mainToCenterOfMap != NULL) { 
++	if (mainToOrigin != NULL && mainToCenterOfMap != NULL) {
+ 		t3dInit(mainToCenterOfMap, T3D_EULER, T3D_ALLOW_CONVERSION);
+ 
+ 		mainToOrigin->flags |= T3D_ALLOW_CONVERSION;
+@@ -899,7 +899,7 @@ p3dComputeRobotPositionInMap(P3D_MAP * map, T3D *mainToOrigin, T3D *mainToCenter
+ 
+ /*
+  * XXX It is not the real size of the vehicule, but it is ok for what we want to do
+- * aka used as a marge for p3d. 
++ * aka used as a marge for p3d.
+  *
+  * If we really want the vehicule size, we need more information in the robot geometry
+  */
+@@ -914,12 +914,9 @@ p3dGetDistanceFixAndMobileAxle(P3DPlanner *planner)
+ {
+ #if defined(TROOPER)
+ 	return planner->geom->arm[0];
+-#elif (defined(ATRV) || defined(RMP400) || defined(RMP440))
++#elif (defined(ATRV) || defined(RMP400) || defined(RMP440) || defined(IVMOB))
+ 	return planner->geom->arm[0] + planner->geom->arm[1];
+ #else
+ #error "p3dGetDistanceFixAndMobileAxle is not defined for this kind of robot"
+ #endif
+ }
+-
+-
+-   	

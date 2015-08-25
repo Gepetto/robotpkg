@@ -5,7 +5,7 @@
 DISTNAME=		libp3d-${VERSION}
 VERSION=		1.4
 CATEGORIES=		path
-PKGREVISION= 	1
+PKGREVISION= 	2
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libp3d/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}libp3d
 
@@ -19,7 +19,7 @@ GNU_CONFIGURE=		yes
 
 # Robot options
 PKG_OPTIONS_REQUIRED_GROUPS=	robot
-PKG_OPTIONS_GROUP.robot=	atrv lama trooper rmp400 rmp440
+PKG_OPTIONS_GROUP.robot=	atrv lama trooper rmp400 rmp440 ivmob
 
 PKG_OPTION_DESCR.atrv=	Enable support for ATRV (DALA) platform
 PKG_OPTION_SET.atrv:=	CONFIGURE_ARGS+=--with-platform=ATRV
@@ -36,6 +36,9 @@ PKG_OPTION_SET.rmp400=	  CONFIGURE_ARGS+=--with-platform=RMP400
 PKG_OPTION_DESCR.rmp440 = Enable support for RMP440 (Minnie) platform
 PKG_OPTION_SET.rmp440=	  CONFIGURE_ARGS+=--with-platform=RMP440
 
+PKG_OPTION_DESCR.ivmob = Enable support for IVMOB (Momo) platform
+PKG_OPTION_SET.ivmob=	  CONFIGURE_ARGS+=--with-platform=IVMOB
+
 # Display option
 PKG_SUPPORTED_OPTIONS+=		display
 PKG_SUGGESTED_OPTIONS+=		display
@@ -50,7 +53,7 @@ define PKG_OPTION_UNSET.display
 endef
 
 AUTORECONF_SCRIPT=     ${WRKSRC}/autogen.sh
-AUTORECONF_ARGS=     
+AUTORECONF_ARGS=
 
 include ../../math/t3d/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
