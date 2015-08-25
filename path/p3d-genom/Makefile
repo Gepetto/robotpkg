@@ -8,7 +8,7 @@ CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}p3d-genom
 
-PKGREVISION= 	1
+PKGREVISION= 	2
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
@@ -27,7 +27,7 @@ define PKG_OPTIONS_UNSET.gdhe
 endef
 
 PKG_OPTIONS_REQUIRED_GROUPS=	robot
-PKG_OPTIONS_GROUP.robot=	atrv atrv-junior rmp400 rmp440
+PKG_OPTIONS_GROUP.robot=	atrv atrv-junior rmp400 rmp440 ivmob
 
 PKG_OPTION_DESCR.atrv=	Enable support for atrv platform
 define PKG_OPTION_SET.atrv
@@ -55,6 +55,13 @@ define PKG_OPTION_SET.rmp440
   GENOM_ARGS+= -DRMP440
   include ../../robots/rmp440-genom/depend.mk
   DEPEND_ABI.libp3d +=		~rmp440
+endef
+
+PKG_OPTION_DESCR.ivmob=	Enable support for ivmob platform
+define PKG_OPTION_SET.ivmob
+  GENOM_ARGS+= -DIVMOB
+  include ../../robots/ivmob-genom/depend.mk
+  DEPEND_ABI.libp3d +=		~ivmob
 endef
 
 define PKG_OPTION_UNSET.api

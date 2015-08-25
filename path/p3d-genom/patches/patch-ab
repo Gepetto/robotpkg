@@ -1,0 +1,1045 @@
+diff --git codels/p3dExecTaskCodels.c codels/p3dExecTaskCodels.c
+index 5a57671..64bf555 100644
+--- codels/p3dExecTaskCodels.c
++++ codels/p3dExecTaskCodels.c
+@@ -2,8 +2,8 @@
+  **
+  ** Codels appeles par la tache p3dExecTask
+  **
+- ** Auteur: 
+- ** Date: 
++ ** Auteur:
++ ** Date:
+  **
+  **/
+ 
+@@ -36,6 +36,8 @@
+ #include "rmp400Const.h"
+ #elif defined(RMP440)
+ #include "rmp440Const.h"
++#elif defined(IVMOB)
++#include "ivmobConst.h"
+ #endif
+ 
+ 
+@@ -91,7 +93,7 @@ static P3DWayPoint last_wp;
+ bool last_wp_need_computing = true;
+ 
+ /* Function for arc dump */
+-static P3DArcDump * ArcsDump;	
++static P3DArcDump * ArcsDump;
+ static void p3dDumpToFile(T3D* m2o, double, double, double);
+ static int p3dDumpEvaluateNbArcs(int n, int depth);
+ 
+@@ -121,7 +123,7 @@ p3dExecTaskInit(int *bilan)
+    len[0] = SDI_F->geomP.len0 = P3D_DEFAULT_WHEEL_LEN0;
+    len[1] = SDI_F->geomP.len1 = P3D_DEFAULT_WHEEL_LEN1;
+    len[2] = SDI_F->geomP.len2 = P3D_DEFAULT_WHEEL_LEN2;
+-   
++
+    rad[0] = SDI_F->geomP.rad0 = P3D_DEFAULT_WHEEL_RAD0;
+    rad[1] = SDI_F->geomP.rad1 = P3D_DEFAULT_WHEEL_RAD1;
+ 
+@@ -172,7 +174,7 @@ p3dExecTaskInit(int *bilan)
+    SDI_F->planP.thetaUTurnHi = P3D_DEFAULT_THETAUTURNHI;
+    SDI_F->planP.thetaUTurnLow = P3D_DEFAULT_THETAUTURNLOW;
+ 
+-#if defined(ATRV) || defined(ATRV_JUNIOR) || defined(RMP400) || defined (RMP440)
++#if defined(ATRV) || defined(ATRV_JUNIOR) || defined(RMP400) || defined (RMP440) || defined (IVMOB)
+    SDI_F->speedRef.numRef = 0;
+    SDI_F->speedRef.updatePeriod = 0;
+    SDI_F->speedRef.v = SDI_F->speedRef.w = 0.;
+@@ -227,7 +229,7 @@ p3dExecTaskInit(int *bilan)
+ 			P3D_DEFAULT_ARC_NNODES,
+ 			P3D_DEFAULT_ARC_DEPTH,
+ 			P3D_DEFAULT_ARC_RMIN,
+-			P3D_DEFAULT_ARC_GOALTOL, 
++			P3D_DEFAULT_ARC_GOALTOL,
+ 			P3D_DEFAULT_P3D_ARC_DMIN)) {
+       fputs("p3d: default arcs configuration failed\n", stderr);
+       fputs("p3d: configure arcs manually\n", stderr);
+@@ -246,7 +248,7 @@ p3dExecTaskInit(int *bilan)
+    fputs("p3d: creating p3d map\n", stderr);
+    map = create_p3dmap();
+ 
+-   
++
+    /* Default Read P3dPoster Params */
+    strncpy(SDI_F->demP3dPosterName.name, P3D_DEFAULT_DTM_POSTER_NAME, P3D_MAX_STRLEN);
+ 
+@@ -258,7 +260,7 @@ p3dExecTaskInit(int *bilan)
+  * p3dExecTaskEnd -------------------------------------------------------
+  *
+  * Codel de terminaison
+- * 
++ *
+  * Retourne:    OK ou ERROR
+  */
+ 
+@@ -279,7 +281,7 @@ p3dExecTaskEnd(void)
+ /*------------------------------------------------------------------------
+  * Init
+  *
+- * Description: 
++ * Description:
+  *
+  * Reports:      OK
+  */
+@@ -300,7 +302,7 @@ p3dInitExec(P3D_INIT *initParams, int *report)
+ /*
+  * SetLamaGeom ----------------------------------------------------------
+  *
+- * Bilans:      OK 
++ * Bilans:      OK
+  *              S_p3d_EINVAL
+  */
+ 
+@@ -314,7 +316,7 @@ p3dSetLamaGeomExec(P3DLamaGeom *geomP, int *bilan)
+    len[0] = geomP->len0;
+    len[1] = geomP->len1;
+    len[2] = geomP->len2;
+-   
++
+    rad[0] = geomP->rad0;
+    rad[1] = geomP->rad1;
+ 
+@@ -325,7 +327,7 @@ p3dSetLamaGeomExec(P3DLamaGeom *geomP, int *bilan)
+ 
+    if (p3dConfigureGeom(planner,
+ 			len, rad, arm,
+-			geomP->bodyLength, geomP->bodyWidth, 
++			geomP->bodyLength, geomP->bodyWidth,
+ 			geomP->zBody, geomP->groundClear,
+ 			SDI_F->limitsP.rollLimits,
+ 			SDI_F->limitsP.pitchLimits,
+@@ -354,7 +356,7 @@ p3dSetLamaGeomExec(P3DLamaGeom *geomP, int *bilan)
+ /*
+  * SetLamaLimits --------------------------------------------------------
+  *
+- * Bilans:      OK 
++ * Bilans:      OK
+  *              S_p3d_EINVAL
+  */
+ 
+@@ -369,7 +371,7 @@ p3dSetLamaLimitsExec(P3DLamaLimits *limitsP, int *bilan)
+    len[0] = SDI_F->geomP.len0;
+    len[1] = SDI_F->geomP.len1;
+    len[2] = SDI_F->geomP.len2;
+-   
++
+    rad[0] = SDI_F->geomP.rad0;
+    rad[1] = SDI_F->geomP.rad1;
+ 
+@@ -387,8 +389,8 @@ p3dSetLamaLimitsExec(P3DLamaLimits *limitsP, int *bilan)
+ 
+    if (p3dConfigureGeom(planner,
+ 			len, rad, arm,
+-			SDI_F->geomP.bodyLength, 
+-			SDI_F->geomP.bodyWidth, 
++			SDI_F->geomP.bodyLength,
++			SDI_F->geomP.bodyWidth,
+ 			SDI_F->geomP.zBody,
+ 			SDI_F->geomP.groundClear,
+ 			limitsP->rollLimits,
+@@ -418,7 +420,7 @@ p3dSetLamaLimitsExec(P3DLamaLimits *limitsP, int *bilan)
+ /*
+  * SetArcsParams --------------------------------------------------------
+  *
+- * Bilans:      OK 
++ * Bilans:      OK
+  *              S_p3d_EINVAL
+  */
+ 
+@@ -481,9 +483,9 @@ ACTIVITY_EVENT p3dReadDemP3dPosterExec (GEN_STRING64* demP3dPosterName, int *bil
+ /*------------------------------------------------------------------------
+  * Track
+  *
+- * Description: 
++ * Description:
+  *
+- * Bilans:      OK 
++ * Bilans:      OK
+  *              S_p3d_ENOPOSTER
+  */
+ 
+@@ -520,10 +522,10 @@ p3dTrackExec(P3DSDIIo *trackP, int *report)
+    switch(SDI_F->movingStatus.status) {
+        case P3D_MOVING: break;
+        case P3D_GOAL_REACHED: break;
+-       case P3D_FAILED_POSTER: 
++       case P3D_FAILED_POSTER:
+ 	    *report = S_p3d_ENOPOSTER;
+ 	    return END; // this is never used
+-       case P3D_BLOCKED: 
++       case P3D_BLOCKED:
+ 	    *report = S_p3d_BLOCKED;
+ 	    return END;
+        case P3D_FAILED:
+@@ -552,7 +554,7 @@ p3dTrackExec(P3DSDIIo *trackP, int *report)
+        }
+        last_wp_need_computing = true;
+     }
+-       
++
+    return EXEC;
+ }
+ 
+@@ -599,7 +601,7 @@ ACTIVITY_EVENT p3dGoToStart(P3DWayPoint *(in_wpP), int *bilan)
+    SDI_F->wpList.wps[0] = *in_wpP;
+ 
+    fprintf(stderr, "p3dGoToStart: New Goal: x=%f, y=%f\n", SDI_F->wpList.wps[0].x, SDI_F->wpList.wps[0].y);
+-   
++
+    return EXEC;
+ }
+ 
+@@ -646,7 +648,7 @@ ACTIVITY_EVENT p3dGoToExec(P3DWayPoint *(in_wpP), int *bilan)
+ }
+ 
+ 
+-static 
++static
+ void solutionToPoster()
+ {
+    P3DSolution* arcsol = &(SDI_F->path);
+@@ -722,7 +724,7 @@ p3dExecTaskPerm(int *bilan)
+       SDI_F->movingStatus.status = P3D_FAILED;
+       goto resetRef;
+    }
+-   if (SDI_F->wpList.number <= 0) { 
++   if (SDI_F->wpList.number <= 0) {
+       goto resetRef;
+    }
+ 
+@@ -763,9 +765,9 @@ again:
+    goalToOrigin.euler.euler[3] = SDI_F->wpList.wps[0].x;
+    goalToOrigin.euler.euler[4] = SDI_F->wpList.wps[0].y;
+ 
+-   if (SDI_F->wpList.wps[0].dir == GENPOS_BACKWARD_MOTION) 
++   if (SDI_F->wpList.wps[0].dir == GENPOS_BACKWARD_MOTION)
+ 	   mainToOrigin.euler.euler[0] += M_PI;
+-   /* Compute goal to sensor for theta U-turn 
++   /* Compute goal to sensor for theta U-turn
+     *
+     * We remove the 3D part of the attitude (pitch and roll)
+     * and Z since we don't have the Z value for the goal */
+@@ -792,17 +794,17 @@ again:
+        /* compute if we pass normal */
+        a = last_wp.x - SDI_F->wpList.wps[0].x;
+        b = last_wp.y - SDI_F->wpList.wps[0].y;
+-       c = SDI_F->wpList.wps[0].x * (SDI_F->wpList.wps[0].x - last_wp.x) + 
++       c = SDI_F->wpList.wps[0].x * (SDI_F->wpList.wps[0].x - last_wp.x) +
+            SDI_F->wpList.wps[0].y * (SDI_F->wpList.wps[0].y - last_wp.y);
+        in_sign = a * last_wp.x + b * last_wp.y + c;
+-       has_passed_normal = ((a * pos.mainToOrigin.euler.x + 
++       has_passed_normal = ((a * pos.mainToOrigin.euler.x +
+                              b * pos.mainToOrigin.euler.y + c) * in_sign <= 0);
+    } else {
+        has_passed_normal = false;
+    }
+ 
+ #if VERBOSE
+-   fprintf(stderr, "p3d: robot position %f x %f, goal %f x %f, d = %f\n", 
++   fprintf(stderr, "p3d: robot position %f x %f, goal %f x %f, d = %f\n",
+ 	 pos.mainToOrigin.euler.x, pos.mainToOrigin.euler.y,
+ 	 SDI_F->wpList.wps[0].x, SDI_F->wpList.wps[0].y, SDI_F->goalDist.distance);
+ #endif
+@@ -850,13 +852,13 @@ again:
+ #ifdef HAS_POSIX_CLOCK
+    if (clock_gettime(CLOCK_REALTIME, &tp1) != OK) {
+       printf("p3d: planification time = %ldms\n",
+-	    (tp1.tv_sec - tp0.tv_sec)*1000 + 
++	    (tp1.tv_sec - tp0.tv_sec)*1000 +
+ 	    (tp1.tv_nsec - tp0.tv_nsec)/1000000);
+    }
+ #else
+    if (gettimeofday(&tv1, NULL) != -1) {
+       printf("p3d: planification time = %ldms\n",
+-	    (tv1.tv_sec - tv0.tv_sec)*1000 + 
++	    (tv1.tv_sec - tv0.tv_sec)*1000 +
+ 	    (tv1.tv_usec - tv0.tv_usec)/1000);
+    }
+ #endif /* HAS_POSIX_CLOCK */
+@@ -878,7 +880,7 @@ again:
+    solutionToPoster();
+ 
+    /* Check wether or not we have a path to execute based on dMin */
+-   if (sol->d < SDI_F->arcsP.dMin && 
++   if (sol->d < SDI_F->arcsP.dMin &&
+ 		   SDI_F->goalDist.distance >= SDI_F->arcsP.goalToal + SDI_F->arcsP.dMin) {
+       fprintf(stderr, "p3d: distance %f m less than dMin (%f m)\n",
+ 	    sol->d, SDI_F->arcsP.dMin);
+@@ -920,8 +922,8 @@ again:
+       SDI_F->speedRef.w = SDI_F->geomP.wMax * ((sol->curv > 0.0)?1:-1);
+       SDI_F->speedRef.v = SDI_F->speedRef.w / sol->curv;
+ 
+-	  fprintf(stderr, "p3d: w is too high, going from (%lf,%lf) to (%lf,%lf)\n", 
+-			  sol->v, sol->w, SDI_F->speedRef.v, SDI_F->speedRef.w); 
++	  fprintf(stderr, "p3d: w is too high, going from (%lf,%lf) to (%lf,%lf)\n",
++			  sol->v, sol->w, SDI_F->speedRef.v, SDI_F->speedRef.w);
+       if (SDI_F->speedRef.v < 1e-3) {
+ 	 fprintf(stderr, "p3d: too slow (%f m/s)\n", SDI_F->speedRef.v);
+ 	 SDI_F->movingStatus.status = P3D_FAILED;
+@@ -933,7 +935,7 @@ again:
+    if (isnan(SDI_F->speedRef.v) || isnan(SDI_F->speedRef.w)) {
+       fprintf(stderr,"p3d: speed is nan\n");
+       goto resetRef;
+-   }  
++   }
+ 
+ 
+    /* send it */
+@@ -947,22 +949,25 @@ again:
+ #elif defined(RMP440)
+    SDI_F->speedRef.numRef++;
+    SDI_F->speedRef.updatePeriod = timeWait / RMP440_SEC_PERIOD;
++#elif defined(IVMOB)
++   SDI_F->speedRef.numRef++;
++   SDI_F->speedRef.updatePeriod = timeWait / IVMOB_SEC_PERIOD;
+ #else
+    SDI_F->speedRef.num++;
+    SDI_F->speedRef.updatePeriod = timeWait / LLOCO_SEC_PERIOD;
+ #endif
+ 
+    /* compute sleep time */
+-   nPeriods = 
++   nPeriods =
+       SDI_F->planP.period * timeWait/EXEC_TASK_PERIOD(P3D_EXECTASK_NUM);
+ 
+-   if (SDI_F->wpList.wps[0].dir == GENPOS_BACKWARD_MOTION) 
++   if (SDI_F->wpList.wps[0].dir == GENPOS_BACKWARD_MOTION)
+ 	   SDI_F->speedRef.v *= -1.0;
+ 
+    /* inform user */
+    fprintf(stderr,
+ 		   "p3d: executing v=%.3f m/s w=%.3f rad/s r=%.3f m d=%.3f m\n",
+-		   SDI_F->speedRef.v, SDI_F->speedRef.w, 
++		   SDI_F->speedRef.v, SDI_F->speedRef.w,
+ 		   (fabs(sol->curv) < 1e-3 ? 0.0f : 1/sol->curv), sol->d);
+    fprintf(stderr, "p3d: waiting %f s (%d periods)\n", SDI_F->planP.period * timeWait, nPeriods);
+ 
+@@ -989,8 +994,8 @@ ACTIVITY_EVENT p3dPlaceRobotOnMapExec (P3D_PLACEROBOT_PARAMS *placeRobotPos, int
+   P3DRobotConfig  config;
+ 
+   if( p3dPlaceRobotOnMap(&config,  /* output : predicted robot config. */
+-			 planner, 
+-			 placeRobotPos->x, placeRobotPos->y, 
++			 planner,
++			 placeRobotPos->x, placeRobotPos->y,
+ 			 placeRobotPos->theta,
+ 			 map, placeRobotPos->gdheDisplay) != 0 )
+     {
+@@ -998,7 +1003,7 @@ ACTIVITY_EVENT p3dPlaceRobotOnMapExec (P3D_PLACEROBOT_PARAMS *placeRobotPos, int
+       fputs("p3dPlaceRobotOnMapExec: Failed to place Robot on map\n", stderr);
+       return ETHER;
+     }
+-    
++
+   return ETHER;
+ }
+ 
+@@ -1013,8 +1018,8 @@ p3dReadDemMap (char*     demP3dPosterName,
+ {
+   DTM_P3D_POSTER  demP3dPoster;
+   short  bilan=0;
+-  
+-  
++
++
+   /* Read demP3dPoster */
+   if (!demP3dPosterId) {
+      if (posterFind(demP3dPosterName, &demP3dPosterId) == ERROR) {
+@@ -1047,8 +1052,8 @@ p3dReadDemMap (char*     demP3dPosterName,
+  *
+  * p3dMonitorTaskInit  --  Initialization codel (fIDS, ...)
+  *
+- * Description: 
+- * 
++ * Description:
++ *
+  * Returns:    OK or ERROR
+  */
+ 
+@@ -1066,10 +1071,10 @@ p3dMonitorTaskInit(int *report)
+  *
+  * p3dMonitorTaskPerm  --  codel of permanent activity
+  *
+- * Description: 
+- * 
++ * Description:
++ *
+  * Reports:      OK
+- * 
++ *
+  * Returns:    OK or ERROR
+  */
+ 
+@@ -1085,7 +1090,7 @@ p3dMonitorTaskPerm(int *report)
+ /*------------------------------------------------------------------------
+  * ConfigMonitor
+  *
+- * Description: 
++ * Description:
+  *
+  * Reports:      OK
+  *              S_p3d_PLACEMENT_FAILED
+@@ -1123,7 +1128,7 @@ p3dConfigMonitorStart(P3D_MONITOR_PARAMS *monitorParams, int *report)
+ 	    "xRobot", "yRobot", "thetaRobot",
+ 	    "obsPitch", "obsRoll",
+ 	    "predPitch", "predRoll",
+-	    "probaPitch", "probaRoll", 
++	    "probaPitch", "probaRoll",
+ 	    "behavior" );
+     fprintf(stderr, " Done\n");
+   }
+@@ -1174,12 +1179,12 @@ p3dConfigMonitorExec(P3D_MONITOR_PARAMS *monitorParams, int *report)
+   thetaRobot = pospom.mainToOrigin.euler.yaw;
+   pitchRobot = pospom.mainToOrigin.euler.pitch;
+   rollRobot  = pospom.mainToOrigin.euler.roll; /* TO BE CHECKED (asin?) */
+- 
++
+   /* Compute predicted config on current location */
+   /* NB: the map used here is the one read in the main ExecTask */
+   /*  to avoid multiple posters read */
+   if( p3dPlaceRobotOnMap(&predRobotConfig,  /* output : predicted robot config. */
+-			 planner, 
++			 planner,
+ 			 xRobot, yRobot, RAD_TO_DEG(thetaRobot), /* A verifier */
+ 			 map, 2) != 0)  /* Display should be == 0 ?? */
+     {
+@@ -1213,7 +1218,7 @@ p3dConfigMonitorExec(P3D_MONITOR_PARAMS *monitorParams, int *report)
+ #ifdef HAS_POSIX_CLOCK
+    if (clock_gettime(CLOCK_REALTIME, &tp1) != OK) {
+       printf("p3d: monitoring time = %ldms\n",
+-	     (tp1.tv_sec - tp0.tv_sec)*1000 + 
++	     (tp1.tv_sec - tp0.tv_sec)*1000 +
+ 	     (tp1.tv_nsec - tp0.tv_nsec)/1000000);
+       /* current time (sec) */
+       monitorTime = ((double) tp1.tv_sec) + ((double) tp1.tv_nsec)/1000000000.0;
+@@ -1221,7 +1226,7 @@ p3dConfigMonitorExec(P3D_MONITOR_PARAMS *monitorParams, int *report)
+ #else
+    if (gettimeofday(&tv1, NULL) != -1) {
+      printf("p3d: monitoring time = %ldms\n",
+-	    (tv1.tv_sec - tv0.tv_sec)*1000 + 
++	    (tv1.tv_sec - tv0.tv_sec)*1000 +
+ 	    (tv1.tv_usec - tv0.tv_usec)/1000);
+       /* current time (sec) */
+      monitorTime = ((double) tv1.tv_sec) + ((double) tv1.tv_usec)/1000000.0;
+@@ -1233,25 +1238,25 @@ p3dConfigMonitorExec(P3D_MONITOR_PARAMS *monitorParams, int *report)
+ #if VERBOSE
+   /*----- Print some results info ----------*/
+   fprintf(stderr, "p3dMonitor: ----- Predicted Config. -----\n");
+-  fprintf(stderr,"p3dMonitor: roll(deg): %lf pitch(deg) = %lf\n", 
++  fprintf(stderr,"p3dMonitor: roll(deg): %lf pitch(deg) = %lf\n",
+ 	  RAD_TO_DEG(predRobotConfig.roll), RAD_TO_DEG(predRobotConfig.pitch) );
+-  fprintf(stderr,"p3dMonitor: alpha1(deg): %lf\n", 
++  fprintf(stderr,"p3dMonitor: alpha1(deg): %lf\n",
+ 	  RAD_TO_DEG(predRobotConfig.alpha1) );
+   fprintf(stderr,"p3dMonitor: dzBodyGround: %lf\n", predRobotConfig.dzBodyGround);
+-  
++
+   fprintf(stderr, "p3dMonitor: ----- Observed Config. -----\n");
+-  fprintf(stderr, "p3dMonitor: Position: x=%lf, y=%lf, z=%lf, theta=%lf\n", 
++  fprintf(stderr, "p3dMonitor: Position: x=%lf, y=%lf, z=%lf, theta=%lf\n",
+ 	  xRobot, yRobot, zRobot, RAD_TO_DEG(thetaRobot) );
+-  fprintf(stderr,"p3dMonitor: roll(deg): %lf pitch(deg) = %lf\n", 
++  fprintf(stderr,"p3dMonitor: roll(deg): %lf pitch(deg) = %lf\n",
+ 	  RAD_TO_DEG(rollRobot), RAD_TO_DEG(pitchRobot) );
+   fprintf(stderr, "----- Difference: -----\n");
+   fprintf(stderr, "p3dMonitor: diffPitch(deg) = %lf, diffRoll(deg) = %lf\n",
+ 	  RAD_TO_DEG(predRobotConfig.pitch - pitchRobot),
+ 	  RAD_TO_DEG(predRobotConfig.roll - rollRobot) );
+   fprintf(stderr, "----- Probas: -----\n");
+-  fprintf(stderr, "p3dMonitor: probaPitch = %lf, probaRoll = %lf\n", 
++  fprintf(stderr, "p3dMonitor: probaPitch = %lf, probaRoll = %lf\n",
+ 	  SDI_F->monitorData.probaPitch, SDI_F->monitorData.probaRoll);
+-  fprintf(stderr, "p3dMonitor: BEHAVIOR = %lf\n", 
++  fprintf(stderr, "p3dMonitor: BEHAVIOR = %lf\n",
+ 	  SDI_F->monitorData.behavior);
+   fprintf(stderr, "----------------------------------------\n\n");
+ #endif /* VERBOSE */
+@@ -1263,7 +1268,7 @@ p3dConfigMonitorExec(P3D_MONITOR_PARAMS *monitorParams, int *report)
+ 	    xRobot, yRobot, thetaRobot,
+ 	    pitchRobot, rollRobot,
+ 	    predRobotConfig.pitch, predRobotConfig.roll,
+-	    SDI_F->monitorData.probaPitch, SDI_F->monitorData.probaRoll, 
++	    SDI_F->monitorData.probaPitch, SDI_F->monitorData.probaRoll,
+ 	    SDI_F->monitorData.behavior );
+   }
+ 
+@@ -1275,11 +1280,11 @@ p3dConfigMonitorExec(P3D_MONITOR_PARAMS *monitorParams, int *report)
+ ACTIVITY_EVENT
+ p3dConfigMonitorEnd(P3D_MONITOR_PARAMS *monitorParams, int *report)
+ {
+-  
++
+   if(monitorParams->logFlag == P3D_MONITOR_LOG_ON) {
+     fclose(file);
+     fprintf(stderr, "p3dPredictedConfigMonitorEnd: Log file %s closed\n", monitorParams->fileName);
+-    SDI_F->monitorParams.logFlag = P3D_MONITOR_LOG_OFF;    
++    SDI_F->monitorParams.logFlag = P3D_MONITOR_LOG_OFF;
+   }
+ 
+   SDI_F->monitorData.status = P3D_MONITOR_OFF;
+@@ -1294,7 +1299,7 @@ p3dDumpEvaluateNbArcs(int n, int depth)
+ 		return 0;
+ 
+ 	int nArcs_currentlevel;
+-	int nR = n / 2;	
++	int nR = n / 2;
+ 	nArcs_currentlevel = nR * 2 + 1;
+ 
+ 	return nArcs_currentlevel * (1 + p3dDumpEvaluateNbArcs(2* nR/2 + 1, depth -1));
+@@ -1334,7 +1339,7 @@ p3dDumpToFile(T3D* m2o, double saved_v, double saved_w, double average_time)
+ 
+ 	max_arcs = ArcsDump[0].nArcsTotal;
+ 	for (i = 0; i < max_arcs; i++) {
+-		int max_nodes = ArcsDump[i].nNodes; 
++		int max_nodes = ArcsDump[i].nNodes;
+ 		if (ArcsDump[i].is_elected) {
+ 			fprintf(f, "Arc %d is elected\n", i);
+ 		}
+@@ -1355,4 +1360,3 @@ p3dDumpToFile(T3D* m2o, double saved_v, double saved_w, double average_time)
+ 
+ 	fclose(f);
+ }
+-
+diff --git p3d.gen p3d.gen
+index 04e082d..0c5027a 100644
+--- p3d.gen
++++ p3d.gen
+@@ -1,11 +1,11 @@
+ /*------------------------------------------------------------------------
+- * 
++ *
+  *                     --  Module  p3d  --
+- * 
+- *  Description: plannification réactive
+- *  Date de creation : Wed Apr 19 11:42:42 2000 
++ *
++ *  Description: plannification rÃ©active
++ *  Date de creation : Wed Apr 19 11:42:42 2000
+  *  Auteur: David Bonnafous
+- * 
++ *
+  *------------------------------------------------------------------------
+  */
+ 
+@@ -23,11 +23,13 @@ module p3d {
+ 						, "rmp400 >= 0.3";
+ #elif defined(RMP440)
+                         , "rmp440";
++#elif defined(IVMOB)
++						, "ivmob";
+ #else
+ 						;
+ #endif
+  version:			"1.5";
+-}; 
++};
+ 
+ /*------------------------------------------------------------------------
+  *	                   Structures et SDI
+@@ -83,7 +85,7 @@ typedef struct P3D_STR {
+     P3D_SAVEMAP_PARAMS  p3dSaveMapParams;  /* Params for Save P3dMap request */
+ 
+     P3D_DISPLAY_PARAMS  displayParams;  /* Parameters for the Gdhe display */
+-    
++
+     P3D_DISPLAY_STATE   displayState;
+ 
+     P3D_DISPLAYCONFIG_PARAMS  displayConfigParams;  /* parameters for
+@@ -112,14 +114,14 @@ request Init {
+     c_exec_func:	    p3dInitExec;
+     incompatible_with:	    all;
+     fail_msg:		    POSTER_NOT_FOUND;
+-    exec_task:		    ExecTask; 
++    exec_task:		    ExecTask;
+ };
+ 
+ /*  */
+ request GoToStop {
+     doc:		    "stop the goto";
+     type:		    control;
+-    incompatible_with:	    GoTo; 
++    incompatible_with:	    GoTo;
+ };
+ 
+ 
+@@ -127,9 +129,9 @@ request GoToStop {
+ request GoTo {
+     doc:		    "a nice goto that ends";
+     type:		    exec;
+-    exec_task:		    ExecTask; 
+-    input:		    wpP::wpP; 
+-    input_info:		    
++    exec_task:		    ExecTask;
++    input:		    wpP::wpP;
++    input_info:
+         0.0::"X coordinate",
+ 		0.0::"Y coordinate",
+ 		GENPOS_FORWARD_MOTION::"Motion direction";
+@@ -141,14 +143,14 @@ request GoTo {
+     c_exec_func_fail:	    p3dGoToFail;
+     posters_input:	    POM_POS;
+     fail_msg:		    NO_PATH, BLOCKED, POSTER_READ;
+-    incompatible_with:	    GoTo, Track; 
++    incompatible_with:	    GoTo, Track;
+ };
+ 
+ /* Change (lama) wheel geometry */
+ request GetLamaGeom {
+     doc:		    "Show (lama) wheel geometry";
+     type:		    control;
+-    output:		    geomP::geomP; 
++    output:		    geomP::geomP;
+ };
+ 
+ request SetLamaGeom {
+@@ -158,7 +160,7 @@ request SetLamaGeom {
+     exec_task:		    ExecTask;
+ 
+     input:		    geomP::geomP;
+-    input_info:		    
++    input_info:
+ 	P3D_DEFAULT_WHEEL_LEN0::"Big cylinder length",
+ 	P3D_DEFAULT_WHEEL_LEN1::"Cone length",
+ 	P3D_DEFAULT_WHEEL_LEN2::"Axle length",
+@@ -189,16 +191,16 @@ request SetLamaGeom {
+ request GetLamaLimits {
+     doc:		    "Show lama limits";
+     type:		    control;
+-    output:		    limitsP::limitsP; 
++    output:		    limitsP::limitsP;
+ };
+ 
+ request SetLamaLimits {
+     doc:		    "Change lama limits";
+     type:		    exec;
+-    exec_task:		    ExecTask; 
++    exec_task:		    ExecTask;
+ 
+-    input:		    limitsP::limitsP; 
+-    input_info:		    
++    input:		    limitsP::limitsP;
++    input_info:
+ 	P3D_DEFAULT_ROLLLIMIT0::"Max roll of middle axle for easy configuration (deg)",
+ 	P3D_DEFAULT_ROLLLIMIT1::"Max roll of middle axle for medium configuration (deg)",
+ 	P3D_DEFAULT_ROLLLIMIT2::"Max roll of middle axle for hard configuration (deg)",
+@@ -224,23 +226,23 @@ request SetLamaLimits {
+ request GetArcsParams {
+     doc:		    "Show arcs parameters";
+     type:		    control;
+-    output:		    arcsP::arcsP; 
++    output:		    arcsP::arcsP;
+ };
+ 
+ request SetArcsParams {
+     doc:		    "Change arcs parameters";
+     type:		    exec;
+-    exec_task:		    ExecTask; 
++    exec_task:		    ExecTask;
+ 
+-    input:		    arcsP::arcsP; 
+-    input_info:		    
++    input:		    arcsP::arcsP;
++    input_info:
+ 	P3D_DEFAULT_ARC_N::"Number of arcs (total)",
+ 	P3D_DEFAULT_ARC_NNODES::"Number of nodes (by arcs)",
+ 	P3D_DEFAULT_ARC_DEPTH::"Nesting depth",
+ 	P3D_DEFAULT_ARC_RMIN::"Min radius",
+ 	P3D_DEFAULT_ARC_DMIN::"Min arc length",
+ 	P3D_DEFAULT_ARC_GOALTOL::"Goal tolerance (m)",
+-	P3D_DEFAULT_P3D_ARC_DMIN::"length of arc in p3d algo (m)"; 
++	P3D_DEFAULT_P3D_ARC_DMIN::"length of arc in p3d algo (m)";
+ 
+     c_exec_func:	    p3dSetArcsParamsExec;
+ 
+@@ -252,8 +254,8 @@ request SetArcsParams {
+ request SetGoalParams {
+     type:		    control;
+ 
+-    input:		    planP::planP; 
+-    input_info:		    
++    input:		    planP::planP;
++    input_info:
+ 	P3D_DEFAULT_PLAN_PERIOD::"Percentage of traj before new plan",
+ 	P3D_DEFAULT_THETAUTURNHI::"Angle limit at which we start U-turn",
+ 	P3D_DEFAULT_THETAUTURNLOW::"Angle at which we stop the current U-turn";
+@@ -266,7 +268,7 @@ request SetGoalParams {
+ request GetGoalParams {
+     doc:		    "Show Goal Params";
+     type:		    control;
+-    output:		    planP::planP; 
++    output:		    planP::planP;
+ };
+ 
+ 
+@@ -275,8 +277,8 @@ request AddWayPoint {
+     doc:		    "Add a new goal";
+     type:		    control;
+ 
+-    input:		    wpP::wpP; 
+-    input_info:		    
++    input:		    wpP::wpP;
++    input_info:
+ 	0.0::"X coordinate",
+ 	0.0::"Y coordinate",
+ 	GENPOS_FORWARD_MOTION::"Motion direction";
+@@ -303,14 +305,14 @@ request Track {
+     doc:		    "Track a GENPOS_CART_CONFIG poster, as produced from Nav for instance";
+     type:		    exec;
+     exec_task:		    ExecTask;
+-    input:		    trackP::trackP; 
++    input:		    trackP::trackP;
+     input_info:
+ 	""::"poster name";
+     c_exec_func_start:	    p3dTrackStart;
+     c_exec_func:	    p3dTrackExec;
+     c_exec_func_end:	    p3dTrackEnd;
+     c_exec_func_inter:	    p3dTrackEnd;
+-    fail_msg:		    ENOPOSTER; 
++    fail_msg:		    ENOPOSTER;
+     posters_input:	    GENPOS_TRAJ_POINTS;
+     incompatible_with:	    Track;
+ };
+@@ -334,13 +336,13 @@ request SetP3dPoster {
+ request ReadDemP3dPoster {
+     doc:		    "Read dem Poster containing the map";
+     type:		    exec;
+-    exec_task:		    ExecTask; 
+-    input:		    demP3dPosterName::demP3dPosterName; 
++    exec_task:		    ExecTask;
++    input:		    demP3dPosterName::demP3dPosterName;
+     input_info:		    P3D_DEFAULT_DTM_POSTER_NAME::"Name of dem Poster";
+     posters_input:	    DTM_P3D_POSTER;
+     c_exec_func:	    p3dReadDemP3dPosterExec;
+-    fail_msg:		    ENOPOSTER; 
+-    incompatible_with:	    ReadDemP3dPoster; 
++    fail_msg:		    ENOPOSTER;
++    incompatible_with:	    ReadDemP3dPoster;
+ };
+ 
+ 
+@@ -349,12 +351,12 @@ request ReadDemP3dPoster {
+ request SaveP3dMap {
+     doc:		    "Save current P3d Map in file";
+     type:		    exec;
+-    exec_task:		    ExecTask; 
+-    input:		    p3dSaveMapParams::p3dSaveMapParams; 
++    exec_task:		    ExecTask;
++    input:		    p3dSaveMapParams::p3dSaveMapParams;
+     input_info:		    P3D_MAP_DEFAULT_FILENAME::"File Name";
+     c_exec_func:	    p3dSaveP3dMapExec;
+-    fail_msg:		    ENOENT; 
+-    incompatible_with:	    SaveP3dMap; 
++    fail_msg:		    ENOENT;
++    incompatible_with:	    SaveP3dMap;
+ };
+ 
+ 
+@@ -365,8 +367,8 @@ request SaveP3dMap {
+ request PlaceRobotOnMap {
+     doc:		    "Try to place the Robot on Map";
+     type:		    exec;
+-    exec_task:		    ExecTask; 
+-    input:		    placeRobotPos::placeRobotPos; 
++    exec_task:		    ExecTask;
++    input:		    placeRobotPos::placeRobotPos;
+     input_info:		    2.0::"x",
+     0.0::"y",
+     0.0::"theta",
+@@ -384,7 +386,7 @@ request PlaceRobotOnMap {
+ request ConfigMonitor {
+     doc:		    "Compares predicted/observed configuration on-line";
+     type:		    exec;
+-    exec_task:		    MonitorTask; 
++    exec_task:		    MonitorTask;
+     input:		    monitorParams::monitorParams;
+     input_info:		    P3D_MONITOR_LOG_OFF::"Activate Logging on file ?",
+     0::"unused",
+@@ -393,8 +395,8 @@ request ConfigMonitor {
+     c_exec_func_start:	    p3dConfigMonitorStart;
+     c_exec_func:	    p3dConfigMonitorExec;
+     c_exec_func_end:	    p3dConfigMonitorEnd;
+-    fail_msg:		    PLACEMENT_FAILED, POSTER_NOT_FOUND; 
+-    incompatible_with:	    ConfigMonitor, PlaceRobotOnMap; 
++    fail_msg:		    PLACEMENT_FAILED, POSTER_NOT_FOUND;
++    incompatible_with:	    ConfigMonitor, PlaceRobotOnMap;
+ };
+ 
+ 
+@@ -409,7 +411,7 @@ request StopMonitor {
+ request GetDumpParams {
+ 	doc:				"Print the Dump arc Params";
+ 	type:				control;
+-	output:				dumpParams::dumpParams;	
++	output:				dumpParams::dumpParams;
+ 	incompatible_with:	GetDumpParams;
+ };
+ 
+@@ -417,7 +419,7 @@ request SetDumpParams {
+ 	doc:				"Set Dump arcs Params";
+ 	type:				control;
+ 	input:				dumpParams::dumpParams;
+-	input_info:					
++	input_info:
+ 		P3D_DEFAULT_DUMP_NAME::"basename",
+ 		0::"number",
+ 		P3D_DUMP_OFF::"Dump activation";
+@@ -425,7 +427,7 @@ request SetDumpParams {
+ 	incompatible_with:	SetDumpParams;
+ };
+ 
+-	
++
+ 
+ 
+ /**********************************************************************/
+@@ -436,15 +438,15 @@ request SetDumpParams {
+ request InitDisplay {
+     doc:		    "Initializes a display";
+     type:		    exec;
+-    exec_task:		    DisplayTask; 
+-    input:		    displayParams::displayParams; 
++    exec_task:		    DisplayTask;
++    input:		    displayParams::displayParams;
+     input_info:		    P3D_DEFAULT_DISPLAY_SERVER::"Gdhe server name",
+     3.0::"Length of the arc to draw",
+     10::"Nb of nodes used to draw arc",
+     0.5::"Scale for the mini dalas (predicted config.)";
+     c_exec_func:	    p3dInitDisplayExec;
+     fail_msg:		    CONNECTION_FAILED, BAD_DISPLAY_PARAMS, POM_POSTER_NOT_FOUND;
+-    incompatible_with:	    InitDisplay; 
++    incompatible_with:	    InitDisplay;
+ };
+ 
+ 
+@@ -453,7 +455,7 @@ request InitDisplay {
+ request StopDisplay {
+     doc:		    "Stops the display";
+     type:		    exec;
+-    exec_task:		    DisplayTask; 
++    exec_task:		    DisplayTask;
+     c_exec_func:	    p3dStopDisplayExec;
+ };
+ 
+@@ -463,10 +465,10 @@ request StopDisplay {
+ request UpdateDisplay {
+     doc:		    "Updates a display";
+     type:		    exec;
+-    exec_task:		    DisplayTask; 
++    exec_task:		    DisplayTask;
+     c_exec_func:	    p3dUpdateDisplayExec;
+     fail_msg:		    NOT_CONNECTED;
+-    incompatible_with:	    UpdateDisplay, InitDisplay; 
++    incompatible_with:	    UpdateDisplay, InitDisplay;
+ };
+ 
+ 
+@@ -474,7 +476,7 @@ request UpdateDisplay {
+ request GetDisplayParams {
+     doc:		    "Prints the display params";
+     type:		    control;
+-    output:		    displayParams::displayParams; 
++    output:		    displayParams::displayParams;
+     incompatible_with:	    GetDisplayParams;
+ };
+ 
+@@ -493,8 +495,8 @@ request GetDisplayState {
+ request DisplayPredictedConfig {
+     doc:		    "Displays mini robots to illustrate a predicted config.";
+     type:		    exec;
+-    exec_task:		    DisplayTask; 
+-    input:		    displayConfigParams::displayConfigParams; 
++    exec_task:		    DisplayTask;
++    input:		    displayConfigParams::displayConfigParams;
+     input_info:		    3::"Number of first node (config to display)",
+     18::"Number of last node",
+     2::"Interval beetween 2 successive nodes to display",
+@@ -514,14 +516,14 @@ request DisplayPredictedConfig {
+ poster SpeedRef {
+     update:		    auto;
+     data:		    speedRef::speedRef;
+-    exec_task:		    ExecTask; 
++    exec_task:		    ExecTask;
+ };
+ 
+ /* Way point list  */
+ poster WayPoints {
+     update:		    auto;
+     data:		    goalDist::goalDist,wpList::wpList;
+-    exec_task:		    ExecTask; 
++    exec_task:		    ExecTask;
+ };
+ 
+ 
+@@ -529,7 +531,7 @@ poster WayPoints {
+ poster Path {
+     update:		    auto;
+     data:		    path::path;
+-    exec_task:		    ExecTask; 
++    exec_task:		    ExecTask;
+ };
+ 
+ 
+@@ -544,7 +546,7 @@ poster p3dStatus {
+ 	update:		 auto;
+ 	data:		 movingStatus::movingStatus;
+ 	exec_task:   ExecTask;
+-};			 
++};
+ 
+ 
+ 
+diff --git p3dStruct.h p3dStruct.h
+index e0a99c8..4bfbe33 100644
+--- p3dStruct.h
++++ p3dStruct.h
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (C) 2001 LAAS/CNRS 
++ * Copyright (C) 2001 LAAS/CNRS
+  *
+  * David Bonnafous - Anthony Mallet - Wed Jul 18 2001
+  *
+@@ -64,7 +64,7 @@
+  *     as well)
+  *   * compiles with -DATRV. Needs lloco otherwise, so I expect
+  *     it to fail badly
+- *     
++ *
+  *
+  *
+  * Revision 1.6.2.11  2005/04/26 14:01:41  tpeynot
+@@ -111,10 +111,10 @@
+  *
+  * Revision 1.5  2002/10/09 15:49:59  mallet
+  * Remplace le theta-demi-tour par deux (high,low) "water mark".
+- * (modifier les paramètres de la requête correspondante dans les scripts).
++ * (modifier les paramÃ¨tres de la requÃªte correspondante dans les scripts).
+  *
+- * Ajoute un 'vMin' à côté du 'vMax' pour adapter la vitesse du robal au
+- * cout du chemin, avec la formule v = vMin + (vMax - vMin)/cout, cout étant
++ * Ajoute un 'vMin' Ã  cÃ´tÃ© du 'vMax' pour adapter la vitesse du robal au
++ * cout du chemin, avec la formule v = vMin + (vMax - vMin)/cout, cout Ã©tant
+  * dans [1;+inf[
+  *
+  * Revision 1.4  2002/06/17 18:14:41  mallet
+@@ -238,6 +238,28 @@ typedef struct P3DLamaGeom {
+ #define P3D_DEFAULT_GROUND_CLEARANCE (0.115)  /* Garde au sol */
+ #define P3D_DEFAULT_BODY_Z      (-P3D_DEFAULT_WHEEL_RAD0+P3D_DEFAULT_GROUND_CLEARANCE)
+ 
++#elif defined(IVMOB)
++
++  /* Definir ici des valeurs par defaut adaptees au cas Mana */
++#define P3D_DEFAULT_WHEEL_LEN0	(.168)  /* Largeur de la roue */
++#define P3D_DEFAULT_WHEEL_LEN1	(.31) /* largeur du cylindre entre roue et caisse */
++#define P3D_DEFAULT_WHEEL_LEN2	(.0) /* Largeur du "cylindre" demi caisse */
++
++#define P3D_DEFAULT_WHEEL_RAD0	(.52) /* Rayon de la roue XXX isnt it diameter ? */
++#define P3D_DEFAULT_WHEEL_RAD1	(.09)   /* Rayon du "cylindre" demi caisse -> a verifier*/
++
++#define P3D_DEFAULT_WHEEL_ARM0	(.3)  /* Longueur entre centre robot et essieu avant */
++#define P3D_DEFAULT_WHEEL_ARM1	(.3)  /* Longueur entre centre robot et essieu arriere */
++
++#define P3D_DEFAULT_WHEEL_SCALE	(.04)
++#define P3D_DEFAULT_WHEEL_ROLLSTEP (1.)
++
++  /*-- Body bottom (fond de caisse) default params values --*/
++#define P3D_DEFAULT_BODY_LENGTH (1)
++#define P3D_DEFAULT_BODY_WIDTH  (0.42)
++#define P3D_DEFAULT_GROUND_CLEARANCE (0.15)  /* Garde au sol */
++#define P3D_DEFAULT_BODY_Z      (-P3D_DEFAULT_WHEEL_RAD0+P3D_DEFAULT_GROUND_CLEARANCE)
++
+ 
+ #else  /*----- Default values for LAMA -----*/
+ #define P3D_DEFAULT_WHEEL_LEN0	(.1)
+@@ -267,7 +289,7 @@ typedef struct P3DLamaGeom {
+ #define P3D_DEFAULT_ACCEL		(1)	/* Not so useful on atrv */
+ #define P3D_DEFAULT_DECEL		(1)
+ 
+-} P3DLamaGeom; 
++} P3DLamaGeom;
+ 
+ 
+ /* Robot limits ------------------------------------------------------ */
+@@ -286,9 +308,9 @@ typedef struct P3DLamaLimits {
+ 
+ #if defined(ATRV) || defined(ATRV_JUNIOR)
+   /* Definir ici des valeurs par defaut adaptees au cas Dala */
+-#define P3D_DEFAULT_ROLLLIMIT0 (12.5)	
+-#define P3D_DEFAULT_ROLLLIMIT1 (25.0)	 
+-#define P3D_DEFAULT_ROLLLIMIT2 (35.0)	
++#define P3D_DEFAULT_ROLLLIMIT0 (12.5)
++#define P3D_DEFAULT_ROLLLIMIT1 (25.0)
++#define P3D_DEFAULT_ROLLLIMIT2 (35.0)
+ 
+ #define P3D_DEFAULT_PITCHLIMIT0 (12.5)
+ #define P3D_DEFAULT_PITCHLIMIT1 (25.0)
+@@ -304,12 +326,12 @@ typedef struct P3DLamaLimits {
+ 
+ #define P3D_DEFAULT_UNKMAX	(0.5)
+ 
+-#elif defined(RMP400) || defined(RMP440)
++#elif defined(RMP400) || defined(RMP440) || defined(IVMOB)
+ 
+   /* Definir ici des valeurs par defaut adaptees au cas Mana */
+-#define P3D_DEFAULT_ROLLLIMIT0 (12.5)	
+-#define P3D_DEFAULT_ROLLLIMIT1 (25.0)	 
+-#define P3D_DEFAULT_ROLLLIMIT2 (35.0)	
++#define P3D_DEFAULT_ROLLLIMIT0 (12.5)
++#define P3D_DEFAULT_ROLLLIMIT1 (25.0)
++#define P3D_DEFAULT_ROLLLIMIT2 (35.0)
+ 
+ #define P3D_DEFAULT_PITCHLIMIT0 (12.5)
+ #define P3D_DEFAULT_PITCHLIMIT1 (25.0)
+@@ -327,9 +349,9 @@ typedef struct P3DLamaLimits {
+ 
+ #else  /* Default values for LAMA */
+ 
+-#define P3D_DEFAULT_ROLLLIMIT0 (15.0)	
+-#define P3D_DEFAULT_ROLLLIMIT1 (30.0)	 
+-#define P3D_DEFAULT_ROLLLIMIT2 (45.0)	
++#define P3D_DEFAULT_ROLLLIMIT0 (15.0)
++#define P3D_DEFAULT_ROLLLIMIT1 (30.0)
++#define P3D_DEFAULT_ROLLLIMIT2 (45.0)
+ 
+ #define P3D_DEFAULT_PITCHLIMIT0 (15.0)
+ #define P3D_DEFAULT_PITCHLIMIT1 (30.0)
+@@ -417,7 +439,7 @@ typedef struct P3D_SAVEMAP_PARAMS {
+ typedef struct P3DWayPoint {
+    float x;			/* 2d coordinates */
+    float y;
+-   GENPOS_MOTION_DIRECTION dir; 
++   GENPOS_MOTION_DIRECTION dir;
+ } P3DWayPoint;
+ 
+ #define P3D_MAX_WAYPOINTS	(1000)
+@@ -439,7 +461,7 @@ typedef enum P3D_STATUS_FLAG{
+   P3D_GOAL_REACHED,
+   P3D_BLOCKED,
+   P3D_FAILED,
+-  P3D_FAILED_POSTER  
++  P3D_FAILED_POSTER
+ } P3D_STATUS_FLAG;
+ 
+ typedef struct P3DStatus {
+@@ -470,7 +492,7 @@ typedef struct P3DRobotConfigGen {
+    double beta3;	/* angle between back and front arm */
+ 
+    double pUnk;		/* percentage of unknown terrain */
+-} P3DRobotConfigGen; 
++} P3DRobotConfigGen;
+ 
+ 
+ typedef struct P3DNodeGen {
+@@ -531,7 +553,7 @@ typedef struct P3D_DISPLAY_PARAMS {
+ } P3D_DISPLAY_PARAMS;
+ 
+ 
+-typedef enum P3D_GDHE_CONNECTION { 
++typedef enum P3D_GDHE_CONNECTION {
+   P3D_GDHE_CONNECTED, P3D_GDHE_NOT_CONNECTED
+ } P3D_GDHE_CONNECTION;
+ 
