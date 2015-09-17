@@ -8,6 +8,8 @@ DISTNAME=		${NAME}-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=velodyne/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}${NAME}
 
+PKGREVISION=    1
+
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	interface library for the Velodyne Lidar sensor
 

@@ -1,0 +1,53 @@
+diff --git src/velodyneLib.c src/velodyneLib.c
+index def6a13..acdbeae 100644
+--- src/velodyneLib.c
++++ src/velodyneLib.c
+@@ -584,7 +584,12 @@ compute_cartesian_point_16(int laserNum, u_int16_t heading, u_int16_t dist,
+ 	point->y = (float) -(xyDistance * cosHeadingAngle);
+ 	point->z = (float) (distance * sinVertAngle);
+ 	point->intensity = intensity;
+-	point->status = VELODYNE_GOOD_POINT;
++	/* XXX hack Momo see trees since Velodyne PUCK sees +15 to -15 degrees */
++	if (point->z > 0.0) {
++		point->status = VELODYNE_BAD_POINT;
++	} else {
++		point->status = VELODYNE_GOOD_POINT;
++	}
+ 	return;
+ }
+ 
+@@ -610,7 +615,12 @@ compute_cartesian_point_32(int laserNum, u_int16_t heading, u_int16_t dist,
+ 	point->y = (float) -(xyDistance * cosHeadingAngle);
+ 	point->z = (float) (distance * sinVertAngle);
+ 	point->intensity = intensity;
+-	point->status = VELODYNE_GOOD_POINT;
++	/* XXX hack see trees */
++	if (point->z > 0.0) {
++		point->status = VELODYNE_BAD_POINT;
++	} else {
++		point->status = VELODYNE_GOOD_POINT;
++	}
+ 	return;
+ }
+ 
+@@ -637,7 +647,6 @@ compute_cartesian_point_64(int laserNum, u_int16_t heading, u_int16_t dist,
+ 
+ 	double xyDistance = distance * cosVertAngle - vertOffset * sinVertAngle;
+ 
+-	point->status = VELODYNE_GOOD_POINT;
+ 	/* Warning: The two lines above take into account the fact that the original
+ 	   sensor frame is as follows: the Y axis is oriented opposite to the
+ 	   wire connector, the heading is 0 along this Y axis, and the heading is
+@@ -648,6 +657,12 @@ compute_cartesian_point_64(int laserNum, u_int16_t heading, u_int16_t dist,
+ 	point->y = (float) -(xyDistance * sinHeadingAngle - horizOffset * cosHeadingAngle);
+ 	point->z = (float) (distance * sinVertAngle + vertOffset * cosVertAngle);
+ 	point->intensity = intensity;
++	/* XXX hack see trees */
++	if (point->z > 0.0) {
++		point->status = VELODYNE_BAD_POINT;
++	} else {
++		point->status = VELODYNE_GOOD_POINT;
++	}
+ 	return;
+ }
+ 
