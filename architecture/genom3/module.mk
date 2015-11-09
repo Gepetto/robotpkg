@@ -60,7 +60,7 @@ define PKG_OPTION_SET.pocolibs-server
   pre-configure: genom3-autoreconf(pocolibs/server)
 
   include ../../middleware/pocolibs/depend.mk
-  include ../../wip/genom3-pocolibs/depend.mk
+  include ../../architecture/genom3-pocolibs/depend.mk
 endef
 
 PKG_SUPPORTED_OPTIONS+=			pocolibs-client-c
@@ -71,7 +71,7 @@ define PKG_OPTION_SET.pocolibs-client-c
   pre-configure: genom3-autoreconf(pocolibs/client/c)
 
   include ../../middleware/pocolibs/depend.mk
-  include ../../wip/genom3-pocolibs/depend.mk
+  include ../../architecture/genom3-pocolibs/depend.mk
 endef
 
 # ros
