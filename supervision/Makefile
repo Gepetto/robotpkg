@@ -3,6 +3,7 @@
 
 COMMENT=	Supervision tools
 
+SUBDIR+=	genom3-openprs
 SUBDIR+=	matlab-genomix
 SUBDIR+=	openprs
 SUBDIR+=	ros-executive-smach

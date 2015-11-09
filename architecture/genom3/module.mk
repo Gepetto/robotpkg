@@ -171,7 +171,7 @@ define PKG_OPTION_SET.openprs
   pre-configure: genom3-autoreconf(openprs/client)
 
   include ../../supervision/openprs/depend.mk
-  include ../../wip/genom3-openprs/depend.mk
+  include ../../supervision/genom3-openprs/depend.mk
   include ../../supervision/transgen3/depend.mk
 endef
 

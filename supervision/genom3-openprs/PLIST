@@ -1,0 +1,13 @@
+@comment Sat Oct 20 10:09:01 CEST 2012
+share/genom/site-templates/openprs/client/EncodeDecodeOpenprs.c
+share/genom/site-templates/openprs/client/EncodeDecodeOpenprs_f.h
+share/genom/site-templates/openprs/client/Openprs.inc.input
+share/genom/site-templates/openprs/client/Openprs.opf
+share/genom/site-templates/openprs/client/Openprs.sym
+share/genom/site-templates/openprs/client/RequestOpenprs.c
+share/genom/site-templates/openprs/client/bootstrap.sh
+share/genom/site-templates/openprs/client/client.Makefile.am
+share/genom/site-templates/openprs/client/client.configure.ac
+share/genom/site-templates/openprs/client/openprs-client.pc.in
+share/genom/site-templates/openprs/client/template.tcl
+share/genom/site-templates/openprs/common/typeutil.tcl
