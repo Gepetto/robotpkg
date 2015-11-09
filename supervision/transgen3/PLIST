@@ -1,0 +1,24 @@
+@comment Thu Oct 4 17:48:28 CEST 2012
+bin/transgen3
+include/transgen3/genom-oprs.h
+include/transgen3/genom-oprs_f.h
+lib/genom-oprs.la
+lib/pkgconfig/transgen3.pc
+share/transgen3/canvas/Makefile.cv.am
+share/transgen3/canvas/auto/Makefile.am.begin
+share/transgen3/canvas/auto/Makefile.am.end
+share/transgen3/canvas/auto/Makefile.am.mod
+share/transgen3/canvas/auto/data.inc.begin
+share/transgen3/canvas/auto/data.inc.end
+share/transgen3/canvas/auto/data.inc.mod
+share/transgen3/canvas/auto/superv.input
+share/transgen3/canvas/auto/xsuperv.input
+share/transgen3/canvas/bootstrap.sh
+share/transgen3/canvas/configure.ac.begin
+share/transgen3/canvas/configure.ac.end
+share/transgen3/canvas/configure.ac.mod
+share/transgen3/canvas/end.pl
+share/transgen3/canvas/start.pl
+share/transgen3/data/genom-oprs.inc
+share/transgen3/data/genom-oprs.opf
+share/transgen3/data/genom-oprs.sym

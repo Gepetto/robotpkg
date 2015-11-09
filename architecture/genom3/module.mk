@@ -172,7 +172,7 @@ define PKG_OPTION_SET.openprs
 
   include ../../supervision/openprs/depend.mk
   include ../../wip/genom3-openprs/depend.mk
-  include ../../wip/transgen3/depend.mk
+  include ../../supervision/transgen3/depend.mk
 endef
 
 
