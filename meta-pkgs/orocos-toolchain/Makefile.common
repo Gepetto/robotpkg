@@ -2,10 +2,10 @@
 # Created:			Arnaud Degroote on Thu, 22 Aug 2013
 #
 #
-OROCOS_VERSION=   2.8.0rc1
+OROCOS_VERSION=   2.8.1
 DISTNAME?=        orocos-${OROCOS_PKG}-${OROCOS_VERSION}
 FETCH_METHOD= 		git
-MASTER_SITES?=  	git://github.com/orocos-toolchain/${OROCOS_PKG}.git@v2.8.0-rc1
+MASTER_SITES?=  	git://github.com/orocos-toolchain/${OROCOS_PKG}.git@v${OROCOS_VERSION}
 MASTER_REPOSITORY?= 	git git://github.com/orocos-toolchain/${OROCOS_PKG}.git
 
 MAINTAINER=       	arnaud.degroote@isae-supaero.fr
