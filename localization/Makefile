@@ -11,6 +11,7 @@ SUBDIR+=	hueblob-genom
 SUBDIR+=	insitu
 SUBDIR+=	libpom
 SUBDIR+=	mocap-genom
+SUBDIR+=	optitrack-genom3
 SUBDIR+=	odokit
 SUBDIR+=	pom-genom
 SUBDIR+=	ros-robot-state-publisher
