@@ -1,0 +1,6 @@
+Near-hovering flight controller for rotorcrafts.
+
+This implements a simple stabilization controller based on this publication:
+R. Spica, Robuffo Giordano, P., Ryll, M., Bülthoff, H. H., and Franchi, A., “An
+Open-Source Hardware/Software Architecture for Quadrotor UAVs”, in 2nd IFAC
+Workshop on Research, Education and Development of Unmanned Aerial Systems.
