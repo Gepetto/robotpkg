@@ -9,6 +9,7 @@ SUBDIR+=	ivmob-genom
 SUBDIR+=	ivmob-libs
 SUBDIR+=	jloco-genom
 SUBDIR+=	mana-emergency
+SUBDIR+=	mikropkopter-genom3
 SUBDIR+=	mor-genom
 SUBDIR+=	mor-libs
 SUBDIR+=	nao-robot
