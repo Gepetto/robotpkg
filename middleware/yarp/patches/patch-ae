@@ -1,8 +1,9 @@
 Missing function implementation
-This is only an issue with gcc-4.9 - no idea why yet.
+This is only an issue with gcc-4.9 - no idea why yet. New one is revealed by gcc-5.2.1 
 
---- src/libYARP_dev/src/ControlBoardInterfacesImpl.cpp~	2013-07-26 14:48:52.000000000 +0200
-+++ src/libYARP_dev/src/ControlBoardInterfacesImpl.cpp	2014-11-07 14:46:19.523339737 +0100
+
+--- src/libYARP_dev/src/ControlBoardInterfacesImpl.cpp.orig	2015-11-10 10:33:47.310802223 +0100
++++ src/libYARP_dev/src/ControlBoardInterfacesImpl.cpp	2015-11-10 10:35:10.422799763 +0100
 @@ -25,6 +25,18 @@
      return false;
  }
@@ -22,3 +23,18 @@ This is only an issue with gcc-4.9 - no idea why yet.
  bool StubImplEncodersRaw::NOT_YET_IMPLEMENTED(const char *func)
  {
      if (func)
+@@ -49,3 +61,14 @@
+     return false;
+ }
+ 
++bool StubImplVelpcityControl2Raw::NOT_YET_IMPLEMENTED(const char *func)
++{
++    if (func)
++        fprintf(stderr, "%s:", func);
++    else
++        fprintf(stderr, "Function ");
++
++    fprintf(stderr, "not yet implemented\n");
++
++    return false;
++}
