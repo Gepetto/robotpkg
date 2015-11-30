@@ -13,10 +13,10 @@ ifeq (+,$(MARBLE_DEPEND_MK)) # ---------------------------------------------
 PREFER.marble?=		system
 
 DEPEND_USE+=		marble
-DEPEND_ABI.marble?=	marble>=1
+DEPEND_ABI.marble?=	marble
 
 SYSTEM_SEARCH.marble=	\
-  'bin/marble:/Marble/s/[^0-9.]//gp:% --version'	\
+  'bin/marble'						\
   'include/marble/Planet.h'				\
   'lib/libmarblewidget.so'				\
   'share/{kde4/,kde/,}apps/cmake/modules/FindMarble.cmake'
