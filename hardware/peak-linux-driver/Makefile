@@ -2,9 +2,8 @@
 # Created:			Matthieu Herrb on Wed, 31 Dec 2008
 #
 
-PKGREVISION=	1
 DISTNAME=	peak-linux-driver-${VERSION}
-VERSION=	7.13
+VERSION=	7.15.2
 CATEGORIES=	hardware
 MASTER_SITES=	http://www.peak-system.com/fileadmin/media/linux/files/
 HOMEPAGE=	http://www.peak-system.com/fileadmin/media/linux/

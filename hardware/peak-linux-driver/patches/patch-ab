@@ -1,21 +1,21 @@
 --- lib/Makefile.orig	2013-01-24 11:26:48.000000000 +0100
 +++ lib/Makefile	2013-08-21 14:02:57.717038992 +0200
-@@ -67,12 +67,8 @@
+@@ -71,12 +71,8 @@
  RT_CFLAGS       ?= $(shell $(RT_CONFIG) --$(SKIN)-cflags)
  endif
  
 -ifeq ($(HOSTTYPE),x86_64)
--  LIBPATH = /usr/lib64
+-LIBPATH := /usr/lib64
 -else
--  LIBPATH = /usr/lib
+-LIBPATH := /usr/lib
 -endif
--INCPATH = /usr/include
-+LIBPATH = /lib
-+INCPATH = /include
+-INCPATH := /usr/include
++LIBPATH := /lib
++INCPATH := /include
  
- LDNAME  = libpcan.so
- SONAME  = $(LDNAME).0
-@@ -94,8 +94,8 @@
+ LDNAME  := libpcan.so
+ SONAME  := $(LDNAME).0
+@@ -98,8 +98,8 @@
  install:
  	mkdir -p $(DESTDIR)$(LIBPATH)
  	cp $(TARGET) $(DESTDIR)$(LIBPATH)/$(TARGET)
@@ -24,5 +24,5 @@
 +	ln -sf $(TARGET) $(DESTDIR)$(LIBPATH)/$(SONAME)
 +	ln -sf $(SONAME) $(DESTDIR)$(LIBPATH)/$(LDNAME)
  	mkdir -p $(DESTDIR)$(INCPATH)
- 	cp libpcan.h $(DESTDIR)$(INCPATH)/libpcan.h
- 	chmod 644 $(DESTDIR)$(INCPATH)/libpcan.h
+ 	cp libpcan.h $(PCANDRV_DIR)/pcan.h $(DESTDIR)$(INCPATH)
+ 	chmod 644 $(DESTDIR)$(INCPATH)/libpcan.h $(DESTDIR)$(INCPATH)/pcan.h

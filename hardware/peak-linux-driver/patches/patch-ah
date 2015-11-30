@@ -5,21 +5,21 @@ and its version).
 
 --- driver/src/pcan_main.c~	2014-10-17 10:17:27.000000000 +0200
 +++ driver/src/pcan_main.c	2014-11-05 19:11:20.883868217 +0100
-@@ -416,7 +416,7 @@
-   	seq_printf(m, 
- 		"*------------- %s (%s) %s %s --------------\n", 
+@@ -419,7 +419,7 @@
+   	seq_printf(m,
+ 		"*------------- %s (%s) %s %s --------------\n",
  		pcan_drv.szVersionString, CURRENT_VERSIONSTRING,
 -		__DATE__, __TIME__);
-+		"Oct 10 2014", "00:00:00");
++		"Nov 30 2015", "00:00:00");
  	seq_printf(m, "%s\n", config);
  	seq_printf(m, "*--------------------- %d interfaces @ major %03d found -----------------------\n",
  		pcan_drv.wDeviceCount, pcan_drv.nMajor);
-@@ -429,7 +429,7 @@
+@@ -432,7 +432,7 @@
  	len += sprintf(page + len,
  		"*------------- %s (%s) %s %s --------------\n",
  		pcan_drv.szVersionString, CURRENT_VERSIONSTRING,
 -		__DATE__, __TIME__);
-+		"Oct 10 2014", "00:00:00");
++		"Nov 30 2015", "00:00:00");
  	len += sprintf(page + len, "%s\n", config);
- 	len += sprintf(page + len, 
+ 	len += sprintf(page + len,
  		"*--------------------- %d interfaces @ major %03d found -----------------------\n",
