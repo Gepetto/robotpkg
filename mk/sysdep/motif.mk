@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009,2011 LAAS/CNRS
+# Copyright (c) 2009,2011,2015 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -39,12 +39,6 @@ SYSTEM_PKG.NetBSD.motif=	"pkgsrc/x11/lesstif or pkgsrc/x11/openmotif"
 SYSTEM_SEARCH.motif=\
 	'include/Xm/XmAll.h'			\
 	'lib/libXm.{a,so}'
-
-include ../../mk/robotpkg.prefs.mk
-ifeq (Ubuntu,${OPSYS})
-  include ../../mk/sysdep/libXp.mk
-endif
-
 
 endif # MOTIF_DEPEND_MK ----------------------------------------------------
 
