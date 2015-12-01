@@ -1,5 +1,4 @@
-@comment Thu Jun 27 01:32:40 CEST 2013
-bin/plugin_macro_update
+@comment Tue Dec 1 11:38:35 CET 2015
 include/pluginlib/class_desc.h
 include/pluginlib/class_list_macros.h
 include/pluginlib/class_loader.h
@@ -7,6 +6,7 @@ include/pluginlib/class_loader_base.h
 include/pluginlib/class_loader_imp.h
 include/pluginlib/pluginlib_exceptions.h
 lib/pkgconfig/pluginlib.pc
+lib/pluginlib/plugin_macro_update
 lib/pluginlib/plugin_tool
 ${PYTHON_SITELIB}/pluginlib-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 share/pluginlib/cmake/pluginlibConfig-version.cmake
