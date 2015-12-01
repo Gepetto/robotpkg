@@ -1,0 +1,13 @@
+Missing header
+
+--- include/kernel/threads.hpp~	2013-10-16 10:20:06.000000000 +0200
++++ include/kernel/threads.hpp	2015-12-01 10:52:58.780149012 +0100
+@@ -1,6 +1,7 @@
+ #ifndef _KERNEL_THREADS_H_
+ #define _KERNEL_THREADS_H_
+ 
++#include <boost/optional.hpp>
+ #include <boost/thread/thread.hpp>
+ #include <boost/thread/mutex.hpp>
+ #include <boost/interprocess/sync/interprocess_semaphore.hpp>
+
