@@ -1,0 +1,156 @@
+Fix build with ros and gnu ld >= 2.24.90
+
+Since the issue with ros .pc files and recent ld is not going anywhere after 1
+year ( https://github.com/ros/catkin/issues/694 ), fix this locally by
+transforming -l: into clean -L/-l directives.
+
+Upstream: commit:eed6300
+
+diff --git client/c/client.configure.ac client/c/client.configure.ac
+index 6879e52..1d549b8 100644
+--- client/c/client.configure.ac
++++ client/c/client.configure.ac
+@@ -45,14 +45,6 @@ AC_CONFIG_MACRO_DIR([autoconf])
+ AM_INIT_AUTOMAKE([foreign no-define subdir-objects])
+ 
+ # Compilers
+-
+-# override and disable libtool's deplibs_check_method:
+-lt_cv_deplibs_check_method=pass_all
+-# The default is already "pass_all" anyway on most platforms and this is needed
+-# at least on NetBSD + libtool-2.4.2 to handle correctly -l:/path/to/library.so
+-# dependency style in ros pkg-config .pc files.
+-# See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=14709
+-
+ LT_INIT([disable-static])
+ AC_PROG_CXX
+ AX_PTHREAD(, [AC_MSG_ERROR([pthread support not available])])
+@@ -79,17 +71,28 @@ PKG_CHECK_MODULES(ROS, [
+         std_msgs >= 0.4.11
+ ])
+ 
+-# work out the rpath for -Ldirs and bare .so files found in ros .pc Libs:
++# - work out the rpath for -Ldirs found in ros .pc
++# - clean up -l: syntax
++ros_libs=
+ for arg in $ROS_LIBS; do
+   case "$arg" in
+-    -L*)  arg=-R${arg#-L};;
+-    -l:/*.so) arg=${arg#-l:} && arg=-R${arg%/*};;
+-  esac
+-  case " $ROS_LIBS " in
+-    *" $arg "*) ;;
+-    *) ROS_LIBS="$ROS_LIBS $arg";;
++    -l:/*/lib*.so)
++      name=${arg##*/lib}; name=${name%.so}
++      path=${arg#-l:}; path=${path%/lib*.so}
++      arg="-L$path -R$path -l$name";;
++    -l:*) AC_MSG_FAILURE([unsupported flag $arg in ROS .pc files]);;
++
++    -L*) arg="$arg -R${arg#-L}";;
+   esac
++  for a in $arg; do
++    case " $ros_libs " in
++      *" $a "*) ;;
++      *) ros_libs="$ros_libs $a";;
++    esac
++  done
+ done
++ROS_LIBS=${ros_libs# }
++
+ 
+ # msgmd5
+ AC_PATH_PROG(MSGMD5, [msgmd5], [],
+diff --git configure.ac configure.ac
+index 5804381..84f12b8 100644
+--- configure.ac
++++ configure.ac
+@@ -11,14 +11,6 @@ AC_CONFIG_MACRO_DIR([autoconf])
+ AM_INIT_AUTOMAKE([foreign no-define subdir-objects])
+ 
+ # Compilers
+-
+-# override and disable libtool's deplibs_check_method:
+-lt_cv_deplibs_check_method=pass_all
+-# The default is already "pass_all" anyway on most platforms and this is needed
+-# at least on NetBSD + libtool-2.4.2 to handle correctly -l:/path/to/library.so
+-# dependency style in ros pkg-config .pc files.
+-# See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=14709
+-
+ LT_INIT([disable-static])
+ AC_PROG_CXX
+ AC_PROG_INSTALL
+@@ -64,17 +56,27 @@ else
+   AC_MSG_FAILURE([missing ros dependencies])
+ fi
+ 
+-# work out the rpath for -Ldirs and bare .so files found in ros .pc Libs:
++# - work out the rpath for -Ldirs found in ros .pc
++# - clean up -l: syntax
++ros_libs=
+ for arg in $ROS_LIBS; do
+   case "$arg" in
+-    -L*)  arg=-R${arg#-L};;
+-    -l:/*.so) arg=${arg#-l:} && arg=-R${arg%/*};;
+-  esac
+-  case " $ROS_LIBS " in
+-    *" $arg "*) ;;
+-    *) ROS_LIBS="$ROS_LIBS $arg";;
++    -l:/*/lib*.so)
++      name=${arg##*/lib}; name=${name%.so}
++      path=${arg#-l:}; path=${path%/lib*.so}
++      arg="-L$path -R$path -l$name";;
++    -l:*) AC_MSG_FAILURE([unsupported flag $arg in ROS .pc files]);;
++
++    -L*) arg="$arg -R${arg#-L}";;
+   esac
++  for a in $arg; do
++    case " $ros_libs " in
++      *" $a "*) ;;
++      *) ros_libs="$ros_libs $a";;
++    esac
++  done
+ done
++ROS_LIBS=${ros_libs# }
+ 
+ # output
+ AC_CONFIG_FILES([
+diff --git server/ros.configure.ac server/ros.configure.ac
+index e09fcac..057d2d1 100644
+--- server/ros.configure.ac
++++ server/ros.configure.ac
+@@ -78,17 +78,27 @@ PKG_CHECK_MODULES(ROS, [
+         <"$msgpkgs">
+ ])
+ 
+-# work out the rpath for -Ldirs and bare .so files found in ros .pc Libs:
++# - work out the rpath for -Ldirs found in ros .pc
++# - clean up -l: syntax
++ros_libs=
+ for arg in $ROS_LIBS; do
+   case "$arg" in
+-    -L*)  arg=-R${arg#-L};;
+-    -l:/*.so) arg=${arg#-l:} && arg=-R${arg%/*};;
+-  esac
+-  case " $ROS_LIBS " in
+-    *" $arg "*) ;;
+-    *) ROS_LIBS="$ROS_LIBS $arg";;
++    -l:/*/lib*.so)
++      name=${arg##*/lib}; name=${name%.so}
++      path=${arg#-l:}; path=${path%/lib*.so}
++      arg="-L$path -R$path -l$name";;
++    -l:*) AC_MSG_FAILURE([unsupported flag $arg in ROS .pc files]);;
++
++    -L*) arg="$arg -R${arg#-L}";;
+   esac
++  for a in $arg; do
++    case " $ros_libs " in
++      *" $a "*) ;;
++      *) ros_libs="$ros_libs $a";;
++    esac
++  done
+ done
++ROS_LIBS=${ros_libs# }
+ 
+ 
+ # msgmd5
