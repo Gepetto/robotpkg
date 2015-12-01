@@ -1,6 +1,3 @@
-SHA1 (yarp-2.3.22.tar.gz) = 86a075d1fbaa21b846e32c6c1a58bf409983d971
-RMD160 (yarp-2.3.22.tar.gz) = b911c952f276239f67eb032aa2930563fbdc1898
-Size (yarp-2.3.22.tar.gz) = 9488679 bytes
-SHA1 (patch-aa) = fe1dcfd79865effb2999ee3152eedd96009842fe
-SHA1 (patch-ab) = 23eab9ab2bf699ad631af69caed1b471f2475f3f
-SHA1 (patch-ac) = 3e2abdd7f0e1efecf51f9d2b559d19260b78be51
+SHA1 (v2.3.64.tar.gz) = c423e34b4032b93eb132328b9a19c925f80d80a4
+RMD160 (v2.3.64.tar.gz) = 0320d1734417135bbf3a816277fb969c44a4be56
+Size (v2.3.64.tar.gz) = 11974860 bytes

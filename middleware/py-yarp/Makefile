@@ -2,11 +2,12 @@
 # Created:			Severin Lemaignan on Fri, 12 Jun 2009
 #
 
-VERSION=		2.3.22
-DISTNAME=		yarp-${VERSION}
+VERSION=		2.3.64
 PKGNAME=		${PKGTAG.python-}yarp-${VERSION}
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
-PKGREVISION= 	1
+DISTNAME=		v${VERSION}
+CATEGORIES=		middleware
+MASTER_SITES=		https://github.com/robotology/yarp/archive/
+MASTER_REPOSITORY=	git git://github.com/robotology/yarp.git
 
 CATEGORIES=		middleware
 MAINTAINER=		openrobots@laas.fr
@@ -30,13 +31,15 @@ CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
 CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 
+
+WRKSRC= 			${WRKDIR}/yarp-${VERSION}
 SWIG_DIR= 			${WRKSRC}/bindings
 CONFIGURE_DIRS=		${WRKSRC} ${SWIG_DIR}
 BUILD_DIRS=			${SWIG_DIR}
 INSTALLATION_DIRS=	${PYTHON_SITELIB}
 
 DEPEND_ABI.cmake= 	cmake>=2.8.7
-DEPEND_ABI.yarp=	yarp>=${VERSION}<2.3.60
+DEPEND_ABI.yarp=	yarp>=${VERSION}<2.3.70
 
 include ../../devel/swig/depend.mk
 include ../../middleware/yarp/depend.mk
