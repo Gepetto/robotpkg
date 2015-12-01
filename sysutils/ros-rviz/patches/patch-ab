@@ -1,0 +1,21 @@
+Link with assimp as a private library so that the dependency is not transitive
+(for default_plugin).
+
+--- src/rviz/CMakeLists.txt~	2015-10-13 19:47:20.000000000 +0200
++++ src/rviz/CMakeLists.txt	2015-12-01 11:44:44.797436178 +0100
+@@ -189,13 +189,13 @@
+ )
+ 
+ target_link_libraries(${PROJECT_NAME}
+-  ${Boost_LIBRARIES}
++  LINK_PUBLIC ${Boost_LIBRARIES}
+   ${catkin_LIBRARIES}
+   ${OGRE_OV_LIBRARIES_ABS}
+   ${OPENGL_LIBRARIES}
+   ${QT_LIBRARIES}
+   ${rviz_ADDITIONAL_LIBRARIES}
+-  assimp
++  LINK_PRIVATE assimp
+   yaml-cpp
+ )
+ 

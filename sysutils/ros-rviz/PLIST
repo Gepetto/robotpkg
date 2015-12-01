@@ -1,4 +1,4 @@
-@comment Mon Oct 27 15:00:49 CET 2014
+@comment Tue Dec 1 12:12:25 CET 2015
 bin/rviz
 include/rviz/add_display_dialog.h
 include/rviz/bit_allocator.h
@@ -62,6 +62,7 @@ include/rviz/default_plugin/tools/selection_tool.h
 include/rviz/default_plugin/view_controllers/fixed_orientation_ortho_view_controller.h
 include/rviz/default_plugin/view_controllers/fps_view_controller.h
 include/rviz/default_plugin/view_controllers/orbit_view_controller.h
+include/rviz/default_plugin/view_controllers/third_person_follower_view_controller.h
 include/rviz/default_plugin/view_controllers/xy_orbit_view_controller.h
 include/rviz/default_plugin/wrench_display.h
 include/rviz/default_plugin/wrench_visual.h

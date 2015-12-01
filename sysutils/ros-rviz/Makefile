@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	rviz
-ROS_VERSION=	1.11.3
+ROS_VERSION=	1.11.10
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	sysutils
