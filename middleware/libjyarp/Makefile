@@ -1,13 +1,13 @@
 # robotpkg Makefile for:	middleware/libjyarp
 # Created:			Anthony Mallet on Tue, 27 Jan 2009
 #
-
-VERSION=		2.3.22
-DISTNAME=		yarp-${VERSION}
-PKGNAME=		libjyarp-${VERSION}
-CATEGORIES=		middleware
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=yarp0/}
-PKGREVISION= 	1
+#
+VERSION= 			2.3.64
+PKGNAME=   			libjyarp-${VERSION}
+DISTNAME=			v${VERSION}
+CATEGORIES=			middleware
+MASTER_SITES=		https://github.com/robotology/yarp/archive/
+MASTER_REPOSITORY=	git git://github.com/robotology/yarp.git
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
@@ -25,13 +25,14 @@ CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
 CMAKE_ARGS+=		-DACE_INCLUDE_DIR=${PREFIX.ace}/include
 CMAKE_ARGS+=		-DACE_LIBRARY=${PREFIX.ace}/lib/libACE.so
 
+WRKSRC= ${WRKDIR}/yarp-${VERSION}
 SWIG_DIR= 			${WRKSRC}/bindings
 INSTALLATION_DIRS=	lib share/doc/libjyarp java/libjyarp/lib
 CONFIGURE_DIRS=		${WRKSRC} ${SWIG_DIR}
 BUILD_DIRS=			${SWIG_DIR}
 
 DEPEND_ABI.cmake= 	cmake>=2.8.7
-DEPEND_ABI.yarp=	yarp>=${VERSION}<2.3.60
+DEPEND_ABI.yarp=	yarp>=${VERSION}<2.3.70
 
 DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
 
