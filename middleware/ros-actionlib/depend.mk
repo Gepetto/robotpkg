@@ -29,7 +29,7 @@ SYSTEM_SEARCH.ros-actionlib=\
 	include/actionlib/server/action_server.h		\
 	include/actionlib/client/action_client.h		\
 	lib/libactionlib.so					\
-	'share/actionlib/${ROS_STACKAGE}:/<version>/s/[^0-9.]//gp'	\
+	'share/actionlib/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/actionlib.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_ACTIONLIB_DEPEND_MK --------------------------------------------
