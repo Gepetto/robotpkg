@@ -8,6 +8,7 @@ DISTNAME=		v${VERSION}
 CATEGORIES=		middleware
 MASTER_SITES=		https://github.com/robotology/yarp/archive/
 MASTER_REPOSITORY=	git git://github.com/robotology/yarp.git
+PKGREVISION= 	1
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
@@ -53,6 +54,7 @@ define PKG_OPTION_SET.gui
   include ../../mk/sysdep/glib2.mk
   include ../../mk/sysdep/qt5-base.mk
   include ../../mk/sysdep/qt5-multimedia.mk
+  include ../../mk/sysdep/qt5-declarative.mk
 endef
 
 DEPEND_ABI.cmake=	cmake>=2.8.7

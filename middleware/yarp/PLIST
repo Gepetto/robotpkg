@@ -14,6 +14,7 @@ bin/yarpmanager-console
 ${PLIST.gui}bin/yarpmanager-gtk
 ${PLIST.gui}bin/yarpmotorgui
 ${PLIST.gui}bin/yarpmotorgui-gtk
+bin/yarpros
 bin/yarprun
 ${PLIST.gui}bin/yarpscope
 ${PLIST.gui}bin/yarpscope-gtk
