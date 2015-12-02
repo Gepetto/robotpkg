@@ -22,7 +22,7 @@ index 6879e52..1d549b8 100644
 -# dependency style in ros pkg-config .pc files.
 -# See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=14709
 -
- LT_INIT([disable-static])
+ LT_INIT
  AC_PROG_CXX
  AX_PTHREAD(, [AC_MSG_ERROR([pthread support not available])])
 @@ -79,17 +71,28 @@ PKG_CHECK_MODULES(ROS, [
@@ -63,10 +63,10 @@ index 6879e52..1d549b8 100644
  AC_PATH_PROG(MSGMD5, [msgmd5], [],
 diff --git configure.ac configure.ac
 index 5804381..84f12b8 100644
---- configure.ac
-+++ configure.ac
-@@ -11,14 +11,6 @@ AC_CONFIG_MACRO_DIR([autoconf])
- AM_INIT_AUTOMAKE([foreign no-define subdir-objects])
+--- configure
++++ configure
+@@ -2902,14 +2902,6 @@
+ fi
  
  # Compilers
 -
@@ -77,11 +77,11 @@ index 5804381..84f12b8 100644
 -# dependency style in ros pkg-config .pc files.
 -# See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=14709
 -
- LT_INIT([disable-static])
- AC_PROG_CXX
- AC_PROG_INSTALL
-@@ -64,17 +56,27 @@ else
-   AC_MSG_FAILURE([missing ros dependencies])
+ case `pwd` in
+   *\ * | *\	*)
+     { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Libtool does not cope well with whitespace in \`pwd\`" >&5
+@@ -16309,17 +16301,30 @@
+ See \`config.log' for more details" "$LINENO" 5; }
  fi
  
 -# work out the rpath for -Ldirs and bare .so files found in ros .pc Libs:
@@ -100,7 +100,10 @@ index 5804381..84f12b8 100644
 +      name=${arg##*/lib}; name=${name%.so}
 +      path=${arg#-l:}; path=${path%/lib*.so}
 +      arg="-L$path -R$path -l$name";;
-+    -l:*) AC_MSG_FAILURE([unsupported flag $arg in ROS .pc files]);;
++    -l:*) { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
++$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
++as_fn_error $? "unsupported flag $arg in ROS .pc files
++See \`config.log' for more details" "$LINENO" 5; };;
 +
 +    -L*) arg="$arg -R${arg#-L}";;
    esac
@@ -114,7 +117,7 @@ index 5804381..84f12b8 100644
 +ROS_LIBS=${ros_libs# }
  
  # output
- AC_CONFIG_FILES([
+ ac_config_files="$ac_config_files genom3-ros.pc rosaction common/msgmd5 Makefile"
 diff --git server/ros.configure.ac server/ros.configure.ac
 index e09fcac..057d2d1 100644
 --- server/ros.configure.ac
