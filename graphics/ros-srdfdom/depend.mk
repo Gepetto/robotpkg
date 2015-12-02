@@ -23,7 +23,7 @@ DEPEND_DIR.ros-srdfdom?=	../../graphics/ros-srdfdom
 
 DEPEND_ABI.ros-srdfdom.groovy?=	ros-srdfdom>=0.2<0.3
 DEPEND_ABI.ros-srdfdom.hydro?=	ros-srdfdom>=0.2<0.3
-DEPEND_ABI.ros-srdfdom.indigo?=	ros-srdfdom>=0.2<0.3
+DEPEND_ABI.ros-srdfdom.indigo?=	ros-srdfdom>=0.2
 
 SYSTEM_SEARCH.ros-srdfdom=\
   'include/srdfdom/model.h'					\
