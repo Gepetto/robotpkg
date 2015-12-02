@@ -18,8 +18,8 @@ DEPEND_ABI.marble?=	marble
 SYSTEM_SEARCH.marble=	\
   'bin/marble'						\
   'include/marble/Planet.h'				\
-  'lib/libmarblewidget.so'				\
-  'share/{kde4/,kde/,}apps/cmake/modules/FindMarble.cmake'
+  'lib/libmarblewidget{,-*}.so'				\
+  'share/{{kde4/,kde/,}apps/cmake/modules,marble/cmake}/FindMarble.cmake'
 
 SYSTEM_PKG.Linux.marble=	marble libmarble-dev
 SYSTEM_PKG.NetBSD.marble=	pkgsrc/misc/marble
