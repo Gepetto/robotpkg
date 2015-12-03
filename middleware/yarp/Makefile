@@ -8,7 +8,7 @@ DISTNAME=		v${VERSION}
 CATEGORIES=		middleware
 MASTER_SITES=		https://github.com/robotology/yarp/archive/
 MASTER_REPOSITORY=	git git://github.com/robotology/yarp.git
-PKGREVISION= 	1
+PKGREVISION= 	2
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html
@@ -18,6 +18,8 @@ LICENSE=		gnu-lgpl-v2
 CONFIGURE_ENV+=		ACE_ROOT=${PREFIX.ace}
 CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
 CMAKE_ARGS+=		-DEXPERIMENTAL_ACEFIND=TRUE
+
+CMAKE_ARGS+=        -DCMAKE_INSTALL_LIBDIR=lib
 
 CMAKE_ARGS+=        -DCREATE_OPTIONAL_CARRIERS=TRUE
 CMAKE_ARGS+= 		-DENABLE_yarpcar_bayer_carrier=TRUE
@@ -35,9 +37,9 @@ CXXFLAGS+=		-pthread
 WRKSRC= ${WRKDIR}/yarp-${VERSION}
 
 # PLIST depends on cmake version
-PLIST_VARS+=  cmake2812
-PLIST.cmake2812=$(if $(filter yes,\
-  $(call pmatch,cmake>=2.8.12,${PKGVERSION.cmake})),@comment)
+PLIST_VARS+=  cmake31
+PLIST.cmake31=$(if $(filter yes,\
+  $(call pmatch,cmake>=3.1,${PKGVERSION.cmake})),@comment)
 
 # gui option
 PKG_SUPPORTED_OPTIONS+=	gui
@@ -57,7 +59,7 @@ define PKG_OPTION_SET.gui
   include ../../mk/sysdep/qt5-declarative.mk
 endef
 
-DEPEND_ABI.cmake=	cmake>=2.8.7
+DEPEND_ABI.cmake=	cmake>=2.8.9
 
 include ../../image/opencv/depend.mk
 include ../../middleware/ace/depend.mk

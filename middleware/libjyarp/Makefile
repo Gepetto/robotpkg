@@ -31,7 +31,7 @@ INSTALLATION_DIRS=	lib share/doc/libjyarp java/libjyarp/lib
 CONFIGURE_DIRS=		${WRKSRC} ${SWIG_DIR}
 BUILD_DIRS=			${SWIG_DIR}
 
-DEPEND_ABI.cmake= 	cmake>=2.8.7
+DEPEND_ABI.cmake= 	cmake>=2.8.9
 DEPEND_ABI.yarp=	yarp>=${VERSION}<2.3.70
 
 DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}

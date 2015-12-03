@@ -38,7 +38,7 @@ CONFIGURE_DIRS=		${WRKSRC} ${SWIG_DIR}
 BUILD_DIRS=			${SWIG_DIR}
 INSTALLATION_DIRS=	${PYTHON_SITELIB}
 
-DEPEND_ABI.cmake= 	cmake>=2.8.7
+DEPEND_ABI.cmake= 	cmake>=2.8.9
 DEPEND_ABI.yarp=	yarp>=${VERSION}<2.3.70
 
 include ../../devel/swig/depend.mk
