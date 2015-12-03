@@ -21,6 +21,7 @@ SYSTEM_SEARCH.qt5-declarative=\
   'lib/pkgconfig/Qt5Qml.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.qt5-declarative=	qtdeclarative5-dev
+SYSTEM_PKG.Fedora.qt5-declarative=	qt5-qtdeclarative-devel
 SYSTEM_PKG.NetBSD.qt5-declarative=	x11/qt5-qtdeclarative 
 
 endif # QT5_DECLARATIVE_DEPEND_MK -------------------------------------------------

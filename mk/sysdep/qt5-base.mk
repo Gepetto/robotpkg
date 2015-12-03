@@ -20,7 +20,7 @@ SYSTEM_SEARCH.qt5-base=\
   '{lib,share/qt5/lib,qt5/lib,lib/qt5}/libQt5Core.{so,a}'	\
   'lib/pkgconfig/Qt5Core.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.qt5-base=	qt5-devel
+SYSTEM_PKG.Fedora.qt5-base=	qt5-qtbase-devel
 SYSTEM_PKG.Debian.qt5-base=	qtbase5-dev
 SYSTEM_PKG.NetBSD.qt5-base=	x11/qt5-qtbase 
 
