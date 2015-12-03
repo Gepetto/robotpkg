@@ -4,7 +4,7 @@
 
 DISTNAME=	interceptty-0.6
 CATEGORIES=	sysutils
-MASTER_SITES=	http://www.suspectclass.com/sgifford/interceptty/files/
+MASTER_SITES=	http://j5lx.fmail.co.uk/pub/interceptty/
 
 COMMENT=	Serial port redirector
 HOMEPAGE=	http://www.suspectclass.com/sgifford/interceptty/
