@@ -23,11 +23,11 @@ endif
 
 SYSTEM_SEARCH.libtool=\
   'bin/${_libtool}:/libtool/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% --version' \
-  'bin/${_libtool}ize'				\
-  'share/aclocal/libtool.m4'			\
-  'share/libtool/{,config/}config.guess'	\
-  'share/libtool/{,config/}config.sub'		\
-  'share/libtool/{,config/}ltmain.sh'
+  'bin/${_libtool}ize'					\
+  'share/aclocal/libtool.m4'				\
+  'share/libtool/{,config/,build-aux/}config.guess'	\
+  'share/libtool/{,config/,build-aux/}config.sub'	\
+  'share/libtool/{,config/,build-aux/}ltmain.sh'
 
 DEPEND_USE+=		libtool
 DEPEND_METHOD.libtool+=	build
