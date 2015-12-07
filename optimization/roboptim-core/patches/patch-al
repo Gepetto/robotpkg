@@ -1,0 +1,25 @@
+Fix for boost-1.58.0
+
+See https://github.com/boostorg/variant/commit/b50826821682396e7a334b3da67c423ffc3f9719
+--- include/roboptim/core/generic-solver.hh~	2012-01-30 21:32:43.000000000 +0100
++++ include/roboptim/core/generic-solver.hh	2015-12-07 11:37:15.678941910 +0100
+@@ -1,4 +1,4 @@
+-// Copyright (C) 2009 by Thomas Moulard, AIST, CNRS, INRIA.
++// Copyright (C) 2009,2015 by Thomas Moulard, AIST, CNRS, INRIA.
+ //
+ // This file is part of the roboptim.
+ //
+@@ -22,6 +22,11 @@
+ 
+ # include <stdexcept>
+ 
++# include <boost/version.hpp>
++# if BOOST_VERSION >= 105800 && BOOST_VERSION < 105900
++   /* boost-1.58.0 is missing this #include in variant/get.hpp */
++#  include <boost/type_traits/remove_cv.hpp>
++# endif
+ # include <boost/variant/get.hpp>
+ # include <boost/variant/variant.hpp>
+ # include <boost/utility.hpp>
+
+Diff finished.  Mon Dec  7 11:37:22 2015
