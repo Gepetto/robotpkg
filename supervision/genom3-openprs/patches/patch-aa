@@ -1,4 +1,4 @@
-Quick and dirty fix for a fatal issue with 'unsigned short'
+Quick and dirty fix for a fatal issue with 'unsigned short' and 'boolean'
 Not submitted upstream yet, this probably requires more insight.
 
 --- common/typeutil.tcl~	2015-11-09 19:28:31.623593000 +0100
@@ -8,7 +8,7 @@ Not submitted upstream yet, this probably requires more insight.
  	    return [oprs_type_nva [$type type] $param $string]
  	}
 -	string - array - sequence - "unsigned long" - long - float - double - short - int - char - enum {
-+      string - array - sequence - "unsigned long" - long - float - double - {*short} - int - char - enum {
++      string - array - sequence - "unsigned long" - long - float - double - {*short} - int - char - enum - boolean {
  	 	    return 1
  	}
  	struct {
