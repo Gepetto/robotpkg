@@ -18,5 +18,5 @@ BUILD_TARGET?=	all
 MAKE_ENV+=	MAKELEVEL= MAKEOVERRIDES= MAKEFLAGS= MFLAGS=
 
 # parallel builds
-MAKE_FLAGS+=\
+BUILD_MAKE_FLAGS+=\
   $(if $(call isno,${MAKE_JOBS_SAFE}),,$(addprefix -j,${MAKE_JOBS}))
