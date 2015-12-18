@@ -116,16 +116,14 @@ else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.10 13.04 13.10,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python33
   endif
-  PREFER_ALTERNATIVE.python?=	python27 python34
 else ifeq (Fedora,${OPSYS})
   ifneq (,$(filter 20,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python33
   endif
-  PREFER_ALTERNATIVE.python?=	python27 python34
 else ifeq (OpenNao,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python32
 endif
-PREFER_ALTERNATIVE.python?=	python27 python33
+PREFER_ALTERNATIVE.python?=	python27 python34
 
 PKG_ALTERNATIVE_DESCR.python26= Use python-2.6
 PKGTAG.python26 =		py26
