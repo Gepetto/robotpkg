@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Mon, 10 Dec 2012
 #
 
+PKGREVISION=	1
 ROS_PKG=	roscpp_core
 ROS_METAPKG=	yes
 ROS_VERSION=	0.5.4
