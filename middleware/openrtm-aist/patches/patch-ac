@@ -1,0 +1,16 @@
+Fix an omniORB 4.2 incompatibility
+
+--- src/lib/rtm/Manager.cpp~	2016-02-08 12:27:44.183912879 +0100
++++ src/lib/rtm/Manager.cpp	2016-02-08 13:59:05.228676105 +0100
+@@ -1127,7 +1127,11 @@
+                     CORBA::UShort port; 
+                     coil::stringTo(port, addr_port[1].c_str());
+                     iiop_addr.port = port;
++#ifndef RTC_OMNIORB42
+                     omniIOR::add_IIOP_ADDRESS(iiop_addr);
++#else
++                    omniIOR::add_IIOP_ADDRESS(iiop_addr, NULL);
++#endif
+                   }
+               }
+           }

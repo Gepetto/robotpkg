@@ -1,12 +1,20 @@
-Add required header (at least with ace>=6)
+Fix an omniORB 4.2 incompatibility
 
---- rtm/ExtTrigExecutionContext.h~	2008-05-29 08:02:01.000000000 +0200
-+++ rtm/ExtTrigExecutionContext.h	2011-09-28 19:00:23.282705497 +0200
-@@ -23,6 +23,7 @@
- 
- #include <ace/Task.h>
- #include <ace/Synch.h>
-+#include <ace/Condition_T.h>
- 
- #include <rtm/Manager.h>
- #include <rtm/PeriodicExecutionContext.h>
+--- src/lib/rtm/CORBA_IORUtil.cpp~	2016-02-08 15:39:06.573240658 +0100
++++ src/lib/rtm/CORBA_IORUtil.cpp	2016-02-08 15:54:56.679283937 +0100
+@@ -405,6 +405,7 @@
+       {
+         try
+           {
++#ifndef RTC_OMNIORB42
+             CORBA::String_var content;
+             content = IOP::dumpComponent(components[index]);
+             char* p = content;
+@@ -421,6 +422,7 @@
+                 sstr << "       " << (const char*) p << std::endl;
+                 p = q;
+               } while (q);
++#endif
+           }
+         catch (CORBA::MARSHAL& ex)
+           {

@@ -1,11 +1,25 @@
---- rtm/Properties.h~	2008-05-29 08:02:01.000000000 +0200
-+++ rtm/Properties.h	2008-11-28 18:44:52.000000000 +0100
-@@ -20,7 +20,7 @@
- #ifndef Properties_h
- #define Properties_h
+Detect omniORB 4.2
+
+--- configure~	2016-02-08 12:27:44.475911755 +0100
++++ configure	2016-02-08 14:01:00.036194281 +0100
+@@ -17747,7 +17747,7 @@
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: CORBA C++ mapping ver1.0 is used." >&5
+ $as_echo "CORBA C++ mapping ver1.0 is used." >&6; }
+ 		;;
+-	4.1|4.1.*)
++	4.1|4.1.*|4.2|4.2.*)
  
--
-+#include <climits>
- #include <string>
- #include <vector>
- #include <map>
+ $as_echo "#define RTC_CORBA_CXXMAPPING11 TRUE" >>confdefs.h
+ 
+@@ -17755,6 +17755,11 @@
+ $as_echo "CORBA C++ mapping ver1.1 is used." >&6; }
+ 		;;
+ 	esac
++        case $omniorb_version in
++            4.2|4.2.*)
++                $as_echo "#define RTC_OMNIORB42 TRUE" >>confdefs.h
++                ;;
++        esac
+ 	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $omnirob_version" >&5
+ $as_echo "$omnirob_version" >&6; }
+ 

@@ -15,13 +15,14 @@ PREFER.openrtm-aist?=	robotpkg
 
 DEPEND_USE+=		openrtm-aist
 
-DEPEND_ABI.openrtm-aist?=openrtm-aist>=0.4.2
+DEPEND_ABI.openrtm-aist?=openrtm-aist>=1
 DEPEND_DIR.openrtm-aist?=../../middleware/openrtm-aist
 
 SYSTEM_SEARCH.openrtm-aist=\
-	bin/rtm-config			\
-	include/rtm/RTC.h		\
-	lib/libRTC.la
+  'bin/rtm-config'						\
+  'include/rtm/RTC.h'						\
+  'lib/pkgconfig/openrtm-aist.pc:/Version/s/[^.0-9]//gp'	\
+  'lib/libRTC.la'
 
 endif # --- OPENRTM_AIST_DEPEND_MK -----------------------------------
 

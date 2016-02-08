@@ -1,15 +1,12 @@
-$LAAS: patch-ad 2008/06/01 19:49:26 tho $
+Add missing header for free(3)
 
-Replace non-standard pthread_yield() by standard sched_yield().
-
---- rtm/PublisherNew.cpp~	2007-09-19 09:41:04.000000000 +0200
-+++ rtm/PublisherNew.cpp	2008-06-01 19:30:55.000000000 +0200
-@@ -83,7 +83,7 @@
- #ifdef WIN32
-     ACE_OS::thr_yield();
- #else
--    pthread_yield();
-+    sched_yield();
- #endif
-     return;
-   }
+--- src/lib/coil/posix/coil/UUID.cpp~	2015-03-16 02:29:58.268728085 +0100
++++ src/lib/coil/posix/coil/UUID.cpp	2016-02-08 12:30:50.767192759 +0100
+@@ -20,6 +20,7 @@
+ #include <coil/UUID.h>
+ #include <iostream>
+ #include <string.h>
++#include <stdlib.h>
+ 
+ #ifdef COIL_OS_FREEBSD
+ void error_code(uint32_t status)
