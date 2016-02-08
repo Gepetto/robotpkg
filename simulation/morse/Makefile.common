@@ -2,10 +2,10 @@
 # Created:			Severin Lemaignan on Tue, 12 Apr 2011
 #
 
-MORSE_VERSION=		1.3
-DISTNAME=		morse-${MORSE_VERSION}
+MORSE_VERSION=		1.4
+DISTNAME=			morse-${MORSE_VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=morse/}
-MASTER_REPOSITORY=	git git://trac.laas.fr/robots/morse
+MASTER_REPOSITORY=	git https://github.com/morse-simulator/morse.git
 EXTRACT_SUFX=		.tar.bz2
 
 CATEGORIES=		simulation
@@ -29,6 +29,7 @@ include ../../graphics/blender/depend.mk
 
 DEPEND_ABI.python+=	python>=3.3
 include ../../mk/sysdep/python.mk
+include ../../mk/sysdep/py-numpy.mk
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
