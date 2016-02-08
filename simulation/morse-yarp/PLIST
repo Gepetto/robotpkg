@@ -1,7 +1,8 @@
-@comment Mon May 11 09:09:09 CEST 2015
+@comment Mon Feb 8 10:21:58 CET 2016
 ${PYTHON_SITELIB}/morse/middleware/yarp/__init__.py
 ${PYTHON_SITELIB}/morse/middleware/yarp/laserscanner.py
 ${PYTHON_SITELIB}/morse/middleware/yarp/video_camera.py
+${PYTHON_SITELIB}/morse/middleware/yarp/video_depth_camera.py
 ${PYTHON_SITELIB}/morse/middleware/yarp/yarp_json.py
 ${PYTHON_SITELIB}/morse/middleware/yarp_datastream.py
 ${PYTHON_SITELIB}/morse/middleware/yarp_json_request_manager.py
