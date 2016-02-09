@@ -1,0 +1,11 @@
+--- configure~	2016-02-09 11:50:03.887404365 +0100
++++ configure	2016-02-09 11:51:36.554980318 +0100
+@@ -16306,7 +16306,7 @@
+ DOCS="docs"
+ if test "x$with_doxygen" = "xno" ; then
+ 	DOCS=""
+-else
++elif false; then
+ 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for doxygen" >&5
+ $as_echo_n "checking for doxygen... " >&6; }
+ 
