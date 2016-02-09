@@ -26,13 +26,15 @@ DEPEND_DIR.omniORB?=	../../middleware/omniORB
 
 SYSTEM_SEARCH.omniORB=	\
   'bin/omniidl'						\
+  'bin/omniNames'					\
   'include/omniORB4/CORBA.h'				\
   'lib/libomniORB4.{so,a}'				\
   'lib/pkgconfig/omniORB4.pc:/Version/s/[^0-9.]//gp'	\
   'share/idl/omniORB/corbaidl.idl'
 
-SYSTEM_PKG.Debian.omniORB =	omniorb omniorb-idl omniidl libomniorb4-dev
-SYSTEM_PKG.Fedora.omniORB =	omniORB-devel
+SYSTEM_PKG.Debian.omniORB =\
+  omniorb omniorb-idl omniidl libomniorb4-dev omniorb-nameserver
+SYSTEM_PKG.Fedora.omniORB =	omniORB-devel omniORB-servers
 SYSTEM_PKG.NetBSD.omniORB =	net/omniORB
 
 endif # OMNIORB_DEPEND_MK --------------------------------------------------
