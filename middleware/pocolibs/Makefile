@@ -2,13 +2,13 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-DISTNAME=		pocolibs-2.14
+DISTNAME=		pocolibs-2.15
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pocolibs/}
 MASTER_REPOSITORY=	git git://git.openrobots.org/robots/pocolibs.git
 
 MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/pocolibs
+HOMEPAGE=		https://git.openrobots.org/projects/pocolibs
 COMMENT=		Real-time communication library used by GenoM modules.
 
 LICENSE=		isc
