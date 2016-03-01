@@ -2,13 +2,13 @@
 # Created:			Anthony Mallet on Fri, 19 Oct 2012
 #
 
-DISTNAME=	genomix-1.5
+DISTNAME=	genomix-1.6
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genomix/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genomix
 
 MAINTAINER=	mallet@laas.fr
-HOMEPAGE=	http://www.openrobots.org/wiki/genom3
+HOMEPAGE=	https://git.openrobots.org/projects/genomix
 COMMENT=	HTTP server for controlling GenoM3 components
 
 LICENSE=	2-clause-bsd

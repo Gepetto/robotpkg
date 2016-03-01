@@ -18,7 +18,7 @@ SYSTEM_SEARCH.genomix=\
   'bin/genomixd:p:% --version'				\
   'lib/pkgconfig/genomix.pc:/Version/s/[^0-9.]//gp'
 
-DEPEND_ABI.genomix?=	genomix>=1.5
+DEPEND_ABI.genomix?=	genomix>=1.6
 DEPEND_DIR.genomix?=	../../net/genomix
 
 endif # GENOMIX_DEPEND_MK --------------------------------------------------
