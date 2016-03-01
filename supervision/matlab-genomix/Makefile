@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 16 Jun 2015
 #
 
-DISTNAME=	matlab-genomix-1.0
+DISTNAME=	matlab-genomix-1.1
 CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=matlab-genomix/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genomix/matlab-genomix
@@ -14,8 +14,8 @@ COMMENT=	matlab client for controlling GenoM3 components with genomix
 LICENSE=	2-clause-bsd
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=MEX=${MEX}
+CONFIGURE_ARGS+=MATLAB=${PREFIX.matlab}
 
-include ../../mk/sysdep/mex.mk
+include ../../mk/sysdep/matlab.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
