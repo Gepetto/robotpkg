@@ -1,0 +1,8 @@
+tcl-genomix package provides a TCL package that interacts with the genomix HTTP
+server and can control GenoM3 components.
+
+It can prompt interactively for arguments of services. Services can be invoked
+synchronously or asynchronously and callbacks can be triggered whenever
+services complete.
+
+tcl-genomix is best used in combination with the interactive eltclsh shell.

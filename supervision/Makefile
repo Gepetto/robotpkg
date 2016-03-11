@@ -7,6 +7,7 @@ SUBDIR+=	genom3-openprs
 SUBDIR+=	matlab-genomix
 SUBDIR+=	openprs
 SUBDIR+=	ros-executive-smach
+SUBDIR+=	tcl-genomix
 SUBDIR+=	transgen
 SUBDIR+=	transgen3
 
