@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 6 Jul 2015
 #
 
-DISTNAME=	tk3-matlab-1.3
+DISTNAME=	tk3-matlab-1.4
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=tk3-matlab/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}telekyb3/tk3-matlab
@@ -14,8 +14,8 @@ COMMENT=	matlab/simulink interface for controlling tk3-mikrokopter
 LICENSE=	2-clause-bsd
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=MEX=${MEX}
+CONFIGURE_ARGS+=MATLAB=${PREFIX.matlab}
 
-include ../../mk/sysdep/mex.mk
+include ../../mk/sysdep/matlab.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
