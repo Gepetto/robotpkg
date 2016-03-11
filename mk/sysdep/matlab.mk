@@ -17,6 +17,8 @@ DEPEND_USE+=		matlab
 
 DEPEND_ABI.matlab?=	matlab
 
+ONLY_FOR_PLATFORM+=	%-x86_64
+
 SYSTEM_SEARCH.matlab=\
   'bin/matlab'			\
   'extern/include/mex.h'
