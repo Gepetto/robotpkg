@@ -1,9 +1,14 @@
-@comment Tue Mar 1 19:03:31 CET 2016
+@comment Fri Mar 11 18:29:20 CET 2016
 lib/matlab/+genomix/Contents.m
 lib/matlab/+genomix/client.m
 lib/matlab/+genomix/component.m
 lib/matlab/+genomix/private/genomix_server.la
 lib/matlab/+genomix/request.m
+lib/matlab/simulink/genomix/genomix.slx
+lib/matlab/simulink/genomix/genomix_block.la
+lib/matlab/simulink/genomix/genomix_mask.m
+lib/matlab/simulink/genomix/genomix_pacer.la
+lib/matlab/simulink/genomix/slblocks.m
 share/doc/matlab-genomix/demo.html
 share/doc/matlab-genomix/index.html
 share/doc/matlab-genomix/install.html
