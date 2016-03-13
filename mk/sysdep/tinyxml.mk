@@ -18,13 +18,13 @@ _tinyxmlvers=/(MAJOR|MINOR|PATCH)_VERS/ {gsub(/[^0-9]/,"");v=v $$0 "."}
 _tinyxmlvers+=END {gsub(/[.]$$/,"",v); print v}
 
 SYSTEM_SEARCH.tinyxml=	\
-	'include/{,tinyxml/}tinyxml.h:p:${AWK} '\''${_tinyxmlvers}'\'' %'	\
-	lib/libtinyxml.so
+  'include/{,tinyxml/}tinyxml.h:p:${AWK} '\''${_tinyxmlvers}'\'' %'	\
+  'lib/libtinyxml.so'
 
 SYSTEM_PKG.Fedora.tinyxml=tinyxml-devel
 SYSTEM_PKG.Ubuntu.tinyxml=libtinyxml-dev
 SYSTEM_PKG.Debian.tinyxml=libtinyxml-dev
-SYSTEM_PKG.NetBSD.tinyxml=wip/tinyxml
+SYSTEM_PKG.NetBSD.tinyxml=textproc/tinyxml
 
 endif # TINYXML_DEPEND_MK --------------------------------------------------
 
