@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 22 Jun 2015
 #
 
-DISTNAME=	rosix-1.0
+DISTNAME=	rosix-1.1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=rosix/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genomix/rosix
