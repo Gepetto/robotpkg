@@ -1,0 +1,13 @@
+diff --git src/genomix-mex.c src/genomix-mex.c
+index 963af52..be564be 100644
+--- src/genomix-mex.c
++++ src/genomix-mex.c
+@@ -351,7 +351,7 @@ mdlOutputs(SimStruct *S, int_T tid)
+ 
+   /* get url */
+   if (genomix->kind == GENOMIX_RQST) {
+-    const char *args[] = { "oneway", NULL, "input", genomix->json, NULL };
++    const char *args[] = { "oneway", NULL, "argv", genomix->json, NULL };
+ 
+     r = genomix_get(genomix->id, genomix->url, args, emsg, sizeof(emsg));
+   } else
