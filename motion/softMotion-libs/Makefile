@@ -4,7 +4,7 @@
 VERSION=		3.12
 DISTNAME=		softMotion-libs-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=softMotion-libs/}
-MASTER_REPOSITORY=      git git://trac.laas.fr/robots/softMotion-libs
+MASTER_REPOSITORY=      git git://git.openrobots.org/robots/softmotion/soft-motion-libs.git
 
 CATEGORIES=		motion
 COMMENT=		SoftMotion Planner Library
