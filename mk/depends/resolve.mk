@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2013 LAAS/CNRS
+# Copyright (c) 2008-2013,2016 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -327,9 +327,9 @@ endif
 #
 .PHONY: resolve-alternatives
 resolve-alternatives:
-	${RUN} >${_ALTERNATIVES_FILE}; exec 3>>${_ALTERNATIVES_FILE};	\
-  $(foreach _,${PKG_ALTERNATIVES},					\
-	${ECHO} 1>&3 'PKG_ALTERNATIVE.$_=${PKG_ALTERNATIVE.$_}';	\
+	${RUN} exec >${_ALTERNATIVES_FILE};				\
+$(foreach _,${PKG_ALTERNATIVES},					\
+	  ${ECHO} 'PKG_ALTERNATIVE.$_=${PKG_ALTERNATIVE.$_}';		\
   )
 
 

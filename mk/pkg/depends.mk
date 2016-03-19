@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011,2013 LAAS/CNRS
+# Copyright (c) 2006-2011,2013,2016 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -180,7 +180,7 @@ $(foreach _pkg_,${DEPEND_USE},						\
 .PHONY: pkg-depends-file
 pkg-depends-file:
 	${RUN}${MKDIR} $(dir ${_DEPENDS_FILE});				\
-	>${_DEPENDS_FILE}; exec 3>>${_DEPENDS_FILE};			\
+	{								\
 $(foreach _pkg_,${DEPEND_USE},						\
   $(if $(filter robotpkg,${PREFER.${_pkg_}}),				\
     $(if $(filter bootstrap,${DEPEND_METHOD.${_pkg_}}),,		\
@@ -205,7 +205,8 @@ $(foreach _pkg_,${DEPEND_USE},						\
 	};								\
     )									\
   )									\
-)
+)									\
+	:;} 3>${_DEPENDS_FILE}
 
 
 
