@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 10 Nov 2015
 #
 
-DISTNAME=		mikrokopter-genom3-1.0
+DISTNAME=		mikrokopter-genom3-1.1
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
