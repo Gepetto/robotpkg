@@ -1,0 +1,4 @@
+GenoM3 component for localization.
+
+This component collects position/velocity/acceleration measurements from other
+components, and generate a fused state estimation from these sources.

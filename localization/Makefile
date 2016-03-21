@@ -14,6 +14,7 @@ SUBDIR+=	mocap-genom
 SUBDIR+=	optitrack-genom3
 SUBDIR+=	odokit
 SUBDIR+=	pom-genom
+SUBDIR+=	pom-genom3
 SUBDIR+=	ros-robot-state-publisher
 SUBDIR+=	segloc-genom
 
