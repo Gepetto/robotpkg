@@ -18,7 +18,7 @@ SYSTEM_SEARCH.openrobots-idl=\
 	'share/idl/or/time/time.idl'				\
 	'lib/pkgconfig/openrobots-idl.pc:/Version/s/[^0-9.]//gp'
 
-DEPEND_ABI.openrobots-idl?=	openrobots-idl>=1.1
+DEPEND_ABI.openrobots-idl?=	openrobots-idl>=1.2
 DEPEND_DIR.openrobots-idl?=	../../interfaces/openrobots-idl
 
 endif # OPENROBOTS_IDL_DEPEND_MK -------------------------------------------
