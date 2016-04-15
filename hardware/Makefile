@@ -11,6 +11,7 @@ SUBDIR+=	gbx-hokuyo-aist
 SUBDIR+=	gyro-libs
 SUBDIR+=	gyroKVH1000
 SUBDIR+=	gyroKVH5000
+SUBDIR+=	joystick-genom3
 SUBDIR+=	libftdi
 SUBDIR+=	mouse3d-genom
 SUBDIR+=	openni-sensor

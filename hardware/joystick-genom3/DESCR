@@ -1,0 +1,5 @@
+This component exports the readings of any connected joystick device.
+
+The joysticks readings are exported to output ports named after the devices
+name. Exported ports can be renamed via the rename() service and a list of
+device can be obtained through the device_list() service.
