@@ -1,0 +1,4 @@
+daqflex-libs is a library and a low-level test program for the USB-201
+ADC made by the Measurement Company Corporation (MCC).
+
+It is rewritten, using the C++ library provided by MCC as documentation.

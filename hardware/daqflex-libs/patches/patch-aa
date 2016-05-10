@@ -1,0 +1,21 @@
+--- configure.ac~	2013-07-30 17:54:18.000000000 +0200
++++ configure.ac	2016-05-10 14:32:18.394553181 +0200
+@@ -12,9 +12,18 @@
+ 
+ PKG_CHECK_MODULES(LIBUSB, libusb-1.0 >= 1.0)
+ 
++saved_CFLAGS=$CFLAGS
++saved_LDFLAGS=$LDFLAGS
++
++CFLAGS="$CFLAGS $LIBUSB_CFLAGS"
++LDFLAGS="$LDFLAGS $LIBUSB_LIBS"
++
+ AC_CHECK_LIB([usb-1.0], [libusb_init])
+ AC_CHECK_FUNCS([libusb_error_name])
+ 
++CFLAGS=$saved_CFLAGS
++LDFLAGS=$saved_LDFLAGS
++
+ AC_OUTPUT([Makefile
+ 	   src/Makefile
+ 	   test/Makefile
