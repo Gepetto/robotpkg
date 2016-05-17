@@ -1,4 +1,4 @@
-@comment Mon Jan 30 21:27:52 CET 2012
+@comment Tue May 17 14:47:28 CEST 2016
 include/roboptim/core.hh
 include/roboptim/core/config.hh
 include/roboptim/core/constant-function.hh
@@ -55,4 +55,3 @@ lib/libroboptim-core.so
 lib/libroboptim-core.so.1.${PKGVERSION}
 lib/pkgconfig/roboptim-core.pc
 lib/roboptim-core/roboptim-core-plugin-dummy.so
-lib/roboptim-core/roboptim-core-plugin-dummy.so.1.${PKGVERSION}

@@ -3,7 +3,7 @@
 #
 
 VERSION=	1.0
-PKGREVISION=	2
+PKGREVISION=	3
 DISTNAME=	roboptim-core-${VERSION}
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
 MASTER_REPOSITORY=git git://github.com/roboptim/roboptim-core.git
