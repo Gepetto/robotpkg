@@ -4,7 +4,7 @@
 
 HPP_PACKAGE=	        hpp-manipulation
 HPP_VERSION=		1.1.0
-PKGREVISION=
+PKGREVISION=		1
 
 CATEGORIES=		path
 HPP_COMMENT=		Manipulation problem definition and resolution
