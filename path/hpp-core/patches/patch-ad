@@ -7,7 +7,7 @@ Configuration_t expects double, not int
      {
        if (comparison_->constantRightHandSide ())
 -        rhs_ = vector_t (0);
-+        rhs_ = vector_t (0.);
++        rhs_ = vector_t ((Configuration_t::Index)0);
      }
    } // namespace core
  } // namespace hpp

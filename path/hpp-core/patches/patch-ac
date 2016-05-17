@@ -7,7 +7,7 @@ Configuration_t expects double, not int
  	PathOptimizer (problem), cost_ (), robot_ (problem.robot ()),
  	configSize_ (robot_->configSize ()), numberDofs_ (robot_->numberDof ()),
 -	initial_ (0), end_ (0)
-+	initial_ (0.), end_ (0.)
++	initial_ ((Configuration_t::Index)0), end_ ((Configuration_t::Index)0)
        {
  	distance_ = HPP_DYNAMIC_PTR_CAST (WeighedDistance, problem.distance ());
  	if (!distance_) {
