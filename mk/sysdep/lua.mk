@@ -15,9 +15,11 @@ DEPEND_USE+=		lua
 DEPEND_ABI.lua?=	lua>=5
 
 SYSTEM_SEARCH.lua=\
-  'bin/lua:1{s/^[^0-9.]*//;s/[^0-9.].*//;p;}:% -v'
+  'bin/lua:1{s/^[^0-9.]*//;s/[^0-9.].*//;p;}:% -v'	\
+  'lib/liblua{,[0-9]*}.so'				\
+  'lib/pkgconfig/lua{,[0-9]*}.pc:/Version/s/[^.0-9]//gp'
 
-SYSTEM_PKG.Debian.lua=	lua
+SYSTEM_PKG.Debian.lua=	lua liblua-dev
 SYSTEM_PKG.Fedora.lua=	lua
 SYSTEM_PKG.NetBSD.lua=	lang/lua
 
