@@ -1,6 +1,6 @@
---- driver/Makefile.orig	2013-08-14 11:34:58.000000000 +0200
-+++ driver/Makefile	2013-08-21 14:00:55.109434015 +0200
-@@ -295,11 +295,11 @@
+--- driver/Makefile.orig	2015-07-29 09:30:40.000000000 +0200
++++ driver/Makefile	2016-05-17 14:28:29.554952135 +0200
+@@ -308,11 +308,11 @@
  #****************************************************************************
  # for local installation only: sometimes /etc/modprobe.conf.local is used
  #
@@ -14,7 +14,16 @@
  endif
  
  #****************************************************************************
-@@ -331,6 +331,8 @@
+@@ -340,7 +340,7 @@
+ DATE_TIME_WARNING := $(shell if [ $(GCC_VERMAJ) -eq 4 ] && [ $(GCC_VERMIN) -ge 9 ]; then echo "y"; else echo "n"; fi)
+ endif
+ ifeq ($(DATE_TIME_WARNING),y)
+-EXTRA_CFLAGS += -Wno-error=date-time
++#EXTRA_CFLAGS += -Wno-error=date-time
+ endif
+ 
+ #****************************************************************************
+@@ -361,6 +361,8 @@
  all : message
  	$(CMDLINE)
  
@@ -23,7 +32,7 @@
  else # <<<<< USEKBUILD >>>>>>
  
  #****************************************************************************
-@@ -346,7 +348,7 @@
+@@ -376,7 +378,7 @@
  # for local installation only: sometimes /etc/modules.conf.local is used
  #
  MODCONF = "$(DESTDIR)/etc/modules.conf"
@@ -32,7 +41,7 @@
  
  #****************************************************************************
  # what's the target
-@@ -406,10 +408,10 @@
+@@ -436,10 +438,10 @@
  	else\
  		mkdir -p $(INSTALL_LOCATION);\
  	fi
@@ -46,7 +55,7 @@
  	@if [ ! -f $(MODCONF) ] || test -z $(shell grep -ls pcan $(MODCONF)) ; then\
  		mkdir -p $(shell dirname $(MODCONF));\
  		cp $(MODCONF) $(MODCONF)~ 2> /dev/null;\
-@@ -425,9 +427,9 @@
+@@ -455,9 +457,9 @@
  	fi
  # can't rmmod peak_pci for kernel versions < 3.4 (crash)
  	@if [ $(UDEV) = "yes" ]; then\
@@ -59,7 +68,7 @@
  		cp -f udev/45-pcan.rules $(DESTDIR)/etc/udev/rules.d;\
  		echo "Info: Copied 45-pcan.rules to $(DESTDIR)/etc/udev/rules.d.";\
  		peak_pci=0;\
-@@ -450,9 +452,9 @@
+@@ -480,9 +482,9 @@
  	 else\
  		echo "Info: No UDEV installation found.";\
  	 fi
@@ -72,7 +81,7 @@
  ifeq ($(DESTDIR),)
  	@if [ $(UDEV) = "yes" ]; then\
  		/sbin/udevadm control --reload-rules; \
-@@ -464,10 +466,10 @@
+@@ -494,10 +496,10 @@
  uninstall:
  	@-rmmod pcan 2> /dev/null
  	@rm -f $(INSTALL_LOCATION)/$(TARGET)
