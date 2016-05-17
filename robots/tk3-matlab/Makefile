@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 6 Jul 2015
 #
 
-DISTNAME=	tk3-matlab-1.4
+DISTNAME=	tk3-matlab-1.5
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=tk3-matlab/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}telekyb3/tk3-matlab
