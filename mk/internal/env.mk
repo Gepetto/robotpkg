@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009,2011-2013 LAAS/CNRS
+# Copyright (c) 2009,2011-2013,2016 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -35,14 +35,14 @@
 # directories without knowing on behalf which package they do that.
 #
 ifneq (0,${MAKELEVEL})
-  $(foreach _,$(sort ${_override_vars.${PKGPATH}}), \
-    $(eval $_ =$(value _overrides.${PKGPATH}.$_)))
+  $(foreach _,$(sort ${_override_vars_$(call clean,${PKGPATH})}), \
+    $(eval $_ =$(value _overrides_$(call clean,${PKGPATH}_$_))))
 endif
 
 # Helper macro exporting variables
 override define _export_override # (path, var, value)
-  export _override_vars.$(call pkgpath,$1) +=$2
-  export _overrides.$(call pkgpath,$1).$(strip $2) +=$3
+  export _override_vars_$(call clean,$(call pkgpath,$1)) +=$2
+  export _overrides_$(call clean,$(call pkgpath,$1)_$(strip $2)) +=$3
 endef
 
 
