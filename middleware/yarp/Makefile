@@ -19,17 +19,20 @@ CONFIGURE_ENV+=		ACE_ROOT=${PREFIX.ace}
 CMAKE_ARGS+=		-DCREATE_SHARED_LIBRARY=TRUE
 CMAKE_ARGS+=		-DEXPERIMENTAL_ACEFIND=TRUE
 
-CMAKE_ARGS+=        -DCMAKE_INSTALL_LIBDIR=lib
+CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
-CMAKE_ARGS+=        -DCREATE_OPTIONAL_CARRIERS=TRUE
-CMAKE_ARGS+= 		-DENABLE_yarpcar_bayer_carrier=TRUE
-CMAKE_ARGS+= 		-DENABLE_yarpcar_human_carrier=TRUE
-CMAKE_ARGS+= 		-DENABLE_yarpcar_mjpeg_carrier=TRUE
-CMAKE_ARGS+= 		-DENABLE_yarpcar_portmonitor_carrier=TRUE
-CMAKE_ARGS+= 		-DENABLE_yarpcar_priority_carrier=TRUE
-CMAKE_ARGS+= 		-DENABLE_yarpcar_rossrv_carrier=TRUE
-CMAKE_ARGS+= 		-DENABLE_yarpcar_tcpros_carrier=TRUE
-CMAKE_ARGS+= 		-DENABLE_yarpcar_xmlrpc_carrier=TRUE
+CMAKE_ARGS+=		-DCREATE_OPTIONAL_CARRIERS=TRUE
+CMAKE_ARGS+=		-DENABLE_yarpcar_bayer_carrier=TRUE
+CMAKE_ARGS+=		-DENABLE_yarpcar_human_carrier=TRUE
+CMAKE_ARGS+=		-DENABLE_yarpcar_mjpeg_carrier=TRUE
+CMAKE_ARGS+=		-DENABLE_yarpcar_portmonitor_carrier=TRUE
+CMAKE_ARGS+=		-DENABLE_yarpcar_priority_carrier=TRUE
+CMAKE_ARGS+=		-DENABLE_yarpcar_rossrv_carrier=TRUE
+CMAKE_ARGS+=		-DENABLE_yarpcar_tcpros_carrier=TRUE
+CMAKE_ARGS+=		-DENABLE_yarpcar_xmlrpc_carrier=TRUE
+
+CMAKE_ARGS+=	-DTinyXML_INCLUDE_DIRS=${PREFIX.tinyxml}/include
+CMAKE_ARGS+=	-DTinyXML_LIBRARIES=$(filter %.so,${SYSTEM_FILES.tinyxml})
 
 # XXX needs something more generic
 CXXFLAGS+=		-pthread
@@ -48,6 +51,7 @@ PKG_OPTION_DESCR.doc?=	Install GUI utilities
 
 
 define PKG_OPTION_SET.gui
+  CXXFLAGS+=		-std=c++11
   CMAKE_ARGS+=		-DCREATE_GUIS=TRUE
 
   include ../../mk/sysdep/gtk.mk
