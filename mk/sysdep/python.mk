@@ -324,13 +324,19 @@ ifndef PYTHON_NO_PLIST_COMPILE
       $(if ${PYTHON_PYCACHE},						\
         gsub("[^/]+[.]py$$", "${PYTHON_PYCACHE}/&");)			\
       $(if ${PYTHON_TAG},gsub("[.]py$$", "${PYTHON_TAG}&");)		\
-      print $$0 "c"; print $$0 "o"					\
+      print $$0 "c";							\
+      if ($(subst python,,${PKG_ALTERNATIVE.python})>=35) {		\
+        gsub("[.]py$$", "");						\
+        print $$0 ".opt-1.pyc";						\
+      } else								\
+        print $$0 "o";							\
     }'
 
   PRINT_PLIST_FILTER+=| ${AWK} '					\
     ! /.py[co]$$/ { print; next; }					\
     {									\
       orig=$$0;								\
+      gsub(".opt-[12].pyc$$", ".pyc");					\
       gsub("${PYTHON_TAG}[.]py[co]$$", ".py");				\
       $(if ${PYTHON_PYCACHE},gsub("${PYTHON_PYCACHE}","");)		\
     }									\
