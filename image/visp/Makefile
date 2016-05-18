@@ -38,6 +38,8 @@ CMAKE_ARGS+=	-DUSE_XML2=ON
 CMAKE_ARGS+=	-DUSE_LIBJPEG=ON
 CMAKE_ARGS+=	-DUSE_LIBPNG=ON
 
+CMAKE_ARGS+=	-DUSE_OGRE=OFF
+
 # Compilation with ffmpeg fails (Note: not tested again with 2.6.1)
 CMAKE_ARGS+=	-DUSE_FFMPEG=OFF
 
