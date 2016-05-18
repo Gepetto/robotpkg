@@ -19,9 +19,8 @@ INSTALL_TARGET=	install
 
 MAKE_ENV+=	JAVAC="${JAVAC} -encoding UTF8"
 
-# doc option
+# doc option - disable by default, too many errors with jdk-1.8
 PKG_SUPPORTED_OPTIONS+=	doc
-PKG_SUGGESTED_OPTIONS+=	doc
 PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
 
 define PKG_OPTION_SET.doc
