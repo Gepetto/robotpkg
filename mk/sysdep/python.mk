@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2015 LAAS/CNRS
+# Copyright (c) 2010-2016 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -71,7 +71,7 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
-DEPEND_ABI.python?=	python>=2.5<3.5
+DEPEND_ABI.python?=	python>=2.5<3.6
 
 # factorize SYSTEM_SEARCH.python* here for all python* packages
 override define _py_syssearch
@@ -101,7 +101,7 @@ CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python26 python27
-PKG_ALTERNATIVES.python+=	python31 python32 python33 python34
+PKG_ALTERNATIVES.python+=	python31 python32 python33 python34 python35
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
@@ -115,6 +115,9 @@ else ifeq (Ubuntu,${OPSYS})
   endif
   ifneq (,$(filter 12.10 13.04 13.10,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python33
+  endif
+  ifneq (,$(filter 16.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python35
   endif
 else ifeq (Fedora,${OPSYS})
   ifneq (,$(filter 20,${OS_VERSION}))
@@ -195,6 +198,18 @@ define PKG_ALTERNATIVE_SET.python34
   DEPEND_ABI.python34?=	$(strip ${_py_abi})
 
   include ../../mk/sysdep/python34.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python35= Use python-3.5
+PKGTAG.python35 =		py35
+define PKG_ALTERNATIVE_SELECT.python35
+  $(call preduce,${DEPEND_ABI.python} python>=3.5<3.6)
+endef
+define PKG_ALTERNATIVE_SET.python35
+  _py_abi:=$(subst python,python35,${PKG_ALTERNATIVE_SELECT.python35})
+  DEPEND_ABI.python35?=	$(strip ${_py_abi})
+
+  include ../../mk/sysdep/python35.mk
 endef
 
 # default tag value before alternative resolution (used in particular by
