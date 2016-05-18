@@ -61,6 +61,7 @@ ifdef GENOM_MODULE
   endef
 
   GNU_CONFIGURE=	yes
+  MAKE_JOBS_SAFE?=	no
 
   pre-configure: genom-generate
 
