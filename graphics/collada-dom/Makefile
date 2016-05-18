@@ -20,12 +20,13 @@ WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 CMAKE_ARGS+=	-DOPT_COLLADA14=ON
 CMAKE_ARGS+=	-DOPT_COLLADA15=ON
 
-include ../../mk/sysdep/cmake.mk
-include ../../mk/sysdep/libxml2.mk
-include ../../mk/sysdep/pcre.mk
 include ../../archivers/zlib/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/libxml2.mk
+include ../../mk/sysdep/pcre.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
