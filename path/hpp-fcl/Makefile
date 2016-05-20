@@ -1,10 +1,9 @@
 # robotpkg Makefile for:	path/hpp-util
-# Created:			Florent Lamirax on Sat, 7 Mar 2015
+# Created:			Florent Lamiraux on Sat, 7 Mar 2015
 #
 
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		0.4
-PKGREVISION=
+HPP_VERSION=		0.4.1
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations
@@ -15,6 +14,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
+CMAKE_ARGS+=		-DFCL_HAVE_EIGEN=OFF
 
 include ../../mapping/octomap/depend.mk
 include ../../math/libccd/depend.mk

@@ -1,4 +1,4 @@
-@comment Sat Mar 7 14:13:51 CET 2015
+@comment Fri May 13 15:21:02 CEST 2016
 include/hpp/fcl/BV/AABB.h
 include/hpp/fcl/BV/BV.h
 include/hpp/fcl/BV/BV_node.h
@@ -50,7 +50,6 @@ include/hpp/fcl/collision_func_matrix.h
 include/hpp/fcl/collision_node.h
 include/hpp/fcl/collision_object.h
 include/hpp/fcl/config-fcl.hh
-include/hpp/fcl/config.h
 include/hpp/fcl/config.hh
 include/hpp/fcl/continuous_collision.h
 include/hpp/fcl/data_types.h
@@ -58,6 +57,12 @@ include/hpp/fcl/deprecated.h
 include/hpp/fcl/deprecated.hh
 include/hpp/fcl/distance.h
 include/hpp/fcl/distance_func_matrix.h
+include/hpp/fcl/eigen/math_details.h
+include/hpp/fcl/eigen/plugins/ccd/interval-matrix.h
+include/hpp/fcl/eigen/plugins/ccd/interval-vector.h
+include/hpp/fcl/eigen/product.h
+include/hpp/fcl/eigen/taylor_operator.h
+include/hpp/fcl/eigen/vec_3fx.h
 include/hpp/fcl/exception.h
 include/hpp/fcl/fwd.hh
 include/hpp/fcl/intersect.h
@@ -70,9 +75,11 @@ include/hpp/fcl/knn/nearest_neighbors_sqrtapprox.h
 include/hpp/fcl/learning/classifier.h
 include/hpp/fcl/math/math_details.h
 include/hpp/fcl/math/matrix_3f.h
+include/hpp/fcl/math/matrix_3fx.h
 include/hpp/fcl/math/sampling.h
 include/hpp/fcl/math/transform.h
 include/hpp/fcl/math/vec_3f.h
+include/hpp/fcl/math/vec_3fx.h
 include/hpp/fcl/math/vec_nf.h
 include/hpp/fcl/narrowphase/gjk.h
 include/hpp/fcl/narrowphase/gjk_libccd.h
