@@ -1,6 +1,8 @@
+# robotpkg Makefile for:	pkgtools/pkgin
+# Created:			Anthony Mallet on Mon, 5 Aug 2013
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		pkgin-0.6.4
 CATEGORIES=		pkgtools
 MASTER_SITES=		ftp://ftp.NetBSD.org/pub/NetBSD/misc/imil/

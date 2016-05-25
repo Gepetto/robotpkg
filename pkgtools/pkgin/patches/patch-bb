@@ -2,7 +2,7 @@
 +++ repositories.conf	2013-08-03 16:31:56.000000000 +0200
 @@ -1,4 +1,4 @@
 -# $Id: repositories.conf,v 1.3 2012/06/13 13:50:17 imilh Exp $
-+# $Id: repositories.conf 2013/08/03 16:31:56 tho $
++# $Id: repositories.conf 2016/05/23 11:45:29 $
  #
  # Pkgin repositories list
  #
@@ -18,14 +18,14 @@
 +# Official remote http repository
  #
 -# Remote http repository
-+http://robotpkg.openrobots.org/packages/bsd/$osname-$osrelease-$arch/All
++http://robotpkg.openrobots.org/packages/bsd/$osname-$osrelease-$arch/pub
 +
 +# Remote ftp repository
  #
 -# http://mirror-master.dragonflybsd.org/packages/$arch/DragonFly-$osrelease/stable/All
-+# ftp://example.com/pub/robotpkg/packages/bsd/$arch-$osrelease/All
++# ftp://example.com/pub/robotpkg/packages/bsd/$arch-$osrelease/pub
  #
  # Local repository (must contain a pkg_summary.gz or bz2)
  #
 -# file:///usr/pkgsrc/packages/All
-+# file:///opt/robotpkg/packages/$arch-$osrelease/All
++# file:///opt/robotpkg/packages/$arch-$osrelease/pub
