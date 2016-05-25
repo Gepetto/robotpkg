@@ -91,7 +91,7 @@ package-message:
 package-warnings:
 ifdef NO_PUBLIC_BIN
 	@found=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
-	${WARNING_MSG} "$$found may not be publicly available:";
+	${WARNING_MSG} "$$found may not be publicly available:";	\
 	${WARNING_MSG} $(call quote,${NO_PUBLIC_BIN})
 endif
 
@@ -114,11 +114,11 @@ ifneq (,$(filter deb,${PKG_FORMAT}))
 	dirs=;								\
 	dirs="$$dirs ${PKGPUBLICSUBDIR}";				\
 $(foreach _,${PACKAGES_SUBDIRS},					\
-	for p in ${PACKAGES.$_}; do					\
-	  dirs="$$dirs $$_";						\
-	done;								\
+	dirs="$$dirs $_";						\
 )									\
 	for d in $$dirs; do						\
+	  ${TEST} -d ${DEB_PACKAGES}/$$d ||				\
+	    ${MKDIR} ${DEB_PACKAGES}/$$d;				\
 	  ${SETENV} ${PKGREPO2DEB_ENV}					\
 	    ${PKGREPO2DEB} -r ${PKGREPOSITORY} -d ${DEB_PACKAGES}/$$d	\
 	      ${PKGREPO2DEB_ARGS} ${PACKAGES}/$$d/$$pkgfile${PKG_SUFX};	\
