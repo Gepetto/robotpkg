@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2011,2013 LAAS/CNRS
+# Copyright (c) 2006,2009-2011,2013,2016 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -134,7 +134,7 @@ pkg-tarup:
 
 # --- pkg-links (PRIVATE) --------------------------------------------
 #
-# pkg-links creates symlinks to the binary package from the categories to which
+# pkg-links creates symlinks to the binary package from the modules to which
 # the package belongs.
 #
 .PHONY: pkg-links
@@ -142,14 +142,30 @@ pkg-links:
 	${RUN}pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;		\
 	${FIND} ${PACKAGES} -type l -name $$pkgfile${PKG_SUFX} -print |	\
 		${XARGS} ${RM} -f;					\
-$(foreach _dir_,$(addprefix ${PACKAGES}/,${CATEGORIES}),		\
-	${MKDIR} ${_dir_} || {						\
-	  ${ERROR_MSG} "Can't create directory "${_dir_}".";		\
+$(if ${NO_PUBLIC_BIN},,							\
+	${STEP_MSG} "Linking package in ${PACKAGES}/${PKGPUBLICSUBDIR}";\
+	${MKDIR} ${PACKAGES}/${PKGPUBLICSUBDIR} || {			\
+	  ${ERROR_MSG} "Can't create directory "			\
+	    "${PACKAGES}/${PKGPUBLICSUBDIR}.";				\
 	  exit 1;							\
 	};								\
-	${RM} -f ${_dir_}/$$pkgfile${PKG_SUFX};				\
+	${RM} -f ${PACKAGES}/${PKGPUBLICSUBDIR}/$$pkgfile${PKG_SUFX};	\
 	${LN} -s ../${PKGREPOSITORYSUBDIR}/$$pkgfile${PKG_SUFX}		\
-	  ${_dir_};							\
+	      ${PACKAGES}/${PKGPUBLICSUBDIR}/;				\
+)									\
+$(foreach _,${PACKAGES_SUBDIRS},					\
+	for p in ${PACKAGES.$_}; do					\
+	  if ${PKG_ADMIN} pmatch "$$p" '${PKGNAME}'; then		\
+	    ${STEP_MSG} "Linking package in ${PACKAGES}/$_";		\
+	    ${MKDIR} ${PACKAGES}/$_ || {				\
+	      ${ERROR_MSG} "Can't create directory ${PACKAGES}/$_.";	\
+	      exit 1;							\
+	    };								\
+	    ${RM} -f ${PACKAGES}/$_/$$pkgfile${PKG_SUFX};		\
+	    ${LN} -s ../${PKGREPOSITORYSUBDIR}/$$pkgfile${PKG_SUFX}	\
+	      ${PACKAGES}/$_/;						\
+	  fi;								\
+	done;								\
 )
 
 
@@ -165,21 +181,30 @@ include ${ROBOTPKG_DIR}/mk/sysdep/gzip.mk
 pkg-update-summary:
 	${RUN}								\
 	pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
-	pkgbin="${PKGREPOSITORY}/$$pkgfile${PKG_SUFX}";			\
 	${TEST} -n "$$pkgfile" ||					\
 	  ${FAIL_MSG} "${PKGWILDCARD} not found";			\
-	${TEST} -s ${PKGSUMMARY} ||					\
-	  ${GZIP_CMD} -c9 </dev/null >${PKGSUMMARY};			\
-	${MV} -f ${PKGSUMMARY} ${PKGSUMMARY}~;				\
-	${GZIP_CMD} -dc ${PKGSUMMARY}~ | {				\
-	  ${AWK} -F= -vskip="$$pkgfile" '				\
-	    NF {							\
-	      if ($$1 == "PKGNAME") { pkgname = $$2 };			\
-	      if (e) { e = e "\n" $$0; } else { e = $$0; }		\
-	    }								\
-	    !NF {							\
-	      if (pkgname != skip) { print e; print; }			\
-	      e = "";							\
-	    }';								\
-	  ${PKG_INFO} -X "$$pkgbin";					\
-	} | ${GZIP_CMD} -c9 > ${PKGSUMMARY}
+	dirs="${PKGREPOSITORY}";					\
+	dirs="$$dirs ${PACKAGES}/${PKGPUBLICSUBDIR}";			\
+$(foreach _,${PACKAGES_SUBDIRS},					\
+	dirs="$$dirs ${PACKAGES}/$_";					\
+)									\
+	for d in $$dirs; do						\
+	  ${TEST} -d "$$d" || continue;					\
+	  ${TEST} -s "$$d/${PKGSUMMARY}" ||				\
+	    ${GZIP_CMD} -c9 </dev/null >$$d/${PKGSUMMARY};		\
+	  ${MV} -f $$d/${PKGSUMMARY} $$d/${PKGSUMMARY}~;		\
+	  ${GZIP_CMD} -dc $$d/${PKGSUMMARY}~ | {			\
+	    ${AWK} -F= -vskip="$$pkgfile" '				\
+	      NF {							\
+	        if ($$1 == "PKGNAME") { pkgname = $$2 };		\
+	        if (e) { e = e "\n" $$0; } else { e = $$0; }		\
+	      }								\
+	      !NF {							\
+	        if (pkgname != skip) { print e; print; }		\
+	        e = "";							\
+	      }';							\
+	    if ${TEST} -f "$$d/$$pkgfile${PKG_SUFX}"; then		\
+	      ${PKG_INFO} -X "$$d/$$pkgfile${PKG_SUFX}";		\
+	    fi;								\
+	  } | ${GZIP_CMD} -c9 > $$d/${PKGSUMMARY};			\
+	done

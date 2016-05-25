@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013 LAAS/CNRS
+# Copyright (c) 2006-2013,2016 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -109,9 +109,10 @@ _DEINSTALL_FILE=	+DEINSTALL
 # Binary package files and directories
 PKG_SUFX?=		.tgz
 PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
-PKGSUMMARY?=		${PKGREPOSITORY}/pkg_summary.gz
+PKGSUMMARY?=		pkg_summary.gz
 PKGREPOSITORY?=		${PACKAGES}/${PKGREPOSITORYSUBDIR}
 PKGREPOSITORYSUBDIR?=	All
+PKGPUBLICSUBDIR?=	pub
 
 
 # Return $1 only if PKGNAME is not installed or should be updated. If package

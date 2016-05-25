@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2007,2009,2011,2013 LAAS/CNRS
+# Copyright (c) 2006-2007,2009,2011,2013,2016 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -107,11 +107,20 @@ ifneq (,$(filter deb,${PKG_FORMAT}))
   PKGREPO2DEB_ENV+=	ROBOTPKG_ADMIN=${PKG_ADMIN_CMD}
   PKGREPO2DEB_ENV+=	TMPDIR=${WRKDIR}
 
-  PKGREPO2DEB_ARGS+=	-r ${PKGREPOSITORY}
-  PKGREPO2DEB_ARGS+=	-d ${DEB_PACKAGES}
-
   .PHONY: deb-package
   deb-package:
-	${RUN} ${SETENV} ${PKGREPO2DEB_ENV}				\
-	  ${PKGREPO2DEB} ${PKGREPO2DEB_ARGS} ${PKGFILE}
+	${RUN}								\
+	pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
+	dirs=;								\
+	dirs="$$dirs ${PKGPUBLICSUBDIR}";				\
+$(foreach _,${PACKAGES_SUBDIRS},					\
+	for p in ${PACKAGES.$_}; do					\
+	  dirs="$$dirs $$_";						\
+	done;								\
+)									\
+	for d in $$dirs; do						\
+	  ${SETENV} ${PKGREPO2DEB_ENV}					\
+	    ${PKGREPO2DEB} -r ${PKGREPOSITORY} -d ${DEB_PACKAGES}/$$d	\
+	      ${PKGREPO2DEB_ARGS} ${PACKAGES}/$$d/$$pkgfile${PKG_SUFX};	\
+	done
 endif
