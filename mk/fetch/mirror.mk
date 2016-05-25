@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013 LAAS/CNRS
+# Copyright (c) 2013,2016 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -34,13 +34,13 @@ ifneq (,$(strip ${ALLFILES}))
   ifeq (,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}))
     ifndef NO_PUBLIC_SRC
       _MIRROR_TARGETS+=check-distfiles
-    endif
-    ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
-      ifneq (,$(filter archive,${FETCH_METHOD}))
-        _MIRROR_TARGETS+=check-master-sites
+      ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
+        ifneq (,$(filter archive,${FETCH_METHOD}))
+          _MIRROR_TARGETS+=check-master-sites
 
-        DEPEND_METHOD.curl+=	bootstrap
-        include ${ROBOTPKG_DIR}/mk/sysdep/curl.mk
+          DEPEND_METHOD.curl+=	bootstrap
+          include ${ROBOTPKG_DIR}/mk/sysdep/curl.mk
+        endif
       endif
     endif
   endif
@@ -91,7 +91,10 @@ mirror-message:
 
 .PHONY: mirror-na
 mirror-na:
-	${RUN}${MAKE} cbbh >${_mirrorlog_cbbh} 2>&1 ||:
+	${RUN}{								\
+	  ${ECHO_MSG} "${PKGNAME} is restricted";			\
+	  ${ECHO_MSG} "${RESTRICTED}";					\
+	} >${_mirrorlog_cbbh} 2>&1
 
 
 # --- check-distfiles (PRIVATE) --------------------------------------------
