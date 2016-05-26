@@ -16,6 +16,7 @@ NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
 
 DYNAMIC_PLIST_DIRS+=	share/doc/hrp2-14
+CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
