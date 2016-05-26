@@ -15,7 +15,7 @@ RESTRICTED=	Redistribution of repackaged binaries not permitted
 NO_PUBLIC_SRC=	${RESTRICTED}
 NO_PUBLIC_BIN=	${RESTRICTED}
 
-DOXYGEN_PLIST_DIR+=	share/doc/hrp2-10
+DYNAMIC_PLIST_DIRS+=	share/doc/hrp2-10
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
