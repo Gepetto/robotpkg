@@ -12,7 +12,6 @@ SUBDIR+=	boost-log
 SUBDIR+=	gbx-share
 SUBDIR+=	gbx-flexiport
 SUBDIR+=	jafar-kernel
-SUBDIR+=	jrl-modelloader
 SUBDIR+=	jsoncpp
 SUBDIR+=	libedit
 SUBDIR+=	log4cxx

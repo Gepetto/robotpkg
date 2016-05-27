@@ -1,7 +1,0 @@
-@comment Fri Feb 24 14:57:13 CET 2012
-bin/ModelLoaderJRL
-bin/ModelLoaderJRL.sh
-lib/pkgconfig/jrl-modelloader.pc
-share/idl/jrl-modelloader/common-modelloader.idl
-share/idl/jrl-modelloader/jrl-modelloader.idl
-share/jrl-modelloader/proto
