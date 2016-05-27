@@ -22,7 +22,6 @@ SUBDIR+=	hpp-manipulation-corba
 SUBDIR+=	hpp-manipulation-urdf
 SUBDIR+=	hpp-model
 SUBDIR+=	hpp-model-urdf
-SUBDIR+=	hpp-openhrp
 SUBDIR+=	hpp-statistics
 SUBDIR+=	hpp-util
 SUBDIR+=	hpp-walkfootplanner

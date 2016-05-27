@@ -1,8 +1,0 @@
-@comment Mon Nov 23 09:45:04 CET 2009
-include/hppOpenHRP/parserOpenHRPKineoDevice.h
-include/hppOpenHRP/parserOpenHRPKineoDeviceHrp2.h
-include/hppOpenHRP/parserOpenHRPKineo.h
-include/hppOpenHRP/parserOpenHRPKineoObstacle.h
-lib/libhppOpenHRP.la
-lib/pkgconfig/hppOpenHRP.pc
-@dirrm include/hppOpenHRP
