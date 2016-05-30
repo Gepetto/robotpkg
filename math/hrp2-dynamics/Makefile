@@ -7,14 +7,16 @@ PKGNAME=	hrp2-dynamics-${VERSION}
 VERSION=	1.5.3
 
 CATEGORIES=	math
-NO_PUBLIC_SRC=	yes
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hrp2-dynamics/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_JRL}algo/hrp2-dynamics
 
 MAINTAINER=	hpp@laas.fr
-#HOMEPAGE=	
 COMMENT=	Optimized implementation of functions related to HRP-2 dynamics.
 LICENSE=	cnrs-hpp-closed-source
+
+RESTRICTED=	Redistribution of sources and repackaged binaries not permitted
+NO_PUBLIC_SRC=	${RESTRICTED}
+NO_PUBLIC_BIN=	${RESTRICTED}
 
 CMAKE_ARGS+=-DCMAKE_INSTALL_LIBDIR=lib
 DYNAMIC_PLIST_DIRS+=	share/doc/hrp2-dynamics
