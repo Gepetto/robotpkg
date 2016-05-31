@@ -16,6 +16,10 @@ CMAKE_ARG_PATH=		..
 HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
+# omniorb has some issue with parallelism. Error message omniidl: Cannot rename
+# "foo/new__init__.py" to "foo/__init__.py"
+MAKE_JOBS_SAFE=		no
+
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
