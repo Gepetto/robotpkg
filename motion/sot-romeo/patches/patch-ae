@@ -1,0 +1,15 @@
+Do not know how to handle rospack with robotpkg
+
+--- CMakeLists.txt.orig	2014-10-23 14:06:15.000050000 +0200
++++ CMakeLists.txt	2014-10-23 14:07:49.358651000 +0200
+@@ -44,7 +44,9 @@
+ ADD_REQUIRED_DEPENDENCY("sot-tools")
+ ADD_REQUIRED_DEPENDENCY("sot-dynamic >= 2.6")
+ 
+-ADD_ROSPACK_DEPENDENCY("dynamic_graph_bridge")
++#ADD_ROSPACK_DEPENDENCY("dynamic_graph_bridge")
++ADD_REQUIRED_DEPENDENCY("dynamic_graph_bridge")
++
+ # Search for dependencies.
+ # Boost
+ SET(BOOST_COMPONENTS filesystem system thread)

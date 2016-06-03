@@ -20,5 +20,6 @@ SUBDIR+=	softMotion-libs
 SUBDIR+=	sot-core
 SUBDIR+=	sot-dynamic
 SUBDIR+=	sot-pattern-generator
+SUBDIR+=	sot-romeo
 
 include ../mk/robotpkg.subdir.mk

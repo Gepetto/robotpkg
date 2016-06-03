@@ -1,0 +1,14 @@
+Dont know how to use rospack with robotpkg
+
+--- src/CMakeLists.txt.orig	2014-10-23 14:10:27.557276000 +0200
++++ src/CMakeLists.txt	2014-10-23 14:11:55.897182000 +0200
+@@ -71,7 +71,8 @@
+ PKG_CONFIG_USE_DEPENDENCY(${CONTROLLER_NAME} "dynamic-graph-python")
+ PKG_CONFIG_USE_DEPENDENCY(${CONTROLLER_NAME} "sot-core")
+ 
+-ROSPACK_USE_DEPENDENCY(${CONTROLLER_NAME} "dynamic_graph_bridge")
++#ROSPACK_USE_DEPENDENCY(${CONTROLLER_NAME} "dynamic_graph_bridge")
++PKG_CONFIG_USE_DEPENDENCY(${CONTROLLER_NAME} "dynamic_graph_bridge")
+ 
+ 
+ IF(UNIX AND NOT APPLE)
