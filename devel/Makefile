@@ -26,6 +26,7 @@ SUBDIR+=	ros-filters
 SUBDIR+=	ros-lint
 SUBDIR+=	ros-nodelet-core
 SUBDIR+=	ros-pluginlib
+SUBDIR+=	ros-realtime-tools
 SUBDIR+=	ros-ros
 SUBDIR+=	ros-roscpp-core
 SUBDIR+=	ros-xacro

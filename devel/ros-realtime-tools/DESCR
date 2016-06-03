@@ -1,0 +1,4 @@
+This package contains a set of tools that can be used from a hard realtime
+thread, without breaking the realtime behavior. The tools currently only
+provides the realtime publisher, which makes it possible to publish messages to
+a ROS topic from a realtime thread.
