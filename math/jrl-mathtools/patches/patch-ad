@@ -1,0 +1,11 @@
+--- cmake/compiler.cmake~	2013-02-08 18:08:24.000000000 +0100
++++ cmake/compiler.cmake	2016-06-09 15:20:54.000000000 +0200
+@@ -22,7 +22,7 @@
+   # correctly.
+ 
+  IF(UNIX)
+-  SET(FLAGS -pedantic -Wno-long-long -Wall -Wextra -Wcast-align -Wcast-qual
++  SET(FLAGS -Wno-long-long -Wall -Wextra -Wcast-align -Wcast-qual
+             -Wformat -Wwrite-strings -Wconversion)
+   FOREACH(FLAG ${FLAGS})
+     CHECK_CXX_COMPILER_FLAG(${FLAG} R${FLAG})

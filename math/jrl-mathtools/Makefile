@@ -18,6 +18,8 @@ DYNAMIC_PLIST_DIRS+=	share/doc/jrl-mathtools
 DEPEND_ABI.boost-headers=	boost-headers>=1.40
 DEPEND_ABI.boost-libs=		boost-libs>=1.40
 
+CMAKE_ARGS+=	-DCXX_DISABLE_WERROR=TRUE
+
 # configure the path to blas/lapack libraries. cmake Find{BLAS,LAPACK}
 # have no other mean to configure a specific path.
 CMAKE_ARGS+=\
