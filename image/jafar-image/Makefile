@@ -17,4 +17,7 @@ include ../../image/opencv/depend.mk
 include ../../math/boost-numeric-bindings/depend.mk
 include ../../math/lapack/depend.mk
 include ../../mk/language/c.mk
+
+DEPEND_ABI.opencv += opencv<3
+
 include ../../mk/robotpkg.mk
