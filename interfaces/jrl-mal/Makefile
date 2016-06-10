@@ -14,6 +14,8 @@ LICENSE=	gnu-lgpl-v3
 
 DYNAMIC_PLIST_DIRS+=	share/doc/jrl-mal
 
+CMAKE_ARGS+=	-DCXX_DISABLE_WERROR=TRUE
+
 # configure the path to blas/lapack libraries. cmake Find{BLAS,LAPACK}
 # have no other mean to configure a specific path.
 CMAKE_ARGS+=\
