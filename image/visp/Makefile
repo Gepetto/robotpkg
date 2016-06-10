@@ -83,6 +83,9 @@ include ../../mk/sysdep/libxml2.mk
 include ../../mk/sysdep/libX11.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
+
+DEPEND_ABI.opencv += opencv<3
+
 include ../../mk/robotpkg.mk
 
 # Install examples
