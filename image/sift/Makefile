@@ -42,4 +42,7 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/gtk.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
+
+DEPEND_ABI.opencv += opencv<3
+
 include ../../mk/robotpkg.mk
