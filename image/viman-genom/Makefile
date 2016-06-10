@@ -32,4 +32,7 @@ include ../../manipulation/genManip-genom/depend.mk
 include ../../mk/sysdep/libjpeg.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
+
+DEPEND_ABI.opencv += opencv<3
+
 include ../../mk/robotpkg.mk
