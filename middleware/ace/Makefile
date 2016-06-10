@@ -32,6 +32,13 @@ CONFIGURE_ARGS+=	--disable-optimize
 # is no reason not to use system's memcpy() anyway.
 CONFIGURE_ARGS+=	ace_cv_memcpy_loop_unroll=no
 
+# Disable gethostbyaddr_r etc. on NetBSD, they are available in the libc but
+# not exported (this is a GNU extension)
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (NetBSD,${OPSYS})
+  CONFIGURE_ARGS+=	--disable-reentrant
+endif
+
 OVERRIDE_DIRDEPTH.pkg-config=	3
 
 BUILD_DIRS=		build
