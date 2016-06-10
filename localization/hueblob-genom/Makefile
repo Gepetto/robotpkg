@@ -31,6 +31,8 @@ PKG_OPTIONS_GROUP.incompatible=	api display
 define PKG_OPTION_UNSET.api
   include ../../image/libimages3d/depend.mk
   include ../../image/opencv/depend.mk
+
+  DEPEND_ABI.opencv += opencv<3
 endef
 
 include ../../image/viam-genom/depend.mk
