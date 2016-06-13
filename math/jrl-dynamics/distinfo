@@ -2,3 +2,5 @@ SHA1 (jrl-dynamics-1.25.0.tar.gz) = 4fa47df9a5c4b722d726bf36af0a5c8218cb2799
 RMD160 (jrl-dynamics-1.25.0.tar.gz) = 8d470a583fc98c521c1813ef59a0e53c0b9bd38d
 Size (jrl-dynamics-1.25.0.tar.gz) = 423072 bytes
 SHA1 (patch-aa) = 22361851f24e1515d9f680079b7cb81c1e2eb937
+SHA1 (patch-ab) = bdc7d9ac574e8e699f4658315251932d60472060
+SHA1 (patch-ac) = 888cb2fbb77d74712c819d98810f264972faf062

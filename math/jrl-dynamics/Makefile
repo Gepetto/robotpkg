@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Mon, 14 May 2007
 #
 
+PKGREVISION=	1
 DISTNAME=	jrl-dynamics-${VERSION}
 PKGNAME=	jrl-dynamics-${VERSION}
 VERSION=	1.25.0
@@ -15,6 +16,7 @@ MAINTAINER=	hpp@laas.fr
 COMMENT=	JRL-Japan implementation of dynamic robot.
 LICENSE=	gnu-lgpl-v3
 
+USE_BOOST_LIBS=		system
 
 DYNAMIC_PLIST_DIRS+=	share/doc/jrl-dynamics
 
@@ -25,6 +27,7 @@ CMAKE_ARG_PATH=		..
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
 
+include ../../devel/boost-libs/depend.mk
 include ../../interfaces/jrl-mal/depend.mk
 include ../../interfaces/abstract-robot-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
