@@ -42,8 +42,9 @@ INCLUDE_DIRS.libtool-ltdl+=	include
 LIBRARY_DIRS.boost-libs+=	lib
 LIBRARY_DIRS.libtool-ltdl+=	lib
 
-# uses boost filesystem v3
-DEPEND_ABI.boost-headers=	boost-headers>=1.44
+# uses boost filesystem v3, not compatible with boost>=1.60
+DEPEND_ABI.boost-headers=	boost-headers>=1.44<1.60
+DEPEND_ABI.boost-libs=		boost-libs>=1.44<1.60
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
