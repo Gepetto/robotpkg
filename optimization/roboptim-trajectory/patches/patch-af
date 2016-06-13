@@ -1,0 +1,13 @@
+Fix for boost>=1.60
+
+--- include/roboptim/trajectory/spline-length.hh~	2012-01-30 22:53:03.000000000 +0100
++++ include/roboptim/trajectory/spline-length.hh	2016-06-13 12:17:00.000000000 +0200
+@@ -51,7 +51,7 @@
+     /// \param nDiscretizationPoints number of discretization points
+     SplineLength (const CubicBSpline& spline,
+ 		  const size_type nDiscretizationPoints = 100,
+-		  boost::optional<interval_t> interval = boost::none_t ()) throw ();
++		  boost::optional<interval_t> interval = boost::none) throw ();
+ 
+     virtual ~SplineLength () throw ();
+ 

@@ -3,7 +3,7 @@
 #
 
 VERSION=	1.0
-PKGREVISION=	1
+PKGREVISION=	2
 DISTNAME=	roboptim-trajectory-${VERSION}
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
 MASTER_REPOSITORY=git git://github.com/roboptim/roboptim-trajectory.git
