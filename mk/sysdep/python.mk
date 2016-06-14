@@ -123,6 +123,8 @@ else ifeq (Fedora,${OPSYS})
   ifneq (,$(filter 20,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python33
   endif
+else ifeq (NetBSD,${OPSYS})
+  PREFER_ALTERNATIVE.python?=	python27 python35
 else ifeq (OpenNao,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python32
 endif
