@@ -32,8 +32,8 @@ DEPEND_METHOD.py-sphinx?=	build
 # specification.
 #
 SYSTEM_SEARCH.py-sphinx=\
-  'bin/sphinx-build:1s/[^0-9.]//gp:{ % -_ || dummy=; }'			\
-  'bin/sphinx-apidoc'							\
+  'bin/sphinx-build{,[0-9]*}:1s/[^0-9.]//gp:{ % -_ || dummy=; }'	\
+  'bin/sphinx-apidoc{,[0-9]*}'						\
   $(if ${PYTHON_DEPEND_MK},'${PYTHON_SYSLIBSEARCH}/sphinx/__init__.py')
 
 _py-sphinx-pyver=$(if ${PYTHON_DEPEND_MK}, (python-${PYTHON_VERSION}))
@@ -43,6 +43,8 @@ SYSTEM_PKG.Fedora.py-sphinx=	python-sphinx${_py-sphinx-pyver}
 SYSTEM_PKG.Gentoo.py-sphinx=	python-sphinx${_py-sphinx-pyver}
 SYSTEM_PKG.NetBSD.py-sphinx=\
   textproc/$(if ${PYTHON_DEPEND_MK},${PKGTAG.python},py)-sphinx
+
+export SPHINX_BUILD=$(word 1,${SYSTEM_FILES.py-sphinx})
 
 endif # PY_SPHINX_DEPEND_MK ------------------------------------------------
 
