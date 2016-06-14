@@ -2,7 +2,7 @@
 # Created:			Aurelie Clodic on Mon, 16 Dec 2013
 #
 
-VERSION=	2.0.6
+VERSION=	2.0.7
 DISTNAME=	dynamic_graph_bridge-${VERSION}
 PKGNAME=	dynamic-graph-bridge-${VERSION}
 

@@ -1,23 +1,22 @@
-@comment Fri Jun 3 13:34:34 CEST 2016
+@comment Tue Jun 14 16:59:00 CEST 2016
 include/dynamic_graph_bridge/RunPythonFile.h
 include/dynamic_graph_bridge/RunPythonFileRequest.h
 include/dynamic_graph_bridge/RunPythonFileResponse.h
-include/dynamic_graph_bridge/config.h
 include/dynamic_graph_bridge/config.hh
 include/dynamic_graph_bridge/deprecated.hh
 include/dynamic_graph_bridge/ros_init.hh
 include/dynamic_graph_bridge/ros_interpreter.hh
 include/dynamic_graph_bridge/sot_loader.hh
 include/dynamic_graph_bridge/warning.hh
-lib/librobot_model.so
 lib/libros_bridge.so
 lib/libros_interpreter.so
-lib/libros_joint_state.so
-lib/libros_publish.so
-lib/libros_subscribe.so
-lib/libros_time.so
 lib/libsot_loader.so
 lib/pkgconfig/dynamic_graph_bridge.pc
+lib/plugin/robot_model.so
+lib/plugin/ros_joint_state.so
+lib/plugin/ros_publish.so
+lib/plugin/ros_subscribe.so
+lib/plugin/ros_time.so
 ${PYTHON_SITELIB}/dynamic_graph/ros/__init__.py
 ${PYTHON_SITELIB}/dynamic_graph/ros/robot_model/__init__.py
 ${PYTHON_SITELIB}/dynamic_graph/ros/robot_model/wrap.so
