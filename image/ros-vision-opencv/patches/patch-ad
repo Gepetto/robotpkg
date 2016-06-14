@@ -1,14 +1,14 @@
 Fix OpenCV libraries variable name (OpenCV-2.3 does not include backward
 compat with 2.2 while OpenCV-2.4 does...)
 
---- image_geometry/CMakeLists.txt~	2014-07-27 17:53:13.000000000 +0200
-+++ image_geometry/CMakeLists.txt	2014-10-28 15:30:08.256677510 +0100
+--- image_geometry/CMakeLists.txt~	2016-03-10 11:15:40.000000000 +0100
++++ image_geometry/CMakeLists.txt	2016-06-14 15:55:00.197745599 +0200
 @@ -19,7 +19,7 @@
  
  # add a library
  add_library(${PROJECT_NAME} src/pinhole_camera_model.cpp src/stereo_camera_model.cpp)
 -target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})
 +target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
- add_dependencies(${PROJECT_NAME} sensor_msgs_gencpp)
+ add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
  
  install(DIRECTORY include/${PROJECT_NAME}/

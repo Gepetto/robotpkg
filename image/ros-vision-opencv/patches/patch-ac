@@ -1,18 +1,18 @@
 Fix for building against opencv-2.3
 
---- cv_bridge/src/cv_bridge.cpp~	2013-03-02 00:35:26.000000000 +0100
-+++ cv_bridge/src/cv_bridge.cpp	2013-09-24 17:57:51.000000000 +0200
-@@ -155,11 +155,13 @@
-   res[std::make_pair(BGRA, BGR)].push_back(CV_BGRA2BGR);
-   res[std::make_pair(BGRA, RGBA)].push_back(CV_BGRA2RGBA);
+--- cv_bridge/src/cv_bridge.cpp~	2016-03-10 11:15:40.000000000 +0100
++++ cv_bridge/src/cv_bridge.cpp	2016-06-14 15:58:02.573114462 +0200
+@@ -162,11 +162,13 @@
+   res[std::make_pair(BGRA, BGR)].push_back(cv::COLOR_BGRA2BGR);
+   res[std::make_pair(BGRA, RGBA)].push_back(cv::COLOR_BGRA2RGBA);
  
 +#if (CV_MAJOR_VERSION >2) || (CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION>3)
-   res[std::make_pair(YUV422, GRAY)].push_back(CV_YUV2GRAY_UYVY);
-   res[std::make_pair(YUV422, RGB)].push_back(CV_YUV2RGB_UYVY);
-   res[std::make_pair(YUV422, BGR)].push_back(CV_YUV2BGR_UYVY);
-   res[std::make_pair(YUV422, RGBA)].push_back(CV_YUV2RGBA_UYVY);
-   res[std::make_pair(YUV422, BGRA)].push_back(CV_YUV2BGRA_UYVY);
+   res[std::make_pair(YUV422, GRAY)].push_back(cv::COLOR_YUV2GRAY_UYVY);
+   res[std::make_pair(YUV422, RGB)].push_back(cv::COLOR_YUV2RGB_UYVY);
+   res[std::make_pair(YUV422, BGR)].push_back(cv::COLOR_YUV2BGR_UYVY);
+   res[std::make_pair(YUV422, RGBA)].push_back(cv::COLOR_YUV2RGBA_UYVY);
+   res[std::make_pair(YUV422, BGRA)].push_back(cv::COLOR_YUV2BGRA_UYVY);
 +#endif
  
    // Deal with Bayer
-   res[std::make_pair(BAYER_RGGB, GRAY)].push_back(CV_BayerBG2GRAY);
+   res[std::make_pair(BAYER_RGGB, GRAY)].push_back(cv::COLOR_BayerBG2GRAY);
