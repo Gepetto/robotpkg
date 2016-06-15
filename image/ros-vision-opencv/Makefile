@@ -21,6 +21,8 @@ SUBST_FILES.py-interp+=	opencv_tests/nodes/*.py
 
 USE_BOOST_LIBS+=python
 
+CXXFLAGS+= -std=c++0x
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk

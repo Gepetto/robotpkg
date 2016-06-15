@@ -1,0 +1,14 @@
+--- cv_bridge/src/boost/core/scoped_enum.hpp~	2016-03-10 11:15:40.000000000 +0100
++++ cv_bridge/src/boost/core/scoped_enum.hpp	2016-06-15 14:08:49.655661455 +0200
+@@ -16,6 +16,11 @@
+ #pragma once
+ #endif
+ 
++/* support older boost (e.g. 1.48) */
++#ifndef BOOST_NOEXCEPT
++# define BOOST_NOEXCEPT
++#endif
++
+ namespace boost
+ {
+ 

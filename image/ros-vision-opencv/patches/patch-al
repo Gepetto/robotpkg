@@ -1,0 +1,35 @@
+--- opencv_apps/src/nodelet/segment_objects_nodelet.cpp~	2016-03-10 11:15:40.000000000 +0100
++++ opencv_apps/src/nodelet/segment_objects_nodelet.cpp	2016-06-15 15:52:56.593010357 +0200
+@@ -74,7 +74,7 @@
+   std::string window_name_;
+   static bool need_config_update_;
+ 
+-#ifndef CV_VERSION_EPOCH
++#if CV_MAJOR_VERSION >= 3
+   cv::Ptr<cv::BackgroundSubtractorMOG2> bgsubtractor;
+ #else
+   cv::BackgroundSubtractorMOG bgsubtractor;
+@@ -132,7 +132,7 @@
+         }
+       }
+ 
+-#ifndef CV_VERSION_EPOCH
++#if CV_MAJOR_VERSION >= 3
+       bgsubtractor->apply(frame, bgmask, update_bg_model ? -1 : 0);
+ #else
+       bgsubtractor(frame, bgmask, update_bg_model ? -1 : 0);
+@@ -251,10 +251,12 @@
+     window_name_ = "segmented";
+     update_bg_model = true;
+ 
+-#ifndef CV_VERSION_EPOCH
++#if CV_MAJOR_VERSION >= 3
+     bgsubtractor = cv::createBackgroundSubtractorMOG2();
+-#else
++#elif CV_MINOR_VERSION >= 4
+     bgsubtractor.set("noiseSigma", 10);
++#else
++    bgsubtractor.noiseSigma = 10;
+ #endif
+ 
+     dynamic_reconfigure::Server<segment_objects::SegmentObjectsConfig>::CallbackType f =

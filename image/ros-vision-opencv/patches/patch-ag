@@ -1,0 +1,14 @@
+--- cv_bridge/src/boost/endian/conversion.hpp~	2016-03-10 11:15:40.000000000 +0100
++++ cv_bridge/src/boost/endian/conversion.hpp	2016-06-15 14:08:03.783438770 +0200
+@@ -17,6 +17,11 @@
+ #include <algorithm>
+ #include <cstring>  // for memcpy
+ 
++/* support older boost (e.g. 1.48) */
++#ifndef BOOST_NOEXCEPT
++# define BOOST_NOEXCEPT
++#endif
++ 
+ //------------------------------------- synopsis ---------------------------------------//
+ 
+ namespace boost
