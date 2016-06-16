@@ -1,0 +1,29 @@
+--- CMakeLists.txt~	2016-05-07 21:07:04.000000000 +0200
++++ CMakeLists.txt	2016-06-16 11:52:34.663429267 +0200
+@@ -242,6 +242,7 @@
+ 	DESTINATION
+ 		${INSTALL_INCLUDE_DIR}
+ 	FILES_MATCHING PATTERN "*.hpp"
++	PATTERN "*Make*" EXCLUDE
+ )
+ INSTALL(
+ 	DIRECTORY
+@@ -249,17 +250,9 @@
+ 	DESTINATION
+ 		${INSTALL_INCLUDE_DIR}
+ 	FILES_MATCHING PATTERN "*.ipp"
++	PATTERN "*Make*" EXCLUDE
+ )
+ 
+-#
+-# Install Eigen3
+-#
+-INSTALL(
+-	DIRECTORY
+-		external_packages/eigen3
+-	DESTINATION
+-		${INSTALL_INCLUDE_DIR}/external_packages
+-)
+ 
+ #
+ # Install qpOASES embedded

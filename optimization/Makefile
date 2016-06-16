@@ -3,6 +3,7 @@
 
 COMMENT=	Optimization tools
 
+SUBDIR+=	acado
 SUBDIR+=	ipopt
 SUBDIR+=	roboptim-core
 SUBDIR+=	roboptim-core-cfsqp-plugin

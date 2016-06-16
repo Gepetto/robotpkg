@@ -1,0 +1,4 @@
+ACADO Toolkit is a software environment and algorithm collection for automatic
+control and dynamic optimization. It provides a general framework for using a
+great variety of algorithms for direct optimal control, including model
+predictive control, state and parameter estimation and robust optimization.

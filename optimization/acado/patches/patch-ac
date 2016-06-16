@@ -1,0 +1,11 @@
+--- acado/matrix_vector/matrix_vector_tools.hpp~	2016-05-07 21:07:04.000000000 +0200
++++ acado/matrix_vector/matrix_vector_tools.hpp	2016-06-16 10:58:58.550673035 +0200
+@@ -36,7 +36,7 @@
+ #pragma GCC diagnostic push
+ #pragma GCC diagnostic ignored "-Wshadow"
+ #pragma GCC diagnostic ignored "-Wfloat-equal"
+-#include <external_packages/eigen3/Eigen/Dense>
++#include <eigen3/Eigen/Dense>
+ #pragma GCC diagnostic pop
+ 
+ #endif // ACADO_TOOLKIT_MATRIX_VECTOR_TOOLS_HPP
