@@ -22,6 +22,13 @@ SUBST_FILES.py-interp+=	opencv_tests/nodes/*.py
 USE_BOOST_LIBS+=python
 
 CXXFLAGS+= -std=c++0x
+include ../../mk/robotpkg.prefs.mk
+ifeq (OpenNao,${OPSYS})
+  ifneq (,$(filter 2.1.%,${OS_VERSION}))
+    # this is required for gcc<=4.5 and boost>=1.55
+    CXXFLAGS+=-DBOOST_NO_DEFAULTED_FUNCTIONS
+  endif
+endif
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
