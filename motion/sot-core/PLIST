@@ -6,7 +6,6 @@ include/sot/core/binary-int-to-uint.hh
 include/sot/core/binary-op.hh
 include/sot/core/clamp-workspace.hh
 include/sot/core/com-freezer.hh
-include/sot/core/config.h
 include/sot/core/config.hh
 include/sot/core/constraint.hh
 include/sot/core/contiifstream.hh
