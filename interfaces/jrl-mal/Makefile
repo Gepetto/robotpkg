@@ -3,7 +3,7 @@
 #
 
 DISTNAME=	jrl-mal-${VERSION}
-VERSION=	1.19.4
+VERSION=	1.19.6
 CATEGORIES=	interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mal/}
 MASTER_REPOSITORY=	git git@github.com:jrl-umi3218/jrl-mal.git
