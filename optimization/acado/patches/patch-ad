@@ -1,0 +1,25 @@
+LDLT & LLT cannot work with integer types
+
+--- acado/matrix_vector/matrix.cpp~	2016-05-07 21:07:04.000000000 +0200
++++ acado/matrix_vector/matrix.cpp	2016-06-20 15:46:10.617329541 +0200
+@@ -172,8 +172,8 @@
+ template<typename T>
+ bool GenericMatrix< T >::isPositiveSemiDefinite( ) const
+ {
+-	Eigen::LDLT< Base > foo( Base::size() );
+-	foo.compute( *this );
++	Eigen::LDLT< Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor | Eigen::AutoAlign> > foo( Base::size() );
++	foo.compute( this->template cast<double>() );
+ 	if (foo.info() == Eigen::Success && foo.isPositive() == true)
+ 		return true;
+ 
+@@ -183,7 +183,8 @@
+ template<typename T>
+ bool GenericMatrix< T >::isPositiveDefinite( ) const
+ {
+-	if (this->llt().info() == Eigen::Success)
++	Eigen::LLT< Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor | Eigen::AutoAlign> > foo( this->template cast<double>() );
++	if (foo.info() == Eigen::Success)
+ 		return true;
+ 
+ 	return false;
