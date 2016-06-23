@@ -1,0 +1,49 @@
+Fix for eigen-3.3
+
+--- acado/code_generation/export_nlp_solver.cpp~	2016-05-07 21:07:04.000000000 +0200
++++ acado/code_generation/export_nlp_solver.cpp	2016-06-23 14:01:28.102514838 +0200
+@@ -889,7 +889,7 @@
+ 
+ 		DVector vFx = Fx.evaluate( epFx );
+ 
+-		objEvFx.setup("evFx", Eigen::Map<DMatrix>(vFx.data(), NY, NX), REAL, ACADO_WORKSPACE);
++		objEvFx.setup("evFx", Eigen::Map<DMatrix::Base>(vFx.data(), NY, NX), REAL, ACADO_WORKSPACE);
+ 	}
+ 	else
+ 	{
+@@ -907,7 +907,7 @@
+ 
+ 		DVector vFu = Fu.evaluate( epFu );
+ 
+-		objEvFu.setup("evFu", Eigen::Map<DMatrix>(vFu.data(), NY, NU), REAL, ACADO_WORKSPACE);
++		objEvFu.setup("evFu", Eigen::Map<DMatrix::Base>(vFu.data(), NY, NU), REAL, ACADO_WORKSPACE);
+ 	}
+ 	else
+ 	{
+@@ -1072,7 +1072,7 @@
+ 
+ 		DVector vFx = FEndTermX.evaluate( epFEndTermX );
+ 
+-		objEvFxEnd.setup("evFxEnd", Eigen::Map<DMatrix>(vFx.data(), NYN, NX), REAL, ACADO_WORKSPACE);
++		objEvFxEnd.setup("evFxEnd", Eigen::Map<DMatrix::Base>(vFx.data(), NYN, NX), REAL, ACADO_WORKSPACE);
+ 	}
+ 	else
+ 	{
+@@ -1343,7 +1343,7 @@
+ 
+ 			if (v.isZero() == false)
+ 			{
+-				pacEvHx.setup("evHx", Eigen::Map<DMatrix>(v.data(), dimPacH, NX), REAL, ACADO_WORKSPACE);
++                          pacEvHx.setup("evHx", Eigen::Map<DMatrix::Base>(v.data(), dimPacH, NX), REAL, ACADO_WORKSPACE);
+ 			}
+ 		}
+ 		else
+@@ -1361,7 +1361,7 @@
+ 
+ 			if (v.isZero() == false)
+ 			{
+-				pacEvHu.setup("evHu", Eigen::Map<DMatrix>(v.data(), dimPacH, NU), REAL, ACADO_WORKSPACE);
++                          pacEvHu.setup("evHu", Eigen::Map<DMatrix::Base>(v.data(), dimPacH, NU), REAL, ACADO_WORKSPACE);
+ 			}
+ 		}
+ 		else

@@ -23,6 +23,9 @@ include ../../math/eigen3/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
+
+DEPEND_ABI.eigen3+=	eigen3>=3.1
+
 include ../../mk/robotpkg.mk
 
 post-extract:
