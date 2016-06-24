@@ -25,6 +25,7 @@ include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 
 DEPEND_ABI.eigen3+=	eigen3>=3.1
+DEPEND_ABI.g++ +=	g++>=4.8
 
 include ../../mk/robotpkg.mk
 
