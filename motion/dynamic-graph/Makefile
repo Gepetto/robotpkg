@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		dynamic-graph-${VERSION}
-VERSION=		2.5.6
+VERSION=		2.5.7
 PKGREVISION=		0
 
 CATEGORIES=		motion
