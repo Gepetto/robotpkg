@@ -1,4 +1,4 @@
-@comment Tue Mar 5 06:16:22 CET 2013
+@comment Mon Jun 27 14:07:42 CEST 2016
 include/dynamic-graph/all-commands.h
 include/dynamic-graph/all-signals.h
 include/dynamic-graph/command-bind.h
@@ -13,7 +13,6 @@ include/dynamic-graph/config-contiifstream.hh
 include/dynamic-graph/config-shell-procedure.hh
 include/dynamic-graph/config-tracer-real-time.hh
 include/dynamic-graph/config-tracer.hh
-include/dynamic-graph/config.h
 include/dynamic-graph/config.hh
 include/dynamic-graph/contiifstream.h
 include/dynamic-graph/debug.h
@@ -52,7 +51,7 @@ lib/libdynamic-graph.so.${PKGVERSION}
 lib/pkgconfig/dynamic-graph.pc
 lib/plugin/tracer-real-time.so
 lib/plugin/tracer.so
-share/dynamic-graph/script/shell.dg
-share/dynamic-graph/script/tracer.dg
 ${PKGMANDIR}/man1/dg-shell-plugin.1.gz
 ${PKGMANDIR}/man1/dg-shell.1.gz
+share/dynamic-graph/script/shell.dg
+share/dynamic-graph/script/tracer.dg
