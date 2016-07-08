@@ -1,4 +1,4 @@
-@comment Fri May 13 15:21:02 CEST 2016
+@comment Thu Jul 7 11:20:54 CEST 2016
 include/hpp/fcl/BV/AABB.h
 include/hpp/fcl/BV/BV.h
 include/hpp/fcl/BV/BV_node.h
@@ -81,6 +81,7 @@ include/hpp/fcl/math/transform.h
 include/hpp/fcl/math/vec_3f.h
 include/hpp/fcl/math/vec_3fx.h
 include/hpp/fcl/math/vec_nf.h
+include/hpp/fcl/mesh_loader/assimp.h
 include/hpp/fcl/narrowphase/gjk.h
 include/hpp/fcl/narrowphase/gjk_libccd.h
 include/hpp/fcl/narrowphase/narrowphase.h
