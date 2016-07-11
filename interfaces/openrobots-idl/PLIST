@@ -1,7 +1,8 @@
-@comment Fri Apr 15 14:43:22 CEST 2016
+@comment Mon Jul 11 17:26:46 CEST 2016
 lib/pkgconfig/openrobots-idl.pc
 share/idl/or/hid/joystick.gen
 share/idl/or/pose/pose_estimator.gen
 share/idl/or/pose/t3d.idl
 share/idl/or/robot/rotorcraft.gen
+share/idl/or/sensor/joint.gen
 share/idl/or/time/time.idl

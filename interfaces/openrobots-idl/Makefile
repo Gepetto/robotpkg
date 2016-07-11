@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon,  9 Nov 2015
 #
 
-DISTNAME=		openrobots-idl-1.2
+DISTNAME=		openrobots-idl-1.3
 CATEGORIES=		interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}openrobots-idl
