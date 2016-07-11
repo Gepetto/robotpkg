@@ -8,7 +8,7 @@ Not submitted upstream yet, this probably requires more insight.
  	    return [oprs_type_nva [$type type] $param $string]
  	}
 -	string - array - sequence - "unsigned long" - long - float - double - short - int - char - enum {
-+      string - array - sequence - "unsigned long" - long - float - double - {*short} - int - char - enum - boolean {
++      string - array - sequence - "unsigned long" - long - float - double - {*short} - int - char - enum - boolean - octet {
  	 	    return 1
  	}
  	struct {
