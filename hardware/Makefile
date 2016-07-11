@@ -7,6 +7,7 @@ SUBDIR+=	GPSNovatel
 SUBDIR+=	MTI
 SUBDIR+=	cwiid
 SUBDIR+=	daqflex-libs
+SUBDIR+=	dynamixel-genom3
 SUBDIR+=	force-genom
 SUBDIR+=	gbx-hokuyo-aist
 SUBDIR+=	gyro-libs

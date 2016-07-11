@@ -1,0 +1,4 @@
+GenoM3 component controlling dynamixel motors.
+
+This component provides position, velocity and torque control or dynamixel
+motors.
