@@ -1,0 +1,22 @@
+Quick & dirty fix for an issue in ros .pc.
+See https://github.com/ros/catkin/issues/694
+
+--- cmake/pkg-config.cmake~	2013-12-19 11:20:45.000000000 +0100
++++ cmake/pkg-config.cmake	2015-12-02 15:19:01.643506148 +0100
+@@ -148,6 +148,14 @@
+     PKG_CHECK_MODULES("${PREFIX}" "${PKG_CONFIG_STRING}")
+   ENDIF(${P_REQUIRED})
+ 
++  # XXX issue in ros .pc. See https://github.com/ros/catkin/issues/694
++  set(xxx)
++  foreach(x ${${PREFIX}_LDFLAGS})
++    string(REGEX REPLACE "^-l:" "" x "${x}")
++    list(APPEND xxx ${x})
++  endforeach()
++  set(${PREFIX}_LDFLAGS ${xxx})
++
+   # Watch variables.
+   LIST(APPEND LOGGING_WATCHED_VARIABLES
+     ${PREFIX}_FOUND
+
+Diff finished.  Wed Dec  2 15:19:05 2015
