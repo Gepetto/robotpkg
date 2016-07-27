@@ -21,10 +21,12 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 DEPEND_ABI.openthreads+= openthreads>=2
 DEPEND_ABI.openscenegraph+= openscenegraph>=3.2
 
-include ../../graphics/ros-robot-model/depend.mk
-include ../../mk/language/c.mk
+include ../../graphics/urdfdom-headers/depend.mk
+include ../../graphics/urdfdom/depend.mk
 include ../../mk/sysdep/openscenegraph.mk
 include ../../mk/sysdep/openthreads.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 # create the build directory
