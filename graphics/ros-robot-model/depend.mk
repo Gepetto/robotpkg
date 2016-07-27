@@ -46,6 +46,10 @@ INCLUDE_DIRS.tinyxml = $(dir $(filter %/tinyxml.h,${SYSTEM_FILES.tinyxml}))
 LIBRARY_DIRS.tinyxml = lib
 RPATH_DIRS.tinyxml = lib
 
+# system ros packages don't have rpath set, and libraries dependencies cannot
+# be resolved without adding this ...
+RPATH_DIRS.ros-robot-model =	lib
+
 endif # ROS_ROBOT_MODEL_DEPEND_MK ------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
