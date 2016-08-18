@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Tue, 16 Jun 2015
 #
 
-PKGREVISION=	1
-DISTNAME=	matlab-genomix-1.5
+DISTNAME=	matlab-genomix-1.5.1
 CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=matlab-genomix/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genomix/matlab-genomix
