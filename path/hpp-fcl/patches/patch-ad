@@ -1,0 +1,24 @@
+--- CMakeLists.txt~	2016-09-28 19:05:51.567346644 +0200
++++ CMakeLists.txt	2016-09-28 19:07:32.504664438 +0200
+@@ -79,9 +79,10 @@
+ if(ASSIMP_FOUND)
+   if (NOT ${ASSIMP_VERSION} VERSION_LESS "2.0.1150")
+     set(FCL_USE_ASSIMP_UNIFIED_HEADER_NAMES 1 )
++    add_definitions(-DFCL_USE_ASSIMP_UNIFIED_HEADER_NAMES)
++    SET(WITH_FCL_USE_ASSIMP_UNIFIED_HEADER_NAMES TRUE)
+     message(STATUS "Assimp version has unified headers")
+   else()
+-    set(FCL_USE_ASSIMP_UNIFIED_HEADER_NAMES 0 )
+     message(STATUS "Assimp version does not have unified headers")
+   endif()
+ endif()
+@@ -196,6 +197,9 @@
+   string(REGEX REPLACE "^lib" "" l "${l}")
+   pkg_config_append_libs("${l}")
+ endforeach()
++IF(WITH_FCL_USE_ASSIMP_UNIFIED_HEADER_NAMES)
++  PKG_CONFIG_APPEND_CFLAGS("-DFCL_USE_ASSIMP_UNIFIED_HEADER_NAMES")
++ENDIF(WITH_FCL_USE_ASSIMP_UNIFIED_HEADER_NAMES)
+ 
+ config_files(include/hpp/fcl/config-fcl.hh)
+ install(FILES ${PROJECT_BINARY_DIR}/include/hpp/fcl/config-fcl.hh
