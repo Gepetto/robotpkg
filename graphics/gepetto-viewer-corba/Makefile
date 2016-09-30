@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer-corba
-HPP_VERSION=		1.0.0
+HPP_VERSION=		1.2.0
 PKGREVISION=
 
 CATEGORIES=		graphics
