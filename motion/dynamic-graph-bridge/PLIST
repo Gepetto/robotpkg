@@ -1,4 +1,4 @@
-@comment Tue Jun 14 16:59:00 CEST 2016
+@comment Mon Oct 3 18:00:53 CEST 2016
 include/dynamic_graph_bridge/RunPythonFile.h
 include/dynamic_graph_bridge/RunPythonFileRequest.h
 include/dynamic_graph_bridge/RunPythonFileResponse.h
@@ -7,6 +7,7 @@ include/dynamic_graph_bridge/deprecated.hh
 include/dynamic_graph_bridge/ros_init.hh
 include/dynamic_graph_bridge/ros_interpreter.hh
 include/dynamic_graph_bridge/sot_loader.hh
+include/dynamic_graph_bridge/sot_loader_basic.hh
 include/dynamic_graph_bridge/warning.hh
 lib/libros_bridge.so
 lib/libros_interpreter.so
