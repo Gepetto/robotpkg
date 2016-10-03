@@ -21,11 +21,11 @@ ROS_DEPEND_USE+=			ros-message-generation
 DEPEND_ABI.ros-message-generation?=	ros-message-generation>=0.2
 DEPEND_DIR.ros-message-generation?=	../../lang/ros-message-generation
 
-DEPEND_ABI.ros-message-generation.groovy?=	ros-catkin>=0.2<0.3
-DEPEND_ABI.ros-message-generation.hydro?=	ros-catkin>=0.2<0.3
-DEPEND_ABI.ros-message-generation.indigo?=	ros-catkin>=0.2<0.3
-DEPEND_ABI.ros-message-generation.jade?=	ros-catkin>=0.3<0.4
-DEPEND_ABI.ros-message-generation.kinetic?=	ros-catkin>=0.4<0.5
+DEPEND_ABI.ros-message-generation.groovy?=	ros-message-generation>=0.2<0.3
+DEPEND_ABI.ros-message-generation.hydro?=	ros-message-generation>=0.2<0.3
+DEPEND_ABI.ros-message-generation.indigo?=	ros-message-generation>=0.2<0.3
+DEPEND_ABI.ros-message-generation.jade?=	ros-message-generation>=0.3<0.4
+DEPEND_ABI.ros-message-generation.kinetic?=	ros-message-generation>=0.4<0.5
 
 SYSTEM_SEARCH.ros-message-generation=\
 	'share/message_generation/package.xml:/<version>/s/[^0-9.]//gp'	\
