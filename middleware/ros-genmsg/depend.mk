@@ -24,6 +24,8 @@ DEPEND_DIR.ros-genmsg?=	../../middleware/ros-genmsg
 DEPEND_ABI.ros-genmsg.groovy?=	ros-genmsg>=0.4<0.5
 DEPEND_ABI.ros-genmsg.hydro?=	ros-genmsg>=0.4<0.5
 DEPEND_ABI.ros-genmsg.indigo?=	ros-genmsg>=0.5<0.6
+DEPEND_ABI.ros-genmsg.jade?=	ros-genmsg>=0.5<0.6
+DEPEND_ABI.ros-genmsg.kinetic?=	ros-genmsg>=0.5<0.6
 
 SYSTEM_SEARCH.ros-genmsg=\
 	'share/genmsg/package.xml:/<version>/s/[^0-9.]//gp'	\

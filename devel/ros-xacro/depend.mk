@@ -24,6 +24,8 @@ DEPEND_DIR.ros-xacro=		../../devel/ros-xacro
 DEPEND_ABI.ros-xacro.groovy+=	ros-xacro>=1.7<1.8
 DEPEND_ABI.ros-xacro.hydro+=	ros-xacro>=1.8<1.9
 DEPEND_ABI.ros-xacro.indigo+=	ros-xacro>=1.9<1.10
+DEPEND_ABI.ros-xacro.jade+=	ros-xacro>=1.10<1.11
+DEPEND_ABI.ros-xacro.kinetic+=	ros-xacro>=1.11<1.12
 
 SYSTEM_SEARCH.ros-xacro=\
 	'lib/xacro/xacro'					\

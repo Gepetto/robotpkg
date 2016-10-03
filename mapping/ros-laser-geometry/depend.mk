@@ -25,6 +25,8 @@ DEPEND_DIR.ros-laser-geometry?=	../../mapping/ros-laser-geometry
 DEPEND_ABI.ros-laser-geometry.groovy?=	ros-laser-geometry>=1.5<1.6
 DEPEND_ABI.ros-laser-geometry.hydro?=	ros-laser-geometry>=1.6<1.7
 DEPEND_ABI.ros-laser-geometry.indigo?=	ros-laser-geometry>=1.6<1.7
+DEPEND_ABI.ros-laser-geometry.jade?=	ros-laser-geometry>=1.6<1.7
+DEPEND_ABI.ros-laser-geometry.kinetic?=	ros-laser-geometry>=1.6<1.7
 
 SYSTEM_SEARCH.ros-laser-geometry=\
   'include/laser_geometry/laser_geometry.h'			\

@@ -21,10 +21,6 @@ ROS_DEPEND_USE+=		ros-std-msgs
 DEPEND_ABI.ros-std-msgs?=	ros-std-msgs>=0.5
 DEPEND_DIR.ros-std-msgs?=	../../interfaces/ros-std-msgs
 
-DEPEND_ABI.ros-std-msgs.groovy?=	ros-std-msgs>=0.5<0.6
-DEPEND_ABI.ros-std-msgs.hydro?=		ros-std-msgs>=0.5<0.6
-DEPEND_ABI.ros-std-msgs.indigo?=	ros-std-msgs>=0.5<0.6
-
 SYSTEM_SEARCH.ros-std-msgs=\
 	include/std_msgs/Int32.h				\
 	'${PYTHON_SYSLIBSEARCH}/std_msgs/msg/_Int32.py'		\

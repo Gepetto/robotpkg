@@ -18,12 +18,8 @@ SYSTEM_PREFIX.ros-python-qt-binding?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=				ros-python-qt-binding
 ROS_DEPEND_USE+=			ros-python-qt-binding
 
-DEPEND_ABI.ros-python-qt-binding?=	ros-python-qt-binding>=0.2
+DEPEND_ABI.ros-python-qt-binding?=	ros-python-qt-binding>=0.2.10
 DEPEND_DIR.ros-python-qt-binding?=	../../graphics/ros-python-qt-binding
-
-DEPEND_ABI.ros-python-qt-binding.groovy?=	ros-python-qt-binding>=0.2.10
-DEPEND_ABI.ros-python-qt-binding.hydro?=	ros-python-qt-binding>=0.2.10
-DEPEND_ABI.ros-python-qt-binding.indigo?=	ros-python-qt-binding>=0.2.10
 
 SYSTEM_SEARCH.ros-python-qt-binding=\
   'share/python_qt_binding/package.xml:/<version>/s/[^0-9.]//gp'	\

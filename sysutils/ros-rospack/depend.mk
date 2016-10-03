@@ -24,6 +24,8 @@ DEPEND_DIR.ros-rospack?=	../../sysutils/ros-rospack
 DEPEND_ABI.ros-ros.groovy?=	ros-ros>=2.1<2.2
 DEPEND_ABI.ros-ros.hydro?=	ros-ros>=2.1<2.2
 DEPEND_ABI.ros-ros.indigo?=	ros-ros>=2.2<2.3
+DEPEND_ABI.ros-ros.jade?=	ros-ros>=2.3<2.4
+DEPEND_ABI.ros-ros.kinetic?=	ros-ros>=2.3<2.4
 
 SYSTEM_SEARCH.ros-rospack=\
 	bin/rospack						\

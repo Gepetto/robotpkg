@@ -24,6 +24,8 @@ DEPEND_DIR.ros-actionlib=	../../middleware/ros-actionlib
 DEPEND_ABI.ros-actionlib.groovy+=	ros-actionlib>=1.9<1.10
 DEPEND_ABI.ros-actionlib.hydro+=	ros-actionlib>=1.10<1.11
 DEPEND_ABI.ros-actionlib.indigo+=	ros-actionlib>=1.11<1.12
+DEPEND_ABI.ros-actionlib.jade+=		ros-actionlib>=1.11<1.12
+DEPEND_ABI.ros-actionlib.kinetic+=	ros-actionlib>=1.11<1.12
 
 SYSTEM_SEARCH.ros-actionlib=\
 	include/actionlib/server/action_server.h		\

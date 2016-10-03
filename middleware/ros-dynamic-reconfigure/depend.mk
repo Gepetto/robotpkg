@@ -18,12 +18,8 @@ SYSTEM_PREFIX.ros-dynamic-reconfigure?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=				ros-dynamic-reconfigure
 ROS_DEPEND_USE+=			ros-dynamic-reconfigure
 
-DEPEND_ABI.ros-dynamic-reconfigure?=	ros-dynamic-reconfigure>=1.5
+DEPEND_ABI.ros-dynamic-reconfigure?=	ros-dynamic-reconfigure>=1.5.32
 DEPEND_DIR.ros-dynamic-reconfigure?=	../../middleware/ros-dynamic-reconfigure
-
-DEPEND_ABI.ros-dynamic-reconfigure.groovy?=ros-dynamic-reconfigure>=1.5.32<1.6
-DEPEND_ABI.ros-dynamic-reconfigure.hydro?= ros-dynamic-reconfigure>=1.5.32<1.6
-DEPEND_ABI.ros-dynamic-reconfigure.indigo?=ros-dynamic-reconfigure>=1.5.32<1.6
 
 SYSTEM_SEARCH.ros-dynamic-reconfigure=\
   'include/dynamic_reconfigure/Config.h'				\

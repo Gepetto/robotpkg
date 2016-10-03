@@ -24,6 +24,8 @@ DEPEND_DIR.ros-robot-model?=	../../graphics/ros-robot-model
 DEPEND_ABI.ros-robot-model.groovy?=	ros-robot-model>=1.9<1.10
 DEPEND_ABI.ros-robot-model.hydro?=	ros-robot-model>=1.10<1.11
 DEPEND_ABI.ros-robot-model.indigo?=	ros-robot-model>=1.11<1.12
+DEPEND_ABI.ros-robot-model.jade?=	ros-robot-model>=1.11<1.12
+DEPEND_ABI.ros-robot-model.kinetic?=	ros-robot-model>=1.12<1.13
 
 SYSTEM_SEARCH.ros-robot-model=\
   'include/collada_parser/collada_parser.h'				\

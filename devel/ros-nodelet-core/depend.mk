@@ -24,6 +24,8 @@ DEPEND_DIR.ros-nodelet-core?=	../../devel/ros-nodelet-core
 DEPEND_ABI.ros-nodelet-core.groovy?=	ros-nodelet-core>=1.7<1.8
 DEPEND_ABI.ros-nodelet-core.hydro?=	ros-nodelet-core>=1.8<1.9
 DEPEND_ABI.ros-nodelet-core.indigo?=	ros-nodelet-core>=1.9<1.10
+DEPEND_ABI.ros-nodelet-core.jade?=	ros-nodelet-core>=1.9<1.10
+DEPEND_ABI.ros-nodelet-core.kinetic?=	ros-nodelet-core>=1.9<1.10
 
 SYSTEM_SEARCH.ros-nodelet-core=\
   'include/nodelet/nodelet.h'						\

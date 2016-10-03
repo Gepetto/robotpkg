@@ -21,10 +21,6 @@ ROS_DEPEND_USE+=		ros-driver-common
 DEPEND_ABI.ros-driver-common?=	ros-driver-common>=1.6
 DEPEND_DIR.ros-driver-common=	../../hardware/ros-driver-common
 
-DEPEND_ABI.ros-driver-common.groovy += ros-driver-common>=1.6<1.7
-DEPEND_ABI.ros-driver-common.hydro += ros-driver-common>=1.6<1.7
-DEPEND_ABI.ros-driver-common.indigo += ros-driver-common>=1.6<1.7
-
 SYSTEM_SEARCH.ros-driver-common=\
   'include/driver_base/driver.h'					\
   'include/timestamp_tools/trigger_matcher.h'				\

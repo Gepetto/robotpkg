@@ -24,6 +24,8 @@ DEPEND_DIR.ros-image-common?=	../../image/ros-image-common
 DEPEND_ABI.ros-image-common.groovy?=	ros-image-common>=1.10<1.11
 DEPEND_ABI.ros-image-common.hydro?=	ros-image-common>=1.11<1.12
 DEPEND_ABI.ros-image-common.indigo?=	ros-image-common>=1.11<1.12
+DEPEND_ABI.ros-image-common.jade?=	ros-image-common>=1.11<1.12
+DEPEND_ABI.ros-image-common.kinetic?=	ros-image-common>=1.11<1.12
 
 SYSTEM_SEARCH.ros-image-common=\
   'include/camera_calibration_parsers/parse.h'				\

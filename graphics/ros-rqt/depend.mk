@@ -24,6 +24,8 @@ DEPEND_DIR.ros-rqt?=	../../graphics/ros-rqt
 DEPEND_ABI.ros-rqt.groovy?=	ros-rqt>=0.2<0.3
 DEPEND_ABI.ros-rqt.hydro?=	ros-rqt>=0.2<0.3
 DEPEND_ABI.ros-rqt.indigo?=	ros-rqt>=0.2<0.3
+DEPEND_ABI.ros-rqt.jade?=	ros-rqt>=0.2<0.3
+DEPEND_ABI.ros-rqt.kinetic?=	ros-rqt>=0.3<0.4
 
 SYSTEM_SEARCH.ros-rqt=\
   'bin/rqt'							\

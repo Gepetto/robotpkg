@@ -24,6 +24,8 @@ DEPEND_DIR.ros-geometry-experimental=	../../math/ros-geometry-experimental
 DEPEND_ABI.ros-geometry-experimental.groovy+=ros-geometry-experimental>=0.3<0.4
 DEPEND_ABI.ros-geometry-experimental.hydro+= ros-geometry-experimental>=0.4<0.5
 DEPEND_ABI.ros-geometry-experimental.indigo+=ros-geometry-experimental>=0.5<0.6
+DEPEND_ABI.ros-geometry-experimental.jade+=  ros-geometry-experimental>=0.5<0.6
+DEPEND_ABI.ros-geometry-experimental.kinetic+=ros-geometry-experimental>=0.5<0.6
 
 SYSTEM_SEARCH.ros-geometry-experimental=\
   'include/tf2/convert.h'						\

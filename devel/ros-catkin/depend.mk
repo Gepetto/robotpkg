@@ -24,6 +24,8 @@ DEPEND_DIR.ros-catkin?=		../../devel/ros-catkin
 DEPEND_ABI.ros-catkin.groovy?=	ros-catkin>=0.5<0.6
 DEPEND_ABI.ros-catkin.hydro?=	ros-catkin>=0.5<0.6
 DEPEND_ABI.ros-catkin.indigo?=	ros-catkin>=0.6<0.7
+DEPEND_ABI.ros-catkin.jade?=	ros-catkin>=0.6<0.7
+DEPEND_ABI.ros-catkin.kinetic?=	ros-catkin>=0.7<0.8
 
 SYSTEM_SEARCH.ros-catkin=\
 	'bin/catkin_init_workspace'				\

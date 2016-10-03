@@ -21,10 +21,6 @@ ROS_DEPEND_USE+=		ros-bond-core
 DEPEND_ABI.ros-bond-core?=	ros-bond-core>=1.7
 DEPEND_DIR.ros-bond-core?=	../../devel/ros-bond-core
 
-DEPEND_ABI.ros-bond-core.groovy?=	ros-bond-core>=1.7<1.8
-DEPEND_ABI.ros-bond-core.hydro?=	ros-bond-core>=1.7<1.8
-DEPEND_ABI.ros-bond-core.indigo?=	ros-bond-core>=1.7<1.8
-
 SYSTEM_SEARCH.ros-bond-core=\
   'include/bondcpp/bond.h'						\
   'lib/libbondcpp.so'							\

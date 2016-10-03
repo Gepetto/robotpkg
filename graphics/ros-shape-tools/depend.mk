@@ -24,6 +24,8 @@ DEPEND_DIR.ros-shape-tools?=	../../graphics/ros-shape-tools
 DEPEND_ABI.ros-shape-tools.groovy?=	ros-shape-tools>=0.1<0.2
 DEPEND_ABI.ros-shape-tools.hydro?=	ros-shape-tools>=0.2<0.3
 DEPEND_ABI.ros-shape-tools.indigo?=	ros-shape-tools>=0.2<0.3
+DEPEND_ABI.ros-shape-tools.jade?=	ros-shape-tools>=0.2<0.3
+DEPEND_ABI.ros-shape-tools.kinetic?=	ros-shape-tools>=0.2<0.3
 
 SYSTEM_SEARCH.ros-shape-tools=\
   'include/shape_tools/shape_extents.h'				\

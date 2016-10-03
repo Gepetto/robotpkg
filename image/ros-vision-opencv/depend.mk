@@ -24,6 +24,8 @@ DEPEND_DIR.ros-vision-opencv?=	../../image/ros-vision-opencv
 DEPEND_ABI.ros-vision-opencv.groovy?=	ros-vision-opencv>=1.10<1.11
 DEPEND_ABI.ros-vision-opencv.hydro?=	ros-vision-opencv>=1.10<1.11
 DEPEND_ABI.ros-vision-opencv.indigo?=	ros-vision-opencv>=1.11<1.12
+DEPEND_ABI.ros-vision-opencv.jade?=	ros-vision-opencv>=1.11<1.12
+DEPEND_ABI.ros-vision-opencv.kinetic?=	ros-vision-opencv>=1.12<1.13
 
 SYSTEM_SEARCH.ros-vision-opencv=\
 	include/cv_bridge/cv_bridge.h					\
