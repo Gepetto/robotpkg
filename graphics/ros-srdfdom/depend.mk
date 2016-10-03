@@ -25,7 +25,7 @@ DEPEND_ABI.ros-srdfdom.groovy?=	ros-srdfdom>=0.2<0.3
 DEPEND_ABI.ros-srdfdom.hydro?=	ros-srdfdom>=0.2<0.3
 DEPEND_ABI.ros-srdfdom.indigo?=	ros-srdfdom>=0.2
 DEPEND_ABI.ros-srdfdom.jade?=	ros-srdfdom>=0.3<0.4
-DEPEND_ABI.ros-srdfdom.kinetic?=ros-srdfdom>=0.4<0.5
+DEPEND_ABI.ros-srdfdom.kinetic?=ros-srdfdom>=0.3<0.5
 
 SYSTEM_SEARCH.ros-srdfdom=\
   'include/srdfdom/model.h'					\
