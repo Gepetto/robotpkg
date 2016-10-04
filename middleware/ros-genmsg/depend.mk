@@ -35,11 +35,8 @@ SYSTEM_SEARCH.ros-genmsg=\
 include ../../mk/sysdep/python.mk
 
 # disable unwanted languages (hardcoded for now, because this otherwise makes
-# the PLIST not static or not predictable) and require other languages.
+# the PLIST not static or not predictable)
 export ROS_LANG_DISABLE=geneus:gennodejs
-include ../../lang/ros-gencpp/depend.mk
-include ../../lang/ros-genlisp/depend.mk
-include ../../lang/ros-genpy/depend.mk
 
 endif # ROS_GENMSG_DEPEND_MK -----------------------------------------------
 
