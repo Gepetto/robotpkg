@@ -28,8 +28,18 @@ DEPEND_ABI.ros-genmsg.jade?=	ros-genmsg>=0.5<0.6
 DEPEND_ABI.ros-genmsg.kinetic?=	ros-genmsg>=0.5<0.6
 
 SYSTEM_SEARCH.ros-genmsg=\
+	'${PYTHON_SYSLIBSEARCH}/genmsg/__init__.py'		\
 	'share/genmsg/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/genmsg.pc:/Version/s/[^0-9.]//gp'
+
+include ../../mk/sysdep/python.mk
+
+# disable unwanted languages (hardcoded for now, because this otherwise makes
+# the PLIST not static or not predictable) and require other languages.
+export ROS_LANG_DISABLE=geneus:gennodejs
+include ../../lang/ros-gencpp/depend.mk
+include ../../lang/ros-genlisp/depend.mk
+include ../../lang/ros-genpy/depend.mk
 
 endif # ROS_GENMSG_DEPEND_MK -----------------------------------------------
 
