@@ -4,7 +4,7 @@
 
 HPP_PACKAGE=		hpp-gepetto-viewer
 HPP_VERSION=		1.0.0
-PKGREVISION=
+PKGREVISION=		1
 
 CATEGORIES=		graphics
 HPP_COMMENT=		Bridge between hpp-corbaserver and gepetto-viewer-corba
@@ -19,9 +19,10 @@ include ../../meta-pkgs/hpp/Makefile.common
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 include ../../graphics/gepetto-viewer-corba/depend.mk
-include ../../path/hpp-manipulation-corba/depend.mk
-include ../../mk/language/c.mk
+include ../../path/hpp-corbaserver/depend.mk
 include ../../mk/sysdep/python.mk
+include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 # create the build directory
