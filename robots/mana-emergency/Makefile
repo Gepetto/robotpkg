@@ -8,7 +8,7 @@ PKGNAME=	mana-emergency-${V}
 CATEGORIES=	robots
 
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=rmp400/}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/ftdi-emergency
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}segway-robots/ftdi-emergency
 MAINTAINER=	openrobots@laas.fr
 COMMENT=	Interface library for the Mana robot emergency stop
 
