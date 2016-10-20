@@ -7,7 +7,7 @@ CATEGORIES=		interfaces
 PKGREVISION=		1
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/genBasic-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}genom2/genbasic-genom
 
 MAINTAINER=		openrobots@laas.fr
 #HOMEPAGE=
