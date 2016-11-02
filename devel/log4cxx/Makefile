@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Mon, 17 Jan 2011
 #
 
+PKGREVISION=	1
 PKGNAME=	log4cxx-${VERSION}
 DISTNAME=	apache-log4cxx-${VERSION}
 VERSION=	0.10.0
@@ -24,7 +25,7 @@ PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
 
 define PKG_OPTION_SET.doc
   CONFIGURE_ARGS+=	--enable-doxygen
-  DOXYGEN_PLIST_DIR+=	share/doc/${PKGBASE}
+  DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
   include ../../mk/sysdep/doxygen.mk
 endef
 define PKG_OPTION_UNSET.doc

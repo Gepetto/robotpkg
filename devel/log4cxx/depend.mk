@@ -11,6 +11,12 @@ endif
 
 ifeq (+,$(LOG4CXX_DEPEND_MK)) # --------------------------------------------
 
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Fedora,${OPSYS})
+  ifeq (,$(filter 23,${OS_VERSION}))
+    PREFER.log4cxx?=	robotpkg
+  endif
+endif
 PREFER.log4cxx?=	system
 
 DEPEND_USE+=		log4cxx
