@@ -1,0 +1,13 @@
+#undef an identifier used only locally but that conflicts with system
+headers of gcc-6
+
+--- Samples/NiViewer/glh/glh_linear.h~	2012-01-04 12:35:46.000000000 +0100
++++ Samples/NiViewer/glh/glh_linear.h	2016-11-02 17:07:16.945071485 +0100
+@@ -1611,7 +1611,7 @@
+
+ }  // namespace glh
+
+-
++#undef equivalent
+
+ #endif
