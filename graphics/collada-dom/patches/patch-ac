@@ -1,0 +1,11 @@
+--- dom/src/dae/daeMetaGroup.cpp~	2008-07-03 21:23:25.000000000 +0200
++++ dom/src/dae/daeMetaGroup.cpp	2016-11-02 14:27:50.146619479 +0100
+@@ -26,7 +26,7 @@
+ 	(void)offset;
+ 	daeString nm = child->getElementName();
+ 	if ( findChild( nm ) == NULL ) {
+-		return false;
++		return NULL;
+ 	}
+ 	daeElementRef el;
+ 
