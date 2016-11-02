@@ -1,0 +1,38 @@
+Fix build with urdfdom > 1.0
+
+Return type of getLink() was changed from boost::shared_ptr to std::shared_ptr.
+Fortunately, both share a get() interface so we can cheat and ignore the real
+type returned.
+
+--- src/model.cpp~	2014-07-01 09:38:08.000000000 +0200
++++ src/model.cpp	2016-11-02 15:41:41.911324577 +0100
+@@ -179,7 +179,7 @@
+         continue;
+       }
+       bool found = false;
+-      boost::shared_ptr<const urdf::Link> l = urdf_model.getLink(tip_str);
++      const urdf::Link *l = urdf_model.getLink(tip_str).get();
+       std::set<std::string> seen;
+       while (!found && l)
+       {
+@@ -187,17 +187,17 @@
+         if (l->name == base_str)
+           found = true;
+         else
+-          l = l->getParent();
++          l = l->getParent().get();
+       }
+       if (!found)
+       {
+-        l = urdf_model.getLink(base_str);
++        l = urdf_model.getLink(base_str).get();
+         while (!found && l)
+         {
+           if (seen.find(l->name) != seen.end())
+             found = true;
+           else
+-            l = l->getParent();
++            l = l->getParent().get();
+         }
+       }
+       if (found)
