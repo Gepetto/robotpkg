@@ -1,0 +1,27 @@
+std::make_pair must be called without explicit template parameters
+
+--- src/random-shortcut.cc~	2015-03-07 17:02:33.000000000 +0100
++++ src/random-shortcut.cc	2016-11-02 18:00:19.156106944 +0100
+@@ -104,19 +104,19 @@
+ 	  result->appendPath (straight [0]);
+ 	else
+ 	  result->concatenate (*(tmpPath->extract
+-				 (make_pair <value_type,value_type> (0, t1))->
++				 (make_pair((value_type)0, t1))->
+ 				 as <PathVector> ()));
+ 	if (valid [1])
+ 	  result->appendPath (straight [1]);
+ 	else
+ 	  result->concatenate (*(tmpPath->extract
+-				 (make_pair <value_type,value_type> (t1, t2))->
++				 (make_pair(t1, t2))->
+ 				 as <PathVector> ()));
+ 	if (valid [2])
+ 	  result->appendPath (straight [2]);
+ 	else
+ 	  result->concatenate (*(tmpPath->extract
+-				(make_pair <value_type, value_type> (t2, t3))->
++				(make_pair(t2, t3))->
+ 				 as <PathVector> ()));
+ 	length.push_back (pathLength (result, problem ().distance ()));
+ 	length.pop_front ();
