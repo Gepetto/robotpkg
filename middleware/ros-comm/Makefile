@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		ros_comm
-ROS_VERSION=		1.11.8
+ROS_VERSION=		1.11.20
 ROS_METAPKG=		yes
 
 PKGNAME=		$(subst _,-,${ROS_PKG})-${ROS_VERSION}

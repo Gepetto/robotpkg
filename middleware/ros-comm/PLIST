@@ -1,5 +1,6 @@
-@comment Wed Aug 13 15:43:29 CEST 2014
+@comment Wed Nov 2 14:51:30 CET 2016
 bin/rosbag
+bin/rosconsole
 bin/roscore
 bin/rosgraph
 bin/roslaunch
@@ -233,6 +234,7 @@ include/test_rospy/ConstantsMultiplex.h
 include/test_rospy/ConstantsMultiplexRequest.h
 include/test_rospy/ConstantsMultiplexResponse.h
 include/test_rospy/EmbedTest.h
+include/test_rospy/Empty.h
 include/test_rospy/EmptyReqSrv.h
 include/test_rospy/EmptyReqSrvRequest.h
 include/test_rospy/EmptyReqSrvResponse.h
@@ -267,6 +269,13 @@ include/test_rospy/Val.h
 include/test_rosservice/HeaderEcho.h
 include/test_rosservice/HeaderEchoRequest.h
 include/test_rosservice/HeaderEchoResponse.h
+include/test_rostopic/ArrayVal.h
+include/test_rostopic/Arrays.h
+include/test_rostopic/Embed.h
+include/test_rostopic/Floats.h
+include/test_rostopic/Simple.h
+include/test_rostopic/TVals.h
+include/test_rostopic/Val.h
 include/topic_tools/DemuxAdd.h
 include/topic_tools/DemuxAddRequest.h
 include/topic_tools/DemuxAddResponse.h
@@ -332,6 +341,7 @@ lib/pkgconfig/test_rosmaster.pc
 lib/pkgconfig/test_rosparam.pc
 lib/pkgconfig/test_rospy.pc
 lib/pkgconfig/test_rosservice.pc
+lib/pkgconfig/test_rostopic.pc
 lib/pkgconfig/topic_tools.pc
 lib/pkgconfig/xmlrpcpp.pc
 ${PYTHON_SITELIB}/message_filters-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
@@ -422,10 +432,12 @@ ${PYTHON_SITELIB}/rospy/impl/tcpros_service.py
 ${PYTHON_SITELIB}/rospy/impl/transport.py
 ${PYTHON_SITELIB}/rospy/impl/udpros.py
 ${PYTHON_SITELIB}/rospy/impl/validators.py
+${PYTHON_SITELIB}/rospy/logger_level_service_caller.py
 ${PYTHON_SITELIB}/rospy/msg.py
 ${PYTHON_SITELIB}/rospy/msproxy.py
 ${PYTHON_SITELIB}/rospy/names.py
 ${PYTHON_SITELIB}/rospy/numpy_msg.py
+${PYTHON_SITELIB}/rospy/rosconsole.py
 ${PYTHON_SITELIB}/rospy/rostime.py
 ${PYTHON_SITELIB}/rospy/service.py
 ${PYTHON_SITELIB}/rospy/timer.py
@@ -542,6 +554,7 @@ ${PYTHON_SITELIB}/test_rosmaster/srv/__init__.py
 ${PYTHON_SITELIB}/test_rospy/__init__.py
 ${PYTHON_SITELIB}/test_rospy/msg/_ArrayVal.py
 ${PYTHON_SITELIB}/test_rospy/msg/_EmbedTest.py
+${PYTHON_SITELIB}/test_rospy/msg/_Empty.py
 ${PYTHON_SITELIB}/test_rospy/msg/_Floats.py
 ${PYTHON_SITELIB}/test_rospy/msg/_HeaderHeaderVal.py
 ${PYTHON_SITELIB}/test_rospy/msg/_HeaderVal.py
@@ -565,6 +578,15 @@ ${PYTHON_SITELIB}/test_rospy/srv/__init__.py
 ${PYTHON_SITELIB}/test_rosservice/__init__.py
 ${PYTHON_SITELIB}/test_rosservice/srv/_HeaderEcho.py
 ${PYTHON_SITELIB}/test_rosservice/srv/__init__.py
+${PYTHON_SITELIB}/test_rostopic/__init__.py
+${PYTHON_SITELIB}/test_rostopic/msg/_ArrayVal.py
+${PYTHON_SITELIB}/test_rostopic/msg/_Arrays.py
+${PYTHON_SITELIB}/test_rostopic/msg/_Embed.py
+${PYTHON_SITELIB}/test_rostopic/msg/_Floats.py
+${PYTHON_SITELIB}/test_rostopic/msg/_Simple.py
+${PYTHON_SITELIB}/test_rostopic/msg/_TVals.py
+${PYTHON_SITELIB}/test_rostopic/msg/_Val.py
+${PYTHON_SITELIB}/test_rostopic/msg/__init__.py
 ${PYTHON_SITELIB}/topic_tools/__init__.py
 ${PYTHON_SITELIB}/topic_tools/srv/_DemuxAdd.py
 ${PYTHON_SITELIB}/topic_tools/srv/_DemuxDelete.py
@@ -600,6 +622,7 @@ lib/topic_tools/mux_delete
 lib/topic_tools/mux_list
 lib/topic_tools/mux_select
 lib/topic_tools/relay
+lib/topic_tools/relay_field
 lib/topic_tools/switch_mux
 lib/topic_tools/throttle
 lib/topic_tools/transform
@@ -779,6 +802,7 @@ share/common-lisp/ros/test_rosmaster/srv/_package_RossrvB.lisp
 share/common-lisp/ros/test_rosmaster/srv/test_rosmaster-srv.asd
 share/common-lisp/ros/test_rospy/msg/ArrayVal.lisp
 share/common-lisp/ros/test_rospy/msg/EmbedTest.lisp
+share/common-lisp/ros/test_rospy/msg/Empty.lisp
 share/common-lisp/ros/test_rospy/msg/Floats.lisp
 share/common-lisp/ros/test_rospy/msg/HeaderHeaderVal.lisp
 share/common-lisp/ros/test_rospy/msg/HeaderVal.lisp
@@ -792,6 +816,7 @@ share/common-lisp/ros/test_rospy/msg/Val.lisp
 share/common-lisp/ros/test_rospy/msg/_package.lisp
 share/common-lisp/ros/test_rospy/msg/_package_ArrayVal.lisp
 share/common-lisp/ros/test_rospy/msg/_package_EmbedTest.lisp
+share/common-lisp/ros/test_rospy/msg/_package_Empty.lisp
 share/common-lisp/ros/test_rospy/msg/_package_Floats.lisp
 share/common-lisp/ros/test_rospy/msg/_package_HeaderHeaderVal.lisp
 share/common-lisp/ros/test_rospy/msg/_package_HeaderVal.lisp
@@ -825,6 +850,22 @@ share/common-lisp/ros/test_rosservice/srv/HeaderEcho.lisp
 share/common-lisp/ros/test_rosservice/srv/_package.lisp
 share/common-lisp/ros/test_rosservice/srv/_package_HeaderEcho.lisp
 share/common-lisp/ros/test_rosservice/srv/test_rosservice-srv.asd
+share/common-lisp/ros/test_rostopic/msg/ArrayVal.lisp
+share/common-lisp/ros/test_rostopic/msg/Arrays.lisp
+share/common-lisp/ros/test_rostopic/msg/Embed.lisp
+share/common-lisp/ros/test_rostopic/msg/Floats.lisp
+share/common-lisp/ros/test_rostopic/msg/Simple.lisp
+share/common-lisp/ros/test_rostopic/msg/TVals.lisp
+share/common-lisp/ros/test_rostopic/msg/Val.lisp
+share/common-lisp/ros/test_rostopic/msg/_package.lisp
+share/common-lisp/ros/test_rostopic/msg/_package_ArrayVal.lisp
+share/common-lisp/ros/test_rostopic/msg/_package_Arrays.lisp
+share/common-lisp/ros/test_rostopic/msg/_package_Embed.lisp
+share/common-lisp/ros/test_rostopic/msg/_package_Floats.lisp
+share/common-lisp/ros/test_rostopic/msg/_package_Simple.lisp
+share/common-lisp/ros/test_rostopic/msg/_package_TVals.lisp
+share/common-lisp/ros/test_rostopic/msg/_package_Val.lisp
+share/common-lisp/ros/test_rostopic/msg/test_rostopic-msg.asd
 share/common-lisp/ros/topic_tools/srv/DemuxAdd.lisp
 share/common-lisp/ros/topic_tools/srv/DemuxDelete.lisp
 share/common-lisp/ros/topic_tools/srv/DemuxList.lisp
@@ -999,6 +1040,18 @@ share/test_rosservice/cmake/test_rosservice-msg-paths.cmake
 share/test_rosservice/cmake/test_rosserviceConfig-version.cmake
 share/test_rosservice/cmake/test_rosserviceConfig.cmake
 share/test_rosservice/package.xml
+share/test_rostopic/cmake/test_rostopic-msg-extras.cmake
+share/test_rostopic/cmake/test_rostopic-msg-paths.cmake
+share/test_rostopic/cmake/test_rostopicConfig-version.cmake
+share/test_rostopic/cmake/test_rostopicConfig.cmake
+share/test_rostopic/msg/ArrayVal.msg
+share/test_rostopic/msg/Arrays.msg
+share/test_rostopic/msg/Embed.msg
+share/test_rostopic/msg/Floats.msg
+share/test_rostopic/msg/Simple.msg
+share/test_rostopic/msg/TVals.msg
+share/test_rostopic/msg/Val.msg
+share/test_rostopic/package.xml
 share/topic_tools/cmake/topic_tools-msg-extras.cmake
 share/topic_tools/cmake/topic_tools-msg-paths.cmake
 share/topic_tools/cmake/topic_toolsConfig-version.cmake
@@ -1015,3 +1068,4 @@ share/topic_tools/srv/MuxSelect.srv
 share/xmlrpcpp/cmake/xmlrpcppConfig-version.cmake
 share/xmlrpcpp/cmake/xmlrpcppConfig.cmake
 share/xmlrpcpp/package.xml
+@pkgdir share/doc/liborocos-kdl
