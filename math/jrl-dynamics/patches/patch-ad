@@ -1,0 +1,13 @@
+Fix error message (not sure why only gcc-6 detects this)
+
+--- tools/ReadPosFile.cpp~	2014-07-08 18:45:12.000000000 +0200
++++ tools/ReadPosFile.cpp	2016-11-02 15:52:10.401217527 +0100
+@@ -583,7 +583,7 @@
+   if (!PosFile.is_open())
+     {
+       cerr << "Unable to open position file: " <<
+-	PosFile << endl;
++	aSetOfConfigurationFiles.PosFileName << endl;
+       exit(-1);
+     }
+ 
