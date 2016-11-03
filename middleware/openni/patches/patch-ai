@@ -2,12 +2,12 @@
 headers of gcc-6
 
 --- Samples/NiViewer/glh/glh_linear.h~	2012-01-04 12:35:46.000000000 +0100
-+++ Samples/NiViewer/glh/glh_linear.h	2016-11-02 17:07:16.945071485 +0100
-@@ -1611,7 +1611,7 @@
-
++++ Samples/NiViewer/glh/glh_linear.h	2016-11-03 10:45:04.482390331 +0100
+@@ -1611,6 +1611,7 @@
+ 
  }  // namespace glh
-
--
+ 
 +#undef equivalent
-
+ 
+ 
  #endif
