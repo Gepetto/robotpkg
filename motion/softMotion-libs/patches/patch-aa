@@ -1,0 +1,13 @@
+Explicit static_cast<bool> for c++11 istringstream
+
+--- src/softMotion.c~	2013-06-17 17:08:40.000000000 +0200
++++ src/softMotion.c	2016-11-04 17:54:48.377371176 +0100
+@@ -7356,7 +7356,7 @@
+   size_t found;
+   bool result, relative;
+ 
+-  result= (iss >> element );
++  result= static_cast<bool>(iss >> element);
+ 
+   while( !result || !iss.eof() )
+     {// std::cout << element << std::endl;
