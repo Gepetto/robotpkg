@@ -21,7 +21,7 @@ DEPEND_ABI.py-qt4?=	${PKGTAG.python}-qt4>=4
 SYSTEM_SEARCH.py-qt4=\
   'share/sip{,${PYTHON_VERSION}}/{,PyQt4}/QtCore/QtCoremod.sip'		\
   'share/sip{,${PYTHON_VERSION}}/{,PyQt4}/QtGui/QtGuimod.sip'		\
-  '${PYTHON_SYSLIBSEARCH}/PyQt4/Qt{.*}.so'				\
+  '${PYTHON_SYSLIBSEARCH}/PyQt4/Qt{,.*}.so'				\
   '${PYTHON_SYSLIBSEARCH}/PyQt4/__init__.py'				\
   '${PYTHON_SYSLIBSEARCH}/PyQt4/pyqtconfig.py:/pyqt_version_str/s/[^0-9.]//gp'
 
