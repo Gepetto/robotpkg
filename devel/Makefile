@@ -8,7 +8,6 @@ SUBDIR+=	boost-build
 SUBDIR+=	boost-headers
 SUBDIR+=	boost-jam
 SUBDIR+=	boost-libs
-SUBDIR+=	boost-log
 SUBDIR+=	gbx-share
 SUBDIR+=	gbx-flexiport
 SUBDIR+=	jafar-kernel
