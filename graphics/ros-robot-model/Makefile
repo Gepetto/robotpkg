@@ -33,7 +33,7 @@ include ../../interfaces/ros-common-msgs/depend.mk
 include ../../math/ros-angles/depend.mk
 include ../../math/ros-geometry/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../motion/ros-orocos-kdl/depend.mk
+include ../../motion/orocos-kdl/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
 include ../../sysutils/ros-console-bridge/depend.mk
 include ../../mk/sysdep/libcurl.mk
