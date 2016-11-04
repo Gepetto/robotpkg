@@ -13,9 +13,7 @@ ifeq (+,$(URDFDOM_HEADERS_DEPEND_MK)) # ------------------------------------
 
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04 12.10 13.04,${OS_VERSION}))
-    PREFER.urdfdom-headers?=	robotpkg
-  else
+  ifneq (,$(filter 14.04 16.04,${OS_VERSION}))
     PREFER.urdfdom-headers?=	system
   endif
 endif
@@ -23,7 +21,7 @@ PREFER.urdfdom-headers?=	robotpkg
 
 DEPEND_USE+=			urdfdom-headers
 
-DEPEND_ABI.urdfdom-headers?=	urdfdom-headers>=0.2.2
+DEPEND_ABI.urdfdom-headers?=	urdfdom-headers>=0.2.2<1
 DEPEND_DIR.urdfdom-headers?=	../../graphics/urdfdom-headers
 
 SYSTEM_SEARCH.urdfdom-headers=\
