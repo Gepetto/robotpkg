@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Wed, 13 Aug 2014
 #
 
+PKGREVISION=	1
 ROS_PKG=	ros_comm_msgs
 ROS_VERSION=	1.11.2
 ROS_METAPKG=	yes
