@@ -16,6 +16,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-host-tool
 CONFIGURE_ARGS+=	--disable-threads
 CONFIGURE_ARGS+=	--with-internal-glib
+CONFIGURE_ARGS+=	--disable-compile-warnings
 
 # fix a == in a `test`
 SUBST_STAGE.test=	pre-configure
