@@ -1,5 +1,7 @@
 install -t does not exist (not in a portable way). This is useless anyway :)
 
+Don't build the doc if not asked to
+
 --- Makefile~	2012-07-20 11:26:07.228857754 +0200
 +++ Makefile	2012-07-24 18:20:57.392857811 +0200
 @@ -57,7 +57,6 @@
@@ -10,6 +12,15 @@ install -t does not exist (not in a portable way). This is useless anyway :)
  	echo "If you have the test ontology oro_test.owl, you can now run 'make test' to run the unit tests"
  
  oro-jar: oro-build
+@@ -69,7 +69,7 @@
+ 	$(INSTALL) -d $(BUILD_DIR)
+ 	$(JAVAC) -classpath $(CLASSPATH) -d $(BUILD_DIR) `find $(SRC_DIR)/laas -name "*.java"`
+ 
+-install: oro-server install-doc
++install: oro-server
+ 	$(INSTALL) -d ${PREFIX}/java/oro-server/lib
+ 	$(INSTALL) oro-server.jar ${PREFIX}/java/oro-server/lib
+ 	$(INSTALL) -d ${PREFIX}/etc/oro-server
 @@ -113,7 +112,7 @@
  	-J-Xmx180m \
  	-stylesheetfile $(MEDIA_DIR)/javadoc.css \
