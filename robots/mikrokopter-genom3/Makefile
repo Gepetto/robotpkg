@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Tue, 10 Nov 2015
 #
 
+PKGREVISION=		1
 DISTNAME=		mikrokopter-genom3-1.5
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}

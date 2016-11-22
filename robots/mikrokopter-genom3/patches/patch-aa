@@ -1,0 +1,20 @@
+Raise an error in set_velocity only if a motor in in emergency state
+
+Now that motors can be enabled while others are spinning, there is a transition
+phase where a freshly enabled motor is not yet spinning while the others are
+still receiving a velocity through set_velocity(). For this to work,
+set_velocity() must not raise an error in this case.
+
+diff --git codels/mikrokopter_codels.c codels/mikrokopter_codels.c
+index 5061b61..e2fa727 100644
+--- codels/mikrokopter_codels.c
++++ codels/mikrokopter_codels.c
+@@ -203,7 +203,7 @@ mk_set_velocity(const mikrokopter_conn_s *conn,
+     if (i < rotors_state->_length && rotors_state->_buffer[i].disabled)
+       continue;
+ 
+-    if (!rotors_state->_buffer[i].spinning) {
++    if (rotors_state->_buffer[i].emerg) {
+       e.id = 1 + i;
+       return mikrokopter_e_rotor_failure(&e, self);
+     }
