@@ -1,0 +1,4 @@
+@comment Tue Dec 13 17:30:50 CET 2016
+include/libkdtp.h
+lib/libkdtp.la
+lib/pkgconfig/libkdtp.pc

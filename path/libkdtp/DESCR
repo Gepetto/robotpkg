@@ -1,0 +1,9 @@
+Kinodynamic Trajectory Planner
+
+Spline-based, minimum time, constant snap trajectory generator. It applies to
+any robot with decoupled dynamics (or differencially flat).
+
+Whitepaper: Alexandre Boeuf, Juan Cortes, Rachid Alami, Thierry
+Simeon. Enhancing sampling-based kinodynamic motion planning for
+quadrotors. IEEE/RSJ International Conference on Intelligent Robots and
+Systems, Sep 2015, Hamburg, Germany. 2015.

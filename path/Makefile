@@ -30,6 +30,7 @@ SUBDIR+=	hpp-wholebody-step-corba
 SUBDIR+=	hpp-wholebody-step
 SUBDIR+=	hpp-worldmodelplanner
 SUBDIR+=	jrl-walkgen
+SUBDIR+=	libkdtp
 SUBDIR+=	libp3d
 SUBDIR+=	ndd-genom
 SUBDIR+=	p3d-genom
