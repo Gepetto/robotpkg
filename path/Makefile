@@ -32,6 +32,7 @@ SUBDIR+=	hpp-worldmodelplanner
 SUBDIR+=	jrl-walkgen
 SUBDIR+=	libkdtp
 SUBDIR+=	libp3d
+SUBDIR+=	maneuver-genom3
 SUBDIR+=	ndd-genom
 SUBDIR+=	p3d-genom
 

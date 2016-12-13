@@ -1,0 +1,3 @@
+Simple maneuver planner for aerial robots.
+
+Implements vertical take-off/landing, goto and waypoint-based trajectories.
