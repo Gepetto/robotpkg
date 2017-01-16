@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2016 LAAS/CNRS
+# Copyright (c) 2010-2017 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -116,6 +116,9 @@ else ifeq (Ubuntu,${OPSYS})
   endif
   ifneq (,$(filter 12.10 13.04 13.10,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python33
+  endif
+  ifneq (,$(filter 14.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python34
   endif
 else ifeq (OpenNao,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python32
