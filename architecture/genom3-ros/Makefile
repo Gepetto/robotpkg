@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon,  9 Nov 2015
 #
 
-DISTNAME=	genom3-ros-1.15
+DISTNAME=	genom3-ros-1.15.1
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom3-ros/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genom3/genom3-ros
