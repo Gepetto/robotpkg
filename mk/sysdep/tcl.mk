@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2012-2013,2015-2016 LAAS/CNRS
+# Copyright (c) 2012-2013,2015-2017 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -70,7 +70,7 @@ DEPEND_ABI.tcl?=	tcl>=8.4
 
 # factorize SYSTEM_SEARCH.tcl* here for all tcl* packages
 override define _tcl_syssearch
-  'bin/tclsh{,[0-9.]*}:p:echo puts [set tcl_patchLevel]| %'	\
+  'bin/tclsh{[0-9.]*,}:p:echo puts [set tcl_patchLevel]| %'	\
   'lib/{,tcl{,[0-9]*}/}tclConfig.sh:/TCL_VERSION/s/[^.0-9]//gp'	\
   'include/{,tcl{,[0-9]*}/}tcl.h:/TCL_VERSION/s/[^.0-9]//gp'
 endef
