@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011,2013 LAAS/CNRS
+# Copyright (c) 2006-2009,2011,2013,2017 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -51,6 +51,9 @@
 
 # Binary package format list. Possible bsd, deb
 PKG_FORMAT?=	bsd
+
+# Binary package error logs
+_PKG_LOG=		${WRKDIR}/pkg.log
 
 
 # ---  package (PUBLIC) ----------------------------------------------

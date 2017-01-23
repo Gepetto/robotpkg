@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2007,2009,2011,2013,2016 LAAS/CNRS
+# Copyright (c) 2006-2007,2009,2011,2013,2016-2017 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -109,7 +109,8 @@ ifneq (,$(filter deb,${PKG_FORMAT}))
 
   .PHONY: deb-package
   deb-package:
-	${RUN}								\
+	${RUN} >${_PKG_LOG};						\
+	${STEP_MSG} "Building debian binary package";			\
 	pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
 	dirs=;								\
 	dirs="$$dirs ${PKGPUBLICSUBDIR}";				\
@@ -121,6 +122,10 @@ $(foreach _,${PACKAGES_SUBDIRS},					\
 	    ${MKDIR} ${DEB_PACKAGES}/$$d;				\
 	  ${SETENV} ${PKGREPO2DEB_ENV}					\
 	    ${PKGREPO2DEB} -r ${PKGREPOSITORY} -d ${DEB_PACKAGES}/$$d	\
-	      ${PKGREPO2DEB_ARGS} ${PACKAGES}/$$d/$$pkgfile${PKG_SUFX};	\
-	done
+	      ${PKGREPO2DEB_ARGS} ${PACKAGES}/$$d/$$pkgfile${PKG_SUFX}	\
+	      2>>${_PKG_LOG};						\
+	done;								\
+	if ${TEST} -s ${_PKG_LOG}; then					\
+	  ${WARNING_CAT} <${_PKG_LOG};					\
+	fi
 endif
