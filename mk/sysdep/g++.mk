@@ -20,6 +20,7 @@ PREFER.g++ ?=		${PREFER.gcc}
 DEPEND_USE+=		g++
 
 DEPEND_ABI.g++ ?=	g++>=3
+DEPEND_METHOD.g++ ?=	build
 
 SYSTEM_PKG.Fedora.g++ =	gcc-c++
 SYSTEM_PKG.Ubuntu.g++ =	g++
@@ -38,5 +39,7 @@ CXX_COMPILER_FLAGS_NDEBUG?=	-O3 -DNDEBUG
 COMPILER_RPATH_FLAG?=	-Wl,-rpath,
 
 endif # G++_DEPEND_MK ------------------------------------------------------
+
+include ../../mk/sysdep/libstdc++.mk
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
