@@ -1,20 +1,6 @@
+# robotpkg sysdep/pdflatex.mk
+# Created:			Anthony Mallet on Sun,  2 Nov 2008
 #
-# Copyright (c) 2008-2011 LAAS/CNRS
-# All rights reserved.
-#
-# Redistribution and use  in source  and binary  forms,  with or without
-# modification, are permitted provided that the following conditions are
-# met:
-#
-#   1. Redistributions of  source  code must retain the  above copyright
-#      notice and this list of conditions.
-#   2. Redistributions in binary form must reproduce the above copyright
-#      notice and  this list of  conditions in the  documentation and/or
-#      other materials provided with the distribution.
-#
-#                                      Anthony Mallet on Sun Nov  2 2008
-#
-
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 PDFLATEX_DEPEND_MK:=	${PDFLATEX_DEPEND_MK}+
 
@@ -26,15 +12,16 @@ ifeq (+,$(PDFLATEX_DEPEND_MK)) # -------------------------------------
 
 PREFER.pdflatex?=	system
 DEPEND_USE+=		pdflatex
-DEPEND_ABI.pdflatex?=	pdflatex>=3.14
+DEPEND_ABI.pdflatex?=	pdflatex
+DEPEND_METHOD.pdflatex?=build
 
 SYSTEM_SEARCH.pdflatex=	\
-	'{bin/,}pdflatex:/pdf/{s/^[^0-9]*//;s/[^.0-9].*$$//;p;}:% -version'
+	'{bin/,}pdflatex'
 
 SYSTEM_PKG.Fedora.pdflatex=texlive-latex
 SYSTEM_PKG.Ubuntu.pdflatex=texlive-latex-extra
 SYSTEM_PKG.Debian.pdflatex=texlive-latex-extra
-SYSTEM_PKG.MacOSX.pdflatex=	texlive
+SYSTEM_PKG.MacOSX.pdflatex=texlive
 
 export PDFLATEX=	$(word 1,${SYSTEM_FILES.pdflatex})
 
