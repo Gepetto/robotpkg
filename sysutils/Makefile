@@ -5,6 +5,7 @@ COMMENT=	Sysutils
 
 SUBDIR+=	alog
 SUBDIR+=	arduio
+SUBDIR+=	arduio-genom3
 SUBDIR+=	console-bridge
 SUBDIR+=	interceptty
 SUBDIR+=	py-aafigure
