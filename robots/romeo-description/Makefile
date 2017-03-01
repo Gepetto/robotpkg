@@ -1,6 +1,7 @@
 # robotpkg Makefile for:	robots/romeo-description
 # Created:			Aurélie Clodic on Wed, 11 Jun 2014
 #
+PKGREVISION=		1
 VERSION=		0.4.0
 DISTNAME=		romeo_description-${VERSION}
 PKGNAME=		romeo-description-${VERSION}
