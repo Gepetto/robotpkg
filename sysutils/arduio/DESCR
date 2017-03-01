@@ -1,0 +1,2 @@
+This software runs on an Arduino board and provides remote control of the board
+I/Os through a serial, message-based communication.
