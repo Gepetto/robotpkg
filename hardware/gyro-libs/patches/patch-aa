@@ -1,0 +1,40 @@
+From 313a4726478ddc5f01ced3cdb13ab7184c9d5b65 Mon Sep 17 00:00:00 2001
+From: Matthieu Herrb <matthieu@laas.fr>
+Date: Sat, 18 Mar 2017 16:36:52 +0100
+Subject: [PATCH] Fix typo in pthread_mutex_t type name; causes heap
+ overwrites...
+
+---
+ src/KVH1000.c | 2 +-
+ src/KVH5000.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git src/KVH1000.c src/KVH1000.c
+index a85c7c9..2717310 100644
+--- src/KVH1000.c
++++ src/KVH1000.c
+@@ -60,7 +60,7 @@ gyroInitKVH1000(const char *port, double latitude, double woffset)
+ 	gyroData = (struct GYRO_KVH1000_DATA *)malloc(sizeof(struct GYRO_KVH1000_DATA));
+ 	if (gyroData == NULL)
+ 		return NULL;
+-	gyroData->gd.lock = malloc(sizeof(pthread_mutex_lock));
++	gyroData->gd.lock = malloc(sizeof(pthread_mutex_t));
+ 	if (gyroData->gd.lock == NULL) {
+ 		free(gyroData);
+ 		return NULL;
+diff --git src/KVH5000.c src/KVH5000.c
+index a3e6222..85304b7 100644
+--- src/KVH5000.c
++++ src/KVH5000.c
+@@ -50,7 +50,7 @@ gyroInitKVH5000(const char *port, double latitude, double woffset, int sign)
+ 	gyroData = malloc(sizeof(struct GYRO_KVH5000_DATA));
+ 	if (gyroData == NULL)
+ 		return NULL;
+-	gyroData->gd.lock = malloc(sizeof(pthread_mutex_lock));
++	gyroData->gd.lock = malloc(sizeof(pthread_mutex_t));
+ 	if (gyroData->gd.lock == NULL) {
+ 		free(gyroData);
+ 		return NULL;
+-- 
+2.7.4
+
