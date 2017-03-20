@@ -15,7 +15,7 @@ PREFER.blas?=		system
 
 DEPEND_USE+=		blas
 
-DEPEND_ABI.blas?=	blas>=3.1
+DEPEND_ABI.blas?=	blas
 DEPEND_DIR.blas?=	../../math/blas
 
 SYSTEM_SEARCH.blas=	'lib/libblas.{so,[^a]*,a}'
