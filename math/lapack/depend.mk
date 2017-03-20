@@ -15,7 +15,7 @@ PREFER.lapack?=		system
 
 DEPEND_USE+=		lapack
 
-DEPEND_ABI.lapack?=	lapack>=3.1.0
+DEPEND_ABI.lapack?=	lapack
 DEPEND_DIR.lapack?=	../../math/lapack
 
 SYSTEM_SEARCH.lapack=	'lib/liblapack.{so,[^a]*,a}'
