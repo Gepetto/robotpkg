@@ -3,7 +3,7 @@
 #
 
 DISTNAME=		gyro-libs-3.1
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}kvh-gyro/gyro-libs
@@ -16,7 +16,6 @@ LICENSE=		isc
 
 GNU_CONFIGURE=		yes
 
-include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
