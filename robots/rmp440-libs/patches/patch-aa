@@ -1,3 +1,7 @@
+From b28f4b4ee425e2b77befcda3c2c3643b580fb06d Mon Sep 17 00:00:00 2001
+From: Matthieu Herrb <matthieu.herrb@laas.fr>
+Date: Thu, 16 Mar 2017 18:58:23 +0100
+Subject: [PATCH] Handle systems with clock_gettime() in librt
 --- configure.orig	2017-03-16 16:57:35.000000000 +0100
 +++ configure	2017-03-16 19:17:31.025141000 +0100
 @@ -11869,6 +11869,63 @@
@@ -64,3 +68,13 @@
  ac_config_files="$ac_config_files Makefile src/Makefile test/Makefile rmp440-libs.pc"
  
  cat >confcache <<\_ACEOF
+diff --git rmp440-libs.pc.in rmp440-libs.pc.in
+index 4a945a6..d4c879a 100644
+--- rmp440-libs.pc.in
++++ rmp440-libs.pc.in
+@@ -8,4 +8,5 @@ Description: Segway Robotic Mobility Platform interface library
+ Version: @PACKAGE_VERSION@
+ Requires: pocolibs
+ Libs: -L${libdir} -lrmp440Lib
++Libs.private: @LIBS@
+ Cflags: -I${includedir}
