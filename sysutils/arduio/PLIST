@@ -1,7 +1,8 @@
-@comment Wed Mar 1 17:55:32 CET 2017
+@comment Thu Mar 30 18:22:32 CEST 2017
 lib/arduio-firmware/nano
 lib/arduio-firmware/uno
 lib/pkgconfig/arduio.pc
 share/doc/arduio/communication.html
 share/doc/arduio/index.html
 share/doc/arduio/install.html
+share/doc/arduio/modes.html
