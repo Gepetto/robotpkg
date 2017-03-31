@@ -15,6 +15,7 @@ SUBDIR+=	pilo-genom
 SUBDIR+=	py-dynamic-graph
 SUBDIR+=	py-orocos-kdl
 SUBDIR+=	py-sot-tools
+SUBDIR+=	ros-control-toolbox
 SUBDIR+=	ros-orocos-kdl
 SUBDIR+=	softMotion-libs
 SUBDIR+=	sot-core
