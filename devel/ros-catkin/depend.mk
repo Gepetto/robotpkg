@@ -46,6 +46,7 @@ ifneq (,$(filter yes YES Yes,${USE_ROS_CATKIN}))
 
   include ../../mk/robotpkg.prefs.mk # for prependpaths
 
+  CMAKE_ARGS+=-DCATKIN_DEVEL_PREFIX=${WRKDIR}/stage
   CMAKE_ARGS+=-DNOSETESTS=${NOSETESTS}
   CMAKE_ARGS+=-DGTEST_ROOT=${PREFIX.googletest}
   CMAKE_ARGS+=-DCATKIN_BUILD_BINARY_PACKAGE=1
