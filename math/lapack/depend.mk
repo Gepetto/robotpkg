@@ -18,13 +18,16 @@ DEPEND_USE+=		lapack
 DEPEND_ABI.lapack?=	lapack
 DEPEND_DIR.lapack?=	../../math/lapack
 
-SYSTEM_SEARCH.lapack=	'lib/liblapack.{so,[^a]*,a}'
+SYSTEM_SEARCH.lapack=\
+  'lib/liblapack.{so,[^a]*,a}'		\
+  'lib/libblas.{so,[^a]*,a}'
 
 SYSTEM_PKG.Fedora.lapack=	lapack-devel
 SYSTEM_PKG.Ubuntu.lapack=	liblapack-dev
 SYSTEM_PKG.Debian.lapack=	liblapack-dev
 
 export LAPACK_LIB=	$(word 1,${SYSTEM_FILES.lapack})
+export BLAS_LIB=	$(word 2,${SYSTEM_FILES.lapack})
 
 endif # LAPACK_DEPEND_MK ---------------------------------------------
 

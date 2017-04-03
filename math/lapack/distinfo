@@ -1,5 +1,3 @@
-SHA1 (lapack-3.1.0.tgz) = 6acf1483951cdcf16fc0e670ae1bc066ac1d185d
-RMD160 (lapack-3.1.0.tgz) = 881faa91bf729cd25b55d2f66167505e33c60523
-Size (lapack-3.1.0.tgz) = 10299236 bytes
-SHA1 (patch-ac) = daf419f0c7f4d7e0a0769591861408350dce7505
-SHA1 (patch-ad) = b16ace4c7b2cc7fead91740768bf75b579d2fff0
+SHA1 (lapack-3.7.0.tgz) = 27dbd06bedc76619150f8e28de6412f7df0c649a
+RMD160 (lapack-3.7.0.tgz) = 71841959ce7cd6a07e721a2de8ff29c89735b103
+Size (lapack-3.7.0.tgz) = 7359812 bytes
