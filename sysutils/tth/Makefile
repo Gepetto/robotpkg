@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 13 Jan 2009
 #
 
-VERSION=		4.05
+VERSION=		4.09
 DISTNAME=		tth_C
 PKGNAME=		tth-${VERSION}
 CATEGORIES=		sysutils
