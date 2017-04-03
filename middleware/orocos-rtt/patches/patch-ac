@@ -1,0 +1,150 @@
+Fix renaming of boost::serialization::array in boost >= 1.61
+
+--- rtt/types/type_discovery.hpp~	2015-07-01 12:10:43.000000000 +0200
++++ rtt/types/type_discovery.hpp	2016-11-04 12:17:28.383987828 +0100
+@@ -293,7 +293,13 @@
+              * @return *this
+              */
+             template<class T>
+-            type_discovery &load_a_type(const boost::serialization::array<T> &t, boost::mpl::false_)
++            type_discovery &load_a_type(
++#if BOOST_VERSION < 106100
++              const boost::serialization::array<T> &t,
++#else
++              const boost::serialization::array_wrapper<T> &t,
++#endif
++              boost::mpl::false_)
+             {
+                 mparts.push_back(new internal::PartDataSource< carray<T> > ( carray<T>(t), mparent) );
+                 return *this;
+--- rtt/types/carray.hpp~	2015-07-01 12:10:43.000000000 +0200
++++ rtt/types/carray.hpp	2016-11-04 12:18:46.367687419 +0100
+@@ -41,6 +41,7 @@
+ 
+ #include <boost/serialization/array.hpp>
+ #include <boost/array.hpp>
++#include <boost/version.hpp>
+ 
+ namespace RTT
+ {
+@@ -96,7 +96,13 @@
+              * the original data.
+              * @param orig
+              */
+-            carray( boost::serialization::array<T> const& orig)
++            carray(
++#if BOOST_VERSION < 106100
++              boost::serialization::array<T> const& orig
++#else
++              boost::serialization::array_wrapper<T> const& orig
++#endif
++              )
+             : m_t( orig.address() ), m_element_count( orig.count() ) {
+                 if (m_element_count == 0)
+                     m_t = 0;
+@@ -169,7 +169,13 @@
+              * @param orig
+              */
+             template <class OtherT>
+-            const carray<T>& operator=( boost::serialization::array<OtherT> const& orig ) {
++            const carray<T>& operator=(
++#if BOOST_VERSION < 106100
++              boost::serialization::array<OtherT> const& orig
++#else
++              boost::serialization::array_wrapper<OtherT> const& orig
++#endif
++              ) {
+                 if (orig.address() != m_t)
+                     for(std::size_t i = 0; i != orig.count() && i != count(); ++i)
+                         m_t[i] = orig.address()[i];
+--- rtt/transports/mqueue/binary_data_archive.hpp~	2015-07-01 12:10:43.000000000 +0200
++++ rtt/transports/mqueue/binary_data_archive.hpp	2016-11-04 12:20:49.791209506 +0100
+@@ -77,6 +77,7 @@
+ #include <boost/archive/archive_exception.hpp>
+ #include <boost/config.hpp>
+ #include <boost/mpl/bool.hpp>
++#include <boost/version.hpp>
+ 
+ // binary_data_archive API changed at 1.42, 1.46
+ #include <boost/version.hpp>
+@@ -176,7 +176,7 @@
+              * to the correct internal load_a_type function.
+              */
+             template<class T>
+-            void load_override(T & t, BOOST_PFTO int){
++            void load_override(T & t, int){
+                 load_a_type(t, boost::mpl::bool_<boost::serialization::implementation_level<T>::value == boost::serialization::primitive_type>() );
+                 //archive::load(* this->This(), t);
+             }
+@@ -203,12 +203,21 @@
+              * @param t
+              * @return *this
+              */
++#if BOOST_VERSION < 106100
+             template<class T>
+             void load_override(const boost::serialization::array<T> &t, int)
+             {
+                 boost::serialization::array<T> tmp(t.address(), t.count());
+                 *this >> tmp;
+             }
++#else
++            template<class T>
++            void load_override(const boost::serialization::array_wrapper<T> &t, int)
++            {
++                boost::serialization::array_wrapper<T> tmp(t.address(), t.count());
++                *this >> tmp;
++            }
++#endif
+ 
+             /**
+              * Loading Archive Concept::operator>>
+@@ -323,7 +332,12 @@
+              * The optimized save_array dispatches to save_binary
+              */
+             template<class ValueType>
+-            void load_array(boost::serialization::array<ValueType>& a,
++            void load_array(
++#if BOOST_VERSION < 106100
++            boost::serialization::array<ValueType>& a,
++#else
++            boost::serialization::array_wrapper<ValueType>& a,
++#endif
+                             unsigned int)
+             {
+                 load_binary(a.address(), a.count()
+@@ -513,7 +527,12 @@
+              * The optimized save_array dispatches to save_binary
+              */
+             template<class ValueType>
+-            void save_array(boost::serialization::array<ValueType> const& a,
++            void save_array(
++#if BOOST_VERSION < 106100
++            boost::serialization::array<ValueType> const& a,
++#else
++            boost::serialization::array_wrapper<ValueType> const& a,
++#endif
+                             unsigned int)
+             {
+                 save_binary(a.address(), a.count()
+--- tests/mqueue_archive_test.cpp~	2015-07-01 12:10:43.000000000 +0200
++++ tests/mqueue_archive_test.cpp	2016-11-04 12:21:42.923002862 +0100
+@@ -22,6 +22,7 @@
+ #include <boost/iostreams/device/array.hpp>
+ #include <boost/serialization/vector.hpp>
+ #include <boost/archive/binary_iarchive.hpp>
++#include <boost/version.hpp>
+ 
+ #include <rtt-fwd.hpp>
+ #include <transports/mqueue/binary_data_archive.hpp>
+@@ -107,7 +107,11 @@
+     rtos_enable_rt_warning();
+     io::stream<io::array_source>  inbuf(sink,1000);
+     binary_data_iarchive in( inbuf ); // +0 alloc
++#if BOOST_VERSION < 106100
+     boost::serialization::array<char> ma = boost::serialization::make_array(c, 10);
++#else
++    boost::serialization::array_wrapper<char> ma = boost::serialization::make_array(c, 10);
++#endif
+     in >> ma; // +0 alloc
+     rtos_disable_rt_warning();
+ 

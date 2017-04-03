@@ -2,7 +2,6 @@
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
-PKGREVISION= 	1
 OROCOS_PKG=		rtt
 CATEGORIES=		middleware
 DISTINFO_FILE=		${CURDIR}/distinfo

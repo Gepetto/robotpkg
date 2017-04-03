@@ -1,3 +1,5 @@
 SHA1 (orocos-rtt-2.8.1.tar.gz) = d65c6289d419607e394ab57cf4f1ca157084d137
 RMD160 (orocos-rtt-2.8.1.tar.gz) = 3be7cd59066c44ff4467e1f12ecdd869058a59ab
 SHA1 (patch-aa) = 9d23a3ddc935149d55fc49dc7abcdc083f33cc7c
+SHA1 (patch-ab) = 91a6bfa312751c625ed9b6b2218f763ff603e201
+SHA1 (patch-ac) = 96314cb7054b41ff8a21b8e259db2cbd4843def3

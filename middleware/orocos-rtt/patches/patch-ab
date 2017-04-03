@@ -1,0 +1,15 @@
+Fix gcc version check for gcc>5
+
+--- config/check_depend.cmake~	2015-07-01 12:10:43.000000000 +0200
++++ config/check_depend.cmake	2016-11-04 11:46:35.323469099 +0100
+@@ -309,8 +309,8 @@
+ 
+   IF ( ${CXX_HAS_VERSION} EQUAL 0 )
+     # We are assuming here that -dumpversion is gcc specific.
+-    IF( CXX_VERSION MATCHES "[4-5]\\.[0-9](\\.[0-9])?" )
+-      MESSAGE(STATUS "Detected gcc4/5: ${CXX_VERSION}")
++    IF( CXX_VERSION MATCHES "[4-9]\\.[0-9](\\.[0-9])?" )
++      MESSAGE(STATUS "Detected gcc>4: ${CXX_VERSION}")
+       SET(RTT_GCC_HASVISIBILITY TRUE)
+     ELSE(CXX_VERSION MATCHES "[4-5]\\.[0-9](\\.[0-9])?")
+       IF( CXX_VERSION MATCHES "3\\.[0-9](\\.[0-9])?" )
