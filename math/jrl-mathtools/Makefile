@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 17 Sep 2008
 #
 
-PKGREVISION=		2
+PKGREVISION=		3
 DISTNAME=		jrl-mathtools-1.5.2
 CATEGORIES=		math
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=jrl-mathtools/}
@@ -30,7 +30,6 @@ USE_BOOST_LIBS= filesystem system thread program_options unit_test_framework
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
-include ../../math/blas/depend.mk
 include ../../math/lapack/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
