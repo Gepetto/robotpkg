@@ -1,4 +1,4 @@
-@comment Fri Mar 31 15:26:45 CEST 2017
+@comment Mon Apr 3 18:21:37 CEST 2017
 include/controller_interface/controller.h
 include/controller_interface/controller_base.h
 include/controller_manager/controller_loader.h
@@ -85,7 +85,10 @@ lib/pkgconfig/joint_limits_interface.pc
 lib/pkgconfig/rqt_controller_manager.pc
 lib/pkgconfig/transmission_interface.pc
 ${PYTHON_SITELIB}/controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/controller_manager/__init__.py
+${PYTHON_SITELIB}/controller_manager/controller_manager_interface.py
 ${PYTHON_SITELIB}/controller_manager_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/controller_manager_msgs/__init__.py
 ${PYTHON_SITELIB}/controller_manager_msgs/msg/_ControllerState.py
 ${PYTHON_SITELIB}/controller_manager_msgs/msg/_ControllerStatistics.py
 ${PYTHON_SITELIB}/controller_manager_msgs/msg/_ControllersStatistics.py
@@ -97,8 +100,13 @@ ${PYTHON_SITELIB}/controller_manager_msgs/srv/_ReloadControllerLibraries.py
 ${PYTHON_SITELIB}/controller_manager_msgs/srv/_SwitchController.py
 ${PYTHON_SITELIB}/controller_manager_msgs/srv/_UnloadController.py
 ${PYTHON_SITELIB}/controller_manager_msgs/srv/__init__.py
+${PYTHON_SITELIB}/controller_manager_msgs/utils.py
 ${PYTHON_SITELIB}/controller_manager_tests-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/controller_manager_tests/__init__.py
+${PYTHON_SITELIB}/controller_manager_tests/controller_manager_dummy.py
 ${PYTHON_SITELIB}/rqt_controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rqt_controller_manager/__init__.py
+${PYTHON_SITELIB}/rqt_controller_manager/controller_manager_gui.py
 share/common-lisp/ros/controller_manager_msgs/msg/ControllerState.lisp
 share/common-lisp/ros/controller_manager_msgs/msg/ControllerStatistics.lisp
 share/common-lisp/ros/controller_manager_msgs/msg/ControllersStatistics.lisp
