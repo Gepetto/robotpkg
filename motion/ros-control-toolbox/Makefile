@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Thu, 27 Jun 2013
 #
 
+PKGREVISION=	1
 ROS_PKG=	control_toolbox
 ROS_VERSION=	1.13.2
 ROS_REPO=	ros-controls
@@ -16,6 +17,10 @@ CMAKE_ARGS+=	-DTinyXML_INCLUDE_PATH=${PREFIX.tinyxml}/include
 CMAKE_ARGS+=	-DTinyXML_LIBRARY_PATH=${PREFIX.tinyxml}/lib
 
 USE_BOOST_LIBS=	thread
+
+SUBST_CLASSES+=			py-interp
+SUBST_FILES.py-interp+=		cfg/Parameters.cfg
+SUBST_FILES.py-interp+=		scripts/tune_pid.py
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
