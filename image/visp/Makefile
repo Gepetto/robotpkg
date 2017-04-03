@@ -1,7 +1,7 @@
 # robotpkg Makefile for:	image/visp
 # Created:			Anthony Mallet on Tue, 9 Feb 2010
 #
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		ViSP-${VERSION}
 PKGNAME=		visp-${VERSION}
 VERSION=		2.6.1
@@ -73,7 +73,6 @@ include ../../archivers/zlib/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../image/opencv/depend.mk
-include ../../math/blas/depend.mk
 include ../../math/lapack/depend.mk
 include ../../archivers/pax/depend.mk
 include ../../mk/sysdep/cmake.mk
