@@ -31,5 +31,6 @@ include ../../lang/ros-message-runtime/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../motion/ros-control-toolbox/depend.mk
+include ../../net/ros-resource-retriever/depend.mk
 include ../../mk/sysdep/tinyxml.mk
 include ../../mk/robotpkg.mk
