@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Mon, 14 May 2007
 #
 
+PKGREVISION=	1
 DISTNAME=	jrl-mal-${VERSION}
 VERSION=	1.19.6
 CATEGORIES=	interfaces
@@ -46,14 +47,11 @@ include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../math/boost-numeric-bindings-v1/depend.mk
 include ../../math/lapack/depend.mk
-include ../../math/blas/depend.mk
-
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/latex.mk
-
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/language/fortran.mk
