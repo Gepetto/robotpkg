@@ -1,3 +1,4 @@
 SHA1 (lapack-3.7.0.tgz) = 27dbd06bedc76619150f8e28de6412f7df0c649a
 RMD160 (lapack-3.7.0.tgz) = 71841959ce7cd6a07e721a2de8ff29c89735b103
 Size (lapack-3.7.0.tgz) = 7359812 bytes
+SHA1 (patch-aa) = d36bcea68c1f1175758574c39fc3b0f0890f44c8

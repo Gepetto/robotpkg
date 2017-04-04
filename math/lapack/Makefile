@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Mon, 29 Jan 2007
 #
 
+PKGREVISION=	1
 DISTNAME=	lapack-3.7.0
 
 CATEGORIES=	math
@@ -27,4 +28,5 @@ include ../../mk/language/fortran.mk
 include ../../mk/robotpkg.mk
 
 pre-configure:
-	${RUN}${MKDIR} ${CONFIGURE_DIRS}
+	${RUN}${MKDIR} ${CONFIGURE_DIRS} &&				\
+	${CP} ${FILESDIR}/lapack-config-version.cmake ${CONFIGURE_DIRS}/.
