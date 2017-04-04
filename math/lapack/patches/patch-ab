@@ -1,0 +1,10 @@
+Drop useless cmake >= 2.8.7
+
+--- INSTALL/CMakeLists.txt~	2016-12-24 00:01:32.000000000 +0100
++++ INSTALL/CMakeLists.txt	2017-04-04 17:54:52.180777842 +0200
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8.7)
++cmake_minimum_required(VERSION 2.6)
+ project(TIMING Fortran)
+ add_executable(secondtst_NONE second_NONE.f secondtst.f)
+ add_executable(secondtst_EXT_ETIME second_EXT_ETIME.f secondtst.f)
