@@ -1,0 +1,31 @@
+Fix in-tree doc build
+
+--- CMakeLists.txt~	2016-02-08 10:50:17.000000000 +0100
++++ CMakeLists.txt	2017-04-04 12:06:33.035371954 +0200
+@@ -137,7 +137,7 @@
+ IF (NOT SPHINX_BUILD)
+ 	MESSAGE(FATAL_ERROR "Can't find sphinx-build : will not build the documentation")
+ ELSE()
+-	SET (CMAKE_DOC_OUT ${CMAKE_CURRENT_BINARY_DIR}/doc)
++	SET (CMAKE_DOC_OUT ${CMAKE_CURRENT_BINARY_DIR}/doc-out)
+ 	SET (SPHINX_OUTPUT ${CMAKE_DOC_OUT}/html)
+ 	SET (SPHINX_SRC ${CMAKE_DOC_OUT}/src)
+ 	SET (SPHINX_LATEX_OUTPUT ${CMAKE_DOC_OUT}/tex)
+@@ -157,7 +157,7 @@
+ 	# Generate the documentation from the different components
+ 	ADD_CUSTOM_TARGET(
+ 		generate_doc ALL
+-		COMMAND ${PYTHON_DOC_ENV} ${CMAKE_CURRENT_SOURCE_DIR}/doc/tools/generate_doc
++		COMMAND ${PYTHON_DOC_ENV} 2>/dev/null ${CMAKE_CURRENT_SOURCE_DIR}/doc/tools/generate_doc
+ 		WORKING_DIRECTORY ${SPHINX_SRC}/morse/user/
+ 	)
+ 
+@@ -222,7 +222,7 @@
+ 	ADD_CUSTOM_TARGET(
+ 		doc ALL
+ 		COMMAND ${SPHINX_BUILD_ENV} -b html
+-								    -c ${CMAKE_DOC_OUT}
++								    2>/dev/null -c ${CMAKE_CURRENT_SOURCE_DIR}/doc
+ 									${SPHINX_SRC}/morse
+ 								    ${SPHINX_OUTPUT}
+ 	)
