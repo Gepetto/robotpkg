@@ -24,6 +24,9 @@ CMAKE_ARGS+=\
   '-DBLAS_LIBRARIES=${BLAS_LIB}'			\
   '-DLAPACK_LIBRARIES=${LAPACK_LIB};${BLAS_LIB}'
 
+# for doxygen
+INSTALL_MAKE_FLAGS+=	PATH=${PATH}:${PREFIX.latex}/bin
+
 # options
 PKG_SUPPORTED_OPTIONS+=	t3d jrl-mathtools
 PKG_SUGGESTED_OPTIONS+=	jrl-mathtools
