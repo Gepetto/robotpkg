@@ -1,4 +1,4 @@
-@comment Tue May 10 10:44:19 CEST 2016
+@comment Wed Apr 12 13:43:17 CEST 2017
 include/hrp2-14/hrp2_14.h
 include/hrp2/14/config.hh
 include/hrp2/14/deprecated.hh
@@ -9,6 +9,8 @@ share/hrp2-14/CHEST_LINK0.wrl
 share/hrp2-14/CHEST_LINK1.wrl
 share/hrp2-14/HEAD_LINK0.wrl
 share/hrp2-14/HEAD_LINK1.wrl
+share/hrp2-14/HRP2JRLBush_main.wrl
+share/hrp2-14/HRP2JRLBush_main_yokoi.wrl
 share/hrp2-14/HRP2JRLInitConfig.dat
 share/hrp2-14/HRP2JRLInitConfigSmall.dat
 share/hrp2-14/HRP2JRLmain.wrl
