@@ -6,5 +6,6 @@ COMMENT=	Simulation tools
 SUBDIR+=	bullet
 SUBDIR+=	morse
 SUBDIR+=	morse-yarp
+SUBDIR+=	mrsim-genom3
 
 include ../mk/robotpkg.subdir.mk

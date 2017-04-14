@@ -1,0 +1,6 @@
+Multi-rotor simulator.
+
+Provides a pty emulating the tk3-mikrokopter communication protocol and
+implements all the tk3-mikrokopter features. In addition, a 'gps' port provides
+a simulation of a gps/motion capture device and a 'state' port provides the
+full state without noise, to be used as a 'ground truth' state.

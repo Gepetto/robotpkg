@@ -1,0 +1,5 @@
+@comment Fri Apr 14 15:47:15 CEST 2017
+${PLIST.codels}lib/lib${GENOM_MODULE}_codels.la
+${PLIST.codels}lib/pkgconfig/${GENOM_MODULE}-genom3.pc
+${PLIST.codels}share/idl/${GENOM_MODULE}/${GENOM_MODULE}.gen
+@comment includes architecture/genom3/PLIST.templates
