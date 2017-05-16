@@ -11,7 +11,7 @@ endif
 
 ifeq (+,$(BULLET_DEPEND_MK)) # ---------------------------------------------
 
-PREFER.bullet?=		robotpkg
+PREFER.bullet?=		system
 
 SYSTEM_SEARCH.bullet=\
   'include/bullet/Bullet-C-Api.h'			\
