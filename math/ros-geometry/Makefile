@@ -2,6 +2,7 @@
 # Created:			Séverin Lemaignan on Mon, 5 Aug 2013
 #
 
+PKGREVISION=	1
 ROS_PKG=	geometry
 ROS_VERSION=	1.11.3
 ROS_METAPKG=	yes
@@ -18,7 +19,7 @@ include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../math/ros-angles/depend.mk
-include ../../math/ros-geometry-experimental/depend.mk
+include ../../math/ros-geometry2/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../motion/ros-orocos-kdl/depend.mk
