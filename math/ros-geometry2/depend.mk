@@ -30,9 +30,9 @@ DEPEND_ABI.ros-geometry2.kinetic+=ros-geometry2>=0.5<0.6
 
 SYSTEM_SEARCH.ros-geometry2=\
   'include/tf2/convert.h'						\
-  'include/tf2_bullet/tf2_bullet.h'					\
+  'include/tf2_bullet/{,tf2_bullet/}tf2_bullet.h'			\
   'include/tf2_geometry_msgs/tf2_geometry_msgs.h'			\
-  'include/tf2_kdl/tf2_kdl.h'						\
+  'include/tf2_kdl/{,tf2_kdl/}tf2_kdl.h'				\
   'include/tf2_msgs/FrameGraph.h'					\
   'include/tf2_ros/buffer.h'						\
   'lib/libtf2.so'							\
