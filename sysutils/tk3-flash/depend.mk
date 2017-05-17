@@ -15,7 +15,7 @@ PREFER.tk3-flash?=	robotpkg
 
 DEPEND_USE+=		tk3-flash
 
-DEPEND_ABI.tk3-flash?=	tk3-flash>=1.0
+DEPEND_ABI.tk3-flash?=	tk3-flash>=1.3
 DEPEND_DIR.tk3-flash?=	../../sysutils/tk3-flash
 
 SYSTEM_SEARCH.tk3-flash=\
