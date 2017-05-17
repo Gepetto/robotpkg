@@ -20,7 +20,7 @@ ROS_DEPEND_USE+=			ros-control-toolbox
 
 DEPEND_ABI.ros+=ros>=hydro
 
-DEPEND_ABI.ros-control-toolbox?=	ros-control-toolbox>=1.13
+DEPEND_ABI.ros-control-toolbox?=	ros-control-toolbox>=1.10
 DEPEND_DIR.ros-control-toolbox?=	../../motion/ros-control-toolbox
 
 DEPEND_ABI.ros-control-toolbox.hydro?=	ros-control-toolbox>=1.10<1.13
