@@ -14,7 +14,7 @@ ifeq (+,$(BULLET_DEPEND_MK)) # ---------------------------------------------
 PREFER.bullet?=		system
 
 SYSTEM_SEARCH.bullet=\
-  'include/bullet/Bullet-C-Api.h'			\
+  'include/{bullet/,}btBulletDynamicsCommon.h'		\
   'lib/libBulletDynamics.{so,a}'			\
   'lib/pkgconfig/bullet.pc:/Version/s/[^0-9.]//gp'
 
