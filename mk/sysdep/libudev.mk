@@ -10,6 +10,8 @@ endif
 
 ifeq (+,$(LIBUDEV_DEPEND_MK)) # --------------------------------------------
 
+ONLY_FOR_PLATFORM+=	Linux-%
+
 PREFER.libudev?=	system
 DEPEND_USE+=		libudev
 DEPEND_ABI.libudev?=	libudev>=0
