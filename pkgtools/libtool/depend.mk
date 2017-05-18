@@ -34,6 +34,8 @@ DEPEND_METHOD.libtool+=	build
 DEPEND_ABI.libtool?=	libtool>=1.5.22
 DEPEND_DIR.libtool?=	../../pkgtools/libtool
 
+SYSTEM_PKG.Debian.libtool=	libtool-bin
+
 # LIBTOOL is the publicly-readable variable that should be used by Makefiles to
 # invoke the proper libtool.
 #
