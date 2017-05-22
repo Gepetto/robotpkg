@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 11 Feb 2015
 #
 
-DISTNAME=	tk3-mikrokopter-1.7
+DISTNAME=	tk3-mikrokopter-1.8
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=tk3-mikrokopter/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}tk3-mikrokopter
@@ -16,9 +16,9 @@ GNU_CONFIGURE=	yes
 
 DEPEND_ABI.avr-gcc+= avr-gcc>=4.6
 
-# -O3 generates code that exceeds the flash size on the brushless controller
-# -Os is almost the same as -O2
-C_COMPILER_FLAGS_NDEBUG=	-O2 -DNDEBUG
+# -O3 generates code that exceeds the flash size on the brushless controller.
+# -Os is enable by default in the package, as well as other optimization flags
+C_COMPILER_FLAGS_NDEBUG=	-DNDEBUG
 
 include ../../mk/sysdep/avr-libc.mk
 include ../../mk/language/avr-c.mk

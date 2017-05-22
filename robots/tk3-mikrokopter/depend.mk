@@ -15,7 +15,7 @@ PREFER.tk3-mikrokopter?=	robotpkg
 
 DEPEND_USE+=			tk3-mikrokopter
 
-DEPEND_ABI.tk3-mikrokopter?=	tk3-mikrokopter>=1.5
+DEPEND_ABI.tk3-mikrokopter?=	tk3-mikrokopter>=1.8
 DEPEND_DIR.tk3-mikrokopter?=	../../robots/tk3-mikrokopter
 
 SYSTEM_SEARCH.tk3-mikrokopter=\

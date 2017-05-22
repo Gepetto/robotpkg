@@ -1,5 +1,7 @@
-@comment Thu Feb 12 14:07:13 CET 2015
+@comment Mon May 22 11:52:18 CEST 2017
 lib/pkgconfig/tk3-mikrokopter.pc
+lib/tk3-firmware/boot-flymu
+lib/tk3-firmware/flymu
 lib/tk3-firmware/mkbl
 lib/tk3-firmware/mkfl
 share/doc/tk3-mikrokopter/communication.html
