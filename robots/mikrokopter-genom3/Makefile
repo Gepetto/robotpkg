@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Tue, 10 Nov 2015
 #
 
-PKGREVISION=		1
-DISTNAME=		mikrokopter-genom3-1.5
+DISTNAME=		mikrokopter-genom3-1.6
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
@@ -13,6 +12,11 @@ COMMENT=		Low level controller for tk3-mikrokopter quadrotors
 LICENSE=		2-clause-bsd
 
 include ../../architecture/genom3/module.mk
+
+include ../../mk/robotpkg.prefs.mk
+ifeq (${OS_KERNEL},Linux)
+  include ../../mk/sysdep/libudev.mk
+endif
 
 include ../../interfaces/openrobots-idl/depend.mk
 include ../../math/eigen3/depend.mk
