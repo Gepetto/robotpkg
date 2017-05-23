@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom3-pocolibs/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genom3/genom3-pocolibs
 
 MAINTAINER=	mallet@laas.fr
-HOMEPAGE=	http://www.openrobots.org/wiki/genom3
+HOMEPAGE=	https://git.openrobots.org/projects/genom3-pocolibs
 COMMENT=	GenoM3 template for pocolibs-based components
 
 LICENSE=	2-clause-bsd

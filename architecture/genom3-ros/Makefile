@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom3-ros/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genom3/genom3-ros
 
 MAINTAINER=	mallet@laas.fr
-HOMEPAGE=	http://www.openrobots.org/wiki/genom3
+HOMEPAGE=	https://git.openrobots.org/projects/genom3-ros
 COMMENT=	GenoM3 template for ros-based components
 
 LICENSE=	2-clause-bsd

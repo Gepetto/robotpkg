@@ -10,7 +10,7 @@ MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genom3
 
 MAINTAINER=	mallet@laas.fr
-HOMEPAGE=	http://www.openrobots.org/wiki/genom3
+HOMEPAGE=	https://git.openrobots.org/projects/genom3
 COMMENT=	Software components generator for robotics architecture.
 
 LICENSE=	2-clause-bsd
