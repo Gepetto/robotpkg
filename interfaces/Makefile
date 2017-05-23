@@ -12,6 +12,7 @@ SUBDIR+=	jrl-mal
 SUBDIR+=	openrobots-idl
 SUBDIR+=	ros-comm-msgs
 SUBDIR+=	ros-common-msgs
+SUBDIR+=	ros-control-msgs
 SUBDIR+=	ros-humanoid-msgs
 SUBDIR+=	ros-map-msgs
 SUBDIR+=	ros-std-msgs
