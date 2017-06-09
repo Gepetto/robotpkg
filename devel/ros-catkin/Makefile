@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
 
+PKGREVISION=	1
 ROS_PKG=	catkin
 ROS_VERSION=	0.6.9
 
@@ -31,6 +32,11 @@ SUBST_FILES.py-interp+=		test/*/*.py
 
 SUBST_CLASSES+=			bash-interp
 SUBST_FILES.bash-interp+=	cmake/templates/*.bash.in
+
+# INSTALL script keeping track of ${PREFIX}/.catkin file
+INSTALL_VARS+=	ECHO CHMOD CP GREP RM TEST
+INSTALL_SRC+=	${FILESDIR}/catkin
+DEINSTALL_SRC+=	${FILESDIR}/catkin
 
 include ../../sysutils/py-catkin-pkg/depend.mk
 include ../../mk/sysdep/bash.mk

@@ -1,5 +1,4 @@
 @comment Tue Aug 12 17:55:37 CEST 2014
-.catkin
 .rosinstall
 bin/catkin_find
 bin/catkin_init_workspace

@@ -1,0 +1,51 @@
+# manage ${PREFIX}/.catkin file
+#
+# The presence of ${PREFIX}/.catkin is required for some tools.
+# This script creates it if needed, and keeps track of which package is using
+# it. Since the content of the file does not matter, each package name that
+# requires this file is simply added in the file itself when the package is
+# added, and removed when the package is deleted.
+#
+
+ECHO="@ECHO@"
+CHMOD="@CHMOD@"
+CP="@CP@"
+GREP="@GREP@"
+RM="@RM@"
+TEST="@TEST@"
+
+CATKIN_MARKER=${PKG_PREFIX}/.catkin
+
+echo=${PKG_VERBOSE:+${ECHO}}
+: ${echo:=:}
+
+case $2 in
+  POST-INSTALL)
+    if ${TEST} -s ${CATKIN_MARKER}; then
+      ${echo} "$1: adding to catkin marker file"
+      ${CHMOD} 644 ${CATKIN_MARKER}
+    else
+      ${echo} "$1: creating catkin marker file"
+    fi
+    ${ECHO} "$1" >>${CATKIN_MARKER}
+    ${CHMOD} 444 ${CATKIN_MARKER}
+    ;;
+
+  DEINSTALL)
+    ${TEST} -f ${CATKIN_MARKER} || {
+      ${echo} "$1: no catkin marker file"
+      return
+    }
+    ${GREP} -v "$1" < ${CATKIN_MARKER} > ${CATKIN_MARKER}.$$ ||:
+    ${CHMOD} 644 ${CATKIN_MARKER}
+    ${RM} ${CATKIN_MARKER}
+    if ${TEST} -s ${CATKIN_MARKER}.$$; then
+      ${echo} "$1: removed from catkin marker file"
+      ${CP} ${CATKIN_MARKER}.$$ ${CATKIN_MARKER}
+      ${CHMOD} 444 ${CATKIN_MARKER}
+    else
+      ${echo} "$1: deleting catkin marker file"
+    fi
+    ${RM} ${CATKIN_MARKER}.$$
+    ;;
+esac
