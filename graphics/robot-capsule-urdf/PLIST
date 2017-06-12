@@ -1,0 +1,8 @@
+@comment Mon May 30 12:15:47 CEST 2016
+include/robot_capsule_urdf/config.h
+include/robot_capsule_urdf/config.hh
+include/robot_capsule_urdf/deprecated.hh
+include/robot_capsule_urdf/warning.hh
+lib/pkgconfig/robot_capsule_urdf.pc
+lib/robot_capsule_urdf/robot_capsule_urdf
+share/robot_capsule_urdf/package.xml
