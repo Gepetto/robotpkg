@@ -10,42 +10,51 @@
 ECHO="@ECHO@"
 CHMOD="@CHMOD@"
 CP="@CP@"
+FIND="@FIND@"
 GREP="@GREP@"
+MKDIR="@MKDIR@"
 RM="@RM@"
 TEST="@TEST@"
 
 CATKIN_MARKER=${PKG_PREFIX}/.catkin
+REFDIR=${PKG_REFCOUNT_DBDIR}/${CATKIN_MARKER}
+REFCOUNT=${REFDIR}/pkgs
 
 echo=${PKG_VERBOSE:+${ECHO}}
 : ${echo:=:}
 
 case $2 in
   POST-INSTALL)
-    if ${TEST} -s ${CATKIN_MARKER}; then
-      ${echo} "$1: adding to catkin marker file"
-      ${CHMOD} 644 ${CATKIN_MARKER}
+    if ${TEST} -s ${REFCOUNT}; then
+      ${echo} "$1: adding reference to catkin marker file"
     else
       ${echo} "$1: creating catkin marker file"
+      ${MKDIR} -m 755 ${REFDIR}
     fi
-    ${ECHO} "$1" >>${CATKIN_MARKER}
-    ${CHMOD} 444 ${CATKIN_MARKER}
+    ${ECHO} "$1" >>${REFCOUNT}
+    ${CHMOD} 644 ${REFCOUNT}
+    ${ECHO} >${CATKIN_MARKER}
+    ${CHMOD} 644 ${CATKIN_MARKER}
     ;;
 
   DEINSTALL)
-    ${TEST} -f ${CATKIN_MARKER} || {
+    if ! ${TEST} -s ${REFCOUNT}; then
       ${echo} "$1: no catkin marker file"
-      return
-    }
-    ${GREP} -v "$1" < ${CATKIN_MARKER} > ${CATKIN_MARKER}.$$ ||:
-    ${CHMOD} 644 ${CATKIN_MARKER}
-    ${RM} ${CATKIN_MARKER}
-    if ${TEST} -s ${CATKIN_MARKER}.$$; then
+      ${RM} ${CATKIN_MARKER}
+      exit 0
+    fi
+
+    ${GREP} -v "$1" < ${REFCOUNT} > ${REFCOUNT}.$$ ||:
+    ${CP} ${REFCOUNT}.$$ ${REFCOUNT}
+    ${RM} ${REFCOUNT}.$$
+    ${CHMOD} 644 ${REFCOUNT}
+    if ${TEST} -s ${REFCOUNT}; then
       ${echo} "$1: removed from catkin marker file"
-      ${CP} ${CATKIN_MARKER}.$$ ${CATKIN_MARKER}
-      ${CHMOD} 444 ${CATKIN_MARKER}
     else
       ${echo} "$1: deleting catkin marker file"
+      ${RM} ${REFCOUNT}
+      ${FIND} ${PKG_REFCOUNT_DBDIR} -type d -empty -delete
+      ${RM} ${CATKIN_MARKER}
     fi
-    ${RM} ${CATKIN_MARKER}.$$
     ;;
 esac

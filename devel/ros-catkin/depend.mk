@@ -73,7 +73,7 @@ ifneq (,$(filter yes YES Yes,${USE_ROS_CATKIN}))
 	${PREFIX.ros-catkin}/bin/catkin_init_workspace
 
   # INSTALL script keeping track of ${PREFIX}/.catkin file
-  INSTALL_VARS+=	ECHO CHMOD CP GREP RM TEST
+  INSTALL_VARS+=	ECHO CHMOD CP FIND GREP MKDIR RM TEST
   INSTALL_SRC+=		${DEPEND_DIR.ros-catkin}/files/catkin
   DEINSTALL_SRC+=	${DEPEND_DIR.ros-catkin}/files/catkin
 endif

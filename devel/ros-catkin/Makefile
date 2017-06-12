@@ -34,7 +34,7 @@ SUBST_CLASSES+=			bash-interp
 SUBST_FILES.bash-interp+=	cmake/templates/*.bash.in
 
 # INSTALL script keeping track of ${PREFIX}/.catkin file
-INSTALL_VARS+=	ECHO CHMOD CP GREP RM TEST
+INSTALL_VARS+=	ECHO CHMOD CP FIND GREP MKDIR RM TEST
 INSTALL_SRC+=	${FILESDIR}/catkin
 DEINSTALL_SRC+=	${FILESDIR}/catkin
 
