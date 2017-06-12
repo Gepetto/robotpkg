@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013,2016 LAAS/CNRS
+# Copyright (c) 2006-2013,2016-2017 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -74,6 +74,9 @@ endif
 
 # This is the default package database directory
 PKG_DBDIR?=	${LOCALBASE}/var/db/robotpkg
+
+# This is the directory holding references to dynamically created files
+PKG_REFCOUNT_DBDIR?=	${PKG_DBDIR}.refcount
 
 _PKG_DBDIR=	${PKG_DBDIR}
 PKGTOOLS_ARGS?=	-K ${_PKG_DBDIR}

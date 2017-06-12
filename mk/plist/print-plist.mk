@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011-2013 LAAS/CNRS
+# Copyright (c) 2006-2009,2011-2013,2017 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -73,10 +73,12 @@ PRINT_PLIST_FILTER?=
 # Scan $PREFIX for any files/dirs that do not belong to any package.
 #
 _PRINT_PLIST_FILES_CMD=	\
-  ${FIND} $(abspath ${PREFIX}) -xdev -ctime -1 ! -type d ! \(	\
-	-path '${MAKECONF}' -o -path '${ROBOTPKG_DIR}/*' -o	\
-	-path '${PKG_DBDIR}/*'					\
-  \) ! -exec ${PKG_INFO} -qFe {} 2>/dev/null \; -print;
+  ${FIND} $(abspath ${PREFIX}) -xdev -ctime -1 ! -type d ! \(		\
+	-path '${MAKECONF}' -o -path '${ROBOTPKG_DIR}/*' -o		\
+	-path '${PKG_DBDIR}/*' -o -path '${PKG_REFCOUNT_DBDIR}/*'	\
+  \) ! -exec ${PKG_INFO} -qFe {} 2>/dev/null \;				\
+  ! -exec ${TEST} -d ${PKG_REFCOUNT_DBDIR}/{} \;			\
+  -print;
 _PRINT_PLIST_FILES_CMD+= {						\
   { ${PKG_INFO} -qL ${PKGNAME} 2>/dev/null||:; } | while read f; do	\
     ${TEST} -f "$$f" && ${ECHO} "$$f";					\

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2012 LAAS/CNRS
+# Copyright (c) 2012,2017 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -25,9 +25,6 @@
 
 INSTALL_FILE?=		${PKGDIR}/INSTALL
 DEINSTALL_FILE?=	${PKGDIR}/DEINSTALL
-
-#
-PKG_REFCOUNT_DBDIR?=	${PKG_DBDIR}.refcount
 
 INSTALL_SCRIPTS_ENV=	PKG_PREFIX=${PREFIX}
 INSTALL_SCRIPTS_ENV+=	PKG_METADATA_DIR=${_PKG_DBDIR}/${PKGNAME}
