@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 31 Mar 2017
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 PKGNAME=	ros-control-${ROS_VERSION}
 ROS_PKG=	ros_control
 ROS_VERSION=	0.9.4

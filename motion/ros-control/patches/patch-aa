@@ -1,0 +1,47 @@
+Drop spurious dependency on catkin_INCLUDE_DIRS.
+There is no reason to have this, and this incidentally adds directories from
+the source tree in some installed .cmake files.
+
+--- joint_limits_interface/CMakeLists.txt~	2016-02-12 20:02:44.000000000 +0100
++++ joint_limits_interface/CMakeLists.txt	2017-06-15 13:54:27.086729491 +0200
+@@ -10,7 +10,6 @@
+ 
+ include_directories(
+   include
+-  ${catkin_INCLUDE_DIRS}
+   ${urdfdom_INCLUDE_DIRS}
+ )
+ 
+@@ -21,10 +20,8 @@
+     hardware_interface
+   INCLUDE_DIRS
+     include
+-    ${catkin_INCLUDE_DIRS}
+     ${urdfdom_INCLUDE_DIRS}
+   LIBRARIES
+-    ${catkin_LIBRARIES}
+     ${urdfdom_LIBRARIES}
+ )
+ 
+@@ -32,13 +29,11 @@
+   find_package(rostest REQUIRED)
+   catkin_add_gtest(joint_limits_interface_test test/joint_limits_interface_test.cpp)
+   target_link_libraries(joint_limits_interface_test
+-    ${catkin_LIBRARIES}
+     ${urdfdom_LIBRARIES}
+   )
+ 
+   catkin_add_gtest(joint_limits_urdf_test test/joint_limits_urdf_test.cpp)
+   target_link_libraries(joint_limits_urdf_test
+-    ${catkin_LIBRARIES}
+     ${urdfdom_LIBRARIES}
+   )
+ 
+@@ -47,7 +42,6 @@
+     test/joint_limits_rosparam_test.cpp
+   )
+   target_link_libraries(joint_limits_rosparam_test
+-    ${catkin_LIBRARIES}
+     ${urdfdom_LIBRARIES}
+   )
+ endif()
