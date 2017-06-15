@@ -1,0 +1,2 @@
+Provides ROS plugins that offer message and service publishers for interfacing
+with Gazebo through ROS.
