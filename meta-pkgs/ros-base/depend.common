@@ -85,7 +85,8 @@ define _ros_altdef
       $$(call _ros_noaltdep,$$_) $${DEPEND_ABI.$$_.$1}))
   PKG_ALTERNATIVE_SET.$1=						\
     $$(foreach _,$${ROS_DEPEND_USE},					\
-      $$(eval DEPEND_ABI.$$_ += $$(value DEPEND_ABI.$$_.$1)))
+      $$(eval DEPEND_ABI.$$_ += $$(value DEPEND_ABI.$$_.$1))		\
+      $$(eval SYSTEM_PKG.Ubuntu.$$_ ?= ros-$1-$$(patsubst ros-%,%,$$_)))
 endef
 $(foreach _,${PKG_ALTERNATIVES.ros},$(eval $(call _ros_altdef,$_)))
 
