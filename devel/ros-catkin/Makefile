@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 ROS_PKG=	catkin
 ROS_VERSION=	0.6.9
 

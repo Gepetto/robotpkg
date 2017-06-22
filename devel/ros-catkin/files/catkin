@@ -33,8 +33,15 @@ case $2 in
     fi
     ${ECHO} "$1" >>${REFCOUNT}
     ${CHMOD} 644 ${REFCOUNT}
-    ${ECHO} >${CATKIN_MARKER}
-    ${CHMOD} 644 ${CATKIN_MARKER}
+    if ${TEST} -e ${CATKIN_MARKER}; then
+      if ! ${TEST} -f ${CATKIN_MARKER}; then
+        ${ECHO} >&2 "$1: remove ${CATKIN_MARKER}, it's in the way!"
+        exit 2
+      fi
+    else
+      ${ECHO} >${CATKIN_MARKER}
+      ${CHMOD} 644 ${CATKIN_MARKER}
+    fi
     ;;
 
   DEINSTALL)
