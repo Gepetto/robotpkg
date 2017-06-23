@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2014 LAAS/CNRS
+# Copyright (c) 2011-2014,2017 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -121,7 +121,8 @@ ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	    done <${BULK_PKGFILENA};					\
 	    exit 0;							\
 	  };								\
-	  for f in $$deps ${DISTINFO_FILE} ${PLIST_SRC}; do		\
+	  for f in $$deps ${DISTINFO_FILE} ${PLIST_SRC}			\
+	       ${INSTALL_SRC} ${DEINSTALL_SRC}; do			\
 	    ${TEST} -f $$f || continue;					\
 	    ${TEST} ${PKGFILE} -nt $$f || exit 1;			\
 	  done;								\
