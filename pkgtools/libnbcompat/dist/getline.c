@@ -1,11 +1,12 @@
-/*	$NetBSD: ctype.h,v 1.3 2015/06/08 00:44:46 joerg Exp $	*/
+/*	$NetBSD: getline.c,v 1.2 2015/12/25 20:12:46 joerg Exp $	*/
+/*	NetBSD-src: getline.c,v 1.2 2014/09/16 17:23:50 christos Exp	*/
 
 /*-
- * Copyright (c) 2004 The NetBSD Foundation, Inc.
+ * Copyright (c) 2011 The NetBSD Foundation, Inc.
  * All rights reserved.
  *
  * This code is derived from software contributed to The NetBSD Foundation
- * by Johnny C. Lam.
+ * by Christos Zoulas.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -29,19 +30,15 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _NBCOMPAT_CTYPE_H_
-#define _NBCOMPAT_CTYPE_H_
+#include <nbcompat.h>
+#include <nbcompat/stdio.h>
 
-#if HAVE_CTYPE_H
-# include <ctype.h>
+#if !HAVE_GETLINE
+
+ssize_t
+getline(char **buf, size_t *bufsiz, FILE *fp)
+{
+	return getdelim(buf, bufsiz, '\n', fp);
+}
+
 #endif
-
-/*
- * Declare macros and functions that may be missing in <ctype.h>.
- */
-
-#if !HAVE_DECL_ISBLANK
-int	isblank(int);
-#endif
-
-#endif	/* !_NBCOMPAT_CTYPE_H_ */
