@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-DISTNAME=		pocolibs-2.15
+DISTNAME=		pocolibs-2.16
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pocolibs/}
 MASTER_REPOSITORY=	git git://git.openrobots.org/robots/pocolibs.git
