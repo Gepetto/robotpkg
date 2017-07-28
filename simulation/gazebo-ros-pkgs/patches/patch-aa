@@ -1,0 +1,15 @@
+Fix build with gazebo < 2
+
+--- gazebo_plugins/include/gazebo_plugins/MultiCameraPlugin.h~	2017-07-28 16:06:26.628361683 +0200
++++ gazebo_plugins/include/gazebo_plugins/MultiCameraPlugin.h	2017-07-28 16:09:09.269158901 +0200
+@@ -27,6 +27,10 @@
+ 
+ namespace gazebo
+ {
++#if GAZEBO_MAJOR_VERSION < 2
++  namespace sensors { typedef boost::shared_ptr<MultiCameraSensor> MultiCameraSensorPtr; }
++#endif
++
+   class MultiCameraPlugin : public SensorPlugin
+   {
+     public: MultiCameraPlugin();
