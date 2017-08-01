@@ -12,9 +12,6 @@ endif
 ifeq (+,$(ROS_DYNAMICGRAPHBRIDGE_DEPEND_MK)) # -----------------------------
 
 DEPEND_USE+=			dynamic-graph-bridge
-ROS_DEPEND_USE+=		dynamic-graph-bridge
-
-DEPEND_ABI.ros+=		ros>=groovy
 
 DEPEND_ABI.dynamic-graph-bridge?=	dynamic-graph-bridge>=1.0.0
 DEPEND_DIR.dynamic-graph-bridge?=	../../motion/dynamic-graph-bridge

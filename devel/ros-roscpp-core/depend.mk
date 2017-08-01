@@ -26,6 +26,7 @@ DEPEND_ABI.ros-roscpp-core.hydro?=	ros-roscpp-core>=0.4<0.5
 DEPEND_ABI.ros-roscpp-core.indigo?=	ros-roscpp-core>=0.5<0.6
 DEPEND_ABI.ros-roscpp-core.jade?=	ros-roscpp-core>=0.5<0.6
 DEPEND_ABI.ros-roscpp-core.kinetic?=	ros-roscpp-core>=0.6<0.7
+DEPEND_ABI.ros-roscpp-core.lunar?=	ros-roscpp-core>=0.6<0.7
 
 SYSTEM_SEARCH.ros-roscpp-core=\
   'include/ros/types.h'							\

@@ -27,6 +27,7 @@ DEPEND_ABI.ros-interactive-markers.hydro?=  ros-interactive-markers>=1.10<1.11
 DEPEND_ABI.ros-interactive-markers.indigo?= ros-interactive-markers>=1.11<1.12
 DEPEND_ABI.ros-interactive-markers.jade?=   ros-interactive-markers>=1.11<1.12
 DEPEND_ABI.ros-interactive-markers.kinetic?=ros-interactive-markers>=1.11<1.12
+DEPEND_ABI.ros-interactive-markers.lunar?=  ros-interactive-markers>=1.11<1.12
 
 SYSTEM_SEARCH.ros-interactive-markers=\
   'include/interactive_markers/tools.h'					\

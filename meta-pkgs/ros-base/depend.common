@@ -33,24 +33,24 @@ ifeq (+,${ROS_DEPEND_COMMON}) # --------------------------------------------
 #       Example: groovy
 #
 PKG_ALTERNATIVES+=	ros
-PKG_ALTERNATIVES.ros=	groovy hydro indigo jade kinetic
+PKG_ALTERNATIVES.ros=	groovy hydro indigo jade kinetic lunar
 
 # Set default preferences
 # Default ros package preference
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04 11.10,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=groovy indigo
-  else ifneq (,$(filter 12.04 12.10,${OS_VERSION}))
+  ifneq (,$(filter 12.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=hydro groovy indigo
-  else ifneq (,$(filter 13.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=hydro indigo
-  else ifneq (,$(filter 13.10,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=indigo
   else ifneq (,$(filter 14.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=indigo jade
   else ifneq (,$(filter 16.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=kinetic indigo
+    PREFER_ALTERNATIVE.ros?=kinetic lunar indigo
+  else ifneq (,$(filter 16.10,${OS_VERSION}))
+    PREFER_ALTERNATIVE.ros?=lunar indigo
+  else ifneq (,$(filter 17.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.ros?=lunar indigo
+  else ifneq (,$(filter 17.10,${OS_VERSION}))
+    PREFER_ALTERNATIVE.ros?=lunar indigo
   else
     PREFER_ALTERNATIVE.ros?=indigo
     PREFER.ros?=robotpkg

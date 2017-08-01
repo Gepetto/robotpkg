@@ -21,11 +21,12 @@ ROS_DEPEND_USE+=		ros-rospack
 DEPEND_ABI.ros-rospack?=	ros-rospack>=2.1
 DEPEND_DIR.ros-rospack?=	../../sysutils/ros-rospack
 
-DEPEND_ABI.ros-ros.groovy?=	ros-ros>=2.1<2.2
-DEPEND_ABI.ros-ros.hydro?=	ros-ros>=2.1<2.2
-DEPEND_ABI.ros-ros.indigo?=	ros-ros>=2.2<2.3
-DEPEND_ABI.ros-ros.jade?=	ros-ros>=2.3<2.4
-DEPEND_ABI.ros-ros.kinetic?=	ros-ros>=2.3<2.4
+DEPEND_ABI.ros-rospack.groovy?=	ros-rospack>=2.1<2.2
+DEPEND_ABI.ros-rospack.hydro?=	ros-rospack>=2.1<2.2
+DEPEND_ABI.ros-rospack.indigo?=	ros-rospack>=2.2<2.3
+DEPEND_ABI.ros-rospack.jade?=	ros-rospack>=2.3<2.4
+DEPEND_ABI.ros-rospack.kinetic?=ros-rospack>=2.3<2.4
+DEPEND_ABI.ros-rospack.lunar?=	ros-rospack>=2.4<2.5
 
 SYSTEM_SEARCH.ros-rospack=\
 	bin/rospack						\

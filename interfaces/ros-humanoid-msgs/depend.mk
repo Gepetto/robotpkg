@@ -18,6 +18,8 @@ SYSTEM_PREFIX.ros-humanoid-msgs?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-humanoid-msgs
 ROS_DEPEND_USE+=		ros-humanoid-msgs
 
+DEPEND_ABI.ros+=ros<=kinetic
+
 DEPEND_ABI.ros-humanoid-msgs?=	ros-humanoid-msgs>=0.1
 DEPEND_DIR.ros-humanoid-msgs?=	../../interfaces/ros-humanoid-msgs
 

@@ -26,6 +26,7 @@ DEPEND_ABI.ros-genpy.hydro?=	ros-genpy>=0.4<0.5
 DEPEND_ABI.ros-genpy.indigo?=	ros-genpy>=0.5<0.6
 DEPEND_ABI.ros-genpy.jade?=	ros-genpy>=0.5<0.6
 DEPEND_ABI.ros-genpy.kinetic?=	ros-genpy>=0.6<0.7
+DEPEND_ABI.ros-genpy.lunar?=	ros-genpy>=0.6<0.7
 
 SYSTEM_SEARCH.ros-genpy=\
 	'{lib/genpy,share/genpy/bin}/genmsg_py.py'		\

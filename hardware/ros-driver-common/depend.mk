@@ -18,6 +18,8 @@ SYSTEM_PREFIX.ros-driver-common?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-driver-common
 ROS_DEPEND_USE+=		ros-driver-common
 
+DEPEND_ABI.ros+=ros<=jade
+
 DEPEND_ABI.ros-driver-common?=	ros-driver-common>=1.6
 DEPEND_DIR.ros-driver-common=	../../hardware/ros-driver-common
 

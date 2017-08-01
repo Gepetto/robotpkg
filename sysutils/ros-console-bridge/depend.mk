@@ -26,6 +26,7 @@ DEPEND_ABI.ros-console-bridge.hydro?=	ros-console-bridge>=0.3<0.4
 DEPEND_ABI.ros-console-bridge.indigo?=	ros-console-bridge>=0.4<0.5
 DEPEND_ABI.ros-console-bridge.jade?=	ros-console-bridge>=0.4<0.5
 DEPEND_ABI.ros-console-bridge.kinetic?=	ros-console-bridge>=0.4<0.5
+DEPEND_ABI.ros-console-bridge.lunar?=	ros-console-bridge>=0.4<0.5
 
 SYSTEM_SEARCH.ros-console-bridge=\
   'include/rosconsole_bridge/bridge.h'				\

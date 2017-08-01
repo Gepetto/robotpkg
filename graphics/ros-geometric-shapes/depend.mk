@@ -26,6 +26,7 @@ DEPEND_ABI.ros-geometric-shapes.hydro?=	ros-geometric-shapes>=0.3<0.4
 DEPEND_ABI.ros-geometric-shapes.indigo?=ros-geometric-shapes>=0.4<0.5
 DEPEND_ABI.ros-geometric-shapes.jade?=  ros-geometric-shapes>=0.4<0.5
 DEPEND_ABI.ros-geometric-shapes.kinetic?=ros-geometric-shapes>=0.5<0.6
+DEPEND_ABI.ros-geometric-shapes.lunar?=	ros-geometric-shapes>=0.5<0.6
 
 SYSTEM_SEARCH.ros-geometric-shapes=\
   'include/geometric_shapes/shapes.h'				\

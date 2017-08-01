@@ -26,6 +26,7 @@ DEPEND_ABI.ros-gencpp.hydro?=	ros-gencpp>=0.4<0.5
 DEPEND_ABI.ros-gencpp.indigo?=	ros-gencpp>=0.5<0.6
 DEPEND_ABI.ros-gencpp.jade?=	ros-gencpp>=0.5<0.6
 DEPEND_ABI.ros-gencpp.kinetic?=	ros-gencpp>=0.5<0.6
+DEPEND_ABI.ros-gencpp.lunar?=	ros-gencpp>=0.5<0.6
 
 SYSTEM_SEARCH.ros-gencpp=\
 	'{lib/gencpp,share/gencpp/bin}/gen_cpp.py'		\

@@ -28,6 +28,7 @@ DEPEND_ABI.ros-executive-smach.hydro+=	ros-executive-smach>=1.3.1<1.4
 DEPEND_ABI.ros-executive-smach.indigo+=	ros-executive-smach>=2.0<2.1
 DEPEND_ABI.ros-executive-smach.jade+=	ros-executive-smach>=2.0<2.1
 DEPEND_ABI.ros-executive-smach.kinetic+=ros-executive-smach>=2.0<2.1
+DEPEND_ABI.ros-executive-smach.lunar+=	ros-executive-smach>=2.0<2.1
 
 SYSTEM_SEARCH.ros-executive-smach=\
 	'${PYTHON_SITELIB}/smach/__init__.py'				\

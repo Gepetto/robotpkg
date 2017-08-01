@@ -27,6 +27,7 @@ DEPEND_ABI.ros-geometry2.hydro+= ros-geometry2>=0.4<0.5
 DEPEND_ABI.ros-geometry2.indigo+=ros-geometry2>=0.5<0.6
 DEPEND_ABI.ros-geometry2.jade+=  ros-geometry2>=0.5<0.6
 DEPEND_ABI.ros-geometry2.kinetic+=ros-geometry2>=0.5<0.6
+DEPEND_ABI.ros-geometry2.lunar+= ros-geometry2>=0.5<0.6
 
 SYSTEM_SEARCH.ros-geometry2=\
   'include/tf2/convert.h'						\

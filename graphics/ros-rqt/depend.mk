@@ -26,6 +26,7 @@ DEPEND_ABI.ros-rqt.hydro?=	ros-rqt>=0.2<0.3
 DEPEND_ABI.ros-rqt.indigo?=	ros-rqt>=0.2<0.5
 DEPEND_ABI.ros-rqt.jade?=	ros-rqt>=0.2<0.5
 DEPEND_ABI.ros-rqt.kinetic?=	ros-rqt>=0.3<0.6
+DEPEND_ABI.ros-rqt.lunar?=	ros-rqt>=0.3<0.6
 
 SYSTEM_SEARCH.ros-rqt=\
   'bin/rqt'							\
