@@ -1,3 +1,4 @@
 SHA1 (ros/ros_comm/1.11.20.tar.gz) = dc41bfe838ee7260b7ff8732feb5ef15c55e9ccd
 RMD160 (ros/ros_comm/1.11.20.tar.gz) = d9842ad186b33ced571a0cea6e7d9e1f26cba7df
 Size (ros/ros_comm/1.11.20.tar.gz) = 952822 bytes
+SHA1 (patch-aa) = bd1f51b2a196c10b667dea4d877845a738690b10
