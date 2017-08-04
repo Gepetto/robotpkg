@@ -1,0 +1,17 @@
+Fix for opencv3 headers
+
+diff --git drivers/file.c drivers/file.c
+index b5f5385..e971ff4 100644
+--- drivers/file.c
++++ drivers/file.c
+@@ -50,6 +50,10 @@
+ # define CV_NO_BACKWARD_COMPATIBILITY
+ # include "opencv2/core/core_c.h"
+ # include "opencv2/highgui/highgui_c.h"
++# include "opencv2/core/version.hpp"
++# if CV_MAJOR_VERSION >= 3
++#  include "opencv2/imgcodecs/imgcodecs_c.h"
++# endif
+ #endif
+ 
+ 
