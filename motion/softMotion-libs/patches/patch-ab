@@ -1,0 +1,19 @@
+swig 3 removes the default "lib" prefix for installed modules. Reset it.
+
+--- tclsrc/CMakeLists.txt~	2013-06-17 17:08:40.000000000 +0200
++++ tclsrc/CMakeLists.txt	2017-08-04 14:24:43.808600756 +0200
+@@ -1,5 +1,5 @@
+ #
+-# Copyright (c) 2010,2013 LAAS/CNRS
++# Copyright (c) 2010,2013,2017 LAAS/CNRS
+ # All rights reserved.
+ #
+ # Permission to use, copy, modify, and distribute this software for any purpose
+@@ -48,6 +48,7 @@
+ SET_SOURCE_FILES_PROPERTIES(${INTERFACE_FILES} PROPERTIES CMAKE_SWIG_FLAGS "-includeall")
+ SWIG_ADD_MODULE(${MODULE_NAME} tcl ${INTERFACE_FILES} ${SRC_FILES})
+ SWIG_LINK_LIBRARIES(${MODULE_NAME} ${TCL_LIBRARY} softMotion)
++set_target_properties(${MODULE_NAME} PROPERTIES PREFIX "lib")
+ 
+ 
+ # -------------------------------------------------------------
