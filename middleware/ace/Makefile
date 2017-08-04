@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 23 Jan 2008
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 ACE_VERSION=		6.0.4
 DISTNAME=		ACE-${ACE_VERSION}
 PKGNAME=		ace-${ACE_VERSION}
