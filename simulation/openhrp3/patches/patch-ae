@@ -1,0 +1,21 @@
+Use python binary as exported by robotpkg, fix installation paths
+
+--- hrplib/hrpCorba/CMakeLists.txt~	2017-02-17 04:39:49.000000000 +0100
++++ hrplib/hrpCorba/CMakeLists.txt	2017-08-24 16:04:14.490897936 +0200
+@@ -78,12 +78,12 @@
+ 
+ install(FILES ${given_headers} ${idl_h_files} DESTINATION ${RELATIVE_HEADERS_INSTALL_PATH}/hrpCorba)
+ execute_process(
+-  COMMAND python -c "import sys; print '%s.%s'%(sys.version_info[0:2])"
++  COMMAND $ENV{PYTHON} -c "import sys; print '%s.%s'%(sys.version_info[0:2])"
+   OUTPUT_VARIABLE python_version
+   OUTPUT_STRIP_TRAILING_WHITESPACE)
+ 
+-install(FILES ${idl_py_files} DESTINATION lib/python${python_version}/dist-packages)
++install(FILES ${idl_py_files} DESTINATION lib/python${python_version}/site-packages)
+ set(module_py_files ${CMAKE_CURRENT_BINARY_DIR}/OpenHRP/__init__.py)
+-install(FILES ${module_py_files} DESTINATION lib/python${python_version}/dist-packages/OpenHRP)
++install(FILES ${module_py_files} DESTINATION lib/python${python_version}/site-packages/OpenHRP)
+ set(module_poa_py_files ${CMAKE_CURRENT_BINARY_DIR}/OpenHRP__POA/__init__.py)
+-install(FILES ${module_poa_py_files} DESTINATION lib/python${python_version}/dist-packages/OpenHRP__POA)
++install(FILES ${module_poa_py_files} DESTINATION lib/python${python_version}/site-packages/OpenHRP__POA)

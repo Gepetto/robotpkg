@@ -1,0 +1,151 @@
+Don't use f2c/clapack, as this depends on which version of lapack is installed
+The native fortran interface is portable.
+
+--- server/UtDynamicsSimulator/sDIMS/dims_clapack.cpp~	2017-02-17 04:39:49.000000000 +0100
++++ server/UtDynamicsSimulator/sDIMS/dims_clapack.cpp	2017-08-24 14:35:22.828622353 +0200
+@@ -14,14 +14,9 @@
+  */
+ 
+ #include <dims_common.h>
+-#ifdef __darwin__
+ typedef int integer;
+ typedef double doublereal;
+ #include <stdlib.h>
+-#else
+-#include <f2c.h>
+-#include <malloc.h>
+-#endif
+ #include <stdio.h>
+ 
+ #ifdef USE_CLAPACK_INTERFACE
+@@ -117,31 +116,31 @@
+ 	    integer *lda, integer *ipiv, integer *info);
+ 
+ #ifndef USE_CLAPACK_INTERFACE
+-int f2c_dscal(
++int dscal_(
+ 		integer* n, doublereal* alpha, doublereal* x, integer* incx);
+ 
+-int f2c_dcopy(
++int dcopy_(
+ 		integer* n, doublereal* x, integer* incx, doublereal* y, integer* incy);
+-double f2c_ddot(
++double ddot_(
+ 		integer* n, doublereal* x, integer* incx, doublereal* y, integer* incy);
+-int f2c_dgemv(
++int dgemv_(
+ 		char* trans, integer* m, integer* n,
+ 		doublereal* alpha, doublereal* A, integer* lda,
+ 		doublereal* x, integer* incx,
+ 		doublereal* beta, doublereal* y, integer* incy);
+ 
+-int f2c_dgemm(
++int dgemm_(
+ 		char *transa, char *transb, integer *m, integer *n, integer *k,
+ 		doublereal *alpha, doublereal *a, integer *lda, 
+ 		doublereal *b, integer *ldb,
+ 		doublereal *beta, doublereal *c, integer *ldc);
+ 
+-int f2c_dsyrk(
++int dsyrk_(
+ 		char* uplo, char* trans, integer* n, integer* k,
+ 		doublereal* alpha, doublereal* A, integer* lda,
+ 		doublereal* beta, doublereal* C, integer* ldc);
+ 		
+-int f2c_daxpy(
++int daxpy_(
+ 		integer* n, doublereal* alpha, doublereal* x, integer* incx,
+ 		doublereal* y, integer* incy);
+ #endif
+@@ -152,7 +151,7 @@
+ #ifndef USE_CLAPACK_INTERFACE
+ 	integer incx = 1, incy = 1;
+ 	integer n = _n;
+-	return f2c_ddot(&n, _x, &incx, _y, &incy);
++	return ddot_(&n, _x, &incx, _y, &incy);
+ #else
+ 	const int n=_n, incX=1, incY=1;
+ 	return cblas_ddot(n, _x, incX, _y, incY);
+@@ -165,7 +164,7 @@
+ #ifndef USE_CLAPACK_INTERFACE
+ 	integer incx = 1, incy = 1;
+ 	integer n = _n;
+-	f2c_dcopy(&n, _x, &incx, _y, &incy);
++	dcopy_(&n, _x, &incx, _y, &incy);
+ #else
+ 	const int n = _n, incX = 1, incY = 1;
+ 	cblas_dcopy(n, _x, incX, _y, incY);
+@@ -178,7 +177,7 @@
+ #ifndef USE_CLAPACK_INTERFACE
+ 	integer incx = 1;
+ 	integer n = _n;
+-	f2c_dscal(&n, &_alpha, _x, &incx);
++	dscal_(&n, &_alpha, _x, &incx);
+ #else
+ 	const int n = _n, incX = 1;
+ 	const double alpha = _alpha;
+@@ -192,8 +191,8 @@
+ #ifndef USE_CLAPACK_INTERFACE
+ 	integer incx = 1, incy = 1;
+ 	integer n = _n;
+-	f2c_dcopy(&n, _x, &incx, _y, &incy);
+-	f2c_dscal(&n, &_alpha, _y, &incx);
++	dcopy_(&n, _x, &incx, _y, &incy);
++	dscal_(&n, &_alpha, _y, &incx);
+ #else
+ 	const int incX = 1, incY = 1;
+ 	cblas_dcopy(_n, _x, incX, _y, incY);
+@@ -213,7 +212,7 @@
+ 	integer incx = 1;
+ 	doublereal beta = 0.0;
+ 	integer incy = 1;
+-	f2c_dgemv(&trans, &m, &n, &alpha, _A, &lda, _x, &incx, &beta, _y, &incy);
++	dgemv_(&trans, &m, &n, &alpha, _A, &lda, _x, &incx, &beta, _y, &incy);
+ #else
+ 	cblas_dgemv(CblasColMajor, CblasNoTrans,
+ 		    _m, _n, 1.0, _A,_m, _x, 1, 0.0, _y, 1);
+@@ -232,7 +231,7 @@
+ 	integer incx = 1;
+ 	doublereal beta = 0.0;
+ 	integer incy = 1;
+-	f2c_dgemv(&trans, &m, &n, &alpha, _A, &lda, _x, &incx, &beta, _y, &incy);
++	dgemv_(&trans, &m, &n, &alpha, _A, &lda, _x, &incx, &beta, _y, &incy);
+ #else
+ 	cblas_dgemv(CblasColMajor, CblasTrans,
+ 		    _m, _n, 1.0, _A, _m, _x, 1, 0.0, _y, 1);
+@@ -253,7 +252,7 @@
+ 	integer ldb = _k;
+ 	doublereal beta = 0.0;
+ 	integer ldc = _m;
+-	f2c_dgemm(&transa, &transb, &m, &n, &k, &alpha, _A, &lda, _B, &ldb, &beta, _C, &ldc);
++	dgemm_(&transa, &transb, &m, &n, &k, &alpha, _A, &lda, _B, &ldb, &beta, _C, &ldc);
+ #else
+ 	cblas_dgemm(CblasColMajor, CblasNoTrans, CblasNoTrans,
+ 		    _m, _n, _k, 1.0,
+@@ -278,7 +277,7 @@
+ 	doublereal beta = 0.0;
+ 	integer ldc = _n;
+ 
+-	f2c_dsyrk(&uplo, &trans, &n, &k, &alpha, _A, &lda, &beta, _C, &ldc);
++	dsyrk_(&uplo, &trans, &n, &k, &alpha, _A, &lda, &beta, _C, &ldc);
+ #else
+ 	cblas_dsyrk(CblasColMajor, CblasUpper, CblasNoTrans,
+ 		    _n, _k, 1.0, _A, _n, 0.0, _C, _n);
+@@ -297,7 +296,7 @@
+ 	integer lda = _k;
+ 	doublereal beta = 0.0;
+ 	integer ldc = _n;
+-	f2c_dsyrk(&uplo, &trans, &n, &k, &alpha, _A, &lda, &beta, _C, &ldc);
++	dsyrk_(&uplo, &trans, &n, &k, &alpha, _A, &lda, &beta, _C, &ldc);
+ #else
+ 	cblas_dsyrk(CblasColMajor, CblasUpper, CblasTrans,
+ 		    _n, _k, 1.0, _A, _n, 0.0, _C, _n);
+@@ -312,7 +311,7 @@
+ 	doublereal alpha = _alpha;
+ 	integer incx = 1;
+ 	integer incy = 1;
+-	f2c_daxpy(&n, &alpha, _x, &incx, _y, &incy);
++	daxpy_(&n, &alpha, _x, &incx, _y, &incy);
+ #else
+  	cblas_daxpy(_n, _alpha, _x, 1, _y, 1);
+ #endif

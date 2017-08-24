@@ -1,0 +1,14 @@
+Don't use f2c/clapack, as this depends on which version of lapack is installed
+The native fortran interface is portable.
+
+--- server/UtDynamicsSimulator/sDIMS/CMakeLists.txt~	2017-02-17 04:39:49.000000000 +0100
++++ server/UtDynamicsSimulator/sDIMS/CMakeLists.txt	2017-08-24 14:36:13.488839398 +0200
+@@ -33,7 +33,7 @@
+   )
+ 
+ include_directories(.)
+-add_definitions(-DSEGA -DUSE_CLAPACK_INTERFACE)
++add_definitions(-DSEGA)
+ add_library(sDIMS SHARED ${sources})
+ 
+ set(HRPSDIMS_VERSION 0.0.0 )

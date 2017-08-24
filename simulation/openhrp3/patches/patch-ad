@@ -1,0 +1,13 @@
+Don't hardcode -ldl
+
+--- hrplib/hrpModel/CMakeLists.txt~	2017-02-17 04:39:49.000000000 +0100
++++ hrplib/hrpModel/CMakeLists.txt	2017-08-24 15:52:14.795843518 +0200
+@@ -63,7 +63,7 @@
+       #boost_filesystem boost_regex
+       ${Boost_REGEX_LIBRARY}
+       #${Boost_LIBRARIES}
+-      dl)
++      ${CMAKE_DL_LIBS})
+   else(NOT QNXNTO)
+     target_link_libraries(${target}
+       hrpUtil-${OPENHRP_LIBRARY_VERSION}

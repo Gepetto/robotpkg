@@ -8,5 +8,6 @@ SUBDIR+=	gazebo-ros-pkgs
 SUBDIR+=	morse
 SUBDIR+=	morse-yarp
 SUBDIR+=	mrsim-genom3
+SUBDIR+=	openhrp3
 
 include ../mk/robotpkg.subdir.mk
