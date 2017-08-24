@@ -11,6 +11,14 @@ endif
 
 ifeq (+,$(OPENRTM_AIST_DEPEND_MK)) # ---------------------------------
 
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  # on Ubuntu, the system packages are provided by ros
+  include ../../meta-pkgs/ros-base/depend.common
+  ROS_DEPEND_USE+=		openrtm-aist
+  PREFER.openrtm-aist?=		${PREFER.ros-base}
+  SYSTEM_PREFIX.openrtm-aist?=	${SYSTEM_PREFIX.ros-base}
+endif
 PREFER.openrtm-aist?=	robotpkg
 
 DEPEND_USE+=		openrtm-aist
