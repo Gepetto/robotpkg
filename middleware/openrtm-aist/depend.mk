@@ -20,7 +20,7 @@ DEPEND_DIR.openrtm-aist?=../../middleware/openrtm-aist
 
 SYSTEM_SEARCH.openrtm-aist=\
   'bin/rtm-config'						\
-  'include/rtm/RTC.h'						\
+  'include/openrtm-[0-9]*/rtm/RTC.h'				\
   'lib/pkgconfig/openrtm-aist.pc:/Version/s/[^.0-9]//gp'	\
   'lib/libRTC.la'
 

@@ -1,0 +1,13 @@
+Fix typo
+
+--- src/lib/coil/posix/coil/File.h~	2015-03-16 02:29:58.292728085 +0100
++++ src/lib/coil/posix/coil/File.h	2017-08-24 15:41:44.647908325 +0200
+@@ -142,7 +142,7 @@
+           {
+             const char* globc(glob_str);
+             std::string fname(ent->d_name);
+-            for (size_t i(0); i < fname.size() && globc != '\0'; ++i, ++globc)
++            for (size_t i(0); i < fname.size() && *globc != '\0'; ++i, ++globc)
+               {
+                 if (*globc == '*')
+                   {

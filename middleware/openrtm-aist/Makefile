@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Wed, 23 Jan 2008
 #
 
+PKGREVISION=		1
 RTM_VERSION=		1.1.1
 DISTNAME=		OpenRTM-aist-${RTM_VERSION}
 PKGNAME=		openrtm-aist-${RTM_VERSION}

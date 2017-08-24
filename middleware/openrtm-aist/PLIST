@@ -1,4 +1,4 @@
-@comment Mon Feb 8 11:22:45 CET 2016
+@comment Thu Aug 24 14:07:30 CEST 2017
 bin/coil-config
 bin/rtc-template
 bin/rtcd
@@ -201,6 +201,7 @@ lib/libRTC.la
 lib/libcoil.la
 lib/openrtm-1.1/cmake/FindOpenRTM.cmake
 lib/openrtm-1.1/cmake/OpenRTMConfig.cmake
+lib/openrtm-1.1/ec/RTPreemptEC.la
 lib/openrtm-1.1/py_helper/README_gen.py
 lib/openrtm-1.1/py_helper/cxx_gen.py
 lib/openrtm-1.1/py_helper/cxx_svc_impl.py
@@ -3067,4 +3068,3 @@ share/openrtm-1.1/example/templates/RFID.xml
 share/openrtm-1.1/example/templates/Ranger.xml
 share/openrtm-1.1/example/templates/VelocityControl2D.xml
 share/openrtm-1.1/example/templates/VelocityControl3D.xml
-@pkgdir include/ace/SSL
