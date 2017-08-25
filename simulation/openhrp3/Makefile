@@ -14,6 +14,8 @@ HOMEPAGE=	https://fkanehiro.github.io/openhrp3-doc/en/index.html
 COMMENT=	Open Architecture Humanoid Robotics Platform
 LICENSE=	eclipse
 
+MAKE_JOBS_SAFE=	no # because multiple parallel omniidl won't work
+
 CMAKE_ARGS+=	-Wno-dev
 CMAKE_ARGS+=	-DENABLE_INSTALL_RPATH=TRUE
 CMAKE_ARGS+=	-DENABLE_DOXYGEN=FALSE

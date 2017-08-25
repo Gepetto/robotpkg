@@ -2,6 +2,36 @@ Use python binary as exported by robotpkg, fix installation paths
 
 --- hrplib/hrpCorba/CMakeLists.txt~	2017-02-17 04:39:49.000000000 +0100
 +++ hrplib/hrpCorba/CMakeLists.txt	2017-08-24 16:04:14.490897936 +0200
+@@ -24,25 +24,25 @@
+   if(UNIX)
+     add_custom_command(
+       OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${idl_basename}.hh ${CMAKE_CURRENT_BINARY_DIR}/${idl_basename}Sk.cpp
+-      COMMAND omniidl ${idl_flags_cpp} ${idl_file}
++      COMMAND $ENV{OMNIIDL} ${idl_flags_cpp} ${idl_file}
+       DEPENDS ${idl_files}
+       )
+     add_custom_command(
+       OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${idl_basename}_idl.py
+-      COMMAND omniidl ${idl_flags_py} ${idl_file}
++      COMMAND $ENV{OMNIIDL} ${idl_flags_py} ${idl_file}
+       DEPENDS ${idl_files}
+       )
+   elseif(WIN32)
+     add_custom_command(
+       OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${idl_basename}.hh ${CMAKE_CURRENT_BINARY_DIR}/${idl_basename}Sk.cpp
+       COMMAND set PATH= "${OMNIORB_DIR}/bin/x86_win32"\;%PATH%
+-      COMMAND omniidl ${idl_flags_cpp} ${idl_file}
++      COMMAND $ENV{OMNIIDL} ${idl_flags_cpp} ${idl_file}
+       DEPENDS ${idl_files}
+       )
+     add_custom_command(
+       OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${idl_basename}_idl.py
+       COMMAND set PATH= "${OMNIORB_DIR}/bin/x86_win32"\;%PATH%
+-      COMMAND omniidl ${idl_flags_py} ${idl_file}
++      COMMAND $ENV{OMNIIDL} ${idl_flags_py} ${idl_file}
+       DEPENDS ${idl_files}
+       )
+   endif()
 @@ -78,12 +78,12 @@
  
  install(FILES ${given_headers} ${idl_h_files} DESTINATION ${RELATIVE_HEADERS_INSTALL_PATH}/hrpCorba)
