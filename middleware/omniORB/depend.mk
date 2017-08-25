@@ -37,6 +37,8 @@ SYSTEM_PKG.Debian.omniORB =\
 SYSTEM_PKG.Fedora.omniORB =	omniORB-devel omniORB-servers
 SYSTEM_PKG.NetBSD.omniORB =	net/omniORB
 
+export OMNIIDL=	${PREFIX.omniORB}/bin/omniidl
+
 endif # OMNIORB_DEPEND_MK --------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
