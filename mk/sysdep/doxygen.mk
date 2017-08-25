@@ -31,6 +31,10 @@ endif
 
 export DOXYGEN=		${PREFIX.doxygen}/bin/doxygen
 
+# if latex or pdflatex are to be used, make sure they are in the PATH: doxygen
+# relies on this
+PATH.doxygen+=		$(patsubst %,%/bin, ${PREFIX.latex} ${PREFIX.pdflatex})
+
 endif # DOXYGEN_DEPEND_MK --------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
