@@ -201,7 +201,6 @@ lib/libRTC.la
 lib/libcoil.la
 lib/openrtm-1.1/cmake/FindOpenRTM.cmake
 lib/openrtm-1.1/cmake/OpenRTMConfig.cmake
-lib/openrtm-1.1/ec/RTPreemptEC.la
 lib/openrtm-1.1/py_helper/README_gen.py
 lib/openrtm-1.1/py_helper/cxx_gen.py
 lib/openrtm-1.1/py_helper/cxx_svc_impl.py
