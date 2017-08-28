@@ -4,7 +4,6 @@
 COMMENT=	Programming languages
 
 SUBDIR+=	jython
-SUBDIR+=	python31
 SUBDIR+=	python32
 SUBDIR+=	python33
 SUBDIR+=	ros-gencpp
