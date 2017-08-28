@@ -1,0 +1,13 @@
+Fix for OpenCV3
+
+--- src/yarpdataplayer-gtk/src/worker.cpp~	2015-06-15 12:05:51.000000000 +0200
++++ src/yarpdataplayer-gtk/src/worker.cpp	2017-08-28 13:58:07.068969728 +0200
+@@ -150,7 +150,7 @@
+         cvCvtColor( img, img, CV_BGR2RGB );
+         ImageOf<PixelRgb> &temp = utilities->partDetails[part].imagePort.prepare();
+         temp.resize(img->width,img->height);
+-        cvCopyImage( img, (IplImage *) temp.getIplImage());
++        cvCopy( img, (IplImage *) temp.getIplImage());
+ #else
+     if ( !read(img,tmpPath.c_str()) ) {
+         fprintf( stderr, "Cannot load file %s !\n", tmpPath.c_str() );

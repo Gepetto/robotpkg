@@ -8,7 +8,7 @@ DISTNAME=		v${VERSION}
 CATEGORIES=		middleware
 MASTER_SITES=		https://github.com/robotology/yarp/archive/
 MASTER_REPOSITORY=	git git://github.com/robotology/yarp.git
-PKGREVISION= 	2
+PKGREVISION=		3
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://eris.liralab.it/yarpdoc/index.html

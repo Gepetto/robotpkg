@@ -1,0 +1,13 @@
+--- src/yarpdataplayer-gtk/src/worker.cpp~	2015-06-15 12:05:51.000000000 +0200
++++ src/yarpdataplayer-gtk/src/worker.cpp	2017-08-28 12:07:53.965251463 +0200
+@@ -129,8 +129,8 @@
+ #else
+     ImageOf<PixelRgb> img;
+ #endif
+-    string tmpPath = utilities->partDetails[part].path;
+-    string tmpName;
++    std::string tmpPath = utilities->partDetails[part].path;
++    std::string tmpName;
+     if (utilities->withExtraColumn)
+         tmpName = utilities->partDetails[part].bot.get(frame).asList()->tail().tail().get(1).asString().c_str();
+     else
