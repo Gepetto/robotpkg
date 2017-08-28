@@ -5,6 +5,7 @@ COMMENT=	Robots specific packages
 
 SUBDIR+=	hrp2-10
 SUBDIR+=	hrp2-14
+SUBDIR+=	hrpsys-base
 SUBDIR+=	ivmob-genom
 SUBDIR+=	ivmob-libs
 SUBDIR+=	jloco-genom

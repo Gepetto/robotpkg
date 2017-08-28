@@ -1,0 +1,13 @@
+Depending on the distribution, qhull has different installation paths
+
+--- rtc/CollisionDetector/SetupCollisionPair.cpp~	2017-08-05 00:10:49.000000000 +0200
++++ rtc/CollisionDetector/SetupCollisionPair.cpp	2017-08-25 18:02:43.914500735 +0200
+@@ -16,7 +16,7 @@
+ #include <hrpCollision/ColdetModel.h>
+ #include "CollisionDetector.h"
+ extern "C" {
+-#include <qhull/qhull_a.h>
++#include <qhull_a.h>
+ }
+ 
+ #define deg2rad(x)	((x)*M_PI/180)

@@ -1,0 +1,27 @@
+Fix python installation paths
+Fix omniidl invocation
+
+--- idl/CMakeLists.txt~	2017-08-05 00:10:49.000000000 +0200
++++ idl/CMakeLists.txt	2017-08-25 17:02:06.311268413 +0200
+@@ -63,7 +63,7 @@
+ macro(generate_cpp_stub idl_file idl_basename)
+   add_custom_command(
+     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${idl_basename}.hh ${CMAKE_CURRENT_BINARY_DIR}/${idl_basename}Sk.cpp ${CMAKE_CURRENT_BINARY_DIR}/${idl_basename}DynSk.cpp
+-    COMMAND omniidl ${idl_flags} ${idl_file}
++    COMMAND $ENV{OMNIIDL} ${idl_flags} ${idl_file}
+     DEPENDS ${idl_file}
+     )
+ endmacro()
+@@ -126,9 +126,9 @@
+   endif()
+ endforeach()
+ 
+-install(CODE "execute_process(COMMAND omniidl -bpython -C\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${python_dist_pkg_dir}/hrpsys -I${OPENRTM_IDL_DIR} ${idl_files} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})")
+-install(CODE "execute_process(COMMAND omniidl -bpython -C\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${python_dist_pkg_dir}/hrpsys -I${OPENRTM_IDL_DIR} ${openhrp_idl_files} WORKING_DIRECTORY ${OPENHRP_IDL_DIR}/OpenHRP)")
+-install(CODE "execute_process(COMMAND python -m compileall . WORKING_DIRECTORY ${python_dist_pkg_dir}/hrpsys)")
++install(CODE "execute_process(COMMAND $ENV{OMNIIDL} -bpython -C\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${python_dist_pkg_dir}/hrpsys -I${OPENRTM_IDL_DIR} ${idl_files} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})")
++install(CODE "execute_process(COMMAND $ENV{OMNIIDL} -bpython -C\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${python_dist_pkg_dir}/hrpsys -I${OPENRTM_IDL_DIR} ${openhrp_idl_files} WORKING_DIRECTORY ${OPENHRP_IDL_DIR}/OpenHRP)")
++install(CODE "execute_process(COMMAND ${PYTHON} -m compileall . WORKING_DIRECTORY ${python_dist_pkg_dir}/hrpsys)")
+ install(FILES ${headers} DESTINATION include/hrpsys/idl)
+ install(FILES ${idl_files} DESTINATION share/hrpsys/idl)
+ 

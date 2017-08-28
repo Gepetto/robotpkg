@@ -1,0 +1,11 @@
+@comment Fri Aug 25 14:44:22 CEST 2017
+bin/Joystick2PanTiltAnglesComp
+bin/Joystick2Velocity2DComp
+bin/Joystick2Velocity3DComp
+bin/JoystickComp
+bin/VideoCaptureComp
+lib/Joystick.so
+lib/Joystick2PanTiltAngles.so
+lib/Joystick2Velocity2D.so
+lib/Joystick2Velocity3D.so
+lib/VideoCapture.so

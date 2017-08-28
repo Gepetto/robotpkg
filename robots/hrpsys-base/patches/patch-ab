@@ -1,0 +1,28 @@
+Fix some old OpenCV issues with pkg-config
+Fix python invocation
+
+--- CMakeLists.txt~	2017-08-05 00:10:49.000000000 +0200
++++ CMakeLists.txt	2017-08-25 14:22:25.795395936 +0200
+@@ -155,6 +155,9 @@
+     message(WARNING "opencv not found")
+   endif()
+ endif()
++if (OpenCV_LIBRARIES STREQUAL "")
++  set(OpenCV_LIBRARIES ${OpenCV_LDFLAGS} CACHE INTERNAL "" FORCE)
++endif()
+ pkg_check_modules(GLEW glew)
+ if (NOT GLEW_FOUND)
+   message(WARNING "Package GLEW is not found")
+@@ -173,10 +173,10 @@
+ endif()
+ 
+ execute_process(
+-  COMMAND python -c "from distutils import sysconfig; print sysconfig.get_config_var(\"VERSION\")"
++  COMMAND $ENV{PYTHON} -c "from distutils import sysconfig; print sysconfig.get_config_var(\"VERSION\")"
+   OUTPUT_VARIABLE PYTHON_VERSION
+   OUTPUT_STRIP_TRAILING_WHITESPACE)
+-set(python_dist_pkg_dir lib/python${PYTHON_VERSION}/dist-packages)
++set(python_dist_pkg_dir lib/python${PYTHON_VERSION}/site-packages)
+ 
+ configure_file(hrpsys-base.pc.in ${CMAKE_CURRENT_BINARY_DIR}/hrpsys-base.pc @ONLY)
+ install(FILES

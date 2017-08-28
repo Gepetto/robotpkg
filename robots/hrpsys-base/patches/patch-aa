@@ -1,0 +1,38 @@
+Disable optional dependency
+
+--- rtc/CMakeLists.txt~	2017-08-05 00:10:49.000000000 +0200
++++ rtc/CMakeLists.txt	2017-08-24 18:52:08.596633221 +0200
+@@ -5,7 +5,9 @@
+ add_subdirectory(WavPlayer)
+ add_subdirectory(SequencePlayer)
+ add_subdirectory(DataLogger)
+-if (NOT QNXNTO)
++include(CheckIncludeFile)
++check_include_file("linux/joystick.h" HAVE_LINUX_JOYSTICK)
++if(HAVE_LINUX_JOYSTICK)
+   add_subdirectory(Joystick)
+   add_subdirectory(Joystick2Velocity2D)
+   add_subdirectory(Joystick2Velocity3D)
+@@ -58,7 +58,10 @@
+ add_subdirectory(ObjectContactTurnaroundDetector)
+ 
+ if (NOT APPLE AND USE_HRPSYSUTIL)
++ check_include_file("linux/videodev2.h" HAVE_LINUX_VIDEODEV)
++ if(HAVE_LINUX_VIDEODEV)
+   add_subdirectory(VideoCapture)
++ endif()
+ endif()
+ 
+ find_package(Irrlicht)
+@@ -65,11 +65,6 @@
+   add_subdirectory(OGMap3DViewer)
+ endif()
+ 
+-# Octomap
+-pkg_check_modules(OCTOMAP octomap)
+-if (OCTOMAP_FOUND)
+-  add_subdirectory(OccupancyGridMap3D)
+-endif()
+ 
+ find_package(PCL)
+ if (NOT "${PCL_LIBRARIES}" STREQUAL "")

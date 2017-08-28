@@ -1,0 +1,58 @@
+Fix pkg-config invocation
+
+--- cmake_modules/FindOpenHRP.cmake~	2017-08-05 00:10:49.000000000 +0200
++++ cmake_modules/FindOpenHRP.cmake	2017-08-25 15:49:03.976997569 +0200
+@@ -1,7 +1,7 @@
+ set(OPENHRP_FOUND TRUE)
+ 
+ execute_process(
+-  COMMAND pkg-config --modversion openhrp3.1
++  COMMAND $ENV{PKG_CONFIG} --modversion openhrp3.1
+   OUTPUT_VARIABLE OPENHRP_VERSION
+   RESULT_VARIABLE RESULT
+   OUTPUT_STRIP_TRAILING_WHITESPACE)
+@@ -11,7 +11,7 @@
+ endif()
+ 
+ execute_process(
+-  COMMAND pkg-config --variable=prefix openhrp3.1
++  COMMAND $ENV{PKG_CONFIG} --variable=prefix openhrp3.1
+   OUTPUT_VARIABLE OPENHRP_DIR
+   RESULT_VARIABLE RESULT
+   OUTPUT_STRIP_TRAILING_WHITESPACE)
+@@ -21,7 +21,7 @@
+ endif()
+ 
+ execute_process(
+-  COMMAND pkg-config --cflags openhrp3.1
++  COMMAND $ENV{PKG_CONFIG} --cflags openhrp3.1
+   OUTPUT_VARIABLE OPENHRP_CXX_FLAGS
+   RESULT_VARIABLE RESULT
+   OUTPUT_STRIP_TRAILING_WHITESPACE)
+@@ -33,7 +33,7 @@
+ endif()
+ 
+ execute_process(
+-  COMMAND pkg-config --cflags-only-I openhrp3.1
++  COMMAND $ENV{PKG_CONFIG} --cflags-only-I openhrp3.1
+   OUTPUT_VARIABLE OPENHRP_INCLUDE_DIRS
+   RESULT_VARIABLE RESULT
+   OUTPUT_STRIP_TRAILING_WHITESPACE)
+@@ -45,7 +45,7 @@
+ endif()
+ 
+ execute_process(
+-  COMMAND pkg-config --libs openhrp3.1
++  COMMAND $ENV{PKG_CONFIG} --libs openhrp3.1
+   OUTPUT_VARIABLE OPENHRP_LIBRARIES
+   RESULT_VARIABLE RESULT
+   OUTPUT_STRIP_TRAILING_WHITESPACE)
+@@ -65,7 +65,7 @@
+ endif()
+ 
+ execute_process(
+-  COMMAND pkg-config --variable=idl_dir openhrp3.1
++  COMMAND $ENV{PKG_CONFIG} --variable=idl_dir openhrp3.1
+   OUTPUT_VARIABLE OPENHRP_IDL_DIR
+   RESULT_VARIABLE RESULT
+   OUTPUT_STRIP_TRAILING_WHITESPACE)

@@ -1,0 +1,13 @@
+Depending on the distribution, qhull has different installation paths
+
+--- rtc/CollisionDetector/vclip_1.0/src/PolyTree.C~	2017-08-05 00:10:49.000000000 +0200
++++ rtc/CollisionDetector/vclip_1.0/src/PolyTree.C	2017-08-25 18:01:55.014307623 +0200
+@@ -58,7 +58,7 @@
+ 
+ #if QHULL
+ extern "C" {
+-#include "qhull/qhull_a.h"
++#include "qhull_a.h"
+ }
+ //char qh_version[] = "vclip 1.0";
+ #endif

@@ -1,0 +1,13 @@
+Missing namespace qualifier
+
+--- rtc/RangeDataViewer/RangeDataViewer.cpp~	2017-08-05 00:10:49.000000000 +0200
++++ rtc/RangeDataViewer/RangeDataViewer.cpp	2017-08-28 11:29:55.891336898 +0200
+@@ -145,7 +145,7 @@
+ #endif
+     for (unsigned int i=0; i<m_range.ranges.length(); i++){
+       d = m_range.ranges[i];
+-      if (isinf(d)) continue;
++      if (std::isinf(d)) continue;
+       th = m_range.config.minAngle + m_range.config.angularRes*i;
+       x = -d*sin(th)/m_maxRange*WSIZE/2 + WSIZE/2;
+       y = -d*cos(th)/m_maxRange*WSIZE/2 + WSIZE/2;
