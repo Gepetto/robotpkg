@@ -53,6 +53,8 @@ PRINT_PLIST_AWK_SUBST+= gsub("${PY_PLATNAME}/", "$${PY_PLATNAME}/");
 post-install:
 	${RUN}${RM} ${DESTDIR}${PREFIX}/lib/libpython3.so
 
+DEPEND_ABI.openssl+=	openssl<1.1.0
+
 include ../../mk/sysdep/gdbm.mk
 include ../../mk/sysdep/libffi.mk
 include ../../mk/sysdep/liblzma.mk

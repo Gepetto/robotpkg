@@ -15,23 +15,13 @@ DEPEND_USE+=		python33
 
 include ../../mk/sysdep/python.mk
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04 14.04,${OS_VERSION}))
-    PREFER.python33?=	robotpkg
+  ifneq (,$(filter 14.04,${OS_VERSION}))
+    PREFER.python33?=	system
   endif
-else ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 7.%,${OS_VERSION}))
-    PREFER.python33?=	robotpkg
-  endif
-else ifeq (Fedora,${OPSYS})
-  ifneq (,$(filter 21,${OS_VERSION}))
-    PREFER.python33?=	robotpkg
-  endif
-else ifeq (OpenNao,${OPSYS})
-  ifneq (,$(filter 1.14.%,${OS_VERSION}))
-    PREFER.python33?=	robotpkg
-  endif
+else ifeq (NetBSD,${OPSYS})
+  PREFER.python33?=	system
 endif
-PREFER.python33?=	${PREFER.python}
+PREFER.python33?=	robotpkg
 
 DEPEND_ABI.python33?=	python33>=3.3<3.4
 DEPEND_DIR.python33?=	../../lang/python33
