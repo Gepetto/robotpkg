@@ -14,19 +14,9 @@ ifeq (+,$(PYTHON32_DEPEND_MK)) # -------------------------------------------
 DEPEND_USE+=		python32
 
 include ../../mk/sysdep/python.mk
-ifeq (Fedora,${OPSYS})
-  PREFER.python32?=	robotpkg
-else ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04 10.10 13.10 14.04,${OS_VERSION}))
-    PREFER.python32?=	robotpkg
-  endif
-else ifeq (NetBSD,${OPSYS})
-  PREFER.python32?=	robotpkg
-endif
-PREFER.python32?=	${PREFER.python}
+PREFER.python32?=	system
 
 DEPEND_ABI.python32?=	python32>=3.2<3.3
-DEPEND_DIR.python32?=	../../lang/python32
 
 # see sysdep/python.mk for the definition of SYSTEM_SEARCH.python
 _py_search32=		{3.2,3,}{,d}{,m}{,u}

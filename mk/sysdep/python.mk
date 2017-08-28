@@ -151,7 +151,7 @@ define PKG_ALTERNATIVE_SET.python32
   _py_abi:=$(subst python,python32,${PKG_ALTERNATIVE_SELECT.python32})
   DEPEND_ABI.python32?=	$(strip ${_py_abi})
 
-  include ../../lang/python32/depend.mk
+  include ../../mk/sysdep/python32.mk
 endef
 
 PKG_ALTERNATIVE_DESCR.python33= Use python-3.3
