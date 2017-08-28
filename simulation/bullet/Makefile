@@ -16,6 +16,8 @@ LICENSE=	mit
 
 CMAKE_ARGS+=	-DBUILD_SHARED_LIBS=ON
 
+INCLUDE_DIRS.mesa+=	${PREFIX.mesa}/include
+
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/cmake.mk
