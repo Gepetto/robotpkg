@@ -35,7 +35,7 @@
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: python26 python27 python31 python32 python33 python34
+#	Possible values: python27 python32 python33 python34 python35 python36
 #
 # === Package-settable variables ===
 #
@@ -71,7 +71,7 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
-DEPEND_ABI.python?=	python>=2.5<3.6
+DEPEND_ABI.python?=	python>=2.5<3.7
 
 # factorize SYSTEM_SEARCH.python* here for all python* packages
 override define _py_syssearch
@@ -100,8 +100,8 @@ CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
-PKG_ALTERNATIVES.python=	python26 python27
-PKG_ALTERNATIVES.python+=	python31 python32 python33 python34 python35
+PKG_ALTERNATIVES.python=	python27
+PKG_ALTERNATIVES.python+=	python32 python33 python34 python35 python36
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
@@ -110,6 +110,11 @@ ifeq (Debian,${OPSYS})
     PREFER_ALTERNATIVE.python?=	python27 python32
   endif
   PREFER_ALTERNATIVE.python?=	python27 python34
+else ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 24 25,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python35
+  endif
+  PREFER_ALTERNATIVE.python?=	python27 python36
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python32
@@ -125,18 +130,6 @@ else ifeq (OpenNao,${OPSYS})
 endif
 PREFER_ALTERNATIVE.python?=	python27 python35
 
-PKG_ALTERNATIVE_DESCR.python26= Use python-2.6
-PKGTAG.python26 =		py26
-define PKG_ALTERNATIVE_SELECT.python26
-  $(call preduce,${DEPEND_ABI.python} python>=2.6<2.7)
-endef
-define PKG_ALTERNATIVE_SET.python26
-  _py_abi:=$(subst python,python26,${PKG_ALTERNATIVE_SELECT.python26})
-  DEPEND_ABI.python26?=	$(strip ${_py_abi})
-
-  include ../../mk/sysdep/python26.mk
-endef
-
 PKG_ALTERNATIVE_DESCR.python27= Use python-2.7
 PKGTAG.python27 =		py27
 define PKG_ALTERNATIVE_SELECT.python27
@@ -147,18 +140,6 @@ define PKG_ALTERNATIVE_SET.python27
   DEPEND_ABI.python27?=	$(strip ${_py_abi})
 
   include ../../mk/sysdep/python27.mk
-endef
-
-PKG_ALTERNATIVE_DESCR.python31= Use python-3.1
-PKGTAG.python31 =		py31
-define PKG_ALTERNATIVE_SELECT.python31
-  $(call preduce,${DEPEND_ABI.python} python>=3.1<3.2)
-endef
-define PKG_ALTERNATIVE_SET.python31
-  _py_abi:=$(subst python,python31,${PKG_ALTERNATIVE_SELECT.python31})
-  DEPEND_ABI.python31?=	$(strip ${_py_abi})
-
-  include ../../lang/python31/depend.mk
 endef
 
 PKG_ALTERNATIVE_DESCR.python32= Use python-3.2
@@ -207,6 +188,18 @@ define PKG_ALTERNATIVE_SET.python35
   DEPEND_ABI.python35?=	$(strip ${_py_abi})
 
   include ../../mk/sysdep/python35.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python36= Use python-3.6
+PKGTAG.python36 =		py36
+define PKG_ALTERNATIVE_SELECT.python36
+  $(call preduce,${DEPEND_ABI.python} python>=3.6<3.7)
+endef
+define PKG_ALTERNATIVE_SET.python36
+  _py_abi:=$(subst python,python36,${PKG_ALTERNATIVE_SELECT.python36})
+  DEPEND_ABI.python36?=	$(strip ${_py_abi})
+
+  include ../../mk/sysdep/python36.mk
 endef
 
 # default tag value before alternative resolution (used in particular by
