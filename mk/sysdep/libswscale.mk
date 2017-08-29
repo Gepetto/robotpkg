@@ -15,9 +15,9 @@ DEPEND_USE+=			libswscale
 DEPEND_ABI.libswscale?=		libswscale>=0
 
 SYSTEM_SEARCH.libswscale=\
-	'include/{,ffmpeg/}libswscale/swscale.h'	\
-	'lib/libswscale.{so,a}'				\
-	'lib/pkgconfig/libswscale.pc:/Version/s/[^0-9.]//gp'
+	'include/{,ffmpeg*/}libswscale/swscale.h'	\
+	'lib/{,ffmpeg*/}libswscale.{so,a}'		\
+	'lib/{,ffmpeg*/}pkgconfig/libswscale.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Fedora.libswscale=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libswscale=libswscale-dev

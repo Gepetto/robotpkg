@@ -15,9 +15,9 @@ DEPEND_USE+=			libavcodec
 DEPEND_ABI.libavcodec?=		libavcodec>=52
 
 SYSTEM_SEARCH.libavcodec=\
-	'include/{,ffmpeg/}libavcodec/avcodec.h'		\
-	'lib/libavcodec.{so,a}'					\
-	'lib/pkgconfig/libavcodec.pc:/Version/s/[^0-9.]//gp'
+	'include/{,ffmpeg*/}libavcodec/avcodec.h'		\
+	'lib/{,ffmpeg*/}libavcodec.{so,a}'			\
+	'lib/{,ffmpeg*/}pkgconfig/libavcodec.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Fedora.libavcodec=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libavcodec=libavcodec-dev

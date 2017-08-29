@@ -15,9 +15,9 @@ DEPEND_USE+=			libavformat
 DEPEND_ABI.libavformat?=	libavformat>=52
 
 SYSTEM_SEARCH.libavformat=\
-	'include/{,ffmpeg/}libavformat/avformat.h'		\
-	'lib/libavformat.{so,a}'				\
-	'lib/pkgconfig/libavformat.pc:/Version/s/[^0-9.]//gp'
+	'include/{,ffmpeg*/}libavformat/avformat.h'		\
+	'lib/{,ffmpeg*/}libavformat.{so,a}'				\
+	'lib/{,ffmpeg*/}pkgconfig/libavformat.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Fedora.libavformat=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libavformat=libavformat-dev

@@ -15,9 +15,9 @@ DEPEND_USE+=			libavutil
 DEPEND_ABI.libavutil?=		libavutil>=49
 
 SYSTEM_SEARCH.libavutil=\
-	'include/{,ffmpeg/}libavutil/avutil.h'			\
-	'lib/libavutil.{so,a}'					\
-	'lib/pkgconfig/libavutil.pc:/Version/s/[^0-9.]//gp'
+	'include/{,ffmpeg*/}libavutil/avutil.h'			\
+	'lib/{,ffmpeg*/}libavutil.{so,a}'			\
+	'lib/{,ffmpeg*/}pkgconfig/libavutil.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Fedora.libavutil=ffmpeg-devel
 SYSTEM_PKG.Ubuntu.libavutil=libavutil-dev
