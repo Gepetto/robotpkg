@@ -18,6 +18,8 @@ LICENSE=		modified-bsd
 
 
 # build configuration
+CMAKE_ARGS+=	-Wno-dev
+CMAKE_ARGS+=	-DENABLE_PRECOMPILED_HEADERS=OFF
 CMAKE_ARGS+=	-DBUILD_PACKAGE=OFF -DBUILD_SHARED_LIBS=ON
 CMAKE_ARGS+=	-DBUILD_TESTS=ON -DBUILD_PERF_TESTS=OFF
 CMAKE_ARGS+=	-DBUILD_DOCS=OFF -DBUILD_EXAMPLES=OFF
@@ -59,11 +61,6 @@ CMAKE_ARGS+=	-DWITH_OPENCL=OFF
 
 # dependencies
 CMAKE_ARGS+=	-DEIGEN_INCLUDE_PATH=${PREFIX.eigen3}/include/eigen3
-
-# ccache is broken wrt. precompiled headers
-# https://bugzilla.samba.org/show_bug.cgi?id=10212
-CMAKE_ARGS+=\
-  $(if $(filter ccache,${DEPEND_USE}),-DENABLE_PRECOMPILED_HEADERS=OFF)
 
 # option for image acquistion support
 include ../../mk/robotpkg.prefs.mk # OS_KERNEL
@@ -118,4 +115,8 @@ include ../../mk/sysdep/libswscale.mk
 include ../../mk/sysdep/libtiff.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
+
+DEPEND_ABI.libavcodec+=		libavcodec<57
+DEPEND_ABI.libavformat+=	libavformat<57
+
 include ../../mk/robotpkg.mk
