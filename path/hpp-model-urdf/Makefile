@@ -16,6 +16,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 include ../../graphics/assimp/depend.mk
 include ../../graphics/ros-robot-model/depend.mk
 include ../../graphics/ros-srdfdom/depend.mk
+include ../../graphics/urdfdom-headers/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
 include ../../path/hpp-model/depend.mk
 include ../../path/hpp-util/depend.mk
