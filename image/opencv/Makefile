@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 VERSION=		2.4.8
 DISTNAME=		opencv-${VERSION}
 DISTFILES=		${VERSION}${EXTRACT_SUFX}
@@ -58,7 +58,7 @@ CMAKE_ARGS+=	-DWITH_UNICAP=OFF
 CMAKE_ARGS+=	-DWITH_OPENCL=OFF
 
 # dependencies
-CMAKE_ARGS+=	-DEIGEN_INCLUDE_PATH=${PREFIX.eigen2}/include/eigen2
+CMAKE_ARGS+=	-DEIGEN_INCLUDE_PATH=${PREFIX.eigen3}/include/eigen3
 
 # ccache is broken wrt. precompiled headers
 # https://bugzilla.samba.org/show_bug.cgi?id=10212
@@ -106,7 +106,7 @@ endef
 
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/zlib/depend.mk
-include ../../math/eigen2/depend.mk
+include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/libavcodec.mk
