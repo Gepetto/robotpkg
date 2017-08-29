@@ -34,6 +34,7 @@ USE_BOOST_LIBS=	python
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../image/opencv/depend.mk
+include ../../math/eigen3/depend.mk
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/omniORBpy/depend.mk
 include ../../middleware/openrtm-aist/depend.mk
