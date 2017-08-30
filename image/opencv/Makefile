@@ -97,6 +97,7 @@ PKG_SUPPORTED_OPTIONS+=		doc
 PKG_OPTION_DESCR.doc=		Enable documentation generation
 define PKG_OPTION_SET.doc
   CMAKE_ARGS+=			-DBUILD_DOCS=ON
+  CMAKE_ARGS+=			-DSPHINX_BUILD=${SPHINX_BUILD}
   include ../../mk/sysdep/pdflatex.mk
   include ../../mk/sysdep/py-sphinx.mk
 endef
