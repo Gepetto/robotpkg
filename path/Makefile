@@ -12,6 +12,7 @@ SUBDIR+=	hpp-core
 SUBDIR+=	hpp-dynamic-obstacle
 SUBDIR+=	hpp-environment-data
 SUBDIR+=	hpp-fcl
+SUBDIR+=	hpp-fcl04
 SUBDIR+=	hpp-gik
 SUBDIR+=	hpp-hik
 SUBDIR+=	hpp-kwsio

@@ -1,0 +1,14 @@
+--- include/hpp/fcl/mesh_loader/assimp.h~	2016-09-28 18:13:55.615926058 +0200
++++ include/hpp/fcl/mesh_loader/assimp.h	2016-09-28 18:14:09.516100694 +0200
+@@ -166,9 +166,11 @@
+       aiFace& face = input_mesh->mFaces[j];
+       if (face.mNumIndices != 3) {
+         std::stringstream ss;
++#ifdef FCL_USE_ASSIMP_UNIFIED_HEADER_NAMES
+         ss << "Mesh " << input_mesh->mName.C_Str() << " has a face with "
+            << face.mNumIndices << " vertices. This is not supported\n";
+         ss << "Node name is: " << node->mName.C_Str() << "\n";
++#endif
+         ss << "Mesh index: " << i << "\n";
+         ss << "Face index: " << j << "\n";
+         throw std::invalid_argument (ss.str());

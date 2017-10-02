@@ -25,7 +25,7 @@ else ifeq (OpenNao,${OPSYS})
 endif
 
 include ../../path/hpp-util/depend.mk
-include ../../path/hpp-fcl/depend.mk
+include ../../path/hpp-fcl04/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
