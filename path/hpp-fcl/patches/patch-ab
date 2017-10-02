@@ -1,9 +1,11 @@
 Fix boost libraries name in .pc file
 
---- CMakeLists.txt~	2016-07-06 18:39:53.000000000 +0200
-+++ CMakeLists.txt	2016-07-12 13:35:46.210010364 +0200
-@@ -190,7 +190,12 @@
- add_subdirectory(test)
+diff --git CMakeLists.txt CMakeLists.txt
+index c98f681..b430243 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -162,7 +162,12 @@ if (RUN_TESTS)
+ endif ()
  
  pkg_config_append_libs("hpp-fcl")
 -PKG_CONFIG_APPEND_BOOST_LIBS(thread date_time filesystem system)
@@ -13,6 +15,6 @@ Fix boost libraries name in .pc file
 +  string(REGEX REPLACE "^lib" "" l "${l}")
 +  pkg_config_append_libs("${l}")
 +endforeach()
- 
- config_files(include/hpp/fcl/config-fcl.hh)
- install(FILES ${PROJECT_BINARY_DIR}/include/hpp/fcl/config-fcl.hh
+ IF(WITH_FCL_USE_ASSIMP_UNIFIED_HEADER_NAMES)
+   PKG_CONFIG_APPEND_CFLAGS("-DFCL_USE_ASSIMP_UNIFIED_HEADER_NAMES")
+ ENDIF(WITH_FCL_USE_ASSIMP_UNIFIED_HEADER_NAMES)
