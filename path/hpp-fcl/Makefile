@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-fcl
 HPP_VERSION=		0.5.1
+PKGREVISION=		1
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations
@@ -22,6 +23,7 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../mapping/octomap/depend.mk
+include ../../math/eigen3/depend.mk
 include ../../math/libccd/depend.mk
 include ../../graphics/assimp/depend.mk
 include ../../mk/language/c.mk
