@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 11 Feb 2015
 #
 
-DISTNAME=	tk3-mikrokopter-1.8.1
+DISTNAME=	tk3-mikrokopter-1.8.2
 CATEGORIES=	robots
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=tk3-mikrokopter/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}tk3-mikrokopter
