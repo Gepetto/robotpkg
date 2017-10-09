@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Tue, 13 Dec 2016
 #
 
+PKGREVISION=		1
 DISTNAME=		maneuver-genom3-1.2
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
