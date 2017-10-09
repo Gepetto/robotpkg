@@ -2,7 +2,7 @@
 
                     Anthony Mallet - anthony.mallet@laas.fr
 
-                               February 13, 2014
+                                October 9, 2017
 
 Copyright ? 2006-2011,2013 LAAS/CNRS.
 Copyright ? 1997-2010 The NetBSD Foundation, Inc.
@@ -199,20 +199,17 @@ reasonably well:
 |Platform|                              Version                              |
 |--------+-------------------------------------------------------------------|
 |--------+-------------------------------------------------------------------|
-| Fedora |                              5 - 19                               |
+| Fedora |                            25 or above                            |
 |--------+-------------------------------------------------------------------|
-| Ubuntu |                           7.10 - 13.04                            |
+| Ubuntu |                          12.04 or above                           |
 |--------+-------------------------------------------------------------------|
-| Debian |                            5.03 - 7.1                             |
+| Debian |                            7 or above                             |
 |--------+-------------------------------------------------------------------|
-| CentOS |                                 5                                 |
-|--------+-------------------------------------------------------------------|
-| NetBSD |                               4 - 6                               |
+| NetBSD |                            6 or above                             |
 |--------+-------------------------------------------------------------------|
 | Darwin |Partial support - infrastructure works, individual packages may not|
 +----------------------------------------------------------------------------+
-Other platforms may work, especially more recent versions of the aforementioned
-platforms.
+Any other Unix-like platform should usually work.
 
 1.4  Overview
 
