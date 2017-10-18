@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer
-HPP_VERSION=		1.2.1
+HPP_VERSION=		2.0.0
 PKGREVISION=
 
 CATEGORIES=		graphics
