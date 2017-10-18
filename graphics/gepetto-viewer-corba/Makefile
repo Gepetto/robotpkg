@@ -3,8 +3,7 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer-corba
-HPP_VERSION=		1.2.0
-PKGREVISION=		1
+HPP_VERSION=		2.0.0
 
 CATEGORIES=		graphics
 HPP_COMMENT=		Corba server and client for to control gepetto viewer

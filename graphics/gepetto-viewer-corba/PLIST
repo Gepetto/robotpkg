@@ -1,7 +1,8 @@
-@comment Thu Sep 29 15:39:09 CEST 2016
+@comment Wed Oct 18 10:43:49 CEST 2017
 bin/gepetto-gui
 bin/gepetto-viewer-server
 bin/urdf_to_blender.py
+include/gepetto/gui/action-search-bar.hh
 include/gepetto/gui/bodytreewidget.hh
 include/gepetto/gui/color-map.hh
 include/gepetto/gui/config-dep.hh
@@ -12,12 +13,14 @@ include/gepetto/gui/fwd.hh
 include/gepetto/gui/ledindicator.hh
 include/gepetto/gui/mainwindow.hh
 include/gepetto/gui/meta.hh
+include/gepetto/gui/node-action.hh
 include/gepetto/gui/omniorb/omniorbthread.hh
 include/gepetto/gui/omniorb/url.hh
 include/gepetto/gui/osgwidget.hh
 include/gepetto/gui/pick-handler.hh
 include/gepetto/gui/plugin-interface.hh
 include/gepetto/gui/safeapplication.hh
+include/gepetto/gui/selection-event.hh
 include/gepetto/gui/selection-handler.hh
 include/gepetto/gui/settings.hh
 include/gepetto/gui/shortcut-factory.hh
