@@ -10,6 +10,7 @@ CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=\
   ${MASTER_REPOSITORY_GITHUB}stack-of-tasks/dynamic_graph_bridge_msgs/
+CHECKOUT_VCS_OPTS+=	--recursive
 
 COMMENT=		Dynamic graph bridge messages and services.
 LICENSE=		2-clause-bsd
