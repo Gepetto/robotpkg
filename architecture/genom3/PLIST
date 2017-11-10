@@ -1,4 +1,4 @@
-@comment Thu Jul 24 14:18:52 CEST 2014
+@comment Fri Nov 10 18:10:20 CET 2017
 bin/genom${PKGVERSION}
 bin/genom3
 include/genom3/c++/event.h
@@ -54,6 +54,8 @@ share/doc/genom/adoc/templates/mappings.adoc
 share/doc/genom/adoc/templates/skeleton.adoc
 share/doc/genom/adoc/templates/tcl-engine.adoc
 share/doc/genom/adoc/tutorials/add-function.adoc
+share/doc/genom/adoc/tutorials/external-software.adoc
+share/doc/genom/adoc/tutorials/ids.adoc
 share/doc/genom/adoc/tutorials/index.adoc
 share/doc/genom/adoc/tutorials/workflow.adoc
 share/doc/genom/html/copying.html
@@ -95,6 +97,8 @@ share/doc/genom/html/templates/mappings.html
 share/doc/genom/html/templates/skeleton.html
 share/doc/genom/html/templates/tcl-engine.html
 share/doc/genom/html/tutorials/add-function.html
+share/doc/genom/html/tutorials/external-software.html
+share/doc/genom/html/tutorials/ids.html
 share/doc/genom/html/tutorials/index.html
 share/doc/genom/html/tutorials/workflow.html
 share/genom/engines/tcl/engine.la
@@ -128,6 +132,7 @@ share/genom/templates/skeleton/codels.codel.c
 share/genom/templates/skeleton/codels.codel.cc
 share/genom/templates/skeleton/component-uninstalled.pc.in
 share/genom/templates/skeleton/component.pc.in
+share/genom/templates/skeleton/readme.adoc
 share/genom/templates/skeleton/template.tcl
 share/genom/templates/skeleton/top.Makefile.am
 share/genom/templates/skeleton/top.configure.ac
