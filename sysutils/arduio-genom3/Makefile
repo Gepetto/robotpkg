@@ -13,6 +13,11 @@ LICENSE=		2-clause-bsd
 
 include ../../architecture/genom3/module.mk
 
+include ../../mk/robotpkg.prefs.mk
+ifeq (${OS_KERNEL},Linux)
+  include ../../mk/sysdep/libudev.mk
+endif
+
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
