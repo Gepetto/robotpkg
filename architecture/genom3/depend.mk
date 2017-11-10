@@ -19,7 +19,7 @@ SYSTEM_SEARCH.genom3=\
   'include/genom3/c/client.h'		\
   'lib/pkgconfig/genom3.pc:/Version/s/[^0-9.]//gp'
 
-DEPEND_ABI.genom3?=	genom3>=2.99.28
+DEPEND_ABI.genom3?=	genom3>=2.99.30
 DEPEND_DIR.genom3?=	../../architecture/genom3
 
 export GENOM3=	${PREFIX.genom3}/bin/genom3
