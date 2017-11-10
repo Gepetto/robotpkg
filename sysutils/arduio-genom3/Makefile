@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed,  1 Mar 2017
 #
 
-DISTNAME=		arduio-genom3-1.1
+DISTNAME=		arduio-genom3-1.2
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}arduio/${PKGBASE}

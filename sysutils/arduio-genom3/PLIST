@@ -1,5 +1,7 @@
-@comment Wed Mar 1 18:14:46 CET 2017
+@comment Fri Nov 10 18:08:20 CET 2017
 ${PLIST.codels}lib/lib${GENOM_MODULE}_codels.la
 ${PLIST.codels}lib/pkgconfig/${GENOM_MODULE}-genom3.pc
+${PLIST.codels}share/doc/${GENOM_MODULE}-genom3/README.adoc
+${PLIST.codels}share/doc/${GENOM_MODULE}-genom3/README.html
 ${PLIST.codels}share/idl/${GENOM_MODULE}/${GENOM_MODULE}.gen
 @comment includes architecture/genom3/PLIST.templates
