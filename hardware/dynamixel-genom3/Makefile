@@ -2,8 +2,8 @@
 # Created:			Anthony Mallet on Mon, 11 Jul 2016
 #
 
-DISTNAME=		dynamixel-genom3-2.1
-CATEGORIES=		robots
+DISTNAME=		dynamixel-genom3-2.2
+CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
 
