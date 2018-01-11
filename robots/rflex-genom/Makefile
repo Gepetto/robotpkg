@@ -47,6 +47,8 @@ define PKG_OPTION_SET.gyroKVH5000
   GENOM_ARGS += -DGYRO=gyroKVH5000
 endef
 
+PKG_SUGGESTED_OPTIONS=   atrv
+
 GENOM_MODULE=		rflex
 include ../../architecture/genom/depend.mk
 
