@@ -49,8 +49,6 @@ ifeq (Ubuntu,${OPSYS})
     PREFER_ALTERNATIVE.ros?=lunar indigo
   else ifneq (,$(filter 17.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=lunar indigo
-  else ifneq (,$(filter 17.10,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=lunar indigo
   else
     PREFER_ALTERNATIVE.ros?=indigo
     PREFER.ros?=robotpkg
