@@ -1,0 +1,21 @@
+readv(2) needs sys/uio.h
+
+--- clients/roscpp/src/libros/transport/transport_udp.cpp~	2016-06-28 00:11:58.000000000 +0200
++++ clients/roscpp/src/libros/transport/transport_udp.cpp	2018-01-12 11:52:29.699728228 +0100
+@@ -39,15 +39,12 @@
+ #include <ros/assert.h>
+ #include <boost/bind.hpp>
+ 
++ #include <sys/uio.h>
+ #include <fcntl.h>
+ #if defined(__APPLE__)
+   // For readv() and writev()
+   #include <sys/types.h>
+-  #include <sys/uio.h>
+   #include <unistd.h>
+-#elif defined(__ANDROID__)
+-  // For readv() and writev() on ANDROID
+-  #include <sys/uio.h>
+ #endif
+ 
+ namespace ros
