@@ -15,7 +15,7 @@ PREFER.libkdtp?=	robotpkg
 
 DEPEND_USE+=		libkdtp
 
-DEPEND_ABI.libkdtp?=	libkdtp>=1.0.1
+DEPEND_ABI.libkdtp?=	libkdtp>=1.1
 DEPEND_DIR.libkdtp?=	../../path/libkdtp
 
 SYSTEM_SEARCH.libkdtp=\
