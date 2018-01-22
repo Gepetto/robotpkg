@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2017 LAAS/CNRS
+# Copyright (c) 2010-2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -237,7 +237,7 @@ PYTHON_SYSLIB:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
 # directories) that should be added to the python search paths.
 #
 _PYTHON_SYSPATH:=$(if ${PYTHON},					\
-  $(shell ${SETENV} PYTHONPATH= ${PYTHON} 2>/dev/null -c		\
+  $(shell ${SETENV} HOME=${WRKDIR} PYTHONPATH= ${PYTHON} 2>/dev/null -c	\
 	'import sys; print(" ".join(sys.path))'))
 
 PYTHONPATH=$(call prependpaths, $(filter-out ${_PYTHON_SYSPATH},	\
