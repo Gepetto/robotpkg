@@ -10,7 +10,10 @@ ROS_COMMENT=	package for dynamically loading C++ classes at runtime
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-CMAKE_ARGS+=		-DPOCO_ROOT=${PREFIX.poco}
+CMAKE_ARGS+=	-DPoco_INCLUDE_DIR=${PREFIX.poco}/include
+CMAKE_ARGS+=	-DPoco_LIBRARY_DIR=${PREFIX.poco}/lib
+CMAKE_ARGS+=	-DPoco_LIBRARIES=$(filter %.so,${SYSTEM_FILES.poco})
+
 LIBRARY_DIRS.poco+=	lib
 RPATH_DIRS.poco+=	lib
 
