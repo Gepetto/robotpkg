@@ -1,0 +1,10 @@
+--- camera_info_manager/CMakeLists.txt	2018-01-23 13:57:33.047614215 +0100
++++ camera_info_manager/CMakeLists.txt	2018-01-23 13:57:27.117676907 +0100
+@@ -38,6 +38,7 @@
+   # Unit test uses gtest, but needs rostest to create a ROS environment.
+   # Hence, it must be created as a normal executable, not using
+   # catkin_add_gtest() which runs an additional test without rostest.
++  include_directories(${GTEST_INCLUDE_DIRS})
+   add_executable(unit_test tests/unit_test.cpp)
+   target_link_libraries(unit_test ${PROJECT_NAME} ${GTEST_LIBRARIES})
+ 
