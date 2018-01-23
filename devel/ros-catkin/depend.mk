@@ -42,6 +42,7 @@ ifneq (,$(filter yes YES Yes,${USE_ROS_CATKIN}))
   include ../../pkgtools/pkg-config/depend.mk
   include ../../mk/sysdep/cmake.mk
   include ../../mk/sysdep/googletest.mk
+  include ../../mk/sysdep/py-empy.mk
   include ../../mk/sysdep/py-nose.mk
   include ../../mk/sysdep/python.mk
 
