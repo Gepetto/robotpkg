@@ -1,0 +1,13 @@
+Typo
+
+--- rqt_shell/src/rqt_shell/spyder_shell_widget.py~	2017-03-02 16:59:40.000000000 +0100
++++ rqt_shell/src/rqt_shell/spyder_shell_widget.py	2018-01-29 11:16:02.144497164 +0100
+@@ -106,7 +106,7 @@
+ 
+         if script_path:
+             options = [
+-                "-c 'source %s; /bin/bash -i'" % os.path.abspath(script_path)])
++                "-c 'source %s; /bin/bash -i'" % os.path.abspath(script_path)]
+         else:
+             options = ['-i']
+         self.process.start('/bin/bash', options)

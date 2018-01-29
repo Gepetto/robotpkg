@@ -4,7 +4,7 @@
 
 ROS_PKG=		rqt_common_plugins
 ROS_METAPKG=		yes
-ROS_VERSION=		0.3.8
+ROS_VERSION=		0.4.7
 ROS_REPO=		ros-visualization
 
 CATEGORIES=		graphics
@@ -21,6 +21,12 @@ SUBST_FILES.py-interp+=	*/scripts/*
 SUBST_FILES.py-interp+=	*/src/*/*.py
 SUBST_FILES.py-interp+=	*/test/*.py
 
+SUBST_CLASSES+=		bash
+SUBST_MESSAGE.bash=	Replacing bash interpreter path
+SUBST_STAGE.bash=	pre-configure
+SUBST_SED.bash=		-e 's|/bin/bash|${BASH}|g'
+SUBST_FILES.bash=	rqt_shell/src/rqt_shell/spyder_shell_widget.py
+
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../graphics/ros-python-qt-binding/depend.mk
@@ -35,7 +41,7 @@ include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
-include ../../mk/sysdep/marble.mk
+include ../../mk/sysdep/bash.mk
 include ../../mk/sysdep/py-matplotlib.mk
 include ../../mk/sysdep/qmake.mk
 include ../../mk/sysdep/qt4-libs.mk
