@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 16 Jun 2015
 #
 
-DISTNAME=	matlab-genomix-1.7.1
+DISTNAME=	matlab-genomix-1.7.2
 CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=matlab-genomix/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genomix/matlab-genomix
