@@ -1,6 +1,6 @@
-# $LAAS: perl.mk 2009/03/11 21:37:17 mallet $
+# $LAAS: perl.mk 2018/02/02 15:05:46 mallet $
 #
-# Copyright (c) 2009 LAAS/CNRS
+# Copyright (c) 2009,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -35,6 +35,12 @@ SYSTEM_SEARCH.perl=\
 	'bin/perl:/perl/{s/[^0-9.]*\([0-9.]*\).*/\1/;p;q;}:% -v'
 
 export PERL=		${PREFIX.perl}/bin/perl
+
+# Replace perl interpreter in source files
+SUBST_STAGE.perl-interp=	pre-configure
+SUBST_MESSAGE.perl-interp=	Replacing perl interpreter path
+SUBST_SED.perl-interp=		-e '1s|^\\\#!.*perl|\\\#!${PERL}|'
+SUBST_SED.perl-interp+=		-e 's|@PERL@|${PERL}|'
 
 endif # PERL_DEPEND_MK ----------------------------------------------------
 
