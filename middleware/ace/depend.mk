@@ -11,6 +11,12 @@ endif
 
 ifeq (+,$(ACE_DEPEND_MK)) # ------------------------------------------
 
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Debian,${OPSYS})
+  PREFER.ace?=		system
+else ifeq (Ubuntu,${OPSYS})
+  PREFER.ace?=		system
+endif
 PREFER.ace?=		robotpkg
 
 DEPEND_USE+=		ace
@@ -24,7 +30,9 @@ SYSTEM_SEARCH.ace=\
 	'lib/libACE.{a,so}'					\
 	'lib/pkgconfig/ACE.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Debian.ace=	libace-dev
+SYSTEM_PKG.Fedora.gtar=	tar
+
 endif # ACE_DEPEND_MK ------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-

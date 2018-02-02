@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Wed, 23 Jan 2008
 #
 
-PKGREVISION=		2
-ACE_VERSION=		6.0.4
+ACE_VERSION=		6.4.6
 DISTNAME=		ACE-${ACE_VERSION}
 PKGNAME=		ace-${ACE_VERSION}
 CATEGORIES=		middleware
@@ -16,41 +15,52 @@ LICENSE=		doc
 
 WRKSRC=			${WRKDIR}/ACE_wrappers
 
-GNU_CONFIGURE=		yes
-CONFIGURE_DIRS=		build
-CONFIGURE_SCRIPT=	../configure
-CONFIGURE_ARGS+=	--disable-ssl #		 we don't use ssl right now
-CONFIGURE_ARGS+=	--disable-ace-tests
-CONFIGURE_ARGS+=	--disable-ace-examples
+MAKE_FILE=		GNUmakefile
+MAKE_ENV+=		ACE_ROOT=${WRKSRC}
+MAKE_ENV+=		INSTALL_PREFIX=${PREFIX}
 
-# Disable ACE optimization and let robotpkg pass the correct flags according to
-# user selection.
-CONFIGURE_ARGS+=	--disable-optimize
+# Archive contains pax extended attributes - sadly, NetBSD pax (and maybe
+# others) does not support them.
+DEPEND_ABI.gtar=       gtar>=1.14
+DEPEND_METHOD.gtar=    bootstrap
+EXTRACT_USING=         ${GTAR}
 
-# Disable runtime test enabling or not fast_memcpy(), this is for sure not
-# reproducible and may break the public interface. On supported systems, there
-# is no reason not to use system's memcpy() anyway.
-CONFIGURE_ARGS+=	ace_cv_memcpy_loop_unroll=no
+# Replace perl
+SUBST_CLASSES+=         perl-interp
+SUBST_FILES.perl-interp+= MPC/*.pl bin/*.pl bin/*.pm
 
-# Disable gethostbyaddr_r etc. on NetBSD, they are available in the libc but
-# not exported (this is a GNU extension)
-include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (NetBSD,${OPSYS})
-  CONFIGURE_ARGS+=	--disable-reentrant
-endif
 
 OVERRIDE_DIRDEPTH.pkg-config=	3
 
-BUILD_DIRS=		build
-
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/gtar.mk
+include ../../mk/sysdep/perl.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
-# create the build directory
-pre-configure: ace-build-dir
+# create the config file
+pre-configure: ace-config ace-platform
 
-.PHONY: ace-build-dir
-ace-build-dir:
-	${MKDIR} ${WRKSRC}/build
+.PHONY: ace-config ace-platform
+ace-config:
+	${RUN} {						\
+	  ${ECHO} '#include "config-${LOWER_OS_KERNEL}.h"';	\
+	} >${WRKSRC}/ace/config.h
+
+ace-platform:
+	${RUN} {						\
+	  ${ECHO} xt=;						\
+	  ${ECHO} fl=;						\
+	  ${ECHO} fox=;						\
+	  ${ECHO} tk=;						\
+	  ${ECHO} qt=;						\
+	  ${ECHO} qt4=;						\
+	  ${ECHO} ssl=;						\
+	  ${ECHO} rapi=;					\
+	  ${ECHO} stlport=;					\
+	  ${ECHO} sctp=;					\
+								\
+	  ${ECHO} 'include'					\
+	  '$$(ACE_ROOT)/include/makeinclude/platform_${LOWER_OS_KERNEL}.GNU';\
+	} >>${WRKSRC}/include/makeinclude/platform_macros.GNU
