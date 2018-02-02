@@ -31,7 +31,6 @@ SYSTEM_SEARCH.ace=\
 	'lib/pkgconfig/ACE.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.ace=	libace-dev
-SYSTEM_PKG.Fedora.gtar=	tar
 
 endif # ACE_DEPEND_MK ------------------------------------------------
 
