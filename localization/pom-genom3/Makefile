@@ -2,6 +2,8 @@
 # Created:			Anthony Mallet on Mon, 21 Mar 2016
 #
 
+PKGREVISION=		1
+
 DISTNAME=		pom-genom3-2.3
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
