@@ -81,6 +81,8 @@ $(foreach pattern,${LIBTOOL_OVERRIDE},					\
 	done;								\
 )
 
+include ../../mk/sysdep/gm4.mk
+
 endif # LIBTOOL_DEPEND_MK --------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
