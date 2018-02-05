@@ -24,6 +24,8 @@ export AUTOMAKE=	$(word 2,${SYSTEM_FILES.automake})
 
 GNU_CONFIGURE?=		yes
 
+include ../../mk/sysdep/gm4.mk
+
 endif # AUTOMAKE_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -41,6 +41,7 @@ $(foreach _,${AUTORECONF_DIRS},						\
 	fi;								\
 )
 
+include ../../mk/sysdep/gm4.mk
 
 endif # AUTOCONF_DEPEND_MK -------------------------------------------------
 
