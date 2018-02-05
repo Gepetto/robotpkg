@@ -1,0 +1,22 @@
+Don't use std::tr1 from boost (removed in boost-1.65)
+
+--- src/utils.cpp~	2014-07-11 02:41:38.000000000 +0200
++++ src/utils.cpp	2018-02-05 13:57:28.988679603 +0100
+@@ -28,7 +28,7 @@
+ #include <string>
+ #include <vector>
+ #include <boost/algorithm/string.hpp>
+-#include <boost/tr1/unordered_set.hpp>
++#include <boost/unordered_set.hpp>
+ 
+ #include "utils.h"
+ 
+@@ -41,7 +41,7 @@
+                    std::string& outstring)
+ {
+   std::vector<std::string> vec;
+-  std::tr1::unordered_set<std::string> set;
++  boost::unordered_set<std::string> set;
+   boost::split(vec, instring,
+                boost::is_any_of("\t "),
+                boost::token_compress_on);
