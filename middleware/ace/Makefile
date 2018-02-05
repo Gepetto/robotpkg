@@ -26,9 +26,11 @@ DEPEND_METHOD.gtar=    bootstrap
 EXTRACT_USING=         ${GTAR}
 
 # Replace perl
+include ../../mk/sysdep/perl.mk
 SUBST_CLASSES+=         perl-interp
-SUBST_FILES.perl-interp+= MPC/*.pl bin/*.pl bin/*.pm
-
+SUBST_FILES.perl-interp+= MPC/*.pl bin/*.pl bin/*.pm ace/GNUmakefile.ACE
+SUBST_FILES.perl-interp+= */GNUmakefile.* */*/GNUmakefile.* */*/*/GNUmakefile.*
+SUBST_SED.perl-interp+=	-e 's|\([^/]\)perl|\1${PERL}|g'
 
 OVERRIDE_DIRDEPTH.pkg-config=	3
 
