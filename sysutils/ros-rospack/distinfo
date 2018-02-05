@@ -1,3 +1,6 @@
 SHA1 (ros/rospack/2.2.4.tar.gz) = d897f6f35027d252204347b0595b793c48d97aa1
 RMD160 (ros/rospack/2.2.4.tar.gz) = cd5ce21d5d90329d2e436d3720134e5ea72465ff
 Size (ros/rospack/2.2.4.tar.gz) = 70135 bytes
+SHA1 (patch-aa) = ebb79e094d7b08e0933af95c366854dd56d9684f
+SHA1 (patch-ab) = f32e350fbb6496496fa032bf5c93ea078b7a68e5
+SHA1 (patch-ac) = 2edf78856e2ddfd43bb498464b0ec07a29cf7f3a

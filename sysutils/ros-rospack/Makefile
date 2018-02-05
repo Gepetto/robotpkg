@@ -2,6 +2,8 @@
 # Created:			Anthony Mallet on Mon, 10 Dec 2012
 #
 
+PKGREVION=	1
+
 ROS_PKG=	rospack
 ROS_VERSION=	2.2.4
 
