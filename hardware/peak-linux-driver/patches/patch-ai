@@ -1,0 +1,12 @@
+Drop useless #include - triggering incomplete type def. for kernel >= 4.14
+
+--- driver/src/pcan_main.c~	2018-02-06 11:29:24.186499244 +0100
++++ driver/src/pcan_main.c	2018-02-06 11:29:37.398744636 +0100
+@@ -69,7 +69,6 @@
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(3, 4, 0)
+ #include <asm/system.h>     // cli(), *_flags
+ #endif
+-#include <asm/uaccess.h>    // copy_...
+ 
+ #if LINUX_VERSION_CODE > KERNEL_VERSION(3,9,0)
+ /* if defined, create_proc_entry() is not used to create /proc/pcan */
