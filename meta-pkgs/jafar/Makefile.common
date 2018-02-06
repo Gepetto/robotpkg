@@ -33,3 +33,6 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/cmake.mk
+
+DEPEND_ABI.boost-headers += boost-headers<1.65
+DEPEND_ABI.boost-libs += boost-libs<1.65
