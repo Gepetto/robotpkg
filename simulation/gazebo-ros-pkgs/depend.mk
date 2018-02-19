@@ -40,6 +40,10 @@ SYSTEM_SEARCH.gazebo-ros-pkgs=\
   'share/$_/cmake/$_Config.cmake'					\
   'lib/pkgconfig/$_.pc:/Version/s/[^0-9.]//gp')
 
+SYSTEM_PKG.Ubuntu.gazebo-ros-pkgs=\
+  ros-${PKG_ALTERNATIVE.ros}-gazebo-ros-pkgs		\
+  ros-${PKG_ALTERNATIVE.ros}-gazebo-ros-control
+
 endif # GAZEBO_ROS_PKGS_DEPEND_MK ------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
