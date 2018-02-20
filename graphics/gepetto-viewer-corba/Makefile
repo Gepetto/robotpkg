@@ -3,11 +3,13 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer-corba
-HPP_VERSION=		2.0.0
+HPP_VERSION=		2.2.0
 
-CATEGORIES=		graphics
-HPP_COMMENT=		Corba server and client for to control gepetto viewer
-LICENSE=		gnu-lgpl-v3
+CATEGORIES=			graphics
+HPP_COMMENT=		Corba server for gepetto-viewer
+LICENSE=			2-clause-bsd
+
+MASTER_SITES=		${MASTER_SITE_GITHUB:=humanoid-path-planner/${HPP_PACKAGE}/releases/download/v${HPP_VERSION}/}
 
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..
@@ -20,6 +22,7 @@ DEPEND_ABI.python=	python<3
 include ../../graphics/gepetto-viewer/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/omniORB/depend.mk
+include ../../middleware/omniORBpy/depend.mk
 include ../../mk/sysdep/openscenegraph.mk
 include ../../mk/sysdep/openscenegraph-qt.mk
 include ../../mk/sysdep/openthreads.mk

@@ -1,3 +1,4 @@
-SHA1 (gepetto-viewer-corba-2.0.0.tar.gz) = cb9f42fcfba94510d6eae7e5d35ad667c67e4d25
-RMD160 (gepetto-viewer-corba-2.0.0.tar.gz) = abc25d73ac4489bfd3bef61d3bea08e2e16b440c
-Size (gepetto-viewer-corba-2.0.0.tar.gz) = 1035860 bytes
+SHA1 (gepetto-viewer-corba-2.2.0.tar.gz) = 3e8083486ddcc14c4e6636b397a805106e9931b4
+RMD160 (gepetto-viewer-corba-2.2.0.tar.gz) = df9d888ad895d6550a1451aea66fe255080b0b2c
+Size (gepetto-viewer-corba-2.2.0.tar.gz) = 1291613 bytes
+SHA1 (patch-aa) = ca292f553c8f250ac3372a5f43332fd857981d48

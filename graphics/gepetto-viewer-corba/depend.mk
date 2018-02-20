@@ -15,7 +15,7 @@ PREFER.gepetto-viewer-corba?=	robotpkg
 
 DEPEND_USE+=		gepetto-viewer-corba
 
-DEPEND_ABI.gepetto-viewer-corba?=	gepetto-viewer-corba>=1.0.0
+DEPEND_ABI.gepetto-viewer-corba?=	gepetto-viewer-corba>=2.2.0
 DEPEND_DIR.gepetto-viewer-corba?=	../../graphics/gepetto-viewer-corba
 
 SYSTEM_SEARCH.gepetto-viewer-corba=			\
