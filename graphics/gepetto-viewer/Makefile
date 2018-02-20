@@ -3,12 +3,13 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer
-HPP_VERSION=		2.0.0
-PKGREVISION=
+HPP_VERSION=		2.1.2
 
-CATEGORIES=		graphics
+CATEGORIES=			graphics
 HPP_COMMENT=		Simple viewer based on OpenSceneGraph
-LICENSE=		gnu-lgpl-v3
+LICENSE=			2-clause-bsd
+
+MASTER_SITES=		${MASTER_SITE_GITHUB:=humanoid-path-planner/${HPP_PACKAGE}/releases/download/v${HPP_VERSION}/}
 
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..

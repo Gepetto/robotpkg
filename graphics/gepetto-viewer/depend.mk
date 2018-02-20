@@ -15,7 +15,7 @@ PREFER.gepetto-viewer?=	robotpkg
 
 DEPEND_USE+=		gepetto-viewer
 
-DEPEND_ABI.gepetto-viewer?=	gepetto-viewer>=2.0.0
+DEPEND_ABI.gepetto-viewer?=	gepetto-viewer>=2.1.2
 DEPEND_DIR.gepetto-viewer?=	../../graphics/gepetto-viewer
 
 SYSTEM_SEARCH.gepetto-viewer=			\
