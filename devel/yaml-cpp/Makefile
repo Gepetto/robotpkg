@@ -2,21 +2,23 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-DISTNAME=		yaml-cpp-0.3.0
+VERSION=		0.5.3
+PKGNAME=		yaml-cpp-${VERSION}
+DISTNAME=		release-${VERSION}
+DIST_SUBDIR=		${PKGBASE}
 CATEGORIES=		devel
-MASTER_SITES=		http://distcache.freebsd.org/ports-distfiles/
-
-# The original MASTER_SITES= http://yaml-cpp.googlecode.com/files/
-# has intermittent error 404 with HEAD http requests.
+MASTER_SITES=		${MASTER_SITE_GITHUB:=jbeder/yaml-cpp/archive/}
 
 COMMENT=		YAML parser and emitter for C++
-HOMEPAGE=		http://code.google.com/p/yaml-cpp/
+HOMEPAGE=		https://github.com/jbeder/yaml-cpp
 LICENSE=		mit
 MAINTAINER=		openrobots@laas.fr
 
-WRKSRC=			${WRKDIR}/${PKGBASE}
+WRKSRC=			${WRKDIR}/${PKGBASE}-release-${VERSION}
 CMAKE_ARGS+=		-DBUILD_SHARED_LIBS=ON
+CMAKE_ARGS+=		-DYAML_CPP_BUILD_TOOLS=OFF
 
+include ../../devel/boost-headers/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/cmake.mk

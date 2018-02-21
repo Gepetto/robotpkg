@@ -24,7 +24,7 @@ PREFER.yaml-cpp?=	system
 
 DEPEND_USE+=		yaml-cpp
 
-DEPEND_ABI.yaml-cpp?=	yaml-cpp>=0.2
+DEPEND_ABI.yaml-cpp?=	yaml-cpp>=0.5
 DEPEND_DIR.yaml-cpp?=	../../devel/yaml-cpp
 
 SYSTEM_SEARCH.yaml-cpp=\
