@@ -22,8 +22,8 @@ include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
+include ../../devel/tinyxml/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../sysutils/py-catkin-pkg/depend.mk
 include ../../sysutils/py-rosdep/depend.mk
-include ../../mk/sysdep/tinyxml.mk
 include ../../mk/robotpkg.mk

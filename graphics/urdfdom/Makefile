@@ -25,11 +25,11 @@ DEPEND_ABI.urdfdom-headers+=	urdfdom-headers>=${VERSION}
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../devel/tinyxml/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
 include ../../sysutils/console-bridge/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/python.mk
-include ../../mk/sysdep/tinyxml.mk
 include ../../mk/robotpkg.mk

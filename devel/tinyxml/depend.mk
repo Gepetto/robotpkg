@@ -1,6 +1,7 @@
-# robotpkg sysdep/tinyxml.mk
-# Created:			Anthony Mallet on Thu 20 Jun 2013
+# robotpkg depend.mk for:	devel/tinyxml
+# Created:                     Anthony Mallet on Thu 20 Jun 2013
 #
+
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 TINYXML_DEPEND_MK:=	${TINYXML_DEPEND_MK}+
 
@@ -12,7 +13,9 @@ ifeq (+,$(TINYXML_DEPEND_MK)) # --------------------------------------------
 
 PREFER.tinyxml?=	system
 DEPEND_USE+=		tinyxml
+
 DEPEND_ABI.tinyxml?=	tinyxml>=2
+DEPEND_DIR.tinyxml?=	../../devel/tinyxml
 
 _tinyxmlvers=/(MAJOR|MINOR|PATCH)_VERS/ {gsub(/[^0-9]/,"");v=v $$0 "."}
 _tinyxmlvers+=END {gsub(/[.]$$/,"",v); print v}

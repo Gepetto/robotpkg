@@ -14,6 +14,7 @@ include ../../meta-pkgs/ros-base/Makefile.common
 CMAKE_ARGS+=	-DTinyXML_INCLUDE_PATH=${PREFIX.tinyxml}/include
 CMAKE_ARGS+=	-DTinyXML_LIBRARY_PATH=${PREFIX.tinyxml}/lib
 
+include ../../devel/tinyxml/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
@@ -21,5 +22,4 @@ include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-class-loader/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../mk/sysdep/tinyxml.mk
 include ../../mk/robotpkg.mk
