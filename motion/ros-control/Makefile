@@ -23,6 +23,7 @@ include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
 include ../../devel/ros-realtime-tools/depend.mk
+include ../../devel/tinyxml/depend.mk
 include ../../graphics/ros-rqt/depend.mk
 include ../../graphics/urdfdom/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
@@ -33,5 +34,4 @@ include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../motion/ros-control-toolbox/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
-include ../../mk/sysdep/tinyxml.mk
 include ../../mk/robotpkg.mk

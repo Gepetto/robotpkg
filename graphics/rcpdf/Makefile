@@ -18,6 +18,7 @@ DYNAMIC_PLIST_DIRS+=	share/doc/rcpdf
 
 CMAKE_ARGS+=	-DTINYXML_ROOT=${PREFIX.tinyxml}
 
+include ../../devel/tinyxml/depend.mk
 include ../../graphics/rcpdf-interface/depend.mk
 include ../../graphics/ros-robot-model/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
@@ -27,5 +28,4 @@ include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
-include ../../mk/sysdep/tinyxml.mk
 include ../../mk/robotpkg.mk

@@ -22,6 +22,7 @@ SUBST_CLASSES+=			py-interp
 SUBST_FILES.py-interp+=		cfg/Parameters.cfg
 SUBST_FILES.py-interp+=		scripts/tune_pid.py
 
+include ../../devel/tinyxml/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
@@ -31,5 +32,4 @@ include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
-include ../../mk/sysdep/tinyxml.mk
 include ../../mk/robotpkg.mk

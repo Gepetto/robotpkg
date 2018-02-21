@@ -18,9 +18,9 @@ CMAKE_ARGS+=		-DTINYXML_ROOT=${PREFIX.tinyxml}
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
+include ../../devel/tinyxml/depend.mk
 include ../../path/hpp-manipulation/depend.mk
 include ../../path/hpp-model-urdf/depend.mk
 include ../../path/hpp-model/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/sysdep/tinyxml.mk
 include ../../mk/robotpkg.mk

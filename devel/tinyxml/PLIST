@@ -1,0 +1,5 @@
+@comment Wed Feb 21 15:20:52 CET 2018
+include/tinyxml.h
+lib/libtinyxml.so
+lib/libtinyxml.so.2
+lib/libtinyxml.so.${PKGVERSION}

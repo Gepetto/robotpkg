@@ -44,7 +44,7 @@ SYSTEM_SEARCH.ros-robot-model=\
   'share/kdl_parser/package.xml:/<version>/s/[^0-9.]//gp'
 
 # kdl_parser uses tinyxml in its public interface
-include ../../mk/sysdep/tinyxml.mk
+include ../../devel/tinyxml/depend.mk
 INCLUDE_DIRS.tinyxml = $(dir $(filter %/tinyxml.h,${SYSTEM_FILES.tinyxml}))
 LIBRARY_DIRS.tinyxml = lib
 RPATH_DIRS.tinyxml = lib

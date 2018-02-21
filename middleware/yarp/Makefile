@@ -65,6 +65,7 @@ endef
 
 DEPEND_ABI.cmake=	cmake>=2.8.9
 
+include ../../devel/tinyxml/depend.mk
 include ../../image/opencv/depend.mk
 include ../../middleware/ace/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
@@ -73,7 +74,6 @@ include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/lua.mk
 include ../../mk/sysdep/readline.mk
 include ../../mk/sysdep/sqlite3.mk
-include ../../mk/sysdep/tinyxml.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
