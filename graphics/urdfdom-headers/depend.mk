@@ -16,6 +16,8 @@ ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 14.04 16.04,${OS_VERSION}))
     PREFER.urdfdom-headers?=	system
   endif
+else ifeq (Fedora,${OPSYS})
+  PREFER.urdfdom-headers?=	system
 endif
 PREFER.urdfdom-headers?=	robotpkg
 
@@ -26,9 +28,10 @@ DEPEND_DIR.urdfdom-headers?=	../../graphics/urdfdom-headers
 
 SYSTEM_SEARCH.urdfdom-headers=\
   'include/urdf_model/model.h'					\
-  'lib/pkgconfig/urdfdom_headers.pc:/Version/s/[^0-9.]//gp'
+  '{lib,share}/pkgconfig/urdfdom_headers.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.urdfdom-headers=liburdfdom-headers-dev
+SYSTEM_PKG.Fedora.urdfdom-headers=urdfdom-headers-devel
 
 endif # URDFDOM_HEADERS_DEPEND_MK ------------------------------------------
 
