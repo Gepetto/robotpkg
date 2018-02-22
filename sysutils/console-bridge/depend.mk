@@ -18,6 +18,8 @@ ifeq (Ubuntu,${OPSYS})
   else
     PREFER.console-bridge?=	system
   endif
+else ifeq (Fedora,${OPSYS})
+  PREFER.console-bridge?=	system
 endif
 PREFER.console-bridge?=		robotpkg
 
@@ -32,6 +34,7 @@ SYSTEM_SEARCH.console-bridge=\
   'lib/pkgconfig/console_bridge.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.console-bridge=libconsole-bridge-dev
+SYSTEM_PKG.Fedora.console-bridge=console-bridge-devel
 
 endif # CONSOLE_BRIDGE_DEPEND_MK -------------------------------------------
 
