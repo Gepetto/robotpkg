@@ -16,6 +16,8 @@ ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 14.04 16.04,${OS_VERSION}))
     PREFER.urdfdom?=	system
   endif
+else ifeq (Fedora,${OPSYS})
+  PREFER.urdfdom?=	system
 endif
 PREFER.urdfdom?=	robotpkg
 
@@ -30,6 +32,7 @@ SYSTEM_SEARCH.urdfdom=\
   'lib/pkgconfig/urdfdom.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.urdfdom=liburdfdom-dev
+SYSTEM_PKG.Fedora.urdfdom=urdfdom-devel
 
 # urdl_parser.h leaks a dependency on tinyxml
 include ../../devel/tinyxml/depend.mk
