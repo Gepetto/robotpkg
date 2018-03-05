@@ -13,5 +13,5 @@ include ../../meta-pkgs/gearbox/Makefile.common
 CMAKE_ARGS+=	-DENABLE_LIB_FLEXIPORT=ON
 
 include ../../devel/gbx-share/depend.mk
-include ../../mk/language/c.mk
+include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
