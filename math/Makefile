@@ -20,6 +20,7 @@ SUBDIR+=	lapack
 SUBDIR+=	libccd
 SUBDIR+=	liblbfgs
 SUBDIR+=	meschach
+SUBDIR+=	py-eigenpy
 SUBDIR+=	ros-angles
 SUBDIR+=	ros-eigen-stl-containers
 SUBDIR+=	ros-geometry
