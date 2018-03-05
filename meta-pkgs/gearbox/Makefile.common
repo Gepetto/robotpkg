@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2011 LAAS/CNRS
+# Copyright (c) 2010-2011,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -35,8 +35,6 @@ else
   DISTINFO_FILE=${CURDIR}/../../meta-pkgs/gearbox/distinfo
   PATCHDIR=	${CURDIR}/../../meta-pkgs/gearbox/patches
 
-  USE_LANGUAGES+=c c++
-
   PLIST_SUBST+=	GBX_VERSION="${GBX_VERSION}"
 
   # disable everything by default, let individual packages re-enable the bits
@@ -60,4 +58,6 @@ else
   CMAKE_ARGS+=	-DGBX_INSTALL_CMAKE_SCRIPTS=OFF
 
   include ../../mk/sysdep/cmake.mk
+  include ../../mk/language/c.mk
+  include ../../mk/language/c++.mk
 endif # ${GBX_PACKAGE} == meta-pkg
