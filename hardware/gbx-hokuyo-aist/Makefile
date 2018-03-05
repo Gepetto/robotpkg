@@ -16,5 +16,5 @@ RPATH_DIRS.gbx-flexiport+=	lib/gearbox
 
 include ../../devel/gbx-share/depend.mk
 include ../../devel/gbx-flexiport/depend.mk
-include ../../mk/language/c.mk
+include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/robotpkg.mk
