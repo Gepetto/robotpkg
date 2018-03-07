@@ -1,0 +1,35 @@
+Use cmake's idea of the "make" program, so that it can be tuned by robotpkg.
+Invoke sphinx-build with the right python interpreter.
+Fix a typo.
+
+--- cmake/sphinx.cmake~	2013-12-12 10:41:29.000000000 +0100
++++ cmake/sphinx.cmake	2018-03-07 13:33:04.785563519 +0100
+@@ -27,7 +27,7 @@
+   ENDIF(NOT SPHINX_BUILD)
+ 
+   IF(UNIX)
+-    SET(MAKE make)
++    SET(MAKE ${CMAKE_MAKE_PROGRAM})
+   ELSEIF(WIN32)
+     SET(MAKE nmake)
+   ELSE(UNIX)
+@@ -62,8 +62,8 @@
+     SET(EXTRA_LD_PATH "\"${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}\":")
+     SET(EXTRA_LD_PATH "${EXTRA_LD_PATH}\"${DYNAMIC_GRAPH_PLUGINDIR}\":")
+     ADD_CUSTOM_TARGET(sphinx-doc
+-      COMMAND  export LD_LIBRARY_PATH=${EXTRA_LD_PATH}:\$LD_LIBRARY_PATH \;
+-      ${SPHINX_BUILD} -b html ${CMAKE_CURRENT_BINARY_DIR}/sphinx
++      COMMAND  env LD_LIBRARY_PATH=${EXTRA_LD_PATH}:\${LD_LIBRARY_PATH}
++      ${PYTHON_EXECUTABLE} ${SPHINX_BUILD} -b html ${CMAKE_CURRENT_BINARY_DIR}/sphinx
+       ${CMAKE_CURRENT_BINARY_DIR}/sphinx-html
+       COMMENT "Generating sphinx documentation"
+       )
+@@ -74,7 +74,7 @@
+   ADD_CUSTOM_COMMAND(
+     OUTPUT
+     ${CMAKE_BINARY_DIR}/doc/sphinx-html
+-    COMMAND ${SPHINX_BUILD} -b html  ${CMAKE_CURRENT_BINARY_DIR}/sphinx
++    COMMAND ${PYTHON_EXECUTABLE} ${SPHINX_BUILD} -b html  ${CMAKE_CURRENT_BINARY_DIR}/sphinx
+       ${CMAKE_CURRENT_BINARY_DIR}/sphinx-html
+     COMMENT "Generating sphinx documentation"
+     )

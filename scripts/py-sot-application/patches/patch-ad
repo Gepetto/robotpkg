@@ -1,0 +1,13 @@
+Fix tabs vs. space
+
+--- src/dynamic_graph/sot/application/acceleration/precomputed_meta_tasks.py~	2014-02-13 11:23:34.000000000 +0100
++++ src/dynamic_graph/sot/application/acceleration/precomputed_meta_tasks.py	2018-03-07 18:04:07.015564571 +0100
+@@ -49,7 +49,7 @@
+         self.robot.device.setSecondOrderIntegration()
+         self.sot.setSecondOrderKinematics()
+         plug(self.robot.device.velocity,self.robot.dynamic.velocity)
+-	plug(self.robot.dynamic.velocity,self.sot.velocity)
++        plug(self.robot.dynamic.velocity,self.sot.velocity)
+ 
+         """
+         # Plug the solver control into the filter.
