@@ -110,25 +110,20 @@ ifeq (Debian,${OPSYS})
     PREFER_ALTERNATIVE.python?=	python27 python32
   endif
   PREFER_ALTERNATIVE.python?=	python27 python34
-else ifeq (Fedora,${OPSYS})
-  ifneq (,$(filter 24 25,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python35
-  endif
-  PREFER_ALTERNATIVE.python?=	python27 python36
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python32
   endif
-  ifneq (,$(filter 12.10 13.04 13.10,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python33
-  endif
   ifneq (,$(filter 14.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python34
+  endif
+  ifneq (,$(filter 16.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python35
   endif
 else ifeq (OpenNao,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python32
 endif
-PREFER_ALTERNATIVE.python?=	python27 python35
+PREFER_ALTERNATIVE.python?=	python27 python36
 
 PKG_ALTERNATIVE_DESCR.python27= Use python-2.7
 PKGTAG.python27 =		py27
