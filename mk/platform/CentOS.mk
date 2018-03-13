@@ -1,5 +1,5 @@
 #
-# Variable definitions for the Fedora operating system.
+# Variable definitions for the CentOS operating system.
 #
 
 OS_FAMILY?=	RedHat
