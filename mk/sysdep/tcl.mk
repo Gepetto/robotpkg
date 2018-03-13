@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2012-2013,2015-2017 LAAS/CNRS
+# Copyright (c) 2012-2013,2015-2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -110,10 +110,8 @@ else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04,${OS_VERSION}))
      PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
   endif
-else ifeq (Fedora,${OPSYS})
-  ifneq (,$(filter 19 20,${OS_VERSION}))
-     PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
-  endif
+else ifeq (CentOS,${OPSYS})
+  PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
 else ifeq (Gentoo,${OS_FAMILY})
   PREFER_ALTERNATIVE.tcl?=	tcl85 tcl84
 endif
