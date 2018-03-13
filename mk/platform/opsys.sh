@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2011,2013-2014 LAAS/CNRS
+# Copyright (c) 2011,2013-2014,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -47,9 +47,12 @@ case $s in
         ;;
     Linux)
         if test -f /etc/redhat-release; then
-            read distrib dummy release tail </etc/redhat-release
+            IFS=" ." read distrib dummy rel rel1 tail </etc/redhat-release
             if test "$dummy" = "release"; then
-                echo $distrib $release $m
+                echo $distrib $rel $m
+                exit 0
+            elif test "$rel" = "release"; then
+                echo $distrib $rel1 $m
                 exit 0
             fi
         fi
