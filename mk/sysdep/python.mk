@@ -122,6 +122,8 @@ else ifeq (Ubuntu,${OPSYS})
   endif
 else ifeq (OpenNao,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python32
+else ifeq (CentOS,${OPSYS})
+  PREFER_ALTERNATIVE.python?=	python27 python34
 endif
 PREFER_ALTERNATIVE.python?=	python27 python36
 
