@@ -907,7 +907,7 @@ normalise_platform(struct utsname *host_name)
 			if (!k) break;
 			k += strlen("elease");
 			k += strspn(k, " \t\n");
-			e = k + strspn(k, "0123456789.");
+			e = k + strspn(k, "0123456789");
 			*e = '\0';
 			strcpy(host_name->release, k);
 			return;
