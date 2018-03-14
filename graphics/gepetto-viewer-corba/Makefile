@@ -26,7 +26,6 @@ include ../../middleware/omniORBpy/depend.mk
 include ../../mk/sysdep/openscenegraph.mk
 include ../../mk/sysdep/openscenegraph-qt.mk
 include ../../mk/sysdep/openthreads.mk
-include ../../mk/sysdep/py-qt4.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/qt4-libs.mk
 include ../../mk/language/c.mk
