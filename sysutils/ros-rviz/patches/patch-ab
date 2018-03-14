@@ -1,8 +1,19 @@
+Add yaml-cpp directories
+
 Link with assimp as a private library so that the dependency is not transitive
 (for default_plugin).
 
 --- src/rviz/CMakeLists.txt~	2015-10-13 19:47:20.000000000 +0200
 +++ src/rviz/CMakeLists.txt	2015-12-01 11:44:44.797436178 +0100
+@@ -2,6 +2,8 @@
+ pkg_check_modules(NEW_YAMLCPP yaml-cpp>=0.5)
+ if(NEW_YAMLCPP_FOUND)
+   add_definitions(-DRVIZ_HAVE_YAMLCPP_05)
++  include_directories(${NEW_YAMLCPP_INCLUDE_DIRS})
++  link_directories(${NEW_YAMLCPP_LIBRARY_DIRS})
+ endif(NEW_YAMLCPP_FOUND)
+ 
+ add_subdirectory(default_plugin)
 @@ -189,13 +189,13 @@
  )
  
