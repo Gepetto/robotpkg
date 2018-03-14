@@ -27,19 +27,18 @@ PREFER.omniORBpy?=	system
 
 DEPEND_USE+=		omniORBpy
 
-DEPEND_ABI.omniORBpy?=	omniORBpy>=3.1
+DEPEND_ABI.omniORBpy?=	omniORBpy
 DEPEND_DIR.omniORBpy?=	../../middleware/omniORBpy
 
 SYSTEM_SEARCH.omniORBpy=\
-  '${PYTHON_SYSLIBSEARCH}/omniORB/__init__.py'			\
-  '{${PYTHON_SYSLIBSEARCH},lib/omniidl}/omniidl_be/__init__.py'	\
   '{${PYTHON_SYSLIBSEARCH},lib/omniidl}/omniidl_be/python.py'
 
 # need omniidl_be in PYTHONPATH
-PYTHONPATH.omniORBpy+=	$(dir $(word 3,${SYSTEM_FILES.omniORBpy}))
+PYTHONPATH.omniORBpy+=	$(dir ${SYSTEM_FILES.omniORBpy})
 
 SYSTEM_PKG.Debian.omniORBpy =	python-omniorb omniidl-python
 SYSTEM_PKG.NetBSD.omniORBpy =	net/omniORB
+SYSTEM_PKG.RedHat.omniORBpy =	omniORBpy-devel (python${PYTHON_VERSION})
 
 include ../../mk/sysdep/python.mk
 
