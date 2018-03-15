@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2013 LAAS/CNRS
+# Copyright (c) 2011-2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -48,14 +48,17 @@ BULK_MAKE_ARGS=\
 
 # Redefinition of pkg_install commands working with bulk-built packages
 BULK_PKGTOOLS_ARGS+=	-K ${BULK_DBDIR}
+BULK_PKGTOOLS_ENV+=	PKG_PATH="${PKGREPOSITORY};${PKG_PATH}"
 
-BULK_PKG_ADD?=		${PKG_ADD_CMD} ${BULK_PKGTOOLS_ARGS}
+BULK_PKG_ADD?=\
+  ${SETENV} ${BULK_PKGTOOLS_ENV} ${PKG_ADD_CMD} ${BULK_PKGTOOLS_ARGS}
 BULK_PKG_ADMIN?=	${PKG_ADMIN_CMD} ${BULK_PKGTOOLS_ARGS}
 BULK_PKG_DELETE?=	${PKG_DELETE_CMD} ${BULK_PKGTOOLS_ARGS}
 BULK_PKG_INFO?=		${PKG_INFO_CMD} ${BULK_PKGTOOLS_ARGS}
 
-BULK_BESTINSTALLED?=	${PKG_ADMIN} -b -d ${BULK_DBDIR} -S lsbest
-BULK_BESTAVAIL?=	${PKG_ADMIN} -d ${PKGREPOSITORY} lsbest
+BULK_BESTINSTALLED?=	${PKG_ADMIN_CMD} -b -d ${BULK_DBDIR} -S lsbest
+BULK_BESTAVAIL?=\
+  ${SETENV} ${BULK_PKGTOOLS_ENV} ${PKG_ADMIN_CMD} 2>/dev/null findbest
 
 # Ignore those files in BULKBASE when checking leftover files
 BULK_FIND_FILES_IGNORE=\

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011-2014,2017 LAAS/CNRS
+# Copyright (c) 2011-2014,2017-2018 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -130,7 +130,7 @@ ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	  ${TEST} "$${base}" = "${BULKBASE}" || exit 1;			\
 	  ${BULK_PKG_INFO} -qn ${PKGFILE} 2>/dev/null | while read d; do\
 	    if ${TEST} -z "$$d"; then continue; fi;			\
-	    pkgfile=`${BULK_BESTAVAIL} "$$d"`;				\
+	    pkgfile=`${BULK_BESTAVAIL} "$$d" ||:`;			\
 	    ${TEST} -f "$$pkgfile" || exit 1;				\
 	    ${TEST} ${PKGFILE} -nt "$$pkgfile" || exit 1;		\
 	  done;								\
@@ -293,7 +293,7 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	    continue;							\
 	  fi;								\
 									\
-	  pkgfile=`${BULK_BESTAVAIL} "$$abi"`;				\
+	  pkgfile=`${BULK_BESTAVAIL} "$$abi" ||:`;			\
 	  if ${TEST} -z "$$pkgfile"; then				\
 	    brk=`${BULK_PKG_ADMIN} -d ${BULK_LOGDIR} -S lsbest "$$abi"`;\
 	    if ${TEST} -s "$$brk/$(notdir ${_bulklog_broken})"; then	\
@@ -342,9 +342,9 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	    ${STEP_MSG} "Dependency $$best already installed";		\
 	    continue;							\
 	  fi;								\
-	  ${STEP_MSG} "Installing $${pkgfile##*/}";			\
-	  ${BULK_PKG_ADD} -u -A $$pkgfile || {				\
-	    ${BULK_CBBH} "Installing $${pkgfile##*/}: Error $$?";	\
+	  ${STEP_MSG} "Installing $$pkgfile";				\
+	  ${BULK_PKG_ADD} -u -A "$$pkgfile" || {			\
+	    ${BULK_CBBH} "Installing $${pkgfile}: Error $$?";		\
 	    ${BULK_CBBHBY} "$${abi}";					\
 	  };								\
 	done;								\
