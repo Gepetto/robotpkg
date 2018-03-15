@@ -15,6 +15,12 @@ LICENSE=		2-clause-bsd
 
 NOT_FOR_PLATFORM=	# empty
 
+# robotpkg_install.conf shipped with the binary bootstrap kit
+define BOOTSTRAP_KIT_CONF
+PKG_PATH=http://robotpkg.openrobots.org/packages/bsd/${MACHINE_PLATFORM}/pub
+endef
+export BOOTSTRAP_KIT_CONF
+
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-pkgdbdir=${PKG_DBDIR}
@@ -123,6 +129,7 @@ endif
 # Generate a bootstrap kit as a plain .tar.gz
 post-package:
 	@${PHASE_MSG} "Generating bootstrap archive"
+	${RUN} echo "$$BOOTSTRAP_KIT_CONF" >${WRKDIR}/robotpkg_install.conf
 	${RUN} tmpdb=${WRKDIR}/.bootstrap-dbdir;			\
 	{								\
 	  prefix="${PREFIX}";						\
@@ -143,8 +150,11 @@ post-package:
 	  done;								\
 	  ${FIND} -L $$tmpdb -type f;					\
 	  ${FIND} ${PREFIX} -path ${MAKECONF};				\
+	  echo ${WRKDIR}/robotpkg_install.conf;				\
 	} |								\
 	${PAX} -w -z -x ustar						\
-		-s "@^$$tmpdb@$(patsubst /%,%,${PKG_DBDIR})@" -s @^/@@	\
+		-s "@^$$tmpdb@$(patsubst /%,%,${PKG_DBDIR})@"		\
+		-s "@^${WRKDIR}/@$(patsubst /%,%,${PREFIX}/etc/)@"	\
+		-s @^/@@						\
 		-f ${PACKAGES}/bootstrap.tar.gz;			\
 	${ECHO_MSG} "Created ${PACKAGES}/bootstrap.tar.gz"
