@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013,2016-2017 LAAS/CNRS
+# Copyright (c) 2006-2013,2016-2018 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -93,6 +93,12 @@ PKG_INFO?=	${SETENV} ${PKGTOOLS_ENV} ${PKG_INFO_CMD} ${PKGTOOLS_ARGS}
 # package name.
 #
 _PKG_BEST_EXISTS?=	${PKG_INFO} -E
+
+# ${_PKG_BEST_AVAIL} pkgpattern" prints the name of the available package that
+# best matches pkgpattern.
+_PKG_BEST_AVAIL?=\
+  ${SETENV} ${PKGTOOLS_ENV} PKG_PATH="${PKGREPOSITORY};${PKG_PATH}" \
+  ${PKG_ADMIN_CMD} ${PKGTOOLS_ARGS} findbest
 
 
 # Metadata filenames

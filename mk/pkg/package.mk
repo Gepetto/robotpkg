@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2011,2013,2016 LAAS/CNRS
+# Copyright (c) 2006,2009-2011,2013,2016,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -120,8 +120,8 @@ pkg-tarup:
 	    dep=`${_PKG_BEST_EXISTS} $$d`;				\
 	  fi;								\
 	  ${TEST} -n "$$dep" || ${FAIL_MSG} "$$d not installed";	\
-	  depbin=${PKGREPOSITORY}/$$dep${PKG_SUFX};			\
-	  if ${TEST} ! -f "$$depbin"; then				\
+	  depbin=`${_PKG_BEST_AVAIL} "$$dep"`;				\
+	  if ${TEST} -z "$$depbin"; then				\
 	    dir=`${PKG_INFO} -qQ PKGPATH $$dep`;			\
 	    if cd ${ROBOTPKG_DIR}/$$dir; then				\
 	      ${RECURSIVE_MAKE} tarup;					\
