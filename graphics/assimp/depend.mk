@@ -30,7 +30,7 @@ SYSTEM_SEARCH.assimp=\
 	'lib/pkgconfig/assimp.pc:/Version/s/[^0-9.]//gp'	\
 	lib/libassimp.so
 
-SYSTEM_PKG.Debian.bullet=assimp-utils libassimp-dev
+SYSTEM_PKG.Debian.assimp=assimp-utils libassimp-dev
 
 endif # ASSIMP_DEPEND_MK ---------------------------------------------------
 
