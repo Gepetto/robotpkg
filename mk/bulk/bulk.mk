@@ -130,7 +130,8 @@ ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	  ${TEST} "$${base}" = "${BULKBASE}" || exit 1;			\
 	  ${BULK_PKG_INFO} -qn ${PKGFILE} 2>/dev/null | while read d; do\
 	    if ${TEST} -z "$$d"; then continue; fi;			\
-	    pkgfile=`${BULK_BESTAVAIL} "$$d" ||:`;			\
+	    pkgfile=`${BULK_BESTAVAIL} "$$d" |				\
+	      ${SED} -e 's@^file://@@;s/%7[eE]/~/g'`;			\
 	    ${TEST} -f "$$pkgfile" || exit 1;				\
 	    ${TEST} ${PKGFILE} -nt "$$pkgfile" || exit 1;		\
 	  done;								\
@@ -293,7 +294,8 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	    continue;							\
 	  fi;								\
 									\
-	  pkgfile=`${BULK_BESTAVAIL} "$$abi" ||:`;			\
+	  pkgfile=`${BULK_BESTAVAIL} "$$abi" |				\
+	    ${SED} -e 's@^file://@@;s/%7[eE]/~/g'`;			\
 	  if ${TEST} -z "$$pkgfile"; then				\
 	    brk=`${BULK_PKG_ADMIN} -d ${BULK_LOGDIR} -S lsbest "$$abi"`;\
 	    if ${TEST} -s "$$brk/$(notdir ${_bulklog_broken})"; then	\
