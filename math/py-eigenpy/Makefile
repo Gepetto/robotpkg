@@ -44,7 +44,4 @@ include ../../mk/sysdep/py-numpy.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
-
-DEPEND_ABI.python+=	python<3
-
 include ../../mk/robotpkg.mk

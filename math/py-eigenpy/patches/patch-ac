@@ -1,8 +1,19 @@
-Don't install two copies of the same headers.
-Prefer the namespaced path version.
+* Don't force python2.7
+
+* Don't install two copies of the same headers. Prefer the namespaced path
+  version.
 
 --- CMakeLists.txt~	2018-01-17 09:34:55.000000000 +0100
 +++ CMakeLists.txt	2018-02-27 14:52:07.032912038 +0100
+@@ -67,7 +67,7 @@
+ # Add Boost path to include directories.
+ INCLUDE_DIRECTORIES(SYSTEM ${Boost_INCLUDE_DIRS})
+ 
+-FINDPYTHON(2.7 EXACT REQUIRED)
++FINDPYTHON(REQUIRED)
+ INCLUDE_DIRECTORIES(SYSTEM ${PYTHON_INCLUDE_DIRS})
+ FIND_NUMPY()
+ INCLUDE_DIRECTORIES(SYSTEM ${NUMPY_INCLUDE_DIRS})
 @@ -76,48 +76,37 @@
  # --- INCLUDE ----------------------------------------
  # ----------------------------------------------------
