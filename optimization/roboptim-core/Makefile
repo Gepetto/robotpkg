@@ -2,11 +2,12 @@
 # Created:			florent@laas.fr on Tue, 28 Apr 2009
 #
 
-VERSION=	1.0
-PKGREVISION=	3
-DISTNAME=	roboptim-core-${VERSION}
-MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=roboptim/}
-MASTER_REPOSITORY=git git://github.com/roboptim/roboptim-core.git
+VERSION=	3.1
+PACKAGE=	roboptim-core
+DISTNAME=	${PACKAGE}-${VERSION}
+MASTER_SITES=\
+  ${MASTER_SITE_GITHUB:=roboptim/${PACKAGE}/releases/download/v${VERSION}/}
+MASTER_REPOSITORY=git git://github.com/roboptim/${PACKAGE}.git
 
 CATEGORIES=	optimization
 COMMENT=	Optimization for robotics: common API to various solvers
@@ -22,19 +23,17 @@ INCLUDE_DIRS.libtool-ltdl=	include
 LIBRARY_DIRS.libtool-ltdl=	lib
 RPATH_DIRS.libtool-ltdl=	lib
 
-# Make sure git-version-gen is not confused by the robotpkg ``.git''
-# directory.
-BUILD_MAKE_FLAGS+=    GIT_DIR=/dev/null
+DEPEND_ABI.eigen3+=	eigen3>=3.2.0
+DEPEND_ABI.g++ +=	g++>=4.6
 
-# --------------------------------------------------------------------
-
-include ../../mk/sysdep/cmake.mk
-include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
-include ../../mk/sysdep/libtool-ltdl.mk
+include ../../math/eigen3/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
+include ../../mk/sysdep/libtool-ltdl.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
