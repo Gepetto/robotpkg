@@ -2,6 +2,7 @@
 # Created:			Olivier Stasse, Feb 3rd 2016
 #
 
+PKGREVISION=		1
 VERSION=		1.4.1
 PKGNAME=		${PKGTAG.python-}eigenpy-${VERSION}
 DISTNAME=		eigenpy-${VERSION}
@@ -17,7 +18,7 @@ COMMENT=		Eigen bindings to python
 LICENSE=		gnu-lgpl-v3
 
 # this does not support multiple parallel python version
-CONFLICTS+=		py[0-9][0-9]-${PKGBASE}-[0-9]*
+CONFLICTS+=		py[0-9][0-9]-eigenpy-[0-9]*
 # old package name
 CONFLICTS+=		eigenpy-[0-9]*
 
@@ -33,6 +34,10 @@ CMAKE_ARGS+=		-DINSTALL_DOCUMENTATION=OFF
 CMAKE_ARGS+=		-DDOXYGEN_EXECUTABLE=${FALSE}
 
 USE_BOOST_LIBS=		python
+Boost_PYTHON_LIBRARY=	$(filter %.so,${SYSTEM_FILES.boost-lib-python})
+CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_RELEASE=${Boost_PYTHON_LIBRARY}
+CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_DEBUG=${Boost_PYTHON_LIBRARY}
+
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

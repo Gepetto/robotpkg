@@ -1,0 +1,15 @@
+Don't hardcode python library
+
+--- cmake/boost.cmake~	2017-10-26 15:25:19.000000000 +0200
++++ cmake/boost.cmake	2018-03-20 17:25:04.068790408 +0100
+@@ -149,8 +149,8 @@
+         PKG_CONFIG_APPEND_LIBS_RAW(${Boost_${UPPERCOMPONENT}_LIBRARY})
+       ENDIF("${LOWERCOMPONENT}" MATCHES "python")
+     ELSE(APPLE)
+-      STRING(TOLOWER ${COMPONENT} LOWERCOMPONENT)
+-      PKG_CONFIG_APPEND_LIBS(boost_${LOWERCOMPONENT})
++      get_filename_component(l ${Boost_${UPPERCOMPONENT}_LIBRARY} NAME_WE)
++      PKG_CONFIG_APPEND_LIBS_RAW("-l${l}")
+     ENDIF(APPLE)
+   ENDFOREACH()
+ ENDMACRO(PKG_CONFIG_APPEND_BOOST_LIBS)
