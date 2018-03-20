@@ -52,12 +52,18 @@ override define _use_boost_libs
   INCLUDE_DIRS.boost-libs-$1?=	${INCLUDE_DIRS.boost-libs}
   LIBRARY_DIRS.boost-libs-$1?=	${LIBRARY_DIRS.boost-libs}
   RPATH_DIRS.boost-libs-$1?=	${RPATH_DIRS.boost-libs}
+
+  # extra dependencies
+  include $${_boost_libs_deps.$1}
 endef
 
 # specific library files and packages (overrides default)
-_boost_libs_files_math=			math_c99 math_tr1
+_boost_libs_files_math=		math_c99 math_tr1
 
-SYSTEM_PKG.NetBSD.boost-lib-python?=	devel/boost-python
+_boost_libs_files_python=\
+  python{${-PKGTAG.python},$(subst 2,,${PYTHON_MAJOR})}
+_boost_libs_deps_python=	../../mk/sysdep/python.mk
+SYSTEM_PKG.NetBSD.boost-lib-python?=	devel/${PKGTAG.python}-boost
 
 # default boost components
 USE_BOOST_LIBS?=\
