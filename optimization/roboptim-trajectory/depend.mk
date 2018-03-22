@@ -9,18 +9,19 @@ ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=	roboptim-trajectory
 endif
 
-ifeq (+,$(ROBOPTIM_TRAJECTORY_DEPEND_MK)) # ------------------------------
+ifeq (+,$(ROBOPTIM_TRAJECTORY_DEPEND_MK)) # --------------------------------
 
 PREFER.roboptim-trajectory?=	robotpkg
 
 DEPEND_USE+=			roboptim-trajectory
 
-DEPEND_ABI.roboptim-trajectory?=	roboptim-trajectory>=0.4
-DEPEND_DIR.roboptim-trajectory?=	../../optimization/roboptim-trajectory
+DEPEND_ABI.roboptim-trajectory?=roboptim-trajectory>=3.1
+DEPEND_DIR.roboptim-trajectory?=../../optimization/roboptim-trajectory
 
 SYSTEM_SEARCH.roboptim-trajectory=\
-	include/roboptim/trajectory/fwd.hh		\
-	'lib/pkgconfig/roboptim-trajectory.pc:/Version/s/[^0-9.]//gp'
+  'include/roboptim/trajectory/fwd.hh'		\
+  'lib/libroboptim-trajectory.so'		\
+  'lib/pkgconfig/roboptim-trajectory.pc:/Version/s/[^0-9.]//gp'
 
 endif # --------------------------------------------------------------------
 

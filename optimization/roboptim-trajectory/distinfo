@@ -1,9 +1,3 @@
-SHA1 (roboptim-trajectory-1.0.tar.gz) = 9ce01de432e1f51e46d30450baaa02db00e7de27
-RMD160 (roboptim-trajectory-1.0.tar.gz) = 487db05ecb9f5ed3510664931d2e3955986d9d2d
-Size (roboptim-trajectory-1.0.tar.gz) = 264676 bytes
-SHA1 (patch-aa) = 619cb2fab7a75bcd9feab11ef0f1626346cb2bc2
-SHA1 (patch-ab) = 0433ac303f026fcccae802f6ae808ff6fc2ea2f6
-SHA1 (patch-ac) = 697d5c89aac64760943e96a0d87c4b7b50e032a1
-SHA1 (patch-ad) = fe503371e94076cb79c0c94347aafb63630fa1a2
-SHA1 (patch-ae) = 22361851f24e1515d9f680079b7cb81c1e2eb937
-SHA1 (patch-af) = ed9dde3c5f538e956e04498cb896297893d65c0e
+SHA1 (roboptim-trajectory-3.1.tar.gz) = 807e5f5c4a2cdeb9fa3284a56ffcd9b15aa5b29c
+RMD160 (roboptim-trajectory-3.1.tar.gz) = d9a4e2e5a042d19d94f51c1eab96dba05317e29b
+Size (roboptim-trajectory-3.1.tar.gz) = 419459 bytes

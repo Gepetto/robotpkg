@@ -1,7 +1,13 @@
-@comment Sat Feb 27 12:47:02 CET 2010
+@comment Thu Mar 22 16:08:16 CET 2018
+include/roboptim/trajectory.hh
 include/roboptim/trajectory/anthropomorphic-cost-function.hh
 include/roboptim/trajectory/anthropomorphic-cost-function.hxx
+include/roboptim/trajectory/b-spline.hh
+include/roboptim/trajectory/b-spline.hxx
+include/roboptim/trajectory/config.h
 include/roboptim/trajectory/config.hh
+include/roboptim/trajectory/constrained-b-spline.hh
+include/roboptim/trajectory/constrained-b-spline.hxx
 include/roboptim/trajectory/cubic-b-spline.hh
 include/roboptim/trajectory/cubic-b-spline.hxx
 include/roboptim/trajectory/deprecated.hh
@@ -16,6 +22,9 @@ include/roboptim/trajectory/limit-omega.hxx
 include/roboptim/trajectory/limit-speed.hh
 include/roboptim/trajectory/limit-speed.hxx
 include/roboptim/trajectory/orthogonal-speed.hh
+include/roboptim/trajectory/polynomial-3.hh
+include/roboptim/trajectory/polynomial.hh
+include/roboptim/trajectory/polynomial.hxx
 include/roboptim/trajectory/spline-length.hh
 include/roboptim/trajectory/stable-point-state-function.hh
 include/roboptim/trajectory/stable-point-state-function.hxx
@@ -25,15 +34,18 @@ include/roboptim/trajectory/state-function.hxx
 include/roboptim/trajectory/sys.hh
 include/roboptim/trajectory/trajectory-cost.hh
 include/roboptim/trajectory/trajectory-cost.hxx
-include/roboptim/trajectory/trajectory.hh
-include/roboptim/trajectory/trajectory.hxx
 include/roboptim/trajectory/trajectory-sum-cost.hh
 include/roboptim/trajectory/trajectory-sum-cost.hxx
+include/roboptim/trajectory/trajectory.hh
+include/roboptim/trajectory/trajectory.hxx
+include/roboptim/trajectory/vector-interpolation.hh
+include/roboptim/trajectory/vector-interpolation.hxx
+include/roboptim/trajectory/visualization/b-spline-matplotlib.hh
+include/roboptim/trajectory/visualization/cubic-b-spline-matplotlib.hh
 include/roboptim/trajectory/visualization/limit-speed.hh
 include/roboptim/trajectory/visualization/speed.hh
 include/roboptim/trajectory/visualization/trajectory.hh
-include/roboptim/trajectory.hh
 include/roboptim/trajectory/warning.hh
 lib/libroboptim-trajectory.so
-lib/libroboptim-trajectory.so.1.1.0
+lib/libroboptim-trajectory.so.${PKGVERSION}.0
 lib/pkgconfig/roboptim-trajectory.pc
