@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2007,2009,2011,2013,2016-2017 LAAS/CNRS
+# Copyright (c) 2006-2007,2009,2011,2013,2016-2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -58,6 +58,21 @@ acquire-package-lock: acquire-lock
 release-package-lock: release-lock
 
 
+# --- depackage (PUBLIC) ---------------------------------------------------
+#
+# package is a public target to remove published binary package files.
+#
+
+_DEPACKAGE_TARGETS+=	$(call add-barrier,bootstrap-depends,depackage)
+_DEPACKAGE_TARGETS+=	acquire-package-lock
+_DEPACKAGE_TARGETS+=	pkg-unlink
+_DEPACKAGE_TARGETS+=	deb-package
+_DEPACKAGE_TARGETS+=	release-package-lock
+
+.PHONY: depackage
+depackage: ${_DEPACKAGE_TARGETS};
+
+
 # --- real-package (PRIVATE) -----------------------------------------
 #
 # real-package is a helper target onto which one can hook all of the
@@ -65,16 +80,8 @@ release-package-lock: release-lock
 #
 _REAL_PACKAGE_TARGETS+=	pkg-check-installed
 _REAL_PACKAGE_TARGETS+=	package-message
-_REAL_PACKAGE_TARGETS+=	pre-package
-ifneq (,$(filter bsd deb,${PKG_FORMAT}))
-  _REAL_PACKAGE_TARGETS+=	pkg-tarup
-  _REAL_PACKAGE_TARGETS+=	pkg-links
-  _REAL_PACKAGE_TARGETS+=	pkg-update-summary
-endif
-ifneq (,$(filter deb,${PKG_FORMAT}))
-  _REAL_PACKAGE_TARGETS+=	deb-package
-endif
-_REAL_PACKAGE_TARGETS+=	post-package
+_REAL_PACKAGE_TARGETS+=	do-package-failsafe
+_REAL_PACKAGE_TARGETS+=	package-failed
 _REAL_PACKAGE_TARGETS+=	package-warnings
 
 .PHONY: real-package
@@ -96,6 +103,38 @@ ifdef NO_PUBLIC_BIN
 endif
 
 
+# --- package-failsafe (PRIVATE) -------------------------------------------
+#
+# Invoke the packaging targets and unpublish files on error.
+#
+_package_failed=	${WRKDIR}/.package-failed
+
+_PACKAGE_FAILSAFE_TARGETS+=	pre-package
+ifneq (,$(filter bsd deb,${PKG_FORMAT}))
+  _PACKAGE_FAILSAFE_TARGETS+=	pkg-tarup
+  _PACKAGE_FAILSAFE_TARGETS+=	pkg-links
+  _PACKAGE_FAILSAFE_TARGETS+=	pkg-update-summary
+endif
+ifneq (,$(filter deb,${PKG_FORMAT}))
+  _PACKAGE_FAILSAFE_TARGETS+=	deb-package
+endif
+_PACKAGE_FAILSAFE_TARGETS+=	post-package
+
+.PHONY: package-failsafe
+package-failsafe: ${_PACKAGE_FAILSAFE_TARGETS}
+
+.PHONY: do-package-failsafe
+do-package-failsafe:
+	${RUN}${MAKE} package-failsafe || >${_package_failed}
+
+.PHONY: package-failed
+package-failed:
+	${RUN}${TEST} -f ${_package_failed} || exit 0;			\
+	${RM} -f ${_package_failed};					\
+	${MAKE} depackage;						\
+	exit 2
+
+
 # --- deb-package (PRIVATE) ------------------------------------------------
 #
 # deb-package generates a debian binary package (.deb)
@@ -110,7 +149,7 @@ ifneq (,$(filter deb,${PKG_FORMAT}))
   .PHONY: deb-package
   deb-package:
 	${RUN} >${_PKG_LOG};						\
-	${STEP_MSG} "Building debian binary package";			\
+	${STEP_MSG} "Updating debian binary packages";			\
 	pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
 	dirs=;								\
 	dirs="$$dirs ${PKGPUBLICSUBDIR}";				\

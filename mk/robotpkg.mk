@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013 LAAS/CNRS
+# Copyright (c) 2006-2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -119,7 +119,7 @@ $(call require-for, install install-failsafe su-install-all		\
 	${ROBOTPKG_DIR}/mk/install/install-vars.mk)
 
 # Package
-$(call require-for, package tarup,					\
+$(call require-for, package depackage package-failsafe tarup,		\
 	${ROBOTPKG_DIR}/mk/package/package-vars.mk)
 
 # Dependencies

@@ -120,7 +120,7 @@ pkg-tarup:
 	    dep=`${_PKG_BEST_EXISTS} $$d`;				\
 	  fi;								\
 	  ${TEST} -n "$$dep" || ${FAIL_MSG} "$$d not installed";	\
-	  depbin=`${_PKG_BEST_AVAIL} "$$dep"`;				\
+	  depbin=`${_PKG_BEST_AVAIL} "$$dep" ||:`;			\
 	  if ${TEST} -z "$$depbin"; then				\
 	    dir=`${PKG_INFO} -qQ PKGPATH $$dep`;			\
 	    if cd ${ROBOTPKG_DIR}/$$dir; then				\
@@ -169,6 +169,42 @@ $(foreach _,${PACKAGES_SUBDIRS},					\
 )
 
 
+# --- pkg-unlink (PRIVATE) -------------------------------------------------
+#
+# pkg-unlinks destroys symlinks and the binary package for the current
+# package, and remove those entries from ${PKGSUMMARY}.
+#
+.PHONY: pkg-unlink
+pkg-unlink:
+	${RUN}								\
+	dirs="${PKGREPOSITORY}";					\
+	dirs="$$dirs ${PACKAGES}/${PKGPUBLICSUBDIR}";			\
+$(foreach _,${PACKAGES_SUBDIRS},					\
+	dirs="$$dirs ${PACKAGES}/$_";					\
+)									\
+	for d in $$dirs; do						\
+	  ${TEST} -d "$$d" || continue;					\
+									\
+	  ${STEP_MSG} "Unlinking package in $$d";			\
+	  ${RM} -f "$$d/${PKGNAME}${PKG_SUFX}";				\
+									\
+	  ${TEST} -s "$$d/${PKGSUMMARY}" || continue;			\
+	  ${MV} -f $$d/${PKGSUMMARY} $$d/${PKGSUMMARY}~;		\
+	  ${GZIP_CMD} -dc $$d/${PKGSUMMARY}~ | {			\
+	    ${AWK} -F= -vskip='${PKGNAME}' '				\
+	      NF {							\
+	        if ($$1 == "PKGNAME") { pkgname = $$2 };		\
+	        if (e) { e = e "\n" $$0; } else { e = $$0; }		\
+	      }								\
+	      !NF {							\
+	        if (pkgname != skip) { print e; print; }		\
+	        e = "";							\
+	      }';							\
+	  } | ${GZIP_CMD} -c9 > $$d/${PKGSUMMARY};			\
+	  ${RM} -f $$d/${PKGSUMMARY}~;					\
+	done
+
+
 # --- pkg-update-summary (PRIVATE) -----------------------------------------
 #
 # pkg-update-summary updates the pkg_summary.gz file in ${PKGREPOSITORY} for
@@ -182,7 +218,7 @@ pkg-update-summary:
 	${RUN}								\
 	pkgfile=`${_PKG_BEST_EXISTS} ${PKGWILDCARD}`;			\
 	${TEST} -n "$$pkgfile" ||					\
-	  ${FAIL_MSG} "${PKGWILDCARD} not found";			\
+	  ${FAIL_MSG} "${PKGWILDCARD} not installed";			\
 	dirs="${PKGREPOSITORY}";					\
 	dirs="$$dirs ${PACKAGES}/${PKGPUBLICSUBDIR}";			\
 $(foreach _,${PACKAGES_SUBDIRS},					\
@@ -207,4 +243,5 @@ $(foreach _,${PACKAGES_SUBDIRS},					\
 	      ${PKG_INFO} -X "$$d/$$pkgfile${PKG_SUFX}";		\
 	    fi;								\
 	  } | ${GZIP_CMD} -c9 > $$d/${PKGSUMMARY};			\
+	  ${RM} -f $$d/${PKGSUMMARY}~;					\
 	done
