@@ -107,8 +107,7 @@ endif
 #
 # Invoke the packaging targets and unpublish files on error.
 #
-_package_failed=	${WRKDIR}/.package-failed
-
+_PACKAGE_FAILSAFE_TARGETS+=	package-set-stale
 _PACKAGE_FAILSAFE_TARGETS+=	pre-package
 ifneq (,$(filter bsd deb,${PKG_FORMAT}))
   _PACKAGE_FAILSAFE_TARGETS+=	pkg-tarup
@@ -119,19 +118,31 @@ ifneq (,$(filter deb,${PKG_FORMAT}))
   _PACKAGE_FAILSAFE_TARGETS+=	deb-package
 endif
 _PACKAGE_FAILSAFE_TARGETS+=	post-package
+_PACKAGE_FAILSAFE_TARGETS+=	package-unset-stale
 
 .PHONY: package-failsafe
 package-failsafe: ${_PACKAGE_FAILSAFE_TARGETS}
 
 .PHONY: do-package-failsafe
 do-package-failsafe:
-	${RUN}${MAKE} package-failsafe || >${_package_failed}
+	${RUN}${MAKE} package-failsafe || ${TRUE}
+
+.PHONY: package-set-stale
+package-set-stale:
+	${RUN}								\
+	${MKDIR} ${PKGREPOSITORY} ||					\
+	  ${FAIL_MSG} "cannot create directory: ${PKGREPOSITORY}";	\
+	>${_PKGFILE_STALE}
+
+.PHONY: package-unset-stale
+package-unset-stale:
+	${RUN}${RM} -f ${_PKGFILE_STALE}
 
 .PHONY: package-failed
 package-failed:
-	${RUN}${TEST} -f ${_package_failed} || exit 0;			\
-	${RM} -f ${_package_failed};					\
+	${RUN}${TEST} -f ${_PKGFILE_STALE} || exit 0;			\
 	${MAKE} depackage;						\
+	${RM} -f ${_PKGFILE_STALE}					\
 	exit 2
 
 

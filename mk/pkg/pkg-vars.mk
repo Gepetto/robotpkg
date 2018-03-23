@@ -123,6 +123,8 @@ PKGREPOSITORY?=		${PACKAGES}/${PKGREPOSITORYSUBDIR}
 PKGREPOSITORYSUBDIR?=	All
 PKGPUBLICSUBDIR?=	pub
 
+# Marker file present until packaging has not finished successfully
+_PKGFILE_STALE?=	${PKGFILE}.stale
 
 # Return $1 only if PKGNAME is not installed or should be updated. If package
 # is up-to-date and safe, return $2

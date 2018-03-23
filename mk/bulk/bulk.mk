@@ -107,6 +107,7 @@ ${_COOKIE.bulkoutdated}: $(realpath ${PKGFILE})
 	${RUN} ${TEST} -f "$@" && ${RM} -f "$@"; (			\
 	  deps='$(filter-out $(abspath ${WRKDIR}/%),			\
 	          $(sort $(abspath ${MAKEFILE_LIST})))';		\
+	  ${TEST} -f ${_PKGFILE_STALE} && exit 1;			\
 	  ${TEST} -f ${PKGFILE} || {					\
 	    ${TEST} -f ${BULK_PKGFILENA} || exit 1;			\
 	    for f in $$deps; do						\
