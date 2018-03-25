@@ -65,8 +65,12 @@ release-package-lock: release-lock
 
 _DEPACKAGE_TARGETS+=	$(call add-barrier,bootstrap-depends,depackage)
 _DEPACKAGE_TARGETS+=	acquire-package-lock
-_DEPACKAGE_TARGETS+=	pkg-unlink
-_DEPACKAGE_TARGETS+=	deb-package
+ifneq (,$(filter bsd deb,${PKG_FORMAT}))
+  _DEPACKAGE_TARGETS+=	pkg-unlink
+endif
+ifneq (,$(filter deb,${PKG_FORMAT}))
+  _DEPACKAGE_TARGETS+=	deb-package
+endif
 _DEPACKAGE_TARGETS+=	release-package-lock
 
 .PHONY: depackage
