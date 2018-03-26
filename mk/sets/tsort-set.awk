@@ -1,6 +1,6 @@
 #!/usr/bin/awk -f
 #
-# Copyright (c) 2010-2011,2013 LAAS/CNRS
+# Copyright (c) 2010-2011,2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -36,6 +36,7 @@ BEGIN {
     strict = 0
     pathonly = 0
     noconflict = 0
+    nullglob = 0
     interactive = 0
     eta = 0
     troot = "ø"
@@ -60,6 +61,9 @@ BEGIN {
 	    ARGSTART++
 	} else if (option == "-p") {
 	    pathonly = 1
+	    ARGSTART++
+	} else if (option == "-z") {
+	    nullglob = 1
 	    ARGSTART++
 	} else if (option == "-i") {
 	    interactive = 1
@@ -112,10 +116,18 @@ BEGIN {
     if (n) exit 2
 
     # expand paths
-    for(i=1; i<=cmdline[0]; i++)
-        xpaths(dirs, pdir(cmdline[i]), ".")
+    for(i=1; i<=cmdline[0]; i++) {
+        if (!xpaths(dirs, pdir(cmdline[i]), ".")) {
+            if (!nullglob) {
+                xprint("***:No matches found: " pdir(cmdline[i]));
+                n++
+            }
+        }
+    }
+    if (n) exit 2
 
     # expand pkgs and options
+    split("", matches)
     for(d in dirs) {
         split("", patterns)
         for(i=1; i<=cmdline[0]; i++) # filter patterns for d, keep order
@@ -123,8 +135,23 @@ BEGIN {
                 patterns[++patterns[0]] = notpdir(cmdline[i])
             }
         if (patterns[0] < 1) continue
-        xpkgs(patterns, d)
+        xpkgs(patterns, d, dmatch)
+
+        for(i=l=1; i<=cmdline[0]; i++)
+            if (d ~ glob2ere(pdir(cmdline[i])))
+                if (l++ in dmatch) matches[i]
     }
+
+    for(i=1; i<=cmdline[0]; i++)
+        if (!(i in matches)) {
+            if (nullglob)
+                xwarn("[" cmdline[i] "] No match");
+            else {
+                xprint("***:No matches found: " cmdline[i]);
+                n++
+            }
+        }
+    if (n) exit 2
 
     # scan
     if (stack[0] == 0) {
@@ -384,7 +411,7 @@ function pkginfos(pkg, deps, pkgnamep,		cmd, dir, i, l, s) {
 #
 # Expand glob characters in path pattern
 #
-function xpaths(xpath, pattern, path,	subdir, d, dir, s, p) {
+function xpaths(xpath, pattern, path,	subdir, d, dir, s, p, n) {
     if (match(pattern, /\//)) {
         subdir = substr(pattern, RSTART+1)
         pattern = substr(pattern, 1, RSTART-1)
@@ -399,13 +426,16 @@ function xpaths(xpath, pattern, path,	subdir, d, dir, s, p) {
 
     if (!subdir) return
 
+    n = 0
     for(s in xpath) {
         if (xpath[s]) continue
         delete xpath[s]
         split("", dir)
         xpaths(dir, subdir, path "/" s)
-        for (d in dir) xpath[s "/" d] = 1
+        for (d in dir) { xpath[s "/" d] = 1; n++ }
     }
+
+    return n
 }
 
 
@@ -413,11 +443,12 @@ function xpaths(xpath, pattern, path,	subdir, d, dir, s, p) {
 #
 # Expand glob characters in a package pattern
 #
-function xpkgs(patterns, path,		pattern, deps, xopts, wopts,
-					f, n, d, p, q, i, k, l) {
+function xpkgs(patterns, path, matches,		pattern, deps, xopts, wopts,
+						f, n, d, p, q, i, k, l) {
     # expand pkgbase, choose first pattern that generates a match
     q = pkginfos(path ":" patterns[1], deps, 1)
 
+    split("", matches)
     for (l = 1; l <= patterns[0]; l++) {
         f = 0
         for (i = 1; i <= pkgnames[path]; i++) {
@@ -432,6 +463,7 @@ function xpkgs(patterns, path,		pattern, deps, xopts, wopts,
         # no expansion required?
         if (pattern !~ /[[*?{]/) {
             pkgpush(troot, path ":" pattern)
+            matches[l]
 
             # optimize if the pkginfo above was for us
             if (path ":" pattern in done) return
@@ -460,6 +492,7 @@ function xpkgs(patterns, path,		pattern, deps, xopts, wopts,
                 if (p !~ /~/) p = p "~!*"; else p = p "+!*"
             }
             pkgpush(troot, path ":" p, 1, n)
+            matches[l]
 
             # optimize: if the pkginfo above was for us, stack deps directly to
             # avoid another query later (saves ~50% time on dir:* patterns)

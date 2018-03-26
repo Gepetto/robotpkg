@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2011,2013 LAAS/CNRS
+# Copyright (c) 2010-2011,2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -26,12 +26,13 @@
 # <target>-<set>, where <target> is a regular robotpkg target, and <set> the
 # name of a package set defined by a robotpkg.conf variable PKGSET.<set>.
 #
-# Configuration variables: PKGSET_FAILSAFE, PKGSET_STRICT (see
+# Configuration variables: PKGSET_FAILSAFE, PKGSET_STRICT, PKGSET_NULLGLOB (see
 # robotpkg.default.conf)
 #
 PKGSET_PATTERN?=	PKGSET.%
 PKGSET_FAILSAFE?=	no
 PKGSET_STRICT?=		no
+PKGSET_NULLGLOB?=	no
 
 # names of existing sets in robotpkg.conf, plus special 'installed' and
 # 'depends' set, sorted for unicity
@@ -54,7 +55,8 @@ _pkgset_goals= $(filter ${_pkgset_avail},${MAKECMDGOALS})
 $(foreach _set_,${_pkgset_names},					\
   $(eval PKGSET_DESCR.${_set_}?=${_set_})				\
   $(eval PKGSET_FAILSAFE.${_set_}?=${PKGSET_FAILSAFE})			\
-  $(eval PKGSET_STRICT.${_set_}?=${PKGSET_STRICT}))
+  $(eval PKGSET_STRICT.${_set_}?=${PKGSET_STRICT})			\
+  $(eval PKGSET_NULLGLOB.${_set_}?=${PKGSET_NULLGLOB}))
 
 
 # compute PKGSET.installed if needed
@@ -121,5 +123,6 @@ override define _pkgset_tsort_deps
   ${SETENV} MAKE=${MAKE} TPUT=${TPUT}				\
   ${AWK} -f ${ROBOTPKG_DIR}/mk/internal/libdewey.awk		\
 	-f ${ROBOTPKG_DIR}/mk/sets/tsort-set.awk		\
-	--
+	--							\
+	$(if $(call isyes,${PKGSET_NULLGLOB.$*}),-z)
 endef
