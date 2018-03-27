@@ -403,6 +403,10 @@ function pkginfos(pkg, deps, pkgnamep,		cmd, dir, i, l, s) {
     }
     s = close(cmd)
     if (s) { xprint("***:Fatal error while scanning " pkg); exit 2 }
+
+    if (!(dir in pkgnames) && pkgnamep)
+        pkgnames[dir,++pkgnames[dir]] = pkgnamep
+
     if (pkgnamep) return pkgnamep
 }
 
