@@ -158,6 +158,7 @@ ifneq (,$(filter deb,${PKG_FORMAT}))
   DEPEND_METHOD.pkgrepo2deb+=	bootstrap
   include ${ROBOTPKG_DIR}/pkgtools/pkgrepo2deb/depend.mk
 
+  PKGREPO2DEB_ENV+=	PKG_PATH=$(call quote,${PKGREPOSITORY};${PKG_PATH})
   PKGREPO2DEB_ENV+=	ROBOTPKG_ADMIN=${PKG_ADMIN_CMD}
   PKGREPO2DEB_ENV+=	TMPDIR=${WRKDIR}
 
