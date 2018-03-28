@@ -2,11 +2,11 @@
 # Created:			Anthony Mallet on Mon, 19 Sep 2011
 #
 
-VERSION=		20170123
+VERSION=		20180328
 DISTNAME=		rbulkit-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rbulkit/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}rbulkit
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}robotpkg/rbulkit
 
 COMMENT=		Helper scripts for robotpkg bulk builds
 LICENSE=		isc
