@@ -2,15 +2,12 @@
 # Created:			Arnaud Degroote on Wed, 21 Aug 2013
 #
 
-OROCOS_PKG= 	log4cpp
+OROCOS_PKG=		log4cpp
 CATEGORIES=		devel
 
 include ../../meta-pkgs/orocos-toolchain/Makefile.common
 
-HOMEPAGE=		http://www.orocos.org/toolchain
-COMMENT=		A C++ logging library, with real-time support
-LICENSE=		gnu-lgpl-v2.1
-
+COMMENT=		C++ logging library with real-time support
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
