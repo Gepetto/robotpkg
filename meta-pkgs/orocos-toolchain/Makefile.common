@@ -2,16 +2,22 @@
 # Created:			Arnaud Degroote on Thu, 22 Aug 2013
 #
 #
-OROCOS_VERSION=   2.8.1
-DISTNAME?=        orocos-${OROCOS_PKG}-${OROCOS_VERSION}
-FETCH_METHOD= 		git
-MASTER_SITES?=  	git://github.com/orocos-toolchain/${OROCOS_PKG}.git@v${OROCOS_VERSION}
-MASTER_REPOSITORY?= 	git git://github.com/orocos-toolchain/${OROCOS_PKG}.git
+OROCOS_VERSION=		2.9.0-rc1
+DISTNAME?=		orocos-${OROCOS_PKG}-$(subst -,,${OROCOS_VERSION})
+DISTFILES?=		${OROCOS_VERSION}${EXTRACT_SUFX}
+DIST_SUBDIR?=		orocos-${OROCOS_PKG}
 
-MAINTAINER=       	arnaud.degroote@isae-supaero.fr
+MASTER_SITES?=\
+  ${MASTER_SITE_GITHUB:=orocos-toolchain/${OROCOS_PKG}/archive/v}
+MASTER_REPOSITORY?=	git git://github.com/orocos-toolchain/${OROCOS_PKG}.git
 
+HOMEPAGE?=		http://www.orocos.org/toolchain
+LICENSE?=		gnu-lgpl-v2.1
+MAINTAINER?=		arnaud.degroote@isae-supaero.fr
 
-PKG_SUPPORTED_OPTIONS+= catkin	
+WRKSRC?=		${WRKDIR}/${OROCOS_PKG}-${OROCOS_VERSION}
+
+PKG_SUPPORTED_OPTIONS+= catkin
 
 PKG_OPTION_DESCR.catkin = Enable catkin support
 define PKG_OPTION_SET.catkin
