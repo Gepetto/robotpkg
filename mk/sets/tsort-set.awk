@@ -207,7 +207,7 @@ function depgraph(		deps, d) {
 #
 # Sort package graph. See tsort(1).
 #
-function pkgtsort(	k, todo, did, dir, cpkg, cycles) {
+function pkgtsort(	k, todo, doit, did, dir, cpkg, cycles) {
     stacktodo = pkgtodo
     stackdone = 0
     cycles = 0
@@ -222,16 +222,15 @@ function pkgtsort(	k, todo, did, dir, cpkg, cycles) {
                 graphdel(dir)
                 continue
             }
-            if (!strict || (dir,troot) in graph || (troot,dir) in graph) {
-                if (pathonly) {
-                    xprint(dir)
-                    stackdone+=pkgreqd[dir]
-                } else
-                    for(k = 1; k<=pkgreqd[dir]; k++) {
-                        xprintpkg(dir ":" pkgreqd[dir,k])
-                        stackdone++
-                    }
-            }
+            doit = !strict || (dir,troot) in graph || (troot,dir) in graph
+            if (pathonly) {
+                if (doit) xprint(dir)
+                stackdone+=pkgreqd[dir]
+            } else
+                for(k = 1; k<=pkgreqd[dir]; k++) {
+                    if (doit) xprintpkg(dir ":" pkgreqd[dir,k])
+                    stackdone++
+                }
             graphdel(dir)
         }
         if (did) continue
