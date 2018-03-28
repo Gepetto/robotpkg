@@ -3,27 +3,26 @@
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-OROCOS_RTT_DEPEND_MK:=		${OROCOS_RTT_DEPEND_MK}+
+OROCOS_RTT_DEPEND_MK:=	${OROCOS_RTT_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		orocos-rtt
 endif
 
-ifeq (+,$(OROCOS_RTT_DEPEND_MK)) # ------------------------------------------
+ifeq (+,$(OROCOS_RTT_DEPEND_MK)) # -----------------------------------------
 
-PREFER.orocos-rtt?=		robotpkg
+PREFER.orocos-rtt?=	robotpkg
 
 DEPEND_USE+=		orocos-rtt
 
-DEPEND_ABI.orocos-rtt?=	orocos-rtt>=2.8.0rc1
+DEPEND_ABI.orocos-rtt?=	orocos-rtt>=2.9.0rc1
 DEPEND_DIR.orocos-rtt?=	../../middleware/orocos-rtt
 
 SYSTEM_SEARCH.orocos-rtt=\
-	include/rtt/RTT.hpp					\
-	lib/liborocos-rtt-gnulinux.so		\
-	lib/pkgconfig/orocos-rtt-gnulinux.pc
+  'include/rtt/RTT.hpp'					\
+  'lib/liborocos-rtt-gnulinux.so'			\
+  'lib/pkgconfig/orocos-rtt-gnulinux.pc:/Version/s/[^0-9.]//gp'
 
-endif # OROCOS_RTT_DEPEND_MK ------------------------------------------------
+endif # OROCOS_RTT_DEPEND_MK -----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
-

@@ -1,11 +1,10 @@
---- CMakeLists.txt.orig	2015-05-29 08:37:10.512830506 +0200
-+++ CMakeLists.txt	2015-05-29 08:37:27.632829999 +0200
-@@ -179,8 +179,10 @@
- # Install package.xml
- INSTALL(FILES package.xml DESTINATION share/rtt)
+--- CMakeLists.txt~	2017-04-28 18:02:40.000000000 +0200
++++ CMakeLists.txt	2018-03-27 15:49:34.348750313 +0200
+@@ -181,7 +181,9 @@
+ )
  
+ # Install a catkin env-hook if catkin is installed
 +if (WITH_CATKIN_SUPPORT)
- # Install an env-hook if catkin is found
  find_package(catkin QUIET)
  if(catkin_FOUND)
    catkin_add_env_hooks(00.rtt SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
