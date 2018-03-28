@@ -26,11 +26,20 @@ SYSTEM_SEARCH.dynamic-graph-bridge=\
   'share/dynamic_graph_bridge/robot_pose_publisher'			\
   '${PYTHON_SITELIB}/dynamic_graph/ros/ros.py'
 
-# headers leak the ros dependency ...
-include ../../middleware/ros-comm/depend.mk
-
 include ../../mk/sysdep/python.mk
 
 endif # ROS_DYNAMICGRAPHBRIDGE_DEPEND_MK -----------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
+
+# headers and .pc leak tons of dependencies ...
+include ../../devel/ros-realtime-tools/depend.mk
+include ../../interfaces/jrl-mal/depend.mk
+include ../../lang/ros-message-runtime/depend.mk
+include ../../middleware/ros-comm/depend.mk
+include ../../motion/dynamic-graph-bridge-msgs/depend.mk
+include ../../motion/dynamic-graph/depend.mk
+include ../../motion/py-dynamic-graph/depend.mk
+include ../../motion/sot-core/depend.mk
+include ../../motion/sot-dynamic/depend.mk
+include ../../simulation/bullet/depend.mk
