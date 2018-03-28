@@ -11,7 +11,7 @@ HOMEPAGE=	http://www.orocos.org/ocl
 COMMENT=	The Orocos Component Library
 LICENSE=	gnu-lgpl-v2.1
 
-DEPEND_ABI.boost-libs=boost-libs>=1.38
+DEPEND_ABI.boost-libs=	boost-libs>=1.38
 DEPEND_ABI.boost-headers=boost-headers>=1.38
 
 PKG_SUPPORTED_OPTIONS+= lua
@@ -32,6 +32,7 @@ define PKG_OPTION_SET.corba
 endef
 define PKG_OPTION_UNSET.corba
   CMAKE_ARGS+=	-DBUILD_CORBA=OFF
+  DEPEND_ABI.orocos-rtt+=   orocos-rtt~!corba
 endef
 
 include ../../devel/boost-headers/depend.mk

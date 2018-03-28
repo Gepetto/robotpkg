@@ -1,11 +1,10 @@
---- CMakeLists.txt.orig	2015-05-29 09:08:41.988774509 +0200
-+++ CMakeLists.txt	2015-05-29 09:09:17.044773471 +0200
-@@ -245,8 +245,10 @@
+--- CMakeLists.txt~	2017-04-28 18:27:36.000000000 +0200
++++ CMakeLists.txt	2018-03-27 17:07:19.165240140 +0200
+@@ -230,7 +230,9 @@
+ )
  
- INSTALL(FILES package.xml DESTINATION share/ocl)
- 
+ # Install a catkin env-hook if catkin is installed
 +if(WITH_CATKIN_SUPPORT)
- # Install an env-hook if catkin is found
  find_package(catkin QUIET)
  if(catkin_FOUND)
    catkin_add_env_hooks(00.ocl-lua SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)

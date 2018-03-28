@@ -1,3 +1,4 @@
-SHA1 (orocos-ocl-2.8.1.tar.gz) = 77db0c643fa648c80b98b57954a0766ed6fb844c
-RMD160 (orocos-ocl-2.8.1.tar.gz) = 3f242716333661cff0b2b89f8163c03d3756ee4b
-SHA1 (patch-aa) = b4c2d73775ae52b4319eaa50fb8602a9ade639af
+SHA1 (orocos-ocl/2.9.0-rc1.tar.gz) = 7d7b38efcedb2d9647a67941cdd185cd4283442b
+RMD160 (orocos-ocl/2.9.0-rc1.tar.gz) = 49c8a9c602feb934a7ccc85f95a494be63a9e497
+Size (orocos-ocl/2.9.0-rc1.tar.gz) = 1032676 bytes
+SHA1 (patch-aa) = 6c4cf249887ae28b58cc48d0928d5a6f7a3a63f0
