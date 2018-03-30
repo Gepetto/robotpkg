@@ -24,7 +24,6 @@ SUBDIR+=	openvrml-libs
 SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
 SUBDIR+=	rcpdf
-SUBDIR+=	rcpdf-interface
 SUBDIR+=	robot-capsule-urdf
 SUBDIR+=	ros-convex-decomposition
 SUBDIR+=	ros-geometric-shapes
