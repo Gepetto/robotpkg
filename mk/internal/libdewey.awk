@@ -1,6 +1,6 @@
 #!/usr/bin/awk -f
 #
-# Copyright (c) 2011,2013 LAAS/CNRS
+# Copyright (c) 2011,2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -191,13 +191,13 @@ function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
 
 	    if (t == DEWEY_LT || t == DEWEY_LE || t == DEWEY_EQ) {
 		if (!maxop || vtest(cur, maxop, max)) {
-		    for (i in cur) max[i] = cur[i]
+                    split("", max); for (i in cur) max[i] = cur[i]
 		    maxop = t == DEWEY_EQ ? DEWEY_LE : t
 		}
 	    }
 	    if (t == DEWEY_GT || t == DEWEY_GE || t == DEWEY_EQ) {
 		if (!minop || vtest(cur, minop, min)) {
-		    for (i in cur) min[i] = cur[i]
+                    split("", min); for (i in cur) min[i] = cur[i]
 		    minop = t == DEWEY_EQ ? DEWEY_GE : t
 		}
 	    }
