@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2013,2016 LAAS/CNRS
+# Copyright (c) 2008-2013,2016,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -138,7 +138,9 @@ $(foreach _,$(filter-out ${_alt_list},${PKG_ALTERNATIVES}),$(eval \
 
 # compute acceptable alternatives, based on PREFER_ALTERNATIVE.<pkg>
 $(foreach _,${_alt_list},$(eval \
-  _alt_select.$_:=$(filter ${PKG_ALTERNATIVES.$_},${PREFER_ALTERNATIVE.$_})))
+  _alt_select.$_:=\
+    $(filter ${PKG_ALTERNATIVES.$_},${PREFER_ALTERNATIVE.$_}) \
+    $(filter-out ${PREFER_ALTERNATIVE.$_},${PKG_ALTERNATIVES.$_})))
 
 # choose a version: generate a list of test for each pattern in order of
 # preference. Then pass this to 'or', so that the first match wins. This
@@ -152,12 +154,17 @@ $(foreach _,${_alt_list},$(eval \
 $(foreach _,${_alt_list},$(eval \
   override PKG_ALTERNATIVE.$_:=$$(strip $$(or $(value _alt_test.$_)))))
 
-# check empty PKG_ALTERNATIVE.<pkg>
+# check if PKG_ALTERNATIVE.<pkg> is acceptable
 override define _alt_error
   ifeq (,${PKG_ALTERNATIVE.$1})
     PKG_FAIL_REASON+=\
+      "$${bf}No acceptable $1 alternatives could be found among$${rm}"	\
+      "${PKG_ALTERNATIVES.$1}" ""
+  else ifeq (,$(filter ${PREFER_ALTERNATIVE.$1},${PKG_ALTERNATIVE.$1}))
+    PKG_CBBH_REASON+=\
       "$${bf}No acceptable $1 alternatives could be found$${rm}"	\
-      "	PREFER_ALTERNATIVE.$1 = ${PREFER_ALTERNATIVE.$1}" ""
+      "	PREFER_ALTERNATIVE.$1 = ${PREFER_ALTERNATIVE.$1}" ""		\
+      " Suggested value: ${PKG_ALTERNATIVE.$1}" ""
   endif
 endef
 $(foreach _,${PKG_ALTERNATIVES},$(eval $(call _alt_error,$_)))
