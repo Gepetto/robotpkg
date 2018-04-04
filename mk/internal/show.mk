@@ -145,6 +145,8 @@ ifdef PKG_ALTERNATIVES
   $(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVES.$_},		\
 	${ECHO} "$${bf}Available $_ alternatives"			\
 		"(PREFER_ALTERNATIVE.$_):$${rm}";			\
+	${ECHO} '(*=selected  -=user rejected  #=user preference "	\
+	        "n/a=invalid)';						\
     $(foreach 1,${PKG_ALTERNATIVES.$_},					\
       $(if $(strip ${PKG_ALTERNATIVE_SELECT.$1}),			\
         $(eval 0=$(if $(filter ${PKG_ALTERNATIVE.$_},$1),$(if		\
