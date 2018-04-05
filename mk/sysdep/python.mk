@@ -35,7 +35,7 @@
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: python27 python32 python33 python34 python35 python36
+#	Possible values: python27 python32 python34 python35 python36
 #
 # === Package-settable variables ===
 #
@@ -101,7 +101,7 @@ CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python27
-PKG_ALTERNATIVES.python+=	python32 python33 python34 python35 python36
+PKG_ALTERNATIVES.python+=	python32 python34 python35 python36
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
@@ -149,18 +149,6 @@ define PKG_ALTERNATIVE_SET.python32
   DEPEND_ABI.python32?=	$(strip ${_py_abi})
 
   include ../../mk/sysdep/python32.mk
-endef
-
-PKG_ALTERNATIVE_DESCR.python33= Use python-3.3
-PKGTAG.python33 =		py33
-define PKG_ALTERNATIVE_SELECT.python33
-  $(call preduce,${DEPEND_ABI.python} python>=3.3<3.4)
-endef
-define PKG_ALTERNATIVE_SET.python33
-  _py_abi:=$(subst python,python33,${PKG_ALTERNATIVE_SELECT.python33})
-  DEPEND_ABI.python33?=	$(strip ${_py_abi})
-
-  include ../../lang/python33/depend.mk
 endef
 
 PKG_ALTERNATIVE_DESCR.python34= Use python-3.4
