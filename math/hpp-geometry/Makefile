@@ -20,6 +20,7 @@ include ../../math/geometric-tools/depend.mk
 include ../../mk/sysdep/kineoworks.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

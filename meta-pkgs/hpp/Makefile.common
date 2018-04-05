@@ -46,9 +46,6 @@ else
   PKG_FAIL_REASON+="Unknown HPP_BUILD_SYSTEM"
 endif
 
-ifneq (hpp-util,${HPP_PACKAGE})
-  include ../../path/hpp-util/depend.mk
-endif
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
 include ../../pkgtools/pkg-config/depend.mk

@@ -15,6 +15,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 include ../../devel/ros-catkin/depend.mk
 include ../../graphics/hpp-gepetto-viewer/depend.mk
 include ../../path/hpp-corbaserver/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk

@@ -27,5 +27,6 @@ include ../../devel/boost-libs/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../math/libccd/depend.mk
 include ../../graphics/assimp/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

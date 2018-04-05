@@ -14,6 +14,7 @@ LICENSE=	gnu-lgpl-v2
 HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
+include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

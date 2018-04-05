@@ -20,6 +20,7 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 include ../../graphics/gepetto-viewer-corba/depend.mk
 include ../../path/hpp-corbaserver/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

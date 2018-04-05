@@ -17,6 +17,7 @@ post-install:
 
 include ../../meta-pkgs/hpp/Makefile.common
 include ../../path/hpp-corbaserver/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../mk/sysdep/kineoworks.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/glu.mk

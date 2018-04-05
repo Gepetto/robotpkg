@@ -17,5 +17,6 @@ include ../../meta-pkgs/hpp/Makefile.common
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 include ../../path/hpp-core/depend.mk
+include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

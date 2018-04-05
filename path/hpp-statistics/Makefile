@@ -16,6 +16,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 # the software may not be 64bits clean, but let it build
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
+include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
