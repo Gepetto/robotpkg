@@ -145,8 +145,6 @@ ifdef PKG_ALTERNATIVES
   $(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVES.$_},		\
 	${ECHO} "$${bf}Available $_ alternatives"			\
 		"(PREFER_ALTERNATIVE.$_):$${rm}";			\
-	${ECHO} '(*=selected  -=user rejected  #=user preference "	\
-	        "n/a=invalid)';						\
     $(foreach 1,${PKG_ALTERNATIVES.$_},					\
       $(if $(strip ${PKG_ALTERNATIVE_SELECT.$1}),			\
         $(eval 0=$(if $(filter ${PKG_ALTERNATIVE.$_},$1),$(if		\
@@ -157,6 +155,9 @@ ifdef PKG_ALTERNATIVES
 	${PRINTF} "%s%3s %-21s$$rm ${PKG_ALTERNATIVE_DESCR.$1}\n"	\
 	  "$(if $0,$${bf})" "$0$n" "$1";)				\
 	${ECHO} "";))							\
+	${ECHO} '(*=selected  -=user rejected  #=user preference '	\
+	        ' n/a=invalid)';					\
+	${ECHO} '';							\
 	${ECHO} "Alternatives are selected by setting the"		\
 		"PREFER_ALTERNATIVE.<alt> variable ";			\
 	${ECHO} "to a space separated list sorted by order of"		\
