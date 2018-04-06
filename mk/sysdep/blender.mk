@@ -17,7 +17,7 @@ DEPEND_USE+=		blender
 DEPEND_ABI.blender?=	blender>=2.62
 
 SYSTEM_SEARCH.blender=\
-  'bin/blender{,-[0-9]*}:1{s/sub.*)//;s/[^0-9.]//gp;}:% -v'
+  'bin/blender{,-[0-9]*}:/^[Bb]lender/{s/sub.*)//;s/[^0-9.]//gp;}:% -v'
 
 endif # BLENDER_DEPEND_MK -----------------------------------------------------
 
