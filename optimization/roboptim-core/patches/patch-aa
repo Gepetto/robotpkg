@@ -1,0 +1,16 @@
+g++-7 does not accept the "attribute unused" here.
+
+--- tests/detail-structured-input.cc~	2015-06-26 17:08:46.000000000 +0200
++++ tests/detail-structured-input.cc	2018-04-06 17:19:28.037828198 +0200
+@@ -144,9 +144,9 @@
+   // Note: here we use ROBOPTIM_UNUSED to prevent compiler warnings
+   // For more information, cf. https://svn.boost.org/trac/boost/ticket/7242
+   // F is a DifferentiableFunction, and as such exposes the getJacobianBlock() method
+-  BOOST_STATIC_ASSERT((boost::is_base_of<roboptim::detail::StructuredInputJacobianInternal<typename F<T>::parent_t, typename F<T>::traits_t>, F<T> >::value)) ROBOPTIM_UNUSED;
++  BOOST_STATIC_ASSERT((boost::is_base_of<roboptim::detail::StructuredInputJacobianInternal<typename F<T>::parent_t, typename F<T>::traits_t>, F<T> >::value));
+   // G is just a Function, and as such does not expose the getJacobianBlock() method
+-  BOOST_STATIC_ASSERT((!boost::is_base_of<roboptim::detail::StructuredInputJacobianInternal<typename G<T>::parent_t, typename G<T>::traits_t>, G<T> >::value)) ROBOPTIM_UNUSED;
++  BOOST_STATIC_ASSERT((!boost::is_base_of<roboptim::detail::StructuredInputJacobianInternal<typename G<T>::parent_t, typename G<T>::traits_t>, G<T> >::value));
+ 
+   typename F<T>::argument_t arg(22);
+   for(int i = 0; i < arg.size(); ++i)

@@ -1,0 +1,50 @@
+Don't set SOVERSION for MODULE, cmake does not create symlinks for those
+anyway, but older cmake would do it, leading to inconsistencies.
+https://gitlab.kitware.com/cmake/cmake/commit/f799ffb5cb895855ac2aba54765622b81db5be38
+
+--- src/CMakeLists.txt~	2018-04-06 17:43:48.744158061 +0200
++++ src/CMakeLists.txt	2018-04-06 17:48:36.445557517 +0200
+@@ -65,10 +65,6 @@
+ TARGET_LINK_LIBRARIES(roboptim-core-plugin-dummy roboptim-core)
+ SET_TARGET_PROPERTIES(roboptim-core-plugin-dummy PROPERTIES PREFIX "")
+ 
+-IF(NOT APPLE)
+-  SET_TARGET_PROPERTIES(roboptim-core-plugin-dummy
+-    PROPERTIES VERSION 3.1.0 SOVERSION 3)
+-ENDIF()
+ INSTALL(TARGETS roboptim-core-plugin-dummy DESTINATION ${PLUGINDIR})
+ 
+ # Dummy-laststate plug-in.
+@@ -79,10 +74,6 @@
+ TARGET_LINK_LIBRARIES(roboptim-core-plugin-dummy-laststate roboptim-core)
+ SET_TARGET_PROPERTIES(roboptim-core-plugin-dummy-laststate PROPERTIES PREFIX "")
+ 
+-IF(NOT APPLE)
+-  SET_TARGET_PROPERTIES(roboptim-core-plugin-dummy-laststate
+-    PROPERTIES VERSION 3.1.0 SOVERSION 3)
+-ENDIF()
+ INSTALL(TARGETS roboptim-core-plugin-dummy-laststate DESTINATION ${PLUGINDIR})
+ 
+ # Dummy-laststate plug-in for differentiable sparse functions.
+@@ -92,10 +83,6 @@
+ TARGET_LINK_LIBRARIES(roboptim-core-plugin-dummy-d-sparse-laststate roboptim-core)
+ SET_TARGET_PROPERTIES(roboptim-core-plugin-dummy-d-sparse-laststate PROPERTIES PREFIX "")
+ 
+-IF(NOT APPLE)
+-  SET_TARGET_PROPERTIES(roboptim-core-plugin-dummy-d-sparse-laststate
+-    PROPERTIES VERSION 3.1.0 SOVERSION 3)
+-ENDIF()
+ INSTALL(TARGETS roboptim-core-plugin-dummy-d-sparse-laststate DESTINATION ${PLUGINDIR})
+ 
+ # Dummy-td plug-in.
+@@ -105,10 +92,6 @@
+ TARGET_LINK_LIBRARIES(roboptim-core-plugin-dummy-td roboptim-core)
+ SET_TARGET_PROPERTIES(roboptim-core-plugin-dummy-td PROPERTIES PREFIX "")
+ 
+-IF(NOT APPLE)
+-  SET_TARGET_PROPERTIES(roboptim-core-plugin-dummy-td
+-    PROPERTIES VERSION 3.1.0 SOVERSION 3)
+-ENDIF()
+ INSTALL(TARGETS roboptim-core-plugin-dummy-td DESTINATION ${PLUGINDIR})
+ 
+ IF(MSVC)

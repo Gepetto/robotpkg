@@ -2,6 +2,7 @@
 # Created:			florent@laas.fr on Tue, 28 Apr 2009
 #
 
+PKGREVISION=	1
 VERSION=	3.1
 PACKAGE=	roboptim-core
 DISTNAME=	${PACKAGE}-${VERSION}
@@ -28,6 +29,7 @@ DEPEND_ABI.g++ +=	g++>=4.6
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../devel/log4cxx/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
