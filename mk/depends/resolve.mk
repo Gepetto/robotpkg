@@ -113,7 +113,7 @@ ifdef PKGREQD
     a:=$(strip $(foreach _,${PKG_ALTERNATIVES.$1},$(strip \
 	$(if $(findstring ${PKGTAG.$_},$2),$_))))
     ifeq (1,$$(words $$a))
-      PREFER_ALTERNATIVE.$1:=$$a
+      PKG_ALTERNATIVE.$1:=$$a
     else ifneq (0,$$(words $$a))
       $$(shell echo >&2	\
 	'Warning: ambiguous package name $2 for alternatives $$a.')
@@ -138,9 +138,9 @@ $(foreach _,$(filter-out ${_alt_list},${PKG_ALTERNATIVES}),$(eval \
 
 # compute acceptable alternatives, based on PREFER_ALTERNATIVE.<pkg>
 $(foreach _,${_alt_list},$(eval \
-  _alt_select.$_:=\
+  _alt_select.$_:=$(or ${PKG_ALTERNATIVE.$_},\
     $(filter ${PKG_ALTERNATIVES.$_},${PREFER_ALTERNATIVE.$_}) \
-    $(filter-out ${PREFER_ALTERNATIVE.$_},${PKG_ALTERNATIVES.$_})))
+    $(filter-out ${PREFER_ALTERNATIVE.$_},${PKG_ALTERNATIVES.$_}))))
 
 # choose a version: generate a list of test for each pattern in order of
 # preference. Then pass this to 'or', so that the first match wins. This
