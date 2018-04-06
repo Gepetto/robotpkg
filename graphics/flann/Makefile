@@ -2,6 +2,7 @@
 # Created:			Nizar Sallem on Tue, 28 Dec 2010
 #
 
+PKGREVISION=	1
 VERSION=	1.7.1
 DISTNAME=	flann-${VERSION}-src
 PKGNAME=	flann-${VERSION}

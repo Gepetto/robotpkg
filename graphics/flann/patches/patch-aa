@@ -1,5 +1,32 @@
+Fix strange constructs: add_library works on linux, no need to handle it
+specially
+
 --- src/cpp/CMakeLists.txt	2012-07-18 17:37:07.660607502 +0200
 +++ src/cpp/CMakeLists.txt.orig	2011-12-23 12:16:09.000000000 +0100
+@@ -24,23 +24,10 @@
+     set_property(TARGET flann_cuda_s PROPERTY COMPILE_DEFINITIONS FLANN_STATIC)
+ endif()
+ 
+-if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_COMPILER_IS_GNUCC)
+-    add_library(flann_cpp SHARED "")
+-    set_target_properties(flann_cpp PROPERTIES LINKER_LANGUAGE CXX)
+-    target_link_libraries(flann_cpp -Wl,-whole-archive flann_cpp_s -Wl,-no-whole-archive)
+-
+-    if (BUILD_CUDA_LIB)
+-	    cuda_add_library(flann_cuda SHARED "")
+-        set_target_properties(flann_cuda PROPERTIES LINKER_LANGUAGE CXX)
+-        target_link_libraries(flann_cuda -Wl,-whole-archive flann_cuda_s -Wl,-no-whole-archive)
+-    # 	target_link_libraries(flann_cuda cudpp_x86_64)
+-    endif()
+-else()
+     add_library(flann_cpp SHARED ${CPP_SOURCES})
+     if (BUILD_CUDA_LIB)
+ 		cuda_add_library(flann_cuda SHARED ${CPP_SOURCES})
+     endif()
+-endif()
+ 
+ set_target_properties(flann_cpp PROPERTIES
+    VERSION ${FLANN_VERSION}
 @@ -60,12 +60,12 @@
  #debug libraries
  add_library(flann_cpp-gd SHARED ${CPP_SOURCES})
@@ -15,3 +42,17 @@
  set_property(TARGET flann_cpp_s-gd PROPERTY COMPILE_DEFINITIONS FLANN_STATIC)
  
  
+@@ -108,13 +108,7 @@
+     endif()
+     set_property(TARGET flann_s PROPERTY COMPILE_DEFINITIONS FLANN_STATIC)
+ 
+-    if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_COMPILER_IS_GNUCC)
+-        add_library(flann SHARED "")
+-        set_target_properties(flann PROPERTIES LINKER_LANGUAGE CXX)
+-        target_link_libraries(flann -Wl,-whole-archive flann_s -Wl,-no-whole-archive)
+-    else()
+         add_library(flann SHARED ${C_SOURCES})
+-    endif()
+ 
+     set_target_properties(flann PROPERTIES
+        VERSION ${FLANN_VERSION}
