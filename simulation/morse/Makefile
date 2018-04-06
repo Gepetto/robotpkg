@@ -22,7 +22,7 @@ PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
 
 define PKG_OPTION_SET.doc
   CMAKE_ARGS+=		-DBUILD_DOC_SUPPORT=ON
-  CMAKE_ARGS+=		-DSPHINX_BUILD=${PREFIX.py-sphinx}/bin/sphinx-build
+  CMAKE_ARGS+=		-DSPHINX_BUILD=${SPHINX_BUILD}
   DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}/html
   include ../../mk/sysdep/py-sphinx.mk
 endef
