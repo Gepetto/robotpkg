@@ -15,7 +15,6 @@ SUBDIR+=	grh2
 SUBDIR+=	hpp-gepetto-viewer
 SUBDIR+=	jafar-gdhe
 SUBDIR+=	kpp-interface
-SUBDIR+=	kpp-interfacedisplay
 SUBDIR+=	kpp-interfacewalk
 SUBDIR+=	laaswm
 SUBDIR+=	laaswm-libs
