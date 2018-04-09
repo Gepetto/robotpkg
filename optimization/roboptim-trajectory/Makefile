@@ -2,6 +2,7 @@
 # Created:			florent on Sat, 9 May 2009
 #
 
+PKGREVISION=	1
 VERSION=	3.1
 PACKAGE=	roboptim-trajectory
 DISTNAME=	${PACKAGE}-${VERSION}
@@ -17,18 +18,28 @@ MAINTAINER=	roboptim@googlegroups.com
 
 DYNAMIC_PLIST_DIRS+=	share/doc/roboptim-trajectory
 
-# disable -Werror because of boost + gcc that don't cohabit well depending on
-# their respective versions
+# disable -Werror, otherwise this does not build
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
-INCLUDE_DIRS.boost-headers=include
+# cmake cannot find those alone:
+INCLUDE_DIRS.libtool-ltdl=	include
+LIBRARY_DIRS.libtool-ltdl=	lib
+RPATHS_DIRS.libtool-ltdl=	lib
+
+USE_BOOST_LIBS=		filesystem system thread program_options serialization
+USE_BOOST_LIBS+=	unit_test_framework
+
+DEPEND_ABI.eigen3+=	eigen3>=3.2.0
 
 include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
+include ../../math/eigen3/depend.mk
 include ../../optimization/roboptim-core/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
+include ../../mk/sysdep/libtool-ltdl.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
