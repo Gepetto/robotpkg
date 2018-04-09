@@ -1,9 +1,0 @@
-@comment Sat Apr 18 14:48:32 JST 2009
-@comment Sat Feb 27 15:50:23 CET 2010
-include/kpp/interfacewalk/fwd.hh
-include/kpp/interfacewalk/interface.hh
-include/kpp/interfacewalk/kppinterface-nowarning.hh
-lib/modules/${NODENAME}/libkpp-interfacewalk.kab
-lib/modules/${NODENAME}/libkpp-interfacewalk.la
-lib/pkgconfig/kpp-interfacewalk.pc
-@dirrm include/kpp/interfacewalk
