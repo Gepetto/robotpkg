@@ -26,3 +26,7 @@ SYSTEM_SEARCH.roboptim-core=\
 endif # --------------------------------------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
+
+# direct dependencies due to public headers / pkg-config file
+include ../../devel/log4cxx/depend.mk
+include ../../math/eigen3/depend.mk
