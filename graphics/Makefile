@@ -14,7 +14,6 @@ SUBDIR+=	gepetto-viewer-corba
 SUBDIR+=	grh2
 SUBDIR+=	hpp-gepetto-viewer
 SUBDIR+=	jafar-gdhe
-SUBDIR+=	kpp-interface
 SUBDIR+=	laaswm
 SUBDIR+=	laaswm-libs
 SUBDIR+=	openvrml-libs
