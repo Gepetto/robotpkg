@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 21 Mar 2016
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 
 DISTNAME=		pom-genom3-2.3
 CATEGORIES=		localization

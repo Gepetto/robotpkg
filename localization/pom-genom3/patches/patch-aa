@@ -1,10 +1,21 @@
 Fix an issue with cwiseMax() and eigen3 < 3.2.4
+Display how bad the covariance matrix was when it becomes not positive definite.
 
 diff --git codels/ukf_filter.cc codels/ukf_filter.cc
-index 9b0747c..3cb3239 100644
+index 9b0747c..3bde6c2 100644
 --- codels/ukf_filter.cc
 +++ codels/ukf_filter.cc
-@@ -83,9 +83,10 @@ class filter_s::impl_s
+@@ -16,6 +16,9 @@
+  */
+ #include <err.h>
+ 
++#include <sstream>
++#include <string>
++
+ #include "ukf.h"
+ 
+ #include <Eigen/Geometry>
+@@ -83,9 +86,16 @@ class filter_s::impl_s
        warnx("state covariance is not positive definite ... fixing");
  
        Eigen::EigenSolver<state_s::dcov_s> e(cov);
@@ -12,7 +23,13 @@ index 9b0747c..3cb3239 100644
 +      state_s::dcov_s d = e.eigenvalues().real().asDiagonal();
        state_s::dcov_s v = e.eigenvectors().real();
  
-+      d.diagonal() = d.diagonal().array().max(1e-10);
++      {
++        std::ostringstream msg;
++        msg << "diagonal was [" << d.diagonal().transpose() << "]'";
++        warnx("%s", msg.str().c_str());
++      }
++      d.diagonal() =
++        d.diagonal().cwiseMax(state_s::delta_s::Constant(1e-10));
        cov = v * d * v.inverse();
  
        llt.compute((state_s::dof + lambda()) * cov);
