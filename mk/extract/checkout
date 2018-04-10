@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2009-2010,2012-2013 LAAS/CNRS
+# Copyright (c) 2009-2010,2012-2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -114,14 +114,13 @@ repository="$1"; shift
 #
 case "$format" in
 git)
-    if ${TEST} -n "$revision"; then
-	${GIT} clone -v ${CHECKOUT_VCS_OPTS} -n $repository $extract_dir
-	${TEST} -n "$extract_dir" && {
-	    cd $extract_dir;
-	    ${GIT} checkout $revision;
-	}
+    if ${TEST} -d "$extract_dir"; then
+        ${GIT} -C "$extract_dir" pull -v ${CHECKOUT_VCS_OPTS} $repository
     else
-	${GIT} clone -v ${CHECKOUT_VCS_OPTS} $repository $extract_dir
+        ${GIT} clone -v ${CHECKOUT_VCS_OPTS} $repository $extract_dir
+    fi
+    if ${TEST} -n "$revision"; then
+        ${GIT} -C "$extract_dir" checkout $revision
     fi
     ;;
 
@@ -152,6 +151,11 @@ dir)
         ${ECHO} 1>&2 "$self: no extract dir defined: use -d."; exit 2
     }
     ${TEST} -d "$extract_dir" || ${MKDIR} "$extract_dir"
+
+    # remove any broken link
+    ${FIND} "$extract_dir" -type l \! -exec ${TEST} -e {} \; -delete
+
+    # mirror directory tree
     { cd "$repository" && ${FIND} "$sub" -type d; } |
       { cd "$extract_dir" && while read d; do ${MKDIR} "$d"; done; }
     { cd "$repository" && ${FIND} "$sub" ! -type d; } |

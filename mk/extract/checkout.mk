@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2014 LAAS/CNRS
+# Copyright (c) 2009-2014,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -94,19 +94,23 @@ endif
 
 # --- checkout-cookie (PRIVATE) --------------------------------------------
 #
-# checkout-cookie creates the "checkout" cookie file. The contents are the name
-# of the package.
+# checkout-cookie creates the "checkout" cookie file.
 #
 .PHONY: checkout-cookie
 checkout-cookie: makedirs
 	${RUN}${TEST} ! -f ${_COOKIE.checkout} || ${FALSE};		\
-	exec >>${_COOKIE.checkout};					\
+	exec >${_COOKIE.checkout};					\
 	${ECHO} "_COOKIE.checkout.date:=`${_CDATE_CMD}`"
 
 ifeq (yes,$(call exists,${_COOKIE.checkout}))
   $(call require,${_COOKIE.checkout})
+
+  ifneq (,$(filter checkout,${MAKECMDGOALS}))
+    _MAKEFILE_WITH_RECIPES+=${_COOKIE.checkout}
+    ${_COOKIE.checkout}: .FORCE
+	${RUN}${TEST} ! -f $@ || ${MV} -f $@ $@.prev
+  endif
 else
-  $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
   ${_COOKIE.checkout}: real-checkout;
 endif
 

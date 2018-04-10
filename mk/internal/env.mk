@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009,2011-2013,2016 LAAS/CNRS
+# Copyright (c) 2009,2011-2013,2016,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -51,7 +51,7 @@ endef
 # Variable passed on the command line that are package-specific must not be
 # exported to recursive make.
 #
-_NO_INHERIT=	PREFIX PKGREQD WRKDIR
+_NO_INHERIT=	PREFIX PKGREQD WRKDIR WRKSRC
 
 override define _env_nopropagate # (var)
   ifeq (command line,$(origin $1))
