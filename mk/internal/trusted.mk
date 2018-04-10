@@ -31,8 +31,8 @@ _ENV_VARS+=	MAKE MAKECONF ROBOTPKG_BASE ROBOTPKG_DIR
 _ENV_VARS+=	HOME PATH TERM TERMCAP DISPLAY XAUTHORITY SSH_AUTH_SOCK
 _ENV_VARS+=	http_proxy https_proxy ftp_proxy
 
-.PHONY: unsetenv
-unsetenv:
+.PHONY: ${MAKECMDGOALS}
+${MAKECMDGOALS}:
 	@${SETENV} -i							\
 	  $(foreach _,${_ENV_VARS},					\
 	    $(if $(filter environment,$(origin $_)),			\
@@ -40,6 +40,3 @@ unsetenv:
 	  _ROBOTPKG_NOW=`${DATE} "+%m%d%H%M%S"`				\
 	  ROBOTPKG_TRUSTED_ENV=robotpkg					\
 	  ${MAKE} ${MFLAGS} ${MAKEOVERRIDES} ${MAKECMDGOALS}
-
-${MAKECMDGOALS}: unsetenv
-	@:
