@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011,2013 LAAS/CNRS
+# Copyright (c) 2006-2011,2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -90,6 +90,8 @@ release-build-lock: release-lock
 #
 ifeq (yes,$(call exists,${_COOKIE.build}))
   ifneq (,$(filter build all,${MAKECMDGOALS}))
+    ${_COOKIE.build}: .FORCE
+  else ifdef _EXTRACT_IS_CHECKOUT
     ${_COOKIE.build}: .FORCE
   endif
 
