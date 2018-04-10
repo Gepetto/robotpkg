@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013 LAAS/CNRS
+# Copyright (c) 2006-2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -43,14 +43,25 @@
 #    EXTRACT_SUFX is the suffix for the default distfile to be
 #       extracted.  The default suffix is ".tar.gz".
 #
-$(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
-
-EXTRACT_ONLY?=		${FETCH_ONLY}
-EXTRACT_SUFX?=		.tar.gz
-EXTRACT_DIR?=		${WRKDIR}
 
 _COOKIE.extract=	${WRKDIR}/.extract_cookie
 _COOKIE.checkout=	${WRKDIR}/.checkout_cookie
+
+# test for checkouts
+ifneq (,$(filter checkout,${MAKECMDGOALS}))
+  _EXTRACT_IS_CHECKOUT:=yes
+endif
+ifeq (yes,$(call exists,${_COOKIE.checkout}))
+  _EXTRACT_IS_CHECKOUT:=yes
+endif
+
+ifndef _EXTRACT_IS_CHECKOUT
+  $(call require,${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+
+  EXTRACT_ONLY?=		${FETCH_ONLY}
+  EXTRACT_SUFX?=		.tar.gz
+  EXTRACT_DIR?=		${WRKDIR}
+endif
 
 
 # let users override the MASTER_REPOSITORY defined in a package
@@ -70,14 +81,6 @@ ifdef CHECKOUT.${PKGBASE}
   _CHECKOUT=${CHECKOUT.${PKGBASE}}
 else ifdef CHECKOUT
   _CHECKOUT=${CHECKOUT}
-endif
-
-# test for checkouts
-ifneq (,$(filter checkout,${MAKECMDGOALS}))
-  _EXTRACT_IS_CHECKOUT:=yes
-endif
-ifeq (yes,$(call exists,${_COOKIE.checkout}))
-  _EXTRACT_IS_CHECKOUT:=yes
 endif
 
 # redefine package name for checkouts

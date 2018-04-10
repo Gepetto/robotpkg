@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011,2013 LAAS/CNRS
+# Copyright (c) 2006-2011,2013,2018 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -53,59 +53,17 @@ _DIGEST_ALGORITHMS?=		SHA1 RMD160
 _PATCH_DIGEST_ALGORITHMS?=	SHA1
 _CONF_DIGEST_ALGORITHMS?=	SHA1
 
-# Archives that are retrived from a repository are digested with archive's
+# Archives that are retrieved from a repository are digested with archive's
 # metadata reset to known values (owner/group id, mtime, dev, umask).
+#
+$(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+
 ifneq (,$(filter cvs git mercurial svn,${FETCH_METHOD}))
   _DIGEST_ARGS+=	-c
 endif
 
-# The following are the "public" targets provided by this module:
-#
-#    checksum, makesum, makepatchsum, distinfo
-#
-
-# --- checksum (PUBLIC) ----------------------------------------------------
-#
-# checksum is a public target to checksum the fetched distfiles
-# for the package.
-#
-.PHONY: checksum
-
-ifdef NO_CHECKSUM
-  $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
-  $(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
-
-  ifdef _EXTRACT_IS_CHECKOUT
-    checksum: bootstrap-depends
-  else
-    checksum: fetch
-  endif
-  checksum:
-	@${DO_NADA}
-else
-  include ${ROBOTPKG_DIR}/mk/checksum/checksum.mk
-endif
-
-
-# --- distinfo, makesum, makepatchsum (PUBLIC) -----------------------------
-#
-# distinfo is a public target to create ${DISTINFO_FILE}.
-#
-# makesum is a public target to add checksums of the distfiles for
-# the package to ${DISTINFO_FILE}.
-#
-# makepatchsum is a public target to add checksums of the patches
-# for the package to ${DISTINFO_FILE}.
-#
-.PHONY: distinfo
-
-ifdef NO_CHECKSUM
-  distinfo:
-	@${DO_NADA}
-else
-  include ${ROBOTPKG_DIR}/mk/checksum/distinfo.mk
-endif
-
-# A short alias for "distinfo".
-.PHONY: mdi
-mdi: $(call add-barrier, bootstrap-depends, mdi) distinfo
+# The command for computing a file's checksum
+_CHECKSUM_CMD= ${SETENV}					\
+	DIGEST=$(call quote,$(strip ${DIGEST} ${_DIGEST_ARGS}))	\
+	CAT=${CAT} TEST=${TEST} ECHO=${ECHO}			\
+	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum

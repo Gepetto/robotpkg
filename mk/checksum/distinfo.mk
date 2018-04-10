@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2011,2013 LAAS/CNRS
+# Copyright (c) 2009-2011,2013,2018 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -43,35 +43,44 @@
 #
 
 $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
 
 # This variable is set by robotpkg/mk/fetch/fetch-vars.mk.
 # CKSUMFILES?=	$(filter-out ${IGNOREFILES},${ALLFILES})
-
-# Require digest tool
-DEPEND_METHOD.digest+=	bootstrap
-include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
 
 
 # --- distinfo (PUBLIC) ----------------------------------------------------
 #
 # distinfo is a public target to create ${DISTINFO_FILE}.
 #
-_DISTINFO_TARGETS=	$(call add-barrier, bootstrap-depends, distinfo)
-ifneq ($(words ${_CKSUMFILES}),\
+ifndef NO_CHECKSUM
+  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
+  # Require digest tool
+  DEPEND_METHOD.digest+=	bootstrap
+  include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
+
+  _DISTINFO_TARGETS=	$(call add-barrier, bootstrap-depends, distinfo)
+  ifneq ($(words ${_CKSUMFILES}),\
        $(words $(wildcard $(addprefix ${DISTDIR}/,${_CKSUMFILES}))))
-  $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
-  _DISTINFO_TARGETS+=	fetch
+    $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
+    _DISTINFO_TARGETS+=	fetch
+  endif
+  _DISTINFO_TARGETS+=	distinfo-message
+  _DISTINFO_TARGETS+=	makesum
+  _DISTINFO_TARGETS+=	makepatchsum
 endif
-_DISTINFO_TARGETS+=	distinfo-message
-_DISTINFO_TARGETS+=	makesum
-_DISTINFO_TARGETS+=	makepatchsum
 
+.PHONY: distinfo
 distinfo: ${_DISTINFO_TARGETS};
-
 
 .PHONY: distinfo-message
 distinfo-message:
 	@${PHASE_MSG} "Creating checksums for ${PKGNAME}"
+
+# A short alias for "distinfo".
+.PHONY: mdi
+mdi: $(call add-barrier, bootstrap-depends, mdi) distinfo
 
 
 # --- makesum (PRIVATE) ----------------------------------------------------

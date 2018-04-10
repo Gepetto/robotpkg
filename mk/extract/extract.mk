@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013 LAAS/CNRS
+# Copyright (c) 2006-2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -128,7 +128,7 @@ release-extract-lock: release-lock
 ifeq (yes,$(call exists,${_COOKIE.extract}))
   $(call require,${_COOKIE.extract})
 else
-  $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+  $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum.mk)
   ${_COOKIE.extract}: real-extract;
 endif
 

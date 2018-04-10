@@ -90,8 +90,10 @@ $(call require-for, mirror-distfiles,					\
 	${ROBOTPKG_DIR}/mk/fetch/mirror.mk)
 
 # Checksum
-$(call require-for, checksum mdi distinfo,				\
-	${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+$(call require-for, checksum,						\
+	${ROBOTPKG_DIR}/mk/checksum/checksum.mk)
+$(call require-for, mdi distinfo,					\
+	${ROBOTPKG_DIR}/mk/checksum/distinfo.mk)
 
 # Extract
 $(call require-for, extract,						\

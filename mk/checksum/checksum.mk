@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013 LAAS/CNRS
+# Copyright (c) 2006-2013,2018 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -45,15 +45,9 @@
 # This variable is set by robotpkg/mk/fetch/fetch-vars.mk.
 # CKSUMFILES?=	$(filter-out ${IGNOREFILES},${ALLFILES})
 
-# Require digest tool
-DEPEND_METHOD.digest+=	bootstrap
-include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
-
-# The command for computing a file's checksum
-_CHECKSUM_CMD= ${SETENV}					\
-	DIGEST=$(call quote,$(strip ${DIGEST} ${_DIGEST_ARGS}))	\
-	CAT=${CAT} TEST=${TEST} ECHO=${ECHO}			\
-	${SH} ${ROBOTPKG_DIR}/mk/checksum/checksum
+$(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 
 
 # --- checksum (PUBLIC) ----------------------------------------------
@@ -61,8 +55,6 @@ _CHECKSUM_CMD= ${SETENV}					\
 # checksum is a public target to checksum the fetched distfiles
 # for the package.
 #
-$(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
-$(call require, ${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
 
 _CHECKSUM_TARGETS=	$(call add-barrier, bootstrap-depends, checksum)
@@ -72,7 +64,13 @@ ifndef _EXTRACT_IS_CHECKOUT
     $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
     _CHECKSUM_TARGETS+=	fetch
   endif
-  _CHECKSUM_TARGETS+=	checksum-files
+  ifndef NO_CHECKSUM
+    # Require digest tool
+    DEPEND_METHOD.digest+=	bootstrap
+    include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
+
+    _CHECKSUM_TARGETS+=	checksum-files
+  endif
 endif
 
 .PHONY: checksum

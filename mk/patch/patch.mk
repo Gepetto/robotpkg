@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011,2013 LAAS/CNRS
+# Copyright (c) 2006-2011,2013,2018 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -129,7 +129,6 @@ release-patch-lock: release-lock
 ifeq (yes,$(call exists,${_COOKIE.patch}))
   $(call require,${_COOKIE.patch})
 else
-  $(call require, ${ROBOTPKG_DIR}/mk/checksum/checksum-vars.mk)
   ${_COOKIE.patch}: real-patch;
 endif
 
