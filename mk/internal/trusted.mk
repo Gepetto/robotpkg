@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013 LAAS/CNRS
+# Copyright (c) 2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -37,6 +37,7 @@ unsetenv:
 	  $(foreach _,${_ENV_VARS},					\
 	    $(if $(filter environment,$(origin $_)),			\
 	      $(call quote,$_=${$_})))					\
+	  _ROBOTPKG_NOW=`${DATE} "+%m%d%H%M%S"`				\
 	  ROBOTPKG_TRUSTED_ENV=robotpkg					\
 	  ${MAKE} ${MFLAGS} ${MAKEOVERRIDES} ${MAKECMDGOALS}
 
