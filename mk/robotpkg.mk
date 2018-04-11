@@ -114,6 +114,8 @@ $(call require-for, configure,						\
 # Build
 $(call require-for, all build,						\
 	${ROBOTPKG_DIR}/mk/build/build.mk)
+$(call require-for, clean-build,					\
+	${ROBOTPKG_DIR}/mk/build/clean.mk)
 
 # Install
 $(call require-for, install install-failsafe su-install-all		\

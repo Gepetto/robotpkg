@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011,2013 LAAS/CNRS
+# Copyright (c) 2006-2011,2013,2018 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -101,7 +101,17 @@ BUILD_MAKE_CMD?=\
     ${BUILD_MAKE_FLAGS} -f ${MAKE_FILE} ${BUILD_TARGET.$1}
 
 
-# The filter for the {pre,post,}-build targets
+# Clean build variables
+CLEAN_TARGET?=	clean
+$(foreach _,${BUILD_DIRS},$(eval CLEAN_TARGET.$_?= ${CLEAN_TARGET}))
+
+CLEAN_MAKE_FLAGS?=${BUILD_MAKE_FLAGS}
+CLEAN_MAKE_CMD?=\
+  ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS}		\
+    ${CLEAN_MAKE_FLAGS} -f ${MAKE_FILE} ${CLEAN_TARGET.$1}
+
+
+# The filter for the {pre,post,}-{,clean}-build targets
 #
 BUILD_LOGFILE?=	${WRKDIR}/build.log
 BUILD_LOGFILTER?=\

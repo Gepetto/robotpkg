@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2011,2013 LAAS/CNRS
+# Copyright (c) 2006,2009-2011,2013,2018 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -82,14 +82,19 @@ $(call require,${ROBOTPKG_DIR}/mk/extract/extract-vars.mk)
 ifneq (,$(call isyes,${_EXTRACT_IS_CHECKOUT}))
   .PHONY: clean-confirm-checkout
   clean-confirm-checkout:
-	@${ERROR_MSG} ${hline};							\
-	${ERROR_MSG} "$${bf}A checkout is present in the build directory$${rm}"	\
-		"of ${PKGBASE}.";						\
-	${ERROR_MSG} "";							\
-	${ERROR_MSG} "You must confirm the cleaning action by doing";		\
-	${ERROR_MSG} "		\`$${bf}${MAKE} clean confirm$${rm}' in"	\
-		"${PKGPATH}";							\
-	${ERROR_MSG} ${hline};							\
+	@${ERROR_MSG} ${hline};						\
+	${ERROR_MSG} "$${bf}A checkout is present in the build"		\
+		"directory$${rm} of ${PKGBASE}.";			\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "You must confirm the cleaning action by doing";	\
+	${ERROR_MSG} "		\`$${bf}${MAKE} clean confirm$${rm}' in"\
+		"${PKGPATH}";						\
+	${ERROR_MSG} "";						\
+	${ERROR_MSG} "Alternatively, you can clean the built sources"	\
+		"by running";						\
+	${ERROR_MSG} "		\`$${bf}${MAKE} cleaner$${rm}' in"	\
+		"${PKGPATH}";						\
+	${ERROR_MSG} ${hline};						\
 	${FALSE}
 
   ifeq  (,$(filter confirm,${MAKECMDGOALS}))
@@ -164,9 +169,7 @@ clean: ${_CLEAN_TARGETS}
 
 .PHONY: cleaner
 ifneq (,$(call isyes,${_EXTRACT_IS_CHECKOUT}))
-  $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
-
-  cleaner: clean-message pre-clean post-clean
+  $(call require, ${ROBOTPKG_DIR}/mk/build/clean.mk)
 else
   cleaner: clean
 endif
