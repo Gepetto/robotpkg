@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013,2016 LAAS/CNRS
+# Copyright (c) 2013,2016,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -34,12 +34,14 @@ ifneq (,$(strip ${ALLFILES}))
   ifeq (,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}))
     ifndef NO_PUBLIC_SRC
       _MIRROR_TARGETS+=check-distfiles
-      ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
-        ifneq (,$(filter archive,${FETCH_METHOD}))
-          _MIRROR_TARGETS+=check-master-sites
+      ifndef NO_MASTER_SITES_CHECK
+        ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
+          ifneq (,$(filter archive,${FETCH_METHOD}))
+            _MIRROR_TARGETS+=check-master-sites
 
-          DEPEND_METHOD.curl+=	bootstrap
-          include ${ROBOTPKG_DIR}/mk/sysdep/curl.mk
+            DEPEND_METHOD.curl+=	bootstrap
+            include ${ROBOTPKG_DIR}/mk/sysdep/curl.mk
+          endif
         endif
       endif
     endif
@@ -113,15 +115,14 @@ check-distfiles: fetch-all
 # check-master-sites performs a HEAD request against all sites in MASTER_SITES
 # to verify that the files are present with the correct size.
 #
-# Some sites don't handle HEAD requests. Most notably googlecode:
-# http://code.google.com/p/support/issues/detail?id=660
-# _MASTER_SITES_NOCHECK is a list of shell pattern identifying such sites.
+# Some sites refuse HEAD requests. For those, try a GET with a
+# Range: bytes 0-0 header.
 #
-_MASTER_SITES_NOCHECK=\
-	http*://*.googlecode.com/*
-
-_MIRROR_CURL_OPT=	-ILfksS
+# Some sites do not like curl: send a 'robotpkg' user agent.
+#
+_MIRROR_CURL_OPT=	-LfksS
 _MIRROR_CURL_OPT+=	--trace-ascii "${WRKDIR}/$$trace.log"
+_MIRROR_CURL_OPT+=	-A 'robotpkg http://robotpkg.openrobots.org'
 
 .PHONY: check-master-sites
 check-master-sites:
@@ -150,29 +151,37 @@ check-master-sites:
 									\
 	    one=0;							\
 	    for site in $$sites; do					\
-	      case "$$site" in						\
-	        $(subst ${ } ${ },|,${_MASTER_SITES_NOCHECK}))		\
-	          ${MIRROR_LOG} "CANNOT CHECK:  $$site";		\
-	          one=1;						\
-	          continue ;;						\
-	      esac;							\
 	      trace="fetch($${site#*//}";				\
 	      trace="$${trace%%/*})::$$distfile";			\
-	      x=0 hdr=`${CURL} ${_MIRROR_CURL_OPT} "$$site$$distfile"	\
-	             2>>${_MIRROR_LOG}` || x=$$?;			\
+	      x=0 hdr=`${CURL} -I ${_MIRROR_CURL_OPT} 2>>${_MIRROR_LOG}	\
+	        "$$site$$distfile"` || x=$$?;				\
 	      case $$x in						\
 	        0) ;;							\
 	        23|27|28|52|55|56)					\
 	          ${MIRROR_LOG} "SKIP:  $$site";			\
 	          warn=1; continue ;;					\
 	        *)							\
-	          ${MIRROR_LOG} "$$site: fatal error";			\
-	          warn=1; continue ;;					\
+	           ${MIRROR_LOG} "HEAD failed for $$site";		\
+	           x=0 hdr=`${CURL} -D - -o /dev/null 2>>${_MIRROR_LOG}	\
+	             -H 'Range: bytes=0-0' ${_MIRROR_CURL_OPT}		\
+	             "$$site$$distfile"` || x=$$?;			\
+	           case $$x in						\
+	             0) ;;						\
+	             23|27|28|52|55|56)					\
+	               ${MIRROR_LOG} "SKIP:  $$site";			\
+	               warn=1; continue ;;				\
+	             *)							\
+	               ${MIRROR_LOG} "$$site: fatal error";		\
+	               warn=1; continue ;;				\
+	           esac;						\
 	      esac;							\
 	      size=`${ECHO} "$$hdr" | ${AWK} -F'[ :\r]+'		\
-	        '/^HTTP\/1[.][0-9]/ {l=""}				\
+	        '/^HTTP\/1[.][0-9]/ {r=l=""}				\
+	         /[Cc]ontent-[Rr]ange:.+\/[0-9]+/ {			\
+	           gsub(/.*\//, ""); r=$$0				\
+	         }							\
 	         /[Cc]ontent-[Ll]ength: +[0-9]+/ {l=$$2}		\
-		 END {print l}'`;					\
+		 END {print r?r:l}'`;					\
 	      if ${TEST} -z "$$size"; then				\
 	        ${MIRROR_LOG}						\
 	          "SKIP:  $$site: cannot determine file size";		\
