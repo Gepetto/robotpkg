@@ -25,7 +25,7 @@ DEPEND_ABI.ros-diagnostics.groovy += ros-diagnostics>=1.7<1.8
 DEPEND_ABI.ros-diagnostics.hydro += ros-diagnostics>=1.8<1.9
 DEPEND_ABI.ros-diagnostics.indigo += ros-diagnostics>=1.8<1.9
 DEPEND_ABI.ros-diagnostics.jade += ros-diagnostics>=1.8<1.9
-DEPEND_ABI.ros-diagnostics.kinetic += ros-diagnostics>=1.8<1.9
+DEPEND_ABI.ros-diagnostics.kinetic += ros-diagnostics>=1.8<1.10
 DEPEND_ABI.ros-diagnostics.lunar += ros-diagnostics>=1.9<1.10
 
 SYSTEM_SEARCH.ros-diagnostics=\
