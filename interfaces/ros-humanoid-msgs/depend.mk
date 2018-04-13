@@ -30,6 +30,14 @@ SYSTEM_SEARCH.ros-humanoid-msgs=\
   'share/humanoid_nav_msgs/package.xml:/<version>/s/[^0-9.]//gp'	\
   'lib/pkgconfig/humanoid_nav_msgs.pc:/Version/s/[^0-9.]//gp'
 
+# There is a meta-pkg call ros-humanoid-msgs, which contains itself plus
+# ros-humanoid-nav-msgs. Since the meta-pkg contains itself, installing it
+# only installs ros-humanoid-msgs and not ros-humanoid-nav-msgs ...
+#
+SYSTEM_PKG.Ubuntu.ros-humanoid-msgs=\
+  ros-${PKG_ALTERNATIVE.ros}-humanoid-msgs	\
+  ros-${PKG_ALTERNATIVE.ros}-humanoid-nav-msgs
+
 include ../../mk/sysdep/python.mk
 
 endif # ROS_HUMANOID_MSGS_DEPEND_MK ----------------------------------------
