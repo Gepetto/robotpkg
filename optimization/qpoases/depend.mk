@@ -19,7 +19,7 @@ DEPEND_ABI.qpoases?=	qpoases>=3.2
 DEPEND_DIR.qpoases?=	../../optimization/qpoases
 
 SYSTEM_SEARCH.qpoases=\
-  'include/qpOASES.hpp:/\\version/s/[^0-9.]//gp'
+  'include/qpOASES.hpp:/\\version/s/[^0-9.]//gp'	\
   'lib/libqpOASES.{so,a}'
 
 endif # qpOASES_DEPEND_MK --------------------------------------------------
