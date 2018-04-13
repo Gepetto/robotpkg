@@ -6,7 +6,7 @@ PKGREVISION=	1
 VERSION=	1.7.1
 DISTNAME=	flann-${VERSION}-src
 PKGNAME=	flann-${VERSION}
-MASTER_SITES=	http://www.cs.ubc.ca/~mariusm/uploads/FLANN/
+MASTER_SITES=	http://www.cs.ubc.ca/research/flann/uploads/FLANN/
 EXTRACT_SUFX=	.zip
 
 CATEGORIES=	graphics
