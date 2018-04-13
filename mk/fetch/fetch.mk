@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011,2013 LAAS/CNRS
+# Copyright (c) 2006-2011,2013,2018 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -172,6 +172,10 @@ ifndef NO_CHECKSUM
     ifeq (,$(filter mdi distinfo makesum,${MAKECMDGOALS}))
       _FETCH_ARGS+=-c -f $(call quote,${DISTINFO_FILE})
     endif
+
+    # Require digest tool
+    DEPEND_METHOD.digest+=	bootstrap
+    include ${ROBOTPKG_DIR}/pkgtools/digest/depend.mk
   endif
 endif
 _FETCH_ARGS+=  -d $(or $(strip ${DIST_SUBDIR}),.)
