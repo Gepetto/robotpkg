@@ -6,7 +6,8 @@ DISTNAME=		coriander-2.0.0-rc6
 PKGNAME=		coriander-2.0.0rc6
 PKGREVISION=		1
 CATEGORIES=		image
-MASTER_SITES=		http://damien.douxchamps.net/ieee1394/coriander/archives/
+MASTER_SITES=\
+  https://damien.douxchamps.net/ieee1394/coriander/archives/
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://damien.douxchamps.net/ieee1394/coriander/
