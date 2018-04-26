@@ -22,6 +22,7 @@ SUBDIR+=	liblbfgs
 SUBDIR+=	meschach
 SUBDIR+=	pinocchio
 SUBDIR+=	py-eigenpy
+SUBDIR+=	py-pinocchio
 SUBDIR+=	ros-angles
 SUBDIR+=	ros-eigen-stl-containers
 SUBDIR+=	ros-geometry

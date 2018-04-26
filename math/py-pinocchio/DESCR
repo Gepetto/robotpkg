@@ -1,0 +1,4 @@
+Pinocchio is a C++ library for dynamic computations focusing on robotic,
+computer animation and biomechanical applications.
+
+This package provides the python bindings for pinocchio.

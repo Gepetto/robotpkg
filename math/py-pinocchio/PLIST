@@ -1,0 +1,9 @@
+@comment Thu Apr 26 18:18:06 CEST 2018
+${PYTHON_SITELIB}/pinocchio/__init__.py
+${PYTHON_SITELIB}/pinocchio/deprecation.py
+${PYTHON_SITELIB}/pinocchio/explog.py
+${PYTHON_SITELIB}/pinocchio/libpinocchio_pywrap.so
+${PYTHON_SITELIB}/pinocchio/robot_wrapper.py
+${PYTHON_SITELIB}/pinocchio/romeo_wrapper.py
+${PYTHON_SITELIB}/pinocchio/rpy.py
+${PYTHON_SITELIB}/pinocchio/utils.py
