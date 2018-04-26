@@ -1,0 +1,16 @@
+Enforce consistency with robotpkg list of dependencies
+
+--- CMakeLists.txt~	2018-04-02 18:17:57.000000000 +0200
++++ CMakeLists.txt	2018-04-26 14:23:48.596052980 +0200
+@@ -77,9 +77,8 @@
+ # --- DEPENDANCIES -----------------------------------
+ # ----------------------------------------------------
+ ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
+-ADD_OPTIONAL_DEPENDENCY("metapod >= 1.0.7")
+-ADD_OPTIONAL_DEPENDENCY("urdfdom >= 0.2.0")
+-ADD_OPTIONAL_DEPENDENCY("hpp-fcl >= 0.5.1")
++ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2.0")
++ADD_REQUIRED_DEPENDENCY("hpp-fcl >= 0.5.1")
+ 
+ # Spetcial care of Eigen3 greater than 3.2.10
+ IF(EIGEN3_FOUND)
