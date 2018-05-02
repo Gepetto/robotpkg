@@ -2,7 +2,6 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
-PKGREVISION=		1
 VERSION=		1.2.7
 PKGNAME=		${PKGTAG.python-}pinocchio-${VERSION}
 DISTNAME=		pinocchio-${VERSION}
@@ -16,8 +15,6 @@ COMMENT=		Efficient rigid body dynamics (python bindings)
 HOMEPAGE=		http://stack-of-tasks.github.io/pinocchio/
 MAINTAINER=		gepetto@laas.fr
 LICENSE=		gnu-lgpl-v3
-
-CONFLICTS+=		py[0-9][0-9]-pinocchio-[0-9]*
 
 CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 CMAKE_ARGS+=		-DBUILD_PYTHON_INTERFACE=ON
