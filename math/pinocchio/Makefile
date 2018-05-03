@@ -2,7 +2,7 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 VERSION=		1.2.7
 DISTNAME=		pinocchio-${VERSION}
 MASTER_SITES=\
@@ -40,3 +40,14 @@ include ../../mk/language/c++.mk
 DEPEND_ABI.urdfdom +=	urdfdom>=0.2.3
 
 include ../../mk/robotpkg.mk
+
+# Add revision number to the .pc, as the depend.mk needs DEPEND_ABI>=1.2.7r1
+post-configure:
+	${RUN} ${STEP_MSG} "Adding revision number to .pc file";	\
+	for f in pinocchio.pc include/pinocchio/config.hh; do		\
+	  ${MV} -f ${WRKSRC}/$$f ${WRKSRC}/$$f~;			\
+	  ${SED}							\
+	  -e '/PINOCCHIO_VERSION.*/s//PINOCCHIO_VERSION "${PKGVERSION}"/'\
+	  -e '/Version:.*/s//Version: ${PKGVERSION}/'			\
+	  <${WRKSRC}/$$f~ >${WRKSRC}/$$f;				\
+	done
