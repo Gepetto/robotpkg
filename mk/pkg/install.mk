@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012 LAAS/CNRS
+# Copyright (c) 2006-2012,2018 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -45,11 +45,11 @@ pkg-install-check-conflicts:
 	${RUN}${RM} -f ${WRKDIR}/.CONFLICTS;				\
 ${foreach _conflict_,${CONFLICTS},					\
 	found="`${_PKG_BEST_EXISTS} '${_conflict_}' || ${TRUE}`";	\
-	case "$$found" in						\
-	"")	;;							\
-	"${PKGNAME}")	;;						\
-	*)	${ECHO} "$$found" >> ${WRKDIR}/.CONFLICTS ;;		\
-	esac;								\
+	if ${TEST} -n "$$found"; then					\
+	  if ! ${PKG_ADMIN} pmatch "${PKGWILDCARD}" "$$found"; then	\
+	    ${ECHO} "$$found" >> ${WRKDIR}/.CONFLICTS;			\
+	  fi;								\
+	fi;								\
 }									\
 	${TEST} -f ${WRKDIR}/.CONFLICTS || exit 0;			\
 	${ERROR_MSG} ${hline};						\
