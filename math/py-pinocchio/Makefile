@@ -2,6 +2,7 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
+PKGREVISION=		2
 VERSION=		1.2.7
 PKGNAME=		${PKGTAG.python-}pinocchio-${VERSION}
 DISTNAME=		pinocchio-${VERSION}
