@@ -1,4 +1,4 @@
-@comment Tue Feb 27 13:48:29 CET 2018
+@comment Thu May 3 11:22:09 CEST 2018
 include/eigenpy/angle-axis.hpp
 include/eigenpy/config.hh
 include/eigenpy/deprecated.hh
@@ -6,6 +6,7 @@ include/eigenpy/details.hpp
 include/eigenpy/eigenpy.hpp
 include/eigenpy/exception.hpp
 include/eigenpy/fwd.hpp
+include/eigenpy/geometry-conversion.hpp
 include/eigenpy/geometry.hpp
 include/eigenpy/map.hpp
 include/eigenpy/memory.hpp

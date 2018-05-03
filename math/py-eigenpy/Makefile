@@ -2,6 +2,7 @@
 # Created:			Olivier Stasse, Feb 3rd 2016
 #
 
+PKGREVISION=		1
 VERSION=		1.4.2
 PKGNAME=		${PKGTAG.python-}eigenpy-${VERSION}
 DISTNAME=		eigenpy-${VERSION}
@@ -17,7 +18,7 @@ COMMENT=		Eigen bindings to python
 LICENSE=		gnu-lgpl-v3
 
 # this does not support multiple parallel python version
-#CONFLICTS+=		py[0-9][0-9]-eigenpy-[0-9]*
+CONFLICTS+=		py[0-9][0-9]-eigenpy-[0-9]*
 # old package name
 CONFLICTS+=		eigenpy-[0-9]*
 
