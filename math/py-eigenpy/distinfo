@@ -1,5 +1,5 @@
-SHA1 (eigenpy-1.4.2.tar.gz) = 10ae3f0ca43b846bcdf2d43ccab4b5362af44a65
-RMD160 (eigenpy-1.4.2.tar.gz) = 87c0640fb36b2e4d8a9eff94aa9a98e6ca49986c
-Size (eigenpy-1.4.2.tar.gz) = 860556 bytes
-SHA1 (patch-ac) = 0c17a270d2e9c85a795b410561128b9d370ba627
-SHA1 (patch-ad) = 62001e8f2968d0d10616e34149c8b8bfdee429c4
+SHA1 (eigenpy-1.4.3.tar.gz) = 8d1b35e5f36911db18525380cd3820e4cfce8271
+RMD160 (eigenpy-1.4.3.tar.gz) = 2e94c8607b8d871611dc4d4ac840f6fcffeaadd5
+Size (eigenpy-1.4.3.tar.gz) = 860194 bytes
+SHA1 (patch-aa) = ad9a4a575ae6fd239fe6d9f06f6e89fde127b2b7
+SHA1 (patch-ab) = f346e4ce36176b24b5541655ab2ae622ae477cb3

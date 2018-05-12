@@ -2,8 +2,7 @@
 # Created:			Olivier Stasse, Feb 3rd 2016
 #
 
-PKGREVISION=		1
-VERSION=		1.4.2
+VERSION=		1.4.3
 PKGNAME=		${PKGTAG.python-}eigenpy-${VERSION}
 DISTNAME=		eigenpy-${VERSION}
 

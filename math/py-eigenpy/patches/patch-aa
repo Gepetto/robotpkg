@@ -1,0 +1,19 @@
+Fix .pc generation
+
+Submodule cmake f8a5bbb..d22de8c:
+diff --git cmake/boost.cmake cmake/boost.cmake
+index 6f0035f..08d3ab0 100644
+--- cmake/boost.cmake
++++ cmake/boost.cmake
+@@ -204,9 +204,9 @@ MACRO(PKG_CONFIG_APPEND_BOOST_LIBS)
+   ENDIF()
+ 
+   FOREACH(COMPONENT ${ARGN})
++    STRING(TOUPPER ${COMPONENT} UPPERCOMPONENT)
++    STRING(TOLOWER ${COMPONENT} LOWERCOMPONENT)
+     IF(APPLE)
+-      STRING(TOUPPER ${COMPONENT} UPPERCOMPONENT)
+-      STRING(TOLOWER ${COMPONENT} LOWERCOMPONENT)
+       IF("${LOWERCOMPONENT}" MATCHES "python")
+         PKG_CONFIG_APPEND_LIBS_RAW(-Wl,-undefined,dynamic_lookup,${Boost_${UPPERCOMPONENT}_LIBRARY})
+       ELSE("${LOWERCOMPONENT}" MATCHES "python")
