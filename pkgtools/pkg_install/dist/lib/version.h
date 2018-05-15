@@ -30,7 +30,7 @@
 #ifdef BOOTSTRAP
 # define PKGTOOLS_VERSION 0.
 #else
-# define PKGTOOLS_VERSION 20110805.7
+# define PKGTOOLS_VERSION 20110805.9
 #endif
 
 #endif /* _INST_LIB_VERSION_H_ */

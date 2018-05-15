@@ -949,8 +949,8 @@ normalise_platform(struct utsname *host_name)
 				break;
 			}
 			fclose(f);
-			k = strstr(line, "\n");
-			if (k) *k = '\0';
+			k = line + strspn(line, "0123456789");
+			*k = '\0';
 			strcpy(host_name->release, line);
 			return;
 		}
