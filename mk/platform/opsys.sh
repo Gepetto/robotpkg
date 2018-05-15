@@ -73,7 +73,7 @@ case $s in
             done </etc/lsb-release
         fi
         if test -f /etc/debian_version; then
-            read release </etc/debian_version
+            IFS=. read release minor </etc/debian_version
             echo Debian $release $m
             exit 0
         fi
