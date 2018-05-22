@@ -2,12 +2,11 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
-PKGREVISION=		2
-VERSION=		1.2.7
+VERSION=		1.2.8
 PKGNAME=		${PKGTAG.python-}pinocchio-${VERSION}
 DISTNAME=		pinocchio-${VERSION}
 MASTER_SITES=\
-  ${MASTER_SITE_BASE:=${PKGBASE}/releases/download/v${VERSION}/}
+  ${MASTER_SITE_GITHUB:=stack-of-tasks/pinocchio/releases/download/v${VERSION}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/stack-of-tasks/${PKGBASE}
 CHECKOUT_VCS_OPTS=	--recursive
 

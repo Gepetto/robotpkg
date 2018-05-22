@@ -1,4 +1,4 @@
-@comment Thu Apr 26 18:18:06 CEST 2018
+@comment Tue May 22 16:14:04 CEST 2018
 ${PYTHON_SITELIB}/pinocchio/__init__.py
 ${PYTHON_SITELIB}/pinocchio/deprecation.py
 ${PYTHON_SITELIB}/pinocchio/explog.py
