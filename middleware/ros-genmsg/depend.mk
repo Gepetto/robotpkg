@@ -27,6 +27,7 @@ DEPEND_ABI.ros-genmsg.indigo?=	ros-genmsg>=0.5<0.6
 DEPEND_ABI.ros-genmsg.jade?=	ros-genmsg>=0.5<0.6
 DEPEND_ABI.ros-genmsg.kinetic?=	ros-genmsg>=0.5<0.6
 DEPEND_ABI.ros-genmsg.lunar?=	ros-genmsg>=0.5<0.6
+DEPEND_ABI.ros-genmsg.melodic?=	ros-genmsg>=0.5<0.6
 
 SYSTEM_SEARCH.ros-genmsg=\
 	'${PYTHON_SYSLIBSEARCH}/genmsg/__init__.py'		\

@@ -27,6 +27,7 @@ DEPEND_ABI.ros-geometry.indigo+=	ros-geometry>=1.11<1.12
 DEPEND_ABI.ros-geometry.jade+=		ros-geometry>=1.11<1.12
 DEPEND_ABI.ros-geometry.kinetic+=	ros-geometry>=1.11<1.12
 DEPEND_ABI.ros-geometry.lunar+=		ros-geometry>=1.11<1.12
+DEPEND_ABI.ros-geometry.melodic+=	ros-geometry>=1.12<1.13
 
 SYSTEM_SEARCH.ros-geometry=\
   'include/eigen_conversions/eigen_kdl.h'				\

@@ -27,6 +27,7 @@ DEPEND_ABI.ros-image-common.indigo?=	ros-image-common>=1.11<1.12
 DEPEND_ABI.ros-image-common.jade?=	ros-image-common>=1.11<1.12
 DEPEND_ABI.ros-image-common.kinetic?=	ros-image-common>=1.11<1.12
 DEPEND_ABI.ros-image-common.lunar?=	ros-image-common>=1.11<1.12
+DEPEND_ABI.ros-image-common.melodic?=	ros-image-common>=1.11<1.12
 
 SYSTEM_SEARCH.ros-image-common=\
   'include/camera_calibration_parsers/parse.h'				\

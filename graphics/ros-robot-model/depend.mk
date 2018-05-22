@@ -18,6 +18,9 @@ SYSTEM_PREFIX.ros-robot-model?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-robot-model
 ROS_DEPEND_USE+=		ros-robot-model
 
+# this package was removed in ros-melodic
+DEPEND_ABI.ros+=		ros<=lunar
+
 DEPEND_ABI.ros-robot-model?=	ros-robot-model>=1.9
 DEPEND_DIR.ros-robot-model?=	../../graphics/ros-robot-model
 

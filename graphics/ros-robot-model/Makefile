@@ -37,6 +37,10 @@ include ../../motion/orocos-kdl/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
 include ../../sysutils/ros-console-bridge/depend.mk
 include ../../mk/sysdep/libcurl.mk
+
+# this package was removed in ros-melodic
+DEPEND_ABI.ros+=	ros<=lunar
+
 include ../../mk/robotpkg.mk
 
 # resource_retriever is packaged separately, because of a circular dependency

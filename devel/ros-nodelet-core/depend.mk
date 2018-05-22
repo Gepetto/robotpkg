@@ -27,6 +27,7 @@ DEPEND_ABI.ros-nodelet-core.indigo?=	ros-nodelet-core>=1.9<1.10
 DEPEND_ABI.ros-nodelet-core.jade?=	ros-nodelet-core>=1.9<1.10
 DEPEND_ABI.ros-nodelet-core.kinetic?=	ros-nodelet-core>=1.9<1.10
 DEPEND_ABI.ros-nodelet-core.lunar?=	ros-nodelet-core>=1.9<1.10
+DEPEND_ABI.ros-nodelet-core.melodic?=	ros-nodelet-core>=1.9<1.10
 
 SYSTEM_SEARCH.ros-nodelet-core=\
   'include/nodelet/nodelet.h'						\

@@ -28,6 +28,7 @@ DEPEND_ABI.gazebo-ros-pkgs.indigo?=	gazebo-ros-pkgs>=2.4<2.5
 DEPEND_ABI.gazebo-ros-pkgs.jade?=	gazebo-ros-pkgs>=2.5<2.7
 DEPEND_ABI.gazebo-ros-pkgs.kinetic?=	gazebo-ros-pkgs>=2.5<2.7
 DEPEND_ABI.gazebo-ros-pkgs.lunar?=	gazebo-ros-pkgs>=2.7<2.8
+DEPEND_ABI.gazebo-ros-pkgs.melodic?=	gazebo-ros-pkgs>=2.8<2.9
 
 SYSTEM_SEARCH.gazebo-ros-pkgs=\
   'include/gazebo_msgs/WorldState.h'					\

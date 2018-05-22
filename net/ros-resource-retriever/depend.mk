@@ -27,6 +27,7 @@ DEPEND_ABI.ros-resource-retriever.indigo?=ros-resource-retriever>=1.11<1.12
 DEPEND_ABI.ros-resource-retriever.jade?=ros-resource-retriever>=1.11<1.12
 DEPEND_ABI.ros-resource-retriever.kinetic?=ros-resource-retriever>=1.12<1.13
 DEPEND_ABI.ros-resource-retriever.lunar?=ros-resource-retriever>=1.12<1.13
+DEPEND_ABI.ros-resource-retriever.melodic?=ros-resource-retriever>=1.12<1.13
 
 SYSTEM_SEARCH.ros-resource-retriever=\
   'include/resource_retriever/retriever.h'				\

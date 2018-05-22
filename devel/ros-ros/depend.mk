@@ -27,6 +27,7 @@ DEPEND_ABI.ros-ros.indigo?=	ros-ros>=1.11<1.12
 DEPEND_ABI.ros-ros.jade?=	ros-ros>=1.12<1.13
 DEPEND_ABI.ros-ros.kinetic?=	ros-ros>=1.13<1.15
 DEPEND_ABI.ros-ros.lunar?=	ros-ros>=1.14<1.15
+DEPEND_ABI.ros-ros.melodic?=	ros-ros>=1.14<1.15
 
 SYSTEM_SEARCH.ros-ros=\
 	bin/rosrun					\
