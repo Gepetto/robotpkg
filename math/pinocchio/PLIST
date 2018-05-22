@@ -1,4 +1,4 @@
-@comment Thu Apr 26 14:36:40 CEST 2018
+@comment Tue May 22 16:09:51 CEST 2018
 include/pinocchio/algorithm/aba.hpp
 include/pinocchio/algorithm/aba.hxx
 include/pinocchio/algorithm/center-of-mass.hpp
@@ -53,6 +53,7 @@ include/pinocchio/multibody/joint/joint-base.hpp
 include/pinocchio/multibody/joint/joint-basic-visitors.hpp
 include/pinocchio/multibody/joint/joint-basic-visitors.hxx
 include/pinocchio/multibody/joint/joint-composite.hpp
+include/pinocchio/multibody/joint/joint-composite.hxx
 include/pinocchio/multibody/joint/joint-free-flyer.hpp
 include/pinocchio/multibody/joint/joint-planar.hpp
 include/pinocchio/multibody/joint/joint-prismatic-unaligned.hpp
