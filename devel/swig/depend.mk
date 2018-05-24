@@ -36,7 +36,8 @@ DEPEND_ABI.swig?=$(strip \
 DEPEND_DIR.swig?=	../../devel/swig
 DEPEND_METHOD.swig+=	build
 
-SYSTEM_SEARCH.swig=	'bin/swig:/Version/{s/[^.0-9]//gp;q;}:% -version'
+SYSTEM_SEARCH.swig=\
+  'bin/swig{[0-9]*,}:/Version/{s/[^.0-9]//gp;q;}:% -version'
 
 SYSTEM_PKG.Gentoo.swig=	dev-lang/swig
 
