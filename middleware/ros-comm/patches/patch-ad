@@ -1,0 +1,15 @@
+Fix for console-bridge >= 0.4
+
+--- tools/rosbag_storage/include/rosbag/bag.h~	2016-06-28 00:11:58.000000000 +0200
++++ tools/rosbag_storage/include/rosbag/bag.h	2018-05-24 14:00:00.660956858 +0200
+@@ -61,6 +61,10 @@
+ #include <boost/iterator/iterator_facade.hpp>
+ 
+ #include "console_bridge/console.h"
++/* Fix for console-bridge >= 0.4 */
++#ifdef CONSOLE_BRIDGE_logError
++# define logDebug CONSOLE_BRIDGE_logDebug
++#endif
+ 
+ namespace rosbag {
+ 

@@ -1,0 +1,28 @@
+Fix for console-bridge >= 0.4
+
+--- tools/rosbag_storage/src/lz4_stream.cpp~	2016-06-28 00:11:58.000000000 +0200
++++ tools/rosbag_storage/src/lz4_stream.cpp	2018-05-24 14:03:02.398205521 +0200
+@@ -37,6 +37,10 @@
+ #include <iostream>
+ #include <cstring>
+ #include "console_bridge/console.h"
++/* Fix for console-bridge >= 0.4 */
++#ifdef CONSOLE_BRIDGE_logError
++# define logError CONSOLE_BRIDGE_logError
++#endif
+ 
+ using std::string;
+ 
+--- tools/rosbag_storage/src/bz2_stream.cpp~	2016-06-28 00:11:58.000000000 +0200
++++ tools/rosbag_storage/src/bz2_stream.cpp	2018-05-24 14:03:07.210238576 +0200
+@@ -37,6 +37,10 @@
+ #include <iostream>
+ #include <cstring>
+ #include "console_bridge/console.h"
++/* Fix for console-bridge >= 0.4 */
++#ifdef CONSOLE_BRIDGE_logError
++# define logError CONSOLE_BRIDGE_logError
++#endif
+ 
+ using std::string;
+ 

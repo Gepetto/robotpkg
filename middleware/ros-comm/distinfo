@@ -3,3 +3,6 @@ RMD160 (ros/ros_comm/1.11.20.tar.gz) = d9842ad186b33ced571a0cea6e7d9e1f26cba7df
 Size (ros/ros_comm/1.11.20.tar.gz) = 952822 bytes
 SHA1 (patch-aa) = bd1f51b2a196c10b667dea4d877845a738690b10
 SHA1 (patch-ab) = 2480edbf6fa443d1db9d0730cd6c7c65d6a8309b
+SHA1 (patch-ac) = 919350555909351fd0ea3e192bf5a544180727a6
+SHA1 (patch-ad) = 2b014a9dbd292608262c4c387ae164bb3b3e7c6a
+SHA1 (patch-ae) = 65731b67d1742131fd7d49b6bff4cff08253d645
