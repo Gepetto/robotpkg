@@ -1,0 +1,15 @@
+Fix for console-bridge >= 0.4
+
+--- cpp_common/src/header.cpp~	2014-07-23 23:52:33.000000000 +0200
++++ cpp_common/src/header.cpp	2018-05-24 12:10:40.048761489 +0200
+@@ -35,6 +35,10 @@
+ #include "ros/header.h"
+ 
+ #include "console_bridge/console.h"
++/* Fix for console-bridge >= 0.4 */
++#ifdef CONSOLE_BRIDGE_logError
++# define logError CONSOLE_BRIDGE_logError
++#endif
+ 
+ #include <sstream>
+ 
