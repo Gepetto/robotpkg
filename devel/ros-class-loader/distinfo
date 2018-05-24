@@ -2,3 +2,5 @@ SHA1 (ros/class_loader/0.3.0.tar.gz) = 252afc6ab5941617a988d022bbff35cb8015ca52
 RMD160 (ros/class_loader/0.3.0.tar.gz) = 7815a04746bf3ffa4320faa014c14f3ee4b3606f
 Size (ros/class_loader/0.3.0.tar.gz) = 26650 bytes
 SHA1 (patch-ab) = 501a0786583f6359620d5b2f028a5cb9fe5936f3
+SHA1 (patch-ac) = 3ebdcf6d6d22150b88ea0d5626049594c576e95a
+SHA1 (patch-ad) = 05ec05d60c62859a6e320b3efa8bf2f9fac4231b
