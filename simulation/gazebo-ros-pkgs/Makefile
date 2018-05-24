@@ -57,4 +57,7 @@ include ../../motion/ros-control/depend.mk
 include ../../sysutils/ros-diagnostics/depend.mk
 include ../../mk/sysdep/gazebo.mk
 include ../../mk/sysdep/libxml2.mk
+
+DEPEND_ABI.gazebo += gazebo<9
+
 include ../../mk/robotpkg.mk
