@@ -1,0 +1,20 @@
+Fix bad LDFLAGS
+
+--- configure~	2018-05-24 15:02:38.281071522 +0200
++++ configure	2018-05-24 15:30:03.920211834 +0200
+@@ -18707,7 +18707,6 @@
+ LDFLAGS=$u_list" "
+ LDFLAGS=`echo $LDFLAGS | sed -e 's/-L\/usr\/lib //g'`
+ LDFLAGS=`echo $LDFLAGS | sed -e 's/-L\/usr\/lib$//g'`
+-LDFLAGS="$more_libs $LDFLAGS"
+ 
+ 
+     u_list=
+@@ -18727,7 +18726,6 @@
+ LDSOLIBS=$u_list" "
+ LDSOLIBS=`echo $LDSOLIBS | sed -e 's/-L\/usr\/lib //g'`
+ LDSOLIBS=`echo $LDSOLIBS | sed -e 's/-L\/usr\/lib$//g'`
+-LDSOLIBS="$more_libs $LDSOLIBS"
+ 
+ 
+     u_list=

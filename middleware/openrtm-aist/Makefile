@@ -26,6 +26,7 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
 CONFIGURE_ARGS+=        --with-ace-includes=${PREFIX.ace}
 CONFIGURE_ARGS+=        --with-ace-lib=${PREFIX.ace}
+CONFIGURE_ARGS+=        --with-libs=$(dir $(filter %.so,${SYSTEM_FILES.omniORB}))
 
 SUBST_CLASSES+=		rtm-python
 SUBST_STAGE.rtm-python=	pre-configure
