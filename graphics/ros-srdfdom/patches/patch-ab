@@ -1,0 +1,16 @@
+Fix for console-bridge >= 0.4
+
+--- src/model.cpp~	2018-05-24 13:45:52.087158471 +0200
++++ src/model.cpp	2018-05-24 13:47:02.139633261 +0200
+@@ -36,6 +36,11 @@
+ 
+ #include "srdfdom/model.h"
+ #include <console_bridge/console.h>
++/* Fix for console-bridge >= 0.4 */
++#ifdef CONSOLE_BRIDGE_logError
++# define logWarn CONSOLE_BRIDGE_logWarn
++# define logError CONSOLE_BRIDGE_logError
++#endif
+ #include <boost/lexical_cast.hpp>
+ #include <boost/algorithm/string/trim.hpp>
+ #include <algorithm>
