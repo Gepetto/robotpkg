@@ -1,0 +1,361 @@
+Fix for python3:
+
+Allow it, fix incompatible syntax, and don't install .pyc files, whose compiled
+files are __pycache__/$filename.<magic>.pyc in python3.2+ and
+not $filename.pyc, see https://www.python.org/dev/peps/pep-3147/
+.pyc files are installed automatically by robotpkg anyway.
+
+diff --git CMakeLists.txt CMakeLists.txt
+index d5a2a8c..f8266a3 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -139,7 +139,7 @@
+
+ IF(BUILD_PYTHON_INTERFACE)
+   SET(BOOST_OPTIONAL_COMPONENTS ${BOOST_OPTIONAL_COMPONENTS} python)
+-  FINDPYTHON(2.7 EXACT REQUIRED)
++  FINDPYTHON()
+   INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_DIRS}) 
+ ENDIF(BUILD_PYTHON_INTERFACE)
+
+diff --git bindings/python/CMakeLists.txt bindings/python/CMakeLists.txt
+index a073425..92780f7 100644
+--- bindings/python/CMakeLists.txt
++++ bindings/python/CMakeLists.txt
+@@ -208,7 +208,6 @@
+     
+   INSTALL(FILES
+     "${${PROJECT_NAME}_SOURCE_DIR}/bindings/python/scripts/${python}"
+-    "${${PROJECT_NAME}_BINARY_DIR}/bindings/python/${PROJECT_NAME}/${pythonFile}c"
+     DESTINATION ${${PYWRAP}_INSTALL_DIR})
+ ENDFOREACH(python)
+ 
+     
+     
+--- ./python/tests.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./python/tests.py	2018-05-25 18:11:43.648639441 +0200
+@@ -15,6 +15,6 @@
+ from utils import TestUtils  # noqa
+ 
+ if __name__ == '__main__':
+-    print "Python version"
+-    print sys.version_info
++    print("Python version")
++    print(sys.version_info)
+     unittest.main()
+--- ./python/rpy.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./python/rpy.py	2018-05-25 18:11:43.632639219 +0200
+@@ -8,7 +8,7 @@
+ 
+ class TestRPY(TestCase):
+     def test_npToTuple(self):
+-        m = np.matrix(range(9))
++        m = np.matrix(list(range(9)))
+         self.assertEqual(npToTuple(m), tuple(range(9)))
+         self.assertEqual(npToTuple(m.T), tuple(range(9)))
+         self.assertEqual(npToTuple(np.reshape(m, (3, 3))), ((0, 1, 2), (3, 4, 5), (6, 7, 8)))
+@@ -18,5 +18,5 @@
+         self.assertApprox(rotate('x', pi) * rotate('y', pi), rotate('z', pi))
+         m = rotate('x', pi / 3) * rotate('y', pi / 5) * rotate('y', pi / 7)
+         self.assertApprox(rpyToMatrix(matrixToRpy(m)), m)
+-        rpy = np.matrix(range(3)).T * pi / 2
++        rpy = np.matrix(list(range(3))).T * pi / 2
+         self.assertApprox(matrixToRpy(rpyToMatrix(rpy)), rpy)
+--- ./python/explog.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./python/explog.py	2018-05-25 18:11:43.600638774 +0200
+@@ -13,7 +13,7 @@
+         self.assertApprox(log(42), math.log(42))
+         self.assertApprox(exp(log(42)), 42)
+         self.assertApprox(log(exp(42)), 42)
+-        m = np.matrix(range(1, 4), np.double).T
++        m = np.matrix(list(range(1, 4)), np.double).T
+         self.assertApprox(log(exp(m)), m)
+         m = se3.SE3.Random()
+         self.assertApprox(exp(log(m)), m)
+@@ -24,8 +24,8 @@
+         with self.assertRaises(ValueError):
+             exp(np.eye(4))
+         with self.assertRaises(ValueError):
+-            exp(range(3))
++            exp(list(range(3)))
+         with self.assertRaises(ValueError):
+-            log(range(3))
++            log(list(range(3)))
+         with self.assertRaises(ValueError):
+             log(np.zeros(5))
+--- ./bindings/python/scripts/derivative/lambdas.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./bindings/python/scripts/derivative/lambdas.py	2018-05-25 18:11:43.280634325 +0200
+@@ -26,8 +26,8 @@
+             return j
+ 
+ parent = lambda i,robot: robot.model.parents[i]
+-iv = lambda i,robot: range(robot.model.joints[i].idx_v,
+-                     robot.model.joints[i].idx_v+robot.model.joints[i].nv)
++iv = lambda i,robot: list(range(robot.model.joints[i].idx_v,
++                     robot.model.joints[i].idx_v+robot.model.joints[i].nv))
+ ancestors = lambda j,robot,res=[]: res if j==0 else ancestors(robot.model.parents[j],robot,[j,]+res)
+ 
+ class ancestorOf:
+--- ./bindings/python/scripts/derivative/dcrba.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./bindings/python/scripts/derivative/dcrba.py	2018-05-25 18:11:43.256633992 +0200
+@@ -299,7 +299,7 @@
+         
+         R = self.R = zero([NV,NV])
+ 
+-        for i in reversed(range(1,NJ)):           # i is the torque index :    dtau_i = R[i,:] dq
++        for i in reversed(list(range(1,NJ))):           # i is the torque index :    dtau_i = R[i,:] dq
+             i0,i1 = iv(i)[0],iv(i)[-1]+1
+             Yi = Y[i]
+             Yci = Ycrb[i]
+@@ -379,7 +379,7 @@
+                     se3.computeAllTerms(robot.model,robot.data,q,vq1)
+                     Htrue[:,i,j] = (robot.data.oMi[joint_i]*robot.data.a[joint_i]).vector.T
+     
+-    print 'Check hessian = \t\t', norm(H-Htrue)    
++    print('Check hessian = \t\t', norm(H-Htrue))    
+ 
+     # --- dCRBA ---
+     # --- dCRBA ---
+@@ -405,7 +405,7 @@
+     
+     dM /= eps
+     
+-    print 'Check dCRBA = \t\t\t', max([ norm(Mp[:,:,diff]-dM[:,:,diff]) for diff in range(robot.model.nv) ])
++    print('Check dCRBA = \t\t\t', max([ norm(Mp[:,:,diff]-dM[:,:,diff]) for diff in range(robot.model.nv) ]))
+     
+     
+     # --- vRNEA ---
+@@ -431,18 +431,18 @@
+             vq1[i] = vq1[j] = 1.0
+             C[:,i,j] = (rnea0(q,vq1).T-C[:,i,i]-C[:,j,j]) /2
+ 
+-    print "Check d/dv rnea = \t\t",norm(quad(Q,vq)-rnea0(q,vq))
+-    print "Check C  = Q+Q.T = \t\t", norm((Q+Q.transpose(0,2,1))/2-C)
+-    print "Check dM = C+C.T /2 \t\t", norm( Mp - (C+C.transpose(1,0,2)) )
+-    print "Check dM = Q+Q.T+Q.T+Q.T /2 \t", norm( Mp - 
+-                                            (Q+Q.transpose(0,2,1)+Q.transpose(1,0,2)+Q.transpose(2,0,1))/2 )
++    print("Check d/dv rnea = \t\t",norm(quad(Q,vq)-rnea0(q,vq)))
++    print("Check C  = Q+Q.T = \t\t", norm((Q+Q.transpose(0,2,1))/2-C))
++    print("Check dM = C+C.T /2 \t\t", norm( Mp - (C+C.transpose(1,0,2)) ))
++    print("Check dM = Q+Q.T+Q.T+Q.T /2 \t", norm( Mp - 
++                                            (Q+Q.transpose(0,2,1)+Q.transpose(1,0,2)+Q.transpose(2,0,1))/2 ))
+ 
+     # --- CORIOLIS
+     # --- CORIOLIS
+     # --- CORIOLIS
+     coriolis = Coriolis(robot)
+     C = coriolis(q,vq)
+-    print "Check coriolis \t\t\t",norm(C*vq-rnea0(q,vq))
++    print("Check coriolis \t\t\t",norm(C*vq-rnea0(q,vq)))
+ 
+     # --- DRNEA
+     # --- DRNEA
+@@ -459,7 +459,7 @@
+         dq = zero(NV); dq[i]=eps
+         qdq = se3.integrate(robot.model,q,dq)
+         Rd[:,i] = (se3.rnea(robot.model,robot.data,qdq,vq,aq)-r0)/eps
+-    print "Check drnea    \t\t\t",norm(Rd-R)
++    print("Check drnea    \t\t\t",norm(Rd-R))
+ 
+ 
+     
+--- ./bindings/python/scripts/romeo_wrapper.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./bindings/python/scripts/romeo_wrapper.py	2018-05-25 18:11:43.076631489 +0200
+@@ -17,7 +17,7 @@
+ import numpy as np
+ 
+-import libpinocchio_pywrap as se3
++from . import libpinocchio_pywrap as se3
+-from robot_wrapper import RobotWrapper
++from .robot_wrapper import RobotWrapper
+ 
+ 
+ class RomeoWrapper(RobotWrapper):
+@@ -40,7 +40,7 @@
+                                   "lf": "LAnkleRoll",
+                                   }
+ 
+-        for op, name in self.opCorrespondances.items():
++        for op, name in list(self.opCorrespondances.items()):
+             self.__dict__[op] = self.index(name)
+             # self.__dict__['_M'+op] = types.MethodType(lambda s, q: s.position(q,idx),self)
+ 
+--- ./bindings/python/scripts/robot_wrapper.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./bindings/python/scripts/robot_wrapper.py	2018-05-25 18:11:43.060631266 +0200
+@@ -15,7 +15,7 @@
+ # <http://www.gnu.org/licenses/>.
+ 
+-import libpinocchio_pywrap as se3
++from . import libpinocchio_pywrap as se3
+-import utils
++from . import utils
+ import time
+ import os
+ 
+@@ -42,7 +42,7 @@
+                 self.collision_model = se3.buildGeomFromUrdf(self.model, filename, se3.GeometryType.COLLISION)
+                 self.visual_model = se3.buildGeomFromUrdf(self.model, filename, se3.GeometryType.VISUAL)
+             else:
+-                if not all(isinstance(item, basestring) for item in package_dirs):
++                if not all(isinstance(item, str) for item in package_dirs):
+                     raise Exception('The list of package directories is wrong. At least one is not a string')
+                 else:
+                     self.collision_model = se3.buildGeomFromUrdf(self.model, filename,
+@@ -223,7 +223,7 @@
+     def loadDisplayModel(self, rootNodeName="pinocchio"):
+     
+         def loadDisplayGeometryObject(geometry_object,geometry_type):
+-            from rpy import npToTuple
++            from .rpy import npToTuple
+             
+             meshName = self.getViewerNodeName(geometry_object,geometry_type)
+             meshPath = geometry_object.meshPath
+--- ./bindings/python/scripts/__init__.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./bindings/python/scripts/__init__.py	2018-05-25 18:11:42.948629709 +0200
+@@ -18,8 +18,8 @@
+ from pinocchio.robot_wrapper import RobotWrapper
+ 
+-import libpinocchio_pywrap as se3
+-import utils
+-from explog import exp, log
+-from libpinocchio_pywrap import *
++from . import libpinocchio_pywrap as se3
++from . import utils
++from .explog import exp, log
++from .libpinocchio_pywrap import *
+ 
+ se3.AngleAxis.__repr__ = lambda s: 'AngleAxis(%s)' % s.vector()
+--- ./bindings/python/scripts/utils.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./bindings/python/scripts/utils.py	2018-05-25 18:11:43.124632156 +0200
+@@ -20,9 +20,9 @@
+ import numpy.linalg as npl
+ 
+-import libpinocchio_pywrap as se3
++from . import libpinocchio_pywrap as se3
+-from rpy import matrixToRpy, npToTTuple, npToTuple, rotate, rpyToMatrix
++from .rpy import matrixToRpy, npToTTuple, npToTuple, rotate, rpyToMatrix
+ 
+-from deprecation import deprecated
++from .deprecation import deprecated
+ 
+ eye = lambda n: np.matrix(np.eye(n), np.double)
+ zero = lambda n: np.matrix(np.zeros([n, 1] if isinstance(n, int) else n), np.double)
+@@ -96,8 +96,8 @@
+         M = M.homogeneous
+     ncol = M.shape[1]
+     NC = 6
+-    print name, " = "
+-    print
++    print(name, " = ")
++    print()
+ 
+     Mmin = lambda M: M.min() if np.nonzero(M)[1].shape[1]>0 else M.sum()
+     Mmax = lambda M: M.max() if np.nonzero(M)[1].shape[1]>0 else M.sum()
+@@ -110,15 +110,15 @@
+         cmin = i * 6
+         cmax = (i + 1) * 6
+         cmax = ncol if ncol < cmax else cmax
+-        print "Columns %s through %s" % (cmin, cmax - 1)
+-        print
++        print("Columns %s through %s" % (cmin, cmax - 1))
++        print()
+         for r in range(M.shape[0]):
+             sys.stdout.write("  ")
+             for c in range(cmin, cmax):
+                 if abs(M[r,c])>eps: sys.stdout.write(fmt % M[r,c]  + "   ")
+                 else: sys.stdout.write(" 0"+" "*9)
+-            print
+-        print
++            print()
++        print()
+ 
+ 
+ def fromListToVectorOfString(items):
+--- ./lab/python/exp_integration.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./lab/python/exp_integration.py	2018-05-25 18:11:43.336635104 +0200
+@@ -49,7 +49,7 @@
+ for i in range(N):
+     M = M * se3.exp(nu)
+     viewer.updateElementConfig('RomeoTrunkYaw', se3ToRpy(M))
+-print "Residuals = ", norm(se3.log(M.inverse() * ME).vector())
++print("Residuals = ", norm(se3.log(M.inverse() * ME).vector()))
+ time.sleep(1)
+ 
+ # Integrate a constant "log" velocity in reference frame.
+@@ -59,7 +59,7 @@
+ for i in range(N):
+     M = M * se3.exp(nu)
+     viewer.updateElementConfig('RomeoTrunkYaw', se3ToRpy(M))
+-print "Residuals = ", norm(se3.log(M.inverse() * ME).vector())
++print("Residuals = ", norm(se3.log(M.inverse() * ME).vector()))
+ time.sleep(1)
+ 
+ # Integrate an exponential decay vector field toward ME.
+@@ -69,7 +69,7 @@
+     nu = se3.log(M.inverse() * ME).vector() * 1e-2
+     M = M * se3.exp(nu)
+     viewer.updateElementConfig('RomeoTrunkYaw', se3ToRpy(M))
+-print "Residuals = ", norm(se3.log(M.inverse() * ME).vector())
++print("Residuals = ", norm(se3.log(M.inverse() * ME).vector()))
+ time.sleep(1)
+ 
+ # Integrate a straight-line vector field toward ME.
+@@ -82,5 +82,5 @@
+     nu = se3.Motion(v, w)
+     M = M * se3.exp(nu)
+     viewer.updateElementConfig('RomeoTrunkYaw', se3ToRpy(M))
+-print "Residuals = ", norm(se3.log(M.inverse() * ME).vector())
++print("Residuals = ", norm(se3.log(M.inverse() * ME).vector()))
+ time.sleep(1)
+--- ./lab/python/kineinv.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./lab/python/kineinv.py	2018-05-25 18:11:43.352635326 +0200
+@@ -22,7 +22,7 @@
+ 
+         robot.increment(q, qdot * 5e-2)
+         robot.display(q)
+-    print "Residuals = ", robot.Mrh(q).translation[0, 0] - xdes
++    print("Residuals = ", robot.Mrh(q).translation[0, 0] - xdes)
+ 
+ 
+ def kineinv_dim3(q0, xdes, N=100):
+@@ -42,7 +42,7 @@
+ 
+         robot.increment(q, qdot * 5e-2)
+         robot.display(q)
+-    print "Residuals = ", npl.norm(robot.Mrh(q).translation[:3] - xdes)
++    print("Residuals = ", npl.norm(robot.Mrh(q).translation[:3] - xdes))
+ 
+ 
+ def kineinv_dim6(q0, Mdes, straight=True, N=100):
+@@ -72,7 +72,7 @@
+ 
+         robot.increment(q, qdot * 5e-2)
+         robot.display(q)
+-    print "Residuals = ", npl.norm(se3.log(robot.Mrh(q).inverse() * Mdes).vector())
++    print("Residuals = ", npl.norm(se3.log(robot.Mrh(q).inverse() * Mdes).vector()))
+ 
+ # --- MAIN ------------------------------------------------------
+ if __name__ == '__main__':
+--- ./bindings/python/scripts/rpy.py.bak	2018-05-18 16:45:40.000000000 +0200
++++ ./bindings/python/scripts/rpy.py	2018-05-25 18:11:43.280634325 +0200
+@@ -18,7 +18,7 @@
+ 
+ import numpy as np
+ 
+-import libpinocchio_pywrap as se3
++from . import libpinocchio_pywrap as se3
+ 
+ 
+ def npToTTuple(M):
+--- bindings/python/scripts/explog.py.old	2018-05-25 18:28:42.078760664 +0200
++++ bindings/python/scripts/explog.py	2018-05-25 18:28:10.802326662 +0200
+@@ -19,7 +19,7 @@
+ 
+ import numpy as np
+ 
+-import libpinocchio_pywrap as se3
++from . import libpinocchio_pywrap as se3
+ 
+ 
+ def exp(x):
+

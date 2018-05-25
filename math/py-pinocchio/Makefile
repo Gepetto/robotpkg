@@ -2,6 +2,7 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
+PKGREVISION=		1
 VERSION=		1.2.8
 NAME=			pinocchio
 PKGNAME=		${PKGTAG.python-}${NAME}-${VERSION}
@@ -27,6 +28,9 @@ CMAKE_ARGS+=		-DBUILD_TESTS_WITH_HPP=OFF
 CMAKE_ARGS+=		-DINSTALL_DOCUMENTATION=OFF
 
 USE_BOOST_LIBS=		python
+Boost_PYTHON_LIBRARY=	$(filter %.so,${SYSTEM_FILES.boost-lib-python})
+CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_RELEASE=${Boost_PYTHON_LIBRARY}
+CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_DEBUG=${Boost_PYTHON_LIBRARY}
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
@@ -37,7 +41,5 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
-
-DEPEND_ABI.python+=	python<3
 
 include ../../mk/robotpkg.mk
