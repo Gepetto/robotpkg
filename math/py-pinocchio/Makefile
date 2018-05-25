@@ -3,16 +3,17 @@
 #
 
 VERSION=		1.2.8
-PKGNAME=		${PKGTAG.python-}pinocchio-${VERSION}
-DISTNAME=		pinocchio-${VERSION}
+NAME=			pinocchio
+PKGNAME=		${PKGTAG.python-}${NAME}-${VERSION}
+DISTNAME=		${NAME}-${VERSION}
 MASTER_SITES=\
-  ${MASTER_SITE_GITHUB:=stack-of-tasks/pinocchio/releases/download/v${VERSION}/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/stack-of-tasks/${PKGBASE}
+  ${MASTER_SITE_GITHUB:=stack-of-tasks/${NAME}/releases/download/v${VERSION}/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/stack-of-tasks/${NAME}
 CHECKOUT_VCS_OPTS=	--recursive
 
 CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics (python bindings)
-HOMEPAGE=		http://stack-of-tasks.github.io/pinocchio/
+HOMEPAGE=		http://stack-of-tasks.github.io/${NAME}/
 MAINTAINER=		gepetto@laas.fr
 LICENSE=		gnu-lgpl-v3
 
