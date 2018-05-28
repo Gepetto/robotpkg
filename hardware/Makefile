@@ -17,7 +17,6 @@ SUBDIR+=	joystick-genom3
 SUBDIR+=	libftdi
 SUBDIR+=	mouse3d-genom
 SUBDIR+=	openni-sensor
-SUBDIR+=	peak-linux-driver
 SUBDIR+=	platine-genom
 SUBDIR+=	ros-driver-common
 SUBDIR+=	sahand-kmod
