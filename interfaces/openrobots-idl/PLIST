@@ -1,10 +1,10 @@
-@comment Fri Jan 26 15:26:54 CET 2018
+@comment Tue May 29 17:53:27 CEST 2018
 lib/pkgconfig/openrobots-idl.pc
-share/idl/or/hid/joystick.gen
-share/idl/or/pose/pose_estimator.gen
-share/idl/or/pose/rb3d.idl
-share/idl/or/pose/t3d.idl
-share/idl/or/pose/wrench_estimator.gen
-share/idl/or/robot/rotorcraft.gen
-share/idl/or/sensor/joint.gen
-share/idl/or/time/time.idl
+share/idl/openrobots1-idl/or/hid/joystick.gen
+share/idl/openrobots1-idl/or/pose/pose_estimator.gen
+share/idl/openrobots1-idl/or/pose/rb3d.idl
+share/idl/openrobots1-idl/or/pose/t3d.idl
+share/idl/openrobots1-idl/or/pose/wrench_estimator.gen
+share/idl/openrobots1-idl/or/robot/rotorcraft.gen
+share/idl/openrobots1-idl/or/sensor/joint.gen
+share/idl/openrobots1-idl/or/time/time.idl
