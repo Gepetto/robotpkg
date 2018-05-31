@@ -1,9 +1,11 @@
-@comment Sat Mar 7 18:26:17 CET 2015
-include/hpp/wholebody-step/config.h
+@comment Thu May 31 18:15:04 CEST 2018
 include/hpp/wholebody-step/config.hh
 include/hpp/wholebody-step/deprecated.hh
 include/hpp/wholebody-step/fwd.hh
+include/hpp/wholebody-step/small-steps.hh
 include/hpp/wholebody-step/static-stability-constraint.hh
+include/hpp/wholebody-step/time-dependant-path.hh
+include/hpp/wholebody-step/time-dependant.hh
 include/hpp/wholebody-step/warning.hh
 lib/libhpp-wholebody-step.so
 lib/pkgconfig/hpp-wholebody-step.pc
