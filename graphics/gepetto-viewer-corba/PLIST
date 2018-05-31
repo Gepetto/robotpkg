@@ -1,4 +1,4 @@
-@comment Tue Mar 13 17:14:39 CET 2018
+@comment Thu May 31 18:10:34 CEST 2018
 bin/gepetto-gui
 bin/gepetto-viewer-server
 bin/urdf_to_blender.py
@@ -43,6 +43,7 @@ ${PYTHON_SITELIB}/gepetto/corbaserver/__init__.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/client.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/exporttoblender.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/graphical_interface_idl.py
+${PYTHON_SITELIB}/gepetto/corbaserver/tools.py
 ${PYTHON_SITELIB}/gepetto/gui/__init__.py
 ${PYTHON_SITELIB}/gepetto/gui/blenderexport.py
 ${PYTHON_SITELIB}/gepetto/gui/matplotlib_example.py

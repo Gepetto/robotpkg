@@ -3,18 +3,15 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer-corba
-HPP_VERSION=		2.2.0
+HPP_VERSION=		2.3
 
 CATEGORIES=			graphics
 HPP_COMMENT=		Corba server for gepetto-viewer
 LICENSE=			2-clause-bsd
 
-MASTER_SITES=		${MASTER_SITE_GITHUB:=humanoid-path-planner/${HPP_PACKAGE}/releases/download/v${HPP_VERSION}/}
-
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..
 
-HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
 DEPEND_ABI.python=	python<3
