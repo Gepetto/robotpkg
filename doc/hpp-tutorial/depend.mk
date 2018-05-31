@@ -15,7 +15,7 @@ PREFER.hpp-tutorial?=	robotpkg
 
 DEPEND_USE+=		hpp-tutorial
 
-DEPEND_ABI.hpp-tutorial?=	hpp_tutorial>=1.0.0
+DEPEND_ABI.hpp-tutorial?=	hpp_tutorial>=1.1
 DEPEND_DIR.hpp-tutorial?=	../../doc/hpp-tutorial
 
 SYSTEM_SEARCH.hpp-tutorial=\

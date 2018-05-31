@@ -1,6 +1,5 @@
-@comment Wed Apr 29 17:52:32 CEST 2015
+@comment Thu Jul 12 16:40:18 CEST 2018
 bin/hpp-tutorial-server
-include/hpp/tutorial/config.h
 include/hpp/tutorial/config.hh
 include/hpp/tutorial/deprecated.hh
 include/hpp/tutorial/warning.hh
@@ -9,15 +8,19 @@ ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/pr2/__init__.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/pr2/robot.py
 ${PYTHON_SITELIB}/hpp/corbaserver/pr2/__init__.py
 ${PYTHON_SITELIB}/hpp/corbaserver/pr2/robot.py
-share/hpp_tutorial/cmake/hpp_tutorialConfig-version.cmake
-share/hpp_tutorial/cmake/hpp_tutorialConfig.cmake
-share/hpp_tutorial/launch/tutorial.launch
-share/hpp_tutorial/launch/tutorial_manipulation.launch
+${PYTHON_SITELIB}/hpp/corbaserver/rod/__init__.py
+${PYTHON_SITELIB}/hpp/corbaserver/rod/robot.py
+share/hpp_tutorial/meshes/box.dae
 share/hpp_tutorial/package.xml
-share/hpp_tutorial/rviz/config.rviz
-share/hpp_tutorial/rviz/config_manipulation.rviz
 share/hpp_tutorial/srdf/box.srdf
+share/hpp_tutorial/srdf/cup.srdf
+share/hpp_tutorial/srdf/door.srdf
 share/hpp_tutorial/srdf/pr2.srdf
 share/hpp_tutorial/srdf/pr2_manipulation.srdf
+share/hpp_tutorial/srdf/rod.srdf
 share/hpp_tutorial/urdf/box.urdf
+share/hpp_tutorial/urdf/box_color.urdf
+share/hpp_tutorial/urdf/cup.urdf
+share/hpp_tutorial/urdf/door.urdf
 share/hpp_tutorial/urdf/pr2.urdf
+share/hpp_tutorial/urdf/rod.urdf
