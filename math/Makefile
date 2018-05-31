@@ -11,6 +11,7 @@ SUBDIR+=	fsqp
 SUBDIR+=	gbM
 SUBDIR+=	geometric-tools
 SUBDIR+=	hpp-geometry
+SUBDIR+=	hpp-pinocchio
 SUBDIR+=	hrp2-dynamics
 SUBDIR+=	jafar-jmath
 SUBDIR+=	jrl-dynamics
