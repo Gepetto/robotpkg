@@ -1,10 +1,143 @@
-For some reason, this line makes doxygen-1.8.6 eat all memory and segfault
+Newer C++11 compat
 
---- doc/Doxyfile.extra.in~	2015-02-25 22:37:08.000000000 +0100
-+++ doc/Doxyfile.extra.in	2015-04-29 10:40:56.138142749 +0200
-@@ -1,4 +1,4 @@
- INPUT = @CMAKE_SOURCE_DIR@/include \
-       @CMAKE_SOURCE_DIR@/doc
+--- tests/explicit-solver.cc~	2018-05-13 17:54:59.000000000 +0200
++++ tests/explicit-solver.cc	2018-07-13 17:30:10.000000000 +0200
+@@ -275,12 +275,18 @@
+     AffineFunctionPtr_t (new AffineFunction (M))
+   };
+   segment_t s[] = { segment_t (0, 1), segment_t (1, 1), segment_t (2, 1), segment_t (3, 1) };
++#if __cplusplus <= 199711L
+   segments_t inArgs = list_of(s[0]),
+              outArgs = list_of(s[1])(s[2])(s[3]);
+-  BlockIndex::shrink (outArgs);
++#else
++  segments_t inArgs = { s[0] },
++    outArgs = { s[1], s[2], s[3] };
++#endif
++  Eigen::BlockIndex::shrink (outArgs);
  
--TAGFILES = @HPP_MODEL_DOXYGENDOCDIR@/hpp-model.doxytag=@HPP_MODEL_DOXYGENDOCDIR@
-+# TAGFILES = @HPP_MODEL_DOXYGENDOCDIR@/hpp-model.doxytag=@HPP_MODEL_DOXYGENDOCDIR@
+   std::vector<int> order(3);
+ 
++#if __cplusplus <= 199711L
+   order = list_of(0)(1)(2);
+   order_test<3> (f, s, order, inArgs, outArgs);
+   order = list_of(0)(2)(1);
+@@ -293,6 +299,20 @@
+   order_test<3> (f, s, order, inArgs, outArgs);
+   order = list_of(2)(1)(0);
+   order_test<3> (f, s, order, inArgs, outArgs);
++#else
++  order = {0, 1, 2};
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = {0, 2, 1};
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = {1, 0, 2};
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = {1, 2, 0};
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = {2, 0, 1};
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = {2, 1, 0};
++  order_test<3> (f, s, order, inArgs, outArgs);
++#endif
+ }
+ 
+ BOOST_AUTO_TEST_CASE(jacobian1)
+@@ -353,12 +373,21 @@
+     , AffineFunctionPtr_t (new AffineFunction (J[2]))
+   };
+   std::vector<segments_t> s(6);
++#if __cplusplus <= 199711L
+   s[0] = (list_of(segment_t (1, 2)));
+   s[1] = (list_of(segment_t (0, 1)));
+   s[2] = (list_of(segment_t (3, 1)));
+   s[3] = (list_of(segment_t (4, 1)));
+   s[4] = (list_of(segment_t (0, 1))(segment_t (3, 1)));
+   s[5] = (list_of(segment_t (1, 1)));
++#else
++  s[0] = { segment_t (1, 2) };
++  s[1] = { segment_t (0, 1) };
++  s[2] = { segment_t (3, 1) };
++  s[3] = { segment_t (4, 1) };
++  s[4] = { segment_t (0, 1), segment_t (3, 1) };
++  s[5] = { segment_t (1, 1) };
++#endif
+ 
+   ExplicitSolver solver (5, 5);
+   solver.add(f[0], s[0], s[1], s[0], s[1]);
+@@ -376,9 +405,14 @@
+                        2, 1;
+   BOOST_CHECK_EQUAL (solver.inOutDofDependencies(), inOutDependencies);
+ 
++#if __cplusplus <= 199711L
+   segments_t inArgs = s[0],
+              outArgs = list_of(s[1][0])(s[2][0])(s[3][0]);
+-  BlockIndex::shrink (outArgs);
++#else
++  segments_t inArgs = s[0],
++    outArgs = { s[1][0], s[2][0], s[3][0] };
++#endif
++  Eigen::BlockIndex::shrink (outArgs);
+ 
+   BOOST_CHECK_EQUAL( solver.inArgs().rows(), inArgs);
+   BOOST_CHECK_EQUAL( solver.outArgs().rows(), outArgs);
+@@ -434,12 +468,21 @@
+   AffineFunctionPtr_t g0    (new AffineFunction (Jg0   )),
+                       ginv0 (new AffineFunction (Jginv0));
+   std::vector<segments_t> s(6);
++#if __cplusplus <= 199711L
+   s[0] = (list_of(segment_t (1, 2)));
+   s[1] = (list_of(segment_t (0, 1)));
+   s[2] = (list_of(segment_t (3, 1)));
+   s[3] = (list_of(segment_t (4, 1)));
+   s[4] = (list_of(segment_t (0, 1))(segment_t (3, 1)));
+   s[5] = (list_of(segment_t (1, 1)));
++#else
++  s[0] = { segment_t (1, 2) };
++  s[1] = { segment_t (0, 1) };
++  s[2] = { segment_t (3, 1) };
++  s[3] = { segment_t (4, 1) };
++  s[4] = { segment_t (0, 1), segment_t (3, 1) };
++  s[5] = { segment_t (1, 1) };
++#endif
+ 
+   ExplicitSolver solver (5, 5);
+   solver.add(f[0], s[0], s[1], s[0], s[1]);
+@@ -458,9 +501,14 @@
+                        2, 1;
+   BOOST_CHECK_EQUAL (solver.inOutDofDependencies(), inOutDependencies);
+ 
++#if __cplusplus <= 199711L
+   segments_t inArgs = s[0],
+              outArgs = list_of(s[1][0])(s[2][0])(s[3][0]);
+-  BlockIndex::shrink (outArgs);
++#else
++  segments_t inArgs = s[0],
++    outArgs = { s[1][0], s[2][0], s[3][0] };
++#endif
++  Eigen::BlockIndex::shrink (outArgs);
+ 
+   BOOST_CHECK_EQUAL( solver.inArgs().rows(), inArgs);
+   BOOST_CHECK_EQUAL( solver.outArgs().rows(), outArgs);
+@@ -534,8 +582,8 @@
+     expectedRow.updateRows<true,true,true>();
+     BOOST_CHECK_EQUAL (solver.outArgs(), expectedRow);
+ 
+-    expectedRow = RowBlockIndices(BlockIndex::difference (
+-          BlockIndex::segment_t(0, solver.argSize()),
++    expectedRow = RowBlockIndices(Eigen::BlockIndex::difference (
++          Eigen::BlockIndex::segment_t(0, solver.argSize()),
+           expectedRow.rows()));
+     BOOST_CHECK_EQUAL (solver.freeArgs(), expectedRow);
+ 
+@@ -545,8 +593,8 @@
+     expectedRow.updateRows<true,true,true>();
+     BOOST_CHECK_EQUAL (solver.outDers(), expectedRow);
+ 
+-    expectedCol = ColBlockIndices(BlockIndex::difference (
+-          BlockIndex::segment_t(0, solver.derSize()),
++    expectedCol = ColBlockIndices(Eigen::BlockIndex::difference (
++          Eigen::BlockIndex::segment_t(0, solver.derSize()),
+           expectedRow.rows()));
+     BOOST_CHECK_EQUAL (solver.freeDers(), expectedCol);
+ 

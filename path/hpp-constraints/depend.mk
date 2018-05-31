@@ -15,7 +15,7 @@ PREFER.hpp-constraints?=	robotpkg
 
 DEPEND_USE+=		hpp-constraints
 
-DEPEND_ABI.hpp-constraints?=	hpp-constraints>=3.1.0
+DEPEND_ABI.hpp-constraints?=	hpp-constraints>=4.1
 DEPEND_DIR.hpp-constraints?=	../../path/hpp-constraints
 
 SYSTEM_SEARCH.hpp-constraints=				\
@@ -24,7 +24,5 @@ SYSTEM_SEARCH.hpp-constraints=				\
 	'lib/pkgconfig/hpp-constraints.pc:/Version/s/[^0-9.]//gp'
 
 endif # HPP_CONSTRAINTS_DEPEND_MK --------------------------------------------
-
-include ../../path/hpp-model/depend.mk
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

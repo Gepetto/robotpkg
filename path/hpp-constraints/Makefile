@@ -2,20 +2,21 @@
 # Created:			Antonio El Khoury on Thu, 26 Sep 2013
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		hpp-constraints
-HPP_VERSION=		3.1.0
 
 CATEGORIES=		path
 HPP_COMMENT=		Define non-linear constraints on robot configurations
-LICENSE=		gnu-lgpl-v3
-
-HPP_BUILD_SYSTEM=	cmake
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../path/hpp-model/depend.mk
-include ../../path/hpp-util/depend.mk
+DEPEND_ABI.g++ += g++>=4.6
+DEPEND_ABI.eigen3 += eigen3>=3.2.2
+
+include ../../math/eigen3/depend.mk
+include ../../math/hpp-pinocchio/depend.mk
+include ../../path/hpp-statistics/depend.mk
+include ../../path/hpp-fcl/depend.mk
+include ../../optimization/qpoases/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
