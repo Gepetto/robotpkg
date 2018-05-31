@@ -1,6 +1,5 @@
-@comment Sat Mar 7 16:18:45 CET 2015
+@comment Thu May 31 17:06:51 CEST 2018
 include/hpp/statistics/bin.hh
-include/hpp/statistics/config.h
 include/hpp/statistics/config.hh
 include/hpp/statistics/deprecated.hh
 include/hpp/statistics/distribution.hh
