@@ -1,16 +1,17 @@
 tinyxml2 has not always a .pc file
 
---- src/CMakeLists.txt~	2015-03-11 12:09:24.000000000 +0100
-+++ src/CMakeLists.txt	2015-05-06 12:17:21.353129802 +0200
-@@ -33,9 +33,16 @@
+--- src/CMakeLists.txt.orig	2018-05-13 17:55:05.000000000 +0200
++++ src/CMakeLists.txt	2018-05-31 18:41:54.131992753 +0200
+@@ -33,10 +33,17 @@
    ${${LIBRARY_NAME}_SOURCES}
    )
- 
+
 -PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} tinyxml)
  PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} hpp-util)
- PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} hpp-model-urdf)
  PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} hpp-manipulation)
- 
+ # PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} resource_retriever)
+ PKG_CONFIG_USE_DEPENDENCY(${LIBRARY_NAME} pinocchio)
+
 +find_file(tinyxml_HEADER tinyxml.h
 +  PATH ${TINYXML_ROOT}/include ${TINYXML_ROOT}/include/tinyxml)
 +find_library(tinyxml_LIBRARIES libtinyxml.so

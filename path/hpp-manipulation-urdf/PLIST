@@ -1,4 +1,4 @@
-@comment Sat Mar 7 22:40:45 CET 2015
+@comment Thu Jul 12 16:35:34 CEST 2018
 include/hpp/manipulation/parser/factories/ignoretag.hh
 include/hpp/manipulation/parser/factories/sequence.hh
 include/hpp/manipulation/parser/parser.hh
@@ -9,7 +9,6 @@ include/hpp/manipulation/srdf/factories/handle.hh
 include/hpp/manipulation/srdf/factories/position.hh
 include/hpp/manipulation/srdf/factories/robot.hh
 include/hpp/manipulation/srdf/util.hh
-include/hpp/manipulation/urdf/config.h
 include/hpp/manipulation/urdf/config.hh
 include/hpp/manipulation/urdf/deprecated.hh
 include/hpp/manipulation/urdf/warning.hh

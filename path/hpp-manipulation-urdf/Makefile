@@ -2,26 +2,22 @@
 # Created:			Florent Lamiraux on Sat, 7 Mar 2015
 #
 
-HPP_PACKAGE=	        hpp-manipulation-urdf
-HPP_VERSION=		1.1.0
-PKGREVISION=
+HPP_PACKAGE=	hpp-manipulation-urdf
 
-CATEGORIES=		path
-HPP_COMMENT=		URDF/SRDF parser for the package hpp-manipulation
-LICENSE=		gnu-gpl-v3
+CATEGORIES=	path
+HPP_COMMENT=	URDF/SRDF parser for the package hpp-manipulation
 
-HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
-CMAKE_ARGS+=		-DTINYXML_ROOT=${PREFIX.tinyxml}
+CMAKE_ARGS+=	-DTINYXML_ROOT=${PREFIX.tinyxml}
 
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
-CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
+CMAKE_ARGS+=	-DCXX_DISABLE_WERROR=yes
 
+include ../../devel/log4cxx/depend.mk
 include ../../devel/tinyxml/depend.mk
+include ../../math/pinocchio/depend.mk
 include ../../path/hpp-manipulation/depend.mk
-include ../../path/hpp-model-urdf/depend.mk
-include ../../path/hpp-model/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
