@@ -1,19 +1,28 @@
-@comment Wed Apr 29 15:02:51 CEST 2015
+@comment Thu May 31 18:04:01 CEST 2018
 bin/hppcorbaserver
-include/hpp/corbaserver/config.h
+include/hpp/corbaserver/client.hh
+include/hpp/corbaserver/common.hh
 include/hpp/corbaserver/config.hh
+include/hpp/corbaserver/conversions.hh
 include/hpp/corbaserver/deprecated.hh
 include/hpp/corbaserver/doc.hh
 include/hpp/corbaserver/fwd.hh
+include/hpp/corbaserver/object-map.hh
+include/hpp/corbaserver/obstacle.hh
+include/hpp/corbaserver/problem-solver-map.hh
+include/hpp/corbaserver/problem.hh
+include/hpp/corbaserver/robot.hh
 include/hpp/corbaserver/server.hh
 include/hpp/corbaserver/warning.hh
 lib/libhpp-corbaserver.so
 lib/pkgconfig/hpp-corbaserver.pc
 ${PYTHON_SITELIB}/hpp/__init__.py
 ${PYTHON_SITELIB}/hpp/corbaserver/__init__.py
+${PYTHON_SITELIB}/hpp/corbaserver/benchmark.py
 ${PYTHON_SITELIB}/hpp/corbaserver/client.py
 ${PYTHON_SITELIB}/hpp/corbaserver/common_idl.py
 ${PYTHON_SITELIB}/hpp/corbaserver/obstacle_idl.py
+${PYTHON_SITELIB}/hpp/corbaserver/ompl_benchmark_statistics.py
 ${PYTHON_SITELIB}/hpp/corbaserver/problem_idl.py
 ${PYTHON_SITELIB}/hpp/corbaserver/problem_solver.py
 ${PYTHON_SITELIB}/hpp/corbaserver/robot.py

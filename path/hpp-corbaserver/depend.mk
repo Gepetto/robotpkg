@@ -15,15 +15,13 @@ PREFER.hpp-corbaserver?=	robotpkg
 
 DEPEND_USE+=			hpp-corbaserver
 
-DEPEND_ABI.hpp-corbaserver?=	hpp-corbaserver>=3.1.0
+DEPEND_ABI.hpp-corbaserver?=	hpp-corbaserver>=4.1
 DEPEND_DIR.hpp-corbaserver?=	../../path/hpp-corbaserver
 
 SYSTEM_SEARCH.hpp-corbaserver=\
 	include/hpp/corbaserver/server.hh				\
 	lib/libhpp-corbaserver.so					\
 	'lib/pkgconfig/hpp-corbaserver.pc:/Version/s/[^0-9.]//gp'
-
-include ../../path/hpp-model-urdf/depend.mk
 
 endif # --------------------------------------------------------------------
 
