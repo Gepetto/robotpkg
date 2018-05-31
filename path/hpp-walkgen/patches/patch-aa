@@ -1,0 +1,8 @@
+Don't use tagfiles, this makes doxygen segfault every other run
+
+--- doc/Doxyfile.extra.in~	2018-05-13 17:55:10.000000000 +0200
++++ doc/Doxyfile.extra.in	2018-07-19 14:40:51.268008716 +0200
+@@ -1,2 +1 @@
+-TAGFILES	= @ROBOPTIM_TRAJECTORY_DOXYGENDOCDIR@/roboptim-trajectory.doxytag=@ROBOPTIM_TRAJECTORY_DOXYGENDOCDIR@ \
+-		  @HPP_CORE_DOXYGENDOCDIR@/hpp-core.doxytag=@HPP_CORE_DOXYGENDOCDIR@
++TAGFILES	= 
