@@ -15,16 +15,13 @@ PREFER.hpp-core?=	robotpkg
 
 DEPEND_USE+=		hpp-core
 
-DEPEND_ABI.hpp-core?=	hpp-core>=3.1.0
+DEPEND_ABI.hpp-core?=	hpp-core>=4.1
 DEPEND_DIR.hpp-core?=	../../path/hpp-core
 
 SYSTEM_SEARCH.hpp-core=\
 	include/hpp/core/problem.hh	\
 	'lib/pkgconfig/hpp-core.pc:/Version/s/[^0-9.]//gp' \
 	lib/libhpp-core.so
-
-# This package has a path/hpp-model dependency in its public headers.
-include ../../path/hpp-model/depend.mk
 
 endif # HPPCORE_DEPEND_MK --------------------------------------------
 
