@@ -1,14 +1,14 @@
-Use cmake's idea of the "make" program, so that it can be tuned by robotpkg
-https://github.com/jrl-umi3218/jrl-cmakemodules/issues/34
+TinyXML has no .pc file (officially)
 
---- cmake/doxygen.cmake~	2013-07-30 19:48:34.000000000 +0200
-+++ cmake/doxygen.cmake	2013-12-14 18:26:08.000000000 +0100
-@@ -66,7 +66,7 @@
-       COMMENT "Generating Doxygen documentation"
-       )
+--- CMakeLists.txt~	2018-05-17 15:29:58.000000000 +0200
++++ CMakeLists.txt	2018-07-12 15:52:39.000000000 +0200
+@@ -57,7 +57,8 @@
+ # Add Boost path to include directories.
+ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
  
--    INSTALL(CODE "EXECUTE_PROCESS(COMMAND ${MAKE} doc)")
-+    INSTALL(CODE "EXECUTE_PROCESS(COMMAND ${CMAKE_MAKE_PROGRAM} doc)")
-   ENDIF(MSVC)
+-ADD_REQUIRED_DEPENDENCY("tinyxml >= 2.6")
++find_path(TinyXML_INCLUDE_DIR NAMES tinyxml.h PATH_SUFFIXES "tinyxml" ${TinyXML_INCLUDE_PATH})
++find_library(TinyXML_LIBRARY  NAMES tinyxml   PATH_SUFFIXES "${CMAKE_LIBRARY_ARCHITECTURE}" "tinyxml" ${TinyXML_LIBRARY_PATH})
  
-   ADD_CUSTOM_COMMAND(
+ ADD_SUBDIRECTORY(src)
+ ADD_SUBDIRECTORY(tests)

@@ -1,12 +1,15 @@
 @comment Wed Mar 6 15:00:15 CET 2013
 include/hpp/util/assertion.hh
-include/hpp/util/config.h
 include/hpp/util/config.hh
 include/hpp/util/debug.hh
 include/hpp/util/deprecated.hh
 include/hpp/util/doc.hh
+include/hpp/util/exception-factory.hh
 include/hpp/util/exception.hh
+include/hpp/util/factories/ignoretag.hh
+include/hpp/util/factories/sequence.hh
 include/hpp/util/indent.hh
+include/hpp/util/parser.hh
 include/hpp/util/pointer.hh
 include/hpp/util/portability.hh
 include/hpp/util/timer.hh

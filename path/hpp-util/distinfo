@@ -1,4 +1,5 @@
-SHA1 (hpp-util-3.1.0.tar.gz) = e5c14d1be15acbf9338a5929c86a38f008178981
-RMD160 (hpp-util-3.1.0.tar.gz) = 1c3a263a4f7068b0f86f318cc6a5c261c5fc5dcb
-Size (hpp-util-3.1.0.tar.gz) = 101918 bytes
-SHA1 (patch-aa) = 22361851f24e1515d9f680079b7cb81c1e2eb937
+SHA1 (hpp-util-3.3.tar.gz) = b917bf47d891350d9750171a18c3a205d2e8ca87
+RMD160 (hpp-util-3.3.tar.gz) = a1f61f203b8a155991ff4e456c40a8454ff683e1
+Size (hpp-util-3.3.tar.gz) = 775004 bytes
+SHA1 (patch-aa) = d769539b46729f8699d3bd9868c24ff4abb64cb0
+SHA1 (patch-ab) = 3e9bfef6cf789ef2ac65a1d0eee701ada53b7bad

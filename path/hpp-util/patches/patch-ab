@@ -1,0 +1,13 @@
+TinyXML has no .pc file (officially)
+
+--- src/CMakeLists.txt~	2018-05-17 15:29:58.000000000 +0200
++++ src/CMakeLists.txt	2018-07-12 15:59:58.000000000 +0200
+@@ -49,6 +49,7 @@
+ # Link against Boost libraries.
+ TARGET_LINK_LIBRARIES(hpp-util ${Boost_LIBRARIES})
+ 
+-PKG_CONFIG_USE_DEPENDENCY(hpp-util tinyxml)
++INCLUDE_DIRECTORIES(${TinyXML_INCLUDE_DIR})
++TARGET_LINK_LIBRARIES(hpp-util ${TinyXML_LIBRARY})
+ 
+ INSTALL(TARGETS hpp-util DESTINATION ${CMAKE_INSTALL_LIBDIR})
