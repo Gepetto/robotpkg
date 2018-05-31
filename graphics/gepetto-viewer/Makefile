@@ -3,18 +3,15 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer
-HPP_VERSION=		2.1.2
+HPP_VERSION=		2.1.3
 
 CATEGORIES=			graphics
 HPP_COMMENT=		Simple viewer based on OpenSceneGraph
 LICENSE=			2-clause-bsd
 
-MASTER_SITES=		${MASTER_SITE_GITHUB:=humanoid-path-planner/${HPP_PACKAGE}/releases/download/v${HPP_VERSION}/}
-
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..
 
-HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
