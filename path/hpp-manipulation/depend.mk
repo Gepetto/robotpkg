@@ -15,7 +15,7 @@ PREFER.hpp-manipulation?=	robotpkg
 
 DEPEND_USE+=		hpp-manipulation
 
-DEPEND_ABI.hpp-manipulation?=	hpp-manipulation>=1.1.0
+DEPEND_ABI.hpp-manipulation?=	hpp-manipulation>=4.1
 DEPEND_DIR.hpp-manipulation?=	../../path/hpp-manipulation
 
 SYSTEM_SEARCH.hpp-manipulation=			\

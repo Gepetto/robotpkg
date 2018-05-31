@@ -2,21 +2,18 @@
 # Created:			Florent Lamiraux on Sat, 7 Mar 2015
 #
 
-HPP_PACKAGE=	        hpp-manipulation
-HPP_VERSION=		1.1.0
-PKGREVISION=		1
+HPP_PACKAGE=		hpp-manipulation
 
 CATEGORIES=		path
 HPP_COMMENT=		Manipulation problem definition and resolution
-LICENSE=		gnu-gpl-v3
 
-HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
-# boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
-CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
-
+include ../../devel/log4cxx/depend.mk
+include ../../path/hpp-constraints/depend.mk
 include ../../path/hpp-core/depend.mk
+include ../../path/hpp-statistics/depend.mk
 include ../../path/hpp-util/depend.mk
+include ../../path/hpp-wholebody-step/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
