@@ -2,18 +2,14 @@
 # Created:			Florent Lamiraux on Thu, 7 Jul 2011
 #
 
-HPP_PACKAGE=	hpp-template-corba
-HPP_VERSION=	1.1.3
-MASTER_REPOSITORY=${MASTER_REPOSITORY_GITHUB}/laas/${HPP_PACKAGE}
-PKGREVISION=	1
+HPP_PACKAGE=		hpp-template-corba
+HPP_VERSION=		1.1.5
 
-CATEGORIES=	middleware
-HPP_COMMENT=	CORBA server factory
-LICENSE=	gnu-lgpl-v3
-
-HPP_BUILD_SYSTEM=	cmake
+CATEGORIES=			middleware
+HPP_COMMENT=		Template CORBA servers for HPP
 
 include ../../meta-pkgs/hpp/Makefile.common
+
 include ../../middleware/omniORB/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk

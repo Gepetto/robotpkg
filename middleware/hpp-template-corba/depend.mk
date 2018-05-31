@@ -15,7 +15,7 @@ PREFER.hpp-template-corba?=	robotpkg
 
 DEPEND_USE+=			hpp-template-corba
 
-DEPEND_ABI.hpp-template-corba?=	hpp-template-corba>=0.4
+DEPEND_ABI.hpp-template-corba?=	hpp-template-corba>=1.1.5
 DEPEND_DIR.hpp-template-corba?=	../../middleware/hpp-template-corba
 
 SYSTEM_SEARCH.hpp-template-corba=\
