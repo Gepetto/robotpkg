@@ -3,8 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		0.5.1
-PKGREVISION=		1
+HPP_VERSION=		0.6.0
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations
@@ -12,7 +11,6 @@ LICENSE=		2-clause-bsd
 
 CONFLICTS+=		hpp-fcl04-[0-9]*
 
-HPP_BUILD_SYSTEM=	cmake
 include ../../meta-pkgs/hpp/Makefile.common
 
 USE_BOOST_LIBS= thread date_time system filesystem unit_test_framework

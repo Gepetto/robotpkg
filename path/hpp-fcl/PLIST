@@ -1,4 +1,4 @@
-@comment Mon Oct 2 14:31:40 CEST 2017
+@comment Thu May 31 16:47:36 CEST 2018
 include/hpp/fcl/BV/AABB.h
 include/hpp/fcl/BV/BV.h
 include/hpp/fcl/BV/BV_node.h
@@ -31,7 +31,6 @@ include/hpp/fcl/collision_func_matrix.h
 include/hpp/fcl/collision_node.h
 include/hpp/fcl/collision_object.h
 include/hpp/fcl/collision_utility.h
-include/hpp/fcl/config-fcl.hh
 include/hpp/fcl/config.hh
 include/hpp/fcl/data_types.h
 include/hpp/fcl/deprecated.h
