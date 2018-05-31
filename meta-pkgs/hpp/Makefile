@@ -2,7 +2,7 @@
 # Created:			Thomas Moulard on Wed, 8 Sep 2010
 #
 
-DISTNAME=	hpp-20120103
+DISTNAME=	hpp-20180711
 
 COMMENT=	Meta-package for the Humanoid Path Planner
 CATEGORIES=	meta-pkgs
@@ -10,17 +10,8 @@ MAINTAINER=	hpp@laas.fr
 
 META_PACKAGE=	yes
 
-# Core packages.
 include ../../path/hpp-core/depend.mk
-include ../../path/hpp-model/depend.mk
 include ../../path/hpp-util/depend.mk
-
-# CORBA packages.
 include ../../path/hpp-corbaserver/depend.mk
-
-# Algorithms.
-include ../../path/hpp-walkfootplanner/depend.mk
-include ../../path/hpp-walkplanner/depend.mk
-
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

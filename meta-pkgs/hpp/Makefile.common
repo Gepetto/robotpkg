@@ -4,21 +4,21 @@
 ifndef HPP_PACKAGE
   PKG_FAIL_REASON+="Dependency on hpp/Makefile.common requires HPP_PACKAGE"
 endif
-ifndef HPP_VERSION
-  PKG_FAIL_REASON+="Dependency on hpp/Makefile.common requires HPP_VERSION"
-endif
 ifndef HPP_COMMENT
   PKG_FAIL_REASON+="Dependency on hpp/Makefile.common requires HPP_COMMENT"
 endif
-ifndef HPP_BUILD_SYSTEM
-  PKG_FAIL_REASON+="Dependency on hpp/Makefile.common requires HPP_BUILD_SYSTEM"
-endif
 
-DISTNAME=	${HPP_PACKAGE}-${HPP_VERSION}
+HPP_VERSION?=		4.1
+HPP_NAMESPACE?=		humanoid-path-planner
+HPP_BUILD_SYSTEM?=	cmake
+LICENSE?=			gnu-lgpl-v3
 
-MASTER_SITES?=	${MASTER_SITE_OPENROBOTS:=${HPP_PACKAGE}/}
+DISTNAME?=	${HPP_PACKAGE}-${HPP_VERSION}
+PKGNAME?=	$(subst _,-,${DISTNAME})
+
+MASTER_SITES?=		${MASTER_SITE_OPENROBOTS:=${HPP_PACKAGE}/}
 MASTER_REPOSITORY?=\
-		${MASTER_REPOSITORY_GITHUB}/humanoid-path-planner/${HPP_PACKAGE}
+  ${MASTER_REPOSITORY_GITHUB}${HPP_NAMESPACE}/${HPP_PACKAGE}
 CHECKOUT_VCS_OPTS+=	--recursive
 
 MAINTAINER?=	hpp@laas.fr
