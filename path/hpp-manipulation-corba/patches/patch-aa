@@ -1,22 +1,30 @@
-Quick & dirty fix for an issue in ros .pc.
-See https://github.com/ros/catkin/issues/694
+Newer C++11 compat
 
---- cmake/pkg-config.cmake~	2013-12-19 11:20:45.000000000 +0100
-+++ cmake/pkg-config.cmake	2015-12-02 15:19:01.643506148 +0100
-@@ -148,6 +148,14 @@
-     PKG_CHECK_MODULES("${PREFIX}" "${PKG_CONFIG_STRING}")
-   ENDIF(${P_REQUIRED})
- 
-+  # XXX issue in ros .pc. See https://github.com/ros/catkin/issues/694
-+  set(xxx)
-+  foreach(x ${${PREFIX}_LDFLAGS})
-+    string(REGEX REPLACE "^-l:" "" x "${x}")
-+    list(APPEND xxx ${x})
-+  endforeach()
-+  set(${PREFIX}_LDFLAGS ${xxx})
-+
-   # Watch variables.
-   LIST(APPEND LOGGING_WATCHED_VARIABLES
-     ${PREFIX}_FOUND
-
-Diff finished.  Wed Dec  2 15:19:05 2015
+--- src/problem.impl.cc~	2018-05-20 18:33:31.000000000 +0200
++++ src/problem.impl.cc	2018-07-12 14:29:23.381030736 +0200
+@@ -155,8 +155,13 @@
+         } else if (w == "constraintgraph") {
+           ret = problemSolver()->graphs.getKeys <Ret_t> ();
+         } else if (w == "type") {
++#if __cplusplus <= 199711L
+           ret = boost::assign::list_of ("Gripper") ("Handle") ("RobotContact")
+             ("EnvContact")("ConstraintGraph");
++#else
++          ret = { "Gripper", "Handle", "RobotContact", "EnvContact",
++                  "ConstraintGraph" };
++#endif
+         } else {
+           throw Error (("Type \"" + std::string(what) + "\" not known").c_str());
+         }
+@@ -174,7 +179,11 @@
+         if (w == "constraintgraph") {
+           ret.push_back (problemSolver()->constraintGraph()->name());
+         } else if (w == "type") {
++#if __cplusplus <= 199711L
+           ret = boost::assign::list_of ("ConstraintGraph");
++#else
++          ret = { "ConstraintGraph" };
++#endif
+         } else {
+           throw Error (("Type \"" + std::string(what) + "\" not known").c_str());
+         }
