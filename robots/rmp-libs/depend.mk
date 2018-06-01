@@ -15,13 +15,13 @@ PREFER.rmp-libs?=	robotpkg
 
 DEPEND_USE+=		rmp-libs
 
-DEPEND_ABI.rmp-libs?=	rmp-libs>=0.4
+DEPEND_ABI.rmp-libs?=	rmp-libs>=0.4.99
 DEPEND_DIR.rmp-libs?=	../../robots/rmp-libs
 
 SYSTEM_SEARCH.rmp-libs=\
 	bin/rmpTest \
 	include/rmp/rmpLib.h \
-	lib/pkgconfig/rmp-libs.pc
+	'lib/pkgconfig/rmp-libs.pc:/Version/s/[^0-9.]//gp'
 endif
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -1,9 +1,8 @@
 # robotpkg Makefile for:	robots/rmp-libs
 # Created:			Matthieu Herrb on Mon, 23 Feb 2009
 #
-PKGREVISION=		1
 CATEGORIES=		robots
-DISTNAME=		rmp-libs-0.4
+DISTNAME=		rmp-libs-0.5
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}segway-robots/rmp-libs
 
@@ -19,8 +18,6 @@ m4dir:
 	${RUN} ${MKDIR} ${WRKSRC}/m4
 
 include ../../hardware/libftdi/depend.mk
-include ../../middleware/pocolibs/depend.mk
-include ../../devel/mkdep/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/autoconf.mk
