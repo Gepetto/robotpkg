@@ -31,7 +31,7 @@ DEPEND_ABI.omniORBpy?=	omniORBpy
 DEPEND_DIR.omniORBpy?=	../../middleware/omniORBpy
 
 SYSTEM_SEARCH.omniORBpy=\
-  '{${PYTHON_SYSLIBSEARCH},lib/omniidl}/omniidl_be/python.py'
+  'lib/{python[0-9]*/{site,dist}-packages,omniidl}/omniidl_be/python.py'
 
 # need omniidl_be in PYTHONPATH
 PYTHONPATH.omniORBpy+=	$(dir ${SYSTEM_FILES.omniORBpy})
