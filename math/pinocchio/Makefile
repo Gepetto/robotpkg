@@ -2,7 +2,7 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
-VERSION=		1.2.8
+VERSION=		1.2.9
 DISTNAME=		pinocchio-${VERSION}
 MASTER_SITES=\
   ${MASTER_SITE_GITHUB:=stack-of-tasks/pinocchio/releases/download/v${VERSION}/}
