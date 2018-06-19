@@ -1,4 +1,4 @@
-@comment Thu Jul 24 14:25:11 CEST 2014
+@comment Tue Jun 19 08:45:00 CEST 2018
 lib/libpocolibs-client.la
 lib/pkgconfig/genom3-pocolibs.pc
 share/genom/site-templates/pocolibs/client/c/client.Makefile.am
@@ -36,4 +36,5 @@ share/genom/site-templates/pocolibs/server/portlib.c
 share/genom/site-templates/pocolibs/server/portlib.h
 share/genom/site-templates/pocolibs/server/remotelib.c
 share/genom/site-templates/pocolibs/server/remotelib.h
+share/genom/site-templates/pocolibs/server/spinlock.h
 share/genom/site-templates/pocolibs/server/template.tcl
