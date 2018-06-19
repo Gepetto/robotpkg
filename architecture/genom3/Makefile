@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 19 Oct 2012
 #
 
-VERSION=	2.99.30
+VERSION=	2.99.31
 DISTNAME=	genom-${VERSION}
 PKGNAME=	genom3-${VERSION}
 CATEGORIES=	architecture
