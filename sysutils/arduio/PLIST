@@ -1,4 +1,5 @@
-@comment Thu Mar 30 18:22:32 CEST 2017
+@comment Tue Jun 26 10:57:30 CEST 2018
+lib/arduio-firmware/mega2560
 lib/arduio-firmware/nano
 lib/arduio-firmware/uno
 lib/pkgconfig/arduio.pc

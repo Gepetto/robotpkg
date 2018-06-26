@@ -15,7 +15,7 @@ PREFER.arduio?=		robotpkg
 
 DEPEND_USE+=		arduio
 
-DEPEND_ABI.arduio?=	arduio>=1.0
+DEPEND_ABI.arduio?=	arduio>=1.2
 DEPEND_DIR.arduio?=	../../sysutils/arduio
 
 SYSTEM_SEARCH.arduio=\
