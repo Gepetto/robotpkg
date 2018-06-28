@@ -1,0 +1,29 @@
+From 14c6f7e184b210c49a894e7cc4abf512d31c8feb Mon Sep 17 00:00:00 2001
+From: Anthony Mallet <anthony.mallet@laas.fr>
+Date: Thu, 28 Jun 2018 18:13:33 +0200
+Subject: [PATCH] During startup, resend start message to motors not going into
+ the start state
+
+This accounts for motors that, for some reason, do not receive the initial
+start message.
+---
+ codels/mikrokopter_main_codels.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git codels/mikrokopter_main_codels.c codels/mikrokopter_main_codels.c
+index 488e49e..ee3a7d1 100644
+--- codels/mikrokopter_main_codels.c
++++ codels/mikrokopter_main_codels.c
+@@ -565,6 +565,9 @@ mk_start_monitor(const mikrokopter_conn_s *conn, uint16_t *state,
+       return mikrokopter_e_rotor_failure(&e, self);
+     }
+ 
++    if (!rotor_state[i].starting)
++      mk_send_msg(&conn->chan[0], "g%1", (uint8_t){i+1});
++
+     complete = false;
+   }
+ 
+-- 
+2.7.4
+
