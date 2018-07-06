@@ -1,0 +1,13 @@
+Fix version
+
+--- rmp440.gen~	2017-03-23 18:05:19.000000000 +0100
++++ rmp440.gen	2018-07-06 13:50:21.093752245 +0200
+@@ -27,7 +27,7 @@
+ #include "or/pose/pose_estimator.gen"
+ 
+ component rmp440 {
+-  version "0.1.99";
++  version "0.1";
+   email "openrobots@laas.fr";
+   lang "c";
+   codels-require "rmp440-libs >= 0.5, gyro-libs, felib";

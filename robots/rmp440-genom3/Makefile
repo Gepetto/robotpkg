@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Thu, 23 Mar 2017
 #
 
+PKGREVISION=		1
 DISTNAME=		rmp440-genom3-0.1
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp440/}
