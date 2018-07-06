@@ -20,6 +20,7 @@ SUBDIR+=	rflexclients
 SUBDIR+=	rmp-libs
 SUBDIR+=	rmp400-genom
 SUBDIR+=	rmp440-genom
+SUBDIR+=	rmp440-genom3
 SUBDIR+=	rmp440-libs
 SUBDIR+=	romeo-description
 SUBDIR+=	scout-genom
