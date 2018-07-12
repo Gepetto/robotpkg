@@ -11,6 +11,9 @@ HPP_COMMENT=		CORBA server and client for whole-body walk planning
 
 include ../../meta-pkgs/hpp/Makefile.common
 
+# omniidl rules are not jobs safe
+MAKE_JOBS_SAFE=		no
+
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/omniORBpy/depend.mk
 include ../../middleware/hpp-template-corba/depend.mk
