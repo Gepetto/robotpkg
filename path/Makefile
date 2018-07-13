@@ -25,7 +25,6 @@ SUBDIR+=	hpp-model
 SUBDIR+=	hpp-model-urdf
 SUBDIR+=	hpp-statistics
 SUBDIR+=	hpp-util
-SUBDIR+=	hpp-walkfootplanner
 SUBDIR+=	hpp-wholebody-step-corba
 SUBDIR+=	hpp-wholebody-step
 SUBDIR+=	hpp-walkgen
