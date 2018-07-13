@@ -13,7 +13,6 @@ SUBDIR+=	hpp-environment-data
 SUBDIR+=	hpp-fcl
 SUBDIR+=	hpp-gik
 SUBDIR+=	hpp-hik
-SUBDIR+=	hpp-kwsio
 SUBDIR+=	hpp-localstepper
 SUBDIR+=	hpp-manipulation
 SUBDIR+=	hpp-manipulation-corba
