@@ -1,9 +1,0 @@
-hpp-model-urdf
-==============
-
-This package implements a library that allows users to load an hpp-model
-robot by parsing an urdf robot model file.
-
-An hpp-model robot allows you to:
-- Compute robot dynamics with jrl-dynamics.
-- Do motion planning with KiteLab.
