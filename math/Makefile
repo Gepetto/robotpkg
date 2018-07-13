@@ -7,7 +7,6 @@ SUBDIR+=	boost-numeric-bindings
 SUBDIR+=	boost-numeric-bindings-v1
 SUBDIR+=	eigen2
 SUBDIR+=	eigen3
-SUBDIR+=	fsqp
 SUBDIR+=	gbM
 SUBDIR+=	geometric-tools
 SUBDIR+=	hpp-geometry
