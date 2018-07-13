@@ -29,7 +29,6 @@ SUBDIR+=	hpp-walkfootplanner
 SUBDIR+=	hpp-walkplanner
 SUBDIR+=	hpp-wholebody-step-corba
 SUBDIR+=	hpp-wholebody-step
-SUBDIR+=	hpp-worldmodelplanner
 SUBDIR+=	hpp-walkgen
 SUBDIR+=	jrl-walkgen
 SUBDIR+=	libkdtp
