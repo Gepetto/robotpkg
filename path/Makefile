@@ -14,7 +14,6 @@ SUBDIR+=	hpp-fcl
 SUBDIR+=	hpp-gik
 SUBDIR+=	hpp-hik
 SUBDIR+=	hpp-kwsio
-SUBDIR+=	hpp-kwsplus
 SUBDIR+=	hpp-localstepper
 SUBDIR+=	hpp-manipulation
 SUBDIR+=	hpp-manipulation-corba
