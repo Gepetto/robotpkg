@@ -21,7 +21,6 @@ SUBDIR+=	hpp-localstepper
 SUBDIR+=	hpp-manipulation
 SUBDIR+=	hpp-manipulation-corba
 SUBDIR+=	hpp-manipulation-urdf
-SUBDIR+=	hpp-model
 SUBDIR+=	hpp-statistics
 SUBDIR+=	hpp-util
 SUBDIR+=	hpp-wholebody-step-corba
