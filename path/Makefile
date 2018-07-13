@@ -9,7 +9,6 @@ SUBDIR+=	aspect-genom
 SUBDIR+=	hpp-constraints
 SUBDIR+=	hpp-corbaserver
 SUBDIR+=	hpp-core
-SUBDIR+=	hpp-environment-data
 SUBDIR+=	hpp-fcl
 SUBDIR+=	hpp-gik
 SUBDIR+=	hpp-manipulation
