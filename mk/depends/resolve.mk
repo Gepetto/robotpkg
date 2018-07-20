@@ -171,7 +171,8 @@ $(foreach _,${PKG_ALTERNATIVES},$(eval $(call _alt_error,$_)))
 
 # define PGKTAG.,-PKGTAG. and PKGTAG.-
 $(foreach _,${PKG_ALTERNATIVES},$(eval \
-  PKGTAG.$_=$$(or $${PKGTAG.$${PKG_ALTERNATIVE.$_}},$${PKG_ALTERNATIVE.$_})))
+  PKGTAG.$_:=$(strip $$(or $${PKGTAG.$${PKG_ALTERNATIVE.$_}},\
+                     $${PKGTAG.$_},$${PKG_ALTERNATIVE.$_}))))
 $(foreach _,${PKG_ALTERNATIVES},$(eval \
   -PKGTAG.$_=$$(addprefix -,$${PKGTAG.$_})))
 $(foreach _,${PKG_ALTERNATIVES},$(eval \
