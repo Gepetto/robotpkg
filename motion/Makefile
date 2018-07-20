@@ -7,7 +7,6 @@ SUBDIR+=	contlaw
 SUBDIR+=	dynamic-graph
 SUBDIR+=	dynamic-graph-bridge
 SUBDIR+=	dynamic-graph-bridge-msgs
-SUBDIR+=	dynamic-graph-corba
 SUBDIR+=	locoDemo-genom
 SUBDIR+=	nhfc-genom3
 SUBDIR+=	orocos-kdl
