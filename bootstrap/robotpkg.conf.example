@@ -43,7 +43,6 @@
 # Possible: any valid string
 # Default: \\${MASTER_REPOSITORY} of the package
 
-# ACCEPTABLE_LICENSES+=	aemdesign-cfsqp-license
 # ACCEPTABLE_LICENSES+=	cnrs-hpp-closed-source
 # ACCEPTABLE_LICENSES+=	cnrs-stackoftasks-license
 # ACCEPTABLE_LICENSES+=	jmf-license
