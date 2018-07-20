@@ -114,6 +114,7 @@ ifdef PKGREQD
 	$(if $(findstring ${PKGTAG.$_},$2),$_))))
     ifeq (1,$$(words $$a))
       PKG_ALTERNATIVE.$1:=$$a
+      PKGTAG.$1:=$(strip $$(or $${PKGTAG.$$a},$${PKGTAG.$1},$$a))
     else ifneq (0,$$(words $$a))
       $$(shell echo >&2	\
 	'Warning: ambiguous package name $2 for alternatives $$a.')
