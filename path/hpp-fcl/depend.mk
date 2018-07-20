@@ -23,6 +23,8 @@ SYSTEM_SEARCH.hpp-fcl=\
   'lib/libhpp-fcl.so'				\
   'lib/pkgconfig/hpp-fcl.pc:/Version/s/[^0-9.]//gp'
 
+include ../../math/eigen3/depend.mk
+
 endif # HPP_FCL_DEPEND_MK --------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
