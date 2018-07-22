@@ -114,7 +114,11 @@ ifdef PKGREQD
 	$(if $(findstring ${PKGTAG.$_},$2),$_))))
     ifeq (1,$$(words $$a))
       PKG_ALTERNATIVE.$1:=$$a
-      PKGTAG.$1:=$(strip $$(or $${PKGTAG.$$a},$${PKGTAG.$1},$$a))
+      # add a default PKGTAG on this alternative, in case it is invalid - make
+      # sure to still use a recursive expansion of PKG_ALTERNATIVE.$1, for
+      # print-pkgnames.
+      PKGTAG.$1=$$(or $${PKGTAG.$${PKG_ALTERNATIVE.$1}},$$(strip \
+                      $${PKG_ALTERNATIVE.$1}),$${PKGTAG.$$a},$$a)
     else ifneq (0,$$(words $$a))
       $$(shell echo >&2	\
 	'Warning: ambiguous package name $2 for alternatives $$a.')
@@ -171,9 +175,10 @@ endef
 $(foreach _,${PKG_ALTERNATIVES},$(eval $(call _alt_error,$_)))
 
 # define PGKTAG.,-PKGTAG. and PKGTAG.-
-$(foreach _,${PKG_ALTERNATIVES},$(eval \
-  PKGTAG.$_:=$(strip $$(or $${PKGTAG.$${PKG_ALTERNATIVE.$_}},\
-                     $${PKGTAG.$_},$${PKG_ALTERNATIVE.$_}))))
+# This must expand to a recursively defined variable using PKG_ALTERNATIVE.$_,
+# so that print-pkgname works, hence $$()
+$(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVE.$_},$(eval \
+  PKGTAG.$_=$$(or $${PKGTAG.$${PKG_ALTERNATIVE.$_}},$${PKG_ALTERNATIVE.$_}))))
 $(foreach _,${PKG_ALTERNATIVES},$(eval \
   -PKGTAG.$_=$$(addprefix -,$${PKGTAG.$_})))
 $(foreach _,${PKG_ALTERNATIVES},$(eval \
