@@ -3,7 +3,7 @@
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-HPPPINOCCHIO_DEPEND_MK:=	${HPPPINOCCHIO_DEPEND_MK}+
+HPPPINOCCHIO_DEPEND_MK:=${HPPPINOCCHIO_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=		hpp-pinocchio
@@ -18,10 +18,13 @@ DEPEND_USE+=		hpp-pinocchio
 DEPEND_ABI.hpp-pinocchio?=	hpp-pinocchio>=4.1
 DEPEND_DIR.hpp-pinocchio?=	../../math/hpp-pinocchio
 
-SYSTEM_SEARCH.hpp-pinocchio=			\
-	include/hpp/pinocchio/util.hh	\
-	lib/libhpp-pinocchio.so		\
-	'lib/pkgconfig/hpp-pinocchio.pc:/Version/s/[^0-9.]//gp'
+SYSTEM_SEARCH.hpp-pinocchio=		\
+  'include/hpp/pinocchio/util.hh'	\
+  'lib/libhpp-pinocchio.so'		\
+  'lib/pkgconfig/hpp-pinocchio.pc:/Version/s/[^0-9.]//gp'
+
+DEPEND_ABI.eigen3 += eigen3>=3.2
+include ../../math/eigen3/depend.mk
 
 endif # HPPPINOCCHIO_DEPEND_MK ---------------------------------
 
