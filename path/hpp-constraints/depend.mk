@@ -19,9 +19,12 @@ DEPEND_ABI.hpp-constraints?=	hpp-constraints>=4.1
 DEPEND_DIR.hpp-constraints?=	../../path/hpp-constraints
 
 SYSTEM_SEARCH.hpp-constraints=				\
-	lib/libhpp-constraints.so			\
-	include/hpp/constraints/differentiable-function.hh	\
-	'lib/pkgconfig/hpp-constraints.pc:/Version/s/[^0-9.]//gp'
+  'lib/libhpp-constraints.so'				\
+  'include/hpp/constraints/differentiable-function.hh'	\
+  'lib/pkgconfig/hpp-constraints.pc:/Version/s/[^0-9.]//gp'
+
+DEPEND_ABI.eigen3 += eigen3>=3.2.4
+include ../../math/eigen3/depend.mk
 
 endif # HPP_CONSTRAINTS_DEPEND_MK --------------------------------------------
 
