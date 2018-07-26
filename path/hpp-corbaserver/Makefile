@@ -14,12 +14,10 @@ MAKE_JOBS_SAFE= no
 include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../math/hpp-pinocchio/depend.mk
-include ../../path/hpp-constraints/depend.mk
-include ../../path/hpp-core/depend.mk
-
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/omniORBpy/depend.mk
-
+include ../../path/hpp-constraints/depend.mk
+include ../../path/hpp-core/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c++.mk
 include ../../mk/language/c.mk
