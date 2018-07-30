@@ -7,7 +7,6 @@ PKGNAME=		gyroKVH1000-${VERSION}
 VERSION=		1.4
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
-MASTER_REPOSITORY=	git ssh://trac.laas.fr/git/robots/gyro-libs
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		Driver and interface for gyroKVH1000
