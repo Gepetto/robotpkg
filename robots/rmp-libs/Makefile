@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Mon, 23 Feb 2009
 #
 CATEGORIES=		robots
-DISTNAME=		rmp-libs-0.5
+DISTNAME=		rmp-libs-0.6
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp400/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}segway-robots/rmp-libs
 
