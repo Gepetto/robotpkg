@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 13 Mar 2007
 #
 
-DISTNAME=		eltclsh-1.16
+DISTNAME=		eltclsh-1.17
 CATEGORIES=		shell
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=eltclsh/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}eltclsh
