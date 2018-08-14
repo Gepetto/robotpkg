@@ -137,11 +137,13 @@ define PKG_OPTION_SET.ros-client-ros
 
   # hackish ... but this is for a PLIST.guess anyway, so nothing critical
   PRINT_PLIST_AWK_FILTERS+=\
-	/include\/${GENOM_MODULE}\// {next}				\
-	/$(subst /,\/,${PYTHON_SITELIB})\/${GENOM_MODULE}\// {next}	\
-	/share\/${GENOM_MODULE}\/manifest.xml$$/ {next}			\
-	/share\/${GENOM_MODULE}\/msg/ {next}				\
-	/share\/${GENOM_MODULE}\/srv/ {next}
+	/include\/${GENOM_MODULE}_ros\// {next}				\
+	/$(subst /,\/,${PYTHON_SITELIB})\/${GENOM_MODULE}_ros\// {next}	\
+	/lib\/pkgconfig\/${GENOM_MODULE}_ros.pc/ {next}			\
+	/share\/${GENOM_MODULE}_ros\/package.xml$$/ {next}		\
+	/share\/${GENOM_MODULE}_ros\/cmake/ {next}			\
+	/share\/${GENOM_MODULE}_ros\/msg/ {next}			\
+	/share\/${GENOM_MODULE}_ros\/srv/ {next}
 
   pre-configure: genom3-autoreconf(ros/client/ros)
 

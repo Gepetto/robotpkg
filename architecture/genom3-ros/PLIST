@@ -1,4 +1,4 @@
-@comment Mon Nov 9 19:05:21 CET 2015
+@comment Fri Aug 10 17:47:21 CEST 2018
 bin/rosaction
 lib/libros-client.la
 lib/pkgconfig/genom3-ros.pc
@@ -15,8 +15,12 @@ share/genom/site-templates/ros/client/c/plugin.c
 share/genom/site-templates/ros/client/c/portlib.cc
 share/genom/site-templates/ros/client/c/private.h
 share/genom/site-templates/ros/client/c/template.tcl
+share/genom/site-templates/ros/client/ros/client-msg-paths.cmake
 share/genom/site-templates/ros/client/ros/client.Makefile.am
 share/genom/site-templates/ros/client/ros/client.configure.ac
+share/genom/site-templates/ros/client/ros/client.pc.in
+share/genom/site-templates/ros/client/ros/clientConfig-version.cmake.in
+share/genom/site-templates/ros/client/ros/clientConfig.cmake.in
 share/genom/site-templates/ros/client/ros/template.tcl
 share/genom/site-templates/ros/common/action.h
 share/genom/site-templates/ros/common/autoconf/ax_boost_base.m4
@@ -26,7 +30,7 @@ share/genom/site-templates/ros/common/genom-serialize.h
 share/genom/site-templates/ros/common/genrosmsg.tcl
 share/genom/site-templates/ros/common/msgmd5
 share/genom/site-templates/ros/common/portlib.h
-share/genom/site-templates/ros/common/ros.manifest.xml
+share/genom/site-templates/ros/common/ros.package.xml
 share/genom/site-templates/ros/common/serialize.h
 share/genom/site-templates/ros/common/service.h
 share/genom/site-templates/ros/common/typecopy.h
