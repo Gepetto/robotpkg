@@ -1,5 +1,6 @@
-@comment Tue Jul 30 18:10:00 CEST 2013
+@comment Tue Aug 14 18:42:44 CEST 2018
 bin/daqflexTest
 include/daqflex/daqflex.h
 lib/libdaqflex.la
-libpkgconfig/daqflex-libs.pc
+lib/pkgconfig/daqflex-libs.pc
+share/examples/daqflex-libs/udev/99-daqflex.rules
