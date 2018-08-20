@@ -221,6 +221,8 @@ override define _dpd_reduceabi # (pkg)
 	"$$$${bf}Requirements on $1 cannot be satisfied:$$$${rm}"	\
 	$$(foreach _,${DEPEND_ABI.$1},"	$$_")
     endif
+  else
+    DEPEND_ABI.$1:=$$(strip ${DEPEND_ABI.$1})
   endif
 endef
 $(foreach _,${DEPEND_USE},$(eval $(call _dpd_reduceabi,$_)))
