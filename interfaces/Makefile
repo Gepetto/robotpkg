@@ -10,6 +10,7 @@ SUBDIR+=	abstract-robot-dynamics
 SUBDIR+=	abstract-gik-task
 SUBDIR+=	jrl-mal
 SUBDIR+=	openrobots-idl
+SUBDIR+=	openrobots2-idl
 SUBDIR+=	ros-comm-msgs
 SUBDIR+=	ros-common-msgs
 SUBDIR+=	ros-control-msgs
