@@ -15,6 +15,7 @@ SUBDIR+=	gyroKVH1000
 SUBDIR+=	gyroKVH5000
 SUBDIR+=	joystick-genom3
 SUBDIR+=	libftdi
+SUBDIR+=	mccdaqft-genom3
 SUBDIR+=	mouse3d-genom
 SUBDIR+=	openni-sensor
 SUBDIR+=	platine-genom
