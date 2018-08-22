@@ -15,6 +15,7 @@ LICENSE=		2-clause-bsd
 include ../../architecture/genom3/module.mk
 
 DEPEND_ABI.daqflex-libs=	daqflex-libs>=1.0
+DEPEND_ABI.eigen3=		eigen3>=3.1
 
 include ../../hardware/daqflex-libs/depend.mk
 include ../../interfaces/openrobots2-idl/depend.mk
