@@ -11,6 +11,7 @@ SUBDIR+=	ivmob-libs
 SUBDIR+=	jloco-genom
 SUBDIR+=	mana-emergency
 SUBDIR+=	mikrokopter-genom3
+SUBDIR+=	mor-libs
 SUBDIR+=	nao-robot
 SUBDIR+=	neobotix-libs
 SUBDIR+=	play-genom
