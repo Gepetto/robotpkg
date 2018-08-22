@@ -2,7 +2,7 @@
 # Created:			Matthieu Herrb on Thu, 23 Mar 2017
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 DISTNAME=		rmp440-genom3-0.1
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp440/}
@@ -13,6 +13,9 @@ COMMENT=		GenoM interface module for the Segway RMP440
 LICENSE=		isc
 
 include ../../architecture/genom3/module.mk
+
+# for C11 "typedef redefinition" feature
+DEPEND_ABI.gcc = gcc>=4.6
 
 include ../../interfaces/openrobots-idl/depend.mk
 include ../../hardware/gyro-libs/depend.mk
