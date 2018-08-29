@@ -2,7 +2,7 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
-VERSION=		1.2.9
+VERSION=		1.3.1
 NAME=			pinocchio
 PKGNAME=		${PKGTAG.python-}${NAME}-${VERSION}
 DISTNAME=		${NAME}-${VERSION}

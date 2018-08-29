@@ -1,5 +1,6 @@
 @comment Tue May 22 16:14:04 CEST 2018
 ${PYTHON_SITELIB}/pinocchio/__init__.py
+${PYTHON_SITELIB}/pinocchio/deprecated.py
 ${PYTHON_SITELIB}/pinocchio/deprecation.py
 ${PYTHON_SITELIB}/pinocchio/explog.py
 ${PYTHON_SITELIB}/pinocchio/libpinocchio_pywrap.so

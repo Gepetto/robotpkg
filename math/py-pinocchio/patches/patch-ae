@@ -1,0 +1,36 @@
+use const ref, fix compilation for boost 1.66 & 1.67
+
+
+--- src/algorithm/kinematics-derivatives.hxx
++++ src/algorithm/kinematics-derivatives.hxx
+@@ -195,7 +195,7 @@ namespace se3
+   {
+     typedef boost::fusion::vector<const se3::Model &,
+     se3::Data &,
+-    const Model::JointIndex,
++    const Model::JointIndex &,
+     Data::Matrix6x &,
+     Data::Matrix6x &,
+     Data::Matrix6x &,
+
+
+--- src/multibody/liegroup/liegroup-algo.hxx
++++ src/multibody/liegroup/liegroup-algo.hxx
+@@ -130,7 +130,7 @@ namespace se3
+   {
+     typedef boost::fusion::vector<const Eigen::VectorXd &,
+     const Eigen::VectorXd &,
+-    const double,
++    const double &,
+     Eigen::VectorXd &
+     > ArgsType;
+     
+@@ -193,7 +193,7 @@ namespace se3
+   template<typename LieGroup_t>
+   struct SquaredDistanceStep : public fusion::JointModelVisitor<SquaredDistanceStep<LieGroup_t> >
+   {
+-    typedef boost::fusion::vector<const JointIndex,
++    typedef boost::fusion::vector<const JointIndex &,
+     const Eigen::VectorXd &,
+     const Eigen::VectorXd &,
+     Eigen::VectorXd &
