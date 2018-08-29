@@ -26,23 +26,3 @@ See https://github.com/stack-of-tasks/pinocchio/issues/511
  
      JOINT_VISITOR_INIT(JointCalcAbaVisitor);
  
---- src/algorithm/joint-configuration.hxx~	2018-06-01 18:16:43.000000000 +0200
-+++ src/algorithm/joint-configuration.hxx	2018-09-19 17:18:11.248335768 +0200
-@@ -149,7 +149,7 @@
-   {
-     typedef boost::fusion::vector<const Eigen::VectorXd &,
-                                   const Eigen::VectorXd &,
--                                  const double,
-+                                  const double &,
-                                   Eigen::VectorXd &
-                                   > ArgsType;
- 
-@@ -260,7 +260,7 @@
-   template<typename LieGroup_t>
-   struct SquaredDistanceStep : public fusion::JointModelVisitor<SquaredDistanceStep<LieGroup_t> >
-   {
--    typedef boost::fusion::vector<const Model::JointIndex,
-+    typedef boost::fusion::vector<const Model::JointIndex &,
-                                   const Eigen::VectorXd &,
-                                   const Eigen::VectorXd &,
-                                   Eigen::VectorXd &

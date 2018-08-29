@@ -1,0 +1,23 @@
+Use const ref, fix build with gcc-8
+See https://github.com/stack-of-tasks/pinocchio/issues/511
+
+--- src/multibody/liegroup/liegroup-algo.hxx~	2018-09-24 13:44:44.000000000 +0200
++++ src/multibody/liegroup/liegroup-algo.hxx	2018-10-10 13:52:34.252814000 +0200
+@@ -130,7 +130,7 @@
+   {
+     typedef boost::fusion::vector<const Eigen::VectorXd &,
+     const Eigen::VectorXd &,
+-    const double,
++    const double &,
+     Eigen::VectorXd &
+     > ArgsType;
+     
+@@ -193,7 +193,7 @@
+   template<typename LieGroup_t>
+   struct SquaredDistanceStep : public fusion::JointModelVisitor<SquaredDistanceStep<LieGroup_t> >
+   {
+-    typedef boost::fusion::vector<const JointIndex,
++    typedef boost::fusion::vector<const JointIndex &,
+     const Eigen::VectorXd &,
+     const Eigen::VectorXd &,
+     Eigen::VectorXd &

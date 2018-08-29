@@ -2,8 +2,8 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
-PKGREVISION=		2
-VERSION=		1.2.9
+PKGREVISION=		1
+VERSION=		1.3.1
 DISTNAME=		pinocchio-${VERSION}
 MASTER_SITES=\
   ${MASTER_SITE_GITHUB:=stack-of-tasks/pinocchio/releases/download/v${VERSION}/}
