@@ -1,7 +1,7 @@
 Install env.sh et al. in etc/ros instead of root prefix
 
---- cmake/catkin_generate_environment.cmake.orig	2013-06-18 23:56:13.000000000 +0200
-+++ cmake/catkin_generate_environment.cmake	2013-06-23 14:54:42.000000000 +0200
+--- cmake/catkin_generate_environment.cmake~	2018-06-06 18:18:22.000000000 +0200
++++ cmake/catkin_generate_environment.cmake	2018-09-04 15:07:25.726401000 +0200
 @@ -72,7 +72,7 @@
      @ONLY)
  
@@ -9,7 +9,7 @@ Install env.sh et al. in etc/ros instead of root prefix
 -  set(SETUP_DIR ${CMAKE_INSTALL_PREFIX})
 +  set(SETUP_DIR ${CMAKE_INSTALL_PREFIX}/etc/ros)
  
-   if(NOT CATKIN_BUILD_BINARY_PACKAGE)
+   if(CATKIN_INSTALL_INTO_PREFIX_ROOT)
      # install empty workspace marker if it doesn't already exist
 @@ -90,7 +90,7 @@
        @ONLY)
@@ -21,7 +21,7 @@ Install env.sh et al. in etc/ros instead of root prefix
  
    if(NOT WIN32)
 @@ -102,7 +102,7 @@
-     if(NOT CATKIN_BUILD_BINARY_PACKAGE)
+     if(CATKIN_INSTALL_INTO_PREFIX_ROOT)
        install(PROGRAMS
          ${CMAKE_BINARY_DIR}/catkin_generated/installspace/env.sh
 -        DESTINATION ${CMAKE_INSTALL_PREFIX})
@@ -30,11 +30,11 @@ Install env.sh et al. in etc/ros instead of root prefix
      # generate and install setup for various shells
      foreach(shell bash sh zsh)
 @@ -112,7 +112,7 @@
-       if(NOT CATKIN_BUILD_BINARY_PACKAGE)
+       if(CATKIN_INSTALL_INTO_PREFIX_ROOT)
          install(FILES
            ${CMAKE_BINARY_DIR}/catkin_generated/installspace/setup.${shell}
 -          DESTINATION ${CMAKE_INSTALL_PREFIX})
 +          DESTINATION ${SETUP_DIR})
        endif()
      endforeach()
-
+ 

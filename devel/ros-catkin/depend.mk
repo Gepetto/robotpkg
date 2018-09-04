@@ -35,7 +35,7 @@ SYSTEM_SEARCH.ros-catkin=\
 	'share/catkin/cmake/catkinConfig.cmake'			\
 	'${PYTHON_SYSLIBSEARCH}/catkin/__init__.py'
 
-CMAKE_PREFIX_PATH+=	${PREFIX.ros-catkin}
+CMAKE_PREFIX_PATH.ros-catkin=	${PREFIX.ros-catkin}
 
 USE_ROS_CATKIN?=	yes
 ifneq (,$(filter yes YES Yes,${USE_ROS_CATKIN}))
@@ -54,11 +54,6 @@ ifneq (,$(filter yes YES Yes,${USE_ROS_CATKIN}))
   CMAKE_ARGS+=-DGTEST_ROOT=${PREFIX.googletest}
   CMAKE_ARGS+=-DCATKIN_BUILD_BINARY_PACKAGE=1
   CMAKE_ARGS+=-DSETUPTOOLS_DEB_LAYOUT=OFF
-
-  # CMAKE_PREFIX_PATH is a cmake list (not a colon-separated list).
-  # Needs quoting to pass it through the shell...
-  CMAKE_ARGS+=-DCMAKE_PREFIX_PATH=$(call \
-    quote,$(subst :,;,$(call prependpaths,${CMAKE_PREFIX_PATH})))
 
   ifneq (,$(filter yes YES Yes,${ROS_METAPKG}))
     CONFIGURE_DIRS?=	${WRKSRC}/build

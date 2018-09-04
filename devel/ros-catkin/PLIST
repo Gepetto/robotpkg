@@ -1,11 +1,9 @@
-@comment Tue Aug 12 17:55:37 CEST 2014
+@comment Tue Sep 4 15:08:37 CEST 2018
 .rosinstall
 bin/catkin_find
 bin/catkin_init_workspace
 bin/catkin_make
 bin/catkin_make_isolated
-bin/catkin_package_version
-bin/catkin_prepare_release
 bin/catkin_test_results
 bin/catkin_topological_order
 etc/catkin/profile.d/05.catkin_make.bash
@@ -37,6 +35,7 @@ share/catkin/cmake/catkinConfig-version.cmake
 share/catkin/cmake/catkinConfig.cmake
 share/catkin/cmake/catkin_add_env_hooks.cmake
 share/catkin/cmake/catkin_destinations.cmake
+share/catkin/cmake/catkin_download.cmake
 share/catkin/cmake/catkin_generate_environment.cmake
 share/catkin/cmake/catkin_install_python.cmake
 share/catkin/cmake/catkin_libraries.cmake
@@ -44,14 +43,14 @@ share/catkin/cmake/catkin_metapackage.cmake
 share/catkin/cmake/catkin_package.cmake
 share/catkin/cmake/catkin_package_xml.cmake
 share/catkin/cmake/catkin_python_setup.cmake
+share/catkin/cmake/catkin_symlink_install.cmake
 share/catkin/cmake/catkin_workspace.cmake
+share/catkin/cmake/custom_install.cmake
 share/catkin/cmake/debug_message.cmake
 share/catkin/cmake/em/order_packages.cmake.em
 share/catkin/cmake/em/pkg.pc.em
 share/catkin/cmake/em_expand.cmake
 share/catkin/cmake/empy.cmake
-share/catkin/cmake/env-hooks/05.catkin-test-results.bat.develspace.in
-share/catkin/cmake/env-hooks/05.catkin-test-results.sh.develspace.in
 share/catkin/cmake/env-hooks/05.catkin_make.bash
 share/catkin/cmake/env-hooks/05.catkin_make_isolated.bash
 share/catkin/cmake/find_program_required.cmake
@@ -70,6 +69,14 @@ share/catkin/cmake/safe_execute_process.cmake
 share/catkin/cmake/shell.cmake
 share/catkin/cmake/stamp.cmake
 share/catkin/cmake/string_starts_with.cmake
+share/catkin/cmake/symlink_install/catkin_install_logic.cmake
+share/catkin/cmake/symlink_install/catkin_symlink_install.cmake.in
+share/catkin/cmake/symlink_install/catkin_symlink_install_append_install_code.cmake
+share/catkin/cmake/symlink_install/catkin_symlink_install_directory.cmake
+share/catkin/cmake/symlink_install/catkin_symlink_install_files.cmake
+share/catkin/cmake/symlink_install/catkin_symlink_install_programs.cmake
+share/catkin/cmake/symlink_install/catkin_symlink_install_targets.cmake
+share/catkin/cmake/symlink_install/install.cmake
 share/catkin/cmake/templates/Doxyfile.in
 share/catkin/cmake/templates/__init__.py.in
 share/catkin/cmake/templates/_setup_util.py.in
@@ -99,6 +106,7 @@ share/catkin/cmake/test/catkin_download_test_data.cmake
 share/catkin/cmake/test/download_checkmd5.py
 share/catkin/cmake/test/gtest.cmake
 share/catkin/cmake/test/nosetests.cmake
+share/catkin/cmake/test/remove_test_results.py
 share/catkin/cmake/test/run_tests.py
 share/catkin/cmake/test/tests.cmake
 share/catkin/cmake/tools/bz2.cmake

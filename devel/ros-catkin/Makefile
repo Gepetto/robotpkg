@@ -2,9 +2,8 @@
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
 
-PKGREVISION=	2
 ROS_PKG=	catkin
-ROS_VERSION=	0.6.9
+ROS_VERSION=	0.7.14
 
 CATEGORIES=	devel
 ROS_COMMENT=	low-level build system macros and infrastructure
