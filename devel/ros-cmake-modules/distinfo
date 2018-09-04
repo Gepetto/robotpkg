@@ -1,5 +1,6 @@
-SHA1 (ros/cmake_modules/0.3.1.tar.gz) = cb6b3d27453a8fbba3acda80c151817d311eee9f
-RMD160 (ros/cmake_modules/0.3.1.tar.gz) = 9c92a00fd6a09082b904d1d748b19ca6f1edb576
-Size (ros/cmake_modules/0.3.1.tar.gz) = 12654 bytes
+SHA1 (ros/cmake_modules/0.4.1.tar.gz) = e22dc60f704a9294936155dafb91259624b7885c
+RMD160 (ros/cmake_modules/0.4.1.tar.gz) = d1a80a26eac012dd458bd4ce7432a2039e480cef
+Size (ros/cmake_modules/0.4.1.tar.gz) = 18057 bytes
 SHA1 (patch-aa) = 7424a595795c7e47fa9f2954355ed58c9c7542bc
 SHA1 (patch-ab) = 0894872e4b1f6b78a5e5de233dc7a5b547373e8e
+SHA1 (patch-ac) = 05ed1466cb8e14dce10f259b8fbcef5b8ec0ca7a

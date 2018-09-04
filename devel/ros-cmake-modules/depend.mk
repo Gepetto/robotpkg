@@ -23,8 +23,9 @@ DEPEND_ABI.ros-cmake-modules?=		ros-cmake-modules>=0.3
 DEPEND_DIR.ros-cmake-modules?=		../../devel/ros-cmake-modules
 
 SYSTEM_SEARCH.ros-cmake-modules=\
-	'share/cmake_modules/package.xml:/<version>/s/[^0-9.]//gp'	\
-	'lib/pkgconfig/cmake_modules.pc:/Version/s/[^0-9.]//gp'
+  'share/cmake_modules/cmake/cmake_modulesConfig.cmake'		\
+  'share/cmake_modules/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'lib/pkgconfig/cmake_modules.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_CMAKE_MODULES_DEPEND_MK ----------------------------------------
 
