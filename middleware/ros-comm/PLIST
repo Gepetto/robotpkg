@@ -1,4 +1,4 @@
-@comment Wed Nov 2 14:51:30 CET 2016
+@comment Fri Sep 7 14:37:38 CEST 2018
 bin/rosbag
 bin/rosconsole
 bin/roscore
@@ -21,19 +21,9 @@ etc/catkin/profile.d/10.roslaunch.sh
 etc/catkin/profile.d/20.transform.bash
 etc/ros/python_logging.conf
 etc/ros/roscore.xml
-include/XmlRpc.h
-include/XmlRpcClient.h
-include/XmlRpcDecl.h
-include/XmlRpcDispatch.h
-include/XmlRpcException.h
-include/XmlRpcServer.h
-include/XmlRpcServerConnection.h
-include/XmlRpcServerMethod.h
-include/XmlRpcSocket.h
-include/XmlRpcSource.h
-include/XmlRpcUtil.h
-include/XmlRpcValue.h
-include/base64.h
+include/boost_161_condition_variable.h
+include/boost_161_pthread_condition_variable.h
+include/boost_161_pthread_condition_variable_fwd.h
 include/message_filters/cache.h
 include/message_filters/chain.h
 include/message_filters/connection.h
@@ -51,14 +41,11 @@ include/message_filters/time_sequencer.h
 include/message_filters/time_synchronizer.h
 include/ros/advertise_options.h
 include/ros/advertise_service_options.h
-include/ros/assert.h
 include/ros/callback_queue.h
 include/ros/callback_queue_interface.h
 include/ros/common.h
 include/ros/connection.h
 include/ros/connection_manager.h
-include/ros/console.h
-include/ros/console_backend.h
 include/ros/exceptions.h
 include/ros/file_log.h
 include/ros/forwards.h
@@ -93,8 +80,9 @@ include/ros/service_server.h
 include/ros/service_server_link.h
 include/ros/single_subscriber_publisher.h
 include/ros/spinner.h
-include/ros/static_assert.h
 include/ros/statistics.h
+include/ros/steady_timer.h
+include/ros/steady_timer_options.h
 include/ros/subscribe_options.h
 include/ros/subscriber.h
 include/ros/subscriber_link.h
@@ -121,6 +109,7 @@ include/rosbag/bag_player.h
 include/rosbag/buffer.h
 include/rosbag/chunked_file.h
 include/rosbag/constants.h
+include/rosbag/encryptor.h
 include/rosbag/exceptions.h
 include/rosbag/macros.h
 include/rosbag/message_instance.h
@@ -131,7 +120,6 @@ include/rosbag/stream.h
 include/rosbag/structures.h
 include/rosbag/time_translator.h
 include/rosbag/view.h
-include/rosconsole/macros_generated.h
 include/roscpp/Empty.h
 include/roscpp/EmptyRequest.h
 include/roscpp/EmptyResponse.h
@@ -151,7 +139,7 @@ include/test_rosbag/MigratedExplicit.h
 include/test_rosbag/MigratedImplicit.h
 include/test_rosbag/MigratedMixed.h
 include/test_rosbag/PartiallyMigrated.h
-include/test_rosbag/Renamed4.h
+include/test_rosbag/Renamed5.h
 include/test_rosbag/Simple.h
 include/test_rosbag/SimpleMigrated.h
 include/test_rosbag/SubUnmigrated.h
@@ -303,12 +291,22 @@ include/topic_tools/MuxSelectResponse.h
 include/topic_tools/macros.h
 include/topic_tools/parse.h
 include/topic_tools/shape_shifter.h
+include/xmlrpcpp/XmlRpc.h
+include/xmlrpcpp/XmlRpcClient.h
+include/xmlrpcpp/XmlRpcDecl.h
+include/xmlrpcpp/XmlRpcDispatch.h
+include/xmlrpcpp/XmlRpcException.h
+include/xmlrpcpp/XmlRpcServer.h
+include/xmlrpcpp/XmlRpcServerConnection.h
+include/xmlrpcpp/XmlRpcServerMethod.h
+include/xmlrpcpp/XmlRpcSocket.h
+include/xmlrpcpp/XmlRpcSource.h
+include/xmlrpcpp/XmlRpcUtil.h
+include/xmlrpcpp/XmlRpcValue.h
+include/xmlrpcpp/base64.h
 lib/libmessage_filters.so
 lib/librosbag.so
 lib/librosbag_storage.so
-lib/librosconsole.so
-lib/librosconsole_backend_interface.so
-lib/librosconsole_log4cxx.so
 lib/libroscpp.so
 lib/libroslz4.so
 lib/libtopic_tools.so
@@ -316,7 +314,6 @@ lib/libxmlrpcpp.so
 lib/pkgconfig/message_filters.pc
 lib/pkgconfig/rosbag.pc
 lib/pkgconfig/rosbag_storage.pc
-lib/pkgconfig/rosconsole.pc
 lib/pkgconfig/roscpp.pc
 lib/pkgconfig/rosgraph.pc
 lib/pkgconfig/roslaunch.pc
@@ -474,7 +471,7 @@ ${PYTHON_SITELIB}/test_rosbag/msg/_MigratedExplicit.py
 ${PYTHON_SITELIB}/test_rosbag/msg/_MigratedImplicit.py
 ${PYTHON_SITELIB}/test_rosbag/msg/_MigratedMixed.py
 ${PYTHON_SITELIB}/test_rosbag/msg/_PartiallyMigrated.py
-${PYTHON_SITELIB}/test_rosbag/msg/_Renamed4.py
+${PYTHON_SITELIB}/test_rosbag/msg/_Renamed5.py
 ${PYTHON_SITELIB}/test_rosbag/msg/_Simple.py
 ${PYTHON_SITELIB}/test_rosbag/msg/_SimpleMigrated.py
 ${PYTHON_SITELIB}/test_rosbag/msg/_SubUnmigrated.py
@@ -587,6 +584,7 @@ ${PYTHON_SITELIB}/test_rostopic/msg/_Simple.py
 ${PYTHON_SITELIB}/test_rostopic/msg/_TVals.py
 ${PYTHON_SITELIB}/test_rostopic/msg/_Val.py
 ${PYTHON_SITELIB}/test_rostopic/msg/__init__.py
+${PYTHON_SITELIB}/topic_tools-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/topic_tools/__init__.py
 ${PYTHON_SITELIB}/topic_tools/srv/_DemuxAdd.py
 ${PYTHON_SITELIB}/topic_tools/srv/_DemuxDelete.py
@@ -599,6 +597,7 @@ ${PYTHON_SITELIB}/topic_tools/srv/_MuxSelect.py
 ${PYTHON_SITELIB}/topic_tools/srv/__init__.py
 lib/rosbag/bag2png.py
 lib/rosbag/bagsort.py
+lib/rosbag/encrypt
 lib/rosbag/fastrebag.py
 lib/rosbag/fix_md5sums.py
 lib/rosbag/fix_moved_messages.py
@@ -645,7 +644,7 @@ share/common-lisp/ros/test_rosbag/msg/MigratedExplicit.lisp
 share/common-lisp/ros/test_rosbag/msg/MigratedImplicit.lisp
 share/common-lisp/ros/test_rosbag/msg/MigratedMixed.lisp
 share/common-lisp/ros/test_rosbag/msg/PartiallyMigrated.lisp
-share/common-lisp/ros/test_rosbag/msg/Renamed4.lisp
+share/common-lisp/ros/test_rosbag/msg/Renamed5.lisp
 share/common-lisp/ros/test_rosbag/msg/Simple.lisp
 share/common-lisp/ros/test_rosbag/msg/SimpleMigrated.lisp
 share/common-lisp/ros/test_rosbag/msg/SubUnmigrated.lisp
@@ -658,7 +657,7 @@ share/common-lisp/ros/test_rosbag/msg/_package_MigratedExplicit.lisp
 share/common-lisp/ros/test_rosbag/msg/_package_MigratedImplicit.lisp
 share/common-lisp/ros/test_rosbag/msg/_package_MigratedMixed.lisp
 share/common-lisp/ros/test_rosbag/msg/_package_PartiallyMigrated.lisp
-share/common-lisp/ros/test_rosbag/msg/_package_Renamed4.lisp
+share/common-lisp/ros/test_rosbag/msg/_package_Renamed5.lisp
 share/common-lisp/ros/test_rosbag/msg/_package_Simple.lisp
 share/common-lisp/ros/test_rosbag/msg/_package_SimpleMigrated.lisp
 share/common-lisp/ros/test_rosbag/msg/_package_SubUnmigrated.lisp
@@ -887,18 +886,15 @@ share/common-lisp/ros/topic_tools/srv/topic_tools-srv.asd
 share/message_filters/cmake/message_filtersConfig-version.cmake
 share/message_filters/cmake/message_filtersConfig.cmake
 share/message_filters/package.xml
-share/ros/config/rosconsole.config
 share/ros_comm/package.xml
 share/rosbag/cmake/rosbagConfig-version.cmake
 share/rosbag/cmake/rosbagConfig.cmake
 share/rosbag/package.xml
+share/rosbag_storage/cmake/rosbag_storage-extras.cmake
 share/rosbag_storage/cmake/rosbag_storageConfig-version.cmake
 share/rosbag_storage/cmake/rosbag_storageConfig.cmake
+share/rosbag_storage/encryptor_plugins.xml
 share/rosbag_storage/package.xml
-share/rosconsole/cmake/rosconsole-extras.cmake
-share/rosconsole/cmake/rosconsoleConfig-version.cmake
-share/rosconsole/cmake/rosconsoleConfig.cmake
-share/rosconsole/package.xml
 share/roscpp/cmake/roscpp-msg-extras.cmake
 share/roscpp/cmake/roscpp-msg-paths.cmake
 share/roscpp/cmake/roscppConfig-version.cmake
@@ -920,11 +916,13 @@ share/roslaunch/cmake/roslaunch-extras.cmake
 share/roslaunch/cmake/roslaunchConfig-version.cmake
 share/roslaunch/cmake/roslaunchConfig.cmake
 share/roslaunch/package.xml
+share/roslaunch/resources/example-args.launch
 share/roslaunch/resources/example-env-substutition.xml
 share/roslaunch/resources/example-gdb.launch
 share/roslaunch/resources/example-include.launch
 share/roslaunch/resources/example-min.launch
 share/roslaunch/resources/example-params.launch
+share/roslaunch/resources/example-pass_all_args.launch
 share/roslaunch/resources/example-ssh.launch
 share/roslaunch/resources/example.launch
 share/roslaunch/resources/roscore.xml
@@ -960,7 +958,9 @@ share/rosservice/package.xml
 share/rostest/cmake/rostest-extras.cmake
 share/rostest/cmake/rostestConfig-version.cmake
 share/rostest/cmake/rostestConfig.cmake
-share/rostest/nodes/hztest/hztest
+share/rostest/nodes/hztest
+share/rostest/nodes/paramtest
+share/rostest/nodes/publishtest
 share/rostest/package.xml
 share/rostopic/cmake/rostopicConfig-version.cmake
 share/rostopic/cmake/rostopicConfig.cmake
@@ -978,7 +978,7 @@ share/test_rosbag/msg_current/MigratedExplicit.msg
 share/test_rosbag/msg_current/MigratedImplicit.msg
 share/test_rosbag/msg_current/MigratedMixed.msg
 share/test_rosbag/msg_current/PartiallyMigrated.msg
-share/test_rosbag/msg_current/Renamed4.msg
+share/test_rosbag/msg_current/Renamed5.msg
 share/test_rosbag/msg_current/Simple.msg
 share/test_rosbag/msg_current/SimpleMigrated.msg
 share/test_rosbag/msg_current/SubUnmigrated.msg
@@ -1065,7 +1065,7 @@ share/topic_tools/srv/MuxAdd.srv
 share/topic_tools/srv/MuxDelete.srv
 share/topic_tools/srv/MuxList.srv
 share/topic_tools/srv/MuxSelect.srv
+share/xmlrpcpp/cmake/xmlrpcpp-extras.cmake
 share/xmlrpcpp/cmake/xmlrpcppConfig-version.cmake
 share/xmlrpcpp/cmake/xmlrpcppConfig.cmake
 share/xmlrpcpp/package.xml
-@pkgdir share/doc/liborocos-kdl

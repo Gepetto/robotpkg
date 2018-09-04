@@ -30,11 +30,13 @@ DEPEND_ABI.ros-comm.lunar?=	ros-comm>=1.13<1.14
 DEPEND_ABI.ros-comm.melodic?=	ros-comm>=1.13<1.15
 
 SYSTEM_SEARCH.ros-comm=\
-	bin/roscore							\
-	include/ros/ros.h						\
-	lib/libroscpp.so						\
-	'share/ros_comm/package.xml:/<version>/s/[^0-9.]//gp'		\
-	'lib/pkgconfig/roscpp.pc:/Version/s/[^0-9.]//gp'
+  'bin/roscore'							\
+  'include/ros/ros.h'						\
+  'lib/libroscpp.so'						\
+  'share/ros_comm/package.xml:/<version>/s/[^0-9.]//gp'		\
+  'lib/pkgconfig/roscpp.pc:/Version/s/[^0-9.]//gp'
+
+CMAKE_PREFIX_PATH.ros-comm=	${PREFIX.ros-comm}
 
 SYSTEM_PKG.Ubuntu.ros-comm=	ros-${PKG_ALTERNATIVE.ros}-ros-comm
 

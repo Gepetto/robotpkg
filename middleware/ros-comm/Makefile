@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		ros_comm
-ROS_VERSION=		1.11.20
+ROS_VERSION=		1.14.3
 ROS_METAPKG=		yes
 
 PKGNAME=		$(subst _,-,${ROS_PKG})-${ROS_VERSION}
@@ -14,6 +14,11 @@ ROS_COMMENT=		communications-related libraries and tools
 include ../../meta-pkgs/ros-base/Makefile.common
 
 DEPEND_ABI.ros-catkin+=	ros-catkin>=0.5.68
+
+AES_ENCRYPT_LIBRARIES=$(filter %crypto.so,${SYSTEM_FILES.openssl})
+AES_ENCRYPT_LIBRARIES+=$(filter %gpgme.so,${SYSTEM_FILES.gpgme})
+CMAKE_ARGS+=\
+  -DAES_ENCRYPT_LIBRARIES=$(call quote,$(subst $  ,;,${AES_ENCRYPT_LIBRARIES}))
 
 # Fix prefix
 SUBST_CLASSES+=		ros-prefix
@@ -40,6 +45,7 @@ include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/log4cxx/depend.mk
 include ../../devel/ros-catkin/depend.mk
+include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../devel/ros-roscpp-core/depend.mk
 include ../../interfaces/ros-comm-msgs/depend.mk
@@ -47,11 +53,21 @@ include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
+include ../../sysutils/ros-console/depend.mk
 include ../../mk/sysdep/apr.mk
 include ../../mk/sysdep/bash.mk
+include ../../mk/sysdep/gpgme.mk
+include ../../mk/sysdep/openssl.mk
+include ../../mk/sysdep/py-crypto.mk
+include ../../mk/sysdep/py-defusedxml.mk
+include ../../mk/sysdep/py-gnupg.mk
 include ../../mk/sysdep/py-imaging.mk
 include ../../mk/sysdep/py-netifaces.mk
 include ../../mk/sysdep/py-numpy.mk
 include ../../mk/sysdep/py-paramiko.mk
 include ../../mk/sysdep/py-yaml.mk
+include ../../mk/language/c++11.mk
+
+DEPEND_ABI.py-rospkg+= ${PKGTAG.python}-rospkg>=1.0.38
+
 include ../../mk/robotpkg.mk

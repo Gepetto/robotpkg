@@ -1,0 +1,17 @@
+Dirty fix to load python-gnupginterface on NetBSD instead of gnupg.
+This is until pkgsrc gets a real python-gnupg.
+
+--- tools/rosbag/src/rosbag/bag.py~	2018-08-06 19:37:33.000000000 +0200
++++ tools/rosbag/src/rosbag/bag.py	2018-09-17 18:39:05.806820908 +0200
+@@ -52,7 +52,10 @@
+ 
+ from Crypto import Random
+ from Crypto.Cipher import AES
+-import gnupg
++try:
++    import gnupg
++except ImportError:
++    import GnuPGInterface
+ 
+ try:
+     from cStringIO import StringIO  # Python 2.x

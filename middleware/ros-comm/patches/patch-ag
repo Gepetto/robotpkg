@@ -1,0 +1,15 @@
+Let robotpkg pass the full path to encryption libraries
+
+--- tools/rosbag_storage/CMakeLists.txt~	2018-08-06 19:37:33.000000000 +0200
++++ tools/rosbag_storage/CMakeLists.txt	2018-09-07 14:33:19.864030000 +0200
+@@ -26,10 +26,8 @@
+ add_definitions(${BZIP2_DEFINITIONS})
+ 
+ set(AES_ENCRYPT_SOURCE "")
+-set(AES_ENCRYPT_LIBRARIES "")
+ if(NOT WIN32)
+   set(AES_ENCRYPT_SOURCE "src/aes_encryptor.cpp")
+-  set(AES_ENCRYPT_LIBRARIES "crypto" "gpgme")
+ endif()
+ 
+ add_library(rosbag_storage

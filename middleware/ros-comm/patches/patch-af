@@ -1,0 +1,25 @@
+Fix for console-bridge < 0.4
+
+--- tools/rosbag_storage/include/rosbag/bag.h~	2018-08-06 19:37:33.000000000 +0200
++++ tools/rosbag_storage/include/rosbag/bag.h	2018-09-07 14:18:03.819627000 +0200
+@@ -65,17 +65,9 @@
+ #include <pluginlib/class_loader.hpp>
+ 
+ #include "console_bridge/console.h"
+-#if defined logDebug
+-# undef logDebug
+-#endif
+-#if defined logInform
+-# undef logInform
+-#endif
+-#if defined logWarn
+-# undef logWarn
+-#endif
+-#if defined logError
+-# undef logError
++/* Fix for console-bridge < 0.4 */
++#ifndef CONSOLE_BRIDGE_logDebug
++# define CONSOLE_BRIDGE_logDebug logDebug
+ #endif
+ 
+ namespace rosbag {

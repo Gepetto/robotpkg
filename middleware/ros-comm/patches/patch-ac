@@ -1,4 +1,4 @@
-Fix for console-bridge >= 0.4
+Fix for console-bridge < 0.4
 
 --- tools/rosbag_storage/src/bag.cpp~	2016-06-28 00:11:58.000000000 +0200
 +++ tools/rosbag_storage/src/bag.cpp	2018-05-24 13:54:59.362885445 +0200
@@ -6,10 +6,10 @@ Fix for console-bridge >= 0.4
  #include <boost/foreach.hpp>
  
  #include "console_bridge/console.h"
-+/* Fix for console-bridge >= 0.4 */
-+#ifdef CONSOLE_BRIDGE_logError
-+# define logDebug CONSOLE_BRIDGE_logDebug
-+# define logError CONSOLE_BRIDGE_logError
++/* Fix for console-bridge < 0.4 */
++#ifndef CONSOLE_BRIDGE_logError
++# define CONSOLE_BRIDGE_logDebug logDebug
++# define CONSOLE_BRIDGE_logError logError
 +#endif
  
  #define foreach BOOST_FOREACH
