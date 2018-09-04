@@ -12,6 +12,7 @@ include ../../meta-pkgs/ros-base/Makefile.common
 
 include ../../devel/ros-catkin/depend.mk
 include ../../lang/ros-gencpp/depend.mk
+include ../../lang/ros-geneus/depend.mk
 include ../../lang/ros-genlisp/depend.mk
 include ../../lang/ros-genpy/depend.mk
 include ../../middleware/ros-genmsg/depend.mk

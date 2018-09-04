@@ -5,6 +5,7 @@ COMMENT=	Programming languages
 
 SUBDIR+=	jython
 SUBDIR+=	ros-gencpp
+SUBDIR+=	ros-geneus
 SUBDIR+=	ros-genlisp
 SUBDIR+=	ros-genpy
 SUBDIR+=	ros-message-generation

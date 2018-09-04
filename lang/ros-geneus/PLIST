@@ -1,0 +1,13 @@
+@comment Tue Sep 4 15:59:49 CEST 2018
+etc/ros/genmsg/geneus
+lib/geneus/gen_eus.py
+lib/pkgconfig/geneus.pc
+${PYTHON_SITELIB}/geneus-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/geneus/__init__.py
+${PYTHON_SITELIB}/geneus/generate.py
+${PYTHON_SITELIB}/geneus/geneus_main.py
+share/geneus/cmake/geneus-extras.cmake
+share/geneus/cmake/geneusConfig-version.cmake
+share/geneus/cmake/geneusConfig.cmake
+share/geneus/package.xml
+share/roseus/rospack_nosubdirs
