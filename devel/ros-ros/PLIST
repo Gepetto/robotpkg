@@ -1,13 +1,13 @@
-@comment Wed Aug 13 12:03:01 CEST 2014
+@comment Tue Sep 4 17:15:37 CEST 2018
 bin/rosboost-cfg
 bin/rosclean
 bin/roscreate-pkg
 bin/rosmake
 bin/rosrun
 bin/rosunit
-etc/catkin/profile.d/10.ros.sh
 etc/catkin/profile.d/10.rosbuild.sh
 etc/catkin/profile.d/15.rosbash.bash
+etc/catkin/profile.d/15.rosbash.fish
 etc/catkin/profile.d/15.rosbash.tcsh
 etc/catkin/profile.d/15.rosbash.zsh
 include/ros/package.h
@@ -95,6 +95,7 @@ share/rosbash/cmake/rosbashConfig-version.cmake
 share/rosbash/cmake/rosbashConfig.cmake
 share/rosbash/package.xml
 share/rosbash/rosbash
+share/rosbash/rosfish
 share/rosbash/rostcsh
 share/rosbash/roszsh
 share/rosboost_cfg/cmake/rosboost_cfgConfig-version.cmake

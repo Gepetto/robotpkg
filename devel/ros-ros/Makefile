@@ -4,7 +4,7 @@
 
 ROS_PKG=	ros
 ROS_METAPKG=	yes
-ROS_VERSION=	1.11.4
+ROS_VERSION=	1.14.4
 
 CATEGORIES=	devel
 ROS_COMMENT=	packaging system
@@ -24,7 +24,6 @@ SUBST_FILES.py-interp+=	tools/*/scripts/*
 
 SUBST_FILES.py-interp+=	core/rosbuild/bin/rosgcov_summarize
 SUBST_FILES.py-interp+=	core/roslib/scripts/gendeps
-SUBST_FILES.py-interp+=	core/roslib/env-hooks/10.ros.sh.em
 SUBST_FILES.py-interp+=	tools/rosboost_cfg/scripts/rosboost-cfg
 SUBST_FILES.py-interp+=	tools/rosboost_cfg/src/rosboost_cfg/rosboost_cfg.py
 
