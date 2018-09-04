@@ -36,6 +36,8 @@ SYSTEM_SEARCH.ros-comm=\
 	'share/ros_comm/package.xml:/<version>/s/[^0-9.]//gp'		\
 	'lib/pkgconfig/roscpp.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Ubuntu.ros-comm=	ros-${PKG_ALTERNATIVE.ros}-ros-comm
+
 endif # ROS_COMM_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
