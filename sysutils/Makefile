@@ -13,6 +13,7 @@ SUBDIR+=	py-catkin-pkg
 SUBDIR+=	py-rosdep
 SUBDIR+=	py-rosdistro
 SUBDIR+=	py-rospkg
+SUBDIR+=	ros-console
 SUBDIR+=	ros-console-bridge
 SUBDIR+=	ros-diagnostics
 SUBDIR+=	ros-rospack
