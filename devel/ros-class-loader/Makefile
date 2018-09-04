@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	class_loader
-ROS_VERSION=	0.3.0
+ROS_VERSION=	0.4.1
 
 CATEGORIES=	devel
 ROS_COMMENT=	package for dynamically loading C++ classes at runtime
@@ -18,6 +18,8 @@ LIBRARY_DIRS.poco+=	lib
 RPATH_DIRS.poco+=	lib
 
 include ../../devel/ros-catkin/depend.mk
+include ../../devel/ros-cmake-modules/depend.mk
 include ../../sysutils/console-bridge/depend.mk
 include ../../mk/sysdep/poco.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk

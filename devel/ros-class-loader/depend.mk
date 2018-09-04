@@ -35,6 +35,9 @@ SYSTEM_SEARCH.ros-class-loader=\
   'share/class_loader/package.xml:/<version>/s/[^0-9.]//gp'	\
   'lib/pkgconfig/class_loader.pc:/Version/s/[^0-9.]//gp'
 
+# headers use C++11
+include ../../mk/language/c++11.mk
+
 endif # ROS_CLASS_LOADER_DEPEND_MK -----------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

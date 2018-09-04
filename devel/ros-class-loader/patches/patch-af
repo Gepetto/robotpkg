@@ -1,0 +1,10 @@
+Don't require crazy cmake version
+
+--- CMakeLists.txt~	2018-04-27 23:00:08.000000000 +0200
++++ CMakeLists.txt	2018-09-04 18:01:01.182909000 +0200
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.5)
++cmake_minimum_required(VERSION 2.8)
+ project(class_loader CXX)
+ 
+ # Default to C++14
