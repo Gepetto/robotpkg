@@ -1,7 +1,4 @@
-SHA1 (ros/roscpp_core/0.5.4.tar.gz) = 613c5143c4ebf1199b4968ee127088731c7383f1
-RMD160 (ros/roscpp_core/0.5.4.tar.gz) = 319ab444e469c88b333f520e5ed93cb5482bac6a
-Size (ros/roscpp_core/0.5.4.tar.gz) = 31431 bytes
-SHA1 (patch-aa) = 153240a973190cb510dac429af5c3632b945670d
+SHA1 (ros/roscpp_core/0.6.11.tar.gz) = 981e755b830a69d2b454a57dcb3b486852a06ee4
+RMD160 (ros/roscpp_core/0.6.11.tar.gz) = 0dd34742cc52077c02d005ee0832f51118fb1ddb
+Size (ros/roscpp_core/0.6.11.tar.gz) = 35153 bytes
 SHA1 (patch-ab) = f0dd2705642c9b17bfa701278c72d752eefb5691
-SHA1 (patch-ac) = e9ce40f05531521a7efe605eda9e88a4545695c9
-SHA1 (patch-ad) = 2a481164838f642a5fca46bffd7e2c180b4748a0
