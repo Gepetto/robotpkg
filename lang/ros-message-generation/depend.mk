@@ -30,8 +30,9 @@ DEPEND_ABI.ros-message-generation.lunar?=	ros-message-generation>=0.4<0.5
 DEPEND_ABI.ros-message-generation.melodic?=	ros-message-generation>=0.4<0.5
 
 SYSTEM_SEARCH.ros-message-generation=\
-	'share/message_generation/package.xml:/<version>/s/[^0-9.]//gp'	\
-	'lib/pkgconfig/message_generation.pc:/Version/s/[^0-9.]//gp'
+  'share/message_generation/cmake/message_generationConfig.cmake'	\
+  'share/message_generation/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'lib/pkgconfig/message_generation.pc:/Version/s/[^0-9.]//gp'
 
 include ../../middleware/ros-genmsg/depend.mk
 
