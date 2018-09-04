@@ -1,0 +1,12 @@
+@comment Tue Sep 4 16:13:17 CEST 2018
+etc/ros/genmsg/gennodejs
+lib/gennodejs/gen_nodejs.py
+lib/pkgconfig/gennodejs.pc
+${PYTHON_SITELIB}/gennodejs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/gennodejs/__init__.py
+${PYTHON_SITELIB}/gennodejs/generate.py
+${PYTHON_SITELIB}/gennodejs/gennodejs_main.py
+share/gennodejs/cmake/gennodejs-extras.cmake
+share/gennodejs/cmake/gennodejsConfig-version.cmake
+share/gennodejs/cmake/gennodejsConfig.cmake
+share/gennodejs/package.xml

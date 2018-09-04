@@ -14,6 +14,7 @@ include ../../devel/ros-catkin/depend.mk
 include ../../lang/ros-gencpp/depend.mk
 include ../../lang/ros-geneus/depend.mk
 include ../../lang/ros-genlisp/depend.mk
+include ../../lang/ros-gennodejs/depend.mk
 include ../../lang/ros-genpy/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 include ../../mk/robotpkg.mk
