@@ -1,15 +1,33 @@
-@comment Tue Aug 12 17:27:25 CEST 2014
+@comment Tue Sep 4 14:19:58 CEST 2018
 bin/catkin_create_pkg
 bin/catkin_find_pkg
 bin/catkin_generate_changelog
+bin/catkin_package_version
+bin/catkin_prepare_release
 bin/catkin_tag_changelog
 bin/catkin_test_changelog
-${PYTHON_SITELIB}/catkin_pkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/catkin_pkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/catkin_pkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/catkin_pkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/catkin_pkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/entry_points.txt
+${PYTHON_SITELIB}/catkin_pkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/requires.txt
+${PYTHON_SITELIB}/catkin_pkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/catkin_pkg/__init__.py
 ${PYTHON_SITELIB}/catkin_pkg/changelog.py
 ${PYTHON_SITELIB}/catkin_pkg/changelog_generator.py
 ${PYTHON_SITELIB}/catkin_pkg/changelog_generator_vcs.py
+${PYTHON_SITELIB}/catkin_pkg/cli/__init__.py
+${PYTHON_SITELIB}/catkin_pkg/cli/create_pkg.py
+${PYTHON_SITELIB}/catkin_pkg/cli/find_pkg.py
+${PYTHON_SITELIB}/catkin_pkg/cli/generate_changelog.py
+${PYTHON_SITELIB}/catkin_pkg/cli/package_version.py
+${PYTHON_SITELIB}/catkin_pkg/cli/prepare_release.py
+${PYTHON_SITELIB}/catkin_pkg/cli/tag_changelog.py
+${PYTHON_SITELIB}/catkin_pkg/cli/test_changelog.py
 ${PYTHON_SITELIB}/catkin_pkg/cmake.py
+${PYTHON_SITELIB}/catkin_pkg/condition.py
+${PYTHON_SITELIB}/catkin_pkg/group_dependency.py
+${PYTHON_SITELIB}/catkin_pkg/group_membership.py
 ${PYTHON_SITELIB}/catkin_pkg/metapackage.py
 ${PYTHON_SITELIB}/catkin_pkg/package.py
 ${PYTHON_SITELIB}/catkin_pkg/package_templates.py
@@ -20,5 +38,8 @@ ${PYTHON_SITELIB}/catkin_pkg/rospack.py
 ${PYTHON_SITELIB}/catkin_pkg/templates/CMakeLists.txt.in
 ${PYTHON_SITELIB}/catkin_pkg/templates/metapackage.cmake.in
 ${PYTHON_SITELIB}/catkin_pkg/templates/package.xml.in
+${PYTHON_SITELIB}/catkin_pkg/terminal_color.py
+${PYTHON_SITELIB}/catkin_pkg/tool_detection.py
 ${PYTHON_SITELIB}/catkin_pkg/topological_order.py
+${PYTHON_SITELIB}/catkin_pkg/workspace_vcs.py
 ${PYTHON_SITELIB}/catkin_pkg/workspaces.py

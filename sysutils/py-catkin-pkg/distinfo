@@ -1,4 +1,4 @@
-SHA1 (ros/catkin_pkg/0.2.4.tar.gz) = a1f0e3aecc02585c683b1dae536841ae25bb4d98
-RMD160 (ros/catkin_pkg/0.2.4.tar.gz) = 64b372214a66d5f4ba002df7a84f65462aff22e1
-Size (ros/catkin_pkg/0.2.4.tar.gz) = 41675 bytes
-SHA1 (patch-aa) = bb16c6898a093941cd45b0dc1d20a22d9b1f5630
+SHA1 (ros/catkin_pkg/0.4.8.tar.gz) = aad11a2d55fe3f33f12e65ec9b973be089bb0573
+RMD160 (ros/catkin_pkg/0.4.8.tar.gz) = d23024ad57a97ee72486d5dfa31bf2c6865e2854
+Size (ros/catkin_pkg/0.4.8.tar.gz) = 60811 bytes
+SHA1 (patch-aa) = 3cdadcd20f0491c32ca4fa71a5669654b906680f

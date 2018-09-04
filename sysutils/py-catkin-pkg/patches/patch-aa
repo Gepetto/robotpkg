@@ -1,12 +1,19 @@
---- setup.py~	2013-06-19 01:27:53.000000000 +0200
-+++ setup.py	2013-06-20 18:05:26.547720051 +0200
-@@ -33,9 +33,4 @@
-     description='catkin package library',
-     long_description='Library for retrieving information about catkin packages.',
-     license='BSD',
--    install_requires=[
+Remove argparse, it's in python-2.7 and robotpkg supports only python >= 2.7
+Furthermore, it creates issues in Fedora (pkg_resources.DistributionNotFound)
+Last, it's only for pip which we really don't care about here.
+
+--- setup.py~	2018-08-08 22:39:35.000000000 +0200
++++ setup.py	2018-09-14 17:11:50.773394417 +0200
+@@ -34,12 +34,6 @@
+     'description': 'catkin package library',
+     'long_description': 'Library for retrieving information about catkin packages.',
+     'license': 'BSD',
+-    'install_requires': [
 -        'argparse',
 -        'docutils',
--        'python-dateutil'
+-        'python-dateutil',
+-        'pyparsing',
 -    ],
- )
+ }
+ if 'SKIP_PYTHON_MODULES' in os.environ:
+     kwargs['packages'] = []
