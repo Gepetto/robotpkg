@@ -1,7 +1,7 @@
 # robotpkg Makefile for:	meta-pkgs/ros-base
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
-ROS_DISTRIB=	indigo
+ROS_DISTRIB=	melodic
 ROS_VERSION?=	undefined
 ROS_METAPKG?=	no
 ROS_PKG?=	undefined

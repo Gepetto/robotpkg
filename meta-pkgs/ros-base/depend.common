@@ -40,13 +40,13 @@ PKG_ALTERNATIVES.ros=	groovy hydro indigo jade kinetic lunar melodic
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=hydro groovy indigo
+    PREFER_ALTERNATIVE.ros?=hydro groovy melodic
   else ifneq (,$(filter 14.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=indigo jade
+    PREFER_ALTERNATIVE.ros?=indigo jade melodic
   else ifneq (,$(filter 16.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=kinetic lunar indigo
+    PREFER_ALTERNATIVE.ros?=kinetic lunar melodic
   else ifneq (,$(filter 18.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=melodic indigo
+    PREFER_ALTERNATIVE.ros?=melodic
   else
     PREFER_ALTERNATIVE.ros?=indigo
     PREFER.ros?=robotpkg
@@ -77,7 +77,7 @@ define _ros_altdef
   PKG_ALTERNATIVE_SELECT.$1=$$(call preduce,				\
     ros==$1 $${DEPEND_ABI.ros}						\
     $$(foreach _,$${ROS_DEPEND_USE},					\
-      $$(if $$(filter robotpkg,$${PREFER.$$_}),ros==indigo)		\
+      $$(if $$(filter robotpkg,$${PREFER.$$_}),ros==melodic)		\
       $$(call _ros_noaltdep,$$_) $${DEPEND_ABI.$$_.$1}))
   PKG_ALTERNATIVE_SET.$1=						\
     $$(foreach _,$${ROS_DEPEND_USE},					\
