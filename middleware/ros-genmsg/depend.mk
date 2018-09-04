@@ -30,9 +30,10 @@ DEPEND_ABI.ros-genmsg.lunar?=	ros-genmsg>=0.5<0.6
 DEPEND_ABI.ros-genmsg.melodic?=	ros-genmsg>=0.5<0.6
 
 SYSTEM_SEARCH.ros-genmsg=\
-	'${PYTHON_SYSLIBSEARCH}/genmsg/__init__.py'		\
-	'share/genmsg/package.xml:/<version>/s/[^0-9.]//gp'	\
-	'lib/pkgconfig/genmsg.pc:/Version/s/[^0-9.]//gp'
+  '${PYTHON_SYSLIBSEARCH}/genmsg/__init__.py'		\
+  'share/genmsg/cmake/genmsgConfig.cmake'		\
+  'share/genmsg/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'lib/pkgconfig/genmsg.pc:/Version/s/[^0-9.]//gp'
 
 include ../../mk/sysdep/python.mk
 

@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		genmsg
-ROS_VERSION=		0.5.3
+ROS_VERSION=		0.5.11
 
 CATEGORIES=		middleware
 ROS_COMMENT=		code generator for ROS .msg format
