@@ -30,10 +30,12 @@ DEPEND_ABI.ros-pluginlib.lunar?=	ros-pluginlib>=1.10<1.12
 DEPEND_ABI.ros-pluginlib.melodic?=	ros-pluginlib>=1.12<1.13
 
 SYSTEM_SEARCH.ros-pluginlib=\
-  '{bin,lib/pluginlib}/plugin_macro_update'			\
   'include/pluginlib/class_loader.h'				\
   'share/pluginlib/package.xml:/<version>/s/[^0-9.]//gp'	\
+  'share/pluginlib/cmake/pluginlibConfig.cmake'			\
   'lib/pkgconfig/pluginlib.pc:/Version/s/[^0-9.]//gp'
+
+include ../../devel/ros-class-loader/depend.mk
 
 endif # ROS_PLUGINLIB_DEPEND_MK --------------------------------------------
 

@@ -1,15 +1,18 @@
-@comment Tue Dec 1 11:38:35 CET 2015
+@comment Tue Sep 4 18:45:37 CEST 2018
 include/pluginlib/class_desc.h
+include/pluginlib/class_desc.hpp
 include/pluginlib/class_list_macros.h
+include/pluginlib/class_list_macros.hpp
 include/pluginlib/class_loader.h
+include/pluginlib/class_loader.hpp
 include/pluginlib/class_loader_base.h
+include/pluginlib/class_loader_base.hpp
 include/pluginlib/class_loader_imp.h
+include/pluginlib/class_loader_imp.hpp
+include/pluginlib/exceptions.hpp
 include/pluginlib/pluginlib_exceptions.h
 lib/pkgconfig/pluginlib.pc
-lib/pluginlib/plugin_macro_update
-lib/pluginlib/plugin_tool
-${PYTHON_SITELIB}/pluginlib-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+lib/pluginlib/pluginlib_headers_migration.py
 share/pluginlib/cmake/pluginlibConfig-version.cmake
 share/pluginlib/cmake/pluginlibConfig.cmake
 share/pluginlib/package.xml
-share/pluginlib/typed_class_loader_template.cpp
