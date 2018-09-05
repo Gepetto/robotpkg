@@ -16,7 +16,7 @@ DEPEND_USE+=		gm4
 DEPEND_ABI.gm4?=	gm4>=1.4
 DEPEND_METHOD.gm4?=build
 SYSTEM_SEARCH.gm4=\
-	'bin/{g,gnu,}m4:/^m4/s/.* //gp:% --version'
+  'bin/{g,gnu,}m4:/^[mM]4/{/GNU/!s/.*/0/;s/.* //;p}:% --version'
 
 export M4=	$(word 1,${SYSTEM_FILES.gm4})
 
