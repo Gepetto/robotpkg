@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 13 Dec 2016
 #
 
-DISTNAME=		maneuver-genom3-1.3
+DISTNAME=		maneuver-genom3-1.4
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
