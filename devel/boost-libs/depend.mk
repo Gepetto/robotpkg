@@ -61,7 +61,7 @@ endef
 _boost_libs_files_math=		math_c99 math_tr1
 
 _boost_libs_files_python=\
-  python{${-PKGTAG.python},$(subst 2,,${PYTHON_MAJOR})}
+  python{{,-py}$(subst .,,${PYTHON_VERSION}),$(subst 2,,${PYTHON_MAJOR})}
 _boost_libs_deps_python=	../../mk/sysdep/python.mk
 SYSTEM_PKG.NetBSD.boost-lib-python?=	devel/${PKGTAG.python}-boost
 
