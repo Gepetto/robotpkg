@@ -2,7 +2,7 @@
 # Created:			Florent Lamiraux on Thu, 7 Jul 2011
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 VERSION=		2.5.6
 DISTNAME=		dynamic-graph-python-${VERSION}
 PKGNAME=		${PKGTAG.python-}dynamic-graph-${VERSION}
@@ -33,6 +33,15 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 DEPEND_ABI.python+=	python<3
 
+USE_BOOST_LIBS=\
+  python filesystem system thread program_options unit_test_framework
+
+Boost_PYTHON_LIBRARY=	$(filter %.so,${SYSTEM_FILES.boost-lib-python})
+CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_RELEASE=${Boost_PYTHON_LIBRARY}
+CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_DEBUG=${Boost_PYTHON_LIBRARY}
+
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
 include ../../motion/dynamic-graph/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
