@@ -24,6 +24,8 @@ SYSTEM_PKG.Ubuntu.libXt=libxt-dev
 SYSTEM_PKG.Debian.libXt=libxt-dev
 SYSTEM_PKG.NetBSD.libXt=x11/libXt
 
+include ../../mk/sysdep/xproto.mk
+
 endif # LIBXT_DEPEND_MK ----------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
