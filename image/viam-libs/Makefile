@@ -19,6 +19,9 @@ PKG_OPTION_UNSET.opencv:= CONFIGURE_ARGS+=--disable-opencv
 define PKG_OPTION_SET.opencv
   CONFIGURE_ARGS+=--enable-opencv
   include ../../image/opencv/depend.mk
+
+  # opencv 3.4 has introduced C++ syntax in the C headers...
+  DEPEND_ABI.opencv += opencv<3.4
 endef
 
 # options for doc generation
