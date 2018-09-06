@@ -32,7 +32,7 @@ DEPEND_METHOD.py-sphinx?=	build
 # specification.
 #
 SYSTEM_SEARCH.py-sphinx=\
-  'bin/sphinx-build{,{,-}[0-9]*}:1s/[^0-9.]//gp:{ % -_ || dummy=; }'	\
+  'bin/sphinx-build{,{,-}[0-9]*}:1s/.* [^0-9.]*//p:{ % --version || dum=; }'\
   'bin/sphinx-apidoc{,{,-}[0-9]*}'					\
   $(if ${PYTHON_DEPEND_MK},'${PYTHON_SYSLIBSEARCH}/sphinx/__init__.py')
 
