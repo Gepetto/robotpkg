@@ -3,3 +3,5 @@ RMD160 (ros/roscpp_core/0.5.4.tar.gz) = 319ab444e469c88b333f520e5ed93cb5482bac6a
 Size (ros/roscpp_core/0.5.4.tar.gz) = 31431 bytes
 SHA1 (patch-aa) = 153240a973190cb510dac429af5c3632b945670d
 SHA1 (patch-ab) = f0dd2705642c9b17bfa701278c72d752eefb5691
+SHA1 (patch-ac) = e9ce40f05531521a7efe605eda9e88a4545695c9
+SHA1 (patch-ad) = 2a481164838f642a5fca46bffd7e2c180b4748a0
