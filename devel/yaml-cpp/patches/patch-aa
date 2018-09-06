@@ -1,0 +1,12 @@
+Fix for boost >= 1.67
+
+--- include/yaml-cpp/node/detail/iterator.h~	2016-01-10 19:11:40.000000000 +0100
++++ include/yaml-cpp/node/detail/iterator.h	2018-09-06 12:03:17.034576714 +0200
+@@ -12,6 +12,7 @@
+ #include "yaml-cpp/node/detail/node_iterator.h"
+ #include <boost/iterator/iterator_adaptor.hpp>
+ #include <boost/utility.hpp>
++#include <boost/next_prior.hpp>
+ 
+ namespace YAML {
+ namespace detail {
