@@ -1,0 +1,16 @@
+Fix for sphinx >= 1.7
+
+--- doc/exts/vimeo.py~	2016-02-08 10:50:17.000000000 +0100
++++ doc/exts/vimeo.py	2018-09-06 17:04:58.684826038 +0200
+@@ -5,7 +5,10 @@
+ import re
+ from docutils import nodes
+ from docutils.parsers.rst import directives
+-from sphinx.util.compat import Directive
++try:
++    from sphinx.util.compat import Directive
++except ImportError:
++    from docutils.parsers.rst import Directive
+ 
+ CONTROL_HEIGHT = 30
+ 
