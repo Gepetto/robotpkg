@@ -146,7 +146,7 @@ package-unset-stale:
 package-failed:
 	${RUN}${TEST} -f ${_PKGFILE_STALE} || exit 0;			\
 	${MAKE} depackage;						\
-	${RM} -f ${_PKGFILE_STALE}					\
+	${RM} -f ${_PKGFILE_STALE};					\
 	exit 2
 
 
