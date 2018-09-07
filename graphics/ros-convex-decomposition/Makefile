@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	convex_decomposition
-ROS_VERSION=	0.1.9
+ROS_VERSION=	0.1.12
 
 CATEGORIES=	graphics
 ROS_COMMENT=	convex mesh generation library
