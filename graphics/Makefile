@@ -29,7 +29,6 @@ SUBDIR+=	ros-qt-gui-core
 SUBDIR+=	ros-robot-model
 SUBDIR+=	ros-rqt
 SUBDIR+=	ros-rqt-common-plugins
-SUBDIR+=	ros-shape-tools
 SUBDIR+=	ros-srdfdom
 SUBDIR+=	sun-java3d
 SUBDIR+=	Togl
