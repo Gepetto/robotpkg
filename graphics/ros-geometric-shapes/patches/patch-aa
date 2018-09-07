@@ -1,70 +1,70 @@
-Fix for console-bridge >= 0.4
+Fix for console-bridge < 0.4
 
---- src/body_operations.cpp~	2014-07-07 17:35:53.000000000 +0200
-+++ src/body_operations.cpp	2018-05-24 14:33:26.470708188 +0200
+--- src/body_operations.cpp~	2018-05-14 11:48:00.000000000 +0200
++++ src/body_operations.cpp	2018-09-10 11:55:25.876802000 +0200
 @@ -37,6 +37,10 @@
  #include <geometric_shapes/body_operations.h>
  #include <geometric_shapes/shape_operations.h>
  #include <console_bridge/console.h>
-+/* Fix for console-bridge >= 0.4 */
-+#ifdef CONSOLE_BRIDGE_logError
-+# define logError CONSOLE_BRIDGE_logError
++/* Fix for console-bridge < 0.4 */
++#ifndef CONSOLE_BRIDGE_logError
++# define CONSOLE_BRIDGE_logError logError
 +#endif
  #include <Eigen/Geometry>
  
- bodies::Body* bodies::createBodyFromShape(const shapes::Shape *shape)
---- src/mesh_operations.cpp~	2014-07-07 17:35:53.000000000 +0200
-+++ src/mesh_operations.cpp	2018-05-24 14:34:19.459069389 +0200
+ bodies::Body* bodies::createBodyFromShape(const shapes::Shape* shape)
+--- src/mesh_operations.cpp~	2018-05-14 11:48:00.000000000 +0200
++++ src/mesh_operations.cpp	2018-09-10 11:55:59.877171000 +0200
 @@ -44,6 +44,11 @@
  #include <float.h>
  
  #include <console_bridge/console.h>
-+/* Fix for console-bridge >= 0.4 */
-+#ifdef CONSOLE_BRIDGE_logError
-+# define logWarn CONSOLE_BRIDGE_logWarn
-+# define logError CONSOLE_BRIDGE_logError
++/* Fix for console-bridge < 0.4 */
++#ifndef CONSOLE_BRIDGE_logError
++# define CONSOLE_BRIDGE_logError logError
++# define CONSOLE_BRIDGE_logWarn logWarn
 +#endif
  #include <resource_retriever/retriever.h>
  
- #if defined(ASSIMP_UNIFIED_HEADER_NAMES)
---- src/shape_operations.cpp~	2014-07-07 17:35:53.000000000 +0200
-+++ src/shape_operations.cpp	2018-05-24 14:34:49.283272686 +0200
+ #include <assimp/scene.h>
+--- src/shape_operations.cpp~	2018-05-14 11:48:00.000000000 +0200
++++ src/shape_operations.cpp	2018-09-10 11:56:12.173909000 +0200
 @@ -43,6 +43,11 @@
  #include <float.h>
  
  #include <console_bridge/console.h>
-+/* Fix for console-bridge >= 0.4 */
-+#ifdef CONSOLE_BRIDGE_logError
-+# define logWarn CONSOLE_BRIDGE_logWarn
-+# define logError CONSOLE_BRIDGE_logError
++/* Fix for console-bridge < 0.4 */
++#ifndef CONSOLE_BRIDGE_logError
++# define CONSOLE_BRIDGE_logError logError
++# define CONSOLE_BRIDGE_logWarn logWarn
 +#endif
  
  #include <Eigen/Geometry>
  
---- src/bodies.cpp~	2014-07-07 17:35:53.000000000 +0200
-+++ src/bodies.cpp	2018-05-24 14:35:33.327572908 +0200
+--- src/bodies.cpp~	2018-05-14 11:48:00.000000000 +0200
++++ src/bodies.cpp	2018-09-10 11:56:27.115624000 +0200
 @@ -38,6 +38,11 @@
  #include "geometric_shapes/body_operations.h"
  
  #include <console_bridge/console.h>
-+/* Fix for console-bridge >= 0.4 */
-+#ifdef CONSOLE_BRIDGE_logError
-+# define logWarn CONSOLE_BRIDGE_logWarn
-+# define logError CONSOLE_BRIDGE_logError
++/* Fix for console-bridge < 0.4 */
++#ifndef CONSOLE_BRIDGE_logError
++# define CONSOLE_BRIDGE_logError logError
++# define CONSOLE_BRIDGE_logWarn logWarn
 +#endif
  
- extern "C"
- {
---- src/shapes.cpp~	2014-07-07 17:35:53.000000000 +0200
-+++ src/shapes.cpp	2018-05-24 14:36:08.619813467 +0200
+ extern "C" {
+ #ifdef GEOMETRIC_SHAPES_HAVE_QHULL_2011
+--- src/shapes.cpp~	2018-05-14 11:48:00.000000000 +0200
++++ src/shapes.cpp	2018-09-10 11:56:40.400368000 +0200
 @@ -38,6 +38,10 @@
  #include <eigen_stl_containers/eigen_stl_containers.h>
  #include <octomap/octomap.h>
  #include <console_bridge/console.h>
-+/* Fix for console-bridge >= 0.4 */
-+#ifdef CONSOLE_BRIDGE_logError
-+# define logWarn CONSOLE_BRIDGE_logWarn
++/* Fix for console-bridge < 0.4 */
++#ifndef CONSOLE_BRIDGE_logError
++# define CONSOLE_BRIDGE_logWarn logWarn
 +#endif
  
- const std::string shapes::Sphere::STRING_NAME = "sphere";
- const std::string shapes::Box::STRING_NAME = "box";
+ namespace shapes
+ {

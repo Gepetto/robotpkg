@@ -1,4 +1,4 @@
-SHA1 (ros/geometric_shapes/0.4.1.tar.gz) = fa4ad354f8b38658e2b14c55cf9d1eeb12bb20f4
-RMD160 (ros/geometric_shapes/0.4.1.tar.gz) = 774ae8e8c819da29d94d8aa4c04dbd23355ce729
-Size (ros/geometric_shapes/0.4.1.tar.gz) = 54469 bytes
-SHA1 (patch-aa) = f4df3e0a6ed6ad97b71847a6e5bdef965bf2e361
+SHA1 (ros/geometric_shapes/0.6.0.tar.gz) = baa3e1a338570476eaa5629add610eb6a1ec1359
+RMD160 (ros/geometric_shapes/0.6.0.tar.gz) = 743f8f1aca03763b3d1eec347792685b765a2235
+Size (ros/geometric_shapes/0.6.0.tar.gz) = 62152 bytes
+SHA1 (patch-aa) = 1e75aead9e1eb1fca3a3547b36bf098f4aa4eefe

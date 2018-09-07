@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		geometric_shapes
-ROS_VERSION=		0.4.1
+ROS_VERSION=		0.6.0
 ROS_REPO=		ros-planning
 
 CATEGORIES=		graphics
@@ -18,7 +18,6 @@ include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
 include ../../graphics/assimp/depend.mk
-include ../../graphics/ros-shape-tools/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
