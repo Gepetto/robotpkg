@@ -4,7 +4,7 @@
 
 ROS_PKG=	common_msgs
 ROS_METAPKG=	yes
-ROS_VERSION=	1.11.4
+ROS_VERSION=	1.12.6
 
 CATEGORIES=	interfaces
 ROS_COMMENT=	common messages definition
