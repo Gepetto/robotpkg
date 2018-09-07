@@ -24,8 +24,8 @@ _vregex.openssl:=s/^.*OpenSSL[ ]*//;s/[ -].*$$//;p
 SYSTEM_SEARCH.openssl:=	\
   'bin/openssl:/OpenSSL/{${_vregex.openssl};}:% version'		\
   'include/openssl/opensslv.h:/VERSION_TEXT/{${_vregex.openssl};q;}'	\
-  'lib/libcrypto.*'							\
-  'lib/libssl.*'
+  'lib/libcrypto.so'							\
+  'lib/libssl.so'
 
 endif # OPENSSL_DEPEND_MK --------------------------------------------------
 
