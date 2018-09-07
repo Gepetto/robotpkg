@@ -1,4 +1,4 @@
-@comment Wed Aug 13 16:24:00 CEST 2014
+@comment Fri Sep 7 18:11:33 CEST 2018
 include/nodelet/NodeletList.h
 include/nodelet/NodeletListRequest.h
 include/nodelet/NodeletListResponse.h
@@ -15,9 +15,12 @@ include/nodelet/loader.h
 include/nodelet/nodelet.h
 include/nodelet_topic_tools/NodeletThrottleConfig.h
 include/nodelet_topic_tools/nodelet_demux.h
+include/nodelet_topic_tools/nodelet_lazy.h
 include/nodelet_topic_tools/nodelet_mux.h
 include/nodelet_topic_tools/nodelet_throttle.h
 lib/libnodeletlib.so
+lib/nodelet/declared_nodelets
+lib/nodelet/list_nodelets
 lib/nodelet/nodelet
 lib/pkgconfig/nodelet.pc
 lib/pkgconfig/nodelet_topic_tools.pc

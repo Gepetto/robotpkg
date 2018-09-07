@@ -4,7 +4,7 @@
 
 ROS_PKG=	nodelet_core
 ROS_METAPKG=	yes
-ROS_VERSION=	1.9.0
+ROS_VERSION=	1.9.16
 
 CATEGORIES=	devel
 ROS_COMMENT=	zero copy transport inside a process

@@ -9,5 +9,5 @@
 +# include <boost/thread/lock_guard.hpp>
 +#endif
  #include <ros/ros.h>
- #include <pluginlib/class_list_macros.h>
+ #include <pluginlib/class_list_macros.hpp>
  #include <nodelet/nodelet.h>
