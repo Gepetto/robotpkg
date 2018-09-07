@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	python_qt_binding
-ROS_VERSION=	0.2.14
+ROS_VERSION=	0.3.4
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	graphics
@@ -11,13 +11,25 @@ ROS_COMMENT=	python bindings for Qt
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
+USE_QMAKE=	no
+
+
 # Configure path to programs
 SUBST_CLASSES+=		sip-path
 SUBST_STAGE.sip-path=	pre-configure
 SUBST_MESSAGE.sip-path=	Configuring sip path
 SUBST_SED.sip-path+=	-e 's|@SIP@|${SIP}|'
-SUBST_SED.sip-path+=	-e 's|@MAKE@|${MAKE}|'
+SUBST_SED.sip-path+=	-e 's|@MAKE@|${_gmake_path}|'
+SUBST_SED.sip-path+=	-e 's|@QMAKE@|${QMAKE}|'
+SUBST_SED.sip-path+=	-e 's|@PYQT5_SIP_DIR@|${PYQT5_SIP_DIR}|'
 SUBST_FILES.sip-path+=	cmake/sip_helper.cmake
+SUBST_FILES.sip-path+=	cmake/sip_configure.py
+
+_gmake_path=\
+  $(word 1, $(realpath ${MAKE} $(addsuffix /${MAKE},$(subst :, ,${PATH}))))
+
+PYQT5_SIP_DIR=\
+  $(realpath $(dir $(word 1,$(filter %.sip,${SYSTEM_FILES.py-qt5})))/..)
 
 # Replace python interpreter in source files
 SUBST_CLASSES+=		py-interp
@@ -27,6 +39,8 @@ SUBST_CLASSES+=		py-distsetup
 
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-ros/depend.mk
-include ../../mk/sysdep/py-qt4.mk
+include ../../mk/sysdep/py-qt5.mk
 include ../../mk/sysdep/py-sip.mk
+include ../../mk/sysdep/qmake.mk
+include ../../mk/sysdep/qt5-qtbase.mk
 include ../../mk/robotpkg.mk

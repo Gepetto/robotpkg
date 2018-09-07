@@ -1,0 +1,22 @@
+Fix paths to tools
+
+--- cmake/sip_configure.py~	2018-08-03 18:31:23.000000000 +0200
++++ cmake/sip_configure.py	2018-09-11 14:54:38.614028000 +0200
+@@ -13,7 +13,7 @@
+     def __init__(self):
+         env = copy(os.environ)
+         env['QT_SELECT'] = '5'
+-        qmake_exe = 'qmake-qt5' if find_executable('qmake-qt5') else 'qmake'
++        qmake_exe = '@QMAKE@'
+         qtconfig = subprocess.check_output(
+             [qmake_exe, '-query'], env=env, universal_newlines=True)
+         qtconfig = dict(line.split(':', 1) for line in qtconfig.splitlines())
+@@ -58,7 +58,7 @@
+     sip_flags = config.pyqt_sip_flags
+ except AttributeError:
+     # sipconfig.Configuration does not have a pyqt_sip_dir or pyqt_sip_flags attribute
+-    sip_dir = sipconfig._pkg_config['default_sip_dir'] + '/PyQt5'
++    sip_dir = '@PYQT5_SIP_DIR@'
+     sip_flags = QtCore.PYQT_CONFIGURATION['sip_flags']
+ 
+ try:
