@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	realtime_tools
-ROS_VERSION=	1.9.2
+ROS_VERSION=	1.11.0
 ROS_REPO=	ros-controls
 
 CATEGORIES=	devel
