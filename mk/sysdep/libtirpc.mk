@@ -14,8 +14,6 @@ PREFER.libtirpc?=	system
 DEPEND_USE+=		libtirpc
 DEPEND_ABI.libtirpc?=	libtirpc>=1
 
-# This is a hack to search for rpc headers in libc or in libtirpc. For the
-# latter, the lib and .pc files must be checked, as they are required.
 SYSTEM_SEARCH.libtirpc=	\
   'include/tirpc/rpc/rpc.h'				\
   'lib/libtirpc.so'					\
