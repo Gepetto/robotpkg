@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	roslint
-ROS_VERSION=	0.9.2
+ROS_VERSION=	0.11.2
 
 PKGNAME=	ros-lint-${ROS_VERSION}
 
