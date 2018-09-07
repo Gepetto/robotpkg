@@ -2,7 +2,7 @@
 # Created:			Arnaud Degroote on Sat, 17 May 2008
 #
 
-DISTNAME=	gdhe-3.8.4
+DISTNAME=	gdhe-3.8.5
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
 MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gdhe
@@ -23,6 +23,9 @@ CONFIGURE_ARGS+=--with-jpeg=${PREFIX.libjpeg}
 CONFIGURE_ARGS+=--x-includes=${PREFIX.libX11}/include
 CONFIGURE_ARGS+=--x-libraries=${PREFIX.libX11}/lib
 
+DEPEND_ABI.tcl= tcl>=8.6
+DEPEND_ABI.tk=  tk>=8.6
+
 INCLUDE_DIRS.mesa+=include
 
 include ../../devel/swig/depend.mk
@@ -38,4 +41,5 @@ include ../../mk/sysdep/libXmu.mk
 include ../../mk/sysdep/libXpm.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
+include ../../mk/language/rpc.mk
 include ../../mk/robotpkg.mk

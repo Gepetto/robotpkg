@@ -14,7 +14,7 @@ PREFER.gdhe?=	robotpkg
 
 DEPEND_USE+=		gdhe
 
-DEPEND_ABI.gdhe?=	gdhe>=3.7
+DEPEND_ABI.gdhe?=	gdhe>=3.8.5
 DEPEND_DIR.gdhe?=	../../graphics/gdhe
 
 SYSTEM_SEARCH.gdhe=\
