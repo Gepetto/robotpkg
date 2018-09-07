@@ -1,0 +1,22 @@
+Fix for boost >= 1.67
+
+--- bondcpp/src/bond.cpp~	2018-04-27 22:45:52.000000000 +0200
++++ bondcpp/src/bond.cpp	2018-09-07 15:17:39.420061000 +0200
+@@ -218,7 +218,7 @@
+       break;  // The deadline has expired
+     }
+ 
+-    condition_.timed_wait(mutex_, boost::posix_time::milliseconds(wait_time.toSec() * 1000.0f));
++    condition_.timed_wait(mutex_, boost::posix_time::milliseconds((long)(wait_time.toSec() * 1000.0)));
+   }
+   return sm_.getState().getId() != SM::WaitingForSister.getId();
+ }
+@@ -246,7 +246,7 @@
+       break;  // The deadline has expired
+     }
+ 
+-    condition_.timed_wait(mutex_, boost::posix_time::milliseconds(wait_time.toSec() * 1000.0f));
++    condition_.timed_wait(mutex_, boost::posix_time::milliseconds((long)(wait_time.toSec() * 1000.0)));
+   }
+   return sm_.getState().getId() == SM::Dead.getId();
+ }
