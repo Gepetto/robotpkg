@@ -1,4 +1,4 @@
-@comment Wed Aug 13 16:22:42 CEST 2014
+@comment Fri Sep 7 17:58:28 CEST 2018
 include/dynamic_reconfigure/BoolParameter.h
 include/dynamic_reconfigure/Config.h
 include/dynamic_reconfigure/ConfigDescription.h
@@ -13,6 +13,7 @@ include/dynamic_reconfigure/ReconfigureResponse.h
 include/dynamic_reconfigure/SensorLevels.h
 include/dynamic_reconfigure/StrParameter.h
 include/dynamic_reconfigure/TestConfig.h
+include/dynamic_reconfigure/client.h
 include/dynamic_reconfigure/config_init_mutex.h
 include/dynamic_reconfigure/config_tools.h
 include/dynamic_reconfigure/server.h
@@ -81,6 +82,7 @@ share/dynamic_reconfigure/cmake/dynamic_reconfigure/parameter_generator.py
 share/dynamic_reconfigure/cmake/dynamic_reconfigureConfig-version.cmake
 share/dynamic_reconfigure/cmake/dynamic_reconfigureConfig.cmake
 share/dynamic_reconfigure/cmake/gendeps
+share/dynamic_reconfigure/cmake/setup_custom_pythonpath.sh.in
 share/dynamic_reconfigure/msg/BoolParameter.msg
 share/dynamic_reconfigure/msg/Config.msg
 share/dynamic_reconfigure/msg/ConfigDescription.msg

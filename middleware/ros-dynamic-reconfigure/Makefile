@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	dynamic_reconfigure
-ROS_VERSION=	1.5.37
+ROS_VERSION=	1.5.49
 
 CATEGORIES=	middleware
 ROS_COMMENT=	runtime parameter configuration
