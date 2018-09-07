@@ -35,5 +35,6 @@ endef
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/perl.mk
+include ../../mk/sysdep/rpcgen.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
