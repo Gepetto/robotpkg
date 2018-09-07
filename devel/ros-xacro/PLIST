@@ -1,7 +1,11 @@
-@comment Wed Aug 13 16:51:29 CEST 2014
+@comment Fri Sep 7 18:16:24 CEST 2018
+bin/xacro
 lib/pkgconfig/xacro.pc
 ${PYTHON_SITELIB}/xacro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/xacro/__init__.py
+${PYTHON_SITELIB}/xacro/cli.py
+${PYTHON_SITELIB}/xacro/color.py
+${PYTHON_SITELIB}/xacro/xmlutils.py
 lib/xacro/xacro
 share/xacro/cmake/xacro-extras.cmake
 share/xacro/cmake/xacroConfig-version.cmake
