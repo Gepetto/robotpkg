@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	ivcon
-ROS_VERSION=	0.1.4
+ROS_VERSION=	0.1.7
 
 CATEGORIES=	graphics
 ROS_COMMENT=	mesh conversion utility
