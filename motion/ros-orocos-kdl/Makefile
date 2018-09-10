@@ -4,7 +4,7 @@
 
 PKGNAME=	ros-orocos-kdl-${ROS_VERSION}
 ROS_PKG=	orocos_kinematics_dynamics
-ROS_VERSION=	1.3.0
+ROS_VERSION=	1.4.0
 ROS_REPO=	orocos
 ROS_PKGURL?=	${ROS_PKG}/archive/v
 
