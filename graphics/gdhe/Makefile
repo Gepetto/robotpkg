@@ -5,11 +5,11 @@
 DISTNAME=	gdhe-3.8.5
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=gdhe/}
-MASTER_REPOSITORY= git ssh://trac.laas.fr/git/robots/gdhe
+MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}gdhe
 CHECKOUT_OPTS= -r gdhe-3.8-branch
 
 MAINTAINER=	matthieu@laas.fr
-HOMEPAGE=	https://softs.laas.fr/openrobots/wiki/gdhe
+HOMEPAGE=	https://git.openrobots.org/projects/gdhe/wiki/Wiki
 COMMENT=	3D Visualization tools
 
 LICENSE=	2-clause-bsd
