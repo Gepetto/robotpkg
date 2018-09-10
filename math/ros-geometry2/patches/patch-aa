@@ -1,16 +1,16 @@
-Fix for console-bridge >= 0.4
+Fix for console-bridge < 0.4
 
---- tf2/src/buffer_core.cpp~	2017-01-25 01:05:44.000000000 +0100
-+++ tf2/src/buffer_core.cpp	2018-05-24 14:11:07.649546303 +0200
+--- tf2/src/buffer_core.cpp~	2018-07-10 08:28:37.000000000 +0200
++++ tf2/src/buffer_core.cpp	2018-09-10 14:02:57.918692000 +0200
 @@ -36,6 +36,11 @@
  
  #include <assert.h>
  #include <console_bridge/console.h>
-+/* Fix for console-bridge >= 0.4 */
-+#ifdef CONSOLE_BRIDGE_logError
-+# define logWarn CONSOLE_BRIDGE_logWarn
-+# define logError CONSOLE_BRIDGE_logError
++/* Fix for console-bridge < 0.4 */
++#ifndef CONSOLE_BRIDGE_logError
++# define CONSOLE_BRIDGE_logWarn logWarn
++# define CONSOLE_BRIDGE_logError logError
 +#endif
  #include "tf2/LinearMath/Transform.h"
+ #include <boost/foreach.hpp>
  
- namespace tf2

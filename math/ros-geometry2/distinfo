@@ -1,4 +1,4 @@
-SHA1 (ros/geometry2/0.5.15.tar.gz) = b5d2fd1441281b3c61419ee7212f64b73fc6b64f
-RMD160 (ros/geometry2/0.5.15.tar.gz) = a3a9130353b99193d1a5f5dd91ceea94cb205ade
-Size (ros/geometry2/0.5.15.tar.gz) = 147275 bytes
-SHA1 (patch-aa) = 5ec9ff1265eaa89359b384268af5e06f2190be4c
+SHA1 (ros/geometry2/0.6.3.tar.gz) = cf95d5a8460fe0d65b16a8d47c4eb331447452c1
+RMD160 (ros/geometry2/0.6.3.tar.gz) = 14ea0133170e301f7fc98defc53985860debcf52
+Size (ros/geometry2/0.6.3.tar.gz) = 167590 bytes
+SHA1 (patch-aa) = 924d45bff1ff5bb258bdad1990822a3480bb6c1f
