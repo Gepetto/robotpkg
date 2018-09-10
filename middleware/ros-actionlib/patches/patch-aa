@@ -1,0 +1,13 @@
+Fix for boost >= 1.67
+
+--- src/connection_monitor.cpp~	2018-03-14 19:45:05.000000000 +0100
++++ src/connection_monitor.cpp	2018-09-12 14:23:04.373745000 +0200
+@@ -275,7 +275,7 @@
+     }
+ 
+     check_connection_condition_.timed_wait(lock,
+-      boost::posix_time::milliseconds(time_left.toSec() * 1000.0f));
++      boost::posix_time::milliseconds((long)(time_left.toSec() * 1000)));
+   }
+ 
+   return isServerConnected();
