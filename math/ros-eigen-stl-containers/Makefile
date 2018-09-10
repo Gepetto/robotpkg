@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	eigen_stl_containers
-ROS_VERSION=	0.1.4
+ROS_VERSION=	0.1.8
 
 CATEGORIES=	math
 ROS_COMMENT=	typedefs for using eigen datatypes in STL containers
