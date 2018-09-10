@@ -1,0 +1,14 @@
+Eigen does not have cmake macro
+
+--- eigen_conversions/CMakeLists.txt~	2018-05-03 05:01:12.000000000 +0200
++++ eigen_conversions/CMakeLists.txt	2018-09-12 14:41:47.809104000 +0200
+@@ -3,7 +3,8 @@
+ 
+ find_package(orocos_kdl REQUIRED)
+ find_package(catkin REQUIRED geometry_msgs std_msgs)
+-find_package(Eigen3 REQUIRED)
++find_package(PkgConfig)
++pkg_search_module(EIGEN3 REQUIRED eigen3)
+ 
+ include_directories(SYSTEM ${EIGEN3_INCLUDE_DIRS})
+ include_directories(include ${catkin_INCLUDE_DIRS} ${orocos_kdl_INCLUDE_DIRS})

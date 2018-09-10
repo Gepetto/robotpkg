@@ -1,0 +1,22 @@
+Eigen does not have cmake macro
+
+--- tf_conversions/CMakeLists.txt~	2018-05-03 05:01:12.000000000 +0200
++++ tf_conversions/CMakeLists.txt	2018-09-12 14:45:22.651962000 +0200
+@@ -3,14 +3,15 @@
+ 
+ find_package(orocos_kdl REQUIRED)
+ find_package(catkin REQUIRED geometry_msgs kdl_conversions tf)
+-find_package(Eigen3 REQUIRED)
++find_package(PkgConfig)
++pkg_search_module(EIGEN3 REQUIRED eigen3)
+ 
+ catkin_python_setup()
+ 
+ catkin_package(
+   INCLUDE_DIRS include
+   LIBRARIES ${PROJECT_NAME}
+-  DEPENDS EIGEN3 orocos_kdl
++  DEPENDS orocos_kdl
+   CATKIN_DEPENDS geometry_msgs kdl_conversions tf
+ )
+ 

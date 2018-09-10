@@ -1,4 +1,4 @@
-@comment Thu Aug 14 11:50:29 CEST 2014
+@comment Wed Sep 12 14:51:05 CEST 2018
 bin/tf_remap
 bin/view_frames
 include/eigen_conversions/eigen_kdl.h
@@ -35,7 +35,6 @@ lib/pkgconfig/tf.pc
 lib/pkgconfig/tf_conversions.pc
 ${PYTHON_SITELIB}/tf-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/tf/__init__.py
-${PYTHON_SITELIB}/tf/_tf.so
 ${PYTHON_SITELIB}/tf/broadcaster.py
 ${PYTHON_SITELIB}/tf/listener.py
 ${PYTHON_SITELIB}/tf/msg/__init__.py
