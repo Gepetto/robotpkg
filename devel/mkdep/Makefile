@@ -2,13 +2,12 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-PKGREVISION=		1
-DISTNAME=		mkdep-2.7
+DISTNAME=		mkdep-2.9
 CATEGORIES=		devel
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
 MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/mkdep
+HOMEPAGE=		https://git.openrobots.org/projects/mkdep
 COMMENT=		Automated make(1) dependency generation
 
 LICENSE=		2-clause-bsd
