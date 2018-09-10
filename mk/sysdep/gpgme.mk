@@ -15,11 +15,10 @@ DEPEND_USE+=		gpgme
 DEPEND_ABI.gpgme?=	gpgme>=1
 
 SYSTEM_SEARCH.gpgme=\
-  'bin/gpgme-tool:1s/[^0-9.]//gp:% --version'			\
   'include/gpgme.h:/GPGME_VERSION/s/[^0-9.]//gp'	\
   'lib/libgpgme.so'
 
-SYSTEM_PKG.Redhat.gpgme=	systemd-devel
+SYSTEM_PKG.RedHat.gpgme=	gpgme-devel
 SYSTEM_PKG.Debian.gpgme=	libgpgme11-dev
 SYSTEM_PKG.NetBSD.gpgme=	security/gpgme
 
