@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	interactive_markers
-ROS_VERSION=	1.11.0
+ROS_VERSION=	1.11.4
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	graphics
