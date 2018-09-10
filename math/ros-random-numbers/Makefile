@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	random_numbers
-ROS_VERSION=	0.2.0
+ROS_VERSION=	0.3.2
 ROS_REPO=	ros-planning
 
 CATEGORIES=	math
