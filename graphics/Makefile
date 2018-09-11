@@ -30,6 +30,7 @@ SUBDIR+=	ros-robot-model
 SUBDIR+=	ros-rqt
 SUBDIR+=	ros-rqt-common-plugins
 SUBDIR+=	ros-srdfdom
+SUBDIR+=	ros-urdf
 SUBDIR+=	sun-java3d
 SUBDIR+=	Togl
 SUBDIR+=	urdfdom

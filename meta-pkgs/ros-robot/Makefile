@@ -29,6 +29,7 @@ include ../../devel/ros-xacro/depend.mk
 include ../../graphics/ros-robot-model/depend.mk
 include ../../graphics/ros-ivcon/depend.mk
 include ../../graphics/ros-convex-decomposition/depend.mk
+include ../../graphics/ros-urdf/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../localization/ros-joint-state-publisher/depend.mk
 include ../../math/ros-geometry/depend.mk

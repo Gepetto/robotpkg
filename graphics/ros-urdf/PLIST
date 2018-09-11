@@ -1,0 +1,14 @@
+@comment Tue Sep 11 19:04:30 CEST 2018
+include/urdf/model.h
+include/urdf/urdfdom_compatibility.h
+include/urdf/visibility_control.hpp
+include/urdf_parser_plugin/parser.h
+lib/liburdf.so
+lib/pkgconfig/urdf.pc
+lib/pkgconfig/urdf_parser_plugin.pc
+share/urdf/cmake/urdfConfig-version.cmake
+share/urdf/cmake/urdfConfig.cmake
+share/urdf/package.xml
+share/urdf_parser_plugin/cmake/urdf_parser_pluginConfig-version.cmake
+share/urdf_parser_plugin/cmake/urdf_parser_pluginConfig.cmake
+share/urdf_parser_plugin/package.xml
