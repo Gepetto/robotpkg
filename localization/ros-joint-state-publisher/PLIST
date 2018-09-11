@@ -1,0 +1,6 @@
+@comment Tue Sep 11 18:43:29 CEST 2018
+lib/joint_state_publisher/joint_state_publisher
+lib/pkgconfig/joint_state_publisher.pc
+share/joint_state_publisher/cmake/joint_state_publisherConfig-version.cmake
+share/joint_state_publisher/cmake/joint_state_publisherConfig.cmake
+share/joint_state_publisher/package.xml

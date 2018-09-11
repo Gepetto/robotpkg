@@ -30,6 +30,7 @@ include ../../graphics/ros-robot-model/depend.mk
 include ../../graphics/ros-ivcon/depend.mk
 include ../../graphics/ros-convex-decomposition/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
+include ../../localization/ros-joint-state-publisher/depend.mk
 include ../../math/ros-geometry/depend.mk
 include ../../sysutils/ros-diagnostics/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
