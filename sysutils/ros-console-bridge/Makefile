@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	rosconsole_bridge
-ROS_VERSION=	0.4.2
+ROS_VERSION=	0.5.2
 PKGNAME=	ros-console-bridge-${ROS_VERSION}
 
 CATEGORIES=	sysutils
@@ -14,4 +14,5 @@ include ../../meta-pkgs/ros-base/Makefile.common
 include ../../devel/ros-catkin/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../sysutils/console-bridge/depend.mk
+include ../../sysutils/ros-console/depend.mk
 include ../../mk/robotpkg.mk

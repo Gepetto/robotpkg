@@ -33,7 +33,8 @@ SYSTEM_SEARCH.ros-console-bridge=\
   'include/rosconsole_bridge/bridge.h'				\
   'lib/librosconsole_bridge.so'					\
   'lib/pkgconfig/rosconsole_bridge.pc:/Version/s/[^0-9.]//gp'	\
-  'share/rosconsole_bridge/package.xml:/<version>/s/[^0-9.]//gp'
+  'share/rosconsole_bridge/package.xml:/<version>/s/[^0-9.]//gp'\
+  'share/rosconsole_bridge/cmake/rosconsole_bridgeConfig.cmake'
 
 endif # ROS_CONSOLE_BRIDGE_DEPEND_MK ---------------------------------------
 
