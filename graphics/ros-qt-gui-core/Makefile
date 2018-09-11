@@ -4,7 +4,7 @@
 
 ROS_PKG=	qt_gui_core
 ROS_METAPKG=	yes
-ROS_VERSION=	0.2.25
+ROS_VERSION=	0.3.11
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	graphics
@@ -32,5 +32,5 @@ include ../../sysutils/py-rospkg/depend.mk
 include ../../mk/sysdep/qmake.mk
 include ../../mk/sysdep/py-pydot.mk
 include ../../mk/sysdep/py-sip.mk
-include ../../mk/sysdep/qt4-libs.mk
+include ../../mk/sysdep/qt5-qtbase.mk
 include ../../mk/robotpkg.mk

@@ -47,6 +47,7 @@ SYSTEM_SEARCH.ros-qt-gui-core=\
   'lib/pkgconfig/qt_gui_py_common.pc:/Version/s/[^0-9.]//gp'	\
   'lib/pkgconfig/qt_gui_app.pc:/Version/s/[^0-9.]//gp'
 
+include ../../devel/ros-pluginlib/depend.mk
 include ../../mk/sysdep/python.mk
 
 endif # ROS_QT_GUI_CORE_DEPEND_MK ------------------------------------------
