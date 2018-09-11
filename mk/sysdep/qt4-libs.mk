@@ -25,6 +25,8 @@ SYSTEM_PKG.Debian.qt4-libs=	libqt4-dev
 SYSTEM_PKG.NetBSD.qt4-libs=	x11/qt4-libs x11/qt4-tools
 SYSTEM_PKG.Gentoo.qt4-libs=	x11-libs/qt-meta
 
+export QT_SELECT=4
+
 endif # QT4_LIBS_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:= ${DEPEND_DEPTH:+=}

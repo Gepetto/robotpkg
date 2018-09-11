@@ -29,6 +29,8 @@ SYSTEM_PKG.NetBSD.qt5-qtbase=	x11/qt5-qtbase
 # this is required for cmake to locate the Config.cmake files
 CMAKE_PREFIX_PATH+=${PREFIX.qt5-qtbase}
 
+export QT_SELECT=5
+
 endif # QT5_QTBASE_DEPEND_MK -----------------------------------------------
 
 DEPEND_DEPTH:= ${DEPEND_DEPTH:+=}
