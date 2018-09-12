@@ -19,7 +19,6 @@ SUBDIR+=	mccdaqft-genom3
 SUBDIR+=	mouse3d-genom
 SUBDIR+=	openni-sensor
 SUBDIR+=	platine-genom
-SUBDIR+=	ros-driver-common
 SUBDIR+=	sahand-kmod
 SUBDIR+=	sahand-libs
 SUBDIR+=	sahand-genom
