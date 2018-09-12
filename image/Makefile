@@ -14,6 +14,7 @@ SUBDIR+=	libraw1394
 SUBDIR+=	libstereopixel
 SUBDIR+=	niut-genom
 SUBDIR+=	opencv
+SUBDIR+=	opencv3
 SUBDIR+=	openni-nite
 SUBDIR+=	ros-image-common
 SUBDIR+=	ros-vision-opencv
