@@ -1,0 +1,12 @@
+For yaml-cpp directory
+
+--- camera_info_manager/CMakeLists.txt~	2018-09-12 16:15:16.937770874 +0200
++++ camera_info_manager/CMakeLists.txt	2018-09-12 16:45:39.016236161 +0200
+@@ -11,6 +11,7 @@
+ )
+ 
+ include_directories(${catkin_INCLUDE_DIRS})
++link_directories(${catkin_LIBRARY_DIRS})
+ include_directories(include)
+ 
+ # add a library

@@ -1,6 +1,7 @@
-@comment Thu Aug 14 17:38:10 CEST 2014
+@comment Wed Sep 12 16:29:00 CEST 2018
 include/camera_calibration_parsers/parse.h
 include/camera_calibration_parsers/parse_ini.h
+include/camera_calibration_parsers/parse_wrapper.h
 include/camera_calibration_parsers/parse_yml.h
 include/camera_info_manager/camera_info_manager.h
 include/image_transport/camera_common.h
@@ -37,6 +38,9 @@ lib/pkgconfig/camera_info_manager.pc
 lib/pkgconfig/image_transport.pc
 lib/pkgconfig/polled_camera.pc
 lib/polled_camera/poller
+${PYTHON_SITELIB}/camera_calibration_parsers-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/camera_calibration_parsers/__init__.py
+${PYTHON_SITELIB}/camera_calibration_parsers/camera_calibration_parsers_wrapper.so
 ${PYTHON_SITELIB}/polled_camera/__init__.py
 ${PYTHON_SITELIB}/polled_camera/srv/_GetPolledImage.py
 ${PYTHON_SITELIB}/polled_camera/srv/__init__.py

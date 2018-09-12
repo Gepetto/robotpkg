@@ -1,6 +1,5 @@
-SHA1 (ros/image_common/1.11.3.zip) = 9e2d9f433521d7a5457d791c19f3524fb99100b3
-RMD160 (ros/image_common/1.11.3.zip) = 38a1d5e02b9a789609341962e30e18334c5b7202
-Size (ros/image_common/1.11.3.zip) = 105707 bytes
-SHA1 (patch-aa) = 4f7b4ab6f06a36d20111f2c712a303540aff2dcf
-SHA1 (patch-ab) = 8547681c695e9c7dc0bafd3598db9df47041e497
-SHA1 (patch-ac) = 7d7dab7d2f2f2d628de45e16a818ad50f843c88f
+SHA1 (ros/image_common/1.11.13.zip) = dda523540e39fac375aa2422db8305312e0798d1
+RMD160 (ros/image_common/1.11.13.zip) = 350f3af4da94a836a0afca4454890415a38efe22
+Size (ros/image_common/1.11.13.zip) = 127847 bytes
+SHA1 (patch-ac) = dbb75dbf92c288fab066b79ba0efb20571542270
+SHA1 (patch-ad) = 50bf43a096403fcc5bf9b9f8d69f3512e155afe2
