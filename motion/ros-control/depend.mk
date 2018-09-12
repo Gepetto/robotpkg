@@ -28,7 +28,7 @@ DEPEND_ABI.ros-control.indigo?=	ros-control>=0.9<0.10
 DEPEND_ABI.ros-control.jade?=	ros-control>=0.10<0.11
 DEPEND_ABI.ros-control.kinetic?=ros-control>=0.11<0.14
 DEPEND_ABI.ros-control.lunar?=	ros-control>=0.11<0.14
-DEPEND_ABI.ros-control.melodic?=ros-control>=0.14<0.15
+DEPEND_ABI.ros-control.melodic?=ros-control>=0.14<0.16
 
 SYSTEM_SEARCH.ros-control=\
   'include/controller_interface/controller.h'				\
