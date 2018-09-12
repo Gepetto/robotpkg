@@ -1,7 +1,8 @@
-@comment Tue Aug 6 10:11:09 CEST 2013
+@comment Wed Sep 12 15:02:00 CEST 2018
 include/robot_state_publisher/joint_state_listener.h
 include/robot_state_publisher/robot_state_publisher.h
 include/robot_state_publisher/treefksolverposfull_recursive.hpp
+lib/libjoint_state_listener.so
 lib/librobot_state_publisher_solver.so
 lib/pkgconfig/robot_state_publisher.pc
 lib/robot_state_publisher/robot_state_publisher
@@ -9,3 +10,8 @@ lib/robot_state_publisher/state_publisher
 share/robot_state_publisher/cmake/robot_state_publisherConfig-version.cmake
 share/robot_state_publisher/cmake/robot_state_publisherConfig.cmake
 share/robot_state_publisher/package.xml
+share/robot_state_publisher/test/one_link.urdf
+share/robot_state_publisher/test/pr2.urdf
+share/robot_state_publisher/test/two_links_fixed_joint.urdf
+share/robot_state_publisher/test/two_links_moving_joint.urdf
+@pkgdir share/doc/liborocos-kdl

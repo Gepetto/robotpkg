@@ -1,4 +1,4 @@
-SHA1 (ros/robot_state_publisher/1.10.3.tar.gz) = 46836455b367a8ab2df37c4e9dd821c26743523c
-RMD160 (ros/robot_state_publisher/1.10.3.tar.gz) = fe149197f2ef8d045dc53f8d48adfe526e03e58a
-Size (ros/robot_state_publisher/1.10.3.tar.gz) = 22437 bytes
-SHA1 (patch-aa) = 8259eecc9a632ac6d5ab45e57a4fa218dee0ed24
+SHA1 (ros/robot_state_publisher/1.13.6.tar.gz) = 3d9d82547740fc98b11e97191f1efa9779bf4653
+RMD160 (ros/robot_state_publisher/1.13.6.tar.gz) = 866e83b7388b5bb24cc6464bd44f744828da6388
+Size (ros/robot_state_publisher/1.13.6.tar.gz) = 25885 bytes
+SHA1 (patch-ab) = 93de1bbf07b4ab566efb10aef6ecfd5b6070d141

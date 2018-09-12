@@ -1,0 +1,12 @@
+--- CMakeLists.txt~	2018-04-05 22:21:31.000000000 +0200
++++ CMakeLists.txt	2018-09-12 15:00:17.792710000 +0200
+@@ -7,7 +7,8 @@
+ find_package(catkin REQUIRED
+   COMPONENTS roscpp rosconsole rostime tf tf2_ros tf2_kdl kdl_parser
+ )
+-find_package(Eigen3 REQUIRED)
++find_package(PkgConfig)
++pkg_search_module(EIGEN3 REQUIRED eigen3)
+ 
+ find_package(urdfdom_headers REQUIRED)
+ 
