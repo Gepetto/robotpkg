@@ -4,7 +4,7 @@
 
 ROS_PKG=		rqt
 ROS_METAPKG=		yes
-ROS_VERSION=		0.2.14
+ROS_VERSION=		0.5.0
 ROS_REPO=		ros-visualization
 
 CATEGORIES=		graphics
@@ -21,8 +21,12 @@ SUBST_FILES.py-interp+=	rqt_gui/bin/rqt* rqt_gui/src/rqt_gui/main.py
 
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
+include ../../graphics/ros-python-qt-binding/depend.mk
 include ../../graphics/ros-qt-gui-core/depend.mk
+include ../../interfaces/ros-std-msgs/depend.mk
+include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
+include ../../middleware/ros-genmsg/depend.mk
 include ../../mk/sysdep/qmake.mk
-include ../../mk/sysdep/qt4-libs.mk
+include ../../mk/sysdep/qt5-qtbase.mk
 include ../../mk/robotpkg.mk
