@@ -1,4 +1,4 @@
-@comment Thu Jun 15 14:03:26 CEST 2017
+@comment Fri Sep 14 15:57:54 CEST 2018
 include/gazebo_msgs/ApplyBodyWrench.h
 include/gazebo_msgs/ApplyBodyWrenchRequest.h
 include/gazebo_msgs/ApplyBodyWrenchResponse.h
@@ -10,12 +10,18 @@ include/gazebo_msgs/BodyRequestRequest.h
 include/gazebo_msgs/BodyRequestResponse.h
 include/gazebo_msgs/ContactState.h
 include/gazebo_msgs/ContactsState.h
+include/gazebo_msgs/DeleteLight.h
+include/gazebo_msgs/DeleteLightRequest.h
+include/gazebo_msgs/DeleteLightResponse.h
 include/gazebo_msgs/DeleteModel.h
 include/gazebo_msgs/DeleteModelRequest.h
 include/gazebo_msgs/DeleteModelResponse.h
 include/gazebo_msgs/GetJointProperties.h
 include/gazebo_msgs/GetJointPropertiesRequest.h
 include/gazebo_msgs/GetJointPropertiesResponse.h
+include/gazebo_msgs/GetLightProperties.h
+include/gazebo_msgs/GetLightPropertiesRequest.h
+include/gazebo_msgs/GetLightPropertiesResponse.h
 include/gazebo_msgs/GetLinkProperties.h
 include/gazebo_msgs/GetLinkPropertiesRequest.h
 include/gazebo_msgs/GetLinkPropertiesResponse.h
@@ -49,6 +55,9 @@ include/gazebo_msgs/SetJointPropertiesResponse.h
 include/gazebo_msgs/SetJointTrajectory.h
 include/gazebo_msgs/SetJointTrajectoryRequest.h
 include/gazebo_msgs/SetJointTrajectoryResponse.h
+include/gazebo_msgs/SetLightProperties.h
+include/gazebo_msgs/SetLightPropertiesRequest.h
+include/gazebo_msgs/SetLightPropertiesResponse.h
 include/gazebo_msgs/SetLinkProperties.h
 include/gazebo_msgs/SetLinkPropertiesRequest.h
 include/gazebo_msgs/SetLinkPropertiesResponse.h
@@ -88,9 +97,9 @@ include/gazebo_plugins/gazebo_ros_gpu_laser.h
 include/gazebo_plugins/gazebo_ros_hand_of_god.h
 include/gazebo_plugins/gazebo_ros_harness.h
 include/gazebo_plugins/gazebo_ros_imu.h
+include/gazebo_plugins/gazebo_ros_imu_sensor.h
 include/gazebo_plugins/gazebo_ros_joint_pose_trajectory.h
 include/gazebo_plugins/gazebo_ros_joint_state_publisher.h
-include/gazebo_plugins/gazebo_ros_joint_trajectory.h
 include/gazebo_plugins/gazebo_ros_laser.h
 include/gazebo_plugins/gazebo_ros_multicamera.h
 include/gazebo_plugins/gazebo_ros_openni_kinect.h
@@ -102,7 +111,10 @@ include/gazebo_plugins/gazebo_ros_range.h
 include/gazebo_plugins/gazebo_ros_skid_steer_drive.h
 include/gazebo_plugins/gazebo_ros_template.h
 include/gazebo_plugins/gazebo_ros_tricycle_drive.h
+include/gazebo_plugins/gazebo_ros_triggered_camera.h
+include/gazebo_plugins/gazebo_ros_triggered_multicamera.h
 include/gazebo_plugins/gazebo_ros_utils.h
+include/gazebo_plugins/gazebo_ros_vacuum_gripper.h
 include/gazebo_plugins/gazebo_ros_video.h
 include/gazebo_plugins/vision_reconfigure.h
 include/gazebo_ros/PhysicsConfig.h
@@ -120,6 +132,7 @@ lib/gazebo_ros/gazebo
 lib/gazebo_ros/gdbrun
 lib/gazebo_ros/gzclient
 lib/gazebo_ros/gzserver
+lib/gazebo_ros/libcommon.sh
 lib/gazebo_ros/perf
 lib/gazebo_ros/spawn_model
 lib/libMultiCameraPlugin.so
@@ -140,9 +153,9 @@ lib/libgazebo_ros_gpu_laser.so
 lib/libgazebo_ros_hand_of_god.so
 ${PLIST.gazebo73}lib/libgazebo_ros_harness.so
 lib/libgazebo_ros_imu.so
+lib/libgazebo_ros_imu_sensor.so
 lib/libgazebo_ros_joint_pose_trajectory.so
 lib/libgazebo_ros_joint_state_publisher.so
-lib/libgazebo_ros_joint_trajectory.so
 lib/libgazebo_ros_laser.so
 lib/libgazebo_ros_multicamera.so
 lib/libgazebo_ros_openni_kinect.so
@@ -155,9 +168,13 @@ lib/libgazebo_ros_range.so
 lib/libgazebo_ros_skid_steer_drive.so
 lib/libgazebo_ros_template.so
 lib/libgazebo_ros_tricycle_drive.so
+lib/libgazebo_ros_triggered_camera.so
+lib/libgazebo_ros_triggered_multicamera.so
 lib/libgazebo_ros_utils.so
+lib/libgazebo_ros_vacuum_gripper.so
 lib/libgazebo_ros_video.so
 lib/libvision_reconfigure.so
+lib/pkgconfig/gazebo_dev.pc
 lib/pkgconfig/gazebo_msgs.pc
 lib/pkgconfig/gazebo_plugins.pc
 lib/pkgconfig/gazebo_ros.pc
@@ -176,8 +193,10 @@ ${PYTHON_SITELIB}/gazebo_msgs/msg/__init__.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_ApplyBodyWrench.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_ApplyJointEffort.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_BodyRequest.py
+${PYTHON_SITELIB}/gazebo_msgs/srv/_DeleteLight.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_DeleteModel.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_GetJointProperties.py
+${PYTHON_SITELIB}/gazebo_msgs/srv/_GetLightProperties.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_GetLinkProperties.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_GetLinkState.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_GetModelProperties.py
@@ -187,6 +206,7 @@ ${PYTHON_SITELIB}/gazebo_msgs/srv/_GetWorldProperties.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_JointRequest.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_SetJointProperties.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_SetJointTrajectory.py
+${PYTHON_SITELIB}/gazebo_msgs/srv/_SetLightProperties.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_SetLinkProperties.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_SetLinkState.py
 ${PYTHON_SITELIB}/gazebo_msgs/srv/_SetModelConfiguration.py
@@ -230,8 +250,10 @@ share/common-lisp/ros/gazebo_msgs/msg/gazebo_msgs-msg.asd
 share/common-lisp/ros/gazebo_msgs/srv/ApplyBodyWrench.lisp
 share/common-lisp/ros/gazebo_msgs/srv/ApplyJointEffort.lisp
 share/common-lisp/ros/gazebo_msgs/srv/BodyRequest.lisp
+share/common-lisp/ros/gazebo_msgs/srv/DeleteLight.lisp
 share/common-lisp/ros/gazebo_msgs/srv/DeleteModel.lisp
 share/common-lisp/ros/gazebo_msgs/srv/GetJointProperties.lisp
+share/common-lisp/ros/gazebo_msgs/srv/GetLightProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/GetLinkProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/GetLinkState.lisp
 share/common-lisp/ros/gazebo_msgs/srv/GetModelProperties.lisp
@@ -241,6 +263,7 @@ share/common-lisp/ros/gazebo_msgs/srv/GetWorldProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/JointRequest.lisp
 share/common-lisp/ros/gazebo_msgs/srv/SetJointProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/SetJointTrajectory.lisp
+share/common-lisp/ros/gazebo_msgs/srv/SetLightProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/SetLinkProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/SetLinkState.lisp
 share/common-lisp/ros/gazebo_msgs/srv/SetModelConfiguration.lisp
@@ -251,8 +274,10 @@ share/common-lisp/ros/gazebo_msgs/srv/_package.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_ApplyBodyWrench.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_ApplyJointEffort.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_BodyRequest.lisp
+share/common-lisp/ros/gazebo_msgs/srv/_package_DeleteLight.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_DeleteModel.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_GetJointProperties.lisp
+share/common-lisp/ros/gazebo_msgs/srv/_package_GetLightProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_GetLinkProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_GetLinkState.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_GetModelProperties.lisp
@@ -262,6 +287,7 @@ share/common-lisp/ros/gazebo_msgs/srv/_package_GetWorldProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_JointRequest.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_SetJointProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_SetJointTrajectory.lisp
+share/common-lisp/ros/gazebo_msgs/srv/_package_SetLightProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_SetLinkProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_SetLinkState.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_SetModelConfiguration.lisp
@@ -269,6 +295,10 @@ share/common-lisp/ros/gazebo_msgs/srv/_package_SetModelState.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_SetPhysicsProperties.lisp
 share/common-lisp/ros/gazebo_msgs/srv/_package_SpawnModel.lisp
 share/common-lisp/ros/gazebo_msgs/srv/gazebo_msgs-srv.asd
+share/gazebo_dev/cmake/gazebo_dev-extras.cmake
+share/gazebo_dev/cmake/gazebo_devConfig-version.cmake
+share/gazebo_dev/cmake/gazebo_devConfig.cmake
+share/gazebo_dev/package.xml
 share/gazebo_msgs/cmake/gazebo_msgs-msg-extras.cmake
 share/gazebo_msgs/cmake/gazebo_msgs-msg-paths.cmake
 share/gazebo_msgs/cmake/gazebo_msgsConfig-version.cmake
@@ -286,8 +316,10 @@ share/gazebo_msgs/package.xml
 share/gazebo_msgs/srv/ApplyBodyWrench.srv
 share/gazebo_msgs/srv/ApplyJointEffort.srv
 share/gazebo_msgs/srv/BodyRequest.srv
+share/gazebo_msgs/srv/DeleteLight.srv
 share/gazebo_msgs/srv/DeleteModel.srv
 share/gazebo_msgs/srv/GetJointProperties.srv
+share/gazebo_msgs/srv/GetLightProperties.srv
 share/gazebo_msgs/srv/GetLinkProperties.srv
 share/gazebo_msgs/srv/GetLinkState.srv
 share/gazebo_msgs/srv/GetModelProperties.srv
@@ -297,6 +329,7 @@ share/gazebo_msgs/srv/GetWorldProperties.srv
 share/gazebo_msgs/srv/JointRequest.srv
 share/gazebo_msgs/srv/SetJointProperties.srv
 share/gazebo_msgs/srv/SetJointTrajectory.srv
+share/gazebo_msgs/srv/SetLightProperties.srv
 share/gazebo_msgs/srv/SetLinkProperties.srv
 share/gazebo_msgs/srv/SetLinkState.srv
 share/gazebo_msgs/srv/SetModelConfiguration.srv
@@ -316,14 +349,28 @@ share/gazebo_plugins/test/bumper_test/gazebo_ros_bumper.world
 share/gazebo_plugins/test/bumper_test/test_bumper.launch
 share/gazebo_plugins/test/bumper_test/test_bumper.py
 share/gazebo_plugins/test/camera/camera.cpp
+share/gazebo_plugins/test/camera/camera.h
 share/gazebo_plugins/test/camera/camera.test
 share/gazebo_plugins/test/camera/camera.world
+share/gazebo_plugins/test/camera/camera16bit.cpp
+share/gazebo_plugins/test/camera/camera16bit.test
+share/gazebo_plugins/test/camera/camera16bit.world
 share/gazebo_plugins/test/camera/depth_camera.cpp
 share/gazebo_plugins/test/camera/depth_camera.test
 share/gazebo_plugins/test/camera/depth_camera.world
+share/gazebo_plugins/test/camera/distortion.h
+share/gazebo_plugins/test/camera/distortion_barrel.cpp
+share/gazebo_plugins/test/camera/distortion_barrel.test
+share/gazebo_plugins/test/camera/distortion_barrel.world
+share/gazebo_plugins/test/camera/distortion_pincushion.cpp
+share/gazebo_plugins/test/camera/distortion_pincushion.test
+share/gazebo_plugins/test/camera/distortion_pincushion.world
 share/gazebo_plugins/test/camera/multicamera.cpp
 share/gazebo_plugins/test/camera/multicamera.test
 share/gazebo_plugins/test/camera/multicamera.world
+share/gazebo_plugins/test/camera/triggered_camera.cpp
+share/gazebo_plugins/test/camera/triggered_camera.test
+share/gazebo_plugins/test/camera/triggered_camera.world
 share/gazebo_plugins/test/config/example_models.yaml
 share/gazebo_plugins/test/multi_robot_scenario/launch/multi_robot_scenario.launch
 share/gazebo_plugins/test/multi_robot_scenario/launch/pioneer3dx.gazebo.launch
@@ -408,6 +455,7 @@ share/gazebo_ros/launch/rubble_world.launch
 share/gazebo_ros/launch/shapes_world.launch
 share/gazebo_ros/launch/willowgarage_world.launch
 share/gazebo_ros/package.xml
+share/gazebo_ros/test/ros_api_checker
 share/gazebo_ros_control/cmake/gazebo_ros_controlConfig-version.cmake
 share/gazebo_ros_control/cmake/gazebo_ros_controlConfig.cmake
 share/gazebo_ros_control/package.xml

@@ -2,11 +2,10 @@
 # Created:			Anthony Mallet on Thu, 15 Jun 2017
 #
 
-PKGREVISION=	1
 ROS_PKG=	gazebo_ros_pkgs
 PKGNAME=	$(subst _,-,${ROS_PKG})-${ROS_VERSION}
 ROS_METAPKG=	yes
-ROS_VERSION=	2.4.13
+ROS_VERSION=	2.8.4
 ROS_REPO=       ros-simulation
 
 CATEGORIES=	simulation
@@ -40,8 +39,7 @@ include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../devel/tinyxml/depend.mk
-include ../../graphics/ros-robot-model/depend.mk
-include ../../hardware/ros-driver-common/depend.mk
+include ../../graphics/ros-urdf/depend.mk
 include ../../image/ros-image-common/depend.mk
 include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
@@ -57,7 +55,5 @@ include ../../motion/ros-control/depend.mk
 include ../../sysutils/ros-diagnostics/depend.mk
 include ../../mk/sysdep/gazebo.mk
 include ../../mk/sysdep/libxml2.mk
-
-DEPEND_ABI.gazebo += gazebo<9
-
+include ../../mk/sysdep/py-argparse.mk
 include ../../mk/robotpkg.mk

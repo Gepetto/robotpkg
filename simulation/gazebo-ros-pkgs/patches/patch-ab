@@ -1,0 +1,26 @@
+Don't require crazy cmake version for fun
+
+--- gazebo_ros/CMakeLists.txt~	2018-07-06 23:42:26.000000000 +0200
++++ gazebo_ros/CMakeLists.txt	2018-09-14 14:50:08.621829979 +0200
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.6.3)
++cmake_minimum_required(VERSION 2.8)
+ project(gazebo_ros)
+ 
+ find_package(catkin REQUIRED COMPONENTS
+--- gazebo_ros_control/CMakeLists.txt~	2018-07-06 23:42:26.000000000 +0200
++++ gazebo_ros_control/CMakeLists.txt	2018-09-14 14:51:22.218411276 +0200
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.6.3)
++cmake_minimum_required(VERSION 2.8)
+ project(gazebo_ros_control)
+ 
+ # Load catkin and all dependencies required for this package
+--- gazebo_plugins/CMakeLists.txt~	2018-07-06 23:42:26.000000000 +0200
++++ gazebo_plugins/CMakeLists.txt	2018-09-14 14:50:50.006156863 +0200
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 3.6.3)
++cmake_minimum_required(VERSION 2.8)
+ project(gazebo_plugins)
+ 
+ option(ENABLE_DISPLAY_TESTS "Enable the building of tests that requires a display" OFF)
