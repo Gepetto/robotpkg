@@ -2,9 +2,8 @@
 # Created:			Anthony Mallet on Thu, 27 Jun 2013
 #
 
-PKGREVISION=	1
 ROS_PKG=	control_toolbox
-ROS_VERSION=	1.13.2
+ROS_VERSION=	1.16.0
 ROS_REPO=	ros-controls
 
 CATEGORIES=	motion
@@ -13,8 +12,8 @@ HOMEPAGE=	http://wiki.ros.org/control_toolbox
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-CMAKE_ARGS+=	-DTinyXML_INCLUDE_PATH=${PREFIX.tinyxml}/include
-CMAKE_ARGS+=	-DTinyXML_LIBRARY_PATH=${PREFIX.tinyxml}/lib
+# CMAKE_ARGS+=	-DTinyXML_INCLUDE_PATH=${PREFIX.tinyxml}/include
+# CMAKE_ARGS+=	-DTinyXML_LIBRARY_PATH=${PREFIX.tinyxml}/lib
 
 USE_BOOST_LIBS=	thread
 
@@ -29,6 +28,7 @@ include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
 include ../../devel/ros-realtime-tools/depend.mk
 include ../../interfaces/ros-std-msgs/depend.mk
+include ../../interfaces/ros-control-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
