@@ -4,7 +4,7 @@
 
 PKGNAME=	ros-control-msgs-${ROS_VERSION}
 ROS_PKG=	control_msgs
-ROS_VERSION=	1.3.1
+ROS_VERSION=	1.4.0
 ROS_REPO=	ros-controls
 
 CATEGORIES=	interfaces

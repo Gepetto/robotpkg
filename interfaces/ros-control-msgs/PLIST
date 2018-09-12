@@ -1,4 +1,4 @@
-@comment Tue May 23 14:04:23 CEST 2017
+@comment Wed Sep 12 16:01:03 CEST 2018
 include/control_msgs/FollowJointTrajectoryAction.h
 include/control_msgs/FollowJointTrajectoryActionFeedback.h
 include/control_msgs/FollowJointTrajectoryActionGoal.h
@@ -24,6 +24,7 @@ include/control_msgs/JointTrajectoryControllerState.h
 include/control_msgs/JointTrajectoryFeedback.h
 include/control_msgs/JointTrajectoryGoal.h
 include/control_msgs/JointTrajectoryResult.h
+include/control_msgs/PidState.h
 include/control_msgs/PointHeadAction.h
 include/control_msgs/PointHeadActionFeedback.h
 include/control_msgs/PointHeadActionGoal.h
@@ -71,6 +72,7 @@ ${PYTHON_SITELIB}/control_msgs/msg/_JointTrajectoryControllerState.py
 ${PYTHON_SITELIB}/control_msgs/msg/_JointTrajectoryFeedback.py
 ${PYTHON_SITELIB}/control_msgs/msg/_JointTrajectoryGoal.py
 ${PYTHON_SITELIB}/control_msgs/msg/_JointTrajectoryResult.py
+${PYTHON_SITELIB}/control_msgs/msg/_PidState.py
 ${PYTHON_SITELIB}/control_msgs/msg/_PointHeadAction.py
 ${PYTHON_SITELIB}/control_msgs/msg/_PointHeadActionFeedback.py
 ${PYTHON_SITELIB}/control_msgs/msg/_PointHeadActionGoal.py
@@ -114,6 +116,7 @@ share/common-lisp/ros/control_msgs/msg/JointTrajectoryControllerState.lisp
 share/common-lisp/ros/control_msgs/msg/JointTrajectoryFeedback.lisp
 share/common-lisp/ros/control_msgs/msg/JointTrajectoryGoal.lisp
 share/common-lisp/ros/control_msgs/msg/JointTrajectoryResult.lisp
+share/common-lisp/ros/control_msgs/msg/PidState.lisp
 share/common-lisp/ros/control_msgs/msg/PointHeadAction.lisp
 share/common-lisp/ros/control_msgs/msg/PointHeadActionFeedback.lisp
 share/common-lisp/ros/control_msgs/msg/PointHeadActionGoal.lisp
@@ -154,6 +157,7 @@ share/common-lisp/ros/control_msgs/msg/_package_JointTrajectoryControllerState.l
 share/common-lisp/ros/control_msgs/msg/_package_JointTrajectoryFeedback.lisp
 share/common-lisp/ros/control_msgs/msg/_package_JointTrajectoryGoal.lisp
 share/common-lisp/ros/control_msgs/msg/_package_JointTrajectoryResult.lisp
+share/common-lisp/ros/control_msgs/msg/_package_PidState.lisp
 share/common-lisp/ros/control_msgs/msg/_package_PointHeadAction.lisp
 share/common-lisp/ros/control_msgs/msg/_package_PointHeadActionFeedback.lisp
 share/common-lisp/ros/control_msgs/msg/_package_PointHeadActionGoal.lisp
@@ -209,6 +213,7 @@ share/control_msgs/msg/JointTrajectoryControllerState.msg
 share/control_msgs/msg/JointTrajectoryFeedback.msg
 share/control_msgs/msg/JointTrajectoryGoal.msg
 share/control_msgs/msg/JointTrajectoryResult.msg
+share/control_msgs/msg/PidState.msg
 share/control_msgs/msg/PointHeadAction.msg
 share/control_msgs/msg/PointHeadActionFeedback.msg
 share/control_msgs/msg/PointHeadActionGoal.msg
