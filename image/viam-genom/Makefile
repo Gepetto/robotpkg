@@ -35,7 +35,7 @@ PKG_OPTION_DESCR.display=	Enable embedded image display facility.
 define PKG_OPTION_SET.display
   CONFIGURE_ARGS+=--enable-display
   include ../../image/opencv/depend.mk
-  DEPEND_ABI.opencv+=	opencv~gtk
+  DEPEND_ABI.opencv+= opencv<3
 endef
 PKG_OPTION_UNSET.display:=	CONFIGURE_ARGS+=--disable-display
 
