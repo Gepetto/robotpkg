@@ -1,45 +1,28 @@
 Eigen 3.2.0 has no fixed size segment<>, moddleRows<>, middleCols<> with 2
 arguments. This is not documented in recent eigen either.
 
---- src/jdifference-visitor.hh~	2018-05-18 17:46:59.000000000 +0200
-+++ src/jdifference-visitor.hh	2018-07-19 11:53:50.542495028 +0200
-@@ -41,21 +41,21 @@
-           typename LgT::JacobianMatrix_t J1int (lg.nv(), lg.nv());
- 
-           lg.Jdifference (
--              q0_.segment<LgT::NQ>(iq_, lg.nq()),
--              q1_.segment<LgT::NQ>(iq_, lg.nq()),
-+              q0_.segment<LgT::NQ>(iq_),
-+              q1_.segment<LgT::NQ>(iq_),
-               J0int,
-               J1int);
-           if (J0_.size() > 0) {
-             if (ApplyOnTheLeft)
--              J0_.middleRows<LgT::NV> (iv_, lg.nv()).applyOnTheLeft (J0int);
-+              J0_.middleRows<LgT::NV> (iv_).applyOnTheLeft (J0int);
-             else
--              J0_.middleCols<LgT::NV> (iv_, lg.nv()).applyOnTheRight (J0int);
-+              J0_.middleCols<LgT::NV> (iv_).applyOnTheRight (J0int);
-           }
-           if (J1_.size() > 0) {
-             if (ApplyOnTheLeft)
--              J1_.middleRows<LgT::NV> (iv_, lg.nv()).applyOnTheLeft (J1int);
-+              J1_.middleRows<LgT::NV> (iv_).applyOnTheLeft (J1int);
-             else
--              J1_.middleCols<LgT::NV> (iv_, lg.nv()).applyOnTheRight (J1int);
-+              J1_.middleCols<LgT::NV> (iv_).applyOnTheRight (J1int);
-           }
-           iq_ += lg.nq();
-           iv_ += lg.nv();
-@@ -66,9 +66,9 @@
+
+--- src/dintegrate-visitor.hh.orig	2018-09-13 00:58:11.000000000 +0200
++++ src/dintegrate-visitor.hh	2018-09-13 18:11:26.315076644 +0200
+@@ -30,8 +30,8 @@
+         template <typename LgT> void operator () (const LgT& lg)
          {
-           if (J0_.size() > 0) {
-             if (ApplyOnTheLeft)
--              J0_.middleRows<N> (iv_, lg.nv()) *= -1;
-+              J0_.middleRows<N> (iv_) *= -1;
-             else
--              J0_.middleCols<N> (iv_, lg.nv()) *= -1;
-+              J0_.middleCols<N> (iv_) *= -1;
-           }
-           iq_ += lg.nq();
-           iv_ += lg.nv();
+           typename LgT::JacobianMatrix_t JqInt (lg.nv(), lg.nv());
+-          lg.dIntegrate_dq (q_.vector().segment<LgT::NQ>(configRow_, lg.nq()), v_.segment<LgT::NV>(row_, lg.nv()), JqInt);
+-          Jq_.middleRows<LgT::NV> (row_, lg.nv()).applyOnTheLeft (JqInt);
++          lg.dIntegrate_dq (q_.vector().segment<LgT::NQ>(configRow_), v_.segment<LgT::NV>(row_), JqInt);
++          Jq_.middleRows<LgT::NV> (row_).applyOnTheLeft (JqInt);
+           row_ += lg.nv();
+           configRow_ += lg.nq();
+         }
+@@ -57,8 +57,8 @@
+         template <typename LgT> void operator () (const LgT& lg)
+         {
+           typename LgT::JacobianMatrix_t JvInt (lg.nv(), lg.nv());
+-          lg.dIntegrate_dv (q_.vector().segment<LgT::NQ>(configRow_, lg.nq()), v_.segment<LgT::NV>(row_, lg.nv()), JvInt);
+-          Jv_.middleRows<LgT::NV> (row_, lg.nv()).applyOnTheLeft (JvInt);
++          lg.dIntegrate_dv (q_.vector().segment<LgT::NQ>(configRow_), v_.segment<LgT::NV>(row_), JvInt);
++          Jv_.middleRows<LgT::NV> (row_).applyOnTheLeft (JvInt);
+           row_ += lg.nv();
+           configRow_ += lg.nq();
+         }
