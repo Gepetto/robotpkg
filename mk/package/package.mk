@@ -172,15 +172,17 @@ ifneq (,$(filter deb,${PKG_FORMAT}))
 $(foreach _,${PACKAGES_SUBDIRS},					\
 	dirs="$$dirs $_";						\
 )									\
+	exitv=0;							\
 	for d in $$dirs; do						\
 	  ${TEST} -d ${DEB_PACKAGES}/$$d ||				\
 	    ${MKDIR} ${DEB_PACKAGES}/$$d;				\
 	  ${SETENV} ${PKGREPO2DEB_ENV}					\
 	    ${PKGREPO2DEB} -r ${PKGREPOSITORY} -d ${DEB_PACKAGES}/$$d	\
 	      ${PKGREPO2DEB_ARGS} ${PACKAGES}/$$d/$$pkgfile${PKG_SUFX}	\
-	      2>>${_PKG_LOG};						\
+	      2>>${_PKG_LOG} || exitv=$$?;				\
 	done;								\
 	if ${TEST} -s ${_PKG_LOG}; then					\
 	  ${WARNING_CAT} <${_PKG_LOG};					\
-	fi
+	fi;								\
+	exit $$exitv
 endif
