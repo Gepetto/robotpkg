@@ -23,6 +23,7 @@ endef
 define PKG_OPTION_SET.opencv
   CONFIGURE_ARGS+=		--enable-opencv
   include ../../image/opencv/depend.mk
+  DEPEND_ABI.opencv+=		opencv<3
   DEPEND_ABI.viam-libs+=	viam-libs~opencv
 endef
 
