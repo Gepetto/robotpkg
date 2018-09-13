@@ -21,7 +21,7 @@ define PKG_OPTION_SET.opencv
   include ../../image/opencv/depend.mk
 
   # opencv 3.4 has introduced C++ syntax in the C headers...
-  DEPEND_ABI.opencv += opencv<3.4
+  DEPEND_ABI.opencv += opencv<3
 endef
 
 # options for doc generation
