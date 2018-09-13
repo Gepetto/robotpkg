@@ -1,9 +1,10 @@
-# robotpkg Makefile for:	image/opencv
+# robotpkg Makefile for:	image/opencv2
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-PKGREVISION=		2
+PKGREVISION=		3
 VERSION=		2.4.8
+PKGNAME=		opencv2-${VERSION}
 DISTNAME=		opencv-${VERSION}
 DISTFILES=		${VERSION}${EXTRACT_SUFX}
 DIST_SUBDIR=		opencv
@@ -13,7 +14,9 @@ MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://opencv.org/
 COMMENT=		Open Source Computer Vision
 MASTER_SITES=		${MASTER_SITE_GITHUB:=itseez/opencv/archive/}
-CONFLICTS+=		opencv1
+CONFLICTS+=		opencv-[0-9]*
+CONFLICTS+=		opencv1-[0-9]*
+CONFLICTS+=		opencv3-[0-9]*
 LICENSE=		modified-bsd
 
 
