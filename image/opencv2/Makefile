@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Sun, 28 Jan 2007
 #
 
-PKGREVISION=		3
-VERSION=		2.4.8
+VERSION=		2.4.13.6
 PKGNAME=		opencv2-${VERSION}
 DISTNAME=		opencv-${VERSION}
 DISTFILES=		${VERSION}${EXTRACT_SUFX}
@@ -13,16 +12,19 @@ CATEGORIES=		image
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://opencv.org/
 COMMENT=		Open Source Computer Vision
-MASTER_SITES=		${MASTER_SITE_GITHUB:=itseez/opencv/archive/}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=opencv/opencv/archive/}
 CONFLICTS+=		opencv-[0-9]*
 CONFLICTS+=		opencv1-[0-9]*
 CONFLICTS+=		opencv3-[0-9]*
 LICENSE=		modified-bsd
 
+CONFIGURE_DIRS+=        build
+CMAKE_ARG_PATH=         ${WRKSRC}
 
 # build configuration
 CMAKE_ARGS+=	-Wno-dev
 CMAKE_ARGS+=	-DENABLE_PRECOMPILED_HEADERS=OFF
+CMAKE_ARGS+=	-DENABLE_CCACHE=OFF
 CMAKE_ARGS+=	-DBUILD_PACKAGE=OFF -DBUILD_SHARED_LIBS=ON
 CMAKE_ARGS+=	-DBUILD_TESTS=ON -DBUILD_PERF_TESTS=OFF
 CMAKE_ARGS+=	-DBUILD_DOCS=OFF -DBUILD_EXAMPLES=OFF
@@ -49,10 +51,10 @@ CMAKE_ARGS+=	-DBUILD_opencv_video=ON
 CMAKE_ARGS+=	-DBUILD_opencv_videostab=ON
 
 # external packages support
-CMAKE_ARGS+=	-DWITH_GTK=OFF -DWITH_QT=OFF
+CMAKE_ARGS+=	-DWITH_GTK=ON -DWITH_QT=OFF
 CMAKE_ARGS+=	-DWITH_IPP=OFF -DWITH_TBB=OFF
 CMAKE_ARGS+=	-DWITH_OPENEXR=OFF -DWITH_PVAPI=OFF
-CMAKE_ARGS+=	-DWITH_1394=OFF -DWITH_V4L=OFF
+CMAKE_ARGS+=	-DWITH_1394=OFF
 CMAKE_ARGS+=	-DWITH_JASPER=OFF -DWITH_JPEG=ON -DWITH_PNG=ON -DWITH_TIFF=ON
 CMAKE_ARGS+=	-DWITH_CUBLAS=OFF -DWITH_CUDA=OFF -DWITH_CUFFT=OFF
 CMAKE_ARGS+=	-DWITH_FFMPEG=ON -DWITH_OPENGL=OFF
@@ -61,66 +63,29 @@ CMAKE_ARGS+=	-DWITH_OPENNI=OFF
 CMAKE_ARGS+=	-DWITH_EIGEN=ON
 CMAKE_ARGS+=	-DWITH_UNICAP=OFF
 CMAKE_ARGS+=	-DWITH_OPENCL=OFF
+CMAKE_ARGS+=	-DWITH_V4L=$(if $(filter Linux,${OS_KERNEL}),ON,OFF)
 
 # dependencies
 CMAKE_ARGS+=	-DEIGEN_INCLUDE_PATH=${PREFIX.eigen3}/include/eigen3
-
-# option for image acquistion support
-include ../../mk/robotpkg.prefs.mk # OS_KERNEL
-ifneq (,$(filter Darwin Linux,${OS_KERNEL}))
-  PKG_SUGGESTED_OPTIONS+=	camera
-  PKG_SUPPORTED_OPTIONS+=	camera
-endif
-PKG_OPTION_DESCR.camera=	Enable digital camera acquisition support
-define PKG_OPTION_SET.camera
-  CMAKE_ARGS+=			-DWITH_1394=ON -DWITH_V4L=ON
-  include ../../image/libdc1394/depend.mk
-endef
-
-# option for display
-PKG_SUGGESTED_OPTIONS+=		gtk
-PKG_OPTIONS_OPTIONAL_GROUPS+=	display
-PKG_OPTIONS_GROUP.display=	gtk qt
-PKG_OPTION_DESCR.gtk=		Enable gtk+ 2.0 display
-PKG_OPTION_DESCR.qt=		Enable Qt 4 display
-
-define PKG_OPTION_SET.gtk
-  CMAKE_ARGS+=			-DWITH_GTK=ON
-  include ../../mk/sysdep/gtk.mk
-endef
-define PKG_OPTION_SET.qt
-  CMAKE_ARGS+=			-DWITH_QT=ON
-  include ../../mk/sysdep/mesa.mk
-  include ../../mk/sysdep/qt4-libs.mk
-endef
-
-# option for doxygen documentation
-PKG_SUGGESTED_OPTIONS+=		doc
-PKG_SUPPORTED_OPTIONS+=		doc
-PKG_OPTION_DESCR.doc=		Enable documentation generation
-define PKG_OPTION_SET.doc
-  CMAKE_ARGS+=			-DBUILD_DOCS=ON
-  CMAKE_ARGS+=			-DSPHINX_BUILD=${SPHINX_BUILD}
-  include ../../mk/sysdep/pdflatex.mk
-  include ../../mk/sysdep/py-sphinx.mk
-endef
 
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/zlib/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/gtk.mk
 include ../../mk/sysdep/libavcodec.mk
 include ../../mk/sysdep/libavformat.mk
+include ../../mk/sysdep/libavresample.mk
 include ../../mk/sysdep/libavutil.mk
 include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/libpng.mk
 include ../../mk/sysdep/libswscale.mk
 include ../../mk/sysdep/libtiff.mk
+include ../../mk/sysdep/libX11.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
-
-DEPEND_ABI.libavcodec+=		libavcodec<57
-DEPEND_ABI.libavformat+=	libavformat<57
-
 include ../../mk/robotpkg.mk
+
+pre-configure:
+	${RUN} ${MKDIR} ${WRKSRC}/build
