@@ -20,7 +20,6 @@ PKG_SUGGESTED_OPTIONS+=	display
 
 PKG_OPTION_DESCR.display=	Enable embedded image display facility.
 define PKG_OPTION_SET.display
-  DEPEND_ABI.opencv+=	opencv~gtk
   CONFIGURE_ARGS+=	--with-display
 endef
 PKG_OPTION_UNSET.display:=	CONFIGURE_ARGS+=--without-display
