@@ -1,3 +1,4 @@
-SHA1 (ros/diagnostics/1.8.5.tar.gz) = 9dcc0f91dbe4c644bed946702303e9e8e7759924
-RMD160 (ros/diagnostics/1.8.5.tar.gz) = 04404df8bd4dacb8abccbc3056b1a3c02f3dea6b
-Size (ros/diagnostics/1.8.5.tar.gz) = 484144 bytes
+SHA1 (ros/diagnostics/1.9.3.tar.gz) = 41c3214d7232bce4fca8dfc229a9f72b5222f333
+RMD160 (ros/diagnostics/1.9.3.tar.gz) = 252d31688d36b486bd99fd35cd1918e0fc4b57bd
+Size (ros/diagnostics/1.9.3.tar.gz) = 531618 bytes
+SHA1 (patch-aa) = 8d49ad995043df433b586057289f04e85abac2db
