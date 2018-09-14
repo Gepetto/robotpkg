@@ -1,4 +1,0 @@
-robot_model contains packages for modeling various aspects of robot
-information, specified in the Xml Robot Description Format (URDF). The core
-package of this stack is urdf, which parses URDF files, and constructs an
-object model (C++) of the robot.

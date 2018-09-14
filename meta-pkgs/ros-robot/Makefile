@@ -26,7 +26,6 @@ include ../../devel/ros-filters/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-xacro/depend.mk
-include ../../graphics/ros-robot-model/depend.mk
 include ../../graphics/ros-ivcon/depend.mk
 include ../../graphics/ros-convex-decomposition/depend.mk
 include ../../graphics/ros-kdl-parser/depend.mk
