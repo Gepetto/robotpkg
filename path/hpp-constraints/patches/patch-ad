@@ -1,0 +1,69 @@
+Newer C++11 compat
+
+--- tests/explicit-constraint-set.cc~	2018-10-05 14:42:29.000000000 +0200
++++ tests/explicit-constraint-set.cc	2018-10-10 14:28:21.022415692 +0200
+@@ -275,6 +275,7 @@
+ 
+   std::vector<int> order(3);
+ 
++#if __cplusplus <= 199711L
+   order = list_of(0)(1)(2);
+   order_test<3> (f, s, order, inArgs, outArgs);
+   order = list_of(0)(2)(1);
+@@ -287,6 +288,20 @@
+   order_test<3> (f, s, order, inArgs, outArgs);
+   order = list_of(2)(1)(0);
+   order_test<3> (f, s, order, inArgs, outArgs);
++#else
++  order = { 0, 1, 2 };
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = { 0, 2, 1 };
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = { 1, 0, 2 };
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = { 1, 2, 0 };
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = { 2, 0, 1 };
++  order_test<3> (f, s, order, inArgs, outArgs);
++  order = { 2, 1, 0 };
++  order_test<3> (f, s, order, inArgs, outArgs);
++#endif
+ }
+ 
+ BOOST_AUTO_TEST_CASE(jacobian1)
+@@ -354,12 +369,21 @@
+     , AffineFunctionPtr_t (new AffineFunction (J[2]))
+   };
+   std::vector<segments_t> s(6);
++#if __cplusplus <= 199711L
+   s[0] = (list_of(segment_t (1, 2)));
+   s[1] = (list_of(segment_t (0, 1)));
+   s[2] = (list_of(segment_t (3, 1)));
+   s[3] = (list_of(segment_t (4, 1)));
+   s[4] = (list_of(segment_t (0, 1))(segment_t (3, 1)));
+   s[5] = (list_of(segment_t (1, 1)));
++#else
++  s[0] = { segment_t (1, 2) };
++  s[1] = { segment_t (0, 1) };
++  s[2] = { segment_t (3, 1) };
++  s[3] = { segment_t (4, 1) };
++  s[4] = { segment_t (0, 1), segment_t (3, 1) };
++  s[5] = { segment_t (1, 1) };
++#endif
+ 
+   ExplicitConstraintSet expression (LiegroupSpace::Rn (5));
+   ExplicitPtr_t constraint;
+@@ -384,8 +408,13 @@
+                        2, 1;
+   BOOST_CHECK_EQUAL (expression.inOutDofDependencies(), inOutDependencies);
+ 
++#if __cplusplus <= 199711L
+   segments_t inArgs = s[0],
+              outArgs = list_of(s[1][0])(s[2][0])(s[3][0]);
++#else
++  segments_t inArgs = s[0],
++    outArgs = { s[1][0], s[2][0], s[3][0] };
++#endif
+   BlockIndex::shrink (outArgs);
+ 
+   BOOST_CHECK_EQUAL( expression.inArgs().rows(), inArgs);

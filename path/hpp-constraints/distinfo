@@ -1,6 +1,5 @@
-SHA1 (hpp-constraints-4.1.tar.gz) = 6ea1d7b4a4a0bc8a5cd9086527389a2121d29c0e
-RMD160 (hpp-constraints-4.1.tar.gz) = 3626429a4c9a3ffe503df758d9b4ff6ae4ddf115
-Size (hpp-constraints-4.1.tar.gz) = 867151 bytes
-SHA1 (patch-aa) = dcfff988731dedcd8848fd537f53d3ad0f288cbc
-SHA1 (patch-ab) = 0b4b2f4d2fcee3ddf040bf17f116008ca902351b
+SHA1 (hpp-constraints-4.2.0.tar.gz) = 569cb2383f80845f07c2d13accb2d75482865d0f
+RMD160 (hpp-constraints-4.2.0.tar.gz) = 1a84b8a34819ebaf65c289846efd4ead2bb695af
+Size (hpp-constraints-4.2.0.tar.gz) = 917992 bytes
 SHA1 (patch-ac) = a06201b8772000f05d207d202bd4747118d98d67
+SHA1 (patch-ad) = 70940dd7a43242d05600354124e0e806a13b7cc1
