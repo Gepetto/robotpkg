@@ -1,5 +1,4 @@
-SHA1 (ros/rviz/1.11.10.tar.gz) = c2922f27a78f2def140de64e8bfbc842dda7a23a
-RMD160 (ros/rviz/1.11.10.tar.gz) = 9c72365c8818140115d896be8c567d91f8b6b3fd
-Size (ros/rviz/1.11.10.tar.gz) = 4526836 bytes
-SHA1 (patch-ab) = b4e6158101610adf6b52f7857870aa23bfdb78e2
-SHA1 (patch-ac) = 75afcb80e3792d0eacb6b2592a42c931a74d40d8
+SHA1 (ros/rviz/1.13.1.tar.gz) = a0fadcfba2d2aea3000854da0019055f83007b5e
+RMD160 (ros/rviz/1.13.1.tar.gz) = 1a067d8162cd3c16a195427e024f6db79851d7b6
+Size (ros/rviz/1.13.1.tar.gz) = 5094089 bytes
+SHA1 (patch-ab) = fdfea1ba8bd497282828719ae26289839974c57b

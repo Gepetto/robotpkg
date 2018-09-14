@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	rviz
-ROS_VERSION=	1.11.10
+ROS_VERSION=	1.13.1
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	sysutils
@@ -22,12 +22,11 @@ include ../../devel/yaml-cpp/depend.mk
 include ../../graphics/assimp/depend.mk
 include ../../graphics/ros-interactive-markers/depend.mk
 include ../../graphics/ros-python-qt-binding/depend.mk
-include ../../graphics/ros-robot-model/depend.mk
 include ../../image/ros-image-common/depend.mk
 include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-comm-msgs/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
-include ../../interfaces/ros-map-msgs/depend.mk
+include ../../interfaces/ros-navigation-msgs/depend.mk
 include ../../interfaces/ros-std-msgs/depend.mk
 include ../../mapping/ros-laser-geometry/depend.mk
 include ../../math/eigen3/depend.mk
@@ -35,6 +34,5 @@ include ../../math/ros-geometry/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
 include ../../mk/sysdep/libogre.mk
-include ../../mk/sysdep/qt4-libs.mk
-include ../../mk/sysdep/qt4-opengl.mk
+include ../../mk/sysdep/qt5-qtbase.mk
 include ../../mk/robotpkg.mk

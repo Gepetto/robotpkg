@@ -1,4 +1,4 @@
-@comment Tue Dec 1 12:12:25 CET 2015
+@comment Fri Sep 14 18:23:50 CEST 2018
 bin/rviz
 include/rviz/add_display_dialog.h
 include/rviz/bit_allocator.h
@@ -6,6 +6,8 @@ include/rviz/class_id_recording_factory.h
 include/rviz/config.h
 include/rviz/default_plugin/axes_display.h
 include/rviz/default_plugin/camera_display.h
+include/rviz/default_plugin/covariance_property.h
+include/rviz/default_plugin/covariance_visual.h
 include/rviz/default_plugin/depth_cloud_display.h
 include/rviz/default_plugin/depth_cloud_mld.h
 include/rviz/default_plugin/effort_display.h
@@ -23,6 +25,7 @@ include/rviz/default_plugin/laser_scan_display.h
 include/rviz/default_plugin/map_display.h
 include/rviz/default_plugin/marker_array_display.h
 include/rviz/default_plugin/marker_display.h
+include/rviz/default_plugin/marker_utils.h
 include/rviz/default_plugin/markers/arrow_marker.h
 include/rviz/default_plugin/markers/line_list_marker.h
 include/rviz/default_plugin/markers/line_strip_marker.h
@@ -45,6 +48,7 @@ include/rviz/default_plugin/point_visual.h
 include/rviz/default_plugin/polygon_display.h
 include/rviz/default_plugin/pose_array_display.h
 include/rviz/default_plugin/pose_display.h
+include/rviz/default_plugin/pose_with_covariance_display.h
 include/rviz/default_plugin/range_display.h
 include/rviz/default_plugin/relative_humidity_display.h
 include/rviz/default_plugin/robot_model_display.h
@@ -117,6 +121,8 @@ include/rviz/panel.h
 include/rviz/panel_dock_widget.h
 include/rviz/panel_factory.h
 include/rviz/pluginlib_factory.h
+include/rviz/preferences.h
+include/rviz/preferences_dialog.h
 include/rviz/properties/bool_property.h
 include/rviz/properties/color_editor.h
 include/rviz/properties/color_property.h
@@ -163,6 +169,7 @@ include/rviz/tool_manager.h
 include/rviz/tool_properties_panel.h
 include/rviz/uniform_string_stream.h
 include/rviz/validate_floats.h
+include/rviz/validate_quaternions.h
 include/rviz/view_controller.h
 include/rviz/view_manager.h
 include/rviz/viewport_mouse_event.h
@@ -175,16 +182,19 @@ include/rviz/widget_geometry_change_detector.h
 include/rviz/window_manager_interface.h
 include/rviz/yaml_config_reader.h
 include/rviz/yaml_config_writer.h
-lib/libdefault_plugin.so
 lib/librviz.so
+lib/librviz_default_plugin.so
 lib/pkgconfig/rviz.pc
 ${PYTHON_SITELIB}/rviz-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/rviz/__init__.py
 ${PYTHON_SITELIB}/rviz/librviz_sip.so
 lib/rviz/rviz
+share/rviz/cmake/default_plugin_location.cmake
+share/rviz/cmake/rviz-extras.cmake
 share/rviz/cmake/rvizConfig-version.cmake
 share/rviz/cmake/rvizConfig.cmake
 share/rviz/default.rviz
+share/rviz/help/help.html
 share/rviz/icons/classes/Axes.png
 share/rviz/icons/classes/Camera.png
 share/rviz/icons/classes/DepthCloud.png
@@ -269,9 +279,13 @@ share/rviz/icons/warning.png
 share/rviz/icons/zoom.svg
 share/rviz/images/splash.png
 share/rviz/images/splash_overlay.png
-share/rviz/ogre_media/fonts/arial.fontdef
-share/rviz/ogre_media/fonts/arial.ttf
-share/rviz/ogre_media/fonts/font_arial.png
+share/rviz/ogre_media/fonts/README.md
+share/rviz/ogre_media/fonts/liberation-sans/LiberationSans-Bold.ttf
+share/rviz/ogre_media/fonts/liberation-sans/LiberationSans-BoldItalic.ttf
+share/rviz/ogre_media/fonts/liberation-sans/LiberationSans-Italic.ttf
+share/rviz/ogre_media/fonts/liberation-sans/LiberationSans-Regular.ttf
+share/rviz/ogre_media/fonts/liberation-sans/SIL Open Font License.txt
+share/rviz/ogre_media/fonts/liberation_sans.fontdef
 share/rviz/ogre_media/materials/glsl120/black.frag
 share/rviz/ogre_media/materials/glsl120/depth.frag
 share/rviz/ogre_media/materials/glsl120/depth.vert
@@ -321,13 +335,3 @@ share/rviz/ogre_media/plugins.cfg
 share/rviz/ogre_media/textures/no_image.png
 share/rviz/package.xml
 share/rviz/plugin_description.xml
-@pkgdir include/rviz/default_plugin/CMakeFiles/default_plugin.dir/view_controllers
-@pkgdir include/rviz/default_plugin/CMakeFiles/default_plugin.dir/tools
-@pkgdir include/rviz/default_plugin/CMakeFiles/default_plugin.dir/markers
-@pkgdir include/rviz/default_plugin/CMakeFiles/default_plugin.dir/interactive_markers
-@pkgdir include/rviz/CMakeFiles/rviz.dir/selection
-@pkgdir include/rviz/CMakeFiles/rviz.dir/robot
-@pkgdir include/rviz/CMakeFiles/rviz.dir/properties
-@pkgdir include/rviz/CMakeFiles/rviz.dir/ogre_helpers
-@pkgdir include/rviz/CMakeFiles/rviz.dir/image
-@pkgdir include/rviz/CMakeFiles/executable.dir
