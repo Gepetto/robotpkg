@@ -29,7 +29,6 @@ SUBDIR+=	ros-python-qt-binding
 SUBDIR+=	ros-qt-gui-core
 SUBDIR+=	ros-rqt
 SUBDIR+=	ros-rqt-common-plugins
-SUBDIR+=	ros-srdfdom
 SUBDIR+=	ros-urdf
 SUBDIR+=	sun-java3d
 SUBDIR+=	Togl
