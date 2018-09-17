@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sun, 23 Jun 2013
 #
 
-DISTNAME=	ros-desktop-1.11
+DISTNAME=	ros-desktop-1.4.1
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
 
@@ -15,38 +15,28 @@ MESSAGE_SRC=	../../meta-pkgs/ros-base/MESSAGE
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 
 PREFER.ros?=	robotpkg
-DEPEND_ABI.ros=	ros==indigo
+DEPEND_ABI.ros=	ros==melodic
 
-# TODO:
-# common-tutorials
-# documentation
-# geometry-experimental
-# geometry-tutorials
-# laser-pipeline
-# navigation-tutorials
-# robot-model-tutorials
-# robot-model-visualization
-# ros-tutorials
-# rviz
-# visualization-tutorials
+# Missing: tutorials
 
 include ../../devel/ros-bond-core/depend.mk
 include ../../devel/ros-filters/depend.mk
+include ../../devel/ros-lint/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
-include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../devel/ros-xacro/depend.mk
-include ../../graphics/ros-python-qt-binding/depend.mk
-include ../../graphics/ros-qt-gui-core/depend.mk
+include ../../graphics/ros-kdl-parser/depend.mk
 include ../../graphics/ros-rqt-common-plugins/depend.mk
-include ../../image/ros-image-common/depend.mk
-include ../../image/ros-vision-opencv/depend.mk
-include ../../interfaces/ros-common-msgs/depend.mk
+include ../../graphics/ros-urdf/depend.mk
+include ../../interfaces/ros-control-msgs/depend.mk
+include ../../localization/ros-joint-state-publisher/depend.mk
+include ../../localization/ros-robot-state-publisher/depend.mk
+include ../../math/ros-angles/depend.mk
 include ../../math/ros-geometry/depend.mk
-include ../../sysutils/ros-diagnostics/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
-include ../../localization/ros-robot-state-publisher/depend.mk
 include ../../supervision/ros-executive-smach/depend.mk
+include ../../sysutils/ros-diagnostics/depend.mk
+include ../../sysutils/ros-rviz/depend.mk
 include ../../mk/robotpkg.mk
