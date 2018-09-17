@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 19 Jan 2011
 #
 
-DISTNAME=	ros-base-1.11
+DISTNAME=	ros-base-1.4.1
 CATEGORIES=	meta-pkgs
 META_PACKAGE=	yes
 
@@ -14,8 +14,12 @@ NOT_FOR_PLATFORM=
 MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
 
 PREFER.ros?=	robotpkg
-DEPEND_ABI.ros=	ros==indigo
+DEPEND_ABI.ros=	ros==melodic
 
+include ../../devel/ros-bond-core/depend.mk
+include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-ros/depend.mk
+include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
+include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../mk/robotpkg.mk
