@@ -1,0 +1,14 @@
+@comment Mon Sep 17 13:55:25 CEST 2018
+bin/rqt_graph
+lib/pkgconfig/rqt_graph.pc
+${PYTHON_SITELIB}/rqt_graph-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rqt_graph/__init__.py
+${PYTHON_SITELIB}/rqt_graph/dotcode.py
+${PYTHON_SITELIB}/rqt_graph/interactive_graphics_view.py
+${PYTHON_SITELIB}/rqt_graph/ros_graph.py
+lib/rqt_graph/rqt_graph
+share/rqt_graph/cmake/rqt_graphConfig-version.cmake
+share/rqt_graph/cmake/rqt_graphConfig.cmake
+share/rqt_graph/package.xml
+share/rqt_graph/plugin.xml
+share/rqt_graph/resource/RosGraph.ui

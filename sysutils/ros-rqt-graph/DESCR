@@ -1,0 +1,4 @@
+rqt_graph provides a GUI plugin for visualizing the ROS computation graph.
+
+Its components are made generic so that other packages where you want to
+achieve graph representation can depend upon this package.
