@@ -1,0 +1,18 @@
+@comment Mon Sep 17 13:21:10 CEST 2018
+bin/rqt_plot
+lib/pkgconfig/rqt_plot.pc
+${PYTHON_SITELIB}/rqt_plot-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rqt_plot/__init__.py
+${PYTHON_SITELIB}/rqt_plot/data_plot/__init__.py
+${PYTHON_SITELIB}/rqt_plot/data_plot/mat_data_plot.py
+${PYTHON_SITELIB}/rqt_plot/data_plot/pyqtgraph_data_plot.py
+${PYTHON_SITELIB}/rqt_plot/data_plot/qwt_data_plot.py
+${PYTHON_SITELIB}/rqt_plot/plot.py
+${PYTHON_SITELIB}/rqt_plot/plot_widget.py
+${PYTHON_SITELIB}/rqt_plot/rosplot.py
+lib/rqt_plot/rqt_plot
+share/rqt_plot/cmake/rqt_plotConfig-version.cmake
+share/rqt_plot/cmake/rqt_plotConfig.cmake
+share/rqt_plot/package.xml
+share/rqt_plot/plugin.xml
+share/rqt_plot/resource/plot.ui

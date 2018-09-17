@@ -1,0 +1,2 @@
+rqt_plot provides a GUI plugin visualizing numeric values in a 2D plot using
+different plotting backends.

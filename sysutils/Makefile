@@ -17,6 +17,7 @@ SUBDIR+=	ros-console
 SUBDIR+=	ros-console-bridge
 SUBDIR+=	ros-diagnostics
 SUBDIR+=	ros-rospack
+SUBDIR+=	ros-rqtplot
 SUBDIR+=	ros-rviz
 SUBDIR+=	tk3-flash
 SUBDIR+=	tth
