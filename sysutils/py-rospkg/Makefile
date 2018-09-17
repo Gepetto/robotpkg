@@ -2,25 +2,19 @@
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
 
-PKGREVISION=	1
 ROS_PKG=	rospkg
-ROS_VERSION=	1.0.29
+ROS_VERSION=	1.1.7
 PKGNAME=	${PKGTAG.python}-${ROS_PKG}-${ROS_VERSION}
 
 CATEGORIES=	sysutils
 ROS_COMMENT=	basic utilities for querying stacks information
 
 CONFLICTS+=	py[0-9][0-9]-rospkg-${VERSION}
+
 PYDISTUTILSPKG=	yes
+PYSETUPINSTALLARGS+=	--single-version-externally-managed --root=/
 
 include ../../meta-pkgs/ros-base/Makefile.common
-
-# tests during 'install' require PYTHONPATH to hold the installation path
-MAKE_ENV+=		PYTHONPATH=$(call quote,${PREFIX}/${PYTHON_SITELIB})
-
-SUBST_CLASSES+=		py-distsetup
-SUBST_CLASSES+=		py-interp
-SUBST_FILES.py-interp+=	scripts/rosversion
 
 # Fix prefix
 SUBST_CLASSES+=		ros-prefix

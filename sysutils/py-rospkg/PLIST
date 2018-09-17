@@ -1,12 +1,17 @@
-@comment Tue Aug 19 10:20:07 CEST 2014
+@comment Mon Sep 17 13:41:21 CEST 2018
 bin/rosversion
-${PYTHON_SITELIB}/rospkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rospkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rospkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rospkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rospkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/entry_points.txt
+${PYTHON_SITELIB}/rospkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/requires.txt
+${PYTHON_SITELIB}/rospkg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/rospkg/__init__.py
-${PYTHON_SITELIB}/rospkg/_version.py
 ${PYTHON_SITELIB}/rospkg/common.py
 ${PYTHON_SITELIB}/rospkg/distro.py
 ${PYTHON_SITELIB}/rospkg/environment.py
 ${PYTHON_SITELIB}/rospkg/manifest.py
 ${PYTHON_SITELIB}/rospkg/os_detect.py
 ${PYTHON_SITELIB}/rospkg/rospack.py
+${PYTHON_SITELIB}/rospkg/rosversion.py
 ${PYTHON_SITELIB}/rospkg/stack.py
