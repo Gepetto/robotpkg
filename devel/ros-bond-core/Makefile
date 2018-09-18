@@ -16,6 +16,7 @@ SUBST_FILES.py-interp+=	test_bond/scripts/*.py
 SUBST_FILES.py-interp+=	test_bond/test/*.py
 
 include ../../devel/ros-catkin/depend.mk
+include ../../devel/ros-cmake-modules/depend.mk
 include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../lang/ros-message-runtime/depend.mk
