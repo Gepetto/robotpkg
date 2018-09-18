@@ -47,7 +47,9 @@ SYSTEM_SEARCH.ros-geometry=\
   'lib/pkgconfig/tf_conversions.pc:/Version/s/[^0-9.]//gp'
 
 include ../../math/eigen3/depend.mk
-include ../../mk/language/c++11.mk
+
+# headers use C++11 in ros-melodic
+PKG_ALTERNATIVE_SET.melodic += $(eval include ../../mk/language/c++11.mk)
 
 endif # ROS_GEOMETRY_DEPEND_MK ---------------------------------------------
 
