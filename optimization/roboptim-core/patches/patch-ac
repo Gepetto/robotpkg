@@ -1,0 +1,14 @@
+For "some" reason, gcc-8 is able to use the std::vector::at() const version but
+not the std::vector::operator[] const. Well.
+
+--- include/roboptim/core/detail/structured-input.hxx~	2015-06-26 17:08:46.000000000 +0200
++++ include/roboptim/core/detail/structured-input.hxx	2018-09-18 15:52:22.957803913 +0200
+@@ -58,7 +58,7 @@
+     {
+       assert(blockInd < BlockProvider::blocks.size());
+ 
+-      return input.segment(static_cast<long>(BlockProvider::blocks[blockInd].first), static_cast<long>(BlockProvider::blocks[blockInd].second));
++      return input.segment(static_cast<long>(BlockProvider::blocks.at(blockInd).first), static_cast<long>(BlockProvider::blocks.at(blockInd).second));
+     }
+ 
+     template<typename FuncType>
