@@ -2,6 +2,7 @@
 # Created:			Aurelie Clodic on Mon, 16 Dec 2013
 #
 
+PKGREVISION=	1
 VERSION=	2.0.9
 DISTNAME=	dynamic_graph_bridge-${VERSION}
 PKGNAME=	dynamic-graph-bridge-${VERSION}
@@ -30,6 +31,7 @@ include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-realtime-tools/depend.mk
 include ../../devel/ros-roscpp-core/depend.mk
 include ../../interfaces/jrl-mal/depend.mk
+include ../../interfaces/ros-common-msgs/depend.mk
 include ../../math/jrl-dynamics-urdf/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 include ../../motion/dynamic-graph-bridge-msgs/depend.mk
