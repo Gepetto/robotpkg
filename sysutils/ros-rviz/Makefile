@@ -22,6 +22,7 @@ include ../../devel/yaml-cpp/depend.mk
 include ../../graphics/assimp/depend.mk
 include ../../graphics/ros-interactive-markers/depend.mk
 include ../../graphics/ros-python-qt-binding/depend.mk
+include ../../graphics/ros-urdf/depend.mk
 include ../../image/ros-image-common/depend.mk
 include ../../image/ros-vision-opencv/depend.mk
 include ../../interfaces/ros-comm-msgs/depend.mk
