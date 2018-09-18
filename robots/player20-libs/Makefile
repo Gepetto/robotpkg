@@ -34,6 +34,12 @@ INCLUDE_DIRS.libjpeg=	include
 LIBRARY_DIRS.libjpeg=	lib
 RPATH_DIRS.libjpeg=	lib
 
+# If libtirpc rpc alternative is used
+INCLUDE_DIRS.libtirpc=	include/tirpc
+LIBRARY_DIRS.libtirpc=	lib
+RPATH_DIRS.libtirpc=	lib
+LDFLAGS+= $(if $(filter libtirpc,${PKG_ALTERNATIVE.rpc}),-ltirpc)
+
 include ../../archivers/zlib/depend.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
@@ -41,4 +47,5 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/libjpeg.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
+include ../../mk/language/rpc.mk
 include ../../mk/robotpkg.mk
