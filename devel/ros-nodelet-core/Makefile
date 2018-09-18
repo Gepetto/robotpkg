@@ -19,6 +19,7 @@ SUBST_FILES.py-interp+=	test_nodelet_topic_tools/test/*.py
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../devel/ros-cmake-modules/depend.mk
 include ../../devel/ros-bond-core/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
