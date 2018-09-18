@@ -11,14 +11,9 @@ include ../../mk/language/c.mk
 #
 DEPEND_ABI.gcc += gcc>=4.5
 
-define _c99_flags
-
-  CC+= -std=c99
-endef
-
-PKG_ALTERNATIVE_SET.gcc:=\
-  $(value PKG_ALTERNATIVE_SET.gcc)$(value _c99_flags)
-PKG_ALTERNATIVE_SET.ccache-gcc:=\
-  $(value PKG_ALTERNATIVE_SET.ccache-gcc)$(value _c99_flags)
+C_COMPILER_FLAGS_NDEBUG+=\
+  $(if $(filter gcc ccache-gcc,${PKG_ALTERNATIVE.c-compiler}),-std=c99)
+C_COMPILER_FLAGS_DEBUG+=\
+  $(if $(filter gcc ccache-gcc,${PKG_ALTERNATIVE.c-compiler}),-std=c99)
 
 endif # _language_c99_mk ---------------------------------------------------
