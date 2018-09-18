@@ -48,7 +48,7 @@ ifeq (Ubuntu,${OPSYS})
   else ifneq (,$(filter 18.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=melodic
   else
-    PREFER_ALTERNATIVE.ros?=indigo
+    PREFER_ALTERNATIVE.ros?=melodic
     PREFER.ros?=robotpkg
   endif
   PREFER.ros?=	system
