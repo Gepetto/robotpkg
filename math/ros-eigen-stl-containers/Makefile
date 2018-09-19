@@ -11,5 +11,6 @@ ROS_COMMENT=	typedefs for using eigen datatypes in STL containers
 include ../../meta-pkgs/ros-base/Makefile.common
 
 include ../../devel/ros-catkin/depend.mk
+include ../../devel/ros-cmake-modules/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../mk/robotpkg.mk
