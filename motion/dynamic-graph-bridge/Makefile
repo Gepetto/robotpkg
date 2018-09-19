@@ -33,6 +33,7 @@ include ../../devel/ros-roscpp-core/depend.mk
 include ../../interfaces/jrl-mal/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../math/jrl-dynamics-urdf/depend.mk
+include ../../math/ros-geometry/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 include ../../motion/dynamic-graph-bridge-msgs/depend.mk
 include ../../motion/dynamic-graph/depend.mk
