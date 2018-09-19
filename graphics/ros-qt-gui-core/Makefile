@@ -25,6 +25,7 @@ DEPEND_ABI.ros-pluginlib.groovy+= ros-pluginlib>=1.9.23
 DEPEND_ABI.ros-python-qt-binding.groovy+= ros-python-qt-binding>=0.2.11
 
 include ../../devel/ros-catkin/depend.mk
+include ../../devel/ros-cmake-modules/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../graphics/ros-python-qt-binding/depend.mk
