@@ -2,7 +2,7 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 VERSION=		1.2.9
 DISTNAME=		pinocchio-${VERSION}
 MASTER_SITES=\
