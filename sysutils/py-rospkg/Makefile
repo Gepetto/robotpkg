@@ -24,5 +24,6 @@ SUBST_FILES.ros-prefix=	src/rospkg/environment.py
 SUBST_SED.ros-prefix=\
   -e "s@'/etc/ros'@'${PREFIX}/etc/ros'@"
 
+include ../../mk/sysdep/py-setuptools.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
