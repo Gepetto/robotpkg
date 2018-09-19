@@ -21,9 +21,14 @@ INCLUDE_DIRS.libjpeg+=	include
 LIBRARY_DIRS.libjpeg+=	lib
 RPATH_DIRS.libjpeg+=	lib
 
+# make sure opencv is first in {CPP,LD}FLAGS (cannot use INCLUDE_DIRS.opencv2)
+CPPFLAGS+=$(if $(filter opencv2,${DEPEND_USE}),-I${PREFIX.opencv2}/include)
+LDFLAGS+=$(if $(filter opencv2,${DEPEND_USE}),-L${PREFIX.opencv2}/lib)
+
 # codels
 define PKG_OPTION_UNSET.api
   include ../../image/opencv/depend.mk
+  DEPEND_ABI.opencv+= opencv<3
   DEPEND_ABI.viam-libs+=viam-libs~opencv
 endef
 
