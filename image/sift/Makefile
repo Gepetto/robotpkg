@@ -40,6 +40,7 @@ include ../../pkgtools/libtool/depend.mk
 include ../../archivers/pax/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/gtk.mk
+include ../../mk/sysdep/libX11.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 
