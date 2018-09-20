@@ -1,0 +1,17 @@
+Add missing header and update to opencv2 headers.
+
+--- codels/vimanMainCodels.cc~	2018-09-20 11:51:18.310938177 +0200
++++ codels/vimanMainCodels.cc	2018-09-20 11:53:01.475505369 +0200
+@@ -36,8 +36,10 @@
+ #include <viam/viamStruct.h>
+ #include "viam/viamtypes.h"
+ 
+-#include <opencv/cv.h>
+-#include <opencv/highgui.h>
++#include <opencv2/core/core.hpp>
++#include <opencv2/imgproc/imgproc_c.h>
++#include <opencv2/highgui/highgui.hpp>
++#include <opencv2/calib3d/calib3d.hpp>
+ 
+ #include <ARToolKitPlus/TrackerSingleMarkerImpl.h>
+ #include <ARToolKitPlus/TrackerMultiMarkerImpl.h>
