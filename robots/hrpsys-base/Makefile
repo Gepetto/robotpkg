@@ -29,7 +29,18 @@ CMAKE_ARGS+=	-DQHULL_DIR=${PREFIX.qhull}
 INCLUDE_DIRS.qhull+=	$(dir $(filter %.h,${SYSTEM_FILES.qhull}))
 LIBRARY_DIRS.qhull+=	$(dir $(filter %.so,${SYSTEM_FILES.qhull}))
 
-USE_BOOST_LIBS=	python
+USE_BOOST_LIBS=		python
+BOOST_PYTHON_LIBRARY=	$(filter %.so,${SYSTEM_FILES.boost-lib-python})
+
+# Fix boost_python library name
+SUBST_CLASSES+=		boost
+
+SUBST_STAGE.boost=	pre-configure
+SUBST_MESSAGE.boost=	Fixing boost_python library name
+SUBST_FILES.boost=	lib/util/CMakeLists.txt
+SUBST_FILES.boost+=	util/simulator/CMakeLists.txt
+SUBST_SED.boost=	-e 's|boost_python|${BOOST_PYTHON_LIBRARY}|g'
+
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
