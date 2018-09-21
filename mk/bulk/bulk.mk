@@ -346,9 +346,16 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	    continue;							\
 	  fi;								\
 	  ${STEP_MSG} "Installing $$pkgfile";				\
-	  ${BULK_PKG_ADD} -u -A "$$pkgfile" || {			\
+	  ${BULK_PKG_ADD} -u "$$pkgfile" || {				\
 	    ${BULK_CBBH} "Installing $${pkgfile}: Error $$?";		\
 	    ${BULK_CBBHBY} "$${abi}";					\
+	    left=;							\
+	    for d in `${BULK_PKG_INFO} -aQ PKGBASE 2>/dev/null ||:`; do	\
+	      auto=`${BULK_PKG_INFO} -qQ automatic "$$d" ||:`;		\
+	      test "$$auto" = "yes" || continue;			\
+	      left="$$left $$d";					\
+	    done;							\
+	    test -z "$$left" || ${BULK_PKG_DELETE} -Ak $$left ||:;	\
 	  };								\
 	done;								\
 	t='$(if $(filter bootstrap,$*),bootstrap-depends,depends)';	\
