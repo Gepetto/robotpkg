@@ -25,9 +25,6 @@ HOMEPAGE?=	http://ros.org/wiki/${ROS_PKG}
 
 WRKSRC?=	${WRKDIR}/${ROS_PKG}-${ROS_GITTAG}
 
-MESSAGE_SRC?=	${ROBOTPKG_DIR}/meta-pkgs/ros-base/MESSAGE
-MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
-
 # Default to robotpkg for all ros-* packages when building one ros package in
 # robotpkg. This makes little sense to mix system and robotpkg ros packages
 # (but still overridable in user configuration).

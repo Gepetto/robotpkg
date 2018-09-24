@@ -10,6 +10,8 @@ ROS_COMMENT=	low-level build system macros and infrastructure
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
+MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
+
 DEPEND_ABI.cmake+= cmake>=2.8.3
 
 CMAKE_ARGS+=-DGTEST_ROOT=${PREFIX.googletest}
