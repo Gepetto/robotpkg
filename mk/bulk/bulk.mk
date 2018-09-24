@@ -353,6 +353,12 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	    for d in `${BULK_PKG_INFO} -aQ PKGBASE 2>/dev/null ||:`; do	\
 	      auto=`${BULK_PKG_INFO} -qQ automatic "$$d" ||:`;		\
 	      test "$$auto" = "yes" || continue;			\
+									\
+	      for dd in `${BULK_PKG_INFO} -qr "$$d" 2>/dev/null ||:`; do\
+	        auto=`${BULK_PKG_INFO} -qQ automatic "$$dd" ||:`;	\
+	        test "$$auto" = "yes" || continue 2;			\
+	      done;							\
+									\
 	      left="$$left $$d";					\
 	    done;							\
 	    test -z "$$left" || ${BULK_PKG_DELETE} -Ak $$left ||:;	\
