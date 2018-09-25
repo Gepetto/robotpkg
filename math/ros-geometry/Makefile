@@ -21,5 +21,5 @@ include ../../math/ros-angles/depend.mk
 include ../../math/ros-geometry2/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../motion/ros-orocos-kdl/depend.mk
+include ../../motion/ros-orocos-kinematics-dynamics/depend.mk
 include ../../mk/robotpkg.mk
