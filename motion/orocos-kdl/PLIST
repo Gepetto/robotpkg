@@ -1,4 +1,4 @@
-@comment Thu Aug 14 14:00:54 CEST 2014
+@comment Tue Sep 25 11:02:21 CEST 2018
 include/kdl/articulatedbodyinertia.hpp
 include/kdl/chain.hpp
 include/kdl/chaindynparam.hpp
@@ -16,6 +16,7 @@ include/kdl/chainiksolvervel_pinv.hpp
 include/kdl/chainiksolvervel_pinv_givens.hpp
 include/kdl/chainiksolvervel_pinv_nso.hpp
 include/kdl/chainiksolvervel_wdls.hpp
+include/kdl/chainjnttojacdotsolver.hpp
 include/kdl/chainjnttojacsolver.hpp
 include/kdl/config.h
 include/kdl/frameacc.hpp
@@ -84,13 +85,13 @@ include/kdl/velocityprofile_spline.hpp
 include/kdl/velocityprofile_trap.hpp
 include/kdl/velocityprofile_traphalf.hpp
 lib/liborocos-kdl.so
-lib/liborocos-kdl.so.1.3
+lib/liborocos-kdl.so.1.4
 lib/liborocos-kdl.so.${PKGVERSION}
 lib/pkgconfig/orocos-kdl.pc
 lib/pkgconfig/orocos_kdl.pc
-share/orocos_kdl/OrocosKDLTargets-release.cmake
-share/orocos_kdl/OrocosKDLTargets.cmake
-share/orocos_kdl/orocos_kdl-config-version.cmake
-share/orocos_kdl/orocos_kdl-config.cmake
+share/orocos_kdl/cmake/OrocosKDLTargets-release.cmake
+share/orocos_kdl/cmake/OrocosKDLTargets.cmake
+share/orocos_kdl/cmake/orocos_kdl-config-version.cmake
+share/orocos_kdl/cmake/orocos_kdl-config.cmake
 share/orocos_kdl/package.xml
 @pkgdir share/doc/liborocos-kdl
