@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Thu, 14 Aug 2014
 #
 
-PKGREVISION=	1
-VERSION=	1.3.0
+VERSION=	1.4.0
 DISTNAME=	${PKGTAG.python-}orocos-kdl-${VERSION}
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
 CATEGORIES=	motion
@@ -15,12 +14,14 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.orocos.org/kdl
 COMMENT=	Python bindings for orocos-kdl
 LICENSE=	gnu-lgpl-v2
+CONFLICTS+=	py[0-9][0-9]-orocos-kdl-[0-9]*
 
-WRKSRC=		${WRKDIR}/orocos_kinematics_dynamics-1.3.0/python_orocos_kdl
+WRKSRC=\
+  ${WRKDIR}/orocos_kinematics_dynamics-${VERSION}/python_orocos_kdl
 
 CMAKE_ARGS+=	-DPYTHON_SITE_PACKAGES_INSTALL_DIR=${PREFIX}/${PYTHON_SITELIB}
 
-DEPEND_ABI.python+=	python<3
+DEPEND_ABI.orocos-kdl=		orocos-kdl-${VERSION}
 
 include ../../motion/orocos-kdl/depend.mk
 include ../../mk/sysdep/cmake.mk
