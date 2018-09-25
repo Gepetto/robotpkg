@@ -10,10 +10,6 @@ MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://www.ros.org/wiki/
 COMMENT=	The Robotic Operating System - robot variant
 
-NOT_FOR_PLATFORM=
-MESSAGE_SRC=	../../meta-pkgs/ros-base/MESSAGE
-MESSAGE_SUBST+=	PYTHON_VERSION=${PYTHON_VERSION}
-
 PREFER.ros?=	robotpkg
 DEPEND_ABI.ros=	ros==melodic
 
