@@ -19,8 +19,7 @@ include ../../devel/tinyxml/depend.mk
 include ../../graphics/ros-urdf/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../motion/orocos-kdl/depend.mk
-include ../../motion/py-orocos-kdl/depend.mk
+include ../../motion/ros-orocos-kinematics-dynamics/depend.mk
 include ../../sysutils/py-catkin-pkg/depend.mk
 include ../../sysutils/ros-console/depend.mk
 include ../../mk/sysdep/tinyxml2.mk
