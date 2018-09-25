@@ -18,7 +18,7 @@ include ../../interfaces/ros-common-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../motion/orocos-kdl/depend.mk
+include ../../motion/ros-orocos-kinematics-dynamics/depend.mk
 include ../../simulation/bullet/depend.mk
 include ../../sysutils/console-bridge/depend.mk
 include ../../mk/robotpkg.mk
