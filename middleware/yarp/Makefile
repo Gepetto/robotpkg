@@ -64,6 +64,7 @@ define PKG_OPTION_SET.gui
 endef
 
 DEPEND_ABI.cmake=	cmake>=2.8.9
+DEPEND_ABI.lua=		lua>=5.1
 
 include ../../devel/tinyxml/depend.mk
 include ../../image/opencv/depend.mk
