@@ -1,4 +1,4 @@
-@comment Fri Sep 27 11:32:51 CEST 2013
+@comment Thu Sep 27 11:55:25 CEST 2018
 ${PKGMANDIR}/man1/rbulk-build.1
 ${PKGMANDIR}/man1/rbulk-dispatch.1
 ${PKGMANDIR}/man1/rbulk-dispatchd.1
@@ -21,6 +21,7 @@ share/examples/rbulkit/rbulk-dispatchd.conf
 share/examples/rbulkit/rbulk-watchd.conf
 share/examples/rbulkit/rbulk.conf
 share/rbulkit/db2html.tcl
+share/rbulkit/db2mail.tcl
 share/rbulkit/html/all.html
 share/rbulkit/html/broken.html
 share/rbulkit/html/categories.html
