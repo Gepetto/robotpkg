@@ -3,7 +3,6 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer
-HPP_VERSION=		2.1.3
 
 CATEGORIES=			graphics
 HPP_COMMENT=		Simple viewer based on OpenSceneGraph
@@ -24,7 +23,7 @@ include ../../graphics/urdfdom/depend.mk
 include ../../mk/sysdep/openscenegraph.mk
 include ../../mk/sysdep/openthreads.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
 
 # create the build directory
