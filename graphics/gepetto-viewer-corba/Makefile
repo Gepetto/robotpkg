@@ -2,12 +2,12 @@
 # Created:			Florent Lamiraux on Sun, 8 Mar 2015
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		gepetto-viewer-corba
-HPP_VERSION=		2.3
-
-CATEGORIES=			graphics
 HPP_COMMENT=		Corba server for gepetto-viewer
-LICENSE=			2-clause-bsd
+
+CATEGORIES=		graphics
+LICENSE=		2-clause-bsd
 
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..
@@ -26,6 +26,7 @@ include ../../mk/sysdep/openthreads.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/qt4-libs.mk
 include ../../mk/language/c.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
 
 # create the build directory
