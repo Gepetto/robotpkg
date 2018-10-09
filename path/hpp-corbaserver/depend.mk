@@ -15,7 +15,7 @@ PREFER.hpp-corbaserver?=	robotpkg
 
 DEPEND_USE+=			hpp-corbaserver
 
-DEPEND_ABI.hpp-corbaserver?=	hpp-corbaserver>=4.1
+DEPEND_ABI.hpp-corbaserver?=	hpp-corbaserver>=4.2.0
 DEPEND_DIR.hpp-corbaserver?=	../../path/hpp-corbaserver
 
 SYSTEM_SEARCH.hpp-corbaserver=\
