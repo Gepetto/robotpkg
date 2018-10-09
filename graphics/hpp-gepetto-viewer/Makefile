@@ -7,9 +7,6 @@ HPP_PACKAGE=		hpp-gepetto-viewer
 CATEGORIES=		graphics
 HPP_COMMENT=		Bridge between hpp-corbaserver and gepetto-viewer-corba
 
-CONFIGURE_DIRS=		build
-CMAKE_ARG_PATH=		..
-
 include ../../meta-pkgs/hpp/Makefile.common
 
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
@@ -21,7 +18,3 @@ include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
-
-# create the build directory
-pre-configure:
-	${RUN}${MKDIR} ${WRKSRC}/build

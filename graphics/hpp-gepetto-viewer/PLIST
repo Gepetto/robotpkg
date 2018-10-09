@@ -12,7 +12,5 @@ ${PYTHON_SITELIB}/hpp/gepetto/manipulation/__init__.py
 ${PYTHON_SITELIB}/hpp/gepetto/manipulation/viewer.py
 ${PYTHON_SITELIB}/hpp/gepetto/manipulation/viewer_factory.py
 ${PYTHON_SITELIB}/hpp/gepetto/path_player.py
-${PYTHON_SITELIB}/hpp/gepetto/path_player_gui.glade
-${PYTHON_SITELIB}/hpp/gepetto/path_player_gui.py
 ${PYTHON_SITELIB}/hpp/gepetto/viewer.py
 ${PYTHON_SITELIB}/hpp/gepetto/viewer_factory.py
