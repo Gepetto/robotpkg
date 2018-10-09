@@ -7,9 +7,6 @@ HPP_PACKAGE=		hpp-manipulation-corba
 CATEGORIES=		path
 HPP_COMMENT=		CORBA interface for hpp-manipulation
 
-CONFIGURE_DIRS=		build
-CMAKE_ARG_PATH=		..
-
 include ../../meta-pkgs/hpp/Makefile.common
 
 # omniorb has some issue with parallelism. Error message omniidl: Cannot rename
@@ -31,7 +28,3 @@ include ../../mk/language/c.mk
 include ../../mk/sysdep/latex.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
-
-# create the build directory
-pre-configure:
-	${RUN}${MKDIR} ${WRKSRC}/build
