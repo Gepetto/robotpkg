@@ -1,5 +1,4 @@
 @comment Thu May 31 18:31:39 CEST 2018
-include/hpp/manipulation/axial-handle.hh
 include/hpp/manipulation/config.hh
 include/hpp/manipulation/connected-component.hh
 include/hpp/manipulation/constraint-set.hh
@@ -26,6 +25,7 @@ include/hpp/manipulation/leaf-connected-comp.hh
 include/hpp/manipulation/manipulation-planner.hh
 include/hpp/manipulation/package-config.hh
 include/hpp/manipulation/path-optimization/config-optimization.hh
+include/hpp/manipulation/path-optimization/enforce-transition-semantic.hh
 include/hpp/manipulation/path-optimization/keypoints.hh
 include/hpp/manipulation/path-optimization/small-steps.hh
 include/hpp/manipulation/path-optimization/spline-gradient-based.hh
