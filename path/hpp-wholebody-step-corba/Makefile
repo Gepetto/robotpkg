@@ -4,8 +4,6 @@
 
 HPP_PACKAGE=		hpp-wholebody-step-corba
 
-CONFIGURE_DIRS=		build
-CMAKE_ARG_PATH=		..
 CATEGORIES=		path
 HPP_COMMENT=		CORBA server and client for whole-body walk planning
 
@@ -24,7 +22,3 @@ include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
-
-# create the build directory
-pre-configure:
-	${RUN}${MKDIR} ${WRKSRC}/build
