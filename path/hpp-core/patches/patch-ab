@@ -1,0 +1,13 @@
+Fix build with gcc-8
+
+--- src/weighed-distance.cc~	2018-10-09 15:17:04.000000000 +0200
++++ src/weighed-distance.cc	2018-10-10 18:21:36.460736039 +0200
+@@ -144,7 +144,7 @@
+       {
+         typedef boost::fusion::vector<ConfigurationIn_t,
+                 ConfigurationIn_t,
+-                const value_type,
++                const value_type &,
+                 value_type &> ArgsType;
+ 
+         JOINT_MODEL_VISITOR_INIT(SquaredDistanceStep);

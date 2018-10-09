@@ -1,4 +1,4 @@
-@comment Thu May 31 17:48:55 CEST 2018
+@comment Tue Oct 9 16:06:39 CEST 2018
 include/hpp/core/basic-configuration-shooter.hh
 include/hpp/core/bi-rrt-planner.hh
 include/hpp/core/collision-path-validation-report.hh
@@ -9,6 +9,8 @@ include/hpp/core/config-validation.hh
 include/hpp/core/config-validations.hh
 include/hpp/core/config.hh
 include/hpp/core/configuration-shooter.hh
+include/hpp/core/configuration-shooter/gaussian.hh
+include/hpp/core/configuration-shooter/uniform.hh
 include/hpp/core/connected-component.hh
 include/hpp/core/constraint-set.hh
 include/hpp/core/constraint.hh
@@ -35,9 +37,9 @@ include/hpp/core/locked-joint.hh
 include/hpp/core/nearest-neighbor.hh
 include/hpp/core/node.hh
 include/hpp/core/numerical-constraint.hh
+include/hpp/core/parameter.hh
 include/hpp/core/parser/roadmap-factory.hh
 include/hpp/core/path-optimization/config-optimization.hh
-include/hpp/core/path-optimization/gradient-based.hh
 include/hpp/core/path-optimization/linear-constraint.hh
 include/hpp/core/path-optimization/partial-shortcut.hh
 include/hpp/core/path-optimization/path-length.hh
