@@ -2,7 +2,6 @@
 # Created:			Antonio El Khoury on Thu, 26 Sep 2013
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		hpp-wholebody-step
 
 CATEGORIES=		path
