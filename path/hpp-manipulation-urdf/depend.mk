@@ -15,7 +15,7 @@ PREFER.hpp-manipulation-urdf?=	robotpkg
 
 DEPEND_USE+=		hpp-manipulation-urdf
 
-DEPEND_ABI.hpp-manipulation-urdf?=	hpp-manipulation-urdf>=4.1
+DEPEND_ABI.hpp-manipulation-urdf?=	hpp-manipulation-urdf>=4.2.0
 DEPEND_DIR.hpp-manipulation-urdf?=	../../path/hpp-manipulation-urdf
 
 SYSTEM_SEARCH.hpp-manipulation-urdf=			\
