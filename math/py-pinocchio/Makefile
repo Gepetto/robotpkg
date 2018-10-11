@@ -41,4 +41,6 @@ include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 
+DEPEND_ABI.cmake +=	cmake>=2.8.12
+
 include ../../mk/robotpkg.mk
