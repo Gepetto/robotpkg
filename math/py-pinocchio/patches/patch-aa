@@ -1,4 +1,5 @@
-Enforce consistency with robotpkg list of dependencies
+Build only python bindings and enforce consistency with robotpkg list of
+dependencies
 
 --- CMakeLists.txt	2018-04-02 18:17:57.000000000 +0200
 +++ CMakeLists.txt	2018-04-26 14:23:48.596052980 +0200
@@ -14,3 +15,75 @@ Enforce consistency with robotpkg list of dependencies
  
  # Special care of urdfdom version
  IF(URDFDOM_FOUND)
+@@ -126,9 +126,6 @@
+   ENDIF(LUA5_2_FOUND)
+ ENDIF(BUILD_WITH_LUA_SUPPORT)
+ 
+-SET(BOOST_REQUIERED_COMPONENTS filesystem system)
+-SET(BOOST_BUILD_COMPONENTS unit_test_framework)
+-SET(BOOST_OPTIONAL_COMPONENTS "")
+ 
+ IF(BUILD_PYTHON_INTERFACE)
+   SET(BOOST_OPTIONAL_COMPONENTS ${BOOST_OPTIONAL_COMPONENTS} python)
+@@ -326,61 +323,17 @@
+   LIST(APPEND CFLAGS_DEPENDENCIES "-DWITH_LUA5")
+ ENDIF(LUA5_FOUND)
+ 
+-SET(HEADERS
+-  ${${PROJECT_NAME}_MATH_HEADERS}
+-  ${${PROJECT_NAME}_UTILS_HEADERS}
+-  ${${PROJECT_NAME}_SPATIAL_HEADERS}
+-  ${${PROJECT_NAME}_MULTIBODY_JOINT_HEADERS}
+-  ${${PROJECT_NAME}_MULTIBODY_LIEGROUP_HEADERS}
+-  ${${PROJECT_NAME}_MULTIBODY_HEADERS}
+-  ${${PROJECT_NAME}_PARSERS_HEADERS}
+-  ${${PROJECT_NAME}_ALGORITHM_HEADERS}
+-  ${${PROJECT_NAME}_CONTAINER_HEADERS}
+-  exception.hpp
+-  assert.hpp
+-  macros.hpp
+- )
+-LIST(REMOVE_DUPLICATES HEADERS)
+-
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/math")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/spatial")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody/joint")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody/liegroup")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers/lua")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers/urdf")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/utils")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/algorithm")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/container")
+-
+-FOREACH(header ${HEADERS})
+-  GET_FILENAME_COMPONENT(headerName ${header} NAME)
+-  GET_FILENAME_COMPONENT(headerPath ${header} PATH)
+-  EXECUTE_PROCESS(COMMAND ${CMAKE_COMMAND} -E ${LINK}
+-    ${${PROJECT_NAME}_SOURCE_DIR}/src/${header}
+-    ${${PROJECT_NAME}_BINARY_DIR}/include/${PROJECT_NAME}/${header})
+-  INSTALL(FILES ${${PROJECT_NAME}_SOURCE_DIR}/src/${header}
+-    DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME}/${headerPath}
+-          PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
+-ENDFOREACH(header)
+-
+ # --- MAIN LIBRARY -------------------------------------------------------------
+-ADD_SUBDIRECTORY(src)
+ 
+ # --- BINDINGS -----------------------------------------------------------------
+ SET(PYWRAP ${PROJECT_NAME}_pywrap)
+ ADD_SUBDIRECTORY(bindings)
+ 
+ # --- EXECUTABLES --------------------------------------------------------------
+-ADD_SUBDIRECTORY(utils)
+ 
+ # --- UNIT TESTS ---------------------------------------------------------------
+-ADD_SUBDIRECTORY(unittest)
+ 
+ # --- BENCHMARKS ---------------------------------------------------------------
+-ADD_SUBDIRECTORY(benchmark)
+ 
+ # --- PACKAGING ----------------------------------------------------------------
+ PKG_CONFIG_APPEND_LIBS (${PROJECT_NAME})
