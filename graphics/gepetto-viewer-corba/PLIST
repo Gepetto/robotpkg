@@ -50,4 +50,5 @@ ${PYTHON_SITELIB}/gepetto/gui/matplotlib_example.py
 ${PYTHON_SITELIB}/gepetto/gui/matplotlibwidget.py
 ${PYTHON_SITELIB}/gepetto/gui/pythonwidget.py
 ${PYTHON_SITELIB}/gepetto/quaternion.py
+share/gepetto-viewer-corba/cmake/gepetto-viewer-corba-plugin.cmake
 share/idl/gepetto/corbaserver/graphical-interface.idl
