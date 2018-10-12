@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Wed, 14 Mar 2018
 #
 
+PKGREVISION=	1
 HPP_PACKAGE=	hpp-pinocchio
 
 CATEGORIES=	math
