@@ -1,5 +1,5 @@
-use const ref, fix compilation for boost 1.66 & 1.67
-
+Use const ref, fix compilation for boost 1.66 & 1.67 / gcc-8
+See https://github.com/stack-of-tasks/pinocchio/issues/511
 
 --- src/algorithm/kinematics-derivatives.hxx
 +++ src/algorithm/kinematics-derivatives.hxx
