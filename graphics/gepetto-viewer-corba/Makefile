@@ -2,15 +2,13 @@
 # Created:			Florent Lamiraux on Sun, 8 Mar 2015
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		gepetto-viewer-corba
 HPP_COMMENT=		Corba server for gepetto-viewer
+HPP_VERSION=		5.0.0
+HPP_NAMESPACE=		gepetto
 
 CATEGORIES=		graphics
 LICENSE=		2-clause-bsd
-
-CONFIGURE_DIRS=		build
-CMAKE_ARG_PATH=		..
 
 include ../../meta-pkgs/hpp/Makefile.common
 
@@ -28,7 +26,3 @@ include ../../mk/sysdep/qt4-libs.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
-
-# create the build directory
-pre-configure:
-	${RUN}${MKDIR} ${WRKSRC}/build

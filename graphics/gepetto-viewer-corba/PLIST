@@ -1,6 +1,5 @@
 @comment Thu May 31 18:10:34 CEST 2018
 bin/gepetto-gui
-bin/gepetto-viewer-server
 bin/urdf_to_blender.py
 include/gepetto/gui/action-search-bar.hh
 include/gepetto/gui/bodytreewidget.hh
