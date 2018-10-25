@@ -2,10 +2,10 @@
 # Created:			Anthony Mallet on Wed, 10 Jan 2007
 #
 
-PKGREVISION=		2
-DISTNAME=		omniORB-4.1.4
+DISTNAME=		omniORB-4.2.2
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
+EXTRACT_SUFX?=		.tar.bz2
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://omniorb.sourceforge.net/
@@ -27,8 +27,7 @@ OMNIORB_CONFIG=		${OMNIORB_ETCDIR}/omniORB.cfg
 
 CONFIGURE_ARGS+=	--with-omniORB-config=${OMNIORB_CONFIG}
 CONFIGURE_ARGS+=	--with-omniNames-logdir=/tmp
-CONFIGURE_ARGS+=	am_cv_python_pythondir=${PREFIX}/${PYTHON_SITELIB}
-CONFIGURE_ARGS+=	am_cv_python_pyexecdir=${PREFIX}/${PYTHON_SITELIB}
+CONFIGURE_ARGS+=	PYTHON=${PYTHON}
 
 INSTALLATION_DIRS=\
 	share/examples/omniORB/		\
@@ -60,5 +59,6 @@ omni-install-doc:
 	  ${WRKSRC}/doc/*.pdf ${PREFIX}/share/doc/omniORB/;		\
 	${INSTALL_DATA}							\
 	  ${WRKSRC}/doc/omniORB/* ${PREFIX}/share/doc/omniORB/omniORB/;	\
+	${MKDIR} ${PREFIX}/${PKGMANDIR}/man1/
 	${INSTALL_MAN}							\
 	  ${WRKSRC}/man/man1/* ${PREFIX}/${PKGMANDIR}/man1/

@@ -11,17 +11,11 @@ endif
 
 ifeq (+,$(OMNIORB_DEPEND_MK)) # --------------------------------------------
 
-include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04,${OS_VERSION}))
-    PREFER.omniORB?=	robotpkg
-  endif
-endif
 PREFER.omniORB?=	system
 
 DEPEND_USE+=		omniORB
 
-DEPEND_ABI.omniORB?=	omniORB>=4.1.1
+DEPEND_ABI.omniORB?=	omniORB>=4.2.2
 DEPEND_DIR.omniORB?=	../../middleware/omniORB
 
 SYSTEM_SEARCH.omniORB=	\
