@@ -23,7 +23,7 @@ SYSTEM_DESCR.pax?=	pax and tar archivers
 SYSTEM_PKG.Fedora.pax=	pax tar
 SYSTEM_PKG.Ubuntu.pax=	pax tar
 SYSTEM_PKG.Debian.pax=	pax tar
-SYSTEM_PKG.ArchLinux.pax=pax and tar archivers (in AUR)
+SYSTEM_PKG.Arch.pax=pax and tar archivers (in AUR)
 
 DEPEND_METHOD.pax?=	build
 DEPEND_ABI.pax?=	pax

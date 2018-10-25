@@ -85,7 +85,7 @@ case $s in
             fi
         fi
         if test -f /etc/arch-release; then
-            echo ArchLinux ${r%-ARCH} $m
+            echo Arch rolling $m
             exit 0
         fi
         ;;

@@ -34,7 +34,7 @@ SYSTEM_PKG.Fedora.openjdk=	java-1.[67].0-openjdk-devel
 SYSTEM_PKG.Debian.openjdk=	openjdk-[67]-jdk
 SYSTEM_PKG.NetBSD.openjdk=	lang/openjdk7
 SYSTEM_PKG.Gentoo.openjdk=	dev-java/icedtea
-SYSTEM_PKG.ArchLinux.openjdk=	jdk[78]-openjdk
+SYSTEM_PKG.Arch.openjdk=	jdk[78]-openjdk
 
 export JAVA_HOME=	$(abspath $(dir $(word 1,${SYSTEM_FILES.openjdk}))/..)
 export JAVA_INCLUDE=	$(dir $(word 5,${SYSTEM_FILES.openjdk}))

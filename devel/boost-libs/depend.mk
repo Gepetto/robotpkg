@@ -44,7 +44,7 @@ override define _use_boost_libs
   SYSTEM_PKG.Debian.boost-lib-$1?=	libboost-$1-dev
   SYSTEM_PKG.Ubuntu.boost-lib-$1?=	libboost-$1-dev
   SYSTEM_PKG.NetBSD.boost-lib-$1?=	devel/boost-libs
-  SYSTEM_PKG.ArchLinux.boost-lib-$1?=	boost-libs
+  SYSTEM_PKG.Arch.boost-lib-$1?=	boost-libs
 
   SYSTEM_FILES.boost-libs+= $${SYSTEM_FILES.boost-lib-$1}
 
