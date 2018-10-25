@@ -11,18 +11,6 @@ endif
 
 ifeq (+,$(OMNIORBPY_DEPEND_MK)) # ------------------------------------------
 
-include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04,${OS_VERSION}))
-    PREFER.omniORBpy?=	robotpkg
-  endif
-else ifeq (Fedora,${OPSYS})
-  ifneq (,$(filter 18 19,${OS_VERSION}))
-    PREFER.omniORBpy?=	robotpkg
-  endif
-else ifeq (Gentoo,${OS_FAMILY})
-  PREFER.omniORBpy?=	robotpkg
-endif
 PREFER.omniORBpy?=	system
 
 DEPEND_USE+=		omniORBpy

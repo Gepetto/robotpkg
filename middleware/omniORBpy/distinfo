@@ -1,7 +1,8 @@
-SHA1 (omniORBpy-3.1.tar.gz) = 7d0af556850bfcea57440bb4bd3680b6c0cbc7c2
-RMD160 (omniORBpy-3.1.tar.gz) = dd21b23ffcd75961d0ec9d29523ba97822d695d9
-Size (omniORBpy-3.1.tar.gz) = 773522 bytes
-SHA1 (patch-aa) = dffffe4e0c1f1f8add26fc8c251f1924b5a8a791
+SHA1 (omniORBpy-4.2.2.tar.bz2) = 4b2fbc48cee067ab6111765e344c61360bc41d08
+RMD160 (omniORBpy-4.2.2.tar.bz2) = 7a162d5c1ceb130b5951b8981f215a454c326ab8
+Size (omniORBpy-4.2.2.tar.bz2) = 666047 bytes
+SHA1 (patch-aa) = 2ba1678efbce113bdd36a3a56ce0bcd5da520560
 SHA1 (patch-ab) = 70c26a2dfad25989672de9a01481a36b880c941a
-SHA1 (patch-ac) = 42ccdddbf792b9162efcb5eed4d9f364a708ac36
-SHA1 (patch-ad) = a79d5536896dec186c7ea10ae0a19338bcaaf12d
+SHA1 (patch-ac) = 6838f44fd464fc9986f27abb4159579ef45e4712
+SHA1 (patch-ad) = 6c58c94a3d899aba543a992abcb6bcd82a3a5c04
+SHA1 (patch-ae) = 01b1cd4aae2c0b730278dcb7afb3cf32bb014f3e

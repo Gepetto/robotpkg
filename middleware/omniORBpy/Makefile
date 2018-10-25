@@ -2,10 +2,10 @@
 # Created:			Anthony Mallet on Tue, 6 Mar 2007
 #
 
-PKGREVISION=		3
-DISTNAME=		omniORBpy-3.1
+DISTNAME=		omniORBpy-4.2.2
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
+EXTRACT_SUFX?=		.tar.bz2
 
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		http://omniorb.sourceforge.net/
@@ -16,8 +16,7 @@ LICENSE=		gnu-lgpl-v2.1
 MAKE_FILE=		GNUmakefile
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
-CONFIGURE_ARGS+=	am_cv_python_pythondir=${PREFIX}/${PYTHON_SITELIB}
-CONFIGURE_ARGS+=	am_cv_python_pyexecdir=${PREFIX}/${PYTHON_SITELIB}
+CONFIGURE_ARGS+=	PYTHON=${PYTHON}
 
 # [ Tue Feb 28 17:44:28 NZDT 2012 : sbd ]
 # The omniORB and omniORBpy packages install files into
@@ -26,8 +25,7 @@ CONFIGURE_ARGS+=	am_cv_python_pyexecdir=${PREFIX}/${PYTHON_SITELIB}
 # smoothly.
 DYNAMIC_PLIST_DIRS+=	${PYTHON_SITELIB}/omniidl_be
 
-DEPEND_ABI.python+=	python<3
-DEPEND_ABI.omniORB+=	omniORB>=4.1<4.2
+DEPEND_ABI.omniORB+=	omniORB>=4.2<4.3
 
 include ../../middleware/omniORB/depend.mk
 include ../../mk/sysdep/python.mk
