@@ -16,7 +16,7 @@ DEPEND_USE+=		python36
 include ../../mk/sysdep/python.mk
 PREFER.python36?=	system
 
-DEPEND_ABI.python36?=	python36>=3.5<3.6
+DEPEND_ABI.python36?=	python36>=3.6<3.7
 
 # see sysdep/python.mk for the definition of SYSTEM_SEARCH.python
 _py_search36=		{3.6,3,}{,d}{,m}{,u}

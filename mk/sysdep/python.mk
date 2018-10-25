@@ -71,7 +71,7 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
-DEPEND_ABI.python?=	python>=2.5<3.7
+DEPEND_ABI.python?=	python>=2.5<3.8
 
 # factorize SYSTEM_SEARCH.python* here for all python* packages
 override define _py_syssearch
@@ -101,7 +101,7 @@ CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python27
-PKG_ALTERNATIVES.python+=	python32 python34 python35 python36
+PKG_ALTERNATIVES.python+=	python32 python34 python35 python36 python37
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
@@ -120,10 +120,15 @@ else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 16.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python35
   endif
+  ifneq (,$(filter 18.04,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python36
+  endif
 else ifeq (OpenNao,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python32
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python34
+else ifeq (Arch,${OPSYS})
+  PREFER_ALTERNATIVE.python?=	python27 python37
 endif
 PREFER_ALTERNATIVE.python?=	python27 python36
 
@@ -185,6 +190,18 @@ define PKG_ALTERNATIVE_SET.python36
   DEPEND_ABI.python36?=	$(strip ${_py_abi})
 
   include ../../mk/sysdep/python36.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python37= Use python-3.7
+PKGTAG.python37 =		py37
+define PKG_ALTERNATIVE_SELECT.python37
+  $(call preduce,${DEPEND_ABI.python} python>=3.7<3.8)
+endef
+define PKG_ALTERNATIVE_SET.python37
+  _py_abi:=$(subst python,python37,${PKG_ALTERNATIVE_SELECT.python37})
+  DEPEND_ABI.python37?=	$(strip ${_py_abi})
+
+  include ../../mk/sysdep/python37.mk
 endef
 
 # default tag value before alternative resolution (used in particular by
