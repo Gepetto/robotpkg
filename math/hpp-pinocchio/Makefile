@@ -2,7 +2,7 @@
 # Created:			Guilhem Saurel on Wed, 14 Mar 2018
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 HPP_PACKAGE=	hpp-pinocchio
 
 CATEGORIES=	math
@@ -10,7 +10,7 @@ HPP_COMMENT=	Wrapping of the kinematic/dynamic chain Pinocchio for HPP.
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-DEPEND_ABI.eigen3 += eigen3>=3.2
+DEPEND_ABI.eigen3 += eigen3>=3.2.2
 
 include ../../math/eigen3/depend.mk
 include ../../math/pinocchio/depend.mk
