@@ -151,7 +151,6 @@ ${PYTHON_SITELIB}/omniORB/COS/RDITestTypes_idl.py
 ${PYTHON_SITELIB}/omniORB/COS/TimeBase/__init__.py
 ${PYTHON_SITELIB}/omniORB/COS/TimeBase__POA/__init__.py
 ${PYTHON_SITELIB}/omniORB/COS/TimeBase_idl.py
-${PYTHON_SITELIB}/omniORB/COS/__init__.py
 ${PYTHON_SITELIB}/omniORB/COS/omniORB.pth
 ${PYTHON_SITELIB}/omniORB/Compression.py
 ${PYTHON_SITELIB}/omniORB/PortableServer.py

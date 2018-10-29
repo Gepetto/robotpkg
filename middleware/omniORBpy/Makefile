@@ -12,10 +12,11 @@ HOMEPAGE=		http://omniorb.sourceforge.net/
 COMMENT=		Robust high-performance CORBA ORB for Python
 LICENSE=		gnu-lgpl-v2.1
 
-
 MAKE_FILE=		GNUmakefile
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-omniorb=${PREFIX.omniORB}
+CONFIGURE_ARGS+=	am_cv_python_pythondir=${PREFIX}/${PYTHON_SITELIB}
+CONFIGURE_ARGS+=	am_cv_python_pyexecdir=${PREFIX}/${PYTHON_SITELIB}
 CONFIGURE_ARGS+=	PYTHON=${PYTHON}
 
 # [ Tue Feb 28 17:44:28 NZDT 2012 : sbd ]
@@ -25,6 +26,8 @@ CONFIGURE_ARGS+=	PYTHON=${PYTHON}
 # smoothly.
 DYNAMIC_PLIST_DIRS+=	${PYTHON_SITELIB}/omniidl_be
 
+# Need to be in sync with middleware/omniORB
+PREFER.omniORB?=	robotpkg
 DEPEND_ABI.omniORB+=	omniORB>=4.2<4.3
 
 include ../../middleware/omniORB/depend.mk
