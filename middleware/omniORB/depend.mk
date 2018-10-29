@@ -15,7 +15,7 @@ PREFER.omniORB?=	system
 
 DEPEND_USE+=		omniORB
 
-DEPEND_ABI.omniORB?=	omniORB>=4.2.2
+DEPEND_ABI.omniORB?=	omniORB>=4.1.1
 DEPEND_DIR.omniORB?=	../../middleware/omniORB
 
 SYSTEM_SEARCH.omniORB=	\

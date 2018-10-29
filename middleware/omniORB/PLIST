@@ -247,9 +247,9 @@ lib/pkgconfig/omniORB4.pc
 lib/pkgconfig/omniZIOP4.pc
 lib/pkgconfig/omniZIOPDynamic4.pc
 lib/pkgconfig/omnithread3.pc
-${PYTHON_SITELIB}/_omniidlmodule.so
-${PYTHON_SITELIB}/_omniidlmodule.so.4
-${PYTHON_SITELIB}/_omniidlmodule.so.4.2
+${PYTHON_SITELIB}/_omniidl.so
+${PYTHON_SITELIB}/_omniidl.so.4
+${PYTHON_SITELIB}/_omniidl.so.4.2
 ${PYTHON_SITELIB}/omniidl/__init__.py
 ${PYTHON_SITELIB}/omniidl/idlast.py
 ${PYTHON_SITELIB}/omniidl/idltype.py

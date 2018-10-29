@@ -1,0 +1,14 @@
+Don't define a "module" extension for python2 - this breaks PLIST and loading a
+bare .so is supported anyway by python2. python3 has SOABI.
+
+--- mk/python.mk~	2015-06-26 12:32:49.000000000 +0200
++++ mk/python.mk	2018-10-26 18:30:33.312417419 +0200
+@@ -7,7 +7,7 @@
+ 
+ PythonSHAREDLIB_SUFFIX = $(shell $(PYTHON) -c 'import sys, distutils.sysconfig; sys.stdout.write((distutils.sysconfig.get_config_var("SO") or ".so").lstrip("."))')
+ 
+-PY_MODULE_SUFFIX := $(shell $(PYTHON) -c 'import sys; sys.stdout.write((sys.hexversion < 0x3000000) and "module" or "")')
++PY_MODULE_SUFFIX :=
+ 
+ PYINCFILE := "<Python.h>"
+ PYINCTHRD := "<pythread.h>"
