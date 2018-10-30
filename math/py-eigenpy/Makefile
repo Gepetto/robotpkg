@@ -2,13 +2,16 @@
 # Created:			Olivier Stasse, Feb 3rd 2016
 #
 
-VERSION=		1.4.5
-PKGNAME=		${PKGTAG.python-}eigenpy-${VERSION}
-DISTNAME=		eigenpy-${VERSION}
+ORG=			stack-of-tasks
+NAME=			eigenpy
+VERSION=		1.5.0
 
-MASTER_SITES=\
-  ${MASTER_SITE_GITHUB:=stack-of-tasks/eigenpy/releases/download/v${VERSION}/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/stack-of-tasks/eigenpy
+DISTNAME=		${NAME}-${VERSION}
+PKGNAME=		${PKGTAG.python-}${DISTNAME}
+
+HOMEPAGE=		${MASTER_SITE_GITHUB:=${ORG}/${NAME}}
+MASTER_SITES=	${HOMEPAGE}/releases/download/v${VERSION}/
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/${ORG}/${NAME}
 CHECKOUT_VCS_OPTS+=	--recursive
 
 MAINTAINER=		hpp@laas.fr
