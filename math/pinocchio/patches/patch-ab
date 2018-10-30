@@ -1,0 +1,60 @@
+From 056fc4bbf4d265e2486c19ca44a20f3bd8d87928 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Wed, 31 Oct 2018 11:39:23 +0100
+Subject: [PATCH] install python headers even if we don't build python
+ interface
+
+---
+ CMakeLists.txt                 | 2 +-
+ bindings/python/CMakeLists.txt | 4 ++++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ab8dba0..643b5f6 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -371,7 +371,7 @@ ADD_SUBDIRECTORY(src)
+ 
+ # --- BINDINGS -----------------------------------------------------------------
+ SET(PYWRAP ${PROJECT_NAME}_pywrap)
+-ADD_SUBDIRECTORY(bindings)
++ADD_SUBDIRECTORY(bindings/python)
+ 
+ # --- EXECUTABLES --------------------------------------------------------------
+ ADD_SUBDIRECTORY(utils)
+diff --git a/bindings/python/CMakeLists.txt b/bindings/python/CMakeLists.txt
+index 5392bf6..8c3418c 100644
+--- bindings/python/CMakeLists.txt
++++ bindings/python/CMakeLists.txt
+@@ -30,6 +30,7 @@ MACRO(SYMLINK_AND_INSTALL_HEADERS HEADERS SUBPATH)
+   ENDFOREACH(header)
+ ENDMACRO(SYMLINK_AND_INSTALL_HEADERS HEADERS SUBPATH)
+ 
++IF(BUILD_PYTHON_INTERFACE)
+ # --- PYTHON TARGET --- #
+ ADD_CUSTOM_TARGET(python)
+ SET_TARGET_PROPERTIES(python PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD True)
+@@ -42,6 +43,7 @@ ENDFOREACH(dep ${PKG_CONFIG_PYWRAP_REQUIRES})
+ 
+ # --- LIBRARY --- #
+ SET(${PYWRAP}_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}/${PROJECT_NAME})
++ENDIF(BUILD_PYTHON_INTERFACE)
+ 
+ SET(${PROJECT_NAME}_PYTHON_HEADERS
+   utils/constant.hpp
+@@ -158,6 +160,7 @@ MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/bindings/python/${PROJECT_NAME}")
+ SET(${PYWRAP}_SOURCES ${${PROJECT_NAME}_PYTHON_SOURCES} ${${PROJECT_NAME}_PARSER_PYTHON_SOURCES})
+ SET(${PYWRAP}_HEADERS ${${PROJECT_NAME}_PYTHON_HEADERS} ${${PROJECT_NAME}_PARSER_PYTHON_HEADERS})
+ 
++IF(BUILD_PYTHON_INTERFACE)
+ ADD_LIBRARY(${PYWRAP} SHARED ${${PYWRAP}_SOURCES} ${${PYWRAP}_HEADERS})
+ ADD_DEPENDENCIES(python ${PYWRAP})
+ 
+@@ -236,3 +239,4 @@ INSTALL(
+     DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+     PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
+ 
++ENDIF(BUILD_PYTHON_INTERFACE)
+-- 
+2.7.4
+

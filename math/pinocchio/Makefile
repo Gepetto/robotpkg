@@ -2,17 +2,20 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
-PKGREVISION=		1
-VERSION=		1.3.1
-DISTNAME=		pinocchio-${VERSION}
+ORG=			stack-of-tasks
+NAME=			pinocchio
+VERSION=		1.3.3
+
+DISTNAME=		${NAME}-${VERSION}
+
 MASTER_SITES=\
-  ${MASTER_SITE_GITHUB:=stack-of-tasks/pinocchio/releases/download/v${VERSION}/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/stack-of-tasks/${PKGBASE}
+  ${MASTER_SITE_GITHUB:=${ORG}/${NAME}/releases/download/v${VERSION}/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/${ORG}/${NAME}
 CHECKOUT_VCS_OPTS=	--recursive
 
 CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics
-HOMEPAGE=		http://stack-of-tasks.github.io/pinocchio/
+HOMEPAGE=		http://${ORG}.github.io/${NAME}/
 MAINTAINER=		gepetto@laas.fr
 LICENSE=		gnu-lgpl-v3
 
