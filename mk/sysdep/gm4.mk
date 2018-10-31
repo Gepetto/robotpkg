@@ -20,6 +20,9 @@ SYSTEM_SEARCH.gm4=\
 
 export M4=	$(word 1,${SYSTEM_FILES.gm4})
 
+SYSTEM_DESCR.gm4=	$(subst gm4,GNU m4,${DEPEND_ABI.gm4})
+SYSTEM_PKG.Ubuntu.gm4=	m4
+
 endif # GM4_DEPEND_MK ------------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

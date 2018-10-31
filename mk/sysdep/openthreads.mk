@@ -21,6 +21,8 @@ SYSTEM_SEARCH.openthreads=\
   'lib/libOpenThreads.so'						\
   'lib/pkgconfig/openthreads.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Debian.openthreads=		libopenthreads-dev
+
 endif # OPENTHREADS_DEPEND_MK ----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

@@ -21,6 +21,10 @@ SYSTEM_SEARCH.openscenegraph-qt=\
   'lib/libosgQt.so'						\
   'lib/pkgconfig/openscenegraph-osgQt.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Debian.openscenegraph-qt=	libopenscenegraph-dev
+SYSTEM_PKG.Fedora.openscenegraph-qt=	OpenSceneGraph-qt-devel
+SYSTEM_PKG.Arch.openscenegraph-qt=	osgqt (AUR)
+
 endif # OPENSCENEGRAPH_QT_DEPEND_MK -----------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
