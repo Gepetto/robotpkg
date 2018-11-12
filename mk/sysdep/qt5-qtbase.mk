@@ -17,7 +17,7 @@ DEPEND_USE+=		qt5-qtbase
 DEPEND_ABI.qt5-qtbase?=	qt5-qtbase>=5<6
 
 SYSTEM_SEARCH.qt5-qtbase=\
-  'include/{,qt5/}QtCore/qtcoreversion.h:/VERSION_STR/s/[^0-9.]//gp' \
+  'include/{,qt{,5}/}QtCore/qtcoreversion.h:/VERSION_STR/s/[^0-9.]//gp' \
   'lib/libQt5Core.so'						    \
   'lib/pkgconfig/Qt5Core.pc:/Version/s/[^0-9.]//gp'
 
