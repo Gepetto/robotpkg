@@ -10,7 +10,8 @@ endif
 
 ifeq (+,$(QT4_LIBS_DEPEND_MK)) # -------------------------------------------
 
-PREFER.qt4-libs?=	system
+include ../../mk/sysdep/qt.mk
+PREFER.qt4-libs?=	${PREFER.qt}
 
 DEPEND_USE+=		qt4-libs
 DEPEND_ABI.qt4-libs?=	qt4-libs>=4.6.2
@@ -24,8 +25,6 @@ SYSTEM_PKG.Fedora.qt4-libs=	qt-devel
 SYSTEM_PKG.Debian.qt4-libs=	libqt4-dev
 SYSTEM_PKG.NetBSD.qt4-libs=	x11/qt4-libs x11/qt4-tools
 SYSTEM_PKG.Gentoo.qt4-libs=	x11-libs/qt-meta
-
-export QT_SELECT=4
 
 endif # QT4_LIBS_DEPEND_MK -------------------------------------------------
 
