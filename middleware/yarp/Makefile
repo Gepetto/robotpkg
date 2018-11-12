@@ -58,7 +58,7 @@ define PKG_OPTION_SET.gui
   include ../../mk/sysdep/gtkmm.mk
   include ../../mk/sysdep/libglademm.mk
   include ../../mk/sysdep/glib2.mk
-  include ../../mk/sysdep/qt5-base.mk
+  include ../../mk/sysdep/qt5-qtbase.mk
   include ../../mk/sysdep/qt5-multimedia.mk
   include ../../mk/sysdep/qt5-declarative.mk
 endef
