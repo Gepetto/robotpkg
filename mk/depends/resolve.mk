@@ -110,18 +110,11 @@ _alt_list:=$(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVE.$_},,$_))
 # derive alternatives from a required package name
 ifdef PKGREQD
   override define _alt_guess # (alt, string)
-    a:=$(strip $(foreach _,${PKG_ALTERNATIVES.$1},$(strip \
-	$(if $(findstring ${PKGTAG.$_},$2),$_))))
-    ifeq (1,$$(words $$a))
-      PKG_ALTERNATIVE.$1:=$$a
-      # add a default PKGTAG on this alternative, in case it is invalid - make
-      # sure to still use a recursive expansion of PKG_ALTERNATIVE.$1, for
-      # print-pkgnames.
-      PKGTAG.$1=$$(or $${PKGTAG.$${PKG_ALTERNATIVE.$1}},$$(strip \
-                      $${PKG_ALTERNATIVE.$1}),$${PKGTAG.$$a},$$a)
-    else ifneq (0,$$(words $$a))
-      $$(shell echo >&2	\
-	'Warning: ambiguous package name $2 for alternatives $$a.')
+    a:=$(strip $(foreach _,${PKG_ALTERNATIVES.$1},$(if \
+          $(findstring ${PKGTAG.$_},$2),$_)))
+    ifneq (,$$a)
+      # Restrict PKG_ALTERNATIVES to what was found (assume an 'or' list)
+      PKG_ALTERNATIVES.$1:=$$a
     endif
   endef
   $(foreach _,${_alt_list},$(eval $(call _alt_guess,$_,${PKGREQD})))
