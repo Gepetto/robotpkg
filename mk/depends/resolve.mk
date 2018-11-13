@@ -107,14 +107,17 @@ PKG_ALTERNATIVES:=$(sort ${PKG_ALTERNATIVES})
 # list of unresolved alternatives (not in robotpkg.conf or cmdline)
 _alt_list:=$(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVE.$_},,$_))
 
-# derive alternatives from a required package name
+# list of explored alternatives
+$(foreach _,${PKG_ALTERNATIVES},$(eval _alt_list.$_:=${PKG_ALTERNATIVES.$_}))
+
+# derive explored alternatives from a required package name
 ifdef PKGREQD
   override define _alt_guess # (alt, string)
     a:=$(strip $(foreach _,${PKG_ALTERNATIVES.$1},$(if \
           $(findstring ${PKGTAG.$_},$2),$_)))
     ifneq (,$$a)
       # Restrict PKG_ALTERNATIVES to what was found (assume an 'or' list)
-      PKG_ALTERNATIVES.$1:=$$a
+      _alt_list.$1:=$$a
     endif
   endef
   $(foreach _,${_alt_list},$(eval $(call _alt_guess,$_,${PKGREQD})))
@@ -138,8 +141,8 @@ $(foreach _,$(filter-out ${_alt_list},${PKG_ALTERNATIVES}),$(eval \
 # compute acceptable alternatives, based on PREFER_ALTERNATIVE.<pkg>
 $(foreach _,${_alt_list},$(eval \
   _alt_select.$_:=$(or ${PKG_ALTERNATIVE.$_},\
-    $(filter ${PKG_ALTERNATIVES.$_},${PREFER_ALTERNATIVE.$_}) \
-    $(filter-out ${PREFER_ALTERNATIVE.$_},${PKG_ALTERNATIVES.$_}))))
+    $(filter ${_alt_list.$_},${PREFER_ALTERNATIVE.$_}) \
+    $(filter-out ${PREFER_ALTERNATIVE.$_},${_alt_list.$_}))))
 
 # choose a version: generate a list of test for each pattern in order of
 # preference. Then pass this to 'or', so that the first match wins. This
@@ -170,9 +173,11 @@ $(foreach _,${PKG_ALTERNATIVES},$(eval $(call _alt_error,$_)))
 
 # define PGKTAG.,-PKGTAG. and PKGTAG.-
 # This must expand to a recursively defined variable using PKG_ALTERNATIVE.$_,
-# so that print-pkgname works, hence $$()
-$(foreach _,${PKG_ALTERNATIVES},$(if ${PKG_ALTERNATIVE.$_},$(eval \
-  PKGTAG.$_=$$(or $${PKGTAG.$${PKG_ALTERNATIVE.$_}},$${PKG_ALTERNATIVE.$_}))))
+# so that print-pkgname works, hence $$().
+$(foreach _,${PKG_ALTERNATIVES},$(eval \
+  PKGTAG.$_=$$(foreach _,						\
+    $$(word 1,$${PKG_ALTERNATIVE.$_} $${_alt_list.$_}),$(strip	\
+    $$(or $${PKGTAG.$$_},$$_)))))
 $(foreach _,${PKG_ALTERNATIVES},$(eval \
   -PKGTAG.$_=$$(addprefix -,$${PKGTAG.$_})))
 $(foreach _,${PKG_ALTERNATIVES},$(eval \
