@@ -147,6 +147,9 @@ define PKG_OPTION_SET.ros-client-ros
 
   pre-configure: genom3-autoreconf(ros/client/ros)
 
+  # INSTALL script keeping track of ${PREFIX}/.catkin file
+  include ../../devel/ros-catkin/marker.mk
+
   include ../../devel/boost-headers/depend.mk
   include ../../devel/ros-ros/depend.mk
   include ../../interfaces/ros-common-msgs/depend.mk
