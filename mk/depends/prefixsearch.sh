@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2008-2014 LAAS/CNRS
+# Copyright (c) 2008-2014,2018 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -28,15 +28,16 @@
 #	prefixsearch.sh takes a package name, an ABI requirement and a list
 #	of file specifications that belong to the package. Each file
 #	specification may be a simple file name which is only tested for
-#	existence or a string in the form 'file[:sed[:prog[:option[:comment]]]]'
+#	existence or a string in the form 'file[:sed[:prog[:pkgopt[:comment]]]]'
 #	which tests the existence and the version of the file. If the file
 #	exists, 'prog' is executed with its standard output is passed to the
 #	'sed' program which is expected to return the version of the file.
 #	'prog' might contain a % character which is replaced by the actual path
-#	of the file being tested. If 'option' is given, 'file' exists, 'prog'
+#	of the file being tested. If 'pkgopt' is given, 'file' exists, 'prog'
 #	does not fail and 'sed' (if present) returns a non-empty result, the
-#	'option' is added to the computed version of the package. 'comment' is
-#	printed in error logs in lieu of the actual file name currently
+#	name part of 'pkgopt' is used as the matched pkgbase and the option part
+#	of 'pkgopt' is added to the computed version of the package. 'comment'
+#	is printed in error logs in lieu of the actual file name currently
 #	checked, with % replaced by the full path to the file.
 #
 #	prefixsearch.sh exists with a non-zero status if the package could
@@ -119,7 +120,6 @@ fi
 ${TEST} $# -gt 2 || { usage; exit 1; }
 pkg="$1"; shift
 abi="$1"; shift
-abipkg=${abi%%[=><!~]*}
 
 # csh-like braces substitutions: replace a{x,y}b with axb ayb
 bracesubst() {
@@ -224,14 +224,20 @@ shlibext() {
     ${ECHO} $alt
 }
 
+# pre-expand abi alternatives, this is used later
+altabis=`bracesubst "$abi"`
 
-# Search files
+# Default results. pkgbase defaults to $pkg only if $abi expands to
+# multiple alternatives.
 prefix=
+pkgbase=$pkg
+${TEST} "$abi" = "$altabis" && pkgbase="${abi%%[=><!~]*}"
 pkgversion=
 pkgoption=
 optspec=
 vrepl='y/-/./;q'
 
+# Search files
 for p in `bracesubst $sysprefix`; do
     ${MSG} "searching in $p"
 
@@ -250,10 +256,10 @@ for p in `bracesubst $sysprefix`; do
     flist=
     for fspec in "$@"; do
 	# split file specification into `:' separated fields
-	IFS=: read -r f spec cmd opt comment <<-EOF
+	IFS=: read -r f spec cmd pkgopt comment <<-EOF
 		$fspec
 	EOF
-        if ${TEST} -n "$opt"; then optspec=yes; fi
+        if ${TEST} -n "$pkgopt"; then pkgoptspec=yes; fi
 
 	# iterate over file specs after glob and {,} substitutions and
 	# test existence
@@ -277,7 +283,7 @@ for p in `bracesubst $sysprefix`; do
             display=`echo "${comment:-$match}" | ${SED} -e 's@%@'$match'@g'`
 
 	    # check file version, if needed
-	    if ${TEST} -z "$spec$cmd$opt"; then
+	    if ${TEST} -z "$spec$cmd$pkgopt"; then
 		${MSG} "found:	$display"
                 found=$match
 		break
@@ -297,17 +303,26 @@ for p in `bracesubst $sysprefix`; do
 		version=`echo "$rawversion" | \
                       ${SED} -ne "${spec:-p}" | ${SED} $vrepl` || status=$?
 	    fi
-            if ${TEST} -n "$opt"; then
+
+            if ${TEST} -n "$pkgopt"; then
                 if ${TEST} $status -eq 0 -a -n "$version"; then
-                    case "+$pkgoption+" in
-                        *+$opt+*) ;;
-                        *) pkgoption=${pkgoption:+$pkgoption+}$opt ;;
-                    esac
-		    ${MSG} "found:	$display for option $opt"
+                    pkgoptbase=${pkgopt%~*}
+                    pkgoptopt=${pkgopt#${pkgoptbase}}
+                    pkgoptopt=${pkgoptopt#[~]}
+                    if ${TEST} -n "$pkgoptbase"; then
+                        pkgbase="$pkgoptbase"
+                    fi
+                    if ${TEST} -n "$pkgoptopt"; then
+                        case "+$pkgoption+" in
+                            *+${pkgoptopt}+*) ;;
+                            *) pkgoption=${pkgoption:+$pkgoption+}$pkgoptopt ;;
+                        esac
+                    fi
+		    ${MSG} "found:	$display for $pkgopt"
                     found=$match
 		    break
                 fi
-	        ${MSG} "found:	$display, no match for option $opt"
+	        ${MSG} "found:	$display, no match for $pkgopt"
                 continue
             fi
 
@@ -321,12 +336,17 @@ for p in `bracesubst $sysprefix`; do
                 continue
             fi
 
-            if ${PKG_ADMIN_CMD} pmatch "${abi%~*}" "$abipkg-$version"; then
-		pkgversion=-$version
-		${MSG} "found:	$display, version $version"
-                found=$match
-		break
-	    fi
+            # check ABI match without options (must iterate on any {,} in abi to
+            # robustly remove options)
+            for altabi in $altabis; do
+                if ${PKG_ADMIN_CMD} pmatch \
+                        "${altabi%~*}" "${altabi%%[=><!~]*}-$version"; then
+                    pkgversion="-$version"
+                    ${MSG} "found:	$display, version $version"
+                    found=$match
+                    break 2
+                fi
+            done
 
             ${MSG} "found:	$display, wrong version ${version:-unknown}"
 	done
@@ -339,16 +359,29 @@ for p in `bracesubst $sysprefix`; do
 		    done
 		done
 	    done
-	    if ${TEST} -z "$opt"; then continue 2; fi
+	    if ${TEST} -z "$pkgopt"; then continue 2; fi
         fi
 	flist="$flist ${found:-/notfound}"
     done
 
     # check options
-    if ${TEST} -z "${abi%%*~*}" -a -n "$optspec"; then
-        if ! ${PKG_ADMIN_CMD} pmatch \
-            "$abipkg~${abi##*~}" "$abipkg$pkgversion~$pkgoption"; then
-	    ${MSG} "rejecting:	$abipkg$pkgversion~$pkgoption"
+    if ${TEST} -n "$pkgoptspec"; then
+        match=
+        for altabi in $altabis; do
+            altabinopt=${altabi%~*}
+            altabiopt=${altabi#${altabinopt}}
+            altabiopt=${altabiopt#[~]}
+            ${TEST} -z "$pkgversion" && altabinopt=${altabinopt%%[=><!]*}
+
+            if ${PKG_ADMIN_CMD} pmatch \
+                                "$altabinopt~$altabiopt" \
+                                "$pkgbase$pkgversion~$pkgoption"; then
+                match=yes
+                break
+            fi
+        done
+        if ${TEST} -z "$match"; then
+            ${MSG} "rejecting:	$pkgbase$pkgversion${pkgoption:+~$pkgoption}"
             continue
         fi
     fi
@@ -361,48 +394,51 @@ done
 # exit successfully if a match was found
 if ${TEST} -n "$prefix"; then
     # warn if an abi requirement is present but no version could be found
-    if ${TEST} -z "$pkgversion"; then
-	if ${TEST} "${abi%~*}" != "$abipkg"; then
-	    ${ERROR_MSG} 1>&2 "Cannot check installed version of $pkg"
-	fi
+    if ${TEST} -z "$pkgversion" -a -z "${abi%%*[=><]*}"; then
+        ${ERROR_MSG} 1>&2 "Cannot check installed version of $pkg"
     fi
-    # warn if specific options are requested
-    if ${TEST} -z "$optspec${abi%%*~*}"; then
-        ${ERROR_MSG} 1>&2 "Cannot check required '${abi##*~}' options of $pkg"
+    # warn if specific options are requested but not checked
+    if ${TEST} -z "$pkgoptspec" -a -z "${abi%%*~*}"; then
+        ${ERROR_MSG} 1>&2 "Cannot check installed options of $pkg"
     fi
 
     # print result
-    ${ECHO} "$abipkg$pkgversion${pkgoption:+~$pkgoption}"
+    result="$pkgbase$pkgversion${pkgoption:+~$pkgoption}"
+    ${ECHO} "$result"
 
     # test fd 3 existence and print other variables there if it exists, to
     # stdout otherwise.
-    ${TEST} : 2>/dev/null 1>&3 || exec 3>&1
-    ${ECHO} 1>&3 "PREFIX.$pkg:=$prefix"
-    ${ECHO} 1>&3 "PKGVERSION.$pkg:=$abipkg$pkgversion${pkgoption:+~$pkgoption}"
-    ${ECHO} 1>&3 "SYSTEM_FILES.$pkg:=$flist"
+    {
+        ${ECHO} >&3 "PREFIX.$pkg:=$prefix" || {
+            exec 3>&1;
+            ${ECHO} >&3 "PREFIX.$pkg:=$prefix"
+        }
+        ${ECHO} >&3 "PKGVERSION.$pkg:=$result"
+        ${ECHO} >&3 "SYSTEM_FILES.$pkg:=$flist"
+    } 2>&- ||:
     exit 0
 fi
 
 # If an error occured, print it
 if ${TEST} $errors = yes; then
-    if test -n "$pkgdesc"; then
+    if ${TEST} -n "$pkgdesc"; then
 	${ERROR_MSG} 1>&2 "Missing $type package $pkgdesc:"
     else
 	${ERROR_MSG} 1>&2 "Missing $type package $abi:"
     fi
     $0 -v -p "$sysprefix" $pkg $abi "$@" 1>&2 ||:
     ${ERROR_MSG} 1>&2
-    if test -n "$syspkg"; then
+    if ${TEST} -n "$syspkg"; then
         ${ERROR_MSG} 1>&2 "Please install the $sys package $syspkg."
     else
 	${ERROR_MSG} 1>&2 "Please install it before continuing."
     fi
-    if test "$type" != "robotpkg"; then
+    if ${TEST} "$type" != "robotpkg"; then
 	${ERROR_MSG} 1>&2 "- SYSTEM_PREFIX or PREFIX.$pkg can be set"	\
 		"to the installation prefix"
 	${ERROR_MSG} 1>&2 "  of this package in robotpkg.conf."
     fi
-    if test -n "$robotpkg"; then
+    if ${TEST} -n "$robotpkg"; then
 	${ERROR_MSG} 1>&2 "- If no $abi package can be made available"	\
 		"in your"
 	${ERROR_MSG} 1>&2 "  system, you can use the robotpkg version,"	\

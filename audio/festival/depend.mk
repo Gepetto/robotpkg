@@ -29,7 +29,7 @@ SYSTEM_SEARCH.festival=\
 	'lib/libFestival.{a,so}'
 
 SYSTEM_SEARCH.festival+=\
-	'share/festival/lib/ogi_configure_voice.scm:::ogireslpc'
+	'share/festival/lib/ogi_configure_voice.scm:::~ogireslpc'
 
 SYSTEM_DESCR.festival=${DEPEND_ABI.festival}
 SYSTEM_DESCR.festival+=\

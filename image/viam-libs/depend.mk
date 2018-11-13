@@ -21,7 +21,7 @@ DEPEND_DIR.viam-libs?=	../../image/viam-libs
 SYSTEM_SEARCH.viam-libs=\
   'include/viam/viamlib.h'						\
   'lib/pkgconfig/viam-libs.pc:/Version/s/[^0-9.]//gp'			\
-  'lib/pkgconfig/viam-libs-cv.pc:/Version/s/[^0-9.]//gp::opencv'
+  'lib/pkgconfig/viam-libs-cv.pc:/Version/s/[^0-9.]//gp::~opencv'
 
 endif # VIAMLIBS_DEPEND_MK -------------------------------------------------
 

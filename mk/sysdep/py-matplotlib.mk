@@ -18,9 +18,9 @@ DEPEND_ABI.py-matplotlib?=	${PKGTAG.python-}matplotlib
 
 SYSTEM_SEARCH.py-matplotlib=\
 	'${PYTHON_SYSLIBSEARCH}/matplotlib/__init__.py'			\
-	'${PYTHON_SYSLIBSEARCH}/matplotlib/backends/_gtkagg.so:::gtk'	\
-	'${PYTHON_SYSLIBSEARCH}/matplotlib/backends/_tkagg.so:::tk'	\
-	'${PYTHON_SYSLIBSEARCH}/matplotlib/backends/backend_wxagg.py:::wx'
+	'${PYTHON_SYSLIBSEARCH}/matplotlib/backends/_gtkagg.so:::~gtk'	\
+	'${PYTHON_SYSLIBSEARCH}/matplotlib/backends/_tkagg.so:::~tk'	\
+	'${PYTHON_SYSLIBSEARCH}/matplotlib/backends/backend_wxagg.py:::~wx'
 
 SYSTEM_PKG.Debian.py-matplotlib=python-matplotlib (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-matplotlib=python-matplotlib-* (python-${PYTHON_VERSION})
