@@ -128,6 +128,7 @@ override define _alt_enforced_valid
       "	PKG_ALTERNATIVE.$1 = ${PKG_ALTERNATIVE.$1}"			\
       $$(if $${PKG_ALTERNATIVE.$1},					\
         " Preferred value: $${PKG_ALTERNATIVE.$1}") ""
+    PKG_ALTERNATIVE.$1=
     _alt_list+=$1
   endif
 endef
