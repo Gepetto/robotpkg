@@ -319,9 +319,16 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	      fi;							\
 	      continue;							\
 	    else							\
-	      na=`${BULK_PKG_ADMIN} -d $(dir ${BULK_PKGFILENA})	-S	\
-		lsbest "$$abi"`;					\
-	      if ${TEST} -n "$$na"; then				\
+	      na=							\
+	      IFS=';' dirs="$(dir ${BULK_PKGFILENA});${PKG_PATH}";	\
+	      for d in $$dirs; do					\
+	        d="$${d%/}"; if ! ${TEST} "$$d" = "$${d%/All}"; then	\
+	          d="$${d%/All}/NotAvail";				\
+	        fi;							\
+	        ${TEST} -d "$$d" || continue;				\
+	        na=`${BULK_PKG_ADMIN} -d "$$d" -S lsbest "$$abi"`;	\
+	        if ${TEST} -z "$$na"; then continue; fi;		\
+									\
 	        ${STEP_MSG} "Required $$kind package $$abi: N/A";	\
 	        ${BULK_CBBH} "Required $$kind package $$abi: N/A";	\
 	        l=; while read p; do					\
@@ -331,8 +338,9 @@ bulk-bootstrap-depends bulk-full-depends: bulk-%-depends: .FORCE
 	        if ${TEST} -z "$$l"; then				\
 	          ${BULK_CBBHBY} "$${na##*/}";				\
 	        fi;							\
-	        continue;						\
-	      fi;							\
+	        break;							\
+	      done;							\
+	      ${TEST} -n "$$na" && continue;				\
 	    fi;								\
 									\
 	    ${STEP_MSG} "Required $$kind package $$abi: NOT found";	\
