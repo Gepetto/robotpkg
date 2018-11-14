@@ -138,14 +138,21 @@ function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
                 while(p substr(alt[k], length(p)+1) != alt[k])
                     p = substr(p, 1, length(p)-1)
             }
-            if (p == s) return p
-            r = ""
+            if (p && p == s) return p
+
+            # avoid prefix/suffix overlap
             for(k in alt) {
-                i = substr(alt[k], length(p)+1,
-                           length(alt[k])-length(s)-length(p))
-                if (r) r = r SUBSEP
-                r = r i
+                if (length(alt[k]) < length(s) + length(p))
+                    s = substr(s, 1 + length(s) + length(p) - length(alt[k]))
             }
+
+            # reassemble
+            r = ""
+            for(k in alt)
+                r = r SUBSEP substr(alt[k], length(p)+1,
+                                    length(alt[k])-length(s)-length(p))
+            r = substr(r, 2)
+
             if (gsub(SUBSEP, ",", r)) return p "{" r "}" s; else return p r s
         }
     }
