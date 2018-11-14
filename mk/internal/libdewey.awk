@@ -223,7 +223,7 @@ function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
 
 	if (r) r = r " "
 	if (a) r = r a
-        if (min[-2] == max[-2] && minop && maxop) {
+        if (vtest(min, DEWEY_EQ, max) && minop && maxop) {
             r = r "-" min[-2]
         } else {
             if (minop) r = r strop(minop) min[-2]
