@@ -117,14 +117,18 @@ function reduce(targets,	recursion, a, i, k, t, p, name, min, minop, max,
                 split("", alt); for(i in targets) alt[i] = targets[i]
                 alt[a] = pattern[k]
                 s = reduce(alt, 1)
-                if (!s) continue
+                # if this does not reduce, skip
+                if (!s || s ~ / /) continue
+
                 if (index(SUBSEP r SUBSEP, SUBSEP s SUBSEP)) continue
                 if (r) r = r SUBSEP
                 r = r s
             }
-            if (recursion) return r
-            # find the longest prefix/suffix and reassemble
-            if (r !~ SUBSEP) return r
+            if (recursion) return r # recursive call: done
+            if (!r) break # could not reduce anything: keep as is
+            if (r !~ SUBSEP) return r # reduced to only one item: done
+
+            # find the longest prefix/suffix
             k = split(r, alt, SUBSEP)
             for(s = p = alt[k]; k>0; k--) {
                 s = substr(s, length(s) - length(alt[k]) + 1)
