@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 19 Sep 2011
 #
 
-VERSION=		20180927
+VERSION=		20181116
 DISTNAME=		rbulkit-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rbulkit/}
