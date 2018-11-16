@@ -1,4 +1,4 @@
-@comment Fri Aug 10 17:47:21 CEST 2018
+@comment Fri Nov 16 16:13:36 CET 2018
 bin/rosaction
 lib/libros-client.la
 lib/pkgconfig/genom3-ros.pc
@@ -23,6 +23,7 @@ share/genom/site-templates/ros/client/ros/clientConfig-version.cmake.in
 share/genom/site-templates/ros/client/ros/clientConfig.cmake.in
 share/genom/site-templates/ros/client/ros/template.tcl
 share/genom/site-templates/ros/common/action.h
+share/genom/site-templates/ros/common/autoconf/ag_ros.m4
 share/genom/site-templates/ros/common/autoconf/ax_boost_base.m4
 share/genom/site-templates/ros/common/autoconf/ax_boost_thread.m4
 share/genom/site-templates/ros/common/autoconf/ax_pthread.m4
