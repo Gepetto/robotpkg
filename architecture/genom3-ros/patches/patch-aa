@@ -1,0 +1,15 @@
+Fix for automake < 1.12
+
+diff --git client/ros/client.Makefile.am client/ros/client.Makefile.am
+index 712ecf2..9914fba 100644
+--- client/ros/client.Makefile.am
++++ client/ros/client.Makefile.am
+@@ -27,6 +27,8 @@ set component [dotgen component]
+ set comp [$component name]
+ '>
+ 
++ACLOCAL_AMFLAGS=	-I autoconf
++
+ # --- ros configuration variables ------------------------------------------
+ 
+ # Store rospack cache locally, since it is architecture dependant
