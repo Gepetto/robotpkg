@@ -1,0 +1,20 @@
+Fix the computation of the variance of the artifical noise set by set_noise()
+
+--- codels/ports.c~	2017-07-05 17:13:59.000000000 +0200
++++ codels/ports.c	2018-11-19 15:29:52.401096182 +0100
+@@ -168,13 +168,13 @@
+           state->pos_cov._value.cov[j] = 0.;
+ 
+         s = 10. * body->error * body->error;
+-        s += noise->pstddev;
++        s += noise->pstddev * noise->pstddev;
+         state->pos_cov._value.cov[0] = s;
+         state->pos_cov._value.cov[2] = s;
+         state->pos_cov._value.cov[5] = s;
+ 
+         s = 100. * body->error * body->error;
+-        s += noise->qstddev;
++        s += noise->qstddev * noise->qstddev;
+         state->pos_cov._value.cov[9]  = s * (1 - qw*qw);
+         state->pos_cov._value.cov[13] = s * -qw*qx;
+         state->pos_cov._value.cov[14] = s * (1 - qx*qx);

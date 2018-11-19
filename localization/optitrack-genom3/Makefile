@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Mon,  9 Nov 2015
 #
 
+PKGREVISION=		1
 DISTNAME=		optitrack-genom3-1.6.1
 CATEGORIES=		interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
