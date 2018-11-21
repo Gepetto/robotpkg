@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 21 Aug 2018
 #
 
-DISTNAME=		mccdaqft-genom3-1.0
+DISTNAME=		mccdaqft-genom3-1.0.1
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
