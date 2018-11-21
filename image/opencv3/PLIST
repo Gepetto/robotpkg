@@ -1,4 +1,4 @@
-@comment Wed Sep 12 19:12:25 CEST 2012
+@comment Wed Nov 21 17:54:33 CET 2018
 bin/opencv_annotation
 bin/opencv_createsamples
 bin/opencv_interactive-calibration
@@ -286,7 +286,7 @@ lib/libopencv_videostab.so
 lib/libopencv_videostab.so.3.4
 lib/libopencv_videostab.so.${PKGVERSION}
 lib/pkgconfig/opencv.pc
-${PYTHON_SITELIB}/cv2.so
+${PYTHON_SITELIB}/cv2${PYTHON_SOABI}.so
 share/OpenCV/OpenCVConfig-version.cmake
 share/OpenCV/OpenCVConfig.cmake
 share/OpenCV/OpenCVModules-release.cmake

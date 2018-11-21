@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Wed, 12 Sep 2018
 #
 
+PKGREVISION=		1
 VERSION=		3.4.3
 PKGNAME=		opencv3-${VERSION}
 DISTNAME=		opencv-${VERSION}
@@ -39,9 +40,12 @@ CMAKE_ARGS+=		-DEIGEN_INCLUDE_PATH=${PREFIX.eigen3}/include/eigen3
 
 CMAKE_ARGS+=            -DCMAKE_INSTALL_LIBDIR:PATH=lib
 
-CMAKE_ARGS+=            -DPYTHON_EXECUTABLE:FILEPATH=${PYTHON}
-CMAKE_ARGS+=            -DPYTHON2_PACKAGES_PATH:FILEPATH=${PYTHON_SITELIB}
-CMAKE_ARGS+=            -DPYTHON3_PACKAGES_PATH:FILEPATH=${PYTHON_SITELIB}
+CMAKE_ARGS+=\
+  -DBUILD_opencv_python2=OFF						\
+  -DBUILD_opencv_python3=OFF						\
+  -DBUILD_opencv_python${PYTHON_MAJOR}=ON				\
+  -DPYTHON${PYTHON_MAJOR}_EXECUTABLE:FILEPATH=${PYTHON}			\
+  -DPYTHON${PYTHON_MAJOR}_PACKAGES_PATH:FILEPATH=${PYTHON_SITELIB}
 
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/zlib/depend.mk
