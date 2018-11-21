@@ -247,7 +247,7 @@ _PYTHON_SYSPATH:=$(if ${PYTHON},					\
 	'import sys; print(" ".join(sys.path))'))
 
 PYTHONPATH=$(call prependpaths, $(filter-out ${_PYTHON_SYSPATH},	\
-	$(patsubst %/,%,$(foreach _pkg_,${DEPEND_USE},			\
+	$(realpath $(foreach _pkg_,${DEPEND_USE},			\
 	  $(addprefix							\
 	    ${PREFIX.${_pkg_}}/, $(patsubst ${PREFIX.${_pkg_}}/%,%,	\
 	    $(or ${PYTHONPATH.${_pkg_}},				\
