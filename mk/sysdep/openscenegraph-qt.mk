@@ -16,18 +16,14 @@ DEPEND_USE+=			openscenegraph-qt
 
 DEPEND_ABI.openscenegraph-qt?=	openscenegraph-qt${QT_SELECT}>=3
 
-# make sure to use the right Qt version: this sed program reports version 0 if
-# there is a Qt version mismatch, nothing otherwise. If there is no
-# OSGQT_QT_VERSION, do the check against Qt4.
-_osgversionpat=\
-  /define OSGQT_QT_VERSION/{/VERSION.*${QT_SELECT}/!{s/.*/0/p;q}};	\
-  $${s/.*/4/;/${QT_SELECT}/!{s/.*/0/p;q}}
+# make sure to use the right Qt version: "Qt" suffix for Qt4, "Qt5" suffix for
+# Qt5.
+_osgqt=Qt$(subst 4,,${QT_SELECT})
 
-# osg-qt>=3.4 defines the QT_VERSION, otherwise assume 4
 SYSTEM_SEARCH.openscenegraph-qt=\
-  'include/osgQt/{Version,Export}:${_osgversionpat}'		\
-  'lib/libosgQt.so'						\
-  'lib/pkgconfig/openscenegraph-osgQt.pc:/Version/s/[^0-9.]//gp'
+  'include/osgQt/Export'					\
+  'lib/libosg${_osgqt}.so'					\
+  'lib/pkgconfig/openscenegraph-osg${_osgqt}.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.openscenegraph-qt=\
   libopenscenegraph-dev for ${PKG_ALTERNATIVE.qt}
