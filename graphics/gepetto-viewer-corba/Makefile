@@ -18,7 +18,7 @@ CONFLICTS=		gepetto-viewer-corba-[0-9]*
 CONFLICTS+=		qt[0-9]-gepetto-viewer-corba-[0-9]*
 
 CMAKE_ARGS+=\
-  -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVES.qt}),TRUE,FALSE)
+  -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
 DEPEND_ABI.python=	python<3
 
 include ../../graphics/gepetto-viewer/depend.mk
