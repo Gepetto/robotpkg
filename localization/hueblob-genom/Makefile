@@ -5,10 +5,10 @@
 DISTNAME=		hueblob-genom-1.4
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=hueblob-genom/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}hueblob-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}hueblob-genom
 
 MAINTAINER=		openrobots@laas.fr
-#HOMEPAGE=
+HOMEPAGE=		https://git.openrobots.org/projects/hueblob-genom
 COMMENT=		GenoM module for simple object detection and localization
 LICENSE=		2-clause-bsd
 
