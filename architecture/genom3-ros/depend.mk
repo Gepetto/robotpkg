@@ -18,7 +18,7 @@ SYSTEM_SEARCH.genom3-ros=\
 	lib/libros-client.so				\
 	'lib/pkgconfig/genom3-ros.pc:/Version/s/[^0-9.]//gp'
 
-DEPEND_ABI.genom3-ros?=	genom3-ros>=1.20
+DEPEND_ABI.genom3-ros?=	genom3-ros>=1.22
 DEPEND_DIR.genom3-ros?=	../../architecture/genom3-ros
 
 endif # GENOM3_ROS_DEPEND_MK -----------------------------------------------
