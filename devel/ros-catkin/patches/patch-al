@@ -1,0 +1,14 @@
+fix missing pthread on dependencies like ros-class-loader with recent cmake
+Cf. https://github.com/ros/catkin/pull/975
+
+--- cmake/templates/pkgConfig.cmake.in.orig	2018-06-06 18:18:22.000000000 +0200
++++ cmake/templates/pkgConfig.cmake.in	2018-12-21 12:05:07.356849509 +0100
+@@ -121,6 +121,8 @@
+   # keep build configuration keywords, target names and absolute libraries as-is
+   if("${library}" MATCHES "^(debug|optimized|general)$")
+     list(APPEND @PROJECT_NAME@_LIBRARIES ${library})
++  elseif(${library} MATCHES "^-l")
++    list(APPEND @PROJECT_NAME@_LIBRARIES ${library})
+   elseif(TARGET ${library})
+     list(APPEND @PROJECT_NAME@_LIBRARIES ${library})
+   elseif(IS_ABSOLUTE ${library})
