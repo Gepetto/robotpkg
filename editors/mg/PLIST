@@ -1,4 +1,0 @@
-@comment Tue May 21 14:46:39 CEST 2013
-bin/mg
-${PKGMANDIR}/man1/mg.1
-share/doc/mg/tutorial
