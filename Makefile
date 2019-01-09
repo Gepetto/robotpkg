@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2009,2011 LAAS/CNRS
+# Copyright (c) 2007-2009,2011,2019 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -52,7 +52,6 @@ SUBDIR+=	archivers
 SUBDIR+=	audio
 SUBDIR+=	devel
 SUBDIR+=	doc
-SUBDIR+=	editors
 SUBDIR+=	graphics
 SUBDIR+=	hardware
 SUBDIR+=	image
