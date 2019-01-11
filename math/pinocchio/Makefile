@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			pinocchio
-VERSION=		1.3.3
+VERSION=		2.1.0
 
 DISTNAME=		${NAME}-${VERSION}
 
@@ -17,7 +17,7 @@ CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics
 HOMEPAGE=		http://${ORG}.github.io/${NAME}/
 MAINTAINER=		gepetto@laas.fr
-LICENSE=		gnu-lgpl-v3
+LICENSE=		2-clause-bsd
 
 CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 

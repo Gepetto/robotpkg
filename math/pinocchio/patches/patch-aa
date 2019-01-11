@@ -1,16 +1,17 @@
 Enforce consistency with robotpkg list of dependencies
 
---- CMakeLists.txt	2018-04-02 18:17:57.000000000 +0200
-+++ CMakeLists.txt	2018-04-26 14:23:48.596052980 +0200
-@@ -83,9 +83,8 @@
- # --- DEPENDANCIES -----------------------------------
+--- CMakeLists.txt.orig	2019-02-27 11:33:15.000000000 +0100
++++ CMakeLists.txt	2019-02-27 13:41:57.545581847 +0100
+@@ -77,10 +77,10 @@
+ # --- DEPENDENCIES -----------------------------------
  # ----------------------------------------------------
  ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
--ADD_OPTIONAL_DEPENDENCY("metapod >= 1.0.7")
 -ADD_OPTIONAL_DEPENDENCY("urdfdom >= 0.2.0")
--ADD_OPTIONAL_DEPENDENCY("hpp-fcl >= 0.5.1")
 +ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2.0")
-+ADD_REQUIRED_DEPENDENCY("hpp-fcl >= 0.5.1")
  
- # Special care of urdfdom version
- IF(URDFDOM_FOUND)
+ find_package(catkin QUIET COMPONENTS hpp-fcl)  # compatability with catkin-packaged hpp-fcl
+-ADD_OPTIONAL_DEPENDENCY("hpp-fcl >= 1.0.0")
++ADD_REQUIRED_DEPENDENCY("hpp-fcl >= 1.0.0")
+ 
+ ADD_OPTIONAL_DEPENDENCY("cppad >= 20180000.0")
+ 

@@ -1,28 +1,12 @@
-Use const ref, fix build with gcc-8
-See https://github.com/stack-of-tasks/pinocchio/issues/511
+don't depend on catkin
 
-
---- src/algorithm/center-of-mass.hxx
-+++ src/algorithm/center-of-mass.hxx
-@@ -150,7 +150,7 @@
-   {
-     typedef boost::fusion::vector<const se3::Model &,
-                                   se3::Data &,
--                                  const bool
-+                                  const bool &
-                                   > ArgsType;
-   
-     JOINT_VISITOR_INIT(JacobianCenterOfMassBackwardStep);
-
-
---- src/multibody/joint/joint-basic-visitors.hxx
-+++ src/multibody/joint/joint-basic-visitors.hxx
-@@ -105,7 +105,7 @@
-   struct JointCalcAbaVisitor : public fusion::JointVisitor<JointCalcAbaVisitor>
-   {
-     typedef boost::fusion::vector< Inertia::Matrix6 &,
--                                    const bool > ArgsType;
-+                                    const bool & > ArgsType;
+--- CMakeLists.txt.orig	2019-02-27 13:45:47.000000000 +0100
++++ CMakeLists.txt	2019-02-27 13:46:11.255003037 +0100
+@@ -79,7 +79,6 @@
+ ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
+ ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2.0")
  
-     JOINT_VISITOR_INIT(JointCalcAbaVisitor);
+-find_package(catkin QUIET COMPONENTS hpp-fcl)  # compatability with catkin-packaged hpp-fcl
+ ADD_REQUIRED_DEPENDENCY("hpp-fcl >= 1.0.0")
  
+ ADD_OPTIONAL_DEPENDENCY("cppad >= 20180000.0")

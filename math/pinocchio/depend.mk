@@ -20,7 +20,7 @@ SYSTEM_SEARCH.pinocchio=\
 
 DEPEND_USE+=		pinocchio
 
-DEPEND_ABI.pinocchio?=	pinocchio>=1.3.1
+DEPEND_ABI.pinocchio?=	pinocchio>=2.0.0<3.0.0
 DEPEND_DIR.pinocchio?=	../../math/pinocchio
 
 endif # PINOCCHIO_DEPEND_MK ------------------------------------------------
