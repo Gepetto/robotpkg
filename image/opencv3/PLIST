@@ -286,7 +286,7 @@ lib/libopencv_videostab.so
 lib/libopencv_videostab.so.3.4
 lib/libopencv_videostab.so.${PKGVERSION}
 lib/pkgconfig/opencv.pc
-${PYTHON_SITELIB}/cv2${PYTHON_SOABI}.so
+${PYTHON_SITELIB}/cv2${PYTHON_EXT_SUFFIX}
 share/OpenCV/OpenCVConfig-version.cmake
 share/OpenCV/OpenCVConfig.cmake
 share/OpenCV/OpenCVModules-release.cmake

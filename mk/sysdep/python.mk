@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2018 LAAS/CNRS
+# Copyright (c) 2010-2019 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -235,9 +235,8 @@ PYTHON_SYSLIB:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
 	'import distutils.sysconfig;                                    \
 	print(distutils.sysconfig.get_python_lib(0, 0, ""))'))
 
-PYTHON_SOABI:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c	\
-	'import sysconfig; e=sysconfig.get_config_var("SOABI");	\
-	print("." + e if e else "")'))
+PYTHON_EXT_SUFFIX:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c	\
+	  'import sysconfig; print(sysconfig.get_config_var("SO"));'))
 
 # PYTHONPATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
 # directories) that should be added to the python search paths.
@@ -268,14 +267,14 @@ PLIST_SUBST+=\
 	PLIST_PYTHON_PYCACHE=$(call quote,${PYTHON_PYCACHE})		\
 	PLIST_PYTHON_SITELIB=$(call quote,${PYTHON_SITELIB})		\
 	PLIST_PYTHON_TAG=$(call quote,${PYTHON_TAG})			\
-	PLIST_PYTHON_SOABI=$(call quote,${PYTHON_SOABI})		\
+	PLIST_PYTHON_EXT_SUFFIX=$(call quote,${PYTHON_EXT_SUFFIX})	\
 	PYTHON_VERSION=${PYTHON_VERSION}
 
 PRINT_PLIST_AWK_SUBST+=\
 	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");		\
 	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");	\
-	$(if ${PYTHON_SOABI},						\
-	  gsub("${PYTHON_SOABI}", "$${PYTHON_SOABI}");)
+	$(if ${PYTHON_EXT_SUFFIX},						\
+	  gsub("${PYTHON_EXT_SUFFIX}", "$${PYTHON_EXT_SUFFIX}");)
 
 # Only for backward compatibility: .py{c,o} files are not explicitly in PLISTs
 PLIST_SUBST+=\
