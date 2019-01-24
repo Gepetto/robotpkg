@@ -8,9 +8,6 @@ CATEGORIES=			graphics
 HPP_COMMENT=		Simple viewer based on OpenSceneGraph
 LICENSE=			2-clause-bsd
 
-CONFIGURE_DIRS=		build
-CMAKE_ARG_PATH=		..
-
 include ../../meta-pkgs/hpp/Makefile.common
 
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
@@ -25,7 +22,3 @@ include ../../mk/sysdep/openthreads.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
-
-# create the build directory
-pre-configure:
-	${RUN}${MKDIR} ${WRKSRC}/build

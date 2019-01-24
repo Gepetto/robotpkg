@@ -29,6 +29,7 @@ include/gepetto/viewer/transform-writer.h
 include/gepetto/viewer/urdf-parser.h
 include/gepetto/viewer/warning.hh
 include/gepetto/viewer/window-manager.h
+include/gepetto/viewer/windows-manager.h
 lib/libgepetto-viewer.so
 lib/pkgconfig/gepetto-viewer.pc
 share/gepetto-viewer/fonts/arial.ttf
