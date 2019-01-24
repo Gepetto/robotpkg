@@ -273,8 +273,9 @@ PLIST_SUBST+=\
 PRINT_PLIST_AWK_SUBST+=\
 	gsub("${PYTHON_SITELIB}/", "$${PYTHON_SITELIB}/");		\
 	gsub(/$(subst .,\.,${PYTHON_VERSION})/, "$${PYTHON_VERSION}");	\
-	$(if ${PYTHON_EXT_SUFFIX},						\
-	  gsub("${PYTHON_EXT_SUFFIX}", "$${PYTHON_EXT_SUFFIX}");)
+	$(if ${PYTHON_EXT_SUFFIX},					\
+	  gsub("$(subst .,[.],${PYTHON_EXT_SUFFIX})$$",			\
+	  "$${PYTHON_EXT_SUFFIX}");)
 
 # Only for backward compatibility: .py{c,o} files are not explicitly in PLISTs
 PLIST_SUBST+=\
