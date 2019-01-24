@@ -4,9 +4,9 @@
 
 HPP_PACKAGE=		gepetto-viewer-corba
 HPP_COMMENT=		Corba server for gepetto-viewer
-HPP_VERSION=		5.0.0
+HPP_VERSION=		5.1.1
 HPP_NAMESPACE=		gepetto
-PKGNAME=		${PKGTAG.qt-}${DISTNAME}
+PKGNAME=		${PKGTAG.py-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=		graphics
 LICENSE=		2-clause-bsd
@@ -19,7 +19,6 @@ CONFLICTS+=		qt[0-9]-gepetto-viewer-corba-[0-9]*
 
 CMAKE_ARGS+=\
   -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
-DEPEND_ABI.python=	python<3
 
 include ../../graphics/gepetto-viewer/depend.mk
 include ../../math/eigen3/depend.mk
