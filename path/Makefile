@@ -10,7 +10,6 @@ SUBDIR+=	hpp-constraints
 SUBDIR+=	hpp-corbaserver
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-fcl
-SUBDIR+=	hpp-gik
 SUBDIR+=	hpp-manipulation
 SUBDIR+=	hpp-manipulation-corba
 SUBDIR+=	hpp-manipulation-urdf
