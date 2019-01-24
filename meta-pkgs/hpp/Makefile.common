@@ -8,9 +8,8 @@ ifndef HPP_COMMENT
   PKG_FAIL_REASON+="Dependency on hpp/Makefile.common requires HPP_COMMENT"
 endif
 
-HPP_VERSION?=		4.2.0
+HPP_VERSION?=		4.3.0
 HPP_NAMESPACE?=		humanoid-path-planner
-HPP_BUILD_SYSTEM?=	cmake
 LICENSE?=			gnu-lgpl-v3
 
 DISTNAME?=	${HPP_PACKAGE}-${HPP_VERSION}
@@ -24,7 +23,15 @@ CHECKOUT_VCS_OPTS+=	--recursive
 MAINTAINER?=	hpp@laas.fr
 COMMENT?=	Humanoid Path Planner (${HPP_COMMENT})
 
-DYNAMIC_PLIST_DIRS+=	share/doc/${HPP_PACKAGE}
+BUILD_TARGET=	all
+
+CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
+
+include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/cmake.mk
+include ../../devel/boost-headers/depend.mk
+include ../../devel/boost-libs/depend.mk
+
 
 # options
 PKG_SUPPORTED_OPTIONS+=		verbose
@@ -35,17 +42,15 @@ PKG_SUPPORTED_OPTIONS+=		benchmark
 PKG_OPTION_DESCR.benchmark=	Measure computation times
 PKG_OPTION_SET.benchmark:=	CPPFLAGS+=-DHPP_ENABLE_BENCHMARK -DHPP_DEBUG
 
-ifeq (autoconf,${HPP_BUILD_SYSTEM})
-else ifeq (cmake,${HPP_BUILD_SYSTEM})
-  CMAKE_ARGS+=-DCMAKE_INSTALL_LIBDIR=lib
+# option for doxygen documentation
+PKG_SUPPORTED_OPTIONS+=		doc
+PKG_OPTION_DESCR.doc=		Enable documentation generation and installation
+define PKG_OPTION_SET.doc
+  BUILD_TARGET+=		doc
+  CMAKE_ARGS+=			-DINSTALL_DOCUMENTATION=TRUE
+  DYNAMIC_PLIST_DIRS+=		share/doc/${HPP_PACKAGE}
 
-  include ../../mk/sysdep/cmake.mk
-  include ../../devel/boost-headers/depend.mk
-  include ../../devel/boost-libs/depend.mk
-else
-  PKG_FAIL_REASON+="Unknown HPP_BUILD_SYSTEM"
-endif
-
-include ../../mk/sysdep/doxygen.mk
-include ../../mk/sysdep/latex.mk
-include ../../pkgtools/pkg-config/depend.mk
+  include ../../mk/sysdep/doxygen.mk
+  include ../../mk/sysdep/latex.mk
+endef
+PKG_OPTION_UNSET.doc=	CMAKE_ARGS+=	-DINSTALL_DOCUMENTATION=FALSE
