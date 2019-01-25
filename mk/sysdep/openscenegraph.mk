@@ -21,7 +21,7 @@ SYSTEM_SEARCH.openscenegraph=\
   'lib/libosg.so'						\
   'lib/pkgconfig/openscenegraph.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Debian.openscenegraph=	openscenegraph
+SYSTEM_PKG.Debian.openscenegraph=	libopenscenegraph-dev
 SYSTEM_PKG.Arch.openscenegraph=		openscenegraph
 
 endif # OPENSCENEGRAPH_DEPEND_MK -------------------------------------------
