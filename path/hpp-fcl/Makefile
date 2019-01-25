@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		0.6.0
+HPP_VERSION=		0.7.0
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations
