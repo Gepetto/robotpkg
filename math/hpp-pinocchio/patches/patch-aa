@@ -1,0 +1,22 @@
+Fix compilation with recent boost: BOOST_MESSAGE has been deprecated since 1.54
+
+--- tests/device-sync.cc.orig	2018-12-20 13:02:32.000000000 +0100
++++ tests/device-sync.cc	2019-01-30 17:37:18.298964639 +0100
+@@ -113,7 +113,7 @@
+     compute_forward_kinematics (robot, qs[i], res_single[i]);
+ 
+   bpt::ptime t1 = bpt::microsec_clock::local_time();
+-  BOOST_MESSAGE ("1 thread:  " << (t1-t0).total_milliseconds() << "ms");
++  BOOST_TEST_MESSAGE ("1 thread:  " << (t1-t0).total_milliseconds() << "ms");
+ 
+   t0 = bpt::microsec_clock::local_time();
+   // In a multi threaded fashion, compute the joint positions
+@@ -122,7 +122,7 @@
+     compute_forward_kinematics_thread_safe (robot, qs[i], res_multi[i]);
+ 
+   t1 = bpt::microsec_clock::local_time();
+-  BOOST_MESSAGE (Nthreads << " threads: " << (t1-t0).total_milliseconds() << "ms");
++  BOOST_TEST_MESSAGE (Nthreads << " threads: " << (t1-t0).total_milliseconds() << "ms");
+ 
+   // Check the results
+   for (std::size_t i = 0; i < qs.size(); ++i) {
