@@ -1,0 +1,13 @@
+Fix compilation with recent boost: BOOST_MESSAGE has been deprecated since 1.54
+
+--- tests/solver-by-substitution.cc.orig	2019-01-02 11:57:56.000000000 +0100
++++ tests/solver-by-substitution.cc	2019-01-30 17:57:57.735677709 +0100
+@@ -644,7 +644,7 @@
+                                  et->inDer().indices (),
+                                  et->outDer().indices ())) >= 0);
+   solver.explicitConstraintSetHasChanged();
+-  BOOST_MESSAGE(solver << '\n');
++  BOOST_TEST_MESSAGE(solver << '\n');
+ 
+   // BOOST_CHECK_EQUAL(solver.solve<lineSearch::Backtracking  >(q), BySubstitution::SUCCESS);
+ 

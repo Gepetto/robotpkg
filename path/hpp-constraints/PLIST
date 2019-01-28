@@ -17,6 +17,7 @@ include/hpp/constraints/explicit.hh
 include/hpp/constraints/explicit/implicit-function.hh
 include/hpp/constraints/explicit/relative-pose.hh
 include/hpp/constraints/explicit/relative-transformation.hh
+include/hpp/constraints/function/difference.hh
 include/hpp/constraints/function/of-parameter-subset.hh
 include/hpp/constraints/fwd.hh
 include/hpp/constraints/generic-transformation.hh
