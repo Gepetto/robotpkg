@@ -2,12 +2,10 @@
 # Created:			Anthony Mallet on Mon, 27 Aug 2007
 #
 
-PKGREVISION=	1
 HPP_PACKAGE=	hpp-corbaserver
 HPP_COMMENT=	Corba server for Humanoid Path Planner
+HPP_VERSION=	4.3.1
 
-CONFIGURE_DIRS=	build
-CMAKE_ARG_PATH=	..
 CATEGORIES=	path
 
 MAKE_JOBS_SAFE= no
@@ -19,13 +17,10 @@ include ../../middleware/omniORB/depend.mk
 include ../../middleware/omniORBpy/depend.mk
 include ../../path/hpp-constraints/depend.mk
 include ../../path/hpp-core/depend.mk
+include ../../mapping/octomap/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c++.mk
 include ../../mk/language/c.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
-
-# create the build directory
-pre-configure:
-	${RUN}${MKDIR} ${WRKSRC}/build
