@@ -1,4 +1,4 @@
-@comment Tue Sep 17 07:49:37 CEST 2013
+@comment Wed Jan 30 14:58:37 CET 2019
 bin/binvox2bt
 bin/bt2vrml
 bin/compare_octrees
@@ -20,14 +20,10 @@ include/octomap/OcTree.h
 include/octomap/OcTreeBase.h
 include/octomap/OcTreeBaseImpl.h
 include/octomap/OcTreeBaseImpl.hxx
-include/octomap/OcTreeBaseSE.h
-include/octomap/OcTreeBaseSE.hxx
 include/octomap/OcTreeDataNode.h
 include/octomap/OcTreeDataNode.hxx
 include/octomap/OcTreeIterator.hxx
 include/octomap/OcTreeKey.h
-include/octomap/OcTreeLUT.h
-include/octomap/OcTreeLUTdefs.h
 include/octomap/OcTreeNode.h
 include/octomap/OcTreeStamped.h
 include/octomap/OccupancyOcTreeBase.h
@@ -45,9 +41,15 @@ include/octomap/octomap_types.h
 include/octomap/octomap_utils.h
 lib/liboctomap.a
 lib/liboctomap.so
+lib/liboctomap.so.1.9
+lib/liboctomap.so.${PKGVERSION}
 lib/liboctomath.a
 lib/liboctomath.so
+lib/liboctomath.so.1.9
+lib/liboctomath.so.${PKGVERSION}
 lib/pkgconfig/octomap.pc
 share/octomap/octomap-config-version.cmake
 share/octomap/octomap-config.cmake
+share/octomap/octomap-targets-release.cmake
+share/octomap/octomap-targets.cmake
 share/octomap/package.xml
