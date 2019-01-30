@@ -1,0 +1,14 @@
+numCostSources has been removed in hpp-fcl 0.7.0
+ref https://github.com/humanoid-path-planner/hpp-fcl/issues/43
+
+--- bindings/python/multibody/fcl/collision-result.hpp.orig	2018-10-23 10:25:07.000000000 +0200
++++ bindings/python/multibody/fcl/collision-result.hpp	2019-01-30 16:38:34.542437865 +0100
+@@ -47,7 +47,7 @@
+           .def("addContact",&CollisionResult::addContact,bp::arg("contact"),"Adds one contact into result structure")
+           .def("isCollision",&CollisionResult::isCollision,"Returns binary collision result")
+           .def("numContacts",&CollisionResult::numContacts,"Returns the number of contacts found")
+-          .def("numCostSources",&CollisionResult::numCostSources,"Returns the number of cost sources found")
++          //.def("numCostSources",&CollisionResult::numCostSources,"Returns the number of cost sources found")
+           
+           .def("clear",&CollisionResult::clear,"Clears the results obtained")
+           
