@@ -3,7 +3,6 @@ bin/hpp-manipulation-server
 include/hpp/corbaserver/manipulation/client.hh
 include/hpp/corbaserver/manipulation/config.hh
 include/hpp/corbaserver/manipulation/deprecated.hh
-include/hpp/corbaserver/manipulation/doc.hh
 include/hpp/corbaserver/manipulation/fwd.hh
 include/hpp/corbaserver/manipulation/gcommon.hh
 include/hpp/corbaserver/manipulation/graph.hh

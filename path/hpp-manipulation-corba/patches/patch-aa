@@ -16,9 +16,9 @@ Newer C++11 compat
          } else {
            throw Error (("Type \"" + std::string(what) + "\" not known").c_str());
          }
-@@ -174,7 +179,11 @@
-         if (w == "constraintgraph") {
-           ret.push_back (problemSolver()->constraintGraph()->name());
+@@ -176,7 +181,11 @@
+             ret.push_back (problemSolver()->constraintGraph()->name());
+           else throw Error ("No constraint graph selected.");
          } else if (w == "type") {
 +#if __cplusplus <= 199711L
            ret = boost::assign::list_of ("ConstraintGraph");
