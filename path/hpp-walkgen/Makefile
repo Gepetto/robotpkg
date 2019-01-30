@@ -11,6 +11,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../devel/log4cxx/depend.mk
 include ../../math/hpp-pinocchio/depend.mk
+include ../../mapping/octomap/depend.mk
 include ../../optimization/roboptim-trajectory/depend.mk
 include ../../path/hpp-constraints/depend.mk
 include ../../path/hpp-core/depend.mk
