@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-wholebody-step-corba
+HPP_VERSION=		4.3.1
 
 CATEGORIES=		path
 HPP_COMMENT=		CORBA server and client for whole-body walk planning
@@ -18,6 +19,8 @@ include ../../middleware/hpp-template-corba/depend.mk
 include ../../path/hpp-corbaserver/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../path/hpp-wholebody-step/depend.mk
+include ../../mapping/octomap/depend.mk
+include ../../optimization/roboptim-trajectory/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/sysdep/python.mk
