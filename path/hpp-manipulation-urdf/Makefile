@@ -19,5 +19,7 @@ include ../../devel/tinyxml/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../path/hpp-manipulation/depend.mk
 include ../../path/hpp-util/depend.mk
+include ../../mapping/octomap/depend.mk
+include ../../optimization/roboptim-trajectory/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
