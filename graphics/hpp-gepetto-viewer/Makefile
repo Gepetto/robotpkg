@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-gepetto-viewer
+HPP_VERSION=		4.3.1
 
 CATEGORIES=		graphics
 HPP_COMMENT=		Bridge between hpp-corbaserver and gepetto-viewer-corba
@@ -12,6 +13,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 include ../../graphics/gepetto-viewer-corba/depend.mk
+include ../../mapping/octomap/depend.mk
 include ../../path/hpp-corbaserver/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mk/sysdep/python.mk
