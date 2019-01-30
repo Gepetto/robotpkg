@@ -1,4 +1,0 @@
-This package extends Kineo collision dectector KCD with a capsule primitives
-
-  Capsules are volumes swept by a sphere moving along a line segment. This
-  package implements insertion of this new type of geometry into KCD.

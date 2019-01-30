@@ -9,7 +9,6 @@ SUBDIR+=	eigen2
 SUBDIR+=	eigen3
 SUBDIR+=	gbM
 SUBDIR+=	geometric-tools
-SUBDIR+=	hpp-geometry
 SUBDIR+=	hpp-pinocchio
 SUBDIR+=	hrp2-dynamics
 SUBDIR+=	jafar-jmath
