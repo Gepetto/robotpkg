@@ -3,7 +3,6 @@
 #
 
 HPP_PACKAGE=		hpp_tutorial
-HPP_VERSION=		1.1
 
 CATEGORIES=		doc
 HPP_COMMENT=		Tutorial for manipulation and path planning
@@ -11,6 +10,8 @@ HPP_COMMENT=		Tutorial for manipulation and path planning
 include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../devel/ros-catkin/depend.mk
+include ../../mapping/octomap/depend.mk
+include ../../optimization/roboptim-trajectory/depend.mk
 include ../../graphics/hpp-gepetto-viewer/depend.mk
 include ../../path/hpp-corbaserver/depend.mk
 include ../../path/hpp-util/depend.mk
