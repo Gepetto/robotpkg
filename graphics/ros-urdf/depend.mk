@@ -39,6 +39,9 @@ SYSTEM_SEARCH.ros-urdf=\
   'share/urdf/package.xml:/<version>/s/[^0-9.]//gp'			\
   'share/urdf_parser_plugin/package.xml:/<version>/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Ubuntu.ros-urdf= ros-${PKG_ALTERNATIVE.ros}-urdf
+SYSTEM_PKG.Ubuntu.ros-urdf+= ros-${PKG_ALTERNATIVE.ros}-urdf-parser-plugin
+
 endif # ROS_URDF_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
