@@ -3,7 +3,6 @@
 #
 
 HPP_PACKAGE=		hpp-template-corba
-HPP_VERSION=		1.1.5
 
 CATEGORIES=			middleware
 HPP_COMMENT=		Template CORBA servers for HPP

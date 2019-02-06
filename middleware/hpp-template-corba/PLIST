@@ -1,5 +1,4 @@
-@comment Thu May 31 17:53:27 CEST 2018
-include/hpp/corba/template/config.h
+@comment Thu Feb 7 10:53:58 CET 2019
 include/hpp/corba/template/config.hh
 include/hpp/corba/template/debug.hh
 include/hpp/corba/template/deprecated.hh
