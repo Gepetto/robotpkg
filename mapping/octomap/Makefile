@@ -5,6 +5,7 @@
 PKGVERSION=	1.9.0
 DISTNAME=	v${PKGVERSION_NOREV}
 PKGNAME=	octomap-${PKGVERSION}
+DIST_SUBDIR=	${PKGBASE}
 
 CATEGORIES=	mapping
 MASTER_SITES=	https://github.com/OctoMap/octomap/archive/
