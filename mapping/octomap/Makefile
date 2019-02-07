@@ -18,6 +18,8 @@ LICENSE=	modified-bsd
 
 WRKSRC=     ${WRKDIR}/octomap-${PKGVERSION_NOREV}/octomap
 
+DEPEND_ABI.cmake=	cmake>=2.8.8
+
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
