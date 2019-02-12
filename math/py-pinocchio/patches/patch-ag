@@ -1,30 +1,18 @@
-From f02e20a0d73d9f88c4abc859f0b397c141490051 Mon Sep 17 00:00:00 2001
-From: Guilhem Saurel <guilhem.saurel@laas.fr>
-Date: Wed, 31 Oct 2018 12:08:04 +0100
-Subject: [PATCH] py-pinocchio needs pinocchio
+py-pinocchio needs pinocchio
 
----
- CMakeLists.txt                 | 1 +
- bindings/python/CMakeLists.txt | 3 +--
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 532acef..a7b98d2 100644
---- CMakeLists.txt
-+++ CMakeLists.txt
-@@ -85,6 +85,7 @@ ENDMACRO(TAG_LIBRARY_VERSION)
- ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
- ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2.0")
- ADD_REQUIRED_DEPENDENCY("hpp-fcl >= 0.5.1")
+--- CMakeLists.txt.orig	2019-02-27 14:02:32.000000000 +0100
++++ CMakeLists.txt	2019-02-27 14:03:59.233145130 +0100
+@@ -83,6 +83,7 @@
+ ADD_REQUIRED_DEPENDENCY("hpp-fcl >= 1.0.0")
+ 
+ ADD_OPTIONAL_DEPENDENCY("cppad >= 20180000.0")
 +ADD_REQUIRED_DEPENDENCY("pinocchio")
  
- # Special care of urdfdom version
- IF(URDFDOM_FOUND)
-diff --git a/bindings/python/CMakeLists.txt b/bindings/python/CMakeLists.txt
-index 166b2bc..f49581c 100644
---- bindings/python/CMakeLists.txt
-+++ bindings/python/CMakeLists.txt
-@@ -164,6 +164,7 @@ ENDIF(BUILD_WITH_COMMIT_VERSION)
+ IF(CPPAD_FOUND)
+   ADD_DEFINITIONS(-DPINOCCHIO_WITH_CPPAD_SUPPORT)
+--- bindings/python/CMakeLists.txt.orig	2019-02-26 17:08:12.000000000 +0100
++++ bindings/python/CMakeLists.txt	2019-02-27 14:04:17.329252048 +0100
+@@ -120,6 +115,7 @@
  ADD_HEADER_GROUP(${PYWRAP}_HEADERS)
  ADD_SOURCE_GROUP(${PYWRAP}_SOURCES)
  PKG_CONFIG_USE_DEPENDENCY(${PYWRAP} eigenpy)
@@ -32,12 +20,3 @@ index 166b2bc..f49581c 100644
  
  TARGET_LINK_LIBRARIES(${PYWRAP} ${PROJECT_NAME})
  TARGET_LINK_BOOST_PYTHON(${PYWRAP})
-@@ -227,5 +228,3 @@ ENDFOREACH(cflags ${CFLAGS_DEPENDENCIES})
- CONFIGURE_FILE(
-    "${CMAKE_CURRENT_SOURCE_DIR}/pinocchiopy.pc.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc")
--
--
--- 
-2.7.4
-

@@ -1,14 +1,64 @@
-numCostSources has been removed in hpp-fcl 0.7.0
-ref https://github.com/humanoid-path-planner/hpp-fcl/issues/43
-
---- bindings/python/multibody/fcl/collision-result.hpp.orig	2018-10-23 10:25:07.000000000 +0200
-+++ bindings/python/multibody/fcl/collision-result.hpp	2019-01-30 16:38:34.542437865 +0100
-@@ -47,7 +47,7 @@
-           .def("addContact",&CollisionResult::addContact,bp::arg("contact"),"Adds one contact into result structure")
-           .def("isCollision",&CollisionResult::isCollision,"Returns binary collision result")
-           .def("numContacts",&CollisionResult::numContacts,"Returns the number of contacts found")
--          .def("numCostSources",&CollisionResult::numCostSources,"Returns the number of cost sources found")
-+          //.def("numCostSources",&CollisionResult::numCostSources,"Returns the number of cost sources found")
-           
-           .def("clear",&CollisionResult::clear,"Clears the results obtained")
-           
+--- CMakeLists.txt.orig	2019-02-27 14:07:13.000000000 +0100
++++ CMakeLists.txt	2019-02-27 14:07:49.954504605 +0100
+@@ -140,9 +140,6 @@
+   ENDIF(LUA5_2_FOUND)
+ ENDIF(BUILD_WITH_LUA_SUPPORT)
+ 
+-SET(BOOST_REQUIERED_COMPONENTS filesystem system)
+-SET(BOOST_BUILD_COMPONENTS unit_test_framework)
+-SET(BOOST_OPTIONAL_COMPONENTS "")
+ 
+ IF(BUILD_PYTHON_INTERFACE)
+   SET(BOOST_OPTIONAL_COMPONENTS ${BOOST_OPTIONAL_COMPONENTS} python)
+@@ -206,51 +203,20 @@
+      macros.hpp
+      )
+ 
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/math")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/spatial")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody/joint")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody/liegroup")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers/lua")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers/urdf")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/utils")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/algorithm")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/container")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/codegen")
+-SET(HEADERS_)
+-FOREACH(header ${HEADERS})
+-  STRING(REGEX REPLACE "${PROJECT_SOURCE_DIR}/src/" "" header ${header})
+-  LIST(APPEND HEADERS_ ${header})
+-  GET_FILENAME_COMPONENT(headerName ${header} NAME)
+-  GET_FILENAME_COMPONENT(headerPath ${header} PATH)
+-  EXECUTE_PROCESS(COMMAND ${CMAKE_COMMAND} -E ${LINK}
+-    ${${PROJECT_NAME}_SOURCE_DIR}/src/${header}
+-    ${${PROJECT_NAME}_BINARY_DIR}/include/${PROJECT_NAME}/${header})
+-  INSTALL(FILES ${${PROJECT_NAME}_SOURCE_DIR}/src/${header}
+-    DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME}/${headerPath}
+-          PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
+-ENDFOREACH(header)
+-SET(HEADERS ${HEADERS_})
+ 
+ # --- MAIN LIBRARY -------------------------------------------------------------
+-ADD_SUBDIRECTORY(src)
+ 
+ # --- BINDINGS -----------------------------------------------------------------
+ ADD_SUBDIRECTORY(bindings)
+ 
+ # --- EXECUTABLES --------------------------------------------------------------
+-ADD_SUBDIRECTORY(utils)
+ 
+ # --- UNIT TESTS ---------------------------------------------------------------
+-ADD_SUBDIRECTORY(unittest)
+ 
+ # --- CHECK EXAMPLES -----------------------------------------------------------
+ ADD_SUBDIRECTORY(examples)
+ 
+ # --- BENCHMARKS ---------------------------------------------------------------
+-ADD_SUBDIRECTORY(benchmark)
+ 
+ # --- PACKAGING ----------------------------------------------------------------
+ PKG_CONFIG_APPEND_LIBS (${PROJECT_NAME})

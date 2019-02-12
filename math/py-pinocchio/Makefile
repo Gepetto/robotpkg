@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			pinocchio
-VERSION=		1.3.3
+VERSION=		2.1.0
 
 DISTNAME=		${NAME}-${VERSION}
 PKGNAME=		${PKGTAG.python-}${DISTNAME}
@@ -18,7 +18,7 @@ CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics (python bindings)
 HOMEPAGE=		http://${ORG}.github.io/${NAME}/
 MAINTAINER=		gepetto@laas.fr
-LICENSE=		gnu-lgpl-v3
+LICENSE=		2-clause-bsd
 
 CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
@@ -29,8 +29,6 @@ USE_BOOST_LIBS=		python
 Boost_PYTHON_LIBRARY=	$(filter %.so,${SYSTEM_FILES.boost-lib-python})
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_RELEASE=${Boost_PYTHON_LIBRARY}
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_DEBUG=${Boost_PYTHON_LIBRARY}
-
-DEPEND_ABI.pinocchio=	pinocchio>=${VERSION}<1.3.4
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

@@ -20,7 +20,7 @@ SYSTEM_SEARCH.py-pinocchio=\
 # require a specific version
 DEPEND_USE+=			py-pinocchio
 
-DEPEND_ABI.py-pinocchio?=	${PKGTAG.python-}pinocchio
+DEPEND_ABI.py-pinocchio?=	${PKGTAG.python-}pinocchio>=2.0.0<3.0.0
 DEPEND_DIR.py-pinocchio?=	../../math/py-pinocchio
 
 include ../../mk/sysdep/python.mk
