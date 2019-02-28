@@ -75,6 +75,7 @@ include/hpp/core/path.hh
 include/hpp/core/path/hermite.hh
 include/hpp/core/path/spline.hh
 include/hpp/core/plan-and-optimize.hh
+include/hpp/core/plugin.hh
 include/hpp/core/problem-solver.hh
 include/hpp/core/problem-target.hh
 include/hpp/core/problem-target/goal-configurations.hh
@@ -105,7 +106,8 @@ include/hpp/core/validation-report.hh
 include/hpp/core/visibility-prm-planner.hh
 include/hpp/core/warning.hh
 include/hpp/core/weighed-distance.hh
+lib/hppPlugins/spline-gradient-based.so
+lib/libhpp-core-gpl.so
 lib/libhpp-core.so
 lib/pkgconfig/hpp-core.pc
-share/doc/hpp-core/doxygen-html/continuous-collision-checking.pdf
-share/doc/hpp-core/doxygen-html/continuous-validation.pdf
+share/hpp-core/cmake/hpp-core-plugin.cmake
