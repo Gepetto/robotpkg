@@ -1,15 +1,3 @@
---- CMakeLists.txt.orij
-+++ CMakeLists.txt
-@@ -108,7 +108,7 @@ IF (${USE_QPOASES})
-   SET(QPOASES_PREFIX ${CMAKE_PREFIX_PATH} CACHE PATH "Set the prefix where qpOASES is installed")
-   FIND_LIBRARY(QPOASES_LIBRARY "qpOASES" PATHS ${QPOASES_PREFIX} PATH_SUFFIXES lib)
-   FIND_PATH(QPOASES_INCLUDE_DIRS NAMES "qpOASES.hpp" PATHS ${QPOASES_PREFIX} PATH_SUFFIXES include)
--  INCLUDE_DIRECTORIES(${QPOASES_INCLUDE_DIRS})
-+  INCLUDE_DIRECTORIES(SYSTEM ${QPOASES_INCLUDE_DIRS})
- ENDIF ()
- 
- ADD_SUBDIRECTORY (src)
- 
 --- include/hpp/constraints/matrix-view.hh.orig
 +++ include/hpp/constraints/matrix-view.hh
 @@ -184,7 +184,7 @@ namespace Eigen {
@@ -30,7 +18,7 @@
          typedef Assignment<BlockDerived, typename OtherDerived::BlockConstXprType, Functor> AssignmentType;
          for (typename OtherDerived::block_iterator b (src); b.valid(); ++b) {
 @@ -309,7 +310,7 @@ namespace Eigen {
- 
+
        enum {
          CoeffReadCost = evaluator<ArgType>::CoeffReadCost,
 -        Flags = ~AlignedBit & ~DirectAccessBit & ~ActualPacketAccessBit & ~LinearAccessBit & ArgType::Flags,
