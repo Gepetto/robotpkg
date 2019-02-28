@@ -1,4 +1,5 @@
 @comment Thu Oct 11 15:20:21 CEST 2018
+bin/gvtools
 include/gepetto/viewer/OSGManipulator/keyboard-manipulator.h
 include/gepetto/viewer/blender-geom-writer.h
 include/gepetto/viewer/config-osg.h
