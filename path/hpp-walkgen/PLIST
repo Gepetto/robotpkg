@@ -8,4 +8,3 @@ include/hpp/walkgen/fwd.hh
 include/hpp/walkgen/warning.hh
 lib/libhpp-walkgen.so
 lib/pkgconfig/hpp-walkgen.pc
-share/doc/hpp-walkgen/doxygen-html/figures/walkgen.pdf
