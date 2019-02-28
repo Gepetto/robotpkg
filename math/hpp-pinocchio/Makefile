@@ -11,6 +11,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 
 DEPEND_ABI.eigen3 += eigen3>=3.2.2
 
+include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../path/hpp-fcl/depend.mk

@@ -23,7 +23,7 @@ SYSTEM_SEARCH.hpp-pinocchio=		\
   'lib/libhpp-pinocchio.so'		\
   'lib/pkgconfig/hpp-pinocchio.pc:/Version/s/[^0-9.]//gp'
 
-DEPEND_ABI.eigen3 += eigen3>=3.2
+DEPEND_ABI.eigen3 += eigen3>=3.2.92
 include ../../math/eigen3/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../path/hpp-fcl/depend.mk
