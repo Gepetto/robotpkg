@@ -39,5 +39,7 @@ include/hpp/manipulation/steering-method/graph.hh
 include/hpp/manipulation/symbolic-planner.hh
 include/hpp/manipulation/warning.hh
 include/hpp/manipulation/weighed-distance.hh
+lib/hppPlugins/manipulation-spline-gradient-based.so
+lib/libhpp-manipulation-gpl.so
 lib/libhpp-manipulation.so
 lib/pkgconfig/hpp-manipulation.pc
