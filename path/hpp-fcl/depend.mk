@@ -15,7 +15,7 @@ PREFER.hpp-fcl?=	robotpkg
 
 DEPEND_USE+=		hpp-fcl
 
-DEPEND_ABI.hpp-fcl?=	hpp-fcl>=0.5
+DEPEND_ABI.hpp-fcl?=	hpp-fcl>=1
 DEPEND_DIR.hpp-fcl?=	../../path/hpp-fcl
 
 SYSTEM_SEARCH.hpp-fcl=\

@@ -21,11 +21,9 @@ include/hpp/fcl/collision_object.h
 include/hpp/fcl/collision_utility.h
 include/hpp/fcl/config.hh
 include/hpp/fcl/data_types.h
-include/hpp/fcl/deprecated.h
 include/hpp/fcl/deprecated.hh
 include/hpp/fcl/distance.h
 include/hpp/fcl/distance_func_matrix.h
-include/hpp/fcl/exception.h
 include/hpp/fcl/fwd.hh
 include/hpp/fcl/intersect.h
 include/hpp/fcl/math/matrix_3f.h
@@ -33,6 +31,7 @@ include/hpp/fcl/math/tools.h
 include/hpp/fcl/math/transform.h
 include/hpp/fcl/math/vec_3f.h
 include/hpp/fcl/mesh_loader/assimp.h
+include/hpp/fcl/mesh_loader/loader.h
 include/hpp/fcl/narrowphase/gjk.h
 include/hpp/fcl/narrowphase/narrowphase.h
 include/hpp/fcl/octree.h
