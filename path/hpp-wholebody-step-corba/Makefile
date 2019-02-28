@@ -3,7 +3,6 @@
 #
 
 HPP_PACKAGE=		hpp-wholebody-step-corba
-HPP_VERSION=		4.3.1
 
 CATEGORIES=		path
 HPP_COMMENT=		CORBA server and client for whole-body walk planning
