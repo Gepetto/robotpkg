@@ -10,10 +10,6 @@ ${PYTHON_SITELIB}/hpp/corbaserver/pr2/__init__.py
 ${PYTHON_SITELIB}/hpp/corbaserver/pr2/robot.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rod/__init__.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rod/robot.py
-share/doc/hpp_tutorial/doxygen-html/script/tutorial_1.py
-share/doc/hpp_tutorial/doxygen-html/script/tutorial_2.py
-share/doc/hpp_tutorial/doxygen-html/urdf/box.urdf
-share/doc/hpp_tutorial/doxygen-html/urdf/pr2.urdf
 share/hpp_tutorial/meshes/box.dae
 share/hpp_tutorial/package.xml
 share/hpp_tutorial/srdf/box.srdf
