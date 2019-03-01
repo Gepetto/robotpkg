@@ -3,7 +3,6 @@
 #
 
 HPP_PACKAGE=		hpp-manipulation-corba
-HPP_VERSION=		4.3.1
 
 CATEGORIES=		path
 HPP_COMMENT=		CORBA interface for hpp-manipulation
