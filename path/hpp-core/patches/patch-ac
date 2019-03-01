@@ -1,0 +1,132 @@
+s/BOOST_MESSAGE/BOOST_TEST_MESSAGE/ to fix build on recent BOOST
+
+--- tests/roadmap-1.cc.orig	2019-02-21 16:39:42.000000000 +0100
++++ tests/roadmap-1.cc	2019-03-01 11:39:30.181403491 +0100
+@@ -126,7 +126,7 @@
+   nodes.push_back (r->addNode (q));
+   r->addGoalNode (nodes [5]->configuration ());
+ 
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+   BOOST_CHECK_EQUAL (r->connectedComponents ().size (), 6);
+   for (std::size_t i=0; i < nodes.size (); ++i) {
+     for (std::size_t j=i+1; j < nodes.size (); ++j) {
+@@ -149,7 +149,7 @@
+     }
+   }
+   BOOST_CHECK (!r->pathExists ());
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+ 
+   // 1 -> 0
+   addEdge (r, *sm, nodes, 1, 0);
+@@ -166,7 +166,7 @@
+     }
+   }
+   BOOST_CHECK (!r->pathExists ());
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+   // 1 -> 2
+   addEdge (r, *sm, nodes, 1, 2);
+   BOOST_CHECK_EQUAL (r->connectedComponents ().size (), 5);
+@@ -181,7 +181,7 @@
+     }
+   }
+   BOOST_CHECK (!r->pathExists ());
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+ 
+   // 2 -> 0
+   addEdge (r, *sm, nodes, 2, 0);
+@@ -199,7 +199,7 @@
+     }
+   }
+   BOOST_CHECK (!r->pathExists ());
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+ 
+   // 2 -> 3
+   addEdge (r, *sm, nodes, 2, 3);
+@@ -217,7 +217,7 @@
+     }
+   }
+   BOOST_CHECK (!r->pathExists ());
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+ 
+   // 2 -> 4
+   addEdge (r, *sm, nodes, 2, 4);
+@@ -235,7 +235,7 @@
+     }
+   }
+   BOOST_CHECK (!r->pathExists ());
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+ 
+   // 3 -> 5
+   addEdge (r, *sm, nodes, 3, 5);
+@@ -253,7 +253,7 @@
+     }
+   }
+   BOOST_CHECK (r->pathExists ());
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+ 
+   // 4 -> 5
+   addEdge (r, *sm, nodes, 4, 5);
+@@ -271,7 +271,7 @@
+     }
+   }
+   BOOST_CHECK (r->pathExists ());
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+ 
+   // 5 -> 0
+   addEdge (r, *sm, nodes, 5, 0);
+@@ -287,7 +287,7 @@
+   BOOST_CHECK (nodes [0]->connectedComponent () == 
+ 	       nodes [5]->connectedComponent ());
+   BOOST_CHECK (r->pathExists ());
+-  BOOST_MESSAGE(*r);
++  BOOST_TEST_MESSAGE(*r);
+ 
+   // Check that memory if well deallocated.
+   std::set<ConnectedComponentWkPtr_t> ccs;
+@@ -379,6 +379,3 @@
+   }
+ }
+ BOOST_AUTO_TEST_SUITE_END()
+-
+-
+-
+--- tests/problem.cc.orig	2019-02-21 16:39:42.000000000 +0100
++++ tests/problem.cc	2019-03-01 11:39:33.065445823 +0100
+@@ -92,7 +92,7 @@
+   ps->solve ();
+ 
+   BOOST_CHECK (ps->roadmap()->nodes().size() > 2);
+-  BOOST_MESSAGE ("Solved the problem with " << ps->roadmap()->nodes().size()
++  BOOST_TEST_MESSAGE ("Solved the problem with " << ps->roadmap()->nodes().size()
+       << " nodes.");
+ }
+ 
+@@ -130,7 +130,7 @@
+   ps->solve ();
+ 
+   BOOST_CHECK (ps->roadmap()->nodes().size() > 2);
+-  BOOST_MESSAGE ("Solved the problem with " << ps->roadmap()->nodes().size()
++  BOOST_TEST_MESSAGE ("Solved the problem with " << ps->roadmap()->nodes().size()
+       << " nodes.");
+ }
+ 
+--- tests/test-intervals.cc.orig	2019-02-21 16:39:42.000000000 +0100
++++ tests/test-intervals.cc	2019-03-01 11:39:35.397480039 +0100
+@@ -242,7 +242,7 @@
+   intervals.unionInterval (interval);
+   checkIntervals (intervals);
+ 
+-  BOOST_MESSAGE(intervals);
++  BOOST_TEST_MESSAGE(intervals);
+ }
+ 
+ BOOST_AUTO_TEST_CASE (interval_7)
