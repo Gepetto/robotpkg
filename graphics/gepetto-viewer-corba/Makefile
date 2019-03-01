@@ -2,21 +2,21 @@
 # Created:			Florent Lamiraux on Sun, 8 Mar 2015
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		gepetto-viewer-corba
 HPP_COMMENT=		Corba server for gepetto-viewer
-HPP_VERSION=		5.1.1
+HPP_VERSION=		5.1.2
 HPP_NAMESPACE=		gepetto
-PKGNAME=		${PKGTAG.py-}${PKGTAG.qt-}${DISTNAME}
+PKGNAME=			${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=		graphics
 LICENSE=		2-clause-bsd
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-# old package name and other Qt versions
+# old package name and other Python / Qt versions
 CONFLICTS=		gepetto-viewer-corba-[0-9]*
 CONFLICTS+=		qt[0-9]-gepetto-viewer-corba-[0-9]*
+CONFLICTS+=		py[0-9][0-9]-qt[0-9]-gepetto-viewer-corba-[0-9]*
 
 CMAKE_ARGS+=\
   -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
