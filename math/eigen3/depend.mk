@@ -10,14 +10,6 @@ endif
 
 ifeq (+,$(EIGEN3_DEPEND_MK)) # ---------------------------------------------
 
-include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 10.04 10.10 11.04,${OS_VERSION}))
-    PREFER.eigen3?=	robotpkg
-  endif
-else ifeq (NetBSD,${OPSYS})
-  PREFER.eigen3?=	robotpkg
-endif
 PREFER.eigen3?=		system
 
 DEPEND_USE+=		eigen3
@@ -27,12 +19,13 @@ DEPEND_ABI.eigen3?=	eigen3>=3.0.0
 DEPEND_DIR.eigen3?=	../../math/eigen3
 
 SYSTEM_SEARCH.eigen3=	\
-	include/eigen3/signature_of_eigen3_matrix_library  \
-	'{lib,share}/pkgconfig/eigen3.pc:/Version/s/[^0-9.]//gp'
+  'include/eigen3/signature_of_eigen3_matrix_library'		\
+  '{lib,share}/pkgconfig/eigen3.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.eigen3=	libeigen3-dev
 SYSTEM_PKG.Fedora.eigen3=	eigen3-devel
 SYSTEM_PKG.Gentoo.eigen3=	dev-cpp/eigen
+SYSTEM_PKG.NetBSD.eigen3=	math/eigen3
 
 endif # EIGEN3_DEPEND_MK ---------------------------------------------------
 
