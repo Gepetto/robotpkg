@@ -3,7 +3,7 @@ ${PYTHON_SITELIB}/pinocchio/__init__.py
 ${PYTHON_SITELIB}/pinocchio/deprecated.py
 ${PYTHON_SITELIB}/pinocchio/deprecation.py
 ${PYTHON_SITELIB}/pinocchio/explog.py
-${PYTHON_SITELIB}/pinocchio/libpinocchio_pywrap${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/pinocchio/libpinocchio_pywrap.so
 ${PYTHON_SITELIB}/pinocchio/robot_wrapper.py
 ${PYTHON_SITELIB}/pinocchio/romeo_wrapper.py
 ${PYTHON_SITELIB}/pinocchio/rpy.py
