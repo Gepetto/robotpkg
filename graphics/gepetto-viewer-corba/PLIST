@@ -1,7 +1,6 @@
 @comment Thu May 31 18:10:34 CEST 2018
 bin/gepetto-gui
 bin/urdf_to_blender.py
-etc/gepetto-gui/pyplugin.conf.d/f4bb7b40685c0bca4b048df34bc371bc
 include/gepetto/gui/action-search-bar.hh
 include/gepetto/gui/bodytreewidget.hh
 include/gepetto/gui/color-map.hh
@@ -32,7 +31,7 @@ include/gepetto/viewer/corba/fwd.hh
 include/gepetto/viewer/corba/graphical-interface.hh
 include/gepetto/viewer/corba/server.hh
 include/gepetto/viewer/corba/warning.hh
-lib/libgepetto-viewer-corba${PYTHON_EXT_SUFFIX}
+lib/libgepetto-viewer-corba.so
 lib/pkgconfig/gepetto-viewer-corba.pc
 ${PYTHON_SITELIB}/gepetto/__init__.py
 ${PYTHON_SITELIB}/gepetto/blender/gepettoimport.py

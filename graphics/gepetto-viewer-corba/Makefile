@@ -21,6 +21,8 @@ CONFLICTS+=		py[0-9][0-9]-qt[0-9]-gepetto-viewer-corba-[0-9]*
 CMAKE_ARGS+=\
   -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
 
+DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui
+
 include ../../graphics/gepetto-viewer/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/omniORB/depend.mk
