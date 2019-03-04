@@ -17,6 +17,7 @@ CMAKE_ARGS+=	-DCXX_DISABLE_WERROR=yes
 include ../../devel/log4cxx/depend.mk
 include ../../devel/tinyxml/depend.mk
 include ../../math/pinocchio/depend.mk
+include ../../math/hpp-pinocchio/depend.mk
 include ../../path/hpp-manipulation/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mapping/octomap/depend.mk
