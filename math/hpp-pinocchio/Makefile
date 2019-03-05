@@ -9,7 +9,7 @@ HPP_COMMENT=	Wrapping of the kinematic/dynamic chain Pinocchio for HPP.
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-DEPEND_ABI.eigen3 += eigen3>=3.2.2
+DEPEND_ABI.eigen3 += eigen3>=3.2.92
 
 include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
