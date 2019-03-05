@@ -1,0 +1,12 @@
+Missing header for close(2)
+
+--- modules/core/src/precomp.hpp~	2018-02-21 19:27:31.000000000 +0100
++++ modules/core/src/precomp.hpp	2019-03-05 15:06:46.820447406 +0100
+@@ -57,6 +57,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <unistd.h>
+ 
+ #ifdef HAVE_TEGRA_OPTIMIZATION
+ #include "opencv2/core/core_tegra.hpp"
