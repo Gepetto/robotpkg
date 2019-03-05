@@ -2,6 +2,7 @@
 # Created:			Florent Lamiraux on Mon, 9 Mar 2015
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-gepetto-viewer
 PKGNAME=			${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
@@ -19,6 +20,8 @@ CONFLICTS+=		py[0-9][0-9]-qt[0-9]-hpp-gepetto-viewer-[0-9]*
 
 CMAKE_ARGS+=\
   -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
+
+DEPEND_ABI.python+=	python>=2.7<2.8
 
 include ../../graphics/gepetto-viewer-corba/depend.mk
 include ../../mapping/octomap/depend.mk
