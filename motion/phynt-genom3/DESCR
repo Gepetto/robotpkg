@@ -1,0 +1,4 @@
+Physical interaction component for rotorcrafts
+
+This component can filter a desired motion with an admittance filter.
+It also provides an external wrench observer.

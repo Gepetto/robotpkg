@@ -10,6 +10,7 @@ SUBDIR+=	dynamic-graph-bridge-msgs
 SUBDIR+=	locoDemo-genom
 SUBDIR+=	nhfc-genom3
 SUBDIR+=	orocos-kdl
+SUBDIR+=	phynt-genom3
 SUBDIR+=	pilo-genom
 SUBDIR+=	py-dynamic-graph
 SUBDIR+=	py-orocos-kdl
