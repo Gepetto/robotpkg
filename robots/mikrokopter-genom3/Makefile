@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Tue, 10 Nov 2015
 #
 
-PKGREVISION=		1
-DISTNAME=		mikrokopter-genom3-1.7
+DISTNAME=		mikrokopter-genom3-2.0
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
@@ -19,7 +18,7 @@ ifeq (${OS_KERNEL},Linux)
   include ../../mk/sysdep/libudev.mk
 endif
 
-include ../../interfaces/openrobots-idl/depend.mk
+include ../../interfaces/openrobots2-idl/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
