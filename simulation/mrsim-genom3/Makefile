@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 14 Apr 2017
 #
 
-DISTNAME=		mrsim-genom3-1.2
+DISTNAME=		mrsim-genom3-2.0
 CATEGORIES=		simulation
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
@@ -17,7 +17,7 @@ define PKG_OPTION_SET.codels
   include ../../math/eigen3/depend.mk
 endef
 
-include ../../interfaces/openrobots-idl/depend.mk
+include ../../interfaces/openrobots2-idl/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
