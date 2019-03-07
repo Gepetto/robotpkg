@@ -30,8 +30,8 @@ SYSTEM_SEARCH.openjdk=\
   '${_openjdk_p}include/jni.h'					\
   '${_openjdk_p}include/*/jni_md.h'
 
-SYSTEM_PKG.Fedora.openjdk=	java-1.[67].0-openjdk-devel
-SYSTEM_PKG.Debian.openjdk=	openjdk-[67]-jdk
+SYSTEM_PKG.Fedora.openjdk=	java-1.[678].0-openjdk-devel
+SYSTEM_PKG.Debian.openjdk=	openjdk-[678]-jdk
 SYSTEM_PKG.NetBSD.openjdk=	lang/openjdk7
 SYSTEM_PKG.Gentoo.openjdk=	dev-java/icedtea
 SYSTEM_PKG.Arch.openjdk=	jdk[78]-openjdk
