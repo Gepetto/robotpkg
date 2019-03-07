@@ -20,21 +20,21 @@ DEPEND_ABI.openjdk?=	openjdk>=1.6
 DEPEND_METHOD.openjdk?=	${DEPEND_METHOD.java}
 
 _openjdk_p:=	{java/,lib/jvm/,lib/java/,}{,*openjdk*/,*icedtea*/}
-_openjdk_v:=	{y/_/./;s/[^0-9.]//g;h;}
+_openjdk_v:=	{y/_/./;s/[^0-9.]*\([0-9.]*\).*/\1/;h;}
 _openjdk_vv:=	/version/${_openjdk_v};/OpenJDK/{g;p;q;}
 SYSTEM_SEARCH.openjdk=\
   '${_openjdk_p}bin/java:${_openjdk_vv}:% -version'		\
-  '${_openjdk_p}bin/javac:${_openjdk_v}:% -version'		\
+  '${_openjdk_p}bin/javac:${_openjdk_v};p:% -version'		\
   '${_openjdk_p}bin/jar'					\
   '${_openjdk_p}bin/javadoc'					\
   '${_openjdk_p}include/jni.h'					\
   '${_openjdk_p}include/*/jni_md.h'
 
-SYSTEM_PKG.Fedora.openjdk=	java-1.[678].0-openjdk-devel
-SYSTEM_PKG.Debian.openjdk=	openjdk-[678]-jdk
-SYSTEM_PKG.NetBSD.openjdk=	lang/openjdk7
+SYSTEM_PKG.Fedora.openjdk=	java-*-openjdk-devel
+SYSTEM_PKG.Debian.openjdk=	openjdk-*-jdk
+SYSTEM_PKG.NetBSD.openjdk=	lang/openjdk*
 SYSTEM_PKG.Gentoo.openjdk=	dev-java/icedtea
-SYSTEM_PKG.Arch.openjdk=	jdk[78]-openjdk
+SYSTEM_PKG.Arch.openjdk=	jdk*-openjdk
 
 export JAVA_HOME=	$(abspath $(dir $(word 1,${SYSTEM_FILES.openjdk}))/..)
 export JAVA_INCLUDE=	$(dir $(word 5,${SYSTEM_FILES.openjdk}))
