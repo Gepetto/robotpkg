@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Mon,  9 Nov 2015
 #
 
-PKGREVISION=		1
-DISTNAME=		optitrack-genom3-1.6.1
+DISTNAME=		optitrack-genom3-2.0
 CATEGORIES=		interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}optitrack-genom3
@@ -15,6 +14,6 @@ LICENSE=		isc
 include ../../architecture/genom3/module.mk
 
 include ../../pkgtools/pkg-config/depend.mk
-include ../../interfaces/openrobots-idl/depend.mk
+include ../../interfaces/openrobots2-idl/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
