@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 13 Dec 2016
 #
 
-DISTNAME=		maneuver-genom3-1.4
+DISTNAME=		maneuver-genom3-2.0
 CATEGORIES=		path
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
@@ -13,7 +13,7 @@ LICENSE=		2-clause-bsd
 
 include ../../architecture/genom3/module.mk
 
-include ../../interfaces/openrobots-idl/depend.mk
+include ../../interfaces/openrobots2-idl/depend.mk
 include ../../path/libkdtp/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
