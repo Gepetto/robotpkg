@@ -2,9 +2,7 @@
 # Created:			Anthony Mallet on Mon, 21 Mar 2016
 #
 
-PKGREVISION=		2
-
-DISTNAME=		pom-genom3-2.3
+DISTNAME=		pom-genom3-3.0
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
@@ -15,7 +13,7 @@ LICENSE=		2-clause-bsd
 
 include ../../architecture/genom3/module.mk
 
-include ../../interfaces/openrobots-idl/depend.mk
+include ../../interfaces/openrobots2-idl/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
