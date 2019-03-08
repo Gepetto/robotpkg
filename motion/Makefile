@@ -24,5 +24,6 @@ SUBDIR+=	sot-dynamic
 SUBDIR+=	sot-pattern-generator
 SUBDIR+=	sot-romeo
 SUBDIR+=	uavatt-genom3
+SUBDIR+=	uavpos-genom3
 
 include ../mk/robotpkg.subdir.mk

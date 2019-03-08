@@ -1,0 +1,6 @@
+Position flight controller for rotorcrafts.
+
+This implements the position controller bits described in
+  T. Lee, M. Leoky and N. H. McClamroch, "Geometric tracking control of a
+  quadrotor UAV on SE(3)", 49th IEEE Conference on Decision and Control
+  (CDC), Atlanta, GA, 2010, pp. 5420-5425.
