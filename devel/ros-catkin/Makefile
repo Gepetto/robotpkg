@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	catkin
-ROS_VERSION=	0.7.14
+ROS_VERSION=	0.7.16
 
 CATEGORIES=	devel
 ROS_COMMENT=	low-level build system macros and infrastructure

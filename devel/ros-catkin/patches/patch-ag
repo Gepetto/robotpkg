@@ -1,8 +1,8 @@
 Install env.sh et al. in etc/ros instead of root prefix
 
---- cmake/catkin_generate_environment.cmake~	2018-06-06 18:18:22.000000000 +0200
-+++ cmake/catkin_generate_environment.cmake	2018-09-04 15:07:25.726401000 +0200
-@@ -72,7 +72,7 @@
+--- cmake/catkin_generate_environment.cmake.orig	2019-03-12 21:20:06.000000000 +0100
++++ cmake/catkin_generate_environment.cmake	2019-03-19 22:19:57.086462649 +0100
+@@ -78,7 +78,7 @@
      @ONLY)
  
    # installspace
@@ -11,7 +11,7 @@ Install env.sh et al. in etc/ros instead of root prefix
  
    if(CATKIN_INSTALL_INTO_PREFIX_ROOT)
      # install empty workspace marker if it doesn't already exist
-@@ -90,7 +90,7 @@
+@@ -96,7 +96,7 @@
        @ONLY)
      catkin_install_python(PROGRAMS
        ${CMAKE_BINARY_DIR}/catkin_generated/installspace/_setup_util.py
@@ -20,7 +20,7 @@ Install env.sh et al. in etc/ros instead of root prefix
    endif()
  
    if(NOT WIN32)
-@@ -102,7 +102,7 @@
+@@ -108,7 +108,7 @@
      if(CATKIN_INSTALL_INTO_PREFIX_ROOT)
        install(PROGRAMS
          ${CMAKE_BINARY_DIR}/catkin_generated/installspace/env.sh
@@ -29,10 +29,10 @@ Install env.sh et al. in etc/ros instead of root prefix
      endif()
      # generate and install setup for various shells
      foreach(shell bash sh zsh)
-@@ -112,7 +112,7 @@
-       if(CATKIN_INSTALL_INTO_PREFIX_ROOT)
+@@ -122,7 +122,7 @@
          install(FILES
            ${CMAKE_BINARY_DIR}/catkin_generated/installspace/setup.${shell}
+           ${CMAKE_BINARY_DIR}/catkin_generated/installspace/local_setup.${shell}
 -          DESTINATION ${CMAKE_INSTALL_PREFIX})
 +          DESTINATION ${SETUP_DIR})
        endif()

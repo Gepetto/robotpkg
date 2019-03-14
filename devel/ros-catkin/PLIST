@@ -1,4 +1,4 @@
-@comment Tue Sep 4 15:08:37 CEST 2018
+@comment Wed Mar 20 17:09:32 CET 2019
 .rosinstall
 bin/catkin_find
 bin/catkin_init_workspace
@@ -10,6 +10,9 @@ etc/catkin/profile.d/05.catkin_make.bash
 etc/catkin/profile.d/05.catkin_make_isolated.bash
 etc/ros/_setup_util.py
 etc/ros/env.sh
+etc/ros/local_setup.bash
+etc/ros/local_setup.sh
+etc/ros/local_setup.zsh
 etc/ros/setup.bash
 etc/ros/setup.sh
 etc/ros/setup.zsh
@@ -28,6 +31,8 @@ ${PYTHON_SITELIB}/catkin/tidy_xml.py
 ${PYTHON_SITELIB}/catkin/workspace.py
 ${PYTHON_SITELIB}/catkin/workspace_vcs.py
 share/catkin/LICENSE
+share/catkin/catkin_env_hook/05.catkin_make.bash
+share/catkin/catkin_env_hook/05.catkin_make_isolated.bash
 share/catkin/cmake/all.cmake
 share/catkin/cmake/assert.cmake
 share/catkin/cmake/atomic_configure_file.cmake
@@ -85,16 +90,22 @@ share/catkin/cmake/templates/env-hook.context.py.in
 share/catkin/cmake/templates/env.bat.in
 share/catkin/cmake/templates/env.sh.in
 share/catkin/cmake/templates/generate_cached_setup.py.in
+share/catkin/cmake/templates/local_setup.bash.in
+share/catkin/cmake/templates/local_setup.bat.in
+share/catkin/cmake/templates/local_setup.sh.in
+share/catkin/cmake/templates/local_setup.zsh.in
 share/catkin/cmake/templates/order_packages.context.py.in
 share/catkin/cmake/templates/pkg.context.pc.in
 share/catkin/cmake/templates/pkgConfig-version.cmake.in
 share/catkin/cmake/templates/pkgConfig.cmake.in
 share/catkin/cmake/templates/python_distutils_install.bat.in
 share/catkin/cmake/templates/python_distutils_install.sh.in
+share/catkin/cmake/templates/python_win32_wrapper.cpp.in
 share/catkin/cmake/templates/relay.py.in
 share/catkin/cmake/templates/rosinstall.in
 share/catkin/cmake/templates/safe_execute_install.cmake.in
 share/catkin/cmake/templates/script.bash.in
+share/catkin/cmake/templates/script.bat.in
 share/catkin/cmake/templates/script.in
 share/catkin/cmake/templates/script.py.in
 share/catkin/cmake/templates/script.sh.in

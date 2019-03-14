@@ -1,9 +1,8 @@
-SHA1 (ros/catkin/0.7.14.tar.gz) = f681cc08d441a0599067208fc964f868f9c957bd
-RMD160 (ros/catkin/0.7.14.tar.gz) = 1137f5011a3e8f1600653199ac866cafbde0c5db
-Size (ros/catkin/0.7.14.tar.gz) = 203422 bytes
+SHA1 (ros/catkin/0.7.16.tar.gz) = f6b2b71df90b4b9c7d1817b001b8f9c1f4fc4c22
+RMD160 (ros/catkin/0.7.16.tar.gz) = aef4c7689a10cd1e1b51078bec0b5acd4bb1e907
+Size (ros/catkin/0.7.16.tar.gz) = 211974 bytes
 SHA1 (patch-ad) = 5e63b08d55ae41442d1042a636748468f9c855bc
 SHA1 (patch-af) = 8b6cc69f95e4c320780f9fa2ac5aaae85fc76c14
-SHA1 (patch-ag) = 3e97b5b2f7322a79cd744cd7a637e4d8019e444d
+SHA1 (patch-ag) = 50846fd8d14b9667a752007f08e034ac844da8bf
 SHA1 (patch-aj) = b1ed4b520056631c8be7d826c02e3c49e8fdb8fe
 SHA1 (patch-ak) = ee2f72ed6c93e0476ce6536f48acbced92b3117b
-SHA1 (patch-al) = df4bf475181492b98b21502f8400e748a9ff20ec
