@@ -1,0 +1,14 @@
+fix build on Boost 1.69+
+ref https://github.com/ros/geometry2/pull/354
+
+--- tf2/CMakeLists.txt.orig	2018-07-10 08:28:37.000000000 +0200
++++ tf2/CMakeLists.txt	2019-03-19 22:46:00.102343867 +0100
+@@ -3,7 +3,7 @@
+ 
+ find_package(console_bridge REQUIRED)
+ find_package(catkin REQUIRED COMPONENTS geometry_msgs rostime tf2_msgs)
+-find_package(Boost REQUIRED COMPONENTS signals system thread)
++find_package(Boost REQUIRED COMPONENTS system thread)
+ 
+ catkin_package(
+    INCLUDE_DIRS include
