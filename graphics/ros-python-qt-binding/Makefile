@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	python_qt_binding
-ROS_VERSION=	0.3.4
+ROS_VERSION=	0.3.5
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	graphics
