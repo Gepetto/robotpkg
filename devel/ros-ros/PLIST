@@ -1,4 +1,4 @@
-@comment Tue Sep 4 17:15:37 CEST 2018
+@comment Wed Mar 20 17:35:43 CET 2019
 bin/rosboost-cfg
 bin/rosclean
 bin/roscreate-pkg
@@ -91,6 +91,10 @@ share/ros/core/rosbuild/rosconfig.cmake
 share/ros/core/rosbuild/rostoolchain.cmake
 share/ros/core/rosbuild/tests/count_cores.py
 share/ros/package.xml
+share/rosbash/catkin_env_hook/15.rosbash.bash
+share/rosbash/catkin_env_hook/15.rosbash.fish
+share/rosbash/catkin_env_hook/15.rosbash.tcsh
+share/rosbash/catkin_env_hook/15.rosbash.zsh
 share/rosbash/cmake/rosbashConfig-version.cmake
 share/rosbash/cmake/rosbashConfig.cmake
 share/rosbash/package.xml
@@ -101,6 +105,7 @@ share/rosbash/roszsh
 share/rosboost_cfg/cmake/rosboost_cfgConfig-version.cmake
 share/rosboost_cfg/cmake/rosboost_cfgConfig.cmake
 share/rosboost_cfg/package.xml
+share/rosbuild/catkin_env_hook/10.rosbuild.sh
 share/rosbuild/cmake/rosbuildConfig-version.cmake
 share/rosbuild/cmake/rosbuildConfig.cmake
 share/rosbuild/package.xml
