@@ -1,4 +1,4 @@
-@comment Fri Sep 7 14:37:38 CEST 2018
+@comment Wed Mar 20 17:51:53 CET 2019
 bin/rosbag
 bin/rosconsole
 bin/roscore
@@ -912,6 +912,7 @@ share/rosgraph/cmake/rosgraphConfig-version.cmake
 share/rosgraph/cmake/rosgraphConfig.cmake
 share/rosgraph/conf/python_logging.conf
 share/rosgraph/package.xml
+share/roslaunch/catkin_env_hook/10.roslaunch.sh
 share/roslaunch/cmake/roslaunch-extras.cmake
 share/roslaunch/cmake/roslaunchConfig-version.cmake
 share/roslaunch/cmake/roslaunchConfig.cmake
@@ -1052,6 +1053,7 @@ share/test_rostopic/msg/Simple.msg
 share/test_rostopic/msg/TVals.msg
 share/test_rostopic/msg/Val.msg
 share/test_rostopic/package.xml
+share/topic_tools/catkin_env_hook/20.transform.bash
 share/topic_tools/cmake/topic_tools-msg-extras.cmake
 share/topic_tools/cmake/topic_tools-msg-paths.cmake
 share/topic_tools/cmake/topic_toolsConfig-version.cmake
