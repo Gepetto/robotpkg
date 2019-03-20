@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 LAAS/CNRS
+# Copyright (c) 2018-2019 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -63,9 +63,6 @@ ifeq (+,$(QT_DEPEND_MK)) # -------------------------------------------------
 
 PREFER.qt?=		system
 DEPEND_ABI.qt?=		qt>=4
-
-# define some variables for use in the packages
-export QT_SELECT=	$(subst qt,,${PKG_ALTERNATIVE.qt})
 
 # set default preferences depending on OS/VERSION
 PREFER_ALTERNATIVE.qt?=		qt5 qt4

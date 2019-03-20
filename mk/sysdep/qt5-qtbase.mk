@@ -10,8 +10,7 @@ endif
 
 ifeq (+,$(QT5_QTBASE_DEPEND_MK)) # -----------------------------------------
 
-include ../../mk/sysdep/qt.mk
-PREFER.qt5-qtbase?=	${PREFER.qt}
+PREFER.qt5-qtbase?=	$(or ${PREFER.qt},system)
 
 DEPEND_USE+=		qt5-qtbase
 DEPEND_ABI.qt5-qtbase?=	qt5-qtbase>=5<6
@@ -29,6 +28,9 @@ SYSTEM_PKG.NetBSD.qt5-qtbase=	x11/qt5-qtbase
 
 # this is required for cmake to locate the Config.cmake files
 CMAKE_PREFIX_PATH+=${PREFIX.qt5-qtbase}
+
+# define Qt version for qmake et al.
+export QT_SELECT=	5
 
 endif # QT5_QTBASE_DEPEND_MK -----------------------------------------------
 
