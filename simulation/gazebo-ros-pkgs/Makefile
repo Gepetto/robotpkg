@@ -54,6 +54,7 @@ include ../../motion/ros-control-toolbox/depend.mk
 include ../../motion/ros-control/depend.mk
 include ../../sysutils/ros-diagnostics/depend.mk
 include ../../mk/sysdep/gazebo.mk
+include ../../mk/sysdep/libogre.mk
 include ../../mk/sysdep/libxml2.mk
 include ../../mk/sysdep/py-argparse.mk
 include ../../mk/robotpkg.mk

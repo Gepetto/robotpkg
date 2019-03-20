@@ -1,0 +1,16 @@
+fix link if libOgreMain is in a different prefix
+
+--- gazebo_ros_control/CMakeLists.txt.orig	2019-03-20 10:02:17.000000000 +0100
++++ gazebo_ros_control/CMakeLists.txt	2019-03-20 10:27:48.891583200 +0100
+@@ -51,8 +51,11 @@
+   LIBRARIES ${PROJECT_NAME} default_robot_hw_sim
+ )
+ 
++pkg_check_modules(OGRE OGRE)
++
+ link_directories(
+   ${catkin_LIBRARY_DIRS}
++  ${OGRE_LIBRARY_DIRS}
+ )
+ 
+ include_directories(include
