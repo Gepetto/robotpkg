@@ -3,4 +3,4 @@ RMD160 (ros/gazebo_ros_pkgs/2.8.4.tar.gz) = b7249bfb91e0c4cb872f94268e0596b5fddd
 Size (ros/gazebo_ros_pkgs/2.8.4.tar.gz) = 1853755 bytes
 SHA1 (patch-aa) = 3a377f17761f171bf1b279985ee724e983d63356
 SHA1 (patch-ab) = 93328abee8d81067b9e56e311b2ea5def725fdf5
-SHA1 (patch-ac) = 9cb44d246decc45ac56fc6d0a148dda4c9307b49
+SHA1 (patch-ac) = 5cd2acc030f2b8c6f154e17da3ed9ab2646396d7
