@@ -1,0 +1,37 @@
+- Link with assimp as a private library so that the dependency is not transitive
+  (for default_plugin).
+
+- Don't install garbage
+
+--- src/rviz/CMakeLists.txt~	2018-05-11 02:05:40.000000000 +0200
++++ src/rviz/CMakeLists.txt	2018-09-14 18:10:28.289263579 +0200
+@@ -135,7 +135,7 @@
+ endif()
+ 
+ target_link_libraries(${PROJECT_NAME}
+-  ${Boost_LIBRARIES}
++  LINK_PUBLIC ${Boost_LIBRARIES}
+   ${catkin_LIBRARIES}
+   ${QT_LIBRARIES}
+   ${OGRE_OV_LIBRARIES_ABS}
+@@ -143,7 +143,7 @@
+   ${rviz_ADDITIONAL_LIBRARIES}
+   ${TinyXML2_LIBRARIES}
+   ${X11_X11_LIB}
+-  ${ASSIMP_LIBRARIES}
++  LINK_PRIVATE ${ASSIMP_LIBRARIES}
+   ${YAMLCPP_LIBRARIES}
+ )
+ 
+@@ -176,7 +176,10 @@
+ 
+ install(DIRECTORY ./
+   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+-  FILES_MATCHING PATTERN "*.h")
++  FILES_MATCHING PATTERN "*.h"
++  PATTERN "*CMakeFiles*" EXCLUDE
++  PATTERN "*automoc*" EXCLUDE
++  PATTERN "*autogen*" EXCLUDE)
+ 
+ install(FILES
+   ${CMAKE_CURRENT_BINARY_DIR}/rviz/${PROJECT_NAME}_export.h

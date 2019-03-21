@@ -1,0 +1,28 @@
+Fix build with tinyxml2 < 6
+
+--- src/rviz/mesh_loader.cpp~	2019-03-09 12:24:19.000000000 +0100
++++ src/rviz/mesh_loader.cpp	2019-03-21 15:19:58.074056240 +0100
+@@ -70,6 +70,14 @@
+ 
+ namespace rviz
+ {
++  /* tinyxml2 api changes ... */
++  template<class C> auto xmlerror(C &c) -> decltype(c.ErrorStr()) {
++    return c.ErrorStr();
++  }
++  template<class C> auto xmlerror(C &c) -> decltype(c.GetErrorStr1()) {
++    return (std::string(c.GetErrorStr1()) +
++      std::string("\n") + std::string(c.GetErrorStr2())).c_str();
++  }
+ 
+ class ResourceIOStream : public Assimp::IOStream
+ {
+@@ -623,7 +630,7 @@
+   }
+   else
+   {
+-    ROS_ERROR("XML parse error [%s]: %s", resource_path.c_str(), xmlDoc.ErrorStr());
++    ROS_ERROR("XML parse error [%s]: %s", resource_path.c_str(), xmlerror(xmlDoc));
+   }
+   return unit_scale;
+ }
