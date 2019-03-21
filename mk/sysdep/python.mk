@@ -35,7 +35,7 @@
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: python27 python32 python34 python35 python36
+#	Possible values: python27 python34 python35 python36 python37
 #
 # === Package-settable variables ===
 #
@@ -101,19 +101,13 @@ CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python27
-PKG_ALTERNATIVES.python+=	python32 python34 python35 python36 python37
+PKG_ALTERNATIVES.python+=	python34 python35 python36 python37
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 7.%,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python32
-  endif
   PREFER_ALTERNATIVE.python?=	python27 python34
 else ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python32
-  endif
   ifneq (,$(filter 14.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python34
   endif
@@ -123,8 +117,6 @@ else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 18.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python36
   endif
-else ifeq (OpenNao,${OPSYS})
-  PREFER_ALTERNATIVE.python?=	python27 python32
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python34
 else ifeq (Arch,${OPSYS})
@@ -142,18 +134,6 @@ define PKG_ALTERNATIVE_SET.python27
   DEPEND_ABI.python27?=	$(strip ${_py_abi})
 
   include ../../mk/sysdep/python27.mk
-endef
-
-PKG_ALTERNATIVE_DESCR.python32= Use python-3.2
-PKGTAG.python32 =		py32
-define PKG_ALTERNATIVE_SELECT.python32
-  $(call preduce,${DEPEND_ABI.python} python>=3.2<3.3)
-endef
-define PKG_ALTERNATIVE_SET.python32
-  _py_abi:=$(subst python,python32,${PKG_ALTERNATIVE_SELECT.python32})
-  DEPEND_ABI.python32?=	$(strip ${_py_abi})
-
-  include ../../mk/sysdep/python32.mk
 endef
 
 PKG_ALTERNATIVE_DESCR.python34= Use python-3.4
