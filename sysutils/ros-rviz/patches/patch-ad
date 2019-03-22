@@ -1,0 +1,14 @@
+Fix for OGRE < 1.8
+
+--- src/rviz/robot/robot_link.cpp~	2019-03-09 12:24:19.000000000 +0100
++++ src/rviz/robot/robot_link.cpp	2019-03-22 15:22:17.257819709 +0100
+@@ -459,7 +459,8 @@
+   if (!material)
+   {
+     // clone default material (for modification by link)
+-    *mat = *Ogre::MaterialManager::getSingleton().getByName("RVIZ/ShadedRed");
++    Ogre::MaterialPtr c = Ogre::MaterialManager::getSingleton().getByName("RVIZ/ShadedRed");
++    *mat = *c;
+     return mat;
+   }
+ 

@@ -1,4 +1,4 @@
-@comment Fri Sep 14 18:23:50 CEST 2018
+@comment Fri Mar 22 15:50:43 CET 2019
 bin/rviz
 include/rviz/add_display_dialog.h
 include/rviz/bit_allocator.h
@@ -52,6 +52,8 @@ include/rviz/default_plugin/pose_with_covariance_display.h
 include/rviz/default_plugin/range_display.h
 include/rviz/default_plugin/relative_humidity_display.h
 include/rviz/default_plugin/robot_model_display.h
+include/rviz/default_plugin/rviz/default_plugin/rviz_default_plugin_export.h
+include/rviz/default_plugin/rviz_default_plugin_export.h
 include/rviz/default_plugin/temperature_display.h
 include/rviz/default_plugin/tf_display.h
 include/rviz/default_plugin/tools/focus_tool.h
@@ -156,6 +158,8 @@ include/rviz/robot/robot.h
 include/rviz/robot/robot_joint.h
 include/rviz/robot/robot_link.h
 include/rviz/robot/tf_link_updater.h
+include/rviz/rviz/rviz_export.h
+include/rviz/rviz_export.h
 include/rviz/scaled_image_widget.h
 include/rviz/screenshot_dialog.h
 include/rviz/selection/forwards.h
@@ -224,6 +228,7 @@ share/rviz/icons/classes/PointStamped.png
 share/rviz/icons/classes/Polygon.png
 share/rviz/icons/classes/Pose.png
 share/rviz/icons/classes/PoseArray.png
+share/rviz/icons/classes/PoseWithCovariance.png
 share/rviz/icons/classes/PublishPoint.svg
 share/rviz/icons/classes/Range.png
 share/rviz/icons/classes/RelativeHumidity.png
