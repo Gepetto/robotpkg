@@ -1,6 +1,6 @@
 --- CMakeLists.txt~	2019-03-22 10:55:41.867972043 +0100
 +++ CMakeLists.txt	2019-03-22 11:29:06.642213144 +0100
-@@ -160,10 +160,32 @@
+@@ -160,10 +160,33 @@
  # ----------------------------------------------------
  # --- INCLUDE ----------------------------------------
  # ----------------------------------------------------
@@ -31,6 +31,7 @@
 +  ${PROJECT_SOURCE_DIR}/src/parsers/urdf/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/spatial/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/spatial/*.hxx
++  ${PROJECT_SOURCE_DIR}/src/serialization/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/utils/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/utils/*.hxx
 +  )

@@ -1,6 +1,6 @@
 --- bindings/python/CMakeLists.txt~	2019-03-25 11:31:39.635165275 +0100
 +++ bindings/python/CMakeLists.txt	2019-03-25 11:32:06.099326685 +0100
-@@ -52,29 +52,87 @@
+@@ -52,29 +52,91 @@
  SET(${PYWRAP}_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}/${PROJECT_NAME})
  ENDIF(BUILD_PYTHON_INTERFACE)
  
@@ -33,6 +33,7 @@
 +  utils/pickle-vector.hpp
 +  utils/printable.hpp
 +  utils/constant.hpp
++  utils/dependencies.hpp
 +  utils/std-vector.hpp
 +  utils/copyable.hpp
 +  utils/version.hpp
@@ -40,6 +41,9 @@
 +  utils/std-aligned-vector.hpp
 +  utils/pickle-map.hpp
 +  utils/conversions.hpp
++  utils/list.hpp
++  utils/namespace.hpp
++  serialization/serializable.hpp
 +  spatial/motion.hpp
 +  spatial/explog.hpp
 +  spatial/se3.hpp
