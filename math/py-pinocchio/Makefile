@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			pinocchio
-VERSION=		2.1.0
+VERSION=		2.1.2
 
 DISTNAME=		${NAME}-${VERSION}
 PKGNAME=		${PKGTAG.python-}${DISTNAME}
@@ -29,6 +29,8 @@ USE_BOOST_LIBS=		python
 Boost_PYTHON_LIBRARY=	$(filter %.so,${SYSTEM_FILES.boost-lib-python})
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_RELEASE=${Boost_PYTHON_LIBRARY}
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_DEBUG=${Boost_PYTHON_LIBRARY}
+
+DEPEND_ABI.pinocchio=	pinocchio>=2.1.2
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

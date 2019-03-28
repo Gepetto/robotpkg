@@ -1,18 +1,18 @@
 py-pinocchio needs pinocchio
 
---- CMakeLists.txt.orig	2019-02-27 14:02:32.000000000 +0100
-+++ CMakeLists.txt	2019-02-27 14:03:59.233145130 +0100
-@@ -83,6 +83,7 @@
- ADD_REQUIRED_DEPENDENCY("hpp-fcl >= 1.0.0")
+--- CMakeLists.txt.orig	2019-03-28 17:24:43.000000000 +0100
++++ CMakeLists.txt	2019-03-28 17:25:26.462326654 +0100
+@@ -84,6 +84,7 @@
+ # --- DEPENDENCIES -----------------------------------
+ # ----------------------------------------------------
+ ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
++ADD_REQUIRED_DEPENDENCY("pinocchio >= 2.1.1")
  
- ADD_OPTIONAL_DEPENDENCY("cppad >= 20180000.0")
-+ADD_REQUIRED_DEPENDENCY("pinocchio")
- 
- IF(CPPAD_FOUND)
-   ADD_DEFINITIONS(-DPINOCCHIO_WITH_CPPAD_SUPPORT)
---- bindings/python/CMakeLists.txt.orig	2019-02-26 17:08:12.000000000 +0100
-+++ bindings/python/CMakeLists.txt	2019-02-27 14:04:17.329252048 +0100
-@@ -120,6 +115,7 @@
+ IF(BUILD_WITH_URDF_SUPPORT)
+   ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2.0")
+--- bindings/python/CMakeLists.txt.orig	2019-03-28 18:20:24.000000000 +0100
++++ bindings/python/CMakeLists.txt	2019-03-28 18:21:32.804726182 +0100
+@@ -185,6 +185,7 @@
  ADD_HEADER_GROUP(${PYWRAP}_HEADERS)
  ADD_SOURCE_GROUP(${PYWRAP}_SOURCES)
  PKG_CONFIG_USE_DEPENDENCY(${PYWRAP} eigenpy)

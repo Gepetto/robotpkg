@@ -1,12 +1,13 @@
 don't depend on catkin
 
---- CMakeLists.txt.orig	2019-02-27 13:45:47.000000000 +0100
-+++ CMakeLists.txt	2019-02-27 13:46:11.255003037 +0100
-@@ -79,7 +79,6 @@
- ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
- ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2.0")
+--- CMakeLists.txt.orig	2019-03-28 17:10:30.860988310 +0100
++++ CMakeLists.txt	2019-03-28 17:10:36.953079345 +0100
+@@ -90,7 +90,6 @@
+ ENDIF(BUILD_WITH_URDF_SUPPORT)
  
--find_package(catkin QUIET COMPONENTS hpp-fcl)  # compatability with catkin-packaged hpp-fcl
- ADD_REQUIRED_DEPENDENCY("hpp-fcl >= 1.0.0")
+ IF(BUILD_WITH_COLLISION_SUPPORT)
+-  find_package(catkin QUIET COMPONENTS hpp-fcl)  # compatability with catkin-packaged hpp-fcl
+   ADD_REQUIRED_DEPENDENCY("hpp-fcl >= 1.0.0")
+ ENDIF(BUILD_WITH_COLLISION_SUPPORT)
  
  ADD_OPTIONAL_DEPENDENCY("cppad >= 20180000.0")

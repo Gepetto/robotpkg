@@ -1,16 +1,16 @@
---- CMakeLists.txt.orig	2019-02-27 14:07:13.000000000 +0100
-+++ CMakeLists.txt	2019-02-27 14:07:49.954504605 +0100
-@@ -140,9 +140,6 @@
+--- CMakeLists.txt.orig	2019-03-28 17:26:35.000000000 +0100
++++ CMakeLists.txt	2019-03-28 17:27:14.227926022 +0100
+@@ -155,9 +155,6 @@
    ENDIF(LUA5_2_FOUND)
  ENDIF(BUILD_WITH_LUA_SUPPORT)
  
--SET(BOOST_REQUIERED_COMPONENTS filesystem system)
+-SET(BOOST_REQUIERED_COMPONENTS filesystem serialization system)
 -SET(BOOST_BUILD_COMPONENTS unit_test_framework)
 -SET(BOOST_OPTIONAL_COMPONENTS "")
  
  IF(BUILD_PYTHON_INTERFACE)
    SET(BOOST_OPTIONAL_COMPONENTS ${BOOST_OPTIONAL_COMPONENTS} python)
-@@ -206,51 +203,20 @@
+@@ -221,53 +218,9 @@
       macros.hpp
       )
  
@@ -24,6 +24,7 @@
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers/urdf")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/utils")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/serialization")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/algorithm")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/container")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/codegen")
@@ -41,24 +42,25 @@
 -          PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
 -ENDFOREACH(header)
 -SET(HEADERS ${HEADERS_})
- 
- # --- MAIN LIBRARY -------------------------------------------------------------
+-
+-# --- MAIN LIBRARY -------------------------------------------------------------
 -ADD_SUBDIRECTORY(src)
- 
+-
  # --- BINDINGS -----------------------------------------------------------------
  ADD_SUBDIRECTORY(bindings)
  
- # --- EXECUTABLES --------------------------------------------------------------
+-# --- EXECUTABLES --------------------------------------------------------------
 -ADD_SUBDIRECTORY(utils)
- 
- # --- UNIT TESTS ---------------------------------------------------------------
+-
+-# --- UNIT TESTS ---------------------------------------------------------------
 -ADD_SUBDIRECTORY(unittest)
- 
- # --- CHECK EXAMPLES -----------------------------------------------------------
- ADD_SUBDIRECTORY(examples)
- 
- # --- BENCHMARKS ---------------------------------------------------------------
+-
+-# --- CHECK EXAMPLES -----------------------------------------------------------
+-ADD_SUBDIRECTORY(examples)
+-
+-# --- BENCHMARKS ---------------------------------------------------------------
 -ADD_SUBDIRECTORY(benchmark)
- 
+-
  # --- PACKAGING ----------------------------------------------------------------
  PKG_CONFIG_APPEND_LIBS (${PROJECT_NAME})
+ PKG_CONFIG_APPEND_BOOST_LIBS(${BOOST_REQUIERED_COMPONENTS})
