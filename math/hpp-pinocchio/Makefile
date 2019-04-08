@@ -11,6 +11,11 @@ include ../../meta-pkgs/hpp/Makefile.common
 
 DEPEND_ABI.eigen3 += eigen3>=3.2.92
 
+# TODO: for tests
+#include ../../wip/hpp-environments/depend.mk
+#include ../../wip/ros-baxter-common/depend.mk
+#include ../../robots/romeo-description/depend.mk
+
 include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../math/pinocchio/depend.mk
