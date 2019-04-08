@@ -1,5 +1,4 @@
 @comment Thu May 12 17:11:10 CEST 2016
-include/romeo/description/config.h
 include/romeo/description/config.hh
 include/romeo/description/deprecated.hh
 include/romeo/description/warning.hh
@@ -74,6 +73,7 @@ share/romeo_description/meshes/V1/visual/TrunkYaw.dae
 share/romeo_description/package.xml
 share/romeo_description/rcpdf/romeo.rcpdf
 share/romeo_description/srdf/romeo.srdf
+share/romeo_description/srdf/romeo_moveit.srdf
 share/romeo_description/srdf/romeo_small.srdf
 share/romeo_description/urdf/romeo.urdf
 share/romeo_description/urdf/romeo_small.urdf
