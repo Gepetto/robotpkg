@@ -1,7 +1,7 @@
 # robotpkg Makefile for:	robots/romeo-description
 # Created:			Aurélie Clodic on Wed, 11 Jun 2014
 #
-VERSION=		0.5.0
+VERSION=		0.5.1
 DISTNAME=		romeo_description-${VERSION}
 PKGNAME=		romeo-description-${VERSION}
 MASTER_URL=		laas/romeo/releases/download/v${VERSION}
@@ -14,6 +14,8 @@ LICENSE=		2-clause-bsd
 MAINTAINER=		hpp@laas.fr
 
 DYNAMIC_PLIST_DIRS+=	share/doc/romeo_description
+
+CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
 include ../../devel/ros-catkin/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
