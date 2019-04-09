@@ -15,7 +15,7 @@ PREFER.hpp-corbaserver?=	robotpkg
 
 DEPEND_USE+=			hpp-corbaserver
 
-DEPEND_ABI.hpp-corbaserver?=	hpp-corbaserver>=4.2.0
+DEPEND_ABI.hpp-corbaserver?=	hpp-corbaserver>=4.5.0
 DEPEND_DIR.hpp-corbaserver?=	../../path/hpp-corbaserver
 
 SYSTEM_SEARCH.hpp-corbaserver=\
@@ -23,7 +23,11 @@ SYSTEM_SEARCH.hpp-corbaserver=\
   'lib/libhpp-corbaserver.so'					\
   'lib/pkgconfig/hpp-corbaserver.pc:/Version/s/[^0-9.]//gp'
 
+# need omniidl_be in PYTHONPATH
+PYTHONPATH.hpp-corbaserver+=	$(dir ${SYSTEM_FILES.omniORBpy})
+
 include ../../middleware/omniORB/depend.mk
+include ../../middleware/omniORBpy/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../path/hpp-constraints/depend.mk
 include ../../math/hpp-pinocchio/depend.mk

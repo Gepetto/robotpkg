@@ -1,0 +1,25 @@
+fix build on omniorb 4.2+
+
+--- cmake-modules/omniidl/cxx_impl/__init__.py.orig	2019-04-11 19:34:16.000000000 +0200
++++ cmake-modules/omniidl/cxx_impl/__init__.py	2019-04-11 19:35:00.684868500 +0200
+@@ -106,10 +106,16 @@
+ # so we can produce a friendly error message later.
+ AST_unsupported_nodes = [ "Native" ]
+ 
+-config.state._config['HPP Suffix'] = ".hpp"
+-config.state._config['HXX Suffix'] = ".hxx"
+-config.state._config['CC Suffix']  = ".cc"
+-config.state._config['Include Prefix']  = ""
++try:
++    config.state._config['HPP Suffix'] = ".hpp"
++    config.state._config['HXX Suffix'] = ".hxx"
++    config.state._config['CC Suffix']  = ".cc"
++    config.state._config['Include Prefix']  = ""
++except AttributeError:
++    config.state['HPP Suffix'] = ".hpp"
++    config.state['HXX Suffix'] = ".hxx"
++    config.state['CC Suffix']  = ".cc"
++    config.state['Include Prefix']  = ""
+ 
+ def process_args(args):
+     for arg in args:

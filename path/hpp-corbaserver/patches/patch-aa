@@ -1,0 +1,22 @@
+fix python syntax
+
+--- cmake-modules/omniidl/cxx_impl/__init__.py.orig	2019-03-31 22:48:25.000000000 +0200
++++ cmake-modules/omniidl/cxx_impl/__init__.py	2019-04-10 22:25:08.887833582 +0200
+@@ -224,7 +224,7 @@
+         hxx_stream.close()
+         cc_stream .close()
+ 
+-    except AttributeError, e:
++    except AttributeError as e:
+         name = e.args[0]
+         unsupported_visitors = map(lambda x:"visit" + x,
+                                    AST_unsupported_nodes[:])
+@@ -237,7 +237,7 @@
+             
+         raise
+ 
+-    except SystemExit, e:
++    except SystemExit as e:
+         # fatalError function throws SystemExit exception
+         # delete all possibly partial output files
+         for file in output.listAllCreatedFiles():
