@@ -53,6 +53,7 @@ include/hpp/core/path-optimization/linear-constraint.hh
 include/hpp/core/path-optimization/partial-shortcut.hh
 include/hpp/core/path-optimization/quadratic-program.hh
 include/hpp/core/path-optimization/random-shortcut.hh
+include/hpp/core/path-optimization/simple-shortcut.hh
 include/hpp/core/path-optimization/simple-time-parameterization.hh
 include/hpp/core/path-optimization/spline-gradient-based-abstract.hh
 include/hpp/core/path-optimization/spline-gradient-based.hh
