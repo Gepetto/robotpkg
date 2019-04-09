@@ -15,13 +15,17 @@ PREFER.gepetto-viewer?=		robotpkg
 
 DEPEND_USE+=			gepetto-viewer
 
-DEPEND_ABI.gepetto-viewer?=	gepetto-viewer>=4.3
+DEPEND_ABI.gepetto-viewer?=	${PKGTAG.python}-${PKGTAG.qt}-gepetto-viewer>=4.5.0
 DEPEND_DIR.gepetto-viewer?=	../../graphics/gepetto-viewer
 
 SYSTEM_SEARCH.gepetto-viewer=\
+  'bin/gepetto-gui'						\
   'include/gepetto/viewer/group-node.h'				\
   'lib/libgepetto-viewer.so'					\
   'lib/pkgconfig/gepetto-viewer.pc:/Version/s/[^0-9.]//gp'
+
+include ../../mk/sysdep/python.mk
+include ../../mk/sysdep/qt.mk
 
 endif # GEPETTOVIEWER_DEPEND_MK ---------------------------------
 

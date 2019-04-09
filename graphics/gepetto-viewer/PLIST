@@ -1,10 +1,35 @@
-@comment Thu Oct 11 15:20:21 CEST 2018
+@comment Tue Apr 9 23:23:11 CEST 2019
+bin/gepetto-gui
 bin/gvtools
+include/gepetto/gui/action-search-bar.hh
+include/gepetto/gui/bodytreewidget.hh
+include/gepetto/gui/color-map.hh
+include/gepetto/gui/config-dep.hh
+include/gepetto/gui/dialog/configuration.hh
+include/gepetto/gui/dialog/dialogloadenvironment.hh
+include/gepetto/gui/dialog/dialogloadrobot.hh
+include/gepetto/gui/dialog/pluginmanagerdialog.hh
+include/gepetto/gui/fwd.hh
+include/gepetto/gui/ledindicator.hh
+include/gepetto/gui/mainwindow.hh
+include/gepetto/gui/node-action.hh
+include/gepetto/gui/osgwidget.hh
+include/gepetto/gui/pick-handler.hh
+include/gepetto/gui/plugin-interface.hh
+include/gepetto/gui/qt-osg-keyboard.hh
+include/gepetto/gui/safeapplication.hh
+include/gepetto/gui/selection-event.hh
+include/gepetto/gui/selection-handler.hh
+include/gepetto/gui/settings.hh
+include/gepetto/gui/shortcut-factory.hh
+include/gepetto/gui/tree-item.hh
+include/gepetto/gui/windows-manager.hh
 include/gepetto/viewer/OSGManipulator/keyboard-manipulator.h
 include/gepetto/viewer/blender-geom-writer.h
 include/gepetto/viewer/config-osg.h
 include/gepetto/viewer/config.hh
 include/gepetto/viewer/deprecated.hh
+include/gepetto/viewer/fwd.h
 include/gepetto/viewer/group-node.h
 include/gepetto/viewer/leaf-node-arrow.h
 include/gepetto/viewer/leaf-node-box.h
@@ -33,4 +58,5 @@ include/gepetto/viewer/window-manager.h
 include/gepetto/viewer/windows-manager.h
 lib/libgepetto-viewer.so
 lib/pkgconfig/gepetto-viewer.pc
+share/gepetto-viewer/cmake/gepetto-viewer-plugin.cmake
 share/gepetto-viewer/fonts/arial.ttf
