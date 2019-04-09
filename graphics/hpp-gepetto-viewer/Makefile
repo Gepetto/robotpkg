@@ -2,9 +2,8 @@
 # Created:			Florent Lamiraux on Mon, 9 Mar 2015
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		hpp-gepetto-viewer
-PKGNAME=			${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
+PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=		graphics
 HPP_COMMENT=		Bridge between hpp-corbaserver and gepetto-viewer-corba
@@ -17,6 +16,7 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 CONFLICTS=		hpp-gepetto-viewer-[0-9]*
 CONFLICTS+=		py[0-9][0-9]-qt[0-9]-hpp-gepetto-viewer-[0-9]*
 
+DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui
 
 CMAKE_ARGS+=\
   -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
