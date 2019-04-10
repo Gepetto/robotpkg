@@ -15,7 +15,6 @@ SUBDIR+=	hpp-manipulation-corba
 SUBDIR+=	hpp-manipulation-urdf
 SUBDIR+=	hpp-statistics
 SUBDIR+=	hpp-util
-SUBDIR+=	hpp-wholebody-step-corba
 SUBDIR+=	hpp-wholebody-step
 SUBDIR+=	hpp-walkgen
 SUBDIR+=	jrl-walkgen

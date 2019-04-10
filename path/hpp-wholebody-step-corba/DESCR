@@ -1,6 +1,0 @@
-Corba server and client for whole-body walk planning for humanoid
-robots.
-
-This package implements a corba server and client to control
-hpp::wholeBodyStepPlanner::Planner object of package
-hpp-wholebody-step-planner.
