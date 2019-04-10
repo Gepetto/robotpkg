@@ -34,6 +34,7 @@ include/hpp/manipulation/problem.hh
 include/hpp/manipulation/roadmap-node.hh
 include/hpp/manipulation/roadmap.hh
 include/hpp/manipulation/steering-method/cross-state-optimization.hh
+include/hpp/manipulation/steering-method/end-effector-trajectory.hh
 include/hpp/manipulation/steering-method/fwd.hh
 include/hpp/manipulation/steering-method/graph.hh
 include/hpp/manipulation/symbolic-planner.hh

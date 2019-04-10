@@ -7,6 +7,9 @@ HPP_PACKAGE=		hpp-manipulation
 CATEGORIES=		path
 HPP_COMMENT=		Manipulation problem definition and resolution
 
+# TODO
+#include ../../wip/hpp-universal-robot/depend.mk
+
 include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../devel/log4cxx/depend.mk
