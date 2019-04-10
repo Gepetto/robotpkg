@@ -24,7 +24,6 @@ include ../../path/hpp-corbaserver/depend.mk
 include ../../path/hpp-manipulation-urdf/depend.mk
 include ../../path/hpp-manipulation/depend.mk
 include ../../path/hpp-util/depend.mk
-include ../../path/hpp-wholebody-step-corba/depend.mk
 
 include ../../mk/language/c.mk
 include ../../mk/sysdep/python.mk
