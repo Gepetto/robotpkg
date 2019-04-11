@@ -19,6 +19,7 @@ DEPEND_ABI.googletest?=	googletest
 SYSTEM_SEARCH.googletest=\
   'include/gtest/gtest.h'
 
+SYSTEM_PKG.Arch.googletest=	gtest
 SYSTEM_PKG.Debian.googletest=	libgtest-dev
 SYSTEM_PKG.Fedora.googletest=	gtest-devel
 SYSTEM_PKG.NetBSD.googletest=	devel/googletest

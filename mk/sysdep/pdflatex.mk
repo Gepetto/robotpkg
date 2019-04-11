@@ -18,6 +18,7 @@ DEPEND_METHOD.pdflatex?=build
 SYSTEM_SEARCH.pdflatex=	\
 	'{bin/,}pdflatex'
 
+SYSTEM_PKG.Arch.pdflatex=texlive-bin
 SYSTEM_PKG.Fedora.pdflatex=texlive-latex
 SYSTEM_PKG.Ubuntu.pdflatex=texlive-latex-extra
 SYSTEM_PKG.Debian.pdflatex=texlive-latex-extra

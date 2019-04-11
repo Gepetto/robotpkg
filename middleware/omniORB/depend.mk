@@ -26,6 +26,7 @@ SYSTEM_SEARCH.omniORB=	\
   'lib/pkgconfig/omniORB4.pc:/Version/s/[^0-9.]//gp'	\
   'share/idl/omniORB/corbaidl.idl'
 
+SYSTEM_PKG.Arch.omniORB =	omniorb (AUR)
 SYSTEM_PKG.Debian.omniORB =\
   omniorb omniorb-idl omniidl libomniorb4-dev omniorb-nameserver
 SYSTEM_PKG.Fedora.omniORB =	omniORB-devel omniORB-servers
