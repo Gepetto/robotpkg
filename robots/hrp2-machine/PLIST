@@ -1,0 +1,10 @@
+@comment Tue May 31 14:48:49 CEST 2016
+include/hrp2/machine/config.h
+include/hrp2/machine/config.hh
+include/hrp2/machine/deprecated.hh
+include/hrp2/machine/warning.hh
+lib/pkgconfig/hrp2_machine.pc
+share/hrp2_machine/hrp2_10.machine
+share/hrp2_machine/hrp2_14.machine
+share/hrp2_machine/package.xml
+share/hrp2_machine/sim.machine
