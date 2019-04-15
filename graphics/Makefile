@@ -11,6 +11,7 @@ SUBDIR+=	flann
 SUBDIR+=	gdhe
 SUBDIR+=	gepetto-viewer
 SUBDIR+=	gepetto-viewer-corba
+SUBDIR+=	gerard-bauzil
 SUBDIR+=	grh2
 SUBDIR+=	hpp-gepetto-viewer
 SUBDIR+=	jafar-gdhe
