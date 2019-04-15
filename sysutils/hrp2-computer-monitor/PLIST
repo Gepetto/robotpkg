@@ -1,0 +1,10 @@
+@comment Tue May 31 15:04:00 CEST 2016
+include/hrp2/computer/monitor/config.h
+include/hrp2/computer/monitor/config.hh
+include/hrp2/computer/monitor/deprecated.hh
+include/hrp2/computer/monitor/warning.hh
+lib/pkgconfig/hrp2_computer_monitor.pc
+share/hrp2_computer_monitor/package.xml
+share/hrp2_computer_monitor/scripts/cpu_monitor.py
+share/hrp2_computer_monitor/scripts/hd_monitor.py
+share/hrp2_computer_monitor/scripts/ntp_monitor.py

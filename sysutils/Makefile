@@ -7,6 +7,7 @@ SUBDIR+=	alog
 SUBDIR+=	arduio
 SUBDIR+=	arduio-genom3
 SUBDIR+=	console-bridge
+SUBDIR+=	hrp2-computer-monitor
 SUBDIR+=	interceptty
 SUBDIR+=	py-aafigure
 SUBDIR+=	py-catkin-pkg
