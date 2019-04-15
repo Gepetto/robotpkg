@@ -1,0 +1,25 @@
+@comment Tue May 31 15:38:22 CEST 2016
+include/hrp2/bringup/config.h
+include/hrp2/bringup/config.hh
+include/hrp2/bringup/deprecated.hh
+include/hrp2/bringup/warning.hh
+lib/pkgconfig/hrp2_bringup.pc
+share/hrp2_bringup/config/chrony/README
+share/hrp2_bringup/config/chrony/chrony.conf.hrp2014c
+share/hrp2_bringup/config/chrony/chrony.conf.hrp2014v
+share/hrp2_bringup/config/dynamics_markers/hrp2.yaml
+share/hrp2_bringup/diagnostics/analyzers.yaml
+share/hrp2_bringup/launch/cameras.launch
+share/hrp2_bringup/launch/common.launch
+share/hrp2_bringup/launch/geometric_simu.launch
+share/hrp2_bringup/launch/geometric_simu_context.launch
+share/hrp2_bringup/launch/hand_camera.launch
+share/hrp2_bringup/launch/mocap.launch
+share/hrp2_bringup/launch/openhrp_bridge.launch
+share/hrp2_bringup/launch/record.launch
+share/hrp2_bringup/launch/simulated_cameras.launch
+share/hrp2_bringup/launch/simulated_localization.launch
+share/hrp2_bringup/launch/walking_geometric_simu.launch
+share/hrp2_bringup/launch/xtion.launch
+share/hrp2_bringup/package.xml
+share/hrp2_bringup/rosdoc.yaml
