@@ -1,4 +1,4 @@
-@comment Tue Apr 9 17:02:29 CEST 2019
+@comment Thu Apr 18 17:09:19 CEST 2019
 bin/urdf_to_blender.py
 include/gepetto/gui/omniorb/url.hh
 include/gepetto/viewer/corba/config.hh
@@ -15,7 +15,6 @@ ${PYTHON_SITELIB}/gepetto/blender/gepettoimport.py
 ${PYTHON_SITELIB}/gepetto/color.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/__init__.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/client.py
-${PYTHON_SITELIB}/gepetto/corbaserver/color.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/exporttoblender.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/gepetto/__init__.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/gepetto/corbaserver/__init__.py

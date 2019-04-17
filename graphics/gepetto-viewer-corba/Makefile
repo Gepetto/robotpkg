@@ -4,12 +4,16 @@
 
 HPP_PACKAGE=		gepetto-viewer-corba
 HPP_COMMENT=		Corba server for gepetto-viewer
-HPP_VERSION=		5.2.0
+HPP_VERSION=		5.2.1
 HPP_NAMESPACE=		gepetto
+
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=		graphics
 LICENSE=		2-clause-bsd
+
+CONFIGURE_DIRS=		build
+CMAKE_ARG_PATH=		..
 
 include ../../meta-pkgs/hpp/Makefile.common
 
@@ -32,3 +36,7 @@ include ../../mk/sysdep/qt.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
+
+ # create the build directory
+pre-configure:
+	${RUN}${MKDIR} ${WRKSRC}/build
