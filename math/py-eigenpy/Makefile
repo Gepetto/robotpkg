@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			eigenpy
-VERSION=		1.5.0
+VERSION=		1.5.1
 
 DISTNAME=		${NAME}-${VERSION}
 PKGNAME=		${PKGTAG.python-}${DISTNAME}
