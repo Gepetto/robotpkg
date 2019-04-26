@@ -1,8 +1,10 @@
-@comment Wed Oct 19 16:15:31 CEST 2016
+@comment Fri Apr 26 11:09:52 CEST 2019
 include/simple/humanoid/description/config.hh
 include/simple/humanoid/description/deprecated.hh
 include/simple/humanoid/description/warning.hh
+lib/pkgconfig/simple_humanoid_description.pc
 share/simple_humanoid_description/package.xml
 share/simple_humanoid_description/srdf/simple_humanoid.srdf
+share/simple_humanoid_description/srdf/simple_humanoid_classical.srdf
 share/simple_humanoid_description/urdf/simple_humanoid.urdf
-lib/pkgconfig/simple_humanoid_description.pc
+share/simple_humanoid_description/urdf/simple_humanoid_classical.urdf
