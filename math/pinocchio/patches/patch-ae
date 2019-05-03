@@ -1,6 +1,9 @@
+Don't pick up random source files (especially those under "PaxHeader" created
+by pax-as-tar).
+
 --- bindings/python/CMakeLists.txt~	2019-03-25 11:31:39.635165275 +0100
 +++ bindings/python/CMakeLists.txt	2019-03-25 11:32:06.099326685 +0100
-@@ -52,29 +52,91 @@
+@@ -52,29 +52,95 @@
  SET(${PYWRAP}_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}/${PROJECT_NAME})
  ENDIF(BUILD_PYTHON_INTERFACE)
  
@@ -11,85 +14,89 @@
 -FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_SOURCES
 -     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp 
 -     ) 
-+set(${PROJECT_NAME}_PYTHON_HEADERS
++SET(${PROJECT_NAME}_PYTHON_HEADERS
 +  algorithm/algorithms.hpp
-+  multibody/fcl/distance-result.hpp
-+  multibody/fcl/mesh-loader.hpp
++  fwd.hpp
++  multibody/data.hpp
 +  multibody/fcl/collision-geometry.hpp
 +  multibody/fcl/collision-result.hpp
 +  multibody/fcl/contact.hpp
-+  multibody/data.hpp
++  multibody/fcl/distance-result.hpp
++  multibody/fcl/mesh-loader.hpp
++  multibody/frame.hpp
 +  multibody/geometry-data.hpp
++  multibody/geometry-model.hpp
 +  multibody/geometry-object.hpp
-+  multibody/joint/joints-models.hpp
-+  multibody/joint/joints-variant.hpp
++  multibody/joint/joint-derived.hpp
 +  multibody/joint/joint.hpp
 +  multibody/joint/joints-datas.hpp
-+  multibody/joint/joint-derived.hpp
-+  multibody/geometry-model.hpp
-+  multibody/frame.hpp
++  multibody/joint/joints-models.hpp
++  multibody/joint/joints-variant.hpp
 +  multibody/model.hpp
-+  utils/handler.hpp
-+  utils/pickle-vector.hpp
-+  utils/printable.hpp
++  parsers/parsers.hpp
++  parsers/python.hpp
++  parsers/sample-models.hpp
++  serialization/serializable.hpp
++  spatial/explog.hpp
++  spatial/force.hpp
++  spatial/inertia.hpp
++  spatial/motion.hpp
++  spatial/se3.hpp
 +  utils/constant.hpp
-+  utils/dependencies.hpp
-+  utils/std-vector.hpp
-+  utils/copyable.hpp
-+  utils/version.hpp
-+  utils/eigen_container.hpp
-+  utils/std-aligned-vector.hpp
-+  utils/pickle-map.hpp
 +  utils/conversions.hpp
++  utils/copyable.hpp
++  utils/dependencies.hpp
++  utils/eigen_container.hpp
++  utils/handler.hpp
 +  utils/list.hpp
 +  utils/namespace.hpp
-+  serialization/serializable.hpp
-+  spatial/motion.hpp
-+  spatial/explog.hpp
-+  spatial/se3.hpp
-+  spatial/inertia.hpp
-+  spatial/force.hpp
-+  fwd.hpp
-+  parsers/python.hpp
-+  parsers/parsers.hpp
-+  parsers/sample-models.hpp)
++  utils/pickle-map.hpp
++  utils/pickle-vector.hpp
++  utils/printable.hpp
++  utils/std-aligned-vector.hpp
++  utils/std-vector.hpp
++  utils/version.hpp
++  )
 +
-+set(${PROJECT_NAME}_PYTHON_SOURCES
-+  module.cpp
-+  algorithm/expose-geometry.cpp
-+  algorithm/expose-cat.cpp
-+  algorithm/expose-cholesky.cpp
-+  algorithm/expose-rnea.cpp
-+  algorithm/expose-energy.cpp
-+  algorithm/expose-algorithms.cpp
-+  algorithm/expose-centroidal.cpp
-+  algorithm/expose-rnea-derivatives.cpp
-+  algorithm/expose-frames.cpp
-+  algorithm/expose-aba-derivatives.cpp
-+  algorithm/expose-kinematics.cpp
-+  algorithm/expose-jacobian.cpp
-+  algorithm/expose-contact-dynamics.cpp
++SET(${PROJECT_NAME}_PYTHON_SOURCES
 +  algorithm/expose-aba.cpp
-+  algorithm/expose-crba.cpp
-+  algorithm/expose-regressor.cpp
-+  algorithm/expose-kinematics-derivatives.cpp
++  algorithm/expose-aba-derivatives.cpp
++  algorithm/expose-algorithms.cpp
++  algorithm/expose-cat.cpp
++  algorithm/expose-centroidal.cpp
++  algorithm/expose-centroidal-derivatives.cpp
++  algorithm/expose-cholesky.cpp
 +  algorithm/expose-com.cpp
++  algorithm/expose-contact-dynamics.cpp
++  algorithm/expose-crba.cpp
++  algorithm/expose-energy.cpp
++  algorithm/expose-frames.cpp
++  algorithm/expose-geometry.cpp
++  algorithm/expose-jacobian.cpp
 +  algorithm/expose-joints.cpp
-+  multibody/expose-geometry.cpp
-+  multibody/fcl/expose-fcl.cpp
++  algorithm/expose-kinematics.cpp
++  algorithm/expose-kinematics-derivatives.cpp
++  algorithm/expose-regressor.cpp
++  algorithm/expose-rnea.cpp
++  algorithm/expose-rnea-derivatives.cpp
++  module.cpp
 +  multibody/expose-data.cpp
 +  multibody/expose-frame.cpp
-+  multibody/joint/expose-joints.cpp
++  multibody/expose-geometry.cpp
 +  multibody/expose-model.cpp
-+  utils/version.cpp
-+  utils/conversions.cpp
-+  spatial/expose-motion.cpp
-+  spatial/expose-explog.cpp
-+  spatial/expose-inertia.cpp
-+  spatial/expose-force.cpp
-+  spatial/expose-SE3.cpp
++  multibody/fcl/expose-fcl.cpp
++  multibody/joint/expose-joints.cpp
++  parsers/expose-parsers.cpp
 +  parsers/python/model.cpp
-+  parsers/expose-parsers.cpp)
++  spatial/expose-explog.cpp
++  spatial/expose-force.cpp
++  spatial/expose-inertia.cpp
++  spatial/expose-motion.cpp
++  spatial/expose-SE3.cpp
++  utils/conversions.cpp
++  utils/dependencies.cpp
++  utils/version.cpp
++  )
  
  # Parser for Python model
 -LIST(APPEND ${PROJECT_NAME}_PYTHON_HEADERS

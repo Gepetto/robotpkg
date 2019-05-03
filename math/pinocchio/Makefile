@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			pinocchio
-VERSION=		2.1.2
+VERSION=		2.1.3
 
 DISTNAME=		${NAME}-${VERSION}
 

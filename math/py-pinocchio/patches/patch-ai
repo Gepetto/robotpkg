@@ -1,9 +1,9 @@
 Don't pick up random source files (especially those under "PaxHeader" created
 by pax-as-tar).
 
---- bindings/python/CMakeLists.txt.orig	2019-04-16 13:46:21.388284631 +0200
-+++ bindings/python/CMakeLists.txt	2019-04-16 13:48:05.313777438 +0200
-@@ -47,12 +47,87 @@
+--- bindings/python/CMakeLists.txt.orig	2019-05-06 13:46:19.000000000 +0200
++++ bindings/python/CMakeLists.txt	2019-05-06 13:47:32.796383430 +0200
+@@ -47,12 +47,88 @@
  # --- LIBRARY --- #
  SET(${PYWRAP}_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}/${PROJECT_NAME})
  
@@ -55,7 +55,7 @@ by pax-as-tar).
 +  utils/std-aligned-vector.hpp
 +  utils/std-vector.hpp
 +  utils/version.hpp
-+)
++  )
 +
 +SET(${PROJECT_NAME}_PYTHON_SOURCES
 +  algorithm/expose-aba.cpp
@@ -63,6 +63,7 @@ by pax-as-tar).
 +  algorithm/expose-algorithms.cpp
 +  algorithm/expose-cat.cpp
 +  algorithm/expose-centroidal.cpp
++  algorithm/expose-centroidal-derivatives.cpp
 +  algorithm/expose-cholesky.cpp
 +  algorithm/expose-com.cpp
 +  algorithm/expose-contact-dynamics.cpp
