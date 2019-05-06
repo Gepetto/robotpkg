@@ -1,0 +1,45 @@
+From 59fe6c67f0ad41f1996c0ab6c720468cc7abb90c Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Tue, 30 Apr 2019 13:01:42 +0200
+Subject: [PATCH] [CMake] don't overwrite __doc__ in python2
+
+workaround #122
+---
+ src/CMakeLists.txt | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 8757a5e..2d63712 100644
+--- src/CMakeLists.txt
++++ src/CMakeLists.txt
+@@ -33,15 +33,22 @@ FOREACH(IDL ${IDL_SOURCES})
+     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/gepetto/viewer/corba)
+ 
+   # Python
+-  GENERATE_IDL_PYTHON (gepetto/viewer/corba/${IDL}
+-    ${CMAKE_SOURCE_DIR}/idl/gepetto/viewer
+-    ARGUMENTS
+-    -p${CMAKE_SOURCE_DIR}/cmake/hpp/idl
+-    -bomniidl_be_python_with_docstring
++  SET(_IDL_PYTHON_ARGUMENTS
+     -C${CMAKE_CURRENT_BINARY_DIR}
+     -K
+     -Wbpackage=gepetto.corbaserver
+     )
++  IF(PYTHON_VERSION_MAJOR EQUAL 3)
++    SET(_IDL_PYTHON_ARGUMENTS
++      -p${CMAKE_SOURCE_DIR}/cmake/hpp/idl
++      -bomniidl_be_python_with_docstring
++      ${_IDL_PYTHON_ARGUMENTS}
++      )
++  ENDIF(PYTHON_VERSION_MAJOR EQUAL 3)
++  GENERATE_IDL_PYTHON (gepetto/viewer/corba/${IDL}
++    ${CMAKE_SOURCE_DIR}/idl/gepetto/viewer
++    ARGUMENTS ${_IDL_PYTHON_ARGUMENTS}
++    )
+ 
+   STRING(REGEX REPLACE "-" "_" IDL_UNDERSCORE "${IDL}")
+ 
+-- 
+2.7.4
+
