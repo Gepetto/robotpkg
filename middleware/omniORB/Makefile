@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Wed, 10 Jan 2007
 #
 
-PKGREVISION=		1
-DISTNAME=		omniORB-4.2.2
+DISTNAME=		omniORB-4.2.3
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
 EXTRACT_SUFX?=		.tar.bz2
