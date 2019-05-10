@@ -1,0 +1,21 @@
+Report errors rather than ignoring them...
+
+--- utilities/xmlrpcpp/src/XmlRpcUtil.cpp~	2018-08-06 19:37:33.000000000 +0200
++++ utilities/xmlrpcpp/src/XmlRpcUtil.cpp	2019-05-10 15:04:28.117202199 +0200
+@@ -52,7 +52,7 @@
+   void error(const char* msg) {
+     OutputDebugString(msg); OutputDebugString("\n");
+ #else
+-  void error(const char*) {
++  void error(const char* msg) {
+ #endif  
+     // As far as I can tell, throwing an exception here is a bug, unless
+     // the intention is that the program should exit.  Throughout the code,
+@@ -63,6 +63,7 @@
+     // So I'm commenting out the throw.  - BPG
+     //
+     //throw std::runtime_error(msg);
++    std::cerr << msg << std::endl;
+   }
+ } defaultErrorHandler;
+ 

@@ -1,0 +1,49 @@
+Fix call to getsockopt TCP_INFO:
+* Decode the state as the first unsigned byte from struct tcp_info, not as an
+  int.
+* Don't raise exception in case of getsockopt() error, this breaks everything
+  silently ... Print the error instead, so that it gets seen, and continue
+  execution.
+* Define the CLOSE_WAIT state according to the OS (extremely fragile, but is
+  there a better way?).
+
+--- tools/rosmaster/src/rosmaster/util.py~	2018-08-06 19:37:33.000000000 +0200
++++ tools/rosmaster/src/rosmaster/util.py	2019-05-08 03:08:28.079661865 +0200
+@@ -51,6 +51,17 @@
+ 
+ import errno
+ import socket
++from struct import unpack
++
++# Horrid stuff to get the CLOSE_WAIT state of a TCP socket
++from platform import system
++import rosmaster.exceptions
++if system() == "Linux":
++  CLOSE_WAIT = 8
++elif system() == "NetBSD":
++  CLOSE_WAIT = 5
++else:
++  raise rosmaster.exceptions.InternalException("define CLOSE_WAIT")
+ 
+ _proxies = {} #cache ServerProxys
+ def xmlrpcapi(uri):
+@@ -76,12 +87,14 @@
+         transport = proxy("transport")
+         if transport._connection and transport._connection[1] is not None and transport._connection[1].sock is not None:
+             try:
+-                state = transport._connection[1].sock.getsockopt(socket.SOL_TCP, socket.TCP_INFO)
++                info = transport._connection[1].sock.getsockopt(
++                    socket.SOL_TCP, socket.TCP_INFO, 8)
+             except socket.error as e: # catch [Errno 92] Protocol not available
+-                if e.args[0] is errno.ENOPROTOOPT:
+-                    return
+-                raise
+-            if state == 8:  # CLOSE_WAIT
++                if not e.args[0] is errno.ENOPROTOOPT:
++                    print("WARN: getsockopt TCP_INFO error %d" % e.args[0])
++                return
++            state = unpack("B", info)[0]
++            if state == CLOSE_WAIT:
+                 transport.close()
+ 
+ 
