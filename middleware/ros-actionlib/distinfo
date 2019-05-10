@@ -1,5 +1,3 @@
-SHA1 (ros/actionlib/1.11.13.tar.gz) = 052b53ea46c94ca905fb1657baf7d3899781b865
-RMD160 (ros/actionlib/1.11.13.tar.gz) = 43fb6ebeda36ef4e57fb4d94f841c90e00b7a805
-Size (ros/actionlib/1.11.13.tar.gz) = 98518 bytes
-SHA1 (patch-aa) = ceadfd97a4ad50376afea0ac453aaafd263d1a7b
-SHA1 (patch-ab) = cd7cadcbcec94942bc37ef50604affee954c64fc
+SHA1 (ros/actionlib/1.11.15.tar.gz) = a62096e4725c191f64b9967e9a9bef57958761c8
+RMD160 (ros/actionlib/1.11.15.tar.gz) = 9c83d06429fe928170bf30868f7ca1fb6bbcc3e3
+Size (ros/actionlib/1.11.15.tar.gz) = 99063 bytes
