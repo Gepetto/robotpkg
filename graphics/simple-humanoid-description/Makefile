@@ -9,6 +9,7 @@ PKGNAME=		$(subst _,-,${DISTNAME})
 CATEGORIES=		graphics
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=simple-humanoid-description/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}laas/simple_humanoid_description/
+CHECKOUT_VCS_OPTS+=	--recursive
 
 COMMENT=		Rigid body model of a simple humanoid robot.
 LICENSE=		gnu-lgpl-v3
