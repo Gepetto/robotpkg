@@ -17,7 +17,7 @@ MAKE_JOBS_SAFE=		no
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 include ../../middleware/omniORB/depend.mk
-include ../../middleware/omniORBpy/depend.mk
+include ../../middleware/py-omniORBpy/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../optimization/roboptim-trajectory/depend.mk
 include ../../path/hpp-corbaserver/depend.mk

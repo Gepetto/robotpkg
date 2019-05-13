@@ -1,0 +1,32 @@
+im_func has been removed in python3
+
+--- python3/omniidl_be/python.py.orig	2017-02-20 23:45:59.000000000 +0100
++++ python3/omniidl_be/python.py	2019-05-06 18:12:05.795488205 +0200
+@@ -2060,21 +2060,21 @@
+ 
+     def visitOperation(self, node):
+         if node.identifier() == self.target_id:
+-            sn = node.scopedName() + ["im_func"]
+-            sn[-3] = "_objref_" + sn[-3]
++            sn = node.scopedName()
++            sn[-2] = "_objref_" + sn[-2]
+             self.docs.append((sn, self.target_node.scopedName()))
+             self.ok = 1
+ 
+     def visitAttribute(self, node):
+         for n in node.declarators():
+             if n.identifier() == self.target_id:
+-                sn = n.scopedName() + ["im_func"]
+-                sn[-3] = "_objref_" + sn[-3]
+-                sn[-2] = "_get_"    + sn[-2]
++                sn = n.scopedName()
++                sn[-2] = "_objref_" + sn[-2]
++                sn[-1] = "_get_"    + sn[-1]
+                 self.docs.append((sn, self.target_node.scopedName()))
+                 if not node.readonly():
+                     sn = sn[:]
+-                    sn[-2] = "_set_" + n.identifier()
++                    sn[-1] = "_set_" + n.identifier()
+                     self.docs.append((sn, self.target_node.scopedName()))
+                 self.ok = 1
+ 

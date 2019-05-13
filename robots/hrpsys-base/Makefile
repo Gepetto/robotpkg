@@ -47,7 +47,7 @@ include ../../devel/boost-libs/depend.mk
 include ../../image/opencv/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/omniORB/depend.mk
-include ../../middleware/omniORBpy/depend.mk
+include ../../middleware/py-omniORBpy/depend.mk
 include ../../middleware/openrtm-aist/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../simulation/openhrp3/depend.mk

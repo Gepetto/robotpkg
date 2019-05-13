@@ -27,7 +27,7 @@ SYSTEM_SEARCH.hpp-corbaserver=\
 PYTHONPATH.hpp-corbaserver+=	$(dir ${SYSTEM_FILES.omniORBpy})
 
 include ../../middleware/omniORB/depend.mk
-include ../../middleware/omniORBpy/depend.mk
+include ../../middleware/py-omniORBpy/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../path/hpp-constraints/depend.mk
 include ../../math/hpp-pinocchio/depend.mk

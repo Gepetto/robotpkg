@@ -32,7 +32,7 @@ include ../../graphics/collada-dom/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../math/lapack/depend.mk
 include ../../middleware/omniORB/depend.mk
-include ../../middleware/omniORBpy/depend.mk
+include ../../middleware/py-omniORBpy/depend.mk
 include ../../middleware/openrtm-aist/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk

@@ -1,0 +1,37 @@
+* Install to omniidl_be outside PYTHONPATH
+* Don't overwrite omnidl_be/__init__.py
+* Do not blindly recompile files that belong to middleware/omniORB
+
+--- python/omniidl_be/dir.mk~	2003-03-23 22:51:59.000000000 +0100
++++ python/omniidl_be/dir.mk	2019-05-13 14:33:39.784481159 +0200
+@@ -1,20 +1,18 @@
+ PYLIBROOT= $(EXPORT_TREE)/lib/python
+ PYLIBDIR = $(PYLIBROOT)/omniidl_be
+-INSTALLPYLIBDIR = $(INSTALLPYTHONDIR)/omniidl_be
++INSTALLPYLIBDIR = $(INSTALLLIBDIR)/omniidl/omniidl_be
+ 
+ ifeq ($(PYTHON),)
+ PYTHON = python
+ endif
+ 
+-FILES = __init__.py python.py
++FILES = python.py
+ 
+ export:: $(FILES)
+ 	@(dir="$(PYLIBDIR)"; \
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(PYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ 
+ ifdef INSTALLTARGET
+@@ -23,7 +21,5 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(INSTALLPYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ endif

@@ -28,7 +28,7 @@ DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui
 include ../../graphics/gepetto-viewer/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/omniORB/depend.mk
-include ../../middleware/omniORBpy/depend.mk
+include ../../middleware/py-omniORBpy/depend.mk
 include ../../mk/sysdep/openscenegraph.mk
 include ../../mk/sysdep/openscenegraph-qt.mk
 include ../../mk/sysdep/openthreads.mk

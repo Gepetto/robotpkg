@@ -1,6 +1,7 @@
-@comment Fri Oct 26 18:13:38 CEST 2018
+@comment Mon May 13 15:09:33 CEST 2019
 include/omniORB4/pydistdate.hh
 include/omniORBpy.h
+lib/omniidl/omniidl_be/python.py
 ${PYTHON_SITELIB}/CORBA.py
 ${PYTHON_SITELIB}/CosNaming/__init__.py
 ${PYTHON_SITELIB}/CosNaming__POA/__init__.py
@@ -151,6 +152,7 @@ ${PYTHON_SITELIB}/omniORB/COS/RDITestTypes_idl.py
 ${PYTHON_SITELIB}/omniORB/COS/TimeBase/__init__.py
 ${PYTHON_SITELIB}/omniORB/COS/TimeBase__POA/__init__.py
 ${PYTHON_SITELIB}/omniORB/COS/TimeBase_idl.py
+${PYTHON_SITELIB}/omniORB/COS/__init__.py
 ${PYTHON_SITELIB}/omniORB/COS/omniORB.pth
 ${PYTHON_SITELIB}/omniORB/Compression.py
 ${PYTHON_SITELIB}/omniORB/PortableServer.py
