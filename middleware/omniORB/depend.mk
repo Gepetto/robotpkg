@@ -11,6 +11,10 @@ endif
 
 ifeq (+,$(OMNIORB_DEPEND_MK)) # --------------------------------------------
 
+include ../../mk/robotpkg.prefs.mk  # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  PREFER.omniORB?=	$(if $(filter 3,${PYTHON_MAJOR}),robotpkg,system)
+endif
 PREFER.omniORB?=	system
 
 DEPEND_USE+=		omniORB
