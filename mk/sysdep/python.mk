@@ -263,6 +263,11 @@ PLIST_SUBST+=\
 	PLIST_PYTHON_PYCACHE=$(call quote,${PYTHON_PYCACHE})		\
 	PLIST_PYTHON_TAG=$(call quote,${PYTHON_TAG})			\
 
+# Prevent from automatically compiling files - might clutter PLIST if
+# installation involves a python execution. Compilation is handled by the
+# post-PLIST hook below.
+export PYTHONDONTWRITEBYTECODE=1
+
 # Define a post-plist hook to compile all .py files and a plist filter to
 # include .py{c,o} in the PLIST
 ifndef PYTHON_NO_PLIST_COMPILE
