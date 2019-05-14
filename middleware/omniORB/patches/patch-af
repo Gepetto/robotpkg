@@ -1,0 +1,120 @@
+Do not blindly recompile files that belong to middleware/py-omniORBpy
+
+--- src/lib/omniORB/python/omniidl_be/cxx/dir.mk~	2011-02-17 13:47:31.000000000 +0100
++++ src/lib/omniORB/python/omniidl_be/cxx/dir.mk	2019-05-14 15:02:57.948286500 +0200
+@@ -32,9 +32,6 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(PYLIBDIR); \
+-          cd ..; \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('cxx')"; \
+ 	 )
+ 
+ ifdef INSTALLTARGET
+@@ -43,8 +40,5 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(INSTALLPYLIBDIR); \
+-          cd ..; \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('cxx')"; \
+ 	 )
+ endif
+--- src/lib/omniORB/python/omniidl_be/cxx/impl/dir.mk~	2003-03-23 22:04:39.000000000 +0100
++++ src/lib/omniORB/python/omniidl_be/cxx/impl/dir.mk	2019-05-14 15:14:44.644688281 +0200
+@@ -9,8 +9,6 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(PYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ 
+ ifdef INSTALLTARGET
+@@ -19,7 +17,5 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(INSTALLPYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ endif
+--- src/lib/omniORB/python3/omniidl_be/cxx/impl/dir.mk~	2003-03-23 22:04:39.000000000 +0100
++++ src/lib/omniORB/python3/omniidl_be/cxx/impl/dir.mk	2019-05-14 15:18:02.205925477 +0200
+@@ -9,8 +9,6 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(PYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ 
+ ifdef INSTALLTARGET
+@@ -19,7 +17,5 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(INSTALLPYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ endif
+--- src/lib/omniORB/python3/omniidl_be/cxx/dir.mk~	2011-02-17 13:47:31.000000000 +0100
++++ src/lib/omniORB/python3/omniidl_be/cxx/dir.mk	2019-05-14 15:03:45.816584152 +0200
+@@ -32,9 +32,6 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(PYLIBDIR); \
+-          cd ..; \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('cxx')"; \
+ 	 )
+ 
+ ifdef INSTALLTARGET
+@@ -43,8 +40,5 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(INSTALLPYLIBDIR); \
+-          cd ..; \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('cxx')"; \
+ 	 )
+ endif
+--- src/tool/omniidl/python/omniidl_be/dir.mk~	2011-02-09 15:36:20.000000000 +0100
++++ src/tool/omniidl/python/omniidl_be/dir.mk	2019-05-14 15:16:04.461188153 +0200
+@@ -16,8 +16,6 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(PYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ 
+ ifdef INSTALLTARGET
+@@ -26,7 +24,5 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(INSTALLPYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ endif
+--- src/tool/omniidl/python3/omniidl_be/dir.mk~	2011-02-09 15:36:20.000000000 +0100
++++ src/tool/omniidl/python3/omniidl_be/dir.mk	2019-05-14 15:17:28.905716959 +0200
+@@ -16,8 +16,6 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(PYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ 
+ ifdef INSTALLTARGET
+@@ -26,7 +24,5 @@
+           for file in $^; do \
+             $(ExportFileToDir) \
+           done; \
+-          cd $(INSTALLPYLIBDIR); \
+-	  $(PYTHON) -c "import compileall; compileall.compile_dir('.')"; \
+ 	 )
+ endif
