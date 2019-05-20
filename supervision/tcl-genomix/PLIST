@@ -1,4 +1,4 @@
-@comment Tue Feb 5 15:58:49 CET 2019
+@comment Mon May 20 17:43:09 CEST 2019
 lib/pkgconfig/tcl-genomix.pc
 lib/tcl-genomix/http.tcl
 lib/tcl-genomix/json.la
@@ -8,6 +8,5 @@ lib/tcl-genomix/pkgIndex.tcl
 lib/tcl-genomix/pmt.tcl
 lib/tcl-genomix/server.tcl
 lib/tcl-genomix/uri.tcl
-lib/tcl-genomix/version.tcl
 share/doc/tcl-genomix/README.adoc
 share/doc/tcl-genomix/README.html
