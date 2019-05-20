@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 19 Oct 2012
 #
 
-DISTNAME=	genomix-1.6.4
+DISTNAME=	genomix-1.7
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genomix/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genomix
