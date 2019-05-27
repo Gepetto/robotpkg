@@ -1,4 +1,4 @@
-@comment Tue Jun 19 08:45:00 CEST 2018
+@comment Mon May 27 17:28:38 CEST 2019
 lib/libpocolibs-client.la
 lib/pkgconfig/genom3-pocolibs.pc
 share/genom/site-templates/pocolibs/client/c/client.Makefile.am
@@ -10,6 +10,7 @@ share/genom/site-templates/pocolibs/client/c/json.c
 share/genom/site-templates/pocolibs/client/c/msglib.c
 share/genom/site-templates/pocolibs/client/c/plugin.c
 share/genom/site-templates/pocolibs/client/c/portlib.c
+share/genom/site-templates/pocolibs/client/c/portlib.h
 share/genom/site-templates/pocolibs/client/c/private.h
 share/genom/site-templates/pocolibs/client/c/template.tcl
 share/genom/site-templates/pocolibs/common/autoconf/ax_pthread.m4
@@ -31,7 +32,6 @@ share/genom/site-templates/pocolibs/server/msglib.c
 share/genom/site-templates/pocolibs/server/parameters.h
 share/genom/site-templates/pocolibs/server/pocolibs.Makefile.am
 share/genom/site-templates/pocolibs/server/pocolibs.configure.ac
-share/genom/site-templates/pocolibs/server/pocolibs.pc.in
 share/genom/site-templates/pocolibs/server/portlib.c
 share/genom/site-templates/pocolibs/server/portlib.h
 share/genom/site-templates/pocolibs/server/remotelib.c
