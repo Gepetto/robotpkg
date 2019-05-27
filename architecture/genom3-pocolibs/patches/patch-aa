@@ -1,0 +1,19 @@
+e2faa4c Remove generation of the server .pc file since the input file was
+dropped
+
+diff --git server/template.tcl server/template.tcl
+index eba0593..5b90b01 100644
+--- server/template.tcl
++++ server/template.tcl
+@@ -129,11 +129,6 @@ template parse args [list $types] \
+ template parse args [list $input] file pocolibs.Makefile.am file Makefile.am
+ template parse file pocolibs.configure.ac file configure.ac
+ template parse file ../common/autoconf/ax_pthread.m4 file autoconf/ax_pthread.m4
+-foreach c [dotgen components] {
+-  template parse					\
+-      args [list $c] file pocolibs.pc.in		\
+-	file [$c name]-pocolibs.pc.in
+-}
+ 
+ set deps [list]
+ foreach d [concat [dotgen input deps] [template deps]] {
