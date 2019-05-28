@@ -1,0 +1,4 @@
+GPS driver component for novatel OEM6, tersus BX3xx and ublox M8
+
+This component can server either as a mobile station or a fixed base station,
+streaming RTK corrections over UDP.
