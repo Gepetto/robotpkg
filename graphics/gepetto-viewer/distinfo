@@ -1,3 +1,6 @@
-SHA1 (gepetto-viewer-4.5.0.tar.gz) = 943c6670d2bca4a33100dda872362115568acf26
-RMD160 (gepetto-viewer-4.5.0.tar.gz) = 2d9a7db3e1371ca6af6f70e552bd168a30095e61
-Size (gepetto-viewer-4.5.0.tar.gz) = 1699634 bytes
+SHA1 (gepetto-viewer-4.6.0.tar.gz) = 003d22af90dcc8c3c6583cf1ff3888f5128a30ce
+RMD160 (gepetto-viewer-4.6.0.tar.gz) = 1cc2b2a47ec0cedd530ae96822be29fdcfee0461
+Size (gepetto-viewer-4.6.0.tar.gz) = 1707742 bytes
+SHA1 (patch-aa) = b3032fd9a5201f0bf745609ea69c5cb39fdfd0d4
+SHA1 (patch-ab) = 08c25be6c985b34d9d813c9f414ee0a27c8fd07a
+SHA1 (patch-ac) = 5a9d5d9db09f4f2f9a360a2e416b0b1d1513c54f

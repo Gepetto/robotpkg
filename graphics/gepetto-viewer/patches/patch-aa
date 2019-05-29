@@ -1,0 +1,13 @@
+Fix hardcoded boost namespace (breaks with C++11 and std::shared_ptr)
+
+--- src/gui/osgwidget.cc~	2019-05-28 18:09:31.000000000 +0200
++++ src/gui/osgwidget.cc	2019-06-03 14:10:55.559818070 +0200
+@@ -289,7 +289,7 @@
+       if (!size) return;
+       if (size->hasWriteAccess() == fixedSize) return;
+       // Cast to Vector2Property
+-      viewer::Vector2Property::Ptr_t vsize = boost::dynamic_pointer_cast<viewer::Vector2Property>(size);
++      viewer::Vector2Property::Ptr_t vsize = viewer::dynamic_pointer_cast<viewer::Vector2Property>(size);
+       if (!vsize) return;
+       osgQt::GLWidget* glWidget = graphicsWindow_->getGLWidget();
+       if (fixedSize) {
