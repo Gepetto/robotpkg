@@ -1,4 +1,4 @@
-@comment Thu May 31 18:31:39 CEST 2018
+@comment Mon Jun 3 12:04:07 CEST 2019
 include/hpp/manipulation/config.hh
 include/hpp/manipulation/connected-component.hh
 include/hpp/manipulation/constraint-set.hh
@@ -37,7 +37,6 @@ include/hpp/manipulation/steering-method/cross-state-optimization.hh
 include/hpp/manipulation/steering-method/end-effector-trajectory.hh
 include/hpp/manipulation/steering-method/fwd.hh
 include/hpp/manipulation/steering-method/graph.hh
-include/hpp/manipulation/symbolic-planner.hh
 include/hpp/manipulation/warning.hh
 include/hpp/manipulation/weighed-distance.hh
 lib/hppPlugins/manipulation-spline-gradient-based.so
