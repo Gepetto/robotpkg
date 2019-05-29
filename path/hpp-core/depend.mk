@@ -15,7 +15,7 @@ PREFER.hpp-core?=	robotpkg
 
 DEPEND_USE+=		hpp-core
 
-DEPEND_ABI.hpp-core?=	hpp-core>=4.5.0
+DEPEND_ABI.hpp-core?=	hpp-core>=4.6.0
 DEPEND_DIR.hpp-core?=	../../path/hpp-core
 
 SYSTEM_SEARCH.hpp-core=\
