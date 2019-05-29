@@ -1,0 +1,10 @@
+@comment Tue Feb 26 11:24:12 CET 2019
+bin/hpp-plot-manipulation-graph
+include/hpp/plot/config.hh
+include/hpp/plot/deprecated.hh
+include/hpp/plot/graph-widget.hh
+include/hpp/plot/hpp-manipulation-graph.hh
+include/hpp/plot/warning.hh
+lib/gepetto-gui-plugins/hppmonitoringplugin.so
+lib/libhpp-plot.so
+lib/pkgconfig/hpp-plot.pc

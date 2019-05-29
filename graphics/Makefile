@@ -21,6 +21,7 @@ SUBDIR+=	openvrml-libs
 SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
 SUBDIR+=	qt-hpp-gui
+SUBDIR+=	qt-hpp-plot
 SUBDIR+=	qt-qgv
 SUBDIR+=	robot-capsule-urdf
 SUBDIR+=	ros-convex-decomposition
