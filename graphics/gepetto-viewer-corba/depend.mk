@@ -15,7 +15,7 @@ PREFER.gepetto-viewer-corba?=		robotpkg
 
 DEPEND_USE+=				gepetto-viewer-corba
 
-DEPEND_ABI.gepetto-viewer-corba?=	${PKGTAG.python}-${PKGTAG.qt}-gepetto-viewer-corba>=2.2.0
+DEPEND_ABI.gepetto-viewer-corba?=	${PKGTAG.python}-${PKGTAG.qt}-gepetto-viewer-corba>=5.3.0
 DEPEND_DIR.gepetto-viewer-corba?=	../../graphics/gepetto-viewer-corba
 
 SYSTEM_SEARCH.gepetto-viewer-corba=\
