@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-statistics
+HPP_VERSION=		4.5.0
 
 CATEGORIES=	path
 HPP_COMMENT=	Tools to make statistics

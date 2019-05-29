@@ -21,7 +21,7 @@ SYSTEM_SEARCH.hpp-statistics=\
 
 DEPEND_USE+=		hpp-statistics
 
-DEPEND_ABI.hpp-statistics?=	hpp-statistics>=1.1.1
+DEPEND_ABI.hpp-statistics?=	hpp-statistics>=4.5.0
 DEPEND_DIR.hpp-statistics?=	../../path/hpp-statistics
 
 endif # HPP_STATISTICS_DEPEND_MK ------------------------------------------
