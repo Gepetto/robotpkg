@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=	hpp-manipulation-urdf
+HPP_VERSION=    4.5.0
 
 CATEGORIES=	path
 HPP_COMMENT=	URDF/SRDF parser for the package hpp-manipulation
