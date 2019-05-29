@@ -1,0 +1,21 @@
+@comment Mon Jun 3 15:53:31 CEST 2019
+etc/gepetto-gui/basic.conf
+etc/gepetto-gui/pyplugin.conf.d/366e78e6117fa87b71285100e33ef4d0
+etc/gepetto-gui/pyplugin.conf.d/626b84a12064760af8ffb1b0049d1baf
+etc/gepetto-gui/settings.conf
+include/hpp/gui/config.hh
+include/hpp/gui/deprecated.hh
+include/hpp/gui/warning.hh
+lib/gepetto-gui-plugins/hppfclplugin.so
+lib/gepetto-gui-plugins/hppmanipulationwidgetsplugin.so
+lib/gepetto-gui-plugins/hppwidgetsplugin.so
+lib/pkgconfig/hpp-gui.pc
+${PYTHON_SITELIB}/hpp/gui/__init__.py
+${PYTHON_SITELIB}/hpp/gui/collision_pairs.py
+${PYTHON_SITELIB}/hpp/gui/directpath.py
+${PYTHON_SITELIB}/hpp/gui/dynamicbuild.py
+${PYTHON_SITELIB}/hpp/gui/findGrasp.py
+${PYTHON_SITELIB}/hpp/gui/graphutility.py
+${PYTHON_SITELIB}/hpp/gui/inspector.py
+${PYTHON_SITELIB}/hpp/gui/parameters.py
+${PYTHON_SITELIB}/hpp/gui/plugin.py

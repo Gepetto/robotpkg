@@ -20,6 +20,7 @@ SUBDIR+=	laaswm-libs
 SUBDIR+=	openvrml-libs
 SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
+SUBDIR+=	qt-hpp-gui
 SUBDIR+=	robot-capsule-urdf
 SUBDIR+=	ros-convex-decomposition
 SUBDIR+=	ros-geometric-shapes
