@@ -19,7 +19,7 @@ DEPEND_USE+=		hpp-gepetto-viewer
 _hgv_qts={qt4,qt5}
 _hgv_qt=$(if $(filter qt,${PKG_ALTERNATIVES}),${PKG_ALTERNATIVE.qt},${_hgv_qts})
 
-DEPEND_ABI.hpp-gepetto-viewer?=	${PKGTAG.python}-${_hgv_qt}-hpp-gepetto-viewer>=4.2.0
+DEPEND_ABI.hpp-gepetto-viewer?=	${PKGTAG.python}-${_hgv_qt}-hpp-gepetto-viewer>=4.6.0
 DEPEND_DIR.hpp-gepetto-viewer?=	../../graphics/hpp-gepetto-viewer
 
 SYSTEM_SEARCH.hpp-gepetto-viewer=			\
