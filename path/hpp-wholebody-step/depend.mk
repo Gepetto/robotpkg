@@ -15,7 +15,7 @@ PREFER.hpp-wholebody-step?=	robotpkg
 
 DEPEND_USE+=		hpp-wholebody-step
 
-DEPEND_ABI.hpp-wholebody-step?=	hpp-wholebody-step>=4.2.0
+DEPEND_ABI.hpp-wholebody-step?=	hpp-wholebody-step>=4.6.0
 DEPEND_DIR.hpp-wholebody-step?=	../../path/hpp-wholebody-step
 
 SYSTEM_SEARCH.hpp-wholebody-step=		\
