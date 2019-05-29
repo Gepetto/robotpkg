@@ -15,7 +15,7 @@ PREFER.hpp-util?=	robotpkg
 
 DEPEND_USE+=		hpp-util
 
-DEPEND_ABI.hpp-util?=	hpp-util>=3.3
+DEPEND_ABI.hpp-util?=	hpp-util>=4.5.0
 DEPEND_DIR.hpp-util?=	../../path/hpp-util
 
 SYSTEM_SEARCH.hpp-util=			\

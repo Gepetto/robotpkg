@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=	hpp-util
+HPP_VERSION=	4.5.0
 
 CATEGORIES=	path
 HPP_COMMENT=	utility tools
