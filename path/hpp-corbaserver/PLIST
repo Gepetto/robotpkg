@@ -1,4 +1,4 @@
-@comment Thu May 31 18:04:01 CEST 2018
+@comment Mon Jun 3 12:19:25 CEST 2019
 bin/hppcorbaserver
 include/hpp/common-idl.hh
 include/hpp/constraints_idl/constraints-fwd.hh
@@ -32,6 +32,9 @@ include/hpp/core_idl/configuration_shooters.hh
 include/hpp/core_idl/distances-fwd.hh
 include/hpp/core_idl/distances-idl.hh
 include/hpp/core_idl/distances.hh
+include/hpp/core_idl/path_planners-fwd.hh
+include/hpp/core_idl/path_planners-idl.hh
+include/hpp/core_idl/path_planners.hh
 include/hpp/core_idl/path_validations-fwd.hh
 include/hpp/core_idl/path_validations-idl.hh
 include/hpp/core_idl/path_validations.hh
@@ -78,10 +81,12 @@ ${PYTHON_SITELIB}/hpp_stubs/core/_constraints_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/_problem_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/configuration_shooters_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/distances_idl.py
+${PYTHON_SITELIB}/hpp_stubs/core/path_planners_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/path_validations_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/paths_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/steering_methods_idl.py
 share/hpp-corbaserver/cmake/hpp-corbaserver-plugin.cmake
+share/hpp-corbaserver/cmake/omniidl.cmake
 share/hpp-corbaserver/omniidl/cxx_impl/__init__.py
 share/hpp-corbaserver/omniidl/cxx_impl/main.py
 share/hpp-corbaserver/omniidl/cxx_impl/template.py
@@ -95,6 +100,7 @@ share/idl/hpp/core_idl/_constraints.idl
 share/idl/hpp/core_idl/_problem.idl
 share/idl/hpp/core_idl/configuration_shooters.idl
 share/idl/hpp/core_idl/distances.idl
+share/idl/hpp/core_idl/path_planners.idl
 share/idl/hpp/core_idl/path_validations.idl
 share/idl/hpp/core_idl/paths.idl
 share/idl/hpp/core_idl/steering_methods.idl
