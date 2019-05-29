@@ -15,7 +15,7 @@ PREFER.hpp-manipulation-corba?=	robotpkg
 
 DEPEND_USE+=		hpp-manipulation-corba
 
-DEPEND_ABI.hpp-manipulation-corba?=	hpp-manipulation-corba>=4.2.0
+DEPEND_ABI.hpp-manipulation-corba?=	hpp-manipulation-corba>=4.6.0
 DEPEND_DIR.hpp-manipulation-corba?=	../../path/hpp-manipulation-corba
 
 SYSTEM_SEARCH.hpp-manipulation-corba=			\

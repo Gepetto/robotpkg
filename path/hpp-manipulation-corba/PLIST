@@ -1,4 +1,4 @@
-@comment Thu May 31 18:48:37 CEST 2018
+@comment Mon Jun 3 12:23:27 CEST 2019
 bin/hpp-manipulation-server
 include/hpp/corbaserver/manipulation/client.hh
 include/hpp/corbaserver/manipulation/config.hh
@@ -10,7 +10,15 @@ include/hpp/corbaserver/manipulation/problem-idl.hh
 include/hpp/corbaserver/manipulation/robot-idl.hh
 include/hpp/corbaserver/manipulation/server.hh
 include/hpp/corbaserver/manipulation/warning.hh
+include/hpp/manipulation_idl/_graph-fwd.hh
+include/hpp/manipulation_idl/_graph-idl.hh
+include/hpp/manipulation_idl/_graph.hh
+include/hpp/manipulation_idl/_problem-fwd.hh
+include/hpp/manipulation_idl/_problem-idl.hh
+include/hpp/manipulation_idl/_problem.hh
+include/hpp/manipulation_idl/steering_methods-fwd.hh
 include/hpp/manipulation_idl/steering_methods-idl.hh
+include/hpp/manipulation_idl/steering_methods.hh
 lib/hppPlugins/manipulation-corba.so
 lib/libhpp-manipulation-corba.so
 lib/pkgconfig/hpp-manipulation-corba.pc
@@ -22,6 +30,8 @@ ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/constraints.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/problem_solver.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/robot.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/manipulation_idl/__init__.py
+${PYTHON_SITELIB}/hpp_idl/hpp/manipulation_idl/graph_idl/__init__.py
+${PYTHON_SITELIB}/hpp_idl/hpp/manipulation_idl/steeringMethod/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/corbaserver/manipulation/__init__.py
 ${PYTHON_SITELIB}/hpp_stubs/corbaserver/manipulation/__init__.py
 ${PYTHON_SITELIB}/hpp_stubs/corbaserver/manipulation/gcommon_idl.py
@@ -29,9 +39,13 @@ ${PYTHON_SITELIB}/hpp_stubs/corbaserver/manipulation/graph_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/corbaserver/manipulation/problem_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/corbaserver/manipulation/robot_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/manipulation/__init__.py
+${PYTHON_SITELIB}/hpp_stubs/manipulation/_graph_idl.py
+${PYTHON_SITELIB}/hpp_stubs/manipulation/_problem_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/manipulation/steering_methods_idl.py
 share/idl/hpp/corbaserver/manipulation/gcommon.idl
 share/idl/hpp/corbaserver/manipulation/graph.idl
 share/idl/hpp/corbaserver/manipulation/problem.idl
 share/idl/hpp/corbaserver/manipulation/robot.idl
+share/idl/hpp/manipulation_idl/_graph.idl
+share/idl/hpp/manipulation_idl/_problem.idl
 share/idl/hpp/manipulation_idl/steering_methods.idl
