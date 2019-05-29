@@ -15,7 +15,7 @@ PREFER.hpp-constraints?=	robotpkg
 
 DEPEND_USE+=		hpp-constraints
 
-DEPEND_ABI.hpp-constraints?=	hpp-constraints>=4.1
+DEPEND_ABI.hpp-constraints?=	hpp-constraints>=4.6.0
 DEPEND_DIR.hpp-constraints?=	../../path/hpp-constraints
 
 SYSTEM_SEARCH.hpp-constraints=				\
