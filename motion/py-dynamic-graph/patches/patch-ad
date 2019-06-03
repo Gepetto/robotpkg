@@ -1,0 +1,13 @@
+Drop sphinx.ext.pngmath, as it's been removed in sphinx-3
+
+--- doc/sphinx/conf.py.in~	2014-10-30 13:00:44.000000000 +0100
++++ doc/sphinx/conf.py.in	2019-06-03 18:17:53.362429844 +0200
+@@ -23,7 +23,7 @@
+ 
+ # Add any Sphinx extension module names here, as strings. They can be extensions
+ # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
+-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.pngmath']
++extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphinx', 'sphinx.ext.todo']
+ 
+ # Add any paths that contain templates here, relative to this directory.
+ templates_path = ['_templates']
