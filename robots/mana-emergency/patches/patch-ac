@@ -1,0 +1,11 @@
+--- Makefile.am~	2013-09-12 17:41:19.000000000 +0200
++++ Makefile.am	2019-06-03 18:45:51.953486701 +0200
+@@ -13,7 +13,7 @@
+ 
+ bin_PROGRAMS = fetest
+ fetest_SOURCES = fetest.c
+-fetest_LDADD = -lfe $(FELIB_LIBS)
++fetest_LDADD = libfe.la $(FELIB_LIBS)
+ 
+ ACLOCAL_AMFLAGS = -I m4
+ 
