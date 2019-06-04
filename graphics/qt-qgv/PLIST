@@ -1,0 +1,12 @@
+@comment Thu Jan 24 15:41:54 CET 2019
+include/QGVCore/QGVEdge.h
+include/QGVCore/QGVNode.h
+include/QGVCore/QGVScene.h
+include/QGVCore/QGVSubGraph.h
+include/QGVCore/qgv.h
+include/qgv/config.hh
+include/qgv/deprecated.hh
+include/qgv/warning.hh
+lib/libqgvcore.so
+lib/pkgconfig/QGVCore.pc
+lib/pkgconfig/qgv.pc

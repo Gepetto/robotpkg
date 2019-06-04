@@ -1,0 +1,12 @@
+Ansi C was 30 years ago - this obviously would disable C++11
+
+--- CMakeLists.txt~	2019-06-04 15:04:37.812808265 +0200
++++ CMakeLists.txt	2019-06-04 15:42:01.983137322 +0200
+@@ -75,7 +75,6 @@
+ 	IF(NOT WIN32 AND NOT APPLE)
+ #		SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--fatal-warnings -lc -Wl,--disable-auto-import")
+ 		SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--fatal-warnings -lc")
+-		SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ansi")
+ 	ENDIF(NOT WIN32 AND NOT APPLE)
+ ENDIF(NOT KDE)
+ 
