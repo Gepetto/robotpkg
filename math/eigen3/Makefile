@@ -1,8 +1,8 @@
-# robotpkg Makefile for:	wip/eigen3
-# Created:			Nizar Sallem on Tue, 26 Apr 2011
+# robotpkg Makefile for:	math/eigen3
+# Created:			Nizar Sallem on Thu, 5 May 2011
 #
 
-V=		3.2.4
+V=		3.3.0
 PKGREVISION=
 DISTNAME=	${V}
 PKGNAME=	eigen3-${V}
@@ -15,7 +15,7 @@ HOMEPAGE=	http://eigen.tuxfamily.org/
 COMMENT=	a C++ template library for linear algebra
 LICENSE=	gnu-lgpl-v3
 
-WRKSRC=		${WRKDIR}/eigen-eigen-10219c95fe65
+WRKSRC=		${WRKDIR}/eigen-eigen-26667be4f70b
 
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..

@@ -1,6 +1,7 @@
-# robotpkg depend.mk for:	wip/eigen3
-# Created:			Nizar Sallem on Tue, 26 Apr 2011
+# robotpkg depend.mk for:	math/eigen3
+# Created:			Nizar Sallem on Thu, 5 May 2011
 #
+
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 EIGEN3_DEPEND_MK:=	${EIGEN3_DEPEND_MK}+
 
