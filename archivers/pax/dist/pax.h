@@ -251,6 +251,9 @@ typedef struct oplist {
 # define MINOR(x)	minor_netbsd(x)
 # define TODEV(x, y)	makedev_netbsd((x), (y))
 #else
+# if HAVE_SYS_SYSMACROS_H
+#  include <sys/sysmacros.h>
+# endif
 # ifdef __HAIKU__
 #  define major(x)		((int)(0x00ff & ((x) >> 8)))
 #  define minor(x)		((int)(0xffff00ff & (x)))

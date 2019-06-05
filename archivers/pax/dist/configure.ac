@@ -19,8 +19,8 @@ AC_CHECK_HEADERS([ctype.h err.h errno.h fnctl.h fts.h getopt.h grp.h \
 	signal.h stdarg.h stddef.h stdio.h stdlib.h string.h strings.h \
 	time.h tzfile.h unistd.h util.h vis.h])
 AC_CHECK_HEADERS([sys/cdefs.h sys/ioctl.h sys/mman.h sys/mtio.h sys/param.h \
-	sys/resource.h sys/stat.h sys/tape.h sys/time.h sys/types.h sys/uio.h \
-	sys/wait.h])
+	sys/resource.h sys/stat.h sys/sysmacros.h sys/tape.h sys/time.h \
+	sys/types.h sys/uio.h sys/wait.h])
 AC_CHECK_MEMBERS([struct stat.st_flags],,, [#include <sys/stat.h>])
 AC_CHECK_DECLS([UF_SETTABLE, SF_SETTABLE])
 AH_BOTTOM([/* Define to 1 if the user- and root-changeable masks were detected */

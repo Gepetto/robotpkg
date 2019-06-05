@@ -3635,8 +3635,8 @@ done
 
 
 for ac_header in sys/cdefs.h sys/ioctl.h sys/mman.h sys/mtio.h sys/param.h \
-	sys/resource.h sys/stat.h sys/tape.h sys/time.h sys/types.h sys/uio.h \
-	sys/wait.h
+	sys/resource.h sys/stat.h sys/sysmacros.h sys/tape.h sys/time.h \
+	sys/types.h sys/uio.h sys/wait.h
 do
 as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
 if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
