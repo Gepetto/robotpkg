@@ -19,7 +19,7 @@ SYSTEM_SEARCH.gpgme=\
   'lib/libgpgme.so'
 
 SYSTEM_PKG.RedHat.gpgme=	gpgme-devel
-SYSTEM_PKG.Debian.gpgme=	libgpgme11-dev
+SYSTEM_PKG.Debian.gpgme=	libgpgme-dev
 SYSTEM_PKG.NetBSD.gpgme=	security/gpgme
 
 endif # GPGME_DEPEND_MK ----------------------------------------------------
