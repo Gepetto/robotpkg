@@ -1,13 +1,10 @@
-hppCorbaServer implements a Corba interface with hppCore package. Corba
-requests can be sent to trigger actions in a ChppPlanner object. Three
+hpp-corbaserver implements a Corba interface with hpp-core library. Corba
+requests can be sent to trigger actions in a ProblemSolver instance. Three
 main Corba interfaces are implemented:
 
-    * ChppciRobot: to build a ChppDevice and to insert it in a ChppPlanner object,
-    * ChppciObstacle: to build obstacles and insert them in a ChppPlanner object,
-    * ChppciProblem: to define a path planning problem and solve it.
+    * Robot: to build a Device and to insert it in the ProblemSolver instance,
+    * Obstacle: to build obstacles and insert them in the ProblemSolver
+      instance,
+    * Problem: to define a path planning problem and solve it.
 
-However, the main interface classes for users of this package are
-
-    * ChppciServer that implements the above Corba interfaces
-    * ChppciOpenHrpClient that implements a Corba client to load HRP2
-      model (installed on request see INSTALL file for instructions).
+Python clients are provided to control a path planning application.
