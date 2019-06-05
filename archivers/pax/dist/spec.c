@@ -367,9 +367,9 @@ dump_nodes(const char *dir, NODE *root, int pathlast)
 			printf("mode=%#o ", cur->st_mode);
 		if (MATCHFLAG(F_DEV) &&
 		    (cur->type == F_BLOCK || cur->type == F_CHAR))
-			printf("device=%#x ", cur->st_rdev);
+			printf("device=%#x ", (unsigned)cur->st_rdev);
 		if (MATCHFLAG(F_NLINK))
-			printf("nlink=%d ", cur->st_nlink);
+			printf("nlink=%lld ", (long long)cur->st_nlink);
 		if (MATCHFLAG(F_SLINK))
 			printf("link=%s ", cur->slink);
 		if (MATCHFLAG(F_SIZE))
@@ -448,7 +448,7 @@ parsedev(char *arg)
 			mtree_err("not enough arguments");
 		result = (*pack)(argc, numbers, &error);
 		if (error != NULL)
-			mtree_err(error);
+			mtree_err("%s", error);
 	} else {
 		result = (dev_t)strtoul(arg, &ep, 0);
 		if (*ep != '\0')

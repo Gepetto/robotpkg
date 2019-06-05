@@ -1732,7 +1732,7 @@ ar_summary(int n)
 		if (n == 0)
 			(void)fprintf(outf, "%s: %s", argv0, buf);
 		else
-			(void)write(STDERR_FILENO, buf, len);
+			if (write(STDERR_FILENO, buf, len)) ;
 		return;
 	}
 
@@ -1740,7 +1740,7 @@ ar_summary(int n)
 	if (n != 0) {
 		len = snprintf(buf, sizeof(buf), "Working on `%s' (%s)\n",
 		    archd.name, sizefmt(s1buf, sizeof(s1buf), archd.sb.st_size));
-		(void)write(STDERR_FILENO, buf, len);
+		if (write(STDERR_FILENO, buf, len)) ;
 	}
 
 
@@ -1760,7 +1760,7 @@ ar_summary(int n)
 	if (n == 0)
 		(void)fprintf(outf, "%s: %s", argv0, buf);
 	else
-		(void)write(STDERR_FILENO, buf, strlen(buf));
+		if (write(STDERR_FILENO, buf, strlen(buf))) ;
 }
 
 /*
