@@ -1,0 +1,14 @@
+Do not try to guess the boost python libraries: the guess is wrong on Ubuntu-19.04
+The boost_PYTHON_LIBRARY is passed by robotpkg anyway.
+
+--- cmake/boost.cmake~	2019-03-28 15:25:42.000000000 +0100
++++ cmake/boost.cmake	2019-06-05 15:09:02.809376104 +0200
+@@ -57,7 +57,7 @@
+   # Check if python is in the list and adjust the version according to the current Python version.
+   # This is made mandatory if for Boost version greater than 1.67.0
+   LIST(FIND BOOST_COMPONENTS python PYTHON_IN_BOOST_COMPONENTS)
+-  IF(${PYTHON_IN_BOOST_COMPONENTS} GREATER -1)
++  IF(0)
+     SET(BOOST_COMPONENTS_ ${BOOST_COMPONENTS})
+     CHECK_DEBIAN()
+     CHECK_NETBSD()
