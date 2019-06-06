@@ -19,7 +19,7 @@ ifeq (+,$(PKGREPO2DEB_DEPEND_MK)) # --------------------------------------
   DEPEND_USE+=		pkgrepo2deb
 
   DEPEND_METHOD.pkgrepo2deb?=	bootstrap
-  DEPEND_ABI.pkgrepo2deb?=	pkgrepo2deb>=1.5
+  DEPEND_ABI.pkgrepo2deb?=	pkgrepo2deb>=1.6
   DEPEND_DIR.pkgrepo2deb?=	../../pkgtools/pkgrepo2deb
 
   SYSTEM_SEARCH.pkgrepo2deb=	\
