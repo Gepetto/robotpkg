@@ -31,7 +31,9 @@ USE_QMAKE?=		yes
 export QMAKE=		$(word 1,${SYSTEM_FILES.qmake})
 
 SYSTEM_PKG.Debian.qmake=	qt[45]-qmake
-SYSTEM_PKG.Fedora.qmake=	qt-devel
+SYSTEM_PKG.RedHat.qmake=\
+  qt$(if $(filter qt5-qtbase,${DEPEND_USE}),5-qtbase)-devel
+
 
 endif # QMAKE_DEPEND_MK ----------------------------------------------------
 

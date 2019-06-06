@@ -28,7 +28,7 @@ SYSTEM_SEARCH.lz4=\
 	include/lz4.h			\
 	'lib/liblz4.{so,a}'
 
-SYSTEM_PKG.Fedora.lz4=	lz4-devel
+SYSTEM_PKG.RedHat.lz4=	lz4-devel
 SYSTEM_PKG.Debian.lz4=	liblz4-dev
 SYSTEM_PKG.NetBSD.lz4=	pkgsrc/archivers/lz4
 

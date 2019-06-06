@@ -24,8 +24,8 @@ _poco_version+=	  sub(/^.*0x/,""); gsub(/[0-9][0-9]/,"&."); split($$0,v,".");
 _poco_version+=	  print v[1]+0 "." v[2]+0 "." v[3]+0;
 _poco_version+=	}
 
-SYSTEM_PKG.Fedora.poco=poco-devel
 SYSTEM_PKG.Ubuntu.poco=libpoco-dev
+SYSTEM_PKG.RedHat.poco=poco-devel
 SYSTEM_PKG.Debian.poco=libpoco-dev
 SYSTEM_PKG.NetBSD.poco=devel/poco
 SYSTEM_PKG.Gentoo.poco=dev-libs/poco

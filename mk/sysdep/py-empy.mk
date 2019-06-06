@@ -21,8 +21,8 @@ SYSTEM_SEARCH.py-empy=\
 
 PYTHONPATH.py-empy=	$(dir ${SYSTEM_FILES.py-empy})
 
+SYSTEM_PKG.RedHat.py-empy=	python-empy (python-${PYTHON_VERSION})
 SYSTEM_PKG.Debian.py-empy=	python-empy (python-${PYTHON_VERSION})
-SYSTEM_PKG.Fedora.py-empy=	python-empy (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-empy=	textproc/${PKGTAG.python}-empy
 SYSTEM_PKG.Ubuntu.py-empy=	python-empy (python-${PYTHON_VERSION})
 SYSTEM_PKG.Gentoo.py-empy=	dev-python/empy (python-${PYTHON_VERSION})

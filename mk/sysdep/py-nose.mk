@@ -20,8 +20,8 @@ SYSTEM_SEARCH.py-nose=\
   'bin/nosetests{-${PYTHON_VERSION},}:s/.*version[ ]*//p:% --version'	\
   '${PYTHON_SYSLIBSEARCH}/nose/__init__.py'
 
+SYSTEM_PKG.RedHat.py-nose=	python-nose (python-${PYTHON_VERSION})
 SYSTEM_PKG.Debian.py-nose=	python-nose (python-${PYTHON_VERSION})
-SYSTEM_PKG.Fedora.py-nose=	python-nose (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-nose=	devel/${PKGTAG.python}-nose
 SYSTEM_PKG.Ubuntu.py-nose=	python-nose (python-${PYTHON_VERSION})
 SYSTEM_PKG.Gentoo.py-nose=	dev-python/nose (python-${PYTHON_VERSION})

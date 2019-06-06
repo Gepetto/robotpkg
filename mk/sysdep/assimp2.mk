@@ -22,7 +22,7 @@ SYSTEM_SEARCH.assimp2=\
   'lib/pkgconfig/assimp.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.assimp2=	libassimp-dev
-SYSTEM_PKG.Fedora.assimp2=	assimp-devel
+SYSTEM_PKG.RedHat.assimp2=	assimp-devel
 SYSTEM_PKG.Ubuntu.assimp2=	libassimp-dev
 
 endif # ASSIMP2_DEPEND_MK --------------------------------------------------

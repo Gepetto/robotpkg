@@ -23,6 +23,7 @@ DEPEND_USE+=		bullet
 DEPEND_ABI.bullet?=	bullet>=2.75
 DEPEND_DIR.bullet?=	../../simulation/bullet
 
+SYSTEM_PKG.RedHat.bullet=bullet-devel
 SYSTEM_PKG.Debian.bullet=libbullet-dev
 
 endif # BULLET_DEPEND_MK ---------------------------------------------------

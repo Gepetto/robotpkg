@@ -18,8 +18,8 @@ SYSTEM_SEARCH.xproto=	\
 	include/X11/X.h			\
 	'{lib,share}/pkgconfig/xproto.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.xproto=xproto-devel
 SYSTEM_PKG.Ubuntu.xproto=x11proto-core-dev
+SYSTEM_PKG.RedHat.xproto=xorg-x11-proto-devel
 SYSTEM_PKG.Debian.xproto=x11proto-core-dev
 SYSTEM_PKG.NetBSD.xproto=x11/xproto
 

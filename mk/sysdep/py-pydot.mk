@@ -18,8 +18,8 @@ DEPEND_ABI.py-pydot?=	${PKGTAG.python-}pydot>=1
 SYSTEM_SEARCH.py-pydot=\
   '${PYTHON_SYSLIBSEARCH}/{,python-pydot/}pydot.py:/__version__/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.py-pydot=	pydot (python-${PYTHON_VERSION})
 SYSTEM_PKG.Ubuntu.py-pydot=	python-pydot (python-${PYTHON_VERSION})
+SYSTEM_PKG.RedHat.py-pydot=	python-pydot (python-${PYTHON_VERSION})
 SYSTEM_PKG.Debian.py-pydot=	python-pydot (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-pydot=	wip/${PKGTAG.python-}pydot
 

@@ -21,7 +21,7 @@ SYSTEM_SEARCH.googletest=\
 
 SYSTEM_PKG.Arch.googletest=	gtest
 SYSTEM_PKG.Debian.googletest=	libgtest-dev
-SYSTEM_PKG.Fedora.googletest=	gtest-devel
+SYSTEM_PKG.RedHat.googletest=	gtest-devel
 SYSTEM_PKG.NetBSD.googletest=	devel/googletest
 SYSTEM_PKG.Ubuntu.googletest=	libgtest-dev
 SYSTEM_PKG.Gentoo.googletest=	dev-cpp/gtest

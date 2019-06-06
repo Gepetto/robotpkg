@@ -18,8 +18,8 @@ SYSTEM_SEARCH.gtk=	\
 	'include/gtk-2.0/gtk/gtk.h'				\
 	'lib/pkgconfig/gtk+-2.0.pc:/Version/s/[^.0-9]//gp'
 
+SYSTEM_PKG.RedHat.gtk=	gtk2-devel
 SYSTEM_PKG.Debian.gtk=	libgtk2.0-dev
-SYSTEM_PKG.Fedora.gtk=	gtk2-devel
 SYSTEM_PKG.Gentoo.gtk=	<x11-libs/gtk+-3
 SYSTEM_PKG.NetBSD.gtk=	x11/gtk2
 

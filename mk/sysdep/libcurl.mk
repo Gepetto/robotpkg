@@ -19,8 +19,8 @@ SYSTEM_SEARCH.libcurl=	\
   'lib/libcurl.{so,a}'					\
   'lib/pkgconfig/libcurl.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Fedora.libcurl=libcurl-devel
 SYSTEM_PKG.Ubuntu.libcurl=libcurl-dev
+SYSTEM_PKG.RedHat.libcurl=libcurl-devel
 SYSTEM_PKG.Debian.libcurl=libcurl-dev
 SYSTEM_PKG.NetBSD.libcurl=www/curl
 

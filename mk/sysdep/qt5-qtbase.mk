@@ -23,7 +23,7 @@ SYSTEM_SEARCH.qt5-qtbase=\
 
 SYSTEM_PREFIX.qt5-qtbase?=	${SYSTEM_PREFIX:=/qt5} ${SYSTEM_PREFIX}
 
-SYSTEM_PKG.Fedora.qt5-qtbase=	qt5-devel
+SYSTEM_PKG.RedHat.qt5-qtbase=	qt5-qtbase-devel
 SYSTEM_PKG.Debian.qt5-qtbase=	qtbase5-dev
 SYSTEM_PKG.NetBSD.qt5-qtbase=	x11/qt5-qtbase
 

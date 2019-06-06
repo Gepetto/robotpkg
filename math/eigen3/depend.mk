@@ -24,7 +24,7 @@ SYSTEM_SEARCH.eigen3=	\
   '{lib,share}/pkgconfig/eigen3.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.eigen3=	libeigen3-dev
-SYSTEM_PKG.Fedora.eigen3=	eigen3-devel
+SYSTEM_PKG.RedHat.eigen3=	eigen3-devel
 SYSTEM_PKG.Gentoo.eigen3=	dev-cpp/eigen
 SYSTEM_PKG.NetBSD.eigen3=	math/eigen3
 

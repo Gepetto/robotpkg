@@ -26,8 +26,8 @@ SYSTEM_SEARCH.apr=	\
 	'lib/libapr-1.{so,a}'			\
 	'lib/pkgconfig/apr-1.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.RedHat.apr=	apr-devel
 SYSTEM_PKG.Debian.apr=	libapr1-dev
-SYSTEM_PKG.Fedora.apr=	apr-devel
 SYSTEM_PKG.NetBSD.apr=	devel/apr
 SYSTEM_PKG.Ubuntu.apr=	libapr1-dev
 SYSTEM_PKG.Gentoo.apr=	dev-libs/apr

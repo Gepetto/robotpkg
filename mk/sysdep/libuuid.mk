@@ -20,7 +20,7 @@ SYSTEM_SEARCH.libuuid=	\
 	'lib/pkgconfig/uuid.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.libuuid=uuid-dev
-SYSTEM_PKG.Fedora.libuuid=libuuid-devel
+SYSTEM_PKG.RedHat.libuuid=libuuid-devel
 SYSTEM_PKG.NetBSD.libuuid=devel/libuuid
 SYSTEM_PKG.Ubuntu.libuuid=uuid-dev
 

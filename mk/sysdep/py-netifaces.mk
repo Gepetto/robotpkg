@@ -19,8 +19,8 @@ SYSTEM_SEARCH.py-netifaces=\
   '${PYTHON_SYSLIBSEARCH}/netifaces{${PYTHON_EXT_SUFFIX},.${DEB_HOST_MULTIARCH}.so}'
 
 SYSTEM_PKG.Arch.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
-SYSTEM_PKG.Fedora.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
 SYSTEM_PKG.Ubuntu.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
+SYSTEM_PKG.RedHat.py-netifaces= python-netifaces
 SYSTEM_PKG.Debian.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-netifaces=	net/${PKGTAG.python-}netifaces
 SYSTEM_PKG.Gentoo.py-netifaces=	dev-python/netifaces (python-${PYTHON_VERSION})

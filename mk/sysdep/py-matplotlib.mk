@@ -22,8 +22,8 @@ SYSTEM_SEARCH.py-matplotlib=\
 	'${PYTHON_SYSLIBSEARCH}/matplotlib/backends/_tkagg.so:::~tk'	\
 	'${PYTHON_SYSLIBSEARCH}/matplotlib/backends/backend_wxagg.py:::~wx'
 
+SYSTEM_PKG.RedHat.py-matplotlib=python-matplotlib-* (python-${PYTHON_VERSION})
 SYSTEM_PKG.Debian.py-matplotlib=python-matplotlib (python-${PYTHON_VERSION})
-SYSTEM_PKG.Fedora.py-matplotlib=python-matplotlib-* (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-matplotlib=graphics/${PKGTAG.python-}matplotlib-*
 SYSTEM_PKG.Ubuntu.py-matplotlib=python-matplotlib (python-${PYTHON_VERSION})
 

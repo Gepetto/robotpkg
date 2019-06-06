@@ -23,8 +23,8 @@ SYSTEM_SEARCH.tinyxml2=	\
   'include/{,tinyxml2/}tinyxml2.h:p:${AWK} '\''${_tinyxml2vers}'\'' %'	\
   'lib/libtinyxml2.so'
 
-SYSTEM_PKG.Fedora.tinyxml2=tinyxml2-devel
 SYSTEM_PKG.Ubuntu.tinyxml2=libtinyxml2-dev
+SYSTEM_PKG.RedHat.tinyxml2=tinyxml2-devel
 SYSTEM_PKG.Debian.tinyxml2=libtinyxml2-dev
 SYSTEM_PKG.NetBSD.tinyxml2=textproc/tinyxml2
 
