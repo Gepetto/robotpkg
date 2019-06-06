@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp_tutorial
+HPP_VERSION=		4.6.1
 
 CATEGORIES=		doc
 HPP_COMMENT=		Tutorial for manipulation and path planning
