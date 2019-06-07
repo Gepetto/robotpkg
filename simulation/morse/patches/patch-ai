@@ -1,0 +1,12 @@
+Drop useless message (polluting stderr during build and install)
+
+--- src/morse/testing/ros.py~	2016-02-08 10:50:17.000000000 +0100
++++ src/morse/testing/ros.py	2019-06-07 14:28:48.340391606 +0200
+@@ -12,7 +12,6 @@
+ try:
+     import roslib
+ except ImportError as error:
+-    testlogger.error("Could not find ROS. source setup.[ba]sh ?")
+     raise error
+ 
+ class RosTestCase(MorseTestCase):

@@ -1,0 +1,14 @@
+Drop useless message (polluting stderr during build and install)
+
+--- src/morse/middleware/ros/abstract_ros.py~	2016-02-08 10:50:17.000000000 +0100
++++ src/morse/middleware/ros/abstract_ros.py	2019-06-07 14:26:56.423684004 +0200
+@@ -3,9 +3,6 @@
+ try:
+     import roslib
+ except ImportError as error:
+-    logger.error("Could not find ROS. source setup.[ba]sh ?")
+-    logger.error("Please follow the installation instructions at:\n"
+-        "http://www.openrobots.org/morse/doc/latest/user/installation/mw/ros.html")
+     raise error
+ import rospy
+ 

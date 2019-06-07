@@ -1,0 +1,12 @@
+Dropped sphinx.ext.pngmath in sphinx-3
+
+--- doc/conf.py.in~	2016-02-08 10:50:17.000000000 +0100
++++ doc/conf.py.in	2019-06-07 13:41:42.398575415 +0200
+@@ -26,7 +26,6 @@
+ # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
+ 
+ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.todo', 'sphinx.ext.viewcode', 'vimeo','gallery', 'tag', 'examples']
+-extensions.append('sphinx.ext.pngmath')
+ 
+ # Add any paths that contain templates here, relative to this directory.
+ templates_path = ['@CMAKE_CURRENT_SOURCE_DIR@/doc/morse-theme/templates', '@CMAKE_CURRENT_SOURCE_DIR@/doc/sphinxext']

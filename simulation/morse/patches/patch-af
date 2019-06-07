@@ -1,0 +1,28 @@
+Fix with python-3.7 (async is reserved)
+
+--- src/morse/core/request_manager.py~	2016-02-08 10:50:17.000000000 +0100
++++ src/morse/core/request_manager.py	2019-06-07 14:09:03.336915496 +0200
+@@ -137,7 +137,7 @@
+         self.register_service(component_name, callback, service_name, True)
+ 
+ 
+-    def register_service(self, component_name, callback, service_name = None, async = False):
++    def register_service(self, component_name, callback, service_name = None, asyncp = False):
+         """ Allows a component to register a synchronous RPC method that is made
+         publicly available to the outside world.
+ 
+@@ -159,11 +159,11 @@
+         if hasattr(callback, '__call__'):
+             service_name = service_name if service_name else callback.__name__
+ 
+-            self._services[(component_name, service_name)] = (callback, async)
++            self._services[(component_name, service_name)] = (callback, asyncp)
+ 
+-            if self.post_registration(component_name, service_name, async):
++            if self.post_registration(component_name, service_name, asyncp):
+                 logger.info(str(self) + ": " + \
+-                    ("Asynchronous" if async else "Synchronous") + \
++                    ("Asynchronous" if asyncp else "Synchronous") + \
+                     " service '" + service_name + "' for component '" + \
+                     component_name + "' successfully registered")
+             else:

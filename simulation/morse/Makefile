@@ -2,6 +2,7 @@
 # Created:			Severin Lemaignan on Tue, 12 Apr 2011
 #
 
+PKGREVISION=		1
 PKGNAME=		morse-${MORSE_VERSION}
 
 include ../../simulation/morse/Makefile.common

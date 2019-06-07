@@ -1,0 +1,19 @@
+Fix with python-3.7 (async is reserved)
+
+--- src/morse/middleware/ros_request_manager.py~	2016-02-08 10:50:17.000000000 +0100
++++ src/morse/middleware/ros_request_manager.py	2019-06-07 14:09:53.173229921 +0200
+@@ -393,7 +393,7 @@
+         return partial(ros_action, type = type, name = name)
+         
+     fn._ros_action_type = type
+-    return services.service(fn, component = None, name = name, async = True)
++    return services.service(fn, component = None, name = name, asyncp = True)
+         
+ 
+ def ros_service(fn = None, type = None, component = None, name = None):
+@@ -431,4 +431,4 @@
+         return partial(ros_service, type = type, component = component, name = name)
+ 
+     fn._ros_service_type = type
+-    return services.service(fn, component = component, name = name, async = False)
++    return services.service(fn, component = component, name = name, asyncp = False)

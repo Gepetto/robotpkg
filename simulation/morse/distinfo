@@ -1,6 +1,12 @@
 SHA1 (morse-1.4.tar.bz2) = 50f346205dc32ec5f0e916de7169bcbbed6e5e80
 RMD160 (morse-1.4.tar.bz2) = ec277034ca20e2fcb008bd40a6cbca89cf681445
 Size (morse-1.4.tar.bz2) = 119038333 bytes
-SHA1 (patch-aa) = f8be763d47f3733df77a5dfef5e4120bb5012285
+SHA1 (patch-aa) = 961b779c48d4bcff3e36f26f9401f365a7b3d2d7
 SHA1 (patch-ab) = ad4d466f5825cdb042b5c77c29b28d9291a35c61
 SHA1 (patch-ac) = 0043e563cc19892639ee4613dc7de49519a53e7c
+SHA1 (patch-ad) = add5f7de374b9c43ba57a50973c7495248da16b7
+SHA1 (patch-ae) = 05612a17f50a5f452581fc351a480c389f0d62a5
+SHA1 (patch-af) = 3a357ee488218c3e712310b6fd3b44302de28df8
+SHA1 (patch-ag) = 5004776871f66b1166eae9fb151db486c84507ff
+SHA1 (patch-ah) = c2588d297e004329e946b8fce79ad84c3b6fc42a
+SHA1 (patch-ai) = dd84d64b82a45efd574a76c362de0a38d024c242
