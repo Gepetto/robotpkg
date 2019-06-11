@@ -1,0 +1,12 @@
+mrsim-gazebo is a gazebo plugin for multi-rotor simulation.
+
+It emulates the tk3-mikrokopter software running on Mikrokopter hardware via a
+pty implementing the tk3-mikrokopter communication protocol and all the
+tk3-mikrokopter features so that the hardware can be fully emulated.
+
+The rotor dynamics are simulated using a realistic motor model and a simple
+thrust/drag propeller model. The same hardware velocity controller as
+implemented in the tk3-mikrokopter software controls the propellers
+velocities. Then, at the user's choice, either the geometry of a model can be
+used to compute the total wrench applied to the rigid body, or an explicit
+allocation matrix can be specified.
