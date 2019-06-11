@@ -1,0 +1,12 @@
+Multi-rotor simulator.
+
+The library provides a pty emulating the tk3-mikrokopter communication protocol
+and implements all the tk3-mikrokopter features so that the hardware can be
+fully emulated.
+
+The rotor dynamics are simulated using a realistic motor model and a simple
+thrust/drag propeller model. The same hardware velocity controller as
+implemented in the tk3-mikrokopter software controls the propellers
+velocities. Then, a simple free-flying 6D rigid body dynamics simulation can
+also be used, although it is not meant as a generic physics engine (e.g. no
+collision, no atmosphere, ...).
