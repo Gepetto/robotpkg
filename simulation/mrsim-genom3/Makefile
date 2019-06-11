@@ -13,6 +13,10 @@ LICENSE=		2-clause-bsd
 
 include ../../architecture/genom3/module.mk
 
+define PKG_OPTION_SET.codels
+  include ../../simulation/libmrsim/depend.mk
+endef
+
 include ../../interfaces/openrobots2-idl/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
