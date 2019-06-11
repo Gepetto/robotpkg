@@ -1,0 +1,13 @@
+Don't install random files
+
+--- src/morse/CMakeLists.txt~	2016-02-08 10:50:17.000000000 +0100
++++ src/morse/CMakeLists.txt	2019-06-11 13:47:13.012807866 +0200
+@@ -6,7 +6,7 @@
+ 
+ INSTALL(DIRECTORY core actuators helpers blender services robots testing
+         DESTINATION ${PYTHON_INSTDIR}/morse
+-        REGEX .*py.$ EXCLUDE
++        FILES_MATCHING REGEX [.]py$
+         )
+ 
+ ADD_SUBDIRECTORY(builder)
