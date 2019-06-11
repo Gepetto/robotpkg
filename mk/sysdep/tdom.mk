@@ -15,7 +15,7 @@ PREFER.tdom?=		system
 DEPEND_USE+=		tdom
 DEPEND_ABI.tdom?=	tdom>=0.8
 
-_libdir.tdom=lib{,/tcl{,tk}{,[0-9]*}}/tdom[0-9]*
+_libdir.tdom=lib{,/tcl{,tk}{,[0-9]*}}{,/${DEB_HOST_MULTIARCH}}/tdom[0-9]*
 _vregex.tdom=/ifneeded/{s/.*ifneeded tdom[ \t]*//;s/[ \t].*$$//;p;q;}
 
 SYSTEM_SEARCH.tdom=	\
@@ -24,6 +24,7 @@ SYSTEM_SEARCH.tdom=	\
 
 SYSTEM_PKG.NetBSD.tdom=	textproc/tcl-tDOM
 SYSTEM_PKG.Gentoo.tdom=	dev-tcltk/tdom
+SYSTEM_PKG.Debu.tdom=	tdom-dev
 
 include ../../mk/sysdep/tcl.mk
 
