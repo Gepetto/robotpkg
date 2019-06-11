@@ -1,0 +1,5 @@
+@comment Tue Jun 11 16:08:53 CEST 2019
+lib/gazebo/optitrack-gazebo.la
+lib/pkgconfig/optitrack-gazebo.pc
+share/doc/optitrack-gazebo/README.adoc
+share/doc/optitrack-gazebo/README.html

@@ -1,0 +1,4 @@
+optitrack-gazebo is a gazebo plugin that emulates an OptiTrack Motion Capture
+system. It streams live a configurable subset of links pose as computed by the
+gazebo simulator. The streaming protocol is compatible with the NatNet 2.9
+format of OptiTrack.
