@@ -106,7 +106,10 @@ PKG_ALTERNATIVES.python+=	python34 python35 python36 python37
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Debian,${OPSYS})
-  PREFER_ALTERNATIVE.python?=	python27 python34
+  ifneq (,$(filter 8,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python34
+  endif
+  PREFER_ALTERNATIVE.python?=	python27 python35
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 14.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python34
