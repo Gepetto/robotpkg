@@ -12,18 +12,14 @@ endif
 ifeq (+,$(URDFDOM_DEPEND_MK)) # --------------------------------------------
 
 include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 14.04 16.04,${OS_VERSION}))
-    PREFER.urdfdom?=	system
-  endif
-else ifeq (Fedora,${OPSYS})
-  PREFER.urdfdom?=	system
+ifeq (NetBSD,${OPSYS})
+  PREFER.urdfdom?=	robotpkg
 endif
-PREFER.urdfdom?=	robotpkg
+PREFER.urdfdom?=	system
 
 DEPEND_USE+=		urdfdom
 
-DEPEND_ABI.urdfdom?=	urdfdom>=0.2.8<1
+DEPEND_ABI.urdfdom?=	urdfdom>=0.2.8
 DEPEND_DIR.urdfdom?=	../../graphics/urdfdom
 
 SYSTEM_SEARCH.urdfdom=\

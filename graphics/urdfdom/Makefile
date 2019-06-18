@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
-PKGREVISION=	2
-VERSION=	0.3.0
+VERSION=	1.0.3
 DISTNAME=	urdfdom-${VERSION}
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ros/urdfdom/archive/}
@@ -15,21 +14,18 @@ HOMEPAGE=	http://ros.org/wiki/urdf
 COMMENT=	The URDF (U-Robot Description Format) library
 LICENSE=	modified-bsd
 
-USE_BOOST_LIBS=	thread
-CMAKE_ARGS+=	-DPYTHON_SITELIB=${PYTHON_SITELIB}
+CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
 
 # make sure to depend on the proper api and default the headers package to
 # robotpkg when building this one from robotpkg
 PREFER.urdfdom-headers?=	robotpkg
 DEPEND_ABI.urdfdom-headers+=	urdfdom-headers>=${VERSION}
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/tinyxml/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
 include ../../sysutils/console-bridge/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
