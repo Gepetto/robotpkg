@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
-VERSION=	0.3.0
+VERSION=	1.0.4
 DISTNAME=	urdfdom_headers-${VERSION}
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
 PKGNAME=	$(subst _,-,${DISTNAME})
@@ -15,7 +15,9 @@ HOMEPAGE=	http://ros.org/wiki/urdf
 COMMENT=	The URDF (U-Robot Description Format) headers
 LICENSE=	modified-bsd
 
+CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
+
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
