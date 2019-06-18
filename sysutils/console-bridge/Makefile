@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
-VERSION=	0.2.7
+VERSION=	0.4.3
 DISTNAME=	console_bridge-${VERSION}
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
 PKGNAME=	$(subst _,-,${DISTNAME})
@@ -15,11 +15,9 @@ HOMEPAGE=	http://wiki.ros.org/console_bridge
 COMMENT=	Logging for ROS-independent applications
 LICENSE=	modified-bsd
 
-USE_BOOST_LIBS+=thread system
+CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk

@@ -1,6 +1,10 @@
 @comment Wed Aug 13 12:13:14 CEST 2014
 include/console_bridge/console.h
-include/console_bridge/exportdecl.h
+include/console_bridge_export.h
+lib/console_bridge/cmake/console_bridge-config-version.cmake
+lib/console_bridge/cmake/console_bridge-config.cmake
+lib/console_bridge/cmake/console_bridge-targets-release.cmake
+lib/console_bridge/cmake/console_bridge-targets.cmake
 lib/libconsole_bridge.so
+lib/libconsole_bridge.so.0.4
 lib/pkgconfig/console_bridge.pc
-share/console_bridge/cmake/console_bridge-config.cmake

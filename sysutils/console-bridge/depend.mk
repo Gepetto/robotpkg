@@ -12,20 +12,20 @@ endif
 ifeq (+,$(CONSOLE_BRIDGE_DEPEND_MK)) # -------------------------------------
 
 include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04 12.10 13.04,${OS_VERSION}))
+ifeq (NetBSD,${OPSYS})
+  PREFER.console-bridge?=	robotpkg
+else ifeq (CentOS,${OPSYS})
+  PREFER.console-bridge?=	robotpkg
+else ifeq (Debian,${OPSYS})
+  ifneq (,$(filter 8,${OS_VERSION}))
     PREFER.console-bridge?=	robotpkg
-  else
-    PREFER.console-bridge?=	system
   endif
-else ifeq (Fedora,${OPSYS})
-  PREFER.console-bridge?=	system
 endif
-PREFER.console-bridge?=		robotpkg
+PREFER.console-bridge?=		system
 
 DEPEND_USE+=			console-bridge
 
-DEPEND_ABI.console-bridge?=	console-bridge>=0.1
+DEPEND_ABI.console-bridge?=	console-bridge>=0.3
 DEPEND_DIR.console-bridge?=	../../sysutils/console-bridge
 
 SYSTEM_SEARCH.console-bridge=\
