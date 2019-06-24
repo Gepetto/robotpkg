@@ -32,3 +32,8 @@ SYSTEM_SEARCH.jrl-dynamics-urdf=\
 endif # JRL_DYNAMICS_URDF_DEPEND_MK ---------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
+
+# headers needs those dependencies
+include ../../graphics/urdfdom-headers/depend.mk
+
+DEPEND_ABI.urdfdom-headers+=	urdfdom-headers<1

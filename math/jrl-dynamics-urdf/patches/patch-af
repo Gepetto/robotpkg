@@ -1,0 +1,11 @@
+Add missing urdfdom dependency
+
+--- examples/CMakeLists.txt~	2019-06-24 23:24:46.050305018 +0200
++++ examples/CMakeLists.txt	2019-06-24 23:23:44.984016083 +0200
+@@ -17,5 +17,6 @@
+ PKG_CONFIG_USE_DEPENDENCY(display-robot jrl-mal)
+ TARGET_LINK_LIBRARIES(display-robot jrl-dynamics-urdf)
+ PKG_CONFIG_USE_DEPENDENCY(display-robot roscpp)
++PKG_CONFIG_USE_DEPENDENCY(display-robot urdfdom)
+ 
+ INSTALL(TARGETS display-robot DESTINATION ${CMAKE_INSTALL_BINDIR})
