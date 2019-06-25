@@ -2,7 +2,7 @@
 # Created:			Arnaud Degroote on Thu, 22 Aug 2013
 #
 #
-OROCOS_VERSION=		2.9.0-rc1
+OROCOS_VERSION=		2.9.1
 DISTNAME?=		orocos-${OROCOS_PKG}-$(subst -,,${OROCOS_VERSION})
 DISTFILES?=		${OROCOS_VERSION}${EXTRACT_SUFX}
 DIST_SUBDIR?=		orocos-${OROCOS_PKG}
