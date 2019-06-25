@@ -19,8 +19,8 @@ include ../../lang/ros-message-generation/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../motion/ros-orocos-kinematics-dynamics/depend.mk
-include ../../simulation/bullet/depend.mk
 include ../../sysutils/console-bridge/depend.mk
+include ../../mk/sysdep/bullet.mk
 include ../../mk/robotpkg.mk
 
 # fix a crazy circular dependency: tf depends on tf2, and test_tf2 depends on

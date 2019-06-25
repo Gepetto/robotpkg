@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	simulation/bullet
+# robotpkg sysdep/bullet.mk
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
@@ -21,7 +21,6 @@ SYSTEM_SEARCH.bullet=\
 DEPEND_USE+=		bullet
 
 DEPEND_ABI.bullet?=	bullet>=2.75
-DEPEND_DIR.bullet?=	../../simulation/bullet
 
 SYSTEM_PKG.RedHat.bullet=bullet-devel
 SYSTEM_PKG.Debian.bullet=libbullet-dev

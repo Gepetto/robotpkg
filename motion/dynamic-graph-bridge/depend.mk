@@ -42,4 +42,4 @@ include ../../motion/dynamic-graph/depend.mk
 include ../../motion/py-dynamic-graph/depend.mk
 include ../../motion/sot-core/depend.mk
 include ../../motion/sot-dynamic/depend.mk
-include ../../simulation/bullet/depend.mk
+include ../../mk/sysdep/bullet.mk

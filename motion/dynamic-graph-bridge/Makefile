@@ -41,8 +41,8 @@ include ../../motion/py-dynamic-graph/depend.mk
 include ../../motion/sot-core/depend.mk
 include ../../motion/sot-dynamic/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
-include ../../simulation/bullet/depend.mk
 include ../../sysutils/ros-rospack/depend.mk
+include ../../mk/sysdep/bullet.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

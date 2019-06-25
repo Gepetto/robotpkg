@@ -24,9 +24,9 @@ include ../../graphics/urdfdom-headers/depend.mk
 include ../../interfaces/jrl-mal/depend.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
-include ../../simulation/bullet/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
+include ../../mk/sysdep/bullet.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/googletest.mk

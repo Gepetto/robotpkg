@@ -3,7 +3,6 @@
 
 COMMENT=	Simulation tools
 
-SUBDIR+=	bullet
 SUBDIR+=	gazebo-ros-pkgs
 SUBDIR+=	libmrsim
 SUBDIR+=	morse
