@@ -1,12 +1,13 @@
---- CMakeLists.txt~	2017-04-28 18:27:36.000000000 +0200
-+++ CMakeLists.txt	2018-03-27 17:07:19.165240140 +0200
-@@ -230,7 +230,9 @@
- )
+--- CMakeLists.txt~	2019-04-17 21:30:53.000000000 +0200
++++ CMakeLists.txt	2019-06-25 13:48:12.858928992 +0200
+@@ -231,8 +231,10 @@
+   )
  
- # Install a catkin env-hook if catkin is installed
-+if(WITH_CATKIN_SUPPORT)
- find_package(catkin QUIET)
- if(catkin_FOUND)
-   catkin_add_env_hooks(00.ocl-lua SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
+   # Install a catkin env-hook if catkin is installed
++  if(WITH_CATKIN_SUPPORT)
+   find_package(catkin QUIET)
+   if(catkin_FOUND)
+     catkin_add_env_hooks(00.ocl-lua SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
+   endif()
++  endif()
  endif()
-+endif()
