@@ -219,8 +219,15 @@ PYTHON_SYSLIB:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
 	'import distutils.sysconfig;                                    \
 	print(distutils.sysconfig.get_python_lib(0, 0, ""))'))
 
-PYTHON_EXT_SUFFIX:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c	\
-	  'import sysconfig; print(sysconfig.get_config_var("SO"));'))
+# Python library extension: expand to an error until dependency resolution
+# has completed and a PYTHON program is available, so that the variable is not
+# referenced by mistake.
+#
+PYTHON_EXT_SUFFIX=$(if ${PYTHON},$(eval					\
+  PYTHON_EXT_SUFFIX:=$$(shell ${PYTHON} 2>/dev/null -c			\
+    'import sysconfig; print(sysconfig.get_config_var("SO"));')		\
+  )${PYTHON_EXT_SUFFIX},						\
+  $(error PYTHON_EXT_SUFFIX referenced before dependency resolution))
 
 # PYTHONPATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
 # directories) that should be added to the python search paths.
