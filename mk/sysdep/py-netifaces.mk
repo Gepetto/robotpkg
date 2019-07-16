@@ -16,7 +16,7 @@ DEPEND_USE+=		py-netifaces
 DEPEND_ABI.py-netifaces?=${PKGTAG.python-}netifaces
 
 SYSTEM_SEARCH.py-netifaces=\
-  '${PYTHON_SYSLIBSEARCH}/netifaces{.so,${PYTHON_EXT_SUFFIX},.${DEB_HOST_MULTIARCH}.so}'
+  '${PYTHON_SYSLIBSEARCH}/netifaces.{*.,}so'
 
 SYSTEM_PKG.Arch.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
 SYSTEM_PKG.Ubuntu.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
