@@ -4,22 +4,13 @@
 
 ORG=			stack-of-tasks
 NAME=			pinocchio
-VERSION=		2.1.3
-
-DISTNAME=		${NAME}-${VERSION}
-
-MASTER_SITES=\
-  ${MASTER_SITE_GITHUB:=${ORG}/${NAME}/releases/download/v${VERSION}/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}/${ORG}/${NAME}
-CHECKOUT_VCS_OPTS=	--recursive
+VERSION=		2.1.7
 
 CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics
 HOMEPAGE=		http://${ORG}.github.io/${NAME}/
 MAINTAINER=		gepetto@laas.fr
 LICENSE=		2-clause-bsd
-
-CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
 CMAKE_ARGS+=		-DBUILD_BENCHMARK=OFF
 CMAKE_ARGS+=		-DBUILD_UNIT_TESTS=OFF
@@ -30,6 +21,9 @@ CMAKE_ARGS+=		-DINSTALL_DOCUMENTATION=OFF
 CMAKE_ARGS+=		-DBUILD_WITH_COLLISION_SUPPORT=ON
 
 USE_BOOST_LIBS=		system filesystem
+USE_MASTER_GITHUB=	true
+
+include ../../devel/jrl-cmakemodules/Makefile.common
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

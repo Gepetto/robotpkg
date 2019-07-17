@@ -1,6 +1,6 @@
 --- CMakeLists.txt~	2019-03-22 10:55:41.867972043 +0100
 +++ CMakeLists.txt	2019-03-22 11:29:06.642213144 +0100
-@@ -160,10 +160,33 @@
+@@ -160,10 +160,36 @@
  # ----------------------------------------------------
  # --- INCLUDE ----------------------------------------
  # ----------------------------------------------------
@@ -13,10 +13,13 @@
 +  ${PROJECT_SOURCE_DIR}/src/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/algorithm/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/algorithm/*.hxx
++  ${PROJECT_SOURCE_DIR}/src/autodiff/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/codegen/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/codegen/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/container/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/container/*.hxx
++  ${PROJECT_SOURCE_DIR}/src/core/*.hpp
++  ${PROJECT_SOURCE_DIR}/src/core/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/math/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/math/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/multibody/*.hpp
