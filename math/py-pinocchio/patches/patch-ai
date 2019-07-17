@@ -1,11 +1,11 @@
 Don't pick up random source files (especially those under "PaxHeader" created
 by pax-as-tar).
 
---- bindings/python/CMakeLists.txt.orig	2019-05-06 13:46:19.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2019-05-06 13:47:32.796383430 +0200
-@@ -47,12 +47,88 @@
- # --- LIBRARY --- #
- SET(${PYWRAP}_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}/${PROJECT_NAME})
+--- bindings/python/CMakeLists.txt.orig	2019-07-17 08:14:58.580718065 +0200
++++ bindings/python/CMakeLists.txt	2019-07-17 08:16:29.664325874 +0200
+@@ -49,12 +49,89 @@
+   SET(${PYWRAP}_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}/${PROJECT_NAME})
+ ENDIF(BUILD_PYTHON_INTERFACE)
  
 -FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_HEADERS
 -     ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp 
@@ -52,6 +52,7 @@ by pax-as-tar).
 +  utils/pickle-map.hpp
 +  utils/pickle-vector.hpp
 +  utils/printable.hpp
++  utils/registration.hpp
 +  utils/std-aligned-vector.hpp
 +  utils/std-vector.hpp
 +  utils/version.hpp

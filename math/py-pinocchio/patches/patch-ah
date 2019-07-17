@@ -1,20 +1,11 @@
---- CMakeLists.txt.orig	2019-03-28 17:26:35.000000000 +0100
-+++ CMakeLists.txt	2019-03-28 17:27:14.227926022 +0100
-@@ -155,9 +155,6 @@
-   ENDIF(LUA5_2_FOUND)
- ENDIF(BUILD_WITH_LUA_SUPPORT)
- 
--SET(BOOST_REQUIERED_COMPONENTS filesystem serialization system)
--SET(BOOST_BUILD_COMPONENTS unit_test_framework)
--SET(BOOST_OPTIONAL_COMPONENTS "")
- 
- IF(BUILD_PYTHON_INTERFACE)
-   SET(BOOST_OPTIONAL_COMPONENTS ${BOOST_OPTIONAL_COMPONENTS} python)
-@@ -221,53 +218,9 @@
+--- CMakeLists.txt.orig	2019-08-07 16:02:59.000000000 +0200
++++ CMakeLists.txt	2019-09-10 18:06:24.022419785 +0200
+@@ -222,56 +223,9 @@
       macros.hpp
       )
  
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/core")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/math")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/spatial")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody")
@@ -28,6 +19,8 @@
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/algorithm")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/container")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/codegen")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff")
+-
 -SET(HEADERS_)
 -FOREACH(header ${HEADERS})
 -  STRING(REGEX REPLACE "${PROJECT_SOURCE_DIR}/src/" "" header ${header})

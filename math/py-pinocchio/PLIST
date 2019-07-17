@@ -9,3 +9,7 @@ ${PYTHON_SITELIB}/pinocchio/romeo_wrapper.py
 ${PYTHON_SITELIB}/pinocchio/rpy.py
 ${PYTHON_SITELIB}/pinocchio/shortcuts.py
 ${PYTHON_SITELIB}/pinocchio/utils.py
+${PYTHON_SITELIB}/pinocchio/visualize/__init__.py
+${PYTHON_SITELIB}/pinocchio/visualize/base_visualizer.py
+${PYTHON_SITELIB}/pinocchio/visualize/gepetto_visualizer.py
+${PYTHON_SITELIB}/pinocchio/visualize/meshcat_visualizer.py
