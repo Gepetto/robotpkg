@@ -3,8 +3,11 @@ include/eigenpy/angle-axis.hpp
 include/eigenpy/config.hh
 include/eigenpy/deprecated.hh
 include/eigenpy/details.hpp
+include/eigenpy/details/rvalue_from_python_data.hpp
 include/eigenpy/eigenpy.hpp
+include/eigenpy/eigenpy_export.h
 include/eigenpy/exception.hpp
+include/eigenpy/expose.hpp
 include/eigenpy/fwd.hpp
 include/eigenpy/geometry-conversion.hpp
 include/eigenpy/geometry.hpp
