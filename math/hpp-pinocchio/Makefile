@@ -4,6 +4,8 @@
 
 HPP_PACKAGE=	hpp-pinocchio
 
+PKGREVISION=	2
+
 CATEGORIES=	math
 HPP_COMMENT=	Wrapping of the kinematic/dynamic chain Pinocchio for HPP.
 
@@ -11,6 +13,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 HPP_VERSION=	4.6.1
 
 DEPEND_ABI.eigen3 += eigen3>=3.2.92
+DEPEND_ABI.pinocchio += pinocchio>=2.1.6
 
 # TODO: for tests
 #include ../../wip/hpp-environments/depend.mk

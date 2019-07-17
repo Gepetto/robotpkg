@@ -1,3 +1,6 @@
 SHA1 (hpp-pinocchio-4.6.1.tar.gz) = d85ed62fb8ec96a10124e47e14c257e89d4c670c
 RMD160 (hpp-pinocchio-4.6.1.tar.gz) = c7d7d830f7ee23bd828d0b1ed82458d609624d21
 Size (hpp-pinocchio-4.6.1.tar.gz) = 904256 bytes
+SHA1 (patch-aa) = c304250d8a452f128ebd0da023586ea5582c907d
+SHA1 (patch-ab) = b2d6208c0b3cb85d8e4077c7db2d447e3f0b3634
+SHA1 (patch-ac) = 26693884ea8b37b12fe4249f18ae0a1240675efe
