@@ -16,7 +16,7 @@ PREFER.mavlink?=	robotpkg
 DEPEND_USE+=		mavlink1
 
 DEPEND_ABI.mavlink?=	mavlink1>=1.0.9
-DEPEND_DIR.mavlink?=	../../wip/mavlink
+DEPEND_DIR.mavlink?=	../../middleware/mavlink
 
 SYSTEM_SEARCH.mavlink=\
   'include/mavlink/config.h'	\
