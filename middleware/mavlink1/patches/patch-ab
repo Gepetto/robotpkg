@@ -1,0 +1,20 @@
+v0.9 messages are not in the repo?
+
+--- CMakeLists.txt~	2019-07-25 12:19:32.158992066 +0200
++++ CMakeLists.txt	2019-07-25 12:22:08.444009455 +0200
+@@ -138,15 +138,6 @@
+ 
+ # build
+ set(mavgen -m pymavlink.tools.mavgen)
+-set(v0.9Definitions
+-    ardupilotmega.xml
+-    common.xml
+-    minimal.xml
+-    slugs.xml
+-    test.xml
+-    ualberta.xml
+-    )
+-generateMavlink("0.9" "${v0.9Definitions}")
+ set(v1.0Definitions
+     ASLUAV.xml
+     ardupilotmega.xml

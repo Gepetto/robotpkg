@@ -1,0 +1,13 @@
+The version is wrong in the release...
+
+--- CMakeLists.txt~	2019-07-25 12:23:44.552635009 +0200
++++ CMakeLists.txt	2019-07-25 13:40:11.102385365 +0200
+@@ -8,7 +8,7 @@
+ cmake_minimum_required (VERSION 2.8.2)
+ set(PROJECT_VERSION_MAJOR "1")
+ set(PROJECT_VERSION_MINOR "0")
+-set(PROJECT_VERSION_PATCH "9")
++set(PROJECT_VERSION_PATCH "12")
+ set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
+ set(PROJECT_CONTACT_EMAIL http://groups.google.com/group/mavlink)
+ set(PROJECT_CONTACT_VENDOR mavlink)

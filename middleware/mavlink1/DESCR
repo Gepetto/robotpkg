@@ -1,0 +1,8 @@
+MAVLink -- Micro Air Vehicle Message Marshalling Library.
+
+This is a library for lightweight communication between Micro Air Vehicles
+(swarm) and/or ground control stations. It serializes C-structs for serial
+channels and can be used with any type of radio modem.
+
+Messages definitions are created in XML, and then converted into C header
+files.
