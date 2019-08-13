@@ -1,0 +1,35 @@
+include pinocchio before boost, ref
+https://github.com/stack-of-tasks/pinocchio/issues/849
+
+--- src/problem.impl.cc.orig	2019-06-14 10:07:38.000000000 +0200
++++ src/problem.impl.cc	2019-08-21 10:06:28.154493718 +0200
+@@ -11,6 +11,8 @@
+ #include <iostream>
+ #include <sstream>
+ 
++#include <pinocchio/fwd.hpp>
++
+ #include <boost/date_time/posix_time/posix_time_types.hpp>
+ #include <boost/assign/list_of.hpp>
+ #include <boost/algorithm/string.hpp>
+--- src/robot.impl.cc.orig	2019-06-14 10:07:38.000000000 +0200
++++ src/robot.impl.cc	2019-08-21 10:07:29.085822642 +0200
+@@ -10,6 +10,8 @@
+ 
+ #include <iostream>
+ 
++#include <pinocchio/fwd.hpp>
++
+ #include <hpp/fcl/BVH/BVH_model.h>
+ #include <hpp/fcl/shape/geometric_shapes.h>
+ 
+--- include/hpp/corbaserver/object-map.hh.orig	2019-06-14 10:07:38.000000000 +0200
++++ include/hpp/corbaserver/object-map.hh	2019-09-17 23:25:47.772377698 +0200
+@@ -17,6 +17,7 @@
+ #ifndef HPP_CORBASERVER_OBJECT_MAP_HH
+ # define HPP_CORBASERVER_OBJECT_MAP_HH
+ 
++# include <pinocchio/fwd.hpp>
+ # include <hpp/fcl/BVH/BVH_model.h>
+ # include <hpp/fcl/shape/geometric_shapes.h>
+ 
