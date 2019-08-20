@@ -1,0 +1,49 @@
+include pinocchio before boost, ref
+https://github.com/stack-of-tasks/pinocchio/issues/849
+
+--- tests/symbolic-calculus.cc.orig	2019-05-28 13:02:11.000000000 +0200
++++ tests/symbolic-calculus.cc	2019-08-20 14:27:29.955782713 +0200
+@@ -15,6 +15,9 @@
+ // hpp-constraints. If not, see <http://www.gnu.org/licenses/>.
+ 
+ #define BOOST_TEST_MODULE SymbolicCalculus
++
++#include <pinocchio/fwd.hpp>
++
+ #include <boost/test/included/unit_test.hpp>
+ 
+ #include <stdlib.h>
+--- tests/multithread.cc.orig	2019-05-28 13:02:11.000000000 +0200
++++ tests/multithread.cc	2019-08-20 14:28:49.767138097 +0200
+@@ -15,6 +15,9 @@
+ // hpp-constraints. If not, see <http://www.gnu.org/licenses/>.
+ 
+ #define BOOST_TEST_MODULE multithread_test
++
++#include <pinocchio/fwd.hpp>
++
+ #include <boost/test/included/unit_test.hpp>
+ 
+ #include <stdlib.h>
+--- tests/convex-shape.cc.orig	2019-05-28 13:02:11.000000000 +0200
++++ tests/convex-shape.cc	2019-08-20 14:31:55.577624473 +0200
+@@ -15,6 +15,9 @@
+ // hpp-constraints. If not, see <http://www.gnu.org/licenses/>.
+ 
+ #define BOOST_TEST_MODULE ConvexShape
++
++#include <pinocchio/fwd.hpp>
++
+ #include <boost/test/included/unit_test.hpp>
+ 
+ #include "hpp/constraints/convex-shape.hh"
+--- tests/logarithm.cc.orig	2019-05-28 13:02:11.000000000 +0200
++++ tests/logarithm.cc	2019-09-18 12:44:18.203245275 +0200
+@@ -15,6 +15,7 @@
+ // hpp-constraints. If not, see <http://www.gnu.org/licenses/>.
+ 
+ #define BOOST_TEST_MODULE hpp_constraints
++#include <pinocchio/fwd.hpp>
+ #include <boost/test/included/unit_test.hpp>
+ 
+ #include <pinocchio/spatial/explog.hpp>

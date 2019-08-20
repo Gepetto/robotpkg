@@ -1,3 +1,5 @@
 SHA1 (hpp-constraints-4.6.0.tar.gz) = a019753af2588b491088d2ab590cf040133bebb0
 RMD160 (hpp-constraints-4.6.0.tar.gz) = 83dfd43d415b7aa537e42925559f74a5e29c4eaa
 Size (hpp-constraints-4.6.0.tar.gz) = 1071128 bytes
+SHA1 (patch-aa) = 76d9fbb1648b7b34016368ffd05a8143263cb8de
+SHA1 (patch-ab) = 906f4e6b2fb426678cf0819a62ea4cfd36a1893b
