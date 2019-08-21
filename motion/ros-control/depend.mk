@@ -45,13 +45,11 @@ SYSTEM_SEARCH.ros-control=\
   'share/hardware_interface/package.xml:/<version>/s/[^0-9.]//gp'	\
   'share/joint_limits_interface/package.xml:/<version>/s/[^0-9.]//gp'	\
   'share/ros_control/package.xml:/<version>/s/[^0-9.]//gp'		\
-  'share/rqt_controller_manager/package.xml:/<version>/s/[^0-9.]//gp'	\
   'share/transmission_interface/package.xml:/<version>/s/[^0-9.]//gp'	\
   'lib/pkgconfig/controller_interface.pc:/Version/s/[^0-9.]//gp'	\
   'lib/pkgconfig/controller_manager.pc:/Version/s/[^0-9.]//gp'		\
   'lib/pkgconfig/hardware_interface.pc:/Version/s/[^0-9.]//gp'		\
   'lib/pkgconfig/joint_limits_interface.pc:/Version/s/[^0-9.]//gp'	\
-  'lib/pkgconfig/rqt_controller_manager.pc:/Version/s/[^0-9.]//gp'	\
   'lib/pkgconfig/transmission_interface.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_CONTROL_DEPEND_MK ----------------------------------------------
