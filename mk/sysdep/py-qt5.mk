@@ -23,6 +23,7 @@ SYSTEM_SEARCH.py-qt5=\
   '${PYTHON_SYSLIBSEARCH}/PyQt5/Qt{,.*}.so'				\
   '${PYTHON_SYSLIBSEARCH}/PyQt5/__init__.py'
 
+SYSTEM_PKG.Arch.py-qt5=python$(subst 3,,${PYTHON_MAJOR})-pyqt5
 SYSTEM_PKG.Debian.py-qt5=python-pyqt5 pyqt5-dev (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-qt5=PyQt5-devel (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-qt5=x11/${PKGTAG.python}-qt5

@@ -15,8 +15,8 @@ DEPEND_USE+=		podlators
 DEPEND_ABI.podlators?=	podlators
 
 SYSTEM_SEARCH.podlators=\
-  'bin/pod2man'		\
-  'bin/pod2text'
+  'bin/{core_perl/,}pod2man'		\
+  'bin/{core_perl/,}pod2text'
 
 SYSTEM_PKG.Debian.podlators=	perl
 SYSTEM_PKG.Fedora.podlators=	podlators
