@@ -2,13 +2,13 @@
 # Created:			Anthony Mallet on Fri, 22 Apr 2011
 #
 
-DISTNAME=		tclserv-2.8.1
+DISTNAME=		tclserv-2.8.2
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=tclserv/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}tclserv
+MASTER_REPOSITORY=	git git://git.openrobots.org/robots/genom2/tclserv.git
 
 CATEGORIES=		net
 MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		https://softs.laas.fr/openrobots/wiki/pocolibs
+HOMEPAGE=		https://git.openrobots.org/projects/tclserv
 COMMENT=		Request and poster server for pocolibs GenoM modules
 
 LICENSE=		2-clause-bsd
