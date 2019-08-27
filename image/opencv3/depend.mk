@@ -20,6 +20,8 @@ else ifeq (Debian,${OPSYS})
   PREFER.opencv3?=	robotpkg
 else ifeq (CentOS,${OPSYS})
   PREFER.opencv3?=	robotpkg
+else ifeq (Arch,${OPSYS})
+  PREFER.opencv3?=	robotpkg
 endif
 PREFER.opencv3?=	system
 
