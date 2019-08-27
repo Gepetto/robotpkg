@@ -22,8 +22,6 @@ DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui
 CMAKE_ARGS+=\
   -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
 
-DEPEND_ABI.python+=	python>=2.7<2.8
-
 include ../../graphics/gepetto-viewer-corba/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../path/hpp-corbaserver/depend.mk
