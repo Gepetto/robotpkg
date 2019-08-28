@@ -29,7 +29,7 @@ SYSTEM_SEARCH.py-omniORBpy=\
 # need omniidl_be in PYTHONPATH
 PYTHONPATH.py-omniORBpy+=	$(dir ${SYSTEM_FILES.py-omniORBpy})/..
 
-SYSTEM_PKG.Arch.py-omniORBpy =	py-omniorbpy (AUR)
+SYSTEM_PKG.Arch.py-omniORBpy =	omniorbpy (AUR)
 SYSTEM_PKG.Debian.py-omniORBpy =python-omniorb omniidl-python
 SYSTEM_PKG.NetBSD.py-omniORBpy =net/omniORB
 SYSTEM_PKG.RedHat.py-omniORBpy =py-omniorbpy-devel (python${PYTHON_VERSION})
