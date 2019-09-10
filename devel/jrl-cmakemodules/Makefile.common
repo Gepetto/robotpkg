@@ -1,0 +1,53 @@
+# robotpkg Makefile for:	devel/jrl-cmakemodules
+# Created:			Guilhem Saurel on Sun Sep 9 2019
+#
+#
+ifndef NAME
+  PKG_FAIL_REASON+="Dependency on devel/jrl-cmakemodules requires NAME"
+endif
+ifndef ORG
+  PKG_FAIL_REASON+="Dependency on devel/jrl-cmakemodules requires ORG"
+endif
+ifndef VERSION
+  PKG_FAIL_REASON+="Dependency on devel/jrl-cmakemodules requires VERSION"
+endif
+
+ifdef USE_PYTHON_ONLY
+  USE_PYTHON=		true
+  CMAKE_ARGS+=		-DINSTALL_PYTHON_INTERFACE_ONLY=ON
+  CMAKE_ARGS+=		-DINSTALL_DOCUMENTATION=OFF
+  CMAKE_ARGS+=		-DINSTALL_GENERATED_HEADERS=OFF
+  CMAKE_ARGS+=		-DINSTALL_PKG_CONFIG_FILE=OFF
+endif
+
+DISTNAME?=		${NAME}-${VERSION}
+ifdef USE_PYTHON
+  PKGNAME?=		${PKGTAG.python-}${DISTNAME}
+endif
+
+HOMEPAGE?=		${MASTER_SITE_GITHUB:=${ORG}/${NAME}}
+MASTER_REPOSITORY?=	${MASTER_REPOSITORY_GITHUB}/${ORG}/${NAME}.git
+CHECKOUT_VCS_OPTS+=	--recursive
+
+ifdef USE_MASTER_GITHUB
+  MASTER_SITES?=\
+    ${MASTER_SITE_GITHUB:=${ORG}/${NAME}}/releases/download/v${VERSION}/
+else
+  MASTER_SITES?=	${MASTER_SITE_OPENROBOTS:=${NAME}/}
+endif
+
+CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
+CMAKE_ARGS+=		-DPYTHON_STANDARD_LAYOUT=ON
+
+ifdef USE_PYTHON
+  CMAKE_ARGS+=		-DPYTHON_EXECUTABLE=${PYTHON}
+  CMAKE_ARGS+=		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
+  CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
+  CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
+  CMAKE_ARGS+=		-DBUILD_PYTHON_INTERFACE=ON
+endif
+
+DYNAMIC_PLIST_DIRS+=	share/doc/${NAME}
+
+include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/cmake.mk
