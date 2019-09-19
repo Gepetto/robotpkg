@@ -1,0 +1,25 @@
+From 60557fba405d2ab7c42356776e447d8e0218de42 Mon Sep 17 00:00:00 2001
+From: Matthieu Herrb <matthieu.herrb@laas.fr>
+Date: Thu, 19 Sep 2019 11:23:42 +0200
+Subject: [PATCH] Use calloc to initialize struct GYRO_KVH5000_DATA to zero
+
+---
+ src/KVH5000.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git src/KVH5000.c src/KVH5000.c
+index 85304b7..dce0f0a 100644
+--- src/KVH5000.c
++++ src/KVH5000.c
+@@ -47,7 +47,7 @@ gyroInitKVH5000(const char *port, double latitude, double woffset, int sign)
+ 	struct GYRO_KVH5000_DATA *gyroData;
+ 	int rv;
+ 
+-	gyroData = malloc(sizeof(struct GYRO_KVH5000_DATA));
++	gyroData = calloc(1, sizeof(struct GYRO_KVH5000_DATA));
+ 	if (gyroData == NULL)
+ 		return NULL;
+ 	gyroData->gd.lock = malloc(sizeof(pthread_mutex_t));
+-- 
+2.17.1
+
