@@ -36,7 +36,7 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 
 DEPEND_ABI.cmake +=	cmake>=2.8.12
 
