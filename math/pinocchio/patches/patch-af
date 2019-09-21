@@ -1,0 +1,22 @@
+For some reason, passing 'const' here does not compile.
+Until the real issue is fixed, discard it. Since the index is passed by value,
+this should not hurt.
+
+--- src/algorithm/regressor.hxx~	2019-07-16 14:43:12.000000000 +0200
++++ src/algorithm/regressor.hxx	2019-09-21 13:26:19.693516595 +0200
+@@ -1,5 +1,5 @@
+ //
+-// Copyright (c) 2018 CNRS
++// Copyright (c) 2018-2019 CNRS
+ //
+ 
+ #ifndef __pinocchio_regressor_hxx__
+@@ -227,7 +227,7 @@
+     
+     typedef boost::fusion::vector<const Model &,
+                                   Data &,
+-                                  const JointIndex
++                                  /*const does not compile*/ JointIndex
+                                   > ArgsType;
+     
+     template<typename JointModel>
