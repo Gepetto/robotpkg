@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Wed, 10 Jan 2007
 #
 
+PKGREVISION=		1
 DISTNAME=		omniORB-4.2.3
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
@@ -41,6 +42,12 @@ PKG_SUPPORTED_OPTIONS+=	ipv6
 PKG_OPTION_DESCR.ipv6=	Enable support for IPv6
 PKG_OPTION_SET.ipv6:=	CONFIGURE_ARGS+=--enable-ipv6
 PKG_OPTION_UNSET.ipv6:=	CONFIGURE_ARGS+=--disable-ipv6
+
+# INSTALL script installing default configuration file
+INSTALL_VARS+=	ECHO CHMOD CP CMP MKDIR RM RMDIR TEST
+INSTALL_VARS+=	OMNIORB_ETCDIR OMNIORB_CONFIG
+INSTALL_SRC+=	${FILESDIR}/config
+DEINSTALL_SRC+=	${FILESDIR}/config
 
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/python.mk

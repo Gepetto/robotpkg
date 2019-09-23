@@ -1,0 +1,11 @@
+--- sample.cfg	2017-12-28 01:15:19.000000000 +0100
++++ sample.cfg	2018-02-07 17:12:52.000000000 +0100
+@@ -394,7 +394,7 @@
+ #   A call to resolve_initial_references("MyService") will return the object
+ #   reference denoted by `corbaloc::myhost.example.com/MyService'.
+ #
+-#   The default is empty.
++DefaultInitRef = corbaloc::
+ 
+ 
+ ############################################################################

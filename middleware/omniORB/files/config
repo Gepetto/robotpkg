@@ -1,0 +1,38 @@
+# Install default config file
+#
+
+ECHO="@ECHO@"
+CHMOD="@CHMOD@"
+CP="@CP@"
+CMP="@CMP@"
+MKDIR="@MKDIR@"
+RM="@RM@"
+RMDIR="@RMDIR@"
+TEST="@TEST@"
+
+OMNIORB_ETCDIR="@OMNIORB_ETCDIR@"
+OMNIORB_CONFIG="@OMNIORB_CONFIG@"
+SAMPLE_CONFIG="${PKG_PREFIX}/share/examples/omniORB/sample.cfg"
+
+case $2 in
+  POST-INSTALL)
+    if ! ${TEST} -f ${OMNIORB_CONFIG}; then
+      ${ECHO} "$1: installing default configuration file in ${OMNIORB_CONFIG}"
+      ${TEST} -d "${OMNIORB_ETCDIR}" || ${MKDIR} "${OMNIORB_ETCDIR}"
+      ${CP} "${SAMPLE_CONFIG}" "${OMNIORB_CONFIG}"
+      ${CHMOD} 644 "${OMNIORB_CONFIG}"
+    fi
+    ;;
+
+  DEINSTALL)
+    if ${TEST} -f ${OMNIORB_CONFIG}; then
+      if ${CMP} -s "${OMNIORB_CONFIG}" "${SAMPLE_CONFIG}"; then
+        ${ECHO} "$1: removing default configuration file in ${OMNIORB_CONFIG}"
+        ${RM} -f "${OMNIORB_CONFIG}"
+        ${RMDIR} -p "${OMNIORB_ETCDIR}" >/dev/null 2>&1 ||:
+      else
+        ${ECHO} "$1: keeping configuration file in ${OMNIORB_CONFIG}"
+      fi
+    fi
+    ;;
+esac
