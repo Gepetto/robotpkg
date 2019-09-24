@@ -8,30 +8,24 @@ ifndef HPP_COMMENT
   PKG_FAIL_REASON+="Dependency on hpp/Makefile.common requires HPP_COMMENT"
 endif
 
-HPP_VERSION?=		4.6.0
+HPP_VERSION?=		4.7.0
 HPP_NAMESPACE?=		humanoid-path-planner
 LICENSE?=		gnu-lgpl-v3
-
-DISTNAME?=	${HPP_PACKAGE}-${HPP_VERSION}
-PKGNAME?=	$(subst _,-,${DISTNAME})
-
-MASTER_SITES?=		${MASTER_SITE_OPENROBOTS:=${HPP_PACKAGE}/}
-MASTER_REPOSITORY?=\
-  ${MASTER_REPOSITORY_GITHUB}${HPP_NAMESPACE}/${HPP_PACKAGE}
-CHECKOUT_VCS_OPTS+=	--recursive
 
 MAINTAINER?=	hpp@laas.fr
 COMMENT?=	Humanoid Path Planner (${HPP_COMMENT})
 
 BUILD_TARGET=	all
 
-CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
+ORG=			${HPP_NAMESPACE}
+NAME=			${HPP_PACKAGE}
+VERSION=		${HPP_VERSION}
 
+include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
-
 
 # options
 PKG_SUPPORTED_OPTIONS+=		verbose
