@@ -4,7 +4,6 @@
 
 HPP_PACKAGE=		hpp-gepetto-viewer
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
-HPP_VERSION=		4.6.1
 
 CATEGORIES=		graphics
 HPP_COMMENT=		Bridge between hpp-corbaserver and gepetto-viewer-corba
