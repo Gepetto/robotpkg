@@ -5,8 +5,6 @@
 HPP_PACKAGE=	hpp-core
 HPP_COMMENT=	Basic classes for general path planning
 
-PKGREVISION=	1
-
 CATEGORIES=	path
 
 include ../../meta-pkgs/hpp/Makefile.common
@@ -18,5 +16,5 @@ include ../../path/hpp-statistics/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
