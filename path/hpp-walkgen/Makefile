@@ -4,7 +4,7 @@
 
 HPP_PACKAGE=		hpp-walkgen
 
-CATEGORIES=			path
+CATEGORIES=		path
 HPP_COMMENT=		Walk generator for hpp framework
 
 include ../../meta-pkgs/hpp/Makefile.common
@@ -17,5 +17,5 @@ include ../../path/hpp-constraints/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
