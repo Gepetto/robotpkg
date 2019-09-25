@@ -11,11 +11,13 @@ endif
 
 ifeq (+,$(HPP_CORBASERVER_DEPEND_MK)) # ------------------------------------
 
+include ../../mk/sysdep/python.mk
+
 PREFER.hpp-corbaserver?=	robotpkg
 
 DEPEND_USE+=			hpp-corbaserver
 
-DEPEND_ABI.hpp-corbaserver?=	hpp-corbaserver>=4.6.1
+DEPEND_ABI.hpp-corbaserver?=	${PKGTAG.python-}hpp-corbaserver>=4.7.0
 DEPEND_DIR.hpp-corbaserver?=	../../path/hpp-corbaserver
 
 SYSTEM_SEARCH.hpp-corbaserver=\

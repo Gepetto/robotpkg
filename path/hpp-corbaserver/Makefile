@@ -4,11 +4,11 @@
 
 HPP_PACKAGE=	hpp-corbaserver
 HPP_COMMENT=	Corba server for Humanoid Path Planner
-HPP_VERSION=	4.6.1
 
 CATEGORIES=	path
 
-MAKE_JOBS_SAFE= no
+MAKE_JOBS_SAFE=	no
+USE_PYTHON=	true
 
 include ../../meta-pkgs/hpp/Makefile.common
 
@@ -20,8 +20,7 @@ include ../../path/hpp-constraints/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/language/c.mk
 include ../../mk/sysdep/doxygen.mk
-include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
