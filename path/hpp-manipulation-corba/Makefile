@@ -3,12 +3,9 @@
 #
 
 HPP_PACKAGE=		hpp-manipulation-corba
-HPP_VERSION=		4.6.1
 
 CATEGORIES=		path
 HPP_COMMENT=		CORBA interface for hpp-manipulation
-
-include ../../meta-pkgs/hpp/Makefile.common
 
 # omniorb has some issue with parallelism. Error message omniidl: Cannot rename
 # "foo/new__init__.py" to "foo/__init__.py"
@@ -17,6 +14,9 @@ MAKE_JOBS_SAFE=		no
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
+USE_PYTHON=		true
+
+include ../../meta-pkgs/hpp/Makefile.common
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/py-omniORBpy/depend.mk
 include ../../mapping/octomap/depend.mk
@@ -27,5 +27,4 @@ include ../../path/hpp-manipulation/depend.mk
 include ../../path/hpp-util/depend.mk
 
 include ../../mk/language/c.mk
-include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
