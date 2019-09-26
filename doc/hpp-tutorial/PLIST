@@ -1,5 +1,6 @@
-@comment Wed Feb 6 16:23:56 CET 2019
-bin/hpp-tutorial-server
+@comment Thu Sep 26 23:51:12 CEST 2019
+bin/hpp-tutorial-1
+bin/hpp-tutorial-2-server
 include/hpp/tutorial/config.hh
 include/hpp/tutorial/deprecated.hh
 include/hpp/tutorial/warning.hh

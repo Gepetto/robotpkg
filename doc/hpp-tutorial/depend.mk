@@ -11,11 +11,13 @@ endif
 
 ifeq (+,$(HPPTUTORIAL_DEPEND_MK)) # --------------------------------------
 
+include ../../mk/sysdep/python.mk
+
 PREFER.hpp-tutorial?=	robotpkg
 
 DEPEND_USE+=		hpp-tutorial
 
-DEPEND_ABI.hpp-tutorial?=	hpp_tutorial>=1.1
+DEPEND_ABI.hpp-tutorial?=	${PKGTAG.python-}hpp_tutorial>=4.7.0
 DEPEND_DIR.hpp-tutorial?=	../../doc/hpp-tutorial
 
 SYSTEM_SEARCH.hpp-tutorial=\
