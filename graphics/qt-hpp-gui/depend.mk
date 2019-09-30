@@ -11,6 +11,8 @@ endif
 
 ifeq (+,$(QT_HPP_GUI_DEPEND_MK)) # -----------------------------------------
 
+include ../../mk/sysdep/python.mk
+
 PREFER.qt-hpp-gui?=	robotpkg
 
 DEPEND_USE+=		qt-hpp-gui
@@ -19,7 +21,7 @@ DEPEND_USE+=		qt-hpp-gui
 _hppg_qts={qt4,qt5}
 _hppg_qt=$(if $(filter qt,${PKG_ALTERNATIVES}),${PKG_ALTERNATIVE.qt},${_hppg_qts})
 
-DEPEND_ABI.qt-hpp-gui?=	${_hppg_qt}-hpp-gui>=4.6.1
+DEPEND_ABI.qt-hpp-gui?=	${PKGTAG.python-}${_hppg_qt}-hpp-gui>=4.6.1
 DEPEND_DIR.qt-hpp-gui?=	../../graphics/qt-hpp-gui
 
 SYSTEM_SEARCH.qt-hpp-gui=\
