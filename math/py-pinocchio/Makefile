@@ -38,6 +38,7 @@ include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 
-DEPEND_ABI.cmake +=	cmake>=2.8.12
+DEPEND_ABI.cmake +=		cmake>=2.8.12
+DEPEND_ABI.boost-headers +=	boost-headers>=1.55
 
 include ../../mk/robotpkg.mk
