@@ -6,11 +6,14 @@ PKGNAME=	${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 HPP_PACKAGE=	hpp-gui
 HPP_COMMENT=	Graphical interface for HPP
+PKGREVISION=	1
 
 CATEGORIES=		graphics
 CONFLICTS+=		qt[0-9]-hpp-gui-[0-9]*
 
 USE_PYTHON=		true
+
+DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui/pyplugin.conf.d
 
 include ../../meta-pkgs/hpp/Makefile.common
 

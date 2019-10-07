@@ -1,7 +1,5 @@
 @comment Mon Jun 3 15:53:31 CEST 2019
 etc/gepetto-gui/basic.conf
-etc/gepetto-gui/pyplugin.conf.d/366e78e6117fa87b71285100e33ef4d0
-etc/gepetto-gui/pyplugin.conf.d/626b84a12064760af8ffb1b0049d1baf
 etc/gepetto-gui/settings.conf
 include/hpp/gui/config.hh
 include/hpp/gui/deprecated.hh
