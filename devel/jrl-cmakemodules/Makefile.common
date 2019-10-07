@@ -22,7 +22,7 @@ endif
 
 DISTNAME?=		${NAME}-${VERSION}
 ifdef USE_PYTHON
-  PKGNAME?=		${PKGTAG.python-}${DISTNAME}
+  PKGNAME?=		${PKGTAG.python-}$(subst _,-,${DISTNAME})
 endif
 
 HOMEPAGE?=		${MASTER_SITE_GITHUB:=${ORG}/${NAME}}
