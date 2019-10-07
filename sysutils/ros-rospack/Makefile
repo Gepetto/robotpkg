@@ -14,7 +14,7 @@ include ../../meta-pkgs/ros-base/Makefile.common
 
 CMAKE_ARGS+=	-DTinyXML2_ROOT_DIR=${PREFIX.tinyxml}
 
-DEPEND_ABI.ros-catkin+=	ros-catkin>=0.5.64
+DEPEND_ABI.ros-catkin+=	${PKGTAG.python-}ros-catkin>=0.5.64
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

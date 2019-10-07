@@ -4,9 +4,14 @@
 
 ROS_PKG=	catkin
 ROS_VERSION=	0.7.16
+PKGNAME=	${PKGTAG.python}-ros-$(subst _,-,${ROS_PKG})-${ROS_VERSION}
 
 CATEGORIES=	devel
 ROS_COMMENT=	low-level build system macros and infrastructure
+
+CONFLICTS+=	py[0-9][0-9]-catkin-[0-9]*
+# old package name
+CONFLICTS+=	catkin-[0-9]*
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
@@ -46,4 +51,5 @@ include ../../mk/sysdep/googletest.mk
 include ../../mk/sysdep/py-argparse.mk
 include ../../mk/sysdep/py-empy.mk
 include ../../mk/sysdep/py-nose.mk
+include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk

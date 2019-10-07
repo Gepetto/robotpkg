@@ -12,22 +12,24 @@ endif
 ifeq (+,$(ROS_CATKIN_DEPEND_MK)) # -----------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
+include ../../mk/sysdep/python.mk
+
 PREFER.ros-catkin?=		${PREFER.ros-base}
 SYSTEM_PREFIX.ros-catkin?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			ros-catkin
 ROS_DEPEND_USE+=		ros-catkin
 
-DEPEND_ABI.ros-catkin?=		ros-catkin>=0.4
+DEPEND_ABI.ros-catkin?=		${PKGTAG.python-}ros-catkin>=0.4
 DEPEND_DIR.ros-catkin?=		../../devel/ros-catkin
 
-DEPEND_ABI.ros-catkin.groovy?=	ros-catkin>=0.5<0.6
-DEPEND_ABI.ros-catkin.hydro?=	ros-catkin>=0.5<0.6
-DEPEND_ABI.ros-catkin.indigo?=	ros-catkin>=0.6<0.7
-DEPEND_ABI.ros-catkin.jade?=	ros-catkin>=0.6<0.7
-DEPEND_ABI.ros-catkin.kinetic?=	ros-catkin>=0.7<0.8
-DEPEND_ABI.ros-catkin.lunar?=	ros-catkin>=0.7<0.8
-DEPEND_ABI.ros-catkin.melodic?=	ros-catkin>=0.7<0.8
+DEPEND_ABI.ros-catkin.groovy?=	${PKGTAG.python-}ros-catkin>=0.5<0.6
+DEPEND_ABI.ros-catkin.hydro?=	${PKGTAG.python-}ros-catkin>=0.5<0.6
+DEPEND_ABI.ros-catkin.indigo?=	${PKGTAG.python-}ros-catkin>=0.6<0.7
+DEPEND_ABI.ros-catkin.jade?=	${PKGTAG.python-}ros-catkin>=0.6<0.7
+DEPEND_ABI.ros-catkin.kinetic?=	${PKGTAG.python-}ros-catkin>=0.7<0.8
+DEPEND_ABI.ros-catkin.lunar?=	${PKGTAG.python-}ros-catkin>=0.7<0.8
+DEPEND_ABI.ros-catkin.melodic?=	${PKGTAG.python-}ros-catkin>=0.7<0.8
 
 SYSTEM_SEARCH.ros-catkin=\
 	'bin/catkin_init_workspace'				\

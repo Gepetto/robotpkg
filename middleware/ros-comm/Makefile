@@ -14,7 +14,7 @@ ROS_COMMENT=		communications-related libraries and tools
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-DEPEND_ABI.ros-catkin+=	ros-catkin>=0.5.68
+DEPEND_ABI.ros-catkin+=	${PKGTAG.python-}ros-catkin>=0.5.68
 
 AES_ENCRYPT_LIBRARIES=$(filter %crypto.so,${SYSTEM_FILES.openssl})
 AES_ENCRYPT_LIBRARIES+=$(filter %gpgme.so,${SYSTEM_FILES.gpgme})
