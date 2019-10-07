@@ -7,6 +7,8 @@ HPP_COMMENT=	Practicals for hpp software
 
 CATEGORIES=	doc
 
+USE_PYTHON=	true
+
 include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../graphics/hpp-gepetto-viewer/depend.mk
