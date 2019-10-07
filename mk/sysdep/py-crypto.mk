@@ -19,6 +19,7 @@ DEPEND_ABI.py-crypto?=	${PKGTAG.python-}crypto>=0
 SYSTEM_SEARCH.py-crypto=\
   '${PYTHON_SYSLIBSEARCH}/Crypto/__init__.py:/__version__/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Arch.py-crypto= python$(subst 3,,${PYTHON_MAJOR})-crypto
 SYSTEM_PKG.RedHat.py-crypto= python${PYTHON_MAJOR}-crypto
 SYSTEM_PKG.Debian.py-crypto= python$(subst 2,,${PYTHON_MAJOR})-crypto
 SYSTEM_PKG.NetBSD.py-crypto= pkgsrc/security/${PKGTAG.python-}crypto
