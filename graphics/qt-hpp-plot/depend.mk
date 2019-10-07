@@ -11,6 +11,8 @@ endif
 
 ifeq (+,$(QT_HPP_PLOT_DEPEND_MK)) # ----------------------------------------
 
+include ../../mk/sysdep/python.mk
+
 PREFER.qt-hpp-plot?=	robotpkg
 
 DEPEND_USE+=		qt-hpp-plot
@@ -20,7 +22,7 @@ _hppp_qts={qt4,qt5}
 _hppp_qt=\
   $(if $(filter qt,${PKG_ALTERNATIVES}),${PKG_ALTERNATIVE.qt},${_hppp_qts})
 
-DEPEND_ABI.qt-hpp-plot?=	${_hppp_qt}-hpp-plot>=4.6.0
+DEPEND_ABI.qt-hpp-plot?=	${PKGTAG.python-}${_hppp_qt}-hpp-plot>=4.6.0
 DEPEND_DIR.qt-hpp-plot?=	../../graphics/qt-hpp-plot
 
 SYSTEM_SEARCH.qt-hpp-plot=\

@@ -5,9 +5,11 @@
 HPP_PACKAGE=	hpp-plot
 HPP_COMMENT=	Plotting tools for hpp
 
-PKGNAME=	${PKGTAG.qt-}${DISTNAME}
+PKGNAME=	${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=	graphics
+
+USE_PYTHON=	true
 
 include ../../meta-pkgs/hpp/Makefile.common
 
