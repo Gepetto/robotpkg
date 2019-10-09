@@ -1,0 +1,32 @@
+From 16198a89f33604291f4471ba729e7f3faa2e3d5a Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Tue, 8 Oct 2019 01:10:57 +0200
+Subject: [PATCH] fix build with gcc 9 / -std=c++11
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+fix:
+
+/usr/include/c++/9.2.0/bits/stl_map.h:122:71: erreur: l'assertion statique a échoué:
+std::map must have the same value_type as its allocator
+---
+ include/hpp/core/interpolated-path.hh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/hpp/core/interpolated-path.hh b/include/hpp/core/interpolated-path.hh
+index 89be474..ee84a06 100644
+--- include/hpp/core/interpolated-path.hh
++++ include/hpp/core/interpolated-path.hh
+@@ -41,7 +41,7 @@ namespace hpp {
+     class HPP_CORE_DLLAPI InterpolatedPath : public Path
+     {
+     public:
+-      typedef std::pair <value_type, Configuration_t> InterpolationPoint_t;
++      typedef std::pair <const value_type, Configuration_t> InterpolationPoint_t;
+       typedef std::map <value_type, Configuration_t, std::less <value_type>,
+         Eigen::aligned_allocator <InterpolationPoint_t> > InterpolationPoints_t;
+       typedef Path parent_t;
+-- 
+2.23.0
+
