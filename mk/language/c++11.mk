@@ -11,9 +11,7 @@ include ../../mk/language/c++.mk
 #
 DEPEND_ABI.g++ += g++>=4.8
 
-CXX_COMPILER_FLAGS_NDEBUG+=\
-  $(if $(filter g++ ccache-g++,${PKG_ALTERNATIVE.c++-compiler}),-std=c++11)
-CXX_COMPILER_FLAGS_DEBUG+=\
+CXXFLAGS+=\
   $(if $(filter g++ ccache-g++,${PKG_ALTERNATIVE.c++-compiler}),-std=c++11)
 
 endif # _language_c++11_mk -------------------------------------------------
