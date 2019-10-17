@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			eigenpy
-VERSION=		1.6.0
+VERSION=		1.6.1
 
 MAINTAINER=		hpp@laas.fr
 CATEGORIES=		math
