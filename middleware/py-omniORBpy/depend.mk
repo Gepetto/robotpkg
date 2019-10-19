@@ -24,7 +24,7 @@ DEPEND_ABI.py-omniORBpy?=	${PKGTAG.python-}omniORBpy
 DEPEND_DIR.py-omniORBpy?=	../../middleware/py-omniORBpy
 
 SYSTEM_SEARCH.py-omniORBpy=\
-  'lib/{python[0-9]*/{site,dist}-packages,omniidl}/omniidl_be/python.py'
+  '{${PYTHON_SYSLIBSEARCH},lib/omniidl}/omniidl_be/python.py'
 
 # need omniidl_be in PYTHONPATH
 PYTHONPATH.py-omniORBpy+=	$(dir ${SYSTEM_FILES.py-omniORBpy})/..
