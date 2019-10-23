@@ -38,6 +38,7 @@ PKG_OPTION_DESCR.benchmark=	Measure computation times
 PKG_OPTION_SET.benchmark:=	CPPFLAGS+=-DHPP_ENABLE_BENCHMARK -DHPP_DEBUG
 
 # option for doxygen documentation
+PKG_SUGGESTED_OPTIONS+=		doc
 PKG_SUPPORTED_OPTIONS+=		doc
 PKG_OPTION_DESCR.doc=		Enable documentation generation and installation
 define PKG_OPTION_SET.doc
