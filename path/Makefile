@@ -10,7 +10,6 @@ SUBDIR+=	hpp-constraints
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-fcl
 SUBDIR+=	hpp-manipulation
-SUBDIR+=	hpp-manipulation-corba
 SUBDIR+=	hpp-manipulation-urdf
 SUBDIR+=	hpp-statistics
 SUBDIR+=	hpp-util
@@ -23,5 +22,6 @@ SUBDIR+=	maneuver-genom3
 SUBDIR+=	ndd-genom
 SUBDIR+=	p3d-genom
 SUBDIR+=	py-hpp-corbaserver
+SUBDIR+=	py-hpp-manipulation-corba
 
 include ../mk/robotpkg.subdir.mk

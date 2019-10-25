@@ -17,6 +17,6 @@ include ../../optimization/roboptim-trajectory/depend.mk
 include ../../graphics/hpp-gepetto-viewer/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/hpp-util/depend.mk
-include ../../path/hpp-manipulation-corba/depend.mk
+include ../../path/py-hpp-manipulation-corba/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

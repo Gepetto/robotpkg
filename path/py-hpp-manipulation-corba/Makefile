@@ -15,6 +15,7 @@ MAKE_JOBS_SAFE=		no
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 USE_PYTHON=		true
+PYTHON_NOTAG_CONFLICT=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common
 include ../../middleware/omniORB/depend.mk
