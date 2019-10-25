@@ -1,15 +1,16 @@
-# robotpkg Makefile for:	graphics/qt-hpp-plot
+# robotpkg Makefile for:	graphics/py-qt-hpp-plot
 # Created:			Guilhem Saurel on Tue, 26 Feb 2019
 #
 
-HPP_PACKAGE=	hpp-plot
-HPP_COMMENT=	Plotting tools for hpp
+HPP_PACKAGE=		hpp-plot
+HPP_COMMENT=		Plotting tools for hpp
 
-PKGNAME=	${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
+PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
-CATEGORIES=	graphics
+CATEGORIES=		graphics
 
-USE_PYTHON=	true
+USE_PYTHON=		true
+PYTHON_NOTAG_CONFLICT=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common
 

@@ -14,7 +14,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../graphics/py-qt-hpp-gepetto-viewer/depend.mk
 include ../../graphics/py-qt-hpp-gui/depend.mk
-include ../../graphics/qt-hpp-plot/depend.mk
+include ../../graphics/py-qt-hpp-plot/depend.mk
 include ../../path/py-hpp-manipulation-corba/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
