@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	graphics/gepetto-viewer
+# robotpkg Makefile for:	graphics/py-qt-gepetto-viewer
 # Created:			Florent Lamiraux on Sun, 8 Mar 2015
 #
 

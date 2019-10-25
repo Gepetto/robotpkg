@@ -24,7 +24,7 @@ CONFLICTS+=		py[0-9][0-9]-qt[0-9]-gepetto-viewer-corba-[0-9]*
 
 DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui
 
-include ../../graphics/gepetto-viewer/depend.mk
+include ../../graphics/py-qt-gepetto-viewer/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/py-omniORBpy/depend.mk
