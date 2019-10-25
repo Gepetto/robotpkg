@@ -12,6 +12,6 @@ META_PACKAGE=	yes
 
 include ../../path/hpp-core/depend.mk
 include ../../path/hpp-util/depend.mk
-include ../../path/hpp-corbaserver/depend.mk
+include ../../path/py-hpp-corbaserver/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk

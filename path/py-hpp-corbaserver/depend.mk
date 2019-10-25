@@ -1,32 +1,32 @@
-# robotpkg depend.mk for:	path/hpp-corbaserver
+# robotpkg depend.mk for:	path/py-hpp-corbaserver
 # Created:			Anthony Mallet on Thu, 9 Apr 2009
 #
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH}+
-HPP_CORBASERVER_DEPEND_MK:=	${HPP_CORBASERVER_DEPEND_MK}+
+PY_HPP_CORBASERVER_DEPEND_MK:=	${PY_HPP_CORBASERVER_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=			hpp-corbaserver
+DEPEND_PKG+=			py-hpp-corbaserver
 endif
 
-ifeq (+,$(HPP_CORBASERVER_DEPEND_MK)) # ------------------------------------
+ifeq (+,$(PY_HPP_CORBASERVER_DEPEND_MK)) # ------------------------------------
 
 include ../../mk/sysdep/python.mk
 
-PREFER.hpp-corbaserver?=	robotpkg
+PREFER.py-hpp-corbaserver?=	robotpkg
 
-DEPEND_USE+=			hpp-corbaserver
+DEPEND_USE+=			py-hpp-corbaserver
 
-DEPEND_ABI.hpp-corbaserver?=	${PKGTAG.python-}hpp-corbaserver>=4.7.0
-DEPEND_DIR.hpp-corbaserver?=	../../path/hpp-corbaserver
+DEPEND_ABI.py-hpp-corbaserver?=	${PKGTAG.python-}hpp-corbaserver>=4.7.0
+DEPEND_DIR.py-hpp-corbaserver?=	../../path/py-hpp-corbaserver
 
-SYSTEM_SEARCH.hpp-corbaserver=\
+SYSTEM_SEARCH.py-hpp-corbaserver=\
   'include/hpp/corbaserver/server.hh'				\
   'lib/libhpp-corbaserver.so'					\
   'lib/pkgconfig/hpp-corbaserver.pc:/Version/s/[^0-9.]//gp'
 
 # need omniidl_be in PYTHONPATH
-PYTHONPATH.hpp-corbaserver+=	$(dir ${SYSTEM_FILES.omniORBpy})
+PYTHONPATH.py-hpp-corbaserver+=	$(dir ${SYSTEM_FILES.omniORBpy})
 
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/py-omniORBpy/depend.mk

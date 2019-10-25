@@ -7,7 +7,6 @@ COMMENT=	Path planning algorithms and tools
 
 SUBDIR+=	aspect-genom
 SUBDIR+=	hpp-constraints
-SUBDIR+=	hpp-corbaserver
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-fcl
 SUBDIR+=	hpp-manipulation
@@ -23,5 +22,6 @@ SUBDIR+=	libp3d
 SUBDIR+=	maneuver-genom3
 SUBDIR+=	ndd-genom
 SUBDIR+=	p3d-genom
+SUBDIR+=	py-hpp-corbaserver
 
 include ../mk/robotpkg.subdir.mk

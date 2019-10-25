@@ -1,14 +1,15 @@
-# robotpkg Makefile for:	path/hpp-corbaserver
+# robotpkg Makefile for:	path/py-hpp-corbaserver
 # Created:			Anthony Mallet on Mon, 27 Aug 2007
 #
 
-HPP_PACKAGE=	hpp-corbaserver
-HPP_COMMENT=	Corba server for Humanoid Path Planner
+HPP_PACKAGE=		hpp-corbaserver
+HPP_COMMENT=		Corba server for Humanoid Path Planner
 
-CATEGORIES=	path
+CATEGORIES=		path
 
-MAKE_JOBS_SAFE=	no
-USE_PYTHON=	true
+MAKE_JOBS_SAFE=		no
+USE_PYTHON=		true
+PYTHON_NOTAG_CONFLICT=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common
 

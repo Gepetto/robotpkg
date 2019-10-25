@@ -23,7 +23,7 @@ CMAKE_ARGS+=\
 
 include ../../graphics/gepetto-viewer-corba/depend.mk
 include ../../mapping/octomap/depend.mk
-include ../../path/hpp-corbaserver/depend.mk
+include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/qt.mk
