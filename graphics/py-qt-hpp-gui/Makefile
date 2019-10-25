@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	graphics/qt-hpp-gui
+# robotpkg Makefile for:	graphics/py-qt-hpp-gui
 # Created:			Guilhem Saurel on Tue, 26 Feb 2019
 #
 
@@ -12,6 +12,7 @@ CATEGORIES=		graphics
 CONFLICTS+=		qt[0-9]-hpp-gui-[0-9]*
 
 USE_PYTHON=		true
+PYTHON_NOTAG_CONFLICT=	yes
 
 DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui/pyplugin.conf.d
 
