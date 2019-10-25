@@ -13,7 +13,7 @@ USE_PYTHON=	true
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../graphics/gepetto-viewer-corba/depend.mk
+include ../../graphics/py-qt-gepetto-viewer-corba/depend.mk
 include ../../graphics/qt-qgv/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/py-hpp-manipulation-corba/depend.mk

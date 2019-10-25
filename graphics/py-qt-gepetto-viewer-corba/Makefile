@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	graphics/gepetto-viewer-corba
+# robotpkg Makefile for:	graphics/py-qt-gepetto-viewer-corba
 # Created:			Florent Lamiraux on Sun, 8 Mar 2015
 #
 
