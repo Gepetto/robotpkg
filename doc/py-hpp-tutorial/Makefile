@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	path/hpp-tutorial
+# robotpkg Makefile for:	path/py-hpp-tutorial
 # Created:			Florent Lamiraux on Thu, 12 Mar 2015
 #
 
@@ -8,6 +8,7 @@ CATEGORIES=		doc
 HPP_COMMENT=		Tutorial for manipulation and path planning
 
 USE_PYTHON=		true
+PYTHON_NOTAG_CONFLICT=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common
 
