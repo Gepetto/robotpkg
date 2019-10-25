@@ -1,13 +1,14 @@
-# robotpkg Makefile for:	doc/hpp-practicals
+# robotpkg Makefile for:	doc/py-hpp-practicals
 # Created:			Florent Lamiraux on Wed, 29 May 2019
 #
 
-HPP_PACKAGE=	hpp_practicals
-HPP_COMMENT=	Practicals for hpp software
+HPP_PACKAGE=		hpp_practicals
+HPP_COMMENT=		Practicals for hpp software
 
-CATEGORIES=	doc
+CATEGORIES=		doc
 
-USE_PYTHON=	true
+USE_PYTHON=		true
+PYTHON_NOTAG_CONFLICT=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common
 
