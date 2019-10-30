@@ -18,6 +18,7 @@ PYSETUPINSTALLARGS+=	--single-version-externally-managed --root=/
 include ../../meta-pkgs/ros-base/Makefile.common
 
 include ../../mk/sysdep/py-argparse.mk
+include ../../mk/sysdep/py-pyparsing.mk
 include ../../mk/sysdep/py-setuptools.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
