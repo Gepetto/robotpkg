@@ -1,7 +1,9 @@
-@comment Thu May 16 15:46:57 CEST 2013
+@comment Thu Oct 31 12:01:10 CET 2019
+bin/rmp440BasicTest
 bin/rmp440Config
 bin/rmp440Joystick
-bin/rmp440BasicTest
+bin/rmp440Simu
+bin/rmp440Timing
 include/rmp440/rmp440.h
 lib/librmp440Lib.la
 lib/pkgconfig/rmp440-libs.pc

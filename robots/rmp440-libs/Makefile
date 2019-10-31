@@ -2,6 +2,7 @@
 # Created:			Matthieu Herrb on Thu, 16 May 2013
 #
 
+PKGREVISION=		1
 CATEGORIES=		robots
 DISTNAME=		rmp440-libs-0.6
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=rmp440/}
