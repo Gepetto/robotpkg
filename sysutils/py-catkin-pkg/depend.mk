@@ -26,6 +26,8 @@ SYSTEM_SEARCH.py-catkin-pkg=\
 
 SYSTEM_PKG.Ubuntu.py-catkin-pkg=python-catkin-pkg
 
+include ../../mk/sysdep/py-argparse.mk
+include ../../mk/sysdep/py-pyparsing.mk
 include ../../mk/sysdep/python.mk
 
 endif # PY_CATKIN_PKG_DEPEND_MK ------------------------------------------------
