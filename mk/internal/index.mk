@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2013 LAAS/CNRS
+# Copyright (c) 2007-2013,2019 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -347,7 +347,7 @@ ifeq (2,${_ROBOTPKG_DEPTH})
 	  $(if $(filter build,${DEPEND_METHOD.${_pkg_}}),		\
 	    $(call quote,${DEPEND_ABI.${_pkg_}}:${DEPEND_DIR.${_pkg_}})	\
 	));								\
-	${ECHO} conflicts ${PKGPATH} $(call quote,${CONFLICTS});	\
+	${ECHO} conflicts ${PKGPATH} $(call quote,${PKGCONFLICTS});	\
 	${ECHO} onlyfor ${PKGPATH} $(call quote,${ONLY_FOR_PLATFORM});	\
 	${ECHO} notfor ${PKGPATH} $(call quote,${NOT_FOR_PLATFORM});	\
 	if [ -f ${DESCR_SRC} ]; then					\

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013 LAAS/CNRS
+# Copyright (c) 2006-2013,2019 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -233,6 +233,13 @@ PKGBASE?=		$(patsubst %-${PKGVERSION_NOREV},%,${PKGNAME_NOREV})
 
 # PKGWILDCARD is a pkg_install wildcard matching all versions of the package.
 PKGWILDCARD?=		${PKGBASE}-[0-9]*
+
+# PKGCONFLICST is a pkg_install wildcard matching conflicting packages.
+PKGCONFLICTS=$(sort \
+  $(call substs,\
+    $(foreach _,${CONFLICTS_SUBST},$(word 1,$(subst =, ,$_))),\
+    $(foreach _,${CONFLICTS_SUBST},$(word 2,$(subst =, ,$_))),\
+    ${CONFLICTS}))
 
 # DISTNAME is the distribution archive name. It might not be empty.
 ifeq (,$(DISTNAME))

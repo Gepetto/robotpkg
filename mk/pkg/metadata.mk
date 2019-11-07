@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013,2017 LAAS/CNRS
+# Copyright (c) 2006-2013,2017,2019 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -296,7 +296,7 @@ endif
 _PKG_CREATE_ARGS+=	-S ${PKG_DB_TMPDIR}/${_SIZE_ALL_FILE}
 _PKG_CREATE_ARGS+=	-s ${PKG_DB_TMPDIR}/${_SIZE_PKG_FILE}
 ifdef CONFLICTS
-_PKG_CREATE_ARGS+=	-C $(call quote,${CONFLICTS})
+_PKG_CREATE_ARGS+=	-C $(call quote,${PKGCONFLICTS})
 endif
 _PKG_CREATE_ARGS+=\
   $(if $(strip ${INSTALL_SRC}),-i ${PKG_DB_TMPDIR}/${_INSTALL_FILE})

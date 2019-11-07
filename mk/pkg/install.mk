@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2012,2018 LAAS/CNRS
+# Copyright (c) 2006-2012,2018-2019 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -43,7 +43,7 @@
 .PHONY: pkg-install-check-conflicts
 pkg-install-check-conflicts:
 	${RUN}${RM} -f ${WRKDIR}/.CONFLICTS;				\
-${foreach _conflict_,${CONFLICTS},					\
+${foreach _conflict_,${PKGCONFLICTS},					\
 	found="`${_PKG_BEST_EXISTS} '${_conflict_}' || ${TRUE}`";	\
 	if ${TEST} -n "$$found"; then					\
 	  if ! ${PKG_ADMIN} pmatch "${PKGWILDCARD}" "$$found"; then	\
