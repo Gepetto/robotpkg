@@ -44,6 +44,13 @@
 #	Possible values: any pattern
 #	Default: qt>=4
 #
+# QT_SELF_CONFLICT
+#       If set to "yes", additional CONFLICTS entries are added for
+#       registering a conflict between qtN-<modulename> packages.
+#
+#       Possible values: yes no
+#       Default: no
+#
 # === Defined variables ===
 #
 # PKGTAG.qt
@@ -63,6 +70,12 @@ ifeq (+,$(QT_DEPEND_MK)) # -------------------------------------------------
 
 PREFER.qt?=		system
 DEPEND_ABI.qt?=		qt>=4
+
+# Additional CONFLICTS
+ifneq (,$(call isyes,${QT_SELF_CONFLICT}))
+  CONFLICTS_SUBST+=	${PKGTAG.qt-}=qt[0-9]-
+  CONFLICTS+=		${PKGWILDCARD}
+endif
 
 # set default preferences depending on OS/VERSION
 PREFER_ALTERNATIVE.qt?=		qt5 qt4
