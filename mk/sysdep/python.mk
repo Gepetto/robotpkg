@@ -45,6 +45,13 @@
 #	Possible values: any pattern
 #	Default: python>=2.6 python<3
 #
+# PYTHON_SELF_CONFLICT
+#       If set to "yes", additional CONFLICTS entries are added for
+#       registering a conflict between pyNN-<modulename> packages.
+#
+#       Possible values: yes no
+#       Default: no
+#
 # === Defined variables ===
 #
 # PKGTAG.python
@@ -97,6 +104,12 @@ CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON}
 CMAKE_ARGS+=	-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE}
 CMAKE_ARGS+=	-DPYTHON_INCLUDE_DIR2=${PYTHON_INCLUDE_CONFIG}
 CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
+
+# Additional CONFLICTS
+ifneq (,$(call isyes,${PYTHON_SELF_CONFLICT}))
+  CONFLICTS_SUBST+=	${PKGTAG.python-}=py[0-9][0-9]-
+  CONFLICTS+=		${PKGWILDCARD}
+endif
 
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
