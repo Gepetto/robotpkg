@@ -28,8 +28,8 @@ include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-xacro/depend.mk
+include ../../interfaces/humanoid-nav-msgs/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
-include ../../interfaces/ros-humanoid-msgs/depend.mk
 include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../lang/ros-message-runtime/depend.mk

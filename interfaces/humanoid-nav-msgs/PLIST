@@ -1,4 +1,4 @@
-@comment Tue Aug 19 11:29:05 CEST 2014
+@comment Fri Nov 8 11:22:39 CET 2019
 include/humanoid_nav_msgs/ClipFootstep.h
 include/humanoid_nav_msgs/ClipFootstepRequest.h
 include/humanoid_nav_msgs/ClipFootstepResponse.h
@@ -63,7 +63,6 @@ share/common-lisp/ros/humanoid_nav_msgs/srv/_package_PlanFootsteps.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/_package_PlanFootstepsBetweenFeet.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/_package_StepTargetService.lisp
 share/common-lisp/ros/humanoid_nav_msgs/srv/humanoid_nav_msgs-srv.asd
-share/humanoid_msgs/package.xml
 share/humanoid_nav_msgs/action/ExecFootsteps.action
 share/humanoid_nav_msgs/cmake/humanoid_nav_msgs-msg-extras.cmake
 share/humanoid_nav_msgs/cmake/humanoid_nav_msgs-msg-paths.cmake

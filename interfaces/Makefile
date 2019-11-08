@@ -8,13 +8,13 @@ SUBDIR+=	genHum-genom
 SUBDIR+=	genPos-genom
 SUBDIR+=	abstract-robot-dynamics
 SUBDIR+=	abstract-gik-task
+SUBDIR+=	humanoid-nav-msgs
 SUBDIR+=	jrl-mal
 SUBDIR+=	openrobots-idl
 SUBDIR+=	openrobots2-idl
 SUBDIR+=	ros-comm-msgs
 SUBDIR+=	ros-common-msgs
 SUBDIR+=	ros-control-msgs
-SUBDIR+=	ros-humanoid-msgs
 SUBDIR+=	ros-navigation-msgs
 SUBDIR+=	ros-std-msgs
 
