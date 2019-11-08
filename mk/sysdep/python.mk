@@ -52,6 +52,13 @@
 #       Possible values: yes no
 #       Default: no
 #
+# PYTHON_NOTAG_CONFLICT
+#       If set to "yes", additional CONFLICTS entries are added for
+#       registering a conflict with the package name without pyNN- prefix.
+#
+#       Possible values: yes no
+#       Default: no
+#
 # === Defined variables ===
 #
 # PKGTAG.python
@@ -109,6 +116,9 @@ CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 ifneq (,$(call isyes,${PYTHON_SELF_CONFLICT}))
   CONFLICTS_SUBST+=	${PKGTAG.python-}=py[0-9][0-9]-
   CONFLICTS+=		${PKGWILDCARD}
+endif
+ifneq (,$(call isyes,${PYTHON_NOTAG_CONFLICT}))
+  CONFLICTS+=		$(subst ${PKGTAG.python-},,${PKGWILDCARD})
 endif
 
 # define an alternative for available pythons packages
