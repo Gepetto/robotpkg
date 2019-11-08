@@ -19,12 +19,6 @@ ifeq (Ubuntu,${OPSYS})
     PREFER.humanoid-nav-msgs?=		${PREFER.ros-base}
     SYSTEM_PREFIX.humanoid-nav-msgs?=	${SYSTEM_PREFIX.ros-base}
   endif
-else ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 9,${OS_VERSION}))
-    include ../../meta-pkgs/ros-base/depend.common
-    PREFER.humanoid-nav-msgs?=		${PREFER.ros-base}
-    SYSTEM_PREFIX.humanoid-nav-msgs?=	${SYSTEM_PREFIX.ros-base}
-  endif
 endif
 
 PREFER.humanoid-nav-msgs?=		robotpkg
