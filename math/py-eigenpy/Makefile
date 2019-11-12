@@ -11,10 +11,8 @@ CATEGORIES=		math
 COMMENT=		Eigen bindings to python
 LICENSE=		2-clause-bsd
 
-# this does not support multiple parallel python version
-CONFLICTS+=		py[0-9][0-9]-eigenpy-[0-9]*
-# old package name
-CONFLICTS+=		eigenpy-[0-9]*
+PYTHON_SELF_CONFLICT=	yes
+PYTHON_NOTAG_CONFLICT=	yes
 
 CMAKE_ARGS+=		-Wno-dev # annoying messages
 CMAKE_ARGS+=		-DBUILD_UNIT_TESTS=ON
