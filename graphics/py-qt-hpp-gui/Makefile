@@ -11,7 +11,6 @@ PKGREVISION=	1
 CATEGORIES=		graphics
 CONFLICTS+=		qt[0-9]-hpp-gui-[0-9]*
 
-USE_PYTHON=		true
 PYTHON_NOTAG_CONFLICT=	yes
 
 DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui/pyplugin.conf.d

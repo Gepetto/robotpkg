@@ -8,7 +8,6 @@ HPP_COMMENT=		Corba server for Humanoid Path Planner
 CATEGORIES=		path
 
 MAKE_JOBS_SAFE=		no
-USE_PYTHON=		true
 PYTHON_NOTAG_CONFLICT=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common

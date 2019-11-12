@@ -7,7 +7,6 @@ HPP_PACKAGE=		hpp_tutorial
 CATEGORIES=		doc
 HPP_COMMENT=		Tutorial for manipulation and path planning
 
-USE_PYTHON=		true
 PYTHON_NOTAG_CONFLICT=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common

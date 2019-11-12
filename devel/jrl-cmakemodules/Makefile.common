@@ -12,6 +12,10 @@ ifndef VERSION
   PKG_FAIL_REASON+="Dependency on devel/jrl-cmakemodules requires VERSION"
 endif
 
+ifdef PYTHON_NOTAG_CONFLICT
+  USE_PYTHON=		true
+endif
+
 ifdef USE_PYTHON_ONLY
   USE_PYTHON=		true
   CMAKE_ARGS+=		-DINSTALL_PYTHON_INTERFACE_ONLY=ON

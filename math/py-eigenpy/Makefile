@@ -28,7 +28,6 @@ CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_RELEASE=${Boost_PYTHON_LIBRARY}
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_DEBUG=${Boost_PYTHON_LIBRARY}
 
 USE_MASTER_GITHUB=	true
-USE_PYTHON=		true
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 
