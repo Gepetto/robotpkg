@@ -14,7 +14,7 @@ ifeq (+,$(PINOCCHIO_DEPEND_MK)) # ------------------------------------------
 PREFER.pinocchio?=	robotpkg
 
 SYSTEM_SEARCH.pinocchio=\
-  'include/pinocchio/config.h{h,pp}:/PINOCCHIO_VERSION/s/[^0-9.]//gp'	\
+  'include/pinocchio/config.h{h,pp}:/PINOCCHIO_VERSION /s/[^0-9.]//gp'	\
   'lib/libpinocchio.so'							\
   'lib/pkgconfig/pinocchio.pc:/Version/s/[^0-9.]//gp'
 
