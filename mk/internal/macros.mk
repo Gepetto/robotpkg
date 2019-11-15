@@ -280,6 +280,16 @@ define _OVERRIDE_TARGET
 endef
 
 
+# --- cache <name> <value> -------------------------------------------------
+#
+# Caching values to avoid expensive calls
+#
+override define cache
+$(if $(filter undefined,$(origin _cache_$1)),$(eval			\
+  _cache_$1 := $2))${_cache_$1}
+endef
+
+
 # --- preduce --------------------------------------------------------------
 
 # Distill a version requirement list into a single interval that is the
@@ -292,10 +302,8 @@ $(shell ${AWK}								\
   reduce '$1')
 endef
 override define preduce
-$(strip $(eval __predv:=$(subst $$,SS,$(subst $! $!,__,$1)))		\
-$(or $(value __predc_$${__predv}),					\
-     $(eval __predc_$${__predv}:=$$(call _preduce,$$1))			\
-     $(value __predc_$${__predv})))
+$(call cache,$(subst $$,,$(subst =,_,$(subst				\
+  $  ,__,$1))),$$(call _preduce,$1))
 endef
 
 
