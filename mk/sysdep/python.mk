@@ -35,7 +35,7 @@
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: python27 python34 python35 python36 python37
+#	Possible values: python27 python34 python35 python36 python37 python38
 #
 # === Package-settable variables ===
 #
@@ -85,7 +85,7 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
-DEPEND_ABI.python?=	python>=2.5<3.8
+DEPEND_ABI.python?=	python>=2.5<3.9
 
 # factorize SYSTEM_SEARCH.python* here for all python* packages
 override define _py_syssearch
@@ -124,7 +124,7 @@ endif
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python27
-PKG_ALTERNATIVES.python+=	python34 python35 python36 python37
+PKG_ALTERNATIVES.python+=	python34 python35 python36 python37 python38
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
@@ -147,7 +147,7 @@ else ifeq (Ubuntu,${OPSYS})
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python34
 else ifeq (Arch,${OPSYS})
-  PREFER_ALTERNATIVE.python?=	python27 python37
+  PREFER_ALTERNATIVE.python?=	python27 python38
 endif
 PREFER_ALTERNATIVE.python?=	python27 python36
 
@@ -209,6 +209,18 @@ define PKG_ALTERNATIVE_SET.python37
   DEPEND_ABI.python37?=	$(strip ${_py_abi})
 
   include ../../mk/sysdep/python37.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python38= Use python-3.8
+PKGTAG.python38 =		py38
+define PKG_ALTERNATIVE_SELECT.python38
+  $(call preduce,${DEPEND_ABI.python} python>=3.8<3.9)
+endef
+define PKG_ALTERNATIVE_SET.python38
+  _py_abi:=$(subst python,python38,${PKG_ALTERNATIVE_SELECT.python38})
+  DEPEND_ABI.python38?=	$(strip ${_py_abi})
+
+  include ../../mk/sysdep/python38.mk
 endef
 
 # default tag value before alternative resolution (used in particular by
