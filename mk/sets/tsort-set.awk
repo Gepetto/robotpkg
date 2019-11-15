@@ -1,6 +1,6 @@
 #!/usr/bin/awk -f
 #
-# Copyright (c) 2010-2011,2013,2018 LAAS/CNRS
+# Copyright (c) 2010-2011,2013,2018-2019 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -446,7 +446,8 @@ function xpaths(xpath, pattern, path,	subdir, d, dir, s, p, n) {
 #
 # Expand glob characters in a package pattern
 #
-function xpkgs(patterns, path, matches,		pattern, deps, xopts, wopts,
+function xpkgs(patterns, path, matches,		pattern, deps,
+						xopts, wopts, opts,
 						f, n, d, p, q, i, k, l) {
     # expand pkgbase, choose first pattern that generates a match
     q = pkginfos(path ":" patterns[1], deps, 1)
@@ -485,15 +486,24 @@ function xpkgs(patterns, path, matches,		pattern, deps, xopts, wopts,
         # expand pkgbase and options
         wopts = pattern ~ /~[^~]*$/
         xopts = pattern ~ /~.*[[*?{]/
+        if (wopts) { opts = pattern; gsub(/^.*~/, "~", opts) }
+
         n = pkgreqd[path]
         for (; i <= pkgnames[path]; i++) { # beware: reuse 'i' from above loop
             p = pkgnames[path,i]
+
             if (!wopts) sub(/~[^~]*$/, "", p)
             if (!pmatch(pattern, p, 0)) continue
 
             if (xopts) {
+                # add a pattern excluding unwanted options
                 if (p !~ /~/) p = p "~!*"; else p = p "+!*"
+            } else if (opts) {
+                # stick back original option requirements
+                sub(/~[^~]*$/, "", p)
+                p = p opts
             }
+
             pkgpush(troot, path ":" p, 1, n)
             matches[l]
 
@@ -510,8 +520,6 @@ function xpkgs(patterns, path, matches,		pattern, deps, xopts, wopts,
                     for(d in deps) pkgpush(path ":" p, d)
                 }
             }
-
-            if (wopts && !xopts) break
         }
     }
 }
