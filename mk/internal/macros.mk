@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2011,2013,2016 LAAS/CNRS
+# Copyright (c) 2006,2008-2011,2013,2016,2019 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -293,9 +293,9 @@ $(shell ${AWK}								\
 endef
 override define preduce
 $(strip $(eval __predv:=$(subst $$,SS,$(subst $! $!,__,$1)))		\
-$(or $(value __predc_${__predv}),					\
+$(or $(value __predc_$${__predv}),					\
      $(eval __predc_$${__predv}:=$$(call _preduce,$$1))			\
-     $(value __predc_${__predv})))
+     $(value __predc_$${__predv})))
 endef
 
 
