@@ -14,21 +14,9 @@ HOMEPAGE=		http://homepages.laas.fr/mallet/soft/mocap/evart-client
 COMMENT=		EVa Real-Time Software data streaming API.
 LICENSE=		2-clause-bsd
 
-GNU_CONFIGURE=          yes
-BUILD_TARGET=		all
-INSTALL_TARGET=		install
+GNU_CONFIGURE=		yes
+DYNAMIC_PLIST_DIRS+=	share/doc/evart-client
 
-# doc option
-PKG_SUPPORTED_OPTIONS+=	doc
-PKG_SUGGESTED_OPTIONS+=	doc
-PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
-
-define PKG_OPTION_SET.doc
-  BUILD_TARGET+=	doc
-  INSTALL_TARGET+=	install-doc
-  DOXYGEN_PLIST_DIR+=	share/doc/evart-client
-  include ../../mk/sysdep/doxygen.mk
-endef
-
+include ../../mk/sysdep/doxygen.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
