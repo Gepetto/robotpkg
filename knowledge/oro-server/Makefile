@@ -26,8 +26,11 @@ PKG_OPTION_DESCR.doc?=	Install ${PKGBASE} documentation
 define PKG_OPTION_SET.doc
   DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
   INSTALL_TARGET+=	install-doc
-endef
 
+  # Require jdk-1.8 for -Xdoclint
+  DEPEND_ABI.java+=	java>=1.8
+  MAKE_ENV+=		JAVADOC="${JAVADOC} -Xdoclint:none"
+endef
 
 include ../../knowledge/jena/depend.mk
 include ../../knowledge/pellet/depend.mk
