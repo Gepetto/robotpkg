@@ -1,9 +1,5 @@
-# robotpkg Makefile for:	path/hpp-util
-# Created:			Florent Lamiraux on Sat, 7 Mar 2015
-#
-
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		1.1.3
+HPP_VERSION=		1.2.0
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations

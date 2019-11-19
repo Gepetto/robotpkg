@@ -20,7 +20,13 @@ BUILD_TARGET=	all
 ORG=			${HPP_NAMESPACE}
 NAME=			${HPP_PACKAGE}
 VERSION=		${HPP_VERSION}
-PYTHON_SELF_CONFLICT=	yes
+
+
+ifdef USE_PYTHON_ONLY
+  PYTHON_SELF_CONFLICT=	yes
+else
+  PYTHON_SELF_CONFLICT=	no
+endif
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../pkgtools/pkg-config/depend.mk

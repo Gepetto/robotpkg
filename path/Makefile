@@ -22,6 +22,7 @@ SUBDIR+=	maneuver-genom3
 SUBDIR+=	ndd-genom
 SUBDIR+=	p3d-genom
 SUBDIR+=	py-hpp-corbaserver
+SUBDIR+=	py-hpp-fcl
 SUBDIR+=	py-hpp-manipulation-corba
 
 include ../mk/robotpkg.subdir.mk

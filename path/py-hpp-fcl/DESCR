@@ -1,0 +1,5 @@
+hpp-fcl is a modified version of the flexible collision library
+It provides functions to compute collision and distance computations
+between various geometric objects.
+
+This package provides the python bindings for hpp-fcl.
