@@ -1,8 +1,8 @@
---- CMakeLists.txt.orig	2019-08-07 16:02:59.000000000 +0200
-+++ CMakeLists.txt	2019-09-10 18:06:24.022419785 +0200
-@@ -222,56 +223,9 @@
-      macros.hpp
-      )
+--- CMakeLists.txt.orig	2019-11-22 15:23:36.000000000 +0100
++++ CMakeLists.txt	2019-11-25 11:26:21.043666283 +0100
+@@ -220,53 +221,14 @@
+ 
+ LIST(APPEND HEADERS macros.hpp)
  
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/core")
@@ -11,6 +11,7 @@
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody/joint")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody/liegroup")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/multibody/visitor")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers/lua")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers/urdf")
@@ -31,11 +32,16 @@
 -    ${${PROJECT_NAME}_SOURCE_DIR}/src/${header}
 -    ${${PROJECT_NAME}_BINARY_DIR}/include/${PROJECT_NAME}/${header})
 -  INSTALL(FILES ${${PROJECT_NAME}_SOURCE_DIR}/src/${header}
--    DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME}/${headerPath}
+-          DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME}/${headerPath}
 -          PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
 -ENDFOREACH(header)
 -SET(HEADERS ${HEADERS_})
 -
+ LIST(APPEND HEADERS
+      ${${PROJECT_NAME}_BINARY_DIR}/include/${PROJECT_NAME}/config.hpp
+      ${${PROJECT_NAME}_BINARY_DIR}/include/${PROJECT_NAME}/deprecated.hpp
+      ${${PROJECT_NAME}_BINARY_DIR}/include/${PROJECT_NAME}/warning.hpp)
+ 
 -# --- MAIN LIBRARY -------------------------------------------------------------
 -ADD_SUBDIRECTORY(src)
 -
@@ -45,15 +51,6 @@
 -# --- EXECUTABLES --------------------------------------------------------------
 -ADD_SUBDIRECTORY(utils)
 -
--# --- UNIT TESTS ---------------------------------------------------------------
--ADD_SUBDIRECTORY(unittest)
--
--# --- CHECK EXAMPLES -----------------------------------------------------------
--ADD_SUBDIRECTORY(examples)
--
--# --- BENCHMARKS ---------------------------------------------------------------
--ADD_SUBDIRECTORY(benchmark)
--
- # --- PACKAGING ----------------------------------------------------------------
- PKG_CONFIG_APPEND_LIBS (${PROJECT_NAME})
- PKG_CONFIG_APPEND_BOOST_LIBS(${BOOST_REQUIERED_COMPONENTS})
+ # --- UNIT TESTS ---------------------------------------------------------------
+ ADD_SUBDIRECTORY(unittest)
+ 

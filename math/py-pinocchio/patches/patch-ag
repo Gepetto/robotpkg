@@ -6,7 +6,7 @@ py-pinocchio needs pinocchio
  # --- DEPENDENCIES -----------------------------------
  # ----------------------------------------------------
  ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
-+ADD_REQUIRED_DEPENDENCY("pinocchio >= 2.1.1")
++ADD_REQUIRED_DEPENDENCY("pinocchio >= 2.2.0")
  
  IF(BUILD_WITH_URDF_SUPPORT)
    ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2.0")
@@ -20,3 +20,14 @@ py-pinocchio needs pinocchio
  
    TARGET_LINK_LIBRARIES(${PYWRAP} ${PROJECT_NAME})
    TARGET_LINK_BOOST_PYTHON(${PYWRAP})
+--- unittest/CMakeLists.txt.orig	2019-11-14 22:53:03.000000000 +0100
++++ unittest/CMakeLists.txt	2019-11-28 21:51:53.809104364 +0100
+@@ -117,7 +117,7 @@
+ ADD_PINOCCHIO_UNIT_TEST(version)
+ ADD_PINOCCHIO_UNIT_TEST(copy)
+ MAKE_DIRECTORY("${CMAKE_CURRENT_BINARY_DIR}/serialization-data")
+-ADD_PINOCCHIO_UNIT_TEST(serialization)
++ADD_PINOCCHIO_UNIT_TEST(serialization pinocchio)
+ ADD_TEST_CFLAGS(serialization-test '-DTEST_SERIALIZATION_FOLDER=\\\"${CMAKE_CURRENT_BINARY_DIR}/serialization-data\\\"')
+ 
+ # Derivatives algo

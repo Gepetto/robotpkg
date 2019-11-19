@@ -16,7 +16,8 @@ PREFER.pinocchio?=	robotpkg
 SYSTEM_SEARCH.pinocchio=\
   'include/pinocchio/config.h{h,pp}:/PINOCCHIO_VERSION /s/[^0-9.]//gp'	\
   'lib/libpinocchio.so'							\
-  'lib/pkgconfig/pinocchio.pc:/Version/s/[^0-9.]//gp'
+  'lib/pkgconfig/pinocchio.pc:/Version/s/[^0-9.]//gp'			\
+  'share/pinocchio/package.xml:/<version>/s/[^0-9.]//gp'
 
 DEPEND_USE+=		pinocchio
 

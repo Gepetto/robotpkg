@@ -1,6 +1,6 @@
 --- CMakeLists.txt~	2019-03-22 10:55:41.867972043 +0100
 +++ CMakeLists.txt	2019-03-22 11:29:06.642213144 +0100
-@@ -160,10 +160,36 @@
+@@ -160,10 +160,37 @@
  # ----------------------------------------------------
  # --- INCLUDE ----------------------------------------
  # ----------------------------------------------------
@@ -28,6 +28,7 @@
 +  ${PROJECT_SOURCE_DIR}/src/multibody/joint/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/multibody/liegroup/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/multibody/liegroup/*.hxx
++  ${PROJECT_SOURCE_DIR}/src/multibody/visitor/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/parsers/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/parsers/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/parsers/urdf/*.hpp

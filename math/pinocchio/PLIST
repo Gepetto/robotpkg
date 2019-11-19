@@ -24,8 +24,6 @@ include/pinocchio/algorithm/crba.hxx
 include/pinocchio/algorithm/default-check.hpp
 include/pinocchio/algorithm/dynamics.hpp
 include/pinocchio/algorithm/energy.hpp
-include/pinocchio/algorithm/finite-differences.hpp
-include/pinocchio/algorithm/finite-differences.hxx
 include/pinocchio/algorithm/frames.hpp
 include/pinocchio/algorithm/frames.hxx
 include/pinocchio/algorithm/geometry.hpp
@@ -103,7 +101,6 @@ include/pinocchio/deprecated-namespaces.hpp
 include/pinocchio/deprecated.hpp
 include/pinocchio/deprecation.hpp
 include/pinocchio/eigen-macros.hpp
-include/pinocchio/exception.hpp
 include/pinocchio/fwd.hpp
 include/pinocchio/macros.hpp
 include/pinocchio/math/casadi.hpp
@@ -117,6 +114,7 @@ include/pinocchio/math/quaternion.hpp
 include/pinocchio/math/rotation.hpp
 include/pinocchio/math/sincos.hpp
 include/pinocchio/math/taylor-expansion.hpp
+include/pinocchio/math/tensor.hpp
 include/pinocchio/multibody/constraint-base.hpp
 include/pinocchio/multibody/constraint-generic.hpp
 include/pinocchio/multibody/constraint.hpp
@@ -170,6 +168,9 @@ include/pinocchio/multibody/liegroup/vector-space.hpp
 include/pinocchio/multibody/model.hpp
 include/pinocchio/multibody/model.hxx
 include/pinocchio/multibody/visitor.hpp
+include/pinocchio/multibody/visitor/fusion.hpp
+include/pinocchio/multibody/visitor/joint-binary-visitor.hpp
+include/pinocchio/multibody/visitor/joint-unary-visitor.hpp
 include/pinocchio/parsers/python.hpp
 include/pinocchio/parsers/sample-models.hpp
 include/pinocchio/parsers/sample-models.hxx
@@ -231,3 +232,4 @@ include/pinocchio/utils/version.hpp
 include/pinocchio/warning.hpp
 lib/libpinocchio.so
 lib/pkgconfig/pinocchio.pc
+share/pinocchio/package.xml
