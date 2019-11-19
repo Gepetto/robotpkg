@@ -28,4 +28,6 @@ include/eigenpy/stride.hpp
 include/eigenpy/warning.hh
 lib/libeigenpy.so
 lib/pkgconfig/eigenpy.pc
-${PYTHON_SITELIB}/eigenpy.so
+${PYTHON_SITELIB}/eigenpy${PYTHON_EXT_SUFFIX}
+share/eigenpy/cmake/eigenpyConfig.cmake
+share/eigenpy/package.xml
