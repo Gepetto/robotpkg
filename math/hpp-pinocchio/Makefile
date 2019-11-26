@@ -23,7 +23,6 @@ include ../../math/pinocchio/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../graphics/assimp/depend.mk
-include ../../net/ros-resource-retriever/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
