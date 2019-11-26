@@ -2,8 +2,7 @@
 # Created:			Florent Lamiraux on Sat, 7 Mar 2015
 #
 
-HPP_PACKAGE=		hpp-statistics
-HPP_VERSION=		4.5.0
+HPP_PACKAGE=	hpp-statistics
 
 CATEGORIES=	path
 HPP_COMMENT=	Tools to make statistics
