@@ -3,9 +3,8 @@
 #
 
 HPP_PACKAGE=		hpp-template-corba
-HPP_VERSION=		4.5.0
 
-CATEGORIES=			middleware
+CATEGORIES=		middleware
 HPP_COMMENT=		Template CORBA servers for HPP
 
 include ../../meta-pkgs/hpp/Makefile.common
