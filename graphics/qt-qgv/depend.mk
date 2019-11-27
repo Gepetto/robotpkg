@@ -14,7 +14,7 @@ ifeq (+,$(QT_QGV_DEPEND_MK)) # ---------------------------------------------
 PREFER.qt-qgv?=		robotpkg
 
 SYSTEM_SEARCH.qt-qgv=\
-  'include/qgv/config.hh:/QGV_VERSION/s/[^0-9.]//gp'	\
+  'include/qgv/config.hh:/QGV_VERSION /s/[^0-9.]//gp'	\
   'lib/libqgvcore.so'					\
   'lib/pkgconfig/qgv.pc:/Version/s/[^0-9.]//gp'
 
