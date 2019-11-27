@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	geometry2
-ROS_VERSION=	0.6.3
+ROS_VERSION=	0.6.5
 ROS_METAPKG=	yes
 
 CATEGORIES=	math localization
