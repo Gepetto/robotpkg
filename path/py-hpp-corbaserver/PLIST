@@ -44,6 +44,9 @@ include/hpp/core_idl/paths.hh
 include/hpp/core_idl/steering_methods-fwd.hh
 include/hpp/core_idl/steering_methods-idl.hh
 include/hpp/core_idl/steering_methods.hh
+include/hpp/pinocchio_idl/robots-fwd.hh
+include/hpp/pinocchio_idl/robots-idl.hh
+include/hpp/pinocchio_idl/robots.hh
 lib/libhpp-corbaserver.so
 lib/pkgconfig/hpp-corbaserver.pc
 ${PYTHON_SITELIB}/hpp/__init__.py
@@ -62,11 +65,13 @@ ${PYTHON_SITELIB}/hpp_idl/hpp/constraints_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/corbaserver/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/configuration_shooter/__init__.py
+${PYTHON_SITELIB}/hpp_idl/hpp/pinocchio_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/constraints_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/corbaserver/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/configuration_shooter/__init__.py
+${PYTHON_SITELIB}/hpp_idl/hpp__POA/pinocchio_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_stubs/__init__.py
 ${PYTHON_SITELIB}/hpp_stubs/common_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/constraints/__init__.py
@@ -85,6 +90,8 @@ ${PYTHON_SITELIB}/hpp_stubs/core/path_planners_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/path_validations_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/paths_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/steering_methods_idl.py
+${PYTHON_SITELIB}/hpp_stubs/pinocchio/__init__.py
+${PYTHON_SITELIB}/hpp_stubs/pinocchio/robots_idl.py
 share/hpp-corbaserver/cmake/hpp-corbaserver-plugin.cmake
 share/hpp-corbaserver/cmake/omniidl.cmake
 share/hpp-corbaserver/omniidl/cxx_impl/__init__.py
@@ -104,3 +111,4 @@ share/idl/hpp/core_idl/path_planners.idl
 share/idl/hpp/core_idl/path_validations.idl
 share/idl/hpp/core_idl/paths.idl
 share/idl/hpp/core_idl/steering_methods.idl
+share/idl/hpp/pinocchio_idl/robots.idl
