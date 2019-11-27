@@ -3,14 +3,13 @@
 #
 
 HPP_PACKAGE=	hpp-manipulation-urdf
-HPP_VERSION=    4.5.0
 
 CATEGORIES=	path
 HPP_COMMENT=	URDF/SRDF parser for the package hpp-manipulation
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-CMAKE_ARGS+=	-DTINYXML_ROOT=${PREFIX.tinyxml}
+CMAKE_ARGS+=	-DTinyXML_PREFIX=${PREFIX.tinyxml}
 
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=	-DCXX_DISABLE_WERROR=yes
