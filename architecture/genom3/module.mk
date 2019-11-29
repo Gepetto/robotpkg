@@ -153,6 +153,7 @@ define PKG_OPTION_SET.ros-client-ros
   include ../../devel/boost-headers/depend.mk
   include ../../devel/ros-ros/depend.mk
   include ../../interfaces/ros-common-msgs/depend.mk
+  include ../../lang/ros-message-generation/depend.mk
   include ../../middleware/ros-actionlib/depend.mk
   include ../../middleware/ros-comm/depend.mk
   include ../../sysutils/ros-rospack/depend.mk
