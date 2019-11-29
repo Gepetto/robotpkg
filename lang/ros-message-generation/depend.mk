@@ -34,6 +34,7 @@ SYSTEM_SEARCH.ros-message-generation=\
   'share/message_generation/package.xml:/<version>/s/[^0-9.]//gp'	\
   'lib/pkgconfig/message_generation.pc:/Version/s/[^0-9.]//gp'
 
+include ../../lang/ros-genpy/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 
 endif # ROS_MESSAGE_GENERATION_DEPEND_MK -----------------------------------
