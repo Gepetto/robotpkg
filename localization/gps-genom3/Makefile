@@ -18,6 +18,8 @@ ifeq (${OS_KERNEL},Linux)
   include ../../mk/sysdep/libudev.mk
 endif
 
+DEPEND_ABI.ros-genpy += ros-genpy>=0.6.3
+
 include ../../interfaces/openrobots2-idl/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
