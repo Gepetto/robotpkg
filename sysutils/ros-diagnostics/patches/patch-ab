@@ -1,0 +1,15 @@
+fix:
+/usr/bin/ld: CMakeFiles/analyzer_loader.dir/gtest-1.7.0/gtest-all.cc.o: undefined reference to symbol 'pthread_setspecific@@GLIBC_2.2.5'
+/usr/bin/ld: /usr/lib/libpthread.so.0: error adding symbols: DSO missing from command line
+
+--- diagnostic_aggregator/CMakeLists.txt.orig	2019-12-02 18:05:33.000000000 +0100
++++ diagnostic_aggregator/CMakeLists.txt	2019-12-02 18:05:44.432336028 +0100
+@@ -43,7 +43,7 @@
+ # Analyzer loader allows other users to test that Analyzers load
+ add_executable(analyzer_loader test/analyzer_loader.cpp
+                                gtest-1.7.0/gtest-all.cc)
+-target_link_libraries(analyzer_loader diagnostic_aggregator)
++target_link_libraries(analyzer_loader diagnostic_aggregator pthread)
+ 
+ if(CATKIN_ENABLE_TESTING)
+   find_package(rostest REQUIRED)
