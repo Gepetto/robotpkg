@@ -1,0 +1,12 @@
+fix /usr/bin/ld: CMakeFiles/benchmark.dir/src/benchmark.cpp.o: référence au symbole non défini « pthread_condattr_setclock@@GLIBC_2.3.3 »
+
+--- test_nodelet/CMakeLists.txt.orig	2018-04-27 22:56:23.000000000 +0200
++++ test_nodelet/CMakeLists.txt	2019-12-02 14:01:16.864448629 +0100
+@@ -51,6 +51,7 @@
+   add_executable(benchmark src/benchmark.cpp)
+   target_link_libraries(benchmark ${BOOST_LIBRARIES}
+                                   ${PROJECT_NAME}
++                                  pthread
+   )
+ 
+   add_executable(create_instance_cb_error src/create_instance_cb_error.cpp)
