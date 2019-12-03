@@ -1,0 +1,26 @@
+From 530925f3a3f747eef899810a678aa37e5da8d9f7 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Tue, 3 Dec 2019 19:23:01 +0100
+Subject: [PATCH] [CMake] Boost::chrono in required for tests
+
+fix build for Debian Jessie
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 04667dc..7bdb9b4 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -67,7 +67,7 @@ set (RUN_TESTS TRUE CACHE BOOL "compile and run unit tests")
+ # Required dependencies
+ set(BOOST_COMPONENTS thread date_time system)
+ if (RUN_TESTS)
+-  set(BOOST_COMPONENTS ${BOOST_COMPONENTS} filesystem unit_test_framework)
++  set(BOOST_COMPONENTS ${BOOST_COMPONENTS} filesystem unit_test_framework chrono)
+ endif ()
+ if (BUILD_PYTHON_INTERFACE)
+   FINDPYTHON()
+-- 
+2.17.1
+

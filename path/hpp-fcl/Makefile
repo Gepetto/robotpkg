@@ -9,7 +9,7 @@ CONFLICTS+=		hpp-fcl04-[0-9]*
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-USE_BOOST_LIBS= thread date_time system filesystem unit_test_framework
+USE_BOOST_LIBS= thread date_time system filesystem unit_test_framework chrono
 
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
