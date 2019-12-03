@@ -44,6 +44,8 @@ INSTALL_VARS+=	ECHO CHMOD CP FIND GREP MKDIR RM TEST
 INSTALL_SRC+=	${FILESDIR}/catkin
 DEINSTALL_SRC+=	${FILESDIR}/catkin
 
+DEPEND_ABI.py-catkin-pkg+= ${PKGTAG.python}-catkin-pkg>=0.4.3
+
 include ../../sysutils/py-catkin-pkg/depend.mk
 include ../../mk/sysdep/bash.mk
 include ../../mk/sysdep/cmake.mk

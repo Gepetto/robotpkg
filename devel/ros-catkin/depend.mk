@@ -43,6 +43,7 @@ USE_ROS_CATKIN?=	yes
 ifneq (,$(filter yes YES Yes,${USE_ROS_CATKIN}))
   DEPEND_ABI.cmake+= cmake>=2.8.3
   include ../../pkgtools/pkg-config/depend.mk
+  include ../../sysutils/py-catkin-pkg/depend.mk
   include ../../mk/sysdep/cmake.mk
   include ../../mk/sysdep/googletest.mk
   include ../../mk/sysdep/py-empy.mk
