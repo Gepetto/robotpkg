@@ -1,0 +1,13 @@
+The make program is not make. It's whatever the user used (e.g. gmake).
+
+--- cmake/sip_helper.cmake~	2019-09-30 23:33:33.000000000 +0200
++++ cmake/sip_helper.cmake	2019-12-03 23:54:29.535568166 +0100
+@@ -233,7 +233,7 @@
+     if(WIN32)
+       set(MAKE_EXECUTABLE NMake.exe)
+     else()
+-      set(MAKE_EXECUTABLE make)
++      set(MAKE_EXECUTABLE @MAKE@)
+     endif()
+ 
+     add_custom_command(
