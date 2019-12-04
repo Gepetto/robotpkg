@@ -10,6 +10,7 @@ endif
 
 HPP_VERSION?=		4.8.0
 HPP_NAMESPACE?=		humanoid-path-planner
+HPP_DOC?=		yes
 LICENSE?=		gnu-lgpl-v3
 
 MAINTAINER?=	hpp@laas.fr
@@ -45,8 +46,10 @@ PKG_OPTION_DESCR.benchmark=	Measure computation times
 PKG_OPTION_SET.benchmark:=	CPPFLAGS+=-DHPP_ENABLE_BENCHMARK -DHPP_DEBUG
 
 # option for doxygen documentation
-PKG_SUGGESTED_OPTIONS+=		doc
-PKG_SUPPORTED_OPTIONS+=		doc
+ifneq (,$(filter yes YES Yes,${HPP_DOC}))
+  PKG_SUGGESTED_OPTIONS+=	doc
+  PKG_SUPPORTED_OPTIONS+=	doc
+endif
 PKG_OPTION_DESCR.doc=		Enable documentation generation and installation
 define PKG_OPTION_SET.doc
   BUILD_TARGET+=		doc
