@@ -37,6 +37,9 @@ SUBST_FILES.py-interp+=	src/python_qt_binding/*.py
 
 SUBST_CLASSES+=		py-distsetup
 
+# for version 3 package.xml
+DEPEND_ABI.py-catkin-pkg = ${PKGTAG.python}-catkin-pkg>=0.4
+
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../mk/sysdep/py-qt5.mk
