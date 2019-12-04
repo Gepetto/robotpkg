@@ -9,11 +9,16 @@ CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations (python bindingss)
 LICENSE=		2-clause-bsd
 
+DISTINFO_FILE=		${ROBOTPKG_DIR}/path/hpp-fcl/distinfo
+PATCHDIR=		${ROBOTPKG_DIR}/path/hpp-fcl/patches
+
+HPP_DOC=		no # already in path/hpp-fcl
 USE_PYTHON_ONLY=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common
 
 USE_BOOST_LIBS= thread date_time system filesystem unit_test_framework python
+USE_BOOST_LIBS+= chrono
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
