@@ -37,7 +37,7 @@ include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 
 DEPEND_ABI.cmake +=	cmake>=2.8.12
-DEPEND_ABI.eigen3 +=	eigen3>=3.3
+DEPEND_ABI.eigen3 +=	eigen3>=3.2.91
 DEPEND_ABI.urdfdom +=	urdfdom>=0.2.3
 
 include ../../mk/robotpkg.mk
