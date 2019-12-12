@@ -21,7 +21,7 @@ SYSTEM_SEARCH.py-netifaces=\
 SYSTEM_PKG.Arch.py-netifaces=	python$(subst 3,,${PYTHON_MAJOR})-netifaces
 SYSTEM_PKG.Ubuntu.py-netifaces=	python$(subst 2,,${PYTHON_MAJOR})-netifaces
 SYSTEM_PKG.RedHat.py-netifaces= python-netifaces
-SYSTEM_PKG.Debian.py-netifaces=	python-netifaces (python-${PYTHON_VERSION})
+SYSTEM_PKG.Debian.py-netifaces=	python$(subst 2,,${PYTHON_MAJOR})-netifaces
 SYSTEM_PKG.NetBSD.py-netifaces=	net/${PKGTAG.python-}netifaces
 SYSTEM_PKG.Gentoo.py-netifaces=	dev-python/netifaces (python-${PYTHON_VERSION})
 

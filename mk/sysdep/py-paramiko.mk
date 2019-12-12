@@ -20,7 +20,7 @@ SYSTEM_SEARCH.py-paramiko=\
 
 SYSTEM_PKG.Ubuntu.py-paramiko=	python$(subst 2,,${PYTHON_MAJOR})-paramiko
 SYSTEM_PKG.RedHat.py-paramiko=	python-paramiko
-SYSTEM_PKG.Debian.py-paramiko=	python-paramiko (python-${PYTHON_VERSION})
+SYSTEM_PKG.Debian.py-paramiko=	python$(subst 2,,${PYTHON_MAJOR})-paramiko
 SYSTEM_PKG.NetBSD.py-paramiko=	security/${PKGTAG.python-}paramiko
 
 include ../../mk/sysdep/python.mk
