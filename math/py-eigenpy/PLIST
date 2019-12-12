@@ -1,7 +1,7 @@
 @comment Sat May 12 16:37:25 CEST 2018
 include/eigenpy/angle-axis.hpp
-include/eigenpy/config.hh
-include/eigenpy/deprecated.hh
+include/eigenpy/config.hpp
+include/eigenpy/deprecated.hpp
 include/eigenpy/details.hpp
 include/eigenpy/details/rvalue_from_python_data.hpp
 include/eigenpy/eigenpy.hpp
@@ -25,9 +25,14 @@ include/eigenpy/solvers/SparseSolverBase.hpp
 include/eigenpy/solvers/preconditioners.hpp
 include/eigenpy/solvers/solvers.hpp
 include/eigenpy/stride.hpp
-include/eigenpy/warning.hh
+include/eigenpy/version.hpp
+include/eigenpy/warning.hpp
+lib/cmake/eigenpy/eigenpyConfig.cmake
+lib/cmake/eigenpy/eigenpyConfigVersion.cmake
+lib/cmake/eigenpy/eigenpyTargets-release.cmake
+lib/cmake/eigenpy/eigenpyTargets.cmake
 lib/libeigenpy.so
 lib/pkgconfig/eigenpy.pc
-${PYTHON_SITELIB}/eigenpy${PYTHON_EXT_SUFFIX}
-share/eigenpy/cmake/eigenpyConfig.cmake
+${PYTHON_SITELIB}/eigenpy/__init__.py
+${PYTHON_SITELIB}/eigenpy/eigenpy${PYTHON_EXT_SUFFIX}
 share/eigenpy/package.xml
