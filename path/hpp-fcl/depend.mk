@@ -15,13 +15,15 @@ PREFER.hpp-fcl?=	robotpkg
 
 DEPEND_USE+=		hpp-fcl
 
-DEPEND_ABI.hpp-fcl?=	hpp-fcl>=1.2.0
+DEPEND_ABI.hpp-fcl?=	hpp-fcl>=1.2.1
 DEPEND_DIR.hpp-fcl?=	../../path/hpp-fcl
 
 SYSTEM_SEARCH.hpp-fcl=\
-  'include/hpp/fcl/narrowphase/narrowphase.h'	\
-  'lib/libhpp-fcl.so'				\
-  'lib/pkgconfig/hpp-fcl.pc:/Version/s/[^0-9.]//gp'
+  'include/hpp/fcl/config.hh:/HPP_FCL_VERSION /s/[^0-9.]//gp'				\
+  'lib/cmake/hpp-fcl/hpp-fclConfigVersion.cmake:/PACKAGE_VERSION /s/[^0-9.]//gp'	\
+  'lib/libhpp-fcl.so'									\
+  'lib/pkgconfig/hpp-fcl.pc:/Version/s/[^0-9.]//gp'					\
+  'share/hpp-fcl/package.xml:/<version>/s/[^0-9.]//gp'
 
 include ../../math/eigen3/depend.mk
 
