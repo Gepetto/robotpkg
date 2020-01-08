@@ -1,5 +1,5 @@
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		1.2.1
+HPP_VERSION=		1.2.2
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations
