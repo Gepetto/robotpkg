@@ -20,7 +20,7 @@ SYSTEM_SEARCH.libavresample=\
   'lib/{,ffmpeg*/}pkgconfig/libavresample.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Fedora.libavresample=ffmpeg-devel
-SYSTEM_PKG.Debian.libavresample=libavresample-dev
+SYSTEM_DEP.Debian.libavresample=libavresample-dev (>= 6:9.11)
 SYSTEM_PKG.NetBSD.libavresample=multimedia/ffmpeg
 
 endif # LIBAVRESAMPLE_DEPEND_MK --------------------------------------------
