@@ -26,9 +26,8 @@ SYSTEM_SEARCH.py-sip=\
 
 SYSTEM_PKG.Arch.py-sip= 	python-sip sip
 SYSTEM_PKG.RedHat.py-sip=	python-sip-devel (python-${PYTHON_VERSION})
-SYSTEM_PKG.Debian.py-sip=	python-sip-dev (python-${PYTHON_VERSION})
+SYSTEM_PKG.Debian.py-sip=	python$(subst 2,,${PYTHON_MAJOR})-sip-dev
 SYSTEM_PKG.NetBSD.py-sip=	x11/${PKGTAG.python}-sip
-SYSTEM_PKG.Ubuntu.py-sip=	python$(subst 2,,${PYTHON_MAJOR})-sip-dev
 SYSTEM_PKG.Gentoo.py-sip=	dev-python/sip (python-${PYTHON_VERSION})
 
 export SIP=		$(word 1,${SYSTEM_FILES.py-sip})
