@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008-2013,2016,2018 LAAS/CNRS
+# Copyright (c) 2008-2013,2016,2018,2020 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -226,8 +226,17 @@ override define _dpd_reduceabi # (pkg)
 endef
 $(foreach _,${DEPEND_USE},$(eval $(call _dpd_reduceabi,$_)))
 
-# Compute SYSTEM_PKG.pkg if needed
+# Compute SYSTEM_DEP.pkg and SYSTEM_PKG.pkg if needed
 override define _dpd_syspkg # (pkg)
+  SYSTEM_DEP.$1 ?=$(or							\
+    ${SYSTEM_DEP.${MACHINE_KERNEL}.$1},					\
+    ${SYSTEM_DEP.${OS_KERNEL}-${OS_KERNEL_VERSION}.$1},			\
+    ${SYSTEM_DEP.${OS_KERNEL}.$1},					\
+    ${SYSTEM_DEP.${MACHINE_PLATFORM}.$1},				\
+    ${SYSTEM_DEP.${OPSYS}-${OS_VERSION}.$1},				\
+    ${SYSTEM_DEP.${OPSYS}.$1},						\
+    ${SYSTEM_DEP.${OS_FAMILY}.$1})
+
   SYSTEM_PKG.$1 ?=$(or							\
     ${SYSTEM_PKG.${MACHINE_KERNEL}.$1},					\
     ${SYSTEM_PKG.${OS_KERNEL}-${OS_KERNEL_VERSION}.$1},			\
@@ -235,7 +244,8 @@ override define _dpd_syspkg # (pkg)
     ${SYSTEM_PKG.${MACHINE_PLATFORM}.$1},				\
     ${SYSTEM_PKG.${OPSYS}-${OS_VERSION}.$1},				\
     ${SYSTEM_PKG.${OPSYS}.$1},						\
-    ${SYSTEM_PKG.${OS_FAMILY}.$1})
+    ${SYSTEM_PKG.${OS_FAMILY}.$1},					\
+    $${SYSTEM_DEP.$1})
 endef
 $(foreach _,${DEPEND_USE},$(eval $(call _dpd_syspkg,$_)))
 
