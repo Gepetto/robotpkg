@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013,2017,2019 LAAS/CNRS
+# Copyright (c) 2006-2013,2017,2019-2020 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -75,7 +75,10 @@ ${PKG_DB_TMPDIR}/${_BUILD_INFO_FILE}: plist
     $(if $(filter robotpkg,${PREFER.$_}),,				\
       $(if $(filter full,${DEPEND_METHOD.$_}),				\
         $(foreach _f,${SYSTEM_FILES.$_},				\
-	${ECHO} 'NEEDED=${DEPEND_ABI.$_}:${_f}' >>$@.tmp;		\
+	${ECHO} >>$@.tmp						\
+	  $(if ${SYSTEM_DEP.$_},					\
+	    'NEEDED=${DEPEND_ABI.$_}:${_f}:${SYSTEM_DEP.$_}',		\
+	    'NEEDED=${DEPEND_ABI.$_}:${_f}');				\
    ))))									\
 	${_CDATE_CMD} "+BUILD_DATE=%Y-%m-%d %H:%M:%S %z" >>$@.tmp;	\
 	${SORT} $@.tmp > $@ && ${RM} -f $@.tmp
