@@ -18,9 +18,9 @@ DEPEND_USE+=		py-qt5
 DEPEND_ABI.py-qt5?=	${PKGTAG.python}-qt5
 
 SYSTEM_SEARCH.py-qt5=\
-  'share/sip{,${PYTHON_VERSION}}/PyQt5/QtCore/QtCoremod.sip'		\
-  'share/sip{,${PYTHON_VERSION}}/PyQt5/QtGui/QtGuimod.sip'		\
-  '${PYTHON_SYSLIBSEARCH}/PyQt5/Qt{,.*}.so'				\
+  '{share/sip{,${PYTHON_VERSION}},${PYTHON_SYSLIBSEARCH}}/PyQt5/{,bindings/}QtCore/QtCoremod.sip'	\
+  '{share/sip{,${PYTHON_VERSION}},${PYTHON_SYSLIBSEARCH}}/PyQt5/{,bindings/}QtGui/QtGuimod.sip'		\
+  '${PYTHON_SYSLIBSEARCH}/PyQt5/Qt{,.*}.so'								\
   '${PYTHON_SYSLIBSEARCH}/PyQt5/__init__.py'
 
 SYSTEM_PKG.Arch.py-qt5=python$(subst 3,,${PYTHON_MAJOR})-pyqt5
