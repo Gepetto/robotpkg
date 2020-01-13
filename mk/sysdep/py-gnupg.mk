@@ -20,7 +20,7 @@ DEPEND_ABI.py-gnupg?=	${PKGTAG.python-}gnupg>=0
 SYSTEM_SEARCH.py-gnupg=\
   '${PYTHON_SYSLIBSEARCH}/{gnupg,GnuPGInterface}.py:/__version__/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Arch.py-gnupg= python$(subst 3,,{PYTHON_MAJOR})-gnupg
+SYSTEM_PKG.Arch.py-gnupg= python$(subst 3,,${PYTHON_MAJOR})-gnupg
 SYSTEM_PKG.RedHat.py-gnupg= python${PYTHON_MAJOR}-gnupg
 SYSTEM_PKG.Debian.py-gnupg= python$(subst 2,,${PYTHON_MAJOR})-gnupg
 SYSTEM_PKG.NetBSD.py-gnupg= pkgsrc/security/${PKGTAG.python-}gnupg
