@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Mon, 9 Nov 2015
 #
 
-PKGREVISION=	1
-DISTNAME=	genom3-pocolibs-1.15
+DISTNAME=	genom3-pocolibs-1.16
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom3-pocolibs/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genom3/genom3-pocolibs
@@ -15,7 +14,6 @@ COMMENT=	GenoM3 template for pocolibs-based components
 LICENSE=	2-clause-bsd
 
 GNU_CONFIGURE=	yes
-NOT_FOR_PLATFORM=	# empty
 
 DEPEND_ABI.pocolibs=	pocolibs>=2.12
 
