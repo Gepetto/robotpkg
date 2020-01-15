@@ -175,6 +175,8 @@ define PKG_OPTION_SET.openprs
   endif
 
   TMPL2_WRKSRC+=	${TEMPLATES_WRKDIR}/openprs/client
+  CONFIGURE_ARGS.${TEMPLATES_WRKDIR}/openprs/client+=\
+    MAKE=${MAKE}
 
   pre-configure: genom3-autoreconf(openprs/client)
 
