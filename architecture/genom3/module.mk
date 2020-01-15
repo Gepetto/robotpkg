@@ -11,7 +11,7 @@ GENOM_MODULE?=	${PKGBASE:-genom3=}
 GENOM_ARGS?=
 
 TEMPLATES_WRKDIR?=	${WRKDIR}/templates
-CODELS_WRKSRC?=		$(if $(filter codels,${PKG_OPTIONS}),${WRKSRC})
+CODELS_WRKSRC?=		$(if $(filter codels,${PKG_OPTIONS}),.)
 TMPL1_WRKSRC?=
 TMPL2_WRKSRC?=
 
@@ -22,7 +22,8 @@ AUTORECONF_DIRS?=	${CODELS_WRKSRC}
 GNU_CONFIGURE=		yes
 
 # inter-templates dependencies
-PKG_CONFIG_DIRS+=	${CODELS_WRKSRC} ${TMPL1_WRKSRC} ${TMPL2_WRKSRC}
+PKG_CONFIG_DIRS+=	$(if $(filter codels,${PKG_OPTIONS}),${WRKSRC})
+PKG_CONFIG_DIRS+=	${TMPL1_WRKSRC} ${TMPL2_WRKSRC}
 
 
 # generate a template
@@ -44,6 +45,7 @@ genom3-autoreconf(%): genom3-generate(%)
 PKG_SUPPORTED_OPTIONS+=		codels
 PKG_SUGGESTED_OPTIONS+=		codels
 PKG_OPTION_DESCR.codels=	Build server codels
+CONFIGURE_ARGS..+=		MAKE=${MAKE}
 
 # pocolibs
 PKG_SUPPORTED_OPTIONS+=			pocolibs-server

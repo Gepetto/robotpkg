@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 19 Oct 2012
 #
 
-VERSION=	2.99.34
+VERSION=	2.99.35
 DISTNAME=	genom-${VERSION}
 PKGNAME=	genom3-${VERSION}
 CATEGORIES=	architecture
@@ -18,7 +18,7 @@ LICENSE=	2-clause-bsd
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=--with-eltclsh=${PREFIX.eltclsh}
-NOT_FOR_PLATFORM=	# empty
+CONFIGURE_ARGS+=MAKE=${MAKE}
 
 DEPEND_ABI.tcl=	tcl>=8.5
 
