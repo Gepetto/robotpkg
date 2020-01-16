@@ -4,9 +4,9 @@
 
 ORG=			stack-of-tasks
 NAME=			eigenpy
-VERSION=		1.6.12
+VERSION=		2.0.2
 
-MAINTAINER=		hpp@laas.fr
+MAINTAINER=		gsaurel@laas.fr
 CATEGORIES=		math
 COMMENT=		Eigen bindings to python
 LICENSE=		2-clause-bsd

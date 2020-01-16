@@ -1,11 +1,16 @@
 @comment Sat May 12 16:37:25 CEST 2018
 include/eigenpy/angle-axis.hpp
+include/eigenpy/computation-info.hpp
 include/eigenpy/config.hpp
+include/eigenpy/decompositions/EigenSolver.hpp
+include/eigenpy/decompositions/LDLT.hpp
+include/eigenpy/decompositions/LLT.hpp
+include/eigenpy/decompositions/SelfAdjointEigenSolver.hpp
+include/eigenpy/decompositions/decompositions.hpp
 include/eigenpy/deprecated.hpp
 include/eigenpy/details.hpp
 include/eigenpy/details/rvalue_from_python_data.hpp
 include/eigenpy/eigenpy.hpp
-include/eigenpy/eigenpy_export.h
 include/eigenpy/exception.hpp
 include/eigenpy/expose.hpp
 include/eigenpy/fwd.hpp
@@ -13,6 +18,7 @@ include/eigenpy/geometry-conversion.hpp
 include/eigenpy/geometry.hpp
 include/eigenpy/map.hpp
 include/eigenpy/memory.hpp
+include/eigenpy/numpy-type.hpp
 include/eigenpy/quaternion.hpp
 include/eigenpy/ref.hpp
 include/eigenpy/registration.hpp
@@ -25,6 +31,8 @@ include/eigenpy/solvers/SparseSolverBase.hpp
 include/eigenpy/solvers/preconditioners.hpp
 include/eigenpy/solvers/solvers.hpp
 include/eigenpy/stride.hpp
+include/eigenpy/utils/is-approx.hpp
+include/eigenpy/utils/scalar-name.hpp
 include/eigenpy/version.hpp
 include/eigenpy/warning.hpp
 lib/cmake/eigenpy/eigenpyConfig.cmake
