@@ -32,6 +32,7 @@ SYSTEM_SEARCH.yaml-cpp=\
 	'lib/libyaml-cpp.{so,a}'				\
 	'lib/pkgconfig/yaml-cpp.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Arch.yaml-cpp=	yaml-cpp
 SYSTEM_PKG.RedHat.yaml-cpp=	yaml-cpp-devel
 SYSTEM_PKG.Debian.yaml-cpp=	libyaml-cpp-dev
 SYSTEM_PKG.Gentoo.yaml-cpp=	dev-cpp/yaml-cpp
