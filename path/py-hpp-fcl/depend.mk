@@ -19,9 +19,9 @@ DEPEND_ABI.py-hpp-fcl?=	${PKGTAG.python-}hpp-fcl>=1.2.0
 DEPEND_DIR.py-hpp-fcl?=	../../path/py-hpp-fcl
 
 SYSTEM_SEARCH.py-hpp-fcl=		\
-  '${PYTHON_SYSLIBSEARCH}/hppfcl*.so'
+  '${PYTHON_SYSLIBSEARCH}/hppfcl/__init__.py'
 
-include ../../math/hpp-fcl/depend.mk
+include ../../path/hpp-fcl/depend.mk
 include ../../math/py-eigenpy/depend.mk
 
 endif # PY_HPP_FCL_DEPEND_MK --------------------------------------------------
