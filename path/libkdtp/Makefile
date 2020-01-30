@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 13 Dec 2016
 #
 
-DISTNAME=	libkdtp-1.2.1
+DISTNAME=	libkdtp-1.3
 CATEGORIES=	path
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=libkdtp/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}libkdtp
