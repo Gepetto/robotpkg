@@ -1,0 +1,7 @@
+Low level hardware controller for tk3 quadrotors
+
+This component takes a desired wrench (forces + torques) control input in body
+frame and computes the propellers velocities accordingly.
+
+It communicates with the tk3-paparazzi or tk3-mikrokopter firmware running on
+the hardware controller.

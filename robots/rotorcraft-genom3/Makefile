@@ -2,14 +2,15 @@
 # Created:			Anthony Mallet on Tue, 10 Nov 2015
 #
 
-DISTNAME=		mikrokopter-genom3-2.0.1
+DISTNAME=		rotorcraft-genom3-3.0
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
 
 MAINTAINER=		openrobots@laas.fr
-COMMENT=		Low level controller for tk3-mikrokopter quadrotors
+COMMENT=		Low level controller for tk3 quadrotors
 LICENSE=		2-clause-bsd
+CONFLICTS+=		mikrokopter-genom3-[0-9]*
 
 include ../../architecture/genom3/module.mk
 
