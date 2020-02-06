@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2011,2013,2018 LAAS/CNRS
+# Copyright (c) 2006,2009-2011,2013,2018,2020 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -54,14 +54,28 @@ pre-clean:
 .PHONY: post-clean
 post-clean:
 
-.PHONY: do-clean
+# --- do-clean -------------------------------------------------------------
+#
+# When MAKE_SUDO_INSTALL=yes, the install target might have created files in
+# the ${WRKDIR}. So, try to clean first as ${SU_USER} but don't report errors,
+# in case ${SU_USER} does not have the required permissions for the regular
+# files created during the build (this can happen is SU_USER is not root, or in
+# case of NFS mounted directories).
+# A second pass with the regular user is the performed as usual.
+#
 ifneq (,$(call isyes,${MAKE_SUDO_INSTALL}))
   _SU_TARGETS+=	do-clean
   do-clean: su-target-do-clean
   su-do-clean:
-else
-  do-clean:
+	${RUN} for dir in "$(realpath ${WRKDIR})"; do			\
+	  if ! ${TEST} -e "$$dir"; then continue; fi;			\
+	  if ! ${TEST} -e "$$dir"; then continue; fi;			\
+	  ${RM} -rf $$dir 2>/dev/null ||:;				\
+        done
 endif
+
+.PHONY: do-clean
+do-clean:
 	${RUN} for dir in "$(realpath ${WRKDIR})"; do			\
 	  if ! ${TEST} -e "$$dir"; then continue; fi;			\
 	  if ${TEST} -w "$$dir"; then					\
