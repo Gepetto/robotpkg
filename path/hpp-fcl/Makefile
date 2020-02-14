@@ -1,5 +1,5 @@
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		1.2.2
+HPP_VERSION=		1.3.0
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations
@@ -13,6 +13,7 @@ USE_BOOST_LIBS= thread date_time system filesystem unit_test_framework chrono
 
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
+CMAKE_ARGS+=		-DBUILD_PYTHON_INTERFACE=OFF
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
