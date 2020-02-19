@@ -1,0 +1,35 @@
+From 72eb7dcbfeb0ec11b6bb83dd4dd4c7f4fd5eb6cc Mon Sep 17 00:00:00 2001
+From: Joseph Mirabel <jmirabel@laas.fr>
+Date: Fri, 21 Feb 2020 15:09:46 +0100
+Subject: [PATCH] [CMake] Fix pc file.
+
+---
+ CMakeLists.txt | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8070606b..ff9e7a88 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -91,6 +91,9 @@ SET(PINOCCHIO_MODEL_DIR "${PROJECT_SOURCE_DIR}/models")
+ # ----------------------------------------------------
+ ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
+ 
++# Variable containing all the cflags definition relative to optional dependencies
++SET(CFLAGS_DEPENDENCIES)
++
+ IF(BUILD_WITH_URDF_SUPPORT)
+   ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2.0")
+   ADD_DEFINITIONS(-DPINOCCHIO_WITH_URDFDOM)
+@@ -170,8 +173,6 @@ SEARCH_FOR_BOOST()
+ ADD_DEFINITIONS(-DBOOST_MPL_LIMIT_LIST_SIZE=30)
+ ADD_DEFINITIONS(-DBOOST_MPL_LIMIT_VECTOR_SIZE=30)
+ 
+-# Variable containing all the cflags definition relative to optional dependencies
+-SET(CFLAGS_DEPENDENCIES)
+ LIST(APPEND CFLAGS_DEPENDENCIES "-DBOOST_MPL_LIMIT_LIST_SIZE=30")
+ 
+ # Path to boost headers
+-- 
+2.25.1
+

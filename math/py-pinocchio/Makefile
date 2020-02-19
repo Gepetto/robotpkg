@@ -4,13 +4,11 @@
 
 ORG=			stack-of-tasks
 NAME=			pinocchio
-VERSION=		2.2.2
+VERSION=		2.3.1
 
 CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics (python bindings)
 HOMEPAGE=		http://${ORG}.github.io/${NAME}/
-MAINTAINER=		gepetto@laas.fr
-LICENSE=		2-clause-bsd
 
 CMAKE_ARGS+=		-DBUILD_WITH_COLLISION_SUPPORT=ON
 
@@ -20,7 +18,7 @@ CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY=${Boost_PYTHON_LIBRARY}
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_RELEASE=${Boost_PYTHON_LIBRARY}
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_DEBUG=${Boost_PYTHON_LIBRARY}
 
-DEPEND_ABI.pinocchio=	pinocchio>=2.2.2
+DEPEND_ABI.pinocchio=	pinocchio>=2.3.0
 USE_PYTHON_ONLY=	true
 USE_MASTER_GITHUB=	true
 

@@ -1,6 +1,11 @@
---- CMakeLists.txt~	2019-03-22 10:55:41.867972043 +0100
-+++ CMakeLists.txt	2019-03-22 11:29:06.642213144 +0100
-@@ -160,10 +160,37 @@
+Avoid glob_recurse:
+
+sorted(set('  ${PROJECT_SOURCE_DIR}/' + str(i.parent) + f'/*.{ext}' 
+for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}')))
+
+--- CMakeLists.txt.orig	2020-02-15 09:22:03.000000000 +0100
++++ CMakeLists.txt	2020-02-21 10:19:02.563528158 +0100
+@@ -178,10 +178,32 @@
  # ----------------------------------------------------
  # --- INCLUDE ----------------------------------------
  # ----------------------------------------------------
@@ -8,20 +13,16 @@
 -     ${PROJECT_SOURCE_DIR}/src/*.hpp 
 -     ${PROJECT_SOURCE_DIR}/src/*.hxx 
 -     ) 
++
 +file(GLOB HEADERS
 +  ${PROJECT_SOURCE_DIR}/src/*.hpp
-+  ${PROJECT_SOURCE_DIR}/src/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/algorithm/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/algorithm/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/autodiff/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/codegen/*.hpp
-+  ${PROJECT_SOURCE_DIR}/src/codegen/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/container/*.hpp
-+  ${PROJECT_SOURCE_DIR}/src/container/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/core/*.hpp
-+  ${PROJECT_SOURCE_DIR}/src/core/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/math/*.hpp
-+  ${PROJECT_SOURCE_DIR}/src/math/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/multibody/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/multibody/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/multibody/joint/*.hpp
@@ -33,12 +34,11 @@
 +  ${PROJECT_SOURCE_DIR}/src/parsers/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/parsers/urdf/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/parsers/urdf/*.hxx
++  ${PROJECT_SOURCE_DIR}/src/serialization/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/spatial/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/spatial/*.hxx
-+  ${PROJECT_SOURCE_DIR}/src/serialization/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/utils/*.hpp
-+  ${PROJECT_SOURCE_DIR}/src/utils/*.hxx
 +  )
  
- IF(URDFDOM_FOUND)
-   ADD_DEFINITIONS(-DPINOCCHIO_WITH_URDFDOM)
+ IF(NOT BUILD_WITH_URDF_SUPPORT)
+   LIST(REMOVE_ITEM HEADERS
