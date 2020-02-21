@@ -9,9 +9,6 @@ CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations (python bindingss)
 LICENSE=		2-clause-bsd
 
-DISTINFO_FILE=		${ROBOTPKG_DIR}/path/hpp-fcl/distinfo
-PATCHDIR=		${ROBOTPKG_DIR}/path/hpp-fcl/patches
-
 HPP_DOC=		no # already in path/hpp-fcl
 USE_PYTHON_ONLY=	yes
 
