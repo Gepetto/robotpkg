@@ -4,12 +4,10 @@
 
 ORG=			stack-of-tasks
 NAME=			eigenpy
-VERSION=		2.0.2
+VERSION=		2.2.0
 
-MAINTAINER=		gsaurel@laas.fr
 CATEGORIES=		math
 COMMENT=		Eigen bindings to python
-LICENSE=		2-clause-bsd
 
 PYTHON_SELF_CONFLICT=	yes
 PYTHON_NOTAG_CONFLICT=	yes
