@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 27 Jan 2015
 #
 
-DISTNAME=		tk3-flash-1.3.2
+DISTNAME=		tk3-flash-1.4
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=tk3-flash/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}tk3-flash
