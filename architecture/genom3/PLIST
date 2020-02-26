@@ -1,4 +1,4 @@
-@comment Fri Nov 10 18:10:20 CET 2017
+@comment Wed Feb 26 11:54:58 CET 2020
 bin/genom${PKGVERSION}
 bin/genom3
 include/genom3/c++/event.h
@@ -43,9 +43,15 @@ share/doc/genom/adoc/mappings/index.adoc
 share/doc/genom/adoc/model/index.adoc
 share/doc/genom/adoc/overview.adoc
 share/doc/genom/adoc/running.adoc
+share/doc/genom/adoc/templates/cmd-codel.adoc
+share/doc/genom/adoc/templates/cmd-component.adoc
 share/doc/genom/adoc/templates/cmd-dotgen.adoc
 share/doc/genom/adoc/templates/cmd-engine.adoc
 share/doc/genom/adoc/templates/cmd-language.adoc
+share/doc/genom/adoc/templates/cmd-parameter.adoc
+share/doc/genom/adoc/templates/cmd-port.adoc
+share/doc/genom/adoc/templates/cmd-service.adoc
+share/doc/genom/adoc/templates/cmd-task.adoc
 share/doc/genom/adoc/templates/cmd-template.adoc
 share/doc/genom/adoc/templates/cmd-type.adoc
 share/doc/genom/adoc/templates/index.adoc
@@ -86,9 +92,15 @@ share/doc/genom/html/mappings/index.html
 share/doc/genom/html/model/index.html
 share/doc/genom/html/overview.html
 share/doc/genom/html/running.html
+share/doc/genom/html/templates/cmd-codel.html
+share/doc/genom/html/templates/cmd-component.html
 share/doc/genom/html/templates/cmd-dotgen.html
 share/doc/genom/html/templates/cmd-engine.html
 share/doc/genom/html/templates/cmd-language.html
+share/doc/genom/html/templates/cmd-parameter.html
+share/doc/genom/html/templates/cmd-port.html
+share/doc/genom/html/templates/cmd-service.html
+share/doc/genom/html/templates/cmd-task.html
 share/doc/genom/html/templates/cmd-template.html
 share/doc/genom/html/templates/cmd-type.html
 share/doc/genom/html/templates/index.html
