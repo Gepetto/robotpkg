@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2019 LAAS/CNRS
+# Copyright (c) 2010-2020 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -133,6 +133,11 @@ ifeq (Debian,${OPSYS})
     PREFER_ALTERNATIVE.python?=	python27 python34
   endif
   PREFER_ALTERNATIVE.python?=	python27 python35
+else ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 27 28 29 30,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python36
+  endif
+  PREFER_ALTERNATIVE.python?=	python37 python27
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 14.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python34
