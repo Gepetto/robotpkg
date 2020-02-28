@@ -36,7 +36,6 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 
-DEPEND_ABI.cmake +=	cmake>=2.8.12
 DEPEND_ABI.urdfdom +=	urdfdom>=0.2.3
 
 include ../../mk/robotpkg.mk
