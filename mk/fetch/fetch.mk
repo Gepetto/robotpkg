@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011,2013,2018 LAAS/CNRS
+# Copyright (c) 2006-2011,2013,2018,2020 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -210,11 +210,13 @@ $(addprefix ${DISTDIR}/,${_ALLFILES}):
 			"$(notdir $@)" ${_MASTER_SITE_BACKUP} ||:;	\
 	fi;								\
 	if ${TEST} ! -f "$$distfile"; then				\
+	  ${ERROR_MSG} ${hline};					\
 	  ${ERROR_MSG} "Could not fetch the following file:";		\
 	  ${ERROR_MSG} "    $(notdir $@)";				\
 	  ${ERROR_MSG} "";						\
 	  ${ERROR_MSG} "Please retrieve this file manually into:";	\
 	  ${ERROR_MSG} "    $(dir $@)";					\
+	  ${ERROR_MSG} ${hline};					\
 	  exit 1;							\
 	fi;								\
 	${MV} -f "$$distfile" "$@"
