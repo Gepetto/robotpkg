@@ -155,7 +155,7 @@ else ifeq (Ubuntu,${OPSYS})
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python34
 else ifeq (Arch,${OPSYS})
-  PREFER_ALTERNATIVE.python?=	python27 python38
+  PREFER_ALTERNATIVE.python?=	python38 python27
 endif
 PREFER_ALTERNATIVE.python?=	python27 python36
 
