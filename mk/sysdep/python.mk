@@ -132,7 +132,10 @@ ifeq (Debian,${OPSYS})
   ifneq (,$(filter 8,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python34
   endif
-  PREFER_ALTERNATIVE.python?=	python27 python35
+  ifneq (,$(filter 9,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python27 python35
+  endif
+  PREFER_ALTERNATIVE.python?=	python27 python37
 else ifeq (Fedora,${OPSYS})
   ifneq (,$(filter 27 28 29 30,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python36
