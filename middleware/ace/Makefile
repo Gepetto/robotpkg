@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 23 Jan 2008
 #
 
-ACE_VERSION=		6.4.6
+ACE_VERSION=		6.5.8
 DISTNAME=		ACE-${ACE_VERSION}
 PKGNAME=		ace-${ACE_VERSION}
 CATEGORIES=		middleware

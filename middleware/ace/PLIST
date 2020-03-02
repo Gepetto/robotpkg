@@ -1,4 +1,4 @@
-@comment Fri Feb 2 12:11:33 CET 2018
+@comment Mon Mar 2 12:11:32 CET 2020
 bin/ace_gperf
 include/ACEXML/apps/svcconf/Svcconf.h
 include/ACEXML/apps/svcconf/Svcconf_Handler.h
@@ -489,6 +489,7 @@ include/ace/Log_Category.h
 include/ace/Log_Category.inl
 include/ace/Log_Msg.h
 include/ace/Log_Msg.inl
+include/ace/Log_Msg_Android_Logcat.h
 include/ace/Log_Msg_Backend.h
 include/ace/Log_Msg_Callback.h
 include/ace/Log_Msg_IPC.h
@@ -512,6 +513,7 @@ include/ace/MEM_Stream.h
 include/ace/MEM_Stream.inl
 include/ace/MMAP_Memory_Pool.h
 include/ace/MMAP_Memory_Pool.inl
+include/ace/MQX_Filesystem.h
 include/ace/Malloc.h
 include/ace/Malloc.inl
 include/ace/Malloc_Allocator.h
@@ -1060,18 +1062,19 @@ include/ace/config-hpux-11.00.h
 include/ace/config-icc-common.h
 include/ace/config-integritySCA.h
 include/ace/config-kfreebsd.h
+include/ace/config-linux-common.h
 include/ace/config-linux.h
 include/ace/config-lite.h
 include/ace/config-lynxos-178.h
 include/ace/config-lynxos.h
 include/ace/config-macosx-elcapitan.h
 include/ace/config-macosx-highsierra.h
-include/ace/config-macosx-iOS-hardware.h
-include/ace/config-macosx-iOS-simulator.h
+include/ace/config-macosx-iOS.h
 include/ace/config-macosx-jaguar.h
 include/ace/config-macosx-leopard.h
 include/ace/config-macosx-lion.h
 include/ace/config-macosx-mavericks.h
+include/ace/config-macosx-mojave.h
 include/ace/config-macosx-mountainlion.h
 include/ace/config-macosx-panther.h
 include/ace/config-macosx-sierra.h
@@ -1080,6 +1083,7 @@ include/ace/config-macosx-tiger.h
 include/ace/config-macosx-yosemite.h
 include/ace/config-macosx.h
 include/ace/config-macros.h
+include/ace/config-mqx.h
 include/ace/config-netbsd.h
 include/ace/config-openbsd.h
 include/ace/config-openvms.h
@@ -1118,6 +1122,7 @@ include/ace/config-win32-msvc-11.h
 include/ace/config-win32-msvc-12.h
 include/ace/config-win32-msvc-14.h
 include/ace/config-win32-msvc-141.h
+include/ace/config-win32-msvc-142.h
 include/ace/config-win32-msvc-7.h
 include/ace/config-win32-msvc-8.h
 include/ace/config-win32-msvc-9.h
@@ -1272,7 +1277,7 @@ share/ace/NEWS
 share/ace/PROBLEM-REPORT-FORM
 share/ace/README
 share/ace/THANKS
-share/ace/VERSION
+share/ace/VERSION.txt
 share/ace/ace-devel.sh
 share/ace/bin/DependencyGenerator/GNUDependencyWriter.pm
 share/ace/bin/DependencyGenerator/GNUIDLDependencyWriter.pm
@@ -1302,6 +1307,9 @@ share/ace/bin/MakeProjectCreator/config/ace_output.mpb
 share/ace/bin/MakeProjectCreator/config/ace_qt.mpb
 share/ace/bin/MakeProjectCreator/config/ace_qt4.mpb
 share/ace/bin/MakeProjectCreator/config/ace_qt4reactor.mpb
+share/ace/bin/MakeProjectCreator/config/ace_qt5.mpb
+share/ace/bin/MakeProjectCreator/config/ace_qt5reactor.mpb
+share/ace/bin/MakeProjectCreator/config/ace_qtreactor.mpb
 share/ace/bin/MakeProjectCreator/config/ace_rlecompressionlib.mpb
 share/ace/bin/MakeProjectCreator/config/ace_tk.mpb
 share/ace/bin/MakeProjectCreator/config/ace_tkreactor.mpb
@@ -1340,7 +1348,6 @@ share/ace/bin/MakeProjectCreator/config/kokyu.mpb
 share/ace/bin/MakeProjectCreator/config/labviewrt_dll.mpb
 share/ace/bin/MakeProjectCreator/config/man.mpb
 share/ace/bin/MakeProjectCreator/config/mc_test_utils.mpb
-share/ace/bin/MakeProjectCreator/config/minizip.mpb
 share/ace/bin/MakeProjectCreator/config/nmake.features
 share/ace/bin/MakeProjectCreator/config/pkgconfig.mpb
 share/ace/bin/MakeProjectCreator/config/qos.mpb
@@ -1375,6 +1382,8 @@ share/ace/bin/MakeProjectCreator/config/vcpartialmacros.mpt
 share/ace/bin/MakeProjectCreator/config/versioned_namespace.mpb
 share/ace/bin/MakeProjectCreator/config/vs2017.features
 share/ace/bin/MakeProjectCreator/config/vs2017nmake.mpb
+share/ace/bin/MakeProjectCreator/config/vs2019.features
+share/ace/bin/MakeProjectCreator/config/vs2019nmake.mpb
 share/ace/bin/MakeProjectCreator/config/wb26.features
 share/ace/bin/MakeProjectCreator/config/wfmo.mpb
 share/ace/bin/MakeProjectCreator/config/winregistry.mpb
@@ -1394,6 +1403,7 @@ share/ace/bin/ace_gperf
 share/ace/bin/ace_install_pkgconfig.pl
 share/ace/bin/add_rel_link.sh
 share/ace/bin/depgen.pl
+share/ace/bin/generate_export_file.pl
 share/ace/bin/mpc.pl
 share/ace/bin/mwc.pl
 share/ace/docs/ACE-FMM.html
@@ -1453,6 +1463,7 @@ share/ace/include/makeinclude/platform_macosx_jaguar.GNU
 share/ace/include/makeinclude/platform_macosx_leopard.GNU
 share/ace/include/makeinclude/platform_macosx_lion.GNU
 share/ace/include/makeinclude/platform_macosx_mavericks.GNU
+share/ace/include/makeinclude/platform_macosx_mojave.GNU
 share/ace/include/makeinclude/platform_macosx_mountainlion.GNU
 share/ace/include/makeinclude/platform_macosx_panther.GNU
 share/ace/include/makeinclude/platform_macosx_sierra.GNU
@@ -1461,6 +1472,7 @@ share/ace/include/makeinclude/platform_macosx_tiger.GNU
 share/ace/include/makeinclude/platform_macosx_yosemite.GNU
 share/ace/include/makeinclude/platform_macros.GNU
 share/ace/include/makeinclude/platform_mingw32.GNU
+share/ace/include/makeinclude/platform_mqx_icc.GNU
 share/ace/include/makeinclude/platform_netbsd.GNU
 share/ace/include/makeinclude/platform_openbsd.GNU
 share/ace/include/makeinclude/platform_openvms.GNU

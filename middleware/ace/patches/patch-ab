@@ -1,0 +1,13 @@
+Fix namespace of pthread_sigmask macro
+
+--- ace/OS_NS_signal.inl~	2020-02-10 09:32:24.472723805 +0100
++++ ace/OS_NS_signal.inl	2020-03-02 12:06:29.546583379 +0100
+@@ -35,7 +35,7 @@
+ #if defined (ACE_HAS_PTHREADS) && !defined (ACE_LACKS_PTHREAD_SIGMASK)
+   int result;
+ # ifdef ACE_PTHREAD_SIGMASK_MACRO
+-  ACE_OSCALL_RETURN (ACE_ADAPT_RETVAL (ACE_PTHREAD_SIGMASK_MACRO (how, nsp, osp)
++  ACE_OSCALL_RETURN (ACE_ADAPT_RETVAL (::ACE_PTHREAD_SIGMASK_MACRO (how, nsp, osp)
+                                       , result), int, -1);
+ # elif defined (ACE_HAS_NONCONST_PTHREAD_SIGMASK)
+   sigset_t *ncnsp = const_cast<sigset_t *>(nsp);

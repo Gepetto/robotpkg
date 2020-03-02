@@ -1,4 +1,5 @@
-SHA1 (ACE-6.4.6.tar.gz) = d3e26ef8f49e31611e5fc22a0be7c440154ae3e2
-RMD160 (ACE-6.4.6.tar.gz) = 8c907873f651b755605e1f7e65b2ecf7e7686c44
-Size (ACE-6.4.6.tar.gz) = 12568686 bytes
+SHA1 (ACE-6.5.8.tar.gz) = 2be2e5957fdbee546114549028de832c3ffeacca
+RMD160 (ACE-6.5.8.tar.gz) = ee217d8541917af99f343e877272b3c9a5dd7b01
+Size (ACE-6.5.8.tar.gz) = 13081473 bytes
 SHA1 (patch-aa) = 2d70a486977bd4563502e0fb2fdb38374cad304b
+SHA1 (patch-ab) = e6813179d66591aac18fd35cfb9e5a46ab8cf292
