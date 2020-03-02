@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Tue, 16 May 2017
 #
 
+PKGREVISION=	1
 ROS_PKG=	geometry2
 ROS_VERSION=	0.6.5
 ROS_METAPKG=	yes
