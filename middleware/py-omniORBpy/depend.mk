@@ -12,7 +12,12 @@ endif
 ifeq (+,$(PY_OMNIORBPY_DEPEND_MK)) # ---------------------------------------
 
 include ../../mk/robotpkg.prefs.mk  # for OPSYS
-ifeq (Ubuntu,${OPSYS})
+ifeq (Debian,${OPSYS})
+  ifneq (,$(filter 8 9,${OS_VERSION}))
+    PREFER.py-omniORBpy?=	system
+  endif
+  PREFER.py-omniORBpy?=		robotpkg
+else ifeq (Ubuntu,${OPSYS})
   PREFER.py-omniORBpy?=	$(if $(filter 3,${PYTHON_MAJOR}),robotpkg,system)
 endif
 PREFER.py-omniORBpy?=	system
