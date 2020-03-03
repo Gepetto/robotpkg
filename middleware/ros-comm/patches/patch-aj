@@ -42,7 +42,7 @@ Fix call to getsockopt TCP_INFO:
 +                if not e.args[0] is errno.ENOPROTOOPT:
 +                    print("WARN: getsockopt TCP_INFO error %d" % e.args[0])
 +                return
-+            state = unpack("B", info)[0]
++            state = unpack("B", info[0:1])[0]
 +            if state == CLOSE_WAIT:
                  transport.close()
  
