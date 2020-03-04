@@ -32,11 +32,13 @@ define PKG_OPTION_SET.doc
   post-install: doc-install
 
   INSTALLATION_DIRS+=	share/doc/${PKGBASE}
-  DOXYGEN_PLIST_DIR+=	share/doc/${PKGBASE}
+  DYNAMIC_PLIST_DIRS+=	share/doc/${PKGBASE}
   include ../../archivers/pax/depend.mk
   include ../../mk/sysdep/doxygen.mk
   include ../../mk/sysdep/graphviz.mk
   include ../../mk/sysdep/python.mk
+
+  DEPEND_ABI.python+=	python<3
 endef
 
 include ../../mk/sysdep/autoconf.mk
