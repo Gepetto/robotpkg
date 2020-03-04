@@ -10,6 +10,8 @@ CATEGORIES=		graphics
 HPP_COMMENT=		Simple viewer based on OpenSceneGraph
 LICENSE=		2-clause-bsd
 
+USE_BOOST_LIBS+=	python unit_test_framework system regex
+
 include ../../meta-pkgs/hpp/Makefile.common
 
 # old package name and other Python / Qt versions
