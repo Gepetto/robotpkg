@@ -1,3 +1,4 @@
 SHA1 (ros/kdl_parser/1.13.1.tar.gz) = 9c6b87591cf7034e5f0ff7ecda855faad7dacb59
 RMD160 (ros/kdl_parser/1.13.1.tar.gz) = 78d021a49d41ed73c62ad6e51126b45c76088b2c
 Size (ros/kdl_parser/1.13.1.tar.gz) = 29933 bytes
+SHA1 (patch-aa) = b345097fd4ca1ba28980a1ddad40c1be6cb28da3

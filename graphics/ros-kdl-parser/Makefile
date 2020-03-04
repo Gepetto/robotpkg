@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Wed, 12 Sep 2018
 #
 
+PKGREVISION=		1
 ROS_PKG=		kdl_parser
 ROS_METAPKG=		yes
 ROS_VERSION=		1.13.1
