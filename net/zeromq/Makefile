@@ -26,6 +26,8 @@ PKG_OPTION_DESCR.doc?=	Compile Pragmatic General Multicast (PGM) support
 define PKG_OPTION_SET.pgm
   CONFIGURE_ARGS+=	--with-pgm
 
+  DEPEND_ABI.python+=	python<3
+
   include ../../pkgtools/pkg-config/depend.mk
   include ../../mk/sysdep/glib2.mk
   include ../../mk/sysdep/perl.mk
