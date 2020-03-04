@@ -1,0 +1,12 @@
+Add gtk CPPFFLAGS from pkg-config
+
+--- extern/gtkdatabox/CMakeLists.txt~	2015-06-15 12:05:51.000000000 +0200
++++ extern/gtkdatabox/CMakeLists.txt	2020-03-04 18:40:42.109438210 +0100
+@@ -17,6 +17,7 @@
+                                  ${GTK2_GOBJECT_INCLUDE_DIR}
+                                  ${GTK2_GTK_INCLUDE_DIR}
+                                  ${GTK2_PANGO_INCLUDE_DIR}
++                                 ${GTK2_INCLUDE_DIRS}
+                                  ${FREETYPE_INCLUDE_DIR_freetype2}
+                                  ${FREETYPE_INCLUDE_DIR_ft2build})
+ set(GtkDatabox_GTK2_LIBRARIES ${GTK2_CAIRO_LIBRARY}

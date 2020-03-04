@@ -1,0 +1,14 @@
+Use pkg-config to fetch the proper gtk CPPFLAGS (cmake alone don't get them right)
+
+--- conf/YarpFindDependencies.cmake~	2015-06-15 12:05:51.000000000 +0200
++++ conf/YarpFindDependencies.cmake	2020-03-04 18:28:54.301063995 +0100
+@@ -286,6 +286,9 @@
+         set(GTK2_REQUIRED_COMPONENTS gtk)
+     endif()
+     find_package(GTK2 ${GTK2_REQUIRED_VERSION} COMPONENTS ${GTK2_REQUIRED_COMPONENTS})
++
++    find_package(PkgConfig REQUIRED)
++    pkg_check_modules(GTK2 REQUIRED gtk+-2.0 gtkmm-2.4)
+ 
+     checkandset_dependency(GTK2)
+ 
