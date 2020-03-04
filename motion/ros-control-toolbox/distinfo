@@ -1,3 +1,4 @@
-SHA1 (ros/control_toolbox/1.16.0.tar.gz) = 1daaa433a6351beba58071db26048d844d237a0f
-RMD160 (ros/control_toolbox/1.16.0.tar.gz) = 3f6b3c69b627d0c005105e5ef5687366e12f091f
-Size (ros/control_toolbox/1.16.0.tar.gz) = 23723 bytes
+SHA1 (ros/control_toolbox/1.17.0.tar.gz) = 729c4bf9d50c3115e610d92a4a4f905458cd5454
+RMD160 (ros/control_toolbox/1.17.0.tar.gz) = e24dc05029d6cc899935437a638f2e70140c429e
+Size (ros/control_toolbox/1.17.0.tar.gz) = 24036 bytes
+SHA1 (patch-aa) = 87d4a60096d039faca6ae5637322e5829cb3d056

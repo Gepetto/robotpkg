@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	control_toolbox
-ROS_VERSION=	1.16.0
+ROS_VERSION=	1.17.0
 ROS_REPO=	ros-controls
 
 CATEGORIES=	motion

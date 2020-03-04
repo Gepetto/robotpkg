@@ -1,0 +1,22 @@
+Fix python3 compat
+
+--- scripts/tune_pid.py~	2019-01-31 17:06:50.000000000 +0100
++++ scripts/tune_pid.py	2020-03-04 11:53:59.470231746 +0100
+@@ -34,7 +34,7 @@
+ import control_toolbox.srv
+ 
+ def print_usage(exit_code = 0):
+-    print "Usage:  tune_pid.py <service> [<p> <i> <d> <i_clamp>]"
++    print("Usage:  tune_pid.py <service> [<p> <i> <d> <i_clamp>]")
+     sys.exit(exit_code)
+ 
+ def main():
+@@ -42,7 +42,7 @@
+         print_usage()
+ 
+     if len(sys.argv) == 2:
+-        print "Not implemented yet"
++        print("Not implemented yet")
+     elif len(sys.argv) == 6:
+         service_name = sys.argv[1]
+         if not service_name.endswith('/set_gains'):
