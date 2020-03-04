@@ -1,0 +1,110 @@
+Python 3 compatibility
+
+--- diagnostic_analysis/scripts/export_csv.py~	2018-05-02 19:27:59.000000000 +0200
++++ diagnostic_analysis/scripts/export_csv.py	2020-03-04 17:04:28.741856180 +0100
+@@ -56,22 +56,22 @@
+ 
+     exporters = []
+ 
+-    print 'Output directory: %s/output' % options.directory
++    print('Output directory: %s/output' % options.directory)
+ 
+     try:
+         for i, f in enumerate(args):
+             filepath = 'output/%s_csv' % os.path.basename(f)[0:os.path.basename(f).find('.')]
+             
+             output_dir = os.path.join(options.directory,  filepath)
+-            print "Processing file %s. File %d of %d." % (os.path.basename(f), i + 1, len(args))
++            print("Processing file %s. File %d of %d." % (os.path.basename(f), i + 1, len(args)))
+             
+             exp = LogExporter(output_dir, f)
+             exp.process_log()
+             exp.finish_logfile()
+             exporters.append(exp)
+ 
+-        print 'Finished processing files.'
++        print('Finished processing files.')
+     except:
+         import traceback
+-        print "Caught exception processing log file"
++        print("Caught exception processing log file")
+         traceback.print_exc()
+--- diagnostic_analysis/scripts/sparse_csv.py~	2018-05-02 19:27:59.000000000 +0200
++++ diagnostic_analysis/scripts/sparse_csv.py	2020-03-04 17:05:35.610270663 +0100
+@@ -64,13 +64,13 @@
+ 
+     # Get CSV file
+     if len(args) < 1:
+-        print 'No CSV file given.'
++        print('No CSV file given.')
+         sys.exit(0)
+ 
+     csv_file = args[0]
+ 
+     if not csv_file.endswith('.csv'):
+-        print 'File %s is not a CSV file. Aborting.' % csv_file
++        print('File %s is not a CSV file. Aborting.' % csv_file)
+         sys.exit(0)    
+     
+     if options.max:
+@@ -80,4 +80,4 @@
+     else:
+         output_file = make_sparse_length(csv_file, int(options.length))
+ 
+-    print 'Created sparse CSV %s' % output_file
++    print('Created sparse CSV %s' % output_file)
+--- diagnostic_common_diagnostics/src/diagnostic_common_diagnostics/hd_monitor.py~	2018-05-02 19:27:59.000000000 +0200
++++ diagnostic_common_diagnostics/src/diagnostic_common_diagnostics/hd_monitor.py	2020-03-04 17:06:58.706785730 +0100
+@@ -362,7 +362,7 @@
+     try:
+         rospy.init_node('hd_monitor_%s' % hostname_clean)
+     except rospy.exceptions.ROSInitException:
+-        print 'HD monitor is unable to initialize node. Master may not be running.'
++        print('HD monitor is unable to initialize node. Master may not be running.')
+         sys.exit(0)
+ 
+     hd_monitor = hd_monitor(hostname, options.diag_hostname, home_dir)
+@@ -374,7 +374,7 @@
+             hd_monitor.publish_stats()
+     except KeyboardInterrupt:
+         pass
+-    except Exception, e:
++    except Exception as e:
+         traceback.print_exc()
+ 
+     hd_monitor.cancel_timers()
+--- diagnostic_common_diagnostics/src/diagnostic_common_diagnostics/ntp_monitor.py~	2018-05-02 19:27:59.000000000 +0200
++++ diagnostic_common_diagnostics/src/diagnostic_common_diagnostics/ntp_monitor.py	2020-03-04 17:29:11.467036106 +0100
+@@ -50,8 +50,8 @@
+         p = Popen(["ntpdate", "-q", host], stdout=PIPE, stdin=PIPE, stderr=PIPE)
+         res = p.wait()
+         (o,e) = p.communicate()
+-    except OSError, (errno, msg):
+-        if errno == 4:
++    except OSError as e:
++        if e.errno == 4:
+             return None #ctrl-c interrupt
+         else:
+             raise
+--- diagnostic_common_diagnostics/src/diagnostic_common_diagnostics/sensors_monitor.py~	2018-05-02 19:27:59.000000000 +0200
++++ diagnostic_common_diagnostics/src/diagnostic_common_diagnostics/sensors_monitor.py	2020-03-04 17:11:09.664341833 +0100
+@@ -205,7 +205,7 @@
+                         if sensor.getInput() < sensor.getMin():
+                             stat.mergeSummary(DIAG.ERROR, "No Fan Speed")
+                     stat.add(" ".join([sensor.getName(), sensor.getType()]), sensor.getInput())
+-        except Exception, e:
++        except Exception as e:
+             import traceback
+             rospy.logerr('Unable to process lm-sensors data')
+             rospy.logerr(traceback.format_exc())
+--- diagnostic_analysis/src/diagnostic_analysis/exporter.py~	2018-05-02 19:27:59.000000000 +0200
++++ diagnostic_analysis/src/diagnostic_analysis/exporter.py	2020-03-04 17:30:35.111546745 +0100
+@@ -84,7 +84,7 @@
+     ##\brief Creates and updates data files with new messages
+     def _update(self, topic, msg):
+         if (not (topic == '/diagnostics')):
+-            print "Discarding message on topic: %s" % topic
++            print("Discarding message on topic: %s" % topic)
+             return
+         
+         t = time.localtime(float(str(msg.header.stamp)) / 1000000000.0)
