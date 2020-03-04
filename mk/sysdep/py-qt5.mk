@@ -25,7 +25,7 @@ SYSTEM_SEARCH.py-qt5=\
 
 SYSTEM_PKG.Arch.py-qt5=python$(subst 3,,${PYTHON_MAJOR})-pyqt5
 SYSTEM_PKG.Debian.py-qt5=python$(subst 2,,${PYTHON_MAJOR})-pyqt5 pyqt5-dev
-SYSTEM_PKG.Fedora.py-qt5=PyQt5-devel (python-${PYTHON_VERSION})
+SYSTEM_PKG.Fedora.py-qt5=python${PYTHON_MAJOR}-qt5
 SYSTEM_PKG.NetBSD.py-qt5=x11/${PKGTAG.python}-qt5
 
 endif # PY_QT5_DEPEND_MK ----------------------------------------------
