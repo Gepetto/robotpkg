@@ -20,12 +20,12 @@ DEPEND_METHOD.py-sip?=	build
 DEPEND_ABI.py-sip?=	${PKGTAG.python}-sip>=4
 
 SYSTEM_SEARCH.py-sip=\
-  'bin/sip{${PYTHON_VERSION},}:p:% -V'					\
-  'include/{,python${PYTHON_VERSION}/}sip.h:/VERSION_STR/s/[^0-9.]//gp'	\
-  '${PYTHON_SYSLIBSEARCH}/sip{,.*${DEB_HOST_MULTIARCH}}.so'
+  'bin/{,python${PYTHON_MAJOR}-}sip{${PYTHON_VERSION},}:p:% -V'		\
+  'include/{,python${PYTHON_VERSION}*/}sip.h:/VERSION_STR/s/[^0-9.]//gp'\
+  '${PYTHON_SYSLIBSEARCH}/{,PyQt*}/sip{,.*${DEB_HOST_MULTIARCH}}.so'
 
-SYSTEM_PKG.Arch.py-sip= 	python-sip sip
-SYSTEM_PKG.RedHat.py-sip=	python-sip-devel (python-${PYTHON_VERSION})
+SYSTEM_PKG.Arch.py-sip=		python-sip sip
+SYSTEM_PKG.RedHat.py-sip=	python${PYTHON_MAJOR}-sip-devel
 SYSTEM_PKG.Debian.py-sip=	python$(subst 2,,${PYTHON_MAJOR})-sip-dev
 SYSTEM_PKG.NetBSD.py-sip=	x11/${PKGTAG.python}-sip
 SYSTEM_PKG.Gentoo.py-sip=	dev-python/sip (python-${PYTHON_VERSION})
