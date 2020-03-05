@@ -4,7 +4,7 @@
 
 PKGNAME=	ros-control-${ROS_VERSION}
 ROS_PKG=	ros_control
-ROS_VERSION=	0.15.0
+ROS_VERSION=	0.17.0
 ROS_REPO=	ros-controls
 ROS_METAPKG=	yes
 
@@ -13,6 +13,9 @@ ROS_COMMENT=	generic control loop feedback mechanism
 HOMEPAGE=	http://wiki.ros.org/ros_control
 
 include ../../meta-pkgs/ros-base/Makefile.common
+
+# drop "gmock" dependency, not widely available
+CMAKE_ARGS+=	-DCATKIN_ENABLE_TESTING=FALSE
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk

@@ -1,9 +1,5 @@
-@comment Wed Sep 12 15:55:34 CEST 2018
+@comment Thu Mar 5 12:04:03 CET 2020
 include/combined_robot_hw/combined_robot_hw.h
-include/combined_robot_hw_tests/my_robot_hw_1.h
-include/combined_robot_hw_tests/my_robot_hw_2.h
-include/combined_robot_hw_tests/my_robot_hw_3.h
-include/combined_robot_hw_tests/my_robot_hw_4.h
 include/controller_interface/controller.h
 include/controller_interface/controller_base.h
 include/controller_interface/internal/robothw_interfaces.h
@@ -34,13 +30,6 @@ include/controller_manager_msgs/SwitchControllerResponse.h
 include/controller_manager_msgs/UnloadController.h
 include/controller_manager_msgs/UnloadControllerRequest.h
 include/controller_manager_msgs/UnloadControllerResponse.h
-include/controller_manager_tests/effort_test_controller.h
-include/controller_manager_tests/extensible_controllers.h
-include/controller_manager_tests/my_dummy_controller.h
-include/controller_manager_tests/my_robot_hw.h
-include/controller_manager_tests/pos_eff_controller.h
-include/controller_manager_tests/pos_eff_opt_controller.h
-include/controller_manager_tests/vel_eff_controller.h
 include/hardware_interface/actuator_command_interface.h
 include/hardware_interface/actuator_state_interface.h
 include/hardware_interface/controller_info.h
@@ -53,6 +42,7 @@ include/hardware_interface/internal/hardware_resource_manager.h
 include/hardware_interface/internal/interface_manager.h
 include/hardware_interface/internal/resource_manager.h
 include/hardware_interface/joint_command_interface.h
+include/hardware_interface/joint_mode_interface.h
 include/hardware_interface/joint_state_interface.h
 include/hardware_interface/posvel_command_interface.h
 include/hardware_interface/posvelacc_command_interface.h
@@ -87,11 +77,8 @@ lib/controller_manager/controller_group
 lib/controller_manager/controller_manager
 lib/controller_manager/spawner
 lib/controller_manager/unspawner
-lib/controller_manager_tests/dummy_app
 lib/libcombined_robot_hw.so
-lib/libcombined_robot_hw_tests.so
 lib/libcontroller_manager.so
-lib/libcontroller_manager_tests.so
 lib/libtransmission_interface_loader.so
 lib/libtransmission_interface_loader_plugins.so
 lib/libtransmission_interface_parser.so
@@ -137,7 +124,6 @@ share/combined_robot_hw/package.xml
 share/combined_robot_hw_tests/cmake/combined_robot_hw_testsConfig-version.cmake
 share/combined_robot_hw_tests/cmake/combined_robot_hw_testsConfig.cmake
 share/combined_robot_hw_tests/package.xml
-share/combined_robot_hw_tests/test_robot_hw_plugin.xml
 share/common-lisp/ros/controller_manager_msgs/msg/ControllerState.lisp
 share/common-lisp/ros/controller_manager_msgs/msg/ControllerStatistics.lisp
 share/common-lisp/ros/controller_manager_msgs/msg/ControllersStatistics.lisp
@@ -186,7 +172,6 @@ share/controller_manager_msgs/srv/UnloadController.srv
 share/controller_manager_tests/cmake/controller_manager_testsConfig-version.cmake
 share/controller_manager_tests/cmake/controller_manager_testsConfig.cmake
 share/controller_manager_tests/package.xml
-share/controller_manager_tests/test_controllers_plugin.xml
 share/hardware_interface/cmake/hardware_interfaceConfig-version.cmake
 share/hardware_interface/cmake/hardware_interfaceConfig.cmake
 share/hardware_interface/package.xml
