@@ -28,6 +28,8 @@ SYSTEM_SEARCH.ros-realtime-tools=\
   'share/realtime_tools/package.xml:/<version>/s/[^0-9.]//gp'	\
   'lib/pkgconfig/realtime_tools.pc:/Version/s/[^0-9.]//gp'
 
+include ../../mk/language/c++11.mk
+
 endif # ROS_REALTIMETOOLS_DEPEND_MK ----------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

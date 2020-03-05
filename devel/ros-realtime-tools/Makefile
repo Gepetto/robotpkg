@@ -18,4 +18,5 @@ DEPEND_ABI.ros+=ros>=hydro
 
 include ../../devel/ros-catkin/depend.mk
 include ../../middleware/ros-comm/depend.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
