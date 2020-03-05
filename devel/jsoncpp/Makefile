@@ -66,4 +66,4 @@ doc-build:
 doc-install:
 	${RUN} cd ${WRKSRC} &&						\
 	cd dist/doxygen/jsoncpp-api-html-${PKGVERSION_NOREV} &&		\
-	${PAX} -v -r -w -p m . ${PREFIX}/${DOXYGEN_PLIST_DIR}/.
+	${PAX} -v -r -w -p m . ${PREFIX}/share/doc/${PKGBASE}/.
