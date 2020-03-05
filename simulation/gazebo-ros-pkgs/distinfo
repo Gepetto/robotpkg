@@ -1,6 +1,7 @@
-SHA1 (ros/gazebo_ros_pkgs/2.8.4.tar.gz) = 9421bc3657a52278c10c0eecfb513e660572f1fe
-RMD160 (ros/gazebo_ros_pkgs/2.8.4.tar.gz) = b7249bfb91e0c4cb872f94268e0596b5fddddb10
-Size (ros/gazebo_ros_pkgs/2.8.4.tar.gz) = 1853755 bytes
+SHA1 (ros/gazebo_ros_pkgs/2.8.6.tar.gz) = 7516060f9d4bbc06faabc65c1a9c6d7ea8bf9969
+RMD160 (ros/gazebo_ros_pkgs/2.8.6.tar.gz) = e3bdff0f56ab427d36956111347c03ec10a7a2c5
+Size (ros/gazebo_ros_pkgs/2.8.6.tar.gz) = 1856580 bytes
 SHA1 (patch-aa) = 3a377f17761f171bf1b279985ee724e983d63356
-SHA1 (patch-ab) = 93328abee8d81067b9e56e311b2ea5def725fdf5
+SHA1 (patch-ab) = 30fb2bda40bf8af249159e7f4a5ffa476f741546
 SHA1 (patch-ac) = 5cd2acc030f2b8c6f154e17da3ed9ab2646396d7
+SHA1 (patch-ad) = 87f2e167c262090f79e358615484afd472db8297

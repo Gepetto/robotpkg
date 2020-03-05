@@ -1,0 +1,191 @@
+Python 3
+
+--- gazebo_plugins/scripts/set_wrench.py~	2019-12-26 22:57:00.000000000 +0100
++++ gazebo_plugins/scripts/set_wrench.py	2020-03-05 15:08:29.017347564 +0100
+@@ -107,7 +107,7 @@
+         time.sleep(0.001)
+ 
+ def print_usage(exit_code = 0):
+-    print '''Commands:
++    print('''Commands:
+     -update_rate <Hz> - update rate, default to 10 Hz
+     -timeout <seconds> - test timeout in seconds. default to 1 seconds
+     -x <x in meters>
+@@ -117,7 +117,7 @@
+     -P <pitch in radians>
+     -Y <yaw in radians>
+     -t set wrench topic name
+-'''
++''')
+ 
+ if __name__ == '__main__':
+     #print usage if not arguments
+--- gazebo_plugins/src/gazebo_plugins/gazebo_plugins_interface.py~	2019-12-26 22:57:00.000000000 +0100
++++ gazebo_plugins/src/gazebo_plugins/gazebo_plugins_interface.py	2020-03-05 15:10:22.945051818 +0100
+@@ -12,14 +12,14 @@
+ from geometry_msgs.msg import Pose, Point, Quaternion
+ 
+ def load_model(model_msg):
+-    print "waiting for service spawn_model"
++    print("waiting for service spawn_model")
+     rospy.wait_for_service('spawn_model')
+     try:
+         spawn_model= rospy.ServiceProxy('spawn_model', SpawnModel)
+         resp1 = spawn_model(model_msg)
+         return resp1.success
+-    except rospy.ServiceException, e:
+-        print "Service call failed: %s"%e
++    except rospy.ServiceException as e:
++        print("Service call failed: %s"%e)
+ 
+ 
+ 
+--- gazebo_plugins/test/bumper_test/test_bumper.py~	2019-12-26 22:57:00.000000000 +0100
++++ gazebo_plugins/test/bumper_test/test_bumper.py	2020-03-05 15:11:55.243622354 +0100
+@@ -87,12 +87,12 @@
+         # see if total wrench is close to 98.1N
+         if self.sample_count > 20:
+           if abs(self.fz_avg - 98.1) < 0.01:
+-            print "z force ",self.fz_avg
++            print("z force ",self.fz_avg)
+             self.success = True
+ 
+ 
+     def test_bumper(self):
+-        print "LNK\n"
++        print("LNK\n")
+         rospy.init_node(NAME, anonymous=True)
+         self.bumper_topic = rospy.get_param(self.bumper_topic_name,self.bumper_topic);
+         self.min_samples = rospy.get_param(self.min_samples_topic,self.min_samples);
+@@ -103,7 +103,7 @@
+             rospy.stdinfo("Waiting for test to start at time [%s]"% self.test_start_time)
+             time.sleep(0.1)
+ 
+-        print "subscribe"
++        print("subscribe")
+         rospy.Subscriber(self.bumper_topic, ContactsState, self.bumperStateInput)
+ 
+         start_t = time.time()
+@@ -114,7 +114,7 @@
+         self.assert_(self.success)
+ 
+ if __name__ == '__main__':
+-    print "Waiting for test to start at time "
++    print("Waiting for test to start at time ")
+     rostest.run(PKG, sys.argv[0], BumperTest, sys.argv) #, text_mode=True)
+ 
+ 
+--- gazebo_plugins/test/p3d_test/test_link_pose.py~	2019-12-26 22:57:00.000000000 +0100
++++ gazebo_plugins/test/p3d_test/test_link_pose.py	2020-03-05 15:13:32.083220965 +0100
+@@ -92,19 +92,19 @@
+         self.valid_pose = Pose()
+ 
+     def printLinkPose(self, p3d):
+-        print "P3D pose translan: " + "x: " + str(p3d.pose.pose.position.x)
+-        print "                   " + "y: " + str(p3d.pose.pose.position.y)
+-        print "                   " + "z: " + str(p3d.pose.pose.position.z)
+-        print "P3D pose rotation: " + "x: " + str(p3d.pose.pose.orientation.x)
+-        print "                   " + "y: " + str(p3d.pose.pose.orientation.y)
+-        print "                   " + "z: " + str(p3d.pose.pose.orientation.z)
+-        print "                   " + "w: " + str(p3d.pose.pose.orientation.w)
+-        print "P3D rate translan: " + "x: " + str(p3d.twist.twist.linear.x)
+-        print "                   " + "y: " + str(p3d.twist.twist.linear.y)
+-        print "                   " + "z: " + str(p3d.twist.twist.linear.z)
+-        print "P3D rate rotation: " + "x: " + str(p3d.twist.twist.angular.x)
+-        print "                   " + "y: " + str(p3d.twist.twist.angular.y)
+-        print "                   " + "z: " + str(p3d.twist.twist.angular.z)
++        print("P3D pose translan: " + "x: " + str(p3d.pose.pose.position.x))
++        print("                   " + "y: " + str(p3d.pose.pose.position.y))
++        print("                   " + "z: " + str(p3d.pose.pose.position.z))
++        print("P3D pose rotation: " + "x: " + str(p3d.pose.pose.orientation.x))
++        print("                   " + "y: " + str(p3d.pose.pose.orientation.y))
++        print("                   " + "z: " + str(p3d.pose.pose.orientation.z))
++        print("                   " + "w: " + str(p3d.pose.pose.orientation.w))
++        print("P3D rate translan: " + "x: " + str(p3d.twist.twist.linear.x))
++        print("                   " + "y: " + str(p3d.twist.twist.linear.y))
++        print("                   " + "z: " + str(p3d.twist.twist.linear.z))
++        print("P3D rate rotation: " + "x: " + str(p3d.twist.twist.angular.x))
++        print("                   " + "y: " + str(p3d.twist.twist.angular.y))
++        print("                   " + "z: " + str(p3d.twist.twist.angular.z))
+ 
+ 
+     def linkP3dInput(self, p3d):
+@@ -130,11 +130,11 @@
+ 
+     def checkPose(self):
+         # difference in pose
+-        print  "error: "   + str(self.link_sample_count) \
++        print("error: "   + str(self.link_sample_count) \
+                            + " error:" + str(self.link_error_total) \
+                            + " avg err:" + str(self.link_error_rms) \
+                            + " max err:" + str(self.link_error_max) \
+-                           + " count: " + str(self.link_sample_count)
++                           + " count: " + str(self.link_sample_count))
+         if self.link_sample_count >= self.min_link_samples:
+           if self.link_error_rms < self.tolerance:
+             if self.link_error_max < self.max_error:
+@@ -142,7 +142,7 @@
+ 
+ 
+     def test_link_pose(self):
+-        print "LNK\n"
++        print("LNK\n")
+         rospy.init_node(NAME, anonymous=True)
+         self.link_pose_topic = rospy.get_param(self.link_pose_topic_name,self.link_pose_topic);
+         self.valid_pose_topic = rospy.get_param(self.valid_pose_topic_name,self.valid_pose_topic);
+@@ -157,7 +157,7 @@
+             rospy.stdinfo("Waiting for test to start at time [%s]"% self.test_start_time)
+             time.sleep(0.1)
+ 
+-        print "subscribe"
++        print("subscribe")
+         rospy.Subscriber(self.link_pose_topic, Odometry, self.linkP3dInput)
+         rospy.Subscriber(self.valid_pose_topic, Odometry, self.validP3dInput)
+ 
+@@ -169,7 +169,7 @@
+         self.assert_(self.success)
+ 
+ if __name__ == '__main__':
+-    print "Waiting for test to start at time "
++    print("Waiting for test to start at time ")
+     rostest.run(PKG, sys.argv[0], LinkPoseTest, sys.argv) #, text_mode=True)
+ 
+ 
+--- gazebo_plugins/scripts/set_pose.py~	2019-12-26 22:57:00.000000000 +0100
++++ gazebo_plugins/scripts/set_pose.py	2020-03-05 15:09:24.160688444 +0100
+@@ -95,14 +95,14 @@
+     rospy.init_node(NAME, anonymous=True)
+ 
+   def setPoseService(self,pose_msg):
+-    print "waiting for service to set pose"
++    print("waiting for service to set pose")
+     rospy.wait_for_service(self.service_name);
+     try:
+       set_pose = rospy.ServiceProxy(self.service_name, SetPose)
+       resp1 = set_pose(pose_msg)
+       return resp1.success
+-    except rospy.ServiceException, e:
+-      print "service call failed: %s"%e
++    except rospy.ServiceException as e:
++      print("service call failed: %s"%e)
+ 
+   def waitTopicInput(self,p3d):
+     #self.p3d_p = [p3d.pose.pose.position.x, p3d.pose.pose.position.y, p3d.pose.pose.position.z]
+@@ -191,7 +191,7 @@
+           time.sleep(0.001)
+ 
+ def print_usage(exit_code = 0):
+-    print '''Commands:
++    print('''Commands:
+     -update_rate <Hz> - update rate, default to 10 Hz
+     -timeout <seconds> - test timeout in seconds. default to 1 seconds
+     -x <x in meters>
+@@ -204,7 +204,7 @@
+     -s set pose service name
+     -t set pose topic name
+     -p wait for this ros topic to be published first
+-'''
++''')
+ 
+ if __name__ == '__main__':
+     #print usage if not arguments

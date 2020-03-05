@@ -5,7 +5,7 @@
 ROS_PKG=	gazebo_ros_pkgs
 PKGNAME=	$(subst _,-,${ROS_PKG})-${ROS_VERSION}
 ROS_METAPKG=	yes
-ROS_VERSION=	2.8.4
+ROS_VERSION=	2.8.6
 ROS_REPO=       ros-simulation
 
 CATEGORIES=	simulation
