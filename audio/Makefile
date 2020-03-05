@@ -12,6 +12,5 @@ SUBDIR+=	OGIlexicon
 SUBDIR+=	ogi-voice-as-diphone
 SUBDIR+=	speett-genom
 SUBDIR+=	sphinx2
-SUBDIR+=	textos-genom
 
 include ../mk/robotpkg.subdir.mk

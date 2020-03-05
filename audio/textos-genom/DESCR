@@ -1,3 +1,0 @@
-textos stands for TEXt TO Speech and this genom module is an interface to the
-Festival Speech Synthesis system. As of now it contains a very basic request
-that just says a string.
