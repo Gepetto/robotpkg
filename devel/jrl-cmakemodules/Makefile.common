@@ -60,3 +60,6 @@ include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 
 DEPEND_ABI.cmake+=	cmake>=3.1.0
+
+MAINTAINER?=		guilhem.saurel@laas.fr
+LICENSE?=		2-clause-bsd
