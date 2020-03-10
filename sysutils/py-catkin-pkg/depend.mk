@@ -21,7 +21,7 @@ DEPEND_ABI.py-catkin-pkg?=	${PKGTAG.python}-catkin-pkg>=0.2
 DEPEND_DIR.py-catkin-pkg?=	../../sysutils/py-catkin-pkg
 
 SYSTEM_SEARCH.py-catkin-pkg=\
-  'bin/catkin_create_pkg'				\
+  'bin/{,python${PYTHON_MAJOR}-,${PKGTAG.python-}}catkin_create_pkg'	\
   '${PYTHON_SYSLIBSEARCH}/catkin_pkg/__init__.py:/__version__/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Ubuntu.py-catkin-pkg=python-catkin-pkg
