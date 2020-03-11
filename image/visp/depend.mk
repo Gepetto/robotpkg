@@ -18,9 +18,9 @@ DEPEND_ABI.visp?=	visp>=2.4.4
 DEPEND_DIR.visp?=	../../image/visp
 
 SYSTEM_SEARCH.visp=\
-	'bin/visp-config:p:% --dumpversion'	\
-	'include/visp/vpConfig.h'		\
-	'lib/libvisp-2.{a,so}'
+  'bin/visp-config:p:% --dumpversion'					\
+  'include{,/visp-*}/visp3/core/vpConfig.h'				\
+  'lib/pkgconfig/visp{,-[0-9]*}.pc:/Version/s/[^.0-9]//gp'
 
 endif # VISP_DEPEND_MK -----------------------------------------------------
 

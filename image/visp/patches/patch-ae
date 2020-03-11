@@ -1,21 +1,14 @@
---- src/tools/io/vpKeyboard.cpp~	2011-02-11 14:17:26.000000000 +0100
-+++ src/tools/io/vpKeyboard.cpp	2012-06-19 17:07:02.629627359 +0200
-@@ -136,10 +136,18 @@
-     new_settings.c_lflag &= (unsigned int)~ICANON;
-     new_settings.c_lflag &= (unsigned int)~ECHO;
+TAB0 may not be defined.
+
+--- modules/io/src/tools/vpKeyboard.cpp~	2020-02-14 14:41:31.000000000 +0100
++++ modules/io/src/tools/vpKeyboard.cpp	2020-03-23 16:42:37.807423053 +0100
+@@ -116,7 +116,9 @@
      new_settings.c_lflag &= (unsigned int)~ISIG;
-+#ifdef NL0
-     new_settings.c_oflag &= (unsigned int)~NL0;
-+#endif
-+#ifdef CR0
-     new_settings.c_oflag &= (unsigned int)~CR0;
-+#endif
+     // new_settings.c_oflag &= (unsigned int)~NL0;
+     // new_settings.c_oflag &= (unsigned int)~CR0;
 +#ifdef TAB0
      new_settings.c_oflag &= (unsigned int)~TAB0;
 +#endif
-+#ifdef BS0
-     new_settings.c_oflag &= (unsigned int)~BS0;
-+#endif
+     // new_settings.c_oflag &= (unsigned int)~BS0;
      new_settings.c_cc[VMIN] = 1;
      new_settings.c_cc[VTIME] = 0;
-     tcsetattr(STDIN_FILENO, TCSANOW, &new_settings);

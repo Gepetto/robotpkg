@@ -1,0 +1,28 @@
+ASYNC_LOW_LATENCY is for linux
+
+--- 3rdparty/qbdevice/qbmove_communications.cpp~	2020-02-14 14:41:31.000000000 +0100
++++ 3rdparty/qbdevice/qbmove_communications.cpp	2020-03-23 16:38:55.696914343 +0100
+@@ -64,7 +64,7 @@
+     #include <stdlib.h>
+ #endif
+ 
+-#if !(defined(_WIN32) || defined(_WIN64)) && !(defined(__APPLE__))
++#if defined(__linux__)
+     #include <linux/serial.h>
+ #endif
+ 
+@@ -376,12 +376,13 @@
+     options.c_cc[VMIN] = 0;
+     options.c_cc[VTIME] = 0;
+ 
++#ifdef __linux__
+     struct serial_struct serinfo;
+ 
+     ioctl(comm_settings_t->file_handle, TIOCGSERIAL, &serinfo);
+     serinfo.flags |= ASYNC_LOW_LATENCY;
+     ioctl(comm_settings_t->file_handle, TIOCSSERIAL, &serinfo);
+-    
++#endif
+ #endif
+ 
+     // save changes

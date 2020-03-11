@@ -1,0 +1,15 @@
+PCLConfig.cmake >= 1.9.1 has issues with PUSH/POP stack, so that it is
+unusable. Avoid looking for PCL here and let robotpkg pass the required
+variables.
+
+--- CMakeLists.txt~	2020-02-14 14:41:31.000000000 +0100
++++ CMakeLists.txt	2020-03-25 15:35:57.391053906 +0100
+@@ -590,7 +590,7 @@
+ # bar codes
+ VP_OPTION(USE_ZBAR        ZBAR         ""    "Include zbar support"         "" ON IF NOT WINRT AND NOT IOS)
+ VP_OPTION(USE_DMTX        DMTX         ""    "Include dmtx support"         "" ON IF NOT WINRT AND NOT IOS)
+-VP_OPTION(USE_PCL         PCL          QUIET "Include Point Cloud Library support" "" ON IF NOT WINRT AND NOT IOS)
++
+ 
+ # ----------------------------------------------------------------------------
+ # Handle cxx standard depending on specific 3rd parties. Should be before module parsing and VISP3rdParty.cmake include

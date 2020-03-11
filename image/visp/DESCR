@@ -20,10 +20,11 @@ visual measurements. Our environment features a wide class of control
 skills as well as a library of real-time tracking processes and a
 simulation toolkit.
 
-The platform (in fact a library) is implemented in C++ and is
+The platform is a library implemented in C++ and is
 available under Linux, Windows and OSX. We are still in the process of
 developing ViSP and are happy to entertain suggestions, have people
-test code, etc. You can contact ViSP authors using visp@irisa.fr.
+test code, etc. You can contact ViSP authors using visp@inria.fr.
 
-ViSP is developped and maintained by the INRIA Lagadic team located at
-INRIA Rennes.
+ViSP is developped and maintained by the Inria Rainbow
+(https://team.inria.fr/rainbow) team located at
+Inria Rennes - Bretagne Atlantique.
