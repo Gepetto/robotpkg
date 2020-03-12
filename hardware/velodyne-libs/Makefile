@@ -1,6 +1,7 @@
 # robotpkg Makefile for:	hardware/velodyne-libs
 # Created:			Matthieu Herrb on Fri, 25 Jun 2010
 #
+PKGREVISION=		1
 NAME=			velodyne-libs
 VERSION=		0.8.1
 CATEGORIES=		hardware
@@ -16,6 +17,7 @@ NOT_FOR_PLATFORM=	# empty
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tclsh=${TCLSH}
+CONFIGURE_ARGS+=--with-pocolibs=no
 
 DEPEND_METHOD.tcl=	build
 DEPEND_METHOD.tdom=	build
@@ -24,7 +26,6 @@ INCLUDE_DIRS.libpcap=	include
 LIBRARY_DIRS.libpcap=	lib
 RPATH_DIRS.libpcap=	lib
 
-include ../../middleware/pocolibs/depend.mk
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/tcl.mk
