@@ -2,6 +2,7 @@
 # Created:			Rohan Budhiraja on Fri, 8 Apr 2016
 #
 
+PKGREVISION=	1
 VERSION=	3.2.1
 PKGNAME=	qpoases-${VERSION}
 DISTNAME=	qpOASES-${VERSION}
@@ -18,7 +19,8 @@ MAINTAINER=	gepetto@laas.fr
 WRKSRC=		${WRKDIR}/qpOASES-${VERSION}
 
 CMAKE_ARGS+=	-DQPOASES_BUILD_EXAMPLES=OFF
-
+CMAKE_ARGS+=	'-DLAPACK_LIB=${LAPACK_LIB}'
+CMAKE_ARGS+=	'-DBLAS_LIB=${BLAS_LIB}'
 
 # option for doxygen documentation
 PKG_SUGGESTED_OPTIONS+=		doc
@@ -35,6 +37,7 @@ define PKG_OPTION_SET.doc
   include ../../mk/sysdep/doxygen.mk
 endef
 
+include ../../math/lapack/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

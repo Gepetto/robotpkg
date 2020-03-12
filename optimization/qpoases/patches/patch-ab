@@ -1,0 +1,31 @@
+Use system lapack and blas
+LAPACK_LIB and BLAS_LIB are provided by math/lapack/depend.mk
+
+--- CMakeLists.txt~	2020-03-11 22:10:04.075479047 +0100
++++ CMakeLists.txt	2020-03-11 22:18:26.399128369 +0100
+@@ -101,7 +101,24 @@
+ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
+ 
+ # compile qpOASES libraries
+-FILE(GLOB SRC src/*.cpp)
++link_libraries(${LAPACK_LIB} ${BLAS_LIB})
++set(SRC
++  src/Bounds.cpp
++  src/Constraints.cpp
++  src/Flipper.cpp
++  src/Indexlist.cpp
++  src/Matrices.cpp
++  src/MessageHandling.cpp
++  src/OQPinterface.cpp
++  src/Options.cpp
++  src/QProblem.cpp
++  src/QProblemB.cpp
++  src/SQProblem.cpp
++  src/SQProblemSchur.cpp
++  src/SolutionAnalysis.cpp
++  src/SparseSolver.cpp
++  src/SubjectTo.cpp
++  src/Utils.cpp)
+ 
+ # library
+ ADD_LIBRARY(qpOASES SHARED ${SRC})
