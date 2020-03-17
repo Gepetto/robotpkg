@@ -1,9 +1,9 @@
 Fix for console-bridge < 0.4
 
---- tools/rosbag_storage/src/bag.cpp~	2016-06-28 00:11:58.000000000 +0200
-+++ tools/rosbag_storage/src/bag.cpp	2018-05-24 13:54:59.362885445 +0200
-@@ -42,6 +42,11 @@
- #include <boost/foreach.hpp>
+--- tools/rosbag_storage/src/bag.cpp.orig	2020-02-21 01:13:08.000000000 +0100
++++ tools/rosbag_storage/src/bag.cpp	2020-03-17 14:51:24.868486692 +0100
+@@ -40,6 +40,11 @@
+ #include <iomanip>
  
  #include "console_bridge/console.h"
 +/* Fix for console-bridge < 0.4 */
@@ -12,5 +12,5 @@ Fix for console-bridge < 0.4
 +# define CONSOLE_BRIDGE_logError logError
 +#endif
  
- #define foreach BOOST_FOREACH
- 
+ using std::map;
+ using std::priority_queue;

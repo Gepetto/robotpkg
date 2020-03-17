@@ -21,9 +21,6 @@ etc/catkin/profile.d/10.roslaunch.sh
 etc/catkin/profile.d/20.transform.bash
 etc/ros/python_logging.conf
 etc/ros/roscore.xml
-include/boost_161_condition_variable.h
-include/boost_161_pthread_condition_variable.h
-include/boost_161_pthread_condition_variable_fwd.h
 include/message_filters/cache.h
 include/message_filters/chain.h
 include/message_filters/connection.h
@@ -104,6 +101,7 @@ include/ros/transport_subscriber_link.h
 include/ros/wall_timer.h
 include/ros/wall_timer_options.h
 include/ros/xmlrpc_manager.h
+include/rosbag/aes_encryptor.h
 include/rosbag/bag.h
 include/rosbag/bag_player.h
 include/rosbag/buffer.h
@@ -111,8 +109,10 @@ include/rosbag/chunked_file.h
 include/rosbag/constants.h
 include/rosbag/encryptor.h
 include/rosbag/exceptions.h
+include/rosbag/gpgme_utils.h
 include/rosbag/macros.h
 include/rosbag/message_instance.h
+include/rosbag/no_encryptor.h
 include/rosbag/player.h
 include/rosbag/query.h
 include/rosbag/recorder.h
@@ -306,6 +306,7 @@ include/xmlrpcpp/XmlRpcValue.h
 include/xmlrpcpp/base64.h
 lib/libmessage_filters.so
 lib/librosbag.so
+lib/librosbag_default_encryption_plugins.so
 lib/librosbag_storage.so
 lib/libroscpp.so
 lib/libroslz4.so
@@ -338,6 +339,7 @@ lib/pkgconfig/test_rosmaster.pc
 lib/pkgconfig/test_rosparam.pc
 lib/pkgconfig/test_rospy.pc
 lib/pkgconfig/test_rosservice.pc
+lib/pkgconfig/test_rostest.pc
 lib/pkgconfig/test_rostopic.pc
 lib/pkgconfig/topic_tools.pc
 lib/pkgconfig/xmlrpcpp.pc
@@ -1041,6 +1043,9 @@ share/test_rosservice/cmake/test_rosservice-msg-paths.cmake
 share/test_rosservice/cmake/test_rosserviceConfig-version.cmake
 share/test_rosservice/cmake/test_rosserviceConfig.cmake
 share/test_rosservice/package.xml
+share/test_rostest/cmake/test_rostestConfig-version.cmake
+share/test_rostest/cmake/test_rostestConfig.cmake
+share/test_rostest/package.xml
 share/test_rostopic/cmake/test_rostopic-msg-extras.cmake
 share/test_rostopic/cmake/test_rostopic-msg-paths.cmake
 share/test_rostopic/cmake/test_rostopicConfig-version.cmake

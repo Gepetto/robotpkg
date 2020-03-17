@@ -7,12 +7,12 @@ Fix call to getsockopt TCP_INFO:
 * Define the CLOSE_WAIT state according to the OS (extremely fragile, but is
   there a better way?).
 
---- tools/rosmaster/src/rosmaster/util.py~	2018-08-06 19:37:33.000000000 +0200
-+++ tools/rosmaster/src/rosmaster/util.py	2019-05-08 03:08:28.079661865 +0200
-@@ -51,6 +51,17 @@
- 
+--- tools/rosmaster/src/rosmaster/util.py.orig	2020-02-21 01:13:08.000000000 +0100
++++ tools/rosmaster/src/rosmaster/util.py	2020-03-17 15:50:03.035485915 +0100
+@@ -52,6 +52,17 @@
  import errno
  import socket
+ import threading
 +from struct import unpack
 +
 +# Horrid stuff to get the CLOSE_WAIT state of a TCP socket
@@ -25,9 +25,9 @@ Fix call to getsockopt TCP_INFO:
 +else:
 +  raise rosmaster.exceptions.InternalException("define CLOSE_WAIT")
  
- _proxies = {} #cache ServerProxys
+ _proxies = threading.local() #cache ServerProxys
  def xmlrpcapi(uri):
-@@ -76,12 +87,14 @@
+@@ -77,12 +88,14 @@
          transport = proxy("transport")
          if transport._connection and transport._connection[1] is not None and transport._connection[1].sock is not None:
              try:
@@ -36,12 +36,11 @@ Fix call to getsockopt TCP_INFO:
 +                    socket.SOL_TCP, socket.TCP_INFO, 8)
              except socket.error as e: # catch [Errno 92] Protocol not available
 -                if e.args[0] is errno.ENOPROTOOPT:
--                    return
--                raise
--            if state == 8:  # CLOSE_WAIT
 +                if not e.args[0] is errno.ENOPROTOOPT:
 +                    print("WARN: getsockopt TCP_INFO error %d" % e.args[0])
-+                return
+                     return
+-                raise
+-            if state == 8:  # CLOSE_WAIT
 +            state = unpack("B", info[0:1])[0]
 +            if state == CLOSE_WAIT:
                  transport.close()

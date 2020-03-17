@@ -1,15 +1,20 @@
 Let robotpkg pass the full path to encryption libraries
 
---- tools/rosbag_storage/CMakeLists.txt~	2018-08-06 19:37:33.000000000 +0200
-+++ tools/rosbag_storage/CMakeLists.txt	2018-09-07 14:33:19.864030000 +0200
-@@ -26,10 +26,8 @@
+--- tools/rosbag_storage/CMakeLists.txt.orig	2020-02-21 01:13:08.000000000 +0100
++++ tools/rosbag_storage/CMakeLists.txt	2020-03-17 14:52:18.108270711 +0100
+@@ -26,7 +26,6 @@
  add_definitions(${BZIP2_DEFINITIONS})
  
  set(AES_ENCRYPT_SOURCE "")
 -set(AES_ENCRYPT_LIBRARIES "")
  if(NOT WIN32)
-   set(AES_ENCRYPT_SOURCE "src/aes_encryptor.cpp")
--  set(AES_ENCRYPT_LIBRARIES "crypto" "gpgme")
+   set(AES_ENCRYPT_SOURCE "src/aes_encryptor.cpp" "src/gpgme_utils.cpp")
+   find_library(GPGME_LIBRARY
+@@ -35,7 +34,6 @@
+   find_library(CRYPTO_LIBRARY
+     NAMES "crypto"
+     PATHS /usr/local/lib)
+-  set(AES_ENCRYPT_LIBRARIES ${GPGME_LIBRARY} ${CRYPTO_LIBRARY})
  endif()
  
  add_library(rosbag_storage
