@@ -22,6 +22,9 @@ DEPEND_ABI.pinocchio=	pinocchio>=2.3.0
 USE_PYTHON_ONLY=	true
 USE_MASTER_GITHUB=	true
 
+# parallel builds exhaust memory - until a better solution is found
+MAKE_JOBS_SAFE=		no
+
 include ../../devel/jrl-cmakemodules/Makefile.common
 
 include ../../devel/boost-headers/depend.mk
