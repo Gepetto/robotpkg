@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 LAAS/CNRS
+# Copyright (c) 2018,2020 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -62,7 +62,9 @@ PKG_ALTERNATIVES.opencv=opencv2 opencv3
 
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Debian,${OPSYS})
-  PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
+  ifneq (,$(filter 8,${OS_VERSION}))
+    PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
+  endif
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04 14.04 16.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3

@@ -17,7 +17,9 @@ ifeq (Ubuntu,${OPSYS})
     PREFER.opencv3?=	robotpkg
   endif
 else ifeq (Debian,${OPSYS})
-  PREFER.opencv3?=	robotpkg
+  ifneq (,$(filter 8,${OS_VERSION}))
+    PREFER.opencv3?=	robotpkg
+  endif
 else ifeq (CentOS,${OPSYS})
   PREFER.opencv3?=	robotpkg
 else ifeq (Arch,${OPSYS})

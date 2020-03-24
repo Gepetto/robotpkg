@@ -17,6 +17,11 @@ ifeq (Ubuntu,${OPSYS})
     PREFER.opencv2?=	system
   endif
   PREFER.opencv2?=	robotpkg
+else ifeq (Debian,${OPSYS})
+  ifneq (,$(filter 8,${OS_VERSION}))
+    PREFER.opencv2?=	system
+  endif
+  PREFER.opencv2?=	robotpkg
 else ifeq (Fedora,${OPSYS})
   PREFER.opencv2?=	robotpkg
 else ifeq (NetBSD,${OPSYS})
