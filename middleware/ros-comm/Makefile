@@ -53,6 +53,7 @@ include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
+include ../../sysutils/console-bridge/depend.mk
 include ../../sysutils/ros-console/depend.mk
 include ../../mk/sysdep/apr.mk
 include ../../mk/sysdep/bash.mk
@@ -68,6 +69,7 @@ include ../../mk/sysdep/py-paramiko.mk
 include ../../mk/sysdep/py-yaml.mk
 include ../../mk/language/c++11.mk
 
+DEPEND_ABI.cmake+= cmake>=3.0.2
 DEPEND_ABI.py-rospkg+= ${PKGTAG.python}-rospkg>=1.0.38
 
 include ../../mk/robotpkg.mk
