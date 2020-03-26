@@ -2,6 +2,7 @@
 # Created:			Olivier Stasse, Feb 3rd 2016
 #
 
+PKGREVISION=		1
 ORG=			stack-of-tasks
 NAME=			eigenpy
 VERSION=		2.2.0
@@ -31,6 +32,8 @@ USE_MASTER_GITHUB=	true
 MAKE_JOBS_SAFE=		no
 
 include ../../devel/jrl-cmakemodules/Makefile.common
+
+DEPEND_METHOD.eigen3+=	full
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
