@@ -2,10 +2,9 @@
 # Created:			Olivier Stasse, Feb 3rd 2016
 #
 
-PKGREVISION=		1
 ORG=			stack-of-tasks
 NAME=			eigenpy
-VERSION=		2.2.0
+VERSION=		2.3.0
 
 CATEGORIES=		math
 COMMENT=		Eigen bindings to python
