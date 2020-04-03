@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
 
+PKGREVISION=	1
 ROS_PKG=	catkin
 ROS_VERSION=	0.7.16
 PKGNAME=	${PKGTAG.python}-ros-$(subst _,-,${ROS_PKG})-${ROS_VERSION}

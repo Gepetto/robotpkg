@@ -39,7 +39,7 @@ case $2 in
         exit 2
       fi
     else
-      ${ECHO} >${CATKIN_MARKER}
+      >${CATKIN_MARKER}
       ${CHMOD} 644 ${CATKIN_MARKER}
     fi
     ;;
