@@ -19,10 +19,9 @@ SYSTEM_SEARCH.ccache=	'bin/ccache:/version/s/[^.0-9]//gp:% -V'
 
 export CCACHE=		${PREFIX.ccache}/bin/ccache
 
-# define a reasonable default for CCACHE_DIR, because the default dir in $HOME
-# actually points to $WRKDIR in robotpkg  and this is a bit pointless for a
-# cache.
-CCACHE_DIR?=		${HOME.env}/.ccache
+# define a reasonable default for CCACHE_DIR, because $HOME actually points to
+# $WRKDIR buring the build and this is a bit pointless for a cache.
+CCACHE_DIR?=		${HOME}/.ccache
 export CCACHE_DIR
 
 # Log ccache, so that problems can be tracked down
