@@ -1,4 +1,4 @@
-@comment Tue Jun 11 16:01:12 CEST 2019
+@comment Mon Apr 6 18:13:43 CEST 2020
 lib/gazebo/mrsim-gazebo.la
 lib/pkgconfig/mrsim-gazebo.pc
 share/doc/mrsim-gazebo/README.adoc
@@ -7,3 +7,6 @@ share/gazebo/models/mrsim-quadrotor/model.config
 share/gazebo/models/mrsim-quadrotor/model.sdf
 share/gazebo/models/mrsim-rotor/model.config
 share/gazebo/models/mrsim-rotor/model.sdf
+share/gazebo/models/mrsim-tilthex/model.config
+share/gazebo/models/mrsim-tilthex/model.sdf
+share/gazebo/worlds/example.world
