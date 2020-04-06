@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 6 Mar 2007
 #
 
-DISTNAME=		omniORBpy-4.2.3
+DISTNAME=		omniORBpy-4.2.4
 PKGNAME=		${PKGTAG.python-}${DISTNAME}
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
