@@ -14,7 +14,7 @@ ifeq (+,$(HUMANOID_NAV_MSGS_DEPEND_MK)) # ----------------------------------
 # On distributions that provide ros<=kinetic, use the system ROS package
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04 14.04 16.04,${OS_VERSION}))
+  ifneq (,$(filter 12.04 14.04 16.04%,${OS_VERSION}))
     include ../../meta-pkgs/ros-base/depend.common
     PREFER.humanoid-nav-msgs?=		${PREFER.ros-base}
     SYSTEM_PREFIX.humanoid-nav-msgs?=	${SYSTEM_PREFIX.ros-base}

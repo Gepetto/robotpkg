@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2011,2013-2014,2018 LAAS/CNRS
+# Copyright (c) 2011,2013-2014,2018,2020 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -67,6 +67,9 @@ case $s in
                     found=$found"x"
                 fi
                 if test "$found" = "xx"; then
+                    if test -d /opt/pal; then
+                        r="$r.pal"
+                    fi
                     echo $s $r $m
                     exit 0
                 fi

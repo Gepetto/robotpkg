@@ -13,7 +13,7 @@ ifeq (+,$(OPENCV3_DEPEND_MK)) # --------------------------------------------
 
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04 14.04 16.04,${OS_VERSION}))
+  ifneq (,$(filter 12.04 14.04 16.04%,${OS_VERSION}))
     PREFER.opencv3?=	robotpkg
   endif
 else ifeq (Debian,${OPSYS})
