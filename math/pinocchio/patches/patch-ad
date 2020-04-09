@@ -3,22 +3,26 @@ Avoid glob_recurse:
 sorted(set('  ${PROJECT_SOURCE_DIR}/' + str(i.parent) + f'/*.{ext}' 
 for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}')))
 
---- CMakeLists.txt.orig	2020-02-15 09:22:03.000000000 +0100
-+++ CMakeLists.txt	2020-02-21 10:19:02.563528158 +0100
-@@ -178,10 +178,32 @@
+--- CMakeLists.txt.orig	2020-04-24 17:55:49.000000000 +0200
++++ CMakeLists.txt	2020-04-24 20:33:30.060352325 +0200
+@@ -181,9 +181,37 @@
  # ----------------------------------------------------
  # --- INCLUDE ----------------------------------------
  # ----------------------------------------------------
 -FILE(GLOB_RECURSE HEADERS 
--     ${PROJECT_SOURCE_DIR}/src/*.hpp 
--     ${PROJECT_SOURCE_DIR}/src/*.hxx 
--     ) 
-+
 +file(GLOB HEADERS
-+  ${PROJECT_SOURCE_DIR}/src/*.hpp
+      ${PROJECT_SOURCE_DIR}/src/*.hpp 
+-     ${PROJECT_SOURCE_DIR}/src/*.hxx 
 +  ${PROJECT_SOURCE_DIR}/src/algorithm/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/algorithm/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/autodiff/*.hpp
++  ${PROJECT_SOURCE_DIR}/src/autodiff/casadi/math/*.hpp
++  ${PROJECT_SOURCE_DIR}/src/autodiff/casadi/spatial/*.hpp
++  ${PROJECT_SOURCE_DIR}/src/autodiff/casadi/utils/*.hpp
++  ${PROJECT_SOURCE_DIR}/src/autodiff/cppad/math/*.hpp
++  ${PROJECT_SOURCE_DIR}/src/autodiff/cppad/spatial/*.hpp
++  ${PROJECT_SOURCE_DIR}/src/autodiff/cppad/spatial/*.hxx
++  ${PROJECT_SOURCE_DIR}/src/autodiff/cppad/utils/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/codegen/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/container/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/core/*.hpp
@@ -38,7 +42,6 @@ for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}')))
 +  ${PROJECT_SOURCE_DIR}/src/spatial/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/spatial/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/utils/*.hpp
-+  )
+      ) 
  
  IF(NOT BUILD_WITH_URDF_SUPPORT)
-   LIST(REMOVE_ITEM HEADERS

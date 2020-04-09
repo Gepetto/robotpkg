@@ -5,25 +5,14 @@ for ext in ['hpp', 'cpp']:
     for i in Path('.').glob(f'**/*.{ext}'): print(f'  {i}')
     print()
 
---- bindings/python/CMakeLists.txt.orig	2020-02-15 10:14:47.000000000 +0100
-+++ bindings/python/CMakeLists.txt	2020-02-21 12:14:35.614291893 +0100
-@@ -53,28 +53,102 @@
+--- bindings/python/CMakeLists.txt.orig	2020-04-24 17:55:49.000000000 +0200
++++ bindings/python/CMakeLists.txt	2020-04-24 20:35:28.036611996 +0200
+@@ -53,12 +53,91 @@
    SET(${PYWRAP}_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}/${PROJECT_NAME})
  ENDIF(BUILD_PYTHON_INTERFACE)
  
 -FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_HEADERS
 -     ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp 
--     ) 
--
--FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_SOURCES
--     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp 
--     ) 
--
--# Parser for Python model
--LIST(APPEND ${PROJECT_NAME}_PYTHON_HEADERS
--  parsers/python.hpp
--  )
--SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS
 +SET(${PROJECT_NAME}_PYTHON_HEADERS
 +  fwd.hpp
 +  utils/registration.hpp
@@ -41,7 +30,7 @@ for ext in ['hpp', 'cpp']:
 +  utils/std-aligned-vector.hpp
 +  parsers/sample-models.hpp
 +  parsers/srdf.hpp
-   parsers/python.hpp
++  parsers/python.hpp
 +  parsers/urdf.hpp
 +  spatial/se3.hpp
 +  spatial/motion.hpp
@@ -61,15 +50,11 @@ for ext in ['hpp', 'cpp']:
 +  multibody/joint/joints-datas.hpp
 +  multibody/joint/joint-derived.hpp
 +  multibody/joint/joint.hpp
-+  multibody/fcl/collision-result.hpp
 +  multibody/fcl/transform.hpp
-+  multibody/fcl/mesh-loader.hpp
-+  multibody/fcl/collision-geometry.hpp
-+  multibody/fcl/distance-result.hpp
-+  multibody/fcl/contact.hpp
-   )
+      ) 
  
--LIST(APPEND ${PROJECT_NAME}_PYTHON_SOURCES
+-FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_SOURCES
+-     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp 
 +SET(${PROJECT_NAME}_PYTHON_SOURCES
 +  module.cpp
 +  utils/version.cpp
@@ -78,7 +63,7 @@ for ext in ['hpp', 'cpp']:
 +  parsers/srdf.cpp
 +  parsers/expose-parsers.cpp
 +  parsers/sample-models.cpp
-   parsers/python/model.cpp
++  parsers/python/model.cpp
 +  parsers/urdf/geometry.cpp
 +  parsers/urdf/model.cpp
 +  math/expose-rpy.cpp
@@ -115,14 +100,23 @@ for ext in ['hpp', 'cpp']:
 +  multibody/expose-model.cpp
 +  multibody/joint/expose-joints.cpp
 +  multibody/fcl/expose-fcl.cpp
+      ) 
+ 
+ # Parser for Python model
+-LIST(APPEND ${PROJECT_NAME}_PYTHON_HEADERS
+-  parsers/python.hpp
+-  )
+ SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS
+   parsers/python.hpp
    )
  
+-LIST(APPEND ${PROJECT_NAME}_PYTHON_SOURCES
+-  parsers/python/model.cpp
+-  )
+-
 -REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_HEADERS}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_HEADERS)
 -REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_SOURCES}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_SOURCES)
-+# Parser for Python model
-+SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS
-+  parsers/python.hpp
-+  )
- 
+-
  # Python exposition of FCL
- IF(NOT BUILD_WITH_HPP_FCL_SUPPORT)
+ IF(NOT BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
+   LIST(REMOVE_ITEM ${PROJECT_NAME}_PYTHON_HEADERS

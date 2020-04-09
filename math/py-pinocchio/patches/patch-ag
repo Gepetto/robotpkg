@@ -1,18 +1,18 @@
 py-pinocchio needs pinocchio
 
---- CMakeLists.txt.orig	2020-02-15 09:22:03.000000000 +0100
-+++ CMakeLists.txt	2020-02-19 12:51:10.378952281 +0100
-@@ -88,6 +88,7 @@
+--- CMakeLists.txt.orig	2020-04-08 18:54:16.000000000 +0200
++++ CMakeLists.txt	2020-04-09 18:24:36.197619469 +0200
+@@ -91,6 +91,7 @@
  # --- DEPENDENCIES -----------------------------------
  # ----------------------------------------------------
  ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
 +ADD_REQUIRED_DEPENDENCY("pinocchio >= 2.3.0")
  
- IF(BUILD_WITH_URDF_SUPPORT)
-   ADD_REQUIRED_DEPENDENCY("urdfdom >= 0.2.0")
---- bindings/python/CMakeLists.txt.orig	2020-02-19 12:50:47.541336369 +0100
-+++ bindings/python/CMakeLists.txt	2020-02-19 12:51:34.153182395 +0100
-@@ -122,6 +200,7 @@
+ # Variable containing all the cflags definition relative to optional dependencies
+ SET(CFLAGS_DEPENDENCIES)
+--- bindings/python/CMakeLists.txt.orig	2020-04-08 18:54:17.000000000 +0200
++++ bindings/python/CMakeLists.txt	2020-04-09 18:24:54.377475124 +0200
+@@ -122,6 +122,7 @@
    ADD_HEADER_GROUP(${PYWRAP}_HEADERS)
    ADD_SOURCE_GROUP(${PYWRAP}_SOURCES)
    PKG_CONFIG_USE_DEPENDENCY(${PYWRAP} eigenpy)
@@ -20,8 +20,8 @@ py-pinocchio needs pinocchio
  
    TARGET_LINK_LIBRARIES(${PYWRAP} PUBLIC ${PROJECT_NAME})
    TARGET_LINK_BOOST_PYTHON(${PYWRAP} PUBLIC)
---- unittest/CMakeLists.txt.orig	2020-02-19 19:54:59.000000000 +0100
-+++ unittest/CMakeLists.txt	2020-02-19 19:59:39.573955372 +0100
+--- unittest/CMakeLists.txt.orig	2020-04-08 18:54:18.000000000 +0200
++++ unittest/CMakeLists.txt	2020-04-09 18:25:11.237341224 +0200
 @@ -26,6 +26,7 @@
    ADD_TEST_CFLAGS(${NAME} '-DPINOCCHIO_MODEL_DIR=\\\"${PINOCCHIO_MODEL_DIR}\\\"')
  
@@ -30,8 +30,8 @@ py-pinocchio needs pinocchio
    FOREACH(PKG ${PKGS})
      PKG_CONFIG_USE_DEPENDENCY(${TEST_NAME} ${PKG})
    ENDFOREACH(PKG)
---- examples/CMakeLists.txt.orig	2020-02-14 11:13:16.000000000 +0100
-+++ examples/CMakeLists.txt	2020-02-19 20:08:58.093491383 +0100
+--- examples/CMakeLists.txt.orig	2020-03-25 14:53:08.000000000 +0100
++++ examples/CMakeLists.txt	2020-04-09 18:25:22.181254289 +0200
 @@ -8,6 +8,7 @@
    ADD_UNIT_TEST(${EXAMPLE_NAME} ${EXAMPLE})
    TARGET_LINK_LIBRARIES(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME})

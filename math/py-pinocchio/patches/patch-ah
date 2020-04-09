@@ -1,6 +1,6 @@
---- CMakeLists.txt.orig	2020-02-19 12:54:40.000000000 +0100
-+++ CMakeLists.txt	2020-02-19 14:03:19.366757557 +0100
-@@ -202,52 +202,14 @@
+--- CMakeLists.txt.orig	2020-04-24 17:55:49.000000000 +0200
++++ CMakeLists.txt	2020-04-24 22:24:24.887194284 +0200
+@@ -204,60 +204,14 @@
  
  LIST(APPEND HEADERS macros.hpp)
  
@@ -20,6 +20,14 @@
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/container")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/codegen")
 -MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff/casadi")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff/casadi/math")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff/casadi/spatial")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff/casadi/utils")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff/cppad")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff/cppad/spatial")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff/cppad/math")
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/autodiff/cppad/utils")
 -
 -SET(HEADERS_)
 -FOREACH(header ${HEADERS})
