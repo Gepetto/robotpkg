@@ -1,0 +1,3 @@
+A template-based Library for creating curves of arbitrary order and dimension,
+eventually subject to derivative constraints. The main use of the library is
+the creation of end-effector trajectories for legged robots.

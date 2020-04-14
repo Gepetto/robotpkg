@@ -5,6 +5,7 @@ COMMENT=	Mathematics
 
 SUBDIR+=	boost-numeric-bindings
 SUBDIR+=	boost-numeric-bindings-v1
+SUBDIR+=	curves
 SUBDIR+=	eigen2
 SUBDIR+=	eigen3
 SUBDIR+=	gbM
