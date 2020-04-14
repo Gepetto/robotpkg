@@ -11,5 +11,6 @@ SUBDIR+=	mrsim-gazebo
 SUBDIR+=	mrsim-genom3
 SUBDIR+=	openhrp3
 SUBDIR+=	optitrack-gazebo
+SUBDIR+=	py-hpp-environments
 
 include ../mk/robotpkg.subdir.mk
