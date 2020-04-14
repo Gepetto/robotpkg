@@ -21,6 +21,7 @@ SUBDIR+=	libccd
 SUBDIR+=	liblbfgs
 SUBDIR+=	meschach
 SUBDIR+=	pinocchio
+SUBDIR+=	py-curves
 SUBDIR+=	py-eigenpy
 SUBDIR+=	py-pinocchio
 SUBDIR+=	ros-angles
