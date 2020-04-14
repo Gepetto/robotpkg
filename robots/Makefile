@@ -17,6 +17,7 @@ SUBDIR+=	nao-robot
 SUBDIR+=	neobotix-libs
 SUBDIR+=	play-genom
 SUBDIR+=	player20-libs
+SUBDIR+=	py-example-robot-data
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
 SUBDIR+=	rmp-libs

@@ -1,0 +1,5 @@
+@comment Wed Aug 28 13:42:40 CEST 2019
+${PYTHON_SITELIB}/example_robot_data/__init__.py
+${PYTHON_SITELIB}/example_robot_data/__main__.py
+${PYTHON_SITELIB}/example_robot_data/path.py
+${PYTHON_SITELIB}/example_robot_data/robots_loader.py
