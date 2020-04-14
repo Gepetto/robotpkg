@@ -1,0 +1,11 @@
+--- setup.py	2019-07-05 11:31:48.733569000 +0200
++++ setup.py~	2015-10-12 04:46:24.000000000 +0200
+@@ -13,7 +13,7 @@
+    Mathematical Programming, 27, 1-33.
+ """
+ 
++from distutils.core import setup, Extension
+-from setuptools import setup, Extension
+ from Cython.Build import cythonize
+ 
+ ##########################

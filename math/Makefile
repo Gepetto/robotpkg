@@ -24,6 +24,7 @@ SUBDIR+=	pinocchio
 SUBDIR+=	py-curves
 SUBDIR+=	py-eigenpy
 SUBDIR+=	py-pinocchio
+SUBDIR+=	py-quadprog
 SUBDIR+=	ros-angles
 SUBDIR+=	ros-eigen-stl-containers
 SUBDIR+=	ros-geometry
