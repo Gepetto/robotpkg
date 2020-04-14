@@ -16,12 +16,13 @@ PREFER.pinocchio?=	robotpkg
 SYSTEM_SEARCH.pinocchio=\
   'include/pinocchio/config.h{h,pp}:/PINOCCHIO_VERSION /s/[^0-9.]//gp'	\
   'lib/libpinocchio.so'							\
+  'lib/cmake/pinocchio/pinocchioConfig.cmake'				\
   'lib/pkgconfig/pinocchio.pc:/Version/s/[^0-9.]//gp'			\
   'share/pinocchio/package.xml:/<version>/s/[^0-9.]//gp'
 
 DEPEND_USE+=		pinocchio
 
-DEPEND_ABI.pinocchio?=	pinocchio>=2.0.0<3.0.0
+DEPEND_ABI.pinocchio?=	pinocchio>=2.3<3.0.0
 DEPEND_DIR.pinocchio?=	../../math/pinocchio
 
 endif # PINOCCHIO_DEPEND_MK ------------------------------------------------
