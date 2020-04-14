@@ -10,5 +10,6 @@ SUBDIR+=	qpoases
 SUBDIR+=	roboptim-core
 SUBDIR+=	roboptim-core-ipopt-plugin
 SUBDIR+=	roboptim-trajectory
+SUBDIR+=	tsid
 
 include ../mk/robotpkg.subdir.mk
