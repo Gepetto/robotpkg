@@ -6,6 +6,7 @@ COMMENT=	Optimization tools
 SUBDIR+=	acado
 SUBDIR+=	ipopt
 SUBDIR+=	py-crocoddyl
+SUBDIR+=	py-tsid
 SUBDIR+=	qpoases
 SUBDIR+=	roboptim-core
 SUBDIR+=	roboptim-core-ipopt-plugin
