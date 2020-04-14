@@ -1,0 +1,1 @@
+eigen-quadprog allow to use the QuadProg QP solver with the Eigen3 library.
