@@ -935,7 +935,12 @@ normalise_platform(struct utsname *host_name)
 				if (found == 3) break;
 			}
 			fclose(f);
-			if (found & 3) return;
+			if (found & 3) {
+				if (stat("/opt/pal", &buf) == 0 &&
+					buf.st_mode & S_IFDIR)
+					strcat(host_name->release, ".pal");
+				return;
+                        }
 		}
 
 		switch (stat("/etc/debian_version", &buf)) {
