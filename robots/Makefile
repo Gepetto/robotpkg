@@ -3,6 +3,7 @@
 
 COMMENT=	Robots specific packages
 
+SUBDIR+=	example-robot-data
 SUBDIR+=	hrp2-10
 SUBDIR+=	hrp2-14
 SUBDIR+=	hrp2-machine
