@@ -27,5 +27,9 @@ include/hpp/pinocchio/simple-device.hh
 include/hpp/pinocchio/urdf/util.hh
 include/hpp/pinocchio/util.hh
 include/hpp/pinocchio/warning.hh
+lib/cmake/hpp-pinocchio/hpp-pinocchioConfig.cmake
+lib/cmake/hpp-pinocchio/hpp-pinocchioConfigVersion.cmake
+lib/cmake/hpp-pinocchio/hpp-pinocchioTargets-release.cmake
+lib/cmake/hpp-pinocchio/hpp-pinocchioTargets.cmake
 lib/libhpp-pinocchio.so
 lib/pkgconfig/hpp-pinocchio.pc

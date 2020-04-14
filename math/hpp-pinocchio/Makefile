@@ -9,12 +9,8 @@ HPP_COMMENT=	Wrapping of the kinematic/dynamic chain Pinocchio for HPP.
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-DEPEND_ABI.eigen3 += eigen3>=3.2.92
-DEPEND_ABI.pinocchio += pinocchio>=2.1.6
-
 # TODO: for tests
-#include ../../wip/hpp-environments/depend.mk
-#include ../../wip/ros-baxter-common/depend.mk
+#include ../../wip/py-hpp-baxter/depend.mk
 #include ../../robots/romeo-description/depend.mk
 
 include ../../mapping/octomap/depend.mk
@@ -23,6 +19,8 @@ include ../../math/pinocchio/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../graphics/assimp/depend.mk
+include ../../simulation/py-hpp-environments/depend.mk
+include ../../robots/example-robot-data/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
