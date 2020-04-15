@@ -13,7 +13,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${NAME}/}
 MASTER_REPOSITORY=	git https://github.com/${ORG}/${NAME}.git
 CHECKOUT_VCS_OPTS+=	--recursive
 
-CATEGORIES=		wip
+CATEGORIES=		graphics
 COMMENT=		Interactive Qt graphViz display
 LICENSE=		gnu-lgpl-v3
 MAINTAINER=		gsaurel@laas.fr
