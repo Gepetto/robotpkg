@@ -6,4 +6,9 @@ include/hpp/corba/template/doc.hh
 include/hpp/corba/template/server.hh
 include/hpp/corba/template/server.hxx
 include/hpp/corba/template/warning.hh
+lib/cmake/hpp-template-corba/hpp-template-corbaConfig.cmake
+lib/cmake/hpp-template-corba/hpp-template-corbaConfigVersion.cmake
+lib/cmake/hpp-template-corba/hpp-template-corbaTargets-release.cmake
+lib/cmake/hpp-template-corba/hpp-template-corbaTargets.cmake
+lib/libhpp-template-corba.so
 lib/pkgconfig/hpp-template-corba.pc
