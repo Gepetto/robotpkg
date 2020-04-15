@@ -16,9 +16,10 @@ DEPEND_USE+=		qt5-tools
 DEPEND_ABI.qt5-tools?=	qt5-tools>=5.0.0
 
 SYSTEM_SEARCH.qt5-tools=\
-  '{,qt5/}include/{,qt{,5}/{,include/}}Qt{,Designer}/QtDesigner'		\
+  '{,qt5/}include/{,qt{,5}/{,include/}}Qt{,Designer}/QtDesigner'	\
   '{lib,share/qt5/lib,qt5/lib,lib/qt5}/libQt5Designer.{so,a}'		\
   '{,lib,qt5/lib}/cmake/Qt5Designer/Qt5DesignerConfig.cmake'		\
+  '{,lib,qt5/lib}/cmake/Qt5LinguistTools/Qt5LinguistToolsConfig.cmake'	\
   'lib/pkgconfig/Qt5Designer.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.qt5-tools=	qttools5-dev-tools
