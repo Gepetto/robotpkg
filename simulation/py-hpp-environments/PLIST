@@ -2,6 +2,9 @@
 include/hpp/environments/config.hh
 include/hpp/environments/deprecated.hh
 include/hpp/environments/warning.hh
+lib/cmake/hpp-environments/hpp-environmentsConfig.cmake
+lib/cmake/hpp-environments/hpp-environmentsConfigVersion.cmake
+lib/cmake/hpp-environments/hpp-environmentsTargets.cmake
 lib/pkgconfig/hpp-environments.pc
 ${PYTHON_SITELIB}/hpp/environments/__init__.py
 ${PYTHON_SITELIB}/hpp/environments/robot.py
@@ -22,6 +25,7 @@ share/hpp_environments/meshes/multicontact/bauzil_simplified.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs_10cm.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs_10cm_scale.stl
+share/hpp_environments/meshes/multicontact/bauzil_stairs_collision.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs_noRamp.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs_noRamp_simplified.stl
 share/hpp_environments/meshes/multicontact/bauzil_walk_stairs.stl
@@ -103,8 +107,13 @@ share/hpp_environments/meshes/multicontact/test.stl
 share/hpp_environments/meshes/multicontact/truck.stl
 share/hpp_environments/meshes/multicontact/truck_vision.stl
 share/hpp_environments/meshes/multicontact/untitled.stl
+share/hpp_environments/meshes/ori/modular_palet_flat_collision.stl
 share/hpp_environments/meshes/ori/modular_palet_low.stl
 share/hpp_environments/meshes/ori/modular_palet_low_collision.stl
+share/hpp_environments/meshes/ori/modular_palet_low_collision_1.stl
+share/hpp_environments/meshes/ori/modular_palet_low_obstacles_collision.stl
+share/hpp_environments/meshes/ori/slalom1.stl
+share/hpp_environments/meshes/ori/slalom2.stl
 share/hpp_environments/meshes/tests/baxter_simple/torso.dae
 share/hpp_environments/meshes/ur_benchmark/pokeball.dae
 share/hpp_environments/package.xml
@@ -178,8 +187,12 @@ share/hpp_environments/srdf/multicontact/stairs_towr.srdf
 share/hpp_environments/srdf/multicontact/stepladder.srdf
 share/hpp_environments/srdf/multicontact/table.srdf
 share/hpp_environments/srdf/multicontact/truck.srdf
+share/hpp_environments/srdf/ori/modular_palet_flat.srdf
 share/hpp_environments/srdf/ori/modular_palet_low.srdf
 share/hpp_environments/srdf/ori/modular_palet_low_collision.srdf
+share/hpp_environments/srdf/ori/modular_palet_low_obstacles.srdf
+share/hpp_environments/srdf/ori/slalom1.srdf
+share/hpp_environments/srdf/ori/slalom2.srdf
 share/hpp_environments/srdf/placard.srdf
 share/hpp_environments/srdf/scene.srdf
 share/hpp_environments/srdf/tests/baxter_simple.srdf
@@ -263,8 +276,12 @@ share/hpp_environments/urdf/multicontact/stairs_towr.urdf
 share/hpp_environments/urdf/multicontact/stepladder.urdf
 share/hpp_environments/urdf/multicontact/table.urdf
 share/hpp_environments/urdf/multicontact/truck.urdf
+share/hpp_environments/urdf/ori/modular_palet_flat.urdf
 share/hpp_environments/urdf/ori/modular_palet_low.urdf
 share/hpp_environments/urdf/ori/modular_palet_low_collision.urdf
+share/hpp_environments/urdf/ori/modular_palet_low_obstacles.urdf
+share/hpp_environments/urdf/ori/slalom1.urdf
+share/hpp_environments/urdf/ori/slalom2.urdf
 share/hpp_environments/urdf/placard-vertical.urdf
 share/hpp_environments/urdf/placard.urdf
 share/hpp_environments/urdf/scene.urdf

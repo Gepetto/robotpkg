@@ -2,7 +2,6 @@
 # Created:			Guilhem Saurel on Tue, 14 Apr 2020
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		hpp-environments
 HPP_COMMENT=		Environments and robot descriptions for HPP
 
