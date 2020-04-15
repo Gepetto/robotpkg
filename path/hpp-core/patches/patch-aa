@@ -5,15 +5,15 @@ packages parse the single <subgroup> element present in the file. Since there
 is no obvious fix nor workaround for it, just cancel the file installation
 until a better solution is found.
 
---- cmake/doxygen.cmake~	2019-11-25 14:33:39.000000000 +0100
-+++ cmake/doxygen.cmake	2020-03-04 15:34:53.328833047 +0100
-@@ -128,9 +128,6 @@
- 
+--- cmake/doxygen.cmake.orig	2020-04-10 18:17:33.000000000 +0200
++++ cmake/doxygen.cmake	2020-04-15 18:10:40.272732081 +0200
+@@ -563,9 +563,6 @@
      # Install generated files.
      IF(INSTALL_DOCUMENTATION)
--      INSTALL(
--        FILES ${CMAKE_CURRENT_BINARY_DIR}/doc/${PROJECT_NAME}.doxytag
--        DESTINATION ${CMAKE_INSTALL_DOCDIR}/doxygen-html)
+       IF(EXISTS ${CMAKE_CURRENT_BINARY_DIR}/doc/${PROJECT_NAME}.doxytag)
+-        INSTALL(
+-          FILES ${CMAKE_CURRENT_BINARY_DIR}/doc/${PROJECT_NAME}.doxytag
+-          DESTINATION ${CMAKE_INSTALL_DOCDIR}/doxygen-html)
+       ENDIF()
        INSTALL(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc/doxygen-html
          DESTINATION ${CMAKE_INSTALL_DOCDIR})
- 

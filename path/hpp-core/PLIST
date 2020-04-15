@@ -18,7 +18,6 @@ include/hpp/core/container.hh
 include/hpp/core/continuous-validation.hh
 include/hpp/core/continuous-validation/body-pair-collision.hh
 include/hpp/core/continuous-validation/dichotomy.hh
-include/hpp/core/continuous-validation/initializer.hh
 include/hpp/core/continuous-validation/interval-validation.hh
 include/hpp/core/continuous-validation/progressive.hh
 include/hpp/core/continuous-validation/solid-solid-collision.hh
@@ -41,6 +40,7 @@ include/hpp/core/kinodynamic-path.hh
 include/hpp/core/nearest-neighbor.hh
 include/hpp/core/node.hh
 include/hpp/core/numerical-constraint.hh
+include/hpp/core/obstacle-user.hh
 include/hpp/core/parameter.hh
 include/hpp/core/parser/roadmap-factory.hh
 include/hpp/core/path-optimization/linear-constraint.hh
@@ -99,8 +99,12 @@ include/hpp/core/validation-report.hh
 include/hpp/core/visibility-prm-planner.hh
 include/hpp/core/warning.hh
 include/hpp/core/weighed-distance.hh
+lib/cmake/hpp-core/hpp-core-plugin.cmake
+lib/cmake/hpp-core/hpp-coreConfig.cmake
+lib/cmake/hpp-core/hpp-coreConfigVersion.cmake
+lib/cmake/hpp-core/hpp-coreTargets-release.cmake
+lib/cmake/hpp-core/hpp-coreTargets.cmake
 lib/hppPlugins/spline-gradient-based.so
 lib/libhpp-core-gpl.so
 lib/libhpp-core.so
 lib/pkgconfig/hpp-core.pc
-share/hpp-core/cmake/hpp-core-plugin.cmake

@@ -7,6 +7,9 @@ HPP_COMMENT=	Basic classes for general path planning
 
 CATEGORIES=	path
 
+# TODO for tests
+# include ../../wip/py-hpp-baxter/depend.mk
+
 include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../math/eigen3/depend.mk
