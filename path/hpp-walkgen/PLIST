@@ -6,5 +6,9 @@ include/hpp/walkgen/foot-print.hh
 include/hpp/walkgen/foot-trajectory.hh
 include/hpp/walkgen/fwd.hh
 include/hpp/walkgen/warning.hh
+lib/cmake/hpp-walkgen/hpp-walkgenConfig.cmake
+lib/cmake/hpp-walkgen/hpp-walkgenConfigVersion.cmake
+lib/cmake/hpp-walkgen/hpp-walkgenTargets-release.cmake
+lib/cmake/hpp-walkgen/hpp-walkgenTargets.cmake
 lib/libhpp-walkgen.so
 lib/pkgconfig/hpp-walkgen.pc
