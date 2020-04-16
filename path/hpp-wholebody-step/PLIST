@@ -7,6 +7,10 @@ include/hpp/wholebody-step/static-stability-constraint.hh
 include/hpp/wholebody-step/time-dependant-path.hh
 include/hpp/wholebody-step/time-dependant.hh
 include/hpp/wholebody-step/warning.hh
+lib/cmake/hpp-wholebody-step/hpp-wholebody-stepConfig.cmake
+lib/cmake/hpp-wholebody-step/hpp-wholebody-stepConfigVersion.cmake
+lib/cmake/hpp-wholebody-step/hpp-wholebody-stepTargets-release.cmake
+lib/cmake/hpp-wholebody-step/hpp-wholebody-stepTargets.cmake
 lib/hppPlugins/wholebody-step.so
 lib/libhpp-wholebody-step.so
 lib/pkgconfig/hpp-wholebody-step.pc

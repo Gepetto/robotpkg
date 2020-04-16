@@ -9,7 +9,7 @@ HPP_COMMENT=		Whole-body walk planning for humanoid robots
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-CMAKE_ARGS+=		-DRUN_TESTS=FALSE
+CMAKE_ARGS+=		-DBUILD_TESTING=FALSE
 
 include ../../devel/log4cxx/depend.mk
 include ../../mapping/octomap/depend.mk
