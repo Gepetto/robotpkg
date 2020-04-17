@@ -47,6 +47,12 @@ include/hpp/core_idl/steering_methods.hh
 include/hpp/pinocchio_idl/robots-fwd.hh
 include/hpp/pinocchio_idl/robots-idl.hh
 include/hpp/pinocchio_idl/robots.hh
+lib/cmake/hpp-corbaserver/hpp-corbaserver-plugin.cmake
+lib/cmake/hpp-corbaserver/hpp-corbaserverConfig.cmake
+lib/cmake/hpp-corbaserver/hpp-corbaserverConfigVersion.cmake
+lib/cmake/hpp-corbaserver/hpp-corbaserverTargets-release.cmake
+lib/cmake/hpp-corbaserver/hpp-corbaserverTargets.cmake
+lib/cmake/hpp-corbaserver/omniidl.cmake
 lib/libhpp-corbaserver.so
 lib/pkgconfig/hpp-corbaserver.pc
 ${PYTHON_SITELIB}/hpp/__init__.py
@@ -92,8 +98,6 @@ ${PYTHON_SITELIB}/hpp_stubs/core/paths_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/steering_methods_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/pinocchio/__init__.py
 ${PYTHON_SITELIB}/hpp_stubs/pinocchio/robots_idl.py
-share/hpp-corbaserver/cmake/hpp-corbaserver-plugin.cmake
-share/hpp-corbaserver/cmake/omniidl.cmake
 share/hpp-corbaserver/omniidl/cxx_impl/__init__.py
 share/hpp-corbaserver/omniidl/cxx_impl/main.py
 share/hpp-corbaserver/omniidl/cxx_impl/template.py
