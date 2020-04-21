@@ -19,7 +19,7 @@ DEPEND_ABI.py-qt-gepetto-viewer-corba?=	${PKGTAG.python}-${PKGTAG.qt}-gepetto-vi
 DEPEND_DIR.py-qt-gepetto-viewer-corba?=	../../graphics/py-qt-gepetto-viewer-corba
 
 SYSTEM_SEARCH.py-qt-gepetto-viewer-corba=\
-  'include/gepetto/viewer/corba/server.hh'				\
+  'include/gepetto/viewer/corba/config.hh'				\
   'lib/libgepetto-viewer-corba.so'					\
   'lib/pkgconfig/gepetto-viewer-corba.pc:/Version/s/[^0-9.]//gp'
 

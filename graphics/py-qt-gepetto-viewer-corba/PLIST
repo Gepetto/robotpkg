@@ -1,12 +1,17 @@
 @comment Mon Jun 3 15:40:22 CEST 2019
 bin/urdf_to_blender.py
 include/gepetto/gui/omniorb/url.hh
+include/gepetto/viewer/corba/api.hh
+include/gepetto/viewer/corba/client.hh
 include/gepetto/viewer/corba/config.hh
+include/gepetto/viewer/corba/conversions.hh
 include/gepetto/viewer/corba/deprecated.hh
-include/gepetto/viewer/corba/fwd.hh
 include/gepetto/viewer/corba/graphical-interface.hh
-include/gepetto/viewer/corba/server.hh
 include/gepetto/viewer/corba/warning.hh
+lib/cmake/gepetto-viewer-corba/gepetto-viewer-corbaConfig.cmake
+lib/cmake/gepetto-viewer-corba/gepetto-viewer-corbaConfigVersion.cmake
+lib/cmake/gepetto-viewer-corba/gepetto-viewer-corbaTargets-release.cmake
+lib/cmake/gepetto-viewer-corba/gepetto-viewer-corbaTargets.cmake
 lib/gepetto-gui-plugins/omniorbserver.so
 lib/libgepetto-viewer-corba.so
 lib/pkgconfig/gepetto-viewer-corba.pc

@@ -4,7 +4,7 @@
 
 HPP_PACKAGE=		gepetto-viewer-corba
 HPP_COMMENT=		Corba server for gepetto-viewer
-HPP_VERSION=		5.3.2
+HPP_VERSION=		5.4.0
 HPP_NAMESPACE=		gepetto
 
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
