@@ -7,5 +7,9 @@ include/QGVCore/qgv.h
 include/qgv/config.hh
 include/qgv/deprecated.hh
 include/qgv/warning.hh
+lib/cmake/qgv/qgvConfig.cmake
+lib/cmake/qgv/qgvConfigVersion.cmake
+lib/cmake/qgv/qgvTargets-release.cmake
+lib/cmake/qgv/qgvTargets.cmake
 lib/libqgvcore.so
 lib/pkgconfig/qgv.pc

@@ -4,14 +4,9 @@
 
 ORG=			gepetto
 NAME=			qgv
-VERSION=		1.2.0
+VERSION=		1.3.0
 
-DISTNAME=		${NAME}-${VERSION}
 PKGNAME=		${PKGTAG.qt-}${DISTNAME}
-
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${NAME}/}
-MASTER_REPOSITORY=	git https://github.com/${ORG}/${NAME}.git
-CHECKOUT_VCS_OPTS+=	--recursive
 
 CATEGORIES=		graphics
 COMMENT=		Interactive Qt graphViz display
@@ -24,13 +19,11 @@ USE_QMAKE=		no
 
 USE_QT5_COMPONENTS=	core tools
 
-CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
-CMAKE_ARGS+=	-DBINDINGS_$(subst qt,QT,${PKG_ALTERNATIVE.qt})=ON
-CMAKE_ARGS+=	-DQT_QMAKE_EXECUTABLE=${QMAKE}
-CMAKE_ARGS+=	-DGRAPHVIZ_INCLUDE_DIR=${PREFIX.graphviz}/include/graphviz
+CMAKE_ARGS+=		-DBINDINGS_$(subst qt,QT,${PKG_ALTERNATIVE.qt})=ON
+CMAKE_ARGS+=		-DQT_QMAKE_EXECUTABLE=${QMAKE}
+CMAKE_ARGS+=		-DGRAPHVIZ_INCLUDE_DIR=${PREFIX.graphviz}/include/graphviz
 
-DYNAMIC_PLIST_DIRS+=	share/doc/${NAME}
-
+include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/cmake.mk
