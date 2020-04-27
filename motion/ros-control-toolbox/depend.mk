@@ -28,7 +28,7 @@ DEPEND_ABI.ros-control-toolbox.indigo?=	ros-control-toolbox>=1.13<1.15
 DEPEND_ABI.ros-control-toolbox.jade?=	ros-control-toolbox>=1.13<1.15
 DEPEND_ABI.ros-control-toolbox.kinetic?=ros-control-toolbox>=1.15<1.18
 DEPEND_ABI.ros-control-toolbox.lunar?=	ros-control-toolbox>=1.15<1.18
-DEPEND_ABI.ros-control-toolbox.melodic?=ros-control-toolbox>=1.16<1.18
+DEPEND_ABI.ros-control-toolbox.melodic?=ros-control-toolbox>=1.16<1.19
 
 SYSTEM_SEARCH.ros-control-toolbox=\
   'include/control_toolbox/ParametersConfig.h'				\
