@@ -199,6 +199,15 @@ share/example-robot-data/robots/solo_description/meshes/obj/without_foot/solo_up
 share/example-robot-data/robots/solo_description/meshes/plane.mtl
 share/example-robot-data/robots/solo_description/meshes/plane.obj
 share/example-robot-data/robots/solo_description/meshes/sphere.obj
+share/example-robot-data/robots/solo_description/meshes/stl/solo12/solo12_hip_fe_fl.stl
+share/example-robot-data/robots/solo_description/meshes/stl/solo12/solo12_hip_fe_fr.stl
+share/example-robot-data/robots/solo_description/meshes/stl/solo12/solo12_hip_fe_hl.stl
+share/example-robot-data/robots/solo_description/meshes/stl/solo12/solo12_hip_fe_hr.stl
+share/example-robot-data/robots/solo_description/meshes/stl/solo12/solo12_lower_leg_left_side.stl
+share/example-robot-data/robots/solo_description/meshes/stl/solo12/solo12_lower_leg_right_side.stl
+share/example-robot-data/robots/solo_description/meshes/stl/solo12/solo12_upper_leg_left_side.stl
+share/example-robot-data/robots/solo_description/meshes/stl/solo12/solo12_upper_leg_right_side.stl
+share/example-robot-data/robots/solo_description/meshes/stl/solo12/solo_12_base.stl
 share/example-robot-data/robots/solo_description/meshes/stl/with_foot/solo_body.stl
 share/example-robot-data/robots/solo_description/meshes/stl/with_foot/solo_foot.stl
 share/example-robot-data/robots/solo_description/meshes/stl/with_foot/solo_lower_leg_left_side.stl
