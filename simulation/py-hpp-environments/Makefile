@@ -8,6 +8,7 @@ HPP_COMMENT=		Environments and robot descriptions for HPP
 CATEGORIES=		simulation
 
 PYTHON_NOTAG_CONFLICT=	yes
+PYTHON_SELF_CONFLICT=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common
 
