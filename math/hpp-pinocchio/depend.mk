@@ -15,12 +15,13 @@ PREFER.hpp-pinocchio?=	robotpkg
 
 DEPEND_USE+=		hpp-pinocchio
 
-DEPEND_ABI.hpp-pinocchio?=	hpp-pinocchio>=4.6.0
+DEPEND_ABI.hpp-pinocchio?=	hpp-pinocchio>=4.9.0
 DEPEND_DIR.hpp-pinocchio?=	../../math/hpp-pinocchio
 
-SYSTEM_SEARCH.hpp-pinocchio=		\
-  'include/hpp/pinocchio/util.hh'	\
-  'lib/libhpp-pinocchio.so'		\
+SYSTEM_SEARCH.hpp-pinocchio=									\
+  'include/hpp/pinocchio/util.hh'								\
+  'lib/cmake/hpp-pinocchio/hpp-pinocchioConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
+  'lib/libhpp-pinocchio.so'									\
   'lib/pkgconfig/hpp-pinocchio.pc:/Version/s/[^0-9.]//gp'
 
 DEPEND_ABI.eigen3 += eigen3>=3.2.92
