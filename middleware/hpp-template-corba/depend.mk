@@ -15,11 +15,12 @@ PREFER.hpp-template-corba?=	robotpkg
 
 DEPEND_USE+=			hpp-template-corba
 
-DEPEND_ABI.hpp-template-corba?=	hpp-template-corba>=4.5.0
+DEPEND_ABI.hpp-template-corba?=	hpp-template-corba>=4.9.0
 DEPEND_DIR.hpp-template-corba?=	../../middleware/hpp-template-corba
 
 SYSTEM_SEARCH.hpp-template-corba=\
-	include/hpp/corba/template/server.hh				\
+	'include/hpp/corba/template/server.hh'									\
+	'lib/cmake/hpp-template-corba/hpp-template-corbaConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/hpp-template-corba.pc:/Version/s/[^0-9.]//gp'
 
 endif # --------------------------------------------------------------------
