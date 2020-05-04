@@ -18,8 +18,9 @@ DEPEND_USE+=			hpp-environments
 DEPEND_ABI.hpp-environments?=	hpp-environments>=4.9.0
 DEPEND_DIR.hpp-environments?=	../../simulation/hpp-environments
 
-SYSTEM_SEARCH.hpp-environments=\
-  'include/hpp/environments/config.hh'				\
+SYSTEM_SEARCH.hpp-environments=										\
+  'include/hpp/environments/config.hh'									\
+  'lib/cmake/hpp-environments/hpp-environmentsConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
   'lib/pkgconfig/hpp-environments.pc:/Version/s/[^0-9.]//gp'
 
 endif # HPP_ENVIRONMENTS_DEPEND_MK --------------------------------------
