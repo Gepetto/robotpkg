@@ -26,5 +26,5 @@ include ../../path/hpp-manipulation-urdf/depend.mk
 include ../../path/hpp-manipulation/depend.mk
 include ../../path/hpp-util/depend.mk
 
-include ../../mk/language/c.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk

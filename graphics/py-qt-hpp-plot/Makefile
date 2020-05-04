@@ -19,5 +19,5 @@ include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/py-hpp-manipulation-corba/depend.mk
 include ../../mk/sysdep/qt.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk

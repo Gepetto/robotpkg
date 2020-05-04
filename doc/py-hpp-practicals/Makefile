@@ -17,5 +17,5 @@ include ../../graphics/py-qt-hpp-plot/depend.mk
 include ../../path/py-hpp-manipulation-corba/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
