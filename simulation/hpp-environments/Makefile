@@ -1,5 +1,5 @@
-# robotpkg Makefile for:	simulation/py-hpp-environments
-# Created:			Guilhem Saurel on Tue, 14 Apr 2020
+# robotpkg Makefile for:	simulation/hpp-environments
+# Created:			Guilhem Saurel on Mon,  4 May 2020
 #
 
 HPP_PACKAGE=		hpp-environments
@@ -7,11 +7,10 @@ HPP_COMMENT=		Environments and robot descriptions for HPP
 
 CATEGORIES=		simulation
 
-USE_PYTHON_ONLY=	yes
+CMAKE_ARGS+=		-DBUILD_PYTHON_INTERFACE=OFF
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../simulation/hpp-environments/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++11.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

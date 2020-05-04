@@ -4,6 +4,7 @@
 COMMENT=	Simulation tools
 
 SUBDIR+=	gazebo-ros-pkgs
+SUBDIR+=	hpp-environments
 SUBDIR+=	libmrsim
 SUBDIR+=	morse
 SUBDIR+=	morse-yarp

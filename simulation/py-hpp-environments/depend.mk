@@ -21,8 +21,7 @@ DEPEND_ABI.py-hpp-environments?=${PKGTAG.python-}hpp-environments>=4.7.0
 DEPEND_DIR.py-hpp-environments?=../../simulation/py-hpp-environments
 
 SYSTEM_SEARCH.py-hpp-environments=\
-  'include/hpp/environments/config.hh'				\
-  'lib/pkgconfig/hpp-environments.pc:/Version/s/[^0-9.]//gp'
+  '${PYTHON_SYSLIBSEARCH}/hpp/environments/__init__.py'
 
 endif # PY_HPP_ENVIRONMENTS_DEPEND_MK --------------------------------------
 
