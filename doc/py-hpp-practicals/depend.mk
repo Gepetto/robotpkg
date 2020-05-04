@@ -17,13 +17,14 @@ PREFER.py-hpp-practicals?=	robotpkg
 
 DEPEND_USE+=			py-hpp-practicals
 
-DEPEND_ABI.py-hpp-practicals?=	${PKGTAG.python-}hpp-practicals>=4.7.0
+DEPEND_ABI.py-hpp-practicals?=	${PKGTAG.python-}hpp-practicals>=4.9.0
 DEPEND_DIR.py-hpp-practicals?=	../../doc/py-hpp-practicals
 
-SYSTEM_SEARCH.py-hpp-practicals=\
-  'include/hpp/practicals/config.hh'				\
-  'share/hpp_practicals/urdf/ur5_gripper.urdf'			\
-  'lib/pkgconfig/hpp_practicals.pc:/Version/s/[^0-9.]//gp'
+SYSTEM_SEARCH.py-hpp-practicals=								\
+  'include/hpp/practicals/config.hh'								\
+  'lib/cmake/hpp-practicals/hpp-practicalsConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
+  'lib/pkgconfig/hpp_practicals.pc:/Version/s/[^0-9.]//gp					'
+  'share/hpp_practicals/urdf/ur5_gripper.urdf'
 
 endif # PY_HPP_PRACTICALS_DEPEND_MK -------------------------------------------
 
