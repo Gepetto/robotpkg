@@ -15,13 +15,14 @@ PREFER.hpp-core?=	robotpkg
 
 DEPEND_USE+=		hpp-core
 
-DEPEND_ABI.hpp-core?=	hpp-core>=4.6.0
+DEPEND_ABI.hpp-core?=	hpp-core>=4.9.0
 DEPEND_DIR.hpp-core?=	../../path/hpp-core
 
 SYSTEM_SEARCH.hpp-core=\
-	include/hpp/core/problem.hh	\
-	'lib/pkgconfig/hpp-core.pc:/Version/s/[^0-9.]//gp' \
-	lib/libhpp-core.so
+	'include/hpp/core/problem.hh'							\
+	'lib/cmake/hpp-core/hpp-coreConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
+	'lib/libhpp-core.so'								\
+	'lib/pkgconfig/hpp-core.pc:/Version/s/[^0-9.]//gp'
 
 endif # HPPCORE_DEPEND_MK --------------------------------------------
 
