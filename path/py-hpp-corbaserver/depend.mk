@@ -17,12 +17,13 @@ PREFER.py-hpp-corbaserver?=	robotpkg
 
 DEPEND_USE+=			py-hpp-corbaserver
 
-DEPEND_ABI.py-hpp-corbaserver?=	${PKGTAG.python-}hpp-corbaserver>=4.7.0
+DEPEND_ABI.py-hpp-corbaserver?=	${PKGTAG.python-}hpp-corbaserver>=4.9.0
 DEPEND_DIR.py-hpp-corbaserver?=	../../path/py-hpp-corbaserver
 
-SYSTEM_SEARCH.py-hpp-corbaserver=\
-  'include/hpp/corbaserver/server.hh'				\
-  'lib/libhpp-corbaserver.so'					\
+SYSTEM_SEARCH.py-hpp-corbaserver=								\
+  'include/hpp/corbaserver/server.hh'								\
+  'lib/libhpp-corbaserver.so'									\
+  'lib/cmake/hpp-corbaserver/hpp-corbaserverConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
   'lib/pkgconfig/hpp-corbaserver.pc:/Version/s/[^0-9.]//gp'
 
 # need omniidl_be in PYTHONPATH
