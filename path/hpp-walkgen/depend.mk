@@ -15,12 +15,13 @@ PREFER.hpp-walkgen?=	robotpkg
 
 DEPEND_USE+=		hpp-walkgen
 
-DEPEND_ABI.hpp-walkgen?=	hpp-walkgen>=4.6.0
+DEPEND_ABI.hpp-walkgen?=	hpp-walkgen>=4.9.0
 DEPEND_DIR.hpp-walkgen?=	../../path/hpp-walkgen
 
-SYSTEM_SEARCH.hpp-walkgen=			\
-	include/hpp/walkgen/fwd.hh	\
-	lib/libhpp-walkgen.so		\
+SYSTEM_SEARCH.hpp-walkgen=									\
+	'include/hpp/walkgen/fwd.hh'								\
+	'lib/cmake/hpp-walkgen/hpp-walkgenConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
+	'lib/libhpp-walkgen.so'									\
 	'lib/pkgconfig/hpp-walkgen.pc:/Version/s/[^0-9.]//gp'
 
 endif # HPPWALKGEN_DEPEND_MK ---------------------------------
