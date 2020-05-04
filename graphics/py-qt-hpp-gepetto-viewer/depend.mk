@@ -19,10 +19,11 @@ DEPEND_USE+=		py-qt-hpp-gepetto-viewer
 _hgv_qts={qt4,qt5}
 _hgv_qt=$(if $(filter qt,${PKG_ALTERNATIVES}),${PKG_ALTERNATIVE.qt},${_hgv_qts})
 
-DEPEND_ABI.py-qt-hpp-gepetto-viewer?=	${PKGTAG.python}-${_hgv_qt}-hpp-gepetto-viewer>=4.6.1
+DEPEND_ABI.py-qt-hpp-gepetto-viewer?=	${PKGTAG.python}-${_hgv_qt}-hpp-gepetto-viewer>=4.9.0
 DEPEND_DIR.py-qt-hpp-gepetto-viewer?=	../../graphics/py-qt-hpp-gepetto-viewer
 
-SYSTEM_SEARCH.py-qt-hpp-gepetto-viewer=			\
+SYSTEM_SEARCH.py-qt-hpp-gepetto-viewer=										\
+	'lib/cmake/hpp-gepetto-viewer/hpp-gepetto-viewerConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/hpp-gepetto-viewer.pc:/Version/s/[^0-9.]//gp'
 
 endif # PY_QT_HPP_GEPETTO_VIEWER_DEPEND_MK ---------------------------------
