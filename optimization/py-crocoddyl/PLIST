@@ -128,6 +128,10 @@ include/crocoddyl/multibody/states/multibody.hpp
 include/crocoddyl/multibody/states/multibody.hxx
 include/crocoddyl/multibody/utils/quadruped-gaits.hpp
 include/crocoddyl/warning.hh
+lib/cmake/crocoddyl/crocoddylConfig.cmake
+lib/cmake/crocoddyl/crocoddylConfigVersion.cmake
+lib/cmake/crocoddyl/crocoddylTargets-release.cmake
+lib/cmake/crocoddyl/crocoddylTargets.cmake
 lib/libcrocoddyl.so
 lib/pkgconfig/crocoddyl.pc
 ${PYTHON_SITELIB}/crocoddyl/__init__.py

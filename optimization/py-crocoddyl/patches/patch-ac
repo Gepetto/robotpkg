@@ -1,0 +1,24 @@
+From 8c294f31c9567dd23cb57f61d221ad3e01d1287d Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Thu, 30 Apr 2020 14:14:54 +0200
+Subject: [PATCH] [Cmake] use project exports
+
+---
+ CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 628da641..af1d5cb3 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -35,6 +35,7 @@ ENDIF()
+ 
+ # Disable -Werror on Unix for now.
+ SET(CXX_DISABLE_WERROR True)
++SET(PROJECT_USE_CMAKE_EXPORT True)
+ 
+ # Create different building options
+ OPTION(ENABLE_VECTORIZATION "Enable vectorization and further processor-related optimizations" OFF)
+-- 
+2.26.2
+

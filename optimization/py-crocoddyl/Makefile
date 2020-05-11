@@ -2,7 +2,7 @@
 # Created:			Guilhem Saurel on Tue, 14 Apr 2020
 #
 
-PKGREVISION=		2
+PKGREVISION=		3
 ORG=			loco-3d
 NAME=			crocoddyl
 VERSION=		1.2.1
