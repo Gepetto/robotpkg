@@ -13,3 +13,4 @@ ${PYTHON_SITELIB}/pinocchio/visualize/__init__.py
 ${PYTHON_SITELIB}/pinocchio/visualize/base_visualizer.py
 ${PYTHON_SITELIB}/pinocchio/visualize/gepetto_visualizer.py
 ${PYTHON_SITELIB}/pinocchio/visualize/meshcat_visualizer.py
+${PYTHON_SITELIB}/pinocchio/visualize/panda3d_visualizer.py

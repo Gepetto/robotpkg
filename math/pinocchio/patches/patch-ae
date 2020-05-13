@@ -7,7 +7,7 @@ for ext in ['hpp', 'cpp']:
 
 --- bindings/python/CMakeLists.txt.orig	2020-04-24 17:55:49.000000000 +0200
 +++ bindings/python/CMakeLists.txt	2020-04-24 20:35:28.036611996 +0200
-@@ -53,12 +53,91 @@
+@@ -53,12 +53,92 @@
    SET(${PYWRAP}_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}/${PROJECT_NAME})
  ENDIF(BUILD_PYTHON_INTERFACE)
  
@@ -19,6 +19,7 @@ for ext in ['hpp', 'cpp']:
 +  utils/std-vector.hpp
 +  utils/copyable.hpp
 +  utils/dependencies.hpp
++  utils/deprecation.hpp
 +  utils/pickle-map.hpp
 +  utils/conversions.hpp
 +  utils/list.hpp
