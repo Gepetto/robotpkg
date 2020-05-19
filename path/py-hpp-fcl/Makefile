@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-fcl
 HPP_VERSION=		1.4.4
+PKGREVISION=		1
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations (python bindingss)
@@ -19,6 +20,7 @@ USE_BOOST_LIBS+= chrono
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
+include ../../mapping/octomap/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
