@@ -2,19 +2,17 @@
 # Created:			Guilhem Saurel on Tue, 14 Apr 2020
 #
 
-PKGREVISION=		3
 ORG=			loco-3d
 NAME=			crocoddyl
-VERSION=		1.2.1
+VERSION=		1.3.0
 
 CATEGORIES=		optimization
 COMMENT=		Optimal control library for robot under contact sequence
 LICENSE=		2-clause-bsd
-MAINTAINER=		gepetto-soft@laas.fr
-
-CONFLICTS+=		py[0-9][0-9]-crocoddyl
+MAINTAINER=		guilhem.saurel@laas.fr
 
 USE_PYTHON=		true
+PYTHON_SELF_CONFLICT=	yes
 
 # parallel builds exhaust memory - until a better solution is found
 MAKE_JOBS_SAFE=		no

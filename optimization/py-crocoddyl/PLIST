@@ -18,6 +18,7 @@ include/crocoddyl/core/actuation-base.hpp
 include/crocoddyl/core/actuation/actuation-squashing.hpp
 include/crocoddyl/core/actuation/squashing-base.hpp
 include/crocoddyl/core/actuation/squashing/smooth-sat.hpp
+include/crocoddyl/core/codegen/action-base.hpp
 include/crocoddyl/core/data-collector-base.hpp
 include/crocoddyl/core/data/actuation.hpp
 include/crocoddyl/core/diff-action-base.hpp
@@ -103,6 +104,8 @@ include/crocoddyl/multibody/costs/frame-velocity.hpp
 include/crocoddyl/multibody/costs/frame-velocity.hxx
 include/crocoddyl/multibody/costs/impulse-com.hpp
 include/crocoddyl/multibody/costs/impulse-com.hxx
+include/crocoddyl/multibody/costs/impulse-friction-cone.hpp
+include/crocoddyl/multibody/costs/impulse-friction-cone.hxx
 include/crocoddyl/multibody/costs/state.hpp
 include/crocoddyl/multibody/costs/state.hxx
 include/crocoddyl/multibody/data/contacts.hpp
