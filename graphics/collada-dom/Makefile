@@ -2,23 +2,18 @@
 # Created:			Francois Lancelot on Wed, 21 Sep 2011
 #
 
-PKGVERSION=	2.3.1
-PKGREVISION=	2
-PKGNAME=	collada-dom-${PKGVERSION}
-DISTNAME=	collada_dom-${PKGVERSION_NOREV}-src
-MASTER_SITES=   ${MASTER_SITE_SOURCEFORGE:=collada-dom/}
+NAME=		collada-dom
+VERSION=	2.4.0
+
+DISTNAME=	${NAME}-${VERSION}
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=${NAME}/}
 EXTRACT_SUFX=	.tgz
 
 CATEGORIES=	graphics
 COMMENT=	C++ object representation of a COLLADA XML instance document
-HOMEPAGE=	http://collada-dom.sourceforge.net/
+HOMEPAGE=	http://${NAME}.sourceforge.net/
 LICENSE=	mit
 MAINTAINER=	openrobots@laas.fr
-
-WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
-
-CMAKE_ARGS+=	-DOPT_COLLADA14=ON
-CMAKE_ARGS+=	-DOPT_COLLADA15=ON
 
 include ../../archivers/zlib/depend.mk
 include ../../devel/boost-headers/depend.mk

@@ -14,9 +14,9 @@ ifeq (+,$(COLLADADOM_DEPEND_MK)) # -----------------------------------------
 PREFER.collada-dom?=	robotpkg
 
 SYSTEM_SEARCH.collada-dom=\
-	include/collada-dom/dae.h					\
-	lib/libcollada15dom.so						\
-	'lib/pkgconfig/collada15dom.pc:/Version/s/[^0-9.]//gp'
+  'include/collada-dom*/dae.h'					\
+  'lib/libcollada*dom*.so'					\
+  'lib/pkgconfig/collada*dom*.pc:/Version/s/[^0-9.]//gp'
 
 DEPEND_USE+=		collada-dom
 
