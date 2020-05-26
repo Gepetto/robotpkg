@@ -2,10 +2,9 @@
 # Created:			Justin Carpentier on Tue, 14 Apr 2020
 #
 
-PKGREVISION=		2
 ORG=			stack-of-tasks
 NAME=			tsid
-VERSION=		1.2.3
+VERSION=		1.3.0
 
 CATEGORIES=		optimization
 COMMENT=		Efficient Inverse Dynamics based on Pinocchio
@@ -21,7 +20,7 @@ include ../../devel/boost-libs/depend.mk
 include ../../graphics/urdfdom/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
-include ../../math/eigen-quadprog/depend.mk
+include ../../math/eiquadprog/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
