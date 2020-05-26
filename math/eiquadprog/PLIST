@@ -1,0 +1,15 @@
+@comment Tue Sep 17 13:38:41 CEST 2019
+include/eiquadprog/config.hpp
+include/eiquadprog/deprecated.hpp
+include/eiquadprog/eiquadprog-fast.hpp
+include/eiquadprog/eiquadprog-rt.hpp
+include/eiquadprog/eiquadprog-rt.hxx
+include/eiquadprog/eiquadprog-utils.hxx
+include/eiquadprog/eiquadprog.hpp
+include/eiquadprog/warning.hpp
+lib/cmake/eiquadprog/eiquadprogConfig.cmake
+lib/cmake/eiquadprog/eiquadprogConfigVersion.cmake
+lib/cmake/eiquadprog/eiquadprogTargets-release.cmake
+lib/cmake/eiquadprog/eiquadprogTargets.cmake
+lib/libeiquadprog.so
+lib/pkgconfig/eiquadprog.pc

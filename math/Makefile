@@ -9,6 +9,7 @@ SUBDIR+=	curves
 SUBDIR+=	eigen-quadprog
 SUBDIR+=	eigen2
 SUBDIR+=	eigen3
+SUBDIR+=	eiquadprog
 SUBDIR+=	gbM
 SUBDIR+=	geometric-tools
 SUBDIR+=	hpp-pinocchio

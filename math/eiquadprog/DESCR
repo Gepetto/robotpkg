@@ -1,0 +1,1 @@
+A C++ implementation of the algorithm of Goldfarb and Idnani for the solution of a (convex) Quadratic Programming problem by means of a dual method.
