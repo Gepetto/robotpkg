@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2008-2014,2018 LAAS/CNRS
+# Copyright (c) 2008-2014,2018,2020 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -31,14 +31,17 @@
 #	existence or a string in the form 'file[:sed[:prog[:pkgopt[:comment]]]]'
 #	which tests the existence and the version of the file. If the file
 #	exists, 'prog' is executed with its standard output is passed to the
-#	'sed' program which is expected to return the version of the file.
-#	'prog' might contain a % character which is replaced by the actual path
-#	of the file being tested. If 'pkgopt' is given, 'file' exists, 'prog'
-#	does not fail and 'sed' (if present) returns a non-empty result, the
-#	name part of 'pkgopt' is used as the matched pkgbase and the option part
-#	of 'pkgopt' is added to the computed version of the package. 'comment'
-#	is printed in error logs in lieu of the actual file name currently
-#	checked, with % replaced by the full path to the file.
+#	'sed' program which is expected to return the version of the file. The
+#	program is executed with 'sed -n', so it must explicitly print matched
+#	version numbers with e.g. the 'p' command (this simplifies most of the
+#	programs used in practice). 'prog' might contain a % character which is
+#	replaced by the actual path of the file being tested. If 'pkgopt' is
+#	given, 'file' exists, 'prog' does not fail and 'sed' (if present)
+#	returns a non-empty result, the name part of 'pkgopt' is used as the
+#	matched pkgbase and the option part of 'pkgopt' is added to the
+#	computed version of the package. 'comment' is printed in error logs in
+#	lieu of the actual file name currently checked, with % replaced by the
+#	full path to the file.
 #
 #	prefixsearch.sh exists with a non-zero status if the package could
 #	not be found.
