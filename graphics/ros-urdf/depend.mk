@@ -27,7 +27,7 @@ DEPEND_ABI.ros-urdf.indigo?=	ros-urdf>=1.11<1.12
 DEPEND_ABI.ros-urdf.jade?=	ros-urdf>=1.11<1.12
 DEPEND_ABI.ros-urdf.kinetic?=	ros-urdf>=1.12<1.13
 DEPEND_ABI.ros-urdf.lunar?=	ros-urdf>=1.12<1.13
-DEPEND_ABI.ros-urdf.melodic?=	ros-urdf>=1.13<1.14
+DEPEND_ABI.ros-urdf.melodic?=	ros-urdf>=1.12<1.14
 
 SYSTEM_SEARCH.ros-urdf=\
   'include/urdf/model.h'						\

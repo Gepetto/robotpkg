@@ -27,7 +27,7 @@ DEPEND_ABI.ros-pluginlib.indigo?=	ros-pluginlib>=1.10<1.11
 DEPEND_ABI.ros-pluginlib.jade?=		ros-pluginlib>=1.10<1.11
 DEPEND_ABI.ros-pluginlib.kinetic?=	ros-pluginlib>=1.10<1.12
 DEPEND_ABI.ros-pluginlib.lunar?=	ros-pluginlib>=1.10<1.12
-DEPEND_ABI.ros-pluginlib.melodic?=	ros-pluginlib>=1.12<1.13
+DEPEND_ABI.ros-pluginlib.melodic?=	ros-pluginlib>=1.10<1.13
 
 SYSTEM_SEARCH.ros-pluginlib=\
   'include/pluginlib/class_loader.h'				\
