@@ -43,10 +43,8 @@ ifeq (Ubuntu,${OPSYS})
     PREFER_ALTERNATIVE.ros?=hydro groovy melodic
   else ifneq (,$(filter 14.04,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=indigo jade melodic
-  else ifneq (,$(filter 16.04,${OS_VERSION}))
+  else ifneq (,$(filter 16.04 16.04.pal,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=kinetic lunar melodic
-  else ifneq (,$(filter 16.04.PAL,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=kinetic
   else ifneq (,$(filter 18.04%,${OS_VERSION}))
     PREFER_ALTERNATIVE.ros?=melodic
   else
