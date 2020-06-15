@@ -51,6 +51,7 @@ include/pinocchio/autodiff/casadi/math/quaternion.hpp
 include/pinocchio/autodiff/casadi/spatial/se3-tpl.hpp
 include/pinocchio/autodiff/casadi/utils/static-if.hpp
 include/pinocchio/autodiff/cppad.hpp
+include/pinocchio/autodiff/cppad/math/eigen_plugin.hpp
 include/pinocchio/autodiff/cppad/math/quaternion.hpp
 include/pinocchio/autodiff/cppad/spatial/log.hxx
 include/pinocchio/autodiff/cppad/spatial/se3-tpl.hpp
