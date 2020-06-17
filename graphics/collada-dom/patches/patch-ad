@@ -1,0 +1,22 @@
+ensure that we don't get the ID of 1.5.0 when requiring 1.4.1
+
+--- dom/src/dae/dae.cpp.orig	2012-06-01 08:24:22.000000000 +0200
++++ dom/src/dae/dae.cpp	2020-06-17 16:28:49.566681306 +0200
+@@ -103,7 +103,7 @@
+         database = new daeSTLDatabase(*this);
+         defaultDatabase = true;
+     }
+-    database->setMeta(getMeta(getDomCOLLADAID()));
++    database->setMeta(getMeta(getDomCOLLADAID(COLLADA_VERSION)));
+     return DAE_OK;
+ }
+ 
+@@ -141,7 +141,7 @@
+         }
+     }
+ 
+-    int res = plugin->setMeta(getMeta(getDomCOLLADAID()));
++    int res = plugin->setMeta(getMeta(getDomCOLLADAID(COLLADA_VERSION)));
+     if (res != DAE_OK) {
+         if (defaultPlugin) {
+             defaultPlugin = false;
