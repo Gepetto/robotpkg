@@ -2,7 +2,7 @@
 # Created:			Olivier Stasse on Thu,  3 Nov 2016
 #
 
-VERSION=		1.1.0
+VERSION=		1.2.0
 PKGNAME=		gerard-bauzil-${VERSION}
 DISTNAME=		gerard_bauzil-${VERSION}
 
@@ -13,7 +13,7 @@ MASTER_REPOSITORY=\
 
 MAINTAINER=		ostasse@laas.fr
 COMMENT=		Data files for the LAAS Gerard Bauzil environment
-LICENSE=		gnu-gpl-v3
+LICENSE=		2-clause-bsd
 
 CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 DYNAMIC_PLIST_DIRS+=	share/doc/gerard_bauzil

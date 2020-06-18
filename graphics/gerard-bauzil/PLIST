@@ -1,4 +1,4 @@
-@comment Wed Jun 19 16:10:14 CEST 2019
+@comment Thu Jun 18 09:50:17 CEST 2020
 include/gerard/bauzil/config.hh
 include/gerard/bauzil/deprecated.hh
 include/gerard/bauzil/warning.hh
@@ -38,8 +38,44 @@ share/gerard_bauzil/laas_gerard_bauzil.wrl
 share/gerard_bauzil/launch/cardboard_box.launch
 share/gerard_bauzil/launch/pedestal_table.launch
 share/gerard_bauzil/launch/plank_of_wood.launch
+share/gerard_bauzil/launch/rolling_table.launch
 share/gerard_bauzil/launch/table_140_70_73.launch
 share/gerard_bauzil/longfloor.wrl
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00010.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00011.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00012.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00013.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00020.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00021.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00022.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00023.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00030.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00031.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00032.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00033.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00040.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00041.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00042.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00043.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00050.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00051.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00052.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00053.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00060.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00061.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00062.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00063.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00100.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00101.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00102.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00103.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00104.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00105.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00106.dae
+share/gerard_bauzil/meshes/apriltag_36h11/tag36_11_00107.dae
+share/gerard_bauzil/meshes/support_apriltags_v3.stl
+share/gerard_bauzil/meshes/support_apriltags_v3_meters.stl
+share/gerard_bauzil/meshes/visp/plank_of_wood.cao
 share/gerard_bauzil/package.xml
 share/gerard_bauzil/placard.obj
 share/gerard_bauzil/placard.wrl
@@ -56,6 +92,7 @@ share/gerard_bauzil/srdf/plank_of_wood1.srdf
 share/gerard_bauzil/srdf/plank_of_wood2.srdf
 share/gerard_bauzil/srdf/plank_of_wood3.srdf
 share/gerard_bauzil/srdf/plank_of_wood4.srdf
+share/gerard_bauzil/srdf/rolling_table.srdf
 share/gerard_bauzil/srdf/staircases_koroibot.srdf
 share/gerard_bauzil/srdf/table_140_70_73.srdf
 share/gerard_bauzil/staircases_koroibot.dae
@@ -81,6 +118,7 @@ share/gerard_bauzil/urdf/plank_of_wood1.urdf
 share/gerard_bauzil/urdf/plank_of_wood2.urdf
 share/gerard_bauzil/urdf/plank_of_wood3.urdf
 share/gerard_bauzil/urdf/plank_of_wood4.urdf
+share/gerard_bauzil/urdf/rolling_table.urdf
 share/gerard_bauzil/urdf/staircases_koroibot.urdf
 share/gerard_bauzil/urdf/table_140_70_73.urdf
 share/gerard_bauzil/wall_laas11.dae
@@ -95,3 +133,7 @@ share/gerard_bauzil/wall_laas8.obj
 share/gerard_bauzil/wall_laas9.dae
 share/gerard_bauzil/wall_laas9.obj
 share/gerard_bauzil/wall_laas9.wrl
+share/gerard_bauzil/xacro/apriltag.xacro
+share/gerard_bauzil/xacro/plank_of_wood.xacro
+share/gerard_bauzil/xacro/plank_of_wood_srdf.xacro
+share/gerard_bauzil/xacro/support_apriltags_right_hand.xacro
