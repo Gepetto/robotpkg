@@ -1,6 +1,7 @@
-# robotpkg sysdep/openscenegraph.mk
-# Created:			Florent Lamiraux on Sun, 8 Mar 2015
+# robotpkg depend.mk for:	graphics/openscenegraph
+# Created:			Guilhem Saurel on Mon, 25 May 2020
 #
+
 DEPEND_DEPTH:=			${DEPEND_DEPTH}+
 OPENSCENEGRAPH_DEPEND_MK:=	${OPENSCENEGRAPH_DEPEND_MK}+
 
@@ -10,11 +11,17 @@ endif
 
 ifeq (+,$(OPENSCENEGRAPH_DEPEND_MK)) # -------------------------------------
 
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (CentOS,${OPSYS})
+  PREFER.openscenegraph?=	robotpkg
+else ifeq (NetBSD,${OPSYS})
+  PREFER.openscenegraph?=	robotpkg
+endif
 PREFER.openscenegraph?=		system
 
 DEPEND_USE+=			openscenegraph
-
 DEPEND_ABI.openscenegraph?=	openscenegraph>=3
+DEPEND_DIR.openscenegraph?=	../../graphics/openscenegraph
 
 SYSTEM_SEARCH.openscenegraph=\
   'include/osg/Object'						\

@@ -1,0 +1,13 @@
+Handle stat64 on NetBSD too
+
+--- src/osgDB/FileUtils.cpp~	2020-01-31 12:03:07.000000000 +0100
++++ src/osgDB/FileUtils.cpp	2020-06-22 13:14:31.270396973 +0200
+@@ -80,7 +80,7 @@
+     #if (MAC_OS_X_VERSION_MAX_ALLOWED <= 1040)
+         #define stat64 stat
+     #endif
+-#elif defined(__CYGWIN__) || defined(__FreeBSD__) || defined(__DragonFly__) || \
++#elif defined(__CYGWIN__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__DragonFly__) || \
+       (defined(__hpux) && !defined(_LARGEFILE64_SOURCE))
+     #define stat64 stat
+ #endif

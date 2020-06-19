@@ -25,9 +25,9 @@ CMAKE_ARGS+=\
 DEPEND_ABI.openthreads+= openthreads>=2
 DEPEND_ABI.openscenegraph+= openscenegraph>=3.2
 
+include ../../graphics/openscenegraph/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
 include ../../graphics/urdfdom/depend.mk
-include ../../mk/sysdep/openscenegraph.mk
 include ../../mk/sysdep/openthreads.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/qt.mk

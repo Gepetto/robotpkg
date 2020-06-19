@@ -1,0 +1,26 @@
+Fix collada-dom detection
+
+--- CMakeModules/FindCOLLADA.cmake.orig	2020-01-31 12:03:07.000000000 +0100
++++ CMakeModules/FindCOLLADA.cmake	2020-05-25 14:34:24.246147844 +0200
+@@ -62,6 +62,7 @@
+ 
+ FIND_PATH(COLLADA_INCLUDE_DIR dae.h
+     ${COLLADA_DOM_ROOT}/include
++    $ENV{COLLADA_DIR}/include/collada-dom2.4
+     $ENV{COLLADA_DIR}/include
+     $ENV{COLLADA_DIR}
+     ~/Library/Frameworks
+@@ -312,11 +312,11 @@
+     )
+ 
+ 
+-SET(COLLADA_FOUND "NO")
++SET(COLLADA_FOUND OFF CACHE BOOL "collada-dom has been found")
+ IF(COLLADA_DYNAMIC_LIBRARY OR COLLADA_STATIC_LIBRARY)
+     IF   (COLLADA_INCLUDE_DIR)
+ 
+-        SET(COLLADA_FOUND "YES")
++        SET(COLLADA_FOUND ON CACHE BOOL "collada-dom has been found" FORCE)
+ 
+         FIND_PATH(COLLADA_INCLUDE_DOMANY_DIR 1.4/dom/domAny.h
+             ${COLLADA_INCLUDE_DIR}
