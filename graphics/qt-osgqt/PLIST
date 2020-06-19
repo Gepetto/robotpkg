@@ -1,0 +1,7 @@
+@comment Tue Jun 16 12:53:13 CEST 2020
+include/osgQt/Export
+include/osgQt/GraphicsWindowQt
+include/osgQt/QFontImplementation
+include/osgQt/QGraphicsViewAdapter
+include/osgQt/QWebViewImage
+include/osgQt/QWidgetImage

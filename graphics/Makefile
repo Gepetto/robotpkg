@@ -23,6 +23,7 @@ SUBDIR+=	py-qt-gepetto-viewer-corba
 SUBDIR+=	py-qt-hpp-gepetto-viewer
 SUBDIR+=	py-qt-hpp-gui
 SUBDIR+=	py-qt-hpp-plot
+SUBDIR+=	qt-osgqt
 SUBDIR+=	qt-qgv
 SUBDIR+=	robot-capsule-urdf
 SUBDIR+=	ros-convex-decomposition
