@@ -1,0 +1,16 @@
+fix build on 16.04
+ref https://sourceforge.net/p/pythonqt/discussion/631393/thread/a9358753/
+
+--- extensions/PythonQt_QtAll/PythonQt_QtAll.cpp.orig	2016-07-25 13:06:46.000000000 +0200
++++ extensions/PythonQt_QtAll/PythonQt_QtAll.cpp	2020-06-02 23:08:18.831046707 +0200
+@@ -66,10 +66,6 @@
+     PythonQt_init_QtOpenGL(0);
+     PythonQt_init_QtXmlPatterns(0);
+     PythonQt_init_QtMultimedia(0);
+-    PythonQt_init_QtQml(0);
+-    PythonQt_init_QtQuick(0);
+     PythonQt_init_QtUiTools(0);
+   };
+ };
+-
+-

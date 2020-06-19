@@ -18,6 +18,7 @@ SUBDIR+=	openscenegraph
 SUBDIR+=	openvrml-libs
 SUBDIR+=	pqp
 SUBDIR+=	primitiveShapes-libs
+SUBDIR+=	py-pythonqt
 SUBDIR+=	py-qt-gepetto-viewer
 SUBDIR+=	py-qt-gepetto-viewer-corba
 SUBDIR+=	py-qt-hpp-gepetto-viewer
