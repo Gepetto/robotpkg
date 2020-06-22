@@ -22,13 +22,10 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 CMAKE_ARGS+=\
   -DPROJECT_USE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),ON,OFF)
 
-DEPEND_ABI.openthreads+= openthreads>=2
-DEPEND_ABI.openscenegraph+= openscenegraph>=3.2
-
 include ../../graphics/openscenegraph/depend.mk
+include ../../graphics/qt-osgqt/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
 include ../../graphics/urdfdom/depend.mk
-include ../../mk/sysdep/openthreads.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/qt.mk
 include ../../mk/language/c.mk

@@ -30,7 +30,6 @@ include ../../graphics/qt-osgqt/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/py-omniORBpy/depend.mk
-include ../../mk/sysdep/openthreads.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/qt.mk
 include ../../mk/language/c.mk
