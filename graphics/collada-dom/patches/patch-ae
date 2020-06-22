@@ -1,0 +1,14 @@
+Make sure MINIZIP_INCLUDE_DIR is first, otherwise a system zip.h might be
+included, and that would probably not be minizip.
+
+--- CMakeLists.txt~	2012-06-01 13:52:21.000000000 +0200
++++ CMakeLists.txt	2020-06-22 12:38:09.464024217 +0200
+@@ -244,7 +244,7 @@
+ 
+ # declare minizip/zlib before libxml2! (for some reason the precompiled libxml2 libraries have zlib.h/zconf.h)
+ include_directories(BEFORE ${MINIZIP_INCLUDE_DIR})
+-include_directories(BEFORE ${libpcrecpp_INCLUDE_DIRS})
++include_directories(${libpcrecpp_INCLUDE_DIRS})
+ 
+ set(COLLADA_DOM_LINK_DIRS ${COLLADA_DOM_LINK_DIRS} ${libpcrecpp_LIBRARY_DIRS})
+ link_directories(${COLLADA_DOM_LINK_DIRS})
