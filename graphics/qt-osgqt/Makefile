@@ -21,8 +21,10 @@ CMAKE_ARGS+=		-DDESIRED_QT_VERSION=${QT_SELECT}
 CMAKE_ARGS+=		-DLIB_POSTFIX=""
 CMAKE_PREFIX_PATH=	${PREFIX.openscenegraph}
 
-PLIST_SRC+=		${PKGDIR}/PLIST
-PLIST_SRC+=		${PKGDIR}/PLIST.${PKG_ALTERNATIVE.qt}
+PLIST_QTSUFFX=		Qt$(subst 4,,${QT_SELECT})
+PLIST_SUBST+=		PLIST_QTSUFFX=${PLIST_QTSUFFX}
+
+DEPEND_ABI.openscenegraph=	openscenegraph>=3.5.6
 
 include ../../graphics/openscenegraph/depend.mk
 include ../../mk/sysdep/qt.mk

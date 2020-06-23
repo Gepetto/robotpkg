@@ -5,3 +5,7 @@ include/osgQt/QFontImplementation
 include/osgQt/QGraphicsViewAdapter
 include/osgQt/QWebViewImage
 include/osgQt/QWidgetImage
+lib/libosg${QTSUFFX}.so
+lib/libosg${QTSUFFX}.so.145
+lib/libosg${QTSUFFX}.so.${PKGVERSION}
+lib/pkgconfig/openscenegraph-osg${QTSUFFX}.pc

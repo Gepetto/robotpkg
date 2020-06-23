@@ -1,0 +1,14 @@
+Fix installed version
+
+--- CMakeLists.txt~	2017-11-20 16:47:27.000000000 +0100
++++ CMakeLists.txt	2020-06-23 11:06:47.884417791 +0200
+@@ -128,6 +128,9 @@
+ PROJECT(osgQt)
+ 
+ FIND_PACKAGE(OpenSceneGraph 3.5.6 REQUIRED osgDB osgGA osgUtil osgText osgViewer osgWidget)
++# XXX overwrite OPENSCENEGRAPH_VERSION now that it's been used to find osg,
++# because OPENSCENEGRAPH_VERSION is used to version this package as well...
++SET(OPENSCENEGRAPH_VERSION 3.5.7)
+ SET(OPENSCENEGRAPH_SOVERSION 145)
+ 
+ SET(OSG_PLUGINS osgPlugins-${OPENSCENEGRAPH_VERSION})
