@@ -1,0 +1,12 @@
+ntohl(3) header
+
+--- src/osgPlugins/osc/ip/posix/NetworkingUtils.cpp~	2020-01-31 12:03:07.000000000 +0100
++++ src/osgPlugins/osc/ip/posix/NetworkingUtils.cpp	2020-06-23 10:38:01.830995891 +0200
+@@ -29,6 +29,7 @@
+ */
+ #include "ip/NetworkingUtils.h"
+ 
++#include <arpa/inet.h>
+ #include <netdb.h>
+ #include <sys/socket.h>
+ #include <netinet/in.h>
