@@ -11,19 +11,9 @@ endif
 
 ifeq (+,$(OSGQT_DEPEND_MK)) # ----------------------------------------------
 
-include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (CentOS,${OPSYS})
-  PREFER.qt-osgqt?=	robotpkg
-else ifeq (NetBSD,${OPSYS})
-  PREFER.qt-osgqt?=	robotpkg
-else ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 1%,${OS_VERSION})) # Ubuntu < 20 (until year 2100?)
-    PREFER.qt-osgqt?=	system
-  else
-    PREFER.qt-osgqt?=	robotpkg
-  endif
-endif
-PREFER.qt-osgqt?=	system
+# because by default osg is from robotpkg, be consistent here, otherwise
+# diffent osg version will be mixed.
+PREFER.qt-osgqt?=	robotpkg
 
 DEPEND_USE+=		qt-osgqt
 DEPEND_ABI.qt-osgqt?=	${PKGTAG.qt-}osgqt>=3
