@@ -20,7 +20,7 @@ SYSTEM_SEARCH.collada-dom=\
 
 DEPEND_USE+=		collada-dom
 
-DEPEND_ABI.collada-dom?=collada-dom >=2.3.1
+DEPEND_ABI.collada-dom?=collada-dom >=2.4
 DEPEND_DIR.collada-dom?=../../graphics/collada-dom
 
 endif # COLLADADOM_DEPEND_MK -----------------------------------------------
