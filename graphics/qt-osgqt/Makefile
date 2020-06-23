@@ -26,8 +26,15 @@ PLIST_SUBST+=		PLIST_QTSUFFX=${PLIST_QTSUFFX}
 
 DEPEND_ABI.openscenegraph=	openscenegraph>=3.5.6
 
-include ../../graphics/openscenegraph/depend.mk
+# Qt4 requires more tweaks
 include ../../mk/sysdep/qt.mk
+define PKG_ALTERNATIVE_SET.qt4 +=
+
+  include ../../mk/sysdep/qmake.mk
+  CMAKE_ARGS+=		-DQT_QMAKE_EXECUTABLE=${QMAKE}
+endef
+
+include ../../graphics/openscenegraph/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk

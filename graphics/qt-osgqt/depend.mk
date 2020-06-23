@@ -36,7 +36,7 @@ _osgqt=Qt$(subst 4,,${QT_SELECT})
 SYSTEM_SEARCH.qt-osgqt=							\
   'include/osgQt/Export'						\
   'lib/libosg${_osgqt}.so'						\
-  'lib/pkgconfig/openscenegraph-osgQt${_osgqt}.pc:/Version/s/[^0-9.]//gp'
+  'lib/pkgconfig/openscenegraph-osg${_osgqt}.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.openscenegraph-qt=\
   libopenscenegraph-dev for ${PKG_ALTERNATIVE.qt}
