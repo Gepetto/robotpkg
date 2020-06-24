@@ -18,4 +18,5 @@ PYTHON_PLIST_COMPILE_PATTERN=/genpy[\/].*[.]py$$/
 
 include ../../devel/ros-catkin/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
+include ../../mk/sysdep/py-yaml.mk
 include ../../mk/robotpkg.mk
