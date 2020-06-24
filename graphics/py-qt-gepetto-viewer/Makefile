@@ -22,12 +22,19 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 CMAKE_ARGS+=\
   -DPROJECT_USE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),ON,OFF)
 
+# Qt4 requires some tweaks
+include ../../mk/sysdep/qt.mk
+define PKG_ALTERNATIVE_SET.qt4 +=
+
+  include ../../mk/sysdep/qmake.mk
+  CMAKE_ARGS+=		-DQT_QMAKE_EXECUTABLE=${QMAKE}
+endef
+
 include ../../graphics/openscenegraph/depend.mk
 include ../../graphics/qt-osgqt/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
 include ../../graphics/urdfdom/depend.mk
 include ../../mk/sysdep/python.mk
-include ../../mk/sysdep/qt.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
