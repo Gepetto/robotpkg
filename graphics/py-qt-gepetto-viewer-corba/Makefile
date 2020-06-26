@@ -24,14 +24,25 @@ CONFLICTS+=		py[0-9][0-9]-qt[0-9]-gepetto-viewer-corba-[0-9]*
 
 DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui
 
+# Qt4 requires some tweaks
+include ../../mk/sysdep/qt.mk
+define PKG_ALTERNATIVE_SET.qt4 +=
+
+  include ../../mk/sysdep/qmake.mk
+  CMAKE_ARGS+=		-DQT_QMAKE_EXECUTABLE=${QMAKE}
+endef
+
+# Mesa headers path
+INCLUDE_DIRS.mesa+=	include
+
 include ../../graphics/openscenegraph/depend.mk
 include ../../graphics/py-qt-gepetto-viewer/depend.mk
 include ../../graphics/qt-osgqt/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/py-omniORBpy/depend.mk
+include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/python.mk
-include ../../mk/sysdep/qt.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
