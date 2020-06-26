@@ -14,15 +14,15 @@ PREFER.mesa?=		system
 
 DEPEND_USE+=		mesa
 
-DEPEND_ABI.mesa?=	mesa>=6.5
+DEPEND_ABI.mesa?=	mesa
 
 SYSTEM_SEARCH.mesa=	\
-	'include/GL/gl.h:/*.*Version/s/[^.0-9]//gp'			\
-	'lib/libGL.*'							\
-	'lib/pkgconfig/gl.pc:/Version/s/[^.0-9]//gp'
+  'include/GL/gl.h'				\
+  'lib/libGL.so'				\
+  'lib/pkgconfig/gl.pc'
 
 SYSTEM_PKG.Fedora.mesa=	mesa-libGL-devel
-SYSTEM_PKG.Debian.mesa=	libgl1-mesa-dev
+SYSTEM_PKG.Debian.mesa=	libgl-dev
 SYSTEM_PKG.NetBSD.mesa=	graphics/MesaLib
 SYSTEM_PKG.Gentoo.mesa=	media-libs/mesa
 
