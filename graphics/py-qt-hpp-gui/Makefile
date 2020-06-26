@@ -19,12 +19,19 @@ include ../../meta-pkgs/hpp/Makefile.common
 CMAKE_ARGS+=\
   -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
 
+# Qt4 requires qmake
+include ../../mk/sysdep/qt.mk
+define PKG_ALTERNATIVE_SET.qt4 +=
+
+  include ../../mk/sysdep/qmake.mk
+  CMAKE_ARGS+=		-DQT_QMAKE_EXECUTABLE=${QMAKE}
+endef
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../graphics/py-qt-gepetto-viewer-corba/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/py-hpp-manipulation-corba/depend.mk
-include ../../mk/sysdep/qt.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
