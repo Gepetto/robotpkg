@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer
+PKGREVISION=		1
 
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
