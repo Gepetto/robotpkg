@@ -5,8 +5,9 @@
    # make sure that you have installed a matching python-dev package.
    
 -  unix:LIBS += $$system(python$${PYTHON_VERSION}-config --libs)
-+  system(python$${PYTHON_VERSION}-config --embed --libs 2>/dev/null) {
-+    unix:LIBS += $$system(python$${PYTHON_VERSION}-config --embed --libs)
-+  } else: unix:LIBS += $$system(python$${PYTHON_VERSION}-config --libs)
-   unix:QMAKE_CXXFLAGS += $$system(python$${PYTHON_VERSION}-config --includes)
+-  unix:QMAKE_CXXFLAGS += $$system(python$${PYTHON_VERSION}-config --includes)
++  system(@PYTHON@-config --embed --libs 2>/dev/null) {
++    unix:LIBS += $$system(@PYTHON@-config --embed --libs)
++  } else: unix:LIBS += $$system(@PYTHON@-config --libs)
++  unix:QMAKE_CXXFLAGS += $$system(@PYTHON@-config --includes)
  }

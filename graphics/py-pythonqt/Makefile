@@ -32,7 +32,8 @@ SUBST_STAGE.py-ver=	pre-configure
 SUBST_MESSAGE.py-ver=	fix python version
 SUBST_FILES.py-ver=	build/python.prf
 SUBST_SED.py-ver=\
-  -e 's/PYTHON_VERSION=2.7/PYTHON_VERSION=${PYTHON_VERSION}/'
+  -e 's/PYTHON_VERSION=2.7/PYTHON_VERSION=${PYTHON_VERSION}/'	\
+  -e 's%@PYTHON@%${PYTHON}%'
 
 PYTHON_SELF_CONFLICT=	yes
 
