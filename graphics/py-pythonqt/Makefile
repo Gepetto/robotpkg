@@ -15,6 +15,10 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${NAME}/}
 MASTER_REPOSITORY=	git ${HOMEPAGE}.git
 EXTRACT_SUFX=		.zip
 
+# avoid `-a' that does not reliably convert CR+LF - patch files assume no
+# conversion.
+EXTRACT_OPTS_ZIP=	-o
+
 CATEGORIES=		graphics
 COMMENT=		Dynamic Python binding for Qt Applications
 LICENSE=		gnu-lgpl-v2.1
