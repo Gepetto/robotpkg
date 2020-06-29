@@ -6,7 +6,7 @@ HPP_PACKAGE=		gepetto-viewer-corba
 HPP_COMMENT=		Corba server for gepetto-viewer
 HPP_VERSION=		5.4.0
 HPP_NAMESPACE=		gepetto
-PKGREVISION=		1
+PKGREVISION=		2
 
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
@@ -15,6 +15,8 @@ LICENSE=		2-clause-bsd
 
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..
+
+CMAKE_ARGS+=		-DOMNIIDL=${PREFIX.omniORB}/bin/omniidl
 
 include ../../meta-pkgs/hpp/Makefile.common
 
