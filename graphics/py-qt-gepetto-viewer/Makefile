@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer
-PKGREVISION=		1
+PKGREVISION=		2
 
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
@@ -30,6 +30,14 @@ define PKG_ALTERNATIVE_SET.qt4 +=
   include ../../mk/sysdep/qmake.mk
   CMAKE_ARGS+=		-DQT_QMAKE_EXECUTABLE=${QMAKE}
 endef
+
+# For Qt5 we can enable py-PythonQt
+define PKG_ALTERNATIVE_SET.qt5 +=
+
+  include ../../graphics/py-pythonqt/depend.mk
+  CMAKE_ARGS+=		-DGEPETTO_GUI_HAS_PYTHONQT=ON
+endef
+
 
 include ../../graphics/openscenegraph/depend.mk
 include ../../graphics/qt-osgqt/depend.mk
