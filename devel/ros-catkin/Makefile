@@ -54,5 +54,6 @@ include ../../mk/sysdep/googletest.mk
 include ../../mk/sysdep/py-argparse.mk
 include ../../mk/sysdep/py-empy.mk
 include ../../mk/sysdep/py-nose.mk
+include ../../mk/sysdep/py-pyparsing.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
