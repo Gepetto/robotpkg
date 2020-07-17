@@ -21,6 +21,8 @@ SYSTEM_SEARCH.genom3-pocolibs=\
 DEPEND_ABI.genom3-pocolibs?=	genom3-pocolibs>=1.13
 DEPEND_DIR.genom3-pocolibs?=	../../architecture/genom3-pocolibs
 
+include ../../mk/language/c11.mk
+
 endif # GENOM3_POCOLIBS_DEPEND_MK ------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
