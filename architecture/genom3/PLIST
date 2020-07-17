@@ -1,6 +1,7 @@
-@comment Wed Feb 26 11:54:58 CET 2020
+@comment Fri Jul 17 12:04:07 CEST 2020
 bin/genom${PKGVERSION}
 bin/genom3
+bin/profundis
 include/genom3/c++/event.h
 include/genom3/c++/idloptional.h
 include/genom3/c++/idlsequence.h
@@ -130,6 +131,8 @@ share/genom/templates/common/c-client.pc.in
 share/genom/templates/common/client.h
 share/genom/templates/common/genom.gen
 share/genom/templates/common/json-types.h
+share/genom/templates/common/prof.c
+share/genom/templates/common/prof.h
 share/genom/templates/example/example.Makefile.am
 share/genom/templates/example/example.c
 share/genom/templates/example/example.configure.ac
