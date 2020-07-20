@@ -14,7 +14,7 @@ handle name conflicts.
    ENDFOREACH(header)
  ENDMACRO(SYMLINK_AND_INSTALL_HEADERS HEADERS SUBPATH)
  
-@@ -100,11 +97,9 @@
+@@ -78,11 +75,9 @@
  MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/serialization")
  MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/algorithm")
  MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/utils")
@@ -26,7 +26,7 @@ handle name conflicts.
  
  # --- COMPILE WRAPPER
  MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/bindings/python/${PROJECT_NAME}")
-@@ -222,8 +217,4 @@
+@@ -205,8 +200,4 @@
       "${CMAKE_CURRENT_SOURCE_DIR}/pinocchiopy.pc.cmake"
       "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc")
  

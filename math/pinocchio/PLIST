@@ -25,6 +25,8 @@ include/pinocchio/algorithm/default-check.hpp
 include/pinocchio/algorithm/dynamics.hpp
 include/pinocchio/algorithm/energy.hpp
 include/pinocchio/algorithm/energy.hxx
+include/pinocchio/algorithm/frames-derivatives.hpp
+include/pinocchio/algorithm/frames-derivatives.hxx
 include/pinocchio/algorithm/frames.hpp
 include/pinocchio/algorithm/frames.hxx
 include/pinocchio/algorithm/geometry.hpp
@@ -69,6 +71,7 @@ include/pinocchio/bindings/python/multibody/joint/joint.hpp
 include/pinocchio/bindings/python/multibody/joint/joints-datas.hpp
 include/pinocchio/bindings/python/multibody/joint/joints-models.hpp
 include/pinocchio/bindings/python/multibody/joint/joints-variant.hpp
+include/pinocchio/bindings/python/multibody/liegroups.hpp
 include/pinocchio/bindings/python/multibody/model.hpp
 include/pinocchio/bindings/python/parsers/python.hpp
 include/pinocchio/bindings/python/parsers/sample-models.hpp
@@ -161,6 +164,7 @@ include/pinocchio/multibody/joint/joint-spherical.hpp
 include/pinocchio/multibody/joint/joint-translation.hpp
 include/pinocchio/multibody/joint/joints.hpp
 include/pinocchio/multibody/liegroup/cartesian-product-variant.hpp
+include/pinocchio/multibody/liegroup/cartesian-product-variant.hxx
 include/pinocchio/multibody/liegroup/cartesian-product.hpp
 include/pinocchio/multibody/liegroup/fwd.hpp
 include/pinocchio/multibody/liegroup/liegroup-algo.hpp
@@ -171,7 +175,6 @@ include/pinocchio/multibody/liegroup/liegroup-collection.hpp
 include/pinocchio/multibody/liegroup/liegroup-generic.hpp
 include/pinocchio/multibody/liegroup/liegroup-variant-visitors.hpp
 include/pinocchio/multibody/liegroup/liegroup-variant-visitors.hxx
-include/pinocchio/multibody/liegroup/liegroup-variant.hpp
 include/pinocchio/multibody/liegroup/liegroup.hpp
 include/pinocchio/multibody/liegroup/special-euclidean.hpp
 include/pinocchio/multibody/liegroup/special-orthogonal.hpp

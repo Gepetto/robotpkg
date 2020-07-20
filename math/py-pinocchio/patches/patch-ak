@@ -10,7 +10,7 @@ Don't install files already installed by pinocchio
  SET(PROJECT_USE_KEYWORD_LINK_LIBRARIES TRUE)
  
  # Disable -Werror on Unix for now.
-@@ -245,6 +244,3 @@
+@@ -282,6 +281,3 @@
  FOREACH(cflags ${CFLAGS_DEPENDENCIES})
    PKG_CONFIG_APPEND_CFLAGS(${cflags})
  ENDFOREACH(cflags ${CFLAGS_DEPENDENCIES})
