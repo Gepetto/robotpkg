@@ -3,8 +3,8 @@ include/curves/MathDefs.h
 include/curves/bernstein.h
 include/curves/bezier_curve.h
 include/curves/config.hh
+include/curves/constant_curve.h
 include/curves/cubic_hermite_spline.h
-include/curves/cubic_spline.h
 include/curves/curve_abc.h
 include/curves/curve_constraint.h
 include/curves/curve_conversion.h
@@ -22,12 +22,12 @@ include/curves/piecewise_curve.h
 include/curves/polynomial.h
 include/curves/python/python_definitions.h
 include/curves/quadratic_variable.h
-include/curves/quintic_spline.h
 include/curves/se3_curve.h
 include/curves/serialization/archive.hpp
 include/curves/serialization/curves.hpp
 include/curves/serialization/eigen-matrix.hpp
 include/curves/serialization/registeration.hpp
+include/curves/sinusoidal.h
 include/curves/so3_linear.h
 include/curves/warning.hh
 lib/cmake/curves/curvesConfig.cmake

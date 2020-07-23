@@ -2,10 +2,9 @@
 # Created:			Guilhem Saurel on Tue, 14 Apr 2020
 #
 
-PKGREVISION=		1
 ORG=			loco-3d
 NAME=			curves
-VERSION=		0.4.1
+VERSION=		0.5.0
 
 CATEGORIES=		math
 COMMENT=		Library for creating curves
