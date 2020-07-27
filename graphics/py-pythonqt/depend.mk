@@ -29,7 +29,7 @@ SYSTEM_SEARCH.py-pythonqt=						\
 
 DEPEND_USE+=			py-pythonqt
 
-DEPEND_ABI.py-pythonqt?=	${PKGTAG.python}-PythonQt>=3.2
+DEPEND_ABI.py-pythonqt?=	${PKGTAG.python}-pythonqt>=3.2
 DEPEND_DIR.py-pythonqt?=	../../graphics/py-pythonqt
 
 SYSTEM_PKG.Arch.py-pythonqt=	pythonqt (AUR)
