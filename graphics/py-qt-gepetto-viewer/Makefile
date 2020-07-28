@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer
-PKGREVISION=		2
+PKGREVISION=		3
 
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
@@ -36,6 +36,8 @@ define PKG_ALTERNATIVE_SET.qt5 +=
 
   include ../../graphics/py-pythonqt/depend.mk
   CMAKE_ARGS+=		-DGEPETTO_GUI_HAS_PYTHONQT=ON
+  PLIST_SRC+=		${PKGDIR}/PLIST.qt5
+  DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui/pyplugin.conf.d
 endef
 
 
