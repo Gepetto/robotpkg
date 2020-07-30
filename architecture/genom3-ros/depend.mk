@@ -21,6 +21,8 @@ SYSTEM_SEARCH.genom3-ros=\
 DEPEND_ABI.genom3-ros?=	genom3-ros>=1.24
 DEPEND_DIR.genom3-ros?=	../../architecture/genom3-ros
 
+include ../../mk/language/c11.mk
+
 endif # GENOM3_ROS_DEPEND_MK -----------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
