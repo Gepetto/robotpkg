@@ -19,6 +19,7 @@ DEPEND_ABI.eigen-quadprog?=	eigen-quadprog>=1.0.0
 DEPEND_DIR.eigen-quadprog?=	../../math/eigen-quadprog
 
 SYSTEM_SEARCH.eigen-quadprog=\
+  'lib/cmake/eigen-quadprog/eigen-quadprogConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
   'lib/libeigen-quadprog.so'
 
 endif # EIGEN_QUADPROG_DEPEND_MK -------------------------------------------

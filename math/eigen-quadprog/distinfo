@@ -1,4 +1,3 @@
-SHA1 (eigen-quadprog-1.0.0.tar.gz) = 923955f38b7d971732b8daaa34345d93d08b0cf9
-RMD160 (eigen-quadprog-1.0.0.tar.gz) = 758fd158b8099080650e7d99021ab4e2d3641878
-Size (eigen-quadprog-1.0.0.tar.gz) = 1734333 bytes
-SHA1 (patch-aa) = 73c84edd0be424cb31355f323661a03bc559facc
+SHA1 (eigen-quadprog-v1.0.1.tar.gz) = a946c4cc4004492024bc810df4cf131299e6953d
+RMD160 (eigen-quadprog-v1.0.1.tar.gz) = b617971d2274fbe4ea909e29a7fc61a22d619222
+Size (eigen-quadprog-v1.0.1.tar.gz) = 827304 bytes

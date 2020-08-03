@@ -1,9 +1,14 @@
 @comment Wed Mar 1 18:49:23 CET 2017
-lib/libeigen-quadprog.so
-lib/pkgconfig/eigen-quadprog.pc
-include/eigen-quadprog/eigen_quadprog_api.h
 include/eigen-quadprog/QuadProg.h
-include/eigen/quadprog/config.h
+include/eigen-quadprog/eigen_quadprog_api.h
 include/eigen/quadprog/config.hh
 include/eigen/quadprog/deprecated.hh
 include/eigen/quadprog/warning.hh
+lib/cmake/eigen-quadprog/eigen-quadprogConfig.cmake
+lib/cmake/eigen-quadprog/eigen-quadprogConfigVersion.cmake
+lib/cmake/eigen-quadprog/eigen-quadprogTargets-release.cmake
+lib/cmake/eigen-quadprog/eigen-quadprogTargets.cmake
+lib/libeigen-quadprog.so
+lib/libeigen-quadprog.so.1
+lib/libeigen-quadprog.so.1.0.1
+lib/pkgconfig/eigen-quadprog.pc
