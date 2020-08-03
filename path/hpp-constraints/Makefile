@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-constraints
+PKGREVISION=		1
 
 CATEGORIES=		path
 HPP_COMMENT=		Define non-linear constraints on robot configurations
