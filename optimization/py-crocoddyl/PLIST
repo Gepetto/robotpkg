@@ -54,6 +54,7 @@ include/crocoddyl/core/state-base.hxx
 include/crocoddyl/core/states/euclidean.hpp
 include/crocoddyl/core/states/euclidean.hxx
 include/crocoddyl/core/utils/callbacks.hpp
+include/crocoddyl/core/utils/deprecate.hpp
 include/crocoddyl/core/utils/exception.hpp
 include/crocoddyl/core/utils/math.hpp
 include/crocoddyl/core/utils/motion-display.hpp
@@ -86,10 +87,14 @@ include/crocoddyl/multibody/costs/centroidal-momentum.hpp
 include/crocoddyl/multibody/costs/centroidal-momentum.hxx
 include/crocoddyl/multibody/costs/com-position.hpp
 include/crocoddyl/multibody/costs/com-position.hxx
+include/crocoddyl/multibody/costs/contact-cop-position.hpp
+include/crocoddyl/multibody/costs/contact-cop-position.hxx
 include/crocoddyl/multibody/costs/contact-force.hpp
 include/crocoddyl/multibody/costs/contact-force.hxx
 include/crocoddyl/multibody/costs/contact-friction-cone.hpp
 include/crocoddyl/multibody/costs/contact-friction-cone.hxx
+include/crocoddyl/multibody/costs/contact-impulse.hpp
+include/crocoddyl/multibody/costs/contact-impulse.hxx
 include/crocoddyl/multibody/costs/control.hpp
 include/crocoddyl/multibody/costs/control.hxx
 include/crocoddyl/multibody/costs/cost-sum.hpp
