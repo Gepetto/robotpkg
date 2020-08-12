@@ -28,6 +28,16 @@ MAKE_JOBS_SAFE=		no
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 
+# On Debian 9, the combination of GCC version / default args
+# and Boost version raises:
+# error: unable to find numeric literal operator 'operator""Q'
+include ../../mk/robotpkg.prefs.mk # OPSYS / OS_VERSION
+ifeq (Debian,${OPSYS})
+  ifeq (9,${OS_VERSION})
+    CXXFLAGS+=		-DBOOST_MATH_DISABLE_FLOAT128
+  endif
+endif
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../math/pinocchio/depend.mk
