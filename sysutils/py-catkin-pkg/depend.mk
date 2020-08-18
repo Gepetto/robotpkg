@@ -24,7 +24,7 @@ SYSTEM_SEARCH.py-catkin-pkg=\
   'bin/{,python${PYTHON_MAJOR}-,${PKGTAG.python-}}catkin_create_pkg'	\
   '${PYTHON_SYSLIBSEARCH}/catkin_pkg/__init__.py:/__version__/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Ubuntu.py-catkin-pkg=python-catkin-pkg
+SYSTEM_PKG.Ubuntu.py-catkin-pkg=python$(subst 2,,${PYTHON_MAJOR})-catkin-pkg
 
 include ../../mk/sysdep/py-argparse.mk
 include ../../mk/sysdep/py-pyparsing.mk
