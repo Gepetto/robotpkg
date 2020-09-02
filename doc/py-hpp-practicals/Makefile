@@ -4,6 +4,9 @@
 
 HPP_PACKAGE=		hpp_practicals
 HPP_COMMENT=		Practicals for hpp software
+PKGREVISION=		1
+
+PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=		doc
 
