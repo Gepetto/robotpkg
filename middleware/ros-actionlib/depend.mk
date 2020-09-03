@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-actionlib?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-actionlib
 ROS_DEPEND_USE+=		ros-actionlib
 
-DEPEND_ABI.ros-actionlib?=	ros-actionlib>=1.9
+DEPEND_ABI.ros-actionlib?=	ros-actionlib>=1.13<1.14
 DEPEND_DIR.ros-actionlib=	../../middleware/ros-actionlib
 
 DEPEND_ABI.ros-actionlib.groovy+=	ros-actionlib>=1.9<1.10

@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-geometric-shapes?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-geometric-shapes
 ROS_DEPEND_USE+=		ros-geometric-shapes
 
-DEPEND_ABI.ros-geometric-shapes?=	ros-geometric-shapes>=0.2
+DEPEND_ABI.ros-geometric-shapes?=	ros-geometric-shapes>=0.7<0.8
 DEPEND_DIR.ros-geometric-shapes?=	../../graphics/ros-geometric-shapes
 
 DEPEND_ABI.ros-geometric-shapes.groovy?=ros-geometric-shapes>=0.2<0.3

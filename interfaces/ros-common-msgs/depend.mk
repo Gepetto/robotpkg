@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-common-msgs?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-common-msgs
 ROS_DEPEND_USE+=		ros-common-msgs
 
-DEPEND_ABI.ros-common-msgs?=	ros-common-msgs>=1.9
+DEPEND_ABI.ros-common-msgs?=	ros-common-msgs>=1.13<1.14
 DEPEND_DIR.ros-common-msgs?=	../../interfaces/ros-common-msgs
 
 DEPEND_ABI.ros-common-msgs.groovy?=	ros-common-msgs>=1.9<1.10

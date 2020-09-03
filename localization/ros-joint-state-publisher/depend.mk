@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-joint-state-publisher?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-joint-state-publisher
 ROS_DEPEND_USE+=		ros-joint-state-publisher
 
-DEPEND_ABI.ros-joint-state-publisher?=	ros-joint-state-publisher>=1.9
+DEPEND_ABI.ros-joint-state-publisher?=	ros-joint-state-publisher>=1.15<1.16
 DEPEND_DIR.ros-joint-state-publisher?=\
   ../../localization/ros-joint-state-publisher
 

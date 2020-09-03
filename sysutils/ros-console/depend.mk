@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-console?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-console
 ROS_DEPEND_USE+=		ros-console
 
-DEPEND_ABI.ros-console?=	ros-console>=1.9
+DEPEND_ABI.ros-console?=	ros-console>=1.14<1.15
 DEPEND_DIR.ros-console?=	../../sysutils/ros-console
 
 DEPEND_ABI.ros-console.groovy?=	ros-console>=1.9<1.10

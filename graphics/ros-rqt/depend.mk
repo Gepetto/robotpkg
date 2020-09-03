@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-rqt?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=		ros-rqt
 ROS_DEPEND_USE+=	ros-rqt
 
-DEPEND_ABI.ros-rqt?=	ros-rqt>=0.2
+DEPEND_ABI.ros-rqt?=	ros-rqt>=0.5<0.6
 DEPEND_DIR.ros-rqt?=	../../graphics/ros-rqt
 
 DEPEND_ABI.ros-rqt.groovy?=	ros-rqt>=0.2<0.3

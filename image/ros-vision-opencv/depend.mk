@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-vision-opencv?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-vision-opencv
 ROS_DEPEND_USE+=		ros-vision-opencv
 
-DEPEND_ABI.ros-vision-opencv?=	ros-vision-opencv>=1.10
+DEPEND_ABI.ros-vision-opencv?=	ros-vision-opencv>=1.15<1.16
 DEPEND_DIR.ros-vision-opencv?=	../../image/ros-vision-opencv
 
 DEPEND_ABI.ros-vision-opencv.groovy?=	ros-vision-opencv>=1.10<1.11

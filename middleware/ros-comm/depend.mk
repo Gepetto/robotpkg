@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-comm?=${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=		ros-comm
 ROS_DEPEND_USE+=	ros-comm
 
-DEPEND_ABI.ros-comm?=	ros-comm>=1.9
+DEPEND_ABI.ros-comm?=	ros-comm>=1.15<1.16
 DEPEND_DIR.ros-comm?=	../../middleware/ros-comm
 
 DEPEND_ABI.ros-comm.groovy?=	ros-comm>=1.9<1.10

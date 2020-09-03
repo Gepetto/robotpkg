@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-filters?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-filters
 ROS_DEPEND_USE+=		ros-filters
 
-DEPEND_ABI.ros-filters?=	ros-filters>=1.6
+DEPEND_ABI.ros-filters?=	ros-filters>=1.9<1.10
 DEPEND_DIR.ros-filters=		../../devel/ros-filters
 
 DEPEND_ABI.ros-filters.groovy+=	ros-filters>=1.6<=1.7.2

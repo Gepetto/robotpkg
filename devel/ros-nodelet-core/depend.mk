@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-nodelet-core?=${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-nodelet-core
 ROS_DEPEND_USE+=		ros-nodelet-core
 
-DEPEND_ABI.ros-nodelet-core?=	ros-nodelet-core>=1.7
+DEPEND_ABI.ros-nodelet-core?=	ros-nodelet-core>=1.10<1.11
 DEPEND_DIR.ros-nodelet-core?=	../../devel/ros-nodelet-core
 
 DEPEND_ABI.ros-nodelet-core.groovy?=	ros-nodelet-core>=1.7<1.8

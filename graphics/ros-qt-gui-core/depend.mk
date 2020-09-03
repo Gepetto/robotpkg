@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-qt-gui-core?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-qt-gui-core
 ROS_DEPEND_USE+=		ros-qt-gui-core
 
-DEPEND_ABI.ros-qt-gui-core?=	ros-qt-gui-core>=0.2
+DEPEND_ABI.ros-qt-gui-core?=	ros-qt-gui-core>=0.4<0.5
 DEPEND_DIR.ros-qt-gui-core?=	../../graphics/ros-qt-gui-core
 
 DEPEND_ABI.ros-qt-gui-core.groovy?=	ros-qt-gui-core>=0.2<0.3

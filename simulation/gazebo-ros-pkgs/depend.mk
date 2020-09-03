@@ -20,7 +20,7 @@ ROS_DEPEND_USE+=		gazebo-ros-pkgs
 
 DEPEND_ABI.ros+=                ros>=hydro
 
-DEPEND_ABI.gazebo-ros-pkgs?=	gazebo-ros-pkgs>=2.3
+DEPEND_ABI.gazebo-ros-pkgs?=	gazebo-ros-pkgs>=2.9<2.10
 DEPEND_DIR.gazebo-ros-pkgs?=	../../simulation/gazebo-ros-pkgs
 
 DEPEND_ABI.gazebo-ros-pkgs.hydro?=	gazebo-ros-pkgs>=2.3<2.4

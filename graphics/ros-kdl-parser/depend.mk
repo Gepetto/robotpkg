@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-kdl-parser?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-kdl-parser
 ROS_DEPEND_USE+=		ros-kdl-parser
 
-DEPEND_ABI.ros-kdl-parser?=	ros-kdl-parser>=1.9
+DEPEND_ABI.ros-kdl-parser?=	ros-kdl-parser>=1.14<1.15
 DEPEND_DIR.ros-kdl-parser?=	../../graphics/ros-kdl-parser
 
 DEPEND_ABI.ros-kdl-parser.groovy?=	ros-kdl-parser>=1.9<1.10

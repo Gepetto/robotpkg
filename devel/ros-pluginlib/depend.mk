@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-pluginlib?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-pluginlib
 ROS_DEPEND_USE+=		ros-pluginlib
 
-DEPEND_ABI.ros-pluginlib?=	ros-pluginlib>=1.9
+DEPEND_ABI.ros-pluginlib?=	ros-pluginlib>=1.13<1.14
 DEPEND_DIR.ros-pluginlib?=	../../devel/ros-pluginlib
 
 DEPEND_ABI.ros-pluginlib.groovy?=	ros-pluginlib>=1.9<1.10

@@ -20,7 +20,7 @@ ROS_DEPEND_USE+=		ros-control
 
 DEPEND_ABI.ros+=		ros>=hydro
 
-DEPEND_ABI.ros-control?=	ros-control>=0.7
+DEPEND_ABI.ros-control?=	ros-control>=0.19<0.20
 DEPEND_DIR.ros-control?=	../../motion/ros-control
 
 DEPEND_ABI.ros-control.hydro?=	ros-control>=0.7<0.9

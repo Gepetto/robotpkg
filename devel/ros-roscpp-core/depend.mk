@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-roscpp-core?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-roscpp-core
 ROS_DEPEND_USE+=		ros-roscpp-core
 
-DEPEND_ABI.ros-roscpp-core?=	ros-roscpp-core>=0.3
+DEPEND_ABI.ros-roscpp-core?=	ros-roscpp-core>=0.7<0.8
 DEPEND_DIR.ros-roscpp-core?=	../../devel/ros-roscpp-core
 
 DEPEND_ABI.ros-roscpp-core.groovy?=	ros-roscpp-core>=0.3<0.4

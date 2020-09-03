@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-rospack?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-rospack
 ROS_DEPEND_USE+=		ros-rospack
 
-DEPEND_ABI.ros-rospack?=	ros-rospack>=2.1
+DEPEND_ABI.ros-rospack?=	ros-rospack>=2.6<2.7
 DEPEND_DIR.ros-rospack?=	../../sysutils/ros-rospack
 
 DEPEND_ABI.ros-rospack.groovy?=	ros-rospack>=2.1<2.2

@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-class-loader?=${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-class-loader
 ROS_DEPEND_USE+=		ros-class-loader
 
-DEPEND_ABI.ros-class-loader?=	ros-class-loader>=0.1
+DEPEND_ABI.ros-class-loader?=	ros-class-loader>=0.5<0.6
 DEPEND_DIR.ros-class-loader?=	../../devel/ros-class-loader
 
 DEPEND_ABI.ros-class-loader.groovy?=	ros-class-loader>=0.1<0.2

@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-image-common?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-image-common
 ROS_DEPEND_USE+=		ros-image-common
 
-DEPEND_ABI.ros-image-common?=	ros-image-common>=1.10
+DEPEND_ABI.ros-image-common?=	ros-image-common>=1.12<1.13
 DEPEND_DIR.ros-image-common?=	../../image/ros-image-common
 
 DEPEND_ABI.ros-image-common.groovy?=	ros-image-common>=1.10<1.11

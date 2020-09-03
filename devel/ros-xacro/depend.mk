@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-xacro?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-xacro
 ROS_DEPEND_USE+=		ros-xacro
 
-DEPEND_ABI.ros-xacro?=		ros-xacro>=1.7
+DEPEND_ABI.ros-xacro?=		ros-xacro>=1.14<1.15
 DEPEND_DIR.ros-xacro=		../../devel/ros-xacro
 
 DEPEND_ABI.ros-xacro.groovy+=	ros-xacro>=1.7<1.8

@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-geometry2?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-geometry2
 ROS_DEPEND_USE+=		ros-geometry2
 
-DEPEND_ABI.ros-geometry2?=	ros-geometry2>=0.3
+DEPEND_ABI.ros-geometry2?=	ros-geometry2>=0.7<0.8
 DEPEND_DIR.ros-geometry2=	../../math/ros-geometry2
 
 DEPEND_ABI.ros+=ros>=hydro

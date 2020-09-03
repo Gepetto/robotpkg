@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-urdf?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-urdf
 ROS_DEPEND_USE+=		ros-urdf
 
-DEPEND_ABI.ros-urdf?=		ros-urdf>=1.9
+DEPEND_ABI.ros-urdf?=		ros-urdf>=1.13<1.14
 DEPEND_DIR.ros-urdf?=		../../graphics/ros-urdf
 
 DEPEND_ABI.ros-urdf.groovy?=	ros-urdf>=1.9<1.10
@@ -27,7 +27,6 @@ DEPEND_ABI.ros-urdf.indigo?=	ros-urdf>=1.11<1.12
 DEPEND_ABI.ros-urdf.jade?=	ros-urdf>=1.11<1.12
 DEPEND_ABI.ros-urdf.kinetic?=	ros-urdf>=1.12<1.13
 DEPEND_ABI.ros-urdf.lunar?=	ros-urdf>=1.12<1.13
-DEPEND_ABI.ros-urdf.melodic?=	ros-urdf>=1.13<1.14
 
 SYSTEM_SEARCH.ros-urdf=\
   'include/urdf/model.h'						\

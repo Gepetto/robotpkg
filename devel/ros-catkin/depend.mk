@@ -20,7 +20,7 @@ SYSTEM_PREFIX.ros-catkin?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-catkin
 ROS_DEPEND_USE+=		ros-catkin
 
-DEPEND_ABI.ros-catkin?=		${PKGTAG.python-}ros-catkin>=0.4
+DEPEND_ABI.ros-catkin?=		${PKGTAG.python-}ros-catkin>=0.8<0.9
 DEPEND_DIR.ros-catkin?=		../../devel/ros-catkin
 
 DEPEND_ABI.ros-catkin.groovy?=	${PKGTAG.python-}ros-catkin>=0.5<0.6

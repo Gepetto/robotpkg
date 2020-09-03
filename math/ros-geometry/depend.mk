@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-geometry?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-geometry
 ROS_DEPEND_USE+=		ros-geometry
 
-DEPEND_ABI.ros-geometry?=	ros-geometry>=1.9
+DEPEND_ABI.ros-geometry?=	ros-geometry>=1.13<1.14
 DEPEND_DIR.ros-geometry=	../../math/ros-geometry
 
 DEPEND_ABI.ros-geometry.groovy+=	ros-geometry>=1.9<1.10

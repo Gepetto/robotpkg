@@ -18,7 +18,7 @@ SYSTEM_PREFIX.ros-ros?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=		ros-ros
 ROS_DEPEND_USE+=	ros-ros
 
-DEPEND_ABI.ros-ros?=	ros-ros>=1.9
+DEPEND_ABI.ros-ros?=	ros-ros>=1.15<1.16
 DEPEND_DIR.ros-ros?=	../../devel/ros-ros
 
 DEPEND_ABI.ros-ros.groovy?=	ros-ros>=1.9<1.10
