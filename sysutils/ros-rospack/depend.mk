@@ -18,7 +18,6 @@ SYSTEM_PREFIX.ros-rospack?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-rospack
 ROS_DEPEND_USE+=		ros-rospack
 
-DEPEND_ABI.ros-rospack?=	ros-rospack>=2.6<2.7
 DEPEND_DIR.ros-rospack?=	../../sysutils/ros-rospack
 
 DEPEND_ABI.ros-rospack.groovy?=	ros-rospack>=2.1<2.2
@@ -28,6 +27,7 @@ DEPEND_ABI.ros-rospack.jade?=	ros-rospack>=2.3<2.4
 DEPEND_ABI.ros-rospack.kinetic?=ros-rospack>=2.3<2.5
 DEPEND_ABI.ros-rospack.lunar?=	ros-rospack>=2.4<2.6
 DEPEND_ABI.ros-rospack.melodic?=ros-rospack>=2.5<2.6
+DEPEND_ABI.ros-rospack.noetic?=	ros-rospack>=2.6<2.7
 
 SYSTEM_SEARCH.ros-rospack=\
 	bin/rospack						\

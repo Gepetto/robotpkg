@@ -18,7 +18,6 @@ SYSTEM_PREFIX.ros-geometric-shapes?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-geometric-shapes
 ROS_DEPEND_USE+=		ros-geometric-shapes
 
-DEPEND_ABI.ros-geometric-shapes?=	ros-geometric-shapes>=0.7<0.8
 DEPEND_DIR.ros-geometric-shapes?=	../../graphics/ros-geometric-shapes
 
 DEPEND_ABI.ros-geometric-shapes.groovy?=ros-geometric-shapes>=0.2<0.3
@@ -28,6 +27,7 @@ DEPEND_ABI.ros-geometric-shapes.jade?=  ros-geometric-shapes>=0.4<0.5
 DEPEND_ABI.ros-geometric-shapes.kinetic?=ros-geometric-shapes>=0.5<0.6
 DEPEND_ABI.ros-geometric-shapes.lunar?=	ros-geometric-shapes>=0.5<0.6
 DEPEND_ABI.ros-geometric-shapes.melodic?=ros-geometric-shapes>=0.6<0.7
+DEPEND_ABI.ros-geometric-shapes.noetic?=ros-geometric-shapes>=0.7<0.8
 
 SYSTEM_SEARCH.ros-geometric-shapes=\
   'include/geometric_shapes/shapes.h'				\

@@ -20,7 +20,6 @@ ROS_DEPEND_USE+=		ros-control
 
 DEPEND_ABI.ros+=		ros>=hydro
 
-DEPEND_ABI.ros-control?=	ros-control>=0.19<0.20
 DEPEND_DIR.ros-control?=	../../motion/ros-control
 
 DEPEND_ABI.ros-control.hydro?=	ros-control>=0.7<0.9
@@ -29,6 +28,7 @@ DEPEND_ABI.ros-control.jade?=	ros-control>=0.10<0.11
 DEPEND_ABI.ros-control.kinetic?=ros-control>=0.11<0.14
 DEPEND_ABI.ros-control.lunar?=	ros-control>=0.11<0.14
 DEPEND_ABI.ros-control.melodic?=ros-control>=0.14<0.18
+DEPEND_ABI.ros-control.noetic?=	ros-control>=0.19<0.20
 
 SYSTEM_SEARCH.ros-control=\
   'include/controller_interface/controller.h'				\

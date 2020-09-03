@@ -20,7 +20,6 @@ SYSTEM_PREFIX.ros-executive-smach?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=				ros-executive-smach
 ROS_DEPEND_USE+=			ros-executive-smach
 
-DEPEND_ABI.ros-executive-smach?=	ros-executive-smach>=2.5<2.6
 DEPEND_DIR.ros-executive-smach=		../../supervision/ros-executive-smach
 
 DEPEND_ABI.ros-executive-smach.groovy+=	ros-executive-smach>=1.2.2<=1.3.0
@@ -30,6 +29,7 @@ DEPEND_ABI.ros-executive-smach.jade+=	ros-executive-smach>=2.0<2.1
 DEPEND_ABI.ros-executive-smach.kinetic+=ros-executive-smach>=2.0<2.1
 DEPEND_ABI.ros-executive-smach.lunar+=	ros-executive-smach>=2.0<2.1
 DEPEND_ABI.ros-executive-smach.melodic+=ros-executive-smach>=2.0<2.1
+DEPEND_ABI.ros-executive-smach.noetic?=	ros-executive-smach>=2.5<2.6
 
 SYSTEM_SEARCH.ros-executive-smach=\
 	'${PYTHON_SITELIB}/smach/__init__.py'				\

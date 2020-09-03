@@ -18,7 +18,6 @@ SYSTEM_PREFIX.ros-geometry2?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-geometry2
 ROS_DEPEND_USE+=		ros-geometry2
 
-DEPEND_ABI.ros-geometry2?=	ros-geometry2>=0.7<0.8
 DEPEND_DIR.ros-geometry2=	../../math/ros-geometry2
 
 DEPEND_ABI.ros+=ros>=hydro
@@ -29,6 +28,7 @@ DEPEND_ABI.ros-geometry2.jade+=  ros-geometry2>=0.5<0.6
 DEPEND_ABI.ros-geometry2.kinetic+=ros-geometry2>=0.5<0.6
 DEPEND_ABI.ros-geometry2.lunar+= ros-geometry2>=0.5<0.6
 DEPEND_ABI.ros-geometry2.melodic+=ros-geometry2>=0.6<0.7
+DEPEND_ABI.ros-geometry2.noetic?=ros-geometry2>=0.7<0.8
 
 SYSTEM_SEARCH.ros-geometry2=\
   'include/tf2/convert.h'						\

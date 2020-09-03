@@ -18,7 +18,6 @@ SYSTEM_PREFIX.ros-console-bridge?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=				ros-console-bridge
 ROS_DEPEND_USE+=			ros-console-bridge
 
-DEPEND_ABI.ros-console-bridge?=		ros-console-bridge>=0.5<0.6
 DEPEND_DIR.ros-console-bridge?=		../../sysutils/ros-console-bridge
 
 DEPEND_ABI.ros-console-bridge.groovy?=	ros-console-bridge>=0.2<0.3
@@ -27,6 +26,8 @@ DEPEND_ABI.ros-console-bridge.indigo?=	ros-console-bridge>=0.4<0.5
 DEPEND_ABI.ros-console-bridge.jade?=	ros-console-bridge>=0.4<0.5
 DEPEND_ABI.ros-console-bridge.kinetic?=	ros-console-bridge>=0.4<0.6
 DEPEND_ABI.ros-console-bridge.lunar?=	ros-console-bridge>=0.4<0.6
+DEPEND_ABI.ros-console-bridge.melodic?=	ros-console-bridge>=0.5<0.6
+DEPEND_ABI.ros-console-bridge.noetic?=	ros-console-bridge>=0.5<0.6
 
 SYSTEM_SEARCH.ros-console-bridge=\
   'include/rosconsole_bridge/bridge.h'				\

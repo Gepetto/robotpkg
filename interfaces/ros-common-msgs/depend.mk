@@ -18,7 +18,6 @@ SYSTEM_PREFIX.ros-common-msgs?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-common-msgs
 ROS_DEPEND_USE+=		ros-common-msgs
 
-DEPEND_ABI.ros-common-msgs?=	ros-common-msgs>=1.13<1.14
 DEPEND_DIR.ros-common-msgs?=	../../interfaces/ros-common-msgs
 
 DEPEND_ABI.ros-common-msgs.groovy?=	ros-common-msgs>=1.9<1.10
@@ -28,6 +27,7 @@ DEPEND_ABI.ros-common-msgs.jade?=	ros-common-msgs>=1.12<1.13
 DEPEND_ABI.ros-common-msgs.kinetic?=	ros-common-msgs>=1.12<1.13
 DEPEND_ABI.ros-common-msgs.lunar?=	ros-common-msgs>=1.12<1.13
 DEPEND_ABI.ros-common-msgs.melodic?=	ros-common-msgs>=1.12<1.13
+DEPEND_ABI.ros-common-msgs.noetic?=	ros-common-msgs>=1.13<1.14
 
 SYSTEM_SEARCH.ros-common-msgs=\
 	include/actionlib_msgs/GoalID.h					\

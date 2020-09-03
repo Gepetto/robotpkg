@@ -18,7 +18,6 @@ SYSTEM_PREFIX.ros-joint-state-publisher?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-joint-state-publisher
 ROS_DEPEND_USE+=		ros-joint-state-publisher
 
-DEPEND_ABI.ros-joint-state-publisher?=	ros-joint-state-publisher>=1.15<1.16
 DEPEND_DIR.ros-joint-state-publisher?=\
   ../../localization/ros-joint-state-publisher
 
@@ -36,6 +35,8 @@ DEPEND_ABI.ros-joint-state-publisher.lunar?=\
   ros-joint-state-publisher>=1.12<1.13
 DEPEND_ABI.ros-joint-state-publisher.melodic?=\
   ros-joint-state-publisher>=1.12<1.13
+DEPEND_ABI.ros-joint-state-publisher.noetic?=\
+  ros-joint-state-publisher>=1.15<1.16
 
 SYSTEM_SEARCH.ros-joint-state-publisher=\
   'lib/joint_state_publisher/joint_state_publisher'			\

@@ -20,7 +20,6 @@ ROS_DEPEND_USE+=			ros-control-toolbox
 
 DEPEND_ABI.ros+=ros>=hydro
 
-DEPEND_ABI.ros-control-toolbox?=	ros-control-toolbox>=1.18<1.19
 DEPEND_DIR.ros-control-toolbox?=	../../motion/ros-control-toolbox
 
 DEPEND_ABI.ros-control-toolbox.hydro?=	ros-control-toolbox>=1.10<1.13
@@ -29,6 +28,7 @@ DEPEND_ABI.ros-control-toolbox.jade?=	ros-control-toolbox>=1.13<1.15
 DEPEND_ABI.ros-control-toolbox.kinetic?=ros-control-toolbox>=1.15<1.18
 DEPEND_ABI.ros-control-toolbox.lunar?=	ros-control-toolbox>=1.15<1.18
 DEPEND_ABI.ros-control-toolbox.melodic?=ros-control-toolbox>=1.16<1.19
+DEPEND_ABI.ros-control-toolbox.noetic?=	ros-control-toolbox>=1.18<1.19
 
 SYSTEM_SEARCH.ros-control-toolbox=\
   'include/control_toolbox/ParametersConfig.h'				\

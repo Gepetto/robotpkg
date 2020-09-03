@@ -18,7 +18,6 @@ SYSTEM_PREFIX.ros-actionlib?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-actionlib
 ROS_DEPEND_USE+=		ros-actionlib
 
-DEPEND_ABI.ros-actionlib?=	ros-actionlib>=1.13<1.14
 DEPEND_DIR.ros-actionlib=	../../middleware/ros-actionlib
 
 DEPEND_ABI.ros-actionlib.groovy+=	ros-actionlib>=1.9<1.10
@@ -28,6 +27,7 @@ DEPEND_ABI.ros-actionlib.jade+=		ros-actionlib>=1.11<1.12
 DEPEND_ABI.ros-actionlib.kinetic+=	ros-actionlib>=1.11<1.12
 DEPEND_ABI.ros-actionlib.lunar+=	ros-actionlib>=1.11<1.12
 DEPEND_ABI.ros-actionlib.melodic+=	ros-actionlib>=1.11<1.13
+DEPEND_ABI.ros-actionlib.noetic?=	ros-actionlib>=1.13<1.14
 
 SYSTEM_SEARCH.ros-actionlib=\
 	include/actionlib/server/action_server.h		\

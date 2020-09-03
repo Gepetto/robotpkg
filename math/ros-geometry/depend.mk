@@ -18,7 +18,6 @@ SYSTEM_PREFIX.ros-geometry?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-geometry
 ROS_DEPEND_USE+=		ros-geometry
 
-DEPEND_ABI.ros-geometry?=	ros-geometry>=1.13<1.14
 DEPEND_DIR.ros-geometry=	../../math/ros-geometry
 
 DEPEND_ABI.ros-geometry.groovy+=	ros-geometry>=1.9<1.10
@@ -28,6 +27,7 @@ DEPEND_ABI.ros-geometry.jade+=		ros-geometry>=1.11<1.12
 DEPEND_ABI.ros-geometry.kinetic+=	ros-geometry>=1.11<1.12
 DEPEND_ABI.ros-geometry.lunar+=		ros-geometry>=1.11<1.12
 DEPEND_ABI.ros-geometry.melodic+=	ros-geometry>=1.12<1.13
+DEPEND_ABI.ros-geometry.noetic?=	ros-geometry>=1.13<1.14
 
 SYSTEM_SEARCH.ros-geometry=\
   'include/eigen_conversions/eigen_kdl.h'				\

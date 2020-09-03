@@ -18,16 +18,16 @@ SYSTEM_PREFIX.ros-xacro?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-xacro
 ROS_DEPEND_USE+=		ros-xacro
 
-DEPEND_ABI.ros-xacro?=		ros-xacro>=1.14<1.15
 DEPEND_DIR.ros-xacro=		../../devel/ros-xacro
 
-DEPEND_ABI.ros-xacro.groovy+=	ros-xacro>=1.7<1.8
-DEPEND_ABI.ros-xacro.hydro+=	ros-xacro>=1.8<1.9
-DEPEND_ABI.ros-xacro.indigo+=	ros-xacro>=1.9<1.10
-DEPEND_ABI.ros-xacro.jade+=	ros-xacro>=1.10<1.11
-DEPEND_ABI.ros-xacro.kinetic+=	ros-xacro>=1.11<1.12
-DEPEND_ABI.ros-xacro.lunar+=	ros-xacro>=1.12<1.13
-DEPEND_ABI.ros-xacro.melodic+=	ros-xacro>=1.13<1.14
+DEPEND_ABI.ros-xacro.groovy?=	ros-xacro>=1.7<1.8
+DEPEND_ABI.ros-xacro.hydro?=	ros-xacro>=1.8<1.9
+DEPEND_ABI.ros-xacro.indigo?=	ros-xacro>=1.9<1.10
+DEPEND_ABI.ros-xacro.jade?=	ros-xacro>=1.10<1.11
+DEPEND_ABI.ros-xacro.kinetic?=	ros-xacro>=1.11<1.12
+DEPEND_ABI.ros-xacro.lunar?=	ros-xacro>=1.12<1.13
+DEPEND_ABI.ros-xacro.melodic?=	ros-xacro>=1.13<1.14
+DEPEND_ABI.ros-xacro.noetic?=	ros-xacro>=1.14<1.15
 
 SYSTEM_SEARCH.ros-xacro=\
 	'lib/xacro/xacro'					\

@@ -18,13 +18,16 @@ SYSTEM_PREFIX.ros-resource-retriever?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=				ros-resource-retriever
 ROS_DEPEND_USE+=			ros-resource-retriever
 
-DEPEND_ABI.ros-resource-retriever?=	ros-resource-retriever>=1.12<1.13
 DEPEND_DIR.ros-resource-retriever?=	../../net/ros-resource-retriever
 
 DEPEND_ABI.ros-resource-retriever.groovy?=ros-resource-retriever>=1.9<1.10
 DEPEND_ABI.ros-resource-retriever.hydro?= ros-resource-retriever>=1.10<1.11
 DEPEND_ABI.ros-resource-retriever.indigo?=ros-resource-retriever>=1.11<1.12
 DEPEND_ABI.ros-resource-retriever.jade?=ros-resource-retriever>=1.11<1.12
+DEPEND_ABI.ros-resource-retriever.kinetic?=ros-resource-retriever>=1.12<1.13
+DEPEND_ABI.ros-resource-retriever.lunar?=ros-resource-retriever>=1.12<1.13
+DEPEND_ABI.ros-resource-retriever.melodic?=ros-resource-retriever>=1.12<1.13
+DEPEND_ABI.ros-resource-retriever.noetic?=ros-resource-retriever>=1.12<1.13
 
 SYSTEM_SEARCH.ros-resource-retriever=\
   'include/resource_retriever/retriever.h'				\

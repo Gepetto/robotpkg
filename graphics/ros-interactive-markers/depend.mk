@@ -19,7 +19,6 @@ DEPEND_USE+=			ros-interactive-markers
 ROS_DEPEND_USE+=		ros-interactive-markers
 
 DEPEND_ABI.ros+=		ros>=groovy
-DEPEND_ABI.ros-interactive-markers?=	ros-interactive-markers>=1.12<1.13
 DEPEND_DIR.ros-interactive-markers?=	../../graphics/ros-interactive-markers
 
 DEPEND_ABI.ros-interactive-markers.groovy?= ros-interactive-markers>=1.9<1.10
@@ -29,6 +28,7 @@ DEPEND_ABI.ros-interactive-markers.jade?=   ros-interactive-markers>=1.11<1.12
 DEPEND_ABI.ros-interactive-markers.kinetic?=ros-interactive-markers>=1.11<1.12
 DEPEND_ABI.ros-interactive-markers.lunar?=  ros-interactive-markers>=1.11<1.12
 DEPEND_ABI.ros-interactive-markers.melodic?=ros-interactive-markers>=1.11<1.12
+DEPEND_ABI.ros-interactive-markers.noetic?= ros-interactive-markers>=1.12<1.13
 
 SYSTEM_SEARCH.ros-interactive-markers=\
   'include/interactive_markers/tools.h'					\

@@ -85,7 +85,7 @@ define _ros_altdef
     ros==$1 $${DEPEND_ABI.ros}						\
     $$(foreach _,$${ROS_DEPEND_USE},					\
       $$(if $$(filter robotpkg,$${PREFER.$$_}),ros==melodic)		\
-      $$(call _ros_noaltdep,$$_) $${DEPEND_ABI.$$_.$1}))
+      $$(call _ros_noaltdep,$$_) $${DEPEND_ABI.$$_} $${DEPEND_ABI.$$_.$1}))
   PKG_ALTERNATIVE_SET.$1=						\
     $$(foreach _,$${ROS_DEPEND_USE},					\
       $$(eval DEPEND_ABI.$$_ += $$(value DEPEND_ABI.$$_.$1))		\
