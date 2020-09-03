@@ -21,7 +21,7 @@ SYSTEM_SEARCH.example-robot-data=\
 
 DEPEND_USE+=			example-robot-data
 
-DEPEND_ABI.example-robot-data?=	example-robot-data>=3.2.0
+DEPEND_ABI.example-robot-data?=	example-robot-data>=3.6.0
 DEPEND_DIR.example-robot-data?=	../../robots/example-robot-data
 
 endif # EXAMPLE_ROBOT_DATA_DEPEND_MK ---------------------------------------

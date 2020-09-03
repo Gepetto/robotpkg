@@ -291,6 +291,7 @@ share/example-robot-data/robots/talos_data/meshes/v2/hip_z_collision.stl
 share/example-robot-data/robots/talos_data/meshes/v2/hip_z_lo_res.stl
 share/example-robot-data/robots/talos_data/meshes/v2/knee_collision.stl
 share/example-robot-data/robots/talos_data/meshes/v2/knee_lo_res.stl
+share/example-robot-data/robots/talos_data/robots/talos_full_v2.urdf
 share/example-robot-data/robots/talos_data/robots/talos_left_arm.urdf
 share/example-robot-data/robots/talos_data/robots/talos_reduced.urdf
 share/example-robot-data/robots/talos_data/srdf/talos.srdf
