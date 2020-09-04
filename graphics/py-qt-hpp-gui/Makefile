@@ -3,6 +3,7 @@
 #
 
 PKGNAME=	${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
+PKGREVISION=	1
 
 HPP_PACKAGE=	hpp-gui
 HPP_COMMENT=	Graphical interface for HPP

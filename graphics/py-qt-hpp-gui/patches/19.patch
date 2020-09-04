@@ -1,0 +1,74 @@
+From 89534afe9816ec4bb46d141672de869463cb0753 Mon Sep 17 00:00:00 2001
+From: Florent Lamiraux <florent@laas.fr>
+Date: Wed, 15 Jul 2020 10:32:06 +0200
+Subject: [PATCH] [CMakeLists.txt] Fix link with boost.
+
+---
+ CMakeLists.txt                                      | 4 ++--
+ plugins/hppcorbaserverplugin/CMakeLists.txt         | 1 +
+ plugins/hppfcl/CMakeLists.txt                       | 2 ++
+ plugins/hppmanipulationwidgetsplugin/CMakeLists.txt | 1 +
+ plugins/hppwidgetsplugin/CMakeLists.txt             | 2 +-
+ 5 files changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9dedd3e..f6aa3c5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -63,8 +63,8 @@ ENDIF(USE_QT4)
+ SET(PKG_CONFIG_EXTRA "qtversion=${HPP_GUI_QTVERSION}")
+ SET(PACKAGE_EXTRA_MACROS "set(HPP_GUI_QTVERSION ${HPP_GUI_QTVERSION})")
+ 
+-SET(BOOST_COMPONENTS thread regex system)
+-SEARCH_FOR_BOOST ()
++# Search for Boost.
++ADD_PROJECT_DEPENDENCY(Boost REQUIRED COMPONENTS thread regex system)
+ 
+ ADD_PROJECT_DEPENDENCY("hpp-fcl")
+ ADD_PROJECT_DEPENDENCY("hpp-manipulation-corba")
+diff --git a/plugins/hppcorbaserverplugin/CMakeLists.txt b/plugins/hppcorbaserverplugin/CMakeLists.txt
+index 567792d..4282843 100644
+--- a/plugins/hppcorbaserverplugin/CMakeLists.txt
++++ b/plugins/hppcorbaserverplugin/CMakeLists.txt
+@@ -37,4 +37,5 @@ GEPETTO_GUI_PLUGIN(hppcorbaserverplugin
+   LINK_DEPENDENCIES
+   "hpp-corbaserver::hpp-corbaserver"
+   "gepetto-viewer-corba::gepetto-viewer-corba"
++  "Boost::thread" "Boost::regex" "Boost::system"
+   )
+diff --git a/plugins/hppfcl/CMakeLists.txt b/plugins/hppfcl/CMakeLists.txt
+index fd0bac5..cb1778b 100644
+--- a/plugins/hppfcl/CMakeLists.txt
++++ b/plugins/hppfcl/CMakeLists.txt
+@@ -39,6 +39,8 @@ GEPETTO_GUI_PLUGIN(hppfclplugin
+ 
+   LINK_DEPENDENCIES
+   hpp-fcl::hpp-fcl
++  gepetto-viewer-corba::gepetto-viewer-corba
++  Boost::thread Boost::regex Boost::system
+ 
+   PKG_CONFIG_DEPENDENCIES
+   )
+diff --git a/plugins/hppmanipulationwidgetsplugin/CMakeLists.txt b/plugins/hppmanipulationwidgetsplugin/CMakeLists.txt
+index eba737d..d3f5ec1 100644
+--- a/plugins/hppmanipulationwidgetsplugin/CMakeLists.txt
++++ b/plugins/hppmanipulationwidgetsplugin/CMakeLists.txt
+@@ -45,4 +45,5 @@ GEPETTO_GUI_PLUGIN(hppmanipulationwidgetsplugin
+   hppwidgetsplugin
+   "hpp-manipulation-corba::hpp-manipulation-corba"
+   "gepetto-viewer-corba::gepetto-viewer-corba"
++  "Boost::thread" "Boost::regex" "Boost::system"
+   )
+diff --git a/plugins/hppwidgetsplugin/CMakeLists.txt b/plugins/hppwidgetsplugin/CMakeLists.txt
+index e7897a3..531500d 100644
+--- a/plugins/hppwidgetsplugin/CMakeLists.txt
++++ b/plugins/hppwidgetsplugin/CMakeLists.txt
+@@ -76,7 +76,7 @@ GEPETTO_GUI_PLUGIN(hppwidgetsplugin
+   joint-action.cc
+ 
+   LINK_DEPENDENCIES
+-  ${Boost_LIBRARIES}
++  "Boost::thread" "Boost::regex" "Boost::system"
+   "hpp-corbaserver::hpp-corbaserver"
+   "gepetto-viewer-corba::gepetto-viewer-corba"
+   )
