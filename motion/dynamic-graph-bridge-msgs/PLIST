@@ -7,10 +7,12 @@ include/dynamic_graph_bridge_msgs/RunPythonFile.h
 include/dynamic_graph_bridge_msgs/RunPythonFileRequest.h
 include/dynamic_graph_bridge_msgs/RunPythonFileResponse.h
 include/dynamic_graph_bridge_msgs/Vector.h
-include/dynamic_graph_bridge_msgs/config.h
 include/dynamic_graph_bridge_msgs/config.hh
 include/dynamic_graph_bridge_msgs/deprecated.hh
 include/dynamic_graph_bridge_msgs/warning.hh
+lib/cmake/dynamic_graph_bridge_msgs/dynamic_graph_bridge_msgsConfig.cmake
+lib/cmake/dynamic_graph_bridge_msgs/dynamic_graph_bridge_msgsConfigVersion.cmake
+lib/cmake/dynamic_graph_bridge_msgs/dynamic_graph_bridge_msgsTargets.cmake
 lib/pkgconfig/dynamic_graph_bridge_msgs.pc
 ${PYTHON_SITELIB}/dynamic_graph_bridge_msgs/__init__.py
 ${PYTHON_SITELIB}/dynamic_graph_bridge_msgs/msg/_Matrix.py
@@ -31,10 +33,7 @@ share/common-lisp/ros/dynamic_graph_bridge_msgs/srv/_package.lisp
 share/common-lisp/ros/dynamic_graph_bridge_msgs/srv/_package_RunCommand.lisp
 share/common-lisp/ros/dynamic_graph_bridge_msgs/srv/_package_RunPythonFile.lisp
 share/common-lisp/ros/dynamic_graph_bridge_msgs/srv/dynamic_graph_bridge_msgs-srv.asd
-share/dynamic_graph_bridge_msgs/cmake/dynamic_graph_bridge_msgs-msg-extras.cmake
 share/dynamic_graph_bridge_msgs/cmake/dynamic_graph_bridge_msgs-msg-paths.cmake
-share/dynamic_graph_bridge_msgs/cmake/dynamic_graph_bridge_msgsConfig-version.cmake
-share/dynamic_graph_bridge_msgs/cmake/dynamic_graph_bridge_msgsConfig.cmake
 share/dynamic_graph_bridge_msgs/msg/Matrix.msg
 share/dynamic_graph_bridge_msgs/msg/Vector.msg
 share/dynamic_graph_bridge_msgs/package.xml

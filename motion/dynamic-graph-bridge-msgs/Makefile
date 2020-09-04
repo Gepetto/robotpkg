@@ -2,21 +2,21 @@
 # Created:			Aurelie Clodic on Fri, 17 Oct 2014
 #
 
-VERSION=		0.2.0
-DISTNAME=		dynamic_graph_bridge_msgs-${VERSION}
-PKGNAME=		dynamic-graph-bridge-msgs-${VERSION}
+ORG=			stack-of-tasks
+NAME=			dynamic-graph-bridge-msgs
+VERSION=		0.3.0
+
+ROSNAME=		$(subst -,_,${NAME})
+PKGNAME=		${NAME}-${VERSION}
+DISTNAME=		${ROSNAME}-${VERSION}
 
 CATEGORIES=		motion
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
-MASTER_REPOSITORY=\
-  ${MASTER_REPOSITORY_GITHUB}stack-of-tasks/dynamic_graph_bridge_msgs/
-CHECKOUT_VCS_OPTS+=	--recursive
 
 COMMENT=		Dynamic graph bridge messages and services.
 LICENSE=		2-clause-bsd
 MAINTAINER=		hpp@laas.fr
 
-DYNAMIC_PLIST_DIRS+=	share/doc/dynamic_graph_bridge_msgs
+DYNAMIC_PLIST_DIRS+=	share/doc/${ROSNAME}
 
 # disable -Werror because of x86_64 warnings (must be fixed upstream) and
 # boost + gcc that don't cohabit well depending on their respective versions
@@ -24,9 +24,8 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 
 # man pages location
 CMAKE_ARGS+=		-DMANDIR=${PREFIX}/${PKGMANDIR}
-# library location
-CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
+include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../lang/ros-genlisp/depend.mk
