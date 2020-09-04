@@ -5,14 +5,13 @@
 ORG=			jrl-umi3218
 NAME=			eigen-quadprog
 VERSION=		1.0.1
+PKGREVISION=		1
+
 PKGNAME=		${NAME}-${VERSION}
 DISTNAME=		${NAME}-v${VERSION}
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${NAME}/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}${ORG}/${NAME}
 
 CATEGORIES=		math
 COMMENT=		QuadProg QP solver using the Eigen3 library
-HOMEPAGE=		${MASTER_SITE_GITHUB}${ORG}/${NAME}
 LICENSE=		gnu-lgpl-v3
 MAINTAINER=		gepetto@laas.fr
 
@@ -25,6 +24,7 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 # man pages location
 CMAKE_ARGS+=		-DMANDIR=${PREFIX}/${PKGMANDIR}
 
+include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../math/eigen3/depend.mk
