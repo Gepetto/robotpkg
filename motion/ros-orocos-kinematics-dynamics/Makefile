@@ -13,6 +13,9 @@ CONFLICTS+=	ros-orocos-kdl-[0-9]*
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
+# this package is deprecated
+DEPEND_ABI.ros+=	ros<noetic
+
 WRKSRC=		${WRKDIR}/${DISTNAME}/orocos_kinematics_dynamics
 
 include ../../devel/ros-catkin/depend.mk

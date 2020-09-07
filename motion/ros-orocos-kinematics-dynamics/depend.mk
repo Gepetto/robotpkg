@@ -11,6 +11,9 @@ endif
 
 ifeq (+,$(ROS_OROCOS_KDL_DEPEND_MK)) # -------------------------------------
 
+# this package is deprecated
+DEPEND_ABI.ros+=	ros<noetic
+
 include ../../meta-pkgs/ros-base/depend.common
 PREFER.ros-orocos-kinematics-dynamics?=		${PREFER.ros-base}
 SYSTEM_PREFIX.ros-orocos-kinematics-dynamics?=	${SYSTEM_PREFIX.ros-base}
