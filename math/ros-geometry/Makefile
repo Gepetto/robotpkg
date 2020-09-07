@@ -2,6 +2,7 @@
 # Created:			Séverin Lemaignan on Mon, 5 Aug 2013
 #
 
+PKGREVISION=	1
 ROS_PKG=	geometry
 ROS_VERSION=	1.12.0
 ROS_METAPKG=	yes
@@ -21,5 +22,6 @@ include ../../math/ros-angles/depend.mk
 include ../../math/ros-geometry2/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../motion/ros-orocos-kinematics-dynamics/depend.mk
+include ../../motion/orocos-kdl/depend.mk
+include ../../motion/py-orocos-kdl/depend.mk
 include ../../mk/robotpkg.mk
