@@ -4,7 +4,7 @@
 
 HPP_PACKAGE=		hpp_practicals
 HPP_COMMENT=		Practicals for hpp software
-PKGREVISION=		1
+PKGREVISION=		2
 
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
@@ -19,6 +19,7 @@ include ../../graphics/py-qt-hpp-gui/depend.mk
 include ../../graphics/py-qt-hpp-plot/depend.mk
 include ../../path/py-hpp-manipulation-corba/depend.mk
 include ../../mk/sysdep/python.mk
+include ../../mk/sysdep/qt.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk

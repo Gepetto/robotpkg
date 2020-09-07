@@ -7,7 +7,7 @@ SUBDIR+=	boost-docs
 SUBDIR+=	demo-genom
 SUBDIR+=	demo-genom3
 SUBDIR+=	hpp-doc
-SUBDIR+=	py-hpp-practicals
+SUBDIR+=	py-qt-hpp-practicals
 SUBDIR+=	py-hpp-tutorial
 SUBDIR+=	robotpkg
 
