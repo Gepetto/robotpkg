@@ -2,6 +2,7 @@
 # Created:			Séverin Lemaignan on Tue, 06 Aug 2013
 #
 
+PKGREVISION=	1
 ROS_PKG=	robot_state_publisher
 ROS_VERSION=	1.13.6
 
@@ -19,6 +20,6 @@ include ../../math/eigen3/depend.mk
 include ../../math/ros-geometry/depend.mk
 include ../../math/ros-geometry2/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../motion/ros-orocos-kinematics-dynamics/depend.mk
+include ../../motion/orocos-kdl/depend.mk
 include ../../sysutils/ros-console/depend.mk
 include ../../mk/robotpkg.mk
