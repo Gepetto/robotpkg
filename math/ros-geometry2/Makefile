@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 16 May 2017
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 ROS_PKG=	geometry2
 ROS_VERSION=	0.6.5
 ROS_METAPKG=	yes
@@ -19,7 +19,8 @@ include ../../interfaces/ros-common-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
-include ../../motion/ros-orocos-kinematics-dynamics/depend.mk
+include ../../motion/orocos-kdl/depend.mk
+include ../../motion/py-orocos-kdl/depend.mk
 include ../../sysutils/console-bridge/depend.mk
 include ../../mk/sysdep/bullet.mk
 include ../../mk/robotpkg.mk
