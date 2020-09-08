@@ -15,7 +15,7 @@ PREFER.py-example-robot-data?=		robotpkg
 
 DEPEND_USE+=				py-example-robot-data
 
-DEPEND_ABI.py-example-robot-data?=	${PKGTAG.python-}example-robot-data>=2.0.0
+DEPEND_ABI.py-example-robot-data?=	${PKGTAG.python-}example-robot-data>=3.6.0
 DEPEND_DIR.py-example-robot-data?=	../../robots/py-example-robot-data
 
 SYSTEM_SEARCH.py-example-robot-data=\
