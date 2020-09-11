@@ -1,5 +1,5 @@
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		1.4.5
+HPP_VERSION=		1.5.4
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations
@@ -22,4 +22,5 @@ include ../../math/eigen3/depend.mk
 include ../../math/libccd/depend.mk
 include ../../graphics/assimp/depend.mk
 include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

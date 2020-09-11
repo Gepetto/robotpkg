@@ -1,3 +1,4 @@
 @comment Thu Dec 12 11:11:59 CET 2019
 ${PYTHON_SITELIB}/hppfcl/__init__.py
 ${PYTHON_SITELIB}/hppfcl/hppfcl${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/hppfcl/viewer.py

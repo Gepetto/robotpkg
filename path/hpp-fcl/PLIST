@@ -43,11 +43,11 @@ include/hpp/fcl/mesh_loader/loader.h
 include/hpp/fcl/narrowphase/gjk.h
 include/hpp/fcl/narrowphase/narrowphase.h
 include/hpp/fcl/octree.h
-include/hpp/fcl/profile.h
 include/hpp/fcl/shape/convex.h
 include/hpp/fcl/shape/details/convex.hxx
 include/hpp/fcl/shape/geometric_shape_to_BVH_model.h
 include/hpp/fcl/shape/geometric_shapes.h
+include/hpp/fcl/shape/geometric_shapes_utility.h
 include/hpp/fcl/warning.hh
 lib/cmake/hpp-fcl/hpp-fclConfig.cmake
 lib/cmake/hpp-fcl/hpp-fclConfigVersion.cmake
