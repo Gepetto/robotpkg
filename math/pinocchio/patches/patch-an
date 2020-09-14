@@ -1,7 +1,7 @@
 --- CMakeLists.txt.orig	2020-06-15 14:44:51.000000000 +0200
 +++ CMakeLists.txt	2020-06-15 19:57:31.846168351 +0200
-@@ -133,26 +133,10 @@
-   ADD_PROJECT_DEPENDENCY(eigenpy 2.2.0 REQUIRED)
+@@ -135,26 +135,10 @@
+   ADD_PROJECT_DEPENDENCY(eigenpy 2.5.0 REQUIRED)
  ENDIF(BUILD_PYTHON_INTERFACE)
  
 -IF(BUILD_WITH_HPP_FCL_SUPPORT)
@@ -25,5 +25,5 @@
 -  ENDIF(BUILD_PYTHON_INTERFACE)
 -ENDIF(BUILD_WITH_HPP_FCL_SUPPORT)
  
- SET(BOOST_COMPONENTS ${BOOST_REQUIRED_COMPONENTS} ${BOOST_OPTIONAL_COMPONENTS} ${BOOST_BUILD_COMPONENTS})
- SEARCH_FOR_BOOST()
+ # Enforce the preprocessed version of boost::list and boost::vector
+ # This information is redundant with the content of include/pinocchio/container/boost-container-limits.hpp

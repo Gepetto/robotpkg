@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			pinocchio
-VERSION=		2.4.7
+VERSION=		2.5.0
 
 CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics (python bindings)
@@ -24,7 +24,7 @@ USE_PYTHON_ONLY=	true
 USE_MASTER_GITHUB=	true
 
 # parallel builds exhaust memory - until a better solution is found
-MAKE_JOBS_SAFE=		no
+#MAKE_JOBS_SAFE=		no
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 

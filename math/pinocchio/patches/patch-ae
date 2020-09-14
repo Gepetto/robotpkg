@@ -7,7 +7,7 @@ for ext in ['hpp', 'cpp']:
 
 --- bindings/python/CMakeLists.txt.orig	2020-06-15 19:46:02.665542391 +0200
 +++ bindings/python/CMakeLists.txt	2020-06-15 19:48:24.850202951 +0200
-@@ -31,29 +31,102 @@
+@@ -31,29 +31,103 @@
  SET(PYWRAP ${PROJECT_NAME}_pywrap)
  SET(PYWRAP ${PYWRAP} PARENT_SCOPE)
  
@@ -51,6 +51,7 @@ for ext in ['hpp', 'cpp']:
 +  utils/printable.hpp
 +  utils/registration.hpp
 +  utils/std-aligned-vector.hpp
++  utils/std-map.hpp
 +  utils/std-vector.hpp
 +  utils/version.hpp
       ) 

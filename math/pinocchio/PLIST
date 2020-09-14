@@ -53,6 +53,7 @@ include/pinocchio/autodiff/casadi/math/quaternion.hpp
 include/pinocchio/autodiff/casadi/spatial/se3-tpl.hpp
 include/pinocchio/autodiff/casadi/utils/static-if.hpp
 include/pinocchio/autodiff/cppad.hpp
+include/pinocchio/autodiff/cppad/algorithm/aba.hpp
 include/pinocchio/autodiff/cppad/math/eigen_plugin.hpp
 include/pinocchio/autodiff/cppad/math/quaternion.hpp
 include/pinocchio/autodiff/cppad/spatial/log.hxx
@@ -95,6 +96,7 @@ include/pinocchio/bindings/python/utils/pickle-vector.hpp
 include/pinocchio/bindings/python/utils/printable.hpp
 include/pinocchio/bindings/python/utils/registration.hpp
 include/pinocchio/bindings/python/utils/std-aligned-vector.hpp
+include/pinocchio/bindings/python/utils/std-map.hpp
 include/pinocchio/bindings/python/utils/std-vector.hpp
 include/pinocchio/bindings/python/utils/version.hpp
 include/pinocchio/codegen/code-generator-algo.hpp
@@ -119,6 +121,7 @@ include/pinocchio/math/cppadcg.hpp
 include/pinocchio/math/fwd.hpp
 include/pinocchio/math/matrix-block.hpp
 include/pinocchio/math/matrix.hpp
+include/pinocchio/math/multiprecision-mpfr.hpp
 include/pinocchio/math/multiprecision.hpp
 include/pinocchio/math/quaternion.hpp
 include/pinocchio/math/rotation.hpp
