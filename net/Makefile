@@ -14,6 +14,5 @@ SUBDIR+=	ros-resource-retriever
 SUBDIR+=	rosix
 SUBDIR+=	tclpcap
 SUBDIR+=	tclserv
-SUBDIR+=	zeromq
 
 include ../mk/robotpkg.subdir.mk
