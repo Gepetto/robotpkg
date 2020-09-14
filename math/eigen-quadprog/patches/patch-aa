@@ -1,0 +1,13 @@
+Use fortran linker for correct rpath to gcc fortran libraries
+
+--- src/CMakeLists.txt~	2020-01-02 12:15:39.000000000 +0100
++++ src/CMakeLists.txt	2020-09-14 11:50:40.474978389 +0200
+@@ -61,6 +61,8 @@
+ 
+ if(${USE_F2C})
+   target_link_libraries(${PROJECT_NAME} libf2c.a)
++elseif(NOT ${USE_FORTRAN_SUBDIRECTORY})
++  set_property(TARGET ${PROJECT_NAME} PROPERTY LINKER_LANGUAGE Fortran)
+ endif()
+ 
+ install(
