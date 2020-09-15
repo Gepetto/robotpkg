@@ -53,6 +53,7 @@ include/hpp/core/path-optimization/spline-gradient-based-abstract.hh
 include/hpp/core/path-optimization/spline-gradient-based.hh
 include/hpp/core/path-optimizer.hh
 include/hpp/core/path-planner.hh
+include/hpp/core/path-planner/bi-rrt-star.hh
 include/hpp/core/path-planner/k-prm-star.hh
 include/hpp/core/path-projector.hh
 include/hpp/core/path-projector/dichotomy.hh
@@ -104,6 +105,9 @@ lib/cmake/hpp-core/hpp-coreConfig.cmake
 lib/cmake/hpp-core/hpp-coreConfigVersion.cmake
 lib/cmake/hpp-core/hpp-coreTargets-release.cmake
 lib/cmake/hpp-core/hpp-coreTargets.cmake
+lib/cmake/hpp-core/spline-gradient-basedConfig.cmake
+lib/cmake/hpp-core/spline-gradient-basedTargets-release.cmake
+lib/cmake/hpp-core/spline-gradient-basedTargets.cmake
 lib/hppPlugins/spline-gradient-based.so
 lib/libhpp-core-gpl.so
 lib/libhpp-core.so
