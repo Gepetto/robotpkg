@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-wholebody-step
+HPP_VERSION=		4.10.1
 
 CATEGORIES=		path
 HPP_COMMENT=		Whole-body walk planning for humanoid robots
