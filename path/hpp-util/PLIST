@@ -12,6 +12,8 @@ include/hpp/util/indent.hh
 include/hpp/util/parser.hh
 include/hpp/util/pointer.hh
 include/hpp/util/portability.hh
+include/hpp/util/serialization-fwd.hh
+include/hpp/util/serialization.hh
 include/hpp/util/timer.hh
 include/hpp/util/version.hh
 include/hpp/util/warning.hh

@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=	hpp-util
+HPP_VERSION=	4.10.1
 
 CATEGORIES=	path
 HPP_COMMENT=	utility tools
@@ -15,5 +16,6 @@ CMAKE_ARGS+=	-DCXX_DISABLE_WERROR=yes
 CMAKE_ARGS+=	-DTinyXML_PREFIX=${PREFIX.tinyxml}
 
 include ../../devel/tinyxml/depend.mk
+include ../../mk/language/c++.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
