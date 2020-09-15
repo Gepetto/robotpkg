@@ -3,8 +3,7 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer
-PKGREVISION=		3
-
+HPP_VERSION=		4.10.1
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=		graphics
@@ -47,5 +46,5 @@ include ../../graphics/urdfdom-headers/depend.mk
 include ../../graphics/urdfdom/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++11.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
