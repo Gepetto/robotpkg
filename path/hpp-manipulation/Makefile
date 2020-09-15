@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-manipulation
+HPP_VERSION=		4.10.1
 
 CATEGORIES=		path
 HPP_COMMENT=		Manipulation problem definition and resolution
@@ -21,4 +22,5 @@ include ../../path/hpp-statistics/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../path/hpp-wholebody-step/depend.mk
 include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
