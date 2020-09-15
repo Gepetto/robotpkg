@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=	hpp-manipulation-urdf
+HPP_VERSION=	4.10.1
 
 CATEGORIES=	path
 HPP_COMMENT=	URDF/SRDF parser for the package hpp-manipulation
@@ -23,4 +24,5 @@ include ../../path/hpp-util/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../optimization/roboptim-trajectory/depend.mk
 include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
