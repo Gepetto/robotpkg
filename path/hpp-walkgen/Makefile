@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-walkgen
+HPP_VERSION=		4.10.1
 
 CATEGORIES=		path
 HPP_COMMENT=		Walk generator for hpp framework
@@ -17,5 +18,5 @@ include ../../path/hpp-constraints/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++11.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
