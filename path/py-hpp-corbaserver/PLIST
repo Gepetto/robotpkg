@@ -65,6 +65,7 @@ ${PYTHON_SITELIB}/hpp/corbaserver/robot.py
 ${PYTHON_SITELIB}/hpp/corbaserver/tools.py
 ${PYTHON_SITELIB}/hpp/quaternion.py
 ${PYTHON_SITELIB}/hpp/transform.py
+${PYTHON_SITELIB}/hpp/utils.py
 ${PYTHON_SITELIB}/hpp_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/constraints_idl/__init__.py
