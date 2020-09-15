@@ -4,9 +4,8 @@
 
 HPP_PACKAGE=		gepetto-viewer-corba
 HPP_COMMENT=		Corba server for gepetto-viewer
-HPP_VERSION=		5.4.0
+HPP_VERSION=		5.5.1
 HPP_NAMESPACE=		gepetto
-PKGREVISION=		2
 
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
@@ -47,7 +46,7 @@ include ../../middleware/py-omniORBpy/depend.mk
 include ../../mk/sysdep/mesa.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++11.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
  # create the build directory
