@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-constraints
-PKGREVISION=		1
+HPP_VERSION=		4.10.1
 
 CATEGORIES=		path
 HPP_COMMENT=		Define non-linear constraints on robot configurations
@@ -27,5 +27,5 @@ include ../../path/hpp-fcl/depend.mk
 include ../../path/hpp-statistics/depend.mk
 include ../../robots/romeo-description/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++11.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
