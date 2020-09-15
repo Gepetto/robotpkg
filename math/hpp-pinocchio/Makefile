@@ -3,6 +3,7 @@
 #
 
 HPP_PACKAGE=	hpp-pinocchio
+HPP_VERSION=	4.10.1
 
 CATEGORIES=	math
 HPP_COMMENT=	Wrapping of the kinematic/dynamic chain Pinocchio for HPP.
@@ -22,5 +23,5 @@ include ../../graphics/assimp/depend.mk
 include ../../simulation/hpp-environments/depend.mk
 include ../../robots/example-robot-data/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++11.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
