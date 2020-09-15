@@ -12,4 +12,5 @@ include ../../meta-pkgs/hpp/Makefile.common
 include ../../middleware/omniORB/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mk/language/c.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
