@@ -8,7 +8,7 @@ ifndef HPP_COMMENT
   PKG_FAIL_REASON+="Dependency on hpp/Makefile.common requires HPP_COMMENT"
 endif
 
-HPP_VERSION?=		4.9.0
+HPP_VERSION?=		4.10.0
 HPP_NAMESPACE?=		humanoid-path-planner
 HPP_DOC?=		yes
 LICENSE?=		gnu-lgpl-v3
