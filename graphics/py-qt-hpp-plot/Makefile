@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-plot
 HPP_COMMENT=		Plotting tools for hpp
+HPP_VERSION=		4.10.1
 
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
@@ -26,5 +27,5 @@ include ../../graphics/qt-qgv/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/py-hpp-manipulation-corba/depend.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++11.mk
+include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
