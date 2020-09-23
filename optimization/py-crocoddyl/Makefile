@@ -4,7 +4,7 @@
 
 ORG=			loco-3d
 NAME=			crocoddyl
-VERSION=		1.4.0
+VERSION=		1.5.0
 
 CATEGORIES=		optimization
 COMMENT=		Optimal control library for robot under contact sequence
@@ -37,6 +37,6 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/py-scipy.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++11.mk
+include ../../mk/language/c++.mk
 
 include ../../mk/robotpkg.mk

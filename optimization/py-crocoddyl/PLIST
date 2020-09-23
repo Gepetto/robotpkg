@@ -27,6 +27,7 @@ include/crocoddyl/core/fwd.hpp
 include/crocoddyl/core/integrator/euler.hpp
 include/crocoddyl/core/integrator/euler.hxx
 include/crocoddyl/core/integrator/rk4.hpp
+include/crocoddyl/core/integrator/rk4.hxx
 include/crocoddyl/core/mathbase.hpp
 include/crocoddyl/core/numdiff/action.hpp
 include/crocoddyl/core/numdiff/action.hxx
@@ -56,6 +57,7 @@ include/crocoddyl/core/states/euclidean.hxx
 include/crocoddyl/core/utils/callbacks.hpp
 include/crocoddyl/core/utils/deprecate.hpp
 include/crocoddyl/core/utils/exception.hpp
+include/crocoddyl/core/utils/file-io.hpp
 include/crocoddyl/core/utils/math.hpp
 include/crocoddyl/core/utils/motion-display.hpp
 include/crocoddyl/core/utils/robot-loader.hpp
@@ -75,6 +77,8 @@ include/crocoddyl/multibody/actuations/full.hpp
 include/crocoddyl/multibody/actuations/multicopter-base.hpp
 include/crocoddyl/multibody/contact-base.hpp
 include/crocoddyl/multibody/contact-base.hxx
+include/crocoddyl/multibody/contacts/contact-2d.hpp
+include/crocoddyl/multibody/contacts/contact-2d.hxx
 include/crocoddyl/multibody/contacts/contact-3d.hpp
 include/crocoddyl/multibody/contacts/contact-3d.hxx
 include/crocoddyl/multibody/contacts/contact-6d.hpp
@@ -95,6 +99,8 @@ include/crocoddyl/multibody/costs/contact-friction-cone.hpp
 include/crocoddyl/multibody/costs/contact-friction-cone.hxx
 include/crocoddyl/multibody/costs/contact-impulse.hpp
 include/crocoddyl/multibody/costs/contact-impulse.hxx
+include/crocoddyl/multibody/costs/contact-wrench-cone.hpp
+include/crocoddyl/multibody/costs/contact-wrench-cone.hxx
 include/crocoddyl/multibody/costs/control.hpp
 include/crocoddyl/multibody/costs/control.hxx
 include/crocoddyl/multibody/costs/cost-sum.hpp
@@ -109,8 +115,12 @@ include/crocoddyl/multibody/costs/frame-velocity.hpp
 include/crocoddyl/multibody/costs/frame-velocity.hxx
 include/crocoddyl/multibody/costs/impulse-com.hpp
 include/crocoddyl/multibody/costs/impulse-com.hxx
+include/crocoddyl/multibody/costs/impulse-cop-position.hpp
+include/crocoddyl/multibody/costs/impulse-cop-position.hxx
 include/crocoddyl/multibody/costs/impulse-friction-cone.hpp
 include/crocoddyl/multibody/costs/impulse-friction-cone.hxx
+include/crocoddyl/multibody/costs/impulse-wrench-cone.hpp
+include/crocoddyl/multibody/costs/impulse-wrench-cone.hxx
 include/crocoddyl/multibody/costs/state.hpp
 include/crocoddyl/multibody/costs/state.hxx
 include/crocoddyl/multibody/data/contacts.hpp
@@ -135,6 +145,8 @@ include/crocoddyl/multibody/numdiff/cost.hxx
 include/crocoddyl/multibody/states/multibody.hpp
 include/crocoddyl/multibody/states/multibody.hxx
 include/crocoddyl/multibody/utils/quadruped-gaits.hpp
+include/crocoddyl/multibody/wrench-cone.hpp
+include/crocoddyl/multibody/wrench-cone.hxx
 include/crocoddyl/warning.hh
 lib/cmake/crocoddyl/crocoddylConfig.cmake
 lib/cmake/crocoddyl/crocoddylConfigVersion.cmake
