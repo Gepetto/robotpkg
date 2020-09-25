@@ -5,6 +5,7 @@
 HPP_PACKAGE=		hpp-corbaserver
 HPP_COMMENT=		Corba server for Humanoid Path Planner
 HPP_VERSION=		4.10.1
+PKGREVISION=		1
 
 CATEGORIES=		path
 
@@ -23,5 +24,6 @@ include ../../mapping/octomap/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c++.mk
 include ../../mk/language/c.mk
+include ../../mk/sysdep/py-numpy.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/robotpkg.mk
