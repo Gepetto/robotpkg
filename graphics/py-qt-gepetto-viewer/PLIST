@@ -16,7 +16,6 @@ include/gepetto/gui/node-action.hh
 include/gepetto/gui/osgwidget.hh
 include/gepetto/gui/pick-handler.hh
 include/gepetto/gui/plugin-interface.hh
-include/gepetto/gui/pythonwidget.hh
 include/gepetto/gui/qt-osg-keyboard.hh
 include/gepetto/gui/safeapplication.hh
 include/gepetto/gui/selection-event.hh
@@ -65,7 +64,4 @@ lib/cmake/gepetto-viewer/gepetto-viewerTargets-release.cmake
 lib/cmake/gepetto-viewer/gepetto-viewerTargets.cmake
 lib/libgepetto-viewer.so
 lib/pkgconfig/gepetto-viewer.pc
-${PYTHON_SITELIB}/gepetto/gui/__init__.py
-${PYTHON_SITELIB}/gepetto/gui/blenderexport.py
-${PYTHON_SITELIB}/gepetto/gui/intersection.py
 share/gepetto-viewer/fonts/arial.ttf
