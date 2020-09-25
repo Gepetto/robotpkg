@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-constraints
 HPP_VERSION=		4.10.1
+PKGREVISION=		1
 
 CATEGORIES=		path
 HPP_COMMENT=		Define non-linear constraints on robot configurations
@@ -12,6 +13,7 @@ include ../../meta-pkgs/hpp/Makefile.common
 
 # TODO for tests
 #include ../../wip/py-hpp-baxter/depend.mk
+#include ../../robots/romeo-description/depend.mk
 
 CMAKE_ARGS+=		-DqpOASES_PREFIX=${PREFIX.qpoases}
 
@@ -25,7 +27,6 @@ include ../../math/pinocchio/depend.mk
 include ../../optimization/qpoases/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../path/hpp-statistics/depend.mk
-include ../../robots/romeo-description/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
