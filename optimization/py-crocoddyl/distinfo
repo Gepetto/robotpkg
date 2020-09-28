@@ -1,3 +1,4 @@
 SHA1 (crocoddyl-1.5.0.tar.gz) = 37fd7a603eae8085df7b8eb035b183577c27f1bc
 RMD160 (crocoddyl-1.5.0.tar.gz) = ee4e61c1fa6fea8ab266a8a65a504964d31d9475
 Size (crocoddyl-1.5.0.tar.gz) = 2065913 bytes
+SHA1 (patch-83) = 16c04fbef1c446d8eefb37375f179d88e51f05d5
