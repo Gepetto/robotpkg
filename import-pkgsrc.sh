@@ -15,6 +15,7 @@ case $module in
   net/libfetch)		pkgsrc_module=net/libfetch/files;;
   pkgtools/libnbcompat)	pkgsrc_module=pkgtools/libnbcompat/files;;
   pkgtools/pkg_install)	pkgsrc_module=pkgtools/pkg_install/files;;
+  pkgtools/tnftp)	pkgsrc_module=net/tnftp/files;;
   *) echo 'no such module "$module"'; exit 2;;
 esac
 
