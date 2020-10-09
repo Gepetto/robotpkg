@@ -1,4 +1,4 @@
-/*	$NetBSD: emacs.c,v 1.5 2005/06/09 16:48:57 lukem Exp $	*/
+/*	$NetBSD: emacs.c,v 1.5 2014/10/31 18:59:32 spz Exp $	*/
 /*	from	NetBSD: emacs.c,v 1.19 2004/10/28 21:14:52 dsl Exp	*/
 
 /*-

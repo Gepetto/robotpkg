@@ -1,4 +1,4 @@
-## $NetBSD: Makefile.am,v 1.3 2013/05/05 13:06:37 lukem Exp $
+## $NetBSD: Makefile.am,v 1.1.1.1 2014/10/31 18:47:03 spz Exp $
 
 ACLOCAL_AMFLAGS = -I buildaux
 

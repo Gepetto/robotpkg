@@ -1,4 +1,4 @@
-/*	$NetBSD: progressbar.h,v 1.9 2009/05/20 12:53:47 lukem Exp $	*/
+/*	$NetBSD: progressbar.h,v 1.6 2014/10/31 18:59:33 spz Exp $	*/
 /*	from	NetBSD: progressbar.h,v 1.8 2009/04/12 10:18:52 lukem Exp	*/
 
 /*-

@@ -1,4 +1,4 @@
-/*	$NetBSD: tty.h,v 1.3 2005/06/01 11:42:24 lukem Exp $	*/
+/*	$NetBSD: tty.h,v 1.5 2014/10/31 18:59:32 spz Exp $	*/
 /*	from	NetBSD: tty.h,v 1.10 2003/08/07 16:44:34 agc Exp	*/
 
 /*-

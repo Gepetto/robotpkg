@@ -6,7 +6,7 @@
 # This version of tnftp installs into ${PREFIX/sbin} as tnftp.
 #
 
-DISTNAME=		tnftp-20130505
+DISTNAME=		tnftp-20151004
 CATEGORIES=		pkgtools
 
 MASTER_SITES=		# empty
@@ -24,6 +24,9 @@ CONFIGURE_ARGS+=	--with-socks=no
 
 NOT_FOR_PLATFORM=	# empty
 NO_CHECKSUM=		yes
+
+# suppress useless warnings
+CFLAGS+=		-Wno-unused-result -Wno-implicit-function-declaration
 
 # ssl option
 PKG_SUPPORTED_OPTIONS+=	ssl

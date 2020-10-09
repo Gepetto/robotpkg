@@ -1,4 +1,4 @@
-/*	$NetBSD: cmdtab.c,v 1.12 2013/05/05 11:17:30 lukem Exp $	*/
+/*	$NetBSD: cmdtab.c,v 1.7 2014/10/31 18:59:33 spz Exp $	*/
 /*	from	NetBSD: cmdtab.c,v 1.52 2012/12/22 16:57:09 christos Exp	*/
 
 /*-

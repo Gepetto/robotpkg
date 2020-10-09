@@ -1,4 +1,4 @@
-/*	$NetBSD: term.c,v 1.5 2005/06/09 16:48:58 lukem Exp $	*/
+/*	$NetBSD: term.c,v 1.5 2014/10/31 18:59:32 spz Exp $	*/
 /*	from	NetBSD: term.c,v 1.40 2004/05/22 23:21:28 christos Exp	*/
 
 /*-
@@ -399,7 +399,7 @@ term_alloc(EditLine *el, const struct termcapstr *t, const char *cap)
          */
 	tlen = 0;
 	for (tmp = tlist; tmp < &tlist[T_str]; tmp++)
-		if (*tmp != NULL && *tmp != '\0' && *tmp != *str) {
+		if (*tmp != NULL && **tmp != '\0' && *tmp != *str) {
 			char *ptr;
 
 			for (ptr = *tmp; *ptr != '\0'; termbuf[tlen++] = *ptr++)
