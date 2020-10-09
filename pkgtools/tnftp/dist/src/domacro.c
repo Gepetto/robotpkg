@@ -1,4 +1,4 @@
-/*	$NetBSD: domacro.c,v 1.8 2009/05/20 12:53:47 lukem Exp $	*/
+/*	$NetBSD: domacro.c,v 1.6 2014/10/31 18:59:33 spz Exp $	*/
 /*	from	NetBSD: domacro.c,v 1.22 2009/04/12 10:18:52 lukem Exp	*/
 
 /*

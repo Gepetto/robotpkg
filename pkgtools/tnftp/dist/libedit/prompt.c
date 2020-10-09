@@ -1,4 +1,4 @@
-/*	$NetBSD: prompt.c,v 1.5 2005/06/09 16:48:58 lukem Exp $	*/
+/*	$NetBSD: prompt.c,v 1.5 2014/10/31 18:59:32 spz Exp $	*/
 /*	from	NetBSD: prompt.c,v 1.11 2003/08/07 16:44:32 agc Exp	*/
 
 /*-

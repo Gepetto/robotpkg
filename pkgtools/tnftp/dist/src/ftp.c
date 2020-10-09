@@ -1,4 +1,4 @@
-/*	$NetBSD: ftp.c,v 1.19 2013/05/05 11:17:31 lukem Exp $	*/
+/*	$NetBSD: ftp.c,v 1.11 2015/10/04 14:44:07 tnn Exp $	*/
 /*	from	NetBSD: ftp.c,v 1.164 2012/07/04 06:09:37 is Exp	*/
 
 /*-

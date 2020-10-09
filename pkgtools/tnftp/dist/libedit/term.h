@@ -1,4 +1,4 @@
-/*	$NetBSD: term.h,v 1.3 2005/05/31 02:07:02 lukem Exp $	*/
+/*	$NetBSD: term.h,v 1.5 2014/10/31 18:59:32 spz Exp $	*/
 /*	from	NetBSD: term.h,v 1.16 2005/03/15 00:10:40 christos Exp	*/
 
 /*-

@@ -1,4 +1,4 @@
-/*	$NetBSD: ftpglob.h,v 1.6 2013/03/20 07:24:13 lukem Exp $	*/
+/*	$NetBSD: ftpglob.h,v 1.5 2014/10/31 18:59:32 spz Exp $	*/
 /* from: NetBSD: glob.h,v 1.26 2010/09/06 14:38:56 christos Exp	*/
 
 /*

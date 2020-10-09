@@ -1,4 +1,4 @@
-/*	$NetBSD: util.c,v 1.23 2013/05/05 11:51:43 lukem Exp $	*/
+/*	$NetBSD: util.c,v 1.10 2014/10/31 18:59:33 spz Exp $	*/
 /*	from	NetBSD: util.c,v 1.158 2013/02/19 23:29:15 dsl Exp	*/
 
 /*-

@@ -1,4 +1,4 @@
-## $NetBSD: Makefile.am,v 1.2 2010/01/04 06:24:20 lukem Exp $
+## $NetBSD: Makefile.am,v 1.1.1.1 2014/10/31 18:47:20 spz Exp $
 
 noinst_LTLIBRARIES = libnetbsd.la
 
