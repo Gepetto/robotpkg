@@ -1,0 +1,24 @@
+From 80c5d3c02a42ecad45928bfb54acf93c7f6e5398 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Tue, 13 Oct 2020 15:45:32 +0200
+Subject: [PATCH 1/2] python: fix double negative
+
+---
+ python/example_robot_data/__main__.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/python/example_robot_data/__main__.py b/python/example_robot_data/__main__.py
+index f3f8779..1f06632 100644
+--- python/example_robot_data/__main__.py
++++ python/example_robot_data/__main__.py
+@@ -6,7 +6,7 @@
+ 
+ parser = ArgumentParser(description=load.__doc__)
+ parser.add_argument('robot', nargs='?', default=ROBOTS[0], choices=ROBOTS)
+-parser.add_argument('--no-display', action='store_false')
++parser.add_argument('--no-display', action='store_true')
+ 
+ args = parser.parse_args()
+ 
+
+
