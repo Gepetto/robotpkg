@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Tue, 14 Apr 2020
 #
 
+PKGREVISION=		1
 ORG=			gepetto
 NAME=			example-robot-data
 VERSION=		3.6.1
@@ -20,9 +21,3 @@ include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
-
-post-install:
-	${RUN}for robot in hyq_description talos_data; do				\
-	  ${LN} -s "${PREFIX}/share/example-robot-data/robots/$${robot}/robots"	\
-	  	   "${PREFIX}/share/example-robot-data/robots/$${robot}/urdf";	\
-	done
