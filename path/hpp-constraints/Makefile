@@ -11,10 +11,6 @@ HPP_COMMENT=		Define non-linear constraints on robot configurations
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-# TODO for tests
-#include ../../wip/py-hpp-baxter/depend.mk
-#include ../../robots/romeo-description/depend.mk
-
 CMAKE_ARGS+=		-DqpOASES_PREFIX=${PREFIX.qpoases}
 
 DEPEND_ABI.g++ += g++>=4.6
