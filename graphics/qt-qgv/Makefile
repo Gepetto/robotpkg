@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Thu, 24 Jan 2019
 #
 
+PKGREVISION=		1
 ORG=			gepetto
 NAME=			qgv
 VERSION=		1.3.0
@@ -25,10 +26,11 @@ CMAKE_ARGS+=		-DGRAPHVIZ_INCLUDE_DIR=${PREFIX.graphviz}/include/graphviz
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../pkgtools/pkg-config/depend.mk
-include ../../mk/sysdep/graphviz.mk
 include ../../mk/sysdep/cmake.mk
-include ../../mk/sysdep/qt.mk
+include ../../mk/sysdep/graphviz.mk
+include ../../mk/sysdep/libgraphviz.mk
 include ../../mk/sysdep/qmake.mk
+include ../../mk/sysdep/qt.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
