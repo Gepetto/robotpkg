@@ -3,9 +3,9 @@ Avoid glob_recurse:
 sorted(set('  ${PROJECT_SOURCE_DIR}/' + str(i.parent) + f'/*.{ext}' 
 for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}')))
 
---- CMakeLists.txt.orig	2020-04-24 17:55:49.000000000 +0200
-+++ CMakeLists.txt	2020-04-24 20:33:30.060352325 +0200
-@@ -170,9 +170,39 @@
+--- CMakeLists.txt.orig	2020-10-22 15:23:57.000000000 +0200
++++ CMakeLists.txt	2020-11-08 17:05:46.490785050 +0100
+@@ -173,9 +173,38 @@
  # ----------------------------------------------------
  # --- INCLUDE ----------------------------------------
  # ----------------------------------------------------
@@ -13,7 +13,6 @@ for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}')))
 +file(GLOB HEADERS
       ${PROJECT_SOURCE_DIR}/src/*.hpp 
 -     ${PROJECT_SOURCE_DIR}/src/*.hxx 
-+  ${PROJECT_SOURCE_DIR}/src/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/algorithm/*.hpp
 +  ${PROJECT_SOURCE_DIR}/src/algorithm/*.hxx
 +  ${PROJECT_SOURCE_DIR}/src/autodiff/*.hpp

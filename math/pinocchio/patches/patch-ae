@@ -5,9 +5,9 @@ for ext in ['hpp', 'cpp']:
     for i in sorted(Path('.').glob(f'**/*.{ext}')): print(f'  {i}')
     print()
 
---- bindings/python/CMakeLists.txt.orig	2020-06-15 19:46:02.665542391 +0200
-+++ bindings/python/CMakeLists.txt	2020-06-15 19:48:24.850202951 +0200
-@@ -31,29 +31,103 @@
+--- bindings/python/CMakeLists.txt.orig	2020-11-01 22:12:13.000000000 +0100
++++ bindings/python/CMakeLists.txt	2020-11-08 17:08:34.256744567 +0100
+@@ -31,29 +31,105 @@
  SET(PYWRAP ${PROJECT_NAME}_pywrap)
  SET(PYWRAP ${PYWRAP} PARENT_SCOPE)
  
@@ -44,6 +44,7 @@ for ext in ['hpp', 'cpp']:
 +  utils/copyable.hpp
 +  utils/dependencies.hpp
 +  utils/deprecation.hpp
++  utils/eigen.hpp
 +  utils/list.hpp
 +  utils/namespace.hpp
 +  utils/pickle-map.hpp
@@ -75,6 +76,7 @@ for ext in ['hpp', 'cpp']:
 +  algorithm/expose-geometry.cpp
 +  algorithm/expose-jacobian.cpp
 +  algorithm/expose-joints.cpp
++  algorithm/expose-kinematic-regressor.cpp
 +  algorithm/expose-kinematics-derivatives.cpp
 +  algorithm/expose-kinematics.cpp
 +  algorithm/expose-model.cpp

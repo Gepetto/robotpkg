@@ -89,6 +89,7 @@ include/pinocchio/bindings/python/utils/conversions.hpp
 include/pinocchio/bindings/python/utils/copyable.hpp
 include/pinocchio/bindings/python/utils/dependencies.hpp
 include/pinocchio/bindings/python/utils/deprecation.hpp
+include/pinocchio/bindings/python/utils/eigen.hpp
 include/pinocchio/bindings/python/utils/list.hpp
 include/pinocchio/bindings/python/utils/namespace.hpp
 include/pinocchio/bindings/python/utils/pickle-map.hpp
