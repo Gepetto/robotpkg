@@ -36,7 +36,6 @@ share/example-robot-data/robots/hyq_description/meshes/leg/upperleg.dae
 share/example-robot-data/robots/hyq_description/meshes/trunk/trunk.dae
 share/example-robot-data/robots/hyq_description/robots/hyq_no_sensors.urdf
 share/example-robot-data/robots/hyq_description/srdf/hyq.srdf
-share/example-robot-data/robots/hyq_description/urdf
 share/example-robot-data/robots/icub_description/meshes/upmc/collision/icub_simple_collision_chest.dae
 share/example-robot-data/robots/icub_description/meshes/upmc/collision/icub_simple_collision_head.dae
 share/example-robot-data/robots/icub_description/meshes/upmc/collision/icub_simple_collision_l_ankle_1.dae
@@ -299,7 +298,6 @@ share/example-robot-data/robots/talos_data/robots/talos_left_arm.urdf
 share/example-robot-data/robots/talos_data/robots/talos_reduced.urdf
 share/example-robot-data/robots/talos_data/robots/talos_reduced_box.urdf
 share/example-robot-data/robots/talos_data/srdf/talos.srdf
-share/example-robot-data/robots/talos_data/urdf
 share/example-robot-data/robots/tiago_description/config/collision/collision_parameters.yaml
 share/example-robot-data/robots/tiago_description/meshes/arm/arm_1.stl
 share/example-robot-data/robots/tiago_description/meshes/arm/arm_1_collision.dae
