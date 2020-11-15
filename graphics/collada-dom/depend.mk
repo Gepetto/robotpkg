@@ -11,7 +11,12 @@ endif
 
 ifeq (+,$(COLLADADOM_DEPEND_MK)) # -----------------------------------------
 
-PREFER.collada-dom?=	robotpkg
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Arch,${OPSYS})
+  PREFER.collada-dom?=	system
+else
+  PREFER.collada-dom?=	robotpkg
+endif
 
 SYSTEM_SEARCH.collada-dom=\
   'include/collada-dom*/dae.h'					\
@@ -22,6 +27,8 @@ DEPEND_USE+=		collada-dom
 
 DEPEND_ABI.collada-dom?=collada-dom >=2.4
 DEPEND_DIR.collada-dom?=../../graphics/collada-dom
+
+SYSTEM_PKG.Arch.collada-dom=	collada-dom (AUR)
 
 endif # COLLADADOM_DEPEND_MK -----------------------------------------------
 
