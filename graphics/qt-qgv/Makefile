@@ -2,10 +2,9 @@
 # Created:			Guilhem Saurel on Thu, 24 Jan 2019
 #
 
-PKGREVISION=		1
 ORG=			gepetto
 NAME=			qgv
-VERSION=		1.3.0
+VERSION=		1.3.1
 
 PKGNAME=		${PKGTAG.qt-}${DISTNAME}
 
