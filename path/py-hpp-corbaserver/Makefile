@@ -5,7 +5,7 @@
 HPP_PACKAGE=		hpp-corbaserver
 HPP_COMMENT=		Corba server for Humanoid Path Planner
 HPP_VERSION=		4.10.1
-PKGREVISION=		1
+PKGREVISION=		2
 
 CATEGORIES=		path
 
