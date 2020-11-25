@@ -1,0 +1,25 @@
+From cc748c729aed1a960e70a9981218249a63d6865c Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Wed, 25 Nov 2020 09:48:12 +0100
+Subject: [PATCH] typo
+
+---
+ QGVCore/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/QGVCore/CMakeLists.txt b/QGVCore/CMakeLists.txt
+index b9e108b..fc13c47 100644
+--- QGVCore/CMakeLists.txt
++++ QGVCore/CMakeLists.txt
+@@ -67,7 +67,7 @@ TARGET_LINK_LIBRARIES(qgvcore
+   ${GRAPHVIZ_CDT_LIBRARY}
+ )
+ 
+-TARGET_INCLUDE_DIRECTORIES(qgvcore PUBLIC $<INSTALL_INTERFACE:include/QGVcore>)
++TARGET_INCLUDE_DIRECTORIES(qgvcore PUBLIC $<INSTALL_INTERFACE:include/QGVCore>)
+ 
+ IF(BINDINGS_QT4)
+   TARGET_LINK_LIBRARIES(qgvcore ${QT_LIBRARIES})
+-- 
+2.29.2
+

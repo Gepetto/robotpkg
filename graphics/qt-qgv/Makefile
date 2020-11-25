@@ -5,6 +5,7 @@
 ORG=			gepetto
 NAME=			qgv
 VERSION=		1.3.1
+PKGREVISION=		1
 
 PKGNAME=		${PKGTAG.qt-}${DISTNAME}
 
