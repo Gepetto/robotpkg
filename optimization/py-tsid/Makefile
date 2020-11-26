@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			tsid
-VERSION=		1.4.1
+VERSION=		1.4.2
 
 CATEGORIES=		optimization
 COMMENT=		Efficient Inverse Dynamics (python bindings)
