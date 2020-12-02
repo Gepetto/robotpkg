@@ -8,7 +8,7 @@ Fix gcc version check for gcc>5
      # We are assuming here that -dumpversion is gcc specific.
 -    IF( CXX_VERSION MATCHES "[4-6]\\.[0-9](\\.[0-9])?" )
 -      MESSAGE(STATUS "Detected gcc4/5: ${CXX_VERSION}")
-+    IF( CXX_VERSION MATCHES "[4-9](\\.[0-9])?(\\.[0-9])?" )
++    IF( CXX_VERSION MATCHES "([4-9]|1[0-9])(\\.[0-9])?(\\.[0-9])?" )
 +      MESSAGE(STATUS "Detected gcc>=4: ${CXX_VERSION}")
        SET(RTT_GCC_HASVISIBILITY TRUE)
      ELSE(CXX_VERSION MATCHES "[4-6]\\.[0-9](\\.[0-9])?")
