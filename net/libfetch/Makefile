@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sat, 19 Apr 2008
 #
 
-DISTNAME=	libfetch-2.33.1
+DISTNAME=	libfetch-2.39.1
 CATEGORIES=	net
 MASTER_SITES=	# empty
 DISTFILES=	# empty

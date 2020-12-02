@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2010/02/24 22:00:51 joerg Exp $
+# $NetBSD: Makefile,v 1.8 2016/10/27 10:05:38 joerg Exp $
 
 LIB=		fetch
 SRCS=		fetch.c common.c ftp.c http.c file.c
