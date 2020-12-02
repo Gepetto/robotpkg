@@ -97,6 +97,7 @@ share/openprs/data/include.db
 share/openprs/data/include.inc
 share/openprs/data/ipp.inc
 share/openprs/data/ipp.opf
+share/openprs/data/meta-intended-goal.inc
 share/openprs/data/meta-intended-goal.opf
 share/openprs/data/meta-intended-goal.sym
 share/openprs/data/meta-selector.opf
