@@ -139,7 +139,6 @@ share/genom/templates/example/example.configure.ac
 share/genom/templates/example/example.tcl
 share/genom/templates/example/template.tcl
 share/genom/templates/interactive/template.tcl
-share/genom/templates/mappings/codels.h
 share/genom/templates/mappings/template.tcl
 share/genom/templates/skeleton/ag_templates.m4
 share/genom/templates/skeleton/codels.Makefile.am
