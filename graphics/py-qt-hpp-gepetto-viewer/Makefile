@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-gepetto-viewer
 HPP_VERSION=		4.10.1
+PKGREVISION=		1
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=		graphics
@@ -23,6 +24,7 @@ CMAKE_ARGS+=\
   -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
 
 include ../../graphics/py-qt-gepetto-viewer-corba/depend.mk
+include ../../graphics/qt-qgv/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/hpp-util/depend.mk
