@@ -127,6 +127,7 @@ include/pinocchio/math/multiprecision.hpp
 include/pinocchio/math/quaternion.hpp
 include/pinocchio/math/rotation.hpp
 include/pinocchio/math/rpy.hpp
+include/pinocchio/math/rpy.hxx
 include/pinocchio/math/sign.hpp
 include/pinocchio/math/sincos.hpp
 include/pinocchio/math/taylor-expansion.hpp
