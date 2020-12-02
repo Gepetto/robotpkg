@@ -7,10 +7,10 @@ Fix gcc version detection
      #string( REGEX MATCHALL "gcc\.*" VERSION_STRING ${CMAKE_C_COMPILER} )
  
 -    if( gcc_version MATCHES ".*4\\.[0-9]\\.[0-9]" )
-+    if( gcc_version MATCHES ".*[4-9]\\.[0-9]\\.[0-9]" )
++    if( gcc_version MATCHES ".*([4-9]|1[0-9])\\.[0-9]\\.[0-9]" )
          set( GCC_VERSION_OK 1 )
 -    endif( gcc_version MATCHES ".*4\\.[0-9]\\.[0-9]")
-+    endif( gcc_version MATCHES ".*[4-9]\\.[0-9]\\.[0-9]")
++    endif( gcc_version MATCHES ".*([4-9]|1[0-9])\\.[0-9]\\.[0-9]")
  
      GBX_ASSERT ( GCC_VERSION_OK
 -      "Checking gcc version - failed. ${PROJECT_NAME} requires gcc v. 4.x"
