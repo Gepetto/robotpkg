@@ -1,0 +1,20 @@
+Fix build with -fno-common (gcc-10)
+
+--- download.c~	2013-06-16 16:00:45.000000000 +0200
++++ download.c	2020-12-02 17:46:04.555304310 +0100
+@@ -33,7 +33,6 @@
+ #include "pkgin.h"
+ #include "progressmeter.h"
+ 
+-int		fetchTimeout = 15; /* wait 15 seconds before timeout */
+ size_t	fetch_buffer = 1024;
+ 
+ /* if db_mtime == NULL, we're downloading a package, pkg_summary otherwise */
+@@ -50,6 +49,7 @@
+ 	struct url		*url;
+ 	fetchIO			*f = NULL;
+ 
++	fetchTimeout = 15; /* wait 15 seconds before timeout */
+ 	url = fetchParseURL(str_url);
+ 
+ 	if (url == NULL || (f = fetchXGet(url, &st, "")) == NULL)
