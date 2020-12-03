@@ -2,14 +2,14 @@
 # Created:			Anthony Mallet on Wed, 23 Jan 2008
 #
 
-ACE_VERSION=		6.5.8
+ACE_VERSION=		6.5.12
 DISTNAME=		ACE-${ACE_VERSION}
 PKGNAME=		ace-${ACE_VERSION}
 CATEGORIES=		middleware
 MASTER_SITES=		http://download.dre.vanderbilt.edu/previous_versions/
 
 MAINTAINER=		openrobots@laas.fr
-HOMEPAGE=		http://www.cs.wustl.edu/~schmidt/ACE.html
+HOMEPAGE=		http://www.dre.vanderbilt.edu/~schmidt/ACE.html
 COMMENT=		The ADAPTATIVE Communication Environment ACE(tm)
 LICENSE=		doc
 
