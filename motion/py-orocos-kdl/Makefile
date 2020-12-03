@@ -21,7 +21,7 @@ WRKSRC=\
 
 CMAKE_ARGS+=	-DPYTHON_SITE_PACKAGES_INSTALL_DIR=${PREFIX}/${PYTHON_SITELIB}
 
-DEPEND_ABI.orocos-kdl=		orocos-kdl-${VERSION}
+DEPEND_ABI.orocos-kdl=		orocos-kdl>=${VERSION}
 
 include ../../motion/orocos-kdl/depend.mk
 include ../../mk/sysdep/cmake.mk
