@@ -1,4 +1,4 @@
-@comment Mon Mar 2 12:11:32 CET 2020
+@comment Thu Dec 3 18:08:57 CET 2020
 bin/ace_gperf
 include/ACEXML/apps/svcconf/Svcconf.h
 include/ACEXML/apps/svcconf/Svcconf_Handler.h
@@ -1059,6 +1059,7 @@ include/ace/config-face-safety.h
 include/ace/config-freebsd.h
 include/ace/config-g++-common.h
 include/ace/config-hpux-11.00.h
+include/ace/config-hurd.h
 include/ace/config-icc-common.h
 include/ace/config-integritySCA.h
 include/ace/config-kfreebsd.h
