@@ -1,0 +1,13 @@
+Fix -fno-common
+
+--- include/disambiguate_p.h~	2008-06-09 18:38:41.000000000 +0200
++++ include/disambiguate_p.h	2020-12-03 11:25:35.765625932 +0100
+@@ -71,7 +71,7 @@
+ 
+ 
+ 
+-double VarLoc[6];
++extern double VarLoc[6];
+ 
+ /****************
+   List of possible transformations "encoder position -> absolute position"
