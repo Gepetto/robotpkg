@@ -1,0 +1,37 @@
+Fix build with -fno-common. (40db932)
+
+diff --git src/serial.c src/serial.c
+index 0ef2755..6decf8f 100644
+--- src/serial.c
++++ src/serial.c
+@@ -43,6 +43,12 @@
+ unsigned char GPS_TRAME[TAILLE_BUFFER];
+ unsigned char GPS_TRAME_COMPLETED[TAILLE_BUFFER];
+ 
++/* union qui me permet de superposer les variable 'valeur' et 'etat'*/
++static union _mot {
++     char valeur;
++     octet etat;
++} mot;
++
+ // Index of the current buffer end position
+ int LAST_POSITION=0;
+ 
+diff --git src/serial.h src/serial.h
+index a65b72e..e125f58 100644
+--- src/serial.h
++++ src/serial.h
+@@ -50,13 +50,6 @@ typedef struct {
+      uchar b7:1;
+ } octet;
+ 
+-/* union qui me permet de superposer les variable 'valeur' et 'etat'*/
+-union _mot {
+-     char valeur;
+-     octet etat;
+-} mot;
+-
+-
+ // Indique le nombre de trame dans le buffer de sortie
+ // pour l'utilisateur
+ int NB_TRAME_BUFFERED;
