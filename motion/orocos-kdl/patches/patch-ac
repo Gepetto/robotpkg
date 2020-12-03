@@ -1,0 +1,15 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chainfksolverpos_recursive.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chainfksolverpos_recursive.hpp	2020-12-03 15:35:27.657804880 +0100
+@@ -38,6 +38,10 @@
+     public:
+         ChainFkSolverPos_recursive(const Chain& chain);
+         ~ChainFkSolverPos_recursive();
++        ChainFkSolverPos_recursive operator=(const ChainFkSolverPos_recursive &x) {
++          ChainFkSolverPos_recursive y(x.chain);
++          return y;
++        }
+ 
+         virtual int JntToCart(const JntArray& q_in, Frame& p_out, int segmentNr=-1);
+         virtual int JntToCart(const JntArray& q_in, std::vector<Frame>& p_out, int segmentNr=-1);

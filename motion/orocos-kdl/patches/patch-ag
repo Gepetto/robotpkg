@@ -1,0 +1,15 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chainiksolvervel_pinv.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chainiksolvervel_pinv.hpp	2020-12-03 15:52:54.617860836 +0100
+@@ -56,6 +56,10 @@
+          */
+         explicit ChainIkSolverVel_pinv(const Chain& chain,double eps=0.00001,int maxiter=150);
+         ~ChainIkSolverVel_pinv();
++        ChainIkSolverVel_pinv operator=(const ChainIkSolverVel_pinv &x) {
++          ChainIkSolverVel_pinv y(x.chain, x.eps, x.maxiter);
++          return y;
++        }
+ 
+         /**
+          * Find an output joint velocity \a qdot_out, given a starting joint pose

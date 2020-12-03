@@ -1,0 +1,15 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chainfksolvervel_recursive.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chainfksolvervel_recursive.hpp	2020-12-03 15:36:13.746872807 +0100
+@@ -39,6 +39,10 @@
+     public:
+         ChainFkSolverVel_recursive(const Chain& chain);
+         ~ChainFkSolverVel_recursive();
++        ChainFkSolverVel_recursive operator=(const ChainFkSolverVel_recursive &x) {
++          ChainFkSolverVel_recursive y(x.chain);
++          return y;
++        }
+ 
+         virtual int JntToCart(const JntArrayVel& q_in,FrameVel& out,int segmentNr=-1);
+         virtual int JntToCart(const JntArrayVel& q_in,std::vector<FrameVel>& out,int segmentNr=-1);

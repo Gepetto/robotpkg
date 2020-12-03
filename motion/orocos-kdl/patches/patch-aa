@@ -1,0 +1,16 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chainiksolverpos_nr.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chainiksolverpos_nr.hpp	2020-12-03 15:30:51.757969309 +0100
+@@ -60,6 +60,11 @@
+                             unsigned int maxiter=100,double eps=1e-6);
+         ~ChainIkSolverPos_NR();
+ 
++        ChainIkSolverPos_NR operator=(const ChainIkSolverPos_NR &x) {
++          ChainIkSolverPos_NR y(x.chain, x.fksolver, x.iksolver, x.maxiter, x.eps);
++          return y;
++        }
++
+         /**
+          * Find an output joint pose \a q_out, given a starting joint pose
+          * \a q_init and a desired cartesian pose \a p_in

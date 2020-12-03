@@ -1,0 +1,15 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chainiksolvervel_pinv_nso.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chainiksolvervel_pinv_nso.hpp	2020-12-03 15:55:11.277043907 +0100
+@@ -63,6 +63,10 @@
+         ChainIkSolverVel_pinv_nso(const Chain& chain, const JntArray& opt_pos, const JntArray& weights, double eps=0.00001,int maxiter=150, double alpha = 0.25);
+         explicit ChainIkSolverVel_pinv_nso(const Chain& chain, double eps=0.00001,int maxiter=150, double alpha = 0.25);
+         ~ChainIkSolverVel_pinv_nso();
++        ChainIkSolverVel_pinv_nso operator=(const ChainIkSolverVel_pinv_nso &x) {
++          ChainIkSolverVel_pinv_nso y(x.chain, x.opt_pos, x.weights, x.eps, x.maxiter, x.alpha);
++          return y;
++        }
+ 
+         virtual int CartToJnt(const JntArray& q_in, const Twist& v_in, JntArray& qdot_out);
+         /**

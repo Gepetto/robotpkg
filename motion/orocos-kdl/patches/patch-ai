@@ -1,0 +1,15 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chainiksolvervel_pinv_givens.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chainiksolvervel_pinv_givens.hpp	2020-12-03 15:56:19.461719997 +0100
+@@ -38,6 +38,10 @@
+          */
+         explicit ChainIkSolverVel_pinv_givens(const Chain& chain);
+         ~ChainIkSolverVel_pinv_givens();
++        ChainIkSolverVel_pinv_givens operator=(const ChainIkSolverVel_pinv_givens &x) {
++          ChainIkSolverVel_pinv_givens y(x.chain);
++          return y;
++        }
+ 
+         virtual int CartToJnt(const JntArray& q_in, const Twist& v_in, JntArray& qdot_out);
+         /**

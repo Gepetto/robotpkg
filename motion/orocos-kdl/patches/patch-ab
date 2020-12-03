@@ -1,0 +1,15 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chainjnttojacsolver.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chainjnttojacsolver.hpp	2020-12-03 15:33:14.923771184 +0100
+@@ -44,6 +44,10 @@
+ 
+         explicit ChainJntToJacSolver(const Chain& chain);
+         virtual ~ChainJntToJacSolver();
++        ChainJntToJacSolver operator=(const ChainJntToJacSolver &x) {
++          ChainJntToJacSolver y(x.chain);
++          return y;
++        }
+         /**
+          * Calculate the jacobian expressed in the base frame of the
+          * chain, with reference point at the end effector of the

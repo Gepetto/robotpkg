@@ -1,0 +1,15 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chaindynparam.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chaindynparam.hpp	2020-12-03 15:37:39.858890865 +0100
+@@ -49,6 +49,10 @@
+     public:
+         ChainDynParam(const Chain& chain, Vector _grav);
+         virtual ~ChainDynParam();
++        ChainDynParam operator=(const ChainDynParam &x) {
++          ChainDynParam y(x.chain, x.grav);
++          return y;
++        }
+ 
+         virtual int JntToCoriolis(const JntArray &q, const JntArray &q_dot, JntArray &coriolis);
+ 	virtual int JntToMass(const JntArray &q, JntSpaceInertiaMatrix& H);

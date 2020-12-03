@@ -1,0 +1,15 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chainiksolverpos_lma.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chainiksolverpos_lma.hpp	2020-12-03 15:57:57.374972030 +0100
+@@ -111,6 +111,10 @@
+     		int _maxiter=500,
+     		double _eps_joints=1E-15
+     );
++    ChainIkSolverPos_LMA operator=(const ChainIkSolverPos_LMA &x) {
++      ChainIkSolverPos_LMA y(x.chain, x.L, x.eps, x.maxiter, x.eps_joints);
++      return y;
++    }
+ 
+     /**
+      * \brief computes the inverse position kinematics.

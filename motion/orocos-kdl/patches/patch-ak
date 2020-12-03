@@ -1,0 +1,15 @@
+Fix implicit assignement operator deleted (gcc-10)
+
+--- src/chainiksolverpos_nr_jl.hpp~	2018-03-21 21:48:25.000000000 +0100
++++ src/chainiksolverpos_nr_jl.hpp	2020-12-03 16:07:10.224832101 +0100
+@@ -81,6 +81,10 @@
+         ChainIkSolverPos_NR_JL(const Chain& chain, ChainFkSolverPos& fksolver,ChainIkSolverVel& iksolver,unsigned int maxiter=100,double eps=1e-6);
+ 
+         ~ChainIkSolverPos_NR_JL();
++        ChainIkSolverPos_NR_JL operator=(const ChainIkSolverPos_NR_JL &x) {
++          ChainIkSolverPos_NR_JL y(x.chain, x.q_min, x.q_max, x.fksolver, x.iksolver, x.maxiter, x.eps);
++          return y;
++        }
+ 
+ 
+         /**

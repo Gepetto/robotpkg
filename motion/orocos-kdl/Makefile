@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Thu, 14 Aug 2014
 #
 
+PKGREVISION=	1
 VERSION=	1.4.0
 DISTNAME=	orocos-kdl-${VERSION}
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
