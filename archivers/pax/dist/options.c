@@ -235,6 +235,8 @@ int ford[] = {F_USTAR, F_TAR,
  */
 int sep = '\n';
 
+char *chdname;
+
 /*
  * options()
  *	figure out if we are pax, tar or cpio. Call the appropriate options
