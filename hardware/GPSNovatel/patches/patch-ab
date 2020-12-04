@@ -1,0 +1,49 @@
+Fix build with -fno-common. (0731dfc)
+
+diff --git GPSNovatel/GPSNovatel.h GPSNovatel/GPSNovatel.h
+index 2202276..eaf0e56 100644
+--- GPSNovatel/GPSNovatel.h
++++ GPSNovatel/GPSNovatel.h
+@@ -74,6 +74,6 @@ typedef struct OEM4_TRAME_COMPUTED
+ 
+ #define MAX_TRAME_COMPUTED 10
+ 
+-OEM4_TRAME_COMPUTED USR_TRAME[MAX_TRAME_COMPUTED];
++extern OEM4_TRAME_COMPUTED USR_TRAME[MAX_TRAME_COMPUTED];
+ 
+ #endif
+diff --git src/serial.c src/serial.c
+index 6decf8f..e07bf98 100644
+--- src/serial.c
++++ src/serial.c
+@@ -43,6 +43,8 @@
+ unsigned char GPS_TRAME[TAILLE_BUFFER];
+ unsigned char GPS_TRAME_COMPLETED[TAILLE_BUFFER];
+ 
++OEM4_TRAME_COMPUTED USR_TRAME[MAX_TRAME_COMPUTED];
++
+ /* union qui me permet de superposer les variable 'valeur' et 'etat'*/
+ static union _mot {
+      char valeur;
+@@ -55,6 +57,9 @@ int LAST_POSITION=0;
+ // Variable storing the last index in the arriving timestamps array
+ int LAST_POSITION_TIME=0;
+ 
++// Indique le nombre de trame dans le buffer de sortie pour l'utilisateur
++int NB_TRAME_BUFFERED;
++
+ // Serial read buffer
+ unsigned char BUFFER_SERIE[TAILLE_BUFFER_SERIE];
+ 
+diff --git src/serial.h src/serial.h
+index e125f58..9921197 100644
+--- src/serial.h
++++ src/serial.h
+@@ -52,6 +52,6 @@ typedef struct {
+ 
+ // Indique le nombre de trame dans le buffer de sortie
+ // pour l'utilisateur
+-int NB_TRAME_BUFFERED;
++extern int NB_TRAME_BUFFERED;
+ 
+ #endif
