@@ -34,7 +34,7 @@
 #	The preferred OpenCV version to use. The order of the entries matters,
 #	since earlier entries are preferred over later ones.
 #
-#	Possible values: opencv2 opencv3
+#	Possible values: opencv2 opencv3 opencv4
 #	Default: opencv3 opencv2
 #
 # === Package-settable variables ===
@@ -58,7 +58,7 @@ DEPEND_USE+=		${PKG_ALTERNATIVE.opencv}
 
 # define an alternative for available opencvs packages
 PKG_ALTERNATIVES+=	opencv
-PKG_ALTERNATIVES.opencv=opencv2 opencv3
+PKG_ALTERNATIVES.opencv=opencv2 opencv3 opencv4
 
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Debian,${OPSYS})
@@ -68,11 +68,15 @@ ifeq (Debian,${OPSYS})
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04 14.04 16.04%,${OS_VERSION}))
     PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
+  else ifeq (20.04,${OS_VERSION})
+    PREFER_ALTERNATIVE.opencv?=	opencv4 opencv3
   endif
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
 else ifeq (Gentoo,${OS_FAMILY})
   PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
+else ifeq (Arch,${OS_FAMILY})
+  PREFER_ALTERNATIVE.opencv?=	opencv4 opencv3
 endif
 PREFER_ALTERNATIVE.opencv?=	opencv3 opencv2
 
@@ -98,6 +102,17 @@ define PKG_ALTERNATIVE_SET.opencv3
   DEPEND_ABI.opencv3?=	$(strip ${_opencv_abi})
 
   include ../../image/opencv3/depend.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.opencv5= Use opencv-2
+define PKG_ALTERNATIVE_SELECT.opencv4
+  $(call preduce,${DEPEND_ABI.opencv} opencv>=4<5)
+endef
+define PKG_ALTERNATIVE_SET.opencv4
+  _opencv_abi:=$(subst opencv,opencv4,${PKG_ALTERNATIVE_SELECT.opencv4})
+  DEPEND_ABI.opencv4?=	$(strip ${_opencv_abi})
+
+  include ../../image/opencv4/depend.mk
 endef
 
 endif # OPENCV_DEPEND_MK ------------------------------------------------------
