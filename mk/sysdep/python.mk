@@ -371,7 +371,6 @@ ifndef PYTHON_NO_PLIST_COMPILE
   PLIST_FILTER+=| ${AWK} '						\
     { print }								\
     ( ${PYTHON_PLIST_COMPILE_PATTERN} ) {				\
-      sub("[.][^/]*py$$", ".py");					\
       $(if ${PYTHON_PYCACHE},						\
         gsub("[^/]+[.]py$$", "${PYTHON_PYCACHE}/&");)			\
       $(if ${PYTHON_TAG},gsub("[.]py$$", "${PYTHON_TAG}&");)		\
