@@ -17,7 +17,7 @@ DEPEND_USE+=		py-nose
 DEPEND_ABI.py-nose?=	${PKGTAG.python}-nose>=0.10
 
 SYSTEM_SEARCH.py-nose=\
-  'bin/nosetests{-${PYTHON_VERSION},}:s/.*version[ ]*//p:% --version'	\
+  'bin/nosetests{-${PYTHON_VERSION},${PYTHON_MAJOR},}:s/.*version[ ]*//p:% --version'	\
   '${PYTHON_SYSLIBSEARCH}/nose/__init__.py'
 
 SYSTEM_PKG.RedHat.py-nose=	python-nose (python-${PYTHON_VERSION})
