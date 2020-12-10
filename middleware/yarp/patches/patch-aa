@@ -4,7 +4,7 @@
  
          if (getppid()==1) return 0;
  #else
-+#if YARP_HAS_SYS_PRCTL_H
++#ifdef YARP_HAS_SYS_PRCTL_H
          yarp::os::impl::prctl(PR_SET_PDEATHSIG, SIGTERM);
 +#endif
  

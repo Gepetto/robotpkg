@@ -18,9 +18,9 @@ DEPEND_ABI.yarp?=	yarp>=2.3.1
 DEPEND_DIR.yarp?=	../../middleware/yarp
 
 SYSTEM_SEARCH.yarp=\
-	'bin/yarp:s/[^.0-9]//gp:% version'	\
-	include/yarp/dev/all.h			\
-	'lib/libYARP_OS.{a,so}'
+  'bin/yarp:s/[^.0-9]//gp:% version'	\
+  'include/yarp/dev/all.h'		\
+  'lib/libYARP_{OS,os}.{a,so}'
 
 include ../../middleware/ace/depend.mk
 

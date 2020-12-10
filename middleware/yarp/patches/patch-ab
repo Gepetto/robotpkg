@@ -1,27 +1,22 @@
-Fix include_directories order (external last)
+This might be working on linux ... not much more
 
---- src/yarpserver/CMakeLists.txt.orig  2015-11-27 10:39:04.443408348 +0100
-+++ src/yarpserver/CMakeLists.txt       2015-11-27 10:39:17.631408680 +0100
-@@ -3,17 +3,16 @@
- # CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
+--- src/yarprobotinterface/Module.cpp~	2020-09-28 11:37:13.000000000 +0200
++++ src/yarprobotinterface/Module.cpp	2020-12-10 15:59:43.460592454 +0100
+@@ -68,7 +68,7 @@
  
- if (YARP_USE_PERSISTENT_NAMESERVER)
--
--  include_directories(${CMAKE_CURRENT_SOURCE_DIR})
--  include_directories(${SQLite_INCLUDE_DIRS})
--  include_directories(${ACE_INCLUDE_DIRS})
--
-   set_property(GLOBAL APPEND PROPERTY YARP_TREE_INCLUDE_DIRS 
-     ${CMAKE_CURRENT_SOURCE_DIR}/include)
-   get_property(YARP_TREE_INCLUDE_DIRS TARGET YARP_name PROPERTY INCLUDE_DIRS)
-   include_directories(${YARP_TREE_INCLUDE_DIRS})
-   include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+ yarprobotinterface::Module::Private::~Private() = default;
  
-+  include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-+  include_directories(${SQLite_INCLUDE_DIRS})
-+  include_directories(${ACE_INCLUDE_DIRS})
-+
-   set(YARP_serversql_SRCS src/TripleSourceCreator.cpp
-                           src/NameServiceOnTriples.cpp
-                           src/AllocatorOnTriples.cpp
-
+-#if defined(YARP_HAS_EXECINFO_H) && !defined(__APPLE__) && !defined(__arm__) && !defined(__aarch64__)
++#if defined(YARP_HAS_EXECINFO_H) && defined(__linux__) && !defined(__arm__) && !defined(__aarch64__)
+ void yarprobotinterface::Module::Private::sigsegv_handler(int nSignum, siginfo_t* si, void* vcontext)
+ {
+     auto context = reinterpret_cast<ucontext_t*>(vcontext);
+@@ -100,7 +100,7 @@
+ yarprobotinterface::Module::Module() :
+     mPriv(new Private(this))
+ {
+-#if defined(YARP_HAS_EXECINFO_H) && !defined(__APPLE__) && !defined(__arm__) && !defined(__aarch64__)
++#if defined(YARP_HAS_EXECINFO_H) && defined(__linux__) && !defined(__arm__) && !defined(__aarch64__)
+     struct sigaction action;
+     memset(&action, 0, sizeof(struct sigaction));
+     memset(&Private::old_action, 0, sizeof(struct sigaction));
