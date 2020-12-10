@@ -68,9 +68,10 @@ ifeq (Debian,${OPSYS})
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04 14.04 16.04%,${OS_VERSION}))
     PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
-  else ifeq (20.04,${OS_VERSION})
-    PREFER_ALTERNATIVE.opencv?=	opencv4 opencv3
+  else ifneq (,$(filter 18.04%,${OS_VERSION}))
+    PREFER_ALTERNATIVE.opencv?=	opencv3 opencv4
   endif
+  PREFER_ALTERNATIVE.opencv?=	opencv4 opencv3
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
 else ifeq (Gentoo,${OS_FAMILY})
@@ -104,7 +105,7 @@ define PKG_ALTERNATIVE_SET.opencv3
   include ../../image/opencv3/depend.mk
 endef
 
-PKG_ALTERNATIVE_DESCR.opencv5= Use opencv-2
+PKG_ALTERNATIVE_DESCR.opencv4= Use opencv-4
 define PKG_ALTERNATIVE_SELECT.opencv4
   $(call preduce,${DEPEND_ABI.opencv} opencv>=4<5)
 endef
