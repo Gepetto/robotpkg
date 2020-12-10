@@ -1,0 +1,10 @@
+The package YCM contains a set of CMake files that support creation and
+maintenance of repositories and software packages. YCM has been written with
+the aim of solving some of the problems encountered while managing large
+research projects but it can be used outside it initial context.
+
+YCM is not a replacement to CMake or yet another build system. YCM is just a
+thin layer over CMake. It does not add extra dependencies like other build
+systems, it does not use Python, Ruby, or other scripting languages, it is
+written using CMake language. It is a collection of CMake modules, most of them
+candidate for being contributed upstream.

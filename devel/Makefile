@@ -31,5 +31,6 @@ SUBDIR+=	ros-xacro
 SUBDIR+=	swig
 SUBDIR+=	tinyxml
 SUBDIR+=	yaml-cpp
+SUBDIR+=	ycm
 
 include ../mk/robotpkg.subdir.mk
