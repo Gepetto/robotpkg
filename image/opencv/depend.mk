@@ -69,7 +69,7 @@ else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 12.04 14.04 16.04%,${OS_VERSION}))
     PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
   else ifneq (,$(filter 18.04%,${OS_VERSION}))
-    PREFER_ALTERNATIVE.opencv?=	opencv3 opencv4
+    PREFER_ALTERNATIVE.opencv?=	opencv3 opencv2
   endif
   PREFER_ALTERNATIVE.opencv?=	opencv4 opencv3
 else ifeq (CentOS,${OPSYS})
