@@ -43,7 +43,7 @@ include ../../middleware/yarp/depend.mk
 include ../../archivers/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/cmake.mk
-include ../../devel/swig/depend.mk
+include ../../mk/sysdep/swig.mk
 include ../../mk/language/java.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

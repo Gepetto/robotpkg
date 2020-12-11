@@ -28,7 +28,6 @@ SUBDIR+=	ros-realtime-tools
 SUBDIR+=	ros-ros
 SUBDIR+=	ros-roscpp-core
 SUBDIR+=	ros-xacro
-SUBDIR+=	swig
 SUBDIR+=	tinyxml
 SUBDIR+=	yaml-cpp
 SUBDIR+=	ycm

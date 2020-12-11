@@ -27,7 +27,7 @@ define PKG_OPTION_SET.tcl
 
   include ../../mk/sysdep/tcl.mk
   include ../../mk/sysdep/tk.mk
-  include ../../devel/swig/depend.mk
+  include ../../mk/sysdep/swig.mk
 endef
 define PKG_OPTION_UNSET.tcl
   CONFIGURE_ARGS+=--disable-gbtcl

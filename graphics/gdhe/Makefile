@@ -28,7 +28,6 @@ DEPEND_ABI.tk=  tk>=8.6
 
 INCLUDE_DIRS.mesa+=include
 
-include ../../devel/swig/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/mesa.mk
@@ -39,6 +38,7 @@ include ../../mk/sysdep/libjpeg.mk
 include ../../mk/sysdep/libX11.mk
 include ../../mk/sysdep/libXmu.mk
 include ../../mk/sysdep/libXpm.mk
+include ../../mk/sysdep/swig.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/language/rpc.mk

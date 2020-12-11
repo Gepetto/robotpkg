@@ -34,11 +34,11 @@ DEPEND_ABI.python=	python>=3
 DEPEND_ABI.swig=	swig>=3.0.12
 DEPEND_ABI.yarp=	yarp>=${VERSION}<3.5
 
-include ../../devel/swig/depend.mk
 include ../../middleware/yarp/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/swig.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
