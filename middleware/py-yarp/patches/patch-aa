@@ -1,0 +1,22 @@
+Use robotpkg installation dir
+
+--- bindings/python/CMakeLists.txt~	2020-09-28 11:37:13.000000000 +0200
++++ bindings/python/CMakeLists.txt	2020-12-11 14:26:33.642052096 +0100
+@@ -44,7 +44,7 @@
+ endif()
+ 
+ install(FILES ${CMAKE_BINARY_DIR}/lib/python3/yarp.py
+-        DESTINATION ${Python3_INSTDIR})
++        DESTINATION ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB})
+ 
+ 
+ # Update RPATH
+@@ -60,7 +60,7 @@
+ endif()
+ 
+ install(TARGETS ${SWIG_MODULE_yarp_python_REAL_NAME}
+-        DESTINATION ${Python3_INSTDIR})
++        DESTINATION ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB})
+ 
+ if(YARP_COMPILE_TESTS)
+   add_subdirectory(tests)
