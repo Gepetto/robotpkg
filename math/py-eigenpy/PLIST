@@ -12,6 +12,7 @@ include/eigenpy/details.hpp
 include/eigenpy/eigen-allocator.hpp
 include/eigenpy/eigen-from-python.hpp
 include/eigenpy/eigen-to-python.hpp
+include/eigenpy/eigen-typedef.hpp
 include/eigenpy/eigenpy.hpp
 include/eigenpy/exception.hpp
 include/eigenpy/expose.hpp
@@ -36,6 +37,7 @@ include/eigenpy/solvers/SparseSolverBase.hpp
 include/eigenpy/solvers/preconditioners.hpp
 include/eigenpy/solvers/solvers.hpp
 include/eigenpy/stride.hpp
+include/eigenpy/swig.hpp
 include/eigenpy/ufunc.hpp
 include/eigenpy/user-type.hpp
 include/eigenpy/utils/is-aligned.hpp
