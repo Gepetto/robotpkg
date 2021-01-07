@@ -2,7 +2,7 @@ Don't pick up random source files (especially those under "PaxHeader" created
 by pax-as-tar).
 
 for ext in ['hpp', 'cpp']: 
-    for i in sorted(Path('.').glob(f'**/*.{ext}')): print(f'  {i}')
+    for i in sorted(Path('.').glob(f'**/*.{ext}')): print(f'    {i}')
     print()
 
 --- bindings/python/CMakeLists.txt.orig	2020-11-01 22:12:13.000000000 +0100

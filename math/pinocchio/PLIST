@@ -16,6 +16,7 @@ include/pinocchio/algorithm/check.hxx
 include/pinocchio/algorithm/cholesky.hpp
 include/pinocchio/algorithm/cholesky.hxx
 include/pinocchio/algorithm/compute-all-terms.hpp
+include/pinocchio/algorithm/compute-all-terms.hxx
 include/pinocchio/algorithm/contact-dynamics.hpp
 include/pinocchio/algorithm/contact-dynamics.hxx
 include/pinocchio/algorithm/copy.hpp
