@@ -10,7 +10,11 @@ include/crocoddyl/core/actions/unicycle.hpp
 include/crocoddyl/core/actions/unicycle.hxx
 include/crocoddyl/core/activation-base.hpp
 include/crocoddyl/core/activations/quadratic-barrier.hpp
+include/crocoddyl/core/activations/quadratic-flat-exp.hpp
+include/crocoddyl/core/activations/quadratic-flat-log.hpp
 include/crocoddyl/core/activations/quadratic.hpp
+include/crocoddyl/core/activations/smooth-1norm.hpp
+include/crocoddyl/core/activations/smooth-2norm.hpp
 include/crocoddyl/core/activations/smooth-abs.hpp
 include/crocoddyl/core/activations/weighted-quadratic-barrier.hpp
 include/crocoddyl/core/activations/weighted-quadratic.hpp
@@ -19,6 +23,12 @@ include/crocoddyl/core/actuation/actuation-squashing.hpp
 include/crocoddyl/core/actuation/squashing-base.hpp
 include/crocoddyl/core/actuation/squashing/smooth-sat.hpp
 include/crocoddyl/core/codegen/action-base.hpp
+include/crocoddyl/core/cost-base.hpp
+include/crocoddyl/core/cost-base.hxx
+include/crocoddyl/core/costs/control.hpp
+include/crocoddyl/core/costs/control.hxx
+include/crocoddyl/core/costs/cost-sum.hpp
+include/crocoddyl/core/costs/cost-sum.hxx
 include/crocoddyl/core/data-collector-base.hpp
 include/crocoddyl/core/data/actuation.hpp
 include/crocoddyl/core/diff-action-base.hpp
@@ -35,6 +45,8 @@ include/crocoddyl/core/numdiff/activation.hpp
 include/crocoddyl/core/numdiff/activation.hxx
 include/crocoddyl/core/numdiff/actuation.hpp
 include/crocoddyl/core/numdiff/actuation.hxx
+include/crocoddyl/core/numdiff/cost.hpp
+include/crocoddyl/core/numdiff/cost.hxx
 include/crocoddyl/core/numdiff/diff-action.hpp
 include/crocoddyl/core/numdiff/diff-action.hxx
 include/crocoddyl/core/numdiff/state.hpp
@@ -86,7 +98,6 @@ include/crocoddyl/multibody/contacts/contact-6d.hxx
 include/crocoddyl/multibody/contacts/multiple-contacts.hpp
 include/crocoddyl/multibody/contacts/multiple-contacts.hxx
 include/crocoddyl/multibody/cost-base.hpp
-include/crocoddyl/multibody/cost-base.hxx
 include/crocoddyl/multibody/costs/centroidal-momentum.hpp
 include/crocoddyl/multibody/costs/centroidal-momentum.hxx
 include/crocoddyl/multibody/costs/com-position.hpp
@@ -101,10 +112,9 @@ include/crocoddyl/multibody/costs/contact-impulse.hpp
 include/crocoddyl/multibody/costs/contact-impulse.hxx
 include/crocoddyl/multibody/costs/contact-wrench-cone.hpp
 include/crocoddyl/multibody/costs/contact-wrench-cone.hxx
+include/crocoddyl/multibody/costs/control-cost.hpp
 include/crocoddyl/multibody/costs/control.hpp
-include/crocoddyl/multibody/costs/control.hxx
 include/crocoddyl/multibody/costs/cost-sum.hpp
-include/crocoddyl/multibody/costs/cost-sum.hxx
 include/crocoddyl/multibody/costs/frame-placement.hpp
 include/crocoddyl/multibody/costs/frame-placement.hxx
 include/crocoddyl/multibody/costs/frame-rotation.hpp
@@ -141,7 +151,6 @@ include/crocoddyl/multibody/impulses/multiple-impulses.hxx
 include/crocoddyl/multibody/numdiff/contact.hpp
 include/crocoddyl/multibody/numdiff/contact.hxx
 include/crocoddyl/multibody/numdiff/cost.hpp
-include/crocoddyl/multibody/numdiff/cost.hxx
 include/crocoddyl/multibody/states/multibody.hpp
 include/crocoddyl/multibody/states/multibody.hxx
 include/crocoddyl/multibody/utils/quadruped-gaits.hpp
@@ -155,6 +164,8 @@ lib/cmake/crocoddyl/crocoddylTargets.cmake
 lib/libcrocoddyl.so
 lib/pkgconfig/crocoddyl.pc
 ${PYTHON_SITELIB}/crocoddyl/__init__.py
+${PYTHON_SITELIB}/crocoddyl/deprecated.py
+${PYTHON_SITELIB}/crocoddyl/deprecation.py
 ${PYTHON_SITELIB}/crocoddyl/examples/__init__.py
 ${PYTHON_SITELIB}/crocoddyl/examples/arm_manipulation.py
 ${PYTHON_SITELIB}/crocoddyl/examples/bipedal_walk.py
