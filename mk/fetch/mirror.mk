@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013,2016,2018 LAAS/CNRS
+# Copyright (c) 2013,2016,2018,2021 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -176,7 +176,7 @@ check-master-sites:
 	           esac;						\
 	      esac;							\
 	      size=`${ECHO} "$$hdr" | ${AWK} -F'[ :\r]+'		\
-	        '/^HTTP\/1[.][0-9]/ {r=l=""}				\
+	        '/^HTTP\/[1-9]/ {r=l=""}				\
 	         /[Cc]ontent-[Rr]ange:.+\/[0-9]+/ {			\
 	           gsub(/.*\//, ""); r=$$0				\
 	         }							\
