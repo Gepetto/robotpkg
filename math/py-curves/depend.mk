@@ -19,7 +19,7 @@ DEPEND_ABI.py-curves?=	${PKGTAG.python-}curves>=0.3.1
 DEPEND_DIR.py-curves?=	../../math/py-curves
 
 SYSTEM_SEARCH.py-curves=\
-  '${PYTHON_SYSLIBSEARCH}/curves/curves.so'
+  '${PYTHON_SYSLIBSEARCH}/{nd_,}curves/{nd_,}curves.so'
 
 include ../../mk/sysdep/python.mk
 
