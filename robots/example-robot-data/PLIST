@@ -204,6 +204,10 @@ share/example-robot-data/robots/romeo_description/urdf/Readme.txt
 share/example-robot-data/robots/romeo_description/urdf/romeo.urdf
 share/example-robot-data/robots/romeo_description/urdf/romeo_laas_small.urdf
 share/example-robot-data/robots/romeo_description/urdf/romeo_small.urdf
+share/example-robot-data/robots/simple_humanoid_description/srdf/simple_humanoid.srdf
+share/example-robot-data/robots/simple_humanoid_description/srdf/simple_humanoid_classical.srdf
+share/example-robot-data/robots/simple_humanoid_description/urdf/simple_humanoid.urdf
+share/example-robot-data/robots/simple_humanoid_description/urdf/simple_humanoid_classical.urdf
 share/example-robot-data/robots/solo_description/meshes/checker_blue.png
 share/example-robot-data/robots/solo_description/meshes/cube.obj
 share/example-robot-data/robots/solo_description/meshes/cylinder.obj
@@ -297,6 +301,7 @@ share/example-robot-data/robots/talos_data/robots/talos_full_v2_box.urdf
 share/example-robot-data/robots/talos_data/robots/talos_left_arm.urdf
 share/example-robot-data/robots/talos_data/robots/talos_reduced.urdf
 share/example-robot-data/robots/talos_data/robots/talos_reduced_box.urdf
+share/example-robot-data/robots/talos_data/robots/talos_reduced_corrected.urdf
 share/example-robot-data/robots/talos_data/srdf/talos.srdf
 share/example-robot-data/robots/tiago_description/config/collision/collision_parameters.yaml
 share/example-robot-data/robots/tiago_description/meshes/arm/arm_1.stl
