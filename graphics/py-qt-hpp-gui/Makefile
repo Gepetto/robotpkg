@@ -7,6 +7,7 @@ PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 HPP_PACKAGE=		hpp-gui
 HPP_COMMENT=		Graphical interface for HPP
 HPP_VERSION=		4.10.1
+PKGREVISION=		1
 
 CATEGORIES=		graphics
 CONFLICTS+=		qt[0-9]-hpp-gui-[0-9]*
