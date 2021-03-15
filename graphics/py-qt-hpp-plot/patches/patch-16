@@ -1,0 +1,45 @@
+From 77db54cc767db0cf2c19bb735330304daa89353f Mon Sep 17 00:00:00 2001
+From: Joseph Mirabel <jmirabel@laas.fr>
+Date: Mon, 8 Feb 2021 11:10:12 +0100
+Subject: [PATCH] Read HPP_HOST and HPP_PORT
+
+---
+ .../hppmonitoringplugin/hppmonitoringplugin.cc    | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/plugins/hppmonitoringplugin/hppmonitoringplugin.cc b/plugins/hppmonitoringplugin/hppmonitoringplugin.cc
+index c7c8c43..1af2373 100644
+--- plugins/hppmonitoringplugin/hppmonitoringplugin.cc
++++ plugins/hppmonitoringplugin/hppmonitoringplugin.cc
+@@ -32,6 +32,7 @@
+ #include "hppmonitoringplugin.hh"
+ 
+ #include <limits>
++#include <QtGlobal>
+ #include <QDockWidget>
+ #include <QHBoxLayout>
+ #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
+@@ -161,10 +162,16 @@ namespace hpp {
+ 
+     static QString getHppIIOPurl ()
+     {
+-      QString host = gepetto::gui::MainWindow::instance ()->settings_->getSetting
+-        ("hpp/host", "localhost").toString ();
+-      QString port = gepetto::gui::MainWindow::instance ()->settings_->getSetting
+-        ("hpp/port", "13331").toString ();
++      auto* settings = gepetto::gui::MainWindow::instance ()->settings_;
++      QString host ("localhost"), port("13331");
++
++      QByteArray env = qgetenv("HPP_HOST");
++      if (!env.isNull()) host = env;
++      env = qgetenv("HPP_PORT");
++      if (!env.isNull()) port = env;
++
++      host = settings->getSetting ("hpp/host", host).toString();
++      port = settings->getSetting ("hpp/port", port).toString();
+       return QString ("corbaloc:iiop:%1:%2").arg(host).arg(port);
+     }
+ 
+-- 
+2.30.2
+
