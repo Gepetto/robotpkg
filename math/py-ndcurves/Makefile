@@ -1,10 +1,10 @@
-# robotpkg Makefile for:	math/py27-curves
-# Created:			Guilhem Saurel on Tue, 14 Apr 2020
+# robotpkg Makefile for:	math/py27-ndcurves
+# Created:			Guilhem Saurel on Tue, 16 Mar 2021
 #
 
 ORG=			loco-3d
-NAME=			curves
-VERSION=		0.5.2
+NAME=			ndcurves
+VERSION=		1.0.0
 
 CATEGORIES=		math
 COMMENT=		Library for creating curves (python bindings)
@@ -18,7 +18,7 @@ include ../../devel/jrl-cmakemodules/Makefile.common
 
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
-include ../../math/curves/depend.mk
+include ../../math/ndcurves/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../math/py-eigenpy/depend.mk

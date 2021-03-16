@@ -1,10 +1,10 @@
-# robotpkg Makefile for:	math/curves
-# Created:			Guilhem Saurel on Tue, 14 Apr 2020
+# robotpkg Makefile for:	math/ndcurves
+# Created:			Guilhem Saurel on Tue, 16 Mar 2021
 #
 
 ORG=			loco-3d
-NAME=			curves
-VERSION=		0.5.2
+NAME=			ndcurves
+VERSION=		1.0.0
 
 CATEGORIES=		math
 COMMENT=		Library for creating curves

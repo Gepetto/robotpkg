@@ -1,0 +1,5 @@
+@comment Tue Mar 16 14:31:36 CET 2021
+${PYTHON_SITELIB}/ndcurves/__init__.py
+${PYTHON_SITELIB}/ndcurves/ndcurves.so
+${PYTHON_SITELIB}/ndcurves/optimization.py
+${PYTHON_SITELIB}/ndcurves/plot.py

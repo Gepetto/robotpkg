@@ -1,5 +1,0 @@
-@comment Wed Apr 17 11:40:08 CEST 2019
-${PYTHON_SITELIB}/curves/__init__.py
-${PYTHON_SITELIB}/curves/curves.so
-${PYTHON_SITELIB}/curves/optimization.py
-${PYTHON_SITELIB}/curves/plot.py
