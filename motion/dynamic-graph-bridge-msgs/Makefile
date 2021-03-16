@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			dynamic-graph-bridge-msgs
-VERSION=		0.3.0
+VERSION=		0.3.1
 
 ROSNAME=		$(subst -,_,${NAME})
 PKGNAME=		${NAME}-${VERSION}
@@ -14,7 +14,7 @@ CATEGORIES=		motion
 
 COMMENT=		Dynamic graph bridge messages and services.
 LICENSE=		2-clause-bsd
-MAINTAINER=		hpp@laas.fr
+MAINTAINER=		guilhem.saurel@laas.fr
 
 DYNAMIC_PLIST_DIRS+=	share/doc/${ROSNAME}
 
