@@ -7,6 +7,7 @@ include/tsid/contacts/contact-point.hpp
 include/tsid/contacts/fwd.hpp
 include/tsid/deprecated.hh
 include/tsid/deprecation.hpp
+include/tsid/formulations/contact-level.hpp
 include/tsid/formulations/inverse-dynamics-formulation-acc-force.hpp
 include/tsid/formulations/inverse-dynamics-formulation-base.hpp
 include/tsid/math/constraint-base.hpp
@@ -38,6 +39,7 @@ include/tsid/tasks/task-capture-point-inequality.hpp
 include/tsid/tasks/task-com-equality.hpp
 include/tsid/tasks/task-contact-force-equality.hpp
 include/tsid/tasks/task-contact-force.hpp
+include/tsid/tasks/task-cop-equality.hpp
 include/tsid/tasks/task-joint-bounds.hpp
 include/tsid/tasks/task-joint-posVelAcc-bounds.hpp
 include/tsid/tasks/task-joint-posture.hpp

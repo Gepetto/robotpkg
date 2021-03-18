@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			tsid
-VERSION=		1.5.0
+VERSION=		1.6.0
 
 CATEGORIES=		optimization
 COMMENT=		Efficient Inverse Dynamics (python bindings)
@@ -27,7 +27,6 @@ include ../../math/py-eigenpy/depend.mk
 include ../../math/py-pinocchio/depend.mk
 include ../../optimization/tsid/depend.mk
 include ../../path/hpp-fcl/depend.mk
-include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/python.mk
