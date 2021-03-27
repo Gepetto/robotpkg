@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			eigenpy
-VERSION=		2.6.1
+VERSION=		2.6.2
 
 CATEGORIES=		math
 COMMENT=		Eigen bindings to python
@@ -39,7 +39,6 @@ include ../../devel/boost-libs/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
-include ../../mk/sysdep/pdflatex.mk
 include ../../mk/sysdep/py-numpy.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
