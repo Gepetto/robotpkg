@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-fcl
 HPP_VERSION=		1.7.1
+PKGREVISION=		1
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations (python bindingss)
