@@ -42,6 +42,9 @@ include/pinocchio/algorithm/kinematics.hpp
 include/pinocchio/algorithm/kinematics.hxx
 include/pinocchio/algorithm/model.hpp
 include/pinocchio/algorithm/model.hxx
+include/pinocchio/algorithm/parallel/aba.hpp
+include/pinocchio/algorithm/parallel/geometry.hpp
+include/pinocchio/algorithm/parallel/rnea.hpp
 include/pinocchio/algorithm/regressor.hpp
 include/pinocchio/algorithm/regressor.hxx
 include/pinocchio/algorithm/rnea-derivatives.hpp
@@ -80,6 +83,7 @@ include/pinocchio/bindings/python/parsers/sample-models.hpp
 include/pinocchio/bindings/python/parsers/srdf.hpp
 include/pinocchio/bindings/python/parsers/urdf.hpp
 include/pinocchio/bindings/python/serialization/serializable.hpp
+include/pinocchio/bindings/python/serialization/serialization.hpp
 include/pinocchio/bindings/python/spatial/explog.hpp
 include/pinocchio/bindings/python/spatial/force.hpp
 include/pinocchio/bindings/python/spatial/inertia.hpp
@@ -187,6 +191,8 @@ include/pinocchio/multibody/liegroup/special-orthogonal.hpp
 include/pinocchio/multibody/liegroup/vector-space.hpp
 include/pinocchio/multibody/model.hpp
 include/pinocchio/multibody/model.hxx
+include/pinocchio/multibody/pool/geometry.hpp
+include/pinocchio/multibody/pool/model.hpp
 include/pinocchio/multibody/visitor.hpp
 include/pinocchio/multibody/visitor/fusion.hpp
 include/pinocchio/multibody/visitor/joint-binary-visitor.hpp
@@ -209,6 +215,7 @@ include/pinocchio/serialization/eigen.hpp
 include/pinocchio/serialization/force.hpp
 include/pinocchio/serialization/frame.hpp
 include/pinocchio/serialization/fwd.hpp
+include/pinocchio/serialization/geometry.hpp
 include/pinocchio/serialization/inertia.hpp
 include/pinocchio/serialization/joints-constraint.hpp
 include/pinocchio/serialization/joints-data.hpp
@@ -255,6 +262,7 @@ include/pinocchio/utils/cast.hpp
 include/pinocchio/utils/eigen-fix.hpp
 include/pinocchio/utils/file-explorer.hpp
 include/pinocchio/utils/helpers.hpp
+include/pinocchio/utils/openmp.hpp
 include/pinocchio/utils/static-if.hpp
 include/pinocchio/utils/string-generator.hpp
 include/pinocchio/utils/timer.hpp

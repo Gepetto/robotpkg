@@ -2,8 +2,8 @@ Don't install headers or .pc file: they would conflict between installs for
 multiple python versions. In case those are needed, something must be found to
 handle name conflicts.
 
---- bindings/python/CMakeLists.txt.orig	2020-04-24 17:55:49.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2020-04-24 22:23:20.367535813 +0200
+--- bindings/python/CMakeLists.txt.orig	2021-04-10 09:49:21.000000000 +0200
++++ bindings/python/CMakeLists.txt	2021-04-11 22:01:21.226894854 +0200
 @@ -12,9 +12,6 @@
        ${CMAKE_CURRENT_SOURCE_DIR}/${header}
        ${${PROJECT_NAME}_BINARY_DIR}/include/${PROJECT_NAME}/${SUBPATH}/${header})
@@ -14,9 +14,9 @@ handle name conflicts.
    ENDFOREACH(header)
  ENDMACRO(SYMLINK_AND_INSTALL_HEADERS HEADERS SUBPATH)
  
-@@ -78,11 +75,9 @@
- MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/serialization")
- MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/algorithm")
+@@ -109,11 +106,9 @@
+   MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/algorithm/parallel")
+ ENDIF(BUILD_WITH_OPENMP_SUPPORT)
  MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/utils")
 -SYMLINK_AND_INSTALL_HEADERS("${${PROJECT_NAME}_PYTHON_HEADERS}" "bindings/python")
  
@@ -26,7 +26,7 @@ handle name conflicts.
  
  # --- COMPILE WRAPPER
  MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/bindings/python/${PROJECT_NAME}")
-@@ -205,8 +200,4 @@
+@@ -246,8 +241,4 @@
       "${CMAKE_CURRENT_SOURCE_DIR}/pinocchiopy.pc.cmake"
       "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc")
  

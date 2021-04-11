@@ -1,13 +1,13 @@
---- CMakeLists.txt.orig	2020-10-22 15:23:57.000000000 +0200
-+++ CMakeLists.txt	2020-11-08 17:10:11.846333439 +0100
-@@ -138,26 +138,10 @@
+--- CMakeLists.txt.orig	2021-04-11 21:58:40.000000000 +0200
++++ CMakeLists.txt	2021-04-11 21:59:08.157263305 +0200
+@@ -148,26 +148,10 @@
    MESSAGE(STATUS "Pinocchio won't be compiled with its Python bindings. If you want to enable this feature, please set the option BUILD_PYTHON_INTERFACE to ON.")
  ENDIF(BUILD_PYTHON_INTERFACE)
  
 -IF(BUILD_WITH_HPP_FCL_SUPPORT)
    ADD_DEFINITIONS(-DPINOCCHIO_WITH_HPP_FCL)
    LIST(APPEND CFLAGS_DEPENDENCIES "-DPINOCCHIO_WITH_HPP_FCL")
-   ADD_PROJECT_DEPENDENCY(hpp-fcl 1.4.0 REQUIRED PKG_CONFIG_REQUIRES "hpp-fcl >= 1.4.0")
+   ADD_PROJECT_DEPENDENCY(hpp-fcl 1.7.1 REQUIRED PKG_CONFIG_REQUIRES "hpp-fcl >= 1.7.1")
 -  # Check whether hpp-fcl python bindings are available.
 -  SET(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS FALSE)
 -  IF(BUILD_PYTHON_INTERFACE)

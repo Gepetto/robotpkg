@@ -4,9 +4,9 @@ for p in sorted(set('     ${PROJECT_SOURCE_DIR}/' + str(i.parent) + f'/*.{ext}'
 for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}'))):
     print(p)
 
---- CMakeLists.txt.orig	2020-11-26 15:56:55.000000000 +0100
-+++ CMakeLists.txt	2020-12-02 10:55:59.596461813 +0100
-@@ -173,9 +173,39 @@
+--- CMakeLists.txt.orig	2021-04-10 09:49:21.000000000 +0200
++++ CMakeLists.txt	2021-04-11 21:37:29.454540560 +0200
+@@ -183,9 +183,41 @@
  # ----------------------------------------------------
  # --- INCLUDE ----------------------------------------
  # ----------------------------------------------------
@@ -16,6 +16,7 @@ for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}'))):
 -     ${PROJECT_SOURCE_DIR}/src/*.hxx 
 +     ${PROJECT_SOURCE_DIR}/src/algorithm/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/algorithm/*.hxx
++     ${PROJECT_SOURCE_DIR}/src/algorithm/parallel/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/autodiff/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/autodiff/casadi/math/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/autodiff/casadi/spatial/*.hpp
@@ -36,6 +37,7 @@ for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}'))):
 +     ${PROJECT_SOURCE_DIR}/src/multibody/joint/*.hxx
 +     ${PROJECT_SOURCE_DIR}/src/multibody/liegroup/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/multibody/liegroup/*.hxx
++     ${PROJECT_SOURCE_DIR}/src/multibody/pool/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/multibody/visitor/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/parsers/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/parsers/*.hxx
