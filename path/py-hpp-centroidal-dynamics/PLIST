@@ -1,0 +1,20 @@
+@comment Fri Jan 4 10:50:58 CET 2019
+include/hpp/centroidal-dynamics/centroidal_dynamics.hh
+include/hpp/centroidal-dynamics/config.hh
+include/hpp/centroidal-dynamics/deprecated.hh
+include/hpp/centroidal-dynamics/local_config.hh
+include/hpp/centroidal-dynamics/logger.hh
+include/hpp/centroidal-dynamics/solver_LP_abstract.hh
+include/hpp/centroidal-dynamics/solver_LP_clp.hh
+include/hpp/centroidal-dynamics/solver_LP_qpoases.hh
+include/hpp/centroidal-dynamics/stop-watch.hh
+include/hpp/centroidal-dynamics/util.hh
+include/hpp/centroidal-dynamics/warning.hh
+lib/cmake/hpp-centroidal-dynamics/hpp-centroidal-dynamicsConfig.cmake
+lib/cmake/hpp-centroidal-dynamics/hpp-centroidal-dynamicsConfigVersion.cmake
+lib/cmake/hpp-centroidal-dynamics/hpp-centroidal-dynamicsTargets-release.cmake
+lib/cmake/hpp-centroidal-dynamics/hpp-centroidal-dynamicsTargets.cmake
+lib/libhpp-centroidal-dynamics.so
+lib/pkgconfig/hpp-centroidal-dynamics.pc
+${PYTHON_SITELIB}/hpp_centroidal_dynamics.so
+share/hpp-centroidal-dynamics/package.xml
