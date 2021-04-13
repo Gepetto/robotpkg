@@ -3,10 +3,9 @@
 #
 
 HPP_PACKAGE=	hpp-util
-HPP_VERSION=	4.10.1
+HPP_COMMENT=	utility tools
 
 CATEGORIES=	path
-HPP_COMMENT=	utility tools
 
 include ../../meta-pkgs/hpp/Makefile.common
 

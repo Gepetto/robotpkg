@@ -22,7 +22,8 @@ SYSTEM_SEARCH.hpp-util=									\
 	'include/hpp/util/version.hh'							\
 	'lib/cmake/hpp-util/hpp-utilConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
 	'lib/libhpp-util.so'								\
-	'lib/pkgconfig/hpp-util.pc:/Version/s/[^0-9.]//gp'
+	'lib/pkgconfig/hpp-util.pc:/Version/s/[^0-9.]//gp'				\
+	'share/hpp-util/package.xml:/<version>/s/[^0-9.]//gp'
 
 endif # HPPUTIL_DEPEND_MK ---------------------------------
 
