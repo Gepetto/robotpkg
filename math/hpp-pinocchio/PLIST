@@ -35,3 +35,4 @@ lib/cmake/hpp-pinocchio/hpp-pinocchioTargets-release.cmake
 lib/cmake/hpp-pinocchio/hpp-pinocchioTargets.cmake
 lib/libhpp-pinocchio.so
 lib/pkgconfig/hpp-pinocchio.pc
+share/hpp-pinocchio/package.xml

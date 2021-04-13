@@ -2,33 +2,34 @@
 # Created:			Guilhem Saurel on Wed, 14 Mar 2018
 #
 
-DEPEND_DEPTH:=		${DEPEND_DEPTH}+
-HPPPINOCCHIO_DEPEND_MK:=${HPPPINOCCHIO_DEPEND_MK}+
+DEPEND_DEPTH:=			${DEPEND_DEPTH}+
+HPP_PINOCCHIO_DEPEND_MK:=	${HPP_PINOCCHIO_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
-DEPEND_PKG+=		hpp-pinocchio
+DEPEND_PKG+=			hpp-pinocchio
 endif
 
-ifeq (+,$(HPPPINOCCHIO_DEPEND_MK)) # ---------------------------
+ifeq (+,$(HPP_PINOCCHIO_DEPEND_MK)) # ---------------------------
 
-PREFER.hpp-pinocchio?=	robotpkg
+PREFER.hpp-pinocchio?=		robotpkg
 
-DEPEND_USE+=		hpp-pinocchio
+DEPEND_USE+=			hpp-pinocchio
 
 DEPEND_ABI.hpp-pinocchio?=	hpp-pinocchio>=4.9.0
 DEPEND_DIR.hpp-pinocchio?=	../../math/hpp-pinocchio
 
 SYSTEM_SEARCH.hpp-pinocchio=									\
-  'include/hpp/pinocchio/util.hh'								\
+  'include/hpp/pinocchio/util.hh:/HPP_PINOCCHIO_VERSION /s/[^0-9.]//gp'				\
   'lib/cmake/hpp-pinocchio/hpp-pinocchioConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
   'lib/libhpp-pinocchio.so'									\
-  'lib/pkgconfig/hpp-pinocchio.pc:/Version/s/[^0-9.]//gp'
+  'lib/pkgconfig/hpp-pinocchio.pc:/Version/s/[^0-9.]//gp'					\
+  'share/hpp-pinocchio/package.xml:/<version>/s/[^0-9.]//gp'
 
 DEPEND_ABI.eigen3 += eigen3>=3.2.92
 include ../../math/eigen3/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../path/hpp-fcl/depend.mk
 
-endif # HPPPINOCCHIO_DEPEND_MK ---------------------------------
+endif # HPP_PINOCCHIO_DEPEND_MK ---------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
