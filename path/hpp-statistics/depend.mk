@@ -13,17 +13,17 @@ ifeq (+,$(HPP_STATISTICS_DEPEND_MK)) # ------------------------------------
 
 PREFER.hpp-statistics?=	robotpkg
 
-SYSTEM_SEARCH.hpp-statistics=\
-	'include/hpp/statistics/distribution.hh'							\
-	'lib/cmake/hpp-statistics/hpp-statisticsConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
-	'lib/libhpp-statistics.so'									\
-	'lib/pkgconfig/hpp-statistics.pc:/Version/s/[^0-9.]//gp'
-
-
 DEPEND_USE+=		hpp-statistics
 
 DEPEND_ABI.hpp-statistics?=	hpp-statistics>=4.9.0
 DEPEND_DIR.hpp-statistics?=	../../path/hpp-statistics
+
+SYSTEM_SEARCH.hpp-statistics=										\
+	'include/hpp/statistics/distribution.hh:/HPP_STATISTICS_VERSION /s/[^0-9.]//gp'			\
+	'lib/cmake/hpp-statistics/hpp-statisticsConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
+	'lib/libhpp-statistics.so'									\
+	'lib/pkgconfig/hpp-statistics.pc:/Version/s/[^0-9.]//gp'					\
+	'share/hpp-statistics/package.xml:/<version>/s/[^0-9.]//gp'
 
 endif # HPP_STATISTICS_DEPEND_MK ------------------------------------------
 

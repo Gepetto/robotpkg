@@ -3,10 +3,9 @@
 #
 
 HPP_PACKAGE=	hpp-statistics
-HPP_VERSION=	4.10.1
+HPP_COMMENT=	Tools to make statistics
 
 CATEGORIES=	path
-HPP_COMMENT=	Tools to make statistics
 
 include ../../meta-pkgs/hpp/Makefile.common
 

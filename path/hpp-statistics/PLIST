@@ -12,3 +12,4 @@ lib/cmake/hpp-statistics/hpp-statisticsTargets-release.cmake
 lib/cmake/hpp-statistics/hpp-statisticsTargets.cmake
 lib/libhpp-statistics.so
 lib/pkgconfig/hpp-statistics.pc
+share/hpp-statistics/package.xml
