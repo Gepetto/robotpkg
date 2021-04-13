@@ -48,3 +48,4 @@ lib/cmake/hpp-constraints/hpp-constraintsTargets-release.cmake
 lib/cmake/hpp-constraints/hpp-constraintsTargets.cmake
 lib/libhpp-constraints.so
 lib/pkgconfig/hpp-constraints.pc
+share/hpp-constraints/package.xml

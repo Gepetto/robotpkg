@@ -3,11 +3,9 @@
 #
 
 HPP_PACKAGE=		hpp-constraints
-HPP_VERSION=		4.10.1
-PKGREVISION=		1
+HPP_COMMENT=		Define non-linear constraints on robot configurations
 
 CATEGORIES=		path
-HPP_COMMENT=		Define non-linear constraints on robot configurations
 
 include ../../meta-pkgs/hpp/Makefile.common
 
