@@ -1,0 +1,13 @@
+@comment Thu Dec 20 17:43:28 CET 2018
+include/hpp/universal/robot/config.hh
+include/hpp/universal/robot/deprecated.hh
+include/hpp/universal/robot/warning.hh
+lib/cmake/hpp-universal-robot/hpp-universal-robotConfig.cmake
+lib/cmake/hpp-universal-robot/hpp-universal-robotConfigVersion.cmake
+lib/cmake/hpp-universal-robot/hpp-universal-robotTargets.cmake
+lib/pkgconfig/hpp-universal-robot.pc
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/ur5/__init__.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/ur5/robot.py
+${PYTHON_SITELIB}/hpp/corbaserver/ur5/__init__.py
+${PYTHON_SITELIB}/hpp/corbaserver/ur5/robot.py
+share/hpp-universal-robot/package.xml
