@@ -1,0 +1,14 @@
+@comment Fri Jan 4 17:41:30 CET 2019
+include/hpp/affordance/affordance-extraction.hh
+include/hpp/affordance/config.hh
+include/hpp/affordance/deprecated.hh
+include/hpp/affordance/fwd.hh
+include/hpp/affordance/operations.hh
+include/hpp/affordance/warning.hh
+lib/cmake/hpp-affordance/hpp-affordanceConfig.cmake
+lib/cmake/hpp-affordance/hpp-affordanceConfigVersion.cmake
+lib/cmake/hpp-affordance/hpp-affordanceTargets-release.cmake
+lib/cmake/hpp-affordance/hpp-affordanceTargets.cmake
+lib/libhpp-affordance.so
+lib/pkgconfig/hpp-affordance.pc
+share/hpp-affordance/package.xml

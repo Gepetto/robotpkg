@@ -6,6 +6,7 @@
 COMMENT=	Path planning algorithms and tools
 
 SUBDIR+=	aspect-genom
+SUBDIR+=	hpp-affordance
 SUBDIR+=	hpp-constraints
 SUBDIR+=	hpp-core
 SUBDIR+=	hpp-fcl
