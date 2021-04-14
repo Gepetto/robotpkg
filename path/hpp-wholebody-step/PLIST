@@ -14,3 +14,4 @@ lib/cmake/hpp-wholebody-step/hpp-wholebody-stepTargets.cmake
 lib/hppPlugins/wholebody-step.so
 lib/libhpp-wholebody-step.so
 lib/pkgconfig/hpp-wholebody-step.pc
+share/hpp-wholebody-step/package.xml

@@ -2,15 +2,14 @@
 # Created:			Antonio El Khoury on Thu, 26 Sep 2013
 #
 
-HPP_PACKAGE=		hpp-wholebody-step
-HPP_VERSION=		4.10.1
+HPP_PACKAGE=			hpp-wholebody-step
+HPP_COMMENT=			Whole-body walk planning for humanoid robots
 
-CATEGORIES=		path
-HPP_COMMENT=		Whole-body walk planning for humanoid robots
+CATEGORIES=			path
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-CMAKE_ARGS+=		-DBUILD_TESTING=FALSE
+CMAKE_ARGS+=			-DBUILD_TESTING=FALSE
 
 include ../../devel/log4cxx/depend.mk
 include ../../mapping/octomap/depend.mk
