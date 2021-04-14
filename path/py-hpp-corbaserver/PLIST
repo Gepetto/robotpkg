@@ -64,6 +64,7 @@ ${PYTHON_SITELIB}/hpp/corbaserver/problem_solver.py
 ${PYTHON_SITELIB}/hpp/corbaserver/robot.py
 ${PYTHON_SITELIB}/hpp/corbaserver/tools.py
 ${PYTHON_SITELIB}/hpp/quaternion.py
+${PYTHON_SITELIB}/hpp/rostools.py
 ${PYTHON_SITELIB}/hpp/transform.py
 ${PYTHON_SITELIB}/hpp/utils.py
 ${PYTHON_SITELIB}/hpp_idl/__init__.py
@@ -72,12 +73,14 @@ ${PYTHON_SITELIB}/hpp_idl/hpp/constraints_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/corbaserver/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/configuration_shooter/__init__.py
+${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/pathValidation_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/pinocchio_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/constraints_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/corbaserver/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/configuration_shooter/__init__.py
+${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/pathValidation_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/pinocchio_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_stubs/__init__.py
 ${PYTHON_SITELIB}/hpp_stubs/common_idl.py
@@ -102,6 +105,7 @@ ${PYTHON_SITELIB}/hpp_stubs/pinocchio/robots_idl.py
 share/hpp-corbaserver/omniidl/cxx_impl/__init__.py
 share/hpp-corbaserver/omniidl/cxx_impl/main.py
 share/hpp-corbaserver/omniidl/cxx_impl/template.py
+share/hpp-corbaserver/package.xml
 share/idl/hpp/common.idl
 share/idl/hpp/constraints_idl/constraints.idl
 share/idl/hpp/corbaserver/obstacle.idl
