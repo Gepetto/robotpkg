@@ -22,6 +22,7 @@ SUBDIR+=	py-example-robot-data
 SUBDIR+=	py-hpp-baxter
 SUBDIR+=	py-hpp-universal-robot
 SUBDIR+=	py-hyq-rbprm
+SUBDIR+=	py-simple-humanoid-rbprm
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
 SUBDIR+=	rmp-libs
