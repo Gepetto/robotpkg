@@ -12,3 +12,4 @@ lib/cmake/hpp-template-corba/hpp-template-corbaTargets-release.cmake
 lib/cmake/hpp-template-corba/hpp-template-corbaTargets.cmake
 lib/libhpp-template-corba.so
 lib/pkgconfig/hpp-template-corba.pc
+share/hpp-template-corba/package.xml
