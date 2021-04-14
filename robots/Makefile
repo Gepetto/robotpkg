@@ -17,6 +17,7 @@ SUBDIR+=	nao-robot
 SUBDIR+=	neobotix-libs
 SUBDIR+=	play-genom
 SUBDIR+=	player20-libs
+SUBDIR+=	py-animal-rbprm
 SUBDIR+=	py-example-robot-data
 SUBDIR+=	py-hpp-baxter
 SUBDIR+=	py-hpp-universal-robot
