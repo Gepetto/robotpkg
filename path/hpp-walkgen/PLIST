@@ -12,3 +12,4 @@ lib/cmake/hpp-walkgen/hpp-walkgenTargets-release.cmake
 lib/cmake/hpp-walkgen/hpp-walkgenTargets.cmake
 lib/libhpp-walkgen.so
 lib/pkgconfig/hpp-walkgen.pc
+share/hpp-walkgen/package.xml
