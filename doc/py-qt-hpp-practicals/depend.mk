@@ -21,9 +21,10 @@ DEPEND_ABI.py-hpp-practicals?=	${PKGTAG.python-}hpp-practicals>=4.9.0
 DEPEND_DIR.py-hpp-practicals?=	../../doc/py-hpp-practicals
 
 SYSTEM_SEARCH.py-hpp-practicals=								\
-  'include/hpp/practicals/config.hh'								\
+  'include/hpp/practicals/config.hh:/HPP_PRACTICALS_VERSION /s/[^0-9.]//gp'			\
   'lib/cmake/hpp-practicals/hpp-practicalsConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
-  'lib/pkgconfig/hpp_practicals.pc:/Version/s/[^0-9.]//gp					'
+  'lib/pkgconfig/hpp_practicals.pc:/Version/s/[^0-9.]//gp'					\
+  'share/hpp_practicals/package.xml:/<version>/s/[^0-9.]//gp'					\
   'share/hpp_practicals/urdf/ur5_gripper.urdf'
 
 endif # PY_HPP_PRACTICALS_DEPEND_MK -------------------------------------------
