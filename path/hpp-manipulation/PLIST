@@ -24,7 +24,6 @@ include/hpp/manipulation/manipulation-planner.hh
 include/hpp/manipulation/package-config.hh
 include/hpp/manipulation/path-optimization/enforce-transition-semantic.hh
 include/hpp/manipulation/path-optimization/random-shortcut.hh
-include/hpp/manipulation/path-optimization/small-steps.hh
 include/hpp/manipulation/path-optimization/spline-gradient-based.hh
 include/hpp/manipulation/path-planner/end-effector-trajectory.hh
 include/hpp/manipulation/problem-solver.hh
@@ -32,6 +31,7 @@ include/hpp/manipulation/problem-target/state.hh
 include/hpp/manipulation/problem.hh
 include/hpp/manipulation/roadmap-node.hh
 include/hpp/manipulation/roadmap.hh
+include/hpp/manipulation/serialization.hh
 include/hpp/manipulation/steering-method/cross-state-optimization.hh
 include/hpp/manipulation/steering-method/end-effector-trajectory.hh
 include/hpp/manipulation/steering-method/fwd.hh
@@ -47,3 +47,4 @@ lib/hppPlugins/manipulation-spline-gradient-based.so
 lib/libhpp-manipulation-gpl.so
 lib/libhpp-manipulation.so
 lib/pkgconfig/hpp-manipulation.pc
+share/hpp-manipulation/package.xml

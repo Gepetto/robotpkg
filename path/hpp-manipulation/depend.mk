@@ -3,13 +3,13 @@
 #
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH}+
-HPPMANIPULATION_DEPEND_MK:=	${HPPMANIPULATION_DEPEND_MK}+
+HPP_MANIPULATION_DEPEND_MK:=	${HPP_MANIPULATION_DEPEND_MK}+
 
 ifeq (+,$(DEPEND_DEPTH))
 DEPEND_PKG+=			hpp-manipulation
 endif
 
-ifeq (+,$(HPPMANIPULATION_DEPEND_MK)) # ---------------------------
+ifeq (+,$(HPP_MANIPULATION_DEPEND_MK)) # ---------------------------
 
 PREFER.hpp-manipulation?=	robotpkg
 
@@ -19,12 +19,12 @@ DEPEND_ABI.hpp-manipulation?=	hpp-manipulation>=4.9.0
 DEPEND_DIR.hpp-manipulation?=	../../path/hpp-manipulation
 
 SYSTEM_SEARCH.hpp-manipulation=										\
-	'include/hpp/manipulation/device.hh'								\
-	'include/hpp/manipulation/problem-solver.hh'							\
+	'include/hpp/manipulation/config.hh:/HPP_MANIPULATION_VERSION /s/[^0-9.]//gp'			\
 	'lib/cmake/hpp-manipulation/hpp-manipulationConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
 	'lib/libhpp-manipulation.so'									\
-	'lib/pkgconfig/hpp-manipulation.pc:/Version/s/[^0-9.]//gp'
+	'lib/pkgconfig/hpp-manipulation.pc:/Version/s/[^0-9.]//gp'					\
+	'share/hpp-manipulation/package.xml:/<version>/s/[^0-9.]//gp'
 
-endif # HPPMANIPULATION_DEPEND_MK ---------------------------------
+endif # HPP_MANIPULATION_DEPEND_MK ---------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
