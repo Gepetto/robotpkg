@@ -3,8 +3,7 @@
 #
 
 HPP_PACKAGE=		gepetto-viewer
-HPP_VERSION=		4.10.1
-PKGREVISION=		2
+HPP_VERSION=		4.12.0
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=		graphics

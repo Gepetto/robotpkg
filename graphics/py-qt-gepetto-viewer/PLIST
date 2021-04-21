@@ -65,3 +65,4 @@ lib/cmake/gepetto-viewer/gepetto-viewerTargets.cmake
 lib/libgepetto-viewer.so
 lib/pkgconfig/gepetto-viewer.pc
 share/gepetto-viewer/fonts/arial.ttf
+share/gepetto-viewer/package.xml
