@@ -3,10 +3,9 @@
 #
 
 HPP_PACKAGE=		hpp-manipulation-corba
-HPP_VERSION=		4.10.1
+HPP_COMMENT=		CORBA interface for hpp-manipulation
 
 CATEGORIES=		path
-HPP_COMMENT=		CORBA interface for hpp-manipulation
 
 # omniorb has some issue with parallelism. Error message omniidl: Cannot rename
 # "foo/new__init__.py" to "foo/__init__.py"
