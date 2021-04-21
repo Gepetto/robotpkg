@@ -18,3 +18,4 @@ lib/cmake/hpp-manipulation-urdf/hpp-manipulation-urdfTargets-release.cmake
 lib/cmake/hpp-manipulation-urdf/hpp-manipulation-urdfTargets.cmake
 lib/libhpp-manipulation-urdf.so
 lib/pkgconfig/hpp-manipulation-urdf.pc
+share/hpp-manipulation-urdf/package.xml
