@@ -1,0 +1,13 @@
+@comment Wed Dec 19 18:17:49 CET 2018
+include/hpp/romeo/config.hh
+include/hpp/romeo/deprecated.hh
+include/hpp/romeo/warning.hh
+lib/cmake/hpp_romeo/hpp_romeoConfig.cmake
+lib/cmake/hpp_romeo/hpp_romeoConfigVersion.cmake
+lib/cmake/hpp_romeo/hpp_romeoTargets.cmake
+lib/pkgconfig/hpp_romeo.pc
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/romeo/__init__.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/romeo/robot.py
+${PYTHON_SITELIB}/hpp/corbaserver/romeo/__init__.py
+${PYTHON_SITELIB}/hpp/corbaserver/romeo/robot.py
+share/hpp_romeo/package.xml

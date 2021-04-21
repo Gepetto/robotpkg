@@ -20,6 +20,7 @@ SUBDIR+=	player20-libs
 SUBDIR+=	py-animal-rbprm
 SUBDIR+=	py-example-robot-data
 SUBDIR+=	py-hpp-baxter
+SUBDIR+=	py-hpp-romeo
 SUBDIR+=	py-hpp-universal-robot
 SUBDIR+=	py-hyq-rbprm
 SUBDIR+=	py-simple-humanoid-rbprm
