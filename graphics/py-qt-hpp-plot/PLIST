@@ -12,3 +12,4 @@ lib/cmake/hpp-plot/hpp-plotTargets.cmake
 lib/gepetto-gui-plugins/hppmonitoringplugin.so
 lib/libhpp-plot.so
 lib/pkgconfig/hpp-plot.pc
+share/hpp-plot/package.xml

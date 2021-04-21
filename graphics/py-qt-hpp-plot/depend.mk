@@ -26,10 +26,11 @@ DEPEND_ABI.py-qt-hpp-plot?=	${PKGTAG.python-}${_hppp_qt}-hpp-plot>=4.9.0
 DEPEND_DIR.py-qt-hpp-plot?=	../../graphics/py-qt-hpp-plot
 
 SYSTEM_SEARCH.py-qt-hpp-plot=								\
-  'include/hpp/plot/config.hh'								\
+  'include/hpp/plot/config.hh:/HPP_PLOT_VERSION /s/[^0-9.]//gp'				\
   'lib/cmake/hpp-plot/hpp-plotConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
   'lib/libhpp-plot.so'									\
-  'lib/pkgconfig/hpp-plot.pc:/Version/s/[^0-9.]//gp'
+  'lib/pkgconfig/hpp-plot.pc:/Version/s/[^0-9.]//gp'					\
+  'share/hpp-plot/package.xml:/<version>/s/[^0-9.]//gp'
 
 endif # PY_QT_HPP_PLOT_DEPEND_MK ----------------------------------------------
 
