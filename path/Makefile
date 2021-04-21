@@ -22,6 +22,7 @@ SUBDIR+=	libp3d
 SUBDIR+=	maneuver-genom3
 SUBDIR+=	ndd-genom
 SUBDIR+=	p3d-genom
+SUBDIR+=	py-hpp-affordance-corba
 SUBDIR+=	py-hpp-bezier-com-traj
 SUBDIR+=	py-hpp-centroidal-dynamics
 SUBDIR+=	py-hpp-corbaserver
