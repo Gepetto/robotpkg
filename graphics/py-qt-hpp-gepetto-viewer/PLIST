@@ -17,3 +17,4 @@ ${PYTHON_SITELIB}/hpp/gepetto/manipulation/viewer_factory.py
 ${PYTHON_SITELIB}/hpp/gepetto/path_player.py
 ${PYTHON_SITELIB}/hpp/gepetto/viewer.py
 ${PYTHON_SITELIB}/hpp/gepetto/viewer_factory.py
+share/hpp-gepetto-viewer/package.xml
