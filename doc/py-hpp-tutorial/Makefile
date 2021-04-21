@@ -3,9 +3,9 @@
 #
 
 HPP_PACKAGE=		hpp_tutorial
+HPP_COMMENT=		Tutorial for manipulation and path planning
 
 CATEGORIES=		doc
-HPP_COMMENT=		Tutorial for manipulation and path planning
 
 PYTHON_NOTAG_CONFLICT=	yes
 
