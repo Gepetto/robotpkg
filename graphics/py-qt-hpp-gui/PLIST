@@ -20,3 +20,4 @@ ${PYTHON_SITELIB}/hpp/gui/graphutility.py
 ${PYTHON_SITELIB}/hpp/gui/inspector.py
 ${PYTHON_SITELIB}/hpp/gui/parameters.py
 ${PYTHON_SITELIB}/hpp/gui/plugin.py
+share/hpp-gui/package.xml

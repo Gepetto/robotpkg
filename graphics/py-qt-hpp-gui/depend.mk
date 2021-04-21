@@ -25,9 +25,10 @@ DEPEND_ABI.py-qt-hpp-gui?=	${PKGTAG.python-}${_hppg_qt}-hpp-gui>=4.9.0
 DEPEND_DIR.py-qt-hpp-gui?=	../../graphics/py-qt-hpp-gui
 
 SYSTEM_SEARCH.py-qt-hpp-gui=							\
- 'include/hpp/gui/config.hh'							\
+ 'include/hpp/gui/config.hh:/HPP_PLOT_VERSION /s/[^0-9.]//gp'			\
  'lib/cmake/hpp-gui/hpp-guiConfigVersion.cmake:/PACKAGE_VERSION/s/[^0-9.]//gp'	\
- 'lib/pkgconfig/hpp-gui.pc:/Version/s/[^0-9.]//gp'
+ 'lib/pkgconfig/hpp-gui.pc:/Version/s/[^0-9.]//gp'				\
+ 'share/hpp-gui/package.xml:/<version>/s/[^0-9.]//gp'
 
 endif # PY_QT_HPP_GUI_DEPEND_MK -----------------------------------------------
 
