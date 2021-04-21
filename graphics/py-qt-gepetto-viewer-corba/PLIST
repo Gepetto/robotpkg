@@ -28,4 +28,5 @@ ${PYTHON_SITELIB}/gepetto/corbaserver/gepetto__POA/corbaserver/__init__.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/graphical_interface_idl.py
 ${PYTHON_SITELIB}/gepetto/corbaserver/tools.py
 ${PYTHON_SITELIB}/gepetto/quaternion.py
+share/gepetto-viewer-corba/package.xml
 share/idl/gepetto/corbaserver/graphical-interface.idl
