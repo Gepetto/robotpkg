@@ -29,5 +29,6 @@ SUBDIR+=	py-hpp-corbaserver
 SUBDIR+=	py-hpp-fcl
 SUBDIR+=	py-hpp-manipulation-corba
 SUBDIR+=	py-hpp-rbprm
+SUBDIR+=	py-hpp-rbprm-corba
 
 include ../mk/robotpkg.subdir.mk
