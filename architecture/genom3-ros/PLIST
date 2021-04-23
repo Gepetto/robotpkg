@@ -1,4 +1,4 @@
-@comment Fri Nov 16 16:13:36 CET 2018
+@comment Fri Apr 23 17:26:46 CEST 2021
 bin/rosaction
 lib/libros-client.la
 lib/pkgconfig/genom3-ros.pc
@@ -37,7 +37,6 @@ share/genom/site-templates/ros/common/service.h
 share/genom/site-templates/ros/common/typecopy.h
 share/genom/site-templates/ros/server/activities.cc
 share/genom/site-templates/ros/server/activities.h
-share/genom/site-templates/ros/server/codels.mappings.h
 share/genom/site-templates/ros/server/control-codels.cc
 share/genom/site-templates/ros/server/control-task.cc
 share/genom/site-templates/ros/server/exception.cc
