@@ -17,7 +17,8 @@ PREFER.py-hyq-rbprm?=		robotpkg
 
 DEPEND_USE+=			py-hyq-rbprm
 
-DEPEND_ABI.py-hyq-rbprm?=	${PKGTAG.python-}hyq-rbprm>=4.10.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hyq-rbprm?=	${PKGTAG.python-}hyq-rbprm>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hyq-rbprm?=	../../robots/py-hyq-rbprm
 
 SYSTEM_SEARCH.py-hyq-rbprm=									\

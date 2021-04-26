@@ -15,7 +15,8 @@ PREFER.hpp-pinocchio?=		robotpkg
 
 DEPEND_USE+=			hpp-pinocchio
 
-DEPEND_ABI.hpp-pinocchio?=	hpp-pinocchio>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.hpp-pinocchio?=	hpp-pinocchio>=${HPP_MIN_VERSION}
 DEPEND_DIR.hpp-pinocchio?=	../../math/hpp-pinocchio
 
 SYSTEM_SEARCH.hpp-pinocchio=									\

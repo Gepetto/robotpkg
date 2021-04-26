@@ -17,7 +17,8 @@ PREFER.py-hpp-practicals?=	robotpkg
 
 DEPEND_USE+=			py-hpp-practicals
 
-DEPEND_ABI.py-hpp-practicals?=	${PKGTAG.python-}hpp-practicals>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-practicals?=	${PKGTAG.python-}hpp-practicals>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-practicals?=	../../doc/py-hpp-practicals
 
 SYSTEM_SEARCH.py-hpp-practicals=								\

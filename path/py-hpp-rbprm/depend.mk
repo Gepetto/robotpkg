@@ -17,7 +17,8 @@ PREFER.py-hpp-rbprm?=		robotpkg
 
 DEPEND_USE+=			py-hpp-rbprm
 
-DEPEND_ABI.py-hpp-rbprm?=	${PKGTAG.python-}hpp-rbprm>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-rbprm?=	${PKGTAG.python-}hpp-rbprm>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-rbprm?=	../../path/py-hpp-rbprm
 
 SYSTEM_SEARCH.py-hpp-rbprm=									\

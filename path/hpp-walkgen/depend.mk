@@ -15,7 +15,8 @@ PREFER.hpp-walkgen?=		robotpkg
 
 DEPEND_USE+=			hpp-walkgen
 
-DEPEND_ABI.hpp-walkgen?=	hpp-walkgen>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.hpp-walkgen?=	hpp-walkgen>=${HPP_MIN_VERSION}
 DEPEND_DIR.hpp-walkgen?=	../../path/hpp-walkgen
 
 SYSTEM_SEARCH.hpp-walkgen=									\

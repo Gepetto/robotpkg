@@ -22,7 +22,8 @@ _hppp_qts={qt4,qt5}
 _hppp_qt=\
   $(if $(filter qt,${PKG_ALTERNATIVES}),${PKG_ALTERNATIVE.qt},${_hppp_qts})
 
-DEPEND_ABI.py-qt-hpp-plot?=	${PKGTAG.python-}${_hppp_qt}-hpp-plot>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-qt-hpp-plot?=	${PKGTAG.python-}${_hppp_qt}-hpp-plot>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-qt-hpp-plot?=	../../graphics/py-qt-hpp-plot
 
 SYSTEM_SEARCH.py-qt-hpp-plot=								\

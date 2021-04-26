@@ -17,7 +17,8 @@ PREFER.py-hpp-rbprm-corba?=	robotpkg
 
 DEPEND_USE+=			py-hpp-rbprm-corba
 
-DEPEND_ABI.py-hpp-rbprm-corba?=	${PKGTAG.python-}hpp-rbprm-corba>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-rbprm-corba?=	${PKGTAG.python-}hpp-rbprm-corba>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-rbprm-corba?=	../../path/py-hpp-rbprm-corba
 
 SYSTEM_SEARCH.py-hpp-rbprm-corba=									\

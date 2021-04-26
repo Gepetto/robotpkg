@@ -15,7 +15,8 @@ PREFER.hpp-statistics?=	robotpkg
 
 DEPEND_USE+=		hpp-statistics
 
-DEPEND_ABI.hpp-statistics?=	hpp-statistics>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.hpp-statistics?=	hpp-statistics>=${HPP_MIN_VERSION}
 DEPEND_DIR.hpp-statistics?=	../../path/hpp-statistics
 
 SYSTEM_SEARCH.hpp-statistics=										\

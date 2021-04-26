@@ -17,7 +17,8 @@ PREFER.py-hpp-manipulation-corba?=	robotpkg
 
 DEPEND_USE+=				py-hpp-manipulation-corba
 
-DEPEND_ABI.py-hpp-manipulation-corba?=	${PKGTAG.python-}hpp-manipulation-corba>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-manipulation-corba?=	${PKGTAG.python-}hpp-manipulation-corba>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-manipulation-corba?=	../../path/py-hpp-manipulation-corba
 
 SYSTEM_SEARCH.py-hpp-manipulation-corba=										\

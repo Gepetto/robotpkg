@@ -17,7 +17,8 @@ PREFER.py-simple-humanoid-rbprm?=	robotpkg
 
 DEPEND_USE+=				py-simple-humanoid-rbprm
 
-DEPEND_ABI.py-simple-humanoid-rbprm?=	${PKGTAG.python-}simple-humanoid-rbprm>=4.10.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-simple-humanoid-rbprm?=	${PKGTAG.python-}simple-humanoid-rbprm>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-simple-humanoid-rbprm?=	../../robots/py-simple-humanoid-rbprm
 
 SYSTEM_SEARCH.py-simple-humanoid-rbprm=											\

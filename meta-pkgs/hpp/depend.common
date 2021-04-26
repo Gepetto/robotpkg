@@ -1,0 +1,4 @@
+# robotpkg depend.common for:	meta-pkgs/hpp
+# Created:			Guilhem Saurel on Mon, 26 Apr 2021
+#
+HPP_MIN_VERSION=		4.11.0

@@ -17,7 +17,8 @@ PREFER.py-hpp-universal-robot?=		robotpkg
 
 DEPEND_USE+=				py-hpp-universal-robot
 
-DEPEND_ABI.py-hpp-universal-robot?=	${PKGTAG.python-}hpp-universal-robot>=4.7.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-universal-robot?=	${PKGTAG.python-}hpp-universal-robot>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-universal-robot?=	../../robots/py-hpp-universal-robot
 
 SYSTEM_SEARCH.py-hpp-universal-robot=									\

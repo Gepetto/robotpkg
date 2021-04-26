@@ -17,7 +17,8 @@ PREFER.py-anymal-rbprm?=	robotpkg
 
 DEPEND_USE+=			py-anymal-rbprm
 
-DEPEND_ABI.py-anymal-rbprm?=	${PKGTAG.python-}anymal-rbprm>=4.10.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-anymal-rbprm?=	${PKGTAG.python-}anymal-rbprm>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-anymal-rbprm?=	../../robots/py-anymal-rbprm
 
 SYSTEM_SEARCH.py-anymal-rbprm=									\

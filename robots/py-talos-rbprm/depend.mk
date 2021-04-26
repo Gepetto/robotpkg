@@ -17,7 +17,8 @@ PREFER.py-talos-rbprm?=		robotpkg
 
 DEPEND_USE+=			py-talos-rbprm
 
-DEPEND_ABI.py-talos-rbprm?=	${PKGTAG.python-}talos-rbprm>=4.7.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-talos-rbprm?=	${PKGTAG.python-}talos-rbprm>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-talos-rbprm?=	../../robots/py-talos-rbprm
 
 SYSTEM_SEARCH.py-talos-rbprm=									\

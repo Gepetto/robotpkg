@@ -17,7 +17,8 @@ PREFER.py-hpp-bezier-com-traj?=		robotpkg
 
 DEPEND_USE+=				py-hpp-bezier-com-traj
 
-DEPEND_ABI.py-hpp-bezier-com-traj?=	${PKGTAG.python-}hpp-bezier-com-traj>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-bezier-com-traj?=	${PKGTAG.python-}hpp-bezier-com-traj>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-bezier-com-traj?=	../../path/py-hpp-bezier-com-traj
 
 SYSTEM_SEARCH.py-hpp-bezier-com-traj=										\

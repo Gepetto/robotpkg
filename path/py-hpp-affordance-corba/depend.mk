@@ -17,7 +17,8 @@ PREFER.py-hpp-affordance-corba?=	robotpkg
 
 DEPEND_USE+=				py-hpp-affordance-corba
 
-DEPEND_ABI.py-hpp-affordance-corba?=	${PKGTAG.python-}hpp-affordance-corba>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-affordance-corba?=	${PKGTAG.python-}hpp-affordance-corba>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-affordance-corba?=	../../path/py-hpp-affordance-corba
 
 SYSTEM_SEARCH.py-hpp-affordance-corba=										\

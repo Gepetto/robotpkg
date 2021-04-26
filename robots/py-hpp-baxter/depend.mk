@@ -17,7 +17,8 @@ PREFER.py-hpp-baxter?=		robotpkg
 
 DEPEND_USE+=			py-hpp-baxter
 
-DEPEND_ABI.py-hpp-baxter?=	${PKGTAG.python-}hpp-baxter>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-baxter?=	${PKGTAG.python-}hpp-baxter>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-baxter?=	../../robots/py-hpp-baxter
 
 SYSTEM_SEARCH.py-hpp-baxter=								\

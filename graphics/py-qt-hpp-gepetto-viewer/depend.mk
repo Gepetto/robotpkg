@@ -18,7 +18,8 @@ DEPEND_USE+=				py-qt-hpp-gepetto-viewer
 # depend on appropriate Qt version when using Qt, all versions otherwise.
 _hgv_qts={qt4,qt5}
 _hgv_qt=$(if $(filter qt,${PKG_ALTERNATIVES}),${PKG_ALTERNATIVE.qt},${_hgv_qts})
-DEPEND_ABI.py-qt-hpp-gepetto-viewer?=	${PKGTAG.python}-${_hgv_qt}-hpp-gepetto-viewer>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-qt-hpp-gepetto-viewer?=	${PKGTAG.python}-${_hgv_qt}-hpp-gepetto-viewer>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-qt-hpp-gepetto-viewer?=	../../graphics/py-qt-hpp-gepetto-viewer
 
 SYSTEM_SEARCH.py-qt-hpp-gepetto-viewer=										\

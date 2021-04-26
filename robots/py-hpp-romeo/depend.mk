@@ -17,7 +17,8 @@ PREFER.py-hpp-romeo?=		robotpkg
 
 DEPEND_USE+=			py-hpp-romeo
 
-DEPEND_ABI.py-hpp-romeo?=	${PKGTAG.python-}hpp-romeo>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-romeo?=	${PKGTAG.python-}hpp-romeo>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-romeo?=	../../robots/py-hpp-romeo
 
 SYSTEM_SEARCH.py-hpp-romeo=								\

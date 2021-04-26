@@ -17,7 +17,8 @@ PREFER.py-hpp-corbaserver?=	robotpkg
 
 DEPEND_USE+=			py-hpp-corbaserver
 
-DEPEND_ABI.py-hpp-corbaserver?=	${PKGTAG.python-}hpp-corbaserver>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-corbaserver?=	${PKGTAG.python-}hpp-corbaserver>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-corbaserver?=	../../path/py-hpp-corbaserver
 
 SYSTEM_SEARCH.py-hpp-corbaserver=								\

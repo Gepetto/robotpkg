@@ -15,7 +15,8 @@ PREFER.hpp-environments?=	robotpkg
 
 DEPEND_USE+=			hpp-environments
 
-DEPEND_ABI.hpp-environments?=	hpp-environments>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.hpp-environments?=	hpp-environments>=${HPP_MIN_VERSION}
 DEPEND_DIR.hpp-environments?=	../../simulation/hpp-environments
 
 SYSTEM_SEARCH.hpp-environments=										\

@@ -17,7 +17,8 @@ PREFER.py-hpp-centroidal-dynamics?=	robotpkg
 
 DEPEND_USE+=				py-hpp-centroidal-dynamics
 
-DEPEND_ABI.py-hpp-centroidal-dynamics?=	${PKGTAG.python-}hpp-centroidal-dynamics>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-centroidal-dynamics?=	${PKGTAG.python-}hpp-centroidal-dynamics>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-centroidal-dynamics?=	../../path/py-hpp-centroidal-dynamics
 
 SYSTEM_SEARCH.py-hpp-centroidal-dynamics=										\

@@ -15,7 +15,8 @@ PREFER.hpp-affordance?=		robotpkg
 
 DEPEND_USE+=			hpp-affordance
 
-DEPEND_ABI.hpp-affordance?=	hpp-affordance>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.hpp-affordance?=	hpp-affordance>=${HPP_MIN_VERSION}
 DEPEND_DIR.hpp-affordance?=	../../path/hpp-affordance
 
 SYSTEM_SEARCH.hpp-affordance=										\

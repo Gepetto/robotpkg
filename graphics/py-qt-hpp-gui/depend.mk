@@ -21,7 +21,8 @@ DEPEND_USE+=			py-qt-hpp-gui
 _hppg_qts={qt4,qt5}
 _hppg_qt=$(if $(filter qt,${PKG_ALTERNATIVES}),${PKG_ALTERNATIVE.qt},${_hppg_qts})
 
-DEPEND_ABI.py-qt-hpp-gui?=	${PKGTAG.python-}${_hppg_qt}-hpp-gui>=4.9.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-qt-hpp-gui?=	${PKGTAG.python-}${_hppg_qt}-hpp-gui>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-qt-hpp-gui?=	../../graphics/py-qt-hpp-gui
 
 SYSTEM_SEARCH.py-qt-hpp-gui=							\

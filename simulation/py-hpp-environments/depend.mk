@@ -17,7 +17,8 @@ PREFER.py-hpp-environments?=	robotpkg
 
 DEPEND_USE+=			py-hpp-environments
 
-DEPEND_ABI.py-hpp-environments?=${PKGTAG.python-}hpp-environments>=4.7.0
+include ../../meta-pkgs/hpp/depend.common
+DEPEND_ABI.py-hpp-environments?=${PKGTAG.python-}hpp-environments>=${HPP_MIN_VERSION}
 DEPEND_DIR.py-hpp-environments?=../../simulation/py-hpp-environments
 
 SYSTEM_SEARCH.py-hpp-environments=\
