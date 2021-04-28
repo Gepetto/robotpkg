@@ -2,10 +2,10 @@
 # Created:			Guilhem Saurel on Wed, 14 Mar 2018
 #
 
-HPP_PACKAGE=	hpp-pinocchio
-HPP_COMMENT=	Wrapping of the kinematic/dynamic chain Pinocchio for HPP.
+HPP_PACKAGE=		hpp-pinocchio
+HPP_COMMENT=		Wrapping of the kinematic/dynamic chain Pinocchio for HPP.
 
-CATEGORIES=	math
+CATEGORIES=		math
 
 include ../../meta-pkgs/hpp/Makefile.common
 
@@ -20,4 +20,8 @@ include ../../robots/example-robot-data/depend.mk
 include ../../robots/py-hpp-baxter/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
+
+# g++ 5.4.0 segfaults
+DEPEND_ABI.g++ +=	g++>=5.5
+
 include ../../mk/robotpkg.mk
