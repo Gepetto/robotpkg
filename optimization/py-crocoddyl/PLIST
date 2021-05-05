@@ -61,11 +61,11 @@ include/crocoddyl/core/solvers/box-qp.hpp
 include/crocoddyl/core/solvers/ddp.hpp
 include/crocoddyl/core/solvers/fddp.hpp
 include/crocoddyl/core/solvers/kkt.hpp
-include/crocoddyl/core/solvers/qp.hpp
 include/crocoddyl/core/state-base.hpp
 include/crocoddyl/core/state-base.hxx
 include/crocoddyl/core/states/euclidean.hpp
 include/crocoddyl/core/states/euclidean.hxx
+include/crocoddyl/core/utils/Stdafx.hh
 include/crocoddyl/core/utils/callbacks.hpp
 include/crocoddyl/core/utils/deprecate.hpp
 include/crocoddyl/core/utils/exception.hpp
@@ -74,6 +74,7 @@ include/crocoddyl/core/utils/math.hpp
 include/crocoddyl/core/utils/motion-display.hpp
 include/crocoddyl/core/utils/robot-loader.hpp
 include/crocoddyl/core/utils/solution-plot.hpp
+include/crocoddyl/core/utils/stop-watch.hpp
 include/crocoddyl/core/utils/timer.hpp
 include/crocoddyl/core/utils/to-string.hpp
 include/crocoddyl/core/utils/version.hpp
@@ -97,6 +98,8 @@ include/crocoddyl/multibody/contacts/contact-6d.hpp
 include/crocoddyl/multibody/contacts/contact-6d.hxx
 include/crocoddyl/multibody/contacts/multiple-contacts.hpp
 include/crocoddyl/multibody/contacts/multiple-contacts.hxx
+include/crocoddyl/multibody/cop-support.hpp
+include/crocoddyl/multibody/cop-support.hxx
 include/crocoddyl/multibody/cost-base.hpp
 include/crocoddyl/multibody/costs/centroidal-momentum.hpp
 include/crocoddyl/multibody/costs/centroidal-momentum.hxx
@@ -112,8 +115,10 @@ include/crocoddyl/multibody/costs/contact-impulse.hpp
 include/crocoddyl/multibody/costs/contact-impulse.hxx
 include/crocoddyl/multibody/costs/contact-wrench-cone.hpp
 include/crocoddyl/multibody/costs/contact-wrench-cone.hxx
-include/crocoddyl/multibody/costs/control-cost.hpp
-include/crocoddyl/multibody/costs/control.hpp
+include/crocoddyl/multibody/costs/control-gravity-contact.hpp
+include/crocoddyl/multibody/costs/control-gravity-contact.hxx
+include/crocoddyl/multibody/costs/control-gravity.hpp
+include/crocoddyl/multibody/costs/control-gravity.hxx
 include/crocoddyl/multibody/costs/cost-sum.hpp
 include/crocoddyl/multibody/costs/frame-placement.hpp
 include/crocoddyl/multibody/costs/frame-placement.hxx
