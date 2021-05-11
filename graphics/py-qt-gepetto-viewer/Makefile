@@ -2,7 +2,7 @@
 # Created:			Florent Lamiraux on Sun, 8 Mar 2015
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 HPP_PACKAGE=		gepetto-viewer
 HPP_VERSION=		4.12.0
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
@@ -23,7 +23,6 @@ CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 CMAKE_ARGS+=		-DPROJECT_USE_QT4=OFF
 CMAKE_ARGS+=		-DGEPETTO_GUI_HAS_PYTHONQT=ON
 
-PLIST_SRC+=		${PKGDIR}/PLIST.qt5
 DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui/pyplugin.conf.d
 
 include ../../graphics/openscenegraph/depend.mk
