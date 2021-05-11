@@ -25,7 +25,7 @@ SYSTEM_SEARCH.qt5-tools=\
 
 SYSTEM_PREFIX.qt5-tools?=	${SYSTEM_PREFIX:=/qt5} ${SYSTEM_PREFIX}
 
-SYSTEM_PKG.Debian.qt5-tools=	qttools5-dev-tools
+SYSTEM_PKG.Debian.qt5-tools=	qttools5-dev-tools qttools5-dev
 SYSTEM_PKG.NetBSD.qt5-tools=	x11/qt5-qttools
 SYSTEM_PKG.RedHat.qt5-tools=	qt5-qttools-devel qt5-qttools-static
 
