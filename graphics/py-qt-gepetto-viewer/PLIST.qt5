@@ -1,4 +1,0 @@
-include/gepetto/gui/pythonwidget.hh
-${PYTHON_SITELIB}/gepetto/gui/__init__.py
-${PYTHON_SITELIB}/gepetto/gui/blenderexport.py
-${PYTHON_SITELIB}/gepetto/gui/intersection.py
