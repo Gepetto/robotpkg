@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2020 LAAS/CNRS
+# Copyright (c) 2010-2021 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -113,6 +113,7 @@ CMAKE_ARGS+=	-DPYTHON_INCLUDE_DIR2=${PYTHON_INCLUDE_CONFIG}
 CMAKE_ARGS+=	-DPYTHON_LIBRARY=${PYTHON_LIB}
 
 # Additional CONFLICTS
+include ../../mk/internal/macros.mk
 ifneq (,$(call isyes,${PYTHON_SELF_CONFLICT}))
   CONFLICTS_SUBST+=	${PKGTAG.python-}=py[0-9][0-9]-
   CONFLICTS+=		${PKGWILDCARD}

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018-2019 LAAS/CNRS
+# Copyright (c) 2018-2019,2021 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -72,6 +72,7 @@ PREFER.qt?=		system
 DEPEND_ABI.qt?=		qt>=4
 
 # Additional CONFLICTS
+include ../../mk/internal/macros.mk
 ifneq (,$(call isyes,${QT_SELF_CONFLICT}))
   CONFLICTS_SUBST+=	${PKGTAG.qt-}=qt[0-9]-
   CONFLICTS+=		${PKGWILDCARD}
