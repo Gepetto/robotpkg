@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Wed, 14 Mar 2018
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-pinocchio
 HPP_COMMENT=		Wrapping of the kinematic/dynamic chain Pinocchio for HPP.
 
@@ -17,7 +18,6 @@ include ../../path/hpp-util/depend.mk
 include ../../graphics/assimp/depend.mk
 include ../../simulation/hpp-environments/depend.mk
 include ../../robots/example-robot-data/depend.mk
-include ../../robots/py-hpp-baxter/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 
