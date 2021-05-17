@@ -30,6 +30,7 @@ include ../../graphics/py-pythonqt/depend.mk
 include ../../graphics/qt-osgqt/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
 include ../../graphics/urdfdom/depend.mk
+include ../../mk/sysdep/ffmpeg.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
