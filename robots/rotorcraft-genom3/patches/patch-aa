@@ -1,0 +1,14 @@
+Don't use Array& operator=(const Scalar &value), it was introduced
+in eigen-3.2.something only.
+
+--- codels/calibration.cc~	2021-05-18 13:50:27.000000000 +0200
++++ codels/calibration.cc	2021-05-18 16:39:18.813050090 +0200
+@@ -166,7 +166,7 @@
+   if (raw_data->samples >= raw_data->sps)
+     raw_data->moq.col(raw_data->samples) = var / raw_data->varth;
+   else
+-    raw_data->moq.col(raw_data->samples) = nan("");
++    raw_data->moq.col(raw_data->samples).setConstant(nan(""));
+ 
+ 
+   /* detect still poses */
