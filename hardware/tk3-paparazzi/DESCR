@@ -1,0 +1,4 @@
+This the telekyb compatible firmware running on board the Paparazzi hardware.
+
+The package contains the firmware for the Chimera Paparazzi board. It is to be
+used in combination with rotorcraft-genom3.

@@ -25,6 +25,7 @@ SUBDIR+=	sahand-genom
 SUBDIR+=	serial
 SUBDIR+=	sickLib
 SUBDIR+=	sick-genom
+SUBDIR+=	tk3-paparazzi
 SUBDIR+=	velodyne-genom
 SUBDIR+=	velodyne-libs
 
