@@ -30,6 +30,8 @@ SYSTEM_SEARCH.py-qt-gepetto-viewer=					\
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/qt.mk
 
+DEPEND_ABI.qt+=		qt>=5
+
 endif # PY_QT_GEPETTO_VIEWER_DEPEND_MK -------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
