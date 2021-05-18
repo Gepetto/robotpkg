@@ -24,6 +24,7 @@ SUBDIR+=	py-hpp-romeo
 SUBDIR+=	py-hpp-universal-robot
 SUBDIR+=	py-hyq-rbprm
 SUBDIR+=	py-simple-humanoid-rbprm
+SUBDIR+=	py-talos-rbprm
 SUBDIR+=	rflex-genom
 SUBDIR+=	rflexclients
 SUBDIR+=	rmp-libs
