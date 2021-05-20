@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 18 May 2021
 #
 
-DISTNAME=	tk3-paparazzi-1.1
+DISTNAME=	tk3-paparazzi-1.1.1
 CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
@@ -16,6 +16,8 @@ GNU_CONFIGURE=	yes
 
 # -O levels are defined by the source itself, don't interfere
 C_COMPILER_FLAGS_NDEBUG=	-DNDEBUG
+
+DEPEND_ABI.arm-none-eabi-gcc+=	arm-none-eabi-gcc>=4.9
 
 include ../../mk/language/arm-none-eabi-c.mk
 include ../../mk/robotpkg.mk
