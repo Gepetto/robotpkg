@@ -2,18 +2,21 @@
 # Created:			florent on Sat, 9 May 2009
 #
 
-DISTNAME=	Ipopt-${VERSION}
-PKGNAME=	ipopt-${VERSION}
-VERSION=	3.6.1
-EXTRACT_SUFX=	.tgz
+ORG=		coin-or
+NAME=		Ipopt
+VERSION=	3.13.4
 
 CATEGORIES=	optimization
-MASTER_SITES=	http://www.coin-or.org/download/source/Ipopt/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=${ORG}/${NAME}}/archive/refs/tags/releases/
 
-MAINTAINER=	ipopt@list.coin-or.org
-HOMEPAGE=	https://projects.coin-or.org/Ipopt
+DISTNAME=	${VERSION}
+PKGNAME=	ipopt-${VERSION}
+WRKSRC=		${WRKDIR}/${NAME}-releases-${VERSION}
+
+MAINTAINER=	guilhem.saurel@laas.fr
+HOMEPAGE=	${MASTER_SITE_GITHUB:=${ORG}/${NAME}}
 COMMENT=	Interior Point OPTimizer, pronounced I-P-Opt
-LICENSE=	cpl
+LICENSE=	eclipse
 
 GNU_CONFIGURE=	yes
 
