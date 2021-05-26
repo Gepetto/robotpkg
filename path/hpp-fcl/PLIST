@@ -54,6 +54,8 @@ include/hpp/fcl/serialization/collision_data.h
 include/hpp/fcl/serialization/collision_object.h
 include/hpp/fcl/serialization/eigen.h
 include/hpp/fcl/serialization/fwd.h
+include/hpp/fcl/serialization/geometric_shapes.h
+include/hpp/fcl/serialization/memory.h
 include/hpp/fcl/shape/convex.h
 include/hpp/fcl/shape/details/convex.hxx
 include/hpp/fcl/shape/geometric_shape_to_BVH_model.h
