@@ -2,6 +2,7 @@
 # Created:			florent on Sat, 9 May 2009
 #
 
+PKGREVISION=	1
 ORG=		coin-or
 NAME=		Ipopt
 VERSION=	3.13.4
@@ -19,10 +20,12 @@ COMMENT=	Interior Point OPTimizer, pronounced I-P-Opt
 LICENSE=	eclipse
 
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=--disable-java
 
 # --------------------------------------------------------------------
 
 include ../../pkgtools/pkg-config/depend.mk
+include ../../math/lapack/depend.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
 include ../../mk/language/c.mk
