@@ -15,7 +15,7 @@ PREFER.openssl?=	system
 DEPEND_USE+=		openssl
 DEPEND_ABI.openssl?=	openssl>=0.9.6
 
-SYSTEM_PKG.Fedora.openssl=	openssl-devel
+SYSTEM_PKG.Fedora.openssl=	openssl openssl-devel
 SYSTEM_PKG.Ubuntu.openssl=	libssl-dev
 SYSTEM_PKG.Debian.openssl=	libssl-dev
 SYSTEM_PKG.NetBSD.openssl=	pkgsrc/security/openssl
