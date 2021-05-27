@@ -22,7 +22,9 @@ LICENSE=	eclipse
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-java
 
-# --------------------------------------------------------------------
+# compiler flags for lapack
+LIBRARY_DIRS.lapack= $(dir ${LAPACK_LIB})
+RPATH_DIRS.lapack= $(dir ${LAPACK_LIB})
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../math/lapack/depend.mk
