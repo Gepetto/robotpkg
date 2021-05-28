@@ -2,7 +2,7 @@
 # Created:			Arnaud Degroote on Wed, 22 May 2013
 #
 
-PKGVERSION=	1.9.0
+PKGVERSION=	1.9.6
 DISTNAME=	v${PKGVERSION_NOREV}
 PKGNAME=	octomap-${PKGVERSION}
 DIST_SUBDIR=	${PKGBASE}
@@ -18,7 +18,8 @@ LICENSE=	modified-bsd
 
 WRKSRC=     ${WRKDIR}/octomap-${PKGVERSION_NOREV}/octomap
 
-DEPEND_ABI.cmake=	cmake>=2.8.8
+CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
+DEPEND_ABI.cmake=	cmake>=3.0.2
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
