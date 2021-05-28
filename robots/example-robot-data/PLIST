@@ -24,6 +24,17 @@ share/example-robot-data/robots/anymal_b_simple_description/srdf/anymal.srdf
 share/example-robot-data/robots/baxter_description/LICENSE
 share/example-robot-data/robots/baxter_description/meshes/base/PEDESTAL.DAE
 share/example-robot-data/robots/baxter_description/meshes/base/pedestal_link_collision.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/electric_gripper_base.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/electric_gripper_w_fingers.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/fingers/basic_hard_tip.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/fingers/basic_soft_tip.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/fingers/extended_narrow.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/fingers/extended_wide.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/fingers/half_round_tip.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/fingers/limiter.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/fingers/paddle_tip.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/fingers/standard_narrow.DAE
+share/example-robot-data/robots/baxter_description/meshes/electric_gripper/fingers/standard_wide.DAE
 share/example-robot-data/robots/baxter_description/meshes/head/H0.DAE
 share/example-robot-data/robots/baxter_description/meshes/head/H1.DAE
 share/example-robot-data/robots/baxter_description/meshes/lower_elbow/E1.DAE
