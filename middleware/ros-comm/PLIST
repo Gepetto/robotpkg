@@ -1,4 +1,4 @@
-@comment Wed Mar 20 17:51:53 CET 2019
+@comment Fri May 28 18:22:30 CEST 2021
 bin/rosbag
 bin/rosconsole
 bin/roscore
@@ -47,6 +47,7 @@ include/ros/exceptions.h
 include/ros/file_log.h
 include/ros/forwards.h
 include/ros/init.h
+include/ros/internal/condition_variable.h
 include/ros/internal_timer_manager.h
 include/ros/intraprocess_publisher_link.h
 include/ros/intraprocess_subscriber_link.h
@@ -961,6 +962,7 @@ share/rosservice/package.xml
 share/rostest/cmake/rostest-extras.cmake
 share/rostest/cmake/rostestConfig-version.cmake
 share/rostest/cmake/rostestConfig.cmake
+share/rostest/nodes/advertisetest
 share/rostest/nodes/hztest
 share/rostest/nodes/paramtest
 share/rostest/nodes/publishtest
