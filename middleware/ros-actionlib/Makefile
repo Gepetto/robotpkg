@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Tue, 9 Oct 2012
 #
 
+PKGREVISION=	1
 ROS_PKG=	actionlib
 ROS_VERSION=	1.12.0
 
