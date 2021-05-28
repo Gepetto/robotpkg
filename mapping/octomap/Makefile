@@ -23,5 +23,5 @@ DEPEND_ABI.cmake=	cmake>=3.0.2
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
