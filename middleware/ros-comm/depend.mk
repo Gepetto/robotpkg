@@ -40,8 +40,11 @@ CMAKE_PREFIX_PATH.ros-comm=	${PREFIX.ros-comm}
 
 SYSTEM_PKG.Ubuntu.ros-comm=	ros-${PKG_ALTERNATIVE.ros}-ros-comm
 
-# patch-ap for boost::placeholders requires this
-DEPEND_ABI.boost-headers+=	boost-headers>=1.60
+include ../../devel/boost-headers/depend.mk
+
+# patch-aa for boost::placeholders requires this for robotpkg version
+DEPEND_ABI.boost-headers+=\
+  $(if $(filter robotpkg,${PREFER.ros-comm}),boost-headers>=1.60)
 
 endif # ROS_COMM_DEPEND_MK -------------------------------------------------
 
