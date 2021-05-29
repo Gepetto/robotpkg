@@ -36,8 +36,11 @@ SYSTEM_SEARCH.ros-actionlib=\
 	'share/actionlib/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/actionlib.pc:/Version/s/[^0-9.]//gp'
 
-# patch-aa for boost::placeholders requires this
-DEPEND_ABI.boost-headers+=	boost-headers>=1.60
+include ../../devel/boost-headers/depend.mk
+
+# patch-aa for boost::placeholders requires this for robotpkg version
+DEPEND_ABI.boost-headers+=\
+  $(if $(filter robotpkg,${PREFER.ros-actionlib}),boost-headers>=1.60)
 
 endif # ROS_ACTIONLIB_DEPEND_MK --------------------------------------------
 
