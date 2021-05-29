@@ -40,6 +40,9 @@ SUBST_FILES.py-interp+=	tools/rostest/nodes/hztest
 SUBST_FILES.py-interp+=	utilities/roswtf/scripts/roswtf
 SUBST_FILES.py-interp+=	test/test_rospy/nodes/talker
 
+# patch-ap for boost::placeholders requires this
+DEPEND_ABI.boost-headers+=	boost-headers>=1.60
+
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/lz4/depend.mk
 include ../../devel/boost-headers/depend.mk
