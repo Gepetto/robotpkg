@@ -18,6 +18,9 @@ SUBST_FILES.py-interp+=	tools/*.py
 
 USE_BOOST_LIBS=	thread
 
+# patch-aa for boost::placeholders requires this
+DEPEND_ABI.boost-headers+=	boost-headers>=1.60
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
