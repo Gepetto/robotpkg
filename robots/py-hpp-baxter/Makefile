@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-baxter
 HPP_COMMENT=		Wrappers for Baxter robot in HPP
+HPP_VERSION=		4.11.1
 
 ROSNAME=		$(subst -,_,${HPP_PACKAGE})
 
@@ -15,6 +16,7 @@ PYTHON_NOTAG_CONFLICT=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common
 
+include ../../robots/example-robot-data/depend.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
