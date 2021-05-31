@@ -1,0 +1,19 @@
+Don't install random files
+
+--- CMakeLists.txt~	2019-04-16 10:54:04.000000000 +0200
++++ CMakeLists.txt	2021-05-31 18:40:20.918149619 +0200
+@@ -144,11 +144,9 @@
+ INSTALL (
+   DIRECTORY include/log4cpp
+   DESTINATION include/orocos
+-  PATTERN "config.h.in" EXCLUDE
+-  PATTERN ".svn" EXCLUDE
+-  PATTERN "*.am" EXCLUDE
+-  PATTERN "*.in" EXCLUDE
+-  PATTERN "*~" EXCLUDE
++  FILES_MATCHING
++  PATTERN "*.h"
++  PATTERN "*.hh"
+   )
+ 
+ INSTALL (
