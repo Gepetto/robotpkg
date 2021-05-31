@@ -1,0 +1,932 @@
+Remove dynamic exception specification for C++17
+
+--- include/log4cpp/Priority.hh~	2019-04-16 10:54:04.000000000 +0200
++++ include/log4cpp/Priority.hh	2021-05-31 16:16:56.386404726 +0200
+@@ -92,7 +92,7 @@
+          * @param priority the numeric value of the priority.
+          * @returns a string representing the name of the priority.
+          **/
+-        static const std::string& getPriorityName(int priority) throw();
++        static const std::string& getPriorityName(int priority) noexcept;
+ 	
+ 	/**
+ 	 * Returns the value of the given priority name. 
+@@ -104,7 +104,7 @@
+ 	 * correspond with a known Priority name or a number
+ 	 **/
+         static Value getPriorityValue(const std::string& priorityName)
+-	throw(std::invalid_argument);
++	;
+     };
+ }
+ 
+--- include/log4cpp/Category.hh~	2019-04-16 10:54:04.000000000 +0200
++++ include/log4cpp/Category.hh	2021-05-31 16:19:51.435611868 +0200
+@@ -57,7 +57,7 @@
+          * Get the priority of the <code>root</code> Category.
+          * @returns the priority of the root category
+          **/
+-        static Priority::Value getRootPriority() throw();
++        static Priority::Value getRootPriority() noexcept;
+ 
+         /**
+          * Instantiate a Category with name <code>name</code>. This
+@@ -103,7 +103,7 @@
+          * Return the category name.
+          * @returns The category name.
+         */       
+-        virtual const std::string& getName() const throw(); 
++        virtual const std::string& getName() const noexcept; 
+         
+         /**
+          * Set the priority of this Category.
+@@ -113,13 +113,13 @@
+          * Priority::NOTSET on the Root Category.
+          **/
+         virtual void setPriority(Priority::Value priority) 
+-        throw(std::invalid_argument);
++        ;
+ 
+         /**
+          * Returns the assigned Priority, if any, for this Category.
+          * @return Priority - the assigned Priority, can be Priority::NOTSET
+          **/
+-        virtual Priority::Value getPriority() const throw();
++        virtual Priority::Value getPriority() const noexcept;
+ 
+         /**
+          * Starting from this Category, search the category hierarchy for a
+@@ -129,7 +129,7 @@
+          * <p>The Category class is designed so that this method executes as
+          * quickly as possible.
+          **/
+-        virtual Priority::Value getChainedPriority() const throw();
++        virtual Priority::Value getChainedPriority() const noexcept;
+ 
+         /** 
+          * Returns true if the chained priority of the Category is equal to
+@@ -137,7 +137,7 @@
+          * @param priority The priority to compare with.
+          * @returns whether logging is enable for this priority.
+          **/
+-        virtual bool isPriorityEnabled(Priority::Value priority) const throw();
++        virtual bool isPriorityEnabled(Priority::Value priority) const noexcept;
+         
+         /**
+          * Adds an Appender to this Category.
+@@ -147,7 +147,7 @@
+          * @exception std::invalid_argument if the appender is NULL.
+          **/
+         virtual void addAppender(Appender* appender) 
+-        throw(std::invalid_argument);
++        ;
+ 
+         /**
+          * Adds an Appender for this Category.
+@@ -223,7 +223,7 @@
+          * the Appender.
+          * @deprecated use ownsAppender(Appender*)
+          **/
+-        virtual bool ownsAppender() const throw() {
++        virtual bool ownsAppender() const noexcept {
+             return ownsAppender(getAppender());
+         };
+ 
+@@ -232,7 +232,7 @@
+          * Category destructor will delete the Appender.
+          * @since 0.2.7
+          **/
+-        virtual bool ownsAppender(Appender* appender) const throw();
++        virtual bool ownsAppender(Appender* appender) const noexcept;
+ 
+         /**
+          * Call the appenders in the hierarchy starting at
+@@ -245,7 +245,7 @@
+          * 
+          * @param event the LogginEvent to log.
+          **/
+-        virtual void callAppenders(const LoggingEvent& event) throw();
++        virtual void callAppenders(const LoggingEvent& event) noexcept;
+         
+         /**
+          * Set the additivity flag for this Category instance.
+@@ -255,21 +255,21 @@
+         /**
+          * Returns the additivity flag for this Category instance.
+          **/        
+-        virtual bool getAdditivity() const throw();
++        virtual bool getAdditivity() const noexcept;
+ 
+         /**
+          * Returns the parent category of this category, or NULL
+          * if the category is the root category.
+          * @return the parent category.
+          **/
+-        virtual Category* getParent() throw();
++        virtual Category* getParent() noexcept;
+ 
+         /**
+          * Returns the parent category of this category, or NULL
+          * if the category is the root category.
+          * @return the parent category.
+          **/
+-        virtual const Category* getParent() const throw();
++        virtual const Category* getParent() const noexcept;
+ 
+         /** 
+          * Log a message with the specified priority.
+@@ -279,7 +279,7 @@
+          * @param ... The arguments for stringFormat 
+          **/  
+         virtual void log(Priority::Value priority, const char* stringFormat,
+-                         ...) throw();
++                         ...) noexcept;
+ 
+         /** 
+          * Log a message with the specified priority.
+@@ -287,7 +287,7 @@
+          * @param message string to write in the log file
+          **/  
+         virtual void log(Priority::Value priority, 
+-                         const std::string& message) throw();
++                         const std::string& message) noexcept;
+         
+         /** 
+          * Log a message with the specified priority.
+@@ -299,7 +299,7 @@
+          **/  
+         virtual void logva(Priority::Value priority, 
+                            const char* stringFormat,
+-                           va_list va) throw();
++                           va_list va) noexcept;
+         
+         /** 
+          * Log a message with debug priority.
+@@ -313,13 +313,13 @@
+          * Log a message with debug priority.
+          * @param message string to write in the log file
+          **/  
+-        void debug(const std::string& message) throw();
++        void debug(const std::string& message) noexcept;
+ 
+         /**
+          * Return true if the Category will log messages with priority DEBUG.
+          * @returns Whether the Category will log.
+          **/ 
+-        inline bool isDebugEnabled() const throw() { 
++        inline bool isDebugEnabled() const noexcept { 
+             return isPriorityEnabled(Priority::DEBUG);
+         };
+         
+@@ -337,19 +337,19 @@
+          * in the log file.
+          * @param ... The arguments for stringFormat 
+          **/  
+-        void info(const char* stringFormat, ...) throw();
++        void info(const char* stringFormat, ...) noexcept;
+ 
+         /** 
+          * Log a message with info priority.
+          * @param message string to write in the log file
+          **/  
+-        void info(const std::string& message) throw();
++        void info(const std::string& message) noexcept;
+ 
+         /**
+          * Return true if the Category will log messages with priority INFO.
+          * @returns Whether the Category will log.
+          **/ 
+-        inline bool isInfoEnabled() const throw() { 
++        inline bool isInfoEnabled() const noexcept { 
+             return isPriorityEnabled(Priority::INFO);
+         };
+ 
+@@ -367,19 +367,19 @@
+          * in the log file.
+          * @param ... The arguments for stringFormat 
+          **/  
+-        void notice(const char* stringFormat, ...) throw();
++        void notice(const char* stringFormat, ...) noexcept;
+ 
+         /** 
+          * Log a message with notice priority.
+          * @param message string to write in the log file
+          **/  
+-        void notice(const std::string& message) throw();
++        void notice(const std::string& message) noexcept;
+ 
+         /**
+          * Return true if the Category will log messages with priority NOTICE.
+          * @returns Whether the Category will log.
+          **/ 
+-        inline bool isNoticeEnabled() const throw() { 
++        inline bool isNoticeEnabled() const noexcept { 
+             return isPriorityEnabled(Priority::NOTICE);
+         };
+ 
+@@ -397,19 +397,19 @@
+          * in the log file.
+          * @param ... The arguments for stringFormat 
+          **/  
+-        void warn(const char* stringFormat, ...) throw();
++        void warn(const char* stringFormat, ...) noexcept;
+ 
+         /** 
+          * Log a message with warn priority.
+          * @param message string to write in the log file
+          **/  
+-        void warn(const std::string& message) throw();
++        void warn(const std::string& message) noexcept;
+ 
+         /**
+          * Return true if the Category will log messages with priority WARN.
+          * @returns Whether the Category will log.
+          **/ 
+-        inline bool isWarnEnabled() const throw() { 
++        inline bool isWarnEnabled() const noexcept { 
+             return isPriorityEnabled(Priority::WARN);
+         };
+ 
+@@ -427,19 +427,19 @@
+          * in the log file.
+          * @param ... The arguments for stringFormat 
+          **/  
+-        void error(const char* stringFormat, ...) throw();
++        void error(const char* stringFormat, ...) noexcept;
+ 
+         /** 
+          * Log a message with error priority.
+          * @param message string to write in the log file
+          **/  
+-        void error(const std::string& message) throw();
++        void error(const std::string& message) noexcept;
+ 
+         /**
+          * Return true if the Category will log messages with priority ERROR.
+          * @returns Whether the Category will log.
+          **/ 
+-        inline bool isErrorEnabled() const throw() { 
++        inline bool isErrorEnabled() const noexcept { 
+             return isPriorityEnabled(Priority::ERROR);
+         };
+         
+@@ -457,19 +457,19 @@
+          * in the log file.
+          * @param ... The arguments for stringFormat 
+          **/  
+-        void crit(const char* stringFormat, ...) throw();
++        void crit(const char* stringFormat, ...) noexcept;
+ 
+         /** 
+          * Log a message with crit priority.
+          * @param message string to write in the log file
+          **/  
+-        void crit(const std::string& message) throw();
++        void crit(const std::string& message) noexcept;
+ 
+         /**
+          * Return true if the Category will log messages with priority CRIT.
+          * @returns Whether the Category will log.
+          **/ 
+-        inline bool isCritEnabled() const throw() { 
++        inline bool isCritEnabled() const noexcept { 
+             return isPriorityEnabled(Priority::CRIT);
+         };
+         
+@@ -487,19 +487,19 @@
+          * in the log file.
+          * @param ... The arguments for stringFormat 
+          **/  
+-        void alert(const char* stringFormat, ...) throw();
++        void alert(const char* stringFormat, ...) noexcept;
+ 
+         /** 
+          * Log a message with alert priority.
+          * @param message string to write in the log file
+          **/  
+-        void alert(const std::string& message) throw();
++        void alert(const std::string& message) noexcept;
+ 
+         /**
+          * Return true if the Category will log messages with priority ALERT.
+          * @returns Whether the Category will log.
+          **/ 
+-        inline bool isAlertEnabled() const throw() { 
++        inline bool isAlertEnabled() const noexcept { 
+             return isPriorityEnabled(Priority::ALERT);
+         };
+         
+@@ -507,7 +507,7 @@
+          * Return a CategoryStream with priority ALERT.
+          * @returns The CategoryStream.
+          **/
+-        inline CategoryStream alertStream() throw() {
++        inline CategoryStream alertStream() noexcept {
+             return getStream(Priority::ALERT);
+         };
+ 
+@@ -517,19 +517,19 @@
+          * in the log file.
+          * @param ... The arguments for stringFormat 
+          **/  
+-        void emerg(const char* stringFormat, ...) throw();
++        void emerg(const char* stringFormat, ...) noexcept;
+ 
+         /** 
+          * Log a message with emerg priority.
+          * @param message string to write in the log file
+          **/  
+-        void emerg(const std::string& message) throw();
++        void emerg(const std::string& message) noexcept;
+ 
+         /**
+          * Return true if the Category will log messages with priority EMERG.
+          * @returns Whether the Category will log.
+          **/ 
+-        inline bool isEmergEnabled() const throw() { 
++        inline bool isEmergEnabled() const noexcept { 
+             return isPriorityEnabled(Priority::EMERG);
+         };
+         
+@@ -549,7 +549,7 @@
+          * in the log file.
+          * @param ... The arguments for stringFormat 
+          **/  
+-        void fatal(const char* stringFormat, ...) throw();
++        void fatal(const char* stringFormat, ...) noexcept;
+ 
+         /** 
+          * Log a message with fatal priority.
+@@ -557,7 +557,7 @@
+          * @since 0.2.7
+          * @param message string to write in the log file
+          **/  
+-        void fatal(const std::string& message) throw();
++        void fatal(const std::string& message) noexcept;
+ 
+         /**
+          * Return true if the Category will log messages with priority FATAL.
+@@ -565,7 +565,7 @@
+          * @since 0.2.7
+          * @returns Whether the Category will log.
+          **/ 
+-        inline bool isFatalEnabled() const throw() { 
++        inline bool isFatalEnabled() const noexcept { 
+             return isPriorityEnabled(Priority::FATAL);
+         };
+         
+@@ -608,7 +608,7 @@
+         
+         virtual void _logUnconditionally(Priority::Value priority, 
+                                          const char* format, 
+-                                         va_list arguments) throw();
++                                         va_list arguments) noexcept;
+         
+         /** 
+          * Unconditionally log a message with the specified priority.
+@@ -616,7 +616,7 @@
+          * @param message string to write in the log file
+          **/  
+         virtual void _logUnconditionally2(Priority::Value priority, 
+-                                          const std::string& message) throw();
++                                          const std::string& message) noexcept;
+ 
+         private:
+ 
+@@ -647,7 +647,7 @@
+          **/
+ 
+         virtual bool ownsAppender(Appender* appender, 
+-                                  OwnsAppenderMap::iterator& i2) throw();
++                                  OwnsAppenderMap::iterator& i2) noexcept;
+ 
+         AppenderSet _appender;
+         mutable threading::Mutex _appenderSetMutex;
+--- include/log4cpp/CategoryStream.hh~	2019-04-16 10:54:04.000000000 +0200
++++ include/log4cpp/CategoryStream.hh	2021-05-31 16:20:57.100064699 +0200
+@@ -62,7 +62,7 @@
+          * Returns the priority for this stream.
+          * @returns The priority.
+          **/
+-        inline Priority::Value getPriority() const throw() { 
++        inline Priority::Value getPriority() const noexcept { 
+             return _priority; 
+         };
+ 
+--- include/log4cpp/PatternLayout.hh~	2019-04-16 10:54:04.000000000 +0200
++++ include/log4cpp/PatternLayout.hh	2021-05-31 16:21:21.064229962 +0200
+@@ -85,7 +85,7 @@
+          * @exception ConfigureFailure if the pattern is invalid
+          **/
+         virtual void setConversionPattern(const std::string& conversionPattern)
+-            throw(ConfigureFailure);
++          ;
+ 
+         virtual std::string getConversionPattern() const;
+ 
+--- include/log4cpp/FixedContextCategory.hh~	2019-04-16 10:54:04.000000000 +0200
++++ include/log4cpp/FixedContextCategory.hh	2021-05-31 16:21:44.728393150 +0200
+@@ -62,7 +62,7 @@
+          * Returns the assigned Priority, if any, for this Category.
+          * @return Priority - the assigned Priority, can be Priority::NOTSET
+          **/
+-        virtual Priority::Value getPriority() const throw();
++        virtual Priority::Value getPriority() const noexcept;
+ 
+         /**
+          * Starting from this Category, search the category hierarchy for a
+@@ -72,12 +72,12 @@
+          * <p>The Category class is designed so that this method executes as
+          * quickly as possible.
+          **/
+-        virtual Priority::Value getChainedPriority() const throw();
++        virtual Priority::Value getChainedPriority() const noexcept;
+         
+         /**
+          * For the moment this method does nothing.
+          **/
+-        virtual void addAppender(Appender* appender) throw();
++        virtual void addAppender(Appender* appender) noexcept;
+ 
+         /**
+          * For the moment this method does nothing.
+@@ -116,14 +116,14 @@
+          * FixedContextAppenders cannot own Appenders.
+          * @returns false
+          **/
+-        virtual bool ownsAppender() const throw();
++        virtual bool ownsAppender() const noexcept;
+ 
+         /**
+          * FixedContextAppenders cannot own Appenders.
+          * @returns false
+          **/
+         virtual bool ownsAppender(Appender* appender)
+-            const throw();
++            const noexcept;
+ 
+         /**
+          * Call the appenders in the hierarchy starting at
+@@ -136,7 +136,7 @@
+          * 
+          * @param event The LoggingEvent to log.
+          **/
+-        virtual void callAppenders(const LoggingEvent& event) throw();
++        virtual void callAppenders(const LoggingEvent& event) noexcept;
+         
+         /**
+          * Set the additivity flag for this Category instance.
+@@ -146,7 +146,7 @@
+         /**
+          * Returns the additivity flag for this Category instance.
+          **/        
+-        virtual bool getAdditivity() const throw();
++        virtual bool getAdditivity() const noexcept;
+ 
+        protected:
+ 
+@@ -156,7 +156,7 @@
+          * @param message string to write in the log file
+          **/  
+         virtual void _logUnconditionally2(Priority::Value priority, 
+-                                          const std::string& message) throw();
++                                          const std::string& message) noexcept;
+ 
+         private:
+ 
+--- include/log4cpp/SimpleConfigurator.hh~	2019-04-16 10:54:04.000000000 +0200
++++ include/log4cpp/SimpleConfigurator.hh	2021-05-31 16:22:38.724765525 +0200
+@@ -34,7 +34,7 @@
+          * @exception ConfigureFailure if the method encountered a read or 
+          * syntax error.
+          **/
+-        static void configure(const std::string& initFileName) throw (ConfigureFailure);
++        static void configure(const std::string& initFileName) ;
+ 
+         /**
+          * Configure log4cpp with the configuration in the given file.
+@@ -45,7 +45,7 @@
+          * @exception ConfigureFailure if the method encountered a read or 
+          * syntax error.
+          **/
+-        static void configure(std::istream& initFile) throw (ConfigureFailure);    };
++        static void configure(std::istream& initFile);     };
+ }
+ 
+ #endif
+--- src/Category.cpp~	2019-04-16 10:54:04.000000000 +0200
++++ src/Category.cpp	2021-05-31 16:24:48.405659835 +0200
+@@ -28,7 +28,7 @@
+         getRoot().setPriority(priority);
+     }
+ 
+-    Priority::Value Category::getRootPriority() throw() {
++    Priority::Value Category::getRootPriority() noexcept {
+         return getRoot().getPriority();
+     }
+ 
+@@ -60,16 +60,16 @@
+         removeAllAppenders();
+     }
+ 
+-    const std::string& Category::getName() const throw() {
++    const std::string& Category::getName() const noexcept {
+         return _name; 
+     }
+     
+-    Priority::Value Category::getPriority() const throw() { 
++    Priority::Value Category::getPriority() const noexcept { 
+         return _priority; 
+     }
+ 
+     void Category::setPriority(Priority::Value priority)
+-    throw(std::invalid_argument) {
++    {
+         if ((priority < Priority::NOTSET) || (getParent() != NULL)) {
+             _priority = priority;
+         } else {
+@@ -80,7 +80,7 @@
+         }
+     }
+     
+-    Priority::Value Category::getChainedPriority() const throw() {
++    Priority::Value Category::getChainedPriority() const noexcept {
+         // REQUIRE(rootCategory->getPriority() != Priority::NOTSET)
+         
+         const Category* c = this;
+@@ -92,7 +92,7 @@
+     }
+     
+     void Category::addAppender(Appender* appender) 
+-    throw(std::invalid_argument) {
++    {
+         if (appender) {
+             threading::ScopedLock lock(_appenderSetMutex);
+             {
+@@ -182,7 +182,7 @@
+         }
+     }
+ 
+-    bool Category::ownsAppender(Appender* appender) const throw() {
++    bool Category::ownsAppender(Appender* appender) const noexcept {
+         bool owned = false;
+ 
+         threading::ScopedLock lock(_appenderSetMutex);
+@@ -201,7 +201,7 @@
+ 
+     /* assume lock is held */
+     bool Category::ownsAppender(Appender* appender, 
+-                                Category::OwnsAppenderMap::iterator& i2) throw() {
++                                Category::OwnsAppenderMap::iterator& i2) noexcept {
+         bool owned = false;
+ 
+         if (NULL != appender) {
+@@ -217,7 +217,7 @@
+         return owned;
+     }
+ 
+-    void Category::callAppenders(const LoggingEvent& event) throw() {
++    void Category::callAppenders(const LoggingEvent& event) noexcept {
+         threading::ScopedLock lock(_appenderSetMutex);
+         {
+             if (!_appender.empty()) {
+@@ -236,36 +236,36 @@
+         _isAdditive = additivity;
+     }
+ 
+-    bool Category::getAdditivity() const throw() {
++    bool Category::getAdditivity() const noexcept {
+         return _isAdditive; 
+     }
+ 
+-    Category* Category::getParent() throw() {
++    Category* Category::getParent() noexcept {
+         return _parent; 
+     }
+ 
+-    const Category* Category::getParent() const throw() {
++    const Category* Category::getParent() const noexcept {
+         return _parent; 
+     }
+ 
+     void Category::_logUnconditionally(Priority::Value priority, 
+                                        const char* format, 
+-                                       va_list arguments) throw() {
++                                       va_list arguments) noexcept {
+         _logUnconditionally2(priority, StringUtil::vform(format, arguments));
+     }
+     
+     void Category::_logUnconditionally2(Priority::Value priority, 
+-                                        const std::string& message) throw() {
++                                        const std::string& message) noexcept {
+         LoggingEvent event(getName(), message, NDC::get(), priority);
+         callAppenders(event);
+     }
+     
+-    bool Category::isPriorityEnabled(Priority::Value priority) const throw() {
++    bool Category::isPriorityEnabled(Priority::Value priority) const noexcept {
+         return(getChainedPriority() >= priority);
+     }
+ 
+     void Category::log(Priority::Value priority, 
+-                       const char* stringFormat, ...) throw() { 
++                       const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(priority)) {
+             va_list va;
+             va_start(va, stringFormat);
+@@ -275,20 +275,20 @@
+     }
+ 
+     void Category::log(Priority::Value priority, 
+-                       const std::string& message) throw() { 
++                       const std::string& message) noexcept { 
+         if (isPriorityEnabled(priority))
+             _logUnconditionally2(priority, message);
+     }
+     
+     void Category::logva(Priority::Value priority, 
+                          const char* stringFormat,
+-                         va_list va) throw() { 
++                         va_list va) noexcept { 
+         if (isPriorityEnabled(priority)) {
+             _logUnconditionally(priority, stringFormat, va);
+         }
+     }
+ 
+-    void Category::debug(const char* stringFormat, ...) throw() { 
++    void Category::debug(const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(Priority::DEBUG)) {
+             va_list va;
+             va_start(va,stringFormat);
+@@ -297,12 +297,12 @@
+         }
+     }
+     
+-    void Category::debug(const std::string& message) throw() { 
++    void Category::debug(const std::string& message) noexcept { 
+         if (isPriorityEnabled(Priority::DEBUG))
+             _logUnconditionally2(Priority::DEBUG, message);
+     }
+     
+-    void Category::info(const char* stringFormat, ...) throw() { 
++    void Category::info(const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(Priority::INFO)) {
+             va_list va;
+             va_start(va,stringFormat);
+@@ -311,12 +311,12 @@
+         }
+     }
+     
+-    void Category::info(const std::string& message) throw() { 
++    void Category::info(const std::string& message) noexcept { 
+         if (isPriorityEnabled(Priority::INFO))
+             _logUnconditionally2(Priority::INFO, message);
+     }
+     
+-    void Category::notice(const char* stringFormat, ...) throw() { 
++    void Category::notice(const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(Priority::NOTICE)) {
+             va_list va;
+             va_start(va,stringFormat);
+@@ -325,12 +325,12 @@
+         }
+     }
+     
+-    void Category::notice(const std::string& message) throw() { 
++    void Category::notice(const std::string& message) noexcept { 
+         if (isPriorityEnabled(Priority::NOTICE))
+             _logUnconditionally2(Priority::NOTICE, message);
+     }
+     
+-    void Category::warn(const char* stringFormat, ...) throw() { 
++    void Category::warn(const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(Priority::WARN)) {
+             va_list va;
+             va_start(va,stringFormat);
+@@ -339,12 +339,12 @@
+         }
+     }
+     
+-    void Category::warn(const std::string& message) throw() { 
++    void Category::warn(const std::string& message) noexcept { 
+         if (isPriorityEnabled(Priority::WARN))
+             _logUnconditionally2(Priority::WARN, message);
+     }
+     
+-    void Category::error(const char* stringFormat, ...) throw() { 
++    void Category::error(const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(Priority::ERROR)) {
+             va_list va;
+             va_start(va,stringFormat);
+@@ -353,12 +353,12 @@
+         }
+     }
+     
+-    void Category::error(const std::string& message) throw() { 
++    void Category::error(const std::string& message) noexcept { 
+         if (isPriorityEnabled(Priority::ERROR))
+             _logUnconditionally2(Priority::ERROR, message);
+     }
+ 
+-    void Category::crit(const char* stringFormat, ...) throw() { 
++    void Category::crit(const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(Priority::CRIT)) {
+             va_list va;
+             va_start(va,stringFormat);
+@@ -367,12 +367,12 @@
+         }
+     }
+     
+-    void Category::crit(const std::string& message) throw() { 
++    void Category::crit(const std::string& message) noexcept { 
+         if (isPriorityEnabled(Priority::CRIT))
+             _logUnconditionally2(Priority::CRIT, message);
+     }
+ 
+-    void Category::alert(const char* stringFormat, ...) throw() { 
++    void Category::alert(const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(Priority::ALERT)) {
+             va_list va;
+             va_start(va,stringFormat);
+@@ -381,12 +381,12 @@
+         }
+     }
+     
+-    void Category::alert(const std::string& message) throw() { 
++    void Category::alert(const std::string& message) noexcept { 
+         if (isPriorityEnabled(Priority::ALERT))
+             _logUnconditionally2(Priority::ALERT, message);
+     }
+ 
+-    void Category::emerg(const char* stringFormat, ...) throw() { 
++    void Category::emerg(const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(Priority::EMERG)) {
+             va_list va;
+             va_start(va,stringFormat);
+@@ -395,12 +395,12 @@
+         }
+     }
+     
+-    void Category::emerg(const std::string& message) throw() { 
++    void Category::emerg(const std::string& message) noexcept { 
+         if (isPriorityEnabled(Priority::EMERG))
+             _logUnconditionally2(Priority::EMERG, message);
+     }
+ 
+-    void Category::fatal(const char* stringFormat, ...) throw() { 
++    void Category::fatal(const char* stringFormat, ...) noexcept { 
+         if (isPriorityEnabled(Priority::FATAL)) {
+             va_list va;
+             va_start(va,stringFormat);
+@@ -409,7 +409,7 @@
+         }
+     }
+     
+-    void Category::fatal(const std::string& message) throw() { 
++    void Category::fatal(const std::string& message) noexcept { 
+         if (isPriorityEnabled(Priority::FATAL))
+             _logUnconditionally2(Priority::FATAL, message);
+     }
+--- src/PatternLayout.cpp~	2019-04-16 10:54:04.000000000 +0200
++++ src/PatternLayout.cpp	2021-05-31 16:26:08.734213778 +0200
+@@ -296,7 +296,7 @@
+         _conversionPattern = "";
+     }
+ 
+-    void PatternLayout::setConversionPattern(const std::string& conversionPattern) throw(ConfigureFailure) {
++    void PatternLayout::setConversionPattern(const std::string& conversionPattern) {
+ #ifdef LOG4CPP_HAVE_SSTREAM 
+         std::istringstream conversionStream(conversionPattern);
+ #else
+--- include/log4cpp/PropertyConfigurator.hh~	2019-04-16 10:54:04.000000000 +0200
++++ include/log4cpp/PropertyConfigurator.hh	2021-05-31 16:27:09.570633316 +0200
+@@ -45,7 +45,7 @@
+     **/
+     class LOG4CPP_EXPORT PropertyConfigurator {
+         public:
+-        static void configure(const std::string& initFileName) throw (ConfigureFailure);
++        static void configure(const std::string& initFileName);
+     };
+ }
+ 
+--- src/SimpleConfigurator.cpp~	2019-04-16 10:54:04.000000000 +0200
++++ src/SimpleConfigurator.cpp	2021-05-31 16:29:11.775476065 +0200
+@@ -45,7 +45,7 @@
+ 
+ namespace log4cpp {
+ 
+-    void SimpleConfigurator::configure(const std::string& initFileName) throw (ConfigureFailure) {
++    void SimpleConfigurator::configure(const std::string& initFileName) {
+         std::ifstream initFile(initFileName.c_str());
+         
+         if (!initFile) {
+@@ -55,7 +55,7 @@
+         configure(initFile);
+     }
+           
+-    void SimpleConfigurator::configure(std::istream& initFile) throw (ConfigureFailure) {
++    void SimpleConfigurator::configure(std::istream& initFile) {
+         std::string nextCommand;
+         std::string categoryName;
+         
+--- src/PropertyConfiguratorImpl.hh~	2019-04-16 10:54:04.000000000 +0200
++++ src/PropertyConfiguratorImpl.hh	2021-05-31 16:29:49.843738598 +0200
+@@ -29,9 +29,9 @@
+         PropertyConfiguratorImpl();
+         virtual ~PropertyConfiguratorImpl();
+         virtual void doConfigure(const std::string& initFileName)
+-            throw (ConfigureFailure);
++            ;
+         virtual void doConfigure(std::istream& in)
+-            throw (ConfigureFailure);
++            ;
+ 
+         protected:
+         /**
+@@ -42,7 +42,7 @@
+            The name 'rootCategory' refers to the root Category.
+            throw ConfigureFailure
+          **/
+-        void configureCategory(const std::string& categoryname) throw (ConfigureFailure);
++        void configureCategory(const std::string& categoryname) ;
+ 
+         /**
+          * Get a list of categories for which we should do the configuration.  This simply
+@@ -51,7 +51,7 @@
+          */
+         void getCategories(std::vector<std::string>& categories) const;
+ 
+-        void instantiateAllAppenders() throw(ConfigureFailure);
++        void instantiateAllAppenders() ;
+ 
+         /**
+          * Intantiate and configure the appender referred to by the given name. This method searches the
+--- src/PropertyConfigurator.cpp~	2019-04-16 10:54:04.000000000 +0200
++++ src/PropertyConfigurator.cpp	2021-05-31 16:30:14.311907339 +0200
+@@ -11,7 +11,7 @@
+ 
+ namespace log4cpp {
+ 
+-    void PropertyConfigurator::configure(const std::string& initFileName) throw (ConfigureFailure) {
++    void PropertyConfigurator::configure(const std::string& initFileName)  {
+         PropertyConfiguratorImpl configurator;
+         
+         configurator.doConfigure(initFileName);
+--- src/Priority.cpp~	2019-04-16 10:54:04.000000000 +0200
++++ src/Priority.cpp	2021-05-31 16:30:35.624054319 +0200
+@@ -34,7 +34,7 @@
+     const int log4cpp::Priority::MESSAGE_SIZE = 8;
+     
+ 
+-    const std::string& Priority::getPriorityName(int priority) throw() {
++    const std::string& Priority::getPriorityName(int priority) noexcept {
+          
+         priority++;
+         priority /= 100;
+@@ -42,7 +42,7 @@
+     }
+ 
+     Priority::Value Priority::getPriorityValue(const std::string& priorityName) 
+-    throw(std::invalid_argument) {
++    {
+ 	Priority::Value value = -1;
+ 
+ 	for (unsigned int i = 0; i < 10; i++) {
+--- src/PropertyConfiguratorImpl.cpp~	2019-04-16 10:54:04.000000000 +0200
++++ src/PropertyConfiguratorImpl.cpp	2021-05-31 16:31:43.364521481 +0200
+@@ -66,7 +66,7 @@
+     PropertyConfiguratorImpl::~PropertyConfiguratorImpl() {
+     }
+ 
+-    void PropertyConfiguratorImpl::doConfigure(const std::string& initFileName) throw (ConfigureFailure) {
++    void PropertyConfiguratorImpl::doConfigure(const std::string& initFileName) {
+         std::ifstream initFile(initFileName.c_str());
+ 
+         if (!initFile) {
+@@ -77,7 +77,7 @@
+     }
+ 
+ 
+-    void PropertyConfiguratorImpl::doConfigure(std::istream& in) throw (ConfigureFailure) {
++    void PropertyConfiguratorImpl::doConfigure(std::istream& in) {
+         // parse the file to get all of the configuration
+         _properties.load(in);
+ 
+@@ -93,7 +93,7 @@
+         }
+     }
+ 
+-    void PropertyConfiguratorImpl::instantiateAllAppenders() throw(ConfigureFailure) {
++    void PropertyConfiguratorImpl::instantiateAllAppenders() {
+         std::string currentAppender;
+ 
+         std::string prefix("appender");
+@@ -132,7 +132,7 @@
+         }
+     }
+ 
+-    void PropertyConfiguratorImpl::configureCategory(const std::string& categoryName) throw (ConfigureFailure) {
++    void PropertyConfiguratorImpl::configureCategory(const std::string& categoryName)  {
+         // start by reading the "rootCategory" key
+         std::string tempCatName = 
+             (categoryName == "rootCategory") ? categoryName : "category." + categoryName;

@@ -2,6 +2,7 @@
 # Created:			Arnaud Degroote on Wed, 21 Aug 2013
 #
 
+PKGREVISION=		1
 OROCOS_PKG=		log4cpp
 CATEGORIES=		devel
 
