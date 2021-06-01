@@ -1,5 +1,6 @@
 SHA1 (hpp-core-4.11.0.tar.gz) = ffd226d3ca7b63a163d81c745c153e09fef36a6d
 RMD160 (hpp-core-4.11.0.tar.gz) = 9b576536cc71eeedb1f1e09236fb62135c6d0553
 Size (hpp-core-4.11.0.tar.gz) = 2066512 bytes
+SHA1 (patch-246) = ea032f825aefb5c5b7b5ccf87ac09c57e46d480e
 SHA1 (patch-aa) = ff006aecb9e5fe0ec2ff30f5f65c1fd96f49ba9a
 SHA1 (patch-ab) = e1e0a6a316e6262707efe398b9e8aba7ab64f083

@@ -1,0 +1,66 @@
+From deaa5a90637e4182fe21511d76f5ce0f9737e52e Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Wed, 19 May 2021 16:58:23 +0200
+Subject: [PATCH] make ConstantCurvature::Wheels_t public
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Without this, on GCC 11.1.0 & Boost 1.75.0:
+
+/usr/lib/ccache/bin/g++ -DBOOST_ALL_NO_LIB -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_MPL_LIMIT_LIST_SIZE=30 -DBOOST_MPL_LIMIT_VECTOR_SIZE=30 -DBOOST_SERIALIZATION_DYN_LINK -DBOOST_THREAD_DYN_LINK -DHPP_FCL_HAS_OCTOMAP -DHPP_FCL_HAVE_OCTOMAP -DOCTOMAP_MAJOR_VERSION=1 -DOCTOMAP_MINOR_VERSION=9 -DOCTOMAP_PATCH_VERSION=6 -DPINOCCHIO_WITH_HPP_FCL -DPINOCCHIO_WITH_URDFDOM -Dhpp_core_EXPORTS -I. -Iinclude -I../include -I../src -isystem $ROBOTPKG/include -isystem /usr/include/eigen3 -pedantic -Wno-long-long -Wall -Wextra -Wcast-align -Wcast-qual -Wformat -Wwrite-strings -Wconversion -fdiagnostics-color=always -fPIC -MD -MT CMakeFiles/hpp-core.dir/src/steering-method/constant-curvature.cc.o -MF CMakeFiles/hpp-core.dir/src/steering-method/constant-curvature.cc.o.d -o CMakeFiles/hpp-core.dir/src/steering-method/constant-curvature.cc.o -c ../src/steering-method/constant-curvature.cc
+../src/steering-method/constant-curvature.cc: Dans l'instanciation de « void boost::serialization::serialize(Archive&, hpp::core::steeringMethod::ConstantCurvature::Wheels_t&, unsigned int) [with Archive = boost::archive::xml_oarchive] » :
+/usr/include/boost/serialization/serialization.hpp:109:14:   requis par « void boost::serialization::serialize_adl(Archive&, T&, unsigned int) [with Archive = boost::archive::xml_oarchive; T = hpp::core::steeringMethod::ConstantCurvature::Wheels_t] »
+/usr/include/boost/archive/detail/oserializer.hpp:153:40:   requis par « void boost::archive::detail::oserializer<Archive, T>::save_object_data(boost::archive::detail::basic_oarchive&, const void*) const [with Archive = boost::archive::xml_oarchive; T = hpp::core::steeringMethod::ConstantCurvature::Wheels_t] »
+/usr/include/boost/archive/detail/oserializer.hpp:258:27:   requis par « static void boost::archive::detail::save_non_pointer_type<Archive>::save_standard::invoke(Archive&, const T&) [with T = hpp::core::steeringMethod::ConstantCurvature::Wheels_t; Archive = boost::archive::xml_oarchive] »
+/usr/include/boost/archive/detail/oserializer.hpp:315:22:   requis par « static void boost::archive::detail::save_non_pointer_type<Archive>::invoke(Archive&, const T&) [with T = hpp::core::steeringMethod::ConstantCurvature::Wheels_t; Archive = boost::archive::xml_oarchive] »
+/usr/include/boost/archive/detail/oserializer.hpp:539:18:   requis par « void boost::archive::save(Archive&, T&) [with Archive = boost::archive::xml_oarchive; T = const hpp::core::steeringMethod::ConstantCurvature::Wheels_t] »
+/usr/include/boost/archive/detail/common_oarchive.hpp:71:22:   [ passe outre 15 contextes d'instanciation, utilisez -ftemplate-backtrace-limit=0 pour désactiver ]
+/usr/include/boost/archive/detail/common_oarchive.hpp:71:22:   requis par « void boost::archive::detail::common_oarchive<Archive>::save_override(T&) [with T = const std::vector<hpp::core::steeringMethod::ConstantCurvature::Wheels_t>; Archive = boost::archive::xml_oarchive] »
+/usr/include/boost/archive/basic_xml_oarchive.hpp:100:52:   requis par « void boost::archive::basic_xml_oarchive<Archive>::save_override(const boost::serialization::nvp<T>&) [with T = std::vector<hpp::core::steeringMethod::ConstantCurvature::Wheels_t>; Archive = boost::archive::xml_oarchive] »
+/usr/include/boost/archive/detail/interface_oarchive.hpp:70:36:   requis par « Archive& boost::archive::detail::interface_oarchive<Archive>::operator<<(const T&) [with T = boost::serialization::nvp<std::vector<hpp::core::steeringMethod::ConstantCurvature::Wheels_t> >; Archive = boost::archive::xml_oarchive] »
+/usr/include/boost/archive/detail/interface_oarchive.hpp:77:32:   requis par « Archive& boost::archive::detail::interface_oarchive<Archive>::operator&(const T&) [with T = boost::serialization::nvp<std::vector<hpp::core::steeringMethod::ConstantCurvature::Wheels_t> >; Archive = boost::archive::xml_oarchive] »
+../src/steering-method/constant-curvature.cc:471:12:   requis par « void hpp::core::steeringMethod::ConstantCurvature::serialize(Archive&, unsigned int) [with Archive = boost::archive::xml_oarchive] »
+../src/steering-method/constant-curvature.cc:475:7:   requis depuis ici
+../src/steering-method/constant-curvature.cc:483:77: erreur: « struct hpp::core::steeringMethod::ConstantCurvature::Wheels_t » est privé dans ce contexte
+  483 | void serialize (Archive & ar, hpp::core::steeringMethod::ConstantCurvature::Wheels_t& c, const unsigned int version)
+      |                                                                             ^~~~~~~~
+Dans le fichier inclus depuis ../src/steering-method/constant-curvature.cc:19:
+../include/hpp/core/steering-method/constant-curvature.hh:184:16: note: déclaré privé ici
+  184 |         struct Wheels_t {
+      |                ^~~~~~~~
+
+And 5 similar issues.
+---
+ .../hpp/core/steering-method/constant-curvature.hh    | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/include/hpp/core/steering-method/constant-curvature.hh b/include/hpp/core/steering-method/constant-curvature.hh
+index 43f164e2..cc2e1e5c 100644
+--- include/hpp/core/steering-method/constant-curvature.hh
++++ include/hpp/core/steering-method/constant-curvature.hh
+@@ -88,6 +88,12 @@ namespace hpp {
+ 
+         virtual PathPtr_t reverse () const;
+ 
++        struct Wheels_t {
++          value_type value; // Constant value of the wheel angle
++          JointPtr_t j;
++          Wheels_t () : j () {}
++        };
++
+       protected:
+         /// Print path in a stream
+         virtual std::ostream& print (std::ostream &os) const;
+@@ -181,11 +187,6 @@ namespace hpp {
+         const size_type xyId_,rzId_;
+         size_type dxyId_,drzId_;
+         value_type forward_;
+-        struct Wheels_t {
+-          value_type value; // Constant value of the wheel angle
+-          JointPtr_t j;
+-          Wheels_t () : j () {}
+-        };
+         std::vector<Wheels_t> wheels_;
+         ConstantCurvatureWkPtr_t weak_;
+ 
