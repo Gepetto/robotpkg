@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2011,2013 LAAS/CNRS
+# Copyright (c) 2010-2011,2013,2021 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -64,8 +64,9 @@ set-print-var-%: .FORCE
 
 
 # --- recursion ------------------------------------------------------------
-
-override define _pkgset_recursive
+#
+ifneq (2,${_ROBOTPKG_DEPTH})
+  override define _pkgset_recursive
 	${PHASE_MSG} $(if $(filter -n,$2),'Scanning','Sorting')		\
 	  'packages for ${PKGSET_DESCR.$*}';				\
 	${TEST} -t 1 && i="-i";						\
@@ -99,4 +100,13 @@ override define _pkgset_recursive
 	done;								\
 	${PHASE_MSG} 'Done $(patsubst set-%-$*,%,$@) for'		\
 	  '${PKGSET_DESCR.$*}'
-endef
+  endef
+else
+  # Restart from toplevel directory, to avoid inheritance of alternatives
+  # defined by the package in the current directory
+  override define _pkgset_recursive
+	unset ROBOTPKG_TRUSTED_ENV;					\
+	cd ${ROBOTPKG_DIR};						\
+	${MAKE} ${MFLAGS} ${MAKEOVERRIDES} ${MAKECMDGOALS}
+  endef
+endif
