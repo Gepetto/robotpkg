@@ -2,7 +2,7 @@
 # Created:			florent@laas.fr on Tue, 28 Apr 2009
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 VERSION=	3.1
 PACKAGE=	roboptim-core
 DISTNAME=	${PACKAGE}-${VERSION}

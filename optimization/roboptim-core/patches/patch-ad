@@ -1,0 +1,169 @@
+--- include/roboptim/core/decorator/finite-difference-gradient.hh.orig	2015-06-26 17:08:46.000000000 +0200
++++ include/roboptim/core/decorator/finite-difference-gradient.hh	2021-06-02 21:27:15.301080976 +0200
+@@ -47,7 +47,7 @@
+ 		 const_gradient_ref finiteDifferenceGradient,
+ 		 const value_type& threshold);
+ 
+-    virtual ~BadGradient () throw ();
++    virtual ~BadGradient ();
+ 
+     /// \brief Display the exception on the specified output stream.
+     ///
+@@ -97,7 +97,7 @@
+ 		 const_jacobian_ref finiteDifferenceJacobian,
+ 		 const value_type& threshold);
+ 
+-    virtual ~BadJacobian () throw ();
++    virtual ~BadJacobian ();
+ 
+     /// \brief Display the exception on the specified output stream.
+     ///
+@@ -360,8 +360,7 @@
+    typename GenericDifferentiableFunction<T>::size_type functionId,
+    typename GenericDifferentiableFunction<T>::const_argument_ref x,
+    typename GenericDifferentiableFunction<T>::value_type threshold =
+-   finiteDifferenceThreshold)
+-    throw (BadGradient<T>);
++   finiteDifferenceThreshold);
+ 
+   /// \brief Check if a Jacobian is valid.
+   ///
+@@ -385,8 +384,7 @@
+   (const GenericDifferentiableFunction<T>& function,
+    typename GenericDifferentiableFunction<T>::const_argument_ref x,
+    typename GenericDifferentiableFunction<T>::value_type threshold =
+-   finiteDifferenceThreshold)
+-    throw (BadJacobian<T>);
++   finiteDifferenceThreshold);
+ 
+   /// Example shows finite differences gradient use.
+   /// \example finite-difference-gradient.cc
+--- include/roboptim/core/decorator/finite-difference-gradient.hxx.orig	2015-06-26 17:08:46.000000000 +0200
++++ include/roboptim/core/decorator/finite-difference-gradient.hxx	2021-06-02 21:27:44.925180270 +0200
+@@ -87,7 +87,7 @@
+   }
+ 
+   template <typename T>
+-  BadGradient<T>::~BadGradient () throw ()
++  BadGradient<T>::~BadGradient ()
+   {}
+ 
+   template <typename T>
+@@ -199,7 +199,7 @@
+   }
+ 
+   template <typename T>
+-  BadJacobian<T>::~BadJacobian () throw ()
++  BadJacobian<T>::~BadJacobian ()
+   {}
+ 
+   template <typename T>
+@@ -282,7 +282,6 @@
+    typename GenericDifferentiableFunction<T>::size_type functionId,
+    typename GenericDifferentiableFunction<T>::const_argument_ref x,
+    typename GenericDifferentiableFunction<T>::value_type threshold)
+-    throw (BadGradient<T>)
+   {
+     GenericFiniteDifferenceGradient<T> fdfunction (function);
+     typename GenericFiniteDifferenceGradient<T>::gradient_t grad =
+@@ -316,7 +315,6 @@
+   (const GenericDifferentiableFunction<T>& function,
+    typename GenericDifferentiableFunction<T>::const_argument_ref x,
+    typename GenericDifferentiableFunction<T>::value_type threshold)
+-    throw (BadJacobian<T>)
+   {
+     GenericFiniteDifferenceGradient<T> fdfunction (function);
+     typename GenericDifferentiableFunction<T>::jacobian_t jac =
+--- include/roboptim/core/derivable-parametrized-function.hh.orig	2015-06-26 17:08:46.000000000 +0200
++++ include/roboptim/core/derivable-parametrized-function.hh	2021-06-02 21:28:00.993234109 +0200
+@@ -93,7 +93,7 @@
+     ///
+     /// \param jacobian checked jacobian
+     /// \return true if valid, false if not
+-    bool isValidJacobian (const_jacobian_ref jacobian) const throw ()
++    bool isValidJacobian (const_jacobian_ref jacobian) const
+     {
+       return jacobian.rows () == this->jacobianSize ().first
+ 	&& jacobian.cols () == this->jacobianSize ().second;
+--- include/roboptim/core/solver-error.hh.orig	2015-06-26 17:08:46.000000000 +0200
++++ include/roboptim/core/solver-error.hh	2021-06-02 21:28:12.533272768 +0200
+@@ -52,7 +52,7 @@
+     SolverError (const SolverError& error);
+ 
+     /// \brief Trivial destructor.
+-    ~SolverError() throw ();
++    ~SolverError();
+ 
+     /// \brief Display the error on the specified output stream.
+     ///
+--- src/solver-error.cc.orig	2015-06-26 17:08:46.000000000 +0200
++++ src/solver-error.cc	2021-06-02 21:28:24.773313765 +0200
+@@ -40,7 +40,7 @@
+   {
+   }
+ 
+-  SolverError::~SolverError () throw ()
++  SolverError::~SolverError ()
+   {
+   }
+ 
+--- tests/decorator-cached-function.cc.orig	2015-06-26 17:08:46.000000000 +0200
++++ tests/decorator-cached-function.cc	2021-06-02 21:28:39.817364146 +0200
+@@ -35,7 +35,7 @@
+       verbose_ (verbose)
+   {}
+ 
+-  void impl_compute (result_ref res, const_argument_ref argument) const throw ()
++  void impl_compute (result_ref res, const_argument_ref argument) const
+   {
+     if (verbose_)
+       (*output) << "computation (not cached)" << std::endl;
+@@ -74,7 +74,7 @@
+       verbose_ (verbose)
+   {}
+ 
+-  void impl_compute (result_ref res, const_argument_ref argument) const throw ()
++  void impl_compute (result_ref res, const_argument_ref argument) const
+   {
+     if (verbose_)
+       (*output) << "computation (not cached)" << std::endl;
+--- tests/quadratic-function.cc.orig	2015-06-26 17:08:46.000000000 +0200
++++ tests/quadratic-function.cc	2021-06-02 21:28:57.793424329 +0200
+@@ -29,7 +29,7 @@
+   Null () : QuadraticFunction (1, 1, "null function")
+   {}
+ 
+-  void impl_compute (result_ref res, const_argument_ref) const throw ()
++  void impl_compute (result_ref res, const_argument_ref) const
+   {
+     res.setZero ();
+   }
+@@ -52,7 +52,7 @@
+   NoTitle () : QuadraticFunction (1, 1)
+   {}
+ 
+-  void impl_compute (result_ref res, const_argument_ref) const throw ()
++  void impl_compute (result_ref res, const_argument_ref) const
+   {
+     res.setZero ();
+   }
+--- tests/twice-derivable-function.cc.orig	2015-06-26 17:08:46.000000000 +0200
++++ tests/twice-derivable-function.cc	2021-06-02 21:29:14.837481379 +0200
+@@ -30,7 +30,7 @@
+   Null () : TwiceDifferentiableFunction (1, 1, "null function")
+   {}
+ 
+-  void impl_compute (result_ref res, const_argument_ref) const throw ()
++  void impl_compute (result_ref res, const_argument_ref) const
+   {
+     res.setZero ();
+   }
+@@ -53,7 +53,7 @@
+   NoTitle () : TwiceDifferentiableFunction (1, 1)
+   {}
+ 
+-  void impl_compute (result_ref res, const_argument_ref) const throw ()
++  void impl_compute (result_ref res, const_argument_ref) const
+   {
+     res.setZero ();
+   }
