@@ -1,0 +1,86 @@
+From 7d0f28721358f126d6a13d354779195c9a703e91 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Tue, 1 Jun 2021 18:41:58 +0200
+Subject: [PATCH] workaround GCC >= 7 / C++17 / boost::serialization / Eigen
+ bug
+
+hpp-fcl v1.7.3 doesn't compile on the standard default configuration on
+ArchLinux (GCC 11.1.0, Eigen 3.3.9, Boost 1.75.0) and on
+Fedora 34 (GCC 11.1.1, Eigen 3.3.9, Boost 1.75.0), with the following
+error message:
+
+```
+In file included from /usr/include/eigen3/Eigen/Core:368,
+from ./hpp-fcl-1.7.3/include/hpp/fcl/data_types.h:41,
+from ./hpp-fcl-1.7.3/include/hpp/fcl/collision.h:43,
+from ./hpp-fcl-1.7.3/test/serialization.cpp:40:
+/usr/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h: In instantiation of 'struct Eigen::internal::accessors_level':
+/usr/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:109:58:   required by substitution of 'template class SPT> void boost::serialization::load(Archive&, SPT&, unsigned int) [with Archive = boost::archive::text_iarchive; SPT = ]'
+/usr/include/boost/serialization/split_free.hpp:58:13:   required from 'static void boost::serialization::free_loader::invoke(Archive&, T&, unsigned int) [with Archive = boost::archive::text_iarchive; T = Eigen::Map, 0, Eigen::Stride<0, 0> >]'
+/usr/include/boost/serialization/split_free.hpp:74:18:   required from 'void boost::serialization::split_free(Archive&, T&, unsigned int) [with Archive = boost::archive::text_iarchive; T = Eigen::Map, 0, Eigen::Stride<0, 0> >]'
+./hpp-fcl-1.7.3/include/hpp/fcl/serialization/eigen.h:82:17:   required from 'void boost::serialization::serialize(Archive&, Eigen::Map&, unsigned int) [with Archive = boost::archive::text_iarchive; PlainObjectBase = Eigen::Matrix; int MapOptions = 0; StrideType = Eigen::Stride<0, 0>]'
+/usr/include/boost/serialization/serialization.hpp:109:14:   required from 'void boost::serialization::serialize_adl(Archive&, T&, unsigned int) [with Archive = boost::archive::text_iarchive; T = Eigen::Map, 0, Eigen::Stride<0, 0> >]'
+/usr/include/boost/archive/detail/iserializer.hpp:187:40:   [ skipping 29 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/boost/archive/detail/common_iarchive.hpp:67:22:   required from 'void boost::archive::detail::common_iarchive::load_override(T&) [with T = hpp::fcl::BVHModelBase; Archive = boost::archive::text_iarchive]'
+/usr/include/boost/archive/basic_text_iarchive.hpp:70:52:   required from 'void boost::archive::basic_text_iarchive::load_override(T&) [with T = hpp::fcl::BVHModelBase; Archive = boost::archive::text_iarchive]'
+/usr/include/boost/archive/text_iarchive.hpp:82:52:   required from 'void boost::archive::text_iarchive_impl::load_override(T&) [with T = hpp::fcl::BVHModelBase; Archive = boost::archive::text_iarchive]'
+/usr/include/boost/archive/detail/interface_iarchive.hpp:68:36:   required from 'Archive& boost::archive::detail::interface_iarchive::operator>>(T&) [with T = hpp::fcl::BVHModelBase; Archive = boost::archive::text_iarchive]'
+./hpp-fcl-1.7.3/test/serialization.cpp:122:10:   required from 'void test_serialization(const T&, T&, int) [with T = hpp::fcl::BVHModelBase]'
+./hpp-fcl-1.7.3/test/serialization.cpp:231:23:   required from here
+/usr/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:32:48: error: incomplete type 'Eigen::internal::traits' used in nested name specifier
+32 |   enum { has_direct_access = (traits::Flags & DirectAccessBit) ? 1 : 0,
+|                                                ^~~~~
+/usr/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:33:47: error: incomplete type 'Eigen::internal::traits' used in nested name specifier
+33 |          has_write_access = (traits::Flags & LvalueBit) ? 1 : 0,
+|                                               ^~~~~
+```
+
+This bug was already reported at https://stackoverflow.com/questions/54534047/eigen-matrix-boostserialization-c17
+and discussed at https://gitlab.com/libeigen/eigen/-/issues/1676
+
+A minimal reproducible example is provided at https://godbolt.org/z/uIy1Uu
+This example shows that this bug is triggered only on GCC >= 7 (other
+compilers are not affected) and on C++17 (which is the default for
+GCC >= 11).
+
+Also, hpp-fcl 1.7.3 compilation is fine on Arch either by using clang or
+by explicitely setting GCC on C++14.
+
+This commit implements the workaround provided by Christoph Hertzberg on
+the Eigen issue discussion.
+
+Another workaround is already available in Eigen >= 3.3.8:
+https://gitlab.com/libeigen/eigen/-/commit/2aa9eb3ce8fa6b2d61dce5be9d6d6460a28080c4
+But this doesn't fix the build of hpp-fcl 1.7.3.
+
+Another workaround was proposed to boost::serialization, but was
+rejected: https://github.com/boostorg/serialization/pull/144
+
+The main bug in GCC got no attention for the last 2 years:
+https://gcc.gnu.org/bugzilla/show_bug.cgi?id=84075
+---
+ include/hpp/fcl/serialization/eigen.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/include/hpp/fcl/serialization/eigen.h b/include/hpp/fcl/serialization/eigen.h
+index d9fd4d66..4fac7b77 100644
+--- include/hpp/fcl/serialization/eigen.h
++++ include/hpp/fcl/serialization/eigen.h
+@@ -16,6 +16,17 @@
+ #include <boost/serialization/vector.hpp>
+ #include <boost/serialization/array.hpp>
+ 
++// Workaround a bug in GCC >= 7 and C++17
++// ref. https://gitlab.com/libeigen/eigen/-/issues/1676
++#ifdef __GNUC__
++#if __GNUC__ >= 7 && __cplusplus >= 201703L
++namespace boost { namespace serialization { struct U; } }
++namespace Eigen { namespace internal {
++template<> struct traits<boost::serialization::U> {enum {Flags=0};};
++} }
++#endif
++#endif
++
+ 
+ namespace boost
+ {
