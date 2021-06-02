@@ -1,0 +1,884 @@
+From ac40288048f5ecbeded3e369dcee63192639686a Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Wed, 19 May 2021 17:43:29 +0200
+Subject: [PATCH 1/2] format
+
+---
+ .../interpolation-constraints.hh              |  1 -
+ src/dynamic/dynamic-validation.cc             |  3 +--
+ .../interpolation-constraints.cc              | 12 ++++-----
+ src/planner/rbprm-steering-kinodynamic.cc     |  2 +-
+ src/projection/projection.cc                  | 26 +++++++++----------
+ 5 files changed, 21 insertions(+), 23 deletions(-)
+
+diff --git a/include/hpp/rbprm/interpolation/interpolation-constraints.hh b/include/hpp/rbprm/interpolation/interpolation-constraints.hh
+index eccbc0f..2f90b81 100644
+--- include/hpp/rbprm/interpolation/interpolation-constraints.hh
++++ include/hpp/rbprm/interpolation/interpolation-constraints.hh
+@@ -19,7 +19,6 @@
+ #ifndef HPP_RBPRM_INTERPOLATION_CONSTRAINTS_HH
+ #define HPP_RBPRM_INTERPOLATION_CONSTRAINTS_HH
+ 
+-
+ #include <pinocchio/fwd.hpp>
+ #include <pinocchio/multibody/frame.hpp>
+ 
+diff --git a/src/dynamic/dynamic-validation.cc b/src/dynamic/dynamic-validation.cc
+index 1d2c51a..1bbb70f 100644
+--- src/dynamic/dynamic-validation.cc
++++ src/dynamic/dynamic-validation.cc
+@@ -35,8 +35,7 @@ bool DynamicValidation::validate(const core::Configuration_t& config, core::Vali
+   hppDout(notice, "Begin dynamic validation");
+   // hppStartBenchmark(DYNAMIC_VALIDATION);
+   // test if the same number of ROM are in collision :
+-  core::RbprmValidationReportPtr_t rbReport =
+-      std::dynamic_pointer_cast<core::RbprmValidationReport>(validationReport);
++  core::RbprmValidationReportPtr_t rbReport = std::dynamic_pointer_cast<core::RbprmValidationReport>(validationReport);
+   if (!rbReport) {
+     hppDout(error, "error while casting the report");
+     // hppStopBenchmark(DYNAMIC_VALIDATION);
+diff --git a/src/interpolation/interpolation-constraints.cc b/src/interpolation/interpolation-constraints.cc
+index 22ef6da..3813d14 100644
+--- src/interpolation/interpolation-constraints.cc
++++ src/interpolation/interpolation-constraints.cc
+@@ -36,17 +36,17 @@ void addContactConstraints(rbprm::RbPrmFullBodyPtr_t fullBody, pinocchio::Device
+     // const fcl::Matrix3f& rotation = state.contactRotation_.at(*cit);
+     const pinocchio::Frame effectorFrame = device->getFrameByName(limb->effector_.name());
+     pinocchio::JointPtr_t effectorJoint = effectorFrame.joint();
+-    const constraints::DifferentiableFunctionPtr_t& function = constraints::Position::create(
++    const constraints::DifferentiableFunctionPtr_t &function = constraints::Position::create(
+         "", device, effectorJoint, effectorFrame.pinocchio().placement * localFrame, globalFrame);
+-    constraints::ComparisonTypes_t comp (function->outputDerivativeSize(), constraints::EqualToZero);
++    constraints::ComparisonTypes_t comp(function->outputDerivativeSize(), constraints::EqualToZero);
+     projector->add(constraints::Implicit::create(function, comp));
+     if (limb->contactType_ == hpp::rbprm::_6_DOF) {
+       pinocchio::Transform3f rotation(1);
+       rotation.rotation(state.contactRotation_.at(*cit) * effectorFrame.pinocchio().placement.rotation().transpose());
+-      const constraints::DifferentiableFunctionPtr_t& function_ = constraints::Orientation::create("", device, effectorJoint, rotation, cosntraintsR);
+-      constraints::ComparisonTypes_t comp_ (function_->outputDerivativeSize(), constraints::EqualToZero);
+-      projector->add(constraints::Implicit::create(
+-          function_, comp_));
++      const constraints::DifferentiableFunctionPtr_t &function_ =
++          constraints::Orientation::create("", device, effectorJoint, rotation, cosntraintsR);
++      constraints::ComparisonTypes_t comp_(function_->outputDerivativeSize(), constraints::EqualToZero);
++      projector->add(constraints::Implicit::create(function_, comp_));
+     }
+   }
+ }
+diff --git a/src/planner/rbprm-steering-kinodynamic.cc b/src/planner/rbprm-steering-kinodynamic.cc
+index c283c0d..76b3e12 100644
+--- src/planner/rbprm-steering-kinodynamic.cc
++++ src/planner/rbprm-steering-kinodynamic.cc
+@@ -334,7 +334,7 @@ core::PathPtr_t SteeringMethodKinodynamic::setSteeringMethodBounds(const core::R
+                             Vector3 toV,fromV,dVelocity;
+                             const pinocchio::size_type indexECS =problem()->robot()->configSize() -
+                           problem()->robot()->extraConfigSpace().dimension (); // ecs index
+-
++                     
+                             hppDout(notice,"near = "<<pinocchio::displayConfig((*(node->configuration()))));
+                             hppDout(notice,"target = "<<pinocchio::displayConfig(target));
+                             if(reverse){
+diff --git a/src/projection/projection.cc b/src/projection/projection.cc
+index 1ef9e16..0ce30be 100644
+--- src/projection/projection.cc
++++ src/projection/projection.cc
+@@ -64,7 +64,7 @@ void CreateContactConstraints(hpp::rbprm::RbPrmFullBodyPtr_t fullBody, const hpp
+     globalFrame.translation(ppos);
+     const constraints::DifferentiableFunctionPtr_t& function = constraints::Position::create(
+         effector, device, effectorJoint, effectorFrame.pinocchio().placement * localFrame, globalFrame, mask);
+-    constraints::ComparisonTypes_t comp (function->outputDerivativeSize(), constraints::EqualToZero);
++    constraints::ComparisonTypes_t comp(function->outputDerivativeSize(), constraints::EqualToZero);
+     proj->add(constraints::Implicit::create(function, comp));
+ 
+     /*proj->add(constraints::Implicit::create (
+@@ -74,9 +74,9 @@ void CreateContactConstraints(hpp::rbprm::RbPrmFullBodyPtr_t fullBody, const hpp
+       pinocchio::Transform3f rotation(1);
+       rotation.rotation(currentState.contactRotation_.at(effector) *
+                         effectorFrame.pinocchio().placement.rotation().transpose());
+-      const constraints::DifferentiableFunctionPtr_t& function_ = constraints::Orientation::create(
+-              "", device, effectorJoint, rotation, cosntraintsR);
+-      constraints::ComparisonTypes_t comp_ (function_->outputDerivativeSize(), constraints::EqualToZero);
++      const constraints::DifferentiableFunctionPtr_t& function_ =
++          constraints::Orientation::create("", device, effectorJoint, rotation, cosntraintsR);
++      constraints::ComparisonTypes_t comp_(function_->outputDerivativeSize(), constraints::EqualToZero);
+       proj->add(constraints::Implicit::create(function_, comp_));
+ 
+       // const fcl::Matrix3f& rotation = currentState.contactRotation_.at(effector);
+@@ -94,7 +94,7 @@ void CreateRootPosConstraint(hpp::rbprm::RbPrmFullBodyPtr_t fullBody, const fcl:
+   position.translation(target);
+   const constraints::DifferentiableFunctionPtr_t& function = constraints::Position::create(
+       "", fullBody->device_, fullBody->device_->rootJoint(), pinocchio::Transform3f(1), position);
+-  constraints::ComparisonTypes_t comp (function->outputDerivativeSize(), constraints::EqualToZero);
++  constraints::ComparisonTypes_t comp(function->outputDerivativeSize(), constraints::EqualToZero);
+   proj->add(constraints::Implicit::create(function, comp));
+ }
+ 
+@@ -245,7 +245,7 @@ ProjectionReport projectToRootConfiguration(hpp::rbprm::RbPrmFullBodyPtr_t fullB
+     const constraints::DifferentiableFunctionPtr_t& function =
+         constraints::Position::create(rootJointName, fullBody->device_, effectorJoint,
+                                       effectorFrame.pinocchio().placement * localFrame, globalFrame, mask);
+-    constraints::ComparisonTypes_t comp (function->outputDerivativeSize(), constraints::EqualToZero);
++    constraints::ComparisonTypes_t comp(function->outputDerivativeSize(), constraints::EqualToZero);
+     proj->add(constraints::Implicit::create(function, comp));
+   }
+   pinocchio::Configuration_t configuration = currentState.configuration_;
+@@ -319,17 +319,17 @@ ProjectionReport projectEffector(hpp::core::ConfigProjectorPtr_t proj, const hpp
+   Transform3f localFrame(1), globalFrame(1);
+   localFrame = effectorFrame.pinocchio().placement * localFrame;
+   globalFrame.translation(positionTarget);
+-  const constraints::DifferentiableFunctionPtr_t& function = constraints::Position::create("", body->device_, effectorJoint, localFrame,
+-                                                                        globalFrame, setTranslationConstraints());
+-  constraints::ComparisonTypes_t comp (function->outputDerivativeSize(), constraints::EqualToZero);
++  const constraints::DifferentiableFunctionPtr_t& function = constraints::Position::create(
++      "", body->device_, effectorJoint, localFrame, globalFrame, setTranslationConstraints());
++  constraints::ComparisonTypes_t comp(function->outputDerivativeSize(), constraints::EqualToZero);
+   proj->add(constraints::Implicit::create(function, comp));
+   if (limb->contactType_ == hpp::rbprm::_6_DOF) {
+     // localFrame.rotation(effectorFrame.pinocchio().placement.rotation() * rotationTarget.transpose());
+     globalFrame.rotation(rotationTarget);
+-    const constraints::DifferentiableFunctionPtr_t& function_ = constraints::Orientation::create(
+-            "", body->device_, effectorJoint, localFrame, globalFrame, rotationFilter);
+-    constraints::ComparisonTypes_t comp_ (function_->outputDerivativeSize(), constraints::EqualToZero);
+-    proj->add(constraints::Implicit::create( function_, comp_));
++    const constraints::DifferentiableFunctionPtr_t& function_ =
++        constraints::Orientation::create("", body->device_, effectorJoint, localFrame, globalFrame, rotationFilter);
++    constraints::ComparisonTypes_t comp_(function_->outputDerivativeSize(), constraints::EqualToZero);
++    proj->add(constraints::Implicit::create(function_, comp_));
+   }
+ 
+   if (body->usePosturalTaskContactCreation()) {
+
+From 7ffa44515069aae964d652bac29857337a71f239 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Wed, 19 May 2021 17:53:57 +0200
+Subject: [PATCH 2/2] remove dynamic exception specifications for C++17
+
+---
+ .../hpp/rbprm/interpolation/com-trajectory.hh |   4 +-
+ .../rbprm/interpolation/polynom-trajectory.hh |   4 +-
+ .../rbprm/interpolation/spline/bezier-path.hh |   2 +-
+ .../interpolation/time-constraint-path.hh     |   6 +-
+ include/hpp/rbprm/planner/parabola-path.hh    |   4 +-
+ .../hpp/rbprm/planner/timed-parabola-path.hh  |   4 +-
+ include/hpp/rbprm/stability/stability.hh      |   2 +-
+ src/interpolation/com-trajectory.cc           |   2 +-
+ src/interpolation/polynom-trajectory.cc       |   2 +-
+ src/interpolation/time-constraint-path.cc     |   4 +-
+ src/planner/parabola-path.cc                  | 464 +++++++++---------
+ src/planner/timed-parabola-path.cc            |   3 +-
+ src/stability/stability.cc                    |   2 +-
+ tests/tools-obstacle.hh                       |   5 +-
+ 14 files changed, 253 insertions(+), 255 deletions(-)
+
+diff --git a/include/hpp/rbprm/interpolation/com-trajectory.hh b/include/hpp/rbprm/interpolation/com-trajectory.hh
+index 2d23b51..d96055e 100644
+--- include/hpp/rbprm/interpolation/com-trajectory.hh
++++ include/hpp/rbprm/interpolation/com-trajectory.hh
+@@ -42,7 +42,7 @@ class HPP_CORE_DLLAPI ComTrajectory : public core::Path {
+  public:
+   typedef Path parent_t;
+   /// Destructor
+-  virtual ~ComTrajectory() throw() {}
++  virtual ~ComTrajectory() {}
+ 
+   /// Create instance and return shared pointer
+   /// \param device Robot corresponding to configurations
+@@ -77,7 +77,7 @@ class HPP_CORE_DLLAPI ComTrajectory : public core::Path {
+   /// \param subInterval interval of definition of the extract path
+   /// If upper bound of subInterval is smaller than lower bound,
+   /// result is reversed.
+-  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const throw(core::projection_error);
++  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const;
+ 
+   /// Get the initial configuration
+   core::Configuration_t initial() const { return initial_; }
+diff --git a/include/hpp/rbprm/interpolation/polynom-trajectory.hh b/include/hpp/rbprm/interpolation/polynom-trajectory.hh
+index cf08159..f78c017 100644
+--- include/hpp/rbprm/interpolation/polynom-trajectory.hh
++++ include/hpp/rbprm/interpolation/polynom-trajectory.hh
+@@ -45,7 +45,7 @@ class HPP_CORE_DLLAPI PolynomTrajectory : public core::Path {
+  public:
+   typedef Path parent_t;
+   /// Destructor
+-  virtual ~PolynomTrajectory() throw() {}
++  virtual ~PolynomTrajectory() {}
+ 
+   /// Create instance and return shared pointer
+   /// \param device Robot corresponding to configurations
+@@ -80,7 +80,7 @@ class HPP_CORE_DLLAPI PolynomTrajectory : public core::Path {
+   /// \param subInterval interval of definition of the extract path
+   /// If upper bound of subInterval is smaller than lower bound,
+   /// result is reversed.
+-  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const throw(core::projection_error);
++  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const;
+ 
+   /// Get the initial configuration
+   core::Configuration_t initial() const { return polynom_->operator()(subSetStart_); }
+diff --git a/include/hpp/rbprm/interpolation/spline/bezier-path.hh b/include/hpp/rbprm/interpolation/spline/bezier-path.hh
+index 38c8ed6..a4734de 100644
+--- include/hpp/rbprm/interpolation/spline/bezier-path.hh
++++ include/hpp/rbprm/interpolation/spline/bezier-path.hh
+@@ -44,7 +44,7 @@ class BezierPath : public core::Path {
+  public:
+   typedef Path parent_t;
+   /// Destructor
+-  virtual ~BezierPath() throw() {}
++  virtual ~BezierPath() {}
+ 
+   /// Create instance and return shared pointer
+   /// \param device Robot corresponding to configurations
+diff --git a/include/hpp/rbprm/interpolation/time-constraint-path.hh b/include/hpp/rbprm/interpolation/time-constraint-path.hh
+index 0741123..64a5691 100644
+--- include/hpp/rbprm/interpolation/time-constraint-path.hh
++++ include/hpp/rbprm/interpolation/time-constraint-path.hh
+@@ -42,7 +42,7 @@ class HPP_CORE_DLLAPI TimeConstraintPath : public core::Path {
+  public:
+   typedef Path parent_t;
+   /// Destructor
+-  virtual ~TimeConstraintPath() throw() {}
++  virtual ~TimeConstraintPath() {}
+ 
+   /// Create instance and return shared pointer
+   /// \param device Robot corresponding to configurations
+@@ -114,7 +114,7 @@ class HPP_CORE_DLLAPI TimeConstraintPath : public core::Path {
+   /// \param subInterval interval of definition of the extract path
+   /// If upper bound of subInterval is smaller than lower bound,
+   /// result is reversed.
+-  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const throw(core::projection_error);
++  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const;
+ 
+   /// Modify initial configuration
+   /// \param initial new initial configuration
+@@ -147,7 +147,7 @@ class HPP_CORE_DLLAPI TimeConstraintPath : public core::Path {
+   /// Get the final configuration
+   core::Configuration_t end() const { return end_; }
+ 
+-  virtual void checkPath() const throw(core::projection_error);
++  virtual void checkPath() const;
+ 
+  protected:
+   /// Print path in a stream
+diff --git a/include/hpp/rbprm/planner/parabola-path.hh b/include/hpp/rbprm/planner/parabola-path.hh
+index d6ee099..46038e6 100644
+--- include/hpp/rbprm/planner/parabola-path.hh
++++ include/hpp/rbprm/planner/parabola-path.hh
+@@ -45,7 +45,7 @@ class ParabolaPath : public core::Path {
+  public:
+   typedef Path parent_t;
+   /// Destructor
+-  virtual ~ParabolaPath() throw() {}
++  virtual ~ParabolaPath() {}
+ 
+   /// Create instance and return shared pointer
+   /// \param device Robot corresponding to configurations
+@@ -115,7 +115,7 @@ class ParabolaPath : public core::Path {
+   /// \param subInterval interval of definition of the extract path
+   /// If upper bound of subInterval is smaller than lower bound,
+   /// result is reversed.
+-  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const throw(core::projection_error);
++  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const;
+ 
+   /// Reversion of a path
+   /// \return a new path that is this one reversed.
+diff --git a/include/hpp/rbprm/planner/timed-parabola-path.hh b/include/hpp/rbprm/planner/timed-parabola-path.hh
+index e0839fc..4d69e57 100644
+--- include/hpp/rbprm/planner/timed-parabola-path.hh
++++ include/hpp/rbprm/planner/timed-parabola-path.hh
+@@ -36,7 +36,7 @@ class TimedParabolaPath : public ParabolaPath {
+  public:
+   typedef ParabolaPath parent_t;
+   /// Destructor
+-  virtual ~TimedParabolaPath() throw() {}
++  virtual ~TimedParabolaPath() {}
+ 
+   /// Create instance and return shared pointer
+   /// \param device Robot corresponding to configurations
+@@ -121,7 +121,7 @@ class TimedParabolaPath : public ParabolaPath {
+   /// \param subInterval interval of definition of the extract path
+   /// If upper bound of subInterval is smaller than lower bound,
+   /// result is reversed.
+-  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const throw(core::projection_error);
++  virtual core::PathPtr_t extract(const core::interval_t& subInterval) const;
+ 
+   /// Reversion of a path
+   /// \return a new path that is this one reversed.
+diff --git a/include/hpp/rbprm/stability/stability.hh b/include/hpp/rbprm/stability/stability.hh
+index 9341ebf..fc93cfd 100644
+--- include/hpp/rbprm/stability/stability.hh
++++ include/hpp/rbprm/stability/stability.hh
+@@ -61,7 +61,7 @@ centroidal_dynamics::Vector3 setupLibrary(const RbPrmFullBodyPtr_t fullbody, Sta
+                                           centroidal_dynamics::Equilibrium& sEq,
+                                           centroidal_dynamics::EquilibriumAlgorithm& alg,
+                                           core::value_type friction = 0.6, const double feetX = 0,
+-                                          const double feetY = 0) throw(std::runtime_error);
++                                          const double feetY = 0);
+ 
+ }  // namespace stability
+ }  // namespace rbprm
+diff --git a/src/interpolation/com-trajectory.cc b/src/interpolation/com-trajectory.cc
+index 3e41cab..c5e4466 100644
+--- src/interpolation/com-trajectory.cc
++++ src/interpolation/com-trajectory.cc
+@@ -71,7 +71,7 @@ bool ComTrajectory::impl_compute(ConfigurationOut_t result, value_type param) co
+   return true;
+ }
+ 
+-PathPtr_t ComTrajectory::extract(const interval_t& subInterval) const throw(projection_error) {
++PathPtr_t ComTrajectory::extract(const interval_t& subInterval) const {
+   // Length is assumed to be proportional to interval range
+   value_type l = std::min(fabs(subInterval.second - subInterval.first), length_);
+ 
+diff --git a/src/interpolation/polynom-trajectory.cc b/src/interpolation/polynom-trajectory.cc
+index bc37c76..e67313a 100644
+--- src/interpolation/polynom-trajectory.cc
++++ src/interpolation/polynom-trajectory.cc
+@@ -66,7 +66,7 @@ bool PolynomTrajectory::impl_compute(ConfigurationOut_t result, value_type param
+   return true;
+ }
+ 
+-PathPtr_t PolynomTrajectory::extract(const interval_t& subInterval) const throw(projection_error) {
++PathPtr_t PolynomTrajectory::extract(const interval_t& subInterval) const {
+   return PolynomTrajectory::create(polynom_, subInterval.first, subInterval.second);
+ }
+ }  //   namespace interpolation
+diff --git a/src/interpolation/time-constraint-path.cc b/src/interpolation/time-constraint-path.cc
+index 08f31e0..499e3ad 100644
+--- src/interpolation/time-constraint-path.cc
++++ src/interpolation/time-constraint-path.cc
+@@ -102,7 +102,7 @@ bool TimeConstraintPath::impl_compute(ConfigurationOut_t result, value_type para
+   return true;
+ }
+ 
+-PathPtr_t TimeConstraintPath::extract(const interval_t& subInterval) const throw(projection_error) {
++PathPtr_t TimeConstraintPath::extract(const interval_t& subInterval) const {
+   // Length is assumed to be proportional to interval range
+   value_type l = fabs(subInterval.second - subInterval.first);
+ 
+@@ -123,7 +123,7 @@ PathPtr_t TimeConstraintPath::extract(const interval_t& subInterval) const throw
+ 
+ DevicePtr_t TimeConstraintPath::device() const { return device_; }
+ 
+-void TimeConstraintPath::checkPath() const throw(projection_error) {
++void TimeConstraintPath::checkPath() const {
+   Configuration_t initc = initial();
+   Configuration_t endc = end();
+   vector_t errr;
+diff --git a/src/planner/parabola-path.cc b/src/planner/parabola-path.cc
+index fa605b3..6e02c72 100644
+--- src/planner/parabola-path.cc
++++ src/planner/parabola-path.cc
+@@ -1,232 +1,232 @@
+-//
+-// Copyright (c) 2014 CNRS
+-// Authors: Mylene Campana
+-//
+-// This file is part of hpp-core
+-// hpp-core is free software: you can redistribute it
+-// and/or modify it under the terms of the GNU Lesser General Public
+-// License as published by the Free Software Foundation, either version
+-// 3 of the License, or (at your option) any later version.
+-//
+-// hpp-core is distributed in the hope that it will be
+-// useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+-// of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-// General Lesser Public License for more details.  You should have
+-// received a copy of the GNU Lesser General Public License along with
+-// hpp-core  If not, see
+-// <http://www.gnu.org/licenses/>.
+-
+-#include <hpp/util/debug.hh>
+-#include <hpp/pinocchio/configuration.hh>
+-#include <hpp/pinocchio/device.hh>
+-#include <hpp/pinocchio/joint.hh>
+-#include <hpp/core/config-projector.hh>
+-#include <hpp/rbprm/planner/parabola-path.hh>
+-#include <hpp/core/straight-path.hh>
+-
+-namespace hpp {
+-namespace rbprm {
+-using core::interval_t;
+-using core::size_type;
+-using core::value_type;
+-using core::vector_t;
+-using pinocchio::displayConfig;
+-
+-ParabolaPath::ParabolaPath(const core::DevicePtr_t& device, core::ConfigurationIn_t init, core::ConfigurationIn_t end,
+-                           value_type length, vector_t coefs)
+-    : parent_t(interval_t(0, length), device->configSize(), device->numberDof()),
+-      V0_(vector_t(3)),
+-      Vimp_(vector_t(3)),
+-      device_(device),
+-      initial_(init),
+-      end_(end),
+-      coefficients_(vector_t(coefs.size())),
+-      length_(length)
+-
+-{
+-  assert(device);
+-  coefficients(coefs);
+-  initialROMnames_.reserve(10);
+-  endROMnames_.reserve(10);
+-}
+-
+-ParabolaPath::ParabolaPath(const core::DevicePtr_t& device, core::ConfigurationIn_t init, core::ConfigurationIn_t end,
+-                           value_type length, vector_t coefs, vector_t V0, vector_t Vimp,
+-                           std::vector<std::string> initialROMnames, std::vector<std::string> endROMnames)
+-    : parent_t(interval_t(0, length), device->configSize(), device->numberDof()),
+-      V0_(V0),
+-      Vimp_(Vimp),
+-      initialROMnames_(initialROMnames),
+-      endROMnames_(endROMnames),
+-      device_(device),
+-      initial_(init),
+-      end_(end),
+-      coefficients_(vector_t(coefs.size())),
+-      length_(length) {
+-  assert(device);
+-  coefficients(coefs);
+-  hppDout(info, "V0_= " << V0_.transpose() << " Vimp_= " << Vimp_.transpose());
+-  hppDout(info, "initialROMnames size= " << initialROMnames_.size());
+-}
+-
+-ParabolaPath::ParabolaPath(const ParabolaPath& path)
+-    : parent_t(path),
+-      V0_(path.V0_),
+-      Vimp_(path.Vimp_),
+-      initialROMnames_(path.initialROMnames_),
+-      endROMnames_(path.endROMnames_),
+-      device_(path.device_),
+-      initial_(path.initial_),
+-      end_(path.end_),
+-      coefficients_(path.coefficients_),
+-      length_(path.length_) {
+-  hppDout(info, "V0_= " << V0_.transpose() << " Vimp_= " << Vimp_.transpose());
+-  hppDout(info, "initialROMnames size= " << initialROMnames_.size());
+-}
+-
+-bool ParabolaPath::impl_compute(core::ConfigurationOut_t result, value_type param) const {
+-  if (param == 0 || initial_(0) == end_(0)) {
+-    result = initial_;
+-    return true;
+-  }
+-  if (param >= length_) {
+-    result = end_;
+-    return true;
+-  }
+-
+-  const size_type nbConfig = device_->configSize();
+-  const size_type ecsDim = device_->extraConfigSpace().dimension();
+-  // param = x_theta
+-  const value_type u = param / length_;
+-  const value_type theta = coefficients_(3);
+-  /* const value_type x_theta_max = - 0.5 *
+-       coefficients_ (1) / coefficients_ (0);
+-   const value_type x_theta_initial = cos(theta)*initial_ (0) +
+-       sin(theta)*initial_ (1);
+-   const value_type x_theta_end = cos(theta)*end_ (0) +
+-       sin(theta)*end_ (1);
+-   const bool tanThetaNotDefined = (theta < M_PI/2 + 1e-2 && theta > M_PI/2 - 1e-2) || (theta > -M_PI/2 - 1e-2 && theta
+-   < -M_PI/2 + 1e-2);
+-*/
+-  result(0) = initial_(0) + u * length_ * cos(theta);
+-  result(1) = initial_(1) + u * length_ * sin(theta);
+-  const value_type x_theta = cos(theta) * result(0) + sin(theta) * result(1);
+-  result(2) = coefficients_(0) * x_theta * x_theta + coefficients_(1) * x_theta + coefficients_(2);
+-
+-  pinocchio::interpolate(device_, initial_, end_, u, result);
+-  /* Quaternions interpolation */
+-  /*const core::JointPtr_t SO3joint = device_->getJointByName ("base_joint_SO3");
+-  const std::size_t rank = SO3joint->rankInConfiguration ();
+-  const core::size_type dimSO3 = SO3joint->configSize ();
+-  SO3joint->configuration ()->interpolate
+-      (initial_, end_, u, rank, result);
+-
+-  // if robot-trunk has internal DoF (except freeflyer ones)
+-  // then linear interpolation on them
+-  const std::size_t freeflyerDim = 3 + dimSO3;
+-  const bool hasInternalDof = nbConfig > ecsDim + freeflyerDim;
+-  if (hasInternalDof) {
+-    for (core::size_type i = freeflyerDim; i<nbConfig-ecsDim; i++) {
+-      result (i) = (1 - u) * initial_ (i) + u * end_ (i);
+-    }
+-  }*/
+-
+-  /* Set to zero extra-configs (only on path, not on extremities */
+-  const std::size_t indexECS = nbConfig - ecsDim;
+-  for (size_type i = 0; i < ecsDim; i++) result(indexECS + i) = 0;
+-  return true;
+-}
+-
+-core::PathPtr_t ParabolaPath::extract(const interval_t& subInterval) const throw(hpp::core::projection_error) {
+-  hppDout(error, "path extract is not recommended on parabola path");
+-  bool success;
+-  core::Configuration_t q1((*this)(subInterval.first, success));   // straight
+-  core::Configuration_t q2((*this)(subInterval.second, success));  // straight
+-  ParabolaPathPtr_t result = rbprm::ParabolaPath::create(device_, q1, q2, computeLength(q1, q2), coefficients_, V0_,
+-                                                         Vimp_, initialROMnames_, endROMnames_);
+-  hppDout(info, "initialROMnames size= " << (*result).initialROMnames_.size());
+-  return result;
+-}
+-
+-core::PathPtr_t ParabolaPath::reverse() const {
+-  hppDout(notice, " ~ reverse path parabola !!!!!!!!!!!!!!!!!!!!!!");
+-  bool success;
+-  core::Configuration_t q1((*this)(length_, success));
+-  core::Configuration_t q2((*this)(0, success));
+-  ParabolaPathPtr_t result =
+-      ParabolaPath::create(device_, q1, q2, length_, coefficients_, Vimp_, V0_, endROMnames_, initialROMnames_);
+-  hppDout(info, "V0_= " << V0_.transpose() << " Vimp_= " << Vimp_.transpose());
+-  hppDout(info, "result V0_= " << (*result).V0_.transpose() << " result Vimp_= " << (*result).Vimp_.transpose());
+-  hppDout(info, "path->initialROMnames size= " << (*result).initialROMnames_.size());
+-  hppDout(info, "this->initialROMnames size= " << (*this).initialROMnames_.size());
+-  hppDout(info, "result->initialROMnames size= " << (*result).initialROMnames_.size());
+-  return result;
+-}
+-
+-core::DevicePtr_t ParabolaPath::device() const { return device_; }
+-
+-/*  value_type ParabolaPath::computeLength
+-  (const core::ConfigurationIn_t q1, const core::ConfigurationIn_t q2) const {
+-    const int N = 6; // number -1 of interval sub-divisions
+-    // for N = 4, computation error ~= 1e-5.
+-    // for N = 20, computation error ~= 1e-11.
+-    value_type length = 0;
+-    const value_type theta = coefficients_ (3);
+-    value_type x1 = cos(theta) * q1 (0)  + sin(theta) * q1 (1); // x_theta_0
+-    value_type x2 = cos(theta) * q2 (0) + sin(theta) * q2 (1); // x_theta_imp
+-    hppDout(notice,"xTheta0 = "<<x1 << " , "<<coefficients_[6]<<"   xThetaImp = "<<x2);
+-
+-    // Define integration bounds
+-    if (x1 > x2) { // re-order integration bounds
+-      const value_type xtmp = x1;
+-      x1 = x2;
+-      x2 = xtmp;
+-    }
+-
+-    const value_type dx = (x2 - x1) / N; // integration step size
+-    for (int i=0; i<N; i++) {
+-      length += dx*( 0.166666667*lengthFunction (x1 + i*dx)
+-                     + 0.666666667*lengthFunction (x1 + (i+0.5)*dx )
+-                     + 0.166666667*lengthFunction (x1 + (i+1)*dx ));
+-      // apparently, 1/6 and 2/3 are not recognized as floats ...
+-    }
+-    hppDout (notice, "length = " << length);
+-    return length;
+-  }*/
+-
+-// test (pierre) :
+-value_type ParabolaPath::computeLength(const core::ConfigurationIn_t q1, const core::ConfigurationIn_t q2) const {
+-  const value_type theta = coefficients_(3);
+-  const value_type X = q2[0] - q1[0];
+-  const value_type Y = q2[1] - q1[1];
+-  ;
+-  // theta = coef[3]
+-  const value_type X_theta = X * cos(theta) + Y * sin(theta);
+-  return X_theta;
+-}
+-
+-// Function equivalent to sqrt( 1 + f'(x)^2 )
+-value_type ParabolaPath::lengthFunction(const value_type x) const {
+-  const value_type y =
+-      sqrt(1 + (2 * coefficients_(0) * x + coefficients_(1)) * (2 * coefficients_(0) * x + coefficients_(1)));
+-  return y;
+-}
+-
+-vector_t ParabolaPath::evaluateVelocity(const value_type t) const {
+-  vector_t vel(3);
+-  bool success;
+-  const value_type theta = coefficients_(3);
+-  const value_type alpha = coefficients_(4);
+-  const value_type x_theta_0_dot = coefficients_(5);
+-  const value_type inv_x_theta_0_dot_sq = 1 / (x_theta_0_dot * x_theta_0_dot);
+-  const value_type x_theta_0 = coefficients_(6);
+-  const core::Configuration_t q = (*this)(t, success);
+-  const value_type x_theta = q[0] * cos(theta) + q[1] * sin(theta);
+-  vel[0] = x_theta_0_dot * cos(theta);
+-  vel[1] = x_theta_0_dot * sin(theta);
+-  vel[2] = x_theta_0_dot * (-9.81 * (x_theta - x_theta_0) * inv_x_theta_0_dot_sq + tan(alpha));
+-  return vel;
+-}
+-
+-}  //   namespace rbprm
+-}  // namespace hpp
++//
++// Copyright (c) 2014 CNRS
++// Authors: Mylene Campana
++//
++// This file is part of hpp-core
++// hpp-core is free software: you can redistribute it
++// and/or modify it under the terms of the GNU Lesser General Public
++// License as published by the Free Software Foundation, either version
++// 3 of the License, or (at your option) any later version.
++//
++// hpp-core is distributed in the hope that it will be
++// useful, but WITHOUT ANY WARRANTY; without even the implied warranty
++// of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++// General Lesser Public License for more details.  You should have
++// received a copy of the GNU Lesser General Public License along with
++// hpp-core  If not, see
++// <http://www.gnu.org/licenses/>.
++
++#include <hpp/util/debug.hh>
++#include <hpp/pinocchio/configuration.hh>
++#include <hpp/pinocchio/device.hh>
++#include <hpp/pinocchio/joint.hh>
++#include <hpp/core/config-projector.hh>
++#include <hpp/rbprm/planner/parabola-path.hh>
++#include <hpp/core/straight-path.hh>
++
++namespace hpp {
++namespace rbprm {
++using core::interval_t;
++using core::size_type;
++using core::value_type;
++using core::vector_t;
++using pinocchio::displayConfig;
++
++ParabolaPath::ParabolaPath(const core::DevicePtr_t& device, core::ConfigurationIn_t init, core::ConfigurationIn_t end,
++                           value_type length, vector_t coefs)
++    : parent_t(interval_t(0, length), device->configSize(), device->numberDof()),
++      V0_(vector_t(3)),
++      Vimp_(vector_t(3)),
++      device_(device),
++      initial_(init),
++      end_(end),
++      coefficients_(vector_t(coefs.size())),
++      length_(length)
++
++{
++  assert(device);
++  coefficients(coefs);
++  initialROMnames_.reserve(10);
++  endROMnames_.reserve(10);
++}
++
++ParabolaPath::ParabolaPath(const core::DevicePtr_t& device, core::ConfigurationIn_t init, core::ConfigurationIn_t end,
++                           value_type length, vector_t coefs, vector_t V0, vector_t Vimp,
++                           std::vector<std::string> initialROMnames, std::vector<std::string> endROMnames)
++    : parent_t(interval_t(0, length), device->configSize(), device->numberDof()),
++      V0_(V0),
++      Vimp_(Vimp),
++      initialROMnames_(initialROMnames),
++      endROMnames_(endROMnames),
++      device_(device),
++      initial_(init),
++      end_(end),
++      coefficients_(vector_t(coefs.size())),
++      length_(length) {
++  assert(device);
++  coefficients(coefs);
++  hppDout(info, "V0_= " << V0_.transpose() << " Vimp_= " << Vimp_.transpose());
++  hppDout(info, "initialROMnames size= " << initialROMnames_.size());
++}
++
++ParabolaPath::ParabolaPath(const ParabolaPath& path)
++    : parent_t(path),
++      V0_(path.V0_),
++      Vimp_(path.Vimp_),
++      initialROMnames_(path.initialROMnames_),
++      endROMnames_(path.endROMnames_),
++      device_(path.device_),
++      initial_(path.initial_),
++      end_(path.end_),
++      coefficients_(path.coefficients_),
++      length_(path.length_) {
++  hppDout(info, "V0_= " << V0_.transpose() << " Vimp_= " << Vimp_.transpose());
++  hppDout(info, "initialROMnames size= " << initialROMnames_.size());
++}
++
++bool ParabolaPath::impl_compute(core::ConfigurationOut_t result, value_type param) const {
++  if (param == 0 || initial_(0) == end_(0)) {
++    result = initial_;
++    return true;
++  }
++  if (param >= length_) {
++    result = end_;
++    return true;
++  }
++
++  const size_type nbConfig = device_->configSize();
++  const size_type ecsDim = device_->extraConfigSpace().dimension();
++  // param = x_theta
++  const value_type u = param / length_;
++  const value_type theta = coefficients_(3);
++  /* const value_type x_theta_max = - 0.5 *
++       coefficients_ (1) / coefficients_ (0);
++   const value_type x_theta_initial = cos(theta)*initial_ (0) +
++       sin(theta)*initial_ (1);
++   const value_type x_theta_end = cos(theta)*end_ (0) +
++       sin(theta)*end_ (1);
++   const bool tanThetaNotDefined = (theta < M_PI/2 + 1e-2 && theta > M_PI/2 - 1e-2) || (theta > -M_PI/2 - 1e-2 && theta
++   < -M_PI/2 + 1e-2);
++*/
++  result(0) = initial_(0) + u * length_ * cos(theta);
++  result(1) = initial_(1) + u * length_ * sin(theta);
++  const value_type x_theta = cos(theta) * result(0) + sin(theta) * result(1);
++  result(2) = coefficients_(0) * x_theta * x_theta + coefficients_(1) * x_theta + coefficients_(2);
++
++  pinocchio::interpolate(device_, initial_, end_, u, result);
++  /* Quaternions interpolation */
++  /*const core::JointPtr_t SO3joint = device_->getJointByName ("base_joint_SO3");
++  const std::size_t rank = SO3joint->rankInConfiguration ();
++  const core::size_type dimSO3 = SO3joint->configSize ();
++  SO3joint->configuration ()->interpolate
++      (initial_, end_, u, rank, result);
++
++  // if robot-trunk has internal DoF (except freeflyer ones)
++  // then linear interpolation on them
++  const std::size_t freeflyerDim = 3 + dimSO3;
++  const bool hasInternalDof = nbConfig > ecsDim + freeflyerDim;
++  if (hasInternalDof) {
++    for (core::size_type i = freeflyerDim; i<nbConfig-ecsDim; i++) {
++      result (i) = (1 - u) * initial_ (i) + u * end_ (i);
++    }
++  }*/
++
++  /* Set to zero extra-configs (only on path, not on extremities */
++  const std::size_t indexECS = nbConfig - ecsDim;
++  for (size_type i = 0; i < ecsDim; i++) result(indexECS + i) = 0;
++  return true;
++}
++
++core::PathPtr_t ParabolaPath::extract(const interval_t& subInterval) const {
++  hppDout(error, "path extract is not recommended on parabola path");
++  bool success;
++  core::Configuration_t q1((*this)(subInterval.first, success));   // straight
++  core::Configuration_t q2((*this)(subInterval.second, success));  // straight
++  ParabolaPathPtr_t result = rbprm::ParabolaPath::create(device_, q1, q2, computeLength(q1, q2), coefficients_, V0_,
++                                                         Vimp_, initialROMnames_, endROMnames_);
++  hppDout(info, "initialROMnames size= " << (*result).initialROMnames_.size());
++  return result;
++}
++
++core::PathPtr_t ParabolaPath::reverse() const {
++  hppDout(notice, " ~ reverse path parabola !!!!!!!!!!!!!!!!!!!!!!");
++  bool success;
++  core::Configuration_t q1((*this)(length_, success));
++  core::Configuration_t q2((*this)(0, success));
++  ParabolaPathPtr_t result =
++      ParabolaPath::create(device_, q1, q2, length_, coefficients_, Vimp_, V0_, endROMnames_, initialROMnames_);
++  hppDout(info, "V0_= " << V0_.transpose() << " Vimp_= " << Vimp_.transpose());
++  hppDout(info, "result V0_= " << (*result).V0_.transpose() << " result Vimp_= " << (*result).Vimp_.transpose());
++  hppDout(info, "path->initialROMnames size= " << (*result).initialROMnames_.size());
++  hppDout(info, "this->initialROMnames size= " << (*this).initialROMnames_.size());
++  hppDout(info, "result->initialROMnames size= " << (*result).initialROMnames_.size());
++  return result;
++}
++
++core::DevicePtr_t ParabolaPath::device() const { return device_; }
++
++/*  value_type ParabolaPath::computeLength
++  (const core::ConfigurationIn_t q1, const core::ConfigurationIn_t q2) const {
++    const int N = 6; // number -1 of interval sub-divisions
++    // for N = 4, computation error ~= 1e-5.
++    // for N = 20, computation error ~= 1e-11.
++    value_type length = 0;
++    const value_type theta = coefficients_ (3);
++    value_type x1 = cos(theta) * q1 (0)  + sin(theta) * q1 (1); // x_theta_0
++    value_type x2 = cos(theta) * q2 (0) + sin(theta) * q2 (1); // x_theta_imp
++    hppDout(notice,"xTheta0 = "<<x1 << " , "<<coefficients_[6]<<"   xThetaImp = "<<x2);
++
++    // Define integration bounds
++    if (x1 > x2) { // re-order integration bounds
++      const value_type xtmp = x1;
++      x1 = x2;
++      x2 = xtmp;
++    }
++
++    const value_type dx = (x2 - x1) / N; // integration step size
++    for (int i=0; i<N; i++) {
++      length += dx*( 0.166666667*lengthFunction (x1 + i*dx)
++                     + 0.666666667*lengthFunction (x1 + (i+0.5)*dx )
++                     + 0.166666667*lengthFunction (x1 + (i+1)*dx ));
++      // apparently, 1/6 and 2/3 are not recognized as floats ...
++    }
++    hppDout (notice, "length = " << length);
++    return length;
++  }*/
++
++// test (pierre) :
++value_type ParabolaPath::computeLength(const core::ConfigurationIn_t q1, const core::ConfigurationIn_t q2) const {
++  const value_type theta = coefficients_(3);
++  const value_type X = q2[0] - q1[0];
++  const value_type Y = q2[1] - q1[1];
++  ;
++  // theta = coef[3]
++  const value_type X_theta = X * cos(theta) + Y * sin(theta);
++  return X_theta;
++}
++
++// Function equivalent to sqrt( 1 + f'(x)^2 )
++value_type ParabolaPath::lengthFunction(const value_type x) const {
++  const value_type y =
++      sqrt(1 + (2 * coefficients_(0) * x + coefficients_(1)) * (2 * coefficients_(0) * x + coefficients_(1)));
++  return y;
++}
++
++vector_t ParabolaPath::evaluateVelocity(const value_type t) const {
++  vector_t vel(3);
++  bool success;
++  const value_type theta = coefficients_(3);
++  const value_type alpha = coefficients_(4);
++  const value_type x_theta_0_dot = coefficients_(5);
++  const value_type inv_x_theta_0_dot_sq = 1 / (x_theta_0_dot * x_theta_0_dot);
++  const value_type x_theta_0 = coefficients_(6);
++  const core::Configuration_t q = (*this)(t, success);
++  const value_type x_theta = q[0] * cos(theta) + q[1] * sin(theta);
++  vel[0] = x_theta_0_dot * cos(theta);
++  vel[1] = x_theta_0_dot * sin(theta);
++  vel[2] = x_theta_0_dot * (-9.81 * (x_theta - x_theta_0) * inv_x_theta_0_dot_sq + tan(alpha));
++  return vel;
++}
++
++}  //   namespace rbprm
++}  // namespace hpp
+diff --git a/src/planner/timed-parabola-path.cc b/src/planner/timed-parabola-path.cc
+index 692e960..62f4338 100644
+--- src/planner/timed-parabola-path.cc
++++ src/planner/timed-parabola-path.cc
+@@ -82,8 +82,7 @@ TimedParabolaPath::TimedParabolaPath(const TimedParabolaPath& path)
+ /// \param subInterval interval of definition of the extract path
+ /// If upper bound of subInterval is smaller than lower bound,
+ /// result is reversed.
+-core::PathPtr_t TimedParabolaPath::extract(const core::interval_t& /*subInterval*/) const
+-    throw(core::projection_error) {
++core::PathPtr_t TimedParabolaPath::extract(const core::interval_t& /*subInterval*/) const {
+   // TODO
+   throw core::projection_error("Extract is not implemented for parabola paths");
+ }
+diff --git a/src/stability/stability.cc b/src/stability/stability.cc
+index c9bd9f0..b899544 100644
+--- src/stability/stability.cc
++++ src/stability/stability.cc
+@@ -129,7 +129,7 @@ const std::vector<std::size_t> numContactPoints(const T_Limb& limbs, const std::
+ 
+ centroidal_dynamics::Vector3 setupLibrary(const RbPrmFullBodyPtr_t fullbody, State& state, Equilibrium& sEq,
+                                           EquilibriumAlgorithm& alg, core::value_type friction, const double feetX,
+-                                          const double feetY) throw(std::runtime_error) {
++                                          const double feetY) {
+   friction = fullbody->getFriction();
+   hppDout(notice, "Setup centroidal dynamic lib, friction = " << friction);
+   const rbprm::T_Limb& limbs = fullbody->GetLimbs();
+diff --git a/tests/tools-obstacle.hh b/tests/tools-obstacle.hh
+index 1c3d72a..af71941 100644
+--- tests/tools-obstacle.hh
++++ tests/tools-obstacle.hh
+@@ -49,8 +49,7 @@ using namespace hpp;
+ using namespace hpp::core;
+ 
+ void addAffObjects(hpp::core::ProblemSolver& problemSolver, const affordance::OperationBases_t& ops,
+-                   const std::vector<affordance::CollisionObjects_t>& affObjs,
+-                   const std::string obstacleNameNonAff) throw(std::runtime_error) {
++                   const std::vector<affordance::CollisionObjects_t>& affObjs, const std::string obstacleNameNonAff) {
+   const std::string affSuffix = "aff";
+   std::string obstacleName(obstacleNameNonAff);
+   obstacleName += affSuffix;
+@@ -92,7 +91,7 @@ void affordanceAnalysis(ProblemSolver& problemSolver, const std::string& obstacl
+   }
+ }
+ 
+-affordance::OperationBases_t createOperations(hpp::core::ProblemSolver& pSolver) throw(std::runtime_error) {
++affordance::OperationBases_t createOperations(hpp::core::ProblemSolver& pSolver) {
+   pSolver.affordanceConfigs.add("Support", vector3_t(0.3, 0.3, 0.05));
+   pSolver.affordanceConfigs.add("Lean", vector3_t(0.1, 0.3, 0.05));
+   pSolver.affordanceConfigs.add("Support45", vector3_t(0.1, 0.3, 0.05));
