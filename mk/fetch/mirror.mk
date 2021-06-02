@@ -17,6 +17,7 @@
 #                                            Anthony Mallet on Thu Feb  7 2013
 #
 $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch-vars.mk)
+$(call require, ${ROBOTPKG_DIR}/mk/clean.mk)
 
 _MIRROR_LOG=	${WRKDIR}/mirror.log
 
@@ -33,6 +34,7 @@ $(call require, ${ROBOTPKG_DIR}/mk/fetch/fetch.mk)
 ifneq (,$(strip ${ALLFILES}))
   ifeq (,$(filter-out ${ACCEPTABLE_LICENSES},${LICENSE}))
     ifndef NO_PUBLIC_SRC
+      _MIRROR_TARGETS+=bootstrap-depends
       _MIRROR_TARGETS+=check-distfiles
       ifndef NO_MASTER_SITES_CHECK
         ifeq (,$(filter fetch,${INTERACTIVE_STAGE}))
@@ -47,12 +49,13 @@ ifneq (,$(strip ${ALLFILES}))
     endif
   endif
 
-  _MD_TARGETS+=	makedirs
   _MD_TARGETS+=	mirror-message
   _MD_TARGETS+=	mirror-tag
+  _MD_TARGETS+=	cleaner
+  _MD_TARGETS+=	makedirs
   ifdef _MIRROR_TARGETS
-    _MD_TARGETS+=	$(call add-barrier, bootstrap-depends, mirror-distfiles)
-    _MD_TARGETS+=	${_MIRROR_TARGETS}
+    _MD_TARGETS+=	mirror-cbeh
+    _MD_TARGETS+=	do-mirror
   else
     _MD_TARGETS+=	mirror-na
   endif
@@ -61,13 +64,9 @@ endif
 
 .PHONY: mirror-distfiles
 mirror-distfiles: ${_MD_TARGETS}
-	${RUN} status=0;						\
-	if ${TEST} -f ${_mirrorlog_broken}; then			\
-	  status=2;							\
-	fi;								\
+	${RUN}								\
 	${MAKE} cleaner;						\
-	if ${TEST} "$$status" -ne 0; then				\
-	  status=2;							\
+	if ${TEST} -f ${_mirrorlog_broken}; then			\
 	  ${PHASE_MSG} "Failed to mirror distfiles for ${PKGNAME}";	\
 	  ${ERROR_MSG} "For details, check the log files in:";		\
 	  ${ERROR_MSG} "${MIRROR_LOGDIR}/${PKGNAME}" >&2;		\
@@ -97,6 +96,29 @@ mirror-na:
 	  ${ECHO_MSG} "${PKGNAME} is restricted";			\
 	  ${ECHO_MSG} "${RESTRICTED}";					\
 	} >${_mirrorlog_cbbh} 2>&1
+
+
+# --- mirror-cbeh ----------------------------------------------------------
+#
+# Check that the package can be fetched/checksumed
+#
+.PHONY: mirror-cbeh
+mirror-cbeh:
+	${RUN}								\
+	${MAKE} cbeh >${_mirrorlog_cbbh} 2>&1				\
+	  && ${RM} -f ${_mirrorlog_cbbh};				\
+	${TEST} ! -s ${_mirrorlog_cbbh} || ${CAT} >&2 <${_mirrorlog_cbbh}
+
+
+# --- do-mirror ------------------------------------------------------------
+#
+# Perform the mirror-distfiles target
+#
+.PHONY: do-mirror
+do-mirror:
+	${RUN}								\
+	${TEST} ! -s ${_mirrorlog_cbbh} || exit 0;			\
+	${MAKE} ${_MIRROR_TARGETS} EXPECT_TARGETS="mirror-distfiles";
 
 
 # --- check-distfiles (PRIVATE) --------------------------------------------
