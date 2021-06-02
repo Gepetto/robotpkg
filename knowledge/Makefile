@@ -5,7 +5,6 @@ COMMENT=	Knowledge representation tools
 
 SUBDIR+=	jena
 SUBDIR+=	pellet
-SUBDIR+=	liboro
 SUBDIR+=	oro-server
 SUBDIR+=	py-oro
 
