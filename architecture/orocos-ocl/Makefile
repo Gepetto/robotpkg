@@ -46,5 +46,5 @@ include ../../mk/sysdep/ncurses.mk
 include ../../mk/sysdep/netcdf.mk
 include ../../mk/sysdep/readline.mk
 include ../../mk/language/c.mk
-include ../../mk/language/c++.mk
+include ../../mk/language/c++11.mk
 include ../../mk/robotpkg.mk
