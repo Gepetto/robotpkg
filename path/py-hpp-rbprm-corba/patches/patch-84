@@ -1,0 +1,1449 @@
+From 74049a6252ef05573859249045a03ce3daca4adf Mon Sep 17 00:00:00 2001
+From: Florent Lamiraux <florent@laas.fr>
+Date: Wed, 5 May 2021 18:16:42 +0200
+Subject: [PATCH 1/3] Use hpp-corbaserver functions for conversion to CORBA
+ types.
+
+  This commit fixes a memory leak due to sequences of strings.
+---
+ src/rbprmbuilder.impl.cc | 68 +++++++---------------------------------
+ 1 file changed, 12 insertions(+), 56 deletions(-)
+
+diff --git a/src/rbprmbuilder.impl.cc b/src/rbprmbuilder.impl.cc
+index 02ddc15..1330b0f 100644
+--- src/rbprmbuilder.impl.cc
++++ src/rbprmbuilder.impl.cc
+@@ -38,6 +38,7 @@
+ #include <hpp/core/configuration-shooter/uniform.hh>
+ #include <hpp/core/collision-validation.hh>
+ #include <hpp/core/problem-solver.hh>
++#include <hpp/corbaserver/conversions.hh>
+ #include <fstream>
+ #include <hpp/rbprm/planner/dynamic-planner.hh>
+ #include <hpp/rbprm/planner/rbprm-steering-kinodynamic.hh>
+@@ -61,6 +62,9 @@ namespace rbprm {
+ 
+ namespace impl {
+ 
++using corbaServer::vectorToFloatSeq;
++using corbaServer::toNames_t;
++
+ const pinocchio::Computation_t flag =
+     static_cast<pinocchio::Computation_t>(pinocchio::JOINT_POSITION | pinocchio::JACOBIAN | pinocchio::COM);
+ 
+@@ -73,16 +77,6 @@ RbprmBuilder::RbprmBuilder()
+   // NOTHING
+ }
+ 
+-hpp::floatSeq vectorToFloatseq(const hpp::core::vector_t& input) {
+-  CORBA::ULong size = (CORBA::ULong)input.size();
+-  double* dofArray = hpp::floatSeq::allocbuf(size);
+-  hpp::floatSeq floats(size, size, dofArray, true);
+-  for (std::size_t i = 0; i < size; ++i) {
+-    dofArray[i] = input[i];
+-  }
+-  return floats;
+-}
+-
+ void RbprmBuilder::loadRobotRomModel(const char* robotName,
+                                      const char* rootJointType,
+                                      const char* urdfName) throw(hpp::Error) {
+@@ -187,7 +181,6 @@ hpp::floatSeq* RbprmBuilder::getSampleConfig(const char* limb, unsigned int samp
+     throw Error(err.c_str());
+   }
+   const RbPrmLimbPtr_t& limbPtr = lit->second;
+-  hpp::floatSeq* dofArray;
+   Eigen::VectorXd config = fullBody()->device_->currentConfiguration();
+   if (sampleId > limbPtr->sampleContainer_.samples_.size()) {
+     std::string err("Limb " + std::string(limb) + "does not have samples.");
+@@ -195,10 +188,7 @@ hpp::floatSeq* RbprmBuilder::getSampleConfig(const char* limb, unsigned int samp
+   }
+   const sampling::Sample& sample = limbPtr->sampleContainer_.samples_[sampleId];
+   config.segment(sample.startRank_, sample.length_) = sample.configuration_;
+-  dofArray = new hpp::floatSeq();
+-  dofArray->length(_CORBA_ULong(config.rows()));
+-  for (std::size_t i = 0; i < _CORBA_ULong(config.rows()); i++) (*dofArray)[(_CORBA_ULong)i] = config[i];
+-  return dofArray;
++  return vectorToFloatSeq(config);
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::getSamplePosition(const char* limb, unsigned int sampleId) throw(hpp::Error) {
+@@ -210,17 +200,12 @@ hpp::floatSeq* RbprmBuilder::getSamplePosition(const char* limb, unsigned int sa
+     throw Error(err.c_str());
+   }
+   const RbPrmLimbPtr_t& limbPtr = lit->second;
+-  hpp::floatSeq* dofArray;
+   if (sampleId > limbPtr->sampleContainer_.samples_.size()) {
+     std::string err("Limb " + std::string(limb) + "does not have samples.");
+     throw Error(err.c_str());
+   }
+   const sampling::Sample& sample = limbPtr->sampleContainer_.samples_[sampleId];
+-  const fcl::Vec3f& position = sample.effectorPosition_;
+-  dofArray = new hpp::floatSeq();
+-  dofArray->length(_CORBA_ULong(3));
+-  for (std::size_t i = 0; i < 3; i++) (*dofArray)[(_CORBA_ULong)i] = position[i];
+-  return dofArray;
++  return vectorToFloatSeq(sample.effectorPosition_);
+ }
+ 
+ typedef Eigen::Matrix<value_type, 4, 3, Eigen::RowMajor> Matrix43;
+@@ -1321,14 +1306,7 @@ Names_t* RbprmBuilder::getContactsVariations(unsigned short stateIdFrom, unsigne
+     State stateFrom = lastStatesComputed_[stateIdFrom];
+     State stateTo = lastStatesComputed_[stateIdTo];
+     std::vector<std::string> variations_s = stateTo.contactVariations(stateFrom);
+-    CORBA::ULong size = (CORBA::ULong)variations_s.size();
+-    char** nameList = Names_t::allocbuf(size);
+-    Names_t* variations = new Names_t(size, size, nameList);
+-    for (std::size_t i = 0; i < variations_s.size(); ++i) {
+-      nameList[i] = (char*)malloc(sizeof(char) * (variations_s[i].length() + 1));
+-      strcpy(nameList[i], variations_s[i].c_str());
+-    }
+-    return variations;
++    return toNames_t(variations_s.begin(), variations_s.end());
+   } catch (std::runtime_error& e) {
+     throw Error(e.what());
+   }
+@@ -1373,14 +1351,7 @@ Names_t* RbprmBuilder::getCollidingObstacleAtConfig(const ::hpp::floatSeq& confi
+         }
+       }
+     }
+-    CORBA::ULong size = (CORBA::ULong)res.size();
+-    char** nameList = Names_t::allocbuf(size);
+-    Names_t* variations = new Names_t(size, size, nameList);
+-    for (std::size_t i = 0; i < res.size(); ++i) {
+-      nameList[i] = (char*)malloc(sizeof(char) * (res[i].length() + 1));
+-      strcpy(nameList[i], res[i].c_str());
+-    }
+-    return variations;
++    return toNames_t(res.begin(), res.end());
+   } catch (std::runtime_error& e) {
+     throw Error(e.what());
+   }
+@@ -1637,15 +1608,7 @@ Names_t* RbprmBuilder::getEffectorsTrajectoriesNames(unsigned short pathId) thro
+     for (EffectorTrajectoriesMap_t::const_iterator it = map.begin(); it != map.end(); ++it) {
+       names.push_back(it->first);
+     }
+-    // convert names (vector of string) to corba Names_t
+-    CORBA::ULong size = (CORBA::ULong)names.size();
+-    char** nameList = Names_t::allocbuf(size);
+-    Names_t* limbsNames = new Names_t(size, size, nameList);
+-    for (std::size_t i = 0; i < names.size(); ++i) {
+-      nameList[i] = (char*)malloc(sizeof(char) * (names[i].length() + 1));
+-      strcpy(nameList[i], names[i].c_str());
+-    }
+-    return limbsNames;
++    return toNames_t(names.begin(), names.end());
+   } catch (std::runtime_error& e) {
+     std::cout << "ERROR " << e.what() << std::endl;
+     throw Error(e.what());
+@@ -1686,7 +1649,7 @@ hpp::floatSeqSeqSeq* RbprmBuilder::getEffectorTrajectoryWaypoints(unsigned short
+       std::size_t i = 1;
+       for (bezier_t::t_point_t::const_iterator wit = waypoints.begin(); wit != waypoints.end(); ++wit, ++i) {
+         const bezier_t::point_t position = *wit;
+-        (*curveWp)[(_CORBA_ULong)i] = vectorToFloatseq(position);
++        vectorToFloatSeq(position, (*curveWp)[(_CORBA_ULong)i]);
+       }
+       (*res)[(_CORBA_ULong)curveId] = (*curveWp);
+     }
+@@ -1726,7 +1689,7 @@ hpp::floatSeqSeq* RbprmBuilder::getPathAsBezier(unsigned short pathId) throw(hpp
+     // now add the waypoints :
+     std::size_t i = 1;
+     for (bezier_t::t_point_t::const_iterator wit = waypoints.begin(); wit != waypoints.end(); ++wit, ++i) {
+-      (*res)[(_CORBA_ULong)i] = vectorToFloatseq(*wit);
++      vectorToFloatSeq(*wit, (*res)[(_CORBA_ULong)i]);
+     }
+     return res;
+   } catch (std::runtime_error& e) {
+@@ -3122,14 +3085,7 @@ Names_t* RbprmBuilder::getAllLimbsNames() throw(hpp::Error) {
+     throw std::runtime_error("fullBody not loaded");
+   }
+   std::vector<std::string> names = rbprm::interpolation::extractEffectorsName(fullBody()->GetLimbs());
+-  CORBA::ULong size = (CORBA::ULong)names.size();
+-  char** nameList = Names_t::allocbuf(size);
+-  Names_t* limbsNames = new Names_t(size, size, nameList);
+-  for (std::size_t i = 0; i < names.size(); ++i) {
+-    nameList[i] = (char*)malloc(sizeof(char) * (names[i].length() + 1));
+-    strcpy(nameList[i], names[i].c_str());
+-  }
+-  return limbsNames;
++  return toNames_t(names.begin(), names.end());
+ }
+ 
+ bool RbprmBuilder::toggleNonContactingLimb(const char* limbName) throw(hpp::Error) {
+
+From 853fcacbb89287ef130fb32d5d4a0af2c01abf32 Mon Sep 17 00:00:00 2001
+From: Florent Lamiraux <florent@laas.fr>
+Date: Wed, 5 May 2021 18:19:01 +0200
+Subject: [PATCH 2/3] Remove throw declaration in method prototypes.
+
+---
+ src/rbprmbuilder.impl.cc | 210 +++++++++++++++++++--------------------
+ src/rbprmbuilder.impl.hh | 210 +++++++++++++++++++--------------------
+ 2 files changed, 210 insertions(+), 210 deletions(-)
+
+diff --git a/src/rbprmbuilder.impl.cc b/src/rbprmbuilder.impl.cc
+index 1330b0f..c08de4b 100644
+--- src/rbprmbuilder.impl.cc
++++ src/rbprmbuilder.impl.cc
+@@ -79,7 +79,7 @@ RbprmBuilder::RbprmBuilder()
+ 
+ void RbprmBuilder::loadRobotRomModel(const char* robotName,
+                                      const char* rootJointType,
+-                                     const char* urdfName) throw(hpp::Error) {
++                                     const char* urdfName) {
+   try {
+     hpp::pinocchio::DevicePtr_t romDevice = pinocchio::Device::create(robotName);
+     romDevices_.insert(std::make_pair(robotName, romDevice));
+@@ -97,7 +97,7 @@ void RbprmBuilder::loadRobotRomModel(const char* robotName,
+ void RbprmBuilder::loadRobotCompleteModel(const char* robotName,
+                                           const char* rootJointType,
+                                           const char* urdfName,
+-                                          const char* srdfName) throw(hpp::Error) {
++                                          const char* srdfName) {
+   if (!romLoaded_) {
+     std::string err("Rom must be loaded before loading complete model");
+     hppDout(error, err);
+@@ -122,7 +122,7 @@ void RbprmBuilder::loadFullBodyRobot(const char* robotName,
+                                      const char* rootJointType,
+                                      const char* urdfName,
+                                      const char* srdfName,
+-                                     const char* selectedProblem) throw(hpp::Error) {
++                                     const char* selectedProblem) {
+   try {
+     hpp::pinocchio::DevicePtr_t device = pinocchio::Device::create(robotName);
+     hpp::pinocchio::urdf::loadModel(device, 0, "",
+@@ -157,7 +157,7 @@ void RbprmBuilder::loadFullBodyRobot(const char* robotName,
+   analysisFactory_ = new sampling::AnalysisFactory(fullBody());
+ }
+ 
+-void RbprmBuilder::loadFullBodyRobotFromExistingRobot() throw(hpp::Error) {
++void RbprmBuilder::loadFullBodyRobotFromExistingRobot() {
+   try {
+     fullBody() = rbprm::RbPrmFullBody::create(problemSolver()->problem()->robot());
+     problemSolver()->pathValidationType("Discretized", 0.05);  // reset to avoid conflict with rbprm path
+@@ -172,7 +172,7 @@ void RbprmBuilder::loadFullBodyRobotFromExistingRobot() throw(hpp::Error) {
+   analysisFactory_ = new sampling::AnalysisFactory(fullBody());
+ }
+ 
+-hpp::floatSeq* RbprmBuilder::getSampleConfig(const char* limb, unsigned int sampleId) throw(hpp::Error) {
++hpp::floatSeq* RbprmBuilder::getSampleConfig(const char* limb, unsigned int sampleId) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   const T_Limb& limbs = fullBody()->GetLimbs();
+   T_Limb::const_iterator lit = limbs.find(std::string(limb));
+@@ -191,7 +191,7 @@ hpp::floatSeq* RbprmBuilder::getSampleConfig(const char* limb, unsigned int samp
+   return vectorToFloatSeq(config);
+ }
+ 
+-hpp::floatSeq* RbprmBuilder::getSamplePosition(const char* limb, unsigned int sampleId) throw(hpp::Error) {
++hpp::floatSeq* RbprmBuilder::getSamplePosition(const char* limb, unsigned int sampleId) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   const T_Limb& limbs = fullBody()->GetLimbs();
+   T_Limb::const_iterator lit = limbs.find(std::string(limb));
+@@ -380,7 +380,7 @@ T_Configuration doubleDofArrayToConfig(const pinocchio::DevicePtr_t& robot, cons
+ }
+ 
+ hpp::floatSeqSeq* RbprmBuilder::getEffectorPosition(const char* lb,
+-                                                    const hpp::floatSeq& configuration) throw(hpp::Error) {
++                                                    const hpp::floatSeq& configuration) {
+   try {
+     const std::string limbName(lb);
+     const RbPrmLimbPtr_t limb = fullBody()->GetLimbs().at(limbName);
+@@ -415,7 +415,7 @@ hpp::floatSeqSeq* RbprmBuilder::getEffectorPosition(const char* lb,
+   }
+ }
+ 
+-CORBA::UShort RbprmBuilder::getNumSamples(const char* limb) throw(hpp::Error) {
++CORBA::UShort RbprmBuilder::getNumSamples(const char* limb) {
+   const T_Limb& limbs = fullBody()->GetLimbs();
+   T_Limb::const_iterator lit = limbs.find(std::string(limb));
+   if (lit == limbs.end()) {
+@@ -425,7 +425,7 @@ CORBA::UShort RbprmBuilder::getNumSamples(const char* limb) throw(hpp::Error) {
+   return (CORBA::UShort)(lit->second->sampleContainer_.samples_.size());
+ }
+ 
+-floatSeq* RbprmBuilder::getOctreeNodeIds(const char* limb) throw(hpp::Error) {
++floatSeq* RbprmBuilder::getOctreeNodeIds(const char* limb) {
+   const T_Limb& limbs = fullBody()->GetLimbs();
+   T_Limb::const_iterator lit = limbs.find(std::string(limb));
+   if (lit == limbs.end()) {
+@@ -442,7 +442,7 @@ floatSeq* RbprmBuilder::getOctreeNodeIds(const char* limb) throw(hpp::Error) {
+   return dofArray;
+ }
+ 
+-double RbprmBuilder::getSampleValue(const char* limb, const char* valueName, unsigned int sampleId) throw(hpp::Error) {
++double RbprmBuilder::getSampleValue(const char* limb, const char* valueName, unsigned int sampleId) {
+   const T_Limb& limbs = fullBody()->GetLimbs();
+   T_Limb::const_iterator lit = limbs.find(std::string(limb));
+   if (lit == limbs.end()) {
+@@ -462,7 +462,7 @@ double RbprmBuilder::getSampleValue(const char* limb, const char* valueName, uns
+   return cit->second[sampleId];
+ }
+ 
+-double RbprmBuilder::getEffectorDistance(unsigned short state1, unsigned short state2) throw(hpp::Error) {
++double RbprmBuilder::getEffectorDistance(unsigned short state1, unsigned short state2) {
+   try {
+     std::size_t s1((std::size_t)state1), s2((std::size_t)state2);
+     if (lastStatesComputed_.size() < s1 || lastStatesComputed_.size() < s2) {
+@@ -493,25 +493,25 @@ std::vector<double> doubleConversion(const hpp::floatSeq& dofArray) {
+   return res;
+ }
+ 
+-void RbprmBuilder::setStaticStability(const bool staticStability) throw(hpp::Error) {
++void RbprmBuilder::setStaticStability(const bool staticStability) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   fullBody()->staticStability(staticStability);
+ }
+ 
+-void RbprmBuilder::setReferenceConfig(const hpp::floatSeq& referenceConfig) throw(hpp::Error) {
++void RbprmBuilder::setReferenceConfig(const hpp::floatSeq& referenceConfig) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   Configuration_t config(dofArrayToConfig(fullBody()->device_, referenceConfig));
+   refPose_ = config;
+   fullBody()->referenceConfig(config);
+ }
+ 
+-void RbprmBuilder::setPostureWeights(const hpp::floatSeq& postureWeights) throw(hpp::Error) {
++void RbprmBuilder::setPostureWeights(const hpp::floatSeq& postureWeights) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   Configuration_t config(dofArrayToConfig(fullBody()->device_->numberDof(), postureWeights));
+   fullBody()->postureWeights(config);
+ }
+ 
+-void RbprmBuilder::setReferenceEndEffector(const char* romName, const hpp::floatSeq& ref) throw(hpp::Error) {
++void RbprmBuilder::setReferenceEndEffector(const char* romName, const hpp::floatSeq& ref) {
+   std::string name(romName);
+   hpp::pinocchio::RbPrmDevicePtr_t device =
+       std::dynamic_pointer_cast<hpp::pinocchio::RbPrmDevice>(problemSolver()->robot());
+@@ -521,23 +521,23 @@ void RbprmBuilder::setReferenceEndEffector(const char* romName, const hpp::float
+   device->setEffectorReference(name, config);
+ }
+ 
+-void RbprmBuilder::usePosturalTaskContactCreation(const bool usePosturalTaskContactCreation) throw(hpp::Error) {
++void RbprmBuilder::usePosturalTaskContactCreation(const bool usePosturalTaskContactCreation) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   fullBody()->usePosturalTaskContactCreation(usePosturalTaskContactCreation);
+ }
+ 
+-void RbprmBuilder::setFilter(const hpp::Names_t& roms) throw(hpp::Error) {
++void RbprmBuilder::setFilter(const hpp::Names_t& roms) {
+   bindShooter_.romFilter_ = stringConversion(roms);
+ }
+ 
+-void RbprmBuilder::setAffordanceFilter(const char* romName, const hpp::Names_t& affordances) throw(hpp::Error) {
++void RbprmBuilder::setAffordanceFilter(const char* romName, const hpp::Names_t& affordances) {
+   std::string name(romName);
+   std::vector<std::string> affNames = stringConversion(affordances);
+   bindShooter_.affFilter_.erase(name);
+   bindShooter_.affFilter_.insert(std::make_pair(name, affNames));
+ }
+ 
+-void RbprmBuilder::boundSO3(const hpp::floatSeq& limitszyx) throw(hpp::Error) {
++void RbprmBuilder::boundSO3(const hpp::floatSeq& limitszyx) {
+   std::vector<double> limits = doubleConversion(limitszyx);
+   if (limits.size() != 6) {
+     throw Error("Can not bound SO3, array of 6 double required");
+@@ -572,7 +572,7 @@ rbprm::T_Limb GetFreeLimbs(const RbPrmFullBodyPtr_t fullBody, const hpp::rbprm::
+ }
+ 
+ double RbprmBuilder::projectStateToCOMEigen(unsigned short stateId, const pinocchio::Configuration_t& com_target,
+-                                            unsigned short maxNumeSamples) throw(hpp::Error) {
++                                            unsigned short maxNumeSamples) {
+   if (lastStatesComputed_.size() <= stateId) {
+     throw std::runtime_error("Unexisting state " + std::string("" + (stateId)));
+   }
+@@ -584,7 +584,7 @@ double RbprmBuilder::projectStateToCOMEigen(unsigned short stateId, const pinocc
+ }
+ 
+ double RbprmBuilder::projectStateToCOMEigen(State& s, const pinocchio::Configuration_t& com_target,
+-                                            unsigned short maxNumeSamples) throw(hpp::Error) {
++                                            unsigned short maxNumeSamples) {
+   try {
+     //            /hpp::pinocchio::Configuration_t c = rbprm::interpolation::projectOnCom(fullBody(),
+     //            problemSolver()->problem(),s,com_target,succes);
+@@ -672,7 +672,7 @@ double RbprmBuilder::projectStateToCOMEigen(State& s, const pinocchio::Configura
+ }
+ 
+ CORBA::Short RbprmBuilder::createState(const hpp::floatSeq& configuration,
+-                                       const hpp::Names_t& contactLimbs) throw(hpp::Error) {
++                                       const hpp::Names_t& contactLimbs) {
+   pinocchio::Configuration_t config = dofArrayToConfig(fullBody()->device_, configuration);
+   fullBody()->device_->currentConfiguration(config);
+   fullBody()->device_->computeForwardKinematics();
+@@ -695,7 +695,7 @@ CORBA::Short RbprmBuilder::createState(const hpp::floatSeq& configuration,
+   return (CORBA::Short)(lastStatesComputed_.size() - 1);
+ }
+ 
+-CORBA::Short RbprmBuilder::cloneState(unsigned short stateId) throw(hpp::Error) {
++CORBA::Short RbprmBuilder::cloneState(unsigned short stateId) {
+   try {
+     if (lastStatesComputed_.size() <= stateId) {
+       throw std::runtime_error("Can't clone state: invalid state id : " + std::string("" + stateId) +
+@@ -711,13 +711,13 @@ CORBA::Short RbprmBuilder::cloneState(unsigned short stateId) throw(hpp::Error)
+ }
+ 
+ double RbprmBuilder::projectStateToCOM(unsigned short stateId, const hpp::floatSeq& com,
+-                                       unsigned short max_num_sample) throw(hpp::Error) {
++                                       unsigned short max_num_sample) {
+   pinocchio::Configuration_t com_target = dofArrayToConfig(3, com);
+   return projectStateToCOMEigen(stateId, com_target, max_num_sample);
+ }
+ 
+ double RbprmBuilder::projectStateToRoot(unsigned short stateId, const hpp::floatSeq& root,
+-                                        const hpp::floatSeq& offset) throw(hpp::Error) {
++                                        const hpp::floatSeq& offset) {
+   pinocchio::Configuration_t root_target = dofArrayToConfig(7, root);
+   pinocchio::Configuration_t offset_target = dofArrayToConfig(3, offset);
+   if (lastStatesComputed_.size() <= stateId) {
+@@ -740,7 +740,7 @@ double RbprmBuilder::projectStateToRoot(unsigned short stateId, const hpp::float
+ 
+ rbprm::State RbprmBuilder::generateContacts_internal(const hpp::floatSeq& configuration,
+                                                      const hpp::floatSeq& direction, const hpp::floatSeq& acceleration,
+-                                                     const double robustnessThreshold) throw(hpp::Error) {
++                                                     const double robustnessThreshold) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   try {
+     fcl::Vec3f dir, acc;
+@@ -765,7 +765,7 @@ rbprm::State RbprmBuilder::generateContacts_internal(const hpp::floatSeq& config
+ 
+ hpp::floatSeq* RbprmBuilder::generateContacts(const hpp::floatSeq& configuration, const hpp::floatSeq& direction,
+                                               const hpp::floatSeq& acceleration,
+-                                              const double robustnessThreshold) throw(hpp::Error) {
++                                              const double robustnessThreshold) {
+   try {
+     rbprm::State state = generateContacts_internal(configuration, direction, acceleration, robustnessThreshold);
+     hpp::floatSeq* dofArray = new hpp::floatSeq();
+@@ -780,7 +780,7 @@ hpp::floatSeq* RbprmBuilder::generateContacts(const hpp::floatSeq& configuration
+ 
+ CORBA::Short RbprmBuilder::generateStateInContact(const hpp::floatSeq& configuration, const hpp::floatSeq& direction,
+                                                   const hpp::floatSeq& acceleration,
+-                                                  const double robustnessThreshold) throw(hpp::Error) {
++                                                  const double robustnessThreshold) {
+   try {
+     rbprm::State state = generateContacts_internal(configuration, direction, acceleration, robustnessThreshold);
+     lastStatesComputed_.push_back(state);
+@@ -791,7 +791,7 @@ CORBA::Short RbprmBuilder::generateStateInContact(const hpp::floatSeq& configura
+   }
+ }
+ 
+-hpp::floatSeq* RbprmBuilder::generateGroundContact(const hpp::Names_t& contactLimbs) throw(hpp::Error) {
++hpp::floatSeq* RbprmBuilder::generateGroundContact(const hpp::Names_t& contactLimbs) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   try {
+     fcl::Vec3f z(0, 0, 1);
+@@ -870,7 +870,7 @@ hpp::floatSeq* RbprmBuilder::generateGroundContact(const hpp::Names_t& contactLi
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::getContactSamplesIds(const char* limbname, const hpp::floatSeq& configuration,
+-                                                  const hpp::floatSeq& direction) throw(hpp::Error) {
++                                                  const hpp::floatSeq& direction) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   try {
+     fcl::Vec3f dir;
+@@ -918,7 +918,7 @@ hpp::floatSeq* RbprmBuilder::getContactSamplesIds(const char* limbname, const hp
+ }
+ 
+ short RbprmBuilder::generateContactState(::CORBA::UShort cId, const char* name,
+-                                         const ::hpp::floatSeq& direction) throw(hpp::Error) {
++                                         const ::hpp::floatSeq& direction) {
+   try {
+     if (lastStatesComputed_.size() <= (std::size_t)(cId)) {
+       throw std::runtime_error("Unexisting state " + std::string("" + (cId + 1)));
+@@ -984,7 +984,7 @@ short RbprmBuilder::generateContactState(::CORBA::UShort cId, const char* name,
+ 
+ hpp::floatSeqSeq* RbprmBuilder::getContactSamplesProjected(const char* limbname, const hpp::floatSeq& configuration,
+                                                            const hpp::floatSeq& direction,
+-                                                           unsigned short numSamples) throw(hpp::Error) {
++                                                           unsigned short numSamples) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   try {
+     fcl::Vec3f dir;
+@@ -1065,7 +1065,7 @@ hpp::floatSeqSeq* RbprmBuilder::getContactSamplesProjected(const char* limbname,
+   }
+ }
+ 
+-hpp::floatSeq* RbprmBuilder::getSamplesIdsInOctreeNode(const char* limb, double octreeNodeId) throw(hpp::Error) {
++hpp::floatSeq* RbprmBuilder::getSamplesIdsInOctreeNode(const char* limb, double octreeNodeId) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   try {
+     long ocId((long)octreeNodeId);
+@@ -1100,7 +1100,7 @@ void RbprmBuilder::addLimb(const char* id, const char* limb, const char* effecto
+                            const hpp::floatSeq& normal, double x, double y, unsigned int samples,
+                            const char* heuristicName, double resolution, const char* contactType,
+                            double disableEffectorCollision, double grasp, const hpp::floatSeq& limbOffset,
+-                           const char* kinematicConstraintsPath, double kinematicConstraintsMin) throw(hpp::Error) {
++                           const char* kinematicConstraintsPath, double kinematicConstraintsMin) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   try {
+     fcl::Vec3f off, norm, limbOff;
+@@ -1123,7 +1123,7 @@ void RbprmBuilder::addLimb(const char* id, const char* limb, const char* effecto
+ }
+ 
+ void RbprmBuilder::addNonContactingLimb(const char* id, const char* limb, const char* effector,
+-                                        unsigned int samples) throw(hpp::Error) {
++                                        unsigned int samples) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   try {
+     fullBody()->AddNonContactingLimb(std::string(id), std::string(limb), std::string(effector),
+@@ -1135,7 +1135,7 @@ void RbprmBuilder::addNonContactingLimb(const char* id, const char* limb, const
+ 
+ void RbprmBuilder::addLimbDatabase(const char* databasePath, const char* id, const char* heuristicName,
+                                    double loadValues, double disableEffectorCollision,
+-                                   double grasp) throw(hpp::Error) {
++                                   double grasp) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   try {
+     std::string fileName(databasePath);
+@@ -1180,7 +1180,7 @@ void SetPositionAndNormal(rbprm::State& state, hpp::rbprm::RbPrmFullBodyPtr_t fu
+ }
+ 
+ void RbprmBuilder::setStartState(const hpp::floatSeq& configuration,
+-                                 const hpp::Names_t& contactLimbs) throw(hpp::Error) {
++                                 const hpp::Names_t& contactLimbs) {
+   try {
+     std::vector<std::string> names = stringConversion(contactLimbs);
+     core::ValidationReportPtr_t validationReport;
+@@ -1200,7 +1200,7 @@ void RbprmBuilder::setStartState(const hpp::floatSeq& configuration,
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::computeContactForConfig(const hpp::floatSeq& configuration,
+-                                                     const char* limbNam) throw(hpp::Error) {
++                                                     const char* limbNam) {
+   State state;
+   std::string limb(limbNam);
+   try {
+@@ -1225,7 +1225,7 @@ hpp::floatSeq* RbprmBuilder::computeContactForConfig(const hpp::floatSeq& config
+ }
+ 
+ void RbprmBuilder::setEndState(const hpp::floatSeq& configuration,
+-                               const hpp::Names_t& contactLimbs) throw(hpp::Error) {
++                               const hpp::Names_t& contactLimbs) {
+   try {
+     std::vector<std::string> names = stringConversion(contactLimbs);
+     core::ValidationReportPtr_t validationReport;
+@@ -1244,7 +1244,7 @@ void RbprmBuilder::setEndState(const hpp::floatSeq& configuration,
+   }
+ }
+ 
+-void RbprmBuilder::setStartStateId(unsigned short stateId) throw(hpp::Error) {
++void RbprmBuilder::setStartStateId(unsigned short stateId) {
+   try {
+     if (lastStatesComputed_.size() == 0) {
+       throw std::runtime_error("states not yet computed, call interpolate() first.");
+@@ -1259,7 +1259,7 @@ void RbprmBuilder::setStartStateId(unsigned short stateId) throw(hpp::Error) {
+   }
+ }
+ 
+-void RbprmBuilder::setEndStateId(unsigned short stateId) throw(hpp::Error) {
++void RbprmBuilder::setEndStateId(unsigned short stateId) {
+   try {
+     if (lastStatesComputed_.size() == 0) {
+       throw std::runtime_error("states not yet computed, call interpolate() first.");
+@@ -1275,7 +1275,7 @@ void RbprmBuilder::setEndStateId(unsigned short stateId) throw(hpp::Error) {
+   }
+ }
+ 
+-double RbprmBuilder::getTimeAtState(unsigned short stateId) throw(hpp::Error) {
++double RbprmBuilder::getTimeAtState(unsigned short stateId) {
+   try {
+     if (lastStatesComputed_.size() == 0) {
+       throw std::runtime_error("states not yet computed, call interpolate() first.");
+@@ -1290,7 +1290,7 @@ double RbprmBuilder::getTimeAtState(unsigned short stateId) throw(hpp::Error) {
+   }
+ }
+ 
+-Names_t* RbprmBuilder::getContactsVariations(unsigned short stateIdFrom, unsigned short stateIdTo) throw(hpp::Error) {
++Names_t* RbprmBuilder::getContactsVariations(unsigned short stateIdFrom, unsigned short stateIdTo) {
+   try {
+     if (lastStatesComputed_.size() == 0) {
+       throw std::runtime_error("states not yet computed, call interpolate() first.");
+@@ -1313,7 +1313,7 @@ Names_t* RbprmBuilder::getContactsVariations(unsigned short stateIdFrom, unsigne
+ }
+ 
+ Names_t* RbprmBuilder::getCollidingObstacleAtConfig(const ::hpp::floatSeq& configuration,
+-                                                    const char* limbName) throw(hpp::Error) {
++                                                    const char* limbName) {
+   try {
+     std::vector<std::string> res;
+     std::string name(limbName);
+@@ -1358,7 +1358,7 @@ Names_t* RbprmBuilder::getCollidingObstacleAtConfig(const ::hpp::floatSeq& confi
+ }
+ 
+ floatSeqSeq* RbprmBuilder::getContactSurfacesAtConfig(const ::hpp::floatSeq& configuration,
+-                                                      const char* limbName) throw(hpp::Error) {
++                                                      const char* limbName) {
+   try {
+     hppDout(notice, "begin getContactSurfacesAtConfig");
+     std::string name(limbName);
+@@ -1475,7 +1475,7 @@ std::vector<State> TimeStatesToStates(const T_StateFrame& ref) {
+ 
+ floatSeqSeq* RbprmBuilder::interpolateConfigs(const hpp::floatSeqSeq& configs, double robustnessTreshold,
+                                               unsigned short filterStates, bool testReachability, bool quasiStatic,
+-                                              bool erasePreviousStates) throw(hpp::Error) {
++                                              bool erasePreviousStates) {
+   try {
+     if (startState_.configuration_.rows() == 0) {
+       throw std::runtime_error("Start state not initialized, can not interpolate ");
+@@ -1547,7 +1547,7 @@ hpp::floatSeqSeq* contactCone(RbPrmFullBodyPtr_t fullBody, State& state, const d
+   return res;
+ }
+ 
+-hpp::floatSeqSeq* RbprmBuilder::getContactCone(unsigned short stateId, double friction) throw(hpp::Error) {
++hpp::floatSeqSeq* RbprmBuilder::getContactCone(unsigned short stateId, double friction) {
+   try {
+     if (lastStatesComputed_.size() <= stateId) {
+       throw std::runtime_error("Unexisting state " + std::string("" + (stateId)));
+@@ -1577,7 +1577,7 @@ State intermediary(const State& firstState, const State& thirdState, unsigned sh
+   return firstState;
+ }
+ 
+-hpp::floatSeqSeq* RbprmBuilder::getContactIntermediateCone(unsigned short stateId, double friction) throw(hpp::Error) {
++hpp::floatSeqSeq* RbprmBuilder::getContactIntermediateCone(unsigned short stateId, double friction) {
+   try {
+     if (lastStatesComputed_.size() <= (std::size_t)(stateId + 1)) {
+       throw std::runtime_error("Unexisting state " + std::string("" + (stateId + 1)));
+@@ -1596,7 +1596,7 @@ hpp::floatSeqSeq* RbprmBuilder::getContactIntermediateCone(unsigned short stateI
+   }
+ }
+ 
+-Names_t* RbprmBuilder::getEffectorsTrajectoriesNames(unsigned short pathId) throw(hpp::Error) {
++Names_t* RbprmBuilder::getEffectorsTrajectoriesNames(unsigned short pathId) {
+   try {
+     if (!fullBodyLoaded_) throw std::runtime_error("No Fullbody loaded");
+     EffectorTrajectoriesMap_t map;
+@@ -1616,7 +1616,7 @@ Names_t* RbprmBuilder::getEffectorsTrajectoriesNames(unsigned short pathId) thro
+ }
+ 
+ hpp::floatSeqSeqSeq* RbprmBuilder::getEffectorTrajectoryWaypoints(unsigned short pathId,
+-                                                                  const char* effectorName) throw(hpp::Error) {
++                                                                  const char* effectorName) {
+   try {
+     if (!fullBodyLoaded_) throw std::runtime_error("No Fullbody loaded");
+     std::vector<bezier_Ptr> curvesVector;
+@@ -1660,7 +1660,7 @@ hpp::floatSeqSeqSeq* RbprmBuilder::getEffectorTrajectoryWaypoints(unsigned short
+   }
+ }
+ 
+-hpp::floatSeqSeq* RbprmBuilder::getPathAsBezier(unsigned short pathId) throw(hpp::Error) {
++hpp::floatSeqSeq* RbprmBuilder::getPathAsBezier(unsigned short pathId) {
+   try {
+     if (!fullBodyLoaded_) throw std::runtime_error("No Fullbody loaded");
+     if (problemSolver()->paths().size() <= pathId)
+@@ -1735,7 +1735,7 @@ core::PathVectorPtr_t addRotations(const T_Configuration& positions, pinocchio::
+ 
+ core::PathVectorPtr_t generateTrunkPath(RbPrmFullBodyPtr_t fullBody, core::ProblemSolverPtr_t problemSolver,
+                                         const hpp::floatSeqSeq& rootPositions, const pinocchio::Configuration_t q1,
+-                                        const pinocchio::Configuration_t q2) throw(hpp::Error) {
++                                        const pinocchio::Configuration_t q2) {
+   try {
+     T_Configuration positions = doubleDofArrayToConfig(3, rootPositions);
+     if (positions.size() < 2) {
+@@ -1749,7 +1749,7 @@ core::PathVectorPtr_t generateTrunkPath(RbPrmFullBodyPtr_t fullBody, core::Probl
+ }
+ 
+ CORBA::Short RbprmBuilder::generateRootPath(const hpp::floatSeqSeq& rootPositions, const hpp::floatSeq& q1Seq,
+-                                            const hpp::floatSeq& q2Seq) throw(hpp::Error) {
++                                            const hpp::floatSeq& q2Seq) {
+   try {
+     pinocchio::Configuration_t q1 = dofArrayToConfig(4, q1Seq), q2 = dofArrayToConfig(4, q2Seq);
+     return (CORBA::Short)problemSolver()->addPath(
+@@ -1759,7 +1759,7 @@ CORBA::Short RbprmBuilder::generateRootPath(const hpp::floatSeqSeq& rootPosition
+   }
+ }
+ 
+-CORBA::Short RbprmBuilder::straightPath(const hpp::floatSeqSeq& positions) throw(hpp::Error) {
++CORBA::Short RbprmBuilder::straightPath(const hpp::floatSeqSeq& positions) {
+   try {
+     T_Configuration c = doubleDofArrayToConfig(3, positions);
+     if (c.size() < 2) {
+@@ -1780,7 +1780,7 @@ CORBA::Short RbprmBuilder::straightPath(const hpp::floatSeqSeq& positions) throw
+   }
+ }
+ 
+-CORBA::Short RbprmBuilder::generateCurveTraj(const hpp::floatSeqSeq& positions) throw(hpp::Error) {
++CORBA::Short RbprmBuilder::generateCurveTraj(const hpp::floatSeqSeq& positions) {
+   try {
+     T_Configuration c = doubleDofArrayToConfig(3, positions);
+     bezier_t* curve = new bezier_t(c.begin(), c.end());
+@@ -1796,7 +1796,7 @@ CORBA::Short RbprmBuilder::generateCurveTraj(const hpp::floatSeqSeq& positions)
+ }
+ 
+ CORBA::Short RbprmBuilder::generateCurveTrajParts(const hpp::floatSeqSeq& positions,
+-                                                  const hpp::floatSeq& partitions) throw(hpp::Error) {
++                                                  const hpp::floatSeq& partitions) {
+   try {
+     pinocchio::Configuration_t config = dofArrayToConfig((std::size_t)partitions.length(), partitions);
+     T_Configuration c = doubleDofArrayToConfig(3, positions);
+@@ -1820,7 +1820,7 @@ CORBA::Short RbprmBuilder::generateCurveTrajParts(const hpp::floatSeqSeq& positi
+ }
+ 
+ CORBA::Short RbprmBuilder::generateComTraj(const hpp::floatSeqSeq& positions, const hpp::floatSeqSeq& velocities,
+-                                           const hpp::floatSeqSeq& accelerations, const double dt) throw(hpp::Error) {
++                                           const hpp::floatSeqSeq& accelerations, const double dt) {
+   try {
+     T_Configuration c = doubleDofArrayToConfig(3, positions);
+     T_Configuration cd = doubleDofArrayToConfig(3, velocities);
+@@ -1847,7 +1847,7 @@ CORBA::Short RbprmBuilder::generateComTraj(const hpp::floatSeqSeq& positions, co
+   }
+ }
+ 
+-floatSeqSeq* RbprmBuilder::computeContactPoints(unsigned short cId) throw(hpp::Error) {
++floatSeqSeq* RbprmBuilder::computeContactPoints(unsigned short cId) {
+   if (lastStatesComputed_.size() <= (std::size_t)(cId + 1)) {
+     throw std::runtime_error("Unexisting state " + std::string("" + (cId + 1)));
+   }
+@@ -1895,7 +1895,7 @@ floatSeqSeq* RbprmBuilder::computeContactPoints(unsigned short cId) throw(hpp::E
+ }
+ 
+ floatSeqSeq* RbprmBuilder::computeContactPointsAtState(unsigned short cId,
+-                                                       unsigned short isIntermediate) throw(hpp::Error) {
++                                                       unsigned short isIntermediate) {
+   if (lastStatesComputed_.size() <= cId + isIntermediate) {
+     throw std::runtime_error("Unexisting state " + std::string("" + (cId)));
+   }
+@@ -1934,7 +1934,7 @@ floatSeqSeq* RbprmBuilder::computeContactPointsAtState(unsigned short cId,
+   return res;
+ }
+ 
+-floatSeqSeq* RbprmBuilder::computeContactPointsForLimb(unsigned short cId, const char* limbName) throw(hpp::Error) {
++floatSeqSeq* RbprmBuilder::computeContactPointsForLimb(unsigned short cId, const char* limbName) {
+   if (lastStatesComputed_.size() <= (std::size_t)(cId + 1)) {
+     throw std::runtime_error("Unexisting state " + std::string("" + (cId + 1)));
+   }
+@@ -1983,7 +1983,7 @@ floatSeqSeq* RbprmBuilder::computeContactPointsForLimb(unsigned short cId, const
+ }
+ 
+ floatSeqSeq* RbprmBuilder::computeContactPointsAtStateForLimb(unsigned short cId, unsigned short isIntermediate,
+-                                                              const char* limbName) throw(hpp::Error) {
++                                                              const char* limbName) {
+   if (lastStatesComputed_.size() <= cId + isIntermediate) {
+     throw std::runtime_error("Unexisting state " + std::string("" + (cId)));
+   }
+@@ -2026,7 +2026,7 @@ floatSeqSeq* RbprmBuilder::computeContactPointsAtStateForLimb(unsigned short cId
+ }
+ 
+ floatSeqSeq* RbprmBuilder::computeCenterOfContactAtStateForLimb(unsigned short cId, unsigned short isIntermediate,
+-                                                                const char* limbName) throw(hpp::Error) {
++                                                                const char* limbName) {
+   if (lastStatesComputed_.size() <= cId + isIntermediate) {
+     throw std::runtime_error("Unexisting state " + std::string("" + (cId)));
+   }
+@@ -2071,7 +2071,7 @@ floatSeqSeq* RbprmBuilder::computeCenterOfContactAtStateForLimb(unsigned short c
+ 
+ floatSeqSeq* RbprmBuilder::interpolate(double timestep, double path, double robustnessTreshold,
+                                        unsigned short filterStates, bool testReachability, bool quasiStatic,
+-                                       bool erasePreviousStates) throw(hpp::Error) {
++                                       bool erasePreviousStates) {
+   hppDout(notice, "### Begin interpolate");
+   try {
+     unsigned int pathId = int(path);
+@@ -2137,7 +2137,7 @@ CORBA::Short AddPath(core::PathPtr_t path, core::ProblemSolverPtr_t ps) {
+ }
+ 
+ CORBA::Short RbprmBuilder::limbRRT(unsigned short s1, unsigned short s2,
+-                                   unsigned short numOptimizations) throw(hpp::Error) {
++                                   unsigned short numOptimizations) {
+   try {
+     if (lastStatesComputed_.size() < s1 || lastStatesComputed_.size() < s2) {
+       throw std::runtime_error("did not find a states at indicated indices: " + std::string("" + s1) + ", " +
+@@ -2155,7 +2155,7 @@ CORBA::Short RbprmBuilder::limbRRT(unsigned short s1, unsigned short s2,
+ }
+ 
+ CORBA::Short RbprmBuilder::limbRRTFromRootPath(unsigned short s1, unsigned short s2, unsigned short path,
+-                                               unsigned short numOptimizations) throw(hpp::Error) {
++                                               unsigned short numOptimizations) {
+   try {
+     if (lastStatesComputed_.size() < s1 || lastStatesComputed_.size() < s2) {
+       throw std::runtime_error("did not find a states at indicated indices: " + std::string("" + s1) + ", " +
+@@ -2174,7 +2174,7 @@ CORBA::Short RbprmBuilder::limbRRTFromRootPath(unsigned short s1, unsigned short
+   }
+ }
+ 
+-CORBA::Short RbprmBuilder::configToPath(const hpp::floatSeqSeq& configs) throw(hpp::Error) {
++CORBA::Short RbprmBuilder::configToPath(const hpp::floatSeqSeq& configs) {
+   T_Configuration positions = doubleDofArrayToConfig(fullBody()->device_, configs);
+   core::PathVectorPtr_t res =
+       core::PathVector::create(fullBody()->device_->configSize(), fullBody()->device_->numberDof());
+@@ -2186,7 +2186,7 @@ CORBA::Short RbprmBuilder::configToPath(const hpp::floatSeqSeq& configs) throw(h
+ }
+ 
+ CORBA::Short RbprmBuilder::comRRT(unsigned short s1, unsigned short s2, unsigned short path,
+-                                  unsigned short numOptimizations) throw(hpp::Error) {
++                                  unsigned short numOptimizations) {
+   try {
+     // temp
+     assert(s2 == s1 + 1);
+@@ -2224,7 +2224,7 @@ core::Configuration_t project_or_throw(rbprm::RbPrmFullBodyPtr_t fulllBody, cons
+ 
+ hpp::floatSeq* RbprmBuilder::rrt(t_rrt functor, unsigned short s1, unsigned short s2, unsigned short cT1,
+                                  unsigned short cT2, unsigned short cT3,
+-                                 unsigned short numOptimizations) throw(hpp::Error) {
++                                 unsigned short numOptimizations) {
+   hppDout(notice, "########## begin rrt for state " << s1 << " ###########");
+   unsigned int seed = (unsigned int)(time(NULL));
+   std::cout << "seed rrt = " << seed << std::endl;
+@@ -2345,31 +2345,31 @@ hpp::floatSeq* RbprmBuilder::rrt(t_rrt functor, unsigned short s1, unsigned shor
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::comRRTFromPos(unsigned short state1, unsigned short cT1, unsigned short cT2,
+-                                           unsigned short cT3, unsigned short numOptimizations) throw(hpp::Error) {
++                                           unsigned short cT3, unsigned short numOptimizations) {
+   return rrt(&interpolation::comRRT, state1, (unsigned short)(state1 + 1), cT1, cT2, cT3, numOptimizations);
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::comRRTFromPosBetweenState(unsigned short state1, unsigned short state2,
+                                                        unsigned short cT1, unsigned short cT2, unsigned short cT3,
+-                                                       unsigned short numOptimizations) throw(hpp::Error) {
++                                                       unsigned short numOptimizations) {
+   return rrt(&interpolation::comRRT, state1, state2, cT1, cT2, cT3, numOptimizations);
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::effectorRRTFromPosBetweenState(unsigned short state1, unsigned short state2,
+                                                             unsigned short cT1, unsigned short cT2, unsigned short cT3,
+-                                                            unsigned short numOptimizations) throw(hpp::Error) {
++                                                            unsigned short numOptimizations) {
+   return rrt(&interpolation::effectorRRT, state1, state2, cT1, cT2, cT3, numOptimizations);
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::effectorRRT(unsigned short state1, unsigned short cT1, unsigned short cT2,
+-                                         unsigned short cT3, unsigned short numOptimizations) throw(hpp::Error) {
++                                         unsigned short cT3, unsigned short numOptimizations) {
+   return rrt(&interpolation::effectorRRT, state1, (unsigned short)(state1 + 1), cT1, cT2, cT3, numOptimizations);
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::effectorRRTFromPath(unsigned short s1, unsigned short refpath, double path_from,
+                                                  double path_to, unsigned short cT1, unsigned short cT2,
+                                                  unsigned short cT3, unsigned short numOptimizations,
+-                                                 const Names_t& trackedEffector) throw(hpp::Error) {
++                                                 const Names_t& trackedEffector) {
+   try {
+     std::vector<CORBA::Short> pathsIds;
+     std::size_t s2(s1 + 1);
+@@ -2420,7 +2420,7 @@ hpp::floatSeq* RbprmBuilder::effectorRRTFromPath(unsigned short s1, unsigned sho
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::rrtOnePhase(t_rrt functor, unsigned short state1, unsigned short state2,
+-                                         unsigned short comTraj, unsigned short numOptimizations) throw(hpp::Error) {
++                                         unsigned short comTraj, unsigned short numOptimizations) {
+   hppDout(notice, "########## begin rrtOnePhase for state " << state1 << " and " << state2 << " ###########");
+   if (lastStatesComputed_.size() < state1 || lastStatesComputed_.size() < state2) {
+     throw std::runtime_error("did not find a states at indicated indices");
+@@ -2464,18 +2464,18 @@ hpp::floatSeq* RbprmBuilder::rrtOnePhase(t_rrt functor, unsigned short state1, u
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::effectorRRTOnePhase(unsigned short state1, unsigned short state2, unsigned short comTraj,
+-                                                 unsigned short numOptimizations) throw(hpp::Error) {
++                                                 unsigned short numOptimizations) {
+   return rrtOnePhase(&interpolation::effectorRRT, state1, state2, comTraj, numOptimizations);
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::comRRTOnePhase(unsigned short state1, unsigned short state2, unsigned short comTraj,
+-                                            unsigned short numOptimizations) throw(hpp::Error) {
++                                            unsigned short numOptimizations) {
+   return rrtOnePhase(&interpolation::comRRT, state1, state2, comTraj, numOptimizations);
+ }
+ 
+ hpp::floatSeqSeq* RbprmBuilder::generateEffectorBezierArray(unsigned short state1, unsigned short state2,
+                                                             unsigned short comTraj,
+-                                                            unsigned short numOptimizations) throw(hpp::Error) {
++                                                            unsigned short numOptimizations) {
+   hppDout(notice,
+           "########## begin GenerateEffectorBezierArray for state " << state1 << " and " << state2 << " ###########");
+   if (lastStatesComputed_.size() < state1 || lastStatesComputed_.size() < state2) {
+@@ -2548,7 +2548,7 @@ hpp::floatSeqSeq* RbprmBuilder::generateEffectorBezierArray(unsigned short state
+ }
+ 
+ CORBA::Short RbprmBuilder::generateEndEffectorBezier(unsigned short s1, unsigned short s2,
+-                                                     unsigned short cT) throw(hpp::Error) {
++                                                     unsigned short cT) {
+   try {
+     hppDout(notice, "Begin generateEndEffectorBezier");
+     hppDout(notice, "index first state = " << s1 << " ; index second state : " << s2);
+@@ -2571,7 +2571,7 @@ CORBA::Short RbprmBuilder::generateEndEffectorBezier(unsigned short s1, unsigned
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::projectToCom(unsigned short state, const hpp::floatSeq& targetCom,
+-                                          unsigned short /*max_num_sample*/) throw(hpp::Error) {
++                                          unsigned short /*max_num_sample*/) {
+   try {
+     if (lastStatesComputed_.size() < state) {
+       throw std::runtime_error("did not find a states at indicated index: " + std::string("" + (std::size_t)(state)));
+@@ -2591,7 +2591,7 @@ hpp::floatSeq* RbprmBuilder::projectToCom(unsigned short state, const hpp::float
+   }
+ }
+ 
+-double RbprmBuilder::setConfigAtState(unsigned short state, const hpp::floatSeq& q) throw(hpp::Error) {
++double RbprmBuilder::setConfigAtState(unsigned short state, const hpp::floatSeq& q) {
+   try {
+     if (lastStatesComputed_.size() < state) {
+       throw std::runtime_error("did not find a states at indicated index: " + std::string("" + (std::size_t)(state)));
+@@ -2610,7 +2610,7 @@ double RbprmBuilder::setConfigAtState(unsigned short state, const hpp::floatSeq&
+   }
+ }
+ 
+-hpp::floatSeq* RbprmBuilder::getConfigAtState(unsigned short state) throw(hpp::Error) {
++hpp::floatSeq* RbprmBuilder::getConfigAtState(unsigned short state) {
+   try {
+     if (lastStatesComputed_.size() < state) {
+       throw std::runtime_error("did not find a state at indicated index: " + std::string("" + (std::size_t)(state)));
+@@ -2627,7 +2627,7 @@ hpp::floatSeq* RbprmBuilder::getConfigAtState(unsigned short state) throw(hpp::E
+   }
+ }
+ 
+-void RbprmBuilder::saveComputedStates(const char* outfilename) throw(hpp::Error) {
++void RbprmBuilder::saveComputedStates(const char* outfilename) {
+   std::stringstream ss;
+   ss << lastStatesComputed_.size() - 2 << "\n";
+   std::vector<rbprm::State>::iterator cit = lastStatesComputed_.begin() + 1;
+@@ -2651,7 +2651,7 @@ void RbprmBuilder::saveComputedStates(const char* outfilename) throw(hpp::Error)
+   }
+ }
+ 
+-void RbprmBuilder::saveLimbDatabase(const char* limbname, const char* filepath) throw(hpp::Error) {
++void RbprmBuilder::saveLimbDatabase(const char* limbname, const char* filepath) {
+   try {
+     std::string limbName(limbname);
+     std::ofstream fout;
+@@ -2665,7 +2665,7 @@ void RbprmBuilder::saveLimbDatabase(const char* limbname, const char* filepath)
+ }
+ 
+ hpp::floatSeqSeq* RbprmBuilder::getOctreeBoxes(const char* limbName,
+-                                               const hpp::floatSeq& configuration) throw(hpp::Error) {
++                                               const hpp::floatSeq& configuration) {
+   try {
+     pinocchio::Configuration_t config = dofArrayToConfig(fullBody()->device_, configuration);
+     pinocchio::Configuration_t save = fullBody()->device_->currentConfiguration();
+@@ -2699,7 +2699,7 @@ hpp::floatSeqSeq* RbprmBuilder::getOctreeBoxes(const char* limbName,
+   }
+ }
+ 
+-hpp::floatSeq* RbprmBuilder::getOctreeBox(const char* limbName, double octreeNodeId) throw(hpp::Error) {
++hpp::floatSeq* RbprmBuilder::getOctreeBox(const char* limbName, double octreeNodeId) {
+   try {
+     if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+     long ocId((long)octreeNodeId);
+@@ -2732,7 +2732,7 @@ hpp::floatSeq* RbprmBuilder::getOctreeBox(const char* limbName, double octreeNod
+   }
+ }
+ 
+-CORBA::Short RbprmBuilder::isLimbInContact(const char* limbName, unsigned short s) throw(hpp::Error) {
++CORBA::Short RbprmBuilder::isLimbInContact(const char* limbName, unsigned short s) {
+   try {
+     if (lastStatesComputed_.size() < s) {
+       throw std::runtime_error("did not find a states at indicated indices: " + std::string("" + s));
+@@ -2745,7 +2745,7 @@ CORBA::Short RbprmBuilder::isLimbInContact(const char* limbName, unsigned short
+   }
+ }
+ 
+-CORBA::Short RbprmBuilder::isLimbInContactIntermediary(const char* limbName, unsigned short s) throw(hpp::Error) {
++CORBA::Short RbprmBuilder::isLimbInContactIntermediary(const char* limbName, unsigned short s) {
+   try {
+     if (lastStatesComputed_.size() < (std::size_t)(s + 1)) {
+       throw std::runtime_error("did not find a states at indicated indices: " + std::string("" + s));
+@@ -2763,10 +2763,10 @@ CORBA::Short RbprmBuilder::isLimbInContactIntermediary(const char* limbName, uns
+   }
+ }
+ 
+-CORBA::Short RbprmBuilder::getNumStates() throw(hpp::Error) { return (CORBA::Short)lastStatesComputed_.size(); }
++CORBA::Short RbprmBuilder::getNumStates() { return (CORBA::Short)lastStatesComputed_.size(); }
+ 
+ CORBA::Short RbprmBuilder::computeIntermediary(unsigned short stateFrom,
+-                                               unsigned short stateTo) throw(hpp::Error) try {
++                                               unsigned short stateTo) try {
+   if (lastStatesComputed_.size() < (std::size_t)(stateFrom + 1) ||
+       lastStatesComputed_.size() < (std::size_t)(stateTo + 1)) {
+     throw std::runtime_error("did not find a states at indicated indices: " + std::string("" + stateFrom));
+@@ -2784,7 +2784,7 @@ CORBA::Short RbprmBuilder::computeIntermediary(unsigned short stateFrom,
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::getOctreeTransform(const char* limbName,
+-                                                const hpp::floatSeq& configuration) throw(hpp::Error) {
++                                                const hpp::floatSeq& configuration) {
+   try {
+     pinocchio::Configuration_t config = dofArrayToConfig(fullBody()->device_, configuration);
+     pinocchio::Configuration_t save = fullBody()->device_->currentConfiguration();
+@@ -2810,7 +2810,7 @@ hpp::floatSeq* RbprmBuilder::getOctreeTransform(const char* limbName,
+ 
+ hpp::floatSeq* RbprmBuilder::computeTargetTransform(const char* limbName, const hpp::floatSeq& configuration,
+                                                     const hpp::floatSeq& p_a,
+-                                                    const hpp::floatSeq& n_a) throw(hpp::Error) {
++                                                    const hpp::floatSeq& n_a) {
+   try {
+     pinocchio::Configuration_t config = dofArrayToConfig(fullBody()->device_, configuration);
+     pinocchio::Configuration_t vec_conf = dofArrayToConfig(std::size_t(3), p_a);
+@@ -2836,7 +2836,7 @@ hpp::floatSeq* RbprmBuilder::computeTargetTransform(const char* limbName, const
+ }
+ 
+ CORBA::Short RbprmBuilder::isConfigBalanced(const hpp::floatSeq& configuration, const hpp::Names_t& contactLimbs,
+-                                            double robustnessTreshold, const hpp::floatSeq& CoM) throw(hpp::Error) {
++                                            double robustnessTreshold, const hpp::floatSeq& CoM) {
+   try {
+     rbprm::State testedState;
+     pinocchio::Configuration_t config = dofArrayToConfig(fullBody()->device_, configuration);
+@@ -2868,7 +2868,7 @@ CORBA::Short RbprmBuilder::isConfigBalanced(const hpp::floatSeq& configuration,
+   }
+ }
+ 
+-double RbprmBuilder::isStateBalanced(unsigned short stateId) throw(hpp::Error) {
++double RbprmBuilder::isStateBalanced(unsigned short stateId) {
+   try {
+     if (lastStatesComputed_.size() <= stateId) {
+       throw std::runtime_error("Unexisting state " + std::string("" + (stateId)));
+@@ -2880,7 +2880,7 @@ double RbprmBuilder::isStateBalanced(unsigned short stateId) throw(hpp::Error) {
+   }
+ }
+ 
+-void RbprmBuilder::runSampleAnalysis(const char* analysis, double isstatic) throw(hpp::Error) {
++void RbprmBuilder::runSampleAnalysis(const char* analysis, double isstatic) {
+   try {
+     if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+     std::string eval(analysis);
+@@ -2909,7 +2909,7 @@ void RbprmBuilder::runSampleAnalysis(const char* analysis, double isstatic) thro
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::runLimbSampleAnalysis(const char* limbname, const char* analysis,
+-                                                   double isstatic) throw(hpp::Error) {
++                                                   double isstatic) {
+   try {
+     rbprm::sampling::ValueBound bounds;
+     if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+@@ -2943,7 +2943,7 @@ hpp::floatSeq* RbprmBuilder::runLimbSampleAnalysis(const char* limbname, const c
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::evaluateConfig(const hpp::floatSeq& configuration,
+-                                            const hpp::floatSeq& direction) throw(hpp::Error) {
++                                            const hpp::floatSeq& direction) {
+   if (!fullBodyLoaded_) throw Error("No full body robot was loaded");
+   if (fullBody()->GetLimbs().size() <= 0) throw Error("No Limbs defined for this robot");
+   fcl::Vec3f dir;
+@@ -2972,7 +2972,7 @@ hpp::floatSeq* RbprmBuilder::evaluateConfig(const hpp::floatSeq& configuration,
+ 
+ CORBA::Short RbprmBuilder::addNewContact(unsigned short stateId, const char* limbName, const hpp::floatSeq& position,
+                                          const hpp::floatSeq& normal, unsigned short max_num_sample,
+-                                         bool lockOtherJoints, const hpp::floatSeq& rotation) throw(hpp::Error) {
++                                         bool lockOtherJoints, const hpp::floatSeq& rotation) {
+   try {
+     hppDout(notice, "Add new contact : ");
+     if (lastStatesComputed_.size() <= stateId)
+@@ -3028,7 +3028,7 @@ CORBA::Short RbprmBuilder::addNewContact(unsigned short stateId, const char* lim
+   }
+ }
+ 
+-CORBA::Short RbprmBuilder::removeContact(unsigned short stateId, const char* limbName) throw(hpp::Error) {
++CORBA::Short RbprmBuilder::removeContact(unsigned short stateId, const char* limbName) {
+   try {
+     if (lastStatesComputed_.size() <= stateId)
+       throw std::runtime_error("Unexisting state " + std::string("" + (stateId)));
+@@ -3044,7 +3044,7 @@ CORBA::Short RbprmBuilder::removeContact(unsigned short stateId, const char* lim
+   }
+ }
+ 
+-void RbprmBuilder::dumpProfile(const char* logFile) throw(hpp::Error) {
++void RbprmBuilder::dumpProfile(const char* logFile) {
+   try {
+ #ifdef PROFILE
+     RbPrmProfiler& watch = getRbPrmProfiler();
+@@ -3080,7 +3080,7 @@ void RbprmBuilder::initNewProblemSolver() {
+   problemSolver()->pathOptimizers.add("OrientedPathOptimizer", OrientedPathOptimizer::create);
+ }
+ 
+-Names_t* RbprmBuilder::getAllLimbsNames() throw(hpp::Error) {
++Names_t* RbprmBuilder::getAllLimbsNames() {
+   if (!fullBodyLoaded_) {
+     throw std::runtime_error("fullBody not loaded");
+   }
+@@ -3088,7 +3088,7 @@ Names_t* RbprmBuilder::getAllLimbsNames() throw(hpp::Error) {
+   return toNames_t(names.begin(), names.end());
+ }
+ 
+-bool RbprmBuilder::toggleNonContactingLimb(const char* limbName) throw(hpp::Error) {
++bool RbprmBuilder::toggleNonContactingLimb(const char* limbName) {
+   if (!fullBodyLoaded_) {
+     throw std::runtime_error("fullBody not loaded");
+   }
+@@ -3096,7 +3096,7 @@ bool RbprmBuilder::toggleNonContactingLimb(const char* limbName) throw(hpp::Erro
+   return fullBody()->toggleNonContactingLimb(limb);
+ }
+ 
+-bool RbprmBuilder::areKinematicsConstraintsVerified(const hpp::floatSeq& point) throw(hpp::Error) {
++bool RbprmBuilder::areKinematicsConstraintsVerified(const hpp::floatSeq& point) {
+   if (!fullBodyLoaded_) {
+     throw std::runtime_error("fullBody not loaded");
+   }
+@@ -3120,7 +3120,7 @@ bool RbprmBuilder::areKinematicsConstraintsVerified(const hpp::floatSeq& point)
+ }
+ 
+ bool RbprmBuilder::areKinematicsConstraintsVerifiedForState(unsigned short stateId,
+-                                                            const hpp::floatSeq& point) throw(hpp::Error) {
++                                                            const hpp::floatSeq& point) {
+   if (!fullBodyLoaded_) {
+     throw std::runtime_error("fullBody not loaded");
+   }
+@@ -3133,7 +3133,7 @@ bool RbprmBuilder::areKinematicsConstraintsVerifiedForState(unsigned short state
+ }
+ 
+ hpp::floatSeq* RbprmBuilder::isReachableFromState(unsigned short stateFrom, unsigned short stateTo,
+-                                                  const bool useIntermediateState) throw(hpp::Error) {
++                                                  const bool useIntermediateState) {
+   if (!fullBodyLoaded_) {
+     throw std::runtime_error("fullBody not loaded");
+   }
+@@ -3171,7 +3171,7 @@ hpp::floatSeq* RbprmBuilder::isReachableFromState(unsigned short stateFrom, unsi
+ 
+ hpp::floatSeq* RbprmBuilder::isDynamicallyReachableFromState(unsigned short stateFrom, unsigned short stateTo,
+                                                              bool addPathPerPhase, const hpp::floatSeq& timings,
+-                                                             short numPointPerPhase) throw(hpp::Error) {
++                                                             short numPointPerPhase) {
+   if (!fullBodyLoaded_) {
+     throw std::runtime_error("fullBody not loaded");
+   }
+diff --git a/src/rbprmbuilder.impl.hh b/src/rbprmbuilder.impl.hh
+index 6b84b66..cfb4911 100644
+--- src/rbprmbuilder.impl.hh
++++ src/rbprmbuilder.impl.hh
+@@ -159,216 +159,216 @@ class RbprmBuilder : public virtual POA_hpp::corbaserver::rbprm::RbprmBuilder {
+ 
+   virtual void loadRobotRomModel(const char* robotName,
+                                  const char* rootJointType,
+-                                 const char* urdfName) throw(hpp::Error);
++                                 const char* urdfName);
+ 
+   virtual void loadRobotCompleteModel(const char* robotName,
+                                       const char* rootJointType,
+                                       const char* urdfName,
+-                                      const char* srdfName) throw(hpp::Error);
++                                      const char* srdfName);
+ 
+   virtual void loadFullBodyRobot(const char* robotName,
+                                  const char* rootJointType,
+                                  const char* urdfName,
+                                  const char* srdfName,
+-                                 const char* selectedProblem) throw(hpp::Error);
++                                 const char* selectedProblem);
+ 
+-  virtual void loadFullBodyRobotFromExistingRobot() throw(hpp::Error);
++  virtual void loadFullBodyRobotFromExistingRobot();
+ 
+-  void setStaticStability(const bool staticStability) throw(hpp::Error);
++  void setStaticStability(const bool staticStability);
+ 
+-  void setReferenceConfig(const hpp::floatSeq& referenceConfig) throw(hpp::Error);
+-  void setPostureWeights(const hpp::floatSeq& postureWeights) throw(hpp::Error);
+-  void setReferenceEndEffector(const char* romName, const hpp::floatSeq& ref) throw(hpp::Error);
+-  void usePosturalTaskContactCreation(const bool usePosturalTaskContactCreation) throw(hpp::Error);
++  void setReferenceConfig(const hpp::floatSeq& referenceConfig);
++  void setPostureWeights(const hpp::floatSeq& postureWeights);
++  void setReferenceEndEffector(const char* romName, const hpp::floatSeq& ref);
++  void usePosturalTaskContactCreation(const bool usePosturalTaskContactCreation);
+ 
+-  virtual void setFilter(const hpp::Names_t& roms) throw(hpp::Error);
+-  virtual void setAffordanceFilter(const char* romName, const hpp::Names_t& affordances) throw(hpp::Error);
+-  virtual void boundSO3(const hpp::floatSeq& limitszyx) throw(hpp::Error);
++  virtual void setFilter(const hpp::Names_t& roms);
++  virtual void setAffordanceFilter(const char* romName, const hpp::Names_t& affordances);
++  virtual void boundSO3(const hpp::floatSeq& limitszyx);
+ 
+-  virtual hpp::floatSeq* getSampleConfig(const char* limb, unsigned int sampleId) throw(hpp::Error);
+-  virtual hpp::floatSeq* getSamplePosition(const char* limb, unsigned int sampleId) throw(hpp::Error);
++  virtual hpp::floatSeq* getSampleConfig(const char* limb, unsigned int sampleId);
++  virtual hpp::floatSeq* getSamplePosition(const char* limb, unsigned int sampleId);
+   virtual hpp::floatSeqSeq* getEffectorPosition(const char* limb,
+-                                                const hpp::floatSeq& configuration) throw(hpp::Error);
+-  virtual CORBA::UShort getNumSamples(const char* limb) throw(hpp::Error);
+-  virtual hpp::floatSeq* getOctreeNodeIds(const char* limb) throw(hpp::Error);
+-  virtual double getSampleValue(const char* limb, const char* valueName, unsigned int sampleId) throw(hpp::Error);
+-  virtual double getEffectorDistance(unsigned short state1, unsigned short state2) throw(hpp::Error);
++                                                const hpp::floatSeq& configuration);
++  virtual CORBA::UShort getNumSamples(const char* limb);
++  virtual hpp::floatSeq* getOctreeNodeIds(const char* limb);
++  virtual double getSampleValue(const char* limb, const char* valueName, unsigned int sampleId);
++  virtual double getEffectorDistance(unsigned short state1, unsigned short state2);
+ 
+   rbprm::State generateContacts_internal(const hpp::floatSeq& configuration, const hpp::floatSeq& direction,
+                                          const hpp::floatSeq& acceleration,
+-                                         const double robustnessThreshold) throw(hpp::Error);
++                                         const double robustnessThreshold);
+   virtual hpp::floatSeq* generateContacts(const hpp::floatSeq& configuration, const hpp::floatSeq& direction,
+                                           const hpp::floatSeq& acceleration,
+-                                          const double robustnessThreshold) throw(hpp::Error);
++                                          const double robustnessThreshold);
+   virtual CORBA::Short generateStateInContact(const hpp::floatSeq& configuration, const hpp::floatSeq& direction,
+                                               const hpp::floatSeq& acceleration,
+-                                              const double robustnessThreshold) throw(hpp::Error);
++                                              const double robustnessThreshold);
+ 
+-  virtual hpp::floatSeq* generateGroundContact(const hpp::Names_t& contactLimbs) throw(hpp::Error);
++  virtual hpp::floatSeq* generateGroundContact(const hpp::Names_t& contactLimbs);
+ 
+   virtual hpp::floatSeq* getContactSamplesIds(const char* limb, const hpp::floatSeq& configuration,
+-                                              const hpp::floatSeq& direction) throw(hpp::Error);
++                                              const hpp::floatSeq& direction);
+ 
+   virtual hpp::floatSeqSeq* getContactSamplesProjected(const char* limb, const hpp::floatSeq& configuration,
+                                                        const hpp::floatSeq& direction,
+-                                                       unsigned short numSamples) throw(hpp::Error);
++                                                       unsigned short numSamples);
+ 
+   virtual short generateContactState(::CORBA::UShort currentState, const char* name,
+-                                     const ::hpp::floatSeq& direction) throw(hpp::Error);
++                                     const ::hpp::floatSeq& direction);
+ 
+-  virtual hpp::floatSeq* getSamplesIdsInOctreeNode(const char* limb, double octreeNodeId) throw(hpp::Error);
++  virtual hpp::floatSeq* getSamplesIdsInOctreeNode(const char* limb, double octreeNodeId);
+ 
+   virtual void addLimb(const char* id, const char* limb, const char* effector, const hpp::floatSeq& offset,
+                        const hpp::floatSeq& normal, double x, double y, unsigned int samples,
+                        const char* heuristicName, double resolution, const char* contactType,
+                        double disableEffectorCollision, double grasp, const hpp::floatSeq& limbOffset,
+-                       const char* kinematicConstraintsPath, double kinematicConstraintsMin) throw(hpp::Error);
++                       const char* kinematicConstraintsPath, double kinematicConstraintsMin);
+   virtual void addNonContactingLimb(const char* id, const char* limb, const char* effector,
+-                                    unsigned int samples) throw(hpp::Error);
++                                    unsigned int samples);
+ 
+   virtual void addLimbDatabase(const char* databasePath, const char* id, const char* heuristicName, double loadValues,
+-                               double disableEffectorCollision, double grasp) throw(hpp::Error);
++                               double disableEffectorCollision, double grasp);
+ 
+-  virtual void setStartState(const hpp::floatSeq& configuration, const hpp::Names_t& contactLimbs) throw(hpp::Error);
+-  virtual void setEndState(const hpp::floatSeq& configuration, const hpp::Names_t& contactLimbs) throw(hpp::Error);
+-  virtual void setStartStateId(unsigned short stateId) throw(hpp::Error);
+-  virtual void setEndStateId(unsigned short stateId) throw(hpp::Error);
++  virtual void setStartState(const hpp::floatSeq& configuration, const hpp::Names_t& contactLimbs);
++  virtual void setEndState(const hpp::floatSeq& configuration, const hpp::Names_t& contactLimbs);
++  virtual void setStartStateId(unsigned short stateId);
++  virtual void setEndStateId(unsigned short stateId);
+   virtual hpp::floatSeq* computeContactForConfig(const hpp::floatSeq& configuration,
+-                                                 const char* limbNam) throw(hpp::Error);
+-  virtual hpp::floatSeqSeq* computeContactPoints(unsigned short cId) throw(hpp::Error);
++                                                 const char* limbNam);
++  virtual hpp::floatSeqSeq* computeContactPoints(unsigned short cId);
+   virtual hpp::floatSeqSeq* computeContactPointsAtState(unsigned short cId,
+-                                                        unsigned short isIntermediate) throw(hpp::Error);
+-  virtual hpp::floatSeqSeq* computeContactPointsForLimb(unsigned short cId, const char* limbName) throw(hpp::Error);
++                                                        unsigned short isIntermediate);
++  virtual hpp::floatSeqSeq* computeContactPointsForLimb(unsigned short cId, const char* limbName);
+   virtual hpp::floatSeqSeq* computeContactPointsAtStateForLimb(unsigned short cId, unsigned short isIntermediate,
+-                                                               const char* limbName) throw(hpp::Error);
++                                                               const char* limbName);
+   virtual hpp::floatSeqSeq* computeCenterOfContactAtStateForLimb(unsigned short cId, unsigned short isIntermediate,
+-                                                                 const char* limbName) throw(hpp::Error);
++                                                                 const char* limbName);
+   virtual hpp::floatSeqSeq* interpolate(double timestep, double path, double robustnessTreshold,
+                                         unsigned short filterStates, bool testReachability, bool quasiStatic,
+-                                        bool erasePreviousStates) throw(hpp::Error);
++                                        bool erasePreviousStates);
+   virtual hpp::floatSeqSeq* interpolateConfigs(const hpp::floatSeqSeq& configs, double robustnessTreshold,
+                                                unsigned short filterStates, bool testReachability, bool quasiStatic,
+-                                               bool erasePreviousStates) throw(hpp::Error);
+-  virtual hpp::floatSeqSeq* getContactCone(unsigned short stateId, double friction) throw(hpp::Error);
+-  virtual hpp::floatSeqSeq* getContactIntermediateCone(unsigned short stateId, double friction) throw(hpp::Error);
++                                               bool erasePreviousStates);
++  virtual hpp::floatSeqSeq* getContactCone(unsigned short stateId, double friction);
++  virtual hpp::floatSeqSeq* getContactIntermediateCone(unsigned short stateId, double friction);
+   virtual CORBA::Short generateComTraj(const hpp::floatSeqSeq& positions, const hpp::floatSeqSeq& velocities,
+-                                       const hpp::floatSeqSeq& accelerations, const double dt) throw(hpp::Error);
++                                       const hpp::floatSeqSeq& accelerations, const double dt);
+ 
+-  virtual CORBA::Short straightPath(const hpp::floatSeqSeq& positions) throw(hpp::Error);
+-  virtual CORBA::Short generateCurveTraj(const hpp::floatSeqSeq& positions) throw(hpp::Error);
++  virtual CORBA::Short straightPath(const hpp::floatSeqSeq& positions);
++  virtual CORBA::Short generateCurveTraj(const hpp::floatSeqSeq& positions);
+   virtual CORBA::Short generateCurveTrajParts(const hpp::floatSeqSeq& positions,
+-                                              const hpp::floatSeq& partitions) throw(hpp::Error);
++                                              const hpp::floatSeq& partitions);
+   virtual CORBA::Short generateRootPath(const hpp::floatSeqSeq& rootPositions, const hpp::floatSeq& q1,
+-                                        const hpp::floatSeq& q2) throw(hpp::Error);
++                                        const hpp::floatSeq& q2);
+   virtual CORBA::Short limbRRT(unsigned short state1, unsigned short state2,
+-                               unsigned short numOptimizations) throw(hpp::Error);
++                               unsigned short numOptimizations);
+   virtual CORBA::Short limbRRTFromRootPath(unsigned short state1, unsigned short state2, unsigned short path,
+-                                           unsigned short numOptimizations) throw(hpp::Error);
+-  virtual CORBA::Short configToPath(const hpp::floatSeqSeq& configs) throw(hpp::Error);
++                                           unsigned short numOptimizations);
++  virtual CORBA::Short configToPath(const hpp::floatSeqSeq& configs);
+   virtual CORBA::Short comRRT(unsigned short state1, unsigned short state2, unsigned short path,
+-                              unsigned short numOptimizations) throw(hpp::Error);
++                              unsigned short numOptimizations);
+ 
+   typedef core::PathPtr_t (*t_rrt)(RbPrmFullBodyPtr_t, core::ProblemSolverPtr_t, const core::PathPtr_t, const State&,
+                                    const State&, const std::size_t, const bool);
+ 
+   hpp::floatSeq* rrt(t_rrt functor, unsigned short state1, unsigned short state2, unsigned short comTraj1,
+                      unsigned short comTraj2, unsigned short comTraj3,
+-                     unsigned short numOptimizations) throw(hpp::Error);
++                     unsigned short numOptimizations);
+ 
+   virtual hpp::floatSeq* comRRTFromPos(unsigned short state1, unsigned short comTraj1, unsigned short comTraj2,
+-                                       unsigned short comTraj3, unsigned short numOptimizations) throw(hpp::Error);
++                                       unsigned short comTraj3, unsigned short numOptimizations);
+   virtual hpp::floatSeq* comRRTFromPosBetweenState(unsigned short state1, unsigned short state2,
+                                                    unsigned short comTraj1, unsigned short comTraj2,
+                                                    unsigned short comTraj3,
+-                                                   unsigned short numOptimizations) throw(hpp::Error);
++                                                   unsigned short numOptimizations);
+   virtual hpp::floatSeq* effectorRRTFromPosBetweenState(unsigned short state1, unsigned short state2,
+                                                         unsigned short comTraj1, unsigned short comTraj2,
+                                                         unsigned short comTraj3,
+-                                                        unsigned short numOptimizations) throw(hpp::Error);
++                                                        unsigned short numOptimizations);
+   virtual hpp::floatSeq* effectorRRT(unsigned short state1, unsigned short comTraj1, unsigned short comTraj2,
+-                                     unsigned short comTraj3, unsigned short numOptimizations) throw(hpp::Error);
++                                     unsigned short comTraj3, unsigned short numOptimizations);
+   virtual hpp::floatSeq* effectorRRTFromPath(unsigned short state1, unsigned short path, double path_from,
+                                              double path_to, unsigned short comTraj1, unsigned short comTraj2,
+                                              unsigned short comTraj3, unsigned short numOptimizations,
+-                                             const hpp::Names_t& trackedEffectors) throw(hpp::Error);
++                                             const hpp::Names_t& trackedEffectors);
+   virtual hpp::floatSeq* rrtOnePhase(t_rrt functor, unsigned short state1, unsigned short state2,
+-                                     unsigned short comTraj, unsigned short numOptimizations) throw(hpp::Error);
++                                     unsigned short comTraj, unsigned short numOptimizations);
+   virtual hpp::floatSeq* effectorRRTOnePhase(unsigned short state1, unsigned short state2, unsigned short comTraj,
+-                                             unsigned short numOptimizations) throw(hpp::Error);
++                                             unsigned short numOptimizations);
+   virtual hpp::floatSeq* comRRTOnePhase(unsigned short state1, unsigned short state2, unsigned short comTraj,
+-                                        unsigned short numOptimizations) throw(hpp::Error);
++                                        unsigned short numOptimizations);
+   virtual hpp::floatSeqSeq* generateEffectorBezierArray(unsigned short state1, unsigned short state2,
+                                                         unsigned short comTraj,
+-                                                        unsigned short numOptimizations) throw(hpp::Error);
++                                                        unsigned short numOptimizations);
+ 
+   virtual CORBA::Short generateEndEffectorBezier(unsigned short state1, unsigned short state2,
+-                                                 unsigned short cT) throw(hpp::Error);
++                                                 unsigned short cT);
+ 
+   virtual hpp::floatSeq* projectToCom(unsigned short state, const hpp::floatSeq& targetCom,
+-                                      unsigned short max_num_sample) throw(hpp::Error);
++                                      unsigned short max_num_sample);
+   virtual CORBA::Short createState(const hpp::floatSeq& configuration,
+-                                   const hpp::Names_t& contactLimbs) throw(hpp::Error);
+-  virtual hpp::floatSeq* getConfigAtState(unsigned short stateId) throw(hpp::Error);
+-  virtual double setConfigAtState(unsigned short stateId, const hpp::floatSeq& config) throw(hpp::Error);
++                                   const hpp::Names_t& contactLimbs);
++  virtual hpp::floatSeq* getConfigAtState(unsigned short stateId);
++  virtual double setConfigAtState(unsigned short stateId, const hpp::floatSeq& config);
+   double projectStateToCOMEigen(State& s, const pinocchio::Configuration_t& com_target,
+-                                unsigned short maxNumeSamples) throw(hpp::Error);
++                                unsigned short maxNumeSamples);
+   double projectStateToCOMEigen(unsigned short stateId, const pinocchio::Configuration_t& com_target,
+-                                unsigned short maxNumeSamples) throw(hpp::Error);
++                                unsigned short maxNumeSamples);
+ 
+   virtual double projectStateToCOM(unsigned short stateId, const hpp::floatSeq& com,
+-                                   unsigned short max_num_sample) throw(hpp::Error);
+-  virtual CORBA::Short cloneState(unsigned short stateId) throw(hpp::Error);
++                                   unsigned short max_num_sample);
++  virtual CORBA::Short cloneState(unsigned short stateId);
+   virtual double projectStateToRoot(unsigned short stateId, const hpp::floatSeq& root,
+-                                    const hpp::floatSeq& offset) throw(hpp::Error);
+-  virtual void saveComputedStates(const char* filepath) throw(hpp::Error);
+-  virtual void saveLimbDatabase(const char* limbname, const char* filepath) throw(hpp::Error);
+-  virtual hpp::floatSeq* getOctreeBox(const char* limbName, double sampleId) throw(hpp::Error);
+-  virtual CORBA::Short isLimbInContact(const char* limbName, unsigned short state) throw(hpp::Error);
+-  virtual CORBA::Short isLimbInContactIntermediary(const char* limbName, unsigned short state) throw(hpp::Error);
+-  virtual CORBA::Short computeIntermediary(unsigned short state1, unsigned short state2) throw(hpp::Error);
+-  virtual CORBA::Short getNumStates() throw(hpp::Error);
+-  virtual hpp::floatSeqSeq* getOctreeBoxes(const char* limbName, const hpp::floatSeq& configuration) throw(hpp::Error);
++                                    const hpp::floatSeq& offset);
++  virtual void saveComputedStates(const char* filepath);
++  virtual void saveLimbDatabase(const char* limbname, const char* filepath);
++  virtual hpp::floatSeq* getOctreeBox(const char* limbName, double sampleId);
++  virtual CORBA::Short isLimbInContact(const char* limbName, unsigned short state);
++  virtual CORBA::Short isLimbInContactIntermediary(const char* limbName, unsigned short state);
++  virtual CORBA::Short computeIntermediary(unsigned short state1, unsigned short state2);
++  virtual CORBA::Short getNumStates();
++  virtual hpp::floatSeqSeq* getOctreeBoxes(const char* limbName, const hpp::floatSeq& configuration);
+   virtual hpp::floatSeq* getOctreeTransform(const char* limbName,
+-                                            const hpp::floatSeq& configuration) throw(hpp::Error);
++                                            const hpp::floatSeq& configuration);
+   virtual CORBA::Short isConfigBalanced(const hpp::floatSeq& config, const hpp::Names_t& contactLimbs,
+-                                        double robustnessTreshold, const hpp::floatSeq& CoM) throw(hpp::Error);
+-  virtual double isStateBalanced(unsigned short stateId) throw(hpp::Error);
+-  virtual void runSampleAnalysis(const char* analysis, double isstatic) throw(hpp::Error);
++                                        double robustnessTreshold, const hpp::floatSeq& CoM);
++  virtual double isStateBalanced(unsigned short stateId);
++  virtual void runSampleAnalysis(const char* analysis, double isstatic);
+   virtual hpp::floatSeq* runLimbSampleAnalysis(const char* limbname, const char* analysis,
+-                                               double isstatic) throw(hpp::Error);
++                                               double isstatic);
+   virtual hpp::floatSeq* evaluateConfig(const hpp::floatSeq& configuration,
+-                                        const hpp::floatSeq& direction) throw(hpp::Error);
+-  virtual void dumpProfile(const char* logFile) throw(hpp::Error);
+-  virtual double getTimeAtState(unsigned short stateId) throw(hpp::Error);
+-  virtual Names_t* getContactsVariations(unsigned short stateIdFrom, unsigned short stateIdTo) throw(hpp::Error);
++                                        const hpp::floatSeq& direction);
++  virtual void dumpProfile(const char* logFile);
++  virtual double getTimeAtState(unsigned short stateId);
++  virtual Names_t* getContactsVariations(unsigned short stateIdFrom, unsigned short stateIdTo);
+   virtual Names_t* getCollidingObstacleAtConfig(const ::hpp::floatSeq& configuration,
+-                                                const char* limbName) throw(hpp::Error);
++                                                const char* limbName);
+   virtual floatSeqSeq* getContactSurfacesAtConfig(const ::hpp::floatSeq& configuration,
+-                                                  const char* limbName) throw(hpp::Error);
++                                                  const char* limbName);
+ 
+-  virtual Names_t* getAllLimbsNames() throw(hpp::Error);
++  virtual Names_t* getAllLimbsNames();
+   virtual CORBA::Short addNewContact(unsigned short stateId, const char* limbName, const hpp::floatSeq& position,
+                                      const hpp::floatSeq& normal, unsigned short max_num_sample, bool lockOtherJoints,
+-                                     const floatSeq& rotation) throw(hpp::Error);
+-  virtual CORBA::Short removeContact(unsigned short stateId, const char* limbName) throw(hpp::Error);
++                                     const floatSeq& rotation);
++  virtual CORBA::Short removeContact(unsigned short stateId, const char* limbName);
+   virtual hpp::floatSeq* computeTargetTransform(const char* limbName, const hpp::floatSeq& configuration,
+-                                                const hpp::floatSeq& p, const hpp::floatSeq& n) throw(hpp::Error);
+-  virtual Names_t* getEffectorsTrajectoriesNames(unsigned short pathId) throw(hpp::Error);
++                                                const hpp::floatSeq& p, const hpp::floatSeq& n);
++  virtual Names_t* getEffectorsTrajectoriesNames(unsigned short pathId);
+   virtual hpp::floatSeqSeqSeq* getEffectorTrajectoryWaypoints(unsigned short pathId,
+-                                                              const char* effectorName) throw(hpp::Error);
+-  virtual hpp::floatSeqSeq* getPathAsBezier(unsigned short pathId) throw(hpp::Error);
++                                                              const char* effectorName);
++  virtual hpp::floatSeqSeq* getPathAsBezier(unsigned short pathId);
+ 
+-  virtual bool toggleNonContactingLimb(const char* limbName) throw(hpp::Error);
+-  virtual bool areKinematicsConstraintsVerified(const hpp::floatSeq& point) throw(hpp::Error);
++  virtual bool toggleNonContactingLimb(const char* limbName);
++  virtual bool areKinematicsConstraintsVerified(const hpp::floatSeq& point);
+   virtual bool areKinematicsConstraintsVerifiedForState(unsigned short stateId,
+-                                                        const hpp::floatSeq& point) throw(hpp::Error);
++                                                        const hpp::floatSeq& point);
+   virtual hpp::floatSeq* isReachableFromState(unsigned short stateFrom, unsigned short stateTo,
+-                                              const bool useIntermediateState) throw(hpp::Error);
++                                              const bool useIntermediateState);
+   virtual hpp::floatSeq* isDynamicallyReachableFromState(unsigned short stateFrom, unsigned short stateTo,
+                                                          bool addPathPerPhase, const hpp::floatSeq& timings,
+-                                                         short numPointPerPhase) throw(hpp::Error);
++                                                         short numPointPerPhase);
+ 
+-  void selectFullBody(const char* name) throw(hpp::Error) {
++  void selectFullBody(const char* name) {
+     std::string psName(name);
+     bool has = fullBodyMap_.has(psName);
+     if (!has) throw hpp::Error("unknown fullBody Problem");
+
+From a10f1b13936e5e9a632febcd6bc03ba09094a57b Mon Sep 17 00:00:00 2001
+From: Florent Lamiraux <florent@laas.fr>
+Date: Wed, 5 May 2021 18:19:32 +0200
+Subject: [PATCH 3/3] Catch const std::runtime_error& instead of
+ std::runtime_error
+
+  to make the compiler happy.
+---
+ src/rbprmbuilder.impl.cc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/rbprmbuilder.impl.cc b/src/rbprmbuilder.impl.cc
+index c08de4b..313a795 100644
+--- src/rbprmbuilder.impl.cc
++++ src/rbprmbuilder.impl.cc
+@@ -2509,7 +2509,7 @@ hpp::floatSeqSeq* RbprmBuilder::generateEffectorBezierArray(unsigned short state
+       (void)id;
+ #endif
+       hppDout(notice, "Add com-rrt path at index : " << id);
+-    } catch (std::runtime_error e) {
++    } catch (const std::runtime_error& e) {
+       hppDout(notice, "In generateEffectorBezierArray : comRRT failed. ");
+       hppDout(notice, "Error = " << e.what());
+     }
