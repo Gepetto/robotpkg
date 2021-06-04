@@ -26,7 +26,7 @@ DEPEND_ABI.ros-qt-gui-core.indigo?=	ros-qt-gui-core>=0.2<0.3
 DEPEND_ABI.ros-qt-gui-core.jade?=	ros-qt-gui-core>=0.2<0.3
 DEPEND_ABI.ros-qt-gui-core.kinetic?=	ros-qt-gui-core>=0.3<0.4
 DEPEND_ABI.ros-qt-gui-core.lunar?=	ros-qt-gui-core>=0.3<0.4
-DEPEND_ABI.ros-qt-gui-core.melodic?=	ros-qt-gui-core>=0.3<0.4
+DEPEND_ABI.ros-qt-gui-core.melodic?=	ros-qt-gui-core>=0.3<0.5
 DEPEND_ABI.ros-qt-gui-core.noetic?=	ros-qt-gui-core>=0.4<0.5
 
 SYSTEM_SEARCH.ros-qt-gui-core=\
