@@ -1,0 +1,238 @@
+--- src/affordance.impl.cc.orig	2021-06-04 19:20:51.047044971 +0200
++++ src/affordance.impl.cc	2021-06-04 19:21:07.849426559 +0200
+@@ -38,14 +38,14 @@
+ 
+                 Afford::Afford (const core::ProblemSolverPtr_t& /*problemSolver*/) {}
+ 
+-				void Afford::resetAffordanceConfig() throw (hpp::Error)
++				void Afford::resetAffordanceConfig() 
+ 				{
+                     problemSolver()->affordanceConfigs.add("Support", vector3_t (0.3,0.3,0.05));
+                     problemSolver()->affordanceConfigs.add("Lean", vector3_t (0.1,0.3,0.05));
+                     problemSolver()->affordanceConfigs.add("Support45", vector3_t (0.1,0.3,0.05));
+ 				}
+ 
+-				affordance::OperationBases_t Afford::createOperations () throw (hpp::Error)
++				affordance::OperationBases_t Afford::createOperations () 
+ 				{
+                     if (!problemSolver()->affordanceConfigs.has("Support")) {
+ 						throw hpp::Error ("No 'Support' affordance type found Afford::createOperations ()");
+@@ -79,7 +79,7 @@
+ 				}
+ 
+ 				void Afford::setAffordanceConfig (const char* affType,
+-					const hpp::doubleSeq& conf) throw (hpp::Error)
++					const hpp::doubleSeq& conf) 
+ 				{
+ 					if (conf.length () != 3) {
+ 						throw hpp::Error ("Configuration vector has invalid size.");
+@@ -91,7 +91,7 @@
+                         <core::AffordanceConfig_t> ();*/
+ 				}
+ 				hpp::doubleSeq* Afford::getAffordanceConfig (const char* affType)
+-					throw (hpp::Error)
++					
+ 				{
+                     if (!problemSolver()->affordanceConfigs.has(affType)) {
+ 						throw hpp::Error ("No given affordance type found in Afford::getAffordanceConfig");
+@@ -106,7 +106,7 @@
+ 				}
+ 
+ 				void Afford::setMargin (const char* affType, CORBA::Double margin)
+-					throw (hpp::Error)
++					
+ 				{
+                                     if (!problemSolver()->affordanceConfigs.has(affType)) {
+ 						throw hpp::Error ("No given affordance type found in Afford::setMargin");
+@@ -118,7 +118,7 @@
+ 				}
+ 
+ 				void Afford::setNeighbouringTriangleMargin (const char* affType,
+-					CORBA::Double nbTriMargin) throw (hpp::Error)
++					CORBA::Double nbTriMargin) 
+ 				{
+                     if (!problemSolver()->affordanceConfigs.has(affType)) {
+ 						throw hpp::Error ("No given affordance type found in Afford::setNeighbouringTriangleMargin");
+@@ -130,7 +130,7 @@
+ 				}
+ 
+ 				void Afford::setMinimumArea (const char* affType, CORBA::Double minArea)
+-					throw (hpp::Error)
++					
+ 				{
+                     if (!problemSolver()->affordanceConfigs.has(affType)) {
+ 						throw hpp::Error ("No given affordance type found in Afford::setMinimunArea");
+@@ -153,7 +153,7 @@
+             return false;
+         }
+ 
+-        bool Afford::checkModel (const char* obstacleName) throw (hpp::Error)
++        bool Afford::checkModel (const char* obstacleName) 
+         {
+           std::list<std::string> obstacles =
+                         problemSolver()->obstacleNames(false, true);
+@@ -169,7 +169,7 @@
+         }
+ 
+           void Afford::affordanceAnalysis (const char* obstacleName,
+-                    const affordance::OperationBases_t & operations, std::vector<double> reduceSizes) throw (hpp::Error)
++                    const affordance::OperationBases_t & operations, std::vector<double> reduceSizes) 
+ 	      {
+ 					std::list<std::string> obstacles =
+                         problemSolver()->obstacleNames(true, true);
+@@ -193,7 +193,7 @@
+ 	        }
+ 	      }
+ 
+-          void Afford::analyseObject (const char* obstacleName,const hpp::doubleSeq& reduceSizesCorba) throw (hpp::Error)
++          void Afford::analyseObject (const char* obstacleName,const hpp::doubleSeq& reduceSizesCorba) 
+ 	      {
+                     std::vector<double> reduceSizes;    // copy corba list to vector
+                     for(size_type i=0 ; i < (size_type)reduceSizesCorba.length() ; ++i){
+@@ -205,7 +205,7 @@
+                     affordanceAnalysis (obstacleName, operations,reduceSizes);
+ 				}
+ 
+-                void Afford::analyseAll (const hpp::doubleSeq &reduceSizesCorba) throw (hpp::Error)
++                void Afford::analyseAll (const hpp::doubleSeq &reduceSizesCorba) 
+ 				{
+                     std::vector<double> reduceSizes;    // copy corba list to vector
+                     for(size_type i=0 ; i < (size_type)reduceSizesCorba.length() ; ++i){
+@@ -225,7 +225,7 @@
+ 
+ 				// delete affordances by type for given object
+ 				void Afford::deleteAffordancesByType (const char* affordance,
+-					const char* obstacleName) throw (hpp::Error)
++					const char* obstacleName) 
+ 				{
+ 					const std::string noObject = "";
+ 					if (obstacleName == noObject) {
+@@ -251,7 +251,7 @@
+ 
+ 				// delete all affordances for given object
+                 void Afford::deleteAffordances (const char* obstacleNameNonAff)
+-					throw (hpp::Error)
++					
+ 				{
+                     std::string obstacleName (obstacleNameNonAff);
+                     obstacleName += affSuffix;
+@@ -292,7 +292,7 @@
+ 
+ 				void Afford::addAffObjects (const affordance::OperationBases_t& ops,
+ 					const std::vector<affordance::CollisionObjects_t>& affObjs,
+-                    const char* obstacleNameNonAff) throw (hpp::Error)
++                    const char* obstacleNameNonAff) 
+ 				{
+                     std::string obstacleName (obstacleNameNonAff);
+                     obstacleName += affSuffix;
+@@ -320,7 +320,7 @@
+ 				}
+ 
+ 				hpp::doubleSeqSeqSeqSeq* Afford::getAffordancePoints (char const* affordance)
+-					throw (hpp::Error)
++					
+ 					{
+ 						hpp::doubleSeqSeqSeqSeq *affs;
+                         if (!problemSolver()->affordanceObjects.has(std::string (affordance))) {
+@@ -378,7 +378,7 @@
+         }
+ 
+ 				hpp::Names_t* Afford::getAffRefObstacles (const char* affordance)
+-					throw (hpp::Error)
++					
+ 				{
+ 						std::vector<std::string> objList;
+                         if (!problemSolver()->affordanceObjects.has(std::string (affordance))) {
+@@ -395,7 +395,7 @@
+ 						return objListPtr;
+ 				}
+ 
+-				hpp::Names_t* Afford::getAffordanceTypes () throw (hpp::Error)
++				hpp::Names_t* Afford::getAffordanceTypes () 
+ 				{
+                     std::vector<std::string> affTypes = problemSolver()->affordanceObjects.getKeys<std::vector<std::string> >();
+             if (affTypes.empty ()) {
+@@ -405,7 +405,7 @@
+ 					return affTypeListPtr;
+ 				}
+ 
+-        hpp::Names_t* Afford::getAffordanceConfigTypes () throw (hpp::Error)
++        hpp::Names_t* Afford::getAffordanceConfigTypes () 
+                 {
+             std::vector<std::string> affTypes = problemSolver()->affordanceConfigs.getKeys< std::vector<std::string> >();
+             if (affTypes.empty ()) {
+--- src/affordance.impl.hh.orig	2021-06-04 19:20:43.460817533 +0200
++++ src/affordance.impl.hh	2021-06-04 19:21:11.769208622 +0200
+@@ -39,54 +39,54 @@
+ 
+ 				Afford (const core::ProblemSolverPtr_t& problemSolver);
+ 
+-				void resetAffordanceConfig() throw (hpp::Error);
++				void resetAffordanceConfig() ;
+ 
+-				affordance::OperationBases_t createOperations () throw (hpp::Error);
++				affordance::OperationBases_t createOperations () ;
+ 
+ 				void setAffordanceConfig (const char* affType, const hpp::doubleSeq& conf)
+-					throw (hpp::Error);
++					;
+ 
+ 				hpp::doubleSeq* getAffordanceConfig (const char* affType)
+-					throw (hpp::Error);
++					;
+ 
+ 				void setMargin (const char* affType, CORBA::Double margin)
+-					throw (hpp::Error);
++					;
+ 
+ 				void setNeighbouringTriangleMargin (const char* affType,
+-					CORBA::Double nbTriMargin) throw (hpp::Error);
++					CORBA::Double nbTriMargin) ;
+ 					
+ 				void setMinimumArea (const char* affType, CORBA::Double minArea)
+-					throw (hpp::Error);
++					;
+ 
+-        bool checkModel (const char* obstacleName) throw (hpp::Error);
++        bool checkModel (const char* obstacleName) ;
+ 
+ 				void affordanceAnalysis (const char* obstacleName, 
+-                    const affordance::OperationBases_t & operations,std::vector<double> reduceSizes=std::vector<double>()) throw (hpp::Error);
++                    const affordance::OperationBases_t & operations,std::vector<double> reduceSizes=std::vector<double>()) ;
+ 
+-                void analyseObject (const char* obstacleName, const hpp::doubleSeq& reduceSizesCorba) throw (hpp::Error);
++                void analyseObject (const char* obstacleName, const hpp::doubleSeq& reduceSizesCorba) ;
+ 				
+-                void analyseAll (const hpp::doubleSeq& reduceSizesCorba) throw (hpp::Error);
++                void analyseAll (const hpp::doubleSeq& reduceSizesCorba) ;
+ 
+ 				void deleteAffordancesByType (const char* affordance,
+-					const char* obstacleName) throw (hpp::Error);
++					const char* obstacleName) ;
+ 
+ 					void deleteAffordances (const char* obstacleName)
+-						throw (hpp::Error);
++						;
+ 
+ 				void addAffObjects (const affordance::OperationBases_t& ops,
+ 					const std::vector<affordance::CollisionObjects_t>& affObjs,
+ 					const char* obstacleName) 
+-					throw (hpp::Error);
++					;
+ 				
+ 				hpp::doubleSeqSeqSeqSeq* getAffordancePoints (const char* affordance)
+-					throw (hpp::Error);
++					;
+ 
+ 				hpp::Names_t* getAffRefObstacles (const char* affordance)
+-					throw (hpp::Error);
++					;
+ 
+-				hpp::Names_t* getAffordanceTypes () throw (hpp::Error);
++				hpp::Names_t* getAffordanceTypes () ;
+ 
+-        hpp::Names_t* getAffordanceConfigTypes () throw (hpp::Error);
++        hpp::Names_t* getAffordanceConfigTypes () ;
+ 
+       private:
+           Server* server_;
