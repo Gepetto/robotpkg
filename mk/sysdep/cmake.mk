@@ -52,7 +52,7 @@ CMAKE_ARGS+=\
 # files.
 #
 PRINT_PLIST_FILES_CMD+=\
-	${CAT} 2>/dev/null $(or						\
+	${AWK} 2>/dev/null 1 $(or					\
 	  $(wildcard $(addsuffix /install_manifest.txt,${BUILD_DIRS})),	\
 	  $(wildcard $(addprefix ${WRKSRC}/,				\
 	    $(addsuffix /install_manifest.txt,${BUILD_DIRS}))),		\
