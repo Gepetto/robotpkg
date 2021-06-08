@@ -228,6 +228,7 @@ include/pinocchio/serialization/motion.hpp
 include/pinocchio/serialization/se3.hpp
 include/pinocchio/serialization/serializable.hpp
 include/pinocchio/serialization/spatial.hpp
+include/pinocchio/serialization/static-buffer.hpp
 include/pinocchio/serialization/symmetric3.hpp
 include/pinocchio/serialization/vector.hpp
 include/pinocchio/spatial/act-on-set.hpp

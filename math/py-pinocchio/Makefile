@@ -2,10 +2,9 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
-PKGREVISION=		1
 ORG=			stack-of-tasks
 NAME=			pinocchio
-VERSION=		2.6.0
+VERSION=		2.6.1
 
 CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics (python bindings)

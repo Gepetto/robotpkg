@@ -5,9 +5,9 @@ for ext in ['hpp', 'cpp']:
     for i in sorted(Path('.').glob(f'**/*.{ext}')): print(f'  {i}')
     print()
 
---- bindings/python/CMakeLists.txt.orig	2021-04-10 09:49:21.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2021-04-11 21:40:51.196863212 +0200
-@@ -40,29 +40,114 @@
+--- bindings/python/CMakeLists.txt.orig	2021-05-19 09:24:49.000000000 +0200
++++ bindings/python/CMakeLists.txt	2021-06-08 12:41:01.030865080 +0200
+@@ -40,17 +40,109 @@
  SET(PYWRAP ${PROJECT_NAME}_pywrap)
  SET(PYWRAP ${PYWRAP} PARENT_SCOPE)
  
@@ -118,21 +118,9 @@ for ext in ['hpp', 'cpp']:
 +  utils/version.cpp
       ) 
  
- # Parser for Python model
--LIST(APPEND ${PROJECT_NAME}_PYTHON_HEADERS
--  parsers/python.hpp
--  )
- SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS
-   parsers/python.hpp
-   )
- 
--LIST(APPEND ${PROJECT_NAME}_PYTHON_SOURCES
--  parsers/python/model.cpp
--  )
--
 -REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_HEADERS}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_HEADERS)
 -REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_SOURCES}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_SOURCES)
 -
- # Python exposition of FCL
- IF(NOT BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
+ # Parser for Python model
+ IF(BUILD_PYTHON_INTERFACE_WITH_PYPY)
    LIST(REMOVE_ITEM ${PROJECT_NAME}_PYTHON_HEADERS
