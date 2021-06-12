@@ -2,9 +2,8 @@
 # Created:			Guilhem Saurel on Tue, 19 Nov 2019
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		1.7.3
+HPP_VERSION=		1.7.4
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations (python bindingss)
