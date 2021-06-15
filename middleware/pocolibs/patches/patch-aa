@@ -40,7 +40,7 @@ index 087227c..7cd770c 100644
 +	    }
 +	    break;
 +
-+	default: return ERROR;
++	default: break;
      }
 +
      if (h2semTake(H2DEV_POSTER_SEM_ID(dev), WAIT_FOREVER) == FALSE) {
