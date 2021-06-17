@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Tue, 19 Nov 2019
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-fcl
 HPP_VERSION=		1.7.4
 
@@ -25,6 +26,7 @@ include ../../path/hpp-fcl/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/python.mk
+include ../../mk/sysdep/qhull.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
