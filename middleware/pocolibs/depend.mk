@@ -14,7 +14,7 @@ PREFER.pocolibs?=	robotpkg
 
 DEPEND_USE+=		pocolibs
 
-DEPEND_ABI.pocolibs?=	pocolibs>=3.0
+DEPEND_ABI.pocolibs?=	pocolibs>=3.1
 DEPEND_DIR.pocolibs?=	../../middleware/pocolibs
 
 SYSTEM_SEARCH.pocolibs=\
