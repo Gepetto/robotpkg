@@ -1,0 +1,18 @@
+Dirty fix, fake remote posterIoctl(FIO_FRESH)
+The real fix is upstream 1a3ad20
+
+--- src/posterLib/os/posix/remotePosterLib.c~	2018-03-30 17:47:36.000000000 +0200
++++ src/posterLib/os/posix/remotePosterLib.c	2021-06-18 18:27:05.213354874 +0200
+@@ -772,6 +772,12 @@
+ 		return remotePosterResize(remPosterId, *(size_t *)parg, client);
+ 	}
+ 
++	/* Dirty fix: fake real  */
++	if (code == FIO_FRESH) {
++		*(int *)parg = 1;
++		return OK;
++	}
++
+ 	param.id = remPosterId->vxPosterId;
+ 	param.cmd = code;
+ 	
