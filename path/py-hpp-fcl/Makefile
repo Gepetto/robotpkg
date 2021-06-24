@@ -26,7 +26,6 @@ include ../../path/hpp-fcl/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/python.mk
-include ../../mk/sysdep/qhull.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
