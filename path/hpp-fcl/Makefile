@@ -30,7 +30,6 @@ include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
-include ../../math/libccd/depend.mk
 include ../../graphics/assimp/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
