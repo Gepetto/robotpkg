@@ -2,7 +2,7 @@
 # Created:			Guilhem Saurel on Tue, 19 Nov 2019
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 HPP_PACKAGE=		hpp-fcl
 HPP_VERSION=		1.7.4
 
