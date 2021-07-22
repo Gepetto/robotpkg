@@ -2,7 +2,7 @@
 # Created:			Rohan Budhiraja on Wed Oct 19, 2016
 #
 
-VERSION=		1.0.2
+VERSION=		1.1.0
 DISTNAME=		simple_humanoid_description-${VERSION}
 PKGNAME=		$(subst _,-,${DISTNAME})
 
@@ -12,7 +12,7 @@ MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}laas/simple_humanoid_description/
 CHECKOUT_VCS_OPTS+=	--recursive
 
 COMMENT=		Rigid body model of a simple humanoid robot.
-LICENSE=		gnu-lgpl-v3
+LICENSE=		2-clause-bsd
 MAINTAINER=		hpp@laas.fr
 
 DYNAMIC_PLIST_DIRS+=	share/doc/simple_humanoid_description
