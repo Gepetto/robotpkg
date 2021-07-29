@@ -1,0 +1,57 @@
+--- swig/python/tools/structure3.py.orig	2020-09-05 08:35:10.000000000 +0200
++++ swig/python/tools/structure3.py	2021-02-10 10:53:26.920025498 +0100
+@@ -270,8 +270,8 @@
+           return dispatcher.callableOuter(payload,canonicalIndex,extraIndex=None,entry=None,inner=r)
+         else:
+           raise Exception("I don't know what to do with this: %s" % str(p))
+-    except Exception as e:
+-      raise Exception("Error occured in entry context with powerIndex %s, at canonicalIndex %s" % (str(powerIndex),str(canonicalIndex))) from e
++    except Exception:
++      raise Exception("Error occured in entry context with powerIndex %s, at canonicalIndex %s" % (str(powerIndex),str(canonicalIndex)))
+ 
+ class Structure(object):
+   def __init__(self,entries,order=None):
+@@ -426,8 +426,8 @@
+           return dispatcher.callableOuter(payload,canonicalIndex,extraIndex=None,entry=None,inner=r)
+         else:
+           raise Exception("I don't know what to do with this: %s" % str(p))
+-      except Exception as e:
+-        raise Exception("Error occured in struct context with powerIndex %s, at canonicalIndex %s" % (str(powerIndex),str(canonicalIndex))) from e
++      except Exception:
++        raise Exception("Error occured in struct context with powerIndex %s, at canonicalIndex %s" % (str(powerIndex),str(canonicalIndex)))
+ # Casadi-dependent Structure framework
+ 
+ class Dispatcher:
+@@ -578,8 +578,8 @@
+           return triu2symm(self.master[i])
+         else:
+           raise Exception("Cannot handle type '%s'." % entry.type)
+-      except Exception as e:
+-        raise Exception("Error in powerIndex slicing for canonicalIndex %s" % (str(canonicalIndex))) from e
++      except Exception:
++        raise Exception("Error in powerIndex slicing for canonicalIndex %s" % (str(canonicalIndex)))
+     else:
+       raise Exception("Canonical index %s does not exist." % str(canonicalIndex))
+ 
+@@ -607,8 +607,8 @@
+           raise Exception("Cannot handle type '%s'." % entry.type)
+       except NotImplementedError as e:
+         raise CompatibilityException("Error in canonicalIndex slicing for %s: Incompatible types in a[i]=b with a %s (%s) and b %s (%s) and i %s (%s). Error: %s" % (str(canonicalIndex),str(self.master),str(builtins.type(self.master)),str(payload),str(builtins.type(payload)),str(i),str(builtins.type(i)),str(e)))
+-      except Exception as e:
+-        raise Exception("Error in powerIndex slicing for canonicalIndex %s" % (str(canonicalIndex))) from e
++      except Exception :
++        raise Exception("Error in powerIndex slicing for canonicalIndex %s" % (str(canonicalIndex)))
+     else:
+       raise Exception("Canonical index %s does not exist." % str(canonicalIndex))
+ 
+@@ -620,8 +620,8 @@
+       self.master[inner] = payload
+     except NotImplementedError:
+       raise CompatibilityException("Error in canonicalIndex slicing for %s: Incompatible types in a[i]=b with a %s and b %s." % (str(canonicalIndex),str(self.master),str(payload)))
+-    except Exception as e:
+-      raise Exception("Error in powerIndex slicing for canonicalIndex %s" % (str(canonicalIndex))) from e
++    except Exception:
++      raise Exception("Error in powerIndex slicing for canonicalIndex %s" % (str(canonicalIndex)))
+       
+ class MasterGettable:
+   @properGetitem
