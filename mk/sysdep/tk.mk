@@ -33,6 +33,8 @@ SYSTEM_PKG.Gentoo.tk=		dev-lang/tk
 export WISH=		$(word 1,${SYSTEM_FILES.tk})
 TK_CONFIG_SH=		$(word 2,${SYSTEM_FILES.tk})
 
+include ../../mk/sysdep/libX11.mk
+
 endif # TK_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
