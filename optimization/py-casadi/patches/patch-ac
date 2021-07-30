@@ -1,0 +1,14 @@
+Workaround for a weird issue with swig-3.0.2
+
+--- swig/casadi.i~	2020-09-05 08:35:10.000000000 +0200
++++ swig/casadi.i	2021-07-30 17:45:26.242320352 +0200
+@@ -2654,8 +2654,7 @@
+       assert method=="__call__"
+       fun=getattr(self, name)
+       return fun(*inputs[1:])
+-    except:
+-      # Fall back to numpy conversion
++    except: # Fallback to numpy conversion
+       new_inputs = list(inputs)
+       try:
+         new_inputs[0] = new_inputs[0].full()
