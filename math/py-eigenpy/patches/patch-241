@@ -1,0 +1,33 @@
+From 7e3c1f44a93aec492dab95c1f3282f71e0ef2886 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Mon, 2 Aug 2021 14:13:58 +0200
+Subject: [PATCH] [CMake] set INSTALL_RPATH for python on linux
+
+To avoid the need to set `LD_LIBRARY_PATH` when the
+`CMAKE_INSTALL_PREFIX` is not a standard one.
+---
+ python/CMakeLists.txt | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/python/CMakeLists.txt b/python/CMakeLists.txt
+index 12430ef..aeb24ae 100644
+--- python/CMakeLists.txt
++++ python/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ #
+-# Copyright (c) 2014-2020 CNRS INRIA
++# Copyright (c) 2014-2021 CNRS INRIA
+ #
+ 
+ # --- LIBRARY --- #
+@@ -33,6 +33,10 @@ SET_TARGET_PROPERTIES(${PYWRAP}
+   LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/python/${PROJECT_NAME}"
+   )
+ 
++IF(UNIX AND NOT APPLE)
++  SET_TARGET_PROPERTIES(${PYWRAP} PROPERTIES INSTALL_RPATH "\$ORIGIN/../../..")
++ENDIF()
++
+ INSTALL(TARGETS ${PYWRAP} DESTINATION ${${PYWRAP}_INSTALL_DIR})
+ 
+ # --- INSTALL SCRIPTS 
