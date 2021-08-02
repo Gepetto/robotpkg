@@ -2,22 +2,18 @@
 # Created:			Rohan Budhiraja on Wed Oct 19, 2016
 #
 
+ORG=			laas
+NAME=			simple_humanoid_description
 VERSION=		1.1.0
-DISTNAME=		simple_humanoid_description-${VERSION}
-PKGNAME=		$(subst _,-,${DISTNAME})
+PKGREVISION=		1
 
 CATEGORIES=		graphics
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=simple-humanoid-description/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}laas/simple_humanoid_description/
-CHECKOUT_VCS_OPTS+=	--recursive
 
 COMMENT=		Rigid body model of a simple humanoid robot.
 LICENSE=		2-clause-bsd
 MAINTAINER=		hpp@laas.fr
 
-DYNAMIC_PLIST_DIRS+=	share/doc/simple_humanoid_description
-
-CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
+include ../../devel/jrl-cmakemodules/Makefile.common
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
