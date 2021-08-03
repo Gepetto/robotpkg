@@ -4,7 +4,7 @@
 
 ORG=			loco-3d
 NAME=			crocoddyl
-VERSION=		1.8.0
+VERSION=		1.8.1
 
 CATEGORIES=		optimization
 COMMENT=		Optimal control library for robot under contact sequence
@@ -17,6 +17,8 @@ PYTHON_SELF_CONFLICT=	yes
 # parallel builds exhaust memory - until a better solution is found
 MAKE_JOBS_SAFE=		no
 
+DEPEND_ABI.pinocchio=	pinocchio>=2.6.3
+
 include ../../devel/jrl-cmakemodules/Makefile.common
 
 include ../../devel/boost-headers/depend.mk
@@ -28,7 +30,6 @@ include ../../math/eigen3/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../math/py-pinocchio/depend.mk
-include ../../math/py-quadprog/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../robots/example-robot-data/depend.mk
