@@ -2,7 +2,7 @@
 # Created:			Guilhem Saurel on Mon,  4 May 2020
 #
 
-PKGREVISION=		1
+HPP_VERSION=		4.11.1
 HPP_PACKAGE=		hpp-environments
 HPP_COMMENT=		Environments and robot descriptions for HPP
 
