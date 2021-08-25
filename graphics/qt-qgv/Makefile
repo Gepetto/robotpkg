@@ -4,8 +4,7 @@
 
 ORG=			gepetto
 NAME=			qgv
-VERSION=		1.3.1
-PKGREVISION=		1
+VERSION=		1.3.2
 
 PKGNAME=		${PKGTAG.qt-}${DISTNAME}
 
@@ -22,7 +21,7 @@ USE_QT5_COMPONENTS=	core tools
 
 CMAKE_ARGS+=		-DBINDINGS_$(subst qt,QT,${PKG_ALTERNATIVE.qt})=ON
 CMAKE_ARGS+=		-DQT_QMAKE_EXECUTABLE=${QMAKE}
-CMAKE_ARGS+=		-DGRAPHVIZ_INCLUDE_DIR=${PREFIX.graphviz}/include/graphviz
+CMAKE_ARGS+=		-DGraphviz_INCLUDE_DIR=${PREFIX.graphviz}/include/graphviz
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../pkgtools/pkg-config/depend.mk
