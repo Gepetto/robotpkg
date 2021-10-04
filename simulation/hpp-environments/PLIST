@@ -23,6 +23,7 @@ share/hpp_environments/meshes/multicontact/bauzil_simplified.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs_10cm.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs_10cm_scale.stl
+share/hpp_environments/meshes/multicontact/bauzil_stairs_clean.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs_collision.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs_noRamp.stl
 share/hpp_environments/meshes/multicontact/bauzil_stairs_noRamp_simplified.stl
@@ -72,6 +73,7 @@ share/hpp_environments/meshes/multicontact/ground_table.stl
 share/hpp_environments/meshes/multicontact/ground_table2.stl
 share/hpp_environments/meshes/multicontact/ground_tablec.stl
 share/hpp_environments/meshes/multicontact/ground_with_bridge.stl
+share/hpp_environments/meshes/multicontact/ground_with_cylinder.stl
 share/hpp_environments/meshes/multicontact/groundcrouch.stl
 share/hpp_environments/meshes/multicontact/maze_easy.stl
 share/hpp_environments/meshes/multicontact/maze_hard.stl
@@ -86,8 +88,15 @@ share/hpp_environments/meshes/multicontact/plateformes_full.stl
 share/hpp_environments/meshes/multicontact/platform_hand.stl
 share/hpp_environments/meshes/multicontact/polaris.stl
 share/hpp_environments/meshes/multicontact/polaris_reduced.stl
+share/hpp_environments/meshes/multicontact/random_scene_10x10_V3.stl
+share/hpp_environments/meshes/multicontact/random_scene_10x10_V5.stl
 share/hpp_environments/meshes/multicontact/robot_box.stl
 share/hpp_environments/meshes/multicontact/roomWall.stl
+share/hpp_environments/meshes/multicontact/rubbles_4.stl
+share/hpp_environments/meshes/multicontact/rubbles_stairs_1.stl
+share/hpp_environments/meshes/multicontact/rubbles_stairs_2.stl
+share/hpp_environments/meshes/multicontact/rubbles_stairs_3.stl
+share/hpp_environments/meshes/multicontact/rubbles_stairs_bridge_1.stl
 share/hpp_environments/meshes/multicontact/sideWall.stl
 share/hpp_environments/meshes/multicontact/sideWall_long.stl
 share/hpp_environments/meshes/multicontact/slalom.stl
@@ -99,6 +108,7 @@ share/hpp_environments/meshes/multicontact/stair_bauzil.stl
 share/hpp_environments/meshes/multicontact/stair_bauzil_reduced.stl
 share/hpp_environments/meshes/multicontact/stair_bauzil_reduced_backup.stl
 share/hpp_environments/meshes/multicontact/stair_bauzil_save.stl
+share/hpp_environments/meshes/multicontact/stairs.stl
 share/hpp_environments/meshes/multicontact/stairs_towr.stl
 share/hpp_environments/meshes/multicontact/stepladder.stl
 share/hpp_environments/meshes/multicontact/test.stl
@@ -223,6 +233,7 @@ share/hpp_environments/urdf/multicontact/bauzil_ramp_simplified.urdf
 share/hpp_environments/urdf/multicontact/bauzil_ramp_up.urdf
 share/hpp_environments/urdf/multicontact/bauzil_stairs.urdf
 share/hpp_environments/urdf/multicontact/bauzil_stairs_10cm.urdf
+share/hpp_environments/urdf/multicontact/bauzil_stairs_clean.urdf
 share/hpp_environments/urdf/multicontact/bauzil_stairs_collision.urdf
 share/hpp_environments/urdf/multicontact/box.urdf
 share/hpp_environments/urdf/multicontact/box_rom.urdf
@@ -252,6 +263,7 @@ share/hpp_environments/urdf/multicontact/ground_jump_easy_old.urdf
 share/hpp_environments/urdf/multicontact/ground_jump_low.urdf
 share/hpp_environments/urdf/multicontact/ground_jump_med.urdf
 share/hpp_environments/urdf/multicontact/ground_with_bridge.urdf
+share/hpp_environments/urdf/multicontact/ground_with_cylinder.urdf
 share/hpp_environments/urdf/multicontact/groundcrouch.urdf
 share/hpp_environments/urdf/multicontact/maze.urdf
 share/hpp_environments/urdf/multicontact/maze2.urdf
@@ -263,7 +275,14 @@ share/hpp_environments/urdf/multicontact/plane.urdf
 share/hpp_environments/urdf/multicontact/plateforme_not_flat.urdf
 share/hpp_environments/urdf/multicontact/plateforme_surfaces.urdf
 share/hpp_environments/urdf/multicontact/polaris.urdf
+share/hpp_environments/urdf/multicontact/random_scene_10x10_V3.urdf
+share/hpp_environments/urdf/multicontact/random_scene_10x10_V5.urdf
 share/hpp_environments/urdf/multicontact/roomWall.urdf
+share/hpp_environments/urdf/multicontact/rubbles_4.urdf
+share/hpp_environments/urdf/multicontact/rubbles_stairs_1.urdf
+share/hpp_environments/urdf/multicontact/rubbles_stairs_2.urdf
+share/hpp_environments/urdf/multicontact/rubbles_stairs_3.urdf
+share/hpp_environments/urdf/multicontact/rubbles_stairs_bridge_1.urdf
 share/hpp_environments/urdf/multicontact/scene.urdf
 share/hpp_environments/urdf/multicontact/scene2.urdf
 share/hpp_environments/urdf/multicontact/scene_wall.urdf
@@ -274,6 +293,7 @@ share/hpp_environments/urdf/multicontact/slalom.urdf
 share/hpp_environments/urdf/multicontact/slalom_debris.urdf
 share/hpp_environments/urdf/multicontact/slope_towr.urdf
 share/hpp_environments/urdf/multicontact/stair_bauzil.urdf
+share/hpp_environments/urdf/multicontact/stairs.urdf
 share/hpp_environments/urdf/multicontact/stairs_towr.urdf
 share/hpp_environments/urdf/multicontact/stepladder.urdf
 share/hpp_environments/urdf/multicontact/table.urdf
