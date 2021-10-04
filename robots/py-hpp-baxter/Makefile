@@ -4,7 +4,6 @@
 
 HPP_PACKAGE=		hpp-baxter
 HPP_COMMENT=		Wrappers for Baxter robot in HPP
-HPP_VERSION=		4.11.1
 
 ROSNAME=		$(subst -,_,${HPP_PACKAGE})
 
