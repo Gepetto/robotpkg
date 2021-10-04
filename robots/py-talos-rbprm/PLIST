@@ -13,8 +13,8 @@ ${PYTHON_SITELIB}/talos_rbprm/talos_fixedUpper.py
 share/talos-rbprm/com_inequalities/__init__.py
 share/talos-rbprm/com_inequalities/arm_left_1_joint_com_constraints.obj
 share/talos-rbprm/com_inequalities/arm_right_1_joint_com_constraints.obj
-share/talos-rbprm/com_inequalities/feet_quasi_flat/talos_COM_constraints_in_LF_effector_frame_REDUCED.obj
-share/talos-rbprm/com_inequalities/feet_quasi_flat/talos_COM_constraints_in_RF_effector_frame_REDUCED.obj
+share/talos-rbprm/com_inequalities/feet_quasi_flat/COM_constraints_in_LF_effector_frame_REDUCED.obj
+share/talos-rbprm/com_inequalities/feet_quasi_flat/COM_constraints_in_RF_effector_frame_REDUCED.obj
 share/talos-rbprm/com_inequalities/larm_com.erom
 share/talos-rbprm/com_inequalities/leg_left_1_joint_com_constraints.obj
 share/talos-rbprm/com_inequalities/leg_right_1_joint_com_constraints.obj
@@ -48,8 +48,8 @@ share/talos-rbprm/meshes/talos_trunk_upper.dae
 share/talos-rbprm/meshes/talos_trunk_upper.stl
 share/talos-rbprm/meshes/talos_trunk_upper_visual.dae
 share/talos-rbprm/package.xml
-share/talos-rbprm/relative_effector_positions/talos_LF_constraints_in_RF_quasi_flat_REDUCED.obj
-share/talos-rbprm/relative_effector_positions/talos_RF_constraints_in_LF_quasi_flat_REDUCED.obj
+share/talos-rbprm/relative_effector_positions/LF_constraints_in_RF_quasi_flat_REDUCED.obj
+share/talos-rbprm/relative_effector_positions/RF_constraints_in_LF_quasi_flat_REDUCED.obj
 share/talos-rbprm/roms/larm.erom
 share/talos-rbprm/roms/lleg.erom
 share/talos-rbprm/roms/rarm.erom
