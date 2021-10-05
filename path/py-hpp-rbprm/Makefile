@@ -2,7 +2,6 @@
 # Created:			Guilhem Saurel on Wed, 14 Apr 2021
 #
 
-PKGREVISION=			1
 HPP_PACKAGE=			hpp-rbprm
 HPP_COMMENT=			RB-PRM planner in HPP
 
