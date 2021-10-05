@@ -32,6 +32,10 @@ ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/hyq_darpa.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/hyq_darpa_path.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/hyq_slalom_debris.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/hyq_slalom_debris_path.py
+${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/solo_flatGround.py
+${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/solo_flatGround_path.py
+${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/solo_pallet_path.py
+${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/solo_slalom_path.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/talos_flatGround.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/talos_flatGround_path.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/talos_navBauzil.py
@@ -44,6 +48,8 @@ ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/talos_plateformes.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/talos_plateformes_path.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/talos_stairs10.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/talos_stairs10_path.py
+${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/talos_stairs15.py
+${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/demos/talos_stairs15_path.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/hrp2_contact_generator.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/hrp2_path_planner.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/hyq_contact_generator.py
@@ -78,6 +84,8 @@ ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/memmo/talos_randomMove_flat.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/memmo/talos_randomMove_path.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/memmo/talos_stairs10_random.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/memmo/talos_stairs10_random_path.py
+${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/solo_contact_generator.py
+${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/solo_path_planner.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/talos_contact_generator.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/scenarios/talos_path_planner.py
 ${PYTHON_SITELIB}/hpp/corbaserver/rbprm/state_alg.py
