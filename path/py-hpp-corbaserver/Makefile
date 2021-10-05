@@ -2,7 +2,6 @@
 # Created:			Anthony Mallet on Mon, 27 Aug 2007
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		hpp-corbaserver
 HPP_COMMENT=		Corba server for Humanoid Path Planner
 
