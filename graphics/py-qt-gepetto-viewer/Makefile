@@ -2,9 +2,8 @@
 # Created:			Florent Lamiraux on Sun, 8 Mar 2015
 #
 
-PKGREVISION=		2
 HPP_PACKAGE=		gepetto-viewer
-HPP_VERSION=		4.12.0
+HPP_VERSION=		4.12.1
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
 CATEGORIES=		graphics

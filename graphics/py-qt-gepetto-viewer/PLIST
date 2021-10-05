@@ -1,7 +1,4 @@
 @comment Tue Apr 9 23:23:11 CEST 2019
-${PYTHON_SITELIB}/gepetto/gui/__init__.py
-${PYTHON_SITELIB}/gepetto/gui/blenderexport.py
-${PYTHON_SITELIB}/gepetto/gui/intersection.py
 bin/gepetto-gui
 bin/gvtools
 include/gepetto/gui/action-search-bar.hh
@@ -68,5 +65,8 @@ lib/cmake/gepetto-viewer/gepetto-viewerTargets-release.cmake
 lib/cmake/gepetto-viewer/gepetto-viewerTargets.cmake
 lib/libgepetto-viewer.so
 lib/pkgconfig/gepetto-viewer.pc
+${PYTHON_SITELIB}/gepetto/gui/__init__.py
+${PYTHON_SITELIB}/gepetto/gui/blenderexport.py
+${PYTHON_SITELIB}/gepetto/gui/intersection.py
 share/gepetto-viewer/fonts/arial.ttf
 share/gepetto-viewer/package.xml
