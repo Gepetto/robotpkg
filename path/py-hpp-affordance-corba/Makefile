@@ -2,7 +2,6 @@
 # Created:			Guilhem Saurel on Wed, 21 Apr 2021
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		hpp-affordance-corba
 HPP_COMMENT=		Extract Whole-Body Affordances for Mutli-Contact Planning (CORBA bindings)
 
