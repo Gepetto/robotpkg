@@ -1,0 +1,22 @@
+From 0b93e3c0adad82dcd19d1507b5cc8047b1767d3b Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Wed, 6 Oct 2021 13:52:47 +0200
+Subject: [PATCH] fix _initOrb call
+
+---
+ src/hpp/corbaserver/rbprm/client.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/hpp/corbaserver/rbprm/client.py b/src/hpp/corbaserver/rbprm/client.py
+index 646a6da..f05057c 100755
+--- src/hpp/corbaserver/rbprm/client.py
++++ src/hpp/corbaserver/rbprm/client.py
+@@ -37,7 +37,7 @@ def __init__(self, url=None, context="corbaserver", port=13331):
+                 For a remote corba server, use
+                 url = "corbaloc:iiop:<host>:<port>/NameService"
+     """
+-        self._initOrb(url, port)
++        self._initOrb(url, port=port)
+         self._makeClients("rbprm", self.defaultClients, context)
+ 
+         # self.builder is created by self._makeClients
