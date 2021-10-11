@@ -14,7 +14,6 @@ SUBDIR+=	hpp-manipulation
 SUBDIR+=	hpp-manipulation-urdf
 SUBDIR+=	hpp-statistics
 SUBDIR+=	hpp-util
-SUBDIR+=	hpp-walkgen
 SUBDIR+=	jrl-walkgen
 SUBDIR+=	libkdtp
 SUBDIR+=	libp3d
