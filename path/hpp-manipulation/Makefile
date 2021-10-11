@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-manipulation
 HPP_COMMENT=		Manipulation problem definition and resolution
+PKGREVISION=		1
 
 CATEGORIES=		path
 
@@ -11,7 +12,6 @@ include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../devel/log4cxx/depend.mk
 include ../../mapping/octomap/depend.mk
-include ../../optimization/roboptim-trajectory/depend.mk
 include ../../path/hpp-constraints/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../path/hpp-statistics/depend.mk

@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp_tutorial
 HPP_COMMENT=		Tutorial for manipulation and path planning
+PKGREVISION=		1
 
 CATEGORIES=		doc
 
@@ -12,7 +13,6 @@ PYTHON_NOTAG_CONFLICT=	yes
 include ../../meta-pkgs/hpp/Makefile.common
 
 include ../../mapping/octomap/depend.mk
-include ../../optimization/roboptim-trajectory/depend.mk
 include ../../graphics/py-qt-hpp-gepetto-viewer/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/hpp-util/depend.mk

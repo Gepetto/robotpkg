@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-manipulation-corba
 HPP_COMMENT=		CORBA interface for hpp-manipulation
+PKGREVISION=		1
 
 CATEGORIES=		path
 
@@ -20,7 +21,6 @@ include ../../meta-pkgs/hpp/Makefile.common
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/py-omniORBpy/depend.mk
 include ../../mapping/octomap/depend.mk
-include ../../optimization/roboptim-trajectory/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/hpp-manipulation-urdf/depend.mk
 include ../../path/hpp-manipulation/depend.mk
