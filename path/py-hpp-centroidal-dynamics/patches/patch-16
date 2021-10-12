@@ -1,0 +1,290 @@
+From 6779358827b6c1e7b037712670bcd6cd2a98564d Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Tue, 12 Oct 2021 14:33:44 +0200
+Subject: [PATCH 1/3] disambiguate vectors and matrices for Eigen 3.4
+
+---
+ test/test_static_equilibrium.cpp | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/test/test_static_equilibrium.cpp b/test/test_static_equilibrium.cpp
+index 36a6a9c..c1a51e0 100644
+--- test/test_static_equilibrium.cpp
++++ test/test_static_equilibrium.cpp
+@@ -153,11 +153,11 @@ int test_findExtremumOverLine(Equilibrium* solver_to_test, Equilibrium* solver_g
+                               int N_TESTS, double e_max, const string& PERF_STRING_TEST,
+                               const string& PERF_STRING_GROUND_TRUTH, int verb = 0) {
+   int error_counter = 0;
+-  Vector3 a, com;
++  centroidal_dynamics::Vector3 a, com;
+   LP_status status;
+   double desired_robustness, robustness;
+   for (unsigned int i = 0; i < N_TESTS; i++) {
+-    uniform3(-1.0 * Vector3::Ones(), Vector3::Ones(), a);
++    uniform3(-1.0 * centroidal_dynamics::Vector3::Ones(), centroidal_dynamics::Vector3::Ones(), a);
+     if (e_max >= 0.0)
+       desired_robustness = (rand() / value_type(RAND_MAX)) * e_max;
+     else
+@@ -218,7 +218,7 @@ int test_findExtremumOverLine(Equilibrium* solver_to_test, Equilibrium* solver_g
+ void drawRobustnessGrid(int N_CONTACTS, int GRID_SIZE, Equilibrium* solver, Cref_matrixXX comPositions,
+                         Cref_matrixXX p) {
+   MatrixXi contactPointCoord(4 * N_CONTACTS, 2);
+-  VectorX minDistContactPoint = 1e10 * VectorX::Ones(4 * N_CONTACTS);
++  centroidal_dynamics::VectorX minDistContactPoint = 1e10 * centroidal_dynamics::VectorX::Ones(4 * N_CONTACTS);
+ 
+   // create grid of com positions to test
+   for (unsigned int i = 0; i < GRID_SIZE; i++) {
+@@ -275,7 +275,7 @@ void drawRobustnessGrid(int N_CONTACTS, int GRID_SIZE, Equilibrium* solver, Cref
+ 
+ void generateContacts(unsigned int N_CONTACTS, double MIN_CONTACT_DISTANCE, double LX, double LY,
+                       RVector3& CONTACT_POINT_LOWER_BOUNDS, RVector3& CONTACT_POINT_UPPER_BOUNDS,
+-                      RVector3& RPY_LOWER_BOUNDS, RVector3& RPY_UPPER_BOUNDS, MatrixX3& p, MatrixX3& N) {
++                      RVector3& RPY_LOWER_BOUNDS, RVector3& RPY_UPPER_BOUNDS, centroidal_dynamics::MatrixX3& p, centroidal_dynamics::MatrixX3& N) {
+   MatrixXX contact_pos = MatrixXX::Zero(N_CONTACTS, 3);
+   MatrixXX contact_rpy = MatrixXX::Zero(N_CONTACTS, 3);
+   p.setZero(4 * N_CONTACTS, 3);  // contact points
+@@ -324,7 +324,7 @@ void testWithLoadedData() {
+   EquilibriumAlgorithm algorithms[] = {EQUILIBRIUM_ALGORITHM_LP, EQUILIBRIUM_ALGORITHM_LP2, EQUILIBRIUM_ALGORITHM_DLP};
+ 
+   MatrixXX contactPoints, contactNormals;
+-  Vector3 com;
++  centroidal_dynamics::Vector3 com;
+   if (!readMatrixFromFile(file_path + "positions.dat", contactPoints)) {
+     SEND_ERROR_MSG("Impossible to read positions from file");
+     return;
+@@ -339,8 +339,8 @@ void testWithLoadedData() {
+   }
+ 
+   // this is a test to ensure that a matrixXX can be cast into a MatrixX3
+-  const MatrixX3& cp = contactPoints;
+-  const MatrixX3& cn = contactNormals;
++  const centroidal_dynamics::MatrixX3& cp = contactPoints;
++  const centroidal_dynamics::MatrixX3& cn = contactNormals;
+   Equilibrium* solvers[N_SOLVERS];
+   double robustness[N_SOLVERS];
+   for (int s = 0; s < N_SOLVERS; s++) {
+@@ -418,9 +418,9 @@ int main() {
+   for (int s = 0; s < N_SOLVERS; s++)
+     solvers[s] = new Equilibrium(solverNames[s], mass, generatorsPerContact, lp_solver_types[s]);
+ 
+-  MatrixX3 p, N;
++  centroidal_dynamics::MatrixX3 p, N;
+   RVector2 com_LB, com_UB;
+-  VectorX x_range(GRID_SIZE), y_range(GRID_SIZE);
++  centroidal_dynamics::VectorX x_range(GRID_SIZE), y_range(GRID_SIZE);
+   MatrixXX comPositions(GRID_SIZE * GRID_SIZE, 3);
+   for (unsigned n_test = 0; n_test < N_TESTS; n_test++) {
+     generateContacts(N_CONTACTS, MIN_CONTACT_DISTANCE, LX, LY, CONTACT_POINT_LOWER_BOUNDS, CONTACT_POINT_UPPER_BOUNDS,
+@@ -474,7 +474,7 @@ int main() {
+     }
+ 
+     const int N_TESTS_EXTREMUM = 100;
+-    Vector3 a0 = Vector3::Zero();
++    centroidal_dynamics::Vector3 a0 = centroidal_dynamics::Vector3::Zero();
+     a0.head<2>() = 0.5 * (com_LB + com_UB);
+     double e_max;
+     LP_status status = solvers[0]->computeEquilibriumRobustness(a0, e_max);
+
+From 32aab997ec72aefe6a91a01a7bb6575abc654fc7 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Wed, 6 Oct 2021 18:52:37 +0200
+Subject: [PATCH 2/3] clang-format
+
+---
+ src/centroidal_dynamics.cpp      | 4 +---
+ test/test_static_equilibrium.cpp | 3 ++-
+ 2 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/src/centroidal_dynamics.cpp b/src/centroidal_dynamics.cpp
+index 9f08107..7d6bc6a 100644
+--- src/centroidal_dynamics.cpp
++++ src/centroidal_dynamics.cpp
+@@ -72,9 +72,7 @@ Equilibrium::Equilibrium(const string& name, const double mass, const unsigned i
+   m_D.block<3, 3>(3, 0) = crossMatrix(-m_mass * m_gravity);
+ }
+ 
+-Equilibrium::~Equilibrium(){
+-  delete m_solver;
+-}
++Equilibrium::~Equilibrium() { delete m_solver; }
+ 
+ bool Equilibrium::computeGenerators(Cref_matrixX3 contactPoints, Cref_matrixX3 contactNormals,
+                                     double frictionCoefficient, const bool perturbate) {
+diff --git a/test/test_static_equilibrium.cpp b/test/test_static_equilibrium.cpp
+index c1a51e0..e11a503 100644
+--- test/test_static_equilibrium.cpp
++++ test/test_static_equilibrium.cpp
+@@ -275,7 +275,8 @@ void drawRobustnessGrid(int N_CONTACTS, int GRID_SIZE, Equilibrium* solver, Cref
+ 
+ void generateContacts(unsigned int N_CONTACTS, double MIN_CONTACT_DISTANCE, double LX, double LY,
+                       RVector3& CONTACT_POINT_LOWER_BOUNDS, RVector3& CONTACT_POINT_UPPER_BOUNDS,
+-                      RVector3& RPY_LOWER_BOUNDS, RVector3& RPY_UPPER_BOUNDS, centroidal_dynamics::MatrixX3& p, centroidal_dynamics::MatrixX3& N) {
++                      RVector3& RPY_LOWER_BOUNDS, RVector3& RPY_UPPER_BOUNDS, centroidal_dynamics::MatrixX3& p,
++                      centroidal_dynamics::MatrixX3& N) {
+   MatrixXX contact_pos = MatrixXX::Zero(N_CONTACTS, 3);
+   MatrixXX contact_rpy = MatrixXX::Zero(N_CONTACTS, 3);
+   p.setZero(4 * N_CONTACTS, 3);  // contact points
+
+From 5f6a431b70dcd912c7368fe0363ed14a399ecafb Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Tue, 12 Oct 2021 14:46:19 +0200
+Subject: [PATCH 3/3] remove some warnings
+
+---
+ python/centroidal_dynamics_python.cpp |  8 ++++----
+ src/centroidal_dynamics.cpp           | 10 +++++-----
+ src/stop-watch.cpp                    |  4 ++--
+ test/test_static_equilibrium.cpp      | 16 ++++++++--------
+ 4 files changed, 19 insertions(+), 19 deletions(-)
+
+diff --git a/python/centroidal_dynamics_python.cpp b/python/centroidal_dynamics_python.cpp
+index 7043d52..3c299a7 100644
+--- python/centroidal_dynamics_python.cpp
++++ python/centroidal_dynamics_python.cpp
+@@ -55,10 +55,10 @@ BOOST_PYTHON_MODULE(hpp_centroidal_dynamics) {
+   /** BEGIN eigenpy init**/
+   eigenpy::enableEigenPy();
+ 
+-  eigenpy::enableEigenPySpecific<MatrixX3ColMajor, MatrixX3ColMajor>();
+-  eigenpy::enableEigenPySpecific<MatrixXXColMajor, MatrixXXColMajor>();
+-  eigenpy::enableEigenPySpecific<Vector3, Vector3>();
+-  eigenpy::enableEigenPySpecific<VectorX, VectorX>();
++  // eigenpy::enableEigenPySpecific<MatrixX3ColMajor, MatrixX3ColMajor>();
++  // eigenpy::enableEigenPySpecific<MatrixXXColMajor, MatrixXXColMajor>();
++  // eigenpy::enableEigenPySpecific<Vector3, Vector3>();
++  // eigenpy::enableEigenPySpecific<VectorX, VectorX>();
+   /*eigenpy::exposeAngleAxis();
+   eigenpy::exposeQuaternion();*/
+ 
+diff --git a/src/centroidal_dynamics.cpp b/src/centroidal_dynamics.cpp
+index 7d6bc6a..e5061bb 100644
+--- src/centroidal_dynamics.cpp
++++ src/centroidal_dynamics.cpp
+@@ -19,12 +19,12 @@ bool Equilibrium::m_is_cdd_initialized = false;
+ Equilibrium::Equilibrium(const Equilibrium& other)
+     : m_mass(other.m_mass),
+       m_gravity(other.m_gravity),
++      m_G_centr(other.m_G_centr),
+       m_name(other.m_name),
+       m_algorithm(other.m_algorithm),
+       m_solver_type(other.m_solver_type),
+       m_solver(Solver_LP_abstract::getNewSolver(other.m_solver_type)),
+       m_generatorsPerContact(other.m_generatorsPerContact),
+-      m_G_centr(other.m_G_centr),
+       m_H(other.m_H),
+       m_h(other.m_h),
+       m_is_cdd_stable(other.m_is_cdd_stable),
+@@ -118,7 +118,7 @@ bool Equilibrium::computeGenerators(Cref_matrixX3 contactPoints, Cref_matrixX3 c
+ 
+     // compute generators
+     theta = pi_4;
+-    for (int j = 0; j < cg; j++) {
++    for (unsigned int j = 0; j < cg; j++) {
+       G.col(j) = frictionCoefficient * sin(theta) * T1 + frictionCoefficient * cos(theta) * T2 +
+                  contactNormals.row(i).transpose();
+       G.col(j).normalize();
+@@ -132,7 +132,7 @@ bool Equilibrium::computeGenerators(Cref_matrixX3 contactPoints, Cref_matrixX3 c
+ 
+   // Compute the coefficient to convert b0 to e_max
+   Vector3 f0 = Vector3::Zero();
+-  for (int j = 0; j < cg; j++) f0 += G.col(j);  // sum of the contact generators
++  for (unsigned int j = 0; j < cg; j++) f0 += G.col(j);  // sum of the contact generators
+   // Compute the distance between the friction cone boundaries and
+   // the sum of the contact generators, which is e_max when b0=1.
+   // When b0!=1 we just multiply b0 times this value.
+@@ -184,7 +184,7 @@ bool Equilibrium::setNewContacts(const MatrixX3& contactPoints, const MatrixX3&
+       attempts--;
+     }
+     // resetting random because obviously libcdd always resets to 0
+-    srand(time(NULL));
++    srand((unsigned int)time(NULL));
+     if (!m_is_cdd_stable) {
+       return false;
+     }
+@@ -501,7 +501,7 @@ LP_status Equilibrium::findExtremumOverLine(Cref_vector3 a, Cref_vector3 a0, dou
+   return LP_STATUS_ERROR;
+ }
+ 
+-LP_status Equilibrium::findExtremumInDirection(Cref_vector3 direction, Ref_vector3 com, double e_max) {
++LP_status Equilibrium::findExtremumInDirection(Cref_vector3 /*direction*/, Ref_vector3 /*com*/, double /*e_max*/) {
+   if (m_G_centr.cols() == 0) return LP_STATUS_INFEASIBLE;
+   SEND_ERROR_MSG("findExtremumInDirection not implemented yet");
+   return LP_STATUS_ERROR;
+diff --git a/src/stop-watch.cpp b/src/stop-watch.cpp
+index ebeb47a..946ec19 100644
+--- src/stop-watch.cpp
++++ src/stop-watch.cpp
+@@ -213,9 +213,9 @@ void Stopwatch::report(string perf_name, int precision, std::ostream& output) {
+ 
+   PerformanceData& perf_info = records_of->find(perf_name)->second;
+ 
+-  const int MAX_NAME_LENGTH = 60;
++  const long unsigned int MAX_NAME_LENGTH = 60;
+   string pad = "";
+-  for (int i = perf_name.length(); i < MAX_NAME_LENGTH; i++) pad.append(" ");
++  for (long unsigned int i = perf_name.length(); i < MAX_NAME_LENGTH; i++) pad.append(" ");
+ 
+   output << perf_name << pad;
+   output << std::fixed << std::setprecision(precision) << (perf_info.min_time * 1e3) << "\t";
+diff --git a/test/test_static_equilibrium.cpp b/test/test_static_equilibrium.cpp
+index e11a503..44ea68f 100644
+--- test/test_static_equilibrium.cpp
++++ test/test_static_equilibrium.cpp
+@@ -150,7 +150,7 @@ int test_computeEquilibriumRobustness(Equilibrium* solver_1, Equilibrium* solver
+  * @param verb Verbosity level, 0 print nothing, 1 print summary, 2 print everything
+  */
+ int test_findExtremumOverLine(Equilibrium* solver_to_test, Equilibrium* solver_ground_truth, Cref_vector3 a0,
+-                              int N_TESTS, double e_max, const string& PERF_STRING_TEST,
++                              unsigned int N_TESTS, double e_max, const string& PERF_STRING_TEST,
+                               const string& PERF_STRING_GROUND_TRUTH, int verb = 0) {
+   int error_counter = 0;
+   centroidal_dynamics::Vector3 a, com;
+@@ -221,8 +221,8 @@ void drawRobustnessGrid(int N_CONTACTS, int GRID_SIZE, Equilibrium* solver, Cref
+   centroidal_dynamics::VectorX minDistContactPoint = 1e10 * centroidal_dynamics::VectorX::Ones(4 * N_CONTACTS);
+ 
+   // create grid of com positions to test
+-  for (unsigned int i = 0; i < GRID_SIZE; i++) {
+-    for (unsigned int j = 0; j < GRID_SIZE; j++) {
++  for (int i = 0; i < GRID_SIZE; i++) {
++    for (int j = 0; j < GRID_SIZE; j++) {
+       // look for contact point positions on grid
+       for (long k = 0; k < 4 * N_CONTACTS; k++) {
+         double dist = (p.block<1, 2>(k, 0) - comPositions.block<1, 2>(i * GRID_SIZE + j, 0)).norm();
+@@ -237,8 +237,8 @@ void drawRobustnessGrid(int N_CONTACTS, int GRID_SIZE, Equilibrium* solver, Cref
+ 
+   cout << "\nContact point positions\n";
+   bool contactPointDrawn;
+-  for (unsigned int i = 0; i < GRID_SIZE; i++) {
+-    for (unsigned int j = 0; j < GRID_SIZE; j++) {
++  for (int i = 0; i < GRID_SIZE; i++) {
++    for (int j = 0; j < GRID_SIZE; j++) {
+       contactPointDrawn = false;
+       for (long k = 0; k < 4 * N_CONTACTS; k++) {
+         if (contactPointCoord(k, 0) == i && contactPointCoord(k, 1) == j) {
+@@ -256,7 +256,7 @@ void drawRobustnessGrid(int N_CONTACTS, int GRID_SIZE, Equilibrium* solver, Cref
+   int grid_size = (int)sqrt(comPositions.rows());
+   double rob;
+   LP_status status;
+-  for (unsigned int i = 0; i < comPositions.rows(); i++) {
++  for (int i = 0; i < comPositions.rows(); i++) {
+     status = solver->computeEquilibriumRobustness(comPositions.row(i).transpose(), rob);
+     if (status != LP_STATUS_OPTIMAL) {
+       SEND_ERROR_MSG("Faild to compute equilibrium robustness of com position " + toString(comPositions.row(i)) +
+@@ -392,7 +392,7 @@ int main() {
+   RPY_UPPER_BOUNDS << +2 * gamma, +2 * gamma, +M_PI;
+   double X_MARG = 0.07;
+   double Y_MARG = 0.07;
+-  const int GRID_SIZE = 10;
++  const unsigned int GRID_SIZE = 10;
+   bool DRAW_CONTACT_POINTS = false;
+   /************************************ END USER PARAMETERS *****************************/
+ 
+@@ -423,7 +423,7 @@ int main() {
+   RVector2 com_LB, com_UB;
+   centroidal_dynamics::VectorX x_range(GRID_SIZE), y_range(GRID_SIZE);
+   MatrixXX comPositions(GRID_SIZE * GRID_SIZE, 3);
+-  for (unsigned n_test = 0; n_test < N_TESTS; n_test++) {
++  for (unsigned int n_test = 0; n_test < N_TESTS; n_test++) {
+     generateContacts(N_CONTACTS, MIN_CONTACT_DISTANCE, LX, LY, CONTACT_POINT_LOWER_BOUNDS, CONTACT_POINT_UPPER_BOUNDS,
+                      RPY_LOWER_BOUNDS, RPY_UPPER_BOUNDS, p, N);
+ 
