@@ -10,6 +10,7 @@ include/tsid/deprecation.hpp
 include/tsid/formulations/contact-level.hpp
 include/tsid/formulations/inverse-dynamics-formulation-acc-force.hpp
 include/tsid/formulations/inverse-dynamics-formulation-base.hpp
+include/tsid/macros.hpp
 include/tsid/math/constraint-base.hpp
 include/tsid/math/constraint-bound.hpp
 include/tsid/math/constraint-equality.hpp
