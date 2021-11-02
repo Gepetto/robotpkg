@@ -82,6 +82,8 @@ include/pinocchio/bindings/python/parsers/python.hpp
 include/pinocchio/bindings/python/parsers/sample-models.hpp
 include/pinocchio/bindings/python/parsers/srdf.hpp
 include/pinocchio/bindings/python/parsers/urdf.hpp
+include/pinocchio/bindings/python/pybind11-all.hpp
+include/pinocchio/bindings/python/pybind11.hpp
 include/pinocchio/bindings/python/serialization/serializable.hpp
 include/pinocchio/bindings/python/serialization/serialization.hpp
 include/pinocchio/bindings/python/spatial/explog.hpp

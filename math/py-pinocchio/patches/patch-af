@@ -2,8 +2,8 @@ Don't install headers or .pc file: they would conflict between installs for
 multiple python versions. In case those are needed, something must be found to
 handle name conflicts.
 
---- bindings/python/CMakeLists.txt.orig	2021-05-19 09:24:49.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2021-06-08 12:44:31.856401358 +0200
+--- bindings/python/CMakeLists.txt.orig	2021-11-02 14:17:41.000000000 +0100
++++ bindings/python/CMakeLists.txt	2021-11-02 18:52:34.341791371 +0100
 @@ -12,9 +12,6 @@
        ${CMAKE_CURRENT_SOURCE_DIR}/${header}
        ${${PROJECT_NAME}_BINARY_DIR}/include/${PROJECT_NAME}/${SUBPATH}/${header})
@@ -27,7 +27,7 @@ handle name conflicts.
  ENDIF(NOT BUILD_PYTHON_INTERFACE_WITH_PYPY)
  
  # --- COMPILE WRAPPER
-@@ -251,8 +246,4 @@
+@@ -256,11 +251,6 @@
       "${CMAKE_CURRENT_SOURCE_DIR}/pinocchiopy.pc.cmake"
       "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc")
  
@@ -35,4 +35,7 @@ handle name conflicts.
 -      FILES "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc"
 -      DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 -      PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
- ENDIF(BUILD_PYTHON_INTERFACE)
+-
+   IF(DOXYGEN_FOUND AND DOXYGEN_VERSION VERSION_GREATER 1.8.17)
+     SET(DOXYGEN_GENERATE_HTML YES)
+     SET(DOXYGEN_GENERATE_LATEX NO)

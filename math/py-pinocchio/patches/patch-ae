@@ -5,14 +5,14 @@ for ext in ['hpp', 'cpp']:
     for i in sorted(Path('.').glob(f'**/*.{ext}')): print(f'  {i}')
     print()
 
---- bindings/python/CMakeLists.txt.orig	2021-05-19 09:24:49.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2021-06-08 12:41:01.030865080 +0200
-@@ -40,17 +40,109 @@
+--- bindings/python/CMakeLists.txt.orig	2021-11-02 18:15:11.345454754 +0100
++++ bindings/python/CMakeLists.txt	2021-11-02 18:16:12.488697856 +0100
+@@ -40,17 +40,111 @@
  SET(PYWRAP ${PROJECT_NAME}_pywrap)
  SET(PYWRAP ${PYWRAP} PARENT_SCOPE)
  
 -FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_HEADERS
--     ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp 
+-     ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp
 +SET(${PROJECT_NAME}_PYTHON_HEADERS
 +  algorithm/algorithms.hpp
 +  fwd.hpp
@@ -35,6 +35,8 @@ for ext in ['hpp', 'cpp']:
 +  parsers/sample-models.hpp
 +  parsers/srdf.hpp
 +  parsers/urdf.hpp
++  pybind11-all.hpp
++  pybind11.hpp
 +  serialization/serializable.hpp
 +  serialization/serialization.hpp
 +  spatial/explog.hpp
@@ -58,10 +60,10 @@ for ext in ['hpp', 'cpp']:
 +  utils/std-map.hpp
 +  utils/std-vector.hpp
 +  utils/version.hpp
-      ) 
+      )
  
 -FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_SOURCES
--     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp 
+-     ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
 +SET(${PROJECT_NAME}_PYTHON_SOURCES
 +  algorithm/expose-aba-derivatives.cpp
 +  algorithm/expose-aba.cpp
@@ -116,7 +118,7 @@ for ext in ['hpp', 'cpp']:
 +  utils/conversions.cpp
 +  utils/dependencies.cpp
 +  utils/version.cpp
-      ) 
+      )
  
 -REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_HEADERS}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_HEADERS)
 -REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_SOURCES}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_SOURCES)
