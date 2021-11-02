@@ -53,5 +53,5 @@ lib/cmake/eigenpy/eigenpyTargets.cmake
 lib/libeigenpy.so
 lib/pkgconfig/eigenpy.pc
 ${PYTHON_SITELIB}/eigenpy/__init__.py
-${PYTHON_SITELIB}/eigenpy/eigenpy${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/eigenpy/eigenpy_pywrap${PYTHON_EXT_SUFFIX}
 share/eigenpy/package.xml
