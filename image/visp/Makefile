@@ -9,7 +9,7 @@ CATEGORIES=		image
 MAINTAINER=		visp@inria.fr
 HOMEPAGE=		https://visp.inria.fr
 COMMENT=		Visual Servoing Platform
-MASTER_SITES=		https://gforge.inria.fr/frs/download.php/38283/
+MASTER_SITES=		http://gforge.inria.fr/frs/download.php/latestfile/475/
 LICENSE=		gnu-gpl-v2
 
 CONFIGURE_DIRS+=        build
