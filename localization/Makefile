@@ -18,5 +18,6 @@ SUBDIR+=	pom-genom3
 SUBDIR+=	ros-joint-state-publisher
 SUBDIR+=	ros-robot-state-publisher
 SUBDIR+=	segloc-genom
+SUBDIR+=	xsensmvn-genom3
 
 include ../mk/robotpkg.subdir.mk
