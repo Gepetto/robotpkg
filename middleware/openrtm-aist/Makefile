@@ -48,7 +48,7 @@ SUBST_MESSAGE.throw=\
 	Removing dynamic exception specification.
 SUBST_SED.throw=\
 	-e 's/throw[ \t]*([^)]*)//g'			\
-	-e '/throw[ \t]*([^)]*$$/,/^[^)]*)/{//!d;s///}'
+	-e '/throw[ \t]*([^)]*$$/,/^[^)]*)/{//!d;s///;}'
 SUBST_FILES.throw=\
 	src/lib/coil/posix/coil/Allocator.h		\
 	src/lib/coil/posix/coil/Allocator.cpp		\
