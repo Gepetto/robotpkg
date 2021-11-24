@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 23 Jan 2008
 #
 
-PKGREVISION=		1
+PKGREVISION=		2
 RTM_VERSION=		1.1.1
 DISTNAME=		OpenRTM-aist-${RTM_VERSION}
 PKGNAME=		openrtm-aist-${RTM_VERSION}
@@ -40,6 +40,23 @@ SUBST_FILES.rtm-python=\
 	utils/rtc-template/rtc-template		\
 	utils/rtm-skelwrapper/*.py		\
 	utils/rtm-skelwrapper/rtm-skelwrapper
+
+# Remove dynamic throw() specs. sed program matches multiline patterns
+SUBST_CLASSES+=		throw
+SUBST_STAGE.throw=	post-patch
+SUBST_MESSAGE.throw=\
+	Removing dynamic exception specification.
+SUBST_SED.throw=\
+	-e 's/throw[ \t]*([^)]*)//g'			\
+	-e '/throw[ \t]*([^)]*$$/,/^[^)]*)/{//!d;s///}'
+SUBST_FILES.throw=\
+	src/lib/coil/posix/coil/Allocator.h		\
+	src/lib/coil/posix/coil/Allocator.cpp		\
+	src/lib/rtm/*.h					\
+	src/lib/rtm/*.cpp				\
+	examples/SimpleService/MyServiceSVC_impl.h	\
+	examples/SimpleService/MyServiceSVC_impl.cpp
+
 
 DEPEND_ABI.python=	python<3
 include ../../mk/sysdep/python.mk
