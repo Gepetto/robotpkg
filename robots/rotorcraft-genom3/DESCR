@@ -1,7 +1,9 @@
 Low level hardware controller for tk3 quadrotors
 
-This component takes a desired wrench (forces + torques) control input in body
-frame and computes the propellers velocities accordingly.
+Low level hardware controller for quadrotors talking the telekyb3 protocol.
+
+This component reads a desired array of rotor velocities sent by attitude and
+position controllers and pass them to the underlying hardware.
 
 It communicates with the tk3-paparazzi or tk3-mikrokopter firmware running on
 the hardware controller.
