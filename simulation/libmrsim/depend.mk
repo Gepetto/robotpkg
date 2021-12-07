@@ -20,7 +20,7 @@ SYSTEM_SEARCH.libmrsim=\
 
 DEPEND_USE+=		libmrsim
 
-DEPEND_ABI.libmrsim?=	libmrsim>=1.1
+DEPEND_ABI.libmrsim?=	libmrsim>=1.3
 DEPEND_DIR.libmrsim?=	../../simulation/libmrsim
 
 endif # LIBMRSIM_DEPEND_MK -------------------------------------------------
