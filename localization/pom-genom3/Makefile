@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 21 Mar 2016
 #
 
-DISTNAME=		pom-genom3-3.2
+DISTNAME=		pom-genom3-3.3
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
