@@ -125,14 +125,12 @@ endif
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python27
-PKG_ALTERNATIVES.python+=	python34 python35 python36 python37 python38 python39 python310
+PKG_ALTERNATIVES.python+=	python34 python35 python36
+PKG_ALTERNATIVES.python+=	python37 python38 python39 python310
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 8,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python34
-  endif
   ifneq (,$(filter 9,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python35
   endif
