@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Thu, 14 Aug 2014
 #
 
+PKGREVISION=		1
 ROS_PKG=		geometric_shapes
 ROS_VERSION=		0.6.0
 ROS_REPO=		ros-planning
