@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Fri, 13 Jul 2007
 #
 
+PKGREVISION=	1
 HPP_PACKAGE=	hpp-core
 HPP_COMMENT=	Basic classes for general path planning
 
