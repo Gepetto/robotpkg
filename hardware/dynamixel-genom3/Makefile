@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 11 Jul 2016
 #
 
-DISTNAME=		dynamixel-genom3-2.2
+DISTNAME=		dynamixel-genom3-2.3
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
@@ -13,7 +13,9 @@ LICENSE=		2-clause-bsd
 
 include ../../architecture/genom3/module.mk
 
-include ../../interfaces/openrobots-idl/depend.mk
+DEPEND_ABI.openrobots2-idl=	openrobots2-idl>=2.2
+
+include ../../interfaces/openrobots2-idl/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
