@@ -15,6 +15,7 @@ SUBDIR+=	libstereopixel
 SUBDIR+=	niut-genom
 SUBDIR+=	opencv2
 SUBDIR+=	opencv3
+SUBDIR+=	opencv4
 SUBDIR+=	openni-nite
 SUBDIR+=	ros-image-common
 SUBDIR+=	ros-vision-opencv
