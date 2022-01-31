@@ -1,0 +1,147 @@
+--- modules/videoio/src/cap_v4l.cpp~	2020-10-11 23:26:07.000000000 +0200
++++ modules/videoio/src/cap_v4l.cpp	2022-01-31 16:39:01.271990894 +0100
+@@ -245,24 +245,38 @@
+ #endif
+ 
+ // https://github.com/opencv/opencv/issues/13335
++#ifdef V4L2_CID_CAMERA_CLASS_BASE
+ #ifndef V4L2_CID_ISO_SENSITIVITY
+ #define V4L2_CID_ISO_SENSITIVITY (V4L2_CID_CAMERA_CLASS_BASE+23)
+ #endif
++#endif
+ 
+ // https://github.com/opencv/opencv/issues/13929
++#ifdef V4L2_CID_MPEG_BASE
+ #ifndef V4L2_CID_MPEG_VIDEO_H264_VUI_EXT_SAR_HEIGHT
+ #define V4L2_CID_MPEG_VIDEO_H264_VUI_EXT_SAR_HEIGHT (V4L2_CID_MPEG_BASE+364)
+ #endif
+ #ifndef V4L2_CID_MPEG_VIDEO_H264_VUI_EXT_SAR_WIDTH
+ #define V4L2_CID_MPEG_VIDEO_H264_VUI_EXT_SAR_WIDTH (V4L2_CID_MPEG_BASE+365)
+ #endif
++#endif
+ 
+ #ifndef V4L2_CID_ROTATE
+ #define V4L2_CID_ROTATE (V4L2_CID_BASE+34)
+ #endif
++#ifdef V4L2_CID_CAMERA_CLASS_BASE
+ #ifndef V4L2_CID_IRIS_ABSOLUTE
+ #define V4L2_CID_IRIS_ABSOLUTE (V4L2_CID_CAMERA_CLASS_BASE+17)
+ #endif
++#endif
++
++#ifndef V4L2_PIX_FMT_SGBRG8
++#define V4L2_PIX_FMT_SGBRG8 v4l2_fourcc('G', 'B', 'R', 'G')
++#endif
++
++#ifndef V4L2_PIX_FMT_Y16
++#define V4L2_PIX_FMT_Y16 v4l2_fourcc('Y', '1', '6', ' ')
++#endif
+ 
+ #ifndef V4L2_PIX_FMT_Y10
+ #define V4L2_PIX_FMT_Y10 v4l2_fourcc('Y', '1', '0', ' ')
+@@ -1727,7 +1741,11 @@
+     case cv::CAP_PROP_FOURCC:
+         return -1;
+     case cv::CAP_PROP_FRAME_COUNT:
++#ifdef V4L2_CID_MPEG_VIDEO_B_FRAMES
+         return V4L2_CID_MPEG_VIDEO_B_FRAMES;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_FORMAT:
+         return -1;
+     case cv::CAP_PROP_MODE:
+@@ -1743,7 +1761,11 @@
+     case cv::CAP_PROP_GAIN:
+         return V4L2_CID_GAIN;
+     case cv::CAP_PROP_EXPOSURE:
++#ifdef V4L2_CID_EXPOSURE_ABSOLUTE
+         return V4L2_CID_EXPOSURE_ABSOLUTE;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_CONVERT_RGB:
+         return -1;
+     case cv::CAP_PROP_WHITE_BALANCE_BLUE_U:
+@@ -1755,7 +1777,11 @@
+     case cv::CAP_PROP_SHARPNESS:
+         return V4L2_CID_SHARPNESS;
+     case cv::CAP_PROP_AUTO_EXPOSURE:
++#ifdef V4L2_CID_EXPOSURE_AUTO
+         return V4L2_CID_EXPOSURE_AUTO;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_GAMMA:
+         return V4L2_CID_GAMMA;
+     case cv::CAP_PROP_TEMPERATURE:
+@@ -1767,33 +1793,69 @@
+     case cv::CAP_PROP_WHITE_BALANCE_RED_V:
+         return V4L2_CID_RED_BALANCE;
+     case cv::CAP_PROP_ZOOM:
++#ifdef V4L2_CID_ZOOM_ABSOLUTE
+         return V4L2_CID_ZOOM_ABSOLUTE;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_FOCUS:
++#ifdef V4L2_CID_FOCUS_ABSOLUTE
+         return V4L2_CID_FOCUS_ABSOLUTE;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_GUID:
+         return -1;
+     case cv::CAP_PROP_ISO_SPEED:
++#ifdef V4L2_CID_ISO_SENSITIVITY
+         return V4L2_CID_ISO_SENSITIVITY;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_BACKLIGHT:
+         return V4L2_CID_BACKLIGHT_COMPENSATION;
+     case cv::CAP_PROP_PAN:
++#ifdef V4L2_CID_PAN_ABSOLUTE
+         return V4L2_CID_PAN_ABSOLUTE;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_TILT:
++#ifdef V4L2_CID_TILT_ABSOLUTE
+         return V4L2_CID_TILT_ABSOLUTE;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_ROLL:
+         return V4L2_CID_ROTATE;
+     case cv::CAP_PROP_IRIS:
++#ifdef V4L2_CID_IRIS_ABSOLUTE
+         return V4L2_CID_IRIS_ABSOLUTE;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_SETTINGS:
+         return -1;
+     case cv::CAP_PROP_BUFFERSIZE:
+         return -1;
+     case cv::CAP_PROP_AUTOFOCUS:
++#ifdef V4L2_CID_FOCUS_AUTO
+         return V4L2_CID_FOCUS_AUTO;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_SAR_NUM:
++#ifdef V4L2_CID_MPEG_VIDEO_H264_VUI_EXT_SAR_HEIGHT
+         return V4L2_CID_MPEG_VIDEO_H264_VUI_EXT_SAR_HEIGHT;
++#else
++        return -1;
++#endif
+     case cv::CAP_PROP_SAR_DEN:
++#ifdef V4L2_CID_MPEG_VIDEO_H264_VUI_EXT_SAR_WIDTH
+         return V4L2_CID_MPEG_VIDEO_H264_VUI_EXT_SAR_WIDTH;
++#else
++        return -1;
++#endif
+     case CAP_PROP_AUTO_WB:
+         return V4L2_CID_AUTO_WHITE_BALANCE;
+     case CAP_PROP_WB_TEMPERATURE:

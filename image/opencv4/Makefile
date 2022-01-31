@@ -22,6 +22,7 @@ CMAKE_ARG_PATH=		${WRKSRC}
 # external packages support
 CMAKE_ARGS+=		-DWITH_1394=OFF
 CMAKE_ARGS+=		-DWITH_JASPER=OFF
+CMAKE_ARGS+=		-DWITH_OPENJPEG=OFF
 CMAKE_ARGS+=		-DWITH_LAPACK=OFF
 CMAKE_ARGS+=		-DWITH_MATLAB=OFF
 CMAKE_ARGS+=		-DWITH_OPENCL=OFF
@@ -38,6 +39,12 @@ CMAKE_ARGS+=		-DEIGEN_INCLUDE_PATH=${PREFIX.eigen3}/include/eigen3
 
 CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR:PATH=lib
 CMAKE_ARGS+=		-DOPENCV_PYTHON_INSTALL_PATH=${PYTHON_SITELIB}
+
+CMAKE_ARGS+=		-DBUILD_opencv_python2=OFF
+CMAKE_ARGS+=		-DBUILD_opencv_python3=OFF
+CMAKE_ARGS+=		-DBUILD_opencv_python${PYTHON_MAJOR}=ON
+
+DEPEND_ABI.cmake+=	cmake>=3.5.1
 
 include ../../archivers/bzip2/depend.mk
 include ../../archivers/zlib/depend.mk
