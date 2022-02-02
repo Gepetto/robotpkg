@@ -54,4 +54,5 @@ lib/libeigenpy.so
 lib/pkgconfig/eigenpy.pc
 ${PYTHON_SITELIB}/eigenpy/__init__.py
 ${PYTHON_SITELIB}/eigenpy/eigenpy_pywrap${PYTHON_EXT_SUFFIX}
+share/ament_index/resource_index/packages/eigenpy
 share/eigenpy/package.xml
