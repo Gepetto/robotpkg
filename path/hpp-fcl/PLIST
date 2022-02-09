@@ -22,6 +22,7 @@ include/hpp/fcl/deprecated.hh
 include/hpp/fcl/distance.h
 include/hpp/fcl/distance_func_matrix.h
 include/hpp/fcl/fwd.hh
+include/hpp/fcl/hfield.h
 include/hpp/fcl/internal/BV_fitter.h
 include/hpp/fcl/internal/BV_splitter.h
 include/hpp/fcl/internal/intersect.h
@@ -30,6 +31,7 @@ include/hpp/fcl/internal/traversal.h
 include/hpp/fcl/internal/traversal_node_base.h
 include/hpp/fcl/internal/traversal_node_bvh_shape.h
 include/hpp/fcl/internal/traversal_node_bvhs.h
+include/hpp/fcl/internal/traversal_node_hfield_shape.h
 include/hpp/fcl/internal/traversal_node_octree.h
 include/hpp/fcl/internal/traversal_node_setup.h
 include/hpp/fcl/internal/traversal_node_shapes.h
@@ -55,6 +57,7 @@ include/hpp/fcl/serialization/collision_object.h
 include/hpp/fcl/serialization/eigen.h
 include/hpp/fcl/serialization/fwd.h
 include/hpp/fcl/serialization/geometric_shapes.h
+include/hpp/fcl/serialization/hfield.h
 include/hpp/fcl/serialization/memory.h
 include/hpp/fcl/shape/convex.h
 include/hpp/fcl/shape/details/convex.hxx
