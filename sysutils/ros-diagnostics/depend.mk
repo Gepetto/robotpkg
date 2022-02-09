@@ -27,7 +27,7 @@ DEPEND_ABI.ros-diagnostics.jade += ros-diagnostics>=1.8<1.9
 DEPEND_ABI.ros-diagnostics.kinetic += ros-diagnostics>=1.8<1.10
 DEPEND_ABI.ros-diagnostics.lunar += ros-diagnostics>=1.9<1.10
 DEPEND_ABI.ros-diagnostics.melodic += ros-diagnostics>=1.9<1.10
-DEPEND_ABI.ros-diagnostics.noetic?=	ros-diagnostics>=1.10<1.11
+DEPEND_ABI.ros-diagnostics.noetic?=	ros-diagnostics>=1.10<1.12
 
 SYSTEM_SEARCH.ros-diagnostics=\
   'include/diagnostic_aggregator/aggregator.h'				\
