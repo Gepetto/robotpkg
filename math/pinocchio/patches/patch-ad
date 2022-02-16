@@ -1,6 +1,6 @@
 Avoid glob_recurse:
 
-for p in sorted(set('     ${PROJECT_SOURCE_DIR}/' + str(i.parent) + f'/*.{ext}' 
+for p in sorted(set(f'     ${{PROJECT_SOURCE_DIR}}/{i.parent}/*.{ext}'
 for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}'))):
     print(p)
 
