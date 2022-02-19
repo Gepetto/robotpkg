@@ -31,6 +31,18 @@ share/example-robot-data/robots/anymal_b_simple_description/robots/anymal-kinova
 share/example-robot-data/robots/anymal_b_simple_description/robots/anymal.urdf
 share/example-robot-data/robots/anymal_b_simple_description/srdf/anymal-kinova.srdf
 share/example-robot-data/robots/anymal_b_simple_description/srdf/anymal.srdf
+share/example-robot-data/robots/asr_twodof_description/LICENSE
+share/example-robot-data/robots/asr_twodof_description/README.md
+share/example-robot-data/robots/asr_twodof_description/meshes/twodofs/dae/Base2Dof_4040_m.dae
+share/example-robot-data/robots/asr_twodof_description/qb_meshes/dae/qb_base_flange_m.dae
+share/example-robot-data/robots/asr_twodof_description/qb_meshes/dae/qb_c_flange_m.dae
+share/example-robot-data/robots/asr_twodof_description/qb_meshes/dae/qb_double_flat_flange_m.dae
+share/example-robot-data/robots/asr_twodof_description/qb_meshes/dae/qb_flat_flange_m.dae
+share/example-robot-data/robots/asr_twodof_description/qb_meshes/dae/qbmove_finger_down_m.dae
+share/example-robot-data/robots/asr_twodof_description/qb_meshes/dae/qbmove_finger_up_m.dae
+share/example-robot-data/robots/asr_twodof_description/qb_meshes/dae/qbmove_frame_m.dae
+share/example-robot-data/robots/asr_twodof_description/qb_meshes/dae/qbmove_pulley_m.dae
+share/example-robot-data/robots/asr_twodof_description/urdf/TwoDofs.urdf
 share/example-robot-data/robots/baxter_description/LICENSE
 share/example-robot-data/robots/baxter_description/README.md
 share/example-robot-data/robots/baxter_description/meshes/base/PEDESTAL.DAE
@@ -99,6 +111,7 @@ share/example-robot-data/robots/double_pendulum_description/meshes/base_link.stl
 share/example-robot-data/robots/double_pendulum_description/meshes/link1.stl
 share/example-robot-data/robots/double_pendulum_description/meshes/link2.stl
 share/example-robot-data/robots/double_pendulum_description/urdf/double_pendulum.urdf
+share/example-robot-data/robots/double_pendulum_description/urdf/double_pendulum_continuous.urdf
 share/example-robot-data/robots/finger_edu_description/README.md
 share/example-robot-data/robots/finger_edu_description/meshes/base_back.stl
 share/example-robot-data/robots/finger_edu_description/meshes/base_front.stl
