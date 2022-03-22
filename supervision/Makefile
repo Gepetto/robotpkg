@@ -6,6 +6,7 @@ COMMENT=	Supervision tools
 SUBDIR+=	genom3-openprs
 SUBDIR+=	matlab-genomix
 SUBDIR+=	openprs
+SUBDIR+=	py-python-genomix
 SUBDIR+=	ros-executive-smach
 SUBDIR+=	tcl-genomix
 SUBDIR+=	transgen

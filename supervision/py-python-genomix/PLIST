@@ -1,0 +1,11 @@
+@comment Tue Mar 22 17:32:18 CET 2022
+lib/pkgconfig/python-genomix.pc
+${PYTHON_SITELIB}/genomix/__init__.py
+${PYTHON_SITELIB}/genomix/component.py
+${PYTHON_SITELIB}/genomix/event.py
+${PYTHON_SITELIB}/genomix/http.py
+${PYTHON_SITELIB}/genomix/pmt.py
+${PYTHON_SITELIB}/genomix/request.py
+${PYTHON_SITELIB}/genomix/server.py
+share/doc/python-genomix/README.adoc
+share/doc/python-genomix/README.html
