@@ -12,9 +12,6 @@ CONFLICTS+=		py[0-9][0-9]-catkin-pkg-[0-9]*
 CATEGORIES=	sysutils
 ROS_COMMENT=	standalone library for the catkin package
 
-PYDISTUTILSPKG=		yes
-PYSETUPINSTALLARGS+=	--single-version-externally-managed --root=/
-
 include ../../meta-pkgs/ros-base/Makefile.common
 
 include ../../mk/sysdep/py-argparse.mk

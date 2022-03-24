@@ -11,9 +11,6 @@ ROS_COMMENT=	basic utilities for querying stacks information
 
 CONFLICTS+=	py[0-9][0-9]-rospkg-${VERSION}
 
-PYDISTUTILSPKG=	yes
-PYSETUPINSTALLARGS+=	--single-version-externally-managed --root=/
-
 include ../../meta-pkgs/ros-base/Makefile.common
 
 # Fix prefix

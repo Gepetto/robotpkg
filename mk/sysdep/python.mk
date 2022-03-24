@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2021 LAAS/CNRS
+# Copyright (c) 2010-2022 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -420,7 +420,8 @@ python-compile-file(%): .FORCE
 	${RUN} ${PYTHON} -O -c 'import py_compile; py_compile.compile("$%");'
 
 # For python packages using the distuils.setup framework, redefine the
-# BUILD_MAKE_CMD
+# BUILD_MAKE_CMD. This is deprecated since python-3.10, this will be moved
+# to mk/sysdep/py-setuptools.mk.
 ifdef PYDISTUTILSPKG
 PYSETUP?=               setup.py
 PYSETUPBUILDARGS?=      #empty
@@ -428,11 +429,17 @@ PYSETUPINSTALLARGS+=    --prefix=${PREFIX}
 PYSETUPINSTALLARGS+=    --install-lib=${PREFIX}/${PYTHON_SITELIB}
 PYSETUPINSTALLARGS+=    --no-compile
 
-BUILD_MAKE_CMD?=${SETENV} ${MAKE_ENV} \
-	${PYTHON} ${PYSETUP} build ${PYSETUPBUILDARGS}
+DO_BUILD_TARGET?= do-build-distutils(${BUILD_DIRS})
+.PHONY: do-build-distutils()
+do-build-distutils(%): .FORCE
+	${RUN} cd ${WRKSRC} && cd '$%' && \
+	  ${PYTHON} ${PYSETUP} build ${PYSETUPBUILDARGS}
 
-INSTALL_MAKE_CMD?=${SETENV} ${MAKE_ENV} \
-	${PYTHON} ${PYSETUP} install ${PYSETUPINSTALLARGS}
+DO_INSTALL_TARGET?= do-install-distutils((${INSTALL_DIRS})
+.PHONY: do-install-distutils()
+do-install-distutils(%): .FORCE
+	${RUN} cd ${WRKSRC} && cd '$%' && \
+	  ${PYTHON} ${PYSETUP} install ${PYSETUPINSTALLARGS}
 
 endif # PYDISTUTILSPKG
 
