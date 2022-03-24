@@ -11,6 +11,7 @@ SUBDIR+=	hrp2-bringup
 SUBDIR+=	hrp2-computer-monitor
 SUBDIR+=	interceptty
 SUBDIR+=	py-aafigure
+SUBDIR+=	py-ament-package
 SUBDIR+=	py-catkin-pkg
 SUBDIR+=	py-rosdep
 SUBDIR+=	py-rosdistro

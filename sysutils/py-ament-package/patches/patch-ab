@@ -1,0 +1,10 @@
+Don't install garbage
+
+--- setup.py~	2022-01-18 19:41:21.000000000 +0100
++++ setup.py	2022-03-30 21:24:33.691619231 +0200
+@@ -40,4 +40,5 @@
+             'template/prefix_level/*',
+         ],
+     },
++    exclude_package_data={ '': [ '*.orig' ] }
+ )
