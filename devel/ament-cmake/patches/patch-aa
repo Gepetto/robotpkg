@@ -1,0 +1,13 @@
+Install setup.* files in prefix/etc/ros2 instead of prefix
+
+--- ament_cmake_core/cmake/environment/ament_generate_environment.cmake~	2022-02-18 01:03:31.000000000 +0100
++++ ament_cmake_core/cmake/environment/ament_generate_environment.cmake	2022-03-30 17:18:50.289588950 +0200
+@@ -52,7 +52,7 @@
+ 
+     install(
+       FILES "${file}"
+-      DESTINATION "${CMAKE_INSTALL_PREFIX}"
++      DESTINATION "${CMAKE_INSTALL_PREFIX}/etc/ros2"
+     )
+   endforeach()
+ endfunction()

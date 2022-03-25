@@ -1,0 +1,18 @@
+Don't install garbage
+
+--- ament_cmake_core/CMakeLists.txt~	2022-02-18 01:03:31.000000000 +0100
++++ ament_cmake_core/CMakeLists.txt	2022-03-30 23:11:07.829660129 +0200
+@@ -32,4 +32,5 @@
+ install(
+   DIRECTORY cmake
+   DESTINATION share/${PROJECT_NAME}
++  PATTERN "*.orig" EXCLUDE
+ )
+--- ament_cmake_gtest/CMakeLists.txt~	2022-02-18 01:03:31.000000000 +0100
++++ ament_cmake_gtest/CMakeLists.txt	2022-03-30 23:12:00.111877327 +0200
+@@ -11,4 +11,5 @@
+ install(
+   DIRECTORY cmake
+   DESTINATION share/${PROJECT_NAME}
++  PATTERN "*.orig" EXCLUDE
+ )
