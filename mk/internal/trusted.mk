@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2013,2018 LAAS/CNRS
+# Copyright (c) 2013,2018,2022 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -31,8 +31,12 @@ _ENV_VARS+=	MAKE MAKECONF ROBOTPKG_BASE ROBOTPKG_DIR
 _ENV_VARS+=	HOME PATH TERM TERMCAP DISPLAY XAUTHORITY SSH_AUTH_SOCK
 _ENV_VARS+=	http_proxy https_proxy ftp_proxy
 
-.PHONY: ${MAKECMDGOALS}
-${MAKECMDGOALS}:
+# for clarity of error messages printed by make, compute target name by joining
+# command line goals.
+_target=$(subst $  ,-,${MAKECMDGOALS})
+
+.PHONY: ${_target}
+${_target}:
 	@${SETENV} -i							\
 	  $(foreach _,${_ENV_VARS},					\
 	    $(if $(filter environment,$(origin $_)),			\
@@ -40,3 +44,8 @@ ${MAKECMDGOALS}:
 	  _ROBOTPKG_NOW=`${DATE} "+%m%d%H%M%S"`				\
 	  ROBOTPKG_TRUSTED_ENV=robotpkg					\
 	  ${MAKE} ${MFLAGS} ${MAKEOVERRIDES} ${MAKECMDGOALS}
+
+# avoid circular dependency when there is only one goal: the rule is already
+# defined above.
+$(filter-out ${_target},${MAKECMDGOALS}): ${_target}
+	@:
