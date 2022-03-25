@@ -29,4 +29,5 @@ include $(if ${ROS2_SUBPKGS}, ../../meta-pkgs/ros2-core/metapkg.mk)
 ROS2_AMENTPKG?=	yes
 ifneq (,$(filter yes Yes YES,${ROS2_AMENTPKG}))
   include ../../devel/ament-cmake/depend.mk
+  include ../../sysutils/ros2-ros-workspace/depend.mk
 endif

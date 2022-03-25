@@ -1,0 +1,27 @@
+@comment Wed Mar 30 17:22:22 CEST 2022
+etc/ros2/_local_setup_util.py
+etc/ros2/local_setup.bash
+etc/ros2/local_setup.sh
+etc/ros2/local_setup.zsh
+etc/ros2/setup.bash
+etc/ros2/setup.sh
+etc/ros2/setup.zsh
+share/ament_index/resource_index/package_run_dependencies/ros_workspace
+share/ament_index/resource_index/packages/ros_workspace
+share/ament_index/resource_index/parent_prefix_path/ros_workspace
+share/ros_workspace/cmake/ros_workspaceConfig-version.cmake
+share/ros_workspace/cmake/ros_workspaceConfig.cmake
+share/ros_workspace/environment/ament_prefix_path.dsv
+share/ros_workspace/environment/ament_prefix_path.sh
+share/ros_workspace/environment/library_path.dsv
+share/ros_workspace/environment/library_path.sh
+share/ros_workspace/environment/path.dsv
+share/ros_workspace/environment/path.sh
+share/ros_workspace/environment/pythonpath.dsv
+share/ros_workspace/environment/pythonpath.sh
+share/ros_workspace/local_setup.bash
+share/ros_workspace/local_setup.dsv
+share/ros_workspace/local_setup.sh
+share/ros_workspace/local_setup.zsh
+share/ros_workspace/package.dsv
+share/ros_workspace/package.xml

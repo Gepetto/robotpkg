@@ -23,6 +23,7 @@ SUBDIR+=	ros-rospack
 SUBDIR+=	ros-rqt-graph
 SUBDIR+=	ros-rqt-plot
 SUBDIR+=	ros-rviz
+SUBDIR+=	ros2-ros-workspace
 SUBDIR+=	tk3-flash
 SUBDIR+=	tth
 SUBDIR+=	y2l
