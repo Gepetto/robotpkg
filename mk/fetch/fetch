@@ -304,8 +304,12 @@ while ${TEST} $# -gt 0; do
 		    ;;
 
 		archive)
-		    ${ECHO} $fetch_cmd $site$file
-		    $fetch_cmd $site$file
+                    case "$site" in
+                        -*) url=${site#-};;
+                        *) url=$site$file;;
+                    esac
+		    ${ECHO} $fetch_cmd $url
+		    $fetch_cmd $url
 		    ;;
 
 		cvs)
