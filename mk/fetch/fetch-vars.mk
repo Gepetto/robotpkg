@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2013 LAAS/CNRS
+# Copyright (c) 2006,2008-2013,2022 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -68,7 +68,10 @@ MIRROR_LOGDIR?=	${LOCALBASE}/var/log/mirror
 MIRROR_TAG?=	$(or ${tag},Distfiles mirror)
 
 # Require well known sites definitions
-include ${ROBOTPKG_DIR}/mk/fetch/sites.mk
+$(call require, ${ROBOTPKG_DIR}/mk/fetch/sites.mk)
+$(if $(filter ${MASTER_SITE_GITHUB:=%},${MASTER_SITES}),	\
+  $(call require, ${ROBOTPKG_DIR}/mk/fetch/github.mk))
+
 
 # The fetch method.
 FETCH_METHOD?=		archive
