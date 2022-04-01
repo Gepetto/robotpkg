@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2011,2013,2016,2019 LAAS/CNRS
+# Copyright (c) 2006,2008-2011,2013,2016,2019,2022 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -181,6 +181,15 @@ $(foreach -,$(wordlist 1,$(1),. . . . . . . .),$(2))
 endef
 
 
+# --- prepend <item> <list> ------------------------------------------
+#
+# Append <item> to the beginning of <list>, removing duplicates.
+#
+override define prepend
+$(strip $1 $(filter-out $1,$2))
+endef
+
+
 # --- append <item> <list> -------------------------------------------
 #
 # Append <item> to the end of <list>, if not already in the list.
@@ -208,10 +217,7 @@ endef
 # If <path> does not exist, <path-list> is returned as-is.
 #
 override define prependpath
-$(strip $(if $(realpath $1),$(if $(strip $2),				\
-  $(subst $(_empty) $(_empty),:,$(strip					\
-  $(realpath $1) $(filter-out $(realpath $1),$(subst :, ,$2)))),	\
-  $(realpath $1)),$2))
+$(subst $  ,:,$(call prepend,$(realpath $1),$(subst :, ,$2)))
 endef
 
 
