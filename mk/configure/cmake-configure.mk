@@ -48,7 +48,7 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CONFIGURE_PREFIX}
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:PATH=${CMAKE_CONFIGURE_PREFIX}/lib
 CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE
 
-CMAKE_ARGS+=	CMAKE_EXE_LINKER_FLAGS=$(call quote,${LDFLAGS})
+CMAKE_ARGS+=	-DCMAKE_EXE_LINKER_FLAGS=$(call quote,${LDFLAGS})
 
 # build program in cmake - otherwise cmake picks up the first make in the PATH.
 # This does not influence cmake itself, but individual packages may want to use
