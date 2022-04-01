@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2013 LAAS/CNRS
+# Copyright (c) 2006-2013,2022 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -245,15 +245,13 @@ do-configure-post-hook:
 #
 _CONFIGURE_SCRIPT_ENV+=	${CONFIGURE_ENV}
 
-.PHONY: do-configure-script
-do-configure-script:
+.PHONY: do-configure-script()
+do-configure-script(%): .FORCE
 	${RUN}								\
-$(foreach _,${CONFIGURE_DIRS},						\
-	cd ${WRKSRC} && cd $_ &&					\
+	cd ${WRKSRC} && cd '$%' &&					\
 	${SETENV} ${_CONFIGURE_SCRIPT_ENV}				\
 	  ${CONFIG_SHELL} ${CONFIGURE_SCRIPT}				\
-	  ${CONFIGURE_ARGS} ${CONFIGURE_ARGS.$_};			\
-)
+	  ${CONFIGURE_ARGS} ${CONFIGURE_ARGS.$%}
 
 
 # --- pre-configure, do-configure, post-configure (PUBLIC, override) -------
@@ -262,15 +260,14 @@ $(foreach _,${CONFIGURE_DIRS},						\
 # targets, and may be overridden within a package Makefile.
 #
 ifdef HAS_CONFIGURE
-  _DO_CONFIGURE_TARGETS+=	do-configure-script
+  DO_CONFIGURE_TARGET?= do-configure-script(${CONFIGURE_DIRS})
 endif
 
 pre-configure do-configure post-configure: SHELL=${CONFIGURE_LOGFILTER}
 pre-configure do-configure post-configure: .SHELLFLAGS=--
 
-do%configure: ${_DO_CONFIGURE_TARGETS} .FORCE
+do%configure: ${DO_CONFIGURE_TARGET}
 	${_OVERRIDE_TARGET}
-	@${DO_NADA}
 
 .PHONY: pre-configure post-configure
 pre-configure:

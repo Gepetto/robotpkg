@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2011,2013,2018 LAAS/CNRS
+# Copyright (c) 2006-2011,2013,2018,2022 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -194,12 +194,14 @@ ${foreach _dir_,$(BUILD_DIRS),						\
 pre-build do-build post-build: SHELL=${BUILD_LOGFILTER}
 pre-build do-build post-build: .SHELLFLAGS=--
 
-do%build: .FORCE
+DO_BUILD_TARGET?= do-build-make(${BUILD_DIRS})
+
+do%build: ${DO_BUILD_TARGET}
 	${_OVERRIDE_TARGET}
-	${RUN}								\
-$(foreach _dir_,${BUILD_DIRS},						\
-	cd ${WRKSRC} && cd ${_dir_} && $(call BUILD_MAKE_CMD,${_dir_});	\
-)
+
+.PHONY: do-build-make()
+do-build-make(%): .FORCE
+	${RUN} cd ${WRKSRC} && cd '$%' && $(call BUILD_MAKE_CMD,$%)
 
 .PHONY: pre-build post-build
 pre-build:

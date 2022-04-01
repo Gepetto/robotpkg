@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009-2013 LAAS/CNRS
+# Copyright (c) 2009-2013,2022 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -92,14 +92,13 @@ endif
 # do-configure-cmake runs the cmake program to configure the software for
 # building.
 #
-_DO_CONFIGURE_TARGETS+=	do-configure-cmake
 _CONFIGURE_CMAKE_ENV+=	${CONFIGURE_ENV}
 
-.PHONY: do-configure-cmake
-do-configure-cmake:
+DO_CONFIGURE_TARGET?=	do-configure-cmake(${CONFIGURE_DIRS})
+
+.PHONY: do-configure-cmake()
+do-configure-cmake(%): .FORCE
 	${RUN}								\
-$(foreach _dir_,${CONFIGURE_DIRS},					\
-	cd ${WRKSRC} && cd ${_dir_} &&					\
+	cd ${WRKSRC} && cd '$%' &&					\
 	${SETENV} ${_CONFIGURE_CMAKE_ENV}				\
-		${CMAKE} ${CMAKE_ARGS} ${CMAKE_ARG_PATH};		\
-)
+	  ${CMAKE} ${CMAKE_ARGS} ${CMAKE_ARG_PATH}

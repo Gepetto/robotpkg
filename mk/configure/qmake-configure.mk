@@ -1,6 +1,5 @@
-# $LAAS: qmake-configure.mk 2012/11/13 16:05:36 mallet $
 #
-# Copyright (c) 2009-2010,2012 LAAS/CNRS
+# Copyright (c) 2009-2010,2012,2022 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -54,14 +53,13 @@ endif
 # do-configure-qmake runs the qmake program to configure the software for
 # building.
 #
-_DO_CONFIGURE_TARGETS+=	do-configure-qmake
 _CONFIGURE_QMAKE_ENV+=	${CONFIGURE_ENV}
 
-.PHONY: do-configure-qmake
-do-configure-qmake:
+DO_CONFIGURE_TARGET?= do-configure-qmake(${CONFIGURE_DIRS})
+
+.PHONY: do-configure-qmake()
+do-configure-qmake(%): .FORCE
 	${RUN}								\
-$(foreach _dir_,${CONFIGURE_DIRS},					\
-	cd ${WRKSRC} && cd ${_dir_} &&					\
+	cd ${WRKSRC} && cd '$%' &&					\
 	${SETENV} ${_CONFIGURE_QMAKE_ENV}				\
-		${QMAKE} ${QMAKE_ARGS} ${QMAKE_ARG_PATH};		\
-)
+	  ${QMAKE} ${QMAKE_ARGS} ${QMAKE_ARG_PATH}

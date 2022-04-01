@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2014 LAAS/CNRS
+# Copyright (c) 2006,2009-2014,2022 LAAS/CNRS
 # Copyright (c) 1994-2006 The NetBSD Foundation, Inc.
 # All rights reserved.
 #
@@ -299,13 +299,14 @@ INSTALL_MAKE_CMD?=\
 pre-install do-install post-install: SHELL=${INSTALL_LOGFILTER}
 pre-install do-install post-install: .SHELLFLAGS=--
 
-do%install: .FORCE
+DO_INSTALL_TARGET?= do-install-make(${INSTALL_DIRS})
+
+do%install: ${DO_INSTALL_TARGET}
 	${_OVERRIDE_TARGET}
-	${RUN}								\
-$(foreach _dir_,${INSTALL_DIRS},					\
-	cd ${WRKSRC} && cd ${_dir_} &&					\
-	$(call INSTALL_MAKE_CMD,${_dir_});				\
-)
+
+.PHONY: do-install-make()
+do-install-make(%): .FORCE
+	${RUN} cd ${WRKSRC} && cd '$%' && $(call INSTALL_MAKE_CMD,$%)
 
 .PHONY: pre-install post-install
 
