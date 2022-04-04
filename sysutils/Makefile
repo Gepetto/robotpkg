@@ -4,6 +4,7 @@
 COMMENT=	Sysutils
 
 SUBDIR+=	alog
+SUBDIR+=	ament-index
 SUBDIR+=	arduio
 SUBDIR+=	arduio-genom3
 SUBDIR+=	console-bridge

@@ -1,0 +1,10 @@
+This project provides two main things, the ability for packages to register
+types of resources they install and the ability to make queries about those
+resources at runtime. A resource can represent any kind of asset or
+functionality provided by a package. The queries might be anything from "Which
+packages are installed?" over "Which packages provide plugins of a certain
+type?" to "What messages and services does a specific package provide?". This
+project does not aim to catalog and explicitly reference all individual
+resources, but rather to provide meta information about what resources are
+provided by what packages and then providing absolute paths to the prefix
+containing the package.
