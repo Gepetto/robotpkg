@@ -1,0 +1,37 @@
+# robotpkg -*-makefile-gmake-*- for:	meta-pkgs/ros2-core
+# Created:				Anthony Mallet on Wed, 23 Mar 2022
+#
+#
+ROS2_DEPEND_COMMON:=	${ROS2_DEPEND_COMMON}+
+
+ifeq (+,${ROS2_DEPEND_COMMON}) # -------------------------------------------
+
+# Default ros2 packages preferences
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 18.04% 20.04%,${OS_VERSION}))
+    SYSTEM_PREFIX.ros2?=	/opt/ros/foxy
+  endif
+  PREFER.ros2?=		system
+endif
+
+SYSTEM_PREFIX.ros2?=	${SYSTEM_PREFIX}
+PREFER.ros2?=		robotpkg
+
+# Set defaults for ros2 packages in use
+define ROS2_DEPEND_USE_defaults
+  $(foreach _,${ROS2_DEPEND_USE},$_ $(eval
+    PREFER.$_?=		${PREFER.ros2}
+    SYSTEM_PREFIX.$_?=	${SYSTEM_PREFIX.ros2}))
+endef
+
+DEPEND_USE+=		${ROS2_DEPEND_USE_defaults}
+
+# SYSTEM_SEARCH convenience macro for *Config.cmake and package.xml
+define ros2_system_search
+  $(strip $(foreach _,$1,
+    'share/$_/cmake/$_Config.cmake'
+    'share/$_/package.xml:/<version>/s/[^0-9.]//gp'))
+endef
+
+endif # ROS2_DEPEND_COMMON -------------------------------------------------

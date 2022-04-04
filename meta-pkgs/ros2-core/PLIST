@@ -1,0 +1,16 @@
+@comment Tue Apr 5 19:36:16 CEST 2022
+share/ament_index/resource_index/package_run_dependencies/ros_core
+share/ament_index/resource_index/packages/ros_core
+share/ament_index/resource_index/parent_prefix_path/ros_core
+share/ros_core/cmake/ros_coreConfig-version.cmake
+share/ros_core/cmake/ros_coreConfig.cmake
+share/ros_core/environment/ament_prefix_path.dsv
+share/ros_core/environment/ament_prefix_path.sh
+share/ros_core/environment/path.dsv
+share/ros_core/environment/path.sh
+share/ros_core/local_setup.bash
+share/ros_core/local_setup.dsv
+share/ros_core/local_setup.sh
+share/ros_core/local_setup.zsh
+share/ros_core/package.dsv
+share/ros_core/package.xml
