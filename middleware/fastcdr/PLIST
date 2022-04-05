@@ -1,0 +1,18 @@
+@comment Tue Apr 5 11:40:12 CEST 2022
+include/fastcdr/Cdr.h
+include/fastcdr/FastBuffer.h
+include/fastcdr/FastCdr.h
+include/fastcdr/config.h
+include/fastcdr/eProsima_auto_link.h
+include/fastcdr/exceptions/BadParamException.h
+include/fastcdr/exceptions/Exception.h
+include/fastcdr/exceptions/NotEnoughMemoryException.h
+include/fastcdr/fastcdr_dll.h
+lib/cmake/fastcdr/fastcdr-config-version.cmake
+lib/cmake/fastcdr/fastcdr-config.cmake
+lib/cmake/fastcdr/fastcdr-dynamic-targets-release.cmake
+lib/cmake/fastcdr/fastcdr-dynamic-targets.cmake
+lib/libfastcdr.so
+lib/libfastcdr.so.1
+lib/libfastcdr.so.${PKGVERSION}
+share/fastcdr/LICENSE

@@ -4,6 +4,7 @@
 COMMENT=	Middleware tools and libraries
 
 SUBDIR+=	ace
+SUBDIR+=	fastcdr
 SUBDIR+=	hpp-template-corba
 SUBDIR+=	mavlink1
 SUBDIR+=	naoqi
