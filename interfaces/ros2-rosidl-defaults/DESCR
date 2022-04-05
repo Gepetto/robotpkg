@@ -1,0 +1,4 @@
+This package consist entirely of serving as a gathering dependency for all
+runtime related dependencies of ros2-rosidl packages. These dependencies can be
+found in the package.xml. This helps reduce the boilerplate needed when
+developers create their own rosidl packages.
