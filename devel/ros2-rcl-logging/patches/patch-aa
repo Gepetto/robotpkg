@@ -1,0 +1,12 @@
+Dependency on spdlog is managed by robotpkg
+
+--- rcl_logging_spdlog/CMakeLists.txt~	2022-03-01 20:28:59.000000000 +0100
++++ rcl_logging_spdlog/CMakeLists.txt	2022-04-06 18:23:37.877936608 +0200
+@@ -15,7 +15,6 @@
+ find_package(rcl_logging_interface REQUIRED)
+ find_package(rcpputils REQUIRED)
+ find_package(rcutils REQUIRED)
+-find_package(spdlog_vendor REQUIRED) # Provides spdlog on platforms without it.
+ find_package(spdlog REQUIRED)
+ 
+ if(NOT WIN32)
