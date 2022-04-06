@@ -23,5 +23,6 @@ SUBDIR+=	ros2-rosidl-python
 SUBDIR+=	ros2-rosidl-typesupport
 SUBDIR+=	ros2-rosidl-typesupport-fastrtps
 SUBDIR+=	ros2-test-interface-files
+SUBDIR+=	ros2-unique-identifier-msgs
 
 include ../mk/robotpkg.subdir.mk
