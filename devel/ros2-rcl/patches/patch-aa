@@ -1,0 +1,53 @@
+Let robotpkg manage libyaml dependency and use pkg-config as libyaml doesn't
+have cmake bits.
+
+Fiddle with ament_target_dependencies() by adding a PUBLIC keyword so that
+target_link_libraries() can be used later for libyaml with the PRIVATE
+keyword. (it's a nightmare anyway, as it seems that all dependencies registered
+through ament_target_dependencies() are escaping to dependent packages, but
+this is even more an issue with libyaml as this is a system package and thus
+needs some linker flags).
+
+--- rcl_yaml_param_parser/CMakeLists.txt~	2022-04-07 17:39:03.082353703 +0200
++++ rcl_yaml_param_parser/CMakeLists.txt	2022-04-07 17:39:44.250639530 +0200
+@@ -5,7 +5,6 @@
+ find_package(ament_cmake_ros REQUIRED)
+ find_package(rcutils REQUIRED)
+ find_package(rmw REQUIRED)
+-find_package(libyaml_vendor REQUIRED)
+ 
+ # Default to C++14
+ if(NOT CMAKE_CXX_STANDARD)
+@@ -34,7 +34,12 @@
+ target_include_directories(${PROJECT_NAME} PUBLIC
+   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
+-ament_target_dependencies(${PROJECT_NAME} "libyaml_vendor" "rcutils" "rmw")
++ament_target_dependencies(${PROJECT_NAME} PUBLIC "rcutils" "rmw")
++find_package(PkgConfig)
++pkg_check_modules(LIBYAML REQUIRED yaml-0.1)
++target_include_directories(${PROJECT_NAME} PRIVATE ${LIBYAML_INCLUDE_DIRS})
++target_link_options(${PROJECT_NAME} PRIVATE ${LIBYAML_LDFLAGS})
++target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBYAML_LIBRARIES})
+ 
+ # Set the visibility to hidden by default if possible
+ if(CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID MATCHES "Clang")
+@@ -192,7 +192,7 @@
+ # Export modern CMake targets
+ ament_export_targets(${PROJECT_NAME})
+ 
+-ament_export_dependencies(ament_cmake libyaml_vendor)
++ament_export_dependencies(ament_cmake)
+ ament_export_dependencies(rmw)
+ install(
+   DIRECTORY include/
+--- rcl_yaml_param_parser/package.xml~	2022-04-05 23:19:53.000000000 +0200
++++ rcl_yaml_param_parser/package.xml	2022-04-07 17:45:15.448981008 +0200
+@@ -15,7 +15,6 @@
+ 
+   <buildtool_depend>ament_cmake_ros</buildtool_depend>
+ 
+-  <depend>libyaml_vendor</depend>
+   <depend>yaml</depend>
+   <depend>rmw</depend>
+   <build_depend>rcutils</build_depend>

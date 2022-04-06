@@ -15,6 +15,7 @@ CONFIGURE_DIRS=		ros_core
 
 include ../../devel/ament-cmake/depend.mk
 include ../../devel/ament-cmake-ros/depend.mk
+include ../../devel/ros2-rcl/depend.mk
 include ../../interfaces/ros2-rosidl-defaults/depend.mk
 include ../../sysutils/ament-index/depend.mk
 include ../../mk/robotpkg.mk
