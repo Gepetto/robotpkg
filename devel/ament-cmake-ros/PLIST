@@ -1,0 +1,23 @@
+@comment Wed Apr 6 14:27:14 CEST 2022
+share/ament_cmake_ros/cmake/ament_add_ros_isolated_gmock.cmake
+share/ament_cmake_ros/cmake/ament_add_ros_isolated_gtest.cmake
+share/ament_cmake_ros/cmake/ament_add_ros_isolated_pytest.cmake
+share/ament_cmake_ros/cmake/ament_cmake_export_dependencies-extras.cmake
+share/ament_cmake_ros/cmake/ament_cmake_ros-extras.cmake
+share/ament_cmake_ros/cmake/ament_cmake_rosConfig-version.cmake
+share/ament_cmake_ros/cmake/ament_cmake_rosConfig.cmake
+share/ament_cmake_ros/cmake/build_shared_libs.cmake
+share/ament_cmake_ros/cmake/run_test_isolated.py
+share/ament_cmake_ros/environment/ament_prefix_path.dsv
+share/ament_cmake_ros/environment/ament_prefix_path.sh
+share/ament_cmake_ros/environment/path.dsv
+share/ament_cmake_ros/environment/path.sh
+share/ament_cmake_ros/local_setup.bash
+share/ament_cmake_ros/local_setup.dsv
+share/ament_cmake_ros/local_setup.sh
+share/ament_cmake_ros/local_setup.zsh
+share/ament_cmake_ros/package.dsv
+share/ament_cmake_ros/package.xml
+share/ament_index/resource_index/package_run_dependencies/ament_cmake_ros
+share/ament_index/resource_index/packages/ament_cmake_ros
+share/ament_index/resource_index/parent_prefix_path/ament_cmake_ros

@@ -14,4 +14,5 @@ include ../../meta-pkgs/ros2-core/Makefile.common
 CONFIGURE_DIRS=		ros_core
 
 include ../../devel/ament-cmake/depend.mk
+include ../../devel/ament-cmake-ros/depend.mk
 include ../../mk/robotpkg.mk

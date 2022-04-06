@@ -4,6 +4,7 @@
 COMMENT=	Software development tools
 
 SUBDIR+=	ament-cmake
+SUBDIR+=	ament-cmake-ros
 SUBDIR+=	cortex-sdk
 SUBDIR+=	boost-build
 SUBDIR+=	boost-headers
