@@ -1,0 +1,2 @@
+rcutils is a C API consisting of macros, functions, and data structures used
+through out the ROS 2 code base.

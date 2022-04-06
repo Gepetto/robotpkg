@@ -1,0 +1,13 @@
+NetBSD has getprogname(3)
+
+--- src/process.c~	2022-03-31 23:36:27.000000000 +0200
++++ src/process.c	2022-04-06 21:36:02.885666002 +0200
+@@ -58,7 +58,7 @@
+   RCUTILS_CHECK_ALLOCATOR_WITH_MSG(
+     &allocator, "invalid allocator", return NULL);
+ 
+-#if defined __APPLE__ || defined __FreeBSD__ || (defined __ANDROID__ && __ANDROID_API__ >= 21)
++#if defined __APPLE__ || defined __FreeBSD__ || defined __NetBSD__ || (defined __ANDROID__ && __ANDROID_API__ >= 21)
+   const char * appname = getprogname();
+ #elif defined __GNUC__ && !defined(__QNXNTO__)
+   const char * appname = program_invocation_name;
