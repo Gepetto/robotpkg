@@ -1,0 +1,12 @@
+rcpputils is a C++ API consisting of macros, functions, and data structures
+intended for use throughout the ROS 2 codebase.
+
+This package currently contains:
+* Assertion functions
+* Clang thread safety annotation macros
+* Library discovery
+* String helpers
+* File system helpers
+* Type traits helpers
+* Class that dynamically loads, unloads and get symbols from shared libraries
+  at run-time.

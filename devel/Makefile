@@ -30,6 +30,7 @@ SUBDIR+=	ros-realtime-tools
 SUBDIR+=	ros-ros
 SUBDIR+=	ros-roscpp-core
 SUBDIR+=	ros-xacro
+SUBDIR+=	ros2-rcpputils
 SUBDIR+=	ros2-rcutils
 SUBDIR+=	spdlog
 SUBDIR+=	tinyxml
