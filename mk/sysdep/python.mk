@@ -85,6 +85,7 @@ ifeq (+,$(PYTHON_DEPEND_MK)) # ---------------------------------------------
 DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
+DEPEND_METHOD.python?=	build
 DEPEND_ABI.python?=	python>=2.5<3.11
 
 # factorize SYSTEM_SEARCH.python* here for all python* packages
@@ -176,6 +177,7 @@ endef
 define PKG_ALTERNATIVE_SET.python27
   _py_abi:=$(subst python,python27,${PKG_ALTERNATIVE_SELECT.python27})
   DEPEND_ABI.python27?=	$(strip ${_py_abi})
+  DEPEND_METHOD.python27?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python27.mk
 endef
@@ -188,6 +190,7 @@ endef
 define PKG_ALTERNATIVE_SET.python34
   _py_abi:=$(subst python,python34,${PKG_ALTERNATIVE_SELECT.python34})
   DEPEND_ABI.python34?=	$(strip ${_py_abi})
+  DEPEND_METHOD.python34?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python34.mk
 endef
@@ -200,6 +203,7 @@ endef
 define PKG_ALTERNATIVE_SET.python35
   _py_abi:=$(subst python,python35,${PKG_ALTERNATIVE_SELECT.python35})
   DEPEND_ABI.python35?=	$(strip ${_py_abi})
+  DEPEND_METHOD.python35?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python35.mk
 endef
@@ -212,6 +216,7 @@ endef
 define PKG_ALTERNATIVE_SET.python36
   _py_abi:=$(subst python,python36,${PKG_ALTERNATIVE_SELECT.python36})
   DEPEND_ABI.python36?=	$(strip ${_py_abi})
+  DEPEND_METHOD.python36?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python36.mk
 endef
@@ -224,6 +229,7 @@ endef
 define PKG_ALTERNATIVE_SET.python37
   _py_abi:=$(subst python,python37,${PKG_ALTERNATIVE_SELECT.python37})
   DEPEND_ABI.python37?=	$(strip ${_py_abi})
+  DEPEND_METHOD.python37?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python37.mk
 endef
@@ -236,6 +242,7 @@ endef
 define PKG_ALTERNATIVE_SET.python38
   _py_abi:=$(subst python,python38,${PKG_ALTERNATIVE_SELECT.python38})
   DEPEND_ABI.python38?=	$(strip ${_py_abi})
+  DEPEND_METHOD.python38?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python38.mk
 endef
@@ -248,6 +255,7 @@ endef
 define PKG_ALTERNATIVE_SET.python39
   _py_abi:=$(subst python,python39,${PKG_ALTERNATIVE_SELECT.python39})
   DEPEND_ABI.python39?=	$(strip ${_py_abi})
+  DEPEND_METHOD.python39?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python39.mk
 endef
@@ -259,7 +267,8 @@ define PKG_ALTERNATIVE_SELECT.python310
 endef
 define PKG_ALTERNATIVE_SET.python310
   _py_abi:=$(subst python,python310,${PKG_ALTERNATIVE_SELECT.python310})
-  DEPEND_ABI.python310?=	$(strip ${_py_abi})
+  DEPEND_ABI.python310?= $(strip ${_py_abi})
+  DEPEND_METHOD.python310?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python310.mk
 endef
