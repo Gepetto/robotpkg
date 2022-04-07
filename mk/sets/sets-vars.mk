@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2011,2013,2018 LAAS/CNRS
+# Copyright (c) 2010-2011,2013,2018,2022 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -33,6 +33,7 @@ PKGSET_PATTERN?=	PKGSET.%
 PKGSET_FAILSAFE?=	no
 PKGSET_STRICT?=		no
 PKGSET_NULLGLOB?=	no
+PKGSET_TOPLEVEL?=	yes
 
 # names of existing sets in robotpkg.conf, plus special 'installed' and
 # 'depends' set, sorted for unicity
@@ -56,7 +57,8 @@ $(foreach _set_,${_pkgset_names},					\
   $(eval PKGSET_DESCR.${_set_}?=${_set_})				\
   $(eval PKGSET_FAILSAFE.${_set_}?=${PKGSET_FAILSAFE})			\
   $(eval PKGSET_STRICT.${_set_}?=${PKGSET_STRICT})			\
-  $(eval PKGSET_NULLGLOB.${_set_}?=${PKGSET_NULLGLOB}))
+  $(eval PKGSET_NULLGLOB.${_set_}?=${PKGSET_NULLGLOB})			\
+  $(eval PKGSET_TOPLEVEL.${_set_}?=${PKGSET_TOPLEVEL}))
 
 
 # compute PKGSET.installed if needed
@@ -73,6 +75,7 @@ ifdef PKGNAME
     PKGSET.depends=		${PKGPATH}
     PKGSET_DESCR.depends=	dependencies of ${PKGNAME}
     PKGSET_STRICT.depends=	no
+    PKGSET_TOPLEVEL.depends=	no
   endif
 endif
 

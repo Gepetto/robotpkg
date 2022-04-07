@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2011,2013,2021 LAAS/CNRS
+# Copyright (c) 2010-2011,2013,2021-2022 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -27,46 +27,55 @@
 # Recursive targets for a set.
 #
 set-clean-%: .FORCE
-	${RUN}$(call _pkgset_recursive,clean,-n -p)
+	${RUN}$(call _pkgset_do,clean,-n -p)
 
 set-fetch-%: .FORCE
-	${RUN}$(call _pkgset_recursive,fetch cleaner,-n -e)
+	${RUN}$(call _pkgset_do,fetch cleaner,-n -e)
 
 set-extract-%: .FORCE
-	${RUN}$(call _pkgset_recursive,extract,-1 -n -e)
+	${RUN}$(call _pkgset_do,extract,-1 -n -e)
 
 set-install-%: .FORCE
-	${RUN}$(call _pkgset_recursive,install,-1 -e)
+	${RUN}$(call _pkgset_do,install,-1 -e)
 
 set-replace-%: .FORCE
-	${RUN}$(call _pkgset_recursive,replace cleaner,-1 -e)
+	${RUN}$(call _pkgset_do,replace cleaner,-1 -e)
 
 set-update-%: .FORCE
-	${RUN}$(call _pkgset_recursive,update,-1 -e)
+	${RUN}$(call _pkgset_do,update,-1 -e)
 
 set-bulk-%: .FORCE
-	${RUN}$(call _pkgset_recursive,bulk,-e				\
-	  -t 'LOCALBASE=${BULKBASE}'					\
+	${RUN}$(call _pkgset_do,bulk,-e				\
+	  -t 'LOCALBASE=${BULKBASE}'				\
 	  -t 'EXPECT_TARGETS=fetch install package')
 
 set-deinstall-%: .FORCE
-	${RUN}$(call _pkgset_recursive,deinstall,-e -r)
+	${RUN}$(call _pkgset_do,deinstall,-e -r)
 
 set-mirror-distfiles-%: .FORCE
-	${RUN}$(call _pkgset_recursive,mirror-distfiles,-e		\
+	${RUN}$(call _pkgset_do,mirror-distfiles,-e		\
 	  -t 'EXPECT_TARGETS=mirror-distfiles')
 
 set-show-var-%: .FORCE
-	${RUN}$(call _pkgset_recursive,show-var)
+	${RUN}$(call _pkgset_do,show-var)
 
 set-print-var-%: .FORCE
-	${RUN}$(call _pkgset_recursive,print-var,-n)
+	${RUN}$(call _pkgset_do,print-var,-n)
 
 
 # --- recursion ------------------------------------------------------------
 #
-ifneq (2,${_ROBOTPKG_DEPTH})
-  override define _pkgset_recursive
+override define _pkgset_do
+	$(if $(call isyes,${PKGSET_TOPLEVEL.$*}),			\
+	  if ${TEST} "${_ROBOTPKG_DEPTH}" -ne 0; then			\
+	    ${_pkgset_restart};						\
+	    exit 0;							\
+	  fi;)								\
+	${_pkgset_recursive}
+endef
+
+# Expand and sort set and perform action for each package
+override define _pkgset_recursive
 	${PHASE_MSG} $(if $(filter -n,$2),'Scanning','Sorting')		\
 	  'packages for ${PKGSET_DESCR.$*}';				\
 	${TEST} -t 1 && i="-i";						\
@@ -100,13 +109,12 @@ ifneq (2,${_ROBOTPKG_DEPTH})
 	done;								\
 	${PHASE_MSG} 'Done $(patsubst set-%-$*,%,$@) for'		\
 	  '${PKGSET_DESCR.$*}'
-  endef
-else
-  # Restart from toplevel directory, to avoid inheritance of alternatives
-  # defined by the package in the current directory
-  override define _pkgset_recursive
+endef
+
+# Restart from toplevel directory to avoid inheritance of alternatives
+# defined by the package in the current directory.
+override define _pkgset_restart
 	unset ROBOTPKG_TRUSTED_ENV;					\
 	cd ${ROBOTPKG_DIR};						\
 	${MAKE} ${MFLAGS} ${MAKEOVERRIDES} ${MAKECMDGOALS}
-  endef
-endif
+endef
