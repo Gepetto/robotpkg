@@ -37,7 +37,7 @@ PKGSET_TOPLEVEL?=	yes
 
 # names of existing sets in robotpkg.conf, plus special 'installed' and
 # 'depends' set, sorted for unicity
-_pkgset_names= $(sort installed depends \
+_pkgset_names= $(sort installed $(if ${PKGNAME},depends) \
   $(patsubst ${PKGSET_PATTERN},%, $(filter ${PKGSET_PATTERN},${.VARIABLES})))
 
 # targets that are 'set'-aware
