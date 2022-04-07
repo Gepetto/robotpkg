@@ -24,6 +24,7 @@ SUBDIR+=	ros-genmsg
 SUBDIR+=	ros2-rmw
 SUBDIR+=	ros2-rmw-dds-common
 SUBDIR+=	ros2-rmw-fastrtps
+SUBDIR+=	ros2-rmw-implementation
 SUBDIR+=	yarp
 
 include ../mk/robotpkg.subdir.mk
