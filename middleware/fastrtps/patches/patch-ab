@@ -1,0 +1,80 @@
+TinyXML2 < 5 does not have GetLineNum()
+
+--- src/cpp/rtps/xmlparser/XMLDynamicParser.cpp~	2022-03-17 07:49:49.000000000 +0100
++++ src/cpp/rtps/xmlparser/XMLDynamicParser.cpp	2022-04-09 14:32:37.730719086 +0200
+@@ -987,7 +987,11 @@
+             }
+             catch (const std::exception&)
+             {
++#if TIXML2_MAJOR_VERSION >= 5
+                 logError(XMLPARSER, "Error parsing member sequence length in line " << p_root->GetLineNum());
++#else
++                logError(XMLPARSER, "Error parsing member sequence length in"  << p_root->Name());
++#endif
+                 return nullptr;
+             }
+         }
+@@ -1071,7 +1075,11 @@
+             }
+             catch (const std::exception&)
+             {
++#if TIXML2_MAJOR_VERSION >= 5
+                 logError(XMLPARSER, "Error parsing map member sequence length in line " << p_root->GetLineNum())
++#else
++                logError(XMLPARSER, "Error parsing map member sequence length in " << p_root->Name());
++#endif
+                 return nullptr;
+             }
+         }
+--- src/cpp/rtps/xmlparser/XMLElementParser.cpp~	2022-03-17 07:49:49.000000000 +0100
++++ src/cpp/rtps/xmlparser/XMLElementParser.cpp	2022-04-09 14:42:25.245539646 +0200
+@@ -3302,7 +3302,11 @@
+     {
+         if (1 < ++num_elems)
+         {
++#if TIXML2_MAJOR_VERSION >= 5
+             logError(XMLPARSER, "More than one tag on " << p_aux0->GetLineNum());
++#else
++            logError(XMLPARSER, "More than one tag on " << p_aux0->Name());
++#endif
+             ret_value = XMLP_ret::XML_ERROR;
+         }
+         if (0 == strcmp(p_aux0->Name(), VALUE))
+@@ -3319,7 +3323,11 @@
+ 
+                 if (!ss || std::numeric_limits<octet>::max() < o)
+                 {
++#if TIXML2_MAJOR_VERSION >= 5
+                     logError(XMLPARSER, "Expected an octet value on line " << p_aux0->GetLineNum());
++#else
++                    logError(XMLPARSER, "Expected an octet value on " << p_aux0->Name());
++#endif
+                     ret_value = XMLP_ret::XML_ERROR;
+                     break;
+                 }
+@@ -3334,7 +3342,12 @@
+ 
+                     if (!ss || '.' != c)
+                     {
++#if TIXML2_MAJOR_VERSION >= 5
+                         logError(XMLPARSER, "Expected a '.' separator on line " << p_aux0->GetLineNum());
++GetLineNum());
++#else
++                        logError(XMLPARSER, "Expected a '.' separator on " << p_aux0->Name());
++#endif
+                         ret_value = XMLP_ret::XML_ERROR;
+                         break;
+                     }
+@@ -3343,7 +3356,12 @@
+         }
+         else
+         {
++#if TIXML2_MAJOR_VERSION >= 5
+             logError(XMLPARSER, "Invalid tag with name of " << p_aux0->Name() << " on line " << p_aux0->GetLineNum());
++GetLineNum());
++#else
++            logError(XMLPARSER, "Invalid tag with name of " << p_aux0->Name());
++#endif
+             ret_value = XMLP_ret::XML_ERROR;
+         }
+     }

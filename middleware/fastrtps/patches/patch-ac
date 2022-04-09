@@ -1,0 +1,39 @@
+Install tools helpers to libexec (FHS)
+
+--- tools/fastdds/ros-discovery~	2022-03-17 07:49:49.000000000 +0100
++++ tools/fastdds/ros-discovery	2022-04-11 15:33:53.322730046 +0200
+@@ -1,2 +1,2 @@
+ dir="`dirname \"$0\"`"
+-python3 "$dir/../tools/fastdds/fastdds.py" discovery ${@}
++python3 "$dir/../libexec/fastdds/fastdds.py" discovery ${@}
+--- tools/fastdds/fastdds~	2022-03-17 07:49:49.000000000 +0100
++++ tools/fastdds/fastdds	2022-04-11 15:35:30.171394963 +0200
+@@ -1,2 +1,2 @@
+ dir="`dirname \"$0\"`"
+-python3 "$dir/../tools/fastdds/fastdds.py" ${@}
++python3 "$dir/../libexec/fastdds/fastdds.py" ${@}
+--- tools/fastdds/CMakeLists.txt~	2022-04-11 15:45:30.559514479 +0200
++++ tools/fastdds/CMakeLists.txt	2022-04-11 16:05:01.879542349 +0200
+@@ -18,12 +18,16 @@
+ # Installation
+ ###############################################################################
+ 
+-install(DIRECTORY ${PROJECT_SOURCE_DIR}/
+-    DESTINATION ${CMAKE_INSTALL_PREFIX}/tools/fastdds
+-    USE_SOURCE_PERMISSIONS
+-    FILES_MATCHING 
+-        PATTERN "*.py"
+-        PATTERN "__pycache__" EXCLUDE
++install(FILES
++  fastdds.py
++  DESTINATION ${CMAKE_INSTALL_PREFIX}/libexec/fastdds)
++install(FILES
++  discovery/parser.py
++  DESTINATION ${CMAKE_INSTALL_PREFIX}/libexec/fastdds/discovery)
++install(FILES
++  shm/clean.py
++  shm/parser.py
++  DESTINATION ${CMAKE_INSTALL_PREFIX}/libexec/fastdds/shm
+ )
+ 
+ install(DIRECTORY DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)

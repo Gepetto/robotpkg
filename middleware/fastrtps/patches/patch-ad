@@ -1,0 +1,23 @@
+Don't install empty directories or cmake files
+
+--- thirdparty/optionparser/CMakeLists.txt~	2022-03-17 07:49:49.000000000 +0100
++++ thirdparty/optionparser/CMakeLists.txt	2022-04-11 16:17:00.680480011 +0200
+@@ -38,12 +38,13 @@
+         COMPONENT libraries 
+         )
+ 
+-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+-    DESTINATION ${INCLUDE_INSTALL_DIR}/fastdds/thirdparty
++install(FILES optionparser.hpp
++    DESTINATION ${INCLUDE_INSTALL_DIR}/fastdds/thirdparty/optionparser
++    COMPONENT libraries
++    )
++install(FILES optionparser/optionparser.h
++    DESTINATION ${INCLUDE_INSTALL_DIR}/fastdds/thirdparty/optionparser/optionparser
+     COMPONENT libraries
+-    FILES_MATCHING
+-    PATTERN "*.h"
+-    PATTERN "*.hpp"
+     )
+ 
+ if(INSTALLER_PLATFORM)
