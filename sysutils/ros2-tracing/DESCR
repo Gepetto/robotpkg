@@ -1,0 +1,3 @@
+ros2_tracing provides tracing instrumentation for the core ROS 2 packages. It
+also provides tools to configure tracing through a launch action and a ros2 CLI
+command.
