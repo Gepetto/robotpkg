@@ -1,0 +1,2 @@
+rmw_dds_common is a collection of C++ APIs to support DDS based, C++ ROS2
+middleware implementations.

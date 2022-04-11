@@ -21,6 +21,7 @@ SUBDIR+=	ros-comm
 SUBDIR+=	ros-dynamic-reconfigure
 SUBDIR+=	ros-genmsg
 SUBDIR+=	ros2-rmw
+SUBDIR+=	ros2-rmw-dds-common
 SUBDIR+=	yarp
 
 include ../mk/robotpkg.subdir.mk
