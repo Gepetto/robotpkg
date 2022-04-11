@@ -16,11 +16,12 @@ DEPEND_USE+=		tinyxml2
 
 DEPEND_ABI.tinyxml2?=	tinyxml2>=2
 
-_tinyxml2vers=/(MAJOR|MINOR|PATCH)_VERS/ {gsub(/[^0-9]/,"");v=v $$0 "."}
-_tinyxml2vers+=END {gsub(/[.]$$/,"",v); print v}
+define _tinyxml2vers
+  /^static.*VERSION/{s//./;s/[^0-9.]//g;H;};$${g;s/\n//g;s/^[.]//p;}
+endef
 
 SYSTEM_SEARCH.tinyxml2=	\
-  'include/{,tinyxml2/}tinyxml2.h:p:${AWK} '\''${_tinyxml2vers}'\'' %'	\
+  'include/{,tinyxml2/}tinyxml2.h:${_tinyxml2vers}'	\
   'lib/libtinyxml2.so'
 
 SYSTEM_PKG.Ubuntu.tinyxml2=libtinyxml2-dev
