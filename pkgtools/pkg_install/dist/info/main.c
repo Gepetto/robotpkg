@@ -259,6 +259,7 @@ main(int argc, char **argv)
 
 			if (s == NULL)
 				errx(EXIT_FAILURE, "No matching pkg for %s.", CheckPkg);
+			if (!strncmp(s, "@pkgdir ", 8)) s += 8;
 			CheckPkg = xstrdup(s);
 
 			pkgdb_close();
@@ -286,6 +287,7 @@ main(int argc, char **argv)
 			s = pkgdb_retrieve(*argv);
 
 			if (s) {
+				if (!strncmp(s, "@pkgdir ", 8)) s += 8;
 				lpp = alloc_lpkg(s);
 				TAILQ_INSERT_TAIL(&pkgs, lpp, lp_link);
 			} else
