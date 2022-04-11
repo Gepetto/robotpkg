@@ -20,5 +20,6 @@ SUBDIR+=	ros-std-msgs
 SUBDIR+=	ros2-rosidl
 SUBDIR+=	ros2-rosidl-python
 SUBDIR+=	ros2-rosidl-typesupport
+SUBDIR+=	ros2-rosidl-typesupport-fastrtps
 
 include ../mk/robotpkg.subdir.mk
