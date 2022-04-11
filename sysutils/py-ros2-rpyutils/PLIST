@@ -1,0 +1,10 @@
+@comment Tue Apr 12 00:37:34 CEST 2022
+${PYTHON_SITELIB}/rpyutils-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rpyutils-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rpyutils-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rpyutils-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
+${PYTHON_SITELIB}/rpyutils/__init__.py
+${PYTHON_SITELIB}/rpyutils/add_dll_directories.py
+${PYTHON_SITELIB}/rpyutils/import_c_library.py
+share/ament_index/resource_index/packages/rpyutils
+share/rpyutils/package.xml
