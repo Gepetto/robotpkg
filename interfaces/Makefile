@@ -18,5 +18,6 @@ SUBDIR+=	ros-control-msgs
 SUBDIR+=	ros-navigation-msgs
 SUBDIR+=	ros-std-msgs
 SUBDIR+=	ros2-rosidl
+SUBDIR+=	ros2-rosidl-python
 
 include ../mk/robotpkg.subdir.mk
