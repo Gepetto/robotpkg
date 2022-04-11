@@ -1,0 +1,15 @@
+rmw_fastrtps actually provides not one but two different ROS 2 middleware
+implementations, both of them using Fast DDS as middleware layer:
+rmw_fastrtps_cpp and rmw_fastrtps_dynamic_cpp (note that directory
+rmw_fastrtps_shared_cpp just contains the code that the two implementations
+share, and does not constitute a layer on its own).
+
+The main difference between the two is that rmw_fastrtps_dynamic_cpp uses
+introspection typesupport at run time to decide on the
+serialization/deserialization mechanism. On the other hand, rmw_fastrtps_cpp
+uses its own typesupport, which generates the mapping for each message type at
+build time.
+
+Mind that the default ROS 2 RMW implementation is rmw_fastrtps_cpp. You can
+however set it to rmw_fastrtps_dynamic_cpp using the environment variable
+RMW_IMPLEMENTATION.
