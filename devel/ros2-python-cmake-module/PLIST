@@ -1,0 +1,18 @@
+@comment Mon Apr 11 23:56:31 CEST 2022
+share/ament_index/resource_index/package_run_dependencies/python_cmake_module
+share/ament_index/resource_index/packages/python_cmake_module
+share/ament_index/resource_index/parent_prefix_path/python_cmake_module
+share/python_cmake_module/cmake/Modules/FindPythonExtra.cmake
+share/python_cmake_module/cmake/python_cmake_module-extras.cmake
+share/python_cmake_module/cmake/python_cmake_moduleConfig-version.cmake
+share/python_cmake_module/cmake/python_cmake_moduleConfig.cmake
+share/python_cmake_module/environment/ament_prefix_path.dsv
+share/python_cmake_module/environment/ament_prefix_path.sh
+share/python_cmake_module/environment/path.dsv
+share/python_cmake_module/environment/path.sh
+share/python_cmake_module/local_setup.bash
+share/python_cmake_module/local_setup.dsv
+share/python_cmake_module/local_setup.sh
+share/python_cmake_module/local_setup.zsh
+share/python_cmake_module/package.dsv
+share/python_cmake_module/package.xml

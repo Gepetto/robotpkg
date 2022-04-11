@@ -1,0 +1,12 @@
+Don't install garbage
+
+--- CMakeLists.txt~	2022-03-01 20:48:08.000000000 +0100
++++ CMakeLists.txt	2022-04-14 00:10:55.726475629 +0200
+@@ -13,5 +13,5 @@
+   CONFIG_EXTRAS "python_cmake_module-extras.cmake"
+ )
+ 
+-install(DIRECTORY cmake
+-  DESTINATION share/${PROJECT_NAME})
++install(FILES cmake/Modules/FindPythonExtra.cmake
++  DESTINATION share/${PROJECT_NAME}/cmake/Modules/)
