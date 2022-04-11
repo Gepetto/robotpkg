@@ -1,0 +1,3 @@
+rosidl_typesupport_c and rosidl_typesupport_cpp provides functionality for
+getting the associated message or service C and C++ typesupport handler
+functions.
