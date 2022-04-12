@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2009,2011-2013,2017 LAAS/CNRS
+# Copyright (c) 2006-2009,2011-2013,2017,2022 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -87,10 +87,14 @@ _PRINT_PLIST_FILES_CMD+= ${PRINT_PLIST_FILES_CMD}
 
 _PRINT_PLIST_DIRS_CMD=	\
   ${FIND} $(abspath ${PREFIX}) -xdev -ctime -1 -type d -empty ! \(	\
-	-path '${MAKECONF}' -o -path '${ROBOTPKG_DIR}/*' -o	\
-	-path '${PKG_DBDIR}/*'					\
-  \) -print;
-
+	-path '${MAKECONF}' -o -path '${ROBOTPKG_DIR}/*' -o		\
+	-path '${PKG_DBDIR}/*'						\
+  \) ! -exec ${PKG_INFO} -qFe {} 2>/dev/null \;				\
+  -print;
+_PRINT_PLIST_DIRS_CMD+=	\
+  { ${PKG_INFO} -qf ${PKGNAME} 2>/dev/null||:; } | while read f; do	\
+    case "$$f" in "@pkgdir "*) ${ECHO} "$${f\#@pkgdir }";; esac;	\
+  done;
 
 # Perform substitutions
 #
