@@ -36,6 +36,7 @@ SUBDIR+=	ros2-libstatistics-collector
 SUBDIR+=	ros2-rcl
 SUBDIR+=	ros2-rcl-logging
 SUBDIR+=	ros2-rclcpp
+SUBDIR+=	ros2-rclpy
 SUBDIR+=	ros2-rcpputils
 SUBDIR+=	ros2-rcutils
 SUBDIR+=	spdlog

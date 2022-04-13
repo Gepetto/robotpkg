@@ -1,0 +1,12 @@
+Let robotpkg manage dependencies.
+
+--- rclpy/CMakeLists.txt~	2022-04-08 22:43:34.000000000 +0200
++++ rclpy/CMakeLists.txt	2022-04-13 18:47:52.249813170 +0200
+@@ -40,7 +40,6 @@
+ # Find python before pybind11
+ find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
+ 
+-find_package(pybind11_vendor REQUIRED)
+ find_package(pybind11 REQUIRED)
+ 
+ # enables using the Python extensions from the build space for testing
