@@ -32,6 +32,7 @@ SUBDIR+=	ros-ros
 SUBDIR+=	ros-roscpp-core
 SUBDIR+=	ros-xacro
 SUBDIR+=	ros2-class-loader
+SUBDIR+=	ros2-libstatistics-collector
 SUBDIR+=	ros2-rcl
 SUBDIR+=	ros2-rcl-logging
 SUBDIR+=	ros2-rcpputils
