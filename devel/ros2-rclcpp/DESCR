@@ -1,0 +1,4 @@
+This package contains the source code for the ROS2 Client Library for C++
+package, included with a standard install of any ROS 2 distro.
+
+rclcpp provides the standard C++ API for interacting with ROS 2.

@@ -1,0 +1,14 @@
+gcc-7.5 is unable to figure out the return type of this 'auto' declaration.
+Use the explicit type, as this does not hurt anyway.
+
+--- rclcpp/include/rclcpp/client.hpp~	2022-04-09 01:27:59.000000000 +0200
++++ rclcpp/include/rclcpp/client.hpp	2022-04-24 19:21:39.312547737 +0200
+@@ -816,7 +816,7 @@
+         "Received invalid sequence number. Ignoring...");
+       return std::nullopt;
+     }
+-    auto value = std::move(it->second.second);
++    std::optional<CallbackInfoVariant> value = std::move(it->second.second);
+     this->pending_requests_.erase(request_number);
+     return value;
+   }
