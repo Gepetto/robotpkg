@@ -1,0 +1,7 @@
+This package contains the source code for ROS2 command line interface tools
+included with a standard install of any ROS 2 distro.
+
+Run ros2 --help to see all available commands.
+Run ros2 <command> --help for more information on individual command usage.
+Run ros2 <command> <verb> --help for even more usage information on a specific
+command's verbs.

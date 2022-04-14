@@ -30,6 +30,7 @@ SUBDIR+=	ros2-launch
 SUBDIR+=	ros2-launch-ros
 SUBDIR+=	ros2-ros-workspace
 SUBDIR+=	ros2-tracing
+SUBDIR+=	ros2cli
 SUBDIR+=	tk3-flash
 SUBDIR+=	tth
 SUBDIR+=	y2l
