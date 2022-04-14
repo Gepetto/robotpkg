@@ -19,6 +19,7 @@ SUBDIR+=	libedit
 SUBDIR+=	log4cxx
 SUBDIR+=	mkdep
 SUBDIR+=	orocos-log4cpp
+SUBDIR+=	py-osrf-pycommon
 SUBDIR+=	ros-bond-core
 SUBDIR+=	ros-catkin
 SUBDIR+=	ros-cmake-modules

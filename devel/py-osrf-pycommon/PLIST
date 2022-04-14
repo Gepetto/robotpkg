@@ -1,0 +1,26 @@
+@comment Thu Apr 14 13:54:19 CEST 2022
+${PYTHON_SITELIB}/osrf_pycommon-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/osrf_pycommon-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/osrf_pycommon-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/osrf_pycommon-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/requires.txt
+${PYTHON_SITELIB}/osrf_pycommon-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
+${PYTHON_SITELIB}/osrf_pycommon-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/zip-safe
+${PYTHON_SITELIB}/osrf_pycommon/__init__.py
+${PYTHON_SITELIB}/osrf_pycommon/cli_utils/__init__.py
+${PYTHON_SITELIB}/osrf_pycommon/cli_utils/common.py
+${PYTHON_SITELIB}/osrf_pycommon/cli_utils/verb_pattern.py
+${PYTHON_SITELIB}/osrf_pycommon/process_utils/__init__.py
+${PYTHON_SITELIB}/osrf_pycommon/process_utils/async_execute_process.py
+${PYTHON_SITELIB}/osrf_pycommon/process_utils/async_execute_process_asyncio/__init__.py
+${PYTHON_SITELIB}/osrf_pycommon/process_utils/async_execute_process_asyncio/impl.py
+${PYTHON_SITELIB}/osrf_pycommon/process_utils/execute_process_nopty.py
+${PYTHON_SITELIB}/osrf_pycommon/process_utils/execute_process_pty.py
+${PYTHON_SITELIB}/osrf_pycommon/process_utils/get_loop_impl.py
+${PYTHON_SITELIB}/osrf_pycommon/process_utils/impl.py
+${PYTHON_SITELIB}/osrf_pycommon/terminal_color/__init__.py
+${PYTHON_SITELIB}/osrf_pycommon/terminal_color/ansi_re.py
+${PYTHON_SITELIB}/osrf_pycommon/terminal_color/impl.py
+${PYTHON_SITELIB}/osrf_pycommon/terminal_color/windows.py
+${PYTHON_SITELIB}/osrf_pycommon/terminal_utils.py
+share/ament_index/resource_index/packages/osrf_pycommon
+share/osrf_pycommon/package.xml
