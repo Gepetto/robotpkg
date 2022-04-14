@@ -20,6 +20,7 @@ include ../../devel/ros2-rclcpp/depend.mk
 include ../../devel/ros2-rclpy/depend.mk
 include ../../interfaces/ros2-common-interfaces/depend.mk
 include ../../interfaces/ros2-rosidl-defaults/depend.mk
+include ../../middleware/sros2/depend.mk
 include ../../sysutils/ament-index/depend.mk
 include ../../sysutils/ros2-environment/depend.mk
 include ../../sysutils/ros2-launch/depend.mk
