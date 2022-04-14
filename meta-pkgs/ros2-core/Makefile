@@ -21,4 +21,5 @@ include ../../devel/ros2-rclpy/depend.mk
 include ../../interfaces/ros2-common-interfaces/depend.mk
 include ../../interfaces/ros2-rosidl-defaults/depend.mk
 include ../../sysutils/ament-index/depend.mk
+include ../../sysutils/ros2-environment/depend.mk
 include ../../mk/robotpkg.mk

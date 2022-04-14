@@ -1,0 +1,25 @@
+@comment Thu Apr 14 11:53:03 CEST 2022
+share/ament_index/resource_index/package_run_dependencies/ros_environment
+share/ament_index/resource_index/packages/ros_environment
+share/ament_index/resource_index/parent_prefix_path/ros_environment
+share/ros_environment/cmake/ros_environmentConfig-version.cmake
+share/ros_environment/cmake/ros_environmentConfig.cmake
+share/ros_environment/environment/0.ros_distro_check.sh
+share/ros_environment/environment/1.ros_distro.dsv
+share/ros_environment/environment/1.ros_distro.sh
+share/ros_environment/environment/1.ros_localhost_only.dsv
+share/ros_environment/environment/1.ros_localhost_only.sh
+share/ros_environment/environment/1.ros_python_version.dsv
+share/ros_environment/environment/1.ros_python_version.sh
+share/ros_environment/environment/1.ros_version.dsv
+share/ros_environment/environment/1.ros_version.sh
+share/ros_environment/environment/ament_prefix_path.dsv
+share/ros_environment/environment/ament_prefix_path.sh
+share/ros_environment/environment/path.dsv
+share/ros_environment/environment/path.sh
+share/ros_environment/local_setup.bash
+share/ros_environment/local_setup.dsv
+share/ros_environment/local_setup.sh
+share/ros_environment/local_setup.zsh
+share/ros_environment/package.dsv
+share/ros_environment/package.xml
