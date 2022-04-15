@@ -3,21 +3,17 @@
 #
 
 PKGREVISION=	1
-ORG=		coin-or
-NAME=		Ipopt
-VERSION=	3.13.4
+DISTNAME=	Ipopt-3.13.4
+PKGNAME=	$(subst Ip,ip,${DISTNAME})
+MASTER_SITES=	${MASTER_SITE_GITHUB:=coin-or/}
+GITHUB_TAG=	releases/${PKGVERSION_NOREV}
 
 CATEGORIES=	optimization
-MASTER_SITES=	${MASTER_SITE_GITHUB:=${ORG}/${NAME}}/archive/refs/tags/releases/
-
-DISTNAME=	${VERSION}
-PKGNAME=	ipopt-${VERSION}
-WRKSRC=		${WRKDIR}/${NAME}-releases-${VERSION}
-
 MAINTAINER=	guilhem.saurel@laas.fr
-HOMEPAGE=	${MASTER_SITE_GITHUB:=${ORG}/${NAME}}
 COMMENT=	Interior Point OPTimizer, pronounced I-P-Opt
 LICENSE=	eclipse
+
+WRKSRC=		${WRKDIR}/Ipopt-$(subst /,-,${GITHUB_TAG})
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-java
