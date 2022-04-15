@@ -1,4 +1,3 @@
-SHA1 (ros/rosdistro/0.3.5.tar.gz) = 41a53123e52d228156780d81ea56ffeeac513d83
-RMD160 (ros/rosdistro/0.3.5.tar.gz) = bd51df591a8433e0194e2ca7a762fd5d10e76220
-Size (ros/rosdistro/0.3.5.tar.gz) = 49404 bytes
-SHA1 (patch-aa) = 5dbcdcb33690fd8ca2dbedf9c4233d436f05aa44
+SHA1 (rosdistro-0.8.3.tar.gz) = 4252933503d0ca233460b49181368196c644b44a
+RMD160 (rosdistro-0.8.3.tar.gz) = a52fd75776e512b1c9f7d838bf17aba6784c4007
+Size (rosdistro-0.8.3.tar.gz) = 61665 bytes

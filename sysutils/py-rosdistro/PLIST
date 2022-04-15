@@ -1,10 +1,15 @@
-@comment Wed Aug 13 11:13:12 CEST 2014
+@comment Fri Apr 15 13:52:58 CEST 2022
 bin/rosdistro_build_cache
+bin/rosdistro_freeze_source
 bin/rosdistro_migrate_to_rep_141
+bin/rosdistro_migrate_to_rep_143
 bin/rosdistro_reformat
-${PYTHON_SITELIB}/rosdistro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rosdistro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rosdistro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rosdistro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rosdistro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/requires.txt
+${PYTHON_SITELIB}/rosdistro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/rosdistro/__init__.py
-${PYTHON_SITELIB}/rosdistro/_version.py
 ${PYTHON_SITELIB}/rosdistro/aptdistro.py
 ${PYTHON_SITELIB}/rosdistro/common.py
 ${PYTHON_SITELIB}/rosdistro/dependency_walker.py
@@ -18,12 +23,16 @@ ${PYTHON_SITELIB}/rosdistro/doc_file.py
 ${PYTHON_SITELIB}/rosdistro/doc_repository_specification.py
 ${PYTHON_SITELIB}/rosdistro/external/__init__.py
 ${PYTHON_SITELIB}/rosdistro/external/appdirs.py
+${PYTHON_SITELIB}/rosdistro/freeze_source.py
 ${PYTHON_SITELIB}/rosdistro/index.py
+${PYTHON_SITELIB}/rosdistro/legacy.py
 ${PYTHON_SITELIB}/rosdistro/loader.py
 ${PYTHON_SITELIB}/rosdistro/manifest_provider/__init__.py
+${PYTHON_SITELIB}/rosdistro/manifest_provider/bitbucket.py
 ${PYTHON_SITELIB}/rosdistro/manifest_provider/cache.py
 ${PYTHON_SITELIB}/rosdistro/manifest_provider/git.py
 ${PYTHON_SITELIB}/rosdistro/manifest_provider/github.py
+${PYTHON_SITELIB}/rosdistro/manifest_provider/tar.py
 ${PYTHON_SITELIB}/rosdistro/package.py
 ${PYTHON_SITELIB}/rosdistro/release.py
 ${PYTHON_SITELIB}/rosdistro/release_build.py
@@ -37,6 +46,9 @@ ${PYTHON_SITELIB}/rosdistro/repository_specification.py
 ${PYTHON_SITELIB}/rosdistro/rosdistro.py
 ${PYTHON_SITELIB}/rosdistro/source_build_file.py
 ${PYTHON_SITELIB}/rosdistro/source_file.py
+${PYTHON_SITELIB}/rosdistro/source_repository_cache.py
+${PYTHON_SITELIB}/rosdistro/source_repository_specification.py
 ${PYTHON_SITELIB}/rosdistro/status.py
+${PYTHON_SITELIB}/rosdistro/vcs.py
 ${PYTHON_SITELIB}/rosdistro/verify.py
 ${PYTHON_SITELIB}/rosdistro/writer.py

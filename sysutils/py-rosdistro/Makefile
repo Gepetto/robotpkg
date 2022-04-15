@@ -1,29 +1,21 @@
-# robotpkg Makefile for:	sysutils/py-catkin-pkg
-# Created:			Anthony Mallet on Thu, 20 Jun 2013
+# robotpkg Makefile for:	sysutils/py-rosdistro
+# Created:			Anthony Mallet on Tue, 25 Jun 2013
 #
 
-ROS_PKG=	rosdistro
-ROS_VERSION=	0.3.5
-ROS_REPO=	ros-infrastructure
-PKGNAME=	${PKGTAG.python}-${ROS_PKG}-${ROS_VERSION}
+DISTNAME=	rosdistro-0.8.3
+PKGNAME=	${PKGTAG.python-}${DISTNAME}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=ros-infrastructure/}
 
+COMMENT=	Tool for managing ROS distributions and packages
 CATEGORIES=	sysutils
-ROS_COMMENT=	tool for managing ROS distributions and packages
-
-PYDISTUTILSPKG=	yes
-
-include ../../meta-pkgs/ros-base/Makefile.common
-
-# tests during 'install' require PYTHONPATH to hold the installation path
-MAKE_ENV+=		PYTHONPATH=$(call quote,${PREFIX}/${PYTHON_SITELIB})
+MAINTAINER=	mallet@laas.fr
+LICENSE=	modified-bsd
 
 SUBST_CLASSES+=		py-interp
 SUBST_FILES.py-interp+=	scripts/rosdistro*
-SUBST_FILES.py-interp+=	src/rosdistro/external/appdirs.py
 
-include ../../sysutils/py-catkin-pkg/depend.mk
-include ../../sysutils/py-rospkg/depend.mk
 include ../../mk/sysdep/py-argparse.mk
+include ../../mk/sysdep/py-setuptools.mk
 include ../../mk/sysdep/py-yaml.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
