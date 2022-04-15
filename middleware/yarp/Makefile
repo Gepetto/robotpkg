@@ -2,19 +2,15 @@
 # Created:			Anthony Mallet on Thu, 22 Jan 2009
 #
 
-VERSION=	3.4.1
-PKGNAME=	yarp-${VERSION}
-DISTNAME=	v${VERSION}
-CATEGORIES=	middleware
-MASTER_SITES=	https://github.com/robotology/yarp/archive/
-DIST_SUBDIR=	${PKGBASE}
+DISTNAME=	yarp-3.4.1
+MASTER_SITES=	${MASTER_SITE_GITHUB:=robotology/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
+CATEGORIES=	middleware
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	https://www.yarp.it/
 COMMENT=	Yet Another Robot Platform
 LICENSE=	modified-bsd
-
-WRKSRC=		${WRKDIR}/yarp-${VERSION}
 
 CMAKE_ARGS+=	-DYARP_COMPILE_GUIS=FALSE
 
