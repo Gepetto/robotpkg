@@ -22,6 +22,7 @@ SUBDIR+=	ros2-rcl-interfaces
 SUBDIR+=	ros2-rosidl
 SUBDIR+=	ros2-rosidl-defaults
 SUBDIR+=	ros2-rosidl-python
+SUBDIR+=	ros2-rosidl-runtime-py
 SUBDIR+=	ros2-rosidl-typesupport
 SUBDIR+=	ros2-rosidl-typesupport-fastrtps
 SUBDIR+=	ros2-test-interface-files
