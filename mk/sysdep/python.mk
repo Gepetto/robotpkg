@@ -451,7 +451,7 @@ do-build-distutils(%): .FORCE
 	${RUN} cd ${WRKSRC} && cd '$%' && \
 	  ${PYTHON} ${PYSETUP} build ${PYSETUPBUILDARGS}
 
-DO_INSTALL_TARGET?= do-install-distutils((${INSTALL_DIRS})
+DO_INSTALL_TARGET?= do-install-distutils(${INSTALL_DIRS})
 .PHONY: do-install-distutils()
 do-install-distutils(%): .FORCE
 	${RUN} cd ${WRKSRC} && cd '$%' && \
