@@ -2,15 +2,11 @@
 # Created:			Guilhem Saurel on Mon, 25 May 2020
 #
 
-ORG=			gepetto
-NAME=			osgQt
-VERSION=		3.5.7
-DISTNAME=		${VERSION}
-PKGNAME=		${PKGTAG.qt-}osgqt-${VERSION}
+DISTNAME=		osgQt-3.5.7
+PKGNAME=		${PKGTAG.qt-}$(subst Qt,qt,${DISTNAME})
 PKGREVISION=		3
 
-MASTER_SITES=		${MASTER_SITE_GITHUB:=${ORG}/${NAME}}/archive/
-WRKSRC=			${WRKDIR}/${NAME}-${DISTNAME}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=gepetto/}
 
 CATEGORIES=		graphics
 COMMENT=		open source high performance 3D graphics toolkit
