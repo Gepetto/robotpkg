@@ -72,4 +72,5 @@ lib/cmake/hpp-fcl/hpp-fclTargets-release.cmake
 lib/cmake/hpp-fcl/hpp-fclTargets.cmake
 lib/libhpp-fcl.so
 lib/pkgconfig/hpp-fcl.pc
+share/ament_index/resource_index/packages/hpp-fcl
 share/hpp-fcl/package.xml

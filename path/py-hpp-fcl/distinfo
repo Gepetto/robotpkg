@@ -1,4 +1,5 @@
-SHA1 (hpp-fcl-1.8.0.tar.gz) = 566db74d549b10fe6e325a4a3004ef87e8de3407
-RMD160 (hpp-fcl-1.8.0.tar.gz) = 81739acb3eba1fe77ed9ac3a6e21999da237e06e
-Size (hpp-fcl-1.8.0.tar.gz) = 2784532 bytes
-SHA1 (patch-aa) = 5864b512c148b521c40c474f7c0583a5b4abacbc
+SHA1 (hpp-fcl-1.8.1.tar.gz) = c8d4e4783c41ad071f98ee42fd853e3fce247cd5
+RMD160 (hpp-fcl-1.8.1.tar.gz) = 2e236a64c153f2a012d101e06b889d9ee43f21ef
+Size (hpp-fcl-1.8.1.tar.gz) = 2784991 bytes
+SHA1 (patch-270) = 248a0481589c315d94648a132c3d6ec3246ce85f
+SHA1 (patch-aa) = 8ac58e7f484c21f30d426ed5d316f2d5612df604
