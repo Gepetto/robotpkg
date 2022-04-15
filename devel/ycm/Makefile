@@ -3,13 +3,11 @@
 #
 
 PKGREVISION=		1
-VERSION=		0.12.0
-PKGNAME=		ycm-${VERSION}
-DISTNAME=		v${VERSION}
-CATEGORIES=		devel
-MASTER_SITES=		https://github.com/robotology/ycm/archive/
-DIST_SUBDIR=		${PKGBASE}
+DISTNAME=		ycm-0.12.0
+MASTER_SITES=		${MASTER_SITE_GITHUB:=robotology/}
+GITHUB_TAG=		v${PKGVERSION_NOREV}
 
+CATEGORIES=		devel
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://www.yarp.it/
 COMMENT=		Extra CMake Modules for YARP and friends
