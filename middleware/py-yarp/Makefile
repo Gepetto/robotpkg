@@ -2,13 +2,11 @@
 # Created:			Severin Lemaignan on Fri, 12 Jun 2009
 #
 
-VERSION=		3.4.1
-PKGNAME=		${PKGTAG.python-}yarp-${VERSION}
-DISTNAME=		v${VERSION}
-CATEGORIES=		middleware
-MASTER_SITES=		https://github.com/robotology/yarp/archive/
-DIST_SUBDIR=		yarp
+DISTNAME=		yarp-3.4.1
+MASTER_SITES=		${MASTER_SITE_GITHUB:=robotology/}
+GITHUB_TAG=		v${PKGVERSION_NOREV}
 
+CATEGORIES=		middleware
 MAINTAINER=		openrobots@laas.fr
 HOMEPAGE=		https://www.yarp.it/
 COMMENT=		Python bindings for YARP
@@ -25,7 +23,6 @@ CMAKE_ARGS+=		-DYARP_COMPILE_GUIS=FALSE
 CMAKE_ARGS+=		-DCMAKE_DISABLE_FIND_PACKAGE_OpenCV=TRUE
 CMAKE_ARGS+=		-DCMAKE_DISABLE_FIND_PACKAGE_Libedit=TRUE
 
-WRKSRC=			${WRKDIR}/yarp-${VERSION}
 CONFIGURE_DIRS=		${WRKSRC}
 BUILD_DIRS=		${WRKSRC}/bindings/python
 
