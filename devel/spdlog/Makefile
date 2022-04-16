@@ -10,6 +10,9 @@ COMMENT=	Fast C++ logging library.
 CATEGORIES=	devel
 LICENSE=	mit
 
+CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
+CMAKE_ARGS+=	-DSPDLOG_BUILD_EXAMPLE=OFF
+
 DEPEND_METHOD.python?=	build
 
 include ../../pkgtools/pkg-config/depend.mk

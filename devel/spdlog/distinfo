@@ -1,3 +1,4 @@
 SHA1 (spdlog-v1.10.0.tar.gz) = a1f1abc03a6b66158578321f100e5e31e3806601
 RMD160 (spdlog-v1.10.0.tar.gz) = 096a7cbfd54c2148eb4606a1609558c5061ba777
 Size (spdlog-v1.10.0.tar.gz) = 368651 bytes
+SHA1 (patch-aa) = ece83a6cbdd42eace7258b70ff65c853efb04010

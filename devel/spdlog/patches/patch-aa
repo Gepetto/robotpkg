@@ -1,0 +1,12 @@
+Seems like cmake-3.2 is good enough
+
+--- CMakeLists.txt~	2022-04-04 15:48:58.000000000 +0200
++++ CMakeLists.txt	2022-04-16 12:44:10.665753744 +0200
+@@ -1,6 +1,6 @@
+ # Copyright(c) 2019 spdlog authors Distributed under the MIT License (http://opensource.org/licenses/MIT)
+ 
+-cmake_minimum_required(VERSION 3.10...3.21)
++cmake_minimum_required(VERSION 3.2...3.21)
+ 
+ # ---------------------------------------------------------------------------------------
+ # Start spdlog project
