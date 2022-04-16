@@ -20,7 +20,7 @@ ifeq (+,$(PKG_INSTALL_DEPEND_MK)) # ----------------------------------------
   DEPEND_USE+=	$(filter-out ${PKGBASE},pkg_install)
 
   DEPEND_METHOD.pkg_install?=	bootstrap
-  DEPEND_ABI.pkg_install?=	pkg_install>=20110805.11
+  DEPEND_ABI.pkg_install?=	pkg_install>=20110805.12
   DEPEND_DIR.pkg_install?=	../../pkgtools/pkg_install
 
   SYSTEM_SEARCH.pkg_install=\

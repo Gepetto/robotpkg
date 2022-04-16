@@ -62,6 +62,7 @@ __RCSID("$NetBSD: perform.c,v 1.100 2011/08/05 07:04:28 agc Exp $");
 #include <archive.h>
 #include <archive_entry.h>
 
+#include "dewey.h"
 #include "lib.h"
 #include "add.h"
 #include "version.h"
@@ -1022,7 +1023,6 @@ static int
 check_pkgtools_version(struct pkg_task *pkg)
 {
 	const char *val = pkg->buildinfo[BI_PKGTOOLS_VERSION];
-	double version;
 
 	if (val == NULL) {
 		warnx("Warning: package `%s' lacks pkg_install version data",
@@ -1035,8 +1035,10 @@ check_pkgtools_version(struct pkg_task *pkg)
 		    pkg->pkgname);
 		return Force ? 0 : -1;
 	}
-	version = atof(val);
-	if (version > PKGTOOLS_VERSION) {
+
+#define PKGVERSION_EXPAND(x)	#x
+#define PKGVERSION_STR(x)	PKGVERSION_EXPAND(x)
+	if (dewey_cmp(val, DEWEY_GT, PKGVERSION_STR(PKGTOOLS_VERSION))) {
 		warnx("%s: package `%s' was built with a newer pkg_install version",
 		    Force ? "Warning" : "Error", pkg->pkgname);
 		return Force ? 0 : -1;
