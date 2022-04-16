@@ -15,8 +15,6 @@ LICENSE=		modified-bsd
 
 CMAKE_ARGS+=		-DYCM_NO_3RDPARTY=YES
 
-WRKSRC=			${WRKDIR}/ycm-${VERSION}
-
 DEPEND_ABI.cmake=	cmake>=3.12
 
 include ../../mk/sysdep/cmake.mk
