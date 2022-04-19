@@ -1,0 +1,12 @@
+--- modules/videoio/src/cap_v4l.cpp~	2022-04-19 12:14:59.247987426 +0200
++++ modules/videoio/src/cap_v4l.cpp	2022-04-19 13:47:19.782552481 +0200
+@@ -238,6 +238,9 @@
+ #ifdef HAVE_VIDEOIO
+ // NetBSD compatibility layer with V4L2
+ #include <sys/videoio.h>
++# ifndef __u32
++typedef uint32_t __u32;
++# endif
+ #endif
+ 
+ #ifdef __OpenBSD__

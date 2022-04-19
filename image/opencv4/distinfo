@@ -4,3 +4,5 @@ Size (opencv/4.5.0.tar.gz) = 90116240 bytes
 SHA1 (patch-aa) = c4219916c14125f4f226a9e9747c12d9e1ef9bd2
 SHA1 (patch-ab) = 753a7fa7e7a28b7bca736267d95b48d3145c85be
 SHA1 (patch-ac) = c12769ffd458f5ee10ca4dae593fe18374253d64
+SHA1 (patch-ad) = 3b146c42a0fa0cc0aa0ddc70f612771dfa0bd658
+SHA1 (patch-ae) = 69285c2f13d42ab5fda73dbcb1822bb3d29a88ab

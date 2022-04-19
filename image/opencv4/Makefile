@@ -34,6 +34,9 @@ CMAKE_ARGS+=		-DENABLE_CCACHE=OFF
 CMAKE_ARGS+=		-DENABLE_PRECOMPILED_HEADERS=OFF
 CMAKE_ARGS+=		-DCV_TRACE=OFF
 
+CMAKE_ARGS+=		-DWITH_QT=OFF
+CMAKE_ARGS+=		-DWITH_GTK=ON
+CMAKE_ARGS+=		-DWITH_GTK_2_X=OFF
 CMAKE_ARGS+=		-DZLIB_ROOT=${PREFIX.zlib}
 CMAKE_ARGS+=		-DEIGEN_INCLUDE_PATH=${PREFIX.eigen3}/include/eigen3
 
@@ -51,7 +54,7 @@ include ../../archivers/zlib/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
-include ../../mk/sysdep/gtk.mk
+include ../../mk/sysdep/gtk3.mk
 include ../../mk/sysdep/libavcodec.mk
 include ../../mk/sysdep/libavformat.mk
 include ../../mk/sysdep/libavutil.mk
