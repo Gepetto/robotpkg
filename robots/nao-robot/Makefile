@@ -2,12 +2,10 @@
 # Created:			Séverin Lemaignan on Wed, 07 Aug 2013
 #
 
-VERSION=	0.2.2
 PKGREVISION=	1
-DISTNAME=	${VERSION}
-PKGNAME=	nao-robot-${VERSION}
-MASTER_SITES=	${MASTER_SITE_GITHUB:=ahornung/nao_robot/archive/}
-DIST_SUBDIR=	${PKGBASE}
+DISTNAME=	nao_robot-0.2.2
+PKGNAME=	$(subst _,-,${DISTNAME})
+MASTER_SITES=	${MASTER_SITE_GITHUB:=ahornung/}
 
 CATEGORIES=	robots
 COMMENT=	Base ROS support for the Nao robot
@@ -15,7 +13,6 @@ LICENSE=	modified-bsd
 HOMEPAGE=	http://wiki.ros.org/humanoid_msgs
 
 ROS_METAPKG=	yes
-WRKSRC=		${WRKDIR}/nao_robot-${VERSION}
 
 CMAKE_ARGS+=	-DNAOqi_DIR=${PREFIX.naoqi}
 
