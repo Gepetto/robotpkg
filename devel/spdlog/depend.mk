@@ -1,5 +1,5 @@
-# robotpkg depend.mk for:	devel/ros2-rcutils
-# Created:			Anthony Mallet on Wed,  6 Apr 2022
+# robotpkg depend.mk for:	devel/spdlog
+# Created:			Anthony Mallet on Thu, 7 Apr 2022
 #
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+

@@ -1,5 +1,5 @@
-# robotpkg Makefile for:	devel/py-ament-package
-# Created:			Anthony Mallet on Wed, 23 Mar 2022
+# robotpkg Makefile for:	devel/spdlog
+# Created:			Anthony Mallet on Thu, 7 Apr 2022
 #
 
 DISTNAME=	spdlog-1.10.0
@@ -14,6 +14,7 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
 CMAKE_ARGS+=	-DSPDLOG_BUILD_EXAMPLE=OFF
 
 DEPEND_METHOD.python?=	build
+DEPEND_ABI.cmake=	cmake>=3.2
 
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
