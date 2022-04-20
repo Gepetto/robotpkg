@@ -12,7 +12,7 @@ CATEGORIES=	devel
 ROS2_AMENTPKG=	no
 include ../../meta-pkgs/ros2-core/Makefile.common
 
-DEPEND_ABI.python+= python>=3
+DEPEND_ABI.python+= python>=3.6
 
 include ../../mk/sysdep/py-setuptools.mk
 include ../../mk/sysdep/python.mk

@@ -21,7 +21,7 @@ SYSTEM_SEARCH.py-ament-package=\
   '${PYTHON_SYSLIBSEARCH}/ament_package/__init__.py'			\
   'share/ament_package/package.xml:/<version>/s/[^0-9.]//gp'
 
-DEPEND_ABI.python+= python>=3
+DEPEND_ABI.python+= python>=3.6
 
 include ../../mk/sysdep/python.mk
 
