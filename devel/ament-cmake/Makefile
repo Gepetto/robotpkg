@@ -36,10 +36,20 @@ ROS2_SUBPKGS=\
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
+# Replace python interpreter in source files
 SUBST_CLASSES+=	py-interp
-SUBST_FILES.py_interp=\
+SUBST_FILES.py-interp=\
   ament_cmake_core/cmake/core/package_xml_2_cmake.py		\
   ament_cmake_core/cmake/package_templates/templates_2_cmake.py	\
+
+# Force cmake to find exact python version
+SUBST_CLASSES+=	py-vers
+SUBST_STAGE.py-vers=	pre-configure
+SUBST_MESSAGE.py-vers=	Forcing exact python version search
+SUBST_SED.py-vers=\
+  -e 's|package(Python3 REQ|package(Python3 ${PYTHON_VERSION} EXACT REQ|'
+SUBST_FILES.py-vers=\
+  ament_cmake_core/cmake/core/python.cmake
 
 include ../../sysutils/py-ament-package/depend.mk
 include ../../sysutils/py-catkin-pkg/depend.mk
