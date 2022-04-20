@@ -11,10 +11,11 @@ endif
 # Output sub packages as tool/dir according to "tool:" keywords found in the
 # sub packages list. Default is to use cmake.
 define ROS2_SUBPKGS_TOOLDIRS:=
+$(strip
   $(eval 0:=cmake)
   $(foreach _,${ROS2_SUBPKGS},
     $(if $(filter %:,$_),$(eval 0:=${_::=}),
-      $0/$_))
+      $0/$_)))
 endef
 
 # Bare sub packages directories.
