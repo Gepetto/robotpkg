@@ -15,7 +15,7 @@ HOMEPAGE=		http://opencv.org/
 COMMENT=		Open Source Computer Vision
 MASTER_SITES=		${MASTER_SITE_GITHUB:=opencv/opencv/archive/}
 CONFLICTS+=		opencv-[0-9]*
-CONFLICTS+=		opencv[1-2]-[0-9]*
+CONFLICTS+=		opencv[124-9]-[0-9]*
 LICENSE=		modified-bsd
 
 CONFIGURE_DIRS+=        build
@@ -35,6 +35,8 @@ CMAKE_ARGS+=		-DENABLE_CCACHE=OFF
 CMAKE_ARGS+=		-DENABLE_PRECOMPILED_HEADERS=OFF
 CMAKE_ARGS+=		-DCV_TRACE=OFF
 
+CMAKE_ARGS+=		-DWITH_GTK=ON
+CMAKE_ARGS+=		-DWITH_GTK_2_X=ON
 CMAKE_ARGS+=		-DZLIB_ROOT=${PREFIX.zlib}
 CMAKE_ARGS+=		-DEIGEN_INCLUDE_PATH=${PREFIX.eigen3}/include/eigen3
 
