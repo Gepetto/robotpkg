@@ -56,9 +56,14 @@ ifeq (Ubuntu,${OPSYS})
   PREFER.ros?=	system
 else ifeq (Debian,${OPSYS})
   ifneq (,$(filter 9,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=	melodic
-    PREFER.ros?=		system
+    PREFER_ALTERNATIVE.ros?=melodic
+  else ifneq (,$(filter 10,${OS_VERSION}))
+    PREFER_ALTERNATIVE.ros?=noetic melodic
+  else
+    PREFER_ALTERNATIVE.ros?=melodic
+    PREFER.ros?=robotpkg
   endif
+  PREFER.ros?=		system
 endif
 PREFER_ALTERNATIVE.ros?=melodic noetic kinetic indigo hydro groovy
 DEPEND_ABI.ros?=	ros>=groovy
