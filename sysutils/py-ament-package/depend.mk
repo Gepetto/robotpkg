@@ -27,21 +27,6 @@ include ../../mk/sysdep/python.mk
 # runtime needs:
 # importlib.resource for python>=3.7, but fallbacks to importlib_resources
 # importlib.metadata for python>=3.8, but fallbacks to importlib_metadata
-define PKG_ALTERNATIVE_SET.python27+=
-
-  include ../../mk/sysdep/py-importlib-metadata.mk
-  include ../../mk/sysdep/py-importlib-resources.mk
-endef
-define PKG_ALTERNATIVE_SET.python34+=
-
-  include ../../mk/sysdep/py-importlib-metadata.mk
-  include ../../mk/sysdep/py-importlib-resources.mk
-endef
-define PKG_ALTERNATIVE_SET.python35+=
-
-  include ../../mk/sysdep/py-importlib-metadata.mk
-  include ../../mk/sysdep/py-importlib-resources.mk
-endef
 define PKG_ALTERNATIVE_SET.python36+=
 
   include ../../mk/sysdep/py-importlib-metadata.mk
