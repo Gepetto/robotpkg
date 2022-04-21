@@ -1,4 +1,4 @@
-@comment Thu Apr 7 11:34:29 CEST 2022
+@comment Fri Apr 22 00:38:09 CEST 2022
 include/spdlog/async.h
 include/spdlog/async_logger-inl.h
 include/spdlog/async_logger.h
@@ -103,5 +103,7 @@ lib/cmake/spdlog/spdlogConfig.cmake
 lib/cmake/spdlog/spdlogConfigTargets-release.cmake
 lib/cmake/spdlog/spdlogConfigTargets.cmake
 lib/cmake/spdlog/spdlogConfigVersion.cmake
-lib/libspdlog.a
+lib/libspdlog.so
+lib/libspdlog.so.1
+lib/libspdlog.so.${PKGVERSION}
 lib/pkgconfig/spdlog.pc
