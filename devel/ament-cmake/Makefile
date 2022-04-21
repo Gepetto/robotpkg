@@ -51,6 +51,9 @@ SUBST_SED.py-vers=\
 SUBST_FILES.py-vers=\
   ament_cmake_core/cmake/core/python.cmake
 
+# uses FindPython3
+DEPEND_ABI.cmake+=	cmake>=3.12
+
 include ../../sysutils/py-ament-package/depend.mk
 include ../../sysutils/py-catkin-pkg/depend.mk
 include ../../mk/sysdep/googletest.mk
