@@ -1,0 +1,10 @@
+Don't install garbage
+
+--- rosidl_generator_py/CMakeLists.txt~	2022-03-01 19:45:38.000000000 +0100
++++ rosidl_generator_py/CMakeLists.txt	2022-04-22 00:46:51.061717793 +0200
+@@ -105,4 +105,5 @@
+ install(
+   DIRECTORY cmake resource
+   DESTINATION share/${PROJECT_NAME}
++  PATTERN "*.orig" EXCLUDE
+ )

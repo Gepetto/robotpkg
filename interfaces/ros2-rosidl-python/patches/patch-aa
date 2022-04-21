@@ -1,0 +1,14 @@
+Use FindPython3 as in ament_cmake_core.
+Require exact version to match robotpkg selected version.
+
+--- rosidl_generator_py/cmake/rosidl_generator_py_generate_interfaces.cmake~	2022-03-01 19:45:38.000000000 +0100
++++ rosidl_generator_py/cmake/rosidl_generator_py_generate_interfaces.cmake	2022-04-21 23:58:57.323803695 +0200
+@@ -17,7 +17,7 @@
+ find_package(rosidl_typesupport_c REQUIRED)
+ find_package(rosidl_typesupport_interface REQUIRED)
+ 
+-find_package(PythonInterp 3.6 REQUIRED)
++find_package(Python3 @PYTHON_VERSION@ EXACT REQUIRED COMPONENTS Interpreter)
+ 
+ find_package(python_cmake_module REQUIRED)
+ find_package(PythonExtra MODULE REQUIRED)
