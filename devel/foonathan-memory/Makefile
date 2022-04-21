@@ -22,6 +22,10 @@ CMAKE_ARGS+=	-DFOONATHAN_MEMORY_BUILD_EXAMPLES=OFF
 CMAKE_ARGS+=	-DFOONATHAN_MEMORY_BUILD_TESTS=OFF
 CMAKE_ARGS+=	-DFOONATHAN_MEMORY_BUILD_TOOLS=OFF
 
+CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
+
+DEPEND_ABI.cmake= cmake>=3.11
+
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
