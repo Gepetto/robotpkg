@@ -1,0 +1,15 @@
+Don't need \ in a quoted argument (and refused by cmake<3.0)
+
+--- CMakeLists.txt~	2022-03-15 12:53:38.000000000 +0100
++++ CMakeLists.txt	2022-04-21 18:24:15.294184214 +0200
+@@ -146,8 +146,8 @@
+ # Installation paths
+ ###############################################################################
+ option(APPEND_PROJECT_NAME_TO_INCLUDEDIR
+-  "When ON headers are installed to a path ending with a folder called \
+-  ${PROJECT_NAME}. This avoids include directory search order issues when \
++  "When ON headers are installed to a path ending with a folder called
++  ${PROJECT_NAME}. This avoids include directory search order issues when
+   overriding this package from a merged catkin, ament, or colcon workspace."
+   OFF)
+ 
