@@ -12,6 +12,7 @@ include ../../meta-pkgs/ros2-core/Makefile.common
 
 CONFIGURE_DIRS= ${ROS2_PKG}
 
+include ../../devel/ament-cmake-ros/depend.mk
 include ../../devel/ros2-rcpputils/depend.mk
 include ../../interfaces/ros2-rosidl-defaults/depend.mk
 include ../../interfaces/ros2-rosidl-typesupport/depend.mk
