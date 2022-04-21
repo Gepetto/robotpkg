@@ -10,5 +10,6 @@ ROS2_COMMENT=	utility code for C++.
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
+include ../../devel/ament-cmake-ros/depend.mk
 include ../../devel/ros2-rcutils/depend.mk
 include ../../mk/robotpkg.mk
