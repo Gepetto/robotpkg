@@ -10,5 +10,6 @@ ROS2_COMMENT=	messages for universally unique identifiers.
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
+include ../../devel/ament-cmake-ros/depend.mk
 include ../../interfaces/ros2-rosidl-defaults/depend.mk
 include ../../mk/robotpkg.mk
