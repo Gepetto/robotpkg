@@ -23,6 +23,8 @@ SYSTEM_SEARCH.ros2-rmw-implementation=\
     rmw_implementation			\
     test_rmw_implementation)
 
+include ../../middleware/ros2-rmw-fastrtps/depend.mk
+
 endif # ROS2_RMW_IMPLEMENTATION_DEPEND_MK ----------------------------------
 
 DEPEND_DEPTH:=				${DEPEND_DEPTH:+=}
