@@ -23,6 +23,10 @@ SYSTEM_SEARCH.ros2-rmw-fastrtps=\
     rmw				\
     rmw_implementation_cmake)
 
+include ../../interfaces/ros2-rosidl-typesupport-fastrtps/depend.mk
+include ../../middleware/fastcdr/depend.mk
+include ../../middleware/fastrtps/depend.mk
+
 endif # ROS2_RMW_FASTRTPS_DEPEND_MK ----------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
