@@ -15,6 +15,7 @@ ROS2_SUBPKGS=\
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
+include ../../devel/ament-cmake-ros/depend.mk
 include ../../devel/ros2-rcpputils/depend.mk
 include ../../middleware/fastrtps/depend.mk
 include ../../middleware/ros2-rmw-dds-common/depend.mk
