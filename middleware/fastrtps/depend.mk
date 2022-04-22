@@ -23,6 +23,10 @@ SYSTEM_SEARCH.fastrtps=\
   'lib/libfastrtps.so'							\
   'share/fastrtps/cmake/fastrtps-config.cmake'
 
+include ../../devel/foonathan-memory/depend.mk
+include ../../middleware/fastcdr/depend.mk
+include ../../mk/sysdep/tinyxml2.mk
+
 endif # FASTRTPS_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
