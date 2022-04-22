@@ -38,6 +38,8 @@ define PKG_OPTION_SET.doc
   include ../../mk/sysdep/doxygen.mk
 endef
 
+DEPEND_ABI.python+= python>=3.6
+
 include ../../devel/foonathan-memory/depend.mk
 include ../../middleware/fastcdr/depend.mk
 include ../../mk/sysdep/asio.mk
