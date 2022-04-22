@@ -20,6 +20,10 @@ else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 16.04% 18.04%,${OS_VERSION}))
     PREFER.spdlog?=	robotpkg
   endif
+else ifeq (Fedora,${OPSYS})
+  ifneq (,$(filter 31,${OS_VERSION}))
+    PREFER.spdlog?=	robotpkg
+  endif
 endif
 PREFER.spdlog?=		system
 
