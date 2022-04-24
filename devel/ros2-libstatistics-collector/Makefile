@@ -11,6 +11,7 @@ ROS2_COMMENT=	library to collect measurements and calculate statistics
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
+include ../../devel/ament-cmake-ros/depend.mk
 include ../../devel/ros2-rcl/depend.mk
 include ../../interfaces/ros2-common-interfaces/depend.mk
 include ../../interfaces/ros2-rcl-interfaces/depend.mk
