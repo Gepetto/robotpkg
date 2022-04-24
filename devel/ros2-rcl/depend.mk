@@ -27,6 +27,14 @@ SYSTEM_SEARCH.ros2-rcl=\
   'include/rcl/rcl/rcl.h'	\
   'lib/librcl.so'
 
+include ../../devel/ros2-rcl-logging/depend.mk
+include ../../devel/ros2-rcutils/depend.mk
+include ../../interfaces/ros2-rcl-interfaces/depend.mk
+include ../../interfaces/ros2-rosidl/depend.mk
+include ../../middleware/ros2-rmw/depend.mk
+include ../../middleware/ros2-rmw-implementation/depend.mk
+include ../../sysutils/ros2-tracing/depend.mk
+
 endif # ROS2_RCL_DEPEND_MK -------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
