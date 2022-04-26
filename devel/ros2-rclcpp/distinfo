@@ -2,4 +2,4 @@ SHA1 (rclcpp-16.0.0.tar.gz) = 2b0b77fd9b4ce15b17f5d33bb2ca281f78e3f2bc
 RMD160 (rclcpp-16.0.0.tar.gz) = 39031194aadb214b4d63d38cb2f29f19af0c7bef
 Size (rclcpp-16.0.0.tar.gz) = 559049 bytes
 SHA1 (patch-aa) = 47921f568ac888d97bbbc217cda67774241e9abe
-SHA1 (patch-ab) = 775f66b2327ab32a840c56ed410634e196351e7d
+SHA1 (patch-ab) = 0cfb383c34daffe47d9fe2da46e47827f31170bb
