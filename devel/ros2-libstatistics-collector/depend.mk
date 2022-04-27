@@ -23,6 +23,11 @@ SYSTEM_SEARCH.ros2-libstat-collect=\
   'lib/liblibstatistics_collector.so'				\
   'include/libstatistics_collector/libstatistics_collector/visibility_control.hpp'
 
+include ../../devel/ros2-rcl/depend.mk
+include ../../devel/ros2-rcpputils/depend.mk
+include ../../interfaces/ros2-rcl-interfaces/depend.mk
+include ../../interfaces/ros2-rosidl-defaults/depend.mk
+
 endif # ROS2_LIBSTAT_COLLECT_DEPEND_MK -------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
