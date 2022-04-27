@@ -23,6 +23,9 @@ SYSTEM_SEARCH.ros2-class-loader=\
   'include/class_loader/class_loader/class_loader.hpp'	\
   'lib/libclass_loader.so'
 
+include ../../devel/ros2-rcpputils/depend.mk
+include ../../sysutils/console-bridge/depend.mk
+
 endif # ROS2_CLASS_LOADER_DEPEND_MK ----------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
