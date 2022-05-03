@@ -278,4 +278,5 @@ lib/cmake/pinocchio/pinocchioTargets.cmake
 lib/libpinocchio.so
 lib/libpinocchio.so.${PKGVERSION}
 lib/pkgconfig/pinocchio.pc
+share/ament_index/resource_index/packages/pinocchio
 share/pinocchio/package.xml

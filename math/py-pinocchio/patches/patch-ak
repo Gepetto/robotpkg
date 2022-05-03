@@ -1,7 +1,7 @@
 Don't install files already installed by pinocchio
 
---- CMakeLists.txt.orig	2020-02-19 20:38:48.000000000 +0100
-+++ CMakeLists.txt	2020-02-19 20:39:20.542080060 +0100
+--- CMakeLists.txt.orig	2022-04-20 11:23:27.000000000 +0200
++++ CMakeLists.txt	2022-05-03 12:43:26.221165879 +0200
 @@ -9,7 +9,6 @@
  SET(PROJECT_DESCRIPTION "A fast and flexible implementation of Rigid Body Dynamics algorithms and their analytical derivatives")
  SET(PROJECT_URL "http://github.com/stack-of-tasks/pinocchio")
@@ -10,10 +10,13 @@ Don't install files already installed by pinocchio
  SET(PROJECT_USE_KEYWORD_LINK_LIBRARIES TRUE)
  
  # Disable -Werror on Unix for now.
-@@ -282,6 +281,3 @@
+@@ -329,9 +328,3 @@
  FOREACH(cflags ${CFLAGS_DEPENDENCIES})
    PKG_CONFIG_APPEND_CFLAGS(${cflags})
  ENDFOREACH(cflags ${CFLAGS_DEPENDENCIES})
 -
 -# Install catkin package.xml
 -INSTALL(FILES package.xml DESTINATION share/${PROJECT_NAME})
+-# Allows Colcon to find non-Ament packages when using workspace underlays
+-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/share/ament_index/resource_index/packages/${PROJECT_NAME} "")
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/share/ament_index/resource_index/packages/${PROJECT_NAME} DESTINATION share/ament_index/resource_index/packages)
