@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-pinocchio
 HPP_COMMENT=		Wrapping of the kinematic/dynamic chain Pinocchio for HPP.
+HPP_VERSION=		4.13.0
 
 CATEGORIES=		math
 
