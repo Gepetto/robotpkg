@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=			hpp-affordance
 HPP_COMMENT=			Extract Whole-Body Affordances for Mutli-Contact Planning.
+HPP_VERSION=			4.13.0
 
 CATEGORIES=			path
 
