@@ -4,7 +4,6 @@
 
 HPP_PACKAGE=		hpp_tutorial
 HPP_COMMENT=		Tutorial for manipulation and path planning
-PKGREVISION=		1
 
 CATEGORIES=		doc
 
