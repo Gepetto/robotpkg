@@ -4,7 +4,6 @@
 
 HPP_PACKAGE=	hpp-manipulation-urdf
 HPP_COMMENT=	URDF/SRDF parser for the package hpp-manipulation
-PKGREVISION=	1
 
 CATEGORIES=	path
 
