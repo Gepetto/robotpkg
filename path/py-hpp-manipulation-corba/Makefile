@@ -4,7 +4,6 @@
 
 HPP_PACKAGE=		hpp-manipulation-corba
 HPP_COMMENT=		CORBA interface for hpp-manipulation
-PKGREVISION=		1
 
 CATEGORIES=		path
 
