@@ -4,7 +4,6 @@
 
 HPP_PACKAGE=		hpp-manipulation
 HPP_COMMENT=		Manipulation problem definition and resolution
-PKGREVISION=		1
 
 CATEGORIES=		path
 
