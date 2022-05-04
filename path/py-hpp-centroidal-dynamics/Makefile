@@ -4,7 +4,6 @@
 
 HPP_PACKAGE=		hpp-centroidal-dynamics
 HPP_COMMENT=		testing equilibrium
-PKGREVISION=		1
 
 CATEGORIES=		path
 
