@@ -29,7 +29,6 @@ PREFER.spdlog?=		system
 
 DEPEND_USE+=		spdlog
 
-DEPEND_METHOD.spdlog?=	build
 DEPEND_ABI.spdlog?=	spdlog>=1.5.0
 DEPEND_DIR.spdlog?=	../../devel/spdlog
 
