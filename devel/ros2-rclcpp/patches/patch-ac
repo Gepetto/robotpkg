@@ -1,0 +1,12 @@
+Don't install garbage
+
+--- rclcpp/CMakeLists.txt~	2022-05-10 11:37:52.530600944 +0200
++++ rclcpp/CMakeLists.txt	2022-05-10 11:42:54.698137904 +0200
+@@ -257,6 +257,7 @@
+ install(
+   DIRECTORY include/ ${CMAKE_CURRENT_BINARY_DIR}/include/
+   DESTINATION include/${PROJECT_NAME}
++  FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h"
+ )
+ 
+ if(TEST cppcheck)
