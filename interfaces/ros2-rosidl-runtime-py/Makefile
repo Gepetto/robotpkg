@@ -12,6 +12,8 @@ ROS2_AMENTPKG=	no
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
+DEPEND_ABI.python+=	python>=3.6
+
 include ../../interfaces/ros2-rosidl/depend.mk
 include ../../mk/sysdep/py-numpy.mk
 include ../../mk/sysdep/py-setuptools.mk
