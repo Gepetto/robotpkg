@@ -17,11 +17,22 @@ ROS2_SUBPKGS=\
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
+# runtime needs:
+# importlib-metadata for python<3.8
+include ../../mk/sysdep/python.mk
+define PKG_ALTERNATIVE_SET.python36+=
+
+  include ../../mk/sysdep/py-importlib-metadata.mk
+endef
+define PKG_ALTERNATIVE_SET.python37+=
+
+  include ../../mk/sysdep/py-importlib-metadata.mk
+endef
+
 include ../../devel/py-osrf-pycommon/depend.mk
 include ../../devel/ros2-rclpy/depend.mk
 include ../../interfaces/ros2-rcl-interfaces/depend.mk
 include ../../sysutils/ament-index/depend.mk
 include ../../sysutils/ros2-launch/depend.mk
-include ../../mk/sysdep/py-importlib-metadata.mk
 include ../../mk/sysdep/py-yaml.mk
 include ../../mk/robotpkg.mk
