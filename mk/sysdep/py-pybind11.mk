@@ -20,11 +20,14 @@ DEPEND_ABI.py-pybind11?=	${PKGTAG.python}-pybind11>=0
 # headers may be installed within python site-packages
 _pybind11dirs={,${PYTHON_SYSLIBSEARCH}/pybind11/}
 
+_pybind11vers=	/__version__.*"\([0-9.]*\)"/s//\1/p;
+_pybind11vers+=	/version_info.*(\([0-9, ]*\))/{s//\1/;s/ //g;s/,/./g;p;}
+
 SYSTEM_SEARCH.py-pybind11=\
   '${_pybind11dirs}include/pybind11/pybind11.h'				\
   '${_pybind11dirs}{lib,share}/cmake/pybind11/pybind11Config.cmake'	\
   '${PYTHON_SYSLIBSEARCH}/pybind11/__init__.py'				\
-  '${PYTHON_SYSLIBSEARCH}/pybind11/_version.py:/__version__/s/[^0-9.]//gp'
+  '${PYTHON_SYSLIBSEARCH}/pybind11/_version.py:${_pybind11vers}'
 
 SYSTEM_PKG.Debian.py-pybind11=	python${PYTHON_MAJOR}-pybind11 pybind11-dev
 SYSTEM_PKG.NetBSD.py-pybind11=	devel/${PKGTAG.python}-pybind11
