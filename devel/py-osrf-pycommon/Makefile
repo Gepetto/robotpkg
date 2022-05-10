@@ -12,7 +12,19 @@ CATEGORIES=     devel
 ROS2_AMENTPKG=  no
 include ../../meta-pkgs/ros2-core/Makefile.common
 
-DEPEND_ABI.python+= python>=3
+DEPEND_ABI.python+= python>=3.5
+
+# runtime needs:
+# importlib-metadata for python<3.8
+include ../../mk/sysdep/python.mk
+define PKG_ALTERNATIVE_SET.python36+=
+
+  include ../../mk/sysdep/py-importlib-metadata.mk
+endef
+define PKG_ALTERNATIVE_SET.python37+=
+
+  include ../../mk/sysdep/py-importlib-metadata.mk
+endef
 
 include ../../mk/sysdep/py-setuptools.mk
 include ../../mk/robotpkg.mk

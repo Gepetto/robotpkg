@@ -22,9 +22,20 @@ SYSTEM_SEARCH.py-osrf-pycommon=\
   '${PYTHON_SYSLIBSEARCH}/osrf_pycommon/__init__.py'		\
   'share/osrf_pycommon/package.xml:/<version>/s/[^0-9.]//gp'
 
-DEPEND_ABI.python+= python>=3
+DEPEND_ABI.python+= python>=3.5
 
 include ../../mk/sysdep/python.mk
+
+# runtime needs:
+# importlib-metadata for python<3.8
+define PKG_ALTERNATIVE_SET.python36+=
+
+  include ../../mk/sysdep/py-importlib-metadata.mk
+endef
+define PKG_ALTERNATIVE_SET.python37+=
+
+  include ../../mk/sysdep/py-importlib-metadata.mk
+endef
 
 endif # PY_OSRF_COMMON_DEPEND_MK -------------------------------------------
 
