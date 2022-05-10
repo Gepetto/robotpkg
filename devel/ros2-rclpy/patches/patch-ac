@@ -1,0 +1,47 @@
+Don't use (not so useful) enum docstring for backward compatibility with
+pybind11<2.3.0
+
+--- ./rclpy/src/rclpy/_rclpy_pybind11.cpp~	2022-04-08 22:43:34.000000000 +0200
++++ ./rclpy/src/rclpy/_rclpy_pybind11.cpp	2022-05-10 18:11:42.281638621 +0200
+@@ -76,17 +76,13 @@
+ 
+   py::enum_<rcl_clock_change_t>(m, "ClockChange")
+   .value(
+-    "ROS_TIME_NO_CHANGE", RCL_ROS_TIME_NO_CHANGE,
+-    "ROS time is active and will continue to be active")
++    "ROS_TIME_NO_CHANGE", RCL_ROS_TIME_NO_CHANGE)
+   .value(
+-    "ROS_TIME_ACTIVATED", RCL_ROS_TIME_ACTIVATED,
+-    "ROS time is being activated")
++    "ROS_TIME_ACTIVATED", RCL_ROS_TIME_ACTIVATED)
+   .value(
+-    "ROS_TIME_DEACTIVATED", RCL_ROS_TIME_DEACTIVATED,
+-    "ROS TIME is being deactivated, the clock will report system time after the jump")
++    "ROS_TIME_DEACTIVATED", RCL_ROS_TIME_DEACTIVATED)
+   .value(
+-    "SYSTEM_TIME_NO_CHANGE", RCL_SYSTEM_TIME_NO_CHANGE,
+-    "ROS time is inactive and the clock will keep reporting system time");
++    "SYSTEM_TIME_NO_CHANGE", RCL_SYSTEM_TIME_NO_CHANGE);
+ 
+   py::enum_<rmw_qos_compatibility_type_t>(m, "QoSCompatibility")
+   .value("OK", RMW_QOS_COMPATIBILITY_OK)
+--- ./rclpy/src/rclpy/lifecycle.cpp~	2022-04-08 22:43:34.000000000 +0200
++++ ./rclpy/src/rclpy/lifecycle.cpp	2022-05-10 18:13:07.330389509 +0200
+@@ -349,14 +349,11 @@
+     "Get the get transition graph service.");
+   py::enum_<TransitionCallbackReturnType>(m, "TransitionCallbackReturnType")
+   .value(
+-    "SUCCESS", TransitionCallbackReturnType::Success,
+-    "Callback succeeded.")
++    "SUCCESS", TransitionCallbackReturnType::Success)
+   .value(
+-    "FAILURE", TransitionCallbackReturnType::Failure,
+-    "Callback failed.")
++    "FAILURE", TransitionCallbackReturnType::Failure)
+   .value(
+-    "ERROR", TransitionCallbackReturnType::Error,
+-    "Callback had an error.")
++    "ERROR", TransitionCallbackReturnType::Error)
+   .def(
+     "to_label", &convert_callback_ret_code_to_label,
+     "Convert the transition callback return code to a transition label");

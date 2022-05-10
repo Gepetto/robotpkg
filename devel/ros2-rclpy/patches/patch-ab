@@ -1,0 +1,25 @@
+Use .size() == 0 instead of .empty() on lists for backward compatibility with
+pybind11<2.4.0
+
+--- ./rclpy/src/rclpy/utils.cpp~	2022-04-08 22:43:34.000000000 +0200
++++ ./rclpy/src/rclpy/utils.cpp	2022-05-10 18:17:29.424677559 +0200
+@@ -165,7 +165,7 @@
+   py::list pyargs;
+   if (!pycli_args.is_none()) {
+     pyargs = pycli_args;
+-    if (!pyargs.empty()) {
++    if (!pyargs.size() == 0) {
+       arg_values.resize(pyargs.size());
+       for (size_t i = 0; i < pyargs.size(); ++i) {
+         // CPython owns const char * memory - no need to free it
+--- ./rclpy/src/rclpy/node.cpp~	2022-04-08 22:43:34.000000000 +0200
++++ ./rclpy/src/rclpy/node.cpp	2022-05-10 18:16:36.024213969 +0200
+@@ -384,7 +384,7 @@
+   py::list pyargs;
+   if (!pycli_args.is_none()) {
+     pyargs = pycli_args;
+-    if (!pyargs.empty()) {
++    if (!pyargs.size() == 0) {
+       arg_values.resize(pyargs.size());
+       for (size_t i = 0; i < pyargs.size(); ++i) {
+         // CPython owns const char * memory - no need to free it
