@@ -1,3 +1,5 @@
-@comment Tue May 18 17:36:19 CEST 2021
+@comment Tue May 10 11:28:25 CEST 2022
+bin/tk3-mux
 lib/tk3-firmware/boot-chimera
 lib/tk3-firmware/chimera
+${PKGMANDIR}/man1/tk3-mux.1
