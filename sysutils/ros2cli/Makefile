@@ -31,7 +31,7 @@ include ../../meta-pkgs/ros2-core/Makefile.common
 
 include ../../devel/ros2-rclcpp/depend.mk
 include ../../devel/ros2-rclpy/depend.mk
-include ../../interfaces/ros2-common-interfaces/depend.mk
+include ../../interfaces/ros2-rosidl-defaults/depend.mk
 include ../../interfaces/ros2-rosidl-runtime-py/depend.mk
 include ../../sysutils/py-rosdistro/depend.mk
 include ../../mk/sysdep/py-argcomplete.mk
