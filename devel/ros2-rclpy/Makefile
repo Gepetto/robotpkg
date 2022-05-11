@@ -18,6 +18,14 @@ CONFIGURE_DIRS=	rclpy
 # gmake and bmake variables used to communicate with the job server.
 MAKE_FLAGS+=	MAKE=${MAKE_PROGRAM}
 
+# Force cmake to find exact python version
+SUBST_CLASSES+=	py-vers
+SUBST_STAGE.py-vers=	pre-configure
+SUBST_MESSAGE.py-vers=	Forcing exact python version search
+SUBST_SED.py-vers=	-e 's|@PYTHON_VERSION@|${PYTHON_VERSION}|g'
+SUBST_FILES.py-vers=\
+  rclpy/CMakeLists.txt
+
 include ../../devel/ros2-python-cmake-module/depend.mk
 include ../../devel/ros2-rcl/depend.mk
 include ../../interfaces/ros2-rcl-interfaces/depend.mk

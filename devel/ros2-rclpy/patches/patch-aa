@@ -1,10 +1,14 @@
-Let robotpkg manage dependencies.
+Require exact python version to match robotpkg selected version.
+Let robotpkg manage pybind11 dependency.
 
 --- rclpy/CMakeLists.txt~	2022-04-08 22:43:34.000000000 +0200
-+++ rclpy/CMakeLists.txt	2022-04-13 18:47:52.249813170 +0200
-@@ -40,7 +40,6 @@
++++ rclpy/CMakeLists.txt	2022-05-11 14:36:14.725488927 +0200
+@@ -38,9 +38,8 @@
+ find_package(rosidl_runtime_c REQUIRED)
+ 
  # Find python before pybind11
- find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
+-find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
++find_package(Python3 @PYTHON_VERSION@ EXACT REQUIRED COMPONENTS Interpreter Development)
  
 -find_package(pybind11_vendor REQUIRED)
  find_package(pybind11 REQUIRED)
