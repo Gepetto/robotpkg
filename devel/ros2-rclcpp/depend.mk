@@ -30,6 +30,15 @@ SYSTEM_SEARCH.ros2-rclcpp=\
   'lib/librclcpp_action.so'		\
   'lib/librclcpp_lifecycle.so'
 
+include ../../devel/ros2-libstatistics-collector/depend.mk
+include ../../devel/ros2-rcl/depend.mk
+include ../../devel/ros2-rcpputils/depend.mk
+include ../../devel/ros2-rcutils/depend.mk
+include ../../interfaces/ros2-rcl-interfaces/depend.mk
+include ../../interfaces/ros2-rosidl/depend.mk
+include ../../sysutils/ament-index/depend.mk
+include ../../sysutils/ros2-tracing/depend.mk
+
 endif # ROS2_RCLCPP_DEPEND_MK ----------------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
