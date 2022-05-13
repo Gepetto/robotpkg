@@ -1,4 +1,4 @@
-@comment Tue Sep 4 17:42:39 CEST 2018
+@comment Fri May 13 22:11:57 CEST 2022
 include/ros/assert.h
 include/ros/console.h
 include/ros/console_backend.h
@@ -6,7 +6,7 @@ include/ros/static_assert.h
 include/rosconsole/macros_generated.h
 lib/librosconsole.so
 lib/librosconsole_backend_interface.so
-lib/librosconsole_log4cxx.so
+lib/librosconsole_print.so
 lib/pkgconfig/rosconsole.pc
 share/ros/config/rosconsole.config
 share/rosconsole/cmake/rosconsole-extras.cmake
