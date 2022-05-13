@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 12 Jul 2013
 #
 
-DISTNAME=		pkgrepo2deb-1.10
+DISTNAME=		pkgrepo2deb-1.11
 CATEGORIES=		pkgtools
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}robotpkg/${PKGBASE}
