@@ -146,13 +146,10 @@ ifeq (Debian,${OPSYS})
   endif
   PREFER_ALTERNATIVE.python?=	python39
 else ifeq (Fedora,${OPSYS})
-  ifneq (,$(filter 31,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python37 python27
-  endif
-  ifneq (,$(filter 32 33,${OS_VERSION}))
+  ifneq (,$(filter 34 35,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python38 python27
   endif
-  PREFER_ALTERNATIVE.python?=	python39 python27
+  PREFER_ALTERNATIVE.python?=	python310 python27
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 18.04%,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python36
@@ -160,7 +157,7 @@ else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 20.%,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python38 python27
   endif
-  PREFER_ALTERNATIVE.python?=	python39 python27
+  PREFER_ALTERNATIVE.python?=	python310 python27
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python34
 else ifeq (Arch,${OPSYS})
