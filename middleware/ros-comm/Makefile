@@ -63,7 +63,7 @@ include ../../mk/sysdep/apr.mk
 include ../../mk/sysdep/bash.mk
 include ../../mk/sysdep/gpgme.mk
 include ../../mk/sysdep/openssl.mk
-include ../../mk/sysdep/py-crypto.mk
+include ../../mk/sysdep/py-cryptodome.mk
 include ../../mk/sysdep/py-defusedxml.mk
 include ../../mk/sysdep/py-gnupg.mk
 include ../../mk/sysdep/py-imaging.mk
