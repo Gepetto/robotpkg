@@ -41,6 +41,7 @@ else
   PYSETUPINSTALLTARGET?=install
   PYSETUPINSTALLARGS+=	--prefix=${PREFIX}
   PYSETUPINSTALLARGS+=	--install-lib=${PREFIX}/${PYTHON_SITELIB}
+  PYSETUPINSTALLARGS+=	--install-script=${PREFIX}/bin
   PYSETUPINSTALLARGS+=	--no-compile
   PYSETUPINSTALLARGS+=	--single-version-externally-managed
   PYSETUPINSTALLARGS+=	--root=/

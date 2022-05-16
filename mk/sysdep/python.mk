@@ -439,6 +439,7 @@ PYSETUP?=               setup.py
 PYSETUPBUILDARGS?=      #empty
 PYSETUPINSTALLARGS+=    --prefix=${PREFIX}
 PYSETUPINSTALLARGS+=    --install-lib=${PREFIX}/${PYTHON_SITELIB}
+PYSETUPINSTALLARGS+=	--install-script=${PREFIX}/bin
 PYSETUPINSTALLARGS+=    --no-compile
 
 DO_BUILD_TARGET?= do-build-distutils(${BUILD_DIRS})
