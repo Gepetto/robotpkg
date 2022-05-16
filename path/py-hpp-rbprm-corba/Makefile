@@ -32,6 +32,7 @@ include ../../simulation/hpp-environments/depend.mk
 include ../../simulation/py-hpp-environments/depend.mk
 include ../../robots/example-robot-data/depend.mk
 include ../../robots/py-example-robot-data/depend.mk
+include ../../robots/py-solo-rbprm/depend.mk
 include ../../robots/py-talos-rbprm/depend.mk
 include ../../robots/py-hyq-rbprm/depend.mk
 
