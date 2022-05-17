@@ -23,5 +23,7 @@ ROS2_SUBPKGS=\
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
+PYSETUPINSTALL_SCRIPT= ${PREFIX}/lib/tracetools_trace
+
 include ../../devel/ament-cmake-ros/depend.mk
 include ../../mk/robotpkg.mk
