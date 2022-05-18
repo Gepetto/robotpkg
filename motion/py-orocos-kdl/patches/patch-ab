@@ -1,0 +1,12 @@
+Fix ambiguous type in sip-generated code
+
+--- PyKDL/kinfam.sip~	2018-03-21 21:48:25.000000000 +0100
++++ PyKDL/kinfam.sip	2022-05-18 17:06:50.070385698 +0200
+@@ -252,6 +252,7 @@
+ %TypeHeaderCode
+ #include <kdl/jntarray.hpp>
+ using namespace KDL;
++using KDL::Vector;
+ %End
+ public:
+     Jacobian(unsigned int size);
