@@ -1,0 +1,10 @@
+Something changed at some point ...
+
+--- doc/exts/examples.py~	2016-02-08 10:50:17.000000000 +0100
++++ doc/exts/examples.py	2022-05-18 15:31:31.240467585 +0200
+@@ -1,4 +1,4 @@
+-from sphinx.directives import CodeBlock
++from sphinx.directives.code import CodeBlock
+ 
+ def nop():
+     pass
