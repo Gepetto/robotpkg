@@ -1,0 +1,13 @@
+eigen-3.4 gained a setUnit() method.
+
+--- acado/variables_grid/matrix_variables_grid.cpp~	2016-05-07 21:07:04.000000000 +0200
++++ acado/variables_grid/matrix_variables_grid.cpp	2022-05-18 14:41:28.663834117 +0200
+@@ -1287,7 +1287,7 @@
+ 	if( pointIdx >= getNumPoints( ) )
+ 		return ACADOERROR( RET_INDEX_OUT_OF_BOUNDS );
+ 
+-	return values[pointIdx]->setUnit( idx,_unit );
++	return values[pointIdx]->VariableSettings::setUnit( idx,_unit );
+ }
+ 
+ 
