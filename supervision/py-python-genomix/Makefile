@@ -2,8 +2,8 @@
 # Created:			Anthony Mallet on Fri, 19 Oct 2012
 #
 
-PKGNAME=	${PKGTAG.python-}python-genomix-1.0
-DISTNAME=	python-genomix-1.0
+PKGNAME=	${PKGTAG.python-}${DISTNAME}
+DISTNAME=	python-genomix-1.0.1
 CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=python-genomix/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genomix/python-genomix
