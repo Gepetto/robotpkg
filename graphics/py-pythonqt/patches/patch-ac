@@ -1,0 +1,21 @@
+Don't require pydebug.h for just one variable (because pydebug.h location
+changed in python3.10 and is not in the python3.10-config --includes flags)
+
+--- src/PythonQt.cpp~	2017-04-18 15:41:48.000000000 +0200
++++ src/PythonQt.cpp	2022-05-18 12:05:19.782918483 +0200
+@@ -58,7 +58,6 @@
+ 
+ #include <QDir>
+ 
+-#include <pydebug.h>
+ #include <vector>
+ 
+ PythonQt* PythonQt::_self = NULL;
+@@ -294,6 +293,7 @@
+ #endif
+     if (flags & IgnoreSiteModule) {
+       // this prevents the automatic importing of Python site files
++      extern int Py_NoSiteFlag;
+       Py_NoSiteFlag = 1;
+     }
+     Py_Initialize();
