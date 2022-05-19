@@ -11,7 +11,7 @@ HOMEPAGE=	http://octomap.github.io/
 COMMENT=	An Efficient Probabilistic 3D Mapping Framework Based on Octrees
 LICENSE=	modified-bsd
 
-WRKSRC=		${WRKDIR}/octomap-${PKGVERSION_NOREV}/octomap
+WRKSRC=		${WRKDIR}/${DISTNAME}/octomap
 
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
 DEPEND_ABI.cmake=	cmake>=3.0.2
