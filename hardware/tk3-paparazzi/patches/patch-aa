@@ -1,0 +1,164 @@
+From b16b027126a95d1cc0d7d22493bc08089a57be6b Mon Sep 17 00:00:00 2001
+From: Anthony Mallet <anthony.mallet@laas.fr>
+Date: Thu, 19 May 2022 17:25:13 +0200
+Subject: [PATCH] Workaround regression in ld-2.37
+
+Memory regions containing a hyphen are not parsed correctly by ld-2.37
+https://sourceware.org/bugzilla/show_bug.cgi?id=28217
+
+Quoting things helps the parser to recover.
+---
+ firmware/chimera/boot/regions.ld | 12 +++++------
+ firmware/chimera/fw/regions.ld   |  8 +++----
+ firmware/chimera/link.ld         | 36 ++++++++++++++++----------------
+ 3 files changed, 28 insertions(+), 28 deletions(-)
+
+diff --git firmware/chimera/boot/regions.ld firmware/chimera/boot/regions.ld
+index 20788ce..5a86a14 100644
+--- firmware/chimera/boot/regions.ld
++++ firmware/chimera/boot/regions.ld
+@@ -1,11 +1,11 @@
+ /* region aliases for bootloader - all code lies in dtcm RAM */
+ 
+-REGION_ALIAS("text-vma",         dtcm-ram)
+-REGION_ALIAS("data-vma",         sram1)
+-REGION_ALIAS("flash-vma",        boot-itcm)
++REGION_ALIAS("text-vma",         "dtcm-ram")
++REGION_ALIAS("data-vma",         "sram1")
++REGION_ALIAS("flash-vma",        "boot-itcm")
+ 
+-REGION_ALIAS("flash-lma",        boot-axim)
++REGION_ALIAS("flash-lma",        "boot-axim")
+ 
+ /* default boot address */
+-boot_itcm = ORIGIN(boot-itcm);
+-flash_itcm = ORIGIN(flash-itcm);
++boot_itcm = ORIGIN("boot-itcm");
++flash_itcm = ORIGIN("flash-itcm");
+diff --git firmware/chimera/fw/regions.ld firmware/chimera/fw/regions.ld
+index 3e9dd33..9d07995 100644
+--- firmware/chimera/fw/regions.ld
++++ firmware/chimera/fw/regions.ld
+@@ -1,7 +1,7 @@
+ /* region aliases for firmware */
+ 
+-REGION_ALIAS("text-vma",       flash-itcm)
+-REGION_ALIAS("data-vma",       sram1)
+-REGION_ALIAS("flash-vma",      flash-itcm)
++REGION_ALIAS("text-vma",       "flash-itcm")
++REGION_ALIAS("data-vma",       "sram1")
++REGION_ALIAS("flash-vma",      "flash-itcm")
+ 
+-REGION_ALIAS("flash-lma",      flash-axim)
++REGION_ALIAS("flash-lma",      "flash-axim")
+diff --git firmware/chimera/link.ld firmware/chimera/link.ld
+index c436438..8e69750 100644
+--- firmware/chimera/link.ld
++++ firmware/chimera/link.ld
+@@ -20,21 +20,21 @@
+ MEMORY
+ {
+     /* reserve sector #0 to bootloader */
+-    boot-axim (rwx)    : org = 0x08000000, len = 32k
+-    boot-itcm (rx)     : org = 0x00200000, len = 32k
++    "boot-axim" (rwx)    : org = 0x08000000, len = 32k
++    "boot-itcm" (rx)     : org = 0x00200000, len = 32k
+ 
+     /* reserve sector #1 to settings */
+-    settings-axim (rw) : org = 0x08000000 + 32k, len = 32k
+-    settings-itcm (r)  : org = 0x00200000 + 32k, len = 32k
++    "settings-axim" (rw) : org = 0x08000000 + 32k, len = 32k
++    "settings-itcm" (r)  : org = 0x00200000 + 32k, len = 32k
+ 
+     /* the rest for application */
+-    flash-axim (rwx)   : org = 0x08000000 + 64k, len = 2M - 64k
+-    flash-itcm (rx)    : org = 0x00200000 + 64k, len = 2M - 64k
++    "flash-axim" (rwx)   : org = 0x08000000 + 64k, len = 2M - 64k
++    "flash-itcm" (rx)    : org = 0x00200000 + 64k, len = 2M - 64k
+ 
+-    dtcm-ram (rw)      : org = 0x20000000, len = 128k
+-    itcm-ram (rw)      : org = 0x00000000, len = 16k
+-    sram1 (rw)         : org = 0x20020000, len = 368k
+-    sram2 (rw)         : org = 0x2007C000, len = 16k
++    "dtcm-ram" (rw)      : org = 0x20000000, len = 128k
++    "itcm-ram" (rw)      : org = 0x00000000, len = 16k
++    "sram1" (rw)         : org = 0x20020000, len = 368k
++    "sram2" (rw)         : org = 0x2007C000, len = 16k
+ }
+ 
+ INCLUDE regions.ld
+@@ -59,7 +59,7 @@ SECTIONS
+         KEEP(*(.vectors))
+         _vectors_end = .;
+         *(.trampoline)
+-    } > flash-vma AT > flash-lma : vectors
++    } > "flash-vma" AT > "flash-lma" : vectors
+ 
+ 
+     /* text */
+@@ -70,7 +70,7 @@ SECTIONS
+         *(.text)
+         *(.text.*)
+         _text_end = .;
+-    } > text-vma AT > flash-lma : text
++    } > "text-vma" AT > "flash-lma" : text
+ 
+     .rodata : ALIGN(4)
+     {
+@@ -80,7 +80,7 @@ SECTIONS
+         *(.rodata.*)
+         . = ALIGN(4);
+         _rodata_end = .;
+-    } > text-vma AT > flash-lma : text
++    } > "text-vma" AT > "flash-lma" : text
+ 
+ 
+     /* data */
+@@ -94,7 +94,7 @@ SECTIONS
+         . = ALIGN(4);
+         PROVIDE(_edata = .);
+         _data_end = .;
+-    } > data-vma AT > flash-lma : data
++    } > "data-vma" AT > "flash-lma" : data
+ 
+     .bss (NOLOAD) : ALIGN(4)
+     {
+@@ -105,7 +105,7 @@ SECTIONS
+         . = ALIGN(4);
+         _bss_end = .;
+         PROVIDE(end = .);
+-    } > data-vma
++    } > "data-vma"
+ 
+ 
+     /* relocated vectors */
+@@ -113,7 +113,7 @@ SECTIONS
+     {
+         _ram_vectors = .;
+         . += _vectors_end - _vectors_start;
+-    } > itcm-ram
++    } > "itcm-ram"
+ 
+ 
+     /* exceptions, interrupts and process stack */
+@@ -138,7 +138,7 @@ SECTIONS
+         *(.bss.__nocache_*)
+         . = ALIGN(8);
+         _nocache_end = .;
+-    } > dtcm-ram
++    } > "dtcm-ram"
+ 
+ 
+     /* settings */
+@@ -151,7 +151,7 @@ SECTIONS
+         . = ALIGN(4);
+         _settings_end = .;
+         LONG(0x00336b74);	/* tk3\0 */
+-    } > settings-itcm AT > settings-axim : settings
++    } > "settings-itcm" AT > "settings-axim" : settings
+ 
+ 
+     /* notes */
+-- 
+2.25.1
+
