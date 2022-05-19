@@ -12,12 +12,13 @@ PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 CATEGORIES=		graphics
 LICENSE=		2-clause-bsd
 
+include ../../meta-pkgs/hpp/Makefile.common
+
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..
 
 CMAKE_ARGS+=		-DOMNIIDL=${PREFIX.omniORB}/bin/omniidl
-
-include ../../meta-pkgs/hpp/Makefile.common
+CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
 # old package name and other Python / Qt versions
 CONFLICTS=		gepetto-viewer-corba-[0-9]*
