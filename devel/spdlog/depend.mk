@@ -37,6 +37,10 @@ SYSTEM_SEARCH.spdlog=\
   'lib/cmake/spdlog/spdlogConfig.cmake'			\
   'lib/pkgconfig/spdlog.pc:/Version/s/[^0-9.]//gp'
 
+SYSTEM_PKG.Debian.spdlog=	libspdlog-dev
+SYSTEM_PKG.NetBSD.spdlog=	devel/spdlog
+SYSTEM_PKG.RedHat.spdlog=	spdlog-devel
+
 endif # SPDLOG_DEPEND_MK ---------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
