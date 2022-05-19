@@ -38,4 +38,8 @@ include ../../mk/language/c++.mk
 DEPEND_ABI.urdfdom+=		urdfdom<1
 DEPEND_ABI.urdfdom-headers+=	urdfdom-headers<1
 
+# NetBSD does not have system urdfdom, so the above constraint makes it
+# impossible to bulk-build the robotpkg urdfdom-1.0.4 package.
+NOT_FOR_PLATFORM=	NetBSD-%
+
 include ../../mk/robotpkg.mk
