@@ -160,6 +160,8 @@ else ifeq (Ubuntu,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python310 python27
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python34
+else ifeq (Rocky,${OPSYS})
+  PREFER_ALTERNATIVE.python?=	python36
 else ifeq (Arch,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python310 python27
 endif
