@@ -36,6 +36,9 @@ ROS2_SUBPKGS=\
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
+# No testing in robotpkg, this reduces required dependencies
+CMAKE_ARGS+=	-DBUILD_TESTING=OFF
+
 # Replace python interpreter in source files
 SUBST_CLASSES+=	py-interp
 SUBST_FILES.py-interp=\
@@ -56,7 +59,6 @@ DEPEND_ABI.cmake+=	cmake>=3.12
 
 include ../../sysutils/py-ament-package/depend.mk
 include ../../sysutils/py-catkin-pkg/depend.mk
-include ../../mk/sysdep/googletest.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
