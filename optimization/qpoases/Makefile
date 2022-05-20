@@ -52,6 +52,6 @@ generate-doc:
 .PHONY: install-doc
 install-doc:
 	${RUN}cd ${WRKSRC}/doc/html &&				\
-	  ${PAX} -rwp ma . ${PREFIX}/${DYNAMIC_PLIST_DIRS};
+	  ${PAX} -r -w -p ma . ${PREFIX}/${DYNAMIC_PLIST_DIRS};
 	${RUN}cd ${WRKSRC}/doc &&				\
-	  ${PAX} -rwp ma manual.pdf ${PREFIX}/share/doc/qpOASES/
+	  ${PAX} -r -w -p ma manual.pdf ${PREFIX}/share/doc/qpOASES/
