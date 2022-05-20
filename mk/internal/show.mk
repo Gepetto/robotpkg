@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2011,2013-2014,2018 LAAS/CNRS
+# Copyright (c) 2011,2013-2014,2018,2022 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -24,6 +24,15 @@
 # defined
 $(call require, ${ROBOTPKG_DIR}/mk/pkg/pkg-vars.mk)
 $(call require, ${ROBOTPKG_DIR}/mk/depends/depends-vars.mk)
+
+
+# --- show-platform --------------------------------------------------------
+#
+# convenience target, to display current platform variables
+#
+.PHONY: show-platform
+show-platform:
+	@cd ${ROBOTPKG_DIR} && ${MAKE} $@
 
 
 # --- show-var -------------------------------------------------------------

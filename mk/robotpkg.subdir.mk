@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007,2009-2011,2013,2015 LAAS/CNRS
+# Copyright (c) 2007,2009-2011,2013,2015,2022 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -120,6 +120,18 @@ show-subdir:
 .PHONY:
 show-comment:
 	@${ECHO} $(call quote,$(or ${COMMENT},(no description)))
+
+.PHONY: show-platform
+show-platform: _UNAME=$(word 1,$(realpath ${UNAME} /usr/bin/uname /bin/uname))
+show-platform:
+	@$(foreach _,							\
+	  OPSYS OS_VERSION OS_FAMILY					\
+	  OS_KERNEL OS_KERNEL_VERSION MACHINE_ARCH NODENAME,		\
+	  ${ECHO} '$_ = ${$_}';)
+	@${ECHO}; ${ECHO} Based on:
+	@${ECHO} "${_UNAME} -srm = `${_UNAME} -srm`"
+	@$(foreach _,$(wildcard /etc/*-release /etc/*_version),		\
+	  ${ECHO} '$_:'; ${TEST} -f '$_' && ${SED} -e 's/^/:/' < '$_';)
 
 
 # Packages sets
