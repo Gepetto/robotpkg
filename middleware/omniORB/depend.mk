@@ -17,6 +17,8 @@ ifeq (Ubuntu,${OPSYS})
   PREFER.omniORB?=	$(if $(filter 3,${PYTHON_MAJOR}),robotpkg,system)
 else ifeq (Debian,${OPSYS})
   PREFER.omniORB?=	$(if $(filter 3,${PYTHON_MAJOR}),robotpkg,system)
+else ifeq (Rocky,${OPSYS})
+  PREFER.omniORB?=	robotpkg
 endif
 PREFER.omniORB?=	system
 
