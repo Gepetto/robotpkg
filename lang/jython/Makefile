@@ -45,6 +45,6 @@ post-extract:
 		< ${FILESDIR}/jythonc > ${WRKDIR}/jythonc
 
 do-install:
-	${RUN} cd ${WRKSRC} && ${PAX} -rwp ma . ${JYTHON_HOME};	\
-	${INSTALL_PROGRAM} ${WRKDIR}/jython ${PREFIX}/bin;	\
+	${RUN} cd ${WRKSRC} && ${PAX} -r -w -p ma . ${JYTHON_HOME};	\
+	${INSTALL_PROGRAM} ${WRKDIR}/jython ${PREFIX}/bin;		\
 	${INSTALL_PROGRAM} ${WRKDIR}/jythonc ${PREFIX}/bin
