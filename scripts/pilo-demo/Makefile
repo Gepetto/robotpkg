@@ -26,4 +26,4 @@ include ../../mk/robotpkg.mk
 
 do-install:
 	mkdir -p ${PREFIX}/share/example/pilo-demo
-	cd ${WRKSRC} && ${PAX} -rwp amp . ${PREFIX}/share/example/pilo-demo
+	cd ${WRKSRC} && ${PAX} -r -w -p amp . ${PREFIX}/share/example/pilo-demo
