@@ -107,7 +107,7 @@ include ../../mk/robotpkg.mk
 
 do-install:
 	${RUN}cd ${WRKSRC}/Include;					\
-	${PAX} $(if ${VERBOSE},-v) -rwp ma . ${PREFIX}/include/ni;	\
+	${PAX} $(if ${VERBOSE},-v) -r -w -p ma . ${PREFIX}/include/ni;	\
 	${INSTALL_DATA} ${WRKSRC}/Data/SamplesConfig.xml		\
 		${PREFIX}/share/openni;					\
 	cd ${WRKDIR}/${NI_ARCH}-Release;				\
