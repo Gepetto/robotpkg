@@ -26,6 +26,8 @@ ifeq (Fedora,${OPSYS})
      PREFER_ALTERNATIVE.rpc?=	libc-rpc
   endif
   PREFER_ALTERNATIVE.rpc?=	libtirpc
+else ifeq (Rocky,${OPSYS})
+  PREFER_ALTERNATIVE.rpc?=	libtirpc
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 1% 20.04,${OS_VERSION}))
      PREFER_ALTERNATIVE.rpc?=	libc-rpc
