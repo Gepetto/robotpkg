@@ -40,10 +40,10 @@ do-install: jena-install-lib
 jena-install-lib:
 	${INSTALL} -d ${PREFIX}/java/jena
 	${INSTALL} -d ${PREFIX}/java/jena/lib
-	cd ${WRKSRC}/lib && ${PAX} -rwp ma *.jar ${PREFIX}/java/jena/lib/
+	cd ${WRKSRC}/lib && ${PAX} -r -w -p ma *.jar ${PREFIX}/java/jena/lib/
 	${LN} -sf ${PREFIX}/java/jena/lib/${DISTNAME}.jar ${PREFIX}/java/jena/lib/${PKGBASE}.jar
 
 .PHONY: jena-install-doc
 jena-install-doc:
 	${INSTALL} -d ${PREFIX}/share/doc/jena/
-	cd ${WRKSRC}/doc && ${PAX} -rwp ma . ${PREFIX}/share/doc/jena/
+	cd ${WRKSRC}/doc && ${PAX} -r -w -p ma . ${PREFIX}/share/doc/jena/
