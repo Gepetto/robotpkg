@@ -54,6 +54,6 @@ include ../../mk/robotpkg.mk
 .PHONY: install-doc
 install-doc:
 	${RUN} cd ${WRKSRC}/doc/man/man3 && \
-	  ${PAX} -rwp ma -s @^./[^Fflu].*@@ . ${PREFIX}/man/man3
+	  ${PAX} -r -w -p ma -s @^./[^Fflu].*@@ . ${PREFIX}/man/man3
 	${RUN} cd ${WRKSRC}/doc/html && \
-	  ${PAX} -rwp ma . ${PREFIX}/share/doc/${PKGBASE}
+	  ${PAX} -r -w -p ma . ${PREFIX}/share/doc/${PKGBASE}
