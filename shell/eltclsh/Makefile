@@ -21,6 +21,8 @@ CONFIGURE_ARGS+=	--with-tk=$(dir ${TK_CONFIG_SH})
 INCLUDE_DIRS.libedit+=	include
 LIBRARY_DIRS.libedit+=	lib
 
+INCLUDE_DIRS.libX11+=	include
+
 include ../../devel/libedit/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
