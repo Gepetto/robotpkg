@@ -40,9 +40,9 @@ endef
 
 DEPEND_ABI.python+= python>=3.6
 
+include ../../devel/asio/depend.mk
 include ../../devel/foonathan-memory/depend.mk
 include ../../middleware/fastcdr/depend.mk
-include ../../mk/sysdep/asio.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/openssl.mk
 include ../../mk/sysdep/python.mk

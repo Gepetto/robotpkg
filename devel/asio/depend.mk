@@ -1,5 +1,6 @@
-# robotpkg sysdep/asio.mk
-# Created:			Anthony Mallet on Fri, Apr  8 2022
+# robotpkg depend.mk for:	devel/asio
+# Created:			Anthony Mallet on Tue, 24 May 2022
+#
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 ASIO_DEPEND_MK:=	${ASIO_DEPEND_MK}+
@@ -10,11 +11,16 @@ endif
 
 ifeq (+,$(ASIO_DEPEND_MK)) # -----------------------------------------------
 
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (Rocky,${OPSYS})
+  PREFER.asio?=		robotpkg
+endif
 PREFER.asio?=		system
 DEPEND_USE+=		asio
 
 DEPEND_METHOD.asio?=	build
 DEPEND_ABI.asio?=	asio>=0
+DEPEND_DIR.asio?=	../../devel/asio
 
 SYSTEM_SEARCH.asio=\
   'include/asio.hpp'	\
