@@ -14,8 +14,7 @@ HOMEPAGE=		http://opencv.org/
 COMMENT=		Open Source Computer Vision
 MASTER_SITES=		${MASTER_SITE_GITHUB:=opencv/opencv/archive/}
 CONFLICTS+=		opencv-[0-9]*
-CONFLICTS+=		opencv1-[0-9]*
-CONFLICTS+=		opencv3-[0-9]*
+CONFLICTS+=		opencv[13-9]-[0-9]*
 LICENSE=		modified-bsd
 
 CONFIGURE_DIRS+=        build

@@ -12,22 +12,10 @@ endif
 ifeq (+,$(OPENCV2_DEPEND_MK)) # --------------------------------------------
 
 include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04 14.04 16.04%,${OS_VERSION}))
-    PREFER.opencv2?=	system
-  endif
-  PREFER.opencv2?=	robotpkg
-else ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 8,${OS_VERSION}))
-    PREFER.opencv2?=	system
-  endif
-  PREFER.opencv2?=	robotpkg
-else ifeq (Fedora,${OPSYS})
-  PREFER.opencv2?=	robotpkg
-else ifeq (NetBSD,${OPSYS})
-  PREFER.opencv2?=	robotpkg
+ifeq (CentOS,${OPSYS})
+  PREFER.opencv2?=	system
 endif
-PREFER.opencv2?=	system
+PREFER.opencv2?=	robotpkg
 
 DEPEND_USE+=		opencv2
 DEPEND_ABI.opencv2?=	opencv2>=2.2.0<3
