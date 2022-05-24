@@ -19,6 +19,13 @@ INCLUDE_DIRS.libjpeg+=	include
 LIBRARY_DIRS.libjpeg+=	lib
 RPATHS_DIRS.libjpeg+=	lib
 
+# because of the libjpeg flags, a system opencv may be found in the compiler
+# paths before the robotpkg one. Make sure to prepend prefix paths here so that
+# any robotpkg version is found first.
+CPPFLAGS+=             -I${PREFIX}/include
+LIBRARY_DIRS+=         lib
+RPATH_DIRS+=           lib
+
 include ../../architecture/genom/depend.mk
 include ../../image/viam-genom/depend.mk
 include ../../image/viam-libs/depend.mk
