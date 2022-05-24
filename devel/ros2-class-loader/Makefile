@@ -13,8 +13,6 @@ CONFLICTS+=	ros-class-loader-[0-9]*
 
 include ../../meta-pkgs/ros2-core/Makefile.common
 
-DEPEND_ABI.console-bridge?=	console-bridge>=0.4
-
 include ../../devel/ament-cmake-ros/depend.mk
 include ../../devel/ros2-rcpputils/depend.mk
 include ../../sysutils/console-bridge/depend.mk

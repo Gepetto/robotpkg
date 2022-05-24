@@ -1,7 +1,8 @@
 Let robotpkg manage dependencies.
+console-bridge<0.4 does not have cmake "target", use regular flags.
 
 --- CMakeLists.txt~	2022-01-14 19:17:03.000000000 +0100
-+++ CMakeLists.txt	2022-04-13 16:53:39.654776922 +0200
++++ CMakeLists.txt	2022-05-24 18:53:14.794992366 +0200
 @@ -20,7 +20,6 @@
    set(explicit_library_type "SHARED")
  endif()
@@ -10,20 +11,22 @@ Let robotpkg manage dependencies.
  find_package(console_bridge REQUIRED)
  
  find_package(rcpputils REQUIRED)
-@@ -39,14 +40,14 @@
+@@ -41,15 +40,13 @@
    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
    "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
  
 +target_include_directories(${PROJECT_NAME}
 +  PUBLIC ${console_bridge_INCLUDE_DIRS})
++target_link_libraries(${PROJECT_NAME} ${console_bridge_LIBRARIES})
  if(ament_cmake_FOUND)
    target_link_libraries(${PROJECT_NAME}
-     console_bridge::console_bridge
+-    console_bridge::console_bridge
      rcpputils::rcpputils)
    ament_export_targets(${PROJECT_NAME})
- else()
+-else()
 -  target_include_directories(${PROJECT_NAME}
 -    PUBLIC ${console_bridge_INCLUDE_DIRS})
-   target_link_libraries(${PROJECT_NAME} ${console_bridge_LIBRARIES})
+-  target_link_libraries(${PROJECT_NAME} ${console_bridge_LIBRARIES})
  endif()
  if(WIN32)
+   # Causes the visibility macros to use dllexport rather than dllimport
