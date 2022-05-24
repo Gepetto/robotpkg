@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2007,2009-2014 LAAS/CNRS
+# Copyright (c) 2006-2007,2009-2014,2022 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -36,8 +36,7 @@
 # distribution sites for software.
 #
 MASTER_SITE_OPENROBOTS+=	\
-	ftp://ftp.openrobots.org/pub/openrobots/		\
-	http://www.openrobots.org/distfiles/
+	https://www.openrobots.org/distfiles/
 MASTER_REPOSITORY_OPENROBOTS_TRAC=\
 	git git://trac.laas.fr/robots/
 MASTER_REPOSITORY_OPENROBOTS=\
