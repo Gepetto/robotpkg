@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			dynamic-graph-bridge-msgs
-VERSION=		0.3.1
+VERSION=		0.3.2
 
 ROSNAME=		$(subst -,_,${NAME})
 PKGNAME=		${NAME}-${VERSION}
