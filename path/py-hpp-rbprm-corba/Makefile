@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Thu, 22 Apr 2021
 #
 
+HPP_VERSION=		4.12.0
 HPP_PACKAGE=		hpp-rbprm-corba
 HPP_COMMENT=		Corba server for RB-PRM
 PKGREVISION=		1
