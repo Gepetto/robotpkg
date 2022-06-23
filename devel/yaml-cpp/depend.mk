@@ -30,7 +30,7 @@ DEPEND_DIR.yaml-cpp?=	../../devel/yaml-cpp
 SYSTEM_SEARCH.yaml-cpp=\
 	include/yaml-cpp/yaml.h					\
 	'lib/libyaml-cpp.{so,a}'				\
-	'lib/pkgconfig/yaml-cpp.pc:/Version/s/[^0-9.]//gp'
+	'{lib,share}/pkgconfig/yaml-cpp.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Arch.yaml-cpp=	yaml-cpp
 SYSTEM_PKG.RedHat.yaml-cpp=	yaml-cpp-devel
