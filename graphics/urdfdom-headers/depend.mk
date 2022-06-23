@@ -23,7 +23,7 @@ DEPEND_ABI.urdfdom-headers?=	urdfdom-headers>=0.2.2
 DEPEND_DIR.urdfdom-headers?=	../../graphics/urdfdom-headers
 
 SYSTEM_SEARCH.urdfdom-headers=\
-  'include/{,urdf/}urdf_model/model.h'					\
+  'include/{,urdf{dom_headers,}/}urdf_model/model.h'			\
   '{lib,share}/pkgconfig/urdfdom_headers.pc:/Version/s/[^0-9.]//gp'
 
 SYSTEM_PKG.Debian.urdfdom-headers=liburdfdom-headers-dev
