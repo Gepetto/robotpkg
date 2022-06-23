@@ -23,7 +23,7 @@ DEPEND_ABI.urdfdom?=	urdfdom>=0.2.8
 DEPEND_DIR.urdfdom?=	../../graphics/urdfdom
 
 SYSTEM_SEARCH.urdfdom=\
-  'include/urdf_parser/urdf_parser.h'				\
+  'include/{urdfdom/,}urdf_parser/urdf_parser.h'		\
   'lib/liburdfdom_model.so'					\
   'lib/pkgconfig/urdfdom.pc:/Version/s/[^0-9.]//gp'
 
