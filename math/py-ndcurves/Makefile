@@ -4,7 +4,7 @@
 
 ORG=			loco-3d
 NAME=			ndcurves
-VERSION=		1.1.3
+VERSION=		1.1.4
 
 CATEGORIES=		math
 COMMENT=		Library for creating curves (python bindings)
