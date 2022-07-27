@@ -23,7 +23,7 @@ SYSTEM_SEARCH.py-eigenpy=\
   'share/eigenpy/package.xml:/<version>/s/[^0-9.]//gp'
 
 DEPEND_USE+=		py-eigenpy
-DEPEND_ABI.py-eigenpy?=	${PKGTAG.python-}eigenpy>=2.6.7
+DEPEND_ABI.py-eigenpy?=	${PKGTAG.python-}eigenpy>=2.7.10
 DEPEND_DIR.py-eigenpy?=	../../math/py-eigenpy
 
 include ../../mk/sysdep/python.mk
