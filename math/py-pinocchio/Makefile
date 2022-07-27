@@ -12,7 +12,7 @@ COMMENT=		Efficient rigid body dynamics (python bindings)
 HOMEPAGE=		http://${ORG}.github.io/${NAME}/
 
 CMAKE_ARGS+=		-DBUILD_WITH_COLLISION_SUPPORT=ON
-CMAKE_ARGS+=		-DBUILD_TESTING=OFF
+#CMAKE_ARGS+=		-DBUILD_TESTING=OFF
 
 USE_BOOST_LIBS=		python
 Boost_PYTHON_LIBRARY=	$(filter %.so,${SYSTEM_FILES.boost-lib-python})
@@ -26,7 +26,7 @@ USE_PYTHON_ONLY=	true
 USE_MASTER_GITHUB=	true
 
 # parallel builds exhaust memory - until a better solution is found
-#MAKE_JOBS_SAFE=		no
+MAKE_JOBS_SAFE=		no
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 

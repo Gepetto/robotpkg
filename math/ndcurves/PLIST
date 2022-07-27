@@ -31,6 +31,7 @@ include/ndcurves/serialization/registeration.hpp
 include/ndcurves/sinusoidal.h
 include/ndcurves/so3_linear.h
 include/ndcurves/warning.hh
+lib/cmake/ndcurves/cxx-standard.cmake
 lib/cmake/ndcurves/ndcurvesConfig.cmake
 lib/cmake/ndcurves/ndcurvesConfigVersion.cmake
 lib/cmake/ndcurves/ndcurvesTargets.cmake
