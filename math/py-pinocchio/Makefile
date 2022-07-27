@@ -5,6 +5,7 @@
 ORG=			stack-of-tasks
 NAME=			pinocchio
 VERSION=		2.6.8
+PKGREVISION=		1
 
 CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics (python bindings)
@@ -18,6 +19,7 @@ Boost_PYTHON_LIBRARY=	$(filter %.so,${SYSTEM_FILES.boost-lib-python})
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY=${Boost_PYTHON_LIBRARY}
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_RELEASE=${Boost_PYTHON_LIBRARY}
 CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_DEBUG=${Boost_PYTHON_LIBRARY}
+CMAKE_ARGS+=		-DBUILD_WITH_LIBPYTHON=OFF
 
 DEPEND_ABI.pinocchio=	pinocchio>=${VERSION}
 USE_PYTHON_ONLY=	true

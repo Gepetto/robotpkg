@@ -78,7 +78,6 @@ include/pinocchio/bindings/python/multibody/joint/joints-models.hpp
 include/pinocchio/bindings/python/multibody/joint/joints-variant.hpp
 include/pinocchio/bindings/python/multibody/liegroups.hpp
 include/pinocchio/bindings/python/multibody/model.hpp
-include/pinocchio/bindings/python/parsers/python.hpp
 include/pinocchio/bindings/python/parsers/sample-models.hpp
 include/pinocchio/bindings/python/parsers/srdf.hpp
 include/pinocchio/bindings/python/parsers/urdf.hpp
@@ -199,7 +198,6 @@ include/pinocchio/multibody/visitor.hpp
 include/pinocchio/multibody/visitor/fusion.hpp
 include/pinocchio/multibody/visitor/joint-binary-visitor.hpp
 include/pinocchio/multibody/visitor/joint-unary-visitor.hpp
-include/pinocchio/parsers/python.hpp
 include/pinocchio/parsers/sample-models.hpp
 include/pinocchio/parsers/sample-models.hxx
 include/pinocchio/parsers/srdf.hpp
@@ -279,4 +277,6 @@ lib/libpinocchio.so
 lib/libpinocchio.so.${PKGVERSION}
 lib/pkgconfig/pinocchio.pc
 share/ament_index/resource_index/packages/pinocchio
+share/pinocchio/hook/ament_prefix_path.dsv
+share/pinocchio/hook/python_path.dsv
 share/pinocchio/package.xml
