@@ -1,0 +1,23 @@
+From 28a8d1f4ce6de9e56de62ef95e24cd90e4359a08 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Fri, 29 Jul 2022 13:40:16 +0200
+Subject: [PATCH] CMake: typo
+
+fix build on NetBSD 9.2
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 5d54e2c..f1d468e 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -219,7 +219,7 @@ modernize_target_link_libraries(
+   TARGETS
+   Python3::NumPy
+   INCLUDE_DIRS
+-  ${NUMPY_INCLUDE_DIR})
++  ${NUMPY_INCLUDE_DIRS})
+ target_include_directories(${PROJECT_NAME} SYSTEM
+                            PRIVATE ${PYTHON_INCLUDE_DIRS})
+ 
