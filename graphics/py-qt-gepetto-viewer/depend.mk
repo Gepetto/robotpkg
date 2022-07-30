@@ -16,7 +16,7 @@ PREFER.py-qt-gepetto-viewer?=		robotpkg
 DEPEND_USE+=				py-qt-gepetto-viewer
 
 DEPEND_ABI.py-qt-gepetto-viewer?=\
-  ${PKGTAG.python}-${PKGTAG.qt}-gepetto-viewer>=4.12.0
+  ${PKGTAG.python}-${PKGTAG.qt}-gepetto-viewer>=4.13.0
 DEPEND_DIR.py-qt-gepetto-viewer?=	../../graphics/py-qt-gepetto-viewer
 
 SYSTEM_SEARCH.py-qt-gepetto-viewer=					\
