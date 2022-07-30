@@ -1,0 +1,28 @@
+--- CMakeLists.txt.orig	2022-07-30 15:14:08.000000000 +0200
++++ CMakeLists.txt	2022-07-30 15:14:40.886524381 +0200
+@@ -57,7 +57,6 @@
+ ENDIF()
+ 
+ include(cmake/boost.cmake)
+-include(cmake/python.cmake)
+ include(cmake/hpp.cmake)
+ include(cmake/apple.cmake)
+ include(cmake/ide.cmake)
+@@ -92,7 +91,7 @@
+ ADD_PROJECT_DEPENDENCY(Eigen3 REQUIRED PKG_CONFIG_REQUIRES "eigen3 >= 3.0.0")
+ 
+ if(BUILD_PYTHON_INTERFACE)
+-  FIND_PACKAGE(eigenpy 2.2 REQUIRED)
++  FIND_PACKAGE(eigenpy 2.7.10 REQUIRED)
+ endif()
+ 
+ # Required dependencies
+@@ -104,8 +103,6 @@
+   ADD_PROJECT_DEPENDENCY(Boost REQUIRED chrono serialization)
+ ENDIF(WIN32)
+ if(BUILD_PYTHON_INTERFACE)
+-  FINDPYTHON()
+-  search_for_boost_python(REQUIRED)
+   find_package(Boost REQUIRED COMPONENTS system)
+ endif(BUILD_PYTHON_INTERFACE)
+ 
