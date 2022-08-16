@@ -269,6 +269,7 @@ include/pinocchio/utils/string-generator.hpp
 include/pinocchio/utils/timer.hpp
 include/pinocchio/utils/version.hpp
 include/pinocchio/warning.hpp
+lib/cmake/pinocchio/cxx-standard.cmake
 lib/cmake/pinocchio/pinocchioConfig.cmake
 lib/cmake/pinocchio/pinocchioConfigVersion.cmake
 lib/cmake/pinocchio/pinocchioTargets-release.cmake

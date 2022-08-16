@@ -1,6 +1,6 @@
---- CMakeLists.txt.orig	2021-04-11 21:58:40.000000000 +0200
-+++ CMakeLists.txt	2021-04-11 21:59:08.157263305 +0200
-@@ -148,26 +148,10 @@
+--- CMakeLists.txt.orig	2022-08-16 10:40:17.000000000 +0200
++++ CMakeLists.txt	2022-08-16 10:44:13.150033099 +0200
+@@ -176,26 +176,10 @@
    MESSAGE(STATUS "Pinocchio won't be compiled with its Python bindings. If you want to enable this feature, please set the option BUILD_PYTHON_INTERFACE to ON.")
  ENDIF(BUILD_PYTHON_INTERFACE)
  

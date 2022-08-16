@@ -5,8 +5,8 @@ for ext in ['hpp', 'cpp']:
     for i in sorted(Path('.').glob(f'**/*.{ext}')): print(f'  {i}')
     print()
 
---- bindings/python/CMakeLists.txt.orig	2021-11-02 18:15:11.345454754 +0100
-+++ bindings/python/CMakeLists.txt	2021-11-02 18:16:12.488697856 +0100
+--- bindings/python/CMakeLists.txt.orig	2022-08-09 15:11:05.000000000 +0200
++++ bindings/python/CMakeLists.txt	2022-08-16 10:42:51.345631753 +0200
 @@ -40,17 +40,111 @@
  SET(PYWRAP ${PROJECT_NAME}_pywrap)
  SET(PYWRAP ${PYWRAP} PARENT_SCOPE)
@@ -124,5 +124,5 @@ for ext in ['hpp', 'cpp']:
 -REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_SOURCES}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_SOURCES)
 -
  # Parser for Python model
- IF(BUILD_PYTHON_INTERFACE_WITH_PYPY)
-   LIST(REMOVE_ITEM ${PROJECT_NAME}_PYTHON_HEADERS
+ IF(BUILD_WITH_LIBPYTHON)
+   SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS

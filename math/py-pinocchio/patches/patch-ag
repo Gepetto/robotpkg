@@ -1,8 +1,8 @@
 py-pinocchio needs pinocchio
 
---- CMakeLists.txt.orig	2021-04-10 09:49:21.000000000 +0200
-+++ CMakeLists.txt	2021-04-11 22:02:41.131799562 +0200
-@@ -98,6 +98,7 @@
+--- CMakeLists.txt.orig	2022-08-09 15:11:05.000000000 +0200
++++ CMakeLists.txt	2022-08-16 12:12:11.850288528 +0200
+@@ -109,6 +109,7 @@
  # ----------------------------------------------------
  SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/find-external/CppAD/" ${CMAKE_MODULE_PATH})
  ADD_PROJECT_DEPENDENCY(Eigen3 REQUIRED PKG_CONFIG_REQUIRES "eigen3 >= 3.0.5")
@@ -10,9 +10,10 @@ py-pinocchio needs pinocchio
  
  # Variable containing all the cflags definition relative to optional dependencies
  SET(CFLAGS_DEPENDENCIES)
---- bindings/python/CMakeLists.txt.orig	2021-04-10 09:49:21.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2021-04-11 22:03:18.724224938 +0200
-@@ -154,6 +154,6 @@
+--- bindings/python/CMakeLists.txt.orig	2022-08-16 12:11:31.000000000 +0200
++++ bindings/python/CMakeLists.txt	2022-08-16 12:12:57.958530049 +0200
+@@ -247,7 +247,7 @@
+   ADD_HEADER_GROUP(${PYWRAP}_HEADERS)
    ADD_SOURCE_GROUP(${PYWRAP}_SOURCES)
  
 -  TARGET_LINK_LIBRARIES(${PYWRAP} PUBLIC ${PROJECT_NAME} eigenpy::eigenpy)
@@ -20,19 +21,21 @@ py-pinocchio needs pinocchio
    TARGET_LINK_BOOST_PYTHON(${PYWRAP} PUBLIC)
    IF(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
      TARGET_COMPILE_DEFINITIONS(${PYWRAP} PRIVATE -DPINOCCHIO_PYTHON_INTERFACE_WITH_HPP_FCL_PYTHON_BINDINGS)
---- unittest/CMakeLists.txt.orig	2021-04-10 09:49:21.000000000 +0200
-+++ unittest/CMakeLists.txt	2021-04-11 22:03:39.460459509 +0200
-@@ -35,7 +35,5 @@
+--- unittest/CMakeLists.txt.orig	2022-08-09 15:11:05.000000000 +0200
++++ unittest/CMakeLists.txt	2022-08-16 12:14:21.270963591 +0200
+@@ -34,9 +34,7 @@
+     ADD_TEST_CFLAGS(${NAME} "-DNOMINMAX -D_USE_MATH_DEFINES")
    ENDIF(WIN32)
  
 -  IF(NOT unit_test_HEADER_ONLY)
 -    TARGET_LINK_LIBRARIES(${TEST_NAME} PUBLIC ${PROJECT_NAME})
-+    TARGET_LINK_LIBRARIES(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
 -  ENDIF(NOT unit_test_HEADER_ONLY)
-   TARGET_LINK_LIBRARIES(${TEST_NAME} PRIVATE ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
- ENDMACRO(ADD_PINOCCHIO_UNIT_TEST)
---- examples/CMakeLists.txt.orig	2021-04-10 09:47:57.000000000 +0200
-+++ examples/CMakeLists.txt	2021-04-11 22:03:55.060635948 +0200
++    TARGET_LINK_LIBRARIES(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
+   MODERNIZE_TARGET_LINK_LIBRARIES(${TEST_NAME} SCOPE PRIVATE
+     TARGETS Boost::unit_test_framework
+     LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+--- examples/CMakeLists.txt.orig	2022-08-09 15:11:05.000000000 +0200
++++ examples/CMakeLists.txt	2022-08-16 12:17:21.391920703 +0200
 @@ -6,7 +6,7 @@
    GET_FILENAME_COMPONENT(EXAMPLE_NAME ${EXAMPLE} NAME)
    SET(EXAMPLE_NAME "example-cpp-${EXAMPLE_NAME}")

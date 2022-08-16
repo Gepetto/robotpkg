@@ -4,16 +4,16 @@ for p in sorted(set(f'     ${{PROJECT_SOURCE_DIR}}/{i.parent}/*.{ext}'
 for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}'))):
     print(p)
 
---- CMakeLists.txt.orig	2021-11-02 18:06:20.348021523 +0100
-+++ CMakeLists.txt	2021-11-02 18:08:35.734347404 +0100
-@@ -199,9 +199,41 @@
+--- CMakeLists.txt.orig	2022-08-09 15:11:05.000000000 +0200
++++ CMakeLists.txt	2022-08-16 10:40:17.852908216 +0200
+@@ -206,9 +206,41 @@
  # ----------------------------------------------------
  # --- INCLUDE ----------------------------------------
  # ----------------------------------------------------
--FILE(GLOB_RECURSE HEADERS 
-+file(GLOB HEADERS 
-      ${PROJECT_SOURCE_DIR}/src/*.hpp 
--     ${PROJECT_SOURCE_DIR}/src/*.hxx 
+-FILE(GLOB_RECURSE HEADERS
++file(GLOB HEADERS
+      ${PROJECT_SOURCE_DIR}/src/*.hpp
+-     ${PROJECT_SOURCE_DIR}/src/*.hxx
 +     ${PROJECT_SOURCE_DIR}/src/algorithm/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/algorithm/*.hxx
 +     ${PROJECT_SOURCE_DIR}/src/algorithm/parallel/*.hpp
@@ -47,6 +47,6 @@ for ext in ['hpp', 'hxx'] for i in Path('src').glob(f'**/*.{ext}'))):
 +     ${PROJECT_SOURCE_DIR}/src/spatial/*.hpp
 +     ${PROJECT_SOURCE_DIR}/src/spatial/*.hxx
 +     ${PROJECT_SOURCE_DIR}/src/utils/*.hpp
-      ) 
+      )
  
  IF(NOT BUILD_WITH_URDF_SUPPORT)
