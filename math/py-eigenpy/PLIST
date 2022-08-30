@@ -46,6 +46,8 @@ include/eigenpy/utils/is-approx.hpp
 include/eigenpy/utils/scalar-name.hpp
 include/eigenpy/version.hpp
 include/eigenpy/warning.hpp
+lib/cmake/eigenpy/boost.cmake
+lib/cmake/eigenpy/boost/FindBoost.cmake
 lib/cmake/eigenpy/eigenpyConfig.cmake
 lib/cmake/eigenpy/eigenpyConfigVersion.cmake
 lib/cmake/eigenpy/eigenpyTargets-release.cmake
