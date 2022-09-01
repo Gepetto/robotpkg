@@ -1,0 +1,43 @@
+--- CMakeLists.txt.orig	2022-02-18 12:34:16.000000000 +0100
++++ CMakeLists.txt	2022-09-01 08:12:31.521945770 +0200
+@@ -14,7 +14,6 @@
+ # Include important cmake modules
+ INCLUDE(cmake/base.cmake)
+ INCLUDE(cmake/boost.cmake)
+-INCLUDE(cmake/python.cmake)
+ INCLUDE(cmake/apple.cmake)
+ 
+ # Print initial message
+@@ -65,6 +64,9 @@
+ SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/find-external/CppAD/" ${CMAKE_MODULE_PATH})
+ 
+ # Add the different required and optional dependencies
++IF(BUILD_PYTHON_INTERFACE)
++  ADD_PROJECT_DEPENDENCY(eigenpy 2.7.10 REQUIRED PKG_CONFIG_REQUIRES "eigenpy >= 2.7.10")
++ENDIF(BUILD_PYTHON_INTERFACE)
+ ADD_PROJECT_DEPENDENCY(pinocchio 2.6.3 REQUIRED PKG_CONFIG_REQUIRES "pinocchio >= 2.6.3")
+ IF(BUILD_EXAMPLES OR BUILD_TESTING OR BUILD_BENCHMARK)
+   ADD_PROJECT_DEPENDENCY(example-robot-data 3.7.0 REQUIRED PKG_CONFIG_REQUIRES "example-robot-data >= 3.7.0")
+@@ -135,12 +137,6 @@
+   ADD_DEFINITIONS(-DBOOST_BIND_GLOBAL_PLACEHOLDERS)
+ ENDIF()
+ 
+-IF(BUILD_PYTHON_INTERFACE)
+-  FINDPYTHON()
+-  SEARCH_FOR_BOOST_PYTHON(REQUIRED)
+-  ADD_PROJECT_DEPENDENCY(eigenpy 2.5.0 REQUIRED PKG_CONFIG_REQUIRES "eigenpy >= 2.5.0")
+-ENDIF(BUILD_PYTHON_INTERFACE)
+-
+ # Main library
+ FILE(GLOB_RECURSE ${PROJECT_NAME}_SOURCES
+   src/*.cpp
+--- bindings/python/crocoddyl/CMakeLists.txt.orig	2022-02-18 12:34:16.000000000 +0100
++++ bindings/python/crocoddyl/CMakeLists.txt	2022-09-01 08:12:43.697998399 +0200
+@@ -15,7 +15,6 @@
+ SET_TARGET_PROPERTIES(${PROJECT_NAME}_pywrap PROPERTIES SUFFIX ${PYTHON_EXT_SUFFIX})
+ 
+ TARGET_LINK_LIBRARIES(${PROJECT_NAME}_pywrap ${PROJECT_NAME} eigenpy::eigenpy)
+-TARGET_LINK_BOOST_PYTHON(${PROJECT_NAME}_pywrap)
+ # BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS spews conversion warnings from int to long unsigned int.
+ # Unfortunately, using literals does not work in a macro. As such, this turns them off for the entire wrapper:
+ TARGET_COMPILE_OPTIONS(${PROJECT_NAME}_pywrap PRIVATE "-Wno-conversion")
