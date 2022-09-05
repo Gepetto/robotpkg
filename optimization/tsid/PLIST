@@ -1,12 +1,10 @@
 @comment Fri Jun 16 10:09:51 CEST 2017
 include/tsid/config.hh
-include/tsid/config.hpp
 include/tsid/contacts/contact-6d.hpp
 include/tsid/contacts/contact-base.hpp
 include/tsid/contacts/contact-point.hpp
 include/tsid/contacts/fwd.hpp
 include/tsid/deprecated.hh
-include/tsid/deprecation.hpp
 include/tsid/formulations/contact-level.hpp
 include/tsid/formulations/inverse-dynamics-formulation-acc-force.hpp
 include/tsid/formulations/inverse-dynamics-formulation-base.hpp
@@ -54,6 +52,7 @@ include/tsid/utils/Stdafx.hh
 include/tsid/utils/statistics.hpp
 include/tsid/utils/stop-watch.hpp
 include/tsid/warning.hh
+lib/cmake/tsid/cxx-standard.cmake
 lib/cmake/tsid/tsidConfig.cmake
 lib/cmake/tsid/tsidConfigVersion.cmake
 lib/cmake/tsid/tsidTargets-release.cmake

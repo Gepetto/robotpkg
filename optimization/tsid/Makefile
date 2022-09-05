@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			tsid
-VERSION=		1.6.1
+VERSION=		1.6.2
 
 CATEGORIES=		optimization
 COMMENT=		Efficient Inverse Dynamics based on Pinocchio
