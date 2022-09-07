@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon,  9 Nov 2015
 #
 
-DISTNAME=	genom3-ros-1.28
+DISTNAME=	genom3-ros-1.29
 CATEGORIES=	architecture
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom3-ros/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genom3/genom3-ros
@@ -15,8 +15,6 @@ LICENSE=	2-clause-bsd
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-boost=${PREFIX.boost-headers}
-
-DEPEND_ABI.genom3=	genom3>=2.99.39
 
 include ../../architecture/genom3/depend.mk
 include ../../devel/boost-headers/depend.mk
