@@ -15,7 +15,7 @@ PREFER.tsid?=		robotpkg
 
 DEPEND_USE+=		tsid
 
-DEPEND_ABI.tsid?=	tsid>=1.0.0
+DEPEND_ABI.tsid?=	tsid>=1.6.0
 DEPEND_DIR.tsid?=	../../optimization/tsid
 
 SYSTEM_SEARCH.tsid=\

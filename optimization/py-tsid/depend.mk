@@ -15,7 +15,7 @@ PREFER.py-tsid?=	robotpkg
 
 DEPEND_USE+=		py-tsid
 
-DEPEND_ABI.py-tsid?=	${PKGTAG.python-}tsid>=1.0.0
+DEPEND_ABI.py-tsid?=	${PKGTAG.python-}tsid>=1.6.0
 DEPEND_DIR.py-tsid?=	../../optimization/py-tsid
 
 SYSTEM_SEARCH.py-tsid=\
