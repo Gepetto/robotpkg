@@ -1,9 +1,8 @@
-SHA1 (pinocchio-2.6.9.tar.gz) = 0c5b70f9226c24f51ad9b8733ecdad024b12370c
-RMD160 (pinocchio-2.6.9.tar.gz) = e13a314392ae2547f1817d18339d19dc901f76c6
-Size (pinocchio-2.6.9.tar.gz) = 63219513 bytes
-SHA1 (patch-1734) = 80cdb5968ef5cc6b76ba81a4c927d9c96fe993da
+SHA1 (pinocchio-2.6.10.tar.gz) = 2108711da1a540d5dd13ae067a0735d553358d5c
+RMD160 (pinocchio-2.6.10.tar.gz) = ddb90f45c324440d644d0b344cb14c40caba0cf1
+Size (pinocchio-2.6.10.tar.gz) = 63232498 bytes
 SHA1 (patch-ae) = 246e96d117ba8119cad42c954b8b125edc4095e0
 SHA1 (patch-af) = 4723e537c63705de73d76d1ba6eaf0c700fd060d
-SHA1 (patch-ag) = 213eb15b08ea65ed64a7c1b404efac0ef6518743
+SHA1 (patch-ag) = 1c6dd98f92528773698a835c19e1e5d0700306cb
 SHA1 (patch-ah) = 566ff11ca51e9cb1d2c6a363d033633c75248b00
 SHA1 (patch-ak) = 13d5a86b847b0e5ca1eb3c43fb18986e0ccf6272
