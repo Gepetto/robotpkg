@@ -49,10 +49,23 @@ INSTALL_SRC+=	${FILESDIR}/config
 DEINSTALL_SRC+=	${FILESDIR}/config
 
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/sysdep/automake.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
+
+# config.{guess,sub} are outdated for some recent architectures (aarch64).
+# autoreconf < 2.70 does not update those files, so cherry-pick those from
+# automake. Of course, this would be easier if omniORB distributions had
+# them updated.
+#
+pre-configure:
+	${RUN}${STEP_MSG} "Updating automake files";			\
+	libdir=`${AUTOMAKE} --print-libdir`;				\
+	for f in config.guess config.sub; do				\
+	  ${CP} -p "$$libdir/$$f" ${WRKSRC}/bin/scripts/.;		\
+	done
 
 post-install: omni-install-doc
 
