@@ -1,10 +1,9 @@
 Missing a dependency on class_loader - disable it by lazyness
 
---- tests/CMakeLists.txt.orig	2020-04-16 15:55:51.000000000 +0200
-+++ tests/CMakeLists.txt	2020-04-16 16:23:30.074638771 +0200
-@@ -35,4 +35,4 @@
- ENDMACRO(ADD_TESTCASE)
+--- tests/CMakeLists.txt.orig	2022-10-06 12:05:55.000000000 +0200
++++ tests/CMakeLists.txt	2022-10-06 16:36:16.981914713 +0200
+@@ -42,4 +42,3 @@
+ endmacro(ADD_TESTCASE)
  
- CONFIG_FILES(srdfparser.cc)
--ADD_TESTCASE(srdfparser TRUE)
-+#ADD_TESTCASE(srdfparser TRUE)
+ config_files(srdfparser.cc)
+-add_testcase(srdfparser TRUE)

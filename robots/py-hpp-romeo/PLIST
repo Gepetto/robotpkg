@@ -2,6 +2,7 @@
 include/hpp/romeo/config.hh
 include/hpp/romeo/deprecated.hh
 include/hpp/romeo/warning.hh
+lib/cmake/hpp_romeo/cxx-standard.cmake
 lib/cmake/hpp_romeo/hpp_romeoConfig.cmake
 lib/cmake/hpp_romeo/hpp_romeoConfigVersion.cmake
 lib/cmake/hpp_romeo/hpp_romeoTargets.cmake

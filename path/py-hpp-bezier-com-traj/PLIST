@@ -26,6 +26,7 @@ include/hpp/bezier-com-traj/waypoints/waypoints_c0_dc0_ddc0_j0_j1_ddc1_dc1_c1.hh
 include/hpp/bezier-com-traj/waypoints/waypoints_c0_dc0_ddc0_j0_x3_j1_ddc1_dc1_c1.hh
 include/hpp/bezier-com-traj/waypoints/waypoints_c0_dc0_ddc0_j0_x5_j1_ddc1_dc1_c1.hh
 include/hpp/bezier-com-traj/waypoints/waypoints_definition.hh
+lib/cmake/hpp-bezier-com-traj/cxx-standard.cmake
 lib/cmake/hpp-bezier-com-traj/hpp-bezier-com-trajConfig.cmake
 lib/cmake/hpp-bezier-com-traj/hpp-bezier-com-trajConfigVersion.cmake
 lib/cmake/hpp-bezier-com-traj/hpp-bezier-com-trajTargets-release.cmake

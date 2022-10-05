@@ -2,6 +2,7 @@
 include/hpp/gepetto/viewer/config.hh
 include/hpp/gepetto/viewer/deprecated.hh
 include/hpp/gepetto/viewer/warning.hh
+lib/cmake/hpp-gepetto-viewer/cxx-standard.cmake
 lib/cmake/hpp-gepetto-viewer/hpp-gepetto-viewerConfig.cmake
 lib/cmake/hpp-gepetto-viewer/hpp-gepetto-viewerConfigVersion.cmake
 lib/cmake/hpp-gepetto-viewer/hpp-gepetto-viewerTargets.cmake

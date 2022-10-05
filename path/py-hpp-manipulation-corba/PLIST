@@ -25,6 +25,7 @@ include/hpp/manipulation_idl/device.hh
 include/hpp/manipulation_idl/steering_methods-fwd.hh
 include/hpp/manipulation_idl/steering_methods-idl.hh
 include/hpp/manipulation_idl/steering_methods.hh
+lib/cmake/hpp-manipulation-corba/cxx-standard.cmake
 lib/cmake/hpp-manipulation-corba/hpp-manipulation-corbaConfig.cmake
 lib/cmake/hpp-manipulation-corba/hpp-manipulation-corbaConfigVersion.cmake
 lib/cmake/hpp-manipulation-corba/hpp-manipulation-corbaTargets-release.cmake

@@ -4,6 +4,7 @@ bin/hpp-tutorial-2-server
 include/hpp/tutorial/config.hh
 include/hpp/tutorial/deprecated.hh
 include/hpp/tutorial/warning.hh
+lib/cmake/hpp_tutorial/cxx-standard.cmake
 lib/cmake/hpp_tutorial/hpp_tutorialConfig.cmake
 lib/cmake/hpp_tutorial/hpp_tutorialConfigVersion.cmake
 lib/cmake/hpp_tutorial/hpp_tutorialTargets.cmake

@@ -5,6 +5,7 @@ include/hpp/affordance/deprecated.hh
 include/hpp/affordance/fwd.hh
 include/hpp/affordance/operations.hh
 include/hpp/affordance/warning.hh
+lib/cmake/hpp-affordance/cxx-standard.cmake
 lib/cmake/hpp-affordance/hpp-affordanceConfig.cmake
 lib/cmake/hpp-affordance/hpp-affordanceConfigVersion.cmake
 lib/cmake/hpp-affordance/hpp-affordanceTargets-release.cmake

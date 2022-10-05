@@ -6,6 +6,7 @@ include/hpp/statistics/distribution.hh
 include/hpp/statistics/fwd.hh
 include/hpp/statistics/success-bin.hh
 include/hpp/statistics/warning.hh
+lib/cmake/hpp-statistics/cxx-standard.cmake
 lib/cmake/hpp-statistics/hpp-statisticsConfig.cmake
 lib/cmake/hpp-statistics/hpp-statisticsConfigVersion.cmake
 lib/cmake/hpp-statistics/hpp-statisticsTargets-release.cmake

@@ -8,6 +8,7 @@ include/gepetto/viewer/corba/conversions.hh
 include/gepetto/viewer/corba/deprecated.hh
 include/gepetto/viewer/corba/graphical-interface.hh
 include/gepetto/viewer/corba/warning.hh
+lib/cmake/gepetto-viewer-corba/cxx-standard.cmake
 lib/cmake/gepetto-viewer-corba/gepetto-viewer-corbaConfig.cmake
 lib/cmake/gepetto-viewer-corba/gepetto-viewer-corbaConfigVersion.cmake
 lib/cmake/gepetto-viewer-corba/gepetto-viewer-corbaTargets-release.cmake

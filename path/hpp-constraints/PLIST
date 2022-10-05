@@ -42,6 +42,7 @@ include/hpp/constraints/symbolic-calculus.hh
 include/hpp/constraints/symbolic-function.hh
 include/hpp/constraints/tools.hh
 include/hpp/constraints/warning.hh
+lib/cmake/hpp-constraints/cxx-standard.cmake
 lib/cmake/hpp-constraints/hpp-constraintsConfig.cmake
 lib/cmake/hpp-constraints/hpp-constraintsConfigVersion.cmake
 lib/cmake/hpp-constraints/hpp-constraintsTargets-release.cmake

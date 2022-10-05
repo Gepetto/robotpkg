@@ -17,6 +17,7 @@ include/hpp/util/string.hh
 include/hpp/util/timer.hh
 include/hpp/util/version.hh
 include/hpp/util/warning.hh
+lib/cmake/hpp-util/cxx-standard.cmake
 lib/cmake/hpp-util/hpp-utilConfig.cmake
 lib/cmake/hpp-util/hpp-utilConfigVersion.cmake
 lib/cmake/hpp-util/hpp-utilTargets-release.cmake

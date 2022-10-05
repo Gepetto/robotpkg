@@ -98,6 +98,7 @@ include/hpp/core/validation-report.hh
 include/hpp/core/visibility-prm-planner.hh
 include/hpp/core/warning.hh
 include/hpp/core/weighed-distance.hh
+lib/cmake/hpp-core/cxx-standard.cmake
 lib/cmake/hpp-core/hpp-core-plugin.cmake
 lib/cmake/hpp-core/hpp-coreConfig.cmake
 lib/cmake/hpp-core/hpp-coreConfigVersion.cmake

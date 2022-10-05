@@ -4,6 +4,7 @@ etc/gepetto-gui/settings.conf
 include/hpp/gui/config.hh
 include/hpp/gui/deprecated.hh
 include/hpp/gui/warning.hh
+lib/cmake/hpp-gui/cxx-standard.cmake
 lib/cmake/hpp-gui/hpp-guiConfig.cmake
 lib/cmake/hpp-gui/hpp-guiConfigVersion.cmake
 lib/cmake/hpp-gui/hpp-guiTargets.cmake

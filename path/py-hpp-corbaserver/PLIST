@@ -35,6 +35,9 @@ include/hpp/core_idl/distances.hh
 include/hpp/core_idl/path_planners-fwd.hh
 include/hpp/core_idl/path_planners-idl.hh
 include/hpp/core_idl/path_planners.hh
+include/hpp/core_idl/path_projectors-fwd.hh
+include/hpp/core_idl/path_projectors-idl.hh
+include/hpp/core_idl/path_projectors.hh
 include/hpp/core_idl/path_validations-fwd.hh
 include/hpp/core_idl/path_validations-idl.hh
 include/hpp/core_idl/path_validations.hh
@@ -47,6 +50,7 @@ include/hpp/core_idl/steering_methods.hh
 include/hpp/pinocchio_idl/robots-fwd.hh
 include/hpp/pinocchio_idl/robots-idl.hh
 include/hpp/pinocchio_idl/robots.hh
+lib/cmake/hpp-corbaserver/cxx-standard.cmake
 lib/cmake/hpp-corbaserver/hpp-corbaserver-plugin.cmake
 lib/cmake/hpp-corbaserver/hpp-corbaserverConfig.cmake
 lib/cmake/hpp-corbaserver/hpp-corbaserverConfigVersion.cmake
@@ -97,6 +101,7 @@ ${PYTHON_SITELIB}/hpp_stubs/core/_problem_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/configuration_shooters_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/distances_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/path_planners_idl.py
+${PYTHON_SITELIB}/hpp_stubs/core/path_projectors_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/path_validations_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/paths_idl.py
 ${PYTHON_SITELIB}/hpp_stubs/core/steering_methods_idl.py
@@ -117,6 +122,7 @@ share/idl/hpp/core_idl/_problem.idl
 share/idl/hpp/core_idl/configuration_shooters.idl
 share/idl/hpp/core_idl/distances.idl
 share/idl/hpp/core_idl/path_planners.idl
+share/idl/hpp/core_idl/path_projectors.idl
 share/idl/hpp/core_idl/path_validations.idl
 share/idl/hpp/core_idl/paths.idl
 share/idl/hpp/core_idl/steering_methods.idl

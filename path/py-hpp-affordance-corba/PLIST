@@ -6,6 +6,7 @@ include/hpp/corbaserver/affordance/deprecated.hh
 include/hpp/corbaserver/affordance/fwd.hh
 include/hpp/corbaserver/affordance/server.hh
 include/hpp/corbaserver/affordance/warning.hh
+lib/cmake/hpp-affordance-corba/cxx-standard.cmake
 lib/cmake/hpp-affordance-corba/hpp-affordance-corbaConfig.cmake
 lib/cmake/hpp-affordance-corba/hpp-affordance-corbaConfigVersion.cmake
 lib/cmake/hpp-affordance-corba/hpp-affordance-corbaTargets-release.cmake

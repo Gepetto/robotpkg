@@ -12,6 +12,7 @@ include/hpp/manipulation/srdf/util.hh
 include/hpp/manipulation/urdf/config.hh
 include/hpp/manipulation/urdf/deprecated.hh
 include/hpp/manipulation/urdf/warning.hh
+lib/cmake/hpp-manipulation-urdf/cxx-standard.cmake
 lib/cmake/hpp-manipulation-urdf/hpp-manipulation-urdfConfig.cmake
 lib/cmake/hpp-manipulation-urdf/hpp-manipulation-urdfConfigVersion.cmake
 lib/cmake/hpp-manipulation-urdf/hpp-manipulation-urdfTargets-release.cmake
