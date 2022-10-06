@@ -1,8 +1,6 @@
-# robotpkg depend.mk for:	audio/festival
+# robotpkg sysdep/festival.mk
 # Created:			Anthony Mallet on Wed, 7 May 2008
 #
-
-# Authored by Anthony Mallet on Tue May  6 2008
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH}+
 FESTIVAL_DEPEND_MK:=	${FESTIVAL_DEPEND_MK}+
@@ -13,23 +11,18 @@ endif
 
 ifeq (+,$(FESTIVAL_DEPEND_MK)) # -------------------------------------
 
-include ../../mk/robotpkg.prefs.mk # OPSYS, OS_VERSION
-ifeq (NetBSD,${OPSYS})
-  PREFER.festival?=	robotpkg
-endif
 PREFER.festival?=	system
 
 DEPEND_USE+=		festival
 DEPEND_ABI.festival?=	festival>=1.96
-DEPEND_DIR.festival?=	../../audio/festival
 
 SYSTEM_SEARCH.festival=\
-	bin/festival			\
-	include/festival/festival.h	\
-	'lib/libFestival.{a,so}'
+  'bin/festival'			\
+  'include/festival/festival.h'		\
+  'lib/libFestival.{a,so}'
 
 SYSTEM_SEARCH.festival+=\
-	'share/festival/lib/ogi_configure_voice.scm:::~ogireslpc'
+  'share/festival/lib/ogi_configure_voice.scm:::~ogireslpc'
 
 SYSTEM_DESCR.festival=${DEPEND_ABI.festival}
 SYSTEM_DESCR.festival+=\

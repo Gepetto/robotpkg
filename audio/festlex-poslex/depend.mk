@@ -13,7 +13,7 @@ endif
 
 ifeq (+,$(FESTLEX_POSLEX_DEPEND_MK)) # -------------------------------
 
-include ../../audio/festival/depend.mk
+include ../../mk/sysdep/festival.mk
 PREFER.festlex-poslex?=	${PREFER.festival}
 
 include ../../mk/robotpkg.prefs.mk

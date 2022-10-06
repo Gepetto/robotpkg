@@ -11,7 +11,7 @@ endif
 
 ifeq (+,$(FESTLEX_CMU_DEPEND_MK)) # ----------------------------------
 
-include ../../audio/festival/depend.mk
+include ../../mk/sysdep/festival.mk
 PREFER.festlex-cmu?=	${PREFER.festival}
 
 include ../../mk/robotpkg.prefs.mk

@@ -13,7 +13,7 @@ endif
 
 ifeq (+,$(OGILEXICON_DEPEND_MK)) # -----------------------------------
 
-include ../../audio/festival/depend.mk
+include ../../mk/sysdep/festival.mk
 PREFER.OGIlexicon?=	${PREFER.festival}
 
 include ../../mk/robotpkg.prefs.mk

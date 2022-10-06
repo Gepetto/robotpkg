@@ -34,9 +34,9 @@ FETCH_MESSAGE+= "See the following URL for more details:"
 FETCH_MESSAGE+= "	${HOMEPAGE}"
 
 DEPEND_ABI.festival+=	festival>=1.96~ogireslpc
-include ../../audio/festival/depend.mk
 
 include ../../archivers/pax/depend.mk
+include ../../mk/sysdep/festival.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 

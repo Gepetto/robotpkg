@@ -15,9 +15,9 @@ LICENSE=		modified-bsd
 WRKSRC=			${WRKDIR}/festival
 NO_BUILD=		yes
 
-include ../../audio/festival/depend.mk
 include ../../archivers/pax/depend.mk
 include ../../pkgtools/install-sh/depend.mk
+include ../../mk/sysdep/festival.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 
