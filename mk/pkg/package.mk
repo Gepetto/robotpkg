@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2009-2011,2013,2016,2018 LAAS/CNRS
+# Copyright (c) 2006,2009-2011,2013,2016,2018,2022 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -42,7 +42,7 @@ pkg-check-installed:
 	${RUN}${PKG_INFO} -qe ${PKGNAME} && exit 0;			\
 	found=`${_PKG_BEST_EXISTS} ${PKGWILDCARD} || ${TRUE}`;		\
 	if ${TEST} -z "$$found"; then					\
-	  ${RECURSIVE_MAKE} install;					\
+	  ${RECURSIVE_MAKE} install EXPECT_TARGETS=package;		\
 	else								\
 	  $(if $(filter tarup,${MAKECMDGOALS}),:,			\
 	    ${ERROR_MSG} "${hline}";					\
