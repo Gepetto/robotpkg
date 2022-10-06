@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 12 Jul 2013
 #
 
-DISTNAME=		pkgrepo2deb-1.11
+DISTNAME=		pkgrepo2deb-1.12
 CATEGORIES=		pkgtools
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}robotpkg/${PKGBASE}
@@ -25,6 +25,7 @@ CONFIGURE_ARGS+=	GZIP_CMD=${GZIP_CMD}
 CONFIGURE_ARGS+=	GPG=$(call quote,${GPG_DEF})
 CONFIGURE_ARGS+=	ROBOTPKG_ADMIN=${LOCALBASE}/sbin/robotpkg_admin
 CONFIGURE_ARGS+=	DPKG_DEB=${PREFIX.dpkg}/bin/dpkg-deb
+CONFIGURE_ARGS+=	DPKG_ARCHITECTURE=${PREFIX.dpkg}/bin/dpkg-architecture
 CONFIGURE_ARGS+=	APT_FTPARCHIVE=${PREFIX.apt}/bin/apt-ftparchive
 
 MESSAGE_SUBST+=		GPG_CMD=${PREFIX.gnupg}/bin/gpg
