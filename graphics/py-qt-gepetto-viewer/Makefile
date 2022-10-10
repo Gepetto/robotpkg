@@ -2,6 +2,7 @@
 # Created:			Florent Lamiraux on Sun, 8 Mar 2015
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		gepetto-viewer
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
 
@@ -18,6 +19,7 @@ CONFLICTS=		gepetto-viewer-[0-9]*
 CONFLICTS+=		py[0-9][0-9]-qt[0-9]-gepetto-viewer-[0-9]*
 
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
+CMAKE_ARGS+=		-DBUILD_PY_QCUSTOM_PLOT=ON
 CMAKE_ARGS+=		-DPROJECT_USE_QT4=OFF
 CMAKE_ARGS+=		-DGEPETTO_GUI_HAS_PYTHONQT=ON
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}

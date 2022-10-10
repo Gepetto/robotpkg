@@ -1,4 +1,4 @@
-@comment Tue Apr 9 23:23:11 CEST 2019
+@comment Wed Oct 12 15:52:40 CEST 2022
 bin/gepetto-gui
 bin/gvtools
 include/gepetto/gui/action-search-bar.hh
@@ -63,6 +63,7 @@ lib/cmake/gepetto-viewer/gepetto-viewerConfig.cmake
 lib/cmake/gepetto-viewer/gepetto-viewerConfigVersion.cmake
 lib/cmake/gepetto-viewer/gepetto-viewerTargets-release.cmake
 lib/cmake/gepetto-viewer/gepetto-viewerTargets.cmake
+lib/gepetto-gui-plugins/pyqcustomplot.so
 lib/libgepetto-viewer.so
 lib/pkgconfig/gepetto-viewer.pc
 ${PYTHON_SITELIB}/gepetto/gui/__init__.py
