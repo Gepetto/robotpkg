@@ -11,7 +11,8 @@ COMMENT=		Efficient rigid body dynamics (python bindings)
 HOMEPAGE=		http://${ORG}.github.io/${NAME}/
 
 CMAKE_ARGS+=		-DBUILD_WITH_COLLISION_SUPPORT=ON
-#CMAKE_ARGS+=		-DBUILD_TESTING=OFF
+CMAKE_ARGS+=		-DBUILD_BENCHMARK=OFF
+CMAKE_ARGS+=		-DBUILD_TESTING=OFF
 
 USE_BOOST_LIBS=		python
 Boost_PYTHON_LIBRARY=	$(filter %.so,${SYSTEM_FILES.boost-lib-python})
