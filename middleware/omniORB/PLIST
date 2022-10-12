@@ -9,7 +9,6 @@ bin/omniNames
 bin/omnicpp
 bin/omniidl
 bin/omniidlrun.py
-etc/omniORB.cfg
 include/COS/COS_sysdep.h
 include/COS/CosEventChannelAdmin.hh
 include/COS/CosEventComm.hh
