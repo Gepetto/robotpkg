@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		gepetto-viewer
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
+PKGREVISION=		1
 
 CATEGORIES=		graphics
 HPP_COMMENT=		Simple viewer based on OpenSceneGraph
@@ -32,6 +33,7 @@ include ../../graphics/qt-osgqt/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
 include ../../graphics/urdfdom/depend.mk
 include ../../mk/sysdep/ffmpeg.mk
+include ../../mk/sysdep/oxygen-icons.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
