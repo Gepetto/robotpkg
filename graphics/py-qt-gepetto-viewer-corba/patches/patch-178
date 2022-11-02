@@ -1,0 +1,25 @@
+From 530a45e06cfa3f5e4f3420b99e69974870b05a45 Mon Sep 17 00:00:00 2001
+From: Guilhem Saurel <guilhem.saurel@laas.fr>
+Date: Wed, 2 Nov 2022 17:54:07 +0100
+Subject: [PATCH] fix import order
+
+---
+ src/gepetto/corbaserver/client.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/gepetto/corbaserver/client.py b/src/gepetto/corbaserver/client.py
+index 48c36b4..19eae6e 100644
+--- src/gepetto/corbaserver/client.py
++++ src/gepetto/corbaserver/client.py
+@@ -189,10 +189,10 @@ def _getIIOPurl(service="NameService", host=None, port=None):
+     _host = "localhost"
+     _port = 2809
+     import os
++    import socket
+ 
+     try:
+         import rospy
+-        import socket
+ 
+         # Check is ROS master is reachable.
+         if rospy.client.get_master().target is not None:
