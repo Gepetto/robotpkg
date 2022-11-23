@@ -14,7 +14,7 @@ ifeq (+,$(PY_CASADI_DEPEND_MK)) # ------------------------------------------
 PREFER.casadi?=		robotpkg
 
 SYSTEM_SEARCH.py-casadi=\
-  'include/casadi/config.hpp:/CASADI_VERSION_STRING/s/[^0-9.]//gp'	\
+  'include/casadi/config.h:/CASADI_VERSION_STRING/s/[^0-9.]//gp'	\
   'lib/libcasadi.so'
 
 DEPEND_USE+=		py-casadi
