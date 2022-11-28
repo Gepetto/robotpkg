@@ -19,7 +19,7 @@ SYSTEM_SEARCH.gazebo=	\
   'include/gazebo{-[0-9]*,}/gazebo/gazebo_config.h:/VERSION_FULL/s/[^.0-9]//gp'	\
   'lib/libgazebo.so'							\
   '{lib/cmake/gazebo,share/gazebo/cmake}/gazebo-config.cmake'		\
-  'xlib/pkgconfig/gazebo.pc:/Version/s/[^.0-9]//gp'
+  'lib/pkgconfig/gazebo.pc:/Version/s/[^.0-9]//gp'
 
 SYSTEM_PKG.Fedora.gazebo=gazebo-devel
 SYSTEM_PKG.Debian.gazebo=gazebo libgazebo-dev
