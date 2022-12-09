@@ -1,0 +1,27 @@
+From 337561a19e71116be2295ebbc518c0ed4a3ba4fb Mon Sep 17 00:00:00 2001
+From: Anthony Mallet <anthony.mallet@laas.fr>
+Date: Fri, 9 Dec 2022 13:38:12 +0100
+Subject: [PATCH] mk_set_sensor_rate can be called with NULL parameters from
+ mk_comm_stop()
+
+---
+ codels/rotorcraft_codels.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git codels/rotorcraft_codels.c codels/rotorcraft_codels.c
+index 1dfdefc..57103d5 100644
+--- codels/rotorcraft_codels.c
++++ codels/rotorcraft_codels.c
+@@ -91,7 +91,8 @@ mk_set_sensor_rate(const rotorcraft_ids_sensor_time_s_rate_s *rate,
+   }
+ 
+   /* update rate */
+-  sensor_time->rate = *rate;
++  if (sensor_time)
++    sensor_time->rate = *rate;
+ 
+   return genom_ok;
+ }
+-- 
+2.37.3
+
