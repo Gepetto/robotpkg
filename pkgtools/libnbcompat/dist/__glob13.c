@@ -594,7 +594,8 @@ glob1(pattern, pglob, limit)
 	 * we save one character so that we can use ptr >= limit,
 	 * in the general case when we are appending non nul chars only.
 	 */
-	return(glob2(pathbuf, pathbuf, pathbuf + sizeof(pathbuf) - 1, pattern,
+	return(glob2(pathbuf, pathbuf,
+	    pathbuf + (sizeof(pathbuf) / sizeof(*pathbuf)) - 1, pattern,
 	    pglob, limit));
 }
 

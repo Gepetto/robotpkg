@@ -35,7 +35,7 @@
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: python27 python34 python36 python37 python38
+#	Possible values: python27 python36 python37 python38
 #			 python39 python310 python311
 #
 # === Package-settable variables ===
@@ -134,7 +134,7 @@ endif
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python27
-PKG_ALTERNATIVES.python+=	python34 python36
+PKG_ALTERNATIVES.python+=	python36
 PKG_ALTERNATIVES.python+=	python37 python38 python39 python310 python311
 
 # select default preferences depending on OS/VERSION
@@ -160,7 +160,7 @@ else ifeq (Ubuntu,${OPSYS})
   endif
   PREFER_ALTERNATIVE.python?=	python310 python27
 else ifeq (CentOS,${OPSYS})
-  PREFER_ALTERNATIVE.python?=	python27 python34
+  PREFER_ALTERNATIVE.python?=	python27 python36
 else ifeq (Rocky,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python36
 else ifeq (Arch,${OPSYS})
@@ -179,19 +179,6 @@ define PKG_ALTERNATIVE_SET.python27
   DEPEND_METHOD.python27?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python27.mk
-endef
-
-PKG_ALTERNATIVE_DESCR.python34= Use python-3.4
-PKGTAG.python34 =		py34
-define PKG_ALTERNATIVE_SELECT.python34
-  $(call preduce,${DEPEND_ABI.python} python>=3.4<3.5)
-endef
-define PKG_ALTERNATIVE_SET.python34
-  _py_abi:=$(subst python,python34,${PKG_ALTERNATIVE_SELECT.python34})
-  DEPEND_ABI.python34?=	$(strip ${_py_abi})
-  DEPEND_METHOD.python34?= ${DEPEND_METHOD.python}
-
-  include ../../mk/sysdep/python34.mk
 endef
 
 PKG_ALTERNATIVE_DESCR.python36= Use python-3.6
