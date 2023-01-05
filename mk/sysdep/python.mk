@@ -35,7 +35,7 @@
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: python27 python34 python35 python36 python37 python38
+#	Possible values: python27 python34 python36 python37 python38
 #			 python39 python310 python311
 #
 # === Package-settable variables ===
@@ -134,15 +134,13 @@ endif
 # define an alternative for available pythons packages
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python27
-PKG_ALTERNATIVES.python+=	python34 python35 python36
+PKG_ALTERNATIVES.python+=	python34 python36
 PKG_ALTERNATIVES.python+=	python37 python38 python39 python310 python311
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 9,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python27 python35
-  else ifneq (,$(filter 10,${OS_VERSION}))
+  ifneq (,$(filter 10,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python37 python27
   endif
   PREFER_ALTERNATIVE.python?=	python39
@@ -194,19 +192,6 @@ define PKG_ALTERNATIVE_SET.python34
   DEPEND_METHOD.python34?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python34.mk
-endef
-
-PKG_ALTERNATIVE_DESCR.python35= Use python-3.5
-PKGTAG.python35 =		py35
-define PKG_ALTERNATIVE_SELECT.python35
-  $(call preduce,${DEPEND_ABI.python} python>=3.5<3.6)
-endef
-define PKG_ALTERNATIVE_SET.python35
-  _py_abi:=$(subst python,python35,${PKG_ALTERNATIVE_SELECT.python35})
-  DEPEND_ABI.python35?=	$(strip ${_py_abi})
-  DEPEND_METHOD.python35?= ${DEPEND_METHOD.python}
-
-  include ../../mk/sysdep/python35.mk
 endef
 
 PKG_ALTERNATIVE_DESCR.python36= Use python-3.6
