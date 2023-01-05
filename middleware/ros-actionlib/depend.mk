@@ -27,7 +27,7 @@ DEPEND_ABI.ros-actionlib.jade+=		ros-actionlib>=1.11<1.12
 DEPEND_ABI.ros-actionlib.kinetic+=	ros-actionlib>=1.11<1.12
 DEPEND_ABI.ros-actionlib.lunar+=	ros-actionlib>=1.11<1.12
 DEPEND_ABI.ros-actionlib.melodic+=	ros-actionlib>=1.11<1.13
-DEPEND_ABI.ros-actionlib.noetic?=	ros-actionlib>=1.13<1.14
+DEPEND_ABI.ros-actionlib.noetic?=	ros-actionlib>=1.13<1.15
 
 SYSTEM_SEARCH.ros-actionlib=\
 	include/actionlib/server/action_server.h		\
