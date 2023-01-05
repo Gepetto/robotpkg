@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2022 LAAS/CNRS
+# Copyright (c) 2010-2023 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -35,7 +35,8 @@
 #	order of the entries matters, since earlier entries are
 #	preferred over later ones.
 #
-#	Possible values: python27 python34 python35 python36 python37 python38 python39 python310
+#	Possible values: python27 python34 python35 python36 python37 python38
+#			 python39 python310 python311
 #
 # === Package-settable variables ===
 #
@@ -86,7 +87,7 @@ DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
 DEPEND_METHOD.python?=	build
-DEPEND_ABI.python?=	python>=2.5<3.11
+DEPEND_ABI.python?=	python>=2.5<3.12
 
 # factorize SYSTEM_SEARCH.python* here for all python* packages
 override define _py_syssearch
@@ -123,7 +124,7 @@ CMAKE_ARGS+= -DPython$(word ${PYTHON_MAJOR},. 3 2)_EXECUTABLE=/bin/false
 # Additional CONFLICTS
 include ../../mk/internal/macros.mk
 ifneq (,$(call isyes,${PYTHON_SELF_CONFLICT}))
-  CONFLICTS_SUBST+=	${PKGTAG.python-}=py[0-9][0-9]-
+  CONFLICTS_SUBST+=	${PKGTAG.python-}=py{[0-9],}[0-9][0-9]-
   CONFLICTS+=		${PKGWILDCARD}
 endif
 ifneq (,$(call isyes,${PYTHON_NOTAG_CONFLICT}))
@@ -134,7 +135,7 @@ endif
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python27
 PKG_ALTERNATIVES.python+=	python34 python35 python36
-PKG_ALTERNATIVES.python+=	python37 python38 python39 python310
+PKG_ALTERNATIVES.python+=	python37 python38 python39 python310 python311
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
@@ -148,8 +149,10 @@ ifeq (Debian,${OPSYS})
 else ifeq (Fedora,${OPSYS})
   ifneq (,$(filter 34,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python39 python27
+  else ifneq (,$(filter 36,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python310 python27
   endif
-  PREFER_ALTERNATIVE.python?=	python310 python27
+  PREFER_ALTERNATIVE.python?=	python311 python27
 else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 18.04%,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python27 python36
@@ -269,6 +272,19 @@ define PKG_ALTERNATIVE_SET.python310
   DEPEND_METHOD.python310?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python310.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python311= Use python-3.11
+PKGTAG.python311 =		py311
+define PKG_ALTERNATIVE_SELECT.python311
+  $(call preduce,${DEPEND_ABI.python} python>=3.11<3.12)
+endef
+define PKG_ALTERNATIVE_SET.python311
+  _py_abi:=$(subst python,python311,${PKG_ALTERNATIVE_SELECT.python311})
+  DEPEND_ABI.python311?= $(strip ${_py_abi})
+  DEPEND_METHOD.python311?= ${DEPEND_METHOD.python}
+
+  include ../../mk/sysdep/python311.mk
 endef
 
 
