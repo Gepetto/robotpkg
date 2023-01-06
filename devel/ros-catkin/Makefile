@@ -2,17 +2,16 @@
 # Created:			Anthony Mallet on Sun, 15 Jul 2012
 #
 
-PKGREVISION=	1
 ROS_PKG=	catkin
-ROS_VERSION=	0.7.16
+ROS_VERSION=	0.7.29
 PKGNAME=	${PKGTAG.python}-ros-$(subst _,-,${ROS_PKG})-${ROS_VERSION}
 
 CATEGORIES=	devel
 ROS_COMMENT=	low-level build system macros and infrastructure
 
-CONFLICTS+=	py[0-9][0-9]-catkin-[0-9]*
+PYTHON_SELF_CONFLICTS=	yes
 # old package name
-CONFLICTS+=	catkin-[0-9]*
+PYTHON_NOTAG_CONFLICT=	yes
 
 include ../../meta-pkgs/ros-base/Makefile.common
 

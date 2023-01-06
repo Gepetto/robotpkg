@@ -1,4 +1,4 @@
-@comment Wed Mar 20 17:09:32 CET 2019
+@comment Fri Jan 6 12:03:19 CET 2023
 .rosinstall
 bin/catkin_find
 bin/catkin_init_workspace
@@ -17,7 +17,10 @@ etc/ros/setup.bash
 etc/ros/setup.sh
 etc/ros/setup.zsh
 lib/pkgconfig/catkin.pc
-${PYTHON_SITELIB}/catkin-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/catkin-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/catkin-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/catkin-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/catkin-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/catkin/__init__.py
 ${PYTHON_SITELIB}/catkin/builder.py
 ${PYTHON_SITELIB}/catkin/cmake.py
