@@ -3,11 +3,11 @@
 #
 
 ROS_PKG=	catkin_pkg
-ROS_VERSION=	0.4.8
+ROS_VERSION=	0.5.2
 ROS_REPO=	ros-infrastructure
 PKGNAME=	${PKGTAG.python}-$(subst _,-,${ROS_PKG})-${ROS_VERSION}
 
-CONFLICTS+=		py[0-9][0-9]-catkin-pkg-[0-9]*
+PYTHON_SELF_CONFLICTS=	yes
 
 CATEGORIES=	sysutils
 ROS_COMMENT=	standalone library for the catkin package
