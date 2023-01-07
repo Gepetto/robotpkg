@@ -1,7 +1,11 @@
-@comment Wed Aug 13 11:19:38 CEST 2014
+@comment Sun Jan 8 11:59:34 CET 2023
 bin/rosdep
 bin/rosdep-source
-${PYTHON_SITELIB}/rosdep-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rosdep-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rosdep-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rosdep-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rosdep-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/requires.txt
+${PYTHON_SITELIB}/rosdep-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/rosdep2/__init__.py
 ${PYTHON_SITELIB}/rosdep2/_version.py
 ${PYTHON_SITELIB}/rosdep2/catkin_packages.py

@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Sat, 22 Jun 2013
 #
 
+PKGREVISION=	1
 ROS_PKG=	rosdep
 ROS_VERSION=	0.10.30
 PKGNAME=	${PKGTAG.python}-${ROS_PKG}-${ROS_VERSION}
@@ -9,8 +10,7 @@ PKGNAME=	${PKGTAG.python}-${ROS_PKG}-${ROS_VERSION}
 CATEGORIES=	sysutils
 ROS_COMMENT=	system dependencies download and installation
 
-CONFLICTS+=	py[0-9][0-9]-rosdep-${VERSION}
-PYDISTUTILSPKG=	yes
+PYTHON_SELF_CONFLICTS=	yes
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
@@ -33,5 +33,6 @@ include ../../sysutils/py-rosdistro/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
 include ../../mk/sysdep/py-yaml.mk
 include ../../mk/sysdep/py-nose.mk
+include ../../mk/sysdep/py-setuptools.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/robotpkg.mk
