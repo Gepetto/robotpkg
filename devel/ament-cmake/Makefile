@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 30 Mar 2022
 #
 
-DISTNAME=	ament_cmake-1.3.0
+DISTNAME=	ament_cmake-1.5.2
 PKGNAME=	$(subst _,-,${DISTNAME})
 ROS2_REPO=	ament
 
