@@ -297,7 +297,8 @@ PYTHON_SYSLIB:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
 #
 PYTHON_EXT_SUFFIX=$(if ${PYTHON},$(eval					\
   PYTHON_EXT_SUFFIX:=$$(shell ${PYTHON} 2>/dev/null -c			\
-    'import sysconfig; print(sysconfig.get_config_var("SO"));'		\
+    'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX") or	\
+                             sysconfig.get_config_var("SO"));'		\
   ))${PYTHON_EXT_SUFFIX},						\
   $(error PYTHON_EXT_SUFFIX referenced before dependency resolution))
 
