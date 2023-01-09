@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			eigenpy
-VERSION=		2.8.0
+VERSION=		2.9.0
 
 CATEGORIES=		math
 COMMENT=		Eigen bindings to python

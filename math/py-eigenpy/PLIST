@@ -1,4 +1,5 @@
 @comment Sat May 12 16:37:25 CEST 2018
+include/eigenpy/alignment.hpp
 include/eigenpy/angle-axis.hpp
 include/eigenpy/computation-info.hpp
 include/eigenpy/config.hpp
