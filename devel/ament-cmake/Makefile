@@ -39,6 +39,8 @@ include ../../meta-pkgs/ros2-core/Makefile.common
 # No testing in robotpkg, this reduces required dependencies
 CMAKE_ARGS+=	-DBUILD_TESTING=OFF
 
+CMAKE_ARGS+=	-DPYTHON_INSTALL_DIR=${PYTHON_SITELIB}
+
 # Replace python interpreter in source files
 SUBST_CLASSES+=	py-interp
 SUBST_FILES.py-interp=\

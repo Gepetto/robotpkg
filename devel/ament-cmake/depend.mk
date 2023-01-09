@@ -31,6 +31,7 @@ include ../../mk/language/c++.mk
 CMAKE_ARGS+=	-DBUILD_TESTING=OFF
 CMAKE_ARGS+=	-DAMENT_CMAKE_UNINSTALL_TARGET=OFF
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
+CMAKE_ARGS+=	-DPYTHON_INSTALL_DIR=${PYTHON_SITELIB}
 
 endif # AMENT_CMAKE_DEPEND_MK ----------------------------------------------
 

@@ -1,0 +1,14 @@
+Make sure installation dirs are for the 'posix_prefix' scheme by default.
+Inside robotpkg, PYTHON_INSTALL_DIR is passed explicitly anyway.
+
+--- ament_cmake_python/ament_cmake_python-extras.cmake~	2022-11-02 18:09:39.000000000 +0100
++++ ament_cmake_python/ament_cmake_python-extras.cmake	2023-01-09 16:26:19.370775598 +0100
+@@ -46,7 +46,7 @@
+     set(_python_code
+       "import os"
+       "import sysconfig"
+-      "print(os.path.relpath(sysconfig.get_path('purelib', vars={'base': '${CMAKE_INSTALL_PREFIX}'}), start='${CMAKE_INSTALL_PREFIX}').replace(os.sep, '/'))"
++      "print(os.path.relpath(sysconfig.get_path('purelib', scheme='posix_prefix', vars={'base': '${CMAKE_INSTALL_PREFIX}'}), start='${CMAKE_INSTALL_PREFIX}').replace(os.sep, '/'))"
+     )
+     get_executable_path(_python_interpreter Python3::Interpreter CONFIGURE)
+     execute_process(
