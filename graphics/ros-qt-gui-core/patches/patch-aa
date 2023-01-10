@@ -1,0 +1,13 @@
+Recent setuptools don't like empty package_dir
+
+--- qt_gui_app/setup.py~	2020-07-24 17:59:00.000000000 +0200
++++ qt_gui_app/setup.py	2023-01-10 11:46:07.063610510 +0100
+@@ -4,7 +4,7 @@
+ from catkin_pkg.python_setup import generate_distutils_setup
+ 
+ d = generate_distutils_setup(
+-    package_dir={}
++    packages=[]
+ )
+ 
+ setup(**d)
