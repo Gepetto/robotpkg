@@ -1,0 +1,12 @@
+sched_getscheduler(2)
+
+--- src/libYARP_os/src/yarp/os/SystemInfo.cpp~	2020-09-28 11:37:13.000000000 +0200
++++ src/libYARP_os/src/yarp/os/SystemInfo.cpp	2023-01-10 10:45:37.189967970 +0100
+@@ -28,6 +28,7 @@
+ #    include <sys/statvfs.h>
+ #    include <sys/types.h>
+ #    include <sys/utsname.h>
++#    include <sched.h>
+ #    include <unistd.h>
+ 
+ extern char** environ;
