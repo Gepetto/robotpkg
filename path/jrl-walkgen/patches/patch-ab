@@ -1,0 +1,13 @@
+Add missing const for std::set<> comparator
+
+--- src/Mathematics/ConvexHull.cpp~	2014-07-08 15:55:38.000000000 +0200
++++ src/Mathematics/ConvexHull.cpp	2023-01-10 19:08:51.796516155 +0100
+@@ -37,7 +37,7 @@
+   CH_Point HRP2CIO_GlobalP0;
+   struct ltCH_Point
+   {
+-    bool operator() (const CH_Point & s1, const CH_Point &s2)
++    bool operator() (const CH_Point & s1, const CH_Point &s2) const
+     {
+       double x1,x2,y1,y2;
+       x1 = s1.col - HRP2CIO_GlobalP0.col;
