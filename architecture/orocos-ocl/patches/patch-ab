@@ -1,0 +1,17 @@
+Log4cxx >= 0.13 has an incompatible change in LocationInfo constructor.
+There does not seem to exist a way to detect log4cxx version at compile time.
+
+Since the parameters passed to LocationInfo() seem useless anyway, just use the
+default constructor instead.
+
+--- logging/Log4cxxAppender.cpp~	2019-04-17 21:30:53.000000000 +0200
++++ logging/Log4cxxAppender.cpp	2023-01-10 18:43:26.765280073 +0100
+@@ -37,7 +37,7 @@
+ 
+     spi::LoggingEventPtr tolog4cxx(logging::LoggingEvent const& e, log4cxx::helpers::Pool & pool)
+     {
+-        return spi::LoggingEventPtr(new spi::LoggingEvent(makeString( e.categoryName ), tolog4cxxLevel(e.priority), makeString( e.message ), log4cxx::spi::LocationInfo("filename", "functionname", 0)));
++        return spi::LoggingEventPtr(new spi::LoggingEvent(makeString( e.categoryName ), tolog4cxxLevel(e.priority), makeString( e.message ), log4cxx::spi::LocationInfo()));
+     }
+ 
+ Log4cxxAppender::Log4cxxAppender(std::string name) :
