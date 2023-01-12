@@ -19,7 +19,7 @@ SYSTEM_SEARCH.gtk3=	\
   'lib/pkgconfig/gtk+-3.0.pc:/Version/s/[^.0-9]//gp'
 
 SYSTEM_PKG.RedHat.gtk3=	gtk3-devel
-SYSTEM_PKG.Debian.gtk3=	libgtk3.0-dev
+SYSTEM_PKG.Debian.gtk3=	libgtk-3-dev
 SYSTEM_PKG.NetBSD.gtk3=	x11/gtk3
 
 include ../../mk/sysdep/gdk-pixbuf2.mk
