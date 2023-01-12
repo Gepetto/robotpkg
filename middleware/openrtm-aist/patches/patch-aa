@@ -1,4 +1,4 @@
-Detect omniORB 4.2
+Detect omniORB 4.2, 4.3
 
 --- configure~	2016-02-08 12:27:44.475911755 +0100
 +++ configure	2016-02-08 14:01:00.036194281 +0100
@@ -7,7 +7,7 @@ Detect omniORB 4.2
  $as_echo "CORBA C++ mapping ver1.0 is used." >&6; }
  		;;
 -	4.1|4.1.*)
-+	4.1|4.1.*|4.2|4.2.*)
++	4.[123]|4.[123].*)
  
  $as_echo "#define RTC_CORBA_CXXMAPPING11 TRUE" >>confdefs.h
  
@@ -16,7 +16,7 @@ Detect omniORB 4.2
  		;;
  	esac
 +        case $omniorb_version in
-+            4.2|4.2.*)
++            4.[23]|4.[23].*)
 +                $as_echo "#define RTC_OMNIORB42 TRUE" >>confdefs.h
 +                ;;
 +        esac
