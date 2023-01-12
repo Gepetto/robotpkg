@@ -1,28 +1,31 @@
 Don't install files already installed by hpp-fcl
 
---- CMakeLists.txt.orig	2022-03-20 22:21:01.000000000 +0100
-+++ CMakeLists.txt	2022-04-15 10:28:07.969751757 +0200
+--- CMakeLists.txt.orig	2022-12-09 15:42:27.000000000 +0100
++++ CMakeLists.txt	2023-01-12 20:49:38.572548628 +0100
 @@ -39,7 +39,6 @@
  set(PROJECT_DESCRIPTION
    "HPP fork of FCL -- The Flexible Collision Library"
    )
 -SET(PROJECT_USE_CMAKE_EXPORT TRUE)
+ SET(PROJECT_COMPATIBILITY_VERSION AnyNewerVersion)
  
  # Do not support CMake older than 2.8.12
- CMAKE_POLICY(SET CMP0022 NEW)
-@@ -234,9 +233,3 @@
-   PKG_CONFIG_APPEND_CFLAGS(
+@@ -276,12 +275,3 @@
      "-DHPP_FCL_HAS_OCTOMAP -DHPP_FCL_HAVE_OCTOMAP -DFCL_HAVE_OCTOMAP -DOCTOMAP_MAJOR_VERSION=${OCTOMAP_MAJOR_VERSION} -DOCTOMAP_MINOR_VERSION=${OCTOMAP_MINOR_VERSION} -DOCTOMAP_PATCH_VERSION=${OCTOMAP_PATCH_VERSION}")
  ENDIF(HPP_FCL_HAS_OCTOMAP)
--
+ 
 -# Install catkin package.xml
 -INSTALL(FILES package.xml DESTINATION share/${PROJECT_NAME})
 -# Allows Colcon to find non-Ament packages when using workspace underlays
 -file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/share/ament_index/resource_index/packages/${PROJECT_NAME} "")
 -install(FILES ${CMAKE_CURRENT_BINARY_DIR}/share/ament_index/resource_index/packages/${PROJECT_NAME} DESTINATION share/ament_index/resource_index/packages)
---- src/CMakeLists.txt.orig	2022-03-20 22:20:45.000000000 +0100
-+++ src/CMakeLists.txt	2022-04-15 10:29:20.626045594 +0200
-@@ -222,11 +222,3 @@
+-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/share/${PROJECT_NAME}/hook/ament_prefix_path.dsv "prepend-non-duplicate;AMENT_PREFIX_PATH;")
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/share/${PROJECT_NAME}/hook/ament_prefix_path.dsv DESTINATION share/${PROJECT_NAME}/hook)
+-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/share/${PROJECT_NAME}/hook/python_path.dsv "prepend-non-duplicate;PYTHONPATH;${PYTHON_SITELIB}")
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/share/${PROJECT_NAME}/hook/python_path.dsv DESTINATION share/${PROJECT_NAME}/hook)
+--- src/CMakeLists.txt.orig	2022-12-08 09:32:18.000000000 +0100
++++ src/CMakeLists.txt	2023-01-12 20:50:58.381345923 +0100
+@@ -230,11 +230,3 @@
      -DOCTOMAP_MINOR_VERSION=${OCTOMAP_MINOR_VERSION}
      -DOCTOMAP_PATCH_VERSION=${OCTOMAP_PATCH_VERSION})
  ENDIF(octomap_FOUND)
