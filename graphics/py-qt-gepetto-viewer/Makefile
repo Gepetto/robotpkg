@@ -4,7 +4,6 @@
 
 HPP_PACKAGE=		gepetto-viewer
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
-PKGREVISION=		1
 
 CATEGORIES=		graphics
 HPP_COMMENT=		Simple viewer based on OpenSceneGraph
