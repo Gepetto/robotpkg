@@ -4,12 +4,10 @@
 
 ORG=			loco-3d
 NAME=			ndcurves
-VERSION=		1.1.5
+VERSION=		1.1.6
 
 CATEGORIES=		math
 COMMENT=		Library for creating curves
-
-CMAKE_ARGS+=		-DBUILD_PYTHON_INTERFACE=OFF
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 
