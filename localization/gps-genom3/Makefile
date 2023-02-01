@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 28 May 2019
 #
 
-DISTNAME=		gps-genom3-1.5.1
+DISTNAME=		gps-genom3-1.6
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}/${PKGBASE}
