@@ -1,7 +1,9 @@
 . LD_LIBRARY_PATH is useless in robotpkg. And better not set it anyway.
+. _setup_util is installed into etc/ros, use @PREFIX@ for finding catkin
+  directories.
 
---- cmake/templates/_setup_util.py.in~	2018-06-06 18:18:22.000000000 +0200
-+++ cmake/templates/_setup_util.py.in	2018-09-04 14:56:08.672323000 +0200
+--- cmake/templates/_setup_util.py.in~	2020-10-14 18:11:42.000000000 +0200
++++ cmake/templates/_setup_util.py.in	2023-02-08 15:13:21.073031972 +0100
 @@ -59,7 +59,6 @@
  # subfolder of workspace prepended to CMAKE_PREFIX_PATH
  ENV_VAR_SUBFOLDERS = {
@@ -10,3 +12,12 @@
      'PATH': PATH_TO_ADD_SUFFIX,
      'PKG_CONFIG_PATH': @CATKIN_PKGCONFIG_ENVIRONMENT_PATHS@,
      'PYTHONPATH': '@PYTHON_INSTALL_DIR@',
+@@ -273,7 +272,7 @@
+             # don't consider any other prefix path than this one
+             CMAKE_PREFIX_PATH = []
+         # prepend current workspace if not already part of CPP
+-        base_path = os.path.dirname(__file__)
++        base_path = '@PREFIX@'
+         # CMAKE_PREFIX_PATH uses forward slash on all platforms, but __file__ is platform dependent
+         # base_path on Windows contains backward slashes, need to be converted to forward slashes before comparison
+         if os.path.sep != '/':

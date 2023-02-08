@@ -30,6 +30,7 @@ SUBST_STAGE.catkin=		pre-configure
 SUBST_MESSAGE.catkin=		Replacing installation prefix
 SUBST_SED.catkin+=		-e 's|@PREFIX@|${PREFIX}|'
 SUBST_FILES.catkin+=		python/catkin/workspace.py
+SUBST_FILES.catkin+=		cmake/templates/_setup_util.py.in
 
 SUBST_CLASSES+=			py-interp
 SUBST_FILES.py-interp+=		bin/catkin_*
