@@ -2,22 +2,18 @@
 # Created:			Guilhem Saurel on Wed, 27 May 2020
 #
 
-ORG=			mevislab
+ORG=			MeVisLab
 NAME=			PythonQt
-VERSION=		3.2
-PKGREVISION=		1
+VERSION=		3.4.0
 
-DISTNAME=		${NAME}${VERSION}
-PKGNAME=		${PKGTAG.python-}pythonqt-${VERSION}
+NAME_LOWER=		pythonqt
 
-HOMEPAGE=		${MASTER_SITE_GITHUB:=${ORG}/${NAME}}
-MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${NAME}/}
-MASTER_REPOSITORY=	git ${HOMEPAGE}.git
-EXTRACT_SUFX=		.zip
-
-# avoid `-a' that does not reliably convert CR+LF - patch files assume no
-# conversion.
-EXTRACT_OPTS_ZIP=	-o
+GITHUB_PROJECT=		${NAME}
+GITHUB_TAG=		${DISTNAME}
+DISTNAME=		v${VERSION}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=${ORG}/}
+WRKSRC=			${WRKDIR}/${NAME_LOWER}-${VERSION}
+PKGNAME=		${PKGTAG.python-}${NAME_LOWER}-${VERSION}
 
 CATEGORIES=		graphics
 COMMENT=		Dynamic Python binding for Qt Applications
@@ -26,20 +22,13 @@ MAINTAINER=		guilhem.saurel@laas.fr
 
 QMAKE_ARGS+=		CONFIG+=release
 QMAKE_ARGS+=		CONFIG+=no_moc_predefs
-
-SUBST_CLASSES+=		py-ver
-SUBST_STAGE.py-ver=	pre-configure
-SUBST_MESSAGE.py-ver=	fix python version
-SUBST_FILES.py-ver=	build/python.prf
-SUBST_SED.py-ver=\
-  -e 's/PYTHON_VERSION=2.7/PYTHON_VERSION=${PYTHON_VERSION}/'	\
-  -e 's%@PYTHON@%${PYTHON}%'
+QMAKE_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
 
 PYTHON_SELF_CONFLICT=	yes
 
-INSTALLATION_DIRS+= lib
-INSTALLATION_DIRS+= include/${NAME}/gui
-INSTALLATION_DIRS+= include/${NAME}/extensions/${NAME}_QtAll
+INSTALLATION_DIRS+=	lib
+INSTALLATION_DIRS+=	include/${NAME}/gui
+INSTALLATION_DIRS+=	include/${NAME}/extensions/${NAME}_QtAll
 
 do-install:
 	${RUN}cd ${WRKSRC};						\
