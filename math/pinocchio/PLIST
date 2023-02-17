@@ -49,6 +49,8 @@ include/pinocchio/algorithm/regressor.hpp
 include/pinocchio/algorithm/regressor.hxx
 include/pinocchio/algorithm/rnea-derivatives.hpp
 include/pinocchio/algorithm/rnea-derivatives.hxx
+include/pinocchio/algorithm/rnea-second-order-derivatives.hpp
+include/pinocchio/algorithm/rnea-second-order-derivatives.hxx
 include/pinocchio/algorithm/rnea.hpp
 include/pinocchio/algorithm/rnea.hxx
 include/pinocchio/autodiff/casadi.hpp
