@@ -27,7 +27,7 @@ DEPEND_ABI.ros-comm.jade?=	ros-comm>=1.11<1.12
 DEPEND_ABI.ros-comm.kinetic?=	ros-comm>=1.12<1.13
 DEPEND_ABI.ros-comm.lunar?=	ros-comm>=1.13<1.14
 DEPEND_ABI.ros-comm.melodic?=	ros-comm>=1.13<1.15
-DEPEND_ABI.ros-comm.noetic?=	ros-comm>=1.15<1.16
+DEPEND_ABI.ros-comm.noetic?=	ros-comm>=1.15<1.17
 
 SYSTEM_SEARCH.ros-comm=\
   'bin/roscore'							\
