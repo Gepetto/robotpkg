@@ -27,7 +27,9 @@ QMAKE_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
 QMAKE_ARGS+=		PYTHON_DIR=${PREFIX.${PKG_ALTERNATIVE.python}}
 
 # extensions must match dependencies
+#
 # XXX there is no qtwebkit implementation for Qt>=5.11 ?
+# https://github.com/MeVisLab/pythonqt/issues/100
 PYTHONQTALL_CONFIG=\
 	PythonQtCore		\
 	PythonQtGui		\
