@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=	hpp-core
 HPP_COMMENT=	Basic classes for general path planning
+PKGREVISION=	1
 
 CATEGORIES=	path
 
