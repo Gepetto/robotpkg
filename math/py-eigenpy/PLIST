@@ -27,6 +27,7 @@ include/eigenpy/numpy-allocator.hpp
 include/eigenpy/numpy-map.hpp
 include/eigenpy/numpy-type.hpp
 include/eigenpy/numpy.hpp
+include/eigenpy/optional.hpp
 include/eigenpy/pickle-vector.hpp
 include/eigenpy/quaternion.hpp
 include/eigenpy/register.hpp
@@ -44,6 +45,7 @@ include/eigenpy/std-map.hpp
 include/eigenpy/std-vector.hpp
 include/eigenpy/stride.hpp
 include/eigenpy/swig.hpp
+include/eigenpy/tensor/eigen-from-python.hpp
 include/eigenpy/ufunc.hpp
 include/eigenpy/user-type.hpp
 include/eigenpy/utils/is-aligned.hpp
@@ -53,10 +55,12 @@ include/eigenpy/version.hpp
 include/eigenpy/warning.hpp
 lib/cmake/eigenpy/boost.cmake
 lib/cmake/eigenpy/boost/FindBoost.cmake
+lib/cmake/eigenpy/cxx-standard.cmake
 lib/cmake/eigenpy/eigenpyConfig.cmake
 lib/cmake/eigenpy/eigenpyConfigVersion.cmake
 lib/cmake/eigenpy/eigenpyTargets-release.cmake
 lib/cmake/eigenpy/eigenpyTargets.cmake
+lib/cmake/eigenpy/python-helpers.cmake
 lib/cmake/eigenpy/python.cmake
 lib/libeigenpy.so
 lib/pkgconfig/eigenpy.pc
