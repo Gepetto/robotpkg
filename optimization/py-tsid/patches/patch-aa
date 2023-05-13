@@ -1,0 +1,11 @@
+--- tests/python/test_Solvers.py.orig	2023-05-13 21:56:12.000000000 +0200
++++ tests/python/test_Solvers.py	2023-05-14 13:47:23.386352119 +0200
+@@ -104,7 +104,7 @@
+     hessianPerturbations.append(np.random.rand(n, n) * HESSIAN_PERTURBATION_VARIANCE)
+ 
+ for name, solver in solver_list:
+-    print(f"Using {name}")
++    print("Using %s" % name)
+     for i in range(0, nTest):
+         cost.setMatrix(cost.matrix + hessianPerturbations[i])
+         cost.setVector(cost.vector + gradientPerturbations[i])

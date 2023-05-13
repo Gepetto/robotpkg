@@ -1,3 +1,3 @@
 @comment Mon Mar 23 15:44:55 CET 2020
 ${PYTHON_SITELIB}/tsid/__init__.py
-${PYTHON_SITELIB}/tsid/libtsid_pywrap.so
+${PYTHON_SITELIB}/tsid/tsid_pywrap${PYTHON_EXT_SUFFIX}

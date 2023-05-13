@@ -4,6 +4,9 @@ include/tsid/contacts/contact-6d.hpp
 include/tsid/contacts/contact-base.hpp
 include/tsid/contacts/contact-point.hpp
 include/tsid/contacts/fwd.hpp
+include/tsid/contacts/measured-3Dforce.hpp
+include/tsid/contacts/measured-6Dwrench.hpp
+include/tsid/contacts/measured-force-base.hpp
 include/tsid/deprecated.hh
 include/tsid/formulations/contact-level.hpp
 include/tsid/formulations/inverse-dynamics-formulation-acc-force.hpp
@@ -27,6 +30,7 @@ include/tsid/solvers/solver-HQP-factory.hpp
 include/tsid/solvers/solver-HQP-factory.hxx
 include/tsid/solvers/solver-HQP-output.hpp
 include/tsid/solvers/solver-HQP-qpoases.hpp
+include/tsid/solvers/solver-qpData.hpp
 include/tsid/solvers/utils.hpp
 include/tsid/tasks/fwd.hpp
 include/tsid/tasks/task-actuation-bounds.hpp
