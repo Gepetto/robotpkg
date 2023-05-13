@@ -2,10 +2,9 @@
 # Created:			Guilhem Saurel on Wed, 27 May 2020
 #
 
-PKGREVISION=		1
 ORG=			MeVisLab
 NAME=			PythonQt
-VERSION=		3.4.0
+VERSION=		3.4.1
 
 NAME_LOWER=		pythonqt
 
