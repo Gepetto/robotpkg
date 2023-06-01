@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Tue, 12 Apr 2022
 #
 
+PKGREVISION=	1
 DISTNAME=	ros2_tracing-4.1.0
 PKGNAME=	$(subst _,-,${DISTNAME})
 MASTER_SITES?=\
@@ -22,6 +23,10 @@ ROS2_SUBPKGS=\
     tracetools_trace
 
 include ../../meta-pkgs/ros2-core/Makefile.common
+
+# Disable for now. To enable, handle the optional lttng dependency and the
+# variable PLIST due to -rdynamic exported flag.
+CMAKE_ARGS+=	-DTRACETOOLS_DISABLED=ON
 
 PYSETUPINSTALL_SCRIPT= ${PREFIX}/lib/tracetools_trace
 

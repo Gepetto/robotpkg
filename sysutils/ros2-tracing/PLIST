@@ -1,4 +1,4 @@
-@comment Mon Apr 11 18:23:32 CEST 2022
+@comment Thu Jun 1 09:43:38 CEST 2023
 include/tracetools/tracetools/config.h
 include/tracetools/tracetools/config.h.in
 include/tracetools/tracetools/status.h
@@ -6,7 +6,6 @@ include/tracetools/tracetools/tp_call.h
 include/tracetools/tracetools/tracetools.h
 include/tracetools/tracetools/utils.hpp
 include/tracetools/tracetools/visibility_control.hpp
-lib/libtracetools.so
 lib/libtracetools_status.so
 ${PYTHON_SITELIB}/ros2trace-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
 ${PYTHON_SITELIB}/ros2trace-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
@@ -95,16 +94,12 @@ share/test_tracetools/package.dsv
 share/test_tracetools/package.xml
 share/test_tracetools_launch/package.xml
 share/tracetools/cmake/ament_cmake_export_include_directories-extras.cmake
-share/tracetools/cmake/ament_cmake_export_libraries-extras.cmake
 share/tracetools/cmake/ament_cmake_export_targets-extras.cmake
 share/tracetools/cmake/tracetoolsConfig-version.cmake
 share/tracetools/cmake/tracetoolsConfig.cmake
-share/tracetools/cmake/tracetools_exportExport-release.cmake
 share/tracetools/cmake/tracetools_exportExport.cmake
 share/tracetools/environment/ament_prefix_path.dsv
 share/tracetools/environment/ament_prefix_path.sh
-share/tracetools/environment/library_path.dsv
-share/tracetools/environment/library_path.sh
 share/tracetools/environment/path.dsv
 share/tracetools/environment/path.sh
 share/tracetools/local_setup.bash
