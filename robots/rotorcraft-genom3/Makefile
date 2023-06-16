@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Tue, 10 Nov 2015
 #
 
-PKGREVISION=		1
-DISTNAME=		rotorcraft-genom3-3.4
+DISTNAME=		rotorcraft-genom3-3.4.1
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
