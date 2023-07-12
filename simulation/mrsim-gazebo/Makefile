@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 11 Jun 2019
 #
 
-DISTNAME=		mrsim-gazebo-1.2
+DISTNAME=		mrsim-gazebo-1.3
 CATEGORIES=		simulation
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
