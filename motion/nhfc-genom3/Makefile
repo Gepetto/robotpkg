@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 10 Nov 2015
 #
 
-DISTNAME=		nhfc-genom3-2.2
+DISTNAME=		nhfc-genom3-2.3
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
