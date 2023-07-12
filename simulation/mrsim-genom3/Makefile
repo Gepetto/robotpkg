@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 14 Apr 2017
 #
 
-DISTNAME=		mrsim-genom3-2.1.1
+DISTNAME=		mrsim-genom3-2.2
 CATEGORIES=		simulation
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
