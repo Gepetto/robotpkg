@@ -4,7 +4,7 @@
 
 ORG=			gepetto
 NAME=			example-robot-data
-VERSION=		4.0.7
+VERSION=		4.0.8
 
 CATEGORIES=		robots
 COMMENT=		Robot URDFs for benchmarking and developed examples
