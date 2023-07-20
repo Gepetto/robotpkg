@@ -1,0 +1,8 @@
+@comment Thu Jul 20 18:53:22 CEST 2023
+lib/gazebo/dxsim-gazebo.la
+lib/pkgconfig/dxsim-gazebo.pc
+share/gazebo/models/dxsim-one/model.config
+share/gazebo/models/dxsim-one/model.sdf
+share/gazebo/models/dxsim-two/model.config
+share/gazebo/models/dxsim-two/model.sdf
+share/gazebo/worlds/dx-example.world

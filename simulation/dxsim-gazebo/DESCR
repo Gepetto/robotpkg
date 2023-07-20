@@ -1,0 +1,5 @@
+dxsim-gazebo is a Gazebo plugin that simulates a chain of Dynamixel
+motors connected together to the same serial bus (daisy chain).
+
+It provides the same interface as the real one, i.e. a pty port connection you
+can connect to, and it emulates the Dynamixel Protocol 2.0.
