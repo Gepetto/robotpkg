@@ -1,0 +1,4 @@
+@comment Thu Jul 20 18:36:35 CEST 2023
+include/libdynamixel.h
+lib/libdynamixel.la
+lib/pkgconfig/libdynamixel.pc

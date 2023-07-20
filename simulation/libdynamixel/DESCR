@@ -1,0 +1,4 @@
+Dynamixel motors emulation library.
+
+The library provides a pty emulating the Dynamixel communication protocol and
+implements virtual motors.
