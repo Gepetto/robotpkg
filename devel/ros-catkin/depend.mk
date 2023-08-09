@@ -21,15 +21,7 @@ DEPEND_USE+=			ros-catkin
 ROS_DEPEND_USE+=		ros-catkin
 
 DEPEND_DIR.ros-catkin?=		../../devel/ros-catkin
-
-DEPEND_ABI.ros-catkin.groovy?=	${PKGTAG.python-}ros-catkin>=0.5<0.6
-DEPEND_ABI.ros-catkin.hydro?=	${PKGTAG.python-}ros-catkin>=0.5<0.6
-DEPEND_ABI.ros-catkin.indigo?=	${PKGTAG.python-}ros-catkin>=0.6<0.7
-DEPEND_ABI.ros-catkin.jade?=	${PKGTAG.python-}ros-catkin>=0.6<0.7
-DEPEND_ABI.ros-catkin.kinetic?=	${PKGTAG.python-}ros-catkin>=0.7<0.8
-DEPEND_ABI.ros-catkin.lunar?=	${PKGTAG.python-}ros-catkin>=0.7<0.8
-DEPEND_ABI.ros-catkin.melodic?=	${PKGTAG.python-}ros-catkin>=0.7<0.8
-DEPEND_ABI.ros-catkin.noetic?=	${PKGTAG.python-}ros-catkin>=0.8<0.9
+DEPEND_ABI.ros-catkin?=	${PKGTAG.python-}ros-catkin>=0.7
 
 SYSTEM_SEARCH.ros-catkin=\
 	'bin/catkin_init_workspace'				\

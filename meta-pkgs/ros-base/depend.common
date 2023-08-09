@@ -4,104 +4,25 @@
 ROS_DEPEND_COMMON:=	${ROS_DEPEND_COMMON}+
 ifeq (+,${ROS_DEPEND_COMMON}) # --------------------------------------------
 
-# This file determines which ros version is used as a dependency for
-# a package.
-#
-# === User-settable variables ===
-#
-# PREFER_ALTERNATIVE.ros
-#	The preferred ros distribution to use. The order of the entries
-#	matters, since earlier entries are preferred over later ones.
-#
-#	Possible values: groovy hydro indigo
-#	Default: groovy
-#
-# === Package-settable variables ===
-#
-# DEPEND_ABI.ros
-#	The ros versions that are acceptable for the package.
-#
-#	Possible values: any pattern
-#	Default: ros>=groovy
-#
-# === Defined variables ===
-#
-# PKGTAG.ros
-#       The prefix to use in PKGNAME for extensions which are meant
-#       to be installed for multiple ros versions.
-#
-#       Example: groovy
-#
-PKG_ALTERNATIVES+=	ros
-PKG_ALTERNATIVES.ros=	groovy hydro indigo jade kinetic lunar melodic noetic
-
-# Set default preferences
 # Default ros package preference
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=hydro groovy melodic
-  else ifneq (,$(filter 14.04,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=indigo jade melodic
-  else ifneq (,$(filter 16.04 16.04.pal,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=kinetic lunar melodic
-  else ifneq (,$(filter 18.04%,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=melodic
-  else ifneq (,$(filter 20.04%,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=noetic melodic
-  else
-    PREFER_ALTERNATIVE.ros?=melodic
-    PREFER.ros?=robotpkg
+  ifneq (,$(filter 18.04% 20.04%,${OS_VERSION}))
+    PREFER.ros?=	system
   endif
-  PREFER.ros?=	system
 else ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 9,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=melodic
-  else ifneq (,$(filter 10,${OS_VERSION}))
-    PREFER_ALTERNATIVE.ros?=noetic melodic
-  else
-    PREFER_ALTERNATIVE.ros?=melodic
-    PREFER.ros?=robotpkg
+  ifneq (,$(filter 9 10 11,${OS_VERSION}))
+    PREFER.ros?=	system
   endif
-  PREFER.ros?=		system
 endif
-PREFER_ALTERNATIVE.ros?=melodic noetic kinetic indigo hydro groovy
-DEPEND_ABI.ros?=	ros>=groovy
-
 PREFER.ros?=		robotpkg
-SYSTEM_PREFIX.ros?=	/opt/ros/${PKG_ALTERNATIVE.ros} ${SYSTEM_PREFIX}
+
+SYSTEM_PREFIX.ros?=\
+  /opt/ros/noetic       \
+  /opt/ros/melodic      \
+  ${SYSTEM_PREFIX}
 
 PREFER.ros-base?=	${PREFER.ros}
 SYSTEM_PREFIX.ros-base?=${SYSTEM_PREFIX.ros}
-
-# internal macro keeping track of a ros package DEPEND_ABI before a ros
-# alternative is selected
-override define _ros_noaltdep
-$(eval $(if $(filter undefined,$(origin _ros_noaltdep.$1)),\
-  _ros_noaltdep.$1:=${DEPEND_ABI.$1}))${_ros_noaltdep.$1}
-endef
-
-# internal macro defining all ros alternatives
-define _ros_altdef
-  PKG_ALTERNATIVE_DESCR.$1=	Use ros $1
-  PKGTAG.$1=			$1
-  DEPEND_ABI.$1?=		ros-$1
-  PKG_ALTERNATIVE_SELECT.$1=$$(call preduce,				\
-    ros==$1 $${DEPEND_ABI.ros}						\
-    $$(foreach _,$${ROS_DEPEND_USE},					\
-      $$(if $$(filter robotpkg,$${PREFER.$$_}),ros==melodic)		\
-      $$(call _ros_noaltdep,$$_) $${DEPEND_ABI.$$_} $${DEPEND_ABI.$$_.$1}))
-  PKG_ALTERNATIVE_SET.$1=						\
-    $$(foreach _,$${ROS_DEPEND_USE},					\
-      $$(eval DEPEND_ABI.$$_ += $$(value DEPEND_ABI.$$_.$1))		\
-      $$(eval SYSTEM_PKG.Ubuntu.$$_ ?= ros-$1-$$(patsubst ros-%,%,$$_)))
-endef
-$(foreach _,${PKG_ALTERNATIVES.ros},$(eval $(call _ros_altdef,$_)))
-
-# Add extra replacement in PLISTs
-PLIST_SUBST+=\
-  PKG_ALTERNATIVE.ros=${PKG_ALTERNATIVE.ros}
-PRINT_PLIST_AWK_SUBST+=\
-  gsub(/$(subst .,\.,${PKG_ALTERNATIVE.ros})/, "$${PKG_ALTERNATIVE.ros}");
 
 endif # ROS_DEPEND_COMMON --------------------------------------------------

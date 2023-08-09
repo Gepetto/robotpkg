@@ -19,15 +19,7 @@ DEPEND_USE+=			ros-filters
 ROS_DEPEND_USE+=		ros-filters
 
 DEPEND_DIR.ros-filters=		../../devel/ros-filters
-
-DEPEND_ABI.ros-filters.groovy+=	ros-filters>=1.6<=1.7.2
-DEPEND_ABI.ros-filters.hydro+=	ros-filters>=1.7.3<1.8
-DEPEND_ABI.ros-filters.indigo+=	ros-filters>=1.7.3<1.8
-DEPEND_ABI.ros-filters.jade+=	ros-filters>=1.7.3<1.8
-DEPEND_ABI.ros-filters.kinetic+=ros-filters>=1.7.3<1.8
-DEPEND_ABI.ros-filters.lunar+=	ros-filters>=1.8<1.9
-DEPEND_ABI.ros-filters.melodic+=ros-filters>=1.8<1.9
-DEPEND_ABI.ros-filters.noetic?=	ros-filters>=1.9<1.10
+DEPEND_ABI.ros-filters+=	ros-filters>=1.8
 
 SYSTEM_SEARCH.ros-filters=\
 	include/filters/filter_base.h				\

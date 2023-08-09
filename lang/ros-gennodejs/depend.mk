@@ -18,8 +18,6 @@ SYSTEM_PREFIX.ros-gennodejs?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-gennodejs
 ROS_DEPEND_USE+=		ros-gennodejs
 
-DEPEND_ABI.ros+=		ros>=kinetic
-
 DEPEND_ABI.ros-gennodejs?=	ros-gennodejs>=2.0
 DEPEND_DIR.ros-gennodejs?=	../../lang/ros-gennodejs
 

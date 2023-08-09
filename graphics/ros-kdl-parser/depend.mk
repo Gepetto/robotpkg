@@ -19,15 +19,7 @@ DEPEND_USE+=			ros-kdl-parser
 ROS_DEPEND_USE+=		ros-kdl-parser
 
 DEPEND_DIR.ros-kdl-parser?=	../../graphics/ros-kdl-parser
-
-DEPEND_ABI.ros-kdl-parser.groovy?=	ros-kdl-parser>=1.9<1.10
-DEPEND_ABI.ros-kdl-parser.hydro?=	ros-kdl-parser>=1.10<1.11
-DEPEND_ABI.ros-kdl-parser.indigo?=	ros-kdl-parser>=1.11<1.12
-DEPEND_ABI.ros-kdl-parser.jade?=	ros-kdl-parser>=1.11<1.12
-DEPEND_ABI.ros-kdl-parser.kinetic?=	ros-kdl-parser>=1.12<1.13
-DEPEND_ABI.ros-kdl-parser.lunar?=	ros-kdl-parser>=1.12<1.13
-DEPEND_ABI.ros-kdl-parser.melodic?=	ros-kdl-parser>=1.13<1.14
-DEPEND_ABI.ros-kdl-parser.noetic?=	ros-kdl-parser>=1.14<1.15
+DEPEND_ABI.ros-kdl-parser?=	ros-kdl-parser>=1.12
 
 SYSTEM_SEARCH.ros-kdl-parser=\
   'include/kdl_parser/kdl_parser.hpp'					\

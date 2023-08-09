@@ -18,11 +18,8 @@ SYSTEM_PREFIX.ros-realtime-tools?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-realtime-tools
 ROS_DEPEND_USE+=		ros-realtime-tools
 
-DEPEND_ABI.ros+=ros>=hydro
-
 DEPEND_ABI.ros-realtime-tools?=	ros-realtime-tools>=1.8.2
 DEPEND_DIR.ros-realtime-tools?=	../../devel/ros-realtime-tools
-
 SYSTEM_SEARCH.ros-realtime-tools=\
   'include/realtime_tools/realtime_box.h'			\
   'share/realtime_tools/package.xml:/<version>/s/[^0-9.]//gp'	\

@@ -19,15 +19,7 @@ DEPEND_USE+=			ros-console
 ROS_DEPEND_USE+=		ros-console
 
 DEPEND_DIR.ros-console?=	../../sysutils/ros-console
-
-DEPEND_ABI.ros-console.groovy?=	ros-console>=1.9<1.10
-DEPEND_ABI.ros-console.hydro?=	ros-console>=1.10<1.11
-DEPEND_ABI.ros-console.indigo?=	ros-console>=1.11<1.12
-DEPEND_ABI.ros-console.jade?=	ros-console>=1.11<1.12
-DEPEND_ABI.ros-console.kinetic?=ros-console>=1.12<1.13
-DEPEND_ABI.ros-console.lunar?=	ros-console>=1.13<1.14
-DEPEND_ABI.ros-console.melodic?=ros-console>=1.13<1.15
-DEPEND_ABI.ros-console.noetic?=	ros-console>=1.14<1.15
+DEPEND_ABI.ros-console?=	ros-console>=1.13
 
 SYSTEM_SEARCH.ros-console=\
   'include/ros/console.h'				\

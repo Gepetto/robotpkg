@@ -18,8 +18,6 @@ SYSTEM_PREFIX.ros-angles?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-angles
 ROS_DEPEND_USE+=		ros-angles
 
-DEPEND_ABI.ros+=		ros>=groovy
-
 DEPEND_ABI.ros-angles?=		ros-angles>=1.9
 DEPEND_DIR.ros-angles?=		../../math/ros-angles
 

@@ -21,8 +21,6 @@ ROS_DEPEND_USE+=		ros-rviz
 DEPEND_ABI.ros-rviz?=		ros-rviz>=1.9
 DEPEND_DIR.ros-rviz=		../../sysutils/ros-rviz
 
-DEPEND_ABI.ros += ros>=groovy
-
 SYSTEM_SEARCH.ros-rviz=\
   'bin/rviz'							\
   'include/rviz/config.h'					\

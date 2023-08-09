@@ -20,10 +20,6 @@ ROS_DEPEND_USE+=	ros-genmsg
 
 DEPEND_ABI.ros-genmsg?=	ros-genmsg>=0.5<0.7
 DEPEND_DIR.ros-genmsg?=	../../middleware/ros-genmsg
-
-DEPEND_ABI.ros-genmsg.groovy?=	ros-genmsg>=0.4<0.5
-DEPEND_ABI.ros-genmsg.hydro?=	ros-genmsg>=0.4<0.5
-
 SYSTEM_SEARCH.ros-genmsg=\
   '${PYTHON_SYSLIBSEARCH}/genmsg/__init__.py'		\
   'share/genmsg/cmake/genmsgConfig.cmake'		\

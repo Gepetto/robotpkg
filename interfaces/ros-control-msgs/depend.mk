@@ -19,15 +19,7 @@ DEPEND_USE+=				ros-control-msgs
 ROS_DEPEND_USE+=			ros-control-msgs
 
 DEPEND_DIR.ros-control-msgs?=		../../interfaces/ros-control-msgs
-
-DEPEND_ABI.ros-control-msgs.groovy?=	ros-control-msgs>=1.1<1.2
-DEPEND_ABI.ros-control-msgs.hydro?=	ros-control-msgs>=1.2<1.3
-DEPEND_ABI.ros-control-msgs.indigo?=	ros-control-msgs>=1.3<1.4
-DEPEND_ABI.ros-control-msgs.jade?=	ros-control-msgs>=1.3<1.4
-DEPEND_ABI.ros-control-msgs.kinetic?=	ros-control-msgs>=1.4<1.6
-DEPEND_ABI.ros-control-msgs.lunar?=	ros-control-msgs>=1.4<1.5
-DEPEND_ABI.ros-control-msgs.melodic?=	ros-control-msgs>=1.4<1.6
-DEPEND_ABI.ros-control-msgs.noetic?=	ros-control-msgs>=1.5<1.6
+DEPEND_ABI.ros-control-msgs?=	ros-control-msgs>=1.4
 
 SYSTEM_SEARCH.ros-control-msgs=\
   'include/control_msgs/JointControllerState.h'				\

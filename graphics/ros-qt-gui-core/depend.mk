@@ -19,15 +19,7 @@ DEPEND_USE+=			ros-qt-gui-core
 ROS_DEPEND_USE+=		ros-qt-gui-core
 
 DEPEND_DIR.ros-qt-gui-core?=	../../graphics/ros-qt-gui-core
-
-DEPEND_ABI.ros-qt-gui-core.groovy?=	ros-qt-gui-core>=0.2<0.3
-DEPEND_ABI.ros-qt-gui-core.hydro?=	ros-qt-gui-core>=0.2<0.3
-DEPEND_ABI.ros-qt-gui-core.indigo?=	ros-qt-gui-core>=0.2<0.3
-DEPEND_ABI.ros-qt-gui-core.jade?=	ros-qt-gui-core>=0.2<0.3
-DEPEND_ABI.ros-qt-gui-core.kinetic?=	ros-qt-gui-core>=0.3<0.4
-DEPEND_ABI.ros-qt-gui-core.lunar?=	ros-qt-gui-core>=0.3<0.4
-DEPEND_ABI.ros-qt-gui-core.melodic?=	ros-qt-gui-core>=0.3<0.5
-DEPEND_ABI.ros-qt-gui-core.noetic?=	ros-qt-gui-core>=0.4<0.5
+DEPEND_ABI.ros-qt-gui-core?=	ros-qt-gui-core>=0.3
 
 SYSTEM_SEARCH.ros-qt-gui-core=\
   'include/qt_gui_cpp/settings.h'				\

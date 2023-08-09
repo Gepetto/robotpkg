@@ -18,17 +18,8 @@ SYSTEM_PREFIX.gazebo-ros-pkgs?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			gazebo-ros-pkgs
 ROS_DEPEND_USE+=		gazebo-ros-pkgs
 
-DEPEND_ABI.ros+=                ros>=hydro
-
 DEPEND_DIR.gazebo-ros-pkgs?=	../../simulation/gazebo-ros-pkgs
-
-DEPEND_ABI.gazebo-ros-pkgs.hydro?=	gazebo-ros-pkgs>=2.3<2.4
-DEPEND_ABI.gazebo-ros-pkgs.indigo?=	gazebo-ros-pkgs>=2.4<2.5
-DEPEND_ABI.gazebo-ros-pkgs.jade?=	gazebo-ros-pkgs>=2.5<2.7
-DEPEND_ABI.gazebo-ros-pkgs.kinetic?=	gazebo-ros-pkgs>=2.5<2.7
-DEPEND_ABI.gazebo-ros-pkgs.lunar?=	gazebo-ros-pkgs>=2.7<2.8
-DEPEND_ABI.gazebo-ros-pkgs.melodic?=	gazebo-ros-pkgs>=2.8<2.9
-DEPEND_ABI.gazebo-ros-pkgs.noetic?=	gazebo-ros-pkgs>=2.9<2.10
+DEPEND_ABI.gazebo-ros-pkgs?=	gazebo-ros-pkgs>=2.7
 
 SYSTEM_SEARCH.gazebo-ros-pkgs=\
   'include/gazebo_msgs/WorldState.h'					\

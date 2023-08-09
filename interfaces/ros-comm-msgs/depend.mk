@@ -18,8 +18,6 @@ SYSTEM_PREFIX.ros-comm-msgs?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=			ros-comm-msgs
 ROS_DEPEND_USE+=		ros-comm-msgs
 
-DEPEND_ABI.ros+=		ros>=indigo
-
 DEPEND_ABI.ros-comm-msgs?=	ros-comm-msgs>=1.10.3
 DEPEND_DIR.ros-comm-msgs?=	../../interfaces/ros-comm-msgs
 

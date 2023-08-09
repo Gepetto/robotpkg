@@ -19,15 +19,7 @@ DEPEND_USE+=			ros-image-common
 ROS_DEPEND_USE+=		ros-image-common
 
 DEPEND_DIR.ros-image-common?=	../../image/ros-image-common
-
-DEPEND_ABI.ros-image-common.groovy?=	ros-image-common>=1.10<1.11
-DEPEND_ABI.ros-image-common.hydro?=	ros-image-common>=1.11<1.12
-DEPEND_ABI.ros-image-common.indigo?=	ros-image-common>=1.11<1.12
-DEPEND_ABI.ros-image-common.jade?=	ros-image-common>=1.11<1.12
-DEPEND_ABI.ros-image-common.kinetic?=	ros-image-common>=1.11<1.12
-DEPEND_ABI.ros-image-common.lunar?=	ros-image-common>=1.11<1.12
-DEPEND_ABI.ros-image-common.melodic?=	ros-image-common>=1.11<1.12
-DEPEND_ABI.ros-image-common.noetic?=	ros-image-common>=1.12<1.13
+DEPEND_ABI.ros-image-common?=	ros-image-common>=1.11
 
 SYSTEM_SEARCH.ros-image-common=\
   'include/camera_calibration_parsers/parse.h'				\

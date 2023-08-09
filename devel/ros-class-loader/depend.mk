@@ -19,15 +19,7 @@ DEPEND_USE+=			ros-class-loader
 ROS_DEPEND_USE+=		ros-class-loader
 
 DEPEND_DIR.ros-class-loader?=	../../devel/ros-class-loader
-
-DEPEND_ABI.ros-class-loader.groovy?=	ros-class-loader>=0.1<0.2
-DEPEND_ABI.ros-class-loader.hydro?=	ros-class-loader>=0.2<0.3
-DEPEND_ABI.ros-class-loader.indigo?=	ros-class-loader>=0.3<0.4
-DEPEND_ABI.ros-class-loader.jade?=	ros-class-loader>=0.3<0.4
-DEPEND_ABI.ros-class-loader.kinetic?=	ros-class-loader>=0.3<0.4
-DEPEND_ABI.ros-class-loader.lunar?=	ros-class-loader>=0.3<0.4
-DEPEND_ABI.ros-class-loader.melodic?=	ros-class-loader>=0.4<0.5
-DEPEND_ABI.ros-class-loader.noetic?=	ros-class-loader>=0.5<0.6
+DEPEND_ABI.ros-class-loader?=	ros-class-loader>=0.3
 
 SYSTEM_SEARCH.ros-class-loader=\
   'include/class_loader/class_loader.h'				\

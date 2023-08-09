@@ -19,7 +19,6 @@ DEPEND_USE+=			py-rosdep
 
 DEPEND_ABI.py-rosdep?=		${PKGTAG.python}-rosdep>=0.10.0
 DEPEND_DIR.py-rosdep?=		../../sysutils/py-rosdep
-
 SYSTEM_SEARCH.py-rosdep=\
   'bin/rosdep'								\
   '${PYTHON_SYSLIBSEARCH}/rosdep2/_version.py:/__version__/s/[^0-9.]//gp'

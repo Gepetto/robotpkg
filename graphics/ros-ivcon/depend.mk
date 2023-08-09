@@ -20,7 +20,6 @@ ROS_DEPEND_USE+=		ros-ivcon
 
 DEPEND_ABI.ros-ivcon?=	ros-ivcon>=0.1
 DEPEND_DIR.ros-ivcon=	../../graphics/ros-ivcon
-
 SYSTEM_SEARCH.ros-ivcon=\
 	bin/ivcon		\
 	'share/ivcon/package.xml:/<version>/s/[^0-9.]//gp'	\

@@ -18,9 +18,8 @@ SYSTEM_PREFIX.ros-navigation-msgs?=	${SYSTEM_PREFIX.ros-base}
 DEPEND_USE+=				ros-navigation-msgs
 ROS_DEPEND_USE+=			ros-navigation-msgs
 
-DEPEND_ABI.ros+=			ros>=jade
-DEPEND_ABI.ros-navigation-msgs?=	ros-navigation-msgs>=1
 DEPEND_DIR.ros-navigation-msgs?=	../../interfaces/ros-navigation-msgs
+DEPEND_ABI.ros-navigation-msgs?=	ros-navigation-msgs>=1
 
 SYSTEM_SEARCH.ros-navigation-msgs=\
   'include/map_msgs/GetMapROI.h'				\

@@ -22,8 +22,8 @@ DEPEND_ABI.ros-convex-decomposition?=	ros-convex-decomposition>=0.1
 DEPEND_DIR.ros-convex-decomposition=	../../graphics/ros-convex-decomposition
 
 SYSTEM_SEARCH.ros-convex-decomposition=\
-	bin/convex_decomposition		\
-	'share/convex_decomposition/package.xml:/<version>/s/[^0-9.]//gp'
+  bin/convex_decomposition	\
+  'share/convex_decomposition/package.xml:/<version>/s/[^0-9.]//gp'
 
 endif # ROS_CONVEX_DECOMPOSITION_DEPEND_MK ---------------------------------
 
