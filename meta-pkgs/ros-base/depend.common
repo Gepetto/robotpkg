@@ -11,7 +11,7 @@ ifeq (Ubuntu,${OPSYS})
     PREFER.ros?=	system
   endif
 else ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 9 10 11,${OS_VERSION}))
+  ifneq (,$(filter 9 10,${OS_VERSION}))
     PREFER.ros?=	system
   endif
 endif
