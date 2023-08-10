@@ -25,6 +25,9 @@ SYSTEM_SEARCH.ros2-rosidl-typesupport=\
   '${PYTHON_SITELIB}/rosidl_typesupport_c/__init__.py'		\
   '${PYTHON_SITELIB}/rosidl_typesupport_cpp/__init__.py'
 
+# this needs AMENT_PREFIX_PATH at configure runtime
+AMENT_PREFIX_PATH.ros2-rosidl-typesupport=${PREFIX.ros2-rosidl-typesupport}
+
 include ../../mk/sysdep/python.mk
 
 endif # ROS2_ROSIDL_TYPESUPPORT_DEPEND_MK ----------------------------------
