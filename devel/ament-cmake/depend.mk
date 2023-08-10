@@ -52,6 +52,10 @@ CMAKE_ARGS+=	-DAMENT_CMAKE_UNINSTALL_TARGET=OFF
 CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
 CMAKE_ARGS+=	-DPYTHON_INSTALL_DIR=${PYTHON_SITELIB}
 
+# set ament prefix
+export AMENT_PREFIX_PATH=\
+  $(call prependpaths,$(foreach _,${DEPEND_USE},${AMENT_PREFIX_PATH.$_}))
+
 endif # AMENT_CMAKE_DEPEND_MK ----------------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
