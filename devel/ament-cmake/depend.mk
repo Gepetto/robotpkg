@@ -20,7 +20,26 @@ DEPEND_ABI.ament-cmake?=	ament-cmake>=0
 DEPEND_DIR.ament-cmake?=	../../devel/ament-cmake
 
 SYSTEM_SEARCH.ament-cmake=\
-  $(call ros2_system_search, ament_cmake)
+  $(call ros2_system_search,			\
+    ament_cmake					\
+    ament_cmake_core				\
+    ament_cmake_export_definitions		\
+    ament_cmake_export_dependencies		\
+    ament_cmake_export_include_directories	\
+    ament_cmake_export_interfaces		\
+    ament_cmake_export_libraries		\
+    ament_cmake_export_link_flags		\
+    ament_cmake_export_targets			\
+    ament_cmake_gen_version_h			\
+    ament_cmake_gmock				\
+    ament_cmake_gtest				\
+    ament_cmake_include_directories		\
+    ament_cmake_libraries			\
+    ament_cmake_pytest				\
+    ament_cmake_python				\
+    ament_cmake_target_dependencies		\
+    ament_cmake_test				\
+    ament_cmake_version)
 
 include ../../sysutils/py-ament-package/depend.mk
 include ../../mk/sysdep/cmake.mk
