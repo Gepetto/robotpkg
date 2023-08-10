@@ -26,6 +26,7 @@ SYSTEM_SEARCH.ros2-rosidl-typesupport-fastrtps=\
     rosidl_typesupport_fastrtps_c		\
     rosidl_typesupport_fastrtps_cpp)
 
+include ../../middleware/ros2-rmw/depend.mk
 include ../../devel/ament-cmake-ros/depend.mk
 
 endif # ROS2_ROSIDL_TS_FASTRTPS_DEPEND_MK ----------------------------------
