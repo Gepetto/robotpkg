@@ -29,8 +29,7 @@ SYSTEM_SEARCH.ros2-rosidl=\
     rosidl_runtime_cpp				\
     rosidl_typesupport_interface		\
     rosidl_typesupport_introspection_c		\
-    rosidl_typesupport_introspection_cpp	\
-    rosidl_typesupport_introspection_tests)	\
+    rosidl_typesupport_introspection_cpp)	\
   '${PYTHON_SITELIB}/rosidl_cli/__init__.py'
 
 include ../../mk/sysdep/python.mk

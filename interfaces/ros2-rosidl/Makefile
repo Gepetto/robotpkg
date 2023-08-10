@@ -19,7 +19,6 @@ ROS2_SUBPKGS=\
     rosidl_runtime_cpp				\
     rosidl_typesupport_introspection_c		\
     rosidl_typesupport_introspection_cpp	\
-    rosidl_typesupport_introspection_tests	\
   python:					\
     rosidl_cli
 
