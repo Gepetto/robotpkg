@@ -20,7 +20,7 @@ DEPEND_DIR.ros2-rcpputils?=	../../devel/ros2-rcpputils
 
 SYSTEM_SEARCH.ros2-rcpputils=\
   $(call ros2_system_search, rcpputils)		\
-  'include/rcpputils/rcpputils/asserts.hpp'	\
+  'include/{,rcpputils/}rcpputils/asserts.hpp'	\
   'lib/librcpputils.so'
 
 endif # ROS2_RCPPUTILS_DEPEND_MK -------------------------------------------
