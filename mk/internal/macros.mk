@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2011,2013,2016,2019,2022 LAAS/CNRS
+# Copyright (c) 2006,2008-2011,2013,2016,2019,2022-2023 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -329,6 +329,22 @@ override define pgetopts
 $(shell ${AWK}								\
   $(addprefix -f ${ROBOTPKG_DIR}/mk/internal/,libdewey.awk dewey.awk)	\
   getopts '$1' '$2')
+endef
+
+
+# --- sh -------------------------------------------------------------------
+
+# Like $(shell ...), except that it works also with LOGFILTER-enabled rules.
+# Since those rules redefine the SHELL variable and redirect stdout
+# to the log filter, this breaks $(shell ...) when called in that context.
+#
+# This function takes advantage of the $(foreach ...) function that binds its
+# variables locally and overrides the target specific SHELL variable used in
+# the LOGFILTER context. The $(let ...) function cannot be used as it is not
+# supported by older GNU make versions that are still in use.
+#
+override define sh
+$(foreach SHELL,${SH},$(foreach .SHELLFLAGS,-c,$(shell $1)))
 endef
 
 endif # MK_ROBOTPKG_MACROS
