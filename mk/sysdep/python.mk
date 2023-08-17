@@ -287,26 +287,27 @@ PYVARPREFIX=		$(subst python,PYTHON,${PKG_ALTERNATIVE.python})
 PYTHON_PYCACHE?=	$(or ${${PYVARPREFIX}_PYCACHE},)
 PYTHON_TAG?=		$(or ${${PYVARPREFIX}_TAG},)
 
-PYTHON_SYSLIB:=$(if ${PYTHON},$(shell ${PYTHON} 2>/dev/null -c		\
-	'import distutils.sysconfig;                                    \
-	print(distutils.sysconfig.get_python_lib(0, 0, ""))'))
-
-# Python library extension: expand to an error until dependency resolution
+# Python computed variables: expand to an error until dependency resolution
 # has completed and a PYTHON program is available, so that the variable is not
 # referenced by mistake.
 #
-PYTHON_EXT_SUFFIX=$(if ${PYTHON},$(call cache,				\
-  PYTHON_EXT_SUFFIX_,$$(call sh,${PYTHON} 2>/dev/null -c		\
-    'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX") or	\
-                             sysconfig.get_config_var("SO"));')),	\
-  $(error PYTHON_EXT_SUFFIX referenced before dependency resolution))
+_PYTHON_SYSVARS=$(if ${PYTHON},$(call cache,_PYTHON_SYSVARS,$$(call	\
+  sh,${SETENV} HOME=${WRKDIR} PYTHONPATH= ${PYTHON} -c			\
+    'from sysconfig import get_config_var;				\
+     from sys import path;						\
+     print(get_config_var("EXT_SUFFIX") or get_config_var("SO"));	\
+     print(" ".join(path));')),						\
+  $(error _PYTHON_SYSVARS referenced before dependency resolution))
+
+
+# Python library extension
+#
+PYTHON_EXT_SUFFIX=$(word 1,${_PYTHON_SYSVARS})
 
 # PYTHONPATH.<pkg> is a list of subdirectories of PREFIX.<pkg> (or absolute
 # directories) that should be added to the python search paths.
 #
-_PYTHON_SYSPATH:=$(if ${PYTHON},					\
-  $(shell ${SETENV} HOME=${WRKDIR} PYTHONPATH= ${PYTHON} 2>/dev/null -c	\
-	'import sys; print(" ".join(sys.path))'))
+_PYTHON_SYSPATH=$(if ${PYTHON},$(call cdr,${_PYTHON_SYSVARS}))
 
 PYTHONPATH=$(call prependpaths, $(filter-out ${_PYTHON_SYSPATH},	\
 	$(realpath $(foreach _pkg_,${DEPEND_USE},			\
