@@ -291,8 +291,8 @@ endef
 # Caching values to avoid expensive calls
 #
 override define cache
-$(if $(filter undefined,$(origin _cache_$1)),$(eval			\
-  _cache_$1 := $2))${_cache_$1}
+$(foreach _,$1,$(if $(filter undefined,$(origin _cache_$_)),$(eval	\
+  _cache_$_ := $2))${_cache_$_})
 endef
 
 
