@@ -34,10 +34,21 @@ endef
 DEPEND_USE+=		${ROS2_DEPEND_USE_defaults}
 
 # SYSTEM_SEARCH convenience macro for *Config.cmake and package.xml
-define ros2_system_search
+#
+# Takes a list of (sub)packages. Packages prefixed with '?' are marked as
+# optional using the 'pkgopt=~' argument of prefixsearch. Marking ros2
+# subpackages as optional is useful for ros meta packages that gain new
+# subpackages over time. If they are found, this will set the cmake *_DIR
+# variables correctly, while not otherwise requiring a too high DEPEND_ABI
+# just for that.
+#
+override define ros2_system_search
   $(strip $(foreach _,$1,
-    'share/$_/cmake/$_Config.cmake'
-    'share/$_/package.xml:/<version>/s/[^0-9.]//gp'))
+    $(call ros2_system_search.expand,$(patsubst ?%,%,$_),$(filter ?%,$_))))
+endef
+override define ros2_system_search.expand
+  'share/$1/cmake/$1Config.cmake$(if $2,:::~)'
+  'share/$1/package.xml:/<version>/s/[^0-9.]//gp$(if $2,::~)'
 endef
 
 endif # ROS2_DEPEND_COMMON -------------------------------------------------
