@@ -7,21 +7,11 @@ Python addressed this (and changed it ...) in
 https://github.com/python/cpython/commit/4b155967b3e743cbdc31600f13f1bfcf07f7b6ce
 But at least NetBSD keep on not using SOABI for consistency.
 
-Anyway, within robotpkg, PEP-3149 is pointless and life is easier without this.
-So use a bare .so extention.
+Anyway, within robotpkg, a bare .so extention must be allowed and thus an empty
+PythonExtra_EXTENSION_SUFFIX.
 
 --- cmake/Modules/FindPythonExtra.cmake~	2022-03-01 20:48:08.000000000 +0100
 +++ cmake/Modules/FindPythonExtra.cmake	2022-04-13 18:07:45.213182873 +0200
-@@ -182,7 +182,8 @@
-       "The SOABI suffix for Python native extensions. See PEP-3149: https://www.python.org/dev/peps/pep-3149/.")
-   endif()
- 
--  if(PYTHON_SOABI STREQUAL "" OR PYTHON_SOABI STREQUAL "None")
-+  # within robotpkg, use empty extension suffix
-+  if(TRUE)
-     set(PythonExtra_EXTENSION_SUFFIX
-       ""
-       CACHE INTERNAL
 @@ -214,11 +215,8 @@
  set(_required_vars
    PythonExtra_EXTENSION_EXTENSION
