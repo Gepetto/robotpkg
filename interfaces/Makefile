@@ -18,6 +18,7 @@ SUBDIR+=	ros-control-msgs
 SUBDIR+=	ros-navigation-msgs
 SUBDIR+=	ros-std-msgs
 SUBDIR+=	ros2-common-interfaces
+SUBDIR+=	ros2-rcl-core-interfaces
 SUBDIR+=	ros2-rcl-interfaces
 SUBDIR+=	ros2-rosidl
 SUBDIR+=	ros2-rosidl-core
