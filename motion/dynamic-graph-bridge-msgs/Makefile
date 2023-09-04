@@ -2,6 +2,7 @@
 # Created:			Aurelie Clodic on Fri, 17 Oct 2014
 #
 
+PKGREVISION=		1
 ORG=			stack-of-tasks
 NAME=			dynamic-graph-bridge-msgs
 VERSION=		0.3.4
@@ -11,6 +12,7 @@ PKGNAME=		${NAME}-${VERSION}
 DISTNAME=		${ROSNAME}-${VERSION}
 
 CATEGORIES=		motion
+CONFLICTS+=		${NAME}-ros2-[0-9]*
 
 COMMENT=		Dynamic graph bridge messages and services.
 LICENSE=		2-clause-bsd
