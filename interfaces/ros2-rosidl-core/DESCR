@@ -1,0 +1,9 @@
+Provides buildtime and runtime dependencies for ROS messages.
+
+* rosidl_core_generators brings together dependencies for generating and
+  building code for ROS messages.
+* rosidl_core_runtime brings together dependencies for using ROS messages at
+  runtime.
+
+For dependencies required for ROS services and ROS actions, you should depend
+on ros2-rosidl-defaults.
