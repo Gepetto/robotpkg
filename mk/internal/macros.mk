@@ -250,6 +250,15 @@ $(subst ${ROBOTPKG_DIR}/,,$(realpath $1))
 endef
 
 
+# --- pkgversion <pkg> -----------------------------------------------------
+#
+# Return the version from a package spec
+#
+override define pkgversion
+$(lastword $(subst -, ,$1))
+endef
+
+
 # --- add-barrier <phase> <target> -----------------------------------------
 #
 # Register that the toplevel <target> needs to run after the barrier <phase>
