@@ -3,7 +3,7 @@
 #
 
 ROS2_PKG=	rosidl_typesupport_fastrtps
-ROS2_VERSION=	2.2.0
+ROS2_VERSION=	3.2.0
 
 CATEGORIES=	interfaces
 ROS2_COMMENT=	typesupport for fastrtps
