@@ -9,16 +9,10 @@ ifeq (+,${ROS2_DEPEND_COMMON}) # -------------------------------------------
 # Default ros2 packages preferences
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 18.04%,${OS_VERSION}))
-    SYSTEM_PREFIX.ros2?=	/opt/ros/foxy
-  else ifneq (,$(filter 20.04%,${OS_VERSION}))
-    SYSTEM_PREFIX.ros2?=	$(addprefix /opt/ros/, rolling galactic foxy)
-  else ifneq (,$(filter 22.04%,${OS_VERSION}))
-    SYSTEM_PREFIX.ros2?=	$(addprefix /opt/ros/, rolling humble)
-  else
-    PREFER.ros2?=		robotpkg
+   ifneq (,$(filter 22.04%,${OS_VERSION}))
+    SYSTEM_PREFIX.ros2?=	$(addprefix /opt/ros/,rolling iron humble)
+    PREFER.ros2?=		system
   endif
-  PREFER.ros2?=			system
 endif
 
 SYSTEM_PREFIX.ros2?=	${SYSTEM_PREFIX}
