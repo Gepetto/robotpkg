@@ -1,0 +1,10 @@
+Unified Interface for Dynamic (Runtime) Typesupport and Serialization
+
+This library provides a unified interface for creating and reflecting dynamic
+types and dynamic data based off those types at runtime, as well as the
+utilities that support those objects.
+
+It is meant to be used with serialization support libraries that fulfill the
+interface. Properly implemented, a user should be able to, given a serialized
+buffer, the serialization library used to serialize it, and the buffer's
+message/type description, obtain a way to introspect/reflect its contents.
