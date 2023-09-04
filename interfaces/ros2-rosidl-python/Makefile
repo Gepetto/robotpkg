@@ -3,7 +3,7 @@
 #
 
 ROS2_PKG=	rosidl_python
-ROS2_VERSION=	0.14.2
+ROS2_VERSION=	0.20.0
 
 CATEGORIES=	interfaces
 ROS2_COMMENT=	IDL support for python

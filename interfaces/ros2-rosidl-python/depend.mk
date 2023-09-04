@@ -27,6 +27,10 @@ include ../../sysutils/py-ros2-rpyutils/depend.mk
 include ../../mk/sysdep/py-numpy.mk
 include ../../mk/sysdep/python.mk
 
+# For some reason, those files are compiled as bare .so
+PRINT_PLIST_AWK_SUBST+=\
+  gsub(/generator_py[$$]{PYTHON_EXT_SUFFIX}$$/, "generator_py.so")
+
 endif # ROS2_ROSIDL_PYTHON_DEPEND_MK ---------------------------------------
 
 DEPEND_DEPTH:=			${DEPEND_DEPTH:+=}
