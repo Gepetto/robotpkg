@@ -3,7 +3,7 @@
 #
 
 ROS2_PKG=	rosidl_typesupport
-ROS2_VERSION=	2.0.0
+ROS2_VERSION=	3.2.0
 
 CATEGORIES=	interfaces
 ROS2_COMMENT=	typesupport for messages and services
