@@ -3,7 +3,7 @@
 #
 
 ROS2_PKG=	rmw
-ROS2_VERSION=	6.1.0
+ROS2_VERSION=	7.2.1
 
 CATEGORIES=	middleware
 ROS2_COMMENT=	middleware interface.
@@ -17,4 +17,5 @@ include ../../meta-pkgs/ros2-core/Makefile.common
 include ../../devel/ament-cmake-ros/depend.mk
 include ../../devel/ros2-rcutils/depend.mk
 include ../../interfaces/ros2-rosidl/depend.mk
+include ../../interfaces/ros2-rosidl-dynamic-typesupport/depend.mk
 include ../../mk/robotpkg.mk

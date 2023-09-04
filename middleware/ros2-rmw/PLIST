@@ -1,14 +1,19 @@
-@comment Wed Apr 6 17:48:05 CEST 2022
+@comment Mon Sep 4 16:27:41 CEST 2023
 include/rmw/rmw/allocators.h
+include/rmw/rmw/check_type_identifiers_match.h
 include/rmw/rmw/convert_rcutils_ret_to_rmw_ret.h
+include/rmw/rmw/discovery_options.h
 include/rmw/rmw/domain_id.h
+include/rmw/rmw/dynamic_message_type_support.h
 include/rmw/rmw/error_handling.h
 include/rmw/rmw/event.h
 include/rmw/rmw/event_callback_type.h
 include/rmw/rmw/events_statuses/events_statuses.h
 include/rmw/rmw/events_statuses/incompatible_qos.h
+include/rmw/rmw/events_statuses/incompatible_type.h
 include/rmw/rmw/events_statuses/liveliness_changed.h
 include/rmw/rmw/events_statuses/liveliness_lost.h
+include/rmw/rmw/events_statuses/matched.h
 include/rmw/rmw/events_statuses/message_lost.h
 include/rmw/rmw/events_statuses/offered_deadline_missed.h
 include/rmw/rmw/events_statuses/requested_deadline_missed.h
