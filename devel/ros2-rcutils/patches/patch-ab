@@ -11,16 +11,16 @@ NetBSD has dlinfo(3)
  #elif defined (__QNXNTO__)
  #include <sys/link.h>
  #endif
-@@ -127,7 +129,7 @@
+@@ -129,7 +129,7 @@
      goto fail;
    }
    lib->library_path = rcutils_strdup(image_name, lib->allocator);
--#elif defined(_GNU_SOURCE) && !defined(__QNXNTO__) && !defined(__ANDROID__)
-+#elif (defined(_GNU_SOURCE) || __NetBSD__) && !defined(__QNXNTO__) && !defined(__ANDROID__)
+-#elif defined(_GNU_SOURCE) && !defined(__QNXNTO__) && !defined(__ANDROID__) && !defined(__OHOS__)
++#elif (defined(_GNU_SOURCE) || __NetBSD__) && !defined(__QNXNTO__) && !defined(__ANDROID__) && !defined(__OHOS__)
    struct link_map * map = NULL;
    if (dlinfo(lib->lib_pointer, RTLD_DI_LINKMAP, &map) != 0) {
      RCUTILS_SET_ERROR_MSG_WITH_FORMAT_STRING("dlinfo error: %s", dlerror());
-@@ -294,7 +296,7 @@
+@@ -295,7 +297,7 @@
  
    int written = 0;
  
