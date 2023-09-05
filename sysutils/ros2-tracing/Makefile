@@ -2,11 +2,9 @@
 # Created:			Anthony Mallet on Tue, 12 Apr 2022
 #
 
-PKGREVISION=	1
-DISTNAME=	ros2_tracing-4.1.0
-PKGNAME=	$(subst _,-,${DISTNAME})
-MASTER_SITES?=\
-  https://gitlab.com/ros-tracing/ros2_tracing/-/archive/${PKGVERSION_NOREV}/
+ROS2_PKG=	ros2_tracing
+ROS2_VERSION=	7.1.0
+PKGNAME=	$(subst _,-,${ROS2_PKG})-${ROS2_VERSION}
 
 CATEGORIES=	sysutils
 ROS2_COMMENT=	tracing tools

@@ -1,4 +1,4 @@
-@comment Thu Jun 1 09:43:38 CEST 2023
+@comment Tue Sep 5 18:51:40 CEST 2023
 include/tracetools/tracetools/config.h
 include/tracetools/tracetools/config.h.in
 include/tracetools/tracetools/status.h
@@ -18,11 +18,17 @@ ${PYTHON_SITELIB}/ros2trace/__init__.py
 ${PYTHON_SITELIB}/ros2trace/api/__init__.py
 ${PYTHON_SITELIB}/ros2trace/command/__init__.py
 ${PYTHON_SITELIB}/ros2trace/command/trace.py
+${PYTHON_SITELIB}/ros2trace/verb/__init__.py
+${PYTHON_SITELIB}/ros2trace/verb/pause.py
+${PYTHON_SITELIB}/ros2trace/verb/resume.py
+${PYTHON_SITELIB}/ros2trace/verb/start.py
+${PYTHON_SITELIB}/ros2trace/verb/stop.py
 ${PYTHON_SITELIB}/test_tracetools_launch-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
 ${PYTHON_SITELIB}/test_tracetools_launch-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
 ${PYTHON_SITELIB}/test_tracetools_launch-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
 ${PYTHON_SITELIB}/test_tracetools_launch-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/requires.txt
 ${PYTHON_SITELIB}/test_tracetools_launch-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
+${PYTHON_SITELIB}/test_tracetools_launch/__init__.py
 ${PYTHON_SITELIB}/tracetools_launch-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
 ${PYTHON_SITELIB}/tracetools_launch-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
 ${PYTHON_SITELIB}/tracetools_launch-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
