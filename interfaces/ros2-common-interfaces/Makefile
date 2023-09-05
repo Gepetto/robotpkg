@@ -7,6 +7,8 @@ ROS2_VERSION=	4.2.1
 
 CATEGORIES=	interfaces
 ROS2_COMMENT=	common messages and services interface files
+CONFLICTS+=	ros-common-msgs-[0-9]*
+CONFLICTS+=	ros-std-msgs-[0-9]*
 
 ROS2_SUBPKGS=\
     std_msgs		\
