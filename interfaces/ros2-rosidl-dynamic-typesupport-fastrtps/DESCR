@@ -1,0 +1,5 @@
+Dynamic (Runtime) Typesupport Serialization Support Library for FastRTPS
+
+This library provides implementations for the interface specified in the
+rosidl_dynamic_typesupport package, providing FastRTPS-specific implementations
+for manipulating and accessing DynamicType and DynamicData objects.
