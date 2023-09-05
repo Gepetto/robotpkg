@@ -8,6 +8,7 @@ ROS_VERSION=	1.12.6
 
 CATEGORIES=	interfaces
 ROS_COMMENT=	common messages definition
+CONFLICTS+=	ros2-common-interfaces-[0-9]*
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
