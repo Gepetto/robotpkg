@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue,  5 Apr 2022
 #
 
-VERSION=	1.0.24
+VERSION=	1.1.1
 PKGNAME=	fastcdr-${VERSION}
 DISTNAME=	Fast-CDR-${VERSION}
 MASTER_SITES=	${MASTER_SITE_GITHUB:=eProsima/}
@@ -28,7 +28,7 @@ define PKG_OPTION_SET.doc
   include ../../mk/sysdep/doxygen.mk
 endef
 
-DEPEND_ABI.cmake= cmake>=3.3
+DEPEND_ABI.cmake= cmake>=3.16.3
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk

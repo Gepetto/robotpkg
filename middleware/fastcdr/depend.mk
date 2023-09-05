@@ -15,7 +15,7 @@ include ../../meta-pkgs/ros2-core/depend.common
 
 ROS2_DEPEND_USE+=	fastcdr
 
-DEPEND_ABI.fastcdr?=	fastcdr>=1
+DEPEND_ABI.fastcdr?=	fastcdr>=1.1
 DEPEND_DIR.fastcdr?=	../../middleware/fastcdr
 
 SYSTEM_SEARCH.fastcdr=\
