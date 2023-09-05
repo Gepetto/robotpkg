@@ -1,56 +1,10 @@
-@comment Tue Apr 12 02:15:36 CEST 2022
+@comment Tue Sep 5 18:35:47 CEST 2023
+@comment filtered by rosidl adapter.awk
+@comment filtered by rosidl generator.awk
+@comment filtered by rosidl-typesupport-fastrtps generator.awk
 include/rmw_dds_common/rmw_dds_common/context.hpp
 include/rmw_dds_common/rmw_dds_common/gid_utils.hpp
 include/rmw_dds_common/rmw_dds_common/graph_cache.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__builder.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__functions.c
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__functions.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__rosidl_typesupport_fastrtps_c.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__rosidl_typesupport_fastrtps_cpp.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__rosidl_typesupport_introspection_c.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__rosidl_typesupport_introspection_cpp.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__struct.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__struct.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__traits.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__type_support.c
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__type_support.cpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/gid__type_support.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__builder.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__functions.c
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__functions.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__rosidl_typesupport_fastrtps_c.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__rosidl_typesupport_fastrtps_cpp.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__rosidl_typesupport_introspection_c.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__rosidl_typesupport_introspection_cpp.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__struct.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__struct.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__traits.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__type_support.c
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__type_support.cpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/node_entities_info__type_support.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__builder.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__functions.c
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__functions.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__rosidl_typesupport_fastrtps_c.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__rosidl_typesupport_fastrtps_cpp.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__rosidl_typesupport_introspection_c.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__rosidl_typesupport_introspection_cpp.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__struct.h
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__struct.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__traits.hpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__type_support.c
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__type_support.cpp
-include/rmw_dds_common/rmw_dds_common/msg/detail/participant_entities_info__type_support.h
-include/rmw_dds_common/rmw_dds_common/msg/gid.h
-include/rmw_dds_common/rmw_dds_common/msg/gid.hpp
-include/rmw_dds_common/rmw_dds_common/msg/node_entities_info.h
-include/rmw_dds_common/rmw_dds_common/msg/node_entities_info.hpp
-include/rmw_dds_common/rmw_dds_common/msg/participant_entities_info.h
-include/rmw_dds_common/rmw_dds_common/msg/participant_entities_info.hpp
-include/rmw_dds_common/rmw_dds_common/msg/rosidl_generator_c__visibility_control.h
-include/rmw_dds_common/rmw_dds_common/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
-include/rmw_dds_common/rmw_dds_common/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
-include/rmw_dds_common/rmw_dds_common/msg/rosidl_typesupport_introspection_c__visibility_control.h
 include/rmw_dds_common/rmw_dds_common/qos.hpp
 include/rmw_dds_common/rmw_dds_common/security.hpp
 include/rmw_dds_common/rmw_dds_common/time_utils.hpp
@@ -80,9 +34,9 @@ ${PYTHON_SITELIB}/rmw_dds_common/msg/_node_entities_info.py
 ${PYTHON_SITELIB}/rmw_dds_common/msg/_node_entities_info_s.c
 ${PYTHON_SITELIB}/rmw_dds_common/msg/_participant_entities_info.py
 ${PYTHON_SITELIB}/rmw_dds_common/msg/_participant_entities_info_s.c
-${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_c.so
-${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_fastrtps_c.so
-${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_introspection_c.so
+${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_c${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_fastrtps_c${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_introspection_c${PYTHON_EXT_SUFFIX}
 share/ament_index/resource_index/package_run_dependencies/rmw_dds_common
 share/ament_index/resource_index/packages/rmw_dds_common
 share/ament_index/resource_index/parent_prefix_path/rmw_dds_common
@@ -127,12 +81,8 @@ share/rmw_dds_common/local_setup.bash
 share/rmw_dds_common/local_setup.dsv
 share/rmw_dds_common/local_setup.sh
 share/rmw_dds_common/local_setup.zsh
-share/rmw_dds_common/msg/Gid.idl
 share/rmw_dds_common/msg/Gid.msg
-share/rmw_dds_common/msg/NodeEntitiesInfo.idl
 share/rmw_dds_common/msg/NodeEntitiesInfo.msg
-share/rmw_dds_common/msg/ParticipantEntitiesInfo.idl
 share/rmw_dds_common/msg/ParticipantEntitiesInfo.msg
 share/rmw_dds_common/package.dsv
 share/rmw_dds_common/package.xml
-@pkgdir include/rmw_dds_common/rmw_dds_common/msg/detail/dds_fastrtps

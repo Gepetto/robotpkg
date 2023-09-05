@@ -3,7 +3,7 @@
 #
 
 ROS2_PKG=	rmw_dds_common
-ROS2_VERSION=	1.6.0
+ROS2_VERSION=	2.1.0
 
 CATEGORIES=	middleware
 ROS2_COMMENT=	C++ utilities for DDS-based middlewares
