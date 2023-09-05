@@ -15,7 +15,7 @@ include ../../meta-pkgs/ros2-core/depend.common
 
 ROS2_DEPEND_USE+=	fastrtps
 
-DEPEND_ABI.fastrtps?=	fastrtps>=1
+DEPEND_ABI.fastrtps?=	fastrtps>=2.10
 DEPEND_DIR.fastrtps?=	../../middleware/fastrtps
 
 SYSTEM_SEARCH.fastrtps=\

@@ -1,8 +1,8 @@
 inotify(7) is for __linux__ instead of __unix__
 use kqueue(2) on __NetBSD__
 
---- thirdparty/filewatch/FileWatch.hpp~	2022-03-17 07:49:49.000000000 +0100
-+++ thirdparty/filewatch/FileWatch.hpp	2022-04-09 14:10:04.035261010 +0200
+--- thirdparty/filewatch/FileWatch.hpp~	2023-08-11 10:03:17.000000000 +0200
++++ thirdparty/filewatch/FileWatch.hpp	2023-09-05 17:50:06.782843376 +0200
 @@ -42,9 +42,15 @@
  #include <stdlib.h>
  #include <errno.h>
@@ -19,120 +19,122 @@ use kqueue(2) on __NetBSD__
 +#endif
  #endif // __unix__
  
- #include <functional>
-@@ -188,9 +194,13 @@
+ #include <algorithm>
+@@ -193,10 +199,11 @@
+         };
  
- 		FolderInfo  _directory;
- 
--		const std::uint32_t _listen_filters = IN_MODIFY | IN_CREATE | IN_DELETE;
- 
-+
+         FolderInfo  _directory;
+-
+-        const std::uint32_t _listen_filters = IN_MODIFY | IN_CREATE | IN_DELETE;
+-
 +# if __linux__
- 		const static std::size_t event_size = (sizeof(struct inotify_event));
+         const static std::size_t event_size = (sizeof(struct inotify_event));
 +# elif __NetBSD__
-+		const static std::size_t event_size = (sizeof(struct kevent));
++        const static std::size_t event_size = (sizeof(struct kevent));
 +# endif
  #endif // __unix__
  
- 		void init() 
-@@ -232,7 +242,7 @@
- 			_running = std::promise<void>();
+         void init()
+@@ -238,7 +245,7 @@
+             _running = std::promise<void>();
  #ifdef _WIN32
- 			SetEvent(_close_event);
+             SetEvent(_close_event);
 -#elif __unix__
 +#elif __linux__
- 			inotify_rm_watch(_directory.folder, _directory.watch);
+             inotify_rm_watch(_directory.folder, _directory.watch);
  #endif // __unix__
- 			_cv.notify_all();
-@@ -240,8 +250,10 @@
- 			_callback_thread.join();
+             _cv.notify_all();
+@@ -246,8 +253,10 @@
+             _callback_thread.join();
  #ifdef _WIN32
- 			CloseHandle(_directory);
+             CloseHandle(_directory);
 -#elif __unix__
 +#elif __linux__
- 			close(_directory.folder);
+             close(_directory.folder);
 +#elif __NetBSD__
-+			close(_directory.watch);
++            close(_directory.watch);
  #endif // __unix__
- 		}
+         }
  
-@@ -450,7 +462,11 @@
+@@ -461,7 +470,11 @@
  
- 		FolderInfo get_directory(const T& path) 
- 		{
+         FolderInfo get_directory(const T& path)
+         {
 +#if __linux__
- 			const auto folder = inotify_init();
+             const auto folder = inotify_init();
 +#elif __NetBSD__
-+			const auto folder = kqueue();
++            const auto folder = kqueue();
 +#endif
- 			if (folder < 0) 
- 			{
- 				throw std::system_error(errno, std::system_category());
-@@ -472,7 +488,21 @@
- 				}
- 			}();
+             if (folder < 0)
+             {
+                 throw std::system_error(errno, std::system_category());
+@@ -483,7 +496,21 @@
+                 }
+             }();
  
 +#if __linux__
- 			const auto watch = inotify_add_watch(folder, watch_path.c_str(), IN_MODIFY | IN_CREATE | IN_DELETE );
+             const auto watch = inotify_add_watch(folder, watch_path.c_str(), IN_MODIFY | IN_CREATE | IN_DELETE );
 +#elif __NetBSD__
-+                        int watch = open(watch_path.c_str(), O_RDONLY);
-+                        if (watch >= 0) {
-+                          struct kevent ev;
-+                          EV_SET(&ev, watch, EVFILT_VNODE,
-+                                 EV_ADD | EV_ENABLE | EV_CLEAR,
-+                                 NOTE_DELETE|NOTE_WRITE|NOTE_EXTEND, 0, 0);
-+                          if (kevent(folder, &ev, 1, NULL, 0, NULL) == -1) {
-+                            close(watch);
-+                            watch = -1;
++            int watch = open(watch_path.c_str(), O_RDONLY);
++            if (watch >= 0) {
++              struct kevent ev;
++              EV_SET(&ev, watch, EVFILT_VNODE,
++                     EV_ADD | EV_ENABLE | EV_CLEAR,
++                     NOTE_DELETE|NOTE_WRITE|NOTE_EXTEND, 0, 0);
++              if (kevent(folder, &ev, 1, NULL, 0, NULL) == -1) {
++                close(watch);
++                watch = -1;
++              }
++            }
++#endif
+             if (watch < 0)
+             {
+                 throw std::system_error(errno, std::system_category());
+@@ -501,7 +528,16 @@
+             _running.set_value();
+             while (_destory == false)
+             {
++#if __linux__
+                 const auto length = read(_directory.folder, static_cast<void*>(buffer.data()), buffer.size());
++#elif __NetBSD__
++                int nev = kevent(_directory.folder, NULL, 0,
++                                 reinterpret_cast<struct kevent *>(buffer.data()),
++                                 buffer.size() / event_size,
++                                 NULL);
++                if (nev < 0) continue;
++                int length = nev * event_size;
++#endif
+ 
+                 struct stat result;
+                 stat(_path.c_str(), &result);
+@@ -523,6 +559,7 @@
+                     bool already_modified = false;
+                     while (i < length)
+                     {
++#if __linux__
+                         struct inotify_event *event = reinterpret_cast<struct inotify_event *>(&buffer[i]); // NOLINT
+                         if (event->len)
+                         {
+@@ -545,6 +582,22 @@
+                             }
+                         }
+                         i += event_size + event->len;
++#elif __NetBSD__
++                        struct kevent *ev = reinterpret_cast<struct kevent *>(&buffer[i]); // NOLINT
++                        const UnderpinningString changed_file{ _path };
++                        if (pass_filter(changed_file)) {
++                          if (ev->fflags & NOTE_DELETE) {
++                            parsed_information.emplace_back(
++                              T{ _path }, Event::removed);
++                          } else if (ev->fflags & (NOTE_WRITE|NOTE_EXTEND) &&
++                                     !already_modified) {
++                            already_modified = true;
++                            parsed_information.emplace_back(
++                              T{ _path }, Event::modified);
 +                          }
 +                        }
++                        i += event_size;
 +#endif
- 			if (watch < 0) 
- 			{
- 				throw std::system_error(errno, std::system_category());
-@@ -490,8 +520,16 @@
- 			_running.set_value();
- 			while (_destory == false) 
- 			{
-+#if __linux__
- 				const auto length = read(_directory.folder, static_cast<void*>(buffer.data()), buffer.size());
--
-+#elif __NetBSD__
-+				int nev = kevent(_directory.folder, NULL, 0,
-+                                        reinterpret_cast<struct kevent *>(buffer.data()),
-+                                        buffer.size() / event_size,
-+                                        NULL);
-+                                if (nev < 0) continue;
-+                                size_t length = nev * event_size;
-+#endif
- 				struct stat result;
- 				static time_t current_time = 0;
- 				if (stat(_path.c_str(), &result) == 0)
-@@ -507,6 +545,7 @@
- 					bool already_modified = false;
- 					while (i < length) 
- 					{
-+#if __linux__
- 						struct inotify_event *event = reinterpret_cast<struct inotify_event *>(&buffer[i]); // NOLINT
- 						if (event->len) 
- 						{
-@@ -529,6 +568,19 @@
- 							}
- 						}
- 						i += event_size + event->len;
-+#elif __NetBSD__
-+						struct kevent *ev = reinterpret_cast<struct kevent *>(&buffer[i]); // NOLINT
-+                                                const UnderpinningString changed_file{ _path };
-+                                                if (pass_filter(changed_file)) {
-+                                                  if (ev->fflags & NOTE_DELETE) {
-+                                                    parsed_information.emplace_back(T{ _path }, Event::removed);
-+                                                  } else if (ev->fflags & (NOTE_WRITE|NOTE_EXTEND) && !already_modified) {
-+                                                    already_modified = true;
-+                                                    parsed_information.emplace_back(T{ _path }, Event::modified);
-+                                                  }
-+                                                }
-+						i += event_size;
-+#endif
- 					}
- 					//dispatch callbacks
- 					{
+                     }
+                     //dispatch callbacks
+                     {

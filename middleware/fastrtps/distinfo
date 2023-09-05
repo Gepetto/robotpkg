@@ -1,7 +1,7 @@
-SHA1 (Fast-DDS-v2.6.0.tar.gz) = fa50d474688903bcfb55f050c37147017288c058
-RMD160 (Fast-DDS-v2.6.0.tar.gz) = f13e661dd5c22f93f945b38c4acc449da4a9c07b
-Size (Fast-DDS-v2.6.0.tar.gz) = 7553328 bytes
-SHA1 (patch-aa) = 1556961546a5c807ef86d364eb6bdd07b8791ea8
-SHA1 (patch-ab) = 00b274348f1a52f5d13d828180d56f4837216fbe
-SHA1 (patch-ac) = ed809659c4a002a97b3c5ce03a945e428fae9084
+SHA1 (Fast-DDS-v2.11.2.tar.gz) = e5cb708f0cb46c57ceb75592d89a94d34a3f7c68
+RMD160 (Fast-DDS-v2.11.2.tar.gz) = 2006bb863f311acf017e31d4b4b1db359be2c71a
+Size (Fast-DDS-v2.11.2.tar.gz) = 7802853 bytes
+SHA1 (patch-aa) = 51425e8db8d214f4370778e874bc41d9a994ce1b
+SHA1 (patch-ab) = a5c5b2b2822cdd0828547bb35f149101778dbfb8
+SHA1 (patch-ac) = cad32fbaa44aa9a39efd2062d67a5960ff408b57
 SHA1 (patch-ad) = 4fe5971144f7a9120dd27028c9ca08cbc31f50a6

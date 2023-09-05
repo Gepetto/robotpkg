@@ -1,6 +1,6 @@
-@comment Mon Apr 11 16:44:59 CEST 2022
+@comment Tue Sep 5 18:14:39 CEST 2023
 bin/fast-discovery-server
-bin/fast-discovery-server-1.0.0
+bin/fast-discovery-server-1.0.1
 bin/fastdds
 bin/ros-discovery
 include/fastdds/dds/builtin/common/ReplyHeader.hpp
@@ -61,6 +61,7 @@ include/fastdds/dds/publisher/qos/WriterQos.hpp
 include/fastdds/dds/subscriber/DataReader.hpp
 include/fastdds/dds/subscriber/DataReaderListener.hpp
 include/fastdds/dds/subscriber/InstanceState.hpp
+include/fastdds/dds/subscriber/ReadCondition.hpp
 include/fastdds/dds/subscriber/SampleInfo.hpp
 include/fastdds/dds/subscriber/SampleState.hpp
 include/fastdds/dds/subscriber/Subscriber.hpp
@@ -81,6 +82,7 @@ include/fastdds/dds/topic/qos/TopicQos.hpp
 include/fastdds/rtps/Endpoint.h
 include/fastdds/rtps/RTPSDomain.h
 include/fastdds/rtps/attributes/EndpointAttributes.h
+include/fastdds/rtps/attributes/ExternalLocators.hpp
 include/fastdds/rtps/attributes/HistoryAttributes.h
 include/fastdds/rtps/attributes/PropertyPolicy.h
 include/fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.hpp
@@ -89,6 +91,7 @@ include/fastdds/rtps/attributes/ReaderAttributes.h
 include/fastdds/rtps/attributes/ServerAttributes.h
 include/fastdds/rtps/attributes/WriterAttributes.h
 include/fastdds/rtps/builtin/BuiltinProtocols.h
+include/fastdds/rtps/builtin/data/BuiltinEndpoints.hpp
 include/fastdds/rtps/builtin/data/ContentFilterProperty.hpp
 include/fastdds/rtps/builtin/data/ParticipantProxyData.h
 include/fastdds/rtps/builtin/data/ReaderProxyData.h
@@ -115,6 +118,7 @@ include/fastdds/rtps/common/LocatorList.hpp
 include/fastdds/rtps/common/LocatorListComparisons.hpp
 include/fastdds/rtps/common/LocatorSelector.hpp
 include/fastdds/rtps/common/LocatorSelectorEntry.hpp
+include/fastdds/rtps/common/LocatorWithMask.hpp
 include/fastdds/rtps/common/LocatorsIterator.hpp
 include/fastdds/rtps/common/MatchingInfo.h
 include/fastdds/rtps/common/PortParameters.h
@@ -147,8 +151,6 @@ include/fastdds/rtps/messages/RTPSMessageCreator.h
 include/fastdds/rtps/messages/RTPSMessageGroup.h
 include/fastdds/rtps/messages/RTPSMessageSenderInterface.hpp
 include/fastdds/rtps/messages/RTPS_messages.h
-include/fastdds/rtps/network/NetworkFactory.h
-include/fastdds/rtps/network/ReceiverResource.h
 include/fastdds/rtps/network/SenderResource.h
 include/fastdds/rtps/participant/ParticipantDiscoveryInfo.h
 include/fastdds/rtps/participant/RTPSParticipant.h
@@ -187,6 +189,7 @@ include/fastdds/rtps/security/logging/LoggingLevel.h
 include/fastdds/rtps/security/logging/NameValuePair.h
 include/fastdds/rtps/transport/ChainingTransport.h
 include/fastdds/rtps/transport/ChainingTransportDescriptor.h
+include/fastdds/rtps/transport/SenderResource.h
 include/fastdds/rtps/transport/SocketTransportDescriptor.h
 include/fastdds/rtps/transport/TCPTransportDescriptor.h
 include/fastdds/rtps/transport/TCPv4TransportDescriptor.h
@@ -221,6 +224,7 @@ include/fastdds/statistics/dds/publisher/qos/DataWriterQos.hpp
 include/fastdds/statistics/dds/subscriber/qos/DataReaderQos.hpp
 include/fastdds/statistics/rtps/StatisticsCommon.hpp
 include/fastdds/statistics/topic_names.hpp
+include/fastdds/statistics/types.idl
 include/fastdds/thirdparty/optionparser/optionparser.hpp
 include/fastdds/thirdparty/optionparser/optionparser/optionparser.h
 include/fastrtps/Domain.h
@@ -313,8 +317,6 @@ include/fastrtps/rtps/messages/RTPSMessageCreator.h
 include/fastrtps/rtps/messages/RTPSMessageGroup.h
 include/fastrtps/rtps/messages/RTPSMessageSenderInterface.hpp
 include/fastrtps/rtps/messages/RTPS_messages.h
-include/fastrtps/rtps/network/NetworkFactory.h
-include/fastrtps/rtps/network/ReceiverResource.h
 include/fastrtps/rtps/network/SenderResource.h
 include/fastrtps/rtps/participant/ParticipantDiscoveryInfo.h
 include/fastrtps/rtps/participant/RTPSParticipant.h
@@ -399,6 +401,7 @@ include/fastrtps/types/TypesBase.h
 include/fastrtps/utils/DBQueue.h
 include/fastrtps/utils/IPFinder.h
 include/fastrtps/utils/IPLocator.h
+include/fastrtps/utils/ProxyPool.hpp
 include/fastrtps/utils/Semaphore.h
 include/fastrtps/utils/StringMatching.h
 include/fastrtps/utils/System.h
@@ -411,6 +414,7 @@ include/fastrtps/utils/collections/foonathan_memory_helpers.hpp
 include/fastrtps/utils/fixed_size_bitmap.hpp
 include/fastrtps/utils/fixed_size_string.hpp
 include/fastrtps/utils/md5.h
+include/fastrtps/utils/shared_mutex.hpp
 include/fastrtps/utils/string_convert.hpp
 include/fastrtps/xmlparser/XMLEndpointParser.h
 include/fastrtps/xmlparser/XMLParser.h
@@ -418,17 +422,21 @@ include/fastrtps/xmlparser/XMLParserCommon.h
 include/fastrtps/xmlparser/XMLProfileManager.h
 include/fastrtps/xmlparser/XMLTree.h
 lib/libfastrtps.so
-lib/libfastrtps.so.2.6
+lib/libfastrtps.so.2.11
 lib/libfastrtps.so.${PKGVERSION}
 libexec/fastdds/discovery/parser.py
 libexec/fastdds/fastdds.py
 libexec/fastdds/shm/clean.py
 libexec/fastdds/shm/parser.py
+libexec/fastdds/xml_ci/parser.py
+libexec/fastdds/xml_ci/validate.py
+share/fastRTPS_profiles.xsd
+share/fastdds_static_discovery.xsd
 share/fastrtps/LICENSE
 share/fastrtps/cmake/fast-discovery-server-targets-release.cmake
 share/fastrtps/cmake/fast-discovery-server-targets.cmake
 share/fastrtps/cmake/fastrtps-config-version.cmake
 share/fastrtps/cmake/fastrtps-config.cmake
-share/fastrtps/cmake/fastrtps-dynamic-targets-release.cmake
-share/fastrtps/cmake/fastrtps-dynamic-targets.cmake
+share/fastrtps/cmake/fastrtps-shared-targets-release.cmake
+share/fastrtps/cmake/fastrtps-shared-targets.cmake
 share/fastrtps/cmake/optionparser-targets.cmake

@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 11 Apr 2022
 #
 
-VERSION=	2.6.0
+VERSION=	2.11.2
 PKGNAME=	fastrtps-${VERSION}
 DISTNAME=	Fast-DDS-${VERSION}
 MASTER_SITES=	${MASTER_SITE_GITHUB:=eProsima/}
@@ -38,6 +38,7 @@ define PKG_OPTION_SET.doc
   include ../../mk/sysdep/doxygen.mk
 endef
 
+DEPEND_ABI.cmake= cmake>=3.16.3
 DEPEND_ABI.python+= python>=3.6
 
 include ../../devel/asio/depend.mk
