@@ -1,0 +1,15 @@
+Drop entry_points, as it's empty.
+Depending on setuptools/distutils/python version it will not be created at all
+at install time and this will break PLIST.
+
+--- rosidl_pycommon/setup.py~	2023-08-21 16:33:44.000000000 +0200
++++ rosidl_pycommon/setup.py	2023-09-08 12:11:05.137165274 +0200
+@@ -21,8 +21,4 @@
+     description='Common Python functions used by rosidl packages.',
+     license='Apache License, Version 2.0',
+     tests_require=['pytest'],
+-    entry_points={
+-        'console_scripts': [
+-        ],
+-    },
+ )
