@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2007-2013 LAAS/CNRS
+# Copyright (c) 2007-2013,2023 LAAS/CNRS
 # All rights reserved.
 #
 # This project includes software developed by the NetBSD Foundation, Inc.
@@ -123,10 +123,6 @@ RECURSIVE_MAKE_VARS+=\
   RECURSIVE_PKGPATH='${PKGPATH} $(filter-out ${PKGPATH},${RECURSIVE_PKGPATH})'
 RECURSIVE_MAKE=${MAKE} ${RECURSIVE_MAKE_VARS}
 MAKEFLAGS+=--no-print-directory
-
-# Need to do this, don't know why this works but otherwise MAKEOVERRIDES is
-# sometimes lost (gmake-3.82, see robotpkg commit 128793abe).
-export MAKEOVERRIDES:=${MAKEOVERRIDES}
 
 
 # --- fancy decorations ----------------------------------------------------
