@@ -21,6 +21,8 @@ CONFIGURE_ARGS+=	--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=	--with-tk=$(dir ${TK_CONFIG_SH})
 
 INCLUDE_DIRS.mesa+=include
+LIBRARY_DIRS.mesa+=lib
+RPATH_DIRS.mesa+=lib
 
 include ../../pkgtools/libtool/depend.mk
 include ../../mk/sysdep/mesa.mk
