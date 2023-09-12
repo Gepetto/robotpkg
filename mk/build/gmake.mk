@@ -15,7 +15,10 @@ MAKE_FLAGS?=	# empty
 BUILD_TARGET?=	all
 
 # always reset robotpkg gmake context when using gmake to build a package
-MAKE_ENV+=	MAKELEVEL= MAKEOVERRIDES= MAKEFLAGS= MFLAGS=
+MAKE_ENV+=	MAKELEVEL=
+do-build do-install: MAKEOVERRIDES=
+do-build do-install: MAKEFLAGS=
+do-build do-install: MFLAGS=
 
 # parallel builds
 BUILD_MAKE_FLAGS+=\
