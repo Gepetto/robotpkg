@@ -1,0 +1,21 @@
+Add missing boost dependency
+
+--- CMakeLists.txt~	2023-01-18 14:45:13.000000000 +0100
++++ CMakeLists.txt	2023-09-12 17:17:28.070422905 +0200
+@@ -29,6 +29,7 @@
+ 
+ # Project dependencies
+ add_project_dependency(Eigen3 REQUIRED)
++add_project_dependency(Boost)
+ 
+ set(CMAKE_MODULE_PATH
+     ${PROJECT_SOURCE_DIR}/cmake/find-external/CDD
+@@ -73,7 +74,7 @@
+                                    ${${PROJECT_NAME}_HEADERS})
+ target_include_directories(${PROJECT_NAME} PUBLIC $<INSTALL_INTERFACE:include>)
+ target_include_directories(
+-  ${PROJECT_NAME} SYSTEM PUBLIC ${EIGEN3_INCLUDE_DIR} ${CDD_INCLUDE_DIRS}
++  ${PROJECT_NAME} SYSTEM PUBLIC ${BOOST_INCLUDEDIR} ${EIGEN3_INCLUDE_DIR} ${CDD_INCLUDE_DIRS}
+                                 ${qpOASES_INCLUDE_DIRS})
+ target_link_libraries(${PROJECT_NAME} ${CDD_LIBRARIES} ${qpOASES_LIBRARY})
+ 
