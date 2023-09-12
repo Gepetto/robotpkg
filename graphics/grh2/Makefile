@@ -16,6 +16,9 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tcl=$(dir ${TCL_CONFIG_SH})
 CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
 
+CONFIGURE_ARGS+=--x-includes=${PREFIX.libX11}/include
+CONFIGURE_ARGS+=--x-libraries=${PREFIX.libX11}/lib
+
 include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
