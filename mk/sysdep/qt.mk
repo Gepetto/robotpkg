@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018-2019,2021 LAAS/CNRS
+# Copyright (c) 2018-2019,2021,2023 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -92,6 +92,7 @@ define PKG_ALTERNATIVE_SELECT.qt4
 endef
 define PKG_ALTERNATIVE_SET.qt4
   include ../../mk/sysdep/qt4-libs.mk
+  DEPEND_ABI.qt4?=${DEPEND_ABI.qt4-libs}
   DEPEND_ABI.qt4-libs+=$(subst qt,qt4-libs,${PKG_ALTERNATIVE_SELECT.qt4})
 endef
 
@@ -102,6 +103,7 @@ define PKG_ALTERNATIVE_SELECT.qt5
 endef
 define PKG_ALTERNATIVE_SET.qt5
   include ../../mk/sysdep/qt5-qtbase.mk
+  DEPEND_ABI.qt5?=${DEPEND_ABI.qt5-qtbase}
   DEPEND_ABI.qt5-qtbase+=$(subst qt,qt5-qtbase,${PKG_ALTERNATIVE_SELECT.qt5})
 endef
 
