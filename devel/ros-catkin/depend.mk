@@ -37,7 +37,6 @@ ifneq (,$(filter yes YES Yes,${USE_ROS_CATKIN}))
   include ../../pkgtools/pkg-config/depend.mk
   include ../../sysutils/py-catkin-pkg/depend.mk
   include ../../mk/sysdep/cmake.mk
-  include ../../mk/sysdep/googletest.mk
   include ../../mk/sysdep/py-empy.mk
   include ../../mk/sysdep/py-nose.mk
   include ../../mk/sysdep/python.mk
@@ -46,10 +45,22 @@ ifneq (,$(filter yes YES Yes,${USE_ROS_CATKIN}))
 
   CMAKE_ARGS+=-DCATKIN_DEVEL_PREFIX=${WRKDIR}/stage
   CMAKE_ARGS+=-DNOSETESTS=${NOSETESTS}
-  CMAKE_ARGS+=-DGTEST_ROOT=${PREFIX.googletest}
   CMAKE_ARGS+=-DCATKIN_BUILD_BINARY_PACKAGE=1
   CMAKE_ARGS+=-DSETUPTOOLS_DEB_LAYOUT=OFF
 
+  # disable tests by default - googletests started to require C++14 since
+  # release 1.13 and handling this complexity is not really worth it for older
+  # packages
+  CATKIN_ENABLE_TESTING?=	no
+  ifneq (,$(filter yes YES Yes,${CATKIN_ENABLE_TESTING}))
+    include ../../mk/sysdep/googletest.mk
+    CMAKE_ARGS+=-DCATKIN_ENABLE_TESTING=ON
+    CMAKE_ARGS+=-DGTEST_ROOT=${PREFIX.googletest}
+  else
+    CMAKE_ARGS+=-DCATKIN_ENABLE_TESTING=OFF
+  endif
+
+  # handle meta pkgs
   ifneq (,$(filter yes YES Yes,${ROS_METAPKG}))
     CONFIGURE_DIRS?=	${WRKSRC}/build
     CMAKE_ARG_PATH?=	..
