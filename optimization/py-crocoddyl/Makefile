@@ -18,6 +18,7 @@ PYTHON_SELF_CONFLICT=	yes
 MAKE_JOBS_SAFE=		no
 
 DEPEND_ABI.pinocchio=	pinocchio>=2.6.3
+DEPEND_ABI.python=	python>=3
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 
