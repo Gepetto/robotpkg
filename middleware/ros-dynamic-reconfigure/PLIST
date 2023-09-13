@@ -12,7 +12,6 @@ include/dynamic_reconfigure/ReconfigureRequest.h
 include/dynamic_reconfigure/ReconfigureResponse.h
 include/dynamic_reconfigure/SensorLevels.h
 include/dynamic_reconfigure/StrParameter.h
-include/dynamic_reconfigure/TestConfig.h
 include/dynamic_reconfigure/client.h
 include/dynamic_reconfigure/config_init_mutex.h
 include/dynamic_reconfigure/config_tools.h
