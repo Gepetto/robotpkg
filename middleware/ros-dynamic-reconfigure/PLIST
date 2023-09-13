@@ -1,4 +1,4 @@
-@comment Fri Sep 7 17:58:28 CEST 2018
+@comment Wed Sep 13 14:54:39 CEST 2023
 include/dynamic_reconfigure/BoolParameter.h
 include/dynamic_reconfigure/Config.h
 include/dynamic_reconfigure/ConfigDescription.h
@@ -22,8 +22,6 @@ lib/libdynamic_reconfigure_config_init_mutex.so
 lib/pkgconfig/dynamic_reconfigure.pc
 ${PYTHON_SITELIB}/dynamic_reconfigure-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/dynamic_reconfigure/__init__.py
-${PYTHON_SITELIB}/dynamic_reconfigure/cfg/TestConfig.py
-${PYTHON_SITELIB}/dynamic_reconfigure/cfg/__init__.py
 ${PYTHON_SITELIB}/dynamic_reconfigure/client.py
 ${PYTHON_SITELIB}/dynamic_reconfigure/encoding.py
 ${PYTHON_SITELIB}/dynamic_reconfigure/msg/_BoolParameter.py
