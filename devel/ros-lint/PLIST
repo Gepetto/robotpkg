@@ -1,4 +1,4 @@
-@comment Wed Aug 13 16:37:52 CEST 2014
+@comment Wed Sep 13 13:32:16 CEST 2023
 lib/pkgconfig/roslint.pc
 ${PYTHON_SITELIB}/roslint-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
 ${PYTHON_SITELIB}/roslint/__init__.py
@@ -9,7 +9,6 @@ lib/roslint/cpplint
 lib/roslint/pep8
 lib/roslint/test_wrapper
 share/roslint/cmake/roslint-extras.cmake
-share/roslint/cmake/roslint-extras.cmake.develspace.context.cmake.py
 share/roslint/cmake/roslint-extras.cmake.em
 share/roslint/cmake/roslintConfig-version.cmake
 share/roslint/cmake/roslintConfig.cmake

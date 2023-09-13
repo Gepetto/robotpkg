@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Wed, 13 Aug 2014
 #
 
+PKGREVISION=	1
 ROS_PKG=	roslint
 ROS_VERSION=	0.11.2
 
