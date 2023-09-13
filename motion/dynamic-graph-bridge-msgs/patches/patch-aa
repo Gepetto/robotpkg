@@ -1,0 +1,14 @@
+Support disabling tests
+
+--- CMakeLists.txt~	2022-09-06 14:48:23.000000000 +0200
++++ CMakeLists.txt	2023-09-13 13:38:42.731523097 +0200
+@@ -61,7 +61,9 @@
+ if(BUILD_TESTING)
+   if(ROS_VERSION EQUAL 1) # if ROS1
+     find_package(rostest REQUIRED)
++   if(CATKIN_ENABLE_TESTING)
+     add_rostest(tests/ros1/unit_test_ros.test)
++   endif()
+   else() # if ROS-2
+     include(CTest)
+     include(cmake/python.cmake)
