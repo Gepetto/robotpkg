@@ -2,7 +2,7 @@
 # Created:			Séverin Lemaignan on Tue, 06 Aug 2013
 #
 
-PKGREVISION=	1
+PKGREVISION=	2
 ROS_PKG=	robot_state_publisher
 ROS_VERSION=	1.13.6
 
