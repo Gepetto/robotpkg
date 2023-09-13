@@ -2,6 +2,7 @@
 # Created:			Anthony Mallet on Tue,  9 Oct 2012
 #
 
+PKGREVISION=		1
 ROS_PKG=		rqt
 ROS_METAPKG=		yes
 ROS_VERSION=		0.5.0
