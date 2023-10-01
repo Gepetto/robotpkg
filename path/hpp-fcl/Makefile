@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		2.3.5
+HPP_VERSION=		2.3.6
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations
@@ -18,6 +18,8 @@ USE_BOOST_LIBS= thread date_time system filesystem unit_test_framework chrono
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 CMAKE_ARGS+=		-DBUILD_PYTHON_INTERFACE=OFF
+
+DEPEND_ABI.cmake+=	cmake>=3.10
 
 include ../../mk/robotpkg.prefs.mk
 ifeq (,$(filter Ubuntu-16.04 Debian-9,${OPSYS}-${OS_VERSION}))
