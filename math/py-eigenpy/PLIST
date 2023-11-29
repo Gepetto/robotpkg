@@ -32,6 +32,7 @@ include/eigenpy/pickle-vector.hpp
 include/eigenpy/quaternion.hpp
 include/eigenpy/register.hpp
 include/eigenpy/registration.hpp
+include/eigenpy/registration_class.hpp
 include/eigenpy/scalar-conversion.hpp
 include/eigenpy/solvers/BFGSPreconditioners.hpp
 include/eigenpy/solvers/BasicPreconditioners.hpp
