@@ -1,0 +1,16 @@
+Install python headers
+
+--- CMakeLists.txt.orig	2023-11-27 22:54:41.000000000 +0100
++++ CMakeLists.txt	2023-11-29 13:51:42.402143222 +0100
+@@ -245,11 +245,9 @@
+ LIST(APPEND ${PROJECT_NAME}_HEADERS
+   ${${PROJECT_NAME}_CORE_PUBLIC_HEADERS}
+   )
+-IF(BUILD_PYTHON_INTERFACE)
+   LIST(APPEND ${PROJECT_NAME}_HEADERS
+     ${${PROJECT_NAME}_BINDINGS_PYTHON_PUBLIC_HEADERS}
+     )
+-ENDIF(BUILD_PYTHON_INTERFACE)
+ 
+ # Macros to update sources path in subdirs
+ FUNCTION(REMOVE_PATH_FROM_LIST list_name path_name dest_list)

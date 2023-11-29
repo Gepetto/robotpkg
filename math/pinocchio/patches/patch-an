@@ -1,16 +1,9 @@
---- CMakeLists.txt.orig	2022-08-16 10:40:17.000000000 +0200
-+++ CMakeLists.txt	2022-08-16 10:44:13.150033099 +0200
-@@ -176,26 +176,10 @@
-   MESSAGE(STATUS "Pinocchio won't be compiled with its Python bindings. If you want to enable this feature, please set the option BUILD_PYTHON_INTERFACE to ON.")
- ENDIF(BUILD_PYTHON_INTERFACE)
- 
--IF(BUILD_WITH_HPP_FCL_SUPPORT)
-   ADD_DEFINITIONS(-DPINOCCHIO_WITH_HPP_FCL)
-   LIST(APPEND CFLAGS_DEPENDENCIES "-DPINOCCHIO_WITH_HPP_FCL")
-   ADD_PROJECT_DEPENDENCY(hpp-fcl 1.7.3 REQUIRED PKG_CONFIG_REQUIRES "hpp-fcl >= 1.7.3")
--  # Check whether hpp-fcl python bindings are available.
--  SET(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS FALSE)
--  IF(BUILD_PYTHON_INTERFACE)
+--- CMakeLists.txt.orig	2023-11-27 22:54:41.000000000 +0100
++++ CMakeLists.txt	2023-11-29 12:16:04.396391509 +0100
+@@ -184,17 +184,7 @@
+   # Check whether hpp-fcl python bindings are available.
+   SET(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS FALSE)
+   IF(BUILD_PYTHON_INTERFACE)
 -    EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import hppfcl"
 -      RESULT_VARIABLE _hpp_fcl_python_bindings_not_found
 -      OUTPUT_QUIET
@@ -22,8 +15,6 @@
 -      MESSAGE(STATUS "hpp-fcl Python bindings NOT found.")
 -    ENDIF()
 -    UNSET(_hpp_fcl_python_bindings_not_found)
--  ENDIF(BUILD_PYTHON_INTERFACE)
--ENDIF(BUILD_WITH_HPP_FCL_SUPPORT)
+   ENDIF(BUILD_PYTHON_INTERFACE)
+ ENDIF(BUILD_WITH_HPP_FCL_SUPPORT)
  
- # Enforce the preprocessed version of boost::list and boost::vector
- # This information is redundant with the content of include/pinocchio/container/boost-container-limits.hpp
