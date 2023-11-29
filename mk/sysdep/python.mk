@@ -36,7 +36,7 @@
 #	preferred over later ones.
 #
 #	Possible values: python27 python36 python37 python38
-#			 python39 python310 python311
+#			 python39 python310 python311 python312
 #
 # === Package-settable variables ===
 #
@@ -135,7 +135,7 @@ endif
 PKG_ALTERNATIVES+=		python
 PKG_ALTERNATIVES.python=	python27
 PKG_ALTERNATIVES.python+=	python36
-PKG_ALTERNATIVES.python+=	python37 python38 python39 python310 python311
+PKG_ALTERNATIVES.python+=	python37 python38 python39 python310 python311 python312
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
@@ -259,6 +259,19 @@ define PKG_ALTERNATIVE_SET.python311
   DEPEND_METHOD.python311?= ${DEPEND_METHOD.python}
 
   include ../../mk/sysdep/python311.mk
+endef
+
+PKG_ALTERNATIVE_DESCR.python312= Use python-3.12
+PKGTAG.python312 =		py312
+define PKG_ALTERNATIVE_SELECT.python312
+  $(call preduce,${DEPEND_ABI.python} python>=3.12<3.13)
+endef
+define PKG_ALTERNATIVE_SET.python312
+  _py_abi:=$(subst python,python312,${PKG_ALTERNATIVE_SELECT.python312})
+  DEPEND_ABI.python312?= $(strip ${_py_abi})
+  DEPEND_METHOD.python312?= ${DEPEND_METHOD.python}
+
+  include ../../mk/sysdep/python312.mk
 endef
 
 

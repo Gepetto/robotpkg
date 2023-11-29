@@ -16,7 +16,7 @@ DEPEND_USE+=		python311
 include ../../mk/sysdep/python.mk
 PREFER.python311?=	system
 
-DEPEND_ABI.python311?=	python311>=3.10<3.11
+DEPEND_ABI.python311?=	python311>=3.11<3.12
 
 # see sysdep/python.mk for the definition of SYSTEM_SEARCH.python
 _py_search311=		{3.11,3,}{,d}{,m}{,u}
