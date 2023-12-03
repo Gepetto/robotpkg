@@ -1,0 +1,33 @@
+fix for python 2, ref https://github.com/stack-of-tasks/pinocchio/pull/2110
+
+--- bindings/python/pinocchio/visualize/meshcat_visualizer.py
++++ bindings/python/pinocchio/visualize/meshcat_visualizer.py
+@@ -618,7 +618,7 @@ def initializeFrames(self, frame_ids=None, axis_length=0.2, axis_width=2):
+ 
+         for fid, frame in enumerate(self.model.frames):
+             if frame_ids is None or fid in frame_ids:
+-                frame_viz_name = f"{self.viewerFramesGroupName}/{frame.name}"
++                frame_viz_name = "%s/%s" % (self.viewerFramesGroupName, frame.name)
+                 self.viewer[frame_viz_name].set_object(
+                     mg.LineSegments(
+                         mg.PointsGeometry(
+@@ -640,7 +640,7 @@ def updateFrames(self):
+         pin.updateFramePlacements(self.model, self.data)
+         for fid in self.frame_ids:
+             frame_name = self.model.frames[fid].name
+-            frame_viz_name = f"{self.viewerFramesGroupName}/{frame_name}"
++            frame_viz_name = "%s/%s" % (self.viewerFramesGroupName, frame_name)
+             self.viewer[frame_viz_name].set_transform(
+                 self.data.oMf[fid].homogeneous
+             )
+--- examples/update-model-after-urdf.py
++++ examples/update-model-after-urdf.py
+@@ -23,7 +23,7 @@
+ 
+ 
+ def check_limb_lengths(limb_length: float) -> bool:
+-    print(f"Checking that limbs are {limb_length} m long... ", end="")
++    print("Checking that limbs are %s m long... " % limb_length, end="")
+     for side in ("left", "right"):
+         for joint in ("knee", "wheel"):
+             joint_id = model.getJointId(f"{side}_{joint}")
