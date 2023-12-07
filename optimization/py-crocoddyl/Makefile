@@ -4,7 +4,7 @@
 
 ORG=			loco-3d
 NAME=			crocoddyl
-VERSION=		2.0.1
+VERSION=		2.0.2
 
 CATEGORIES=		optimization
 COMMENT=		Optimal control library for robot under contact sequence
@@ -31,6 +31,7 @@ include ../../math/eigen3/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../math/py-pinocchio/depend.mk
+include ../../optimization/ipopt/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../robots/example-robot-data/depend.mk
