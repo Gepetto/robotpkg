@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri,  8 Mar 2019
 #
 
-DISTNAME=		uavpos-genom3-1.2
+DISTNAME=		uavpos-genom3-1.3
 CATEGORIES=		motion
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
