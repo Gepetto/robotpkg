@@ -1,0 +1,5 @@
+@comment Mon Dec 11 15:34:23 CET 2023
+bin/icubtest
+include/icub/icub.h
+lib/libicub.la
+lib/pkgconfig/icub-libs.pc
