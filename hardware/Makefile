@@ -9,6 +9,7 @@ SUBDIR+=	cwiid
 SUBDIR+=	daqflex-libs
 SUBDIR+=	dynamixel-genom3
 SUBDIR+=	force-genom
+SUBDIR+=	ftsens-genom3
 SUBDIR+=	gbx-hokuyo-aist
 SUBDIR+=	gyro-libs
 SUBDIR+=	gyroKVH1000
