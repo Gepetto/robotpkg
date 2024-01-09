@@ -15,13 +15,16 @@ LICENSE=		modified-bsd
 ONLY_FOR_PLATFORM+=     Linux-% # this uses linux socket filters
 
 USE_PYTHON=		true
+USE_BOOST_LIBS=		python
+
+include ../../devel/jrl-cmakemodules/Makefile.common
 
 CMAKE_ARGS+=		-DINSTALL_DOCUMENTATION=OFF
 CMAKE_ARGS+=		-DBUILD_TESTING=OFF # requires catch2 dependency
 
 DEPEND_ABI.cmake+=	cmake>=3.14
 
-include ../../devel/jrl-cmakemodules/Makefile.common
+include ../../devel/boost-libs/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
