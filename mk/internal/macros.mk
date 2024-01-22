@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006,2008-2011,2013,2016,2019,2022-2023 LAAS/CNRS
+# Copyright (c) 2006,2008-2011,2013,2016,2019,2022-2024 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use in source   and binary forms,  with or without
@@ -236,8 +236,11 @@ endef
 # Look for file $1 in path $2, returning the first match. path can be a
 # colon-separated or space-separated list of directories.
 #
+# Use $(wildcard) even though no wildcard is meant to be passed to the macro.
+# $(realpath) would rewrite the symbolic links and this may not be desired.
+#
 override define pathsearch
-$(firstword $(realpath $(addsuffix /$1,$(subst :, ,$2))))
+$(firstword $(wildcard $(addsuffix /$1,$(subst :, ,$2))))
 endef
 
 
