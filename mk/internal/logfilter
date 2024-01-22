@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2009-2011,2013 LAAS/CNRS
+# Copyright (c) 2009-2011,2013,2024 LAAS/CNRS
 # All rights reserved.
 #
 # Permission to use, copy, modify, and distribute this software for any purpose
@@ -73,7 +73,7 @@ fi
 
 # Interactive message strings
 #
-if ${TEST} -t 1; then
+if ${TEST} -t 1 && $TPUT init >/dev/null 2>&1; then
     sc=`${TPUT} sc`
     rc=`${TPUT} rc`
     el=`${TPUT} el 2>/dev/null || ${TPUT} ce 2>/dev/null`
@@ -106,13 +106,20 @@ fi
 verb() { ${ECHO} "$@"; }
 
 if ${TEST} -t 1; then
-    noverb() {
-	set -- $statuslist
-	i=$1
-	eval ${MSG} '"${sc}Processing $interactive $statusline'$i'$el$rc"'
-	shift
-	statuslist="$@ $i"
-    }
+    if $TEST -n "$statuslist"; then
+        noverb() {
+            set -- $statuslist
+            i=$1
+            eval ${MSG} '"${sc}Processing $interactive $statusline'$i'$el$rc"'
+            shift
+            statuslist="$@ $i"
+        }
+    else
+        noverb() {
+            $ECHO "Processing $interactive"
+            noverb() { :;}
+        }
+    fi
 else
     noverb() { :;}
 fi
