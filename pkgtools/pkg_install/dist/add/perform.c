@@ -1,4 +1,4 @@
-/*	$NetBSD: perform.c,v 1.100 2011/08/05 07:04:28 agc Exp $	*/
+/*	$NetBSD: perform.c,v 1.121 2021/10/21 13:05:25 jperkin Exp $	*/
 #if HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -6,7 +6,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: perform.c,v 1.100 2011/08/05 07:04:28 agc Exp $");
+__RCSID("$NetBSD: perform.c,v 1.121 2021/10/21 13:05:25 jperkin Exp $");
 
 /*-
  * Copyright (c) 2003 Grant Beattie <grant@NetBSD.org>
@@ -42,6 +42,7 @@ __RCSID("$NetBSD: perform.c,v 1.100 2011/08/05 07:04:28 agc Exp $");
  */
 
 #include <sys/utsname.h>
+#include <sys/stat.h>
 #if HAVE_ERR_H
 #include <err.h>
 #endif
@@ -49,6 +50,7 @@ __RCSID("$NetBSD: perform.c,v 1.100 2011/08/05 07:04:28 agc Exp $");
 #if HAVE_FCNTL_H
 #include <fcntl.h>
 #endif
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -74,7 +76,6 @@ struct pkg_meta {
 	char *meta_install;
 	char *meta_deinstall;
 	char *meta_preserve;
-	char *meta_views;
 	char *meta_installed_info;
 };
 
@@ -120,7 +121,6 @@ static const struct pkg_meta_desc {
 	{ offsetof(struct pkg_meta, meta_size_pkg), SIZE_PKG_FNAME, 0, 0444 },
 	{ offsetof(struct pkg_meta, meta_size_all), SIZE_ALL_FNAME, 0, 0444 },
 	{ offsetof(struct pkg_meta, meta_preserve), PRESERVE_FNAME, 0, 0444 },
-	{ offsetof(struct pkg_meta, meta_views), VIEWS_FNAME, 0, 0444 },
 	{ offsetof(struct pkg_meta, meta_required_by), REQUIRED_BY_FNAME, 0, 0644 },
 	{ offsetof(struct pkg_meta, meta_installed_info), INSTALLED_INFO_FNAME, 0, 0644 },
 	{ 0, NULL, 0, 0 },
@@ -129,56 +129,66 @@ static const struct pkg_meta_desc {
 static int pkg_do(const char *, int, int);
 
 static int
-end_of_version(const char *opsys, const char *version_end)
-{
-    if (*version_end == '\0')
-	return 1;
-
-    if (strcmp(opsys, "NetBSD") == 0) {
-	if (strncmp(version_end, "_ALPHA", 6) == 0
-	    || strncmp(version_end, "_BETA", 5) == 0
-	    || strncmp(version_end, "_RC", 3) == 0
-	    || strncmp(version_end, "_STABLE", 7) == 0
-	    || strncmp(version_end, "_PATCH", 6) == 0)
-	    return 1;
-    }
-
-    return 0;
-}
-
-static int
 compatible_platform(const char *opsys, const char *host, const char *package)
 {
-    int i = 0;
+	const char *loc;
+	size_t majorlen = 0;
 
-    /* returns 1 if host and package operating system match */
-    if (strcmp(host, package) == 0)
-	return 1;
+	/*
+	 * If the user has set the CHECK_OS_VERSION variable to "no" then skip any
+	 * uname version checks and assume they know what they are doing.  This can
+	 * be useful on OS where the kernel version is not a good indicator of
+	 * userland compatibility, or differs but retains ABI compatibility.
+	 */
+	if (strcasecmp(check_os_version, "no") == 0)
+	    return 1;
 
-    /* find offset of first difference */
-    for (i=0; (host[i] != '\0') && (host[i] == package[i]);)
-	i++;
-
-    if (end_of_version(opsys, host+i) && end_of_version(opsys, package+i))
-	return 1;
-
-    return 0;
+	/* returns 1 if host and package operating system match */
+	if (strcmp(opsys, "NetBSD") == 0) {
+		/*
+		 * warn about -current package on a stable release and
+		 * the reverse
+		 */
+		if ((strstr(host, ".99.") != NULL &&
+		    strstr(package, ".99.") == NULL) ||
+		    (strstr(package, ".99.") != NULL &&
+		    strstr(host, ".99.") == NULL)) {
+			return 0;
+		}
+		/* compare the major version only */
+		loc = strchr(host, '.');
+		if (loc != NULL) {
+			majorlen = loc - host;
+			if (majorlen != (size_t)(strchr(package, '.') - package))
+				return 0;
+			if (strncmp(host, package, majorlen) == 0)
+				return 1;
+		}
+	}
+	if (strcmp(host, package) == 0)
+		return 1;
+	return 0;
 }
 
 static int
 mkdir_p(const char *path)
 {
 	char *p, *cur_end;
-	int done;
+	int done, saved_errno;
+	struct stat sb;
 
 	/*
 	 * Handle the easy case of direct success or
 	 * pre-existing directory first.
 	 */
-	if (mkdir(path, 0777) == 0 || errno == EEXIST)
+	if (mkdir(path, 0777) == 0)
 		return 0;
-	if (errno != ENOENT)
+	if (stat(path, &sb) == 0) {
+		if (S_ISDIR(sb.st_mode))
+			return 0;
+		errno = ENOTDIR;
 		return -1;
+	}
 
 	cur_end = p = xstrdup(path);
 
@@ -198,21 +208,26 @@ mkdir_p(const char *path)
 		done = (*cur_end == '\0');
 		*cur_end = '\0';
 
-		/*
-		 * ENOENT can only happen if something else races us,
-		 * in which case we should better give up.
-		 */
-		if (mkdir(p, 0777) == -1 && errno != EEXIST) {
+		if (mkdir(p, 0777) == -1) {
+			saved_errno = errno;
+			if (stat(p, &sb) == 0) {
+				if (S_ISDIR(sb.st_mode))
+					goto pass;
+				errno = ENOTDIR;
+			} else {
+				errno = saved_errno;
+			}
 			free(p);
 			return -1;
 		}
+pass:
 		if (done)
 			break;
 		*cur_end = '/';
 	}
 
 	free(p);
-	return 0;	
+	return 0;
 }
 
 /*
@@ -398,9 +413,6 @@ check_already_installed(struct pkg_task *pkg)
 		return 1;
 	}
 
-	if (Force)
-		return 1;
-
 	/* We can only arrive here for explicitly requested packages. */
 	if (!Automatic && is_automatic_installed(pkg->pkgname)) {
 		if (Fake ||
@@ -439,7 +451,7 @@ check_other_installed(struct pkg_task *pkg)
 		return -1;
 	}
 	*iter = '\0';
-	pkg->other_version = find_best_matching_installed_pkg(pkgbase);
+	pkg->other_version = find_best_matching_installed_pkg(pkgbase, 0);
 	free(pkgbase);
 	if (pkg->other_version == NULL)
 		return 0;
@@ -494,10 +506,12 @@ check_other_installed(struct pkg_task *pkg)
 				continue;
 			if (pkg_match(p->name, pkg->pkgname) == 1)
 				continue; /* Both match, ok. */
-			warnx("Dependency of %s fulfilled by %s, but not by %s",
-			    iter, pkg->other_version, pkg->pkgname);
-			if (!ForceDepending)
+			if (!ForceDepending) {
+				warnx("Dependency of %s fulfilled by %s, "
+				    "but not by %s", iter, pkg->other_version,
+				    pkg->pkgname);
 				status = -1;
+			}
 			break;
 		}
 		free_plist(&plist);		
@@ -817,8 +831,7 @@ extract_files(struct pkg_task *pkg)
 out:
 	if (!NoRecord)
 		pkgdb_close();
-	archive_write_close(writer);
-	archive_write_finish(writer);
+	archive_write_free(writer);
 
 	return r;
 }
@@ -897,7 +910,7 @@ check_platform(struct pkg_task *pkg)
 	if (OverrideMachine != NULL)
 		effective_arch = OverrideMachine;
 	else
-		effective_arch = MACHINE_ARCH;
+		effective_arch = PKGSRC_MACHINE_ARCH;
 
 	/* If either the OS or arch are different, bomb */
 	if (strcmp(OPSYS_NAME, pkg->buildinfo[BI_OPSYS]) ||
@@ -969,7 +982,8 @@ run_install_script(struct pkg_task *pkg, const char *argument)
 	setenv(PKG_REFCOUNT_DBDIR_VNAME, config_pkg_refcount_dbdir, 1);
 
 	if (Verbose)
-		printf("Running install with PRE-INSTALL for %s.\n", pkg->pkgname);
+		printf("Running install with %s for %s.\n", argument,
+		    pkg->pkgname);
 	if (Fake)
 		return 0;
 
@@ -1092,6 +1106,40 @@ check_implicit_conflict(struct pkg_task *pkg)
 	return status;
 }
 
+/*
+ * Install a required dependency and verify its installation.
+ */
+static int
+install_depend_pkg(const char *dep)
+{
+	/* XXX check cyclic dependencies? */
+	if (Fake || NoRecord) {
+		if (!Force) {
+			warnx("Missing dependency %s\n", dep);
+			return 1;
+		}
+		warnx("Missing dependency %s, continuing", dep);
+	}
+
+	if (pkg_do(dep, 1, 0)) {
+		if (!ForceDepends) {
+			warnx("Can't install dependency %s", dep);
+			return 1;
+		}
+		warnx("Can't install dependency %s, continuing", dep);
+	}
+
+	if (find_best_matching_installed_pkg(dep, 0) == NULL) {
+		if (!ForceDepends) {
+			warnx("Just installed dependency %s disappeared", dep);
+			return 1;
+		}
+		warnx("Missing dependency %s ignored", dep);
+	}
+
+	return 0;
+}
+
 static int
 check_dependencies(struct pkg_task *pkg)
 {
@@ -1102,6 +1150,9 @@ check_dependencies(struct pkg_task *pkg)
 
 	status = 0;
 
+	/*
+	 * Recursively handle dependencies, installing as required.
+	 */
 	for (p = pkg->plist.head; p != NULL; p = p->next) {
 		if (p->type == PLIST_IGNORE) {
 			p = p->next;
@@ -1109,43 +1160,31 @@ check_dependencies(struct pkg_task *pkg)
 		} else if (p->type != PLIST_PKGDEP)
 			continue;
 
-		best_installed = find_best_matching_installed_pkg(p->name);
-
-		if (best_installed == NULL) {
-			/* XXX check cyclic dependencies? */
-			if (Fake || NoRecord) {
-				if (!Force) {
-					warnx("Missing dependency %s\n",
-					     p->name);
-					status = -1;
-					break;
-				}
-				warnx("Missing dependency %s, continuing",
-				    p->name);
-				continue;
-			}
-			if (pkg_do(p->name, 1, 0)) {
-				if (ForceDepends) {
-					warnx("Can't install dependency %s, "
-					    "continuing", p->name);
-					continue;
-				} else {
-					warnx("Can't install dependency %s",
-					    p->name);
-					status = -1;
-					break;
-				}
-			}
-			best_installed = find_best_matching_installed_pkg(p->name);
-			if (best_installed == NULL && ForceDepends) {
-				warnx("Missing dependency %s ignored", p->name);
-				continue;
-			} else if (best_installed == NULL) {
-				warnx("Just installed dependency %s disappeared", p->name);
+		if (find_best_matching_installed_pkg(p->name, 0) == NULL) {
+			if (install_depend_pkg(p->name) != 0) {
 				status = -1;
 				break;
 			}
 		}
+	}
+
+	/*
+	 * Now that all dependencies have been processed we can find the best
+	 * matches for pkg_register_depends() to store in our +REQUIRED_BY.
+	 */
+	for (p = pkg->plist.head; p != NULL; p = p->next) {
+		if (p->type == PLIST_IGNORE) {
+			p = p->next;
+			continue;
+		} else if (p->type != PLIST_PKGDEP)
+			continue;
+
+		best_installed = find_best_matching_installed_pkg(p->name, 0);
+		if (best_installed == NULL) {
+			warnx("Expected dependency %s still missing", p->name);
+			return -1;
+		}
+
 		for (i = 0; i < pkg->dep_length; ++i) {
 			if (strcmp(best_installed, pkg->dependencies[i]) == 0)
 				break;
@@ -1165,30 +1204,6 @@ check_dependencies(struct pkg_task *pkg)
 	}
 
 	return status;
-}
-
-/*
- * If this package uses pkg_views, register it in the default view.
- */
-static void
-pkg_register_views(struct pkg_task *pkg)
-{
-	if (Fake || NoView || pkg->meta_data.meta_views == NULL)
-		return;
-
-	if (Verbose) {
-		printf("%s/pkg_view -d %s %s%s %s%s %sadd %s\n",
-			BINDIR, pkgdb_get_dir(),
-			View ? "-w " : "", View ? View : "",
-			Viewbase ? "-W " : "", Viewbase ? Viewbase : "",
-			Verbose ? "-v " : "", pkg->pkgname);
-	}
-
-	fexec_skipempty(BINDIR "/pkg_view", "-d", pkgdb_get_dir(),
-			View ? "-w " : "", View ? View : "",
-			Viewbase ? "-W " : "", Viewbase ? Viewbase : "",
-			Verbose ? "-v " : "", "add", pkg->pkgname,
-			(void *)NULL);
 }
 
 static int
@@ -1215,6 +1230,8 @@ preserve_meta_data_file(struct pkg_task *pkg, const char *name)
 static int
 start_replacing(struct pkg_task *pkg)
 {
+	int result = -1;
+
 	if (preserve_meta_data_file(pkg, REQUIRED_BY_FNAME))
 		return -1;
 
@@ -1231,14 +1248,19 @@ start_replacing(struct pkg_task *pkg)
 			Destdir ? " -P ": "", Destdir ? Destdir : "",
 			pkg->other_version);
 	}
-	if (!Fake)
-		fexec_skipempty(BINDIR "/pkg_delete", "-K", pkgdb_get_dir(),
+	if (!Fake) {
+		result = fexec_skipempty(BINDIR "/pkg_delete", "-K", pkgdb_get_dir(),
 		    "-p", pkg->prefix,
 		    Destdir ? "-P": "", Destdir ? Destdir : "",
 		    pkg->other_version, NULL);
+		if (result != 0) {
+			warnx("command failed: %s/pkg_delete -K %s -p %s %s%s%s",
+			      BINDIR, pkgdb_get_dir(), pkg->prefix, Destdir ? "-P" : " ",
+			      Destdir ? Destdir : "", pkg->other_version);
+		}
+	}
 
-	/* XXX Check return value and do what? */
-	return 0;
+	return result;
 }
 
 static int check_input(const char *line, size_t len)
@@ -1260,6 +1282,9 @@ static int check_input(const char *line, size_t len)
 static int
 check_signature(struct pkg_task *pkg, int invalid_sig)
 {
+#ifdef BOOTSTRAP
+	return 0;
+#else
 	char *line;
 	size_t len;
 
@@ -1296,11 +1321,15 @@ check_signature(struct pkg_task *pkg, int invalid_sig)
 	}
 	warnx("Unknown value of configuration variable VERIFIED_INSTALLATION");
 	return 1;
+#endif
 }
 
 static int
 check_vulnerable(struct pkg_task *pkg)
 {
+#ifdef BOOTSTRAP
+	return 0;
+#else
 	static struct pkg_vulnerabilities *pv;
 	int require_check;
 	char *line;
@@ -1325,7 +1354,7 @@ check_vulnerable(struct pkg_task *pkg)
 			return require_check;
 	}
 
-	if (!audit_package(pv, pkg->pkgname, NULL, 2))
+	if (!audit_package(pv, pkg->pkgname, NULL, 0, 2))
 		return 0;
 
 	if (require_check)
@@ -1339,11 +1368,15 @@ check_vulnerable(struct pkg_task *pkg)
 		return 1;
 	}
 	return 0;
+#endif
 }
 
 static int
 check_license(struct pkg_task *pkg)
 {
+#ifdef BOOTSTRAP
+	return 0;
+#else
 	if (LicenseCheck == 0)
 		return 0;
 
@@ -1367,6 +1400,7 @@ check_license(struct pkg_task *pkg)
 		warnx("Invalid LICENSE for package `%s'", pkg->pkgname);
 		return 1;
 	}
+#endif
 }
 
 /*
@@ -1389,8 +1423,12 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 		goto clean_find_archive;
 	}
 
+#ifndef BOOTSTRAP
 	invalid_sig = pkg_verify_signature(archive_name, &pkg->archive, &pkg->entry,
 	    &pkg->pkgname);
+#else
+	invalid_sig = 0;
+#endif
 	free(archive_name);
 
 	if (pkg->archive == NULL)
@@ -1421,12 +1459,7 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 	if (pkg->meta_data.meta_mtree != NULL)
 		warnx("mtree specification in pkg `%s' ignored", pkg->pkgname);
 
-	if (pkg->meta_data.meta_views != NULL) {
-		pkg->logdir = xstrdup(pkg->prefix);
-		pkgdb_set_dir(dirname_of(pkg->logdir), 4);
-	} else {
-		pkg->logdir = xasprintf("%s/%s", config_pkg_dbdir, pkg->pkgname);
-	}
+	pkg->logdir = xasprintf("%s/%s", config_pkg_dbdir, pkg->pkgname);
 
 	if (Destdir != NULL)
 		pkg->install_logdir = xasprintf("%s/%s", Destdir, pkg->logdir);
@@ -1512,7 +1545,7 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 		goto nuke_pkg;
 
 	if (run_install_script(pkg, "POST-INSTALL"))
-		goto nuke_pkgdb;
+		goto nuke_pkg;
 
 	/* XXX keep +INSTALL_INFO for updates? */
 	/* XXX keep +PRESERVE for updates? */
@@ -1526,8 +1559,6 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 
 	if (pkg->meta_data.meta_display != NULL)
 		fputs(pkg->meta_data.meta_display, stdout);
-
-	pkg_register_views(pkg);
 
 	status = 0;
 	goto clean_memory;
@@ -1544,6 +1575,7 @@ nuke_pkg:
 
 nuke_pkgdb:
 	if (!Fake) {
+		(void) remove_files(pkg->install_logdir, "+*");
 		if (recursive_remove(pkg->install_logdir, 1))
 			warn("Couldn't remove %s", pkg->install_logdir);
 		free(pkg->install_logdir_real);
@@ -1567,7 +1599,7 @@ clean_memory:
 	free_plist(&pkg->plist);
 	free_meta_data(pkg);
 	if (pkg->archive)
-		archive_read_finish(pkg->archive);
+		archive_read_free(pkg->archive);
 	free(pkg->other_version);
 	free(pkg->pkgname);
 clean_find_archive:

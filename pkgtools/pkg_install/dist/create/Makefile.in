@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.in,v 1.18 2010/04/20 00:39:13 joerg Exp $
+# $NetBSD: Makefile.in,v 1.30 2020/10/28 16:52:43 maya Exp $
 
 srcdir=		@srcdir@
 
@@ -23,14 +23,18 @@ INSTALL=	@INSTALL@
 
 PROG=		pkg_create
 
-.if empty(BOOTSTRAP)
-LIBS=		-linstall -lfetch @LIBS@
+SSL_SUPPORT=	@ssl_support@
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
-OBJS=	main.o perform.o pl.o util.o build.o
+OBJS=		main.o perform.o pl.o util.o build.o
+
+.if empty(BOOTSTRAP)
+LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch @LIBS@
+.if !empty(SSL_SUPPORT)
+LIBS+=		-lssl -lcrypto
+.endif
 .else
-LIBS=		-linstall @LIBS@
-CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBOOTSTRAP
-OBJS=	main.o perform.o pl.o util.o
+LIBS=		-linstall ${STATIC_LIBARCHIVE} ${STATIC_LIBARCHIVE_LDADD} @LIBS@
+CPPFLAGS+=	-DBOOTSTRAP
 .endif
 
 all: $(PROG)
@@ -47,7 +51,13 @@ clean:
 install:
 	$(INSTALL) -m 755 -d ${DESTDIR}$(sbindir)
 	$(INSTALL) -m 755 -d ${DESTDIR}$(man1dir)
-	$(INSTALL) -m 755 -d ${DESTDIR}$(cat1dir)
 	$(INSTALL) $(PROG) ${DESTDIR}$(sbindir)/$(PROG)
 	$(INSTALL) -m 444 $(PROG).1 ${DESTDIR}$(man1dir)/$(PROG).1
+.if defined(MANINSTALL) && !empty(MANINSTALL:Mcatinstall)
+	$(INSTALL) -m 755 -d ${DESTDIR}$(cat1dir)
+.  if defined(CATMAN_SECTION_SUFFIX) && !empty(CATMAN_SECTION_SUFFIX:M[Yy][Ee][Ss])
+	$(INSTALL) -m 444 $(PROG).cat ${DESTDIR}$(cat1dir)/$(PROG).1
+.  else
 	$(INSTALL) -m 444 $(PROG).cat ${DESTDIR}$(cat1dir)/$(PROG).0
+.  endif
+.endif

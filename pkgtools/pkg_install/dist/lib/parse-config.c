@@ -1,4 +1,4 @@
-/*	$NetBSD: parse-config.c,v 1.15 2010/06/16 23:02:49 joerg Exp $	*/
+/*	$NetBSD: parse-config.c,v 1.17 2020/12/11 10:06:53 jperkin Exp $	*/
 
 #if HAVE_CONFIG_H
 #include "config.h"
@@ -7,7 +7,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: parse-config.c,v 1.15 2010/06/16 23:02:49 joerg Exp $");
+__RCSID("$NetBSD: parse-config.c,v 1.17 2020/12/11 10:06:53 jperkin Exp $");
 
 /*-
  * Copyright (c) 2008, 2009 Joerg Sonnenberger <joerg@NetBSD.org>.
@@ -66,6 +66,7 @@ const char *cert_chain_file;
 const char *certs_packages;
 const char *certs_pkg_vulnerabilities;
 const char *check_eol = "yes";
+const char *check_os_version = "yes";
 const char *check_vulnerabilities;
 static const char *config_cache_connections;
 static const char *config_cache_connections_host;
@@ -83,7 +84,7 @@ const char *pkg_vulnerabilities_dir;
 const char *pkg_vulnerabilities_file;
 const char *pkg_vulnerabilities_url;
 const char *ignore_advisories = NULL;
-const char tnf_vulnerability_base[] = "http://ftp.NetBSD.org/pub/NetBSD/packages/vulns";
+const char tnf_vulnerability_base[] = "http://cdn.NetBSD.org/pub/NetBSD/packages/vulns";
 const char *acceptable_licenses = NULL;
 
 static struct config_variable {
@@ -100,6 +101,7 @@ static struct config_variable {
 	{ "CERTIFICATE_CHAIN", &cert_chain_file },
 	{ "CHECK_LICENSE", &do_license_check },
 	{ "CHECK_END_OF_LIFE", &check_eol },
+	{ "CHECK_OS_VERSION", &check_os_version },
 	{ "CHECK_VULNERABILITIES", &check_vulnerabilities },
 	{ "DEFAULT_ACCEPTABLE_LICENSES", &default_acceptable_licenses },
 	{ "GPG", &gpg_cmd },

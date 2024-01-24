@@ -1,7 +1,7 @@
-dnl $NetBSD: configure.ac,v 1.36 2011/04/20 09:57:25 morr Exp $
+dnl $NetBSD: configure.ac,v 1.44 2020/12/02 10:22:39 wiz Exp $
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.52)
-AC_INIT([pkg_install], [20090911], [joerg@NetBSD.org])
+AC_INIT([pkg_install], [20200701], [joerg@NetBSD.org])
 AC_CONFIG_SRCDIR([lib/plist.c])
 AC_CONFIG_HEADER(lib/config.h)
 
@@ -39,9 +39,9 @@ AC_SUBST(AUTOHEADER)
 
 dnl Set the default pkg dbdir
 AC_ARG_WITH(pkgdbdir,
-[  --with-pkgdbdir=DIR     Where to put the pkg database (/var/db/pkg)],
+[  --with-pkgdbdir=DIR     Where to put the pkg database (PREFIX/pkgdb)],
 [ pkgdbdir="$with_pkgdbdir" ],
-[ pkgdbdir="/var/db/pkg" ])
+[ pkgdbdir="${prefix}/pkgdb" ])
 AC_SUBST(pkgdbdir)
 
 AC_ARG_WITH(ssl,
@@ -56,17 +56,19 @@ AC_ARG_ENABLE([bootstrap],
 
 AC_SUBST(bootstrap)
 
+dnl Checks for large file support.
+AC_SYS_LARGEFILE
+
 dnl Checks for libraries.
 AC_CHECK_LIB(db, __db185_open, , AC_SEARCH_LIBS(dbopen, [db db1]))
 
 dnl Checks for header files.
 AC_HEADER_STDC
-AC_CHECK_HEADERS([assert.h ctype.h dirent.h err.h errno.h fnctl.h \
+AC_CHECK_HEADERS([assert.h ctype.h dirent.h err.h errno.h fcntl.h \
 	fnmatch.h glob.h grp.h inttypes.h limits.h pwd.h signal.h \
 	stdarg.h stdio.h stdlib.h string.h time.h unistd.h vis.h])
-AC_CHECK_HEADERS([sys/cdefs.h sys/file.h sys/ioctl.h sys/param.h \
-	sys/queue.h sys/stat.h sys/time.h sys/types.h sys/utsname.h \
-	sys/wait.h])
+AC_CHECK_HEADERS([sys/cdefs.h sys/file.h sys/ioctl.h sys/queue.h \
+	sys/stat.h sys/time.h sys/types.h sys/utsname.h sys/wait.h])
 
 # Checks for library functions.
 AC_CHECK_FUNCS([vfork])
@@ -133,7 +135,7 @@ AC_CHECK_SIZEOF(long long)
 AC_CHECK_SIZEOF(size_t, [#include <stdlib.h>])
 
 case $host in
-*-*-hpux*)
+*-*-bsdi*|*-*-hpux*|*-*-osf*)
 	AC_DEFINE(MISSING_SIZE_T_SUPPORT)
 	AH_TEMPLATE([MISSING_SIZE_T_SUPPORT], [
 	Define to 1 if the `z' modifider for printf is missing.
@@ -142,7 +144,7 @@ case $host in
 esac
 
 case $host in
-*-*-dragonfly* |*-*-freebsd*|*-*-linux*)
+*-*-cygwin*|*-*-dragonfly* |*-*-freebsd*|*-*-linux*)
 	AC_DEFINE([NUMERIC_VERSION_ONLY], [1], [Defined when to retain only the numeric OS version])
 	;;
 esac
@@ -170,7 +172,7 @@ AC_SUBST(SYSCONFDIR)
 PKG_DBDIR="$pkgdbdir"
 AC_SUBST(PKG_DBDIR)
 
-AC_CONFIG_FILES([Makefile add/Makefile admin/Makefile bpm/bpm.sh \
+AC_CONFIG_FILES([Makefile add/Makefile admin/Makefile \
 	create/Makefile delete/Makefile info/Makefile \
 	lib/Makefile lib/pkg_install.conf.5 lib/pkg_install.conf.cat])
 AC_OUTPUT

@@ -34,7 +34,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: pkg_delete.c,v 1.11 2010/02/03 14:20:14 joerg Exp $");
+__RCSID("$NetBSD: pkg_delete.c,v 1.14 2018/03/21 14:35:35 sevan Exp $");
 
 #if HAVE_ERR_H
 #include <err.h>
@@ -60,7 +60,7 @@ static int delete_automatic_leaves;
 static void
 usage(void)
 {
-	fprintf(stderr, "usage: pkg_delete [-DFfkNnORrVv] [-K pkg_dbdir]"
+	fprintf(stderr, "usage: pkg_delete [-ADFfkNnORrVv] [-K pkg_dbdir]"
 	    " [-P destdir] [-p prefix] pkg-name ...\n");
 	exit(1);
 }
@@ -307,7 +307,7 @@ struct find_leaves_data {
  * Packages that are marked as not for deletion are not considered as
  * leaves.  For all other packages it is checked if at least one package
  * that depended on them is to be removed AND no depending package remains.
- * If that is the case, the package is appened to the sorted list.
+ * If that is the case, the package is appended to the sorted list.
  * As this package can't have depending packages left, the topological order
  * remains consistent.
  */
@@ -338,7 +338,7 @@ find_new_leaves_iter(const char *pkg, void *cookie)
 	if (process_required_by(pkg, NULL, data->pkgs, 3) == 1) {
 		lpp = alloc_lpkg(pkg);
 		TAILQ_INSERT_TAIL(data->pkgs, lpp, lp_link);
-		data->progress = 0;
+		data->progress = 1;
 	}
 
 	return 0;
@@ -398,58 +398,14 @@ find_preserve_pkgs(lpkg_head_t *pkgs)
 }
 
 /*
- * Remove package from view.  This is calling pkg_deinstall again.
- */
-static int
-remove_pkg_from_view(const char *pkg)
-{
-	char line[MaxPathSize], *fname, *eol;
-	FILE *fp;
-
-	fname = pkgdb_pkg_file(pkg, VIEWS_FNAME);
-	if (isemptyfile(fname)) {
-		free(fname);
-		return 0;
-	}
-	if ((fp = fopen(fname, "r")) == NULL) {
-		warn("Unable to open `%s', aborting", fname);
-		free(fname);
-		return 1;
-	}
-	free(fname);
-	while (fgets(line, sizeof(line), fp) != NULL) {
-		if ((eol = strrchr(line, '\n')) != NULL)
-			*eol = '\0';
-		if (Verbose || Fake)
-			printf("Deleting package `%s' instance from `%s' view\n",
-			    pkg, line);
-		if (Fake)
-			continue;
-		if (fexec_skipempty(BINDIR "/pkg_delete", "-K", line,
-				    Fake ? "-n" : "",
-				    (Force > 1) ? "-f" : "",
-				    (Force > 0) ? "-f" : "",
-				    pkg, NULL) != 0) {
-			warnx("Unable to delete package `%s' from view `%s'",
-			    pkg, line);
-			fclose(fp);
-			return 1;
-		}
-	}
-	fclose(fp);
-	return 0;	
-}
-
-/*
  * Run the +DEINSTALL script. Depending on whether this is
- * a depoted package and whether this pre- or post-deinstall phase,
- * different arguments are passed down.
+ * pre- or post-deinstall phase, different arguments are passed down.
  */
 static int
 run_deinstall_script(const char *pkg, int do_postdeinstall)
 {
 	const char *target, *text;
-	char *fname, *fname2, *pkgdir;
+	char *fname, *pkgdir;
 	int rv;
 
 	fname = pkgdb_pkg_file(pkg, DEINSTALL_FNAME);
@@ -458,23 +414,13 @@ run_deinstall_script(const char *pkg, int do_postdeinstall)
 		return 0;
 	}
 
-	fname2 = pkgdb_pkg_file(pkg, DEPOT_FNAME);
-	if (fexists(fname2)) {
-		if (do_postdeinstall) {
-			free(fname);
-			free(fname2);
-			return 0;
-		}
-		target = "VIEW-DEINSTALL";
-		text = "view deinstall";
-	} else if (do_postdeinstall) {
+	if (do_postdeinstall) {
 		target = "POST-DEINSTALL";
 		text = "post-deinstall";
 	} else {
 		target = "DEINSTALL";
 		text = "deinstall";
 	}
-	free(fname2);
 
 	if (Fake) {
 		printf("Would execute %s script with argument %s now\n",
@@ -541,57 +487,6 @@ remove_line(const char *fname, const char *fname_tmp, const char *text)
 }
 
 /*
- * Unregister the package from the depot it is registered in.
- */
-static int
-remove_pkg_from_depot(const char *pkg)
-{
-	FILE *fp;
-	char line[MaxPathSize], *eol;
-	char *fname, *fname2;
-	int rv;
-
-	fname = pkgdb_pkg_file(pkg, DEPOT_FNAME);
-	if (isemptyfile(fname)) {
-		free(fname);
-		return 0;
-	}
-
-	if (Verbose)
-		printf("Attempting to remove the `%s' registration "
-		    "on package `%s'\n", fname, pkg);
-
-	if (Fake) {
-		free(fname);
-		return 1;
-	}
-
-	if ((fp = fopen(fname, "r")) == NULL) {
-		warn("Unable to open `%s' file", fname);
-		free(fname);
-		return 1;
-	}
-	if (fgets(line, sizeof(line), fp) == NULL) {
-		fclose(fp);
-		warnx("Empty depot file `%s'", fname);
-		free(fname);
-		return 1;
-	}
-	if ((eol = strrchr(line, '\n')) != NULL)
-		*eol = '\0';
-	fclose(fp);
-	free(fname);
-
-	fname = pkgdb_pkg_file(pkg, VIEWS_FNAME);
-	fname2 = pkgdb_pkg_file(pkg, VIEWS_FNAME_TMP);
-	rv = remove_line(fname, fname2, line);
-	free(fname2);
-	free(fname);
-
-	return rv;
-}
-
-/*
  * remove_depend is used as iterator function below.
  * The passed-in package name should be removed from the
  * +REQUIRED_BY list of the dependency.  Such an entry
@@ -627,7 +522,7 @@ remove_pkg(const char *pkg)
 	char *fname, *pkgdir;
 	package_t plist;
 	plist_t *p;
-	int is_depoted_pkg, rv, late_error;
+	int rv, late_error;
 
 	if (pkgdb_update_only)
 		return pkgdb_remove_pkg(pkg) ? 0 : 1;
@@ -639,15 +534,6 @@ remove_pkg(const char *pkg)
 		return 1;
 	}
 	free(fname);
-
-	/* +REQUIRED_BY and +PRESERVE already checked */
-	if (remove_pkg_from_view(pkg))
-		return 1;
-
-	/*
-	 * The views related code has bad error handling, if e.g.
-	 * the deinstall script fails, the package remains unregistered.
-	 */
 
 	fname = pkgdb_pkg_file(pkg, CONTENTS_FNAME);
 	if ((fp = fopen(fname, "r")) == NULL) {
@@ -712,36 +598,22 @@ remove_pkg(const char *pkg)
 	 * processing.
 	 */
 
-	fname = pkgdb_pkg_file(pkg, DEPOT_FNAME);
-	if (fexists(fname)) {
-		late_error |= remove_pkg_from_depot(pkg);
-		/* XXX error checking */
-	} else {
-		for (p = plist.head; p; p = p->next) {
-			if (p->type != PLIST_PKGDEP)
-				continue;
-			if (Verbose)
-				printf("Attempting to remove dependency "
-				    "on package `%s'\n", p->name);
-			if (Fake)
-				continue;
-			match_installed_pkgs(p->name, remove_depend,
-			    __UNCONST(pkg));
-		}
+	for (p = plist.head; p; p = p->next) {
+	    if (p->type != PLIST_PKGDEP)
+		continue;
+	    if (Verbose)
+		printf("Attempting to remove dependency "
+		       "on package `%s'\n", p->name);
+	    if (Fake)
+		continue;
+	    match_installed_pkgs(p->name, remove_depend,
+				 __UNCONST(pkg));
 	}
-	free(fname);
 
 	free_plist(&plist);
 
 	if (!no_deinstall && !unregister_only)
 		late_error |= run_deinstall_script(pkg, 1);
-
-	fname = pkgdb_pkg_file(pkg, VIEWS_FNAME);
-	if (fexists(fname))
-		is_depoted_pkg = TRUE;
-	else
-		is_depoted_pkg = FALSE;
-	free(fname);
 
 	if (Fake)
 		return 0;
@@ -755,8 +627,6 @@ remove_pkg(const char *pkg)
 	rv = 1;
 	if (isemptydir(pkgdir)&& rmdir(pkgdir) == 0)
 		rv = 0;
-	else if (is_depoted_pkg)
-		warnx("Depot directory `%s' is not empty", pkgdir);
 	else if (!Force)
 		warnx("Couldn't remove package directory in `%s'", pkgdir);
 	else if (recursive_remove(pkgdir, 1))

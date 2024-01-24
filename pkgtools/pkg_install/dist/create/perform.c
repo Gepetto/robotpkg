@@ -1,4 +1,4 @@
-/*	$NetBSD: perform.c,v 1.26 2009/11/05 16:22:32 joerg Exp $	*/
+/*	$NetBSD: perform.c,v 1.28 2020/07/01 10:03:20 jperkin Exp $	*/
 
 #if HAVE_CONFIG_H
 #include "config.h"
@@ -7,7 +7,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: perform.c,v 1.26 2009/11/05 16:22:32 joerg Exp $");
+__RCSID("$NetBSD: perform.c,v 1.28 2020/07/01 10:03:20 jperkin Exp $");
 
 /*
  * FreeBSD install - a package for the installation and maintainance
@@ -68,7 +68,7 @@ register_depends(package_t *plist, char *deps, int build_only)
 		cp = strsep(&deps, " \t\n");
 		if (*cp) {
 			char *best_installed;
-			best_installed = find_best_matching_installed_pkg(cp);
+			best_installed = find_best_matching_installed_pkg(cp, 1);
 			if (best_installed != NULL) {
 				add_plist(plist, PLIST_BLDDEP, best_installed);
 				if (Verbose && !PlistOnly && build_only)
@@ -225,12 +225,7 @@ pkg_perform(const char *pkg)
 		write_plist(&plist, stdout, realprefix);
 		retval = TRUE;
 	} else {
-#ifdef BOOTSTRAP
-		warnx("Package building is not supported in bootstrap mode");
-		retval = FALSE;
-#else
 		retval = pkg_build(pkg, full_pkg, suffix, &plist);
-#endif
 	}
 
 	/* Cleanup */

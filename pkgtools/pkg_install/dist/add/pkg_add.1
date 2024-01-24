@@ -1,4 +1,4 @@
-.\" $NetBSD: pkg_add.1,v 1.45 2010/09/14 22:26:18 gdt Exp $
+.\" $NetBSD: pkg_add.1,v 1.49 2021/03/08 15:25:47 nia Exp $
 .\"
 .\" FreeBSD install - a package for the installation and maintenance
 .\" of non-core utilities.
@@ -17,7 +17,7 @@
 .\"
 .\"     @(#)pkg_add.1
 .\"
-.Dd June 16, 2010
+.Dd March 8, 2021
 .Dt PKG_ADD 1
 .Os
 .Sh NAME
@@ -25,14 +25,12 @@
 .Nd a utility for installing and upgrading software package distributions
 .Sh SYNOPSIS
 .Nm
-.Op Fl AfILnRUuVv
+.Op Fl AfhInRUuVv
 .Op Fl C Ar config
 .Op Fl K Ar pkg_dbdir
 .Op Fl m Ar machine
 .Op Fl P Ar destdir
 .Op Fl p Ar prefix
-.Op Fl W Ar viewbase
-.Op Fl w Ar view
 .Ar Oo Oo Li ftp|http Oc Ns Li :// Ns Oo Ar user Oc Ns \
 Oo Li \&: Ns Ar password Oc \
 Ns Li @ Oc Ns Ar host Ns Oo Li \&: Ns Ar port Oc Ns \
@@ -121,6 +119,11 @@ removed.
 Read the configuration file from
 .Ar config
 instead of the system default.
+.It Fl D
+Force updating even if the dependencies of depending packages are not
+satisfied by the new package.
+This is used by "make replace", after which one would typically
+replace the depending packages.
 .It Fl f
 Force installation to proceed even if prerequisite packages are not
 installed or the install script fails.
@@ -130,11 +133,8 @@ will still try to find and auto-install missing prerequisite packages,
 a failure to find one will not be fatal.
 This flag also overrides the fatal error when the operating system or
 architecture the package was built on differ from that of the host.
-.It Fl D
-Force updating even if the dependencies of depending packages are not
-satisfied by the new package.
-This is used by "make replace", after which one would typically
-replace the depending packages.
+.It Fl h
+Display help and exit.
 .It Fl I
 If an installation script exists for a given package, do not execute it.
 .It Fl K Ar pkg_dbdir
@@ -142,8 +142,6 @@ Override the value of the
 .Dv PKG_DBDIR
 configuration option with the value
 .Ar pkg_dbdir .
-.It Fl L
-Don't add the package to any views after installation.
 .It Fl m
 Override the machine architecture returned by uname with
 .Ar machine .
@@ -179,14 +177,6 @@ See below for a more detailed description of the process.
 Print version number and exit.
 .It Fl v
 Turn on verbose output.
-.It Fl W Ar viewbase
-Passed down to
-.Xr pkg_view 1
-for managed views.
-.It Fl w Ar view
-Passed down to
-.Xr pkg_view 1
-for managed views.
 .El
 .Pp
 One or more
@@ -199,7 +189,7 @@ URL pointing at a file available on an ftp or web site.
 Thus you may extract files directly from their anonymous ftp or WWW
 locations (e.g.,
 .Nm
-ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/shells/bash-3.2.9.tgz
+http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0/All/bash-5.0.18.tgz
 or
 .Nm
 http://www.example.org/packages/screen-4.0.tbz).
@@ -337,11 +327,6 @@ Any package dependencies are recorded in the other packages'
 .Pa +REQUIRED_BY
 file.
 .It
-If the package is a depoted package, then add it to the registered
-by calling
-.Xr pkg_view 1
-accordingly.
-.It
 Finally, if we were upgrading a package, any
 .Pa +REQUIRED_BY
 file that was moved aside before upgrading was started is now moved
@@ -386,15 +371,25 @@ are prefixed with
 See
 .Xr pkg_install.conf 5
 for options, that can also be specified using the environment.
-Packages using views are also affected by the environment variables
-documented for
-.Xr pkg_view 1 .
 .Sh EXAMPLES
 In all cases,
 .Nm
 will try to install binary packages listed in dependencies list.
 .Pp
-You can specify a compiled binary package explicitly on the command line.
+You can grab a compiled binary package from remote location by specifying
+a URL:
+.Bd -literal
+# pkg_add http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0/All/firefox-84.0.tgz
+.Ed
+.Pp
+The base URL can also be provided by the configuration variable,
+.Dv PKG_PATH :
+.Bd -literal
+# export PKG_PATH=http://cdn.NetBSD.org/pub/pkgsrc/packages/NetBSD/x86_64/9.0/All
+# pkg_add firefox
+.Ed
+.Pp
+You can also specify a compiled binary package by filesystem path:
 .Bd -literal
 # pkg_add /usr/pkgsrc/packages/All/tcsh-6.14.00.tgz
 .Ed
@@ -405,20 +400,9 @@ will install the latest version available.
 With
 .Fl v ,
 .Nm
-emits more messages to terminal.
+emits more messages to terminal:
 .Bd -literal
 # pkg_add -v /usr/pkgsrc/packages/All/unzip
-.Ed
-.Pp
-You can grab a compiled binary package from remote location by specifying
-a URL.
-The base URL can also be provided by the configuration variable,
-.Dv PKG_PATH .
-.Bd -literal
-# pkg_add -v ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/All/firefox-2.0.0.4.tgz
-
-# export PKG_PATH=ftp://ftp.NetBSD.org/pub/pkgsrc/packages/NetBSD/i386/3.1_2007Q2/All
-# pkg_add -v firefox
 .Ed
 .Sh SEE ALSO
 .Xr pkg_admin 1 ,

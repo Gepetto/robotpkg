@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.in,v 1.20 2010/04/20 00:39:12 joerg Exp $
+# $NetBSD: Makefile.in,v 1.30 2015/12/27 12:18:20 joerg Exp $
 
 srcdir=		@srcdir@
 
@@ -27,19 +27,20 @@ INSTALL=	@INSTALL@
 PROG=		pkg_admin
 SCRIPTS=	audit-packages download-vulnerability-list
 
+CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
+
 .if empty(BOOTSTRAP)
-LIBS=		-linstall -lfetch
+LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch
 .if !empty(SSL_SUPPORT)
-LIBS+=		-lcrypto
-CFLAGS+=	-DHAVE_SSL
+LIBS+=		-lssl -lcrypto
+CPPFLAGS+=	-DHAVE_SSL
 .endif
 LIBS+=		@LIBS@
 OBJS=		audit.o check.o main.o
-CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
 .else
 LIBS=		-linstall @LIBS@
 OBJS=		check.o main.o
-CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBOOTSTRAP
+CPPFLAGS+=	-DBOOTSTRAP
 .endif
 
 all: $(PROG) $(SCRIPTS)
@@ -56,17 +57,25 @@ clean:
 install:
 	$(INSTALL) -m 755 -d ${DESTDIR}$(sbindir)
 	$(INSTALL) -m 755 -d ${DESTDIR}$(man1dir)
-	$(INSTALL) -m 755 -d ${DESTDIR}$(cat1dir)
 	$(INSTALL) -m 755 -d ${DESTDIR}$(man8dir)
-	$(INSTALL) -m 755 -d ${DESTDIR}$(cat8dir)
 	$(INSTALL) $(PROG) ${DESTDIR}$(sbindir)/$(PROG)
 	$(INSTALL) -m 555 $(SCRIPTS) ${DESTDIR}$(sbindir)
 	$(INSTALL) -m 444 $(PROG).1 ${DESTDIR}$(man1dir)/$(PROG).1
-	$(INSTALL) -m 444 $(PROG).cat ${DESTDIR}$(cat1dir)/$(PROG).0
 	$(INSTALL) -m 444 audit-packages.8 ${DESTDIR}$(man8dir)/
-	$(INSTALL) -m 444 audit-packages.cat ${DESTDIR}$(cat8dir)/audit-packages.0
 	$(INSTALL) -m 444 download-vulnerability-list.8 ${DESTDIR}$(man8dir)/
+.if defined(MANINSTALL) && !empty(MANINSTALL:Mcatinstall)
+	$(INSTALL) -m 755 -d ${DESTDIR}$(cat1dir)
+	$(INSTALL) -m 755 -d ${DESTDIR}$(cat8dir)
+.  if defined(CATMAN_SECTION_SUFFIX) && !empty(CATMAN_SECTION_SUFFIX:M[Yy][Ee][Ss])
+	$(INSTALL) -m 444 $(PROG).cat ${DESTDIR}$(cat1dir)/$(PROG).1
+	$(INSTALL) -m 444 audit-packages.cat ${DESTDIR}$(cat8dir)/audit-packages.8
+	$(INSTALL) -m 444 download-vulnerability-list.cat ${DESTDIR}$(cat8dir)/download-vulnerability-list.8
+.  else
+	$(INSTALL) -m 444 $(PROG).cat ${DESTDIR}$(cat1dir)/$(PROG).0
+	$(INSTALL) -m 444 audit-packages.cat ${DESTDIR}$(cat8dir)/audit-packages.0
 	$(INSTALL) -m 444 download-vulnerability-list.cat ${DESTDIR}$(cat8dir)/download-vulnerability-list.0
+.  endif
+.endif
 
 audit-packages: audit-packages.sh.in
 	sed -e 's|@PKG_ADMIN@|${sbindir}/pkg_admin|' \

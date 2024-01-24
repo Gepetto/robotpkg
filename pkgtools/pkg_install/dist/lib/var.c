@@ -1,4 +1,4 @@
-/*	$NetBSD: var.c,v 1.8 2009/08/02 17:56:45 joerg Exp $	*/
+/*	$NetBSD: var.c,v 1.10 2013/09/12 07:28:28 wiz Exp $	*/
 
 /*-
  * Copyright (c) 2005, 2008 The NetBSD Foundation, Inc.
@@ -39,7 +39,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: var.c,v 1.8 2009/08/02 17:56:45 joerg Exp $");
+__RCSID("$NetBSD: var.c,v 1.10 2013/09/12 07:28:28 wiz Exp $");
 
 #if HAVE_SYS_STAT_H
 #include <sys/stat.h>
@@ -60,7 +60,7 @@ static const char *var_cmp(const char *, size_t, const char *, size_t);
 static void var_print(FILE *, const char *, const char *);
 
 /*
- * Copy the specified varibales from the file fname to stdout.
+ * Copy the specified variables from the file fname to stdout.
  */
 int
 var_copy_list(const char *buf, const char **variables)
@@ -74,8 +74,8 @@ var_copy_list(const char *buf, const char **variables)
 			next = eol + 1;
 			len = eol - buf;
 		} else {
-			next = eol;
 			len = strlen(buf);
+			next = buf + len;
 		}
 
 		for (i=0; variables[i]; i++) {
@@ -156,7 +156,7 @@ var_get_memory(const char *buf, const char *variable)
 	value = NULL;
 	valuelen = 0;
 
-	for (; *buf; buf = next) {
+	for (; buf && *buf; buf = next) {
 		if ((eol = strchr(buf, '\n')) != NULL) {
 			next = eol + 1;
 			len = eol - buf;

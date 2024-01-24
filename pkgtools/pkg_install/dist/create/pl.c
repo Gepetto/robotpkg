@@ -1,5 +1,8 @@
-/*	$NetBSD: pl.c,v 1.14 2009/11/05 16:22:32 joerg Exp $	*/
+/*	$NetBSD: pl.c,v 1.16 2020/12/02 10:45:47 wiz Exp $	*/
 
+#ifdef HAVE_NBTOOL_CONFIG_H
+#include "nbtool_config.h"
+#else
 #if HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -7,7 +10,8 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: pl.c,v 1.14 2009/11/05 16:22:32 joerg Exp $");
+#endif
+__RCSID("$NetBSD: pl.c,v 1.16 2020/12/02 10:45:47 wiz Exp $");
 
 /*
  * FreeBSD install - a package for the installation and maintainance
@@ -89,10 +93,6 @@ check_list(package_t *pkg, const char *PkgName)
 	char   *pkgname = NULL;
 	int	cc;
 
-	/* Open Package Database for writing */
-	if (update_pkgdb && !pkgdb_open(ReadWrite))
-		err(EXIT_FAILURE, "can't open pkgdb");
-
 	for (p = pkg->head; p; p = p->next) {
 		switch (p->type) {
 		case PLIST_CWD:
@@ -109,38 +109,10 @@ check_list(package_t *pkg, const char *PkgName)
 				errx(2, "@pkgdir without preceding @cwd found");
 			if (pkgname == NULL)
 				errx(2, "@pkgdir without preceding @name found");
-			if (update_pkgdb) {
-				add_pkgdir(pkgname, cwd, p->name);
-				/* mkdir_p(cwd, p->name); */
-			}
 			break;
 		case PLIST_FILE:
-			/*
-			 * pkgdb handling - usually, we enter files
-			 * into the pkgdb as soon as they hit the disk,
-			 * but as they are present before pkg_create
-			 * starts, it's ok to do this somewhere here
-			 */
 			if (cwd == NULL)
 				errx(2, "file without preceding @cwd found");
-			if (update_pkgdb) {
-				char   *s, t[MaxPathSize];
-
-				(void) snprintf(t, sizeof(t), "%s%s%s",
-					cwd,
-					(strcmp(cwd, "/") == 0) ? "" : "/",
-					p->name);
-
-				s = pkgdb_retrieve(t);
-				if (s && PlistOnly)
-					warnx("Overwriting %s - "
-					    "pkg %s bogus/conflicting?", t, s);
-				else {
-					pkgdb_store(t, PkgName);
-				}
-			}
-
-			/* prepend DESTDIR if set?  - HF */
 			(void) snprintf(name, sizeof(name), "%s%s%s",
 				cwd,
 				(strcmp(cwd, "/") == 0) ? "" : "/",
@@ -203,9 +175,5 @@ check_list(package_t *pkg, const char *PkgName)
 		default:
 			break;
 		}
-	}
-
-	if (update_pkgdb) {
-		pkgdb_close();
 	}
 }
