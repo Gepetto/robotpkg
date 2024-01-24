@@ -14,7 +14,7 @@ LICENSE=	2-clause-bsd
 
 NO_CHECKSUM=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--disable-dependency-tracking
+CONFIGURE_ARGS+=--disable-maintainer-mode
 CONFIGURE_ARGS+=--disable-bsdtar
 CONFIGURE_ARGS+=--disable-bsdcpio
 CONFIGURE_ARGS+=--without-expat

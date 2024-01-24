@@ -55,10 +55,14 @@ libarchive-build:
 	${SETENV}							\
 		AWK="${AWK}" CC="${CC}" CFLAGS="${CFLAGS}"		\
 		CPPFLAGS="${CPPFLAGS}"					\
-		${CONFIG_SHELL} ./configure --disable-shared		\
-		--disable-bsdtar --disable-dependency-tracking		\
-		--disable-bsdcpio --without-expat --without-xml2	\
-		-without-lzmadec --without-lzma	--disable-acl		\
+		${CONFIG_SHELL} ./configure				\
+		  --enable-static --disable-shared			\
+		  --disable-maintainer-mode				\
+		  --disable-bsdtar --disable-bsdcpio			\
+		  --disable-posix-regex-lib --disable-xattr		\
+		  --without-lzma --without-lzo2 --without-lz4		\
+		  --without-nettle --without-openssl --without-xml2	\
+		  --without-expat --without-zstd			\
 	&& ${MAKE}
   else
   # This is the regular version of libarchive package, for normal install
