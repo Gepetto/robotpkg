@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.in,v 1.20 2010/04/20 00:39:12 joerg Exp $
+# $NetBSD: Makefile.in,v 1.30 2015/12/27 12:18:20 joerg Exp $
 
 srcdir=		@srcdir@
 
@@ -27,19 +27,20 @@ INSTALL=	@INSTALL@
 PROG=		robotpkg_admin
 SCRIPTS=	audit-packages download-vulnerability-list
 
+CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
+
 ifeq (,$(strip $(BOOTSTRAP)))
-LIBS=		-linstall -lfetch
-ifneq (,$(strip $(SSL_SUPPORT)))
-LIBS+=		-lcrypto
-CFLAGS+=	-DHAVE_SSL
-endif
+LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch
+  ifneq (,$(strip $(SSL_SUPPORT)))
+LIBS+=		-lssl -lcrypto
+CPPFLAGS+=	-DHAVE_SSL
+  endif
 LIBS+=		@LIBS@
 OBJS=		audit.o check.o main.o
-CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
 else
 LIBS=		-linstall @LIBS@
 OBJS=		check.o main.o
-CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBOOTSTRAP
+CPPFLAGS+=	-DBOOTSTRAP
 endif
 
 all: $(PROG)

@@ -2,7 +2,7 @@
 # Created:			tho on Thu, 9 Nov 2006
 #
 
-VERSION=		20110805.12
+VERSION=		20211115.1
 DISTNAME=		pkg_install-${VERSION}
 CATEGORIES=		pkgtools
 MASTER_SITES=		# empty
@@ -57,6 +57,7 @@ LIBFETCH_STYLE=		inplace
 include ../../pkgtools/libnbcompat/depend.mk
 include ../../archivers/zlib/depend.mk
 include ../../archivers/bzip2/depend.mk
+DEPEND_ABI.libarchive+=	libarchive>=3
 include ../../archivers/libarchive/depend.mk
 include ../../net/libfetch/depend.mk
 include ../../mk/language/c.mk

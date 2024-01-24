@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.in,v 1.15 2010/01/23 11:02:58 joerg Exp $
+# $NetBSD: Makefile.in,v 1.24 2015/09/07 09:06:05 jperkin Exp $
 
 srcdir=		@srcdir@
 
@@ -11,9 +11,16 @@ datarootdir=	@datarootdir@
 man1dir=	$(mandir)/man1
 cat1dir=	$(mandir)/cat1
 
+SSL_SUPPORT=	@ssl_support@
+
 CC=		@CC@
 CCLD=		$(CC)
-LIBS=		-linstall -lfetch @LIBS@
+LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch @LIBS@
+
+ifneq (,$(strip $(SSL_SUPPORT)))
+LIBS+=		-lssl -lcrypto
+endif
+
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBINDIR=\"$(sbindir)\"
 DEFS=		@DEFS@
 CFLAGS=		@CFLAGS@

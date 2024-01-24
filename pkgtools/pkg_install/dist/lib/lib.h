@@ -1,4 +1,4 @@
-/* $NetBSD: lib.h,v 1.64 2010/06/16 23:02:49 joerg Exp $ */
+/* $NetBSD: lib.h,v 1.72 2020/12/11 10:06:53 jperkin Exp $ */
 
 /* from FreeBSD Id: lib.h,v 1.25 1997/10/08 07:48:03 charnier Exp */
 
@@ -29,9 +29,6 @@
 #include "config.h"
 #endif
 #include <nbcompat.h>
-#if HAVE_SYS_PARAM_H
-#include <sys/param.h>
-#endif
 #if HAVE_SYS_STAT_H
 #include <sys/stat.h>
 #endif
@@ -116,9 +113,6 @@ enum {
 #define SIZE_PKG_FNAME		"+SIZE_PKG"
 #define SIZE_ALL_FNAME		"+SIZE_ALL"
 #define PRESERVE_FNAME		"+PRESERVE"
-#define VIEWS_FNAME		"+VIEWS"
-#define VIEWS_FNAME_TMP		"+VIEWS.tmp"
-#define DEPOT_FNAME		"+DEPOT"
 
 /* The names of special variables */
 #define AUTOMATIC_VARNAME	"automatic"
@@ -240,6 +234,25 @@ typedef struct _lpkg_t {
 TAILQ_HEAD(_lpkg_head_t, _lpkg_t);
 typedef struct _lpkg_head_t lpkg_head_t;
 
+/*
+ * To improve performance when handling lists containing a large number of
+ * packages, it can be beneficial to use hashed lookups to avoid excessive
+ * strcmp() calls when searching for existing entries.
+ *
+ * The simple hashing function below uses the first 3 characters of either a
+ * pattern match or package name (as they are guaranteed to exist).
+ *
+ * Based on pkgsrc package names across the tree, this can still result in
+ * somewhat uneven distribution due to high numbers of packages beginning with
+ * "p5-", "php", "py-" etc, and so there are diminishing returns when trying to
+ * use a hash size larger than around 16 or so.
+ */
+#define PKG_HASH_SIZE		16
+#define PKG_HASH_ENTRY(x)	(((unsigned char)(x)[0] \
+				+ (unsigned char)(x)[1] * 257 \
+				+ (unsigned char)(x)[2] * 65537) \
+				& (PKG_HASH_SIZE - 1))
+
 struct pkg_vulnerabilities {
 	size_t	entries;
 	char	**vulnerability;
@@ -260,7 +273,7 @@ int	some_installed_package_conflicts_with(const char *, const char *, char **, c
 
 /* Prototypes */
 /* Misc */
-void    show_version(void);
+void    show_version(void) __attribute__ ((noreturn));
 int	fexec(const char *, ...);
 int	fexec_skipempty(const char *, ...);
 int	fcexec(const char *, const char *, ...);
@@ -298,7 +311,7 @@ int	iterate_pkg_db(int (*)(const char *, void *), void *);
 
 int	add_installed_pkgs_by_basename(const char *, lpkg_head_t *);
 int	add_installed_pkgs_by_pattern(const char *, lpkg_head_t *);
-char	*find_best_matching_installed_pkg(const char *);
+char	*find_best_matching_installed_pkg(const char *, int);
 char	*find_best_matching_file(const char *, const char *, int, int);
 int	match_installed_pkgs(const char *, int (*)(const char *, void *), void *);
 int	match_local_files(const char *, int, int, const char *, int (*cb)(const char *, void *), void *);
@@ -327,6 +340,7 @@ int	has_pkgdir(const char *);
 struct archive;
 struct archive_entry;
 
+struct archive *prepare_archive(void);
 struct archive *open_archive(const char *, char **);
 struct archive *find_archive(const char *, int, char **);
 void	process_pkg_path(void);
@@ -368,7 +382,6 @@ const char   *pkgdb_get_dir(void);
  * 1 config file
  * 2 environment
  * 3 command line
- * 4 destdir/views reset
  */
 void	pkgdb_set_dir(const char *, int);
 char   *pkgdb_pkg_dir(const char *);
@@ -385,7 +398,7 @@ struct pkg_vulnerabilities *read_pkg_vulnerabilities_file(const char *, int, int
 struct pkg_vulnerabilities *read_pkg_vulnerabilities_memory(void *, size_t, int);
 void free_pkg_vulnerabilities(struct pkg_vulnerabilities *);
 int audit_package(struct pkg_vulnerabilities *, const char *, const char *,
-    int);
+    int, int);
 
 /* Parse configuration file */
 void pkg_install_config(void);
@@ -409,9 +422,7 @@ int easy_pkcs7_sign(const char *, size_t, char **, size_t *, const char *,
     const char *);
 #endif
 
-int inline_gpg_verify(const char *, size_t, const char *);
-int detached_gpg_verify(const char *, size_t, const char *, size_t,
-    const char *);
+int gpg_verify(const char *, size_t, const char *, const char *, size_t);
 int detached_gpg_sign(const char *, size_t, char **, size_t *, const char *,
     const char *);
 
@@ -426,7 +437,12 @@ char *xstrdup(const char *);
 void *xrealloc(void *, size_t);
 void *xcalloc(size_t, size_t);
 void *xmalloc(size_t);
-char *xasprintf(const char *, ...);
+#if defined(__GNUC__) && __GNUC__ >= 2
+char	*xasprintf(const char *, ...)
+			   __attribute__((__format__(__printf__, 1, 2)));
+#else
+char	*xasprintf(const char *, ...);
+#endif
 
 /* Externs */
 extern Boolean Verbose;
@@ -436,6 +452,7 @@ extern const char *cert_chain_file;
 extern const char *certs_packages;
 extern const char *certs_pkg_vulnerabilities;
 extern const char *check_eol;
+extern const char *check_os_version;
 extern const char *check_vulnerabilities;
 extern const char *config_file;
 extern const char *config_pkg_dbdir;

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.in,v 1.29 2010/04/14 18:24:58 joerg Exp $
+# $NetBSD: Makefile.in,v 1.37 2020/12/02 10:22:39 wiz Exp $
 
 srcdir=		@srcdir@
 
@@ -27,16 +27,17 @@ INSTALL=	@INSTALL@
 LIB=	libinstall.a
 
 OBJS=	automatic.o conflicts.o dewey.o fexec.o file.o \
-	gpgsig.o global.o iterate.o license.o lpkg.o opattern.o \
-	parse-config.o pkgdb.o plist.o remove.o \
+	global.o iterate.o license.o lpkg.o opattern.o \
+	parse-config.o pkgdb.o pkg_io.o plist.o remove.o \
 	str.o var.o version.o vulnerabilities-file.o xwrapper.o
 
 CPPFLAGS+=	-DSYSCONFDIR=\"$(sysconfdir)\"
+CPPFLAGS+=	-DPREFIX=\"$(prefix)\"
 
 ifneq (,$(strip $(BOOTSTRAP)))
 CPPFLAGS+=	-DBOOTSTRAP
 else
-OBJS+=	pkg_io.o pkg_signature.o
+OBJS+=	gpgsig.o pkg_signature.o
 endif
 
 ifneq (,$(strip $(SSL_SUPPORT)))
