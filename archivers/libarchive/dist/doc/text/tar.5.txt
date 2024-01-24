@@ -1,4 +1,4 @@
-tar(5)			  NetBSD File Formats Manual			tar(5)
+TAR(5)			    BSD File Formats Manual			TAR(5)
 
 NAME
      tar -- format of tape archive files
@@ -63,9 +63,9 @@ DESCRIPTION
 	     User id and group id of owner, as octal numbers in ASCII.
 
      size    Size of file, as octal number in ASCII.  For regular files only,
-	     this indicates the amount of data that follows the header.	 In
+	     this indicates the amount of data that follows the header.  In
 	     particular, this field was ignored by early tar implementations
-	     when extracting hardlinks.	 Modern writers should always store a
+	     when extracting hardlinks.  Modern writers should always store a
 	     zero length for hardlink entries.
 
      mtime   Modification time of file, as an octal number in ASCII.  This
@@ -78,7 +78,7 @@ DESCRIPTION
 	     the checksum, set the checksum field to all spaces, then sum all
 	     bytes in the header using unsigned arithmetic.  This field should
 	     be stored as six octal digits followed by a null and a space
-	     character.	 Note that many early implementations of tar used
+	     character.  Note that many early implementations of tar used
 	     signed arithmetic for the checksum field, which can cause inter-
 	     operability problems when transferring archives between systems.
 	     Modern robust readers compute the checksum both ways and accept
@@ -88,7 +88,7 @@ DESCRIPTION
 	     In order to preserve hardlinks and conserve tape, a file with
 	     multiple links is only written to the archive the first time it
 	     is encountered.  The next time it is encountered, the linkflag is
-	     set to an ASCII `1' and the linkname field holds the first name
+	     set to an ASCII '1' and the linkname field holds the first name
 	     under which this file appears.  (Note that regular files have a
 	     null value in the linkflag field.)
 
@@ -108,11 +108,12 @@ DESCRIPTION
      for John Gilmore's pdtar program and many system implementations from the
      late 1980s and early 1990s.  These archives generally follow the POSIX
      ustar format described below with the following variations:
-	   The magic value is ``ustar '' (note the following space).  The
-	     version field contains a space character followed by a null.
-	   The numeric fields are generally filled with leading spaces (not
+     o	     The magic value consists of the five characters ``ustar'' fol-
+	     lowed by a space.	The version field contains a space character
+	     followed by a null.
+     o	     The numeric fields are generally filled with leading spaces (not
 	     leading zeros as recommended in the final standard).
-	   The prefix field is often not used, limiting pathnames to the 100
+     o	     The prefix field is often not used, limiting pathnames to the 100
 	     characters of old-style archives.
 
    POSIX ustar Archives
@@ -189,7 +190,7 @@ DESCRIPTION
      name, prefix
 	     If the pathname is too long to fit in the 100 bytes provided by
 	     the standard format, it can be split at any / character with the
-	     first portion going into the prefix field.	 If the prefix field
+	     first portion going into the prefix field.  If the prefix field
 	     is not empty, the reader will prepend the prefix value and a /
 	     character to the regular name field to obtain the full pathname.
 	     The standard does not require a trailing / character on directory
@@ -210,6 +211,32 @@ DESCRIPTION
      Currently, most tar implementations comply with the ustar format, occa-
      sionally extending it by adding new fields to the blank area at the end
      of the header record.
+
+   Numeric Extensions
+     There have been several attempts to extend the range of sizes or times
+     supported by modifying how numbers are stored in the header.
+
+     One obvious extension to increase the size of files is to eliminate the
+     terminating characters from the various numeric fields.  For example, the
+     standard only allows the size field to contain 11 octal digits, reserving
+     the twelfth byte for a trailing NUL character.  Allowing 12 octal digits
+     allows file sizes up to 64 GB.
+
+     Another extension, utilized by GNU tar, star, and other newer tar imple-
+     mentations, permits binary numbers in the standard numeric fields.  This
+     is flagged by setting the high bit of the first byte.  The remainder of
+     the field is treated as a signed twos-complement value.  This permits
+     95-bit values for the length and time fields and 63-bit values for the
+     uid, gid, and device numbers.  In particular, this provides a consistent
+     way to handle negative time values.  GNU tar supports this extension for
+     the length, mtime, ctime, and atime fields.  Joerg Schilling's star pro-
+     gram and the libarchive library support this extension for all numeric
+     fields.  Note that this extension is largely obsoleted by the extended
+     attribute record provided by the pax interchange format.
+
+     Another early GNU extension allowed base-64 values rather than octal.
+     This extension was short-lived and is no longer supported by any imple-
+     mentation.
 
    Pax Interchange Format
      There are many attributes that cannot be portably stored in a POSIX ustar
@@ -240,9 +267,24 @@ DESCRIPTION
      mal, not octal.  A description of some common keys follows:
 
      atime, ctime, mtime
-	     File access, inode change, and modification times.	 These fields
+	     File access, inode change, and modification times.  These fields
 	     can be negative or include a decimal point and a fractional
 	     value.
+
+     hdrcharset
+	     The character set used by the pax extension values.  By default,
+	     all textual values in the pax extended attributes are assumed to
+	     be in UTF-8, including pathnames, user names, and group names.
+	     In some cases, it is not possible to translate local conventions
+	     into UTF-8.  If this key is present and the value is the six-
+	     character ASCII string ``BINARY'', then all textual values are
+	     assumed to be in a platform-dependent multi-byte encoding.  Note
+	     that there are only two valid values for this key: ``BINARY'' or
+	     ``ISO-IR 10646 2000 UTF-8''.  No other values are permitted by
+	     the standard, and the latter value should generally not be used
+	     as it is the default when this key is not specified.  In particu-
+	     lar, this flag should not be used as a general mechanism to allow
+	     filenames to be stored in arbitrary encodings.
 
      uname, uid, gname, gid
 	     User name, group name, and numeric UID and GID values.  The user
@@ -269,14 +311,14 @@ DESCRIPTION
 	     Vendor-specific attributes used by Joerg Schilling's star imple-
 	     mentation.
 
-     SCHILY.acl.access, SCHILY.acl.default
-	     Stores the access and default ACLs as textual strings in a format
-	     that is an extension of the format specified by POSIX.1e draft
-	     17.  In particular, each user or group access specification can
-	     include a fourth colon-separated field with the numeric UID or
-	     GID.  This allows ACLs to be restored on systems that may not
-	     have complete user or group information available (such as when
-	     NIS/YP or LDAP services are temporarily unavailable).
+     SCHILY.acl.access, SCHILY.acl.default, SCHILY.acl.ace
+	     Stores the access, default and NFSv4 ACLs as textual strings in a
+	     format that is an extension of the format specified by POSIX.1e
+	     draft 17.	In particular, each user or group access specification
+	     can include an additional colon-separated field with the numeric
+	     UID or GID.  This allows ACLs to be restored on systems that may
+	     not have complete user or group information available (such as
+	     when NIS/YP or LDAP services are temporarily unavailable).
 
      SCHILY.devminor, SCHILY.devmajor
 	     The full minor and major numbers for device nodes.
@@ -285,13 +327,22 @@ DESCRIPTION
 	     The file flags.
 
      SCHILY.realsize
-	     The full size of the file on disk.	 XXX explain? XXX
+	     The full size of the file on disk.  XXX explain? XXX
 
      SCHILY.dev, SCHILY.ino, SCHILY.nlinks
 	     The device number, inode number, and link count for the entry.
 	     In particular, note that a pax interchange format archive using
 	     Joerg Schilling's SCHILY.* extensions can store all of the data
 	     from struct stat.
+
+     LIBARCHIVE.*
+	     Vendor-specific attributes used by the libarchive library and
+	     programs that use it.
+
+     LIBARCHIVE.creationtime
+	     The time when the file was created.  (This should not be confused
+	     with the POSIX ``ctime'' attribute, which refers to the time when
+	     the file metadata was last changed.)
 
      LIBARCHIVE.xattr.namespace.key
 	     Libarchive stores POSIX.1e-style extended attributes using keys
@@ -310,7 +361,7 @@ DESCRIPTION
      as existing archivers are known to store non-compliant values in the
      standard header fields in this situation.	There are no limits on length
      for any of these fields.  In particular, numeric fields can be arbitrar-
-     ily large.	 All text fields are encoded in UTF8.  Compliant writers
+     ily large.  All text fields are encoded in UTF8.  Compliant writers
      should store only portable 7-bit ASCII characters in the standard ustar
      header and use extended attributes whenever a text value contains non-
      ASCII characters.
@@ -431,7 +482,7 @@ DESCRIPTION
 		     tax.  Due to security concerns, "N" records are now gen-
 		     erally ignored when reading archives.
 
-	     S	     This is a ``sparse'' regular file.	 Sparse files are
+	     S	     This is a ``sparse'' regular file.  Sparse files are
 		     stored as a series of fragments.  The header contains a
 		     list of fragment offset/length pairs.  If more than four
 		     such entries are required, the header is extended as nec-
@@ -476,8 +527,8 @@ DESCRIPTION
 				   char offset[12];
 				   char numbytes[12];
 			   } sparse[21];
-			   char	   isextended[1];
-			   char	   padding[7];
+			   char    isextended[1];
+			   char    padding[7];
 		   };
 
      realsize
@@ -490,9 +541,11 @@ DESCRIPTION
 
    GNU tar pax archives
      GNU tar 1.14 (XXX check this XXX) and later will write pax interchange
-     format archives when you specify the --posix flag.	 This format uses cus-
-     tom keywords to store sparse file information.  There have been three
-     iterations of this support, referred to as ``0.0'', ``0.1'', and ``1.0''.
+     format archives when you specify the --posix flag.  This format follows
+     the pax interchange format closely, using some SCHILY tags and introduc-
+     ing new keywords to store sparse file information.  There have been three
+     iterations of the sparse file support, referred to as ``0.0'', ``0.1'',
+     and ``1.0''.
 
      GNU.sparse.numblocks, GNU.sparse.offset, GNU.sparse.numbytes,
 	     GNU.sparse.size
@@ -500,7 +553,7 @@ DESCRIPTION
 	     to indicate the number of blocks in the file, a pair of
 	     GNU.sparse.offset and GNU.sparse.numbytes to indicate the offset
 	     and size of each block, and a single GNU.sparse.size to indicate
-	     the full size of the file.	 This is not the same as the size in
+	     the full size of the file.  This is not the same as the size in
 	     the tar header because the latter value does not include the size
 	     of any holes.  This format required that the order of attributes
 	     be preserved and relied on readers accepting multiple appearances
@@ -509,7 +562,7 @@ DESCRIPTION
 
      GNU.sparse.map
 	     The ``0.1'' format used a single attribute that stored a comma-
-	     separated list of decimal numbers.	 Each pair of numbers indi-
+	     separated list of decimal numbers.  Each pair of numbers indi-
 	     cated the offset and size, respectively, of a block of data.
 	     This does not work well if the archive is extracted by an
 	     archiver that does not recognize this extension, since many pax
@@ -531,11 +584,11 @@ DESCRIPTION
      Solaris tar (beginning with SunOS XXX 5.7 ?? XXX) supports an
      ``extended'' format that is fundamentally similar to pax interchange for-
      mat, with the following differences:
-	   Extended attributes are stored in an entry whose type is X, not
+     o	     Extended attributes are stored in an entry whose type is X, not
 	     x, as used by pax interchange format.  The detailed format of
 	     this entry appears to be the same as detailed above for the x
 	     entry.
-	   An additional A entry is used to store an ACL for the following
+     o	     An additional A header is used to store an ACL for the following
 	     regular entry.  The body of this entry contains a seven-digit
 	     octal number followed by a zero byte, followed by the textual ACL
 	     description.  The octal value is the number of ACL entries plus a
@@ -545,35 +598,57 @@ DESCRIPTION
    AIX Tar
      XXX More details needed XXX
 
+     AIX Tar uses a ustar-formatted header with the type A for storing coded
+     ACL information.  Unlike the Solaris format, AIX tar writes this header
+     after the regular file body to which it applies.  The pathname in this
+     header is either NFS4 or AIXC to indicate the type of ACL stored.	The
+     actual ACL is stored in platform-specific binary format.
+
    Mac OS X Tar
      The tar distributed with Apple's Mac OS X stores most regular files as
-     two separate entries in the tar archive.  The two entries have the same
-     name except that the first one has ``._'' added to the beginning of the
-     name.  This first entry stores the ``resource fork'' with additional
-     attributes for the file.  The Mac OS X CopyFile() API is used to separate
-     a file on disk into separate resource and data streams and to reassemble
-     those separate streams when the file is restored to disk.
+     two separate files in the tar archive.  The two files have the same name
+     except that the first one has ``._'' prepended to the last path element.
+     This special file stores an AppleDouble-encoded binary blob with addi-
+     tional metadata about the second file, including ACL, extended
+     attributes, and resources.  To recreate the original file on disk, each
+     separate file can be extracted and the Mac OS X copyfile() function can
+     be used to unpack the separate metadata file and apply it to th regular
+     file.  Conversely, the same function provides a ``pack'' option to encode
+     the extended metadata from a file into a separate file whose contents can
+     then be put into a tar archive.
 
-   Other Extensions
-     One obvious extension to increase the size of files is to eliminate the
-     terminating characters from the various numeric fields.  For example, the
-     standard only allows the size field to contain 11 octal digits, reserving
-     the twelfth byte for a trailing NUL character.  Allowing 12 octal digits
-     allows file sizes up to 64 GB.
+     Note that the Apple extended attributes interact badly with long file-
+     names.  Since each file is stored with the full name, a separate set of
+     extensions needs to be included in the archive for each one, doubling the
+     overhead required for files with long names.
 
-     Another extension, utilized by GNU tar, star, and other newer tar imple-
-     mentations, permits binary numbers in the standard numeric fields.	 This
-     is flagged by setting the high bit of the first byte.  This permits
-     95-bit values for the length and time fields and 63-bit values for the
-     uid, gid, and device numbers.  GNU tar supports this extension for the
-     length, mtime, ctime, and atime fields.  Joerg Schilling's star program
-     supports this extension for all numeric fields.  Note that this extension
-     is largely obsoleted by the extended attribute record provided by the pax
-     interchange format.
-
-     Another early GNU extension allowed base-64 values rather than octal.
-     This extension was short-lived and is no longer supported by any imple-
-     mentation.
+   Summary of tar type codes
+     The following list is a condensed summary of the type codes used in tar
+     header records generated by different tar implementations.  More details
+     about specific implementations can be found above:
+     NUL  Early tar programs stored a zero byte for regular files.
+     0	  POSIX standard type code for a regular file.
+     1	  POSIX standard type code for a hard link description.
+     2	  POSIX standard type code for a symbolic link description.
+     3	  POSIX standard type code for a character device node.
+     4	  POSIX standard type code for a block device node.
+     5	  POSIX standard type code for a directory.
+     6	  POSIX standard type code for a FIFO.
+     7	  POSIX reserved.
+     7	  GNU tar used for pre-allocated files on some systems.
+     A	  Solaris tar ACL description stored prior to a regular file header.
+     A	  AIX tar ACL description stored after the file body.
+     D	  GNU tar directory dump.
+     K	  GNU tar long linkname for the following header.
+     L	  GNU tar long pathname for the following header.
+     M	  GNU tar multivolume marker, indicating the file is a continuation of
+	  a file from the previous volume.
+     N	  GNU tar long filename support.  Deprecated.
+     S	  GNU tar sparse regular file.
+     V	  GNU tar tape/volume header name.
+     X	  Solaris tar general-purpose extension header.
+     g	  POSIX pax interchange format global extensions.
+     x	  POSIX pax interchange format per-file extensions.
 
 SEE ALSO
      ar(1), pax(1), tar(1)
@@ -592,10 +667,10 @@ HISTORY
      in turn replaced the tap program from First Edition Unix.	John Gilmore's
      pdtar public-domain implementation (circa 1987) was highly influential
      and formed the basis of GNU tar (circa 1988).  Joerg Shilling's star
-     archiver is another open-source (GPL) archiver (originally developed
+     archiver is another open-source (CDDL) archiver (originally developed
      circa 1985) which features complete support for pax interchange format.
 
      This documentation was written as part of the libarchive and bsdtar
      project by Tim Kientzle <kientzle@FreeBSD.org>.
 
-NetBSD 5.0		       December 27, 2009		    NetBSD 5.0
+BSD			       December 27, 2016			   BSD

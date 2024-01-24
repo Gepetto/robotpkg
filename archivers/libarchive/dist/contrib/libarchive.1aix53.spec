@@ -1,4 +1,4 @@
-# $LastChangedRevision: 8 $, $LastChangedDate: 2008-05-01 00:11:33 +0200 (Thu, 01 May 2008) $
+# $LastChangedRevision$, $LastChangedDate$
 Summary:        Library to create and read several different archive formats
 Summary(pl):    Biblioteka do tworzenia i odczytu ró¿nych formatów archiwów
 Name:           libarchive
@@ -127,13 +127,53 @@ rm -fr %buildroot
 All persons listed below can be reached at <cvs_login>@pld-linux.org
 
 $Log: libarchive.1aix53.spec,v $
-Revision 1.5  2010/07/09 12:02:42  joerg
-Merge libarchive-2.8.4
+Revision 1.12  2020/05/26 09:16:40  nia
+libarchive: Update to 3.4.3
 
-Revision 1.4  2010/03/14 18:39:08  joerg
-Import libarchive-2.8.4:
-- Improved reliability of hash function detection
-- Fix issues on ancient FreeBSD, QNX, ancient NetBSD and Minix
+Libarchive 3.4.3 is a feature and bugfix release.
+
+New features:
+
+    support for pzstd compressed files (#1357)
+    support for RHT.security.selinux tar extended attribute (#1348)
+
+Important bugfixes:
+
+    various zstd fixes and improvements (#1342 #1352 #1359)
+    child process handling fixes (#1372)
+
+Libarchive 3.4.2 is a feature and security release.
+
+New features:
+
+    support for atomic file extraction (bsdtar -x --safe-writes) (#1289)
+    support for mbed TLS (PolarSSL) (#1301)
+
+Important bugfixes:
+
+    security fixes in RAR5 reader (#1280 #1326)
+    compression buffer fix in XAR writer (#1317)
+    fix uname and gname longer than 32 characters in PAX writer (#1319)
+    fix segfault when archiving hard links in ISO9660 and XAR writers (#1325)
+    fix support for extracting 7z archive entries with Delta filter (#987)
+
+Libarchive 3.4.1 is a feature and security release.
+
+New features:
+
+    Unicode filename support for reading lha/lzh archives
+    New pax write option "xattrhdr"
+
+Important bugfixes:
+
+    security fixes in wide string processing (#1276 #1298)
+    security fixes in RAR5 reader (#1212 #1217 #1296)
+    security fixes and optimizations to write filter logic (#351)
+    security fix related to use of readlink(2) (1dae5a5)
+    sparse file handling fixes (#1218 #1260)
+
+Thanks to all contributors and bug reporters.
+Special thanks to Christos Zoulas (@zoulasc) from NetBSD for the atomic file extraction feature.
 
 Release 1aix53  2006/12/12 rm1023@dcx.com
 - tweak for aix-5.3
@@ -148,7 +188,7 @@ Revision 1.6  2006/11/15 10:41:28  qboosh
 Revision 1.5  2006/11/08 22:22:25  twittner
 - up to 1.3.1
 - added BR: e2fsprogs-devel
-- added -CVE-2006-5680.patch agains entering in infinite
+- added -CVE-2006-5680.patch against entering an infinite
 loop in corrupt archives
 - added bsdtar package (bsdtar is included now in libarchive
 sources)

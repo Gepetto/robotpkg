@@ -48,7 +48,6 @@ DEFINE_TEST(test_extattr_freebsd)
 	struct archive *a;
 	struct archive_entry *ae;
 	int n, fd;
-	int extattr_privilege_bug = 0;
 
 	/*
 	 * First, do a quick manual set/read of an extended attribute
@@ -72,24 +71,6 @@ DEFINE_TEST(test_extattr_freebsd)
 	assertEqualInt(4, n);
 	close(fd);
 
-	/*
-	 * Repeat the above, but with file permissions set to 0000.
-	 * This should work (extattr_set_fd() should follow fd
-	 * permissions, not file permissions), but is known broken on
-	 * some versions of FreeBSD.
-	 */
-	fd = open("pretest2", O_RDWR | O_CREAT, 00000);
-	failure("Could not create test file?!");
-	if (!assert(fd >= 0))
-		return;
-
-	n = extattr_set_fd(fd, EXTATTR_NAMESPACE_USER, "testattr", "1234", 4);
-	if (n != 4) {
-		skipping("Restoring xattr to an unwritable file seems to be broken on this platform");
-		extattr_privilege_bug = 1;
-	}
-	close(fd);
-
 	/* Create a write-to-disk object. */
 	assert(NULL != (a = archive_write_disk_new()));
 	archive_write_disk_set_options(a,
@@ -104,6 +85,7 @@ DEFINE_TEST(test_extattr_freebsd)
 	archive_entry_set_mode(ae, 0755);
 	archive_entry_xattr_add_entry(ae, "user.foo", "12345", 5);
 	assertEqualIntA(a, ARCHIVE_OK, archive_write_header(a, ae));
+	assertEqualIntA(a, ARCHIVE_OK, archive_write_finish_entry(a));
 	archive_entry_free(ae);
 
 	/* Another entry; similar but with mode = 0. */
@@ -118,16 +100,12 @@ DEFINE_TEST(test_extattr_freebsd)
 	archive_entry_free(ae);
 
 	/* Close the archive. */
-	if (extattr_privilege_bug)
-		/* If the bug is here, write_close will return warning. */
-		assertEqualIntA(a, ARCHIVE_WARN, archive_write_close(a));
-	else
-		assertEqualIntA(a, ARCHIVE_OK, archive_write_close(a));
-	assertEqualInt(ARCHIVE_OK, archive_write_finish(a));
+	assertEqualIntA(a, ARCHIVE_OK, archive_write_close(a));
 
 	/* Verify the data on disk. */
 	assertEqualInt(0, stat("test0", &st));
 	assertEqualInt(st.st_mtime, 123456);
+	assertEqualInt(st.st_mode & 0777, 0755);
 	/* Verify extattr */
 	n = extattr_get_file("test0", EXTATTR_NAMESPACE_USER,
 	    "foo", buff, sizeof(buff));
@@ -139,17 +117,20 @@ DEFINE_TEST(test_extattr_freebsd)
 	/* Verify the data on disk. */
 	assertEqualInt(0, stat("test1", &st));
 	assertEqualInt(st.st_mtime, 12345678);
+	assertEqualInt(st.st_mode & 0777, 0);
+	/*
+	 * If we are not root, we have to make test1 user readable
+	 * or extattr_get_file() will fail
+	 */
+	if (geteuid() != 0) {
+		chmod("test1", S_IRUSR);
+	}
 	/* Verify extattr */
 	n = extattr_get_file("test1", EXTATTR_NAMESPACE_USER,
 	    "bar", buff, sizeof(buff));
-	if (extattr_privilege_bug) {
-		/* If we have the bug, the extattr won't have been written. */
-		assertEqualInt(n, -1);
-	} else {
-		if (assertEqualInt(n, 6)) {
-			buff[n] = '\0';
-			assertEqualString(buff, "123456");
-		}
+	if (assertEqualInt(n, 6)) {
+		buff[n] = '\0';
+		assertEqualString(buff, "123456");
 	}
 
 	/* Use libarchive APIs to read the file back into an entry and
@@ -166,7 +147,7 @@ DEFINE_TEST(test_extattr_freebsd)
 	assertEqualInt(xsize, 5);
 	assertEqualMem(xval, "12345", xsize);
 	assertEqualIntA(a, ARCHIVE_OK, archive_read_close(a));
-	assertEqualInt(ARCHIVE_OK, archive_read_finish(a));
+	assertEqualInt(ARCHIVE_OK, archive_read_free(a));
 	archive_entry_free(ae);
 #endif
 }
