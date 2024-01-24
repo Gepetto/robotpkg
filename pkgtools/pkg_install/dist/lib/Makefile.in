@@ -36,8 +36,6 @@ CPPFLAGS+=	-DPREFIX=\"$(prefix)\"
 
 ifneq (,$(strip $(BOOTSTRAP)))
 CPPFLAGS+=	-DBOOTSTRAP
-else
-OBJS+=	gpgsig.o pkg_signature.o
 endif
 
 ifneq (,$(strip $(SSL_SUPPORT)))

@@ -22,7 +22,7 @@ BOOTSTRAP=	@bootstrap@
 SSL_SUPPORT=	@ssl_support@
 
 ifeq (,$(strip $(BOOTSTRAP)))
-LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch
+LIBS=		-linstall -larchive -lbz2 -lz -lfetch
   ifneq (,$(strip $(SSL_SUPPORT)))
 LIBS+=		-lssl -lcrypto
 CPPFLAGS+=	-DHAVE_SSL

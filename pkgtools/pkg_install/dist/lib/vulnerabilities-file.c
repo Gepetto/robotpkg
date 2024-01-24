@@ -126,9 +126,12 @@ verify_signature_pkcs7(const char *input)
 static void
 verify_signature(const char *input, size_t input_len)
 {
+#if 0
 	gpg_verify(input, input_len, gpg_keyring_pkgvuln, NULL, 0);
 	if (certs_pkg_vulnerabilities != NULL)
 		verify_signature_pkcs7(input);
+#endif
+	errx(EXIT_FAILURE, "gpg support is not compiled in");
 }
 
 static void *

@@ -1522,8 +1522,12 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 	}
 
 #ifndef BOOTSTRAP
+# if 0
 	invalid_sig = pkg_verify_signature(archive_name, &pkg->archive, &pkg->entry,
 	    &pkg->pkgname);
+# else
+	invalid_sig = 0;
+# endif
 #else
 	invalid_sig = 0;
 #endif

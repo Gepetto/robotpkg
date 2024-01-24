@@ -30,7 +30,7 @@ SCRIPTS=	audit-packages download-vulnerability-list
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
 
 ifeq (,$(strip $(BOOTSTRAP)))
-LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch
+LIBS=		-linstall -larchive -lbz2 -lz -lfetch
   ifneq (,$(strip $(SSL_SUPPORT)))
 LIBS+=		-lssl -lcrypto
 CPPFLAGS+=	-DHAVE_SSL

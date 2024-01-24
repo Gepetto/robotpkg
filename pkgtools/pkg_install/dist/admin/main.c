@@ -719,8 +719,12 @@ main(int argc, char *argv[])
 				warnx("%s could not be opened", *argv);
 				continue;
 			}
+#if 0
 			if (pkg_full_signature_check(archive_name, &pkg))
 				rc = 1;
+#else
+                        errx(EXIT_FAILURE, "pgp support is not included");
+#endif
 			free(archive_name);
 			if (pkg != NULL)
 				archive_read_free(pkg);
@@ -741,7 +745,11 @@ main(int argc, char *argv[])
 		++argv;
 		if (argc != 2)
 			errx(EXIT_FAILURE, "gpg-sign-package takes exactly two arguments");
+# if 0
 		pkg_sign_gpg(argv[0], argv[1]);
+# else
+		errx(EXIT_FAILURE, "pgp support is not included");
+# endif
 	}
 #endif
 	else {

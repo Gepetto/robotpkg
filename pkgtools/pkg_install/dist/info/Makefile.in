@@ -22,7 +22,7 @@ CFLAGS=		@CFLAGS@
 LDFLAGS=	@LDFLAGS@ -L../lib
 
 ifeq (,$(BOOTSTRAP))
-LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch @LIBS@
+LIBS=		-linstall -larchive -lbz2 -lz -lfetch @LIBS@
   ifneq (,$(SSL_SUPPORT))
 LIBS+=		-lssl -lcrypto
   endif

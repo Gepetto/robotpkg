@@ -343,10 +343,12 @@ pkg_do(const char *pkg)
 		}
 		pkgname = NULL;
 		entry = NULL;
+# if 0
 		pkg_verify_signature(archive_name, &archive, &entry, &pkgname);
 		if (archive == NULL)
 			return -1;
 		free(pkgname);
+# endif
 
 		meta = read_meta_data_from_archive(archive, entry);
 		archive_read_free(archive);
