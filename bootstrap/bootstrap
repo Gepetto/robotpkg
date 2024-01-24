@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2006,2008-2013 LAAS/CNRS
+# Copyright (c) 2006,2008-2013,2024 LAAS/CNRS
 # Copyright (c) 2001-2002 Alistair G. Crooks.
 # All rights reserved.
 #
@@ -289,6 +289,25 @@ run_cmd "(						\
 )"
 
 
+# --- build libarchive -----------------------------------------------
+
+echo_msg "Building libarchive"
+copy_src $pkgsrcdir/archivers/libarchive/dist libarchive
+run_cmd "(							\
+    cd $wrkdir/libarchive;                                      \
+    $shprog ./configure -C $configure_quiet_flags               \
+      --enable-static --disable-shared                          \
+      --disable-bsdtar --disable-bsdcpio                        \
+      --disable-posix-regex-lib --disable-xattr                 \
+      --disable-maintainer-mode --disable-acl --without-zlib    \
+      --without-bz2lib --without-iconv --without-lzma           \
+      --without-lzo2 --without-lz4 --without-nettle             \
+      --without-openssl --without-xml2 --without-expat          \
+      --without-zstd                                            \
+    && $gmake                                                   \
+)"
+
+
 # --- bootstrap pkg_install ------------------------------------------
 
 # This will install a minimal version of the robotpkg_admin tools.
@@ -300,8 +319,10 @@ copy_src $pkgsrcdir/pkgtools/pkg_install/dist pkg_install
 run_cmd "(							\
     cd $wrkdir/pkg_install;					\
     env $BSTRAP_ENV						\
-    CPPFLAGS='$CPPFLAGS -I../libnbcompat -I../../libnbcompat'	\
-    LDFLAGS='$LDFLAGS -L../libnbcompat -L../../libnbcompat'	\
+    CPPFLAGS='$CPPFLAGS -I../libnbcompat -I../../libnbcompat    \
+      -I../../libarchive/libarchive'                            \
+    LDFLAGS='$LDFLAGS -L../libnbcompat -L../../libnbcompat      \
+      -L../../libarchive/.libs'	                                \
     LIBS='-lnbcompat'						\
     $shprog ./configure -C $configure_quiet_flags		\
 	--enable-bootstrap					\
