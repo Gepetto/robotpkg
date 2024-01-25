@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Sat, 19 Apr 2008
 #
 
-DISTNAME=	libarchive-2.8.4
+DISTNAME=	libarchive-3.4.3
 CATEGORIES=	archivers
 MASTER_SITES=	# empty
 DISTFILES=	# empty
