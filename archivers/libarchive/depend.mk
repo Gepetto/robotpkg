@@ -59,11 +59,9 @@ libarchive-build:
 		${CONFIG_SHELL} ./configure				\
 		  --enable-static --disable-shared			\
 		  --disable-maintainer-mode				\
-		  --disable-bsdtar --disable-bsdcpio			\
-		  --disable-posix-regex-lib --disable-xattr		\
-		  --without-lzma --without-lzo2 --without-lz4		\
-		  --without-nettle --without-openssl --without-xml2	\
-		  --without-expat --without-zstd			\
+		  --without-expat --without-libb2 --without-lz4		\
+		  --without-lzo2 --without-mbedtls --without-nettle	\
+		  --without-openssl --without-xml2 --without-zstd	\
 	&& ${MAKE}
   else
   # This is the regular version of libarchive package, for normal install
