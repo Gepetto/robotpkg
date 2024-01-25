@@ -33,7 +33,8 @@ LIBARCHIVE_SRCDIR=	${WRKDIR}/libarchive
 
 CPPFLAGS+=	-I${LIBARCHIVE_SRCDIR}/libarchive
 LDFLAGS+=	-L${LIBARCHIVE_SRCDIR}/.libs
-LIBS+=		-larchive -lbz2 -lz
+LIBS+=		-larchive $(call sh,					\
+  . ${LIBARCHIVE_SRCDIR}/libarchive.la 2>/dev/null && echo $$dependency_libs)
 
 ifeq (MacOSX,${OPSYS})
   # Make sure that the linker uses our static library instead of the
