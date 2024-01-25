@@ -323,7 +323,8 @@ run_cmd "(							\
       -I../../libarchive/libarchive'                            \
     LDFLAGS='$LDFLAGS -L../libnbcompat -L../../libnbcompat      \
       -L../../libarchive/.libs'	                                \
-    LIBS='-lnbcompat'						\
+    LIBS=\"`. $wrkdir/libarchive/libarchive.la 2>/dev/null      \
+       && echo $dependency_libs` -lnbcompat\"			\
     $shprog ./configure -C $configure_quiet_flags		\
 	--enable-bootstrap					\
 	--prefix=$prefix --sysconfdir=$sysconfdir		\
