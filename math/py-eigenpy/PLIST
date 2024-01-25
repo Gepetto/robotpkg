@@ -42,7 +42,9 @@ include/eigenpy/solvers/LeastSquaresConjugateGradient.hpp
 include/eigenpy/solvers/SparseSolverBase.hpp
 include/eigenpy/solvers/preconditioners.hpp
 include/eigenpy/solvers/solvers.hpp
+include/eigenpy/std-array.hpp
 include/eigenpy/std-map.hpp
+include/eigenpy/std-pair.hpp
 include/eigenpy/std-vector.hpp
 include/eigenpy/stride.hpp
 include/eigenpy/swig.hpp

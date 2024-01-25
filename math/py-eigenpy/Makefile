@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			eigenpy
-VERSION=		3.1.4
+VERSION=		3.3.0
 
 CATEGORIES=		math
 COMMENT=		Eigen bindings to python
@@ -40,6 +40,7 @@ include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/py-numpy.mk
+include ../../mk/sysdep/py-scipy.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
