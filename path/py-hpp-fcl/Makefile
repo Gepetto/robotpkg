@@ -3,7 +3,7 @@
 #
 
 HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		2.4.0
+HPP_VERSION=		2.4.1
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations (python bindingss)
@@ -22,6 +22,7 @@ include ../../devel/boost-libs/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../path/hpp-fcl/depend.mk
+include ../../graphics/assimp/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/python.mk
