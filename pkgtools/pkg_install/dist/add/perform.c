@@ -1005,7 +1005,7 @@ check_platform(struct pkg_task *pkg)
 	if (OverrideMachine != NULL)
 		effective_arch = OverrideMachine;
 	else
-		effective_arch = PKGSRC_MACHINE_ARCH;
+		effective_arch = MACHINE_ARCH;
 
 	/* If either the OS or arch are different, bomb */
 	if (strcmp(host_uname.sysname, pkg->buildinfo[BI_OPSYS]) ||
