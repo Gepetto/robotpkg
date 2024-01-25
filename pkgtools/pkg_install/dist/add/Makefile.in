@@ -22,14 +22,14 @@ BOOTSTRAP=	@bootstrap@
 SSL_SUPPORT=	@ssl_support@
 
 ifeq (,$(strip $(BOOTSTRAP)))
-LIBS=		-linstall -larchive -lbz2 -lz -lfetch
+LIBS=		-linstall -larchive -lfetch
   ifneq (,$(strip $(SSL_SUPPORT)))
 LIBS+=		-lssl -lcrypto
 CPPFLAGS+=	-DHAVE_SSL
   endif
 LIBS+=		@LIBS@
 else
-LIBS=		-linstall -larchive -lbz2 @LIBS@
+LIBS=		-linstall -larchive @LIBS@
 CPPFLAGS+=	-DBOOTSTRAP
 endif
 

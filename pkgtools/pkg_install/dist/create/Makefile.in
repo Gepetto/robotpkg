@@ -28,7 +28,7 @@ CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib
 OBJS=		main.o perform.o pl.o util.o build.o
 
 ifeq (,$(strip $(BOOTSTRAP)))
-LIBS=		-linstall -larchive -lbz2 -lz -lfetch @LIBS@
+LIBS=		-linstall -larchive -lfetch @LIBS@
   ifneq (,$(strip $(SSL_SUPPORT)))
 LIBS+=		-lssl -lcrypto
   endif

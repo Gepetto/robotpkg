@@ -15,7 +15,7 @@ SSL_SUPPORT=	@ssl_support@
 
 CC=		@CC@
 CCLD=		$(CC)
-LIBS=		-linstall -larchive -lbz2 -lz -lfetch @LIBS@
+LIBS=		-linstall -larchive -lfetch @LIBS@
 
 ifneq (,$(strip $(SSL_SUPPORT)))
 LIBS+=		-lssl -lcrypto
