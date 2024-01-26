@@ -15,3 +15,4 @@ ${PYTHON_SITELIB}/pinocchio/visualize/gepetto_visualizer.py
 ${PYTHON_SITELIB}/pinocchio/visualize/meshcat_visualizer.py
 ${PYTHON_SITELIB}/pinocchio/visualize/panda3d_visualizer.py
 ${PYTHON_SITELIB}/pinocchio/visualize/rviz_visualizer.py
+${PYTHON_SITELIB}/pinocchio/windows_dll_manager.py
