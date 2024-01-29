@@ -27,6 +27,8 @@ ifeq (,$(filter Ubuntu-16.04 Debian-9,${OPSYS}-${OS_VERSION}))
   include ../../mk/sysdep/qhull.mk
 endif
 
+DEPEND_ABI.assimp+=	assimp>=5
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../mapping/octomap/depend.mk
