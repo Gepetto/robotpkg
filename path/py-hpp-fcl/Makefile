@@ -17,6 +17,8 @@ include ../../meta-pkgs/hpp/Makefile.common
 USE_BOOST_LIBS= thread date_time system filesystem unit_test_framework python
 USE_BOOST_LIBS+= chrono
 
+DEPEND_ABI.assimp+=	assimp>=5
+
 include ../../devel/boost-headers/depend.mk
 include ../../devel/boost-libs/depend.mk
 include ../../mapping/octomap/depend.mk
