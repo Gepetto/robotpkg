@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2010-2023 LAAS/CNRS
+# Copyright (c) 2010-2024 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -142,8 +142,10 @@ include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Debian,${OPSYS})
   ifneq (,$(filter 10,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python37 python27
+  else ifneq (,$(filter 11,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python39
   endif
-  PREFER_ALTERNATIVE.python?=	python39
+  PREFER_ALTERNATIVE.python?=	python311
 else ifeq (Fedora,${OPSYS})
   ifneq (,$(filter 34,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python39 python27
