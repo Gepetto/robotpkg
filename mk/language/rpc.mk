@@ -21,7 +21,12 @@ PKG_ALTERNATIVES.rpc=		libc-rpc libtirpc
 
 # set default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (Fedora,${OPSYS})
+ifeq (Debian,${OPSYS})
+  ifneq (,$(filter 10 11,${OS_VERSION}))
+     PREFER_ALTERNATIVE.rpc?=	libc-rpc
+  endif
+  PREFER_ALTERNATIVE.rpc?=	libtirpc
+else ifeq (Fedora,${OPSYS})
   ifneq (,$(filter 26 27,${OS_VERSION}))
      PREFER_ALTERNATIVE.rpc?=	libc-rpc
   endif
