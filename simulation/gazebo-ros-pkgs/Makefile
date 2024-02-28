@@ -31,8 +31,6 @@ PLIST.gazebo6=$(if $(filter yes,\
 PLIST.gazebo73=$(if $(filter yes,\
   $(call pmatch,gazebo>=7.3,${PKGVERSION.gazebo})),,@comment)
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
@@ -53,6 +51,8 @@ include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../motion/ros-control-toolbox/depend.mk
 include ../../motion/ros-control/depend.mk
 include ../../sysutils/ros-diagnostics/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/gazebo.mk
 include ../../mk/sysdep/libogre.mk
 include ../../mk/sysdep/libxml2.mk

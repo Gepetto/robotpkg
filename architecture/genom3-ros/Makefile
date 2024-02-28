@@ -17,7 +17,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-boost=${PREFIX.boost-headers}
 
 include ../../architecture/genom3/depend.mk
-include ../../devel/boost-headers/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../lang/ros-gencpp/depend.mk
@@ -25,6 +24,7 @@ include ../../lang/ros-genpy/depend.mk
 include ../../middleware/ros-actionlib/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-headers.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

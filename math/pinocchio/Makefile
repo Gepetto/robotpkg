@@ -33,14 +33,14 @@ ifeq (Debian,${OPSYS})
   endif
 endif
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../graphics/urdfdom/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../sysutils/console-bridge/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk

@@ -15,7 +15,7 @@ LICENSE=		mit
 COMMENT=		Sensor Fusion Library
 
 DEPEND_ABI.boost-headers = boost-headers>=1.41
-include ../../devel/boost-headers/depend.mk
+include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

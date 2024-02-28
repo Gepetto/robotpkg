@@ -36,9 +36,9 @@ endif # PY_EIGENPY_DEPEND_MK -----------------------------------------------
 # headers.
 USE_BOOST_LIBS+=	python
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../math/eigen3/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/py-numpy.mk
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

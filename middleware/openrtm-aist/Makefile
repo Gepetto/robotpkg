@@ -61,11 +61,11 @@ SUBST_FILES.throw=\
 DEPEND_ABI.python=	python<3
 include ../../mk/sysdep/python.mk
 
-include ../../devel/boost-headers/depend.mk
 include ../../middleware/ace/depend.mk
 include ../../middleware/ace/depend.mk
 include ../../middleware/omniORB/depend.mk
 include ../../pkgtools/libtool/depend.mk
+include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/gtar.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

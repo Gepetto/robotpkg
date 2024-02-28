@@ -15,8 +15,6 @@ USE_PYTHON_ONLY=	yes
 # this does not support multiple parallel python version
 CONFLICTS+=		py[0-9][0-9]-tsid-[0-9]*
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../graphics/urdfdom/depend.mk
 include ../../mapping/octomap/depend.mk
@@ -27,6 +25,8 @@ include ../../math/py-eigenpy/depend.mk
 include ../../math/py-pinocchio/depend.mk
 include ../../optimization/tsid/depend.mk
 include ../../path/hpp-fcl/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/python.mk

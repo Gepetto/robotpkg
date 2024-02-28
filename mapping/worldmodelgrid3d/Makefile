@@ -23,7 +23,7 @@ PKG_OPTION_DESCR.boost=Use boost 3D image structure
 define PKG_OPTION_SET.boost
   CONFIGURE_ARGS+=--with-images=boost
   CONFIGURE_ARGS+=--with-boost=${PREFIX.boost-headers}
-  include ../../devel/boost-headers/depend.mk
+  include ../../mk/sysdep/boost-headers.mk
 endef
 
 define PKG_OPTION_UNSET.boost

@@ -15,10 +15,10 @@ include ../../meta-pkgs/ros-base/Makefile.common
 # not compatible with log4cxx>=0.12. This could be fixed, but who cares?
 CMAKE_ARGS+=	-DROSCONSOLE_BACKEND=print
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../devel/ros-roscpp-core/depend.mk
 include ../../mk/sysdep/apr.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/robotpkg.mk

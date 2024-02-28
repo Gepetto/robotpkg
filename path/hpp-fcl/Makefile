@@ -29,11 +29,11 @@ endif
 
 DEPEND_ABI.assimp+=	assimp>=5
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../graphics/assimp/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

@@ -22,8 +22,8 @@ WRKSRC=			${WRKDIR}/boost
 NO_CONFIGURE=		yes
 NO_BUILD=		yes
 
-include ../../devel/boost-headers/depend.mk
 include ../../archivers/pax/depend.mk
+include ../../mk/sysdep/boost-headers.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
 

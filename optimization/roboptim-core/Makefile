@@ -27,11 +27,11 @@ RPATH_DIRS.libtool-ltdl=	lib
 DEPEND_ABI.eigen3+=	eigen3>=3.2.0
 DEPEND_ABI.g++ +=	g++>=4.6
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/log4cxx/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk

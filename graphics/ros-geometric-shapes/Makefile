@@ -14,8 +14,6 @@ include ../../meta-pkgs/ros-base/Makefile.common
 
 USE_BOOST_LIBS=	filesystem math
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
 include ../../graphics/assimp/depend.mk
@@ -26,5 +24,7 @@ include ../../math/ros-eigen-stl-containers/depend.mk
 include ../../math/ros-random-numbers/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
 include ../../sysutils/console-bridge/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/qhull.mk
 include ../../mk/robotpkg.mk

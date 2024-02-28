@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	devel/boost-libs
+# robotpkg sysdep/boost-libs.mk
 # Created:			Anthony Mallet on Fri, 10 Oct 2008
 #
 
@@ -25,12 +25,10 @@ PREFER.boost?=		system
 PREFER.boost-libs?=	${PREFER.boost}
 
 DEPEND_ABI.boost-libs?=	boost-libs>=1.34.1
-DEPEND_DIR.boost-libs?=	../../devel/boost-libs
 
 override define _use_boost_libs
   PREFER.boost-lib-$1?=		$${PREFER.boost-libs}
   DEPEND_ABI.boost-lib-$1?=	$${DEPEND_ABI.boost-libs}
-  DEPEND_DIR.boost-lib-$1?=	../../devel/boost-libs
 
   _boost_libs_files_$1?=	$1
   SYSTEM_SEARCH.boost-lib-$1?=$$(foreach 2,$${_boost_libs_files_$1},	\

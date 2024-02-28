@@ -22,13 +22,13 @@ CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../path/jrl-walkgen/depend.mk
 include ../../math/jrl-dynamics/depend.mk
 include ../../math/jrl-dynamics-urdf/depend.mk
 include ../../motion/sot-core/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/python.mk

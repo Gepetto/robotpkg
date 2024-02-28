@@ -18,8 +18,8 @@ WRKSRC=			${WRKDIR}/${PKGBASE}-release-${VERSION}
 CMAKE_ARGS+=		-DBUILD_SHARED_LIBS=ON
 CMAKE_ARGS+=		-DYAML_CPP_BUILD_TOOLS=OFF
 
-include ../../devel/boost-headers/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
-include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk

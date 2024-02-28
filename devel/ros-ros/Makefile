@@ -28,10 +28,10 @@ SUBST_FILES.py-interp+=	core/roslib/scripts/gendeps
 SUBST_FILES.py-interp+=	tools/rosboost_cfg/scripts/rosboost-cfg
 SUBST_FILES.py-interp+=	tools/rosboost_cfg/src/rosboost_cfg/rosboost_cfg.py
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../middleware/ros-genmsg/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
 include ../../sysutils/ros-rospack/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/robotpkg.mk

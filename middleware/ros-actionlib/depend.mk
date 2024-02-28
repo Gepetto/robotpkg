@@ -28,7 +28,7 @@ SYSTEM_SEARCH.ros-actionlib=\
 	'share/actionlib/package.xml:/<version>/s/[^0-9.]//gp'	\
 	'lib/pkgconfig/actionlib.pc:/Version/s/[^0-9.]//gp'
 
-include ../../devel/boost-headers/depend.mk
+include ../../mk/sysdep/boost-headers.mk
 
 # patch-aa for boost::placeholders requires this for robotpkg version
 DEPEND_ABI.boost-headers+=\

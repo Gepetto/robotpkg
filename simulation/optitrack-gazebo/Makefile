@@ -13,8 +13,8 @@ LICENSE=		2-clause-bsd
 
 GNU_CONFIGURE=		yes
 
-include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/gazebo.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

@@ -19,13 +19,13 @@ USE_BOOST_LIBS+= chrono
 
 DEPEND_ABI.assimp+=	assimp>=5
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../graphics/assimp/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk

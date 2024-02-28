@@ -42,8 +42,6 @@ SUBST_FILES.boost+=	util/simulator/CMakeLists.txt
 SUBST_SED.boost=	-e 's|boost_python|${BOOST_PYTHON_LIBRARY}|g'
 
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../image/opencv/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/omniORB/depend.mk
@@ -52,6 +50,8 @@ include ../../middleware/openrtm-aist/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../simulation/openhrp3/depend.mk
 include ../../mk/sysdep/SDL.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/freeglut.mk
 include ../../mk/sysdep/glew.mk

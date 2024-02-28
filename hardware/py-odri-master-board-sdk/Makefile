@@ -24,7 +24,7 @@ CMAKE_ARGS+=		-DBUILD_TESTING=OFF # requires catch2 dependency
 
 DEPEND_ABI.cmake+=	cmake>=3.14
 
-include ../../devel/boost-libs/depend.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

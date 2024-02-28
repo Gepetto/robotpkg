@@ -14,10 +14,10 @@ include ../../meta-pkgs/ros-base/Makefile.common
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
 include ../../math/ros-angles/depend.mk
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../math/ros-geometry/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/robotpkg.mk

@@ -25,7 +25,7 @@ PKG_OPTION_DESCR.cxx?=	Build C++ wrappers
 
 define PKG_OPTION_SET.cxx
   CONFIGURE_ARGS+=	--with-boost=${PREFIX.boost-libs}
-  include ../../devel/boost-libs/depend.mk
+  include ../../mk/sysdep/boost-libs.mk
 endef
 define PKG_OPTION_UNSET.cxx
   CONFIGURE_ARGS+=	--with-boost=no

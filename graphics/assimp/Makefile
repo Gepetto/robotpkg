@@ -18,7 +18,7 @@ COMMENT=	Portable library to import various well-known 3D model formats
 LICENSE=	modified-bsd
 
 
-include ../../devel/boost-libs/depend.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

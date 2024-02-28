@@ -30,10 +30,10 @@ CMAKE_ARGS+=		-DCMAKE_INSTALL_LIBDIR=lib
 CONFIGURE_DIRS=		_build
 CMAKE_ARG_PATH=		..
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../motion/py-dynamic-graph/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk

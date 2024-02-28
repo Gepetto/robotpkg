@@ -10,9 +10,9 @@ ROS_COMMENT=	interface for processing data as a sequence of filters
 
 include ../../meta-pkgs/ros-base/Makefile.common
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../middleware/ros-comm/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/robotpkg.mk

@@ -27,10 +27,10 @@ CMAKE_ARG_PATH=		..
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/_build
 
-include ../../devel/boost-libs/depend.mk
 include ../../interfaces/jrl-mal/depend.mk
 include ../../interfaces/abstract-robot-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk

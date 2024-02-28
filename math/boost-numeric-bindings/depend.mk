@@ -24,7 +24,7 @@ DEPEND_DIR.boost-numeric-bindings?=	../../math/boost-numeric-bindings
 
 DEPEND_METHOD.boost-numeric-bindings?=	build
 
-include ../../devel/boost-headers/depend.mk
+include ../../mk/sysdep/boost-headers.mk
 
 endif # BOOST_NUMERIC_BINDINGS_DEPEND_MK -----------------------------------
 

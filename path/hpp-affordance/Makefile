@@ -9,8 +9,8 @@ CATEGORIES=			path
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 
 include ../../math/eigen3/depend.mk
 include ../../path/hpp-fcl/depend.mk

@@ -11,8 +11,8 @@ PYTHON_NOTAG_CONFLICT=		yes
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 
 include ../../robots/example-robot-data/depend.mk
 include ../../robots/py-anymal-rbprm/depend.mk

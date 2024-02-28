@@ -27,8 +27,6 @@ CMAKE_ARGS+=		-DBoost_PYTHON_LIBRARY_DEBUG=${Boost_PYTHON_LIBRARY}
 
 DEPEND_ABI.opencv = opencv>=3
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../image/opencv/depend.mk
@@ -36,4 +34,6 @@ include ../../image/ros-image-common/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../sysutils/ros-console/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/robotpkg.mk

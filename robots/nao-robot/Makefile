@@ -21,8 +21,6 @@ SUBST_FILES.py-interp+=	nao_driver/nodes/*.py
 
 DEPEND_ABI.ros=	ros>=groovy
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-xacro/depend.mk
 include ../../interfaces/humanoid-nav-msgs/depend.mk
@@ -36,9 +34,11 @@ include ../../middleware/naoqi/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../sysutils/ros-diagnostics/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 
+include ../../mk/sysdep/python.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
-include ../../mk/sysdep/python.mk
 
 include ../../mk/robotpkg.mk

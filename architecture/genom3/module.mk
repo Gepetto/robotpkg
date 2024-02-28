@@ -96,14 +96,14 @@ define PKG_OPTION_SET.ros-server
 
   pre-configure: genom3-autoreconf(ros/server)
 
-  include ../../devel/boost-headers/depend.mk
-  include ../../devel/boost-libs/depend.mk
   include ../../devel/ros-ros/depend.mk
   include ../../interfaces/ros-common-msgs/depend.mk
   include ../../middleware/ros-actionlib/depend.mk
   include ../../middleware/ros-comm/depend.mk
   include ../../sysutils/ros-rospack/depend.mk
   include ../../architecture/genom3-ros/depend.mk
+  include ../../mk/sysdep/boost-headers.mk
+  include ../../mk/sysdep/boost-libs.mk
   include ../../mk/language/c++.mk
 endef
 
@@ -116,13 +116,13 @@ define PKG_OPTION_SET.ros-client-c
 
   pre-configure: genom3-autoreconf(ros/client/c)
 
-  include ../../devel/boost-headers/depend.mk
   include ../../devel/ros-ros/depend.mk
   include ../../interfaces/ros-common-msgs/depend.mk
   include ../../middleware/ros-actionlib/depend.mk
   include ../../middleware/ros-comm/depend.mk
   include ../../sysutils/ros-rospack/depend.mk
   include ../../architecture/genom3-ros/depend.mk
+  include ../../mk/sysdep/boost-headers.mk
   include ../../mk/language/c++.mk
 endef
 
@@ -152,7 +152,6 @@ define PKG_OPTION_SET.ros-client-ros
   # INSTALL script keeping track of ${PREFIX}/.catkin file
   include ../../devel/ros-catkin/marker.mk
 
-  include ../../devel/boost-headers/depend.mk
   include ../../devel/ros-ros/depend.mk
   include ../../interfaces/ros-common-msgs/depend.mk
   include ../../lang/ros-message-generation/depend.mk
@@ -160,8 +159,9 @@ define PKG_OPTION_SET.ros-client-ros
   include ../../middleware/ros-comm/depend.mk
   include ../../sysutils/ros-rospack/depend.mk
   include ../../architecture/genom3-ros/depend.mk
-  include ../../mk/language/c++.mk
+  include ../../mk/sysdep/boost-headers.mk
   include ../../mk/sysdep/python.mk
+  include ../../mk/language/c++.mk
 endef
 
 # openprs
@@ -214,8 +214,8 @@ PRINT_PLIST_FILTER+=\
 
 include ../../pkgtools/libtool/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../architecture/genom3/depend.mk
 include ../../mk/sysdep/autoconf.mk
 include ../../mk/sysdep/automake.mk
-include ../../architecture/genom3/depend.mk
 
 endif # GENOM_MODULE_MK

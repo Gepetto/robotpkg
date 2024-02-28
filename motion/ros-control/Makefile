@@ -17,8 +17,6 @@ include ../../meta-pkgs/ros-base/Makefile.common
 # drop "gmock" dependency, not widely available
 CMAKE_ARGS+=	-DCATKIN_ENABLE_TESTING=FALSE
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
@@ -34,4 +32,6 @@ include ../../lang/ros-message-runtime/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../middleware/ros-dynamic-reconfigure/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/robotpkg.mk

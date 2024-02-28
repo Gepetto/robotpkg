@@ -18,8 +18,8 @@ PKG_SUPPORTED_OPTIONS+= lua
 PKG_OPTION_DESCR.lua =	Enable lua support in orocos-ocl
 define PKG_OPTION_SET.lua
   CMAKE_ARGS+=	-DBUILD_LUA_RTT=ON
-  include ../../mk/sysdep/lua.mk
   include ../../mk/sysdep/liblua.mk
+  include ../../mk/sysdep/lua.mk
 endef
 define PKG_OPTION_UNSET.lua
   CMAKE_ARGS+=	-DBUILD_LUA_RTT=OFF
@@ -35,11 +35,11 @@ define PKG_OPTION_UNSET.corba
   DEPEND_ABI.orocos-rtt+=   orocos-rtt~!corba
 endef
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../devel/log4cxx/depend.mk
 include ../../devel/orocos-log4cpp/depend.mk
 include ../../middleware/orocos-rtt/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/ncurses.mk

@@ -27,11 +27,11 @@ define PKG_ALTERNATIVE_SET.qt4 +=
   CMAKE_ARGS+=		-DQT_QMAKE_EXECUTABLE=${QMAKE}
 endef
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../graphics/py-qt-gepetto-viewer-corba/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/py-hpp-manipulation-corba/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

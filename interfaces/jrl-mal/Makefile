@@ -46,11 +46,11 @@ PKG_OPTIONS_REQUIRED_GROUPS=	matrix
 PKG_OPTIONS_GROUP.matrix=	t3d jrl-mathtools
 
 include ../../math/jrl-mathtools/depend.mk
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../math/boost-numeric-bindings-v1/depend.mk
 include ../../math/lapack/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/graphviz.mk

@@ -27,12 +27,12 @@ SUBST_SED.old-cmake=	-e 's/LINK_PRIVATE//'
 SUBST_CLASSES+=\
   $(if $(filter yes,$(call pmatch,<2.8.7,-${PKGVERSION.cmake})),old-cmake)
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
+include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
-include ../../mk/sysdep/cmake.mk
 
 DEPEND_ABI.boost-headers += boost-headers<1.65
 DEPEND_ABI.boost-libs += boost-libs<1.65

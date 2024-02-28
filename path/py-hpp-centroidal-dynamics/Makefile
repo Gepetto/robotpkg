@@ -15,11 +15,11 @@ CMAKE_ARGS+=		-DqpOASES_PREFIX=${PREFIX.qpoases}
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../optimization/qpoases/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/libcdd.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

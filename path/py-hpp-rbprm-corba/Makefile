@@ -40,7 +40,7 @@ include ../../robots/py-hyq-rbprm/depend.mk
 include ../../middleware/omniORB/depend.mk
 include ../../middleware/py-omniORBpy/depend.mk
 
-include ../../devel/boost-headers/depend.mk
+include ../../mk/sysdep/boost-headers.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

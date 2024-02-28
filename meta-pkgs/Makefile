@@ -2,7 +2,6 @@
 
 COMMENT=	Collections of other packages
 
-SUBDIR+=	boost
 SUBDIR+=	gearbox
 SUBDIR+=	hpp
 SUBDIR+=	jafar

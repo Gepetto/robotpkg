@@ -25,7 +25,7 @@ include ../../path/hpp-fcl/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mapping/octomap/depend.mk
 
-include ../../devel/boost-headers/depend.mk
+include ../../mk/sysdep/boost-headers.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

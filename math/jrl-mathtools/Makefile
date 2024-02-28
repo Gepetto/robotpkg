@@ -28,10 +28,10 @@ CMAKE_ARGS+=\
 
 USE_BOOST_LIBS= filesystem system thread program_options unit_test_framework
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../math/lapack/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/language/c.mk

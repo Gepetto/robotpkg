@@ -16,8 +16,6 @@ USE_BOOST_LIBS+=	filesystem system
 
 CMAKE_ARGS+=		-DGTEST_ROOT=${PREFIX.googletest}
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../sysutils/ros-rospack/depend.mk
 include ../../graphics/urdfdom/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
@@ -26,6 +24,8 @@ include ../../math/jrl-dynamics/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/bullet.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk

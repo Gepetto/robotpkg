@@ -31,11 +31,11 @@ USE_BOOST_LIBS+=	unit_test_framework
 
 DEPEND_ABI.eigen3+=	eigen3>=3.2.0
 
-include ../../devel/boost-headers/depend.mk
-include ../../devel/boost-libs/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../optimization/roboptim-core/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/boost-headers.mk
+include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/doxygen.mk
 include ../../mk/sysdep/latex.mk
