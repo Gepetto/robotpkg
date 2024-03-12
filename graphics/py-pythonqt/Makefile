@@ -4,7 +4,7 @@
 
 ORG=			MeVisLab
 NAME=			PythonQt
-VERSION=		3.4.1
+VERSION=		3.5.0
 
 NAME_LOWER=		pythonqt
 

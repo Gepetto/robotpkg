@@ -1,4 +1,4 @@
-SHA1 (PythonQt-v3.4.1.tar.gz) = 1b2ec5df9605f5962fe924ec3c65770e1c28badb
-RMD160 (PythonQt-v3.4.1.tar.gz) = e08b19be13eb1a61462f1b7b6dfeea4b636bcff4
-Size (PythonQt-v3.4.1.tar.gz) = 5313310 bytes
-SHA1 (patch-aa) = f6be8ebe72bdd1bb5f332b06d65e9e972165fda3
+SHA1 (PythonQt-v3.5.0.tar.gz) = 5e80b9386462e45b45a4cb420c596d18d53da6ff
+RMD160 (PythonQt-v3.5.0.tar.gz) = 2b30ea3ce15c483c776233874398d203adb3469b
+Size (PythonQt-v3.5.0.tar.gz) = 6514336 bytes
+SHA1 (patch-197) = f8b8cbcf423176770d09e0088bc84943f0ddaf17
