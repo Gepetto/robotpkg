@@ -38,6 +38,7 @@ ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/client.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/constraint_graph.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/constraint_graph_factory.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/constraints.py
+${PYTHON_SITELIB}/hpp/corbaserver/manipulation/possible_grasps.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/problem_solver.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/robot.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/security_margins.py
