@@ -9,18 +9,16 @@ CATEGORIES=	path
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-CMAKE_ARGS+=	-DTinyXML_PREFIX=${PREFIX.tinyxml}
-
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=	-DCXX_DISABLE_WERROR=yes
 
 include ../../devel/log4cxx/depend.mk
-include ../../devel/tinyxml/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../math/hpp-pinocchio/depend.mk
 include ../../path/hpp-manipulation/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mapping/octomap/depend.mk
+include ../../mk/sysdep/tinyxml2.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
