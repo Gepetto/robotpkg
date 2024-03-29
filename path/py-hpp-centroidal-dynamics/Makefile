@@ -2,7 +2,6 @@
 # Created:			Guilhem Saurel on Tue, 13 Apr 2021
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		hpp-centroidal-dynamics
 HPP_COMMENT=		testing equilibrium
 

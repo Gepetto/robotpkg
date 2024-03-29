@@ -11,6 +11,8 @@ include/hpp/centroidal-dynamics/stop-watch.hh
 include/hpp/centroidal-dynamics/util.hh
 include/hpp/centroidal-dynamics/warning.hh
 lib/cmake/hpp-centroidal-dynamics/cxx-standard.cmake
+lib/cmake/hpp-centroidal-dynamics/find-external/CDD/FindCDD.cmake
+lib/cmake/hpp-centroidal-dynamics/find-external/qpOASES/FindqpOASES.cmake
 lib/cmake/hpp-centroidal-dynamics/hpp-centroidal-dynamicsConfig.cmake
 lib/cmake/hpp-centroidal-dynamics/hpp-centroidal-dynamicsConfigVersion.cmake
 lib/cmake/hpp-centroidal-dynamics/hpp-centroidal-dynamicsTargets-release.cmake

@@ -1,21 +1,21 @@
 Add missing boost dependency
 
---- CMakeLists.txt~	2023-01-18 14:45:13.000000000 +0100
-+++ CMakeLists.txt	2023-09-12 17:17:28.070422905 +0200
-@@ -29,6 +29,7 @@
+--- CMakeLists.txt.orig	2024-03-28 17:29:39.000000000 +0100
++++ CMakeLists.txt	2024-03-29 12:37:03.117141319 +0100
+@@ -60,6 +60,7 @@
  
  # Project dependencies
  add_project_dependency(Eigen3 REQUIRED)
-+add_project_dependency(Boost)
++add_project_dependency(Boost REQUIRED)
  
  set(CMAKE_MODULE_PATH
-     ${PROJECT_SOURCE_DIR}/cmake/find-external/CDD
-@@ -73,7 +74,7 @@
+     ${JRL_CMAKE_MODULES}/find-external/CDD
+@@ -103,7 +104,7 @@
                                     ${${PROJECT_NAME}_HEADERS})
- target_include_directories(${PROJECT_NAME} PUBLIC $<INSTALL_INTERFACE:include>)
  target_include_directories(
--  ${PROJECT_NAME} SYSTEM PUBLIC ${EIGEN3_INCLUDE_DIR} ${CDD_INCLUDE_DIRS}
-+  ${PROJECT_NAME} SYSTEM PUBLIC ${BOOST_INCLUDEDIR} ${EIGEN3_INCLUDE_DIR} ${CDD_INCLUDE_DIRS}
-                                 ${qpOASES_INCLUDE_DIRS})
- target_link_libraries(${PROJECT_NAME} ${CDD_LIBRARIES} ${qpOASES_LIBRARY})
+   ${PROJECT_NAME} PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+-target_link_libraries(${PROJECT_NAME} PUBLIC Eigen3::Eigen qpOASES::qpOASES
++target_link_libraries(${PROJECT_NAME} PUBLIC Boost::boost Eigen3::Eigen qpOASES::qpOASES
+                                              CDD::CDD)
  
+ if(BUILD_WITH_CLP)
