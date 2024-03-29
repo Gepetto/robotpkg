@@ -4,7 +4,6 @@
 
 HPP_PACKAGE=		hpp-gepetto-viewer
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
-PKGREVISION=		1
 
 CATEGORIES=		graphics
 HPP_COMMENT=		Bridge between hpp-corbaserver and gepetto-viewer-corba
@@ -12,7 +11,6 @@ HPP_COMMENT=		Bridge between hpp-corbaserver and gepetto-viewer-corba
 include ../../meta-pkgs/hpp/Makefile.common
 
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
-CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
 # old package name and other Python / Qt versions
 CONFLICTS=		hpp-gepetto-viewer-[0-9]*
