@@ -1,0 +1,56 @@
+From 0e853f45f61e8b0fb714aa6c92ed53fc60dc0dbf Mon Sep 17 00:00:00 2001
+From: xenontrioxide <55810007+xenontrioxide@users.noreply.github.com>
+Date: Sun, 16 Jan 2022 03:02:47 -0700
+Subject: [PATCH] Fixes compile error from pull request #14
+
+Fixes VISITABLE_DIRECT_INIT from NikolausDemmel allowing users to direct initialize with an initializer list.
+---
+ .../visit_struct/visit_struct_intrusive.hpp   | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/include/visit_struct/visit_struct_intrusive.hpp b/include/visit_struct/visit_struct_intrusive.hpp
+index fed65bd..a134cb9 100644
+--- include/visit_struct/visit_struct_intrusive.hpp
++++ include/visit_struct/visit_struct_intrusive.hpp
+@@ -382,6 +382,41 @@ static inline ::visit_struct::detail::Append_t<VISIT_STRUCT_GET_REGISTERED_MEMBE
+   Visit_Struct_Get_Visitables__(::visit_struct::detail::Rank<VISIT_STRUCT_GET_REGISTERED_MEMBERS::size + 1>);    \
+ static_assert(true, "")
+ 
++#define VISITABLE_INIT(TYPE, NAME, VALUE)                                                                        \
++TYPE NAME = VALUE;                                                                                               \
++struct VISIT_STRUCT_MAKE_MEMBER_NAME(NAME) :                                                                     \
++  visit_struct::detail::member_ptr_helper<VISIT_STRUCT_CURRENT_TYPE,                                             \
++                                          TYPE,                                                                  \
++                                          &VISIT_STRUCT_CURRENT_TYPE::NAME>                                      \
++{                                                                                                                \
++  static VISIT_STRUCT_CONSTEXPR const ::visit_struct::detail::char_array<sizeof(#NAME)> & member_name() {        \
++    return #NAME;                                                                                                \
++  }                                                                                                              \
++};                                                                                                               \
++static inline ::visit_struct::detail::Append_t<VISIT_STRUCT_GET_REGISTERED_MEMBERS,                              \
++                                               VISIT_STRUCT_MAKE_MEMBER_NAME(NAME)>                              \
++  Visit_Struct_Get_Visitables__(::visit_struct::detail::Rank<VISIT_STRUCT_GET_REGISTERED_MEMBERS::size + 1>);    \
++static_assert(true, "")
++
++#define VISITABLE_DIRECT_INIT(TYPE, NAME, ...)                                                                   \
++TYPE NAME __VA_ARGS__;                                                                                           \
++	struct VISIT_STRUCT_MAKE_MEMBER_NAME(NAME) :                                                                   \
++visit_struct::detail::member_ptr_helper<VISIT_STRUCT_CURRENT_TYPE,                                               \
++										TYPE,                                                                                        \
++										&VISIT_STRUCT_CURRENT_TYPE::NAME>                                                            \
++{                                                                                                                \
++	static VISIT_STRUCT_CONSTEXPR const ::visit_struct::detail::char_array<sizeof(#NAME)>& member_name()           \
++	{                                                                                                              \
++		return #NAME;                                                                                                \
++	}                                                                                                              \
++};                                                                                                               \
++static inline ::visit_struct::detail::Append_t<VISIT_STRUCT_GET_REGISTERED_MEMBERS,                              \
++											   VISIT_STRUCT_MAKE_MEMBER_NAME(NAME)>                                                    \
++	Visit_Struct_Get_Visitables__(::visit_struct::detail::Rank<VISIT_STRUCT_GET_REGISTERED_MEMBERS::size + 1>);    \
++static_assert(true, "")
++
++
++
+ #define END_VISITABLES                                                                                           \
+ typedef VISIT_STRUCT_GET_REGISTERED_MEMBERS Visit_Struct_Registered_Members_List__;                              \
+ typedef ::visit_struct::detail::intrusive_tag Visit_Struct_Visitable_Structure_Tag__;                            \
