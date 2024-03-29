@@ -1,0 +1,10 @@
+--- include/proxsuite/proxqp/dense/wrapper.hpp.orig	2022-09-09 10:50:12.000000000 +0200
++++ include/proxsuite/proxqp/dense/wrapper.hpp	2022-09-24 15:52:21.353761361 +0200
+@@ -11,6 +11,7 @@
+ #include <proxsuite/proxqp/dense/helpers.hpp>
+ #include <proxsuite/proxqp/dense/preconditioner/ruiz.hpp>
+ #include <chrono>
++#include <optional>
+ 
+ namespace proxsuite {
+ namespace proxqp {

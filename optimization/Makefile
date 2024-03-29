@@ -5,8 +5,10 @@ COMMENT=	Optimization tools
 
 SUBDIR+=	acado
 SUBDIR+=	ipopt
+SUBDIR+=	proxsuite
 SUBDIR+=	py-casadi
 SUBDIR+=	py-crocoddyl
+SUBDIR+=	py-proxsuite
 SUBDIR+=	py-tsid
 SUBDIR+=	qpoases
 SUBDIR+=	roboptim-core

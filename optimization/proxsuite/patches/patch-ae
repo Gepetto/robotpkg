@@ -1,0 +1,12 @@
+--- test/CMakeLists.txt.orig	2022-10-11 08:32:02.544118214 +0000
++++ test/CMakeLists.txt	2022-10-11 08:32:14.820197032 +0000
+@@ -4,8 +4,7 @@
+ add_library(doctest STATIC doctest/doctest.cpp)
+ target_include_directories(doctest PUBLIC ./doctest)
+ add_library(cnpy OBJECT src/cnpy.cpp)
+-target_link_libraries(cnpy Eigen3::Eigen)
+-target_include_directories(cnpy PUBLIC ./include)
++target_include_directories(cnpy PUBLIC ./include ${Eigen3_INCLUDE_DIR})
+ 
+ file(GLOB_RECURSE TEST_HEADERS ./include/*.hpp)
+ add_header_group(TEST_HEADERS)

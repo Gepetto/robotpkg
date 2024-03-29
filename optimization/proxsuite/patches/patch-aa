@@ -1,0 +1,15 @@
+--- CMakeLists.txt.orig	2022-11-10 14:37:07.000000000 +0100
++++ CMakeLists.txt	2022-12-07 11:01:30.127072308 +0100
+@@ -80,11 +80,7 @@
+ endif(CHECK_RUNTIME_MALLOC)
+ 
+ # set CXX standard
+-if(DEFINED CMAKE_CXX_STANDARD)
+-  check_minimal_cxx_standard(14 ENFORCE)
+-else()
+-  set(CMAKE_CXX_STANDARD 17)
+-endif()
++check_minimal_cxx_standard(14 ENFORCE)
+ 
+ # Handle Windows context
+ if(MSVC)
