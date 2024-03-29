@@ -10,6 +10,8 @@ include/hpp/core/config-validations.hh
 include/hpp/core/config.hh
 include/hpp/core/configuration-shooter.hh
 include/hpp/core/configuration-shooter/gaussian.hh
+include/hpp/core/configuration-shooter/uniform-tpl.hh
+include/hpp/core/configuration-shooter/uniform-tpl.hxx
 include/hpp/core/configuration-shooter/uniform.hh
 include/hpp/core/connected-component.hh
 include/hpp/core/constraint-set.hh

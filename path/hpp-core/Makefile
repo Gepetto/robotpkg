@@ -4,13 +4,13 @@
 
 HPP_PACKAGE=	hpp-core
 HPP_COMMENT=	Basic classes for general path planning
-PKGREVISION=	2
 
 CATEGORIES=	path
 
 
 include ../../meta-pkgs/hpp/Makefile.common
 
+include ../../optimization/proxsuite/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../math/hpp-pinocchio/depend.mk
 include ../../path/hpp-constraints/depend.mk
