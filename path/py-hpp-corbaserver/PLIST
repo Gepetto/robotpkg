@@ -14,6 +14,7 @@ include/hpp/corbaserver/object-map.hh
 include/hpp/corbaserver/obstacle-idl.hh
 include/hpp/corbaserver/problem-idl.hh
 include/hpp/corbaserver/problem-solver-map.hh
+include/hpp/corbaserver/read-write-lock.hh
 include/hpp/corbaserver/robot-idl.hh
 include/hpp/corbaserver/servant-base.hh
 include/hpp/corbaserver/server-plugin.hh
@@ -79,6 +80,7 @@ ${PYTHON_SITELIB}/hpp_idl/hpp/corbaserver/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/configuration_shooter/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/pathValidation_idl/__init__.py
+${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/path_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/core_idl/steeringMethod_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp/pinocchio_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/__init__.py
@@ -87,6 +89,7 @@ ${PYTHON_SITELIB}/hpp_idl/hpp__POA/corbaserver/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/configuration_shooter/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/pathValidation_idl/__init__.py
+${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/path_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/core_idl/steeringMethod_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_idl/hpp__POA/pinocchio_idl/__init__.py
 ${PYTHON_SITELIB}/hpp_stubs/__init__.py
