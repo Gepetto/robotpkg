@@ -8,7 +8,7 @@ ifndef HPP_COMMENT
   PKG_FAIL_REASON+="Dependency on hpp/Makefile.common requires HPP_COMMENT"
 endif
 
-HPP_VERSION?=		4.15.1
+HPP_VERSION?=		5.0.0
 HPP_NAMESPACE?=		humanoid-path-planner
 HPP_DOC?=		yes
 LICENSE?=		gnu-lgpl-v3
@@ -34,7 +34,7 @@ include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 
-DEPEND_ABI.cmake+=	cmake>=3.0.0
+DEPEND_ABI.cmake+=	cmake>=3.10.0
 
 # options
 PKG_SUPPORTED_OPTIONS+=		verbose
