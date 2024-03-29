@@ -2,6 +2,7 @@
 include/hpp/universal/robot/config.hh
 include/hpp/universal/robot/deprecated.hh
 include/hpp/universal/robot/warning.hh
+lib/cmake/hpp-universal-robot/cxx-standard.cmake
 lib/cmake/hpp-universal-robot/hpp-universal-robotConfig.cmake
 lib/cmake/hpp-universal-robot/hpp-universal-robotConfigVersion.cmake
 lib/cmake/hpp-universal-robot/hpp-universal-robotTargets.cmake
