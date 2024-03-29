@@ -2,6 +2,7 @@
 include/hpp/environments/config.hh
 include/hpp/environments/deprecated.hh
 include/hpp/environments/warning.hh
+lib/cmake/hpp-environments/cxx-standard.cmake
 lib/cmake/hpp-environments/hpp-environmentsConfig.cmake
 lib/cmake/hpp-environments/hpp-environmentsConfigVersion.cmake
 lib/cmake/hpp-environments/hpp-environmentsTargets.cmake
