@@ -2,6 +2,7 @@
 include/hpp/baxter/config.hh
 include/hpp/baxter/deprecated.hh
 include/hpp/baxter/warning.hh
+lib/cmake/hpp-baxter/cxx-standard.cmake
 lib/cmake/hpp-baxter/hpp-baxterConfig.cmake
 lib/cmake/hpp-baxter/hpp-baxterConfigVersion.cmake
 lib/cmake/hpp-baxter/hpp-baxterTargets.cmake
