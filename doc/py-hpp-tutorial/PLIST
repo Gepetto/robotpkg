@@ -1,6 +1,5 @@
 @comment Thu Sep 26 23:51:12 CEST 2019
 bin/hpp-tutorial-1
-bin/hpp-tutorial-2-server
 include/hpp/tutorial/config.hh
 include/hpp/tutorial/deprecated.hh
 include/hpp/tutorial/warning.hh
@@ -8,6 +7,7 @@ lib/cmake/hpp_tutorial/cxx-standard.cmake
 lib/cmake/hpp_tutorial/hpp_tutorialConfig.cmake
 lib/cmake/hpp_tutorial/hpp_tutorialConfigVersion.cmake
 lib/cmake/hpp_tutorial/hpp_tutorialTargets.cmake
+lib/hppPlugins/tutorial-2.so
 lib/pkgconfig/hpp_tutorial.pc
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/pr2/__init__.py
 ${PYTHON_SITELIB}/hpp/corbaserver/manipulation/pr2/robot.py
@@ -46,3 +46,4 @@ share/hpp_tutorial/urdf/kitchen_area.urdf
 share/hpp_tutorial/urdf/pr2.urdf
 share/hpp_tutorial/urdf/rod.urdf
 share/hpp_tutorial/urdf/table.urdf
+share/hpp_tutorial/urdf/ur10e.urdf.xacro
