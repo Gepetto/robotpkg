@@ -2,6 +2,7 @@
 include/hpp/practicals/config.hh
 include/hpp/practicals/deprecated.hh
 include/hpp/practicals/warning.hh
+lib/cmake/hpp_practicals/cxx-standard.cmake
 lib/cmake/hpp_practicals/hpp_practicalsConfig.cmake
 lib/cmake/hpp_practicals/hpp_practicalsConfigVersion.cmake
 lib/cmake/hpp_practicals/hpp_practicalsTargets.cmake
