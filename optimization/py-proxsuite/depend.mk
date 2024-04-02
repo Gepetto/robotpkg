@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	math/py38-proxsuite
+# robotpkg depend.mk for:	math/py-proxsuite
 # Created:			Guilhem Saurel on Mon, 29 Aug 2022
 #
 

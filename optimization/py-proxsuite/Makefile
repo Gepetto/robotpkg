@@ -1,11 +1,10 @@
-# robotpkg Makefile for:	math/py38-proxsuite
+# robotpkg Makefile for:	math/py-proxsuite
 # Created:			Guilhem Saurel on Mon, 29 Aug 2022
 #
 
 ORG=			Simple-Robotics
 NAME=			proxsuite
-VERSION=		0.2.13
-PKGREVISION=		1
+VERSION=		0.6.4
 
 DISTNAME=		${NAME}-${VERSION}
 GITHUB_RELEASE=		v${VERSION}

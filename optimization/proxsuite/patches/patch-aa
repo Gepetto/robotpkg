@@ -1,15 +1,41 @@
---- CMakeLists.txt.orig	2022-11-10 14:37:07.000000000 +0100
-+++ CMakeLists.txt	2022-12-07 11:01:30.127072308 +0100
-@@ -80,11 +80,7 @@
+* Force C++14 only.
+* Eigen3 has no library, just headers (fails only for some versions, not sure why)
+* Keep private dependencies private
+
+--- CMakeLists.txt~~	2024-04-03 11:48:18.772979628 +0200
++++ CMakeLists.txt	2024-04-03 11:48:25.265025025 +0200
+@@ -102,11 +102,7 @@
  endif(CHECK_RUNTIME_MALLOC)
  
  # set CXX standard
 -if(DEFINED CMAKE_CXX_STANDARD)
--  check_minimal_cxx_standard(14 ENFORCE)
+   check_minimal_cxx_standard(14 ENFORCE)
 -else()
 -  set(CMAKE_CXX_STANDARD 17)
 -endif()
-+check_minimal_cxx_standard(14 ENFORCE)
+ message(STATUS "[Proxsuite] Using C++ standard: ${CMAKE_CXX_STANDARD}")
  
  # Handle Windows context
- if(MSVC)
+@@ -136,8 +132,8 @@
+ endif(MSVC)
+ target_link_libraries(
+   proxsuite
+-  PUBLIC
+-  INTERFACE Eigen3::Eigen)
++)
++target_include_directories(proxsuite PUBLIC INTERFACE ${Eigen3_INCLUDE_DIR})
+ target_include_directories(
+   proxsuite INTERFACE "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>"
+                       "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
+@@ -151,11 +147,9 @@
+   add_library(proxsuite-vectorized INTERFACE)
+   target_link_libraries(
+     proxsuite-vectorized
+-    PUBLIC
+     INTERFACE proxsuite)
+   target_link_libraries(
+     proxsuite-vectorized
+-    PUBLIC
+     INTERFACE simde)
+   target_compile_definitions(proxsuite-vectorized INTERFACE PROXSUITE_VECTORIZE)
+   list(APPEND EXPORTED_TARGETS_LIST proxsuite-vectorized)
