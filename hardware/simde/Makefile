@@ -4,7 +4,7 @@
 
 ORG=		simd-everywhere
 NAME=		simde
-VERSION=	0.7.2
+VERSION=	0.8.0
 
 GITHUB_TAG=	v${VERSION}
 DISTNAME=	${NAME}-${VERSION}
@@ -24,6 +24,9 @@ INSTALLATION_DIRS=$(addprefix include/simde/,		\
   .							\
   arm							\
   arm/neon						\
+  mips							\
+  mips/msa						\
+  wasm							\
   x86							\
   x86/avx512)
 
