@@ -2,7 +2,6 @@
 include/hpp/hyq-rbprm/config.hh
 include/hpp/hyq-rbprm/deprecated.hh
 include/hpp/hyq-rbprm/warning.hh
-lib/cmake/hyq-rbprm/cxx-standard.cmake
 lib/cmake/hyq-rbprm/hyq-rbprmConfig.cmake
 lib/cmake/hyq-rbprm/hyq-rbprmConfigVersion.cmake
 lib/cmake/hyq-rbprm/hyq-rbprmTargets.cmake
