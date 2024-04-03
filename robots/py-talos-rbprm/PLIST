@@ -2,7 +2,6 @@
 include/hpp/talos-rbprm/config.hh
 include/hpp/talos-rbprm/deprecated.hh
 include/hpp/talos-rbprm/warning.hh
-lib/cmake/talos-rbprm/cxx-standard.cmake
 lib/cmake/talos-rbprm/talos-rbprmConfig.cmake
 lib/cmake/talos-rbprm/talos-rbprmConfigVersion.cmake
 lib/cmake/talos-rbprm/talos-rbprmTargets.cmake
