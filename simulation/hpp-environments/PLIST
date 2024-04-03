@@ -1,8 +1,7 @@
-@comment Fri Oct 19 16:39:15 CEST 2018
+@comment Wed Apr 3 20:07:28 CEST 2024
 include/hpp/environments/config.hh
 include/hpp/environments/deprecated.hh
 include/hpp/environments/warning.hh
-lib/cmake/hpp-environments/cxx-standard.cmake
 lib/cmake/hpp-environments/hpp-environmentsConfig.cmake
 lib/cmake/hpp-environments/hpp-environmentsConfigVersion.cmake
 lib/cmake/hpp-environments/hpp-environmentsTargets.cmake
