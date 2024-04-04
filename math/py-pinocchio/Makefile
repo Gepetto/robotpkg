@@ -54,5 +54,6 @@ include ../../mk/language/c.mk
 include ../../mk/language/c++11.mk
 
 DEPEND_ABI.boost-headers +=	boost-headers>=1.55
+DEPEND_ABI.python=		python>=3
 
 include ../../mk/robotpkg.mk
