@@ -87,7 +87,7 @@ DEPEND_USE+=		${PKG_ALTERNATIVE.python}
 
 PREFER.python?=		system
 DEPEND_METHOD.python?=	build
-DEPEND_ABI.python?=	python>=2.5<3.12
+DEPEND_ABI.python?=	python>=2.5
 
 # factorize SYSTEM_SEARCH.python* here for all python* packages
 override define _py_syssearch
