@@ -15,6 +15,8 @@ USE_PYTHON_ONLY=	yes
 # this does not support multiple parallel python version
 CONFLICTS+=		py[0-9][0-9]-tsid-[0-9]*
 
+DEPEND_ABI.python=	python>=3
+
 include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../graphics/urdfdom/depend.mk
 include ../../mapping/octomap/depend.mk
