@@ -38,6 +38,8 @@ endef
 # Mesa headers path
 INCLUDE_DIRS.mesa+=	include
 
+DEPEND_ABI.python=	python>=3
+
 include ../../graphics/openscenegraph/depend.mk
 include ../../graphics/py-qt-gepetto-viewer/depend.mk
 include ../../graphics/qt-osgqt/depend.mk
