@@ -35,6 +35,7 @@ include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk
 
 DEPEND_ABI.cmake+=	cmake>=3.10.0
+DEPEND_ABI.python=	python>=3
 
 # options
 PKG_SUPPORTED_OPTIONS+=		verbose
