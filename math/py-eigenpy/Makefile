@@ -33,6 +33,7 @@ MAKE_JOBS_SAFE=		no
 include ../../devel/jrl-cmakemodules/Makefile.common
 
 DEPEND_METHOD.eigen3+=	full
+DEPEND_ABI.python=	python>=3
 
 include ../../math/eigen3/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
