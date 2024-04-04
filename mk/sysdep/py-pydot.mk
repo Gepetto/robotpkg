@@ -22,7 +22,7 @@ SYSTEM_PKG.Arch.py-pydot=	python$(subst 3,,${PYTHON_MAJOR})-pydot
 SYSTEM_PKG.Ubuntu.py-pydot=	python$(subst 2,,${PYTHON_MAJOR})-pydot
 SYSTEM_PKG.RedHat.py-pydot=	python-pydot (python-${PYTHON_VERSION})
 SYSTEM_PKG.Debian.py-pydot=	python-pydot (python-${PYTHON_VERSION})
-SYSTEM_PKG.NetBSD.py-pydot=	wip/${PKGTAG.python-}pydot
+SYSTEM_PKG.NetBSD.py-pydot=	graphics/${PKGTAG.python-}dot
 
 include ../../mk/sysdep/python.mk
 
