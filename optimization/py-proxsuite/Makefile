@@ -25,6 +25,7 @@ DEPEND_ABI.python=	python>=3.6
 CMAKE_ARGS+=		-DEigen3_INCLUDE_DIR=${PREFIX.eigen3}/include/eigen3
 CMAKE_ARGS+=		-DBUILD_TESTING=OFF
 
+BUILD_DIRS=		bindings/python
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 
