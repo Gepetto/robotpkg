@@ -16,7 +16,7 @@ PREFER.sot-romeo?=	robotpkg
 DEPEND_USE+=		sot-romeo
 
 DEPEND_ABI.sot-romeo?=	sot-romeo>=1.0.0
-DEPEND_DIR.sot-romeo?=	../../wip/sot-romeo
+DEPEND_DIR.sot-romeo?=	../../motion/sot-romeo
 
 SYSTEM_SEARCH.sot-romeo=\
  'include/sot-romeo/config.h'				\
