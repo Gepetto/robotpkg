@@ -38,5 +38,6 @@ include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 
 DEPEND_ABI.qt+=		qt>=5
+DEPEND_ABI.python=	python>=3
 
 include ../../mk/robotpkg.mk
