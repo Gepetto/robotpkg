@@ -26,6 +26,5 @@ SUBDIR+=	py-hpp-centroidal-dynamics
 SUBDIR+=	py-hpp-corbaserver
 SUBDIR+=	py-hpp-fcl
 SUBDIR+=	py-hpp-manipulation-corba
-SUBDIR+=	py-hpp-rbprm
 
 include ../mk/robotpkg.subdir.mk
