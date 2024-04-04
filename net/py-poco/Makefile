@@ -1,4 +1,4 @@
-# robotpkg Makefile for:	wip/py-poco
+# robotpkg Makefile for:	net/py-poco
 # Created:			Séverin Lemaignan on Tue, 9 Aug 2011
 #
 
