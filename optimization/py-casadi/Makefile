@@ -15,7 +15,7 @@ MASTER_SITES=		${HOMEPAGE}/archive/${VERSION}/
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}${ORG}/${NAME}
 CHECKOUT_VCS_OPTS+=	--recursive
 
-CATEGORIES=		wip
+CATEGORIES=		optimization
 COMMENT=		Symbolic framework for numeric optimization
 LICENSE=		gnu-lgpl-v3
 MAINTAINER=		gsaurel@laas.fr
