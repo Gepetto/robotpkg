@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 12 Jul 2013
 #
 
-DISTNAME=		pkgrepo2deb-1.12
+DISTNAME=		pkgrepo2deb-1.13
 CATEGORIES=		pkgtools
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}robotpkg/${PKGBASE}
@@ -20,9 +20,9 @@ INSTALLATION_DIRS+=	${GPG_DEFHOMEDIR}
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	SED=${SED}
-CONFIGURE_ARGS+=	PAX=${PAX}
 CONFIGURE_ARGS+=	GZIP_CMD=${GZIP_CMD}
 CONFIGURE_ARGS+=	GPG=$(call quote,${GPG_DEF})
+CONFIGURE_ARGS+=	ROBOTPKG_ADD=${LOCALBASE}/sbin/robotpkg_add
 CONFIGURE_ARGS+=	ROBOTPKG_ADMIN=${LOCALBASE}/sbin/robotpkg_admin
 CONFIGURE_ARGS+=	DPKG_DEB=${PREFIX.dpkg}/bin/dpkg-deb
 CONFIGURE_ARGS+=	DPKG_ARCHITECTURE=${PREFIX.dpkg}/bin/dpkg-architecture
@@ -31,10 +31,10 @@ CONFIGURE_ARGS+=	APT_FTPARCHIVE=${PREFIX.apt}/bin/apt-ftparchive
 MESSAGE_SUBST+=		GPG_CMD=${PREFIX.gnupg}/bin/gpg
 MESSAGE_SUBST+=		GPG_HOMEDIR=${GPG_DEFHOMEDIR}
 
+DEPEND_ABI.pkg_install=	pkg_install>=20211115.3
 # XXX missing runtime dependency on pkg_install - this cannot be added easly
 # because of bulk using pkg_install as a system package.
 
-include ../../archivers/pax/depend.mk
 include ../../mk/sysdep/apt.mk
 include ../../mk/sysdep/dpkg.mk
 include ../../mk/sysdep/gnupg.mk
