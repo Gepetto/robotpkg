@@ -36,7 +36,7 @@ __RCSID("$NetBSD: main.c,v 1.32 2015/12/27 12:36:42 joerg Exp $");
 #include "lib.h"
 #include "add.h"
 
-static char Options[] = "AC:DIK:P:RVfhm:np:t:Uuv";
+static char Options[] = "AC:DIK:P:RVfhm:np:t:Uuvx";
 
 char   *Destdir = NULL;
 char   *OverrideMachine = NULL;
@@ -44,6 +44,7 @@ char   *Prefix = NULL;
 Boolean NoInstall = FALSE;
 Boolean NoRecord = FALSE;
 Boolean Automatic = FALSE;
+Boolean Extract = FALSE;
 Boolean ForceDepends = FALSE;
 /*
  * Normally, updating fails if the dependencies of a depending package
@@ -137,6 +138,13 @@ main(int argc, char **argv)
 
 		case 'v':
 			Verbose = TRUE;
+			break;
+
+		case 'x':
+			Extract = TRUE;
+			NoRecord = TRUE;
+			if (Destdir == NULL)
+				Destdir = ".";
 			break;
 
 		case 'h':

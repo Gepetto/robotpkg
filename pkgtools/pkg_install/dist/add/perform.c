@@ -1561,6 +1561,11 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 	if (pkg->meta_data.meta_mtree != NULL)
 		warnx("mtree specification in pkg `%s' ignored", pkg->pkgname);
 
+	if (Extract) {
+		pkg->install_logdir = xstrdup(".");
+                goto extract;
+	}
+
 	pkg->logdir = xasprintf("%s/%s", config_pkg_dbdir, pkg->pkgname);
 
 	if (Destdir != NULL)
@@ -1643,8 +1648,17 @@ pkg_do(const char *pkgpath, int mark_automatic, int top_level)
 	if (run_install_script(pkg, "PRE-INSTALL"))
 		goto nuke_pkgdb;
 
+extract:
+	if (Extract && write_meta_data(pkg))
+		goto nuke_pkgdb;
+
 	if (extract_files(pkg))
 		goto nuke_pkg;
+
+	if (Extract) {
+		status = 0;
+		goto clean_memory;
+	}
 
 	if (run_install_script(pkg, "POST-INSTALL"))
 		goto nuke_pkg;

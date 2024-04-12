@@ -25,7 +25,7 @@
 .Nd a utility for installing and upgrading software package distributions
 .Sh SYNOPSIS
 .Nm
-.Op Fl AfhInRUuVv
+.Op Fl AfhInRUuVvx
 .Op Fl C Ar config
 .Op Fl K Ar pkg_dbdir
 .Op Fl m Ar machine
@@ -177,6 +177,14 @@ See below for a more detailed description of the process.
 Print version number and exit.
 .It Fl v
 Turn on verbose output.
+.It Fl x
+Extract the files contained by the packages in the current directory, or in
+the directory specified by
+.Fl P .
+Meta-data files are written to the current directory (regardless of any
+directory specified by
+.Fl P ) .
+No other action is performed.
 .El
 .Pp
 One or more

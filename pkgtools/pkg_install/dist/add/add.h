@@ -35,6 +35,7 @@ extern Boolean NoInstall;
 extern Boolean NoRecord;
 extern Boolean Force;
 extern Boolean Automatic;
+extern Boolean Extract;
 extern int LicenseCheck;
 extern int Replace;
 extern int ReplaceSame;
