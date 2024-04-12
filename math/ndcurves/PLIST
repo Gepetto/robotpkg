@@ -30,6 +30,7 @@ include/ndcurves/serialization/eigen-matrix.hpp
 include/ndcurves/serialization/registeration.hpp
 include/ndcurves/sinusoidal.h
 include/ndcurves/so3_linear.h
+include/ndcurves/so3_smooth.h
 include/ndcurves/warning.hh
 lib/cmake/ndcurves/cxx-standard.cmake
 lib/cmake/ndcurves/ndcurvesConfig.cmake
