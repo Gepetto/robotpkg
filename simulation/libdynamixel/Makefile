@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Thu, 20 Jul 2023
 #
 
-DISTNAME=		libdynamixel-1.2
+DISTNAME=		libdynamixel-1.2.1
 CATEGORIES=		simulation
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
