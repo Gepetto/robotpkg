@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2006-2007,2009,2011,2013,2016-2018 LAAS/CNRS
+# Copyright (c) 2006-2007,2009,2011,2013,2016-2018,2024 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -159,6 +159,7 @@ ifneq (,$(filter deb,${PKG_FORMAT}))
   include ${ROBOTPKG_DIR}/pkgtools/pkgrepo2deb/depend.mk
 
   PKGREPO2DEB_ENV+=	PKG_PATH=$(call quote,${PKGREPOSITORY};${PKG_PATH})
+  PKGREPO2DEB_ENV+=	ROBOTPKG_ADD=${PKG_ADD_CMD}
   PKGREPO2DEB_ENV+=	ROBOTPKG_ADMIN=${PKG_ADMIN_CMD}
   PKGREPO2DEB_ENV+=	TMPDIR=${WRKDIR}
 
