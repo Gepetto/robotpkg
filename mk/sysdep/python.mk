@@ -160,7 +160,10 @@ else ifeq (Ubuntu,${OPSYS})
   ifneq (,$(filter 20.%,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python38 python27
   endif
-  PREFER_ALTERNATIVE.python?=	python310 python27
+  ifneq (,$(filter 22.%,${OS_VERSION}))
+    PREFER_ALTERNATIVE.python?=	python310 python27
+  endif
+  PREFER_ALTERNATIVE.python?=	python312
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python27 python36
 else ifeq (Rocky,${OPSYS})
