@@ -1,9 +1,7 @@
-@comment Mon Sep 4 17:13:15 CEST 2023
+@comment Tue May 7 19:06:24 CEST 2024
 @comment filtered by rosidl adapter.awk
 @comment filtered by rosidl generator.awk
 @comment filtered by rosidl-typesupport-fastrtps generator.awk
-include/unique_identifier_msgs/unique_identifier_msgs/msg/detail/uuid__type_support.hpp
-include/unique_identifier_msgs/unique_identifier_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 lib/libunique_identifier_msgs__rosidl_generator_c.so
 lib/libunique_identifier_msgs__rosidl_generator_py.so
 lib/libunique_identifier_msgs__rosidl_typesupport_c.so
@@ -20,13 +18,12 @@ ${PYTHON_SITELIB}/unique_identifier_msgs/__init__.py
 ${PYTHON_SITELIB}/unique_identifier_msgs/_unique_identifier_msgs_s.ep.rosidl_typesupport_c.c
 ${PYTHON_SITELIB}/unique_identifier_msgs/_unique_identifier_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
 ${PYTHON_SITELIB}/unique_identifier_msgs/_unique_identifier_msgs_s.ep.rosidl_typesupport_introspection_c.c
-${PYTHON_SITELIB}/unique_identifier_msgs/libunique_identifier_msgs__rosidl_generator_py.so
 ${PYTHON_SITELIB}/unique_identifier_msgs/msg/__init__.py
 ${PYTHON_SITELIB}/unique_identifier_msgs/msg/_uuid.py
 ${PYTHON_SITELIB}/unique_identifier_msgs/msg/_uuid_s.c
-${PYTHON_SITELIB}/unique_identifier_msgs/unique_identifier_msgs_s__rosidl_typesupport_c${PYTHON_EXT_SUFFIX}
-${PYTHON_SITELIB}/unique_identifier_msgs/unique_identifier_msgs_s__rosidl_typesupport_fastrtps_c${PYTHON_EXT_SUFFIX}
-${PYTHON_SITELIB}/unique_identifier_msgs/unique_identifier_msgs_s__rosidl_typesupport_introspection_c${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/unique_identifier_msgs/unique_identifier_msgs_s__rosidl_typesupport_c.so
+${PYTHON_SITELIB}/unique_identifier_msgs/unique_identifier_msgs_s__rosidl_typesupport_fastrtps_c.so
+${PYTHON_SITELIB}/unique_identifier_msgs/unique_identifier_msgs_s__rosidl_typesupport_introspection_c.so
 share/ament_index/resource_index/package_run_dependencies/unique_identifier_msgs
 share/ament_index/resource_index/packages/unique_identifier_msgs
 share/ament_index/resource_index/parent_prefix_path/unique_identifier_msgs
