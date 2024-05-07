@@ -1,4 +1,4 @@
-@comment Tue Sep 5 20:44:15 CEST 2023
+@comment Tue May 7 18:52:40 CEST 2024
 @comment filtered by rosidl adapter.awk
 @comment filtered by rosidl generator.awk
 @comment filtered by rosidl-typesupport-fastrtps generator.awk
@@ -72,7 +72,6 @@ ${PYTHON_SITELIB}/ros2cli_test_interfaces/_ros2cli_test_interfaces_s.ep.rosidl_t
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/action/__init__.py
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/action/_short_varied_multi_nested.py
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/action/_short_varied_multi_nested_s.c
-${PYTHON_SITELIB}/ros2cli_test_interfaces/libros2cli_test_interfaces__rosidl_generator_py.so
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/msg/__init__.py
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/msg/_short_varied.py
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/msg/_short_varied_multi_nested.py
@@ -80,9 +79,9 @@ ${PYTHON_SITELIB}/ros2cli_test_interfaces/msg/_short_varied_multi_nested_s.c
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/msg/_short_varied_nested.py
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/msg/_short_varied_nested_s.c
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/msg/_short_varied_s.c
-${PYTHON_SITELIB}/ros2cli_test_interfaces/ros2cli_test_interfaces_s__rosidl_typesupport_c${PYTHON_EXT_SUFFIX}
-${PYTHON_SITELIB}/ros2cli_test_interfaces/ros2cli_test_interfaces_s__rosidl_typesupport_fastrtps_c${PYTHON_EXT_SUFFIX}
-${PYTHON_SITELIB}/ros2cli_test_interfaces/ros2cli_test_interfaces_s__rosidl_typesupport_introspection_c${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/ros2cli_test_interfaces/ros2cli_test_interfaces_s__rosidl_typesupport_c.so
+${PYTHON_SITELIB}/ros2cli_test_interfaces/ros2cli_test_interfaces_s__rosidl_typesupport_fastrtps_c.so
+${PYTHON_SITELIB}/ros2cli_test_interfaces/ros2cli_test_interfaces_s__rosidl_typesupport_introspection_c.so
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/srv/__init__.py
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/srv/_short_varied_multi_nested.py
 ${PYTHON_SITELIB}/ros2cli_test_interfaces/srv/_short_varied_multi_nested_s.c
