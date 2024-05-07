@@ -13,7 +13,12 @@ ifeq (+,$(PY_ROSDISTRO_DEPEND_MK)) # ---------------------------------------
 
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
-ifeq (NetBSD,${OPSYS})
+ifeq (Ubuntu,${OPSYS})
+  ifneq (,$(filter 18.04% 20.% 22.%,${OS_VERSION}))
+    PREFER.py-rosdistro?=	system
+  endif
+  PREFER.py-rosdistro?=		robotpkg
+else ifeq (NetBSD,${OPSYS})
   PREFER.py-rosdistro?=		robotpkg
 endif
 PREFER.py-rosdistro?=		system
