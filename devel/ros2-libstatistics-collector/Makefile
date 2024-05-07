@@ -3,7 +3,7 @@
 #
 
 ROS2_PKG=	libstatistics_collector
-ROS2_VERSION=	1.2.0
+ROS2_VERSION=	1.8.0
 ROS2_REPO=	ros-tooling
 
 CATEGORIES=	devel
