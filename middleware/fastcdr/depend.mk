@@ -19,7 +19,7 @@ DEPEND_ABI.fastcdr?=	fastcdr>=1.1
 DEPEND_DIR.fastcdr?=	../../middleware/fastcdr
 
 SYSTEM_SEARCH.fastcdr=\
-  'include/fastcdr/Cdr.h'						\
+  'include/fastcdr{,/fastcdr}/Cdr.h'						\
   'lib/libfastcdr.so'							\
   'lib/cmake/fastcdr/fastcdr-config.cmake:/fastcdr_VERSION/s/[^0-9.]//gp'
 
