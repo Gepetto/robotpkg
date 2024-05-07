@@ -372,6 +372,11 @@ PLIST_SUBST+=\
 # post-PLIST hook below.
 export PYTHONDONTWRITEBYTECODE=1
 
+# prevent setuptools to override the stdlib distutils on import for
+# python<3.12.
+export SETUPTOOLS_USE_DISTUTILS=\
+ $(if $(filter 2.7 3.6 3.7 3.8 3.9 3.10 3.11,${PYTHON_VERSION}),stdlib,local)
+
 # Define a post-plist hook to compile all .py files and a plist filter to
 # include .py{c,o} in the PLIST
 ifndef PYTHON_NO_PLIST_COMPILE
