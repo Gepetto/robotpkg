@@ -65,6 +65,11 @@ else
 
 endif # PYDISTUTILSPKG
 
+# prevent setuptools to override the stdlib distutils on import for
+# python<3.12.
+export SETUPTOOLS_USE_DISTUTILS=\
+ $(if $(filter 2.7 3.6 3.7 3.8 3.9 3.10 3.11,${PYTHON_VERSION}),stdlib,local)
+
 endif # PYSETUPTOOLS_DEPEND_MK ---------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

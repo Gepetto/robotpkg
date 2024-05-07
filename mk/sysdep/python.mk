@@ -372,11 +372,6 @@ PLIST_SUBST+=\
 # post-PLIST hook below.
 export PYTHONDONTWRITEBYTECODE=1
 
-# Once again, Setuptools overrides the stdlib distutils on import.
-# Depending on the distribution, this varies. Not sure how to untangle this
-# mess, but setting the variable should not hurt if it is not used.
-export SETUPTOOLS_USE_DISTUTILS=stdlib
-
 # Define a post-plist hook to compile all .py files and a plist filter to
 # include .py{c,o} in the PLIST
 ifndef PYTHON_NO_PLIST_COMPILE
