@@ -1,4 +1,4 @@
-@comment Tue Sep 5 18:35:47 CEST 2023
+@comment Tue May 7 19:12:35 CEST 2024
 @comment filtered by rosidl adapter.awk
 @comment filtered by rosidl generator.awk
 @comment filtered by rosidl-typesupport-fastrtps generator.awk
@@ -26,7 +26,6 @@ ${PYTHON_SITELIB}/rmw_dds_common/__init__.py
 ${PYTHON_SITELIB}/rmw_dds_common/_rmw_dds_common_s.ep.rosidl_typesupport_c.c
 ${PYTHON_SITELIB}/rmw_dds_common/_rmw_dds_common_s.ep.rosidl_typesupport_fastrtps_c.c
 ${PYTHON_SITELIB}/rmw_dds_common/_rmw_dds_common_s.ep.rosidl_typesupport_introspection_c.c
-${PYTHON_SITELIB}/rmw_dds_common/librmw_dds_common__rosidl_generator_py.so
 ${PYTHON_SITELIB}/rmw_dds_common/msg/__init__.py
 ${PYTHON_SITELIB}/rmw_dds_common/msg/_gid.py
 ${PYTHON_SITELIB}/rmw_dds_common/msg/_gid_s.c
@@ -34,9 +33,9 @@ ${PYTHON_SITELIB}/rmw_dds_common/msg/_node_entities_info.py
 ${PYTHON_SITELIB}/rmw_dds_common/msg/_node_entities_info_s.c
 ${PYTHON_SITELIB}/rmw_dds_common/msg/_participant_entities_info.py
 ${PYTHON_SITELIB}/rmw_dds_common/msg/_participant_entities_info_s.c
-${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_c${PYTHON_EXT_SUFFIX}
-${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_fastrtps_c${PYTHON_EXT_SUFFIX}
-${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_introspection_c${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_c.so
+${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_fastrtps_c.so
+${PYTHON_SITELIB}/rmw_dds_common/rmw_dds_common_s__rosidl_typesupport_introspection_c.so
 share/ament_index/resource_index/package_run_dependencies/rmw_dds_common
 share/ament_index/resource_index/packages/rmw_dds_common
 share/ament_index/resource_index/parent_prefix_path/rmw_dds_common
