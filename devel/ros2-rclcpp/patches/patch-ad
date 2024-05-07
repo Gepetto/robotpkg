@@ -1,0 +1,22 @@
+Missing header
+
+--- rclcpp/src/rclcpp/logging_mutex.cpp~	2022-04-09 01:27:59.000000000 +0200
++++ rclcpp/src/rclcpp/logging_mutex.cpp	2024-05-07 17:53:16.621846688 +0200
+@@ -14,6 +14,7 @@
+ 
+ #include <memory>
+ #include <mutex>
++#include <stdexcept>
+ 
+ #include "rcutils/macros.h"
+ 
+--- rclcpp/include/rclcpp/context.hpp~	2022-04-09 01:27:59.000000000 +0200
++++ rclcpp/include/rclcpp/context.hpp	2024-05-07 17:53:39.022093606 +0200
+@@ -20,6 +20,7 @@
+ #include <memory>
+ #include <mutex>
+ #include <string>
++#include <stdexcept>
+ #include <typeindex>
+ #include <typeinfo>
+ #include <unordered_map>
