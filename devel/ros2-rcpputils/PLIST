@@ -11,11 +11,15 @@ include/rcpputils/rcpputils/get_env.hpp
 include/rcpputils/rcpputils/join.hpp
 include/rcpputils/rcpputils/pointer_traits.hpp
 include/rcpputils/rcpputils/process.hpp
+include/rcpputils/rcpputils/rolling_mean_accumulator.hpp
 include/rcpputils/rcpputils/scope_exit.hpp
 include/rcpputils/rcpputils/shared_library.hpp
 include/rcpputils/rcpputils/split.hpp
 include/rcpputils/rcpputils/thread_safety_annotations.hpp
 include/rcpputils/rcpputils/time.hpp
+include/rcpputils/rcpputils/tl_expected/expected.hpp
+include/rcpputils/rcpputils/unique_lock.hpp
+include/rcpputils/rcpputils/version.h
 include/rcpputils/rcpputils/visibility_control.hpp
 lib/librcpputils.so
 share/ament_index/resource_index/package_run_dependencies/rcpputils
