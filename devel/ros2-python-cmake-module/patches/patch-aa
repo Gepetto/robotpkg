@@ -1,28 +1,23 @@
-PEP-3149 is not clear about EXT_SUFFIX vs. SOABI: only on Linux or Darwin, the
-former is defined as $SOABI.$SHLIB_SUFFIX. On other systems, EXT_SUFFIX is just
-SHLIB_SUFFIX. For robotpkg PLISTs, EXT_SUFFIX is used, as this is what is used
-by system packages.
-
-Python addressed this (and changed it ...) in
-https://github.com/python/cpython/commit/4b155967b3e743cbdc31600f13f1bfcf07f7b6ce
-But at least NetBSD keep on not using SOABI for consistency.
-
-Anyway, within robotpkg, a bare .so extention must be allowed and thus an empty
-PythonExtra_EXTENSION_SUFFIX.
+Within robotpkg, a bare .so extention is always used, as this matches the
+behaviour of python-cmake-modules>=0.12.
 
 --- cmake/Modules/FindPythonExtra.cmake~	2022-03-01 20:48:08.000000000 +0100
-+++ cmake/Modules/FindPythonExtra.cmake	2022-04-13 18:07:45.213182873 +0200
-@@ -214,11 +215,8 @@
- set(_required_vars
-   PythonExtra_EXTENSION_EXTENSION
++++ cmake/Modules/FindPythonExtra.cmake	2024-05-07 18:27:50.848036880 +0200
+@@ -182,7 +182,7 @@
+       "The SOABI suffix for Python native extensions. See PEP-3149: https://www.python.org/dev/peps/pep-3149/.")
+   endif()
+ 
+-  if(PYTHON_SOABI STREQUAL "" OR PYTHON_SOABI STREQUAL "None")
++  if(TRUE OR PYTHON_SOABI STREQUAL "" OR PYTHON_SOABI STREQUAL "None")
+     set(PythonExtra_EXTENSION_SUFFIX
+       ""
+       CACHE INTERNAL
+@@ -216,7 +216,7 @@
    PythonExtra_INCLUDE_DIRS
--  PythonExtra_LIBRARIES
--  PYTHON_SOABI)
+   PythonExtra_LIBRARIES
+   PYTHON_SOABI)
 -if(NOT WIN32)
--  list(APPEND _required_vars PythonExtra_EXTENSION_SUFFIX)
--elseif("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
-+  PythonExtra_LIBRARIES)
-+if(WIN32 AND "${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
++if(FALSE)
+   list(APPEND _required_vars PythonExtra_EXTENSION_SUFFIX)
+ elseif("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
    list(APPEND _required_vars PYTHON_EXECUTABLE_DEBUG)
- endif()
- find_package_handle_standard_args(PythonExtra
