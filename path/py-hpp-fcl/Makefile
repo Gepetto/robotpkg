@@ -4,6 +4,7 @@
 
 HPP_PACKAGE=		hpp-fcl
 HPP_VERSION=		2.4.4
+PKGREVISION=		1
 
 CATEGORIES=		path
 HPP_COMMENT=		collision detection and distance computations (python bindingss)
@@ -16,6 +17,12 @@ include ../../meta-pkgs/hpp/Makefile.common
 
 USE_BOOST_LIBS= thread date_time system filesystem unit_test_framework python
 USE_BOOST_LIBS+= chrono
+
+include ../../mk/robotpkg.prefs.mk
+ifeq (,$(filter Ubuntu-16.04 Debian-9,${OPSYS}-${OS_VERSION}))
+  CMAKE_ARGS+=		-DHPP_FCL_HAS_QHULL=ON
+  include ../../mk/sysdep/qhull.mk
+endif
 
 DEPEND_ABI.assimp+=	assimp>=5
 
