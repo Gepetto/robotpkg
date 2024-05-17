@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 18 May 2021
 #
 
-DISTNAME=	tk3-paparazzi-1.2
+DISTNAME=	tk3-paparazzi-1.3
 CATEGORIES=	hardware
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}telekyb3/${PKGBASE}
