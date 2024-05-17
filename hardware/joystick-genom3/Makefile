@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Fri, 15 Apr 2016
 #
 
-DISTNAME=		joystick-genom3-1.0
+DISTNAME=		joystick-genom3-1.1
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=${PKGBASE}/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
