@@ -13,7 +13,7 @@ LICENSE=		2-clause-bsd
 
 include ../../architecture/genom3/module.mk
 
-include ../../interfaces/openrobots-idl/depend.mk
+include ../../interfaces/openrobots2-idl/depend.mk
 include ../../mk/sysdep/SDL2.mk
 include ../../mk/language/c.mk
 include ../../mk/robotpkg.mk
