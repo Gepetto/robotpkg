@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Mon, 10 Oct 2022
 #
 
+PKGREVISION=	1
 ORG=		simd-everywhere
 NAME=		simde
 VERSION=	0.8.0
@@ -20,15 +21,25 @@ MAINTAINER=	gsaurel@laas.fr
 # include ../../mk/sysdep/meson.mk
 # For now, just do with custom install rules as this is a header-only library.
 NO_BUILD=		yes
-INSTALLATION_DIRS=$(addprefix include/simde/,		\
-  .							\
-  arm							\
-  arm/neon						\
-  mips							\
-  mips/msa						\
-  wasm							\
-  x86							\
-  x86/avx512)
+INSTALLATION_DIRS=\
+  $(addprefix include/simde/,				\
+    .							\
+    arm							\
+    arm/neon						\
+    mips						\
+    mips/msa						\
+    wasm						\
+    x86							\
+    x86/avx512)						\
+  lib/pkgconfig
+
+SUBST_CLASSES+=			pkg-config
+SUBST_MESSAGE.pkg-config=	Generating pkg-config file
+SUBST_STAGE.pkg-config=		do-configure
+SUBST_FILES.pkg-config=		simde.pc
+SUBST_SED.pkg-config=\
+  -e 's|@PREFIX@|${PREFIX}|'				\
+  -e 's|@PKGVERSION_NOREV@|${PKGVERSION_NOREV}|'
 
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/language/c.mk
@@ -36,7 +47,8 @@ include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
 
 do-install:
-	${RUN}for dir in ${INSTALLATION_DIRS}; do			\
+	${RUN}for dir in $(filter include/%,${INSTALLATION_DIRS}); do	\
 	  ${INSTALL_DATA}						\
 	    ${WRKSRC}/$${dir#include/}/*.h ${PREFIX}/$$dir/.;		\
-	done
+	done;								\
+	${INSTALL_DATA} ${WRKSRC}/simde.pc ${PREFIX}/lib/pkgconfig/.

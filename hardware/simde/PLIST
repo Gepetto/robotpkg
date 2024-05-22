@@ -1,4 +1,4 @@
-@comment Tue Apr 2 18:03:10 CEST 2024
+@comment Wed May 22 18:51:35 CEST 2024
 include/simde/arm/neon.h
 include/simde/arm/neon/aba.h
 include/simde/arm/neon/abal.h
@@ -453,3 +453,4 @@ include/simde/x86/sse4.2.h
 include/simde/x86/ssse3.h
 include/simde/x86/svml.h
 include/simde/x86/xop.h
+lib/pkgconfig/simde.pc
