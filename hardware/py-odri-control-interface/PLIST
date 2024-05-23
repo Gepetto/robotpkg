@@ -1,0 +1,21 @@
+@comment Tue May 7 19:37:16 CEST 2024
+bin/odri_control_interface_demo_solo12
+bin/odri_control_interface_demo_testbench
+include/odri/control/interface/config.hh
+include/odri/control/interface/deprecated.hh
+include/odri/control/interface/warning.hh
+include/odri_control_interface/calibration.hpp
+include/odri_control_interface/common.hpp
+include/odri_control_interface/device.hpp
+include/odri_control_interface/imu.hpp
+include/odri_control_interface/joint_modules.hpp
+include/odri_control_interface/robot.hpp
+include/odri_control_interface/utils.hpp
+lib/cmake/odri_control_interface/cxx-standard.cmake
+lib/cmake/odri_control_interface/odri_control_interfaceConfig.cmake
+lib/cmake/odri_control_interface/odri_control_interfaceConfigVersion.cmake
+lib/cmake/odri_control_interface/odri_control_interfaceTargets-release.cmake
+lib/cmake/odri_control_interface/odri_control_interfaceTargets.cmake
+lib/libodri_control_interface.so
+lib/pkgconfig/odri_control_interface.pc
+${PYTHON_SITELIB}/libodri_control_interface_pywrap.so

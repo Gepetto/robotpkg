@@ -1,0 +1,27 @@
+Eigen3 has no library.
+Fix mixed use of target_link_libraries() interfaces (plain/keyword).
+
+--- CMakeLists.txt~	2024-05-04 10:44:12.000000000 +0200
++++ CMakeLists.txt	2024-05-23 22:56:32.143953506 +0200
+@@ -67,7 +67,7 @@
+ add_library(${PROJECT_NAME} SHARED ${ODRI_CONTROL_INTERFACE_SRC})
+ target_link_libraries(${PROJECT_NAME} yaml-cpp)
+ target_link_libraries(${PROJECT_NAME} master_board_sdk::master_board_sdk)
+-target_link_libraries(${PROJECT_NAME} Eigen3::Eigen)
++target_include_directories(${PROJECT_NAME} PUBLIC ${EIGEN3_INCLUDE_DIR})
+ target_include_directories(
+   ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                          $<INSTALL_INTERFACE:include>)
+@@ -89,8 +89,8 @@
+   set(${PYWRAP}_INSTALL_DIR ${PYTHON_SITELIB})
+   add_library(${PYWRAP} SHARED ${${PYWRAP}_SOURCES} ${${PYWRAP}_HEADERS})
+   target_include_directories(${PYWRAP} SYSTEM PRIVATE ${PYTHON_INCLUDE_DIR})
+-  target_link_libraries(${PYWRAP} ${PROJECT_NAME} eigenpy::eigenpy)
+-  target_link_boost_python(${PYWRAP})
++  target_link_libraries(${PYWRAP} PUBLIC ${PROJECT_NAME} eigenpy::eigenpy)
++  target_link_boost_python(${PYWRAP} PUBLIC)
+   set_target_properties(${PYWRAP} PROPERTIES INSTALL_RPATH
+                                              "${CMAKE_INSTALL_PREFIX}/lib")
+   install(TARGETS ${PYWRAP} DESTINATION ${${PYWRAP}_INSTALL_DIR})
+--- CMakeLists.txt~	2024-05-23 22:57:16.817468443 +0200
++++ CMakeLists.txt	2024-05-23 23:01:15.639212075 +0200

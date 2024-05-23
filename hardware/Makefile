@@ -21,6 +21,7 @@ SUBDIR+=	mccdaqft-genom3
 SUBDIR+=	mouse3d-genom
 SUBDIR+=	openni-sensor
 SUBDIR+=	platine-genom
+SUBDIR+=	py-odri-control-interface
 SUBDIR+=	py-odri-master-board-sdk
 SUBDIR+=	sahand-kmod
 SUBDIR+=	sahand-libs
