@@ -1,47 +1,88 @@
 py-pinocchio needs pinocchio
 
---- CMakeLists.txt.orig	2022-08-09 15:11:05.000000000 +0200
-+++ CMakeLists.txt	2022-08-16 12:12:11.850288528 +0200
-@@ -109,6 +108,7 @@
+--- CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
++++ CMakeLists.txt	2024-05-28 10:17:29.362489152 +0200
+@@ -183,6 +183,7 @@
  # ----------------------------------------------------
- SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/find-external/CppAD/" ${CMAKE_MODULE_PATH})
- ADD_PROJECT_DEPENDENCY(Eigen3 REQUIRED PKG_CONFIG_REQUIRES "eigen3 >= 3.0.5")
-+ADD_PROJECT_DEPENDENCY(${PROJECT_NAME} REQUIRED)
+ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/find-external/CppAD/" ${CMAKE_MODULE_PATH})
+ add_project_dependency(Eigen3 REQUIRED PKG_CONFIG_REQUIRES "eigen3 >= 3.0.5")
++add_project_dependency(${PROJECT_NAME} REQUIRED)
  
- # Variable containing all the cflags definition relative to optional dependencies
- SET(CFLAGS_DEPENDENCIES)
---- bindings/python/CMakeLists.txt.orig	2022-08-16 12:11:31.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2022-08-16 12:12:57.958530049 +0200
-@@ -250,7 +246,7 @@
-   ADD_HEADER_GROUP(${PYWRAP}_HEADERS)
-   ADD_SOURCE_GROUP(${PYWRAP}_SOURCES)
+ if(BUILD_WITH_URDF_SUPPORT)
+   add_project_dependency(urdfdom_headers REQUIRED)
+--- bindings/python/CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
++++ bindings/python/CMakeLists.txt	2024-05-28 10:18:04.832481756 +0200
+@@ -76,7 +76,7 @@
+     ${PYTHON_LIB_NAME}
+     SCOPE PUBLIC
+     TARGETS eigenpy::eigenpy)
+-  target_link_libraries(${PYTHON_LIB_NAME} PUBLIC ${PROJECT_NAME})
++  target_link_libraries(${PYTHON_LIB_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
  
--  TARGET_LINK_LIBRARIES(${PYWRAP} PUBLIC ${PROJECT_NAME})
-+  TARGET_LINK_LIBRARIES(${PYWRAP} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
-   IF(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
-     TARGET_COMPILE_DEFINITIONS(${PYWRAP} PRIVATE -DPINOCCHIO_PYTHON_INTERFACE_WITH_HPP_FCL_PYTHON_BINDINGS)
-   ENDIF(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
---- unittest/CMakeLists.txt.orig	2022-08-09 15:11:05.000000000 +0200
-+++ unittest/CMakeLists.txt	2022-08-16 12:14:21.270963591 +0200
-@@ -34,9 +34,7 @@
-     ADD_TEST_CFLAGS(${NAME} "-DNOMINMAX -D_USE_MATH_DEFINES")
-   ENDIF(WIN32)
+   if(BUILD_WITH_URDF_SUPPORT)
+     # Link directly against console_bridge since we bind some enums and call
+--- unittest/CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
++++ unittest/CMakeLists.txt	2024-05-28 10:18:52.605797982 +0200
+@@ -70,26 +70,26 @@
+   target_include_directories(${TEST_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
  
--  IF(NOT unit_test_HEADER_ONLY)
--    TARGET_LINK_LIBRARIES(${TEST_NAME} PUBLIC ${PROJECT_NAME})
--  ENDIF(NOT unit_test_HEADER_ONLY)
-+    TARGET_LINK_LIBRARIES(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
-   MODERNIZE_TARGET_LINK_LIBRARIES(${TEST_NAME} SCOPE PRIVATE
-     TARGETS Boost::unit_test_framework
-     LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
---- examples/CMakeLists.txt.orig	2024-01-23 22:01:53.000000000 +0100
-+++ examples/CMakeLists.txt	2024-01-26 14:31:14.946856249 +0100
-@@ -6,7 +6,7 @@
-   GET_FILENAME_COMPONENT(EXAMPLE_NAME ${EXAMPLE} NAME)
-   SET(EXAMPLE_NAME "example-cpp-${EXAMPLE_NAME}")
-   ADD_UNIT_TEST(${EXAMPLE_NAME} "${EXAMPLE}.cpp")
--  TARGET_LINK_LIBRARIES(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME})
-+  TARGET_LINK_LIBRARIES(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
+   if(NOT unit_test_HEADER_ONLY)
+-    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_default)
++    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_default)
+   endif()
  
-   # There is no RPATH in Windows, then we must use the PATH to find the DLL
-   IF(WIN32)
+   if(unit_test_PARSERS OR (unit_test_PARSERS_OPTIONAL AND TARGET ${PROJECT_NAME}_parsers))
+-    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_parsers)
++    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_parsers)
+   endif()
+ 
+   if(unit_test_PARALLEL OR (unit_test_PARALLEL_OPTIONAL AND TARGET ${PROJECT_NAME}_parallel))
+-    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_parallel)
++    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_parallel)
+   endif()
+ 
+   if(unit_test_COLLISION OR (unit_test_COLLISION_OPTIONAL AND TARGET ${PROJECT_NAME}_collision))
+-    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_collision)
++    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_collision)
+     if(unit_test_PARALLE OR (unit_test_PARALLEL_OPTIONAL AND TARGET ${PROJECT_NAME}_parallel))
+-      target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_collision_parallel)
++      target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_collision_parallel)
+     endif()
+   endif()
+ 
+   if(unit_test_EXTRA OR (unit_test_EXTRA_OPTIONAL AND TARGET ${PROJECT_NAME}_extra))
+-    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_extra)
++    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_extra)
+   endif()
+ 
+   modernize_target_link_libraries(
+--- examples/CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
++++ examples/CMakeLists.txt	2024-05-28 10:19:23.895782651 +0200
+@@ -14,22 +14,22 @@
+   get_filename_component(EXAMPLE_NAME ${EXAMPLE} NAME)
+   set(EXAMPLE_NAME "example-cpp-${EXAMPLE_NAME}")
+   add_unit_test(${EXAMPLE_NAME} "${EXAMPLE}.cpp")
+-  target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME})
++  target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
+ 
+   if(example_PARSERS)
+-    target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}_parsers)
++    target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_parsers)
+   endif()
+ 
+   if(example_CPPAD)
+-    target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}_cppad)
++    target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_cppad)
+   endif()
+ 
+   if(example_CPPADCG)
+-    target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}_cppadcg)
++    target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_cppadcg)
+   endif()
+ 
+   if(example_CASADI)
+-    target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}_casadi)
++    target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_casadi)
+   endif()
+ 
+   target_compile_definitions(${EXAMPLE_NAME} PRIVATE ${EXAMPLE_PRIVATE_DEFINITIONS}

@@ -1,20 +1,20 @@
---- CMakeLists.txt.orig	2023-11-27 22:54:41.000000000 +0100
-+++ CMakeLists.txt	2023-11-29 12:16:04.396391509 +0100
-@@ -184,17 +184,7 @@
+--- CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
++++ CMakeLists.txt	2024-05-28 08:48:46.596303442 +0200
+@@ -297,17 +297,8 @@
    # Check whether hpp-fcl python bindings are available.
-   SET(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS FALSE)
-   IF(BUILD_PYTHON_INTERFACE)
--    EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import hppfcl"
+   set(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS FALSE)
+   if(BUILD_PYTHON_INTERFACE)
+-    execute_process(
+-      COMMAND ${PYTHON_EXECUTABLE} -c "import hppfcl"
 -      RESULT_VARIABLE _hpp_fcl_python_bindings_not_found
--      OUTPUT_QUIET
--      ERROR_QUIET)
--    IF(_hpp_fcl_python_bindings_not_found EQUAL 0)
-       SET(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS TRUE)
--      MESSAGE(STATUS "Found hpp-fcl Python bindings.")
--    ELSE()
--      MESSAGE(STATUS "hpp-fcl Python bindings NOT found.")
--    ENDIF()
--    UNSET(_hpp_fcl_python_bindings_not_found)
-   ENDIF(BUILD_PYTHON_INTERFACE)
- ENDIF(BUILD_WITH_HPP_FCL_SUPPORT)
+-      OUTPUT_QUIET ERROR_QUIET)
+-    if(_hpp_fcl_python_bindings_not_found EQUAL 0)
+       set(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS TRUE)
+       message(STATUS "Found hpp-fcl Python bindings.")
+-    else()
+-      message(STATUS "hpp-fcl Python bindings NOT found.")
+-    endif()
+-    unset(_hpp_fcl_python_bindings_not_found)
+   endif(BUILD_PYTHON_INTERFACE)
+ endif(BUILD_WITH_HPP_FCL_SUPPORT)
  

@@ -1,18 +1,18 @@
---- CMakeLists.txt.orig	2023-11-27 22:54:41.000000000 +0100
-+++ CMakeLists.txt	2023-11-29 12:21:31.652172488 +0100
-@@ -276,15 +276,9 @@
- ADD_DEFINITIONS(-DBOOST_MPL_LIMIT_LIST_SIZE=30)
- ADD_DEFINITIONS(-DBOOST_MPL_LIMIT_VECTOR_SIZE=30)
+--- CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
++++ CMakeLists.txt	2024-05-28 10:20:32.485738666 +0200
+@@ -430,15 +430,9 @@
+   endif()
+ endfunction()
  
 -# --- MAIN LIBRARY -------------------------------------------------------------
--ADD_SUBDIRECTORY(src)
+-add_subdirectory(src)
 -
  # --- BINDINGS -----------------------------------------------------------------
- ADD_SUBDIRECTORY(bindings)
+ add_subdirectory(bindings)
  
 -# --- EXECUTABLES --------------------------------------------------------------
--ADD_SUBDIRECTORY(utils)
+-add_subdirectory(utils)
 -
  # --- UNIT TESTS ---------------------------------------------------------------
- ADD_SUBDIRECTORY(unittest)
+ add_subdirectory(unittest)
  

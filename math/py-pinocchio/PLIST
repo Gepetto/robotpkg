@@ -2,9 +2,12 @@
 ${PYTHON_SITELIB}/pinocchio/__init__.py
 ${PYTHON_SITELIB}/pinocchio/deprecated.py
 ${PYTHON_SITELIB}/pinocchio/deprecation.py
+${PYTHON_SITELIB}/pinocchio/derivative/dcrba.py
+${PYTHON_SITELIB}/pinocchio/derivative/lambdas.py
+${PYTHON_SITELIB}/pinocchio/derivative/xm.py
 ${PYTHON_SITELIB}/pinocchio/explog.py
-${PYTHON_SITELIB}/pinocchio/pinocchio_pywrap${PYTHON_EXT_SUFFIX}
-${PYTHON_SITELIB}/pinocchio/pinocchio_pywrap${PYTHON_EXT_SUFFIX}.${PKGVERSION}
+${PYTHON_SITELIB}/pinocchio/pinocchio_pywrap_default${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/pinocchio/pinocchio_pywrap_default${PYTHON_EXT_SUFFIX}.${PKGVERSION}
 ${PYTHON_SITELIB}/pinocchio/robot_wrapper.py
 ${PYTHON_SITELIB}/pinocchio/romeo_wrapper.py
 ${PYTHON_SITELIB}/pinocchio/shortcuts.py

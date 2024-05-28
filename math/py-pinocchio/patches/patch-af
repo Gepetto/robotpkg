@@ -2,21 +2,20 @@ Don't install .pc file: it would conflict between installs for
 multiple python versions. In case it is needed, something must be found to
 handle name conflicts.
 
---- bindings/python/CMakeLists.txt.orig	2023-11-27 22:54:41.000000000 +0100
-+++ bindings/python/CMakeLists.txt	2023-11-29 12:19:57.825763330 +0100
-@@ -157,15 +157,6 @@
-     SET(_PKG_CONFIG_PYWRAP_CFLAGS "${_PKG_CONFIG_PYWRAP_CFLAGS} ${cflags}")
-   ENDFOREACH(cflags ${CFLAGS_DEPENDENCIES})
+--- bindings/python/CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
++++ bindings/python/CMakeLists.txt	2024-05-28 10:16:31.992490625 +0200
+@@ -270,14 +270,6 @@
+     set(_PKG_CONFIG_PYWRAP_CFLAGS "${_PKG_CONFIG_PYWRAP_CFLAGS} ${cflags}")
+   endforeach()
  
--  CONFIGURE_FILE(
--     "${CMAKE_CURRENT_SOURCE_DIR}/pinocchiopy.pc.cmake"
--     "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc")
+-  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/pinocchiopy.pc.cmake"
+-                 "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc")
 -
--  INSTALL(
--      FILES "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc"
--      DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
--      PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
+-  install(
+-    FILES "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc"
+-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+-    PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
 -
-   IF(DOXYGEN_FOUND AND DOXYGEN_VERSION VERSION_GREATER 1.8.17)
-     SET(DOXYGEN_GENERATE_HTML YES)
-     SET(DOXYGEN_GENERATE_LATEX NO)
+   if(DOXYGEN_FOUND AND DOXYGEN_VERSION VERSION_GREATER 1.8.17)
+     set(DOXYGEN_GENERATE_HTML YES)
+     set(DOXYGEN_GENERATE_LATEX NO)
