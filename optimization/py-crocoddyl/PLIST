@@ -125,6 +125,7 @@ include/crocoddyl/multibody/actions/free-invdyn.hpp
 include/crocoddyl/multibody/actions/free-invdyn.hxx
 include/crocoddyl/multibody/actions/impulse-fwddyn.hpp
 include/crocoddyl/multibody/actions/impulse-fwddyn.hxx
+include/crocoddyl/multibody/actuations/floating-base-thrusters.hpp
 include/crocoddyl/multibody/actuations/floating-base.hpp
 include/crocoddyl/multibody/actuations/full.hpp
 include/crocoddyl/multibody/actuations/multicopter-base.hpp
@@ -205,6 +206,8 @@ lib/cmake/crocoddyl/cxx-standard.cmake
 lib/libcrocoddyl.so
 lib/pkgconfig/crocoddyl.pc
 ${PYTHON_SITELIB}/crocoddyl/__init__.py
+${PYTHON_SITELIB}/crocoddyl/crocoddyl.launch
+${PYTHON_SITELIB}/crocoddyl/crocoddyl.rviz
 ${PYTHON_SITELIB}/crocoddyl/deprecated.py
 ${PYTHON_SITELIB}/crocoddyl/examples/__init__.py
 ${PYTHON_SITELIB}/crocoddyl/examples/arm_manipulation_fwddyn.py

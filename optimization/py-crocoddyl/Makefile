@@ -4,7 +4,7 @@
 
 ORG=			loco-3d
 NAME=			crocoddyl
-VERSION=		2.0.2
+VERSION=		2.1.0
 
 CATEGORIES=		optimization
 COMMENT=		Optimal control library for robot under contact sequence
