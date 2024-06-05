@@ -21,6 +21,7 @@ SUBDIR+=	py-ros2-rpyutils
 SUBDIR+=	ros-console
 SUBDIR+=	ros-console-bridge
 SUBDIR+=	ros-diagnostics
+SUBDIR+=	ros-environment
 SUBDIR+=	ros-rospack
 SUBDIR+=	ros-rqt-graph
 SUBDIR+=	ros-rqt-plot
