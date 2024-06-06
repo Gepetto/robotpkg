@@ -57,6 +57,7 @@ include ../../middleware/ros-genmsg/depend.mk
 include ../../sysutils/py-rospkg/depend.mk
 include ../../sysutils/console-bridge/depend.mk
 include ../../sysutils/ros-console/depend.mk
+include ../../sysutils/ros-environment/depend.mk
 include ../../mk/sysdep/apr.mk
 include ../../mk/sysdep/bash.mk
 include ../../mk/sysdep/boost-headers.mk
