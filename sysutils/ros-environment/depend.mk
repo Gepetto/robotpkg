@@ -22,6 +22,7 @@ DEPEND_DIR.ros-environment?=	../../sysutils/ros-environment
 DEPEND_ABI.ros-environment?=	ros-environment
 
 SYSTEM_SEARCH.ros-environment=\
+  'share/ros_environment/cmake/ros_environmentConfig.cmake'		\
   'lib/pkgconfig/ros_environment.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_ENVIRONMENT_DEPEND_MK ------------------------------------------

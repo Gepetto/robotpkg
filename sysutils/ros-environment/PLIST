@@ -1,4 +1,4 @@
-@comment Wed Jun 5 23:07:22 CEST 2024
+@comment Thu Jun 6 13:29:29 CEST 2024
 etc/catkin/profile.d/1.ros_distro.sh
 etc/catkin/profile.d/1.ros_etc_dir.sh
 etc/catkin/profile.d/1.ros_package_path.sh
@@ -10,3 +10,6 @@ share/ros_environment/catkin_env_hook/1.ros_etc_dir.sh
 share/ros_environment/catkin_env_hook/1.ros_package_path.sh
 share/ros_environment/catkin_env_hook/1.ros_python_version.sh
 share/ros_environment/catkin_env_hook/1.ros_version.sh
+share/ros_environment/cmake/ros_environmentConfig-version.cmake
+share/ros_environment/cmake/ros_environmentConfig.cmake
+share/ros_environment/package.xml
