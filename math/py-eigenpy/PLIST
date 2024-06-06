@@ -16,6 +16,7 @@ include/eigenpy/decompositions/sparse/LLT.hpp
 include/eigenpy/decompositions/sparse/SimplicialCholesky.hpp
 include/eigenpy/decompositions/sparse/SparseSolverBase.hpp
 include/eigenpy/deprecated.hpp
+include/eigenpy/deprecation-policy.hpp
 include/eigenpy/details.hpp
 include/eigenpy/eigen-allocator.hpp
 include/eigenpy/eigen-from-python.hpp
