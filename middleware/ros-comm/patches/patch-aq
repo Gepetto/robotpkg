@@ -1,0 +1,36 @@
+boost-1.84 strongly deprecated boost/progress.hpp
+Use replacement available since boost-1.72
+
+--- tools/rosbag/src/encrypt.cpp~	2021-04-26 22:06:23.000000000 +0200
++++ tools/rosbag/src/encrypt.cpp	2024-06-05 23:49:04.176442336 +0200
+@@ -34,9 +34,17 @@
+ 
+ #include <iostream>
+ 
++#include <boost/version.hpp>
++
+ #include <boost/scoped_ptr.hpp>
+ #include <boost/program_options.hpp>
+-#include <boost/progress.hpp>
++#if BOOST_VERSION < 107200
++# include <boost/progress.hpp>
++using boost::progress_display;
++#else
++# include <boost/timer/progress_display.hpp>
++using boost::timer::progress_display;
++#endif
+ #include <boost/regex.hpp>
+ 
+ #include <ros/ros.h>
+@@ -161,9 +169,9 @@
+     outbag.setEncryptorPlugin(options.plugin, options.param);
+     outbag.setCompression(options.compression);
+     rosbag::View view(inbag);
+-    boost::scoped_ptr<boost::progress_display> progress;
++    boost::scoped_ptr<::progress_display> progress;
+     if (!options.quiet)
+-        progress.reset(new boost::progress_display(view.size(), std::cout, "Progress:\n  ", "  ", "  "));
++      progress.reset(new ::progress_display(view.size(), std::cout, "Progress:\n  ", "  ", "  "));
+     for (rosbag::View::const_iterator it = view.begin(); it != view.end(); ++it)
+     {
+         outbag.write(it->getTopic(), it->getTime(), *it, it->getConnectionHeader());
