@@ -1,11 +1,14 @@
-@comment Wed Sep 12 13:44:04 CEST 2018
+@comment Mon Jun 17 16:53:46 CEST 2024
 include/kdl_parser/kdl_parser.hpp
 include/kdl_parser/visibility_control.hpp
 lib/kdl_parser_py/urdf.py
 lib/libkdl_parser.so
 lib/pkgconfig/kdl_parser.pc
 lib/pkgconfig/kdl_parser_py.pc
-${PYTHON_SITELIB}/kdl_parser_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/kdl_parser_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/kdl_parser_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/kdl_parser_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/kdl_parser_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/kdl_parser_py/__init__.py
 ${PYTHON_SITELIB}/kdl_parser_py/urdf.py
 share/kdl_parser/cmake/kdl_parserConfig-version.cmake
