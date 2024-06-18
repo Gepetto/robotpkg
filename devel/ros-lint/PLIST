@@ -1,15 +1,16 @@
-@comment Wed Sep 13 13:32:16 CEST 2023
+@comment Tue Jun 18 19:23:43 CEST 2024
 lib/pkgconfig/roslint.pc
-${PYTHON_SITELIB}/roslint-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/roslint-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/roslint-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/roslint-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/roslint-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/roslint/__init__.py
 ${PYTHON_SITELIB}/roslint/cpplint.py
 ${PYTHON_SITELIB}/roslint/cpplint_wrapper.py
-${PYTHON_SITELIB}/roslint/pep8.py
-lib/roslint/cpplint
-lib/roslint/pep8
+${PYTHON_SITELIB}/roslint/pycodestyle.py
+${PYTHON_SITELIB}/roslint/pycodestyle_wrapper.py
 lib/roslint/test_wrapper
 share/roslint/cmake/roslint-extras.cmake
-share/roslint/cmake/roslint-extras.cmake.em
 share/roslint/cmake/roslintConfig-version.cmake
 share/roslint/cmake/roslintConfig.cmake
 share/roslint/package.xml

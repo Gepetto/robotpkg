@@ -22,10 +22,9 @@ DEPEND_ABI.ros-lint?=	ros-lint>=0.9
 DEPEND_DIR.ros-lint?=	../../devel/ros-lint
 
 SYSTEM_SEARCH.ros-lint=\
-	'lib/roslint/cpplint'					\
-	'share/roslint/package.xml:/<version>/s/[^0-9.]//gp'	\
-	'${PYTHON_SYSLIBSEARCH}/roslint/__init__.py'		\
-	'lib/pkgconfig/roslint.pc:/Version/s/[^0-9.]//gp'
+  'share/roslint/package.xml:/<version>/s/[^0-9.]//gp'	\
+  '${PYTHON_SYSLIBSEARCH}/roslint/__init__.py'		\
+  'lib/pkgconfig/roslint.pc:/Version/s/[^0-9.]//gp'
 
 endif # ROS_LINT_DEPEND_MK -------------------------------------------------
 
