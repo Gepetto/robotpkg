@@ -35,8 +35,6 @@ PYQT5_SIP_DIR=\
 SUBST_CLASSES+=		py-interp
 SUBST_FILES.py-interp+=	src/python_qt_binding/*.py
 
-SUBST_CLASSES+=		py-distsetup
-
 # for version 3 package.xml
 DEPEND_ABI.py-catkin-pkg = ${PKGTAG.python}-catkin-pkg>=0.4
 

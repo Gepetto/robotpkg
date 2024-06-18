@@ -1,6 +1,9 @@
-@comment Thu Dec 19 15:05:35 CET 2013
+@comment Tue Jun 18 21:43:46 CEST 2024
 lib/pkgconfig/python_qt_binding.pc
-${PYTHON_SITELIB}/python_qt_binding-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/python_qt_binding-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/python_qt_binding-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/python_qt_binding-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/python_qt_binding-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/python_qt_binding/QtBindingHelper.py
 ${PYTHON_SITELIB}/python_qt_binding/__init__.py
 ${PYTHON_SITELIB}/python_qt_binding/binding_helper.py
