@@ -1,29 +1,42 @@
+- Fix yaml-cpp search
+
 - Link with assimp as a private library so that the dependency is not transitive
   (for default_plugin).
 
 - Don't install garbage
 
---- src/rviz/CMakeLists.txt~	2018-05-11 02:05:40.000000000 +0200
-+++ src/rviz/CMakeLists.txt	2018-09-14 18:10:28.289263579 +0200
-@@ -135,7 +135,7 @@
- endif()
+--- src/rviz/CMakeLists.txt~	2024-06-18 23:32:13.185383295 +0200
++++ src/rviz/CMakeLists.txt	2024-06-18 23:33:40.284672169 +0200
+@@ -1,6 +1,7 @@
+-find_package(yaml-cpp REQUIRED)
+-
+-include_directories(${YAML_CPP_INCLUDE_DIR})
++include(FindPkgConfig)
++pkg_check_modules(YAML_CPP yaml-cpp)
++include_directories(${YAML_CPP_INCLUDE_DIRS})
++link_directories(${YAML_CPP_LIBRARY_DIRS})
+ 
+ if(UNIX AND NOT APPLE)
+   find_package(X11 REQUIRED)
+@@ -131,7 +131,7 @@
+ generate_export_header(${PROJECT_NAME} EXPORT_FILE_NAME ${EXPORT_FILE_NAME})
  
  target_link_libraries(${PROJECT_NAME}
 -  ${Boost_LIBRARIES}
 +  LINK_PUBLIC ${Boost_LIBRARIES}
    ${catkin_LIBRARIES}
    ${QT_LIBRARIES}
-   ${OGRE_OV_LIBRARIES_ABS}
-@@ -143,7 +143,7 @@
+   ${OGRE_LIBRARIES}
+@@ -139,7 +139,7 @@
    ${rviz_ADDITIONAL_LIBRARIES}
    ${TinyXML2_LIBRARIES}
    ${X11_X11_LIB}
 -  ${ASSIMP_LIBRARIES}
 +  LINK_PRIVATE ${ASSIMP_LIBRARIES}
-   ${YAMLCPP_LIBRARIES}
+   ${YAML_CPP_LIBRARIES}
  )
  
-@@ -176,7 +176,10 @@
+@@ -170,7 +170,10 @@
  
  install(DIRECTORY ./
    DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
@@ -33,5 +46,7 @@
 +  PATTERN "*automoc*" EXCLUDE
 +  PATTERN "*autogen*" EXCLUDE)
  
+ #catkin_lint: ignore_once external_file
  install(FILES
-   ${CMAKE_CURRENT_BINARY_DIR}/rviz/${PROJECT_NAME}_export.h
+--- src/rviz/CMakeLists.txt~	2024-06-19 00:30:08.447203802 +0200
++++ src/rviz/CMakeLists.txt	2024-06-19 00:36:30.844696084 +0200

@@ -1,5 +1,8 @@
-@comment Fri Mar 22 15:50:43 CET 2019
+@comment Wed Jun 19 18:48:36 CEST 2024
 bin/rviz
+include/rviz/SendFilePath.h
+include/rviz/SendFilePathRequest.h
+include/rviz/SendFilePathResponse.h
 include/rviz/add_display_dialog.h
 include/rviz/bit_allocator.h
 include/rviz/class_id_recording_factory.h
@@ -52,8 +55,9 @@ include/rviz/default_plugin/pose_with_covariance_display.h
 include/rviz/default_plugin/range_display.h
 include/rviz/default_plugin/relative_humidity_display.h
 include/rviz/default_plugin/robot_model_display.h
-include/rviz/default_plugin/rviz/default_plugin/rviz_default_plugin_export.h
 include/rviz/default_plugin/rviz_default_plugin_export.h
+include/rviz/default_plugin/screw_display.h
+include/rviz/default_plugin/screw_visual.h
 include/rviz/default_plugin/temperature_display.h
 include/rviz/default_plugin/tf_display.h
 include/rviz/default_plugin/tools/focus_tool.h
@@ -67,10 +71,10 @@ include/rviz/default_plugin/tools/pose_tool.h
 include/rviz/default_plugin/tools/selection_tool.h
 include/rviz/default_plugin/view_controllers/fixed_orientation_ortho_view_controller.h
 include/rviz/default_plugin/view_controllers/fps_view_controller.h
+include/rviz/default_plugin/view_controllers/frame_view_controller.h
 include/rviz/default_plugin/view_controllers/orbit_view_controller.h
 include/rviz/default_plugin/view_controllers/third_person_follower_view_controller.h
 include/rviz/default_plugin/view_controllers/xy_orbit_view_controller.h
-include/rviz/default_plugin/wrench_display.h
 include/rviz/default_plugin/wrench_visual.h
 include/rviz/display.h
 include/rviz/display_context.h
@@ -88,7 +92,9 @@ include/rviz/frame_position_tracking_view_controller.h
 include/rviz/geometry.h
 include/rviz/help_panel.h
 include/rviz/helpers/color.h
+include/rviz/helpers/tf_prefix.h
 include/rviz/image/image_display_base.h
+include/rviz/image/mouse_click.h
 include/rviz/image/ros_image_texture.h
 include/rviz/interactive_object.h
 include/rviz/load_resource.h
@@ -102,6 +108,7 @@ include/rviz/ogre_helpers/arrow.h
 include/rviz/ogre_helpers/axes.h
 include/rviz/ogre_helpers/billboard_line.h
 include/rviz/ogre_helpers/camera_base.h
+include/rviz/ogre_helpers/compatibility.h
 include/rviz/ogre_helpers/custom_parameter_indices.h
 include/rviz/ogre_helpers/grid.h
 include/rviz/ogre_helpers/initialization.h
@@ -111,6 +118,7 @@ include/rviz/ogre_helpers/movable_text.h
 include/rviz/ogre_helpers/object.h
 include/rviz/ogre_helpers/ogre_logging.h
 include/rviz/ogre_helpers/ogre_render_queue_clearer.h
+include/rviz/ogre_helpers/ogre_vector.h
 include/rviz/ogre_helpers/orbit_camera.h
 include/rviz/ogre_helpers/orthographic.h
 include/rviz/ogre_helpers/point_cloud.h
@@ -118,7 +126,7 @@ include/rviz/ogre_helpers/qt_ogre_render_window.h
 include/rviz/ogre_helpers/render_system.h
 include/rviz/ogre_helpers/render_widget.h
 include/rviz/ogre_helpers/shape.h
-include/rviz/ogre_helpers/stl_loader.h
+include/rviz/ogre_helpers/version_check.h
 include/rviz/panel.h
 include/rviz/panel_dock_widget.h
 include/rviz/panel_factory.h
@@ -158,7 +166,6 @@ include/rviz/robot/robot.h
 include/rviz/robot/robot_joint.h
 include/rviz/robot/robot_link.h
 include/rviz/robot/tf_link_updater.h
-include/rviz/rviz/rviz_export.h
 include/rviz/rviz_export.h
 include/rviz/scaled_image_widget.h
 include/rviz/screenshot_dialog.h
@@ -184,17 +191,34 @@ include/rviz/visualizer_app.h
 include/rviz/wait_for_master_dialog.h
 include/rviz/widget_geometry_change_detector.h
 include/rviz/window_manager_interface.h
+include/rviz/windows_compat.h
 include/rviz/yaml_config_reader.h
 include/rviz/yaml_config_writer.h
 lib/librviz.so
 lib/librviz_default_plugin.so
 lib/pkgconfig/rviz.pc
-${PYTHON_SITELIB}/rviz-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rviz-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rviz-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rviz-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rviz-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/rviz/__init__.py
 ${PYTHON_SITELIB}/rviz/librviz_sip.so
+${PYTHON_SITELIB}/rviz/srv/_SendFilePath.py
+${PYTHON_SITELIB}/rviz/srv/__init__.py
 lib/rviz/rviz
+share/common-lisp/ros/rviz/srv/SendFilePath.lisp
+share/common-lisp/ros/rviz/srv/_package.lisp
+share/common-lisp/ros/rviz/srv/_package_SendFilePath.lisp
+share/common-lisp/ros/rviz/srv/rviz-srv.asd
+share/gennodejs/ros/rviz/_index.js
+share/gennodejs/ros/rviz/srv/SendFilePath.js
+share/gennodejs/ros/rviz/srv/_index.js
+share/roseus/ros/rviz/manifest.l
+share/roseus/ros/rviz/srv/SendFilePath.l
 share/rviz/cmake/default_plugin_location.cmake
 share/rviz/cmake/rviz-extras.cmake
+share/rviz/cmake/rviz-msg-extras.cmake
+share/rviz/cmake/rviz-msg-paths.cmake
 share/rviz/cmake/rvizConfig-version.cmake
 share/rviz/cmake/rvizConfig.cmake
 share/rviz/default.rviz
@@ -290,7 +314,8 @@ share/rviz/ogre_media/fonts/liberation-sans/LiberationSans-BoldItalic.ttf
 share/rviz/ogre_media/fonts/liberation-sans/LiberationSans-Italic.ttf
 share/rviz/ogre_media/fonts/liberation-sans/LiberationSans-Regular.ttf
 share/rviz/ogre_media/fonts/liberation-sans/SIL Open Font License.txt
-share/rviz/ogre_media/fonts/liberation_sans.fontdef
+share/rviz/ogre_media/fonts/ogre1.10.fontdef
+share/rviz/ogre_media/fonts/ogre1.9.fontdef
 share/rviz/ogre_media/materials/glsl120/black.frag
 share/rviz/ogre_media/materials/glsl120/depth.frag
 share/rviz/ogre_media/materials/glsl120/depth.vert
@@ -340,3 +365,4 @@ share/rviz/ogre_media/plugins.cfg
 share/rviz/ogre_media/textures/no_image.png
 share/rviz/package.xml
 share/rviz/plugin_description.xml
+share/rviz/srv/SendFilePath.srv
