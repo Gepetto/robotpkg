@@ -1,7 +1,10 @@
-@comment Tue Aug 12 18:42:29 CEST 2014
+@comment Tue Jun 18 18:40:50 CEST 2024
 lib/genmsg/genmsg_check_deps.py
 lib/pkgconfig/genmsg.pc
-${PYTHON_SITELIB}/genmsg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/genmsg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/genmsg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/genmsg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/genmsg-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/genmsg/__init__.py
 ${PYTHON_SITELIB}/genmsg/base.py
 ${PYTHON_SITELIB}/genmsg/command_line.py
