@@ -1,7 +1,10 @@
-@comment Mon Sep 10 12:19:48 CEST 2018
+@comment Tue Jun 18 19:10:36 CEST 2024
 include/angles/angles.h
 lib/pkgconfig/angles.pc
-${PYTHON_SITELIB}/angles-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/angles-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/angles-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/angles-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/angles-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/angles/__init__.py
 share/angles/cmake/anglesConfig-version.cmake
 share/angles/cmake/anglesConfig.cmake
