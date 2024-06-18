@@ -1,0 +1,12 @@
+Import pkg_check_modules
+
+--- camera_calibration_parsers/CMakeLists.txt~	2020-04-03 19:44:52.000000000 +0200
++++ camera_calibration_parsers/CMakeLists.txt	2024-06-19 00:17:25.945661518 +0200
+@@ -22,6 +22,7 @@
+     find_package(yaml-cpp)
+     add_definitions(-DHAVE_NEW_YAMLCPP)
+ else()
++  include(FindPkgConfig)
+   pkg_check_modules(YAML_CPP yaml-cpp)
+   if(${YAML_CPP_VERSION} VERSION_GREATER 0.5)
+     add_definitions(-DHAVE_NEW_YAMLCPP)

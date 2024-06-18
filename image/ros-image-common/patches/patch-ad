@@ -6,7 +6,7 @@ For yaml-cpp directory
  )
  
  include_directories(${catkin_INCLUDE_DIRS})
-+link_directories(${catkin_LIBRARY_DIRS})
++link_directories(${YAML_CPP_LIBRARY_DIRS})
  include_directories(include)
  
  # add a library
