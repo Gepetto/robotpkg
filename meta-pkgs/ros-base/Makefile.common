@@ -65,7 +65,7 @@ SUBST_FILTER_CMD.py-syspath=\
 
 # Replace setuptools setup by vanilla distutils setup
 SUBST_STAGE.py-distsetup=	pre-configure
-SUBST_MESSAGE.py-distsetup=	Replacing setuptools setup by distutils setup
+SUBST_MESSAGE.py-distsetup=	Replacing distutils setup by setuptools
 SUBST_FILES.py-distsetup+=	setup.py
 SUBST_SED.py-distsetup=\
-	-e 's/from setuptools import setup/from distutils.core import setup/'
+	-e 's/from distutils.core import setup/from setuptools import setup/'
