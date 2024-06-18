@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	interactive_markers
-ROS_VERSION=	1.11.4
+ROS_VERSION=	1.12.0
 ROS_REPO=	ros-visualization
 
 CATEGORIES=	graphics
@@ -16,6 +16,6 @@ include ../../interfaces/ros-common-msgs/depend.mk
 include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../lang/ros-message-runtime/depend.mk
-include ../../math/ros-geometry/depend.mk
+include ../../math/ros-geometry2/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../mk/robotpkg.mk
