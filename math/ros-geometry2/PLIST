@@ -1,4 +1,4 @@
-@comment Mon Sep 10 14:08:19 CEST 2018
+@comment Tue Jun 18 21:30:05 CEST 2024
 include/tf2/LinearMath/Matrix3x3.h
 include/tf2/LinearMath/MinMax.h
 include/tf2/LinearMath/QuadWord.h
@@ -54,10 +54,16 @@ lib/pkgconfig/tf2_py.pc
 lib/pkgconfig/tf2_ros.pc
 lib/pkgconfig/tf2_sensor_msgs.pc
 lib/pkgconfig/tf2_tools.pc
-${PYTHON_SITELIB}/tf2_geometry_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/tf2_geometry_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/tf2_geometry_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/tf2_geometry_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/tf2_geometry_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/tf2_geometry_msgs/__init__.py
 ${PYTHON_SITELIB}/tf2_geometry_msgs/tf2_geometry_msgs.py
-${PYTHON_SITELIB}/tf2_kdl-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/tf2_kdl-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/tf2_kdl-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/tf2_kdl-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/tf2_kdl-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/tf2_kdl/__init__.py
 ${PYTHON_SITELIB}/tf2_kdl/tf2_kdl.py
 ${PYTHON_SITELIB}/tf2_msgs/__init__.py
@@ -73,10 +79,16 @@ ${PYTHON_SITELIB}/tf2_msgs/msg/_TFMessage.py
 ${PYTHON_SITELIB}/tf2_msgs/msg/__init__.py
 ${PYTHON_SITELIB}/tf2_msgs/srv/_FrameGraph.py
 ${PYTHON_SITELIB}/tf2_msgs/srv/__init__.py
-${PYTHON_SITELIB}/tf2_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/tf2_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/tf2_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/tf2_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/tf2_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/tf2_py/__init__.py
 ${PYTHON_SITELIB}/tf2_py/_tf2.so
-${PYTHON_SITELIB}/tf2_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/tf2_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/tf2_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/tf2_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/tf2_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/tf2_ros/__init__.py
 ${PYTHON_SITELIB}/tf2_ros/buffer.py
 ${PYTHON_SITELIB}/tf2_ros/buffer_client.py
@@ -84,7 +96,10 @@ ${PYTHON_SITELIB}/tf2_ros/buffer_interface.py
 ${PYTHON_SITELIB}/tf2_ros/static_transform_broadcaster.py
 ${PYTHON_SITELIB}/tf2_ros/transform_broadcaster.py
 ${PYTHON_SITELIB}/tf2_ros/transform_listener.py
-${PYTHON_SITELIB}/tf2_sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/tf2_sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/tf2_sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/tf2_sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/tf2_sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/tf2_sensor_msgs/__init__.py
 ${PYTHON_SITELIB}/tf2_sensor_msgs/tf2_sensor_msgs.py
 lib/tf2_kdl/test.py

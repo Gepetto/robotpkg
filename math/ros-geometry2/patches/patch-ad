@@ -1,0 +1,12 @@
+Missing header for recent boost (e.g. 1.84)
+
+--- tf2/src/buffer_core.cpp~	2024-06-18 21:14:14.814234630 +0200
++++ tf2/src/buffer_core.cpp	2024-06-18 21:19:58.695997307 +0200
+@@ -43,6 +43,7 @@
+ #endif
+ #include "tf2/LinearMath/Transform.h"
+ #include <boost/foreach.hpp>
++#include <boost/tuple/tuple.hpp>
+ 
+ namespace tf2
+ {

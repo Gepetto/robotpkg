@@ -2,9 +2,8 @@
 # Created:			Anthony Mallet on Tue, 16 May 2017
 #
 
-PKGREVISION=	2
 ROS_PKG=	geometry2
-ROS_VERSION=	0.6.5
+ROS_VERSION=	0.7.7
 ROS_METAPKG=	yes
 
 CATEGORIES=	math localization
