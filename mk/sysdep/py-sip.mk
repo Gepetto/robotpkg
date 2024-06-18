@@ -17,7 +17,7 @@ PREFER.py-sip?=		system
 DEPEND_USE+=		py-sip
 
 DEPEND_METHOD.py-sip?=	build
-DEPEND_ABI.py-sip?=	${PKGTAG.python}-sip>=4
+DEPEND_ABI.py-sip?=	${PKGTAG.python}-sip>=4<5
 
 SYSTEM_SEARCH.py-sip=\
   'bin/{,python${PYTHON_MAJOR}-}sip{${PYTHON_VERSION},}:p:% -V'		\
@@ -27,7 +27,7 @@ SYSTEM_SEARCH.py-sip=\
 SYSTEM_PKG.Arch.py-sip=		python-sip sip
 SYSTEM_PKG.RedHat.py-sip=	python${PYTHON_MAJOR}-sip-devel
 SYSTEM_PKG.Debian.py-sip=	python$(subst 2,,${PYTHON_MAJOR})-sip-dev
-SYSTEM_PKG.NetBSD.py-sip=	x11/${PKGTAG.python}-sip
+SYSTEM_PKG.NetBSD.py-sip=	wip/${PKGTAG.python}-sip4
 SYSTEM_PKG.Gentoo.py-sip=	dev-python/sip (python-${PYTHON_VERSION})
 
 export SIP=		$(word 1,${SYSTEM_FILES.py-sip})
