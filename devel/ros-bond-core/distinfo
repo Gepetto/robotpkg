@@ -1,4 +1,3 @@
-SHA1 (ros/bond_core/1.8.2.tar.gz) = 705cf0f4fe73a91b743e313eac1ec835a67dae1f
-RMD160 (ros/bond_core/1.8.2.tar.gz) = 055831b245170488ecad3858f9d0e34ce697eae3
-Size (ros/bond_core/1.8.2.tar.gz) = 32541 bytes
-SHA1 (patch-ab) = 3147ed003b4ec714a8159faa45eff191ca340d07
+SHA1 (ros/bond_core/1.8.6.tar.gz) = 24b6a840a2a9f7b69ae9ae4633e936f41ea1c80a
+RMD160 (ros/bond_core/1.8.6.tar.gz) = f7e5e44d776e8c108249dd7164ac64f9224bf640
+Size (ros/bond_core/1.8.6.tar.gz) = 33915 bytes

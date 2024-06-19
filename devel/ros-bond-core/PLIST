@@ -1,4 +1,4 @@
-@comment Wed Sep 13 11:57:59 CEST 2023
+@comment Wed Jun 19 16:58:23 CEST 2024
 include/bond/Constants.h
 include/bond/Status.h
 include/bondcpp/BondSM_sm.h
@@ -15,11 +15,17 @@ ${PYTHON_SITELIB}/bond/__init__.py
 ${PYTHON_SITELIB}/bond/msg/_Constants.py
 ${PYTHON_SITELIB}/bond/msg/_Status.py
 ${PYTHON_SITELIB}/bond/msg/__init__.py
-${PYTHON_SITELIB}/bondpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/bondpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/bondpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/bondpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/bondpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/bondpy/BondSM_sm.py
 ${PYTHON_SITELIB}/bondpy/__init__.py
 ${PYTHON_SITELIB}/bondpy/bondpy.py
-${PYTHON_SITELIB}/smclib-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/smclib-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/smclib-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/smclib-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/smclib-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/smclib/__init__.py
 ${PYTHON_SITELIB}/smclib/statemap.py
 share/bond/cmake/bond-msg-extras.cmake

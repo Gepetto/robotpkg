@@ -5,7 +5,7 @@
 PKGREVISION=	1
 ROS_PKG=	bond_core
 ROS_METAPKG=	yes
-ROS_VERSION=	1.8.2
+ROS_VERSION=	1.8.6
 
 CATEGORIES=	devel
 ROS_COMMENT=	process termination detection
