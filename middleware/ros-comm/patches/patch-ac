@@ -1,16 +1,16 @@
 Fix for console-bridge < 0.4
 
---- tools/rosbag_storage/src/bag.cpp.orig	2020-02-21 01:13:08.000000000 +0100
-+++ tools/rosbag_storage/src/bag.cpp	2020-03-17 14:51:24.868486692 +0100
-@@ -40,6 +40,11 @@
- #include <iomanip>
+--- tools/rosbag_storage/src/bag.cpp~	2023-02-15 15:07:49.000000000 +0100
++++ tools/rosbag_storage/src/bag.cpp	2024-06-19 14:15:15.858079762 +0200
+@@ -41,6 +41,11 @@
  
- #include "console_bridge/console.h"
+ #include <boost/bind/bind.hpp>
+ 
 +/* Fix for console-bridge < 0.4 */
 +#ifndef CONSOLE_BRIDGE_logError
 +# define CONSOLE_BRIDGE_logDebug logDebug
 +# define CONSOLE_BRIDGE_logError logError
 +#endif
+ #include "console_bridge/console.h"
  
  using std::map;
- using std::priority_queue;
