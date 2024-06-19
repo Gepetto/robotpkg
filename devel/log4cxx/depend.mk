@@ -30,8 +30,7 @@ SYSTEM_SEARCH.log4cxx=\
 
 SYSTEM_PKG.Arch.log4cxx=	log4cxx
 SYSTEM_PKG.RedHat.log4cxx=	log4cxx-devel
-SYSTEM_PKG.Debian.log4cxx=	liblog4cxx10-dev
-SYSTEM_PKG.Ubuntu.log4cxx=	liblog4cxx10-dev
+SYSTEM_PKG.Debian.log4cxx=	liblog4cxx-dev
 SYSTEM_PKG.NetBSD.log4cxx=	devel/log4cxx
 SYSTEM_PKG.Gentoo.log4cxx=	dev-libs/log4cxx
 
