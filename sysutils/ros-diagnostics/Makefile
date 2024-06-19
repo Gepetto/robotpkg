@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	diagnostics
-ROS_VERSION=	1.9.3
+ROS_VERSION=	1.11.0
 ROS_METAPKG=	yes
 
 CATEGORIES=	sysutils

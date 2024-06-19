@@ -4,10 +4,10 @@ fix:
 
 --- diagnostic_aggregator/CMakeLists.txt.orig	2019-12-02 18:05:33.000000000 +0100
 +++ diagnostic_aggregator/CMakeLists.txt	2019-12-02 18:05:44.432336028 +0100
-@@ -43,7 +43,7 @@
+@@ -46,7 +46,7 @@
+ 
  # Analyzer loader allows other users to test that Analyzers load
- add_executable(analyzer_loader test/analyzer_loader.cpp
-                                gtest-1.7.0/gtest-all.cc)
+ add_executable(analyzer_loader test/analyzer_loader.cpp ${LOCAL_GTEST_DIR}/gtest-all.cc)
 -target_link_libraries(analyzer_loader diagnostic_aggregator)
 +target_link_libraries(analyzer_loader diagnostic_aggregator pthread)
  
