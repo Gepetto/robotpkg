@@ -16,6 +16,7 @@ SUBST_FILES.py-interp+=	scripts/gen*_py.py
 
 PYTHON_PLIST_COMPILE_PATTERN=/gennodejs[\/].*[.]py$$/
 
+SUBST_CLASSES+=		py-distsetup
 
 include ../../devel/ros-catkin/depend.mk
 include ../../middleware/ros-genmsg/depend.mk

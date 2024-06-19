@@ -1,8 +1,11 @@
-@comment Tue Sep 4 16:13:17 CEST 2018
+@comment Wed Jun 19 17:58:03 CEST 2024
 etc/ros/genmsg/gennodejs
 lib/gennodejs/gen_nodejs.py
 lib/pkgconfig/gennodejs.pc
-${PYTHON_SITELIB}/gennodejs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/gennodejs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/gennodejs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/gennodejs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/gennodejs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/gennodejs/__init__.py
 ${PYTHON_SITELIB}/gennodejs/generate.py
 ${PYTHON_SITELIB}/gennodejs/gennodejs_main.py
