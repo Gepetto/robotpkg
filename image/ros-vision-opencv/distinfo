@@ -1,9 +1,6 @@
-SHA1 (ros/vision_opencv/1.13.0.tar.gz) = bea5ffbebdaf1513922178cc126ade0f150a2c86
-RMD160 (ros/vision_opencv/1.13.0.tar.gz) = a4f1eed2a347f06fa59e365cd39683fd141d52cc
-Size (ros/vision_opencv/1.13.0.tar.gz) = 82177 bytes
+SHA1 (ros/vision_opencv/1.16.2.tar.gz) = b6a0a01187a4de3a49085033d2807812eb27e053
+RMD160 (ros/vision_opencv/1.16.2.tar.gz) = 9fe2b323fc69cc034718820813205fa4a6478f26
+Size (ros/vision_opencv/1.16.2.tar.gz) = 86615 bytes
 SHA1 (patch-af) = 1ebd2690a7a564b26f6c7f11569a323e13277052
 SHA1 (patch-ag) = ffdbc66a8300cb2a7c2ce71bb824f697c315ef79
-SHA1 (patch-ah) = 0944e56183750860094fb608dca48fa49dd9bc28
-SHA1 (patch-ai) = 6df1993da7946c586ac3484f9b3396652ccbedd5
-SHA1 (patch-aj) = 901e066241e9372372d4877db52f969c641f4656
-SHA1 (patch-ak) = c55b03610ed6a6c49ebe7bfb37771fef8bd02ca1
+SHA1 (patch-ah) = 5d471fbf272423fbcc9fe8e546b1585590546470

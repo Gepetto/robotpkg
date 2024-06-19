@@ -4,7 +4,7 @@
 
 ROS_PKG=		vision_opencv
 ROS_METAPKG=		yes
-ROS_VERSION=		1.13.0
+ROS_VERSION=		1.16.2
 ROS_REPO=		ros-perception
 
 CATEGORIES=		image
