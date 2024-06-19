@@ -16,6 +16,8 @@ CMAKE_ARGS+=	-DTinyXML2_ROOT_DIR=${PREFIX.tinyxml}
 
 DEPEND_ABI.ros-catkin+=	${PKGTAG.python-}ros-catkin>=0.5.64
 
+USE_BOOST_LIBS=	filesystem program_options system
+
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
