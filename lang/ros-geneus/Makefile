@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		geneus
-ROS_VERSION=		2.2.6
+ROS_VERSION=		3.0.0
 ROS_REPO=		jsk-ros-pkg
 
 CATEGORIES=		lang
