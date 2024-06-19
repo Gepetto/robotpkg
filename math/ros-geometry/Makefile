@@ -2,9 +2,8 @@
 # Created:			Séverin Lemaignan on Mon, 5 Aug 2013
 #
 
-PKGREVISION=	1
 ROS_PKG=	geometry
-ROS_VERSION=	1.12.0
+ROS_VERSION=	1.13.2
 ROS_METAPKG=	yes
 
 CATEGORIES=	math localization

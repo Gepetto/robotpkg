@@ -1,4 +1,4 @@
-@comment Wed Sep 12 14:51:05 CEST 2018
+@comment Wed Jun 19 18:02:37 CEST 2024
 bin/tf_remap
 bin/view_frames
 include/eigen_conversions/eigen_kdl.h
@@ -33,7 +33,10 @@ lib/pkgconfig/eigen_conversions.pc
 lib/pkgconfig/kdl_conversions.pc
 lib/pkgconfig/tf.pc
 lib/pkgconfig/tf_conversions.pc
-${PYTHON_SITELIB}/tf-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/tf-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/tf-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/tf-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/tf-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/tf/__init__.py
 ${PYTHON_SITELIB}/tf/broadcaster.py
 ${PYTHON_SITELIB}/tf/listener.py
@@ -43,7 +46,10 @@ ${PYTHON_SITELIB}/tf/srv/_FrameGraph.py
 ${PYTHON_SITELIB}/tf/srv/__init__.py
 ${PYTHON_SITELIB}/tf/tfwtf.py
 ${PYTHON_SITELIB}/tf/transformations.py
-${PYTHON_SITELIB}/tf_conversions-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/tf_conversions-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/tf_conversions-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/tf_conversions-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/tf_conversions-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/tf_conversions/__init__.py
 ${PYTHON_SITELIB}/tf_conversions/posemath.py
 lib/tf/bullet_migration_sed.py
