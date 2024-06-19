@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		rqt_plot
-ROS_VERSION=		0.4.8
+ROS_VERSION=		0.4.13
 ROS_REPO=		ros-visualization
 
 CATEGORIES=		sysutils
@@ -14,6 +14,8 @@ include ../../meta-pkgs/ros-base/Makefile.common
 SUBST_CLASSES+=		py-interp
 SUBST_FILES.py-interp+=	scripts/rqt_plot
 SUBST_FILES.py-interp+=	src/*/*.py
+
+SUBST_CLASSES+=		py-distsetup
 
 include ../../devel/ros-catkin/depend.mk
 include ../../graphics/ros-python-qt-binding/depend.mk
