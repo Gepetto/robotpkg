@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	xacro
-ROS_VERSION=	1.13.2
+ROS_VERSION=	1.14.18
 
 CATEGORIES=	devel
 ROS_COMMENT=	XML macro language

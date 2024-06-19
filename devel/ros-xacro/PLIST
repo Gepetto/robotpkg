@@ -1,7 +1,10 @@
-@comment Fri Sep 7 18:16:24 CEST 2018
+@comment Wed Jun 19 16:30:31 CEST 2024
 bin/xacro
 lib/pkgconfig/xacro.pc
-${PYTHON_SITELIB}/xacro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/xacro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/xacro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/xacro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/xacro-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/xacro/__init__.py
 ${PYTHON_SITELIB}/xacro/cli.py
 ${PYTHON_SITELIB}/xacro/color.py
@@ -11,4 +14,3 @@ share/xacro/cmake/xacro-extras.cmake
 share/xacro/cmake/xacroConfig-version.cmake
 share/xacro/cmake/xacroConfig.cmake
 share/xacro/package.xml
-share/xacro/xacro.py
