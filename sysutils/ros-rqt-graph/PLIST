@@ -1,7 +1,10 @@
-@comment Mon Sep 17 13:55:25 CEST 2018
+@comment Wed Jun 19 17:21:02 CEST 2024
 bin/rqt_graph
 lib/pkgconfig/rqt_graph.pc
-${PYTHON_SITELIB}/rqt_graph-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rqt_graph-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rqt_graph-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rqt_graph-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rqt_graph-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/rqt_graph/__init__.py
 ${PYTHON_SITELIB}/rqt_graph/dotcode.py
 ${PYTHON_SITELIB}/rqt_graph/interactive_graphics_view.py
