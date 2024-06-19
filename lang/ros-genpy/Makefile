@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=		genpy
-ROS_VERSION=		0.6.7
+ROS_VERSION=		0.6.16
 
 CATEGORIES=		lang
 ROS_COMMENT=		python code generator for ROS .msg format

@@ -1,9 +1,12 @@
-@comment Wed Aug 13 14:09:17 CEST 2014
+@comment Wed Jun 19 18:21:59 CEST 2024
 etc/ros/genmsg/genpy
 lib/genpy/genmsg_py.py
 lib/genpy/gensrv_py.py
 lib/pkgconfig/genpy.pc
-${PYTHON_SITELIB}/genpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/genpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/genpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/genpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/genpy-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/genpy/__init__.py
 ${PYTHON_SITELIB}/genpy/base.py
 ${PYTHON_SITELIB}/genpy/dynamic.py
