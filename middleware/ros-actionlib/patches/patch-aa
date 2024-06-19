@@ -1,7 +1,7 @@
 Fix boost::placeholders drama
 
---- ./include/actionlib/client/simple_action_client.h~	2019-08-07 23:46:10.000000000 +0200
-+++ ./include/actionlib/client/simple_action_client.h	2021-05-28 15:27:18.803427907 +0200
+--- ./actionlib/include/actionlib/client/simple_action_client.h~	2019-08-07 23:46:10.000000000 +0200
++++ ./actionlib/include/actionlib/client/simple_action_client.h	2021-05-28 15:27:18.803427907 +0200
 @@ -330,8 +330,8 @@
    cur_simple_state_ = SimpleGoalState::PENDING;
  
@@ -13,8 +13,8 @@ Fix boost::placeholders drama
  }
  
  template<class ActionSpec>
---- ./include/actionlib/client/action_client.h~	2019-08-07 23:46:10.000000000 +0200
-+++ ./include/actionlib/client/action_client.h	2021-05-28 15:33:54.170113818 +0200
+--- ./actionlib/include/actionlib/client/action_client.h~	2019-08-07 23:46:10.000000000 +0200
++++ ./actionlib/include/actionlib/client/action_client.h	2021-05-28 15:33:54.170113818 +0200
 @@ -236,17 +236,17 @@
  
      // Start publishers and subscribers
@@ -48,8 +48,8 @@ Fix boost::placeholders drama
        )
        );
      return n_.subscribe(ops);
---- ./include/actionlib/client/goal_manager_imp.h~	2019-08-07 23:46:10.000000000 +0200
-+++ ./include/actionlib/client/goal_manager_imp.h	2021-05-28 15:34:05.166188529 +0200
+--- ./actionlib/include/actionlib/client/goal_manager_imp.h~	2019-08-07 23:46:10.000000000 +0200
++++ ./actionlib/include/actionlib/client/goal_manager_imp.h	2021-05-28 15:34:05.166188529 +0200
 @@ -74,7 +74,7 @@
  
    boost::recursive_mutex::scoped_lock lock(list_mutex_);
@@ -59,8 +59,8 @@ Fix boost::placeholders drama
  
    if (send_goal_func_) {
      send_goal_func_(action_goal);
---- ./include/actionlib/managed_list.h~	2019-08-07 23:46:10.000000000 +0200
-+++ ./include/actionlib/managed_list.h	2021-05-28 15:34:18.882281707 +0200
+--- ./actionlib/include/actionlib/managed_list.h~	2019-08-07 23:46:10.000000000 +0200
++++ ./actionlib/include/actionlib/managed_list.h	2021-05-28 15:34:18.882281707 +0200
 @@ -213,7 +213,7 @@
     */
    Handle add(const T & elem)
@@ -70,8 +70,8 @@ Fix boost::placeholders drama
    }
  
    /**
---- ./include/actionlib/server/action_server_imp.h~	2019-08-07 23:46:10.000000000 +0200
-+++ ./include/actionlib/server/action_server_imp.h	2021-05-28 15:34:57.746545746 +0200
+--- ./actionlib/include/actionlib/server/action_server_imp.h~	2019-08-07 23:46:10.000000000 +0200
++++ ./actionlib/include/actionlib/server/action_server_imp.h	2021-05-28 15:34:57.746545746 +0200
 @@ -172,15 +172,15 @@
  
    if (status_frequency > 0) {
@@ -91,8 +91,8 @@ Fix boost::placeholders drama
  }
  
  template<class ActionSpec>
---- ./include/actionlib/server/service_server_imp.h~	2019-08-07 23:46:10.000000000 +0200
-+++ ./include/actionlib/server/service_server_imp.h	2021-05-28 15:35:10.110629744 +0200
+--- ./actionlib/include/actionlib/server/service_server_imp.h~	2019-08-07 23:46:10.000000000 +0200
++++ ./actionlib/include/actionlib/server/service_server_imp.h	2021-05-28 15:35:10.110629744 +0200
 @@ -58,7 +58,7 @@
  : service_cb_(service_cb)
  {
@@ -102,8 +102,8 @@ Fix boost::placeholders drama
    as_->start();
  }
  
---- ./include/actionlib/server/simple_action_server_imp.h~	2019-08-07 23:46:10.000000000 +0200
-+++ ./include/actionlib/server/simple_action_server_imp.h	2021-05-28 15:34:48.058479929 +0200
+--- ./actionlib/include/actionlib/server/simple_action_server_imp.h~	2019-08-07 23:46:10.000000000 +0200
++++ ./actionlib/include/actionlib/server/simple_action_server_imp.h	2021-05-28 15:34:48.058479929 +0200
 @@ -56,8 +56,8 @@
  
    // create the action server
@@ -125,7 +125,7 @@ Fix boost::placeholders drama
 +      boost::bind(&SimpleActionServer::preemptCallback, this, ::boost::placeholders::_1),
        auto_start));
  
-   if (execute_callback_ != NULL) {
+   if (execute_callback_) {
 @@ -85,8 +85,8 @@
  {
    // create the action server
@@ -136,7 +136,7 @@ Fix boost::placeholders drama
 +      boost::bind(&SimpleActionServer::preemptCallback, this, ::boost::placeholders::_1),
        true));
  
-   if (execute_callback_ != NULL) {
+   if (execute_callback_) {
 @@ -104,8 +104,8 @@
  {
    // create the action server
@@ -147,7 +147,7 @@ Fix boost::placeholders drama
 +      boost::bind(&SimpleActionServer::preemptCallback, this, ::boost::placeholders::_1),
        auto_start));
  
-   if (execute_callback_ != NULL) {
+   if (execute_callback_) {
 @@ -121,8 +121,8 @@
  {
    // create the action server
@@ -158,7 +158,7 @@ Fix boost::placeholders drama
 +      boost::bind(&SimpleActionServer::preemptCallback, this, ::boost::placeholders::_1),
        auto_start));
  
-   if (execute_callback_ != NULL) {
+   if (execute_callback_) {
 @@ -138,8 +138,8 @@
  {
    // create the action server
@@ -169,9 +169,9 @@ Fix boost::placeholders drama
 +      boost::bind(&SimpleActionServer::preemptCallback, this, ::boost::placeholders::_1),
        true));
  
-   if (execute_callback_ != NULL) {
---- ./include/actionlib/one_shot_timer.h~	2019-08-07 23:46:10.000000000 +0200
-+++ ./include/actionlib/one_shot_timer.h	2021-05-28 15:26:38.027150921 +0200
+   if (execute_callback_) {
+--- ./actionlib/include/actionlib/one_shot_timer.h~	2019-08-07 23:46:10.000000000 +0200
++++ ./actionlib/include/actionlib/one_shot_timer.h	2021-05-28 15:26:38.027150921 +0200
 @@ -60,7 +60,7 @@
  
    boost::function<void(const ros::TimerEvent & e)> getCb()
