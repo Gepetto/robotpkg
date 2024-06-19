@@ -2,9 +2,8 @@
 # Created:			Anthony Mallet on Mon, 10 Dec 2012
 #
 
-PKGREVISION=	1
 ROS_PKG=	dynamic_reconfigure
-ROS_VERSION=	1.5.49
+ROS_VERSION=	1.7.3
 
 CATEGORIES=	middleware
 ROS_COMMENT=	runtime parameter configuration

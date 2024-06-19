@@ -1,4 +1,4 @@
-@comment Wed Sep 13 14:54:39 CEST 2023
+@comment Wed Jun 19 17:36:31 CEST 2024
 include/dynamic_reconfigure/BoolParameter.h
 include/dynamic_reconfigure/Config.h
 include/dynamic_reconfigure/ConfigDescription.h
@@ -17,10 +17,12 @@ include/dynamic_reconfigure/config_init_mutex.h
 include/dynamic_reconfigure/config_tools.h
 include/dynamic_reconfigure/server.h
 lib/dynamic_reconfigure/dynparam
-lib/dynamic_reconfigure/reconfigure_gui
 lib/libdynamic_reconfigure_config_init_mutex.so
 lib/pkgconfig/dynamic_reconfigure.pc
-${PYTHON_SITELIB}/dynamic_reconfigure-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/dynamic_reconfigure-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/dynamic_reconfigure-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/dynamic_reconfigure-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/dynamic_reconfigure-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/dynamic_reconfigure/__init__.py
 ${PYTHON_SITELIB}/dynamic_reconfigure/client.py
 ${PYTHON_SITELIB}/dynamic_reconfigure/encoding.py
@@ -79,6 +81,7 @@ share/dynamic_reconfigure/cmake/dynamic_reconfigure/parameter_generator.py
 share/dynamic_reconfigure/cmake/dynamic_reconfigureConfig-version.cmake
 share/dynamic_reconfigure/cmake/dynamic_reconfigureConfig.cmake
 share/dynamic_reconfigure/cmake/gendeps
+share/dynamic_reconfigure/cmake/setup_custom_pythonpath.bat.in
 share/dynamic_reconfigure/cmake/setup_custom_pythonpath.sh.in
 share/dynamic_reconfigure/msg/BoolParameter.msg
 share/dynamic_reconfigure/msg/Config.msg
