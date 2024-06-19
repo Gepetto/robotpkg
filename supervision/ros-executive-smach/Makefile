@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	executive_smach
-ROS_VERSION=	2.0.1
+ROS_VERSION=	2.5.2
 ROS_METAPKG=	yes
 
 CATEGORIES=	supervision

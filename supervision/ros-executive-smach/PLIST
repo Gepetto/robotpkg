@@ -1,11 +1,14 @@
-@comment Thu Aug 14 16:58:56 CEST 2014
+@comment Wed Jun 19 17:31:30 CEST 2024
 include/smach_msgs/SmachContainerInitialStatusCmd.h
 include/smach_msgs/SmachContainerStatus.h
 include/smach_msgs/SmachContainerStructure.h
 lib/pkgconfig/smach.pc
 lib/pkgconfig/smach_msgs.pc
 lib/pkgconfig/smach_ros.pc
-${PYTHON_SITELIB}/smach-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/smach-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/smach-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/smach-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/smach-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/smach/__init__.py
 ${PYTHON_SITELIB}/smach/concurrence.py
 ${PYTHON_SITELIB}/smach/container.py
@@ -22,7 +25,10 @@ ${PYTHON_SITELIB}/smach_msgs/msg/_SmachContainerInitialStatusCmd.py
 ${PYTHON_SITELIB}/smach_msgs/msg/_SmachContainerStatus.py
 ${PYTHON_SITELIB}/smach_msgs/msg/_SmachContainerStructure.py
 ${PYTHON_SITELIB}/smach_msgs/msg/__init__.py
-${PYTHON_SITELIB}/smach_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/smach_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/smach_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/smach_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/smach_ros-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/smach_ros/__init__.py
 ${PYTHON_SITELIB}/smach_ros/action_server_wrapper.py
 ${PYTHON_SITELIB}/smach_ros/condition_state.py
