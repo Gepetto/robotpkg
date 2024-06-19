@@ -1,0 +1,29 @@
+Fix regression in python>=3.11 with logging.findCaller() returning more frames
+by default.
+
+--- tools/rosgraph/src/rosgraph/roslogging.py~	2023-02-15 15:07:49.000000000 +0100
++++ tools/rosgraph/src/rosgraph/roslogging.py	2024-06-19 15:19:52.494823652 +0200
+@@ -50,11 +50,23 @@
+ class LoggingException(Exception): pass
+ 
+ class RospyLogger(logging.getLoggerClass()):
++    if sys.version_info < (3, 11):
++        def findCallerOpts(self, args, kwargs):
++            return args, kwargs
++    else:
++        def findCallerOpts(self, args, kwargs):
++            if (len(args) > 1):
++                args = args[0], args[1]+1
++            else:
++                kwargs.setdefault('stacklevel', 2)
++            return args, kwargs
++
+     def findCaller(self, *args, **kwargs):
+         """
+         Find the stack frame of the caller so that we can note the source
+         file name, line number, and function name with class name if possible.
+         """
++        args, kwargs = self.findCallerOpts(args, kwargs)
+         file_name, lineno, func_name = super(RospyLogger, self).findCaller(*args, **kwargs)[:3]
+         file_name = os.path.normcase(file_name)
+ 
