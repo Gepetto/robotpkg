@@ -3,13 +3,15 @@
 #
 
 ROS_PKG=		laser_geometry
-ROS_VERSION=		1.6.4
+ROS_VERSION=		1.6.7
 ROS_REPO=		ros-perception
 
 CATEGORIES=		mapping
 ROS_COMMENT=		C++ class turning laser scan data into point clouds
 
 include ../../meta-pkgs/ros-base/Makefile.common
+
+SUBST_CLASSES+=		py-distsetup
 
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
