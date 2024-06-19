@@ -3,12 +3,14 @@
 #
 
 ROS_PKG=	resource_retriever
-ROS_VERSION=	1.12.4
+ROS_VERSION=	1.12.7
 
 CATEGORIES=	net
 ROS_COMMENT=	API to retrieve data from url-format files
 
 include ../../meta-pkgs/ros-base/Makefile.common
+
+SUBST_CLASSES+=	py-distsetup
 
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-ros/depend.mk
