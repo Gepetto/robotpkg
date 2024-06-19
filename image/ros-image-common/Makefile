@@ -28,11 +28,11 @@ include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../devel/tinyxml/depend.mk
-include ../../devel/yaml-cpp/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../interfaces/ros-std-msgs/depend.mk
 include ../../lang/ros-message-generation/depend.mk
 include ../../middleware/ros-comm/depend.mk
 include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/boost-libs.mk
+include ../../mk/sysdep/yaml-cpp.mk
 include ../../mk/robotpkg.mk

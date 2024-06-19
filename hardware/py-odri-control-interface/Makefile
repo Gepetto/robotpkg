@@ -21,10 +21,10 @@ CMAKE_ARGS+=		-DINSTALL_DOCUMENTATION=OFF
 
 DEPEND_ABI.cmake+=	cmake>=3.14
 
-include ../../devel/yaml-cpp/depend.mk
 include ../../hardware/py-odri-master-board-sdk/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../mk/sysdep/boost-libs.mk
+include ../../mk/sysdep/yaml-cpp.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

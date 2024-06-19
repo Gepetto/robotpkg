@@ -39,7 +39,6 @@ SUBDIR+=	ros2-rcutils
 SUBDIR+=	spdlog
 SUBDIR+=	tinyxml
 SUBDIR+=	visit-struct
-SUBDIR+=	yaml-cpp
 SUBDIR+=	ycm
 
 include ../mk/robotpkg.subdir.mk

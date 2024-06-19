@@ -18,7 +18,6 @@ include ../../devel/ros-cmake-modules/depend.mk
 include ../../devel/ros-pluginlib/depend.mk
 include ../../devel/ros-ros/depend.mk
 include ../../devel/tinyxml/depend.mk
-include ../../devel/yaml-cpp/depend.mk
 include ../../graphics/assimp/depend.mk
 include ../../graphics/ros-interactive-markers/depend.mk
 include ../../graphics/ros-python-qt-binding/depend.mk
@@ -36,4 +35,5 @@ include ../../middleware/ros-comm/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
 include ../../mk/sysdep/libogre.mk
 include ../../mk/sysdep/qt5-qtbase.mk
+include ../../mk/sysdep/yaml-cpp.mk
 include ../../mk/robotpkg.mk
