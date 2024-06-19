@@ -19,9 +19,8 @@ SYSTEM_SEARCH.libX11=\
   'lib/libX11.so'				\
   'lib/pkgconfig/x11.pc:/Version/s/[^0-9.]//gp'
 
-SYSTEM_PKG.Ubuntu.libX11=libX11-dev
 SYSTEM_PKG.RedHat.libX11=libX11-devel
-SYSTEM_PKG.Debian.libX11=libX11-dev
+SYSTEM_PKG.Debian.libX11=libx11-dev
 SYSTEM_PKG.NetBSD.libX11=x11/libX11
 
 include ../../mk/sysdep/xproto.mk
