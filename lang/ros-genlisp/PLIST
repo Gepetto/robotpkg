@@ -1,8 +1,11 @@
-@comment Wed Aug 13 13:59:22 CEST 2014
+@comment Wed Jun 19 16:39:04 CEST 2024
 etc/ros/genmsg/genlisp
 lib/genlisp/gen_lisp.py
 lib/pkgconfig/genlisp.pc
-${PYTHON_SITELIB}/genlisp-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/genlisp-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/genlisp-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/genlisp-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/genlisp-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/genlisp/__init__.py
 ${PYTHON_SITELIB}/genlisp/generate.py
 ${PYTHON_SITELIB}/genlisp/genlisp_main.py
