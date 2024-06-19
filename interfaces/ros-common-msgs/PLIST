@@ -1,4 +1,4 @@
-@comment Fri Sep 7 18:34:14 CEST 2018
+@comment Wed Jun 19 16:17:11 CEST 2024
 include/actionlib_msgs/GoalID.h
 include/actionlib_msgs/GoalStatus.h
 include/actionlib_msgs/GoalStatusArray.h
@@ -54,6 +54,9 @@ include/nav_msgs/GetPlan.h
 include/nav_msgs/GetPlanRequest.h
 include/nav_msgs/GetPlanResponse.h
 include/nav_msgs/GridCells.h
+include/nav_msgs/LoadMap.h
+include/nav_msgs/LoadMapRequest.h
+include/nav_msgs/LoadMapResponse.h
 include/nav_msgs/MapMetaData.h
 include/nav_msgs/OccupancyGrid.h
 include/nav_msgs/Odometry.h
@@ -187,9 +190,17 @@ ${PYTHON_SITELIB}/nav_msgs/msg/_Path.py
 ${PYTHON_SITELIB}/nav_msgs/msg/__init__.py
 ${PYTHON_SITELIB}/nav_msgs/srv/_GetMap.py
 ${PYTHON_SITELIB}/nav_msgs/srv/_GetPlan.py
+${PYTHON_SITELIB}/nav_msgs/srv/_LoadMap.py
 ${PYTHON_SITELIB}/nav_msgs/srv/_SetMap.py
 ${PYTHON_SITELIB}/nav_msgs/srv/__init__.py
-${PYTHON_SITELIB}/sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/resource_retriever-1.12.7-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/resource_retriever-1.12.7-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/resource_retriever-1.12.7-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/resource_retriever-1.12.7-py${PYTHON_VERSION}.egg-info/top_level.txt
+${PYTHON_SITELIB}/sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/sensor_msgs/__init__.py
 ${PYTHON_SITELIB}/sensor_msgs/msg/_BatteryState.py
 ${PYTHON_SITELIB}/sensor_msgs/msg/_CameraInfo.py
@@ -369,10 +380,12 @@ share/common-lisp/ros/nav_msgs/msg/_package_Path.lisp
 share/common-lisp/ros/nav_msgs/msg/nav_msgs-msg.asd
 share/common-lisp/ros/nav_msgs/srv/GetMap.lisp
 share/common-lisp/ros/nav_msgs/srv/GetPlan.lisp
+share/common-lisp/ros/nav_msgs/srv/LoadMap.lisp
 share/common-lisp/ros/nav_msgs/srv/SetMap.lisp
 share/common-lisp/ros/nav_msgs/srv/_package.lisp
 share/common-lisp/ros/nav_msgs/srv/_package_GetMap.lisp
 share/common-lisp/ros/nav_msgs/srv/_package_GetPlan.lisp
+share/common-lisp/ros/nav_msgs/srv/_package_LoadMap.lisp
 share/common-lisp/ros/nav_msgs/srv/_package_SetMap.lisp
 share/common-lisp/ros/nav_msgs/srv/nav_msgs-srv.asd
 share/common-lisp/ros/sensor_msgs/msg/BatteryState.lisp
@@ -546,6 +559,7 @@ share/nav_msgs/msg/Path.msg
 share/nav_msgs/package.xml
 share/nav_msgs/srv/GetMap.srv
 share/nav_msgs/srv/GetPlan.srv
+share/nav_msgs/srv/LoadMap.srv
 share/nav_msgs/srv/SetMap.srv
 share/sensor_msgs/cmake/sensor_msgs-msg-extras.cmake
 share/sensor_msgs/cmake/sensor_msgs-msg-paths.cmake
