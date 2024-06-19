@@ -1,4 +1,4 @@
-@comment Wed Sep 13 16:37:12 CEST 2023
+@comment Wed Jun 19 18:09:59 CEST 2024
 bin/rqt
 include/rqt_gui_cpp/plugin.h
 lib/librqt_gui_cpp.so
@@ -6,16 +6,25 @@ lib/pkgconfig/rqt_gui.pc
 lib/pkgconfig/rqt_gui_cpp.pc
 lib/pkgconfig/rqt_gui_py.pc
 lib/pkgconfig/rqt_py_common.pc
-${PYTHON_SITELIB}/rqt_gui-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rqt_gui-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rqt_gui-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rqt_gui-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rqt_gui-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/rqt_gui/__init__.py
 ${PYTHON_SITELIB}/rqt_gui/main.py
 ${PYTHON_SITELIB}/rqt_gui/ros_plugin_provider.py
 ${PYTHON_SITELIB}/rqt_gui/rospkg_plugin_provider.py
-${PYTHON_SITELIB}/rqt_gui_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rqt_gui_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rqt_gui_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rqt_gui_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rqt_gui_py-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/rqt_gui_py/__init__.py
 ${PYTHON_SITELIB}/rqt_gui_py/plugin.py
 ${PYTHON_SITELIB}/rqt_gui_py/ros_py_plugin_provider.py
-${PYTHON_SITELIB}/rqt_py_common-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rqt_py_common-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rqt_py_common-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rqt_py_common-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rqt_py_common-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/rqt_py_common/__init__.py
 ${PYTHON_SITELIB}/rqt_py_common/data_items.py
 ${PYTHON_SITELIB}/rqt_py_common/extended_combo_box.py

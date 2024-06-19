@@ -2,10 +2,9 @@
 # Created:			Anthony Mallet on Tue,  9 Oct 2012
 #
 
-PKGREVISION=		1
 ROS_PKG=		rqt
 ROS_METAPKG=		yes
-ROS_VERSION=		0.5.0
+ROS_VERSION=		0.5.3
 ROS_REPO=		ros-visualization
 
 CATEGORIES=		graphics
@@ -19,6 +18,13 @@ CMAKE_ARGS+=		-DQT_QMAKE_EXECUTABLE=${QMAKE}
 
 SUBST_CLASSES+=		py-interp
 SUBST_FILES.py-interp+=	rqt_gui/bin/rqt* rqt_gui/src/rqt_gui/main.py
+
+SUBST_CLASSES+=		py-distsetup
+SUBST_FILES.py-distsetup=\
+  rqt_py_common/setup.py	\
+  rqt_gui/setup.py		\
+  rqt_gui_py/setup.py		\
+  rqt_gui_cpp/setup.py
 
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-nodelet-core/depend.mk
