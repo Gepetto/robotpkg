@@ -1,0 +1,22 @@
+Missing header
+
+--- example/example_pd.cpp~	2023-12-13 03:08:50.000000000 +0100
++++ example/example_pd.cpp	2024-06-20 17:08:04.148677835 +0200
+@@ -3,6 +3,7 @@
+ #include <chrono>
+ #include <math.h>
+ #include <stdio.h>
++#include <stdexcept>
+ #include <sys/stat.h>
+ 
+ #include "master_board_sdk/master_board_interface.h"
+--- example/example.cpp~	2023-12-13 03:08:50.000000000 +0100
++++ example/example.cpp	2024-06-20 17:09:47.041436290 +0200
+@@ -3,6 +3,7 @@
+ #include <chrono>
+ #include <math.h>
+ #include <stdio.h>
++#include <stdexcept>
+ #include <sys/stat.h>
+ 
+ #include "master_board_sdk/master_board_interface.h"
