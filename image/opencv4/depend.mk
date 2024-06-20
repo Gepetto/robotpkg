@@ -33,7 +33,7 @@ SYSTEM_SEARCH.opencv4=\
   'include{,/opencv*}/opencv2/core/version.hpp'		\
   'include{,/opencv*}/opencv2/highgui/highgui.hpp'	\
   'lib/pkgconfig/opencv4.pc:/Version/s/[^.0-9]//gp'	\
-  '{lib/cmake,share,lib}/opencv4/OpenCVConfig.cmake'
+  '{lib/cmake,share,lib}/{opencv4,OpenCV}/OpenCVConfig.cmake'
 
 SYSTEM_PKG.Debian.opencv4=	libopencv-dev libopencv-highgui-dev
 SYSTEM_PKG.NetBSD.opencv4=	graphics/opencv
