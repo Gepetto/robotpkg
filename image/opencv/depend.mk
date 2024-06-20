@@ -73,7 +73,9 @@ else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
 else ifeq (Gentoo,${OS_FAMILY})
   PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
-else ifeq (NetBSD,${OS_FAMILY})
+else ifeq (NetBSD,${OPSYS})
+  PREFER_ALTERNATIVE.opencv?=	opencv3 opencv4
+else ifeq (Rocky,${OPSYS})
   PREFER_ALTERNATIVE.opencv?=	opencv3 opencv4
 endif
 PREFER_ALTERNATIVE.opencv?=	opencv4 opencv3
