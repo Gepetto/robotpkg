@@ -2,6 +2,7 @@
 # Created:			Arnaud Degroote on Thu, 22 Apr 2010
 #
 
+PKGREVISION=	1
 OROCOS_PKG=	ocl
 CATEGORIES=	architecture
 
@@ -35,7 +36,6 @@ define PKG_OPTION_UNSET.corba
   DEPEND_ABI.orocos-rtt+=   orocos-rtt~!corba
 endef
 
-include ../../devel/log4cxx/depend.mk
 include ../../devel/orocos-log4cpp/depend.mk
 include ../../middleware/orocos-rtt/depend.mk
 include ../../mk/sysdep/boost-headers.mk

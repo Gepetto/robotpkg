@@ -63,9 +63,6 @@ lib/orocos/gnulinux/ocl/liborocos-ocl-common-gnulinux.so.${PKGVERSION}
 lib/orocos/gnulinux/ocl/liborocos-ocl-helloworld-gnulinux.so
 lib/orocos/gnulinux/ocl/liborocos-ocl-helloworld-gnulinux.so.2.9
 lib/orocos/gnulinux/ocl/liborocos-ocl-helloworld-gnulinux.so.${PKGVERSION}
-lib/orocos/gnulinux/ocl/liborocos-ocl-log4cxx-gnulinux.so
-lib/orocos/gnulinux/ocl/liborocos-ocl-log4cxx-gnulinux.so.2.9
-lib/orocos/gnulinux/ocl/liborocos-ocl-log4cxx-gnulinux.so.${PKGVERSION}
 lib/orocos/gnulinux/ocl/liborocos-ocl-logging-gnulinux.so
 lib/orocos/gnulinux/ocl/liborocos-ocl-logging-gnulinux.so.2.9
 lib/orocos/gnulinux/ocl/liborocos-ocl-logging-gnulinux.so.${PKGVERSION}

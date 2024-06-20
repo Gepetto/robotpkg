@@ -1,0 +1,13 @@
+Disable log4cxx. This needs fixing for log4cxx>=1.0 and the undocumented
+removal of SocketAppender.
+
+--- config/check_depend.cmake~	2019-04-17 21:30:53.000000000 +0200
++++ config/check_depend.cmake	2024-06-20 13:51:39.322823255 +0200
+@@ -90,7 +90,6 @@
+   message("\n   orocos-log4cpp not found:\n * Is the version correct (${OCL_VERSION}) ?\n * Did you build & install it ?\n * Did you source env.sh ?\n")
+ endif(LOG4CPP_FOUND)
+ 
+-find_package( Log4cxx )
+ if(LOG4CXX_FOUND)
+   message("Found log4cxx in ${LOG4CXX_INCLUDE_DIRS}")
+ endif(LOG4CXX_FOUND)
