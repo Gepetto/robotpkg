@@ -16,10 +16,10 @@ PREFER.py-pyparsing?=	system
 
 DEPEND_USE+=		py-pyparsing
 
-DEPEND_ABI.py-pyparsing?=	${PKGTAG.python}-pyparsing>=1
+DEPEND_ABI.py-pyparsing?=	${PKGTAG.python}-pyparsing
 
 SYSTEM_SEARCH.py-pyparsing=\
-  '${PYTHON_SYSLIBSEARCH}/pyparsing{,/__init__}.py:/^__version__/s/[^0-9.]//gp'
+  '${PYTHON_SYSLIBSEARCH}/pyparsing{,/__init__}.py'
 
 SYSTEM_PKG.Debian.py-pyparsing=	python-pyparsing (python-${PYTHON_VERSION})
 SYSTEM_PKG.Fedora.py-pyparsing=	python-pyparsing (python-${PYTHON_VERSION})
