@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 10 Jan 2007
 #
 
-DISTNAME=		omniORB-4.2.4
+DISTNAME=		omniORB-4.3.2
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
 EXTRACT_SUFX?=		.tar.bz2

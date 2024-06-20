@@ -2,16 +2,16 @@ Don't define a "module" extension for python2 - this breaks PLIST and loading a
 bare .so is supported anyway by python2. python3 has SOABI, or rather
 EXT_SUFFIX nowadays.
 
---- mk/python.mk~	2023-01-12 13:40:19.439322243 +0100
-+++ mk/python.mk	2023-01-12 13:41:00.077964321 +0100
+--- mk/python.mk.orig	2023-07-13 12:38:54.000000000 +0200
++++ mk/python.mk	2024-06-20 13:35:01.491768788 +0200
 @@ -6,9 +6,9 @@
- PYPREFIX  := $(shell $(PYTHON) -c 'import sys; sys.stdout.write(sys.exec_prefix)')
- PYINCDIR  := $(shell $(PYTHON) -c 'import sys, distutils.sysconfig; sys.stdout.write(distutils.sysconfig.get_python_inc())')
+ PYPREFIX  := $(shell $(PYTHON) -c 'import sys; sys.stdout.write(sys.exec_prefix.replace("\\","/").replace(" ","\\ "))')
+ PYINCDIR  := $(shell $(PYTHON) -c 'import sys, sysconfig; sys.stdout.write(sysconfig.get_path("include").replace("\\","/").replace(" ","\\ "))')
  
--PythonSHAREDLIB_SUFFIX = $(shell $(PYTHON) -c 'import sys, distutils.sysconfig; sys.stdout.write((distutils.sysconfig.get_config_var("SO") or ".so").lstrip("."))')
-+PythonSHAREDLIB_SUFFIX = $(shell $(PYTHON) -c 'import sys, distutils.sysconfig; sys.stdout.write((distutils.sysconfig.get_config_var("EXT_SUFFIX") or ".so").lstrip("."))')
+-PythonSHAREDLIB_SUFFIX = $(shell $(PYTHON) -c 'import sys, sysconfig; sys.stdout.write((sysconfig.get_config_var("SO") or ".so").lstrip("."))')
++PythonSHAREDLIB_SUFFIX = $(shell $(PYTHON) -c 'import sys, sysconfig; sys.stdout.write((sysconfig.get_config_var("EXT_SUFFIX") or ".so").lstrip("."))')
  
--PY_MODULE_SUFFIX := $(shell $(PYTHON) -c 'import sys; sys.stdout.write((sys.hexversion < 0x3000000) and "module" or "")')
+-PY_MODULE_SUFFIX := $(shell $(PYTHON) -c 'import sys; sys.stdout.write((sys.hexversion < 0x3000000 and not hasattr(sys, "pypy_version_info")) and "module" or "")')
 +PY_MODULE_SUFFIX :=
  
  PYINCFILE := "<Python.h>"

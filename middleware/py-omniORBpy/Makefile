@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 6 Mar 2007
 #
 
-DISTNAME=		omniORBpy-4.2.4
+DISTNAME=		omniORBpy-4.3.2
 PKGNAME=		${PKGTAG.python-}${DISTNAME}
 CATEGORIES=		middleware
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=omniorb/}
@@ -26,7 +26,7 @@ CONFIGURE_ARGS+=	PYTHON=${PYTHON}
 
 # Need to be in sync with middleware/omniORB
 PREFER.omniORB?=	robotpkg
-DEPEND_ABI.omniORB+=	omniORB>=4.2<4.3
+DEPEND_ABI.omniORB+=	omniORB>=4.3<4.4
 
 include ../../middleware/omniORB/depend.mk
 include ../../mk/sysdep/automake.mk
