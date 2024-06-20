@@ -1,4 +1,4 @@
-@comment Wed Jun 19 16:17:11 CEST 2024
+@comment Thu Jun 20 11:27:35 CEST 2024
 include/actionlib_msgs/GoalID.h
 include/actionlib_msgs/GoalStatus.h
 include/actionlib_msgs/GoalStatusArray.h
@@ -193,10 +193,6 @@ ${PYTHON_SITELIB}/nav_msgs/srv/_GetPlan.py
 ${PYTHON_SITELIB}/nav_msgs/srv/_LoadMap.py
 ${PYTHON_SITELIB}/nav_msgs/srv/_SetMap.py
 ${PYTHON_SITELIB}/nav_msgs/srv/__init__.py
-${PYTHON_SITELIB}/resource_retriever-1.12.7-py${PYTHON_VERSION}.egg-info/PKG-INFO
-${PYTHON_SITELIB}/resource_retriever-1.12.7-py${PYTHON_VERSION}.egg-info/SOURCES.txt
-${PYTHON_SITELIB}/resource_retriever-1.12.7-py${PYTHON_VERSION}.egg-info/dependency_links.txt
-${PYTHON_SITELIB}/resource_retriever-1.12.7-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
 ${PYTHON_SITELIB}/sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
 ${PYTHON_SITELIB}/sensor_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
