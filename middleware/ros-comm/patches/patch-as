@@ -1,0 +1,13 @@
+Don't break python2 support.
+
+--- clients/rospy/src/rospy/impl/tcpros_base.py~	2023-02-15 15:07:49.000000000 +0100
++++ clients/rospy/src/rospy/impl/tcpros_base.py	2024-06-20 16:17:05.578218554 +0200
+@@ -164,7 +164,7 @@
+             except ConnectionAbortedError:
+                 continue
+             except IOError as e:
+-                (e_errno, msg, *_) = e.args
++                (e_errno, msg) = e.args[:2]
+                 if e_errno == errno.EINTR: #interrupted system call
+                     continue
+                 if not self.is_shutdown:
