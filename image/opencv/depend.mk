@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018,2020 LAAS/CNRS
+# Copyright (c) 2018,2020,2024 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution  and  use  in  source  and binary  forms,  with  or  without
@@ -62,24 +62,21 @@ PKG_ALTERNATIVES.opencv=opencv2 opencv3 opencv4
 
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 8,${OS_VERSION}))
-    PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
+  ifneq (,$(filter 10,${OS_VERSION}))
+    PREFER_ALTERNATIVE.opencv?=	opencv3 opencv4
   endif
 else ifeq (Ubuntu,${OPSYS})
-  ifneq (,$(filter 12.04 14.04 16.04%,${OS_VERSION}))
-    PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
-  else ifneq (,$(filter 18.04%,${OS_VERSION}))
+  ifneq (,$(filter 18.04%,${OS_VERSION}))
     PREFER_ALTERNATIVE.opencv?=	opencv3 opencv2
   endif
-  PREFER_ALTERNATIVE.opencv?=	opencv4 opencv3
 else ifeq (CentOS,${OPSYS})
   PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
 else ifeq (Gentoo,${OS_FAMILY})
   PREFER_ALTERNATIVE.opencv?=	opencv2 opencv3
-else ifeq (Arch,${OS_FAMILY})
-  PREFER_ALTERNATIVE.opencv?=	opencv4 opencv3
+else ifeq (NetBSD,${OS_FAMILY})
+  PREFER_ALTERNATIVE.opencv?=	opencv3 opencv4
 endif
-PREFER_ALTERNATIVE.opencv?=	opencv3 opencv2
+PREFER_ALTERNATIVE.opencv?=	opencv4 opencv3
 
 DEPEND_ABI.opencv?=	opencv>=2.2.0
 
