@@ -578,21 +578,18 @@ function xprint(msg) {
 
 function xprintpkg(pkg,		dir, req, i) {
     dir = pdir(pkg)
+    req = notpdir(pkg)
 
-    if (noconflict) {
-        # print only packages that can be done: it can happen that some
-        # unfeasible constraints are added by dependencies (e.g. pkg<1 for
-        # pkg-1.x to be installed by robotpkg). It's not necessary to output
-        # those unfeasible packages in 'noconflict' mode, as the dependency
-        # requiring pkg<1 will later fail itself properly. However, outputing
-        # those unfeasible packages could prevent from making a feasible one in
-        # the same dir.
-        req = notpdir(pkg)
-        for (i=1; i<=pkgnames[dir]; i++) {
-            if (pmatch(req, pkgnames[dir,i])) break
-        }
-        if (i>pkgnames[dir]) return
+    # print only packages that can be done: it can happen that some
+    # unfeasible constraints are added by dependencies (e.g. pkg<1 for
+    # pkg-1.x to be installed by robotpkg). It's not necessary to output
+    # those unfeasible packages, as the dependency requiring pkg<1 will later
+    # fail itself properly. However, outputing those unfeasible packages could
+    # prevent from making a feasible one in the same dir.
+    for (i=1; i<=pkgnames[dir]; i++) {
+        if (pmatch(req, pkgnames[dir,i])) break
     }
+    if (i>pkgnames[dir]) return
 
     if (!strict || (dir,troot) in graph || (troot,dir) in graph) {
         if (eta && stacktodo > 0)
