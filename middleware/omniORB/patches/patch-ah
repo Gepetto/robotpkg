@@ -1,0 +1,34 @@
+Fix parallel builds: subdirectories must be created sequentially and gmake-4.1
+fails to do that. Unfortunately, gmake-4.1 does not know about .WAIT, so one
+must fake it, which should not hurt for implementations knowing about .WAIT.
+
+--- src/lib/omnithread/dir.mk~	2023-09-25 22:15:42.000000000 +0200
++++ src/lib/omnithread/dir.mk	2024-06-21 11:22:46.254916333 +0200
+@@ -59,10 +59,12 @@
+ staticlib := static/$(patsubst %,$(LibNoDebugPattern),$(LIB_NAME)$(major))
+ MDFLAGS += -p static/
+ 
+-mkstatic::
++.WAIT:
++.NOTPARALLEL: .WAIT
++mkdir::
+ 	@(dir=static; $(CreateDir))
+ 
+-mkstatic:: $(staticlib)
++mkstatic:: mkdir .WAIT $(staticlib)
+ 
+ $(staticlib): $(patsubst %, static/%, $(LIB_OBJS))
+ 	@$(StaticLinkLibrary)
+@@ -108,10 +108,10 @@
+   imps := $(LIB_IMPORTS)
+ endif
+ 
+-mkshared::
++mkdir::
+ 	@(dir=shared; $(CreateDir))
+ 
+-mkshared:: $(shlib)
++mkshared:: mkdir .WAIT $(shlib)
+ 
+ $(shlib): $(patsubst %, shared/%, $(LIB_OBJS))
+ 	@(namespec="$(namespec)" extralibs="$(imps) $(extralibs)" nodeffile=1; \
