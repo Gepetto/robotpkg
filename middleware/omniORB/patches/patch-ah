@@ -32,3 +32,33 @@ must fake it, which should not hurt for implementations knowing about .WAIT.
  
  $(shlib): $(patsubst %, shared/%, $(LIB_OBJS))
  	@(namespec="$(namespec)" extralibs="$(imps) $(extralibs)" nodeffile=1; \
+--- mk/mklib.mk~	2009-07-02 15:24:15.000000000 +0200
++++ mk/mklib.mk	2024-06-24 11:55:35.088327309 +0200
+@@ -43,10 +43,12 @@
+ staticlib := static/$(patsubst %,$(LibNoDebugPattern),$(LIB_NAME)$(major))
+ MDFLAGS += -p static/
+ 
+-mkstatic::
++.WAIT:
++.NOTPARALLEL: .WAIT
++mkdir::
+ 	@(dir=static; $(CreateDir))
+ 
+-mkstatic:: $(staticlib)
++mkstatic:: mkdir .WAIT $(staticlib)
+ 
+ $(staticlib): $(patsubst %, static/%, $(LIB_OBJS))
+ 	@$(StaticLinkLibrary)
+@@ -91,10 +93,10 @@
+   imps := $(LIB_IMPORTS)
+ endif
+ 
+-mkshared::
++mkdir::
+ 	@(dir=shared; $(CreateDir))
+ 
+-mkshared:: $(shlib)
++mkshared:: mkdir .WAIT $(shlib)
+ 
+ $(shlib): $(patsubst %, shared/%, $(LIB_OBJS) $(LIB_SHARED_ONLY_OBJS))
+ 	@(namespec="$(namespec)" extralibs="$(imps) $(extralibs)"; \
