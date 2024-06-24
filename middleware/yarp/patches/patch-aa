@@ -1,11 +1,13 @@
---- src/libYARP_run/src/yarp/run/Run.cpp~	2020-09-28 11:37:13.000000000 +0200
-+++ src/libYARP_run/src/yarp/run/Run.cpp	2020-12-10 15:42:21.908623069 +0100
-@@ -206,7 +206,9 @@
+Don't use prctl is not available
+
+--- src/libYARP_run/src/yarp/run/Run.cpp~	2023-11-24 11:23:04.000000000 +0100
++++ src/libYARP_run/src/yarp/run/Run.cpp	2024-06-24 15:47:07.341708497 +0200
+@@ -217,7 +217,9 @@
  
          if (getppid()==1) return 0;
  #else
 +#ifdef YARP_HAS_SYS_PRCTL_H
-         yarp::os::impl::prctl(PR_SET_PDEATHSIG, SIGTERM);
+         yarp::run::impl::prctl(PR_SET_PDEATHSIG, SIGTERM);
 +#endif
  
          struct sigaction new_action;

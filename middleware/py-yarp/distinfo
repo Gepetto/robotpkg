@@ -1,6 +1,8 @@
-SHA1 (yarp-v3.4.1.tar.gz) = bbb524600faf1c95fcc591687e55f689029d77af
-RMD160 (yarp-v3.4.1.tar.gz) = 3210088f4728843bb3968f090b508f13217477f6
-Size (yarp-v3.4.1.tar.gz) = 13797711 bytes
-SHA1 (patch-aa) = b3b1b9dfad50d699ca4eed48b915f1c7303602ae
-SHA1 (patch-ac) = 338fae6575f766702a91db5ce189d6a958d6f642
+SHA1 (yarp-v3.9.0.tar.gz) = 8a260de7a7af344a46e1f02781d5f242cba9cb93
+RMD160 (yarp-v3.9.0.tar.gz) = 0859ded750c211774cc5fd8b891d997fa1534862
+Size (yarp-v3.9.0.tar.gz) = 14443222 bytes
+SHA1 (patch-aa) = 8718fe068d7f375d0d29e10730e6b7836305ad87
+SHA1 (patch-ac) = 55670e01d5bab9705777bfd2df45fab32769adfd
 SHA1 (patch-ad) = 5810659b26cc2ed4514eb2b190f1867fe2e5a71c
+SHA1 (patch-ae) = f438e08e6f9480d7f0f823341501e08986bc641f
+SHA1 (patch-af) = b8fa4f0f5baa2539ded69fd9d5899a375a986d5c

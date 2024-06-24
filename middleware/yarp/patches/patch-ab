@@ -1,22 +1,22 @@
 This might be working on linux ... not much more
 
---- src/yarprobotinterface/Module.cpp~	2020-09-28 11:37:13.000000000 +0200
-+++ src/yarprobotinterface/Module.cpp	2020-12-10 15:59:43.460592454 +0100
-@@ -68,7 +68,7 @@
+--- src/yarprobotinterface/Module.cpp~	2023-11-24 11:23:04.000000000 +0100
++++ src/yarprobotinterface/Module.cpp	2024-06-24 23:27:28.368198235 +0200
+@@ -55,7 +55,7 @@
  
  yarprobotinterface::Module::Private::~Private() = default;
  
--#if defined(YARP_HAS_EXECINFO_H) && !defined(__APPLE__) && !defined(__arm__) && !defined(__aarch64__)
-+#if defined(YARP_HAS_EXECINFO_H) && defined(__linux__) && !defined(__arm__) && !defined(__aarch64__)
+-#if defined(YARP_HAS_EXECINFO_H) && !defined(__APPLE__) && !defined(__arm__) && !defined(__aarch64__) && !defined(__PPC__)
++#if defined(YARP_HAS_EXECINFO_H) && defined(__linux__) && !defined(__arm__) && !defined(__aarch64__) && !defined(__PPC__)
  void yarprobotinterface::Module::Private::sigsegv_handler(int nSignum, siginfo_t* si, void* vcontext)
  {
      auto context = reinterpret_cast<ucontext_t*>(vcontext);
-@@ -100,7 +100,7 @@
+@@ -87,7 +87,7 @@
  yarprobotinterface::Module::Module() :
      mPriv(new Private(this))
  {
--#if defined(YARP_HAS_EXECINFO_H) && !defined(__APPLE__) && !defined(__arm__) && !defined(__aarch64__)
-+#if defined(YARP_HAS_EXECINFO_H) && defined(__linux__) && !defined(__arm__) && !defined(__aarch64__)
+-#if defined(YARP_HAS_EXECINFO_H) && !defined(__APPLE__) && !defined(__arm__) && !defined(__aarch64__) && !defined(__PPC__)
++#if defined(YARP_HAS_EXECINFO_H) && defined(__linux__) && !defined(__arm__) && !defined(__aarch64__) && !defined(__PPC__)
      struct sigaction action;
      memset(&action, 0, sizeof(struct sigaction));
      memset(&Private::old_action, 0, sizeof(struct sigaction));

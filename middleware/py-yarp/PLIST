@@ -1,3 +1,5 @@
-@comment Fri Dec 11 14:29:28 CET 2020
+@comment Mon Jun 24 17:21:46 CEST 2024
 ${PYTHON_SITELIB}/_yarp.so
+${PYTHON_SITELIB}/yarp-${PKGVERSION}~dev.dist-info/INSTALLER
+${PYTHON_SITELIB}/yarp-${PKGVERSION}~dev.dist-info/METADATA
 ${PYTHON_SITELIB}/yarp.py

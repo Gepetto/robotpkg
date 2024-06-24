@@ -1,22 +1,13 @@
 Use robotpkg installation dir
 
---- bindings/python/CMakeLists.txt~	2020-09-28 11:37:13.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2020-12-11 14:26:33.642052096 +0100
-@@ -44,7 +44,7 @@
- endif()
+--- bindings/python/CMakeLists.txt~	2023-11-24 11:23:04.000000000 +0100
++++ bindings/python/CMakeLists.txt	2024-06-24 17:10:28.398585387 +0200
+@@ -51,7 +51,7 @@
+   OUTPUT_STRIP_TRAILING_WHITESPACE
+ )
  
- install(FILES ${CMAKE_BINARY_DIR}/lib/python3/yarp.py
--        DESTINATION ${Python3_INSTDIR})
-+        DESTINATION ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB})
- 
- 
- # Update RPATH
-@@ -60,7 +60,7 @@
- endif()
- 
- install(TARGETS ${SWIG_MODULE_yarp_python_REAL_NAME}
--        DESTINATION ${Python3_INSTDIR})
-+        DESTINATION ${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB})
- 
- if(YARP_COMPILE_TESTS)
-   add_subdirectory(tests)
+-set(_CMAKE_INSTALL_PYTHON3DIR "${Python3_INSTDIR}")
++set(_CMAKE_INSTALL_PYTHON3DIR "${CMAKE_INSTALL_PREFIX}/${PYTHON_SITELIB}")
+ set(CMAKE_INSTALL_PYTHON3DIR ${_CMAKE_INSTALL_PYTHON3DIR} CACHE PATH "python3 bindings (${_CMAKE_INSTALL_PYTHON3DIR})")
+ mark_as_advanced(CMAKE_INSTALL_PYTHON3DIR)
+ if(NOT IS_ABSOLUTE ${CMAKE_INSTALL_PYTHON3DIR})

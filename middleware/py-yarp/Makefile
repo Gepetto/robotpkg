@@ -2,7 +2,7 @@
 # Created:			Severin Lemaignan on Fri, 12 Jun 2009
 #
 
-DISTNAME=		yarp-3.4.1
+DISTNAME=		yarp-3.9.0
 PKGNAME=		${PKGTAG.python-}${DISTNAME}
 MASTER_SITES=		${MASTER_SITE_GITHUB:=robotology/}
 GITHUB_TAG=		v${PKGVERSION_NOREV}
@@ -20,17 +20,23 @@ CMAKE_ARGS+=		-DPYTHON_INCLUDE_PATH=${PYTHON_INCLUDE}
 CMAKE_ARGS+=		-DPYTHON_LIBRARY=${PYTHON_LIB}
 CMAKE_ARGS+=		-DPYTHON_SITELIB=${PYTHON_SITELIB}
 
+# needs cmrc package
+CMAKE_ARGS+=		-DENABLE_yarpmod_frameTransformClient=FALSE
+CMAKE_ARGS+=		-DENABLE_yarpmod_frameTransformServer=FALSE
+
 CMAKE_ARGS+=		-DYARP_COMPILE_GUIS=FALSE
 CMAKE_ARGS+=		-DCMAKE_DISABLE_FIND_PACKAGE_OpenCV=TRUE
 CMAKE_ARGS+=		-DCMAKE_DISABLE_FIND_PACKAGE_Libedit=TRUE
 
+CMAKE_ARGS+=		-DSWIG_EXECUTABLE=${SWIG}
+
 CONFIGURE_DIRS=		${WRKSRC}
 BUILD_DIRS=		${WRKSRC}/bindings/python
 
-DEPEND_ABI.cmake=	cmake>=3.12
+DEPEND_ABI.cmake=	cmake>=3.16
 DEPEND_ABI.python=	python>=3
-DEPEND_ABI.swig=	swig>=3.0.12
-DEPEND_ABI.yarp=	yarp>=${VERSION}<3.5
+DEPEND_ABI.swig=	swig>=4
+DEPEND_ABI.yarp=	yarp>=${PKGVERSION_NOREV}<3.10
 
 include ../../devel/ycm-cmake-modules/depend.mk
 include ../../middleware/yarp/depend.mk

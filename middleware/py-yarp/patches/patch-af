@@ -1,0 +1,36 @@
+Needs cmrc, plugin disabled in configure but these bits are still active.
+
+--- src/devices/frameTransformServer/CMakeLists.txt~	2023-11-24 11:23:04.000000000 +0100
++++ src/devices/frameTransformServer/CMakeLists.txt	2024-06-24 16:19:11.611822225 +0200
+@@ -1,6 +1,15 @@
+ # SPDX-FileCopyrightText: 2006-2021 Istituto Italiano di Tecnologia (IIT)
+ # SPDX-License-Identifier: BSD-3-Clause
+ 
++yarp_prepare_plugin(frameTransformServer
++  CATEGORY device
++  TYPE FrameTransformServer
++  INCLUDE FrameTransformServer.h
++  DEPENDS "TARGET YARP::YARP_math"
++  DEFAULT ON
++)
++
++if(NOT SKIP_frameTransformServer)
+ include(CMakeRC)
+ 
+ cmrc_add_resource_library(frameTransformServerRC
+@@ -11,15 +20,6 @@
+                           robotinterface_xml/fts_yarp_only.xml)
+ set_property(TARGET frameTransformServerRC PROPERTY FOLDER "Plugins/Device/Resources")
+ 
+-yarp_prepare_plugin(frameTransformServer
+-  CATEGORY device
+-  TYPE FrameTransformServer
+-  INCLUDE FrameTransformServer.h
+-  DEPENDS "TARGET YARP::YARP_math"
+-  DEFAULT ON
+-)
+-
+-if(NOT SKIP_frameTransformServer)
+   yarp_add_plugin(yarp_frameTransformServer)
+ 
+   target_sources(yarp_frameTransformServer

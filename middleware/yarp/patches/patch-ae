@@ -1,0 +1,12 @@
+Only needed for tests (that are disabled).
+
+--- src/devices/CMakeLists.txt~	2023-11-24 11:23:04.000000000 +0100
++++ src/devices/CMakeLists.txt	2024-06-24 16:09:46.135679263 +0200
+@@ -4,7 +4,6 @@
+ 
+ include(YarpPlugin)
+ include(YarpPrintFeature)
+-include(YarpCatchUtils)
+ 
+ yarp_begin_plugin_library(yarpmod
+   OPTION YARP_COMPILE_DEVICE_PLUGINS

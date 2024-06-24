@@ -3,9 +3,9 @@ eigen3 has no library, so target_include_directories is sufficient.
 Recent eigen3 may define cmake "target", but the file location varies among
 distributions and is difficult to find robustly.
 
---- src/libYARP_eigen/src/CMakeLists.txt~	2020-09-28 11:37:13.000000000 +0200
-+++ src/libYARP_eigen/src/CMakeLists.txt	2022-05-24 11:05:01.282316547 +0200
-@@ -20,7 +20,7 @@
+--- src/libYARP_eigen/src/CMakeLists.txt~	2023-11-24 11:23:04.000000000 +0100
++++ src/libYARP_eigen/src/CMakeLists.txt	2024-06-24 15:51:43.287732449 +0200
+@@ -22,7 +22,7 @@
  target_link_libraries(YARP_eigen INTERFACE YARP_sig)
  list(APPEND YARP_eigen_PUBLIC_DEPS YARP_sig)
  
@@ -14,11 +14,11 @@ distributions and is difficult to find robustly.
  list(APPEND YARP_eigen_PUBLIC_DEPS Eigen3)
  
  # set_property(TARGET YARP_eigen PROPERTY PUBLIC_HEADER ${YARP_eigen_HDRS})
---- src/libYARP_math/src/CMakeLists.txt~	2020-09-28 11:37:13.000000000 +0200
-+++ src/libYARP_math/src/CMakeLists.txt	2022-05-24 11:05:27.547066122 +0200
-@@ -63,7 +63,7 @@
-                                   YARP_sig)
- list(APPEND YARP_math_PRIVATE_DEPS YARP_eigen)
+--- src/libYARP_math/src/CMakeLists.txt~	2023-11-24 11:23:04.000000000 +0100
++++ src/libYARP_math/src/CMakeLists.txt	2024-06-24 15:51:37.235687968 +0200
+@@ -83,7 +83,7 @@
+   YARP_eigen
+ )
  
 -target_link_libraries(YARP_math PRIVATE Eigen3::Eigen)
 +target_include_directories(YARP_math PRIVATE ${EIGEN3_INCLUDE_DIR})
