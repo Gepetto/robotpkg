@@ -1,4 +1,4 @@
-@comment Fri Jul 30 16:26:32 CEST 2021
+@comment Mon Jun 24 16:02:43 CEST 2024
 share/YCM/build-modules/BuildECM.cmake
 share/YCM/build-modules/BuildEigen3.cmake
 share/YCM/build-modules/BuildGazeboYARPPlugins.cmake
@@ -10,11 +10,6 @@ share/YCM/build-modules/BuildICUB.cmake
 share/YCM/build-modules/BuildTinyXML.cmake
 share/YCM/build-modules/BuildYARP.cmake
 share/YCM/build-modules/BuildqpOASES.cmake
-share/YCM/cmake-proposed/Copyright.txt
-share/YCM/cmake-proposed/Modules/CMakeParseArguments.cmake
-share/YCM/cmake-proposed/Modules/ExternalProject.cmake
-share/YCM/cmake-proposed/README
-share/YCM/deprecated/YCMDefaultDirs.cmake
 share/YCM/find-modules/FindACE.cmake
 share/YCM/find-modules/FindAtlas.cmake
 share/YCM/find-modules/FindCFW2CANAPI.cmake
@@ -25,8 +20,6 @@ share/YCM/find-modules/FindFreenect.cmake
 share/YCM/find-modules/FindFuse.cmake
 share/YCM/find-modules/FindGLFW3.cmake
 share/YCM/find-modules/FindGLM.cmake
-share/YCM/find-modules/FindGLUT.cmake
-share/YCM/find-modules/FindGSL.cmake
 share/YCM/find-modules/FindGooCanvas.cmake
 share/YCM/find-modules/FindGooCanvasMM.cmake
 share/YCM/find-modules/FindGtkDatabox.cmake
@@ -43,12 +36,12 @@ share/YCM/find-modules/FindLibv4lconvert.cmake
 share/YCM/find-modules/FindNVIDIACg.cmake
 share/YCM/find-modules/FindODE.cmake
 share/YCM/find-modules/FindOpenCV.cmake
-share/YCM/find-modules/FindOpenGL.cmake
 share/YCM/find-modules/FindOpenNI.cmake
 share/YCM/find-modules/FindOpenNI2.cmake
 share/YCM/find-modules/FindPLXCANAPI.cmake
 share/YCM/find-modules/FindPortAudio.cmake
 share/YCM/find-modules/FindReadline.cmake
+share/YCM/find-modules/FindSOXR.cmake
 share/YCM/find-modules/FindSQLite.cmake
 share/YCM/find-modules/FindStage.cmake
 share/YCM/find-modules/FindTinyXML.cmake
@@ -56,6 +49,8 @@ share/YCM/find-modules/FindYamlCpp.cmake
 share/YCM/find-modules/FindZFP.cmake
 share/YCM/find-modules/Findassimp.cmake
 share/YCM/find-modules/FindqpOASES.cmake
+share/YCM/find-modules/FinduSockets.cmake
+share/YCM/find-modules/FinduWebSockets.cmake
 share/YCM/modules/AddInstallRPATHSupport.cmake
 share/YCM/modules/AddUninstallTarget.cmake
 share/YCM/modules/ExtractVersion.cmake

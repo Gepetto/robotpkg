@@ -27,7 +27,7 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_LIBDIR=lib
 DEPEND_ABI.cmake=	cmake>=3.12
 
 include ../../devel/tinyxml/depend.mk
-include ../../devel/ycm/depend.mk
+include ../../devel/ycm-cmake-modules/depend.mk
 include ../../image/opencv/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../middleware/ace/depend.mk

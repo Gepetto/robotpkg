@@ -32,6 +32,7 @@ DEPEND_ABI.python=	python>=3
 DEPEND_ABI.swig=	swig>=3.0.12
 DEPEND_ABI.yarp=	yarp>=${VERSION}<3.5
 
+include ../../devel/ycm-cmake-modules/depend.mk
 include ../../middleware/yarp/depend.mk
 include ../../pkgtools/install-sh/depend.mk
 include ../../mk/sysdep/python.mk

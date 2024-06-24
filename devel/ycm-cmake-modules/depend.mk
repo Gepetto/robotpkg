@@ -14,8 +14,8 @@ ifeq (+,$(YCM_DEPEND_MK)) # ------------------------------------------------
 PREFER.ycm?=		robotpkg
 
 DEPEND_USE+=		ycm
-DEPEND_ABI.ycm?=	ycm>=0.11
-DEPEND_DIR.ycm?=	../../devel/ycm
+DEPEND_ABI.ycm?=	ycm-cmake-modules>=0.15.1
+DEPEND_DIR.ycm?=	../../devel/ycm-cmake-modules
 
 SYSTEM_SEARCH.ycm=\
   'share/cmake/YCM/YCMConfig.cmake:/YCM_VERSION /s/[^.0-9]//gp'
