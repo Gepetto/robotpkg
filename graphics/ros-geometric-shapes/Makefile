@@ -16,7 +16,6 @@ USE_BOOST_LIBS=	filesystem math
 
 include ../../devel/ros-catkin/depend.mk
 include ../../devel/ros-cmake-modules/depend.mk
-include ../../graphics/assimp/depend.mk
 include ../../interfaces/ros-common-msgs/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
@@ -24,6 +23,7 @@ include ../../math/ros-eigen-stl-containers/depend.mk
 include ../../math/ros-random-numbers/depend.mk
 include ../../net/ros-resource-retriever/depend.mk
 include ../../sysutils/console-bridge/depend.mk
+include ../../mk/sysdep/assimp.mk
 include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/qhull.mk

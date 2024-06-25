@@ -31,7 +31,7 @@ DEPEND_ABI.assimp+=	assimp>=5
 
 include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
-include ../../graphics/assimp/depend.mk
+include ../../mk/sysdep/assimp.mk
 include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/boost-libs.mk
 include ../../mk/language/c.mk

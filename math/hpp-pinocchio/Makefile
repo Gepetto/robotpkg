@@ -14,9 +14,9 @@ include ../../math/eigen3/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../path/hpp-util/depend.mk
-include ../../graphics/assimp/depend.mk
 include ../../simulation/hpp-environments/depend.mk
 include ../../robots/example-robot-data/depend.mk
+include ../../mk/sysdep/assimp.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 

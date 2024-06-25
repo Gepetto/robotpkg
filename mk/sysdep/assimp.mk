@@ -1,4 +1,4 @@
-# robotpkg depend.mk for:	graphics/assimp
+# robotpkg sysdep/assim.mk
 # Created:			Matthieu Herrb on Thu, 4 Nov 2010
 #
 
@@ -16,7 +16,6 @@ PREFER.assimp?=		system
 DEPEND_USE+=		assimp
 
 DEPEND_ABI.assimp?=	assimp>=3.0
-DEPEND_DIR.assimp?=	../../graphics/assimp
 
 SYSTEM_SEARCH.assimp=\
   'include/assimp/{aiV,v}ersion.h'			\

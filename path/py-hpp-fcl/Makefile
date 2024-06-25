@@ -29,8 +29,8 @@ DEPEND_ABI.assimp+=	assimp>=5
 include ../../mapping/octomap/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../path/hpp-fcl/depend.mk
-include ../../graphics/assimp/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
+include ../../mk/sysdep/assimp.mk
 include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk

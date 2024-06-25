@@ -3,7 +3,6 @@
 
 COMMENT=	Computer graphics tools
 
-SUBDIR+=	assimp
 SUBDIR+=	coldman-genom
 SUBDIR+=	coldman-libs
 SUBDIR+=	collada-dom
