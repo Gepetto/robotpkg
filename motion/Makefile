@@ -22,7 +22,6 @@ SUBDIR+=	ros-orocos-kinematics-dynamics
 SUBDIR+=	softMotion-libs
 SUBDIR+=	sot-core
 SUBDIR+=	sot-dynamic
-SUBDIR+=	sot-pattern-generator
 SUBDIR+=	uavatt-genom3
 SUBDIR+=	uavpos-genom3
 
