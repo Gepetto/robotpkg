@@ -1,4 +1,4 @@
-@comment Sun Jan 7 09:49:01 CET 2024
+@comment Tue Jun 25 11:53:54 CEST 2024
 bin/master_board_example
 bin/master_board_example_imu_data_collection
 bin/master_board_example_pd
@@ -23,7 +23,7 @@ lib/cmake/master_board_sdk/master_board_sdkTargets-release.cmake
 lib/cmake/master_board_sdk/master_board_sdkTargets.cmake
 lib/libmaster_board_sdk.so
 lib/pkgconfig/master_board_sdk.pc
-${PYTHON_SITELIB}/libmaster_board_sdk_pywrap.so
+${PYTHON_SITELIB}/libmaster_board_sdk_pywrap${PYTHON_EXT_SUFFIX}
 share/ament_index/resource_index/packages/master_board_sdk
 share/master_board_sdk/hook/ament_prefix_path.dsv
 share/master_board_sdk/hook/python_path.dsv

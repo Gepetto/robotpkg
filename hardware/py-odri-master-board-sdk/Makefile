@@ -4,7 +4,7 @@
 
 NAME=			odri-master-board-sdk
 ORG=			open-dynamic-robot-initiative
-VERSION=		1.0.6
+VERSION=		1.0.7
 
 CATEGORIES=		hardware
 HOMEPAGE=\
