@@ -23,7 +23,6 @@ SUBDIR+=	softMotion-libs
 SUBDIR+=	sot-core
 SUBDIR+=	sot-dynamic
 SUBDIR+=	sot-pattern-generator
-SUBDIR+=	sot-romeo
 SUBDIR+=	uavatt-genom3
 SUBDIR+=	uavpos-genom3
 
