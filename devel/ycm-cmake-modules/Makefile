@@ -17,7 +17,7 @@ CONFLICTS+=		ycm-[0-9]*
 
 CMAKE_ARGS+=		-DYCM_NO_3RDPARTY=YES
 
-DEPEND_ABI.cmake=	cmake>=3.12
+DEPEND_ABI.cmake=	cmake>=3.16
 
 include ../../mk/sysdep/cmake.mk
 include ../../mk/robotpkg.mk
