@@ -35,6 +35,8 @@ SYSTEM_SEARCH.openscenegraph=\
 SYSTEM_PKG.Debian.openscenegraph=	libopenscenegraph-dev
 SYSTEM_PKG.Arch.openscenegraph=		openscenegraph
 
+include ../../mk/sysdep/mesa.mk
+
 endif # OPENSCENEGRAPH_DEPEND_MK -------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

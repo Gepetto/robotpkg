@@ -1,0 +1,13 @@
+Pulibs headers expose mesa headers
+
+--- packaging/pkgconfig/openscenegraph.pc.in~	2020-01-31 12:03:07.000000000 +0100
++++ packaging/pkgconfig/openscenegraph.pc.in	2024-06-26 15:14:03.059328865 +0200
+@@ -8,7 +8,7 @@
+ Name: openscenegraph
+ Description: 3D scenegraph
+ Version: @OPENSCENEGRAPH_VERSION@
+-Requires: openthreads
++Requires: openthreads, gl
+ Conflicts:
+ Libs: -L${libdir} -losg@CMAKE_BUILD_POSTFIX@ \
+                   -losgDB@CMAKE_BUILD_POSTFIX@ \

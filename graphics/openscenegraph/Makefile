@@ -2,12 +2,12 @@
 # Created:			Guilhem Saurel on Mon, 25 May 2020
 #
 
+PKGREVISION=		4
 ORG=			openscenegraph
 NAME=			OpenSceneGraph
 VERSION=		3.6.5
 DISTNAME=		${NAME}-${VERSION}
 PKGNAME=		${ORG}-${VERSION}
-PKGREVISION=		3
 
 MASTER_SITES=		${MASTER_SITE_GITHUB:=${ORG}/${NAME}}/archive/
 WRKSRC=			${WRKDIR}/${NAME}-${DISTNAME}
@@ -22,6 +22,7 @@ CMAKE_ARGS+=		-DCOLLADA_DOM_2_4_OR_LATER=ON
 
 include ../../graphics/collada-dom/depend.mk
 include ../../mk/sysdep/cmake.mk
+include ../../mk/sysdep/mesa.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk
