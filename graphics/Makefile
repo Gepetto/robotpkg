@@ -10,7 +10,6 @@ SUBDIR+=	flann
 SUBDIR+=	gdhe
 SUBDIR+=	gerard-bauzil
 SUBDIR+=	grh2
-SUBDIR+=	jafar-gdhe
 SUBDIR+=	laaswm
 SUBDIR+=	laaswm-libs
 SUBDIR+=	openscenegraph
