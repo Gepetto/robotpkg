@@ -62,3 +62,63 @@ must fake it, which should not hurt for implementations knowing about .WAIT.
  
  $(shlib): $(patsubst %, shared/%, $(LIB_OBJS) $(LIB_SHARED_ONLY_OBJS))
  	@(namespec="$(namespec)" extralibs="$(imps) $(extralibs)"; \
+--- src/services/mklib/stublib/dir.mk~	2012-04-14 11:48:18.000000000 +0200
++++ src/services/mklib/stublib/dir.mk	2024-06-27 11:38:04.891724529 +0200
+@@ -33,10 +33,12 @@
+ sk = static/$(patsubst %,$(LibNoDebugPattern),$(COS_SKLIB_NAME)$(version))
+ MDFLAGS += -p static/
+ 
+-mkstatic::
++.WAIT:
++.NOTPARALLEL: .WAIT
++mkdir::
+ 	@(dir=static; $(CreateDir))
+ 
+-mkstatic:: $(sk)
++mkstatic:: mkdir .WAIT $(sk)
+ 
+ $(sk): $(patsubst %, static/%, $(COS_SK_OBJS))
+ 	@$(StaticLinkLibrary)
+@@ -80,10 +82,10 @@
+ imps := $(OMNIORB_LIB)
+ endif
+ 
+-mkshared::
++mkdir::
+ 	@(dir=shared; $(CreateDir))
+ 
+-mkshared:: $(skshared)
++mkshared:: mkdir .WAIT $(skshared)
+ 
+ $(skshared): $(patsubst %, shared/%, $(COS_SK_OBJS))
+ 	@(namespec="$(sknamespec)"; extralibs="$(imps) $(extralibs)"; \
+--- src/services/mklib/dynstublib/dir.mk~	2018-09-05 17:21:03.000000000 +0200
++++ src/services/mklib/dynstublib/dir.mk	2024-06-27 11:39:53.556523074 +0200
+@@ -33,10 +33,12 @@
+ dynsk = static/$(patsubst %,$(LibNoDebugPattern),$(COS_DYNSKLIB_NAME)$(version))
+ MDFLAGS += -p static/
+ 
+-mkstatic::
++.WAIT:
++.NOTPARALLEL: .WAIT
++mkdir::
+ 	@(dir=static; $(CreateDir))
+ 
+-mkstatic:: $(dynsk)
++mkstatic:: mkdir .WAIT $(dynsk)
+ 
+ $(dynsk): $(patsubst %, static/%, $(COS_DYNSK_OBJS))
+ 	@$(StaticLinkLibrary)
+@@ -80,10 +82,10 @@
+ dynimps := $(OMNIORB_COS_LIB) $(OMNIORB_LIB)
+ endif
+ 
+-mkshared::
++mkdir::
+ 	@(dir=shared; $(CreateDir))
+ 
+-mkshared:: $(dynskshared) 
++mkshared:: mkdir .WAIT $(dynskshared) 
+ 
+ $(dynskshared): $(skshared) $(patsubst %, shared/%, $(COS_DYNSK_OBJS))
+ 	@(namespec="$(dynsknamespec)"; extralibs="$(dynimps)"; \
