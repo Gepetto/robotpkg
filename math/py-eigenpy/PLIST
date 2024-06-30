@@ -4,10 +4,15 @@ include/eigenpy/angle-axis.hpp
 include/eigenpy/computation-info.hpp
 include/eigenpy/config.hpp
 include/eigenpy/copyable.hpp
+include/eigenpy/decompositions/ColPivHouseholderQR.hpp
+include/eigenpy/decompositions/CompleteOrthogonalDecomposition.hpp
 include/eigenpy/decompositions/EigenSolver.hpp
+include/eigenpy/decompositions/FullPivHouseholderQR.hpp
+include/eigenpy/decompositions/HouseholderQR.hpp
 include/eigenpy/decompositions/LDLT.hpp
 include/eigenpy/decompositions/LLT.hpp
 include/eigenpy/decompositions/PermutationMatrix.hpp
+include/eigenpy/decompositions/QR.hpp
 include/eigenpy/decompositions/SelfAdjointEigenSolver.hpp
 include/eigenpy/decompositions/decompositions.hpp
 include/eigenpy/decompositions/minres.hpp
@@ -29,6 +34,7 @@ include/eigenpy/expose.hpp
 include/eigenpy/fwd.hpp
 include/eigenpy/geometry-conversion.hpp
 include/eigenpy/geometry.hpp
+include/eigenpy/id.hpp
 include/eigenpy/memory.hpp
 include/eigenpy/numpy-allocator.hpp
 include/eigenpy/numpy-map.hpp
