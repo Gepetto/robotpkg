@@ -69,6 +69,7 @@ lib/cmake/gepetto-viewer/gepetto-viewerTargets.cmake
 lib/cmake/gepetto-viewer/python-helpers.cmake
 lib/cmake/gepetto-viewer/python.cmake
 lib/gepetto-gui-plugins/pyqcustomplot.so
+lib/gepetto-gui-plugins/pyqgv.so
 lib/libgepetto-viewer.so
 lib/pkgconfig/gepetto-viewer.pc
 ${PYTHON_SITELIB}/gepetto/gui/__init__.py
