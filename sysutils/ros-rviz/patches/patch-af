@@ -1,0 +1,230 @@
+Fix build with C++11 and qOverload<>.
+On some distributions, C++11 is forced by some dependency, even though
+compilers support C++14 or more.
+
+See https://stackoverflow.com/questions/16794695/connecting-overloaded-signals-and-slots-in-qt-5
+
+--- src/rviz/default_plugin/covariance_property.cpp~	2024-05-21 08:53:35.000000000 +0200
++++ src/rviz/default_plugin/covariance_property.cpp	2024-06-27 15:18:39.166280873 +0200
+@@ -50,18 +50,30 @@
+ {
+   position_property_ =
+       new BoolProperty("Position", true, "Whether or not to show the position part of covariances", this,
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+                        qOverload<>(&CovarianceProperty::updateVisibility));
++#else
++                       static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateVisibility));
++#endif
+   position_property_->setDisableChildrenIfFalse(true);
+ 
+   position_color_property_ =
+       new ColorProperty("Color", QColor(204, 51, 204), "Color to draw the position covariance ellipse.",
+                         position_property_,
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+                         qOverload<>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
+ 
++#else
++                        static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#endif
+   position_alpha_property_ =
+       new FloatProperty("Alpha", 0.3f, "0 is fully transparent, 1.0 is fully opaque.",
+                         position_property_,
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+                         qOverload<>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#else
++                        static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#endif
+   position_alpha_property_->setMin(0);
+   position_alpha_property_->setMax(1);
+ 
+@@ -70,17 +78,29 @@
+                         "Scale factor to be applied to covariance ellipse. "
+                         "Corresponds to the number of standard deviations to display",
+                         position_property_,
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+                         qOverload<>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#else
++                        static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#endif
+   position_scale_property_->setMin(0);
+ 
+   orientation_property_ =
+       new BoolProperty("Orientation", true, "Whether or not to show the orientation part of covariances",
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+                        this, qOverload<>(&CovarianceProperty::updateVisibility));
++#else
++                       this, static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateVisibility));
++#endif
+   orientation_property_->setDisableChildrenIfFalse(true);
+ 
+   orientation_frame_property_ =
+       new EnumProperty("Frame", "Local", "The frame used to display the orientation covariance.",
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+                        orientation_property_, qOverload<>(&CovarianceProperty::updateOrientationFrame),
++#else
++                       orientation_property_, static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateOrientationFrame),
++#endif
+                        this);
+   orientation_frame_property_->addOption("Local", Local);
+   orientation_frame_property_->addOption("Fixed", Fixed);
+@@ -95,12 +112,20 @@
+   orientation_color_property_ =
+       new ColorProperty("Color", QColor(255, 255, 127), "Color to draw the covariance ellipse.",
+                         orientation_property_,
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+                         qOverload<>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
+ 
++#else
++                        static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#endif
+   orientation_alpha_property_ =
+       new FloatProperty("Alpha", 0.5f, "0 is fully transparent, 1.0 is fully opaque.",
+                         orientation_property_,
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+                         qOverload<>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#else
++                        static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#endif
+   orientation_alpha_property_->setMin(0);
+   orientation_alpha_property_->setMax(1);
+ 
+@@ -108,7 +130,11 @@
+       "Offset", 1.0f,
+       "For 3D poses is the distance where to position the ellipses representing orientation covariance. "
+       "For 2D poses is the height of the triangle representing the variance on yaw.",
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+       orientation_property_, qOverload<>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset),
++#else
++      orientation_property_, static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset),
++#endif
+       this);
+   orientation_offset_property_->setMin(0);
+ 
+@@ -117,11 +142,19 @@
+                         "Scale factor to be applied to orientation covariance shapes. "
+                         "Corresponds to the number of standard deviations to display.",
+                         orientation_property_,
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+                         qOverload<>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#else
++                        static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateColorAndAlphaAndScaleAndOffset), this);
++#endif
+   orientation_scale_property_->setMin(0);
+ 
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304
+   connect(this, &Property::changed, this, qOverload<>(&CovarianceProperty::updateVisibility));
+ 
++#else
++  connect(this, &Property::changed, this, static_cast<void (CovarianceProperty::*)()>(&CovarianceProperty::updateVisibility));
++#endif
+   setDisableChildrenIfFalse(true);
+ }
+ 
+--- src/rviz/views_panel.cpp~	2024-05-21 08:53:35.000000000 +0200
++++ src/rviz/views_panel.cpp	2024-06-27 15:19:19.530737064 +0200
+@@ -92,8 +92,13 @@
+   if (view_man_)
+   {
+     disconnect(save_button_, &QPushButton::clicked, view_man_, &ViewManager::copyCurrentToList);
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304 // C++14
+     disconnect(camera_type_selector_, qOverload<int>(&QComboBox::activated), this,
+                &ViewsPanel::onTypeSelectorChanged);
++#else
++    disconnect(camera_type_selector_, static_cast< void (QComboBox::*)(int)>(&QComboBox::activated), this,
++               &ViewsPanel::onTypeSelectorChanged);
++#endif
+     disconnect(view_man_, &ViewManager::currentChanged, this, &ViewsPanel::onCurrentChanged);
+   }
+   view_man_ = view_man;
+@@ -111,8 +116,12 @@
+     }
+ 
+     connect(save_button_, &QPushButton::clicked, view_man_, &ViewManager::copyCurrentToList);
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304 //
+     connect(camera_type_selector_, qOverload<int>(&QComboBox::activated), this,
++#else
++    connect(camera_type_selector_, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this,
++#endif
+             &ViewsPanel::onTypeSelectorChanged);
+     connect(view_man_, &ViewManager::currentChanged, this, &ViewsPanel::onCurrentChanged);
+   }
+   else
+--- src/rviz/time_panel.cpp~	2024-05-21 08:53:35.000000000 +0200
++++ src/rviz/time_panel.cpp	2024-06-27 15:19:37.970945505 +0200
+@@ -101,9 +101,15 @@
+   this->setLayout(layout);
+ 
+   connect(pause_button_, &QPushButton::toggled, this, &TimePanel::pauseToggled);
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304 // C++14
+   connect(sync_mode_selector_, qOverload<int>(&QComboBox::activated), this, &TimePanel::syncModeSelected);
+   connect(sync_source_selector_, qOverload<int>(&QComboBox::activated), this,
+           &TimePanel::syncSourceSelected);
++#else
++  connect(sync_mode_selector_, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &TimePanel::syncModeSelected);
++  connect(sync_source_selector_, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this,
++          &TimePanel::syncSourceSelected);
++#endif
+ }
+ 
+ void TimePanel::onInitialize()
+--- src/rviz/properties/int_property.cpp~	2024-05-21 08:53:35.000000000 +0200
++++ src/rviz/properties/int_property.cpp	2024-06-27 15:20:02.535223190 +0200
+@@ -66,7 +66,11 @@
+   QSpinBox* editor = new QSpinBox(parent);
+   editor->setFrame(false);
+   editor->setRange(min_, max_);
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304 // C++14
+   connect(editor, qOverload<int>(&QSpinBox::valueChanged), this, &IntProperty::setInt);
++#else
++  connect(editor, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &IntProperty::setInt);
++#endif
+   return editor;
+ }
+ 
+--- src/rviz/properties/enum_property.cpp~	2024-05-21 08:53:35.000000000 +0200
++++ src/rviz/properties/enum_property.cpp	2024-06-27 15:20:15.287367358 +0200
+@@ -72,9 +72,13 @@
+   ComboBox* cb = new ComboBox(parent);
+   cb->addItems(strings_);
+   cb->setCurrentIndex(strings_.indexOf(getValue().toString()));
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304 // C++14
+   QObject::connect(cb, qOverload<int>(&QComboBox::currentIndexChanged), this,
+                    [this, cb](int idx) { setString(cb->itemText(idx)); });
+-
++#else
++  QObject::connect(cb, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
++                   [this, cb](int idx) { setString(cb->itemText(idx)); });
++#endif
+   // TODO: need to better handle string value which is not in list.
+   return cb;
+ }
+--- src/rviz/properties/editable_enum_property.cpp~	2024-05-21 08:53:35.000000000 +0200
++++ src/rviz/properties/editable_enum_property.cpp	2024-06-27 15:20:27.903509982 +0200
+@@ -64,8 +64,13 @@
+   cb->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
+   cb->addItems(strings_);
+   cb->setEditText(getValue().toString());
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304 // C++14
+   QObject::connect(cb, qOverload<int>(&QComboBox::currentIndexChanged), this,
+                    [this, cb](int idx) { setString(cb->itemText(idx)); });
++#else
++  QObject::connect(cb, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
++                   [this, cb](int idx) { setString(cb->itemText(idx)); });
++#endif
+ 
+   // TODO: need to better handle string value which is not in list.
+   return cb;
+--- src/rviz/add_display_dialog.h~	2024-05-21 08:53:35.000000000 +0200
++++ src/rviz/add_display_dialog.h	2024-06-27 15:20:42.931679917 +0200
+@@ -212,7 +212,11 @@
+ public:
+   EmbeddableComboBox(QTreeWidgetItem* parent, int col) : parent_(parent), column_(col)
+   {
++#if defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304 // C++14
+     connect(this, qOverload<int>(&QComboBox::activated), this, [this] { itemClicked(parent_, column_); });
++#else
++    connect(this, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, [this] { itemClicked(parent_, column_); });
++#endif
+   }
+ 
+ Q_SIGNALS:

@@ -37,3 +37,13 @@ include ../../mk/sysdep/libogre.mk
 include ../../mk/sysdep/qt5-qtbase.mk
 include ../../mk/sysdep/yaml-cpp.mk
 include ../../mk/robotpkg.mk
+
+# The following file (ld version script) is installed no matter what, for no
+# reason (and only on linux distributions). There is no cmake rule installing
+# this and setuptools MANIFEST.in or exclude_package_data don't have any effect
+# (apart from stating that the file is not found). There must be a better way,
+# but in the meantime:
+post-install: remove-extra-files
+remove-extra-files:
+	${RUN}${RM} \
+	  ${DESTDIR}${PREFIX}/${PYTHON_SITELIB}/rviz/librviz_sip.exp
