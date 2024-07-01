@@ -34,8 +34,6 @@ share/hpp_tutorial/srdf/box.srdf
 share/hpp_tutorial/srdf/cup.srdf
 share/hpp_tutorial/srdf/door.srdf
 share/hpp_tutorial/srdf/kitchen_area.srdf
-share/hpp_tutorial/srdf/pr2.srdf
-share/hpp_tutorial/srdf/pr2_manipulation.srdf
 share/hpp_tutorial/srdf/rod.srdf
 share/hpp_tutorial/srdf/table.srdf
 share/hpp_tutorial/urdf/box.urdf
@@ -43,7 +41,5 @@ share/hpp_tutorial/urdf/box_color.urdf
 share/hpp_tutorial/urdf/cup.urdf
 share/hpp_tutorial/urdf/door.urdf
 share/hpp_tutorial/urdf/kitchen_area.urdf
-share/hpp_tutorial/urdf/pr2.urdf
 share/hpp_tutorial/urdf/rod.urdf
 share/hpp_tutorial/urdf/table.urdf
-share/hpp_tutorial/urdf/ur10e.urdf.xacro
