@@ -1,9 +1,9 @@
 @comment Mon Aug 29 18:20:26 CEST 2022
 ${PYTHON_SITELIB}/proxsuite/__init__.py
-${PYTHON_SITELIB}/proxsuite/instructionset.so
-${PYTHON_SITELIB}/proxsuite/proxsuite_pywrap.so
-${PYTHON_SITELIB}/proxsuite/proxsuite_pywrap_avx2.so
-${PYTHON_SITELIB}/proxsuite/proxsuite_pywrap_avx512.so
+${PYTHON_SITELIB}/proxsuite/instructionset${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/proxsuite/proxsuite_pywrap${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/proxsuite/proxsuite_pywrap_avx2${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/proxsuite/proxsuite_pywrap_avx512${PYTHON_EXT_SUFFIX}
 ${PYTHON_SITELIB}/proxsuite/torch/__init__.py
 ${PYTHON_SITELIB}/proxsuite/torch/qplayer.py
 ${PYTHON_SITELIB}/proxsuite/torch/utils.py
