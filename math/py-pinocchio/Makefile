@@ -5,6 +5,7 @@
 ORG=			stack-of-tasks
 NAME=			pinocchio
 VERSION=		3.0.0
+PKGREVISION=		1
 
 CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics (python bindings)
