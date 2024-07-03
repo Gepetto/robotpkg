@@ -1,10 +1,29 @@
-Don't install .pc file: it would conflict between installs for
-multiple python versions. In case it is needed, something must be found to
-handle name conflicts.
+* From 06c61fcc25077b83a02baf61601e60d8190bfe9c Mon Sep 17 00:00:00 2001
+  From: Guilhem Saurel <guilhem.saurel@laas.fr>
+  Date: Wed, 3 Jul 2024 11:00:20 +0200
+  Subject: [PATCH] CMake: modernize link to console_bridge
 
---- bindings/python/CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2024-05-28 10:16:31.992490625 +0200
-@@ -270,14 +270,6 @@
+* Don't install .pc file: it would conflict between installs for
+  multiple python versions. In case it is needed, something must be found to
+  handle name conflicts.
+
+--- bindings/python/CMakeLists.txt~	2024-05-27 21:47:00.000000000 +0200
++++ bindings/python/CMakeLists.txt	2024-07-03 19:09:30.772531780 +0200
+@@ -81,7 +81,12 @@
+   if(BUILD_WITH_URDF_SUPPORT)
+     # Link directly against console_bridge since we bind some enums and call
+     # console_bridge::setLogLevel function.
+-    target_link_libraries(${PYTHON_LIB_NAME} PUBLIC console_bridge::console_bridge)
++    modernize_target_link_libraries(
++      ${PYTHON_LIB_NAME}
++      SCOPE PUBLIC
++      TARGETS console_bridge::console_bridge
++      LIBRARIES ${console_bridge_LIBRARIES}
++      INCLUDE_DIRS ${console_bridge_INCLUDE_DIRS})
+   endif()
+   if(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
+     target_compile_definitions(${PYTHON_LIB_NAME}
+@@ -270,14 +275,6 @@
      set(_PKG_CONFIG_PYWRAP_CFLAGS "${_PKG_CONFIG_PYWRAP_CFLAGS} ${cflags}")
    endforeach()
  
