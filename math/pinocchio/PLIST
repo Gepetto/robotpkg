@@ -272,8 +272,6 @@ include/pinocchio/math/taylor-expansion.hpp
 include/pinocchio/math/tensor.hpp
 include/pinocchio/math/triangular-matrix.hpp
 include/pinocchio/math/tridiagonal-matrix.hpp
-include/pinocchio/multibody/constraint-base.hpp
-include/pinocchio/multibody/constraint-generic.hpp
 include/pinocchio/multibody/data.hpp
 include/pinocchio/multibody/data.hxx
 include/pinocchio/multibody/data.txx
@@ -348,6 +346,7 @@ include/pinocchio/multibody/visitor/fusion.hpp
 include/pinocchio/multibody/visitor/joint-binary-visitor.hpp
 include/pinocchio/multibody/visitor/joint-unary-visitor.hpp
 include/pinocchio/parsers/config.hpp
+include/pinocchio/parsers/meshloader-fwd.hpp
 include/pinocchio/parsers/mjcf.hpp
 include/pinocchio/parsers/mjcf/geometry.hxx
 include/pinocchio/parsers/mjcf/mjcf-graph.hpp
@@ -372,7 +371,6 @@ include/pinocchio/serialization/frame.hpp
 include/pinocchio/serialization/fwd.hpp
 include/pinocchio/serialization/geometry.hpp
 include/pinocchio/serialization/inertia.hpp
-include/pinocchio/serialization/joints-constraint.hpp
 include/pinocchio/serialization/joints-data.hpp
 include/pinocchio/serialization/joints-model.hpp
 include/pinocchio/serialization/joints-motion-subspace.hpp

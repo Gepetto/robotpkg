@@ -1,29 +1,29 @@
 py-pinocchio needs pinocchio
 
---- CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
-+++ CMakeLists.txt	2024-05-28 10:17:29.362489152 +0200
-@@ -183,6 +183,7 @@
+--- CMakeLists.txt.orig	2024-08-27 16:45:25.000000000 +0000
++++ CMakeLists.txt	2024-08-29 13:19:21.747133530 +0000
+@@ -192,6 +192,7 @@
  # ----------------------------------------------------
- set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/find-external/CppAD/" ${CMAKE_MODULE_PATH})
+ set(CMAKE_MODULE_PATH "${JRL_CMAKE_MODULES}/find-external/CppAD/" ${CMAKE_MODULE_PATH})
  add_project_dependency(Eigen3 REQUIRED PKG_CONFIG_REQUIRES "eigen3 >= 3.0.5")
 +add_project_dependency(${PROJECT_NAME} REQUIRED)
  
  if(BUILD_WITH_URDF_SUPPORT)
    add_project_dependency(urdfdom_headers REQUIRED)
---- bindings/python/CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2024-05-28 10:18:04.832481756 +0200
-@@ -76,7 +76,7 @@
+--- bindings/python/CMakeLists.txt.orig	2024-08-27 18:45:25.000000000 +0200
++++ bindings/python/CMakeLists.txt	2024-08-29 15:19:55.570423979 +0200
+@@ -75,7 +75,7 @@
      ${PYTHON_LIB_NAME}
      SCOPE PUBLIC
      TARGETS eigenpy::eigenpy)
 -  target_link_libraries(${PYTHON_LIB_NAME} PUBLIC ${PROJECT_NAME})
-+  target_link_libraries(${PYTHON_LIB_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
++    target_link_libraries(${PYTHON_LIB_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
  
    if(BUILD_WITH_URDF_SUPPORT)
      # Link directly against console_bridge since we bind some enums and call
---- unittest/CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
-+++ unittest/CMakeLists.txt	2024-05-28 10:18:52.605797982 +0200
-@@ -70,26 +70,26 @@
+--- unittest/CMakeLists.txt.orig	2024-08-27 18:45:25.000000000 +0200
++++ unittest/CMakeLists.txt	2024-08-29 15:21:21.067157905 +0200
+@@ -71,26 +71,26 @@
    target_include_directories(${TEST_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
  
    if(NOT unit_test_HEADER_ONLY)
@@ -56,11 +56,11 @@ py-pinocchio needs pinocchio
    endif()
  
    modernize_target_link_libraries(
---- examples/CMakeLists.txt.orig	2024-05-27 21:47:00.000000000 +0200
-+++ examples/CMakeLists.txt	2024-05-28 10:19:23.895782651 +0200
+--- examples/CMakeLists.txt.orig	2024-08-27 18:45:25.000000000 +0200
++++ examples/CMakeLists.txt	2024-08-29 15:22:20.099674281 +0200
 @@ -14,22 +14,22 @@
    get_filename_component(EXAMPLE_NAME ${EXAMPLE} NAME)
-   set(EXAMPLE_NAME "example-cpp-${EXAMPLE_NAME}")
+   set(EXAMPLE_NAME "${PROJECT_NAME}-example-cpp-${EXAMPLE_NAME}")
    add_unit_test(${EXAMPLE_NAME} "${EXAMPLE}.cpp")
 -  target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME})
 +  target_link_libraries(${EXAMPLE_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
