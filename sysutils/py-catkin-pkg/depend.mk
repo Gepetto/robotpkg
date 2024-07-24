@@ -13,12 +13,7 @@ ifeq (+,$(PY_CATKIN_PKG_DEPEND_MK)) # ------------------------------------------
 
 include ../../meta-pkgs/ros-base/depend.common
 
-# for python3 and ros versions before noetic, prefer robotpkg as the system
-# package will conflict with system ros installation.
-PREFER.py-catkin-pkg?=\
-  $(if $(filter py3%-kinetic py3%-lunar py3%-melodic,		\
-    $(addprefix ${PKGTAG.python-},${PKG_ALTERNATIVE.ros})),	\
-      robotpkg,${PREFER.ros-base})
+PREFER.py-catkin-pkg?=		${PREFER.ros-base}
 SYSTEM_PREFIX.py-catkin-pkg?=	${SYSTEM_PREFIX.ros-base}
 
 DEPEND_USE+=			py-catkin-pkg
