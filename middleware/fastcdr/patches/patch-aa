@@ -1,0 +1,12 @@
+Add missing input file
+
+--- doxyfile.in~	2023-09-05 15:39:57.000000000 +0200
++++ doxyfile.in	2024-08-06 14:14:53.364607811 +0200
+@@ -865,6 +865,7 @@
+ # Note: If this tag is empty the current directory is searched.
+ 
+ INPUT                  = @PROJECT_SOURCE_DIR@/include \
++                         @PROJECT_SOURCE_DIR@/utils/doxygen/doxygenfiles \
+                          @PROJECT_SOURCE_DIR@/utils/doxygen/pages
+ 
+ # This tag can be used to specify the character encoding of the source files
