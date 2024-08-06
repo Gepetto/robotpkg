@@ -140,9 +140,7 @@ PKG_ALTERNATIVES.python+=	python37 python38 python39 python310 python311 python3
 # select default preferences depending on OS/VERSION
 include ../../mk/robotpkg.prefs.mk # for OPSYS
 ifeq (Debian,${OPSYS})
-  ifneq (,$(filter 10,${OS_VERSION}))
-    PREFER_ALTERNATIVE.python?=	python37 python27
-  else ifneq (,$(filter 11,${OS_VERSION}))
+  ifneq (,$(filter 11,${OS_VERSION}))
     PREFER_ALTERNATIVE.python?=	python39
   endif
   PREFER_ALTERNATIVE.python?=	python311
@@ -164,16 +162,14 @@ else ifeq (Ubuntu,${OPSYS})
     PREFER_ALTERNATIVE.python?=	python310 python27
   endif
   PREFER_ALTERNATIVE.python?=	python312
-else ifeq (CentOS,${OPSYS})
-  PREFER_ALTERNATIVE.python?=	python27 python36
 else ifeq (Rocky,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python36
 else ifeq (Arch,${OPSYS})
   PREFER_ALTERNATIVE.python?=	python312
 else ifeq (NetBSD,${OPSYS})
-  PREFER_ALTERNATIVE.python?=	python310 python27
+  PREFER_ALTERNATIVE.python?=	python311
 endif
-PREFER_ALTERNATIVE.python?=	python27 python36
+PREFER_ALTERNATIVE.python?=	python312
 
 PKG_ALTERNATIVE_DESCR.python27= Use python-2.7
 PKGTAG.python27 =		py27
