@@ -1,8 +1,10 @@
 SHA1 (collada-dom-2.4.0.tgz) = 74e28d670497abc897c06a41df7d28eea2bac836
 RMD160 (collada-dom-2.4.0.tgz) = e8ddb9430d667856eb0fbf69106cd877784f42f1
 Size (collada-dom-2.4.0.tgz) = 42517651 bytes
-SHA1 (patch-aa) = d7fabbac0246b898f1a1d716962df4a5f2d1df49
+SHA1 (patch-aa) = 6ab8f3bb44ebb4c09b68d72566db2addf35b17d7
 SHA1 (patch-ab) = f8a4a4b791508495babce086137271d1374146ac
 SHA1 (patch-ac) = 070cff86892e67ffac31a2b423d54926821a50fe
 SHA1 (patch-ad) = c84b47475d7e58476fca7b01cd48b83d3c1ded29
 SHA1 (patch-ae) = f8c712d7aa8661c1bc6ae2d20bf33e5702d96c7a
+SHA1 (patch-af) = 5d7782a7bca8277aaf5520f36095c1b9d62f53a7
+SHA1 (patch-ag) = 0f4c42797e93afae9a32f11d71f2efd6145bd22b

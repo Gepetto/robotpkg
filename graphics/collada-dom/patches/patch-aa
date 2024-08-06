@@ -1,7 +1,17 @@
-Obfuscated temporary directory computation is not necessary
+* Obsolete header in boost-1.85
+* Obfuscated temporary directory computation is not necessary
 
 --- dom/src/dae/daeUtils.cpp~	2011-02-27 04:42:47.000000000 +0100
 +++ dom/src/dae/daeUtils.cpp	2011-10-16 14:59:53.000000000 +0200
+@@ -18,7 +18,7 @@
+ #endif
+ 
+ #ifndef NO_BOOST
+-#include <boost/filesystem/convenience.hpp>       // THIS WAS NOT COMMENTED.
++#include <boost/filesystem.hpp>       // THIS WAS NOT COMMENTED.
+ #endif
+ 
+ #include <cstdio> // for tmpnam
 @@ -152,14 +152,8 @@
  const string& cdom::getSystemTmpDir() {
  #ifdef WIN32
@@ -34,3 +44,5 @@ Obfuscated temporary directory computation is not necessary
  #endif
      return randomSegment;
  }
+--- dom/src/dae/daeUtils.cpp~	2024-08-06 13:08:17.564146741 +0200
++++ dom/src/dae/daeUtils.cpp	2024-08-06 13:09:24.290336370 +0200

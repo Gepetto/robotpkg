@@ -1,0 +1,14 @@
+branch_path() is removed in boost-1.85
+parent_path() is supported since long enough now.
+
+--- dom/src/dae/daeZAEUncompressHandler.cpp~	2011-04-29 15:17:47.000000000 +0200
++++ dom/src/dae/daeZAEUncompressHandler.cpp	2024-08-06 13:11:42.217396028 +0200
+@@ -268,7 +268,7 @@
+     bool error = false;
+ 
+     boost::filesystem::path archivePath(filePath);
+-    std::string dir = archivePath.branch_path().string();
++    std::string dir = archivePath.parent_path().string();
+ 
+     const std::string& randomSegment = cdom::getRandomFileName();
+     std::string tmpDir = dir + cdom::getFileSeparator() + randomSegment + cdom::getFileSeparator();
