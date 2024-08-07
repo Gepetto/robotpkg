@@ -1,0 +1,46 @@
+malloc_usable_size() only for linux
+
+--- include/proxsuite/linalg/veg/memory/alloc.hpp~	2024-03-01 14:33:49.322943200 +0100
++++ include/proxsuite/linalg/veg/memory/alloc.hpp	2024-08-07 12:09:00.296871023 +0200
+@@ -12,9 +12,9 @@
+ 
+ #include <cstddef> // std::max_align_t
+ #include <cstdlib> // std::{malloc, free, realloc}, ::{aligned_alloc, free}
+-#ifndef __APPLE__
++#if defined(__linux__)
+ #include <malloc.h> // ::malloc_usable_size
+-#else
++#elif defined(__APPLE__)
+ #include <AvailabilityMacros.h>
+ #include <malloc/malloc.h>
+ #define malloc_usable_size malloc_size
+@@ -219,10 +219,12 @@
+     if (HEDLEY_UNLIKELY(ptr == nullptr)) {
+       _detail::terminate();
+     }
+-#ifndef _WIN32
++#if defined(__linux__) || defined(__APPLE__)
+     return { ptr, ::malloc_usable_size(ptr) };
+-#else
++#elif defined(_WIN32)
+     return { ptr, _msize(ptr) };
++#else
++    return { ptr, layout.byte_size };
+ #endif
+   }
+   VEG_NODISCARD VEG_NO_INLINE static auto realloc(RefMut<SystemAlloc> /*alloc*/,
+@@ -252,10 +254,12 @@
+       reloc(new_ptr, ptr, copy_size);
+       mem::aligned_free(layout.align, ptr);
+     }
+-#ifndef _WIN32
++#if defined(__linux__) || defined(__APPLE__)
+     return { new_ptr, ::malloc_usable_size(new_ptr) };
+-#else
++#elif defined(_WIN32)
+     return { new_ptr, _msize(new_ptr) };
++#else
++    return { new_ptr, new_size };
+ #endif
+   }
+   VEG_NODISCARD VEG_INLINE auto try_grow_in_place(

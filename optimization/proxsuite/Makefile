@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Mon, 26 Sep 2022
 #
 
+PKGREVISION=		1
 ORG=			Simple-Robotics
 NAME=			proxsuite
 VERSION=		0.6.5

@@ -1,0 +1,14 @@
+immintrin.h is only for x86_64 and i386
+
+--- include/proxsuite/linalg/dense/core.hpp~	2024-05-26 07:28:18.969103600 +0200
++++ include/proxsuite/linalg/dense/core.hpp	2024-08-07 12:17:53.448804939 +0200
+@@ -9,8 +9,7 @@
+ #include <proxsuite/linalg/veg/util/assert.hpp>
+ #include <proxsuite/linalg/veg/memory/dynamic_stack.hpp>
+ 
+-#if !(defined(__aarch64__) || defined(__PPC64__) || defined(__ppc64__) ||      \
+-      defined(_ARCH_PPC64))
++#if defined(__x86_64__) || defined(__i386__)
+ #include <immintrin.h>
+ #endif
+ 
