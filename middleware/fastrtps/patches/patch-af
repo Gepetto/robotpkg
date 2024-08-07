@@ -1,0 +1,169 @@
+Remove non-existent doxygen groups
+
+--- include/fastrtps/types/AnnotationParameterValue.h~	2023-08-11 10:03:17.000000000 +0200
++++ include/fastrtps/types/AnnotationParameterValue.h	2024-08-07 13:56:09.524722922 +0200
+@@ -58,7 +58,6 @@
+ 
+ /*!
+  * @brief This class represents the structure ExtendedAnnotationParameterValue defined by the user in the IDL file.
+- * @ingroup ANNOTATIONPARAMETERVALUE
+  */
+ class ExtendedAnnotationParameterValue
+ {
+@@ -160,7 +159,6 @@
+ };
+ /*!
+  * @brief This class represents the union AnnotationParameterValue defined by the user in the IDL file.
+- * @ingroup ANNOTATIONPARAMETERVALUE
+  */
+ class AnnotationParameterValue
+ {
+@@ -813,7 +811,6 @@
+ 
+ /*!
+  * @brief This class represents the structure AppliedAnnotationParameter defined by the user in the IDL file.
+- * @ingroup ANNOTATIONPARAMETERVALUE
+  */
+ class AppliedAnnotationParameter
+ {
+--- include/fastrtps/types/TypeIdentifierTypes.h~	2023-08-11 10:03:17.000000000 +0200
++++ include/fastrtps/types/TypeIdentifierTypes.h	2024-08-07 13:57:09.645175373 +0200
+@@ -53,7 +53,6 @@
+ 
+ /*!
+  * @brief This class represents the structure StringSTypeDefn defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class StringSTypeDefn final
+ {
+@@ -164,7 +163,6 @@
+ };
+ /*!
+  * @brief This class represents the structure StringLTypeDefn defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class StringLTypeDefn final
+ {
+@@ -275,7 +273,6 @@
+ };
+ /*!
+  * @brief This class represents the structure PlainCollectionHeader defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class PlainCollectionHeader final
+ {
+@@ -410,7 +407,6 @@
+ };
+ /*!
+  * @brief This class represents the structure PlainSequenceSElemDefn defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class PlainSequenceSElemDefn final
+ {
+@@ -580,7 +576,6 @@
+ };
+ /*!
+  * @brief This class represents the structure PlainSequenceLElemDefn defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class PlainSequenceLElemDefn final
+ {
+@@ -750,7 +745,6 @@
+ };
+ /*!
+  * @brief This class represents the structure PlainArraySElemDefn defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class PlainArraySElemDefn final
+ {
+@@ -930,7 +924,6 @@
+ };
+ /*!
+  * @brief This class represents the structure PlainArrayLElemDefn defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class PlainArrayLElemDefn final
+ {
+@@ -1110,7 +1103,6 @@
+ };
+ /*!
+  * @brief This class represents the structure PlainMapSTypeDefn defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class PlainMapSTypeDefn final
+ {
+@@ -1333,7 +1325,6 @@
+ };
+ /*!
+  * @brief This class represents the structure PlainMapLTypeDefn defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class PlainMapLTypeDefn final
+ {
+@@ -1556,7 +1547,6 @@
+ };
+ /*!
+  * @brief This class represents the structure StronglyConnectedComponentId defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class StronglyConnectedComponentId final
+ {
+@@ -1729,7 +1719,6 @@
+ };
+ /*!
+  * @brief This class represents the structure ExtendedTypeDefn defined by the user in the IDL file.
+- * @ingroup TYPEIDENTIFIERTYPES
+  */
+ class ExtendedTypeDefn final
+ {
+--- include/fastrtps/types/TypeObjectHashId.h~	2023-08-11 10:03:17.000000000 +0200
++++ include/fastrtps/types/TypeObjectHashId.h	2024-08-07 18:17:16.914787535 +0200
+@@ -48,7 +48,6 @@
+ 
+ /*!
+  * @brief This class represents the union TypeObjectHashId defined by the user in the IDL file.
+- * @ingroup TYPEOBJECTHASHID
+  */
+ class TypeObjectHashId
+ {
+--- include/fastrtps/xmlparser/XMLEndpointParser.h~	2023-08-11 10:03:17.000000000 +0200
++++ include/fastrtps/xmlparser/XMLEndpointParser.h	2024-08-07 18:19:18.647692852 +0200
+@@ -75,7 +75,7 @@
+ 
+ /**
+  * Class XMLEndpointParser used to parse the XML file that contains information about remote endpoints.
+- * @ingroup DISCVOERYMODULE
++ * @ingroup DISCOVERY_MODULE
+  */
+ class XMLEndpointParser : XMLParser
+ {
+--- include/fastrtps/xmlparser/XMLParser.h~	2023-08-11 10:03:17.000000000 +0200
++++ include/fastrtps/xmlparser/XMLParser.h	2024-08-07 18:21:54.520852368 +0200
+@@ -84,7 +84,6 @@
+ 
+ /**
+  * Class XMLParser, used to load XML data.
+- * @ingroup XMLPARSER_MODULE
+  */
+ class XMLParser
+ {
+--- include/fastrtps/xmlparser/XMLProfileManager.h~	2023-08-11 10:03:17.000000000 +0200
++++ include/fastrtps/xmlparser/XMLProfileManager.h	2024-08-07 18:22:29.461112347 +0200
+@@ -49,7 +49,6 @@
+ 
+ /**
+  * Class XMLProfileManager, used to make available profiles from XML file.
+- * @ingroup XMLPROFILEMANAGER_MODULE
+  */
+ class XMLProfileManager
+ {
+--- include/fastrtps/xmlparser/XMLParserCommon.h~	2023-08-11 10:03:17.000000000 +0200
++++ include/fastrtps/xmlparser/XMLParserCommon.h	2024-08-07 18:23:05.749382361 +0200
+@@ -21,7 +21,6 @@
+ 
+ /**
+  * Enum class XMLP_ret, used to provide a strongly typed result from the operations within this module.
+- * @ingroup XMLPARSER_MODULE
+  */
+ enum class XMLP_ret
+ {
