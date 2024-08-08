@@ -21,6 +21,8 @@ SYSTEM_SEARCH.py-dynamic-graph=\
 	lib/pkgconfig/dynamic-graph-python.pc \
 	include/dynamic-graph/python/interpreter.hh
 
+DEPEND_ABI.python+=	python<3
+
 include ../../mk/sysdep/python.mk
 
 endif # PY_DYNAMIC_GRAPH_DEPEND_MK -----------------------------------------
