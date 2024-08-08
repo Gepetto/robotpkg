@@ -236,6 +236,11 @@ int ford[] = {F_USTAR, F_TAR,
 int sep = '\n';
 
 char *chdname;
+#if !HAVE_NBTOOL_CONFIG_H
+#ifdef HAVE_FCHROOT
+int do_chroot;
+#endif /* HAVE_FCHROOT */
+#endif
 
 /*
  * options()

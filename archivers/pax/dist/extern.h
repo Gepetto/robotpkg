@@ -216,7 +216,7 @@ int bad_opt(void);
 int mkpath(char *);
 #if !HAVE_NBTOOL_CONFIG_H
 #ifdef HAVE_FCHROOT
-int do_chroot;
+extern int do_chroot;
 #endif /* HAVE_FCHROOT */
 #endif
 
