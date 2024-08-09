@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Mon, 11 Dec 2023
 #
 
-DISTNAME=		icub-libs-0.1
+DISTNAME=		icub-libs-0.2
 CATEGORIES=		hardware
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=icub-libs/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS:=/icub-libs}
