@@ -1,4 +1,4 @@
-@comment Fri Jul 17 12:04:07 CEST 2020
+@comment Tue Aug 20 15:52:25 CEST 2024
 bin/genom${PKGVERSION}
 bin/genom3
 bin/profundis
@@ -41,8 +41,8 @@ share/doc/genom/adoc/manual.adoc
 share/doc/genom/adoc/mappings/c++.adoc
 share/doc/genom/adoc/mappings/c.adoc
 share/doc/genom/adoc/mappings/index.adoc
-share/doc/genom/adoc/model/index.adoc
-share/doc/genom/adoc/overview.adoc
+share/doc/genom/adoc/model.adoc
+share/doc/genom/adoc/model/component.svg
 share/doc/genom/adoc/running.adoc
 share/doc/genom/adoc/templates/cmd-codel.adoc
 share/doc/genom/adoc/templates/cmd-component.adoc
@@ -90,8 +90,7 @@ share/doc/genom/html/manual.html
 share/doc/genom/html/mappings/c++.html
 share/doc/genom/html/mappings/c.html
 share/doc/genom/html/mappings/index.html
-share/doc/genom/html/model/index.html
-share/doc/genom/html/overview.html
+share/doc/genom/html/model.html
 share/doc/genom/html/running.html
 share/doc/genom/html/templates/cmd-codel.html
 share/doc/genom/html/templates/cmd-component.html
