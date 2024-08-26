@@ -4,7 +4,7 @@
 
 ORG=			stack-of-tasks
 NAME=			tsid
-VERSION=		1.7.0
+VERSION=		1.7.1
 
 CATEGORIES=		optimization
 COMMENT=		Efficient Inverse Dynamics (python bindings)
@@ -15,7 +15,7 @@ USE_PYTHON_ONLY=	yes
 # this does not support multiple parallel python version
 CONFLICTS+=		py[0-9][0-9]-tsid-[0-9]*
 
-DEPEND_ABI.python=	python>=3
+DEPEND_ABI.python=	python>=3.6
 
 include ../../devel/jrl-cmakemodules/Makefile.common
 include ../../graphics/urdfdom/depend.mk
