@@ -6768,18 +6768,6 @@ esac
 
 fi
 
-ac_fn_c_check_func "$LINENO" "lchflags" "ac_cv_func_lchflags"
-if test "x$ac_cv_func_lchflags" = xyes; then :
-  $as_echo "#define HAVE_LCHFLAGS 1" >>confdefs.h
-
-else
-  case " $LIBOBJS " in
-  *" lchflags.$ac_objext "* ) ;;
-  *) LIBOBJS="$LIBOBJS lchflags.$ac_objext"
- ;;
-esac
-
-fi
 
 ac_fn_c_check_func "$LINENO" "lchmod" "ac_cv_func_lchmod"
 if test "x$ac_cv_func_lchmod" = xyes; then :
