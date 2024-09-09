@@ -41,6 +41,7 @@ __RCSID("$NetBSD: digest.c,v 1.15 2007/09/21 18:44:36 joerg Exp $");
 #endif
 
 
+#include <err.h>
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
