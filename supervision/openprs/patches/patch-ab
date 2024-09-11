@@ -1,0 +1,38 @@
+Mismatched type - failing with gcc-14
+
+--- src/ope-bboard.c~	2017-06-01 16:35:25.000000000 +0200
++++ src/ope-bboard.c	2024-09-10 17:19:50.899712544 +0200
+@@ -1141,9 +1141,9 @@
+ 	  FREE(sname);
+      } else if (og->type == DT_IF_NODE) {
+ 	  Node *renamed_then_node, *renamed_else_node;
+-	  PString then_name = NULL;
+-	  PString else_name = NULL;
+-	  PString *then_name_p, *else_name_p;
++	  Symbol then_name = NULL;
++	  Symbol else_name = NULL;
++	  Symbol *then_name_p, *else_name_p;
+ 
+ 	  then_name_p = &then_name;
+ 	  else_name_p = &else_name;
+--- src/ope-edit.c~	2017-06-01 16:35:25.000000000 +0200
++++ src/ope-edit.c	2024-09-10 17:22:44.752961464 +0200
+@@ -727,12 +727,12 @@
+ OG *create_ifnode(Widget w, int x, int y, Draw_Data *dd)
+ {
+      OG *og, *ogt, *ogf;
+-     PString nelse = NULL;
+-     PString nthen = NULL;
+-     PString nif = NULL;
+-     PString *nifp;
+-     PString *nelsep;
+-     PString *nthenp;
++     Symbol nelse = NULL;
++     Symbol nthen = NULL;
++     Symbol nif = NULL;
++     Symbol *nifp;
++     Symbol *nelsep;
++     Symbol *nthenp;
+ 
+      nifp = &nif;
+      nelsep = &nelse;

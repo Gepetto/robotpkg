@@ -12,7 +12,7 @@ COMMENT=		Open Source Procedural Reasoning System
 LICENSE=		2-clause-bsd
 
 MAKE_JOBS_SAFE=		no
-NOT_FOR_PLATFORM=
+CFLAGS+=		-Wno-error=implicit-function-declaration # too many
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-readline=${PREFIX.readline}
