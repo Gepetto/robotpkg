@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 20 Nov 2007
 #
 
-DISTNAME=		libpom-1.2
+DISTNAME=		libpom-1.2.1
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=libpom/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}libpom
