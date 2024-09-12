@@ -10,6 +10,7 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		Library to manipulate laser data
 
 GNU_CONFIGURE=		yes
+CFLAGS+=		-Wno-error=implicit-int
 
 include ../../devel/mkdep/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
