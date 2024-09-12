@@ -1,0 +1,12 @@
+-Wimplicit-function-declaration
+
+--- src/transgen_f.h~	2014-07-28 17:25:36.000000000 +0200
++++ src/transgen_f.h	2024-09-12 11:38:11.737315504 +0200
+@@ -6,6 +6,7 @@
+ int transgen_yyparse(void);
+ 
+ 
++extern PBoolean configure_transgen(FILE *perl_file);
+ extern PBoolean make_transgen(FILE *perl_file);
+ extern PBoolean data_transgen(FILE *perl_file);
+ extern PBoolean superv_transgen(FILE *perl_file);

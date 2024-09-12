@@ -1,0 +1,13 @@
+-Wimplicit-int
+
+--- src/transgen-main.c~	2014-07-28 17:25:36.000000000 +0200
++++ src/transgen-main.c	2024-09-12 11:39:09.274426270 +0200
+@@ -206,7 +206,7 @@
+ 
+ Module *make_module(char *name, char *path)
+ {
+-     static message_printed = FALSE;
++     static int message_printed = FALSE;
+      Module *module = MAKE_OBJECT(Module);
+      char pkg_config_cmd[MAXPATHLEN];
+ 

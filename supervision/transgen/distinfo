@@ -1,3 +1,5 @@
 SHA1 (transgen-1.1b1.tar.gz) = 8de41e1e9a1bb814496873dfac36e64c2b26e652
 RMD160 (transgen-1.1b1.tar.gz) = 708a3e4d639865cc9b37d5212ba3c62117cba759
 Size (transgen-1.1b1.tar.gz) = 2490671 bytes
+SHA1 (patch-aa) = 3e818e463f29c8203cf458310ec58944b175e3c4
+SHA1 (patch-ab) = 1cf14dd285cd2b0b803bd532a34c1c43a12ae6d8
