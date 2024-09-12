@@ -28,6 +28,9 @@ DEPEND_ABI.tk=  tk>=8.6
 
 INCLUDE_DIRS.mesa+=include
 
+CFLAGS+=	-Wno-error=implicit-function-declaration
+CFLAGS+=	-Wno-error=incompatible-pointer-types
+
 include ../../pkgtools/pkg-config/depend.mk
 include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/mesa.mk
