@@ -1,0 +1,49 @@
+-Wimplicit-function-declaration
+
+--- genom-oprs/genom-oprs.c~	2013-03-25 10:46:27.000000000 +0100
++++ genom-oprs/genom-oprs.c	2024-09-12 11:53:18.967129688 +0200
+@@ -26,6 +26,8 @@
+ #include "pu-parse-tl_f.h"
+ #include "pu-enum_f.h"
+ 
++#include "action_f-pub.h"
++#include "ev-predicate_f-pub.h"
+ #include "oprs_f-pub.h"
+ #include "oprs-type_f-pub.h"
+ #include "user-end-hook_f-pub.h"
+@@ -113,6 +115,7 @@
+ 
+ void end_kernel_user_hook()
+ {
++     void end_genom_oprs(void);
+      fprintf(stderr,"Shutting down genom-oprs...\n");
+      end_genom_oprs();
+      fprintf(stderr,"OpenPRS GenoM3 Supervision shutting down...\n");
+@@ -121,6 +125,7 @@
+ 
+ void init_transgen_genom_oprs(void)
+ {
++     void init_genom_oprs(Symbol name);
+      declare_genom_oprs_action();
+      declare_genom_oprs_eval_funct();
+      declare_genom_oprs_eval_pred();
+--- genom-oprs/genom-oprs-service.c~	2014-06-18 09:22:57.000000000 +0200
++++ genom-oprs/genom-oprs-service.c	2024-09-12 11:55:04.749211319 +0200
+@@ -64,6 +64,7 @@
+ #include "genom-oprs_f.h"
+ #include "genom-oprs-service.h"
+ #include "genom-oprs-service_f.h"
++#include "socket_server.h"
+ 
+ #define COPY_LIST(list) copy_list((list),NOT_NODES)
+ #define FREE_LIST(list) free_list((list),NOT_NODES)
+--- src/transgen_f.h~	2012-12-14 12:45:42.000000000 +0100
++++ src/transgen_f.h	2024-09-12 11:57:51.752497163 +0200
+@@ -6,6 +6,7 @@
+ int transgen_yyparse(void);
+ 
+ 
++extern PBoolean configure_transgen(FILE *perl_file);
+ extern PBoolean make_transgen(FILE *perl_file);
+ extern PBoolean data_transgen(FILE *perl_file);
+ extern PBoolean superv_transgen(FILE *perl_file);
