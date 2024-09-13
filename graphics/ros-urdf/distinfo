@@ -1,4 +1,5 @@
-SHA1 (ros/urdf/1.13.1.tar.gz) = 77de79c7dd63a067285c9bf5658cce80296f4e2b
-RMD160 (ros/urdf/1.13.1.tar.gz) = 128a45151929c4e59518c73b8fbbcf7b2db42f95
-Size (ros/urdf/1.13.1.tar.gz) = 43326 bytes
+SHA1 (ros/urdf/1.13.2.tar.gz) = 27d4273a8050a29d6e3a92c060fde234dc07c1d6
+RMD160 (ros/urdf/1.13.2.tar.gz) = 7cc422cc7f2d48385c6463e2acf7caa8b31b223e
+Size (ros/urdf/1.13.2.tar.gz) = 43588 bytes
 SHA1 (patch-aa) = 7fca5ae7703552423ee7d93fbec3a59918c61aed
+SHA1 (patch-ab) = a03af379a11e66f4bf1363ea391d18064fcb2ce8

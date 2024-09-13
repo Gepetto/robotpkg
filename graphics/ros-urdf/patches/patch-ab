@@ -1,0 +1,16 @@
+set CMAKE_CXX_STANDARD only if newer than before
+https://github.com/ros/urdf/commit/3819ccca3a9d605c44cd40cd9bcfc50415d2e3a1
+
+--- urdf/CMakeLists.txt~	2020-03-06 20:02:02.000000000 +0100
++++ urdf/CMakeLists.txt	2024-09-13 11:58:06.400766459 +0200
+@@ -22,7 +22,9 @@
+ include_directories("${CATKIN_DEVEL_PREFIX}/include")
+ configure_file(urdfdom_compatibility.h.in "${generated_compat_header}" @ONLY)
+ 
+-set(CMAKE_CXX_STANDARD 14)
++if(NOT DEFINED CMAKE_CXX_STANDARD OR "${CMAKE_CXX_STANDARD}" LESS 14)
++  set(CMAKE_CXX_STANDARD 14)
++endif()
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ 
+ catkin_package(

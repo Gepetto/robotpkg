@@ -4,7 +4,7 @@
 
 ROS_PKG=	urdf
 ROS_METAPKG=	yes
-ROS_VERSION=	1.13.1
+ROS_VERSION=	1.13.2
 
 CATEGORIES=	graphics
 ROS_COMMENT=	C++ parser for the Unified Robot Description Format (URDF)
