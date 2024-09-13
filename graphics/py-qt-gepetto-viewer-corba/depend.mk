@@ -27,6 +27,9 @@ SYSTEM_SEARCH.py-qt-gepetto-viewer-corba=\
   'lib/pkgconfig/gepetto-viewer-corba.pc:/Version/s/[^0-9.]//gp'	\
   'share/gepetto-viewer-corba/package.xml:/<version>/s/[^0-9.]//gp'
 
+# propagate qt requirements
+include ../../graphics/py-qt-gepetto-viewer/depend.mk
+
 include ../../mk/sysdep/python.mk
 include ../../mk/sysdep/qt.mk
 
