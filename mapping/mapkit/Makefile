@@ -11,6 +11,7 @@ MAINTAINER=		openrobots@laas.fr
 COMMENT=		2D, segment-based map building tools
 
 GNU_CONFIGURE=		yes
+CFLAGS+=		-Wno-error=implicit-function-declaration
 
 include ../../devel/mkdep/depend.mk
 include ../../middleware/pocolibs/depend.mk
