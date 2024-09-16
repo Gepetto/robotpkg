@@ -2,7 +2,7 @@
 # Created:			Arnaud Degroote on Mon, 9 Jun 2008
 #
 
-DISTNAME=		segloc-genom-0.3
+DISTNAME=		segloc-genom-0.3.1
 CATEGORIES=		localization
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 
