@@ -2,15 +2,14 @@
 # Created:			Anthony Mallet on Tue, 15 Jul 2008
 #
 
-VERSION=		2.2
+VERSION=		2.2.1
 DISTNAME=		evart-client-${VERSION}
 
 CATEGORIES=		net
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=evart/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}evart-client
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}${PKGBASE}
 
 MAINTAINER=		mallet@laas.fr
-HOMEPAGE=		http://homepages.laas.fr/mallet/soft/mocap/evart-client
 COMMENT=		EVa Real-Time Software data streaming API.
 LICENSE=		2-clause-bsd
 
