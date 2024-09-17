@@ -1,0 +1,24 @@
+Fix -Wincompatible-pointer-types
+
+--- src/examples/srvcore.c~	2001-12-11 01:24:48.000000000 +0100
++++ src/examples/srvcore.c	2024-09-17 18:06:24.815228024 +0200
+@@ -381,7 +381,7 @@
+ 
+     ERRLOG((stderr, "%s(%d): Listening at port %d\n", __FILE__, __LINE__, bindport));
+ 
+-    if ((conn_sd = accept (listen_sd, &address, &address_len)) == INVALID_SOCKET) {
++    if ((conn_sd = accept (listen_sd, (struct sockaddr *)&address, &address_len)) == INVALID_SOCKET) {
+ 	print_errno ("conn_accept");
+ 	return INVALID_SOCKET;
+     }
+--- src/examples/clicore.c~	2001-12-11 01:24:48.000000000 +0100
++++ src/examples/clicore.c	2024-09-17 18:09:21.370203812 +0200
+@@ -323,7 +323,7 @@
+ 	memcpy (&addr.sin_addr, hp->h_addr, hp->h_length);
+ 	addr.sin_port = htons((u_short) port);
+ 	
+-	if (connect (conn_sd, &addr, sizeof(addr)) == 0)
++	if (connect (conn_sd, (struct sockaddr *)&addr, sizeof(addr)) == 0)
+ 	    break;
+ 	print_errno ("connect");
+ 	cli_close (conn_sd);
