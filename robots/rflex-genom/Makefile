@@ -2,14 +2,12 @@
 # Created:			Arnaud Degroote on Mon, 19 May 2008
 #
 
-DISTNAME=		rflex-genom-0.3
+DISTNAME=		rflex-genom-0.3.1
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}irobot-robots/rflex-genom
-PKGREVISION=		1
 
 MAINTAINER=		openrobots@laas.fr
-#HOMEPAGE=
 COMMENT=		GenoM module for rFlex management.
 
 GNU_CONFIGURE=		yes
