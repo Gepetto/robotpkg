@@ -3,13 +3,12 @@
 #
 
 DISTNAME=		rflexclients-${VERSION}
-VERSION=		2.0
+VERSION=		2.0.1
 CATEGORIES=		robots
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}irobot-robots/rflex-clients.git
 
 MAINTAINER=		openrobots@laas.fr
-#HOMEPAGE=
 COMMENT=		Driver and interface for iRobot rFlex
 LICENSE=		isc
 
