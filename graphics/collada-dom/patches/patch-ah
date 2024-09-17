@@ -2,6 +2,14 @@
 
 --- dom/external-libs/minizip-1.1/zip.c~	2011-02-22 04:54:41.000000000 +0100
 +++ dom/external-libs/minizip-1.1/zip.c	2024-09-13 15:09:46.519946644 +0200
+@@ -22,6 +22,7 @@
+ */
+ 
+ 
++#include <stdint.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
 @@ -157,7 +157,7 @@
      ZPOS64_T totalUncompressedData;
  #ifndef NOCRYPT
