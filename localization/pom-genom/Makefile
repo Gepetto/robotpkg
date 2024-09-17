@@ -6,7 +6,7 @@ DISTNAME=		pom-genom-0.7.1
 CATEGORIES=		localization
 
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=pom-genom/}
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS_TRAC}pom-genom
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}pom-genom
 
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		GenoM module for localization management.
