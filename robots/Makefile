@@ -30,7 +30,6 @@ SUBDIR+=	rmp440-genom3
 SUBDIR+=	rmp440-libs
 SUBDIR+=	romeo-description
 SUBDIR+=	rotorcraft-genom3
-SUBDIR+=	scout-genom
 SUBDIR+=	tk3-matlab
 SUBDIR+=	tk3-mikrokopter
 

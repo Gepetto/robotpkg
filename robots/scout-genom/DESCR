@@ -1,3 +1,0 @@
-scout is the Genom module that controls a SuperScout robot from
-Nomadic Technologies. It provides odometry, position and speed controls,
-sonar measurments and battery level monitoring. 
