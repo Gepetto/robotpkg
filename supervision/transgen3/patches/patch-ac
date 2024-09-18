@@ -1,0 +1,13 @@
+Typo
+
+--- genom-oprs/genom-oprs_f.h~	2013-04-15 10:47:37.000000000 +0200
++++ genom-oprs/genom-oprs_f.h	2024-09-18 15:50:40.088864122 +0200
+@@ -6,7 +6,7 @@
+ 			   Encode_Func_Proto encode,
+ 			   Decode_Func_Proto decode);
+ 
+-extern void declare_genom3_poster(char *poster_name, Mod *mod,
++extern void declare_genom3_port(char *poster_name, Mod *mod,
+ 			     const struct genom_port_info *genom_port_info, 
+ 			     Decode_Func_Proto decode);
+ 
