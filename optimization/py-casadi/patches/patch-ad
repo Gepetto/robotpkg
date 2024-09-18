@@ -1,0 +1,14 @@
+Don't install garbage
+
+--- swig/python/CMakeLists.txt~	2024-08-04 12:23:45.000000000 +0200
++++ swig/python/CMakeLists.txt	2024-09-18 17:49:56.630917653 +0200
+@@ -196,8 +196,7 @@
+   DESTINATION "${PYTHON_PREFIX}/casadi"
+   COMPONENT install_python
+   USE_SOURCE_PERMISSIONS
+-  PATTERN .pyc EXCLUDE
+-  PATTERN .svn EXCLUDE
++  FILES_MATCHING PATTERN "*.py"
+ )
+ 
+ # Install Python package initialization

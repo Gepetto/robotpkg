@@ -2,19 +2,13 @@
 # Created:			Guilhem Saurel on Wed, 7 Aug 2019
 #
 
-ORG=			casadi
-NAME=			casadi
-VERSION=		3.5.5
-PKGREVISION=		4
-
-DISTNAME=		${NAME}-${VERSION}
+DISTNAME=		casadi-3.6.6
 PKGNAME=		${PKGTAG.python-}${DISTNAME}
-
-HOMEPAGE=		${MASTER_SITE_GITHUB:=${ORG}/${NAME}}
-MASTER_SITES=		${HOMEPAGE}/archive/${VERSION}/
-MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}${ORG}/${NAME}
+MASTER_SITES=		${MASTER_SITE_GITHUB:=casadi/}
+MASTER_REPOSITORY=	${MASTER_REPOSITORY_GITHUB}casadi/casadi
 CHECKOUT_VCS_OPTS+=	--recursive
 
+HOMEPAGE=		${MASTER_SITES}
 CATEGORIES=		optimization
 COMMENT=		Symbolic framework for numeric optimization
 LICENSE=		gnu-lgpl-v3
@@ -30,12 +24,15 @@ CMAKE_ARGS+=		-DWITH_QPOASES=ON
 CMAKE_ARGS+=		-DWITH_THREAD=ON
 CMAKE_ARGS+=		-DWITH_IPOPT=ON
 
+CMAKE_ARGS+=		-DWITH_BUILD_TINYXML=NO
+
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..
 
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/build
 
+DEPEND_ABI.cmake=	cmake>=3.15
 DEPEND_ABI.swig=	swig>=3
 
 include ../../math/lapack/depend.mk
