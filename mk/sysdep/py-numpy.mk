@@ -16,6 +16,7 @@ DEPEND_USE+=		py-numpy
 DEPEND_ABI.py-numpy?=	${PKGTAG.python-}numpy>=1
 
 SYSTEM_SEARCH.py-numpy=\
+  '${PYTHON_SYSLIBSEARCH}/numpy/core/include/numpy/npy_common.h'	\
   '${PYTHON_SYSLIBSEARCH}/numpy/__init__.py'				\
   '${PYTHON_SYSLIBSEARCH}/numpy/version.py:/^version/s/[^0-9.]//gp'
 
@@ -23,6 +24,8 @@ SYSTEM_PKG.Ubuntu.py-numpy=	python-numpy (python-${PYTHON_VERSION})
 SYSTEM_PKG.RedHat.py-numpy=	python${PYTHON_MAJOR}-numpy
 SYSTEM_PKG.Debian.py-numpy=	python-numpy (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-numpy=	math/${PKGTAG.python-}numpy
+
+export PY_NUMPY_INCLUDE_DIR=$(dir $(word 1,${SYSTEM_FILES.py-numpy}))
 
 include ../../mk/sysdep/python.mk
 
