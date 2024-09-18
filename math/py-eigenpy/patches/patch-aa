@@ -1,0 +1,16 @@
+For some reason, g++-7 has an issue with the 'bp' namespace when also using
+namespace 'eigenpy'.
+
+--- unittest/variant.cpp.in~	2024-02-10 08:25:16.949697000 +0100
++++ unittest/variant.cpp.in	2024-09-18 15:09:15.984424076 +0200
+@@ -57,9 +57,7 @@
+ };
+ 
+ BOOST_PYTHON_MODULE(@MODNAME@) {
+-  using namespace eigenpy;
+-
+-  enableEigenPy();
++  eigenpy::enableEigenPy();
+ 
+   bp::class_<V1>("V1", bp::init<>()).def_readwrite("v", &V1::v);
+   bp::class_<V2>("V2", bp::init<>()).def_readwrite("v", &V2::v);
