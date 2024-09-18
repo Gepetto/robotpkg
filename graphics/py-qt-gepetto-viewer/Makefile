@@ -29,6 +29,7 @@ DYNAMIC_PLIST_DIRS+=	etc/gepetto-gui/pyplugin.conf.d
 include ../../graphics/openscenegraph/depend.mk
 include ../../graphics/py-pythonqt/depend.mk
 include ../../graphics/qt-osgqt/depend.mk
+include ../../graphics/qt-qgv/depend.mk
 include ../../graphics/urdfdom-headers/depend.mk
 include ../../graphics/urdfdom/depend.mk
 include ../../mk/sysdep/ffmpeg.mk
