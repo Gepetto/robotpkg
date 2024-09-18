@@ -1,0 +1,15 @@
+Fix deprecated python function
+
+--- PyKDL/std_string.sip~	2018-03-21 21:48:25.000000000 +0100
++++ PyKDL/std_string.sip	2024-09-18 14:03:51.328102270 +0200
+@@ -48,9 +48,7 @@
+          return 1;
+      }
+      if (PyUnicode_Check(sipPy)) {
+-        PyObject* s = PyUnicode_AsEncodedString(sipPy, "UTF-8", "");
+-        *sipCppPtr = new std::string(PyUnicode_AS_DATA(s));
+-        Py_DECREF(s);
++        *sipCppPtr = new std::string(PyUnicode_AsUTF8(sipPy));
+         return 1;
+      }
+ #if PY_MAJOR_VERSION < 3
