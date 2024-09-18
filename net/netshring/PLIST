@@ -1,4 +1,0 @@
-@comment $Id: PLIST 2007/11/14 12:08:24 mallet $
-include/netshring.h
-lib/libnetshring.la
-lib/pkgconfig/netshring.pc
