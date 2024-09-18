@@ -2,20 +2,17 @@
 # Created:			Anthony Mallet on Mon,  9 Nov 2015
 #
 
-PKGREVISION=	5
+PKGREVISION=	6
 DISTNAME=	genom3-openprs-1.0.9
 CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom3-openprs/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genom3/genom3-openprs
 
 MAINTAINER=	felix@laas.fr
-#HOMEPAGE=	https://homepages.laas.fr/mallet/soft/architecture/genom3
 COMMENT=	GenoM3 template for OpenPRS client
-
 LICENSE=	2-clause-bsd
 
 GNU_CONFIGURE=	yes
-NOT_FOR_PLATFORM=	# empty
 
 # for checkout target
 AUTORECONF_SCRIPT=	${SH}
