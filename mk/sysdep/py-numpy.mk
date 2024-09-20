@@ -25,7 +25,8 @@ SYSTEM_PKG.RedHat.py-numpy=	python${PYTHON_MAJOR}-numpy
 SYSTEM_PKG.Debian.py-numpy=	python-numpy (python-${PYTHON_VERSION})
 SYSTEM_PKG.NetBSD.py-numpy=	math/${PKGTAG.python-}numpy
 
-export PY_NUMPY_INCLUDE_DIR=$(dir $(word 1,${SYSTEM_FILES.py-numpy}))
+export PY_NUMPY_INCLUDE_DIR=\
+  $(patsubst %/numpy/npy_common.h,%,$(word 1,${SYSTEM_FILES.py-numpy}))
 
 include ../../mk/sysdep/python.mk
 
