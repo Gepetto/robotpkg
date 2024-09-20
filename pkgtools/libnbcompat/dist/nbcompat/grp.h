@@ -56,4 +56,9 @@ int gid_from_group(const char *, gid_t *);
 void endgrent(void);
 #endif
 
+#if !HAVE_PWCACHE_GROUPDB
+int pwcache_groupdb(int (*)(int), void (*)(void),
+                    struct group *(*)(const char *), struct group * (*)(gid_t));
+#endif
+
 #endif	/* !_NBCOMPAT_GRP_H_ */

@@ -56,4 +56,10 @@ int uid_from_user(const char *, uid_t *);
 void endpwent(void);
 #endif
 
+#if !HAVE_PWCACHE_USERDB
+int pwcache_userdb(int (*)(int), void (*)(void),
+                   struct passwd * (*)(const char *),
+                   struct passwd * (*)(uid_t));
+#endif
+
 #endif	/* !_NBCOMPAT_PWD_H_ */
