@@ -11,6 +11,7 @@ MASTER_SITES=		${MASTER_SITE_OPENROBOTS}
 MAINTAINER=		openrobots@laas.fr
 COMMENT=		Driver and interface for gyroKVH1000
 LICENSE=		isc
+CONFLICTS+=		gyroKVH5000-[0-9]*
 
 GNU_CONFIGURE=		yes
 CONFIGURE_DIRS=		gyroKVH1000
