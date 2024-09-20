@@ -1,7 +1,0 @@
-@comment Sun Oct 14 10:14:49 CEST 2012
-@comment includes architecture/genom/PLIST.module
-include/${GENOM_MODULE}/${GENOM_MODULE}-struct.h
-share/modules/gen/${GENOM_MODULE}.gen
-${PLIST.noapi}share/${GENOM_MODULE}/sample.dic
-${PLIST.noapi}share/${GENOM_MODULE}/sample.fsg
-${PLIST.noapi}share/${GENOM_MODULE}/strtonum.awk
