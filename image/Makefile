@@ -7,7 +7,6 @@ SUBDIR+=	artoolkitplus
 SUBDIR+=	coriander
 SUBDIR+=	jafar-correl
 SUBDIR+=	jafar-image
-SUBDIR+=	libdc1394-1
 SUBDIR+=	libdc1394
 SUBDIR+=	libimages3d
 SUBDIR+=	libraw1394
