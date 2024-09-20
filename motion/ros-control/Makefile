@@ -4,7 +4,7 @@
 
 PKGNAME=	ros-control-${ROS_VERSION}
 ROS_PKG=	ros_control
-ROS_VERSION=	0.17.0
+ROS_VERSION=	0.20.0
 ROS_REPO=	ros-controls
 ROS_METAPKG=	yes
 

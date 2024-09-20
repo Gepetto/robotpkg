@@ -1,4 +1,4 @@
-@comment Thu Mar 5 12:04:03 CET 2020
+@comment Fri Sep 20 16:53:18 CEST 2024
 include/combined_robot_hw/combined_robot_hw.h
 include/controller_interface/controller.h
 include/controller_interface/controller_base.h
@@ -44,6 +44,7 @@ include/hardware_interface/internal/resource_manager.h
 include/hardware_interface/joint_command_interface.h
 include/hardware_interface/joint_mode_interface.h
 include/hardware_interface/joint_state_interface.h
+include/hardware_interface/position_velocity_torque_gains_command_interface.h
 include/hardware_interface/posvel_command_interface.h
 include/hardware_interface/posvelacc_command_interface.h
 include/hardware_interface/robot_hw.h
@@ -92,10 +93,16 @@ lib/pkgconfig/hardware_interface.pc
 lib/pkgconfig/joint_limits_interface.pc
 lib/pkgconfig/rqt_controller_manager.pc
 lib/pkgconfig/transmission_interface.pc
-${PYTHON_SITELIB}/controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/controller_manager/__init__.py
 ${PYTHON_SITELIB}/controller_manager/controller_manager_interface.py
-${PYTHON_SITELIB}/controller_manager_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/controller_manager_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/controller_manager_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/controller_manager_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/controller_manager_msgs-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/controller_manager_msgs/__init__.py
 ${PYTHON_SITELIB}/controller_manager_msgs/msg/_ControllerState.py
 ${PYTHON_SITELIB}/controller_manager_msgs/msg/_ControllerStatistics.py
@@ -110,10 +117,16 @@ ${PYTHON_SITELIB}/controller_manager_msgs/srv/_SwitchController.py
 ${PYTHON_SITELIB}/controller_manager_msgs/srv/_UnloadController.py
 ${PYTHON_SITELIB}/controller_manager_msgs/srv/__init__.py
 ${PYTHON_SITELIB}/controller_manager_msgs/utils.py
-${PYTHON_SITELIB}/controller_manager_tests-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/controller_manager_tests-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/controller_manager_tests-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/controller_manager_tests-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/controller_manager_tests-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/controller_manager_tests/__init__.py
 ${PYTHON_SITELIB}/controller_manager_tests/controller_manager_dummy.py
-${PYTHON_SITELIB}/rqt_controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info
+${PYTHON_SITELIB}/rqt_controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/PKG-INFO
+${PYTHON_SITELIB}/rqt_controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/SOURCES.txt
+${PYTHON_SITELIB}/rqt_controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/dependency_links.txt
+${PYTHON_SITELIB}/rqt_controller_manager-${PKGVERSION}-py${PYTHON_VERSION}.egg-info/top_level.txt
 ${PYTHON_SITELIB}/rqt_controller_manager/__init__.py
 ${PYTHON_SITELIB}/rqt_controller_manager/controller_manager.py
 ${PYTHON_SITELIB}/rqt_controller_manager/update_combo.py
