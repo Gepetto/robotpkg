@@ -1,0 +1,34 @@
+Fix Tcl_Mutex usage
+
+--- pcap_tcl.c~	2024-09-20 17:59:29.024367558 +0200
++++ pcap_tcl.c	2024-09-20 18:05:26.750968920 +0200
+@@ -1,5 +1,5 @@
+-/* Copyright (c) 2001, Todd J Martin
+- * $Id: pcap_tcl.c 2020/12/03 16:17:55 tho $
++/* Copyright (c) 2001,2024, Todd J Martin
++ * $Id: pcap_tcl.c 2024/09/20 18:05:26 mallet $
+  */
+ #include <stdlib.h>
+ #if HAVE_UNISTD_H
+@@ -60,7 +60,7 @@
+ 	{DLT_FRELAY, "DLT_FRELAY", "Frame Relay"}
+ };
+ 
+-static Tcl_Condition *dumperMutex;
++TCL_DECLARE_MUTEX(dumperMutex);
+ static unsigned int dumpIndex = 0;
+ 
+ /* I want to check and make sure that I am dealing with the correct type of
+@@ -1239,10 +1239,10 @@
+ 	Tcl_AddErrorInfo(interp, "Failed to allocate memory for dumperHashName");
+ 	return TCL_ERROR;
+     }
+-    Tcl_MutexLock(dumperMutex);
++    Tcl_MutexLock(&dumperMutex);
+     dumpIndex++;
+     snprintf(dumperHashName, dumperHashNameLen, "%s-%d", dumpFileName, dumpIndex);
+-    Tcl_MutexUnlock(dumperMutex);
++    Tcl_MutexUnlock(&dumperMutex);
+     hashTable = (Tcl_HashTable *) Tcl_GetAssocData(interp, DUMPERKEY, NULL);
+     dumperHashEntry = Tcl_CreateHashEntry(hashTable, dumperHashName, &new);
+     if (new == 0)
