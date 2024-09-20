@@ -1,4 +1,4 @@
-@comment Wed Jan 30 14:58:37 CET 2019
+@comment Fri Sep 20 17:42:30 CEST 2024
 bin/binvox2bt
 bin/bt2vrml
 bin/compare_octrees
@@ -41,13 +41,14 @@ include/octomap/octomap_types.h
 include/octomap/octomap_utils.h
 lib/liboctomap.a
 lib/liboctomap.so
-lib/liboctomap.so.1.9
+lib/liboctomap.so.1.10
 lib/liboctomap.so.${PKGVERSION}
 lib/liboctomath.a
 lib/liboctomath.so
-lib/liboctomath.so.1.9
+lib/liboctomath.so.1.10
 lib/liboctomath.so.${PKGVERSION}
 lib/pkgconfig/octomap.pc
+share/ament_index/resource_index/packages/octomap
 share/octomap/octomap-config-version.cmake
 share/octomap/octomap-config.cmake
 share/octomap/octomap-targets-release.cmake

@@ -2,7 +2,7 @@
 # Created:			Arnaud Degroote on Wed, 22 May 2013
 #
 
-DISTNAME=	octomap-1.9.6
+DISTNAME=	octomap-1.10.0
 MASTER_SITES=	${MASTER_SITE_GITHUB:=OctoMap/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
