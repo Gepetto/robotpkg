@@ -1,0 +1,10 @@
+Missing declaration
+
+--- wmclient.h~	2011-08-16 15:40:12.000000000 +0200
++++ wmclient.h	2024-09-23 11:45:46.739933687 +0200
+@@ -27,4 +27,4 @@
+ extern int wmvdesk(FILE *, int);
+ extern int wmtrans(FILE *, const char *, double);
+ extern int wmlist(FILE *, char *[], int);
+-
++extern int wmtest(FILE *f, char *cmd);
