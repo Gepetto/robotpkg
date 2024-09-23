@@ -28,6 +28,9 @@ SYSTEM_SEARCH.py-qt-hpp-gepetto-viewer=										\
   'lib/pkgconfig/hpp-gepetto-viewer.pc:/Version/s/[^0-9.]//gp'						\
   'share/hpp-gepetto-viewer/package.xml:/<version>/s/[^0-9.]//gp'
 
+# propagate Qt requirements
+include ../../graphics/py-qt-gepetto-viewer-corba/depend.mk
+
 endif # PY_QT_HPP_GEPETTO_VIEWER_DEPEND_MK ---------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
