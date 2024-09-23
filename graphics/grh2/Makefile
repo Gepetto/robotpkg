@@ -19,6 +19,11 @@ CONFIGURE_ARGS+=--with-tk=$(dir ${TK_CONFIG_SH})
 CONFIGURE_ARGS+=--x-includes=${PREFIX.libX11}/include
 CONFIGURE_ARGS+=--x-libraries=${PREFIX.libX11}/lib
 
+# CPPFLAGS is not quite correct for the following flags, but the package
+# Makefiles overwrite CFLAGS.
+CPPFLAGS+=	-Wno-error=implicit-function-declaration
+CPPFLAGS+=	-Wno-error=incompatible-pointer-types
+
 include ../../devel/mkdep/depend.mk
 include ../../mk/sysdep/tcl.mk
 include ../../mk/sysdep/tk.mk
