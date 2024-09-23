@@ -1,0 +1,12 @@
+Fix -Wimplicit-function-declaration
+
+--- external/opattern.c~	2024-09-23 12:12:40.771569209 +0200
++++ external/opattern.c	2024-09-23 12:15:30.500806000 +0200
+@@ -40,6 +40,7 @@
+ #endif
+ #include "lib.h"
+ #include "dewey.h"
++#include "pkgin.h"
+ 
+ /* pull in definitions and macros for resizing arrays as we go */
+ #include "defs.h"
