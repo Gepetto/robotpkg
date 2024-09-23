@@ -17,7 +17,6 @@ SUBDIR+=	icub-libs
 SUBDIR+=	joystick-genom3
 SUBDIR+=	libftdi
 SUBDIR+=	mccdaqft-genom3
-SUBDIR+=	mouse3d-genom
 SUBDIR+=	openni-sensor
 SUBDIR+=	platine-genom
 SUBDIR+=	py-odri-control-interface
