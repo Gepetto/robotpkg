@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Wed, 25 Aug 2010
 #
 NAME=			velodyne-genom
-VERSION=		1.6
+VERSION=		1.6.1
 CATEGORIES=		hardware
 DISTNAME=		${NAME}-${VERSION}
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=velodyne/}
