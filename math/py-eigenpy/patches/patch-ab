@@ -1,0 +1,14 @@
+Enable required IN_LIST operator
+
+--- cmake/boost/FindBoost.cmake~	2024-02-09 15:20:16.660685300 +0100
++++ cmake/boost/FindBoost.cmake	2024-09-23 15:47:56.786291930 +0200
+@@ -387,6 +387,9 @@
+ if(POLICY CMP0102)
+   cmake_policy(SET CMP0102 NEW) # if mark_as_advanced(non_cache_var)
+ endif()
++if(POLICY CMP0057)
++  cmake_policy(SET CMP0057 NEW)
++endif()
+ 
+ function(_boost_get_existing_target component target_var)
+   set(names "${component}")
