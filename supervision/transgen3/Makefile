@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Mon,  9 Nov 2015
 #
 
-PKGREVISION=	1
-DISTNAME=	transgen3-1.0b5
+DISTNAME=	transgen3-1.0b6
 CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=transgen/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}transgen3
