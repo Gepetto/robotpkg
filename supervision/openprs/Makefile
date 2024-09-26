@@ -1,7 +1,7 @@
 # robotpkg Makefile for:	supervision/openprs
 # Created:			Anthony Mallet on Wed, 17 Oct 2007
 
-DISTNAME=		openprs-1.1b11
+DISTNAME=		openprs-1.1b12
 CATEGORIES=		supervision
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openprs/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}openprs
@@ -12,7 +12,6 @@ COMMENT=		Open Source Procedural Reasoning System
 LICENSE=		2-clause-bsd
 
 MAKE_JOBS_SAFE=		no
-CFLAGS+=		-Wno-error=implicit-function-declaration # too many
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-readline=${PREFIX.readline}
