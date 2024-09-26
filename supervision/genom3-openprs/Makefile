@@ -2,8 +2,7 @@
 # Created:			Anthony Mallet on Mon,  9 Nov 2015
 #
 
-PKGREVISION=	6
-DISTNAME=	genom3-openprs-1.0.9
+DISTNAME=	genom3-openprs-1.0.10
 CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=genom3-openprs/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genom3/genom3-openprs
