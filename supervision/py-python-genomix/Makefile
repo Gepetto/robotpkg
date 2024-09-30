@@ -7,6 +7,7 @@ DISTNAME=	python-genomix-1.1
 CATEGORIES=	supervision
 MASTER_SITES=	${MASTER_SITE_OPENROBOTS:=python-genomix/}
 MASTER_REPOSITORY= ${MASTER_REPOSITORY_OPENROBOTS}genomix/python-genomix
+DISTFILES=	python-genomix-1.1p1.tar.gz
 
 MAINTAINER=	mallet@laas.fr
 HOMEPAGE=	https://git.openrobots.org/projects/python-genomix
