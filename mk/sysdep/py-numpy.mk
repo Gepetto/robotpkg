@@ -16,7 +16,7 @@ DEPEND_USE+=		py-numpy
 DEPEND_ABI.py-numpy?=	${PKGTAG.python-}numpy>=1
 
 SYSTEM_SEARCH.py-numpy=\
-  '${PYTHON_SYSLIBSEARCH}/numpy/core/include/numpy/npy_common.h'	\
+  '${PYTHON_SYSLIBSEARCH}/numpy/{_,}core/include/numpy/npy_common.h'	\
   '${PYTHON_SYSLIBSEARCH}/numpy/__init__.py'				\
   '${PYTHON_SYSLIBSEARCH}/numpy/version.py:/^version/s/[^0-9.]//gp'
 
