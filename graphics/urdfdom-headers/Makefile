@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
-VERSION=	1.0.4
+VERSION=	1.1.2
 DISTNAME=	urdfdom_headers-${VERSION}
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
 PKGNAME=	$(subst _,-,${DISTNAME})
