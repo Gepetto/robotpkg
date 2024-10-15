@@ -30,13 +30,6 @@ SYSTEM_SEARCH.urdfdom=\
 SYSTEM_PKG.Debian.urdfdom=liburdfdom-dev
 SYSTEM_PKG.Fedora.urdfdom=urdfdom-devel
 
-# urdl_parser.h leaks a dependency on tinyxml
-include ../../devel/tinyxml/depend.mk
-
-INCLUDE_DIRS.tinyxml?=	$(dir $(filter %/tinyxml.h,${SYSTEM_FILES.tinyxml}))
-LIBRARY_DIRS.tinyxml?=	$(dir $(filter %/libtinyxml.so,${SYSTEM_FILES.tinyxml}))
-RPATH_DIRS.tinyxml?=	${LIBRARY_DIRS.tinyxml}
-
 endif # URDFDOM_DEPEND_MK --------------------------------------------------
 
 DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}

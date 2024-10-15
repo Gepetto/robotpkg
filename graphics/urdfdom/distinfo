@@ -1,5 +1,3 @@
-SHA1 (urdfdom/1.0.3.tar.gz) = 93ef276acd420445d69421c063452ca91ed12407
-RMD160 (urdfdom/1.0.3.tar.gz) = e8cfc9a41eff627c49bdd2cb54404d2953d7240b
-Size (urdfdom/1.0.3.tar.gz) = 275339 bytes
-SHA1 (patch-ab) = 3976ec0d8187c0912396f535396c691cb834215b
-SHA1 (patch-ac) = bade290c8adc08fa9478f9f7d994765fe0a52e0b
+SHA1 (urdfdom/4.0.1.tar.gz) = 93167bec60b8de0bce7589a59f221ee4eb2fcba4
+RMD160 (urdfdom/4.0.1.tar.gz) = 1bc6d2c9d8d305f6170b9c99cfb8d73a015c5c0c
+Size (urdfdom/4.0.1.tar.gz) = 286938 bytes
