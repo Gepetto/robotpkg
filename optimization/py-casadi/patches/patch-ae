@@ -1,0 +1,279 @@
+Don't install stuff already installed by casadi
+
+--- CMakeLists.txt.orig	2024-09-30 18:31:53.000000000 +0200
++++ CMakeLists.txt	2024-10-15 09:47:23.544737377 +0200
+@@ -394,13 +394,6 @@
+ set(MATLAB_PREFIX ${DEF_MATLAB_PREFIX} CACHE PATH "Installation directory for MATLAB/Octave files")
+ 
+ 
+-install(DIRECTORY "${CMAKE_BINARY_DIR}/external_projects/bin/" OPTIONAL DESTINATION ${LIB_PREFIX})
+-install(DIRECTORY "${CMAKE_BINARY_DIR}/external_projects/lib/" OPTIONAL DESTINATION ${LIB_PREFIX})
+-install(DIRECTORY "${CMAKE_BINARY_DIR}/external_projects/lib64/" OPTIONAL DESTINATION ${LIB_PREFIX})
+-if(CMAKE_CROSS_COMPILING)
+-  install(DIRECTORY ${CMAKE_FIND_ROOT_PATH}/bin/ DESTINATION ${LIB_PREFIX} FILES_MATCHING PATTERN "*${CMAKE_SHARED_LIBRARY_SUFFIX}")
+-endif()
+-
+ # Make relative paths absolute (needed later on)
+ foreach(p LIB BIN INCLUDE CMAKE PYTHON MATLAB)
+   set(var ${p}_PREFIX)
+@@ -894,9 +887,6 @@
+     DEPENDS "${TARGET_LIB}"
+     )
+     set("TARGET_LIB: ${TARGET_LIB}")
+-    install(FILES "${TARGET_LIB}"
+-      DESTINATION ${DEF_LIB_PREFIX}
+-    )
+   endif()
+ endmacro()
+ 
+@@ -1029,9 +1019,6 @@
+     IMPORTED_LOCATION "${CPLEX_ADAPTOR_LIB}"
+     IMPORTED_IMPLIB "${CMAKE_BINARY_DIR}/external_projects/mockups/cplex/lib/${CMAKE_IMPORT_LIBRARY_PREFIX}cplex_adaptor${CMAKE_IMPORT_LIBRARY_SUFFIX}"
+   )
+-  install(FILES
+-  ${CPLEX_ADAPTOR_LIB}
+-  DESTINATION "${LIB_PREFIX}")
+ endif()
+ add_feature_info(cplex-interface WITH_CPLEX "Interface to the QP solver CPLEX.")
+ 
+@@ -1045,9 +1032,6 @@
+     IMPORTED_LOCATION "${GUROBI_ADAPTOR_LIB}"
+     IMPORTED_IMPLIB "${CMAKE_BINARY_DIR}/external_projects/mockups/gurobi/lib/${CMAKE_IMPORT_LIBRARY_PREFIX}gurobi_adaptor${CMAKE_IMPORT_LIBRARY_SUFFIX}"
+   )
+-  install(FILES
+-  ${GUROBI_ADAPTOR_LIB}
+-  DESTINATION "${LIB_PREFIX}")
+ endif()
+ add_feature_info(gurobi-interface WITH_GUROBI "Interface to the (mixed-integer) QP solver GUROBI")
+ 
+@@ -1163,9 +1147,6 @@
+       IMPORTED_IMPLIB "${CMAKE_BINARY_DIR}/external_projects/lib/${CMAKE_IMPORT_LIBRARY_PREFIX}blasfeo${CMAKE_IMPORT_LIBRARY_SUFFIX}"
+     )
+     create_import_library(blasfeo blasfeo)
+-    install(DIRECTORY
+-      "${CMAKE_BINARY_DIR}/external_projects/include/"
+-      DESTINATION "${INCLUDE_PREFIX}")
+   else()
+     #add_library(lapack INTERFACE)
+     #target_link_libraries(lapack INTERFACE ${LAPACK_LIBRARIES})
+@@ -1197,9 +1178,6 @@
+        IMPORTED_IMPLIB "${CMAKE_BINARY_DIR}/external_projects/lib/${CMAKE_IMPORT_LIBRARY_PREFIX}hpipm${CMAKE_IMPORT_LIBRARY_SUFFIX}"
+     )
+     create_import_library(hpipm hpipm)
+-    install(DIRECTORY
+-      "${CMAKE_BINARY_DIR}/external_projects/include/"
+-      DESTINATION "${INCLUDE_PREFIX}")
+   else()
+     #add_library(lapack INTERFACE)
+     #target_link_libraries(lapack INTERFACE ${LAPACK_LIBRARIES})
+@@ -1547,9 +1525,6 @@
+       CMAKE_ARGS ${CMAKE_BLAS_CONFIG} -DCMAKE_INSTALL_RPATH=${CMAKE_INSTALL_RPATH} -DTRLIB_BLAS_LAPACK_UNDERSCORE_SUFFIX=ON -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR> ${CROSS_FLAGS_CMAKE})
+   add_library(trlib INTERFACE)
+   add_dependencies(trlib trlib-external)
+-  install(DIRECTORY
+-    "${CMAKE_BINARY_DIR}/external_projects/include/trlib"
+-    DESTINATION "${INCLUDE_PREFIX}")
+ endif()
+ 
+ if(WITH_IPOPT)
+@@ -1590,9 +1565,6 @@
+       INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_BINARY_DIR}/external_projects/include/coin-or"
+     )
+     create_import_library(ipopt ipopt)
+-    install(DIRECTORY
+-      "${CMAKE_BINARY_DIR}/external_projects/include/coin-or"
+-      DESTINATION "${INCLUDE_PREFIX}")
+   endif()
+ endif()
+ add_feature_info(ipopt-interface WITH_IPOPT "Interface to the NLP solver Ipopt.")
+@@ -1652,9 +1624,6 @@
+        IMPORTED_IMPLIB "${CMAKE_BINARY_DIR}/external_projects/lib/${CMAKE_IMPORT_LIBRARY_PREFIX}highs${CMAKE_IMPORT_LIBRARY_SUFFIX}"
+     )
+     create_import_library(highs highs)
+-    install(DIRECTORY
+-      "${CMAKE_BINARY_DIR}/external_projects/include/highs"
+-      DESTINATION "${INCLUDE_PREFIX}")
+   endif()
+ endif()
+ add_feature_info(highs-interface WITH_HIGHS "Interface to the MILP / QP solver HiGHS.")
+@@ -1679,9 +1648,6 @@
+        IMPORTED_IMPLIB "${CMAKE_BINARY_DIR}/external_projects/lib/${CMAKE_IMPORT_LIBRARY_PREFIX}daqp${CMAKE_IMPORT_LIBRARY_SUFFIX}"
+     )
+     create_import_library(daqp daqp)
+-    install(DIRECTORY
+-      "${CMAKE_BINARY_DIR}/external_projects/include/daqp"
+-      DESTINATION "${INCLUDE_PREFIX}")
+   endif()
+ endif()
+ add_feature_info(daqp-interface WITH_DAQP "Interface to the MILP / QP solver HiGHS.")
+@@ -1728,9 +1694,6 @@
+   add_dependencies(eigen3 eigen3-external)
+   file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/external_projects/include/eigen3")
+   target_include_directories(eigen3 INTERFACE "${CMAKE_BINARY_DIR}/external_projects/include/eigen3")
+-  install(DIRECTORY
+-    "${CMAKE_BINARY_DIR}/external_projects/include/eigen3"
+-    DESTINATION "${INCLUDE_PREFIX}")
+ endif()
+ 
+ if(WITH_ALPAQA)
+@@ -1776,9 +1739,6 @@
+   add_library(Simde INTERFACE)
+   add_dependencies(Simde simde-external)
+   target_include_directories(Simde INTERFACE "${CMAKE_BINARY_DIR}/external_projects/include/simde")
+-  install(DIRECTORY
+-    "${CMAKE_BINARY_DIR}/external_projects/include/simde"
+-    DESTINATION "${INCLUDE_PREFIX}")
+ endif()
+ 
+ if(WITH_PROXQP)
+@@ -1801,9 +1761,6 @@
+     file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/external_projects/include")
+     target_include_directories(proxqp INTERFACE "${CMAKE_BINARY_DIR}/external_projects/include")
+     target_link_libraries(proxqp INTERFACE eigen3)
+-    install(DIRECTORY
+-      "${CMAKE_BINARY_DIR}/external_projects/include/proxsuite"
+-      DESTINATION "${INCLUDE_PREFIX}")
+   endif()
+ endif()
+ add_feature_info(proxqp-interface WITH_PROXQP "Interface to QP solver PROXQP.")
+@@ -1829,9 +1786,6 @@
+        IMPORTED_LOCATION "${CMAKE_BINARY_DIR}/external_projects/${SHARED_LIBRARY_RELDIR}/${CMAKE_SHARED_LIBRARY_PREFIX}osqp${CMAKE_SHARED_LIBRARY_SUFFIX}"
+        IMPORTED_IMPLIB "${CMAKE_BINARY_DIR}/external_projects/lib/${CMAKE_IMPORT_LIBRARY_PREFIX}osqp${CMAKE_IMPORT_LIBRARY_SUFFIX}"
+     )
+-    install(DIRECTORY
+-      "${CMAKE_BINARY_DIR}/external_projects/include/osqp"
+-      DESTINATION "${INCLUDE_PREFIX}")
+       create_import_library(osqp osqp)
+   endif()
+ endif()
+@@ -1865,9 +1819,6 @@
+     set_target_properties(superscs-linsys-indirect PROPERTIES
+        IMPORTED_LOCATION "${CMAKE_BINARY_DIR}/external_projects/lib/${CMAKE_SHARED_LIBRARY_PREFIX}indirect${CMAKE_STATIC_LIBRARY_SUFFIX}"
+     )
+-    install(DIRECTORY
+-      "${CMAKE_BINARY_DIR}/external_projects/include/superscs"
+-      DESTINATION "${INCLUDE_PREFIX}")
+   endif()
+ endif()
+ add_feature_info(superscs-interface WITH_SUPERSCS "Interface to QP solver SUPERSCS.")
+@@ -1915,10 +1866,8 @@
+     foreach(LICENSE_FILE ${LICENSE_FILES_A})
+       # Extract directory from LICENSE_FILE
+       get_filename_component(LICENSE_DIR ${LICENSE_FILE} DIRECTORY)
+-      install(FILES "${DIR}/${LICENSE_FILE}" DESTINATION "${INCLUDE_PREFIX}/licenses/${LICENSE_DIR}")
+     endforeach()
+   endforeach()
+-  install(FILES "${PROJECT_SOURCE_DIR}/LICENSE.txt" DESTINATION "${INCLUDE_PREFIX}/licenses/casadi/LICENSE")
+ endif()
+ 
+ 
+@@ -2030,39 +1979,3 @@
+ if("$ENV{DEFAULT_DOCKCROSS_IMAGE}" MATCHES "manylinux2014" OR "$ENV{DEFAULT_DOCKCROSS_IMAGE}" MATCHES "manylinux1")
+   set(OLD_GCC ON)
+ endif()
+-
+-# Create casadi-config.cmake
+-file(RELATIVE_PATH REL_LIB_PREFIX "${CMAKE_PREFIX}" "${LIB_PREFIX}")
+-# ... for the build tree
+-set(CONF_LIBRARY_DIRS "${LIBRARY_OUTPUT_PATH}")
+-configure_file(casadi-config.cmake.in "${PROJECT_BINARY_DIR}/casadi-config.cmake" @ONLY)
+-# ... for the install tree
+-set(CONF_LIBRARY_DIRS "\${CASADI_CMAKE_DIR}/${REL_LIB_PREFIX}")
+-configure_file(casadi-config.cmake.in
+-  "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/casadi-config.cmake" @ONLY)
+-# Create casadi-config-version.cmake, same for both build and install tree
+-configure_file(casadi-config-version.cmake.in
+-  "${PROJECT_BINARY_DIR}/casadi-config-version.cmake" @ONLY)
+-
+-# Install the casadi-config.cmake and casadi-config-version.cmake
+-install(FILES
+-  "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/casadi-config.cmake"
+-  "${PROJECT_BINARY_DIR}/casadi-config-version.cmake"
+-  DESTINATION "${CMAKE_PREFIX}" COMPONENT dev)
+-
+-# Generate the casadi.pc.in configuration file
+-configure_file(${PROJECT_SOURCE_DIR}/misc/casadi.pc.in
+-  "${PROJECT_BINARY_DIR}/casadi.pc" @ONLY)
+-
+-# Install the casadi.pc
+-install(FILES
+-  "${PROJECT_BINARY_DIR}/casadi.pc"
+-  DESTINATION "${LIB_PREFIX}/pkgconfig" COMPONENT dev)
+-
+-# Install the export set for use with the install-tree
+-file(RELATIVE_PATH REL_CMAKE_PREFIX "${CMAKE_INSTALL_PREFIX}" "${CMAKE_PREFIX}")
+-install(EXPORT casadi-targets DESTINATION ${REL_CMAKE_PREFIX})
+-
+-set(CPACK_PACKAGE_CONTACT "casadi-users@googlegroups.com")
+-set(CPACK_PACKAGE_VERSION ${PACKAGE_VERSION_FULL})
+-include(CPack)
+--- casadi/core/CMakeLists.txt.orig	2024-09-30 18:31:53.000000000 +0200
++++ casadi/core/CMakeLists.txt	2024-10-15 09:53:59.557216443 +0200
+@@ -209,9 +209,6 @@
+ add_executable(casadi-cli casadi_cli.cpp)
+ target_link_libraries(casadi-cli casadi)
+ file(RELATIVE_PATH TREL_BIN_PREFIX "${CMAKE_INSTALL_PREFIX}" "${BIN_PREFIX}")
+-install(TARGETS casadi-cli
+-  RUNTIME DESTINATION ${TREL_BIN_PREFIX}
+-)
+ 
+ # Add the runtime sources to internal (installed separately)
+ set(RUNTIME_SRC)
+@@ -265,18 +262,6 @@
+   add_custom_command(TARGET casadi POST_BUILD
+     COMMAND $ENV{DLLTOOL} --dllname $<TARGET_FILE:casadi> --def "${CMAKE_CURRENT_SOURCE_DIR}/casadi.def" --output-lib casadi.lib
+   )
+-  install(FILES "${CMAKE_CURRENT_BINARY_DIR}/casadi.lib"
+-    DESTINATION ${DEF_LIB_PREFIX}
+-  )
+-endif()
+-
+-install(FILES ${CASADI_PUBLIC} ${CMAKE_CURRENT_BINARY_DIR}/casadi_export.h
+-  DESTINATION ${INCLUDE_PREFIX}/casadi/core
+-)
+-if(INSTALL_INTERNAL_HEADERS)
+-  install(FILES ${CASADI_INTERNAL}
+-    DESTINATION ${INCLUDE_PREFIX}/casadi/core
+-  )
+ endif()
+ 
+ target_compile_definitions(casadi PUBLIC CASADI_SNPRINTF=snprintf)
+--- casadi/CMakeLists.txt.orig	2024-09-30 18:31:53.000000000 +0200
++++ casadi/CMakeLists.txt	2024-10-15 11:39:41.114673364 +0200
+@@ -44,20 +44,8 @@
+   if(NOT "${name}" STREQUAL "casadi")
+     # Not core
+     target_link_libraries(${name} casadi)
+-    install(TARGETS ${name}
+-      LIBRARY DESTINATION ${TREL_LIB_PREFIX}
+-      ARCHIVE DESTINATION ${TREL_LIB_PREFIX}
+-      RUNTIME DESTINATION ${TREL_BIN_PREFIX}
+-    )
+   else()
+     # Core
+-    install(TARGETS ${name}
+-      # IMPORTANT: Add the library to the "export-set"
+-      EXPORT casadi-targets
+-      LIBRARY DESTINATION ${TREL_LIB_PREFIX}
+-      ARCHIVE DESTINATION ${TREL_LIB_PREFIX}
+-      RUNTIME DESTINATION ${TREL_BIN_PREFIX}
+-    )
+   endif()
+ 
+   if(WITH_SO_VERSION)
+@@ -147,5 +135,3 @@
+ 
+   configure_file(config.h.cmake "${CMAKE_CURRENT_BINARY_DIR}/config.h" ESCAPE_QUOTES)
+ endif()
+-install(FILES casadi.hpp mem.h casadi_c.h "${CMAKE_CURRENT_BINARY_DIR}/config.h"
+-        DESTINATION ${INCLUDE_PREFIX}/casadi)
+--- casadi/core/runtime/CMakeLists.txt.orig	2024-09-30 18:31:53.000000000 +0200
++++ casadi/core/runtime/CMakeLists.txt	2024-10-15 12:31:20.449885228 +0200
+@@ -81,7 +81,3 @@
+ set(CASADI_RUNTIME_SRC "${RUNTIME_SRC}" PARENT_SCOPE)
+ 
+ set(EXTRA_CASADI_CXX_FLAGS "${EXTRA_CASADI_CXX_FLAGS} -Wno-conversion")
+-
+-install(FILES casadi_runtime.hpp shared.hpp ${RUNTIME_SRC}
+-  DESTINATION ${INCLUDE_PREFIX}/casadi/core/runtime
+-)
