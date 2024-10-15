@@ -10,13 +10,14 @@ CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics
 HOMEPAGE=		http://${ORG}.github.io/${NAME}/
 
+CMAKE_ARGS+=		-DBUILD_WITH_CASADI_SUPPORT=ON
+CMAKE_ARGS+=		-DBUILD_WITH_COLLISION_SUPPORT=ON
 CMAKE_ARGS+=		-DBUILD_BENCHMARK=OFF
 CMAKE_ARGS+=		-DBUILD_TESTING=OFF
 CMAKE_ARGS+=		-DBUILD_UTILS=OFF
 CMAKE_ARGS+=		-DBUILD_TESTS_WITH_HPP=OFF
 CMAKE_ARGS+=		-DBUILD_PYTHON_INTERFACE=OFF
 CMAKE_ARGS+=		-DINSTALL_DOCUMENTATION=OFF
-CMAKE_ARGS+=		-DBUILD_WITH_COLLISION_SUPPORT=ON
 
 USE_BOOST_LIBS=		system filesystem
 USE_MASTER_GITHUB=	true
@@ -37,6 +38,7 @@ include ../../graphics/urdfdom/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../mapping/octomap/depend.mk
+include ../../optimization/casadi/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../sysutils/console-bridge/depend.mk
 include ../../mk/sysdep/boost-headers.mk

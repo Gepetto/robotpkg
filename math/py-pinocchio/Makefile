@@ -10,7 +10,7 @@ CATEGORIES=		math
 COMMENT=		Efficient rigid body dynamics (python bindings)
 HOMEPAGE=		http://${ORG}.github.io/${NAME}/
 
-#CMAKE_ARGS+=		-DBUILD_WITH_CASADI_SUPPORT=ON
+CMAKE_ARGS+=		-DBUILD_WITH_CASADI_SUPPORT=ON
 CMAKE_ARGS+=		-DBUILD_WITH_COLLISION_SUPPORT=ON
 CMAKE_ARGS+=		-DBUILD_BENCHMARK=OFF
 CMAKE_ARGS+=		-DBUILD_TESTING=OFF
@@ -46,7 +46,7 @@ include ../../math/py-eigenpy/depend.mk
 include ../../path/hpp-fcl/depend.mk
 include ../../path/py-hpp-fcl/depend.mk
 include ../../mapping/octomap/depend.mk
-#include ../../optimization/py-casadi/depend.mk
+include ../../optimization/py-casadi/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/boost-libs.mk

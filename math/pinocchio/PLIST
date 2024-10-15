@@ -435,6 +435,8 @@ lib/cmake/pinocchio/pinocchioConfig.cmake
 lib/cmake/pinocchio/pinocchioConfigVersion.cmake
 lib/cmake/pinocchio/pinocchioTargets-release.cmake
 lib/cmake/pinocchio/pinocchioTargets.cmake
+lib/libpinocchio_casadi.so
+lib/libpinocchio_casadi.so.${PKGVERSION}
 lib/libpinocchio_collision.so
 lib/libpinocchio_collision.so.${PKGVERSION}
 lib/libpinocchio_default.so

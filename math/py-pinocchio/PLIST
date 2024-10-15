@@ -1,11 +1,14 @@
 @comment Wed Feb 19 17:48:17 CET 2020
 ${PYTHON_SITELIB}/pinocchio/__init__.py
+${PYTHON_SITELIB}/pinocchio/casadi/__init__.py
 ${PYTHON_SITELIB}/pinocchio/deprecated.py
 ${PYTHON_SITELIB}/pinocchio/deprecation.py
 ${PYTHON_SITELIB}/pinocchio/derivative/dcrba.py
 ${PYTHON_SITELIB}/pinocchio/derivative/lambdas.py
 ${PYTHON_SITELIB}/pinocchio/derivative/xm.py
 ${PYTHON_SITELIB}/pinocchio/explog.py
+${PYTHON_SITELIB}/pinocchio/pinocchio_pywrap_casadi${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/pinocchio/pinocchio_pywrap_casadi${PYTHON_EXT_SUFFIX}.${PKGVERSION}
 ${PYTHON_SITELIB}/pinocchio/pinocchio_pywrap_default${PYTHON_EXT_SUFFIX}
 ${PYTHON_SITELIB}/pinocchio/pinocchio_pywrap_default${PYTHON_EXT_SUFFIX}.${PKGVERSION}
 ${PYTHON_SITELIB}/pinocchio/robot_wrapper.py
