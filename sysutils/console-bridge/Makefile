@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Thu,  4 Jul 2013
 #
 
-VERSION=	0.4.3
+VERSION=	1.0.2
 DISTNAME=	console_bridge-${VERSION}
 DISTFILES=	${VERSION}${EXTRACT_SUFX}
 PKGNAME=	$(subst _,-,${DISTNAME})
