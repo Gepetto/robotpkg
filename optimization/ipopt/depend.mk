@@ -15,12 +15,12 @@ PREFER.ipopt?=			system
 
 DEPEND_USE+=			ipopt
 
-DEPEND_ABI.ipopt?=		ipopt>=3.11.9
+DEPEND_ABI.ipopt?=		ipopt>=3.11
 DEPEND_DIR.ipopt?=		../../optimization/ipopt
 
 SYSTEM_SEARCH.ipopt=\
-	'include/coin{,-or}/IpoptConfig.h:/IPOPT_VERSION/s/[^0-9.]//gp'	\
-	lib/libipopt.so
+  'include/coin{,-or}/IpoptConfig.h:/IPOPT_VERSION/s/[^0-9.]//gp'	\
+  'lib/libipopt.so'
 
 endif # --------------------------------------------------------------------
 
