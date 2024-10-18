@@ -14,6 +14,9 @@ COMMENT=		Symbolic framework for numeric optimization
 LICENSE=		gnu-lgpl-v3
 MAINTAINER=		gsaurel@laas.fr
 
+CMAKE_ARGS+=\
+  -DWITH_DEEPBIND=$(if $(filter ${OS_KERNEL},Linux),ON,OFF)
+
 CMAKE_ARGS+=		-DPYTHON_PREFIX=${PREFIX}/${PYTHON_SITELIB}
 CMAKE_ARGS+=		-DSWIG_EXECUTABLE=${SWIG}
 CMAKE_ARGS+=		-DWITH_LAPACK=ON
