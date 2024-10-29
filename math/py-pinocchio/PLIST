@@ -1,4 +1,5 @@
 @comment Wed Feb 19 17:48:17 CET 2020
+lib/pkgconfig/pinocchiopy.pc
 ${PYTHON_SITELIB}/pinocchio/__init__.py
 ${PYTHON_SITELIB}/pinocchio/casadi/__init__.py
 ${PYTHON_SITELIB}/pinocchio/deprecated.py
