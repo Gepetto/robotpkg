@@ -22,7 +22,8 @@ endef
 
 SYSTEM_SEARCH.tinyxml2=	\
   'include/{,tinyxml2/}tinyxml2.h:${_tinyxml2vers}'	\
-  'lib/libtinyxml2.{so,a}'
+  'lib/libtinyxml2.{so,a}'				\
+  'lib/pkgconfig/tinyxml2.pc:/Version/s/[^.0-9]//gp'
 
 SYSTEM_PKG.Ubuntu.tinyxml2=libtinyxml2-dev
 SYSTEM_PKG.RedHat.tinyxml2=tinyxml2-devel
