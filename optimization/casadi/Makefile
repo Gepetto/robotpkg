@@ -38,6 +38,7 @@ DEPEND_ABI.cmake=	cmake>=3.15
 include ../../math/lapack/depend.mk
 include ../../optimization/ipopt/depend.mk
 include ../../optimization/qpoases/depend.mk
+include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/sysdep/cmake.mk
 include ../../mk/sysdep/tinyxml2.mk
 include ../../mk/language/c.mk
