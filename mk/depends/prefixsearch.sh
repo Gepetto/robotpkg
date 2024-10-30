@@ -238,6 +238,14 @@ shlibext() {
     ${ECHO} $alt
 }
 
+# Replace `%' character by string $2 in string $1
+percentsub() {
+    case $1 in
+        *%*) percentsub "${1%%%*}$2${1#*%}" "$2";;
+        *) ${ECHO} $1;;
+    esac
+}
+
 # pre-expand abi alternatives, this is used later
 altabis=`bracesubst "$abi"`
 
@@ -294,7 +302,7 @@ for p in `bracesubst $sysprefix`; do
 		done
 		if ${TEST} -z "$match"; then continue; fi
 	    fi
-            display=`echo "${comment:-$match}" | ${SED} -e 's@%@'$match'@g'`
+            display=`percentsub "${comment:-$match}" "$match"`
 
 	    # check file version, if needed
 	    if ${TEST} -z "$spec$cmd$pkgopt"; then
@@ -312,7 +320,7 @@ for p in `bracesubst $sysprefix`; do
 		    version=`${SED} -ne "${spec:-p}" < $match | ${SED} $vrepl`
                 fi
 	    else
-		icmd=`${ECHO} $cmd | ${SED} -e 's@%@'$match'@g'`
+		icmd=`percentsub "$cmd" "$match"`
 		rawversion=`eval $icmd 2>&1 </dev/null` || status=$?
 		version=`echo "$rawversion" | \
                       ${SED} -ne "${spec:-p}" | ${SED} $vrepl` || status=$?
@@ -368,7 +376,7 @@ for p in `bracesubst $sysprefix`; do
 	    for match in `bracesubst $p/$f | sysdirsubst $p`; do
 		for alt in $match `shlibext $match`; do
 		    for alt in $alt `optusr $alt`; do
-                        dis=`echo "${comment:-$alt}" | ${SED} -e 's@%@'$alt'@g'`
+                        dis=`percentsub "${comment:-$alt}" "$alt"`
 			${MSG} "missing:	$dis"
 		    done
 		done
