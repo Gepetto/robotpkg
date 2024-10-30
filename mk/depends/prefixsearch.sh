@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (c) 2008-2014,2018,2020 LAAS/CNRS
+# Copyright (c) 2008-2014,2018,2020,2024 LAAS/CNRS
 # All rights reserved.
 #
 # Redistribution and use  in source  and binary  forms,  with or without
@@ -79,6 +79,17 @@ set -e          # exit on errors
 
 self="${0##*/}"
 
+trap 'atexit $@' EXIT
+atexit() {
+    s=$?
+    ${ECHO} 1>&2 "$0: internal error"
+    ${ECHO} 1>&2 "  pkg=$pkg"
+    ${ECHO} 1>&2 "  abi=$abi"
+    ${ECHO} 1>&2 "  sysprefix=$sysprefix"
+    ${ECHO} 1>&2 "  fspec=$@"
+    exit $s
+}
+
 usage() {
         ${ECHO} 1>&2 "usage: $self [-p paths] pkg abi file [file ... ]"
 }
@@ -102,7 +113,7 @@ while ${TEST} $# -gt 0; do
         --)     shift; break ;;
         -*)     ${ECHO} 1>&2 "$self: unknown option -- ${1#-}"
                 usage
-                exit 1
+                trap - EXIT; exit 1
                 ;;
         *)      break ;;
     esac
@@ -120,7 +131,7 @@ fi
 
 
 # Process required arguments
-${TEST} $# -gt 2 || { usage; exit 1; }
+${TEST} $# -gt 2 || { usage; trap - EXIT; exit 1; }
 pkg="$1"; shift
 abi="$1"; shift
 
@@ -419,10 +430,10 @@ if ${TEST} -n "$prefix"; then
         ${ECHO} >&3 "PKGVERSION.$pkg:=$result"
         ${ECHO} >&3 "SYSTEM_FILES.$pkg:=$flist"
     } 2>&- ||:
-    exit 0
+    trap - EXIT; exit 0
 fi
 
-# If an error occured, print it
+# print a human readble message with the errors that occured
 if ${TEST} $errors = yes; then
     if ${TEST} -n "$pkgdesc"; then
 	${ERROR_MSG} 1>&2 "Missing $type package $pkgdesc:"
@@ -451,4 +462,5 @@ if ${TEST} $errors = yes; then
     ${ERROR_MSG} 1>&2
 fi
 
-exit 2
+# exit failure otherwise
+trap - EXIT; exit 2
