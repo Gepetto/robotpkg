@@ -241,8 +241,8 @@ shlibext() {
 # Replace `%' character by string $2 in string $1
 percentsub() {
     case $1 in
-        *%*) percentsub "${1%%%*}$2${1#*%}" "$2";;
-        *) ${ECHO} $1;;
+        *%*) percentsub "${1#*%}" "$2" "$3${1%%%*}$2";;
+        *) echo "$3$1";;
     esac
 }
 
