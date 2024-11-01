@@ -3,7 +3,7 @@
 #
 
 ROS_PKG=	catkin_pkg
-ROS_VERSION=	0.5.2
+ROS_VERSION=	1.0.0
 ROS_REPO=	ros-infrastructure
 PKGNAME=	${PKGTAG.python}-$(subst _,-,${ROS_PKG})-${ROS_VERSION}
 
