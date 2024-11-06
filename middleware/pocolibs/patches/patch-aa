@@ -1,0 +1,202 @@
+Update compile-time test for working posix timers
+
+There is an issue spotted on ubuntu-22.04 and 24.04, as well as other
+distributions, that affects posix timer signal delivrery. It is easily
+triggered by spawning and terminating threads quickly while the timer is
+running. At some point, the timer signal will stop being delivered.
+Inspecting the timer with timer_gettime(2) shows it still counting,
+reconfiguring the timer with timer_settime(2) makes it work again and
+manually sending the timer signal also always work.
+
+This seems to affect kernels from 6.4 to 6.11 inclusive, i.e. only 6.3 and
+earlier are immune to the issue at this time.
+
+In practice, this issue is triggering in existing sofware doing some
+aio(7) work and thus involving thread creation/destruction. So a new test is
+added in configure script to (hopefully) detect the issue at compile time and
+disable the use of posix timers in favor of setitimer(2).
+
+This is from upstream commit 67c2eed67, but here configure script is patched
+directly to avoid the burden of autoreconf et al.
+
+--- configure~	2024-08-05 18:13:57.000000000 +0200
++++ configure	2024-11-06 18:44:30.587710075 +0100
+@@ -13241,72 +13241,124 @@
+ else
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
++/* Public domain - Anthony Mallet on Mon Nov  4 2024 */
+ 
+-#include <sys/time.h>
++#include <err.h>
++#include <errno.h>
++#include <pthread.h>
+ #include <signal.h>
++#include <stdint.h>
+ #include <stdio.h>
+-#include <stdlib.h>
+ #include <time.h>
+ 
+-static volatile int done = 0;
+-static void timerInt(int sig) { done++; }
++static volatile int ticks;
+ 
+-static long
+-time_difference(struct timeval *t1, struct timeval *t2)
++/* SIGALRM handler */
++void
++tick(int arg)
+ {
+-	long usec_diff = t1->tv_usec - t2->tv_usec, retenue = 0;
++  (void)arg; /* unused */
+ 
+-	if (usec_diff < 0) {
+-		usec_diff = 1000000 + usec_diff;
+-		retenue = 1;
+-	}
+-	return (t1->tv_sec - t2->tv_sec - retenue)*1000000 + usec_diff;
++  /* global counter - even if access is not atomic, we don't care here as the
++   * exact value is not used, only the fact that the value changes is relevant
++   */
++  ticks++;
++}
++
++/* thread forking thread */
++void *
++thr(void *arg)
++{
++  pthread_attr_t attr;
++  pthread_t t;
++  (void)arg; /* unused */
++
++  /* spwan a new thread in detached state so that we don't grow too much */
++  pthread_attr_init(&attr);
++  pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
++  if (pthread_create(&t, &attr, thr, NULL))
++    err(2, "pthread_create");
++
++  return NULL;
+ }
+ 
+ int
+-main(int argc, char *argv)
++main()
+ {
+-	timer_t t;
+-	struct itimerspec tv;
+-	sigset_t sigset;
+-	struct sigaction act;
+-	struct timeval tp1, tp2;
+-
+-	sigemptyset(&sigset);
+-	sigaddset(&sigset, SIGALRM);
+-	if (sigprocmask(SIG_UNBLOCK, &sigset, NULL) == -1) {
+-		perror("sigprocmask");
+-		exit(2);
+-	}
+-	act.sa_handler = timerInt;
+-	sigemptyset(&act.sa_mask);
+-	act.sa_flags = 0;
+-	if (sigaction(SIGALRM, &act, NULL) == -1) {
+-		perror("sigaction");
+-		exit(2);
+-	}
+-	if (timer_create(CLOCK_REALTIME, NULL, &t) == -1) {
+-		perror("timer_create");
+-		exit(2);
+-	}
+-	tv.it_interval.tv_nsec = 10000000;
+-	tv.it_interval.tv_sec = 0;
+-	tv.it_value.tv_nsec = 10000000;
+-	tv.it_value.tv_sec = 0;
+-	if (timer_settime(t, 0, &tv, NULL) == -1) {
+-		perror("timer_settime");
+-		exit(2);
+-	}
+-	gettimeofday(&tp1, NULL);
+-	while (done < 100)
+-		;
+-	gettimeofday(&tp2, NULL);
+-	if (time_difference(&tp2, &tp1) < 1200000)
+-		exit(0);
+-	else {
+-		fprintf(stderr, "no able to generate 100 ticks/s\n");
+-		exit(2);
+-	}
++  int hz = 1000; /* 1kHz timer - the higher, the faster the issue happens */
++
++  struct sigaction act;
++  struct itimerspec tv;
++  struct timespec pts, ts, rem;
++  sigset_t sigset;
++  timer_t timer;
++  int i, c1, c2;
++
++  /* SIGALRM handler */
++  act.sa_handler = tick;
++  sigemptyset(&act.sa_mask);
++  act.sa_flags = 0;
++  if (sigaction(SIGALRM, &act, NULL) == -1)
++    err(2, "sigaction");
++
++  sigemptyset(&sigset);
++  sigaddset(&sigset, SIGALRM);
++  if (pthread_sigmask(SIG_UNBLOCK, &sigset, NULL) == -1)
++    err(2, "pthread_sigmask");
++
++
++  /* SIGALRM timer at 'hz' frequency */
++  if (timer_create(CLOCK_REALTIME, NULL, &timer) == -1)
++    err(2, "timer_create");
++
++  tv.it_interval.tv_nsec = 1000000000/hz;
++  tv.it_interval.tv_sec = 0;
++  tv.it_value = tv.it_interval;
++
++
++  /* thread forking threads - this is an issue spotted on ubuntu-22.04 and
++   * 24.04, as well as other architectures, that affects timer signal
++   * delivrery. This seems to affect kernels from 6.4 to 6.11 inclusive. */
++  thr(NULL);
++
++
++  /* start timer */
++  if (timer_settime(timer, 0, &tv, NULL) == -1)
++    err(2, "timer_settime");
++
++  /* 100 periods delay */
++  pts.tv_sec = 0;
++  pts.tv_nsec = tv.it_interval.tv_nsec * 100; /* 100ms */
++  while(pts.tv_nsec >= 1000000000) {
++    pts.tv_nsec -= 1000000000;
++    pts.tv_sec++;
++  }
++  /* for 1s */
++  for (i = 0; i < 10; i++) {
++    ts = pts;
++    c1 = ticks;
++    while (nanosleep(&ts, &rem) != 0 && errno == EINTR) ts = rem;
++    c2 = ticks;
++
++    if (c1 == c2) {
++      /* the counter is stuck, SIGALRM not firing anymore */
++      fprintf(stderr, "SIGALRM issue after %d ticks\n", c1);
++      return 2;
++
++      /* just resetting the timer at this point makes it work again: */
++      /* if (timer_settime(timer, 0, &tv, NULL) == -1) */
++      /*   err(2, "timer_settime"); */
++      /* but the issue will trigger again after some time */
++
++      /* also note that timer_gettime(timer, &tv) will show both correct
++       * tv.it_interval and tv.it_value changing normally */
++
++      /* manually sending SIGALRM also still works: */
++      /* raise(SIGALRM); */
++    }
++  }
++
++  return 0;
+ }
+ 
+ _ACEOF
