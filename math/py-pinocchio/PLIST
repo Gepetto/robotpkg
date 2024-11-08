@@ -1,5 +1,4 @@
 @comment Wed Feb 19 17:48:17 CET 2020
-lib/pkgconfig/pinocchiopy.pc
 ${PYTHON_SITELIB}/pinocchio/__init__.py
 ${PYTHON_SITELIB}/pinocchio/casadi/__init__.py
 ${PYTHON_SITELIB}/pinocchio/deprecated.py
@@ -22,4 +21,5 @@ ${PYTHON_SITELIB}/pinocchio/visualize/gepetto_visualizer.py
 ${PYTHON_SITELIB}/pinocchio/visualize/meshcat_visualizer.py
 ${PYTHON_SITELIB}/pinocchio/visualize/panda3d_visualizer.py
 ${PYTHON_SITELIB}/pinocchio/visualize/rviz_visualizer.py
+${PYTHON_SITELIB}/pinocchio/visualize/visualizers.py
 ${PYTHON_SITELIB}/pinocchio/windows_dll_manager.py

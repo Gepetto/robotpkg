@@ -30,3 +30,20 @@ Don't install files already installed by pinocchio
 -        DESTINATION share/${PROJECT_NAME}/hook)
 -
  setup_project_finalize()
+--- bindings/python/CMakeLists.txt.orig	2024-11-06 15:13:21.000000000 +0100
++++ bindings/python/CMakeLists.txt	2024-11-08 12:38:28.368329997 +0100
+@@ -290,14 +290,6 @@
+     set(_PKG_CONFIG_PYWRAP_CFLAGS "${_PKG_CONFIG_PYWRAP_CFLAGS} ${cflags}")
+   endforeach()
+ 
+-  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/pinocchiopy.pc.cmake"
+-                 "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc")
+-
+-  install(
+-    FILES "${CMAKE_CURRENT_BINARY_DIR}/pinocchiopy.pc"
+-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+-    PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE)
+-
+   if(DOXYGEN_FOUND AND DOXYGEN_VERSION VERSION_GREATER 1.8.17)
+     set(DOXYGEN_GENERATE_HTML YES)
+     set(DOXYGEN_GENERATE_LATEX NO)

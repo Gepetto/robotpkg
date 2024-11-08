@@ -201,6 +201,7 @@ include/pinocchio/bindings/python/utils/eigen.hpp
 include/pinocchio/bindings/python/utils/list.hpp
 include/pinocchio/bindings/python/utils/macros.hpp
 include/pinocchio/bindings/python/utils/namespace.hpp
+include/pinocchio/bindings/python/utils/path.hpp
 include/pinocchio/bindings/python/utils/pickle-map.hpp
 include/pinocchio/bindings/python/utils/pickle-vector.hpp
 include/pinocchio/bindings/python/utils/pickle.hpp
