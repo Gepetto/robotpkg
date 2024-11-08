@@ -2,6 +2,7 @@
 # Created:			Florent Lamiraux on Sat, 7 Mar 2015
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-manipulation-corba
 HPP_COMMENT=		CORBA interface for hpp-manipulation
 
