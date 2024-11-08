@@ -1,0 +1,41 @@
+Replace LINK_FLAG target property set from <prefix>_LDFLAGS by a proper
+target_link_libraries() using <prefix>_LINK_LIBRARIES for pkg-config
+dependencies. Otherwise, the full path of the linked library may not be
+preserved (-L linker flag in INTERFACE_LINK_LIBRARIES mysteriously disappear when
+using imported targets). Using LDFLAGS is also depend on the linker path order,
+so this is not robust anyway.
+
+Still append <prefix>_LDFLAGS_OTHER to LINK_FLAGS, as this may contain e.g. a
+required linker rpath.
+
+--- cmake/pkg-config.cmake~	2024-10-08 00:19:41.000000000 +0200
++++ cmake/pkg-config.cmake	2024-11-08 17:14:01.580195312 +0100
+@@ -992,13 +992,12 @@
+   endif()
+ 
+   # Transform semi-colon seperated list in to space separated list.
+-  foreach(FLAG ${${PREFIX}_LDFLAGS})
++  foreach(FLAG ${${PREFIX}_LDFLAGS_OTHER})
+     set(LDFLAGS "${LDFLAGS} ${FLAG}")
+   endforeach()
+ 
+   # Update the flags.
+   set_target_properties(${TARGET} PROPERTIES LINK_FLAGS${CONFIG} "${LDFLAGS}")
+-  _filter_link_flags(${TARGET} ${IS_GENERAL} ${IS_DEBUG} "${${PREFIX}_LDFLAGS}")
+   _filter_link_flags(${TARGET} ${IS_GENERAL} ${IS_DEBUG}
+                      "${${PREFIX}_LDFLAGS_OTHER}")
+ endmacro(
+@@ -1046,12 +1046,7 @@
+     endif()
+   endif()
+ 
+-  # Include/libraries paths seems to be filtered on Linux, add paths again.
+-  link_directories(${${PREFIX}_LIBRARY_DIRS})
+-  if(DEFINED ${PREFIX}_DEBUG_FOUND)
+-    link_directories(${${PREFIX}_DEBUG_LIBRARY_DIRS})
+-  endif()
+-
++  target_link_libraries(${TARGET} ${PUBLIC_KEYWORD} ${${PREFIX}_LINK_LIBRARIES})
+ endmacro(PKG_CONFIG_USE_LLINK_DEPENDENCY)
+ 
+ macro(BUILD_PREFIX_FOR_PKG DEPENDENCY PREFIX)
