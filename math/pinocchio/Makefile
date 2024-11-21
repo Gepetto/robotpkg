@@ -2,6 +2,7 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
+PKGREVISION=		1
 ORG=			stack-of-tasks
 NAME=			pinocchio
 VERSION=		3.2.0
@@ -36,7 +37,7 @@ endif
 
 include ../../graphics/urdfdom/depend.mk
 include ../../math/eigen3/depend.mk
-include ../../path/hpp-fcl/depend.mk
+include ../../path/coal/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../optimization/casadi/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

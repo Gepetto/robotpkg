@@ -32,4 +32,4 @@ DEPEND_DEPTH:=		${DEPEND_DEPTH:+=}
 # pulled by the package public headers
 include ../../graphics/urdfdom/depend.mk
 include ../../math/eigen3/depend.mk
-include ../../path/hpp-fcl/depend.mk
+include ../../path/coal/depend.mk

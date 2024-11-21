@@ -1,25 +1,25 @@
-# robotpkg Makefile for:	path/hpp-fcl
+# robotpkg Makefile for:	path/coal
 # Created:			Florent Lamiraux on Sat, 7 Mar 2015
 #
 
-HPP_PACKAGE=		hpp-fcl
-HPP_VERSION=		2.4.5
+ORG=			coal-library
+NAME=			coal
+VERSION=		3.0.0
 
 CATEGORIES=		path
-HPP_COMMENT=		collision detection and distance computations
+COMMENT=		collision detection and distance computations
 LICENSE=		2-clause-bsd
-
-CONFLICTS+=		hpp-fcl04-[0-9]*
-
-include ../../meta-pkgs/hpp/Makefile.common
+CONFLICTS+=		hpp-fcl-[0-9]*
 
 USE_BOOST_LIBS= thread date_time system filesystem unit_test_framework chrono
+USE_MASTER_GITHUB=	true
 
 # boost-1.47.0 has -Wconversion warnings in date_time/posix_time/posix_time.hpp
 CMAKE_ARGS+=		-DCXX_DISABLE_WERROR=yes
 CMAKE_ARGS+=		-DBUILD_PYTHON_INTERFACE=OFF
+CMAKE_ARGS+=		-DCOAL_BACKWARD_COMPATIBILITY_WITH_HPP_FCL=ON
 
-DEPEND_ABI.cmake+=	cmake>=3.10
+include ../../devel/jrl-cmakemodules/Makefile.common
 
 include ../../mk/robotpkg.prefs.mk
 ifeq (,$(filter Ubuntu-16.04 Debian-9,${OPSYS}-${OS_VERSION}))
@@ -34,6 +34,7 @@ include ../../math/eigen3/depend.mk
 include ../../mk/sysdep/assimp.mk
 include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/boost-libs.mk
+include ../../mk/sysdep/cmake.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk
 include ../../mk/robotpkg.mk

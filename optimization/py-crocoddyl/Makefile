@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Tue, 14 Apr 2020
 #
 
+PKGREVISION=		1
 ORG=			loco-3d
 NAME=			crocoddyl
 VERSION=		2.1.0
@@ -29,7 +30,7 @@ include ../../math/pinocchio/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../math/py-pinocchio/depend.mk
 include ../../optimization/ipopt/depend.mk
-include ../../path/hpp-fcl/depend.mk
+include ../../path/coal/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../robots/example-robot-data/depend.mk
 include ../../robots/py-example-robot-data/depend.mk

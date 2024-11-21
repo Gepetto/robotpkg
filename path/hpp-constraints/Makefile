@@ -2,6 +2,7 @@
 # Created:			Antonio El Khoury on Thu, 26 Sep 2013
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-constraints
 HPP_COMMENT=		Define non-linear constraints on robot configurations
 
@@ -19,7 +20,7 @@ include ../../math/eigen3/depend.mk
 include ../../math/hpp-pinocchio/depend.mk
 include ../../math/pinocchio/depend.mk
 include ../../optimization/qpoases/depend.mk
-include ../../path/hpp-fcl/depend.mk
+include ../../path/coal/depend.mk
 include ../../path/hpp-statistics/depend.mk
 include ../../mk/language/c.mk
 include ../../mk/language/c++.mk

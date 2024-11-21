@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Wed, 21 Apr 2021
 #
 
+PKGREVISION=		1
 HPP_PACKAGE=		hpp-affordance-corba
 HPP_COMMENT=		Extract Whole-Body Affordances for Mutli-Contact Planning (CORBA bindings)
 
@@ -21,7 +22,7 @@ include ../../middleware/py-omniORBpy/depend.mk
 include ../../path/hpp-constraints/depend.mk
 include ../../path/hpp-core/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
-include ../../path/hpp-fcl/depend.mk
+include ../../path/coal/depend.mk
 include ../../path/hpp-util/depend.mk
 include ../../mapping/octomap/depend.mk
 

@@ -2,6 +2,7 @@
 # Created:			Olivier Stasse on Thu, 4 Feb 2016
 #
 
+PKGREVISION=		1
 ORG=			stack-of-tasks
 NAME=			pinocchio
 VERSION=		3.2.0
@@ -43,8 +44,8 @@ endif
 
 include ../../math/pinocchio/depend.mk
 include ../../math/py-eigenpy/depend.mk
-include ../../path/hpp-fcl/depend.mk
-include ../../path/py-hpp-fcl/depend.mk
+include ../../path/coal/depend.mk
+include ../../path/py-coal/depend.mk
 include ../../mapping/octomap/depend.mk
 include ../../optimization/py-casadi/depend.mk
 include ../../pkgtools/pkg-config/depend.mk

@@ -1,20 +1,19 @@
-Don't install files already installed by hpp-fcl
+Don't install files already installed by coal
 
---- CMakeLists.txt.orig	2024-03-06 18:02:09.000000000 +0100
-+++ CMakeLists.txt	2024-03-12 14:59:02.347555230 +0100
+--- CMakeLists.txt.orig	2024-11-20 14:19:37.000000000 +0100
++++ CMakeLists.txt	2024-11-21 11:17:32.799174093 +0100
 @@ -39,7 +39,6 @@
  set(PROJECT_DESCRIPTION
-   "HPP fork of FCL -- The Flexible Collision Library"
+   "Coal, The Collision Detection Library. Previously known as HPP-FCL, fork of FCL -- The Flexible Collision Library"
    )
 -SET(PROJECT_USE_CMAKE_EXPORT TRUE)
  SET(PROJECT_COMPATIBILITY_VERSION AnyNewerVersion)
+ # To enable jrl-cmakemodules compatibility with workspace we must define the two
+ # following lines
+@@ -472,16 +471,6 @@
+     "-DCOAL_HAS_OCTOMAP -DCOAL_HAVE_OCTOMAP -DFCL_HAVE_OCTOMAP -DOCTOMAP_MAJOR_VERSION=${OCTOMAP_MAJOR_VERSION} -DOCTOMAP_MINOR_VERSION=${OCTOMAP_MINOR_VERSION} -DOCTOMAP_PATCH_VERSION=${OCTOMAP_PATCH_VERSION}")
+ ENDIF(COAL_HAS_OCTOMAP)
  
- SET(PROJECT_USE_KEYWORD_LINK_LIBRARIES TRUE)
-@@ -297,13 +296,3 @@
-   PKG_CONFIG_APPEND_CFLAGS(
-     "-DHPP_FCL_HAS_OCTOMAP -DHPP_FCL_HAVE_OCTOMAP -DFCL_HAVE_OCTOMAP -DOCTOMAP_MAJOR_VERSION=${OCTOMAP_MAJOR_VERSION} -DOCTOMAP_MINOR_VERSION=${OCTOMAP_MINOR_VERSION} -DOCTOMAP_PATCH_VERSION=${OCTOMAP_PATCH_VERSION}")
- ENDIF(HPP_FCL_HAS_OCTOMAP)
--
 -# Install catkin package.xml
 -INSTALL(FILES package.xml DESTINATION share/${PROJECT_NAME})
 -# Allows Colcon to find non-Ament packages when using workspace underlays
@@ -24,9 +23,13 @@ Don't install files already installed by hpp-fcl
 -install(FILES ${CMAKE_CURRENT_BINARY_DIR}/share/${PROJECT_NAME}/hook/ament_prefix_path.dsv DESTINATION share/${PROJECT_NAME}/hook)
 -file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/share/${PROJECT_NAME}/hook/python_path.dsv "prepend-non-duplicate;PYTHONPATH;${PYTHON_SITELIB}")
 -install(FILES ${CMAKE_CURRENT_BINARY_DIR}/share/${PROJECT_NAME}/hook/python_path.dsv DESTINATION share/${PROJECT_NAME}/hook)
---- src/CMakeLists.txt.orig	2024-03-06 18:02:09.000000000 +0100
-+++ src/CMakeLists.txt	2024-03-12 14:59:38.130788867 +0100
-@@ -234,11 +234,3 @@
+-
+ if(COAL_BACKWARD_COMPATIBILITY_WITH_HPP_FCL)
+   include(CMakePackageConfigHelpers)
+   write_basic_package_version_file(hpp-fclConfigVersion.cmake
+--- src/CMakeLists.txt.orig	2024-11-20 14:19:37.000000000 +0100
++++ src/CMakeLists.txt	2024-11-21 11:18:09.208970627 +0100
+@@ -278,11 +278,3 @@
      -DOCTOMAP_MINOR_VERSION=${OCTOMAP_MINOR_VERSION}
      -DOCTOMAP_PATCH_VERSION=${OCTOMAP_PATCH_VERSION})
  ENDIF(octomap_FOUND)

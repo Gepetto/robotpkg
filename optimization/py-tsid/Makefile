@@ -2,6 +2,7 @@
 # Created:			Guilhem Saurel on Tue, 14 Apr 2020
 #
 
+PKGREVISION=		1
 ORG=			stack-of-tasks
 NAME=			tsid
 VERSION=		1.7.1
@@ -26,7 +27,7 @@ include ../../math/pinocchio/depend.mk
 include ../../math/py-eigenpy/depend.mk
 include ../../math/py-pinocchio/depend.mk
 include ../../optimization/tsid/depend.mk
-include ../../path/hpp-fcl/depend.mk
+include ../../path/coal/depend.mk
 include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk

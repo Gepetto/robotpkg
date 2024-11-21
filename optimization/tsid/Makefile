@@ -2,6 +2,7 @@
 # Created:			Justin Carpentier on Tue, 14 Apr 2020
 #
 
+PKGREVISION=		1
 ORG=			stack-of-tasks
 NAME=			tsid
 VERSION=		1.7.1
@@ -20,7 +21,7 @@ include ../../mapping/octomap/depend.mk
 include ../../math/eigen3/depend.mk
 include ../../math/eiquadprog/depend.mk
 include ../../math/pinocchio/depend.mk
-include ../../path/hpp-fcl/depend.mk
+include ../../path/coal/depend.mk
 include ../../mk/sysdep/boost-headers.mk
 include ../../mk/sysdep/boost-libs.mk
 include ../../mk/sysdep/cmake.mk

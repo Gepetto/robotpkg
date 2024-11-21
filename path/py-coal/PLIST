@@ -1,0 +1,7 @@
+@comment Thu Nov 21 11:29:06 CET 2024
+${PYTHON_SITELIB}/coal/__init__.py
+${PYTHON_SITELIB}/coal/coal_pywrap${PYTHON_EXT_SUFFIX}
+${PYTHON_SITELIB}/coal/viewer.py
+${PYTHON_SITELIB}/coal/windows_dll_manager.py
+${PYTHON_SITELIB}/hppfcl/__init__.py
+${PYTHON_SITELIB}/hppfcl/viewer.py
