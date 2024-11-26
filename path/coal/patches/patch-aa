@@ -1,0 +1,22 @@
+Need to export octomap header and libraries path to dependent packages, in case
+octomap is installed in a non-standard location (e.g. /opt/ros). Dependent
+packages use cmake targets, and the only way to have a correct target file is
+to use target_link_libs and target_include_dirs. Otherwise, the header path
+and libraries path is missing (only -loctomap is given), for an unknown
+reason, thus risking to link with the wrong octomap version.
+
+--- src/CMakeLists.txt~	2024-11-20 14:19:37.000000000 +0100
++++ src/CMakeLists.txt	2024-11-26 14:50:59.093379157 +0100
+@@ -267,10 +266,8 @@
+   )
+ 
+ IF(octomap_FOUND)
+-  MODERNIZE_TARGET_LINK_LIBRARIES(${PROJECT_NAME} SCOPE PUBLIC
+-    TARGETS octomap
+-    LIBRARIES ${OCTOMAP_LIBRARIES}
+-    INCLUDE_DIRS ${OCTOMAP_INCLUDE_DIRS})
++  target_link_libraries (${LIBRARY_NAME} PUBLIC ${OCTOMAP_LIBRARIES})
++  target_include_directories (${LIBRARY_NAME} PUBLIC ${OCTOMAP_INCLUDE_DIRS})
+   target_compile_definitions (${LIBRARY_NAME} PUBLIC
+     -DCOAL_HAS_OCTOMAP
+     -DCOAL_HAVE_OCTOMAP
