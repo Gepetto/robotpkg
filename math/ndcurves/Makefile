@@ -4,7 +4,7 @@
 
 ORG=			loco-3d
 NAME=			ndcurves
-VERSION=		1.4.1
+VERSION=		2.0.0
 
 CATEGORIES=		math
 COMMENT=		Library for creating curves
