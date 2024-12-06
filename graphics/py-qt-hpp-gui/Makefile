@@ -19,6 +19,8 @@ include ../../meta-pkgs/hpp/Makefile.common
 CMAKE_ARGS+=\
   -DUSE_QT4=$(if $(filter qt4,${PKG_ALTERNATIVE.qt}),TRUE,FALSE)
 
+CMAKE_ARGS+=		-DBUILD_COAL_PLUGIN=ON
+
 # Qt4 requires qmake
 include ../../mk/sysdep/qt.mk
 define PKG_ALTERNATIVE_SET.qt4 +=
@@ -28,6 +30,8 @@ define PKG_ALTERNATIVE_SET.qt4 +=
 endef
 
 include ../../graphics/py-qt-gepetto-viewer-corba/depend.mk
+include ../../path/coal/depend.mk
+include ../../path/py-coal/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../path/py-hpp-manipulation-corba/depend.mk
 include ../../mk/sysdep/boost-headers.mk

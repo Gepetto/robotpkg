@@ -8,7 +8,7 @@ lib/cmake/hpp-gui/cxx-standard.cmake
 lib/cmake/hpp-gui/hpp-guiConfig.cmake
 lib/cmake/hpp-gui/hpp-guiConfigVersion.cmake
 lib/cmake/hpp-gui/hpp-guiTargets.cmake
-lib/gepetto-gui-plugins/hppfclplugin.so
+lib/gepetto-gui-plugins/coalplugin.so
 lib/gepetto-gui-plugins/hppmanipulationwidgetsplugin.so
 lib/gepetto-gui-plugins/hppwidgetsplugin.so
 lib/pkgconfig/hpp-gui.pc
