@@ -2,7 +2,6 @@
 # Created:			Florent Lamiraux on Thu, 7 Jul 2011
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		hpp-template-corba
 
 CATEGORIES=		middleware
