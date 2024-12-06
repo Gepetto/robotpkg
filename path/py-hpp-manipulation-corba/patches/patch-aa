@@ -8,9 +8,9 @@ so this is not robust anyway.
 Still append <prefix>_LDFLAGS_OTHER to LINK_FLAGS, as this may contain e.g. a
 required linker rpath.
 
---- cmake/pkg-config.cmake~	2024-10-08 00:19:41.000000000 +0200
-+++ cmake/pkg-config.cmake	2024-11-08 17:14:01.580195312 +0100
-@@ -992,13 +992,12 @@
+--- cmake/pkg-config.cmake.orig	2024-11-20 21:03:18.000000000 +0100
++++ cmake/pkg-config.cmake	2024-12-06 09:08:34.083541638 +0100
+@@ -1097,13 +1097,12 @@
    endif()
  
    # Transform semi-colon seperated list in to space separated list.
@@ -23,9 +23,9 @@ required linker rpath.
    set_target_properties(${TARGET} PROPERTIES LINK_FLAGS${CONFIG} "${LDFLAGS}")
 -  _filter_link_flags(${TARGET} ${IS_GENERAL} ${IS_DEBUG} "${${PREFIX}_LDFLAGS}")
    _filter_link_flags(${TARGET} ${IS_GENERAL} ${IS_DEBUG}
-                      "${${PREFIX}_LDFLAGS_OTHER}")
- endmacro(
-@@ -1046,12 +1046,7 @@
+                      "${${PREFIX}_LDFLAGS_OTHER}"
+   )
+@@ -1155,11 +1154,7 @@
      endif()
    endif()
  
@@ -34,7 +34,6 @@ required linker rpath.
 -  if(DEFINED ${PREFIX}_DEBUG_FOUND)
 -    link_directories(${${PREFIX}_DEBUG_LIBRARY_DIRS})
 -  endif()
--
 +  target_link_libraries(${TARGET} ${PUBLIC_KEYWORD} ${${PREFIX}_LINK_LIBRARIES})
  endmacro(PKG_CONFIG_USE_LLINK_DEPENDENCY)
  
