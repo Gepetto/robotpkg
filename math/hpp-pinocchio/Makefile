@@ -2,7 +2,6 @@
 # Created:			Guilhem Saurel on Wed, 14 Mar 2018
 #
 
-PKGREVISION=	1
 HPP_PACKAGE=	hpp-pinocchio
 HPP_COMMENT=	Wrapping of the kinematic/dynamic chain Pinocchio for HPP
 
