@@ -1,0 +1,11 @@
+Install examples to libexec/franka
+
+--- examples/CMakeLists.txt~	2024-10-16 15:23:09.000000000 +0200
++++ examples/CMakeLists.txt	2024-12-09 14:26:01.390309724 +0100
+@@ -66,5 +66,5 @@
+ include(GNUInstallDirs)
+ install(TARGETS ${EXAMPLES}
+   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++  RUNTIME DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/franka
+ )

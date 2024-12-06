@@ -1,0 +1,13 @@
+Fix doxygen output directory
+
+--- doc/Doxyfile.in~	2024-10-16 15:23:09.000000000 +0200
++++ doc/Doxyfile.in	2024-12-06 19:46:05.214251652 +0100
+@@ -58,7 +58,7 @@
+ # entered, it will be relative to the location where doxygen was started. If
+ # left blank the current directory will be used.
+ 
+-OUTPUT_DIRECTORY       = "docs/@PROJECT_VERSION@"
++OUTPUT_DIRECTORY       =
+ 
+ # If the CREATE_SUBDIRS tag is set to YES then doxygen will create 4096 sub-
+ # directories (in 2 levels) under the output directory of each output format and

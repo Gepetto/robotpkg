@@ -1,0 +1,5 @@
+libfranka is a C++ library that provides low-level control of Franka Robotics
+research robots. The generated API documentation offers an overview of its
+capabilities, while the Franka Control Interface (FCI) documentation provides
+more information on setting up the robot and utilizing its features and
+functionalities.
