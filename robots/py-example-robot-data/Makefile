@@ -2,10 +2,9 @@
 # Created:			Guilhem Saurel on Tue, 14 Apr 2020
 #
 
-PKGREVISION=		2
 ORG=			gepetto
 NAME=			example-robot-data
-VERSION=		4.1.0
+VERSION=		4.2.0
 
 CATEGORIES=		robots
 COMMENT=		Robot URDFs for benchmarking and developed examples
