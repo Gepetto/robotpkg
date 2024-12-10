@@ -7,6 +7,7 @@ HPP_COMMENT=		Environments and robot descriptions for HPP
 
 CATEGORIES=		simulation
 
+HPP_DOC=		no # this conflicts with hpp-environments
 USE_PYTHON_ONLY=	yes
 
 include ../../meta-pkgs/hpp/Makefile.common
