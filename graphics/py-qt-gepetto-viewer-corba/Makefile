@@ -2,10 +2,8 @@
 # Created:			Florent Lamiraux on Sun, 8 Mar 2015
 #
 
-PKGREVISION=		1
 HPP_PACKAGE=		gepetto-viewer-corba
 HPP_COMMENT=		Corba server for gepetto-viewer
-HPP_VERSION=		5.8.1
 HPP_NAMESPACE=		gepetto
 
 PKGNAME=		${PKGTAG.python-}${PKGTAG.qt-}${DISTNAME}
