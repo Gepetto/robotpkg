@@ -1,8 +1,8 @@
 py-pinocchio needs pinocchio
 
---- CMakeLists.txt.orig	2024-08-27 16:45:25.000000000 +0000
-+++ CMakeLists.txt	2024-08-29 13:19:21.747133530 +0000
-@@ -192,6 +192,7 @@
+--- CMakeLists.txt.orig	2024-12-13 15:26:59.000000000 +0100
++++ CMakeLists.txt	2024-12-18 21:57:22.735116788 +0100
+@@ -211,6 +211,7 @@
  # ----------------------------------------------------
  set(CMAKE_MODULE_PATH "${JRL_CMAKE_MODULES}/find-external/CppAD/" ${CMAKE_MODULE_PATH})
  add_project_dependency(Eigen3 REQUIRED PKG_CONFIG_REQUIRES "eigen3 >= 3.0.5")
@@ -10,20 +10,20 @@ py-pinocchio needs pinocchio
  
  if(BUILD_WITH_URDF_SUPPORT)
    add_project_dependency(urdfdom_headers REQUIRED)
---- bindings/python/CMakeLists.txt.orig	2024-08-27 18:45:25.000000000 +0200
-+++ bindings/python/CMakeLists.txt	2024-08-29 15:19:55.570423979 +0200
-@@ -75,7 +75,7 @@
+--- bindings/python/CMakeLists.txt.orig	2024-12-13 15:26:59.000000000 +0100
++++ bindings/python/CMakeLists.txt	2024-12-18 21:58:36.608002007 +0100
+@@ -84,7 +84,7 @@
      ${PYTHON_LIB_NAME}
      SCOPE PUBLIC
      TARGETS eigenpy::eigenpy)
 -  target_link_libraries(${PYTHON_LIB_NAME} PUBLIC ${PROJECT_NAME})
-+    target_link_libraries(${PYTHON_LIB_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
++  target_link_libraries(${PYTHON_LIB_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME})
  
    if(BUILD_WITH_URDF_SUPPORT)
      # Link directly against console_bridge since we bind some enums and call
---- unittest/CMakeLists.txt.orig	2024-08-27 18:45:25.000000000 +0200
-+++ unittest/CMakeLists.txt	2024-08-29 15:21:21.067157905 +0200
-@@ -71,26 +71,26 @@
+--- unittest/CMakeLists.txt.orig	2024-12-13 15:26:59.000000000 +0100
++++ unittest/CMakeLists.txt	2024-12-18 22:00:33.727302710 +0100
+@@ -72,30 +72,30 @@
    target_include_directories(${TEST_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
  
    if(NOT unit_test_HEADER_ONLY)
@@ -31,33 +31,43 @@ py-pinocchio needs pinocchio
 +    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_default)
    endif()
  
-   if(unit_test_PARSERS OR (unit_test_PARSERS_OPTIONAL AND TARGET ${PROJECT_NAME}_parsers))
+-  if(unit_test_PARSERS OR (unit_test_PARSERS_OPTIONAL AND TARGET ${PROJECT_NAME}_parsers))
 -    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_parsers)
++  if(unit_test_PARSERS OR (unit_test_PARSERS_OPTIONAL AND TARGET ${PROJECT_NAME}::${PROJECT_NAME}_parsers))
 +    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_parsers)
    endif()
  
-   if(unit_test_PARALLEL OR (unit_test_PARALLEL_OPTIONAL AND TARGET ${PROJECT_NAME}_parallel))
+-  if(unit_test_PARALLEL OR (unit_test_PARALLEL_OPTIONAL AND TARGET ${PROJECT_NAME}_parallel))
 -    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_parallel)
++  if(unit_test_PARALLEL OR (unit_test_PARALLEL_OPTIONAL AND TARGET ${PROJECT_NAME}::${PROJECT_NAME}_parallel))
 +    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_parallel)
    endif()
  
-   if(unit_test_COLLISION OR (unit_test_COLLISION_OPTIONAL AND TARGET ${PROJECT_NAME}_collision))
+-  if(unit_test_COLLISION OR (unit_test_COLLISION_OPTIONAL AND TARGET ${PROJECT_NAME}_collision))
 -    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_collision)
-+    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_collision)
-     if(unit_test_PARALLE OR (unit_test_PARALLEL_OPTIONAL AND TARGET ${PROJECT_NAME}_parallel))
+-    if(unit_test_PARALLE OR (unit_test_PARALLEL_OPTIONAL AND TARGET ${PROJECT_NAME}_parallel))
 -      target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_collision_parallel)
++  if(unit_test_COLLISION OR (unit_test_COLLISION_OPTIONAL AND TARGET ${PROJECT_NAME}::${PROJECT_NAME}_collision))
++    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_collision)
++    if(unit_test_PARALLE OR (unit_test_PARALLEL_OPTIONAL AND TARGET ${PROJECT_NAME}::${PROJECT_NAME}_parallel))
 +      target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_collision_parallel)
      endif()
    endif()
  
-   if(unit_test_EXTRA OR (unit_test_EXTRA_OPTIONAL AND TARGET ${PROJECT_NAME}_extra))
+-  if(unit_test_EXTRA OR (unit_test_EXTRA_OPTIONAL AND TARGET ${PROJECT_NAME}_extra))
 -    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_extra)
++  if(unit_test_EXTRA OR (unit_test_EXTRA_OPTIONAL AND TARGET ${PROJECT_NAME}::${PROJECT_NAME}_extra))
 +    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_extra)
    endif()
  
-   modernize_target_link_libraries(
---- examples/CMakeLists.txt.orig	2024-08-27 18:45:25.000000000 +0200
-+++ examples/CMakeLists.txt	2024-08-29 15:22:20.099674281 +0200
+   if(unit_test_PYTHON_PARSER)
+-    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}_python_parser)
++    target_link_libraries(${TEST_NAME} PUBLIC ${PROJECT_NAME}::${PROJECT_NAME}_python_parser)
+     add_windows_dll_path_to_test(${TEST_NAME})
+     get_test_property(${TEST_NAME} ENVIRONMENT ENV_VARIABLES)
+     compute_pythonpath(PYTHON_ENV_VARIABLES "bindings/python")
+--- examples/CMakeLists.txt.orig	2024-12-13 15:26:59.000000000 +0100
++++ examples/CMakeLists.txt	2024-12-18 22:01:17.227045938 +0100
 @@ -14,22 +14,22 @@
    get_filename_component(EXAMPLE_NAME ${EXAMPLE} NAME)
    set(EXAMPLE_NAME "${PROJECT_NAME}-example-cpp-${EXAMPLE_NAME}")
