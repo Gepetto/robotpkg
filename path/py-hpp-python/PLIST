@@ -1,0 +1,26 @@
+@comment Fri Dec 20 10:12:44 CET 2024
+include/hpp/python/config.hh
+include/hpp/python/deprecated.hh
+include/hpp/python/warning.hh
+include/pyhpp/core/fwd.hh
+lib/cmake/hpp-python/cxx-standard.cmake
+lib/cmake/hpp-python/hpp-pythonConfig.cmake
+lib/cmake/hpp-python/hpp-pythonConfigVersion.cmake
+lib/cmake/hpp-python/hpp-pythonTargets.cmake
+lib/pkgconfig/hpp-python.pc
+${PYTHON_SITELIB}/pyhpp/__init__.py
+${PYTHON_SITELIB}/pyhpp/constraints/__init__.py
+${PYTHON_SITELIB}/pyhpp/constraints/bindings.so
+${PYTHON_SITELIB}/pyhpp/corbaserver/__init__.py
+${PYTHON_SITELIB}/pyhpp/corbaserver/bindings.so
+${PYTHON_SITELIB}/pyhpp/core/__init__.py
+${PYTHON_SITELIB}/pyhpp/core/bindings.so
+${PYTHON_SITELIB}/pyhpp/core/path/__init__.py
+${PYTHON_SITELIB}/pyhpp/core/path/bindings.so
+${PYTHON_SITELIB}/pyhpp/core/path_optimization/__init__.py
+${PYTHON_SITELIB}/pyhpp/core/path_optimization/bindings.so
+${PYTHON_SITELIB}/pyhpp/pinocchio/__init__.py
+${PYTHON_SITELIB}/pyhpp/pinocchio/bindings.so
+${PYTHON_SITELIB}/pyhpp/pinocchio/urdf/__init__.py
+${PYTHON_SITELIB}/pyhpp/pinocchio/urdf/bindings.so
+share/hpp-python/package.xml

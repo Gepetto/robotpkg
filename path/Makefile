@@ -26,5 +26,6 @@ SUBDIR+=	py-hpp-bezier-com-traj
 SUBDIR+=	py-hpp-centroidal-dynamics
 SUBDIR+=	py-hpp-corbaserver
 SUBDIR+=	py-hpp-manipulation-corba
+SUBDIR+=	py-hpp-python
 
 include ../mk/robotpkg.subdir.mk
