@@ -10,6 +10,9 @@ CATEGORIES=		path
 MAKE_JOBS_SAFE=		no
 PYTHON_NOTAG_CONFLICT=	yes
 
+# replace python interpreter
+SUBST_CLASSES+=		py-interp
+SUBST_FILES.py-interp+=	doc/configure.py
 
 CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		..
