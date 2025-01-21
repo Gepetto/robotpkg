@@ -20,9 +20,10 @@ pre-configure:
 
 include ../../meta-pkgs/hpp/Makefile.common
 
-include ../../path/hpp-core/depend.mk
-include ../../path/hpp-constraints/depend.mk
 include ../../math/hpp-pinocchio/depend.mk
+include ../../math/py-eigenpy/depend.mk
+include ../../path/hpp-constraints/depend.mk
+include ../../path/hpp-core/depend.mk
 include ../../path/py-hpp-corbaserver/depend.mk
 include ../../pkgtools/pkg-config/depend.mk
 include ../../mk/language/c++.mk
