@@ -2,7 +2,7 @@
 # Created:			Anthony Mallet on Tue, 21 Aug 2018
 #
 
-DISTNAME=		openrobots2-idl-2.3
+DISTNAME=		openrobots2-idl-2.3.1
 CATEGORIES=		interfaces
 MASTER_SITES=		${MASTER_SITE_OPENROBOTS:=openrobots-idl/}
 MASTER_REPOSITORY=	${MASTER_REPOSITORY_OPENROBOTS}openrobots-idl
