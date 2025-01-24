@@ -1,0 +1,23 @@
+Fix sdl>=2.0.20<2.28 version check
+
+diff --git codels/joystick_publish_codels.c codels/joystick_publish_codels.c
+index 23d5f31..d8fdc25 100644
+--- codels/joystick_publish_codels.c
++++ codels/joystick_publish_codels.c
+@@ -56,10 +56,14 @@ joystick_init(joystick_ids *ids, const genom_context self)
+ 
+   SDL_JoystickEventState(SDL_ENABLE);
+ 
+-#if SDL_MAJOR_VERSION == 2 && SDL_MINOR_VERSION >= 20 && SDL_MINOR_VERSION < 28
++#if (SDL_MAJOR_VERSION == 2 && SDL_MINOR_VERSION < 22 && SDL_PATCHLEVEL >= 20) || \
++  (SDL_MAJOR_VERSION == 2 && SDL_MINOR_VERSION >= 22 && SDL_MINOR_VERSION < 28)
+   /* There is an issue with sdl>=2.0.20<2.28 and SDL_WaitEventTimeout(NULL):
+    * https://github.com/libsdl-org/SDL/issues/7392
+-   * As a work around, disable SDL_POLLSENTINEL for those versions
++   * As a work around, disable SDL_POLLSENTINEL for those versions.
++   *
++   * Prior to 2.24.0, every release was increasing SDL_PATCHLEVEL.
++   * From 2.24.0, every release is increasing SDL_MINOR_VERSION.
+    */
+   SDL_EventState(SDL_POLLSENTINEL, SDL_DISABLE);
+ #endif
