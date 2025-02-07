@@ -11,17 +11,25 @@ endif
 
 ifeq (+,$(LIBCCD_DEPEND_MK)) # ---------------------------------------------
 
-PREFER.libccd?=		robotpkg
+include ../../mk/robotpkg.prefs.mk # for OPSYS
+ifeq (NetBSD,${OPSYS})
+  PREFER.libccd?=	robotpkg
+endif
+PREFER.libccd?=		system
 
 DEPEND_USE+=		libccd
 
-DEPEND_ABI.libccd?=	libccd>=1.0
+DEPEND_ABI.libccd?=	libccd>=2.0
 DEPEND_DIR.libccd?=	../../math/libccd
 
 SYSTEM_SEARCH.libccd=\
-  'include/ccd/ccd.h'				\
-  'lib/libccd.so'				\
+  'include/ccd/ccd.h'					\
+  'lib/libccd.so'					\
   'lib/pkgconfig/ccd.pc:/Version/s/[^0-9.]//gp'
+
+SYSTEM_PKG.Fedora.python312=	libccd-devel
+SYSTEM_PKG.Debian.python312=	libccd-dev
+SYSTEM_PKG.NetBSD.python312=	lang/python312
 
 endif # LIBCCD_DEPEND_MK ---------------------------------------------------
 

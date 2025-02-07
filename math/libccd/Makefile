@@ -2,10 +2,10 @@
 # Created:			Anthony Mallet on Tue, 28 Apr 2015
 #
 
-VERSION=	2.0
-DISTNAME=	libccd-${VERSION}
+DISTNAME=	libccd-2.1
 CATEGORIES=	math
-MASTER_SITES=	${MASTER_SITE_GITHUB:=danfis/libccd/archive/v${VERSION}.tar.gz?}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=danfis/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	openrobots@laas.fr
 HOMEPAGE=	http://libccd.danfis.cz/
