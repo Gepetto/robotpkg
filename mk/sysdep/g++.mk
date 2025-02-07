@@ -27,7 +27,7 @@ SYSTEM_PKG.Ubuntu.g++ =	g++
 SYSTEM_PKG.Debian.g++ =	g++
 
 SYSTEM_SEARCH.g++ =\
-	'bin/g++::% -dumpversion'
+  'bin/g++::% -dumpfullversion -dumpversion'
 
 export GXX=		$(word 1,${SYSTEM_FILES.g++})
 

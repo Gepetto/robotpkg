@@ -21,7 +21,7 @@ DEPEND_METHOD.gcc?=	build
 DEPEND_ABI.gcc?=	gcc>=3
 
 SYSTEM_SEARCH.gcc?=	\
-	'bin/gcc::% -dumpversion'
+  'bin/gcc::% -dumpfullversion -dumpversion'
 
 export GCC=		$(word 1,${SYSTEM_FILES.gcc})
 
